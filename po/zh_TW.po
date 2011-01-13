@@ -3,20 +3,20 @@
 # This file is distributed under the same license as the cairo-dock-plug-ins package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 #
-#: ../Disks/data/messages:21
 msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-09-18 12:27+0000\n"
+"POT-Creation-Date: 2011-01-01 04:07+0000\n"
+"PO-Revision-Date: 2010-10-28 02:33+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-09-19 05:35+0000\n"
+"X-Launchpad-Export-Date: 2011-01-02 05:12+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+"Language: \n"
 "X-Poedit-Bookmarks: 1393,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -219,7 +219,8 @@ msgstr "此模組已加入，但是無法啟動。"
 
 #: ../Dbus/src/interface-applet-signals.c:486
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "面板程式 %s 更新成功，並且已自動重新載入"
 
 #: ../Dbus/src/interface-applet-signals.c:486
@@ -270,9 +271,8 @@ msgid "N/A"
 msgstr ""
 
 #: ../Disks/src/applet-init.c:29
-#, fuzzy
 msgid "Disks"
-msgstr "磁碟使用率"
+msgstr ""
 
 #: ../Disks/src/applet-init.c:32
 msgid ""
@@ -396,9 +396,8 @@ msgstr ""
 "以及新名稱是否尚未使用過。"
 
 #: ../Folders/src/applet-notifications.c:335
-#, fuzzy
 msgid "Open the folder"
-msgstr "打開這個資料夾"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:335
 #: ../GMenu/src/applet-notifications.c:76
@@ -423,9 +422,8 @@ msgstr "打開這個資料夾"
 #: ../switcher/src/applet-notifications.c:302
 #: ../switcher/src/applet-notifications.c:309
 #: ../switcher/src/applet-notifications.c:318
-#, fuzzy
 msgid "middle-click"
-msgstr "靜音（中鍵點擊）"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:344
 msgid "Rename this file"
@@ -466,8 +464,7 @@ msgid ""
 msgstr ""
 "顯示常用的「應用程式」選單與「最近使用的檔案」。\n"
 "它與任何遵守 XDG 的選單相容 (Gnome、XFCE、XDE...)\n"
-"使用中鍵點擊以開啟對話窗來快速啟動任何指令 (您可以為它設置快捷鍵，像是 ALT"
-"+F2)\n"
+"使用中鍵點擊以開啟對話窗來快速啟動任何指令 (您可以為它設置快捷鍵，像是 ALT+F2)\n"
 "您也可以設置快捷鍵以彈出該選單 (像是 ALT+F1)"
 
 #: ../GMenu/src/applet-init.c:39
@@ -651,8 +648,7 @@ msgstr ""
 "此面板程式讓您可以監視您的網路連線。\n"
 "它能顯示下載/上傳速度，以及 wifi 訊號品質。\n"
 "若您的 network-manager 正在執行，該面板程式能讓您選擇目前的 wifi 網路。\n"
-"左鍵點擊可以彈出一些資訊。於圖示上滾動滑鼠滾輪可以在顯示網路速度與顯示 wifi "
-"之間切換。"
+"左鍵點擊可以彈出一些資訊。於圖示上滾動滑鼠滾輪可以在顯示網路速度與顯示 wifi 之間切換。"
 
 #: ../Network-Monitor/src/applet-netspeed.c:200
 #: ../System-Monitor/src/applet-monitor.c:90
@@ -977,14 +973,12 @@ msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:109
 #: ../netspeed/src/applet-notifications.c:101
-#, fuzzy
 msgid "Open the System-Monitor"
-msgstr "系統監視器"
+msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:111
-#, fuzzy
 msgid "Show info"
-msgstr "顯示視窗"
+msgstr ""
 
 #: ../System-Monitor/src/applet-nvidia.c:146
 msgid "GPU model"
@@ -1028,9 +1022,8 @@ msgid "Buffers"
 msgstr "緩衝區"
 
 #: ../System-Monitor/src/applet-sensors.c:363
-#, fuzzy
 msgid "min"
-msgstr "1分鐘"
+msgstr ""
 
 #: ../System-Monitor/src/applet-sensors.c:365
 msgid "max"
@@ -1038,18 +1031,17 @@ msgstr ""
 
 #: ../System-Monitor/src/applet-sensors.c:368
 #: ../System-Monitor/src/applet-sensors.c:401
-#, fuzzy
 msgid "alarm"
-msgstr "鬧鐘"
+msgstr ""
 
 #: ../System-Monitor/src/applet-sensors.c:399
 msgid "rpm"
 msgstr ""
 
 #: ../System-Monitor/src/applet-sensors.c:418
-#, fuzzy, c-format
+#, c-format
 msgid "CPU temperature has reached %d°C"
-msgstr "警戒！顯示卡核心溫度已達到 %d°C"
+msgstr ""
 
 #: ../System-Monitor/src/applet-sensors.c:432
 #, c-format
@@ -1148,9 +1140,8 @@ msgid "Adjust channels"
 msgstr "調整聲道"
 
 #: ../alsaMixer/src/applet-notifications.c:59
-#, fuzzy
 msgid "double-click"
-msgstr "掛載 (中鍵點擊)"
+msgstr ""
 
 #: ../alsaMixer/src/applet-notifications.c:62
 msgid "Unmute"
@@ -1274,16 +1265,15 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
 msgstr ""
 "此面板程式顯示時間、日期與日曆。\n"
 "2 種檢視模式可用：<b>數位式</b>與<b>類比式</b>。\n"
-" 類比式檢視與 Cairo-Clock 的主題相容，並且您可以完美地獨立分離該 Cairo-Clock "
-"面板程式。\n"
+" 類比式檢視與 Cairo-Clock 的主題相容，並且您可以完美地獨立分離該 Cairo-Clock 面板程式。\n"
 "以左鍵點擊時，它會顯示一份<b>日曆</b>，可以讓您<b>管理工作事項</b>。\n"
 "它也支援鬧鐘功能，還能讓您設置時間與日期。\n"
 "點擊左鍵以顯示或隱藏該日曆，點集中鍵以停止通知功能。\n"
@@ -1559,7 +1549,8 @@ msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr "此插件提供對話窗一些裝置。"
 
 #: ../dnd2share/src/applet-dnd2share.c:158
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr "無法上傳檔案，請檢查您的網路連線是否啟用。"
 
 #: ../dnd2share/src/applet-dnd2share.c:273
@@ -1571,7 +1562,8 @@ msgstr ""
 "只要按下 CTRL+V 就能到處貼上其網址。"
 
 #: ../dnd2share/src/applet-dnd2share.c:318
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr "在開始新的上傳之前，請等候目前的上傳結束。"
 
 #: ../dnd2share/src/applet-dnd2share.c:540
@@ -1579,7 +1571,6 @@ msgid "Tiny URL"
 msgstr "Tiny URL"
 
 #: ../dnd2share/src/applet-init.c:41
-#, fuzzy
 msgid ""
 "This applet lets you share files easily:\n"
 "Drag-and-drop a file on the icon to upload it to one of the available "
@@ -1595,13 +1586,6 @@ msgid ""
 "copy it into the mouse selection.\n"
 "You'll need to install 'curl' and 'wget' to upload the data."
 msgstr ""
-"此面板程式可以讓您簡易分享檔案：\n"
-"拖放檔案至該圖示以上傳它至可用的主機站台。\n"
-"它支援許多網站，像是 DropBox、Imageshack、pastebin...等\n"
-"您可以上傳文字、影像、視訊、檔案。\n"
-"輸出的網址會自動儲存於剪貼簿，這樣一來就能直接用 CTRL+v 製作複製。\n"
-"它能保存您最近上傳的歷史以在沒有帳號的情況下也能擷取它們。\n"
-"您需要安裝 'curl' 與 'wget' 才能上傳資料。"
 
 #: ../dnd2share/src/applet-init.c:51
 msgid "Drop to share"
@@ -1959,9 +1943,8 @@ msgstr "選擇多少分鐘後電腦就會停止："
 #: ../logout/src/applet-notifications.c:153
 #: ../logout/src/applet-notifications.c:155 ../logout/data/messages:97
 #: ../logout/data/messages:105
-#, fuzzy
 msgid "Log out"
-msgstr "登出"
+msgstr ""
 
 #: ../logout/src/applet-notifications.c:162
 #: ../logout/src/applet-notifications.c:164 ../logout/data/messages:99
@@ -2016,16 +1999,13 @@ msgstr "連接埠："
 msgid ""
 "Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and "
 "995 for POP3S."
-msgstr ""
-"請輸入 0 以使用預設連接埠。POP3 與 APOP 的預設連接埠為 100，POP3S 為 995。"
+msgstr "請輸入 0 以使用預設連接埠。POP3 與 APOP 的預設連接埠為 100，POP3S 為 995。"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
-#, fuzzy
 msgid ""
 "Enter 0 to use the default port. Default ports are 143 for IMAP4 and 993 for "
 "IMAP4 over SSL."
 msgstr ""
-"請輸入 0 以使用預設連接埠。POP3 與 APOP 的預設連接埠為 100，POP3S 為 995。"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Use a secure connection (SSL)"
@@ -2067,9 +2047,8 @@ msgid "Address of feed:"
 msgstr "饋流的位址："
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
-#, fuzzy
 msgid "Remove this account"
-msgstr "移除帳號"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid ""
@@ -2154,23 +2133,18 @@ msgstr ""
 "您可以在這個模組的設置面板裏面更改它。"
 
 #: ../mail/src/cd-mail-applet-notifications.c:67
-#, fuzzy
 msgid ""
 "No mail application is defined,\n"
 "you can define it in the configuration panel of this module"
 msgstr ""
-"出現了問題\n"
-"如果 '%s' 不是您平常使用的信件應用程式，\n"
-"您可以在這個模組的設置面板裏面更改它。"
 
 #: ../mail/src/cd-mail-applet-notifications.c:150
 msgid "Refresh a mail account"
 msgstr "更新信件帳戶"
 
 #: ../mail/src/cd-mail-applet-notifications.c:157
-#, fuzzy
 msgid "Refresh all"
-msgstr "重新整理"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-notifications.c:164
 #, c-format
@@ -2257,8 +2231,7 @@ msgstr ""
 "這個面板程式可以讓您控制任何的音樂播放軟體。\n"
 "左鍵點擊可以 播放/暫停 ，中鍵點擊可以播放下一首歌。\n"
 "捲動上下可以播放上一首歌或下一首歌。\n"
-"您可以用 拖-放 的方式將歌曲直接放到這個面板程式的圖示上面，讓歌曲進入播放序列"
-"當中(音樂播放器當中)。\n"
+"您可以用 拖-放 的方式將歌曲直接放到這個面板程式的圖示上面，讓歌曲進入播放序列當中(音樂播放器當中)。\n"
 " 並且可以用JPEG圖片作為封面。\n"
 "備註：要使用XMMS，您要安裝 xmms-infopipe 這個外掛。\n"
 "       SongBird您要安裝他的 dbus 付掛程式。\n"
@@ -2286,19 +2259,16 @@ msgid "scroll-up"
 msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:186
-#, fuzzy
 msgid "Play/Pause"
-msgstr "播放/暫停"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:186
-#, fuzzy
 msgid "left-click"
-msgstr "左鍵點擊動作："
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:192
-#, fuzzy
 msgid "Next"
-msgstr "文字"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:192
 msgid "scroll-down"
@@ -2371,9 +2341,8 @@ msgstr ""
 " 你想這樣做嗎？"
 
 #: ../netspeed/src/applet-notifications.c:97
-#, fuzzy
 msgid "Enable/disable network"
-msgstr "停用網路"
+msgstr ""
 
 #: ../netspeed/src/applet-notifications.c:105
 msgid "Re-check interface"
@@ -2551,9 +2520,8 @@ msgid "Enter a name for this bookmark:"
 msgstr "請輸入此書籤的名稱："
 
 #: ../shortcuts/src/applet-notifications.c:250
-#, fuzzy
 msgid "Open Home directory"
-msgstr "清除本地端的目錄"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:259
 msgid "Rename this bookmark"
@@ -2568,14 +2536,12 @@ msgid "Eject"
 msgstr "彈出"
 
 #: ../shortcuts/src/applet-notifications.c:271
-#, fuzzy
 msgid "Unmount"
-msgstr "已卸載"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:271
-#, fuzzy
 msgid "Mount"
-msgstr "月"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:275
 msgid "Get disk info"
@@ -2591,11 +2557,9 @@ msgstr "顯示滑鼠"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
-msgstr ""
-"這個增效模組可以讓您的滑鼠游標在進入 Dock 的時候展現出動畫環繞在滑鼠游標旁"
-"邊。"
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
+msgstr "這個增效模組可以讓您的滑鼠游標在進入 Dock 的時候展現出動畫環繞在滑鼠游標旁邊。"
 
 #: ../showDesktop/src/applet-init.c:28
 msgid "showDesktop"
@@ -2615,8 +2579,7 @@ msgstr ""
 " 還有：桌面小工具、Widget 層、或者一次顯示全部的桌面。\n"
 "他還可以使用右鍵點擊選單來快速切換螢幕解析度。\n"
 "左鍵點擊來 顯示/隱藏 桌面。\n"
-"中鍵點擊可以 顯示/隱藏 不管是桌面、桌面面板程式、桌面面板程式層、還是全部的桌"
-"面。"
+"中鍵點擊可以 顯示/隱藏 不管是桌面、桌面面板程式、桌面面板程式層、還是全部的桌面。"
 
 #: ../showDesktop/src/applet-notifications.c:76
 #: ../switcher/src/applet-notifications.c:37
@@ -2710,8 +2673,7 @@ msgid ""
 "You can quickly copy the path/url/text to the clipboard, or open it."
 msgstr ""
 "這個面板程式可以讓您建立檔案的堆疊，就像是 MacOS X 上的堆疊面板程式。\n"
-"要增加檔案到您的堆疊當中，您只要 拖-放 它到堆疊面板程式的圖示當中，這樣子就完"
-"成了。\n"
+"要增加檔案到您的堆疊當中，您只要 拖-放 它到堆疊面板程式的圖示當中，這樣子就完成了。\n"
 "您可以放入任何的檔案，或者是網路位置，甚至是文字的一部份。\n"
 "您可以快速的拷貝 路徑/網路位置/文字 到剪貼簿，或者打開它。"
 
@@ -2835,7 +2797,6 @@ msgid "systray"
 msgstr "系統匣"
 
 #: ../systray/src/systray-init.c:35
-#, fuzzy
 msgid ""
 "Add a systray to your dock.\n"
 "Left-click to show/hide the systray in a dialog (you can bind a keyboard "
@@ -2843,11 +2804,6 @@ msgid ""
 "But the best way to use it is to detach it from the dock, and place it "
 "somewhere, above other windows."
 msgstr ""
-"增加一個系統匣到您的 Dock 上。\n"
-"左鍵點擊會以交談式視窗的方式顯示顯示系統資訊(您可以用快速鍵來做到這點)。\n"
-"中鍵點擊可以關閉這個交談視窗。\n"
-"但是最好的方式是將他與 Dock 分離，然後放置在桌面的任何地方，並且讓他顯示於其"
-"他視窗之上。"
 
 #: ../systray/src/systray-interface.c:71
 msgid ""
@@ -2856,8 +2812,7 @@ msgid ""
 "any conflict."
 msgstr ""
 "另外一個系統匣正在執行中(有可能正在您的面板當中)\n"
-"因為系統匣在同一個時間內只能允許一個被執行，因此您也許需要關掉其中一個來避免"
-"衝突。"
+"因為系統匣在同一個時間內只能允許一個被執行，因此您也許需要關掉其中一個來避免衝突。"
 
 #: ../template/src/applet-init.c:28
 msgid "CD_APPLET_NAME"
@@ -2876,7 +2831,6 @@ msgid "terminal"
 msgstr "終端機"
 
 #: ../terminal/src/terminal-init.c:34
-#, fuzzy
 msgid ""
 "Add a terminal to your dock !\n"
 "Left-click to show/hide terminal (you can bind a keyboard shortcut for it.)\n"
@@ -2886,13 +2840,6 @@ msgid ""
 "To open a new tab : type 'CTRL+t' or double-click next to the last tab\n"
 "To close a tab : type 'CTRL+w' or middle-click on it."
 msgstr ""
-"加入終端機到您的 Dock 上！\n"
-"左鍵/中鍵 點擊可以 顯示/隱藏 終端機(您可以設定鍵盤快速鍵來做這件事)。\n"
-"您可以 拖-放 文件或檔案，然後選擇一個動作。\n"
-"您可以開啟很多的分頁，更改它們的名稱，改變它們的色彩(在分頁上面點擊滑鼠右"
-"鍵)\n"
-"要開啟新分頁：按下CTRL + t 或者是雙擊最後一個分頁標籤\n"
-"要關閉分頁：按下CTRL + w 或者是中鍵點擊分頁標籤"
 
 #: ../terminal/src/terminal-menu-functions.c:79
 #: ../terminal/src/terminal-widget.c:390
@@ -3041,8 +2988,7 @@ msgstr ""
 "這個面板程式可以在您的 Dock 上面顯示天氣。\n"
 "資料來自 www.weather.com ，您可以在設置面板當中找到您目前所在的位置。\n"
 "它可以完整的分離變成桌面上漂亮 3D 小工具。\n"
-"在煮圖示上面中鍵點擊可以顯示現在的環境資訊，在子圖示上點擊左鍵可以看到天氣預"
-"報。\n"
+"在煮圖示上面中鍵點擊可以顯示現在的環境資訊，在子圖示上點擊左鍵可以看到天氣預報。\n"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Jan"
@@ -3098,14 +3044,12 @@ msgid "Data are being retrieved, please wait a moment."
 msgstr "資料已經開始下載，請稍候。"
 
 #: ../weather/src/applet-notifications.c:108
-#, fuzzy
 msgid "Show current conditions (middle-click)"
-msgstr "掛載 (中鍵點擊)"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:113
-#, fuzzy
 msgid "Open weather.com (double-click)"
-msgstr "開啟資料夾 (滑鼠中鍵)"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:115
 msgid "Reload now"
@@ -3756,9 +3700,7 @@ msgstr "位置"
 msgid ""
 "If locked, the desklet cannot be moved by simply dragging it with the left "
 "mouse button. It can still be moved with ALT + left-click."
-msgstr ""
-"假如鎖定了，桌面小工具就不能夠簡單的用拖動的方式移動。然而您還是可以用 ALT + "
-"左鍵拖動 的方式來移動。"
+msgstr "假如鎖定了，桌面小工具就不能夠簡單的用拖動的方式移動。然而您還是可以用 ALT + 左鍵拖動 的方式來移動。"
 
 #: ../Clipper/data/messages:23 ../Disks/data/messages:55
 #: ../Doncky/data/messages:21 ../Folders/data/messages:35
@@ -3804,9 +3746,7 @@ msgstr "鎖定位置？"
 msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
-msgstr ""
-"以您的視窗管理員設定為主，您也可以改變尺寸例如以 ALT + 滑鼠中鍵點擊 或者是 "
-"ALT + 左鍵點擊。"
+msgstr "以您的視窗管理員設定為主，您也可以改變尺寸例如以 ALT + 滑鼠中鍵點擊 或者是 ALT + 左鍵點擊。"
 
 #: ../Clipper/data/messages:27 ../Disks/data/messages:31
 #: ../Doncky/data/messages:25 ../Folders/data/messages:39
@@ -3892,8 +3832,7 @@ msgstr "桌面小工具的位置( X軸 ; Y軸 )："
 msgid ""
 "You can quickly rotate the desklet with the mouse, by dragging the little "
 "buttons on its left and top sides."
-msgstr ""
-"在桌面面板程式左上方的小按鈕，您可以用滑鼠拖動它來快速的旋轉桌面面板程式。"
+msgstr "在桌面面板程式左上方的小按鈕，您可以用滑鼠拖動它來快速的旋轉桌面面板程式。"
 
 #: ../Clipper/data/messages:35 ../Disks/data/messages:63
 #: ../Doncky/data/messages:33 ../Folders/data/messages:47
@@ -3984,8 +3923,8 @@ msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
 "(class=Cairo-dock & type=utility)"
 msgstr ""
-"要在 CompizFusion's 的 桌面面板程式層(Widget Layer) 當中，行為(behaviour) 設"
-"置裏面設定 class=Cairo-dock & type=utility"
+"要在 CompizFusion's 的 桌面面板程式層(Widget Layer) 當中，行為(behaviour) 設置裏面設定 "
+"class=Cairo-dock & type=utility"
 
 #: ../Clipper/data/messages:43 ../Disks/data/messages:37
 #: ../Doncky/data/messages:41 ../Folders/data/messages:55
@@ -4536,9 +4475,7 @@ msgstr "記住兩個作業階段之間的物件？"
 msgid ""
 "It is especially useful if you often select text with the mouse and don't "
 "want to loose your clipboard items due to too many items in the selection."
-msgstr ""
-"如果您不想失去您剪貼簿裏面的項目，並且你經常用滑鼠大量的選擇文字，那這會很有"
-"用，"
+msgstr "如果您不想失去您剪貼簿裏面的項目，並且你經常用滑鼠大量的選擇文字，那這會很有用，"
 
 #: ../Clipper/data/messages:113
 msgid "Separate clipboard and selection?"
@@ -4658,9 +4595,8 @@ msgid "Let extern applications register new module?"
 msgstr "讓外部的應用程式掛入新的模組？"
 
 #: ../Disks/data/messages:3
-#, fuzzy
 msgid "Applet"
-msgstr "歌手"
+msgstr ""
 
 #: ../Disks/data/messages:5
 msgid ""
@@ -4669,9 +4605,8 @@ msgid ""
 msgstr ""
 
 #: ../Disks/data/messages:7
-#, fuzzy
 msgid "Name of the container it belongs to:"
-msgstr "它屬於哪個 Dock："
+msgstr ""
 
 #: ../Disks/data/messages:11 ../Disks/data/messages:141
 #: ../alsaMixer/data/messages:115 ../keyboard-indicator/data/messages:97
@@ -4683,24 +4618,20 @@ msgid "Display"
 msgstr "顯示"
 
 #: ../Disks/data/messages:19
-#, fuzzy
 msgid "Image's name or path :"
-msgstr "圖檔的名稱："
+msgstr ""
 
 #: ../Disks/data/messages:25
-#, fuzzy
 msgid "Desklet mode"
-msgstr "桌面小工具"
+msgstr ""
 
 #: ../Disks/data/messages:71
-#, fuzzy
 msgid "Custom decorations"
-msgstr "自訂"
+msgstr ""
 
 #: ../Disks/data/messages:85
-#, fuzzy
 msgid "Custom margins"
-msgstr "自訂"
+msgstr ""
 
 #: ../Disks/data/messages:105 ../Network-Monitor/data/messages:131
 #: ../System-Monitor/data/messages:91 ../netspeed/data/messages:89
@@ -4805,9 +4736,8 @@ msgid "Show all values on same graph?"
 msgstr "在相同的圖表上顯示全部的數值？"
 
 #: ../Disks/data/messages:143
-#, fuzzy
 msgid "Display values"
-msgstr "顯示值："
+msgstr ""
 
 #: ../Disks/data/messages:145 ../Network-Monitor/data/messages:109
 #: ../RSSreader/data/messages:113 ../System-Monitor/data/messages:147
@@ -4830,9 +4760,8 @@ msgid "On label"
 msgstr "在標籤"
 
 #: ../Disks/data/messages:153
-#, fuzzy
 msgid "Refresh time"
-msgstr "重新整理時間："
+msgstr ""
 
 #: ../Disks/data/messages:155 ../netspeed/data/messages:135
 msgid ""
@@ -4841,9 +4770,8 @@ msgid ""
 msgstr "這個選項您需要 OpenGL。設定它為 0 關閉它，1 表示持續顯示。"
 
 #: ../Disks/data/messages:157
-#, fuzzy
 msgid "Fluidity of the transition between 2 values"
-msgstr "流動顯示，介於兩個數字之間："
+msgstr ""
 
 #: ../Disks/data/messages:159
 msgid "Disks monitored : Speed"
@@ -4871,9 +4799,8 @@ msgid "Leave empty to use the default."
 msgstr "讓它空白來使用預設值。"
 
 #: ../Disks/data/messages:171
-#, fuzzy
 msgid "System monitor command"
-msgstr "系統監視器"
+msgstr ""
 
 #: ../Doncky/data/messages:93
 msgid "Specify the xml file to be used :"
@@ -4920,7 +4847,8 @@ msgid "Background"
 msgstr "背景"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr "您可以讓桌面面板程式使用更多好看的背景"
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
@@ -5002,9 +4930,8 @@ msgid ""
 msgstr ""
 
 #: ../Folders/data/messages:109
-#, fuzzy
 msgid "Show folder's content?"
-msgstr "顯示新信件的內容？"
+msgstr ""
 
 #: ../Folders/data/messages:111
 msgid "Sort files by :"
@@ -5127,8 +5054,7 @@ msgstr "顯示數字值："
 msgid ""
 "You need OpenGL for this option. Set it to 0 means not used, 1 means the "
 "movement is continue."
-msgstr ""
-"您需要有OpenGL才能使用這個選項。設定為 0 時不使用，1 是指繼續動作下去。"
+msgstr "您需要有OpenGL才能使用這個選項。設定為 0 時不使用，1 是指繼續動作下去。"
 
 #: ../Network-Monitor/data/messages:117
 msgid "Fluidity of the transition animation between 2 values:"
@@ -5419,9 +5345,7 @@ msgstr "大"
 msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click.. Negative values are counted from the right/bottom of the screen"
-msgstr ""
-"放置在您的視窗管理員當中，您也可以利用 ALT+滑鼠左鍵 來移動它， 負值的計算是從"
-"螢幕的右下方開始。"
+msgstr "放置在您的視窗管理員當中，您也可以利用 ALT+滑鼠左鍵 來移動它， 負值的計算是從螢幕的右下方開始。"
 
 #: ../Recent-Events/data/messages:93 ../template/data/messages:93
 msgid "This is a tooltip for this parameter."
@@ -5469,8 +5393,7 @@ msgstr "搜尋結果的最大數量："
 msgid ""
 "Number of lines of the listing. If there are more results, the listing will "
 "scroll when you go up or down with the arrows."
-msgstr ""
-"列出結果的數量。假如有很多的結果，那麼列出的結果可以透過您按 上/下 鍵來捲動。"
+msgstr "列出結果的數量。假如有很多的結果，那麼列出的結果可以透過您按 上/下 鍵來捲動。"
 
 #: ../Scooby-Do/data/messages:11
 msgid "Number of lines to display :"
@@ -5686,14 +5609,12 @@ msgid "Show graphic card's temperature?"
 msgstr "顯示卡溫度？"
 
 #: ../System-Monitor/data/messages:139
-#, fuzzy
 msgid "Show CPU temperature?"
-msgstr "顯示卡溫度？"
+msgstr ""
 
 #: ../System-Monitor/data/messages:141
-#, fuzzy
 msgid "Show fan speed?"
-msgstr "顯示秒？"
+msgstr ""
 
 #: ../System-Monitor/data/messages:143
 msgid "Show free memory instead of used memory?"
@@ -5712,14 +5633,12 @@ msgid "How smooth is the movement?"
 msgstr "動作的平滑度？"
 
 #: ../System-Monitor/data/messages:161
-#, fuzzy
 msgid "Alerts"
-msgstr "歌手"
+msgstr ""
 
 #: ../System-Monitor/data/messages:163
-#, fuzzy
 msgid "Show alerts?"
-msgstr "顯示提示工具？"
+msgstr ""
 
 #: ../System-Monitor/data/messages:165
 msgid "Play a sound when displaying warning?"
@@ -5730,16 +5649,14 @@ msgid "Path to sound file:"
 msgstr "警告聲音檔案的路徑："
 
 #: ../System-Monitor/data/messages:169
-#, fuzzy
 msgid "System-Monitor"
-msgstr "系統監視器"
+msgstr ""
 
 #: ../System-Monitor/data/messages:175
 msgid ""
 "It will prevent the system monitor's icon to show in the taskbar. The "
 "applet's icon will then behave as a launcher, an application, and an applet."
-msgstr ""
-"它會阻止系統監視器的圖示出現在工具列上，此面板程式的圖示會像是快速啟動一樣。"
+msgstr "它會阻止系統監視器的圖示出現在工具列上，此面板程式的圖示會像是快速啟動一樣。"
 
 #: ../System-Monitor/data/messages:177
 msgid "Steal the system monitor's icon from the taskbar?"
@@ -5757,8 +5674,7 @@ msgstr "最高的清單："
 msgid ""
 "When you left-click on the icon, you will get the list of the N most CPU/RAM-"
 "intensive programs."
-msgstr ""
-"當您在圖示上面按下滑鼠左鍵時，您將會看到已執行的應用程式 CPU / RAM 使用率。"
+msgstr "當您在圖示上面按下滑鼠左鍵時，您將會看到已執行的應用程式 CPU / RAM 使用率。"
 
 #: ../System-Monitor/data/messages:187
 msgid "Number of programs to display in the top list:"
@@ -5867,9 +5783,7 @@ msgid ""
 "On some cards, a channel only controls 1 side (right or left). You will then "
 "need to specify a second channel here, to control both sides. Most of the "
 "time, you should just leave this empty."
-msgstr ""
-"有一些卡，一個通道只能夠控制一邊(左邊或者右邊)。您需要在這裡指定第二個通道來"
-"控制兩個聲道。大多數的狀況下您只需要讓他空白。"
+msgstr "有一些卡，一個通道只能夠控制一邊(左邊或者右邊)。您需要在這裡指定第二個通道來控制兩個聲道。大多數的狀況下您只需要讓他空白。"
 
 #: ../alsaMixer/data/messages:101
 msgid "Choose a second channel to control (optional):"
@@ -5944,9 +5858,7 @@ msgstr "顯示秒？"
 msgid ""
 "In ms. Set 0 for non-smooth animation, set 1000 to have a continuous "
 "animation. Requires OpenGL."
-msgstr ""
-"以毫秒(ms)為單位。設定為 0 時不要平順動畫，設定 1000 為連續動畫。需要OpenGL支"
-"援。"
+msgstr "以毫秒(ms)為單位。設定為 0 時不要平順動畫，設定 1000 為連續動畫。需要OpenGL支援。"
 
 #: ../clock/data/messages:113
 msgid "Display seconds with smooth animation for a duration of:"
@@ -6059,9 +5971,7 @@ msgstr "增加或者移除一個鬧鐘："
 msgid ""
 "Except when switching to another WM, you must activate the Dbus plugin in "
 "Compiz along with the plugin corresponding to the desired action."
-msgstr ""
-"您除了切換到另一個虛擬機器之外，你還必須啟用 Compiz 的 Dbus 插件，以及其他相"
-"對應的啟用動作。"
+msgstr "您除了切換到另一個虛擬機器之外，你還必須啟用 Compiz 的 Dbus 插件，以及其他相對應的啟用動作。"
 
 #: ../compiz-icon/data/messages:93 ../logout/data/messages:103
 #: ../showDesktop/data/messages:115 ../slider/data/messages:115
@@ -6085,8 +5995,7 @@ msgstr "顯示桌面"
 msgid ""
 "This command will be used to launch the system WM. Leave blank to use the "
 "default."
-msgstr ""
-"這個指令將會使用在啟動系統的視窗管理員。讓它空白來使用預設的視窗管理員。"
+msgstr "這個指令將會使用在啟動系統的視窗管理員。讓它空白來使用預設的視窗管理員。"
 
 #: ../compiz-icon/data/messages:107
 msgid "Custom command for system's Windows Manager:"
@@ -6097,8 +6006,7 @@ msgid ""
 "If Compiz quits unexpectedly, Cairo-Dock will restart it. You must then quit "
 "Compiz from the dock."
 msgstr ""
-"假如 Compiz 不正常的離開，Cairo-Dock 將會自動的重新啟動它。而接下來您要讓 "
-"Compiz 離開就必須以 Dock 來控制。"
+"假如 Compiz 不正常的離開，Cairo-Dock 將會自動的重新啟動它。而接下來您要讓 Compiz 離開就必須以 Dock 來控制。"
 
 #: ../compiz-icon/data/messages:111
 msgid "Auto-reload Compiz?"
@@ -6108,9 +6016,7 @@ msgstr "自動重新載入Compiz ？"
 msgid ""
 "If the decorator quits unexpectedly, Cairo-Dock will restart it. ou must "
 "then quit Compiz from the dock."
-msgstr ""
-"假如視窗裝飾程式不正常的離開，Cairo-Dock 將會自動的重新啟動它。而接下來您要"
-"讓 Compiz 離開就必須以 Dock 來控制。"
+msgstr "假如視窗裝飾程式不正常的離開，Cairo-Dock 將會自動的重新啟動它。而接下來您要讓 Compiz 離開就必須以 Dock 來控制。"
 
 #: ../compiz-icon/data/messages:115
 msgid "Auto-reload the Decorator?"
@@ -6130,8 +6036,8 @@ msgid ""
 "corresponding sub-dock's icons will then behave as a launcher and an "
 "application."
 msgstr ""
-"這樣將會防止CCSM或者是Emerald圖像顯示在工作列(taskbar)當中。雖然不顯示在工作"
-"列中，然而其對應的圖示會放置在Compiz Icon子dock當中。"
+"這樣將會防止CCSM或者是Emerald圖像顯示在工作列(taskbar)當中。雖然不顯示在工作列中，然而其對應的圖示會放置在Compiz "
+"Icon子dock當中。"
 
 #: ../compiz-icon/data/messages:123
 msgid "Steal the application's icon from the taskbar?"
@@ -6142,8 +6048,8 @@ msgid ""
 "Display two icons for Compiz Exposition & Widget Layer plug-ins in the "
 "applet's sub-dock. Otherwise they will be available in the menu."
 msgstr ""
-"在此應用程式子Dock當中顯示 瀏覽全部桌面(Compiz exposition) 與 桌面面板程式層"
-"(Widget Layer) 這兩個圖示。不然它們將會放置在選項當中。"
+"在此應用程式子Dock當中顯示 瀏覽全部桌面(Compiz exposition) 與 桌面面板程式層(Widget Layer) "
+"這兩個圖示。不然它們將會放置在選項當中。"
 
 #: ../compiz-icon/data/messages:127
 msgid "Add Exposition & Widget Layer to sub-dock?"
@@ -6169,9 +6075,8 @@ msgid ""
 "slow when binding textures, that's why this option gives a heavy performance "
 "increase with Nvidia cards."
 msgstr ""
-"關於緊密連結，啟用時不論何時材質邊緣都會靠在一起。而鬆散連結啟用時則是可以讓"
-"它們自己產生出來。Nvidia的驅動程式在使用連結材質時看起來有點慢，這就是為什麼"
-"會有這個選項給使用者來調整Nvidia顯卡以改進效能。"
+"關於緊密連結，啟用時不論何時材質邊緣都會靠在一起。而鬆散連結啟用時則是可以讓它們自己產生出來。Nvidia的驅動程式在使用連結材質時看起來有點慢，這就是為"
+"什麼會有這個選項給使用者來調整Nvidia顯卡以改進效能。"
 
 #: ../compiz-icon/data/messages:137
 msgid "Use Loose Binding?"
@@ -6629,9 +6534,7 @@ msgstr "圖示之間的空間和它們的標題："
 msgid ""
 "This may recquire more CPU during the unfolding animation, except if you "
 "launch Cairo-Dock with OpenGL."
-msgstr ""
-"這也許需要更多的CPU資源來展現這個動畫，除非您使用的是 Cairo-Dock 支援 OpenGL "
-"的版本。"
+msgstr "這也許需要更多的CPU資源來展現這個動畫，除非您使用的是 Cairo-Dock 支援 OpenGL 的版本。"
 
 #: ../dock-rendering/data/messages:99
 msgid "Draw captions while unfolding?"
@@ -6642,7 +6545,8 @@ msgid "Space between icons:"
 msgstr "兩個圖示中間的距離："
 
 #: ../dock-rendering/data/messages:107
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr "0 表示一個平面波，1 指波與其他的風貌相同。"
 
 #: ../dock-rendering/data/messages:111
@@ -6679,9 +6583,7 @@ msgstr "拖放指示物"
 msgid ""
 "Typically an arrow, this will be displayed when you try to drop a new "
 "launcher into the dock. Leave this empty to use the default."
-msgstr ""
-"典型的箭頭，當您試著要 拖-放 一個新的快速啟動進入 Dock 時會顯示出來。要使用預"
-"設的圖形請讓它空白。"
+msgstr "典型的箭頭，當您試著要 拖-放 一個新的快速啟動進入 Dock 時會顯示出來。要使用預設的圖形請讓它空白。"
 
 #: ../drop-indicator/data/messages:7
 msgid "Image for the drag & drop animation:"
@@ -6691,9 +6593,7 @@ msgstr "拖-放 動畫的圖形："
 msgid ""
 "An emblem that will be displayed when you try to drop something on an icon. "
 "Leave empty to use the default one."
-msgstr ""
-"當您試著要 拖-放 任何東西到圖示上面時會顯示出這個符號圖形。要使用預設的圖形請"
-"讓它空白。"
+msgstr "當您試著要 拖-放 任何東西到圖示上面時會顯示出這個符號圖形。要使用預設的圖形請讓它空白。"
 
 #: ../drop-indicator/data/messages:11
 msgid "Image when hovering an icon :"
@@ -6772,7 +6672,8 @@ msgid "Colours"
 msgstr "顏色"
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr "這會略微改變您的顏色，所以你可能需要修改它們。"
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -6933,9 +6834,8 @@ msgid "smaller"
 msgstr "較小"
 
 #: ../logout/data/messages:93
-#, fuzzy
 msgid "Action"
-msgstr "動作"
+msgstr ""
 
 #: ../logout/data/messages:95 ../showDesktop/data/messages:101
 #: ../slider/data/messages:109
@@ -6956,8 +6856,7 @@ msgid ""
 "default command, which depends on your distribution. In some cases the "
 "command to shutdown is the same as the one to log out."
 msgstr ""
-"這將會以按下滑鼠中鍵來啟動，讓它空白來執行預設的指令。然而這還是取決於您的"
-"linux發行版，因為在一些案例當中，他們的關機指令與登出指令是相同的。"
+"這將會以按下滑鼠中鍵來啟動，讓它空白來執行預設的指令。然而這還是取決於您的linux發行版，因為在一些案例當中，他們的關機指令與登出指令是相同的。"
 
 #: ../logout/data/messages:119
 msgid "User-defined command to execute for shutdown:"
@@ -6968,9 +6867,7 @@ msgid ""
 "If you have any problem with the applet, uncheck this option during the "
 "maintenance mode, then after the dock has relaunched, remove/modify the mail "
 "accounts you want."
-msgstr ""
-"假如您面板程式有任何的問題，在維護模式當中取消點選這個選項，當重新啟動Dock之"
-"後，即可 移除/修改 您要使用的信件帳號。"
+msgstr "假如您面板程式有任何的問題，在維護模式當中取消點選這個選項，當重新啟動Dock之後，即可 移除/修改 您要使用的信件帳號。"
 
 #: ../mail/data/messages:91
 msgid "Check mail account on startup?"
@@ -6985,7 +6882,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "「您有信件」的圖像檔案名稱："
 
 #: ../mail/data/messages:105
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr "如果勾選這個選項，即使沒有任何郵件，也會顯示這個數字的郵件。"
 
 #: ../mail/data/messages:107
@@ -6993,9 +6891,8 @@ msgid "Show '0' if there is no mail?"
 msgstr "如果沒有郵件要顯示「0」嗎？"
 
 #: ../mail/data/messages:113
-#, fuzzy
 msgid "Action on new mail"
-msgstr "中鍵點擊動作："
+msgstr ""
 
 #: ../mail/data/messages:115
 msgid "Play sound when a new e-mail is received?"
@@ -7022,9 +6919,8 @@ msgid "Duration of the dialog:"
 msgstr "對話窗顯示時間："
 
 #: ../mail/data/messages:131
-#, fuzzy
 msgid "Animation when new message arrives:"
-msgstr "當變更音樂時的動畫："
+msgstr ""
 
 #: ../mail/data/messages:135
 msgid "Mail application"
@@ -7059,7 +6955,8 @@ msgid "Blur amount:"
 msgstr "模糊量級："
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr "讓它空白，可以顯示目前控制的播放器名稱。"
 
 #: ../musicPlayer/data/messages:91
@@ -7134,9 +7031,7 @@ msgstr "XMMS"
 msgid ""
 "This will prevent the player icon appearing in the taskbar. The applet's "
 "icon will then behave as a launcher, an application and an applet."
-msgstr ""
-"這將阻止播放器圖示出現在工作列上。面板程式的圖示就會像是一個快速啟動、已啟動"
-"的應用程式和面板程式一樣。"
+msgstr "這將阻止播放器圖示出現在工作列上。面板程式的圖示就會像是一個快速啟動、已啟動的應用程式和面板程式一樣。"
 
 #: ../musicPlayer/data/messages:127
 msgid "Steal the player's icon from the taskbar?"
@@ -7265,9 +7160,8 @@ msgid "Effect to apply on the icon according to the charge :"
 msgstr "給予充電時的圖示效果："
 
 #: ../powermanager/data/messages:141
-#, fuzzy
 msgid "Draw bar"
-msgstr "拉桿"
+msgstr ""
 
 #: ../powermanager/data/messages:153
 msgid "charge"
@@ -7363,9 +7257,7 @@ msgstr "大"
 msgid ""
 "Number of items loaded at once. Setting a high value speeds up loading a "
 "little but will hang the application for longer."
-msgstr ""
-"讀取項目的數量。較高的數值可以加快一點讀取的速度，但是有可能會造成應用程式長"
-"時間停止回應。"
+msgstr "讀取項目的數量。較高的數值可以加快一點讀取的速度，但是有可能會造成應用程式長時間停止回應。"
 
 #: ../quick-browser/data/messages:123
 msgid "Build menu gradually:"
@@ -7465,8 +7357,8 @@ msgid ""
 "You need to activate the Dbus plug-in in Compiz for the last 2 actions. "
 "Showing desktop and desklets can fail on some Window Manager (like Metacity)."
 msgstr ""
-"您需要啟用 Compiz 的 Dbus 插件，但是下列兩個功能在一些視窗管理程式當中 (例如 "
-"Metacity) 可能會失效。「顯示桌面」與「桌面面板程式」這兩個功能。"
+"您需要啟用 Compiz 的 Dbus 插件，但是下列兩個功能在一些視窗管理程式當中 (例如 Metacity) "
+"可能會失效。「顯示桌面」與「桌面面板程式」這兩個功能。"
 
 #: ../showDesktop/data/messages:105 ../showDesktop/data/messages:119
 msgid "Show the desklets"
@@ -7519,9 +7411,8 @@ msgid "open image"
 msgstr "開啟影像"
 
 #: ../slider/data/messages:121
-#, fuzzy
 msgid "open parent folder"
-msgstr "打開父資料夾"
+msgstr ""
 
 #: ../slider/data/messages:125
 msgid "Sliding delay:"
@@ -7596,9 +7487,8 @@ msgid "Force the image to fill the icon/desklet?"
 msgstr "強制圖像填滿 圖示/桌面小工具？"
 
 #: ../slider/data/messages:165
-#, fuzzy
 msgid "Add a background to the image?"
-msgstr "背景影像："
+msgstr ""
 
 #: ../slider/data/messages:169
 msgid "Yes"
@@ -7811,9 +7701,7 @@ msgstr "背景色："
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
-msgstr ""
-"當終端機在對話窗內。當終端機在一個桌面小工具中，您可以如往常一樣重新調整桌面"
-"小工具的大小。"
+msgstr "當終端機在對話窗內。當終端機在一個桌面小工具中，您可以如往常一樣重新調整桌面小工具的大小。"
 
 #: ../terminal/data/messages:111
 msgid "Size of the terminal (line x columns):"
@@ -7877,8 +7765,7 @@ msgid ""
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
 "digits), etc. Leave it blank to use the default one (%d/%m/%y)."
 msgstr ""
-"設定您在筆記本上習慣使用的日期格式。語法如下： %d 表日, %m 表月, %y 表年 (2 "
-"位數)。另外，空白會使用預設的格式 (%d/%m/%y)。"
+"設定您在筆記本上習慣使用的日期格式。語法如下： %d 表日, %m 表月, %y 表年 (2 位數)。另外，空白會使用預設的格式 (%d/%m/%y)。"
 
 #: ../tomboy/data/messages:139
 msgid "Date format to search for :"
@@ -7891,9 +7778,8 @@ msgid ""
 "message like <<No marshaller for signature of signal 'NoteDeleted'>> in the "
 "terminal."
 msgstr ""
-"根據您的 Tomboy 版本，筆記刪除時可能不會自動通知我們。只有當您發現在終端機載"
-"入時有一些錯誤信息如「No marshaller for signature of signal \"NoteDeleted\"」"
-"的時候才勾選此方框。"
+"根據您的 Tomboy 版本，筆記刪除時可能不會自動通知我們。只有當您發現在終端機載入時有一些錯誤信息如「No marshaller for "
+"signature of signal \"NoteDeleted\"」的時候才勾選此方框。"
 
 #: ../tomboy/data/messages:143
 msgid "Emulate the 'NoteDeleted' signal?"
@@ -7976,7 +7862,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "垂直捲軸的所在位置像素"
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr "這允許您用滑鼠點擊桌面小工具(desklet)彈出 Cairo-Dock 選單。"
 
 #: ../weblets/data/messages:107
@@ -8036,8 +7923,7 @@ msgstr "訊號檢查的間隔時間："
 msgid ""
 "Allow you to overwrite applet's default command line and launch your "
 "wireless configuration interface."
-msgstr ""
-"允許您忽略面板程式的預設指令列，以您自己設定的指令來啟動您的無線配置界面。"
+msgstr "允許您忽略面板程式的預設指令列，以您自己設定的指令來啟動您的無線配置界面。"
 
 #: ../wifi/data/messages:175
 msgid "Alternative command line to launch Wireless Configuration :"
@@ -8059,170 +7945,6 @@ msgstr "原始訊號資訊"
 msgid "Overwrite the default label with the connection point name?"
 msgstr "覆蓋預設的標籤與連接點的名稱？"
 
-#~ msgid "stacks"
-#~ msgstr "堆疊"
-
-#~ msgid "Reload Stacks"
-#~ msgstr "重新載入堆疊"
-
-#~ msgid "Clean local directory"
-#~ msgstr "清除本地端的目錄"
-
-#~ msgid "Border width of the plane :"
-#~ msgstr "平面的邊框寬度："
-
-#~ msgid "Colour of the plane's line :"
-#~ msgstr "水平線的色彩："
-
-#~ msgid "Colour of the plane :"
-#~ msgstr "平面的色彩："
-
-#~ msgid "SimpleSlide"
-#~ msgstr "SimpleSlide"
-
-#~ msgid "Sub-Dock view"
-#~ msgstr "子 Dock 檢視"
-
-#~ msgid "Directory & Options"
-#~ msgstr "目錄與選項"
-
-#~ msgid ""
-#~ "Stacks will act as a the shortcut applet's but with files. To add a file, "
-#~ "just drag and drop it on the Stacks icon"
-#~ msgstr ""
-#~ "堆疊將會像是快速鍵面板程式一樣，但是它卻是以檔案為主。要增加一個檔案，只"
-#~ "要 拖-放 檔案到堆疊圖示上面就可以了。"
-
-#~ msgid "Use only Stacks local directory ?"
-#~ msgstr "只有對本機目錄進行堆疊？"
-
-#~ msgid ""
-#~ "You can use '_LocalDirectory_' tag to have both stack local and all "
-#~ "monitored directories. Ensure 'Use only Stacks local directory' is "
-#~ "unticked."
-#~ msgstr ""
-#~ "您可以使用 \"_LocalDirectory_\" 標籤來對本機目錄與全部目錄進行監視。請確"
-#~ "定 \" 只有對本機目錄進行堆疊？\" 這個選項沒有勾選。"
-
-#~ msgid "Monitored Directories :"
-#~ msgstr "監視目錄："
-
-#~ msgid ""
-#~ "This option with large files lists can slow down the dock, use it "
-#~ "properly."
-#~ msgstr "這個選項會顯示大型的檔案，可能會造成Dock變慢，請正確的去使用它。"
-
-#~ msgid "List hidden files ?"
-#~ msgstr "顯示隱藏檔案？"
-
-#~ msgid "Separate different directories with separators ?"
-#~ msgstr "用分隔圖來分開不同的目錄？"
-
-#~ msgid "Eg: image, text, video, audio, application..."
-#~ msgstr "例如：影像、文字、圖片、音樂、應用程式等等....."
-
-#~ msgid "Name of the view used for the sub-dock :"
-#~ msgstr "要給子 Dock 使用那一個外觀的名稱："
-
-#~ msgid "Quick launch (Middle-click)"
-#~ msgstr "快速啟動（中鍵點擊）"
-
-#~ msgid "Unmute (middle-click)"
-#~ msgstr "取消靜音（中鍵點擊）"
-
-#~ msgid "Empty Trash (middle-click)"
-#~ msgstr "清空回收筒 (滑鼠中鍵)"
-
-#~ msgid "Refresh all (Middle-click)"
-#~ msgstr "刷新全部（中鍵點擊）"
-
-#~ msgid "Play/Pause (left-click)"
-#~ msgstr "播放/停止 (左鍵點擊)"
-
-#~ msgid "Next (middle-click)"
-#~ msgstr "下一首 (中鍵點擊)"
-
-#~ msgid "Unmount (middle-click)"
-#~ msgstr "卸載 (中鍵點擊)"
-
-#~ msgid "Copy (middle click)"
-#~ msgstr "拷貝(中鍵點擊)"
-
-#~ msgid "Notification when graphic card temperature is high?"
-#~ msgstr "當顯示卡的溫度過高的時候是否提出通知訊息？"
-
-#~ msgid "in ms."
-#~ msgstr "以毫秒(ms)為單位"
-
-#~ msgid "Action on middle click :"
-#~ msgstr "中鍵點擊動作："
-
-#~ msgid "Show Desktop"
-#~ msgstr "顯示桌面"
-
-#~ msgid "Arrow shift percentage:"
-#~ msgstr "箭頭轉變百分比："
-
-#~ msgid "Invert buttons?"
-#~ msgstr "對調按鍵功能？"
-
-#~ msgid "Duration of the dialogue"
-#~ msgstr "對話時間長度"
-
-#~ msgid "nothing"
-#~ msgstr "無"
-
-#~ msgid "zoom"
-#~ msgstr "縮放"
-
-#~ msgid "transparency"
-#~ msgstr "透明"
-
-#~ msgid "draw bar"
-#~ msgstr "拉桿"
-
-#~ msgid "Information to be displayed on the icon :"
-#~ msgstr "在圖示上顯示資訊："
-
-#~ msgid "time"
-#~ msgstr "時間"
-
-#~ msgid "desklet"
-#~ msgstr "桌面小工具"
-
-#~ msgid "both"
-#~ msgstr "兩者皆有"
-
-#~ msgid "Action when applet is clicked:"
-#~ msgstr "面板程式被點擊時的動作："
-
-#~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
-#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
-#~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
-#~ "Docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
-#~ "- the finder mode : type some text to launch any command, file or "
-#~ "calculation.\n"
-#~ "  use the arrows to navigate between the results, press Enter to "
-#~ "validate, maintain CTRL, ALT or SHIFT to keep the results.\n"
-#~ "Escape or the same shortkey to cancel."
-#~ msgstr ""
-#~ "一個像是Gnome-Do的外掛，它能夠讓您用鍵盤控制您的Dock。\n"
-#~ "有兩種模式，一個是用鍵盤熱鍵觸發：\n"
-#~ "- 瀏覽模式：使用方向鍵來瀏覽進入Dock與子Dock，\n"
-#~ "  或者輸入快速啟動的名稱或TAB按鍵來自動的跳到下一個快速啟動\n"
-#~ "  在圖示上面按下Enter等同滑鼠的點擊，SHIFT + Enter等同SHIFT + 點擊，ALT + "
-#~ "Enter 等同中鍵點擊，CTRL + Enter 等同左鍵點擊\n"
-#~ "- 尋找模式：輸入一些文字來啟動任何一個指令、檔案或者是計算機。\n"
-#~ "  使用方向鍵來瀏覽結果，按下Enter來觀看，按著CTRL、ALT或者是SHIFT來保持觀"
-#~ "看結果的顯現。\n"
-#~ "ESC按鍵為取消。"
-
 #~ msgid "AlsaMixer"
 #~ msgstr "Alsa混合器"
 
@@ -8235,17 +7957,28 @@ msgstr "覆蓋預設的標籤與連接點的名稱？"
 #~ msgid "Delete All"
 #~ msgstr "全部刪除"
 
+#, c-format
 #~ msgid "Show %s"
 #~ msgstr "顯示 %s"
 
 #~ msgid "Show All"
 #~ msgstr "全部顯示"
 
+#, c-format
 #~ msgid "Delete %s"
 #~ msgstr "刪除 %s"
 
 #~ msgid "showDesklets"
 #~ msgstr "顯示桌面小工具"
+
+#~ msgid "Copy (middle click)"
+#~ msgstr "拷貝(中鍵點擊)"
+
+#~ msgid "Reload Stacks"
+#~ msgstr "重新載入堆疊"
+
+#~ msgid "Clean local directory"
+#~ msgstr "清除本地端的目錄"
 
 #~ msgid "Add a desktop"
 #~ msgstr "增加一個桌面"
@@ -8338,11 +8071,9 @@ msgstr "覆蓋預設的標籤與連接點的名稱？"
 #~ msgstr "桌面小工具的尺寸(寬 x 高)："
 
 #~ msgid ""
-#~ "Depending on your WindowManager, you can resize it with ALT + "
-#~ "middle_click or ALT + left_click for exemple."
-#~ msgstr ""
-#~ "以您的視窗管理員設定為主，您也可以改變尺寸例如以 ALT + 滑鼠中鍵點擊 或者"
-#~ "是 ALT + 左鍵點擊。"
+#~ "Depending on your WindowManager, you can resize it with ALT + middle_click "
+#~ "or ALT + left_click for exemple."
+#~ msgstr "以您的視窗管理員設定為主，您也可以改變尺寸例如以 ALT + 滑鼠中鍵點擊 或者是 ALT + 左鍵點擊。"
 
 #~ msgid "Is detached from the dock ?"
 #~ msgstr "從Dock上面分離嗎？"
@@ -8366,9 +8097,7 @@ msgstr "覆蓋預設的標籤與連接點的名稱？"
 #~ msgid ""
 #~ "If locked, the desklet can't be moved by simply dragging it with the left "
 #~ "mouse button. Of course you can still move it with ALT + left_click."
-#~ msgstr ""
-#~ "假如鎖定了，桌面小工具就不能夠簡單的用拖動的方式移動。然而您還是可以用 "
-#~ "ALT + 左鍵拖動 的方式來移動。"
+#~ msgstr "假如鎖定了，桌面小工具就不能夠簡單的用拖動的方式移動。然而您還是可以用 ALT + 左鍵拖動 的方式來移動。"
 
 #~ msgid "Should be visible on all desktops ?"
 #~ msgstr "全部的桌面都可以看得到嗎？"
@@ -8427,17 +8156,26 @@ msgstr "覆蓋預設的標籤與連接點的名稱？"
 #~ msgid "Characters"
 #~ msgstr "字元"
 
+#~ msgid "in ms."
+#~ msgstr "以毫秒(ms)為單位"
+
 #~ msgid "Font used for the numeric display :"
 #~ msgstr "數字式的顯示字型："
 
 #~ msgid "Text color for the numeric display:"
 #~ msgstr "數字式顯示字的顏色："
 
+#~ msgid "Show Desktop"
+#~ msgstr "顯示桌面"
+
 #~ msgid "Failed to connect..."
 #~ msgstr "無法連接..."
 
 #~ msgid "Specify a title :"
 #~ msgstr "指定標題："
+
+#~ msgid "Action on middle click :"
+#~ msgstr "中鍵點擊動作："
 
 #~ msgid "Swap left-click and middle-click ?"
 #~ msgstr "左鍵與中鍵對換？"
@@ -8451,6 +8189,12 @@ msgstr "覆蓋預設的標籤與連接點的名稱？"
 #~ msgid "By default, this option is activated"
 #~ msgstr "此選項預設值是啟動的。"
 
+#~ msgid "Name of the view used for the sub-dock :"
+#~ msgstr "要給子 Dock 使用那一個外觀的名稱："
+
+#~ msgid "Border width of the plane :"
+#~ msgstr "平面的邊框寬度："
+
 #~ msgid "otherwise they will turn."
 #~ msgstr "否則他們會翻轉。"
 
@@ -8462,8 +8206,7 @@ msgstr "覆蓋預設的標籤與連接點的名稱？"
 #~ msgstr "假如回收桶的目錄 Dock 無法察知，您可自定義在這邊："
 
 #~ msgid ""
-#~ "Only use this if you notice that the applet can't display the trash on "
-#~ "click."
+#~ "Only use this if you notice that the applet can't display the trash on click."
 #~ msgstr "只有在您點擊回收桶時無法顯示相關訊息時才使用。"
 
 #~ msgid "Alternative file browser used to show a trash :"
@@ -8484,9 +8227,11 @@ msgstr "覆蓋預設的標籤與連接點的名稱？"
 #~ msgid "ToolTip"
 #~ msgstr "提示"
 
+#, c-format
 #~ msgid "You are about to delete all files in %s. Continue?"
 #~ msgstr "你要刪除的所有在%s的檔案 。確定嗎？"
 
+#, c-format
 #~ msgid ""
 #~ "A problem occured\n"
 #~ "If '%s' is not your usual file browser,\n"
@@ -8530,11 +8275,23 @@ msgstr "覆蓋預設的標籤與連接點的名稱？"
 #~ msgid "Choose an action for middle click on the icon:"
 #~ msgstr "選擇一個在圖示上中鍵點擊時的動作："
 
+#~ msgid "Notification when graphic card temperature is high?"
+#~ msgstr "當顯示卡的溫度過高的時候是否提出通知訊息？"
+
+#~ msgid "Colour of the plane's line :"
+#~ msgstr "水平線的色彩："
+
+#~ msgid "Colour of the plane :"
+#~ msgstr "平面的色彩："
+
 #~ msgid "Menus to control your session, connection state, etc."
 #~ msgstr "選單用來控制您的階段作業、連線狀態等等。"
 
 #~ msgid "Indicator-Menus"
 #~ msgstr "指標選單"
+
+#~ msgid "SimpleSlide"
+#~ msgstr "SimpleSlide"
 
 #~ msgid "Max icon size:"
 #~ msgstr "最大圖示尺寸："
@@ -8542,9 +8299,11 @@ msgstr "覆蓋預設的標籤與連接點的名稱？"
 #~ msgid "Pack icons horizontally rather than vertically?"
 #~ msgstr "讓圖示橫向而不是縱向？"
 
+#~ msgid "Arrow shift percentage:"
+#~ msgstr "箭頭轉變百分比："
+
 #~ msgid ""
-#~ "in Mb. You will be notified when you go over this limit. Set to 0 to "
-#~ "disable."
+#~ "in Mb. You will be notified when you go over this limit. Set to 0 to disable."
 #~ msgstr "以 Mb 表示，當您的垃圾超過這個數量時會通知您。設為 0 禁用。"
 
 #~ msgid "Number of Dustbins"
@@ -8569,14 +8328,41 @@ msgstr "覆蓋預設的標籤與連接點的名稱？"
 #~ msgid "Add a mail account"
 #~ msgstr "增加一個信件帳號"
 
+#~ msgid "Duration of the dialogue"
+#~ msgstr "對話時間長度"
+
 #~ msgid "Delay between measurements:"
 #~ msgstr "測量間隔時間："
+
+#~ msgid "draw bar"
+#~ msgstr "拉桿"
+
+#~ msgid "transparency"
+#~ msgstr "透明"
+
+#~ msgid "zoom"
+#~ msgstr "縮放"
+
+#~ msgid "nothing"
+#~ msgstr "無"
+
+#~ msgid "time"
+#~ msgstr "時間"
+
+#~ msgid "Information to be displayed on the icon :"
+#~ msgstr "在圖示上顯示資訊："
 
 #~ msgid "In seconds."
 #~ msgstr "以秒表示。"
 
 #~ msgid "In pixels."
 #~ msgstr "以像素表示"
+
+#~ msgid "desklet"
+#~ msgstr "桌面小工具"
+
+#~ msgid "both"
+#~ msgstr "兩者皆有"
 
 #~ msgid ""
 #~ "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
@@ -8595,12 +8381,11 @@ msgstr "覆蓋預設的標籤與連接點的名稱？"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "\n"
 #~ "- the finder mode (default shortcut : CTRL + Enter) :\n"
-#~ "    It lets you find and launch applications, files, recent files, "
-#~ "firefox bookmarks, commands, and even calculations.\n"
+#~ "    It lets you find and launch applications, files, recent files, firefox "
+#~ "bookmarks, commands, and even calculations.\n"
 #~ "    Type what you want to search, the results will be displayed in real "
 #~ "time.\n"
-#~ "    The first results of each category are displayed in the main "
-#~ "listing.\n"
+#~ "    The first results of each category are displayed in the main listing.\n"
 #~ "    Use the up/down arrows to navigate inside the list,\n"
 #~ "    and use the left/right arrows to enter into a category, or to display "
 #~ "more actions (when a little arrow is drawn next to text).\n"
@@ -8613,30 +8398,27 @@ msgstr "覆蓋預設的標籤與連接點的名稱？"
 #~ "    use the arrows to navigate into the docks and sub-docks,\n"
 #~ "    or type the name of a launcher and press Tab to automatically jump to "
 #~ "the next suitable launcher\n"
-#~ "    press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "    press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "Escape or the same shortkey will cancel."
 #~ msgstr ""
 #~ "此插件讓您可以透過鍵盤直接執行不同的動作。\n"
 #~ "它有 2 種模式，兩種都由鍵盤快捷鍵所觸發：\n"
 #~ "\n"
 #~ "- 查詢器模式 (預設快捷鍵：CTRL + Enter)：\n"
-#~ "    它讓您查詢並啟動應用程式、檔案、最近的檔案、firefox 書籤、指令，甚至是"
-#~ "計算功能。\n"
+#~ "    它讓您查詢並啟動應用程式、檔案、最近的檔案、firefox 書籤、指令，甚至是計算功能。\n"
 #~ "    輸入您想查詢的東西，查詢的結果將即時顯示。\n"
 #~ "    每種分類的最先幾個結果會顯示在主要列出的內容中。\n"
 #~ "    您可以使用上/下方向按鍵來瀏覽清單，\n"
-#~ "    或是使用左/右方向按鍵來進入某分類或顯示更多動作 (當文字旁出現小箭頭時"
-#~ "才能使用)。\n"
+#~ "    或是使用左/右方向按鍵來進入某分類或顯示更多動作 (當文字旁出現小箭頭時才能使用)。\n"
 #~ "    一旦進入分類內，您可以透過輸入某些字母來過濾結果。\n"
-#~ "    按下 Enter 鍵來讓它生效；按住 SHIFT 或 ALT 來保住查詢結果清單持續開"
-#~ "啟。\n"
+#~ "    按下 Enter 鍵來讓它生效；按住 SHIFT 或 ALT 來保住查詢結果清單持續開啟。\n"
 #~ "\n"
 #~ "- 瀏覽模式 (預設快捷鍵：CTRL + F9)：\n"
 #~ "    使用方向鍵以在 Dock 內與子 Dock 內瀏覽\n"
 #~ "    或是輸入快速啟動的名稱並按下 Tab 鍵以自動跳至下個合適的快速啟動\n"
-#~ "    按下 Enter 鍵表示點擊該圖示，Shift+Enter 代表 Shift+點擊，Alt+Enter 代"
-#~ "表中鍵點擊，Ctrl+Enter 則代表左鍵點擊\n"
+#~ "    按下 Enter 鍵表示點擊該圖示，Shift+Enter 代表 Shift+點擊，Alt+Enter 代表中鍵點擊，Ctrl+Enter "
+#~ "則代表左鍵點擊\n"
 #~ "Esc 鍵或是相同的快捷鍵可以取消。"
 
 #~ msgid ""
@@ -8649,24 +8431,113 @@ msgstr "覆蓋預設的標籤與連接點的名稱？"
 #~ "它也稱為「系統匣」\n"
 #~ "它能運作於任何支援最新系統匣規格的桌面環境 (KDE、Gnome...等)"
 
+#~ msgid "Empty Trash (middle-click)"
+#~ msgstr "清空回收筒 (滑鼠中鍵)"
+
+#~ msgid "Play/Pause (left-click)"
+#~ msgstr "播放/停止 (左鍵點擊)"
+
+#~ msgid "Next (middle-click)"
+#~ msgstr "下一首 (中鍵點擊)"
+
+#~ msgid "Unmount (middle-click)"
+#~ msgstr "卸載 (中鍵點擊)"
+
 #~ msgid "Shortkey to enable/disable the navigation mode:"
 #~ msgstr "使用/停用 導航模式的快速鍵："
+
+#~ msgid "Invert buttons?"
+#~ msgstr "對調按鍵功能？"
+
+#~ msgid "Sub-Dock view"
+#~ msgstr "子 Dock 檢視"
+
+#~ msgid "Action when applet is clicked:"
+#~ msgstr "面板程式被點擊時的動作："
+
+#~ msgid "stacks"
+#~ msgstr "堆疊"
 
 #~ msgid ""
 #~ "An applet that let you access quickly to all of your shortcuts.\n"
 #~ "It can manage disks, network points, and Nautilus bookmarks (even if you "
 #~ "don't have Nautilus).\n"
-#~ "Drag and drop a folder on the main icon or the sub-dock to add a "
-#~ "bookmark.\n"
+#~ "Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
 #~ "Middle-click on the main icon to show your home folder.\n"
 #~ "Middle-click on a mounting point icon to (un)mount it quickly\n"
-#~ "The applet can also display valuable information about your disks, like "
-#~ "free space, type, etc."
+#~ "The applet can also display valuable information about your disks, like free "
+#~ "space, type, etc."
 #~ msgstr ""
 #~ "這是一個小程式，可以讓您直接編輯您所有的快速鍵設定。\n"
-#~ "他能夠管理磁碟、網路節點與檔案瀏覽器(Nautilus)書籤>(即使您沒有"
-#~ "Nautilus)。\n"
+#~ "他能夠管理磁碟、網路節點與檔案瀏覽器(Nautilus)書籤>(即使您沒有Nautilus)。\n"
 #~ "拖-放 一個資料夾到圖示上面或者子Dock上面可以將它加入書籤。\n"
 #~ "在圖示上面中鍵點擊可以顯示您的家目錄。\n"
 #~ "在掛載圖示上面點擊滑鼠中鍵可以快速的 掛載/反掛載 磁碟。\n"
 #~ "這個小程式也可以顯示您的硬碟資訊，像是剩餘空間、檔案格式類型等等。"
+
+#~ msgid "Directory & Options"
+#~ msgstr "目錄與選項"
+
+#~ msgid ""
+#~ "This option with large files lists can slow down the dock, use it properly."
+#~ msgstr "這個選項會顯示大型的檔案，可能會造成Dock變慢，請正確的去使用它。"
+
+#~ msgid "List hidden files ?"
+#~ msgstr "顯示隱藏檔案？"
+
+#~ msgid "Separate different directories with separators ?"
+#~ msgstr "用分隔圖來分開不同的目錄？"
+
+#~ msgid "Eg: image, text, video, audio, application..."
+#~ msgstr "例如：影像、文字、圖片、音樂、應用程式等等....."
+
+#~ msgid ""
+#~ "Stacks will act as a the shortcut applet's but with files. To add a file, "
+#~ "just drag and drop it on the Stacks icon"
+#~ msgstr "堆疊將會像是快速鍵面板程式一樣，但是它卻是以檔案為主。要增加一個檔案，只要 拖-放 檔案到堆疊圖示上面就可以了。"
+
+#~ msgid "Use only Stacks local directory ?"
+#~ msgstr "只有對本機目錄進行堆疊？"
+
+#~ msgid ""
+#~ "You can use '_LocalDirectory_' tag to have both stack local and all "
+#~ "monitored directories. Ensure 'Use only Stacks local directory' is unticked."
+#~ msgstr ""
+#~ "您可以使用 \"_LocalDirectory_\" 標籤來對本機目錄與全部目錄進行監視。請確定 \" 只有對本機目錄進行堆疊？\" 這個選項沒有勾選。"
+
+#~ msgid "Monitored Directories :"
+#~ msgstr "監視目錄："
+
+#~ msgid "Unmute (middle-click)"
+#~ msgstr "取消靜音（中鍵點擊）"
+
+#~ msgid "Quick launch (Middle-click)"
+#~ msgstr "快速啟動（中鍵點擊）"
+
+#~ msgid "Refresh all (Middle-click)"
+#~ msgstr "刷新全部（中鍵點擊）"
+
+#~ msgid ""
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
+#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+#~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
+#~ "Docks,\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
+#~ "- the finder mode : type some text to launch any command, file or "
+#~ "calculation.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "Escape or the same shortkey to cancel."
+#~ msgstr ""
+#~ "一個像是Gnome-Do的外掛，它能夠讓您用鍵盤控制您的Dock。\n"
+#~ "有兩種模式，一個是用鍵盤熱鍵觸發：\n"
+#~ "- 瀏覽模式：使用方向鍵來瀏覽進入Dock與子Dock，\n"
+#~ "  或者輸入快速啟動的名稱或TAB按鍵來自動的跳到下一個快速啟動\n"
+#~ "  在圖示上面按下Enter等同滑鼠的點擊，SHIFT + Enter等同SHIFT + 點擊，ALT + Enter 等同中鍵點擊，CTRL + "
+#~ "Enter 等同左鍵點擊\n"
+#~ "- 尋找模式：輸入一些文字來啟動任何一個指令、檔案或者是計算機。\n"
+#~ "  使用方向鍵來瀏覽結果，按下Enter來觀看，按著CTRL、ALT或者是SHIFT來保持觀看結果的顯現。\n"
+#~ "ESC按鍵為取消。"

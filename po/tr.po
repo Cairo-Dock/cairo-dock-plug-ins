@@ -3,20 +3,20 @@
 # This file is distributed under the same license as the cairo-dock-plug-ins package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 #
-#: ../Disks/data/messages:21
 msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-09-18 12:37+0000\n"
+"POT-Creation-Date: 2011-01-01 04:07+0000\n"
+"PO-Revision-Date: 2011-01-01 08:26+0000\n"
 "Last-Translator: Fabounet <fabounet03@gmail.com>\n"
 "Language-Team: Turkish <tr@li.org>\n"
-"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-09-19 05:35+0000\n"
+"X-Launchpad-Export-Date: 2011-01-02 05:11+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+"Language: tr\n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -210,7 +210,8 @@ msgstr "Kip eklendi, fakat başlatılamadı."
 
 #: ../Dbus/src/interface-applet-signals.c:486
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "'%s' ugulamacığı başarıyla güncellendi ve otomatik olarak yeniden yüklendi."
 
@@ -365,9 +366,8 @@ msgid ""
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:335
-#, fuzzy
 msgid "Open the folder"
-msgstr "Bu dizini aç"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:335
 #: ../GMenu/src/applet-notifications.c:76
@@ -392,9 +392,8 @@ msgstr "Bu dizini aç"
 #: ../switcher/src/applet-notifications.c:302
 #: ../switcher/src/applet-notifications.c:309
 #: ../switcher/src/applet-notifications.c:318
-#, fuzzy
 msgid "middle-click"
-msgstr "Sonraki (orta-tık)"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:344
 msgid "Rename this file"
@@ -938,14 +937,12 @@ msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:109
 #: ../netspeed/src/applet-notifications.c:101
-#, fuzzy
 msgid "Open the System-Monitor"
-msgstr "Sistem Gözlemcisi"
+msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:111
-#, fuzzy
 msgid "Show info"
-msgstr "%s'i göster"
+msgstr ""
 
 #: ../System-Monitor/src/applet-nvidia.c:146
 msgid "GPU model"
@@ -998,18 +995,17 @@ msgstr ""
 
 #: ../System-Monitor/src/applet-sensors.c:368
 #: ../System-Monitor/src/applet-sensors.c:401
-#, fuzzy
 msgid "alarm"
-msgstr "temizle"
+msgstr ""
 
 #: ../System-Monitor/src/applet-sensors.c:399
 msgid "rpm"
 msgstr ""
 
 #: ../System-Monitor/src/applet-sensors.c:418
-#, fuzzy, c-format
+#, c-format
 msgid "CPU temperature has reached %d°C"
-msgstr "Uyarı ! Grafik Kartı çekirdek sıcaklığı %d°C 'ye ulaştı"
+msgstr ""
 
 #: ../System-Monitor/src/applet-sensors.c:432
 #, c-format
@@ -1222,8 +1218,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1489,7 +1485,8 @@ msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:158
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:273
@@ -1499,7 +1496,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:318
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Yeni bir tanesini başlatmadan önce lütfen mevcut veri yüklemenin bitmesini "
 "bekleyin."
@@ -1854,9 +1852,8 @@ msgstr "Kaç dakika içinde PC'nzin duracağını seçin:"
 #: ../logout/src/applet-notifications.c:153
 #: ../logout/src/applet-notifications.c:155 ../logout/data/messages:97
 #: ../logout/data/messages:105
-#, fuzzy
 msgid "Log out"
-msgstr "çık"
+msgstr ""
 
 #: ../logout/src/applet-notifications.c:162
 #: ../logout/src/applet-notifications.c:164 ../logout/data/messages:99
@@ -1959,9 +1956,8 @@ msgid "Address of feed:"
 msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
-#, fuzzy
 msgid "Remove this account"
-msgstr "Hesabı Sil"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid ""
@@ -2050,9 +2046,8 @@ msgid "Refresh a mail account"
 msgstr "Posta hesabını yenile"
 
 #: ../mail/src/cd-mail-applet-notifications.c:157
-#, fuzzy
 msgid "Refresh all"
-msgstr "Yenile"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-notifications.c:164
 #, c-format
@@ -2157,19 +2152,16 @@ msgid "scroll-up"
 msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:186
-#, fuzzy
 msgid "Play/Pause"
-msgstr "Duraklat"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:186
-#, fuzzy
 msgid "left-click"
-msgstr "Oynat/Duraklat (sol-tık)"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:192
-#, fuzzy
 msgid "Next"
-msgstr "Metin"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:192
 msgid "scroll-down"
@@ -2236,9 +2228,8 @@ msgid ""
 msgstr ""
 
 #: ../netspeed/src/applet-notifications.c:97
-#, fuzzy
 msgid "Enable/disable network"
-msgstr "Ağı etkisizleştir"
+msgstr ""
 
 #: ../netspeed/src/applet-notifications.c:105
 msgid "Re-check interface"
@@ -2400,9 +2391,8 @@ msgid "Enter a name for this bookmark:"
 msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:250
-#, fuzzy
 msgid "Open Home directory"
-msgstr "Yerel dizini temizle"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:259
 msgid "Rename this bookmark"
@@ -2438,8 +2428,8 @@ msgstr "fareyi göster"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -2729,7 +2719,8 @@ msgstr "Bir renk seç"
 #: ../terminal/src/terminal-widget.c:334
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
-msgstr "Uçbirim masaüstü uygulamacığını %s yazarak yeniden çalıştırabilirsiniz"
+msgstr ""
+"Uçbirim masaüstü uygulamacığını %s yazarak yeniden çalıştırabilirsiniz"
 
 #: ../terminal/src/terminal-widget.c:380
 msgid "Paste"
@@ -4434,9 +4425,8 @@ msgid "Let extern applications register new module?"
 msgstr ""
 
 #: ../Disks/data/messages:3
-#, fuzzy
 msgid "Applet"
-msgstr "Sanatçı"
+msgstr ""
 
 #: ../Disks/data/messages:5
 msgid ""
@@ -4462,14 +4452,12 @@ msgid "Image's name or path :"
 msgstr ""
 
 #: ../Disks/data/messages:25
-#, fuzzy
 msgid "Desklet mode"
-msgstr "Masaüstü"
+msgstr ""
 
 #: ../Disks/data/messages:71
-#, fuzzy
 msgid "Custom decorations"
-msgstr "Dekorasyonlar"
+msgstr ""
 
 #: ../Disks/data/messages:85
 msgid "Custom margins"
@@ -4578,9 +4566,8 @@ msgid "Show all values on same graph?"
 msgstr ""
 
 #: ../Disks/data/messages:143
-#, fuzzy
 msgid "Display values"
-msgstr "Sayısal değerleri göster:"
+msgstr ""
 
 #: ../Disks/data/messages:145 ../Network-Monitor/data/messages:109
 #: ../RSSreader/data/messages:113 ../System-Monitor/data/messages:147
@@ -4603,9 +4590,8 @@ msgid "On label"
 msgstr ""
 
 #: ../Disks/data/messages:153
-#, fuzzy
 msgid "Refresh time"
-msgstr "Yenile"
+msgstr ""
 
 #: ../Disks/data/messages:155 ../netspeed/data/messages:135
 msgid ""
@@ -4643,9 +4629,8 @@ msgid "Leave empty to use the default."
 msgstr ""
 
 #: ../Disks/data/messages:171
-#, fuzzy
 msgid "System monitor command"
-msgstr "Sistem Gözlemcisi"
+msgstr ""
 
 #: ../Doncky/data/messages:93
 msgid "Specify the xml file to be used :"
@@ -4692,7 +4677,8 @@ msgid "Background"
 msgstr "Arkaplan"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
@@ -4774,9 +4760,8 @@ msgid ""
 msgstr ""
 
 #: ../Folders/data/messages:109
-#, fuzzy
 msgid "Show folder's content?"
-msgstr "Panonun içeriğini gönder"
+msgstr ""
 
 #: ../Folders/data/messages:111
 msgid "Sort files by :"
@@ -5454,9 +5439,8 @@ msgid "Show graphic card's temperature?"
 msgstr ""
 
 #: ../System-Monitor/data/messages:139
-#, fuzzy
 msgid "Show CPU temperature?"
-msgstr "Çekirdek Sıcaklığı"
+msgstr ""
 
 #: ../System-Monitor/data/messages:141
 msgid "Show fan speed?"
@@ -5479,14 +5463,12 @@ msgid "How smooth is the movement?"
 msgstr ""
 
 #: ../System-Monitor/data/messages:161
-#, fuzzy
 msgid "Alerts"
-msgstr "Sanatçı"
+msgstr ""
 
 #: ../System-Monitor/data/messages:163
-#, fuzzy
 msgid "Show alerts?"
-msgstr "%s'i göster"
+msgstr ""
 
 #: ../System-Monitor/data/messages:165
 msgid "Play a sound when displaying warning?"
@@ -5497,9 +5479,8 @@ msgid "Path to sound file:"
 msgstr ""
 
 #: ../System-Monitor/data/messages:169
-#, fuzzy
 msgid "System-Monitor"
-msgstr "Sistem Gözlemcisi"
+msgstr ""
 
 #: ../System-Monitor/data/messages:175
 msgid ""
@@ -6387,7 +6368,8 @@ msgid "Space between icons:"
 msgstr "Simgeler arasındaki boşluk:"
 
 #: ../dock-rendering/data/messages:107
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:111
@@ -6513,7 +6495,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -6674,9 +6657,8 @@ msgid "smaller"
 msgstr ""
 
 #: ../logout/data/messages:93
-#, fuzzy
 msgid "Action"
-msgstr "Eylem_0"
+msgstr ""
 
 #: ../logout/data/messages:95 ../showDesktop/data/messages:101
 #: ../slider/data/messages:109
@@ -6722,7 +6704,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:105
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:107
@@ -6794,7 +6777,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:91
@@ -7247,9 +7231,8 @@ msgid "open image"
 msgstr ""
 
 #: ../slider/data/messages:121
-#, fuzzy
 msgid "open parent folder"
-msgstr "Bu dizini aç"
+msgstr ""
 
 #: ../slider/data/messages:125
 msgid "Sliding delay:"
@@ -7324,9 +7307,8 @@ msgid "Force the image to fill the icon/desklet?"
 msgstr ""
 
 #: ../slider/data/messages:165
-#, fuzzy
 msgid "Add a background to the image?"
-msgstr "Arkaplan görüntüsü:"
+msgstr ""
 
 #: ../slider/data/messages:169
 msgid "Yes"
@@ -7697,7 +7679,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:107
@@ -7779,15 +7762,10 @@ msgstr ""
 msgid "Overwrite the default label with the connection point name?"
 msgstr ""
 
-#~ msgid "Clean local directory"
-#~ msgstr "Yerel dizini temizle"
-
-#~ msgid "Copy (middle click)"
-#~ msgstr "Kopyala (Orta tık)"
-
 #~ msgid "AlsaMixer"
 #~ msgstr "AlsaMixer"
 
+#, c-format
 #~ msgid ""
 #~ "I couldn't find any audio channel named '%s'\n"
 #~ "You should try to open the configuration panel of the applet,\n"
@@ -7803,11 +7781,18 @@ msgstr ""
 #~ msgid "Show All"
 #~ msgstr "Tümünü Göster"
 
+#, c-format
 #~ msgid "Delete %s"
 #~ msgstr "%s'i sil"
 
+#~ msgid "Copy (middle click)"
+#~ msgstr "Kopyala (Orta tık)"
+
 #~ msgid "Add a desktop"
 #~ msgstr "Bir masaüstü ekleyin"
+
+#~ msgid "Clean local directory"
+#~ msgstr "Yerel dizini temizle"
 
 #~ msgid "Remove last desktop"
 #~ msgstr "Son masaüstünü kaldır"
@@ -7816,8 +7801,8 @@ msgstr ""
 #~ "Add a lively Penguin in your dock!\n"
 #~ "Left click to change the animation,\n"
 #~ "Middle-click to annoy him ^_^\n"
-#~ "Tux images are taken from Pingus, some other characters are available or "
-#~ "can be added easily."
+#~ "Tux images are taken from Pingus, some other characters are available or can "
+#~ "be added easily."
 #~ msgstr ""
 #~ "Dock'unuz için hareketli bir penguen ekleyin !\n"
 #~ "Animasyonları değiştirmek için sol tıkla\n"
@@ -7836,6 +7821,7 @@ msgstr ""
 #~ msgid "Search for your location:"
 #~ msgstr "Konumunuzu arayın :"
 
+#, c-format
 #~ msgid "You are about to delete all files in %s. Continue?"
 #~ msgstr "%s içindeki tüm dosyaları silmek üzeresiniz. Emin misiniz?"
 

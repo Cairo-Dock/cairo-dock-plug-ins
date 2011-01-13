@@ -23,7 +23,7 @@ add_definitions (-DGL_GLEXT_PROTOTYPES="1")
 set (CPACK_SOURCE_GENERATOR "TGZ")
 set (CPACK_SOURCE_PACKAGE_FILE_NAME "${CMAKE_PROJECT_NAME}-${VERSION}")
 set (CPACK_SOURCE_IGNORE_FILES 
-	"/build/;/.bzr/;bzrignore$;/misc/;en_GB.po$;~$;${CPACK_SOURCE_IGNORE_FILES}")
+	"/build/;/.bzr/;bzrignore$;/misc/;~$;${CPACK_SOURCE_IGNORE_FILES}")
 include (CPack)
 
 add_custom_target( dist

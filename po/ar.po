@@ -3,20 +3,20 @@
 # This file is distributed under the same license as the cairo-dock-plug-ins package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
 #
-#: ../Disks/data/messages:21
 msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-09-18 12:22+0000\n"
-"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
+"POT-Creation-Date: 2011-01-01 04:07+0000\n"
+"PO-Revision-Date: 2010-11-13 22:57+0000\n"
+"Last-Translator: Ahmed Mohammed <Unknown>\n"
 "Language-Team: Arabic <ar@li.org>\n"
-"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-09-19 05:33+0000\n"
+"X-Launchpad-Export-Date: 2011-01-02 05:08+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+"Language: ar\n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -94,7 +94,8 @@ msgstr "عذراً ولكنني مشغول حالياً."
 #: ../Cairo-Penguin/src/applet-notifications.c:31
 msgid ""
 "I don't have time to play with you, I have to dig and mine all these icons."
-msgstr "ليس لدي مايكفي من الوقت للعب معك, علي أن احفر وألغم كل هذه الأيقونات."
+msgstr ""
+"ليس لدي مايكفي من الوقت للعب معك, علي أن احفر وألغم كل هذه الأيقونات."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:32
 msgid "Your dock is so messy! Let me clean it."
@@ -174,6 +175,15 @@ msgid ""
 "Drop text on the icon to create persistent items, and middle-clck to recall "
 "them."
 msgstr ""
+"هذا البرنامج الصغير يسجل ما بذاكرة النصوص وكذلك ما تقوم بتحديده بواسطه "
+"الفاره\n"
+"بحيث يمكنك استعادة تلك البيانات بسرعة. انه مستنسخ من برنامج Klipper الشهير.\n"
+"انه يدعم ذاكرة النصوص والمحددات التي تقوم بتحديدها بالماوس ، وكذلك الافعال "
+"المحدده مسبقاً والعناصر المتكررة.\n"
+"انقر بزر الماوس الايسر لإستدعاء قائمه فرعية تحتوي على تاريخ ذاكرة النصوص "
+"ومحددات الماوس،\n"
+"اسحب النصوص والقها على الايقونة لتنشئ عناصر متكررة ، وانقر بزر الماوس الايسر "
+"لكي تستدعها."
 
 #: ../Clipper/src/applet-init.c:39
 msgid "Clipboard history"
@@ -210,7 +220,8 @@ msgstr "الوحدة تم إضافتها, ولكن لا يمكن تشغيلها.
 
 #: ../Dbus/src/interface-applet-signals.c:486
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "البريمج '%s' تم تحديثه وإعادة تشغيله تلقائياً بنجاح"
 
 #: ../Dbus/src/interface-applet-signals.c:486
@@ -258,11 +269,11 @@ msgstr ""
 
 #: ../Disks/src/applet-disks.c:142
 msgid "N/A"
-msgstr ""
+msgstr "غ/م"
 
 #: ../Disks/src/applet-init.c:29
 msgid "Disks"
-msgstr ""
+msgstr "أقراص"
 
 #: ../Disks/src/applet-init.c:32
 msgid ""
@@ -359,7 +370,7 @@ msgstr ""
 
 #: ../Folders/src/applet-notifications.c:227
 msgid "Rename to:"
-msgstr ""
+msgstr "تغيير اسم إلى:"
 
 #: ../Folders/src/applet-notifications.c:234
 #, c-format
@@ -385,9 +396,8 @@ msgstr ""
 "وأن الاسم الجديد غير موجود مسبقاً."
 
 #: ../Folders/src/applet-notifications.c:335
-#, fuzzy
 msgid "Open the folder"
-msgstr "إفتح المجلد (ضغطة بزر الماوس الاوسط)"
+msgstr "قتح المجلد"
 
 #: ../Folders/src/applet-notifications.c:335
 #: ../GMenu/src/applet-notifications.c:76
@@ -413,7 +423,7 @@ msgstr "إفتح المجلد (ضغطة بزر الماوس الاوسط)"
 #: ../switcher/src/applet-notifications.c:309
 #: ../switcher/src/applet-notifications.c:318
 msgid "middle-click"
-msgstr ""
+msgstr "ضغط وسطي"
 
 #: ../Folders/src/applet-notifications.c:344
 msgid "Rename this file"
@@ -430,7 +440,7 @@ msgstr "إنقل هذا الملف"
 #: ../Folders/src/applet-notifications.c:352
 #: ../slider/src/applet-notifications.c:240
 msgid "Open with"
-msgstr ""
+msgstr "فتح بـ"
 
 #: ../Folders/src/applet-notifications.c:384
 msgid "Properties"
@@ -442,7 +452,7 @@ msgstr "أنشئ ملفًا جديدًا"
 
 #: ../Folders/src/applet-notifications.c:388
 msgid "Create a new folder"
-msgstr ""
+msgstr "تكوين مجلد جديد"
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -472,7 +482,7 @@ msgstr "قائمة الاعدادات"
 
 #: ../GMenu/src/applet-notifications.c:83
 msgid "Clear recent"
-msgstr ""
+msgstr "حذف أحدث"
 
 #: ../GMenu/src/applet-recent.c:56
 msgid "Recent Documents"
@@ -494,7 +504,7 @@ msgstr "قائمة ME"
 msgid ""
 "A menu that lets you access quickly to your information, your online status, "
 "your friends."
-msgstr ""
+msgstr "هي قائمة تمكنك من الوصول السريع لبياناتك، حالة المسنجر، واصدقائك"
 
 #: ../MeMenu/src/applet-notifications.c:31
 msgid "It seems that the Me-Menu is not installed on your system"
@@ -702,7 +712,7 @@ msgstr "لا يبدوا أنه رابط صالح."
 
 #: ../RSSreader/src/applet-notifications.c:127
 msgid "Paste a new RSS Url (drag and drop)"
-msgstr ""
+msgstr "لصق عنوان RSS جديد (سحب و افلات)"
 
 #: ../RSSreader/src/applet-notifications.c:131
 msgid "Open with your web browser"
@@ -857,31 +867,31 @@ msgstr ""
 
 #: ../Scooby-Do/src/applet-listing.c:517
 msgid "(F2) Music"
-msgstr ""
+msgstr "(F2) موسيقى"
 
 #: ../Scooby-Do/src/applet-listing.c:524
 msgid "(F3) Image"
-msgstr ""
+msgstr "(F3) صورة"
 
 #: ../Scooby-Do/src/applet-listing.c:531
 msgid "(F4) Video"
-msgstr ""
+msgstr "(F4) فيديو"
 
 #: ../Scooby-Do/src/applet-listing.c:538
 msgid "(F5) Text"
-msgstr ""
+msgstr "(F5) نص"
 
 #: ../Scooby-Do/src/applet-listing.c:545
 msgid "(F6) Html"
-msgstr ""
+msgstr "(F6) Html"
 
 #: ../Scooby-Do/src/applet-listing.c:552
 msgid "(F7) Sources"
-msgstr ""
+msgstr "(F7) مصادر"
 
 #: ../Scooby-Do/src/applet-listing.c:671 ../Scooby-Do/src/applet-search.c:362
 msgid "No result"
-msgstr ""
+msgstr "لا نتائج"
 
 #: ../Scooby-Do/src/applet-listing.c:675 ../Scooby-Do/src/applet-search.c:358
 #: ../tomboy/src/tomboy-draw.c:156 ../tomboy/src/tomboy-draw.c:169
@@ -899,7 +909,7 @@ msgstr "يبحث ..."
 
 #: ../Scooby-Do/src/applet-session.c:68
 msgid "Enter your search"
-msgstr ""
+msgstr "أدخال مادة البحث"
 
 #: ../Status-Notifier/src/applet-init.c:32
 msgid "Status Notifier"
@@ -911,7 +921,7 @@ msgstr "زمن التشغيل"
 
 #: ../System-Monitor/src/applet-cpusage.c:62
 msgid "Activity time"
-msgstr ""
+msgstr "وقت النشاط"
 
 #: ../System-Monitor/src/applet-cpusage.c:144
 msgid "CPU model"
@@ -944,13 +954,12 @@ msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:109
 #: ../netspeed/src/applet-notifications.c:101
-#, fuzzy
 msgid "Open the System-Monitor"
-msgstr "مراقب النظام"
+msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:111
 msgid "Show info"
-msgstr ""
+msgstr "اظهار معلومات"
 
 #: ../System-Monitor/src/applet-nvidia.c:146
 msgid "GPU model"
@@ -995,25 +1004,25 @@ msgstr ""
 
 #: ../System-Monitor/src/applet-sensors.c:363
 msgid "min"
-msgstr ""
+msgstr "أدنى"
 
 #: ../System-Monitor/src/applet-sensors.c:365
 msgid "max"
-msgstr ""
+msgstr "أقصى"
 
 #: ../System-Monitor/src/applet-sensors.c:368
 #: ../System-Monitor/src/applet-sensors.c:401
 msgid "alarm"
-msgstr ""
+msgstr "تنبيه"
 
 #: ../System-Monitor/src/applet-sensors.c:399
 msgid "rpm"
 msgstr ""
 
 #: ../System-Monitor/src/applet-sensors.c:418
-#, fuzzy, c-format
+#, c-format
 msgid "CPU temperature has reached %d°C"
-msgstr "تنبيه! درجة حرارة بطاقة الرسوميات وصلت %d درجة مئوية"
+msgstr ""
 
 #: ../System-Monitor/src/applet-sensors.c:432
 #, c-format
@@ -1064,7 +1073,7 @@ msgstr ""
 
 #: ../alsaMixer/src/applet-init.c:42
 msgid "Sound Control"
-msgstr ""
+msgstr "التحكم في الصوت"
 
 #: ../alsaMixer/src/applet-mixer.c:51
 #, c-format
@@ -1102,7 +1111,7 @@ msgstr ""
 
 #: ../alsaMixer/src/applet-notifications.c:59
 msgid "double-click"
-msgstr ""
+msgstr "ضغط-مزدوج"
 
 #: ../alsaMixer/src/applet-notifications.c:62
 msgid "Unmute"
@@ -1110,7 +1119,7 @@ msgstr ""
 
 #: ../alsaMixer/src/applet-notifications.c:62
 msgid "Mute"
-msgstr ""
+msgstr "كتم"
 
 #: ../clock/src/applet-calendar.c:193 ../clock/src/applet-calendar.c:274
 #: ../clock/src/applet-calendar.c:528 ../clock/src/applet-calendar.c:533
@@ -1118,19 +1127,19 @@ msgstr ""
 #: ../clock/src/applet-timer.c:172 ../clock/src/applet-timer.c:454
 #: ../clock/src/applet-timer.c:471 ../clock/src/applet-timer.c:491
 msgid "No title"
-msgstr ""
+msgstr "لا عنوان"
 
 #: ../clock/src/applet-calendar.c:529
 msgid "years"
-msgstr ""
+msgstr "سنوات"
 
 #: ../clock/src/applet-calendar.c:646
 msgid "Calendar and tasks"
-msgstr ""
+msgstr "أجندة و مهام"
 
 #: ../clock/src/applet-config.c:36 ../clock/data/messages:165
 msgid "Alarm"
-msgstr ""
+msgstr "منبه"
 
 #: ../clock/src/applet-config.c:36
 msgid "Time you want to be notified:"
@@ -1146,47 +1155,47 @@ msgstr ""
 
 #: ../clock/src/applet-config.c:36
 msgid "Day"
-msgstr ""
+msgstr "يوم"
 
 #: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Monday"
-msgstr ""
+msgstr "الاثنين"
 
 #: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Tuesday"
-msgstr ""
+msgstr "الثلاثاء"
 
 #: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Wednesday"
-msgstr ""
+msgstr "الاربعاء"
 
 #: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Thursday"
-msgstr ""
+msgstr "الخميس"
 
 #: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Friday"
-msgstr ""
+msgstr "الجمعة"
 
 #: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Saturday"
-msgstr ""
+msgstr "السبت"
 
 #: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Sunday"
-msgstr ""
+msgstr "الاحد"
 
 #: ../clock/src/applet-config.c:36
 msgid "Week Day"
-msgstr ""
+msgstr "يوم نهاية الاسبوع"
 
 #: ../clock/src/applet-config.c:36
 msgid "Week End"
-msgstr ""
+msgstr "نهاية الاسبوع"
 
 #: ../clock/src/applet-config.c:36
 msgid "Month"
-msgstr ""
+msgstr "شهر"
 
 #: ../clock/src/applet-config.c:36
 msgid "Repeat every:"
@@ -1226,8 +1235,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1491,7 +1500,8 @@ msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:158
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:273
@@ -1501,7 +1511,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:318
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:540
@@ -2219,9 +2230,8 @@ msgid ""
 msgstr ""
 
 #: ../netspeed/src/applet-notifications.c:97
-#, fuzzy
 msgid "Enable/disable network"
-msgstr "عطًل الشبكة"
+msgstr ""
 
 #: ../netspeed/src/applet-notifications.c:105
 msgid "Re-check interface"
@@ -2315,9 +2325,8 @@ msgid "Open this folder"
 msgstr ""
 
 #: ../quick-browser/src/applet-notifications.c:43
-#, fuzzy
 msgid "Open folder"
-msgstr "افتح ملفًا"
+msgstr ""
 
 #: ../shortcuts/src/applet-bookmarks.c:130
 #: ../shortcuts/src/applet-bookmarks.c:390
@@ -2382,9 +2391,8 @@ msgid "Enter a name for this bookmark:"
 msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:250
-#, fuzzy
 msgid "Open Home directory"
-msgstr "اختر مجلد"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:259
 msgid "Rename this bookmark"
@@ -2420,8 +2428,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -2873,14 +2881,12 @@ msgid "Data are being retrieved, please wait a moment."
 msgstr ""
 
 #: ../weather/src/applet-notifications.c:108
-#, fuzzy
 msgid "Show current conditions (middle-click)"
-msgstr "إفتح المجلد (ضغطة بزر الماوس الاوسط)"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:113
-#, fuzzy
 msgid "Open weather.com (double-click)"
-msgstr "إفتح المجلد (ضغطة بزر الماوس الاوسط)"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:115
 msgid "Reload now"
@@ -4413,9 +4419,8 @@ msgid "Let extern applications register new module?"
 msgstr ""
 
 #: ../Disks/data/messages:3
-#, fuzzy
 msgid "Applet"
-msgstr "المجلدات"
+msgstr ""
 
 #: ../Disks/data/messages:5
 msgid ""
@@ -4618,9 +4623,8 @@ msgid "Leave empty to use the default."
 msgstr ""
 
 #: ../Disks/data/messages:171
-#, fuzzy
 msgid "System monitor command"
-msgstr "مراقب النظام"
+msgstr ""
 
 #: ../Doncky/data/messages:93
 msgid "Specify the xml file to be used :"
@@ -4667,7 +4671,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
@@ -5452,9 +5457,8 @@ msgid "How smooth is the movement?"
 msgstr ""
 
 #: ../System-Monitor/data/messages:161
-#, fuzzy
 msgid "Alerts"
-msgstr "المجلدات"
+msgstr ""
 
 #: ../System-Monitor/data/messages:163
 msgid "Show alerts?"
@@ -5469,9 +5473,8 @@ msgid "Path to sound file:"
 msgstr ""
 
 #: ../System-Monitor/data/messages:169
-#, fuzzy
 msgid "System-Monitor"
-msgstr "مراقب النظام"
+msgstr ""
 
 #: ../System-Monitor/data/messages:175
 msgid ""
@@ -6359,7 +6362,8 @@ msgid "Space between icons:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:107
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:111
@@ -6485,7 +6489,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -6693,7 +6698,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:105
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:107
@@ -6765,7 +6771,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:91
@@ -7666,7 +7673,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:107

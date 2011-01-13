@@ -3,20 +3,20 @@
 # This file is distributed under the same license as the cairo-dock-plug-ins package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 #
-#: ../Disks/data/messages:21
 msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2010-09-27 22:31+0000\n"
-"Last-Translator: chaeMil <chaemil72@gmail.com>\n"
+"POT-Creation-Date: 2011-01-01 04:07+0000\n"
+"PO-Revision-Date: 2011-01-11 11:05+0000\n"
+"Last-Translator: Jan Dolejš <jackdown3csr@gmail.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-09-28 05:24+0000\n"
+"X-Launchpad-Export-Date: 2011-01-12 05:07+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+"Language: cs\n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -219,7 +219,8 @@ msgstr "Modul byl přidán, ale nemůže být spuštěn."
 
 #: ../Dbus/src/interface-applet-signals.c:486
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Aplet '%s' byl úspěšně aktualizován a automaticky znovu načten."
 
 #: ../Dbus/src/interface-applet-signals.c:486
@@ -267,11 +268,11 @@ msgstr ""
 
 #: ../Disks/src/applet-disks.c:142
 msgid "N/A"
-msgstr ""
+msgstr "Není k dispozici"
 
 #: ../Disks/src/applet-init.c:29
 msgid "Disks"
-msgstr ""
+msgstr "Disky"
 
 #: ../Disks/src/applet-init.c:32
 msgid ""
@@ -396,9 +397,8 @@ msgstr ""
 "a zda se takto již nejmenuje jiný soubor."
 
 #: ../Folders/src/applet-notifications.c:335
-#, fuzzy
 msgid "Open the folder"
-msgstr "Otevřít tuto složku"
+msgstr "Otevřít složku"
 
 #: ../Folders/src/applet-notifications.c:335
 #: ../GMenu/src/applet-notifications.c:76
@@ -423,9 +423,8 @@ msgstr "Otevřít tuto složku"
 #: ../switcher/src/applet-notifications.c:302
 #: ../switcher/src/applet-notifications.c:309
 #: ../switcher/src/applet-notifications.c:318
-#, fuzzy
 msgid "middle-click"
-msgstr "Další (prostřední tlačítko myši)"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:344
 msgid "Rename this file"
@@ -454,7 +453,7 @@ msgstr "Vytvořit nový soubor"
 
 #: ../Folders/src/applet-notifications.c:388
 msgid "Create a new folder"
-msgstr ""
+msgstr "Vytvořit novou složku"
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -982,14 +981,12 @@ msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:109
 #: ../netspeed/src/applet-notifications.c:101
-#, fuzzy
 msgid "Open the System-Monitor"
-msgstr "Sledování systému"
+msgstr "Otevřít Monitor systému"
 
 #: ../System-Monitor/src/applet-notifications.c:111
-#, fuzzy
 msgid "Show info"
-msgstr "Ukázat okno"
+msgstr "Zobrazit informace"
 
 #: ../System-Monitor/src/applet-nvidia.c:146
 msgid "GPU model"
@@ -1033,33 +1030,31 @@ msgid "Buffers"
 msgstr "Buffery"
 
 #: ../System-Monitor/src/applet-sensors.c:363
-#, fuzzy
 msgid "min"
-msgstr "1mm"
+msgstr "min"
 
 #: ../System-Monitor/src/applet-sensors.c:365
 msgid "max"
-msgstr ""
+msgstr "max"
 
 #: ../System-Monitor/src/applet-sensors.c:368
 #: ../System-Monitor/src/applet-sensors.c:401
-#, fuzzy
 msgid "alarm"
-msgstr "Budík"
+msgstr ""
 
 #: ../System-Monitor/src/applet-sensors.c:399
 msgid "rpm"
-msgstr ""
+msgstr "ot./min."
 
 #: ../System-Monitor/src/applet-sensors.c:418
-#, fuzzy, c-format
+#, c-format
 msgid "CPU temperature has reached %d°C"
-msgstr "Varování! Jádo grafické karty dosáhlo %d°C"
+msgstr "Teplota CPU dosáhla %d°C"
 
 #: ../System-Monitor/src/applet-sensors.c:432
 #, c-format
 msgid "Fan speed has reached %d rpm"
-msgstr ""
+msgstr "Rychlost otáček chladiče dosáhla %d ot./min."
 
 #: ../Toons/src/applet-init.c:29
 msgid "Toons"
@@ -1156,16 +1151,15 @@ msgstr "Nastavit kanály"
 
 #: ../alsaMixer/src/applet-notifications.c:59
 msgid "double-click"
-msgstr ""
+msgstr "dvojklik"
 
 #: ../alsaMixer/src/applet-notifications.c:62
-#, fuzzy
 msgid "Unmute"
-msgstr "Odpojené"
+msgstr ""
 
 #: ../alsaMixer/src/applet-notifications.c:62
 msgid "Mute"
-msgstr ""
+msgstr "Ztlumit"
 
 #: ../clock/src/applet-calendar.c:193 ../clock/src/applet-calendar.c:274
 #: ../clock/src/applet-calendar.c:528 ../clock/src/applet-calendar.c:533
@@ -1281,8 +1275,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1568,7 +1562,8 @@ msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr "Tento zásuvný modul nabízí dekorátory dialogových bublin."
 
 #: ../dnd2share/src/applet-dnd2share.c:158
-msgid "Couldn't upload the file, check that your internet connexion is active."
+msgid ""
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Nelze nahrát soubor, zkontrolujte zda je vaše připojení k internetu funkční."
 
@@ -1581,7 +1576,8 @@ msgstr ""
 "jeho URL můžete vložit kamkoliv stisknutím CTRL+v"
 
 #: ../dnd2share/src/applet-dnd2share.c:318
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr "Počkejte s dalším uploadem, než skončí ten předchozí."
 
 #: ../dnd2share/src/applet-dnd2share.c:540
@@ -1589,7 +1585,6 @@ msgid "Tiny URL"
 msgstr "Tiny URL"
 
 #: ../dnd2share/src/applet-init.c:41
-#, fuzzy
 msgid ""
 "This applet lets you share files easily:\n"
 "Drag-and-drop a file on the icon to upload it to one of the available "
@@ -1605,16 +1600,6 @@ msgid ""
 "copy it into the mouse selection.\n"
 "You'll need to install 'curl' and 'wget' to upload the data."
 msgstr ""
-"Tento applet umožňuje jednoduché sdílení souborů:\n"
-"Přetažením souboru nad ikonu appletu jej nahrajete na jeden z hostingových "
-"serverů.\n"
-"Podporuje mnoho serverů jako je Dropbox, Imageshack, Pastebin, atd.\n"
-"Můžete nahrávat text, obrázky, video a ostatní soubory.\n"
-"Obdržená URL je automaticky skopírována do schránky pro přímé vložení pomocí "
-"CTRL+v.\n"
-"Umožňuje uchovávat historii posledních uploadů, aby byly dostupné bez "
-"potřeby jakéhokoliv účtu.\n"
-"Je třeba nainstalovat programy 'curl' a 'wget' pro nahrávání dat."
 
 #: ../dnd2share/src/applet-init.c:51
 msgid "Drop to share"
@@ -1692,7 +1677,7 @@ msgstr "Poslat obsah schránky"
 
 #: ../dnd2share/src/applet-notifications.c:398
 msgid "History"
-msgstr ""
+msgstr "Historie"
 
 #: ../dnd2share/src/applet-notifications.c:472
 msgid "Get text"
@@ -1811,7 +1796,7 @@ msgstr "Ukázat koš (kliknout)"
 
 #: ../dustbin/src/applet-notifications.c:118
 msgid "Empty Trash"
-msgstr ""
+msgstr "Vysypat koš"
 
 #: ../dustbin/src/applet-notifications.c:122
 msgid "Display dustbins information"
@@ -1977,15 +1962,14 @@ msgstr "Vyberte, za kolik minut se vaše PC zastaví :"
 #: ../logout/src/applet-notifications.c:153
 #: ../logout/src/applet-notifications.c:155 ../logout/data/messages:97
 #: ../logout/data/messages:105
-#, fuzzy
 msgid "Log out"
-msgstr "Odhlášení"
+msgstr "Odhlásit se"
 
 #: ../logout/src/applet-notifications.c:162
 #: ../logout/src/applet-notifications.c:164 ../logout/data/messages:99
 #: ../logout/data/messages:107
 msgid "Shut down"
-msgstr ""
+msgstr "Vypnout"
 
 #: ../logout/src/applet-notifications.c:171
 #: ../logout/src/applet-notifications.c:173 ../logout/data/messages:101
@@ -2039,13 +2023,10 @@ msgstr ""
 "POP3, nebo APOP a 995 pro POP3S."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
-#, fuzzy
 msgid ""
 "Enter 0 to use the default port. Default ports are 143 for IMAP4 and 993 for "
 "IMAP4 over SSL."
 msgstr ""
-"Zadejte nulu, pro použití výchozího portu. Výchozími porty jsou 110 pro "
-"POP3, nebo APOP a 995 pro POP3S."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Use a secure connection (SSL)"
@@ -2087,9 +2068,8 @@ msgid "Address of feed:"
 msgstr "Adresa zdroje:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
-#, fuzzy
 msgid "Remove this account"
-msgstr "Odstranit účet"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid ""
@@ -2174,23 +2154,18 @@ msgstr ""
 "můžete to změnit v panelu nastavení tohoto modulu"
 
 #: ../mail/src/cd-mail-applet-notifications.c:67
-#, fuzzy
 msgid ""
 "No mail application is defined,\n"
 "you can define it in the configuration panel of this module"
 msgstr ""
-"Naskytl se problém\n"
-"Pokud '%s' není vaše obvyklá emailová aplikace,\n"
-"můžete to změnit v panelu nastavení tohoto modulu"
 
 #: ../mail/src/cd-mail-applet-notifications.c:150
 msgid "Refresh a mail account"
 msgstr "Obnovit emailový účet"
 
 #: ../mail/src/cd-mail-applet-notifications.c:157
-#, fuzzy
 msgid "Refresh all"
-msgstr "Obnovit"
+msgstr ""
 
 #: ../mail/src/cd-mail-applet-notifications.c:164
 #, c-format
@@ -2216,7 +2191,8 @@ msgstr "pohybové rozmazání obrazu"
 
 #: ../motion-blur/src/applet-init.c:31
 msgid "This plugin adds a motion blur effect to docks."
-msgstr "Tento zásuvný modul přidává efekt pohybového rozmazání obrazu do docků"
+msgstr ""
+"Tento zásuvný modul přidává efekt pohybového rozmazání obrazu do docků"
 
 #: ../musicPlayer/src/applet-draw.c:227
 msgid "Unknown artist"
@@ -2307,19 +2283,16 @@ msgid "scroll-up"
 msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:186
-#, fuzzy
 msgid "Play/Pause"
-msgstr "Pozastavit"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:186
-#, fuzzy
 msgid "left-click"
-msgstr "Přehrát/Pozastavit (levé tlačítko myši)"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:192
-#, fuzzy
 msgid "Next"
-msgstr "Text"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:192
 msgid "scroll-down"
@@ -2392,9 +2365,8 @@ msgid ""
 msgstr ""
 
 #: ../netspeed/src/applet-notifications.c:97
-#, fuzzy
 msgid "Enable/disable network"
-msgstr "Deaktivovat síť"
+msgstr ""
 
 #: ../netspeed/src/applet-notifications.c:105
 msgid "Re-check interface"
@@ -2567,9 +2539,8 @@ msgid "Enter a name for this bookmark:"
 msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:250
-#, fuzzy
 msgid "Open Home directory"
-msgstr "Vyčistit místní adresář"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:259
 msgid "Rename this bookmark"
@@ -2584,14 +2555,12 @@ msgid "Eject"
 msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:271
-#, fuzzy
 msgid "Unmount"
-msgstr "Odpojené"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:271
-#, fuzzy
 msgid "Mount"
-msgstr "Měsíc"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:275
 msgid "Get disk info"
@@ -2607,8 +2576,8 @@ msgstr "ukázat myš"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -2816,7 +2785,8 @@ msgstr "Přesunout současnou plochu na tuto plochu"
 msgid ""
 "This will move all windows from the current desktop to the one you clicked "
 "on."
-msgstr "Toto přesune všechna okna z současné plochy na tu, na kterou kliknete."
+msgstr ""
+"Toto přesune všechna okna z současné plochy na tu, na kterou kliknete."
 
 #: ../switcher/src/applet-notifications.c:302
 msgid "Windows List"
@@ -3064,14 +3034,12 @@ msgid "Data are being retrieved, please wait a moment."
 msgstr "Získávám data, počkejte moment prosím."
 
 #: ../weather/src/applet-notifications.c:108
-#, fuzzy
 msgid "Show current conditions (middle-click)"
-msgstr "Otevřít soubor (kliknout prostředním)"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:113
-#, fuzzy
 msgid "Open weather.com (double-click)"
-msgstr "Otevřít soubor (kliknout prostředním)"
+msgstr ""
 
 #: ../weather/src/applet-notifications.c:115
 msgid "Reload now"
@@ -4630,9 +4598,8 @@ msgid "Let extern applications register new module?"
 msgstr "Povolit externím aplikacím rwegistrovat nový modul ?"
 
 #: ../Disks/data/messages:3
-#, fuzzy
 msgid "Applet"
-msgstr "Interpret"
+msgstr ""
 
 #: ../Disks/data/messages:5
 msgid ""
@@ -4641,9 +4608,8 @@ msgid ""
 msgstr ""
 
 #: ../Disks/data/messages:7
-#, fuzzy
 msgid "Name of the container it belongs to:"
-msgstr "Jméno doku, ke kterému to patří:"
+msgstr ""
 
 #: ../Disks/data/messages:11 ../Disks/data/messages:141
 #: ../alsaMixer/data/messages:115 ../keyboard-indicator/data/messages:97
@@ -4655,19 +4621,16 @@ msgid "Display"
 msgstr ""
 
 #: ../Disks/data/messages:19
-#, fuzzy
 msgid "Image's name or path :"
-msgstr "Název souboru obrázku :"
+msgstr ""
 
 #: ../Disks/data/messages:25
-#, fuzzy
 msgid "Desklet mode"
-msgstr "Desklet"
+msgstr ""
 
 #: ../Disks/data/messages:71
-#, fuzzy
 msgid "Custom decorations"
-msgstr "Dekorace"
+msgstr ""
 
 #: ../Disks/data/messages:85
 msgid "Custom margins"
@@ -4800,9 +4763,8 @@ msgid "On label"
 msgstr ""
 
 #: ../Disks/data/messages:153
-#, fuzzy
 msgid "Refresh time"
-msgstr "Obnovovací čas:"
+msgstr ""
 
 #: ../Disks/data/messages:155 ../netspeed/data/messages:135
 msgid ""
@@ -4840,9 +4802,8 @@ msgid "Leave empty to use the default."
 msgstr ""
 
 #: ../Disks/data/messages:171
-#, fuzzy
 msgid "System monitor command"
-msgstr "Sledování systému"
+msgstr ""
 
 #: ../Doncky/data/messages:93
 msgid "Specify the xml file to be used :"
@@ -4889,7 +4850,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
@@ -4971,9 +4933,8 @@ msgid ""
 msgstr ""
 
 #: ../Folders/data/messages:109
-#, fuzzy
 msgid "Show folder's content?"
-msgstr "Poslat obsah schránky"
+msgstr ""
 
 #: ../Folders/data/messages:111
 msgid "Sort files by :"
@@ -5031,8 +4992,8 @@ msgstr ""
 #: ../GMenu/data/messages:109
 msgid "Only show files that are under this folder or its sub-folder:"
 msgstr ""
-"Zobrazovat pouze soubory, které jsou pod touto složkou, nebo její "
-"podsložkou :"
+"Zobrazovat pouze soubory, které jsou pod touto složkou, nebo její podsložkou "
+":"
 
 #: ../GMenu/data/messages:111
 msgid "in days. Set 0 if unsued."
@@ -5040,7 +5001,8 @@ msgstr "ve dnech. Pro vypnutí tohoto filtru nastavte na 0"
 
 #: ../GMenu/data/messages:113
 msgid "Only show files whose last modification date is less than ;"
-msgstr "Zobrazovat pouze soubory, jejichž datum poslední úpravy je méŇe než :"
+msgstr ""
+"Zobrazovat pouze soubory, jejichž datum poslední úpravy je méŇe než :"
 
 #: ../Messaging-Menu/data/messages:89
 msgid ""
@@ -5653,9 +5615,8 @@ msgid "Show graphic card's temperature?"
 msgstr ""
 
 #: ../System-Monitor/data/messages:139
-#, fuzzy
 msgid "Show CPU temperature?"
-msgstr "Teplota jádra"
+msgstr ""
 
 #: ../System-Monitor/data/messages:141
 msgid "Show fan speed?"
@@ -5678,9 +5639,8 @@ msgid "How smooth is the movement?"
 msgstr ""
 
 #: ../System-Monitor/data/messages:161
-#, fuzzy
 msgid "Alerts"
-msgstr "Interpret"
+msgstr ""
 
 #: ../System-Monitor/data/messages:163
 msgid "Show alerts?"
@@ -5695,9 +5655,8 @@ msgid "Path to sound file:"
 msgstr ""
 
 #: ../System-Monitor/data/messages:169
-#, fuzzy
 msgid "System-Monitor"
-msgstr "Sledování systému"
+msgstr ""
 
 #: ../System-Monitor/data/messages:175
 msgid ""
@@ -6585,7 +6544,8 @@ msgid "Space between icons:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:107
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:111
@@ -6711,7 +6671,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -6872,9 +6833,8 @@ msgid "smaller"
 msgstr ""
 
 #: ../logout/data/messages:93
-#, fuzzy
 msgid "Action"
-msgstr "Akce"
+msgstr ""
 
 #: ../logout/data/messages:95 ../showDesktop/data/messages:101
 #: ../slider/data/messages:109
@@ -6920,7 +6880,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:105
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:107
@@ -6992,7 +6953,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:91
@@ -7445,9 +7407,8 @@ msgid "open image"
 msgstr ""
 
 #: ../slider/data/messages:121
-#, fuzzy
 msgid "open parent folder"
-msgstr "Otevřít tuto složku"
+msgstr ""
 
 #: ../slider/data/messages:125
 msgid "Sliding delay:"
@@ -7522,9 +7483,8 @@ msgid "Force the image to fill the icon/desklet?"
 msgstr ""
 
 #: ../slider/data/messages:165
-#, fuzzy
 msgid "Add a background to the image?"
-msgstr "Obrázek pozadí :"
+msgstr ""
 
 #: ../slider/data/messages:169
 msgid "Yes"
@@ -7895,7 +7855,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:107
@@ -7977,23 +7938,20 @@ msgstr ""
 msgid "Overwrite the default label with the connection point name?"
 msgstr ""
 
-#~ msgid "Clean local directory"
-#~ msgstr "Vyčistit místní adresář"
-
-#~ msgid "Empty Trash (middle-click)"
-#~ msgstr "Vyprázdnit koš (prostřední klik)"
-
-#~ msgid "Copy (middle click)"
-#~ msgstr "kopírovat (prostřední tlačítko myši)"
-
 #~ msgid "Monitor System"
 #~ msgstr "Sledování systému"
 
 #~ msgid "AlsaMixer"
 #~ msgstr "AlsaMixer"
 
+#~ msgid "Copy (middle click)"
+#~ msgstr "kopírovat (prostřední tlačítko myši)"
+
 #~ msgid "Add a desktop"
 #~ msgstr "Přidat plochu"
+
+#~ msgid "Clean local directory"
+#~ msgstr "Vyčistit místní adresář"
 
 #~ msgid "Remove last desktop"
 #~ msgstr "Odstranit poslední plochu"
@@ -8102,8 +8060,8 @@ msgstr ""
 #~ "mouse button. Of course you can still move it with ALT + left_click."
 #~ msgstr ""
 #~ "Pokud je zamknut, nelze s deskletem pohnout pouhým přetažením levým "
-#~ "tlačítkem myši. Samozřejmě s ním stále můžete pohybovat kombinací ALT + "
-#~ "levé tlačítko myši."
+#~ "tlačítkem myši. Samozřejmě s ním stále můžete pohybovat kombinací ALT + levé "
+#~ "tlačítko myši."
 
 #~ msgid "Should be visible on all desktops ?"
 #~ msgstr "Má být neviditelný na všech plochách ?"
@@ -8124,8 +8082,8 @@ msgstr ""
 #~ "It's an image that will be displayed below the drawings, like a frame for "
 #~ "exemple. Let empty to not use any."
 #~ msgstr ""
-#~ "Je to obrázek, který se zobrazí pod kresbami, jako například rámeček. "
-#~ "Pokud žádný nechcete, ponechte nevyplněné."
+#~ "Je to obrázek, který se zobrazí pod kresbami, jako například rámeček. Pokud "
+#~ "žádný nechcete, ponechte nevyplněné."
 
 #~ msgid "in pixels. Use this to adjust the right position of the drawings."
 #~ msgstr "v pixelech. Použijte pro upravení pravé pozice kreseb."
@@ -8155,8 +8113,8 @@ msgstr ""
 #~ msgstr "Odsazení zespoda :"
 
 #~ msgid ""
-#~ "It's an image that will be displayed above the drawings, like a reflect "
-#~ "for exemple. Let empty to not use any."
+#~ "It's an image that will be displayed above the drawings, like a reflect for "
+#~ "exemple. Let empty to not use any."
 #~ msgstr ""
 #~ "Je to obrázek, který se zobrazí nad kresbami, jako například odraz. Pokud "
 #~ "žádný nechcete, ponechte nevyplněné."
@@ -8183,5 +8141,8 @@ msgstr ""
 #~ "specifications (KDE, Gnome, etc)"
 #~ msgstr ""
 #~ "<b>Oznamovací oblast\" pro váš dok\n"
-#~ "Funguje na všech desktopech, které podporují poslední specifikace "
-#~ "oznamovací oblasti (KDE, Gnome, atd.)"
+#~ "Funguje na všech desktopech, které podporují poslední specifikace oznamovací "
+#~ "oblasti (KDE, Gnome, atd.)"
+
+#~ msgid "Empty Trash (middle-click)"
+#~ msgstr "Vyprázdnit koš (prostřední klik)"
