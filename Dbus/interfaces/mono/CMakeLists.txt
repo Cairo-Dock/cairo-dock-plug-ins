@@ -8,7 +8,7 @@ if ("${MONO_FOUND}" STREQUAL "TRUE")
 		-out:${CMAKE_CURRENT_BINARY_DIR}/CDApplet.dll
 		${CMAKE_CURRENT_SOURCE_DIR}/CDApplet.cs ${CMAKE_CURRENT_SOURCE_DIR}/ISubApplet.cs ${CMAKE_CURRENT_SOURCE_DIR}/IApplet.cs)
 	### find mono libs ...
-	set (MONO_LIB_DIR "/usr/lib/cli")
+	set (MONO_LIB_DIR "${CMAKE_INSTALL_PREFIX}/lib/cli")
 	install (FILES ${CMAKE_CURRENT_BINARY_DIR}/CDApplet.dll
 		DESTINATION ${MONO_LIB_DIR})
 endif()

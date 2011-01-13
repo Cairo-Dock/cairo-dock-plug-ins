@@ -90,9 +90,11 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules/")  # additionnal FindP
 
 ########### dependancies ###############
 
+message ("")
 message (STATUS "=====================")
 message (STATUS "Check dependancies...")
 message (STATUS "=====================")
+message ("")
 
 pkg_check_modules ("PACKAGE" REQUIRED "gtk+-2.0" "gthread-2.0" "cairo" "librsvg-2.0" "dbus-1" "dbus-glib-1" "libxml-2.0" "gtkglext-1.0" "cairo-dock")
 
@@ -162,8 +164,8 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/compiz-icon/data/compiz-icon.conf.in
 add_subdirectory (compiz-icon)
 
 ############# DBUS #################
-# find_package (PythonLibs)
-EXECUTE_PROCESS(COMMAND python -c "import sys; print sys.version" OUTPUT_VARIABLE PYTHON_VERSION)
+find_program (PYTHON_EXECUTABLE python)
+EXECUTE_PROCESS(COMMAND ${PYTHON_EXECUTABLE} -c "import sys; print sys.version" OUTPUT_VARIABLE PYTHON_VERSION)
 if ("${PYTHON_VERSION}" STREQUAL "") 
 	message (STATUS "Could not find Python, won't install Python interface.") 
 	set (with_python "no") 
@@ -180,19 +182,24 @@ else()
 endif()
 
 # find_package(Ruby) nous cherche les libs de dev de Ruby, or on a seulement besoin de l'executable.
-EXECUTE_PROCESS(COMMAND ruby -r rbconfig -e "print Config::CONFIG['rubylibdir']"
+find_program (RUBY_EXECUTABLE ruby)
+EXECUTE_PROCESS(COMMAND ${RUBY_EXECUTABLE} -r rbconfig -e "print Config::CONFIG['rubylibdir']"
 	OUTPUT_VARIABLE RUBY_LIB_DIR)
 message (STATUS "RUBY_LIBRARY: ${RUBY_LIB_DIR}")
 if ("${RUBY_LIB_DIR}" STREQUAL "" OR "${RUBY_LIB_DIR}" STREQUAL "nil")
 	message (STATUS "Could not find ruby libs, won't install Ruby interface.")
 	set (with_ruby "no")
 else()
+	string (REGEX REPLACE "lib/ruby/[0-9].[0-9]" "" RUBY_LIB_DIR_INSTALL "${RUBY_LIB_DIR}")
+	string (REGEX REPLACE "${RUBY_LIB_DIR_INSTALL}" "" RUBY_LIB_DIR_INSTALL "${RUBY_LIB_DIR}")
+	set (RUBY_LIB_DIR "${CMAKE_INSTALL_PREFIX}/${RUBY_LIB_DIR_INSTALL}")
+	message (STATUS "  will be installed in: ${RUBY_LIB_DIR}")
 	set (RUBY_FOUND "TRUE")
 	set (with_ruby "yes")
 endif()
 
 #find_package (Mono)
-FIND_PROGRAM (GMCS_EXECUTABLE gmcs)
+find_program (GMCS_EXECUTABLE gmcs)
 if ("${GMCS_EXECUTABLE}" STREQUAL "" OR NOT EXISTS ${GMCS_EXECUTABLE})
 	message (STATUS "Could not find Mono compiler gmcs, won't build Mono interface.")
 	set (with_mono "no")
@@ -791,14 +798,18 @@ else()
 	add_subdirectory ("Xgamma")
 endif()
 
+message ("")
 message (STATUS "===============")
 message (STATUS "Language build:")
 message (STATUS "===============")
+message ("")
 add_subdirectory (po)
 
+message ("")
 message (STATUS "===============")
 message (STATUS "Plug-ins build:")
 message (STATUS "===============")
+message ("")
 message (STATUS " - with Alsa-Mixer applet:         ${with_alsa}")
 message (STATUS " - with iCal support:              ${with_ical}")
 message (STATUS " - with Disks applet:              ${with_disks}")
@@ -814,8 +825,8 @@ message (STATUS " - with Me-Menu applet:            ${with_me_menu}")
 message (STATUS " - with Messaging-Menu:            ${with_messaging_menu}")
 message (STATUS " - with Network-Monitor applet:    ${with_network_monitor}")
 message (STATUS " - with Scooby-Do applet:          ${with_scooby_do}")
-message (STATUS " - with screen resolution support: ${with_xrandr}")
-message (STATUS " - with tatus-Notifier applet:     ${with_status_notifier}")
+message (STATUS " - with Screen Resolution support: ${with_xrandr}")
+message (STATUS " - with Status-Notifier applet:    ${with_status_notifier}")
 message (STATUS " - with Sensors support:           ${with_sensors}")
 message (STATUS " - with Terminal applet:           ${with_terminal}")
 message (STATUS " - with Weblets applet:            ${with_weblets}")
