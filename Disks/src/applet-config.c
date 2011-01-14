@@ -72,11 +72,11 @@ CD_APPLET_RESET_DATA_BEGIN
 	
 	g_timer_destroy (myData.pClock);
 	
-	reset_disks_list ();
+	reset_disks_list (myApplet);
 CD_APPLET_RESET_DATA_END
 
 
-void reset_disks_list (void)
+void reset_disks_list (CairoDockModuleInstance *myApplet)
 {
 	if (myData.iNumberDisks > 0)
 	{

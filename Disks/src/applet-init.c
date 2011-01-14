@@ -155,7 +155,7 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 		}
 		
-		reset_disks_list ()
+		reset_disks_list (myApplet);
 		
 		_set_data_renderer (myApplet, TRUE);
 		
