@@ -45,25 +45,36 @@ class CDApplet:
 	LOWER_LEFT  = 2
 	UPPER_RIGHT = 3
 	MIDDLE      = 4
-
+	MENU_ENTRY        = 0
+	MENU_SUB_MENU     = 1
+	MENU_SEPARATOR    = 2
+	MENU_CHECKBOX     = 3
+	MENU_RADIO_BUTTON = 4
 	
-	def __init__(self,applet_name=None):
+	def __init__(self,cAppletName=None):
 		""" initialize the applet. Must be called by any class that inheritates from it.
 		It defines the following:
 		 - icon : our main icon
 		 - sub_icons: our sub-icons
 		 - config : a dictionnary where our configuration parameters are stored
-		 - applet_name : name of our applet (the same as the folder where files are stored)
-		 - conf_file : path to our config file (you will rarely need it)
+		 - cAppletName : name of our applet (the same as the folder where files are stored)
+		 - cConfFile : path to our config file (you will rarely need it)
 		 """
 		self.icon = None
 		self.sub_icons = None
 		self.config = {}
-		if applet_name is None:
-			self.applet_name = os.path.basename(os.path.abspath("."))  # the name of the applet must the same as the folder.
-		else:
-			self.applet_name = applet_name
-		self.conf_file = os.path.expanduser("~/.config/cairo-dock/current_theme/plug-ins/"+self.applet_name+"/"+self.applet_name+".conf")  # path to the conf file of our applet.
+		self.loop = None
+		self._bEnded = False
+		self.cMenuIconId = None
+		self.cAppletName = sys.argv[0][:2]
+		self.cParentAppName = sys.argv[1]
+		self.cBusPath = sys.argv[2]
+		self.cConfFile = sys.argv[3]
+		#~ if cAppletName is None:
+			#~ self.cAppletName = os.path.basename(os.path.abspath("."))  # the name of the applet must the same as the folder.
+		#~ else:
+			#~ self.cAppletName = cAppletName
+		#~ self.cConfFile = os.path.expanduser("~/.config/cairo-dock/current_theme/plug-ins/"+self.cAppletName+"/"+self.cAppletName+".conf")  # path to the conf file of our applet.
 		
 		self._get_config()
 		self._connect_to_dock()
@@ -71,9 +82,10 @@ class CDApplet:
 	def run(self):
 		""" start the applet and enter the main loop; we never get out of this function """
 		self.begin()
-		self.loop = gobject.MainLoop()
-		self.loop.run()
-		print ">>> applet '"+self.applet_name+"' terminated."
+		if not self._bEnded:  # _bEnded can be true if the applet runs its own main loop, in which case we stay stuck in the 'begin' function until the end of the applet; in this case, we don't want to run a main loop again!
+			self.loop = gobject.MainLoop()
+			self.loop.run()
+		print ">>> applet '"+self.cAppletName+"' terminated."
 		sys.exit(0)
 	
 	##################################
@@ -87,10 +99,21 @@ class CDApplet:
 		""" action on middle-click """
 		pass
 	
+	def _on_build_menu(self):
+		self.cMenuIconId = None
+		self.on_build_menu()
+		pass
+		
 	def on_build_menu(self):
 		""" build our menu """
 		pass
-		
+	
+	def _on_menu_select(self,iNumEntry):
+		if self.cMenuIconId == None:
+			self.on_menu_select(iNumEntry)
+		else:
+			self.on_menu_select_sub_icon(iNumEntry,self.cMenuIconId)
+	
 	def on_menu_select(self,iNumEntry):
 		""" action on selecting an entry of our menu """
 		pass
@@ -103,12 +126,13 @@ class CDApplet:
 		""" action on dropping something on our applet """
 	
 	def on_answer(self,answer):
-		""" action on answering a dialog """
+		""" action on answering ok to a dialog with ok/cancel buttons (deprecated) """
 		pass
 	
 	def on_answer_dialog(self, button, answer):
 		""" action on answering a dialog """
-		pass
+		if button == -1 or button == 0:
+			self.on_answer(answer)
 	
 	def on_shortkey(self,cKey):
 		""" action on pressing one of the shortkeys we bound beforehand """
@@ -125,6 +149,34 @@ class CDApplet:
 		""" action on click on one of our sub-icons"""
 		pass
 	
+	def on_middle_click_sub_icon(self, cIconID):
+		""" action on middle-click on one of our sub-icons"""
+		pass
+	
+	def on_scroll_sub_icon(self, bScrollUp, cIconID):
+		""" action on scroll on one of our sub-icons"""
+		pass
+	
+	def _on_build_menu_sub_icon(self, cIconID):
+		self.cMenuIconId = cIconID
+		self.on_build_menu_sub_icon(cIconID)
+	
+	def on_build_menu_sub_icon(self, cIconID):
+		""" build our menu on one of our sub-icons"""
+		pass
+	
+	def on_menu_select_sub_icon(self, iNumEntry, cIconID):
+		""" action on selecting an entry of our menu on a sub-icon"""
+		pass
+	
+	def on_drop_data_sub_icon(self, cReceivedData, cIconID):
+		""" action on dropping something on one of our sub-icons"""
+		pass
+	
+	def on_answer_dialog_sub_icon(self, button, answer, cIconID):
+		""" action on answering a dialog about a sub-icon"""
+		pass
+	
 	###############################
 	### callbacks on the applet ###
 	###############################
@@ -137,8 +189,10 @@ class CDApplet:
 		pass
 	
 	def _on_stop(self):
+		self._bEnded = True
 		self.end()
-		self.loop.quit()
+		if self.loop != None:
+			self.loop.quit()
 	
 	def reload(self):
 		""" called when our applet is reloaded (config parameters have changed) """
@@ -155,33 +209,40 @@ class CDApplet:
 	
 	def _get_config(self):
 		keyfile = ConfigParser.RawConfigParser()
-		keyfile.read(self.conf_file)
+		keyfile.read(self.cConfFile)
 		self.get_config(keyfile)
 	
 	def _connect_to_dock(self):
 		# get our applet on the bus.
-		print "self.applet_name:"+self.applet_name
-		applet_path = "/org/cairodock/CairoDock/"+self.applet_name  # path where our object is stored on the bus.
+		#~ applet_path = "/org/cairodock/CairoDock/"+self.cAppletName  # path where our object is stored on the bus.
 		bus = dbus.SessionBus()
 		try:
-			applet_object = bus.get_object("org.cairodock.CairoDock", applet_path)
+			applet_object = bus.get_object("org.cairodock.CairoDock", self.cBusPath)
 		except:
-			print ">>> object '"+self.applet_name+"' can't be found on the bus, exit.\nMake sure that the 'Dbus' plug-in is activated in Cairo-Dock"
+			print ">>> object '"+self.cAppletName+"' can't be found on the bus, exit.\nMake sure that the 'Dbus' plug-in is activated in Cairo-Dock"
 			sys.exit(2)
 		self.icon = dbus.Interface(applet_object, "org.cairodock.CairoDock.applet")  # this object represents our icon inside the dock or a desklet.
-		sub_icons_object = bus.get_object("org.cairodock.CairoDock", applet_path+"/sub_icons")
+		sub_icons_object = bus.get_object("org.cairodock.CairoDock", self.cBusPath+"/sub_icons")
 		self.sub_icons = dbus.Interface(sub_icons_object, "org.cairodock.CairoDock.subapplet")  # this object represents the list of icons contained in our sub-dock, or in our desklet. We'll add them one by one later, giving them a unique ID, which will be used to identify each of them.
 		# connect to signals.
 		self.icon.connect_to_signal("on_click", self.on_click)  # when the user left-clicks on our icon.
 		self.icon.connect_to_signal("on_middle_click", self.on_middle_click)  # when the user middle-clicks on our icon.
-		self.icon.connect_to_signal("on_build_menu", self.on_build_menu)  # when the user right-clicks on our applet (which builds the menu)
-		self.icon.connect_to_signal("on_menu_select", self.on_menu_select)  # when the user selects an entry of this menu.
+		self.icon.connect_to_signal("on_build_menu", self._on_build_menu)  # when the user right-clicks on our applet (which builds the menu)
+		self.icon.connect_to_signal("on_menu_select", self._on_menu_select)  # when the user selects an entry of this menu.
 		self.icon.connect_to_signal("on_scroll", self.on_scroll)  # when the user scroll up or down on our icon.
 		self.icon.connect_to_signal("on_drop_data", self.on_drop_data)  # when the user drops something on our icon.
-		self.icon.connect_to_signal("on_answer", self.on_answer)  # when the user answer a question.
 		self.icon.connect_to_signal("on_answer_dialog", self.on_answer_dialog)  # when the user answer a question.
 		self.icon.connect_to_signal("on_shortkey", self.on_shortkey)  # when the user press the shortkey.
 		self.icon.connect_to_signal("on_change_focus", self.on_change_focus)  # when the window's focus changes.
 		self.icon.connect_to_signal("on_stop_module", self._on_stop)  # when the user deactivate our applet (or the DBus plug-in, or when the Cairo-Dock is stopped).
 		self.icon.connect_to_signal("on_reload_module", self._on_reload)  # when the user changes something in our config, or when the desklet is resized (with no change in the config).
 		self.sub_icons.connect_to_signal("on_click_sub_icon", self.on_click_sub_icon)  # when the user left-clicks on a sub-icon.
+		self.sub_icons.connect_to_signal("on_middle_click_sub_icon", self.on_middle_click_sub_icon)
+		self.sub_icons.connect_to_signal("on_scroll_sub_icon", self.on_scroll_sub_icon)
+		self.sub_icons.connect_to_signal("on_build_menu_sub_icon", self._on_build_menu_sub_icon)
+		self.sub_icons.connect_to_signal("on_drop_data_sub_icon", self.on_drop_data_sub_icon)
+
+if __name__ == '__main__':
+	print "=== main ==="
+	for v in sys.argv:
+		print v

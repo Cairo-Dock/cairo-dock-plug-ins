@@ -64,6 +64,7 @@ struct _AppletConfig {
 	//~ gdouble fHigholor2[3];
 	
 	gchar **cDisks;
+	gsize iNumberDisks;
 	
 	gchar *cSystemMonitorCommand;
 } ;

@@ -143,7 +143,6 @@ struct _AppletData {
 	gchar *cLastAlignHeight;
 	gint iLastLineHeight;
 	gboolean bLastWasSameLine;
-	gint iMaxGraphHistory;
 	
 	cairo_surface_t *pImgSurface;
 	

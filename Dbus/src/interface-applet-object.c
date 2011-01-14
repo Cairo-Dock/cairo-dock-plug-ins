@@ -17,11 +17,13 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #include <stdlib.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <sys/types.h>
+#define __USE_POSIX
+#include <signal.h>
 #include <glib.h>
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-bindings.h>
@@ -32,14 +34,19 @@
 #include "dbus-sub-applet-spec.h"
 #include "interface-applet-object.h"
 
+static void cd_dbus_applet_dispose (GObject *object);
+static void cd_dbus_applet_finalize (GObject *object);
+
 G_DEFINE_TYPE(dbusApplet, cd_dbus_applet, G_TYPE_OBJECT);
 
 G_DEFINE_TYPE(dbusSubApplet, cd_dbus_sub_applet, G_TYPE_OBJECT);
 
-
 static void cd_dbus_applet_class_init(dbusAppletClass *klass)
 {
-	cd_message("");
+	cd_debug("");
+	GObjectClass *object_class = G_OBJECT_CLASS (klass);
+	object_class->dispose = cd_dbus_applet_dispose;
+	object_class->finalize = cd_dbus_applet_finalize;
 	
 	cd_dbus_applet_init_signals_once (klass);
 	
@@ -47,7 +54,7 @@ static void cd_dbus_applet_class_init(dbusAppletClass *klass)
 }
 static void cd_dbus_applet_init (dbusApplet *pDbusApplet)
 {
-	cd_message("");
+	cd_debug("");
 	
 	pDbusApplet->connection = cairo_dock_get_session_connection ();
 	pDbusApplet->proxy = cairo_dock_get_main_proxy ();
@@ -55,9 +62,26 @@ static void cd_dbus_applet_init (dbusApplet *pDbusApplet)
 	pDbusApplet->pSubApplet->pApplet = pDbusApplet;
 }
 
+static void cd_dbus_applet_dispose (GObject *object)
+{
+	dbusApplet *pDbusApplet = (dbusApplet*)object;
+	if (pDbusApplet->pSubApplet != NULL)
+	{
+		g_object_unref (pDbusApplet->pSubApplet);
+		pDbusApplet->pSubApplet = NULL;
+	}
+}
+
+static void cd_dbus_applet_finalize (GObject *object)
+{
+	dbusApplet *pDbusApplet = (dbusApplet*)object;
+	g_free (pDbusApplet->cBusPath);
+	pDbusApplet->cBusPath = NULL;
+}
+
 static void cd_dbus_sub_applet_class_init(dbusSubAppletClass *klass)
 {
-	cd_message("");
+	cd_debug("");
 	
 	cd_dbus_sub_applet_init_signals_once (klass);
 	
@@ -65,7 +89,7 @@ static void cd_dbus_sub_applet_class_init(dbusSubAppletClass *klass)
 }
 static void cd_dbus_sub_applet_init (dbusSubApplet *pDbusSubApplet)
 {
-	cd_message("");
+	cd_debug("");
 }
 
 
@@ -84,20 +108,6 @@ dbusApplet * cd_dbus_get_dbus_applet_from_instance (CairoDockModuleInstance *pMo
 	return (a ? pDbusApplet : NULL);
 }
 
-static dbusApplet * _remove_dbus_applet_from_list (CairoDockModuleInstance *pModuleInstance)
-{
-	const gchar *cModuleName = pModuleInstance->pModule->pVisitCard->cModuleName;
-	dbusApplet *pDbusApplet;
-	GList *a;
-	for (a = myData.pAppletList; a != NULL; a = a->next)
-	{
-		pDbusApplet = a->data;
-		if (pDbusApplet->cModuleName && strcmp (cModuleName, pDbusApplet->cModuleName) == 0)
-			break ;
-	}
-	myData.pAppletList = g_list_delete_link (myData.pAppletList, a);
-	return (a ? pDbusApplet : NULL);
-}
 
 #define _applet_list_is_empty() (myData.pAppletList == NULL)
 
@@ -121,12 +131,16 @@ dbusApplet *cd_dbus_create_remote_applet_object (CairoDockModuleInstance *pModul
 	pDbusApplet->pModuleInstance = pModuleInstance;
 	
 	// on l'enregistre sous un chemin propre a l'applet.
-	gchar *cPath = g_strconcat ("/org/cairodock/CairoDock/", cModuleName, NULL);
-	dbus_g_connection_register_g_object (pDbusApplet->connection, cPath, G_OBJECT(pDbusApplet));
-	g_free (cPath);
-	cPath = g_strconcat ("/org/cairodock/CairoDock/", cModuleName, "/sub_icons", NULL);
-	dbus_g_connection_register_g_object (pDbusApplet->connection, cPath, G_OBJECT(pDbusApplet->pSubApplet));
-	g_free (cPath);
+	static int _n = 0;
+	gchar *cSuffix = NULL;
+	if (pModuleInstance->pModule->pInstancesList->next != NULL)
+		cSuffix = g_strdup_printf ("-%d", ++_n);
+	pDbusApplet->cBusPath = g_strconcat (myData.cBasePath, "/", cModuleName, cSuffix, NULL);
+	g_free (cSuffix);
+	dbus_g_connection_register_g_object (pDbusApplet->connection, pDbusApplet->cBusPath, G_OBJECT(pDbusApplet));
+	gchar *cSubPath = g_strconcat (pDbusApplet->cBusPath, "/sub_icons", NULL);
+	dbus_g_connection_register_g_object (pDbusApplet->connection, cSubPath, G_OBJECT(pDbusApplet->pSubApplet));
+	g_free (cSubPath);
 	
 	// on s'abonne aux notifications qu'on voudra propager sur le bus.
 	if (pDbusApplet->proxy != NULL && _applet_list_is_empty ())  // 1ere applet Dbus.
@@ -163,9 +177,9 @@ dbusApplet *cd_dbus_create_remote_applet_object (CairoDockModuleInstance *pModul
 	return pDbusApplet;
 }
 
-void cd_dbus_delete_remote_applet_object (CairoDockModuleInstance *pModuleInstance)
+void cd_dbus_delete_remote_applet_object (dbusApplet *pDbusApplet)
 {
-	dbusApplet *pDbusApplet = _remove_dbus_applet_from_list (pModuleInstance);
+	myData.pAppletList = g_list_remove (myData.pAppletList, pDbusApplet);
 	
 	if (_applet_list_is_empty ())  // si plus d'applet dbus, inutile de garder les notifications actives.
 	{
@@ -183,12 +197,7 @@ void cd_dbus_delete_remote_applet_object (CairoDockModuleInstance *pModuleInstan
 			cd_keybinder_unbind (key, (CDBindkeyHandler) cd_dbus_applet_emit_on_shortkey);
 		}
 		
-		// on detruit l'objet associe aux sous-icones.
-		if (pDbusApplet->pSubApplet != NULL)
-		{
-			g_object_unref (pDbusApplet->pSubApplet);
-			pDbusApplet->pSubApplet = NULL;
-		}
+		// on detruit l'objet.
 		g_object_unref (pDbusApplet);
 	}
 }
@@ -217,15 +226,6 @@ void cd_dbus_unregister_notifications (void)
 		NULL);
 }
 
-
-gboolean cd_dbus_applet_is_used (const gchar *cModuleName)
-{
-	//g_print ("%s (%s in %s)\n", __func__, cModuleName, myData.cActiveModules);
-	if (myData.cActiveModules == NULL)
-		return FALSE;
-	gchar *str = g_strstr_len (myData.cActiveModules, -1, cModuleName);
-	return (str && (str[strlen(cModuleName)] == ';' || str[strlen(cModuleName)] == '\0'));
-}
 
 static inline const gchar *_strstr_len (const gchar *haystack, gint iNbChars, const gchar *needle)
 {
@@ -285,10 +285,16 @@ int cd_dbus_applet_is_running (const gchar *cModuleName)
 		}
 		close (pipe);
 		
-		if (_strstr_len (cContent, iNbBytesRead, cCommand))  // g_strstr_len s'arrete aux '\0' alors qu'on lui specifie iNbBytesRead !
+		const gchar *str = _strstr_len (cContent, iNbBytesRead, cCommand);  // g_strstr_len s'arrete aux '\0' alors qu'on lui specifie iNbBytesRead !
+		if (str)
 		{
-			iPid = atoi (cPid);
-			break;
+			g_print ("found running applet (%s ; %s ; %s)\n", cContent, str + strlen(cModuleName)+3, myData.cProgName);
+			if (iNbBytesRead > (str + strlen(cModuleName) + 3 - cContent) && strcmp (str+strlen(cModuleName)+3, myData.cProgName) == 0)
+			{
+				g_print ("yes it's our applet\n");
+				iPid = atoi (cPid);
+				break;
+			}
 		}
 	}
 	g_dir_close (dir);
@@ -297,23 +303,21 @@ int cd_dbus_applet_is_running (const gchar *cModuleName)
 	return iPid;
 }
 
-gboolean cd_dbus_launch_distant_applet_in_dir (const gchar *cModuleName, const gchar *cDirPath)
+gboolean cd_dbus_launch_distant_applet_in_dir (CairoDockModuleInstance *pModuleInstance, dbusApplet *pDbusApplet)
 {
+	const gchar *cModuleName = pModuleInstance->pModule->pVisitCard->cModuleName;
+	const gchar *cDirPath = pModuleInstance->pModule->pVisitCard->cShareDataDir;
 	cd_message ("%s (%s)", __func__, cModuleName);
 	// on verifie que le processus distant n'est pas deja lance.
 	int iPid = cd_dbus_applet_is_running (cModuleName);
 	if (iPid > 0)
 	{
-		/*cd_debug ("  l'applet est deja lancee\n");
-		return FALSE;*/
 		cd_debug ("  l'applet est deja lancee, on la tue sauvagement.");
-		gchar *cCommand = g_strdup_printf ("kill %d", iPid);
-		int r = system (cCommand);
-		g_free (cCommand);
+		kill (iPid, SIGTERM);
 	}
 	
 	// on le lance.
-	gchar *cCommand = g_strdup_printf ("cd \"%s\" && ./\"%s\"", cDirPath, cModuleName);
+	gchar *cCommand = g_strdup_printf ("cd \"%s\" && ./\"%s\" %s \"%s\" \"%s\"", cDirPath, cModuleName, myData.cProgName, pDbusApplet->cBusPath, pModuleInstance->cConfFilePath);
 	cd_debug ("on lance une applet distante : '%s'", cCommand);
 	cairo_dock_launch_command (cCommand);
 	g_free (cCommand);

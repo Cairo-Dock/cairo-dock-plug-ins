@@ -25,7 +25,7 @@ require 'dbus'
 require 'parseconfig'
 
 class CDApplet
-	attr_accessor :conf_file, :applet_name, :icon, :sub_icons, :config, :bus
+	attr_accessor :cConfFile, :cAppletName, :icon, :sub_icons, :config, :bus, :cMenuIconId, :cParentAppName, :cBusPath
 	BOTTOM = 0
 	TOP    = 1
 	RIGHT  = 2
@@ -37,14 +37,24 @@ class CDApplet
 	LOWER_LEFT  = 2
 	UPPER_RIGHT = 3
 	MIDDLE      = 4
+        MENU_ENTRY        = 0
+        MENU_SUB_MENU     = 1
+        MENU_SEPARATOR    = 2
+        MENU_CHECKBOX     = 3
+        MENU_RADIO_BUTTON = 4
 
 	def initialize
-		self.applet_name = File.basename(Dir.getwd)
-		self.conf_file = File.expand_path("~/.config/cairo-dock/current_theme/plug-ins/#{self.applet_name}/#{self.applet_name}.conf")
+		#~ self.cAppletName = File.basename(Dir.getwd)
+		#~ self.cConfFile = File.expand_path("~/.config/cairo-dock/current_theme/plug-ins/#{self.cAppletName}/#{self.cAppletName}.conf")
 		self.config = {}
 		self.bus = nil
 		self.icon = nil
 		self.sub_icons = nil
+		self.cMenuIconId = nil
+		self.cAppletName = $0[2,999]
+		self.cParentAppName = ARGV[0]
+		self.cBusPath = ARGV[1]
+		self.cConfFile = ARGV[2]
 		
 		self._get_config()
 		self._connect_to_dock()
@@ -55,7 +65,7 @@ class CDApplet
 		loop = DBus::Main.new
 		loop << self.bus
 		loop.run
-		puts ">>> applet '#{self.applet_name}' terminated."
+		puts ">>> applet '#{self.cAppletName}' terminated."
 		exit
 	end
 	
@@ -72,8 +82,21 @@ class CDApplet
 		### action on middle-click
 	end
 	
+	def _on_build_menu
+		self.cMenuIconId = nil
+		self.on_build_menu()
+	end
+	
 	def on_build_menu
 		### build our menu
+	end
+	
+	def _on_menu_select(iNumEntry)
+		if self.cMenuIconId == nil
+			self.on_menu_select(iNumEntry)
+		else
+			self.on_menu_select_sub_icon(iNumEntry, self.cMenuIconId)
+		end
 	end
 	
 	def on_menu_select(iNumEntry)
@@ -111,6 +134,32 @@ class CDApplet
 		### action on click on one of our sub-icons
 	end
 	
+	def on_middle_click_sub_icon(cIconID)
+		### action on middle-click on one of our sub-icons
+	end
+	
+	def on_scroll_sub_icon(bScrollUp, cIconID)
+		### action on scroll on one of our sub-icons
+	end
+	
+	def _on_build_menu_sub_icon(cIconID)
+		self.cMenuIconId = cIconID
+		self.on_build_menu_sub_icon(cIconID)
+	end
+	
+	def on_build_menu_sub_icon(cIconID)
+		### action on build menu on one of our sub-icons
+	end
+	
+	def on_drop_data_sub_icon(cReceivedData, cIconID)
+		### action on drop data on one of our sub-icons
+	end
+	
+	def on_menu_select_sub_icon(iNumEntry, cIconID)
+		### action on select entry in the menu on one of our sub-icons
+	end
+	
+	
 	###############################
 	### callbacks on the applet ###
 	###############################
@@ -140,7 +189,7 @@ class CDApplet
 	end
 	
 	def _get_config
-		keyfile = ParseConfig.new(self.conf_file)
+		keyfile = ParseConfig.new(self.cConfFile)
 		self.get_config(keyfile)
 	end
 	
@@ -151,20 +200,20 @@ class CDApplet
 	def _connect_to_dock
 		# get the icon object on the bus
 		self.bus = DBus::SessionBus.instance
-		applet_path = "/org/cairodock/CairoDock/#{self.applet_name}" # path where our object is stored on the bus
+		#~ applet_path = "/org/cairodock/CairoDock/#{self.cAppletName}" # path where our object is stored on the bus
 		applet_service = bus.service("org.cairodock.CairoDock")
 		begin
-			applet_object = applet_service.object(applet_path)
+			applet_object = applet_service.object(self.cBusPath)
 			applet_object.introspect
 			applet_object.default_iface = 'org.cairodock.CairoDock.applet'
 		rescue
-			puts ">>> object '#{self.applet_name}' can't be found on the bus, exit.\nMake sure that the 'Dbus' plug-in is activated in Cairo-Dock"
+			puts ">>> object '#{self.cAppletName}' can't be found on the bus, exit.\nMake sure that the 'Dbus' plug-in is activated in Cairo-Dock"
 			exit
 		end
 		self.icon = applet_object
 		
 		# get the sub-icons object on the bus
-		applet_sub_icons_object = applet_service.object("#{applet_path}/sub_icons")
+		applet_sub_icons_object = applet_service.object("#{self.cBusPath}/sub_icons")
 		applet_sub_icons_object.introspect
 		applet_sub_icons_object.default_iface = 'org.cairodock.CairoDock.subapplet'
 		self.sub_icons = applet_sub_icons_object
@@ -177,10 +226,10 @@ class CDApplet
 			self.on_middle_click
 		end
 		self.icon.on_signal("on_build_menu") do
-			self.on_build_menu
+			self._on_build_menu
 		end
 		self.icon.on_signal("on_menu_select") do |iNumEntry|
-			self.on_menu_select iNumEntry
+			self._on_menu_select iNumEntry
 		end
 		self.icon.on_signal("on_scroll") do |bScrollUp|
 			self.on_scroll bScrollUp
@@ -212,5 +261,22 @@ class CDApplet
 		self.sub_icons.on_signal("on_click_sub_icon") do |iState, sub_icon_id|
 			self.on_click_sub_icon iState sub_icon_id
 		end
+		
+		self.sub_icons.on_signal("on_middle_click_sub_icon") do |sub_icon_id|
+			self.on_middle_click_sub_icon sub_icon_id
+		end
+		
+		self.sub_icons.on_signal("on_scroll_sub_icon") do |bScrollUp, sub_icon_id|
+			self.on_scroll_sub_icon bScrollUp sub_icon_id
+		end
+		
+		self.sub_icons.on_signal("on_build_menu_sub_icon") do |sub_icon_id|
+			self._on_build_menu_sub_icon sub_icon_id
+		end
+		
+		self.sub_icons.on_signal("on_drop_data_sub_icon") do |cReceivedData, sub_icon_id|
+			self.on_drop_data_sub_icon cReceivedData sub_icon_id
+		end
+		
 	end
 end

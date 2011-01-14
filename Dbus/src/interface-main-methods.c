@@ -472,3 +472,35 @@ gboolean cd_dbus_main_show_dialog (dbusMainObject *pDbusCallback, const gchar *m
 	cairo_dock_show_general_message (message, 1000 * iDuration);
 	return TRUE;
 }
+
+/*gboolean cd_dbus_get_appet_context (dbusMainObject *pDbusCallback, const gchar *cAppletName, GPtrArray **pContext, GError **error)
+{
+	g_return_val_if_fail (cAppletName != NULL, FALSE);
+	
+	// get the applet's object on the bus.
+	
+	
+	// fill the context.
+	GPtrArray *ctx = g_ptr_array_sized_new (4);
+	GValue *v;
+
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, g_get_prgname());
+	g_ptr_array_add (ctx, v);
+
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, g_get_application_name());
+	g_ptr_array_add (ctx, v);
+
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, g_strdup_printf ("%s/%s/%s", ));
+	g_ptr_array_add (ctx, v);
+
+
+	
+	return TRUE;
+}
+*/

@@ -48,7 +48,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iInfoDisplay = CD_CONFIG_GET_INTEGER ("Configuration", "info display");
 
 	///\_________________ Parameters
-	myConfig.cDisks = CD_CONFIG_GET_STRING_LIST ("Configuration", "disks", &myData.iNumberDisks);
+	myConfig.cDisks = CD_CONFIG_GET_STRING_LIST ("Configuration", "disks", &myConfig.iNumberDisks);
 	myConfig.cSystemMonitorCommand = CD_CONFIG_GET_STRING ("Configuration", "sys monitor");
 CD_APPLET_GET_CONFIG_END
 
@@ -56,26 +56,9 @@ CD_APPLET_GET_CONFIG_END
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cGThemePath);
 	g_free (myConfig.defaultTitle);
-	g_free (myConfig.cDisks);
+	g_strfreev (myConfig.cDisks);
 	g_free (myConfig.cWatermarkImagePath);
 	g_free (myConfig.cSystemMonitorCommand);
-	if (myData.iNumberDisks > 0)
-		{
-			gsize i;
-			CDDiskSpeedData *pSpeed;
-			for (i = 0; i < myData.iNumberDisks; i++)
-			{
-				pSpeed = g_list_nth_data (myData.lDisks, i);
-				if (pSpeed != NULL) 
-				{
-					if (pSpeed->cName != NULL)
-						g_free (pSpeed->cName);
-					g_free (pSpeed);
-				}
-			}
-			g_list_free (myData.lDisks);
-			myData.lDisks = NULL;
-		}
 CD_APPLET_RESET_CONFIG_END
 
 
@@ -88,5 +71,28 @@ CD_APPLET_RESET_DATA_BEGIN
 	CD_APPLET_REMOVE_MY_DATA_RENDERER;
 	
 	g_timer_destroy (myData.pClock);
+	
+	reset_disks_list ();
 CD_APPLET_RESET_DATA_END
 
+
+void reset_disks_list (void)
+{
+	if (myData.iNumberDisks > 0)
+	{
+		gsize i;
+		CDDiskSpeedData *pSpeed;
+		for (i = 0; i < myData.iNumberDisks; i++)
+		{
+			pSpeed = g_list_nth_data (myData.lDisks, i);  /// maladroit
+			if (pSpeed != NULL) 
+			{
+				if (pSpeed->cName != NULL)
+					g_free (pSpeed->cName);
+				g_free (pSpeed);
+			}
+		}
+		g_list_free (myData.lDisks);
+		myData.lDisks = NULL;
+	}
+}

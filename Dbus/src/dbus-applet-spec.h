@@ -27,6 +27,7 @@ G_BEGIN_DECLS
 #define g_marshal_value_peek_boxed(v)    g_value_get_boxed (v)
 #define g_marshal_value_peek_pointer(v)  g_value_get_pointer (v)
 #define g_marshal_value_peek_object(v)   g_value_get_object (v)
+#define g_marshal_value_peek_variant(v)  g_value_get_variant (v)
 #else /* !G_ENABLE_DEBUG */
 /* WARNING: This code accesses GValues directly, which is UNSUPPORTED API.
  *          Do not access GValues directly in your code. Instead, use the
@@ -50,6 +51,7 @@ G_BEGIN_DECLS
 #define g_marshal_value_peek_boxed(v)    (v)->data[0].v_pointer
 #define g_marshal_value_peek_pointer(v)  (v)->data[0].v_pointer
 #define g_marshal_value_peek_object(v)   (v)->data[0].v_pointer
+#define g_marshal_value_peek_variant(v)  (v)->data[0].v_pointer
 #endif /* !G_ENABLE_DEBUG */
 
 
@@ -616,8 +618,7 @@ static const DBusGMethodInfo dbus_glib_cd_dbus_applet_methods[] = {
   { (GCallback) cd_dbus_applet_bind_shortkey, dbus_glib_marshal_cd_dbus_applet_BOOLEAN__BOXED_POINTER, 1298 },
 };
 
-const DBusGObjectInfo dbus_glib_cd_dbus_applet_object_info = {
-  0,
+const DBusGObjectInfo dbus_glib_cd_dbus_applet_object_info = {  1,
   dbus_glib_cd_dbus_applet_methods,
   20,
 "org.cairodock.CairoDock.applet\0Get\0S\0cProperty\0I\0s\0value\0O\0F\0N\0v\0\0org.cairodock.CairoDock.applet\0GetAll\0S\0hProperties\0O\0F\0N\0a{sv}\0\0org.cairodock.CairoDock.applet\0SetQuickInfo\0S\0cQuickInfo\0I\0s\0\0org.cairodock.CairoDock.applet\0SetLabel\0S\0cLabel\0I\0s\0\0org.cairodock.CairoDock.applet\0SetIcon\0S\0cImage\0I\0s\0\0org.cairodock.CairoDock.applet\0SetEmblem\0S\0cImage\0I\0s\0iPosition\0I\0i\0\0org.cairodock.CairoDock.applet\0Animate\0S\0cAnimation\0I\0s\0iNbRounds\0I\0i\0\0org.cairodock.CairoDock.applet\0DemandsAttention\0S\0bStart\0I\0b\0cAnimation\0I\0s\0\0org.cairodock.CairoDock.applet\0ShowDialog\0S\0cMessage\0I\0s\0iDuration\0I\0i\0\0org.cairodock.CairoDock.applet\0AskQuestion\0S\0cMessage\0I\0s\0\0org.cairodock.CairoDock.applet\0AskValue\0S\0cMessage\0I\0s\0fInitialValue\0I\0d\0fMaxlValue\0I\0d\0\0org.cairodock.CairoDock.applet\0AskText\0S\0cMessage\0I\0s\0cInitialText\0I\0s\0\0org.cairodock.CairoDock.applet\0PopupDialog\0S\0hDialogAttributes\0I\0a{sv}\0hWidgetAttributes\0I\0a{sv}\0\0org.cairodock.CairoDock.applet\0AddDataRenderer\0S\0cType\0I\0s\0iNbValues\0I\0i\0cTheme\0I\0s\0\0org.cairodock.CairoDock.applet\0RenderValues\0S\0pValues\0I\0ad\0\0org.cairodock.CairoDock.applet\0ControlAppli\0S\0cApplicationClass\0I\0s\0\0org.cairodock.CairoDock.applet\0ShowAppli\0S\0bShow\0I\0b\0\0org.cairodock.CairoDock.applet\0PopulateMenu\0S\0pLabels\0I\0as\0\0org.cairodock.CairoDock.applet\0AddMenuItems\0S\0pItems\0I\0aa{sv}\0\0org.cairodock.CairoDock.applet\0BindShortkey\0S\0cShortkeys\0I\0as\0\0\0",

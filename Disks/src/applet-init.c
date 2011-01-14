@@ -85,6 +85,7 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 			gsize i;
 			for (i = 0; i < myData.iNumberDisks; i++)
 			{
+				/// Ne pas faire ca ici !...
 				CDDiskSpeedData *pSpeed;
 				pSpeed = g_new0 (CDDiskSpeedData, 1);
 				myData.lDisks = g_list_append (myData.lDisks, pSpeed);
@@ -119,6 +120,7 @@ CD_APPLET_INIT_BEGIN
 	}
 	
 	// Initialisation du rendu.
+	myData.iNumberDisks = myConfig.iNumberDisks;
 	_set_data_renderer (myApplet, FALSE);
 	
 	// Initialisation de la tache periodique de mesure.
@@ -152,6 +154,8 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 			CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 		}
+		
+		reset_disks_list ()
 		
 		_set_data_renderer (myApplet, TRUE);
 		

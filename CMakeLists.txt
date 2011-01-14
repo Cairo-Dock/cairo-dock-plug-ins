@@ -181,7 +181,7 @@ else()
 	set (with_python "yes") 
 endif()
 
-# find_package(Ruby) nous cherche les libs de dev de Ruby, or on a seulement besoin de l'executable.
+# find_package(Ruby) found libs of ruby-dev but we only need a directory where we can install ruby libs.
 find_program (RUBY_EXECUTABLE ruby)
 EXECUTE_PROCESS(COMMAND ${RUBY_EXECUTABLE} -r rbconfig -e "print Config::CONFIG['rubylibdir']"
 	OUTPUT_VARIABLE RUBY_LIB_DIR)
@@ -229,7 +229,7 @@ endif()
 
 
 set (GETTEXT_DBUS ${GETTEXT_PLUGINS})
-set (VERSION_DBUS "1.1.0")
+set (VERSION_DBUS "1.2.0")
 set (PACKAGE_DBUS "cd-Dbus")
 set (dbusdatadir "${pluginsdatadir}/Dbus")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Dbus/data/Dbus.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Dbus/data/Dbus.conf)

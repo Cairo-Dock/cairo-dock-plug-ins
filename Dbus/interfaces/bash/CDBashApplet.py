@@ -55,7 +55,7 @@ class CDBashApplet(CDApplet):
 	##### applet definition #####
 	
 	def get_config(self,keyfile):
-		self.call("get_config '"+self.conf_file+"'")
+		self.call("get_config '"+self.cConfFile+"'")
 	
 	def end(self):
 		self.call("end")

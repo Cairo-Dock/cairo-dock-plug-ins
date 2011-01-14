@@ -27,6 +27,7 @@ G_BEGIN_DECLS
 #define g_marshal_value_peek_boxed(v)    g_value_get_boxed (v)
 #define g_marshal_value_peek_pointer(v)  g_value_get_pointer (v)
 #define g_marshal_value_peek_object(v)   g_value_get_object (v)
+#define g_marshal_value_peek_variant(v)  g_value_get_variant (v)
 #else /* !G_ENABLE_DEBUG */
 /* WARNING: This code accesses GValues directly, which is UNSUPPORTED API.
  *          Do not access GValues directly in your code. Instead, use the
@@ -50,6 +51,7 @@ G_BEGIN_DECLS
 #define g_marshal_value_peek_boxed(v)    (v)->data[0].v_pointer
 #define g_marshal_value_peek_pointer(v)  (v)->data[0].v_pointer
 #define g_marshal_value_peek_object(v)   (v)->data[0].v_pointer
+#define g_marshal_value_peek_variant(v)  (v)->data[0].v_pointer
 #endif /* !G_ENABLE_DEBUG */
 
 
@@ -370,12 +372,11 @@ static const DBusGMethodInfo dbus_glib_cd_dbus_sub_applet_methods[] = {
   { (GCallback) cd_dbus_sub_applet_remove_sub_icon, dbus_glib_marshal_cd_dbus_sub_applet_BOOLEAN__STRING_POINTER, 801 },
 };
 
-const DBusGObjectInfo dbus_glib_cd_dbus_sub_applet_object_info = {
-  0,
+const DBusGObjectInfo dbus_glib_cd_dbus_sub_applet_object_info = {  1,
   dbus_glib_cd_dbus_sub_applet_methods,
   11,
 "org.cairodock.CairoDock.subapplet\0SetQuickInfo\0S\0cQuickInfo\0I\0s\0cIconID\0I\0s\0\0org.cairodock.CairoDock.subapplet\0SetLabel\0S\0cLabel\0I\0s\0cIconID\0I\0s\0\0org.cairodock.CairoDock.subapplet\0SetIcon\0S\0cImage\0I\0s\0cIconID\0I\0s\0\0org.cairodock.CairoDock.subapplet\0SetEmblem\0S\0cImage\0I\0s\0iPosition\0I\0i\0cIconID\0I\0s\0\0org.cairodock.CairoDock.subapplet\0Animate\0S\0cAnimation\0I\0s\0iNbRounds\0I\0i\0cIconID\0I\0s\0\0org.cairodock.CairoDock.subapplet\0ShowDialog\0S\0message\0I\0s\0iDuration\0I\0i\0cIconID\0I\0s\0\0org.cairodock.CairoDock.subapplet\0AskQuestion\0S\0cMessage\0I\0s\0cIconID\0I\0s\0\0org.cairodock.CairoDock.subapplet\0AskValue\0S\0cMessage\0I\0s\0fInitialValue\0I\0d\0fMaxlValue\0I\0d\0cIconID\0I\0s\0\0org.cairodock.CairoDock.subapplet\0AskText\0S\0cMessage\0I\0s\0cInitialText\0I\0s\0cIconID\0I\0s\0\0org.cairodock.CairoDock.subapplet\0AddSubIcons\0S\0pIconFields\0I\0as\0\0org.cairodock.CairoDock.subapplet\0RemoveSubIcon\0S\0cIconID\0I\0s\0\0\0",
-"org.cairodock.CairoDock.subapplet\0on_click_sub_icon\0org.cairodock.CairoDock.subapplet\0on_middle_click_sub_icon\0org.cairodock.CairoDock.subapplet\0on_scroll_sub_icon\0org.cairodock.CairoDock.subapplet\0on_build_menu_sub_icon\0org.cairodock.CairoDock.subapplet\0on_menu_select_sub_icon\0org.cairodock.CairoDock.subapplet\0on_drop_data_sub_icon\0org.cairodock.CairoDock.subapplet\0on_answer_sub_icon\0\0",
+"org.cairodock.CairoDock.subapplet\0on_click_sub_icon\0org.cairodock.CairoDock.subapplet\0on_middle_click_sub_icon\0org.cairodock.CairoDock.subapplet\0on_scroll_sub_icon\0org.cairodock.CairoDock.subapplet\0on_build_menu_sub_icon\0org.cairodock.CairoDock.subapplet\0on_drop_data_sub_icon\0\0",
 "\0"
 };
 

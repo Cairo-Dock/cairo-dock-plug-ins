@@ -370,6 +370,7 @@ gboolean on_show_desktop (CairoDockModuleInstance *myApplet)
 			CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cVisibleImage);
 		else
 			CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cHiddenImage);
+		CD_APPLET_REDRAW_MY_ICON;
 	}
 	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 }

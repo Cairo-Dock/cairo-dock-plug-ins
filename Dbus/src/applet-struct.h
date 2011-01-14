@@ -63,6 +63,7 @@ struct _dbusApplet {
 	DBusGProxy *proxy;
 	CairoDockModuleInstance *pModuleInstance;
 	gchar *cModuleName;
+	gchar *cBusPath;
 	dbusSubApplet *pSubApplet;
 	CairoDialog *pDialog;
 	GList *pShortkeyList;
@@ -101,17 +102,16 @@ typedef enum {
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
 	dbusMainObject *pMainObject;
+	const gchar *cProgName;
+	gchar *cBasePath;
 	GList *pAppletList;
 	GtkWidget *pModuleSubMenu;
 	GtkWidget *pModuleMainMenu;
 	Icon *pCurrentMenuIcon;
 	dbusApplet *pCurrentMenuDbusApplet;
-	gchar *cActiveModules;
-	gboolean bServiceIsStopping;
-	guint iSidRemoveAppletFromConf;
+	gboolean bKeepObjectAlive;
 	Window xActiveWindow;
 	CairoDockTask *pGetListTask;
-	GHashTable *pThemesTable;
 	GList *pUpdateTasksList;
 	} ;
 

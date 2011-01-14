@@ -42,6 +42,7 @@ public class CDApplet
 	public IApplet icon = null;
 	public ISubApplet sub_icons= null;
 	private GLib.MainLoop loop = null;
+	private string cMenuIconId = null;
 	
 	public enum ScreenPosition {
 		BOTTOM = 0,
@@ -59,6 +60,13 @@ public class CDApplet
 		LOWER_LEFT,
 		UPPER_RIGHT,
 		MIDDLE
+	}
+	public enum MenuItemType {
+	        MENU_ENTRY = 0,
+	        MENU_SUB_MENU,
+	        MENU_SEPARATOR,
+	        MENU_CHECKBOX,
+	        MENU_RADIO_BUTTON
 	}
 	
 	public CDApplet(string name=null)
@@ -102,9 +110,21 @@ public class CDApplet
 	{
 		Console.WriteLine(">>> scroll up " + bScrollUp);
 	}
+	private void _on_build_menu ()
+	{
+		this.cMenuIconId = null;
+		this.on_build_menu ();
+	}
 	public virtual void on_build_menu ()
 	{
 		Console.WriteLine(">>> build menu");
+	}
+	private void _on_menu_select (int iNumEntry)
+	{
+		if (this.cMenuIconId == null)
+			this.on_menu_select (iNumEntry);
+		else
+			this.on_menu_select_sub_icon (iNumEntry, this.cMenuIconId);
 	}
 	public virtual void on_menu_select (int iNumEntry)
 	{
@@ -150,6 +170,11 @@ public class CDApplet
 		Console.WriteLine(">>> scroll on sub-icon "+cIconID);
 	}
 	
+	private void _on_build_menu_sub_icon (string cIconID)
+	{
+		this.cMenuIconId = cIconID;
+		this.on_build_menu_sub_icon (cIconID);
+	}
 	public virtual void on_build_menu_sub_icon (string cIconID)
 	{
 		Console.WriteLine(">>> menu on sub-icon "+cIconID);
@@ -222,8 +247,8 @@ public class CDApplet
 		this.icon.on_click 			+= new OnClickEvent (on_click);
 		this.icon.on_middle_click 	+= new OnMiddleClickEvent (on_middle_click);
 		this.icon.on_scroll 		+= new OnScrollEvent (on_scroll);
-		this.icon.on_build_menu 	+= new OnBuildMenuEvent (on_build_menu);
-		this.icon.on_menu_select 	+= new OnMenuSelectEvent (on_menu_select);
+		this.icon.on_build_menu 	+= new OnBuildMenuEvent (_on_build_menu);
+		this.icon.on_menu_select 	+= new OnMenuSelectEvent (_on_menu_select);
 		this.icon.on_drop_data 		+= new OnDropDataEvent (on_drop_data);
 		this.icon.on_answer 		+= new OnAnswerEvent (on_answer);
 		this.icon.on_answer_dialog 	+= new OnAnswerDialogEvent (on_answer_dialog);
@@ -234,7 +259,7 @@ public class CDApplet
 		this.sub_icons.on_click_sub_icon			+= new OnClickSubIconEvent (on_click_sub_icon);
 		this.sub_icons.on_middle_click_sub_icon 	+= new OnMiddleClickSubIconEvent (on_middle_click_sub_icon);
 		this.sub_icons.on_scroll_sub_icon 		+= new OnScrollSubIconEvent (on_scroll_sub_icon);
-		this.sub_icons.on_build_menu_sub_icon 	+= new OnBuildMenuSubIconEvent (on_build_menu_sub_icon);
+		this.sub_icons.on_build_menu_sub_icon 	+= new OnBuildMenuSubIconEvent (_on_build_menu_sub_icon);
 		this.sub_icons.on_menu_select_sub_icon 	+= new OnMenuSelectSubIconEvent (on_menu_select_sub_icon);
 		this.sub_icons.on_drop_data_sub_icon 	+= new OnDropDataSubIconEvent (on_drop_data_sub_icon);
 		this.sub_icons.on_answer_sub_icon 		+= new OnAnswerSubIconEvent (on_answer_sub_icon);
