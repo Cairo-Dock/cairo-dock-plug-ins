@@ -232,14 +232,6 @@ void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass)
 				NULL, NULL,
 				cd_dbus_marshal_VOID__STRING,
 				G_TYPE_NONE, 1, G_TYPE_STRING);
-	s_iSubSignals[MENU_SELECT] =
-		g_signal_new("on_menu_select_sub_icon",
-			G_OBJECT_CLASS_TYPE(klass),
-				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
-				0,
-				NULL, NULL,
-				cd_dbus_marshal_VOID__INT_STRING,
-				G_TYPE_NONE, 2, G_TYPE_INT, G_TYPE_STRING);
 	s_iSubSignals[DROP_DATA] =
 		g_signal_new("on_drop_data_sub_icon",
 			G_OBJECT_CLASS_TYPE(klass),
@@ -248,14 +240,6 @@ void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass)
 				NULL, NULL,
 				cd_dbus_marshal_VOID__STRING_STRING,
 				G_TYPE_NONE, 2, G_TYPE_STRING, G_TYPE_STRING);
-	s_iSubSignals[ANSWER] =
-		g_signal_new("on_answer_sub_icon",
-			G_OBJECT_CLASS_TYPE(klass),
-				G_SIGNAL_RUN_LAST | G_SIGNAL_DETAILED,
-				0,
-				NULL, NULL,
-				cd_dbus_marshal_VOID__VALUE_STRING,
-				G_TYPE_NONE, 2, G_TYPE_VALUE, G_TYPE_STRING);
 	
 	// Add signals
 	DBusGProxy *pProxy = cairo_dock_get_main_proxy ();
@@ -269,12 +253,8 @@ void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass)
 			G_TYPE_BOOLEAN, G_TYPE_STRING, G_TYPE_INVALID);
 		dbus_g_proxy_add_signal(pProxy, "on_build_menu_sub_icon",
 			G_TYPE_STRING, G_TYPE_INVALID);
-		dbus_g_proxy_add_signal(pProxy, "on_menu_select_sub_icon",
-			G_TYPE_INT, G_TYPE_STRING, G_TYPE_INVALID);
 		dbus_g_proxy_add_signal(pProxy, "on_drop_data_sub_icon",
 			G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);
-		dbus_g_proxy_add_signal(pProxy, "on_answer_sub_icon",
-			G_TYPE_VALUE, G_TYPE_STRING, G_TYPE_INVALID);
 	}
 }
 
@@ -416,11 +396,12 @@ void cd_dbus_emit_on_menu_select (GtkMenuItem *pMenuItem, gpointer data)
 	}
 	
 	int iNumEntry = GPOINTER_TO_INT (data);
-	gchar *cIconID = myData.pCurrentMenuIcon->cCommand;  // NULL si c'est l'icone principale.
+	/**gchar *cIconID = myData.pCurrentMenuIcon->cCommand;  // NULL si c'est l'icone principale.
 	if (cIconID == NULL)
 		g_signal_emit (myData.pCurrentMenuDbusApplet, s_iSignals[MENU_SELECT], 0, iNumEntry);
 	else if (myData.pCurrentMenuDbusApplet->pSubApplet != NULL)
-		g_signal_emit (myData.pCurrentMenuDbusApplet->pSubApplet, s_iSubSignals[MENU_SELECT], 0, iNumEntry, cIconID);
+		g_signal_emit (myData.pCurrentMenuDbusApplet->pSubApplet, s_iSubSignals[MENU_SELECT], 0, iNumEntry, cIconID);*/
+	g_signal_emit (myData.pCurrentMenuDbusApplet, s_iSignals[MENU_SELECT], 0, iNumEntry);  // since there can only be 1 menu at once, and the applet knows when the menu is raised, there is no need to pass the icon in the signal: the applet can remember the clicked icon when it received the 'build-menu' event.
 }
 
 gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *pClickedIcon, double fPosition, CairoContainer *pClickedContainer)
@@ -551,13 +532,14 @@ gboolean cd_dbus_applet_emit_on_change_focus (gpointer data, Window *xNewActiveW
 
 static inline void _emit_answer (dbusApplet *pDbusApplet, CairoDialog *pDialog, GValue *v)
 {
-	Icon *pClickedIcon = pDialog->pIcon;
+	/**Icon *pClickedIcon = pDialog->pIcon;
 	Icon *pAppletIcon = pDbusApplet->pModuleInstance->pIcon;
 	
 	if (pClickedIcon == pAppletIcon)
 		g_signal_emit (pDbusApplet, s_iSignals[ANSWER], 0, v);
 	else if (pDbusApplet->pSubApplet != NULL)
-		g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[ANSWER], 0, v, pClickedIcon->cCommand);
+		g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[ANSWER], 0, v, pClickedIcon->cCommand);*/
+	g_signal_emit (pDbusApplet, s_iSignals[ANSWER], 0, v);  // same remark as for the menu: 1 dialog at once, the applet knows when the dialog is raised, so it can just remember the clicked icon; we don't need to tell it.
 	
 	pDbusApplet->pDialog = NULL;
 }
@@ -594,13 +576,13 @@ void cd_dbus_applet_emit_on_answer_text (int iClickedButton, GtkWidget *pInterac
 
 static inline void _emit_answer_dialog (dbusApplet *pDbusApplet, CairoDialog *pDialog, int iClickedButton, GValue *v)
 {
-	Icon *pClickedIcon = pDialog->pIcon;
+	/**Icon *pClickedIcon = pDialog->pIcon;
 	Icon *pAppletIcon = pDbusApplet->pModuleInstance->pIcon;
-	
 	if (pClickedIcon == pAppletIcon)
 		g_signal_emit (pDbusApplet, s_iSignals[ANSWER_DIALOG], 0, iClickedButton, v);
 	//else if (pDbusApplet->pSubApplet != NULL)
-	//	g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[ANSWER], 0, iClickedButton, v, pClickedIcon->cCommand);
+	//	g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[ANSWER], 0, iClickedButton, v, pClickedIcon->cCommand);*/
+	g_signal_emit (pDbusApplet, s_iSignals[ANSWER_DIALOG], 0, iClickedButton, v);
 	
 	pDbusApplet->pDialog = NULL;
 }

@@ -60,6 +60,10 @@ public interface IApplet : Object {
 [DBus (name = "org.cairodock.CairoDock.subapplet")]
 public interface ISubApplet : Object {
 	public signal void on_click_sub_icon (int iState, string cIconID);
+	public signal void on_middle_click_sub_icon (string cIconID);
+	public signal void on_scroll_sub_icon (bool bScrollUp, string cIconID);
+	public signal void on_drop_data_sub_icon (string cReceivedData, string cIconID);
+	public signal void on_build_menu_sub_icon (string cIconID);
 	public abstract void SetQuickInfo(string cQuickInfo, string cIconID) throws IOError;
 	public abstract void SetLabel(string cLabel, string cIconID) throws IOError;
 	public abstract void SetIcon(string cImage, string cIconID) throws IOError;
@@ -78,6 +82,7 @@ public class CDApplet : GLib.Object
 	public string applet_name;
 	public string conf_file;
 	private MainLoop loop;
+	private string cMenuIconId;
 	
 	public enum ScreenPosition {
 		BOTTOM = 0,
@@ -96,6 +101,13 @@ public class CDApplet : GLib.Object
 		UPPER_RIGHT,
 		MIDDLE
 	}
+	public enum MenuItemType {
+		MENU_ENTRY = 0,
+		MENU_SUB_MENU,
+		MENU_SEPARATOR,
+		MENU_CHECKBOX,
+		MENU_RADIO_BUTTON
+	}
 	
 	public CDApplet(string? applet_name)
 	{
@@ -106,6 +118,7 @@ public class CDApplet : GLib.Object
 		this.conf_file = GLib.Environment.get_home_dir()+"/.config/cairo-dock/current_theme/plug-ins/"+this.applet_name+"/"+this.applet_name+".conf";  // path to the conf file of our applet.
 		this._get_config();
 		this._connect_to_bus();
+		this.cMenuIconId = null;
 	}
 	
 	public void run()
@@ -126,9 +139,21 @@ public class CDApplet : GLib.Object
 	{
 		print (">>> middle clic !\n");
 	}
+	private void _on_build_menu()
+	{
+		this.cMenuIconId = null;
+		this.on_build_menu();
+	}
 	public virtual void on_build_menu()
 	{
 		print (">>> build menu !\n");
+	}
+	private void _on_menu_select(int iNumEntry)
+	{
+		if (this.cMenuIconId == null)
+			this.on_menu_select (iNumEntry);
+		else
+			this.on_menu_select_sub_icon (iNumEntry, this.cMenuIconId);
 	}
 	public virtual void on_menu_select(int iNumEntry)
 	{
@@ -165,6 +190,35 @@ public class CDApplet : GLib.Object
 	public virtual void on_click_sub_icon(int iState, string cIconID)
 	{
 		print ("clic on the sub-icon '%s' !\n", cIconID);
+	}
+	
+	public virtual void on_middle_click_sub_icon(string cIconID)
+	{
+		print ("middle-clic on the sub-icon '%s' !\n", cIconID);
+	}
+	
+	public virtual void on_scroll_sub_icon(bool bScrollUp, string cIconID)
+	{
+		print ("scroll on the sub-icon '%s' !\n", cIconID);
+	}
+	
+	public virtual void on_drop_data_sub_icon(string cReceivedData, string cIconID)
+	{
+		print ("drop on the sub-icon '%s' !\n", cIconID);
+	}
+	
+	private void _on_build_menu_sub_icon(string cIconID)
+	{
+		this.cMenuIconId = cIconID;
+		this.on_build_menu_sub_icon (cIconID);
+	}
+	public virtual void on_build_menu_sub_icon(string cIconID)
+	{
+		print ("build menu on the sub-icon '%s' !\n", cIconID);
+	}
+	public virtual void on_menu_select_sub_icon(int iNumEntry, string cIconID)
+	{
+		print (">>> choice %d has been selected on icon %s !\n", iNumEntry, cIconID);
 	}
 	
 	  /////////////////////////////////////
@@ -243,17 +297,21 @@ public class CDApplet : GLib.Object
 		}
 		this.icon.on_click.connect(on_click);  // when the user left-clicks on our icon.
 		this.icon.on_middle_click.connect(on_middle_click);  // when the user middle-clicks on our icon.
-		this.icon.on_build_menu.connect(on_build_menu);  // when the user right-clicks on our applet (which builds the menu)
-		this.icon.on_menu_select.connect(on_menu_select);  // when the user selects an entry of this menu.
+		this.icon.on_build_menu.connect(_on_build_menu);  // when the user right-clicks on our applet (which builds the menu)
+		this.icon.on_menu_select.connect(_on_menu_select);  // when the user selects an entry of this menu.
 		this.icon.on_scroll.connect(on_scroll);  // when the user scroll up or down on our icon.
 		this.icon.on_drop_data.connect(on_drop_data);  // when the user drops something on our icon.
 		this.icon.on_answer.connect(on_answer);  // when the user answer a question (deprecated).
 		this.icon.on_answer_dialog.connect(on_answer_dialog);  // when the user answer a dialog.
 		this.icon.on_shortkey.connect(on_shortkey);  // when the user presses a shortkey.
-		this.icon.on_change_focus.connect(on_change_focus);  // when the focus of the aplet's window changes.
+		this.icon.on_change_focus.connect(on_change_focus);  // when the focus of the applet's window changes.
 		this.icon.on_stop_module.connect(_on_stop);  // when the user deactivate our applet (or the DBus plug-in, or when the Cairo-Dock is stopped).
 		this.icon.on_reload_module.connect(_on_reload);  // when the user changes something in our config, or when the desklet is resized (with no change in the config).
 		this.sub_icons.on_click_sub_icon.connect(on_click_sub_icon);  // when the user left-clicks on a sub-icon.
+		this.sub_icons.on_middle_click_sub_icon.connect(on_middle_click_sub_icon);  // when the user middle-clicks on a sub-icon.
+		this.sub_icons.on_scroll_sub_icon.connect(on_scroll_sub_icon);  // when the user scrolls on a sub-icon.
+		this.sub_icons.on_drop_data_sub_icon.connect(on_drop_data_sub_icon);  // when the user drops sth on a sub-icon.
+		this.sub_icons.on_build_menu_sub_icon.connect(_on_build_menu_sub_icon);  // when the user drops sth on a sub-icon.
 	}
 }
 }

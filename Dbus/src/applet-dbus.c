@@ -64,7 +64,7 @@ static void cd_dbus_main_init (dbusMainObject *pMainObject)
 	dbus_g_object_type_install_info(cd_dbus_main_get_type(), &dbus_glib_cd_dbus_main_object_info);
 	
 	// Register DBUS path
-	dbus_g_connection_register_g_object(pMainObject->connection, "/org/cairodock/CairoDock", G_OBJECT(pMainObject));
+	dbus_g_connection_register_g_object(pMainObject->connection, myData.cBasePath, G_OBJECT(pMainObject));
 }
 
 
@@ -93,7 +93,7 @@ static void _on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile 
 	}
 	
 	//\_____________ On (re)lance l'executable de l'applet.
-	cd_dbus_launch_distant_applet_in_dir (pModuleInstance->pModule->pVisitCard->cModuleName, pModuleInstance->pModule->pVisitCard->cShareDataDir);
+	cd_dbus_launch_distant_applet_in_dir (pModuleInstance, pDbusApplet);
 }
 static gboolean _cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDescription, const gchar *cAuthor, const gchar *cVersion, gint iCategory, const gchar *cIconName, const gchar *cShareDataDir)
 {
@@ -136,7 +136,7 @@ static gboolean _cd_dbus_register_new_module (const gchar *cModuleName, const gc
 		pVisitCard->cDescription = g_strdup (cDescription);
 		pVisitCard->cTitle = g_strdup (dgettext (pVisitCard->cGettextDomain, cModuleName));
 		pVisitCard->iContainerType = CAIRO_DOCK_MODULE_CAN_DOCK | CAIRO_DOCK_MODULE_CAN_DESKLET;
-		//pVisitCard->bMultiInstance = TRUE;
+		pVisitCard->bMultiInstance = TRUE;
 		pModule->pInterface = g_new0 (CairoDockModuleInterface, 1);
 		pModule->pInterface->initModule = _on_init_module;
 		pModule->pInterface->stopModule = cd_dbus_emit_on_stop_module;
@@ -331,6 +331,28 @@ void cd_dbus_launch_service (void)
 	g_type_init();
 	cd_message ("dbus : launching service...");
 	
+	const gchar *cProgName = g_get_prgname ();
+	g_return_if_fail (cProgName != NULL);
+	int n = strlen (cProgName);
+	gchar *cName1 = g_new0 (gchar, n+1);
+	gchar *cName2 = g_new0 (gchar, n+1);
+	int i, k=0;
+	for (i = 0; i < n; i ++)
+	{
+		if (cProgName[i] == '-' || cProgName[i] == '_')
+			continue;
+		cName1[k] = g_ascii_tolower (cProgName[i]);
+		if (i == 0 || cProgName[i-1] == '-' || cProgName[i-1] == '_')
+			cName2[k] = g_ascii_toupper (cProgName[i]);
+		else
+			cName2[k] = cName1[k];
+		k ++;
+	}
+	myData.cProgName = cProgName;
+	myData.cBasePath = g_strdup_printf ("/org/%s/%s", cName1, cName2);
+	g_free (cName1);
+	g_free (cName2);
+	
 	//\____________ Register the service name
 	cairo_dock_register_service_name ("org.cairodock.CairoDock");
 	
@@ -355,6 +377,7 @@ void cd_dbus_launch_service (void)
   ///////////////////
  /// MARSHALLERS ///
 ///////////////////
+// must be in this file, otherwise we get include hell because of the generated code in *-spec.h
 
 void cd_dbus_marshal_VOID__INT_STRING (GClosure *closure,
 	GValue *return_value G_GNUC_UNUSED,

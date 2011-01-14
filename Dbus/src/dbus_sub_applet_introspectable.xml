@@ -66,16 +66,8 @@
 		<signal name="on_build_menu_sub_icon">
 			<arg name="cIconID" type="s"/>
 		</signal>
-		<signal name="on_menu_select_sub_icon">
-			<arg name="iNumEntry" type="i"/>
-			<arg name="cIconID" type="s"/>
-		</signal>
 		<signal name="on_drop_data_sub_icon">
 			<arg name="cReceivedData" type="s"/>
-			<arg name="cIconID" type="s"/>
-		</signal>
-		<signal name="on_answer_sub_icon">
-			<arg name="answer" type="v"/>
 			<arg name="cIconID" type="s"/>
 		</signal>
 	</interface>
