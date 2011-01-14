@@ -526,26 +526,29 @@ void terminal_new_tab(void)
 	#endif
 	vte_terminal_set_emulation(VTE_TERMINAL(vterm), "xterm");
 	pid_t pid; 
-	#if VTE_CHECK_VERSION(0,26,0)
-	vte_terminal_fork_command_full (VTE_TERMINAL(vterm),
-		VTE_PTY_NO_LASTLOG | VTE_PTY_NO_UTMP | VTE_PTY_NO_WTMP,
-		"~/",
-		NULL,  // argv
-		NULL,  // envv
-		0,  // GSpawnFlags spawn_flags
-		NULL,  // GSpawnChildSetupFunc child_setup
-		NULL,  // gpointer child_setup_data
-		&pid,
-		NULL);
-	#else
-	pid = vte_terminal_fork_command (VTE_TERMINAL(vterm),
-		NULL,
-		NULL,
-		NULL,
-		"~/",
-		FALSE,
-		FALSE,
-		FALSE);
+	#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 18)
+		// because 'VTE_CHECK_VERSION(0,26,0)' doesn't work with some old versions
+		#if VTE_CHECK_VERSION(0,26,0)
+		vte_terminal_fork_command_full (VTE_TERMINAL(vterm),
+			VTE_PTY_NO_LASTLOG | VTE_PTY_NO_UTMP | VTE_PTY_NO_WTMP,
+			"~/",
+			NULL,  // argv
+			NULL,  // envv
+			0,  // GSpawnFlags spawn_flags
+			NULL,  // GSpawnChildSetupFunc child_setup
+			NULL,  // gpointer child_setup_data
+			&pid,
+			NULL);
+		#else
+		pid = vte_terminal_fork_command (VTE_TERMINAL(vterm),
+			NULL,
+			NULL,
+			NULL,
+			"~/",
+			FALSE,
+			FALSE,
+			FALSE);
+		#endif
 	#endif
 	g_signal_connect (G_OBJECT (vterm), "child-exited",
 				G_CALLBACK (on_terminal_child_exited), NULL);
