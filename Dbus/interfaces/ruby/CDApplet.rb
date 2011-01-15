@@ -26,22 +26,26 @@ require 'parseconfig'
 
 class CDApplet
 	attr_accessor :cConfFile, :cAppletName, :icon, :sub_icons, :config, :bus, :cMenuIconId, :cParentAppName, :cBusPath
+	
 	BOTTOM = 0
 	TOP    = 1
 	RIGHT  = 2
 	LEFT   = 3
+	
 	DOCK    = 0
 	DESKLET = 1
+	
 	UPPER_LEFT  = 0
 	LOWER_RIGHT = 1
 	LOWER_LEFT  = 2
 	UPPER_RIGHT = 3
 	MIDDLE      = 4
-        MENU_ENTRY        = 0
-        MENU_SUB_MENU     = 1
-        MENU_SEPARATOR    = 2
-        MENU_CHECKBOX     = 3
-        MENU_RADIO_BUTTON = 4
+	
+	MENU_ENTRY        = 0
+	MENU_SUB_MENU     = 1
+	MENU_SEPARATOR    = 2
+	MENU_CHECKBOX     = 3
+	MENU_RADIO_BUTTON = 4
 
 	def initialize
 		#~ self.cAppletName = File.basename(Dir.getwd)

@@ -38,20 +38,23 @@ class CDApplet:
 	TOP    = 1
 	RIGHT  = 2
 	LEFT   = 3
+	
 	DOCK    = 0
 	DESKLET = 1
+	
 	UPPER_LEFT  = 0
 	LOWER_RIGHT = 1
 	LOWER_LEFT  = 2
 	UPPER_RIGHT = 3
 	MIDDLE      = 4
+	
 	MENU_ENTRY        = 0
 	MENU_SUB_MENU     = 1
 	MENU_SEPARATOR    = 2
 	MENU_CHECKBOX     = 3
 	MENU_RADIO_BUTTON = 4
 	
-	def __init__(self,cAppletName=None):
+	def __init__(self):
 		""" initialize the applet. Must be called by any class that inheritates from it.
 		It defines the following:
 		 - icon : our main icon
@@ -66,7 +69,7 @@ class CDApplet:
 		self.loop = None
 		self._bEnded = False
 		self.cMenuIconId = None
-		self.cAppletName = sys.argv[0][:2]
+		self.cAppletName = sys.argv[0][2:]
 		self.cParentAppName = sys.argv[1]
 		self.cBusPath = sys.argv[2]
 		self.cConfFile = sys.argv[3]
@@ -219,7 +222,7 @@ class CDApplet:
 		try:
 			applet_object = bus.get_object("org.cairodock.CairoDock", self.cBusPath)
 		except:
-			print ">>> object '"+self.cAppletName+"' can't be found on the bus, exit.\nMake sure that the 'Dbus' plug-in is activated in Cairo-Dock"
+			print ">>> object '"+self.cBusPath+"' can't be found on the bus, exit.\nMake sure that the 'Dbus' plug-in is activated in Cairo-Dock"
 			sys.exit(2)
 		self.icon = dbus.Interface(applet_object, "org.cairodock.CairoDock.applet")  # this object represents our icon inside the dock or a desklet.
 		sub_icons_object = bus.get_object("org.cairodock.CairoDock", self.cBusPath+"/sub_icons")
@@ -241,8 +244,3 @@ class CDApplet:
 		self.sub_icons.connect_to_signal("on_scroll_sub_icon", self.on_scroll_sub_icon)
 		self.sub_icons.connect_to_signal("on_build_menu_sub_icon", self._on_build_menu_sub_icon)
 		self.sub_icons.connect_to_signal("on_drop_data_sub_icon", self.on_drop_data_sub_icon)
-
-if __name__ == '__main__':
-	print "=== main ==="
-	for v in sys.argv:
-		print v

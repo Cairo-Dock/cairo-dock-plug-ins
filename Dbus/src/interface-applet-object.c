@@ -34,6 +34,8 @@
 #include "dbus-sub-applet-spec.h"
 #include "interface-applet-object.h"
 
+static int s_iModuleId = 1;
+
 static void cd_dbus_applet_dispose (GObject *object);
 static void cd_dbus_applet_finalize (GObject *object);
 
@@ -93,19 +95,20 @@ static void cd_dbus_sub_applet_init (dbusSubApplet *pDbusSubApplet)
 }
 
 
-
 dbusApplet * cd_dbus_get_dbus_applet_from_instance (CairoDockModuleInstance *pModuleInstance)
 {
-	const gchar *cModuleName = pModuleInstance->pModule->pVisitCard->cModuleName;
 	dbusApplet *pDbusApplet = NULL;
 	GList *a;
 	for (a = myData.pAppletList; a != NULL; a = a->next)
 	{
 		pDbusApplet = a->data;
-		if (pDbusApplet->cModuleName && strcmp (cModuleName, pDbusApplet->cModuleName) == 0)
-			break ;
+		if (pDbusApplet->pModuleInstance == pModuleInstance)
+		{
+			g_print ("distant applet %ld (%s)\n", pDbusApplet, pDbusApplet->cModuleName);
+			return pDbusApplet;
+		}
 	}
-	return (a ? pDbusApplet : NULL);
+	return NULL;
 }
 
 
@@ -113,36 +116,51 @@ dbusApplet * cd_dbus_get_dbus_applet_from_instance (CairoDockModuleInstance *pMo
 
 dbusApplet *cd_dbus_create_remote_applet_object (CairoDockModuleInstance *pModuleInstance)
 {
-	g_return_val_if_fail (pModuleInstance != NULL && myData.pMainObject != NULL, NULL);  // l'interface principale a deja enregistre notre domaine, etc.
+	g_return_val_if_fail (pModuleInstance != NULL && myData.pMainObject != NULL, NULL);
 	const gchar *cModuleName = pModuleInstance->pModule->pVisitCard->cModuleName;
+	g_return_val_if_fail (cModuleName != NULL, NULL);
 	cd_debug ("%s (%s)", __func__, cModuleName);
 	
-	// on assure l'unicite.
+	//\_____________ unicity check.
 	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pModuleInstance);
-	if (pDbusApplet != NULL)
+	if (pDbusApplet != NULL)  // shouldn't arrive, but let's be cautious.
 	{
 		cd_warning ("this applet (%s) already has a remote object on the bus", cModuleName);
 		return pDbusApplet;
 	}
 	
-	// on cree l'objet DBus correspondant a l'applet.
+	//\_____________ create a DBus object corresponding to the applet.
 	pDbusApplet = g_object_new (cd_dbus_applet_get_type(), NULL);  // appelle cd_dbus_applet_class_init() et cd_dbus_applet_init().
 	pDbusApplet->cModuleName = g_strdup (cModuleName);
 	pDbusApplet->pModuleInstance = pModuleInstance;
+	pDbusApplet->id = s_iModuleId++;
 	
-	// on l'enregistre sous un chemin propre a l'applet.
-	static int _n = 0;
+	//\_____________ register it under a unique path.
 	gchar *cSuffix = NULL;
-	if (pModuleInstance->pModule->pInstancesList->next != NULL)
-		cSuffix = g_strdup_printf ("-%d", ++_n);
-	pDbusApplet->cBusPath = g_strconcat (myData.cBasePath, "/", cModuleName, cSuffix, NULL);
+	if (pModuleInstance->pModule->pInstancesList->next != NULL)  // if this is the only instance of the applet, don't add suffix (it's not needed, and it keeps backward compatibility).
+		cSuffix = g_strdup_printf ("_%d", pDbusApplet->id);
+	
+	gchar *cNameWithoutHyphen = NULL;
+	if (strchr (cModuleName, '-') != NULL)
+	{
+		cNameWithoutHyphen = g_strdup (cModuleName);
+		int i;
+		for (i = 0; cNameWithoutHyphen[i] != '\0'; i ++)
+			if (cNameWithoutHyphen[i] == '-' || cNameWithoutHyphen[i] == ' ')
+				cNameWithoutHyphen[i] = ' ';
+		
+	}
+	pDbusApplet->cBusPath = g_strconcat (myData.cBasePath, "/", cNameWithoutHyphen ? cNameWithoutHyphen : cModuleName, cSuffix, NULL);
+	g_free (cNameWithoutHyphen);
 	g_free (cSuffix);
+	
 	dbus_g_connection_register_g_object (pDbusApplet->connection, pDbusApplet->cBusPath, G_OBJECT(pDbusApplet));
+	
 	gchar *cSubPath = g_strconcat (pDbusApplet->cBusPath, "/sub_icons", NULL);
 	dbus_g_connection_register_g_object (pDbusApplet->connection, cSubPath, G_OBJECT(pDbusApplet->pSubApplet));
 	g_free (cSubPath);
 	
-	// on s'abonne aux notifications qu'on voudra propager sur le bus.
+	//\_____________ register to the notifications we'll want to propagate on the bus.
 	if (pDbusApplet->proxy != NULL && _applet_list_is_empty ())  // 1ere applet Dbus.
 	{
 		cairo_dock_register_notification_on_object (&myContainersMgr,
@@ -227,7 +245,7 @@ void cd_dbus_unregister_notifications (void)
 }
 
 
-static inline const gchar *_strstr_len (const gchar *haystack, gint iNbChars, const gchar *needle)
+/**static inline const gchar *_strstr_len (const gchar *haystack, gint iNbChars, const gchar *needle)
 {
 	if (iNbChars <= 0)
 		iNbChars = strlen (haystack);
@@ -288,10 +306,9 @@ int cd_dbus_applet_is_running (const gchar *cModuleName)
 		const gchar *str = _strstr_len (cContent, iNbBytesRead, cCommand);  // g_strstr_len s'arrete aux '\0' alors qu'on lui specifie iNbBytesRead !
 		if (str)
 		{
-			g_print ("found running applet (%s ; %s ; %s)\n", cContent, str + strlen(cModuleName)+3, myData.cProgName);
-			if (iNbBytesRead > (str + strlen(cModuleName) + 3 - cContent) && strcmp (str+strlen(cModuleName)+3, myData.cProgName) == 0)
+			str += strlen (cCommand) + 1;  // skip the command and the following '\0'
+			if (iNbBytesRead > (str - cContent) && strcmp (str, myData.cProgName) == 0)  // check it's us who started this instance of the applet.
 			{
-				g_print ("yes it's our applet\n");
 				iPid = atoi (cPid);
 				break;
 			}
@@ -301,25 +318,25 @@ int cd_dbus_applet_is_running (const gchar *cModuleName)
 	
 	g_free (cCommand);
 	return iPid;
-}
+}*/
 
-gboolean cd_dbus_launch_distant_applet_in_dir (CairoDockModuleInstance *pModuleInstance, dbusApplet *pDbusApplet)
+void cd_dbus_launch_applet_process (CairoDockModuleInstance *pModuleInstance, dbusApplet *pDbusApplet)
 {
 	const gchar *cModuleName = pModuleInstance->pModule->pVisitCard->cModuleName;
 	const gchar *cDirPath = pModuleInstance->pModule->pVisitCard->cShareDataDir;
 	cd_message ("%s (%s)", __func__, cModuleName);
 	// on verifie que le processus distant n'est pas deja lance.
-	int iPid = cd_dbus_applet_is_running (cModuleName);
+	/**int iPid = cd_dbus_applet_is_running (cModuleName);
 	if (iPid > 0)
 	{
 		cd_debug ("  l'applet est deja lancee, on la tue sauvagement.");
 		kill (iPid, SIGTERM);
-	}
+	}*/
 	
 	// on le lance.
-	gchar *cCommand = g_strdup_printf ("cd \"%s\" && ./\"%s\" %s \"%s\" \"%s\"", cDirPath, cModuleName, myData.cProgName, pDbusApplet->cBusPath, pModuleInstance->cConfFilePath);
+	gchar *cCommand = g_strdup_printf ("cd \"%s\" && ./\"%s\" %s \"%s\" \"%s\" %d", cDirPath, cModuleName, myData.cProgName, pDbusApplet->cBusPath, pModuleInstance->cConfFilePath , pDbusApplet->id);  //
 	cd_debug ("on lance une applet distante : '%s'", cCommand);
 	cairo_dock_launch_command (cCommand);
 	g_free (cCommand);
-	return TRUE;
+	return;
 }

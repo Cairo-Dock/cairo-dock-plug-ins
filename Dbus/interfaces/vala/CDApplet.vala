@@ -79,8 +79,10 @@ public class CDApplet : GLib.Object
 	// internal data.
 	public IApplet icon;
 	public ISubApplet sub_icons;
-	public string applet_name;
-	public string conf_file;
+	public string cAppletName;
+	public string cConfFile;
+	public string cParentAppName;
+	public string cBusPath;
 	private MainLoop loop;
 	private string cMenuIconId;
 	
@@ -109,13 +111,17 @@ public class CDApplet : GLib.Object
 		MENU_RADIO_BUTTON
 	}
 	
-	public CDApplet(string? applet_name)
+	public CDApplet(string[] argv)
 	{
-		if (applet_name == null)
-			this.applet_name = GLib.Path.get_basename(GLib.Environment.get_current_dir());  // the name of the applet must the same as the folder.
+		this.cAppletName = argv[0].substring(2,999);
+		this.cParentAppName = argv[1];
+		this.cBusPath = argv[2];
+		this.cConfFile = argv[3];
+		/**if (cAppletName == null)
+			this.cAppletName = GLib.Path.get_basename(GLib.Environment.get_current_dir());  // the name of the applet must the same as the folder.
 		else
-			this.applet_name = applet_name;
-		this.conf_file = GLib.Environment.get_home_dir()+"/.config/cairo-dock/current_theme/plug-ins/"+this.applet_name+"/"+this.applet_name+".conf";  // path to the conf file of our applet.
+			this.cAppletName = cAppletName;
+		this.cConfFile = GLib.Environment.get_home_dir()+"/.config/cairo-dock/current_theme/plug-ins/"+this.cAppletName+"/"+this.cAppletName+".conf";  // path to the conf file of our applet.*/
 		this._get_config();
 		this._connect_to_bus();
 		this.cMenuIconId = null;
@@ -233,7 +239,7 @@ public class CDApplet : GLib.Object
 	}
 	private void _on_stop()
 	{
-		print (">>> applet '%s' is stopped\n", this.applet_name);
+		print (">>> applet '%s' is stopped\n", this.cAppletName);
 		this.end();
 		loop.quit();
 	}
@@ -260,7 +266,7 @@ public class CDApplet : GLib.Object
 		GLib.KeyFile keyfile = new GLib.KeyFile();
 		try
 		{
-			keyfile.load_from_file(this.conf_file, GLib.KeyFileFlags.NONE);
+			keyfile.load_from_file(this.cConfFile, GLib.KeyFileFlags.NONE);
 		}
 		catch (Error e)
 		{
@@ -274,26 +280,26 @@ public class CDApplet : GLib.Object
 	
 	private void _connect_to_bus()
 	{
-		string applet_path = "/org/cairodock/CairoDock/"+applet_name;  // path where our object is stored on the bus.
+		///string cBusPath = "/org/cairodock/CairoDock/"+cAppletName;  // path where our object is stored on the bus.
 		try
 		{
 			this.icon = Bus.get_proxy_sync (BusType.SESSION,
 				"org.cairodock.CairoDock",
-				applet_path);
+				this.cBusPath);
 		}
 		catch (IOError e)
 		{
-			GLib.error (">>> module '%s' can't be found on the bus, exit.\nError was: %s", this.applet_name, e.message);
+			GLib.error (">>> module '%s' can't be found on the bus, exit.\nError was: %s", this.cAppletName, e.message);
 		}
 		try
 		{
 			this.sub_icons = Bus.get_proxy_sync (BusType.SESSION,
 				"org.cairodock.CairoDock",
-				applet_path+"/sub_icons");
+				this.cBusPath+"/sub_icons");
 		}
 		catch (IOError e)
 		{
-			GLib.error (">>> module '%s' can't be found on the bus, exit.\nError was: %s", this.applet_name, e.message);
+			GLib.error (">>> module '%s' can't be found on the bus, exit.\nError was: %s", this.cAppletName, e.message);
 		}
 		this.icon.on_click.connect(on_click);  // when the user left-clicks on our icon.
 		this.icon.on_middle_click.connect(on_middle_click);  // when the user middle-clicks on our icon.

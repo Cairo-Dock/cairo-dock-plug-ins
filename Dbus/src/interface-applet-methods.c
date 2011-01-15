@@ -39,10 +39,7 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock/demo
 
 static inline CairoDockModuleInstance *_get_module_instance_from_dbus_applet (dbusApplet *pDbusApplet)
 {
-	CairoDockModule *pModule = cairo_dock_find_module_from_name (pDbusApplet->cModuleName);
-	g_return_val_if_fail (pModule != NULL && pModule->pInstancesList != NULL, NULL);
-	
-	return pModule->pInstancesList->data;
+	return pDbusApplet->pModuleInstance;
 }
 
 static inline gboolean _get_icon_and_container_from_id (dbusApplet *pDbusApplet, const gchar *cIconID, Icon **pIcon, CairoContainer **pContainer)

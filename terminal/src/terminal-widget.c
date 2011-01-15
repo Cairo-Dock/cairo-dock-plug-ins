@@ -549,6 +549,15 @@ void terminal_new_tab(void)
 			FALSE,
 			FALSE);
 		#endif
+	#else
+		pid = vte_terminal_fork_command (VTE_TERMINAL(vterm),
+			NULL,
+			NULL,
+			NULL,
+			"~/",
+			FALSE,
+			FALSE,
+			FALSE);
 	#endif
 	g_signal_connect (G_OBJECT (vterm), "child-exited",
 				G_CALLBACK (on_terminal_child_exited), NULL);

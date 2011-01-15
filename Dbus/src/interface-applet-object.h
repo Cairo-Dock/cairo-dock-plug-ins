@@ -36,7 +36,7 @@ void cd_dbus_unregister_notifications (void);
 
 int cd_dbus_applet_is_running (const gchar *cModuleName);
 
-gboolean cd_dbus_launch_distant_applet_in_dir (CairoDockModuleInstance *pModuleInstance, dbusApplet *pDbusApplet);
+void cd_dbus_launch_applet_process (CairoDockModuleInstance *pModuleInstance, dbusApplet *pDbusApplet);
 
 
 #endif

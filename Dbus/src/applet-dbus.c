@@ -80,9 +80,7 @@ static void _on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile 
 	cd_dbus_action_on_init_module (pModuleInstance);
 	
 	//\_____________ On cree l'objet sur le bus.
-	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pModuleInstance);
-	if (pDbusApplet == NULL)
-		pDbusApplet = cd_dbus_create_remote_applet_object (pModuleInstance);
+	dbusApplet *pDbusApplet = cd_dbus_create_remote_applet_object (pModuleInstance);
 	g_return_if_fail (pDbusApplet != NULL);
 	
 	//\____________ On met a jour le fichier de conf si necessaire, c'est plus simple pour les applets.
@@ -93,9 +91,9 @@ static void _on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile 
 	}
 	
 	//\_____________ On (re)lance l'executable de l'applet.
-	cd_dbus_launch_distant_applet_in_dir (pModuleInstance, pDbusApplet);
+	cd_dbus_launch_applet_process (pModuleInstance, pDbusApplet);
 }
-static gboolean _cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDescription, const gchar *cAuthor, const gchar *cVersion, gint iCategory, const gchar *cIconName, const gchar *cShareDataDir)
+static gboolean _cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDescription, const gchar *cAuthor, const gchar *cVersion, gint iCategory, const gchar *cIconName, const gchar *cShareDataDir, gboolean bMultiInstance)
 {
 	cd_message ("%s (%s)", __func__, cModuleName);
 	
@@ -136,7 +134,7 @@ static gboolean _cd_dbus_register_new_module (const gchar *cModuleName, const gc
 		pVisitCard->cDescription = g_strdup (cDescription);
 		pVisitCard->cTitle = g_strdup (dgettext (pVisitCard->cGettextDomain, cModuleName));
 		pVisitCard->iContainerType = CAIRO_DOCK_MODULE_CAN_DOCK | CAIRO_DOCK_MODULE_CAN_DESKLET;
-		pVisitCard->bMultiInstance = TRUE;
+		pVisitCard->bMultiInstance = bMultiInstance;
 		pModule->pInterface = g_new0 (CairoDockModuleInterface, 1);
 		pModule->pInterface->initModule = _on_init_module;
 		pModule->pInterface->stopModule = cd_dbus_emit_on_stop_module;
@@ -187,14 +185,22 @@ gboolean cd_dbus_register_module_in_dir (const gchar *cModuleName, const gchar *
 		cd_warning (error->message);
 		g_error_free (error);
 		error = NULL;
+		iCategory = CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY;
 	}
 	gchar *cIconName = g_key_file_get_string (pKeyFile, "Register", "icon", NULL);  // NULL if not specified, in which case we use the "icon" file.
+	if (cIconName && *cIconName == '\0')
+	{
+		g_free (cIconName);
+		cIconName = NULL;
+	}
+	
+	gboolean bMultiInstance = g_key_file_get_boolean (pKeyFile, "Register", "multi-instance", NULL);  // false if not specified
 	
 	gchar *cShareDataDir = g_strdup_printf ("%s/%s", cThirdPartyPath, cModuleName);
 	
 	g_key_file_free (pKeyFile);
 	
-	gboolean bActivationOk = _cd_dbus_register_new_module (cModuleName, cDescription, cAuthor, cVersion, iCategory, cIconName, cShareDataDir);
+	gboolean bActivationOk = _cd_dbus_register_new_module (cModuleName, cDescription, cAuthor, cVersion, iCategory, cIconName, cShareDataDir, bMultiInstance);
 	g_free (cDescription);
 	g_free (cAuthor);
 	g_free (cVersion);
@@ -259,9 +265,7 @@ static gboolean _apply_package_update (gchar *cModuleName)
 		CairoContainer *pContainer = pModuleInstance->pContainer;
 		
 		// unregister the module, since anything can have changed, including its definition.
-		myData.bKeepObjectAlive = TRUE;  // keep the object alive on the bus since we would recreate it just after anyway.
-		cairo_dock_unregister_module (cModuleName);  // stoppe le module (toutes les instances), ce qui appelle stop_module, qui emet le signal 'stop' vers l'applet distante (qui du coup quitte), et enleve le module de la table. l'objet distant n'est pas detruit, puisque de toute facon on vide toute la liste.
-		myData.bKeepObjectAlive = FALSE;
+		cairo_dock_unregister_module (cModuleName);  // stoppe le module (toutes les instances), ce qui appelle stop_module, qui emet le signal 'stop' vers l'applet distante (qui du coup quitte), et enleve le module de la table. L'objet distant est detruit durant le stop.
 		
 		// clean the dock from the remaining icon.
 		if (pIcon != NULL && pContainer != NULL)  // par contre les icones restent, mais ne sont plus des applets (elles ont perdu leur module). On fait donc le menage.
@@ -331,6 +335,7 @@ void cd_dbus_launch_service (void)
 	g_type_init();
 	cd_message ("dbus : launching service...");
 	
+	//\____________ define the base path on the bus. So each program built on gldi has its own path under the same bus name, and will place its applets under its own path.
 	const gchar *cProgName = g_get_prgname ();
 	g_return_if_fail (cProgName != NULL);
 	int n = strlen (cProgName);
@@ -353,8 +358,8 @@ void cd_dbus_launch_service (void)
 	g_free (cName1);
 	g_free (cName2);
 	
-	//\____________ Register the service name
-	cairo_dock_register_service_name ("org.cairodock.CairoDock");
+	//\____________ Register the service name (the service name is registerd once by the first gldi instance).
+	cairo_dock_register_service_name ("org.cairodock.CairoDock");  /// what happens if the gldi instance that had registered the name quits while a 2nd instance remains ? do we need to queue ?...
 	
 	//\____________ create the main object on the bus.
 	myData.pMainObject = g_object_new (cd_dbus_main_get_type(), NULL);  // appelle cd_dbus_main_class_init() et cd_dbus_main_init().

@@ -50,7 +50,7 @@ class CDBashApplet(CDApplet):
 	##### private methods #####
 	
 	def call(self,action):
-		os.popen("cd " + self.app_folder + " && ./" + self.applet_name + ".sh " + action).read().rstrip()
+		os.popen("cd " + self.app_folder + " && ./" + self.cAppletName + ".sh " + action).read().rstrip()
 	
 	##### applet definition #####
 	

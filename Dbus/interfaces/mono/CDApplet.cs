@@ -36,9 +36,10 @@ using CairoDock.Applet;
 //{
 public class CDApplet
 {
-	public string applet_name = null;
-	public string applet_path = null;
-	public string conf_file = null;
+	public string cAppletName = null;
+	public string cParentAppName = null;
+	public string cBusPath = null;
+	public string cConfFile = null;
 	public IApplet icon = null;
 	public ISubApplet sub_icons= null;
 	private GLib.MainLoop loop = null;
@@ -69,18 +70,23 @@ public class CDApplet
 	        MENU_RADIO_BUTTON
 	}
 	
-	public CDApplet(string name=null)
+	public CDApplet()
 	{
-		if (name == null)
+		String[] argv = Environment.GetCommandLineArgs();
+		this.cAppletName = argv[0].Substring(2);
+		this.cParentAppName = argv[1];
+		this.cBusPath = argv[2];
+		this.cConfFile = argv[3];
+		/*if (name == null)
 		{
-			this.applet_name = Path.GetFileName(Directory.GetCurrentDirectory());  // the name of the applet must the same as the folder.
+			this.cAppletName = Path.GetFileName(Directory.GetCurrentDirectory());  // the name of the applet must the same as the folder.
 		}
 		else
 		{
-			this.applet_name = name;
+			this.cAppletName = name;
 		}
-		this.applet_path = "/org/cairodock/CairoDock/"+this.applet_name;  // path where our object is stored on the bus.
-		conf_file = Environment.GetEnvironmentVariable("HOME")+"/.config/cairo-dock/current_theme/plug-ins/"+this.applet_name+"/"+this.applet_name+".conf";  // path to the conf file of our applet.
+		this.cBusPath = "/org/cairodock/CairoDock/"+this.cAppletName;  // path where our object is stored on the bus.
+		cConfFile = Environment.GetEnvironmentVariable("HOME")+"/.config/cairo-dock/current_theme/plug-ins/"+this.cAppletName+"/"+this.cAppletName+".conf";  // path to the conf file of our applet.*/
 		
 		this._get_config ();
 		this._connect_to_dock ();
@@ -91,7 +97,7 @@ public class CDApplet
 		this.begin();
 		loop = new GLib.MainLoop();
 		loop.Run();
-		Console.WriteLine(">>> Applet " + this.applet_name + " terminated");
+		Console.WriteLine(">>> Applet " + this.cAppletName + " terminated");
 	}
 	
 	//////////////////////////////////
@@ -229,21 +235,21 @@ public class CDApplet
 		}
 	}
 	
-	public virtual void get_config (string conf_file_path)
+	public virtual void get_config (string cConfFile_path)
 	{
 		
 	}
 	
 	private void _get_config()
 	{
-		this.get_config(this.conf_file);
+		this.get_config(this.cConfFile);
 	}
 	
 	private void _connect_to_dock ()
 	{
 		NDesk.DBus.BusG.Init();
 		NDesk.DBus.Bus bus = NDesk.DBus.Bus.Session;
-		this.icon = bus.GetObject<IApplet> ("org.cairodock.CairoDock", new ObjectPath (this.applet_path));
+		this.icon = bus.GetObject<IApplet> ("org.cairodock.CairoDock", new ObjectPath (this.cBusPath));
 		this.icon.on_click 			+= new OnClickEvent (on_click);
 		this.icon.on_middle_click 	+= new OnMiddleClickEvent (on_middle_click);
 		this.icon.on_scroll 		+= new OnScrollEvent (on_scroll);
@@ -255,7 +261,7 @@ public class CDApplet
 		this.icon._on_stop 			+= new OnStopModuleEvent (_on_stop);
 		this.icon._on_reload 		+= new OnReloadModuleEvent (_on_reload);
 		
-		this.sub_icons = bus.GetObject<ISubApplet>("org.cairodock.CairoDock", new ObjectPath(this.applet_path + "/sub_icons"));
+		this.sub_icons = bus.GetObject<ISubApplet>("org.cairodock.CairoDock", new ObjectPath(this.cBusPath + "/sub_icons"));
 		this.sub_icons.on_click_sub_icon			+= new OnClickSubIconEvent (on_click_sub_icon);
 		this.sub_icons.on_middle_click_sub_icon 	+= new OnMiddleClickSubIconEvent (on_middle_click_sub_icon);
 		this.sub_icons.on_scroll_sub_icon 		+= new OnScrollSubIconEvent (on_scroll_sub_icon);

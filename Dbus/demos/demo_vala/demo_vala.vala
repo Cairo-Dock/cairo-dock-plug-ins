@@ -52,10 +52,10 @@ public class MyApplet : CDApplet
 	// my data.
 	private int count;
 	
-	public MyApplet()
+	public MyApplet(string[] argv)
 	{
 		//this.config = Config();
-		base(null);
+		base(argv);
 	}
 	
 	  ///////////////////////
@@ -201,9 +201,9 @@ public class MyApplet : CDApplet
   //////////////////
  ////// main //////
 //////////////////
-static int main (string[] args)
+static int main (string[] argv)
 {	
-	var myApplet = new MyApplet();
+	var myApplet = new MyApplet(argv);
 	myApplet.run();
 	return 0;
 }

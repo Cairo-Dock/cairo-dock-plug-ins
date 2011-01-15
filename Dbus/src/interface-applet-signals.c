@@ -362,7 +362,7 @@ gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, C
 		pAppletMenu,
 		pAppletIcon->pModuleInstance->pModule->pVisitCard->cIconFilePath);
 	
-	cairo_dock_add_in_menu_with_stock_and_data (_("About this applet"),
+	cairo_dock_add_in_menu_with_stock_and_data (_("Applet's handbook"),
 		GTK_STOCK_ABOUT,
 		(GFunc) cairo_dock_pop_up_about_applet,
 		myData.pModuleSubMenu,
@@ -482,7 +482,7 @@ gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceived
 	if (! CAIRO_DOCK_IS_EXTERNAL_APPLET (pAppletIcon))
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
-	cd_message (" %s --> sur le bus !", cReceivedData);
+	cd_debug (" %s --> sur le bus !", cReceivedData);
 	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pAppletIcon->pModuleInstance);
 	g_return_val_if_fail (pDbusApplet != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	
@@ -750,14 +750,7 @@ void cd_dbus_emit_on_stop_module (CairoDockModuleInstance *pModuleInstance)
 		
 	cd_dbus_action_on_stop_module (pModuleInstance);
 	
-	if (! myData.bKeepObjectAlive)  // on detruit l'objet a la fin.
-	{
-		cd_dbus_delete_remote_applet_object (pDbusApplet);
-	}
-	else
-	{
-		pDbusApplet->pModuleInstance = NULL;
-	}
+	cd_dbus_delete_remote_applet_object (pDbusApplet);
 }
 
 gboolean cd_dbus_emit_on_reload_module (CairoDockModuleInstance *pModuleInstance, CairoContainer *pOldContainer, GKeyFile *pKeyFile)

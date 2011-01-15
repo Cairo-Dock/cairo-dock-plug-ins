@@ -63,6 +63,7 @@ struct _dbusApplet {
 	DBusGProxy *proxy;
 	CairoDockModuleInstance *pModuleInstance;
 	gchar *cModuleName;
+	gint id;
 	gchar *cBusPath;
 	dbusSubApplet *pSubApplet;
 	CairoDialog *pDialog;
