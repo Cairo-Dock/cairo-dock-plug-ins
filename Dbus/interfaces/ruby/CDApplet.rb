@@ -25,7 +25,7 @@ require 'dbus'
 require 'parseconfig'
 
 class CDApplet
-	attr_accessor :cConfFile, :cAppletName, :icon, :sub_icons, :config, :bus, :cMenuIconId, :cParentAppName, :cBusPath
+	attr_accessor :cConfFile, :cAppletName, :icon, :sub_icons, :config, :bus, :_cMenuIconId, :cParentAppName, :cBusPath
 	
 	BOTTOM = 0
 	TOP    = 1
@@ -54,11 +54,11 @@ class CDApplet
 		self.bus = nil
 		self.icon = nil
 		self.sub_icons = nil
-		self.cMenuIconId = nil
+		self._cMenuIconId = nil
 		self.cAppletName = $0[2,999]
-		self.cParentAppName = ARGV[0]
 		self.cBusPath = ARGV[1]
 		self.cConfFile = ARGV[2]
+		self.cParentAppName = ARGV[3]
 		
 		self._get_config()
 		self._connect_to_dock()
@@ -87,7 +87,7 @@ class CDApplet
 	end
 	
 	def _on_build_menu
-		self.cMenuIconId = nil
+		self._cMenuIconId = nil
 		self.on_build_menu()
 	end
 	
@@ -96,10 +96,10 @@ class CDApplet
 	end
 	
 	def _on_menu_select(iNumEntry)
-		if self.cMenuIconId == nil
+		if self._cMenuIconId == nil
 			self.on_menu_select(iNumEntry)
 		else
-			self.on_menu_select_sub_icon(iNumEntry, self.cMenuIconId)
+			self.on_menu_select_sub_icon(iNumEntry, self._cMenuIconId)
 		end
 	end
 	
@@ -147,7 +147,7 @@ class CDApplet
 	end
 	
 	def _on_build_menu_sub_icon(cIconID)
-		self.cMenuIconId = cIconID
+		self._cMenuIconId = cIconID
 		self.on_build_menu_sub_icon(cIconID)
 	end
 	

@@ -33,7 +33,9 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 
 ******************************************************************************/
 
-#include <unistd.h>
+#include <fcntl.h>  // open
+#define __USE_POSIX
+#include <signal.h>  // kill
 #include <glib.h>
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-bindings.h>
@@ -154,7 +156,12 @@ gboolean cd_dbus_register_module_in_dir (const gchar *cModuleName, const gchar *
 	cd_debug ("%s (%s, %s)", __func__, cModuleName, cThirdPartyPath);
 	gchar *cFilePath = g_strdup_printf ("%s/%s/auto-load.conf", cThirdPartyPath, cModuleName);
 	GKeyFile *pKeyFile = cairo_dock_open_key_file (cFilePath);
-	g_return_val_if_fail (pKeyFile != NULL, FALSE);
+	if (pKeyFile == NULL)
+	{
+		cd_warning ("file %s should not be here", cFilePath);
+		g_free (cFilePath);
+		return FALSE;
+	}
 	
 	GError *error = NULL;
 	
@@ -329,13 +336,80 @@ static void _on_got_list (GHashTable *pPackagesTable, gpointer data)
  /// SERVICE ///
 ///////////////
 
+static void _clean_up_processes (void)
+{
+	static gchar cFilePathBuffer[23+1];  // /proc/12345/cmdline + 4octets de marge.
+	static gchar cContent[512+1];
+	gboolean bIsRunning = FALSE;
+	
+	GError *erreur = NULL;
+	GDir *dir = g_dir_open ("/proc", 0, &erreur);
+	if (erreur != NULL)
+	{
+		cd_warning ("Dbus : %s", erreur->message);
+		g_error_free (erreur);
+		return;
+	}
+	
+	int iPid, iPPid;
+	gchar *str, *sp;
+	const gchar *cPid;
+	while ((cPid = g_dir_read_name (dir)) != NULL)
+	{
+		// get the command line that spawned the process.
+		if (! g_ascii_isdigit (*cPid))
+			continue;
+		
+		snprintf (cFilePathBuffer, 23, "/proc/%s/cmdline", cPid);
+		int pipe = open (cFilePathBuffer, O_RDONLY);
+		if (pipe <= 0)
+			continue ;
+		
+		int iNbBytesRead;
+		if ((iNbBytesRead = read (pipe, cContent, sizeof (cContent))) <= 1)  // ends with a nul char.
+		{
+			close (pipe);
+			continue;
+		}
+		close (pipe);
+		
+		// search for the pattern "... progname 123", where spaces are nul char.
+		const gchar *str = cContent + iNbBytesRead - 2;  // last non-nul char.
+		while (*str != '\0' && str != cContent)  // search the previous nul char.
+			str --;
+		if (str == cContent)  // not found
+			continue;
+		iPPid = atoi (str+1);
+		if (iPPid == 0)  // not a pid.
+			continue;
+		
+		str --;  // skip the nul char.
+		while (*str != '\0' && str != cContent)  // search the previous nul char.
+			str --;
+		if (str == cContent)  // not found
+			continue;
+		if (strcmp (str+1, myData.cProgName) != 0)  // not our program name.
+			continue;
+		
+		// found, kill the applet process.
+		gchar *cProcFile = g_strdup_printf ("/proc/%d", iPPid);
+		if (! g_file_test (cProcFile, G_FILE_TEST_EXISTS))  // old process
+		{
+			g_print ("this applet (%s %s) is linked to an old gldi process (%d), kill it.\n", cContent, cPid, iPPid);
+			iPid = atoi (cPid);
+			kill (iPid, SIGTERM);
+		}
+	}
+	g_dir_close (dir);
+}
+
 void cd_dbus_launch_service (void)
 {
 	g_return_if_fail (myData.pMainObject == NULL);
 	g_type_init();
 	cd_message ("dbus : launching service...");
 	
-	//\____________ define the base path on the bus. So each program built on gldi has its own path under the same bus name, and will place its applets under its own path.
+	//\____________ define the base path on the bus. So each program built on gldi has its own path on the gldi bus, and will place its applets under its own path.
 	const gchar *cProgName = g_get_prgname ();
 	g_return_if_fail (cProgName != NULL);
 	int n = strlen (cProgName);
@@ -357,6 +431,9 @@ void cd_dbus_launch_service (void)
 	myData.cBasePath = g_strdup_printf ("/org/%s/%s", cName1, cName2);
 	g_free (cName1);
 	g_free (cName2);
+	
+	//\____________ kill all the orphean applets (for instance if the dock has crashed, or if it was interrupted by a CTRL+C, or if it stopped and the applet was busy and didn't receive the stop event (dbus-timeout)).
+	_clean_up_processes ();
 	
 	//\____________ Register the service name (the service name is registerd once by the first gldi instance).
 	cairo_dock_register_service_name ("org.cairodock.CairoDock");  /// what happens if the gldi instance that had registered the name quits while a 2nd instance remains ? do we need to queue ?...

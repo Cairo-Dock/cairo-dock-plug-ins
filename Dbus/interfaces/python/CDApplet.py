@@ -68,16 +68,11 @@ class CDApplet:
 		self.config = {}
 		self.loop = None
 		self._bEnded = False
-		self.cMenuIconId = None
+		self._cMenuIconId = None
 		self.cAppletName = sys.argv[0][2:]
-		self.cParentAppName = sys.argv[1]
 		self.cBusPath = sys.argv[2]
 		self.cConfFile = sys.argv[3]
-		#~ if cAppletName is None:
-			#~ self.cAppletName = os.path.basename(os.path.abspath("."))  # the name of the applet must the same as the folder.
-		#~ else:
-			#~ self.cAppletName = cAppletName
-		#~ self.cConfFile = os.path.expanduser("~/.config/cairo-dock/current_theme/plug-ins/"+self.cAppletName+"/"+self.cAppletName+".conf")  # path to the conf file of our applet.
+		self.cParentAppName = sys.argv[4]
 		
 		self._get_config()
 		self._connect_to_dock()
@@ -103,7 +98,7 @@ class CDApplet:
 		pass
 	
 	def _on_build_menu(self):
-		self.cMenuIconId = None
+		self._cMenuIconId = None
 		self.on_build_menu()
 		pass
 		
@@ -112,10 +107,10 @@ class CDApplet:
 		pass
 	
 	def _on_menu_select(self,iNumEntry):
-		if self.cMenuIconId == None:
+		if self._cMenuIconId == None:
 			self.on_menu_select(iNumEntry)
 		else:
-			self.on_menu_select_sub_icon(iNumEntry,self.cMenuIconId)
+			self.on_menu_select_sub_icon(iNumEntry,self._cMenuIconId)
 	
 	def on_menu_select(self,iNumEntry):
 		""" action on selecting an entry of our menu """
@@ -161,7 +156,7 @@ class CDApplet:
 		pass
 	
 	def _on_build_menu_sub_icon(self, cIconID):
-		self.cMenuIconId = cIconID
+		self._cMenuIconId = cIconID
 		self.on_build_menu_sub_icon(cIconID)
 	
 	def on_build_menu_sub_icon(self, cIconID):

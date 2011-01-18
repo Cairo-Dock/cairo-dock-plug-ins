@@ -74,19 +74,9 @@ public class CDApplet
 	{
 		String[] argv = Environment.GetCommandLineArgs();
 		this.cAppletName = argv[0].Substring(2);
-		this.cParentAppName = argv[1];
 		this.cBusPath = argv[2];
 		this.cConfFile = argv[3];
-		/*if (name == null)
-		{
-			this.cAppletName = Path.GetFileName(Directory.GetCurrentDirectory());  // the name of the applet must the same as the folder.
-		}
-		else
-		{
-			this.cAppletName = name;
-		}
-		this.cBusPath = "/org/cairodock/CairoDock/"+this.cAppletName;  // path where our object is stored on the bus.
-		cConfFile = Environment.GetEnvironmentVariable("HOME")+"/.config/cairo-dock/current_theme/plug-ins/"+this.cAppletName+"/"+this.cAppletName+".conf";  // path to the conf file of our applet.*/
+		this.cParentAppName = argv[4];
 		
 		this._get_config ();
 		this._connect_to_dock ();

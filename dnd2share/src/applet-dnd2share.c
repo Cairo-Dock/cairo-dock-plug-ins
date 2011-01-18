@@ -40,15 +40,16 @@ void cd_dnd2share_build_history (void)
 {
 	gchar *cConfFilePath = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, "history.conf");
 	GKeyFile *pKeyFile = cairo_dock_open_key_file (cConfFilePath);
+	g_free (cConfFilePath);
 	if (pKeyFile == NULL)  // pas encore d'historique.
-	{
-		g_free (cConfFilePath);
 		return ;
-	}
 	
-	CDUploadedItem *pItem;
 	gsize length = 0;
 	gchar **pGroupList = g_key_file_get_groups (pKeyFile, &length);
+	if (pGroupList == NULL)
+		return ;
+	
+	CDUploadedItem *pItem;
 	int iSiteID, iFileType;
 	gchar *cItemName;
 	GString *sUrlKey = g_string_new ("");
@@ -63,11 +64,13 @@ void cd_dnd2share_build_history (void)
 			cd_warning (erreur->message);
 			g_error_free (erreur);
 			erreur = NULL;
+			g_free (cItemName);
 			continue;
 		}
 		if (iSiteID >= CD_NB_SITES)
 		{
 			cd_warning ("dnd2share : this backend doesn't exist !");
+			g_free (cItemName);
 			continue;
 		}
 		iFileType = g_key_file_get_integer (pKeyFile, cItemName, "type", &erreur);
@@ -76,11 +79,13 @@ void cd_dnd2share_build_history (void)
 			cd_warning (erreur->message);
 			g_error_free (erreur);
 			erreur = NULL;
+			g_free (cItemName);
 			continue;
 		}
 		if (iFileType >= CD_NB_FILE_TYPES)
 		{
 			cd_warning ("dnd2share : this type of file doesn't exist !");
+			g_free (cItemName);
 			continue;
 		}
 		

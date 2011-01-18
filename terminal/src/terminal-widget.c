@@ -302,28 +302,38 @@ static void on_terminal_child_exited(VteTerminal *vterm,
 		vte_terminal_feed(VTE_TERMINAL(vterm), "Shell exited. Another one is launching...\r\n\n", -1);
 		
 		pid_t pid; 
-		#if VTE_CHECK_VERSION(0,26,0)
-		vte_terminal_fork_command_full (VTE_TERMINAL(vterm),
-			VTE_PTY_NO_LASTLOG | VTE_PTY_NO_UTMP | VTE_PTY_NO_WTMP,
-			"~/",
-			NULL,  // argv
-			NULL,  // envv
-			0,  // GSpawnFlags spawn_flags
-			NULL,  // GSpawnChildSetupFunc child_setup
-			NULL,  // gpointer child_setup_data
-			&pid,
-			NULL);
+		#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 18)  // VTE_CHECK_VERSION doesn't exist in Hardy.
+			#if VTE_CHECK_VERSION(0,26,0)
+			vte_terminal_fork_command_full (VTE_TERMINAL(vterm),
+				VTE_PTY_NO_LASTLOG | VTE_PTY_NO_UTMP | VTE_PTY_NO_WTMP,
+				"~/",
+				NULL,  // argv
+				NULL,  // envv
+				0,  // GSpawnFlags spawn_flags
+				NULL,  // GSpawnChildSetupFunc child_setup
+				NULL,  // gpointer child_setup_data
+				&pid,
+				NULL);
+			#else
+			pid = vte_terminal_fork_command (VTE_TERMINAL(vterm),
+				NULL,
+				NULL,
+				NULL,
+				"~/",
+				FALSE,
+				FALSE,
+				FALSE);
+			#endif
 		#else
-		pid = vte_terminal_fork_command (VTE_TERMINAL(vterm),
-			NULL,
-			NULL,
-			NULL,
-			"~/",
-			FALSE,
-			FALSE,
-			FALSE);
+			pid = vte_terminal_fork_command (VTE_TERMINAL(vterm),
+				NULL,
+				NULL,
+				NULL,
+				"~/",
+				FALSE,
+				FALSE,
+				FALSE);
 		#endif
-		
 		if (myData.dialog)
 			cairo_dock_hide_dialog (myData.dialog);
 		else if (myDesklet && myConfig.shortcut)
@@ -526,8 +536,7 @@ void terminal_new_tab(void)
 	#endif
 	vte_terminal_set_emulation(VTE_TERMINAL(vterm), "xterm");
 	pid_t pid; 
-	#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 18)
-		// because 'VTE_CHECK_VERSION(0,26,0)' doesn't work with some old versions
+	#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 18)  // VTE_CHECK_VERSION doesn't exist in Hardy.
 		#if VTE_CHECK_VERSION(0,26,0)
 		vte_terminal_fork_command_full (VTE_TERMINAL(vterm),
 			VTE_PTY_NO_LASTLOG | VTE_PTY_NO_UTMP | VTE_PTY_NO_WTMP,

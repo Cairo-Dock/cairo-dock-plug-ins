@@ -84,7 +84,7 @@ public class CDApplet : GLib.Object
 	public string cParentAppName;
 	public string cBusPath;
 	private MainLoop loop;
-	private string cMenuIconId;
+	private string _cMenuIconId;
 	
 	public enum ScreenPosition {
 		BOTTOM = 0,
@@ -114,17 +114,13 @@ public class CDApplet : GLib.Object
 	public CDApplet(string[] argv)
 	{
 		this.cAppletName = argv[0].substring(2,999);
-		this.cParentAppName = argv[1];
 		this.cBusPath = argv[2];
 		this.cConfFile = argv[3];
-		/**if (cAppletName == null)
-			this.cAppletName = GLib.Path.get_basename(GLib.Environment.get_current_dir());  // the name of the applet must the same as the folder.
-		else
-			this.cAppletName = cAppletName;
-		this.cConfFile = GLib.Environment.get_home_dir()+"/.config/cairo-dock/current_theme/plug-ins/"+this.cAppletName+"/"+this.cAppletName+".conf";  // path to the conf file of our applet.*/
+		this.cParentAppName = argv[4];
+		
 		this._get_config();
 		this._connect_to_bus();
-		this.cMenuIconId = null;
+		this._cMenuIconId = null;
 	}
 	
 	public void run()
@@ -147,7 +143,7 @@ public class CDApplet : GLib.Object
 	}
 	private void _on_build_menu()
 	{
-		this.cMenuIconId = null;
+		this._cMenuIconId = null;
 		this.on_build_menu();
 	}
 	public virtual void on_build_menu()
@@ -156,10 +152,10 @@ public class CDApplet : GLib.Object
 	}
 	private void _on_menu_select(int iNumEntry)
 	{
-		if (this.cMenuIconId == null)
+		if (this._cMenuIconId == null)
 			this.on_menu_select (iNumEntry);
 		else
-			this.on_menu_select_sub_icon (iNumEntry, this.cMenuIconId);
+			this.on_menu_select_sub_icon (iNumEntry, this._cMenuIconId);
 	}
 	public virtual void on_menu_select(int iNumEntry)
 	{
@@ -215,7 +211,7 @@ public class CDApplet : GLib.Object
 	
 	private void _on_build_menu_sub_icon(string cIconID)
 	{
-		this.cMenuIconId = cIconID;
+		this._cMenuIconId = cIconID;
 		this.on_build_menu_sub_icon (cIconID);
 	}
 	public virtual void on_build_menu_sub_icon(string cIconID)

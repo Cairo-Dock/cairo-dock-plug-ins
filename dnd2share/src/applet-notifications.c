@@ -142,11 +142,11 @@ static void _on_drop_data (const gchar *cMyData)
 {
 	CDFileType iFileType = CD_UNKNOWN_TYPE;
 	gchar *cFilePath = NULL;
-	if( strncmp(cMyData, "file://", 7) == 0)
+	if (strncmp(cMyData, "file://", 7) == 0)
 	{
-		// Les formats supportÃ©s par Uppix.net sont : GIF, JPEG, PNG, Flash (SWF or SWC), BMP, PSD, TIFF, JP2, JPX,
+		// Les formats supportes par Uppix.net sont : GIF, JPEG, PNG, Flash (SWF or SWC), BMP, PSD, TIFF, JP2, JPX,
 		// JB2, JPC, WBMP, and XBM.
-		// ... mais l'applet ne prendra en charge que les plus utilisÃ©s :
+		// ... mais l'applet ne prendra en charge que les plus utilises :
 		
 		cFilePath = g_filename_from_uri (cMyData, NULL, NULL);  // on passe en encodage UTF-8.
 		g_return_if_fail (cFilePath != NULL);

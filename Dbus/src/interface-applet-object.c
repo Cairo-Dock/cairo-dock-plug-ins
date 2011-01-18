@@ -17,13 +17,6 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <stdlib.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <sys/types.h>
-#define __USE_POSIX
-#include <signal.h>
 #include <glib.h>
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-bindings.h>
@@ -103,10 +96,7 @@ dbusApplet * cd_dbus_get_dbus_applet_from_instance (CairoDockModuleInstance *pMo
 	{
 		pDbusApplet = a->data;
 		if (pDbusApplet->pModuleInstance == pModuleInstance)
-		{
-			g_print ("distant applet %ld (%s)\n", pDbusApplet, pDbusApplet->cModuleName);
 			return pDbusApplet;
-		}
 	}
 	return NULL;
 }
@@ -245,98 +235,21 @@ void cd_dbus_unregister_notifications (void)
 }
 
 
-/**static inline const gchar *_strstr_len (const gchar *haystack, gint iNbChars, const gchar *needle)
-{
-	if (iNbChars <= 0)
-		iNbChars = strlen (haystack);
-	int i;
-	for (i = 0; i < iNbChars; i ++)
-	{
-		if (haystack[i] == *needle)
-		{
-			int j;
-			for (j = 1; needle[j] != '\0' && i+j < iNbChars; j ++)
-			{
-				if (haystack[i+j] != needle[j])
-					break;
-			}
-			if (needle[j] == '\0')
-				return haystack+i;
-		}
-	}
-	return NULL;
-}
-int cd_dbus_applet_is_running (const gchar *cModuleName)
-{
-	static gchar cFilePathBuffer[23+1];  // /proc/12345/cmdline + 4octets de marge.
-	static gchar cContent[512+1];
-	gboolean bIsRunning = FALSE;
-	
-	GError *erreur = NULL;
-	GDir *dir = g_dir_open ("/proc", 0, &erreur);
-	if (erreur != NULL)
-	{
-		cd_warning ("Dbus : %s", erreur->message);
-		g_error_free (erreur);
-		return 0;
-	}
-	
-	int iPid = 0;
-	gchar *cCommand = g_strdup_printf ("./%s", cModuleName);
-	gchar *str, *sp;
-	const gchar *cPid;
-	while ((cPid = g_dir_read_name (dir)) != NULL)
-	{
-		if (! g_ascii_isdigit (*cPid))
-			continue;
-		
-		snprintf (cFilePathBuffer, 23, "/proc/%s/cmdline", cPid);
-		int pipe = open (cFilePathBuffer, O_RDONLY);
-		if (pipe <= 0)
-			continue ;
-		
-		int iNbBytesRead;
-		if ((iNbBytesRead = read (pipe, cContent, sizeof (cContent))) <= 0)
-		{
-			close (pipe);
-			continue;
-		}
-		close (pipe);
-		
-		const gchar *str = _strstr_len (cContent, iNbBytesRead, cCommand);  // g_strstr_len s'arrete aux '\0' alors qu'on lui specifie iNbBytesRead !
-		if (str)
-		{
-			str += strlen (cCommand) + 1;  // skip the command and the following '\0'
-			if (iNbBytesRead > (str - cContent) && strcmp (str, myData.cProgName) == 0)  // check it's us who started this instance of the applet.
-			{
-				iPid = atoi (cPid);
-				break;
-			}
-		}
-	}
-	g_dir_close (dir);
-	
-	g_free (cCommand);
-	return iPid;
-}*/
-
 void cd_dbus_launch_applet_process (CairoDockModuleInstance *pModuleInstance, dbusApplet *pDbusApplet)
 {
 	const gchar *cModuleName = pModuleInstance->pModule->pVisitCard->cModuleName;
 	const gchar *cDirPath = pModuleInstance->pModule->pVisitCard->cShareDataDir;
 	cd_message ("%s (%s)", __func__, cModuleName);
-	// on verifie que le processus distant n'est pas deja lance.
-	/**int iPid = cd_dbus_applet_is_running (cModuleName);
-	if (iPid > 0)
-	{
-		cd_debug ("  l'applet est deja lancee, on la tue sauvagement.");
-		kill (iPid, SIGTERM);
-	}*/
 	
-	// on le lance.
-	gchar *cCommand = g_strdup_printf ("cd \"%s\" && ./\"%s\" %s \"%s\" \"%s\" %d", cDirPath, cModuleName, myData.cProgName, pDbusApplet->cBusPath, pModuleInstance->cConfFilePath , pDbusApplet->id);  //
-	cd_debug ("on lance une applet distante : '%s'", cCommand);
+ 	gchar *cCommand = g_strdup_printf ("cd \"%s\" && ./\"%s\" %d \"%s\" \"%s\" %s %d",
+ 		cDirPath,
+ 		cModuleName,
+ 		pDbusApplet->id,
+ 		pDbusApplet->cBusPath,
+ 		pModuleInstance->cConfFilePath,
+ 		myData.cProgName,
+ 		getpid());
+	cd_debug ("launching distant applet with: '%s'", cCommand);
 	cairo_dock_launch_command (cCommand);
 	g_free (cCommand);
-	return;
 }
