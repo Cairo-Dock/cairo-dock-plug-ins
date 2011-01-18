@@ -376,10 +376,25 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/icon-effect/data/icon-effect.conf.in
 add_subdirectory (icon-effect)
 
 ############# INDICATOR-APPLET #################
-pkg_check_modules (DBUSMENU dbusmenu-glib)
-pkg_check_modules (INDICATOR_APPLET indicator libido-0.1 dbusmenu-gtk)
-if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1" AND "${DBUSMENU_FOUND}" STREQUAL "1")
+# Note: the names of dbusmenu-glib and dbusmenu-gtk have changed...
+pkg_check_modules (DBUSMENU_04 QUIET dbusmenu-glib-0.4)
+pkg_check_modules (DBUSMENU_GTK_04 QUIET dbusmenu-gtk-0.4)
+pkg_check_modules (INDICATOR_APPLET indicator libido-0.1)
+if ("${DBUSMENU_04_FOUND}" STREQUAL "1")
+	pkg_check_modules (DBUSMENU dbusmenu-glib-0.4)
+	# set (DBUSMENU_EXT "-0.4")
+else()
+	pkg_check_modules (DBUSMENU dbusmenu-glib)
+endif()
+if ("${DBUSMENU_GTK_04_FOUND}" STREQUAL "1")
+	pkg_check_modules (DBUSMENU_GTK dbusmenu-gtk-0.4)
+	# set (DBUSMENU_GTK_EXT "-0.4")
+else()
+	pkg_check_modules (DBUSMENU_GTK dbusmenu-gtk)
+endif()
+if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1" AND "${DBUSMENU_FOUND}" STREQUAL "1" AND "${DBUSMENU_GTK_FOUND}" STREQUAL "1")
 	add_subdirectory (Indicator-applet)
+	set (with_indicator "yes")
 endif()
 
 ############# ILLUSION #################
@@ -470,7 +485,7 @@ endif()
 
 ############# MEMENU #################
 set (with_me_menu "no")
-if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1" AND "${DBUSMENU_FOUND}" STREQUAL "1")
+if ("${with_indicator}" STREQUAL "yes")
 	message (STATUS "DBUSMENU_VERSION : ${DBUSMENU_VERSION}")
 	
 	STRING (REGEX REPLACE "\\..*" "" DBUSMENU_MAJOR "${DBUSMENU_VERSION}")
@@ -495,7 +510,7 @@ endif()
 
 ############# MESSAGING_MENU #################
 set (with_messaging_menu "no")
-if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1" AND "${DBUSMENU_FOUND}" STREQUAL "1")
+if ("${with_indicator}" STREQUAL "yes")
 	set (GETTEXT_MESSAGING_MENU ${GETTEXT_PLUGINS})
 	set (VERSION_MESSAGING_MENU "0.0.1")
 	set (PACKAGE_MESSAGING_MENU "cd-Messaging-Menu")
@@ -657,8 +672,7 @@ add_subdirectory (stack)
 ############# STATUS NOTIFIER #################
 set (with_status_notifier "no")
 if ("${enable-status-notifier}" STREQUAL "yes")
-	pkg_check_modules (STATUS_NOTIFIER dbusmenu-gtk)
-	if ("${STATUS_NOTIFIER_FOUND}" STREQUAL "")
+	if ("${DBUSMENU_GTK_FOUND}" STREQUAL "")
 		message (STATUS "Could not find Status-Notifier libs; Cairo-Dock won't be built with Status-Notifier support.")
 	else()
 		set (GETTEXT_STATUS_NOTIFIER ${GETTEXT_PLUGINS})

@@ -25,15 +25,15 @@ add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 
 include_directories (
 	${PACKAGE_INCLUDE_DIRS}
-	${STATUS_NOTIFIER_INCLUDE_DIRS})
+	${DBUSMENU_GTK_INCLUDE_DIRS})
 
 link_directories (
 	${PACKAGE_LIBRARY_DIRS}
-	${STATUS_NOTIFIER_LIBRARY_DIRS})
+	${DBUSMENU_GTK_LIBRARY_DIRS})
 
 target_link_libraries (${PACKAGE_STATUS_NOTIFIER}
 	${PACKAGE_LIBRARIES}
-	${STATUS_NOTIFIER_LIBRARIES})
+	${DBUSMENU_GTK_LIBRARIES})
 
 ########### install files ###############
 
