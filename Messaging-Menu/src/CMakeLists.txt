@@ -29,7 +29,7 @@ add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
 include_directories (
 	${PACKAGE_INCLUDE_DIRS}
 	${DBUSMENU_INCLUDE_DIRS}
-	${DBUSMENU_GTK_LIBRARY_DIRS}
+	${DBUSMENU_GTK_INCLUDE_DIRS}
 	${INDICATOR_APPLET_INCLUDE_DIRS}
 	${CMAKE_SOURCE_DIR}/Indicator-applet)
 
@@ -43,7 +43,7 @@ link_directories (
 target_link_libraries (${PACKAGE_MESSAGING_MENU}
 	${PACKAGE_LIBRARIES}
 	${DBUSMENU_LIBRARIES}
-	${DBUSMENU_GTK_LIBRARY_DIRS}
+	${DBUSMENU_GTK_LIBRARIES}
 	${INDICATOR_APPLET_LIBRARIES}
 	indicator-applet)
 ########### install files ###############

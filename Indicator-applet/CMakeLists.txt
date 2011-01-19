@@ -17,7 +17,7 @@ link_directories(
 include_directories(
 	${PACKAGE_INCLUDE_DIRS}
 	${DBUSMENU_INCLUDE_DIRS}
-	${DBUSMENU_GTK_LIBRARY_DIRS}
+	${DBUSMENU_GTK_INCLUDE_DIRS}
 	${INDICATOR_APPLET_INCLUDE_DIRS})
 
 ########### install files ###############
