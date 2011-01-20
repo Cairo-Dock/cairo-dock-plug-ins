@@ -3,19 +3,18 @@
 #[gtk-about]
 [Icon]
 
-#j[0;128] Desired icon size for this applet
-#{Set to 0 to use the default applet size}
-icon size = 0;0
+#F[Applet]
+frame_maininfo=
+
+#d Name of the dock it belongs to:
+dock name = 
 
 #s Name of the icon as it will appear in its caption in the dock:
 #{Let empty to use the name of the folder.}
 name =
 
-#d Name of the dock it belongs to:
-dock name = 
-
-#v
-sep_icon=
+#F[Display]
+frame_display=
 
 #Y[Use an image;1;1;Draw sub-dock's content as emblems;0;0;Draw sub-dock's content as stack;0;0;Draw sub-dock's content inside a box;0;0] How to render the icon :
 view type = 3
@@ -25,6 +24,11 @@ view type = 3
 image file = 
 
 icon =
+
+#j[0;128] Desired icon size for this applet
+#{Set to 0 to use the default applet size}
+icon size = 0;0
+
 order=
 
 #F[Applet's Handbook]

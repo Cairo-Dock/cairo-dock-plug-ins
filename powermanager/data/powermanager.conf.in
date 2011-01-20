@@ -3,20 +3,27 @@
 #[gtk-about]
 [Icon]
 
-#j+[0;128] Desired icon size for this applet
-#{Set to 0 to use the default applet size}
-icon size = 0;0
-
-#s Icon name:
-name = Battery
+#F[Applet]
+frame_maininfo=
 
 #d Name of the dock it belongs to:
 dock name = 
 
+#s Icon name:
+name = Battery
+
+#F[Display]
+frame_display=
+
+icon=
+
+#j+[0;128] Desired icon size for this applet
+#{Set to 0 to use the default applet size}
+icon size = 0;0
+
 #b Always display the icon, even when the dock is hidden?
 always visi = false
 
-icon=
 order=
 
 #F[Applet's Handbook]

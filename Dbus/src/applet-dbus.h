@@ -24,6 +24,8 @@
 #include "applet-struct.h"
 
 
+void cd_dbus_clean_up_processes (gboolean bAll);
+
 void cd_dbus_launch_service (void);
 
 

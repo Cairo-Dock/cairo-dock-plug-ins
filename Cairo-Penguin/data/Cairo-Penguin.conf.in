@@ -2,15 +2,24 @@
 
 #[gtk-about]
 [Icon]
-#j+[0;128] Icon size for busy penguin:
-#{Set to 0 to use the default applet size}
-icon size = 0;0
 
-#s Icon name for busy penguin:
-name = 
+#F[Applet]
+frame_maininfo=
 
 #d Name of the dock it belongs to:
 dock name = 
+
+#s Name of the icon as it will appear in its caption in the dock:
+name = 
+
+#F[Display]
+frame_display=
+
+icon =
+
+#j+[0;128] Icon size for busy penguin:
+#{Set to 0 to use the default applet size}
+icon size = 0;0
 
 order = 
 

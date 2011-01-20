@@ -33,7 +33,8 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 
 ******************************************************************************/
 
-#include <fcntl.h>  // open
+#include <fcntl.h>  // O_RDONLY
+#include <unistd.h>  // open, read, close
 #define __USE_POSIX
 #include <signal.h>  // kill
 #include <glib.h>
@@ -45,6 +46,7 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 #include "interface-applet-object.h"
 #include "interface-applet-signals.h"
 #include "applet-dbus.h"
+
 
   ///////////////////
  /// MAIN OBJECT ///
@@ -336,7 +338,7 @@ static void _on_got_list (GHashTable *pPackagesTable, gpointer data)
  /// SERVICE ///
 ///////////////
 
-static void _clean_up_processes (void)
+void cd_dbus_clean_up_processes (gboolean bAll)
 {
 	static gchar cFilePathBuffer[23+1];  // /proc/12345/cmdline + 4octets de marge.
 	static gchar cContent[512+1];
@@ -393,7 +395,7 @@ static void _clean_up_processes (void)
 		
 		// found, kill the applet process.
 		gchar *cProcFile = g_strdup_printf ("/proc/%d", iPPid);
-		if (! g_file_test (cProcFile, G_FILE_TEST_EXISTS))  // old process
+		if (bAll || ! g_file_test (cProcFile, G_FILE_TEST_EXISTS))  // old process
 		{
 			g_print ("this applet (%s %s) is linked to an old gldi process (%d), kill it.\n", cContent, cPid, iPPid);
 			iPid = atoi (cPid);
@@ -433,7 +435,7 @@ void cd_dbus_launch_service (void)
 	g_free (cName2);
 	
 	//\____________ kill all the orphean applets (for instance if the dock has crashed, or if it was interrupted by a CTRL+C, or if it stopped and the applet was busy and didn't receive the stop event (dbus-timeout)).
-	_clean_up_processes ();
+	cd_dbus_clean_up_processes (FALSE);  // FALSE <=> from old gldi instances
 	
 	//\____________ Register the service name (the service name is registerd once by the first gldi instance).
 	cairo_dock_register_service_name ("org.cairodock.CairoDock");  /// what happens if the gldi instance that had registered the name quits while a 2nd instance remains ? do we need to queue ?...

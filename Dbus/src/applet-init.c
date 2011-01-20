@@ -25,6 +25,10 @@
 #include "interface-applet-signals.h"
 #include "applet-init.h"
 
+static AppletData s_myDataCopy;
+
+static void cd_dbus_save_my_data (CairoDockModuleInstance *myApplet);
+
 
 CD_APPLET_DEFINE_BEGIN ("Dbus",
 	2, 2, 1,
@@ -34,6 +38,7 @@ CD_APPLET_DEFINE_BEGIN ("Dbus",
 	"Necropotame & Fabounet")
 	pInterface->initModule = CD_APPLET_INIT_FUNC;  // no stop method -> the plug-in will be auto-loaded.
 	pInterface->read_conf_file = CD_APPLET_READ_CONFIG_FUNC;  /// inutile je pense...
+	pInterface->reset_data = cd_dbus_save_my_data;
 	CD_APPLET_REDEFINE_TITLE ("DBus");
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
 CD_APPLET_DEFINE_END
@@ -41,14 +46,26 @@ CD_APPLET_DEFINE_END
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
-	static gboolean bInitialized = FALSE;
-	if (bInitialized)
-		return;
-	bInitialized = TRUE;
-	cd_dbus_launch_service ();
-	cairo_dock_register_notification_on_object (&myContainersMgr,
-		NOTIFICATION_DROP_DATA,
-		(CairoDockNotificationFunc) cd_dbus_applet_emit_on_drop_data,
-		CAIRO_DOCK_RUN_FIRST,
-		NULL);  // to register new applets by dropping a package on the dock.
+	static gboolean s_bInitialized = FALSE;
+	if (!s_bInitialized)  // since the service lives on the bus, only launch it once.
+	{
+		s_bInitialized = TRUE;
+		cd_dbus_launch_service ();
+		cairo_dock_register_notification_on_object (&myContainersMgr,
+			NOTIFICATION_DROP_DATA,
+			(CairoDockNotificationFunc) cd_dbus_applet_emit_on_drop_data,
+			CAIRO_DOCK_RUN_FIRST,
+			NULL);  // to register new applets by dropping a package on the dock.
+	}
+	else
+	{
+		memcpy (myDataPtr, &s_myDataCopy, sizeof (AppletData));
+		cd_dbus_clean_up_processes (TRUE);  // TRUE <=> including applets spawned from our process.
+	}
 CD_APPLET_INIT_END
+
+
+static void cd_dbus_save_my_data (CairoDockModuleInstance *myApplet)
+{
+	memcpy (&s_myDataCopy, myDataPtr, sizeof (AppletData));
+}

@@ -2,18 +2,26 @@
 
 #[gtk-about]
 [Icon]
-#j+[0;128] Desired icon size for this applet
-#{Set to 0 to use the default applet size}
-icon size = 0;0
+
+#F[Applet]
+frame_maininfo=
+
+#d Name of the dock it belongs to:
+dock name = 
 
 #s Name of the icon as it will appear in its caption in the dock:
 #{Leave empty to use the name of the city.}
 name = 
 
-#d Name of the dock it belongs to:
-dock name = 
+#F[Display]
+frame_display=
 
 icon=
+
+#j+[0;128] Desired icon size for this applet
+#{Set to 0 to use the default applet size}
+icon size = 0;0
+
 order=
 
 #F[Applet's Handbook]

@@ -107,7 +107,7 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 			0,
 			NULL, NULL,
 			cd_dbus_marshal_VOID__VALUE,
-			G_TYPE_NONE, 1, G_TYPE_VALUE);
+			G_TYPE_NONE, 1, G_TYPE_VALUE);  // deprecated
 	s_iSignals[ANSWER_DIALOG] =
 		g_signal_new("on_answer_dialog",
 			G_OBJECT_CLASS_TYPE(klass),
@@ -168,7 +168,7 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass)
 		dbus_g_proxy_add_signal(pProxy, "on_change_focus",
 			G_TYPE_BOOLEAN, G_TYPE_INVALID);
 		dbus_g_proxy_add_signal(pProxy, "on_answer",
-			G_TYPE_VALUE, G_TYPE_INVALID);
+			G_TYPE_VALUE, G_TYPE_INVALID);  // deprecated
 		dbus_g_proxy_add_signal(pProxy, "on_answer_dialog",
 			G_TYPE_VALUE, G_TYPE_INVALID);
 		dbus_g_proxy_add_signal(pProxy, "on_shortkey",
@@ -377,7 +377,6 @@ gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, C
 	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pAppletIcon->pModuleInstance);
 	g_return_val_if_fail (pDbusApplet != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	myData.pCurrentMenuDbusApplet = pDbusApplet;
-	myData.pCurrentMenuIcon = pClickedIcon;
 	
 	if (pClickedIcon == pAppletIcon)
 		g_signal_emit (pDbusApplet, s_iSignals[BUILD_MENU], 0);
@@ -388,7 +387,7 @@ gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, C
 
 void cd_dbus_emit_on_menu_select (GtkMenuItem *pMenuItem, gpointer data)
 {
-	g_return_if_fail (myData.pCurrentMenuIcon != NULL);
+	g_return_if_fail (myData.pCurrentMenuDbusApplet != NULL);
 	if (GTK_IS_RADIO_MENU_ITEM (pMenuItem))
 	{
 		if (!gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM (pMenuItem)))
@@ -396,11 +395,6 @@ void cd_dbus_emit_on_menu_select (GtkMenuItem *pMenuItem, gpointer data)
 	}
 	
 	int iNumEntry = GPOINTER_TO_INT (data);
-	/**gchar *cIconID = myData.pCurrentMenuIcon->cCommand;  // NULL si c'est l'icone principale.
-	if (cIconID == NULL)
-		g_signal_emit (myData.pCurrentMenuDbusApplet, s_iSignals[MENU_SELECT], 0, iNumEntry);
-	else if (myData.pCurrentMenuDbusApplet->pSubApplet != NULL)
-		g_signal_emit (myData.pCurrentMenuDbusApplet->pSubApplet, s_iSubSignals[MENU_SELECT], 0, iNumEntry, cIconID);*/
 	g_signal_emit (myData.pCurrentMenuDbusApplet, s_iSignals[MENU_SELECT], 0, iNumEntry);  // since there can only be 1 menu at once, and the applet knows when the menu is raised, there is no need to pass the icon in the signal: the applet can remember the clicked icon when it received the 'build-menu' event.
 }
 
@@ -530,15 +524,9 @@ gboolean cd_dbus_applet_emit_on_change_focus (gpointer data, Window *xNewActiveW
 }
 
 
+// deprecated
 static inline void _emit_answer (dbusApplet *pDbusApplet, CairoDialog *pDialog, GValue *v)
 {
-	/**Icon *pClickedIcon = pDialog->pIcon;
-	Icon *pAppletIcon = pDbusApplet->pModuleInstance->pIcon;
-	
-	if (pClickedIcon == pAppletIcon)
-		g_signal_emit (pDbusApplet, s_iSignals[ANSWER], 0, v);
-	else if (pDbusApplet->pSubApplet != NULL)
-		g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[ANSWER], 0, v, pClickedIcon->cCommand);*/
 	g_signal_emit (pDbusApplet, s_iSignals[ANSWER], 0, v);  // same remark as for the menu: 1 dialog at once, the applet knows when the dialog is raised, so it can just remember the clicked icon; we don't need to tell it.
 	
 	pDbusApplet->pDialog = NULL;
@@ -572,17 +560,12 @@ void cd_dbus_applet_emit_on_answer_text (int iClickedButton, GtkWidget *pInterac
 	
 	_emit_answer (pDbusApplet, pDialog, &v);
 }
+// end of deprecated
 
 
 static inline void _emit_answer_dialog (dbusApplet *pDbusApplet, CairoDialog *pDialog, int iClickedButton, GValue *v)
 {
-	/**Icon *pClickedIcon = pDialog->pIcon;
-	Icon *pAppletIcon = pDbusApplet->pModuleInstance->pIcon;
-	if (pClickedIcon == pAppletIcon)
-		g_signal_emit (pDbusApplet, s_iSignals[ANSWER_DIALOG], 0, iClickedButton, v);
-	//else if (pDbusApplet->pSubApplet != NULL)
-	//	g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[ANSWER], 0, iClickedButton, v, pClickedIcon->cCommand);*/
-	g_signal_emit (pDbusApplet, s_iSignals[ANSWER_DIALOG], 0, iClickedButton, v);
+	g_signal_emit (pDbusApplet, s_iSignals[ANSWER_DIALOG], 0, iClickedButton, v);  // same remark as for the menu: 1 dialog at once, the applet knows when the dialog is raised, so it can just remember the clicked icon; we don't need to tell it.
 	
 	pDbusApplet->pDialog = NULL;
 }

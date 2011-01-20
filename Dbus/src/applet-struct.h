@@ -108,9 +108,7 @@ struct _AppletData {
 	GList *pAppletList;
 	GtkWidget *pModuleSubMenu;
 	GtkWidget *pModuleMainMenu;
-	Icon *pCurrentMenuIcon;
 	dbusApplet *pCurrentMenuDbusApplet;
-	gboolean bKeepObjectAlive;
 	Window xActiveWindow;
 	CairoDockTask *pGetListTask;
 	GList *pUpdateTasksList;

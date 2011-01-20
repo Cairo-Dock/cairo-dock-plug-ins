@@ -3,17 +3,24 @@
 #[gtk-about]
 [Icon]
 
-#j[0;128] Desired icon size for this applet
-#{Set to 0 to use the default applet size}
-icon size = 0;0
-
-name = 
+#F[Applet]
+frame_maininfo=
 
 #d Name of the dock it belongs to:
 dock name = 
 
-order=
+name = 
+
+#F[Display]
+frame_display=
+
 icon=
+
+#j[0;128] Desired icon size for this applet
+#{Set to 0 to use the default applet size}
+icon size = 0;0
+
+order=
 
 #F[Applet's Handbook]
 frame_hand=

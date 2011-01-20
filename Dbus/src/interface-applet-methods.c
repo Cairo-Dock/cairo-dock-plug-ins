@@ -169,6 +169,7 @@ static gboolean _applet_show_dialog (dbusApplet *pDbusApplet, const gchar *messa
 	return TRUE;
 }
 
+// deprecated
 static gboolean _applet_ask_question (dbusApplet *pDbusApplet, const gchar *cMessage, const gchar *cIconID, GError **error)
 {
 	Icon *pIcon;
@@ -207,6 +208,7 @@ static gboolean _applet_ask_text (dbusApplet *pDbusApplet, const gchar *cMessage
 	pDbusApplet->pDialog = cairo_dock_show_dialog_with_entry (cMessage, pIcon, pContainer, "same icon", cInitialText, (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_text, pDbusApplet, NULL);
 	return TRUE;
 }
+// end of deprecated
 
 static void _on_text_changed (GtkWidget *pEntry, GtkWidget *pLabel)
 {
@@ -553,6 +555,7 @@ gboolean cd_dbus_sub_applet_show_dialog (dbusSubApplet *pDbusSubApplet, const gc
 	return _applet_show_dialog (pDbusSubApplet->pApplet, cMessage, iDuration, cIconID, error);
 }
 
+// deprecated
 gboolean cd_dbus_sub_applet_ask_question (dbusSubApplet *pDbusSubApplet, const gchar *cMessage, const gchar *cIconID, GError **error)
 {
 	return _applet_ask_question (pDbusSubApplet->pApplet, cMessage, cIconID, error);
@@ -567,6 +570,7 @@ gboolean cd_dbus_sub_applet_ask_text (dbusSubApplet *pDbusSubApplet, const gchar
 {
 	return _applet_ask_text (pDbusSubApplet->pApplet, cMessage, cInitialText, cIconID, error);
 }
+// end of deprecated
 
 gboolean cd_dbus_sub_applet_popup_dialog (dbusSubApplet *pDbusSubApplet, GHashTable *hDialogAttributes, GHashTable *hWidgetAttributes, const gchar *cIconID, GError **error)
 {
@@ -759,6 +763,7 @@ gboolean cd_dbus_applet_show_dialog (dbusApplet *pDbusApplet, const gchar *messa
 	return _applet_show_dialog (pDbusApplet, message, iDuration, NULL, error);
 }
 
+// deprecated
 gboolean cd_dbus_applet_ask_question (dbusApplet *pDbusApplet, const gchar *message, GError **error)
 {
 	cd_debug ("%s (%s)\n", __func__, message);
@@ -776,6 +781,7 @@ gboolean cd_dbus_applet_ask_text (dbusApplet *pDbusApplet, const gchar *message,
 	cd_debug ("%s (%s)\n", __func__, message);
 	return _applet_ask_text (pDbusApplet, message, cInitialText, NULL, error);
 }
+// end of deprecated
 
 gboolean cd_dbus_applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDialogAttributes, GHashTable *hWidgetAttributes, GError **error)
 {
