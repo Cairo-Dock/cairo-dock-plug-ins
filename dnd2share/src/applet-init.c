@@ -25,6 +25,7 @@
 #include "applet-struct.h"
 #include "applet-dnd2share.h"
 #include "applet-backend-pastebin.h"
+#include "applet-backend-paste-ubuntu.h"
 #include "applet-backend-uppix.h"
 #include "applet-backend-imagebin.h"
 #include "applet-backend-imageshack.h"
@@ -79,6 +80,7 @@ CD_APPLET_INIT_BEGIN
 	cd_dnd2share_register_custom_backends ();
 	// text backends
 	cd_dnd2share_register_pastebin_backend ();
+	cd_dnd2share_register_paste_ubuntu_backend ();
 	// image backends
 	cd_dnd2share_register_uppix_backend ();
 	cd_dnd2share_register_imagebin_backend ();

@@ -759,7 +759,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 	
 	//\_____________ On genere les coordonnees du contour.
 	double fDeltaXTrapeze;
-	const CairoDockGLPath *pFramePath = cairo_dock_generate_trapeze_path (w - (/**myDocksParam.bRoundedBottomCorner*/TRUE ? 0 : 2*l/gamma), h+l, r, /**myDocksParam.bRoundedBottomCorner*/TRUE, gamma, &fDeltaXTrapeze);
+	const CairoDockGLPath *pFramePath = cairo_dock_generate_trapeze_path (w - (/**myDocksParam.bRoundedBottomCorner*/TRUE ? 0 : 2*l/gamma), h+l, r, myDocksParam.bRoundedBottomCorner, gamma, &fDeltaXTrapeze);
 	dx = dx - fDeltaXTrapeze;
 	dy = pDock->iDecorationsHeight + 1.5*l;
 	

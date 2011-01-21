@@ -157,7 +157,7 @@ static void _cd_dnd2share_threaded_upload (gchar *cFilePath)
 static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 {
 	CD_APPLET_ENTER;
-	if (myData.cResultUrls == NULL)  // une erreur s'est produite.
+	if (myData.cResultUrls == NULL || myData.cResultUrls[0] == NULL)  // une erreur s'est produite.
 	{
 		cairo_dock_remove_dialog_if_any (myIcon);
 		cairo_dock_show_temporary_dialog_with_icon (D_("Couldn't upload the file, check that your internet connexion is active."),
@@ -289,13 +289,11 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 				CD_APPLET_SET_IMAGE_ON_MY_ICON (cFilePath);
 			else
 				CD_APPLET_SET_IMAGE_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
-			//CD_APPLET_REDRAW_MY_ICON;
 		}
 	}
 	
 	// On arrete son animation.
 	CD_APPLET_STOP_DEMANDING_ATTENTION;
-	//CD_APPLET_REDRAW_MY_ICON;  // pour ne pas s'arreter au milieu de l'animation.
 	
 	// On nettoie la memoire partagee.
 	cairo_dock_free_task (myData.pTask);
@@ -303,8 +301,10 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 	g_free (myData.cCurrentFilePath);
 	myData.cCurrentFilePath = NULL;
 	if (myData.cResultUrls)
+	{
 		g_strfreev (myData.cResultUrls);
-	myData.cResultUrls = NULL;
+		myData.cResultUrls = NULL;
+	}
 	if (myData.cTmpFilePath != NULL)
 	{
 		g_remove (myData.cTmpFilePath);
@@ -312,7 +312,6 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 		myData.cTmpFilePath = NULL;
 	}
 	CD_APPLET_LEAVE (FALSE);
-	//return FALSE;
 }
 void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 {

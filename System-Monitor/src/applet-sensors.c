@@ -185,7 +185,7 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 					if (limit2 <= limit1 + 1)
 						limit2 = limit1 + 1;
 					
-					double fCpuTempPercent = 100. * (limit2 - val) / (limit2 - limit1);
+					double fCpuTempPercent = 100. * (val - limit1) / (limit2 - limit1);
 					if (fCpuTempPercent > fCpuTempPercentMax)  // on ne va garder qu'une seule valeur : celle qui est la plus grande en valeur relative.
 					{
 						fCpuTempPercentMax = fCpuTempPercent;

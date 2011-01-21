@@ -26,11 +26,10 @@
 
 #include "applet-struct.h"
 #include "applet-dnd2share.h"
-#include "applet-backend-pastebin.h"
+#include "applet-backend-paste-ubuntu.h"
 
-#define URL "http://pastebin.com/api_public.php"
+#define URL "http://paste.ubuntu.com"
 #define FORMAT "text"
-#define EXPIRE "1M"
 
 #define NB_URLS 1
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
@@ -40,9 +39,9 @@ static void upload (const gchar *cText)
 {
 	GError *erreur = NULL;
 	gchar *cContent = cairo_dock_get_url_data_with_post (URL, &erreur,
-		"paste_code", cText,
-		"paste_expire_date", EXPIRE,
-		"paste_format", FORMAT,
+		"content", cText,
+		"poster", (myConfig.bAnonymous ? "Anonymous" : g_getenv("USER")),
+		"syntax", FORMAT,
 		NULL);
 	if (erreur)
 	{
@@ -56,11 +55,10 @@ static void upload (const gchar *cText)
 	}
 }
 
-
-void cd_dnd2share_register_pastebin_backend (void)
+void cd_dnd2share_register_paste_ubuntu_backend (void)
 {
 	cd_dnd2share_register_new_backend (CD_TYPE_TEXT,
-		"pastebin.com",
+		"paste-ubuntu.com",
 		NB_URLS,
 		s_UrlLabels,
 		0,
