@@ -55,7 +55,7 @@ extern gdouble my_diapo_simple_color_grip[4];
 
 const gint X_BORDER_SPACE = 40;  // espace laisse de chaque cote pour eviter de sortir trop facilement (et pour laisser de la place pour les etiquettes).
 const gint ARROW_TIP = 5;  // pour gerer la pointe de la fleche.
-const double fArrowHeight = 14, fScrollbarWidth = 10, fScrollbarArrowGap = 4;
+const double fArrowHeight = 14, fScrollbarWidth = 10, fScrollbarArrowGap = 4, fScrollbarRadius = 5;
 const double fScrollbarIconGap = 10;
 /// On considere qu'on a my_diapo_simple_iconGapX entre chaque icone horizontalement, et my_diapo_simple_iconGapX/2 entre les icones et les bords (pour aerer un peu plus le dessin). Idem verticalement. X_BORDER_SPACE est la pour empecher que les icones debordent de la fenetre au zoom.
 
@@ -197,13 +197,13 @@ gboolean _cd_slide_on_press_button (GtkWidget* pWidget, GdkEventButton* pButton,
 			double y_arrow_top, y_arrow_bottom;
 			if (pDock->container.bDirectionUp)
 			{
-				y_arrow_bottom = pDock->iMaxDockHeight - (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);
-				y_arrow_top = my_diapo_simple_lineWidth;
+				y_arrow_bottom = pDock->iMaxDockHeight - (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth + my_diapo_simple_radius);
+				y_arrow_top = my_diapo_simple_lineWidth + my_diapo_simple_radius;
 			}
 			else
 			{
-				y_arrow_bottom = pDock->iMaxDockHeight - my_diapo_simple_lineWidth;
-				y_arrow_top = my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth;
+				y_arrow_bottom = pDock->iMaxDockHeight - my_diapo_simple_lineWidth - my_diapo_simple_radius;
+				y_arrow_top = my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth + my_diapo_simple_radius;
 			}
 			if (y > y_arrow_top - fScrollbarArrowGap/2 && y < y_arrow_top + fArrowHeight + fScrollbarArrowGap/2)  // bouton haut
 			{
@@ -242,13 +242,13 @@ static gboolean _cd_slide_on_mouse_moved (gpointer data, CairoDock *pDock, gbool
 		double y_arrow_top, y_arrow_bottom;
 		if (pDock->container.bDirectionUp)
 		{
-			y_arrow_bottom = my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth;
-			y_arrow_top = pDock->iMaxDockHeight - my_diapo_simple_lineWidth;
+			y_arrow_bottom = my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth + my_diapo_simple_radius;
+			y_arrow_top = pDock->iMaxDockHeight - my_diapo_simple_lineWidth - my_diapo_simple_radius;
 		}
 		else
 		{
-			y_arrow_top = pDock->iMaxDockHeight - (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);
-			y_arrow_bottom = my_diapo_simple_lineWidth;
+			y_arrow_top = pDock->iMaxDockHeight - (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth + my_diapo_simple_radius);
+			y_arrow_bottom = my_diapo_simple_lineWidth + my_diapo_simple_radius;
 		}
 		double fFrameHeight = pDock->iMaxDockHeight- (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);  // hauteur du cadre avec les rayons et sans la pointe.
 		double fGripHeight = fFrameHeight / (fFrameHeight + pData->iDeltaHeight) * (y_arrow_top - y_arrow_bottom - 2*(fArrowHeight+fScrollbarArrowGap));
@@ -607,13 +607,13 @@ static void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock 
 		double y_arrow_top, y_arrow_bottom;
 		if (pDock->container.bDirectionUp)
 		{
-			y_arrow_bottom = pDock->iMaxDockHeight - (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);
-			y_arrow_top = my_diapo_simple_lineWidth;
+			y_arrow_bottom = pDock->iMaxDockHeight - (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth + my_diapo_simple_radius);
+			y_arrow_top = my_diapo_simple_lineWidth + my_diapo_simple_radius;
 		}
 		else
 		{
-			y_arrow_top = my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth;
-			y_arrow_bottom = pDock->iMaxDockHeight - my_diapo_simple_lineWidth;
+			y_arrow_top = my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth + my_diapo_simple_radius;
+			y_arrow_bottom = pDock->iMaxDockHeight - my_diapo_simple_lineWidth - my_diapo_simple_radius;
 		}
 		if (pData->iScrollOffset != 0)  // fleche vers le haut.
 		{
@@ -1090,6 +1090,7 @@ static const GLfloat *cd_generate_color_tab (double fAlpha, GLfloat *pMiddleBott
 	return pColorTab;
 }
 
+#define N_ROUND 7
 static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 {
 	static CairoDockGLPath *pScrollPath = NULL;
@@ -1151,7 +1152,7 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 	if (pData->iDeltaHeight != 0)
 	{
 		if (pScrollPath == NULL)
-			pScrollPath = cairo_dock_new_gl_path (4, 0., 0., 0, 0);  // des triangles ou des rectangles => 4 points max.
+			pScrollPath = cairo_dock_new_gl_path (N_ROUND + 5, 0., 0., 0, 0);  // un arc + le sommet + la base
 		glLineWidth (2.);
 		glPushMatrix ();
 		if (!pDock->container.bIsHorizontal)
@@ -1165,19 +1166,25 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 		double y_arrow_top, y_arrow_bottom;
 		if (pDock->container.bDirectionUp)
 		{
-			y_arrow_bottom = my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth;
-			y_arrow_top = pDock->iMaxDockHeight - my_diapo_simple_lineWidth;
+			y_arrow_bottom = my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth + my_diapo_simple_radius;
+			y_arrow_top = pDock->iMaxDockHeight - my_diapo_simple_lineWidth - my_diapo_simple_radius;
 		}
 		else
 		{
-			y_arrow_top = pDock->iMaxDockHeight - (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);
-			y_arrow_bottom = my_diapo_simple_lineWidth;
+			y_arrow_top = pDock->iMaxDockHeight - (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth + my_diapo_simple_radius);
+			y_arrow_bottom = my_diapo_simple_lineWidth + my_diapo_simple_radius;
 		}
+		
 		if (pData->iScrollOffset != 0)  // fleche vers le haut.
 		{
 			cairo_dock_gl_path_move_to (pScrollPath, x_arrow, y_arrow_top);
 			cairo_dock_gl_path_rel_line_to (pScrollPath, fScrollbarWidth/2, -fArrowHeight);
-			cairo_dock_gl_path_rel_line_to (pScrollPath, -fScrollbarWidth, 0.);
+			///cairo_dock_gl_path_rel_line_to (pScrollPath, -fScrollbarWidth, 0.);
+			cairo_dock_gl_path_rel_line_to (pScrollPath, 0., -fScrollbarArrowGap);
+			cairo_dock_gl_path_rel_simple_curve_to (pScrollPath, N_ROUND, 
+				-fScrollbarWidth/2, 4*fScrollbarRadius/3,  // hauteur de controle pour atteindre la meme hauteur que l'arc de la barre.
+				-fScrollbarWidth, 0.);
+			cairo_dock_gl_path_rel_line_to (pScrollPath, 0., fScrollbarArrowGap);
 			
 			glColor4f (my_diapo_simple_color_scrollbar_inside[0], my_diapo_simple_color_scrollbar_inside[1], my_diapo_simple_color_scrollbar_inside[2], my_diapo_simple_color_scrollbar_inside[3] * fAlpha);
 			cairo_dock_fill_gl_path (pScrollPath, 0);
@@ -1189,7 +1196,12 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 		{
 			cairo_dock_gl_path_move_to (pScrollPath, x_arrow, y_arrow_bottom);
 			cairo_dock_gl_path_rel_line_to (pScrollPath, fScrollbarWidth/2, fArrowHeight);
-			cairo_dock_gl_path_rel_line_to (pScrollPath, -fScrollbarWidth, 0.);
+			///cairo_dock_gl_path_rel_line_to (pScrollPath, -fScrollbarWidth, 0.);
+			cairo_dock_gl_path_rel_line_to (pScrollPath, 0., fScrollbarArrowGap);
+			cairo_dock_gl_path_rel_simple_curve_to (pScrollPath, N_ROUND, 
+				-fScrollbarWidth/2, -(fScrollbarArrowGap + 4*fScrollbarRadius/3),
+				-fScrollbarWidth, 0.);
+			cairo_dock_gl_path_rel_line_to (pScrollPath, 0., -fScrollbarArrowGap);
 			
 			glColor4f (my_diapo_simple_color_scrollbar_inside[0], my_diapo_simple_color_scrollbar_inside[1], my_diapo_simple_color_scrollbar_inside[2], my_diapo_simple_color_scrollbar_inside[3] * fAlpha);
 			cairo_dock_fill_gl_path (pScrollPath, 0);
@@ -1199,26 +1211,43 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 		}
 		
 		// scrollbar outline
-		cairo_dock_gl_path_move_to (pScrollPath, x_arrow - fScrollbarWidth/2, y_arrow_bottom + fArrowHeight + fScrollbarArrowGap);
+		int iBarHeight = y_arrow_top - y_arrow_bottom - 2*(fArrowHeight+fScrollbarArrowGap);
+		const CairoDockGLPath *pPath = cairo_dock_generate_rectangle_path (fScrollbarWidth - 2*fScrollbarRadius,
+			iBarHeight,
+			fScrollbarRadius, TRUE);
+		/**cairo_dock_gl_path_move_to (pScrollPath, x_arrow - fScrollbarWidth/2, y_arrow_bottom + fArrowHeight + fScrollbarArrowGap);
 		cairo_dock_gl_path_rel_line_to (pScrollPath, fScrollbarWidth, 0.);
 		cairo_dock_gl_path_rel_line_to (pScrollPath, 0., y_arrow_top - y_arrow_bottom - 2*(fArrowHeight+fScrollbarArrowGap));
-		cairo_dock_gl_path_rel_line_to (pScrollPath, -fScrollbarWidth, 0.);
+		cairo_dock_gl_path_rel_line_to (pScrollPath, -fScrollbarWidth, 0.);*/
+		glPushMatrix ();
+		glTranslatef (x_arrow, (y_arrow_bottom + y_arrow_top)/2, 0.);
 		
 		glColor4f (my_diapo_simple_color_scrollbar_inside[0], my_diapo_simple_color_scrollbar_inside[1], my_diapo_simple_color_scrollbar_inside[2], my_diapo_simple_color_scrollbar_inside[3] * fAlpha);
-		cairo_dock_fill_gl_path (pScrollPath, 0);
+		cairo_dock_fill_gl_path (pPath, 0);
 		
 		glColor4f (my_diapo_simple_color_scrollbar_line[0], my_diapo_simple_color_scrollbar_line[1], my_diapo_simple_color_scrollbar_line[2], my_diapo_simple_color_scrollbar_line[3] * fAlpha);
-		cairo_dock_stroke_gl_path (pScrollPath, TRUE);
+		cairo_dock_stroke_gl_path (pPath, TRUE);
+		glPopMatrix ();
 		
 		// grip
 		double fGripHeight = fFrameHeight / (fFrameHeight + pData->iDeltaHeight) * (y_arrow_top - y_arrow_bottom - 2*(fArrowHeight+fScrollbarArrowGap));
+		if (fGripHeight < 2*fScrollbarRadius)
+			fGripHeight = 2*fScrollbarRadius;
 		double ygrip = (double) pData->iScrollOffset / pData->iDeltaHeight * (y_arrow_top - y_arrow_bottom - 2*(fArrowHeight+fScrollbarArrowGap) - fGripHeight);
-		glColor4f (my_diapo_simple_color_grip[0], my_diapo_simple_color_grip[1], my_diapo_simple_color_grip[2], my_diapo_simple_color_grip[3] * fAlpha);
-		cairo_dock_gl_path_move_to (pScrollPath, x_arrow - fScrollbarWidth/2, y_arrow_top - (fArrowHeight+fScrollbarArrowGap) - ygrip);
+		/**cairo_dock_gl_path_move_to (pScrollPath, x_arrow - fScrollbarWidth/2, y_arrow_top - (fArrowHeight+fScrollbarArrowGap) - ygrip);
 		cairo_dock_gl_path_rel_line_to (pScrollPath, fScrollbarWidth, 0.);
 		cairo_dock_gl_path_rel_line_to (pScrollPath, 0., - fGripHeight);
-		cairo_dock_gl_path_rel_line_to (pScrollPath, -fScrollbarWidth, 0.);
-		cairo_dock_fill_gl_path (pScrollPath, 0);
+		cairo_dock_gl_path_rel_line_to (pScrollPath, -fScrollbarWidth, 0.);*/
+		pPath = cairo_dock_generate_rectangle_path (fScrollbarWidth - 2*fScrollbarRadius - 2,
+			fGripHeight,
+			fScrollbarRadius, TRUE);
+		glPushMatrix ();
+		glTranslatef (x_arrow, y_arrow_top - (fArrowHeight+fScrollbarArrowGap) - ygrip - fGripHeight/2, 0.);
+		
+		glColor4f (my_diapo_simple_color_grip[0], my_diapo_simple_color_grip[1], my_diapo_simple_color_grip[2], my_diapo_simple_color_grip[3] * fAlpha);
+		cairo_dock_fill_gl_path (pPath, 0);
+		glPopMatrix ();
+
 		glPopMatrix ();
 	}
 	
