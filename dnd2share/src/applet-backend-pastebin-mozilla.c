@@ -26,30 +26,36 @@
 
 #include "applet-struct.h"
 #include "applet-dnd2share.h"
-#include "applet-backend-paste-ubuntu.h"
+#include "applet-backend-pastebin-mozilla.h"
 
-#define URL "http://paste.ubuntu.com"
+#define URL "http://pastebin.mozilla.org"
 #define FORMAT "text"
+#define EXPIRE "d"
 
 #define NB_URLS 1
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
 /*HTTP/1.1 302 Found
-Date: Sun, 23 Jan 2011 00:48:37 GMT
-Server: Apache/2.2.8 (Ubuntu) mod_python/3.3.1 Python/2.5.2 mod_ssl/2.2.8 OpenSSL/0.9.8g mod_wsgi/1.3 mod_perl/2.0.3 Perl/v5.8.8
-Vary: Cookie
-Content-Type: text/html; charset=utf-8
-Location: http://paste.ubuntu.com/557014/
-Content-Length: 0*/
+Date: Sun, 23 Jan 2011 00:57:12 GMT
+Server: Apache
+X-Backend-Server: pm-app-generic03
+X-Powered-By: PHP/5.2.9
+Location: http://pastebin.mozilla.org/972341
+Content-Length: 0
+Content-Type: text/html; charset=UTF-8*/
+
 
 static void upload (const gchar *cText)
 {
 	GError *erreur = NULL;
 	gchar *cResult = cairo_dock_get_url_data_with_post (URL, TRUE, &erreur,
-		"content", cText,
+		"code2", cText,
+		"expiry", EXPIRE,
+		"format", FORMAT,
+		"paste", "Send",
 		"poster", (myConfig.bAnonymous ? "Anonymous" : g_getenv("USER")),
-		"syntax", FORMAT,
-		"submit", "Paste!",
+		"remember", "0",
+		"parent_pid", "",
 		NULL);
 	if (erreur)
 	{
@@ -73,10 +79,11 @@ static void upload (const gchar *cText)
 	}
 }
 
-void cd_dnd2share_register_paste_ubuntu_backend (void)
+
+void cd_dnd2share_register_pastebin_mozilla_backend (void)
 {
 	cd_dnd2share_register_new_backend (CD_TYPE_TEXT,
-		"paste-ubuntu.com",
+		"pastebin-mozilla.org",
 		NB_URLS,
 		s_UrlLabels,
 		0,

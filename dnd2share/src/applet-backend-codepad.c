@@ -26,30 +26,31 @@
 
 #include "applet-struct.h"
 #include "applet-dnd2share.h"
-#include "applet-backend-paste-ubuntu.h"
+#include "applet-backend-pastebin.h"
 
-#define URL "http://paste.ubuntu.com"
-#define FORMAT "text"
+#define URL "http://codepad.org"
+#define FORMAT "Plain Text"
 
 #define NB_URLS 1
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
-/*HTTP/1.1 302 Found
-Date: Sun, 23 Jan 2011 00:48:37 GMT
-Server: Apache/2.2.8 (Ubuntu) mod_python/3.3.1 Python/2.5.2 mod_ssl/2.2.8 OpenSSL/0.9.8g mod_wsgi/1.3 mod_perl/2.0.3 Perl/v5.8.8
-Vary: Cookie
-Content-Type: text/html; charset=utf-8
-Location: http://paste.ubuntu.com/557014/
-Content-Length: 0*/
-
+/*<html>
+ <head>
+  <title>302 Found</title>
+ </head>
+ <body>
+  <h1>302 Found</h1>
+  The resource was found at <a href="http://codepad.org/INmbIYX2">http://codepad.org/INmbIYX2</a>;
+you should be redirected automatically.
+ </body>
+</html>'*/
 static void upload (const gchar *cText)
 {
 	GError *erreur = NULL;
-	gchar *cResult = cairo_dock_get_url_data_with_post (URL, TRUE, &erreur,
-		"content", cText,
-		"poster", (myConfig.bAnonymous ? "Anonymous" : g_getenv("USER")),
-		"syntax", FORMAT,
-		"submit", "Paste!",
+	gchar *cResult = cairo_dock_get_url_data_with_post (URL, FALSE, &erreur,
+		"code", cText,
+		"lang", FORMAT,
+		"submit", "Submit",
 		NULL);
 	if (erreur)
 	{
@@ -59,24 +60,17 @@ static void upload (const gchar *cText)
 	else if (cResult)
 	{
 		g_print (" --> got '%s'\n", cResult);
-		gchar *str = strstr (cResult, "Location:");
-		if (!str)
-			return;
-		str += 9;
-		while (*str == ' ')
-			str ++;
-		gchar *rc = strchr (str, '\r');  // les lignes du header sont separes par des CRLF (\r\n).
-		if (rc)
-			*rc = '\0';
-		myData.cResultUrls[0] = g_strdup (str);
-		g_free (cResult);
+		gchar *str = strstr (cResult, "http");
+		if (str)
+			myData.cResultUrls[0] = g_strdup (str);
 	}
 }
 
-void cd_dnd2share_register_paste_ubuntu_backend (void)
+
+void cd_dnd2share_register_codepad_backend (void)
 {
 	cd_dnd2share_register_new_backend (CD_TYPE_TEXT,
-		"paste-ubuntu.com",
+		"codepad.org",
 		NB_URLS,
 		s_UrlLabels,
 		0,

@@ -26,12 +26,15 @@
 #include "applet-dnd2share.h"
 #include "applet-backend-pastebin.h"
 #include "applet-backend-paste-ubuntu.h"
+#include "applet-backend-codepad.h"
+#include "applet-backend-pastebin-mozilla.h"
 #include "applet-backend-uppix.h"
 #include "applet-backend-imagebin.h"
 #include "applet-backend-imageshack.h"
 #include "applet-backend-free.h"
 #include "applet-backend-custom.h"
 #include "applet-backend-dropbox.h"
+#include "applet-backend-ubuntuone.h"
 #include "applet-backend-videobin.h"
 #include "applet-init.h"
 
@@ -81,6 +84,8 @@ CD_APPLET_INIT_BEGIN
 	// text backends
 	cd_dnd2share_register_pastebin_backend ();
 	cd_dnd2share_register_paste_ubuntu_backend ();
+	cd_dnd2share_register_pastebin_mozilla_backend ();
+	cd_dnd2share_register_codepad_backend ();
 	// image backends
 	cd_dnd2share_register_uppix_backend ();
 	cd_dnd2share_register_imagebin_backend ();
@@ -90,6 +95,7 @@ CD_APPLET_INIT_BEGIN
 	// file backends
 	cd_dnd2share_register_free_backend ();
 	cd_dnd2share_register_dropbox_backend ();
+	cd_dnd2share_register_ubuntuone_backend ();
 	
 	int t;
 	for (t = 0; t < CD_NB_FILE_TYPES; t ++)

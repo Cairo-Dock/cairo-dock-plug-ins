@@ -24,10 +24,16 @@ SET(cd-dnd2share_LIB_SRCS
 	applet-backend-custom.h
 	applet-backend-dropbox.c
 	applet-backend-dropbox.h
+	applet-backend-ubuntuone.c
+	applet-backend-ubuntuone.h
 	applet-backend-videobin.c
 	applet-backend-videobin.h
 	applet-backend-paste-ubuntu.c
 	applet-backend-paste-ubuntu.h
+	applet-backend-pastebin-mozilla.c
+	applet-backend-pastebin-mozilla.h
+	applet-backend-codepad.c
+	applet-backend-codepad.h
 	applet-struct.h
 )
 

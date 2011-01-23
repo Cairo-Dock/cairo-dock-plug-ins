@@ -140,7 +140,7 @@ frame_site =
 #B[-3] Use files hosting site for any kind of files?
 only file type=false
 
-#l[Custom;Pastebin.com;Paste-ubuntu.com] Preferred site for texts hosting :
+#l[Custom;Pastebin.com;Paste-ubuntu.com;Pastebin.mozilla.org;Codepad.org] Preferred site for texts hosting :
 text site = 1
 
 #l[Custom;Uppix.net;Imagebin.ca;ImageShack.us] Preferred site for images hosting :

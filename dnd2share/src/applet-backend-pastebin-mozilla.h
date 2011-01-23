@@ -17,14 +17,14 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __CD_BACKEND_PASTEBIN__
-#define  __CD_BACKEND_PASTEBIN__
+#ifndef __CD_BACKEND_PASTEBIN_MOZILLA__
+#define  __CD_BACKEND_PASTEBIN_MOZILLA__
 
 #include <cairo-dock.h>
 #include "applet-struct.h"
 
 
-void cd_dnd2share_register_pastebin_backend (void);
+void cd_dnd2share_register_pastebin_mozilla_backend (void);
 
 
 #endif

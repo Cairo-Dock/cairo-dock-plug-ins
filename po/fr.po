@@ -6599,8 +6599,8 @@ msgid ""
 "The script takes the file path as a parameter, and write the resulting URL "
 "on the standard output."
 msgstr ""
-"Le script recevra le chemin du fichier en paramètre ($1) et il devra "
-"renvoyer l'URL correspondante dans un format standard."
+"Le script prend le chemin du fichier en paramètre, et écrit "
+"l'URL résultante sur la sortie standard."
 
 #: ../dnd2share/data/messages:159
 msgid "Custom script for text upload :"
