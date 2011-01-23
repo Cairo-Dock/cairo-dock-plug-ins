@@ -177,10 +177,6 @@ static void _get_feeds (CairoDockModuleInstance *myApplet)
 	}
 	
 	myData.cTaskBridge = cairo_dock_get_url_data (cUrlWithLoginPwd?cUrlWithLoginPwd:myConfig.cUrl, NULL);
-	/**gchar *cCommand = g_strdup_printf ("curl -s --connect-timeout 3 \"%s\"", cUrlWithLoginPwd?cUrlWithLoginPwd:myConfig.cUrl);
-	myData.cTaskBridge = cairo_dock_launch_command_sync (cCommand);
-	cd_debug ("cTaskBridge : '%s'", myData.cTaskBridge);
-	g_free (cCommand);*/
 	g_free (cUrlWithLoginPwd);
 }
 
@@ -190,6 +186,7 @@ static GList * _parse_rss_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemL
 	xmlNodePtr item;
 	for (item = node->children; item != NULL; item = item->next)
 	{
+		g_print ("  + item: %s\n", item->name);
 		if (xmlStrcmp (item->name, (const xmlChar *) "item") == 0)  // c'est un nouvel item.
 		{
 			CDRssItem *pNewItem = g_new0 (CDRssItem, 1);
@@ -205,7 +202,7 @@ static GList * _parse_rss_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemL
 				pItem->cTitle = g_strdup (content);
 				xmlFree (content);
 			}
-			cd_debug ("+ titre : '%s'", pItem->cTitle);
+			g_print ("   + titre : '%s'\n", pItem->cTitle);
 		}
 		else if (xmlStrcmp (item->name, (const xmlChar *) "description") == 0)  // c'est la description.
 		{
@@ -215,19 +212,6 @@ static GList * _parse_rss_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemL
 			
 			// on elimine les balises integrees a la description.
 			gchar *str = pItem->cDescription, *balise, *balise2;
-			/*do
-			{
-				balise2 = NULL;
-				balise = g_strstr_len (str, -1, "&lt;");  // debut de balise ("<")
-				if (balise)
-					balise2 = g_strstr_len (balise+4, -1, "&gt;");  // fin de balise (">")
-				if (balise2)
-				{
-					strcpy (balise, balise2+4);
-					str = balise;
-				}
-			}
-			while (balise2);*/
 			do
 			{
 				balise2 = NULL;
@@ -254,16 +238,16 @@ static GList * _parse_rss_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemL
 				}
 			}
 			while (balise);
-			cd_debug ("+ description : '%s'", pItem->cDescription);
+			g_print ("   + description : '%s'\n", pItem->cDescription);
 		}
 		else if (xmlStrcmp (item->name, (const xmlChar *) "link") == 0)  // c'est le lien.
 		{
 			content = xmlNodeGetContent (item);
 			pItem->cLink = g_strdup (content);
 			xmlFree (content);
-			cd_debug ("+ link : '%s'", pItem->cLink);
+			g_print ("   + link : '%s'\n", pItem->cLink);
 		}
-		else if (xmlStrcmp (item->name, (const xmlChar *) "pubDate") == 0)  // c'est la date.
+		else if (xmlStrcmp (item->name, (const xmlChar *) "pubDate") == 0 || xmlStrcmp (item->name, (const xmlChar *) "date") == 0)  // c'est la date (pubDate pour RSS, data pour RDF).
 		{
 			content = xmlNodeGetContent (item);
 			pItem->cDate = g_strdup (content);
@@ -277,7 +261,7 @@ static GList * _parse_rss_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemL
 	return pItemList;
 }
 
-static GList * _parse_atom_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemList)
+static GList * _parse_atom_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemList, const gchar *cBaseUrl)
 {
 	xmlChar *content;
 	xmlNodePtr item, author;
@@ -288,7 +272,7 @@ static GList * _parse_atom_item (xmlNodePtr node, CDRssItem *pItem, GList *pItem
 			CDRssItem *pNewItem = g_new0 (CDRssItem, 1);
 			pItemList = g_list_prepend (pItemList, pNewItem);
 			
-			pItemList = _parse_atom_item (item, pNewItem, pItemList);
+			pItemList = _parse_atom_item (item, pNewItem, pItemList, cBaseUrl);
 		}
 		else if (xmlStrcmp (item->name, (const xmlChar *) "title") == 0)  // c'est le titre.
 		{
@@ -349,7 +333,14 @@ static GList * _parse_atom_item (xmlNodePtr node, CDRssItem *pItem, GList *pItem
 			if (attr && attr->children)
 			{
 				content = xmlNodeGetContent (attr->children);
-				pItem->cLink = g_strdup (content);
+				if (strncmp (content, "http://", 7) == 0)
+				{
+					pItem->cLink = g_strdup (content);
+				}
+				else if (cBaseUrl != NULL)
+				{
+					pItem->cLink = g_strdup_printf ("%s%s", cBaseUrl, content);
+				}
 				xmlFree (content);
 				cd_debug ("+ link : '%s'", pItem->cLink);
 			}
@@ -439,7 +430,6 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		}
 		
 		CD_APPLET_LEAVE (TRUE);
-		//return TRUE;
 	}
 	
 	if (myData.pTask->iPeriod != myConfig.iRefreshTime)
@@ -448,6 +438,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		cairo_dock_change_task_frequency (myData.pTask, myConfig.iRefreshTime);
 	}
 	
+	g_print (" --> RSS: '%s'\n", myData.cTaskBridge);
 	xmlDocPtr doc = xmlParseMemory (myData.cTaskBridge, strlen (myData.cTaskBridge));
 	g_free (myData.cTaskBridge);
 	myData.cTaskBridge = NULL;
@@ -465,11 +456,10 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		myData.PrevFirstTitle = NULL;
 		myData.bUpdateIsManual = FALSE;
 		CD_APPLET_LEAVE (TRUE);
-		//return TRUE;
 	}
 	
 	xmlNodePtr rss = xmlDocGetRootElement (doc);
-	if (rss == NULL || (xmlStrcmp (rss->name, (const xmlChar *) "rss") != 0 && xmlStrcmp (rss->name, (const xmlChar *) "feed") != 0))
+	if (rss == NULL || (xmlStrcmp (rss->name, (const xmlChar *) "rss") != 0 && xmlStrcmp (rss->name, (const xmlChar *) "feed") != 0) && xmlStrcmp (rss->name, (const xmlChar *) "RDF") != 0)
 	{
 		cd_warning ("RSSresader : got invalid XML data");
 		///xmlCleanupParser ();
@@ -485,7 +475,6 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		myData.PrevFirstTitle = NULL;
 		myData.bUpdateIsManual = FALSE;
 		CD_APPLET_LEAVE (TRUE);
-		//return TRUE;
 	}
 	
 	// on extrait chaque item.
@@ -513,10 +502,23 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 			}
 		}
 	}
+	else if (xmlStrcmp (rss->name, (const xmlChar *) "RDF") == 0)  // RDF
+	{
+		pNewItemList = _parse_rss_item (rss, pItem, pNewItemList);  // on parse le premier groupe "channel" comme un item, ce qui fait que le titre du flux est considere comme un simple item.
+	}
 	else  // Atom
 	{
 		xmlNodePtr feed = rss;
-		pNewItemList = _parse_atom_item (feed, pItem, pNewItemList);  // on parse le feed comme un item, ce qui fait que le titre du flux est considere comme un simple item.
+		gchar *cBaseUrl = NULL;  // on recupere la base de l'URL, pour le cas ou les link seraient exprimes relativement a elle.
+		gchar *str = g_strstr_len(myConfig.cUrl, 10, "://");
+		if (str)
+		{
+			str = strchr (str + 3, '/');
+			if (str)
+				cBaseUrl = g_strndup (myConfig.cUrl, (gpointer)str-(gpointer)myConfig.cUrl);
+		}
+		pNewItemList = _parse_atom_item (feed, pItem, pNewItemList, cBaseUrl);  // on parse le feed comme un item, ce qui fait que le titre du flux est considere comme un simple item.
+		g_free (cBaseUrl);
 	}
 	pNewItemList = g_list_reverse (pNewItemList);
 	
@@ -537,7 +539,6 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		myData.PrevFirstTitle = NULL;
 		myData.bUpdateIsManual = FALSE;
 		CD_APPLET_LEAVE (TRUE);
-		//return TRUE;
 	}
 	
 	// si on est arrive a ce point, c'est qu'il n'y a pas eu d'erreur.
@@ -577,7 +578,6 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		
 		if (! myData.bError)
 			CD_APPLET_LEAVE (TRUE);
-			//return TRUE;
 	}
 	
 	// on dessine le texte.
@@ -609,7 +609,6 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 	myData.bUpdateIsManual = FALSE;
 	myData.bError = FALSE;
 	CD_APPLET_LEAVE (TRUE);
-	//return TRUE;
 }
 
 void cd_rssreader_upload_feeds_TASK (CairoDockModuleInstance *myApplet)
