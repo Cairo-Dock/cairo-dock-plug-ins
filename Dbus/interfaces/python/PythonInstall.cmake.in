@@ -3,9 +3,13 @@ IF("@ROOT_PREFIX@" STREQUAL "")
 					"setup.py" "install"
 					"--prefix=${CMAKE_INSTALL_PREFIX}"
 					"@DEBIAN_INSTALL_LAYOUT@")
-ELSE()
+ELSEIF(NOT "@ROOT_PREFIX@" STREQUAL "" AND "@python_no_deb_layout@" STREQUAL "")
 	EXEC_PROGRAM("@PYTHON_EXECUTABLE@" "${CMAKE_CURRENT_BINARY_DIR}" ARGS
 					"setup.py" "install"
 					"--root=@ROOT_PREFIX@"
 					"@DEBIAN_INSTALL_LAYOUT@")
+ELSE()
+	EXEC_PROGRAM("@PYTHON_EXECUTABLE@" "${CMAKE_CURRENT_BINARY_DIR}" ARGS
+					"setup.py" "install"
+					"--root=@ROOT_PREFIX@")
 ENDIF()
