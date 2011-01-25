@@ -438,7 +438,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 		cairo_dock_change_task_frequency (myData.pTask, myConfig.iRefreshTime);
 	}
 	
-	g_print (" --> RSS: '%s'\n", myData.cTaskBridge);
+	//g_print (" --> RSS: '%s'\n", myData.cTaskBridge);
 	xmlDocPtr doc = xmlParseMemory (myData.cTaskBridge, strlen (myData.cTaskBridge));
 	g_free (myData.cTaskBridge);
 	myData.cTaskBridge = NULL;

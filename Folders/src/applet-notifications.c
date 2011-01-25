@@ -300,7 +300,11 @@ static void _cd_folders_launch_with (GtkMenuItem *pMenuItem, gpointer *app)
 {
 	Icon *icon = app[0];
 	gchar *cExec = app[3];
-	cairo_dock_launch_command_printf ("%s \"%s\"", NULL, cExec, icon->cBaseURI);  // en esperant que l'appli gere les URI...
+	gchar *cUri = NULL;
+	if (icon->cBaseURI && *icon->cBaseURI == '/')
+		cUri = g_filename_from_uri (icon->cBaseURI, NULL, NULL);
+	cairo_dock_launch_command_printf ("%s \"%s\"", NULL, cExec, cUri?cUri:icon->cBaseURI);  // in case the program doesn't handle URI (geeqie, etc).
+	g_free (cUri);
 }
 
 static void _free_app (gpointer *app)

@@ -442,6 +442,7 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 		pIcon->fReflectShading = (double) pData->iReflectShadeCount / _REFLECT_FADE_NB_STEP;
 		if (pData->iReflectShadeCount != 0)
 			*bContinueAnimation = TRUE;
+		cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
 	}
 	
 	if (pData->fRadiusFactor != 0)
