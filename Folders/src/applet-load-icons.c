@@ -85,9 +85,18 @@ void cd_shortcuts_set_icon_order (Icon *pNewIcon, GList *pIconsList, GCompareFun
 
 static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar *cBaseURI, GList *pIconsList, CairoContainer *pContainer, CairoDockModuleInstance *myApplet)
 {
-	gchar *cURI = (g_strdup (cBaseURI));
+	if (!cBaseURI)
+		return;
+	gchar *cURI = g_strdup (cBaseURI);
 	cairo_dock_remove_html_spaces (cURI);
 	g_print (" * event %d on '%s'\n", iEventType, cURI);
+	
+	if (!myConfig.bShowHiddenFiles)
+	{
+		gchar *str = strrchr (cBaseURI, '/');
+		if (str && *(str+1) == '.')
+			return;
+	}
 	
 	switch (iEventType)
 	{
