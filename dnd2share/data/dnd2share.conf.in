@@ -149,7 +149,7 @@ image site = 1
 #l[Custom;VideoBin.org] Preferred site for videos hosting :
 video site = 1
 
-#l[Custom;dl.free.fr;DropBox] Preferred site for files hosting :
+#l[Custom;dl.free.fr;DropBox;UbuntuOne] Preferred site for files hosting :
 file site = 1
 
 #v

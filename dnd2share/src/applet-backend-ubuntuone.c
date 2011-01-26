@@ -72,7 +72,7 @@ static void upload (const gchar *cFilePath)
 		cResult[strlen(cResult)-1] = '\0';
 	
 	// Enfin on remplit la memoire partagee avec nos URLs.
-	gchar *str = strstr (cResult, "http");
+	gchar *str = strstr (cResult, "http");  // File is published at http://ubuntuone.com/x/y
 	if (! str)
 	{
 		cd_warning ("couldn't publish this file: %s", cResult);
