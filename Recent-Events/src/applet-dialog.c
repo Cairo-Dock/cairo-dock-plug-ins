@@ -31,7 +31,8 @@ static void _trigger_search (void)
 	const gchar *cQuery = gtk_entry_get_text (GTK_ENTRY (myData.pEntry));
 	CDEventType iCategory = myData.iCurrentCaterogy;
 	GtkListStore *pModel = myData.pModel;
-
+	
+	gtk_list_store_clear (pModel);
 	if (cQuery != NULL)
 		cd_search_events (cQuery, iCategory, (CDOnGetEventsFunc) _on_got_events, pModel);
 	else
@@ -96,7 +97,7 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 			gtk_list_store_set (GTK_LIST_STORE (pModel), &iter,
 				CD_MODEL_NAME, zeitgeist_subject_get_text (subject),
 				CD_MODEL_URI, cEventURI,
-				CD_MODEL_ICON, pixbuf, pixbuf,
+				CD_MODEL_ICON, pixbuf,
 				CD_MODEL_DATE, (int)fOrder, -1);
 			g_free (cIconName);
 			g_object_unref (pixbuf);
@@ -126,17 +127,19 @@ static void _cd_open_parent (GtkMenuItem *pMenuItem, gpointer data)
 	cairo_dock_fm_launch_uri (cFolder);
 	g_free (cFolder);
 }
-static void _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButton* pButton, gpointer data)
+static gboolean _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButton* pButton, gpointer data)
 {
+	//g_print ("%s ()\n", __func__);
 	if ((pButton->button == 3 && pButton->type == GDK_BUTTON_RELEASE)  // right-click
 	|| (pButton->button == 1 && pButton->type == GDK_2BUTTON_PRESS))  // double-click
 	{
+		g_print ("%s ()\n", __func__);
 		// get the current selected line.
 		GtkTreeSelection *pSelection = gtk_tree_view_get_selection (pTreeView);
 		GtkTreeModel *pModel;
 		GtkTreeIter iter;
 		if (! gtk_tree_selection_get_selected (pSelection, &pModel, &iter))
-			return ;
+			return FALSE;
 		
 		gchar *cName = NULL, *cUri = NULL;
 		gtk_tree_model_get (pModel, &iter,
@@ -193,6 +196,17 @@ static void _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButton* 
 				gtk_get_current_event_time ());
 		}
 	}
+	return FALSE;
+}
+static gboolean _cairo_dock_select_one_item_in_tree (GtkTreeSelection * selection, GtkTreeModel * model, GtkTreePath * path, gboolean path_currently_selected, gpointer *data)
+{
+	if (path_currently_selected)
+		return TRUE;
+	GtkTreeIter iter;
+	if (! gtk_tree_model_get_iter (model, &iter, path))
+		return FALSE;
+	
+	return TRUE;
 }
 static inline GtkToolItem *_add_category_button (GtkWidget *pToolBar, const gchar *cLabel, const gchar *cIconName, int pos, GtkToolItem *group)
 
@@ -247,6 +261,7 @@ static GtkWidget *cd_build_events_widget (void)
 	g_signal_connect (pEntry, "icon-press", G_CALLBACK (on_clear_filter), NULL);
 	#endif
 	myData.pEntry = pEntry;
+	gtk_widget_grab_focus (pEntry);
 	
 	// model
 	GtkListStore *pModel = gtk_list_store_new (CD_MODEL_NB_COLUMNS,
@@ -264,6 +279,10 @@ static GtkWidget *cd_build_events_widget (void)
 	gtk_tree_view_set_headers_clickable (GTK_TREE_VIEW (pOneWidget), TRUE);
 	GtkTreeSelection *selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (pOneWidget));
 	gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
+	gtk_tree_selection_set_select_function (selection,
+		(GtkTreeSelectionFunc) _cairo_dock_select_one_item_in_tree,
+		NULL,
+		NULL);
 	g_signal_connect (G_OBJECT (pOneWidget), "button-release-event", G_CALLBACK (_on_click_module_tree_view), NULL);  // pour le menu du clic droit
 	g_signal_connect (G_OBJECT (pOneWidget), "button-press-event", G_CALLBACK (_on_click_module_tree_view), NULL);  // pour le menu du clic droit
 	
@@ -306,5 +325,6 @@ void cd_toggle_dialog (void)
 	{
 		GtkWidget *pInteractiveWidget = cd_build_events_widget ();
 		myData.pDialog = cairo_dock_show_dialog_full (D_("Recent events"), myIcon, myContainer, 0, "same icon", pInteractiveWidget, NULL, myApplet, (GFreeFunc) _on_dialog_destroyed);
+		gtk_widget_grab_focus (myData.pEntry);
 	}
 }

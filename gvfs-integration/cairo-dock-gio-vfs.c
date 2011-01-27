@@ -1619,13 +1619,13 @@ static void cairo_dock_gio_vfs_empty_trash (void)
 			g_strdelimit (sFileUri->str, "\\", '/');
 			//g_print ("   - %s\n", sFileUri->str);
 			
-			GFile *file = g_file_new_for_uri (sFileUri->str);
-			g_file_delete (file, NULL, &erreur);
 			GFileType iFileType = g_file_info_get_file_type (pFileInfo);
 			if (iFileType == G_FILE_TYPE_DIRECTORY)  // can't delete a non-empty folder located on a different volume than home.
 			{
 				_cairo_dock_gio_vfs_empty_dir (sFileUri->str);
 			}
+			GFile *file = g_file_new_for_uri (sFileUri->str);
+			g_file_delete (file, NULL, &erreur);
 			g_object_unref (file);
 			
 			gchar *str = g_strrstr (sFileUri->str, "/files/");
@@ -1645,7 +1645,7 @@ static void cairo_dock_gio_vfs_empty_trash (void)
 			if (strchr (cFileName, '%'))  // if there is a % inside the name, it disturb gio, so let's remove it.
 			{
 				gchar *cTmpPath = g_strdup_printf ("/%s", cFileName);
-				gchar *cEscapedFileName = g_filename_to_uri (cTmpPath);
+				gchar *cEscapedFileName = g_filename_to_uri (cTmpPath, NULL, NULL);
 				g_free (cTmpPath);
 				g_string_printf (sFileUri, "trash://%s", cEscapedFileName+7);  // replace file:// with trash://
 				g_free (cEscapedFileName);
