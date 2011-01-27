@@ -22,43 +22,19 @@
 
 #include "applet-struct.h"
 #include "applet-search.h"
+#include "applet-dialog.h"
 #include "applet-notifications.h"
 
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
-static void _on_get_recent_events (ZeitgeistResultSet *pEvents, gpointer data)
-{
-	g_print ("%s ()\n", __func__);
-	ZeitgeistEvent     *event;
-	ZeitgeistSubject   *subject;
-	gint                i,n;
-	
-	while (zeitgeist_result_set_has_next (pEvents))
-	{
-		event = zeitgeist_result_set_next (pEvents);
-		n = zeitgeist_event_num_subjects (event);
-		for (i = 0; i < n; i++)
-		{
-			subject = zeitgeist_event_get_subject (event, i);
-			g_print ("%s\n  %s\n  %s\n  %s\n", zeitgeist_subject_get_uri (subject), zeitgeist_subject_get_origin (subject), zeitgeist_subject_get_interpretation (subject), zeitgeist_subject_get_manifestation (subject));
-			
-		}
-	}
-	
-}
 CD_APPLET_ON_CLICK_BEGIN
-	cd_find_recent_events (CD_EVENT_ALL, 0, (CDOnGetEventsFunc)_on_get_recent_events, myApplet);
+	cd_toggle_dialog ();
 CD_APPLET_ON_CLICK_END
 
 
 //\___________ Same as ON_CLICK, but with middle-click.
-static void _on_get_search (ZeitgeistResultSet *pEvents, gpointer data)
-{
-	_on_get_recent_events (pEvents, data);
-}
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	
-	cd_search_events ("paris", (CDOnGetEventsFunc) _on_get_search, myApplet);
 	
 CD_APPLET_ON_MIDDLE_CLICK_END
 
@@ -163,3 +139,4 @@ CD_APPLET_ON_BUILD_MENU_PROTO
 	}
 	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 }
+

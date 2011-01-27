@@ -135,6 +135,23 @@ CD_APPLET_DEFINE_BEGIN ("dock rendering",
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE;
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
 	CD_APPLET_EXTEND_MANAGER ("Backends");
+	
+	cd_rendering_register_3D_plane_renderer 		(CD_RENDERING_3D_PLANE_VIEW_NAME);
+	
+	cd_rendering_register_parabole_renderer 		(CD_RENDERING_PARABOLIC_VIEW_NAME);
+	
+	cd_rendering_register_rainbow_renderer 		(CD_RENDERING_RAINBOW_VIEW_NAME);
+	
+	cd_rendering_register_diapo_simple_renderer 	(CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);  // By Paradoxxx_Zero
+	cairo_dock_register_notification_on_object (&myDocksMgr,
+		NOTIFICATION_LEAVE_DOCK,
+		(CairoDockNotificationFunc) cd_slide_on_leave,
+		CAIRO_DOCK_RUN_FIRST, NULL);  // on l'enregistre ici, et non pas sur le container, pour intercepter la fermeture du dock lorsque l'on en sort en tirant la scrollbar.
+	
+	cd_rendering_register_curve_renderer 			(CD_RENDERING_CURVE_VIEW_NAME);  // By Paradoxxx_Zero and Fabounet
+	
+	cd_rendering_register_panel_renderer 			(CD_RENDERING_PANEL_VIEW_NAME);
+	
 CD_APPLET_DEFINE_END
 
 
@@ -142,7 +159,7 @@ CD_APPLET_INIT_BEGIN
 	//\_______________ On enregistre les vues.
 	///cd_rendering_register_caroussel_renderer 		(CD_RENDERING_CAROUSSEL_VIEW_NAME);
 	
-	cd_rendering_register_3D_plane_renderer 		(CD_RENDERING_3D_PLANE_VIEW_NAME);
+	/*cd_rendering_register_3D_plane_renderer 		(CD_RENDERING_3D_PLANE_VIEW_NAME);
 	
 	cd_rendering_register_parabole_renderer 		(CD_RENDERING_PARABOLIC_VIEW_NAME);
 	
@@ -165,12 +182,12 @@ CD_APPLET_INIT_BEGIN
 		cairo_dock_set_all_views_to_default (0);
 	}
 	else
-		gtk_widget_queue_draw (g_pMainDock->container.pWidget);
+		gtk_widget_queue_draw (g_pMainDock->container.pWidget);*/
 CD_APPLET_INIT_END
 
 
 CD_APPLET_STOP_BEGIN
-	cairo_dock_remove_renderer (CD_RENDERING_CAROUSSEL_VIEW_NAME);
+	/*cairo_dock_remove_renderer (CD_RENDERING_CAROUSSEL_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_3D_PLANE_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_PARABOLIC_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_RAINBOW_VIEW_NAME);
@@ -184,7 +201,7 @@ CD_APPLET_STOP_BEGIN
 		(CairoDockNotificationFunc) cd_slide_on_leave, NULL);
 	
 	cairo_dock_reset_all_views ();
-	gtk_widget_queue_draw (g_pMainDock->container.pWidget);
+	gtk_widget_queue_draw (g_pMainDock->container.pWidget);*/
 CD_APPLET_STOP_END
 
 

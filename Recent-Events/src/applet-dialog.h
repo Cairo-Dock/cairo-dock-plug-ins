@@ -17,23 +17,14 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __APPLET_SEARCH__
-#define  __APPLET_SEARCH__
+
+#ifndef __APPLET_EVENTS__
+#define  __APPLET_EVENTS__
+
 
 #include <cairo-dock.h>
-#include "applet-struct.h"
 
-
-void cd_find_recent_related_files (const gchar **cMimeTypes, CDOnGetEventsFunc pCallback, gpointer data);
-
-
-void cd_find_recent_events (CDEventType iEventType, int iSortType, CDOnGetEventsFunc pCallback, gpointer data);
-
-
-void cd_search_events (const gchar *cQuery, CDEventType iEventType, CDOnGetEventsFunc pCallback, gpointer data);
-
-
-void cd_get_delete_recent_events (int iNbDays, CDOnDeleteEventsFunc pCallback, gpointer data);
+void cd_toggle_dialog (void);
 
 
 #endif

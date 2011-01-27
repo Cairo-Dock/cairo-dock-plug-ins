@@ -26,100 +26,13 @@
 #include "applet-search.h"
 
 
-static void on_related_events_received (ZeitgeistLog  *log, GAsyncResult *res, gpointer *user_data)
+static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 {
-	ZeitgeistResultSet *events;
-	GError *error = NULL;
-	CDOnGetEventsFunc pCallback = user_data[0];
-	gpointer data = user_data[1];
-	
-	events = zeitgeist_log_find_events_finish (log, res, &error);
-	if (error)
-	{
-		cd_warning ("Error reading results: %s", error->message);
-		g_error_free (error);
-		return;
-	}
-	g_print ("Got %i events:\n", zeitgeist_result_set_size (events));
-	
-	if (zeitgeist_result_set_has_next (events))
-		pCallback (events, data);
-	g_object_unref (events);
-}
-void cd_find_recent_related_files (const gchar **cMimeTypes, CDOnGetEventsFunc pCallback, gpointer data)  // right-click on a launcher/appli
-{
-	g_print ("%s ()\n", __func__);
-	static gpointer s_data[2];
-	s_data[0] = pCallback;
-	s_data[1] = data;
-	
-	GPtrArray* zg_templates = g_ptr_array_sized_new (10);
-	int i;
-	for (i = 0; cMimeTypes[i] != NULL; i ++)
-	{
-		ZeitgeistSubject *subj = zeitgeist_subject_new_full ("file:*",  // uri, application://* for apps
-			"",  // interpretation
-			"",  // manifestation
-			cMimeTypes[i],  // mimetype
-			"",  // origin
-			"",  // text
-			"");  // storage
-		ZeitgeistEvent* ev = zeitgeist_event_new_full (
-			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (type ZEITGEIST_ZG_EVENT_INTERPRETATION)
-			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
-			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
-			subj, NULL);  // a list of subjects, terminated with NULL
-		g_ptr_array_add (zg_templates, ev);
-	}
-	
-	if (myData.pLog == NULL)
-		myData.pLog = zeitgeist_log_new ();
-	
-	zeitgeist_log_find_events (myData.pLog,
-		zeitgeist_time_range_new_to_now (),
-		zg_templates,
-		ZEITGEIST_STORAGE_STATE_ANY,
-		20,
-		ZEITGEIST_RESULT_TYPE_MOST_RECENT_EVENTS,  // MOST_RECENT_ORIGIN for folders
-		(GCancellable *)NULL,
-		(GAsyncReadyCallback)on_related_events_received,
-		s_data);
-}
-
-
-static void on_recent_events_received (ZeitgeistLog  *log, GAsyncResult *res, gpointer *user_data)
-{
-	ZeitgeistResultSet *events;
-	GError *error = NULL;
-	CDOnGetEventsFunc pCallback = user_data[0];
-	gpointer data = user_data[1];
-	
-	events = zeitgeist_log_find_events_finish (log, res, &error);
-	if (error)
-	{
-		g_warning ("Error reading results: %s", error->message);
-		g_error_free (error);
-		return;
-	}
-	
-	g_print ("Got %i events:\n", zeitgeist_result_set_size (events));
-	
-	if (zeitgeist_result_set_has_next (events))
-		pCallback (events, data);
-	g_object_unref (events);	
-}
-void cd_find_recent_events (CDEventType iEventType, int iSortType, CDOnGetEventsFunc pCallback, gpointer data)  // sorted by date or frequency, click on the icon
-{
-	static gpointer s_data[2];
-	s_data[0] = pCallback;
-	s_data[1] = data;
-	
-	ZeitgeistEvent *ev;
-	ZeitgeistSubject *subj;
 	if (myData.pEvents == NULL)
 	{
 		myData.pEvents = g_new0 (ZeitgeistEvent*, CD_NB_EVENT_TYPES);
 		
+		ZeitgeistSubject *subj;
 		subj = zeitgeist_subject_new_full ("file://*",  // uri, application://* for apps
 			"",  // interpretation
 			"",  // manifestation
@@ -251,9 +164,104 @@ void cd_find_recent_events (CDEventType iEventType, int iSortType, CDOnGetEvents
 		zeitgeist_event_add_subject (myData.pEvents[CD_EVENT_OTHER], subj);
 	}
 	
-	g_return_if_fail (iEventType < CD_NB_EVENT_TYPES);
+	g_return_val_if_fail (iCategory < CD_NB_EVENT_TYPES, NULL);
+	return myData.pEvents[iCategory];
+}
+
+
+static void on_related_events_received (ZeitgeistLog  *log, GAsyncResult *res, gpointer *user_data)
+{
+	ZeitgeistResultSet *events;
+	GError *error = NULL;
+	CDOnGetEventsFunc pCallback = user_data[0];
+	gpointer data = user_data[1];
+	
+	events = zeitgeist_log_find_events_finish (log, res, &error);
+	if (error)
+	{
+		cd_warning ("Error reading results: %s", error->message);
+		g_error_free (error);
+		return;
+	}
+	g_print ("Got %i events:\n", zeitgeist_result_set_size (events));
+	
+	if (zeitgeist_result_set_has_next (events))
+		pCallback (events, data);
+	g_object_unref (events);
+}
+void cd_find_recent_related_files (const gchar **cMimeTypes, CDOnGetEventsFunc pCallback, gpointer data)  // right-click on a launcher/appli
+{
+	g_print ("%s ()\n", __func__);
+	static gpointer s_data[2];
+	s_data[0] = pCallback;
+	s_data[1] = data;
+	
+	GPtrArray* zg_templates = g_ptr_array_sized_new (10);
+	int i;
+	for (i = 0; cMimeTypes[i] != NULL; i ++)
+	{
+		ZeitgeistSubject *subj = zeitgeist_subject_new_full ("file:*",  // uri, application://* for apps
+			"",  // interpretation
+			"",  // manifestation
+			cMimeTypes[i],  // mimetype
+			"",  // origin
+			"",  // text
+			"");  // storage
+		ZeitgeistEvent* ev = zeitgeist_event_new_full (
+			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (type ZEITGEIST_ZG_EVENT_INTERPRETATION)
+			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
+			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
+			subj, NULL);  // a list of subjects, terminated with NULL
+		g_ptr_array_add (zg_templates, ev);
+	}
+	
+	if (myData.pLog == NULL)
+		myData.pLog = zeitgeist_log_new ();
+	
+	zeitgeist_log_find_events (myData.pLog,
+		zeitgeist_time_range_new_to_now (),
+		zg_templates,
+		ZEITGEIST_STORAGE_STATE_ANY,
+		20,
+		ZEITGEIST_RESULT_TYPE_MOST_RECENT_EVENTS,  // MOST_RECENT_ORIGIN for folders
+		(GCancellable *)NULL,
+		(GAsyncReadyCallback)on_related_events_received,
+		s_data);
+}
+
+
+static void on_recent_events_received (ZeitgeistLog  *log, GAsyncResult *res, gpointer *user_data)
+{
+	ZeitgeistResultSet *events;
+	GError *error = NULL;
+	CDOnGetEventsFunc pCallback = user_data[0];
+	gpointer data = user_data[1];
+	
+	events = zeitgeist_log_find_events_finish (log, res, &error);
+	if (error)
+	{
+		g_warning ("Error reading results: %s", error->message);
+		g_error_free (error);
+		return;
+	}
+	
+	g_print ("Got %i events:\n", zeitgeist_result_set_size (events));
+	
+	if (zeitgeist_result_set_has_next (events))
+		pCallback (events, data);
+	g_object_unref (events);	
+}
+void cd_find_recent_events (CDEventType iEventType, int iSortType, CDOnGetEventsFunc pCallback, gpointer data)  // sorted by date or frequency, click on the icon
+{
+	static gpointer s_data[2];
+	s_data[0] = pCallback;
+	s_data[1] = data;
+	
+	ZeitgeistEvent *ev;
+	ZeitgeistSubject *subj;
+	ev = _get_event_template_for_category (iEventType);
+	
 	GPtrArray* zg_templates = g_ptr_array_sized_new (1);
-	ev = myData.pEvents[iEventType];
 	g_ptr_array_add (zg_templates, ev);
 	
 	if (myData.pLog == NULL)
@@ -292,7 +300,7 @@ static void on_events_received (ZeitgeistIndex *index, GAsyncResult *res, gpoint
 		pCallback (events, data);
 	g_object_unref (events);
 }
-void cd_search_events (const gchar *cQuery, CDOnGetEventsFunc pCallback, gpointer data)  // dialog box on middle-click
+void cd_search_events (const gchar *cQuery, CDEventType iEventType, CDOnGetEventsFunc pCallback, gpointer data)  // dialog box on middle-click
 {
 	static gpointer s_data[2];
 	s_data[0] = pCallback;
@@ -303,11 +311,14 @@ void cd_search_events (const gchar *cQuery, CDOnGetEventsFunc pCallback, gpointe
 	
 	g_print ("Searching for '%s'...\n", cQuery);
 	
-	GPtrArray* event_templates = g_ptr_array_new ();
+	g_print ("TODO: compare with an empty event...\n");
+	GPtrArray* zg_templates = g_ptr_array_sized_new (1);
+	ZeitgeistEvent *ev = _get_event_template_for_category (iEventType);
+	g_ptr_array_add (zg_templates, ev);
 	zeitgeist_index_search (myData.pIndex,
 		cQuery,
 		zeitgeist_time_range_new_anytime (),
-		event_templates,
+		zg_templates,
 		0,  // offset
 		20,  // number of events
 		ZEITGEIST_RESULT_TYPE_RELEVANCY,  // sorting type

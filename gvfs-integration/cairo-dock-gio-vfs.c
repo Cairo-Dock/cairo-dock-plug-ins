@@ -670,7 +670,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 		G_FILE_ATTRIBUTE_STANDARD_ICON","
 		G_FILE_ATTRIBUTE_THUMBNAIL_PATH","
 		#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
-		G_FILE_ATTRIBUTE_PREVIEW_ICON","
+		///G_FILE_ATTRIBUTE_PREVIEW_ICON","
 		#endif
 		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI","
 		G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE;
@@ -723,7 +723,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 			icon->iTrueType = CAIRO_DOCK_ICON_TYPE_FILE;
 			icon->iGroup = iNewIconsGroup;
 			icon->cBaseURI = g_strconcat (*cFullURI, "/", cFileName, NULL);
-			cd_message ("+ %s (mime:%s)", icon->cBaseURI, cMimeType);
+			//g_print	 ("+ %s (mime:%s)n", icon->cBaseURI, cMimeType);
 			
 			if (iFileType == G_FILE_TYPE_MOUNTABLE)
 			{
@@ -800,7 +800,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 			icon->cFileName = NULL;
 			icon->cFileName = g_strdup (g_file_info_get_attribute_byte_string (pFileInfo, G_FILE_ATTRIBUTE_THUMBNAIL_PATH));
 			#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
-			if (icon->cFileName == NULL)
+			/**if (icon->cFileName == NULL)
 			{
 				GIcon *pPreviewIcon = (GIcon *)g_file_info_get_attribute_object (pFileInfo, G_FILE_ATTRIBUTE_PREVIEW_ICON);
 				if (pPreviewIcon != NULL)
@@ -808,7 +808,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 					icon->cFileName = _cd_get_icon_path (pPreviewIcon, NULL);
 					g_print ("got preview icon '%s'\n", icon->cFileName);
 				}
-			}
+			}*/
 			#endif
 			if (cMimeType != NULL && strncmp (cMimeType, "image", 5) == 0)
 			{
@@ -1642,7 +1642,16 @@ static void cairo_dock_gio_vfs_empty_trash (void)
 		}
 		else  // poubelle principale : nom de la forme "tèst 1" et URI "trash:///t%C3%A8st%201"
 		{
-			g_string_printf (sFileUri, "trash:///%s", cFileName);
+			if (strchr (cFileName, '%'))  // if there is a % inside the name, it disturb gio, so let's remove it.
+			{
+				gchar *cTmpPath = g_strdup_printf ("/%s", cFileName);
+				gchar *cEscapedFileName = g_filename_to_uri (cTmpPath);
+				g_free (cTmpPath);
+				g_string_printf (sFileUri, "trash://%s", cEscapedFileName+7);  // replace file:// with trash://
+				g_free (cEscapedFileName);
+			}
+			else  // else it can handle the URI as usual.
+				g_string_printf (sFileUri, "trash:///%s", cFileName);
 			GFile *file = g_file_new_for_uri (sFileUri->str);
 			/*gchar *cValidURI = g_file_get_uri (file);
 			//g_print ("   - %s\n", cValidURI);

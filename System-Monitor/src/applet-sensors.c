@@ -238,15 +238,10 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 				}
 				break;
 				
-				default:  // les 
+				default:
 				break;
 			}
 		}
-	}
-	
-	if (myData.iFanSpeed == 0 && myData.iCPUTemp == 0) {
-		cd_warning("couldn't acquire sensors data\nrun 'sensors-detect' as root in a terminal.");
-		myData.bAcquisitionOK = FALSE;
 	}
 	
 	if (fabs (myData.fCpuTempPercent - myData.fPrevCpuTempPercent) > 1)

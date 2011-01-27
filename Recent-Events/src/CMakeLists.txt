@@ -6,6 +6,7 @@ SET(MODULE_SRCS
 	applet-init.c 			applet-init.h
 	applet-config.c 			applet-config.h
 	applet-search.c 			applet-search.h
+	applet-dialog.c 			applet-dialog.h
 	applet-notifications.c 		applet-notifications.h
 )
 

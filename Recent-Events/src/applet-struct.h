@@ -41,14 +41,28 @@ typedef enum {
 	CD_EVENT_AUDIO,
 	CD_EVENT_VIDEO,
 	CD_EVENT_OTHER,
+	CD_EVENT_TOP_RESULTS,
 	CD_NB_EVENT_TYPES
 	} CDEventType;
 
+typedef enum {
+	CD_MODEL_NAME,
+	CD_MODEL_URI,
+	CD_MODEL_ICON,
+	CD_MODEL_DATE,
+	CD_MODEL_NB_COLUMNS
+	} CDModelColumn;
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
 	ZeitgeistEvent **pEvents;
 	ZeitgeistLog *pLog;
 	ZeitgeistIndex *pIndex;
+	GList *pAppList;
+	gchar *cCurrentUri;
+	GtkWidget *pEntry;
+	GtkListStore *pModel;
+	CairoDialog *pDialog;
+	CDEventType iCurrentCaterogy;
 	} ;
 
 
