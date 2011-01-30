@@ -552,7 +552,6 @@ GtkWidget *cd_clipper_build_items_menu (void)
 			CD_APPLET_ADD_SEPARATOR (pMenu);
 		}
 	}
-	gtk_menu_shell_select_first (GTK_MENU_SHELL (pMenu), FALSE);
 	return pMenu;
 }
 

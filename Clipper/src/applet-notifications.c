@@ -36,6 +36,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	{
 		GtkWidget *pMenu = cd_clipper_build_items_menu ();
 		CD_APPLET_POPUP_MENU_ON_MY_ICON (pMenu);
+		gtk_menu_shell_select_first (GTK_MENU_SHELL (pMenu), FALSE);  // must be done here, after the menu has been realized.
 	}
 CD_APPLET_ON_CLICK_END
 

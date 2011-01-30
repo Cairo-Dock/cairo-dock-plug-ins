@@ -33,7 +33,7 @@ static void _trigger_search (void)
 	GtkListStore *pModel = myData.pModel;
 	
 	gtk_list_store_clear (pModel);
-	if (cQuery != NULL)
+	if (cQuery != NULL && *cQuery != '\0')
 		cd_search_events (cQuery, iCategory, (CDOnGetEventsFunc) _on_got_events, pModel);
 	else
 		cd_find_recent_events (iCategory, 0, (CDOnGetEventsFunc) _on_got_events, pModel);
@@ -81,7 +81,7 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 		for (i = 0; i < n; i++)
 		{
 			subject = zeitgeist_event_get_subject (event, i);
-			cEventURI = zeitgeist_subject_get_uri (subject);
+			cEventURI = g_strdup (zeitgeist_subject_get_uri (subject));
 			g_print (" + %s\n", cEventURI);
 			
 			cairo_dock_fm_get_file_info (cEventURI, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, 0);
@@ -103,6 +103,7 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 			g_object_unref (pixbuf);
 		}
 	}
+	g_print ("done\n");
 }
 
 void cd_folders_free_apps_list (CairoDockModuleInstance *myApplet)
@@ -326,5 +327,7 @@ void cd_toggle_dialog (void)
 		GtkWidget *pInteractiveWidget = cd_build_events_widget ();
 		myData.pDialog = cairo_dock_show_dialog_full (D_("Recent events"), myIcon, myContainer, 0, "same icon", pInteractiveWidget, NULL, myApplet, (GFreeFunc) _on_dialog_destroyed);
 		gtk_widget_grab_focus (myData.pEntry);
+		
+		_trigger_search ();
 	}
 }

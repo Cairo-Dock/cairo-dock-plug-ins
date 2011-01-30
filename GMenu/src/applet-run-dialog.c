@@ -334,7 +334,7 @@ static void _cd_menu_on_quick_launch (int iClickedButton, GtkWidget *pInteractiv
 	if (iClickedButton == 0 || iClickedButton == -1)  // ok ou entree.
 	{
 		const gchar *cCommand = gtk_entry_get_text (GTK_ENTRY (pInteractiveWidget));
-		if (cCommand != NULL && *cCommand != '0')
+		if (cCommand != NULL && *cCommand != '\0')
 			cairo_dock_launch_command (cCommand);
 	}
 	else

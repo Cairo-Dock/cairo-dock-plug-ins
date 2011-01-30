@@ -287,12 +287,16 @@ static gboolean _cd_find_can_eject_from_drive_name (const gchar *cName)
 
 static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID, double *fOrder, CairoDockFMSortType iSortType)
 {
+	*cName = NULL;
+	*cURI = NULL;
+	*cIconName = NULL;
 	g_return_if_fail (cBaseURI != NULL);
 	GError *erreur = NULL;
 	cd_message ("%s (%s)", __func__, cBaseURI);
 	
-	gchar *cFullURI;
-	if (strncmp (cBaseURI, "x-nautilus-desktop://", 21) == 0)
+	// make it a valid URI.
+	gchar *cValidUri;
+	if (strncmp (cBaseURI, "x-nautilus-desktop://", 21) == 0)  // shortcut on the desktop (nautilus)
 	{
 		gchar *cNautilusFile = g_strdup (cBaseURI+14);
 		memcpy (cNautilusFile, "file", 4);
@@ -304,14 +308,14 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 		{
 			cNautilusFile[strlen(cNautilusFile)-6] = '\0';
 		}
-		cFullURI = g_filename_from_uri (cNautilusFile, NULL, &erreur);
+		cValidUri = g_filename_from_uri (cNautilusFile, NULL, &erreur);
 		if (erreur != NULL)
 		{
 			cd_warning ("gnome_integration : %s", erreur->message);
 			g_error_free (erreur);
 			return ;
 		}
-		gchar *cVolumeName = cFullURI + 1;  // on saute le '/'.
+		gchar *cVolumeName = cValidUri + 1;  // on saute le '/'.
 		cd_message ("cVolumeName : %s", cVolumeName);
 		
 		GMount *pMount = NULL;
@@ -324,30 +328,28 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 		*fOrder = 0;
 		//g_object_unref (pMount);
 		
-		g_free (cFullURI);
+		g_free (cValidUri);
 		//g_free (cNautilusFile);
 		return;
 	}
-	else
+	else  // normal file
 	{
 		if (*cBaseURI == '/')
-			cFullURI = g_filename_to_uri (cBaseURI, NULL, NULL);
+			cValidUri = g_filename_to_uri (cBaseURI, NULL, NULL);
 		else
-			cFullURI = g_strdup (cBaseURI);
-		if (*cBaseURI == ':' || *cFullURI == ':')  // cas bizarre au demontage d'un signet ftp quand celui-ci n'est pas accessible plantage dans dbus).
+			cValidUri = g_strdup (cBaseURI);
+		if (*cBaseURI == ':' || *cValidUri == ':')  // cas bizarre au demontage d'un signet ftp quand celui-ci n'est pas accessible plantage dans dbus).
 		{
-			cd_warning ("invalid URI (%s ; %s), skip it", cBaseURI, cFullURI);
-			g_free (cFullURI);
-			*cName = NULL;
-			*cURI = NULL;
-			*cIconName = NULL;
+			cd_warning ("invalid URI (%s ; %s), skip it", cBaseURI, cValidUri);
+			g_free (cValidUri);
 			return;
 		}
 	}
-	cd_message (" -> cFullURI : %s", cFullURI);
+	g_print (" -> cValidUri : %s\n", cValidUri);
 	
-	GFile *pFile = g_file_new_for_uri (cFullURI);
-	
+	// get its attributes.
+	GFile *pFile = g_file_new_for_uri (cValidUri);
+	g_return_if_fail (pFile);
 	const gchar *cQuery = G_FILE_ATTRIBUTE_STANDARD_TYPE","
 		G_FILE_ATTRIBUTE_STANDARD_SIZE","
 		G_FILE_ATTRIBUTE_TIME_MODIFIED","
@@ -370,11 +372,14 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 	{
 		cd_debug ("gnome_integration : %s", erreur->message);  // inutile d'en faire un warning.
 		g_error_free (erreur);
+		g_free (cValidUri);
+		g_object_unref (pFile);
 		return ;
 	}
+	g_print ("   (got attr)\n");
 	
-	*cURI = cFullURI;
 	const gchar *cFileName = g_file_info_get_name (pFileInfo);
+	g_print ("  (cFileName: %s)\n", cFileName);
 	const gchar *cMimeType = g_file_info_get_content_type (pFileInfo);
 	GFileType iFileType = g_file_info_get_file_type (pFileInfo);
 	
@@ -395,6 +400,8 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 	cd_message (" => '%s' (mime:%s ; bIsDirectory:%d)", cFileName, cMimeType, *bIsDirectory);
 	
 	const gchar *cTargetURI = g_file_info_get_attribute_string (pFileInfo, G_FILE_ATTRIBUTE_STANDARD_TARGET_URI);
+	
+	// if it's a mount point, find a readable name.
 	if (iFileType == G_FILE_TYPE_MOUNTABLE)
 	{
 		*cName = NULL;
@@ -449,7 +456,18 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 		*iVolumeID = 0;
 		*cName = g_strdup (cFileName);
 	}
+	g_print ("  (cName: %s)\n", *cName);
 	
+	if (cTargetURI)
+	{
+		*cURI = g_strdup (cTargetURI);
+		g_free (cValidUri);
+		cValidUri = NULL;
+	}
+	else
+		*cURI = cValidUri;
+	
+	// find an icon.
 	*cIconName = NULL;
 	*cIconName = g_strdup (g_file_info_get_attribute_byte_string (pFileInfo, G_FILE_ATTRIBUTE_THUMBNAIL_PATH));
 	#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
@@ -638,7 +656,7 @@ static GList *cairo_dock_gio_vfs_list_volumes (void)
 	return pIconsList;
 }
 
-static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsGroup, gboolean bListHiddenFiles, int iNbMaxFiles, gchar **cFullURI)
+static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsGroup, gboolean bListHiddenFiles, int iNbMaxFiles, gchar **cValidUri)
 {
 	g_return_val_if_fail (cBaseURI != NULL, NULL);
 	cd_message ("%s (%s)", __func__, cBaseURI);
@@ -649,7 +667,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 	{
 		cURI = g_strdup ("computer://");
 		bAddHome = TRUE;
-		///*cFullURI = cURI;
+		///*cValidUri = cURI;
 		///return cairo_dock_gio_vfs_list_volumes ();
 		//cairo_dock_gio_vfs_list_volumes ();
 	}
@@ -657,7 +675,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 		cURI = g_strdup ("network://");
 	else
 		cURI = (*cBaseURI == '/' ? g_strconcat ("file://", cBaseURI, NULL) : g_strdup (cBaseURI));
-	*cFullURI = cURI;
+	*cValidUri = cURI;
 	
 	GFile *pFile = g_file_new_for_uri (cURI);
 	GError *erreur = NULL;
@@ -722,7 +740,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 			icon = cairo_dock_create_dummy_launcher (NULL, NULL, NULL, NULL, 0);
 			icon->iTrueType = CAIRO_DOCK_ICON_TYPE_FILE;
 			icon->iGroup = iNewIconsGroup;
-			icon->cBaseURI = g_strconcat (*cFullURI, "/", cFileName, NULL);
+			icon->cBaseURI = g_strconcat (*cValidUri, "/", cFileName, NULL);
 			//g_print	 ("+ %s (mime:%s)n", icon->cBaseURI, cMimeType);
 			
 			if (iFileType == G_FILE_TYPE_MOUNTABLE)
@@ -998,14 +1016,14 @@ static void cairo_dock_gio_vfs_launch_uri (const gchar *cURI)
 {
 	g_return_if_fail (cURI != NULL);
 	GError *erreur = NULL;
-	gchar *cFullURI = (*cURI == '/' ? g_strconcat ("file://", cURI, NULL) : g_strdup (cURI));
-	cd_message ("%s (%s)", __func__, cFullURI);
+	gchar *cValidUri = (*cURI == '/' ? g_strconcat ("file://", cURI, NULL) : g_strdup (cURI));
+	cd_message ("%s (%s)", __func__, cValidUri);
 	
-	gchar *cTargetURI = _cd_find_target_uri (cFullURI);
-	gboolean bSuccess = g_app_info_launch_default_for_uri (cTargetURI != NULL ? cTargetURI : cFullURI,
+	gchar *cTargetURI = _cd_find_target_uri (cValidUri);
+	gboolean bSuccess = g_app_info_launch_default_for_uri (cTargetURI != NULL ? cTargetURI : cValidUri,
 		NULL,
 		&erreur);
-	g_free (cFullURI);
+	g_free (cValidUri);
 	g_free (cTargetURI);
 	if (erreur != NULL)
 	{
@@ -1679,12 +1697,12 @@ static void cairo_dock_gio_vfs_empty_trash (void)
 
 static GList *cairo_dock_gio_vfs_list_apps_for_file (const gchar *cBaseURI)
 {
-	gchar *cFullURI;
+	gchar *cValidUri;
 	if (*cBaseURI == '/')
-		cFullURI = g_filename_to_uri (cBaseURI, NULL, NULL);
+		cValidUri = g_filename_to_uri (cBaseURI, NULL, NULL);
 	else
-		cFullURI = g_strdup (cBaseURI);
-	GFile *pFile = g_file_new_for_uri (cFullURI);
+		cValidUri = g_strdup (cBaseURI);
+	GFile *pFile = g_file_new_for_uri (cValidUri);
 	
 	GError *erreur = NULL;
 	const gchar *cQuery = G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE;
@@ -1698,7 +1716,7 @@ static GList *cairo_dock_gio_vfs_list_apps_for_file (const gchar *cBaseURI)
 	{
 		cd_warning ("gnome_integration : %s", erreur->message);
 		g_error_free (erreur);
-		g_free (cFullURI);
+		g_free (cValidUri);
 		g_object_unref (pFile);
 		return NULL;
 	}
@@ -1733,7 +1751,7 @@ static GList *cairo_dock_gio_vfs_list_apps_for_file (const gchar *cBaseURI)
 		pList = g_list_prepend (pList, pData);
 	}
 	
-	g_free (cFullURI);
+	g_free (cValidUri);
 	g_object_unref (pFile);
 	g_list_free (pAppsList);
 	g_object_unref (pFileInfo);
