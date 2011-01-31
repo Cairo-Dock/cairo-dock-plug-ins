@@ -5,6 +5,6 @@
 
 install (FILES ${CMAKE_CURRENT_BINARY_DIR}/Recent-Events.conf
 	preview.jpg
-	icon.png
+	icon.svg
 	DESTINATION ${recent_eventsdatadir})
 

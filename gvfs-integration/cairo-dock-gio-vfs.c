@@ -345,7 +345,6 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 			return;
 		}
 	}
-	g_print (" -> cValidUri : %s\n", cValidUri);
 	
 	// get its attributes.
 	GFile *pFile = g_file_new_for_uri (cValidUri);
@@ -376,10 +375,8 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 		g_object_unref (pFile);
 		return ;
 	}
-	g_print ("   (got attr)\n");
 	
 	const gchar *cFileName = g_file_info_get_name (pFileInfo);
-	g_print ("  (cFileName: %s)\n", cFileName);
 	const gchar *cMimeType = g_file_info_get_content_type (pFileInfo);
 	GFileType iFileType = g_file_info_get_file_type (pFileInfo);
 	
@@ -456,7 +453,6 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 		*iVolumeID = 0;
 		*cName = g_strdup (cFileName);
 	}
-	g_print ("  (cName: %s)\n", *cName);
 	
 	if (cTargetURI)
 	{
@@ -477,7 +473,7 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 		if (pPreviewIcon != NULL)
 		{
 			*cIconName = _cd_get_icon_path (pPreviewIcon, NULL);
-			g_print ("got preview icon '%s'\n", *cIconName);
+			//g_print ("got preview icon '%s'\n", *cIconName);
 		}
 	}
 	#endif

@@ -21,22 +21,24 @@
 #include <cairo-dock.h>
 
 #include "applet-struct.h"
+#include "applet-notifications.h"
 #include "applet-config.h"
 
 
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
-	myConfig.bSomeBooleanValue = CD_CONFIG_GET_BOOLEAN ("Configuration", "yes_no");
-	myConfig.iSomeIntegerValue = CD_CONFIG_GET_INTEGER ("Configuration", "int");
-	myConfig.cSomeStringValue = CD_CONFIG_GET_STRING ("Configuration", "text");
+	myConfig.cShortkey = CD_CONFIG_GET_STRING ("Configuration", "shortkey");
+	myConfig.iNbResultsMax = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb results", 100);
+	myConfig.iNbRelatedFilesMax = 20;
 	
 CD_APPLET_GET_CONFIG_END
 
 
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before you get the applet's config, and when your applet is stopped, in the end.
 CD_APPLET_RESET_CONFIG_BEGIN
-	g_free (myConfig.cSomeStringValue);
-	
+	if (myConfig.cShortkey)
+		cd_keybinder_unbind (myConfig.cShortkey, (CDBindkeyHandler) cd_on_shortkey);
+	g_free (myConfig.cShortkey);
 CD_APPLET_RESET_CONFIG_END
 
 

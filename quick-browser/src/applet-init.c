@@ -57,7 +57,6 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	
 	cd_keybinder_bind (myConfig.cMenuShortkey, (CDBindkeyHandler) cd_quick_browser_on_shortkey_menu, myApplet);
-;
 CD_APPLET_INIT_END
 
 

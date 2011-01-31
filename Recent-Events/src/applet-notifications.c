@@ -35,7 +35,6 @@ CD_APPLET_ON_CLICK_END
 //\___________ Same as ON_CLICK, but with middle-click.
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	
-	
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
@@ -140,3 +139,10 @@ CD_APPLET_ON_BUILD_MENU_PROTO
 	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 }
 
+
+void cd_on_shortkey (const char *keystring, CairoDockModuleInstance *myApplet)
+{
+	CD_APPLET_ENTER;
+	cd_toggle_dialog ();
+	CD_APPLET_LEAVE ();
+}

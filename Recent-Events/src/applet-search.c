@@ -223,7 +223,7 @@ void cd_find_recent_related_files (const gchar **cMimeTypes, CDOnGetEventsFunc p
 		zeitgeist_time_range_new_to_now (),
 		zg_templates,
 		ZEITGEIST_STORAGE_STATE_ANY,
-		20,
+		myConfig.iNbRelatedFilesMax,
 		ZEITGEIST_RESULT_TYPE_MOST_RECENT_EVENTS,  // MOST_RECENT_ORIGIN for folders
 		(GCancellable *)NULL,
 		(GAsyncReadyCallback)on_related_events_received,
@@ -272,7 +272,7 @@ void cd_find_recent_events (CDEventType iEventType, int iSortType, CDOnGetEvents
 		zeitgeist_time_range_new_to_now (),
 		zg_templates,
 		ZEITGEIST_STORAGE_STATE_ANY,
-		100,
+		myConfig.iNbResultsMax,
 		iSortType == 0 ? ZEITGEIST_RESULT_TYPE_MOST_RECENT_EVENTS : ZEITGEIST_RESULT_TYPE_MOST_POPULAR_SUBJECTS,
 		(GCancellable *)NULL,
 		(GAsyncReadyCallback)on_recent_events_received,
@@ -321,7 +321,7 @@ void cd_search_events (const gchar *cQuery, CDEventType iEventType, CDOnGetEvent
 		zeitgeist_time_range_new_anytime (),
 		zg_templates,
 		0,  // offset
-		20,  // number of events
+		myConfig.iNbResultsMax,  // number of events
 		ZEITGEIST_RESULT_TYPE_RELEVANCY,  // sorting type
 		(GCancellable*)NULL,
 		(GAsyncReadyCallback)on_events_received,

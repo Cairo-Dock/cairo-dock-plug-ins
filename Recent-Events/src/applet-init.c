@@ -25,7 +25,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION (("Recent-Events"),
+CD_APPLET_DEFINITION (N_("Recent-Events"),
 	2, 2, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
 	("This applet remembers you last actions to help you working faster.\n"
@@ -44,7 +44,6 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	
 	
-	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	cairo_dock_register_notification_on_object (&myContainersMgr,
@@ -53,6 +52,7 @@ CD_APPLET_INIT_BEGIN
 		CAIRO_DOCK_RUN_FIRST,
 		myApplet);
 	
+	cd_keybinder_bind (myConfig.cShortkey, (CDBindkeyHandler) cd_on_shortkey, myApplet);
 CD_APPLET_INIT_END
 
 
@@ -69,16 +69,15 @@ CD_APPLET_STOP_END
 
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
-	if (myDesklet && CD_APPLET_MY_CONTAINER_TYPE_CHANGED)  // we are now in a desklet, set a renderer.
-	{
-		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
-	}
-	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		if (myDesklet && CD_APPLET_MY_CONTAINER_TYPE_CHANGED)  // we are now in a desklet, set a renderer.
+		{
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		}
+		
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		
-		/// To be continued ...
-		
+		cd_keybinder_bind (myConfig.cShortkey, (CDBindkeyHandler) cd_on_shortkey, myApplet);  // shortkey has been unbinded during reset_config.
 	}
 CD_APPLET_RELOAD_END

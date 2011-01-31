@@ -68,12 +68,13 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 	ZeitgeistEvent     *event;
 	ZeitgeistSubject   *subject;
 	const gchar *cEventURI;
-	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL;
+	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL, *cPath = NULL;
 	double fOrder;
 	int iVolumeID;
 	gboolean bIsDirectory;
 	GdkPixbuf *pixbuf;
 	GtkTreeIter iter;
+	GHashTable *pHashTable = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, NULL);
 	while (zeitgeist_result_set_has_next (pEvents))
 	{
 		event = zeitgeist_result_set_next (pEvents);
@@ -81,12 +82,17 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 		for (i = 0; i < n; i++)
 		{
 			subject = zeitgeist_event_get_subject (event, i);
-			cEventURI = g_strdup (zeitgeist_subject_get_uri (subject));
-			g_print (" + %s\n", cEventURI);
+			cEventURI = zeitgeist_subject_get_uri (subject);
+			
+			if (g_hash_table_lookup_extended  (pHashTable, cEventURI, NULL, NULL))
+				continue;
+			
+			//g_print (" + %s\n", cEventURI);
 			
 			cairo_dock_fm_get_file_info (cEventURI, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, 0);
 			g_free (cName);
 			g_free (cURI);
+			cPath = g_filename_from_uri (cEventURI, NULL, NULL);
 			if (cIconName != NULL)
 				pixbuf = gdk_pixbuf_new_from_file_at_size (cIconName, 32, 32, NULL);
 			else
@@ -97,13 +103,17 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 			gtk_list_store_set (GTK_LIST_STORE (pModel), &iter,
 				CD_MODEL_NAME, zeitgeist_subject_get_text (subject),
 				CD_MODEL_URI, cEventURI,
+				CD_MODEL_PATH, cPath,
 				CD_MODEL_ICON, pixbuf,
 				CD_MODEL_DATE, (int)fOrder, -1);
 			g_free (cIconName);
 			g_object_unref (pixbuf);
+			g_free (cPath);
+			
+			g_hash_table_insert (pHashTable, (gchar*)cEventURI, NULL);  // cEventURI stays valid in this function.
 		}
 	}
-	g_print ("done\n");
+	g_hash_table_destroy (pHashTable);
 }
 
 void cd_folders_free_apps_list (CairoDockModuleInstance *myApplet)
@@ -231,9 +241,9 @@ static GtkWidget *cd_build_events_widget (void)
 	// type of events toolbar.
 	GtkWidget *pToolBar = gtk_toolbar_new ();
 	gtk_toolbar_set_orientation (GTK_TOOLBAR (pToolBar), GTK_ORIENTATION_HORIZONTAL);
-	gtk_toolbar_set_style (GTK_TOOLBAR (pToolBar), GTK_TOOLBAR_BOTH_HORIZ);
-	gtk_toolbar_set_show_arrow (GTK_TOOLBAR (pToolBar), TRUE);
-	gtk_box_pack_start (GTK_BOX (pMainBox), pToolBar, FALSE, FALSE, MARGIN);
+	gtk_toolbar_set_style (GTK_TOOLBAR (pToolBar), GTK_TOOLBAR_BOTH);  // overwrite system preference.
+	//gtk_toolbar_set_show_arrow (GTK_TOOLBAR (pToolBar), TRUE);
+	gtk_box_pack_start (GTK_BOX (pMainBox), pToolBar, TRUE, TRUE, MARGIN);
 	
 	int i = 0;
 	GtkToolItem *group = _add_category_button (pToolBar, D_("All"), "stock_all", i++, NULL);
@@ -243,18 +253,19 @@ static GtkWidget *cd_build_events_widget (void)
 	_add_category_button (pToolBar, D_("Audio"), "sound", i++, group);
 	_add_category_button (pToolBar, D_("Video"), "video", i++, group);
 	_add_category_button (pToolBar, D_("Other"), "unknown", i++, group);
-	_add_category_button (pToolBar, D_("Top Results"), "unknown", i++, group);
+	_add_category_button (pToolBar, D_("Top Results"), "gtk-about", i++, group);
 	
 	// filter entry.
 	GtkWidget *pFilterBox = gtk_hbox_new (FALSE, CAIRO_DOCK_GUI_MARGIN);
 	gtk_box_pack_start (GTK_BOX (pMainBox), pFilterBox, FALSE, FALSE, MARGIN);
 	
-	GtkWidget *pFilterLabel = gtk_label_new (D_("Filter the results"));
+	GtkWidget *pFilterLabel = gtk_label_new (D_("Look for events"));
 	gtk_box_pack_start (GTK_BOX (pFilterBox), pFilterLabel, FALSE, FALSE, MARGIN);
 	
 	GtkWidget *pEntry = gtk_entry_new ();
 	g_signal_connect (pEntry, "activate", G_CALLBACK (on_activate_filter), NULL);
 	gtk_box_pack_start (GTK_BOX (pFilterBox), pEntry, FALSE, FALSE, MARGIN);
+	gtk_widget_set_tooltip_text (pEntry, "The default boolean operator is AND. Thus the query foo bar will be interpreted as foo AND bar. To exclude a term from the result set prepend it with a minus sign - eg foo -bar. Phrase queries can be done by double quoting the string \"foo is a bar\". You can truncate terms by appending a *. ");
 	
 	#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
 	gtk_entry_set_icon_activatable (GTK_ENTRY (pEntry), GTK_ENTRY_ICON_SECONDARY, TRUE);
@@ -268,6 +279,7 @@ static GtkWidget *cd_build_events_widget (void)
 	GtkListStore *pModel = gtk_list_store_new (CD_MODEL_NB_COLUMNS,
 		G_TYPE_STRING,  /* CD_MODEL_NAME */
 		G_TYPE_STRING,  /* CD_MODEL_URI */
+		G_TYPE_STRING,  /* CD_MODEL_PATH */
 		GDK_TYPE_PIXBUF,  /* CD_MODEL_ICON */
 		G_TYPE_INT);  /* CD_MODEL_DATE */
 	gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (pModel), CD_MODEL_NAME, GTK_SORT_ASCENDING);
@@ -286,6 +298,8 @@ static GtkWidget *cd_build_events_widget (void)
 		NULL);
 	g_signal_connect (G_OBJECT (pOneWidget), "button-release-event", G_CALLBACK (_on_click_module_tree_view), NULL);  // pour le menu du clic droit
 	g_signal_connect (G_OBJECT (pOneWidget), "button-press-event", G_CALLBACK (_on_click_module_tree_view), NULL);  // pour le menu du clic droit
+	
+	g_object_set (G_OBJECT (pOneWidget), "tooltip-column", CD_MODEL_PATH, NULL);
 	
 	GtkTreeViewColumn* col;
 	GtkCellRenderer *rend;
@@ -325,7 +339,7 @@ void cd_toggle_dialog (void)
 	else
 	{
 		GtkWidget *pInteractiveWidget = cd_build_events_widget ();
-		myData.pDialog = cairo_dock_show_dialog_full (D_("Recent events"), myIcon, myContainer, 0, "same icon", pInteractiveWidget, NULL, myApplet, (GFreeFunc) _on_dialog_destroyed);
+		myData.pDialog = cairo_dock_show_dialog_full (D_("Browse and search in recent events"), myIcon, myContainer, 0, "same icon", pInteractiveWidget, NULL, myApplet, (GFreeFunc) _on_dialog_destroyed);
 		gtk_widget_grab_focus (myData.pEntry);
 		
 		_trigger_search ();

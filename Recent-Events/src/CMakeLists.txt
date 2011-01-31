@@ -20,7 +20,7 @@ add_definitions (-DMY_APPLET_USER_DATA_DIR="Recent-Events")
 add_definitions (-DMY_APPLET_VERSION="${VERSION_RECENT_EVENTS}")
 add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_RECENT_EVENTS}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
-add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
+add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
 ### uncomment the following line to allow multi-instance applet.
 #add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
 ### uncomment the following line to allow extended OpenGL drawing.

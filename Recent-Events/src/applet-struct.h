@@ -26,9 +26,9 @@
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
-	gboolean bSomeBooleanValue;
-	gint iSomeIntegerValue;
-	gchar *cSomeStringValue;
+	gchar *cShortkey;
+	gint iNbResultsMax;
+	gint iNbRelatedFilesMax;
 	} ;
 
 typedef void (* CDOnGetEventsFunc) (ZeitgeistResultSet *pEvents, gpointer data);
@@ -48,6 +48,7 @@ typedef enum {
 typedef enum {
 	CD_MODEL_NAME,
 	CD_MODEL_URI,
+	CD_MODEL_PATH,
 	CD_MODEL_ICON,
 	CD_MODEL_DATE,
 	CD_MODEL_NB_COLUMNS
