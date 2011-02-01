@@ -35,7 +35,7 @@
 void cd_decorator_set_frame_size_comics (CairoDialog *pDialog)
 {
 	int iMargin = .5 * myConfig.iComicsLineWidth + (1. - sqrt (2) / 2) * myConfig.iComicsRadius + _CAIRO_DIALOG_COMICS_MARGIN;  // on laisse qques pixels d'espace en plus tout autour.
-	g_print ("iMargin : %d\n", iMargin);
+	//g_print ("iMargin : %d\n", iMargin);
 	pDialog->iRightMargin = iMargin;
 	pDialog->iLeftMargin = iMargin;
 	pDialog->iTopMargin = iMargin;
@@ -92,12 +92,12 @@ void cd_decorator_draw_decorations_comics (cairo_t *pCairoContext, CairoDialog *
 		bRight = (pDialog->container.iWindowPositionX + iWidth > pDialog->iAimedX + fTipWidth);
 	else
 		bRight = (pDialog->container.iWindowPositionX + fTipWidth > pDialog->iAimedX);
-	g_print ("%d, %d, %d -> %d\n", pDialog->container.iWindowPositionX, (int) fTipWidth, pDialog->iAimedX, bRight);
+	//g_print ("%d, %d, %d -> %d\n", pDialog->container.iWindowPositionX, (int) fTipWidth, pDialog->iAimedX, bRight);
 	int iDeltaIconX;
 	if (bRight)  // dialogue a droite de l'icone, pointe vers la gauche.
 	{
 		iDeltaIconX = MIN (0, pDialog->container.iWindowPositionX - pDialog->iAimedX);  // < 0
-		g_print ("iDeltaIconX right : %d / %d\n", iDeltaIconX, iWidth);
+		//g_print ("iDeltaIconX right : %d / %d\n", iDeltaIconX, iWidth);
 		cairo_rel_line_to (pCairoContext, -(fBaseWidth + iDeltaIconX - fTipWidth), 0);
 		cairo_rel_curve_to (pCairoContext,
 			- CD_TIP_OUTER_MARGIN, 0,
@@ -112,7 +112,7 @@ void cd_decorator_draw_decorations_comics (cairo_t *pCairoContext, CairoDialog *
 	else  // dialogue a gauche de l'icone, pointe vers la droite.
 	{
 		iDeltaIconX = MAX (0, pDialog->container.iWindowPositionX + iWidth - pDialog->iAimedX);  // > 0
-		g_print ("iDeltaIconX left : %d / %d\n", iDeltaIconX, iWidth);
+		//g_print ("iDeltaIconX left : %d / %d\n", iDeltaIconX, iWidth);
 		cairo_rel_line_to (pCairoContext, - iDeltaIconX, 0);
 		cairo_rel_curve_to (pCairoContext,
 			- (CD_TIP_INNER_MARGIN), 0,

@@ -352,6 +352,7 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 	const gchar *cQuery = G_FILE_ATTRIBUTE_STANDARD_TYPE","
 		G_FILE_ATTRIBUTE_STANDARD_SIZE","
 		G_FILE_ATTRIBUTE_TIME_MODIFIED","
+		G_FILE_ATTRIBUTE_TIME_ACCESS","
 		G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE","
 		G_FILE_ATTRIBUTE_STANDARD_NAME","
 		G_FILE_ATTRIBUTE_STANDARD_ICON","
@@ -386,6 +387,8 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 		g_file_info_get_modification_time (pFileInfo, &t);
 		*fOrder = t.tv_sec;
 	}
+	else if (iSortType == CAIRO_DOCK_FM_SORT_BY_ACCESS)
+		*fOrder =  g_file_info_get_attribute_uint64 (pFileInfo, G_FILE_ATTRIBUTE_TIME_ACCESS);
 	else if (iSortType == CAIRO_DOCK_FM_SORT_BY_SIZE)
 		*fOrder = g_file_info_get_size (pFileInfo);
 	else if (iSortType == CAIRO_DOCK_FM_SORT_BY_TYPE)

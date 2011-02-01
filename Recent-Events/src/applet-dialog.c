@@ -19,6 +19,8 @@
 
 #include <stdlib.h>
 #include <string.h>
+#define __USE_POSIX
+#include <time.h>
 
 #include "applet-struct.h"
 #include "applet-search.h"
@@ -89,7 +91,8 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 			
 			//g_print (" + %s\n", cEventURI);
 			
-			cairo_dock_fm_get_file_info (cEventURI, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, 0);
+			cairo_dock_fm_get_file_info (cEventURI, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_DATE);
+			//g_print ("fOrder: %.2f\n", fOrder);
 			g_free (cName);
 			g_free (cURI);
 			cPath = g_filename_from_uri (cEventURI, NULL, NULL);
@@ -132,12 +135,14 @@ static void _cd_launch_with (GtkMenuItem *pMenuItem, const gchar *cExec)
 	cairo_dock_launch_command_printf ("%s \"%s\"", NULL, cExec, cPath);  // in case the program doesn't handle URI (geeqie, etc).
 	g_free (cPath);
 }
+
 static void _cd_open_parent (GtkMenuItem *pMenuItem, gpointer data)
 {
 	gchar *cFolder = g_path_get_dirname (myData.cCurrentUri);
 	cairo_dock_fm_launch_uri (cFolder);
 	g_free (cFolder);
 }
+
 static gboolean _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButton* pButton, gpointer data)
 {
 	//g_print ("%s ()\n", __func__);
@@ -209,6 +214,7 @@ static gboolean _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButt
 	}
 	return FALSE;
 }
+
 static gboolean _cairo_dock_select_one_item_in_tree (GtkTreeSelection * selection, GtkTreeModel * model, GtkTreePath * path, gboolean path_currently_selected, gpointer *data)
 {
 	if (path_currently_selected)
@@ -219,6 +225,22 @@ static gboolean _cairo_dock_select_one_item_in_tree (GtkTreeSelection * selectio
 	
 	return TRUE;
 }
+
+#define DATE_BUFFER_LENGTH 50
+static void _render_date (GtkTreeViewColumn *tree_column, GtkCellRenderer *cell, GtkTreeModel *model,GtkTreeIter *iter, gpointer data)
+{
+	gint iDate = 0;
+	gtk_tree_model_get (model, iter, CD_MODEL_DATE, &iDate, -1);
+	
+	time_t epoch = iDate;
+	struct tm t;
+	localtime_r (&epoch, &t);
+	
+	static gchar s_cDateBuffer[50];
+	strftime (s_cDateBuffer, DATE_BUFFER_LENGTH, "%a %d %b", &t);
+	g_object_set (cell, "text", s_cDateBuffer, NULL);
+}
+
 static inline GtkToolItem *_add_category_button (GtkWidget *pToolBar, const gchar *cLabel, const gchar *cIconName, int pos, GtkToolItem *group)
 
 {
@@ -238,11 +260,11 @@ static GtkWidget *cd_build_events_widget (void)
 {
 	GtkWidget *pMainBox = gtk_vbox_new (FALSE, MARGIN);
 	
-	// type of events toolbar.
+	// category toolbar.
 	GtkWidget *pToolBar = gtk_toolbar_new ();
 	gtk_toolbar_set_orientation (GTK_TOOLBAR (pToolBar), GTK_ORIENTATION_HORIZONTAL);
-	gtk_toolbar_set_style (GTK_TOOLBAR (pToolBar), GTK_TOOLBAR_BOTH);  // overwrite system preference.
-	//gtk_toolbar_set_show_arrow (GTK_TOOLBAR (pToolBar), TRUE);
+	gtk_toolbar_set_style (GTK_TOOLBAR (pToolBar), GTK_TOOLBAR_BOTH);  // overwrite system preference (GTK_TOOLBAR_ICONS)
+	gtk_toolbar_set_show_arrow (GTK_TOOLBAR (pToolBar), FALSE);  // force to display all the entries.
 	gtk_box_pack_start (GTK_BOX (pMainBox), pToolBar, TRUE, TRUE, MARGIN);
 	
 	int i = 0;
@@ -255,7 +277,7 @@ static GtkWidget *cd_build_events_widget (void)
 	_add_category_button (pToolBar, D_("Other"), "unknown", i++, group);
 	_add_category_button (pToolBar, D_("Top Results"), "gtk-about", i++, group);
 	
-	// filter entry.
+	// search entry.
 	GtkWidget *pFilterBox = gtk_hbox_new (FALSE, CAIRO_DOCK_GUI_MARGIN);
 	gtk_box_pack_start (GTK_BOX (pMainBox), pFilterBox, FALSE, FALSE, MARGIN);
 	
@@ -282,7 +304,7 @@ static GtkWidget *cd_build_events_widget (void)
 		G_TYPE_STRING,  /* CD_MODEL_PATH */
 		GDK_TYPE_PIXBUF,  /* CD_MODEL_ICON */
 		G_TYPE_INT);  /* CD_MODEL_DATE */
-	gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (pModel), CD_MODEL_NAME, GTK_SORT_ASCENDING);
+	///gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (pModel), CD_MODEL_NAME, GTK_SORT_ASCENDING);
 	myData.pModel = pModel;
 	
 	// tree-view
@@ -312,6 +334,11 @@ static GtkWidget *cd_build_events_widget (void)
 	gtk_tree_view_column_set_sort_column_id (col, CD_MODEL_NAME);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (pOneWidget), col);
 	// date
+	rend = gtk_cell_renderer_text_new ();
+	col = gtk_tree_view_column_new_with_attributes (_("Last access"), rend, "text", CD_MODEL_DATE, NULL);
+	gtk_tree_view_column_set_cell_data_func (col, rend, (GtkTreeCellDataFunc)_render_date, NULL, NULL);
+	gtk_tree_view_column_set_sort_column_id (col, CD_MODEL_DATE);
+	gtk_tree_view_append_column (GTK_TREE_VIEW (pOneWidget), col);
 	
 	// barres de defilement
 	GtkObject *adj = gtk_adjustment_new (0., 0., 100., 1, 10, 10);
