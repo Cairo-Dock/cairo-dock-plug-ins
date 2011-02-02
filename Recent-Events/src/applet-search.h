@@ -33,7 +33,9 @@ void cd_find_recent_events (CDEventType iEventType, int iSortType, CDOnGetEvents
 void cd_search_events (const gchar *cQuery, CDEventType iEventType, CDOnGetEventsFunc pCallback, gpointer data);
 
 
-void cd_get_delete_recent_events (int iNbDays, CDOnDeleteEventsFunc pCallback, gpointer data);
+void cd_delete_recent_events (int iNbDays, CDOnDeleteEventsFunc pCallback, gpointer data);
+
+void cd_delete_event (const gchar *cUri);
 
 
 #endif

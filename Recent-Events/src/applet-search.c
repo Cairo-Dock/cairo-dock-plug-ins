@@ -33,9 +33,9 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 		myData.pEvents = g_new0 (ZeitgeistEvent*, CD_NB_EVENT_TYPES);
 		
 		ZeitgeistSubject *subj;
-		subj = zeitgeist_subject_new_full ("file://*",  // uri, application://* for apps
+		subj = zeitgeist_subject_new_full ("",  // any type of uri.
 			"",  // interpretation
-			"",  // manifestation
+			"",  // manifestation (ZEITGEIST_NFO_FILE_DATA_OBJECT/ZEITGEIST_NFO_REMOTE_DATA_OBJECT)
 			"",  // mimetype
 			"",  // origin
 			"",  // text
@@ -49,7 +49,7 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 		
 		subj = zeitgeist_subject_new_full ("file://*",  // uri, application://* for apps
 			ZEITGEIST_NFO_DOCUMENT,  // interpretation
-			"",  // manifestation
+			ZEITGEIST_NFO_FILE_DATA_OBJECT,  // manifestation
 			"",  // mimetype
 			"",  // origin
 			"",  // text
@@ -61,9 +61,9 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			subj,  // a list of subjects
 			NULL);  // terminated with NULL
 		
-		subj = zeitgeist_subject_new_full ("file://*",  // uri, application://* for apps
+		/**subj = zeitgeist_subject_new_full ("file://*",  // uri, application://* for apps
 			ZEITGEIST_NFO_FOLDER,  // interpretation
-			"",  // manifestation
+			ZEITGEIST_NFO_FILE_DATA_OBJECT,  // manifestation
 			"",  // mimetype
 			"",  // origin
 			"",  // text
@@ -73,11 +73,11 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
 			subj,  // a list of subjects
-			NULL);  // terminated with NULL
+			NULL);  // terminated with NULL*/
 		
 		subj = zeitgeist_subject_new_full ("file://*",  // uri, application://* for apps
 			ZEITGEIST_NFO_IMAGE,  // interpretation
-			"",  // manifestation
+			ZEITGEIST_NFO_FILE_DATA_OBJECT,  // manifestation
 			"",  // mimetype
 			"",  // origin
 			"",  // text
@@ -91,7 +91,7 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 		
 		subj = zeitgeist_subject_new_full ("file://*",  // uri, application://* for apps
 			ZEITGEIST_NFO_AUDIO,  // interpretation
-			"",  // manifestation
+			ZEITGEIST_NFO_FILE_DATA_OBJECT,  // manifestation
 			"",  // mimetype
 			"",  // origin
 			"",  // text
@@ -105,12 +105,26 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 		
 		subj = zeitgeist_subject_new_full ("file://*",  // uri, application://* for apps
 			ZEITGEIST_NFO_VIDEO,  // interpretation
-			"",  // manifestation
+			ZEITGEIST_NFO_FILE_DATA_OBJECT,  // manifestation
 			"",  // mimetype
 			"",  // origin
 			"",  // text
 			"");  // storage
 		myData.pEvents[CD_EVENT_VIDEO] = zeitgeist_event_new_full (
+			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (type ZEITGEIST_ZG_EVENT_INTERPRETATION)
+			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
+			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
+			subj,  // a list of subjects
+			NULL);  // terminated with NULL
+		
+		subj = zeitgeist_subject_new_full ("",  // url
+			ZEITGEIST_NFO_WEBSITE,  // interpretation
+			ZEITGEIST_NFO_REMOTE_DATA_OBJECT,  // manifestation
+			"",  // mimetype
+			"",  // origin
+			"",  // text
+			"");  // storage
+		myData.pEvents[CD_EVENT_WEB] = zeitgeist_event_new_full (
 			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (type ZEITGEIST_ZG_EVENT_INTERPRETATION)
 			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
@@ -130,14 +144,14 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
 			subj,  // a list of subjects
 			NULL);  // terminated with NULL
-		subj = zeitgeist_subject_new_full ("",  // uri, application://* for apps
+		/**subj = zeitgeist_subject_new_full ("",  // uri, application://* for apps
 			"!"ZEITGEIST_NFO_FOLDER,  // interpretation
 			"",  // manifestation
 			"",  // mimetype
 			"",  // origin
 			"",  // text
 			"");  // storage
-		zeitgeist_event_add_subject (myData.pEvents[CD_EVENT_OTHER], subj);
+		zeitgeist_event_add_subject (myData.pEvents[CD_EVENT_OTHER], subj);*/
 		subj = zeitgeist_subject_new_full ("",  // uri, application://* for apps
 			"!"ZEITGEIST_NFO_IMAGE,  // interpretation
 			"",  // manifestation
@@ -372,7 +386,7 @@ static void on_delete_whole_log (ZeitgeistLog *log, GAsyncResult *res, gpointer 
 		g_error_free (error);
 	}
 }
-void cd_get_delete_recent_events (int iNbDays, CDOnDeleteEventsFunc pCallback, gpointer data)  // entry in the menu
+void cd_delete_recent_events (int iNbDays, CDOnDeleteEventsFunc pCallback, gpointer data)  // entry in the menu
 {
 	static gpointer s_data[2];
 	s_data[0] = pCallback;
@@ -386,7 +400,7 @@ void cd_get_delete_recent_events (int iNbDays, CDOnDeleteEventsFunc pCallback, g
 		// find events IDs of less than 'iNbDays' days
 		GArray *event_ids;
 		time_t now = (time_t) time (NULL);
-		ZeitgeistTimeRange *time_range = zeitgeist_time_range_new (now - 7*24*3600, now);
+		ZeitgeistTimeRange *time_range = zeitgeist_time_range_new (now - iNbDays*24*3600, now);
 		
 		GPtrArray* event_templates = g_ptr_array_new ();
 		
@@ -407,4 +421,20 @@ void cd_get_delete_recent_events (int iNbDays, CDOnDeleteEventsFunc pCallback, g
 			(GAsyncReadyCallback)on_delete_whole_log,
 			s_data);
 	}
+}
+
+void cd_delete_event (const gchar *cUri)
+{
+	ZeitgeistTimeRange *time_range = zeitgeist_time_range_new_to_now ();
+	GPtrArray* event_templates = g_ptr_array_new ();
+	
+	ZeitgeistEvent *pEvent;
+	ZeitgeistSubject *subj = zeitgeist_subject_new_full (cUri,  // uri.
+		"",  // interpretation
+		"",  // manifestation (ZEITGEIST_NFO_FILE_DATA_OBJECT/ZEITGEIST_NFO_REMOTE_DATA_OBJECT)
+		"",  // mimetype
+		"",  // origin
+		"",  // text
+		"");  // storage
+	
 }

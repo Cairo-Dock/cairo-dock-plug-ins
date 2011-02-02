@@ -29,6 +29,7 @@ struct _AppletConfig {
 	gchar *cShortkey;
 	gint iNbResultsMax;
 	gint iNbRelatedFilesMax;
+	gboolean b24Mode;
 	} ;
 
 typedef void (* CDOnGetEventsFunc) (ZeitgeistResultSet *pEvents, gpointer data);
@@ -36,10 +37,11 @@ typedef void (* CDOnDeleteEventsFunc) (gpointer data);
 typedef enum {
 	CD_EVENT_ALL,
 	CD_EVENT_DOCUMENT,
-	CD_EVENT_FOLDER,
+	///CD_EVENT_FOLDER,  // marche pas avec zeitgeist, et puis n'est pas super utile.
 	CD_EVENT_IMAGE,
 	CD_EVENT_AUDIO,
 	CD_EVENT_VIDEO,
+	CD_EVENT_WEB,
 	CD_EVENT_OTHER,
 	CD_EVENT_TOP_RESULTS,
 	CD_NB_EVENT_TYPES

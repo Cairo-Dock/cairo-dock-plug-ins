@@ -30,6 +30,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cShortkey = CD_CONFIG_GET_STRING ("Configuration", "shortkey");
 	myConfig.iNbResultsMax = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb results", 100);
 	myConfig.iNbRelatedFilesMax = 20;
+	myConfig.b24Mode = TRUE;
 	
 CD_APPLET_GET_CONFIG_END
 

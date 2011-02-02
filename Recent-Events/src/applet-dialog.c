@@ -69,6 +69,7 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 	int i, n;
 	ZeitgeistEvent     *event;
 	ZeitgeistSubject   *subject;
+	gint64 iTimeStamp;
 	const gchar *cEventURI;
 	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL, *cPath = NULL;
 	double fOrder;
@@ -80,38 +81,76 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 	while (zeitgeist_result_set_has_next (pEvents))
 	{
 		event = zeitgeist_result_set_next (pEvents);
+		iTimeStamp = zeitgeist_event_get_timestamp (event) / 1e3;
 		n = zeitgeist_event_num_subjects (event);
+		//g_print ("%s, %s, %d\n", zeitgeist_event_get_interpretation (event), zeitgeist_event_get_manifestation (event), n);
 		for (i = 0; i < n; i++)
 		{
 			subject = zeitgeist_event_get_subject (event, i);
 			cEventURI = zeitgeist_subject_get_uri (subject);
+			//g_print ("  %s:\n    %s, %s\n", cEventURI, zeitgeist_subject_get_interpretation (subject), zeitgeist_subject_get_manifestation (subject));
 			
 			if (g_hash_table_lookup_extended  (pHashTable, cEventURI, NULL, NULL))
 				continue;
 			
 			//g_print (" + %s\n", cEventURI);
 			
-			cairo_dock_fm_get_file_info (cEventURI, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_DATE);
+			if (strncmp (cEventURI, "http", 4) == 0)  // gvfs is deadly slow to get info on distant URI...
+			{
+				cIconName = cairo_dock_search_icon_s_path ("text-html");
+				cName = NULL;
+				cURI = NULL;
+			}
+			else
+			{
+				cairo_dock_fm_get_file_info (cEventURI, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_DATE);
+			}
+			//g_print (" -> %s", cIconName);
 			//g_print ("fOrder: %.2f\n", fOrder);
 			g_free (cName);
 			g_free (cURI);
-			cPath = g_filename_from_uri (cEventURI, NULL, NULL);
+			cPath = g_filename_from_uri (cEventURI, NULL, NULL);  // NULL for anything else than file://*
 			if (cIconName != NULL)
 				pixbuf = gdk_pixbuf_new_from_file_at_size (cIconName, 32, 32, NULL);
 			else
 				pixbuf = NULL;
+			
+			gchar *cEscapedPath = NULL;
+			const gchar *cDisplayedPath = (cPath ? cPath : cEventURI);
+			if (strchr (cDisplayedPath, '&'))  // need to escape the '&' because gtk-tooltips use markups by default.
+			{
+				cEscapedPath = g_new0 (gchar, 5*strlen(cDisplayedPath));
+				const gchar *str = cDisplayedPath;
+				gchar *str2 = cEscapedPath;
+				while (*str != '\0')
+				{
+					if (*str == '&')
+					{
+						strcpy (str2, "&amp;");
+						str2 += 5;
+					}
+					else
+					{
+						*str2 = *str;
+						*str2 ++;
+					}
+					str ++;
+				}
+			}
 			
 			memset (&iter, 0, sizeof (GtkTreeIter));
 			gtk_list_store_append (GTK_LIST_STORE (pModel), &iter);
 			gtk_list_store_set (GTK_LIST_STORE (pModel), &iter,
 				CD_MODEL_NAME, zeitgeist_subject_get_text (subject),
 				CD_MODEL_URI, cEventURI,
-				CD_MODEL_PATH, cPath,
+				CD_MODEL_PATH, cEscapedPath?cEscapedPath:cDisplayedPath,
 				CD_MODEL_ICON, pixbuf,
-				CD_MODEL_DATE, (int)fOrder, -1);
+				CD_MODEL_DATE, iTimeStamp, -1);
 			g_free (cIconName);
-			g_object_unref (pixbuf);
+			if (pixbuf)
+				g_object_unref (pixbuf);
 			g_free (cPath);
+			g_free (cEscapedPath);
 			
 			g_hash_table_insert (pHashTable, (gchar*)cEventURI, NULL);  // cEventURI stays valid in this function.
 		}
@@ -141,6 +180,12 @@ static void _cd_open_parent (GtkMenuItem *pMenuItem, gpointer data)
 	gchar *cFolder = g_path_get_dirname (myData.cCurrentUri);
 	cairo_dock_fm_launch_uri (cFolder);
 	g_free (cFolder);
+}
+static void _cd_copy_location (GtkMenuItem *pMenuItem, gpointer data)
+{
+	GtkClipboard *pClipBoard;
+	pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);  // GDK_SELECTION_PRIMARY
+	gtk_clipboard_set_text (pClipBoard, myData.cCurrentUri, -1);
 }
 
 static gboolean _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButton* pButton, gpointer data)
@@ -203,6 +248,10 @@ static gboolean _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButt
 				g_list_free (pApps);
 			}
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open parent folder"), GTK_STOCK_DIRECTORY, _cd_open_parent, pMenu, NULL);
+			
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Copy the location"), GTK_STOCK_COPY, _cd_copy_location, pMenu, NULL);
+			
+			gtk_widget_show_all (pMenu);
 			gtk_menu_popup (GTK_MENU (pMenu),
 				NULL,
 				NULL,
@@ -229,7 +278,7 @@ static gboolean _cairo_dock_select_one_item_in_tree (GtkTreeSelection * selectio
 #define DATE_BUFFER_LENGTH 50
 static void _render_date (GtkTreeViewColumn *tree_column, GtkCellRenderer *cell, GtkTreeModel *model,GtkTreeIter *iter, gpointer data)
 {
-	gint iDate = 0;
+	gint64 iDate = 0;
 	gtk_tree_model_get (model, iter, CD_MODEL_DATE, &iDate, -1);
 	
 	time_t epoch = iDate;
@@ -237,12 +286,17 @@ static void _render_date (GtkTreeViewColumn *tree_column, GtkCellRenderer *cell,
 	localtime_r (&epoch, &t);
 	
 	static gchar s_cDateBuffer[50];
-	strftime (s_cDateBuffer, DATE_BUFFER_LENGTH, "%a %d %b", &t);
+	const gchar *cFormat;
+	if (myConfig.b24Mode)
+		cFormat = "%a %d %b, %R";
+	else
+		cFormat = "%a %d %b, %I:%M %p";
+	strftime (s_cDateBuffer, DATE_BUFFER_LENGTH, cFormat, &t);
+	
 	g_object_set (cell, "text", s_cDateBuffer, NULL);
 }
 
 static inline GtkToolItem *_add_category_button (GtkWidget *pToolBar, const gchar *cLabel, const gchar *cIconName, int pos, GtkToolItem *group)
-
 {
 	GtkToolItem *pCategoryButton;
 	if (group)
@@ -270,10 +324,11 @@ static GtkWidget *cd_build_events_widget (void)
 	int i = 0;
 	GtkToolItem *group = _add_category_button (pToolBar, D_("All"), "stock_all", i++, NULL);
 	_add_category_button (pToolBar, D_("Document"), "document", i++, group);
-	_add_category_button (pToolBar, D_("Folder"), "folder", i++, group);
+	///_add_category_button (pToolBar, D_("Folder"), "folder", i++, group);
 	_add_category_button (pToolBar, D_("Image"), "image", i++, group);
 	_add_category_button (pToolBar, D_("Audio"), "sound", i++, group);
 	_add_category_button (pToolBar, D_("Video"), "video", i++, group);
+	_add_category_button (pToolBar, D_("Web"), "text-html", i++, group);
 	_add_category_button (pToolBar, D_("Other"), "unknown", i++, group);
 	_add_category_button (pToolBar, D_("Top Results"), "gtk-about", i++, group);
 	
@@ -303,7 +358,7 @@ static GtkWidget *cd_build_events_widget (void)
 		G_TYPE_STRING,  /* CD_MODEL_URI */
 		G_TYPE_STRING,  /* CD_MODEL_PATH */
 		GDK_TYPE_PIXBUF,  /* CD_MODEL_ICON */
-		G_TYPE_INT);  /* CD_MODEL_DATE */
+		G_TYPE_INT64);  /* CD_MODEL_DATE */
 	///gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (pModel), CD_MODEL_NAME, GTK_SORT_ASCENDING);
 	myData.pModel = pModel;
 	
@@ -355,6 +410,9 @@ static GtkWidget *cd_build_events_widget (void)
 static void _on_dialog_destroyed (gpointer data)
 {
 	myData.pDialog = NULL;
+	myData.pEntry = NULL;
+	myData.iCurrentCaterogy = CD_EVENT_ALL;
+	myData.pModel = NULL;	
 }
 void cd_toggle_dialog (void)
 {

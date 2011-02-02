@@ -358,7 +358,7 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 		G_FILE_ATTRIBUTE_STANDARD_ICON","
 		G_FILE_ATTRIBUTE_THUMBNAIL_PATH","
 		#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
-		G_FILE_ATTRIBUTE_PREVIEW_ICON","
+		///G_FILE_ATTRIBUTE_PREVIEW_ICON","
 		#endif
 		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI","
 		G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE;
@@ -470,7 +470,7 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 	*cIconName = NULL;
 	*cIconName = g_strdup (g_file_info_get_attribute_byte_string (pFileInfo, G_FILE_ATTRIBUTE_THUMBNAIL_PATH));
 	#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
-	if (*cIconName == NULL)
+	/**if (*cIconName == NULL)
 	{
 		GIcon *pPreviewIcon = (GIcon *)g_file_info_get_attribute_object (pFileInfo, G_FILE_ATTRIBUTE_PREVIEW_ICON);
 		if (pPreviewIcon != NULL)
@@ -478,7 +478,7 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 			*cIconName = _cd_get_icon_path (pPreviewIcon, NULL);
 			//g_print ("got preview icon '%s'\n", *cIconName);
 		}
-	}
+	}*/
 	#endif
 	if (*cIconName == NULL && cMimeType != NULL && strncmp (cMimeType, "image", 5) == 0)
 	{
