@@ -1749,6 +1749,7 @@ static GList *cairo_dock_gio_vfs_list_apps_for_file (const gchar *cBaseURI)
 		#endif
 		pList = g_list_prepend (pList, pData);
 	}
+	pList = g_list_reverse (pList);
 	
 	g_free (cValidUri);
 	g_object_unref (pFile);

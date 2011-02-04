@@ -53,6 +53,7 @@ typedef enum {
 	CD_MODEL_PATH,
 	CD_MODEL_ICON,
 	CD_MODEL_DATE,
+	CD_MODEL_ID,
 	CD_MODEL_NB_COLUMNS
 	} CDModelColumn;
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.

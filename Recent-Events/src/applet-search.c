@@ -41,7 +41,7 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			"",  // text
 			"");  // storage
 		myData.pEvents[CD_EVENT_ALL] = zeitgeist_event_new_full (
-			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (type ZEITGEIST_ZG_EVENT_INTERPRETATION)
+			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (ZEITGEIST_ZG_EVENT_INTERPRETATION)
 			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
 			subj,  // a list of subjects
@@ -55,7 +55,7 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			"",  // text
 			"");  // storage
 		myData.pEvents[CD_EVENT_DOCUMENT] = zeitgeist_event_new_full (
-			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (type ZEITGEIST_ZG_EVENT_INTERPRETATION)
+			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (ZEITGEIST_ZG_EVENT_INTERPRETATION)
 			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
 			subj,  // a list of subjects
@@ -69,7 +69,7 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			"",  // text
 			"");  // storage
 		myData.pEvents[CD_EVENT_FOLDER] = zeitgeist_event_new_full (
-			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (type ZEITGEIST_ZG_EVENT_INTERPRETATION)
+			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (ZEITGEIST_ZG_EVENT_INTERPRETATION)
 			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
 			subj,  // a list of subjects
@@ -83,7 +83,7 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			"",  // text
 			"");  // storage
 		myData.pEvents[CD_EVENT_IMAGE] = zeitgeist_event_new_full (
-			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (type ZEITGEIST_ZG_EVENT_INTERPRETATION)
+			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (ZEITGEIST_ZG_EVENT_INTERPRETATION)
 			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
 			subj,  // a list of subjects
@@ -97,7 +97,7 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			"",  // text
 			"");  // storage
 		myData.pEvents[CD_EVENT_AUDIO] = zeitgeist_event_new_full (
-			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (type ZEITGEIST_ZG_EVENT_INTERPRETATION)
+			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (ZEITGEIST_ZG_EVENT_INTERPRETATION)
 			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
 			subj,  // a list of subjects
@@ -111,7 +111,7 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			"",  // text
 			"");  // storage
 		myData.pEvents[CD_EVENT_VIDEO] = zeitgeist_event_new_full (
-			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (type ZEITGEIST_ZG_EVENT_INTERPRETATION)
+			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (ZEITGEIST_ZG_EVENT_INTERPRETATION)
 			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
 			subj,  // a list of subjects
@@ -125,7 +125,7 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			"",  // text
 			"");  // storage
 		myData.pEvents[CD_EVENT_WEB] = zeitgeist_event_new_full (
-			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (type ZEITGEIST_ZG_EVENT_INTERPRETATION)
+			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (ZEITGEIST_ZG_EVENT_INTERPRETATION)
 			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
 			subj,  // a list of subjects
@@ -139,7 +139,7 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			"",  // text
 			"");  // storage
 		myData.pEvents[CD_EVENT_OTHER] = zeitgeist_event_new_full (
-			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (type ZEITGEIST_ZG_EVENT_INTERPRETATION)
+			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (ZEITGEIST_ZG_EVENT_INTERPRETATION)
 			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
 			subj,  // a list of subjects
@@ -223,7 +223,7 @@ void cd_find_recent_related_files (const gchar **cMimeTypes, CDOnGetEventsFunc p
 			"",  // text
 			"");  // storage
 		ZeitgeistEvent* ev = zeitgeist_event_new_full (
-			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (type ZEITGEIST_ZG_EVENT_INTERPRETATION)
+			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (ZEITGEIST_ZG_EVENT_INTERPRETATION)
 			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
 			subj, NULL);  // a list of subjects, terminated with NULL
@@ -326,7 +326,6 @@ void cd_search_events (const gchar *cQuery, CDEventType iEventType, CDOnGetEvent
 	
 	g_print ("Searching for '%s'...\n", cQuery);
 	
-	g_print ("TODO: compare with an empty event...\n");
 	GPtrArray* zg_templates = g_ptr_array_sized_new (1);
 	ZeitgeistEvent *ev = _get_event_template_for_category (iEventType);
 	g_ptr_array_add (zg_templates, ev);
@@ -354,6 +353,10 @@ static void on_delete_events (ZeitgeistLog *log, GAsyncResult *res, gpointer *us
 	{
 		cd_warning ("Error deleting log: %s", error->message);
 		g_error_free (error);
+	}
+	else
+	{
+		pCallback (data);
 	}
 }
 static void on_deleting_event_received (ZeitgeistLog *log, GAsyncResult *res, gpointer user_data)
@@ -423,18 +426,22 @@ void cd_delete_recent_events (int iNbDays, CDOnDeleteEventsFunc pCallback, gpoin
 	}
 }
 
-void cd_delete_event (const gchar *cUri)
+
+void cd_delete_event (guint32 id, CDOnDeleteEventsFunc pCallback, gpointer data)
 {
-	ZeitgeistTimeRange *time_range = zeitgeist_time_range_new_to_now ();
-	GPtrArray* event_templates = g_ptr_array_new ();
+	static gpointer s_data[2];
+	s_data[0] = pCallback;
+	s_data[1] = data;
 	
-	ZeitgeistEvent *pEvent;
-	ZeitgeistSubject *subj = zeitgeist_subject_new_full (cUri,  // uri.
-		"",  // interpretation
-		"",  // manifestation (ZEITGEIST_NFO_FILE_DATA_OBJECT/ZEITGEIST_NFO_REMOTE_DATA_OBJECT)
-		"",  // mimetype
-		"",  // origin
-		"",  // text
-		"");  // storage
+	GArray *event_ids = g_array_sized_new (TRUE,
+		TRUE,
+		sizeof (guint32),
+		1);
+	g_array_append_val (event_ids, id);
 	
+	zeitgeist_log_delete_events (myData.pLog,
+		event_ids,
+		(GCancellable *)NULL,
+		(GAsyncReadyCallback)on_delete_events,
+		s_data);  // this function unrefs the array
 }

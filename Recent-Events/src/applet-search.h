@@ -35,7 +35,7 @@ void cd_search_events (const gchar *cQuery, CDEventType iEventType, CDOnGetEvent
 
 void cd_delete_recent_events (int iNbDays, CDOnDeleteEventsFunc pCallback, gpointer data);
 
-void cd_delete_event (const gchar *cUri);
+void cd_delete_event (guint32 id, CDOnDeleteEventsFunc pCallback, gpointer data);
 
 
 #endif

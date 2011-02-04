@@ -34,11 +34,18 @@ static void _trigger_search (void)
 	CDEventType iCategory = myData.iCurrentCaterogy;
 	GtkListStore *pModel = myData.pModel;
 	
+	int iSortType = 0;
+	if (iCategory >= CD_EVENT_TOP_RESULTS)
+	{
+		iCategory = CD_EVENT_ALL;
+		iSortType = 1;
+	}
+	
 	gtk_list_store_clear (pModel);
 	if (cQuery != NULL && *cQuery != '\0')
 		cd_search_events (cQuery, iCategory, (CDOnGetEventsFunc) _on_got_events, pModel);
 	else
-		cd_find_recent_events (iCategory, 0, (CDOnGetEventsFunc) _on_got_events, pModel);
+		cd_find_recent_events (iCategory, iSortType, (CDOnGetEventsFunc) _on_got_events, pModel);
 }
 
 static void on_click_category_button (GtkButton *button, gpointer data)
@@ -67,10 +74,11 @@ static void on_activate_filter (GtkEntry *pEntry, gpointer data)
 static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 {
 	int i, n;
-	ZeitgeistEvent     *event;
-	ZeitgeistSubject   *subject;
+	ZeitgeistEvent *event;
+	ZeitgeistSubject *subject;
 	gint64 iTimeStamp;
 	const gchar *cEventURI;
+	guint id;
 	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL, *cPath = NULL;
 	double fOrder;
 	int iVolumeID;
@@ -78,45 +86,53 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 	GdkPixbuf *pixbuf;
 	GtkTreeIter iter;
 	GHashTable *pHashTable = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, NULL);
+	
+	//\_____________ parse all the events.
 	while (zeitgeist_result_set_has_next (pEvents))
 	{
 		event = zeitgeist_result_set_next (pEvents);
 		iTimeStamp = zeitgeist_event_get_timestamp (event) / 1e3;
+		id = zeitgeist_event_get_id (event);
 		n = zeitgeist_event_num_subjects (event);
-		//g_print ("%s, %s, %d\n", zeitgeist_event_get_interpretation (event), zeitgeist_event_get_manifestation (event), n);
+		if (n > 1)
+			g_print (" +++ %s, %s, %d\n", zeitgeist_event_get_interpretation (event), zeitgeist_event_get_manifestation (event), n);
 		for (i = 0; i < n; i++)
 		{
 			subject = zeitgeist_event_get_subject (event, i);
-			cEventURI = zeitgeist_subject_get_uri (subject);
-			//g_print ("  %s:\n    %s, %s\n", cEventURI, zeitgeist_subject_get_interpretation (subject), zeitgeist_subject_get_manifestation (subject));
 			
+			//\_____________ prevent doubles.
+			cEventURI = zeitgeist_subject_get_uri (subject);
 			if (g_hash_table_lookup_extended  (pHashTable, cEventURI, NULL, NULL))
 				continue;
+			//g_print ("  %s:\n    %s, %s\n", cEventURI, zeitgeist_subject_get_interpretation (subject), zeitgeist_subject_get_manifestation (subject));
 			
-			//g_print (" + %s\n", cEventURI);
+			//\_____________ get the text to display.
+			const gchar *cText = zeitgeist_subject_get_text (subject);
+			if (cText == NULL)  // skip empty texts (they are most of the times web page that redirect to another page, which is probably in the next event anyway).
+				continue;
 			
+			//\_____________ find the icon.
 			if (strncmp (cEventURI, "http", 4) == 0)  // gvfs is deadly slow to get info on distant URI...
 			{
 				cIconName = cairo_dock_search_icon_s_path ("text-html");
-				cName = NULL;
-				cURI = NULL;
 			}
 			else
 			{
 				cairo_dock_fm_get_file_info (cEventURI, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_DATE);
+				g_free (cName);
+				g_free (cURI);
 			}
-			//g_print (" -> %s", cIconName);
-			//g_print ("fOrder: %.2f\n", fOrder);
-			g_free (cName);
-			g_free (cURI);
-			cPath = g_filename_from_uri (cEventURI, NULL, NULL);  // NULL for anything else than file://*
 			if (cIconName != NULL)
 				pixbuf = gdk_pixbuf_new_from_file_at_size (cIconName, 32, 32, NULL);
 			else
 				pixbuf = NULL;
 			
-			gchar *cEscapedPath = NULL;
+			//\_____________ build the path to display.
+			cPath = g_filename_from_uri (cEventURI, NULL, NULL);  // NULL for anything else than file://*
+			
 			const gchar *cDisplayedPath = (cPath ? cPath : cEventURI);
+			
+			gchar *cEscapedPath = NULL;
 			if (strchr (cDisplayedPath, '&'))  // need to escape the '&' because gtk-tooltips use markups by default.
 			{
 				cEscapedPath = g_new0 (gchar, 5*strlen(cDisplayedPath));
@@ -138,14 +154,16 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 				}
 			}
 			
+			//\_____________ store in the model.
 			memset (&iter, 0, sizeof (GtkTreeIter));
 			gtk_list_store_append (GTK_LIST_STORE (pModel), &iter);
 			gtk_list_store_set (GTK_LIST_STORE (pModel), &iter,
-				CD_MODEL_NAME, zeitgeist_subject_get_text (subject),
+				CD_MODEL_NAME, cText,
 				CD_MODEL_URI, cEventURI,
 				CD_MODEL_PATH, cEscapedPath?cEscapedPath:cDisplayedPath,
 				CD_MODEL_ICON, pixbuf,
-				CD_MODEL_DATE, iTimeStamp, -1);
+				CD_MODEL_DATE, iTimeStamp,
+				CD_MODEL_ID, id, -1);
 			g_free (cIconName);
 			if (pixbuf)
 				g_object_unref (pixbuf);
@@ -187,7 +205,15 @@ static void _cd_copy_location (GtkMenuItem *pMenuItem, gpointer data)
 	pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);  // GDK_SELECTION_PRIMARY
 	gtk_clipboard_set_text (pClipBoard, myData.cCurrentUri, -1);
 }
-
+static void _on_event_deleted (gpointer data)
+{
+	_trigger_search ();
+}
+static void _cd_delete_event (GtkMenuItem *pMenuItem, gpointer data)
+{
+	guint32 id = GPOINTER_TO_UINT (data);
+	cd_delete_event (id, _on_event_deleted, NULL);
+}
 static gboolean _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButton* pButton, gpointer data)
 {
 	//g_print ("%s ()\n", __func__);
@@ -203,9 +229,11 @@ static gboolean _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButt
 			return FALSE;
 		
 		gchar *cName = NULL, *cUri = NULL;
+		guint id = 0;
 		gtk_tree_model_get (pModel, &iter,
 			CD_MODEL_NAME, &cName,
-			CD_MODEL_URI, &cUri, -1);
+			CD_MODEL_URI, &cUri,
+			CD_MODEL_ID, &id, -1);
 		
 		//launch or build the menu.
 		if (pButton->button == 1)  // double-click
@@ -250,6 +278,8 @@ static gboolean _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButt
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open parent folder"), GTK_STOCK_DIRECTORY, _cd_open_parent, pMenu, NULL);
 			
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Copy the location"), GTK_STOCK_COPY, _cd_copy_location, pMenu, NULL);
+			
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Delete this event"), GTK_STOCK_REMOVE, _cd_delete_event, pMenu, GUINT_TO_POINTER (id));
 			
 			gtk_widget_show_all (pMenu);
 			gtk_menu_popup (GTK_MENU (pMenu),
@@ -358,7 +388,8 @@ static GtkWidget *cd_build_events_widget (void)
 		G_TYPE_STRING,  /* CD_MODEL_URI */
 		G_TYPE_STRING,  /* CD_MODEL_PATH */
 		GDK_TYPE_PIXBUF,  /* CD_MODEL_ICON */
-		G_TYPE_INT64);  /* CD_MODEL_DATE */
+		G_TYPE_INT64,  /* CD_MODEL_DATE */
+		G_TYPE_UINT);  /* CD_MODEL_ID */
 	///gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (pModel), CD_MODEL_NAME, GTK_SORT_ASCENDING);
 	myData.pModel = pModel;
 	
@@ -386,6 +417,7 @@ static GtkWidget *cd_build_events_widget (void)
 	// file name
 	rend = gtk_cell_renderer_text_new ();
 	col = gtk_tree_view_column_new_with_attributes (_("File name"), rend, "text", CD_MODEL_NAME, NULL);
+	gtk_tree_view_column_set_max_width (col, MAX (600, g_desktopGeometry.iScreenWidth[CAIRO_DOCK_HORIZONTAL]*.67));
 	gtk_tree_view_column_set_sort_column_id (col, CD_MODEL_NAME);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (pOneWidget), col);
 	// date
