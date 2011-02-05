@@ -219,12 +219,31 @@ if ("${VALA_EXECUTABLE}" STREQUAL "" OR  NOT EXISTS ${VALA_EXECUTABLE})
 	message (STATUS "Could not find Vala compiler, won't build Vala interface.")
 	set (with_vala "no")
 else()
-	set (VALA_FOUND "TRUE")
 	execute_process(COMMAND ${VALA_EXECUTABLE} "--version"
 		OUTPUT_VARIABLE "VALA_VERSION")
     string(REPLACE "Vala" "" "VALA_VERSION" ${VALA_VERSION})
     string(STRIP ${VALA_VERSION} "VALA_VERSION")
-	set (with_vala "yes")
+    message (STATUS "VALA_VERSION: ${VALA_VERSION}")
+    
+    STRING (REGEX REPLACE "\\..*" "" VALA_MAJOR "${VALA_VERSION}")
+	message (STATUS "VALA_MAJOR : ${VALA_MAJOR}")
+	
+	STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" VALA_MINOR "${VALA_VERSION}")  # 0.1.7 => 1.7
+	STRING (REGEX REPLACE "\\.[0-9]*" "" VALA_MINOR "${VALA_MINOR}")
+	message (STATUS "VALA_MINOR : ${VALA_MINOR}")
+	
+	STRING (REGEX REPLACE ".*\\." "" VALA_NANO "${VALA_VERSION}")
+	STRING (REGEX REPLACE "-.*" "" VALA_NANO "${VALA_NANO}")
+	message (STATUS "VALA_NANO  : ${VALA_NANO}")
+	
+	if (${VALA_MAJOR} GREATER 0 OR ${VALA_MINOR} GREATER 9)  # vala > 0.10
+		message (STATUS "Vala compiler ok.")
+		set (VALA_FOUND "TRUE")
+		set (with_vala "yes")
+	else()
+		message (STATUS "Vala compiler too old (0.10 required), won't build Vala interface.")
+		set (with_vala "no")
+	endif()
 endif()
 
 
