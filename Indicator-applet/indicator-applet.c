@@ -27,6 +27,7 @@
 
 #define INDICATOR_APPLET_DBUS_VERSION  1
 
+static gboolean s_bIndicatorIconThemeAdded = FALSE;
 
 static void _cd_indicator_make_menu (CDAppletIndicator *pIndicator)
 {
@@ -97,6 +98,12 @@ connection_changed (IndicatorServiceManager * sm, gboolean connected, CDAppletIn
 
 CDAppletIndicator *cd_indicator_new (CairoDockModuleInstance *pApplet, const gchar *cBusName, const gchar *cServiceObject, const gchar *cServiceInterface, const gchar *cMenuObject)
 {
+	if (!s_bIndicatorIconThemeAdded)
+	{
+		s_bIndicatorIconThemeAdded = TRUE;
+		gtk_icon_theme_append_search_path (gtk_icon_theme_get_default(),
+			INDICATOR_ICONS_DIR);
+	}
 	CDAppletIndicator *pIndicator = g_new0 (CDAppletIndicator, 1);
 	pIndicator->pApplet = pApplet;
 	pIndicator->cBusName = cBusName;
@@ -121,7 +128,7 @@ void cd_indicator_destroy (CDAppletIndicator *pIndicator)
 		g_object_unref (pIndicator->service);
 	if (pIndicator->pServiceProxy)
 		g_object_unref (pIndicator->pServiceProxy);
-	g_print ("destroy menu...\n");
+	g_print ("destroy indicator menu...\n");
 	if (pIndicator->pMenu)
 		g_object_unref (pIndicator->pMenu);
 	g_print ("done.\n");

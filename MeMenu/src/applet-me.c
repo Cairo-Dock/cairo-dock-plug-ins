@@ -29,13 +29,9 @@
 
 #include "applet-struct.h"
 #include "me-service-client.h"
+#include "applet-menu.h"
 #include "applet-me.h"
 
-#define INDICATOR_ME_DBUS_OBJECT "/org/ayatana/indicator/me/menu"
-#define INDICATOR_ME_SERVICE_DBUS_OBJECT "/org/ayatana/indicator/me/service"
-#define INDICATOR_ME_SERVICE_DBUS_INTERFACE "org.ayatana.indicator.me.service"
-#define INDICATOR_ME_DBUS_NAME  "org.ayatana.indicator.me"
-#define INDICATOR_ME_DBUS_VERSION  1
 #define DEFAULT_ICON "user-offline"
 
 
@@ -94,6 +90,8 @@ void cd_me_on_disconnect (CairoDockModuleInstance *myApplet)
 {
 	cd_warning ("It seems that the MeMenu is not available on this system");
 	status_icon_cb (NULL, DEFAULT_ICON, NULL, myApplet);  // If we're disconnecting, go back to offline.
+	
+	///cd_me_delete_entry ();
 }
 
 void cd_me_get_initial_values (CairoDockModuleInstance *myApplet)

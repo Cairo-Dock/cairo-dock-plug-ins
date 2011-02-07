@@ -25,8 +25,9 @@
 #include <libdbusmenu-gtk/menu.h>
 
 
-///GtkMenu *cd_me_get_menu (CairoDockModuleInstance *myApplet);
 void cd_me_add_menu_handler (DbusmenuGtkClient * client);
+
+void cd_me_delete_entry (void);
 
 
 #endif

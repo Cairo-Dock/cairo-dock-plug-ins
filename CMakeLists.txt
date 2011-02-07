@@ -401,17 +401,32 @@ pkg_check_modules (DBUSMENU_GTK_04 QUIET dbusmenu-gtk-0.4)
 pkg_check_modules (INDICATOR_APPLET indicator libido-0.1)
 if ("${DBUSMENU_04_FOUND}" STREQUAL "1")
 	pkg_check_modules (DBUSMENU dbusmenu-glib-0.4)
-	# set (DBUSMENU_EXT "-0.4")
 else()
 	pkg_check_modules (DBUSMENU dbusmenu-glib)
 endif()
 if ("${DBUSMENU_GTK_04_FOUND}" STREQUAL "1")
 	pkg_check_modules (DBUSMENU_GTK dbusmenu-gtk-0.4)
-	# set (DBUSMENU_GTK_EXT "-0.4")
 else()
 	pkg_check_modules (DBUSMENU_GTK dbusmenu-gtk)
 endif()
 if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1" AND "${DBUSMENU_FOUND}" STREQUAL "1" AND "${DBUSMENU_GTK_FOUND}" STREQUAL "1")
+	message (STATUS "DBUSMENU_VERSION : ${DBUSMENU_VERSION}")
+	
+	STRING (REGEX REPLACE "\\..*" "" DBUSMENU_MAJOR "${DBUSMENU_VERSION}")
+	message (STATUS "DBUSMENU_MAJOR : ${DBUSMENU_MAJOR}")
+	
+	STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" DBUSMENU_MINOR "${DBUSMENU_VERSION}")  # 0.1.7 => 1.7
+	STRING (REGEX REPLACE "\\.[0-9]*" "" DBUSMENU_MINOR "${DBUSMENU_MINOR}")
+	message (STATUS "DBUSMENU_MINOR : ${DBUSMENU_MINOR}")
+	
+	STRING (REGEX REPLACE ".*\\." "" DBUSMENU_NANO "${DBUSMENU_VERSION}")
+	STRING (REGEX REPLACE "-.*" "" DBUSMENU_NANO "${DBUSMENU_NANO}")
+	message (STATUS "DBUSMENU_NANO  : ${DBUSMENU_NANO}")
+	
+	execute_process(
+		COMMAND pkg-config --variable=iconsdir indicator
+		OUTPUT_VARIABLE INDICATORICONSDIR)
+	STRING (REGEX REPLACE "\n" "" INDICATORICONSDIR ${INDICATORICONSDIR})  # la commande rajoute un retour chariot ...
 	add_subdirectory (Indicator-applet)
 	set (with_indicator "yes")
 endif()
@@ -505,19 +520,6 @@ endif()
 ############# MEMENU #################
 set (with_me_menu "no")
 if ("${with_indicator}" STREQUAL "yes")
-	message (STATUS "DBUSMENU_VERSION : ${DBUSMENU_VERSION}")
-	
-	STRING (REGEX REPLACE "\\..*" "" DBUSMENU_MAJOR "${DBUSMENU_VERSION}")
-	message (STATUS "DBUSMENU_MAJOR : ${DBUSMENU_MAJOR}")
-	
-	STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" DBUSMENU_MINOR "${DBUSMENU_VERSION}")  # 0.1.7 => 1.7
-	STRING (REGEX REPLACE "\\.[0-9]*" "" DBUSMENU_MINOR "${DBUSMENU_MINOR}")
-	message (STATUS "DBUSMENU_MINOR : ${DBUSMENU_MINOR}")
-	
-	STRING (REGEX REPLACE ".*\\." "" DBUSMENU_NANO "${DBUSMENU_VERSION}")
-	STRING (REGEX REPLACE "-.*" "" DBUSMENU_NANO "${DBUSMENU_NANO}")
-	message (STATUS "DBUSMENU_NANO  : ${DBUSMENU_NANO}")
-	
 	set (GETTEXT_MEMENU ${GETTEXT_PLUGINS})
 	set (VERSION_MEMENU "1.0.1")
 	set (PACKAGE_MEMENU "cd-MeMenu")

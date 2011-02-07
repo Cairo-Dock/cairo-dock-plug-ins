@@ -32,6 +32,7 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define DBUSMENU_ENTRY_MENUITEM_TYPE           "x-canonical-entry-item"
 #define DBUSMENU_ENTRY_MENUITEM_PROP_TEXT      "text"
+#define DBUSMENU_ENTRY_MENUITEM_PROP_HINT      "hint"
 
 #define DBUSMENU_ABOUT_ME_MENUITEM_TYPE           "x-canonical-about-me-item"
 #define DBUSMENU_ABOUT_ME_MENUITEM_PROP_NAME      "name"
