@@ -401,7 +401,7 @@ void cd_dbus_emit_on_menu_select (GtkMenuItem *pMenuItem, gpointer data)
 gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *pClickedIcon, double fPosition, CairoContainer *pClickedContainer)
 {
 	//\________________ On gere le cas d'une applet tierce-partie en provenance de nos depots.
-	if (cReceivedData && strncmp (cReceivedData, "http://", 7) == 0 && g_str_has_suffix (cReceivedData, ".tar.gz") && (g_strstr_len (cReceivedData, -1, "cairo-dock") || g_strstr_len (cReceivedData, -1, "glx-dock")))
+	if (cReceivedData && strncmp (cReceivedData, "http://", 7) == 0 && g_str_has_suffix (cReceivedData, ".tar.gz") && (g_strstr_len (cReceivedData, -1, "glxdock") || g_strstr_len (cReceivedData, -1, "glx-dock")))
 	{
 		//\________________ On telecharge l'archive de l'applet et on l'installe/la met a jour.
 		GError *erreur = NULL;

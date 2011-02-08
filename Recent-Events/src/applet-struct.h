@@ -33,7 +33,7 @@ struct _AppletConfig {
 	} ;
 
 typedef void (* CDOnGetEventsFunc) (ZeitgeistResultSet *pEvents, gpointer data);
-typedef void (* CDOnDeleteEventsFunc) (gpointer data);
+typedef void (* CDOnDeleteEventsFunc) (int iNbEvents, gpointer data);
 typedef enum {
 	CD_EVENT_ALL,
 	CD_EVENT_DOCUMENT,

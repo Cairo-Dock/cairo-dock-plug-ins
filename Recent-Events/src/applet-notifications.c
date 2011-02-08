@@ -67,6 +67,28 @@ static void _open_file (GtkMenuItem *menu_item, gchar *cCommand)
 	
 	cd_recent_events_reset_uri_list ();
 }
+static void _on_delete_events (int iNbEvents, gpointer data)
+{
+	if (iNbEvents > 0)
+	{
+		cairo_dock_show_temporary_dialog_with_icon_printf (D_("%d event(s) deleted"), myIcon, myContainer, 3e3, "same icon", iNbEvents);
+	}
+	if (iNbEvents != 0)
+	{
+		cd_trigger_search ();
+	}
+	CD_APPLET_STOP_DEMANDING_ATTENTION;
+}
+static void _clear_today_events (GtkMenuItem *menu_item, gpointer data)
+{
+	cd_delete_recent_events (1, (CDOnDeleteEventsFunc)_on_delete_events, data);
+	CD_APPLET_DEMANDS_ATTENTION ("pulse", 30);
+}
+static void _clear_all_events (GtkMenuItem *menu_item, gpointer data)
+{
+	cd_delete_recent_events (1e6, (CDOnDeleteEventsFunc)_on_delete_events, data);  // in Maverick we get the following error: ZeitgeistEngine instance has no attribute 'delete_log'. so we just delete as much events as possible.
+	CD_APPLET_DEMANDS_ATTENTION ("pulse", 30);
+}
 static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 {
 	g_print ("%s ()\n", __func__);
@@ -120,7 +142,7 @@ CD_APPLET_ON_BUILD_MENU_PROTO
 {
 	g_print ("%s (%s...)\n", __func__, CD_APPLET_CLICKED_ICON && CD_APPLET_CLICKED_ICON->pMimeTypes ?CD_APPLET_CLICKED_ICON->pMimeTypes[0] : "");
 	CD_APPLET_ENTER;
-	if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON->pMimeTypes != NULL)
+	if (CD_APPLET_CLICKED_ICON != NULL)
 	{
 		GtkWidget *pMenuItem, *image;
 		
@@ -128,6 +150,10 @@ CD_APPLET_ON_BUILD_MENU_PROTO
 		{
 			GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 			CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+			
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Delete today's events"), GTK_STOCK_CLEAR, _clear_today_events, CD_APPLET_MY_MENU, myApplet);
+			
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Delete all events"), GTK_STOCK_DELETE, _clear_all_events, CD_APPLET_MY_MENU, myApplet);
 		}
 		else if (CD_APPLET_CLICKED_ICON->pMimeTypes != NULL)
 		{

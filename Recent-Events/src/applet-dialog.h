@@ -17,12 +17,15 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef __APPLET_EVENTS__
 #define  __APPLET_EVENTS__
 
 
 #include <cairo-dock.h>
+
+
+void cd_trigger_search (void);
+
 
 void cd_toggle_dialog (void);
 

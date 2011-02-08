@@ -28,8 +28,10 @@
 
 static void _on_got_events (ZeitgeistResultSet *events, GtkListStore *pModel);
 
-static void _trigger_search (void)
+void cd_trigger_search (void)
 {
+	if (myData.pDialog == NULL)
+		return;
 	const gchar *cQuery = gtk_entry_get_text (GTK_ENTRY (myData.pEntry));
 	CDEventType iCategory = myData.iCurrentCaterogy;
 	GtkListStore *pModel = myData.pModel;
@@ -54,7 +56,7 @@ static void on_click_category_button (GtkButton *button, gpointer data)
 		return;
 	myData.iCurrentCaterogy = GPOINTER_TO_INT (data);
 	g_print ("filter on category %d\n", myData.iCurrentCaterogy);
-	_trigger_search ();
+	cd_trigger_search ();
 }
 
 #if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
@@ -62,13 +64,13 @@ static void on_clear_filter (GtkEntry *pEntry, GtkEntryIconPosition icon_pos, Gd
 {
 	gtk_entry_set_text (pEntry, "");
 	g_print ("relaunch the search...\n");
-	_trigger_search ();
+	cd_trigger_search ();
 }
 #endif
 
 static void on_activate_filter (GtkEntry *pEntry, gpointer data)
 {
-	_trigger_search ();
+	cd_trigger_search ();
 }
 
 static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
@@ -205,9 +207,9 @@ static void _cd_copy_location (GtkMenuItem *pMenuItem, gpointer data)
 	pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);  // GDK_SELECTION_PRIMARY
 	gtk_clipboard_set_text (pClipBoard, myData.cCurrentUri, -1);
 }
-static void _on_event_deleted (gpointer data)
+static void _on_event_deleted (int iNbEvents, gpointer data)
 {
-	_trigger_search ();
+	cd_trigger_search ();
 }
 static void _cd_delete_event (GtkMenuItem *pMenuItem, gpointer data)
 {
@@ -459,6 +461,6 @@ void cd_toggle_dialog (void)
 		myData.pDialog = cairo_dock_show_dialog_full (D_("Browse and search in recent events"), myIcon, myContainer, 0, "same icon", pInteractiveWidget, NULL, myApplet, (GFreeFunc) _on_dialog_destroyed);
 		gtk_widget_grab_focus (myData.pEntry);
 		
-		_trigger_search ();
+		cd_trigger_search ();
 	}
 }

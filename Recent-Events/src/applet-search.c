@@ -344,8 +344,10 @@ void cd_search_events (const gchar *cQuery, CDEventType iEventType, CDOnGetEvent
 
 static void on_delete_events (ZeitgeistLog *log, GAsyncResult *res, gpointer *user_data)
 {
+	g_print ("events deleted\n");
 	CDOnDeleteEventsFunc pCallback = user_data[0];
 	gpointer data = user_data[1];
+	int iNbEvents = GPOINTER_TO_INT (user_data[2]);
 	
 	GError *error = NULL;
 	gboolean bSuccess = zeitgeist_log_delete_events_finish (log, res, &error);
@@ -353,23 +355,30 @@ static void on_delete_events (ZeitgeistLog *log, GAsyncResult *res, gpointer *us
 	{
 		cd_warning ("Error deleting log: %s", error->message);
 		g_error_free (error);
+		pCallback (0, data);
 	}
 	else
 	{
-		pCallback (data);
+		pCallback (iNbEvents, data);
 	}
 }
-static void on_deleting_event_received (ZeitgeistLog *log, GAsyncResult *res, gpointer user_data)
+static void on_deleting_event_received (ZeitgeistLog *log, GAsyncResult *res, gpointer *user_data)
 {
+	CDOnDeleteEventsFunc pCallback = user_data[0];
+	gpointer data = user_data[1];
+	
 	GError *error = NULL;
 	GArray *event_ids = zeitgeist_log_find_event_ids_finish (log, res, &error);
+	g_print ("got %d events\n", event_ids->len);
 	if (error)
 	{
 		cd_warning ("Error finding in log: %s", error->message);
 		g_error_free (error);
+		pCallback (0, data);
 		return;
 	}
 	// delete events IDs
+	user_data[2] = GINT_TO_POINTER (event_ids->len);
 	zeitgeist_log_delete_events (log,
 		event_ids,
 		(GCancellable *)NULL,
@@ -387,13 +396,19 @@ static void on_delete_whole_log (ZeitgeistLog *log, GAsyncResult *res, gpointer 
 	{
 		cd_warning ("Error deleting log: %s", error->message);
 		g_error_free (error);
+		pCallback (0, data);
+	}
+	else
+	{
+		pCallback (-1, data);
 	}
 }
 void cd_delete_recent_events (int iNbDays, CDOnDeleteEventsFunc pCallback, gpointer data)  // entry in the menu
 {
-	static gpointer s_data[2];
+	static gpointer s_data[3];
 	s_data[0] = pCallback;
 	s_data[1] = data;
+	s_data[2] = 0;
 	
 	if (myData.pLog == NULL)
 		myData.pLog = zeitgeist_log_new ();
@@ -402,8 +417,9 @@ void cd_delete_recent_events (int iNbDays, CDOnDeleteEventsFunc pCallback, gpoin
 	{
 		// find events IDs of less than 'iNbDays' days
 		GArray *event_ids;
-		time_t now = (time_t) time (NULL);
-		ZeitgeistTimeRange *time_range = zeitgeist_time_range_new (now - iNbDays*24*3600, now);
+		time_t t = (time_t) time (NULL);
+		gint64 now = t * 1e3;  // msec
+		ZeitgeistTimeRange *time_range = zeitgeist_time_range_new (now - iNbDays*24*3600*1e3, now);
 		
 		GPtrArray* event_templates = g_ptr_array_new ();
 		
@@ -411,7 +427,7 @@ void cd_delete_recent_events (int iNbDays, CDOnDeleteEventsFunc pCallback, gpoin
 			time_range,
 			event_templates,
 			ZEITGEIST_STORAGE_STATE_ANY,
-			1000,
+			999,  // 999 is the max number of events available in zeitgeist 0.2, and 1499 is the max in sqlite3 :-/
 			ZEITGEIST_RESULT_TYPE_MOST_RECENT_EVENTS,
 			(GCancellable *)NULL,
 			(GAsyncReadyCallback)on_deleting_event_received,
@@ -429,9 +445,10 @@ void cd_delete_recent_events (int iNbDays, CDOnDeleteEventsFunc pCallback, gpoin
 
 void cd_delete_event (guint32 id, CDOnDeleteEventsFunc pCallback, gpointer data)
 {
-	static gpointer s_data[2];
+	static gpointer s_data[3];
 	s_data[0] = pCallback;
 	s_data[1] = data;
+	s_data[2] = GINT_TO_POINTER (1);
 	
 	GArray *event_ids = g_array_sized_new (TRUE,
 		TRUE,
