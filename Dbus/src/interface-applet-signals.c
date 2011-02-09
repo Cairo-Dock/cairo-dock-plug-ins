@@ -606,29 +606,29 @@ void cd_dbus_applet_emit_on_answer_text_view (int iClickedButton, GtkWidget *pIn
 	GValue v = G_VALUE_INIT;
 	g_value_init (&v, G_TYPE_STRING);
 	
-	GtkWidget *pEntry;
-	if (GTK_IS_ENTRY (pInteractiveWidget))
+	GtkWidget *pTextView;
+	if (GTK_IS_TEXT_VIEW (pInteractiveWidget))
 	{
-		pEntry = pInteractiveWidget;
+		pTextView = pInteractiveWidget;
 	}
 	else
 	{
 		GList *children = gtk_container_get_children (GTK_CONTAINER (pInteractiveWidget));
 		g_return_if_fail (children != NULL);
-		pEntry = children->data;
+		pTextView = children->data;
 	}
-	GtkTextBuffer *pBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (pEntry));
+	GtkTextBuffer *pBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (pTextView));
 	GtkTextIter start, end;
-	gtk_text_buffer_get_iter_at_offset (pBuffer, &start, 0);
-	gtk_text_buffer_get_iter_at_offset (pBuffer, &end, -1);
+	gtk_text_buffer_get_start_iter (pBuffer, &start);
+	gtk_text_buffer_get_end_iter (pBuffer, &end);
 	gchar *cText = gtk_text_buffer_get_text (pBuffer,
 		&start,
 		&end,
 		FALSE);
 	
 	g_value_set_string (&v, cText);
-	g_free (cText);
 	_emit_answer_dialog (pDbusApplet, pDialog, iClickedButton, &v);
+	g_free (cText);
 }
 
 void cd_dbus_applet_emit_on_answer_scale (int iClickedButton, GtkWidget *pInteractiveWidget, dbusApplet *pDbusApplet, CairoDialog *pDialog)
