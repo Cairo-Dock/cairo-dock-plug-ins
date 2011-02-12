@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# This is a part of the external demo applet for Cairo-Dock
+# This is a part of the external demo applets for Cairo-Dock
 #
 # Copyright : (C) 2010-2011 by Nochka85
 #                      modified by matttbe for the new API
-#                      (based on the demo.py by Fabounet)
+#                      modified by Fabounet for the new interface
 # E-mail : nochka85@glx-dock.org
 #
 #
@@ -15,20 +15,20 @@
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# ERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
 # http://www.gnu.org/licenses/licenses.html#GPL
 
-### This is a part of the external applet demo_bash.py for cairo-dock
+### This is a part of the external applet demo_bash for cairo-dock
 ### Author : Nochka85
 ### Contact : nochka85@glx-dock.org
-### Rev : 21/01/2010
+### Rev : 09/02/2011
 
-. /usr/share/cairo-dock/plug-ins/Dbus/CDBashApplet.sh
+. /usr/share/cairo-dock/plug-ins/Dbus/CDBashApplet.sh $*
 
 #############################################################################################################
 
-get_ALL_conf_params()
+get_config()
 {
 	demo_text=`get_conf_param "demo_text"`
 	
@@ -89,14 +89,13 @@ on_menu_select()
 
 begin()
 {
-	get_ALL_conf_params
+	get_config
 	
 	echo "from file $CONF_FILE:"
-	echo "The demo_text in config is : $demo_text"
-	echo "The demo_truefalse in config is : $demo_truefalse"
-	echo "The demo_value in config is : $demo_value"
+	echo "Param 'demo_text' in config is : $demo_text"
+	echo "Param 'demo_truefalse' in config is : $demo_truefalse"
+	echo "Param 'demo_value' in config is : $demo_value"
 	
-	echo "Our module is started"
 	call ShowDialog "string:\"I'm connected to Cairo-Dock \!\"" "int32:4"
 	call SetQuickInfo "string:0"
 	
@@ -110,19 +109,17 @@ end()
 
 reload()
 {
-	get_ALL_conf_params
+	get_config
 	
-	echo "The demo_text in config is : $demo_text"
-	echo "The demo_truefalse in config is : $demo_truefalse"
-	echo "The demo_value in config is : $demo_value"
+	echo "Param 'demo_text' in config is now : $demo_text"
+	echo "Param 'demo_truefalse' in config is now : $demo_truefalse"
+	echo "Param 'demo_value' in config is now : $demo_value"
 	
-	echo "Our module is reloaded"
 	call ShowDialog "string:\"Our module is reloaded\"" "int32:2"
 }
 
 #############################################################################################################
 
-echo "our module is called with $*"
 run $*
 
 exit 0

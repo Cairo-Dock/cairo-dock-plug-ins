@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# This is a part of the external demo applet for Cairo-Dock
+# This is a part of the external applets for Cairo-Dock
 # Copyright : (C) 2010-2011 by Nochka85, Fabounet and Matttbe
 # E-mail : fabounet@glx-dock.org
 #
@@ -14,23 +14,6 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
 # http://www.gnu.org/licenses/licenses.html#GPL
-
-# The name of this applet is "demo_bash"; it is placed in a folder named "demo_bash", with a file named "auto-load.conf" which describes it.
-# Copy this folder into ~/.config/cairo-dock/third-party to let the dock register it automatically.
-# In the folder we have :
-# - "demo_bash"         : the executable script, without extension
-# - "demo_bash.sh"      : the script in bash, where you will place your code
-# - "demo_bash.conf"    : the default config file
-# - "auto-load.conf"    : the file describing our applet
-# - "icon"              : the default icon of the applet (optionnal)
-# - "preview"           : a preview of this applet (optionnal)
-
-### This very simple applet features a counter from 0 to iMaxValue It displays the counter on the icon with a gauge and a quick info.
-### Scroll on the icon increase or decrease the counter.
-### The menu offers the possibility to set some default value.
-### Left-click on the icon will set a random value.
-### Middle-click on the icon will raise a dialog asking you to set the value you want.
-### If you drop some text on the icon, it will be used as the icon's label.
 
 ####################
 ### dependancies ###
@@ -50,12 +33,12 @@ class CDBashApplet(CDApplet):
 	##### private methods #####
 	
 	def call(self,action):
-		os.popen("cd " + self.app_folder + " && ./" + self.cAppletName + ".sh " + action).read().rstrip()
+		os.popen("cd " + self.app_folder + " && ./" + self.cAppletName + ".sh " + self.cAppletName + " " + self.cBusPath + " " + self.cConfFile + " " + self.cParentAppName + " " + action).read().rstrip()
 	
 	##### applet definition #####
 	
 	def get_config(self,keyfile):
-		self.call("get_config '"+self.cConfFile+"'")
+		self.call("get_config")
 	
 	def end(self):
 		self.call("end")
