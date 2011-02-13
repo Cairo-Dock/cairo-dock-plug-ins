@@ -272,8 +272,6 @@ gboolean cd_slide_on_leave (gpointer data, CairoDock *pDock, gboolean *bStartAni
 	return (pData->bDraggingScrollbar ? CAIRO_DOCK_INTERCEPT_NOTIFICATION : CAIRO_DOCK_LET_PASS_NOTIFICATION);
 }
 
-//const double srx = .5;  // screen ratio hori
-//const double sry = .6;  // screen ratio verti
 static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 {
 	// On calcule la configuration de la grille sans contrainte.
@@ -318,7 +316,7 @@ static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 		{
 			nRowsY = (iMaxHeight - iSingleLineHeight) / iOneLineHeight + 1;
 			if (Ws > Hs && nRowsY > nRowsX)  // on evite d'avoir un sous-dock plus haut que large si l'ecran est ausi comme ca, ca rend mieux.
-				nRowsY = nRowsX;
+				nRowsY = MIN (nRowsY, MAX (5, nRowsX));  // tout de meme, au moins 5 lignes.
 			int iMaxDockHeight0 = iDockHeight;
 			iDockHeight = (nRowsY - 1) * iOneLineHeight + iSingleLineHeight;
 			iDeltaHeight = iMaxDockHeight0 - iDockHeight;
@@ -1322,10 +1320,11 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 				{
 					_cairo_dock_set_alpha (fAlpha);
 					///_cairo_dock_set_alpha (fAlpha * icon->fScale / my_diapo_simple_fScaleMax);
-					if (icon->iTextWidth > icon->fWidth + 2 * myIconsParam.iLabelSize)
+					double text_width = icon->fWidth + my_diapo_simple_iconGapX - 10;  // 10 pixels d'ecart entre 2 labels.
+					if (icon->iTextWidth > text_width)
 					{
 						fOffsetX = 0.;
-						u1 = (double) (icon->fWidth + 2 * myIconsParam.iLabelSize) / icon->iTextWidth;
+						u1 = text_width / icon->iTextWidth;
 					}
 				}
 				dx = .5 * (((int)ceil (icon->iTextWidth * (u1 - u0))) & 1);
