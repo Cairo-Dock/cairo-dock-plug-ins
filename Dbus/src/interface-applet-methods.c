@@ -220,7 +220,7 @@ static void _on_text_changed (GtkWidget *pEntry, GtkWidget *pLabel)
 	}
 	else
 	{
-		GtkTextBuffer *pBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (pEntry));
+		GtkTextBuffer *pBuffer = GTK_TEXT_BUFFER (pEntry);
 		iNbChars = gtk_text_buffer_get_char_count (pBuffer);
 	}
 	
@@ -288,7 +288,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 	attr.pUserData = pDbusApplet;
 	
 	// attributs du widget interactif.
-	GtkWidget *pWidget = NULL;
+	GtkWidget *pInteractiveWidget = NULL, *pOneWidget = NULL;
 	if (hWidgetAttributes != NULL)  // un widget d'interaction est defini.
 	{
 		v = g_hash_table_lookup (hWidgetAttributes, "widget-type");
@@ -299,7 +299,6 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 			{
 				if (strcmp (cType, "text-entry") == 0)
 				{
-					GtkWidget *pEntry = NULL;
 					gboolean bMultiLines = FALSE;
 					gboolean bEditable = TRUE;
 					gboolean bVisible = TRUE;
@@ -328,16 +327,19 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 					
 					if (bMultiLines)
 					{
-						pEntry = gtk_text_view_new ();
-						pWidget = pEntry;
-						gtk_widget_set (pEntry, "width-request", 200, "height-request", 100, NULL);
+						pOneWidget = gtk_text_view_new ();
+						GtkWidget *pScrolledWindow = gtk_scrolled_window_new (NULL, NULL);
+						gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (pScrolledWindow), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+						gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (pScrolledWindow), pOneWidget);
+						gtk_widget_set (pScrolledWindow, "width-request", 230, "height-request", 130, NULL);
+						pInteractiveWidget = pScrolledWindow;
 						
 						if (! bEditable)
-							gtk_text_view_set_editable (GTK_TEXT_VIEW (pEntry), FALSE);
+							gtk_text_view_set_editable (GTK_TEXT_VIEW (pOneWidget), FALSE);
 						
 						if (cInitialText != NULL)
 						{
-							GtkTextBuffer *pBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (pEntry));
+							GtkTextBuffer *pBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (pOneWidget));
 							gtk_text_buffer_set_text (pBuffer, cInitialText, -1);
 						}
 						
@@ -346,16 +348,16 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 					}
 					else
 					{
-						pEntry = gtk_entry_new ();
-						pWidget = pEntry;
-						gtk_entry_set_has_frame (GTK_ENTRY (pEntry), FALSE);
-						gtk_widget_set (pEntry, "width-request", CAIRO_DIALOG_MIN_ENTRY_WIDTH, NULL);
+						pOneWidget = gtk_entry_new ();
+						pInteractiveWidget = pOneWidget;
+						gtk_entry_set_has_frame (GTK_ENTRY (pOneWidget), FALSE);
+						gtk_widget_set (pOneWidget, "width-request", CAIRO_DIALOG_MIN_ENTRY_WIDTH, NULL);
 						if (cInitialText != NULL)
-							gtk_entry_set_text (GTK_ENTRY (pEntry), cInitialText);
+							gtk_entry_set_text (GTK_ENTRY (pOneWidget), cInitialText);
 						if (! bEditable)
-							gtk_editable_set_editable (GTK_EDITABLE (pEntry), FALSE);
+							gtk_editable_set_editable (GTK_EDITABLE (pOneWidget), FALSE);
 						if (! bVisible)
-							gtk_entry_set_visibility (GTK_ENTRY (pEntry), FALSE);
+							gtk_entry_set_visibility (GTK_ENTRY (pOneWidget), FALSE);
 						
 						if (attr.cButtonsImage != NULL)
 							attr.pActionFunc = (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_text_entry;
@@ -367,11 +369,21 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 						g_free (cLabel);
 						gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
 						GtkWidget *pBox = gtk_hbox_new (FALSE, 3);
-						gtk_box_pack_start (GTK_BOX (pBox), pEntry, FALSE, FALSE, 0);
+						gtk_box_pack_start (GTK_BOX (pBox), pInteractiveWidget, TRUE, TRUE, 0);
 						gtk_box_pack_start (GTK_BOX (pBox), pLabel, FALSE, FALSE, 0);
-						pWidget = pBox;
-						g_object_set_data (G_OBJECT (pEntry), "nb-chars-max", GINT_TO_POINTER (iNbCharsMax));
-						g_signal_connect (pEntry, "changed", G_CALLBACK (_on_text_changed), pLabel);
+						pInteractiveWidget = pBox;
+						
+						if (bMultiLines)
+						{
+							GtkTextBuffer *pBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (pOneWidget));
+							g_signal_connect (pBuffer, "changed", G_CALLBACK (_on_text_changed), pLabel);
+							g_object_set_data (G_OBJECT (pBuffer), "nb-chars-max", GINT_TO_POINTER (iNbCharsMax));
+						}
+						else
+						{
+							g_signal_connect (pOneWidget, "changed", G_CALLBACK (_on_text_changed), pLabel);
+							g_object_set_data (G_OBJECT (pOneWidget), "nb-chars-max", GINT_TO_POINTER (iNbCharsMax));
+						}
 					}
 				}
 				else if (strcmp (cType, "scale") == 0)
@@ -411,6 +423,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 						cMaxLabel = g_value_get_string (v);
 					
 					pScale = gtk_hscale_new_with_range (fMinValue, fMaxValue, (fMaxValue - fMinValue) / 100.);
+					pOneWidget = pScale;
 					gtk_scale_set_digits (GTK_SCALE (pScale), iNbDigit);
 					gtk_range_set_value (GTK_RANGE (pScale), fInitialValue);
 					
@@ -428,10 +441,10 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 						pAlign = gtk_alignment_new (1., 1., 0., 0.);
 						gtk_container_add (GTK_CONTAINER (pAlign), label);
 						gtk_box_pack_start (GTK_BOX (pExtendedWidget), pAlign, FALSE, FALSE, 0);
-						pWidget = pExtendedWidget;
+						pInteractiveWidget = pExtendedWidget;
 					}
 					else
-						pWidget = pScale;
+						pInteractiveWidget = pScale;
 					
 					if (attr.cButtonsImage != NULL)
 						attr.pActionFunc = (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_scale;
@@ -456,16 +469,17 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 						cValuesList = g_strsplit (cValues, ";", -1);
 					
 					if (bEditable)
-						pWidget = gtk_combo_box_entry_new_text ();
+						pOneWidget = gtk_combo_box_entry_new_text ();
 					else
-						pWidget = gtk_combo_box_new_text ();
+						pOneWidget = gtk_combo_box_new_text ();
+					pInteractiveWidget = pOneWidget;
 					
 					if (cValuesList != NULL)
 					{
 						int i;
 						for (i = 0; cValuesList[i] != NULL; i ++)
 						{
-							gtk_combo_box_append_text (GTK_COMBO_BOX (pWidget), cValuesList[i]);
+							gtk_combo_box_append_text (GTK_COMBO_BOX (pInteractiveWidget), cValuesList[i]);
 						}
 					}
 					
@@ -476,7 +490,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 							cInitialText = g_value_get_string (v);
 						if (cInitialText != NULL)
 						{
-							GtkWidget *pEntry = gtk_bin_get_child (GTK_BIN (pWidget));
+							GtkWidget *pEntry = gtk_bin_get_child (GTK_BIN (pInteractiveWidget));
 							gtk_entry_set_text (GTK_ENTRY (pEntry), cInitialText);
 						}
 					}
@@ -484,7 +498,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 					{
 						if (v && G_VALUE_HOLDS_INT (v))
 							iInitialValue = g_value_get_int (v);
-						gtk_combo_box_set_active (GTK_COMBO_BOX (pWidget), iInitialValue);
+						gtk_combo_box_set_active (GTK_COMBO_BOX (pInteractiveWidget), iInitialValue);
 					}
 					
 					if (attr.cButtonsImage != NULL)
@@ -500,17 +514,21 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 			}  // fin du type de widget.
 		}
 	}
-	attr.pInteractiveWidget = pWidget;
+	attr.pInteractiveWidget = pInteractiveWidget;
 	
-	if (pWidget == NULL)  // pas de widget, on renverra le numero du bouton appuye.
+	if (pInteractiveWidget == NULL)  // pas de widget, on renverra le numero du bouton appuye.
 	{
 		if (attr.cButtonsImage != NULL)
 			attr.pActionFunc = (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_buttons;
 	}
+	else
+		g_object_set_data (G_OBJECT (pInteractiveWidget), "cd-widget", pOneWidget);
 	
 	if (bUseMarkup)
 		myDialogsParam.dialogTextDescription.bUseMarkup = TRUE;
 	pDbusApplet->pDialog = cairo_dock_build_dialog (&attr, pIcon, pContainer);
+	if (pOneWidget)
+		gtk_widget_grab_focus (pOneWidget);
 	if (bUseMarkup)
 		myDialogsParam.dialogTextDescription.bUseMarkup = FALSE;
 	

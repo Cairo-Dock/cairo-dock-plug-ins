@@ -583,7 +583,9 @@ void cd_dbus_applet_emit_on_answer_text_entry (int iClickedButton, GtkWidget *pI
 	GValue v = G_VALUE_INIT;
 	g_value_init (&v, G_TYPE_STRING);
 	
-	GtkWidget *pEntry;
+	GtkWidget *pEntry = g_object_get_data (G_OBJECT (pInteractiveWidget), "cd-widget");
+	g_return_if_fail (pEntry != NULL);
+	/**GtkWidget *pEntry;
 	if (GTK_IS_ENTRY (pInteractiveWidget))
 	{
 		pEntry = pInteractiveWidget;
@@ -593,7 +595,7 @@ void cd_dbus_applet_emit_on_answer_text_entry (int iClickedButton, GtkWidget *pI
 		GList *children = gtk_container_get_children (GTK_CONTAINER (pInteractiveWidget));
 		g_return_if_fail (children != NULL);
 		pEntry = children->data;
-	}
+	}*/
 	
 	const gchar *cText = gtk_entry_get_text (GTK_ENTRY (pEntry));
 	//g_print (" -> %s\n", cText);
@@ -606,8 +608,9 @@ void cd_dbus_applet_emit_on_answer_text_view (int iClickedButton, GtkWidget *pIn
 	GValue v = G_VALUE_INIT;
 	g_value_init (&v, G_TYPE_STRING);
 	
-	GtkWidget *pTextView;
-	if (GTK_IS_TEXT_VIEW (pInteractiveWidget))
+	GtkWidget *pTextView = g_object_get_data (G_OBJECT (pInteractiveWidget), "cd-widget");
+	g_return_if_fail (pTextView != NULL);
+	/**if (GTK_IS_TEXT_VIEW (pInteractiveWidget))
 	{
 		pTextView = pInteractiveWidget;
 	}
@@ -616,7 +619,7 @@ void cd_dbus_applet_emit_on_answer_text_view (int iClickedButton, GtkWidget *pIn
 		GList *children = gtk_container_get_children (GTK_CONTAINER (pInteractiveWidget));
 		g_return_if_fail (children != NULL);
 		pTextView = children->data;
-	}
+	}*/
 	GtkTextBuffer *pBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (pTextView));
 	GtkTextIter start, end;
 	gtk_text_buffer_get_start_iter (pBuffer, &start);
@@ -636,7 +639,9 @@ void cd_dbus_applet_emit_on_answer_scale (int iClickedButton, GtkWidget *pIntera
 	GValue v = G_VALUE_INIT;
 	g_value_init (&v, G_TYPE_DOUBLE);
 	
-	GtkWidget *pScale;
+	GtkWidget *pScale = g_object_get_data (G_OBJECT (pInteractiveWidget), "cd-widget");
+	g_return_if_fail (pScale != NULL);
+	/**GtkWidget *pScale;
 	if (GTK_IS_RANGE (pInteractiveWidget))
 	{
 		pScale = pInteractiveWidget;
@@ -646,7 +651,7 @@ void cd_dbus_applet_emit_on_answer_scale (int iClickedButton, GtkWidget *pIntera
 		GList *children = gtk_container_get_children (GTK_CONTAINER (pInteractiveWidget));
 		g_return_if_fail (children != NULL && children->next != NULL);
 		pScale = children->next->data;
-	}
+	}*/
 	
 	double x = gtk_range_get_value (GTK_RANGE (pScale));
 	g_value_set_double (&v, x);
