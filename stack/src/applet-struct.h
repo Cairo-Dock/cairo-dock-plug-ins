@@ -40,6 +40,16 @@ typedef enum {
 	CD_DESKLET_NB_RENDERER
 } CDDeskletRendererType;
 
+typedef struct _CDHtmlLink
+{
+	CairoDockModuleInstance *pApplet;
+	gchar *cURL;
+	gchar *cTitle;
+	gchar *cFaviconPath;
+	gchar *cConfFilePath;
+	CairoDockTask *pTask;
+} CDHtmlLink;
+
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
 	gchar **cMimeTypes;
@@ -57,6 +67,7 @@ struct _AppletConfig {
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
 	gint no_data;
+	GList *pGetPageTaskList;
 } ;
 
 

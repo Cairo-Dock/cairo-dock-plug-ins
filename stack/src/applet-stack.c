@@ -81,6 +81,183 @@ void cd_stack_remove_item (CairoDockModuleInstance *myApplet, Icon *pIcon)
 }
 
 
+static void _get_html_page (CDHtmlLink *pHtmlLink)
+{
+	CairoDockModuleInstance *myApplet = pHtmlLink->pApplet;
+	// get the HTML page content
+	gchar *cPageContent = cairo_dock_get_url_data (pHtmlLink->cURL, NULL);
+	if (cPageContent == NULL)
+	{
+		cd_warning ("Stack: couldn't get the html page '%s'\n -> can't get the title and favicon", pHtmlLink->cURL);
+		return;
+	}
+	
+	// get the title
+	gchar *str = strstr (cPageContent, "<title>");
+	if (str)
+	{
+		str += 7;
+		gchar *str2 = strstr (str, "</title>");
+		if (str2)
+		{
+			pHtmlLink->cTitle = g_strndup (str, str2 - str);
+			// remove carriage returns.
+			gchar *str = pHtmlLink->cTitle;
+			while (str = strchr (str, '\n'))
+			{
+				*str = ' ';  // replace the carriage returns with a space.
+				str ++;  // begining of the new line.
+				str2 = str;
+				while (*str2 == ' ')
+					str2 ++;
+				if (str2 != str)  // remove spaces at the begining of the new line.
+					strcpy (str, str2);
+			}
+		}
+		g_print ("cTitle: '%s'\n", pHtmlLink->cTitle);
+	}
+	
+	// get the domain name.
+	gchar *cDomainName = NULL;
+	str = strstr (pHtmlLink->cURL, "://");
+	if (str)
+	{
+		str += 3;
+		gchar *str2 = strchr (str, '/');
+		if (str2)
+			cDomainName = g_strndup (str, str2 - str);
+	}
+	
+	// get the favicon or use the existing one.
+	gchar *cLocalFaviconPath = NULL;
+	if (cDomainName != NULL)
+	{
+		// check the favicons folder.
+		gchar *cFaviconDir = g_strdup_printf ("%s/favicons", g_cCairoDockDataDir);
+		if (! g_file_test (cFaviconDir, G_FILE_TEST_EXISTS))
+		{
+			g_mkdir (cFaviconDir, 7*8*8+7*8+5);
+		}
+		cLocalFaviconPath = g_strdup_printf ("%s/%s", cFaviconDir, cDomainName);
+		g_free (cFaviconDir);
+		
+		// if favicon is not already on hard-disk, download it.
+		if (! g_file_test (cLocalFaviconPath, G_FILE_TEST_EXISTS))
+		{
+			gboolean bGotFavIcon = FALSE;
+			
+			// try to get the favicon path specified in the html page.
+			gchar *cRelPath = NULL;
+			str = strstr (cPageContent, "<link rel=\"shortcut icon\"");
+			if (!str)
+				str = strstr (cPageContent, "<link rel=\"SHORTCUT ICON\"");
+			if (str)  // found.
+			{
+				str += 25;
+				// get its remote relative path.
+				gchar *str2 = strstr (str, "href=\"");
+				if (str2)
+				{
+					str2 += 6;
+					gchar *str3 = strchr (str2, '"');
+					if (str3)
+					{
+						cRelPath = g_strndup (str2, str3 - str2);
+						g_print ("favicon: '%s'\n", cRelPath);
+					}
+				}
+			}
+			else  // no standard favicon, get the default one in the remote root dir.
+			{
+				g_print ("no favicon defined, looking for a default favicon.ico...\n");
+				cRelPath = g_strdup ("favicon.ico");
+			}
+			
+			// now download it.
+			if (cRelPath != NULL)
+			{
+				gchar *cFaviconURL = NULL;
+				if (*cRelPath == '/' && *(cRelPath+1) == '/')
+				{
+					cFaviconURL = g_strdup_printf ("http:%s", cRelPath);
+				}
+				else
+				{
+					cFaviconURL = g_strdup_printf ("%s/%s", cDomainName, cRelPath);
+				}
+				gchar *cTmpFavIconPath = cairo_dock_download_file (NULL, NULL, cFaviconURL, NULL, NULL);
+				if (cTmpFavIconPath != NULL)
+				{
+					gchar *cCommand = g_strdup_printf ("mv \"%s\" \"%s\"", cTmpFavIconPath, cLocalFaviconPath);
+					g_print ("%s\n", cCommand);
+					int r = system (cCommand);
+					g_free (cCommand);
+					g_free (cTmpFavIconPath);
+					bGotFavIcon = TRUE;
+				}
+				g_free (cFaviconURL);
+				g_free (cRelPath);
+			}
+			
+			if (! bGotFavIcon)  // couldn't get the favicon -> no favicon defined.
+			{
+				g_free (cLocalFaviconPath);
+				cLocalFaviconPath = NULL;
+			}
+		}
+	}
+	pHtmlLink->cFaviconPath = cLocalFaviconPath;
+}
+
+static gboolean _update_html_link (CDHtmlLink *pHtmlLink)
+{
+	CairoDockModuleInstance *myApplet = pHtmlLink->pApplet;
+	// store in the conf file.
+	cairo_dock_update_conf_file (pHtmlLink->cConfFilePath,
+		G_TYPE_STRING, "Desktop Entry", "Favicon", pHtmlLink->cFaviconPath,
+		G_TYPE_STRING, "Desktop Entry", "Title", pHtmlLink->cTitle,
+		G_TYPE_INVALID);	
+	
+	// update the icon.
+	gchar *cDesktopFileName = g_path_get_basename (pHtmlLink->cConfFilePath);
+	if (cDesktopFileName)
+	{
+		Icon *pIcon = NULL;
+		GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
+		GList *ic;
+		for (ic = pIconsList; ic != NULL; ic = ic->next)
+		{
+			pIcon = ic->data;
+			if (pIcon->cDesktopFileName && strcmp (pIcon->cDesktopFileName, cDesktopFileName) == 0)
+			{
+				CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+				
+				cairo_dock_set_icon_name (pHtmlLink->cTitle, pIcon, pContainer);
+				
+				g_print ("draw emblem on %s\n", pIcon->cName);
+				CairoEmblem *pEmblem = cairo_dock_make_emblem (pHtmlLink->cFaviconPath, pIcon, pContainer);
+				cairo_dock_set_emblem_position (pEmblem, CAIRO_DOCK_EMBLEM_LOWER_RIGHT);
+				cairo_dock_draw_emblem_on_icon (pEmblem, pIcon, pContainer);
+				cairo_dock_free_emblem (pEmblem);
+				break;
+			}
+		}
+		g_free (cDesktopFileName);
+	}
+	
+	cairo_dock_discard_task (pHtmlLink->pTask);
+	return TRUE;
+}
+
+static void _free_html_link (CDHtmlLink *pHtmlLink)
+{
+	g_free (pHtmlLink->cURL);
+	g_free (pHtmlLink->cTitle);
+	g_free (pHtmlLink->cFaviconPath);
+	g_free (pHtmlLink->cConfFilePath);
+	g_free (pHtmlLink);
+}
+
 static void _set_icon_order (Icon *pIcon, CairoDockModuleInstance *myApplet, GCompareFunc comp)
 {
 	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
@@ -108,12 +285,26 @@ static Icon *_cd_stack_create_new_item (CairoDockModuleInstance *myApplet, const
 	gchar *cName;
 	double fOrder = 0;
 	int iDate;
+	CDHtmlLink *pHtmlLink = NULL;
 	
+	g_print ("Stack: got '%s'\n", cContent);
 	//\_______________________ On lui trouve un petit nom.
 	if (cairo_dock_string_is_adress (cContent) || *cContent == '/')
 	{
 		if (strncmp (cContent, "http://", 7) == 0 || strncmp (cContent, "www", 3) == 0 || strncmp (cContent, "https://", 8) == 0)
 		{
+			g_print (" -> html page\n");
+			pHtmlLink = g_new0 (CDHtmlLink, 1);
+			pHtmlLink->pApplet = myApplet;
+			pHtmlLink->cURL = g_strdup (cContent);
+			pHtmlLink->pTask = cairo_dock_new_task_full (0,
+				(CairoDockGetDataAsyncFunc)_get_html_page,
+				(CairoDockUpdateSyncFunc)_update_html_link,
+				(GFreeFunc)_free_html_link,
+				pHtmlLink);
+			myData.pGetPageTaskList = g_list_prepend (myData.pGetPageTaskList, pHtmlLink->pTask);
+			cairo_dock_launch_task (pHtmlLink->pTask);
+			
 			gchar *buf = g_strdup (cContent);
 			gchar *str = strchr (buf, '?');
 			if (str != NULL)
@@ -186,6 +377,8 @@ static Icon *_cd_stack_create_new_item (CairoDockModuleInstance *myApplet, const
 	} while (g_file_test (sConfFilePath->str, G_FILE_TEST_EXISTS));
 	
 	cairo_dock_write_keys_to_file (pKeyFile, sConfFilePath->str);
+	if (pHtmlLink)
+		pHtmlLink->cConfFilePath = g_strdup (sConfFilePath->str);
 	
 	//\_______________________ On cree une icone a partir du fichier de cle precedemment remplit.
 	Icon *pIcon = cd_stack_build_one_icon (myApplet, pKeyFile);

@@ -100,12 +100,16 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 				0);
 	}
 	
-	pIcon->cName = g_key_file_get_string (pKeyFile, "Desktop Entry", "Name", &erreur);
-	if (erreur != NULL)
+	pIcon->cName = g_key_file_get_string (pKeyFile, "Desktop Entry", "Title", NULL);
+	if (pIcon->cName == NULL)
 	{
-		cd_warning ("Stack : %s", erreur->message);
-		g_error_free (erreur);
-		erreur = NULL;
+		g_key_file_get_string (pKeyFile, "Desktop Entry", "Name", &erreur);
+		if (erreur != NULL)
+		{
+			cd_warning ("Stack : %s", erreur->message);
+			g_error_free (erreur);
+			erreur = NULL;
+		}
 	}
 	
 	if (myConfig.iSortType == CD_STACK_SORT_BY_DATE)
@@ -128,6 +132,8 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 			erreur = NULL;
 		}
 	}
+	
+	pIcon->cWorkingDirectory = g_key_file_get_string (pKeyFile, "Desktop Entry", "Favicon", NULL);  // we use this parameter to store the favicon path; it's quite dirty, but easier than allocating our own data.
 	
 	return pIcon;
 }
