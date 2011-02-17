@@ -94,10 +94,14 @@ static void _get_html_page (CDHtmlLink *pHtmlLink)
 	
 	// get the title
 	gchar *str = strstr (cPageContent, "<title>");
+	if (!str)
+		str = strstr (cPageContent, "<TITLE>");
 	if (str)
 	{
 		str += 7;
 		gchar *str2 = strstr (str, "</title>");
+		if (!str2)
+			str2 = strstr (str, "</TITLE>");
 		if (str2)
 		{
 			pHtmlLink->cTitle = g_strndup (str, str2 - str);
@@ -127,6 +131,7 @@ static void _get_html_page (CDHtmlLink *pHtmlLink)
 		if (str2)
 			cDomainName = g_strndup (str, str2 - str);
 	}
+	g_print ("cDomainName: %s\n", cDomainName);
 	
 	// get the favicon or use the existing one.
 	gchar *cLocalFaviconPath = NULL;
@@ -181,10 +186,17 @@ static void _get_html_page (CDHtmlLink *pHtmlLink)
 				{
 					cFaviconURL = g_strdup_printf ("http:%s", cRelPath);
 				}
+				else if (strstr (cRelPath, "://") != NULL)
+				{
+					cFaviconURL = cRelPath;
+					cRelPath = NULL;
+				}
 				else
 				{
 					cFaviconURL = g_strdup_printf ("%s/%s", cDomainName, cRelPath);
 				}
+				g_print ("cFaviconURL: %s\n", cFaviconURL);
+				
 				gchar *cTmpFavIconPath = cairo_dock_download_file (NULL, NULL, cFaviconURL, NULL, NULL);
 				if (cTmpFavIconPath != NULL)
 				{

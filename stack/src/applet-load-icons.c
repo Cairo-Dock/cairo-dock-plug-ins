@@ -40,6 +40,36 @@ static gboolean _isin (gchar **cString, gchar *cCompar) {
 	
 	return FALSE; //We didn't found anything
 }
+static void _load_html_icon (Icon *pIcon)
+{
+	CairoDockModuleInstance *myApplet = pIcon->pAppletOwner;
+	int iWidth = pIcon->iImageWidth;
+	int iHeight = pIcon->iImageHeight;
+	if (pIcon->cFileName)  // icone possedant une image, on affiche celle-ci.
+	{
+		gchar *cIconPath = cairo_dock_search_icon_s_path (pIcon->cFileName);
+		if (cIconPath != NULL && *cIconPath != '\0')
+		{
+			pIcon->pIconBuffer = cairo_dock_create_surface_from_image_simple (cIconPath,
+				iWidth,
+				iHeight);
+			
+			if (pIcon->pIconBuffer != NULL && pIcon->cWorkingDirectory != NULL)
+			{
+				if (g_bUseOpenGL)
+					pIcon->iIconTexture  = cairo_dock_create_texture_from_surface (pIcon->pIconBuffer);  // we need to load the texture now, since we'll draw the emblem on it.
+				
+				CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+				
+				CairoEmblem *pEmblem = cairo_dock_make_emblem (pIcon->cWorkingDirectory, pIcon, pContainer);
+				cairo_dock_set_emblem_position (pEmblem, CAIRO_DOCK_EMBLEM_LOWER_RIGHT);
+				cairo_dock_draw_emblem_on_icon (pEmblem, pIcon, pContainer);
+				cairo_dock_free_emblem (pEmblem);
+			}
+		}
+		g_free (cIconPath);
+	}
+}
 Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile)
 {
 	GError *erreur = NULL;
@@ -62,6 +92,7 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 				cContent,
 				NULL,
 				0);
+			pIcon->iface.load_image = _load_html_icon;
 			pIcon->iVolumeID = 1;
 		}
 		else
@@ -134,6 +165,8 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 	}
 	
 	pIcon->cWorkingDirectory = g_key_file_get_string (pKeyFile, "Desktop Entry", "Favicon", NULL);  // we use this parameter to store the favicon path; it's quite dirty, but easier than allocating our own data.
+	
+	pIcon->pAppletOwner = myApplet;
 	
 	return pIcon;
 }
