@@ -30,20 +30,7 @@
 CD_APPLET_ON_CLICK_BEGIN
 	if (myDock)
 	{
-		double fGamma = xgamma_get_gamma (&myData.Xgamma);
-		if (fGamma > 0)
-		{
-			fGamma = cairo_dock_show_value_and_wait (D_("Set up gamma:"), myIcon, myContainer, fGamma, GAMMA_MAX);
-			if (fGamma > 0)
-			{
-				fGamma = MAX (fGamma, GAMMA_MIN);
-				
-				myData.Xgamma.red = fGamma;
-				myData.Xgamma.blue = fGamma;
-				myData.Xgamma.green = fGamma;
-				xgamma_set_gamma (&myData.Xgamma);
-			}
-		}
+		xgamma_build_dialog_simple ();
 	}
 CD_APPLET_ON_CLICK_END
 
@@ -106,20 +93,5 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 
 
 CD_APPLET_ON_SCROLL_BEGIN
-	double fGamma = xgamma_get_gamma (&myData.Xgamma);
-	cd_debug ("%.2f;%.2f;%.2f\n", myData.Xgamma.red, myData.Xgamma.green, myData.Xgamma.blue);
-	double f;
-	if (CD_APPLET_SCROLL_UP)
-	{
-		f = (1. + myConfig.iScrollVariation/100.);
-	}
-	else
-	{
-		f = (1. - myConfig.iScrollVariation/100.);
-	}
-	myData.Xgamma.red *= f;
-	myData.Xgamma.green *= f;
-	myData.Xgamma.blue *= f;
-	
-	xgamma_set_gamma (&myData.Xgamma);
+	xgamma_add_gamma (&myData.Xgamma, CD_APPLET_SCROLL_UP);
 CD_APPLET_ON_SCROLL_END

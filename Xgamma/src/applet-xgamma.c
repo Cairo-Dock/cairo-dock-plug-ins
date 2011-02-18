@@ -23,6 +23,41 @@
 #include "applet-xgamma.h"
 
 
+static inline double _gamma_to_percent (double fGamma)
+{
+	if (fGamma < GAMMA_MIN)
+		fGamma = GAMMA_MIN;
+	if (fGamma > GAMMA_MAX)
+		fGamma = GAMMA_MAX;
+	return 100. * (fGamma - GAMMA_MIN) / (GAMMA_MAX - GAMMA_MIN);
+}
+
+static inline double _percent_to_gamma (double fGammaPercent)
+{
+	if (fGammaPercent < 0)
+		fGammaPercent = 0;
+	if (fGammaPercent > 100)
+		fGammaPercent = 100;
+	return GAMMA_MIN + fGammaPercent / 100. * (GAMMA_MAX - GAMMA_MIN);
+}
+
+void xgamma_add_gamma (XF86VidModeGamma *pGamma, gboolean bAdd)
+{
+	double fGamma = xgamma_get_gamma (pGamma);
+	double fGammaPercent = _gamma_to_percent (fGamma);
+	if (bAdd)
+		fGammaPercent += myConfig.iScrollVariation;
+	else
+		fGammaPercent -= myConfig.iScrollVariation;
+	double fNewGamma = _percent_to_gamma (fGammaPercent);
+	double f = fNewGamma / fGamma;
+	myData.Xgamma.red *= f;
+	myData.Xgamma.green *= f;
+	myData.Xgamma.blue *= f;
+	
+	xgamma_set_gamma (&myData.Xgamma);
+}
+
 double xgamma_get_gamma (XF86VidModeGamma *pGamma)
 {
 	g_return_val_if_fail (pGamma != NULL, 1);
@@ -47,6 +82,18 @@ void xgamma_set_gamma (XF86VidModeGamma *pGamma)
 	if (!XF86VidModeSetGamma(dpy, DefaultScreen (dpy), pGamma))
 	{
 		cd_warning ("Xgamma : unable to set gamma correction");
+	}
+	else
+	{
+		double fGamma = (pGamma->red + pGamma->blue + pGamma->green) / 3;
+		double fGammaPercent = _gamma_to_percent (fGamma);
+		
+		if (myConfig.cDefaultTitle == NULL)
+		{
+			gchar *cLabel = g_strdup_printf ("Luminosity: %d%%", (int)fGammaPercent);
+			cairo_dock_set_icon_name (cLabel, myIcon, myContainer);
+			g_free (cLabel);
+		}
 	}
 }
 
@@ -135,9 +182,9 @@ void xgamma_create_scales_widget (double fGamma, XF86VidModeGamma *pGamma)
 }
 
 
-void xgamma_apply_values (int iClickedButton, GtkWidget *pWidget, gpointer data, CairoDialog *pDialog)
+static void _xgamma_apply_values (int iClickedButton, GtkWidget *pWidget, gpointer data, CairoDialog *pDialog)
 {
-	if (iClickedButton == 0)
+	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
 	{
 		cd_message ("%s (ok)", __func__);
 	}
@@ -151,7 +198,6 @@ void xgamma_apply_values (int iClickedButton, GtkWidget *pWidget, gpointer data,
 	cairo_dock_dialog_reference (myData.pDialog);  // pour garder notre dialogue en vie.
 	
 }
-
 CairoDialog *xgamma_build_dialog (void)
 {
 	CairoDialogAttribute attr;
@@ -160,7 +206,7 @@ CairoDialog *xgamma_build_dialog (void)
 	attr.pInteractiveWidget = myData.pWidget;
 	const gchar *cButtons[3] = {"ok", "cancel", NULL};
 	attr.cButtonsImage = cButtons;
-	attr.pActionFunc = (CairoDockActionOnAnswerFunc) xgamma_apply_values;
+	attr.pActionFunc = (CairoDockActionOnAnswerFunc) _xgamma_apply_values;
 	attr.pUserData = myApplet;
 	return cairo_dock_build_dialog (&attr, myIcon, myContainer);
 }
@@ -182,4 +228,55 @@ void xgamma_build_and_show_widget (void)
 		CD_APPLET_SET_DESKLET_RENDERER (NULL);  // pour empecher le clignotement du au double-buffer.
 		CD_APPLET_SET_STATIC_DESKLET;
 	}
+}
+
+static void on_scale_value_changed_simple (GtkRange *range, gpointer data)
+{
+	double fGammaPercent = gtk_range_get_value (GTK_RANGE (range));
+	double fGamma = _percent_to_gamma (fGammaPercent);
+	
+	myData.Xgamma.red = fGamma;
+	myData.Xgamma.blue = fGamma;
+	myData.Xgamma.green = fGamma;
+	xgamma_set_gamma (&myData.Xgamma);
+}
+static void _xgamma_apply_value_simple (int iClickedButton, GtkWidget *pWidget, gpointer data, CairoDialog *pDialog)
+{
+	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
+	{
+		cd_message ("%s (ok)", __func__);
+	}
+	else
+	{
+		cd_message ("%s (cancel)", __func__);
+		myData.Xgamma = myData.XoldGamma;
+		xgamma_set_gamma (&myData.Xgamma);
+	}
+}
+CairoDialog *xgamma_build_dialog_simple (void)
+{
+	double fGamma = xgamma_get_gamma (&myData.Xgamma);
+	g_return_val_if_fail (fGamma > 0, NULL);
+	double fGammaPercent = _gamma_to_percent (fGamma);
+	myData.XoldGamma = myData.Xgamma;
+	
+	CairoDialogAttribute attr;
+	memset (&attr, 0, sizeof (CairoDialogAttribute));
+	
+	GtkWidget *pHScale = gtk_hscale_new_with_range (0, 100., 1.);
+	gtk_scale_set_digits (GTK_SCALE (pHScale), 0);
+	gtk_range_set_value (GTK_RANGE (pHScale), fGammaPercent);
+	gtk_widget_set (pHScale, "width-request", 150, NULL);
+	g_signal_connect (G_OBJECT (pHScale),
+		"value-changed",
+		G_CALLBACK (on_scale_value_changed_simple),
+		NULL);
+	
+	attr.cText = D_("Set up gamma:");
+	attr.pInteractiveWidget = pHScale;
+	const gchar *cButtons[3] = {"ok", "cancel", NULL};
+	attr.cButtonsImage = cButtons;
+	attr.pActionFunc = (CairoDockActionOnAnswerFunc) _xgamma_apply_value_simple;
+	attr.pUserData = myApplet;
+	return cairo_dock_build_dialog (&attr, myIcon, myContainer);
 }

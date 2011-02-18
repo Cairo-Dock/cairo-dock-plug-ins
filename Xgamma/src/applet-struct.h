@@ -26,8 +26,8 @@
 #define MINMINOR 0
 
 /* Maximum and Minimum gamma values */
-#define GAMMA_MIN 0.1
-#define GAMMA_MAX 5.0
+#define GAMMA_MIN 0.2
+#define GAMMA_MAX 2.0
 
 #include <cairo-dock.h>
 #include <X11/extensions/xf86vmode.h>
@@ -35,6 +35,7 @@
 struct _AppletConfig {
 	gint iScrollVariation;
 	gdouble fInitialGamma;
+	gchar *cDefaultTitle;
 	} ;
 
 struct _AppletData {

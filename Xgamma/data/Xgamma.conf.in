@@ -10,7 +10,8 @@ frame_maininfo=
 dock name = 
 
 #s Name of the icon as it will appear in its caption in the dock:
-name = Luminosity
+#{Leave empty to display the current luminosity.}
+name = 
 
 #F[Display]
 frame_display=
@@ -103,8 +104,8 @@ fg alpha = 1
 
 [Configuration]
 
-#i[1;50] Variation for 1 mouse scroll, in %:
-scroll variation = 5
+#i[1;10] Variation for 1 mouse scroll, in %:
+scroll_variation = 5
 
 #e[0;2] Brightness to apply automatically on startup:
 #{Use 0 for none.}

@@ -31,6 +31,8 @@
 #include <stdlib.h>
 
 
+void xgamma_add_gamma (XF86VidModeGamma *pGamma, gboolean bAdd);
+
 double xgamma_get_gamma (XF86VidModeGamma *pGamma);
 
 void xgamma_set_gamma (XF86VidModeGamma *pGamma);
@@ -39,10 +41,11 @@ void xgamma_set_gamma (XF86VidModeGamma *pGamma);
 void xgamma_create_scales_widget (double fGamma, XF86VidModeGamma *pGamma);
 
 
-void xgamma_apply_values (int iAnswer, GtkWidget *pWidget, gpointer data, CairoDialog *pDialog);
-
 CairoDialog *xgamma_build_dialog (void);
 void xgamma_build_and_show_widget (void);
+
+
+CairoDialog *xgamma_build_dialog_simple (void);
 
 
 #endif

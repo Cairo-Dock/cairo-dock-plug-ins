@@ -26,13 +26,14 @@
 
 CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
-	myConfig.iScrollVariation = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "scroll variation", 5);
+	myConfig.iScrollVariation = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "scroll_variation", 5);
 	myConfig.fInitialGamma = CD_CONFIG_GET_DOUBLE ("Configuration", "initial gamma");
+	myConfig.cDefaultTitle = CD_CONFIG_GET_STRING ("Icon", "name");
 CD_APPLET_GET_CONFIG_END
 
 
 CD_APPLET_RESET_CONFIG_BEGIN	
-	
+	g_free (myConfig.cDefaultTitle);
 CD_APPLET_RESET_CONFIG_END
 
 
