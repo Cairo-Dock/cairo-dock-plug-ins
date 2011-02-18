@@ -175,7 +175,8 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	{
 		// Main Menu
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open (click)"), GTK_STOCK_EXECUTE, _cd_stack_open_item, CD_APPLET_MY_MENU, data);
-		if (CD_APPLET_CLICKED_ICON->iVolumeID == 1)
+		gchar *cContent = CD_APPLET_CLICKED_ICON->cCommand;
+		if (strncmp (cContent, "file://", 7) == 0)
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open parent folder"), GTK_STOCK_OPEN, _cd_stack_open_item_folder, CD_APPLET_MY_MENU, data);
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 		gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Copy"), D_("middle-click"));

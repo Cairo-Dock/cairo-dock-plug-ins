@@ -93,7 +93,6 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 				NULL,
 				0);
 			pIcon->iface.load_image = _load_html_icon;
-			pIcon->iVolumeID = 1;
 		}
 		else
 		{
