@@ -214,35 +214,35 @@ else()
 	endif()
 endif()
 
+set (with_vala "yes")
+set (with_valac "no")
 find_program (VALA_EXECUTABLE valac)
-if ("${VALA_EXECUTABLE}" STREQUAL "" OR  NOT EXISTS ${VALA_EXECUTABLE})
-	message (STATUS "Could not find Vala compiler, won't build Vala interface.")
+if ("${WITH_VALA}" STREQUAL "no")
 	set (with_vala "no")
-else()
+elseif ("${WITH_VALA}" STREQUAL "yes" AND NOT "${VALA_EXECUTABLE}" STREQUAL "")
 	execute_process(COMMAND ${VALA_EXECUTABLE} "--version"
 		OUTPUT_VARIABLE "VALA_VERSION")
-    string(REPLACE "Vala" "" "VALA_VERSION" ${VALA_VERSION})
-    string(STRIP ${VALA_VERSION} "VALA_VERSION")
-    message (STATUS "VALA_VERSION: ${VALA_VERSION}")
-    
-    STRING (REGEX REPLACE "\\..*" "" VALA_MAJOR "${VALA_VERSION}")
+	string(REPLACE "Vala" "" "VALA_VERSION" ${VALA_VERSION})
+	string(STRIP ${VALA_VERSION} "VALA_VERSION")
+	message (STATUS "VALA_VERSION: ${VALA_VERSION}")
+
+	STRING (REGEX REPLACE "\\..*" "" VALA_MAJOR "${VALA_VERSION}")
 	message (STATUS "VALA_MAJOR : ${VALA_MAJOR}")
 	
 	STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" VALA_MINOR "${VALA_VERSION}")  # 0.1.7 => 1.7
 	STRING (REGEX REPLACE "\\.[0-9]*" "" VALA_MINOR "${VALA_MINOR}")
 	message (STATUS "VALA_MINOR : ${VALA_MINOR}")
-	
+
 	STRING (REGEX REPLACE ".*\\." "" VALA_NANO "${VALA_VERSION}")
 	STRING (REGEX REPLACE "-.*" "" VALA_NANO "${VALA_NANO}")
 	message (STATUS "VALA_NANO  : ${VALA_NANO}")
-	
+
 	if (${VALA_MAJOR} GREATER 0 OR ${VALA_MINOR} GREATER 9)  # vala > 0.10
 		message (STATUS "Vala compiler ok.")
-		set (VALA_FOUND "TRUE")
-		set (with_vala "yes")
+		set (VALAC_FOUND "TRUE")
+		set (with_valac "yes")
 	else()
 		message (STATUS "Vala compiler too old (0.10 required), won't build Vala interface.")
-		set (with_vala "no")
 	endif()
 endif()
 
@@ -869,3 +869,4 @@ message (STATUS " - with Python interface:          ${with_python}")
 message (STATUS " - with Ruby interface:            ${with_ruby}")
 message (STATUS " - with Mono interface:            ${with_mono}")
 message (STATUS " - with Vala interface:            ${with_vala}")
+message (STATUS " - with Vala Translator (valac) :  ${with_valac}")
