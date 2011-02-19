@@ -461,7 +461,8 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 				
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "file") == 0)
 				{
-					pTextZone->cImgPath = g_strdup_printf("%s",g_str_replace (xmlNodeGetContent (pXmlSubNode), "~", g_strdup_printf("/home/%s", getenv("USER"))));
+					pTextZone->cImgPath = g_strdup_printf("%s",g_str_replace (xmlNodeGetContent (pXmlSubNode), "~", g_strdup_printf("/home/%s", g_getenv("USER"))));
+					
 					pTextZone->bImgDraw=FALSE;
 				}
 				

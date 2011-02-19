@@ -81,13 +81,11 @@ CD_APPLET_INIT_END
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
-	//~ CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
+	// CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
-	//~ CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
+	// CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
-	
 	CD_APPLET_MANAGE_APPLICATION (NULL);	
-	
 CD_APPLET_STOP_END
 
 
@@ -110,11 +108,6 @@ CD_APPLET_RELOAD_BEGIN
 		myData.fPrevGpuTempPercent = 0;
 		myData.iTimerCount = 0;
 		
-		g_free (myData.pTopList);
-		myData.pTopList = NULL;
-		if (myData.pTopTask != NULL)
-			cairo_dock_change_task_frequency (myData.pTopTask, myConfig.iCheckInterval);
-		
 		CD_APPLET_MANAGE_APPLICATION (myConfig.cSystemMonitorClass);
 				
 		cairo_dock_relaunch_task_immediately (myData.pPeriodicRefreshTask, myConfig.iCheckInterval);
@@ -122,10 +115,6 @@ CD_APPLET_RELOAD_BEGIN
 		cd_doncky_free_item_list (myApplet);		
 		if (! cd_doncky_readxml (myApplet))
 			cd_debug ("Doncky-debug : ---------------------->  Bad XML format !");
-		
-		// redessin.
-		cd_applet_update_my_icon (myApplet);
-		
 	}
 	else 
 	{
@@ -133,7 +122,9 @@ CD_APPLET_RELOAD_BEGIN
 		myData.fPrevRamPercent = 0;
 		myData.fPrevSwapPercent = 0;
 		myData.fPrevGpuTempPercent = 0;
-	}	
+	}
+	
+	// redessin.
 	cd_applet_update_my_icon (myApplet);
 		
 CD_APPLET_RELOAD_END

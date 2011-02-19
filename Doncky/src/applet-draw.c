@@ -83,8 +83,11 @@ gchar *g_str_replace (const gchar *cString, const gchar *cWord, const gchar *cRe
 			
 			while (g_strstr_len (cPart2, -1, cWord) != NULL)
 			{
-				cPart2 = strstr(cPart2, cWord);
-				ltrim( cPart2, cWord );
+				cPart2 = strstr(cPart2, cWord);				
+				// ltrim( cPart2, cWord );  // Bug dans certain cas -> On feinte en utilisant rtrim
+				g_strreverse (cPart2);
+				rtrim( cPart2, cWordTemp );
+				g_strreverse (cPart2);
 			}
 			// On colle le texte au milieu
 			cFinalString = g_strdup_printf ("%s%s%s", cPart1,  g_strdup_printf("%s",cReplace), cPart2);
@@ -122,7 +125,7 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 		cd_sysmonitor_get_ram_data (myApplet);
 	if (myConfig.bShowNvidia)
 	{
-		if ((myData.iTimerCount % 3) == 0)  // la temperature ne varie pas tres vite et le script nvidia-settings est lours, on decide donc de ne mettre a jour qu'une fois sur 3.
+		if ((myData.iTimerCount % 3) == 0)  // la temperature ne varie pas tres vite et le script nvidia-settings est lourd, on decide donc de ne mettre a jour qu'une fois sur 3.
 			cd_sysmonitor_get_nvidia_data (myApplet);
 	}	
 	if (! myData.bInitialized)
@@ -141,8 +144,6 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 	for (it = myData.pTextZoneList; it != NULL; it = it->next)
 	{
 		pTextZone = it->data;
-		
-		
 		
 		if (!pTextZone->bImgDraw && pTextZone->cImgPath != NULL) // L'image n'a pas encore été chargée
 		{
@@ -175,12 +176,8 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 		}
 		
 		
-		
-		
-				
 		if (pTextZone->iRefresh != 0)
 				pTextZone->iTimer++;
-		
 		
 		if (pTextZone->bRefresh)
 		{
@@ -385,108 +382,20 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 
 gboolean cd_retrieve_command_result (CairoDockModuleInstance *myApplet)
 {
-	
-	// SYSTEM-MONITOR
-	static double s_fValues[CD_SYSMONITOR_NB_MAX_VALUES];
-	CD_APPLET_ENTER;
-	
-	if ( ! myData.bAcquisitionOK)
-	{
-		cd_warning ("One or more datas couldn't be retrieved");	
-		memset (s_fValues, 0, sizeof (s_fValues));
-		CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
-	}
-	else
-	{
-		if (! myData.bInitialized)
-		{
-			memset (s_fValues, 0, sizeof (s_fValues));
-			CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
-		}
-		else
-		{
-			// Copier les donnes en memoire partagee...
-			
-			//~ if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON || (myDock && myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL))  // on affiche les valeurs soit en info-rapide, soit sur l'etiquette en mode dock.
-			//~ {
-				//~ gboolean bOneLine = (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL);
-				//~ GString *sInfo = g_string_new ("");
-				//~ if (myConfig.bShowCpu)
-				//~ {
-					//~ g_string_printf (sInfo, (myData.fCpuPercent < 10 ? "%s%.1f%%%s" : "%s%.0f%%%s"),
-						//~ (myDesklet ? "CPU:" : ""),
-						//~ myData.fCpuPercent,
-						//~ (bOneLine ? " - " : "\n"));
-				//~ }
-				//~ if (myConfig.bShowRam)
-				//~ {
-					//~ g_string_append_printf (sInfo, (myData.fRamPercent < 10 ? "%s%.1f%%%s" : "%s%.0f%%%s"),
-						//~ (myDesklet ? "RAM:" : ""),
-						//~ myData.fRamPercent,
-						//~ (bOneLine ? " - " : "\n"));
-				//~ }
-				//~ if (myConfig.bShowSwap)
-				//~ {
-					//~ g_string_append_printf (sInfo, (myData.fSwapPercent < 10 ? "%s%.1f%%%s" : "%s%.0f%%%s"),
-						//~ (myDesklet ? "SWAP:" : ""),
-						//~ myData.fSwapPercent,
-						//~ (bOneLine ? " - " : "\n"));
-				//~ }
-				//~ if (myConfig.bShowNvidia)
-				//~ {
-					//~ g_string_append_printf (sInfo, "%s%dÂ°C%s",
-						//~ (myDesklet ? "GPU:" : ""),
-						//~ myData.iGPUTemp,
-						//~ (bOneLine ? " - " : "\n"));
-				//~ }
-				//~ sInfo->str[sInfo->len-(bOneLine?3:1)] = '\0';
-				//~ if (bOneLine)
-					//~ CD_APPLET_SET_NAME_FOR_MY_ICON (sInfo->str);
-				//~ else
-					//~ CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (sInfo->str);
-				//~ g_string_free (sInfo, TRUE);
-			//~ }
-			
-			if (myData.bNeedsUpdate || myConfig.iDisplayType == CD_SYSMONITOR_GRAPH)
-			{
-				int i = 0;
-				if (myConfig.bShowCpu)
-				{
-					s_fValues[i++] = myData.fCpuPercent / 100.;
-				}
-				if (myConfig.bShowRam)
-				{
-					s_fValues[i++] = myData.fRamPercent / 100.;
-				}
-				if (myConfig.bShowSwap)
-					s_fValues[i++] = (myData.swapTotal ? ((double)myData.swapUsed) / myData.swapTotal : 0.);
-				if (myConfig.bShowNvidia)
-					s_fValues[i++] = myData.fGpuTempPercent / 100.;
-				
-				CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
-			}
-		}
-	}
-	
-	
-	
-	// Autre :
-	
 	GList *it;
 	TextZone *pTextZone;
 	
-
 	for (it = myData.pTextZoneList; it != NULL; it = it->next)
 	{
 		pTextZone = it->data;
-			
+		
 		if (pTextZone->iRefresh != 0 || pTextZone->bRefresh)
 		{
 			if (pTextZone->bRefresh && pTextZone->cResult != NULL)
 			{
 				pTextZone->cText = g_strdup_printf ("%s",pTextZone->cResult);
 			}
-						    
+			
 			if (pTextZone->iRefresh != 0 && pTextZone->iTimer >= pTextZone->iRefresh)
 			{
 				pTextZone->bRefresh = TRUE;
@@ -494,7 +403,6 @@ gboolean cd_retrieve_command_result (CairoDockModuleInstance *myApplet)
 			}
 			else // Pas de refresh de spécifié
 			{
-				
 				if (pTextZone->cText == NULL || strcmp (pTextZone->cText, "") == 0) // La récupération s'est mal passé -> On relance !
 					pTextZone->bRefresh = TRUE;
 				else			
@@ -504,9 +412,8 @@ gboolean cd_retrieve_command_result (CairoDockModuleInstance *myApplet)
 	}
 	cd_applet_update_my_icon (myApplet); // Quand tous les textes sont chargés, on peut dessiner
 	myData.pPeriodicRefreshTask = NULL;
-		
-	CD_APPLET_LEAVE (myData.bAcquisitionOK);
 }
+
 
 
 void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, int iHeight)
@@ -561,8 +468,6 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 		cairo_pattern_destroy (pGradationPattern);
 		cairo_restore (myDrawContext);
 	}
-	
-	
 	
 	// ################################################################################################################################################################
 	// ############ DEBUT DU DESSIN DU TEXTE
@@ -637,53 +542,16 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 			it = it->next;
 		} while (it != NULL && ! pTextZone->bEndOfLine);
 		
-		
-		
+
 		
 		//\_______ boucle sur it de it1 jusqu'à retour chariot => DESSIN
 		it = it1;
 		do
 		{
-	
 			pTextZone = it->data;
-			
-			
-			
-			
-			
-			
-		
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 						
 			if (pTextZone->cFont == NULL || pTextZone->cFont =="") // Si aucune font -> on prend celle de la config
 				pTextZone->cFont = g_strdup_printf("%s", myConfig.cDefaultFont);
-			
 			
 			 // On calcule le décalage WIDTH nécéssaire pour respecter l'alignement sur la largeur souhaité
 			if (bFirstTextInLine)
@@ -706,7 +574,6 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 						myData.fCurrentX = iWidth - iMargin - myConfig.iTextMargin - pTextZone->iWidth - pTextZone->iFontSizeWidth;
 					else
 						myData.fCurrentX = iWidth - iMargin - myConfig.iTextMargin - fCurrentLineWidth - pTextZone->iFontSizeWidth;
-					
 				}
 				
 				if (pTextZone->bBar)
@@ -937,14 +804,10 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 
 void cd_applet_update_my_icon (CairoDockModuleInstance *myApplet)
 {
-	//~ if (myDesklet)
-	//~ {
-		// taille de la texture.
-		int iWidth, iHeight;
-		CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
-		
-		cd_applet_draw_my_desklet (myApplet, iWidth, iHeight);		
-		
-		CD_APPLET_REDRAW_MY_ICON;
-	//~ }
+	// taille de la texture.
+	int iWidth, iHeight;
+	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);	
+	cd_applet_draw_my_desklet (myApplet, iWidth, iHeight);
+	
+	CD_APPLET_REDRAW_MY_ICON;
 }

@@ -64,7 +64,7 @@ CD_APPLET_GET_CONFIG_END
 
 
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before you get the applet's config, and when your applet is stopped, in the end.
-CD_APPLET_RESET_CONFIG_BEGIN	
+CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cDefaultFont);
 	g_free (myConfig.cXmlFilePath);
 CD_APPLET_RESET_CONFIG_END
@@ -73,20 +73,18 @@ CD_APPLET_RESET_CONFIG_END
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped, in the very end.
 CD_APPLET_RESET_DATA_BEGIN
 	cd_doncky_free_item_list (myApplet);
+
+	cairo_dock_stop_task (myData.pPeriodicRefreshTask);
 	cairo_dock_free_task (myData.pPeriodicRefreshTask);
-		
+
+	
 	// REPRIS DE SYSTEM-MONITOR:
+	g_timer_stop (myData.pClock);
 	g_timer_destroy (myData.pClock);	
-	//~ CD_APPLET_REMOVE_MY_DATA_RENDERER;	
-	cairo_dock_free_task (myData.pTopTask);
-	if (myData.pTopClock != NULL)
-		g_timer_destroy (myData.pTopClock);
-	g_free (myData.pTopList);
-	if (myData.pProcessTable != NULL)
-		g_hash_table_destroy (myData.pProcessTable);
-	cairo_surface_destroy (myData.pTopSurface);	
+	CD_APPLET_REMOVE_MY_DATA_RENDERER;	
 	g_free (myData.cModelName);
 	g_free (myData.cGPUName);
 	g_free (myData.cDriverVersion);
-	g_free (myData.cCurrentText);	
+	g_free (myData.cCurrentText);
+
 CD_APPLET_RESET_DATA_END
