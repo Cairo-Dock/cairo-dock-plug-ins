@@ -88,6 +88,7 @@ struct _AppletConfig {
 	SliderClickOption iClickOption;
 	SliderClickOption iMiddleClickOption;
 	gboolean bUseThread;  // plante sur certaines images (svg) dans X :-(
+	gint iFrameWidth;
 } ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.

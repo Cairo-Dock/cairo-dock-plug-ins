@@ -419,7 +419,8 @@ static GtkWidget *cd_build_events_widget (void)
 	// file name
 	rend = gtk_cell_renderer_text_new ();
 	col = gtk_tree_view_column_new_with_attributes (_("File name"), rend, "text", CD_MODEL_NAME, NULL);
-	gtk_tree_view_column_set_max_width (col, MAX (600, g_desktopGeometry.iScreenWidth[CAIRO_DOCK_HORIZONTAL]*.67));
+	gtk_tree_view_column_set_min_width (col, 200);
+	gtk_tree_view_column_set_max_width (col, MAX (500, g_desktopGeometry.iScreenWidth[CAIRO_DOCK_HORIZONTAL]*.67));
 	gtk_tree_view_column_set_sort_column_id (col, CD_MODEL_NAME);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (pOneWidget), col);
 	// date
@@ -441,6 +442,13 @@ static GtkWidget *cd_build_events_widget (void)
 	return pMainBox;
 }
 
+static gboolean on_button_press_dialog (GtkWidget *widget, GdkEventButton *pButton, CairoDockModuleInstance *myApplet)
+{
+	CD_APPLET_ENTER;
+	cairo_dock_dialog_unreference (myData.pDialog);
+	myData.pDialog = NULL;
+	CD_APPLET_LEAVE(FALSE);
+}
 static void _on_dialog_destroyed (gpointer data)
 {
 	myData.pDialog = NULL;
@@ -460,6 +468,10 @@ void cd_toggle_dialog (void)
 		GtkWidget *pInteractiveWidget = cd_build_events_widget ();
 		myData.pDialog = cairo_dock_show_dialog_full (D_("Browse and search in recent events"), myIcon, myContainer, 0, "same icon", pInteractiveWidget, NULL, myApplet, (GFreeFunc) _on_dialog_destroyed);
 		gtk_widget_grab_focus (myData.pEntry);
+		g_signal_connect (G_OBJECT (myData.pDialog->container.pWidget),
+			"button-press-event",
+			G_CALLBACK (on_button_press_dialog),
+			myApplet);
 		
 		cd_trigger_search ();
 	}

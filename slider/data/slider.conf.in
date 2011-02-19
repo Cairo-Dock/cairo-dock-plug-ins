@@ -149,16 +149,27 @@ change animation=1
 #I[8;60;fast;slow] Number of steps for transitions:
 nb step = 20
 
+
 #F[Display;gtk-orientation-portrait]
 frame_disp=
-#b Keep width/height ratio?
-#{Gives better image rendering.}
-no stretch=true
-#b Force the image to fill the icon/desklet?
-#{If the image is too small, it will be stretched.}
-fill icon = false
-#Y[No;0;0;Yes;1;1;Frame;1;1] Add a background to the image?
+
+#Y[No;0;0;Yes;1;1;Frame;1;2] Add a background to the image?
 bg type = 2
+
 #C+ Choose a background colour :
 #{Set the transparency channel to 0 if you just don't want to have a background.}
 background_color = 1.0; 1.0; 1.0; 1.0
+
+#i[1;20] Frame width:
+bg width = 6
+
+#v
+sep_disp=
+
+#b Keep width/height ratio?
+#{Gives better image rendering.}
+no stretch=true
+
+#b Force the image to fill the icon/desklet?
+#{If the image is too small, it will be stretched.}
+fill icon = false

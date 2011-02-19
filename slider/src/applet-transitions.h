@@ -24,7 +24,8 @@
 
 #include "applet-struct.h"
 
-#define _get_frame_linewidth(myApplet) MIN (6, .1 * MIN (myData.iSurfaceWidth, myData.iSurfaceHeight))
+//#define _get_frame_linewidth(myApplet) 5*MIN (6, .1 * MIN (myData.iSurfaceWidth, myData.iSurfaceHeight))
+#define _get_frame_linewidth(myApplet) (2*myConfig.iFrameWidth)
 
 void cd_slider_draw_default (CairoDockModuleInstance *myApplet);
 
