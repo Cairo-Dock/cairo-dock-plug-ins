@@ -1,0 +1,127 @@
+#!/usr/bin/ruby
+
+# This is a part of the external demo_ruby applet for Cairo-Dock
+#
+# Author: Eduardo Mucelli Rezende Oliveira
+# E-mail: edumucelli@gmail.com or eduardom@dcc.ufmg.br
+#
+# This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+
+# This very simple applet features a counter from 0 to max_value. It displays the counter on the icon with a gauge and a quick info.
+# Scroll on the icon increase or decrease the counter
+# The menu offers the possibility to set some default value
+# Left click on the icon will set a random value
+# Middle click on the icon will raise a dialog asking you to set the value you want
+# If you drop some text on the icon, it will be used as the icon's label
+# Be aware to the messages, they are very wise :-)
+
+%w{rubygems dbus parseconfig CDApplet}.each { |x| require x }                           # requirements, do not forget CDApplet, it is not like Python
+
+class String
+	def to_b																			    # string to boolean
+	    ["true", "1", "T", "t"].include?(self.downcase)
+    end
+end
+
+class Applet < CDApplet
+	attr_accessor :counter, :configuration
+	def initialize
+		self.counter = 0
+        super
+	end
+	def start
+		self.icon.ShowDialog("I'm connected to Cairo-Dock !", 4)  							# show a dialog with this message for 4 seconds
+        self.icon.SetQuickInfo("#{self.counter}")			  								# write the counter value on the icon
+        self.icon.AddDataRenderer("gauge", 1, self.configuration['theme'])  				# set 1 gauge with the theme read in config
+        self.icon.RenderValues([Float(self.counter)/self.configuration['max_value']])  		# draw the gauge with an initial value
+
+        self.sub_icons.AddSubIcons(["icon 1", "firefox-3.0", "id1", "icon 3", "thunderbird", "id3", "icon 4", "nautilus", "id4"])	
+        self.sub_icons.RemoveSubIcon("id2") 												# remove the 2nd icon of our sub-dock
+        self.sub_icons.SetQuickInfo("1", "id1")  											# write the ID on each icon of the sub-dock
+        self.sub_icons.SetQuickInfo("3", "id3")
+        self.sub_icons.SetQuickInfo("4", "id4")
+	end
+
+    def get_config keyfile
+		self.configuration = {}
+		self.configuration['max_value'] = keyfile.params['Configuration']['max value'].to_i
+		self.configuration['theme'] = keyfile.params['Configuration']['theme']
+		self.configuration['yes_no'] = keyfile.params['Configuration']['yesno'].to_b        
+    end
+
+	# callbacks on the main icon
+	def on_click iState
+		p "[+] roger, right-click"
+		render_counter (self.counter+10)
+	end
+	def on_middle_click
+		p "[+] yes sir, middle-click received"
+		self.icon.AskValue("Set the value you want", self.counter, self.configuration['max_value'])
+	end
+	def on_build_menu
+		p "[+] let's build the menu"
+		self.icon.PopulateMenu(["Reset the counter", "Set Medium Value", "Set Max Value"])
+	end
+	def on_menu_select param
+		p "[+] let me guess, somebody chose the menu identified by the ID #{param}"
+		if param == 0
+			render_counter 0
+		elsif param == 1
+			render_counter self.configuration['max_value']/2
+		else
+			render_counter self.configuration['max_value']
+		end
+	end
+	def on_scroll scroll_up
+		p "[+] is there anybody out there scrolling #{scroll_up ? "up" : "down"} on my icon ?"
+		if scroll_up
+			count = [self.configuration['max_value'], self.counter + 1].min
+		else
+			count = self.counter - 1
+		end
+		render_counter count
+	end
+	def on_drop_data dropped_data
+		print "[+] ops, someone let #{dropped_data} fall into my icon"
+		self.icon.SetLabel(dropped_data)
+	end
+	def on_answer answer
+		p "[+] answer: #{answer}"
+		render_counter answer
+	end
+
+	# callbacks on the applet
+	def stop
+		p "[+] bye bye"
+		exit
+	end
+	def reload
+		p "[+] our module was reloaded, welcome back!"
+		self.icon.AddDataRenderer("gauge", 1, myApplet.config['theme'])
+		self.icon.RenderValues([Float(self.counter)/self.configuration['max_value']])
+		self.sub_icons.RemoveSubIcon("any")
+		self.sub_icons.AddSubIcons(["icon 1", "firefox-3.0", "id1", "icon 2", "natilus", "id2", "icon 3", "thunderbird", "id3"]) 
+	end
+	
+	# callbacks on the sub-icons
+	def on_click_sub_icon state, icon_id
+		p "[+] something tells me that you clicked on the icon #{icon_id}"
+	end
+
+	def render_counter cont
+		self.counter = cont																# equivalent to the set_count method in demo_python
+		percent = Float(self.counter) / self.configuration['max_value']
+		self.icon.RenderValues([percent])
+		self.icon.SetQuickInfo("#{self.counter.to_i}")
+	end
+end
+
+Applet.new.run

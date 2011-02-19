@@ -1,9 +1,9 @@
 #!/usr/bin/ruby
 
-# This is a part of the external Ruby Battery applet for Cairo-Dock
-#
-# Author: Eduardo Mucelli Rezende Oliveira
-# E-mail: edumucelli@gmail.com or eduardom@dcc.ufmg.br
+# This is a part of the external Ruby Interface for Cairo-Dock
+
+# Author: Fabounet and Eduardo Mucelli Rezende Oliveira
+# E-mail: fabounet@glx-dock.org, edumucelli@gmail.com or eduardom@dcc.ufmg.br
 #
 # This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -263,7 +263,7 @@ class CDApplet
 		end
 		
 		self.sub_icons.on_signal("on_click_sub_icon") do |iState, sub_icon_id|
-			self.on_click_sub_icon iState sub_icon_id
+			self.on_click_sub_icon iState, sub_icon_id
 		end
 		
 		self.sub_icons.on_signal("on_middle_click_sub_icon") do |sub_icon_id|
@@ -271,7 +271,7 @@ class CDApplet
 		end
 		
 		self.sub_icons.on_signal("on_scroll_sub_icon") do |bScrollUp, sub_icon_id|
-			self.on_scroll_sub_icon bScrollUp sub_icon_id
+			self.on_scroll_sub_icon bScrollUp, sub_icon_id
 		end
 		
 		self.sub_icons.on_signal("on_build_menu_sub_icon") do |sub_icon_id|
@@ -279,7 +279,7 @@ class CDApplet
 		end
 		
 		self.sub_icons.on_signal("on_drop_data_sub_icon") do |cReceivedData, sub_icon_id|
-			self.on_drop_data_sub_icon cReceivedData sub_icon_id
+			self.on_drop_data_sub_icon cReceivedData, sub_icon_id
 		end
 		
 	end

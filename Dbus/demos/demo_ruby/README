@@ -1,0 +1,19 @@
+In order to use this applet, it is necessary to install Ruby, Rubygems and the gems dbus and parseconfig.
+
+# Installation process (Debian/Ubuntu)
+
+[+] Ruby 1.8: sudo apt-get install ruby1.8-dev ruby1.8 ri1.8 rdoc1.8 irb1.8 libreadline-ruby1.8 libruby1.8
+[+] Rubygems: (sudo) apt-get install rubygems
+[+] Gem parseconfig: (sudo) gem install parseconfig
+[+] Gem Dbus: (sudo) gem install ruby-dbus
+
+# Tips
+
+When running Cairo-Dock through terminal, for example, cairo-dock -c, check if any message regarding execution permission is being shown. If so, set execution permission to the applet, chmod a+x 755 demo_ruby
+
+# Contact me
+
+Any doubt, suggestion or anything else, except asking for some money, I would be pleased to received a message from you.
+
+Author: Eduardo Mucelli Rezende Oliveira
+E-mail: edumucelli@gmail.com or eduardom@dcc.ufmg.br
