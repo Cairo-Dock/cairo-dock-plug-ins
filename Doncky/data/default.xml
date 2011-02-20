@@ -19,7 +19,19 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/ >.-->
 
 <doncky>
-
+	<appearance>
+		<deskletSize>260;160</deskletSize>
+		<defaultFont>Sans 8</defaultFont>
+		<defaultTextColor>255;255;255;255</defaultTextColor>
+		<textMargin>0</textMargin>
+		<spaceBetweenLines>0</spaceBetweenLines>
+		<displayBackground>1</displayBackground>
+		<backgroundColor1>41;45;46;255</backgroundColor1>
+		<backgroundColor2>133;90;255;232</backgroundColor2>
+		<backgroundRadius>15</backgroundRadius>
+		<borderThickness>2</borderThickness>
+		<borderColor>0;0;0;255</borderColor>
+	</appearance>
 
 	<!--  Time -->
 	<font>Terminal Bitstream Vera Sans Mono 20</font>

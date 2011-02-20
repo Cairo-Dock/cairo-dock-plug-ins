@@ -23,7 +23,6 @@
 #include <libxml/tree.h>
 #include <libxml/parser.h>
 
-
 #include <cairo-dock.h>
 #include "applet-struct.h"
 #include "applet-xml.h"

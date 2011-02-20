@@ -26,16 +26,6 @@
 #define CD_SYSMONITOR_PROC_FS "/proc"   // REPRIS DE SYSTEM-MONITOR
 #define CD_SYSMONITOR_NB_MAX_VALUES 4   // REPRIS DE SYSTEM-MONITOR
 
- // REPRIS DE SYSTEM-MONITOR :
-typedef enum _CDSysmonitorDisplayType {
-	CD_SYSMONITOR_GAUGE=0,
-	CD_SYSMONITOR_GRAPH,
-	CD_SYSMONITOR_BAR,
-	CD_SYSMONITOR_NB_TYPES
-	} CDSysmonitorDisplayType;
-	
-
-
 typedef struct _CDDiskUsage {
 	long long iPrevAvail;
 	long long iAvail;
@@ -45,120 +35,71 @@ typedef struct _CDDiskUsage {
 	int iType;
 	} CDDiskUsage;
 
-
-
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
-	
+	gchar *cDefaultFont;
+	double fDefaultTextColor[4];
+	gint iTextMargin;
+	gint iSpaceBetweenLines;
 	gboolean bDisplayBackground;
 	double fBackgroundColor1[4];
 	double fBackgroundColor2[4];
 	gint iBackgroundRadius;
 	gint iBorderThickness;
 	double fBorderColor[4];
-	double fDefaultTextColor[4];
-	gchar *cDefaultFont;
-	gint iTextMargin;
-	gint iSpaceBetweenLines;	
-	gchar *cXmlFilePath;
 	
+	gchar *cDeskletSize;
+	gchar *cXmlFilePath;
 	gint iCheckInterval;
 	
-	
-	
 	// REPRIS DE SYSTEM-MONITOR :
-	gchar *defaultTitle;
 	gboolean bShowCpu;
 	gboolean bShowRam;
 	gboolean bShowNvidia;
 	gboolean bShowSwap;
-	gchar *cGThemePath;
-	gchar *cWatermarkImagePath;
-	gdouble fAlpha;	
-	CDSysmonitorDisplayType iDisplayType;
-	CairoDockTypeGraph iGraphType;
-	gdouble fLowColor[3];
-	gdouble fHigholor[3];
-	gdouble fBgColor[4];
-	gboolean bMixGraph;	
-	gint iNbDisplayedProcesses;
-	gboolean bTopInPercent;
-	CairoDockLabelDescription *pTopTextDescription;	
-	gchar *cSystemMonitorCommand;
 	gchar *cSystemMonitorClass;
-	gboolean bStealTaskBarIcon;
-	gdouble fUserHZ;	
-	gchar *cSoundPath;
+	gdouble fUserHZ;
 	} ;
-
-
-
-// REPRIS DE SYSTEM-MONITOR :
-typedef struct {
-	gint iPid;
-	gchar *cName;
-	gint iCpuTime;
-	gdouble fCpuPercent;
-	gdouble iMemAmount;
-	gdouble fLastCheckTime;
-	} CDProcess;
-
-
-
-
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	// Nouveau Doncky
-	
+	//~ // Copy of myConfig :
+	//~ gchar *cDefaultFont;
+	//~ double fDefaultTextColor[4];
+	//~ gint iTextMargin;
+	//~ gint iSpaceBetweenLines;
+	//~ gboolean bDisplayBackground;
+	//~ double fBackgroundColor1[4];
+	//~ double fBackgroundColor2[4];
+	//~ gint iBackgroundRadius;
+	//~ gint iBorderThickness;
+	//~ double fBorderColor[4];
 	
 	gchar *cPrevAlignWidth;
 	gchar *cPrevAlignHeight;
 	gchar *cPrevFont;
 	double fPrevTextColor[4];
 	gint iPrevOverrideH;
-	gint iPrevOverrideW;
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// Ancien Doncky
-	CairoDockTask *pPeriodicRefreshTask;
-	
-	GList *pTextZoneList;
-	
-	gchar *cTempoText;
+	gint iPrevOverrideW;	
+	CairoDockTask *pPeriodicRefreshTask;	
+	GList *pTextZoneList;	
 	gchar *cCurrentText;	
 	double fCurrentX; // Position du curseur dans le desklet
 	double fCurrentY;
 	double fCurrentYalign;
 	gchar *cLastAlignHeight;
 	gint iLastLineHeight;
-	gboolean bLastWasSameLine;
-	
+	gboolean bLastWasSameLine;	
 	cairo_surface_t *pImgSurface;
 	
-	
-	
 	// REPRIS DE SYSTEM-MONITOR :
-	
 	// infos, constantes.
 	gint iNbCPU;
-	gulong iMemPageSize;
 	gint iFrequency;
 	gchar *cModelName;
 	gchar *cGPUName;
 	gint iVideoRam;
 	gchar *cDriverVersion;
-	
 	// shared memory for the main thread.
 	gboolean bInitialized;
 	gboolean bAcquisitionOK;
@@ -176,20 +117,6 @@ struct _AppletData {
 	gboolean bNeedsUpdate;
 	gint iTimerCount;
 	// end of shared memory.
-	gint iCount;  // pour sous-echantilloner les acquisitions de valeurs moins variables.
-	
-	gint iNbProcesses;
-	CairoDialog *pTopDialog;
-	cairo_surface_t *pTopSurface;
-	CairoDockTask *pTopTask;
-	// shared memory for the "top" thread.
-	GHashTable *pProcessTable;
-	CDProcess **pTopList;
-	GTimer *pTopClock;
-	gboolean bSortTopByRam;
-	// end of shared memory.
-	
-	gint iMaxFrequency;
 	} ;
 
 #endif
