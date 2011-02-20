@@ -417,6 +417,10 @@ gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceived
 			cd_warning (erreur->message);
 			g_error_free (erreur);
 		}
+		if (cAppletDirPath == NULL)
+		{
+			cairo_dock_show_general_message (D_("Sorry, this module couldn't be added."), 10000);
+		}
 		else
 		{
 			//\________________ On la supprime totalement si elle existe deja (mise a jour).
@@ -439,6 +443,8 @@ gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceived
 			
 			//\________________ On l'enregistre et on la (re)lance.
 			cd_dbus_register_module_in_dir (cAppletName, cExtractTo);
+			
+			cairo_dock_activate_module_and_load (cAppletName);
 			
 			//\________________ On balance un petit message a l'utilisateur.
 			pModule = cairo_dock_find_module_from_name (cAppletName);

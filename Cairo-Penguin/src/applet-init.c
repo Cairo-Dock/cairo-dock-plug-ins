@@ -47,31 +47,40 @@ CD_APPLET_INIT_BEGIN
 	
 	penguin_start_animating_with_delay (myApplet);
 	
-	cairo_dock_register_notification_on_object (myDock,
+	cairo_dock_register_notification_on_object (myContainer,
 		NOTIFICATION_CLICK_ICON,
 		(CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC,
 		CAIRO_DOCK_RUN_FIRST,
 		myApplet);
-	cairo_dock_register_notification_on_object (myDock,
+	cairo_dock_register_notification_on_object (myContainer,
 		NOTIFICATION_MIDDLE_CLICK_ICON,
 		(CairoDockNotificationFunc) CD_APPLET_ON_MIDDLE_CLICK_FUNC,
 		CAIRO_DOCK_RUN_FIRST,
 		myApplet);
-	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
+	cairo_dock_register_notification_on_object (myContainer,
+		NOTIFICATION_BUILD_ICON_MENU,
+		(CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU_FUNC,
+		CAIRO_DOCK_RUN_FIRST,
+		myApplet);
+	/// register to NOTIFICATION_STOP_DOCK...
 CD_APPLET_INIT_END
 
 
 CD_APPLET_STOP_BEGIN
 	//\_______________ On se desabonne de nos notifications.
-	cairo_dock_remove_notification_func_on_object (myDock,
+	cairo_dock_remove_notification_func_on_object (myContainer,
 		NOTIFICATION_CLICK_ICON,
 		(CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC,
 		myApplet);
-	cairo_dock_remove_notification_func_on_object (myDock,
+	cairo_dock_remove_notification_func_on_object (myContainer,
 		NOTIFICATION_MIDDLE_CLICK_ICON,
 		(CairoDockNotificationFunc) CD_APPLET_ON_MIDDLE_CLICK_FUNC,
 		myApplet);
-	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
+	cairo_dock_remove_notification_func_on_object (myContainer,
+		NOTIFICATION_BUILD_ICON_MENU,
+		(CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU_FUNC,
+		myApplet);
+	/// unregister to NOTIFICATION_STOP_DOCK...
 	penguin_remove_notfications();
 	
 	if (myData.iSidRestartDelayed != 0)

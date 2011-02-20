@@ -131,9 +131,9 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 	}
 	
 	pIcon->cName = g_key_file_get_string (pKeyFile, "Desktop Entry", "Title", NULL);
-	if (pIcon->cName == NULL)
+	if (pIcon->cName == NULL || *pIcon->cName == '\0')
 	{
-		g_key_file_get_string (pKeyFile, "Desktop Entry", "Name", &erreur);
+		pIcon->cName = g_key_file_get_string (pKeyFile, "Desktop Entry", "Name", &erreur);
 		if (erreur != NULL)
 		{
 			cd_warning ("Stack : %s", erreur->message);

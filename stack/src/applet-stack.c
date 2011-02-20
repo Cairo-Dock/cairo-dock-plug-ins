@@ -89,7 +89,7 @@ static void _get_html_page (CDHtmlLink *pHtmlLink)
 	if (cPageContent == NULL)
 	{
 		cd_warning ("Stack: couldn't get the html page '%s'\n -> can't get the title and favicon", pHtmlLink->cURL);
-		return;
+		return;  // we could still draw the emblem in case it's already local, but not the title; so it wouldn't be really better.
 	}
 	
 	// get the title
@@ -251,6 +251,7 @@ static gboolean _update_html_link (CDHtmlLink *pHtmlLink)
 				cairo_dock_set_emblem_position (pEmblem, CAIRO_DOCK_EMBLEM_LOWER_RIGHT);
 				cairo_dock_draw_emblem_on_icon (pEmblem, pIcon, pContainer);
 				cairo_dock_free_emblem (pEmblem);
+				cairo_dock_redraw_icon (pIcon, pContainer);
 				break;
 			}
 		}
