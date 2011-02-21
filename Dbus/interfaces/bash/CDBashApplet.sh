@@ -46,6 +46,7 @@ MENU_SUB_MENU=1
 MENU_SEPARATOR=2
 MENU_CHECKBOX=3
 MENU_RADIO_BUTTON=4
+MAIN_MENU_ID=0
 
 call() {  # method, args
 	method=$1
