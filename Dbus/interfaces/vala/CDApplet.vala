@@ -111,6 +111,10 @@ public class CDApplet : GLib.Object
 		MENU_RADIO_BUTTON
 	}
 	
+    public enum MenuItemId {
+        MAIN_MENU_ID = 0
+    }
+
 	public CDApplet(string[] argv)
 	{
 		this.cAppletName = argv[0].substring(2,999);
