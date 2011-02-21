@@ -160,8 +160,8 @@ bg type = 2
 #{Set the transparency channel to 0 if you just don't want to have a background.}
 background_color = 1.0; 1.0; 1.0; 1.0
 
-#i[1;20] Frame width:
-bg width = 6
+#i[2;20] Frame width:
+bg width = 8
 
 #v
 sep_disp=

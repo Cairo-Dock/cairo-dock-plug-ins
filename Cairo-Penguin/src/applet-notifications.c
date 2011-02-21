@@ -184,3 +184,10 @@ gboolean CD_APPLET_ON_MIDDLE_CLICK_FUNC (CairoDockModuleInstance *myApplet, Icon
 			}
 		}
 CD_APPLET_ON_MIDDLE_CLICK_END
+
+
+gboolean cd_on_dock_destroyed (CairoDockModuleInstance *myApplet, CairoDock *pDock)
+{
+	cairo_dock_deactivate_module_and_unload (myApplet->pModule->pVisitCard->cModuleName);
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}

@@ -78,11 +78,11 @@ static void _cd_slider_add_background_to_slide_opengl(CairoDockModuleInstance *m
 		if (myConfig.iBackgroundType == 2)
 		{
 			int iLineWidth = _get_frame_linewidth (myApplet);
-			double fRadius = MIN (5, .25*iLineWidth);
+			double fRadius = 1.33 * MIN (5, .25*iLineWidth);
 			glPushMatrix ();
 			glTranslatef (fX, fY, 0.);  // centre du rectangle.
 			glBlendFunc (GL_ONE, GL_ZERO);
-			cairo_dock_draw_rounded_rectangle_opengl (slide->fImgW - (2*fRadius), slide->fImgH, fRadius, iLineWidth, NULL);
+			cairo_dock_draw_rounded_rectangle_opengl (slide->fImgW - (2*fRadius) + iLineWidth, slide->fImgH + iLineWidth, fRadius, 0, NULL);  // we fill the rectangle, because the stroke function in opengl does not handle wide lines very well.
 			glPopMatrix ();
 			glPolygonMode (GL_FRONT, GL_FILL);
 		}
@@ -210,6 +210,7 @@ gboolean cd_slider_blank_fade (CairoDockModuleInstance *myApplet) {
 		
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glEnable (GL_TEXTURE_2D);
+		glEnable (GL_BLEND);
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 		
 		//Image
@@ -217,13 +218,13 @@ gboolean cd_slider_blank_fade (CairoDockModuleInstance *myApplet) {
 		cairo_dock_apply_texture_at_size (myData.iTexture, myData.slideArea.fImgW, myData.slideArea.fImgH);
 		
 		//Masque
+		glDisable (GL_TEXTURE_2D);
 		glColor4f (1., 1., 1., myData.fAnimAlpha);
 		glBegin(GL_QUADS);
-		glDisable (GL_TEXTURE_2D);
-		glVertex3f(-.5,  .5, 0.);
-		glVertex3f( .5,  .5, 0.);
-		glVertex3f( .5, -.5, 0.);
-		glVertex3f(-.5, -.5, 0.);
+		glVertex3f(-.5*myData.slideArea.fImgW,  .5*myData.slideArea.fImgH, 0.);
+		glVertex3f( .5*myData.slideArea.fImgW,  .5*myData.slideArea.fImgH, 0.);
+		glVertex3f( .5*myData.slideArea.fImgW, -.5*myData.slideArea.fImgH, 0.);
+		glVertex3f(-.5*myData.slideArea.fImgW, -.5*myData.slideArea.fImgH, 0.);
 		glEnd();
 		
 		glDisable (GL_BLEND);
