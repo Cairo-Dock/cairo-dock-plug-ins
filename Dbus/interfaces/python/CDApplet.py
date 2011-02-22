@@ -53,6 +53,8 @@ class CDApplet:
 	MENU_SEPARATOR    = 2
 	MENU_CHECKBOX     = 3
 	MENU_RADIO_BUTTON = 4
+
+	MAIN_MENU_ID = 0
 	
 	def __init__(self):
 		""" initialize the applet. Must be called by any class that inheritates from it.

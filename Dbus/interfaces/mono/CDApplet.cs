@@ -63,12 +63,16 @@ public class CDApplet
 		MIDDLE
 	}
 	public enum MenuItemType {
-	        MENU_ENTRY = 0,
-	        MENU_SUB_MENU,
-	        MENU_SEPARATOR,
-	        MENU_CHECKBOX,
-	        MENU_RADIO_BUTTON
+		MENU_ENTRY = 0,
+		MENU_SUB_MENU,
+		MENU_SEPARATOR,
+		MENU_CHECKBOX,
+		MENU_RADIO_BUTTON
 	}
+
+	public enum MenuItemId {
+		MAIN_MENU_ID = 0
+    }
 	
 	public CDApplet()
 	{

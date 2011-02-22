@@ -47,6 +47,8 @@ class CDApplet
 	MENU_CHECKBOX     = 3
 	MENU_RADIO_BUTTON = 4
 
+	MAIN_MENU_ID = 0
+
 	def initialize
 		#~ self.cAppletName = File.basename(Dir.getwd)
 		#~ self.cConfFile = File.expand_path("~/.config/cairo-dock/current_theme/plug-ins/#{self.cAppletName}/#{self.cAppletName}.conf")
