@@ -115,6 +115,11 @@ public class CDApplet : GLib.Object
 		MAIN_MENU_ID = 0
 	}
 
+	public enum DialogKey {
+		DIALOG_KEY_ENTER = -1,
+		DIALOG_KEY_ESCAPE = -2
+    }
+	
 	public CDApplet(string[] argv)
 	{
 		this.cAppletName = argv[0].substring(2,999);

@@ -73,6 +73,11 @@ public class CDApplet
 	public enum MenuItemId {
 		MAIN_MENU_ID = 0
     }
+    
+	public enum DialogKey {
+		DIALOG_KEY_ENTER = -1,
+		DIALOG_KEY_ESCAPE = -2
+    }
 	
 	public CDApplet()
 	{

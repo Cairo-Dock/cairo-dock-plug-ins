@@ -48,6 +48,9 @@ class CDApplet
 	MENU_RADIO_BUTTON = 4
 
 	MAIN_MENU_ID = 0
+	
+	DIALOG_KEY_ENTER = -1
+	DIALOG_KEY_ESCAPE = -2
 
 	def initialize
 		#~ self.cAppletName = File.basename(Dir.getwd)

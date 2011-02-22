@@ -65,7 +65,7 @@ CD_APPLET_INIT_BEGIN
 	cairo_dock_register_notification_on_object (myDock,
 		NOTIFICATION_STOP_DOCK,
 		(CairoDockNotificationFunc) cd_on_dock_destroyed,
-		CAIRO_DOCK_RUN_LAST,
+		CAIRO_DOCK_RUN_AFTER,
 		myApplet);
 CD_APPLET_INIT_END
 

@@ -56,6 +56,9 @@ class CDApplet:
 
 	MAIN_MENU_ID = 0
 	
+	DIALOG_KEY_ENTER = -1
+	DIALOG_KEY_ESCAPE = -2
+	
 	def __init__(self):
 		""" initialize the applet. Must be called by any class that inheritates from it.
 		It defines the following:
