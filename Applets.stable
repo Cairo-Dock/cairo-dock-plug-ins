@@ -52,9 +52,11 @@ kde-integration
 ###Added in v2.2.0
 MeMenu
 Messaging-Menu
+Folders
+###Added in v2.3.0
+Remote-Control
+Recent-Events
 ###All other applets are considered to be either not enough functionnal, buggy/untested, or under heavy development.
 #Scooby-Do
 #Network-Monitor
-#Recent-Events
-#Remote-Control
 #Status-Notifier
