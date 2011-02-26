@@ -85,7 +85,7 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 	Icon *pIcon = NULL;
 	if (cairo_dock_string_is_adress (cContent))
 	{
-		if (strncmp (cContent, "http://", 7) == 0 || strncmp (cContent, "https://", 8) == 0)
+		if (strncmp (cContent, "http://", 7) == 0 || strncmp (cContent, "https://", 8) == 0)  // URL web
 		{
 			pIcon = cairo_dock_create_dummy_launcher (NULL,
 				g_strdup (myConfig.cUrlIcon),
@@ -94,7 +94,7 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 				0);
 			pIcon->iface.load_image = _load_html_icon;
 		}
-		else
+		else  // URI file
 		{
 			gchar *cCanonicName=NULL, *cRealURI=NULL, *cIconName=NULL;
 			gboolean bIsDirectory;
@@ -117,11 +117,11 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 				cContent,
 				NULL,
 				0);
-			pIcon->iVolumeID = 1;  // on l'utilisera comme un flag.
 			g_free (cCanonicName);
 		}
+		pIcon->iVolumeID = 1;  // let's use this as a flag for the URI items.
 	}
-	else
+	else  // text
 	{
 		pIcon = cairo_dock_create_dummy_launcher (NULL,
 				g_strdup (myConfig.cTextIcon),
@@ -130,16 +130,12 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 				0);
 	}
 	
-	pIcon->cName = g_key_file_get_string (pKeyFile, "Desktop Entry", "Title", NULL);
-	if (pIcon->cName == NULL || *pIcon->cName == '\0')
+	pIcon->cName = g_key_file_get_string (pKeyFile, "Desktop Entry", "Name", &erreur);
+	if (erreur != NULL)
 	{
-		pIcon->cName = g_key_file_get_string (pKeyFile, "Desktop Entry", "Name", &erreur);
-		if (erreur != NULL)
-		{
-			cd_warning ("Stack : %s", erreur->message);
-			g_error_free (erreur);
-			erreur = NULL;
-		}
+		cd_warning ("Stack : %s", erreur->message);
+		g_error_free (erreur);
+		erreur = NULL;
 	}
 	
 	if (myConfig.iSortType == CD_STACK_SORT_BY_DATE)

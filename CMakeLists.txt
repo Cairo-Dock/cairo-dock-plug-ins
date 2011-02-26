@@ -10,7 +10,7 @@ include (CheckSymbolExists)
 ########### project ###############
 
 project ("cairo-dock-plugins")
-set (VERSION "2.3.0~0rc1")
+set (VERSION "2.3.0~0rc2")
 
 add_definitions (-std=c99 -Wstrict-prototypes -Wextra -Wwrite-strings -Wuninitialized -Werror-implicit-function-declaration) #-Wunreachable-code -Wno-unused-parameter -Wall
 if (NOT ${CMAKE_BUILD_TYPE})
@@ -216,11 +216,12 @@ endif()
 
 set (with_vala "yes")
 set (with_valac "no")
-find_program (VALA_EXECUTABLE valac)
+find_program (VALAC_EXE valac)
+message (STATUS "VALAC_EXE: ${VALAC_EXE}")
 if ("${WITH_VALA}" STREQUAL "no")
 	set (with_vala "no")
-elseif ("${WITH_VALA}" STREQUAL "yes" AND NOT "${VALA_EXECUTABLE}" STREQUAL "")
-	execute_process(COMMAND ${VALA_EXECUTABLE} "--version"
+elseif ("${WITH_VALA}" STREQUAL "yes" AND NOT "${VALAC_EXE}" STREQUAL "VALAC_EXE-NOTFOUND")
+	execute_process(COMMAND ${VALAC_EXE} "--version"
 		OUTPUT_VARIABLE "VALA_VERSION")
 	string(REPLACE "Vala" "" "VALA_VERSION" ${VALA_VERSION})
 	string(STRIP ${VALA_VERSION} "VALA_VERSION")

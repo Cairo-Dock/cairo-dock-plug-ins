@@ -30,31 +30,6 @@ void update_icon(void)
 	cd_message ("%s (time:%.2f -> %.2f ; charge:%.2f -> %.2f)", __func__, myData.previous_battery_time, myData.battery_time, myData.previous_battery_charge, myData.battery_charge);
 	if(myData.battery_present)
 	{
-		// on reactualise le temps restant en info rapide.
-		if (myData.previous_battery_time != myData.battery_time)
-		{
-			if(myConfig.quickInfoType == POWER_MANAGER_TIME)
-			{
-				if (myData.battery_time != 0) {
-					CD_APPLET_SET_HOURS_MINUTES_AS_QUICK_INFO (myData.battery_time);
-				}
-				else {
-					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("-:--");
-				}
-			}
-			else if(myConfig.quickInfoType == POWER_MANAGER_CHARGE)
-			{
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%%", (int)myData.battery_charge);
-			}
-			else
-			{
-			  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
-			}
-			
-			bNeedRedraw = TRUE;
-			myData.previous_battery_time = myData.battery_time;
-		}
-		
 		// on prend en compte la nouvelle charge.
 		if (myData.previously_on_battery != myData.on_battery || myData.previous_battery_charge != myData.battery_charge)
 		{
@@ -111,6 +86,56 @@ void update_icon(void)
 			
 			myData.previously_on_battery = myData.on_battery;
 			myData.previous_battery_charge = myData.battery_charge;
+		}
+		
+		// on reactualise le temps restant en info rapide.
+		if (myData.previous_battery_time != myData.battery_time)
+		{
+			/*if(myConfig.quickInfoType == POWER_MANAGER_TIME)
+			{
+				if (myData.battery_time != 0) {
+					CD_APPLET_SET_HOURS_MINUTES_AS_QUICK_INFO (myData.battery_time);
+				}
+				else {
+					CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("-:--");
+				}
+			}
+			else if(myConfig.quickInfoType == POWER_MANAGER_CHARGE)
+			{
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%%", (int)myData.battery_charge);
+			}
+			else
+			{
+			  CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
+			}
+			
+			bNeedRedraw = TRUE;*/
+			
+			if (myConfig.defaultTitle == NULL || *myConfig.defaultTitle == '\0')
+			{
+				gchar cFormatBuffer[21];
+				int iBufferLength = 20;
+				if (myData.battery_time != 0)
+				{
+					int time = myData.battery_time;
+					int hours = time / 3600;
+					int minutes = (time % 3600) / 60;
+					if (hours != 0)
+						snprintf (cFormatBuffer, iBufferLength, "%dh%02d", hours, abs (minutes));
+					else
+						snprintf (cFormatBuffer, iBufferLength, "%dmn", minutes);
+				}
+				else
+				{
+					strncpy (cFormatBuffer, "-:--", iBufferLength);
+				}
+				CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s: %d%% - %s: %s",
+					D_("Charge"),
+					(int)myData.battery_charge,
+					D_("Time"),
+					cFormatBuffer);
+			}
+			myData.previous_battery_time = myData.battery_time;
 		}
 	}
 	else if (myData.prev_battery_present)

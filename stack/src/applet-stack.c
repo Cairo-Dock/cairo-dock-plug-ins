@@ -227,7 +227,7 @@ static gboolean _update_html_link (CDHtmlLink *pHtmlLink)
 	// store in the conf file.
 	cairo_dock_update_conf_file (pHtmlLink->cConfFilePath,
 		G_TYPE_STRING, "Desktop Entry", "Favicon", pHtmlLink->cFaviconPath,
-		G_TYPE_STRING, "Desktop Entry", "Title", pHtmlLink->cTitle,
+		G_TYPE_STRING, "Desktop Entry", "Name", pHtmlLink->cTitle,
 		G_TYPE_INVALID);	
 	
 	// update the icon.
