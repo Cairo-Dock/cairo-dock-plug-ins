@@ -24,9 +24,10 @@
 
 #include <cairo-dock.h>
 
-static void _new_xml_to_conf (CairoDockModuleInstance *myApplet, const gchar *cNewXML);
+static void _new_xml_to_conf (CairoDockModuleInstance *myApplet, const gchar *cReceivedData);
 
 //~ CD_APPLET_ON_CLICK_H
+//~ CD_APPLET_ON_DOUBLE_CLICK_H
 
 CD_APPLET_ON_BUILD_MENU_H
 

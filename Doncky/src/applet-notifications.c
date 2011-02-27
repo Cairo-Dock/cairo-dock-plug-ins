@@ -27,14 +27,18 @@
 #include "applet-xml.h"
 
 
-static void _new_xml_to_conf (CairoDockModuleInstance *myApplet, const gchar *cNewXML)
+static void _new_xml_to_conf (CairoDockModuleInstance *myApplet, const gchar *cReceivedData)
 {
-	if (g_strstr_len (cNewXML, -1, ".xml") != NULL)  // On verifie que l'element glisser/copier fini bien par .xml
+	// if (cReceivedData && strncmp (cReceivedData, "http://", 7) == 0 && g_str_has_suffix (cReceivedData, ".tar.gz") && (g_strstr_len (cReceivedData, -1, "glxdock") || g_strstr_len (cReceivedData, -1, "glx-dock")))
+	//~ if (g_strstr_len (cReceivedData, -1, ".xml") != NULL)  // On verifie que l'element glisser/copier fini bien par .xml
+	if (cReceivedData && (strncmp (cReceivedData, "http://", 7) == 0 && g_str_has_suffix (cReceivedData, ".tar.gz")) \
+			|| (strncmp (cReceivedData, "http://", 7) == 0 && g_str_has_suffix (cReceivedData, ".xml")) \
+			|| (strncmp (cReceivedData, "file://", 7) == 0 && g_str_has_suffix (cReceivedData, ".xml")))
 	{
 		cd_debug ("DONCKY-debug : This seems to be a valid XML File -> Let's continue...");
 		// on definit la nouvelle URL en conf.
 		g_free (myConfig.cXmlFilePath);
-		myConfig.cXmlFilePath = g_strdup (cNewXML);
+		myConfig.cXmlFilePath = g_strdup (cReceivedData);
 		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
 			G_TYPE_STRING,
 			"Configuration",
@@ -66,6 +70,11 @@ static void _new_xml_to_conf (CairoDockModuleInstance *myApplet, const gchar *cN
 //~ CD_APPLET_ON_CLICK_BEGIN
 	//~ 
 //~ CD_APPLET_ON_CLICK_END
+
+
+//~ CD_APPLET_ON_DOUBLE_CLICK_BEGIN
+	//~ 
+//~ CD_APPLET_ON_DOUBLE_CLICK_END
 
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.

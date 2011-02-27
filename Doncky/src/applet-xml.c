@@ -34,7 +34,7 @@ void cd_doncky_free_item (TextZone *pTextZone)
 	if (pTextZone == NULL)
 		return;
 	
-	//g_free (pTextZone->cFont);  // Pourquoi çà plante ??
+	g_free (pTextZone->cFont);
 	g_free (pTextZone->cText);
 	g_free (pTextZone->cCommand);
 	g_free (pTextZone);	
@@ -45,7 +45,6 @@ void cd_doncky_free_item_list (CairoDockModuleInstance *myApplet)
 {
 	if (myData.pTextZoneList == NULL)
 		return;
-	
 	
 	TextZone *pTextZone;	
 	GList *t;
@@ -101,9 +100,7 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 		
 		if (xmlStrcmp (pXmlNode->name, (const xmlChar *) "color") == 0)
 		{
-			gchar *cTempo = xmlNodeGetContent (pXmlNode);
-			
-			if (strcmp (cTempo, "default") == 0)
+			if (strcmp (xmlNodeGetContent (pXmlNode), "default") == 0)
 			{
 				myData.fPrevTextColor[0] = myConfig.fDefaultTextColor[0];
 				myData.fPrevTextColor[1] = myConfig.fDefaultTextColor[1];
@@ -113,36 +110,13 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 			else
 			{
 				// On récupère le 1er champ -> red
-				g_strreverse (cTempo);
-				cTempo = strrchr(cTempo, ';');
-				ltrim( cTempo, ";" );
-				g_strreverse (cTempo);
-				myData.fPrevTextColor[0] = atof(cTempo) / 255;
-				
+				myData.fPrevTextColor[0] = atof(g_str_position (xmlNodeGetContent (pXmlNode), 1, ';')) / 255;
 				// On récupère le 2ème champ -> = green
-				cTempo = strchr(xmlNodeGetContent (pXmlNode), ';');
-				ltrim( cTempo, ";" );
-				g_strreverse (cTempo);
-				cTempo = strchr(cTempo, ';');
-				ltrim( cTempo, ";" );
-				g_strreverse (cTempo);
-				myData.fPrevTextColor[1] = atof(cTempo) / 255;
-				
+				myData.fPrevTextColor[1] = atof(g_str_position (xmlNodeGetContent (pXmlNode), 2, ';')) / 255;
 				// On récupère le 3ème champ -> = blue
-				cTempo = strchr(xmlNodeGetContent (pXmlNode), ';');
-				ltrim( cTempo, ";" );
-				cTempo = strchr(cTempo, ';');
-				ltrim( cTempo, ";" );
-				g_strreverse (cTempo);
-				cTempo = strchr(cTempo, ';');
-				ltrim( cTempo, ";" );
-				g_strreverse (cTempo);
-				myData.fPrevTextColor[2] = atof(cTempo) / 255;
-				
+				myData.fPrevTextColor[2] = atof(g_str_position (xmlNodeGetContent (pXmlNode), 3, ';')) / 255;
 				// On récupère le dernier champ -> alpha
-				cTempo = strrchr(xmlNodeGetContent (pXmlNode), ';');
-				ltrim( cTempo, ";" );
-				myData.fPrevTextColor[3] = atof(cTempo) / 255;
+				myData.fPrevTextColor[3] = atof(g_str_position (xmlNodeGetContent (pXmlNode), 4, ';')) / 255;
 			}
 		}
 		
@@ -158,7 +132,6 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 			if (strcmp (myData.cPrevAlignHeight, "top") == -1 && strcmp (myData.cPrevAlignHeight, "middle") == -1 && strcmp (myData.cPrevAlignHeight, "low") == -1)
 				myData.cPrevAlignWidth = g_strdup_printf("middle");
 		}
-		
 		
 		if (xmlStrcmp (pXmlNode->name, (const xmlChar *) "br") == 0 || xmlStrcmp (pXmlNode->name, (const xmlChar *) "nbr") == 0)
 		{			
@@ -180,7 +153,6 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 			pTextZone->bRefresh = FALSE;
 			pTextZone->bBar = FALSE;
 			
-		
 			pTextZone->iSpaceBetweenLines = g_strtod (xmlNodeGetContent (pXmlNode), NULL);
 			
 			if (xmlStrcmp (pXmlNode->name, (const xmlChar *) "br") == 0)
@@ -194,7 +166,6 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 				pTextZone->bNextNewLine = FALSE;
 			}
 		}
-		
 		
 		if (xmlStrcmp (pXmlNode->name, (const xmlChar *) "override") == 0)
 		{
@@ -216,18 +187,10 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 			pTextZone->bRefresh = FALSE;
 			pTextZone->bBar = FALSE;
 			
-			
-			gchar *cTempo = xmlNodeGetContent (pXmlNode);			
 			// On récupère le 1er champ -> = overrideH
-			g_strreverse (cTempo);
-			cTempo = strrchr(cTempo, ';');
-			ltrim( cTempo, ";" );
-			g_strreverse (cTempo);
-			pTextZone->iOverrideH = atoi(cTempo);			
-			// On récupère le dernier champ -> = overrideW
-			cTempo = strrchr(xmlNodeGetContent (pXmlNode), ';');
-			ltrim( cTempo, ";" );
-			pTextZone->iOverrideW = atoi(cTempo);
+			pTextZone->iOverrideH = atoi(g_str_position (xmlNodeGetContent (pXmlNode), 1, ';'));			
+			// On récupère le 2eme champ -> = overrideW
+			pTextZone->iOverrideW = atoi(g_str_position (xmlNodeGetContent (pXmlNode), 2, ';'));
 		}
 		
 		
@@ -235,7 +198,6 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 		{
 			pTextZone = g_new0 (TextZone, 1);
 			myData.pTextZoneList = g_list_append (myData.pTextZoneList, pTextZone); 	
-			
 			
 			pTextZone->cText = xmlNodeGetContent (pXmlNode);
 			pTextZone->cFont = g_strdup_printf("%s", myData.cPrevFont);
@@ -249,15 +211,12 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 			pTextZone->bEndOfLine = FALSE;
 			pTextZone->bNextNewLine = FALSE;
 			
-			
 			pTextZone->iRefresh = 0;
 			pTextZone->cMountPoint = g_strdup_printf ("/");
 			pTextZone->cCommand = NULL;
 			pTextZone->bRefresh = FALSE;
 			pTextZone->bBar = FALSE;
 		}
-		
-		
 		
 		if (xmlStrcmp (pXmlNode->name, (const xmlChar *) "stroke") == 0)
 		{
@@ -269,11 +228,9 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 			pTextZone->fTextColor[1] = myData.fPrevTextColor[1];
 			pTextZone->fTextColor[2] = myData.fPrevTextColor[2];
 			pTextZone->fTextColor[3] = myData.fPrevTextColor[3];
-					
 			
-			gchar *cTempo = xmlNodeGetContent (pXmlNode);
-			pTextZone->iHeight = atoi(cTempo);
-						
+			pTextZone->iHeight = atoi(xmlNodeGetContent (pXmlNode));
+			
 			myData.cPrevAlignWidth = g_strdup_printf("left");  // Sur toute la ligne -> On aligne forcément à gauche
 			pTextZone->cAlignWidth = g_strdup_printf("%s", myData.cPrevAlignWidth);
 			pTextZone->cAlignHeight = g_strdup_printf("%s", myData.cPrevAlignHeight);
@@ -288,24 +245,16 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 			pTextZone = g_new0 (TextZone, 1);
 			myData.pTextZoneList = g_list_append (myData.pTextZoneList, pTextZone);
 			
-			
 			pTextZone->cFont = g_strdup_printf("%s", myData.cPrevFont);
 			pTextZone->fTextColor[0] = myData.fPrevTextColor[0];
 			pTextZone->fTextColor[1] = myData.fPrevTextColor[1];
 			pTextZone->fTextColor[2] = myData.fPrevTextColor[2];
 			pTextZone->fTextColor[3] = myData.fPrevTextColor[3];
 			
-			gchar *cTempo = xmlNodeGetContent (pXmlNode);
 			// On récupère le 1er champ -> = Largeur
-			g_strreverse (cTempo);
-			cTempo = strrchr(cTempo, ';') ;
-			ltrim( cTempo, ";" );
-			g_strreverse (cTempo);
-			pTextZone->iWidth = atoi(cTempo);			
+			pTextZone->iWidth = atoi(g_str_position (xmlNodeGetContent (pXmlNode), 1, ';'));
 			// On récupère le 2ème champ -> = Hauteur
-			cTempo = strrchr(xmlNodeGetContent (pXmlNode), ';') ;
-			ltrim( cTempo, ";" );
-			pTextZone->iHeight = atoi(cTempo);
+			pTextZone->iHeight = atoi(g_str_position (xmlNodeGetContent (pXmlNode), 2, ';'));
 			
 			pTextZone->cAlignWidth = g_strdup_printf("%s", myData.cPrevAlignWidth);
 			pTextZone->cAlignHeight = g_strdup_printf("%s", myData.cPrevAlignHeight);
@@ -320,7 +269,6 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 			pTextZone = g_new0 (TextZone, 1);
 			myData.pTextZoneList = g_list_append (myData.pTextZoneList, pTextZone);
 			
-			
 			pTextZone->cFont = g_strdup_printf("%s", myData.cPrevFont);
 			pTextZone->fTextColor[0] = myData.fPrevTextColor[0];
 			pTextZone->fTextColor[1] = myData.fPrevTextColor[1];
@@ -331,17 +279,13 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 			
 			pTextZone->bBar = FALSE;
 			
-			
-			pTextZone->cText = g_strdup_printf("Please wait... "); // On initialise le 1er texte à afficher à " "
+			pTextZone->cText = g_strdup_printf("Please wait..."); // On initialise le 1er texte à afficher à " "
 			pTextZone->cMountPoint = g_strdup_printf ("/");
 					
 			xmlNodePtr pXmlSubNode;			
 			for (pXmlSubNode = pXmlNode->children; pXmlSubNode != NULL; pXmlSubNode = pXmlSubNode->next)
 			{				
 				cNodeContent = xmlNodeGetContent (pXmlSubNode);
-				
-				
-				
 				
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "bash") == 0)
 				{
@@ -380,41 +324,28 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 				
 				if ((xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "lbar") == 0) || (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "bar") == 0))
 				{
-					gchar *cTempo = xmlNodeGetContent (pXmlSubNode);
-
-					// On récupère le 1er champ -> = commande interne
-					g_strreverse (cTempo);
-					cTempo = strrchr(cTempo, ';') ;
-					ltrim( cTempo, ";" );
-					g_strreverse (cTempo);
-					pTextZone->cCommand = g_strdup_printf("%s",g_str_replace (cTempo, "~", g_strdup_printf("/home/%s", getenv("USER"))));
+					// Récupération du 1er champ (commun aux Bars et aux LimitedBars:
+					pTextZone->cCommand = g_strdup_printf("%s",g_str_replace (g_str_position (xmlNodeGetContent (pXmlSubNode), 1, ';'), "~", g_strdup_printf("/home/%s", getenv("USER"))));
 					pTextZone->bIsInternal = TRUE;
 					pTextZone->bIsBash = FALSE;
 					
-					// On récupère le dernier champ -> = Hauteur
-					cTempo = strrchr(xmlNodeGetContent (pXmlSubNode), ';') ;
-					ltrim( cTempo, ";" );					
-					pTextZone->iHeight = atoi(cTempo);
-					
 					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "lbar") == 0)
-					{					
-						// On récupère le 2ème champ -> = Largeur
-						cTempo = strchr(xmlNodeGetContent (pXmlSubNode), ';') ;
-						ltrim( cTempo, ";" );
-						g_strreverse (cTempo);					
-						cTempo = strchr(cTempo, ';') ;			
-						ltrim( cTempo, ";" );
-						g_strreverse (cTempo);										
-						pTextZone->iWidth = atoi(cTempo);
-						
+					{
 						pTextZone->bLimitedBar = TRUE;
+						// On récupère le 2ème champ -> = Largeur
+						pTextZone->iWidth = atoi(g_str_position (xmlNodeGetContent (pXmlSubNode), 2, ';'));
+						// On récupère le 3ème champ -> = Hauteur
+						pTextZone->iHeight = atoi(g_str_position (xmlNodeGetContent (pXmlSubNode), 3, ';'));
 					}
 					else
 					{
-						myData.cPrevAlignWidth = g_strdup_printf("left");  // Sur toute la ligne -> On aligne forcément à gauche
+						pTextZone->bBar = TRUE;
+						// Récupération du 2eme champ pour les barres -> = Hauteur:
+						pTextZone->iHeight = atoi(g_str_position (xmlNodeGetContent (pXmlSubNode), 2, ';'));
+						// Les Bars sont sur toute la ligne -> On aligne forcément à gauche
+						myData.cPrevAlignWidth = g_strdup_printf("left");
 						pTextZone->cAlignWidth = g_strdup_printf("%s", myData.cPrevAlignWidth);
 						pTextZone->cAlignHeight = g_strdup_printf("%s", myData.cPrevAlignHeight);
-						pTextZone->bBar = TRUE;
 					}			
 				}
 				
@@ -461,21 +392,19 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "file") == 0)
 				{
 					pTextZone->cImgPath = g_strdup_printf("%s",g_str_replace (xmlNodeGetContent (pXmlSubNode), "~", g_strdup_printf("/home/%s", g_getenv("USER"))));
-					
 					pTextZone->bImgDraw=FALSE;
 				}
-				
 				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "size") == 0)
 				{
-					pTextZone->iImgSize = g_strtod (cNodeContent, NULL);				
+					pTextZone->iImgSize = g_strtod (cNodeContent, NULL);
 				}
 				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "sizeW") == 0)
 				{
-					pTextZone->iWidth= g_strtod (cNodeContent, NULL);				
+					pTextZone->iWidth= g_strtod (cNodeContent, NULL);
 				}				
 				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "sizeH") == 0)
 				{
-					pTextZone->iHeight = g_strtod (cNodeContent, NULL);				
+					pTextZone->iHeight = g_strtod (cNodeContent, NULL);
 				}
 				xmlFree (cNodeContent);
 			}

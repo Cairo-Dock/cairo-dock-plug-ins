@@ -27,6 +27,7 @@
 gchar* ltrim( gchar* str, const gchar* t );
 gchar* rtrim( gchar* str, const gchar* t );
 gchar *g_str_replace (const gchar *cString, const gchar *cWord, const gchar *cReplace);
+gchar *g_str_position (const gchar *cString, const int iPosition, const char cSeparator);
 double _Ko_to_Mo (CairoDockModuleInstance *myApplet , double fValueInKo);
 double _Ko_to_Go (CairoDockModuleInstance *myApplet , double fValueInKo);
 

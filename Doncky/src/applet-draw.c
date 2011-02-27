@@ -29,30 +29,18 @@
 #include "applet-disk-usage.h"
 #include "applet-rame.h"
 
-gchar* ltrim( gchar* str, const gchar* t )  // Couper tout depuis la gauche
-{
-	char* curStr = NULL;
 
-	char look[ 256 ] = { 1, 0 };
-	while( *t )
-		look[ (unsigned char)*t++ ] = 1;
 
-	curStr = str;
-	while( *curStr && look[ *curStr ] )
-		++curStr;
-	strcpy( str, curStr );
-	
-	return str; 
-} 
+
+
+
 
 gchar* rtrim( gchar* str, const gchar* t )  // Couper tout depuis la droite
 {
 	char* curEnd = str, *end = str;
-
 	char look[ 256 ] = { 1, 0 };
 	while( *t )
 		look[ (unsigned char)*t++ ] = 1;
-
 	while( *end )
 	{
 		if ( !look[ *end ] )
@@ -63,6 +51,18 @@ gchar* rtrim( gchar* str, const gchar* t )  // Couper tout depuis la droite
 
 	return str;
 }
+
+gchar* ltrim( gchar* str, const gchar* t )  // Couper tout depuis la gauche
+{
+	g_strreverse (str);
+	gchar* cSearch = g_strdup_printf("%s", t);
+	g_strreverse (cSearch);
+	rtrim( str, cSearch);
+	g_strreverse (str);	
+	g_free (cSearch);
+	
+	return str; 
+} 
 
 
 gchar *g_str_replace (const gchar *cString, const gchar *cWord, const gchar *cReplace)
@@ -84,20 +84,75 @@ gchar *g_str_replace (const gchar *cString, const gchar *cWord, const gchar *cRe
 			while (g_strstr_len (cPart2, -1, cWord) != NULL)
 			{
 				cPart2 = strstr(cPart2, cWord);				
-				// ltrim( cPart2, cWord );  // Bug dans certain cas -> On feinte en utilisant rtrim
-				g_strreverse (cPart2);
-				rtrim( cPart2, cWordTemp );
-				g_strreverse (cPart2);
+				ltrim( cPart2, cWord );
 			}
 			// On colle le texte au milieu
 			cFinalString = g_strdup_printf ("%s%s%s", cPart1,  g_strdup_printf("%s",cReplace), cPart2);
 			
 		}
-		return g_strdup_printf("%s", cFinalString);	
+		return g_strdup_printf("%s", cFinalString);
+		g_free (cFinalString);
 	}
 	else
-		return g_strdup_printf("%s",cString); // On retourne la phrase d'origine	
+		return g_strdup_printf("%s",cString); // Remplacement non trouvé -> On retourne la phrase d'origine	
 }
+
+
+gchar *g_str_position (const gchar *cString, const int iPosition, const char cSeparator)
+{
+	
+	gchar *strSeparator = g_strdup_printf("%c", cSeparator);
+	
+	if ((g_strstr_len (cString, -1, strSeparator) != NULL) && (iPosition > 0)) // Separator trouvé -> On coupe
+	{
+		gchar *cFinalString = g_strdup_printf("%s", cString);
+		
+		
+		if (iPosition == 1)
+		{			
+			g_strreverse (cFinalString);
+			cFinalString = strrchr(cFinalString, cSeparator);
+			ltrim( cFinalString, strSeparator);
+			g_strreverse (cFinalString);
+		}
+		else
+		{
+			int i = 1;
+			do
+			{
+				if (g_strstr_len (cFinalString, -1, strSeparator) == NULL) // Il n'y a plus de séparateur -> Mauvais champ spécifié
+				{
+					cd_debug ("DONCKY-debug :  /!\\ Missing values detected. Search for the string '%s' to fix it.", cString);
+					// On retourne 0 pour le champ non trouvé :
+					cFinalString = g_strdup_printf("0");
+					i = iPosition;
+				}
+				else
+				{
+					cFinalString = strchr(cFinalString, cSeparator);
+					ltrim( cFinalString, strSeparator);
+					i++;
+				}
+			}
+			while (i != iPosition);
+			
+			if ((g_strstr_len (cFinalString, -1, strSeparator) != NULL) && (iPosition > 0)) // Il reste des séparateurs -> On coupe les derniers champs
+			{
+				g_strreverse (cFinalString);
+				cFinalString = strrchr(cFinalString, cSeparator);
+				ltrim( cFinalString, strSeparator);
+				g_strreverse (cFinalString);
+			}
+		}
+		return g_strdup_printf("%s", cFinalString);
+		g_free (cFinalString);
+		g_free (strSeparator);
+	
+	}
+	else
+		return g_strdup_printf("%s",cString); // Pas de séparateur -> On retourne la phrase d'origine
+}
+
 
 
 double _Ko_to_Mo (CairoDockModuleInstance *myApplet , double fValueInKo)
@@ -375,7 +430,8 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 				else if (strcmp (pTextZone->cCommand, "fs_device") == 0)
 					pTextZone->cResult = g_strdup_printf ("%s", cd_doncky_get_disk_info (pTextZone->cMountPoint, 6));				
 				
-			}			
+			}
+	
 		}
 	}	
 }
@@ -403,15 +459,30 @@ gboolean cd_retrieve_command_result (CairoDockModuleInstance *myApplet)
 			}
 			else // Pas de refresh de spécifié
 			{
-				if (pTextZone->cText == NULL || strcmp (pTextZone->cText, "") == 0) // La récupération s'est mal passé -> On relance !
+				if (pTextZone->cText == NULL || strcmp (pTextZone->cText, "Please wait...") == 0) // La récupération s'est mal passé -> On relance !
+				{
 					pTextZone->bRefresh = TRUE;
+					pTextZone->iTimer = 0; // On remet le timer à 0
+					
+					
+					
+					cd_debug ("DONCKY-debug : Commande non passée =  %s", pTextZone->cCommand);
+					
+				}	
+					
+					
+					
+					
+					
+					
+					
 				else			
 					pTextZone->bRefresh = FALSE; // On a récupéré l'info -> On arrête là !
 			}
 		}	
 	}
 	cd_applet_update_my_icon (myApplet); // Quand tous les textes sont chargés, on peut dessiner
-	myData.pPeriodicRefreshTask = NULL;
+	//~ myData.pPeriodicRefreshTask = NULL;
 }
 
 
