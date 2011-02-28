@@ -104,9 +104,9 @@ fg alpha = 1
 
 [Configuration]
 
-#i[1;10] Variation for 1 mouse scroll, in %:
+#i-[1;10] Variation for 1 mouse scroll, in %:
 scroll_variation = 5
 
-#e[0;2] Brightness to apply automatically on startup:
+#e-[0;2] Brightness to apply automatically on startup:
 #{Use 0 for none.}
 initial gamma = 0

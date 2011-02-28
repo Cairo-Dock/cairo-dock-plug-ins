@@ -92,6 +92,18 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
+static gboolean _on_scroll (gpointer data)
+{
+	g_print ("%s (%d)\n", __func__, myData.iScrollCount);
+	if (myData.iScrollCount != 0)
+		xgamma_add_gamma (&myData.Xgamma, myData.iScrollCount);
+	myData.iSidScrollAction = 0;
+	myData.iScrollCount = 0;
+	return FALSE;
+}
 CD_APPLET_ON_SCROLL_BEGIN
+	myData.iScrollCount += (CD_APPLET_SCROLL_UP ? 1 : -1);
+	if (myData.iSidScrollAction == 0)
+		myData.iSidScrollAction = g_timeout_add (200, (GSourceFunc) _on_scroll, NULL);
 	xgamma_add_gamma (&myData.Xgamma, CD_APPLET_SCROLL_UP);
 CD_APPLET_ON_SCROLL_END

@@ -1550,7 +1550,7 @@ msgstr "此插件提供對話窗一些裝置。"
 
 #: ../dnd2share/src/applet-dnd2share.c:158
 msgid ""
-"Couldn't upload the file, check that your internet connexion is active."
+"Couldn't upload the file, check that your internet connection is active."
 msgstr "無法上傳檔案，請檢查您的網路連線是否啟用。"
 
 #: ../dnd2share/src/applet-dnd2share.c:273

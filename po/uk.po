@@ -1583,7 +1583,7 @@ msgstr "Цей додаток надає кілька видів для ваши
 
 #: ../dnd2share/src/applet-dnd2share.c:158
 msgid ""
-"Couldn't upload the file, check that your internet connexion is active."
+"Couldn't upload the file, check that your internet connection is active."
 msgstr "Не вдалося завантажити файл, перевірте з'єднання з Інтернетом."
 
 #: ../dnd2share/src/applet-dnd2share.c:273

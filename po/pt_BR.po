@@ -1586,7 +1586,7 @@ msgstr "Este plugin provê alguns decoradores para os balões informativos."
 
 #: ../dnd2share/src/applet-dnd2share.c:158
 msgid ""
-"Couldn't upload the file, check that your internet connexion is active."
+"Couldn't upload the file, check that your internet connection is active."
 msgstr ""
 "Não foi possível enviar o arquivo, verifique se sua conexão com a internet "
 "está ativa."

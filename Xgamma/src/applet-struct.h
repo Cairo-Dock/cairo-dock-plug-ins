@@ -52,6 +52,8 @@ struct _AppletData {
 	guint iBlueScaleSignalID;
 	XF86VidModeGamma Xgamma;
 	XF86VidModeGamma XoldGamma;
+	guint iSidScrollAction;
+	gint iScrollCount;
 	} ;
 
 

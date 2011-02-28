@@ -1549,7 +1549,7 @@ msgstr "吹き出し状のダイアログの装飾を提供するプラグイン
 
 #: ../dnd2share/src/applet-dnd2share.c:158
 msgid ""
-"Couldn't upload the file, check that your internet connexion is active."
+"Couldn't upload the file, check that your internet connection is active."
 msgstr "ファイルのアップロードができませんでした。インターネット回線が機能しているか確かめてください。"
 
 #: ../dnd2share/src/applet-dnd2share.c:273

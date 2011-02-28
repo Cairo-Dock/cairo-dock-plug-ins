@@ -1592,7 +1592,7 @@ msgstr "Questo modulo fornisce delle decorazioni per i dialoghi info"
 
 #: ../dnd2share/src/applet-dnd2share.c:158
 msgid ""
-"Couldn't upload the file, check that your internet connexion is active."
+"Couldn't upload the file, check that your internet connection is active."
 msgstr ""
 "Impossibile caricare il file, controlla che la connessione internet sia "
 "attiva."

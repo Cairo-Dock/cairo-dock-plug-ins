@@ -31,7 +31,7 @@
 #include <stdlib.h>
 
 
-void xgamma_add_gamma (XF86VidModeGamma *pGamma, gboolean bAdd);
+void xgamma_add_gamma (XF86VidModeGamma *pGamma, gint iNbSteps);
 
 double xgamma_get_gamma (XF86VidModeGamma *pGamma);
 

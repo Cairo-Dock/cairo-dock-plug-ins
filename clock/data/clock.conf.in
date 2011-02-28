@@ -114,7 +114,7 @@ show date = 2
 #{for digital format only.}
 24h mode = true
 
-#b Show seconds?
+#B Show seconds?
 #{if not, then the applet will update the time once a minute, saving CPU power.}
 show seconds = false
 

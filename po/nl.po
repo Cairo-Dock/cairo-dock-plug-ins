@@ -1586,7 +1586,7 @@ msgstr "Deze plug-in bevat enige dialoogdecorateurs voor dialoogballonnen."
 
 #: ../dnd2share/src/applet-dnd2share.c:158
 msgid ""
-"Couldn't upload the file, check that your internet connexion is active."
+"Couldn't upload the file, check that your internet connection is active."
 msgstr ""
 "Kon bestand niet uploaden, controleer of uw verbonden bent met het internet."
 

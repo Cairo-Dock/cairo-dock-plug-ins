@@ -1563,7 +1563,7 @@ msgstr "Tento zásuvný modul nabízí dekorátory dialogových bublin."
 
 #: ../dnd2share/src/applet-dnd2share.c:158
 msgid ""
-"Couldn't upload the file, check that your internet connexion is active."
+"Couldn't upload the file, check that your internet connection is active."
 msgstr ""
 "Nelze nahrát soubor, zkontrolujte zda je vaše připojení k internetu funkční."
 

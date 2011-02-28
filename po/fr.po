@@ -1603,7 +1603,7 @@ msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:158
 msgid ""
-"Couldn't upload the file, check that your internet connexion is active."
+"Couldn't upload the file, check that your internet connection is active."
 msgstr ""
 "Impossible d'uploader le fichier, vérifiez que votre connexion Internet est "
 "active."
@@ -6542,7 +6542,7 @@ msgstr "Sites"
 
 #: ../dnd2share/data/messages:125
 msgid "Use files hosting site for any kind of files?"
-msgstr "Utiliser des hébergeur de fichier pour tout les types de fichiers ?"
+msgstr "Utiliser un hébergeur de fichiers pour tout les types de fichiers ?"
 
 #: ../dnd2share/data/messages:127
 msgid "Preferred site for texts hosting :"

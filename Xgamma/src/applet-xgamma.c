@@ -41,14 +41,13 @@ static inline double _percent_to_gamma (double fGammaPercent)
 	return GAMMA_MIN + fGammaPercent / 100. * (GAMMA_MAX - GAMMA_MIN);
 }
 
-void xgamma_add_gamma (XF86VidModeGamma *pGamma, gboolean bAdd)
+void xgamma_add_gamma (XF86VidModeGamma *pGamma, gint iNbSteps)
 {
+	if (iNbSteps == 0)
+		return;
 	double fGamma = xgamma_get_gamma (pGamma);
 	double fGammaPercent = _gamma_to_percent (fGamma);
-	if (bAdd)
-		fGammaPercent += myConfig.iScrollVariation;
-	else
-		fGammaPercent -= myConfig.iScrollVariation;
+	fGammaPercent += iNbSteps * myConfig.iScrollVariation;
 	double fNewGamma = _percent_to_gamma (fGammaPercent);
 	double f = fNewGamma / fGamma;
 	myData.Xgamma.red *= f;

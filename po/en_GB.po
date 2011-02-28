@@ -1573,9 +1573,9 @@ msgstr "This plug-in provides some decorators for dialog bubbles."
 
 #: ../dnd2share/src/applet-dnd2share.c:158
 msgid ""
-"Couldn't upload the file, check that your internet connexion is active."
+"Couldn't upload the file, check that your internet connection is active."
 msgstr ""
-"Couldn't upload the file, check that your internet connexion is active."
+"Couldn't upload the file, check that your internet connection is active."
 
 #: ../dnd2share/src/applet-dnd2share.c:273
 msgid ""

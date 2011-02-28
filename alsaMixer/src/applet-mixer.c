@@ -295,6 +295,7 @@ void mixer_show_hide_dialog (void)
 		CairoDialogAttribute attr;
 		memset (&attr, 0, sizeof (CairoDialogAttribute));
 		attr.cText = cMessage;
+		attr.cImageFilePath = MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE;
 		attr.pInteractiveWidget = pScale;
 		attr.pActionFunc = (CairoDockActionOnAnswerFunc) _on_key_press_dialog;
 		myData.pDialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);
