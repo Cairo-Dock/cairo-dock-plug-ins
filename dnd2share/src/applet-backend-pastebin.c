@@ -36,7 +36,7 @@
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
 
-static void upload (const gchar *cText)
+static void upload (const gchar *cText, gchar **cResultUrls)
 {
 	GError *erreur = NULL;
 	gchar *cResult = cairo_dock_get_url_data_with_post (URL, FALSE, &erreur,
@@ -52,7 +52,7 @@ static void upload (const gchar *cText)
 	else
 	{
 		g_print (" --> got '%s'\n", cResult);
-		myData.cResultUrls[0] = cResult;
+		cResultUrls[0] = cResult;
 	}
 }
 

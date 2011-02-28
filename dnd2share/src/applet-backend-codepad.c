@@ -44,7 +44,7 @@ static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 you should be redirected automatically.
  </body>
 </html>'*/
-static void upload (const gchar *cText)
+static void upload (const gchar *cText, gchar **cResultUrls)
 {
 	GError *erreur = NULL;
 	gchar *cResult = cairo_dock_get_url_data_with_post (URL, FALSE, &erreur,
@@ -62,7 +62,7 @@ static void upload (const gchar *cText)
 		g_print (" --> got '%s'\n", cResult);
 		gchar *str = strstr (cResult, "http");
 		if (str)
-			myData.cResultUrls[0] = g_strdup (str);
+			cResultUrls[0] = g_strdup (str);
 	}
 }
 

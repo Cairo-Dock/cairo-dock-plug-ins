@@ -42,7 +42,7 @@ Content-Type: text/html; charset=utf-8
 Location: http://paste.ubuntu.com/557014/
 Content-Length: 0*/
 
-static void upload (const gchar *cText)
+static void upload (const gchar *cText, gchar **cResultUrls)
 {
 	GError *erreur = NULL;
 	gchar *cResult = cairo_dock_get_url_data_with_post (URL, TRUE, &erreur,
@@ -68,7 +68,7 @@ static void upload (const gchar *cText)
 		gchar *rc = strchr (str, '\r');  // les lignes du header sont separes par des CRLF (\r\n).
 		if (rc)
 			*rc = '\0';
-		myData.cResultUrls[0] = g_strdup (str);
+		cResultUrls[0] = g_strdup (str);
 		g_free (cResult);
 	}
 }

@@ -46,7 +46,7 @@ typedef struct _CDUploadedItem {
 	CDFileType iFileType;
 	} CDUploadedItem;
 
-typedef void (* CDUploadFunc) (const gchar *cFilePath);
+typedef void (* CDUploadFunc) (const gchar *cFilePath, gchar **cResultUrls);
 
 typedef struct _CDSiteBackend {
 	const gchar *cSiteName;  // nom du site, pour affichage
@@ -75,6 +75,13 @@ struct _AppletConfig {
 	gboolean bUseTinyAsDefault;
 	} ;
 
+typedef struct _CDSharedMemory {
+	gchar *cCurrentFilePath;
+	CDFileType iCurrentFileType;
+	gboolean bTempFile;
+	gchar **cResultUrls;
+	} CDSharedMemory;
+
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
@@ -83,12 +90,7 @@ struct _AppletData {
 	CDSiteBackend *pCurrentBackend[CD_NB_FILE_TYPES];
 	int iNbSitesForType[CD_NB_FILE_TYPES];
 	
-	CairoDockTask *pTask;
-	// shared memory
-	gchar *cCurrentFilePath;  // memoire partagee avec le thread, a manipuler avec les precautions d'usage.
-	CDFileType iCurrentFileType;  // idem
-	gchar **cResultUrls;  // idem
-	// end of shared memory
+	CairoDockTask *pTask;  // current upload task.
 	
 	GList *pUpoadedItems;  // une liste de CDUploadedItem*
 	gchar *cLastURL;  // la derniere URL a avoir ete copiee dans le clipboard; on pourra y acceder par clic gauche sur l'icone.

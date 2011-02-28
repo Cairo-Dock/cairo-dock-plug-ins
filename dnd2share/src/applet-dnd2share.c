@@ -19,6 +19,8 @@
 
 #include <string.h>
 #include <stdlib.h>
+#define __USE_POSIX
+#include <time.h>
 #include <glib/gstdio.h>
 
 #include "applet-struct.h"
@@ -120,25 +122,26 @@ void cd_dnd2share_clear_history (void)
 
 
 
-static void _cd_dnd2share_threaded_upload (gchar *cFilePath)
+static void _cd_dnd2share_threaded_upload (CDSharedMemory *pSharedMemory)
 {
-	CDSiteBackend *pCurrentBackend = myData.pCurrentBackend[myData.iCurrentFileType];
+	gchar *cFilePath = pSharedMemory->cCurrentFilePath;
+	CDSiteBackend *pCurrentBackend = myData.pCurrentBackend[pSharedMemory->iCurrentFileType];
 	g_return_if_fail (pCurrentBackend != NULL);
 	
-	myData.cResultUrls = g_new0 (gchar *, pCurrentBackend->iNbUrls+1);  // NULL-terminated
-	pCurrentBackend->upload (cFilePath);
+	pSharedMemory->cResultUrls = g_new0 (gchar *, pCurrentBackend->iNbUrls+1);  // NULL-terminated
+	pCurrentBackend->upload (cFilePath, pSharedMemory->cResultUrls);
 	
-	if (myData.cResultUrls[0] && myConfig.iTinyURLService != 0)  // on en fait une tiny-url.
+	if (pSharedMemory->cResultUrls[0] && myConfig.iTinyURLService != 0)  // on en fait une tiny-url.
 	{
 		gchar *Command = NULL;
 		switch (myConfig.iTinyURLService)
 		{
 			case 1:
 			default:
-				Command = g_strdup_printf ("http://tinyurl.com/api-create.php?url=%s", myData.cResultUrls[0]);
+				Command = g_strdup_printf ("http://tinyurl.com/api-create.php?url=%s", pSharedMemory->cResultUrls[0]);
 			break;
 			case 2:
-				Command = g_strdup_printf ("http://shorterlink.org/createlink.php?url=%s", myData.cResultUrls[0]);
+				Command = g_strdup_printf ("http://shorterlink.org/createlink.php?url=%s", pSharedMemory->cResultUrls[0]);
 			break;
 			/*http://soso.bz/
 			http://notlong.com/links/
@@ -150,17 +153,18 @@ static void _cd_dnd2share_threaded_upload (gchar *cFilePath)
 			http://bit.ly
 			http://is.gd/create.php*/
 		}
-		myData.cResultUrls[pCurrentBackend->iNbUrls-1] = cairo_dock_get_url_data (Command, NULL);
+		pSharedMemory->cResultUrls[pCurrentBackend->iNbUrls-1] = cairo_dock_get_url_data (Command, NULL);
 		g_free (Command);
 	}
 }
-static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
+static gboolean _cd_dnd2share_update_from_result (CDSharedMemory *pSharedMemory)
 {
 	CD_APPLET_ENTER;
-	if (myData.cResultUrls == NULL || myData.cResultUrls[0] == NULL)  // une erreur s'est produite.
+	gchar *cFilePath = pSharedMemory->cCurrentFilePath;
+	if (pSharedMemory->cResultUrls == NULL || pSharedMemory->cResultUrls[0] == NULL)  // une erreur s'est produite.
 	{
 		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog_with_icon (D_("Couldn't upload the file, check that your internet connexion is active."),
+		cairo_dock_show_temporary_dialog_with_icon (D_("Couldn't upload the file, check that your internet connection is active."),
 			myIcon,
 			myContainer,
 			myConfig.dTimeDialogs,
@@ -168,7 +172,7 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 	}
 	else
 	{
-		CDSiteBackend *pCurrentBackend = myData.pCurrentBackend[myData.iCurrentFileType];
+		CDSiteBackend *pCurrentBackend = myData.pCurrentBackend[pSharedMemory->iCurrentFileType];
 		// On rajoute l'item a l'historique.
 		if (myConfig.iNbItems != 0)
 		{
@@ -207,27 +211,27 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 				time_t iDate = time (NULL);
 				gchar *cItemName = g_strdup_printf ("item_%ld", iDate);
 				
-				g_key_file_set_integer (pKeyFile, cItemName, "site", myConfig.iPreferedSite[myData.iCurrentFileType]);
+				g_key_file_set_integer (pKeyFile, cItemName, "site", myConfig.iPreferedSite[pSharedMemory->iCurrentFileType]);
 				g_key_file_set_integer (pKeyFile, cItemName, "date", iDate);  // idem que precedemment sur l'integer.
-				g_key_file_set_integer (pKeyFile, cItemName, "type", myData.iCurrentFileType);
+				g_key_file_set_integer (pKeyFile, cItemName, "type", pSharedMemory->iCurrentFileType);
 				GString *sUrlKey = g_string_new ("");
 				int j;
 				for (j = 0; j < pCurrentBackend->iNbUrls; j ++)
 				{
 					g_string_printf (sUrlKey, "url%d", j);
-					g_key_file_set_string (pKeyFile, cItemName, sUrlKey->str, myData.cResultUrls[j]);
+					g_key_file_set_string (pKeyFile, cItemName, sUrlKey->str, pSharedMemory->cResultUrls[j]);
 				}
 				g_key_file_set_string (pKeyFile, cItemName, "local path", cFilePath);
 				
 				// et en debut de liste aussi.
 				CDUploadedItem *pItem = g_new0 (CDUploadedItem, 1);
 				pItem->cItemName = cItemName;
-				pItem->iSiteID = myConfig.iPreferedSite[myData.iCurrentFileType];
-				pItem->iFileType = myData.iCurrentFileType;
+				pItem->iSiteID = myConfig.iPreferedSite[pSharedMemory->iCurrentFileType];
+				pItem->iFileType = pSharedMemory->iCurrentFileType;
 				pItem->cDistantUrls = g_new0 (gchar*, pCurrentBackend->iNbUrls + 1);
 				for (j = 0; j < pCurrentBackend->iNbUrls; j ++)
 				{
-					pItem->cDistantUrls[j] = g_strdup (myData.cResultUrls[j]);
+					pItem->cDistantUrls[j] = g_strdup (pSharedMemory->cResultUrls[j]);
 				}
 				pItem->iDate = iDate;
 				pItem->cLocalPath = g_strdup (cFilePath);
@@ -239,8 +243,8 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 				g_key_file_free (pKeyFile);
 				g_string_free (sUrlKey, TRUE);
 				
-				// On garde une copie du fichier.
-				if (myConfig.bkeepCopy && myData.iCurrentFileType == CD_TYPE_IMAGE)
+				// On garde une copie du fichier (si c'est une image).
+				if (myConfig.bkeepCopy && pSharedMemory->iCurrentFileType == CD_TYPE_IMAGE)
 				{
 					gchar *cCommand = g_strdup_printf ("cp '%s' '%s/%s'", cFilePath, myData.cWorkingDirPath, cItemName);
 					int r = system (cCommand);
@@ -253,15 +257,15 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 		// On copie l'URL dans le clipboard.
 		gchar *cURL = NULL;
 		if (myConfig.bUseTinyAsDefault)
-			cURL = myData.cResultUrls[pCurrentBackend->iNbUrls-1];
+			cURL = pSharedMemory->cResultUrls[pCurrentBackend->iNbUrls-1];
 		if (cURL == NULL)
-			cURL = myData.cResultUrls[pCurrentBackend->iPreferedUrlType];
+			cURL = pSharedMemory->cResultUrls[pCurrentBackend->iPreferedUrlType];
 		if (cURL == NULL)
 		{
 			int i;
 			for (i = 0; i < pCurrentBackend->iNbUrls && cURL == NULL; i ++)
 			{
-				cURL = myData.cResultUrls[i];
+				cURL = pSharedMemory->cResultUrls[i];
 			}
 		}
 		cd_dnd2share_copy_url_to_clipboard (cURL);
@@ -285,34 +289,40 @@ static gboolean _cd_dnd2share_update_from_result (gchar *cFilePath)
 		// on met l'image correspondante sur l'icone.
 		if (myConfig.bDisplayLastImage)
 		{
-			if (myData.iCurrentFileType == CD_TYPE_IMAGE)
+			if (pSharedMemory->iCurrentFileType == CD_TYPE_IMAGE)
 				CD_APPLET_SET_IMAGE_ON_MY_ICON (cFilePath);
 			else
 				CD_APPLET_SET_IMAGE_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 		}
 	}
 	
-	// On arrete son animation.
+	// stop the animation.
 	CD_APPLET_STOP_DEMANDING_ATTENTION;
 	
-	// On nettoie la memoire partagee.
-	cairo_dock_free_task (myData.pTask);
-	myData.pTask = NULL;
-	g_free (myData.cCurrentFilePath);
-	myData.cCurrentFilePath = NULL;
-	if (myData.cResultUrls)
+	// delete the file if it was a temporary one.
+	if (pSharedMemory->bTempFile)
 	{
-		g_strfreev (myData.cResultUrls);
-		myData.cResultUrls = NULL;
+		g_remove (pSharedMemory->cCurrentFilePath);
 	}
+	
 	if (myData.cTmpFilePath != NULL)
 	{
 		g_remove (myData.cTmpFilePath);
 		g_free (myData.cTmpFilePath);
 		myData.cTmpFilePath = NULL;
 	}
+	
+	cairo_dock_discard_task (myData.pTask);
+	myData.pTask = NULL;
 	CD_APPLET_LEAVE (FALSE);
 }
+static void _free_shared_memory (CDSharedMemory *pSharedMemory)
+{
+	g_free (pSharedMemory->cCurrentFilePath);
+	g_strfreev (pSharedMemory->cResultUrls);
+	g_free (pSharedMemory);
+}
+#define CD_BUFFER_LENGTH 50
 void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 {
 	if (myData.pTask != NULL)
@@ -333,25 +343,53 @@ void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 		return ;
 	}
 	
-	// on lance la mesure.
+	// launch the task.
+	CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
 	if (strncmp (cFilePath, "file://", 7) == 0)
 		cFilePath += 7;
-	myData.cCurrentFilePath = g_strdup (cFilePath);  // sera efface a la fin de l'upload.
+	gchar *cTmpFile = NULL;
 	if (myConfig.bUseOnlyFileType)
-		myData.iCurrentFileType = CD_TYPE_FILE;
+	{
+		// for a piece of text, write it in a temporary file and upload this one.
+		if (iFileType == CD_TYPE_TEXT)
+		{
+			// make a filename based on the upload date.
+			cTmpFile = g_new0 (gchar, CD_BUFFER_LENGTH+1);
+			time_t epoch = time (NULL);
+			struct tm currentTime;
+			localtime_r (&epoch, &currentTime);
+			strftime (cTmpFile, CD_BUFFER_LENGTH, "/tmp/cd-%F__%H-%M-%S.txt", &currentTime);
+			
+			// write the text inside.
+			g_file_set_contents (cTmpFile,
+				cFilePath,
+				-1,
+				NULL);
+			
+			// upload this file
+			cFilePath = cTmpFile;
+			pSharedMemory->bTempFile = TRUE;
+		}
+		// force the 'file' type to be used.
+		pSharedMemory->iCurrentFileType = CD_TYPE_FILE;
+	}
 	else
-		myData.iCurrentFileType = iFileType;
-	myData.pTask = cairo_dock_new_task (0,  // 1 shot task.
+	{
+		pSharedMemory->iCurrentFileType = iFileType;
+	}
+	pSharedMemory->cCurrentFilePath = g_strdup (cFilePath);
+	g_free (cTmpFile);
+	
+	myData.pTask = cairo_dock_new_task_full (0,  // 1 shot task.
 		(CairoDockGetDataAsyncFunc) _cd_dnd2share_threaded_upload,
 		(CairoDockUpdateSyncFunc) _cd_dnd2share_update_from_result,
-		myData.cCurrentFilePath);
+		(GFreeFunc) _free_shared_memory,
+		pSharedMemory);
 	
 	cairo_dock_launch_task (myData.pTask);
 	
 	// On lance une animation.
 	CD_APPLET_DEMANDS_ATTENTION (myConfig.cIconAnimation, 1e6);  // on l'interrompra nous-memes a la fin de l'upload.
-	//cairo_dock_mark_icon_as_clicked (myIcon);  // pour ne pas se faire interrompre par un survol.
-	//cairo_dock_launch_animation (myContainer);
 }
 
 

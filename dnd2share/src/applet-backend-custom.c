@@ -28,12 +28,12 @@
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
 
-static void upload (const gchar *cFilePath)
+static void _upload (CDFileType iCurrentFileType, const gchar *cFilePath, gchar **cResultUrls)
 {
-	g_return_if_fail (myConfig.cCustomScripts[myData.iCurrentFileType] != NULL);
+	g_return_if_fail (iCurrentFileType < CD_NB_FILE_TYPES && myConfig.cCustomScripts[iCurrentFileType] != NULL);
 	
 	// On lance la commande d'upload.
-	gchar *cCommand = g_strdup_printf ("%s '%s'", myConfig.cCustomScripts[myData.iCurrentFileType], cFilePath);
+	gchar *cCommand = g_strdup_printf ("%s '%s'", myConfig.cCustomScripts[iCurrentFileType], cFilePath);
 	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
 	g_free (cCommand);
 	if (cResult == NULL || *cResult == '\0')
@@ -57,10 +57,31 @@ static void upload (const gchar *cFilePath)
 		cd_warning ("this adress (%s) seems not valid !\nThe output was : '%s'", str, cResult);
 	
 	// Enfin on remplit la memoire partagee avec nos URLs.
-	myData.cResultUrls[0] = g_strdup (str);
+	cResultUrls[0] = g_strdup (str);
 	g_free (cResult);
 }
 
+static void upload_text (const gchar *cFilePath, gchar **cResultUrls)
+{
+	_upload (CD_TYPE_TEXT, cFilePath, cResultUrls);
+}
+
+static void upload_image (const gchar *cFilePath, gchar **cResultUrls)
+{
+	_upload (CD_TYPE_IMAGE, cFilePath, cResultUrls);
+}
+
+static void upload_video (const gchar *cFilePath, gchar **cResultUrls)
+{
+	_upload (CD_TYPE_VIDEO, cFilePath, cResultUrls);
+}
+
+static void upload_file (const gchar *cFilePath, gchar **cResultUrls)
+{
+	_upload (CD_TYPE_FILE, cFilePath, cResultUrls);
+}
+
+static const CDUploadFunc upload_funcs[CD_NB_FILE_TYPES] = {upload_text, upload_image, upload_video, upload_file};
 
 void cd_dnd2share_register_custom_backends (void)
 {
@@ -72,6 +93,6 @@ void cd_dnd2share_register_custom_backends (void)
 			NB_URLS,
 			s_UrlLabels,
 			0,
-			upload);
+			upload_funcs[t]);
 	}
 }

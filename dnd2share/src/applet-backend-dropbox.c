@@ -23,6 +23,7 @@
 #include <unistd.h>
 #include <glib/gstdio.h>
 #include <string.h>
+#include <time.h>
 
 #include "applet-struct.h"
 #include "applet-dnd2share.h"
@@ -31,20 +32,19 @@
 #define NB_URLS 1
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
-
-static void upload (const gchar *cFilePath)
+static void upload (const gchar *cFilePath, gchar **cResultUrls)
 {
-	// On lance la commande d'upload.
+	// launch the upload command.
 	gchar *cCommand;
 	if (myConfig.cDropboxDir)
-		cCommand= g_strdup_printf ("cp \"%s\" \"%s\"", cFilePath, myConfig.cDropboxDir);
+		cCommand = g_strdup_printf ("cp \"%s\" \"%s\"", cFilePath, myConfig.cDropboxDir);
 	else
 		cCommand= g_strdup_printf ("cp \"%s\" ~/Dropbox/Public", cFilePath);
 	cd_debug ("commande dropbox1 : %s\n", cCommand);
 	int r = system (cCommand);
 	g_free (cCommand);
 	
-	// On recupere l'URL (dispo tout de suite, sinon il faudra boucler en testant 'dropbox status' jusqu'a avoir 'Idle').
+	// get the result URL (available immediately, no need to loop on 'dropbox status' until having 'Idle').
 	gchar *cFileName = g_path_get_basename (cFilePath);
 	if (myConfig.cDropboxDir)
 	{
@@ -77,8 +77,8 @@ static void upload (const gchar *cFilePath)
 	if (cResult[strlen(cResult)-1] == '\n')
 		cResult[strlen(cResult)-1] = '\0';
 	
-	// Enfin on remplit la memoire partagee avec nos URLs.
-	myData.cResultUrls[0] = cResult;
+	// fill the shared memory with our URLs.
+	cResultUrls[0] = cResult;
 }
 
 

@@ -32,7 +32,7 @@
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
 
-static void upload (const gchar *cFilePath)
+static void upload (const gchar *cFilePath, gchar **cResultUrls)
 {
 	// On lance la commande d'upload.
 	gchar *cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 --limit-rate %dk http://www.videobin.org/add -F videoFile=@\"%s\" -F api=1", myConfig.iLimitRate, cFilePath);
@@ -47,7 +47,7 @@ static void upload (const gchar *cFilePath)
 
 	
 	// Enfin on remplit la memoire partagee avec nos URLs.
-	myData.cResultUrls[0] = cURL;
+	cResultUrls[0] = cURL;
 }
 
 

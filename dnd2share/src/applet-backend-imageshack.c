@@ -31,7 +31,7 @@
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink", "Thumbnail"};
 
 
-static void upload (const gchar *cFilePath)
+static void upload (const gchar *cFilePath, gchar **cResultUrls)
 {
 	// On cree un fichier de log temporaire.
 	gchar *cLogFile = g_strdup ("/tmp/dnd2share-log.XXXXXX");
@@ -88,8 +88,8 @@ static void upload (const gchar *cFilePath)
 	}
 	
 	// Enfin on remplit la memoire partagee avec nos URLs.
-	myData.cResultUrls[0] = cURL;
-	myData.cResultUrls[1] = cThumbnail;
+	cResultUrls[0] = cURL;
+	cResultUrls[1] = cThumbnail;
 }
 
 

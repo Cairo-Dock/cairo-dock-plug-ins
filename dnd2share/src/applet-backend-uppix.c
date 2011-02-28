@@ -28,10 +28,10 @@
 #include "applet-backend-uppix.h"
 
 #define NB_URLS 5
-static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink", "DisplayImage", "BBCode150px", "BBCode600px", "BBCodeFullPic"};  /// franchement le seul lien interessant c'est DirectLink non ?...
+static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink", "DisplayImage", "BBCode150px", "BBCode600px", "BBCodeFullPic"};
 
 
-static void upload (const gchar *cFilePath)
+static void upload (const gchar *cFilePath, gchar **cResultUrls)
 {
 	// On cree un fichier de log temporaire.
 	gchar *cLogFile = g_strdup ("/tmp/dnd2share-log.XXXXXX");
@@ -107,11 +107,11 @@ static void upload (const gchar *cFilePath)
 	g_free (cLogFile);
 	
 	// Enfin on remplit la memoire partagee avec nos URLs.
-	myData.cResultUrls[0] = cDirectLink;
-	myData.cResultUrls[1] = cDisplayImage;
-	myData.cResultUrls[2] = cBBCode150px;
-	myData.cResultUrls[3] = cBBCode600px;
-	myData.cResultUrls[4] = cBBCodeFullPic;
+	cResultUrls[0] = cDirectLink;
+	cResultUrls[1] = cDisplayImage;
+	cResultUrls[2] = cBBCode150px;
+	cResultUrls[3] = cBBCode600px;
+	cResultUrls[4] = cBBCodeFullPic;
 }
 
 

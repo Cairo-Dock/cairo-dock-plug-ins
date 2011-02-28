@@ -32,7 +32,7 @@
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
 
-static void upload (const gchar *cFilePath)
+static void upload (const gchar *cFilePath, gchar **cResultUrls)
 {
 	// On lance la commande d'upload.
 	gchar *cFileName = g_path_get_basename (cFilePath);
@@ -79,7 +79,7 @@ static void upload (const gchar *cFilePath)
 		g_free (cResult);
 		return ;
 	}
-	myData.cResultUrls[0] = g_strdup (str);
+	cResultUrls[0] = g_strdup (str);
 	g_free (cResult);
 }
 
