@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
 "POT-Creation-Date: 2011-01-01 04:07+0000\n"
-"PO-Revision-Date: 2011-01-10 21:33+0000\n"
+"PO-Revision-Date: 2011-02-28 12:27+0000\n"
 "Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-01-11 05:19+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Launchpad-Export-Date: 2011-03-01 04:54+0000\n"
+"X-Generator: Launchpad (build 12351)\n"
 "Language: it\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -1592,7 +1592,7 @@ msgstr "Questo modulo fornisce delle decorazioni per i dialoghi info"
 
 #: ../dnd2share/src/applet-dnd2share.c:158
 msgid ""
-"Couldn't upload the file, check that your internet connection is active."
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Impossibile caricare il file, controlla che la connessione internet sia "
 "attiva."
@@ -8232,17 +8232,91 @@ msgstr "Info brute sul segnale"
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 
+#~ msgid "Hey, I'm here !"
+#~ msgstr "Hey, sono qui !"
+
+#~ msgid "Admit my superiority on you as a penguin !"
+#~ msgstr "Ammetti la mia superiorità su di te come pinguino !"
+
+#~ msgid "Wait, do you want to kill me ?!"
+#~ msgstr "Aspetta, vuoi uccidermi ?!"
+
+#~ msgid "Do you know how much painful it is to be clicked on ??"
+#~ msgstr "Hai idea di quanto sia doloroso farsi cliccare addosso ??"
+
+#~ msgid "I want to be a pirate !"
+#~ msgstr "Voglio diventare un pirata !"
+
+#~ msgid "You shall not pass !"
+#~ msgstr "Non passerai !"
+
+#~ msgid "I'm your father !"
+#~ msgstr "Sono tuo padre !"
+
+#~ msgid "For Aiur !"
+#~ msgstr "Per Aiur !"
+
+#~ msgid "Up time"
+#~ msgstr "Up time"
+
 #~ msgid "Monitor System"
 #~ msgstr "Monitorare il sistema"
+
+#~ msgid "Set up gamma :"
+#~ msgstr "Regolare il valore gamma :"
+
+#~ msgid "Calendar"
+#~ msgstr "Calendario"
 
 #~ msgid "Next (middle-click)"
 #~ msgstr "Seguente (click centrale)"
 
+#~ msgid "Estimated time with Charge:"
+#~ msgstr "Autonomia stimata:"
+
+#~ msgid "Estimated Charge time:"
+#~ msgstr "Tempo di Carica stimato:"
+
+#~ msgid "No Battery found."
+#~ msgstr "Nessuna batteria trovata."
+
+#~ msgid ""
+#~ "PowerManager.\n"
+#~ "Your battery is now Charged"
+#~ msgstr ""
+#~ "PowerManager.\n"
+#~ "La batteria è ora Carica"
+
 #~ msgid "Copy (middle click)"
 #~ msgstr "Copia (click centrale)"
 
+#~ msgid ""
+#~ "No data were available\n"
+#~ " is connection alive ?"
+#~ msgstr ""
+#~ "Nessun dato disponible\n"
+#~ " la connessione è attiva ?"
+
+#~ msgid "Precipitation Probability"
+#~ msgstr "Probabilità di precipitazione"
+
+#~ msgid "SunRise"
+#~ msgstr "Alba"
+
+#~ msgid "SunSet"
+#~ msgstr "Tramonto"
+
 #~ msgid "feeled"
 #~ msgstr "risentito"
+
+#~ msgid "Wifi disabled."
+#~ msgstr "Wifi disattivata."
+
+#~ msgid "Transparency of the penguin :"
+#~ msgstr "Trasparenza del pinguino :"
+
+#~ msgid "Ground offset :"
+#~ msgstr "Compensazione del piano :"
 
 #~ msgid "Action_0"
 #~ msgstr "Azione_0"
@@ -8326,23 +8400,184 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "in degrees."
 #~ msgstr "in gradi."
 
+#~ msgid "Which items should be remembered ?"
+#~ msgstr "Quali oggetti devono essere ricordarti ?"
+
+#~ msgid "Paste into Selection ?"
+#~ msgstr "Incollarlo nella Selezione ?"
+
+#~ msgid ""
+#~ "If some actions are associated with an item, they will be proposed to you "
+#~ "when the item is created."
+#~ msgstr ""
+#~ "Se delle azioni sono associate con degli oggetti, queste saranno proposte "
+#~ "alla creazione degli oggetti."
+
+#~ msgid "Replay actions ?"
+#~ msgstr "Ripetere le azioni ?"
+
+#~ msgid "Duration of the action menu :"
+#~ msgstr "Durata del menu azioni :"
+
 #~ msgid "It's the color of the graphic for high CPU values."
 #~ msgstr "E' il colore del grafico per i valori alti della CPU."
+
+#~ msgid "High values color :"
+#~ msgstr "Colore valori alti :"
 
 #~ msgid "It's the color of the graphic for low CPU values."
 #~ msgstr "E' il colore del grafico per i valori bassi della CPU."
 
+#~ msgid "Low values color :"
+#~ msgstr "Colore valori bassi :"
+
+#~ msgid "Background color of the graphic :"
+#~ msgstr "Colore di sfondo del grafico :"
+
+#~ msgid "Delay between refresh :"
+#~ msgstr "Ritardo tra gli aggiornamenti"
+
+#~ msgid "Number of programs to display in the top list :"
+#~ msgstr "Numero dei programmi mostrati nella 'top list'"
+
+#~ msgid "It's the first color of the gradation used to write the top list."
+#~ msgstr "E' il primo colore della gradazione usata per scrivere la 'top list'"
+
+#~ msgid "Start color of the top list :"
+#~ msgstr "Primo colore della 'top list' :"
+
+#~ msgid "It's the second color of the gradation used to write the top list."
+#~ msgstr ""
+#~ "E' il secondo colore della gradazione usata per scrivere la 'top list'"
+
+#~ msgid "Stop color of the top list :"
+#~ msgstr "Ultimo colore della 'top list' :"
+
+#~ msgid "Delay between refresh of the top list :"
+#~ msgstr "Ritardo tra gli aggiornamenti della 'top list'"
+
 #~ msgid "in ms."
 #~ msgstr "in ms."
+
+#~ msgid "Let empty to use the default sound card."
+#~ msgstr "Lasciare vuoto per utilizzare la scheda sonora di default."
+
+#~ msgid "Sound card to control :"
+#~ msgstr "Scheda sonora da controllare :"
+
+#~ msgid ""
+#~ "On some cards, a channel only controls 1 side (right or left). You will then "
+#~ "need to specify a second channel here, to control both sides. Most of the "
+#~ "time, you should just let it empty."
+#~ msgstr ""
+#~ "In certe schede il canale controlla soltanto un lato (sinistra o destra). "
+#~ "Qui si deve pertanto specificare un secondo canale per controllare entrambi "
+#~ "i lati. La maggior parte dei casi si risolve lasciando vuoto il campo."
+
+#~ msgid "Let empty to use the defaut command."
+#~ msgstr "Lasciare vuoto per utilizzare il comando di default."
+
+#~ msgid "Shortkey to show/hide the sound control dialog :"
+#~ msgstr ""
+#~ "Scorciatoie da tastiera per nascondere/mostrare il dialogo del controllo "
+#~ "sonoro :"
+
+#~ msgid "Effet to apply on the icon according to volume :"
+#~ msgstr "Effetto da applicare all'icona in accordo al volume:"
+
+#~ msgid "Default icon :"
+#~ msgstr "Icona di default :"
+
+#~ msgid "Broken icon :"
+#~ msgstr "Icona 'non-funzionante' :"
+
+#~ msgid "Mute icon :"
+#~ msgstr "Icona 'muto' :"
+
+#~ msgid "Module"
+#~ msgstr "Modulo"
+
+#~ msgid "for numeric format only."
+#~ msgstr "soltanto per il formato numerico."
 
 #~ msgid "Should the time be displayed as a 24h format ?"
 #~ msgstr "Mostrare l'ora in formato 24h ?"
 
+#~ msgid "if not, then the applet will update time once a minute, saving CPU."
+#~ msgstr ""
+#~ "Se falso, allora l'applet si aggiornerà una volta al minuto, risparmiando "
+#~ "CPU."
+
+#~ msgid "Timezone :"
+#~ msgstr "Fuso orario :"
+
+#~ msgid ""
+#~ "The analogic view is based on CairoClock; otherwise it will be displayed in "
+#~ "a numeric way."
+#~ msgstr ""
+#~ "La vista analogica è basata su CairoClock; altrimenti sarà mostrato in modo "
+#~ "numerico."
+
 #~ msgid "Text color for the numeric display:"
 #~ msgstr "Colore del testo per il display numerico:"
 
+#~ msgid "Font used for the numeric display :"
+#~ msgstr "Carattere usato per il display numerico :"
+
+#~ msgid "List of available themes for the analogic display :"
+#~ msgstr "Lista dei temi disponibili per la vista analogica :"
+
+#~ msgid "Let empty to use default command."
+#~ msgstr "Lasciare vuoto per usare i comandi di default."
+
+#~ msgid "Specific command to run :"
+#~ msgstr "Comando specifico da eseguire :"
+
+#~ msgid "Choose an action for the middle click on the icon :"
+#~ msgstr "Scegliere un'azione per il click centrale sull'icona :"
+
+#~ msgid "Custom command for system's Windows Manager :"
+#~ msgstr "Comando personalizzato per il Gestore delle Finestre di sistema :"
+
+#~ msgid "Load Compiz with options at applet's startup."
+#~ msgstr "Carica Compiz e le sue opzioni all'avvio dell'applet."
+
+#~ msgid ""
+#~ "Display in the applet's sub-dock an icon for the Emerald's configuration "
+#~ "panel."
+#~ msgstr ""
+#~ "Mostra nella sub-dock dell'applet un'icona per il pannello della "
+#~ "configurazione di Emerald."
+
+#~ msgid "Usefull when having dual or more X separate screens."
+#~ msgstr "Utile quando ci sono due o più schermi X attivi (dualscreen)"
+
+#~ msgid "By default it will be Emerald."
+#~ msgstr "Sarà Emerald di default."
+
+#~ msgid "Let it empty to use default sub-dock view."
+#~ msgstr "Lasciare vuoto per utilizzare la vista di default per la sub-dock."
+
 #~ msgid "Name of the view used for the sub-dock :"
 #~ msgstr "Nome della vista utilizzata per la sub-dock :"
+
+#~ msgid "Let t empty to use the default icon."
+#~ msgstr "Lasciare vuoto per utilizzare l'icona di default."
+
+#~ msgid "Name of an image for the 'default' icon :"
+#~ msgstr "Immagine per l'icona 'Default' :"
+
+#~ msgid "Name of an image for the 'broken' icon :"
+#~ msgstr "Immagine per l'icona 'Non-funzionante' :"
+
+#~ msgid "Corner radius :"
+#~ msgstr "Raggio degli angoli :"
+
+#~ msgid "The lower, the more the point of view is low on the plane."
+#~ msgstr "Più è basso, più il punto di vista del piano si abbassa."
+
+#~ msgid "Height of the vanishing point :"
+#~ msgstr "Altezza del punto di fuga :"
 
 #~ msgid "Normal separator"
 #~ msgstr "Separatori normali"
@@ -8353,14 +8588,153 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "Physical separator"
 #~ msgstr "Separatori fisici"
 
+#~ msgid ""
+#~ "In degrees, regarding the vertical position. It's a sort of inclination of "
+#~ "the plane on the horizontal, giving the 3D feeling. So setting it to 0 means "
+#~ "the plane is not inclined at all (vertical)."
+#~ msgstr ""
+#~ "In gradi, in rapporto alla posizione verticale. E' una specie di "
+#~ "inclinazione del piano in orizzontale, dando l'impressione di "
+#~ "tridimensionalità. Perciò metterlo a 0 significa che il piano sarà affatto "
+#~ "inclinato (verticale)."
+
+#~ msgid "Inclination of the plane :"
+#~ msgstr "Inclinazione del piano :"
+
+#~ msgid "Depth of the plane :"
+#~ msgstr "Profondità del piano :"
+
 #~ msgid "otherwise they will turn."
 #~ msgstr "altrimenti esse ruoteranno."
+
+#~ msgid "Curvature :"
+#~ msgstr "Curvatura :"
+
+#~ msgid "The parabole will be conscricted to a rectangle of this proportion."
+#~ msgstr "La parabola sarà tracciata in un rettangolo di queste proporzioni."
+
+#~ msgid "Ratio height/width :"
+#~ msgstr "Rapporto altezza/larghezza :"
+
+#~ msgid "0 means the wave is totally flat, 1 means the wave is maximal."
+#~ msgstr "0 significa che l'onda è totalmente piatta, 1 che l'onda è massima."
+
+#~ msgid "Magnitude of the wave :"
+#~ msgstr "Magnitudo dell'onda :"
+
+#~ msgid "Space between icons and their label :"
+#~ msgstr "Spazio tra le icone e le loro etichette :"
+
+#~ msgid "Space between icons :"
+#~ msgstr "Spazio tra le icone :"
+
+#~ msgid ""
+#~ "0 means the wave is totally flat, 1 means the wave is identical to other "
+#~ "views."
+#~ msgstr ""
+#~ "0 significa che l'onda è totalmente piatta, 1 che l'onda è identica alle "
+#~ "altre viste."
+
+#~ msgid "Number of icons on the first row :"
+#~ msgstr "Numero di icone nella prima fila :"
+
+#~ msgid ""
+#~ "in degree. The smaller, the more the cone is narrow. 180° means the cone is "
+#~ "widely opened."
+#~ msgstr ""
+#~ "in gradi. Più è piccolo più il cono sarà acuto. 180° significa che il cono è "
+#~ "completamente aperto."
+
+#~ msgid "Cone's width :"
+#~ msgstr "Apertura del cono :"
 
 #~ msgid "SimpleSlide"
 #~ msgstr "Diapositiva Semplice"
 
+#~ msgid "Space between columns :"
+#~ msgstr "Spazio tra le colonne :"
+
+#~ msgid "Sinusoidal wave radius :"
+#~ msgstr "Raggio dell'onda sinusoidale :"
+
+#~ msgid "Top to bottom gradient ?"
+#~ msgstr "Gradazione dall'alto in basso?"
+
+#~ msgid "Left to right gradient ?"
+#~ msgstr "Gradazione da sinistra a destra ?"
+
+#~ msgid "Arrow Height :"
+#~ msgstr "Altezza del puntatore :"
+
+#~ msgid "The lower, the more the curve will seem flat."
+#~ msgstr "Più è basso, più la curva sembrerà piatta."
+
+#~ msgid "Curvature of the curve in percent :"
+#~ msgstr "Curvatura della curva in percentuale :"
+
+#~ msgid "Amplitude of the curve."
+#~ msgstr "Ampiezza della curva."
+
+#~ msgid "Number of trashes"
+#~ msgstr "Numero di cestini"
+
+#~ msgid "Let empty to execute the default command."
+#~ msgstr "Lasciare vuoto per eseguire il comando di default."
+
+#~ msgid "Invert buttons ?"
+#~ msgstr "Invertire i bottoni ?"
+
 #~ msgid "Theme overriding"
 #~ msgstr "Sovrascrittura del tema"
+
+#~ msgid ""
+#~ "It will prevent the player's icon to appear in the task bar. The applet's "
+#~ "icon will then behave as a launcher, an appli, and an applet."
+#~ msgstr ""
+#~ "Questo impedirà all'icona del lettore di apparire nella TaskBar. L'icona "
+#~ "dell'applet si comporterà così da lanciatore, da applicazione e da applet."
+
+#~ msgid "Steal the player's icon from taskbar ?"
+#~ msgstr "Rubare l'icona dalla taskbar ?"
+
+#~ msgid "Time Left"
+#~ msgstr "Tempo Residuo"
+
+#~ msgid "N° of track"
+#~ msgstr "N° della traccia"
+
+#~ msgid "Personnalisation"
+#~ msgstr "Personalizzazione"
+
+#~ msgid "Let it empty to use the default icon."
+#~ msgstr "Lasciare vuoto per avere l'icona di default."
+
+#~ msgid "Name of an image for the 'play' icon :"
+#~ msgstr "Immagine per l'icona 'Play' :"
+
+#~ msgid "Name of an image for the 'stop' icon :"
+#~ msgstr "Immagine per l'icona 'Stop' :"
+
+#~ msgid "Name of an image for the 'pause' icon :"
+#~ msgstr "Immagine per l'icona 'Pausa' :"
+
+#~ msgid "By default it will be 'eth0'."
+#~ msgstr "Di default sarà 'eth0'."
+
+#~ msgid "interface :"
+#~ msgstr "interfaccia :"
+
+#~ msgid "Delay between 2 measures :"
+#~ msgstr "Intervallo tra le due misure :"
+
+#~ msgid "Icon name :"
+#~ msgstr "Nome dell'icona :"
+
+#~ msgid "Icon's filename when on battery :"
+#~ msgstr "Nome dell'icona quando in modalità batteria :"
+
+#~ msgid "Effect to apply on the icon according to charge :"
+#~ msgstr "Effetto da applicare all'icona quando in ricarica :"
 
 #~ msgid "zoom"
 #~ msgstr "Zoom"
@@ -8374,11 +8748,26 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "time"
 #~ msgstr "Tempo"
 
+#~ msgid "Alert"
+#~ msgstr "Attenzione"
+
+#~ msgid "Let it empty to have no sound"
+#~ msgstr "Lasciare vuoto per non avere suoni"
+
+#~ msgid "Battery level :"
+#~ msgstr "Livello della batteria"
+
 #~ msgid "Animate icon during the alert ?"
 #~ msgstr "Animare l'icona durante l'allerta ?"
 
 #~ msgid "Animation during alert :"
 #~ msgstr "Animazione durante l'allerta :"
+
+#~ msgid "Default title :"
+#~ msgstr "Titolo di default :"
+
+#~ msgid "Activate info-bubbles ?"
+#~ msgstr "Attivare le info-bubbles ?"
 
 #~ msgid ""
 #~ "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
@@ -8386,6 +8775,9 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgstr ""
 #~ "Questo impedirà all'icona di Rhythmbox di apparire nella TaskBar. L'icona "
 #~ "dell'applet si comporterà così da lanciatore, da applicazione e da applet."
+
+#~ msgid "Steal the rhythmbox's icon in taskbar ?"
+#~ msgstr "Rubare l'icona dalla taskbar ?"
 
 #~ msgid "time elapsed"
 #~ msgstr "tempo trascorso"
@@ -8401,6 +8793,49 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 
 #~ msgid "Directory"
 #~ msgstr "Cartella"
+
+#~ msgid "Directory of the images :"
+#~ msgstr "Cartella delle immagini"
+
+#~ msgid "Sliding delay :"
+#~ msgstr "Ritardo nel cambiamento :"
+
+#~ msgid "Action when applet is clicked :"
+#~ msgstr "Azioni al click sull'applet :"
+
+#~ msgid "Effect while changing image :"
+#~ msgstr "Effetti al cambiamento d'immagine :"
+
+#~ msgid "fade in out"
+#~ msgstr "ombra progressiva"
+
+#~ msgid "diaporama"
+#~ msgstr "diaporama"
+
+#~ msgid "Gives a better image rendering."
+#~ msgstr "Migliora il rendering dell'immagine."
+
+#~ msgid "If the image is too small, it will be zoomed in."
+#~ msgstr "Se l'immagine è troppo piccola sarà ingrandita."
+
+#~ msgid "Let empty to use a default name"
+#~ msgstr "Lasciare vuoto per utilizzare il nome di default"
+
+#~ msgid "Image for the 'text' items :"
+#~ msgstr "Immagine degli oggetti 'testo' :"
+
+#~ msgid "Image for the 'URL' items :"
+#~ msgstr "Immagine degli oggetti 'URL' :"
+
+#~ msgid "Eg: image, text, video, audio, application, ..."
+#~ msgstr "Ex: immagine, testo, video, audio, applicazione, ..."
+
+#~ msgid ""
+#~ "It is the selection made by the mouse, by opposition to the usual "
+#~ "ctrl+c/ctrl+v clipboard"
+#~ msgstr ""
+#~ "Questa è la selezione fatta dal mouse, in opposizione all'usuale "
+#~ "ctrl+c/ctrl+v della tastiera"
 
 #~ msgid "Keep below other windows ?"
 #~ msgstr "Mantenere al di sotto delle altre finestre ?"
@@ -8450,17 +8885,101 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "Eg: image, text, video, audio, application..."
 #~ msgstr "Ex: immagine, testo, video, audio, applicazione..."
 
+#~ msgid "When drawing in compact mode, try to preserve the screen ratio ?"
+#~ msgstr ""
+#~ "Se disegnata in modo compatto, cercare di mantenere il rapporto dello "
+#~ "schermo ?"
+
+#~ msgid "r, v, b, a"
+#~ msgstr "r, v, b, a"
+
+#~ msgid "Color of the inside lines :"
+#~ msgstr "Colore delle linee interne :"
+
+#~ msgid "Size of the extern line :"
+#~ msgstr "Dimensione delle linee esterne :"
+
+#~ msgid "Color of the extern line :"
+#~ msgstr "Colore delle linee esterne :"
+
+#~ msgid "Color of the Windows line :"
+#~ msgstr "Colore delle linee delle Finestre :"
+
+#~ msgid "Icon to use in expanded mode if you don't map the wallpaper :"
+#~ msgstr "Icona da usare nel modo esteso se non si traccia il wallpaper :"
+
+#~ msgid "In expanded mode, render the desklet in 3D ?"
+#~ msgstr "Se in modo esteso, rendere la desklet in 3D ?"
+
+#~ msgid "Terminal's transparency :"
+#~ msgstr "Trasparenza del terminale :"
+
 #~ msgid "Foreground color (r, v, b):"
 #~ msgstr "Colore del primo piano (r, v, b):"
 
 #~ msgid "Background color (r, v, b):"
 #~ msgstr "Colore di sfondo (r, v, b):"
 
+#~ msgid "Size of the terminal (line x columns) :"
+#~ msgstr "Dimensione del terminale (linee x colonne) :"
+
+#~ msgid "Draw note's content on their icon ?"
+#~ msgstr "Disegna il contenuto della nota nella loro icona ?"
+
+#~ msgid "Let it empty to use the name of the city."
+#~ msgstr "Lasciare vuoto per utilizzare il nome della città."
+
+#~ msgid "Code of your location :"
+#~ msgstr "Codice della località :"
+
+#~ msgid "Duration of dialogs :"
+#~ msgstr "Durata dei dialoghi :"
+
+#~ msgid "Number of days you want to forecast :"
+#~ msgstr "Numero dei giorni da prevedere :"
+
+#~ msgid "Horizontal scroll of the browser in pixel"
+#~ msgstr "Scroll orizzontale del browser in pixel"
+
+#~ msgid "Vertical scroll of the browser in pixel"
+#~ msgstr "Scroll verticale del browser in pixel"
+
+#~ msgid "Transparent background ?"
+#~ msgstr "Sfondo trasparente ?"
+
+#~ msgid "Name of an image for the 'no signal' icon :"
+#~ msgstr "Immagine dell'icona 'Nessun Segnale' :"
+
+#~ msgid "Name of an image for the 'very low' icon :"
+#~ msgstr "Immagine dell'icona 'Molto Basso' :"
+
+#~ msgid "Name of an image for the 'low' icon :"
+#~ msgstr "Immagine dell'icona 'Basso' :"
+
+#~ msgid "Name of an image for the 'middle' icon :"
+#~ msgstr "Immagine dell'icona 'Normale' :"
+
+#~ msgid "Name of an image for the 'good' icon :"
+#~ msgstr "Immagine dell'icona 'Buono' :"
+
+#~ msgid "Name of an image for the 'exellent' icon :"
+#~ msgstr "Immagine dell'icona 'Eccellente' :"
+
+#~ msgid ""
+#~ "Allow you to overwrite applet's default command line and launch you wireless "
+#~ "configuration interface."
+#~ msgstr ""
+#~ "Permette di sovrascrivere la linea di comando di default dell'applet e "
+#~ "lanciare l'interfaccia di configurazione wireless."
+
 #~ msgid "Activate extended desklet mode ?"
 #~ msgstr "Attivare il modo esteso della desklet ?"
 
 #~ msgid "Extended display mode :"
 #~ msgstr "Modo 3D esteso :"
+
+#~ msgid "Info and Controler"
+#~ msgstr "Info e Controlli"
 
 #~ msgid "Controler"
 #~ msgstr "Controlli"
@@ -8477,6 +8996,13 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "Size of the icon you wish this applet has (in pixels)"
 #~ msgstr "Dimensione dell'icona desiderata per questa applet (in pixels)"
 
+#~ msgid ""
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+#~ "dock & type=utility)"
+#~ msgstr ""
+#~ "per il plug-in \"widget layer\" di CompizFusion, regolare il comportamento "
+#~ "di Compiz a : (name=cairo-dock & type=utility)"
+
 #~ msgid "They don't even need to be real trash directories."
 #~ msgstr "Non è necessario che questa sia la cartella del Cestino."
 
@@ -8486,14 +9012,26 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "Potete specificare qui una lista addizionale di cartelle Cestino da "
 #~ "monitorare :"
 
+#~ msgid "bounce"
+#~ msgstr "Rimbalzo"
+
+#~ msgid "blink"
+#~ msgstr "Lampeggiamento"
+
 #~ msgid "upside-down"
 #~ msgstr "Capovolgimento"
+
+#~ msgid "wobbly"
+#~ msgstr "Molla"
 
 #~ msgid "red, blue, green, alpha"
 #~ msgstr "rosso, verde, blu, alpha"
 
 #~ msgid "Use a wide shape ?"
 #~ msgstr "Utilizzare una forma allungata ?"
+
+#~ msgid "Display speed values :"
+#~ msgstr "Mostrare i valori della velocità :"
 
 #~ msgid "Is detached ?"
 #~ msgstr "E' staccata ?"
@@ -8504,6 +9042,9 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "Model Name"
 #~ msgstr "Nome del modello"
 
+#~ msgid "Display a graphic rather than a gauge ?"
+#~ msgstr "Mostrare un grafico al posto di un indicatore ?"
+
 #~ msgid ""
 #~ "Let it empty to use the default image. Set the transparency to 0 if you "
 #~ "don't want to have any watermark."
@@ -8513,6 +9054,9 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 
 #~ msgid "Image to display as a watermark :"
 #~ msgstr "Immagine da mostrare come filigrana :"
+
+#~ msgid "Set it up to 0 if you don't want to have a watermark."
+#~ msgstr "Settare a 0 se si vuole alcuna filigrana."
 
 #~ msgid "Transparency of the watermark :"
 #~ msgstr "Trasparenza della filigrana :"
@@ -8543,6 +9087,9 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "Questa è CD_APPLET_NAME\n"
 #~ " scritta da CD_MY_NAME per Cairo-Dock"
 
+#~ msgid "Icon's name :"
+#~ msgstr "Nome dell'icona :"
+
 #~ msgid ""
 #~ "This is the Cairo-Penguin applet\n"
 #~ " made by Fabrice Rey for Cairo-Dock"
@@ -8557,11 +9104,40 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "Questa è l'applet Clipper\n"
 #~ " scritta da Fabrice Rey (Fabounet) per Cairo-Dock"
 
+#~ msgid ""
+#~ "This is the Cairo-Dock's clock applet\n"
+#~ " made by Fabrice Rey (fabounet@users.berlios.de) for Cairo-Dock.\n"
+#~ "The analogic representation is a port of the well-known Cairo-Clock\n"
+#~ " from MacSlow (http://macslow.thepimp.net)."
+#~ msgstr ""
+#~ "Questo è l'applet-orologio di Cairo-Dock\n"
+#~ "scritta da Fabrice Rey (fabounet_03@yahoo.fr).\n"
+#~ "La rappresentazione analogica è un port del famoso Cairo-Clock\n"
+#~ " da MacSlow (http://macslow.thepimp.net)."
+
 #~ msgid "Alarm n°1"
 #~ msgstr "Allarme n°1"
 
+#~ msgid "in the form xx:xx. For exemple, 20:35 for 8:35pm"
+#~ msgstr "nella forma xx:xx. Per esempio, 20:35 per 8:35pm"
+
+#~ msgid "Time you want to be notified :"
+#~ msgstr "Ora della notifica :"
+
+#~ msgid "Repeat every"
+#~ msgstr "Ripetere ogni"
+
+#~ msgid "If every month, which day of the month ? :"
+#~ msgstr "Se ogni mese, quale giorno del mese ? :"
+
+#~ msgid "Message you want to use to be notified :"
+#~ msgstr "Messaggio da utilizzare per la notifica :"
+
 #~ msgid "For exemple, < play /path/to/file.ogg >."
 #~ msgstr "Per esempio, < play /percorso/del/file.ogg >."
+
+#~ msgid "Command to execute :"
+#~ msgstr "Commando da eseguire :"
 
 #~ msgid "Alarm n°2"
 #~ msgstr "Allarme n°2"
@@ -8569,8 +9145,14 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "Alarm n°3"
 #~ msgstr "Allarme n°3"
 
+#~ msgid "Show the date ?"
+#~ msgstr "Mostrare la data ?"
+
 #~ msgid "ALARM"
 #~ msgstr "ALLARME"
+
+#~ msgid "default"
+#~ msgstr "default"
 
 #~ msgid ""
 #~ "This is the compiz-icon applet\n"
@@ -8593,6 +9175,9 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 
 #~ msgid "broken"
 #~ msgstr "rotto"
+
+#~ msgid "Compiz"
+#~ msgstr "Compiz"
 
 #~ msgid "Metacity"
 #~ msgstr "Metacity"
@@ -8628,6 +9213,13 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "Diapo"
 #~ msgstr "Diapositiva"
 
+#~ msgid ""
+#~ "This is the dustbin applet for Cairo-Dock\n"
+#~ " made by Fabrice Rey (fabounet@users.berlios.de)"
+#~ msgstr ""
+#~ "Questa è l'applet Dustbin\n"
+#~ " scritta da Fabounet (Fabrice Rey) per Cairo-Dock"
+
 #~ msgid "Here you can specify a list of Trash directory :"
 #~ msgstr ""
 #~ "Potete specificare qui una lista addizionale di cartelle Cestino da "
@@ -8635,6 +9227,9 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 
 #~ msgid "File browser used to show a trash :"
 #~ msgstr "Aprire il cestino con ;"
+
+#~ msgid "You're about to delete all files all dustbins. Sure ?"
+#~ msgstr "State per cancellare tutte le cartelle di tutti cestini. Sicuri ?"
 
 #~ msgid ""
 #~ "This is the GMenu applet\n"
@@ -8657,6 +9252,9 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "Questa è la mail-applet\n"
 #~ " scritta da Christophe Chapuis per Cairo-Dock"
 
+#~ msgid "Modify a mail account"
+#~ msgstr "Modificare un account e-mail"
+
 #~ msgid ""
 #~ "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
 #~ "the panel may hang on close."
@@ -8664,6 +9262,9 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "Impossibile configurare il socket in modo da non bloccare la connessione. Se "
 #~ "il tentativo di connettersi arranca, la barra potrebbe bloccarsi fino "
 #~ "all'arresto."
+
+#~ msgid "Failed to connect to server: %s"
+#~ msgstr "Impossibile connettersi al server: %s"
 
 #~ msgid ""
 #~ "Unable to return socket to blocking mode.  Data may not be retreived "
@@ -8690,6 +9291,12 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "Codice di ritorno HTTP ricevuto %d, dovrebbe essere 200. Potrebbe esserci un "
 #~ "problema col server GMail, o un cambiamento nel modo di identificarsi o nel "
 #~ "modo di reperire i nuovi messaggi."
+
+#~ msgid "_Username:"
+#~ msgstr "_Username:"
+
+#~ msgid "_Password:"
+#~ msgstr "_Password:"
 
 #~ msgid "Check for _new messages every"
 #~ msgstr "Verifica per _nuovi messaggi ogni"
@@ -8725,6 +9332,9 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 
 #~ msgid "Failed to get folder list"
 #~ msgstr "Impossibile recuperare la lista delle cartelle"
+
+#~ msgid "Please wait..."
+#~ msgstr "Attendere..."
 
 #~ msgid "Set New Mail Folders"
 #~ msgstr "Aggiungere una Nuova Cartella E-Mail"
@@ -8910,6 +9520,9 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "Use a gauge instead of icons ?"
 #~ msgstr "Utilizzare un indicatore al posto dell'icona ?"
 
+#~ msgid "Icon size"
+#~ msgstr "Dimensione dell'icona"
+
 #~ msgid "Use average system ?"
 #~ msgstr "Utilizzare sistema di proporzione ?"
 
@@ -8947,8 +9560,31 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "frame with reflects"
 #~ msgstr "Cornice con riflessi"
 
+#~ msgid "scotch"
+#~ msgstr "Scotch"
+
+#~ msgid "frame with scotch"
+#~ msgstr "Cornice con scotch"
+
+#~ msgid ""
+#~ "It's an image that will be displayed below the cover, like a frame for "
+#~ "exemple."
+#~ msgstr ""
+#~ "Si tratta di un'immagine che sarà mostrata dietro la copertina, come una "
+#~ "cornice."
+
 #~ msgid "It's typically the width of the left side of your frame, in pixels."
 #~ msgstr "E' la larghezza del lato sinistro della vostra cornice, in pixels."
+
+#~ msgid ""
+#~ "It's an image that will be displayed above the cover, like a reflect for "
+#~ "exemple."
+#~ msgstr ""
+#~ "Si tratta di un'immagine che sarà mostrata dietro la copertina, come un "
+#~ "riflesso per esempio."
+
+#~ msgid "Reflection image :"
+#~ msgstr "Immagine del riflesso :"
 
 #~ msgid "Reflection tansparency :"
 #~ msgstr "Trasparenza del riflesso :"
@@ -9029,8 +9665,18 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "Set it to zero if you dont don't want to use a foreground"
 #~ msgstr "Impostare a zero se non volete usare un primo piano."
 
+#~ msgid ""
+#~ "It's an image that will be displayed belox the slide, like a frame for "
+#~ "exemple. Let it empty to use the default one."
+#~ msgstr ""
+#~ "E' un'immagine che sarà mostrata sotto la slide, come una cornice, per "
+#~ "esempio. Lasciate il campo vuoto per usare quella di default."
+
 #~ msgid "It's typically the width of your frame in pixels."
 #~ msgstr "E' la larghezza della vostra cornice in pixels."
+
+#~ msgid "Background offset :"
+#~ msgstr "Spostare lo sfondo :"
 
 #~ msgid ""
 #~ "This is the Stack applet\n"
@@ -9056,6 +9702,9 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "Size of the Windows line :"
 #~ msgstr "Dimensione delle linee delle Finestre :"
 
+#~ msgid "Otherwise only its border will be filled."
+#~ msgstr "Altrimenti solo i suoi bordi saranno riempiti."
+
 #~ msgid "Fill the current desktop with this color ?"
 #~ msgstr "Riempire il desktop attuale con questo colore ?"
 
@@ -9074,6 +9723,9 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 
 #~ msgid "Searh for tag"
 #~ msgstr "Cercare per parole chiave"
+
+#~ msgid "Display album's cover instead of icon ?"
+#~ msgstr "Mostrare l'album al posto dell'icona ?"
 
 #~ msgid "time in %n"
 #~ msgstr "tempo in %n"
@@ -9132,8 +9784,14 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "Wifi attiva. \n"
 #~ " Connesso su:"
 
+#~ msgid "Signal Strength:"
+#~ msgstr "Potenza del segnale:"
+
 #~ msgid "Display type :"
 #~ msgstr "Tipi di indicazioni :"
+
+#~ msgid "radium"
+#~ msgstr "radium"
 
 #~ msgid ""
 #~ "This is the wifi applet\n"
@@ -9148,11 +9806,17 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "Put Signal strength on quickinfo ?"
 #~ msgstr "Mettere la forza del segnale nelle info veloci ?"
 
+#~ msgid "Lost"
+#~ msgstr "Persa"
+
 #~ msgid "No icon when no wireless devices/connections found?"
 #~ msgstr "Nessun icona quando nessuna rete/device WiFi è trovata?"
 
 #~ msgid "Signal Strength level"
 #~ msgstr "Livello di Forza del Segnale"
+
+#~ msgid "Display the ESSID ?"
+#~ msgstr "Mostrare l'ESSID ?"
 
 #~ msgid ""
 #~ "This is the Xgamma applet\n"
@@ -9167,6 +9831,9 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgstr ""
 #~ "Questa è l'applet xmms\n"
 #~ " scritta da ChAnGFu per Cairo-Dock"
+
+#~ msgid "Total Time"
+#~ msgstr "Tempo Totale"
 
 #~ msgid ""
 #~ "This applet is an RSS/Atom feed reader.\n"
@@ -9195,11 +9862,85 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "Clicca col tasto sinistro per avere qualche informazione,clicca col tasto "
 #~ "centrale per ri-verificare immediatamente."
 
+#~ msgid "Paste a new RSS Url (drag'n'drop)"
+#~ msgstr "Incolla un nuovo Url RSS (copia e incolla)"
+
 #~ msgid "No data (invalid rss ?)"
 #~ msgstr "Nessun dato (RSS  non valido?)"
 
+#~ msgid "Warning : couldn't retrieve data last time we tried."
+#~ msgstr "Attenzione: Non è stato possibile recuperare gli ultimi dati."
+
+#~ msgid "Yahoo"
+#~ msgstr "Yahoo"
+
 #~ msgid "AlsaMixer"
 #~ msgstr "AlsaMixer"
+
+#~ msgid "A cable has been pluged"
+#~ msgstr "Un cavo è stato collegato"
+
+#~ msgid "A cable has been unpluged"
+#~ msgstr "Un cavo è stato scollegato"
+
+#~ msgid ""
+#~ "No URL is defined\n"
+#~ "You can define one by copying the URL in the clipboard,\n"
+#~ " and selecting \"Paste the RL\n"
+#~ " in the menu."
+#~ msgstr ""
+#~ "Non è stato definito nessun URL\n"
+#~ "Puoi definirne uno copiando l'URL nella clipboard,\n"
+#~ " e selezionando \"Incolla l'URL\"\n"
+#~ " nel menu."
+
+#~ msgid ""
+#~ "No data\n"
+#~ "Did you set a valid RSS feed ?\n"
+#~ "Is your connection alive ?"
+#~ msgstr ""
+#~ "Nessun dato\n"
+#~ "Hai impostato un feed RSS valido?\n"
+#~ "E' ancora viva la tua connessione?"
+
+#~ msgid ""
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
+#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+#~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
+#~ "docks,\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
+#~ "- the finder mode : type some text to launch any command, file or "
+#~ "calculation.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "Escape or the same shortkey to cancel."
+#~ msgstr ""
+#~ "Un plugin Gnome-Do-Like che permette di controllare la dock tramite "
+#~ "tastiera.\n"
+#~ "Ha due modelli, ciascuno dei quali può essere attivato mediante scorciatoie "
+#~ "di tasti:\n"
+#~ "- il modello a navigazione : utilizza le frecce per muoverti nella dock e "
+#~ "nelle sub-dock,\n"
+#~ "  o digita il nome del lanciatore e premi Tab per saltare automaticamente al "
+#~ "lanciatore successivo disponibile\n"
+#~ "  premi Invio per cliccare sull'icona, Shift+Invio per Shift+Click, "
+#~ "Alt+Invio per il Click centrale e Ctrl+Invio per Click sinistro\n"
+#~ "- il modello a ricerca : digita una parte di testo per lanciare ogni "
+#~ "comando, file o calcolo.\n"
+#~ "  utilizza le frecce per navigare tra i risultati, premi Invio per "
+#~ "confermare, mantieni Ctrl, Alt o Shift per conservare i risultati.\n"
+#~ "Esc o la scorciatoia che lo richiama per cancellare."
+
+#, c-format
+#~ msgid "Alert ! Graphic Card core temperature has reached %d°C"
+#~ msgstr ""
+#~ "Attenzione! La temperatura del core della Scheda Grafica ha raggiunto %d°C"
+
+#~ msgid "Free"
+#~ msgstr "Libera"
 
 #, c-format
 #~ msgid ""
@@ -9211,20 +9952,800 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "Puoi provare aprendo il pannello di configurazione dell'applet,\n"
 #~ " e selezionando il canale audio appropriato che vuoi controllare."
 
+#~ msgid ""
+#~ "This applet displays time and date in your dock.\n"
+#~ "2 view are available : numeric and analogic, based on Cairo-Clock.\n"
+#~ "It is compatible with the Cairo-Clock's themes, and you can detach itself to "
+#~ "be a perfect clone of Cairo-Clock.\n"
+#~ "It supports alarms, and a basic calendar, and allows you to setup time and "
+#~ "date.\n"
+#~ "Left-click to show/hide the calendar, Middle-click to stop an alarm."
+#~ msgstr ""
+#~ "Quest'applet mostra ora e data nella tua dock.\n"
+#~ "Ci sono 2 viste: numerica e analogica, basate su Cairo-Clock.\n"
+#~ "E' compatibile con i temi di Cairo-Clock e puoi impostarla affinché risulti "
+#~ "un perfetto clone di Cairo-Clock.\n"
+#~ "Supporta allarmi, un calendario basilare e permette di impostare ora e "
+#~ "data.\n"
+#~ "Click sinistro per mostrare/nascondere il calendario, Click centrale per "
+#~ "fermare un allarme."
+
+#~ msgid "This plug-in provides some dialog decorators for dialog bubbles."
+#~ msgstr "Questo modulo fornisce delle decorazioni per i dialoghi info"
+
+#~ msgid "Clear the list of the recently uploaded files ?"
+#~ msgstr "Pulisci la lista dei file recentemente caricati ?"
+
+#~ msgid "Sorry, couldn't find the orignial file nor a preview of it."
+#~ msgstr "Spiacente, non trovo il file originale o una sua anteprima."
+
+#~ msgid ""
+#~ "The URL has been stored into the clipboard.\n"
+#~ "Just use 'CTRL+v' to paste it anywhere."
+#~ msgstr ""
+#~ "L'URL è stato magazzinato nella clipboard.\n"
+#~ "Basta usare 'Ctrl+v' per incollarlo ovunque."
+
+#~ msgid "Please wait the current upload is finished before starting a new one."
+#~ msgstr ""
+#~ "Ti prego d'aspettare che l'attuale caricamento sia finito prima di "
+#~ "cominciarne uno nuovo."
+
+#~ msgid ""
+#~ "No uploaded file available\n"
+#~ ".Consider activating the history if you want the applet remembers previous "
+#~ "uploads."
+#~ msgstr ""
+#~ "Nessun file caricato rintracciabile\n"
+#~ "Considera di attivare la cronologia se vuoi che l'applet ricordi i "
+#~ "precedenti upload."
+
+#~ msgid ""
+#~ "The current URL has been stored into the clipboard.\n"
+#~ "Just use 'CTRL+v' to paste it anywhere."
+#~ msgstr ""
+#~ "L'attuale URL è stato magazzinato nella clipboard.\n"
+#~ "Basta utilizzare 'Ctrl+v' per incollarlo ovunque."
+
+#~ msgid "This plug-in adds many special effects to your icons."
+#~ msgstr "Questo plugin aggiunge molti effetti speciali alle tue icone."
+
+#~ msgid ""
+#~ "This plug-in provides animations for appearance & disappearance of icons."
+#~ msgstr ""
+#~ "Questo plugin fornisce animazioni per l'apparire/scomparire delle icone."
+
+#~ msgid "You have a new mail :"
+#~ msgstr "Hai una nuova mail :"
+
+#, c-format
+#~ msgid "You have %d new mails :"
+#~ msgstr "Hai %d nuove mail :"
+
+#~ msgid "This plug-in adds a motion blur effect on docks."
+#~ msgstr ""
+#~ "Questo plugin aggiunge un effetto di sfuocatura in movimento alla dock."
+
+#~ msgid "A power manager for laptop's battery. It works with ACPI and DBus."
+#~ msgstr ""
+#~ "Un power manager per la batteria del laptop. Funziona con ACPI e DBus."
+
+#~ msgid ""
+#~ "This plug-in draw some animation around the cursor when it's inside a "
+#~ "dock/desklet."
+#~ msgstr ""
+#~ "Questo plugin disegna delle animazioni attorno al cursore quando esso è nel "
+#~ "perimetro della dock/desklet."
+
+#, c-format
+#~ msgid ""
+#~ "Interface '%s' seems to not exist or is not readable.\n"
+#~ " You may have to set up the interface you wish to monitor.\n"
+#~ " Do you want to do it now ?"
+#~ msgstr ""
+#~ "L'interfaccia '%s' sembra non esistere o non è leggibile.\n"
+#~ " Potresti avere bisogno di impostare l'interfaccia che vuoi controllare.\n"
+#~ " Vuoi farlo in questo momento?"
+
+#~ msgid "Choose in how many minutes your PC will stop :"
+#~ msgstr "Scegli in quanti minuti il tuo PC si spegnerà :"
+
+#~ msgid "Program an automatic shutdown"
+#~ msgstr "Programma lo spegnimento in automatico"
+
+#~ msgid "Your computer will shutdown in 1 minute."
+#~ msgstr "Il tuo computer si spegnerà tra 1 minuto."
+
+#~ msgid "You need to run Compiz and to activate its 'DBus' plug-in."
+#~ msgstr "Devi avere attivato Compiz e il suo plugin 'DBus'."
+
 #~ msgid "showDesklets"
 #~ msgstr "mostraDesklet"
+
+#~ msgid "current"
+#~ msgstr "attuale"
+
+#~ msgid "desktop"
+#~ msgstr "scrivania"
+
+#~ msgid ""
+#~ "No items in the stack.\n"
+#~ "You can add files, URL, and even piece of text by dragging them onto the "
+#~ "icon."
+#~ msgstr ""
+#~ "Nessun oggetto nel recipiente.\n"
+#~ "Puoi aggiungere file, URL, o parti di testo trascinandoli nell'icona."
+
+#, c-format
+#~ msgid "You can call back the Terminal desklet by typing %s"
+#~ msgstr "Puoi richiamare la desklet Terminale digitando %s"
+
+#~ msgid "Move current desktop to this desktop"
+#~ msgstr "Sposta l'attuale scrivania in questa"
+
+#~ msgid "Clear marks"
+#~ msgstr "Pulisci i riferimenti"
+
+#~ msgid ""
+#~ "No data were available\n"
+#~ "Re-trying now ..."
+#~ msgstr ""
+#~ "Nessun dato disponibile\n"
+#~ "Riprovo adesso ..."
+
+#~ msgid "Delete this note ?"
+#~ msgstr "Cancella questa nota ?"
+
+#~ msgid "Effects used :"
+#~ msgstr "Effetti utilizzati :"
+
+#~ msgid "Effects used on launcher :"
+#~ msgstr "Effetti utilizzati sul lanciatore :"
+
+#~ msgid "when hovering an icon"
+#~ msgstr "quando si sorvola sull'icona"
+
+#~ msgid "Number of time the animation will play :"
+#~ msgstr "Numero delle riproduzioni dell'animazione :"
+
+#~ msgid "when clicking on an appli"
+#~ msgstr "quando si clicca sull'applicazione"
+
+#~ msgid "Effects used on applis :"
+#~ msgstr "Effetti utilizzati sull'applicazione :"
+
+#~ msgid "Effects used on applets :"
+#~ msgstr "Effetti utilizzati sull'applet :"
+
+#~ msgid "Duration of the animation :"
+#~ msgstr "Durata dell'animazione :"
+
+#~ msgid "color of the spot :"
+#~ msgstr "Colore del punto :"
+
+#~ msgid "color of the halo :"
+#~ msgstr "colore dell'alone :"
+
+#~ msgid "Image for the spot :"
+#~ msgstr "Immagine per il punto :"
+
+#~ msgid "Image for the front spot :"
+#~ msgstr "Immagine per il punto anteriore :"
+
+#~ msgid "Color of the sheen :"
+#~ msgstr "Colore della lucentezza :"
+
+#~ msgid "Friction :"
+#~ msgstr "Frizione :"
+
+#~ msgid "Number of rays :"
+#~ msgstr "Numero dei bagliori :"
+
+#~ msgid "Initial stretch :"
+#~ msgstr "Estensione iniziale :"
+
+#~ msgid "Rays speed :"
+#~ msgstr "Velocità dei bagliori :"
+
+#~ msgid "Random colors ?"
+#~ msgstr "Colori casuali ?"
+
+#~ msgid "Rays size :"
+#~ msgstr "Dimesione dei bagliori :"
+
+#~ msgid "Spring constant :"
+#~ msgstr "Costante d'elasticità :"
+
+#~ msgid "Number of points on the grid in one direction :"
+#~ msgstr "Numero di punti nel reticolato in una direzione :"
+
+#~ msgid "Width of the wave :"
+#~ msgstr "Altezza dell'onda :"
+
+#~ msgid "Amplitude of the wave :"
+#~ msgstr "Ampiezza dell'onda :"
+
+#~ msgid "Duration of the pulse :"
+#~ msgstr "Durata della pulsazione :"
+
+#~ msgid "Zoom max of the pulse :"
+#~ msgstr "Zoom massimo della pulsazione :"
+
+#~ msgid "Should the pulse follow the shape of the icon ?"
+#~ msgstr "La pulsazione dovrebbe seguire la forma dell'icona ?"
+
+#~ msgid "When bouncing, resize the icon of :"
+#~ msgstr "Quando balza, ridimensionare l'icona di :"
+
+#~ msgid "Duration of the bounce :"
+#~ msgstr "Durata del balzo :"
+
+#~ msgid "Name of the icon when the penguin is not free :"
+#~ msgstr "Nome dell'icona quando il pinguino non è libero :"
+
+#~ msgid "Icon size when the penguin is not free :"
+#~ msgstr "Dimensione delle icone quando il pinguino non è libero :"
+
+#~ msgid "Duration of the blink :"
+#~ msgstr "Durata del tremolio :"
 
 #~ msgid "in seconds"
 #~ msgstr "in secondi"
 
+#~ msgid "Let extern applications quit the dock ?"
+#~ msgstr "Le applicazioni esterne possono abbandonare la dock ?"
+
+#~ msgid "Let extern applications animate the icons ?"
+#~ msgstr "Le applicazioni esterne possono animare le icone ?"
+
+#~ msgid "Command to use to configure the menu :"
+#~ msgstr "Comando da utilizzare per configurare il menu :"
+
+#~ msgid "Shortkey to show/hide the quick-launch dialog :"
+#~ msgstr "Scorciatoia per nascondere/mostrare il dialogo di avvio rapido :"
+
+#~ msgid "Let extern applications register new module ?"
+#~ msgstr "Le applicazioni esterne possono registrare nuovi moduli ?"
+
+#~ msgid "Let extern applications modify the image of icons ?"
+#~ msgstr "Le applicazioni esterne possono modificare l'immagine delle icone ?"
+
+#~ msgid "Shortkey to show/hide the menu :"
+#~ msgstr "Scorciatoia per nascondere/mostrare il menu :"
+
+#~ msgid "Let extern applications modify the quick-infos on icons ?"
+#~ msgstr ""
+#~ "Le applicazioni esterne possono modificare le info veloci delle icone ?"
+
+#~ msgid "Let extern applications modify the labels of icons ?"
+#~ msgstr ""
+#~ "Le applicazioni esterne possono modificare le etichette delle icone ?"
+
+#~ msgid "Let extern applications add launchers into the docks ?"
+#~ msgstr "Le applicazioni esterne possono aggiungere lanciatori nella dock ?"
+
+#~ msgid "in days. Set 0 to not use this filter."
+#~ msgstr "in giorni. Imposta 0 per non usare questo filtro."
+
+#~ msgid "Let empty to use the connection name."
+#~ msgstr "Lasciare vuoto per utilizzare il nome della connessione."
+
+#~ msgid "Only show files that are under this folder or its sub-folder :"
+#~ msgstr ""
+#~ "Mostra esclusivamente i file presenti in questa cartella o sotto-cartella :"
+
+#~ msgid "Let blank to not use this filter."
+#~ msgstr "Lasciare vuoto per non usare questo filtro."
+
+#~ msgid "Name of an image for the 'Low' icon :"
+#~ msgstr "Percorso dell'immagine per l'icona 'Basso' :"
+
+#~ msgid "Name of an image for the 'No signal' icon :"
+#~ msgstr "Percorso dell'immagine per l'icona 'Nessun segnale' :"
+
+#~ msgid "Name of an image for the 'Middle' icon :"
+#~ msgstr "Percorso dell'immagine per l'icona 'Normale' :"
+
+#~ msgid "Name of an image for the 'Very low' icon :"
+#~ msgstr "Percorso dell'immagine per l'icona 'Molto basso' :"
+
+#~ msgid "Name of an image for the 'Not connected' icon :"
+#~ msgstr "Percorso dell'immagine per l'icona 'Non connesso' :"
+
+#~ msgid "Name of an image for the 'Excellent' icon :"
+#~ msgstr "Percorso dell'immagine per l'icona 'Eccellente' :"
+
+#~ msgid "It's the color of the graphic for low quality signal."
+#~ msgstr "E' il colore del grafico per il segnale di bassa qualità."
+
+#~ msgid "It's the color of the graphic for high quality signal."
+#~ msgstr "E' il colore del grafico per il segnale di alta qualità."
+
+#~ msgid ""
+#~ "You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
+#~ "movement is continue."
+#~ msgstr ""
+#~ "Devi attivare OpenGL per questa opzione. Inserisci 0 per non usarla, 1 "
+#~ "significa che il movimento è continuo."
+
+#~ msgid "Delay between wifi signal checks :"
+#~ msgstr "Ritardo tra gli aggiornamenti del segnale wifi :"
+
+#~ msgid "Delay between net speed checks :"
+#~ msgstr "Ritardo tra gli aggiornamenti della velocità della connessione :"
+
+#~ msgid "Name of an image for the 'Wired connection' icon :"
+#~ msgstr "Percorso dell'immagine per l'icona 'Connessione cablata' :"
+
+#~ msgid "User command to show Wireless Configuration :"
+#~ msgstr "Comando utente per mostrare la Configurazione Wireless :"
+
+#~ msgid "Default connexion interface :"
+#~ msgstr "Interfaccia di connessione di deault :"
+
+#~ msgid "User command to show a system monitor :"
+#~ msgstr "Comando utente per mostrare il monitor di sistema :"
+
+#~ msgid "Let empty to use the title of the RSS feed."
+#~ msgstr "Lasciare vuoto per usare il titolo del feed RSS."
+
+#~ msgid "not used at the moment."
+#~ msgstr "al momento non utilizzato."
+
+#~ msgid "How to display the wifi signal :"
+#~ msgstr "Come mostrare il segnale wifi :"
+
+#~ msgid "Info to display in the icon :"
+#~ msgstr "Info da mostrare nell'icona :"
+
+#~ msgid "In seconds. Set to 0 for infinite time (click on dialog to close it)."
+#~ msgstr ""
+#~ "In secondi. Imposta a 0 per un tempo infinito (click sul dialogo per "
+#~ "chiuderlo)."
+
+#~ msgid "Refresh time :"
+#~ msgstr "Tempo di aggiornamento :"
+
 #~ msgid "By default, this option is activated"
 #~ msgstr "Di default, questa opzione è attivata"
+
+#~ msgid "URL :"
+#~ msgstr "URL :"
+
+#~ msgid "Title font :"
+#~ msgstr "Font del titolo :"
+
+#~ msgid "Title color :"
+#~ msgstr "Colore del titolo :"
+
+#~ msgid "Open the feed with the following program :"
+#~ msgstr "Apri il feed col seguente programma :"
+
+#~ msgid "Animation of the icon when a feed has changed :"
+#~ msgstr "Animazione dell'icona quando il feed è cambiato :"
+
+#~ msgid "Color to be used for the title"
+#~ msgstr "Colore da usare per il titolo"
+
+#~ msgid "Feed lines color :"
+#~ msgstr "Colore delle linee del feed :"
+
+#~ msgid "Feed lines font :"
+#~ msgstr "Font delle linee del feed :"
+
+#~ msgid "Left margin for the feed lines :"
+#~ msgstr "Margine sinistro per le linee del feed :"
+
+#~ msgid "Space between 2 feed lines :"
+#~ msgstr "Spazio tra 2 linee del feed :"
+
+#~ msgid "Logo size :"
+#~ msgstr "Dimensione del logo :"
+
+#~ msgid "first color of the gradation"
+#~ msgstr "1° colore della gradazione"
+
+#~ msgid "second color of the gradation"
+#~ msgstr "2° colore della gradazione"
+
+#~ msgid "Shortkey to activate/deactivate the navigation mode :"
+#~ msgstr "Scorciatoia per attivare/disattivare la modalità navigazione :"
+
+#~ msgid "Shortkey to activate/deactivate the finder mode :"
+#~ msgstr "Scorciatoia per attivare/disattivare la modalità ricerca :"
+
+#~ msgid "Border color :"
+#~ msgstr "Colore del bordo :"
+
+#~ msgid "Background second color :"
+#~ msgstr "2° colore dello sfondo :"
+
+#~ msgid "Border color"
+#~ msgstr "Colore del bordo"
+
+#~ msgid "Border thickness :"
+#~ msgstr "Spessore del bordo :"
+
+#~ msgid "between 1 and 9, the bigger, the heavier."
+#~ msgstr "tra 1 e 9, più è grande, più è spesso."
+
+#~ msgid "Font size, relatively to the dock's size :"
+#~ msgstr "Dimensione del font, relativamente alla dimensione della dock :"
 
 #~ msgid "Characters"
 #~ msgstr "Caratteri"
 
+#~ msgid "Write text on the top of the dock ?"
+#~ msgstr "Scrivere il testo in cima alla dock ?"
+
+#~ msgid "Preferred application starting with 'e' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'e' :"
+
+#~ msgid "Preferred application starting with 'd' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'd' :"
+
+#~ msgid "Preferred application starting with 'c' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'c' :"
+
+#~ msgid "Preferred application starting with 'b' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'b' :"
+
+#~ msgid "Preferred application starting with 'a' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'a' :"
+
+#~ msgid "Preferred applications"
+#~ msgstr "Applicazioni preferite"
+
+#~ msgid "Should the text be outlined ?"
+#~ msgstr "Il testo deve essere tracciato ?"
+
+#~ msgid "Color of the background of the characters :"
+#~ msgstr "Colore dello sfondo dei caratteri :"
+
+#~ msgid "Text color :"
+#~ msgstr "Colore del testo :"
+
+#~ msgid "Preferred application starting with 'h' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'h' :"
+
+#~ msgid "Preferred application starting with 'f' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'f' :"
+
+#~ msgid "Preferred application starting with 'g' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'g' :"
+
+#~ msgid "Preferred application starting with 'j' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'j' :"
+
+#~ msgid "Preferred application starting with 'i' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'i' :"
+
+#~ msgid "Preferred application starting with 'l' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'l' :"
+
+#~ msgid "Preferred application starting with 'k' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'k' :"
+
+#~ msgid "Preferred application starting with 'n' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'n' :"
+
+#~ msgid "Preferred application starting with 'm' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'm' :"
+
+#~ msgid "Preferred application starting with 'o' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'o' :"
+
+#~ msgid "Preferred application starting with 'u' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'u' :"
+
+#~ msgid "Preferred application starting with 's' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 's' :"
+
+#~ msgid "Preferred application starting with 't' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 't' :"
+
+#~ msgid "Preferred application starting with 'y' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'y' :"
+
+#~ msgid "Preferred application starting with 'w' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'w' :"
+
+#~ msgid "Preferred application starting with 'x' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'x' :"
+
+#~ msgid "Preferred application starting with 'v' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'v' :"
+
+#~ msgid "Preferred application starting with 'p' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'p' :"
+
+#~ msgid "Preferred application starting with 'r' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'r' :"
+
+#~ msgid "Preferred application starting with 'q' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'q' :"
+
+#~ msgid "You need an nVidia and the 'nvidia-settings' tool."
+#~ msgstr "Servono scheda nVidia e il tool 'nvidia-settings'."
+
+#~ msgid "It's the color of the graphic for high values."
+#~ msgstr "E' il colore del grafico per i valori massimi."
+
+#~ msgid "It's the color of the graphic for low values."
+#~ msgstr "E' il colore del grafico per i valori minimi."
+
+#~ msgid "Preferred application starting with 'z' :"
+#~ msgstr "Applicazioni preferite, che cominciano per 'z' :"
+
+#~ msgid "How smooth is the movement ?"
+#~ msgstr "Quanto è fluido il movimento ?"
+
+#~ msgid "Steal the system monitor's icon in taskbar ?"
+#~ msgstr "Ruba l'icona del monitor di sistema dalla taskbar ?"
+
+#~ msgid ""
+#~ "When you left-click on the icon, you will get the list of the N most CPU/RAM-"
+#~ "using programs."
+#~ msgstr ""
+#~ "Quando clicchi col sinistro sull'icona, avrai la lista di N programmi che "
+#~ "utilizzano maggiormente CPU/RAM."
+
+#~ msgid ""
+#~ "It will prevent the system monitor's icon to appear in the taskbar. The "
+#~ "applet's icon will then behave as a launcher, an appli, and an applet."
+#~ msgstr ""
+#~ "Previene la visualizzazione dell'icona del monitor di sistema nella taskbar. "
+#~ "L'icona dell'applet si comporterà così come un lanciatore, un applicazione e "
+#~ "un'applet."
+
+#~ msgid ""
+#~ "in celcius. The temperature will be displayed between this value and the "
+#~ "upper limit."
+#~ msgstr ""
+#~ "in celsius (°C). La temperatura verrà mostrata tra questo valore e il limite "
+#~ "massimo."
+
+#~ msgid "Lower limit of core temperature :"
+#~ msgstr "Limite minimo di temperatura del core :"
+
+#~ msgid ""
+#~ "in celcius. The temperature will be displayed between the lower limit and "
+#~ "this value."
+#~ msgstr ""
+#~ "in celsius (°C). La temperatura verrà mostrata tra il limite minimo e questo "
+#~ "valore."
+
+#~ msgid "Alert limit of core temperature :"
+#~ msgstr "Limite di allerta di temperatura del core :"
+
+#~ msgid "Sound path :"
+#~ msgstr "Percorso del suono :"
+
+#~ msgid "Wink duration :"
+#~ msgstr "Durata delle strizzate degli occhi :"
+
+#~ msgid "Keep ratio ?"
+#~ msgstr "Mantieni il rapporto ?"
+
+#~ msgid "Upper limit of core temperature :"
+#~ msgstr "Limite massimo di temperatura del core :"
+
+#~ msgid "Mean delay between winks :"
+#~ msgstr "Ritardo medio tra le strizzate d'occhio :"
+
+#~ msgid "Luminosity to automatically apply on startup :"
+#~ msgstr "Luminosità da applicare automaticamente all'avvio :"
+
+#~ msgid "Set 0 to not use it."
+#~ msgstr "Imposta a 0 per non usare."
+
+#~ msgid ""
+#~ "For exemple :Europe/Paris, :Japan, etc. Let empty to get the local time."
+#~ msgstr ""
+#~ "Per esempio :Europe/Rome, :Japan, etc. Lasciare vuoto per mantenere l'ora "
+#~ "locale."
+
+#~ msgid "Variation for 1 mouse scroll, in % :"
+#~ msgstr "Variazione per 1 scroll del mouse, in % :"
+
+#~ msgid "High refresh frequency ?"
+#~ msgstr "Alta frequenza di aggiornamento ?"
+
+#~ msgid ""
+#~ "In ms. Set 0 to not have a smooth animation, set 1000 to have a continuous "
+#~ "animation. It requires OpenGL."
+#~ msgstr ""
+#~ "In ms. Imposta a 0 per non avere un'animazione fluida, a 1000 per avere "
+#~ "un'animazione continua. Richiede OpenGL."
+
+#~ msgid "Let it empty to use the location's name if available."
+#~ msgstr ""
+#~ "Lasciare vuoto per utilizzare il nome della località, se disponibile."
+
+#~ msgid "Choose the view :"
+#~ msgstr "Scegli la vista :"
+
+#~ msgid "Image to draw on the background :"
+#~ msgstr "Immagine da disegnare sullo sfondo :"
+
+#~ msgid "Text color of the date :"
+#~ msgstr "Colore del testo della data :"
+
+#~ msgid "Steal the application's icon in taskbar ?"
+#~ msgstr "Ruba l'icona dell'applicazione dalla taskbar ?"
+
+#~ msgid "Font :"
+#~ msgstr "Font :"
+
+#~ msgid "Analogic View"
+#~ msgstr "Vista Analogica"
+
+#~ msgid "Analogic"
+#~ msgstr "Analogica"
+
+#~ msgid "Numeric"
+#~ msgstr "Numerica"
+
+#~ msgid "Numeric View"
+#~ msgstr "Vista Numerica"
+
+#~ msgid "Line color of the plane :"
+#~ msgstr "Colore della linea del piano :"
+
+#~ msgid "Border width :"
+#~ msgstr "Spessore del bordo :"
+
+#~ msgid "Color of the margin :"
+#~ msgstr "Colore del margine :"
+
+#~ msgid "Color of the plane :"
+#~ msgstr "Colore del piano :"
+
+#~ msgid "Keep a copy of each uploaded image ?"
+#~ msgstr "Mantieni una copia di ciascuna immagine caricata ?"
+
+#~ msgid "Curve the sides too ?"
+#~ msgstr "Curvare anche i lati ?"
+
+#~ msgid "Bow color :"
+#~ msgstr "Colore dell'arco :"
+
+#~ msgid "Curve towards the outside ?"
+#~ msgstr "Curva verso l'esterno ?"
+
+#~ msgid ""
+#~ "It may recquire more CPU during the unfolding animation, except with OpenGL."
+#~ msgstr ""
+#~ "Potrebbe richiedere maggiore CPU durante l'animazione di dispiegamento, "
+#~ "tranne che con OpenGL."
+
+#~ msgid "Second gradient color :"
+#~ msgstr "Secondo colore del gradiente :"
+
+#~ msgid "Set transparency to 0 to not use it. It is quite slow with cairo."
+#~ msgstr ""
+#~ "Imposta la trasparenza a 0 per non utilizzarla. E' leggermente lenta con "
+#~ "cairo."
+
+#~ msgid "First gradient color :"
+#~ msgstr "Primo colore del gradiente :"
+
+#~ msgid "Pack icons rather horizontally than vertically ?"
+#~ msgstr "Comprimi le icone come orizzontalmente così verticalmente ?"
+
+#~ msgid "Border line color :"
+#~ msgstr "Colore del bordo :"
+
+#~ msgid "Speed :"
+#~ msgstr "Velocità :"
+
+#~ msgid "Rotate effects with dock ?"
+#~ msgstr "Ruota gli effetti con la dock ?"
+
+#~ msgid "Add luminance ?"
+#~ msgstr "Aggiungi luminosità ?"
+
+#~ msgid "It will slightly alter the colors, so you may have to modify them."
+#~ msgstr ""
+#~ "Questo altererà leggermente i colori, perciò potresti volerli modificare."
+
+#~ msgid "Number of particles :"
+#~ msgstr "Numero di particelle :"
+
+#~ msgid "Colors"
+#~ msgstr "Colori"
+
+#~ msgid "Draw in background ?"
+#~ msgstr "Disegna nello sfondo ?"
+
+#~ msgid "Ask confirmation before empty Trash ?"
+#~ msgstr "Chiedi conferma prima di svuotare il Cestino ?"
+
+#~ msgid "Particle size :"
+#~ msgstr "Dimensione delle particelle :"
+
+#~ msgid "Particle speed :"
+#~ msgstr "Velocità delle particelle :"
+
+#~ msgid "Particle friction :"
+#~ msgstr "Frizione delle particelle :"
+
+#~ msgid "Radius of the explosion :"
+#~ msgstr "Raggio dell'esplosione :"
+
+#~ msgid "Number of sources :"
+#~ msgstr "Numero di fonti :"
+
+#~ msgid "Default color :"
+#~ msgstr "Colore di default :"
+
+#~ msgid "Number of particles per source :"
+#~ msgstr "Numero di particelle per fonti :"
+
+#~ msgid "Animation on disappearance :"
+#~ msgstr "Animazione alla scomparsa :"
+
+#~ msgid "Evaporate upward ?"
+#~ msgstr "Evapora verso l'alto ?"
+
+#~ msgid "Number of pieces :"
+#~ msgstr "Numero di pezzi :"
+
+#~ msgid "BlackHole"
+#~ msgstr "Buco Nero"
+
+#~ msgid "Animation on appearance :"
+#~ msgstr "Animazione alla comparsa :"
+
+#~ msgid "Break the icon in cubes ?"
+#~ msgstr "Rompi le icone in cubi ?"
+
+#~ msgid "Explosion radius :"
+#~ msgstr "Raggio di esplosione :"
+
+#~ msgid "caps lock, num lock, etc"
+#~ msgstr "caps lock, num lock, etc"
+
+#~ msgid "Attraction of the hole :"
+#~ msgstr "Attrazione del buco :"
+
+#~ msgid "The greatest, the fastest the icon will collapse to the center."
+#~ msgstr "Più è alto, più velocemente l'icona collasserà al centro."
+
+#~ msgid "Duration of the transition animation :"
+#~ msgstr "Durata della transizione dell'animazione :"
+
+#~ msgid ""
+#~ "in ms. Set it to 0 if you don't want an animation when the keyboard layout "
+#~ "changes."
+#~ msgstr ""
+#~ "in ms. Imposta a 0 se non vuoi animazioni quando il layout della tastiera "
+#~ "cambia."
+
 #~ msgid "Sub-Dock view"
 #~ msgstr "Vista della Sub-Dock"
+
+#~ msgid "Maximum of new messages shown ?"
+#~ msgstr "Numero massimo di nuovi messaggi mostrati ?"
+
+#~ msgid "Show new messages' content ?"
+#~ msgstr "Mostra il contenuto dei nuovi messaggi ?"
+
+#~ msgid ""
+#~ "It will be available on middle click. Let empty to execute the default "
+#~ "command, that greatly depends on your distribution. Sometimes the command to "
+#~ "shutdown is just the same as the one to log out."
+#~ msgstr ""
+#~ "Sarà disponibile mediante click centrale. Lasciare vuoto per eseguire il "
+#~ "comando di default, che dipende per la maggiore dalla tua distribuzione. "
+#~ "Certe volte il comando di spegnimento è lo stesso di quello per terminare la "
+#~ "sessione."
+
+#~ msgid "Outline text ?"
+#~ msgstr "Contorno del testo ?"
+
+#~ msgid "Text color"
+#~ msgstr "Colore del testo"
 
 #~ msgid ""
 #~ "only use this if it differs from its name. Generally it is not the case, "
@@ -9233,11 +10754,128 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "utilizzalo solo se differisce dal suo nome. Generalmente non è questo il "
 #~ "caso, eccetto per Thunderbird."
 
+#~ msgid "Prefered mail application to launch on left-click :"
+#~ msgstr "Applicazione mail preferita da lanciare con click sinistro :"
+
+#~ msgid "Check mail account on startup ?"
+#~ msgstr "Controlla l'account mail all'avvio ?"
+
+#~ msgid "Class of the mail application (optionnal)"
+#~ msgstr "Classe dell'applicazione mail (opzionale)"
+
+#~ msgid "Time length of the dialog :"
+#~ msgstr "Tempo di durata del dialogo :"
+
+#~ msgid "in s."
+#~ msgstr "in s."
+
+#~ msgid "Add an mail account"
+#~ msgstr "Aggiungi un account di posta"
+
+#~ msgid ""
+#~ "If you have any problem with the applet, uncheck this option during the "
+#~ "maintenance mode, then let the dock launch itself, and remove/modify the "
+#~ "mail accounts you want."
+#~ msgstr ""
+#~ "Se riscontri qualche problema con l'applet, deseleziona questa opzione "
+#~ "durante la modalità di manutenzione, poi lascia che la dock lanci se stessa "
+#~ "e rimuovi/modifica l'account di posta che vuoi."
+
+#~ msgid ""
+#~ "It will prevent the application's icon to appear in the task bar. The "
+#~ "applet's icon will then behave as a launcher, an appli, and an applet."
+#~ msgstr ""
+#~ "Previene l'apparizione dell'icona dell'applicazione nella taskbar. L'icona "
+#~ "dell'applet si comporterà così come un lanciatore, un'applicazione e "
+#~ "un'applet."
+
+#~ msgid "The new account will be created with specified type and name."
+#~ msgstr "Il nuovo account sarà creato con la tipologia e il nome specificati."
+
+#~ msgid "Also blur on mouse movement ?"
+#~ msgstr "Sfoca anche al movimento del mouse ?"
+
+#~ msgid "Blur amount :"
+#~ msgstr "Quantità di sfuocatura :"
+
+#~ msgid "Let it empty to display the name of the player currently controlled."
+#~ msgstr ""
+#~ "Lasciare vuoto per mostrare il nome del riproduttore attualmente controllato."
+
+#~ msgid "Allow Cairo-Dock to download missing covers ?"
+#~ msgstr "Permetti a Cairo-Dock di scaricare le copertine mancanti ?"
+
+#~ msgid "Use 3D themes ?"
+#~ msgstr "Utilizza temi 3D ?"
+
+#~ msgid "Let empty to use the folder's name."
+#~ msgstr "Lasciare vuoto per usare il nome della cartella."
+
+#~ msgid "It's the color of the graphic for low rate values."
+#~ msgstr "E' il colore del grafico per i valori di velocità bassi."
+
+#~ msgid "It's the color of the graphic for high rate values."
+#~ msgstr "E' il colore del grafico per i valori di velocità alti."
+
+#~ msgid "Ignore case ?"
+#~ msgstr "Ignora i cassetti ?"
+
+#~ msgid "List folders first ?"
+#~ msgstr "Elenca le cartelle prima ?"
+
+#~ msgid ""
+#~ "You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
+#~ "transition is continue."
+#~ msgstr ""
+#~ "Serve abilitare OpenGL per questa opzione. Imposta a 0 per non usarla, 1 "
+#~ "significa che la transizione è continua."
+
+#~ msgid ""
+#~ "Number of items loaded at once. Setting a high value speeds up a little the "
+#~ "loading, but blocks the appli more."
+#~ msgstr ""
+#~ "Numero di oggetti caricati insieme. Inserire un valore alto velocizza "
+#~ "leggermente il caricamento, ma blocca l'applicazione per un tempo maggiore."
+
+#~ msgid "Gradual building of the menu :"
+#~ msgstr "Costruzione graduale del menu :"
+
+#~ msgid "It can be quite heavy to load a lot of icons."
+#~ msgstr "Potrebbe essere pesante caricare troppe icone."
+
+#~ msgid "Used space percent"
+#~ msgstr "Percentuale spazio utilizzato"
+
+#~ msgid "Free space percent"
+#~ msgstr "Percentuale spazio libero"
+
 #~ msgid "In seconds."
 #~ msgstr "In secondi."
 
 #~ msgid "In pixels."
 #~ msgstr "In pixel."
+
+#~ msgid "Particles life time :"
+#~ msgstr "Durata di vita delle particelle :"
+
+#~ msgid "Scattering :"
+#~ msgstr "Disperdimento :"
+
+#~ msgid "The higher, the more particles will scatter from their source."
+#~ msgstr ""
+#~ "Più è alto, maggiormente le particelle si disperderanno dalla loro fonte."
+
+#~ msgid "Let empty to use the same image."
+#~ msgstr "Lasciare vuoto per usare la stessa immagine."
+
+#~ msgid "In round per second."
+#~ msgstr "In giri al secondo."
+
+#~ msgid "Show mouse on :"
+#~ msgstr "Mostra il mouse su :"
+
+#~ msgid "dock"
+#~ msgstr "dock"
 
 #~ msgid "desklet"
 #~ msgstr "desklet"
@@ -9245,24 +10883,275 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "both"
 #~ msgstr "entrambi"
 
+#~ msgid "Shortkey for the middle-click action :"
+#~ msgstr "Scorciatoia per l'azione al click centrale :"
+
+#~ msgid "Action on middle-click :"
+#~ msgstr "Azione al click centrale :"
+
+#~ msgid "Accessibility :"
+#~ msgstr "Accessibilità :"
+
+#~ msgid "Action on left-click :"
+#~ msgstr "Azione al click sinistro :"
+
+#~ msgid "Folder of the images :"
+#~ msgstr "Cartella delle immagini :"
+
+#~ msgid ""
+#~ "It will prevent the dock from freezing during the image loading, but does "
+#~ "not work with cairo."
+#~ msgstr ""
+#~ "Previene il freeze della dock durante il caricamento delle immagini, ma non "
+#~ "funziona con cairo."
+
+#~ msgid "Number of steps for a transition :"
+#~ msgstr "Numero di passi per la transizione :"
+
+#~ msgid "Use another thread to load the images ?"
+#~ msgstr "Utilizza un'altra sospensione per caricare le immagini ?"
+
+#~ msgid "Swap left-click and middle-click ?"
+#~ msgstr "Inverti click sinistro e click centrale ?"
+
+#~ msgid "Draw hidden windows too ?"
+#~ msgstr "Disegna anche le finestre nascoste ?"
+
+#~ msgid "Show windows list"
+#~ msgstr "Mostra la lista delle finestre"
+
+#~ msgid "Shortkey to toggle the systray in dock mode :"
+#~ msgstr "Scorciatoia per azionare la systray in modalità dock :"
+
+#~ msgid "Foreground color :"
+#~ msgstr "Colore della superficie :"
+
+#~ msgid "Background color :"
+#~ msgstr "Colore dello sfondo :"
+
+#~ msgid "Shortkey to show the terminal :"
+#~ msgstr "Scorciatoia per mostrare il terminale :"
+
+#~ msgid "Text color of the content :"
+#~ msgstr "Colore del testo del contenuto :"
+
+#~ msgid "Ask confirmation before deleting a note ?"
+#~ msgstr "Chiedi conferma prima di cancellare una nota ?"
+
+#~ msgid "Automatically name a new note ?"
+#~ msgstr "Nomina automaticamente una nuova nota ?"
+
+#~ msgid "Set to 0 to use the default applet size"
+#~ msgstr "Imposta a 0 per usare la dimensione di default dell'applet"
+
+#~ msgid "Right margin's width, in pixels :"
+#~ msgstr "Spessore margine destro, in pixel :"
+
+#~ msgid "Hey, you there !"
+#~ msgstr "Hey, tu là !"
+
+#~ msgid ""
+#~ "- What will we do tonight Cortex ?\n"
+#~ "- The same thing as every nights, Minus. Try to take over the Dock !"
+#~ msgstr ""
+#~ "- Che fa questa notte il Prof ?\n"
+#~ "- La stessa cosa che fa ogni notte, Mignolo. Tentare di conquistare la barra "
+#~ "!"
+
+#~ msgid "Clear the list of the recently used documents ?"
+#~ msgstr "Cancella la lista dei documenti usati di recente ?"
+
+#~ msgid "Enter a command to launch :"
+#~ msgstr "Inserisci un comando da lanciare :"
+
+#~ msgid ""
+#~ "This applet allows you to monitor your active connections.\n"
+#~ "It can display the download/upload speeds and the wifi signal quality.\n"
+#~ "If you have network-manager running, it can also let you choose the current "
+#~ "wifi network.\n"
+#~ "Left-click to pop-up some info,Middle-click to re-check immediately."
+#~ msgstr ""
+#~ "Quest'applet permette di monitorare le connessioni attive.\n"
+#~ "Può mostrare la velocità di download/upload e la qualità del segnale wifi.\n"
+#~ "Se hai network-manager attivo, ti permette di scegliere la rete wifi "
+#~ "attuale.\n"
+#~ "Click sinistro per mostrare qualche info, Click centrale per ricontrollare "
+#~ "immediatamente."
+
+#~ msgid "No data (no connection ?)"
+#~ msgstr "Nessun dato (non c'è connessione ?)"
+
+#~ msgid "Invalid data (invalid RSS/Atom feed ?)"
+#~ msgstr "Dati non validi (feed RSS/Atom invalidi ?)"
+
+#~ msgid "Retrieving data ..."
+#~ msgstr "Sto recuperando l'informazione ..."
+
+#~ msgid "Set up volume :"
+#~ msgstr "Regola il volume :"
+
+#~ msgid "Adjsut channels"
+#~ msgstr "Aggiusta i canali"
+
+#~ msgid ""
+#~ "This plug-in displays an animated indicator when you drop something in the "
+#~ "dock."
+#~ msgstr ""
+#~ "Questo plugin mostra un indicatore animato quando trascini qualcosa nella "
+#~ "dock."
+
+#~ msgid "Delete Trash"
+#~ msgstr "Svuota il Cestino"
+
+#~ msgid ""
+#~ "This applet manages the dustbin\n"
+#~ "You can threw files and unmount disks by drag andn droping them on the "
+#~ "icon.\n"
+#~ "The applet can warn you if you use too much space\n"
+#~ "Middle-click to display usefull info about the dustbin."
+#~ msgstr ""
+#~ "Quest'applet gestisce il cestino\n"
+#~ "Puoi cestinare file e smontare dischi trascinandoli sull'icona.\n"
+#~ "L'applet può avvertirti se stai utilizzando troppo spazio\n"
+#~ "Click centrale per mostrare info utili sul cestino."
+
 #, c-format
 #~ msgid "Delete %s"
 #~ msgstr "Svuota %s"
 
+#, c-format
+#~ msgid ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual file browser,\n"
+#~ "you can change it in the conf panel of this module"
+#~ msgstr ""
+#~ "Un problema si è presentato.\n"
+#~ "Se '%s' non è il vostro navigatore di file predefinito,\n"
+#~ "potete cambiarlo nel pannello di configurazione di quest'applet."
+
 #~ msgid "Delete All"
 #~ msgstr "Svuota Tutti"
+
+#~ msgid ""
+#~ "A very simple applet that adds an icon to log out from your session\n"
+#~ "Left click to log out, middle click to shutdown\n"
+#~ "You can invert this order if you prefer to shutdown on left-click."
+#~ msgstr ""
+#~ "Una semplice applet che aggiunge un'icona per terminare la sessione\n"
+#~ "Click sinistro per terminare, click centrale per spegnere il computer\n"
+#~ "Puoi invertire l'ordine se preferisci spegnere con il click sinistro."
+
+#, c-format
+#~ msgid ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual mail application,\n"
+#~ "you can change it in the conf panel of this module"
+#~ msgstr ""
+#~ "Un problema si è presentato\n"
+#~ "Se '%s' non è l'applicazione mail predefinita,\n"
+#~ "potete cambiarla nel pannello di configurazione di quest'applet."
+
+#~ msgid "Mark all mails as read"
+#~ msgstr "Marca tutte le mail come lette"
 
 #~ msgid "Play/Pause (left-click)"
 #~ msgstr "Play/Pausa (click sinistro)"
 
+#~ msgid "Please put your Laptop on charge."
+#~ msgstr "Meglio mettere il Laptop in carica."
+
+#~ msgid ""
+#~ "An applet that let you access quickly to all of your shortcuts.\n"
+#~ "It can manage disks, network points, and Nautilus bookmarks (even if you "
+#~ "don't have Nautilus).\n"
+#~ "Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
+#~ "Middle-click on the main icon to acces your desktop easily.\n"
+#~ "Middle-click on a mounting point icon to (un)mount is quickly.\n"
+#~ "The applet can also display valuable information about your disks, like free "
+#~ "space, type, etc."
+#~ msgstr ""
+#~ "Un'applet che permette di accedere rapidamente a tutte le tue scorciatoie.\n"
+#~ "Può controllare dischi, connessioni di rete e segnalibri Nautilus (anche se "
+#~ "non hai Nautilus).\n"
+#~ "Trascina una cartella nell'icona principale o nella sua sub-dock per "
+#~ "aggiungere un segnalibro.\n"
+#~ "Click centrale sull'icona principale per accedere facilmente alla "
+#~ "Scrivania.\n"
+#~ "Click centrale sull'icona che mostra un punto di mount per (s)montarlo "
+#~ "velocemente.\n"
+#~ "L'applet può altresì mostrare info preziose sui tuoi dischi, come spazio "
+#~ "libero, tipo, etc."
+
+#~ msgid ""
+#~ "This applet adds an icon to show your desktop,\n"
+#~ "and also : the desklets, the Widget Layer, or all the desktops at once.\n"
+#~ "Left-click to show/hide the desktop,\n"
+#~ "Middle-click to show/hide either the desktop, the desklets, the Widget "
+#~ "Layer, or all the desktops at once."
+#~ msgstr ""
+#~ "Quest'applet aggiunge un'icona per mostrare la tua Scrivania,\n"
+#~ " e anche: le desklet, la sezione dei Widget, o tutte le scrivanie "
+#~ "contemporaneamente.\n"
+#~ "Click sinistro per mostrare/nascondere la Scrivania.\n"
+#~ "Click centrale per mostrare/nascondere sia la Scrivania, le desklet, la "
+#~ "sezione dei Widget, o tutte le scrivanie contemporaneamente."
+
+#~ msgid "Set new name for this item :"
+#~ msgstr "Inserisci un nuovo nome per questo oggetto :"
+
 #~ msgid "Clean local directory"
 #~ msgstr "Svuota la cartella locale"
+
+#~ msgid ""
+#~ "Add a systray to your dock.\n"
+#~ "Left-click to show the systray in a dialog (you can bind a keyboard shortcut "
+#~ "for it.)\n"
+#~ "Middle-click to close the dalog.\n"
+#~ "But the best way to use it id to detach it from the dock, and place it "
+#~ "somewhere, above other windows."
+#~ msgstr ""
+#~ "Aggiungi un'area di notifica alla tua dock.\n"
+#~ "Click sinistro per mostrare l'area di notifica in una finestra di dialogo "
+#~ "(puoi impostare una scorciatoia da tastiera per questo).\n"
+#~ "Click centrale per chiudere la finestra di dialogo.\n"
+#~ "Ma il sistema migliore per utilizzarla è staccandola dalla dock e "
+#~ "posizionarla da qualche parte, sopra le altre finestre."
 
 #~ msgid "Add a desktop"
 #~ msgstr "Aggiungi una scrivania"
 
 #~ msgid "Remove last desktop"
 #~ msgstr "Rimuovi l'ultima scrivania"
+
+#~ msgid "Set title for this tab :"
+#~ msgstr "Imposta il titolo di questa Scheda :"
+
+#~ msgid "Search for tag :"
+#~ msgstr "cerca per parole chiave :"
+
+#~ msgid "Search for :"
+#~ msgstr "Cerca per :"
+
+#~ msgid "Change this Tab's color"
+#~ msgstr "Cambia il colore di questa Scheda"
+
+#~ msgid "felt"
+#~ msgstr "percepito"
+
+#~ msgid "Repeat while icon is pointed ?"
+#~ msgstr "Ripeti quando l'icona è puntata ?"
+
+#~ msgid "Type of mesh :"
+#~ msgstr "Tipo di trama :"
+
+#~ msgid "the smaller, the more it will flatten."
+#~ msgstr "più è piccolo, più si appiattirà."
+
+#~ msgid "Choose one of the available themes :"
+#~ msgstr "Scegli uno tra i temi disponibili:"
+
+#~ msgid "How much the icon will flatten when hurting the ground :"
+#~ msgstr "Quanto le icone si appiattiranno quando toccheranno il suolo :"
 
 #~ msgid ""
 #~ "Depending on your WindowManager, you can resize it with ALT + middle_click "
@@ -9319,8 +11208,179 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "E' un'immagine che viene mostrata sopra i disegni, come un riflesso ad "
 #~ "esempio. Lasciare vuoto per non utilizzarne."
 
+#~ msgid "Number of items :"
+#~ msgstr "Numero di oggetti :"
+
+#~ msgid "If so, number of selection items :"
+#~ msgstr "Se sì, numero di oggetti selezionati :"
+
+#~ msgid "Separate clipboard and selection ?"
+#~ msgstr "Separa clipboard e selezione ?"
+
+#~ msgid "Enable actions ?"
+#~ msgstr "Abilita le azioni ?"
+
+#~ msgid "Display the actions when selecting an item in the history."
+#~ msgstr "Mostra le azioni quando si seleziona un oggetto nella cronologia."
+
+#~ msgid "Shortkey to pop-up the items menu :"
+#~ msgstr "Scorcatoie di tastiera per rendere a comparsa gli oggetti del menu :"
+
+#~ msgid "Pop-up menus at mouse position ?"
+#~ msgstr "Menu a comparsa in una posizione del mouse ?"
+
+#~ msgid "Let extern applications reload the applets ?"
+#~ msgstr "Autorizza le applicazioni esterne a ricaricare le applet ?"
+
+#~ msgid "Let extern applications show/hide the desklets ?"
+#~ msgstr "Autorizza le applicazioni esterne a mostrare/nascondere le desklet ?"
+
+#~ msgid "Let extern applications show/hide the docks ?"
+#~ msgstr "Autorizza le applicazioni esterne a mostrare/nascondere le dock?"
+
+#~ msgid "Let extern applications pop-up dialogs in the dock ?"
+#~ msgstr "Autorizza dialoghi a comparsa di applicazioni esterne nella dock?"
+
+#~ msgid "A list of persistent items that can be accessed with middle-click :"
+#~ msgstr ""
+#~ "Una lista degli oggetti persistenti sarà accessibile col click centrale :"
+
+#~ msgid "Let extern applications reboot the dock ?"
+#~ msgstr "Autorizza le applicazioni esterne a ricaricare la dock ?"
+
+#~ msgid "Choose the style of the display : "
+#~ msgstr "Scegli lo stile dello schermo : "
+
+#~ msgid "Let empty to use he default one."
+#~ msgstr "Lasciare vuoto per utilizzare quello di default."
+
+#~ msgid "Duration of the info-bubble :"
+#~ msgstr "Durata delle info a comparsa :"
+
+#~ msgid "Color to be used for the feed lines"
+#~ msgstr "Colore da usare per le linee del feed"
+
+#~ msgid "Adjust to increase/decrease the logo size"
+#~ msgstr "Aggiusta per aumentare/diminuire la dimensione del logo"
+
+#~ msgid "Background first color :"
+#~ msgstr "1° colore dello sfondo :"
+
+#~ msgid "Text weight :"
+#~ msgstr "Spessore testo :"
+
+#~ msgid "Play a sound during the alert ?"
+#~ msgstr "Riproduci un suono durante l'allerta ?"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can move it with ALT + left_click. "
+#~ "Negative values are counted from the right/bottom of the screen"
+#~ msgstr ""
+#~ "In base al Gestore delle Finestre, è possibile ridimensionarla con Alt+click "
+#~ "sinistro. Valori negativi saranno contati dal lato in basso a destra dello "
+#~ "schermo."
+
+#~ msgid "Choose which channel to control :"
+#~ msgstr "Scegli quale canale controllare :"
+
+#~ msgid "Hide the scale when mouse leaves the desklet ?"
+#~ msgstr "Nascondi la scala quando il mouse abbandona la desklet ?"
+
+#~ msgid "Optionnally, choose a second channel to control :"
+#~ msgstr "Se lo desideri, scegli un secondo canale da controllare :"
+
+#~ msgid "Setup time and date"
+#~ msgstr "Regola data e ora"
+
 #~ msgid "Show Desktop"
 #~ msgstr "Mostra Scrivania"
+
+#~ msgid ""
+#~ "This command will be used to launch the system WM; let it blank to use the "
+#~ "default one."
+#~ msgstr ""
+#~ "Questo comando si utilizza per lanciare il Gestore delle Finestre; lasciare "
+#~ "vuoto per utilizzare quello di default."
+
+#~ msgid "Auto-reload Compiz ?"
+#~ msgstr "Ricarica automaticamente Compiz ?"
+
+#~ msgid ""
+#~ "Except for switching to another WM, you must activate the Dbus plugin in "
+#~ "Compiz, along with the plug-in corresponding to the desired action."
+#~ msgstr ""
+#~ "Tranne che per 'Cambia Gestore delle Finestre', si deve attivare il plugin "
+#~ "Dbus di compiz, oltre che i plugin delle azioni desiderate."
+
+#~ msgid "Add or remove an alarm :"
+#~ msgstr "Aggiunge o rimuove un'allarme"
+
+#~ msgid "Auto-reload the Decorator ?"
+#~ msgstr "Ricarica automaticamente il decoratore?"
+
+#~ msgid "Add Emerald's Configuration to sub-dock ?"
+#~ msgstr "Aggiungi la Configurazione di Emerald nella sub-dock ?"
+
+#~ msgid ""
+#~ "It will prevent the CSSM or Emerald icon to appear in the task bar. The "
+#~ "corresponding subdock's icons will then behave as launcher and an appli."
+#~ msgstr ""
+#~ "Questo impedirà all'icona di CCSM o di Emerald di apparire nella taskbar.  "
+#~ "Le icone della sub-dock si comporteranno come un lanciatore e "
+#~ "un'applicazione."
+
+#~ msgid "Force Compiz settings at startup ?"
+#~ msgstr "Forza le opzioni di Compiz all'avvio?"
+
+#~ msgid "Choose your Windows Decorator :"
+#~ msgstr "Scegli il Decoratore Finestre :"
+
+#~ msgid "Use thoses options only if you know them."
+#~ msgstr "Questa opzione si deve utilizzare solo se sai cosa stai facendo."
+
+#~ msgid "Only Current Screen ?"
+#~ msgstr "Soltanto lo Schermo Attuale ?"
+
+#~ msgid "Use Indirect Rendering ?"
+#~ msgstr "Usa rendering indiretto (Indirect Rendering) ?"
+
+#~ msgid "Use Loose Binding ?"
+#~ msgstr "Usa Loose Binding ?"
+
+#~ msgid ""
+#~ "With strict binding textures are bound whenever they are enabled, with loose "
+#~ "binding they are enabled when created. The Nvidia driver seems a bit slow "
+#~ "when binding textures, that's why this option gives a heavy performance "
+#~ "increase on Nvidia."
+#~ msgstr ""
+#~ "Con 'Strict Binding' le textures sono limitate a quando sono attivate, con "
+#~ "'Loose Binding' sono abilitate solo quando create. I driver Nvidia sembrano "
+#~ "rallentare al momento del binding delle textures, e perciò questa opzione dà "
+#~ "buoni risultati con schede Nvidia."
+
+#~ msgid "Name of an image for the 'other wm' icon :"
+#~ msgstr "Immagine per l'icona 'Altri wm' :"
+
+#~ msgid "Line color of the bubble :"
+#~ msgstr "Colore della linea della comparsa :"
+
+#~ msgid "Name of an image for the 'exposition' icon :"
+#~ msgstr "Immagine per l'icona 'Expo' :"
+
+#~ msgid "Name of an image for the 'setting' icon :"
+#~ msgstr "Immagine per l'icona 'Configurazione' :"
+
+#~ msgid "Name of an image for the 'reload' icon :"
+#~ msgstr "Immagine per l'icona 'Ricarica' :"
+
+#~ msgid "Name of an image for the 'emerald' icon :"
+#~ msgstr "Immagine per l'icona 'Emerald' :"
+
+#~ msgid "Enable info-bubbles ?"
+#~ msgstr "Abilita le notifiche a comparsa ?"
+
+#~ msgid "Let empty to upload files into '~/Dropbox/Public'."
+#~ msgstr "Lascia vuoto per caricare i file in '~/Dropbox/Public'."
 
 #~ msgid "For flat separators, you can specify their color:"
 #~ msgstr "Per i separatori piatti, puoi specificare il colore :"
@@ -9328,34 +11388,534 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "Choose the way separators are drawn :"
 #~ msgstr "Scegli il modo in cui i separatori saranno disegnati :"
 
+#~ msgid ""
+#~ "The greater, the deeper. It is in fact the gap between background icons' "
+#~ "bottom and foreground icons' top (in pixels)."
+#~ msgstr ""
+#~ "Più è grande, più il piano è profondo. E' di fatto lo scarto tra la base "
+#~ "delle icone in sottofondo e l'altezza delle icone in primo piano (in pixel)."
+
+#~ msgid "Always show icons' face ?"
+#~ msgstr "Mostra sempre la faccia delle icone ?"
+
+#~ msgid "The higher it is, the sooner the parabole will be curved."
+#~ msgstr "Più è alto, più presto la parabola verrà curvata."
+
+#~ msgid "Draw labels while unfolding ?"
+#~ msgstr "Disegna le etichette durante lo sfogliamento ?"
+
+#~ msgid "Space between rows :"
+#~ msgstr "Spazio tra le fila :"
+
+#~ msgid "Line color :"
+#~ msgstr "Colore della linea :"
+
+#~ msgid "Max size of icons :"
+#~ msgstr "Dimensione massima delle icone :"
+
+#~ msgid "Display text for all icons ?"
+#~ msgstr "Mostra il testo per tutte le icone ?"
+
+#~ msgid "Draw a background ?"
+#~ msgstr "Disegna uno sfondo ?"
+
+#~ msgid "Arrow shift percent :"
+#~ msgstr "Percentuale dello spostamento del puntatore :"
+
+#~ msgid ""
+#~ "An emblem that will be displayed when you try to drop something onto an "
+#~ "icon. Let empty to use the default one."
+#~ msgstr ""
+#~ "Un simbolo che verrà mostrato quando provi a incollare qualcosa nella dock. "
+#~ "Lasciare vuoto per utilizzare quello di default."
+
+#~ msgid "Image for the drag'n'drop animation :"
+#~ msgstr "Percorso dell'immagine per l'animazione di trascinamento :"
+
+#~ msgid ""
+#~ "Typically an arrow, that will be displayed when you try to drop a new "
+#~ "launcher into the dock. Let empty to use the default one."
+#~ msgstr ""
+#~ "Solitamente una freccia, che verrà mostrata quando provi a trascinare un "
+#~ "nuovo lanciatore nella dock. Lasciare vuoto per utilizzare quello di default."
+
+#~ msgid "Name of an image to overwrite the theme's empty image :"
+#~ msgstr "Percorso di un'immagine per cancellare l'immagine vuota del tema :"
+
+#~ msgid "Name of an image to overwrite the theme's full image :"
+#~ msgstr "Percorso di un'immagine per cancellare l'immagine piena del tema :"
+
+#~ msgid "in seconds, only used if you can't monitor directories."
+#~ msgstr ""
+#~ "in secondi. Da utilizzare solo se non si possono monitorare direttamente le "
+#~ "cartelle."
+
+#~ msgid "Interval of time to check if dustbin is full/empty :"
+#~ msgstr "Intervallo di tempo per verificare se il Cestino è pieno/vuoto :"
+
+#~ msgid ""
+#~ "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
+#~ msgstr ""
+#~ "in Mb. Verrai notificato se supererai questo limite. Mettere 0 per non "
+#~ "usarlo."
+
 #~ msgid "Desktop-less support"
 #~ msgstr "Supporto senza Scrivania"
+
+#~ msgid "Show the launching ?"
+#~ msgstr "Mostra il lancio ?"
+
+#~ msgid "Display keyboard locks as quick-info ?"
+#~ msgstr "Mostra i blocchi della tastiera come info veloci ?"
+
+#~ msgid "User-defined command to execute to log-out :"
+#~ msgstr "Comando specifico da eseguire per terminare la sessione :"
+
+#~ msgid "User-defined command to execute to shutdown :"
+#~ msgstr "Comando utente da eseguire per lo spegnimento :"
+
+#~ msgid "Time length of info-bubbles :"
+#~ msgstr "Durata della notifica a comparsa :"
+
+#~ msgid "Animation when music changes :"
+#~ msgstr "Animazione al cambio di musica :"
+
+#~ msgid "Show an info-bubble ?"
+#~ msgstr "Mostra una notifica a comparsa ?"
+
+#~ msgid "Display album's cover ?"
+#~ msgstr "Mostra la copertina dell'album ?"
 
 #~ msgid "nothing"
 #~ msgstr "nessuno"
 
+#~ msgid "Use a sound :"
+#~ msgstr "Utilizza un suono :"
+
+#~ msgid "Show hidden files ?"
+#~ msgstr "Mostra i file nascosti ?"
+
+#~ msgid "Separate different shortcuts with separators ?"
+#~ msgstr "Separa le differenti scorciatoie con separatori ?"
+
+#~ msgid "List bookmarks ?"
+#~ msgstr "Elenca i segnalibri ?"
+
+#~ msgid "List drives and volumes ?"
+#~ msgstr "Elenca periferiche e volumi ?"
+
+#~ msgid "List network ?"
+#~ msgstr "Elenca la rete ?"
+
+#~ msgid "Display disk usage with a bar ?"
+#~ msgstr "Mostra lo spazio utilizzato con una barra ?"
+
+#~ msgid "Scan in sub direcotries ?"
+#~ msgstr "Cerca nelle sotto-cartelle ?"
+
+#~ msgid "Choose the 'personnal' one to define your own decorations below."
+#~ msgstr ""
+#~ "Scegli 'personalizzato' per definire la propria decorazione qui sotto."
+
+#~ msgid "shrink down"
+#~ msgstr "diminuisci"
+
+#~ msgid "They are items created by dropping an URL into the Stack."
+#~ msgstr "Sono oggetti creati dal trascinamento di un URL nel recipiente"
+
+#~ msgid "Choose a background color :"
+#~ msgstr "Scegli il colore di sfondo :"
+
+#~ msgid "Force the image to fill the icon/desklet ?"
+#~ msgstr "Forza l'immagine per riempire l'icona/desklet ?"
+
+#~ msgid "Keep widht/height ratio ?"
+#~ msgstr "Conserva il rapporto tra larghezza e altezza ?"
+
+#~ msgid ""
+#~ "This options allow you to avoid some files to be displayed in the stacks "
+#~ "considering their types (video, images, etc...)"
+#~ msgstr ""
+#~ "Questa opzione permette di evitare che certi file siano elencati nel "
+#~ "recipiente tenendo conto del loro tipo (video, immagini, etc...)"
+
+#~ msgid "Filter files with their mime types ?"
+#~ msgstr "Filtra i file in base al tipo ?"
+
+#~ msgid "Here you can specify a list of mime types to avoid :"
+#~ msgstr "Specifica qui una lista di tipi di file da evitare :"
+
+#~ msgid "Sort items by :"
+#~ msgstr "Ordina gli oggetti per :"
+
+#~ msgid "Use the compact mode ?"
+#~ msgstr "Usa il modo compatto ?"
+
+#~ msgid "Draw the windows on icon ?"
+#~ msgstr "Disegna il wallpaper nell'icona ?"
+
+#~ msgid "Map the wallpaper on icon ?"
+#~ msgstr "Traccia il wallpaper nell'icona ?"
+
+#~ msgid "GUI"
+#~ msgstr "Interfaccia grafica"
+
+#~ msgid "Name of an image for the 'close' icon :"
+#~ msgstr "Immagine per l'icona 'chiudi' :"
+
+#~ msgid "Display note's content with a dialog ?"
+#~ msgstr "Mostra il contenuto delle note in un dialogo ?"
+
+#~ msgid "Emulate the 'NoteDeleted' signal ?"
+#~ msgstr "Emula il segnale 'Nota Soppressa' ?"
+
+#~ msgid ""
+#~ "Write the date format you usually use in your notes. The syntax is the one "
+#~ "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
+#~ "digits), etc. Let it blnk to use the default one (%d/%m/%y)."
+#~ msgstr ""
+#~ "Scrivi il formato della data che utilizzi abitualmente nelle tue note. La "
+#~ "sintassi è quella di 'strftime' : %d per il giorno, %m per il mese, %y per "
+#~ "l'anno (due cifre), etc ... Lasciare vuoto per utilizzare quella di default "
+#~ "(%d/%m/%y)."
+
 #~ msgid "in minutes."
 #~ msgstr "in minuti."
+
+#~ msgid "Use International System Units ?"
+#~ msgstr "Utilizza le unità del Sistema Internazionale ?"
+
+#~ msgid "Render desklet in 3D ?"
+#~ msgstr "Disegna la desklet in 3D ?"
+
+#~ msgid "Show scrollbars ?"
+#~ msgstr "Mostra le barre di scroll ?"
+
+#~ msgid ""
+#~ "This lets you right-click on the desklet to pop-up the Cairo-Dock's menu."
+#~ msgstr ""
+#~ "Questo ti permette di visualizzare come notifica a comparsa il menu di Cairo-"
+#~ "Dock con il click destro."
+
+#~ msgid "Display temperature as quick info ?"
+#~ msgstr "Mostra la temperatura come info veloce ?"
+
+#~ msgid "Display nights too ?"
+#~ msgstr "Mostra anche le notti ?"
+
+#~ msgid "Predefined bookmarks to show in applet's menu :"
+#~ msgstr "Segnalibri predefiniti da mostrare nel menu dell'applet :"
+
+#~ msgid "Display icons in the menu ?"
+#~ msgstr "Mostra le icone nel menu ?"
+
+#~ msgid "Display an info-bubble when a feed has changed?"
+#~ msgstr "Mostra una notifica a comparsa quando il feed è cambiato?"
+
+#~ msgid "Show recent documents ?"
+#~ msgstr "Mostra i documenti recenti ?"
+
+#~ msgid "Display a simple background ?"
+#~ msgstr "Mostra uno sfondo semplice ?"
+
+#~ msgid "Display the logo ?"
+#~ msgstr "Mostra il logo ?"
+
+#~ msgid "Show free memory instead of used memory ?"
+#~ msgstr "Mostra la memoria libera al posto di quella ocupata ?"
+
+#~ msgid "Show graphic card temperature ?"
+#~ msgstr "Mostra la temperatura della scheda grafica ?"
+
+#~ msgid "Show all values on same graph ?"
+#~ msgstr "Mostra entrambi i valori nello stesso grafico ?"
+
+#~ msgid "Show CPU usage ?"
+#~ msgstr "Mostra il carico della CPU ?"
+
+#~ msgid "Show SWAP too ?"
+#~ msgstr "Mostra anche la SWAP ?"
+
+#~ msgid "Display the time in a 24h format ?"
+#~ msgstr "Mostra l'ora in formato 24h ?"
+
+#~ msgid "Show the date :"
+#~ msgstr "Mostra la data :"
+
+#~ msgid "Display seconds with smooth animation of a duration of :"
+#~ msgstr "Mostra i secondi con un'animazione fluida con una durata di :"
+
+#~ msgid "Show seconds ?"
+#~ msgstr "Mostra i secondi ?"
+
+#~ msgid "If so, display the last image on the icon ?"
+#~ msgstr "Se così, mostra l'ultima immagine nell'icona ?"
+
+#~ msgid "Fluidity of the transition animation between 2 values :"
+#~ msgstr "Fluidità della transizione dell'animazione tra i due valori :"
+
+#~ msgid "Display numeric values :"
+#~ msgstr "Mostra valori numerici :"
+
+#~ msgid "Animation of the icon when connecting :"
+#~ msgstr "Animazione dell'icona quando connesso :"
+
+#~ msgid "Info displayed by the icon :"
+#~ msgstr "Info mostrate dall'icona :"
+
+#~ msgid "Connexion interface to monitor :"
+#~ msgstr "Interfaccia connessione da monitorare :"
+
+#~ msgid "Choose the style of the display :"
+#~ msgstr "Scegli lo stile della visualizzazione :"
+
+#~ msgid "in seconds, if you don't have Network-Manager."
+#~ msgstr "in secondi, se non hai Network-Manager."
+
+#~ msgid "Network connection has been established."
+#~ msgstr "La connessione internet è stata stabilita."
+
+#~ msgid "Network connection has become inactive."
+#~ msgstr "La connessione internet è diventata inattiva."
+
+#~ msgid "Network has been disconnected."
+#~ msgstr "La rete è stata disconnessa."
+
+#~ msgid "It's my dock now, mwahahaha !"
+#~ msgstr "E' la mia dock adesso, mwahahaha !"
+
+#~ msgid "Let the penguin wander everywhere in the dock ?"
+#~ msgstr "Lasci che il pinguino passeggi dappertutto sulla dock ?"
+
+#~ msgid "Your dock is so messy ! Let me clean it."
+#~ msgstr "La tua dock è un casino ! Lascia che te la sistemi."
+
+#~ msgid ""
+#~ "0.5 means the dock is half-folded, so half the icons are on the foreground, "
+#~ "and half are on the background."
+#~ msgstr ""
+#~ "0.5 significa che la dock è ripiegata a metà, perciò la metà delle icone  "
+#~ "sono in primo piano e l'altra metà sullo sfondo."
+
+#~ msgid ""
+#~ "If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
+#~ "Compiz from the dock then."
+#~ msgstr ""
+#~ "Se Compiz si arresta in modo inatteso, Cairo-Dock lo ri-lancerà. In questo "
+#~ "caso dovrai arrestare Compiz dalla dok."
+
+#~ msgid "Percentage of the dock's width that appears on the foreground :"
+#~ msgstr "Percentuale della larghezza della dock che appare in primo piano :"
+
+#~ msgid ""
+#~ "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
+#~ "quit Compiz from the dock then."
+#~ msgstr ""
+#~ "Se il decoratore si arresta in modo inatteso, Cairo-Dock lo ri-lancerà. In "
+#~ "questo caso dovrai arrestare il decoratore dalla dock."
+
+#~ msgid "Overwrite the default label with the connection point name ?"
+#~ msgstr "Riscrivi l'etichetta di default con il nome del punto d'accesso ?"
+
+#~ msgid ""
+#~ "All the desktops will be drawn on the main icon. Otherwise a subdock will "
+#~ "contain all the desktops."
+#~ msgstr ""
+#~ "Tutte le scrivanie saranno disegnati nell'icona principale. Altrimenti una "
+#~ "sub-dock conterrà tutte le scrivanie."
+
+#~ msgid ""
+#~ "You need to activate the Dbus plug-in of Compiz for the last 2 actions. "
+#~ "Showing desktop and desklets can fail on some Window Manager, like Metacity."
+#~ msgstr ""
+#~ "Deve essere attivo il plugin DBus di compiz per le passate due azioni. "
+#~ "Altrimenti mostrando scrivania e desklet qualche gestore di finestre -come "
+#~ "Metacity- potrebbe fallire."
+
+#~ msgid "Show desktop number on the icons ?"
+#~ msgstr "Mostra il numero della scrivania nell'icona ?"
+
+#~ msgid "How to draw the current desktop :"
+#~ msgstr "Come disegnare la scrivania attuale :"
+
+#~ msgid "Color of the current desktop :"
+#~ msgstr "Colore della scrivania attuale :"
+
+#~ msgid "Toggle Widgets Layer"
+#~ msgstr "Attiva Livello Widget"
+
+#~ msgid "Name of an image for the 'widget layer' icon :"
+#~ msgstr "Immagine per l'icona 'Livello Widget' :"
+
+#~ msgid ""
+#~ "Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
+#~ "Layer plug-ins. Otherwise they will be available in the menu."
+#~ msgstr ""
+#~ "Mostra nella sub-dock dell'applet due icone per i plugin Expo e Livello  "
+#~ "Widget. Altrimenti saranno accessibili dal menu."
 
 #~ msgid "On Widget Layer"
 #~ msgstr "Nel Livello Widget"
 
+#~ msgid ""
+#~ "This applet let you access quickly to your desklets.\n"
+#~ "Left click to show/hide your desklets.\n"
+#~ "Basically, if you run under Compiz, you don't need this applet;\n"
+#~ " you should just use the 'Widget Layer' capabilities of desklets."
+#~ msgstr ""
+#~ "Quest'applet permette di accedere velocemente alle tue desklet.\n"
+#~ "Click sinistro per mostrare/nascondere le desklet.\n"
+#~ "Di base, se hai attivo Compiz, non hai bisogno di quest'applet:\n"
+#~ " dovresti soltanto utilizzare l'opzione 'Livello Widgetr' delle desklet."
+
+#~ msgid "Show/hide desklets that are on the widget layer too ?"
+#~ msgstr "Mostra/nascondi anche le desklet che sono nel Livello Widget ?"
+
+#~ msgid "Image name to hide desklets :"
+#~ msgstr "Percorso di un'immagine per nascondere le desklet :"
+
 #~ msgid "Image name to show desklets :"
 #~ msgstr "Percorso di un'immagine per mostrare le desklet :"
+
+#~ msgid "Shortkey to show/hide the desklets :"
+#~ msgstr "Scorciatoia da tastiera per mostrare/nascondere le desklet :"
+
+#~ msgid "Specific command to run to show an advanced sound mixer :"
+#~ msgstr "Comando specifico per avviare un mixer sonoro avanzato :"
+
+#~ msgid ""
+#~ "It is especially usefull if you often select text with mouse and don't want "
+#~ "to lose your clipboard items because of a great number of selection items."
+#~ msgstr ""
+#~ "E' particolarmente utile se spesse volte scegli parti di testo col mouse e "
+#~ "non vuoi perdere gli oggetti nella clipboard, per il gran numero di oggetti "
+#~ "selezionati."
+
+#~ msgid "Paste into Clipboard ?"
+#~ msgstr "Incolla nella Clipboard ?"
+
+#~ msgid "Use a linear wave rather than a sinusoidal one ?"
+#~ msgstr "Utilizza un'onda lineare piuttosto che sinusoidale ?"
 
 #~ msgid ""
 #~ "Only use this if you notice that the applet can't display the trash on click."
 #~ msgstr ""
 #~ "Utilizzalo solo se verifichi che l'applet non mostra il cestino al click."
 
+#~ msgid "When copy/paste/cut, use the selection clipboard ?"
+#~ msgstr ""
+#~ "Quando si copia/incolla/taglia, utilizza la selezione della clipboard ?"
+
+#~ msgid "Font used to display what you type :"
+#~ msgstr "Font usato per mostrare ciò che digiti :"
+
+#~ msgid "Show top memory usage in % ?"
+#~ msgstr "Mostra il valore massimo di utilizzo di memoria in % ?"
+
+#~ msgid "Add Exposition & Widget Layer to sub-dock ?"
+#~ msgstr "Mostra Expo e Livello Widget nella sub-dock?"
+
+#~ msgid "Randomly browse files ?"
+#~ msgstr "Naviga i file casualmente ?"
+
+#~ msgid "Display image name as quickinfo ?"
+#~ msgstr "Mostra il nome dell'immagine come info veloce ?"
+
+#~ msgid "Display current conditions on the icon instead of the default one ?"
+#~ msgstr ""
+#~ "Mostra le condizioni attuali sull'icona al posto che quelle di default ?"
+
+#~ msgid "Clear the stack ?"
+#~ msgstr "Pulisci il recipiente ?"
+
 #~ msgid "Reload Stacks"
 #~ msgstr "Ricarica il recipiente"
+
+#, c-format
+#~ msgid "You're about to delete all files in %s. Sure ?"
+#~ msgstr "Stai per cancellare tutti i file in %s. Sicuro ?"
+
+#~ msgid "Alert when battery charge is critical ?"
+#~ msgstr "Allerta quando la carica è critica?"
+
+#~ msgid "Alert when low battery ?"
+#~ msgstr "Allerta quando la batteria è scarica?"
+
+#~ msgid "Alert when battery charged ?"
+#~ msgstr "Allerta quando la batteria è carica?"
+
+#~ msgid "Alert when core temperature is high ?"
+#~ msgstr "Allerta quando la temperatura del core è alta ?"
+
+#~ msgid "Let empty to use the default one"
+#~ msgstr "Lasciare vuoto per utilizzare quello di default"
+
+#~ msgid "StatusNotifier"
+#~ msgstr "NotificaStato"
 
 #~ msgid "Doncky"
 #~ msgstr "Doncky"
 
+#~ msgid "Open all"
+#~ msgstr "Apri tutti"
+
+#~ msgid "Space between lines :"
+#~ msgstr "Spazio tra le linee :"
+
+#~ msgid ""
+#~ "Maximum number of results tat will be displayed when you select a category "
+#~ "with the right arrow."
+#~ msgstr ""
+#~ "Numero massimo di risultati che saranno mostrati quando selezioni una "
+#~ "categoria con la freccia destra."
+
+#~ msgid "Margin for the text :"
+#~ msgstr "Margine del testo :"
+
+#~ msgid "Default text color :"
+#~ msgstr "Colore di default del testo :"
+
+#~ msgid "Specify the xml file :"
+#~ msgstr "Specifica il file xml :"
+
+#~ msgid "Default text font :"
+#~ msgstr "Font di default del testo :"
+
+#~ msgid "Text on the dock"
+#~ msgstr "Testo nella dock"
+
+#~ msgid "Search Engines"
+#~ msgstr "Motori di ricerca"
+
+#~ msgid "Search in files ?"
+#~ msgstr "Cerca nei File ?"
+
+#~ msgid "Search in Recent files ?"
+#~ msgstr "Cerca nei File recenti ?"
+
+#~ msgid "Search in Firefox bookmarks ?"
+#~ msgstr "Cerca nei Segnalibri di firefox ?"
+
+#~ msgid "Include a command launcher ?"
+#~ msgstr "Includi un lanciatore di comandi ?"
+
+#~ msgid "Let empty to write the name of the sound card."
+#~ msgstr "Lasciare vuoto per scrivere il nome della scheda audio."
+
+#~ msgid "Always show number of mails"
+#~ msgstr "Mostra sempre il numero di mail"
+
+#~ msgid "3DPlan"
+#~ msgstr "piano 3D"
+
 #~ msgid "ToolTip"
 #~ msgstr "suggerimento"
+
+#~ msgid "Drop Indicator"
+#~ msgstr "Drop Indicator"
+
+#~ msgid "Trash"
+#~ msgstr "cestino"
 
 #, c-format
 #~ msgid ""
@@ -9367,8 +11927,35 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "Se '%s' non è il vostro navigatore di file predefinito,\n"
 #~ "potete cambiarlo nel pannello di configurazione di quest'applet."
 
+#~ msgid "Icon Effects"
+#~ msgstr "effetti icone"
+
+#~ msgid "Illusion"
+#~ msgstr "Illusione"
+
+#~ msgid "Keyboard Indicator"
+#~ msgstr "indicatore di tastiera"
+
+#~ msgid "Log-out"
+#~ msgstr "Termina la sessione"
+
+#~ msgid "Motion Blur"
+#~ msgstr "Sfuocatura in movimento"
+
+#~ msgid "Show Mouse"
+#~ msgstr "mostra mouse"
+
+#~ msgid "Slider"
+#~ msgstr "scorritore"
+
+#~ msgid "Switcher"
+#~ msgstr "CambiaScrivania"
+
 #~ msgid "Move current Desktop to this Desktop"
 #~ msgstr "Sposta l'attuale scrivania in questa"
+
+#~ msgid "Weather"
+#~ msgstr "meteo"
 
 #~ msgid "Display an info bubble when a feed has changed?"
 #~ msgstr "Mostra una notifica a comparsa quando il feed è cambiato?"
@@ -9378,6 +11965,9 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 
 #~ msgid "Animation of the icon when a feed has changed:"
 #~ msgstr "Animazione dell'icona quando il feed è cambiato :"
+
+#~ msgid "Inclined Plane"
+#~ msgstr "Piano inclinato"
 
 #~ msgid ""
 #~ "In degrees, relative to the vertical. This is a sort of inclination of the "
@@ -9494,6 +12084,15 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "E' designata a lavorare su tutti i desktop che supportano le ultimissime "
 #~ "specifiche systray (KDE, Gnome, etc)"
 
+#~ msgid "Toto"
+#~ msgstr "Toto"
+
+#~ msgid "No task is sheduled for today."
+#~ msgstr "Nessuna attività programmata per oggi."
+
+#~ msgid "No task is sheduled for the next 7 days."
+#~ msgstr "Nessuna attività programmata per i prossimi 7 giorni."
+
 #~ msgid ""
 #~ "e size=true\n"
 #~ "F[Decorations;gtk-orientation-portrait]"
@@ -9512,8 +12111,39 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "Show %s"
 #~ msgstr "Mostra %s"
 
+#~ msgid "Show Trash"
+#~ msgstr "Mostra il cestino"
+
 #~ msgid "Show All"
 #~ msgstr "Mostra Tutto"
+
+#~ msgid ""
+#~ "This applet lets you share files easily :\n"
+#~ "Drag-and-drop a file on the icon to upload it to one of the available "
+#~ "hosting sites.\n"
+#~ "It supports many sites, like DropBox, Imageshack, pastebin, etc\n"
+#~ "You can upload text, image, video, and files.\n"
+#~ "The resulting URL is automatically stored in the clipboard to be directly "
+#~ "copied by CTRL+v.\n"
+#~ "It can keep an history of your last uploads to retrieve them without any "
+#~ "account.\n"
+#~ "You'll need to install 'curl' and 'wget' to upload the data."
+#~ msgstr ""
+#~ "Quest'applet permette di condividere i tuoi file facilmente:\n"
+#~ "Trascina un file sull'icona per caricarlo su uno dei siti host disponibili.\n"
+#~ "Supporta numerosi siti, come DropBox, Imageshack, pastebin, etc\n"
+#~ "Puoi caricare testi, immagini, video e file.\n"
+#~ "L'URL risultante è automaticamente trattenuto nella clipboard per essere "
+#~ "copiato direttamente con Ctrl+v.\n"
+#~ "Mantiene la cronologia dei tuoi upload per recuperarli senza bisogno di "
+#~ "nessun account.\n"
+#~ "Devi installare 'curl' e 'wget' per caricare i dati."
+
+#~ msgid "st color of gradation :"
+#~ msgstr "1° colore della gradazione:"
+
+#~ msgid "nd color of gradation :"
+#~ msgstr "2° colore della gradazione:"
 
 #~ msgid "Specify a title :"
 #~ msgstr "Specifica un titolo:"
@@ -9572,6 +12202,18 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "Colour of the plane's line :"
 #~ msgstr "Colore della linea del piano:"
 
+#~ msgid "Custom script for file upload : "
+#~ msgstr "Script personalizzato per caricare file: "
+
+#~ msgid "Custom script for image upload : "
+#~ msgstr "Script personalizzato per caricare immagini: "
+
+#~ msgid "Custom script for video upload : "
+#~ msgstr "Script personalizzato per caricare video: "
+
+#~ msgid "Custom script for text upload : "
+#~ msgstr "Script personalizzato per caricare testi: "
+
 #~ msgid "Depth of the plane:"
 #~ msgstr "Profondità del piano:"
 
@@ -9612,8 +12254,14 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "Delay between measurements:"
 #~ msgstr "Intervallo tra le due misure:"
 
+#~ msgid "Interval of time between 2 checks :"
+#~ msgstr "Intervallo di tempo tra le due verifiche:"
+
 #~ msgid "Information to be displayed on the icon :"
 #~ msgstr "Informazioni da mostrare sull'icona:"
+
+#~ msgid "uild menu gradually:"
+#~ msgstr "Costruzione graduale del menu:"
 
 #~ msgid "Action when applet is clicked:"
 #~ msgstr "Azioni al click sull'applet:"
@@ -9658,6 +12306,26 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "When copying/pasting/cutting, use the selection clipboard?"
 #~ msgstr ""
 #~ "Quando si copia/incolla/taglia, utilizza la selezione della clipboard?"
+
+#~ msgid ""
+#~ "Add a terminal to your dock !\n"
+#~ "Left/middle click to show/hide terminal (you can bind a keyboard shortcut "
+#~ "for it.)\n"
+#~ "You can drag'n'drop files or text and select an action.\n"
+#~ "You can open many tabs, rename them, change their color (right-click on a "
+#~ "tab to interact on it)\n"
+#~ "To open a new tab : type 'CTRL+t' or double-click next to the last tab\n"
+#~ "To close a tab : type 'CTRL+w' or middle-click on it."
+#~ msgstr ""
+#~ "Aggiungi un terminale alla tua dock!\n"
+#~ "Click sinistro/centrale per mostrare/nascondere il terminale (puoi impostare "
+#~ "una scorciatoia da tastiera per questo).\n"
+#~ "Puoi trascinare file o testi e scegliere un'azione da compiere.\n"
+#~ "Puoi aprire molteplici schede, rinominarle, cambiare i loro colori (click "
+#~ "destro sulla scheda per interagire con essa)\n"
+#~ "Per aprire una nuova scheda: digita Ctrl+t o doppio click sull'ultima "
+#~ "scheda\n"
+#~ "Per chiudere una scheda: digita Ctrl+w o click centrale su di essa."
 
 #~ msgid "Hey, you there!"
 #~ msgstr "Hey, tu là!"
@@ -9717,6 +12385,9 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "mouse, Alt+Invio come click centrale, Ctrl+Invio come click sinistro\n"
 #~ "Esc o la stessa scorciatoia cancellerà l'operazione."
 
+#~ msgid "Leave empty to use the defaut command."
+#~ msgstr "Lasciare vuoto per utilizzare il comando predefinito."
+
 #~ msgid ""
 #~ "Load folders inside the Dock\n"
 #~ "You can have as many instances of this applet as you want."
@@ -9733,8 +12404,14 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ msgid "Unmount (middle-click)"
 #~ msgstr "Smonta (click centrale)"
 
+#~ msgid "Mount (middle-click)"
+#~ msgstr "Monta (click centrale)"
+
 #~ msgid "Maximum number of files to list:"
 #~ msgstr "Numero massimo dei file da elencare:"
+
+#~ msgid "Open the folder (middle-click)"
+#~ msgstr "Apri la cartella (click centrale)"
 
 #~ msgid "stacks"
 #~ msgstr "stacks"
@@ -9758,6 +12435,9 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "Click centrale sull'icona di un punto di mount per (s)montarlo rapidamente.\n"
 #~ "L'applet può mostrare anche interessanti informazioni sui tuoi dischi, come "
 #~ "spazio libero, tipo, etc."
+
+#~ msgid "Mute (middle-click)"
+#~ msgstr "Muto (tasto centrale)"
 
 #~ msgid "Unmute (middle-click)"
 #~ msgstr "Attiva audio (tasto centrale)"
@@ -9805,3 +12485,9 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 #~ "  utilizza le frecce per navigare tra i risultati, premi Invio per "
 #~ "confermare, mantieni Ctrl, Alt o Shift per conservare i risultati.\n"
 #~ "Esc o la scorciatoia che lo richiama per cancellare."
+
+#~ msgid ""
+#~ "Couldn't upload the file, check that your internet connection is active."
+#~ msgstr ""
+#~ "Impossibile caricare il file, controlla che la connessione internet sia "
+#~ "attiva."

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
 "POT-Creation-Date: 2011-01-01 04:07+0000\n"
-"PO-Revision-Date: 2011-01-01 12:15+0000\n"
+"PO-Revision-Date: 2011-02-28 12:52+0000\n"
 "Last-Translator: rob <linuxned@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-01-02 05:09+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Launchpad-Export-Date: 2011-03-01 04:53+0000\n"
+"X-Generator: Launchpad (build 12351)\n"
 "Language: \n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -1586,7 +1586,7 @@ msgstr "Deze plug-in bevat enige dialoogdecorateurs voor dialoogballonnen."
 
 #: ../dnd2share/src/applet-dnd2share.c:158
 msgid ""
-"Couldn't upload the file, check that your internet connection is active."
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
 "Kon bestand niet uploaden, controleer of uw verbonden bent met het internet."
 
@@ -8214,11 +8214,68 @@ msgstr "Ruwe signaalinformatie"
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 
+#~ msgid "Hey, I'm here !"
+#~ msgstr "Hallo, ik ben hier !"
+
+#~ msgid "Your dock is so messy ! Let me clean it."
+#~ msgstr "Je dock is zo rommelig ! Laat mij het opruimen."
+
+#~ msgid "Admit my superiority on you as a penguin !"
+#~ msgstr "Geef toe dat ik als pinguïn beter ben dan jij !"
+
+#~ msgid "Wait, do you want to kill me ?!"
+#~ msgstr "Wacht, wil je me doodmaken ?!"
+
+#~ msgid "Do you know how much painful it is to be clicked on ??"
+#~ msgstr "Weet je hoeveel pijn dat doet als iemand op je klikt ??"
+
+#~ msgid "It's my dock now, mwahahaha !"
+#~ msgstr "Het is nu mijn dock, hahahaha !"
+
+#~ msgid "I want to be a pirate !"
+#~ msgstr "Ik wil een piraat zijn !"
+
+#~ msgid "You shall not pass !"
+#~ msgstr "Je komt er niet door !"
+
+#~ msgid "I'm your father !"
+#~ msgstr "Ik ben je vader !"
+
+#~ msgid ""
+#~ "- What will we do tonight Cortex ?\n"
+#~ "- The same thing as every nights, Minus. Try to take over the Dock !"
+#~ msgstr ""
+#~ "- Wat zullen we doen vanavond Cortex ?\n"
+#~ "- Hetzelfde als elke nacht, Minus. Proberen om het Dock over te nemen !"
+
+#~ msgid "For Aiur !"
+#~ msgstr "For Aiur !"
+
+#~ msgid "Hey, you there !"
+#~ msgstr "He, jij daar !"
+
+#~ msgid "Clear the list of the recently used documents ?"
+#~ msgstr "Recente documentenlijst wissen ?"
+
+#~ msgid "Enter a command to launch :"
+#~ msgstr "Voer een opdracht in om uit te voeren :"
+
+#~ msgid "Up time"
+#~ msgstr "Ingeschakeld"
+
 #~ msgid "Free"
 #~ msgstr "Vrij"
 
 #~ msgid "Monitor System"
 #~ msgstr "Systeemmonitor"
+
+#, c-format
+#~ msgid "Alert ! Graphic Card core temperature has reached %d°C"
+#~ msgstr ""
+#~ "Waarschuwing ! Core-temperatuur van grafische kaart heeft %d°C bereikt"
+
+#~ msgid "Set up gamma :"
+#~ msgstr "Gamma instellen :"
 
 #~ msgid "AlsaMixer"
 #~ msgstr "AlsaMixer"
@@ -8232,6 +8289,96 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Ik kon het audiokanaal '%s' niet vinden\n"
 #~ "Open het configuratiepaneel van het applet,\n"
 #~ " en selecteer het juiste audiokanaal dat u wilt beheren."
+
+#~ msgid "Set up volume :"
+#~ msgstr "Volume instellen :"
+
+#~ msgid "Adjsut channels"
+#~ msgstr "Kanalen aanpassen"
+
+#~ msgid ""
+#~ "This applet displays time and date in your dock.\n"
+#~ "2 view are available : numeric and analogic, based on Cairo-Clock.\n"
+#~ "It is compatible with the Cairo-Clock's themes, and you can detach itself to "
+#~ "be a perfect clone of Cairo-Clock.\n"
+#~ "It supports alarms, and a basic calendar, and allows you to setup time and "
+#~ "date.\n"
+#~ "Left-click to show/hide the calendar, Middle-click to stop an alarm."
+#~ msgstr ""
+#~ "Dit applet laat de tijd en datum zien in uw dock.\n"
+#~ "Er zijn 2 weergaves beschikbaar : numeriek en analoog, gebaseerd op Cairo-"
+#~ "Clock.\n"
+#~ "Het is geschikt voor Cairo-Clock's thema´s en u kunt het loskoppelen zodat u "
+#~ "een perfecte kloon van Cairo-Clock heeft.\n"
+#~ "Het ondersteunt herinneringen en heeft een basis kalender en u kunt de tijd "
+#~ "en datum instellen.\n"
+#~ "Klik met links om de kalender te tonen/verbergen, middelklik om een "
+#~ "herinnering te stoppen."
+
+#~ msgid "Calendar"
+#~ msgstr "Kalender"
+
+#~ msgid "Toggle Widgets Layer"
+#~ msgstr "Ga naar ´Widgets Layer´"
+
+#~ msgid "This plug-in provides some dialog decorators for dialog bubbles."
+#~ msgstr "Deze plug-in bevat enige dialoogdecorateurs voor dialoogballonnen."
+
+#~ msgid "Clear the list of the recently uploaded files ?"
+#~ msgstr "Lijst wissen met recente geüploade bestanden ?"
+
+#~ msgid "Sorry, couldn't find the orignial file nor a preview of it."
+#~ msgstr ""
+#~ "Sorry, kon het originele bestand niet vinden en ook geen voorbeeld ervan."
+
+#~ msgid ""
+#~ "The URL has been stored into the clipboard.\n"
+#~ "Just use 'CTRL+v' to paste it anywhere."
+#~ msgstr ""
+#~ "De URL is opgeslagen in het klembord.\n"
+#~ "Druk op CTRL+v om de URL ergens in te plakken."
+
+#~ msgid ""
+#~ "No uploaded file available\n"
+#~ ".Consider activating the history if you want the applet remembers previous "
+#~ "uploads."
+#~ msgstr ""
+#~ "Geen geüpload bestand beschikbaar\n"
+#~ ".U dient de geschiedenis te activeren, als u wilt dat het applet de vorige "
+#~ "uploads onthoudt."
+
+#~ msgid ""
+#~ "The current URL has been stored into the clipboard.\n"
+#~ "Just use 'CTRL+v' to paste it anywhere."
+#~ msgstr ""
+#~ "De huidige URL is opgeslagen in het klembord.\n"
+#~ "Druk op 'CTRL+v' om de URL ergens in te plakken."
+
+#~ msgid ""
+#~ "This plug-in displays an animated indicator when you drop something in the "
+#~ "dock."
+#~ msgstr ""
+#~ "Deze plug-in toont een geanimeerde indicator wanneer u iets sleept naar het "
+#~ "dock."
+
+#~ msgid ""
+#~ "This applet manages the dustbin\n"
+#~ "You can threw files and unmount disks by drag andn droping them on the "
+#~ "icon.\n"
+#~ "The applet can warn you if you use too much space\n"
+#~ "Middle-click to display usefull info about the dustbin."
+#~ msgstr ""
+#~ "Dit applet beheert de prullenbak\n"
+#~ "U kunt bestanden verwijderen en schijven ontkoppelen door ze te verslepen "
+#~ "naar het icoon.\n"
+#~ "Het applet kan u waarschuwen, wanneer u teveel ruimte gebruikt\n"
+#~ "Middelklik om info te tonen over de prullenbak."
+
+#~ msgid "Show Trash"
+#~ msgstr "Toon inhoud prullenbak"
+
+#~ msgid "Delete Trash"
+#~ msgstr "Leeg prullenbak"
 
 #, c-format
 #~ msgid "Show %s"
@@ -8247,11 +8394,96 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "Delete All"
 #~ msgstr "Verwijder alles"
 
+#, c-format
+#~ msgid "You're about to delete all files in %s. Sure ?"
+#~ msgstr "U gaat alle bestanden uit %s verwijderen. Weet u het zeker ?"
+
+#, c-format
+#~ msgid ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual file browser,\n"
+#~ "you can change it in the conf panel of this module"
+#~ msgstr ""
+#~ "Er is een probleem opgetreden\n"
+#~ "Als '%s' niet uw gebruikelijke bestandsbeheerder is,\n"
+#~ "dan kunt u dit wijzigen in het configuratiepaneel van deze module"
+
+#~ msgid "This plug-in adds many special effects to your icons."
+#~ msgstr "Deze plug-in voegt vele speciale effecten toe voor uw iconen."
+
+#~ msgid ""
+#~ "This plug-in provides animations for appearance & disappearance of icons."
+#~ msgstr ""
+#~ "Deze plug-in bevat animaties voor het verschijnen & verdwijnen van iconen."
+
+#~ msgid ""
+#~ "A very simple applet that adds an icon to log out from your session\n"
+#~ "Left click to log out, middle click to shutdown\n"
+#~ "You can invert this order if you prefer to shutdown on left-click."
+#~ msgstr ""
+#~ "Een simpel applet dat een icoon toevoegt waarmee u uit kunt loggen van uw "
+#~ "sessie\n"
+#~ "Linkerklik om uit te loggen, middelklik om computer af te sluiten\n"
+#~ "U kunt dit omdraaien als u liever met linkerklik de computer afsluit."
+
+#, c-format
+#~ msgid "You have %d new mails :"
+#~ msgstr "U heeft %d nieuwe e-mails :"
+
+#~ msgid "You have a new mail :"
+#~ msgstr "U heeft een nieuwe e-mail gekregen :"
+
+#, c-format
+#~ msgid ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual mail application,\n"
+#~ "you can change it in the conf panel of this module"
+#~ msgstr ""
+#~ "Er is een probleem opgetreden\n"
+#~ "Als '%s' niet uw gebruikelijke e-mailprogramma is,\n"
+#~ "dan kunt u dit wijzigen in het configuratiepaneel van deze module"
+
+#~ msgid "This plug-in adds a motion blur effect on docks."
+#~ msgstr "Deze plug-in voegt een bewegingsvervagingseffect toe aan het dock."
+
 #~ msgid "Play/Pause (left-click)"
 #~ msgstr "Afspelen/pauzeren (linkerklik)"
 
 #~ msgid "Next (middle-click)"
 #~ msgstr "Volgende (middelklik)"
+
+#, c-format
+#~ msgid ""
+#~ "Interface '%s' seems to not exist or is not readable.\n"
+#~ " You may have to set up the interface you wish to monitor.\n"
+#~ " Do you want to do it now ?"
+#~ msgstr ""
+#~ "Interface '%s' schijnt niet te bestaan of is onleesbaar.\n"
+#~ "Misschien moet u het configuratiepaneel van dit applet openen en de "
+#~ "interface selecteren die u wenst te monitoren.\n"
+#~ "Wilt u dit nu doen ?"
+
+#~ msgid "Estimated time with Charge:"
+#~ msgstr "Geschatte oplaadtijd:"
+
+#~ msgid "Estimated Charge time:"
+#~ msgstr "Geschatte oplaadtijd:"
+
+#~ msgid "No Battery found."
+#~ msgstr "Geen accu gevonden."
+
+#~ msgid "Please put your Laptop on charge."
+#~ msgstr "Laad uw laptop a.u.b. op."
+
+#~ msgid ""
+#~ "PowerManager.\n"
+#~ "Your battery is now Charged"
+#~ msgstr ""
+#~ "PowerManager.\n"
+#~ "Uw accu is opgeladen"
+
+#~ msgid "A power manager for laptop's battery. It works with ACPI and DBus."
+#~ msgstr "Een energiebeheerder voor laptopaccu´s. Die werkt met ACPI en DBus."
 
 #~ msgid ""
 #~ "Control your Rhythmbox player directly in the dock !\n"
@@ -8266,8 +8498,47 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "U kunt albumhoezen (jpg) naar het icoon slepen om ze te gebruiken,\n"
 #~ "dit kunt u ook doen met nummers om ze in de wachtrij te plaatsen."
 
+#~ msgid ""
+#~ "An applet that let you access quickly to all of your shortcuts.\n"
+#~ "It can manage disks, network points, and Nautilus bookmarks (even if you "
+#~ "don't have Nautilus).\n"
+#~ "Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
+#~ "Middle-click on the main icon to acces your desktop easily.\n"
+#~ "Middle-click on a mounting point icon to (un)mount is quickly.\n"
+#~ "The applet can also display valuable information about your disks, like free "
+#~ "space, type, etc."
+#~ msgstr ""
+#~ "Een applet waarmee u snel toegang heeft tot al uw snelkoppelingen.\n"
+#~ "Het kan schijven beheren, netwerkpunten en Nautilus-bladwijzers (zelfs als u "
+#~ "geen Nautilus heeft).\n"
+#~ "Sleep een map naar het hoofdicoon of het sub-dock om een bladwijzer toe te "
+#~ "voegen.\n"
+#~ "Middelklik op het hoofdicoon om makkelijk toegang tot uw bureaublad te "
+#~ "krijgen.\n"
+#~ "Middelklik op een koppelpunticoon om snel te (ont)koppelen.\n"
+#~ "Het applet kan ook nuttige informatie over uw schijven tonen, zoals vrije "
+#~ "ruimte, type, etc."
+
+#~ msgid ""
+#~ "This plug-in draw some animation around the cursor when it's inside a "
+#~ "dock/desklet."
+#~ msgstr ""
+#~ "Deze plug-in tekent enige animatie rond de muisaanwijzer wanneer het zich in "
+#~ "een dock/desklet bevindt."
+
 #~ msgid "showDesklets"
 #~ msgstr "Desklets tonen"
+
+#~ msgid ""
+#~ "This applet let you access quickly to your desklets.\n"
+#~ "Left click to show/hide your desklets.\n"
+#~ "Basically, if you run under Compiz, you don't need this applet;\n"
+#~ " you should just use the 'Widget Layer' capabilities of desklets."
+#~ msgstr ""
+#~ "Dit applet geeft u snel toegang tot uw desklets.\n"
+#~ "Klik met links om de desklets te tonen/verbergen.\n"
+#~ "Wanneer u Compiz draait, dan heeft u dit applet niet nodig;\n"
+#~ "U zou dan de 'Widget Layer' mogelijkheden van desklets kunnen gebruiken."
 
 #~ msgid ""
 #~ "This is a very simple icon to show your desktop\n"
@@ -8277,6 +8548,12 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Dit is een simpel icoon om uw bureaublad te tonen\n"
 #~ "Klik met links om het bureaublad te tonen/verbergen\n"
 #~ "Middelklik doet hetzelfde, maar verbergt uw desklets niet"
+
+#~ msgid "Clear the stack ?"
+#~ msgstr "Stapel leegmaken ?"
+
+#~ msgid "Set new name for this item :"
+#~ msgstr "Voer nieuwe naam in voor dit item :"
 
 #~ msgid "Copy (middle click)"
 #~ msgstr "Kopiëren (middelklik)"
@@ -8307,8 +8584,52 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "Remove last desktop"
 #~ msgstr "Verwijder laatste bureaublad"
 
+#~ msgid "Set title for this tab :"
+#~ msgstr "Voer naam in voor dit tabblad :"
+
+#~ msgid "Change this Tab's color"
+#~ msgstr "Kleur van dit tabblad wijzigen"
+
+#~ msgid "Delete this note ?"
+#~ msgstr "Deze notitie verwijderen ?"
+
+#~ msgid "Search for :"
+#~ msgstr "Zoeken naar :"
+
+#~ msgid "Search for tag :"
+#~ msgstr "Zoeken naar label :"
+
+#~ msgid "Clear marks"
+#~ msgstr "Markeringen verwijderen"
+
+#~ msgid ""
+#~ "No data were available\n"
+#~ " is connection alive ?"
+#~ msgstr ""
+#~ "Geen data beschikbaar\n"
+#~ "Werkt de verbinding ?"
+
+#~ msgid "Precipitation Probability"
+#~ msgstr "Kans op neerslag"
+
+#~ msgid "SunRise"
+#~ msgstr "Zonsopkomst"
+
+#~ msgid "SunSet"
+#~ msgstr "Zonsondergang"
+
+#~ msgid ""
+#~ "No data were available\n"
+#~ "Re-trying now ..."
+#~ msgstr ""
+#~ "Geen data beschikbaar\n"
+#~ "Opnieuw proberen..."
+
 #~ msgid "feeled"
 #~ msgstr "Gevoelstemperatuur"
+
+#~ msgid "Wifi disabled."
+#~ msgstr "Wifi niet actief."
 
 #~ msgid ""
 #~ "An applet dedicated to control XMMS, Audacious, Banshee & Exaile.\n"
@@ -8328,8 +8649,131 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "U kunt ook nummers slepen naar het icoon om ze in de wachtrij te plaatsen.\n"
 #~ "Scrol op/neer om vorige/volgende nummer af te spelen."
 
+#~ msgid "when hovering an icon"
+#~ msgstr "Wanneer u over een icoon gaat"
+
+#~ msgid "Effects used :"
+#~ msgstr "Gebruikte effecten :"
+
+#~ msgid "Effects used on launcher :"
+#~ msgstr "Gebruikte effecten voor starters :"
+
+#~ msgid "Number of time the animation will play :"
+#~ msgstr "Aantal keer om animatie af te spelen :"
+
+#~ msgid "when clicking on an appli"
+#~ msgstr "Wanneer u klikt op een toepassing"
+
+#~ msgid "Effects used on applis :"
+#~ msgstr "Gebruikte effecten voor toepassingen :"
+
+#~ msgid "Effects used on applets :"
+#~ msgstr "Gebruikte effecten voor applets :"
+
+#~ msgid "Duration of the animation :"
+#~ msgstr "Tijdsduur van de animatie :"
+
+#~ msgid "Repeat while icon is pointed ?"
+#~ msgstr "Herhalen wanneer icoon aangewezen wordt ?"
+
+#~ msgid "Type of mesh :"
+#~ msgstr "Soort 3D-vorm :"
+
+#~ msgid "color of the mesh :"
+#~ msgstr "Kleur 3D-vorm :"
+
+#~ msgid "Let empty to use the default one.}"
+#~ msgstr "Laat leeg om standaardwaarde te gebruiken.}"
+
+#~ msgid "Image for the spot :"
+#~ msgstr "Afbeelding voor het spotlicht :"
+
+#~ msgid "Image for the front spot :"
+#~ msgstr "Afbeelding voor het voorste spotlicht :"
+
+#~ msgid "color of the spot :"
+#~ msgstr "Kleur van het spotlicht :"
+
+#~ msgid "color of the halo :"
+#~ msgstr "Kleur van de lichtkrans :"
+
+#~ msgid "Random colors ?"
+#~ msgstr "Willekeurige kleuren ?"
+
+#~ msgid "Number of rays :"
+#~ msgstr "Aantal stralen :"
+
+#~ msgid "Rays size :"
+#~ msgstr "Grootte stralen :"
+
+#~ msgid "Rays speed :"
+#~ msgstr "Snelheid stralen :"
+
+#~ msgid "Initial stretch :"
+#~ msgstr "Aanvankelijke uitrekking :"
+
+#~ msgid "Spring constant :"
+#~ msgstr "Constante stijging :"
+
+#~ msgid "Friction :"
+#~ msgstr "Frictie :"
+
+#~ msgid "Number of points on the grid in one direction :"
+#~ msgstr "Aantal punten op het raster in één richting :"
+
+#~ msgid "Width of the wave :"
+#~ msgstr "Breedte van de golf :"
+
+#~ msgid "Amplitude of the wave :"
+#~ msgstr "Hoogte van de golf :"
+
+#~ msgid "Duration of the pulse :"
+#~ msgstr "Tijdsduur van het kloppen :"
+
+#~ msgid "Zoom max of the pulse :"
+#~ msgstr "Maximale vergroting van het kloppen :"
+
+#~ msgid "Should the pulse follow the shape of the icon ?"
+#~ msgstr "Moet het kloppen de vorm van het icoon volgen ?"
+
+#~ msgid "Duration of the bounce :"
+#~ msgstr "Tijdsduur van het stuiteren :"
+
+#~ msgid "When bouncing, resize the icon of :"
+#~ msgstr "Tijdens het stuiteren, wijzig afmeting icoon van :"
+
+#~ msgid "the smaller, the more it will flatten."
+#~ msgstr "Hoe kleiner, hoe platter."
+
+#~ msgid "How much the icon will flatten when hurting the ground :"
+#~ msgstr "Hoe plat het icoon wordt tijdens het raken van de grond :"
+
+#~ msgid "Duration of the blink :"
+#~ msgstr "Tijdsduur van het knipperen :"
+
+#~ msgid "Set to 0 to use the default applet size"
+#~ msgstr "Stel in op 0 om de standaardgrootte van het applet te gebruiken"
+
+#~ msgid "Icon size when the penguin is not free :"
+#~ msgstr "Icoongrootte wanneer de pinguïn niet vrij is :"
+
+#~ msgid "Name of the icon when the penguin is not free :"
+#~ msgstr "Naam van icoon wanneer de pinguïn niet vrij is :"
+
+#~ msgid "Choose one of the available themes :"
+#~ msgstr "Selecteer één van de beschikbare thema´s :"
+
 #~ msgid "in seconds"
 #~ msgstr "In seconden"
+
+#~ msgid "Transparency of the penguin :"
+#~ msgstr "Doorzichtigheid van de pinguïn :"
+
+#~ msgid "Let the penguin wander everywhere in the dock ?"
+#~ msgstr "Mag pinguïn in het hele dock rondwandelen ?"
+
+#~ msgid "Ground offset :"
+#~ msgstr "Grondmarge :"
 
 #~ msgid "Action_0"
 #~ msgstr "Actie_0"
@@ -8516,6 +8960,107 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "Foreground tansparency :"
 #~ msgstr "Doorzichtigheid voorgrond :"
 
+#~ msgid "Which items should be remembered ?"
+#~ msgstr "Welke items moeten onthouden worden ?"
+
+#~ msgid "Number of items :"
+#~ msgstr "Aantal items :"
+
+#~ msgid ""
+#~ "It is especially usefull if you often select text with mouse and don't want "
+#~ "to lose your clipboard items because of a great number of selection items."
+#~ msgstr ""
+#~ "Dit is vooral handig als u vaak tekst selecteert met uw muis en u niet uw "
+#~ "klemborditems wilt verliezen, vanwege een groot aantal selectie-items."
+
+#~ msgid "Separate clipboard and selection ?"
+#~ msgstr "Klembord en selectie scheiden ?"
+
+#~ msgid "If so, number of selection items :"
+#~ msgstr "Indien ja, aantal selectie-items :"
+
+#~ msgid "Paste into Clipboard ?"
+#~ msgstr "Plakken in klembord ?"
+
+#~ msgid "Paste into Selection ?"
+#~ msgstr "Plakken in selectie ?"
+
+#~ msgid "Shortkey to pop-up the items menu :"
+#~ msgstr "Sneltoets voor het items-menu :"
+
+#~ msgid "Pop-up menus at mouse position ?"
+#~ msgstr "Pop-upmenu´s op muispositie ?"
+
+#~ msgid ""
+#~ "If some actions are associated with an item, they will be proposed to you "
+#~ "when the item is created."
+#~ msgstr ""
+#~ "Als sommige acties zijn gekoppeld aan een item, zullen deze aan u worden "
+#~ "voorgesteld wanneer het item wordt aangemaakt."
+
+#~ msgid "Enable actions ?"
+#~ msgstr "Acties inschakelen ?"
+
+#~ msgid "Display the actions when selecting an item in the history."
+#~ msgstr "Toon de acties wanneer een item uit de historie wordt geselecteerd."
+
+#~ msgid "Replay actions ?"
+#~ msgstr "Acties herhalen ?"
+
+#~ msgid "Duration of the action menu :"
+#~ msgstr "Tijdsduur van het actiemenu :"
+
+#~ msgid "A list of persistent items that can be accessed with middle-click :"
+#~ msgstr "Een lijst van vaste items, die u op kunt roepen met een middelklik :"
+
+#~ msgid "Let extern applications pop-up dialogs in the dock ?"
+#~ msgstr "Dialogen van externe toepassingen toestaan in het dock ?"
+
+#~ msgid "Let extern applications reboot the dock ?"
+#~ msgstr "Mogen externe toepassingen het dock herstarten ?"
+
+#~ msgid "Let extern applications show/hide the desklets ?"
+#~ msgstr "Mogen externe toepassingen de desklets tonen/verbergen ?"
+
+#~ msgid "Let extern applications reload the applets ?"
+#~ msgstr "Mogen externe toepassingen de applets herladen ?"
+
+#~ msgid "Let extern applications show/hide the docks ?"
+#~ msgstr "Mogen externe toepassingen de docks tonen/verbergen ?"
+
+#~ msgid "Let extern applications add launchers into the docks ?"
+#~ msgstr "Mogen externe toepassingen starters toevoegen aan de docks ?"
+
+#~ msgid "Display icons in the menu ?"
+#~ msgstr "Iconen tonen in het menu ?"
+
+#~ msgid "Shortkey to show/hide the menu :"
+#~ msgstr "Sneltoets om menu te tonen/verbergen :"
+
+#~ msgid "Shortkey to show/hide the quick-launch dialog :"
+#~ msgstr "Sneltoets om de snelstartdialoog te tonen/verbergen :"
+
+#~ msgid "Command to use to configure the menu :"
+#~ msgstr "Opdracht om menu te configureren :"
+
+#~ msgid "Show recent documents ?"
+#~ msgstr "Recente documenten tonen ?"
+
+#~ msgid "Let blank to not use this filter."
+#~ msgstr "Laat leeg om dit filter niet te gebruiken."
+
+#~ msgid "Only show files that are under this folder or its sub-folder :"
+#~ msgstr "Toon alleen bestanden in deze map of sub-mappen :"
+
+#~ msgid "in days. Set 0 to not use this filter."
+#~ msgstr "In dagen Stel in op 0 om het filter niet te gebruiken."
+
+#~ msgid "Shortkey to activate/deactivate the navigation mode :"
+#~ msgstr "Sneltoets om de navigatiemodus te activeren/deactiveren :"
+
+#~ msgid "Shortkey to activate/deactivate the finder mode :"
+#~ msgstr "Sneltoets om de vindermodus te activeren/deactiveren :"
+
 #~ msgid "Characters"
 #~ msgstr "Tekens"
 
@@ -8526,23 +9071,511 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Bijvoorbeeld Monospace, Purisa, ... Schrijf alleen de naam van het "
 #~ "lettertype zonder getal."
 
+#~ msgid "Font used to display what you type :"
+#~ msgstr "Lettertype om te gebruiken :"
+
+#~ msgid "Font size, relatively to the dock's size :"
+#~ msgstr "Grootte lettertype, relatief aan de grootte van het dock :"
+
+#~ msgid "between 1 and 9, the bigger, the heavier."
+#~ msgstr "Tussen 1 en 9, hoe groter, hoe zwaarder."
+
+#~ msgid "Text weight :"
+#~ msgstr "Tekstgewicht :"
+
+#~ msgid "Should the text be outlined ?"
+#~ msgstr "De tekst omlijnen ?"
+
+#~ msgid "Text color :"
+#~ msgstr "Tekstkleur :"
+
+#~ msgid "Color of the background of the characters :"
+#~ msgstr "Achtergrondkleur van de tekens :"
+
+#~ msgid "Write text on the top of the dock ?"
+#~ msgstr "Tekst bovenop het dock schrijven ?"
+
+#~ msgid "Choose the style of the display : "
+#~ msgstr "Selecteer de stijl van de weergave : "
+
+#~ msgid "It's the color of the graphic for high CPU values."
+#~ msgstr "Dit is de kleur voor de hoge CPU-waarden in de grafiek."
+
+#~ msgid "High values color :"
+#~ msgstr "Hoge waarden kleur :"
+
+#~ msgid "It's the color of the graphic for low CPU values."
+#~ msgstr "Dit is de kleur voor de lage CPU-waarden in de grafiek."
+
+#~ msgid "Low values color :"
+#~ msgstr "Lage waarden kleur :"
+
+#~ msgid "Background color of the graphic :"
+#~ msgstr "Achtergrondkleur van de grafiek :"
+
+#~ msgid "Show all values on same graph ?"
+#~ msgstr "Alle waarden in dezelfde grafiek tonen ?"
+
+#~ msgid "Show CPU usage ?"
+#~ msgstr "CPU-gebruik tonen ?"
+
+#~ msgid "Show SWAP too ?"
+#~ msgstr "SWAP ook tonen ?"
+
+#~ msgid "You need an nVidia and the 'nvidia-settings' tool."
+#~ msgstr "U heeft nVidia kaart nodig en ´nvidia-settings´."
+
+#~ msgid "Show graphic card temperature ?"
+#~ msgstr "Temperatuur grafische kaart tonen ?"
+
+#~ msgid "Show free memory instead of used memory ?"
+#~ msgstr "Vrij geheugen tonen in plaats van gebruikt geheugen ?"
+
+#~ msgid "Delay between refresh :"
+#~ msgstr "Tijd tussen vernieuwen :"
+
+#~ msgid ""
+#~ "You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
+#~ "movement is continue."
+#~ msgstr ""
+#~ "U heeft OpenGL nodig voor deze optie. Stel in op 0 om het niet te gebruiken, "
+#~ "1 betekent dat de beweging doorgaand is."
+
+#~ msgid "How smooth is the movement ?"
+#~ msgstr "Hoe vloeiend is de beweging ?"
+
+#~ msgid "User command to show a system monitor :"
+#~ msgstr "Gebruikersopdracht om systeemmonitor te tonen :"
+
+#~ msgid ""
+#~ "It will prevent the system monitor's icon to appear in the taskbar. The "
+#~ "applet's icon will then behave as a launcher, an appli, and an applet."
+#~ msgstr ""
+#~ "Dit voorkomt dat het icoon van de systeemmonitor zichtbaar is in de "
+#~ "taakbalk. Het icoon van het applet zal zich dan gedragen als een starter, "
+#~ "een toepassing en applet."
+
+#~ msgid "Steal the system monitor's icon in taskbar ?"
+#~ msgstr "Icoon systeemmonitor uit taakbalk stelen ?"
+
+#~ msgid ""
+#~ "When you left-click on the icon, you will get the list of the N most CPU/RAM-"
+#~ "using programs."
+#~ msgstr ""
+#~ "Wanneer u met links klikt op het icoon, dan krijgt u een lijst met "
+#~ "toepassingen met het meeste CPU-gebruik."
+
+#~ msgid "Number of programs to display in the top list :"
+#~ msgstr "Aantal toepassingen om te tonen in de toplijst :"
+
+#~ msgid "It's the first color of the gradation used to write the top list."
+#~ msgstr ""
+#~ "Dit is de eerste kleur van de gradatie om te gebruiken voor de toplijst."
+
+#~ msgid "Start color of the top list :"
+#~ msgstr "Beginkleur van de toplijst :"
+
+#~ msgid "It's the second color of the gradation used to write the top list."
+#~ msgstr ""
+#~ "Dit is de tweede kleur van de gradatie om te gebruiken voor de toplijst."
+
+#~ msgid "Stop color of the top list :"
+#~ msgstr "Eindkleur van de toplijst :"
+
+#~ msgid "Show top memory usage in % ?"
+#~ msgstr "Hoogste geheugengebruik tonen in % ?"
+
+#~ msgid "Delay between refresh of the top list :"
+#~ msgstr "Tijd tussen vernieuwen van de toplijst :"
+
+#~ msgid ""
+#~ "in celcius. The temperature will be displayed between this value and the "
+#~ "upper limit."
+#~ msgstr ""
+#~ "In celcius. De temperatuur zal getoond worden tussen deze waarde en de "
+#~ "bovengrens."
+
+#~ msgid "Lower limit of core temperature :"
+#~ msgstr "Ondergrens core-temperatuur :"
+
+#~ msgid ""
+#~ "in celcius. The temperature will be displayed between the lower limit and "
+#~ "this value."
+#~ msgstr ""
+#~ "In celcius. De temperatuur zal getoond worden tussen deze waarde en de "
+#~ "ondergrens."
+
+#~ msgid "Upper limit of core temperature :"
+#~ msgstr "Bovengrens core-temperatuur :"
+
+#~ msgid "Alert when core temperature is high ?"
+#~ msgstr "Waarschuwing wanneer core-temperatuur hoog is ?"
+
+#~ msgid "Alert limit of core temperature :"
+#~ msgstr "Core-waarschuwingstemperatuur :"
+
+#~ msgid "Play a sound during the alert ?"
+#~ msgstr "Geluid afspelen bij waarschuwing ?"
+
+#~ msgid "Sound path :"
+#~ msgstr "Pad geluid :"
+
+#~ msgid "Keep ratio ?"
+#~ msgstr "Verhouding behouden ?"
+
+#~ msgid "Mean delay between winks :"
+#~ msgstr "Tijdsduur tussen het knipogen :"
+
 #~ msgid "in ms."
 #~ msgstr "In ms."
+
+#~ msgid "Wink duration :"
+#~ msgstr "Tijdsduur van het knipogen :"
+
+#~ msgid "High refresh frequency ?"
+#~ msgstr "Hoge vernieuwingsfrequentie ?"
+
+#~ msgid "Variation for 1 mouse scroll, in % :"
+#~ msgstr "Variatie voor 1 muiswielscrol, in % :"
+
+#~ msgid "Set 0 to not use it."
+#~ msgstr "Stel in op 0 om niet te gebruiken."
+
+#~ msgid "Luminosity to automatically apply on startup :"
+#~ msgstr "Helderheid om automatisch mee op te starten :"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can move it with ALT + left_click. "
+#~ "Negative values are counted from the right/bottom of the screen"
+#~ msgstr ""
+#~ "Afhankelijk van uw vensterbeheerder, kunt u het verplaatsen met ALT + "
+#~ "linkermuisknop. Negatieve waarden worden geteld vanaf de rechteronderkant "
+#~ "van het beeldscherm"
+
+#~ msgid "Let empty to use the default sound card."
+#~ msgstr "Laat leeg om de standaardgeluidskaart te gebruiken."
+
+#~ msgid "Sound card to control :"
+#~ msgstr "Geluidskaart om te beheren :"
+
+#~ msgid "Choose which channel to control :"
+#~ msgstr "Selecteer het kanaal dat u wilt beheren :"
+
+#~ msgid ""
+#~ "On some cards, a channel only controls 1 side (right or left). You will then "
+#~ "need to specify a second channel here, to control both sides. Most of the "
+#~ "time, you should just let it empty."
+#~ msgstr ""
+#~ "Bij sommige kaarten wordt maar 1 kanaal beheert (rechts of links). U dient "
+#~ "hier dan een tweede kanaal aan te geven, om beide kanalen te kunnen beheren. "
+#~ "Over het algemeen kunt u dit leeglaten."
+
+#~ msgid "Optionnally, choose a second channel to control :"
+#~ msgstr "Selecteer hier, indien noodzakelijk, een tweede kanaal :"
+
+#~ msgid "Let empty to use the defaut command."
+#~ msgstr "Laat leeg om standaardopdracht te gebruiken."
+
+#~ msgid "Specific command to run to show an advanced sound mixer :"
+#~ msgstr "Specifieke uit te voeren opdracht, om geluidsmixer te tonen :"
+
+#~ msgid "Shortkey to show/hide the sound control dialog :"
+#~ msgstr "Sneltoets om de geluidsbeheerdialoog te tonen/verbergen :"
+
+#~ msgid "Hide the scale when mouse leaves the desklet ?"
+#~ msgstr "Schaal verbergen, wanneer de muis het desklet verlaat ?"
+
+#~ msgid "Effet to apply on the icon according to volume :"
+#~ msgstr "Effect om toe te passen op icoon bij volumewijziging:"
+
+#~ msgid "Default icon :"
+#~ msgstr "´Standaard´ icoon :"
+
+#~ msgid "Broken icon :"
+#~ msgstr "´Gebroken´ icoon :"
+
+#~ msgid "Mute icon :"
+#~ msgstr "´Dempen´ icoon :"
+
+#~ msgid "Let it empty to use the location's name if available."
+#~ msgstr ""
+#~ "Laat leeg om de naam van de locatie te gebruiken, indien beschikbaar."
+
+#~ msgid "Module"
+#~ msgstr "Module"
+
+#~ msgid "Show the date :"
+#~ msgstr "Datum tonen :"
+
+#~ msgid "for numeric format only."
+#~ msgstr "Alleen voor numeriek formaat."
+
+#~ msgid "Should the time be displayed as a 24h format ?"
+#~ msgstr "Tijd tonen in 24-uurs formaat ?"
+
+#~ msgid "if not, then the applet will update time once a minute, saving CPU."
+#~ msgstr ""
+#~ "Indien nee, zal het applet eenmaal per minuut bijgewerkt worden om CPU-"
+#~ "gebruik te beperken."
+
+#~ msgid "Show seconds ?"
+#~ msgstr "Seconden tonen ?"
+
+#~ msgid ""
+#~ "In ms. Set 0 to not have a smooth animation, set 1000 to have a continuous "
+#~ "animation. It requires OpenGL."
+#~ msgstr ""
+#~ "In ms. Stel in op 0 voor een vloeiende animatie, stel in op 1000 voor een "
+#~ "doorgaande animatie. Dit vereist OpenGL."
+
+#~ msgid "Display seconds with smooth animation of a duration of :"
+#~ msgstr "Tijdsduur om seconden te tonen met een vloeiende animatie :"
+
+#~ msgid ""
+#~ "For exemple :Europe/Paris, :Japan, etc. Let empty to get the local time."
+#~ msgstr ""
+#~ "Bijvoorbeeld :Europa/Parijs, :Japan, etc. Laat leeg om lokale tijd te "
+#~ "gebruiken."
+
+#~ msgid "Timezone :"
+#~ msgstr "Tijdzone :"
+
+#~ msgid ""
+#~ "The analogic view is based on CairoClock; otherwise it will be displayed in "
+#~ "a numeric way."
+#~ msgstr ""
+#~ "De analoge weergave is gebaseerd op CairoClock; anders zal de numerieke "
+#~ "wergave gebruikt worden."
 
 #~ msgid "Text color for the numeric display:"
 #~ msgstr "Tekstkleur voor de numerieke weergave :"
 
+#~ msgid "Weight of the text :"
+#~ msgstr "Gewicht van de tekst :"
+
 #~ msgid "Font used for the numeric display :"
 #~ msgstr "Lettertype voor de numerieke weergave :"
+
+#~ msgid "Image to draw on the background :"
+#~ msgstr "Afbeelding om te tekenen op de achtergrond :"
+
+#~ msgid "List of available themes for the analogic display :"
+#~ msgstr "Lijst met beschikbare thema´s voor de analoge weergave :"
+
+#~ msgid "Text color of the date :"
+#~ msgstr "Tekstkleur voor de datum :"
+
+#~ msgid "Setup time and date"
+#~ msgstr "Stel tijd en datum in"
+
+#~ msgid "Let empty to use default command."
+#~ msgstr "Laat leeg om standaardopdracht te gebruiken."
+
+#~ msgid "Specific command to run :"
+#~ msgstr "Specifieke opdracht om uit te voeren :"
+
+#~ msgid "Add or remove an alarm :"
+#~ msgstr "Herinnering toevoegen of verwijderen :"
+
+#~ msgid ""
+#~ "Except for switching to another WM, you must activate the Dbus plugin in "
+#~ "Compiz, along with the plug-in corresponding to the desired action."
+#~ msgstr ""
+#~ "Behalve wanneer u naar een andere vensterbeheerder wisselt, moet u in Compiz "
+#~ ", de Dbus plug-in activeren samen met de plug-in voor de gewenste actie."
+
+#~ msgid "Choose an action for the middle click on the icon :"
+#~ msgstr "Selecteer een actie voor het middelklikken op het icoon :"
 
 #~ msgid "Show Desktop"
 #~ msgstr "Toon bureaublad"
 
+#~ msgid ""
+#~ "This command will be used to launch the system WM; let it blank to use the "
+#~ "default one."
+#~ msgstr ""
+#~ "Deze opdracht zal gebruikt worden om de vensterbeheerder van het systeem te "
+#~ "starten. Laat leeg als u de standaardwaarde wilt gebruiken."
+
+#~ msgid "Custom command for system's Windows Manager :"
+#~ msgstr "Aangepaste opdracht voor vensterbeheerder van systeem :"
+
+#~ msgid ""
+#~ "If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
+#~ "Compiz from the dock then."
+#~ msgstr ""
+#~ "Als Compiz onverwachts stopt, zal Cairo-Dock het herstarten. U moet dan "
+#~ "Compiz afsluiten in het dock."
+
+#~ msgid "Auto-reload Compiz ?"
+#~ msgstr "Compiz automatisch herladen ?"
+
+#~ msgid ""
+#~ "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
+#~ "quit Compiz from the dock then."
+#~ msgstr ""
+#~ "Als de decorateur onverwachts stopt, zal Cairo-Dock het herstarten. U moet "
+#~ "dan Compiz afsluiten in het dock."
+
+#~ msgid "Auto-reload the Decorator ?"
+#~ msgstr "Decorateur automatisch herladen ?"
+
+#~ msgid "Load Compiz with options at applet's startup."
+#~ msgstr "Laadt Compiz met opties tijdens starten van applet."
+
+#~ msgid "Force Compiz settings at startup ?"
+#~ msgstr "Compiz-instellingen forceren tijdens opstarten ?"
+
+#~ msgid ""
+#~ "It will prevent the CSSM or Emerald icon to appear in the task bar. The "
+#~ "corresponding subdock's icons will then behave as launcher and an appli."
+#~ msgstr ""
+#~ "Dit voorkomt dat het CSSM of Emerald icoon verschijnt in de taakbalk. De "
+#~ "corresponderende iconen van de sub-docks zullen zich dan gedragen als een "
+#~ "starter en een toepassing ."
+
+#~ msgid "Steal the application's icon in taskbar ?"
+#~ msgstr "Icoon toepassing uit taakbalk stelen ?"
+
+#~ msgid ""
+#~ "Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
+#~ "Layer plug-ins. Otherwise they will be available in the menu."
+#~ msgstr ""
+#~ "Toon 2 iconen in het applet's sub-dock voor Compiz Expo & Widget Layer plug-"
+#~ "ins. Anders zullen ze beschikbaar zijn in het menu."
+
+#~ msgid "Add Exposition & Widget Layer to sub-dock ?"
+#~ msgstr "Expo & Widget Layer aan sub-dock toevoegen ?"
+
+#~ msgid ""
+#~ "Display in the applet's sub-dock an icon for the Emerald's configuration "
+#~ "panel."
+#~ msgstr ""
+#~ "Toon een icoon in het sub-dock van het applet, voor het configuratiepaneel "
+#~ "van Emerald."
+
+#~ msgid "Add Emerald's Configuration to sub-dock ?"
+#~ msgstr "Emerald's configuratie aan het sub-dock toevoegen ?"
+
+#~ msgid ""
+#~ "With strict binding textures are bound whenever they are enabled, with loose "
+#~ "binding they are enabled when created. The Nvidia driver seems a bit slow "
+#~ "when binding textures, that's why this option gives a heavy performance "
+#~ "increase on Nvidia."
+#~ msgstr ""
+#~ "Met ´Strict Binding´ worden de textures verbonden als ze geactiveerd worden, "
+#~ "met ´Loose Binding´ worden ze geactiveerd als ze gemaakt worden. De Nvidia-"
+#~ "driver is een beetje langzaam met het verbinden van textures, dat is waarom "
+#~ "deze optie een grote snelheidstoename geeft met Nvidia."
+
+#~ msgid "Use Loose Binding ?"
+#~ msgstr "´Loose Binding´ gebruiken ?"
+
+#~ msgid "Use thoses options only if you know them."
+#~ msgstr "Gebruik deze opties alleen als u ze kent."
+
+#~ msgid "Use Indirect Rendering ?"
+#~ msgstr "Indirecte rendering gebruiken ?"
+
+#~ msgid "Usefull when having dual or more X separate screens."
+#~ msgstr "Bruikbaar als u twee of meer, door X gescheiden beeldschermen heeft."
+
+#~ msgid "Only Current Screen ?"
+#~ msgstr "Alleen huidig scherm ?"
+
+#~ msgid "By default it will be Emerald."
+#~ msgstr "Standaard is dit Emerald."
+
+#~ msgid "Choose your Windows Decorator :"
+#~ msgstr "Selecteer uw vensterdecorateur :"
+
+#~ msgid "Let it empty to use default sub-dock view."
+#~ msgstr ""
+#~ "Laat leeg als u de standaardweergave van de sub-docks wilt gebruiken."
+
 #~ msgid "Name of the view used for the sub-dock :"
 #~ msgstr "Naam van weergave gebruikt voor het sub-dock :"
 
+#~ msgid "Let t empty to use the default icon."
+#~ msgstr "Laat leeg om standaardicoon te gebruiken."
+
+#~ msgid "Name of an image for the 'default' icon :"
+#~ msgstr "Naam van afbeelding voor het 'Standaard' icoon :"
+
+#~ msgid "Name of an image for the 'broken' icon :"
+#~ msgstr "Naam van afbeelding voor het 'Gebroken' icoon :"
+
+#~ msgid "Name of an image for the 'other wm' icon :"
+#~ msgstr "Naam van een afbeelding voor het 'Andere vensterbeheerder' icoon :"
+
+#~ msgid "Name of an image for the 'setting' icon :"
+#~ msgstr "Naam van een afbeelding voor het 'Instelling' icoon :"
+
+#~ msgid "Name of an image for the 'emerald' icon :"
+#~ msgstr "Naam van een afbeelding voor het 'Emerald' icoon :"
+
+#~ msgid "Name of an image for the 'reload' icon :"
+#~ msgstr "Naam van een afbeelding voor het 'Herladen' icoon :"
+
+#~ msgid "Name of an image for the 'exposition' icon :"
+#~ msgstr "Naam van een afbeelding voor het 'Expo' icoon :"
+
+#~ msgid "Name of an image for the 'widget layer' icon :"
+#~ msgstr "Naam van een afbeelding voor het 'Widget layer' icoon :"
+
+#~ msgid "Corner radius :"
+#~ msgstr "Kromming hoek :"
+
+#~ msgid "Border width :"
+#~ msgstr "Breedte rand :"
+
+#~ msgid "Line color of the bubble :"
+#~ msgstr "Lijnkleur van de ballon :"
+
 #~ msgid "Border width of the plane :"
 #~ msgstr "Breedte rand van het vlak :"
+
+#~ msgid "Line color of the plane :"
+#~ msgstr "Lijnkleur van het vlak :"
+
+#~ msgid "Color of the plane :"
+#~ msgstr "Kleur van het vlak :"
+
+#~ msgid "Color of the margin :"
+#~ msgstr "Kleur van de omtrek :"
+
+#~ msgid "Curve the sides too ?"
+#~ msgstr "De zijkanten ook krommen ?"
+
+#~ msgid "Enable info-bubbles ?"
+#~ msgstr "Info-ballonnen activeren ?"
+
+#~ msgid "Keep a copy of each uploaded image ?"
+#~ msgstr "Een kopie bewaren van elke geüploade afbeelding ?"
+
+#~ msgid "If so, display the last image on the icon ?"
+#~ msgstr "Indien ja, wilt u de laatste afbeelding op het icoon tonen ?"
+
+#~ msgid "Custom script for text upload : "
+#~ msgstr "Aangepast script voor uploaden tekst : "
+
+#~ msgid "Custom script for image upload : "
+#~ msgstr "Aangepast script voor uploaden afbeelding : "
+
+#~ msgid "Custom script for video upload : "
+#~ msgstr "Aangepast script voor uploaden video : "
+
+#~ msgid "Custom script for file upload : "
+#~ msgstr "Aangepast script voor uploaden bestand : "
+
+#~ msgid "Let empty to upload files into '~/Dropbox/Public'."
+#~ msgstr "Laat leeg om bestanden te uploaden naar '~/Dropbox/Public'."
+
+#~ msgid "The lower, the more the point of view is low on the plane."
+#~ msgstr "Hoe lager, hoe lager het gezichtspunt op het vlak."
+
+#~ msgid "Height of the vanishing point :"
+#~ msgstr "Hoogte van verdwijnpunt :"
 
 #~ msgid "Choose the way separators are drawn :"
 #~ msgstr "Selecteer de manier waarop scheidingen getekend worden :"
@@ -8559,11 +9592,203 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "For flat separators, you can specify their color:"
 #~ msgstr "Voor platte scheidingen kunt u een kleur aangeven :"
 
+#~ msgid ""
+#~ "In degrees, regarding the vertical position. It's a sort of inclination of "
+#~ "the plane on the horizontal, giving the 3D feeling. So setting it to 0 means "
+#~ "the plane is not inclined at all (vertical)."
+#~ msgstr ""
+#~ "In graden, wat betreft de verticale positie. Het is een soort van helling "
+#~ "van het vlak ten opzichte van horizontaal, waardoor het 3D-gevoel ontstaat. "
+#~ "Als u het op 0 instelt zal het vlak helemaal niet hellen (verticaal)."
+
+#~ msgid "Inclination of the plane :"
+#~ msgstr "Helling van het vlak :"
+
+#~ msgid ""
+#~ "0.5 means the dock is half-folded, so half the icons are on the foreground, "
+#~ "and half are on the background."
+#~ msgstr ""
+#~ "0.5 betekent dat het dock half opgevouwen is, waardoor de helft van de "
+#~ "iconen op de voorgrond zijn en de andere helft op de achtergrond."
+
+#~ msgid "Percentage of the dock's width that appears on the foreground :"
+#~ msgstr ""
+#~ "Percentage van de breedte van het dock, dat op de voorgrond verschijnt :"
+
+#~ msgid ""
+#~ "The greater, the deeper. It is in fact the gap between background icons' "
+#~ "bottom and foreground icons' top (in pixels)."
+#~ msgstr ""
+#~ "Hoe groter, hoe dieper. Het is in feite de ruimte tussen de achtergrond en "
+#~ "icoononderkant en tussen de voorgrond en icoonbovenkant (in pixels)."
+
+#~ msgid "Depth of the plane :"
+#~ msgstr "Diepte van het vlak :"
+
 #~ msgid "otherwise they will turn."
 #~ msgstr "Anders worden ze omgedraaid."
 
+#~ msgid "Always show icons' face ?"
+#~ msgstr "Altijd voorkant iconen tonen ?"
+
+#~ msgid "The higher it is, the sooner the parabole will be curved."
+#~ msgstr "Hoe hoger, hoe eerder de parabool kromt."
+
+#~ msgid "Curvature :"
+#~ msgstr "Kromming :"
+
+#~ msgid "The parabole will be conscricted to a rectangle of this proportion."
+#~ msgstr ""
+#~ "De parabool zal gemaakt worden tot een rechthoek van deze proporties."
+
+#~ msgid "Ratio height/width :"
+#~ msgstr "Verhouding hoogte/breedte :"
+
+#~ msgid "0 means the wave is totally flat, 1 means the wave is maximal."
+#~ msgstr "0 betekent dat de golf plat is, 1 betekent dat de golf maximaal is."
+
+#~ msgid "Magnitude of the wave :"
+#~ msgstr "Hoogte van de golf :"
+
+#~ msgid "Space between icons and their label :"
+#~ msgstr "Ruimte tussen iconen en hun labels :"
+
+#~ msgid ""
+#~ "It may recquire more CPU during the unfolding animation, except with OpenGL."
+#~ msgstr ""
+#~ "Dit vraagt mogelijk meer van de processor tijdens de ontvouwanimatie, "
+#~ "behalve met OpenGL."
+
+#~ msgid "Draw labels while unfolding ?"
+#~ msgstr "Labels tekenen tijdens ontvouwen ?"
+
+#~ msgid "Space between rows :"
+#~ msgstr "Ruimte tussen rijen :"
+
+#~ msgid "Space between icons :"
+#~ msgstr "Ruimte tussen iconen :"
+
+#~ msgid ""
+#~ "0 means the wave is totally flat, 1 means the wave is identical to other "
+#~ "views."
+#~ msgstr ""
+#~ "0 betekent dat de golf plat is, 1 betekent dat de golf gelijk is aan andere "
+#~ "weergaves."
+
+#~ msgid "Number of icons on the first row :"
+#~ msgstr "Aantal iconen op de eerste rij :"
+
+#~ msgid ""
+#~ "in degree. The smaller, the more the cone is narrow. 180° means the cone is "
+#~ "widely opened."
+#~ msgstr ""
+#~ "In graden. Hoe kleiner, hoe smaller de hoorn is. 180° betekent dat de hoorn "
+#~ "geheel openstaat."
+
+#~ msgid "Cone's width :"
+#~ msgstr "Breedte van hoorn :"
+
+#~ msgid "Set transparency to 0 to not use it. It is quite slow with cairo."
+#~ msgstr ""
+#~ "Stel doorzichtigheid in op 0 om dit niet te gebruiken. Het is nogal traag "
+#~ "met cairo."
+
+#~ msgid "Bow color :"
+#~ msgstr "Boogkleur :"
+
+#~ msgid "Line color :"
+#~ msgstr "Lijnkleur :"
+
 #~ msgid "SimpleSlide"
 #~ msgstr "Diavoorstelling"
+
+#~ msgid "Space between columns :"
+#~ msgstr "Ruimte tussen kolommen :"
+
+#~ msgid "Max size of icons :"
+#~ msgstr "Maximum grootte iconen :"
+
+#~ msgid "Sinusoidal wave radius :"
+#~ msgstr "Radius op-en neergaande golf :"
+
+#~ msgid "Use a linear wave rather than a sinusoidal one ?"
+#~ msgstr "Liever een lineaire golf gebruiken als een op- en neergaande ?"
+
+#~ msgid "Pack icons rather horizontally than vertically ?"
+#~ msgstr "Liever horizontale als verticale iconen ?"
+
+#~ msgid "Display text for all icons ?"
+#~ msgstr "Tekst tonen voor alle iconen ?"
+
+#~ msgid "Draw a background ?"
+#~ msgstr "Achtergrond tekenen ?"
+
+#~ msgid "First gradient color :"
+#~ msgstr "Eerste kleur van de gradatie :"
+
+#~ msgid "Second gradient color :"
+#~ msgstr "Tweede kleur van de gradatie :"
+
+#~ msgid "Top to bottom gradient ?"
+#~ msgstr "Gradatie van boven naar beneden ?"
+
+#~ msgid "Left to right gradient ?"
+#~ msgstr "Gradatie van links naar rechts ?"
+
+#~ msgid "Border line color :"
+#~ msgstr "Lijnkleur rand :"
+
+#~ msgid "Arrow Height :"
+#~ msgstr "Hoogte pijl :"
+
+#~ msgid "Arrow shift percent :"
+#~ msgstr "Verplaatsing pijl in procent :"
+
+#~ msgid "The lower, the more the curve will seem flat."
+#~ msgstr "Hoe lager, hoe minder kromming."
+
+#~ msgid "Curvature of the curve in percent :"
+#~ msgstr "Kromming van de kromming in procent :"
+
+#~ msgid "Amplitude of the curve."
+#~ msgstr "Hoogte van de kromming."
+
+#~ msgid ""
+#~ "Typically an arrow, that will be displayed when you try to drop a new "
+#~ "launcher into the dock. Let empty to use the default one."
+#~ msgstr ""
+#~ "Een pijl die getoond wordt, wanneer u een nieuwe starter naar het dock "
+#~ "sleept. Laat leeg als u de standaardwaarde wilt gebruiken."
+
+#~ msgid "Image for the drag'n'drop animation :"
+#~ msgstr "Afbeelding voor sleepanimatie :"
+
+#~ msgid ""
+#~ "An emblem that will be displayed when you try to drop something onto an "
+#~ "icon. Let empty to use the default one."
+#~ msgstr ""
+#~ "Een embleem dat getoond wordt wanneer u probeert om iets naar een icoon te "
+#~ "slepen. Laat leeg als u de standaardwaarde wilt gebruiken."
+
+#~ msgid "Speed :"
+#~ msgstr "Snelheid :"
+
+#~ msgid "Name of an image to overwrite the theme's empty image :"
+#~ msgstr ""
+#~ "Naam van een afbeelding om thema´s ´Leeg´ afbeelding te overschrijven :"
+
+#~ msgid "Name of an image to overwrite the theme's full image :"
+#~ msgstr ""
+#~ "Naam van een afbeelding om thema´s ´Vol´ afbeelding te overschrijven :"
+
+#~ msgid "Number of trashes"
+#~ msgstr "Aantal prullenbakken"
+
+#~ msgid ""
+#~ "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
+#~ msgstr ""
+#~ "In Mb. U wordt gewaarschuwd bij overschrijding. Stel in op 0 om dit niet te "
+#~ "gebruiken."
 
 #~ msgid "Maximum total size of all dustbins :"
 #~ msgstr "Maximum totaalgrootte van alle prullenbakken :"
@@ -8571,8 +9796,17 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "Maximum size authorized for each dustbin :"
 #~ msgstr "Maximum toegewezen grootte voor elke prullenbak :"
 
+#~ msgid "Ask confirmation before empty Trash ?"
+#~ msgstr "Bevestiging vragen voor het legen van de prullenbak ?"
+
 #~ msgid "Desktop-less support"
 #~ msgstr "Bureaubladloze ondersteuning"
+
+#~ msgid "in seconds, only used if you can't monitor directories."
+#~ msgstr "In seconden, wordt alleen gebruikt als u geen mappen kunt monitoren."
+
+#~ msgid "Interval of time to check if dustbin is full/empty :"
+#~ msgstr "Tijdsinterval om te controleren of prullenbak vol/leeg is :"
 
 #~ msgid ""
 #~ "Only use this if you notice that the applet can't display the trash on click."
@@ -8583,8 +9817,126 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "Alternative file browser used to show a trash :"
 #~ msgstr "Alternatieve bestandsbeheerder om prullenbak te tonen :"
 
+#~ msgid "Draw in background ?"
+#~ msgstr "Tekenen op achtergrond ?"
+
+#~ msgid "Rotate effects with dock ?"
+#~ msgstr "Effecten draaien met dock ?"
+
+#~ msgid "It will slightly alter the colors, so you may have to modify them."
+#~ msgstr "De kleuren zullen iets afwijken, mogelijk moet u ze aanpassen."
+
+#~ msgid "Add luminance ?"
+#~ msgstr "Helderheid toevoegen ?"
+
+#~ msgid "Number of particles :"
+#~ msgstr "Aantal deeltjes :"
+
+#~ msgid "Particle size :"
+#~ msgstr "Grootte van deeltjes :"
+
+#~ msgid "Particle speed :"
+#~ msgstr "Snelheid deeltjes :"
+
+#~ msgid "Animation on disappearance :"
+#~ msgstr "Animatie voor verdwijnen :"
+
+#~ msgid "BlackHole"
+#~ msgstr "Zwart gat"
+
+#~ msgid "Animation on appearance :"
+#~ msgstr "Animatie voor verschijnen :"
+
+#~ msgid "Evaporate upward ?"
+#~ msgstr "Omhoog verdampen ?"
+
+#~ msgid "Number of pieces :"
+#~ msgstr "Aantal delen :"
+
+#~ msgid "Explosion radius :"
+#~ msgstr "Explosiebereik :"
+
+#~ msgid "Break the icon in cubes ?"
+#~ msgstr "Het icoon breken in kubussen ?"
+
+#~ msgid "The greatest, the fastest the icon will collapse to the center."
+#~ msgstr "Hoe groter, hoe sneller het icoon zal inklappen naar het midden."
+
+#~ msgid "Attraction of the hole :"
+#~ msgstr "Aantrekkingskracht van zwarte gat :"
+
+#~ msgid "caps lock, num lock, etc"
+#~ msgstr "Caps lock, num lock, etc"
+
+#~ msgid "Display keyboard locks as quick-info ?"
+#~ msgstr "Lock-toetsen van toetsenbord tonen als snel-info ?"
+
+#~ msgid ""
+#~ "in ms. Set it to 0 if you don't want an animation when the keyboard layout "
+#~ "changes."
+#~ msgstr ""
+#~ "In ms. Stel in op 0 als u geen animatie wilt bij wisseling van de indeling."
+
+#~ msgid "Duration of the transition animation :"
+#~ msgstr "Tijdsduur van de wisselingsanimatie :"
+
+#~ msgid "Text color"
+#~ msgstr "Tekstkleur"
+
+#~ msgid "Outline text ?"
+#~ msgstr "Tekst omlijnen ?"
+
+#~ msgid "Font :"
+#~ msgstr "Lettertype :"
+
+#~ msgid "Let empty to execute the default command."
+#~ msgstr "Laat leeg als u de standaardopdracht wilt uitvoeren."
+
+#~ msgid "User-defined command to execute to log-out :"
+#~ msgstr ""
+#~ "Door gebruiker bepaalde opdracht om uit te voeren, om uit te loggen :"
+
+#~ msgid ""
+#~ "It will be available on middle click. Let empty to execute the default "
+#~ "command, that greatly depends on your distribution. Sometimes the command to "
+#~ "shutdown is just the same as the one to log out."
+#~ msgstr ""
+#~ "Dit zal beschikbaar zijn bij middelklik. Laat dit leeg om de "
+#~ "standaardopdracht uit te voeren, die sterk afhangt van uw distributie. Soms "
+#~ "is de opdracht om uit te loggen hetzelfde als die om de computer af te "
+#~ "sluiten."
+
+#~ msgid "User-defined command to execute to shutdown :"
+#~ msgstr ""
+#~ "Door gebruiker bepaalde opdracht om uit te voeren, om computer af te sluiten "
+#~ ":"
+
+#~ msgid "Invert buttons ?"
+#~ msgstr "Knoppen omdraaien ?"
+
+#~ msgid "Show new messages' content ?"
+#~ msgstr "Inhoud nieuwe e-mails tonen ?"
+
+#~ msgid "Maximum of new messages shown ?"
+#~ msgstr "Maximum aantal te tonen nieuwe e-mails ?"
+
+#~ msgid ""
+#~ "If you have any problem with the applet, uncheck this option during the "
+#~ "maintenance mode, then let the dock launch itself, and remove/mdify the mail "
+#~ "accounts you want."
+#~ msgstr ""
+#~ "Als u problemen ondervindt met dit applet, vink dan deze optie uit tijdens "
+#~ "de onderhoudsmodus, laat daarna het dock zichzelf starten en verwijder of "
+#~ "pas de gewenste e-mailaccounts aan."
+
+#~ msgid "Check mail account on startup ?"
+#~ msgstr "E-mailaccount controleren tijdens opstarten ?"
+
 #~ msgid "Theme overriding"
 #~ msgstr "Thema personaliseren"
+
+#~ msgid "Prefered mail application to launch on left-click :"
+#~ msgstr "Geprefereerde e-mailprogramma om te starten bij linkerklik :"
 
 #~ msgid ""
 #~ "only use this if it differs from its name. Generally it is not the case, "
@@ -8592,6 +9944,110 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgstr ""
 #~ "Gebruik dit alleen wanneer de namen verschillen. In het algemeen is dit niet "
 #~ "het geval, alleen bij Thunderbird."
+
+#~ msgid "Class of the mail application (optionnal)"
+#~ msgstr "Klasse van het e-mailprogramma (optioneel)"
+
+#~ msgid ""
+#~ "It will prevent the application's icon to appear in the task bar. The "
+#~ "applet's icon will then behave as a launcher, an appli, and an applet."
+#~ msgstr ""
+#~ "Dit voorkomt dat het icoon van de toepassing zichtbaar is in de taakbalk. "
+#~ "Het icoon van het applet zal zich dan gedragen als een starter, een "
+#~ "toepassing en applet."
+
+#~ msgid "Add an mail account"
+#~ msgstr "E-mailaccount toevoegen"
+
+#~ msgid "The new account will be created with specified type and name."
+#~ msgstr "Het nieuwe account wordt aangemaakt met gespecificeerd type en naam."
+
+#~ msgid "Also blur on mouse movement ?"
+#~ msgstr "Ook vervagen bij muisbewegingen ?"
+
+#~ msgid "Blur amount :"
+#~ msgstr "Hoeveelheid vervaging :"
+
+#~ msgid ""
+#~ "It will prevent the player's icon to appear in the task bar. The applet's "
+#~ "icon will then behave as a launcher, an appli, and an applet."
+#~ msgstr ""
+#~ "Dit voorkomt dat het icoon van de speler zichtbaar is in de taakbalk. Het "
+#~ "icoon van het applet zal zich dan gedragen als een starter, een toepassing "
+#~ "en applet."
+
+#~ msgid "Steal the player's icon from taskbar ?"
+#~ msgstr "Icoon van speler stelen uit taakbalk ?"
+
+#~ msgid "Show an info-bubble ?"
+#~ msgstr "Info-ballon tonen ?"
+
+#~ msgid "in s."
+#~ msgstr "In ms."
+
+#~ msgid "Time length of info-bubbles :"
+#~ msgstr "Tijdsduur van info-ballonnen :"
+
+#~ msgid "Animation when music changes :"
+#~ msgstr "Animatie wanneer muziek verandert :"
+
+#~ msgid "Time Left"
+#~ msgstr "Resterende tijd"
+
+#~ msgid "N° of track"
+#~ msgstr "n° van nummer"
+
+#~ msgid "Display album's cover ?"
+#~ msgstr "Albumhoezen tonen ?"
+
+#~ msgid "Personnalisation"
+#~ msgstr "Personaliseren"
+
+#~ msgid "Let it empty to use the default icon."
+#~ msgstr "Laat leeg om standaardicoon te gebruiken."
+
+#~ msgid "Name of an image for the 'play' icon :"
+#~ msgstr "Naam van een afbeelding voor het 'Afspelen' icoon :"
+
+#~ msgid "Name of an image for the 'stop' icon :"
+#~ msgstr "Naam van een afbeelding voor het 'Stoppen' icoon :"
+
+#~ msgid "Name of an image for the 'pause' icon :"
+#~ msgstr "Naam van een afbeelding voor het 'Pauzeren' icoon :"
+
+#~ msgid "It's the color of the graphic for high rate values."
+#~ msgstr "Dit is de kleur voor de hoge waarden in de grafiek."
+
+#~ msgid "It's the color of the graphic for low rate values."
+#~ msgstr "Dit is de kleur voor de lage waarden in de grafiek."
+
+#~ msgid "By default it will be 'eth0'."
+#~ msgstr "Standaard is dit 'eth0'."
+
+#~ msgid "interface :"
+#~ msgstr "Interface :"
+
+#~ msgid "Delay between 2 measures :"
+#~ msgstr "Tijd tussen 2 metingen :"
+
+#~ msgid ""
+#~ "You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
+#~ "transition is continue."
+#~ msgstr ""
+#~ "U heeft OpenGL nodig voor deze optie. Stel in op 0 om het niet te gebruiken, "
+#~ "1 betekent dat de overgang continue is."
+
+#~ msgid "Let empty to use he default one."
+#~ msgstr "Laat leeg om de standaardwaarde te gebruiken."
+
+#~ msgid "Icon name :"
+#~ msgstr "Icoonnaam :"
+
+#~ msgid "Icon's filename when on battery :"
+#~ msgstr "Bestandsnaam icoon wanneer op accu :"
+
+#~ msgid "Effect to apply on the icon according to charge :"
+#~ msgstr "Effect om toe te passen op icoon bij het laden :"
 
 #~ msgid "nothing"
 #~ msgstr "Niets"
@@ -8605,17 +10061,69 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "draw bar"
 #~ msgstr "Balk tekenen"
 
+#~ msgid "Interval of time between 2 checks :"
+#~ msgstr "Interval tussen 2 controles :"
+
 #~ msgid "Information to be displayed on the icon :"
 #~ msgstr "Informatie om te tonen op het icoon :"
 
 #~ msgid "time"
 #~ msgstr "Tijd"
 
+#~ msgid "Alert"
+#~ msgstr "Waarschuwing"
+
+#~ msgid "Alert when battery charged ?"
+#~ msgstr "Waarschuwing wanneer accu opgeladen is ?"
+
+#~ msgid "Let it empty to have no sound"
+#~ msgstr "Laat leeg wanneer u geen geluid wilt"
+
+#~ msgid "Use a sound :"
+#~ msgstr "Gebruik een geluid :"
+
+#~ msgid "Alert when low battery ?"
+#~ msgstr "Waarschuwing wanneer accu bijna leeg is ?"
+
+#~ msgid "Battery level :"
+#~ msgstr "Acculading :"
+
+#~ msgid "Alert when battery charge is critical ?"
+#~ msgstr "Waarschuwing wanneer acculading kritiek is ?"
+
 #~ msgid "Animate icon during the alert ?"
 #~ msgstr "Icoon animeren tijdens waarschuwing ?"
 
 #~ msgid "Animation during alert :"
 #~ msgstr "Animatie tijdens waarschuwing :"
+
+#~ msgid "Let empty to use the folder's name."
+#~ msgstr "Laat leeg om mapnaam te gebruiken."
+
+#~ msgid "It can be quite heavy to load a lot of icons."
+#~ msgstr "De belasting kan groot zijn bij het laden van veel iconen."
+
+#~ msgid "List folders first ?"
+#~ msgstr "Mappen als eerste ?"
+
+#~ msgid "Ignore case ?"
+#~ msgstr "Hoofdletters negeren ?"
+
+#~ msgid "Show hidden files ?"
+#~ msgstr "Verborgen bestanden tonen ?"
+
+#~ msgid ""
+#~ "Number of items loaded at once. Setting a high value speeds up a little the "
+#~ "loading, but blocks the appli more."
+#~ msgstr ""
+#~ "Aantal items om tegelijk te laden. Bij een hoge waarde zal het laden sneller "
+#~ "gaan, maar het zal de toepassingen meer belemmeren."
+
+#~ msgid "Gradual building of the menu :"
+#~ msgstr "Geleidelijke opbouw van het menu :"
+
+#~ msgid "Default title :"
+#~ msgstr "Standaardtitel :"
 
 #~ msgid "Activate info-bubbles ?"
 #~ msgstr "Info-ballonnen activeren ?"
@@ -8643,16 +10151,49 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "n° of track"
 #~ msgstr "n° van nummer"
 
+#~ msgid "List of available themes for covers (requires OPENGL) :"
+#~ msgstr "Lijst met beschikbare thema´s voor albumhoezen (vereist OpenGL) :"
+
 #~ msgid ""
 #~ "Override the theme preference to not display the OSD with OpenGL themes ?"
 #~ msgstr ""
 #~ "Themavoorkeuren, om de OSD met OpenGL niet te tonen, niet gebruiken ?"
 
+#~ msgid "List drives and volumes ?"
+#~ msgstr "Schijven en volumes tonen ?"
+
+#~ msgid "List network ?"
+#~ msgstr "Netwerk tonen ?"
+
+#~ msgid "List bookmarks ?"
+#~ msgstr "Bladwijzers tonen ?"
+
+#~ msgid "Separate different shortcuts with separators ?"
+#~ msgstr "Verschillende snelkoppelingen scheiden met scheidingen ?"
+
+#~ msgid "Free space percent"
+#~ msgstr "Procent vrije ruimte"
+
+#~ msgid "Used space percent"
+#~ msgstr "Procent gebruikte ruimte"
+
 #~ msgid "In seconds."
 #~ msgstr "In seconden."
 
+#~ msgid "Display disk usage with a bar ?"
+#~ msgstr "Schijfgebruik tonen met balk ?"
+
 #~ msgid "Numbrer of sources :"
 #~ msgstr "Aantal bronnen :"
+
+#~ msgid "In round per second."
+#~ msgstr "In rondjes per seconde."
+
+#~ msgid "Show mouse on :"
+#~ msgstr "Toon muis op :"
+
+#~ msgid "dock"
+#~ msgstr "Dock"
 
 #~ msgid "desklet"
 #~ msgstr "Desklet"
@@ -8660,17 +10201,135 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "both"
 #~ msgstr "Beide"
 
+#~ msgid "Number of particles per source :"
+#~ msgstr "Aantal deeltjes per bron :"
+
+#~ msgid "Particles life time :"
+#~ msgstr "Bestaansduur van deeltjes :"
+
 #~ msgid "In pixels."
 #~ msgstr "In pixels."
 
+#~ msgid "The higher, the more particles will scatter from their source."
+#~ msgstr "Hoe hoger, hoe meer deeltjes uitgestrooid worden vanaf hun bron."
+
+#~ msgid "Scattering :"
+#~ msgstr "Uitstrooing :"
+
 #~ msgid "Image name to show desklets :"
 #~ msgstr "Bestandsnaam afbeelding om de desklets te tonen :"
+
+#~ msgid "Image name to hide desklets :"
+#~ msgstr "Bestandsnaam afbeelding om de desklets te verbergen :"
+
+#~ msgid "Show/hide desklets that are on the widget layer too ?"
+#~ msgstr "Desklets tonen/verbergen die op de ´Widget layer´ geplaatst zijn ?"
 
 #~ msgid "Shortkey to show/hide the desklets :"
 #~ msgstr "Sneltoets om desklets te tonen/verbergen :"
 
 #~ msgid "Directory"
 #~ msgstr "Map"
+
+#~ msgid "Directory of the images :"
+#~ msgstr "Afbeeldingenmap :"
+
+#~ msgid "Scan in sub direcotries ?"
+#~ msgstr "Submappen scannen ?"
+
+#~ msgid "Randomly browse files ?"
+#~ msgstr "Bestanden willekeurig doorbladeren ?"
+
+#~ msgid "Display image name as quickinfo ?"
+#~ msgstr "Naam afbeelding tonen als snel-info ?"
+
+#~ msgid ""
+#~ "It will prevent the dock from freezing during the image loading, but does "
+#~ "not work with cairo."
+#~ msgstr ""
+#~ "Dit voorkomt dat het dock bevriest bij het laden van de afbeeldingen, maar "
+#~ "dit werkt niet met cairo."
+
+#~ msgid "Use another thread to load the images ?"
+#~ msgstr "Een ander proces gebruiken om de afbeeldingen te laden ?"
+
+#~ msgid "Sliding delay :"
+#~ msgstr "Tijdsduur tot weergeven volgende afbeelding :"
+
+#~ msgid "Action when applet is clicked :"
+#~ msgstr "Actie bij aanklikken applet :"
+
+#~ msgid "Effect while changing image :"
+#~ msgstr "Effect bij wisselen afbeelding :"
+
+#~ msgid "fade in out"
+#~ msgstr "In- en uitfaden"
+
+#~ msgid "diaporama"
+#~ msgstr "Diaporama"
+
+#~ msgid "shrink down"
+#~ msgstr "Krimpen"
+
+#~ msgid "Number of steps for a transition :"
+#~ msgstr "Aantal stappen voor een overgang :"
+
+#~ msgid "Gives a better image rendering."
+#~ msgstr "Dit geeft een mooier resultaat."
+
+#~ msgid "Keep widht/height ratio ?"
+#~ msgstr "Verhouding breedte/hoogte behouden ?"
+
+#~ msgid "If the image is too small, it will be zoomed in."
+#~ msgstr "Wanneer de afbeelding te klein is, dan wordt de afbeelding vergroot."
+
+#~ msgid "Force the image to fill the icon/desklet ?"
+#~ msgstr "Afbeelding forceren om icoon/desklet te vullen ?"
+
+#~ msgid "Choose a background color :"
+#~ msgstr "Selecteer achtergrondkleur :"
+
+#~ msgid "Let empty to use a default name"
+#~ msgstr "Laat leeg om standaardnaam te gebruiken"
+
+#~ msgid "Image for the 'text' items :"
+#~ msgstr "Afbeelding voor de 'Tekst-items' :"
+
+#~ msgid "They are items created by dropping an URL into the Stack."
+#~ msgstr ""
+#~ "Deze items zijn aangemaakt na het verslepen van een URL naar de Stapel."
+
+#~ msgid "Image for the 'URL' items :"
+#~ msgstr "Afbeelding voor de 'URL-items' :"
+
+#~ msgid ""
+#~ "This options allow you to avoid some files to be displayed in the stacks "
+#~ "considering their types (video, images, etc...)"
+#~ msgstr ""
+#~ "Met deze opties kunt u vermijden dat sommige bestanden, aan de hand van het "
+#~ "soort bestand (video, afbeeldingen, etc...), getoond worden in de stapels"
+
+#~ msgid "Filter files with their mime types ?"
+#~ msgstr "Bestanden filteren op hun mime-types ?"
+
+#~ msgid "Eg: image, text, video, audio, application, ..."
+#~ msgstr "Bv: afbeelding, tekst, video, audio, toepassing, ..."
+
+#~ msgid "Here you can specify a list of mime types to avoid :"
+#~ msgstr "Hier kunt u een lijst van mime-types aangeven om te vermijden :"
+
+#~ msgid "Sort items by :"
+#~ msgstr "Items sorteren op :"
+
+#~ msgid ""
+#~ "It is the selection made by the mouse, by opposition to the usual "
+#~ "ctrl+c/ctrl+v clipboard"
+#~ msgstr ""
+#~ "Dit is een selectie gemaakt met de muis, in tegenstelling tot het "
+#~ "gebruikelijke CTRL+c/CTRL+v in het klembord"
+
+#~ msgid "When copy/paste/cut, use the selection clipboard ?"
+#~ msgstr "Bij het kopiëren/plakken/knippen de klembordselectie gebruiken ?"
 
 #~ msgid "Keep below other windows ?"
 #~ msgstr "Onder andere vensters houden ?"
@@ -8728,8 +10387,73 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "Eg: image, text, video, audio, application..."
 #~ msgstr "Bv: afbeelding, tekst, video, audio, toepassing, ..."
 
+#~ msgid ""
+#~ "All the desktops will be drawn on the main icon. Otherwise a subdock will "
+#~ "contain all the desktops."
+#~ msgstr ""
+#~ "Alle bureaubladen zullen op het hoofdicoon getekend worden. Anders zal een "
+#~ "sub-dock alle bureaubladen bevatten."
+
+#~ msgid "Use the compact mode ?"
+#~ msgstr "Compacte modus gebruiken ?"
+
+#~ msgid "When drawing in compact mode, try to preserve the screen ratio ?"
+#~ msgstr ""
+#~ "Tijdens het tekenen in compacte modus, beeldschermverhouding proberen te "
+#~ "behouden ?"
+
+#~ msgid "Map the wallpaper on icon ?"
+#~ msgstr "Bureaubladachtergrond afbeelden op icoon ?"
+
+#~ msgid "Show desktop number on the icons ?"
+#~ msgstr "Bureaubladnummer tonen op de iconen ?"
+
+#~ msgid "Draw the windows on icon ?"
+#~ msgstr "Vensters op icoon tekenen ?"
+
+#~ msgid "Draw hidden windows too ?"
+#~ msgstr "Verborgen vensters ook tekenen ?"
+
+#~ msgid "r, v, b, a"
+#~ msgstr "r, v, b, a"
+
+#~ msgid "Color of the inside lines :"
+#~ msgstr "Kleur van binnenlijnen :"
+
+#~ msgid "Size of the extern line :"
+#~ msgstr "Dikte van externe lijnen :"
+
+#~ msgid "Color of the extern line :"
+#~ msgstr "Kleur van externe lijnen :"
+
+#~ msgid "Color of the Windows line :"
+#~ msgstr "Kleur van vensterlijnen :"
+
+#~ msgid "Color of the current desktop :"
+#~ msgstr "Kleur van het huidige bureaublad :"
+
+#~ msgid "How to draw the current desktop :"
+#~ msgstr "Hoe wilt u het huidige bureaublad tekenen :"
+
+#~ msgid "Icon to use in expanded mode if you don't map the wallpaper :"
+#~ msgstr ""
+#~ "Icoon voor uitgebreide modus, als u bureaubladachtergrond niet afbeeldt op "
+#~ "icoon :"
+
+#~ msgid "In expanded mode, render the desklet in 3D ?"
+#~ msgstr "In uitgebreide modus, het desklet in 3D weergeven ?"
+
+#~ msgid "GUI"
+#~ msgstr "GUI"
+
+#~ msgid "Shortkey to toggle the systray in dock mode :"
+#~ msgstr "Sneltoets om naar het systeemvak te wisselen in de dock-modus :"
+
 #~ msgid "Icons size :"
 #~ msgstr "Icoongrootte :"
+
+#~ msgid "Terminal's transparency :"
+#~ msgstr "Doorzichtigheid terminal :"
 
 #~ msgid "Foreground color (r, v, b):"
 #~ msgstr "Voorgrondkleur (r, v, b):"
@@ -8737,14 +10461,138 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "Background color (r, v, b):"
 #~ msgstr "Achtergrondkleur (r, v, b):"
 
+#~ msgid "Size of the terminal (line x columns) :"
+#~ msgstr "Grootte van de terminal (lijnen x kolommen) :"
+
+#~ msgid "Shortkey to show the terminal :"
+#~ msgstr "Sneltoets om terminal te tonen :"
+
+#~ msgid "Name of an image for the 'close' icon :"
+#~ msgstr "Naam van afbeelding voor het 'Afsluiten' icoon :"
+
+#~ msgid "Draw note's content on their icon ?"
+#~ msgstr "Inhoud notitie tekenen op hun icoon ?"
+
+#~ msgid "Text color of the content :"
+#~ msgstr "Tekstkleur van de inhoud :"
+
+#~ msgid "Display note's content with a dialog ?"
+#~ msgstr "Inhoud notitie tonen met een dialoog ?"
+
+#~ msgid "Ask confirmation before deleting a note ?"
+#~ msgstr "Bevestiging vragen voor het verwijderen van een notitie ?"
+
+#~ msgid "Automatically name a new note ?"
+#~ msgstr "Een nieuwe notitie automatisch een naam geven ?"
+
+#~ msgid ""
+#~ "Write the date format you usually use in your notes. The syntax is the one "
+#~ "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
+#~ "digits), etc. Let it blnk to use the default one (%d/%m/%y)."
+#~ msgstr ""
+#~ "Voer de datum in, zoals u die normaal gebruikt in uw notities. De syntax is "
+#~ "die van 'strftime' : %d voor de dag, %m voor de maand, %y voor het jaar (2 "
+#~ "cijfers), etc. Laat leeg om de standaardwaarde te gebruiken (%d/%m/%j)."
+
+#~ msgid "Emulate the 'NoteDeleted' signal ?"
+#~ msgstr "Het 'NoteDeleted' signaal emuleren ?"
+
+#~ msgid "Let it empty to use the name of the city."
+#~ msgstr "Laat leeg om de naam van de stad te gebruiken."
+
+#~ msgid "Code of your location :"
+#~ msgstr "Code van uw locatie :"
+
+#~ msgid "Use International System Units ?"
+#~ msgstr "Internationaal eenhedensysteem gebruiken ?"
+
+#~ msgid "Duration of dialogs :"
+#~ msgstr "Tijdsduur van dialogen :"
+
 #~ msgid "in minutes."
 #~ msgstr "In minuten."
+
+#~ msgid "Display current conditions on the icon instead of the default one ?"
+#~ msgstr ""
+#~ "Huidig weer tonen op het gekozen icoon in plaats van op het standaardicoon ?"
+
+#~ msgid "Number of days you want to forecast :"
+#~ msgstr "Aantal dagen voor weersvoorspelling :"
+
+#~ msgid "Display nights too ?"
+#~ msgstr "Ook de nachten tonen ?"
+
+#~ msgid "Display temperature as quick info ?"
+#~ msgstr "Temperatuur tonen als snel-info ?"
+
+#~ msgid "Render desklet in 3D ?"
+#~ msgstr "Desklet in 3D weergeven ?"
+
+#~ msgid "Show scrollbars ?"
+#~ msgstr "Scrollbalken tonen ?"
+
+#~ msgid "Horizontal scroll of the browser in pixel"
+#~ msgstr "Horizontale scrol van de browser in pixel"
+
+#~ msgid "Vertical scroll of the browser in pixel"
+#~ msgstr "Verticale scrol van de browser in pixel"
+
+#~ msgid ""
+#~ "This lets you right-click on the desklet to pop-up the Cairo-Dock's menu."
+#~ msgstr ""
+#~ "Hierdoor kunt u met rechts klikken op het desklet voor het Cairo-Dock menu."
+
+#~ msgid "Right margin's width, in pixels :"
+#~ msgstr "Breedte rechtermarge, in pixels :"
+
+#~ msgid "Transparent background ?"
+#~ msgstr "Doorzichtige achtergrond ?"
+
+#~ msgid "Predefined bookmarks to show in applet's menu :"
+#~ msgstr "Aangegeven bladwijzers om in applet's menu te verschijnen :"
+
+#~ msgid "It's the color of the graphic for high quality signal."
+#~ msgstr "Dit is de kleur voor de hoge kwaliteit signalen in de grafiek."
+
+#~ msgid "It's the color of the graphic for low quality signal."
+#~ msgstr "Dit is de kleur voor de lage kwaliteit signalen in de grafiek."
+
+#~ msgid "Name of an image for the 'no signal' icon :"
+#~ msgstr "Naam van een afbeelding voor het 'Geen signaal' icoon :"
+
+#~ msgid "Name of an image for the 'very low' icon :"
+#~ msgstr "Naam van een afbeelding voor het 'Zeer laag' icoon :"
+
+#~ msgid "Name of an image for the 'low' icon :"
+#~ msgstr "Naam van een afbeelding voor het 'Laag' icoon :"
+
+#~ msgid "Name of an image for the 'middle' icon :"
+#~ msgstr "Naam van een afbeelding voor het 'Gemiddeld' icoon :"
+
+#~ msgid "Name of an image for the 'good' icon :"
+#~ msgstr "Naam van een afbeelding voor het 'Goed' icoon :"
+
+#~ msgid "Name of an image for the 'exellent' icon :"
+#~ msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
+
+#~ msgid ""
+#~ "Allow you to overwrite applet's default command line and launch you wireless "
+#~ "configuration interface."
+#~ msgstr ""
+#~ "Hierdoor kunt u de standaardopdrachtlijn van het applet overschrijven en uw "
+#~ "eigen draadloze verbinding configureren."
+
+#~ msgid "Overwrite the default label with the connection point name ?"
+#~ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 
 #~ msgid "Activate extended desklet mode ?"
 #~ msgstr "Uitgebreide deskletmodus activeren ?"
 
 #~ msgid "Extended display mode :"
 #~ msgstr "Uitgebreide weergavemodus :"
+
+#~ msgid "Info and Controler"
+#~ msgstr "Info en bedieningsknoppen"
 
 #~ msgid "Controler"
 #~ msgstr "Bediening"
@@ -8775,6 +10623,9 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Opmerking : voor XMMS dient u de 'xmms-infopipe' plug-in te installeren.\n"
 #~ "       Voor SongBird, dient u de Dbus plug-in te installeren.\n"
 
+#~ msgid "Disconnected"
+#~ msgstr "Verbinding verbroken"
+
 #~ msgid ""
 #~ "We have been disconnected\n"
 #~ " (the device was : %s))"
@@ -8784,6 +10635,9 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 
 #~ msgid "width :"
 #~ msgstr "Breedte :"
+
+#~ msgid "height :"
+#~ msgstr "Hoogte :"
 
 #~ msgid ""
 #~ "Depending on your WindowManager, you can resize it with ALT + middle_click "
@@ -8894,6 +10748,13 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "I[-180;180] Draaiing :\n"
 #~ "{In graden."
 
+#~ msgid ""
+#~ "Desklet's position (x ; y) :\n"
+#~ "#"
+#~ msgstr ""
+#~ "Desklet's positie (x ; y) :\n"
+#~ "#"
+
 #~ msgid "Alert when new deviceis found ?"
 #~ msgstr "Waarschuwing wanneer nieuwe apparaten gevonden ?"
 
@@ -8902,6 +10763,16 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 
 #~ msgid "Size of the icon you wish this applet has (in pixels)"
 #~ msgstr "Gewenste icoongrootte voor dit applet (in pixels)"
+
+#~ msgid ""
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+#~ "dock & type=utility)"
+#~ msgstr ""
+#~ "voor CompizFusion's \"widget layer\", stel gedrag in Compiz in op: "
+#~ "(class=Cairo-dock & type=utility)"
+
+#~ msgid "Shortkey to toggle the systray"
+#~ msgstr "Sneltoets om naar het systeemvak te wisselen"
 
 #~ msgid "Narrow your search"
 #~ msgstr "Beperk uw zoekopdracht"
@@ -8913,6 +10784,9 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Here you can specify a list of additionnal Trash directories to monitor :"
 #~ msgstr ""
 #~ "Hier kunt u een lijst specificeren met extra prullenbakken om te monitoren :"
+
+#~ msgid "Display the cover ?"
+#~ msgstr "Albumhoes tonen ?"
 
 #~ msgid "Desklet display mode :"
 #~ msgstr "Weergavemodus van desklet :"
@@ -8961,6 +10835,19 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 
 #~ msgid "Size of the downloaded covers :"
 #~ msgstr "Grootte van de gedownloade albumhoezen :"
+
+#~ msgid "Medium"
+#~ msgstr "Gemiddeld"
+
+#~ msgid "Large"
+#~ msgstr "Groot"
+
+#~ msgid ""
+#~ "or CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-"
+#~ "dock & type=utility)}"
+#~ msgstr ""
+#~ "voor CompizFusion's \"widget layer\", stel gedrag in Compiz in op: "
+#~ "(class=Cairo-dock & type=utility)}"
 
 #~ msgid "Use Opengl themes (Fake 3D) ?"
 #~ msgstr "Opengl-thema´s (nep 3D) gebruiken ?"
@@ -9064,6 +10951,9 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Is 'nvidia-settings' geïnstalleerd op uw systeem\n"
 #~ "en ingesteld om de videokaarttemperatuur in de gaten te houden ?"
 
+#~ msgid "Alert!"
+#~ msgstr "Waarschuwing !"
+
 #~ msgid "passed alert temperature level"
 #~ msgstr "Waarschuwingstemperatuur gepasseerd"
 
@@ -9077,6 +10967,9 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Zoals temperatuur, videogeheugen, driver-versie, etc.\n"
 #~ "Controleer of 'nvidia-settings' is geïnstalleerd, anders werkt deze plug-in "
 #~ "niet."
+
+#~ msgid "Informations"
+#~ msgstr "Informatie"
 
 #~ msgid "Display Card name on the Label ?"
 #~ msgstr "Kaartnaam op het label tonen ?"
@@ -9092,6 +10985,9 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 
 #~ msgid "on label"
 #~ msgstr "Op label"
+
+#~ msgid "Delay between temperature checks :"
+#~ msgstr "Tijd tussen temperatuurcontroles :"
 
 #~ msgid "Image to display as a watermark on the gauge :"
 #~ msgstr "Afbeelding om te gebruiken als watermerk op de meter :"
@@ -9148,11 +11044,109 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Dit applet toont u de actieve verbindingen\n"
 #~ "Klik met links voor meer info. Middelklik om direct opnieuw te controleren."
 
+#~ msgid "Yahoo"
+#~ msgstr "Yahoo"
+
+#~ msgid ""
+#~ "This applet lets you control any music player.\n"
+#~ "Left click to Play/Pause, middle-click to play Next song.\n"
+#~ "Scroll up/down to play previous/next song.\n"
+#~ "You can drag and drop songs on the icon to put them in the queue (depends on "
+#~ "Player),\n"
+#~ " and jpeg image to use as cover.\n"
+#~ "Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
+#~ "       For SongBird, you have to install its dbus add-on.\n"
+#~ msgstr ""
+#~ "Dit applet laat u alle muziekspelers bedienen.\n"
+#~ "Klik met links om te afspelen/pauzeren, middelklik voor het volgende "
+#~ "nummer.\n"
+#~ "Scrol op/neer om vorige/volgende nummer af te spelen.\n"
+#~ "U kunt ook nummers slepen naar het icoon om ze in de wachtrij te "
+#~ "plaatsen(afhankelijk van speler),\n"
+#~ " en jpeg-bestanden om als albumhoes te gebruiken\n"
+#~ "Opmerking : voor XMMS dient u de 'xmms-infopipe' plug-in te installeren.\n"
+#~ "       Voor SongBird, dient u de Dbus plug-in te installeren.\n"
+
+#~ msgid "New song"
+#~ msgstr "Nieuw nummer"
+
+#~ msgid "Let extern applications animate the icons ?"
+#~ msgstr "Mogen externe toepassingen de iconen animeren ?"
+
+#~ msgid "Let extern applications modify the image of icons ?"
+#~ msgstr "Mogen externe toepassingen de afbeelding van de iconen bewerken ?"
+
+#~ msgid "Let extern applications modify the labels of icons ?"
+#~ msgstr "Mogen externe toepassingen de labels van de iconen bewerken ?"
+
+#~ msgid "Let extern applications quit the dock ?"
+#~ msgstr "Mogen externe toepassingen het dock afsluiten ?"
+
+#~ msgid "Let extern applications modify the quick-infos on icons ?"
+#~ msgstr "Mogen externe toepassingen de snel-info van de iconen bewerken ?"
+
+#~ msgid "Name of an image for the 'Low' icon :"
+#~ msgstr "Naam van een afbeelding voor het 'Laag' icoon :"
+
+#~ msgid "Name of an image for the 'Very low' icon :"
+#~ msgstr "Naam van een afbeelding voor het 'Zeer laag' icoon :"
+
+#~ msgid "Name of an image for the 'No signal' icon :"
+#~ msgstr "Naam van een afbeelding voor het 'Geen signaal' icoon :"
+
+#~ msgid "Name of an image for the 'Middle' icon :"
+#~ msgstr "Naam van een afbeelding voor het 'Gemiddeld' icoon :"
+
+#~ msgid "Name of an image for the 'Excellent' icon :"
+#~ msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
+
+#~ msgid "Name of an image for the 'Not connected' icon :"
+#~ msgstr "Naam van een afbeelding voor het 'Niet verbonden' icoon :"
+
+#~ msgid "Name of an image for the 'Wired connection' icon :"
+#~ msgstr "Naam van een afbeelding voor het 'Verbinding met draad' icoon :"
+
+#~ msgid "Analogic View"
+#~ msgstr "Analoge weergave"
+
+#~ msgid "Analogic"
+#~ msgstr "Analoog"
+
+#~ msgid "Numeric"
+#~ msgstr "Numeriek"
+
+#~ msgid "Choose the view :"
+#~ msgstr "Selecteer een weergave :"
+
+#~ msgid "Numeric View"
+#~ msgstr "Numerieke weergave"
+
 #~ msgid ""
 #~ "If the Trash folder is not known by the dock, you can specify it here :"
 #~ msgstr ""
 #~ "Indien de Prullenbak niet bekend is bij het dock, dan kunt u het hier "
 #~ "aangeven :"
+
+#~ msgid ""
+#~ "If you have any problem with the applet, uncheck this option during the "
+#~ "maintenance mode, then let the dock launch itself, and remove/modify the "
+#~ "mail accounts you want."
+#~ msgstr ""
+#~ "Als u problemen ondervindt met dit applet, vink dan deze optie uit tijdens "
+#~ "de onderhoudsmodus, laat daarna het dock zichzelf starten en verwijder of "
+#~ "pas de gewenste e-mailaccounts aan."
+
+#~ msgid "Let extern applications register new module ?"
+#~ msgstr "Mogen externe toepassingen een nieuwe module registreren ?"
+
+#~ msgid "Let it empty to display the name of the player currently controlled."
+#~ msgstr "Laat leeg om de naam van de momenteel bediende speler te tonen."
+
+#~ msgid "Use 3D themes ?"
+#~ msgstr "3D-thema´s gebruiken ?"
+
+#~ msgid "Allow Cairo-Dock to download missing covers ?"
+#~ msgstr "Cairo-Dock toestaan om ontbrekende albumhoezen te downloaden ?"
 
 #~ msgid "Swap left-click and middle-click ?"
 #~ msgstr "Linkerklik en middelklik omdraaien ?"
@@ -9160,13 +11154,171 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "View"
 #~ msgstr "Weergave"
 
+#~ msgid ""
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
+#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+#~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
+#~ "docks,\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
+#~ "- the finder mode : type some text to launch any command, file or "
+#~ "calculation.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "Escape or the same shortkey to cancel."
+#~ msgstr ""
+#~ "Een op Gnome-Do lijkende plug-in waarmee u het dock kunt beheren vanaf het "
+#~ "toetsenbord.\n"
+#~ "Het heeft 2 modus, die elk door een sneltoets gekozen kunnen worden:\n"
+#~ "- De navigatiemodus : gebruik de pijltjes om naar de docks en sub-docks te "
+#~ "navigeren,\n"
+#~ "  of typ de naam van een starter en druk op Tab om automatisch naar de "
+#~ "volgende starter te gaan\n"
+#~ "  Druk op Enter om op het icoon te klikken, Shift+Enter voor Shift+klik, "
+#~ "Alt+Enter voor middelklik en Ctrl+Enter voor linkerklik.\n"
+#~ "- De vindermodus : typ een opdracht om elk bestand, opdracht of berekening "
+#~ "uit te voeren.\n"
+#~ "  Gebruik de pijltjes om te navigeren tussen de gevonden resultaten, druk op "
+#~ "Enter om te valideren, houdt CTRL, ALT of SHIFT in om de resultaten te "
+#~ "behouden.\n"
+#~ "Druk op Escape of dezelfde sneltoets om te annuleren."
+
+#~ msgid "Choose in how many minutes your PC will stop :"
+#~ msgstr "Selecteer aantal minuten waarna u PC zal afsluiten :"
+
+#~ msgid "Program an automatic shutdown"
+#~ msgstr "Stel automatisch afsluiten in"
+
+#~ msgid "Your computer will shutdown in 1 minute."
+#~ msgstr "Uw computer zal afsluiten na 1 minuut."
+
+#~ msgid "Move current desktop to this desktop"
+#~ msgstr "Verplaats huidige bureaublad naar dit bureaublad"
+
 #~ msgid "This will move all windows from the current desktop to this one"
 #~ msgstr ""
 #~ "Hierdoor worden alle vensters verplaatst van het huidige bureaublad naar dit "
 #~ "bureaublad"
 
+#~ msgid "It's the color of the graphic for high values."
+#~ msgstr "Dit is de kleur voor de hoge waarden in de grafiek."
+
+#~ msgid "current"
+#~ msgstr "Huidige"
+
+#~ msgid "desktop"
+#~ msgstr "Bureaublad"
+
+#~ msgid "It's the color of the graphic for low values."
+#~ msgstr "Dit is de kleur voor de lage waarden in de grafiek."
+
+#~ msgid "felt"
+#~ msgstr "Gevoelstemperatuur"
+
+#~ msgid ""
+#~ "No items in the stack.\n"
+#~ "You can add files, URL, and even piece of text by dragging them onto the "
+#~ "icon."
+#~ msgstr ""
+#~ "Geen items in de Stapel.\n"
+#~ "U kunt bestanden, een URL en zelfs een stuk tekst toevoegen door ze te "
+#~ "verslepen naar het Stapel-icoon."
+
+#~ msgid "Preferred application starting with 'b' :"
+#~ msgstr "Favoriete toepassing die begint met een 'B' :"
+
+#~ msgid "Preferred application starting with 'a' :"
+#~ msgstr "Favoriete toepassing die begint met een 'A' :"
+
+#, c-format
+#~ msgid "You can call back the Terminal desklet by typing %s"
+#~ msgstr "U kunt het Terminal-desklet terugroepen door %s in te typen"
+
+#~ msgid "Preferred applications"
+#~ msgstr "Favoriete toepassingen"
+
+#~ msgid "Preferred application starting with 'h' :"
+#~ msgstr "Favoriete toepassing die begint met een 'H' :"
+
+#~ msgid "Preferred application starting with 'f' :"
+#~ msgstr "Favoriete toepassing die begint met een 'F' :"
+
+#~ msgid "Preferred application starting with 'e' :"
+#~ msgstr "Favoriete toepassing die begint met een 'E' :"
+
+#~ msgid "Preferred application starting with 'd' :"
+#~ msgstr "Favoriete toepassing die begint met een 'D' :"
+
+#~ msgid "Preferred application starting with 'c' :"
+#~ msgstr "Favoriete toepassing die begint met een 'C' :"
+
+#~ msgid "Preferred application starting with 'g' :"
+#~ msgstr "Favoriete toepassing die begint met een 'G' :"
+
+#~ msgid "Preferred application starting with 'j' :"
+#~ msgstr "Favoriete toepassing die begint met een 'J' :"
+
+#~ msgid "Preferred application starting with 'i' :"
+#~ msgstr "Favoriete toepassing die begint met een 'I' :"
+
+#~ msgid "Preferred application starting with 'l' :"
+#~ msgstr "Favoriete toepassing die begint met een 'L' :"
+
+#~ msgid "Preferred application starting with 'k' :"
+#~ msgstr "Favoriete toepassing die begint met een 'K' :"
+
+#~ msgid "Preferred application starting with 'u' :"
+#~ msgstr "Favoriete toepassing die begint met een 'U' :"
+
+#~ msgid "Preferred application starting with 's' :"
+#~ msgstr "Favoriete toepassing die begint met een 'S' :"
+
+#~ msgid "Preferred application starting with 't' :"
+#~ msgstr "Favoriete toepassing die begint met een 'T' :"
+
+#~ msgid "Preferred application starting with 'v' :"
+#~ msgstr "Favoriete toepassing die begint met een 'V' :"
+
+#~ msgid "Preferred application starting with 'n' :"
+#~ msgstr "Favoriete toepassing die begint met een 'N' :"
+
+#~ msgid "Preferred application starting with 'm' :"
+#~ msgstr "Favoriete toepassing die begint met een 'M' :"
+
+#~ msgid "Preferred application starting with 'p' :"
+#~ msgstr "Favoriete toepassing die begint met een 'P' :"
+
+#~ msgid "Preferred application starting with 'o' :"
+#~ msgstr "Favoriete toepassing die begint met een 'O' :"
+
+#~ msgid "Preferred application starting with 'r' :"
+#~ msgstr "Favoriete toepassing die begint met een 'R' :"
+
+#~ msgid "Preferred application starting with 'q' :"
+#~ msgstr "Favoriete toepassing die begint met een 'Q' :"
+
+#~ msgid "Show windows list"
+#~ msgstr "Vensterlijst tonen"
+
+#~ msgid "Preferred application starting with 'y' :"
+#~ msgstr "Favoriete toepassing die begint met een 'Y' :"
+
+#~ msgid "Preferred application starting with 'z' :"
+#~ msgstr "Favoriete toepassing die begint met een 'Z' :"
+
+#~ msgid "Preferred application starting with 'w' :"
+#~ msgstr "Favoriete toepassing die begint met een 'W' :"
+
+#~ msgid "Preferred application starting with 'x' :"
+#~ msgstr "Favoriete toepassing die begint met een 'X' :"
+
 #~ msgid "Sub-Dock view"
 #~ msgstr "Sub-dock weergave"
+
+#~ msgid "Time length of the dialog :"
+#~ msgstr "Tijdsduur van de dialoog :"
 
 #~ msgid "Name of an image for the 'empty' icon :"
 #~ msgstr "Naam van afbeelding voor het 'Leeg' icoon :"
@@ -9191,6 +11343,12 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "Keep the desklets visible when showing the desktop ?"
 #~ msgstr "Desklets zichtbaar laten bij het tonen van het bureaublad ?"
 
+#~ msgid "Action on middle-click :"
+#~ msgstr "Actie bij middelklik :"
+
+#~ msgid "Shortkey for the middle-click action :"
+#~ msgstr "Sneltoets voor de middelklikactie :"
+
 #~ msgid ""
 #~ "This applet adds an icon to show your desktop,\n"
 #~ "and also : the desklets, the Widget Layer, or all the desktops at once.\n"
@@ -9208,14 +11366,69 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "showDesktop2"
 #~ msgstr "Toon bureaublad2"
 
+#~ msgid "frame with scotch"
+#~ msgstr "Frame met plakband"
+
+#~ msgid "scotch"
+#~ msgstr "Plakband"
+
+#~ msgid "No Title"
+#~ msgstr "Geen titel"
+
+#~ msgid "No RSS feed URL defined..."
+#~ msgstr "Geen RSS feed URL ingesteld..."
+
+#~ msgid ""
+#~ "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from menu "
+#~ "to add one."
+#~ msgstr ""
+#~ "Versleep een geldige RSS feed URL of gebruik \"Een nieuwe RSS Url plakken\" "
+#~ "uit het menu om er één toe te voegen."
+
 #~ msgid "Failed to connect..."
 #~ msgstr "Kon geen verbinding maken..."
+
+#~ msgid "Please wait ..."
+#~ msgstr "Een moment geduld..."
+
+#~ msgid "Retrieving data ..."
+#~ msgstr "Data ophalen..."
+
+#~ msgid "Title Text color :"
+#~ msgstr "Titeltekstkleur :"
+
+#~ msgid "Color to be used for the title"
+#~ msgstr "Kleur voor titel"
+
+#~ msgid "Title Font :"
+#~ msgstr "Titellettertype :"
 
 #~ msgid "Specify a title :"
 #~ msgstr "Geef een titel aan :"
 
 #~ msgid "Title num :"
 #~ msgstr "Nummer van titel :"
+
+#~ msgid "Number of feed lines to display :"
+#~ msgstr "Aantal weer te geven feed-lijnen :"
+
+#~ msgid "URL :"
+#~ msgstr "URL :"
+
+#~ msgid "Feed lines Font :"
+#~ msgstr "Lettertype feed-lijnen :"
+
+#~ msgid "Color to be used for the feed lines"
+#~ msgstr "Kleur voor de feed-lijnen"
+
+#~ msgid "Feed Lines color :"
+#~ msgstr "Kleur feed-lijnen :"
+
+#~ msgid "Let empty to use the same image."
+#~ msgstr "Laat leeg om dezelfde afbeelding te gerbuiken."
+
+#~ msgid "You need to run Compiz and to activate its 'DBus' plug-in."
+#~ msgstr "U dient de 'DBus' plug-in in Compiz te activeren."
 
 #~ msgid "Action on middle click :"
 #~ msgstr "Actie voor middelklik :"
@@ -9227,17 +11440,177 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Volgens uw vensterbeheerder, verhindert dit het applet mogelijk om het "
 #~ "bureaublad te verbergen."
 
+#~ msgid "Display an info-bubble when a feed has changed?"
+#~ msgstr "Info-ballon tonen wanneer een feed gewijzigd is?"
+
+#~ msgid "Open the feed with the following program :"
+#~ msgstr "Open de feed met de volgende toepassing :"
+
+#~ msgid "Animation of the icon when a feed has changed :"
+#~ msgstr "Animatie van het icoon wanneer een feed gewijzigd is :"
+
 #~ msgid "Number of feed lines to display in the dialog :"
 #~ msgstr "Aantal weer te geven feed-lijnen in de dialoog :"
 
 #~ msgid "By default, this option is activated"
 #~ msgstr "Deze optie is standaard ingeschakeld"
 
+#~ msgid "Feed lines color :"
+#~ msgstr "Kleur feed-lijnen :"
+
+#~ msgid "Feed lines font :"
+#~ msgstr "Lettertype feed-lijnen :"
+
+#~ msgid "Title font :"
+#~ msgstr "Lettertype titel :"
+
+#~ msgid "Left margin for the title:"
+#~ msgstr "Linkermarge voor de titel:"
+
+#~ msgid "Title color :"
+#~ msgstr "Kleur titel :"
+
+#~ msgid "Left margin for the feed lines :"
+#~ msgstr "Linkermarge voor de feed-lijnen :"
+
+#~ msgid "Space between 2 feed lines :"
+#~ msgstr "Ruimte tussen 2 feed-lijnen :"
+
+#~ msgid "second color of the gradation"
+#~ msgstr "Tweede kleur van de gradatie"
+
+#~ msgid "Logo size :"
+#~ msgstr "Afmeting logo :"
+
+#~ msgid "Display the logo ?"
+#~ msgstr "Logo weergeven ?"
+
+#~ msgid "Adjust to increase/decrease the logo size"
+#~ msgstr "Aanpassen om de afmetingen van het logo te vergroten/verkleinen"
+
+#~ msgid "first color of the gradation"
+#~ msgstr "Eerste kleur van de gradatie"
+
+#~ msgid "Display a simple background ?"
+#~ msgstr "Een simpele achtergrond weergeven ?"
+
+#~ msgid "Background first color :"
+#~ msgstr "Eerste achtergrondkleur :"
+
+#~ msgid "Number of sources :"
+#~ msgstr "Aantal bronnen :"
+
+#~ msgid "Border color :"
+#~ msgstr "Kleur omranding :"
+
+#~ msgid "Default color :"
+#~ msgstr "Standaardkleur :"
+
+#~ msgid "Background second color :"
+#~ msgstr "Tweede achtergrondkleur :"
+
+#~ msgid "Border color"
+#~ msgstr "Kleur omranding"
+
+#~ msgid "Border thickness :"
+#~ msgstr "Dikte omranding :"
+
+#~ msgid "Particle friction :"
+#~ msgstr "Weerstand deeltjes :"
+
+#~ msgid "Radius of the explosion :"
+#~ msgstr "Kromming van de explosie :"
+
+#~ msgid "Show the launching ?"
+#~ msgstr "Lancering tonen ?"
+
+#~ msgid "Invalid data (invalid RSS feed ?)"
+#~ msgstr "Ongeldige data (ongeldige RSS-feed ?)"
+
+#~ msgid "No data (no connection ?)"
+#~ msgstr "Geen data (geen verbinding ?)"
+
+#~ msgid "Let empty to use the title of the RSS feed."
+#~ msgstr "Leeg laten om de titel van de RSS-feed te gebruiken."
+
 #~ msgid "No data (invalid rss ?)"
 #~ msgstr "Ongeldige data (ongeldige rss ?)"
 
+#~ msgid ""
+#~ "No URL is defined\n"
+#~ "You can define one by copying the URL in the clipboard,\n"
+#~ " and selecting \"Paste the RL\n"
+#~ " in the menu."
+#~ msgstr ""
+#~ "Geen URL is ingevoerd\n"
+#~ "U kunt er één invoeren door de URL naar het klembord te kopiëren ,\n"
+#~ " en \"URL plakken te selecteren\n"
+#~ " in het menu."
+
+#~ msgid ""
+#~ "No data\n"
+#~ "Did you set a valid RSS feed ?\n"
+#~ "Is your connection alive ?"
+#~ msgstr ""
+#~ "Geen data\n"
+#~ "Heeft u een geldige RSS-feed ingevoerd ?\n"
+#~ "Werkt uw verbinding ?"
+
+#~ msgid "In seconds. Set to 0 for infinite time (click on dialog to close it)."
+#~ msgstr ""
+#~ "In seconden. Stel in op 0 voor doorlopende tijd (klik op dialoog om te "
+#~ "sluiten)."
+
+#~ msgid "Refresh time :"
+#~ msgstr "Vernieuwingstijd :"
+
+#~ msgid ""
+#~ "This applet is a RSS feed reader\n"
+#~ "(you can add as many instances you want)\n"
+#~ " USAGE:\n"
+#~ "  - Left-clic : Display the feed lines in a dialog (optional in desklet).\n"
+#~ "  - Middle-clic : Refresh the feed.\n"
+#~ "  - Add/Modify the RSS feed to display with either Drag'n Drop\n"
+#~ "    a valid RSS feed Url,\"Paste a new RSS Url\" from menu\n"
+#~ "    or with the Configuration Panel.\n"
+#~ "  - Use \"Open in you web browser\" from menu to display\n"
+#~ "    the RSS feed in your browser."
+#~ msgstr ""
+#~ "Dit applet is een RSS-feed lezer\n"
+#~ "(u kunt er meerdere toevoegen)\n"
+#~ " Gebruik:\n"
+#~ "  - Linkerklik : De feed-lijnen weergeven in een dialoog (optioneel in een "
+#~ "desklet).\n"
+#~ "  - Middelklik : De feed vernieuwen.\n"
+#~ "  - De RSS-feed weergeven door ofwel een geldige RSS-feed Url te kopiëren,\n"
+#~ "    en daarna \"Plak een nieuwe RSS Url\" uit het menu te selecteren\n"
+#~ "    ofwel via het configuratiepaneel.\n"
+#~ "  - Gebruik \"Openen in uw webbrowser\" in het menu om de RSS-feed \n"
+#~ "    weer te geven in uw browser."
+
+#~ msgid "Colors"
+#~ msgstr "Kleuren"
+
+#~ msgid "Invalid data (invalid RSS/Atom feed ?)"
+#~ msgstr "Ongeldige data (ongeldige RSS/Atom-feed ?)"
+
+#~ msgid "Mark all mails as read"
+#~ msgstr "Alle e-mails markeren als gelezen"
+
+#~ msgid "Let empty to use the connection name."
+#~ msgstr "Laat leeg om de verbindingsnaam te gebruiken."
+
+#~ msgid "Delay between wifi signal checks :"
+#~ msgstr "Tijdsduur tussen wifi-signaalcontroles :"
+
+#~ msgid "Delay between net speed checks :"
+#~ msgstr "Tijdsduur tussen netwerksnelheidscontroles :"
+
 #~ msgid "Default connexion interface :"
 #~ msgstr "Standaardverbindingsinterface :"
+
+#~ msgid "User command to show Wireless Configuration :"
+#~ msgstr "Alternatieve opdracht om ´Draadloos configuratie´ te openen :"
 
 #~ msgid "not used at the moment."
 #~ msgstr "Wordt op dit moment niet gebruikt."
@@ -9248,8 +11621,133 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "Info to display in the icon :"
 #~ msgstr "Info om op icoon te tonen :"
 
+#~ msgid ""
+#~ "This applet is an RSS/Atom feed reader.\n"
+#~ "You can instanciate it as many times as you want.\n"
+#~ "USAGE:\n"
+#~ " - Left-click : Display the complete feed lines in a dialog.\n"
+#~ " - Middle-click : Refresh the feed.\n"
+#~ " - Drag and drop a valid URL on the icon to use it,\n"
+#~ "    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
+#~ "    or edit the Configuration Panel."
+#~ msgstr ""
+#~ "Dit applet is een RSS/Atom -feed lezer.\n"
+#~ "U kunt het zo vaak openen als u wilt.\n"
+#~ "GEBRUIK:\n"
+#~ " - Linkerklik : De gehele feed-lijnen tonen in een dialoog.\n"
+#~ " - Middelklik : De feed vernieuwen.\n"
+#~ " - Sleep een geldige URL naar het icoon om het te gebruiken,\n"
+#~ "    of kopieer het en gebruik \"Een nieuwe RSS-Url plakken\" in het menu.\n"
+#~ "    of bewerk het configuratiepaneel."
+
+#~ msgid "Paste a new RSS Url (drag'n'drop)"
+#~ msgstr "Een nieuwe RSS-Url plakken (verslepen)"
+
+#~ msgid "Warning : couldn't retrieve data last time we tried."
+#~ msgstr "Waarschuwing : kon data bij laatste poging niet ophalen."
+
+#~ msgid "Display the time in a 24h format ?"
+#~ msgstr "Tijd weergeven in 24-uur formaat ?"
+
+#~ msgid ""
+#~ "This applet is an RSS/Atom feed reader.\n"
+#~ "You can instanciate it as many times as you want.\n"
+#~ "USAGE:\n"
+#~ " - Left-click : display the complete feed lines in a dialog.\n"
+#~ " - Middle-click : refresh the feed.\n"
+#~ " - Scroll on the desklet : make the feed lines scroll\\.n - Drag and drop a "
+#~ "valid URL on the icon to use it,\n"
+#~ "    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
+#~ "    or edit the Configuration Panel."
+#~ msgstr ""
+#~ "Dit applet is een RSS/Atom-feed lezer.\n"
+#~ "U kunt het zo vaak openen als u wilt.\n"
+#~ "GEBRUIK:\n"
+#~ " - Linkerklik : toont de complete feed-lijnen in een dialoog.\n"
+#~ " - Middelklik : de feed vernieuwen.\n"
+#~ " - Scrollen op het desklet : laat de feed-lijnen scrollen\\.n - Versleep een "
+#~ "geldige URL naar het icoon om het te gebruiken,\n"
+#~ "    of kopieer de url en gebruik \"Een nieuwe RSS-Url plakken\" in het "
+#~ "menu.\n"
+#~ "    of bewerk het configuratiepaneel."
+
+#~ msgid "Color of the sheen :"
+#~ msgstr "Kleur van de glans :"
+
 #~ msgid "Visibility :"
 #~ msgstr "Zichtbaarheid :"
+
+#~ msgid "Duration of the info-bubble :"
+#~ msgstr "Tijdsduur van de info-ballonnen :"
+
+#~ msgid "Curve towards the outside ?"
+#~ msgstr "Krommen naar de buitenkant ?"
+
+#~ msgid "Folder of the images :"
+#~ msgstr "Afbeeldingenmap :"
+
+#~ msgid "Foreground color :"
+#~ msgstr "Voorgrondkleur :"
+
+#~ msgid "Background color :"
+#~ msgstr "Achtergrondkleur :"
+
+#~ msgid ""
+#~ "Add a terminal to your dock !\n"
+#~ "Left/middle click to show/hide terminal (you can bind a keyboard shortcut "
+#~ "for it.)\n"
+#~ "You can drag'n'drop files or text and select an action.\n"
+#~ "You can open many tabs, rename them, change their color (right-click on a "
+#~ "tab to interact on it)\n"
+#~ "To open a new tab : type 'CTRL+t' or double-click next to the last tab\n"
+#~ "To close a tab : type 'CTRL+w' or middle-click on it."
+#~ msgstr ""
+#~ "Voeg een terminal toe aan uw dock !\n"
+#~ "Linkerklik/middelklik om de terminal te tonen/verbergen (u kunt hier een "
+#~ "sneltoets voor instellen)\n"
+#~ "U kunt er bestanden of tekst naartoe slepen en een actie selecteren.\n"
+#~ "U kunt meerdere tabbladen openen, ze hernoemen en hun kleur wijzigen (via de "
+#~ "rechtermuisknop)\n"
+#~ "Om een nieuw tabblad te openen : typ 'CTRL+t' of dubbelklik naast het "
+#~ "laatste tabblad\n"
+#~ "Om een tabblad te sluiten : typ 'CTRL+w' of middelklik erop."
+
+#~ msgid ""
+#~ "Add a systray to your dock.\n"
+#~ "Left-click to show the systray in a dialog (you can bind a keyboard shortcut "
+#~ "for it.)\n"
+#~ "Middle-click to close the dalog.\n"
+#~ "But the best way to use it id to detach it from the dock, and place it "
+#~ "somewhere, above other windows."
+#~ msgstr ""
+#~ "Voeg een systeemvak toe aan uw dock.\n"
+#~ "Klik met linkermuisknop om het systeemvak in een dialoog te tonen (u kunt "
+#~ "hier een sneltoets voor instellen)\n"
+#~ "Middelklik om de dialoog te sluiten.\n"
+#~ "Maar de beste manier om het te gebruiken is het los te koppelen van het dock "
+#~ "en het ergens te plaatsen, boven andere vensters."
+
+#~ msgid "A cable has been pluged"
+#~ msgstr "Er is een kabel aangesloten"
+
+#~ msgid "A cable has been unpluged"
+#~ msgstr "Er is een kabel losgekoppeld"
+
+#~ msgid "Action on left-click :"
+#~ msgstr "Actie bij linkerklik :"
+
+#~ msgid "Please wait the current upload is finished before starting a new one."
+#~ msgstr ""
+#~ "Wacht a.u.b. met het starten van een nieuwe upload, totdat de huidige upload "
+#~ "beëindigd is."
+
+#~ msgid ""
+#~ "You need to activate the Dbus plug-in of Compiz for the last 2 actions. "
+#~ "Showing desktop and desklets can fail on some Window Manager, like Metacity."
+#~ msgstr ""
+#~ "U dient de Dbus plug-in of Compiz te activeren voor de laatste 2 acties. "
+#~ "Bureaublad en desklets tonen lukt mogelijk niet bij sommige "
+#~ "vensterbeheerders, zoals Metacity."
 
 #~ msgid ""
 #~ "This applet allows you to monitor your active connections.\n"
@@ -9264,6 +11762,91 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Wanneer u een netwerkbeheerder heeft, dan kunt u ook het huidige wifi-"
 #~ "netwerk selecteren.\n"
 #~ "Klik met links voor meer info, middelklik om direct opnieuw te controleren."
+
+#~ msgid "Network connection has been established."
+#~ msgstr "Netwerkverbinding is gelukt."
+
+#~ msgid "Network connection has become inactive."
+#~ msgstr "Netwerkverbinding is inactief."
+
+#~ msgid "Network has been disconnected."
+#~ msgstr "Netwerkverbinding is verbroken."
+
+#~ msgid "Fluidity of the transition animation between 2 values :"
+#~ msgstr "Vloeiendheid van de overgangsanimatie tussen 2 waarden :"
+
+#~ msgid "Display numeric values :"
+#~ msgstr "Numerieke waarden weergeven:"
+
+#~ msgid "Animation of the icon when connecting :"
+#~ msgstr "Animatie van het icoon bij het verbinden :"
+
+#~ msgid "Info displayed by the icon :"
+#~ msgstr "Getoonde info op het icoon :"
+
+#~ msgid "Connexion interface to monitor :"
+#~ msgstr "Verbindingsinterface om te monitoren :"
+
+#~ msgid "Choose the style of the display :"
+#~ msgstr "Selecteer de stijl van de weergave :"
+
+#~ msgid "in seconds, if you don't have Network-Manager."
+#~ msgstr "In seconden, wanneer u geen netwerkbeheerder heeft."
+
+#~ msgid "Let empty to use the default one"
+#~ msgstr "Laat leeg om standaardwaarde te gebruiken."
+
+#~ msgid "Open all"
+#~ msgstr "Alle openen"
+
+#~ msgid "Space between lines :"
+#~ msgstr "Ruimte tussen de regels :"
+
+#~ msgid ""
+#~ "Maximum number of results tat will be displayed when you select a category "
+#~ "with the right arrow."
+#~ msgstr ""
+#~ "Maximum aantal resultaten dat getoond zal worden, na het selecteren van een "
+#~ "categorie met de rechtermuisknop.."
+
+#~ msgid "Default text color :"
+#~ msgstr "Standaardtekstkleur :"
+
+#~ msgid "Margin for the text :"
+#~ msgstr "Tekstmarge :"
+
+#~ msgid "Specify the xml file :"
+#~ msgstr "Specificeer het xml-bestand :"
+
+#~ msgid "Default text font :"
+#~ msgstr "Standaardtekstlettertype :"
+
+#~ msgid "Text on the dock"
+#~ msgstr "Tekst op het dock"
+
+#~ msgid "Search Engines"
+#~ msgstr "Zoekmachines"
+
+#~ msgid "Search in files ?"
+#~ msgstr "In bestanden zoeken ?"
+
+#~ msgid "Search in Recent files ?"
+#~ msgstr "In recente bestanden zoeken ?"
+
+#~ msgid "Search in Firefox bookmarks ?"
+#~ msgstr "In Firefox-bladwijzers zoeken ?"
+
+#~ msgid "Include a command launcher ?"
+#~ msgstr "Opdrachtstarter toevoegen ?"
+
+#~ msgid "Let empty to write the name of the sound card."
+#~ msgstr "Leeg laten om de naam van de geluidskaart te schrijven."
+
+#~ msgid "Always show number of mails"
+#~ msgstr "Altijd aantal e-mails tonen"
+
+#~ msgid "StatusNotifier"
+#~ msgstr "Statusnotificatie"
 
 #~ msgid ""
 #~ "This plug-in allows you to make different actions directly from the "
@@ -9318,18 +11901,37 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Alt+Enter voor middelklik en Ctrl+Enter voor linkerklik\n"
 #~ "Druk op Escape of op dezelfde sneltoets om te annuleren."
 
+#~ msgid "st color of gradation :"
+#~ msgstr "eerste kleur van de gradatie :"
+
+#~ msgid "nd color of gradation :"
+#~ msgstr "tweede kleur van de gradatie :"
+
 #~ msgid "Hey, you there!"
 #~ msgstr "He, jij daar !"
 
 #~ msgid "Doncky"
 #~ msgstr "Dock"
 
+#~ msgid "3DPlan"
+#~ msgstr "3D-vlak"
+
 #~ msgid "ToolTip"
 #~ msgstr "Tip"
+
+#~ msgid "Drop Indicator"
+#~ msgstr "Sleepindicator"
+
+#~ msgid "Trash"
+#~ msgstr "Prullenbak"
 
 #, c-format
 #~ msgid "You are about to delete all files in %s. Continue?"
 #~ msgstr "U gaat alle bestanden uit %s verwijderen. Weet u het zeker ?"
+
+#~ msgid "You are about to delete all files in all dustbins. Continue?"
+#~ msgstr ""
+#~ "U gaat alle bestanden uit alle prullenbakken verwijderen. Weet u het zeker ?"
 
 #, c-format
 #~ msgid ""
@@ -9341,8 +11943,35 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Als '%s' niet uw gebruikelijke bestandsbeheerder is,\n"
 #~ "dan kunt u dit wijzigen in het configuratiepaneel van deze module"
 
+#~ msgid "Icon Effects"
+#~ msgstr "Icooneffecten"
+
+#~ msgid "Illusion"
+#~ msgstr "Illusie"
+
+#~ msgid "Keyboard Indicator"
+#~ msgstr "Toetsenbordindeling"
+
+#~ msgid "Log-out"
+#~ msgstr "Uitloggen"
+
+#~ msgid "Motion Blur"
+#~ msgstr "Bewegingsvervaging"
+
+#~ msgid "Show Mouse"
+#~ msgstr "Toon muis"
+
+#~ msgid "Slider"
+#~ msgstr "Diavoorstelling"
+
+#~ msgid "Switcher"
+#~ msgstr "Wisselaar"
+
 #~ msgid "Move current Desktop to this Desktop"
 #~ msgstr "Verplaats huidige bureaublad naar dit bureaublad"
+
+#~ msgid "Weather"
+#~ msgstr "Weer"
 
 #~ msgid "Display an info bubble when a feed has changed?"
 #~ msgstr "Info-ballon tonen wanneer een feed gewijzigd is?"
@@ -9356,6 +11985,9 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "Shortkey to enable/disable the navigation mode:"
 #~ msgstr "Sneltoets om de navigatiemodus te activeren/deactiveren :"
 
+#~ msgid "Leave empty to use the defaut command."
+#~ msgstr "Laat leeg om standaardopdracht te gebruiken."
+
 #~ msgid "Choose an action for middle click on the icon:"
 #~ msgstr "Selecteer een actie voor het middelklikken op het icoon :"
 
@@ -9364,6 +11996,9 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 
 #~ msgid "Colour of the plane :"
 #~ msgstr "Kleur van het vlak :"
+
+#~ msgid "Inclined Plane"
+#~ msgstr "Hellend vlak"
 
 #~ msgid ""
 #~ "In degrees, relative to the vertical. This is a sort of inclination of the "
@@ -9445,6 +12080,9 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "Delay between measurements:"
 #~ msgstr "Tijd tussen 2 metingen :"
 
+#~ msgid "uild menu gradually:"
+#~ msgstr "Geleidelijke opbouw van het menu :"
+
 #~ msgid "Separate different shortcuts with separators?"
 #~ msgstr "Verschillende snelkoppelingen scheiden met scheidingen ?"
 
@@ -9503,6 +12141,15 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "Empty all dustbins"
 #~ msgstr "Alle prullenbakken legen"
 
+#~ msgid "Toto"
+#~ msgstr "Toto"
+
+#~ msgid "No task is sheduled for today."
+#~ msgstr "Er is geen taak ingesteld voor vandaag."
+
+#~ msgid "No task is sheduled for the next 7 days."
+#~ msgstr "Er is geen taak ingesteld voor de volgende 7 dagen."
+
 #~ msgid ""
 #~ "A <b>notification area</b> for your dock\n"
 #~ "Also called 'systray'.\n"
@@ -9513,6 +12160,29 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Ook wel 'systeemvak genoemd'.\n"
 #~ "Het is ontwikkeld om te werken met elk systeem dat de laatste "
 #~ "systeemvakspecificaties ondersteunt (KDE, Gnome, etc)"
+
+#~ msgid ""
+#~ "This applet lets you share files easily :\n"
+#~ "Drag-and-drop a file on the icon to upload it to one of the available "
+#~ "hosting sites.\n"
+#~ "It supports many sites, like DropBox, Imageshack, pastebin, etc\n"
+#~ "You can upload text, image, video, and files.\n"
+#~ "The resulting URL is automatically stored in the clipboard to be directly "
+#~ "copied by CTRL+v.\n"
+#~ "It can keep an history of your last uploads to retrieve them without any "
+#~ "account.\n"
+#~ "You'll need to install 'curl' and 'wget' to upload the data."
+#~ msgstr ""
+#~ "Met dit applet kunt u makkelijk bestanden delen :\n"
+#~ "Sleep een bestand naar het icoon om het te uploaden naar één van de "
+#~ "beschikbare hosting-websites.\n"
+#~ "Het ondersteunt vele websites, zoals DropBox, Imageshack, pastebin, etc\n"
+#~ "U kunt tekst, afbeeldingen, video´s en bestanden uploaden.\n"
+#~ "De verkregen URL wordt automatisch opgeslagen in het klembord om geplakt te "
+#~ "kunnen worden met CTRL+v.\n"
+#~ "Het kan de geschiedenis van de laatste uploads bijhouden zonder een "
+#~ "account.\n"
+#~ "U moet 'curl' en 'wget' installeren om data te kunnen uploaden."
 
 #~ msgid ""
 #~ "e size=true\n"
@@ -9527,11 +12197,33 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "Indicator-Menus"
 #~ msgstr "Indicatormenu's"
 
+#~ msgid ""
+#~ "Load folders inside the Dock\n"
+#~ "You can have as many instances of this applet as you want."
+#~ msgstr ""
+#~ "Mappen laden in het dock\n"
+#~ "U kunt dit applet zo vaak openen als u wilt."
+
 #~ msgid "Empty Trash (middle-click)"
 #~ msgstr "Prullenbak legen (middelklik)"
 
+#~ msgid "Timeout"
+#~ msgstr "Time-out"
+
 #~ msgid "Unmount (middle-click)"
 #~ msgstr "Ontkoppelen (middelklik)"
+
+#~ msgid "Mount (middle-click)"
+#~ msgstr "Aankoppelen (middelklik)"
+
+#~ msgid "Maximum number of files to list:"
+#~ msgstr "Maximum aantal bestanden om te tonen:"
+
+#~ msgid "Clipper"
+#~ msgstr "Clipper"
+
+#~ msgid "Open the folder (middle-click)"
+#~ msgstr "De map openen (middelklik)"
 
 #~ msgid "stacks"
 #~ msgstr "stapels"
@@ -9555,6 +12247,9 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Middelklik op een koppelpunticoon om snel te (ont)koppelen.\n"
 #~ "Het applet kan ook nuttige informatie over uw schijven tonen, zoals vrije "
 #~ "ruimte, type, etc."
+
+#~ msgid "Mute (middle-click)"
+#~ msgstr "Dempen (middelklik)"
 
 #~ msgid "Quick launch (Middle-click)"
 #~ msgstr "Snelstart (middelklik)"
@@ -9609,3 +12304,8 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ "Enter om te valideren, houdt CTRL, ALT of SHIFT in om de resultaten te "
 #~ "behouden.\n"
 #~ "Druk op Escape of dezelfde sneltoets om te annuleren."
+
+#~ msgid ""
+#~ "Couldn't upload the file, check that your internet connection is active."
+#~ msgstr ""
+#~ "Kon bestand niet uploaden, controleer of uw verbonden bent met het internet."

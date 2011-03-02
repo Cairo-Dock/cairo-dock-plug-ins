@@ -8,15 +8,33 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
 "POT-Creation-Date: 2011-01-01 04:07+0000\n"
-"PO-Revision-Date: 2011-01-04 07:41+0000\n"
+"PO-Revision-Date: 2011-02-28 12:43+0000\n"
 "Last-Translator: Alyx Nikolaenko <ceekay80@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-01-04 14:23+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Launchpad-Export-Date: 2011-03-01 04:55+0000\n"
+"X-Generator: Launchpad (build 12351)\n"
 "Language: \n"
+
+#: ../Cairo-Penguin/src/applet-init.c:33
+msgid ""
+"Add a lively Penguin in your dock !\n"
+"Left click to change the animation,\n"
+"Middle-click to disturb him ^_^\n"
+"Tux images are taken from Pingus, some other characters are available or can "
+"be added easily."
+msgstr ""
+"Добавьте симпатичного пингвинчика к себе на панель!\n"
+"Левым щелчком менять анимацию,\n"
+"Средним -  побеспокоить его ^_^\n"
+"Изображения Тукса взяты из Pingus, есть и другие персонажи, а также можно с "
+"лёгкостью подключить своих."
+
+#: ../Cairo-Penguin/src/applet-init.c:39
+msgid "Cairo-Penguin"
+msgstr "Cairo-Пингвин"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -66,24 +84,6 @@ msgstr "Волна"
 #: ../Animated-icons/data/messages:95 ../Animated-icons/data/messages:103
 msgid "Spot"
 msgstr "Точечно"
-
-#: ../Cairo-Penguin/src/applet-init.c:33
-msgid ""
-"Add a lively Penguin in your dock !\n"
-"Left click to change the animation,\n"
-"Middle-click to disturb him ^_^\n"
-"Tux images are taken from Pingus, some other characters are available or can "
-"be added easily."
-msgstr ""
-"Добавьте симпатичного пингвинчика к себе на панель!\n"
-"Левым щелчком менять анимацию,\n"
-"Средним -  побеспокоить его ^_^\n"
-"Изображения Тукса взяты из Pingus, есть и другие персонажи, а также можно с "
-"лёгкостью подключить своих."
-
-#: ../Cairo-Penguin/src/applet-init.c:39
-msgid "Cairo-Penguin"
-msgstr "Cairo-Пингвин"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:29
 msgid "Hey, I'm here!"
@@ -1586,7 +1586,7 @@ msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:158
 msgid ""
-"Couldn't upload the file, check that your internet connection is active."
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr "Не удалось загрузить файл, проверьте соединение с Интернет."
 
 #: ../dnd2share/src/applet-dnd2share.c:273
@@ -8187,8 +8187,67 @@ msgstr "Служебная информация о сигнале"
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Заменить стандартную подпись, на имя точки доступа?"
 
+#~ msgid "Hey, I'm here !"
+#~ msgstr "Эй, я здесь!"
+
+#~ msgid "Your dock is so messy ! Let me clean it."
+#~ msgstr "Твоя панель такая грязная! Дай я её приберу."
+
+#~ msgid "Admit my superiority on you as a penguin !"
+#~ msgstr "Почувствуй моё пингвинье превосходство над тобой!"
+
+#~ msgid "Wait, do you want to kill me ?!"
+#~ msgstr "Стой, ты что, хочешь меня убить?!"
+
+#~ msgid "Do you know how much painful it is to be clicked on ??"
+#~ msgstr "Ты вообще представляешь, как это больно быть щелкнутым??"
+
+#~ msgid "It's my dock now, mwahahaha !"
+#~ msgstr "Теперь это моя панель, муаххахаа!"
+
+#~ msgid "I want to be a pirate !"
+#~ msgstr "Я хочу быть пиратом!"
+
+#~ msgid "You shall not pass !"
+#~ msgstr "Ты не пройдешь!"
+
+#~ msgid "I'm your father !"
+#~ msgstr "Я твой отец!"
+
+#~ msgid ""
+#~ "- What will we do tonight Cortex ?\n"
+#~ "- The same thing as every nights, Minus. Try to take over the Dock !"
+#~ msgstr ""
+#~ "- Что мы будем делать сегодня, Кортекc?\n"
+#~ "- То же, что и каждую ночь, Минус. Будем пытаться смыться с панели!"
+
+#~ msgid "For Aiur !"
+#~ msgstr "За Aiur!"
+
+#~ msgid "Hey, you there !"
+#~ msgstr "Эй, ты там!"
+
+#~ msgid "Clear the list of the recently used documents ?"
+#~ msgstr "Очистить список последних документов?"
+
+#~ msgid "Enter a command to launch :"
+#~ msgstr "Введите команду для запуска:"
+
+#~ msgid "Yahoo"
+#~ msgstr "Yahoo"
+
+#~ msgid "Up time"
+#~ msgstr "Аптайм"
+
 #~ msgid "Free"
 #~ msgstr "Свободно"
+
+#, c-format
+#~ msgid "Alert ! Graphic Card core temperature has reached %d°C"
+#~ msgstr "Внимание! Температура видео-карты достигла %d°C"
+
+#~ msgid "Set up gamma :"
+#~ msgstr "Настройки гаммы:"
 
 #~ msgid "AlsaMixer"
 #~ msgstr "AlsaMixer"
@@ -8202,6 +8261,118 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ "Не удалось обнаружить канал с именем '%s'\n"
 #~ "Попробуйте открыть панель настроек апплета\n"
 #~ " и выбрать правильный аудио-канал для управления."
+
+#~ msgid "Set up volume :"
+#~ msgstr "Установка громкости:"
+
+#~ msgid "Adjsut channels"
+#~ msgstr "Настройка каналов"
+
+#~ msgid ""
+#~ "This applet displays time and date in your dock.\n"
+#~ "2 view are available : numeric and analogic, based on Cairo-Clock.\n"
+#~ "It is compatible with the Cairo-Clock's themes, and you can detach itself to "
+#~ "be a perfect clone of Cairo-Clock.\n"
+#~ "It supports alarms, and a basic calendar, and allows you to setup time and "
+#~ "date.\n"
+#~ "Left-click to show/hide the calendar, Middle-click to stop an alarm."
+#~ msgstr ""
+#~ "Этот апплет отображает время и дату на вашей панели.\n"
+#~ "Доступно 2 вида: электронные и аналоговые, основанные на Cairo-Clock.\n"
+#~ "Совместим с темами Cairo-Clock и, если открепить, может выглядеть не хуже "
+#~ "самих Cairo-Clock.\n"
+#~ "Поддерживает напоминания, имеется встроенный календарь, позволяет "
+#~ "устанавливать время и дату.\n"
+#~ "Левый щелчок, чтобы показать/скрыть календарь, средний — чтобы остановить "
+#~ "сигнал напоминания."
+
+#~ msgid "Calendar"
+#~ msgstr "Календарь"
+
+#~ msgid "Toggle Widgets Layer"
+#~ msgstr "Переключатель слоя виджетов"
+
+#~ msgid "This plug-in provides some dialog decorators for dialog bubbles."
+#~ msgstr ""
+#~ "Этот плагин предоставляет несколько видов для ваших облачков напоминаний."
+
+#~ msgid ""
+#~ "This applet lets you share files easily :\n"
+#~ "Drag-and-drop a file on the icon to upload it to one of the available "
+#~ "hosting sites.\n"
+#~ "It supports many sites, like DropBox, Imageshack, pastebin, etc\n"
+#~ "You can upload text, image, video, and files.\n"
+#~ "The resulting URL is automatically stored in the clipboard to be directly "
+#~ "copied by CTRL+v.\n"
+#~ "It can keep an history of your last uploads to retrieve them without any "
+#~ "account.\n"
+#~ "You'll need to install 'curl' and 'wget' to upload the data."
+#~ msgstr ""
+#~ "Это апплет позволяет легко делиться вашими файлами:\n"
+#~ "Перетащите файл на значок, чтобы загрузить его на один из доступных файл-"
+#~ "хостингов.\n"
+#~ "Имеется поддержка таких как:  DropBox, Imageshack, pastebin и т.д.\n"
+#~ "Вы можете загружать текст, изображения, видео и файлы.\n"
+#~ "Получившаяся ссылка автоматически попадает в буфер обмена, чтобы её можно "
+#~ "было легко вставить.\n"
+#~ "Апплет сохраняет историю ваших загрузок, так что в любой момент можно "
+#~ "скачать ваши файлы без проблем.\n"
+#~ "Для загрузки файлов вам необходимо установить 'curl' и 'wget'."
+
+#~ msgid "Clear the list of the recently uploaded files ?"
+#~ msgstr "Очистить список недавно загруженных файлов?"
+
+#~ msgid "Sorry, couldn't find the orignial file nor a preview of it."
+#~ msgstr ""
+#~ "Извиняйте, оригинальный файл как и его предпросмотр обнаружить не удалось."
+
+#~ msgid ""
+#~ "The URL has been stored into the clipboard.\n"
+#~ "Just use 'CTRL+v' to paste it anywhere."
+#~ msgstr ""
+#~ "Ссылка была сохранена в буфер обмена.\n"
+#~ "Используйте CTRL+v для вставки."
+
+#~ msgid ""
+#~ "No uploaded file available\n"
+#~ ".Consider activating the history if you want the applet remembers previous "
+#~ "uploads."
+#~ msgstr ""
+#~ "Не доступен файл для загрузки\n"
+#~ " Активируйте историю загруженных файлов, чтобы апплет мог сохранять её."
+
+#~ msgid ""
+#~ "The current URL has been stored into the clipboard.\n"
+#~ "Just use 'CTRL+v' to paste it anywhere."
+#~ msgstr ""
+#~ "Текущая ссылка была сохранена в буфере обмена.\n"
+#~ "Используйте 'CTRL+v', чтобы вставить её куда захотите."
+
+#~ msgid ""
+#~ "This plug-in displays an animated indicator when you drop something in the "
+#~ "dock."
+#~ msgstr ""
+#~ "Этот плагин отображает анимированный индикатор, когда вы помещаете что-либо "
+#~ "на панель."
+
+#~ msgid ""
+#~ "This applet manages the dustbin\n"
+#~ "You can threw files and unmount disks by drag andn droping them on the "
+#~ "icon.\n"
+#~ "The applet can warn you if you use too much space\n"
+#~ "Middle-click to display usefull info about the dustbin."
+#~ msgstr ""
+#~ "Этот апплет управляет мусорной корзиной\n"
+#~ "Вы можете стирать файлы и отсоединять тома, перемещая их значки на значок "
+#~ "корзины.\n"
+#~ "Апплет будет предупреждать вас, при превышении свободного места.\n"
+#~ "Средний щелчок отобразит полезную информацию о корзине."
+
+#~ msgid "Show Trash"
+#~ msgstr "Показать корзину"
+
+#~ msgid "Delete Trash"
+#~ msgstr "Удалить корзину"
 
 #, c-format
 #~ msgid "Show %s"
@@ -8217,8 +8388,87 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgid "Delete All"
 #~ msgstr "Удалить все"
 
+#, c-format
+#~ msgid ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual file browser,\n"
+#~ "you can change it in the conf panel of this module"
+#~ msgstr ""
+#~ "Возникла проблема\n"
+#~ "Если '%s' на является обозревателем по-умолчанию,\n"
+#~ "то вы можете изменить его в настройках модуля."
+
+#, c-format
+#~ msgid "You're about to delete all files in %s. Sure ?"
+#~ msgstr "Вы собираетесь удалить все файлы из %s. Уверены?"
+
+#~ msgid "This plug-in adds many special effects to your icons."
+#~ msgstr "Этот плагин предлагает различные эффекты для ваших значков."
+
+#~ msgid ""
+#~ "This plug-in provides animations for appearance & disappearance of icons."
+#~ msgstr "Этот плагин предлагает эффекты появления и исчезновения значков."
+
+#~ msgid ""
+#~ "This applet provides functions for a better integration into a KDE "
+#~ "environnement.\n"
+#~ "It is auto-activated, so you don't need to activate it.\n"
+#~ "It is designed for the a KDE version >= 4.2"
+#~ msgstr ""
+#~ "Этот апплет обеспечивает лучшую интеграцию с рабочей средой KDE.\n"
+#~ "Активируется автоматически.\n"
+#~ "Спроектирован для работы с версиями KDE >= 4.2"
+
+#~ msgid ""
+#~ "A very simple applet that adds an icon to log out from your session\n"
+#~ "Left click to log out, middle click to shutdown\n"
+#~ "You can invert this order if you prefer to shutdown on left-click."
+#~ msgstr ""
+#~ "Очень простой апплет, который добавляет значок завершения сеанса\n"
+#~ "Левый щелчок для завершения сеанса, средний для выключения системы\n"
+#~ "Если захотите, можете поменять местами выполнение команд."
+
+#~ msgid "You have a new mail :"
+#~ msgstr "Есть новые сообщения:"
+
+#, c-format
+#~ msgid "You have %d new mails :"
+#~ msgstr "У вас %d новых собщений:"
+
+#, c-format
+#~ msgid ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual mail application,\n"
+#~ "you can change it in the conf panel of this module"
+#~ msgstr ""
+#~ "Возникла проблема\n"
+#~ "Если '%s' не является вашим почтовым приложением,\n"
+#~ "вы можете изменить его в настройках модуля"
+
 #~ msgid "New song"
 #~ msgstr "Новая композиция"
+
+#~ msgid "This plug-in adds a motion blur effect on docks."
+#~ msgstr "Этот плагин добавляет эффект размытия, при движении на панели."
+
+#~ msgid ""
+#~ "This applet lets you control any music player.\n"
+#~ "Left click to Play/Pause, middle-click to play Next song.\n"
+#~ "Scroll up/down to play previous/next song.\n"
+#~ "You can drag and drop songs on the icon to put them in the queue (depends on "
+#~ "Player),\n"
+#~ " and jpeg image to use as cover.\n"
+#~ "Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
+#~ "       For SongBird, you have to install its dbus add-on.\n"
+#~ msgstr ""
+#~ "Этот апплет позволяет управлять любым проигрывателем.\n"
+#~ "Левый щелчок для Воспроизведения/Паузы, средний для перехода на следующий.\n"
+#~ "Колесо мыши, для переключения предыдущий/следующий.\n"
+#~ "Вы можете перетащить муз.файл на значок, чтобы добавить его к очереди "
+#~ "(зависит от проигрывателя),\n"
+#~ " или изображение, чтобы использовать его в качестве обложки.\n"
+#~ "Совет: Для XMMS, вам следует установить плагин 'xmms-infopipe'.\n"
+#~ "       Для SongBird, потребуется установить дополнение dbus.\n"
 
 #~ msgid "Next (middle-click)"
 #~ msgstr "Следующий (средний щелчок)"
@@ -8226,8 +8476,95 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgid "Play/Pause (left-click)"
 #~ msgstr "Воспроизведение/Пауза (левый щелчок)"
 
+#~ msgid "No Battery found."
+#~ msgstr "Батарея не обнаружена."
+
+#~ msgid "Estimated time with Charge:"
+#~ msgstr "время работы от батареи:"
+
+#, c-format
+#~ msgid ""
+#~ "Interface '%s' seems to not exist or is not readable.\n"
+#~ " You may have to set up the interface you wish to monitor.\n"
+#~ " Do you want to do it now ?"
+#~ msgstr ""
+#~ "Интерфейс '%s' не существует или не доступен.\n"
+#~ " Задайте интерфейс для отслеживания.\n"
+#~ " Сделать это сейчас?"
+
+#~ msgid "Estimated Charge time:"
+#~ msgstr "Время зарядки батареи:"
+
+#~ msgid "A power manager for laptop's battery. It works with ACPI and DBus."
+#~ msgstr "Менеджер заряда батареи ноутбука. Работает с ACPI и DBus."
+
+#~ msgid ""
+#~ "PowerManager.\n"
+#~ "Your battery is now Charged"
+#~ msgstr ""
+#~ "PowerManager.\n"
+#~ "Батарея заряжена полностью."
+
+#~ msgid "Please put your Laptop on charge."
+#~ msgstr "Поставьте на зарядку."
+
+#~ msgid ""
+#~ "This plug-in draw some animation around the cursor when it's inside a "
+#~ "dock/desklet."
+#~ msgstr ""
+#~ "Этот плагин анимирует курсор мыши, когда он находится внутри панели или "
+#~ "десклета."
+
+#~ msgid ""
+#~ "Control your Rhythmbox player directly in the dock !\n"
+#~ "Left-click to launch it, and to play/pause.Middle-click and Scroll-down for "
+#~ "next song, Scroll-up for previous song.\n"
+#~ "You can drag and drop covers (jpg) on the icon to use them,\n"
+#~ " and songs to put them in the queue."
+#~ msgstr ""
+#~ "Управляйте Rhythmbox прямо из панели!\n"
+#~ "Левый щелчок, для запуска и воспроизведения/паузы. Средний щелчок и колесо "
+#~ "мыши для переключения дорожек.\n"
+#~ "Вы можете перетаскивать на значок обложки альбомов (jpg)\n"
+#~ " и музыкальные файлы, чтобы добавлять их в очередь."
+
+#~ msgid ""
+#~ "An applet that let you access quickly to all of your shortcuts.\n"
+#~ "It can manage disks, network points, and Nautilus bookmarks (even if you "
+#~ "don't have Nautilus).\n"
+#~ "Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
+#~ "Middle-click on the main icon to acces your desktop easily.\n"
+#~ "Middle-click on a mounting point icon to (un)mount is quickly.\n"
+#~ "The applet can also display valuable information about your disks, like free "
+#~ "space, type, etc."
+#~ msgstr ""
+#~ "Этот апплет обеспечивает быстрый доступ до ваших ярлыков.\n"
+#~ "Может содержать ярлыки дисков, сетевых соединений и закладок Nautilus (даже "
+#~ "если у вас нет Nautilus).\n"
+#~ "Перетащите каталог на панель или суб-панель, чтобы создать закладку.\n"
+#~ "Средний щелчок на главном значке, чтобы быстро переключиться на рабочий "
+#~ "стол.\n"
+#~ "Средний щелчок на присоединённом томе, чтобы быстро от/присоединить его.\n"
+#~ "Этот апплет также отображает полезную информацию о ваших дисках: свободное "
+#~ "место, тип и т.д."
+
+#~ msgid ""
+#~ "This applet let you access quickly to your desklets.\n"
+#~ "Left click to show/hide your desklets.\n"
+#~ "Basically, if you run under Compiz, you don't need this applet;\n"
+#~ " you should just use the 'Widget Layer' capabilities of desklets."
+#~ msgstr ""
+#~ "Этот апплет обеспечивает быстрый доступ до ваших десклетов.\n"
+#~ "Левый щелчок, чтобы показать/скрыть ваши десклеты.\n"
+#~ "Вообще-то, если вы используете Compiz, то нет нужды использовать этот "
+#~ "апплет;\n"
+#~ " вам потребуется только использовать возможность десклетов — 'Слой Виджетов'"
+
 #~ msgid "showDesklets"
 #~ msgstr "Показывать Десклеты"
+
+#~ msgid "Clear the stack ?"
+#~ msgstr "Очистить стэк?"
 
 #~ msgid ""
 #~ "This is a very simple icon to show your desktop\n"
@@ -8238,11 +8575,29 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ "Левый щелчок — показать/скрыть рабочий стол\n"
 #~ "Средний, делает тоже самое, но не скрывает десклеты."
 
+#~ msgid "Set new name for this item :"
+#~ msgstr "Задать новое имя для элемента:"
+
 #~ msgid "Copy (middle click)"
 #~ msgstr "Копировать (средний щелчок)"
 
 #~ msgid "Reload Stacks"
 #~ msgstr "Обновить стэк"
+
+#~ msgid ""
+#~ "Add a systray to your dock.\n"
+#~ "Left-click to show the systray in a dialog (you can bind a keyboard shortcut "
+#~ "for it.)\n"
+#~ "Middle-click to close the dalog.\n"
+#~ "But the best way to use it id to detach it from the dock, and place it "
+#~ "somewhere, above other windows."
+#~ msgstr ""
+#~ "Добавьте область уведомлений на вашу панель.\n"
+#~ "Левый щелчок, чтобы отобразить область в отдельном окне (можно назначить "
+#~ "клавиатурное сочетание).\n"
+#~ "Средний щелчок, чтобы закрыть это окно.\n"
+#~ "Но лучший способ использовать этот апплет — это открепить его от панели и "
+#~ "поместить где-нибудь в стороне от других окон."
 
 #~ msgid ""
 #~ "This applet allows you to switch between your virtual desktops.\n"
@@ -8266,14 +8621,223 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgid "Remove last desktop"
 #~ msgstr "Удалить последний рабочий стол"
 
+#~ msgid ""
+#~ "Add a terminal to your dock !\n"
+#~ "Left/middle click to show/hide terminal (you can bind a keyboard shortcut "
+#~ "for it.)\n"
+#~ "You can drag'n'drop files or text and select an action.\n"
+#~ "You can open many tabs, rename them, change their color (right-click on a "
+#~ "tab to interact on it)\n"
+#~ "To open a new tab : type 'CTRL+t' or double-click next to the last tab\n"
+#~ "To close a tab : type 'CTRL+w' or middle-click on it."
+#~ msgstr ""
+#~ "Добавьте терминал на вашу панель!\n"
+#~ "Левый/средний щелчок, чтобы показать/скрыть терминал (можно настроить "
+#~ "клавиатурное сокращение).\n"
+#~ "Вы можете перетаскивать файлы или текст и выбирать нужные действия над "
+#~ "ними.\n"
+#~ "Можно открывать несколько вкладок, переименовывать их, изменять цвет (все "
+#~ "действия через правый щелчок)\n"
+#~ "Чтобы открыть новую вкладку: введите 'CTRL+t' или сделайте двойной щелчок "
+#~ "рядом с текущей\n"
+#~ "Чтобы закрыть вкладку: введите 'CTRL+w' или средний щелчок на ней."
+
+#~ msgid "Set title for this tab :"
+#~ msgstr "Задать заголовок для это вкладки:"
+
+#~ msgid "Control your TomBoy's notes directly in the dock !\n"
+#~ msgstr "Управляйте заметками TomBoy прямо из панели!\n"
+
+#~ msgid "Search for tag :"
+#~ msgstr "Искать тэг:"
+
+#~ msgid "Search for :"
+#~ msgstr "Искать:"
+
+#~ msgid "Delete this note ?"
+#~ msgstr "Удалить эту заметку?"
+
+#~ msgid "Change this Tab's color"
+#~ msgstr "Изменить цвет этой вкладки"
+
+#~ msgid "Clear marks"
+#~ msgstr "Удалить пометки"
+
+#~ msgid "SunRise"
+#~ msgstr "Восход солнца"
+
+#~ msgid "Precipitation Probability"
+#~ msgstr "Вероятность выпадения осадков"
+
+#~ msgid ""
+#~ "No data were available\n"
+#~ " is connection alive ?"
+#~ msgstr ""
+#~ "Не могу получить информацию\n"
+#~ " Включен ли Интернет?"
+
+#~ msgid "SunSet"
+#~ msgstr "Закат солнца"
+
+#~ msgid ""
+#~ "No data were available\n"
+#~ "Re-trying now ..."
+#~ msgstr ""
+#~ "Нет доступной информации\n"
+#~ "Обновление..."
+
 #~ msgid "feeled"
 #~ msgstr "Комфорт"
+
+#~ msgid "Wifi disabled."
+#~ msgstr "Wifi отключен."
+
+#~ msgid ""
+#~ "An applet dedicated to control XMMS, Audacious, Banshee & Exaile.\n"
+#~ "XMMS & Audacious are fully supported, but Banshee and Exaile's monitoring is "
+#~ "still experimental.\n"
+#~ "For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
+#~ "Launch/Play/Pause on left click, Next song on middle click.\n"
+#~ "You can drag and drop songs on the icon to put them in the queue.\n"
+#~ "Scroll up/down to play the previous/next song."
+#~ msgstr ""
+#~ "С этим апплетом вы сможете управлять XMMS, Audacious, Banshee и Exaile.\n"
+#~ "XMMS и Audacious поддерживаются полностью, но управление Banshee и Exaile "
+#~ "пока экспериментально.\n"
+#~ "Для XMMS, вам потребуется установить плагин 'xmms-infopipe'.\n"
+#~ "Запуск/Воспроизведение/Пауза по левому щелчку, Переход к следующей "
+#~ "композиции по среднему щелчку.\n"
+#~ "Можно перетаскивать композиции на значок, чтобы добавить их к очереди.\n"
+#~ "Используйте колесо мыши, чтобы переключать композиции."
+
+#~ msgid "Effects used :"
+#~ msgstr "Использовать эффект:"
+
+#~ msgid "when hovering an icon"
+#~ msgstr "При наведении на значок"
+
+#~ msgid "Effects used on launcher :"
+#~ msgstr "Применять эффекты на значке запуска:"
+
+#~ msgid "Number of time the animation will play :"
+#~ msgstr "Сколько раз проигрывать анимацию:"
+
+#~ msgid "when clicking on an appli"
+#~ msgstr "При щелчке на приложении"
+
+#~ msgid "Effects used on applis :"
+#~ msgstr "Применять эффекты на приложении:"
+
+#~ msgid "Effects used on applets :"
+#~ msgstr "Применять эффекты на апплетах:"
+
+#~ msgid "Image for the front spot :"
+#~ msgstr "Передний цвет прожектора:"
+
+#~ msgid "color of the mesh :"
+#~ msgstr "Цвет сетки:"
+
+#~ msgid "Image for the spot :"
+#~ msgstr "Цвет прожектора:"
+
+#~ msgid "Let empty to use the default one.}"
+#~ msgstr "Оставьте пустым, чтобы использовать стандартный"
+
+#~ msgid "Repeat while icon is pointed ?"
+#~ msgstr "Повторять пока наведено на значок?"
+
+#~ msgid "Type of mesh :"
+#~ msgstr "Тип сетки:"
+
+#~ msgid "Duration of the animation :"
+#~ msgstr "Продолжительность анимации:"
+
+#~ msgid "color of the spot :"
+#~ msgstr "Цвет светогого пятна:"
+
+#~ msgid "color of the halo :"
+#~ msgstr "Цвет ореола:"
+
+#~ msgid "Rays speed :"
+#~ msgstr "Скорость лучей:"
+
+#~ msgid "Initial stretch :"
+#~ msgstr "Начальное растяжение:"
+
+#~ msgid "Random colors ?"
+#~ msgstr "Случайные цвета?"
+
+#~ msgid "Rays size :"
+#~ msgstr "Размер лучей:"
+
+#~ msgid "Number of rays :"
+#~ msgstr "Количество лучей:"
+
+#~ msgid "Friction :"
+#~ msgstr "Трение:"
+
+#~ msgid "Width of the wave :"
+#~ msgstr "Ширина волны:"
+
+#~ msgid "Amplitude of the wave :"
+#~ msgstr "Амплитуда волны:"
+
+#~ msgid "Duration of the pulse :"
+#~ msgstr "Продолжительность пульса:"
+
+#~ msgid "Number of points on the grid in one direction :"
+#~ msgstr "Количество точек в одном направлении на решётке:"
+
+#~ msgid "Zoom max of the pulse :"
+#~ msgstr "Максимальное приближение пульса:"
+
+#~ msgid "Spring constant :"
+#~ msgstr "Величина пружины:"
+
+#~ msgid "When bouncing, resize the icon of :"
+#~ msgstr "Во время подпрыгивания, изменять размер значка:"
+
+#~ msgid "the smaller, the more it will flatten."
+#~ msgstr "чем меньше, тем он больше плоский."
+
+#~ msgid "Should the pulse follow the shape of the icon ?"
+#~ msgstr "Должен ли пульс зависеть от формы значка?"
+
+#~ msgid "Duration of the bounce :"
+#~ msgstr "Продолжительность подпрыга:"
+
+#~ msgid "Set to 0 to use the default applet size"
+#~ msgstr "Установите в 0 , чтобы иметь стандартный размер апплета"
+
+#~ msgid "Name of the icon when the penguin is not free :"
+#~ msgstr "Имя значка, когда пингвин не свободен:"
+
+#~ msgid "Icon size when the penguin is not free :"
+#~ msgstr "Размер значка, когда пингвин не свободен:"
+
+#~ msgid "Duration of the blink :"
+#~ msgstr "Продолжительность мигания:"
+
+#~ msgid "How much the icon will flatten when hurting the ground :"
+#~ msgstr "Насколько плоским должен становиться значок при касании плоскости:"
 
 #~ msgid "Action_0"
 #~ msgstr "Действие_0"
 
+#~ msgid "Ground offset :"
+#~ msgstr "Смещение от поверхности:"
+
+#~ msgid "Let the penguin wander everywhere in the dock ?"
+#~ msgstr "Позволить пингвину шастать по панели?"
+
+#~ msgid "Transparency of the penguin :"
+#~ msgstr "Прозрачность пингвина:"
+
 #~ msgid "in seconds"
 #~ msgstr "в секундах"
+
+#~ msgid "Choose one of the available themes :"
+#~ msgstr "Выберите одну из доступных тем:"
 
 #~ msgid "Action_2/Command_0"
 #~ msgstr "Действие_2/Команда_2"
@@ -8441,6 +9005,16 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgid "Background image :"
 #~ msgstr "Фоновое изображение:"
 
+#~ msgid "Number of items :"
+#~ msgstr "Количество элементов:"
+
+#~ msgid ""
+#~ "It is especially usefull if you often select text with mouse and don't want "
+#~ "to lose your clipboard items because of a great number of selection items."
+#~ msgstr ""
+#~ "Это особенно полезно, когда вы часто выделяете мышью текст и не хотите "
+#~ "терять многочисленные элементы, запомненные в буфере обмена."
+
 #~ msgid ""
 #~ "It's an image that will be displayed above the drawings, like a reflect for "
 #~ "exemple. Let empty to not use any."
@@ -8454,8 +9028,163 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgid "Foreground image :"
 #~ msgstr "Изображение переднего плана:"
 
+#~ msgid "Which items should be remembered ?"
+#~ msgstr "Какие элементы запоминать?"
+
+#~ msgid ""
+#~ "If some actions are associated with an item, they will be proposed to you "
+#~ "when the item is created."
+#~ msgstr ""
+#~ "Если некоторые действия ассоциированы с элементом, то они будут предложены "
+#~ "вам, когда элемент будет создан."
+
+#~ msgid "Shortkey to pop-up the items menu :"
+#~ msgstr "Клавиатурное сочетание для вызова меню:"
+
+#~ msgid "Pop-up menus at mouse position ?"
+#~ msgstr "Показывать меню в позиции курсора?"
+
+#~ msgid "Paste into Clipboard ?"
+#~ msgstr "Вставлять в буфер обмена?"
+
+#~ msgid "If so, number of selection items :"
+#~ msgstr "Если так, то укажите количество выбранных элементов:"
+
+#~ msgid "Separate clipboard and selection ?"
+#~ msgstr "Разделять элементы?"
+
+#~ msgid "Paste into Selection ?"
+#~ msgstr "Вставлять в выделение?"
+
+#~ msgid "Duration of the action menu :"
+#~ msgstr "Продолжительность меню действий:"
+
+#~ msgid "Replay actions ?"
+#~ msgstr "Повторять действия?"
+
+#~ msgid "Enable actions ?"
+#~ msgstr "Разрешить действия?"
+
+#~ msgid "Display the actions when selecting an item in the history."
+#~ msgstr "Показывать действия во время выделения элементов в истории."
+
+#~ msgid "Let extern applications pop-up dialogs in the dock ?"
+#~ msgstr "Позволить сторонним приложениям вызывать окна на панели?"
+
+#~ msgid "A list of persistent items that can be accessed with middle-click :"
+#~ msgstr "Список постоянных элементов, которые доступны по среднему щелчку:"
+
+#~ msgid "Let extern applications quit the dock ?"
+#~ msgstr "Позволить сторонним приложениям завершать работу панели?"
+
+#~ msgid "Let extern applications reboot the dock ?"
+#~ msgstr "Позволить сторонним приложениям перезапускать панель?"
+
+#~ msgid "Display icons in the menu ?"
+#~ msgstr "Показывать значки в меню?"
+
+#~ msgid "Let extern applications register new module ?"
+#~ msgstr "Позволить сторонним приложениям регистрировать новые модули?"
+
+#~ msgid "Let extern applications modify the image of icons ?"
+#~ msgstr "Позволить сторонним приложениям изменять изображения значков?"
+
+#~ msgid "Shortkey to show/hide the menu :"
+#~ msgstr "Клавиатурное сокращение для показа/скрытия меню:"
+
+#~ msgid "Let extern applications modify the quick-infos on icons ?"
+#~ msgstr "Позволить сторонним приложениям изменять сообщения на значках?"
+
+#~ msgid "Let extern applications modify the labels of icons ?"
+#~ msgstr "Позволить сторонним приложениям изменять подписи значков?"
+
+#~ msgid "Let extern applications reload the applets ?"
+#~ msgstr "Позволить стороним приложениям перезапускать апплеты?"
+
+#~ msgid "Let extern applications show/hide the desklets ?"
+#~ msgstr "Позволить сторонним приложениям показывать/скрывать десклеты?"
+
+#~ msgid "Let extern applications add launchers into the docks ?"
+#~ msgstr "Позволить сторонним приложениям добавлять значки на панель?"
+
+#~ msgid "Let extern applications show/hide the docks ?"
+#~ msgstr "Позволить сторонним приложениям показывать/скрывать панели?"
+
+#~ msgid "Shortkey to activate/deactivate the navigation mode :"
+#~ msgstr "Клавиатурное сокращение для (де)активирования режима навигации:"
+
+#~ msgid "Shortkey to activate/deactivate the finder mode :"
+#~ msgstr "Клавиатурное сокращение для (де)активирования режима поиска:"
+
+#~ msgid "in days. Set 0 to not use this filter."
+#~ msgstr "в днях. Установите 0, чтобы не использовать фильтр."
+
+#~ msgid "Only show files that are under this folder or its sub-folder :"
+#~ msgstr "Показывать только файлы внутри этого каталога и его подкаталогов:"
+
+#~ msgid "Let blank to not use this filter."
+#~ msgstr "Оставьте пустым, чтобы не использовать фильтр."
+
+#~ msgid "Command to use to configure the menu :"
+#~ msgstr "Команда для настройки меню:"
+
+#~ msgid "Shortkey to show/hide the quick-launch dialog :"
+#~ msgstr "Клавиатурное сокращение для показа/скрытия окна быстрой информации:"
+
+#~ msgid "Show recent documents ?"
+#~ msgstr "Показывать недавние документы?"
+
+#~ msgid "Font used to display what you type :"
+#~ msgstr "Шрифт, используемый для отображения того, что вы пишете:"
+
 #~ msgid "Characters"
 #~ msgstr "Символы"
+
+#~ msgid "Name of an image for the 'Low' icon :"
+#~ msgstr "Изображение для значка 'Слабый'"
+
+#~ msgid "Name of an image for the 'No signal' icon :"
+#~ msgstr "Изображение для значка 'Нет сигнала'"
+
+#~ msgid "Name of an image for the 'Very low' icon :"
+#~ msgstr "Изображение для значка 'Очень слабый'"
+
+#~ msgid "Name of an image for the 'Middle' icon :"
+#~ msgstr "Изображение для значка 'Средний'"
+
+#~ msgid "Let it empty to use the default icon."
+#~ msgstr "Оставьте пустым, чтобы использовать стандартный значок"
+
+#~ msgid ""
+#~ "You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
+#~ "movement is continue."
+#~ msgstr ""
+#~ "Для этой опции требуется поддержка OpenGL. Установите 0, чтобы не "
+#~ "использовать, значение 1 означает, что движение будет продолжаться."
+
+#~ msgid "How smooth is the movement ?"
+#~ msgstr "Насколько гладко совершать движение?"
+
+#~ msgid "Name of an image for the 'Excellent' icon :"
+#~ msgstr "Изображение для значка 'Отличный'"
+
+#~ msgid "Name of an image for the 'Not connected' icon :"
+#~ msgstr "Изображение для значка 'Нет соединения'"
+
+#~ msgid "Name of an image for the 'Wired connection' icon :"
+#~ msgstr "Изображение для значка 'Проводное соединение'"
+
+#~ msgid "Overwrite the default label with the connection point name ?"
+#~ msgstr "Заменить стандартную подпись, на имя точки доступа?"
+
+#~ msgid "Text weight :"
+#~ msgstr "Ширина текста:"
+
+#~ msgid "between 1 and 9, the bigger, the heavier."
+#~ msgstr "Между 1 и 9, чем больше, тем толще."
+
+#~ msgid "Font size, relatively to the dock's size :"
+#~ msgstr "Размер шрифта, в зависимости от размеров панели:"
 
 #~ msgid ""
 #~ "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
@@ -8464,23 +9193,480 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ "к примеру, Monospace, Purisa, ... Просто впишите название шрифта, без каких "
 #~ "либо цифр и т.п."
 
+#~ msgid "Should the text be outlined ?"
+#~ msgstr "Обрисовывать текст?"
+
+#~ msgid "It's the color of the graphic for high CPU values."
+#~ msgstr "Цвет графика при высоких значениях CPU."
+
+#~ msgid "It's the color of the graphic for low CPU values."
+#~ msgstr "Цвет графика при низких значениях CPU."
+
+#~ msgid "Show all values on same graph ?"
+#~ msgstr "Показывать все значения на одном графике?"
+
+#~ msgid "Show CPU usage ?"
+#~ msgstr "Показывать загрузку CPU?"
+
+#~ msgid "Show SWAP too ?"
+#~ msgstr "И файла подкачки тоже?"
+
+#~ msgid "Color of the background of the characters :"
+#~ msgstr "Цвет заднего фона на символах:"
+
+#~ msgid "Text color :"
+#~ msgstr "Цвет текста:"
+
+#~ msgid "Write text on the top of the dock ?"
+#~ msgstr "Отрисовывать текст наверху панели?"
+
+#~ msgid "Show free memory instead of used memory ?"
+#~ msgstr "Показывать свободную память вместо используемой?"
+
+#~ msgid "Show graphic card temperature ?"
+#~ msgstr "Показывать температуру видео-карты?"
+
+#~ msgid "Delay between refresh :"
+#~ msgstr "Интервал между проверками:"
+
+#~ msgid "User command to show a system monitor :"
+#~ msgstr "Своя команда для показа системного монитора:"
+
+#~ msgid "It's the second color of the gradation used to write the top list."
+#~ msgstr "Конечный цвет градации используемый для отображения топ-листа."
+
+#~ msgid "Start color of the top list :"
+#~ msgstr "Начальный цвет топ-листа:"
+
+#~ msgid "Steal the system monitor's icon in taskbar ?"
+#~ msgstr "Изъять значок системного монитора из панели задач?"
+
+#~ msgid ""
+#~ "It will prevent the system monitor's icon to appear in the taskbar. The "
+#~ "applet's icon will then behave as a launcher, an appli, and an applet."
+#~ msgstr ""
+#~ "Это предотвратит появление значка на панели задач. Значок апплета будет "
+#~ "вести себя как значок запуска, приложение и апплет."
+
+#~ msgid "It's the first color of the gradation used to write the top list."
+#~ msgstr "Начальный цвет градации используемый для отображения топ-листа."
+
+#~ msgid "Number of programs to display in the top list :"
+#~ msgstr "Количество программ в списке:"
+
+#~ msgid ""
+#~ "When you left-click on the icon, you will get the list of the N most CPU/RAM-"
+#~ "using programs."
+#~ msgstr ""
+#~ "При левом щелчке на значке, вы получите список приложении наиболее "
+#~ "используемых ресурсы системы."
+
+#~ msgid "Stop color of the top list :"
+#~ msgstr "Конечный цвет топ-листа:"
+
+#~ msgid "Alert limit of core temperature :"
+#~ msgstr "Порог температуры ядра:"
+
+#~ msgid "Alert when core temperature is high ?"
+#~ msgstr "Уведомлять о превышении верхнего порога?"
+
+#~ msgid ""
+#~ "in celcius. The temperature will be displayed between this value and the "
+#~ "upper limit."
+#~ msgstr ""
+#~ "в цельсиях. Будет отображаться температура между этим значением и верхним "
+#~ "порогом."
+
+#~ msgid "Lower limit of core temperature :"
+#~ msgstr "Нижний порог температуры ядра:"
+
+#~ msgid ""
+#~ "in celcius. The temperature will be displayed between the lower limit and "
+#~ "this value."
+#~ msgstr ""
+#~ "в цельсиях. Будет отображаться температура между этим значением и нижним "
+#~ "порогом."
+
+#~ msgid "Upper limit of core temperature :"
+#~ msgstr "Верхний порог температуры ядра:"
+
+#~ msgid "Show top memory usage in % ?"
+#~ msgstr "Показывать использование памяти в % ?"
+
+#~ msgid "Delay between refresh of the top list :"
+#~ msgstr "Интервал обновления топ-листа:"
+
+#~ msgid "Set 0 to not use it."
+#~ msgstr "Установите в 0, чтобы не использовать."
+
+#~ msgid "Play a sound during the alert ?"
+#~ msgstr "Звуковой сигнал при уведомлении?"
+
+#~ msgid "Variation for 1 mouse scroll, in % :"
+#~ msgstr "Изменения при 1 прокручивании колесика, в %:"
+
+#~ msgid "Sound path :"
+#~ msgstr "Путь до звукового файла:"
+
+#~ msgid "High refresh frequency ?"
+#~ msgstr "Повысить частоту обновлений?"
+
+#~ msgid "Wink duration :"
+#~ msgstr "Интервал миганий:"
+
+#~ msgid "Keep ratio ?"
+#~ msgstr "Сохранять масштаб?"
+
 #~ msgid "in ms."
 #~ msgstr "в мсек."
+
+#~ msgid "Mean delay between winks :"
+#~ msgstr "Средний интервал миганий:"
+
+#~ msgid "Luminosity to automatically apply on startup :"
+#~ msgstr "Яркость при запуске:"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can move it with ALT + left_click. "
+#~ "Negative values are counted from the right/bottom of the screen"
+#~ msgstr ""
+#~ "В зависимости от вашего ОМ, вы можете перетаскивать её с помощью ALT + левый "
+#~ "щелчок. Отрицательные значения исчисляются от правого/нижнего угла экрана"
+
+#~ msgid "Sound card to control :"
+#~ msgstr "Звуковая карта для управления"
+
+#~ msgid "Let empty to use the default sound card."
+#~ msgstr "Оставьте пустым, чтобы использовать по умолчанию."
+
+#~ msgid "Specific command to run to show an advanced sound mixer :"
+#~ msgstr "Укажите команду запуска расширенного звукового микшера:"
+
+#~ msgid "Optionnally, choose a second channel to control :"
+#~ msgstr "Опционально, вебрите другой канал для управления:"
+
+#~ msgid "Let empty to use the defaut command."
+#~ msgstr "Оставьте пустым, чтобы использовать команду по умолчанию."
+
+#~ msgid ""
+#~ "On some cards, a channel only controls 1 side (right or left). You will then "
+#~ "need to specify a second channel here, to control both sides. Most of the "
+#~ "time, you should just let it empty."
+#~ msgstr ""
+#~ "На некоторых картах, один канал может отвечать только за одну сторону (левую "
+#~ "или правую). Поэтому укажите здесь другой канал, чтобы управлять обеими "
+#~ "сторонами. В большинстве случаев, просто оставьте поле пустым."
+
+#~ msgid "Default icon :"
+#~ msgstr "Стандартный значок:"
+
+#~ msgid "Broken icon :"
+#~ msgstr "Значок поломки:"
+
+#~ msgid "Let it empty to use the location's name if available."
+#~ msgstr ""
+#~ "Оставьте пустым, чтобы использовать путь в качестве имени, если доступен."
+
+#~ msgid "Shortkey to show/hide the sound control dialog :"
+#~ msgstr "Клавиатурное сокращение для показа/скрытия окна управления звуком:"
+
+#~ msgid "Hide the scale when mouse leaves the desklet ?"
+#~ msgstr "Скрывать шкалу, когда курсор покидает десклет?"
+
+#~ msgid "Mute icon :"
+#~ msgstr "Значок приглушения:"
+
+#~ msgid "Effet to apply on the icon according to volume :"
+#~ msgstr "Применять эффект в зависимость от громкости:"
+
+#~ msgid "Choose which channel to control :"
+#~ msgstr "Выберите канал для управления:"
+
+#~ msgid "for numeric format only."
+#~ msgstr "Только для цифрового вида."
+
+#~ msgid "Show the date :"
+#~ msgstr "Показывать дату:"
+
+#~ msgid "Module"
+#~ msgstr "Модуль"
+
+#~ msgid "Should the time be displayed as a 24h format ?"
+#~ msgstr "Использовать 24ч формат времени?"
+
+#~ msgid "if not, then the applet will update time once a minute, saving CPU."
+#~ msgstr ""
+#~ "если нет, то апплет будет обновлять время раз в минуту, сохраняя ресурсы CPU."
+
+#~ msgid ""
+#~ "For exemple :Europe/Paris, :Japan, etc. Let empty to get the local time."
+#~ msgstr ""
+#~ "К примеру: Европа/Париж, Япония и т.д. Оставьте пустым, чтобы использовать "
+#~ "локальное время."
+
+#~ msgid "Display seconds with smooth animation of a duration of :"
+#~ msgstr "Показывать секунды с плавной анимацией продолжительностью:"
+
+#~ msgid ""
+#~ "In ms. Set 0 to not have a smooth animation, set 1000 to have a continuous "
+#~ "animation. It requires OpenGL."
+#~ msgstr ""
+#~ "В мсек. Установите 0, чтобы не использовать плавную анимацию. Установите "
+#~ "1000, для продолжительной анимации. Требуется поддержка OpenGL."
+
+#~ msgid "Show seconds ?"
+#~ msgstr "Показывать секунды?"
+
+#~ msgid "Timezone :"
+#~ msgstr "Временная зона:"
+
+#~ msgid ""
+#~ "The analogic view is based on CairoClock; otherwise it will be displayed in "
+#~ "a numeric way."
+#~ msgstr ""
+#~ "Аналоговый вид основан на CairoClock; в другом случае будет использован "
+#~ "цифровой вид."
+
+#~ msgid "Choose the view :"
+#~ msgstr "Выберите вид:"
+
+#~ msgid "Text color of the date :"
+#~ msgstr "Цвет текста даты:"
+
+#~ msgid "List of available themes for the analogic display :"
+#~ msgstr "Список доступных тем для аналогово дисплея:"
+
+#~ msgid "Image to draw on the background :"
+#~ msgstr "Изображение заднего фона:"
+
+#~ msgid "Analogic View"
+#~ msgstr "Аналоговый вид:"
+
+#~ msgid "Analogic"
+#~ msgstr "Аналоговый"
+
+#~ msgid "Numeric"
+#~ msgstr "Цифровой"
 
 #~ msgid "Font used for the numeric display :"
 #~ msgstr "Шрифт для цифрового дисплея:"
 
+#~ msgid "Numeric View"
+#~ msgstr "Цифровой вид"
+
 #~ msgid "Text color for the numeric display:"
 #~ msgstr "Цвет текста для цифрового дисплея:"
+
+#~ msgid ""
+#~ "Except for switching to another WM, you must activate the Dbus plugin in "
+#~ "Compiz, along with the plug-in corresponding to the desired action."
+#~ msgstr ""
+#~ "Кроме переключения на другой ОМ, вы должны задействовать Dbus плагин в "
+#~ "Compiz, так как он отвечает за выбранное действие."
+
+#~ msgid "Choose an action for the middle click on the icon :"
+#~ msgstr "Выберите действие для среднего щелчка:"
+
+#~ msgid "Let empty to use default command."
+#~ msgstr "Оставьте пустым, чтобы использовать команду по умолчанию."
+
+#~ msgid "Setup time and date"
+#~ msgstr "Настроить время и дату"
+
+#~ msgid "Specific command to run :"
+#~ msgstr "Пользовательская команда запуска:"
+
+#~ msgid "Add or remove an alarm :"
+#~ msgstr "Добавить или удалить напоминание:"
 
 #~ msgid "Show Desktop"
 #~ msgstr "Показать рабочий стол"
 
+#~ msgid ""
+#~ "This command will be used to launch the system WM; let it blank to use the "
+#~ "default one."
+#~ msgstr ""
+#~ "Эта команда будет использована для запуска системного ОМ; оставьте пустым, "
+#~ "чтобы использовать стандартную."
+
+#~ msgid "Custom command for system's Windows Manager :"
+#~ msgstr "Пользовательская команда для системного ОМ:"
+
+#~ msgid "Auto-reload Compiz ?"
+#~ msgstr "Автоматически перезапускать Compiz?"
+
+#~ msgid "Auto-reload the Decorator ?"
+#~ msgstr "Автоматически перезапускать Оформитель окон?"
+
+#~ msgid "Load Compiz with options at applet's startup."
+#~ msgstr "При старте апплета, запускать Compiz с опциями."
+
+#~ msgid ""
+#~ "If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
+#~ "Compiz from the dock then."
+#~ msgstr ""
+#~ "В случае непредвиденного завершения Compiz, Cairo-Dock будет перезапускать "
+#~ "его. Вам потребуется выйти из Compiz из панели."
+
+#~ msgid ""
+#~ "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
+#~ "quit Compiz from the dock then."
+#~ msgstr ""
+#~ "В случае непредвиденного завершения Оформителя окон,  Cairo-Dock будет "
+#~ "перезапускать его. Вам потребуется выйти из Compiz из панели."
+
+#~ msgid ""
+#~ "It will prevent the CSSM or Emerald icon to appear in the task bar. The "
+#~ "corresponding subdock's icons will then behave as launcher and an appli."
+#~ msgstr ""
+#~ "Это предотвратит появление значка CSSM или Emerald на панели задач. "
+#~ "Соответствующий значок на панели будет вести себя и как значок запуска, и "
+#~ "как приложение."
+
+#~ msgid "Force Compiz settings at startup ?"
+#~ msgstr "Принудительно использовать опции Compiz при запуске?"
+
+#~ msgid "Use thoses options only if you know them."
+#~ msgstr "Используйте эту опцию только если вы с ней знакомы."
+
+#~ msgid "Use Indirect Rendering ?"
+#~ msgstr "Использовать непрямой рендеринг?"
+
+#~ msgid "Use Loose Binding ?"
+#~ msgstr "Использовать свободную привязку?"
+
+#~ msgid ""
+#~ "With strict binding textures are bound whenever they are enabled, with loose "
+#~ "binding they are enabled when created. The Nvidia driver seems a bit slow "
+#~ "when binding textures, that's why this option gives a heavy performance "
+#~ "increase on Nvidia."
+#~ msgstr ""
+#~ "С точной привязкой, текстуры будут обработаны вне зависимости от того, когда "
+#~ "были задействованы. Со свободной привязкой они будут задействованы, когда "
+#~ "созданы. Драйверы Nvidia иногда бывают притормаживают при обработке текстур, "
+#~ "поэтому эта опция может хорошо увеличить быстродействие."
+
+#~ msgid "Add Emerald's Configuration to sub-dock ?"
+#~ msgstr "Добавить настройку Emerald в суб-панель?"
+
+#~ msgid ""
+#~ "Display in the applet's sub-dock an icon for the Emerald's configuration "
+#~ "panel."
+#~ msgstr "Отображать в суб-панели апплета значок настройки Emerald."
+
+#~ msgid "Add Exposition & Widget Layer to sub-dock ?"
+#~ msgstr "Добавить Экспозицию и Слой виджетов в суб-панель?"
+
+#~ msgid ""
+#~ "Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
+#~ "Layer plug-ins. Otherwise they will be available in the menu."
+#~ msgstr ""
+#~ "Отображать в суб-панели 2 значка для плагинов Экспозиции Compiz и Слоя "
+#~ "Виджетов. В другом случае, они будут доступны в меню."
+
+#~ msgid "Steal the application's icon in taskbar ?"
+#~ msgstr "Перехватить значок запуска с панели задач?"
+
+#~ msgid "By default it will be Emerald."
+#~ msgstr "По умолчанию это Emerald."
+
+#~ msgid "Choose your Windows Decorator :"
+#~ msgstr "Выберите ваш ОМ:"
+
+#~ msgid "Usefull when having dual or more X separate screens."
+#~ msgstr ""
+#~ "Полезно, если вы используете нексолько мониторов или несколько раздельных X "
+#~ "экранов."
+
+#~ msgid "Only Current Screen ?"
+#~ msgstr "Только на текущем экране?"
+
 #~ msgid "Name of the view used for the sub-dock :"
 #~ msgstr "Имя темы для суб-панели:"
 
+#~ msgid "Let it empty to use default sub-dock view."
+#~ msgstr "Оставьте пустым, чтобы использовать стандартный вид суб-панели."
+
+#~ msgid "Name of an image for the 'exposition' icon :"
+#~ msgstr "Файл изображения для значка 'экспозиция':"
+
+#~ msgid "Name of an image for the 'widget layer' icon :"
+#~ msgstr "Файл изображения для значка 'слой виджетов':"
+
+#~ msgid "Name of an image for the 'broken' icon :"
+#~ msgstr "Файл изображения для значка 'поломка':"
+
+#~ msgid "Name of an image for the 'setting' icon :"
+#~ msgstr "Файл изображения для значка 'настройки':"
+
+#~ msgid "Name of an image for the 'other wm' icon :"
+#~ msgstr "Файл изображения для значка 'другой ОМ':"
+
+#~ msgid "Let t empty to use the default icon."
+#~ msgstr "Оставьте пустым, чтобы использовать стандартный."
+
+#~ msgid "Name of an image for the 'reload' icon :"
+#~ msgstr "Файл изображения для значка 'перезапустить':"
+
+#~ msgid "Name of an image for the 'emerald' icon :"
+#~ msgstr "Файл изображения для значка 'emerald':"
+
+#~ msgid "Name of an image for the 'default' icon :"
+#~ msgstr "Файл изображения для значка 'стандартный':"
+
 #~ msgid "Border width of the plane :"
 #~ msgstr "Ширина линии плоскости:"
+
+#~ msgid "Border width :"
+#~ msgstr "Ширина линии границы:"
+
+#~ msgid "Line color of the bubble :"
+#~ msgstr "Цвет линии облачка:"
+
+#~ msgid "Corner radius :"
+#~ msgstr "Радиус закругления углов:"
+
+#~ msgid "Line color of the plane :"
+#~ msgstr "Цвет линии плоскости:"
+
+#~ msgid "Color of the plane :"
+#~ msgstr "Цвет плоскости:"
+
+#~ msgid "Color of the margin :"
+#~ msgstr "Цвет отступа:"
+
+#~ msgid "Enable info-bubbles ?"
+#~ msgstr "Задействовать инфо-облачки?"
+
+#~ msgid "Curve the sides too ?"
+#~ msgstr "Изгибать и стороны тоже?"
+
+#~ msgid "Keep a copy of each uploaded image ?"
+#~ msgstr "Сохранять копию каждого загруженного изображения?"
+
+#~ msgid "If so, display the last image on the icon ?"
+#~ msgstr "Если так, то отображать последнее изображение на значке?"
+
+#~ msgid "Custom script for image upload : "
+#~ msgstr "Пользовательский скрипт для загрузки изображений: "
+
+#~ msgid "Custom script for video upload : "
+#~ msgstr "Пользовательский скрипт для загрузки видео: "
+
+#~ msgid "Custom script for text upload : "
+#~ msgstr "Пользовательский скрипт для загрузки текста: "
+
+#~ msgid "Let empty to upload files into '~/Dropbox/Public'."
+#~ msgstr "Оставьте пустым, чтобы загружать файлы в '~/Dropbox/Public'."
+
+#~ msgid "Custom script for file upload : "
+#~ msgstr "Пользовательский скрипт для загрузки файлов: "
+
+#~ msgid "Height of the vanishing point :"
+#~ msgstr "Высота точки схождения:"
+
+#~ msgid "The lower, the more the point of view is low on the plane."
+#~ msgstr "Чем ниже, тем точка обзора ближе к плоскости."
 
 #~ msgid "Normal separator"
 #~ msgstr "Нормальный разделитель"
@@ -8494,24 +9680,216 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgid "Flat separator"
 #~ msgstr "Плоский разделитель"
 
+#~ msgid "Inclination of the plane :"
+#~ msgstr "Наклон плоскости:"
+
 #~ msgid "For flat separators, you can specify their color:"
 #~ msgstr "Для плоского разделителя вы можете указать цвет:"
+
+#~ msgid ""
+#~ "In degrees, regarding the vertical position. It's a sort of inclination of "
+#~ "the plane on the horizontal, giving the 3D feeling. So setting it to 0 means "
+#~ "the plane is not inclined at all (vertical)."
+#~ msgstr ""
+#~ "В градусах, относительно вертикальной позиции. Таким образом создаётся 3D "
+#~ "эффект. установите 0, чтобы не использовать наклон."
+
+#~ msgid "Depth of the plane :"
+#~ msgstr "Глубина плоскости:"
+
+#~ msgid "Percentage of the dock's width that appears on the foreground :"
+#~ msgstr "Процент ширины панели для отображения на переднем фоне:"
+
+#~ msgid "Always show icons' face ?"
+#~ msgstr "Всегда отображать поверхность значков?"
+
+#~ msgid "The higher it is, the sooner the parabole will be curved."
+#~ msgstr "Чем выше значение, тем быстрее парабола будет искривлена."
 
 #~ msgid "otherwise they will turn."
 #~ msgstr "в противном случае они будут повёрнуты."
 
+#~ msgid ""
+#~ "0.5 means the dock is half-folded, so half the icons are on the foreground, "
+#~ "and half are on the background."
+#~ msgstr ""
+#~ "Значение 0,5 будет означать, что панель на половину скрыта, поэтому половина "
+#~ "значков будет на переднем фоне, а остальное на заднем."
+
+#~ msgid ""
+#~ "The greater, the deeper. It is in fact the gap between background icons' "
+#~ "bottom and foreground icons' top (in pixels)."
+#~ msgstr ""
+#~ "Чем выше значение, тем глубже. Влияет на интервал между нижним краем фоновых "
+#~ "значков и верхним краем значков на переднем фоне (в пикселях)."
+
+#~ msgid ""
+#~ "It may recquire more CPU during the unfolding animation, except with OpenGL."
+#~ msgstr ""
+#~ "Потребуется больше процессорных ресурсов, если только не используется OpenGL."
+
+#~ msgid "Ratio height/width :"
+#~ msgstr "Отношение высоты/ширины:"
+
+#~ msgid "Draw labels while unfolding ?"
+#~ msgstr "Рисовать подписи во время раскрытия?"
+
+#~ msgid "Space between icons and their label :"
+#~ msgstr "Расстояние между значками и их подписями:"
+
+#~ msgid "Magnitude of the wave :"
+#~ msgstr "Высота волны:"
+
+#~ msgid "0 means the wave is totally flat, 1 means the wave is maximal."
+#~ msgstr ""
+#~ "При значении 0 волна будет полностью плоской, при значении 1, она будет "
+#~ "максимальной."
+
+#~ msgid "The parabole will be conscricted to a rectangle of this proportion."
+#~ msgstr "Парабола будет скручена в квадрат с этими пропорциями."
+
+#~ msgid "Curvature :"
+#~ msgstr "сила кривизны:"
+
+#~ msgid "Space between icons :"
+#~ msgstr "Расстояние между значками:"
+
+#~ msgid "Space between rows :"
+#~ msgstr "Расстояние между строками:"
+
+#~ msgid "Space between columns :"
+#~ msgstr "Расстояние между столбцами:"
+
+#~ msgid ""
+#~ "0 means the wave is totally flat, 1 means the wave is identical to other "
+#~ "views."
+#~ msgstr ""
+#~ "При значении 0 волна будет полностью плоской, при значении 1 волна будет "
+#~ "идентична другим видам."
+
+#~ msgid "Number of icons on the first row :"
+#~ msgstr "Количество значков в первой строке:"
+
+#~ msgid ""
+#~ "in degree. The smaller, the more the cone is narrow. 180° means the cone is "
+#~ "widely opened."
+#~ msgstr ""
+#~ "в градусах. Чем меньше, тем более узким будет конус. При значении 180° конус "
+#~ "будет полностью открыт."
+
+#~ msgid "Cone's width :"
+#~ msgstr "Ширина конуса:"
+
+#~ msgid "Set transparency to 0 to not use it. It is quite slow with cairo."
+#~ msgstr ""
+#~ "Установите прозрачность в 0, чтобы не использовать её. Она довольна "
+#~ "медлительна с cairo."
+
+#~ msgid "Bow color :"
+#~ msgstr "Цвет дуги:"
+
+#~ msgid "Line color :"
+#~ msgstr "Цвет линии:"
+
 #~ msgid "SimpleSlide"
 #~ msgstr "SimpleSlide"
+
+#~ msgid "Top to bottom gradient ?"
+#~ msgstr "Градиент сверху вниз?"
+
+#~ msgid "Second gradient color :"
+#~ msgstr "Конечный цвет градации:"
+
+#~ msgid "Display text for all icons ?"
+#~ msgstr "Показывать текст на всех значках?"
+
+#~ msgid "First gradient color :"
+#~ msgstr "Начальный цвет градации:"
+
+#~ msgid "Draw a background ?"
+#~ msgstr "Рисовать задний фон?"
+
+#~ msgid "Sinusoidal wave radius :"
+#~ msgstr "Радиус синусоиды волны:"
+
+#~ msgid "Max size of icons :"
+#~ msgstr "Макс. размер значков:"
+
+#~ msgid "Pack icons rather horizontally than vertically ?"
+#~ msgstr "Паковать значки сначало горизонтально, затем вертикально?"
+
+#~ msgid "Use a linear wave rather than a sinusoidal one ?"
+#~ msgstr "Использовать линейную волну вместо синусоидальной?"
+
+#~ msgid "Amplitude of the curve."
+#~ msgstr "Амлитуда кривой."
+
+#~ msgid "The lower, the more the curve will seem flat."
+#~ msgstr ""
+#~ "Чем меньше значение, тем большая часть кривой будет выглядеть плоской."
+
+#~ msgid "Curvature of the curve in percent :"
+#~ msgstr "Кривизна в процентах:"
+
+#~ msgid "Arrow Height :"
+#~ msgstr "Высота стрелки:"
+
+#~ msgid "Arrow shift percent :"
+#~ msgstr "Процент смешения стрелки:"
+
+#~ msgid "Border line color :"
+#~ msgstr "Цвет линии границы:"
+
+#~ msgid "Left to right gradient ?"
+#~ msgstr "Градиент слева направо?"
+
+#~ msgid ""
+#~ "Typically an arrow, that will be displayed when you try to drop a new "
+#~ "launcher into the dock. Let empty to use the default one."
+#~ msgstr ""
+#~ "Обычно в виде стрелки, это будет отображаться, когда вы перетаскиваете на "
+#~ "панель новый значок запуска. Оставьте пустым, чтобы использовать стандартный."
+
+#~ msgid "Speed :"
+#~ msgstr "Скорость:"
+
+#~ msgid ""
+#~ "An emblem that will be displayed when you try to drop something onto an "
+#~ "icon. Let empty to use the default one."
+#~ msgstr ""
+#~ "Эмблема, которая будет отображаться, когда вы пытаетесь сбросить что-либо на "
+#~ "значок. Оставьте пустым, чтобы использовать стандартную."
+
+#~ msgid "Image for the drag'n'drop animation :"
+#~ msgstr "Изображение для анимации перетаскивания:"
+
+#~ msgid "Name of an image to overwrite the theme's empty image :"
+#~ msgstr "Файл изображения для замещения пустого изображения темы:"
+
+#~ msgid "Name of an image to overwrite the theme's full image :"
+#~ msgstr "Файл изображения для замещения заполненного изображения темы:"
 
 #~ msgid ""
 #~ "If the Trash folder is not known by the dock, you can specify it here :"
 #~ msgstr "Если корзина не известна панели, вы можете объявить её здесь:"
+
+#~ msgid ""
+#~ "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
+#~ msgstr ""
+#~ "в Мб. Вы будете предупреждены, когда превысите лимит. Установите 0, чтобы не "
+#~ "использовать его."
 
 #~ msgid "Maximum total size of all dustbins :"
 #~ msgstr "Максимальное количество файлов в корзинах:"
 
 #~ msgid "Maximum size authorized for each dustbin :"
 #~ msgstr "Максимальный размер для каждой корзины:"
+
+#~ msgid "Ask confirmation before empty Trash ?"
+#~ msgstr "Спрашивать подтверждение перед очисткой?"
+
+#~ msgid "Number of trashes"
+#~ msgstr "Количество корзин"
 
 #~ msgid "Desktop-less support"
 #~ msgstr "Сквозная поддержка."
@@ -8525,6 +9903,121 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgid "Alternative file browser used to show a trash :"
 #~ msgstr "Алтернативный обозреватель файлов, для просмотра корзин:"
 
+#~ msgid "in seconds, only used if you can't monitor directories."
+#~ msgstr "в секундах, полезно только если вы не можете видеть каталоги."
+
+#~ msgid "Interval of time to check if dustbin is full/empty :"
+#~ msgstr "Интервал проверок на заполненность корзин:"
+
+#~ msgid "Draw in background ?"
+#~ msgstr "Рисовать на заднем фоне?"
+
+#~ msgid "Rotate effects with dock ?"
+#~ msgstr "Переворачивать эффект с панелью?"
+
+#~ msgid "Add luminance ?"
+#~ msgstr "И яркость?"
+
+#~ msgid "It will slightly alter the colors, so you may have to modify them."
+#~ msgstr "Он едва изменяет цвета, так что вы можете даже не изменять его."
+
+#~ msgid "Particle size :"
+#~ msgstr "Размер частиц:"
+
+#~ msgid "Animation on disappearance :"
+#~ msgstr "Анимация при исчезновении:"
+
+#~ msgid "Number of particles :"
+#~ msgstr "Количество частиц:"
+
+#~ msgid "Particle speed :"
+#~ msgstr "Скорость частиц:"
+
+#~ msgid "Break the icon in cubes ?"
+#~ msgstr "Разрывать значки на кубики?"
+
+#~ msgid "Animation on appearance :"
+#~ msgstr "Анимация при появлении:"
+
+#~ msgid "Evaporate upward ?"
+#~ msgstr "Испарение вверх?"
+
+#~ msgid "Number of pieces :"
+#~ msgstr "Количество кусочков:"
+
+#~ msgid "Explosion radius :"
+#~ msgstr "Радиус взрыва:"
+
+#~ msgid "BlackHole"
+#~ msgstr "ЧёрнаяДыра"
+
+#~ msgid "Font :"
+#~ msgstr "Шрифт:"
+
+#~ msgid "Outline text ?"
+#~ msgstr "Обрисовывать текст?"
+
+#~ msgid "caps lock, num lock, etc"
+#~ msgstr "Caps lock, num lock и т.д."
+
+#~ msgid "Attraction of the hole :"
+#~ msgstr "Сила засасывания:"
+
+#~ msgid "The greatest, the fastest the icon will collapse to the center."
+#~ msgstr "Чем выше значении, тем быстрее значок будет сворачиваться к центру."
+
+#~ msgid "Text color"
+#~ msgstr "Цвет текста"
+
+#~ msgid "Duration of the transition animation :"
+#~ msgstr "Продолжительность анимации перехода:"
+
+#~ msgid ""
+#~ "in ms. Set it to 0 if you don't want an animation when the keyboard layout "
+#~ "changes."
+#~ msgstr ""
+#~ "в мсек. Установите 0, чтобы не использовать анимацию во время смены "
+#~ "раскладки клавиатуры."
+
+#~ msgid "Display keyboard locks as quick-info ?"
+#~ msgstr "Отображать состояние клавиатурных режимов в быстрой помощи?"
+
+#~ msgid "Maximum of new messages shown ?"
+#~ msgstr "Максимальное число новых сообщений?"
+
+#~ msgid "Invert buttons ?"
+#~ msgstr "Инвертировать кнопки?"
+
+#~ msgid "Show new messages' content ?"
+#~ msgstr "Показывать содержимое новых сообщений?"
+
+#~ msgid ""
+#~ "It will be available on middle click. Let empty to execute the default "
+#~ "command, that greatly depends on your distribution. Sometimes the command to "
+#~ "shutdown is just the same as the one to log out."
+#~ msgstr ""
+#~ "Будет доступна по среднему щелчку. Оставьте пустым, чтобы использовать "
+#~ "стандартную, которая в большинстве зависит от вашего дистрибутива. Иногда, "
+#~ "команда для выключения одинакова с командой завершения сеанса."
+
+#~ msgid "User-defined command to execute to shutdown :"
+#~ msgstr "Пользовательская команда для выключения:"
+
+#~ msgid "Let empty to execute the default command."
+#~ msgstr "Оставьте пустым, чтобы использовать стандартную."
+
+#~ msgid "User-defined command to execute to log-out :"
+#~ msgstr "Пользовательская команда для завершения сеанса:"
+
+#~ msgid "Class of the mail application (optionnal)"
+#~ msgstr "Класс почтового приложения (опционально)"
+
+#~ msgid "Prefered mail application to launch on left-click :"
+#~ msgstr "Предпочитаемое приложение для запуска по левому щелчку:"
+
+#~ msgid "Check mail account on startup ?"
+#~ msgstr "Проверять почтовый аккаунт при запуске?"
+
 #~ msgid "Theme overriding"
 #~ msgstr "Замещение тем"
 
@@ -8535,6 +10028,102 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ "используйте, только если отличается от его имени. Вообще-то не имеет "
 #~ "значения, кроме как для Thunderbird."
 
+#~ msgid ""
+#~ "If you have any problem with the applet, uncheck this option during the "
+#~ "maintenance mode, then let the dock launch itself, and remove/modify the "
+#~ "mail accounts you want."
+#~ msgstr ""
+#~ "Если вы испытываете какие-либо проблемы с этим апплетом, уберите эту опцию "
+#~ "во время режима обслуживания, затем позвольте панели загрузиться и "
+#~ "измените/удалите нужный аккаунт."
+
+#~ msgid ""
+#~ "It will prevent the application's icon to appear in the task bar. The "
+#~ "applet's icon will then behave as a launcher, an appli, and an applet."
+#~ msgstr ""
+#~ "Предотвратит появление значка почтового приложения на панели задач. Значок "
+#~ "апплета будет вести себя и как значок запуска, и как приложение, и как "
+#~ "апплет."
+
+#~ msgid "Add an mail account"
+#~ msgstr "Добавить почтовый аккаунт"
+
+#~ msgid "The new account will be created with specified type and name."
+#~ msgstr "Новый аккаунт будет создан с указанным типом и именем."
+
+#~ msgid "Also blur on mouse movement ?"
+#~ msgstr "Также размывать при наведении мыши?"
+
+#~ msgid "Blur amount :"
+#~ msgstr "Качество размытия:"
+
+#~ msgid "Let it empty to display the name of the player currently controlled."
+#~ msgstr ""
+#~ "Оставьте пустым, чтобы отображать имя проигрывателя, которым вы сейчас "
+#~ "управляете."
+
+#~ msgid "in s."
+#~ msgstr "в сек."
+
+#~ msgid "Time length of info-bubbles :"
+#~ msgstr "Продолжительность инфо-облачка:"
+
+#~ msgid "Animation when music changes :"
+#~ msgstr "Анимация при смене музыки:"
+
+#~ msgid ""
+#~ "It will prevent the player's icon to appear in the task bar. The applet's "
+#~ "icon will then behave as a launcher, an appli, and an applet."
+#~ msgstr ""
+#~ "Это предотвратит появление значка проигрывателя на панели задач. Значок "
+#~ "апплета будет вести себя и как значок запуска, и как приложение, и как "
+#~ "апплет."
+
+#~ msgid "Steal the player's icon from taskbar ?"
+#~ msgstr "Перехватить значок проигрывателя из панели задач?"
+
+#~ msgid "Show an info-bubble ?"
+#~ msgstr "Показывать инфо-облачко?"
+
+#~ msgid "N° of track"
+#~ msgstr "N° дорожки"
+
+#~ msgid "Use 3D themes ?"
+#~ msgstr "Использовать 3D темы?"
+
+#~ msgid "Time Left"
+#~ msgstr "Оставшееся время"
+
+#~ msgid "Display album's cover ?"
+#~ msgstr "Показывать обложку альбома?"
+
+#~ msgid "Allow Cairo-Dock to download missing covers ?"
+#~ msgstr "Позволить Cairo-Dock загружать обложки?"
+
+#~ msgid "By default it will be 'eth0'."
+#~ msgstr "По умолчанию будет 'eth0'."
+
+#~ msgid "Personnalisation"
+#~ msgstr "Персонализация"
+
+#~ msgid "Name of an image for the 'play' icon :"
+#~ msgstr "Файл изображения значка 'играть':"
+
+#~ msgid "Name of an image for the 'pause' icon :"
+#~ msgstr "Файл изображения значка 'пауза':"
+
+#~ msgid "Name of an image for the 'stop' icon :"
+#~ msgstr "Файл изображения значка 'стоп':"
+
+#~ msgid "It's the color of the graphic for low rate values."
+#~ msgstr "Цвет графики при низких значениях."
+
+#~ msgid "It's the color of the graphic for high rate values."
+#~ msgstr "Цвет графики при высоких значениях."
+
+#~ msgid "Delay between 2 measures :"
+#~ msgstr "Интервал между двумя измерениями:"
+
 #~ msgid "zoom"
 #~ msgstr "приближение"
 
@@ -8543,6 +10132,18 @@ msgstr "Заменить стандартную подпись, на имя то
 
 #~ msgid "transparency"
 #~ msgstr "прозрачность"
+
+#~ msgid "Effect to apply on the icon according to charge :"
+#~ msgstr "Какой эффект применять на значке при зарядке:"
+
+#~ msgid "Icon's filename when on battery :"
+#~ msgstr "Файл изображения при работе от батареи:"
+
+#~ msgid "Let empty to use he default one."
+#~ msgstr "Оставьте пустым, чтобы использовать стандартный."
+
+#~ msgid "Icon name :"
+#~ msgstr "Имя значка:"
 
 #~ msgid "draw bar"
 #~ msgstr "график"
@@ -8553,17 +10154,91 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgid "Information to be displayed on the icon :"
 #~ msgstr "Информация на значке:"
 
+#~ msgid "Interval of time between 2 checks :"
+#~ msgstr "Интервал между 2 проверками:"
+
+#~ msgid "Alert when battery charged ?"
+#~ msgstr "Уведомлять о полном заряде батареи?"
+
+#~ msgid "Alert"
+#~ msgstr "Уведомление"
+
+#~ msgid "Let it empty to have no sound"
+#~ msgstr "Оставьте пустым, чтобы не использовать звук"
+
+#~ msgid "Alert when low battery ?"
+#~ msgstr "Уведомлять о низком зараде?"
+
+#~ msgid "Use a sound :"
+#~ msgstr "Использовать звук:"
+
+#~ msgid "Let empty to use the folder's name."
+#~ msgstr "Оставьте пустым, чтобы использовать имя каталога."
+
+#~ msgid "It can be quite heavy to load a lot of icons."
+#~ msgstr ""
+#~ "Может потребоваться много времени для загрузки большого количества значков."
+
+#~ msgid "Battery level :"
+#~ msgstr "Заряд батареи:"
+
+#~ msgid "Alert when battery charge is critical ?"
+#~ msgstr "Уведомлять при критическом разряде батареи?"
+
 #~ msgid "Animate icon during the alert ?"
 #~ msgstr "Анимировать значок во время уведомления?"
 
 #~ msgid "Animation during alert :"
 #~ msgstr "Использовать анимацию:"
 
+#~ msgid ""
+#~ "Number of items loaded at once. Setting a high value speeds up a little the "
+#~ "loading, but blocks the appli more."
+#~ msgstr ""
+#~ "Количество элементов для одновременной загрузки. Установка высоких значений "
+#~ "немного ускоряет загрузку, но дольше блокирует приложение."
+
+#~ msgid "Show hidden files ?"
+#~ msgstr "Показывать скрытые файлы?"
+
+#~ msgid "Gradual building of the menu :"
+#~ msgstr "Последовательное построение меню:"
+
+#~ msgid "Ignore case ?"
+#~ msgstr "Игнорировать регистр?"
+
+#~ msgid "List folders first ?"
+#~ msgstr "Каталоги в начале?"
+
+#~ msgid "List drives and volumes ?"
+#~ msgstr "Показывать диски и тома?"
+
+#~ msgid "List network ?"
+#~ msgstr "Показывать сеть?"
+
+#~ msgid "Free space percent"
+#~ msgstr "Процент свободного места"
+
+#~ msgid "Separate different shortcuts with separators ?"
+#~ msgstr "Отделять ярлыки разделителями?"
+
+#~ msgid "List bookmarks ?"
+#~ msgstr "Показывать закладки?"
+
+#~ msgid "Used space percent"
+#~ msgstr "Процент использованного места"
+
 #~ msgid "In seconds."
 #~ msgstr "В секундах."
 
+#~ msgid "Display disk usage with a bar ?"
+#~ msgstr "Отображать использование диска в виде графика?"
+
 #~ msgid "Numbrer of sources :"
 #~ msgstr "Количество источников:"
+
+#~ msgid "In round per second."
+#~ msgstr "Обортов в секунду."
 
 #~ msgid "both"
 #~ msgstr "везде"
@@ -8571,14 +10246,198 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgid "In pixels."
 #~ msgstr "В пикселях."
 
+#~ msgid "Particles life time :"
+#~ msgstr "Время жизни частиц:"
+
+#~ msgid "Scattering :"
+#~ msgstr "Разброс:"
+
+#~ msgid "The higher, the more particles will scatter from their source."
+#~ msgstr ""
+#~ "Чем выше значение, тем больше частиц будут разбросаны из их источника."
+
+#~ msgid "Image name to hide desklets :"
+#~ msgstr "Файл изображения для скрытия десклета:"
+
 #~ msgid "Image name to show desklets :"
 #~ msgstr "Файл изображения для показа на десклете:"
+
+#~ msgid "Shortkey to show/hide the desklets :"
+#~ msgstr "Клавиатурное сокращения для показа/скрытия десклета:"
+
+#~ msgid "Show/hide desklets that are on the widget layer too ?"
+#~ msgstr "Показывать/скрывать десклеты и на Слое Виджетов?"
 
 #~ msgid "Swap left-click and middle-click ?"
 #~ msgstr "Поменять местами левый и средний щелчки?"
 
+#~ msgid "Number of particles per source :"
+#~ msgstr "Количество частиц на источник:"
+
+#~ msgid "Randomly browse files ?"
+#~ msgstr "Просматривать файлы в случайном порядке?"
+
+#~ msgid "Display image name as quickinfo ?"
+#~ msgstr "Отображать имя файла в быстрой помощи?"
+
+#~ msgid "Directory of the images :"
+#~ msgstr "Каталог с изображениями:"
+
+#~ msgid "Scan in sub direcotries ?"
+#~ msgstr "Просматривать подкаталоги?"
+
+#~ msgid "Sliding delay :"
+#~ msgstr "Задержка скольжения:"
+
+#~ msgid ""
+#~ "It will prevent the dock from freezing during the image loading, but does "
+#~ "not work with cairo."
+#~ msgstr ""
+#~ "Это предотвратит замирание панели во время загрузки изображений, но не "
+#~ "работает с cairo."
+
+#~ msgid "Action when applet is clicked :"
+#~ msgstr "Действие при щелчке на апплете:"
+
+#~ msgid "Use another thread to load the images ?"
+#~ msgstr "Использвать другой поток для загрузки сообщений?"
+
 #~ msgid "Directory"
 #~ msgstr "Каталог"
+
+#~ msgid "Effect while changing image :"
+#~ msgstr "Эффект при смене изображения:"
+
+#~ msgid "fade in out"
+#~ msgstr "затемнение извне"
+
+#~ msgid "diaporama"
+#~ msgstr "диапорама"
+
+#~ msgid "shrink down"
+#~ msgstr "сжатие вниз"
+
+#~ msgid "Let empty to use a default name"
+#~ msgstr "Оставьте пустым, чтобы использовать стандартное имя"
+
+#~ msgid "Choose a background color :"
+#~ msgstr "Выберите цвет заднего фона:"
+
+#~ msgid "Force the image to fill the icon/desklet ?"
+#~ msgstr "Заполнять весь значок изображением?"
+
+#~ msgid "If the image is too small, it will be zoomed in."
+#~ msgstr "Если изображение слишком мало, оно будет приближено."
+
+#~ msgid "Keep widht/height ratio ?"
+#~ msgstr "Сохранять пропорции?"
+
+#~ msgid "Number of steps for a transition :"
+#~ msgstr "Количество шагов перехода:"
+
+#~ msgid "Gives a better image rendering."
+#~ msgstr "Даёт лучшие результаты отрисовки."
+
+#~ msgid "Eg: image, text, video, audio, application, ..."
+#~ msgstr "Например: image, text, video, audio, application, ..."
+
+#~ msgid ""
+#~ "This options allow you to avoid some files to be displayed in the stacks "
+#~ "considering their types (video, images, etc...)"
+#~ msgstr ""
+#~ "Эта опция позволит вам избежать отображения некоторых файлов в Stacks, "
+#~ "основываясь на их типе (видео, изображения и т.д...)"
+
+#~ msgid "Filter files with their mime types ?"
+#~ msgstr "Фильтровать файлы по их mime типам?"
+
+#~ msgid "Image for the 'URL' items :"
+#~ msgstr "Изображение для элементов 'ссылок' :"
+
+#~ msgid "Image for the 'text' items :"
+#~ msgstr "Изображение для 'текстовых' элементов:"
+
+#~ msgid "They are items created by dropping an URL into the Stack."
+#~ msgstr "Элементы созданные переброской ссылок в Stack."
+
+#~ msgid "Here you can specify a list of mime types to avoid :"
+#~ msgstr "Укажите список mime типов:"
+
+#~ msgid "Sort items by :"
+#~ msgstr "Сортировать по:"
+
+#~ msgid "When copy/paste/cut, use the selection clipboard ?"
+#~ msgstr "При копировании/вставке/вырезанию использовать буфер обмена выбора?"
+
+#~ msgid ""
+#~ "All the desktops will be drawn on the main icon. Otherwise a subdock will "
+#~ "contain all the desktops."
+#~ msgstr ""
+#~ "Все рабочие столы будут отображены на главном значке. В противном случае, "
+#~ "они будут помещены в суб-панель."
+
+#~ msgid "Use the compact mode ?"
+#~ msgstr "Использовать компактный режим?"
+
+#~ msgid "Map the wallpaper on icon ?"
+#~ msgstr "Помещать обои на значок?"
+
+#~ msgid "When drawing in compact mode, try to preserve the screen ratio ?"
+#~ msgstr ""
+#~ "При отрисовке компактного режима, пытаться соблюсти соотношение экрана?"
+
+#~ msgid ""
+#~ "It is the selection made by the mouse, by opposition to the usual "
+#~ "ctrl+c/ctrl+v clipboard"
+#~ msgstr ""
+#~ "Это выбор сделанный при помощи мыши, вместо обычно используемого "
+#~ "ctrl+c/ctrl+v буфера обмена."
+
+#~ msgid "Color of the extern line :"
+#~ msgstr "Цвет внешних линий:"
+
+#~ msgid "Color of the Windows line :"
+#~ msgstr "Цвет линии окон:"
+
+#~ msgid "Draw the windows on icon ?"
+#~ msgstr "Отрисовывать окна на значке?"
+
+#~ msgid "Show desktop number on the icons ?"
+#~ msgstr "Показывать номер рабочего стола на значке?"
+
+#~ msgid "r, v, b, a"
+#~ msgstr "к, з, с, а"
+
+#~ msgid "Draw hidden windows too ?"
+#~ msgstr "Отрисовывать скртые окна тоже?"
+
+#~ msgid "Size of the extern line :"
+#~ msgstr "Размер внешних линий:"
+
+#~ msgid "Color of the inside lines :"
+#~ msgstr "Цвет внутренних линий:"
+
+#~ msgid "Icon to use in expanded mode if you don't map the wallpaper :"
+#~ msgstr ""
+#~ "Значок, используемый в расширенном режиме, если обои не используются:"
+
+#~ msgid "In expanded mode, render the desklet in 3D ?"
+#~ msgstr "Отрисовывать десклет в 3D в расширенном режиме?"
+
+#~ msgid "Color of the current desktop :"
+#~ msgstr "Цвет текущего рабочего стола:"
+
+#~ msgid "How to draw the current desktop :"
+#~ msgstr "Как отрисовывать текущий рабочий стол:"
+
+#~ msgid "Shortkey to toggle the systray in dock mode :"
+#~ msgstr "Клавиатурное сокращение для переключения области:"
+
+#~ msgid "GUI"
+#~ msgstr "GUI"
+
+#~ msgid "Size of the terminal (line x columns) :"
+#~ msgstr "Размер терминала (строк х столбцов):"
 
 #~ msgid "Background color (r, v, b):"
 #~ msgstr "Цвет заднего фона (к, з, с):"
@@ -8589,14 +10448,175 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgid "Icons size :"
 #~ msgstr "Размер значков:"
 
+#~ msgid "Terminal's transparency :"
+#~ msgstr "Прозрачность терминала:"
+
+#~ msgid "Default title :"
+#~ msgstr "Стандартный заголовок:"
+
+#~ msgid "Shortkey to show the terminal :"
+#~ msgstr "Клавиатурное сокращение для показа терминала:"
+
+#~ msgid "Name of an image for the 'close' icon :"
+#~ msgstr "Файл изображения для значка 'закрыть':"
+
 #~ msgid "View"
 #~ msgstr "Вид"
+
+#~ msgid "Draw note's content on their icon ?"
+#~ msgstr "Показывать содержимое записки на её значке?"
+
+#~ msgid "Text color of the content :"
+#~ msgstr "Цвет текста содержимого:"
+
+#~ msgid "Display note's content with a dialog ?"
+#~ msgstr "Показывать содержимое записки в окне?"
+
+#~ msgid "Emulate the 'NoteDeleted' signal ?"
+#~ msgstr "Эмулировать сигнал 'NoteDeleted'?"
+
+#~ msgid ""
+#~ "Write the date format you usually use in your notes. The syntax is the one "
+#~ "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
+#~ "digits), etc. Let it blnk to use the default one (%d/%m/%y)."
+#~ msgstr ""
+#~ "Задайте формат даты, который вы обычно используете в записках. Синтаксис как "
+#~ "в 'strftime' : %d - день, %m - месяц, %y - год (2 цифры) и т.д. Оставьте "
+#~ "пустым, чтобы использовать стандартный (%d/%m/%y)."
+
+#~ msgid "Automatically name a new note ?"
+#~ msgstr "Автоматически называть новую записку?"
+
+#~ msgid "Ask confirmation before deleting a note ?"
+#~ msgstr "Спрашивать подтверждение перед удалением?"
+
+#~ msgid "Let it empty to use the name of the city."
+#~ msgstr "Оставьте пустым, чтобы использовать название города."
+
+#~ msgid "Code of your location :"
+#~ msgstr "Код местонахождения:"
+
+#~ msgid "Render desklet in 3D ?"
+#~ msgstr "Отрисовыать десклет в 3D?"
+
+#~ msgid "Number of days you want to forecast :"
+#~ msgstr "Количество дней для прогноза:"
+
+#~ msgid "Display current conditions on the icon instead of the default one ?"
+#~ msgstr "Отображать текущее состояние на значке, вместо стандартного?"
 
 #~ msgid "in minutes."
 #~ msgstr "в минутах."
 
+#~ msgid "Duration of dialogs :"
+#~ msgstr "Продолжительность окон:"
+
+#~ msgid "Use International System Units ?"
+#~ msgstr "Использовать систему СИ?"
+
+#~ msgid "Display temperature as quick info ?"
+#~ msgstr "Отображать температуру в быстрой помощи?"
+
+#~ msgid "Display nights too ?"
+#~ msgstr "Показывать ночные прогнозы?"
+
+#~ msgid "Vertical scroll of the browser in pixel"
+#~ msgstr "Вертикальная прокрутка в пикселях"
+
+#~ msgid "Right margin's width, in pixels :"
+#~ msgstr "Ширина правой границы, в пикселях:"
+
+#~ msgid "Transparent background ?"
+#~ msgstr "Прозрачный фон?"
+
+#~ msgid "Show scrollbars ?"
+#~ msgstr "Показывать полосы прокрутки?"
+
+#~ msgid "Horizontal scroll of the browser in pixel"
+#~ msgstr "Горизонтальная прокрутка в пикселях"
+
+#~ msgid ""
+#~ "This lets you right-click on the desklet to pop-up the Cairo-Dock's menu."
+#~ msgstr "Это позволит использовать правый щелчок для вызова меню Cairo-Dock."
+
+#~ msgid "Name of an image for the 'exellent' icon :"
+#~ msgstr "Файл изображения для значка 'отличный':"
+
+#~ msgid "Name of an image for the 'middle' icon :"
+#~ msgstr "Файл изображения для значка 'средний':"
+
+#~ msgid "Name of an image for the 'good' icon :"
+#~ msgstr "Файл изображения для значка 'хороший':"
+
+#~ msgid "Name of an image for the 'low' icon :"
+#~ msgstr "Файл изображения для значка 'слабый':"
+
+#~ msgid "Name of an image for the 'very low' icon :"
+#~ msgstr "Файл изображения для значка 'очень слабый':"
+
+#~ msgid "Name of an image for the 'no signal' icon :"
+#~ msgstr "Файл изображения для значка 'нет сигнала':"
+
+#~ msgid "Predefined bookmarks to show in applet's menu :"
+#~ msgstr "Предопределённые закладки в меню апплета:"
+
+#~ msgid "Choose in how many minutes your PC will stop :"
+#~ msgstr "Укажите через сколько минут остановить компьютер:"
+
+#~ msgid "Program an automatic shutdown"
+#~ msgstr "Автоматическое завершение"
+
+#~ msgid "Your computer will shutdown in 1 minute."
+#~ msgstr "Ваш компьютер выключится через 1 минуту."
+
+#~ msgid "Choose the style of the display : "
+#~ msgstr "выберите стиль дисплея: "
+
+#~ msgid "Move current desktop to this desktop"
+#~ msgstr "Переместить текущий рабочий стол на этот стол"
+
 #~ msgid "This will move all windows from the current desktop to this one"
 #~ msgstr "Все окна с текущего рабочего стола переместятся на этот"
+
+#~ msgid "current"
+#~ msgstr "текущий"
+
+#~ msgid "desktop"
+#~ msgstr "рабочий стол"
+
+#~ msgid "Let extern applications animate the icons ?"
+#~ msgstr "Позволить внешним приложениям анимировать значки?"
+
+#~ msgid "High values color :"
+#~ msgstr "Цвет высоких значений:"
+
+#~ msgid "It's the color of the graphic for high quality signal."
+#~ msgstr "Цвет графика при хорошем уровне сигнала."
+
+#~ msgid "You need an nVidia and the 'nvidia-settings' tool."
+#~ msgstr "Вам потребуется видео-карта nVidia и утилита 'nvidia-settings'."
+
+#~ msgid "It's the color of the graphic for high values."
+#~ msgstr "Цвет графика при высоких значениях."
+
+#~ msgid "It's the color of the graphic for low values."
+#~ msgstr "Цвет графика при низких значениях."
+
+#~ msgid ""
+#~ "Allow you to overwrite applet's default command line and launch you wireless "
+#~ "configuration interface."
+#~ msgstr ""
+#~ "Позволяет перезаписать стандартную команду апплета и запускать ваш интерфейс "
+#~ "конфигурации беспроводного соединения."
+
+#~ msgid "Low values color :"
+#~ msgstr "Цвет низких значений:"
+
+#~ msgid "Background color of the graphic :"
+#~ msgstr "Цвет заднего фона графика:"
+
+#~ msgid "It's the color of the graphic for low quality signal."
+#~ msgstr "Цвет графика при слабом сигнале."
 
 #~ msgid ""
 #~ "This applet shows you a monitor of your active connections\n"
@@ -8605,14 +10625,182 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ "Этот апплет  показывает активные соединения\n"
 #~ "Левый щелчок, чтобы получить некоторую информацию, средний для перепроверки."
 
+#~ msgid ""
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
+#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+#~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
+#~ "docks,\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
+#~ "- the finder mode : type some text to launch any command, file or "
+#~ "calculation.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "Escape or the same shortkey to cancel."
+#~ msgstr ""
+#~ "Плагин типа Gnome-Do, который позволит вам управлять панелью с клавиатуры.\n"
+#~ "Имеет 2 режима, каждый из которых включается клавиатурным сокращением:\n"
+#~ "— навигационный режим: используйте стредки для навигации среди панелей и суб-"
+#~ "панелей\n"
+#~ "  или введите имя значка запуска и нажмите Tab, чтобы переключиться на "
+#~ "ближайший похожий\n"
+#~ "  нажмите Enter, чтобы щёлкнуть по значку, Shift+Enter для Shift+щелчка, "
+#~ "Alt+Enter для среднего и Ctrl+Enter для левого\n"
+#~ "— режим указателя: введите некоторый текст, чтобы запустить команду, файл "
+#~ "или вычисление.\n"
+#~ "  используйте стрелки для навигации, нажмите Enter для подтверждения, CTRL, "
+#~ "ALT или SHIFT для сохранения результата.\n"
+#~ "Escape или то же клавиатурное сокращение для отмены."
+
+#~ msgid "felt"
+#~ msgstr "Комфорт"
+
+#~ msgid "frame with scotch"
+#~ msgstr "рамка со скосом"
+
+#~ msgid "scotch"
+#~ msgstr "скос"
+
+#~ msgid "Preferred application starting with 'b' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'b':"
+
+#~ msgid "Preferred application starting with 'a' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'a':"
+
+#~ msgid "Preferred applications"
+#~ msgstr "Предпочитаемые приложения"
+
+#, c-format
+#~ msgid "You can call back the Terminal desklet by typing %s"
+#~ msgstr "Вы можете вызвать десклет Терминала, набрав %s"
+
+#~ msgid ""
+#~ "No items in the stack.\n"
+#~ "You can add files, URL, and even piece of text by dragging them onto the "
+#~ "icon."
+#~ msgstr ""
+#~ "Нет элементов в stack.\n"
+#~ "Вы можете добавить файлы, URL и даже текст, просто перетащив их на значок."
+
+#~ msgid "Preferred application starting with 'h' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'h':"
+
+#~ msgid "Preferred application starting with 'f' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'f':"
+
+#~ msgid "Preferred application starting with 'e' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'e':"
+
+#~ msgid "Preferred application starting with 'd' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'd':"
+
+#~ msgid "Preferred application starting with 'c' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'c':"
+
+#~ msgid "Preferred application starting with 'g' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'g':"
+
+#~ msgid "Preferred application starting with 'j' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'j':"
+
+#~ msgid "Preferred application starting with 'i' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'i':"
+
+#~ msgid "Preferred application starting with 'l' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'l':"
+
+#~ msgid "Preferred application starting with 'k' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'k':"
+
+#~ msgid "Preferred application starting with 'v' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'v':"
+
+#~ msgid "Preferred application starting with 'u' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'u':"
+
+#~ msgid "Preferred application starting with 's' :"
+#~ msgstr "Предпочитаемые приложения с буквы 's':"
+
+#~ msgid "Preferred application starting with 't' :"
+#~ msgstr "Предпочитаемые приложения с буквы 't':"
+
+#~ msgid "Preferred application starting with 'n' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'n':"
+
+#~ msgid "Preferred application starting with 'm' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'm':"
+
+#~ msgid "Preferred application starting with 'p' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'p':"
+
+#~ msgid "Preferred application starting with 'o' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'o':"
+
+#~ msgid "Preferred application starting with 'r' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'r':"
+
+#~ msgid "Preferred application starting with 'q' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'q':"
+
+#~ msgid "Preferred application starting with 'y' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'y':"
+
+#~ msgid "Preferred application starting with 'z' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'z':"
+
+#~ msgid "Preferred application starting with 'w' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'w':"
+
+#~ msgid "Preferred application starting with 'x' :"
+#~ msgstr "Предпочитаемые приложения с буквы 'x':"
+
 #~ msgid "Sub-Dock view"
 #~ msgstr "Вид суб-панели"
+
+#~ msgid "Time length of the dialog :"
+#~ msgstr "Продолжительность диалогового окна:"
 
 #~ msgid "Name of an image for the 'empty' icon :"
 #~ msgstr "Файл изображения для значка 'пустой':"
 
+#~ msgid "Show windows list"
+#~ msgstr "Показать список окон"
+
+#~ msgid "No Title"
+#~ msgstr "Нет заголовка"
+
+#~ msgid "No RSS feed URL defined..."
+#~ msgstr "Не определены ссылки RSS потоков..."
+
+#~ msgid ""
+#~ "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from menu "
+#~ "to add one."
+#~ msgstr ""
+#~ "Перетащите сюда ссылку на RSS поток или используйте пункт меню \"Вставить "
+#~ "новую ссылку RSS\"."
+
 #~ msgid "Failed to connect..."
 #~ msgstr "Не удалось соединиться..."
+
+#~ msgid "Please wait ..."
+#~ msgstr "Ждите..."
+
+#~ msgid "Retrieving data ..."
+#~ msgstr "Запрашиваю данные..."
+
+#~ msgid "Paste a new RSS Url (drag'n'drop)"
+#~ msgstr "Вставить новую ссылку на RSS (перетаскиванием)"
+
+#~ msgid "Title Text color :"
+#~ msgstr "Цвет текста заголовка:"
+
+#~ msgid "Color to be used for the title"
+#~ msgstr "Какой цвет использовать для заголовка"
+
+#~ msgid "Title Font :"
+#~ msgstr "Шрифт заголовка:"
 
 #~ msgid "Specify a title :"
 #~ msgstr "Укажите заголовок:"
@@ -8620,8 +10808,32 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgid "Title num :"
 #~ msgstr "Номер заголовка:"
 
+#~ msgid "Allow you to skip some lines"
+#~ msgstr "Позволяет пропускать некоторые строки"
+
+#~ msgid "Number of feed lines to display :"
+#~ msgstr "Количество строк для показа:"
+
+#~ msgid "URL :"
+#~ msgstr "URL:"
+
 #~ msgid "Keep the desklets visible when showing the desktop ?"
 #~ msgstr "Держать апплет видимым при показе рабочего стола?"
+
+#~ msgid "Action on middle-click :"
+#~ msgstr "Действие для среднего щелчка:"
+
+#~ msgid "Let empty to use the same image."
+#~ msgstr "Оставьте пустым, чтобы использовать тоже изображение."
+
+#~ msgid "Feed lines Font :"
+#~ msgstr "Шрифт для строк ленты:"
+
+#~ msgid "Color to be used for the feed lines"
+#~ msgstr "Какой цвет щрифта использовать для строк ленты"
+
+#~ msgid "Feed Lines color :"
+#~ msgstr "Цвет шрифта в строках ленты:"
 
 #~ msgid ""
 #~ "According to your Window Manager, this may prevent the applet from hiding "
@@ -8630,11 +10842,66 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ "В зависимости от вашего ОМ, это может предотвратить скрытие апплета с "
 #~ "рабочего стола."
 
+#~ msgid "Shortkey for the middle-click action :"
+#~ msgstr "Клавиатурное сокращение для действия среднего щелчка:"
+
 #~ msgid "Action on middle click :"
 #~ msgstr "Действие по среднему щелчку:"
 
+#~ msgid ""
+#~ "This applet is a RSS feed reader\n"
+#~ "(you can add as many instances you want)\n"
+#~ " USAGE:\n"
+#~ "  - Left-clic : Display the feed lines in a dialog (optional in desklet).\n"
+#~ "  - Middle-clic : Refresh the feed.\n"
+#~ "  - Add/Modify the RSS feed to display with either Drag'n Drop\n"
+#~ "    a valid RSS feed Url,\"Paste a new RSS Url\" from menu\n"
+#~ "    or with the Configuration Panel.\n"
+#~ "  - Use \"Open in you web browser\" from menu to display\n"
+#~ "    the RSS feed in your browser."
+#~ msgstr ""
+#~ "Этот апплет предназначен для чтения RSS потоков\n"
+#~ "(вы можете добавить столько RSS потоков, сколько пожелаете)\n"
+#~ " Использование:\n"
+#~ "  — Левый щелчок: Показать ленту в окне (можно показать в десклете).\n"
+#~ "  — Средний щелчок: Обновить ленту.\n"
+#~ "  — Добавить/Изменить RSS поток используя для этого либо Перетаскивание\n"
+#~ "    ссылки, либо пункт меню \"Вставить новую ссылку RSS\" из меню,\n"
+#~ "    либо панель настроек.\n"
+#~ "  — Используйте пункт «Открыть в веб-браузере» из меню, чтобы показать\n"
+#~ "    RSS поток в вашем веб-браузере"
+
+#~ msgid "No data (no connection ?)"
+#~ msgstr "Нет данных (нет соединения?)"
+
+#~ msgid "Invalid data (invalid RSS/Atom feed ?)"
+#~ msgstr "Ошибочные данные (ошибочный RSS/Atom поток?)"
+
 #~ msgid "No data (invalid rss ?)"
 #~ msgstr "Нет данных (ошибочный RSS?)"
+
+#~ msgid "Let empty to use the title of the RSS feed."
+#~ msgstr "Оставьте пустым, чтобы использовать заголовок самого RSS потока."
+
+#~ msgid ""
+#~ "No URL is defined\n"
+#~ "You can define one by copying the URL in the clipboard,\n"
+#~ " and selecting \"Paste the RL\n"
+#~ " in the menu."
+#~ msgstr ""
+#~ "Не определён URL\n"
+#~ "Вы можете скопировать URL в буфер обмена,\n"
+#~ " а затем в меню выбрать пункт\n"
+#~ " «Вставить URL»"
+
+#~ msgid ""
+#~ "No data\n"
+#~ "Did you set a valid RSS feed ?\n"
+#~ "Is your connection alive ?"
+#~ msgstr ""
+#~ "Нет данных\n"
+#~ "Правильно ли вы задали RSS поток?\n"
+#~ "Подключен ли Интернет?"
 
 #~ msgid ""
 #~ "This applet adds an icon to show your desktop,\n"
@@ -8649,11 +10916,100 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ "Средний щелчок для показа/скрытия рабочего стола, десклетов, Слоя Виджетов "
 #~ "или всех рабочих столов сразу."
 
+#~ msgid "In seconds. Set to 0 for infinite time (click on dialog to close it)."
+#~ msgstr ""
+#~ "В секундах. Установите 0 для бесконечности (щёлкните по окну, чтобы закрыть "
+#~ "его)."
+
+#~ msgid "Display an info-bubble when a feed has changed?"
+#~ msgstr "Показывать инфо-облачко при изменении ленты?"
+
+#~ msgid "Open the feed with the following program :"
+#~ msgstr "Открывать ленту в приложении:"
+
+#~ msgid "Animation of the icon when a feed has changed :"
+#~ msgstr "Анимация значка при изменении ленты:"
+
 #~ msgid "Number of feed lines to display in the dialog :"
 #~ msgstr "Количество строк отображаемых в окне:"
 
+#~ msgid "Refresh time :"
+#~ msgstr "Интервал обновлений:"
+
 #~ msgid "By default, this option is activated"
 #~ msgstr "По умолчанию, эта опция активирована."
+
+#~ msgid "Feed lines color :"
+#~ msgstr "Цвет строк ленты:"
+
+#~ msgid "Feed lines font :"
+#~ msgstr "Шрифт строк ленты:"
+
+#~ msgid "Title font :"
+#~ msgstr "Шрифт заголовка:"
+
+#~ msgid "Title color :"
+#~ msgstr "Цвет заголовка:"
+
+#~ msgid "Left margin for the feed lines :"
+#~ msgstr "Левое поле для строк ленты:"
+
+#~ msgid "Space between 2 feed lines :"
+#~ msgstr "Интервал между двумя строками:"
+
+#~ msgid "Logo size :"
+#~ msgstr "Размер логотипа:"
+
+#~ msgid "Display the logo ?"
+#~ msgstr "Показывать логотип?"
+
+#~ msgid "Adjust to increase/decrease the logo size"
+#~ msgstr "Изменить размер логотипа"
+
+#~ msgid "Display a simple background ?"
+#~ msgstr "Показывать простой задний фон?"
+
+#~ msgid "Background second color :"
+#~ msgstr "Конечный цвет фона:"
+
+#~ msgid "Border color :"
+#~ msgstr "Цвет границы:"
+
+#~ msgid "first color of the gradation"
+#~ msgstr "начальный цвет градации"
+
+#~ msgid "second color of the gradation"
+#~ msgstr "конечный цвет градации"
+
+#~ msgid "Background first color :"
+#~ msgstr "Начальный цвет фона:"
+
+#~ msgid "Border color"
+#~ msgstr "Цвет границы"
+
+#~ msgid "Border thickness :"
+#~ msgstr "Толщина границы:"
+
+#~ msgid "Particle friction :"
+#~ msgstr "Трение частиц:"
+
+#~ msgid "Radius of the explosion :"
+#~ msgstr "Радиус взрыва:"
+
+#~ msgid "Show the launching ?"
+#~ msgstr "Показывать запуск?"
+
+#~ msgid "Number of sources :"
+#~ msgstr "Количество источников:"
+
+#~ msgid "Default color :"
+#~ msgstr "Стандартный цвет:"
+
+#~ msgid "Colors"
+#~ msgstr "Цвета"
+
+#~ msgid "Display the time in a 24h format ?"
+#~ msgstr "Отображать в 24-часовом формате?"
 
 #~ msgid "not used at the moment."
 #~ msgstr "пока не использовать"
@@ -8664,6 +11020,46 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgid "Info to display in the icon :"
 #~ msgstr "Информация на значке:"
 
+#~ msgid "User command to show Wireless Configuration :"
+#~ msgstr "Пользовательская команда для Настроек Беспроводной сети:"
+
+#~ msgid "Warning : couldn't retrieve data last time we tried."
+#~ msgstr "Внимание: не удалось получить данные"
+
+#~ msgid ""
+#~ "This applet is an RSS/Atom feed reader.\n"
+#~ "You can instanciate it as many times as you want.\n"
+#~ "USAGE:\n"
+#~ " - Left-click : display the complete feed lines in a dialog.\n"
+#~ " - Middle-click : refresh the feed.\n"
+#~ " - Scroll on the desklet : make the feed lines scroll\\.n - Drag and drop a "
+#~ "valid URL on the icon to use it,\n"
+#~ "    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
+#~ "    or edit the Configuration Panel."
+#~ msgstr ""
+#~ "Апплет чтения RSS/Atom лент.\n"
+#~ "Можно использовать несколько копий.\n"
+#~ "Использование:\n"
+#~ " — Левый щелчок: показать всю ленту в окне.\n"
+#~ " — Средний щелчок: обновить ленту.\n"
+#~ " — Прокрутка на десклете: листать ленту\n"
+#~ " — Перетащите ссылку RSS ленты на значок, чтобы читать её\n"
+#~ "    или скопируйте ссылку в буфер обмена, а затем используйте пункт "
+#~ "\"Вставить новую RSS ссылку \" в меню.\n"
+#~ "    или воспользуйтесь панелью настроек."
+
+#~ msgid "Mark all mails as read"
+#~ msgstr "Пометить все письма прочтёнными"
+
+#~ msgid "Let empty to use the connection name."
+#~ msgstr "Оставьте пустым, чтобы использовать имя соединения."
+
+#~ msgid "Delay between wifi signal checks :"
+#~ msgstr "Интервал проверки сигнала:"
+
+#~ msgid "Delay between net speed checks :"
+#~ msgstr "Интервал проверки скорости:"
+
 #~ msgid "Default connexion interface :"
 #~ msgstr "Интерфейс по умолчанию:"
 
@@ -8672,8 +11068,35 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgstr ""
 #~ "Для двух следующих действий необходимо активировать плагин DBus в Compiz."
 
+#~ msgid "You need to run Compiz and to activate its 'DBus' plug-in."
+#~ msgstr "Необходимо запусить Compiz и активировать плагин 'DBus'."
+
+#~ msgid "Curve towards the outside ?"
+#~ msgstr "Изгибать в обратную сторону?"
+
+#~ msgid "Duration of the info-bubble :"
+#~ msgstr "Продолжительность инфо-облачка:"
+
+#~ msgid "Color of the sheen :"
+#~ msgstr "Цвет сияния:"
+
 #~ msgid "Visibility :"
 #~ msgstr "Видимость:"
+
+#~ msgid "Folder of the images :"
+#~ msgstr "Каталог с изображениями:"
+
+#~ msgid "Foreground color :"
+#~ msgstr "Цвет переднего фона:"
+
+#~ msgid "Background color :"
+#~ msgstr "Цвет фона:"
+
+#~ msgid "A cable has been pluged"
+#~ msgstr "Кабель был подсоединён"
+
+#~ msgid "A cable has been unpluged"
+#~ msgstr "Кабель был отсоединён"
 
 #~ msgid ""
 #~ "This applet allows you to monitor your active connections.\n"
@@ -8687,11 +11110,71 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ "При работающем сетевом менеджере можно выбирать текущую WiFi сеть.\n"
 #~ "Левый щелчок для получения информации, средний щелчок для перепроверки."
 
+#~ msgid "Please wait the current upload is finished before starting a new one."
+#~ msgstr "Дождитесь завершения текущей закачки прежде чем начать новую."
+
+#~ msgid "Action on left-click :"
+#~ msgstr "Действие по левому щелчку:"
+
+#~ msgid ""
+#~ "You need to activate the Dbus plug-in of Compiz for the last 2 actions. "
+#~ "Showing desktop and desklets can fail on some Window Manager, like Metacity."
+#~ msgstr ""
+#~ "Для следующих действий необходимо активировать Compiz плагин Dbus. "
+#~ "Отображение рабочего стола и десклетов может завершиться неудачей для "
+#~ "некоторых ОМ, например Metacity."
+
+#~ msgid "Network connection has been established."
+#~ msgstr "Сетевое соединение установлено."
+
+#~ msgid "Network connection has become inactive."
+#~ msgstr "Сетевое соединение утрачено."
+
+#~ msgid "Network has been disconnected."
+#~ msgstr "Сеть была отключена."
+
+#~ msgid "Fluidity of the transition animation between 2 values :"
+#~ msgstr "Плавность смены анимации между 2 значениями:"
+
+#~ msgid "Animation of the icon when connecting :"
+#~ msgstr "Анимация значка при соединении:"
+
+#~ msgid "Info displayed by the icon :"
+#~ msgstr "Информация на значке:"
+
+#~ msgid "Connexion interface to monitor :"
+#~ msgstr "Интерфейс для отслеживания:"
+
+#~ msgid "Display numeric values :"
+#~ msgstr "Показывать цифровые значения:"
+
+#~ msgid "Choose the style of the display :"
+#~ msgstr "Выберите стиль отображения:"
+
+#~ msgid "in seconds, if you don't have Network-Manager."
+#~ msgstr "в сек, если у вас нет Network-Manager."
+
 #~ msgid "Monitor System"
 #~ msgstr "Системный монитор"
 
+#~ msgid "interface :"
+#~ msgstr "Интерфейс:"
+
+#~ msgid ""
+#~ "You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
+#~ "transition is continue."
+#~ msgstr ""
+#~ "Требуется поддержка OpenGL. Установите 0, чтобы не использовать, при "
+#~ "значении 1 переход будет очень плавным."
+
+#~ msgid "Show mouse on :"
+#~ msgstr "Использовать эффект:"
+
 #~ msgid "desklet"
 #~ msgstr "на десклете"
+
+#~ msgid "Let empty to use the default one"
+#~ msgstr "Оставьте пустым, чтобы использовать стандартный"
 
 #~ msgid "Doncky"
 #~ msgstr "Doncky"
@@ -8748,15 +11231,85 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ "Alt+Enter для среднего щелчка и Ctrl+Enter для левого щелчка\n"
 #~ "Escape или то же сочетание клавиш для отмены."
 
+#~ msgid "Open all"
+#~ msgstr "Открыть все"
+
+#~ msgid "StatusNotifier"
+#~ msgstr "Оповещение о статусе"
+
+#~ msgid "Space between lines :"
+#~ msgstr "Интервал между строками:"
+
+#~ msgid ""
+#~ "Maximum number of results tat will be displayed when you select a category "
+#~ "with the right arrow."
+#~ msgstr ""
+#~ "Максимальное количество результатов, которые будут отображены, когда вы "
+#~ "выбираете категорию с помощью стрелки."
+
+#~ msgid "Margin for the text :"
+#~ msgstr "Выравнивание текста:"
+
+#~ msgid "Default text color :"
+#~ msgstr "Цвет текста:"
+
+#~ msgid "Specify the xml file :"
+#~ msgstr "Укажите собственный xml файл:"
+
+#~ msgid "Default text font :"
+#~ msgstr "Шрифт текста:"
+
+#~ msgid "Text on the dock"
+#~ msgstr "Текст на панели"
+
+#~ msgid "Search Engines"
+#~ msgstr "Поисковые системы"
+
+#~ msgid "Search in files ?"
+#~ msgstr "Искать в файлах?"
+
+#~ msgid "Search in Recent files ?"
+#~ msgstr "Искать в недавних документах?"
+
+#~ msgid "Include a command launcher ?"
+#~ msgstr "Задействовать командное выполнение?"
+
+#~ msgid "Search in Firefox bookmarks ?"
+#~ msgstr "Искать в заклаках Firefox?"
+
+#~ msgid "Let empty to write the name of the sound card."
+#~ msgstr "Оставьте пустым, чтобы вывести модель звуковой карты."
+
+#~ msgid "Always show number of mails"
+#~ msgstr "Всегда показывать количество сообщений"
+
+#~ msgid "st color of gradation :"
+#~ msgstr "Начальный цвет градации:"
+
+#~ msgid "nd color of gradation :"
+#~ msgstr "Конечный цвет градации:"
+
 #~ msgid "Hey, you there!"
 #~ msgstr "Эй, ты там!"
+
+#~ msgid "3DPlan"
+#~ msgstr "3DPlan"
 
 #~ msgid "ToolTip"
 #~ msgstr "подсказка"
 
+#~ msgid "Drop Indicator"
+#~ msgstr "Индикатор сброса"
+
+#~ msgid "Trash"
+#~ msgstr "Мусорная корзина"
+
 #, c-format
 #~ msgid "You are about to delete all files in %s. Continue?"
 #~ msgstr "Вы собираетесь удалить все файлы из %s. Уверены?"
+
+#~ msgid "You are about to delete all files in all dustbins. Continue?"
+#~ msgstr "Вы собираетесь удалить все файлы из всех корзин. Уверены?"
 
 #, c-format
 #~ msgid ""
@@ -8768,8 +11321,35 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ "Если '%s' на является обозревателем по-умолчанию,\n"
 #~ "то вы можете изменить его в настройках модуля."
 
+#~ msgid "Icon Effects"
+#~ msgstr "Эффекты значков"
+
+#~ msgid "Illusion"
+#~ msgstr "Иллюзии"
+
+#~ msgid "Keyboard Indicator"
+#~ msgstr "Индикатор раскладки"
+
+#~ msgid "Log-out"
+#~ msgstr "Завершение сеанса"
+
+#~ msgid "Motion Blur"
+#~ msgstr "Размытие движения"
+
+#~ msgid "Show Mouse"
+#~ msgstr "Анимировать курсор"
+
+#~ msgid "Slider"
+#~ msgstr "Слайд-шоу"
+
+#~ msgid "Switcher"
+#~ msgstr "Переключатель"
+
 #~ msgid "Move current Desktop to this Desktop"
 #~ msgstr "Переместить текущий рабочий стол на этот стол"
+
+#~ msgid "Weather"
+#~ msgstr "Погода"
 
 #~ msgid "Display an info bubble when a feed has changed?"
 #~ msgstr "Показывать инфо-облачко при изменении ленты?"
@@ -8783,6 +11363,9 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgid "Shortkey to enable/disable the navigation mode:"
 #~ msgstr "Клавиатурное сокращение для (де)активирования режима навигации:"
 
+#~ msgid "Leave empty to use the defaut command."
+#~ msgstr "Оставьте пустым, чтобы использовать команду по умолчанию."
+
 #~ msgid "Choose an action for middle click on the icon:"
 #~ msgstr "Выберите действие для среднего щелчка:"
 
@@ -8791,6 +11374,9 @@ msgstr "Заменить стандартную подпись, на имя то
 
 #~ msgid "Colour of the plane :"
 #~ msgstr "Цвет плоскости:"
+
+#~ msgid "Inclined Plane"
+#~ msgstr "Наклонная плоскость"
 
 #~ msgid ""
 #~ "In degrees, relative to the vertical. This is a sort of inclination of the "
@@ -8870,6 +11456,12 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgid "Delay between measurements:"
 #~ msgstr "Интервал между двумя измерениями:"
 
+#~ msgid "uild menu gradually:"
+#~ msgstr "Последовательное построение меню:"
+
+#~ msgid "Separate different shortcuts with separators?"
+#~ msgstr "Отделять ярлыки разделителями?"
+
 #~ msgid "Action when applet is clicked:"
 #~ msgstr "Действие при щелчке на апплете:"
 
@@ -8927,6 +11519,9 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgid "Empty all dustbins"
 #~ msgstr "Очистить все корзины"
 
+#~ msgid "dock"
+#~ msgstr "панель"
+
 #~ msgid ""
 #~ "A <b>notification area</b> for your dock\n"
 #~ "Also called 'systray'.\n"
@@ -8937,6 +11532,9 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ "Также известна, как 'системный трей'.\n"
 #~ "Спроектирована для работы со всеми рабочими средами учитывая их последние "
 #~ "спецификации (KDE, Gnome и т.д.)"
+
+#~ msgid "Toto"
+#~ msgstr "Toto"
 
 #~ msgid "No task is sheduled for today."
 #~ msgstr "Сегодня нет событий."
@@ -8949,6 +11547,13 @@ msgstr "Заменить стандартную подпись, на имя то
 
 #~ msgid "Indicator-Menus"
 #~ msgstr "Меню-индикаторы"
+
+#~ msgid ""
+#~ "e size=true\n"
+#~ "F[Decorations;gtk-orientation-portrait]"
+#~ msgstr ""
+#~ "e size=true\n"
+#~ "F[Decorations;gtk-orientation-portrait]"
 
 #~ msgid ""
 #~ "Load folders inside the Dock\n"
@@ -8966,6 +11571,9 @@ msgstr "Заменить стандартную подпись, на имя то
 
 #~ msgid "Unmount (middle-click)"
 #~ msgstr "Отсоединить (средний щелчок)"
+
+#~ msgid "Mount (middle-click)"
+#~ msgstr "Присоединить (средний щелчок)"
 
 #~ msgid "Maximum number of files to list:"
 #~ msgstr "Максимальное количество файлов в списке:"
@@ -9009,6 +11617,12 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgid "Eg: image, text, video, audio, application..."
 #~ msgstr "К примеру: изображения, тексты, видео, аудио, приложения..."
 
+#~ msgid "Clipper"
+#~ msgstr "Clipper"
+
+#~ msgid "Open the folder (middle-click)"
+#~ msgstr "Открыть каталог (средний щелчок)"
+
 #~ msgid "stacks"
 #~ msgstr "stacks"
 
@@ -9033,6 +11647,9 @@ msgstr "Заменить стандартную подпись, на имя то
 
 #~ msgid "Unmute (middle-click)"
 #~ msgstr "Включить звук (средний щелчок)"
+
+#~ msgid "Mute (middle-click)"
+#~ msgstr "Приглушить звук (средний щелчок)"
 
 #~ msgid "Quick launch (Middle-click)"
 #~ msgstr "Быстрый запуск (средний щелчок)"
@@ -9068,3 +11685,7 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ "  используйте стрелки для навигации, нажмите Enter для подтверждения, CTRL, "
 #~ "ALT или SHIFT для сохранения результата.\n"
 #~ "Escape или то же клавиатурное сокращение для отмены."
+
+#~ msgid ""
+#~ "Couldn't upload the file, check that your internet connection is active."
+#~ msgstr "Не удалось загрузить файл, проверьте соединение с Интернет."

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
 "POT-Creation-Date: 2011-01-01 04:07+0000\n"
-"PO-Revision-Date: 2010-10-28 02:44+0000\n"
+"PO-Revision-Date: 2011-02-28 12:46+0000\n"
 "Last-Translator: Krasznecz Zoltán <zoltan.krasznecz@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-01-02 05:10+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Launchpad-Export-Date: 2011-03-01 04:54+0000\n"
+"X-Generator: Launchpad (build 12351)\n"
 "Language: hu\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -1518,7 +1518,7 @@ msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:158
 msgid ""
-"Couldn't upload the file, check that your internet connection is active."
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr "Nem sikerült feltölteni a fájlt, ellenőrizze az internetkapcsolatát."
 
 #: ../dnd2share/src/applet-dnd2share.c:273
@@ -7813,8 +7813,86 @@ msgstr ""
 msgid "Overwrite the default label with the connection point name?"
 msgstr ""
 
+#~ msgid "You shall not pass !"
+#~ msgstr "Itt úgysem jutsz át!"
+
+#~ msgid "Wait, do you want to kill me ?!"
+#~ msgstr "Várj csak, meg akarsz ölni?!"
+
+#~ msgid "I want to be a pirate !"
+#~ msgstr "Kalóz szeretnék lenni!"
+
+#~ msgid "Hey, I'm here !"
+#~ msgstr "Hé, itt vagyok!"
+
+#~ msgid "Admit my superiority on you as a penguin !"
+#~ msgstr "Ismerd el, hogy pingvinként fölényben vagyok!"
+
+#~ msgid "Your dock is so messy ! Let me clean it."
+#~ msgstr "A dokkod olyan piszkos! Hadd takarítsam ki."
+
+#~ msgid "Hey, you there !"
+#~ msgstr "Hé, te ott!"
+
+#~ msgid "I'm your father !"
+#~ msgstr "Én vagyok az apád!"
+
+#~ msgid ""
+#~ "- What will we do tonight Cortex ?\n"
+#~ "- The same thing as every nights, Minus. Try to take over the Dock !"
+#~ msgstr ""
+#~ "- Mit csinálunk ma este Cortex?\n"
+#~ "- Ugyanazt, mint minden este, Minus. Megpróbáljuk átvenni a hatalmat a dokk "
+#~ "felett!"
+
+#~ msgid "For Aiur !"
+#~ msgstr "Auirért!"
+
+#~ msgid "Clear the list of the recently used documents ?"
+#~ msgstr "Törli a legutóbbi dokumentumok listáját?"
+
+#~ msgid "Enter a command to launch :"
+#~ msgstr "Írja be a futtatandó parancsot:"
+
+#~ msgid ""
+#~ "This applet shows you a monitor of your active connections\n"
+#~ "Left-click to pop-up some info,Middle-click to re-check immediately."
+#~ msgstr ""
+#~ "Ez a kisalkalmazás az aktív hálózati kapcsolatok monitorát mutatja\n"
+#~ "Bal kattintásra néhány információ ugrik fel, középső kattintásra azonnal "
+#~ "újra ellenőrzi."
+
+#~ msgid "No data (no connection ?)"
+#~ msgstr "Nincs adat (nincs kapcsolat?)"
+
+#~ msgid "Retrieving data ..."
+#~ msgstr "Adatok letöltése..."
+
+#~ msgid "Invalid data (invalid RSS/Atom feed ?)"
+#~ msgstr "Érvénytelen adat (érvénytelen RSS/Atom forrás?)"
+
 #~ msgid "No data (invalid rss ?)"
 #~ msgstr "Nincs adat (érvénytelen RSS?)"
+
+#~ msgid ""
+#~ "No URL is defined\n"
+#~ "You can define one by copying the URL in the clipboard,\n"
+#~ " and selecting \"Paste the RL\n"
+#~ " in the menu."
+#~ msgstr ""
+#~ "Nincs URL-cím megadva\n"
+#~ "Megadhat egy URL-címet, ha a vágólapra másolja azt.\n"
+#~ " és kiválasztja az \"URL-cm beillesztése\"\n"
+#~ " menüpontot."
+
+#~ msgid ""
+#~ "No data\n"
+#~ "Did you set a valid RSS feed ?\n"
+#~ "Is your connection alive ?"
+#~ msgstr ""
+#~ "Nincs adat\n"
+#~ "Érvényes hírforrást adott meg?\n"
+#~ "Van internetkapcsolata?"
 
 #~ msgid ""
 #~ "This applet is a RSS feed reader\n"
@@ -7841,17 +7919,92 @@ msgstr ""
 #~ "  - Használja a \"Megnyitás webböngészővel\" menüpontot\n"
 #~ "   a hírforrás megnyitásához webböngészőben."
 
+#~ msgid "Paste a new RSS Url (drag'n'drop)"
+#~ msgstr "Új hírforrás URL-címének beillesztése (fogd és vidd módszer)"
+
+#~ msgid ""
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
+#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+#~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
+#~ "docks,\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
+#~ "- the finder mode : type some text to launch any command, file or "
+#~ "calculation.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "Escape or the same shortkey to cancel."
+#~ msgstr ""
+#~ "A Gnome-Do-like beépülő modul lehetővé teszi a dokk irányítását "
+#~ "billentyűzetről.\n"
+#~ "Két módja van, mindegyik egy billentyűzet-kombinációval kapcsolható be:\n"
+#~ "- navigációs mód: használja a nyílbillentyűket a a dokkokba és aldokkokba "
+#~ "lépéshez,\n"
+#~ "  vagy gépelje be egy indító nevét és nyomja meg a Tab billentyűt a "
+#~ "következő megfelelő indítóra ugráshoz\n"
+#~ "  nyomja meg az Enter billentyűt az ikonon kattintáshoz, Shift+Enter "
+#~ "billentyűket a Shift+kattintáshoz, Alt+Enter billentyűket a középső gombbal "
+#~ "kattintáshoz, és Ctrl+Enter billentyűket a bal egérgombbal kattintáshoz\n"
+#~ "- kereső mód: gépelje be az indítani kívánt parancs, fájl vagy számítás egy "
+#~ "részét,\n"
+#~ "  és használja a nyílbillentyűket a találatok közötti navigáláshoz, nyomja "
+#~ "meg az Entert a jóváhagyáshoz, és tartsa nyomva a CTRL, ALT vagy SHIFT "
+#~ "billentyűk egyikét az eredmény megtartásához.\n"
+#~ "Használja az Escape-et vagy más hasonló gyorsbillentyűt a visszavonáshoz."
+
+#~ msgid "Yahoo"
+#~ msgstr "Yahoo"
+
+#~ msgid "Up time"
+#~ msgstr "Rendszer működési ideje"
+
 #~ msgid "Free"
 #~ msgstr "Szabad"
 
 #~ msgid "AlsaMixer"
 #~ msgstr "AlsaMixer"
 
+#~ msgid "Set up gamma :"
+#~ msgstr "Gamma beállítása"
+
 #~ msgid "Monitor System"
 #~ msgstr "Jelzőrendszer"
 
+#, c-format
+#~ msgid "Alert ! Graphic Card core temperature has reached %d°C"
+#~ msgstr "Figyelem! A videokártya hőmérséklete elérte a %d°C-ot!"
+
+#~ msgid "Calendar"
+#~ msgstr "Naptár"
+
+#~ msgid "Clear the list of the recently uploaded files ?"
+#~ msgstr "Törli a legutóbb feltöltött fájlok listáját?"
+
+#~ msgid ""
+#~ "The URL has been stored into the clipboard.\n"
+#~ "Just use 'CTRL+v' to paste it anywhere."
+#~ msgstr ""
+#~ "Az URL-cím a vágólapra került.\n"
+#~ "A 'CTRL+v' megnyomásával illesztheti be."
+
+#~ msgid "Delete Trash"
+#~ msgstr "Kuka ürítése"
+
+#~ msgid "Show Trash"
+#~ msgstr "Kuka mutatása"
+
 #~ msgid "Delete All"
 #~ msgstr "Összes törlése"
+
+#, c-format
+#~ msgid "You're about to delete all files in %s. Sure ?"
+#~ msgstr "Biztosan törli az összes fájlt %s-ben?"
+
+#, c-format
+#~ msgid "Show %s"
+#~ msgstr "%s mutatása"
 
 #~ msgid "Show All"
 #~ msgstr "Összes megjelenítése"
@@ -7859,6 +8012,62 @@ msgstr ""
 #, c-format
 #~ msgid "Delete %s"
 #~ msgstr "%s törlése"
+
+#~ msgid "You have a new mail :"
+#~ msgstr "Egy új levele érkezett:"
+
+#, c-format
+#~ msgid "You have %d new mails :"
+#~ msgstr "%d új levele érkezett:"
+
+#~ msgid "Change this Tab's color"
+#~ msgstr "Lap színének megváltoztatása"
+
+#~ msgid "SunRise"
+#~ msgstr "Napfelkelte"
+
+#~ msgid "SunSet"
+#~ msgstr "Napnyugta"
+
+#~ msgid "Precipitation Probability"
+#~ msgstr "Csapadék valószínűsége"
+
+#~ msgid "Colors"
+#~ msgstr "Színek"
+
+#~ msgid "Default color :"
+#~ msgstr "Alapértelmeett szín"
+
+#~ msgid "BlackHole"
+#~ msgstr "Fekete lyuk"
+
+#~ msgid "Use 3D themes ?"
+#~ msgstr "Használjon 3D témát?"
+
+#~ msgid "Time Left"
+#~ msgstr "Hátralévő idő"
+
+#~ msgid "Personnalisation"
+#~ msgstr "Testreszabás"
+
+#~ msgid "Set up volume :"
+#~ msgstr "Hangerőbeállítás:"
+
+#~ msgid "Adjsut channels"
+#~ msgstr "Csatornák beállítása"
+
+#~ msgid ""
+#~ "This plug-in displays an animated indicator when you drop something in the "
+#~ "dock."
+#~ msgstr ""
+#~ "Ez a kisalkalmazás megjelenít egy animált jelzőt, amikor valamit a dokkra "
+#~ "dob."
+
+#~ msgid "Your computer will shutdown in 1 minute."
+#~ msgstr "A számítógép 1 perc múlva leáll."
+
+#~ msgid "Accessibility :"
+#~ msgstr "Akadálymentesítés:"
 
 #~ msgid "Top offset :"
 #~ msgstr "Felső eltolás:"
@@ -7898,6 +8107,21 @@ msgstr ""
 #~ msgid "Foreground image :"
 #~ msgstr "Előtér kép:"
 
+#~ msgid "Number of items :"
+#~ msgstr "Elemek száma:"
+
+#~ msgid "Shortkey to show/hide the quick-launch dialog :"
+#~ msgstr "Gyorsbillentyű a gyorsindító megjelenítéséhez/elrejtéséhez:"
+
+#~ msgid "Show recent documents ?"
+#~ msgstr "Megjelenítse a legutóbbi dokumentumokat?"
+
+#~ msgid "Shortkey to show/hide the menu :"
+#~ msgstr "Gyorsbillentyű a menü megjelenítéséhez/elrejtéséhez:"
+
+#~ msgid "Display icons in the menu ?"
+#~ msgstr "Megjelenjenek az ikonok a menüben?"
+
 #~ msgid ""
 #~ "This applet is an RSS/Atom feed reader.\n"
 #~ "You can instanciate it as many times as you want.\n"
@@ -7927,17 +8151,134 @@ msgstr ""
 #~ "Próbálja meg megnyitni a kisalkalmazás beállítópanelét,\n"
 #~ " és válassza ki az irányítani kívánt csatornát."
 
+#~ msgid ""
+#~ "This applet displays time and date in your dock.\n"
+#~ "2 view are available : numeric and analogic, based on Cairo-Clock.\n"
+#~ "It is compatible with the Cairo-Clock's themes, and you can detach itself to "
+#~ "be a perfect clone of Cairo-Clock.\n"
+#~ "It supports alarms, and a basic calendar, and allows you to setup time and "
+#~ "date.\n"
+#~ "Left-click to show/hide the calendar, Middle-click to stop an alarm."
+#~ msgstr ""
+#~ "Ez a kisalkalmazás megjeleníti az időt és a dátumot.\n"
+#~ "Két nézet érhető el: analóg és digitális, a Cairo-Clockra épülve.\n"
+#~ "Kompatibilis a Cairo-Clock témáival, leválasztva akár a Cairo-Clock "
+#~ "tökéletes másává is válhat.\n"
+#~ "Támogatja a riasztásokat, van egy alapszintű naptára, valamint beállíthatja "
+#~ "az időt és a dátumot.\n"
+#~ "Bal kattintással hívhatja elő vagy rejtheti el a naptárat, középső "
+#~ "kattintással leállíthatja a riasztást."
+
+#~ msgid "Toggle Widgets Layer"
+#~ msgstr "Váltás szerkentyűnézetre"
+
+#~ msgid "Sorry, couldn't find the orignial file nor a preview of it."
+#~ msgstr "Sajnálom, nem található sem az eredeti fájl, sem az előnézete."
+
+#~ msgid ""
+#~ "The current URL has been stored into the clipboard.\n"
+#~ "Just use 'CTRL+v' to paste it anywhere."
+#~ msgstr ""
+#~ "A jelenlegi URL-cím tárolásra került a vágólapon.\n"
+#~ "Használja a 'CTRL+V' billentyű-kombinációt a beillesztéshez."
+
+#~ msgid ""
+#~ "No uploaded file available\n"
+#~ ".Consider activating the history if you want the applet remembers previous "
+#~ "uploads."
+#~ msgstr ""
+#~ "Nincs feltöltött fájl.\n"
+#~ "Kapcsolja be az előzményeket, ha azt akarja, hogy a kisalkalmazás emlékezzen "
+#~ "a korábbi feltöltésekre."
+
+#, c-format
+#~ msgid ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual file browser,\n"
+#~ "you can change it in the conf panel of this module"
+#~ msgstr ""
+#~ "Egy probléma merült fel\n"
+#~ "Ha nem a(z) '%s' a fájlkezelője,\n"
+#~ "a modul beállítópaneljén megváltoztathatja azt."
+
+#~ msgid "Mark all mails as read"
+#~ msgstr "Összes levél megjelölése olvasottnak"
+
+#~ msgid "Next (middle-click)"
+#~ msgstr "Következő (középső kattintás)"
+
+#~ msgid "Play/Pause (left-click)"
+#~ msgstr "Lejátszás/szünet (bal kattintás)"
+
+#~ msgid "No Battery found."
+#~ msgstr "Nem található akkumulátor.E"
+
+#~ msgid "Please put your Laptop on charge."
+#~ msgstr "Kérem csatlakoztassa a töltőt."
+
+#~ msgid "You need to run Compiz and to activate its 'DBus' plug-in."
+#~ msgstr "El kell indítania a Compizt és bekapcsolni a 'DBus' beépülő modult."
+
 #~ msgid "showDesklets"
 #~ msgstr "Deskletek megjelenítése"
+
+#~ msgid "Set new name for this item :"
+#~ msgstr "Elem új nevének megadása:"
 
 #~ msgid "Copy (middle click)"
 #~ msgstr "Másolás (középső kattintás)"
 
+#~ msgid "current"
+#~ msgstr "jelenlegi"
+
+#~ msgid "desktop"
+#~ msgstr "asztal"
+
 #~ msgid "Add a desktop"
 #~ msgstr "Asztal hozzáadása"
 
+#, c-format
+#~ msgid "You can call back the Terminal desklet by typing %s"
+#~ msgstr "Visszahívhatja a terminál-deskletet a(z) %s begépelésével."
+
+#~ msgid "Set title for this tab :"
+#~ msgstr "Adja meg a lap címét:"
+
+#~ msgid "Search for tag :"
+#~ msgstr "Keresés címkére:"
+
+#~ msgid "Search for :"
+#~ msgstr "Keresés:"
+
+#~ msgid "Delete this note ?"
+#~ msgstr "Törli ezt a jegyzetet?"
+
+#~ msgid "Effects used :"
+#~ msgstr "Használt effektek:"
+
+#~ msgid "Wifi disabled."
+#~ msgstr "Wifi kikapcsolva."
+
+#~ msgid "Initial stretch :"
+#~ msgstr "Kiinduló nyújtás"
+
+#~ msgid "Rays speed :"
+#~ msgstr "Sugarak sebessége:"
+
+#~ msgid "Random colors ?"
+#~ msgstr "Véletlenszerű színek?"
+
+#~ msgid "Rays size :"
+#~ msgstr "Sugarak mérete:"
+
+#~ msgid "Number of rays :"
+#~ msgstr "Sugarak száma:"
+
 #~ msgid "in seconds"
 #~ msgstr "másodpercekben"
+
+#~ msgid "Choose one of the available themes :"
+#~ msgstr "Válasszon ki egyet az elérhető témákból:"
 
 #~ msgid "On Widget Layer"
 #~ msgstr "A szerkentyűrétegen"
@@ -7951,15 +8292,88 @@ msgstr ""
 #~ msgid "Rotation :"
 #~ msgstr "Forgatás:"
 
+#~ msgid "Enable actions ?"
+#~ msgstr "Műveletek engedélyezése?"
+
+#~ msgid "Replay actions ?"
+#~ msgstr "Műveletek ismétlése?"
+
+#~ msgid "in days. Set 0 to not use this filter."
+#~ msgstr "napokban. Adjon meg 0-t a szűrő tiltásához."
+
+#~ msgid "Background color of the graphic :"
+#~ msgstr "A grafikon háttérszíne:"
+
+#~ msgid "Let empty to use the title of the RSS feed."
+#~ msgstr "Hagyja üresen a hírforrás címének használatához."
+
+#~ msgid "URL :"
+#~ msgstr "URL-cím:"
+
+#~ msgid "Feed lines color :"
+#~ msgstr "Hírvonalak színe:"
+
+#~ msgid "Logo size :"
+#~ msgstr "Logó mérete:"
+
+#~ msgid "Space between 2 feed lines :"
+#~ msgstr "Két hírvonal közötti hely:"
+
+#~ msgid "Border color :"
+#~ msgstr "Keretszín:"
+
+#~ msgid "Border color"
+#~ msgstr "Keretszín"
+
 #~ msgid "Characters"
 #~ msgstr "Karakterek"
+
+#~ msgid "Do you know how much painful it is to be clicked on ??"
+#~ msgstr "Tudod te, hogy milyen fájdalmas, ha rádkattintanak???"
+
+#~ msgid "It's my dock now, mwahahaha !"
+#~ msgstr "Mostantól ez az én dokkom, hahahaha!"
 
 #~ msgid "Hey, you there!"
 #~ msgstr "Hé, te ott!"
 
+#~ msgid "Trash"
+#~ msgstr "lomtár"
+
 #, c-format
 #~ msgid "You are about to delete all files in %s. Continue?"
 #~ msgstr "Biztosan törli az összes fájlt %s-ben?"
+
+#~ msgid "You are about to delete all files in all dustbins. Continue?"
+#~ msgstr "Biztosan töröl minden fájl a lomtárból?"
+
+#, c-format
+#~ msgid ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual file browser,\n"
+#~ "you can change this in the configuration panel of this module"
+#~ msgstr ""
+#~ "Egy probléma merült fel\n"
+#~ "Ha nem a(z) '%s' a fájlkezelője,\n"
+#~ "a modul beállítópaneljén megváltoztathatja azt."
+
+#~ msgid "Icon Effects"
+#~ msgstr "ikoneffektusok"
+
+#~ msgid "Illusion"
+#~ msgstr "szemfényvesztés"
+
+#~ msgid "Keyboard Indicator"
+#~ msgstr "billentyűzetjelző"
+
+#~ msgid "Log-out"
+#~ msgstr "kijelentkezés"
+
+#~ msgid "Show Mouse"
+#~ msgstr "Egér mutatása"
+
+#~ msgid "Weather"
+#~ msgstr "időjárás"
 
 #~ msgid ""
 #~ "- What will we do tonight Cortex?\n"
@@ -8000,3 +8414,7 @@ msgstr ""
 #~ "meg az Entert a jóváhagyáshoz, és tartsa nyomva a CTRL, ALT vagy SHIFT "
 #~ "billentyűk egyikét az eredmény megtartásához.\n"
 #~ "Használja az Escape-et vagy más hasonló gyorsbillentyűt a visszavonáshoz."
+
+#~ msgid ""
+#~ "Couldn't upload the file, check that your internet connection is active."
+#~ msgstr "Nem sikerült feltölteni a fájlt, ellenőrizze az internetkapcsolatát."

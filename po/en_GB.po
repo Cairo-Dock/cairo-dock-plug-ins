@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
 "POT-Creation-Date: 2011-01-01 04:07+0000\n"
-"PO-Revision-Date: 2010-10-28 02:27+0000\n"
+"PO-Revision-Date: 2011-02-28 12:36+0000\n"
 "Last-Translator: Fabounet <fabounet03@gmail.com>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-01-02 05:12+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Launchpad-Export-Date: 2011-03-01 04:56+0000\n"
+"X-Generator: Launchpad (build 12351)\n"
 "Language: \n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -1573,9 +1573,9 @@ msgstr "This plug-in provides some decorators for dialog bubbles."
 
 #: ../dnd2share/src/applet-dnd2share.c:158
 msgid ""
-"Couldn't upload the file, check that your internet connection is active."
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr ""
-"Couldn't upload the file, check that your internet connection is active."
+"Couldn't upload the file, check that your internet connexion is active."
 
 #: ../dnd2share/src/applet-dnd2share.c:273
 msgid ""
@@ -8120,6 +8120,12 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "This applet monitors your active connections\n"
 #~ "Left-click to pop-up some info,Middle-click to re-check immediately."
 
+#~ msgid "Yahoo"
+#~ msgstr "Yahoo!"
+
+#~ msgid "Up time"
+#~ msgstr "Uptime"
+
 #~ msgid "Free"
 #~ msgstr "Free"
 
@@ -8139,12 +8145,64 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "You should try to open the configuration panel of the applet,\n"
 #~ " and select the proper audio channel you want to control."
 
+#~ msgid "Adjsut channels"
+#~ msgstr "Adjust channels"
+
+#~ msgid "Calendar"
+#~ msgstr "Calendar"
+
+#~ msgid "This plug-in provides some dialog decorators for dialog bubbles."
+#~ msgstr "This plug-in provides some decorators for dialog bubbles."
+
+#~ msgid "Toggle Widgets Layer"
+#~ msgstr "Toggle Widget Layer"
+
+#~ msgid ""
+#~ "This applet displays time and date in your dock.\n"
+#~ "2 view are available : numeric and analogic, based on Cairo-Clock.\n"
+#~ "It is compatible with the Cairo-Clock's themes, and you can detach itself to "
+#~ "be a perfect clone of Cairo-Clock.\n"
+#~ "It supports alarms, and a basic calendar, and allows you to setup time and "
+#~ "date.\n"
+#~ "Left-click to show/hide the calendar, Middle-click to stop an alarm."
+#~ msgstr ""
+#~ "This applet displays the time and date in your dock.\n"
+#~ "Two views are available: digital and analogue, based on Cairo-Clock.\n"
+#~ "This is compatible with Cairo-Clock themes and can be detached itself to "
+#~ "make a perfect clone of Cairo-Clock.\n"
+#~ "It supports alarms and a basic calendar and allows you to configure the time "
+#~ "and date.\n"
+#~ "Left-click to show/hide the calendar, Middle-click to stop an alarm."
+
+#~ msgid ""
+#~ "This plug-in displays an animated indicator when you drop something in the "
+#~ "dock."
+#~ msgstr ""
+#~ "This plug-in displays an animated indicator when you drop something into the "
+#~ "dock."
+
 #~ msgid "Delete All"
 #~ msgstr "Delete All"
 
 #, c-format
 #~ msgid "Show %s"
 #~ msgstr "Show %s"
+
+#~ msgid ""
+#~ "This applet manages the dustbin\n"
+#~ "You can threw files and unmount disks by drag andn droping them on the "
+#~ "icon.\n"
+#~ "The applet can warn you if you use too much space\n"
+#~ "Middle-click to display usefull info about the dustbin."
+#~ msgstr ""
+#~ "This applet manages the dustbin\n"
+#~ "You can discard files and unmount disks by dragging and dropping them on the "
+#~ "icon.\n"
+#~ "The applet can warn you if you use too much space\n"
+#~ "Middle-click to display useful info about the dustbin."
+
+#~ msgid "Show Trash"
+#~ msgstr "Show Trash"
 
 #~ msgid "Show All"
 #~ msgstr "Show All"
@@ -8153,14 +8211,121 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Delete %s"
 #~ msgstr "Delete %s"
 
+#, c-format
+#~ msgid ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual file browser,\n"
+#~ "you can change it in the conf panel of this module"
+#~ msgstr ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual file browser,\n"
+#~ "you can change this in the configuration panel of this module"
+
+#, c-format
+#~ msgid "You're about to delete all files in %s. Sure ?"
+#~ msgstr "You are about to delete all files in %s. Continue?"
+
+#~ msgid "This plug-in adds many special effects to your icons."
+#~ msgstr "This plugin adds many special effects to your icons."
+
+#~ msgid ""
+#~ "This plug-in provides animations for appearance & disappearance of icons."
+#~ msgstr ""
+#~ "This plugin provides animations for appearance & disappearance of icons."
+
+#~ msgid ""
+#~ "A very simple applet that adds an icon to log out from your session\n"
+#~ "Left click to log out, middle click to shutdown\n"
+#~ "You can invert this order if you prefer to shutdown on left-click."
+#~ msgstr ""
+#~ "A very simple applet that adds an icon to log out from your session\n"
+#~ "Left click to log out, middle click to shutdown\n"
+#~ "You can invert this order if you prefer to shutdown on left-click."
+
+#, c-format
+#~ msgid ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual mail application,\n"
+#~ "you can change it in the conf panel of this module"
+#~ msgstr ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual mail application,\n"
+#~ "you can change it in the configuration panel of this module"
+
+#~ msgid "This plug-in adds a motion blur effect on docks."
+#~ msgstr "This plugin adds a motion blur effect to docks."
+
+#~ msgid ""
+#~ "This applet lets you control any music player.\n"
+#~ "Left click to Play/Pause, middle-click to play Next song.\n"
+#~ "Scroll up/down to play previous/next song.\n"
+#~ "You can drag and drop songs on the icon to put them in the queue (depends on "
+#~ "Player),\n"
+#~ " and jpeg image to use as cover.\n"
+#~ "Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
+#~ "       For SongBird, you have to install its dbus add-on.\n"
+#~ msgstr ""
+#~ "This applet lets you control any music player.\n"
+#~ "Left click to Play/Pause, middle-click to play Next song.\n"
+#~ "Scroll up/down to play previous/next song.\n"
+#~ "You can drag and drop songs to put them in the queue (depends on Player).\n"
+#~ "Note : For XMMS, you must install the 'xmms-infopipe' plug-in.\n"
+#~ "       For SongBird, you must install its dbus add-on.\n"
+
 #~ msgid "Play/Pause (left-click)"
 #~ msgstr "Play/Pause (left-click)"
 
 #~ msgid "Next (middle-click)"
 #~ msgstr "Next (middle-click)"
 
+#~ msgid "Estimated time with Charge:"
+#~ msgstr "Estimated time with charge:"
+
+#~ msgid "Estimated Charge time:"
+#~ msgstr "Estimated charge time:"
+
+#~ msgid "No Battery found."
+#~ msgstr "No battery found."
+
+#~ msgid "Please put your Laptop on charge."
+#~ msgstr "Please put your laptop on charge."
+
+#~ msgid "A power manager for laptop's battery. It works with ACPI and DBus."
+#~ msgstr "A power manager for laptop batteries. Works with ACPI and DBus."
+
+#~ msgid ""
+#~ "PowerManager.\n"
+#~ "Your battery is now Charged"
+#~ msgstr ""
+#~ "PowerManager.\n"
+#~ "Your battery is now charged"
+
+#~ msgid ""
+#~ "This plug-in draw some animation around the cursor when it's inside a "
+#~ "dock/desklet."
+#~ msgstr ""
+#~ "This plugin draws some animations around the cursor when it's inside a "
+#~ "dock/desklet."
+
+#~ msgid ""
+#~ "This applet let you access quickly to your desklets.\n"
+#~ "Left click to show/hide your desklets.\n"
+#~ "Basically, if you run under Compiz, you don't need this applet;\n"
+#~ " you should just use the 'Widget Layer' capabilities of desklets."
+#~ msgstr ""
+#~ "This applet lets you access your desklets quickly.\n"
+#~ "Left click to show/hide your desklets.\n"
+#~ "Basically, if you're running Compiz, you don't need this applet;\n"
+#~ " you should just use the 'Widget Layer' capabilities of desklets."
+
 #~ msgid "showDesklets"
 #~ msgstr "showDesklets"
+
+#~ msgid "Clear the stack ?"
+#~ msgstr "Clear the stack?"
+
+#~ msgid "Set new name for this item :"
+#~ msgstr "Set new name for this item:"
 
 #~ msgid "Copy (middle click)"
 #~ msgstr "Copy (middle click)"
@@ -8171,11 +8336,86 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Clean local directory"
 #~ msgstr "Clean local directory"
 
+#~ msgid ""
+#~ "Add a systray to your dock.\n"
+#~ "Left-click to show the systray in a dialog (you can bind a keyboard shortcut "
+#~ "for it.)\n"
+#~ "Middle-click to close the dalog.\n"
+#~ "But the best way to use it id to detach it from the dock, and place it "
+#~ "somewhere, above other windows."
+#~ msgstr ""
+#~ "Add a systray to your dock.\n"
+#~ "Left-click to show the systray in a dialog (you can bind a keyboard shortcut "
+#~ "for it.)\n"
+#~ "Middle-click to close the dalog.\n"
+#~ "For best results, detach it from the dock and place it somewhere above other "
+#~ "windows."
+
+#~ msgid ""
+#~ "This applet allows you to switch between your virtual desktops.\n"
+#~ "It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock).\n"
+#~ "You can also quickly add/remove a desktop through the right-click menu.\n"
+#~ "Scroll up/down on the main icon to go to the left/right desktop, middle-"
+#~ "click to show the desktop"
+#~ msgstr ""
+#~ "This applet allows you to switch between your virtual desktops.\n"
+#~ "It has 2 modes: compact (one icon) and expanded (with a sub-dock).\n"
+#~ "You can also quickly add/remove a desktop via the right-click menu.\n"
+#~ "Scroll up/down on the main icon to go to the left/right desktop, middle-"
+#~ "click to show the desktop"
+
 #~ msgid "Add a desktop"
 #~ msgstr "Add a desktop"
 
 #~ msgid "Remove last desktop"
 #~ msgstr "Remove last desktop"
+
+#~ msgid "Change this Tab's color"
+#~ msgstr "Change this Tab's colour"
+
+#~ msgid "Search for tag :"
+#~ msgstr "Search for tag:"
+
+#~ msgid "Search for :"
+#~ msgstr "Search for:"
+
+#~ msgid "Delete this note ?"
+#~ msgstr "Delete this note?"
+
+#~ msgid "Clear marks"
+#~ msgstr "Reset marks"
+
+#~ msgid "SunRise"
+#~ msgstr "Sunrise"
+
+#~ msgid "SunSet"
+#~ msgstr "Sunset"
+
+#~ msgid ""
+#~ "No data were available\n"
+#~ "Re-trying now ..."
+#~ msgstr ""
+#~ "No data available\n"
+#~ "Retrying now..."
+
+#~ msgid "Precipitation Probability"
+#~ msgstr "Precipitation probability"
+
+#~ msgid ""
+#~ "No data were available\n"
+#~ " is connection alive ?"
+#~ msgstr ""
+#~ "No data available\n"
+#~ " is your connection alive?"
+
+#~ msgid "Set to 0 to use the default applet size"
+#~ msgstr "Set to 0 to use the default applet size"
+
+#~ msgid "feeled"
+#~ msgstr "Feels like"
+
+#~ msgid "Wifi disabled."
+#~ msgstr "WiFi disabled."
 
 #~ msgid "Desklet's dimension (width x height) :"
 #~ msgstr "Desklet dimensions (width x height):"
@@ -8276,11 +8516,52 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Foreground image :"
 #~ msgstr "Foreground image:"
 
+#~ msgid "Choose one of the available themes :"
+#~ msgstr "Choose one of the available themes:"
+
+#~ msgid "Wink duration :"
+#~ msgstr "Wink duration:"
+
+#~ msgid "High refresh frequency ?"
+#~ msgstr "High refresh frequency?"
+
 #~ msgid "in seconds"
 #~ msgstr "in seconds"
 
 #~ msgid "in ms."
 #~ msgstr "in ms."
+
+#~ msgid "Mean delay between winks :"
+#~ msgstr "Mean delay between winks:"
+
+#~ msgid "Sorry, couldn't find the orignial file nor a preview of it."
+#~ msgstr "Sorry, couldn't find the original file nor a preview of it."
+
+#~ msgid ""
+#~ "The URL has been stored into the clipboard.\n"
+#~ "Just use 'CTRL+v' to paste it anywhere."
+#~ msgstr ""
+#~ "The URL has been stored in the clipboard.\n"
+#~ "Just use 'CTRL+v' to paste it anywhere."
+
+#~ msgid ""
+#~ "No uploaded file available\n"
+#~ ".Consider activating the history if you want the applet remembers previous "
+#~ "uploads."
+#~ msgstr ""
+#~ "No uploaded file available.\n"
+#~ "Consider activating the history if you want the applet to remember previous "
+#~ "uploads."
+
+#~ msgid ""
+#~ "The current URL has been stored into the clipboard.\n"
+#~ "Just use 'CTRL+v' to paste it anywhere."
+#~ msgstr ""
+#~ "The current URL has been stored in the clipboard.\n"
+#~ "Just use 'CTRL+v' to paste it anywhere."
+
+#~ msgid "New song"
+#~ msgstr "New song"
 
 #~ msgid ""
 #~ "This is a very simple icon to show your desktop\n"
@@ -8292,11 +8573,136 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "Middle-click does the same but doesn't hide your desklets\n"
 #~ "There is an option to reverse that behaviour"
 
+#~ msgid ""
+#~ "An applet that let you access quickly to all of your shortcuts.\n"
+#~ "It can manage disks, network points, and Nautilus bookmarks (even if you "
+#~ "don't have Nautilus).\n"
+#~ "Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
+#~ "Middle-click on the main icon to acces your desktop easily.\n"
+#~ "Middle-click on a mounting point icon to (un)mount is quickly.\n"
+#~ "The applet can also display valuable information about your disks, like free "
+#~ "space, type, etc."
+#~ msgstr ""
+#~ "An applet that lets you access all your shortcuts quickly.\n"
+#~ "It can manage disks, network points and Nautilus bookmarks, even if you "
+#~ "don't have Nautilus installed.\n"
+#~ "You can add or remove bookmarks via drag & drop on the main icon or the sub-"
+#~ "dock.\n"
+#~ "Middle-click on the main icon to access your desktop easily.\n"
+#~ "Middle-click on a mounting point icon to (un)mount is quickly.\n"
+#~ "The applet can also display valuable informations about your disks, like "
+#~ "free space, type, etc."
+
+#~ msgid "Effects used :"
+#~ msgstr "Effects used:"
+
+#~ msgid "when hovering an icon"
+#~ msgstr "when hovering over an icon"
+
+#~ msgid "Effects used on launcher :"
+#~ msgstr "Effects used on launcher:"
+
+#~ msgid "when clicking on an appli"
+#~ msgstr "when clicking on an application"
+
+#~ msgid "Effects used on applis :"
+#~ msgstr "Effects used on applications:"
+
+#~ msgid "Effects used on applets :"
+#~ msgstr "Effects used on applets:"
+
+#~ msgid "Duration of the animation :"
+#~ msgstr "Duration of the animation:"
+
+#~ msgid "Number of time the animation will play :"
+#~ msgstr "Number of times the animation will play:"
+
+#~ msgid "color of the spot :"
+#~ msgstr "Spot colour:"
+
+#~ msgid "color of the halo :"
+#~ msgstr "Halo colour:"
+
 #~ msgid "color of the mesh :"
 #~ msgstr "Mesh colour:"
 
+#~ msgid "Type of mesh :"
+#~ msgstr "Type of mesh:"
+
+#~ msgid "Repeat while icon is pointed ?"
+#~ msgstr "Repeat while icon is pointed to?"
+
+#~ msgid "Initial stretch :"
+#~ msgstr "Initial stretch:"
+
+#~ msgid "Rays speed :"
+#~ msgstr "Ray speed:"
+
+#~ msgid "Random colors ?"
+#~ msgstr "Random colours?"
+
+#~ msgid "Rays size :"
+#~ msgstr "Ray size:"
+
+#~ msgid "Number of rays :"
+#~ msgstr "Number of rays:"
+
+#~ msgid "Friction :"
+#~ msgstr "Friction:"
+
+#~ msgid "Number of points on the grid in one direction :"
+#~ msgstr "Number of points on the grid in each direction:"
+
+#~ msgid "Amplitude of the wave :"
+#~ msgstr "Wave amplitude:"
+
+#~ msgid "Duration of the pulse :"
+#~ msgstr "Pulse duration:"
+
+#~ msgid "Zoom max of the pulse :"
+#~ msgstr "Pulse max zoom:"
+
+#~ msgid "Should the pulse follow the shape of the icon ?"
+#~ msgstr "Pulse follows icon shape?"
+
+#~ msgid "Width of the wave :"
+#~ msgstr "Wave width:"
+
+#~ msgid "Duration of the bounce :"
+#~ msgstr "Bounce duration:"
+
+#~ msgid "Spring constant :"
+#~ msgstr "Spring constant:"
+
+#~ msgid "When bouncing, resize the icon of :"
+#~ msgstr "When bouncing, resize the icon by:"
+
+#~ msgid "the smaller, the more it will flatten."
+#~ msgstr "the lower the value, the more it will flatten."
+
+#~ msgid "Let the penguin wander everywhere in the dock ?"
+#~ msgstr "Let the penguin wander everywhere in the dock?"
+
+#~ msgid "Transparency of the penguin :"
+#~ msgstr "Penguin transparency:"
+
+#~ msgid "Name of the icon when the penguin is not free :"
+#~ msgstr "Icon name for busy penguin:"
+
+#~ msgid "Icon size when the penguin is not free :"
+#~ msgstr "Icon size for busy penguin:"
+
+#~ msgid "Duration of the blink :"
+#~ msgstr "Blink duration:"
+
+#~ msgid "How much the icon will flatten when hurting the ground :"
+#~ msgstr "How much the icon will flatten when hitting the ground:"
+
 #~ msgid "Action_0"
 #~ msgstr "Action_0"
+
+#~ msgid "Ground offset :"
+#~ msgstr "Ground offset:"
 
 #~ msgid "Action_1/Command_0"
 #~ msgstr "Action_1/Command_0"
@@ -8373,11 +8779,253 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Action_6/Command_2"
 #~ msgstr "Action_6/Command_2"
 
+#~ msgid "Let extern applications show/hide the desklets ?"
+#~ msgstr "Let external applications show/hide desklets?"
+
+#~ msgid "Let extern applications pop-up dialogs in the dock ?"
+#~ msgstr "Let external applications pop up dialogs in the dock?"
+
+#~ msgid "Let extern applications quit the dock ?"
+#~ msgstr "Let external applications quit the dock?"
+
+#~ msgid "Let extern applications reboot the dock ?"
+#~ msgstr "Let external applications reboot the dock?"
+
+#~ msgid "Let it empty to use the default icon."
+#~ msgstr "Leave empty to use the default icon."
+
+#~ msgid "Shortkey to activate/deactivate the navigation mode :"
+#~ msgstr "Shortkey to enable/disable the navigation mode:"
+
+#~ msgid "Shortkey to activate/deactivate the finder mode :"
+#~ msgstr "Shortkey to enable/disable the finder mode:"
+
+#~ msgid "Text weight :"
+#~ msgstr "Text size:"
+
+#~ msgid "between 1 and 9, the bigger, the heavier."
+#~ msgstr "between 1 and 9, the higher, the bigger."
+
+#~ msgid "Font size, relatively to the dock's size :"
+#~ msgstr "Font size, relative to the dock size:"
+
+#~ msgid "Font used to display what you type :"
+#~ msgstr "Font used to display what you type:"
+
+#~ msgid ""
+#~ "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
+#~ "number or so."
+#~ msgstr ""
+#~ "E.g. Monospace, Purisa, ... Simply type the font name with no number."
+
 #~ msgid "Characters"
 #~ msgstr "Characters"
 
+#~ msgid "It's the color of the graphic for high CPU values."
+#~ msgstr "Graph colour for high values."
+
+#~ msgid "It's the color of the graphic for low CPU values."
+#~ msgstr "Graph colour for low values."
+
+#~ msgid "Color of the background of the characters :"
+#~ msgstr "Character background colour:"
+
+#~ msgid "Text color :"
+#~ msgstr "Text colour:"
+
+#~ msgid "Delay between refresh :"
+#~ msgstr "Delay between refreshes:"
+
+#~ msgid "User command to show a system monitor :"
+#~ msgstr "User command to display a system monitor:"
+
+#~ msgid "It's the second color of the gradation used to write the top list."
+#~ msgstr "The second colour of the gradient used to display the top list."
+
+#~ msgid "Start color of the top list :"
+#~ msgstr "Top list start colour:"
+
+#~ msgid "It's the first color of the gradation used to write the top list."
+#~ msgstr "The first colour of the gradient used to display the top list."
+
+#~ msgid "Number of programs to display in the top list :"
+#~ msgstr "Number of programs to display in the top list:"
+
+#~ msgid ""
+#~ "When you left-click on the icon, you will get the list of the N most CPU/RAM-"
+#~ "using programs."
+#~ msgstr ""
+#~ "When you left-click on the icon, you will get the list of the N most CPU/RAM-"
+#~ "intensive programs."
+
+#~ msgid "Stop color of the top list :"
+#~ msgstr "Top list stop colour:"
+
+#~ msgid "Delay between refresh of the top list :"
+#~ msgstr "Delay between top list refreshes:"
+
+#~ msgid "Play a sound during the alert ?"
+#~ msgstr "Play a sound when displaying warning?"
+
+#~ msgid "Alert limit of core temperature :"
+#~ msgstr "Alert limit of graphic card temperature:"
+
+#~ msgid "Sound path :"
+#~ msgstr "Path to sound file:"
+
+#~ msgid "Alert when core temperature is high ?"
+#~ msgstr "Alert when graphic card temperature is high?"
+
+#~ msgid "Lower limit of core temperature :"
+#~ msgstr "Lower limit of graphic card temperature:"
+
+#~ msgid ""
+#~ "in celcius. The temperature will be displayed between the lower limit and "
+#~ "this value."
+#~ msgstr ""
+#~ "in celcius. The temperature will be displayed between this value and the "
+#~ "upper limit."
+
+#~ msgid "Upper limit of core temperature :"
+#~ msgstr "Upper limit of graphic card temperature:"
+
+#~ msgid "Luminosity to automatically apply on startup :"
+#~ msgstr "Brightness to apply automatically on startup:"
+
+#~ msgid "Set 0 to not use it."
+#~ msgstr "Use 0 for none."
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can move it with ALT + left_click. "
+#~ "Negative values are counted from the right/bottom of the screen"
+#~ msgstr ""
+#~ "Depending on your WindowManager, you may be able to move this with ALT + "
+#~ "left-click. Negative values are calculated from the right/bottom of the "
+#~ "screen"
+
+#~ msgid "Variation for 1 mouse scroll, in % :"
+#~ msgstr "Variation for 1 mouse scroll, in %:"
+
+#~ msgid "Sound card to control :"
+#~ msgstr "Sound card:"
+
+#~ msgid "Let empty to use the default sound card."
+#~ msgstr "Leave empty to use the default sound card."
+
+#~ msgid "Optionnally, choose a second channel to control :"
+#~ msgstr "Choose a second channel to control (optional):"
+
+#~ msgid "Choose which channel to control :"
+#~ msgstr "Select channel:"
+
+#~ msgid ""
+#~ "On some cards, a channel only controls 1 side (right or left). You will then "
+#~ "need to specify a second channel here, to control both sides. Most of the "
+#~ "time, you should just let it empty."
+#~ msgstr ""
+#~ "On some cards, a channel only controls 1 side (right or left). You will then "
+#~ "need to specify a second channel here, to control both sides. Most of the "
+#~ "time, you should just leave this empty."
+
+#~ msgid "Default icon :"
+#~ msgstr "Default icon:"
+
+#~ msgid "Broken icon :"
+#~ msgstr "Broken icon:"
+
+#~ msgid "Shortkey to show/hide the sound control dialog :"
+#~ msgstr "Shortkey to show/hide the sound control dialog:"
+
+#~ msgid "Specific command to run to show an advanced sound mixer :"
+#~ msgstr "Specific command to run to show an advanced sound mixer:"
+
+#~ msgid "Effet to apply on the icon according to volume :"
+#~ msgstr "Effect to apply to the icon when adjusting volume:"
+
+#~ msgid "Let empty to use the defaut command."
+#~ msgstr "Leave empty to use the defaut command."
+
+#~ msgid "Mute icon :"
+#~ msgstr "Mute icon:"
+
+#~ msgid "Should the time be displayed as a 24h format ?"
+#~ msgstr "Display time in 24 hour format?"
+
+#~ msgid "if not, then the applet will update time once a minute, saving CPU."
+#~ msgstr ""
+#~ "if not, then the applet will update the time once a minute, saving CPU power."
+
+#~ msgid "for numeric format only."
+#~ msgstr "for digital format only."
+
+#~ msgid "Show the date :"
+#~ msgstr "Show the date:"
+
+#~ msgid ""
+#~ "In ms. Set 0 to not have a smooth animation, set 1000 to have a continuous "
+#~ "animation. It requires OpenGL."
+#~ msgstr ""
+#~ "In ms. Set 0 for non-smooth animation, set 1000 to have a continuous "
+#~ "animation. Requires OpenGL."
+
+#~ msgid "Show seconds ?"
+#~ msgstr "Show seconds?"
+
+#~ msgid "Let it empty to use the location's name if available."
+#~ msgstr "Leave empty to use the location name if available."
+
+#~ msgid "Module"
+#~ msgstr "Module"
+
+#~ msgid ""
+#~ "For exemple :Europe/Paris, :Japan, etc. Let empty to get the local time."
+#~ msgstr "E.g. :Europe/Paris, :Japan, etc. Leave empty for local time."
+
+#~ msgid "Display seconds with smooth animation of a duration of :"
+#~ msgstr "Display seconds with smooth animation for a duration of:"
+
+#~ msgid "Timezone :"
+#~ msgstr "Timezone:"
+
+#~ msgid "Analogic"
+#~ msgstr "Analogue"
+
+#~ msgid "Numeric"
+#~ msgstr "Digital"
+
+#~ msgid ""
+#~ "The analogic view is based on CairoClock; otherwise it will be displayed in "
+#~ "a numeric way."
+#~ msgstr ""
+#~ "The analogue view is based on CairoClock; otherwise it will be displayed in "
+#~ "digital format."
+
 #~ msgid "Font used for the numeric display :"
 #~ msgstr "Font used for digital display:"
+
+#~ msgid "Numeric View"
+#~ msgstr "Digital View"
+
+#~ msgid "List of available themes for the analogic display :"
+#~ msgstr "List of available themes for analogue display:"
+
+#~ msgid "Let empty to use default command."
+#~ msgstr "Leave empty to use the default command."
+
+#~ msgid "Setup time and date"
+#~ msgstr "Configure time and date"
+
+#~ msgid "Specific command to run :"
+#~ msgstr "Specific command to run:"
+
+#~ msgid "Text color of the date :"
+#~ msgstr "Date text colour:"
+
+#~ msgid "Image to draw on the background :"
+#~ msgstr "Background image:"
+
+#~ msgid "Analogic View"
+#~ msgstr "Analogue View"
 
 #~ msgid "Text color for the numeric display:"
 #~ msgstr "Text colour for digital display:"
@@ -8385,11 +9033,177 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Show Desktop"
 #~ msgstr "Show Desktop"
 
+#~ msgid ""
+#~ "This command will be used to launch the system WM; let it blank to use the "
+#~ "default one."
+#~ msgstr ""
+#~ "This command will be used to launch the system WM. Leave blank to use the "
+#~ "default."
+
+#~ msgid "Auto-reload Compiz ?"
+#~ msgstr "Auto-reload Compiz?"
+
+#~ msgid "Custom command for system's Windows Manager :"
+#~ msgstr "Custom command for system's Windows Manager:"
+
+#~ msgid ""
+#~ "If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
+#~ "Compiz from the dock then."
+#~ msgstr ""
+#~ "If Compiz quits unexpectedly, Cairo-Dock will restart it. You must then quit "
+#~ "Compiz from the dock."
+
+#~ msgid "Choose an action for the middle click on the icon :"
+#~ msgstr "Choose an action for middle click on the icon:"
+
+#~ msgid ""
+#~ "Except for switching to another WM, you must activate the Dbus plugin in "
+#~ "Compiz, along with the plug-in corresponding to the desired action."
+#~ msgstr ""
+#~ "Except when switching to another WM, you must activate the Dbus plugin in "
+#~ "Compiz along with the plugin corresponding to the desired action."
+
+#~ msgid "Add or remove an alarm :"
+#~ msgstr "Add or remove an alarm:"
+
+#~ msgid ""
+#~ "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
+#~ "quit Compiz from the dock then."
+#~ msgstr ""
+#~ "If the decorator quits unexpectedly, Cairo-Dock will restart it. ou must "
+#~ "then quit Compiz from the dock."
+
+#~ msgid "Load Compiz with options at applet's startup."
+#~ msgstr "Load Compiz with options on startup."
+
+#~ msgid "Add Emerald's Configuration to sub-dock ?"
+#~ msgstr "Add Emerald Configuration to sub-dock?"
+
+#~ msgid ""
+#~ "Display in the applet's sub-dock an icon for the Emerald's configuration "
+#~ "panel."
+#~ msgstr ""
+#~ "Display an icon for the Emerald configuration panel in the applet's sub-dock."
+
+#~ msgid "Add Exposition & Widget Layer to sub-dock ?"
+#~ msgstr "Add Exposition & Widget Layer to sub-dock?"
+
+#~ msgid ""
+#~ "Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
+#~ "Layer plug-ins. Otherwise they will be available in the menu."
+#~ msgstr ""
+#~ "Display two icons for Compiz Exposition & Widget Layer plug-ins in the  "
+#~ "applet's sub-dock. Otherwise they will be available in the menu."
+
+#~ msgid "Steal the application's icon in taskbar ?"
+#~ msgstr "Steal the application's icon from the taskbar?"
+
+#~ msgid ""
+#~ "It will prevent the CSSM or Emerald icon to appear in the task bar. The "
+#~ "corresponding subdock's icons will then behave as launcher and an appli."
+#~ msgstr ""
+#~ "This will prevent the CSSM or Emerald icons appearing in the taskbar. The "
+#~ "corresponding sub-dock's icons will then behave as a launcher and an "
+#~ "application."
+
+#~ msgid "Force Compiz settings at startup ?"
+#~ msgstr "Force Compiz settings on startup?"
+
+#~ msgid "By default it will be Emerald."
+#~ msgstr "By default this will be Emerald."
+
+#~ msgid "Choose your Windows Decorator :"
+#~ msgstr "Choose your Window Decorator:"
+
+#~ msgid "Usefull when having dual or more X separate screens."
+#~ msgstr "Useful when using two or more separate X screens."
+
+#~ msgid "Only Current Screen ?"
+#~ msgstr "Only Current Screen?"
+
+#~ msgid "Use thoses options only if you know them."
+#~ msgstr "Only use these options if you know what you're doing.?"
+
+#~ msgid "Use Indirect Rendering ?"
+#~ msgstr "Use Indirect Rendering?"
+
+#~ msgid "Use Loose Binding ?"
+#~ msgstr "Use Loose Binding?"
+
+#~ msgid ""
+#~ "With strict binding textures are bound whenever they are enabled, with loose "
+#~ "binding they are enabled when created. The Nvidia driver seems a bit slow "
+#~ "when binding textures, that's why this option gives a heavy performance "
+#~ "increase on Nvidia."
+#~ msgstr ""
+#~ "With strict binding, textures are bound whenever they are enabled. With "
+#~ "loose binding they are enabled when created. The Nvidia driver seems a bit "
+#~ "slow when binding textures, that's why this option gives a heavy performance "
+#~ "increase with Nvidia cards."
+
+#~ msgid "Let t empty to use the default icon."
+#~ msgstr "Leave empty to use the default icon."
+
+#~ msgid "Name of an image for the 'broken' icon :"
+#~ msgstr "'Broken' icon image name:"
+
+#~ msgid "Name of an image for the 'default' icon :"
+#~ msgstr "'Default' icon image name:"
+
+#~ msgid "Name of an image for the 'other wm' icon :"
+#~ msgstr "'Other WM' icon image name:"
+
 #~ msgid "Name of the view used for the sub-dock :"
 #~ msgstr "Sub-dock view name:"
 
+#~ msgid "Let it empty to use default sub-dock view."
+#~ msgstr "Leave empty to use default sub-dock view."
+
+#~ msgid "Name of an image for the 'exposition' icon :"
+#~ msgstr "'Exhibition' icon image name:"
+
+#~ msgid "Name of an image for the 'setting' icon :"
+#~ msgstr "'Settings' icon image name:"
+
+#~ msgid "Name of an image for the 'reload' icon :"
+#~ msgstr "'Reload' icon image name:"
+
+#~ msgid "Name of an image for the 'emerald' icon :"
+#~ msgstr "'Emerald' icon image name:"
+
+#~ msgid "Name of an image for the 'widget layer' icon :"
+#~ msgstr "'Widget Layer' icon image name:"
+
+#~ msgid "The lower, the more the point of view is low on the plane."
+#~ msgstr "The lower the value, the lower the point of view on the plane."
+
+#~ msgid "Inclination of the plane :"
+#~ msgstr "Inclination of the plane:"
+
+#~ msgid ""
+#~ "0.5 means the dock is half-folded, so half the icons are on the foreground, "
+#~ "and half are on the background."
+#~ msgstr ""
+#~ "0.5 means the dock is half-folded, so half the icons are on the foreground "
+#~ "and half are on the background."
+
 #~ msgid "For flat separators, you can specify their color:"
 #~ msgstr "For flat separators, you can specify their colour:"
+
+#~ msgid ""
+#~ "In degrees, regarding the vertical position. It's a sort of inclination of "
+#~ "the plane on the horizontal, giving the 3D feeling. So setting it to 0 means "
+#~ "the plane is not inclined at all (vertical)."
+#~ msgstr ""
+#~ "In degrees, relative to the vertical. This is a sort of inclination of the "
+#~ "plane to the horizontal, giving a 3D impression. Setting this to 0 means "
+#~ "that the plane is not inclined at all (vertical)."
+
+#~ msgid "Percentage of the dock's width that appears on the foreground :"
+#~ msgstr "Percentage of the dock's width that appears on the foreground:"
+
+#~ msgid "Height of the vanishing point :"
+#~ msgstr "Height of the vanishing point:"
 
 #~ msgid "Normal separator"
 #~ msgstr "Normal separator"
@@ -8403,11 +9217,375 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Flat separator"
 #~ msgstr "Flat separator"
 
+#~ msgid "Depth of the plane :"
+#~ msgstr "Depth of the plane:"
+
 #~ msgid "otherwise they will turn."
 #~ msgstr "otherwise they will turn."
 
+#~ msgid ""
+#~ "The greater, the deeper. It is in fact the gap between background icons' "
+#~ "bottom and foreground icons' top (in pixels)."
+#~ msgstr ""
+#~ "The greater, the deeper. This represents the gap between the bottoms "
+#~ "ofbackground icons and the tops of foreground icons (in pixels)."
+
+#~ msgid "Always show icons' face ?"
+#~ msgstr "Always show the fronts of icons?"
+
+#~ msgid "The higher it is, the sooner the parabole will be curved."
+#~ msgstr "The higher this value, the sooner the parabola will be curved."
+
+#~ msgid "Magnitude of the wave :"
+#~ msgstr "Magnitude of the wave:"
+
+#~ msgid "0 means the wave is totally flat, 1 means the wave is maximal."
+#~ msgstr "0 represents a flat wave, 1 represents maximum wave curvature."
+
+#~ msgid "Ratio height/width :"
+#~ msgstr "Height/width ratio:"
+
+#~ msgid "The parabole will be conscricted to a rectangle of this proportion."
+#~ msgstr "The parabola will be restricted to a rectangle of this proportion."
+
+#~ msgid "Curvature :"
+#~ msgstr "Curvature:"
+
+#~ msgid ""
+#~ "0 means the wave is totally flat, 1 means the wave is identical to other "
+#~ "views."
+#~ msgstr ""
+#~ "0 represents a flat wave, 1 means the wave is identical to other views."
+
+#~ msgid "Number of icons on the first row :"
+#~ msgstr "Number of icons on the first row:"
+
+#~ msgid ""
+#~ "in degree. The smaller, the more the cone is narrow. 180° means the cone is "
+#~ "widely opened."
+#~ msgstr ""
+#~ "in degrees. The lower the value, the narrower the cone. 180° represents a "
+#~ "wide open cone."
+
+#~ msgid "Cone's width :"
+#~ msgstr "Cone width:"
+
+#~ msgid "Draw labels while unfolding ?"
+#~ msgstr "Draw captions while unfolding?"
+
+#~ msgid ""
+#~ "It may recquire more CPU during the unfolding animation, except with OpenGL."
+#~ msgstr ""
+#~ "This may recquire more CPU during the unfolding animation, except if you "
+#~ "launch Cairo-Dock with OpenGL."
+
+#~ msgid "Space between icons and their label :"
+#~ msgstr "Space between icons and their captions:"
+
+#~ msgid "Set transparency to 0 to not use it. It is quite slow with cairo."
+#~ msgstr "Set transparency to 0 to not use it. This is quite slow with cairo."
+
+#~ msgid "Space between icons :"
+#~ msgstr "Space between icons:"
+
+#~ msgid "Space between rows :"
+#~ msgstr "Space between rows:"
+
+#~ msgid "Space between columns :"
+#~ msgstr "Space between columns:"
+
+#~ msgid "Bow color :"
+#~ msgstr "Bow colour:"
+
+#~ msgid "Line color :"
+#~ msgstr "Line colour:"
+
 #~ msgid "SimpleSlide"
 #~ msgstr "SimpleSlide"
+
+#~ msgid "Sinusoidal wave radius :"
+#~ msgstr "Sinusoidal wave radius:"
+
+#~ msgid "Max size of icons :"
+#~ msgstr "Max icon size:"
+
+#~ msgid "Use a linear wave rather than a sinusoidal one ?"
+#~ msgstr "Use a linear wave rather than a sinusoidal wave?"
+
+#~ msgid "Display text for all icons ?"
+#~ msgstr "Display text for all icons?"
+
+#~ msgid "Display the actions when selecting an item in the history."
+#~ msgstr "Display actions when selecting an item in the history."
+
+#~ msgid ""
+#~ "If some actions are associated with an item, they will be proposed to you "
+#~ "when the item is created."
+#~ msgstr ""
+#~ "If some actions are associated with an item, they will be proposed when the "
+#~ "item is created."
+
+#~ msgid "Amplitude of the curve."
+#~ msgstr "Amplitude of the curve:"
+
+#~ msgid "The lower, the more the curve will seem flat."
+#~ msgstr "The lower the value, the flatter the curve will appear."
+
+#~ msgid "Curvature of the curve in percent :"
+#~ msgstr "Curvature of the curve in percent:"
+
+#~ msgid "Arrow Height :"
+#~ msgstr "Arrow height:"
+
+#~ msgid "Arrow shift percent :"
+#~ msgstr "Arrow shift percentage:"
+
+#~ msgid "Speed :"
+#~ msgstr "Speed:"
+
+#~ msgid "Image for the drag'n'drop animation :"
+#~ msgstr "Image for the drag & drop animation:"
+
+#~ msgid ""
+#~ "Typically an arrow, that will be displayed when you try to drop a new "
+#~ "launcher into the dock. Let empty to use the default one."
+#~ msgstr ""
+#~ "Typically an arrow, this will be displayed when you try to drop a new "
+#~ "launcher into the dock. Leave this empty to use the default."
+
+#~ msgid "Rotate effects with dock ?"
+#~ msgstr "Rotate effects with dock?"
+
+#~ msgid "Add luminance ?"
+#~ msgstr "Add luminance?"
+
+#~ msgid "Particle size :"
+#~ msgstr "Particle size:"
+
+#~ msgid "Number of particles :"
+#~ msgstr "Number of particles:"
+
+#~ msgid "It will slightly alter the colors, so you may have to modify them."
+#~ msgstr ""
+#~ "This will slightly alter your colours, so you may have to modify them."
+
+#~ msgid "Particle speed :"
+#~ msgstr "Particle speed:"
+
+#~ msgid "Draw in background ?"
+#~ msgstr "Draw in background?"
+
+#~ msgid "Animation on disappearance :"
+#~ msgstr "Animation on disappearance:"
+
+#~ msgid "Animation on appearance :"
+#~ msgstr "Animation on appearance:"
+
+#~ msgid "Evaporate upward ?"
+#~ msgstr "Evaporate upwards?"
+
+#~ msgid "Number of pieces :"
+#~ msgstr "Number of pieces:"
+
+#~ msgid "Break the icon in cubes ?"
+#~ msgstr "Break the icon into cubes?"
+
+#~ msgid "Explosion radius :"
+#~ msgstr "Explosion radius:"
+
+#~ msgid "caps lock, num lock, etc"
+#~ msgstr "caps lock, num lock, etc."
+
+#~ msgid "Duration of the transition animation :"
+#~ msgstr "Duration of the transition animation:"
+
+#~ msgid ""
+#~ "in ms. Set it to 0 if you don't want an animation when the keyboard layout "
+#~ "changes."
+#~ msgstr ""
+#~ "in ms. Set to 0 if you don't want an animation when the keyboard layout "
+#~ "changes."
+
+#~ msgid "Display keyboard locks as quick-info ?"
+#~ msgstr "Display keyboard locks as quick-info?"
+
+#~ msgid "in days. Set 0 to not use this filter."
+#~ msgstr "in days. Set 0 if unsued."
+
+#~ msgid "Let blank to not use this filter."
+#~ msgstr "Leave blank if filter is not needed."
+
+#~ msgid "Choose the style of the display : "
+#~ msgstr "Choose the style of the display : "
+
+#~ msgid "High values color :"
+#~ msgstr "High value's colour :"
+
+#~ msgid "Low values color :"
+#~ msgstr "Low value's colour :"
+
+#~ msgid "Background color of the graphic :"
+#~ msgstr "Background colour of the graphic :"
+
+#~ msgid "It's the color of the graphic for high quality signal."
+#~ msgstr "It's the colour of the graphic for high quality signal."
+
+#~ msgid "It's the color of the graphic for low quality signal."
+#~ msgstr "It's the colour of the graphic for low quality signal."
+
+#~ msgid "Invert buttons ?"
+#~ msgstr "Invert buttons?"
+
+#~ msgid ""
+#~ "It will be available on middle click. Let empty to execute the default "
+#~ "command, that greatly depends on your distribution. Sometimes the command to "
+#~ "shutdown is just the same as the one to log out."
+#~ msgstr ""
+#~ "This will be available when middle-clicking. Leave empty to execute the "
+#~ "default command, which depends on your distribution. In some cases the "
+#~ "command to shutdown is the same as the one to log out."
+
+#~ msgid "User-defined command to execute to shutdown :"
+#~ msgstr "User-defined command to execute for shutdown:"
+
+#~ msgid "Let empty to execute the default command."
+#~ msgstr "Leave empty to execute the default command."
+
+#~ msgid "User-defined command to execute to log-out :"
+#~ msgstr "User-defined command to execute for logout:"
+
+#~ msgid "Font :"
+#~ msgstr "Font:"
+
+#~ msgid "Outline text ?"
+#~ msgstr "Outline text?"
+
+#~ msgid "Text color"
+#~ msgstr "Text colour"
+
+#~ msgid "Blur amount :"
+#~ msgstr "Blur amount:"
+
+#~ msgid ""
+#~ "It will prevent the player's icon to appear in the task bar. The applet's "
+#~ "icon will then behave as a launcher, an appli, and an applet."
+#~ msgstr ""
+#~ "This will prevent the player icon appearing in the taskbar. The applet's "
+#~ "icon will then behave as a launcher, an application and an applet."
+
+#~ msgid "Name of an image for the 'Low' icon :"
+#~ msgstr "Name of the image for the 'Low' icon :"
+
+#~ msgid "Name of an image for the 'Very low' icon :"
+#~ msgstr "Name of the image for the 'Very low' icon :"
+
+#~ msgid "Name of an image for the 'No signal' icon :"
+#~ msgstr "Name of the image for the 'No signal' icon :"
+
+#~ msgid "Name of an image for the 'Middle' icon :"
+#~ msgstr "Name of the image for the 'Middle' icon :"
+
+#~ msgid "Name of an image for the 'Excellent' icon :"
+#~ msgstr "Name of the image for the 'Excellent' icon :"
+
+#~ msgid "Name of an image for the 'Not connected' icon :"
+#~ msgstr "Name of the image for the 'Not connected' icon :"
+
+#~ msgid "Name of an image for the 'Wired connection' icon :"
+#~ msgstr "Name of the image for the 'Wired connection' icon :"
+
+#~ msgid "N° of track"
+#~ msgstr "Track number"
+
+#~ msgid "Time length of info-bubbles :"
+#~ msgstr "Time length of tooltips:"
+
+#~ msgid "Animation when music changes :"
+#~ msgstr "Animation when music changes:"
+
+#~ msgid "Show an info-bubble ?"
+#~ msgstr "Show tooltips?"
+
+#~ msgid "in s."
+#~ msgstr "in seconds"
+
+#~ msgid "Time Left"
+#~ msgstr "Time Remaining"
+
+#~ msgid ""
+#~ "You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
+#~ "movement is continue."
+#~ msgstr ""
+#~ "You need OpenGL for this option. Set it to 0 means not used, 1 means the "
+#~ "movement is continue."
+
+#~ msgid ""
+#~ "Allow you to overwrite applet's default command line and launch you wireless "
+#~ "configuration interface."
+#~ msgstr ""
+#~ "Allow you to overwrite applet's default command line and launch your "
+#~ "wireless configuration interface."
+
+#~ msgid "Let empty to use he default one."
+#~ msgstr "Leave empty to use the default."
+
+#~ msgid "interface :"
+#~ msgstr "interface:"
+
+#~ msgid "By default it will be 'eth0'."
+#~ msgstr "By default this will be 'eth0'."
+
+#~ msgid "It's the color of the graphic for low rate values."
+#~ msgstr "Graph colour for low rate vaues:"
+
+#~ msgid "Icon's filename when on battery :"
+#~ msgstr "'On-battery' icon filename:"
+
+#~ msgid "Delay between 2 measures :"
+#~ msgstr "Delay between measurements:"
+
+#~ msgid "Icon name :"
+#~ msgstr "Icon name:"
+
+#~ msgid "Alert"
+#~ msgstr "Notification"
+
+#~ msgid "Battery level :"
+#~ msgstr "Battery level:"
+
+#~ msgid "Let it empty to have no sound"
+#~ msgstr "Leave it empty for no sound"
+
+#~ msgid "Use a sound :"
+#~ msgstr "Play a sound:"
+
+#~ msgid "Alert when low battery ?"
+#~ msgstr "Alert when battery low?"
+
+#~ msgid "Show hidden files ?"
+#~ msgstr "Show hidden files?"
+
+#~ msgid "Separate different shortcuts with separators ?"
+#~ msgstr "Separate different shortcuts with separators?"
+
+#~ msgid "List bookmarks ?"
+#~ msgstr "List bookmarks?"
+
+#~ msgid ""
+#~ "Number of items loaded at once. Setting a high value speeds up a little the "
+#~ "loading, but blocks the appli more."
+#~ msgstr ""
+#~ "Number of items loaded at once. Setting a high value speeds up loading a "
+#~ "little but will hang the application for longer."
+
+#~ msgid "Gradual building of the menu :"
+#~ msgstr "uild menu gradually:"
+
+#~ msgid "List drives and volumes ?"
+#~ msgstr "List drives and volumes?"
+
+#~ msgid "List network ?"
+#~ msgstr "List networks?"
 
 #~ msgid "In seconds."
 #~ msgstr "In seconds."
@@ -8415,17 +9593,196 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Numbrer of sources :"
 #~ msgstr "Number of particles per source:"
 
+#~ msgid "You need an nVidia and the 'nvidia-settings' tool."
+#~ msgstr "You need an nVidia card and the 'nvidia-settings' tool."
+
+#~ msgid ""
+#~ "It will prevent the system monitor's icon to appear in the taskbar. The "
+#~ "applet's icon will then behave as a launcher, an appli, and an applet."
+#~ msgstr ""
+#~ "It will prevent the system monitor's icon to show in the taskbar. The "
+#~ "applet's icon will then behave as a launcher, an application, and an applet."
+
+#~ msgid ""
+#~ "in celcius. The temperature will be displayed between this value and the "
+#~ "upper limit."
+#~ msgstr ""
+#~ "in Celsius. The temperature will be displayed between this value and the "
+#~ "upper limit."
+
 #~ msgid "desklet"
 #~ msgstr "desklet"
 
 #~ msgid "In pixels."
 #~ msgstr "In pixels."
 
+#~ msgid "Particles life time :"
+#~ msgstr "Particle life time:"
+
+#~ msgid "Scattering :"
+#~ msgstr "Scattering:"
+
+#~ msgid "The higher, the more particles will scatter from their source."
+#~ msgstr ""
+#~ "The higher the value, the more particles will scatter from their source."
+
+#~ msgid "In round per second."
+#~ msgstr "In rotations per second."
+
+#~ msgid "Show mouse on :"
+#~ msgstr "Show mouse on:"
+
+#~ msgid "dock"
+#~ msgstr "dock"
+
 #~ msgid "both"
 #~ msgstr "both"
 
+#~ msgid "Number of particles per source :"
+#~ msgstr "Number of particles per source:"
+
+#~ msgid "Sliding delay :"
+#~ msgstr "Sliding delay:"
+
+#~ msgid "Action when applet is clicked :"
+#~ msgstr "Action when applet is clicked:"
+
+#~ msgid ""
+#~ "It will prevent the dock from freezing during the image loading, but does "
+#~ "not work with cairo."
+#~ msgstr ""
+#~ "This will prevent the dock from freezing during image loading, but works "
+#~ "only with OpenGL."
+
+#~ msgid "Use another thread to load the images ?"
+#~ msgstr "Use another thread to load images?"
+
+#~ msgid "Effect while changing image :"
+#~ msgstr "Effect while changing image:"
+
+#~ msgid "Line color of the plane :"
+#~ msgstr "Colour of the plane's line :"
+
+#~ msgid "Color of the margin :"
+#~ msgstr "Colour of the margin :"
+
+#~ msgid "Color of the plane :"
+#~ msgstr "Colour of the plane :"
+
+#~ msgid "Choose the view :"
+#~ msgstr "Select the view :"
+
+#~ msgid "Gives a better image rendering."
+#~ msgstr "Gives better image rendering."
+
+#~ msgid "fade in out"
+#~ msgstr "fade in/out"
+
+#~ msgid "shrink down"
+#~ msgstr "shrink"
+
+#~ msgid "diaporama"
+#~ msgstr "slideshow"
+
+#~ msgid "Keep widht/height ratio ?"
+#~ msgstr "Keep width/height ratio?"
+
+#~ msgid "Number of steps for a transition :"
+#~ msgstr "Number of steps for transitions:"
+
+#~ msgid "Custom script for image upload : "
+#~ msgstr "Custom script for image upload : "
+
+#~ msgid "Custom script for text upload : "
+#~ msgstr "Custom script for text upload : "
+
+#~ msgid "Here you can specify a list of mime types to avoid :"
+#~ msgstr "Here you can specify a list of MIME types to ignore:"
+
+#~ msgid "Eg: image, text, video, audio, application, ..."
+#~ msgstr "E.g. image, text, video, audio, application..."
+
+#~ msgid ""
+#~ "This options allow you to avoid some files to be displayed in the stacks "
+#~ "considering their types (video, images, etc...)"
+#~ msgstr ""
+#~ "These options allow you to prevent some files from displaying in stacks "
+#~ "based on their type (video, image, etc.)"
+
+#~ msgid "Filter files with their mime types ?"
+#~ msgstr "Filter files on MIME type?"
+
+#~ msgid "Image for the 'URL' items :"
+#~ msgstr "Image for 'URL' items:"
+
+#~ msgid "Image for the 'text' items :"
+#~ msgstr "Image for 'text' items:"
+
+#~ msgid "Sort items by :"
+#~ msgstr "Sort items by:"
+
+#~ msgid "They are items created by dropping an URL into the Stack."
+#~ msgstr "These are items created by dropping a URL into the Stack."
+
+#~ msgid "Let empty to upload files into '~/Dropbox/Public'."
+#~ msgstr "Leave empty to upload files into '~/Dropbox/Public'."
+
+#~ msgid "Custom script for file upload : "
+#~ msgstr "Custom script for file upload : "
+
+#~ msgid "Second gradient color :"
+#~ msgstr "Second gradient colour :"
+
+#~ msgid "First gradient color :"
+#~ msgstr "First gradient colour :"
+
+#~ msgid "Custom script for video upload : "
+#~ msgstr "Custom script for video upload : "
+
+#~ msgid "How to draw the current desktop :"
+#~ msgstr "How to draw the current desktop:"
+
+#~ msgid "Icon to use in expanded mode if you don't map the wallpaper :"
+#~ msgstr "Icon to use in expanded mode if wallpaper is not mapped:"
+
+#~ msgid "Shortkey to toggle the systray in dock mode :"
+#~ msgstr "Shortkey to toggle the systray in dock mode:"
+
+#~ msgid "Border line color :"
+#~ msgstr "Border line colour :"
+
+#~ msgid ""
+#~ "An emblem that will be displayed when you try to drop something onto an "
+#~ "icon. Let empty to use the default one."
+#~ msgstr ""
+#~ "An emblem that will be displayed when you try to drop something on an icon. "
+#~ "Leave empty to use the default one."
+
+#~ msgid "Name of an image to overwrite the theme's empty image :"
+#~ msgstr "Name of the image to overwrite the theme's empty image :"
+
+#~ msgid "Ask confirmation before deleting a note ?"
+#~ msgstr "Ask for confirmation before deleting a note?"
+
+#~ msgid "Default title :"
+#~ msgstr "Default title:"
+
+#~ msgid "Name of an image for the 'close' icon :"
+#~ msgstr "Name of the dock it belongs to:"
+
 #~ msgid "View"
 #~ msgstr "View"
+
+#~ msgid "Name of an image to overwrite the theme's full image :"
+#~ msgstr "Name of the image to overwrite the theme's full image :"
+
+#~ msgid ""
+#~ "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
+#~ msgstr ""
+#~ "in Mb. You will be notified when you go over this limit. Set to 0 to disable."
+
+#~ msgid "Number of trashes"
+#~ msgstr "Number of Dustbins"
 
 #~ msgid ""
 #~ "If the Trash folder is not known by the dock, you can specify it here :"
@@ -8440,8 +9797,82 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Alternative file browser used to show a trash :"
 #~ msgstr "Alternative file browser used to show a trash :"
 
+#~ msgid "in seconds, only used if you can't monitor directories."
+#~ msgstr "in seconds, only used if you can't monitor directories."
+
+#~ msgid "Interval of time to check if dustbin is full/empty :"
+#~ msgstr "Time interval to check if dustbin is full/empty :"
+
 #~ msgid "Desktop-less support"
 #~ msgstr "Desktop-less support"
+
+#~ msgid ""
+#~ "All the desktops will be drawn on the main icon. Otherwise a subdock will "
+#~ "contain all the desktops."
+#~ msgstr ""
+#~ "All desktops will be drawn on the main icon. Otherwise a sub-dock will "
+#~ "contain all desktops."
+
+#~ msgid "Use the compact mode ?"
+#~ msgstr "Use the compact mode?"
+
+#~ msgid "Draw the windows on icon ?"
+#~ msgstr "Draw windows on icons?"
+
+#~ msgid "Show desktop number on the icons ?"
+#~ msgstr "Show desktop number on icons?"
+
+#~ msgid "When drawing in compact mode, try to preserve the screen ratio ?"
+#~ msgstr "Use the compact mode?"
+
+#~ msgid "Draw hidden windows too ?"
+#~ msgstr "Draw hidden windows?"
+
+#~ msgid "Map the wallpaper on icon ?"
+#~ msgstr "Map wallpaper to icons?"
+
+#~ msgid "Color of the extern line :"
+#~ msgstr "External line colour:"
+
+#~ msgid "Color of the Windows line :"
+#~ msgstr "Window line colour:"
+
+#~ msgid "r, v, b, a"
+#~ msgstr "r, g, b, a"
+
+#~ msgid "Size of the extern line :"
+#~ msgstr "External line size:"
+
+#~ msgid "Color of the inside lines :"
+#~ msgstr "Internal line colour:"
+
+#~ msgid "Color of the current desktop :"
+#~ msgstr "Current desktop colour:"
+
+#~ msgid ""
+#~ "It is the selection made by the mouse, by opposition to the usual "
+#~ "ctrl+c/ctrl+v clipboard"
+#~ msgstr ""
+#~ "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
+#~ "clipboard"
+
+#~ msgid ""
+#~ "If you have any problem with the applet, uncheck this option during the "
+#~ "maintenance mode, then let the dock launch itself, and remove/modify the "
+#~ "mail accounts you want."
+#~ msgstr ""
+#~ "If you have any problem with the applet, uncheck this option during the "
+#~ "maintenance mode, then after the dock has relaunched, remove/modify the mail "
+#~ "accounts you want."
+
+#~ msgid "The greatest, the fastest the icon will collapse to the center."
+#~ msgstr "The greater, the faster the icon will collapse to the center."
+
+#~ msgid "Size of the terminal (line x columns) :"
+#~ msgstr "Size of the terminal (line x columns):"
+
+#~ msgid "Shortkey to show the terminal :"
+#~ msgstr "Shortkey to show the terminal:"
 
 #~ msgid "Background color (r, v, b):"
 #~ msgstr "Background colour (r, g, b):"
@@ -8449,11 +9880,92 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Foreground color (r, v, b):"
 #~ msgstr "Foreground colour (r, g, b):"
 
+#~ msgid "Terminal's transparency :"
+#~ msgstr "Terminal transparency:"
+
+#~ msgid "Let it empty to use the name of the city."
+#~ msgstr "Leave empty to use the name of the city."
+
+#~ msgid "Number of days you want to forecast :"
+#~ msgstr "Number of days to forecast:"
+
+#~ msgid "Display current conditions on the icon instead of the default one ?"
+#~ msgstr "Display current conditions on the icon instead of the default one?"
+
 #~ msgid "in minutes."
 #~ msgstr "in minutes."
 
+#~ msgid "Duration of dialogs :"
+#~ msgstr "Dialog duration:"
+
+#~ msgid "Use International System Units ?"
+#~ msgstr "Use International System Units?"
+
+#~ msgid "Code of your location :"
+#~ msgstr "Code for your location:"
+
+#~ msgid "Render desklet in 3D ?"
+#~ msgstr "Render desklet in 3D?"
+
+#~ msgid "Show scrollbars ?"
+#~ msgstr "Show scrollbars?"
+
+#~ msgid "Horizontal scroll of the browser in pixel"
+#~ msgstr "Horizontal scroll of the browser in pixels"
+
+#~ msgid "Vertical scroll of the browser in pixel"
+#~ msgstr "Vertical scroll of the browser in pixels"
+
+#~ msgid ""
+#~ "This lets you right-click on the desklet to pop-up the Cairo-Dock's menu."
+#~ msgstr ""
+#~ "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+
+#~ msgid "Display temperature as quick info ?"
+#~ msgstr "Display temperature as quick info?"
+
+#~ msgid "Display nights too ?"
+#~ msgstr "Display nights?"
+
+#~ msgid "Predefined bookmarks to show in applet's menu :"
+#~ msgstr "Predefined bookmarks to show in applet menu:"
+
+#~ msgid "Right margin's width, in pixels :"
+#~ msgstr "Right margin width, in pixels:"
+
+#~ msgid "Transparent background ?"
+#~ msgstr "Transparent background?"
+
+#~ msgid "Name of an image for the 'middle' icon :"
+#~ msgstr "'Average' icon filename:"
+
+#~ msgid "Name of an image for the 'low' icon :"
+#~ msgstr "'Low' icon filename:"
+
+#~ msgid "Name of an image for the 'very low' icon :"
+#~ msgstr "'Very low' icon filename:"
+
+#~ msgid "Name of an image for the 'no signal' icon :"
+#~ msgstr "'No signal' icon filename:"
+
+#~ msgid "Name of an image for the 'exellent' icon :"
+#~ msgstr "'Excellent' icon filename:"
+
+#~ msgid "Name of an image for the 'good' icon :"
+#~ msgstr "'Good' icon filename:"
+
+#~ msgid ""
+#~ "It is especially usefull if you often select text with mouse and don't want "
+#~ "to lose your clipboard items because of a great number of selection items."
+#~ msgstr ""
+#~ "It is especially useful if you often select text with the mouse and don't "
+#~ "want to loose your clipboard items due to too many items in the selection."
+
 #~ msgid "Theme overriding"
 #~ msgstr "Theme overriding"
+
+#~ msgid "Class of the mail application (optionnal)"
+#~ msgstr "Class of the mail application (optional)"
 
 #~ msgid ""
 #~ "only use this if it differs from its name. Generally it is not the case, "
@@ -8461,6 +9973,48 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr ""
 #~ "only use this if it differs from its name. Generally it is not the case, "
 #~ "except for Thunderbird."
+
+#~ msgid "Prefered mail application to launch on left-click :"
+#~ msgstr "Preferred mail application to launch on left-click :"
+
+#~ msgid ""
+#~ "It will prevent the application's icon to appear in the task bar. The "
+#~ "applet's icon will then behave as a launcher, an appli, and an applet."
+#~ msgstr ""
+#~ "It will prevent the application's icon to appear in the task bar. The "
+#~ "applet's icon will then behave as a launcher, an application, and an applet."
+
+#~ msgid "The new account will be created with specified type and name."
+#~ msgstr "The new account will be created with the specified type and name."
+
+#~ msgid "Add an mail account"
+#~ msgstr "Add a mail account"
+
+#~ msgid "Let it empty to display the name of the player currently controlled."
+#~ msgstr ""
+#~ "Leave it empty to display the name of the player currently controlled."
+
+#~ msgid "Name of an image for the 'pause' icon :"
+#~ msgstr "Name of the image for the 'pause' icon :"
+
+#~ msgid "Personnalisation"
+#~ msgstr "Customisation"
+
+#~ msgid "Name of an image for the 'stop' icon :"
+#~ msgstr "Name of the image for the 'stop' icon :"
+
+#~ msgid "It's the color of the graphic for high rate values."
+#~ msgstr "It's the colour of the graphic for high rate values."
+
+#~ msgid ""
+#~ "You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
+#~ "transition is continue."
+#~ msgstr ""
+#~ "You need OpenGL for this option. Set it to 0 to disable it, 1 means the "
+#~ "transition is continue."
+
+#~ msgid "Name of an image for the 'play' icon :"
+#~ msgstr "Name of the image for the 'play' icon :"
 
 #~ msgid "draw bar"
 #~ msgstr "draw bar"
@@ -8480,8 +10034,26 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Information to be displayed on the icon :"
 #~ msgstr "Information to be displayed on the icon :"
 
+#~ msgid "Interval of time between 2 checks :"
+#~ msgstr "Interval of time between 2 checks :"
+
+#~ msgid "Effect to apply on the icon according to charge :"
+#~ msgstr "Effect to apply on the icon according to the charge :"
+
+#~ msgid "Let empty to use the folder's name."
+#~ msgstr "Leave empty to use the folder's name."
+
+#~ msgid "It can be quite heavy to load a lot of icons."
+#~ msgstr "It can be CPU intense to load a lot of icons."
+
 #~ msgid "Animation during alert :"
 #~ msgstr "Animation during alert :"
+
+#~ msgid "Directory of the images :"
+#~ msgstr "Directory of the images :"
+
+#~ msgid "Image name to hide desklets :"
+#~ msgstr "Image name to hide desklets :"
 
 #~ msgid "Image name to show desklets :"
 #~ msgstr "Image name to show desklets :"
@@ -8492,32 +10064,536 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Directory"
 #~ msgstr "Directory"
 
+#~ msgid "Let empty to use a default name"
+#~ msgstr "Leave empty to use a default name"
+
+#~ msgid "Choose a background color :"
+#~ msgstr "Choose a background colour :"
+
+#~ msgid "If the image is too small, it will be zoomed in."
+#~ msgstr "If the image is too small, it will be stretched."
+
+#~ msgid ""
+#~ "Write the date format you usually use in your notes. The syntax is the one "
+#~ "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
+#~ "digits), etc. Let it blnk to use the default one (%d/%m/%y)."
+#~ msgstr ""
+#~ "Write the date format you usually use in your notes. The syntax is the one "
+#~ "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
+#~ "digits), etc. Leave it blank to use the default one (%d/%m/%y)."
+
+#~ msgid "Text color of the content :"
+#~ msgstr "Text colour of the content :"
+
 #~ msgid "Icons size :"
 #~ msgstr "Icons size :"
+
+#~ msgid "Attraction of the hole :"
+#~ msgstr "Attraction of the Black Hole:"
+
+#~ msgid "BlackHole"
+#~ msgstr "Black Hole"
+
+#~ msgid "Ask confirmation before empty Trash ?"
+#~ msgstr "Ask confirmation before emptying Dustbin?"
+
+#~ msgid "Used space percent"
+#~ msgstr "Used space (in percent)"
+
+#~ msgid "Free space percent"
+#~ msgstr "Free space (in percent)"
+
+#~ msgid "Border width :"
+#~ msgstr "Border width:"
+
+#~ msgid "Corner radius :"
+#~ msgstr "Corner radius:"
+
+#~ msgid "Line color of the bubble :"
+#~ msgstr "Bubble's line colour:"
+
+#~ msgid "Program an automatic shutdown"
+#~ msgstr "Program an automatic shut-down"
+
+#~ msgid "Your computer will shutdown in 1 minute."
+#~ msgstr "Your computer will shut-down in 1 minute."
 
 #~ msgid "Border width of the plane :"
 #~ msgstr "Border width of the plane :"
 
+#~ msgid "desktop"
+#~ msgstr "Desktop"
+
+#~ msgid "Move current desktop to this desktop"
+#~ msgstr "Move current Desktop to this Desktop"
+
+#~ msgid "This will move all windows from the current desktop to this one"
+#~ msgstr "This will move all windows from the current Desktop to this one"
+
+#~ msgid "It's the color of the graphic for high values."
+#~ msgstr "It's the colour of the graphic for high values."
+
+#~ msgid "current"
+#~ msgstr "Current"
+
+#~ msgid "It's the color of the graphic for low values."
+#~ msgstr "It's the colour of the graphic for low values."
+
+#~ msgid "felt"
+#~ msgstr "Feels like"
+
+#~ msgid "Clear the list of the recently used documents ?"
+#~ msgstr "Clear the list of the recently used documents?"
+
+#~ msgid ""
+#~ "- What will we do tonight Cortex ?\n"
+#~ "- The same thing as every nights, Minus. Try to take over the Dock !"
+#~ msgstr ""
+#~ "- What will we do tonight Cortex?\n"
+#~ "- The same thing as every other nights, Minus. Try to take over the Dock!"
+
+#~ msgid "Wait, do you want to kill me ?!"
+#~ msgstr "Wait, do you want to kill me?!"
+
+#~ msgid "Do you know how much painful it is to be clicked on ??"
+#~ msgstr "Do you know how painful it is to be clicked on??"
+
+#, c-format
+#~ msgid ""
+#~ "Interface '%s' seems to not exist or is not readable.\n"
+#~ " You may have to set up the interface you wish to monitor.\n"
+#~ " Do you want to do it now ?"
+#~ msgstr ""
+#~ "Interface '%s' doesn't seem to exist or is not readable.\n"
+#~ " You may have to set up the interface you wish to monitor.\n"
+#~ " Do you want to do it now?"
+
+#~ msgid "Clear the list of the recently uploaded files ?"
+#~ msgstr "Clear the list of the recently uploaded files?"
+
 #~ msgid "Should be visible on all desktops ?"
 #~ msgstr "Should be visible on all desktops?"
+
+#~ msgid "Which items should be remembered ?"
+#~ msgstr "Which items should be remembered?"
+
+#~ msgid "Replay actions ?"
+#~ msgstr "Replay actions?"
+
+#~ msgid "Enable actions ?"
+#~ msgstr "Enable actions?"
+
+#~ msgid "Pop-up menus at mouse position ?"
+#~ msgstr "Pop-up menus at mouse position?"
+
+#~ msgid "Paste into Clipboard ?"
+#~ msgstr "Paste into Clipboard?"
+
+#~ msgid "Paste into Selection ?"
+#~ msgstr "Paste into Selection?"
+
+#~ msgid "Separate clipboard and selection ?"
+#~ msgstr "Separate clipboard and selection?"
+
+#~ msgid "Let extern applications reload the applets ?"
+#~ msgstr "Let external applications reload applets?"
+
+#~ msgid "Show recent documents ?"
+#~ msgstr "Show recent documents?"
+
+#~ msgid "Let extern applications animate the icons ?"
+#~ msgstr "Let extern applications animate icons?"
+
+#~ msgid "Let extern applications register new module ?"
+#~ msgstr "Let extern applications register new module?"
+
+#~ msgid "Let extern applications modify the image of icons ?"
+#~ msgstr "Let extern applications modify the icons' image?"
+
+#~ msgid "Display icons in the menu ?"
+#~ msgstr "Display icons in the menu?"
+
+#~ msgid "Let extern applications modify the quick-infos on icons ?"
+#~ msgstr "Let extern applications modify the quick-infos on icons?"
+
+#~ msgid "Let extern applications modify the labels of icons ?"
+#~ msgstr "Let external applications modify the labels of icons?"
+
+#~ msgid "Let extern applications add launchers into the docks ?"
+#~ msgstr "Let extern applications add launchers to the docks?"
+
+#~ msgid "Let extern applications show/hide the docks ?"
+#~ msgstr "Let external applications show/hide docks?"
+
+#~ msgid "Show free memory instead of used memory ?"
+#~ msgstr "Show free memory instead of used memory?"
+
+#~ msgid "Show graphic card temperature ?"
+#~ msgstr "Show graphic card's temperature?"
+
+#~ msgid "Write text on the top of the dock ?"
+#~ msgstr "Write text on the top of the dock?"
+
+#~ msgid "How smooth is the movement ?"
+#~ msgstr "How smooth is the movement?"
+
+#~ msgid "Show SWAP too ?"
+#~ msgstr "Show SWAP too?"
+
+#~ msgid "Overwrite the default label with the connection point name ?"
+#~ msgstr "Overwrite the default label with the connection point name?"
+
+#~ msgid "Should the text be outlined ?"
+#~ msgstr "Outline text?"
+
+#~ msgid "Show all values on same graph ?"
+#~ msgstr "Show all values on same graph?"
+
+#~ msgid "Show CPU usage ?"
+#~ msgstr "Show CPU usage?"
+
+#~ msgid "Hide the scale when mouse leaves the desklet ?"
+#~ msgstr "Hide the scale when mouse leaves the desklet?"
+
+#~ msgid "Steal the system monitor's icon in taskbar ?"
+#~ msgstr "Steal the system monitor's icon from the taskbar?"
+
+#~ msgid "Keep ratio ?"
+#~ msgstr "Keep ratio?"
+
+#~ msgid "Show top memory usage in % ?"
+#~ msgstr "Show top memory usage in %?"
+
+#~ msgid "Auto-reload the Decorator ?"
+#~ msgstr "Auto-reload the Decorator?"
+
+#~ msgid "Enable info-bubbles ?"
+#~ msgstr "Enable info-bubbles?"
+
+#~ msgid "Curve the sides too ?"
+#~ msgstr "Curve the sides too?"
+
+#~ msgid "Left to right gradient ?"
+#~ msgstr "Left to right gradient?"
+
+#~ msgid "If so, display the last image on the icon ?"
+#~ msgstr "If so, display the last image on the icon?"
+
+#~ msgid "Keep a copy of each uploaded image ?"
+#~ msgstr "Keep a copy of each uploaded image?"
+
+#~ msgid "Top to bottom gradient ?"
+#~ msgstr "Top to bottom gradient?"
+
+#~ msgid "Draw a background ?"
+#~ msgstr "Draw a background?"
+
+#~ msgid "Pack icons rather horizontally than vertically ?"
+#~ msgstr "Pack icons horizontally rather than vertically?"
+
+#~ msgid "Show new messages' content ?"
+#~ msgstr "Show new messages' content?"
+
+#~ msgid "Check mail account on startup ?"
+#~ msgstr "Check mail account on startup?"
+
+#~ msgid "Alert when battery charged ?"
+#~ msgstr "Notification when battery charged?"
+
+#~ msgid "Steal the player's icon from taskbar ?"
+#~ msgstr "Steal the player's icon from the taskbar?"
+
+#~ msgid "Maximum of new messages shown ?"
+#~ msgstr "Maximum of new messages shown?"
+
+#~ msgid "Also blur on mouse movement ?"
+#~ msgstr "Also blur on mouse movement?"
+
+#~ msgid "Use 3D themes ?"
+#~ msgstr "Use 3D themes?"
+
+#~ msgid "Display album's cover ?"
+#~ msgstr "Display album's cover?"
+
+#~ msgid "Allow Cairo-Dock to download missing covers ?"
+#~ msgstr "Allow Cairo-Dock to download missing covers?"
+
+#~ msgid "Ignore case ?"
+#~ msgstr "Ignore case?"
+
+#~ msgid "List folders first ?"
+#~ msgstr "List folders first?"
+
+#~ msgid "Alert when battery charge is critical ?"
+#~ msgstr "Alert when battery charge is critical?"
 
 #~ msgid "Animate icon during the alert ?"
 #~ msgstr "Animate icon during the alert?"
 
+#~ msgid "Display disk usage with a bar ?"
+#~ msgstr "Display disk usage with a bar?"
+
+#~ msgid "Randomly browse files ?"
+#~ msgstr "Randomly browse files?"
+
+#~ msgid "Display image name as quickinfo ?"
+#~ msgstr "Display image name as quickinfo?"
+
+#~ msgid "Scan in sub direcotries ?"
+#~ msgstr "Scan sub direcotries?"
+
+#~ msgid "Show/hide desklets that are on the widget layer too ?"
+#~ msgstr "Show/hide desklets that are on the widget layer too?"
+
 #~ msgid "Swap left-click and middle-click ?"
 #~ msgstr "Swap left-click and middle-click?"
+
+#~ msgid "Force the image to fill the icon/desklet ?"
+#~ msgstr "Force the image to fill the icon/desklet?"
+
+#~ msgid "When copy/paste/cut, use the selection clipboard ?"
+#~ msgstr "When copying/pasting/cutting, use the selection clipboard?"
+
+#~ msgid "Draw note's content on their icon ?"
+#~ msgstr "Draw note's content on their icon?"
+
+#~ msgid "In expanded mode, render the desklet in 3D ?"
+#~ msgstr "In expanded mode, render the desklet in 3D?"
+
+#~ msgid "Display note's content with a dialog ?"
+#~ msgstr "Display note's content with a dialog?"
+
+#~ msgid "Emulate the 'NoteDeleted' signal ?"
+#~ msgstr "Emulate the 'NoteDeleted' signal?"
+
+#~ msgid "Automatically name a new note ?"
+#~ msgstr "Automatically name a new note?"
+
+#~ msgid "You shall not pass !"
+#~ msgstr "You shall not pass!"
+
+#~ msgid "I'm your father !"
+#~ msgstr "I'm your father!"
+
+#~ msgid "For Aiur !"
+#~ msgstr "For Aiur!"
+
+#~ msgid "It's my dock now, mwahahaha !"
+#~ msgstr "It's my dock now, mwahahaha!"
+
+#~ msgid "I want to be a pirate !"
+#~ msgstr "I want to be a pirate!"
+
+#~ msgid "Hey, I'm here !"
+#~ msgstr "Hey, I'm here!"
+
+#~ msgid "Admit my superiority on you as a penguin !"
+#~ msgstr "Admit my superiority on you as a penguin!"
+
+#~ msgid "Your dock is so messy ! Let me clean it."
+#~ msgstr "Your dock is so messy! Let me clean it."
+
+#~ msgid ""
+#~ "Add a terminal to your dock !\n"
+#~ "Left/middle click to show/hide terminal (you can bind a keyboard shortcut "
+#~ "for it.)\n"
+#~ "You can drag'n'drop files or text and select an action.\n"
+#~ "You can open many tabs, rename them, change their color (right-click on a "
+#~ "tab to interact on it)\n"
+#~ "To open a new tab : type 'CTRL+t' or double-click next to the last tab\n"
+#~ "To close a tab : type 'CTRL+w' or middle-click on it."
+#~ msgstr ""
+#~ "Add a terminal to your dock!\n"
+#~ "Left/middle click to show/hide terminal (you can bind a keyboard shortcut to "
+#~ "it.)\n"
+#~ "You can drag & drop files or text and select an action.\n"
+#~ "You can open multiple tabs, rename them and change their colours (right-"
+#~ "click on a tab to interact on it).\n"
+#~ "To open a new tab : type 'CTRL+t' or double-click next to the last tab\n"
+#~ "To close a tab : type 'CTRL+w' or middle-click on it."
+
+#~ msgid "Hey, you there !"
+#~ msgstr "Hey, you there!"
+
+#, c-format
+#~ msgid "Alert ! Graphic Card core temperature has reached %d°C"
+#~ msgstr "Alert! Graphic Card core temperature has reached %d°C"
+
+#~ msgid "Preferred application starting with 'b' :"
+#~ msgstr "Favorite application starting with 'b' :"
+
+#~ msgid "Preferred application starting with 'a' :"
+#~ msgstr "FAvorite applications starting with 'a' :"
+
+#~ msgid "Preferred applications"
+#~ msgstr "Favorite applications"
+
+#, c-format
+#~ msgid "You can call back the Terminal desklet by typing %s"
+#~ msgstr "You can recall the Terminal desklet by typing %s"
+
+#~ msgid ""
+#~ "No items in the stack.\n"
+#~ "You can add files, URL, and even piece of text by dragging them onto the "
+#~ "icon."
+#~ msgstr ""
+#~ "No items in the stack.\n"
+#~ "You can add files, URL, and even a piece of text by dragging them onto the "
+#~ "icon."
+
+#~ msgid "Preferred application starting with 'h' :"
+#~ msgstr "Favorite application(s) starting with 'h' :"
+
+#~ msgid "Preferred application starting with 'f' :"
+#~ msgstr "Favorite application(s) starting with 'f' :"
+
+#~ msgid "Preferred application starting with 'e' :"
+#~ msgstr "Favorite application(s) starting with 'e' :"
+
+#~ msgid "Preferred application starting with 'd' :"
+#~ msgstr "Favorite application(s starting with 'd' :"
+
+#~ msgid "Preferred application starting with 'c' :"
+#~ msgstr "Favorite application(s) starting with 'c' :"
+
+#~ msgid "Preferred application starting with 'g' :"
+#~ msgstr "Favorite application(s) starting with 'g' :"
+
+#~ msgid "Preferred application starting with 'j' :"
+#~ msgstr "Favorite application(s) starting with 'j' :"
+
+#~ msgid "Preferred application starting with 'i' :"
+#~ msgstr "Favorite application(s) starting with 'i' :"
+
+#~ msgid "Preferred application starting with 'l' :"
+#~ msgstr "Favorite application(s) starting with 'l' :"
+
+#~ msgid "Preferred application starting with 'k' :"
+#~ msgstr "Favorite application(s) starting with 'k' :"
+
+#~ msgid "Preferred application starting with 'u' :"
+#~ msgstr "Favorite application(s) starting with 'u' :"
+
+#~ msgid "Preferred application starting with 'v' :"
+#~ msgstr "Favorite application(s) starting with 'v' :"
+
+#~ msgid "Preferred application starting with 's' :"
+#~ msgstr "Favorite application(s) starting with 's' :"
+
+#~ msgid "Preferred application starting with 't' :"
+#~ msgstr "Favorite application(s) starting with 't' :"
+
+#~ msgid "Preferred application starting with 'n' :"
+#~ msgstr "Favorite application(s) starting with 'n' :"
+
+#~ msgid "Preferred application starting with 'm' :"
+#~ msgstr "Favorite application(s) starting with 'm' :"
+
+#~ msgid "Preferred application starting with 'p' :"
+#~ msgstr "Favorite application(s) starting with 'p' :"
+
+#~ msgid "Preferred application starting with 'o' :"
+#~ msgstr "Favorite application(s) starting with 'o' :"
+
+#~ msgid "Preferred application starting with 'r' :"
+#~ msgstr "Favorite application(s) starting with 'r' :"
+
+#~ msgid "Preferred application starting with 'q' :"
+#~ msgstr "Favorite application(s) starting with 'q' :"
+
+#~ msgid "Preferred application starting with 'y' :"
+#~ msgstr "Favorite application(s) starting with 'y' :"
+
+#~ msgid "Preferred application starting with 'z' :"
+#~ msgstr "Favorite application(s) starting with 'z' :"
+
+#~ msgid "Preferred application starting with 'w' :"
+#~ msgstr "Favorite application(s) starting with 'w' :"
+
+#~ msgid "Preferred application starting with 'x' :"
+#~ msgstr "Favorite application(s) starting with 'x' :"
 
 #~ msgid "Sub-Dock view"
 #~ msgstr "Sub-Dock view"
 
+#~ msgid "Time length of the dialog :"
+#~ msgstr "Duration of the dialogue"
+
 #~ msgid "Name of an image for the 'empty' icon :"
 #~ msgstr "Name of an image for the 'empty' icon :"
+
+#~ msgid "Show windows list"
+#~ msgstr "Show windows' list"
+
+#~ msgid "No Title"
+#~ msgstr "No Title"
+
+#~ msgid "No RSS feed URL defined..."
+#~ msgstr "No RSS feed URL defined..."
+
+#~ msgid ""
+#~ "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from menu "
+#~ "to add one."
+#~ msgstr ""
+#~ "Drag and drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from menu "
+#~ "to add one."
 
 #~ msgid "Failed to connect..."
 #~ msgstr "Failed to connect..."
 
+#~ msgid "Please wait ..."
+#~ msgstr "Please wait ..."
+
+#~ msgid "Paste a new RSS Url (drag'n'drop)"
+#~ msgstr "Paste a new RSS Url (drag and drop)"
+
+#~ msgid "Title Font :"
+#~ msgstr "Title Font :"
+
+#~ msgid "Title num :"
+#~ msgstr "Title num :"
+
+#~ msgid "Allow you to skip some lines"
+#~ msgstr "Allow you to skip some lines"
+
+#~ msgid "Number of feed lines to display :"
+#~ msgstr "Number of feed lines to display :"
+
+#~ msgid "frame with scotch"
+#~ msgstr "frame with sellotape"
+
+#~ msgid "scotch"
+#~ msgstr "scotch sellotape"
+
+#~ msgid "Title Text color :"
+#~ msgstr "Title Text colour :"
+
+#~ msgid "Feed lines Font :"
+#~ msgstr "Feed lines Font :"
+
+#~ msgid "Color to be used for the feed lines"
+#~ msgstr "Colour to be used for the feed lines"
+
+#~ msgid "Feed Lines color :"
+#~ msgstr "Feed Lines colour :"
+
+#~ msgid "Color to be used for the title"
+#~ msgstr "Colour to be used for the title"
+
+#~ msgid "Let empty to use the same image."
+#~ msgstr "Leave empty to use the same image."
+
 #~ msgid "Action on middle click :"
 #~ msgstr "Action on middle click :"
+
+#~ msgid "Warning : couldn't retrieve data last time we tried."
+#~ msgstr "Warning: couldn't retrieve data last time we tried."
+
+#~ msgid "No data (no connection ?)"
+#~ msgstr "No data (no connection?)"
+
+#~ msgid "Invalid data (invalid RSS/Atom feed ?)"
+#~ msgstr "Invalid data (invalid RSS/Atom feed?)"
 
 #~ msgid ""
 #~ "This applet is an RSS/Atom feed reader.\n"
@@ -8540,6 +10616,142 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
 #~ "    or edit the Configuration Panel."
 
+#~ msgid "Retrieving data ..."
+#~ msgstr "Retrieving data..."
+
+#~ msgid "Mark all mails as read"
+#~ msgstr "Mark all emails as read"
+
+#~ msgid ""
+#~ "No URL is defined\n"
+#~ "You can define one by copying the URL in the clipboard,\n"
+#~ " and selecting \"Paste the RL\n"
+#~ " in the menu."
+#~ msgstr ""
+#~ "No URL is defined\n"
+#~ "You can define one by copying the URL in the clipboard,\n"
+#~ " and selecting \"Paste the URL\"\n"
+#~ " in the menu."
+
+#~ msgid ""
+#~ "No data\n"
+#~ "Did you set a valid RSS feed ?\n"
+#~ "Is your connection alive ?"
+#~ msgstr ""
+#~ "No data\n"
+#~ "Did you set a valid RSS feed?\n"
+#~ "Is your connection alive?"
+
+#~ msgid ""
+#~ "This applet adds an icon to show your desktop,\n"
+#~ "and also : the desklets, the Widget Layer, or all the desktops at once.\n"
+#~ "Left-click to show/hide the desktop,\n"
+#~ "Middle-click to show/hide either the desktop, the desklets, the Widget "
+#~ "Layer, or all the desktops at once."
+#~ msgstr ""
+#~ "This applet adds an icon to show your desktop,\n"
+#~ "and also: the desklets, the Widget Layer, or all the desktops at once.\n"
+#~ "Left-click to show/hide the desktop,\n"
+#~ "Middle-click to show/hide either the desktop, the desklets, the Widget "
+#~ "Layer, or all the desktops at once."
+
+#~ msgid "Let empty to use the connection name."
+#~ msgstr "Leave empty to use the connection name."
+
+#~ msgid "Delay between wifi signal checks :"
+#~ msgstr "Delays between wifi signal checks:"
+
+#~ msgid "Default connexion interface :"
+#~ msgstr "Default connexion interface:"
+
+#~ msgid "Delay between net speed checks :"
+#~ msgstr "Delays between net speed checks:"
+
+#~ msgid "You need to run Compiz and to activate its 'DBus' plug-in."
+#~ msgstr "You need to run Compiz and activate its 'DBus' plug-in."
+
+#~ msgid "Info to display in the icon :"
+#~ msgstr "Info to display in the icon:"
+
+#~ msgid "User command to show Wireless Configuration :"
+#~ msgstr "User command to show Wireless Configuration:"
+
+#~ msgid ""
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
+#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+#~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
+#~ "docks,\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
+#~ "- the finder mode : type some text to launch any command, file or "
+#~ "calculation.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "Escape or the same shortkey to cancel."
+#~ msgstr ""
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
+#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+#~ "- the navigation mode: use arrows to navigate into the docks and sub-docks,\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
+#~ "- the finder mode : type some text to launch any command, file or "
+#~ "calculation.\n"
+#~ "  use arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "Escape or the same shortkey to cancel."
+
+#~ msgid "Choose in how many minutes your PC will stop :"
+#~ msgstr "Choose in how many minutes your PC will stop:"
+
+#~ msgid "Set up volume :"
+#~ msgstr "Set up volume:"
+
+#~ msgid "Set up gamma :"
+#~ msgstr "Set up gamma:"
+
+#~ msgid ""
+#~ "This applet lets you share files easily :\n"
+#~ "Drag-and-drop a file on the icon to upload it to one of the available "
+#~ "hosting sites.\n"
+#~ "It supports many sites, like DropBox, Imageshack, pastebin, etc\n"
+#~ "You can upload text, image, video, and files.\n"
+#~ "The resulting URL is automatically stored in the clipboard to be directly "
+#~ "copied by CTRL+v.\n"
+#~ "It can keep an history of your last uploads to retrieve them without any "
+#~ "account.\n"
+#~ "You'll need to install 'curl' and 'wget' to upload the data."
+#~ msgstr ""
+#~ "This applet lets you share files easily:\n"
+#~ "Drag-and-drop a file on the icon to upload it to one of the available "
+#~ "hosting sites.\n"
+#~ "It supports many sites, like DropBox, Imageshack, pastebin, etc\n"
+#~ "You can upload text, image, video, and files.\n"
+#~ "The resulting URL is automatically stored in the clipboard to be directly "
+#~ "copied with CTRL+v.\n"
+#~ "It can keep an history of your last uploads to retrieve them without any "
+#~ "account.\n"
+#~ "You'll need to install 'curl' and 'wget' to upload the data."
+
+#~ msgid "Enter a command to launch :"
+#~ msgstr "Enter a command to launch:"
+
+#~ msgid "You have a new mail :"
+#~ msgstr "You have a new mail:"
+
+#, c-format
+#~ msgid "You have %d new mails :"
+#~ msgstr "You have %d new mails:"
+
+#~ msgid "Set title for this tab :"
+#~ msgstr "Set title for this tab:"
+
+#~ msgid "Let empty to use the title of the RSS feed."
+#~ msgstr "Leave empty to use the title of the RSS feed."
+
 #~ msgid "Number of feed lines to display in the dialog :"
 #~ msgstr "Number of feed lines to display in the dialog:"
 
@@ -8549,8 +10761,111 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "How to display the wifi signal :"
 #~ msgstr "How to display the wifi signal:"
 
+#~ msgid "URL :"
+#~ msgstr "URL:"
+
+#~ msgid "Image for the spot :"
+#~ msgstr "Image for the spotlight:"
+
+#~ msgid "Image for the front spot :"
+#~ msgstr "Image for the front spotlight:"
+
+#~ msgid "Title font :"
+#~ msgstr "Title font:"
+
+#~ msgid "Title color :"
+#~ msgstr "Title colour:"
+
+#~ msgid "In seconds. Set to 0 for infinite time (click on dialog to close it)."
+#~ msgstr ""
+#~ "In seconds. Set to 0 for infinite time (need to click on dialog to close it)."
+
+#~ msgid "Display an info-bubble when a feed has changed?"
+#~ msgstr "Display an info bubble when a feed has changed?"
+
+#~ msgid "Open the feed with the following program :"
+#~ msgstr "Open the feed with the following program:"
+
+#~ msgid "Animation of the icon when a feed has changed :"
+#~ msgstr "Animation of the icon when a feed has changed:"
+
+#~ msgid "Refresh time :"
+#~ msgstr "Refresh time:"
+
 #~ msgid "By default, this option is activated"
 #~ msgstr "By default, this option is activated"
+
+#~ msgid "Feed lines color :"
+#~ msgstr "Feed lines colour:"
+
+#~ msgid "Feed lines font :"
+#~ msgstr "Feed lines font:"
+
+#~ msgid "Left margin for the feed lines :"
+#~ msgstr "Left margin for the feed lines:"
+
+#~ msgid "Space between 2 feed lines :"
+#~ msgstr "Space between 2 feed lines:"
+
+#~ msgid "Display the logo ?"
+#~ msgstr "Display the logo?"
+
+#~ msgid "Display a simple background ?"
+#~ msgstr "Display a simple background?"
+
+#~ msgid "Adjust to increase/decrease the logo size"
+#~ msgstr "Adjust to increase/decrease the logo's size"
+
+#~ msgid "first color of the gradation"
+#~ msgstr "first colour of the gradation"
+
+#~ msgid "second color of the gradation"
+#~ msgstr "second colour of the gradation"
+
+#~ msgid "Background first color :"
+#~ msgstr "Background first colour :"
+
+#~ msgid "Duration of the action menu :"
+#~ msgstr "Duration of the action menu:"
+
+#~ msgid "Shortkey to pop-up the items menu :"
+#~ msgstr "Shortkey to pop-up the items menu:"
+
+#~ msgid "Number of items :"
+#~ msgstr "Number of items:"
+
+#~ msgid "If so, number of selection items :"
+#~ msgstr "If so, number of selection items:"
+
+#~ msgid "Only show files that are under this folder or its sub-folder :"
+#~ msgstr "Only show files that are under this folder or its sub-folder:"
+
+#~ msgid "Command to use to configure the menu :"
+#~ msgstr "Command to use for configuring the menu:"
+
+#~ msgid "Shortkey to show/hide the quick-launch dialog :"
+#~ msgstr "Shortkey to show/hide the quick-launch dialog:"
+
+#~ msgid "Shortkey to show/hide the menu :"
+#~ msgstr "Shortkey to show/hide the menu:"
+
+#~ msgid "A list of persistent items that can be accessed with middle-click :"
+#~ msgstr "A list of persistent items which can be accessed with middle-click:"
+
+#~ msgid "Particle friction :"
+#~ msgstr "Particle friction:"
+
+#~ msgid "Radius of the explosion :"
+#~ msgstr "Radius of the explosion:"
+
+#~ msgid "Show the launching ?"
+#~ msgstr "Show the launching?"
+
+#~ msgid "Number of sources :"
+#~ msgstr "Number of sources:"
+
+#~ msgid "Default color :"
+#~ msgstr "Default colour:"
 
 #~ msgid ""
 #~ "According to your Window Manager, this may prevent the applet from hiding "
@@ -8559,11 +10874,134 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "Depending on your Window Manager, this may prevent the applet from hiding "
 #~ "the desktop."
 
+#~ msgid "Border color :"
+#~ msgstr "Border colour:"
+
+#~ msgid "Colors"
+#~ msgstr "Colours"
+
+#~ msgid "Logo size :"
+#~ msgstr "Logo size:"
+
+#~ msgid "Background second color :"
+#~ msgstr "Background second colour:"
+
+#~ msgid "Border color"
+#~ msgstr "Border colour"
+
+#~ msgid "Border thickness :"
+#~ msgstr "Border thickness:"
+
+#~ msgid "Display the time in a 24h format ?"
+#~ msgstr "Display the time in a 24h format?"
+
+#~ msgid "Shortkey for the middle-click action :"
+#~ msgstr "Shortkey for the middle-click action:"
+
+#~ msgid ""
+#~ "You need to activate the Dbus plug-in of Compiz for the last 2 actions."
+#~ msgstr ""
+#~ "You need to activate the Dbus plug-in in Compiz for the last 2 actions."
+
 #~ msgid "Keep the desklets visible when showing the desktop ?"
 #~ msgstr "Keep the desklets visible when showing the desktop?"
 
+#~ msgid "Action on middle-click :"
+#~ msgstr "Action on middle-click:"
+
+#~ msgid "GUI"
+#~ msgstr "Configuration"
+
+#~ msgid "A cable has been pluged"
+#~ msgstr "A cable has been plugged"
+
+#~ msgid "A cable has been unpluged"
+#~ msgstr "A cable has been unplugged"
+
+#~ msgid ""
+#~ "This applet allows you to monitor your active connections.\n"
+#~ "It can display the download/upload speeds and the wifi signal quality.\n"
+#~ "If you have network-manager running, it can also let you choose the current "
+#~ "wifi network.\n"
+#~ "Left-click to pop-up some info,Middle-click to re-check immediately."
+#~ msgstr ""
+#~ "This applet allows you to monitor your active connections.\n"
+#~ "It can display the download/upload speed as well as the wifi signal "
+#~ "quality.\n"
+#~ "If you have network-manager running, it can also let you choose the active "
+#~ "wifi network.\n"
+#~ "Left-click to pop-up some info,Middle-click to re-check immediately."
+
+#~ msgid "Color of the sheen :"
+#~ msgstr "Colour of the sheen:"
+
+#~ msgid "Please wait the current upload is finished before starting a new one."
+#~ msgstr ""
+#~ "Please wait for the current upload to finish before starting a new one."
+
+#~ msgid "Duration of the info-bubble :"
+#~ msgstr "Duration of the info-bubble:"
+
+#~ msgid "Curve towards the outside ?"
+#~ msgstr "Curve towards the outside?"
+
 #~ msgid "Visibility :"
 #~ msgstr "Visibility:"
+
+#~ msgid "Folder of the images :"
+#~ msgstr "Folder for the images:"
+
+#~ msgid "Action on left-click :"
+#~ msgstr "Action on left-click:"
+
+#~ msgid ""
+#~ "You need to activate the Dbus plug-in of Compiz for the last 2 actions. "
+#~ "Showing desktop and desklets can fail on some Window Manager, like Metacity."
+#~ msgstr ""
+#~ "You need to activate the Dbus plug-in in Compiz for the last 2 actions. "
+#~ "Showing desktop and desklets can fail on some Window Manager (like Metacity)."
+
+#~ msgid "Foreground color :"
+#~ msgstr "Foreground colour:"
+
+#~ msgid "Background color :"
+#~ msgstr "Background colour:"
+
+#~ msgid "Network connection has been established."
+#~ msgstr "Network connection is established."
+
+#~ msgid "Fluidity of the transition animation between 2 values :"
+#~ msgstr "Fluidity of the transition animation between 2 values:"
+
+#~ msgid "Display numeric values :"
+#~ msgstr "Display numeric values:"
+
+#~ msgid "Animation of the icon when connecting :"
+#~ msgstr "Animation of the icon when connecting:"
+
+#~ msgid "Info displayed by the icon :"
+#~ msgstr "Info displayed by the icon:"
+
+#~ msgid "Connexion interface to monitor :"
+#~ msgstr "Connection interface to monitor:"
+
+#~ msgid "in seconds, if you don't have Network-Manager."
+#~ msgstr "in seconds, if you don't have Network-Manager."
+
+#~ msgid "Choose the style of the display :"
+#~ msgstr "Choose the style of the display:"
+
+#~ msgid "Delete Trash"
+#~ msgstr "Empty Trash"
+
+#~ msgid "Network connection has become inactive."
+#~ msgstr "Network connection state changed to inactive."
+
+#~ msgid "Network has been disconnected."
+#~ msgstr "Network connection state changed to disconnected."
+
+#~ msgid "Open all"
+#~ msgstr "Open all"
 
 #~ msgid ""
 #~ "This plug-in allows you to make different actions directly from the "
@@ -8618,18 +11056,82 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "Escape or the same shortkey will cancel."
 
+#~ msgid "Let empty to use the default one"
+#~ msgstr "Let empty to use the default one"
+
+#~ msgid "StatusNotifier"
+#~ msgstr "StatusNotifier"
+
 #~ msgid "Doncky"
 #~ msgstr "Doncky"
+
+#~ msgid "Margin for the text :"
+#~ msgstr "Margin for the text :"
+
+#~ msgid "Default text color :"
+#~ msgstr "Default text colour :"
+
+#~ msgid "Space between lines :"
+#~ msgstr "Space between lines :"
+
+#~ msgid "Specify the xml file :"
+#~ msgstr "Specify the xml file :"
+
+#~ msgid "Default text font :"
+#~ msgstr "Default text font :"
+
+#~ msgid "Text on the dock"
+#~ msgstr "Text on the dock"
+
+#~ msgid "Search Engines"
+#~ msgstr "Search Engines"
+
+#~ msgid "Search in files ?"
+#~ msgstr "Search in files?"
+
+#~ msgid "Search in Recent files ?"
+#~ msgstr "Search in Recent files?"
+
+#~ msgid "Search in Firefox bookmarks ?"
+#~ msgstr "Search in Firefox bookmarks?"
+
+#~ msgid "Include a command launcher ?"
+#~ msgstr "Include a command launcher?"
+
+#~ msgid "Always show number of mails"
+#~ msgstr "Always show number of messages"
+
+#~ msgid "Let empty to write the name of the sound card."
+#~ msgstr "Leave empty to display the name of the sound card."
+
+#~ msgid ""
+#~ "Maximum number of results tat will be displayed when you select a category "
+#~ "with the right arrow."
+#~ msgstr ""
+#~ "Maximum number of results that will be displayed when you select a category "
+#~ "with the right arrow."
 
 #~ msgid "Hey, you there!"
 #~ msgstr "Hey, you there!"
 
+#~ msgid "3DPlan"
+#~ msgstr "3DPlan"
+
 #~ msgid "ToolTip"
 #~ msgstr "ToolTip"
+
+#~ msgid "Drop Indicator"
+#~ msgstr "Drop Indicator"
+
+#~ msgid "Trash"
+#~ msgstr "Trash"
 
 #, c-format
 #~ msgid "You are about to delete all files in %s. Continue?"
 #~ msgstr "You are about to delete all files in %s. Continue?"
+
+#~ msgid "You are about to delete all files in all dustbins. Continue?"
+#~ msgstr "You are about to delete all files in all dustbins. Continue?"
 
 #, c-format
 #~ msgid ""
@@ -8640,6 +11142,30 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "A problem occured\n"
 #~ "If '%s' is not your usual file browser,\n"
 #~ "you can change this in the configuration panel of this module"
+
+#~ msgid "Icon Effects"
+#~ msgstr "Icon Effects"
+
+#~ msgid "Illusion"
+#~ msgstr "Illusion"
+
+#~ msgid "Keyboard Indicator"
+#~ msgstr "Keyboard Indicator"
+
+#~ msgid "Log-out"
+#~ msgstr "Log-out"
+
+#~ msgid "Motion Blur"
+#~ msgstr "Motion Blur"
+
+#~ msgid "Show Mouse"
+#~ msgstr "Show Mouse"
+
+#~ msgid "Slider"
+#~ msgstr "Slider"
+
+#~ msgid "Switcher"
+#~ msgstr "Switcher"
 
 #~ msgid "Move current Desktop to this Desktop"
 #~ msgstr "Move current Desktop to this Desktop"
@@ -8659,6 +11185,9 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Shortkey to enable/disable the navigation mode:"
 #~ msgstr "Shortkey to enable/disable the navigation mode:"
 
+#~ msgid "Leave empty to use the defaut command."
+#~ msgstr "Leave empty to use the defaut command."
+
 #~ msgid "Choose an action for middle click on the icon:"
 #~ msgstr "Choose an action for middle click on the icon:"
 
@@ -8667,6 +11196,9 @@ msgstr "Overwrite the default label with the connection point name?"
 
 #~ msgid "Colour of the plane :"
 #~ msgstr "Colour of the plane :"
+
+#~ msgid "Inclined Plane"
+#~ msgstr "Inclined Plane"
 
 #~ msgid ""
 #~ "In degrees, relative to the vertical. This is a sort of inclination of the "
@@ -8745,6 +11277,12 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Delay between measurements:"
 #~ msgstr "Delay between measurements:"
 
+#~ msgid "uild menu gradually:"
+#~ msgstr "uild menu gradually:"
+
+#~ msgid "Separate different shortcuts with separators?"
+#~ msgstr "Separate different shortcuts with separators?"
+
 #~ msgid "Action when applet is clicked:"
 #~ msgstr "Action when applet is clicked:"
 
@@ -8776,6 +11314,12 @@ msgstr "Overwrite the default label with the connection point name?"
 
 #~ msgid "Show/hide desklets that are on the widget layer too?"
 #~ msgstr "Show/hide desklets that are on the widget layer too?"
+
+#~ msgid "st color of gradation :"
+#~ msgstr "st colour of the gradation:"
+
+#~ msgid "nd color of gradation :"
+#~ msgstr "nd colour of the gradation:"
 
 #~ msgid "Specify a title :"
 #~ msgstr "Specify a title:"
@@ -8810,11 +11354,20 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "It is designed to work on any desktop that supports the latest systray "
 #~ "specifications (KDE, Gnome, etc)"
 
+#~ msgid "Toto"
+#~ msgstr "Toto"
+
+#~ msgid "Open the folder (middle-click)"
+#~ msgstr "Open the folder (middle-click)"
+
 #~ msgid "Empty Trash (middle-click)"
 #~ msgstr "Empty Trash (middle-click)"
 
 #~ msgid "Unmount (middle-click)"
 #~ msgstr "Unmount (middle-click)"
+
+#~ msgid "Mount (middle-click)"
+#~ msgstr "Mount (middle-click)"
 
 #~ msgid ""
 #~ "Stacks will act as a the shortcut applet's but with files. To add a file, "
@@ -8871,6 +11424,9 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Unmute (middle-click)"
 #~ msgstr "Unmute (middle-click)"
 
+#~ msgid "Mute (middle-click)"
+#~ msgstr "Mute (middle-click)"
+
 #~ msgid "Quick launch (Middle-click)"
 #~ msgstr "Quick launch (middle-click)"
 
@@ -8904,3 +11460,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "  use arrows to navigate between the results, press Enter to validate, "
 #~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
 #~ "Escape or the same shortkey to cancel."
+
+#~ msgid ""
+#~ "Couldn't upload the file, check that your internet connection is active."
+#~ msgstr ""
+#~ "Couldn't upload the file, check that your internet connection is active."

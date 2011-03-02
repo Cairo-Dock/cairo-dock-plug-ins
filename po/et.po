@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
 "POT-Creation-Date: 2011-01-01 04:07+0000\n"
-"PO-Revision-Date: 2010-11-25 17:14+0000\n"
-"Last-Translator: lyyser <Unknown>\n"
+"PO-Revision-Date: 2011-02-28 12:44+0000\n"
+"Last-Translator: Fabounet <fabounet03@gmail.com>\n"
 "Language-Team: Estonian <et@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-01-02 05:09+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Launchpad-Export-Date: 2011-03-01 04:53+0000\n"
+"X-Generator: Launchpad (build 12351)\n"
 "Language: et\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -75,6 +75,11 @@ msgid ""
 "Tux images are taken from Pingus, some other characters are available or can "
 "be added easily."
 msgstr ""
+"Lisage lõbus Pingviin oma dokile!\n"
+"Vasak klikk muudab animatsiooni,\n"
+"Keskmine klikk segab teda ^_^\n"
+"Tux'i pildid on võetud mängust Pingus, teisi tegelasi on saadaval või on "
+"hõlpsasti lisatavad."
 
 #: ../Cairo-Penguin/src/applet-init.c:39
 msgid "Cairo-Penguin"
@@ -247,15 +252,15 @@ msgstr "TB"
 
 #: ../Disks/src/applet-disks.c:138
 msgid "r"
-msgstr ""
+msgstr "r"
 
 #: ../Disks/src/applet-disks.c:138
 msgid "w"
-msgstr ""
+msgstr "w"
 
 #: ../Disks/src/applet-disks.c:142
 msgid "N/A"
-msgstr ""
+msgstr "Puudub"
 
 #: ../Disks/src/applet-init.c:29
 msgid "Disks"
@@ -1016,12 +1021,12 @@ msgstr "min"
 
 #: ../System-Monitor/src/applet-sensors.c:365
 msgid "max"
-msgstr ""
+msgstr "maks"
 
 #: ../System-Monitor/src/applet-sensors.c:368
 #: ../System-Monitor/src/applet-sensors.c:401
 msgid "alarm"
-msgstr ""
+msgstr "alarm"
 
 #: ../System-Monitor/src/applet-sensors.c:399
 msgid "rpm"
@@ -1537,7 +1542,7 @@ msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:158
 msgid ""
-"Couldn't upload the file, check that your internet connection is active."
+"Couldn't upload the file, check that your internet connexion is active."
 msgstr "Ei saanud faili üleslaadida, kontrolli oma internetiühendust."
 
 #: ../dnd2share/src/applet-dnd2share.c:273
@@ -7817,6 +7822,9 @@ msgstr ""
 #~ msgid "Next (middle-click)"
 #~ msgstr "Järgmine (kesk-klik)"
 
+#~ msgid "Play/Pause (left-click)"
+#~ msgstr "Mängi/Pausi (vasak-klik)"
+
 #~ msgid "Add a desktop"
 #~ msgstr "Lisa töölauale"
 
@@ -7835,11 +7843,27 @@ msgstr ""
 #~ msgid "time"
 #~ msgstr "aeg"
 
+#~ msgid "dock"
+#~ msgstr "dokk"
+
+#~ msgid "Open the folder (middle-click)"
+#~ msgstr "Ava kaust ( keskmine hiireklahv)"
+
 #~ msgid "Remove last desktop"
 #~ msgstr "Eemalda viimane töölaud"
+
+#~ msgid "Quick launch (Middle-click)"
+#~ msgstr "Kiirkäivitus (Keskmine hiireklikk)"
+
+#~ msgid "Mute (middle-click)"
+#~ msgstr "Vaigista (keskmine hiireklikk)"
 
 #~ msgid "Unmute (middle-click)"
 #~ msgstr "Heli sisse (keskmine hiireklikk)"
 
 #~ msgid "Empty Trash (middle-click)"
 #~ msgstr "Tühjenda prügikast (keskmine hiireklahv)"
+
+#~ msgid ""
+#~ "Couldn't upload the file, check that your internet connection is active."
+#~ msgstr "Ei saanud faili üleslaadida, kontrolli oma internetiühendust."
