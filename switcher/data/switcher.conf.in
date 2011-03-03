@@ -124,7 +124,7 @@ Draw hidden Windows = false
 #v
 sep_conf =
 
-#l[Show windows' list;Show desktop;Expose all the desktops (Compiz)] Action on middle-click:
+#l[Show windows' list;Show desktop;Expose all the desktops;Expose all the windows] Action on middle-click:
 action on click = 0
 
 #U Workspace names :

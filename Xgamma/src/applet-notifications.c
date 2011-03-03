@@ -34,6 +34,44 @@ CD_APPLET_ON_CLICK_BEGIN
 	}
 CD_APPLET_ON_CLICK_END
 
+
+static void _cd_xgamma_set_up_gamma_correction (void)
+{
+	double fGamma = xgamma_get_gamma (&myData.Xgamma);
+	if (fGamma > 0)
+	{
+		//\___________________ On construit notre widget si c'est la 1ere fois.
+		if (myData.pWidget == NULL)
+		{
+			xgamma_build_and_show_widget ();
+		}
+		else
+		{
+			//\___________________ On lui met les valeurs a jour, sans appeler les callbacks.
+			g_signal_handler_block (myData.pGlobalScale, myData.iGloalScaleSignalID);
+			g_signal_handler_block (myData.pRedScale, myData.iRedScaleSignalID);
+			g_signal_handler_block (myData.pGreenScale, myData.iGreenScaleSignalID);
+			g_signal_handler_block (myData.pBlueScale, myData.iBlueScaleSignalID);
+			
+			gtk_range_set_value (GTK_RANGE (myData.pGlobalScale), fGamma);
+			gtk_range_set_value (GTK_RANGE (myData.pRedScale), myData.Xgamma.red);
+			gtk_range_set_value (GTK_RANGE (myData.pGreenScale), myData.Xgamma.green);
+			gtk_range_set_value (GTK_RANGE (myData.pBlueScale), myData.Xgamma.blue);
+			myData.XoldGamma = myData.Xgamma;
+			
+			g_signal_handler_unblock (myData.pGlobalScale, myData.iGloalScaleSignalID);
+			g_signal_handler_unblock (myData.pRedScale, myData.iRedScaleSignalID);
+			g_signal_handler_unblock (myData.pGreenScale, myData.iGreenScaleSignalID);
+			g_signal_handler_unblock (myData.pBlueScale, myData.iBlueScaleSignalID);
+			
+			if (myData.pDialog != NULL)
+			{
+				cairo_dock_unhide_dialog (myData.pDialog);
+			}
+		}
+	}
+}
+
 static void _cd_xgamma_remember_current_gamma (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
 	double fGamma = xgamma_get_gamma (&myData.Xgamma);
@@ -44,50 +82,25 @@ static void _cd_xgamma_remember_current_gamma (GtkMenuItem *menu_item, CairoDock
 		G_TYPE_INVALID);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	//Sub-Menu
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Apply current luminosity on startup"), GTK_STOCK_DIALOG_WARNING, _cd_xgamma_remember_current_gamma, pSubMenu);
-		CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
-		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+	// Main Menu
+	if (myDock)
+	{
+		gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Set up gamma correction"), D_("middle-click"));
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_DIALOG_INFO, _cd_xgamma_set_up_gamma_correction, CD_APPLET_MY_MENU);
+		g_free (cLabel);
+	}
+	//Sub-Menu
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Apply current luminosity on startup"), GTK_STOCK_DIALOG_WARNING, _cd_xgamma_remember_current_gamma, pSubMenu);
+	CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
+	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	if (myDock)
 	{
-		double fGamma = xgamma_get_gamma (&myData.Xgamma);
-		if (fGamma > 0)
-		{
-			//\___________________ On construit notre widget si c'est la 1ere fois.
-			if (myData.pWidget == NULL)
-			{
-				xgamma_build_and_show_widget ();
-			}
-			else
-			{
-				//\___________________ On lui met les valeurs a jour, sans appeler les callbacks.
-				g_signal_handler_block (myData.pGlobalScale, myData.iGloalScaleSignalID);
-				g_signal_handler_block (myData.pRedScale, myData.iRedScaleSignalID);
-				g_signal_handler_block (myData.pGreenScale, myData.iGreenScaleSignalID);
-				g_signal_handler_block (myData.pBlueScale, myData.iBlueScaleSignalID);
-				
-				gtk_range_set_value (GTK_RANGE (myData.pGlobalScale), fGamma);
-				gtk_range_set_value (GTK_RANGE (myData.pRedScale), myData.Xgamma.red);
-				gtk_range_set_value (GTK_RANGE (myData.pGreenScale), myData.Xgamma.green);
-				gtk_range_set_value (GTK_RANGE (myData.pBlueScale), myData.Xgamma.blue);
-				myData.XoldGamma = myData.Xgamma;
-				
-				g_signal_handler_unblock (myData.pGlobalScale, myData.iGloalScaleSignalID);
-				g_signal_handler_unblock (myData.pRedScale, myData.iRedScaleSignalID);
-				g_signal_handler_unblock (myData.pGreenScale, myData.iGreenScaleSignalID);
-				g_signal_handler_unblock (myData.pBlueScale, myData.iBlueScaleSignalID);
-				
-				if (myData.pDialog != NULL)
-				{
-					cairo_dock_unhide_dialog (myData.pDialog);
-				}
-			}
-		}
+		_cd_xgamma_set_up_gamma_correction ();
 	}
 CD_APPLET_ON_MIDDLE_CLICK_END
 

@@ -29,29 +29,19 @@
 #include "applet-notifications.h"
 
 
-static void _compiz_dbus_action (const gchar *cCommand)  // taken from the Compiz-Icon applet, thanks ChangFu !
+static void _cd_expose_windows (void)
 {
-	if (! cairo_dock_dbus_detect_application ("org.freedesktop.compiz"))
-	{
-		cd_warning  ("Dbus plug-in must be activated in Compiz !");
-		cairo_dock_show_temporary_dialog_with_icon (D_("You need to run Compiz and activate its 'DBus' plug-in."), myIcon, myContainer, 6000, "same icon");
-	}
-	
-	GError *erreur = NULL;
-	gchar *cDbusCommand = g_strdup_printf ("dbus-send --type=method_call --dest=org.freedesktop.compiz /org/freedesktop/compiz/%s org.freedesktop.compiz.activate string:'root' int32:%d", cCommand, cairo_dock_get_root_id ());
-	g_spawn_command_line_async (cDbusCommand, &erreur);
-	if (erreur != NULL)
-	{
-		cd_warning ("ShowDesktop : when trying to send '%s' : %s", cDbusCommand, erreur->message);
-		g_error_free (erreur);
-	}
-	g_free (cDbusCommand);
+	cairo_dock_wm_present_windows ();
 }
-static void _cd_expose (void)
+static void _cd_expose_desktops (void)
 {
-	_compiz_dbus_action ("expo/allscreens/expo_button");  // expo avant la 0.7
+	cairo_dock_wm_present_desktops ();
 }
-
+static gboolean _cd_expose_windows_idle (gpointer data)
+{
+	_cd_expose_windows ();
+	return FALSE;
+}
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	switch (myConfig.iActionOnMiddleClick)
 	{
@@ -69,9 +59,15 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 			cairo_dock_show_hide_desktop (! bDesktopIsVisible);
 		}
 		break;
-		case SWICTHER_EXPOSE:
+		case SWICTHER_EXPOSE_DESKTOPS:
 		{
-			_cd_expose ();
+			_cd_expose_desktops ();
+		}
+		break;
+		case SWICTHER_EXPOSE_WINDOWS:
+		{
+			// ok this is just crazy: if you call the Scale dbus method of Compiz before the middle button is released, it doesn't work.
+			g_timeout_add (300, _cd_expose_windows_idle, NULL);
 		}
 		break;
 	}
@@ -257,9 +253,13 @@ static void _cd_switcher_show_desktop (GtkMenuItem *menu_item, CairoDockModuleIn
 	gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
 	cairo_dock_show_hide_desktop (! bDesktopIsVisible);
 }
-static void _cd_switcher_expose (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_switcher_expose_windows (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
-	_cd_expose ();
+	_cd_expose_windows ();
+}
+static void _cd_switcher_expose_desktops (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	_cd_expose_desktops ();
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	// Sub-Menu
@@ -297,28 +297,34 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (pSubMenu == CD_APPLET_MY_MENU)
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
 	gchar *cLabel;
-	///if (myConfig.iActionOnMiddleClick != 0)
+	
+	cLabel = (myConfig.iActionOnMiddleClick == SWICTHER_WINDOWS_LIST ? g_strdup_printf ("%s (%s)", D_("Windows List"), D_("middle-click")) : g_strdup (D_("Windows List")));
+	GtkWidget *pWindowsListMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (cLabel, CD_APPLET_MY_MENU, GTK_STOCK_DND_MULTIPLE);
+	g_free (cLabel);
+	cd_switcher_build_windows_list (pWindowsListMenu);
+
+	cLabel = (myConfig.iActionOnMiddleClick == SWICTHER_SHOW_DESKTOP ? g_strdup_printf ("%s (%s)", D_("Show the desktop"), D_("middle-click")) : g_strdup (D_("Show the desktop")));
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel,
+		GTK_STOCK_FULLSCREEN,
+		_cd_switcher_show_desktop,
+		CD_APPLET_MY_MENU);
+	g_free (cLabel);
+	
+	if (cairo_dock_wm_can_present_desktops ())
 	{
-		cLabel = (myConfig.iActionOnMiddleClick == SWICTHER_WINDOWS_LIST ? g_strdup_printf ("%s (%s)", D_("Windows List"), D_("middle-click")) : g_strdup (D_("Windows List")));
-		GtkWidget *pWindowsListMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (cLabel, CD_APPLET_MY_MENU, GTK_STOCK_DND_MULTIPLE);
-		g_free (cLabel);
-		cd_switcher_build_windows_list (pWindowsListMenu);
-	}
-	///if (myConfig.iActionOnMiddleClick != 1)
-	{
-		cLabel = (myConfig.iActionOnMiddleClick == SWICTHER_SHOW_DESKTOP ? g_strdup_printf ("%s (%s)", D_("Show the desktop"), D_("middle-click")) : g_strdup (D_("Show the desktop")));
+		cLabel = (myConfig.iActionOnMiddleClick == SWICTHER_EXPOSE_DESKTOPS ? g_strdup_printf ("%s (%s)", D_("Expose all the desktops"), D_("middle-click")) : g_strdup (D_("Expose all the desktops")));
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel,
-			GTK_STOCK_FULLSCREEN,
-			_cd_switcher_show_desktop,
+			GTK_STOCK_LEAVE_FULLSCREEN,
+			_cd_switcher_expose_desktops,
 			CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
-	///if (myConfig.iActionOnMiddleClick != 2)
+	if (cairo_dock_wm_can_present_windows ())
 	{
-		cLabel = (myConfig.iActionOnMiddleClick == SWICTHER_EXPOSE ? g_strdup_printf ("%s (%s)", D_("Expose all the desktops (Compiz)"), D_("middle-click")) : g_strdup (D_("Expose all the desktops (Compiz)")));
+		cLabel = (myConfig.iActionOnMiddleClick == SWICTHER_EXPOSE_WINDOWS ? g_strdup_printf ("%s (%s)", D_("Expose all the windows"), D_("middle-click")) : g_strdup (D_("Expose all the windows")));
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel,
 			GTK_STOCK_LEAVE_FULLSCREEN,
-			_cd_switcher_expose,
+			_cd_switcher_expose_windows,
 			CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}

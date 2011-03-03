@@ -68,33 +68,15 @@ static void _cd_show_hide_desklet (void)
 	}
 }
 
-static void _compiz_dbus_action (const gchar *cCommand)  // taken from the Compiz-Icon applet, thanks ChangFu !
-{
-	if (! cairo_dock_dbus_detect_application ("org.freedesktop.compiz"))
-	{
-		cd_warning  ("Dbus plug-in must be activated in Compiz !");
-		cairo_dock_show_temporary_dialog_with_icon (D_("You need to run Compiz and activate its 'DBus' plug-in."), myIcon, myContainer, 6000, "same icon");
-	}
-	
-	GError *erreur = NULL;
-	gchar *cDbusCommand = g_strdup_printf ("dbus-send --type=method_call --dest=org.freedesktop.compiz /org/freedesktop/compiz/%s org.freedesktop.compiz.activate string:'root' int32:%d", cCommand, cairo_dock_get_root_id ());
-	g_spawn_command_line_async (cDbusCommand, &erreur);
-	if (erreur != NULL)
-	{
-		cd_warning ("ShowDesktop : when trying to send '%s' : %s", cDbusCommand, erreur->message);
-		g_error_free (erreur);
-	}
-	g_free (cDbusCommand);
-}
 
 static void _cd_show_widget_layer (void)
 {
-	_compiz_dbus_action ("widget/allscreens/toggle_button");  // toggle avant la 0.7
+	cairo_dock_wm_show_widget_layer ();
 }
 
 static void _cd_expose (void)
 {
-	_compiz_dbus_action ("expo/allscreens/expo_button");  // expo avant la 0.7
+	cairo_dock_wm_present_desktops ();
 }
 
 static void _cd_action (CDActionOnClick iAction)
@@ -171,16 +153,16 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			cLabel = g_strdup_printf ("%s (%s)", D_("Show the desktop"), D_("middle-click"));
 		else
 			cLabel = g_strdup (D_("Show the desktop"));
-		CD_APPLET_ADD_IN_MENU (cLabel, _show_desktop, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_FULLSCREEN, _show_desktop, CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
 	if (myConfig.iActionOnLeftClick != CD_EXPOSE)  // action is not bound to left-click => put it in the menu
 	{
 		if (myConfig.iActionOnMiddleClick == CD_EXPOSE)
-			cLabel = g_strdup_printf ("%s (%s)", D_("Expose all the desktops (Compiz)"), D_("middle-click"));
+			cLabel = g_strdup_printf ("%s (%s)", D_("Expose all the desktops"), D_("middle-click"));
 		else
-			cLabel = g_strdup (D_("Expose all the desktops (Compiz)"));
-		CD_APPLET_ADD_IN_MENU (cLabel, _cd_expose, CD_APPLET_MY_MENU);
+			cLabel = g_strdup (D_("Expose all the desktops"));
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_LEAVE_FULLSCREEN, _cd_expose, CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
 	if (myConfig.iActionOnLeftClick != CD_SHOW_WIDGET_LAYER)  // action is not bound to left-click => put it in the menu

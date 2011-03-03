@@ -12,7 +12,6 @@ SET (cd-System-Monitor_LIB_SRCS
 	applet-notifications.c 	applet-notifications.h
 	applet-struct.h
 )
-message (STATUS "SENSORS_FOUND : ${SENSORS_FOUND}")
 
 if ("${SENSORS_FOUND}" STREQUAL "TRUE")
 	SET (cd-System-Monitor_SENSORS_SRCS

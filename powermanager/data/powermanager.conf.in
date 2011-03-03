@@ -153,7 +153,7 @@ frame_param =
 #{in seconds.}
 check interval = 30
 
-#l+[Nothing;charge;Time] Information to display on the icon :
+#l+[Nothing;charge;Timelength] Information to display on the icon :
 quick-info_type=2
 
 use approx = false

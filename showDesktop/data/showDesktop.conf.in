@@ -109,11 +109,11 @@ fg alpha = 1
 #F[Behaviour;gtk-execute]
 frame_behav =
 
-#l[Show the desktop;Show the desklets;Show desktop and desklets;Show the Widget Layer (Compiz);Expose all the desktops (Compiz)] Action on left-click:
+#l[Show the desktop;Show the desklets;Show desktop and desklets;Show the Widget Layer (Compiz);Expose all the desktops] Action on left-click:
 #{You need to activate the Dbus plug-in in Compiz for the last 2 actions. Showing desktop and desklets can fail on some Window Manager (like Metacity).}
 left click = 0
 
-#l[Show the desktop;Show the desklets;Show desktop and desklets;Show the Widget Layer (Compiz);Expose all the desktops (Compiz)] Action on middle-click:
+#l[Show the desktop;Show the desklets;Show desktop and desklets;Show the Widget Layer (Compiz);Expose all the desktops] Action on middle-click:
 #{You need to activate the Dbus plug-in in Compiz for the last 2 actions. Showing desktop and desklets can fail on some Window Manager (like Metacity).}
 middle click = 1
 
