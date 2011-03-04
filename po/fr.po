@@ -2805,7 +2805,7 @@ msgstr ""
 "Le clic gauche affiche/cache le bureau,\n"
 "Le clic du milieu affiche/cache aussi bien le bureau, les desklets, la "
 "couche\n"
-" de Wigdets Compiz ou tous les bureaux d'un coup."
+" de Wigdets ou tous les bureaux d'un coup."
 
 #: ../showDesktop/src/applet-notifications.c:153
 #: ../showDesktop/src/applet-notifications.c:155
@@ -2818,9 +2818,8 @@ msgstr "Montrer le bureau"
 #: ../showDesktop/src/applet-notifications.c:164
 #: ../switcher/src/applet-notifications.c:315 ../showDesktop/data/messages:115
 #: ../showDesktop/data/messages:129 ../switcher/data/messages:111
-#, fuzzy
 msgid "Expose all the desktops"
-msgstr "Exposé de tous les bureaux (Compiz)"
+msgstr "Exposé de tous les bureaux"
 
 #: ../showDesktop/src/applet-notifications.c:171
 #: ../showDesktop/src/applet-notifications.c:173
@@ -3021,9 +3020,8 @@ msgid "Windows List"
 msgstr "Liste des fenêtres"
 
 #: ../switcher/src/applet-notifications.c:324 ../switcher/data/messages:113
-#, fuzzy
 msgid "Expose all the windows"
-msgstr "Exposé de tous les bureaux (Compiz)"
+msgstr "Exposé de toutes les fenêtres"
 
 #: ../systray/src/systray-init.c:32
 msgid "systray"

@@ -19,6 +19,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #include "applet-struct.h"
 #include "applet-notifications.h"
@@ -66,12 +67,13 @@ gboolean cd_motion_blur_mouse_moved (gpointer pUserData, CairoDock *pDock, gbool
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	CDMotionBlurData *pData = CD_APPLET_GET_MY_DOCK_DATA (pDock);
 	if (pData == NULL)
+	{
 		pData = g_new0 (CDMotionBlurData, 1);
-	
-	pData->iBlurCount = 20;
+		CD_APPLET_SET_MY_DOCK_DATA (pDock, pData);
+	}
+	pData->iBlurCount = -3 / log (myConfig.fBlurFactor);  // blur applied N times to get 10^-3
 	*bStartAnimation = TRUE;
 	
-	CD_APPLET_SET_MY_DOCK_DATA (pDock, pData);
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
@@ -84,7 +86,7 @@ gboolean cd_motion_blur_update_dock (gpointer pUserData, CairoDock *pDock, gbool
 	
 	if (! pDock->bIsShrinkingDown && ! pDock->bIsGrowingUp)
 		pData->iBlurCount --;
-	cd_message ("blur <- %d", pData->iBlurCount);
+	//g_print ("blur <- %d\n", pData->iBlurCount);
 	
 	cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
 	if (pData->iBlurCount <= 0)

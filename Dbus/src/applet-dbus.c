@@ -399,7 +399,7 @@ void cd_dbus_clean_up_processes (gboolean bAll)
 		{
 			g_print ("this applet (%s %s) is linked to an old gldi process (%d), kill it.\n", cContent, cPid, iPPid);
 			iPid = atoi (cPid);
-			kill (iPid, SIGTERM);
+			kill (iPid, SIGKILL);  // SIGTERM sometimes lets the process alive.
 		}
 	}
 	g_dir_close (dir);

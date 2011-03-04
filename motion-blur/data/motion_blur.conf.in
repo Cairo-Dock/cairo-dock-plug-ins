@@ -6,5 +6,5 @@
 #b Also blur on mouse movement?
 always = false
 
-#e[0;1] Blur amount:
+#e[0;.9] Blur amount:
 blur factor = .7
