@@ -30,15 +30,10 @@
 #include "applet-rame.h"
 
 
-
-
-
-
-
 gchar* rtrim( gchar* str, const gchar* t )  // Couper tout depuis la droite
 {
-	char* curEnd = str, *end = str;
-	char look[ 256 ] = { 1, 0 };
+	gchar* curEnd = str, *end = str;
+	gchar look[ 256 ] = { 1, 0 };
 	while( *t )
 		look[ (unsigned char)*t++ ] = 1;
 	while( *end )
@@ -50,6 +45,9 @@ gchar* rtrim( gchar* str, const gchar* t )  // Couper tout depuis la droite
 	*curEnd = '\0';
 
 	return str;
+	g_free (curEnd);
+	g_free (end);
+	g_free (look);
 }
 
 gchar* ltrim( gchar* str, const gchar* t )  // Couper tout depuis la gauche
@@ -67,19 +65,22 @@ gchar* ltrim( gchar* str, const gchar* t )  // Couper tout depuis la gauche
 
 gchar *g_str_replace (const gchar *cString, const gchar *cWord, const gchar *cReplace)
 {
+	gchar *cPart1;
+	gchar *cPart2;
+	gchar *cWordTemp;
 	if (g_strstr_len (cString, -1, cWord) != NULL) // On remplace
 	{
 		gchar *cFinalString = g_strdup_printf("%s", cString);
 		while (g_strstr_len (cFinalString, -1, cWord) != NULL)
 		{
-			gchar *cPart1 = g_strdup_printf("%s", cFinalString);
-			gchar *cWordTemp = g_strdup_printf("%s", cWord);
+			cPart1 = g_strdup_printf("%s", cFinalString);
+			cWordTemp = g_strdup_printf("%s", cWord);
 			g_strreverse (cPart1);
 			g_strreverse (cWordTemp);
 			cPart1 = strstr(cPart1, cWordTemp) ;
 			ltrim( cPart1, cWordTemp );
 			g_strreverse (cPart1);
-			gchar *cPart2 = g_strdup_printf("%s", cFinalString);
+			cPart2 = g_strdup_printf("%s", cFinalString);
 			
 			while (g_strstr_len (cPart2, -1, cWord) != NULL)
 			{
@@ -94,19 +95,20 @@ gchar *g_str_replace (const gchar *cString, const gchar *cWord, const gchar *cRe
 		g_free (cFinalString);
 	}
 	else
-		return g_strdup_printf("%s",cString); // Remplacement non trouvé -> On retourne la phrase d'origine	
+		return g_strdup_printf("%s",cString); // Remplacement non trouvé -> On retourne la phrase d'origine
+	g_free (cPart1);
+	g_free (cPart2);
+	g_free (cWordTemp);
 }
 
 
 gchar *g_str_position (const gchar *cString, const int iPosition, const char cSeparator)
 {
-	
 	gchar *strSeparator = g_strdup_printf("%c", cSeparator);
 	
 	if ((g_strstr_len (cString, -1, strSeparator) != NULL) && (iPosition > 0)) // Separator trouvé -> On coupe
 	{
 		gchar *cFinalString = g_strdup_printf("%s", cString);
-		
 		
 		if (iPosition == 1)
 		{			
@@ -152,7 +154,6 @@ gchar *g_str_position (const gchar *cString, const int iPosition, const char cSe
 	else
 		return g_strdup_printf("%s",cString); // Pas de séparateur -> On retourne la phrase d'origine
 }
-
 
 
 double _Ko_to_Mo (CairoDockModuleInstance *myApplet , double fValueInKo)
@@ -284,7 +285,6 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 					else
 						pTextZone->cResult = g_strdup_printf ("%.0f", myData.fRamPercent);
 				}
-	
 										
 				else if (strcmp (pTextZone->cCommand, "mem") == 0) // en Mo
 				{
@@ -309,7 +309,6 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 					pTextZone->cResult = g_strdup_printf ("%f", _Ko_to_Go(myApplet, myData.ramTotal));
 					pTextZone->cResult = g_strdup_printf ("%.2f", atof(pTextZone->cResult));
 				}
-				
 								
 				else if (strcmp (pTextZone->cCommand, "swapperc") == 0)
 				{
@@ -363,8 +362,6 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 					pTextZone->cResult = g_strdup_printf ("%.2f", atof(pTextZone->cResult));
 				}
 				
-				
-				
 				else if (strcmp (pTextZone->cCommand, "nvtemp") == 0)
 				{
 					myConfig.bShowNvidia = TRUE;
@@ -391,9 +388,6 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 					cd_sysmonitor_get_nvidia_info (myApplet);					
 					pTextZone->cResult = g_strdup_printf ("%i", myData.iVideoRam);					
 				}
-				
-				
-				
 				
 				else if (strcmp (pTextZone->cCommand, "uptime") == 0)
 				{
@@ -428,8 +422,7 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 					pTextZone->cResult = g_strdup_printf ("%s", cd_doncky_get_disk_info (pTextZone->cMountPoint, 5));
 				
 				else if (strcmp (pTextZone->cCommand, "fs_device") == 0)
-					pTextZone->cResult = g_strdup_printf ("%s", cd_doncky_get_disk_info (pTextZone->cMountPoint, 6));				
-				
+					pTextZone->cResult = g_strdup_printf ("%s", cd_doncky_get_disk_info (pTextZone->cMountPoint, 6));
 			}
 	
 		}
@@ -464,25 +457,14 @@ gboolean cd_retrieve_command_result (CairoDockModuleInstance *myApplet)
 					pTextZone->bRefresh = TRUE;
 					pTextZone->iTimer = 0; // On remet le timer à 0
 					
-					
-					
-					cd_debug ("DONCKY-debug : Commande non passée =  %s", pTextZone->cCommand);
-					
+					cd_debug ("DONCKY-debug : Commande non passée =  %s", pTextZone->cCommand);	
 				}	
-					
-					
-					
-					
-					
-					
-					
 				else			
 					pTextZone->bRefresh = FALSE; // On a récupéré l'info -> On arrête là !
 			}
-		}	
+		}
 	}
 	cd_applet_update_my_icon (myApplet); // Quand tous les textes sont chargés, on peut dessiner
-	//~ myData.pPeriodicRefreshTask = NULL;
 }
 
 

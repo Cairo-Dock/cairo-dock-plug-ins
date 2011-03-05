@@ -27,7 +27,7 @@
 #include "applet-xml.h"
 
 
-static void _new_xml_to_conf (CairoDockModuleInstance *myApplet, const gchar *cReceivedData)
+static void _new_xml_to_conf (CairoDockModuleInstance *myApplet, gchar *cReceivedData)
 {
 	// if (cReceivedData && strncmp (cReceivedData, "http://", 7) == 0 && g_str_has_suffix (cReceivedData, ".tar.gz") && (g_strstr_len (cReceivedData, -1, "glxdock") || g_strstr_len (cReceivedData, -1, "glx-dock")))
 	//~ if (g_strstr_len (cReceivedData, -1, ".xml") != NULL)  // On verifie que l'element glisser/copier fini bien par .xml
@@ -35,6 +35,14 @@ static void _new_xml_to_conf (CairoDockModuleInstance *myApplet, const gchar *cR
 			|| (strncmp (cReceivedData, "http://", 7) == 0 && g_str_has_suffix (cReceivedData, ".xml")) \
 			|| (strncmp (cReceivedData, "file://", 7) == 0 && g_str_has_suffix (cReceivedData, ".xml")))
 	{
+		if (strncmp (cReceivedData, "file://", 7) == 0)
+		{
+			ltrim( cReceivedData, "file:///" );
+			cReceivedData = g_strdup_printf("/%s", cReceivedData);
+		}
+		
+		cd_debug ("DONCKY-debug : \"%s\" was dropped", cReceivedData);
+		
 		cd_debug ("DONCKY-debug : This seems to be a valid XML File -> Let's continue...");
 		// on definit la nouvelle URL en conf.
 		g_free (myConfig.cXmlFilePath);
@@ -90,39 +98,8 @@ CD_APPLET_ON_BUILD_MENU_END
 
 
 CD_APPLET_ON_DROP_DATA_BEGIN
-	//~ cd_debug ("DONCKY-debug : \"%s\" was dropped", CD_APPLET_RECEIVED_DATA);
-	gchar *cFinalString = g_strdup_printf("%s", CD_APPLET_RECEIVED_DATA);
-	ltrim( cFinalString, "file:///" );
-	cFinalString = g_strdup_printf("/%s", cFinalString);
-	//~ g_strreverse (cFinalString);
-	//~ rtrim( cPart2, cWordTemp );
-	//~ g_strreverse (cPart2);
-	cd_debug ("DONCKY-debug : \"%s\" was dropped", cFinalString);
-	_new_xml_to_conf (myApplet, cFinalString);
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	cd_debug ("DONCKY-debug : \"%s\" was dropped", CD_APPLET_RECEIVED_DATA);
+	_new_xml_to_conf (myApplet, g_strdup_printf("%s", CD_APPLET_RECEIVED_DATA));
 	
 	// On va lire le contenu de myConfig.cXmlFilePath	
 	cd_debug ("Doncky-debug : ---------------------->  myConfig.cXmlFilePath = \"%s\"",myConfig.cXmlFilePath);
