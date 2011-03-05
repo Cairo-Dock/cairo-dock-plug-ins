@@ -33,7 +33,7 @@
 void cd_decorator_set_frame_size_tooltip (CairoDialog *pDialog)
 {
 	int iMargin = .5 * myConfig.iTooltipLineWidth + (1. - sqrt (2) / 2) * myConfig.iTooltipRadius;
-	int iIconOffset = myDialogsParam.iDialogIconSize/2;
+	int iIconOffset = pDialog->iIconSize / 2;  // myDialogsParam.iDialogIconSize/2
 	pDialog->iRightMargin = iMargin;
 	pDialog->iLeftMargin = iIconOffset + iMargin;
 	pDialog->iTopMargin = iIconOffset + _CAIRO_DIALOG_TOOLTIP_MARGIN + myConfig.iTooltipLineWidth;
@@ -52,7 +52,7 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 {
 	double fLineWidth = myConfig.iTooltipLineWidth;
 	double fRadius = myConfig.iTooltipRadius;
-	double fIconOffset = myDialogsParam.iDialogIconSize/2;
+	double fIconOffset = pDialog->iIconSize / 2;  // myDialogsParam.iDialogIconSize/2
 	
 	double fOffsetX = fRadius + fLineWidth / 2 + fIconOffset;
 	double fOffsetY = (pDialog->container.bDirectionUp ? fLineWidth / 2 : pDialog->container.iHeight - fLineWidth / 2) + (pDialog->container.bDirectionUp ? fIconOffset : -fIconOffset);
