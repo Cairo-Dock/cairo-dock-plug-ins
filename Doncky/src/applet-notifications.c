@@ -124,8 +124,6 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 	myData.cPrevAlignWidth = g_strdup_printf("left");
 	myData.cPrevAlignHeight = g_strdup_printf("middle");
 
-	
-		
 	int i;
 	for (pXmlNode = pXmlMainNode->children, i = 0; pXmlNode != NULL; pXmlNode = pXmlNode->next, i ++)
 	{
@@ -139,44 +137,82 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 			{				
 				cNodeContent = xmlNodeGetContent (pXmlSubNode);
 				
+				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "icon_size") == 0)
+				{
+					cd_debug ("DONCKY-debug : icon_size = %s", xmlNodeGetContent (pXmlSubNode));
+					cTempo = g_strdup_printf("%s;",xmlNodeGetContent (pXmlSubNode));
+					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Icon", "icon size", cTempo, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+				}
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "deskletSize") == 0)
 				{
-					cTempo = xmlNodeGetContent (pXmlSubNode);
-					cd_debug ("DONCKY-debug : size = %s", cTempo);
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "size", cTempo, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+					cd_debug ("DONCKY-debug : desklet size = %s", xmlNodeGetContent (pXmlSubNode));
+					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "size", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+				}
+				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "decorations") == 0)
+				{
+					cd_debug ("DONCKY-debug : decorations = %s", xmlNodeGetContent (pXmlSubNode));
+					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "decorations", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+				}
+				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "bg_desklet") == 0)
+				{
+					cTempo = g_strdup_printf("%s",g_str_replace (xmlNodeGetContent (pXmlSubNode), "~", g_strdup_printf("/home/%s", g_getenv("USER"))));
+					cd_debug ("DONCKY-debug : bg desklet = %s", cTempo);
+					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "bg desklet", cTempo, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+				}
+				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "bg_alpha") == 0)
+				{
+					cd_debug ("DONCKY-debug : bg_alpha = %s", xmlNodeGetContent (pXmlSubNode));
+					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "bg alpha", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+				}
+				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "left_offset") == 0)
+				{
+					cd_debug ("DONCKY-debug : left_offset = %s", xmlNodeGetContent (pXmlSubNode));
+					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "left offset", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+				}
+				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "top_offset") == 0)
+				{
+					cd_debug ("DONCKY-debug : top_offset = %s", xmlNodeGetContent (pXmlSubNode));
+					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "top offset", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+				}
+				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "right_offset") == 0)
+				{
+					cd_debug ("DONCKY-debug : right_offset = %s", xmlNodeGetContent (pXmlSubNode));
+					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "right offset", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+				}
+				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "bottom_offset") == 0)
+				{
+					cd_debug ("DONCKY-debug : bottom_offset = %s", xmlNodeGetContent (pXmlSubNode));
+					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "bottom offset", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+				}
+				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "fg_desklet") == 0)
+				{
+					cTempo = g_strdup_printf("%s",g_str_replace (xmlNodeGetContent (pXmlSubNode), "~", g_strdup_printf("/home/%s", g_getenv("USER"))));
+					cd_debug ("DONCKY-debug : fg desklet = %s", cTempo);
+					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "fg desklet", cTempo, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+				}
+				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "fg_alpha") == 0)
+				{
+					cd_debug ("DONCKY-debug : fg_alpha = %s", xmlNodeGetContent (pXmlSubNode));
+					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "fg alpha", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
 				}
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "defaultFont") == 0)
 				{
-					cTempo = xmlNodeGetContent (pXmlSubNode);
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "default_font", cTempo, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-					myConfig.cDefaultFont = g_strdup_printf("%s", cTempo);
+					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "default_font", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+					myConfig.cDefaultFont = g_strdup_printf("%s", xmlNodeGetContent (pXmlSubNode));
 				}
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "defaultTextColor") == 0)
 				{
 					gchar *cStringInConfig = NULL;
-
+					
 					// On récupère le 1er champ -> red
-					cTempo = xmlNodeGetContent (pXmlSubNode);
-					// Le atof ne traitera que le 1er champ
-					myConfig.fDefaultTextColor[0] = atof(cTempo) / 255;
-
+					myConfig.fDefaultTextColor[0] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 1, ';')) / 255;
 					// On récupère le 2ème champ -> = green
-					cTempo = strchr(xmlNodeGetContent (pXmlSubNode), ';');
-					ltrim( cTempo, ";" ); // On ne coupe que le 1er ; et on garde le reste qui ne sera pas traité par le atof
-					myConfig.fDefaultTextColor[1] = atof(cTempo) / 255;
-					
+					myConfig.fDefaultTextColor[1] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 2, ';')) / 255;
 					// On récupère le 3ème champ -> = blue
-					cTempo = strchr(xmlNodeGetContent (pXmlSubNode), ';');
-					ltrim( cTempo, ";" );
-					cTempo = strchr(cTempo, ';'); 
-					ltrim( cTempo, ";" ); // On ne coupe que le 1er ; et on garde le reste qui ne sera pas traité par le atof
-					myConfig.fDefaultTextColor[2] = atof(cTempo) / 255;
-
+					myConfig.fDefaultTextColor[2] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 3, ';')) / 255;
 					// On récupère le dernier champ -> alpha
-					cTempo = strrchr(xmlNodeGetContent (pXmlSubNode), ';');
-					ltrim( cTempo, ";" );
-					myConfig.fDefaultTextColor[3] = atof(cTempo) / 255;
-					
+					myConfig.fDefaultTextColor[3] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 4, ';')) / 255;
+
 					// Remplacement des virgules par des points pour l'écriture dans la config					
 					cTempo = g_strdup_printf("%f", myConfig.fDefaultTextColor[0]);
 					cStringInConfig = g_strdup_printf("%s", g_str_replace (cTempo, ",", "."));
@@ -199,15 +235,13 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 				}
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "textMargin") == 0)
 				{
-					cTempo = xmlNodeGetContent (pXmlSubNode);
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "text_margin", cTempo, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-					myConfig.iTextMargin = atoi(cTempo);
+					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "text_margin", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+					myConfig.iTextMargin = atoi(xmlNodeGetContent (pXmlSubNode));
 				}
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "spaceBetweenLines") == 0)
 				{
-					cTempo = xmlNodeGetContent (pXmlSubNode);
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "space_between_lines", cTempo, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-					myConfig.iSpaceBetweenLines = atoi(cTempo);
+					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "space_between_lines", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+					myConfig.iSpaceBetweenLines = atoi(xmlNodeGetContent (pXmlSubNode));
 				}
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "displayBackground") == 0)
 				{
@@ -227,28 +261,15 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "backgroundColor1") == 0)
 				{
 					gchar *cStringInConfig = NULL;
-
-					// On récupère le 1er champ -> red
-					cTempo = xmlNodeGetContent (pXmlSubNode);
-					// Le atof ne traitera que le 1er champ
-					myConfig.fBackgroundColor1[0] = atof(cTempo) / 255;
-
-					// On récupère le 2ème champ -> = green
-					cTempo = strchr(xmlNodeGetContent (pXmlSubNode), ';');
-					ltrim( cTempo, ";" ); // On ne coupe que le 1er ; et on garde le reste qui ne sera pas traité par le atof
-					myConfig.fBackgroundColor1[1] = atof(cTempo) / 255;
 					
+					// On récupère le 1er champ -> red
+					myConfig.fBackgroundColor1[0] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 1, ';')) / 255;
+					// On récupère le 2ème champ -> = green
+					myConfig.fBackgroundColor1[1] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 2, ';')) / 255;
 					// On récupère le 3ème champ -> = blue
-					cTempo = strchr(xmlNodeGetContent (pXmlSubNode), ';');
-					ltrim( cTempo, ";" );
-					cTempo = strchr(cTempo, ';'); 
-					ltrim( cTempo, ";" ); // On ne coupe que le 1er ; et on garde le reste qui ne sera pas traité par le atof
-					myConfig.fBackgroundColor1[2] = atof(cTempo) / 255;
-
+					myConfig.fBackgroundColor1[2] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 3, ';')) / 255;
 					// On récupère le dernier champ -> alpha
-					cTempo = strrchr(xmlNodeGetContent (pXmlSubNode), ';');
-					ltrim( cTempo, ";" );
-					myConfig.fBackgroundColor1[3] = atof(cTempo) / 255;
+					myConfig.fBackgroundColor1[3] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 4, ';')) / 255;
 					
 					// Remplacement des virgules par des points pour l'écriture dans la config					
 					cTempo = g_strdup_printf("%f", myConfig.fBackgroundColor1[0]);
@@ -270,26 +291,13 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 					gchar *cStringInConfig = NULL;
 
 					// On récupère le 1er champ -> red
-					cTempo = xmlNodeGetContent (pXmlSubNode);
-					// Le atof ne traitera que le 1er champ
-					myConfig.fBackgroundColor2[0] = atof(cTempo) / 255;
-
+					myConfig.fBackgroundColor2[0] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 1, ';')) / 255;
 					// On récupère le 2ème champ -> = green
-					cTempo = strchr(xmlNodeGetContent (pXmlSubNode), ';');
-					ltrim( cTempo, ";" ); // On ne coupe que le 1er ; et on garde le reste qui ne sera pas traité par le atof
-					myConfig.fBackgroundColor2[1] = atof(cTempo) / 255;
-					
+					myConfig.fBackgroundColor2[1] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 2, ';')) / 255;
 					// On récupère le 3ème champ -> = blue
-					cTempo = strchr(xmlNodeGetContent (pXmlSubNode), ';');
-					ltrim( cTempo, ";" );
-					cTempo = strchr(cTempo, ';'); 
-					ltrim( cTempo, ";" ); // On ne coupe que le 1er ; et on garde le reste qui ne sera pas traité par le atof
-					myConfig.fBackgroundColor2[2] = atof(cTempo) / 255;
-
+					myConfig.fBackgroundColor2[2] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 3, ';')) / 255;
 					// On récupère le dernier champ -> alpha
-					cTempo = strrchr(xmlNodeGetContent (pXmlSubNode), ';');
-					ltrim( cTempo, ";" );
-					myConfig.fBackgroundColor2[3] = atof(cTempo) / 255;
+					myConfig.fBackgroundColor2[3] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 4, ';')) / 255;
 					
 					// Remplacement des virgules par des points pour l'écriture dans la config					
 					cTempo = g_strdup_printf("%f", myConfig.fBackgroundColor2[0]);
@@ -308,42 +316,27 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 				}
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "backgroundRadius") == 0)
 				{
-					cTempo = xmlNodeGetContent (pXmlSubNode);
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "background_radius", cTempo, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-					myConfig.iBackgroundRadius = atoi(cTempo);
+					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "background_radius", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+					myConfig.iBackgroundRadius = atoi(xmlNodeGetContent (pXmlSubNode));
 				}
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "borderThickness") == 0)
 				{
-					cTempo = xmlNodeGetContent (pXmlSubNode);
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "border_thickness", cTempo, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-					myConfig.iBorderThickness = atoi(cTempo);
+					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "border_thickness", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+					myConfig.iBorderThickness = atoi(xmlNodeGetContent (pXmlSubNode));
 				}
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "borderColor") == 0)
 				{
 					gchar *cStringInConfig = NULL;
-
+					
 					// On récupère le 1er champ -> red
-					cTempo = xmlNodeGetContent (pXmlSubNode);
-					// Le atof ne traitera que le 1er champ
-					myConfig.fBorderColor[0] = atof(cTempo) / 255;
-
+					myConfig.fBorderColor[0] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 1, ';')) / 255;
 					// On récupère le 2ème champ -> = green
-					cTempo = strchr(xmlNodeGetContent (pXmlSubNode), ';');
-					ltrim( cTempo, ";" ); // On ne coupe que le 1er ; et on garde le reste qui ne sera pas traité par le atof
-					myConfig.fBorderColor[1] = atof(cTempo) / 255;
-					
+					myConfig.fBorderColor[1] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 2, ';')) / 255;
 					// On récupère le 3ème champ -> = blue
-					cTempo = strchr(xmlNodeGetContent (pXmlSubNode), ';');
-					ltrim( cTempo, ";" );
-					cTempo = strchr(cTempo, ';'); 
-					ltrim( cTempo, ";" ); // On ne coupe que le 1er ; et on garde le reste qui ne sera pas traité par le atof
-					myConfig.fBorderColor[2] = atof(cTempo) / 255;
-
+					myConfig.fBorderColor[2] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 3, ';')) / 255;
 					// On récupère le dernier champ -> alpha
-					cTempo = strrchr(xmlNodeGetContent (pXmlSubNode), ';');
-					ltrim( cTempo, ";" );
-					myConfig.fBorderColor[3] = atof(cTempo) / 255;
-					
+					myConfig.fBorderColor[3] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 4, ';')) / 255;
+
 					// Remplacement des virgules par des points pour l'écriture dans la config					
 					cTempo = g_strdup_printf("%f", myConfig.fBorderColor[0]);
 					cStringInConfig = g_strdup_printf("%s", g_str_replace (cTempo, ",", "."));
@@ -363,11 +356,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 			}
 			g_free (cTempo);
 			
-			gchar *cCommand = g_strdup_printf ("dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.cairodock.CairoDock.ReloadModule string:Doncky");
-			gchar *cResult = cairo_dock_launch_command_sync (cCommand);
-			g_free (cCommand);
-			// redessin.
-			//~ cd_applet_update_my_icon (myApplet);
+			cairo_dock_reload_module_instance (myApplet, TRUE); // TRUE <=> read conf file
 		}				
 	}	
 	cairo_dock_close_xml_file (pXmlFile);

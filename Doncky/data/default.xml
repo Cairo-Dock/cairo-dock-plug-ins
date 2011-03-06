@@ -20,7 +20,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/ >.-->
 
 <doncky>
 	<appearance>
+	<!-- Used when Drag and drop the xml file on the desklet -->
+		<icon_size>110;40</icon_size>
 		<deskletSize>260;160</deskletSize>
+		<decorations>none</decorations>
+		<bg_desklet>path to the background picture</bg_desklet>
+		<bg_alpha>1</bg_alpha>
+		<left_offset>0</left_offset>
+		<top_offset>0</top_offset>
+		<right_offset>0</right_offset>
+		<bottom_offset>0</bottom_offset>
+		<fg_desklet>path to the foreground picture</fg_desklet>
+		<fg_alpha>1</fg_alpha>
 		<defaultFont>Sans 8</defaultFont>
 		<defaultTextColor>255;255;255;255</defaultTextColor>
 		<textMargin>0</textMargin>
