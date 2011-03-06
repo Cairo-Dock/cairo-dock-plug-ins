@@ -17,7 +17,6 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef __APPLET_XGAMMA__
 #define  __APPLET_XGAMMA__
 
@@ -46,6 +45,9 @@ void xgamma_build_and_show_widget (void);
 
 
 CairoDialog *xgamma_build_dialog_simple (void);
+
+
+void cd_gamma_display_gamma_on_label (double fGamma);
 
 
 #endif

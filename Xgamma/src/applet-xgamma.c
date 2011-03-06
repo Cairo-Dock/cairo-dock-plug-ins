@@ -84,14 +84,10 @@ void xgamma_set_gamma (XF86VidModeGamma *pGamma)
 	}
 	else
 	{
-		double fGamma = (pGamma->red + pGamma->blue + pGamma->green) / 3;
-		double fGammaPercent = _gamma_to_percent (fGamma);
-		
 		if (myConfig.cDefaultTitle == NULL)
 		{
-			gchar *cLabel = g_strdup_printf ("Luminosity: %d%%", (int)fGammaPercent);
-			cairo_dock_set_icon_name (cLabel, myIcon, myContainer);
-			g_free (cLabel);
+			double fGamma = (pGamma->red + pGamma->blue + pGamma->green) / 3;
+			cd_gamma_display_gamma_on_label (fGamma);
 		}
 	}
 }
@@ -278,4 +274,13 @@ CairoDialog *xgamma_build_dialog_simple (void)
 	attr.pActionFunc = (CairoDockActionOnAnswerFunc) _xgamma_apply_value_simple;
 	attr.pUserData = myApplet;
 	return cairo_dock_build_dialog (&attr, myIcon, myContainer);
+}
+
+
+void cd_gamma_display_gamma_on_label (double fGamma)
+{
+	double fGammaPercent = _gamma_to_percent (fGamma);
+	gchar *cLabel = g_strdup_printf ("%s: %d%%", D_("Luminosity"), (int)fGammaPercent);
+	cairo_dock_set_icon_name (cLabel, myIcon, myContainer);
+	g_free (cLabel);
 }

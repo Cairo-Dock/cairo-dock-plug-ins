@@ -105,7 +105,14 @@ CD_APPLET_INIT_BEGIN
 		xgamma_build_and_show_widget ();
 	}
 	else
+	{
+		if (myConfig.cDefaultTitle == NULL)
+		{
+			double fGamma = xgamma_get_gamma (&myData.Xgamma);
+			cd_gamma_display_gamma_on_label (fGamma);
+		}
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
+	}
 CD_APPLET_INIT_END
 
 
@@ -147,6 +154,12 @@ CD_APPLET_RELOAD_BEGIN
 				myData.pDialog = xgamma_build_dialog ();
 				cairo_dock_hide_dialog (myData.pDialog);
 			}
+		}
+		
+		if (myDock && myConfig.cDefaultTitle == NULL)
+		{
+			double fGamma = xgamma_get_gamma (&myData.Xgamma);
+			cd_gamma_display_gamma_on_label (fGamma);
 		}
 	}
 	
