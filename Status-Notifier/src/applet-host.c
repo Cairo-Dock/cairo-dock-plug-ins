@@ -27,20 +27,27 @@
 #include "applet-draw.h"
 #include "applet-host.h"
 
+// our address basename
 #define CD_STATUS_NOTIFIER_HOST_ADDR "org.kde.StatusNotifierHost"
 
+// KDE watcher (old names)
 #define CD_STATUS_NOTIFIER_WATCHER_ADDR2 "org.kde.NotificationItemWatcher"
 #define CD_STATUS_NOTIFIER_WATCHER_OBJ2 "/NotificationItemWatcher"
 #define CD_STATUS_NOTIFIER_WATCHER_IFACE2 "org.kde.NotificationItemWatcher"
 
+// KDE watcher
 #define CD_STATUS_NOTIFIER_WATCHER_ADDR "org.kde.StatusNotifierWatcher"
 #define CD_STATUS_NOTIFIER_WATCHER_OBJ "/StatusNotifierWatcher"
 #define CD_STATUS_NOTIFIER_WATCHER_IFACE "org.kde.StatusNotifierWatcher"
 
+// Ubuntu sort-of-high-level-Watcher
 #define CD_INDICATOR_APPLICATION_ADDR "org.ayatana.indicator.application"
 #define CD_INDICATOR_APPLICATION_OBJ "/org/ayatana/indicator/application/service"
 #define CD_INDICATOR_APPLICATION_IFACE "org.ayatana.indicator.application.service"
 
+// Ubuntu Indicator Service
+#define  CD_INDICATOR_SERVICE_INTERFACE "org.ayatana.indicator.service"
+#define  CD_INDICATOR_SERVICE_OBJECT "/org/ayatana/indicator/service"
 
 static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING (GClosure *closure,
 	GValue *return_value G_GNUC_UNUSED,
@@ -433,7 +440,7 @@ static void _on_register_host (DBusGProxy *proxy, DBusGProxyCall *call_id, Cairo
 	
 	if (bSuccess)  // il y'a un watcher.
 	{
-		//g_print ("found a friendly watcher, now ask for the items...\n");
+		g_print ("found a friendly watcher, now ask for the items...\n");
 		// get the items
 		DBusGProxy *pProxyWatcherProps = cairo_dock_create_new_session_proxy (
 			CD_STATUS_NOTIFIER_WATCHER_ADDR,
@@ -460,7 +467,7 @@ static void _on_register_host (DBusGProxy *proxy, DBusGProxyCall *call_id, Cairo
 	}
 	else  // pas de watcher, ou un asocial comme celui d'Ubuntu, on essaye avec l'"indicator-application".
 	{
-		//g_print ("no friendy watcher, let's try the 'application indicator'\n");
+		g_print ("no friendy watcher, let's try the 'application indicator'\n");
 		_cd_satus_notifier_get_indicator_application ();
 	}
 	CD_APPLET_LEAVE ();
@@ -468,7 +475,7 @@ static void _on_register_host (DBusGProxy *proxy, DBusGProxyCall *call_id, Cairo
 static void _cd_satus_notifier_register_host (void)
 {
 	// register to the watcher.
-	//g_print ("registering to the watcher...\n");
+	g_print ("register to the watcher\n");
 	myData.pRegisterHostCall = dbus_g_proxy_begin_call (myData.pProxyWatcher, "RegisterNotificationHost",
 		(DBusGProxyCallNotify)_on_register_host,
 		myApplet,
@@ -492,30 +499,119 @@ static gboolean _get_watcher (CairoDockModuleInstance *myApplet)
 	}
 	return TRUE;
 }
+static void service_proxy_destroyed (DBusGProxy * proxy, gpointer user_data)
+{
+	g_print ("proxy to indicator service has been destroyed\n");
+	/// try restarting the service ?...
+}
+static void _on_watch_service (DBusGProxy *proxy, DBusGProxyCall *call, gpointer data)  // nothing really interesting here, droppable ?
+{
+	GError *error = NULL;
+	guint service_api_version, this_service_version;
+	dbus_g_proxy_end_call (proxy, call, &error,
+		G_TYPE_UINT, &service_api_version,
+		G_TYPE_UINT, &this_service_version,
+		G_TYPE_INVALID);
+	g_print ("got indicator service (API: %d, service: %d)\n", service_api_version, this_service_version);
+}
+static void _on_start_service (DBusGProxy *proxy, guint status, GError *error, gpointer user_data)
+{
+	if (error != NULL)  // couldn't start the service.
+	{
+		cd_warning ("Unable to start the indicator service (%s)", error->message);
+		return;
+	}
+
+	if (status != DBUS_START_REPLY_SUCCESS && status != DBUS_START_REPLY_ALREADY_RUNNING)  // started but wrong status.
+	{
+		cd_warning ("Unable to start the indicator service (got status %d)", status);
+		return;
+	}
+
+	// service has started, now connect to it.
+	DBusGConnection *bus = cairo_dock_get_session_connection ();
+	DBusGProxy *service_proxy = dbus_g_proxy_new_for_name_owner (bus,
+		CD_INDICATOR_APPLICATION_ADDR,
+		CD_INDICATOR_SERVICE_OBJECT,
+		CD_INDICATOR_SERVICE_INTERFACE,
+		NULL);
+
+	if (service_proxy == NULL)
+	{
+		cd_warning ("Unable to connect to indicator service");
+		return;
+	}
+	
+	g_print ("Indicator Service started, watch it\n");
+	g_object_add_weak_pointer (G_OBJECT(service_proxy), (gpointer *)&(service_proxy));
+	g_signal_connect (G_OBJECT(service_proxy), "destroy", G_CALLBACK(service_proxy_destroyed), user_data);
+
+	dbus_g_proxy_begin_call (service_proxy,
+			"Watch",
+			(DBusGProxyCallNotify)_on_watch_service,
+			myApplet,
+			(GDestroyNotify) NULL,
+			G_TYPE_INVALID);
+}
 void cd_satus_notifier_launch_service (void)
 {
 	if (myData.pThemePaths == NULL)
 		myData.pThemePaths = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, NULL);  // (path dir,ref count).
 	
-	// Register the service name on the bus.
+	// Register our service name on the bus.
 	pid_t pid = getpid ();
 	myData.cHostName = g_strdup_printf (CD_STATUS_NOTIFIER_HOST_ADDR"-%d", pid);
 	//g_print ("registering name '%s' on the bus ...\n", myData.cHostName);
 	cairo_dock_register_service_name (myData.cHostName);
+	
+	// now try to connect to the Ubuntu Indicator Service.
+	GError *error = NULL;
+	guint iVersion=0, iServiceVersion=0;
+	DBusGConnection *bus = cairo_dock_get_session_connection ();
+	DBusGProxy *service_proxy = dbus_g_proxy_new_for_name_owner (bus,
+		CD_INDICATOR_APPLICATION_ADDR,
+		CD_INDICATOR_SERVICE_OBJECT,
+		CD_INDICATOR_SERVICE_INTERFACE,
+		NULL);  // return NULL on error
+	
+	if (service_proxy == NULL)  // Indicator Service not yet launched or doesn't exit or was shut down because no watchers were present => try to start the service.
+	{
+		g_print ("try to start the Indicator Service\n");
+		DBusGProxy *dbus_proxy = cairo_dock_get_main_proxy ();
+		org_freedesktop_DBus_start_service_by_name_async (dbus_proxy,
+			CD_INDICATOR_APPLICATION_ADDR,
+			0,
+			_on_start_service,
+			myApplet);
+	}
+	else  // service is running, tell it that we are watching it, so that it doesn't stop.
+	{
+		g_print ("watch the Indicator Service\n");
+		g_object_add_weak_pointer (G_OBJECT(service_proxy), (gpointer *)&(service_proxy));
+		g_signal_connect (G_OBJECT(service_proxy), "destroy", G_CALLBACK(service_proxy_destroyed), myApplet);
+		
+		dbus_g_proxy_begin_call (service_proxy,
+			"Watch",
+			(DBusGProxyCallNotify)_on_watch_service,
+			myApplet,
+			(GDestroyNotify) NULL,
+			G_TYPE_INVALID);
+	}
 	
 	// get the watcher.
 	//g_print ("getting the watcher ...\n");
 	myData.pProxyWatcher = cairo_dock_create_new_session_proxy (
 		CD_STATUS_NOTIFIER_WATCHER_ADDR,
 		CD_STATUS_NOTIFIER_WATCHER_OBJ,
-		CD_STATUS_NOTIFIER_WATCHER_IFACE);  /// dbus_g_proxy_new_for_name_owner ?...
-	if (myData.pProxyWatcher == NULL)  // no watcher yet, let's try again in a few moment.
+		CD_STATUS_NOTIFIER_WATCHER_IFACE);  // whenever it appears on the bus, we'll get it.
+	/*if (myData.pProxyWatcher == NULL)  // no watcher yet, let's try again in a few moment.
 	{
 		//g_print ("no watcher yet, let's try again in a few moment\n");
 		myData.iSidGetWatcher = g_timeout_add (1000., (GSourceFunc)_get_watcher, myApplet);
 		return;
-	}
+	}*/
 	
+	// register to the watcher.
 	_cd_satus_notifier_register_host ();
 }
 
