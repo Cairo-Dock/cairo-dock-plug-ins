@@ -28,7 +28,7 @@ order=
 #F[Applet's Handbook]
 frame_hand=
 #A
-handbook=Status-Notifier
+handbook=Status Notifier
 
 
 #[gtk-convert]
@@ -104,4 +104,4 @@ fg alpha = 1
 [Configuration]
 
 #b Display items in compact mode?
-compact = false
+compact = true

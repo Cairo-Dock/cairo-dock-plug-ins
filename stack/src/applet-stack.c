@@ -60,13 +60,19 @@ void cd_stack_check_local (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile
 	}
 }
 
-void cd_stack_clear_stack (CairoDockModuleInstance *myApplet) {
+void cd_stack_clear_stack (CairoDockModuleInstance *myApplet)
+{
 	gchar *cCommand = g_strdup_printf("rm -rf \"%s\"/*", myConfig.cStackDir);
 	cd_debug("Stack: will use '%s'", cCommand);
 	int r = system (cCommand);
 	g_free(cCommand);
 	
 	CD_APPLET_DELETE_MY_ICONS_LIST;
+	if (myDock)  // on ne veut pas d'un sous-dock vide, meme si on va probablement y rajouter des items aussitot.
+	{
+		cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->cName);
+		myIcon->pSubDock = NULL;
+	}
 }
 
 

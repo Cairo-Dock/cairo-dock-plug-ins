@@ -94,8 +94,12 @@ CD_APPLET_RELOAD_BEGIN
 				CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 			}
 			CD_APPLET_DELETE_MY_ICONS_LIST;
+			if (myDock)  // on ne veut pas d'un sous-dock vide, meme si on va probablement y rajouter des items aussitot.
+			{
+				cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->cName);
+				myIcon->pSubDock = NULL;
+			}
 			cd_satus_notifier_reload_compact_mode ();
-			
 		}
 		else
 		{

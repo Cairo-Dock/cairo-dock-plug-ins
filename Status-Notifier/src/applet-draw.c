@@ -21,6 +21,7 @@
 #include <string.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <math.h>
 
 #include "applet-struct.h"
 #include "applet-item.h"
@@ -46,13 +47,14 @@ void cd_satus_notifier_compute_grid (void)
 	// taille disponible.
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
+	g_print ("icon: %dx%d\n", iWidth, iHeight);
 	
 	// on calcule la meilleure grille.
 	int iNbLines, iNbItemsByLine;
 	int iSize, iSizeMax = 0;
 	for (iNbLines = 1; iNbLines <= iNbItems; iNbLines ++)
 	{
-		iNbItemsByLine = iNbItems / iNbLines;
+		iNbItemsByLine = ceil ((float)iNbItems / iNbLines);
 		iSize = MIN (iWidth / iNbItemsByLine, iHeight / iNbLines);
 		if (iSize > iSizeMax)
 		{
