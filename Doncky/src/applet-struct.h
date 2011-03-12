@@ -91,6 +91,7 @@ struct _AppletData {
 	gint iLastLineHeight;
 	gboolean bLastWasSameLine;	
 	cairo_surface_t *pImgSurface;
+	gint iCurrentFileSize;
 	
 	// REPRIS DE SYSTEM-MONITOR :
 	// infos, constantes.

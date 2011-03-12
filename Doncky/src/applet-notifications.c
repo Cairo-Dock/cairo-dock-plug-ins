@@ -19,6 +19,7 @@
 
 //\________________ Add your name in the copyright file (and / or modify your name here)
 
+
 #include <stdlib.h>
 #include <string.h>
 #include "applet-draw.h"
@@ -27,39 +28,142 @@
 #include "applet-xml.h"
 
 
-static void _new_xml_to_conf (CairoDockModuleInstance *myApplet, gchar *cReceivedData)
+//~ #include <glib.h>
+#include <glib/gstdio.h>
+
+gboolean _check_size_is_constant (CairoDockModuleInstance *myApplet, const gchar *cFilePath)
 {
-	// if (cReceivedData && strncmp (cReceivedData, "http://", 7) == 0 && g_str_has_suffix (cReceivedData, ".tar.gz") && (g_strstr_len (cReceivedData, -1, "glxdock") || g_strstr_len (cReceivedData, -1, "glx-dock")))
-	//~ if (g_strstr_len (cReceivedData, -1, ".xml") != NULL)  // On verifie que l'element glisser/copier fini bien par .xml
-	if (cReceivedData && (strncmp (cReceivedData, "http://", 7) == 0 && g_str_has_suffix (cReceivedData, ".tar.gz")) \
+	int iSize = cairo_dock_get_file_size (cFilePath);
+	gboolean bConstantSize = (iSize != 0 && iSize == myData.iCurrentFileSize);
+	myData.iCurrentFileSize = iSize;
+	return bConstantSize;
+}
+
+gboolean _new_xml_to_conf (CairoDockModuleInstance *myApplet, gchar *cReceivedData)
+{
+	gboolean bContinue = FALSE;
+	
+	if (cReceivedData && (strncmp (cReceivedData, "file://", 7) == 0 && g_str_has_suffix (cReceivedData, ".xml")) \
+			|| (strncmp (cReceivedData, "file://", 7) == 0 && g_str_has_suffix (cReceivedData, ".tar.gz")) \
 			|| (strncmp (cReceivedData, "http://", 7) == 0 && g_str_has_suffix (cReceivedData, ".xml")) \
-			|| (strncmp (cReceivedData, "file://", 7) == 0 && g_str_has_suffix (cReceivedData, ".xml")))
+			|| (strncmp (cReceivedData, "http://", 7) == 0 && g_str_has_suffix (cReceivedData, ".tar.gz")))
 	{
 		if (strncmp (cReceivedData, "file://", 7) == 0)
 		{
-			ltrim( cReceivedData, "file:///" );
-			cReceivedData = g_strdup_printf("/%s", cReceivedData);
+			if (g_str_has_suffix(cReceivedData,".xml"))
+			{
+				cd_debug ("DONCKY-debug : local xml file -> CONTINUE");
+				ltrim( cReceivedData, "file:///" );
+				cReceivedData = g_strdup_printf("/%s", cReceivedData);
+				bContinue = TRUE;
+			}
+			else
+			{
+				cd_debug ("DONCKY-debug : tar.gz -> TODO");
+				bContinue = FALSE;
+			}
 		}
 		
-		cd_debug ("DONCKY-debug : \"%s\" was dropped", cReceivedData);
+		if (strncmp (cReceivedData, "http://", 7) == 0)
+		{
+			cd_debug ("DONCKY-debug : URL -> TODO");
+			
+			if (g_str_has_suffix(cReceivedData,".xml"))
+			{
+				gchar *cTmpFileName = g_strdup_printf("%s", cReceivedData);
+				ltrim(cTmpFileName,"http://");
+				g_strreverse (cTmpFileName);
+				// On récupère le 1er champ -> nom du fichier
+				cTmpFileName = g_str_position (cTmpFileName, 1, '/');
+				g_strreverse (cTmpFileName);
+				
+				gchar *cTmpThemeName = g_strdup_printf("%s", cTmpFileName);
+				rtrim(cTmpThemeName,".xml"); // Récupération du nom du fichier sans l'extension
+				
+				cd_debug ("DONCKY-debug : Nom du thème : %s", cTmpThemeName);
+				
+				// on cree le repertoire pour le theme.
+				gchar *cDonckyThemesPath = g_strdup_printf ("%s/doncky", g_cCairoDockDataDir);
+				gchar *cThemePath = g_strdup_printf ("%s/%s", cDonckyThemesPath, cTmpThemeName);
+				
+				if (! g_file_test (cThemePath, G_FILE_TEST_EXISTS))
+				{
+					cd_debug ("DONCKY-debug : le dossier '%s' n'existe pas encore -> On le crée", cThemePath);
+					
+					if (! g_file_test (cDonckyThemesPath, G_FILE_TEST_EXISTS))
+					{
+						cd_debug ("DONCKY-debug : le dossier '%s' n'existe pas encore -> On le crée", cDonckyThemesPath);
+						if (g_mkdir (cDonckyThemesPath, 7*8*8+7*8+0) != 0)
+						{
+							cd_warning ("couldn't create directory '%s' !\nNo read history will be available.", cDonckyThemesPath);
+							bContinue = FALSE;
+						}
+					}
+					if (g_mkdir (cThemePath, 7*8*8+7*8+0) != 0)
+					{
+						cd_warning ("couldn't create directory '%s' !\nNo read history will be available.", cThemePath);
+						bContinue = FALSE;
+					}
+					else
+						bContinue = TRUE;
+				}
+				else
+				{
+					cd_debug ("DONCKY-debug : le dossier '%s' existe déjà -> On demande ce qu'il faut faire", cThemePath);
+					bContinue = FALSE;
+				}
+				
+				if (bContinue)
+				{
+					gchar *cCommand = g_strdup_printf ("wget \"%s\" -O \"%s/%s\" -t 3 -T 4 30 /dev/null 2>&1", cReceivedData, cThemePath, cTmpFileName);
+					cd_debug ("DONCKY-debug : WGET : '%s'", cCommand);
+					cairo_dock_launch_command (cCommand);
+					g_free (cCommand);
+					
+					cReceivedData = g_strdup_printf("%s/%s", cThemePath, cTmpFileName);
+				}
+				g_free (cDonckyThemesPath);
+				g_free (cThemePath);
+				g_free (cTmpFileName);
+				g_free (cTmpThemeName);
+				
+				do
+				{
+					// waiting for the download to be completed
+				}while (!_check_size_is_constant (myApplet, cReceivedData));
+				
+				cd_debug ("DONCKY-debug : \"%s\" was downloaded", cReceivedData);
+			}
+			else
+				bContinue = FALSE;
+		}
 		
-		cd_debug ("DONCKY-debug : This seems to be a valid XML File -> Let's continue...");
-		// on definit la nouvelle URL en conf.
-		g_free (myConfig.cXmlFilePath);
-		myConfig.cXmlFilePath = g_strdup (cReceivedData);
-		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
-			G_TYPE_STRING,
-			"Configuration",
-			"xml_filepath",
-			myConfig.cXmlFilePath,
-			G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+		if (bContinue)
+		{
+			cd_debug ("DONCKY-debug : \"%s\" was dropped", cReceivedData);
+			
+			cd_debug ("DONCKY-debug : This seems to be a valid XML File -> Let's continue...");
+			// on definit la nouvelle URL en conf.
+			g_free (myConfig.cXmlFilePath);
+			myConfig.cXmlFilePath = g_strdup (cReceivedData);
+			cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
+				G_TYPE_STRING,
+				"Configuration",
+				"xml_filepath",
+				myConfig.cXmlFilePath,
+				G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+			
+			cd_doncky_free_item_list (myApplet);
+			cd_doncky_readxml (myApplet);
+			
+			// 2 times to allow xml files to modify the conf :		
+			cd_doncky_free_item_list (myApplet);
+			cd_doncky_readxml (myApplet);
+			return TRUE;
+		}
+		else
+			return FALSE;
 		
-		cd_doncky_free_item_list (myApplet);
-		cd_doncky_readxml (myApplet);
-		
-		// 2 times to allow xml files to modify the conf :		
-		cd_doncky_free_item_list (myApplet);
-		cd_doncky_readxml (myApplet);
 	}
 	else
 	{
@@ -69,7 +173,8 @@ static void _new_xml_to_conf (CairoDockModuleInstance *myApplet, gchar *cReceive
 			myIcon,
 			myContainer,
 			3000, // Suffisant 
-			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);		
+			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+		return FALSE;
 	}
 }
 
@@ -99,267 +204,269 @@ CD_APPLET_ON_BUILD_MENU_END
 
 CD_APPLET_ON_DROP_DATA_BEGIN
 	cd_debug ("DONCKY-debug : \"%s\" was dropped", CD_APPLET_RECEIVED_DATA);
-	_new_xml_to_conf (myApplet, g_strdup_printf("%s", CD_APPLET_RECEIVED_DATA));
 	
-	// On va lire le contenu de myConfig.cXmlFilePath	
-	cd_debug ("Doncky-debug : ---------------------->  myConfig.cXmlFilePath = \"%s\"",myConfig.cXmlFilePath);
+	if (_new_xml_to_conf (myApplet, g_strdup_printf("%s", CD_APPLET_RECEIVED_DATA)))
+	{	
+		// On va lire le contenu de myConfig.cXmlFilePath	
+		cd_debug ("Doncky-debug : ---------------------->  myConfig.cXmlFilePath = \"%s\"",myConfig.cXmlFilePath);
+			
+		g_return_val_if_fail (myConfig.cXmlFilePath != NULL, FALSE);
+		xmlInitParser ();
+		xmlDocPtr pXmlFile;
+		xmlNodePtr pXmlMainNode;
 		
-	g_return_val_if_fail (myConfig.cXmlFilePath != NULL, FALSE);
-	xmlInitParser ();
-	xmlDocPtr pXmlFile;
-	xmlNodePtr pXmlMainNode;
-	
-	pXmlFile = cairo_dock_open_xml_file (myConfig.cXmlFilePath, "doncky", &pXmlMainNode, NULL);
-	
-	g_return_val_if_fail (pXmlFile != NULL && pXmlMainNode != NULL, FALSE);
-	
-	
-	xmlAttrPtr ap;
-	xmlChar *cAttribute, *cNodeContent, *cTextNodeContent;
-	TextZone *pTextZone = NULL;
+		pXmlFile = cairo_dock_open_xml_file (myConfig.cXmlFilePath, "doncky", &pXmlMainNode, NULL);
 		
-	xmlNodePtr pXmlNode;
+		g_return_val_if_fail (pXmlFile != NULL && pXmlMainNode != NULL, FALSE);
+		
+		
+		xmlAttrPtr ap;
+		xmlChar *cAttribute, *cNodeContent, *cTextNodeContent;
+		TextZone *pTextZone = NULL;
+			
+		xmlNodePtr pXmlNode;
+		
+		myData.cPrevFont = g_strdup_printf("%s", myConfig.cDefaultFont);
+		myData.cPrevAlignWidth = g_strdup_printf("left");
+		myData.cPrevAlignHeight = g_strdup_printf("middle");
 	
-	myData.cPrevFont = g_strdup_printf("%s", myConfig.cDefaultFont);
-	myData.cPrevAlignWidth = g_strdup_printf("left");
-	myData.cPrevAlignHeight = g_strdup_printf("middle");
-
-	int i;
-	for (pXmlNode = pXmlMainNode->children, i = 0; pXmlNode != NULL; pXmlNode = pXmlNode->next, i ++)
-	{
-				
-		if (xmlStrcmp (pXmlNode->name, (const xmlChar *) "appearance") == 0)
+		int i;
+		for (pXmlNode = pXmlMainNode->children, i = 0; pXmlNode != NULL; pXmlNode = pXmlNode->next, i ++)
 		{
-			gchar *cTempo = NULL;
-			
-			xmlNodePtr pXmlSubNode;			
-			for (pXmlSubNode = pXmlNode->children; pXmlSubNode != NULL; pXmlSubNode = pXmlSubNode->next)
-			{				
-				cNodeContent = xmlNodeGetContent (pXmlSubNode);
+					
+			if (xmlStrcmp (pXmlNode->name, (const xmlChar *) "appearance") == 0)
+			{
+				gchar *cTempo = NULL;
 				
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "icon_size") == 0)
-				{
-					cd_debug ("DONCKY-debug : icon_size = %s", xmlNodeGetContent (pXmlSubNode));
-					cTempo = g_strdup_printf("%s;",xmlNodeGetContent (pXmlSubNode));
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Icon", "icon size", cTempo, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-				}
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "deskletSize") == 0)
-				{
-					cd_debug ("DONCKY-debug : desklet size = %s", xmlNodeGetContent (pXmlSubNode));
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "size", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-				}
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "decorations") == 0)
-				{
-					cd_debug ("DONCKY-debug : decorations = %s", xmlNodeGetContent (pXmlSubNode));
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "decorations", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-				}
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "bg_desklet") == 0)
-				{
-					cTempo = g_strdup_printf("%s",g_str_replace (xmlNodeGetContent (pXmlSubNode), "~", g_strdup_printf("/home/%s", g_getenv("USER"))));
-					cd_debug ("DONCKY-debug : bg desklet = %s", cTempo);
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "bg desklet", cTempo, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-				}
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "bg_alpha") == 0)
-				{
-					cd_debug ("DONCKY-debug : bg_alpha = %s", xmlNodeGetContent (pXmlSubNode));
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "bg alpha", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-				}
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "left_offset") == 0)
-				{
-					cd_debug ("DONCKY-debug : left_offset = %s", xmlNodeGetContent (pXmlSubNode));
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "left offset", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-				}
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "top_offset") == 0)
-				{
-					cd_debug ("DONCKY-debug : top_offset = %s", xmlNodeGetContent (pXmlSubNode));
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "top offset", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-				}
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "right_offset") == 0)
-				{
-					cd_debug ("DONCKY-debug : right_offset = %s", xmlNodeGetContent (pXmlSubNode));
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "right offset", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-				}
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "bottom_offset") == 0)
-				{
-					cd_debug ("DONCKY-debug : bottom_offset = %s", xmlNodeGetContent (pXmlSubNode));
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "bottom offset", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-				}
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "fg_desklet") == 0)
-				{
-					cTempo = g_strdup_printf("%s",g_str_replace (xmlNodeGetContent (pXmlSubNode), "~", g_strdup_printf("/home/%s", g_getenv("USER"))));
-					cd_debug ("DONCKY-debug : fg desklet = %s", cTempo);
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "fg desklet", cTempo, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-				}
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "fg_alpha") == 0)
-				{
-					cd_debug ("DONCKY-debug : fg_alpha = %s", xmlNodeGetContent (pXmlSubNode));
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "fg alpha", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-				}
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "defaultFont") == 0)
-				{
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "default_font", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-					myConfig.cDefaultFont = g_strdup_printf("%s", xmlNodeGetContent (pXmlSubNode));
-				}
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "defaultTextColor") == 0)
-				{
-					gchar *cStringInConfig = NULL;
+				xmlNodePtr pXmlSubNode;			
+				for (pXmlSubNode = pXmlNode->children; pXmlSubNode != NULL; pXmlSubNode = pXmlSubNode->next)
+				{				
+					cNodeContent = xmlNodeGetContent (pXmlSubNode);
 					
-					// On récupère le 1er champ -> red
-					myConfig.fDefaultTextColor[0] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 1, ';')) / 255;
-					// On récupère le 2ème champ -> = green
-					myConfig.fDefaultTextColor[1] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 2, ';')) / 255;
-					// On récupère le 3ème champ -> = blue
-					myConfig.fDefaultTextColor[2] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 3, ';')) / 255;
-					// On récupère le dernier champ -> alpha
-					myConfig.fDefaultTextColor[3] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 4, ';')) / 255;
-
-					// Remplacement des virgules par des points pour l'écriture dans la config					
-					cTempo = g_strdup_printf("%f", myConfig.fDefaultTextColor[0]);
-					cStringInConfig = g_strdup_printf("%s", g_str_replace (cTempo, ",", "."));
-					cTempo = g_strdup_printf("%f", myConfig.fDefaultTextColor[1]);
-					cStringInConfig = g_strdup_printf("%s;%s", cStringInConfig, g_str_replace (cTempo, ",", "."));
-					cTempo = g_strdup_printf("%f", myConfig.fDefaultTextColor[2]);
-					cStringInConfig = g_strdup_printf("%s;%s", cStringInConfig, g_str_replace (cTempo, ",", "."));
-					cTempo = g_strdup_printf("%f", myConfig.fDefaultTextColor[3]);
-					cStringInConfig = g_strdup_printf("%s;%s;", cStringInConfig, g_str_replace (cTempo, ",", "."));
-					cd_debug ("DONCKY-debug : default_text_color=%s", cStringInConfig); 
-
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "default_text_color", cStringInConfig, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-					g_free(cStringInConfig);
-
-					// Mise à jour des PrevTextColor
-					myData.fPrevTextColor[0] = myConfig.fDefaultTextColor[0];
-					myData.fPrevTextColor[1] = myConfig.fDefaultTextColor[1];
-					myData.fPrevTextColor[2] = myConfig.fDefaultTextColor[2];
-					myData.fPrevTextColor[3] = myConfig.fDefaultTextColor[3];
-				}
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "textMargin") == 0)
-				{
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "text_margin", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-					myConfig.iTextMargin = atoi(xmlNodeGetContent (pXmlSubNode));
-				}
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "spaceBetweenLines") == 0)
-				{
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "space_between_lines", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-					myConfig.iSpaceBetweenLines = atoi(xmlNodeGetContent (pXmlSubNode));
-				}
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "displayBackground") == 0)
-				{
-					cTempo = xmlNodeGetContent (pXmlSubNode);
-					if (strcmp (cTempo, "0") == 0)
+					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "icon_size") == 0)
 					{
-						cTempo = g_strdup_printf("false");
-						myConfig.bDisplayBackground = FALSE;
+						cd_debug ("DONCKY-debug : icon_size = %s", xmlNodeGetContent (pXmlSubNode));
+						cTempo = g_strdup_printf("%s;",xmlNodeGetContent (pXmlSubNode));
+						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Icon", "icon size", cTempo, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
 					}
-					else
+					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "deskletSize") == 0)
 					{
-						cTempo = g_strdup_printf("true");
-						myConfig.bDisplayBackground = TRUE;
+						cd_debug ("DONCKY-debug : desklet size = %s", xmlNodeGetContent (pXmlSubNode));
+						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "size", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
 					}
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "display_background", cTempo, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "decorations") == 0)
+					{
+						cd_debug ("DONCKY-debug : decorations = %s", xmlNodeGetContent (pXmlSubNode));
+						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "decorations", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+					}
+					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "bg_desklet") == 0)
+					{
+						cTempo = g_strdup_printf("%s",g_str_replace (xmlNodeGetContent (pXmlSubNode), "~", g_strdup_printf("/home/%s", g_getenv("USER"))));
+						cd_debug ("DONCKY-debug : bg desklet = %s", cTempo);
+						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "bg desklet", cTempo, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+					}
+					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "bg_alpha") == 0)
+					{
+						cd_debug ("DONCKY-debug : bg_alpha = %s", xmlNodeGetContent (pXmlSubNode));
+						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "bg alpha", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+					}
+					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "left_offset") == 0)
+					{
+						cd_debug ("DONCKY-debug : left_offset = %s", xmlNodeGetContent (pXmlSubNode));
+						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "left offset", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+					}
+					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "top_offset") == 0)
+					{
+						cd_debug ("DONCKY-debug : top_offset = %s", xmlNodeGetContent (pXmlSubNode));
+						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "top offset", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+					}
+					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "right_offset") == 0)
+					{
+						cd_debug ("DONCKY-debug : right_offset = %s", xmlNodeGetContent (pXmlSubNode));
+						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "right offset", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+					}
+					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "bottom_offset") == 0)
+					{
+						cd_debug ("DONCKY-debug : bottom_offset = %s", xmlNodeGetContent (pXmlSubNode));
+						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "bottom offset", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+					}
+					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "fg_desklet") == 0)
+					{
+						cTempo = g_strdup_printf("%s",g_str_replace (xmlNodeGetContent (pXmlSubNode), "~", g_strdup_printf("/home/%s", g_getenv("USER"))));
+						cd_debug ("DONCKY-debug : fg desklet = %s", cTempo);
+						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "fg desklet", cTempo, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+					}
+					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "fg_alpha") == 0)
+					{
+						cd_debug ("DONCKY-debug : fg_alpha = %s", xmlNodeGetContent (pXmlSubNode));
+						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "fg alpha", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+					}
+					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "defaultFont") == 0)
+					{
+						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "default_font", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+						myConfig.cDefaultFont = g_strdup_printf("%s", xmlNodeGetContent (pXmlSubNode));
+					}
+					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "defaultTextColor") == 0)
+					{
+						gchar *cStringInConfig = NULL;
+						
+						// On récupère le 1er champ -> red
+						myConfig.fDefaultTextColor[0] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 1, ';')) / 255;
+						// On récupère le 2ème champ -> = green
+						myConfig.fDefaultTextColor[1] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 2, ';')) / 255;
+						// On récupère le 3ème champ -> = blue
+						myConfig.fDefaultTextColor[2] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 3, ';')) / 255;
+						// On récupère le dernier champ -> alpha
+						myConfig.fDefaultTextColor[3] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 4, ';')) / 255;
+	
+						// Remplacement des virgules par des points pour l'écriture dans la config					
+						cTempo = g_strdup_printf("%f", myConfig.fDefaultTextColor[0]);
+						cStringInConfig = g_strdup_printf("%s", g_str_replace (cTempo, ",", "."));
+						cTempo = g_strdup_printf("%f", myConfig.fDefaultTextColor[1]);
+						cStringInConfig = g_strdup_printf("%s;%s", cStringInConfig, g_str_replace (cTempo, ",", "."));
+						cTempo = g_strdup_printf("%f", myConfig.fDefaultTextColor[2]);
+						cStringInConfig = g_strdup_printf("%s;%s", cStringInConfig, g_str_replace (cTempo, ",", "."));
+						cTempo = g_strdup_printf("%f", myConfig.fDefaultTextColor[3]);
+						cStringInConfig = g_strdup_printf("%s;%s;", cStringInConfig, g_str_replace (cTempo, ",", "."));
+						cd_debug ("DONCKY-debug : default_text_color=%s", cStringInConfig); 
+	
+						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "default_text_color", cStringInConfig, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+						g_free(cStringInConfig);
+	
+						// Mise à jour des PrevTextColor
+						myData.fPrevTextColor[0] = myConfig.fDefaultTextColor[0];
+						myData.fPrevTextColor[1] = myConfig.fDefaultTextColor[1];
+						myData.fPrevTextColor[2] = myConfig.fDefaultTextColor[2];
+						myData.fPrevTextColor[3] = myConfig.fDefaultTextColor[3];
+					}
+					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "textMargin") == 0)
+					{
+						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "text_margin", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+						myConfig.iTextMargin = atoi(xmlNodeGetContent (pXmlSubNode));
+					}
+					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "spaceBetweenLines") == 0)
+					{
+						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "space_between_lines", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+						myConfig.iSpaceBetweenLines = atoi(xmlNodeGetContent (pXmlSubNode));
+					}
+					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "displayBackground") == 0)
+					{
+						cTempo = xmlNodeGetContent (pXmlSubNode);
+						if (strcmp (cTempo, "0") == 0)
+						{
+							cTempo = g_strdup_printf("false");
+							myConfig.bDisplayBackground = FALSE;
+						}
+						else
+						{
+							cTempo = g_strdup_printf("true");
+							myConfig.bDisplayBackground = TRUE;
+						}
+						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "display_background", cTempo, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+					}
+					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "backgroundColor1") == 0)
+					{
+						gchar *cStringInConfig = NULL;
+						
+						// On récupère le 1er champ -> red
+						myConfig.fBackgroundColor1[0] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 1, ';')) / 255;
+						// On récupère le 2ème champ -> = green
+						myConfig.fBackgroundColor1[1] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 2, ';')) / 255;
+						// On récupère le 3ème champ -> = blue
+						myConfig.fBackgroundColor1[2] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 3, ';')) / 255;
+						// On récupère le dernier champ -> alpha
+						myConfig.fBackgroundColor1[3] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 4, ';')) / 255;
+						
+						// Remplacement des virgules par des points pour l'écriture dans la config					
+						cTempo = g_strdup_printf("%f", myConfig.fBackgroundColor1[0]);
+						cStringInConfig = g_strdup_printf("%s", g_str_replace (cTempo, ",", "."));
+						cTempo = g_strdup_printf("%f", myConfig.fBackgroundColor1[1]);
+						cStringInConfig = g_strdup_printf("%s;%s", cStringInConfig, g_str_replace (cTempo, ",", "."));
+						cTempo = g_strdup_printf("%f", myConfig.fBackgroundColor1[2]);
+						cStringInConfig = g_strdup_printf("%s;%s", cStringInConfig, g_str_replace (cTempo, ",", "."));
+						cTempo = g_strdup_printf("%f", myConfig.fBackgroundColor1[3]);
+						cStringInConfig = g_strdup_printf("%s;%s;", cStringInConfig, g_str_replace (cTempo, ",", "."));
+						cd_debug ("DONCKY-debug : background_color1=%s", cStringInConfig); 
+	
+						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "background_color1", cStringInConfig, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+	
+						g_free(cStringInConfig);
+					}
+					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "backgroundColor2") == 0)
+					{
+						gchar *cStringInConfig = NULL;
+	
+						// On récupère le 1er champ -> red
+						myConfig.fBackgroundColor2[0] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 1, ';')) / 255;
+						// On récupère le 2ème champ -> = green
+						myConfig.fBackgroundColor2[1] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 2, ';')) / 255;
+						// On récupère le 3ème champ -> = blue
+						myConfig.fBackgroundColor2[2] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 3, ';')) / 255;
+						// On récupère le dernier champ -> alpha
+						myConfig.fBackgroundColor2[3] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 4, ';')) / 255;
+						
+						// Remplacement des virgules par des points pour l'écriture dans la config					
+						cTempo = g_strdup_printf("%f", myConfig.fBackgroundColor2[0]);
+						cStringInConfig = g_strdup_printf("%s", g_str_replace (cTempo, ",", "."));
+						cTempo = g_strdup_printf("%f", myConfig.fBackgroundColor2[1]);
+						cStringInConfig = g_strdup_printf("%s;%s", cStringInConfig, g_str_replace (cTempo, ",", "."));
+						cTempo = g_strdup_printf("%f", myConfig.fBackgroundColor2[2]);
+						cStringInConfig = g_strdup_printf("%s;%s", cStringInConfig, g_str_replace (cTempo, ",", "."));
+						cTempo = g_strdup_printf("%f", myConfig.fBackgroundColor2[3]);
+						cStringInConfig = g_strdup_printf("%s;%s;", cStringInConfig, g_str_replace (cTempo, ",", "."));
+						cd_debug ("DONCKY-debug : background_color2=%s", cStringInConfig); 
+	
+						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "background_color2", cStringInConfig, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+	
+						g_free(cStringInConfig);
+					}
+					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "backgroundRadius") == 0)
+					{
+						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "background_radius", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+						myConfig.iBackgroundRadius = atoi(xmlNodeGetContent (pXmlSubNode));
+					}
+					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "borderThickness") == 0)
+					{
+						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "border_thickness", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+						myConfig.iBorderThickness = atoi(xmlNodeGetContent (pXmlSubNode));
+					}
+					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "borderColor") == 0)
+					{
+						gchar *cStringInConfig = NULL;
+						
+						// On récupère le 1er champ -> red
+						myConfig.fBorderColor[0] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 1, ';')) / 255;
+						// On récupère le 2ème champ -> = green
+						myConfig.fBorderColor[1] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 2, ';')) / 255;
+						// On récupère le 3ème champ -> = blue
+						myConfig.fBorderColor[2] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 3, ';')) / 255;
+						// On récupère le dernier champ -> alpha
+						myConfig.fBorderColor[3] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 4, ';')) / 255;
+	
+						// Remplacement des virgules par des points pour l'écriture dans la config					
+						cTempo = g_strdup_printf("%f", myConfig.fBorderColor[0]);
+						cStringInConfig = g_strdup_printf("%s", g_str_replace (cTempo, ",", "."));
+						cTempo = g_strdup_printf("%f", myConfig.fBorderColor[1]);
+						cStringInConfig = g_strdup_printf("%s;%s", cStringInConfig, g_str_replace (cTempo, ",", "."));
+						cTempo = g_strdup_printf("%f", myConfig.fBorderColor[2]);
+						cStringInConfig = g_strdup_printf("%s;%s", cStringInConfig, g_str_replace (cTempo, ",", "."));
+						cTempo = g_strdup_printf("%f", myConfig.fBorderColor[3]);
+						cStringInConfig = g_strdup_printf("%s;%s;", cStringInConfig, g_str_replace (cTempo, ",", "."));
+						cd_debug ("DONCKY-debug : border_color=%s", cStringInConfig); 
+	
+						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "border_color", cStringInConfig, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
+	
+						g_free(cStringInConfig);
+					}
+					xmlFree (cNodeContent);
 				}
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "backgroundColor1") == 0)
-				{
-					gchar *cStringInConfig = NULL;
-					
-					// On récupère le 1er champ -> red
-					myConfig.fBackgroundColor1[0] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 1, ';')) / 255;
-					// On récupère le 2ème champ -> = green
-					myConfig.fBackgroundColor1[1] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 2, ';')) / 255;
-					// On récupère le 3ème champ -> = blue
-					myConfig.fBackgroundColor1[2] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 3, ';')) / 255;
-					// On récupère le dernier champ -> alpha
-					myConfig.fBackgroundColor1[3] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 4, ';')) / 255;
-					
-					// Remplacement des virgules par des points pour l'écriture dans la config					
-					cTempo = g_strdup_printf("%f", myConfig.fBackgroundColor1[0]);
-					cStringInConfig = g_strdup_printf("%s", g_str_replace (cTempo, ",", "."));
-					cTempo = g_strdup_printf("%f", myConfig.fBackgroundColor1[1]);
-					cStringInConfig = g_strdup_printf("%s;%s", cStringInConfig, g_str_replace (cTempo, ",", "."));
-					cTempo = g_strdup_printf("%f", myConfig.fBackgroundColor1[2]);
-					cStringInConfig = g_strdup_printf("%s;%s", cStringInConfig, g_str_replace (cTempo, ",", "."));
-					cTempo = g_strdup_printf("%f", myConfig.fBackgroundColor1[3]);
-					cStringInConfig = g_strdup_printf("%s;%s;", cStringInConfig, g_str_replace (cTempo, ",", "."));
-					cd_debug ("DONCKY-debug : background_color1=%s", cStringInConfig); 
-
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "background_color1", cStringInConfig, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-
-					g_free(cStringInConfig);
-				}
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "backgroundColor2") == 0)
-				{
-					gchar *cStringInConfig = NULL;
-
-					// On récupère le 1er champ -> red
-					myConfig.fBackgroundColor2[0] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 1, ';')) / 255;
-					// On récupère le 2ème champ -> = green
-					myConfig.fBackgroundColor2[1] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 2, ';')) / 255;
-					// On récupère le 3ème champ -> = blue
-					myConfig.fBackgroundColor2[2] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 3, ';')) / 255;
-					// On récupère le dernier champ -> alpha
-					myConfig.fBackgroundColor2[3] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 4, ';')) / 255;
-					
-					// Remplacement des virgules par des points pour l'écriture dans la config					
-					cTempo = g_strdup_printf("%f", myConfig.fBackgroundColor2[0]);
-					cStringInConfig = g_strdup_printf("%s", g_str_replace (cTempo, ",", "."));
-					cTempo = g_strdup_printf("%f", myConfig.fBackgroundColor2[1]);
-					cStringInConfig = g_strdup_printf("%s;%s", cStringInConfig, g_str_replace (cTempo, ",", "."));
-					cTempo = g_strdup_printf("%f", myConfig.fBackgroundColor2[2]);
-					cStringInConfig = g_strdup_printf("%s;%s", cStringInConfig, g_str_replace (cTempo, ",", "."));
-					cTempo = g_strdup_printf("%f", myConfig.fBackgroundColor2[3]);
-					cStringInConfig = g_strdup_printf("%s;%s;", cStringInConfig, g_str_replace (cTempo, ",", "."));
-					cd_debug ("DONCKY-debug : background_color2=%s", cStringInConfig); 
-
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "background_color2", cStringInConfig, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-
-					g_free(cStringInConfig);
-				}
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "backgroundRadius") == 0)
-				{
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "background_radius", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-					myConfig.iBackgroundRadius = atoi(xmlNodeGetContent (pXmlSubNode));
-				}
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "borderThickness") == 0)
-				{
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "border_thickness", xmlNodeGetContent (pXmlSubNode), G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-					myConfig.iBorderThickness = atoi(xmlNodeGetContent (pXmlSubNode));
-				}
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "borderColor") == 0)
-				{
-					gchar *cStringInConfig = NULL;
-					
-					// On récupère le 1er champ -> red
-					myConfig.fBorderColor[0] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 1, ';')) / 255;
-					// On récupère le 2ème champ -> = green
-					myConfig.fBorderColor[1] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 2, ';')) / 255;
-					// On récupère le 3ème champ -> = blue
-					myConfig.fBorderColor[2] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 3, ';')) / 255;
-					// On récupère le dernier champ -> alpha
-					myConfig.fBorderColor[3] = atof(g_str_position (xmlNodeGetContent (pXmlSubNode), 4, ';')) / 255;
-
-					// Remplacement des virgules par des points pour l'écriture dans la config					
-					cTempo = g_strdup_printf("%f", myConfig.fBorderColor[0]);
-					cStringInConfig = g_strdup_printf("%s", g_str_replace (cTempo, ",", "."));
-					cTempo = g_strdup_printf("%f", myConfig.fBorderColor[1]);
-					cStringInConfig = g_strdup_printf("%s;%s", cStringInConfig, g_str_replace (cTempo, ",", "."));
-					cTempo = g_strdup_printf("%f", myConfig.fBorderColor[2]);
-					cStringInConfig = g_strdup_printf("%s;%s", cStringInConfig, g_str_replace (cTempo, ",", "."));
-					cTempo = g_strdup_printf("%f", myConfig.fBorderColor[3]);
-					cStringInConfig = g_strdup_printf("%s;%s;", cStringInConfig, g_str_replace (cTempo, ",", "."));
-					cd_debug ("DONCKY-debug : border_color=%s", cStringInConfig); 
-
-					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Appearance", "border_color", cStringInConfig, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
-
-					g_free(cStringInConfig);
-				}
-				xmlFree (cNodeContent);
-			}
-			g_free (cTempo);
-			
-			cairo_dock_reload_module_instance (myApplet, TRUE); // TRUE <=> read conf file
-		}				
-	}	
-	cairo_dock_close_xml_file (pXmlFile);
+				g_free (cTempo);
+				
+				cairo_dock_reload_module_instance (myApplet, TRUE); // TRUE <=> read conf file
+			}				
+		}	
+		cairo_dock_close_xml_file (pXmlFile);
+	}
 	
 CD_APPLET_ON_DROP_DATA_END
 
