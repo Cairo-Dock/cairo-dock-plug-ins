@@ -519,6 +519,29 @@ else()
 endif()
 
 ############# MEMENU #################
+execute_process(
+	COMMAND lsb_release -i
+	OUTPUT_VARIABLE DISTRO_ID)  # -> "Distributor ID:	Ubuntu"
+STRING (REGEX REPLACE "\n" "" DISTRO_ID ${DISTRO_ID})  # retour chariot
+STRING (REGEX REPLACE ".*: *\t*" "" DISTRO_ID ${DISTRO_ID})
+
+execute_process(
+	COMMAND lsb_release -r
+	OUTPUT_VARIABLE DISTRO_RELEASE)  # -> "Release:	10.10"
+STRING (REGEX REPLACE "\n" "" DISTRO_RELEASE ${DISTRO_RELEASE})  # retour chariot
+STRING (REGEX REPLACE ".*: *\t*" "" DISTRO_RELEASE ${DISTRO_RELEASE})
+
+set (INDICATOR_OLD_NAMES 0)
+message (STATUS "DISTRO_ID: ${DISTRO_ID}, DISTRO_RELEASE: ${DISTRO_RELEASE}")
+if ("${DISTRO_ID}" STREQUAL "Ubuntu")
+	STRING (REGEX REPLACE "\\..*" "" DISTRO_RELEASE_MAJOR ${DISTRO_RELEASE})
+	message (STATUS "DISTRO_RELEASE_MAJOR: ${DISTRO_RELEASE_MAJOR}")
+	if (${DISTRO_RELEASE_MAJOR} LESS 11)  # from 11.04, new names are used.
+		set (INDICATOR_OLD_NAMES 1)
+		message (STATUS "Indicators: use old Ayatana Dbus names")
+	endif()
+endif()
+
 set (with_me_menu "no")
 if ("${with_indicator}" STREQUAL "yes")
 	set (GETTEXT_MEMENU ${GETTEXT_PLUGINS})

@@ -24,11 +24,11 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef __DBUS_SHARED_NAMES_H__
 #define __DBUS_SHARED_NAMES_H__ 1
 
-#define INDICATOR_ME_DBUS_NAME  "com.canonical.indicator.me"
+#define INDICATOR_ME_DBUS_NAME  "org.ayatana.indicator.me"
 #define INDICATOR_ME_DBUS_VERSION  1
-#define INDICATOR_ME_DBUS_OBJECT "/com/canonical/indicator/me/menu"
-#define INDICATOR_ME_SERVICE_DBUS_OBJECT "/com/canonical/indicator/me/service"
-#define INDICATOR_ME_SERVICE_DBUS_INTERFACE "com.canonical.indicator.me.service"
+#define INDICATOR_ME_DBUS_OBJECT "/org/ayatana/indicator/me/menu"
+#define INDICATOR_ME_SERVICE_DBUS_OBJECT "/org/ayatana/indicator/me/service"
+#define INDICATOR_ME_SERVICE_DBUS_INTERFACE "org.ayatana.indicator.me.service"
 
 #define DBUSMENU_ENTRY_MENUITEM_TYPE           "x-canonical-entry-item"
 #define DBUSMENU_ENTRY_MENUITEM_PROP_TEXT      "text"

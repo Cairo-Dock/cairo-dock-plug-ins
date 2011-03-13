@@ -25,6 +25,7 @@ add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
 add_definitions (-DDBUSMENU_MAJOR=${DBUSMENU_MAJOR})
 add_definitions (-DDBUSMENU_MINOR=${DBUSMENU_MINOR})
 add_definitions (-DDBUSMENU_NANO=${DBUSMENU_NANO})
+add_definitions (-DINDICATOR_OLD_NAMES=${INDICATOR_OLD_NAMES})
 ### uncomment the following line to allow multi-instance applet.
 #add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
 ### uncomment the following line to allow extended OpenGL drawing.

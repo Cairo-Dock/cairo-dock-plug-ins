@@ -25,7 +25,6 @@
 
 #include "applet-struct.h"
 #include "messages-service-client.h"
-#include "dbus-data.h"
 #include "applet-messaging.h"
 
 #define DEFAULT_ICON "indicator-messages"

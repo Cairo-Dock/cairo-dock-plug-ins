@@ -19,7 +19,6 @@
 
 #include "stdlib.h"
 
-#include "dbus-data.h"
 #include "applet-config.h"
 #include "applet-notifications.h"
 #include "applet-messaging.h"
@@ -42,6 +41,7 @@ CD_APPLET_INIT_BEGIN
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 	}
+	g_print ("\n>>> INDICATOR_MESSAGES_DBUS_NAME: "INDICATOR_MESSAGES_DBUS_NAME"\n");
 	
 	myData.pIndicator = cd_indicator_new (myApplet,
 		INDICATOR_MESSAGES_DBUS_NAME,

@@ -24,6 +24,14 @@
 #include <cairo-dock.h>
 #include "indicator-applet.h"
 
+// let's include the Dbus name shere, so that we don't duplicate the logic.
+// we could put it directly in the .h, but having several .h will be easier to cope with further changes.
+#if (INDICATOR_OLD_NAMES == 0)
+#include "dbus-data.h"
+#else
+#include "dbus-data-old.h"
+#endif
+
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
 	gchar *cAnimationName;

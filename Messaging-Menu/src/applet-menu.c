@@ -27,7 +27,6 @@
 #include <libdbusmenu-gtk/menu.h>
 
 #include "applet-struct.h"
-#include "dbus-data.h"
 #include "applet-menu.h"
 
 #define M_PI G_PI

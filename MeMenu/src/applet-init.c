@@ -19,7 +19,6 @@
 
 #include <stdlib.h>
 
-#include "dbus-shared-names.h"
 #include "applet-config.h"
 #include "applet-notifications.h"
 #include "applet-struct.h"
