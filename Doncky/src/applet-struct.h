@@ -75,6 +75,8 @@ struct _AppletData {
 	//~ gint iBorderThickness;
 	//~ double fBorderColor[4];
 	
+	gchar *cThemeFolder;
+	gchar *cXmlFileName;
 	gchar *cPrevAlignWidth;
 	gchar *cPrevAlignHeight;
 	gchar *cPrevFont;

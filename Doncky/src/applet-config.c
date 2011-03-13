@@ -76,15 +76,22 @@ CD_APPLET_RESET_DATA_BEGIN
 
 	cairo_dock_stop_task (myData.pPeriodicRefreshTask);
 	cairo_dock_free_task (myData.pPeriodicRefreshTask);
-
 	
 	// REPRIS DE SYSTEM-MONITOR:
 	g_timer_stop (myData.pClock);
-	g_timer_destroy (myData.pClock);	
-	CD_APPLET_REMOVE_MY_DATA_RENDERER;	
+	g_timer_destroy (myData.pClock);
+	CD_APPLET_REMOVE_MY_DATA_RENDERER;
+	
+	// On libère les gchar* de myData:
+	g_free (myData.cThemeFolder);
+	g_free (myData.cXmlFileName);
+	g_free (myData.cPrevAlignWidth);
+	g_free (myData.cPrevAlignHeight);
+	g_free (myData.cPrevFont);
+	g_free (myData.cCurrentText);	
+	g_free (myData.cLastAlignHeight);
 	g_free (myData.cModelName);
 	g_free (myData.cGPUName);
 	g_free (myData.cDriverVersion);
-	g_free (myData.cCurrentText);
 
 CD_APPLET_RESET_DATA_END

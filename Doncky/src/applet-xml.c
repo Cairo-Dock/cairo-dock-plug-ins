@@ -57,6 +57,42 @@ void cd_doncky_free_item_list (CairoDockModuleInstance *myApplet)
 	myData.pTextZoneList = NULL;
 }
 
+gchar *_Get_FilePath (CairoDockModuleInstance *myApplet, const gchar *cString)
+{
+	gchar *cReturn;
+	if (strncmp (cString, "/", 1) == 0 || strncmp (cString, "~/", 2) == 0)
+	{
+		cReturn = g_strdup_printf("%s",g_str_replace (cString, "~", g_strdup_printf("/home/%s", g_getenv("USER"))));
+	}
+	else
+	{
+		gchar *cTempotxt;
+		cTempotxt = g_strdup_printf("%s", cString);
+		cTempotxt = g_str_position (cTempotxt, 1, ' ');
+		cd_debug ("DONCKY-debug : cTempotxt = %s", cTempotxt);
+		if (g_str_has_suffix (cTempotxt, ".sh") \
+		|| g_str_has_suffix (cTempotxt, ".py") \
+		|| g_str_has_suffix (cTempotxt, ".png") \
+		|| g_str_has_suffix (cTempotxt, ".PNG") \
+		|| g_str_has_suffix (cTempotxt, ".jpg") \
+		|| g_str_has_suffix (cTempotxt, ".JPG") \
+		|| g_str_has_suffix (cTempotxt, ".jpeg") \
+		|| g_str_has_suffix (cTempotxt, ".JPEG") \
+		|| g_str_has_suffix (cTempotxt, ".svg") \
+		|| g_str_has_suffix (cTempotxt, ".SVG"))
+		{
+			cReturn = g_strdup_printf("%s%s", myData.cThemeFolder, cString);
+		}
+		else
+			cReturn = g_strdup_printf("%s", cString);
+		g_free (cTempotxt);
+		
+		cd_debug ("DONCKY-debug : cReturn = %s", cReturn);
+	}
+	return cReturn;
+	g_free (cReturn);
+}
+
 
 gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 {
@@ -87,7 +123,17 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 	myData.fPrevTextColor[2] = myConfig.fDefaultTextColor[2];
 	myData.fPrevTextColor[3] = myConfig.fDefaultTextColor[3];
 	
-		
+	// Récupération de myData.cThemeFolder et myData.cXmlFileName:
+	gchar *cTmpFileName = g_strdup_printf("%s", myConfig.cXmlFilePath);
+	g_strreverse (cTmpFileName);
+	cTmpFileName = g_str_position (cTmpFileName, 1, '/');
+	myData.cThemeFolder = g_strdup_printf("%s", myConfig.cXmlFilePath);
+	g_strreverse (myData.cThemeFolder);
+	ltrim(myData.cThemeFolder,cTmpFileName);
+	g_strreverse (myData.cThemeFolder);
+	myData.cXmlFileName = g_strdup_printf("%s", g_strreverse (cTmpFileName));
+	g_free (cTmpFileName);
+
 	int i;
 	for (pXmlNode = pXmlMainNode->children, i = 0; pXmlNode != NULL; pXmlNode = pXmlNode->next, i ++)
 	{
@@ -289,7 +335,7 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 				
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "bash") == 0)
 				{
-					pTextZone->cCommand = g_strdup_printf("%s",g_str_replace (xmlNodeGetContent (pXmlSubNode), "~", g_strdup_printf("/home/%s", getenv("USER"))));
+					pTextZone->cCommand = _Get_FilePath (myApplet, xmlNodeGetContent (pXmlSubNode));
 					pTextZone->bIsBash = TRUE;
 					pTextZone->bIsInternal = FALSE;
 				}
@@ -391,7 +437,7 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 				
 				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "file") == 0)
 				{
-					pTextZone->cImgPath = g_strdup_printf("%s",g_str_replace (xmlNodeGetContent (pXmlSubNode), "~", g_strdup_printf("/home/%s", g_getenv("USER"))));
+					pTextZone->cImgPath = _Get_FilePath (myApplet, xmlNodeGetContent (pXmlSubNode));
 					pTextZone->bImgDraw=FALSE;
 				}
 				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "size") == 0)

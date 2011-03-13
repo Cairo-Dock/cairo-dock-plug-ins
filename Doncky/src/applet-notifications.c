@@ -261,7 +261,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 					}
 					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "bg_desklet") == 0)
 					{
-						cTempo = g_strdup_printf("%s",g_str_replace (xmlNodeGetContent (pXmlSubNode), "~", g_strdup_printf("/home/%s", g_getenv("USER"))));
+						cTempo = _Get_FilePath (myApplet, xmlNodeGetContent (pXmlSubNode));
 						cd_debug ("DONCKY-debug : bg desklet = %s", cTempo);
 						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "bg desklet", cTempo, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
 					}
@@ -292,7 +292,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 					}
 					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "fg_desklet") == 0)
 					{
-						cTempo = g_strdup_printf("%s",g_str_replace (xmlNodeGetContent (pXmlSubNode), "~", g_strdup_printf("/home/%s", g_getenv("USER"))));
+						cTempo = _Get_FilePath (myApplet, xmlNodeGetContent (pXmlSubNode));
 						cd_debug ("DONCKY-debug : fg desklet = %s", cTempo);
 						cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE, G_TYPE_STRING, "Desklet", "fg desklet", cTempo, G_TYPE_INVALID);  // On l'ecrit dans le fichier de config
 					}
