@@ -53,7 +53,6 @@ typedef struct _CDHtmlLink
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
 	gchar **cMimeTypes;
-	gchar **cMonitoredDirectory;
 	gchar *cRenderer;
 	gboolean bFilter;
 	CDStackSortType iSortType;

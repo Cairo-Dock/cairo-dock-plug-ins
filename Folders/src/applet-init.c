@@ -103,10 +103,7 @@ CD_APPLET_INIT_BEGIN
 	}
 	
 	//\_______________ On enregistre nos notifications.
-	cairo_dock_register_notification_on_object (&myContainersMgr,
-		NOTIFICATION_CLICK_ICON,
-		(CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC,
-		CAIRO_DOCK_RUN_FIRST, myApplet);  // on se met en premier pour pas que le dock essaye de lancer les dossier.
+	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 CD_APPLET_INIT_END

@@ -28,7 +28,7 @@
 #include "applet-stack.h"
 
 
-CD_APPLET_DEFINITION (N_("stack"),
+CD_APPLET_DEFINE_BEGIN (N_("stack"),
 	1, 6, 2,
 	CAIRO_DOCK_CATEGORY_APPLET_FILES,
 	N_("This applet allows you to build a stack of files, just like the Stacks applet of MacOS X.\n"
@@ -36,6 +36,21 @@ CD_APPLET_DEFINITION (N_("stack"),
 	"You can drop any file, or web URL, or even some piece of text\n"
 	"You can quickly copy the path/url/text to the clipboard, or open it."),
 	"ChAnGFu (Remy Robertson)")
+	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	cairo_dock_register_notification_on_object (&myContainersMgr,
+		NOTIFICATION_DROP_DATA,
+		(CairoDockNotificationFunc) cd_stack_on_drop_data,
+		CAIRO_DOCK_RUN_FIRST, NULL);
+CD_APPLET_DEFINE_END
+
+//~ CD_APPLET_DEFINITION (N_("stack"),
+	//~ 1, 6, 2,
+	//~ CAIRO_DOCK_CATEGORY_APPLET_FILES,
+	//~ N_("This applet allows you to build a stack of files, just like the Stacks applet of MacOS X.\n"
+	//~ "To add file into your stacks, you just have to drag and drop it on the Stacks icon and you're done.\n"
+	//~ "You can drop any file, or web URL, or even some piece of text\n"
+	//~ "You can quickly copy the path/url/text to the clipboard, or open it."),
+	//~ "ChAnGFu (Remy Robertson)")
 
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
@@ -46,10 +61,7 @@ CD_APPLET_INIT_BEGIN
 	if (myDock)
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 	
-	cairo_dock_register_notification_on_object (&myContainersMgr,
-		NOTIFICATION_CLICK_ICON,
-		(CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC,
-		CAIRO_DOCK_RUN_FIRST, myApplet);  // on se met en premier pour pas que le dock essaye de lancer nos icones, car ce ne sont pas toutes des lanceurs, donc on va le faire nous-memes.
+	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;

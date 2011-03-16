@@ -53,6 +53,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	}
 	else if (CD_APPLET_CLICKED_ICON != NULL)
 	{
+		g_print ("_launch_item\n");
 		_launch_item (CD_APPLET_CLICKED_ICON, myApplet);  // on intercepte la notification.
 	}
 	else
@@ -207,3 +208,42 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 		_cd_stack_copy_content (NULL, data);
 	}
 CD_APPLET_ON_MIDDLE_CLICK_END
+
+
+gboolean cd_stack_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *icon, double fOrder, CairoContainer *pContainer)
+{
+	//g_print ("Stack received '%s'\n", cReceivedData);
+	
+	if (fOrder == CAIRO_DOCK_LAST_ORDER)  // lachage sur une icone.
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	gchar *cPath = NULL;
+	if (strncmp (cReceivedData, "file://", 7) == 0)  // we want files.
+		cPath = g_filename_from_uri (cReceivedData, NULL, NULL);
+	else
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	if (g_file_test (cPath, G_FILE_TEST_EXISTS))
+	{
+		//g_print (" ajout d'un fichier...\n");
+		CairoDockModule *pModule = cairo_dock_find_module_from_name ("stack");
+		g_return_val_if_fail (pModule != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		
+		if (pModule->pInstancesList == NULL)  // no stack yet
+		{
+			cairo_dock_activate_module_and_load ("stack");
+			g_return_val_if_fail (pModule->pInstancesList != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		}
+		
+		CairoDockModuleInstance *myApplet = pModule->pInstancesList->data;
+		cd_stack_create_and_load_item (myApplet, cReceivedData);
+		
+		cairo_dock_show_temporary_dialog_with_icon (D_("The file has been added to the stack."),
+			myIcon, myContainer,
+			5000,
+			"same icon");
+		
+		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}

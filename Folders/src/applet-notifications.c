@@ -411,13 +411,13 @@ gboolean cd_folders_on_drop_data (gpointer data, const gchar *cReceivedData, Ico
 	else
 		cPath = g_strdup (cReceivedData);
 	
-	if (g_file_test (cPath, G_FILE_TEST_IS_DIR))
+	if (g_file_test (cPath, G_FILE_TEST_IS_DIR))  // it's a folder, let's add a new instance of the applet that will handle it.
 	{
 		//g_print (" ajout d'un repertoire...\n");
 		CairoDockModule *pModule = cairo_dock_find_module_from_name ("Folders");
 		g_return_val_if_fail (pModule != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 		
-		gchar *cConfFilePath = cairo_dock_add_module_conf_file (pModule);
+		gchar *cConfFilePath = cairo_dock_add_module_conf_file (pModule);  // we want to update the conf file before we instanciate the applet, so don't use high-level functions.
 		cairo_dock_update_conf_file (cConfFilePath,
 			G_TYPE_STRING, "Configuration", "dir path", cReceivedData,
 			G_TYPE_INVALID);
@@ -427,6 +427,12 @@ gboolean cd_folders_on_drop_data (gpointer data, const gchar *cReceivedData, Ico
 		{
 			cairo_dock_update_dock_size (pNewInstance->pDock);
 		}
+		
+		if (pNewInstance != NULL)
+			cairo_dock_show_temporary_dialog_with_icon (D_("The folder has been imported."),
+				pNewInstance->pIcon, pNewInstance->pContainer,
+				5000,
+				"same icon");
 		
 		if (pModule->pInstancesList && pModule->pInstancesList->next == NULL)  // module nouvellement active.
 		{
