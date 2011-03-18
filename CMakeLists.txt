@@ -484,24 +484,27 @@ set (with_mail "no")
 execute_process(
 	COMMAND libetpan-config --cflags
 	OUTPUT_VARIABLE MAIL_PACKAGE_CFLAGS)
-STRING (REGEX MATCHALL "-I[^ ]+ " TMP_VARIABLE "${MAIL_PACKAGE_CFLAGS}") # first extract the "-I" options
-STRING (REGEX REPLACE ";" "" TMP_VARIABLE "${TMP_VARIABLE}")
-STRING (REGEX REPLACE " $" "" TMP_VARIABLE "${TMP_VARIABLE}")
-STRING (REGEX REPLACE "-I([^ ]+)" "\\1" MAIL_PACKAGE_INCLUDE_DIRS "${TMP_VARIABLE}")  # then remove the "-I" string
+if (NOT "${MAIL_PACKAGE_CFLAGS}" STREQUAL "") # if we don't want to use it, we don't want to have an error
+	STRING (REGEX MATCHALL "-I[^ ]+ " TMP_VARIABLE "${MAIL_PACKAGE_CFLAGS}") # first extract the "-I" options
+	STRING (REGEX REPLACE ";" "" TMP_VARIABLE "${TMP_VARIABLE}")
+	STRING (REGEX REPLACE " $" "" TMP_VARIABLE "${TMP_VARIABLE}")
+	STRING (REGEX REPLACE "-I([^ ]+)" "\\1" MAIL_PACKAGE_INCLUDE_DIRS "${TMP_VARIABLE}")  # then remove the "-I" string
+endif()
 # find the link flags
 execute_process(
 	COMMAND libetpan-config --libs
 	OUTPUT_VARIABLE MAIL_PACKAGE_LIBS)
-#   find the link libraries
-STRING (REGEX MATCHALL "-l[^ ]+ " TMP_VARIABLE "${MAIL_PACKAGE_LIBS}") # extract the "-l" options
-STRING (REGEX REPLACE ";" "" TMP_VARIABLE "${TMP_VARIABLE}")
-STRING (REGEX REPLACE " $" "" MAIL_PACKAGE_LIBRARIES "${TMP_VARIABLE}")
-#   find the link directories
-STRING (REGEX MATCHALL "-L[^ ]+ " TMP_VARIABLE "${MAIL_PACKAGE_LIBS}") # extract the "-L" options
-STRING (REGEX REPLACE ";" "" TMP_VARIABLE "${TMP_VARIABLE}")
-STRING (REGEX REPLACE " $" "" TMP_VARIABLE "${TMP_VARIABLE}")
-STRING (REGEX REPLACE "-L([^ ]+)" "\\1" MAIL_PACKAGE_LIBRARY_DIRS "${TMP_VARIABLE}")  # then remove the "-L" string
-
+if (NOT "${MAIL_PACKAGE_LIBS}" STREQUAL "")
+	#   find the link libraries
+	STRING (REGEX MATCHALL "-l[^ ]+ " TMP_VARIABLE "${MAIL_PACKAGE_LIBS}") # extract the "-l" options
+	STRING (REGEX REPLACE ";" "" TMP_VARIABLE "${TMP_VARIABLE}")
+	STRING (REGEX REPLACE " $" "" MAIL_PACKAGE_LIBRARIES "${TMP_VARIABLE}")
+	#   find the link directories
+	STRING (REGEX MATCHALL "-L[^ ]+ " TMP_VARIABLE "${MAIL_PACKAGE_LIBS}") # extract the "-L" options
+	STRING (REGEX REPLACE ";" "" TMP_VARIABLE "${TMP_VARIABLE}")
+	STRING (REGEX REPLACE " $" "" TMP_VARIABLE "${TMP_VARIABLE}")
+	STRING (REGEX REPLACE "-L([^ ]+)" "\\1" MAIL_PACKAGE_LIBRARY_DIRS "${TMP_VARIABLE}")  # then remove the "-L" string
+endif()
 if ("${MAIL_PACKAGE_LIBS}" STREQUAL "")
 	message (STATUS "warning : Could not find libetpan; Cairo-Dock won't be built with Mail applet.")
 else()
@@ -519,20 +522,41 @@ else()
 endif()
 
 ############# MEMENU #################
+# We try to detect if the user is on Ubuntu to know which bus we have to use...
 execute_process(
 	COMMAND lsb_release -i
 	OUTPUT_VARIABLE DISTRO_ID)  # -> "Distributor ID:	Ubuntu"
-STRING (REGEX REPLACE "\n" "" DISTRO_ID ${DISTRO_ID})  # retour chariot
-STRING (REGEX REPLACE ".*: *\t*" "" DISTRO_ID ${DISTRO_ID})
+if (NOT "${DISTRO_ID}" STREQUAL "") # this tool isn't available on all distributions
+	STRING (REGEX REPLACE "\n" "" DISTRO_ID ${DISTRO_ID})  # retour chariot
+	STRING (REGEX REPLACE ".*: *\t*" "" DISTRO_ID ${DISTRO_ID})
 
-execute_process(
-	COMMAND lsb_release -r
-	OUTPUT_VARIABLE DISTRO_RELEASE)  # -> "Release:	10.10"
-STRING (REGEX REPLACE "\n" "" DISTRO_RELEASE ${DISTRO_RELEASE})  # retour chariot
-STRING (REGEX REPLACE ".*: *\t*" "" DISTRO_RELEASE ${DISTRO_RELEASE})
+	execute_process(
+		COMMAND lsb_release -r
+		OUTPUT_VARIABLE DISTRO_RELEASE)  # -> "Release:	10.10"
+	STRING (REGEX REPLACE "\n" "" DISTRO_RELEASE ${DISTRO_RELEASE})  # retour chariot
+	STRING (REGEX REPLACE ".*: *\t*" "" DISTRO_RELEASE ${DISTRO_RELEASE})
+else()
+	# on Ubuntu deb builders, lsb_release isn't available...
+	execute_process(
+		COMMAND cat /etc/issue.net
+		OUTPUT_VARIABLE DISTRO)  # -> Ubuntu maverick || Ubuntu natty (development branch)
+	if (NOT "${DISTRO}" STREQUAL "")
+		STRING (REGEX REPLACE "\n" "" DISTRO ${DISTRO})  # retour chariot
+		STRING (REGEX REPLACE ".[(]development branch[)]" "" DISTRO ${DISTRO})
+		STRING (REGEX REPLACE " (.+)" "" DISTRO_ID ${DISTRO})
+		STRING (REGEX REPLACE "(.+) " "" DISTRO_RELEASE ${DISTRO})
+		if ("${DISTRO_RELEASE}" STREQUAL "natty")
+			set (DISTRO_RELEASE "11.04")
+		elseif ("${DISTRO_RELEASE}" STREQUAL "oneiric")
+			set (DISTRO_RELEASE "11.10")
+		endif()
+	endif()
+endif()
 
 set (INDICATOR_OLD_NAMES 0)
-message (STATUS "DISTRO_ID: ${DISTRO_ID}, DISTRO_RELEASE: ${DISTRO_RELEASE}")
+if (NOT "${DISTRO_ID}" STREQUAL "")
+	message (STATUS "DISTRO_ID: ${DISTRO_ID}, DISTRO_RELEASE: ${DISTRO_RELEASE}")
+endif()
 if ("${DISTRO_ID}" STREQUAL "Ubuntu")
 	STRING (REGEX REPLACE "\\..*" "" DISTRO_RELEASE_MAJOR ${DISTRO_RELEASE})
 	message (STATUS "DISTRO_RELEASE_MAJOR: ${DISTRO_RELEASE_MAJOR}")
