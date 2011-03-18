@@ -214,13 +214,16 @@ else()
 	endif()
 endif()
 
+# Valac is only riquired to convert vala files to C files.
+#  So we can directly use produced files (c, h, vapi) without using valac.
 set (with_vala "yes")
 set (with_valac "no")
 find_program (VALAC_EXE valac)
 message (STATUS "VALAC_EXE: ${VALAC_EXE}")
 if ("${WITH_VALA}" STREQUAL "no")
 	set (with_vala "no")
-elseif ("${WITH_VALA}" STREQUAL "yes" AND NOT "${VALAC_EXE}" STREQUAL "VALAC_EXE-NOTFOUND")
+# elseif ("${WITH_VALA}" STREQUAL "yes" AND NOT "${VALAC_EXE}" STREQUAL "VALAC_EXE-NOTFOUND") # only 0.10 worked
+elseif (NOT "${VALAC_EXE}" STREQUAL "VALAC_EXE-NOTFOUND") # now it works with 0.10 and 0.11 (= next 0.12)
 	execute_process(COMMAND ${VALAC_EXE} "--version"
 		OUTPUT_VARIABLE "VALA_VERSION")
 	string(REPLACE "Vala" "" "VALA_VERSION" ${VALA_VERSION})
@@ -239,11 +242,11 @@ elseif ("${WITH_VALA}" STREQUAL "yes" AND NOT "${VALAC_EXE}" STREQUAL "VALAC_EXE
 	message (STATUS "VALA_NANO  : ${VALA_NANO}")
 
 	if (${VALA_MAJOR} GREATER 0 OR ${VALA_MINOR} GREATER 9)  # vala > 0.10
-		message (STATUS "Vala compiler ok.")
+		message (STATUS " Vala compiler OK (> 0.10).")
 		set (VALAC_FOUND "TRUE")
 		set (with_valac "yes")
 	else()
-		message (STATUS "Vala compiler too old (0.10 required), won't build Vala interface.")
+		message (STATUS "Vala compiler is too old (0.10 required), won't build Vala interface.")
 	endif()
 endif()
 
@@ -536,19 +539,25 @@ if (NOT "${DISTRO_ID}" STREQUAL "") # this tool isn't available on all distribut
 	STRING (REGEX REPLACE "\n" "" DISTRO_RELEASE ${DISTRO_RELEASE})  # retour chariot
 	STRING (REGEX REPLACE ".*: *\t*" "" DISTRO_RELEASE ${DISTRO_RELEASE})
 else()
-	# on Ubuntu deb builders, lsb_release isn't available...
-	execute_process(
-		COMMAND cat /etc/issue.net
-		OUTPUT_VARIABLE DISTRO)  # -> Ubuntu maverick || Ubuntu natty (development branch)
-	if (NOT "${DISTRO}" STREQUAL "")
-		STRING (REGEX REPLACE "\n" "" DISTRO ${DISTRO})  # retour chariot
-		STRING (REGEX REPLACE ".[(]development branch[)]" "" DISTRO ${DISTRO})
-		STRING (REGEX REPLACE " (.+)" "" DISTRO_ID ${DISTRO})
-		STRING (REGEX REPLACE "(.+) " "" DISTRO_RELEASE ${DISTRO})
-		if ("${DISTRO_RELEASE}" STREQUAL "natty")
-			set (DISTRO_RELEASE "11.04")
-		elseif ("${DISTRO_RELEASE}" STREQUAL "oneiric")
-			set (DISTRO_RELEASE "11.10")
+	# on Ubuntu deb builders, lsb_release isn't available but we can have a look to /etc/issue.net
+	get_filename_component(ISSUE_NET "/etc/issue.net" ABSOLUTE)
+	if (EXISTS ${ISSUE_NET}) # to not have an error with cat
+		execute_process(
+			COMMAND cat ${ISSUE_NET}
+			OUTPUT_VARIABLE DISTRO_RELEASE)  # -> Ubuntu 10.10 || Ubuntu natty (development branch)
+		if (NOT "${DISTRO_RELEASE}" STREQUAL "")
+			STRING (REGEX REPLACE "\n" "" DISTRO_RELEASE ${DISTRO_RELEASE})  # retour chariot
+			STRING (REGEX REPLACE " (.+)" "" DISTRO_ID ${DISTRO_RELEASE})
+			if ("${DISTRO_ID}" STREQUAL "Ubuntu")
+				STRING (REGEX REPLACE ".[(]development branch[)]" "" DISTRO_RELEASE ${DISTRO_RELEASE})
+				STRING (REGEX REPLACE ".LTS" "" DISTRO_RELEASE ${DISTRO_RELEASE}) # Ubuntu 10.04.1 LTS
+				STRING (REGEX REPLACE "(.+) " "" DISTRO_RELEASE ${DISTRO_RELEASE})
+				if ("${DISTRO_RELEASE}" STREQUAL "natty")
+					set (DISTRO_RELEASE "11.04")
+				elseif ("${DISTRO_RELEASE}" STREQUAL "oneiric")
+					set (DISTRO_RELEASE "11.10")
+				endif()
+			endif()
 		endif()
 	endif()
 endif()
