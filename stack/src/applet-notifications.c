@@ -214,36 +214,54 @@ gboolean cd_stack_on_drop_data (gpointer data, const gchar *cReceivedData, Icon 
 {
 	//g_print ("Stack received '%s'\n", cReceivedData);
 	
-	if (fOrder == CAIRO_DOCK_LAST_ORDER)  // lachage sur une icone.
+	// if we dropped on an icon, let pass the notif to it.
+	if (fOrder == CAIRO_DOCK_LAST_ORDER)  // drop on an icon.
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
+	// if it's a .desktop, let pass to the core (it will create the associated launcher).
+	if (g_str_has_suffix (cReceivedData, ".desktop"))
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	// if it's not a file or an URL, let pass it.
 	gchar *cPath = NULL;
-	if (strncmp (cReceivedData, "file://", 7) == 0)  // we want files.
-		cPath = g_filename_from_uri (cReceivedData, NULL, NULL);
-	else
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	
-	if (g_file_test (cPath, G_FILE_TEST_EXISTS))
+	if (strncmp (cReceivedData, "file://", 7) == 0)  // it's a file.
 	{
-		//g_print (" ajout d'un fichier...\n");
-		CairoDockModule *pModule = cairo_dock_find_module_from_name ("stack");
-		g_return_val_if_fail (pModule != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
-		
-		if (pModule->pInstancesList == NULL)  // no stack yet
+		cPath = g_filename_from_uri (cReceivedData, NULL, NULL);
+		if (!g_file_test (cPath, G_FILE_TEST_EXISTS)
+		|| g_file_test (cPath, G_FILE_TEST_IS_DIR))  // if the path doesn't exist, or is a folder, skip it (folders are handled by the 'Folders' applet).
 		{
-			cairo_dock_activate_module_and_load ("stack");
-			g_return_val_if_fail (pModule->pInstancesList != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+			g_free (cPath);
+			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 		}
-		
-		CairoDockModuleInstance *myApplet = pModule->pInstancesList->data;
-		cd_stack_create_and_load_item (myApplet, cReceivedData);
-		
-		cairo_dock_show_temporary_dialog_with_icon (D_("The file has been added to the stack."),
-			myIcon, myContainer,
-			5000,
-			"same icon");
-		
-		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	else if (strncmp (cReceivedData, "http://", 7) != 0
+	&& strncmp (cReceivedData, "https://", 8) != 0)  // it's neither a file nor an URL.
+	{
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	}
+	
+	// grab the first instance of the Stack applet (launch it if necessary)
+	CairoDockModule *pModule = cairo_dock_find_module_from_name ("stack");
+	g_return_val_if_fail (pModule != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	
+	if (pModule->pInstancesList == NULL)  // no stack yet
+	{
+		cairo_dock_activate_module_and_load ("stack");
+		g_return_val_if_fail (pModule->pInstancesList != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	}
+	
+	// add the item to the instance.
+	CairoDockModuleInstance *myApplet = pModule->pInstancesList->data;
+	cd_stack_create_and_load_item (myApplet, cReceivedData);
+	
+	cairo_dock_show_temporary_dialog_with_icon (
+		cPath != NULL ?
+		D_("The file has been added to the stack."):
+		D_("The URL has been added to the stack."),
+		myIcon, myContainer,
+		5000,
+		"same icon");
+	
+	g_free (cPath);
+	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 }
