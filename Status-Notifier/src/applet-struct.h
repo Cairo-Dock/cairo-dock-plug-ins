@@ -100,6 +100,8 @@ struct _AppletData {
 	guint iSidGetWatcher;
 	GHashTable *pThemePaths;
 	gint iNbLines, iNbColumns, iItemSize;  // agencement compact.
+	CDStatusNotifierItem *pPrevItemHovered;
+	gdouble fDesktopNameAlpha;
 	} ;
 
 

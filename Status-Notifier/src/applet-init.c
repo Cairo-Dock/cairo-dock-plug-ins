@@ -33,8 +33,8 @@ CD_APPLET_DEFINITION (N_("Status Notifier"),
 	2, 2, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	("A <b>notification area</b> for your dock\n"
-	"Also called 'systray'.\n"
-	"It is designed to work on any desktop that supports the latest systray specifications (KDE, Gnome, etc)"),
+	"Programs can use it to display their current status.\n"
+	"If a program doesn't appear inside when it should, it's probably because it doesn't support the protocol yet. Please fill a bug report to the devs."),
 	"Fabounet (Fabrice Rey)")
 
 
@@ -66,6 +66,29 @@ CD_APPLET_INIT_BEGIN
 		(CairoDockNotificationFunc) cd_status_notifier_on_right_click,
 		CAIRO_DOCK_RUN_FIRST, myApplet);
 	
+	if (myConfig.bCompactMode)
+	{
+		cairo_dock_register_notification_on_object (myContainer,
+			NOTIFICATION_MOUSE_MOVED,
+			(CairoDockNotificationFunc) on_mouse_moved,
+			CAIRO_DOCK_RUN_AFTER, myApplet);
+		if (myDesklet)
+		{
+			cairo_dock_register_notification_on_object (myContainer,
+				NOTIFICATION_RENDER_DESKLET,
+				(CairoDockNotificationFunc) on_render_desklet,
+				CAIRO_DOCK_RUN_AFTER, myApplet);
+			cairo_dock_register_notification_on_object (myContainer,
+				NOTIFICATION_UPDATE_DESKLET,
+				(CairoDockNotificationFunc) on_update_desklet,
+				CAIRO_DOCK_RUN_AFTER, myApplet);
+			cairo_dock_register_notification_on_object (myContainer,
+				NOTIFICATION_LEAVE_DESKLET,
+				(CairoDockNotificationFunc) on_leave_desklet,
+				CAIRO_DOCK_RUN_AFTER, myApplet);
+		}
+	}
+	
 	cd_satus_notifier_launch_service ();
 CD_APPLET_INIT_END
 
@@ -79,6 +102,18 @@ CD_APPLET_STOP_BEGIN
 		NOTIFICATION_BUILD_CONTAINER_MENU,
 		(CairoDockNotificationFunc) cd_status_notifier_on_right_click,
 		myApplet);
+	cairo_dock_remove_notification_func_on_object (myContainer,
+		NOTIFICATION_MOUSE_MOVED,
+		(CairoDockNotificationFunc) on_mouse_moved, myApplet);
+	cairo_dock_remove_notification_func_on_object (myContainer,
+		NOTIFICATION_RENDER_DESKLET,
+		(CairoDockNotificationFunc) on_render_desklet, myApplet);
+	cairo_dock_remove_notification_func_on_object (myContainer,
+		NOTIFICATION_UPDATE_DESKLET,
+		(CairoDockNotificationFunc) on_update_desklet, myApplet);
+	cairo_dock_remove_notification_func_on_object (myContainer,
+		NOTIFICATION_LEAVE_DESKLET,
+		(CairoDockNotificationFunc) on_leave_desklet, myApplet);
 	cd_satus_notifier_stop_service ();
 CD_APPLET_STOP_END
 
@@ -87,6 +122,42 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+			NOTIFICATION_MOUSE_MOVED,
+			(CairoDockNotificationFunc) on_mouse_moved, myApplet);
+		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+			NOTIFICATION_RENDER_DESKLET,
+			(CairoDockNotificationFunc) on_render_desklet, myApplet);
+		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+			NOTIFICATION_UPDATE_DESKLET,
+			(CairoDockNotificationFunc) on_update_desklet, myApplet);
+		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+			NOTIFICATION_LEAVE_DESKLET,
+			(CairoDockNotificationFunc) on_leave_desklet, myApplet);
+		
+		if (myConfig.bCompactMode)
+		{
+			cairo_dock_register_notification_on_object (myContainer,
+				NOTIFICATION_MOUSE_MOVED,
+				(CairoDockNotificationFunc) on_mouse_moved,
+				CAIRO_DOCK_RUN_AFTER, myApplet);
+			if (myDesklet)
+			{
+				cairo_dock_register_notification_on_object (myContainer,
+					NOTIFICATION_RENDER_DESKLET,
+					(CairoDockNotificationFunc) on_render_desklet,
+					CAIRO_DOCK_RUN_AFTER, myApplet);
+				cairo_dock_register_notification_on_object (myContainer,
+					NOTIFICATION_UPDATE_DESKLET,
+					(CairoDockNotificationFunc) on_update_desklet,
+					CAIRO_DOCK_RUN_AFTER, myApplet);
+				cairo_dock_register_notification_on_object (myContainer,
+					NOTIFICATION_LEAVE_DESKLET,
+					(CairoDockNotificationFunc) on_leave_desklet,
+					CAIRO_DOCK_RUN_AFTER, myApplet);
+			}
+		}
+		
 		if (myConfig.bCompactMode)
 		{
 			if (myDesklet && CD_APPLET_MY_CONTAINER_TYPE_CHANGED)  // we are now in a desklet, set a renderer.
@@ -94,7 +165,7 @@ CD_APPLET_RELOAD_BEGIN
 				CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 			}
 			CD_APPLET_DELETE_MY_ICONS_LIST;
-			if (myDock)  // on ne veut pas d'un sous-dock vide, meme si on va probablement y rajouter des items aussitot.
+			if (myDock)  // on ne veut pas d'un sous-dock vide.
 			{
 				cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->cName);
 				myIcon->pSubDock = NULL;

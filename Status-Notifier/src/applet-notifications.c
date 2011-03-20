@@ -19,6 +19,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #include "applet-struct.h"
 #include "applet-item.h"
@@ -211,5 +212,101 @@ gboolean cd_status_notifier_on_enter_icon (CairoDockModuleInstance *myApplet, Ic
 			pItemData->iSidPopupTooltip = g_timeout_add (600, (GSourceFunc) _popup_tooltip, pIcon);
 		}*/
 	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+
+
+gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation)
+{
+	CD_APPLET_ENTER;
+	if (! myIcon->bPointed || ! pContainer->bInside)
+		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	
+	CDStatusNotifierItem *pItem = cd_satus_notifier_find_item_from_coord ();
+	if (pItem == NULL)
+	{
+		if (myIcon->cName != NULL)
+			CD_APPLET_SET_NAME_FOR_MY_ICON (NULL);
+		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	}
+	
+	if (pItem != myData.pPrevItemHovered)
+	{
+		myData.pPrevItemHovered = pItem;
+		myData.fDesktopNameAlpha = 0.;
+		CD_APPLET_SET_NAME_FOR_MY_ICON (pItem->cLabel ? pItem->cLabel : pItem->cTitle);
+		
+		if (myDock)
+			CAIRO_DOCK_REDRAW_MY_CONTAINER;
+		else
+			*bStartAnimation = TRUE;
+	}
+	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+}
+
+gboolean on_update_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bContinueAnimation)
+{
+	CD_APPLET_ENTER;
+	if (! myIcon->bPointed || ! pContainer->bInside)
+	{
+		myData.fDesktopNameAlpha -= .07;
+		if (myData.fDesktopNameAlpha < .01)
+			myData.fDesktopNameAlpha = 0;
+		if (myData.fDesktopNameAlpha != 0)
+			*bContinueAnimation = TRUE;
+	}
+	else
+	{
+		myData.fDesktopNameAlpha += .07;
+		if (myData.fDesktopNameAlpha > .99)
+			myData.fDesktopNameAlpha = 1;
+		if (myData.fDesktopNameAlpha != 1)
+			*bContinueAnimation = TRUE;
+	}
+	CAIRO_DOCK_REDRAW_MY_CONTAINER;
+	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+}
+
+gboolean on_render_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, cairo_t *pCairoContext)
+{
+	CD_APPLET_ENTER;
+	int x, y;  // centre du texte.
+	x = myIcon->fDrawX + myIcon->fWidth * myIcon->fScale / 2;
+	y = myIcon->fDrawY + myIcon->fHeight * myIcon->fScale / 2;
+	if (x - myIcon->iTextWidth/2 < 0)
+	{
+		x -= myIcon->iTextWidth/2;
+	}
+	if (pCairoContext != NULL)
+	{
+		if (myIcon->pTextBuffer == NULL)
+			CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		cairo_save (pCairoContext);
+		cairo_translate (pCairoContext, x, y);
+		cairo_set_source_surface (pCairoContext, myIcon->pTextBuffer, - myIcon->iTextWidth/2, - myIcon->iTextHeight/2);
+		cairo_paint_with_alpha (pCairoContext, myData.fDesktopNameAlpha);
+		cairo_restore (pCairoContext);
+	}
+	else
+	{
+		if (myIcon->iLabelTexture == 0)
+			CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		glPushMatrix ();
+		if (myDesklet)
+			glTranslatef (-myDesklet->container.iWidth/2, -myDesklet->container.iHeight/2, -myDesklet->container.iHeight*(sqrt(3)/2));
+		glTranslatef (x - ((myIcon->iTextWidth & 1) ? 0.5 : 0.),
+			y - ((myIcon->iTextHeight & 1) ? 0.5 : 0.),
+			0);
+		cairo_dock_draw_texture_with_alpha (myIcon->iLabelTexture, myIcon->iTextWidth, myIcon->iTextHeight, myData.fDesktopNameAlpha);
+		glPopMatrix ();
+	}
+	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+}
+
+gboolean on_leave_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation)
+{
+	*bStartAnimation = TRUE;
+	myData.pPrevItemHovered = NULL;
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
