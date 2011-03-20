@@ -98,6 +98,14 @@ message ("")
 
 pkg_check_modules ("PACKAGE" REQUIRED "gtk+-2.0" "gthread-2.0" "cairo" "librsvg-2.0" "dbus-1" "dbus-glib-1" "libxml-2.0" "gtkglext-1.0" "cairo-dock")
 
+#############    GLIB    #################
+pkg_check_modules (GLIB glib-2.0)
+	STRING (REGEX REPLACE "\\..*" "" GLIB_MAJOR "${GLIB_VERSION}") # 2.28.3 => 2
+	STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" GLIB_MINOR "${GLIB_VERSION}")  # 2.28.3 => 2.28
+	STRING (REGEX REPLACE "\\.[0-9]*" "" GLIB_MINOR "${GLIB_MINOR}") # 2.28 => 28
+	STRING (REGEX REPLACE ".*\\." "" GLIB_NANO "${GLIB_VERSION}") # 2.28.3 => 3
+	STRING (REGEX REPLACE "-.*" "" GLIB_NANO "${GLIB_NANO}")
+
 ############# ALSA_MIXER #################
 set (with_alsa "no")
 if (NOT "${enable-alsa-mixer}" STREQUAL "no")
@@ -220,7 +228,8 @@ set (with_vala "yes")
 set (with_valac "no")
 find_program (VALAC_EXE valac)
 message (STATUS "VALAC_EXE: ${VALAC_EXE}")
-if ("${WITH_VALA}" STREQUAL "no")
+# >= Glib 2.26
+if ("${WITH_VALA}" STREQUAL "no" OR (${GLIB_MAJOR} LESS 3 AND ${GLIB_MINOR} LESS 26))
 	set (with_vala "no")
 # elseif ("${WITH_VALA}" STREQUAL "yes" AND NOT "${VALAC_EXE}" STREQUAL "VALAC_EXE-NOTFOUND") # only 0.10 worked
 elseif (NOT "${VALAC_EXE}" STREQUAL "VALAC_EXE-NOTFOUND") # now it works with 0.10 and 0.11 (= next 0.12)
@@ -231,18 +240,18 @@ elseif (NOT "${VALAC_EXE}" STREQUAL "VALAC_EXE-NOTFOUND") # now it works with 0.
 	message (STATUS "VALA_VERSION: ${VALA_VERSION}")
 
 	STRING (REGEX REPLACE "\\..*" "" VALA_MAJOR "${VALA_VERSION}")
-	message (STATUS "VALA_MAJOR : ${VALA_MAJOR}")
+	# message (STATUS "VALA_MAJOR : ${VALA_MAJOR}")
 	
 	STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" VALA_MINOR "${VALA_VERSION}")  # 0.1.7 => 1.7
 	STRING (REGEX REPLACE "\\.[0-9]*" "" VALA_MINOR "${VALA_MINOR}")
-	message (STATUS "VALA_MINOR : ${VALA_MINOR}")
+	# message (STATUS "VALA_MINOR : ${VALA_MINOR}")
 
 	STRING (REGEX REPLACE ".*\\." "" VALA_NANO "${VALA_VERSION}")
 	STRING (REGEX REPLACE "-.*" "" VALA_NANO "${VALA_NANO}")
-	message (STATUS "VALA_NANO  : ${VALA_NANO}")
+	# message (STATUS "VALA_NANO  : ${VALA_NANO}")
 
 	if (${VALA_MAJOR} GREATER 0 OR ${VALA_MINOR} GREATER 9)  # vala > 0.10
-		message (STATUS " Vala compiler OK (> 0.10).")
+		message (STATUS " Vala compiler OK (>= 0.10).")
 		set (VALAC_FOUND "TRUE")
 		set (with_valac "yes")
 	else()
@@ -417,15 +426,15 @@ if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1" AND "${DBUSMENU_FOUND}" STREQUAL "1
 	message (STATUS "DBUSMENU_VERSION : ${DBUSMENU_VERSION}")
 	
 	STRING (REGEX REPLACE "\\..*" "" DBUSMENU_MAJOR "${DBUSMENU_VERSION}")
-	message (STATUS "DBUSMENU_MAJOR : ${DBUSMENU_MAJOR}")
+	# message (STATUS "DBUSMENU_MAJOR : ${DBUSMENU_MAJOR}")
 	
 	STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" DBUSMENU_MINOR "${DBUSMENU_VERSION}")  # 0.1.7 => 1.7
 	STRING (REGEX REPLACE "\\.[0-9]*" "" DBUSMENU_MINOR "${DBUSMENU_MINOR}")
-	message (STATUS "DBUSMENU_MINOR : ${DBUSMENU_MINOR}")
+	# message (STATUS "DBUSMENU_MINOR : ${DBUSMENU_MINOR}")
 	
 	STRING (REGEX REPLACE ".*\\." "" DBUSMENU_NANO "${DBUSMENU_VERSION}")
 	STRING (REGEX REPLACE "-.*" "" DBUSMENU_NANO "${DBUSMENU_NANO}")
-	message (STATUS "DBUSMENU_NANO  : ${DBUSMENU_NANO}")
+	# message (STATUS "DBUSMENU_NANO  : ${DBUSMENU_NANO}")
 	
 	execute_process(
 		COMMAND pkg-config --variable=iconsdir indicator
@@ -568,7 +577,7 @@ if (NOT "${DISTRO_ID}" STREQUAL "")
 endif()
 if ("${DISTRO_ID}" STREQUAL "Ubuntu")
 	STRING (REGEX REPLACE "\\..*" "" DISTRO_RELEASE_MAJOR ${DISTRO_RELEASE})
-	message (STATUS "DISTRO_RELEASE_MAJOR: ${DISTRO_RELEASE_MAJOR}")
+	# message (STATUS "DISTRO_RELEASE_MAJOR: ${DISTRO_RELEASE_MAJOR}")
 	if (${DISTRO_RELEASE_MAJOR} LESS 11)  # from 11.04, new names are used.
 		set (INDICATOR_OLD_NAMES 1)
 		message (STATUS "Indicators: use old Ayatana Dbus names")
