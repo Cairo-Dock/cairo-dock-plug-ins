@@ -54,6 +54,10 @@ typedef struct _CairoDockAppletCDAppletPrivate CairoDockAppletCDAppletPrivate;
 
 #define CAIRO_DOCK_APPLET_CD_APPLET_TYPE_MENU_ITEM_TYPE (cairo_dock_applet_cd_applet_menu_item_type_get_type ())
 
+#define CAIRO_DOCK_APPLET_CD_APPLET_TYPE_MENU_ITEM_ID (cairo_dock_applet_cd_applet_menu_item_id_get_type ())
+
+#define CAIRO_DOCK_APPLET_CD_APPLET_TYPE_DIALOG_KEY (cairo_dock_applet_cd_applet_dialog_key_get_type ())
+
 struct _CairoDockAppletIAppletIface {
 	GTypeInterface parent_iface;
 	GVariant* (*Get) (CairoDockAppletIApplet* self, const char* cProperty, GError** error);
@@ -149,6 +153,15 @@ typedef enum  {
 	CAIRO_DOCK_APPLET_CD_APPLET_MENU_ITEM_TYPE_MENU_RADIO_BUTTON
 } CairoDockAppletCDAppletMenuItemType;
 
+typedef enum  {
+	CAIRO_DOCK_APPLET_CD_APPLET_MENU_ITEM_ID_MAIN_MENU_ID = 0
+} CairoDockAppletCDAppletMenuItemId;
+
+typedef enum  {
+	CAIRO_DOCK_APPLET_CD_APPLET_DIALOG_KEY_DIALOG_KEY_ENTER = -1,
+	CAIRO_DOCK_APPLET_CD_APPLET_DIALOG_KEY_DIALOG_KEY_ESCAPE = -2
+} CairoDockAppletCDAppletDialogKey;
+
 
 GType cairo_dock_applet_iapplet_proxy_get_type (void) G_GNUC_CONST;
 guint cairo_dock_applet_iapplet_register_object (void* object, GDBusConnection* connection, const gchar* path, GError** error);
@@ -185,6 +198,8 @@ GType cairo_dock_applet_cd_applet_screen_position_get_type (void) G_GNUC_CONST;
 GType cairo_dock_applet_cd_applet_container_type_get_type (void) G_GNUC_CONST;
 GType cairo_dock_applet_cd_applet_emblem_position_get_type (void) G_GNUC_CONST;
 GType cairo_dock_applet_cd_applet_menu_item_type_get_type (void) G_GNUC_CONST;
+GType cairo_dock_applet_cd_applet_menu_item_id_get_type (void) G_GNUC_CONST;
+GType cairo_dock_applet_cd_applet_dialog_key_get_type (void) G_GNUC_CONST;
 CairoDockAppletCDApplet* cairo_dock_applet_cd_applet_new (char** argv, int argv_length1);
 CairoDockAppletCDApplet* cairo_dock_applet_cd_applet_construct (GType object_type, char** argv, int argv_length1);
 void cairo_dock_applet_cd_applet_run (CairoDockAppletCDApplet* self);

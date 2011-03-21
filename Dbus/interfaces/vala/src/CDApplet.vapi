@@ -11,6 +11,11 @@ namespace CairoDock {
 				DOCK,
 				DESKLET
 			}
+			[CCode (cprefix = "CAIRO_DOCK_APPLET_CD_APPLET_DIALOG_KEY_", cheader_filename = "CDApplet.h")]
+			public enum DialogKey {
+				DIALOG_KEY_ENTER,
+				DIALOG_KEY_ESCAPE
+			}
 			[CCode (cprefix = "CAIRO_DOCK_APPLET_CD_APPLET_EMBLEM_POSITION_", cheader_filename = "CDApplet.h")]
 			public enum EmblemPosition {
 				UPPER_LEFT,
@@ -18,6 +23,10 @@ namespace CairoDock {
 				LOWER_LEFT,
 				UPPER_RIGHT,
 				MIDDLE
+			}
+			[CCode (cprefix = "CAIRO_DOCK_APPLET_CD_APPLET_MENU_ITEM_ID_", cheader_filename = "CDApplet.h")]
+			public enum MenuItemId {
+				MAIN_MENU_ID
 			}
 			[CCode (cprefix = "CAIRO_DOCK_APPLET_CD_APPLET_MENU_ITEM_TYPE_", cheader_filename = "CDApplet.h")]
 			public enum MenuItemType {

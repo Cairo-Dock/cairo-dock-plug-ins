@@ -224,18 +224,15 @@ gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pCon
 		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	
 	CDStatusNotifierItem *pItem = cd_satus_notifier_find_item_from_coord ();
-	if (pItem == NULL)
-	{
-		if (myIcon->cName != NULL)
-			CD_APPLET_SET_NAME_FOR_MY_ICON (NULL);
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
-	}
 	
 	if (pItem != myData.pPrevItemHovered)
 	{
 		myData.pPrevItemHovered = pItem;
 		myData.fDesktopNameAlpha = 0.;
-		CD_APPLET_SET_NAME_FOR_MY_ICON (pItem->cLabel ? pItem->cLabel : pItem->cTitle);
+		if (pItem == NULL)
+			CD_APPLET_SET_NAME_FOR_MY_ICON (NULL);
+		else
+			CD_APPLET_SET_NAME_FOR_MY_ICON (pItem->cLabel ? pItem->cLabel : pItem->cTitle);
 		
 		if (myDock)
 			CAIRO_DOCK_REDRAW_MY_CONTAINER;

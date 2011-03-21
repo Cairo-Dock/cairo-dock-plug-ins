@@ -170,37 +170,73 @@ CD_APPLET_RELOAD_BEGIN
 			}
 		}
 		
-		if (CD_APPLET_MY_OLD_CONTAINER != myContainer || ! myConfig.bCompactView)
+		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+			NOTIFICATION_MOUSE_MOVED,
+			(CairoDockNotificationFunc) on_mouse_moved, myApplet);
+		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+			NOTIFICATION_RENDER_DESKLET,
+			(CairoDockNotificationFunc) on_render_desklet, myApplet);
+		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+			NOTIFICATION_UPDATE_DESKLET,
+			(CairoDockNotificationFunc) on_update_desklet, myApplet);
+		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+			NOTIFICATION_LEAVE_DESKLET,
+			(CairoDockNotificationFunc) on_leave_desklet, myApplet);
+		
+		if (myConfig.bCompactView)
 		{
-			cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+			cairo_dock_register_notification_on_object (myContainer,
 				NOTIFICATION_MOUSE_MOVED,
-				(CairoDockNotificationFunc) on_mouse_moved, myApplet);
-			cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
-				NOTIFICATION_RENDER_DESKLET,
-				(CairoDockNotificationFunc) on_render_desklet, myApplet);
-			if (myConfig.bCompactView)
+				(CairoDockNotificationFunc) on_mouse_moved,
+				CAIRO_DOCK_RUN_AFTER, myApplet);
+			if (myDesklet)
 			{
 				cairo_dock_register_notification_on_object (myContainer,
-					NOTIFICATION_MOUSE_MOVED,
-					(CairoDockNotificationFunc) on_mouse_moved,
+					NOTIFICATION_RENDER_DESKLET,
+					(CairoDockNotificationFunc) on_render_desklet,
 					CAIRO_DOCK_RUN_AFTER, myApplet);
-				if (myDesklet)
-				{
-					cairo_dock_register_notification_on_object (myDesklet,
-						NOTIFICATION_RENDER_DESKLET,
-						(CairoDockNotificationFunc) on_render_desklet,
-						CAIRO_DOCK_RUN_AFTER, myApplet);
-					cairo_dock_register_notification_on_object (myDesklet,
-						NOTIFICATION_UPDATE_DESKLET,
-						(CairoDockNotificationFunc) on_update_desklet,
-						CAIRO_DOCK_RUN_AFTER, myApplet);
-					cairo_dock_register_notification_on_object (myDesklet,
-						NOTIFICATION_LEAVE_DESKLET,
-						(CairoDockNotificationFunc) on_leave_desklet,
-						CAIRO_DOCK_RUN_AFTER, myApplet);
-				}
+				cairo_dock_register_notification_on_object (myContainer,
+					NOTIFICATION_UPDATE_DESKLET,
+					(CairoDockNotificationFunc) on_update_desklet,
+					CAIRO_DOCK_RUN_AFTER, myApplet);
+				cairo_dock_register_notification_on_object (myContainer,
+					NOTIFICATION_LEAVE_DESKLET,
+					(CairoDockNotificationFunc) on_leave_desklet,
+					CAIRO_DOCK_RUN_AFTER, myApplet);
 			}
 		}
+		
+		//~ if (CD_APPLET_MY_OLD_CONTAINER != myContainer || ! myConfig.bCompactView)
+		//~ {
+			//~ cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+				//~ NOTIFICATION_MOUSE_MOVED,
+				//~ (CairoDockNotificationFunc) on_mouse_moved, myApplet);
+			//~ cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+				//~ NOTIFICATION_RENDER_DESKLET,
+				//~ (CairoDockNotificationFunc) on_render_desklet, myApplet);
+			//~ if (myConfig.bCompactView)
+			//~ {
+				//~ cairo_dock_register_notification_on_object (myContainer,
+					//~ NOTIFICATION_MOUSE_MOVED,
+					//~ (CairoDockNotificationFunc) on_mouse_moved,
+					//~ CAIRO_DOCK_RUN_AFTER, myApplet);
+				//~ if (myDesklet)
+				//~ {
+					//~ cairo_dock_register_notification_on_object (myDesklet,
+						//~ NOTIFICATION_RENDER_DESKLET,
+						//~ (CairoDockNotificationFunc) on_render_desklet,
+						//~ CAIRO_DOCK_RUN_AFTER, myApplet);
+					//~ cairo_dock_register_notification_on_object (myDesklet,
+						//~ NOTIFICATION_UPDATE_DESKLET,
+						//~ (CairoDockNotificationFunc) on_update_desklet,
+						//~ CAIRO_DOCK_RUN_AFTER, myApplet);
+					//~ cairo_dock_register_notification_on_object (myDesklet,
+						//~ NOTIFICATION_LEAVE_DESKLET,
+						//~ (CairoDockNotificationFunc) on_leave_desklet,
+						//~ CAIRO_DOCK_RUN_AFTER, myApplet);
+				//~ }
+			//~ }
+		//~ }
 		if (myConfig.bDisplayNumDesk)
 		{
 			int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
