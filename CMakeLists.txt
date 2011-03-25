@@ -228,10 +228,12 @@ set (with_vala "yes")
 set (with_valac "no")
 find_program (VALAC_EXE valac)
 message (STATUS "VALAC_EXE: ${VALAC_EXE}")
-# >= Glib 2.26
-if ("${WITH_VALA}" STREQUAL "no" OR (${GLIB_MAJOR} LESS 3 AND ${GLIB_MINOR} LESS 26))
+
+if ("${WITH_VALA}" STREQUAL "no")
 	set (with_vala "no")
-# elseif ("${WITH_VALA}" STREQUAL "yes" AND NOT "${VALAC_EXE}" STREQUAL "VALAC_EXE-NOTFOUND") # only 0.10 worked
+# >= Glib 2.26
+elseif (${GLIB_MAJOR} LESS 3 AND ${GLIB_MINOR} LESS 26)
+	set (with_vala "no")
 elseif (NOT "${VALAC_EXE}" STREQUAL "VALAC_EXE-NOTFOUND") # now it works with 0.10 and 0.11 (= next 0.12)
 	execute_process(COMMAND ${VALAC_EXE} "--version"
 		OUTPUT_VARIABLE "VALA_VERSION")
