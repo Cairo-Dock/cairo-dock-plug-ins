@@ -34,8 +34,19 @@
 gboolean _check_size_is_constant (CairoDockModuleInstance *myApplet, const gchar *cFilePath)
 {
 	int iSize = cairo_dock_get_file_size (cFilePath);
+	
+	cd_debug ("DONCKY-debug : transfert en cours -> Taille = %i", myData.iCurrentFileSize);
+	gchar *cCommand = g_strdup_printf ("ping 127.0.0.1 -i 0.2 -c 2"); // On fait un temps d'arret de 200ms
+	cairo_dock_launch_command (cCommand);
+	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
+	g_free (cCommand);
+	g_free (cResult);
+	
+//~ CairoDockTask *pTask = cairo_dock_download_file_async (NULL, NULL, myData.cPendingFile, NULL, (GFunc)_dl_finished, myApplet);
+	
 	gboolean bConstantSize = (iSize != 0 && iSize == myData.iCurrentFileSize);
 	myData.iCurrentFileSize = iSize;
+	
 	return bConstantSize;
 }
 
@@ -48,95 +59,129 @@ gboolean _new_xml_to_conf (CairoDockModuleInstance *myApplet, gchar *cReceivedDa
 			|| (strncmp (cReceivedData, "http://", 7) == 0 && g_str_has_suffix (cReceivedData, ".xml")) \
 			|| (strncmp (cReceivedData, "http://", 7) == 0 && g_str_has_suffix (cReceivedData, ".tar.gz")))
 	{
-		if (strncmp (cReceivedData, "file://", 7) == 0)
+		
+		
+		if (strncmp (cReceivedData, "file://", 7) == 0 && g_str_has_suffix (cReceivedData, ".xml")) // On laisse le fichier où il est et on ne crée pas de thème dans ~/.config/cairo-dock/doncky/
 		{
-			if (g_str_has_suffix(cReceivedData,".xml"))
+			cd_debug ("DONCKY-debug : local xml file -> CONTINUE");
+			ltrim( cReceivedData, "file:///" );
+			cReceivedData = g_strdup_printf("/%s", cReceivedData);
+			bContinue = TRUE;
+		}
+		else // On crée un thème dans ~/.config/cairo-dock/doncky/
+		{
+			gchar *cTmpFileName = g_strdup_printf("%s", cReceivedData);
+			
+			if (strncmp (cReceivedData, "file://", 7) == 0)
 			{
-				cd_debug ("DONCKY-debug : local xml file -> CONTINUE");
-				ltrim( cReceivedData, "file:///" );
-				cReceivedData = g_strdup_printf("/%s", cReceivedData);
-				bContinue = TRUE;
+				ltrim(cTmpFileName, "file:///");
+				cReceivedData = g_strdup_printf("%s", cTmpFileName);
+			}
+			else if (strncmp (cReceivedData, "http://", 7) == 0)
+				ltrim(cTmpFileName,"http://");
+					
+			// On récupère le 1er champ -> nom du fichier
+			g_strreverse (cTmpFileName);			
+			cTmpFileName = g_str_position (cTmpFileName, 1, '/');
+			g_strreverse (cTmpFileName);
+			
+			
+			// Récupération du nom du fichier sans l'extension
+			gchar *cTmpThemeName = g_strdup_printf("%s", cTmpFileName);
+			if (g_str_has_suffix(cReceivedData,".xml"))
+				rtrim(cTmpThemeName,".xml");
+			else if (g_str_has_suffix(cReceivedData,".tar.gz"))
+			{
+				cTmpThemeName = g_str_position (cTmpThemeName, 1, '.');
+			}
+			
+			cd_debug ("DONCKY-debug : Nom du thème : %s", cTmpThemeName);
+			
+			// on cree le repertoire pour le theme.
+			gchar *cDonckyThemesPath = g_strdup_printf ("%s/doncky", g_cCairoDockDataDir);
+			gchar *cThemePath = g_strdup_printf ("%s/%s", cDonckyThemesPath, cTmpThemeName);
+			
+			if (! g_file_test (cThemePath, G_FILE_TEST_EXISTS))
+			{
+				cd_debug ("DONCKY-debug : le dossier '%s' n'existe pas encore -> On le crée", cThemePath);
+				
+				if (! g_file_test (cDonckyThemesPath, G_FILE_TEST_EXISTS))
+				{
+					cd_debug ("DONCKY-debug : le dossier '%s' n'existe pas encore -> On le crée", cDonckyThemesPath);
+					if (g_mkdir (cDonckyThemesPath, 7*8*8+7*8+0) != 0)
+					{
+						cd_warning ("couldn't create directory '%s' !\nNo read history will be available.", cDonckyThemesPath);
+						bContinue = FALSE;
+					}
+				}
+				if (g_mkdir (cThemePath, 7*8*8+7*8+0) != 0)
+				{
+					cd_warning ("couldn't create directory '%s' !\nNo read history will be available.", cThemePath);
+					bContinue = FALSE;
+				}
+				else
+					bContinue = TRUE;
 			}
 			else
 			{
-				cd_debug ("DONCKY-debug : tar.gz -> TODO");
+				cd_debug ("DONCKY-debug : le dossier '%s' existe déjà -> On demande ce qu'il faut faire", cThemePath);
 				bContinue = FALSE;
 			}
-		}
-		
-		if (strncmp (cReceivedData, "http://", 7) == 0)
-		{
-			cd_debug ("DONCKY-debug : URL -> TODO");
 			
-			if (g_str_has_suffix(cReceivedData,".xml"))
+		
+		
+			if (bContinue)
 			{
-				gchar *cTmpFileName = g_strdup_printf("%s", cReceivedData);
-				ltrim(cTmpFileName,"http://");
-				g_strreverse (cTmpFileName);
-				// On récupère le 1er champ -> nom du fichier
-				cTmpFileName = g_str_position (cTmpFileName, 1, '/');
-				g_strreverse (cTmpFileName);
-				
-				gchar *cTmpThemeName = g_strdup_printf("%s", cTmpFileName);
-				rtrim(cTmpThemeName,".xml"); // Récupération du nom du fichier sans l'extension
-				
-				cd_debug ("DONCKY-debug : Nom du thème : %s", cTmpThemeName);
-				
-				// on cree le repertoire pour le theme.
-				gchar *cDonckyThemesPath = g_strdup_printf ("%s/doncky", g_cCairoDockDataDir);
-				gchar *cThemePath = g_strdup_printf ("%s/%s", cDonckyThemesPath, cTmpThemeName);
-				
-				if (! g_file_test (cThemePath, G_FILE_TEST_EXISTS))
-				{
-					cd_debug ("DONCKY-debug : le dossier '%s' n'existe pas encore -> On le crée", cThemePath);
-					
-					if (! g_file_test (cDonckyThemesPath, G_FILE_TEST_EXISTS))
-					{
-						cd_debug ("DONCKY-debug : le dossier '%s' n'existe pas encore -> On le crée", cDonckyThemesPath);
-						if (g_mkdir (cDonckyThemesPath, 7*8*8+7*8+0) != 0)
-						{
-							cd_warning ("couldn't create directory '%s' !\nNo read history will be available.", cDonckyThemesPath);
-							bContinue = FALSE;
-						}
-					}
-					if (g_mkdir (cThemePath, 7*8*8+7*8+0) != 0)
-					{
-						cd_warning ("couldn't create directory '%s' !\nNo read history will be available.", cThemePath);
-						bContinue = FALSE;
-					}
-					else
-						bContinue = TRUE;
-				}
-				else
-				{
-					cd_debug ("DONCKY-debug : le dossier '%s' existe déjà -> On demande ce qu'il faut faire", cThemePath);
-					bContinue = FALSE;
-				}
-				
-				if (bContinue)
+				if (strncmp (cReceivedData, "http://", 7) == 0)
 				{
 					gchar *cCommand = g_strdup_printf ("wget \"%s\" -O \"%s/%s\" -t 3 -T 4 30 /dev/null 2>&1", cReceivedData, cThemePath, cTmpFileName);
 					cd_debug ("DONCKY-debug : WGET : '%s'", cCommand);
 					cairo_dock_launch_command (cCommand);
-					g_free (cCommand);
-					
-					cReceivedData = g_strdup_printf("%s/%s", cThemePath, cTmpFileName);
+					g_free (cCommand);												
 				}
-				g_free (cDonckyThemesPath);
-				g_free (cThemePath);
-				g_free (cTmpFileName);
-				g_free (cTmpThemeName);
+				else // C'est donc un fichier local
+				{
+					gchar *cCommand = g_strdup_printf ("cp \"/%s\" \"%s/%s\"", cReceivedData, cThemePath, cTmpFileName);
+					cd_debug ("DONCKY-debug : COPIE LOCALE : '%s'", cCommand);
+					cairo_dock_launch_command (cCommand);
+					g_free (cCommand);
+				}
 				
+				cReceivedData = g_strdup_printf("%s/%s", cThemePath, cTmpFileName);
+				
+				cd_debug ("DONCKY-debug : Waiting to complete \"%s\"...", cReceivedData);
 				do
 				{
 					// waiting for the download to be completed
+					cd_debug ("DONCKY-debug : Waiting to complete...");
 				}while (!_check_size_is_constant (myApplet, cReceivedData));
 				
-				cd_debug ("DONCKY-debug : \"%s\" was downloaded", cReceivedData);
+				cd_debug ("DONCKY-debug : \"%s\" is ready", cReceivedData);
+				
+				if (g_str_has_suffix(cReceivedData,".tar.gz"))
+				{
+					gchar *cCommand = g_strdup_printf ("cd \"%s\" && tar -xzvf \"%s\"",cThemePath, cTmpFileName);
+					cd_debug ("DONCKY-debug : UNTAR : '%s'", cCommand);
+					
+					cairo_dock_launch_command (cCommand);
+					
+					g_free (cCommand);
+					// On re-définit le chemin du xml
+					cTmpFileName = g_str_position (cTmpFileName, 1, '.');
+					cReceivedData = g_strdup_printf("%s/%s.xml", cThemePath, cTmpFileName);
+					cd_debug ("DONCKY-debug : cReceivedData : '%s'", cReceivedData);
+					
+				}
+				
 			}
-			else
-				bContinue = FALSE;
+			g_free (cDonckyThemesPath);
+			g_free (cThemePath);
+			g_free (cTmpFileName);
+			g_free (cTmpThemeName);
 		}
+		
+		
+			
 		
 		if (bContinue)
 		{
