@@ -69,7 +69,6 @@ gchar *_Get_FilePath (CairoDockModuleInstance *myApplet, const gchar *cString)
 		gchar *cTempotxt;
 		cTempotxt = g_strdup_printf("%s", cString);
 		cTempotxt = g_str_position (cTempotxt, 1, ' ');
-		cd_debug ("DONCKY-debug : cTempotxt = %s", cTempotxt);
 		if (g_str_has_suffix (cTempotxt, ".sh") \
 		|| g_str_has_suffix (cTempotxt, ".py") \
 		|| g_str_has_suffix (cTempotxt, ".png") \
@@ -86,8 +85,6 @@ gchar *_Get_FilePath (CairoDockModuleInstance *myApplet, const gchar *cString)
 		else
 			cReturn = g_strdup_printf("%s", cString);
 		g_free (cTempotxt);
-		
-		cd_debug ("DONCKY-debug : cReturn = %s", cReturn);
 	}
 	return cReturn;
 	g_free (cReturn);
