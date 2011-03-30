@@ -128,6 +128,7 @@ void penguin_load_theme (CairoDockModuleInstance *myApplet, gchar *cThemePath)
 	
 	gsize length = 0;
 	gchar **pGroupList = g_key_file_get_groups (pKeyFile, &length);
+	g_return_if_fail (length > 0);
 	
 	g_free (myData.pAnimations);
 	myData.iNbAnimations = 0;

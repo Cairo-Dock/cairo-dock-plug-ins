@@ -66,7 +66,8 @@ static void _penguin_reset_one_animation (PenguinAnimation *pAnimation)
 	}
 }
 
-CD_APPLET_RESET_DATA_BEGIN
+void cd_penguin_reset_data (CairoDockModuleInstance *myApplet)
+{
 	int i;
 	for (i = 0; i < myData.iNbAnimations; i++)
 	{
@@ -74,9 +75,19 @@ CD_APPLET_RESET_DATA_BEGIN
 	}
 	
 	g_free (myData.pAnimations);
+	myData.pAnimations = NULL;
 	g_free (myData.pBeginningAnimations);
+	myData.pBeginningAnimations = NULL;
 	g_free (myData.pEndingAnimations);
+	myData.pEndingAnimations = NULL;
 	g_free (myData.pGoUpAnimations);
+	myData.pGoUpAnimations = NULL;
 	g_free (myData.pMovmentAnimations);
+	myData.pMovmentAnimations = NULL;
 	g_free (myData.pRestAnimations);
+	myData.pRestAnimations = NULL;
+}
+
+CD_APPLET_RESET_DATA_BEGIN
+	cd_penguin_resetreset_data (myApplet);
 CD_APPLET_RESET_DATA_END

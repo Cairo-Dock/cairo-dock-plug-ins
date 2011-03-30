@@ -123,7 +123,7 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		
 		//\_______________ On recharge tout de zero (changement de theme).
-		reset_data (myApplet);  // applet multi-instance => ok.
+		cd_penguin_reset_data (myApplet);
 		
 		penguin_load_theme (myApplet, myConfig.cThemePath);
 		
@@ -142,6 +142,6 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else
 	{
-		// rien a faire, la taille du pinguoin est fixe.
+		// rien a faire, la taille du pingouin est fixe.
 	}
 CD_APPLET_RELOAD_END
