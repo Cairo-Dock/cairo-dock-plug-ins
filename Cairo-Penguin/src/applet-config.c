@@ -89,5 +89,5 @@ void cd_penguin_reset_data (CairoDockModuleInstance *myApplet)
 }
 
 CD_APPLET_RESET_DATA_BEGIN
-	cd_penguin_resetreset_data (myApplet);
+	cd_penguin_reset_data (myApplet);
 CD_APPLET_RESET_DATA_END
