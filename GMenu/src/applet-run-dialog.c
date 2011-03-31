@@ -346,11 +346,13 @@ static void _cd_menu_on_quick_launch (int iClickedButton, GtkWidget *pInteractiv
 }
 CairoDialog *cd_menu_create_quick_launch_dialog (CairoDockModuleInstance *myApplet)
 {
+	gchar *cIconPath = cairo_dock_search_icon_s_path (GTK_STOCK_EXECUTE);
 	CairoDialog *pDialog = cairo_dock_show_dialog_with_entry (D_("Enter a command to launch:"),
 		myIcon, myContainer,
-		MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
+		cIconPath ? cIconPath : "same icon",
 		NULL,
 		(CairoDockActionOnAnswerFunc) _cd_menu_on_quick_launch, NULL, NULL);
+	g_free (cIconPath);
 	
 	GtkWidget *pEntry = pDialog->pInteractiveWidget;
 	g_signal_connect (pEntry, "key-press-event",

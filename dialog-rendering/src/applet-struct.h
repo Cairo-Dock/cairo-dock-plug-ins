@@ -41,7 +41,6 @@ struct _AppletConfig {
 	gint iTooltipRadius;
 	gint iTooltipLineWidth;
 	gdouble fTooltipLineColor[4];
-	gdouble fTooltipMarginColor[4];
 	
 	gint iCurlyRadius;
 	gint iCurlyLineWidth;

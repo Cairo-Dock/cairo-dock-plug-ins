@@ -432,7 +432,7 @@ gboolean cd_folders_on_drop_data (gpointer data, const gchar *cReceivedData, Ico
 			cairo_dock_show_temporary_dialog_with_icon (D_("The folder has been imported."),
 				pNewInstance->pIcon, pNewInstance->pContainer,
 				5000,
-				"same icon");
+				MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);  // not "same icon" because the icon may not be loaded yet (eg. stack or emblem icon).
 		
 		if (pModule->pInstancesList && pModule->pInstancesList->next == NULL)  // module nouvellement active.
 		{

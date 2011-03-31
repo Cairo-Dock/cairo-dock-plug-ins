@@ -34,10 +34,6 @@ border = 1
 #C+ Bubble's line colour:
 line color = 1.0; 1.0; 1.0; 1.0
 
-#C+ Colour of the margin :
-margin color = .9;.9;.9;1.0
-
-
 #[gtk-preference]
 [Curly]
 

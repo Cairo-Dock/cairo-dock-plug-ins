@@ -31,9 +31,9 @@
 #define CD_STATUS_NOTIFIER_HOST_ADDR "org.kde.StatusNotifierHost"
 
 // KDE watcher (old names)
-#define CD_STATUS_NOTIFIER_WATCHER_ADDR2 "org.kde.NotificationItemWatcher"
-#define CD_STATUS_NOTIFIER_WATCHER_OBJ2 "/NotificationItemWatcher"
-#define CD_STATUS_NOTIFIER_WATCHER_IFACE2 "org.kde.NotificationItemWatcher"
+//~ #define CD_STATUS_NOTIFIER_WATCHER_ADDR2 "org.kde.NotificationItemWatcher"
+//~ #define CD_STATUS_NOTIFIER_WATCHER_OBJ2 "/NotificationItemWatcher"
+//~ #define CD_STATUS_NOTIFIER_WATCHER_IFACE2 "org.kde.NotificationItemWatcher"
 
 // KDE watcher
 #define CD_STATUS_NOTIFIER_WATCHER_ADDR "org.kde.StatusNotifierWatcher"
