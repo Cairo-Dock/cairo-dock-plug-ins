@@ -40,10 +40,16 @@
 #define CD_STATUS_NOTIFIER_WATCHER_OBJ "/StatusNotifierWatcher"
 #define CD_STATUS_NOTIFIER_WATCHER_IFACE "org.kde.StatusNotifierWatcher"
 
+#if (INDICATOR_OLD_NAMES == 0)
 // Ubuntu sort-of-high-level-Watcher
+#define CD_INDICATOR_APPLICATION_ADDR "com.canonical.indicator.application"
+#define CD_INDICATOR_APPLICATION_OBJ "/com/canonical/indicator/application/service"
+#define CD_INDICATOR_APPLICATION_IFACE "com.canonical.indicator.application.service"
+#else
 #define CD_INDICATOR_APPLICATION_ADDR "org.ayatana.indicator.application"
 #define CD_INDICATOR_APPLICATION_OBJ "/org/ayatana/indicator/application/service"
 #define CD_INDICATOR_APPLICATION_IFACE "org.ayatana.indicator.application.service"
+#endif
 
 // Ubuntu Indicator Service
 #define  CD_INDICATOR_SERVICE_INTERFACE "org.ayatana.indicator.service"
