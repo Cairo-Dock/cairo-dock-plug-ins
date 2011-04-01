@@ -40,8 +40,8 @@
 #define CD_STATUS_NOTIFIER_WATCHER_OBJ "/StatusNotifierWatcher"
 #define CD_STATUS_NOTIFIER_WATCHER_IFACE "org.kde.StatusNotifierWatcher"
 
+// Ubuntu sort-of-high-level-Watcher (new or old address)
 #if (INDICATOR_OLD_NAMES == 0)
-// Ubuntu sort-of-high-level-Watcher
 #define CD_INDICATOR_APPLICATION_ADDR "com.canonical.indicator.application"
 #define CD_INDICATOR_APPLICATION_OBJ "/com/canonical/indicator/application/service"
 #define CD_INDICATOR_APPLICATION_IFACE "com.canonical.indicator.application.service"
