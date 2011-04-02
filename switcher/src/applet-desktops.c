@@ -39,12 +39,15 @@ void cd_switcher_get_current_desktop (void)
 
 static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLines, int *iBestNbColumns)
 {
+	*iBestNbLines = 0;
+	*iBestNbColumns = 0;
 	g_return_if_fail (iNbViewports != 0);
 	//g_print ("%s (%d)\n", __func__, iNbViewports);
 	
 	int w, h;
 	cairo_dock_get_icon_extent (myIcon, myContainer, &w, &h);
-	g_return_if_fail (w != 0 && h != 0);
+	if (w == 0 || h == 0)  // may happen in desklet mode on startup, until the desklet's window reaches its definite size.
+		return;
 	cd_debug ("%d; %dx%d", iNbViewports, w, h);
 	
 	double fZoomX, fZoomY;
@@ -106,7 +109,12 @@ void cd_switcher_compute_nb_lines_and_columns (void)
 
 void cd_switcher_compute_desktop_coordinates (int iNumDesktop, int iNumViewportX, int iNumViewportY, int *iNumLine, int *iNumColumn)
 {
-	g_return_if_fail (myData.switcher.iNbColumns != 0);
+	if (myData.switcher.iNbColumns == 0)  // may happen in desklet mode with a cube desktop, when the desklet is still 0x0.
+	{
+		*iNumLine = 0;
+		*iNumColumn = 0;
+		return;
+	}
 	//cd_debug ("%s (%d;%d)", __func__, iNumViewportX, iNumViewportY);
 	if (g_desktopGeometry.iNbDesktops > 1)  // plusieurs bureaux simples (Metacity) ou etendus (Compiz avec 2 cubes).
 	{

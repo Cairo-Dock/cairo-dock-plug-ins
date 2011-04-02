@@ -126,7 +126,8 @@ static int _compare_icons_stack_order (Icon *icon1, Icon *icon2)
 }
 void cd_switcher_draw_main_icon_compact_mode (void)
 {
-	g_return_if_fail (myData.switcher.iNbColumns != 0 && myData.switcher.iNbLines != 0);
+	if (myData.switcher.iNbColumns == 0 || myData.switcher.iNbLines == 0)  // may happen in desklet mode with a cube desktop, when the desklet is still 0x0.
+		return;
 	g_return_if_fail (myDrawContext != NULL);
 	//g_print ("%s (%d;%d)\n", __func__, myData.switcher.iCurrentLine, myData.switcher.iCurrentColumn);
 	// On efface l'icone.
