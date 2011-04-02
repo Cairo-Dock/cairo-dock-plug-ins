@@ -261,29 +261,36 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 			g_source_remove (myData.iSidGetCoverInfoTwice);
 			myData.iSidGetCoverInfoTwice = 0;
 		}
-		if (myData.cCoverPath == NULL && bFirstTime && myData.pCurrentHandeler->get_cover != NULL)  // info manquante, cela arrive avec les chansons distantes (bug du lecteur ?) on teste 2 fois de suite a 2 secondes d'intervalle.
+		if (myConfig.bEnableCover)
 		{
-			cd_debug ("MP - on reviendra dans 2s\n");
-			myData.iSidGetCoverInfoTwice = g_timeout_add_seconds (2, (GSourceFunc) _cd_musicplayer_check_distant_cover_twice, NULL);
-		}
-		else if (myData.cCoverPath != NULL && ! myData.cover_exist && myConfig.bEnableCover)  // couverture connue mais pas encore chargee.
-		{
-			if (myData.bCoverNeedsTest)  // il faut lancer le test en boucle.
+			if (myData.cCoverPath == NULL && bFirstTime && myData.pCurrentHandeler->get_cover != NULL)  // info manquante, cela arrive avec les chansons distantes (bug du lecteur ?) on teste 2 fois de suite a 2 secondes d'intervalle.
 			{
-				if (myData.iSidCheckXmlFile == 0 && myData.iSidCheckCover == 0)  // pas de fichier XML intermediaire a telecharger ou alors c'est deja fait.
+				cd_debug ("MP - on reviendra dans 2s\n");
+				myData.iSidGetCoverInfoTwice = g_timeout_add_seconds (2, (GSourceFunc) _cd_musicplayer_check_distant_cover_twice, NULL);
+			}
+			else if (myData.cCoverPath != NULL && ! myData.cover_exist && myConfig.bEnableCover)  // couverture connue mais pas encore chargee.
+			{
+				if (myData.bCoverNeedsTest)  // il faut lancer le test en boucle.
 				{
-					myData.iCurrentFileSize = 0;
-					myData.iNbCheckFile = 0;
-					myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc) cd_musiplayer_set_cover_if_present, GINT_TO_POINTER (TRUE));  // TRUE <=> tester la taille contante.
+					if (myData.iSidCheckXmlFile == 0 && myData.iSidCheckCover == 0)  // pas de fichier XML intermediaire a telecharger ou alors c'est deja fait.
+					{
+						myData.iCurrentFileSize = 0;
+						myData.iNbCheckFile = 0;
+						myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc) cd_musiplayer_set_cover_if_present, GINT_TO_POINTER (TRUE));  // TRUE <=> tester la taille contante.
+					}
+				}
+				else  // la couverture est deja disponible, on peut tester tout de suite.
+				{
+					cd_musiplayer_set_cover_if_present (FALSE);  // FALSE <=> tester seulement l'existence du fichier.
 				}
 			}
-			else  // la couverture est deja disponible, on peut tester tout de suite.
-			{
-				cd_musiplayer_set_cover_if_present (FALSE);  // FALSE <=> tester seulement l'existence du fichier.
-			}
+			cd_debug ("MP - cover_exist : %d\n", myData.cover_exist);
+		}
+		else
+		{
+			myData.cover_exist = FALSE;
 		}
 		
-		cd_debug ("MP - cover_exist : %d\n", myData.cover_exist);
 		if (! myData.cover_exist && bFirstTime)  // en attendant d'avoir une couverture, ou s'il n'y en a tout simplement pas, on met les images par defaut. La 2eme fois ce n'est pas la peine de le refaire, puisque si on passe une 2eme fois dans cette fonction, c'est bien parce que la couverture n'existait pas la 1ere fois.
 		{
 			cd_musicplayer_set_surface (myData.iPlayingStatus);

@@ -7571,7 +7571,7 @@ msgstr "Liste des thèmes de pochettes 3D disponibles :"
 
 #: ../musicPlayer/data/messages:175 ../tomboy/data/messages:11
 msgid "Customisation"
-msgstr "Customisation"
+msgstr "Personnalisation"
 
 #: ../musicPlayer/data/messages:183
 msgid "Name of the image for the 'play' icon :"

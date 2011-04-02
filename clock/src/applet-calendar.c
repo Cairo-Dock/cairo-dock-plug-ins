@@ -653,5 +653,6 @@ void cd_clock_show_hide_calendar (CairoDockModuleInstance *myApplet)
 			"button-press-event",
 			G_CALLBACK (on_button_press_dialog),
 			myApplet);
+		gtk_window_set_modal (GTK_WINDOW (myData.pCalendarDialog->container.pWidget), TRUE);
 	}
 }

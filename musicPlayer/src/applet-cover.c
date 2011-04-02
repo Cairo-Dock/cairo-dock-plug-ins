@@ -74,6 +74,11 @@
 
 void cd_musicplayer_get_cover_path (const gchar *cGivenCoverPath, gboolean bHandleCover)  // bHandleCover permet de ne pas regarder dans le cache ou dl la couverture, pour le cas ou le lecteur ne refilerait une adresse qu'au bout d'un certain temps. Dans ce cas-la, on fera l'operation 2 fois en laissant une tempo de ~1s, et on ne gerera la couverture nous-memes que la 2eme fois si le lecteur ne nous a toujours rien refile.
 {
+	if (! myConfig.bEnableCover)
+	{
+		myData.cover_exist = FALSE;
+		return;
+	}
 	g_free (myData.cPreviousCoverPath);
 	myData.cPreviousCoverPath = myData.cCoverPath;  // on memorise la precedente couverture.
 	myData.cCoverPath = NULL;
