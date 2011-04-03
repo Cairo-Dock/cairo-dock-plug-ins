@@ -4,8 +4,8 @@
 install (FILES ${CMAKE_CURRENT_BINARY_DIR}/System-Monitor.conf
 	preview.jpg
 	icon.png
-	button-cpu.png
-	button-ram.png
+	button-cpu.svg
+	button-ram.svg
 	DESTINATION ${system_monitordatadir})
 
 install (FILES nvidia-config

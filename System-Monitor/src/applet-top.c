@@ -337,6 +337,12 @@ static void _sort_one_process (int *iPid, CDProcess *pProcess, CairoDockModuleIn
 }
 static void _on_change_order (int iClickedButton, GtkWidget *pInteractiveWidget, CairoDockModuleInstance *myApplet, CairoDialog *pDialog)
 {
+	if (iClickedButton == 2)
+	{
+		cairo_dock_dialog_reference (pDialog);
+		cd_sysmonitor_stop_top_dialog (myApplet);
+		return;
+	}
 	gboolean bSortByRamNew = (iClickedButton == 1);
 	if (bSortByRamNew != myData.bSortTopByRam)  // on peut lire myData.bSortTopByRam car le thread n'y accede qu'en lecture.
 	{
@@ -374,7 +380,7 @@ void cd_sysmonitor_start_top_dialog (CairoDockModuleInstance *myApplet)
 	attr.pInteractiveWidget = pInteractiveWidget;
 	attr.pActionFunc = (CairoDockActionOnAnswerFunc) _on_change_order;
 	attr.pUserData = myApplet;
-	const gchar *cButtons[3] = {MY_APPLET_SHARE_DATA_DIR"/button-cpu.png", MY_APPLET_SHARE_DATA_DIR"/button-ram.png", NULL};
+	const gchar *cButtons[] = {MY_APPLET_SHARE_DATA_DIR"/button-cpu.svg", MY_APPLET_SHARE_DATA_DIR"/button-ram.svg", "cancel", NULL};
 	attr.cButtonsImage = cButtons;
 	myData.pTopDialog = cairo_dock_build_dialog (&attr, myIcon,	myContainer);
 	
