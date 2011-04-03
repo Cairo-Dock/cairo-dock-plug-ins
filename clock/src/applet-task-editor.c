@@ -377,7 +377,7 @@ void cd_clock_build_task_editor (guint iDay, guint iMonth, guint iYear, CairoDoc
 	if (myData.pTaskWindow == NULL)
 	{
 		myData.pTaskWindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-		gtk_window_set_modal (GTK_WINDOW (myData.pTaskWindow), TRUE);
+		gtk_window_set_modal (GTK_WINDOW (myData.pTaskWindow), TRUE);  // set as modal, since the dialog it comes from (the one containing the calendar) is modal (as any interactive dialog).
 		
 		//\______________ On construit le treeview.
 		GtkWidget *pTreeView = gtk_tree_view_new ();
