@@ -304,10 +304,11 @@ static void on_terminal_child_exited(VteTerminal *vterm,
 		pid_t pid; 
 		#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 18)  // VTE_CHECK_VERSION doesn't exist in Hardy.
 			#if VTE_CHECK_VERSION(0,26,0)
+			const gchar *argv[] = {g_getenv ("SHELL"), NULL};
 			vte_terminal_fork_command_full (VTE_TERMINAL(vterm),
 				VTE_PTY_NO_LASTLOG | VTE_PTY_NO_UTMP | VTE_PTY_NO_WTMP,
 				"~/",
-				NULL,  // argv
+				(gchar**)argv,  // argv
 				NULL,  // envv
 				0,  // GSpawnFlags spawn_flags
 				NULL,  // GSpawnChildSetupFunc child_setup
@@ -538,10 +539,11 @@ void terminal_new_tab(void)
 	pid_t pid; 
 	#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 18)  // VTE_CHECK_VERSION doesn't exist in Hardy.
 		#if VTE_CHECK_VERSION(0,26,0)
+		const gchar *argv[] = {g_getenv ("SHELL"), NULL};
 		vte_terminal_fork_command_full (VTE_TERMINAL(vterm),
 			VTE_PTY_NO_LASTLOG | VTE_PTY_NO_UTMP | VTE_PTY_NO_WTMP,
 			"~/",
-			NULL,  // argv
+			(gchar**)argv,  // argv
 			NULL,  // envv
 			0,  // GSpawnFlags spawn_flags
 			NULL,  // GSpawnChildSetupFunc child_setup
