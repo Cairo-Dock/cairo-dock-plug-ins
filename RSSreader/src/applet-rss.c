@@ -199,10 +199,20 @@ static GList * _parse_rss_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemL
 			if (pItem->cTitle == NULL)  // cas du titre du flux force a une valeur par l'utilisateur.
 			{
 				content = xmlNodeGetContent (item);
-				pItem->cTitle = g_strdup (content);
-				xmlFree (content);
+				if (content != NULL)
+				{
+					// remove leading and trailing carriage returns.
+					gchar *str = content;
+					while (*str == '\n') str ++;
+					int n = strlen(str);
+					while (str[n-1] == '\n') str[--n] = '\0';
+					
+					pItem->cTitle = g_strdup (str);
+					
+					xmlFree (content);
+				}
 			}
-			g_print ("   + titre : '%s'\n", pItem->cTitle);
+			//g_print ("   + titre : '%s'\n", pItem->cTitle);
 		}
 		else if (xmlStrcmp (item->name, (const xmlChar *) "description") == 0)  // c'est la description.
 		{
@@ -279,10 +289,20 @@ static GList * _parse_atom_item (xmlNodePtr node, CDRssItem *pItem, GList *pItem
 			if (pItem->cTitle == NULL)  // cas du titre du flux force a une valeur par l'utilisateur.
 			{
 				content = xmlNodeGetContent (item);
-				pItem->cTitle = g_strdup (content);
-				xmlFree (content);
+				if (content != NULL)
+				{
+					// remove leading and trailing carriage returns.
+					gchar *str = content;
+					while (*str == '\n') str ++;
+					int n = strlen(str);
+					while (str[n-1] == '\n') str[--n] = '\0';
+					
+					pItem->cTitle = g_strdup (str);
+					
+					xmlFree (content);
+				}
 			}
-			cd_debug ("+ titre : '%s'", pItem->cTitle);
+			cd_debug ("+ title : '%s'", pItem->cTitle);
 		}
 		else if (xmlStrcmp (item->name, (const xmlChar *) "content") == 0)  // c'est la description.
 		{
