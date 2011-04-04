@@ -650,12 +650,18 @@ void cd_rssreader_upload_feeds_TASK (CairoDockModuleInstance *myApplet)
 
 
 
-static gboolean on_button_press_dialog (GtkWidget *widget,
+/**static gboolean on_button_press_dialog (GtkWidget *widget,
 	GdkEventButton *pButton,
 	CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cairo_dock_dialog_unreference (myData.pDialog);
+	myData.pDialog = NULL;
+	CD_APPLET_LEAVE(FALSE);
+}*/
+static void _on_dialog_destroyed (CairoDockModuleInstance *myApplet)
+{
+	CD_APPLET_ENTER;
 	myData.pDialog = NULL;
 	CD_APPLET_LEAVE(FALSE);
 }
@@ -751,11 +757,13 @@ void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
 			0,
 			myDock ? "same icon" : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
 			pScrolledWindow,
-			NULL, NULL, NULL);
-		g_signal_connect (G_OBJECT (myData.pDialog->container.pWidget),
+			NULL,
+			myApplet,
+			(GFreeFunc)_on_dialog_destroyed);
+		/**g_signal_connect (G_OBJECT (myData.pDialog->container.pWidget),
 			"button-press-event",
 			G_CALLBACK (on_button_press_dialog),
-			myApplet);
+			myApplet);*/
 	}
 	else  // on affiche un message clair a l'utilisateur.
 	{

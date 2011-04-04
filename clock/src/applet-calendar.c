@@ -614,7 +614,7 @@ void cd_clock_hide_dialogs (CairoDockModuleInstance *myApplet)
 	myData.pCalendarDialog = NULL;
 }
 
-static gboolean on_button_press_dialog (GtkWidget *widget,
+/**static gboolean on_button_press_dialog (GtkWidget *widget,
 	GdkEventButton *pButton,
 	CairoDockModuleInstance *myApplet)
 {
@@ -625,9 +625,14 @@ static gboolean on_button_press_dialog (GtkWidget *widget,
 		myData.pCalendarDialog = NULL;
 	}
 	CD_APPLET_LEAVE (FALSE);
+}*/
+static void _on_dialog_destroyed (CairoDockModuleInstance *myApplet)
+{
+	myData.pCalendarDialog = NULL;
 }
 void cd_clock_show_hide_calendar (CairoDockModuleInstance *myApplet)
 {
+	g_print ("%s (%x)\n", __func__, myData.pCalendarDialog);
 	if (myData.pCalendarDialog != NULL)
 	{
 		cairo_dock_dialog_unreference (myData.pCalendarDialog);
@@ -648,10 +653,12 @@ void cd_clock_show_hide_calendar (CairoDockModuleInstance *myApplet)
 			0,
 			MY_APPLET_SHARE_DATA_DIR"/dates.svg",
 			pCalendar,
-			NULL, NULL, NULL);
-		g_signal_connect (G_OBJECT (myData.pCalendarDialog->container.pWidget),
+			NULL,
+			myApplet,
+			(GFreeFunc)_on_dialog_destroyed);
+		/**g_signal_connect (G_OBJECT (myData.pCalendarDialog->container.pWidget),
 			"button-press-event",
 			G_CALLBACK (on_button_press_dialog),
-			myApplet);
+			myApplet);*/
 	}
 }

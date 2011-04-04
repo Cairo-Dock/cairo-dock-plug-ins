@@ -50,6 +50,7 @@ CairoDialog *cd_terminal_build_dialog (void)
 	memset (&attr, 0, sizeof (CairoDialogAttribute));
 	attr.cText = D_ ("Terminal");
 	attr.pInteractiveWidget = myData.tab;
+	attr.bHideOnClick = TRUE;  // keep the dialog alive on click (hide it).
 	return cairo_dock_build_dialog (&attr, myIcon, myContainer);
 }
 
@@ -756,14 +757,14 @@ static gboolean on_button_press_tab (GtkWidget* pWidget,
 }
 
 
-static gboolean on_button_press_dialog (GtkWidget *widget,
+/**static gboolean on_button_press_dialog (GtkWidget *widget,
 	GdkEventButton *pButton,
 	CairoDialog *pDialog)
 {
 	cd_message ("hide the dialog when clicking on it");
 	cairo_dock_hide_dialog (pDialog);
 	return TRUE;
-}
+}*/
 void terminal_build_and_show_tab (void)
 {
 	//\_________________ On cree un notebook.
@@ -791,10 +792,10 @@ void terminal_build_and_show_tab (void)
 	if (myDock)
 	{
 		myData.dialog = cd_terminal_build_dialog ();
-		g_signal_connect (G_OBJECT (myData.dialog->container.pWidget),
+		/**g_signal_connect (G_OBJECT (myData.dialog->container.pWidget),
 			"button-press-event",
 			G_CALLBACK (on_button_press_dialog),
-			myData.dialog);  // on le cache quand on clique dessus.
+			myData.dialog);*/  // on le cache quand on clique dessus.
 		cd_terminal_grab_focus ();
 	}
 	else

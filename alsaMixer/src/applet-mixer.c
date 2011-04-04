@@ -262,7 +262,7 @@ void mixer_set_volume_with_no_callback (GtkWidget *pScale, int iVolume)
 }
 
 
-static gboolean on_button_press_dialog (GtkWidget *widget,
+/**static gboolean on_button_press_dialog (GtkWidget *widget,
 	GdkEventButton *pButton,
 	CairoDialog *pDialog)
 {
@@ -271,11 +271,15 @@ static gboolean on_button_press_dialog (GtkWidget *widget,
 	myData.pDialog = NULL;
 	CD_APPLET_LEAVE(FALSE);
 	//return FALSE;
+}*/
+static void _on_dialog_destroyed (CairoDockModuleInstance *myApplet)
+{
+	myData.pDialog = NULL;
 }
-static gboolean _on_key_press_dialog (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer *data, CairoDialog *pDialog)
+/**static gboolean _on_key_press_dialog (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer *data, CairoDialog *pDialog)
 {
 	myData.pDialog = NULL;  // le dialogue est dereference donc tout ce qu'on a a faire c'est prendre en compte ce fait !
-}
+}*/
 void mixer_show_hide_dialog (void)
 {
 	if (myDesklet)
@@ -297,12 +301,15 @@ void mixer_show_hide_dialog (void)
 		attr.cText = cMessage;
 		attr.cImageFilePath = MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE;
 		attr.pInteractiveWidget = pScale;
-		attr.pActionFunc = (CairoDockActionOnAnswerFunc) _on_key_press_dialog;
+		///attr.pActionFunc = (CairoDockActionOnAnswerFunc) _on_key_press_dialog;
+		attr.pUserData = myApplet;
+		attr.pFreeDataFunc = (GFreeFunc)_on_dialog_destroyed;
+		
 		myData.pDialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);
-		g_signal_connect (G_OBJECT (myData.pDialog->container.pWidget),
+		/**g_signal_connect (G_OBJECT (myData.pDialog->container.pWidget),
 			"button-press-event",
 			G_CALLBACK (on_button_press_dialog),
-			myData.pDialog);
+			myData.pDialog);*/
 	}
 	else
 	{

@@ -442,17 +442,17 @@ static GtkWidget *cd_build_events_widget (void)
 	return pMainBox;
 }
 
-static gboolean on_button_press_dialog (GtkWidget *widget, GdkEventButton *pButton, CairoDockModuleInstance *myApplet)
+/**static gboolean on_button_press_dialog (GtkWidget *widget, GdkEventButton *pButton, CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cairo_dock_dialog_unreference (myData.pDialog);
 	myData.pDialog = NULL;
 	CD_APPLET_LEAVE(FALSE);
-}
-static void _on_dialog_destroyed (gpointer data)
+}*/
+static void _on_dialog_destroyed (CairoDockModuleInstance *myApplet)
 {
 	myData.pDialog = NULL;
-	myData.pEntry = NULL;
+	myData.pEntry = NULL;  // interactive widget inside the dialog are destroyed with it.
 	myData.iCurrentCaterogy = CD_EVENT_ALL;
 	myData.pModel = NULL;	
 }
@@ -466,12 +466,20 @@ void cd_toggle_dialog (void)
 	else
 	{
 		GtkWidget *pInteractiveWidget = cd_build_events_widget ();
-		myData.pDialog = cairo_dock_show_dialog_full (D_("Browse and search in recent events"), myIcon, myContainer, 0, "same icon", pInteractiveWidget, NULL, myApplet, (GFreeFunc) _on_dialog_destroyed);
+		myData.pDialog = cairo_dock_show_dialog_full (D_("Browse and search in recent events"),
+			myIcon,
+			myContainer,
+			0,
+			"same icon",
+			pInteractiveWidget,
+			NULL,
+			myApplet,
+			(GFreeFunc) _on_dialog_destroyed);
 		gtk_widget_grab_focus (myData.pEntry);
-		g_signal_connect (G_OBJECT (myData.pDialog->container.pWidget),
+		/**g_signal_connect (G_OBJECT (myData.pDialog->container.pWidget),
 			"button-press-event",
 			G_CALLBACK (on_button_press_dialog),
-			myApplet);
+			myApplet);*/
 		
 		cd_trigger_search ();
 	}
