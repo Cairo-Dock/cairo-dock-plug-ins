@@ -91,6 +91,18 @@ typedef struct {
 	gdouble fLastCheckTime;
 	} CDProcess;
 
+typedef struct {
+	GHashTable *pProcessTable;
+	CDProcess **pTopList;
+	GTimer *pTopClock;
+	gboolean bSortTopByRam;
+	gint iNbDisplayedProcesses;
+	gdouble fUserHZ;
+	gulong iMemPageSize;
+	gint iNbCPU;
+	CairoDockModuleInstance *pApplet;
+	} CDTopSharedMemory;
+	
 struct _AppletData {
 	// infos, constantes.
 	gint iNbCPU;
@@ -134,16 +146,11 @@ struct _AppletData {
 	gboolean bFanAlerted;
 	gint iCount;  // pour sous-echantilloner les acquisitions de valeurs moins variables.
 	
-	guint iNbProcesses;
+	// 'top' variables.
+	guint iNbProcesses;  // last total number of processes.
+	gboolean bSortTopByRam;  // current state of the cpu/ram button on the dialog.
 	CairoDialog *pTopDialog;
-	cairo_surface_t *pTopSurface;
 	CairoDockTask *pTopTask;
-	// shared memory for the "top" thread.
-	GHashTable *pProcessTable;
-	CDProcess **pTopList;
-	GTimer *pTopClock;
-	gboolean bSortTopByRam;
-	// end of shared memory.
 } ;
 
 

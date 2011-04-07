@@ -140,10 +140,11 @@ void cd_sysmonitor_get_cpu_info (CairoDockModuleInstance *myApplet, GString *pIn
 	if (myData.iNbCPU == 0)  // on n'a encore jamais initialise ca.
 		_get_cpu_info (myApplet);
 	
-	g_string_append_printf (pInfo,"%s : %s\n  %s : %d MHz (%d %s)",
-		D_("CPU model"), myData.cModelName,
-		D_("Frequency"), myData.iFrequency,
-		myData.iNbCPU, D_("core(s)"));  // on ne met pas les infos du thread, car la charge CPU varie trop vite pour etre pertinente a un instant donne.
+	if (pInfo != NULL)
+		g_string_append_printf (pInfo,"%s : %s\n  %s : %d MHz (%d %s)",
+			D_("CPU model"), myData.cModelName,
+			D_("Frequency"), myData.iFrequency,
+			myData.iNbCPU, D_("core(s)"));  // on ne met pas les infos du thread, car la charge CPU varie trop vite pour etre pertinente a un instant donne.
 }
 
 

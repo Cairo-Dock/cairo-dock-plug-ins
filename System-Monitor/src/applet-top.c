@@ -26,10 +26,11 @@
 #include <unistd.h>
 
 #include "applet-struct.h"
+#include "applet-cpusage.h"  // cd_sysmonitor_get_cpu_info
 #include "applet-top.h"
 
 
-void cd_sysmonitor_free_process (CDProcess *pProcess)
+static void _cd_sysmonitor_free_process (CDProcess *pProcess)
 {
 	if (pProcess == NULL)
 		return ;
@@ -37,39 +38,23 @@ void cd_sysmonitor_free_process (CDProcess *pProcess)
 	g_free (pProcess);
 }
 
-static gboolean _cd_clean_one_old_processes (int *iPid, CDProcess *pProcess, double *fTime)
-{
-	if (pProcess->fLastCheckTime < *fTime)
-		return TRUE;
-	return FALSE;
-}
-void cd_sysmonitor_clean_old_processes (CairoDockModuleInstance *myApplet, double fTime)
-{
-	g_hash_table_foreach_remove (myData.pProcessTable, (GHRFunc) _cd_clean_one_old_processes, &fTime);
-}
 
-void cd_sysmonitor_clean_all_processes (CairoDockModuleInstance *myApplet)
-{
-	g_hash_table_remove_all (myData.pProcessTable);
-}
-
-
-static inline void _cd_sysmonitor_insert_process_in_top_list (CairoDockModuleInstance *myApplet, CDProcess *pProcess)
+static inline void _cd_sysmonitor_insert_process_in_top_list (CDTopSharedMemory *pSharedMemory, CDProcess *pProcess)
 {
 	int i, j;
-	if (myData.bSortTopByRam)
+	if (pSharedMemory->bSortTopByRam)
 	{
 		if (pProcess->iMemAmount > 0)
 		{
-			i = myConfig.iNbDisplayedProcesses - 1;
-			while (i >= 0 && (myData.pTopList[i] == NULL || pProcess->iMemAmount > myData.pTopList[i]->iMemAmount))
+			i = pSharedMemory->iNbDisplayedProcesses - 1;
+			while (i >= 0 && (pSharedMemory->pTopList[i] == NULL || pProcess->iMemAmount > pSharedMemory->pTopList[i]->iMemAmount))
 				i --;
-			if (i != myConfig.iNbDisplayedProcesses - 1)
+			if (i != pSharedMemory->iNbDisplayedProcesses - 1)
 			{
 				i ++;
-				for (j = myConfig.iNbDisplayedProcesses - 2; j >= i; j --)
-					myData.pTopList[j+1] = myData.pTopList[j];
-				myData.pTopList[i] = pProcess;
+				for (j = pSharedMemory->iNbDisplayedProcesses - 2; j >= i; j --)
+					pSharedMemory->pTopList[j+1] = pSharedMemory->pTopList[j];
+				pSharedMemory->pTopList[i] = pProcess;
 			}
 		}
 	}
@@ -77,16 +62,16 @@ static inline void _cd_sysmonitor_insert_process_in_top_list (CairoDockModuleIns
 	{
 		if (pProcess->fCpuPercent > 0)
 		{
-			i = myConfig.iNbDisplayedProcesses - 1;
-			while (i >= 0 && (myData.pTopList[i] == NULL || pProcess->fCpuPercent > myData.pTopList[i]->fCpuPercent))
+			i = pSharedMemory->iNbDisplayedProcesses - 1;
+			while (i >= 0 && (pSharedMemory->pTopList[i] == NULL || pProcess->fCpuPercent > pSharedMemory->pTopList[i]->fCpuPercent))
 				i --;
-			if (i != myConfig.iNbDisplayedProcesses - 1)
+			if (i != pSharedMemory->iNbDisplayedProcesses - 1)
 			{
 				i ++;
 				//g_print ("  fCpuPercent:%.2f%% => rang %d\n", 100*pProcess->fCpuPercent, i);
-				for (j = myConfig.iNbDisplayedProcesses - 2; j >= i; j --)
-					myData.pTopList[j+1] = myData.pTopList[j];
-				myData.pTopList[i] = pProcess;
+				for (j = pSharedMemory->iNbDisplayedProcesses - 2; j >= i; j --)
+					pSharedMemory->pTopList[j+1] = pSharedMemory->pTopList[j];
+				pSharedMemory->pTopList[i] = pProcess;
 			}
 		}
 	}
@@ -102,7 +87,7 @@ static inline void _cd_sysmonitor_insert_process_in_top_list (CairoDockModuleIns
 	while (*tmp == ' ') \
 		tmp ++; \
 
-static void _cd_sysmonitor_get_process_data (CairoDockModuleInstance *myApplet, double fTime, double fTimeElapsed)
+static void _cd_sysmonitor_get_process_data (CDTopSharedMemory *pSharedMemory, double fTime, double fTimeElapsed)
 {
 	static gchar cFilePathBuffer[20+1];  // /proc/12345/stat + 4octets de marge.
 	static gchar cContent[512+1];
@@ -117,20 +102,20 @@ static void _cd_sysmonitor_get_process_data (CairoDockModuleInstance *myApplet, 
 		return ;
 	}
 	
-	if (myData.pProcessTable == NULL)
-		myData.pProcessTable = g_hash_table_new_full (g_int_hash, g_int_equal, NULL, (GDestroyNotify) cd_sysmonitor_free_process);  // la cle est dans la valeur.
-	if (myData.pTopList == NULL)
-		myData.pTopList = g_new0 (CDProcess *, myConfig.iNbDisplayedProcesses);
+	if (pSharedMemory->pProcessTable == NULL)
+		pSharedMemory->pProcessTable = g_hash_table_new_full (g_int_hash, g_int_equal, NULL, (GDestroyNotify) _cd_sysmonitor_free_process);  // a table of (pid*, process*), the pid* points directly into the process.
+	if (pSharedMemory->pTopList == NULL)
+		pSharedMemory->pTopList = g_new0 (CDProcess *, pSharedMemory->iNbDisplayedProcesses);  // list of the processes to be displayed (points directly into the table).
 	else
-		memset (myData.pTopList, 0, myConfig.iNbDisplayedProcesses * sizeof (CDProcess *));
-	if (myData.iMemPageSize == 0)
-		myData.iMemPageSize = sysconf(_SC_PAGESIZE);
+		memset (pSharedMemory->pTopList, 0, pSharedMemory->iNbDisplayedProcesses * sizeof (CDProcess *));
+	if (pSharedMemory->iMemPageSize == 0)
+		pSharedMemory->iMemPageSize = sysconf(_SC_PAGESIZE);
 	
 	const gchar *cPid;
 	gchar *tmp;
 	CDProcess *pProcess;
 	int iNewCpuTime;
-	unsigned long long iVmSize, iVmRSS, iTotalMemory;  // Quantité de mémoire totale utilisée / (Virtual Memory Resident Stack Size) Taille de la pile en mémoire.
+	unsigned long long iVmSize, iVmRSS, iTotalMemory;  // Quantite de memoire totale utilisee / (Virtual Memory Resident Stack Size) Taille de la pile en memoire.
 	int i, j;
 	while ((cPid = g_dir_read_name (dir)) != NULL)
 	{
@@ -142,7 +127,7 @@ static void _cd_sysmonitor_get_process_data (CairoDockModuleInstance *myApplet, 
 		int iPid = atoi (cPid);
 		if (pipe <= 0)  // pas de pot le process s'est termine depuis qu'on a ouvert le repertoire.
 		{
-			g_hash_table_remove (myData.pProcessTable, &iPid);
+			g_hash_table_remove (pSharedMemory->pProcessTable, &iPid);
 			continue ;
 		}
 		
@@ -154,12 +139,12 @@ static void _cd_sysmonitor_get_process_data (CairoDockModuleInstance *myApplet, 
 		}
 		close (pipe);
 		
-		pProcess = g_hash_table_lookup (myData.pProcessTable, &iPid);
+		pProcess = g_hash_table_lookup (pSharedMemory->pProcessTable, &iPid);
 		if (pProcess == NULL)
 		{
 			pProcess = g_new0 (CDProcess, 1);
 			pProcess->iPid = iPid;
-			g_hash_table_insert (myData.pProcessTable, &pProcess->iPid, pProcess);
+			g_hash_table_insert (pSharedMemory->pProcessTable, &pProcess->iPid, pProcess);
 		}
 		pProcess->fLastCheckTime = fTime;
 		
@@ -200,62 +185,86 @@ static void _cd_sysmonitor_get_process_data (CairoDockModuleInstance *myApplet, 
 		iVmSize = atoll (tmp);
 		jump_to_next_value (tmp);
 		iVmRSS = atoll (tmp);
-		iTotalMemory = iVmRSS * myData.iMemPageSize;
+		iTotalMemory = iVmRSS * pSharedMemory->iMemPageSize;
 		
 		//g_print ("%s : %d -> %d\n", pProcess->cName, pProcess->iCpuTime, iNewCpuTime);
 		if (pProcess->iCpuTime != 0 && fTimeElapsed != 0)
-			pProcess->fCpuPercent = (iNewCpuTime - pProcess->iCpuTime) / myConfig.fUserHZ / myData.iNbCPU / fTimeElapsed;
+			pProcess->fCpuPercent = (iNewCpuTime - pProcess->iCpuTime) / pSharedMemory->fUserHZ / pSharedMemory->iNbCPU / fTimeElapsed;
 		pProcess->iCpuTime = iNewCpuTime;
 		pProcess->iMemAmount = iTotalMemory;
 		
-		_cd_sysmonitor_insert_process_in_top_list (myApplet, pProcess);
+		_cd_sysmonitor_insert_process_in_top_list (pSharedMemory, pProcess);
 	}
 	
 	g_dir_close (dir);
 }
 
-
-static void _cd_sysmonitor_get_top_list (CairoDockModuleInstance *myApplet)
+static gboolean _clean_one_old_processes (int *iPid, CDProcess *pProcess, double *fTime)
 {
-	// on recupere le delta T.
-	g_timer_stop (myData.pTopClock);
-	double fTimeElapsed = g_timer_elapsed (myData.pTopClock, NULL);
-	g_timer_start (myData.pTopClock);
+	if (pProcess->fLastCheckTime < *fTime)
+		return TRUE;
+	return FALSE;
+}
+
+static void _cd_sysmonitor_get_top_list (CDTopSharedMemory *pSharedMemory)
+{
+	// get the elapsed time since the last 'top'.
+	double fTimeElapsed;
+	if (pSharedMemory->pTopClock == NULL)
+	{
+		pSharedMemory->pTopClock = g_timer_new ();
+		fTimeElapsed = 0.;
+	}
+	else
+	{
+		g_timer_stop (pSharedMemory->pTopClock);
+		fTimeElapsed = g_timer_elapsed (pSharedMemory->pTopClock, NULL);
+		g_timer_start (pSharedMemory->pTopClock);
+	}
+	
+	// get the current time.
 	GTimeVal time_val;
 	g_get_current_time (&time_val);  // on pourrait aussi utiliser un compteur statique a la fonction ...
 	double fTime = time_val.tv_sec + time_val.tv_usec * 1e-6;
-	// on recupere les donnees de tous les processus.
-	_cd_sysmonitor_get_process_data (myApplet, fTime, fTimeElapsed);
-	// on nettoie la table des vieux processus.
-	cd_sysmonitor_clean_old_processes (myApplet, fTime);
+	
+	// get the data for all processes.
+	_cd_sysmonitor_get_process_data (pSharedMemory, fTime, fTimeElapsed);
+	
+	// clean the table from old processes.
+	g_hash_table_foreach_remove (pSharedMemory->pProcessTable, (GHRFunc) _clean_one_old_processes, &fTime);
 }
 
-static gboolean _cd_sysmonitor_update_top_list (CairoDockModuleInstance *myApplet)
+
+static gboolean _cd_sysmonitor_update_top_list (CDTopSharedMemory *pSharedMemory)
 {
-	// On ecrit les processus dans l'ordre.
+	CairoDockModuleInstance *myApplet = pSharedMemory->pApplet;
 	CD_APPLET_ENTER;
+	
+	// determine the max length of process names.
 	CDProcess *pProcess;
 	int i;
 	guint iNameLength = 0;
-	for (i = 0; i < myConfig.iNbDisplayedProcesses; i ++)
+	for (i = 0; i < pSharedMemory->iNbDisplayedProcesses; i ++)
 	{
-		pProcess = myData.pTopList[i];
+		pProcess = pSharedMemory->pTopList[i];
 		if (pProcess == NULL || pProcess->cName == NULL)
 			break;
 		iNameLength = MAX (iNameLength, strlen (pProcess->cName));
 	}
 	
-	gchar *cSpaces = g_new0 (gchar, iNameLength+1);
+	// write the processes in the form "name (pid)    : 15.2% - 12.3Mb".
+	gchar *cSpaces = g_new0 (gchar, iNameLength+6+1);  // name + pid(<1e6) + '\0'
 	memset (cSpaces, ' ', iNameLength);
-	int iOffset;
+	int iNbSpaces;
 	GString *sTopInfo = g_string_new ("");
-	for (i = 0; i < myConfig.iNbDisplayedProcesses; i ++)
+	for (i = 0; i < pSharedMemory->iNbDisplayedProcesses; i ++)
 	{
-		pProcess = myData.pTopList[i];
+		pProcess = pSharedMemory->pTopList[i];
 		if (pProcess == NULL || pProcess->cName == NULL)
 			break;
-		iOffset = iNameLength-strlen (pProcess->cName);
-		if (pProcess->iPid < 1e5)
+		// determine the number of spaces needed to have a correct alignment.
+		iNbSpaces = iNameLength - strlen (pProcess->cName);
+		if (pProcess->iPid < 1e5)  // no PID is >= 1e6; if ever it was, there would just be a small offset of the cpu and ram values displayed.
 		{
 			if (pProcess->iPid < 1e4)
 			{
@@ -264,20 +273,20 @@ static gboolean _cd_sysmonitor_update_top_list (CairoDockModuleInstance *myApple
 					if (pProcess->iPid < 1e2)
 					{
 						if (pProcess->iPid < 1e1)
-							iOffset += 5;
+							iNbSpaces += 5;
 						else
-							iOffset += 4;
+							iNbSpaces += 4;
 					}
 					else
-						iOffset += 3;
+						iNbSpaces += 3;
 				}
 				else
-					iOffset += 2;
+					iNbSpaces += 2;
 			}
 			else
-				iOffset += 1;
+				iNbSpaces += 1;
 		}
-		cSpaces[iOffset] = '\0';
+		cSpaces[iNbSpaces] = '\0';
 		g_string_append_printf (sTopInfo, "  %s (%d)%s: %.1f%%  %s-  %.1f%s\n",
 			pProcess->cName,
 			pProcess->iPid,
@@ -286,93 +295,119 @@ static gboolean _cd_sysmonitor_update_top_list (CairoDockModuleInstance *myApple
 			(pProcess->fCpuPercent > .1 ? "" : " "),
 			(double) pProcess->iMemAmount / (myConfig.bTopInPercent && myData.ramTotal ? 10.24 * myData.ramTotal : 1024 * 1024),
 			(myConfig.bTopInPercent && myData.ramTotal ? "%" : D_("Mb")));
-		cSpaces[iOffset] = ' ';
+		cSpaces[iNbSpaces] = ' ';
 	}
 	g_free (cSpaces);
-	if (i == 0)  // liste vide.
+	
+	// display the info on the dialog.
+	if (sTopInfo->len == 0)  // empty list, let the default message ("loading").
 	{
 		g_string_free (sTopInfo, TRUE);
 		CD_APPLET_LEAVE (TRUE);
-		//return TRUE;
 	}
-	sTopInfo->str[sTopInfo->len-1] = '\0';
+	else  // remove the trailing \n.
+	{
+		sTopInfo->str[sTopInfo->len-1] = '\0';
+	}
 	
-	// on affiche ca sur le dialogue.
 	cairo_dock_render_dialog_with_new_data (myData.pTopDialog, (CairoDialogRendererDataPtr) sTopInfo->str);
 	g_string_free (sTopInfo, TRUE);
 	
-	if (myData.iNbProcesses != g_hash_table_size (myData.pProcessTable))
+	// update the dialog title with the total number of processes if it has changed.
+	if (myData.iNbProcesses != g_hash_table_size (pSharedMemory->pProcessTable))
 	{
-		myData.iNbProcesses = g_hash_table_size (myData.pProcessTable);
-		gchar *cTitle = g_strdup_printf ("  [ Top %d / %d ] :", myConfig.iNbDisplayedProcesses, myData.iNbProcesses);
+		myData.iNbProcesses = g_hash_table_size (pSharedMemory->pProcessTable);
+		gchar *cTitle = g_strdup_printf ("  [ Top %d / %d ] :", pSharedMemory->iNbDisplayedProcesses, myData.iNbProcesses);
 		cairo_dock_set_dialog_message (myData.pTopDialog, cTitle);
 		g_free (cTitle);
 	}
+	
+	// update the sort for the next step.
+	pSharedMemory->bSortTopByRam = myData.bSortTopByRam;
+	
 	CD_APPLET_LEAVE (TRUE);
-	//return TRUE;
 }
 
 
-
-void cd_sysmonitor_stop_top_dialog (CairoDockModuleInstance *myApplet)
+static void _free_shared_memory (CDTopSharedMemory *pSharedMemory)
 {
-	if (myData.pTopDialog == NULL)
-		return ;
-	// on arrete la mesure.
-	cairo_dock_stop_task (myData.pTopTask);
-	// on detruit le dialogue.
-	cairo_dock_dialog_unreference (myData.pTopDialog);
-	myData.pTopDialog = NULL;
-	cairo_surface_destroy (myData.pTopSurface);
-	myData.pTopSurface = NULL;
-	g_timer_destroy (myData.pTopClock);
-	myData.pTopClock = NULL;
-	// on libere la liste des processus.
-	cd_sysmonitor_clean_all_processes (myApplet);
+	g_hash_table_destroy (pSharedMemory->pProcessTable);
+	g_free (pSharedMemory->pTopList);
+	g_timer_destroy (pSharedMemory->pTopClock);
+	g_free (pSharedMemory);
+}
+static void cd_sysmonitor_launch_top_task (CairoDockModuleInstance *myApplet)
+{
+	g_return_if_fail (myData.pTopTask == NULL);
+	
+	myData.iNbProcesses = 0;
+	if (myData.iNbCPU == 0)
+		cd_sysmonitor_get_cpu_info (myApplet, NULL);
+	
+	CDTopSharedMemory *pSharedMemory = g_new0 (CDTopSharedMemory, 1);
+	pSharedMemory->iNbDisplayedProcesses = myConfig.iNbDisplayedProcesses;
+	pSharedMemory->fUserHZ = myConfig.fUserHZ;
+	pSharedMemory->iNbCPU = myData.iNbCPU;
+	pSharedMemory->pApplet = myApplet;
+	
+	myData.pTopTask = cairo_dock_new_task_full (myConfig.iProcessCheckInterval,
+		(CairoDockGetDataAsyncFunc) _cd_sysmonitor_get_top_list,
+		(CairoDockUpdateSyncFunc) _cd_sysmonitor_update_top_list,
+		(GFreeFunc) _free_shared_memory,
+		pSharedMemory);
+	cairo_dock_launch_task (myData.pTopTask);
 }
 
-static void _sort_one_process (int *iPid, CDProcess *pProcess, CairoDockModuleInstance *myApplet)
+static void _sort_one_process (int *iPid, CDProcess *pProcess, CDTopSharedMemory *pSharedMemory)
 {
-	_cd_sysmonitor_insert_process_in_top_list (myApplet, pProcess);
+	_cd_sysmonitor_insert_process_in_top_list (pSharedMemory, pProcess);
 }
 static void _on_change_order (int iClickedButton, GtkWidget *pInteractiveWidget, CairoDockModuleInstance *myApplet, CairoDialog *pDialog)
 {
-	if (iClickedButton == 2)
+	if (iClickedButton == 2 || iClickedButton == -2)  // 'close' button or Escape, just return and let the dialog be destroyed.
 	{
-		cairo_dock_dialog_reference (pDialog);
-		cd_sysmonitor_stop_top_dialog (myApplet);
 		return;
 	}
 	gboolean bSortByRamNew = (iClickedButton == 1);
-	if (bSortByRamNew != myData.bSortTopByRam)  // on peut lire myData.bSortTopByRam car le thread n'y accede qu'en lecture.
+	if (bSortByRamNew != myData.bSortTopByRam)  // we'll sort the result immediately, so that the user doesn't have to wait until the next measure to see the result.
 	{
-		cairo_dock_stop_task (myData.pTopTask);  // le thread se termine.
 		myData.bSortTopByRam = bSortByRamNew;
-		memset (myData.pTopList, 0, myConfig.iNbDisplayedProcesses * sizeof (CDProcess *));  // on re-trie tout suivant le nouvel ordre.
-		g_hash_table_foreach (myData.pProcessTable, (GHFunc) _sort_one_process, myApplet);
-		_cd_sysmonitor_update_top_list (myApplet);  // on redessine.
-		cairo_dock_launch_task_delayed (myData.pTopTask, 1000. * myConfig.iProcessCheckInterval);  // on relance en gardant un intervalle de temps constant, sinon relancer la mesure tout de suite risquerait de donner des resultats peu precis.
+		
+		cairo_dock_stop_task (myData.pTopTask);  // blocks until the thread terminates.
+		
+		CDTopSharedMemory *pSharedMemory = myData.pTopTask->pSharedMemory;  // this is ok only because we stopped the task beforehand.
+		pSharedMemory->bSortTopByRam = bSortByRamNew;
+		if (pSharedMemory->pTopList != NULL && pSharedMemory->iNbDisplayedProcesses != 0)
+		{
+			memset (pSharedMemory->pTopList, 0, pSharedMemory->iNbDisplayedProcesses * sizeof (CDProcess *));  // on re-trie tout suivant le nouvel ordre.
+			g_hash_table_foreach (pSharedMemory->pProcessTable, (GHFunc) _sort_one_process, pSharedMemory);
+			_cd_sysmonitor_update_top_list (pSharedMemory);  // on redessine.
+		}
+		
+		cairo_dock_launch_task_delayed (myData.pTopTask, 1000. * myConfig.iProcessCheckInterval);  // restart the task with a delay equal to the interval, to keep the measure accurate.
 	}
-	cairo_dock_dialog_reference (pDialog);
+	cairo_dock_dialog_reference (pDialog);  // keep the dialog alive.
+}
+static void _on_dialog_destroyed (CairoDockModuleInstance *myApplet)
+{
+	// discard the 'top' task.
+	cairo_dock_discard_task (myData.pTopTask);
+	myData.pTopTask = NULL;
+	
+	// no more dialog.
+	myData.pTopDialog = NULL;
 }
 void cd_sysmonitor_start_top_dialog (CairoDockModuleInstance *myApplet)
 {
 	g_return_if_fail (myData.pTopDialog == NULL);
-	// on cree le dialogue.
+	// build an interactive widget that will be used to display the top list.
 	gchar *cTitle = g_strdup_printf ("  [ Top %d ] :", myConfig.iNbDisplayedProcesses);
 	GtkWidget *pInteractiveWidget = gtk_vbox_new (FALSE, 0);
 	gtk_widget_set_size_request (pInteractiveWidget,
 		myConfig.pTopTextDescription->iSize * 15,
 		myConfig.pTopTextDescription->iSize * myConfig.iNbDisplayedProcesses);  // approximatif au depart.
-	/*myData.pTopDialog = cairo_dock_show_dialog_full (cTitle,
-		myIcon,
-		myContainer,
-		0,
-		MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
-		pInteractiveWidget,
-		NULL,
-		NULL,
-		NULL);*/
+	
+	// build the dialog.
 	CairoDialogAttribute attr;
 	memset (&attr, 0, sizeof (CairoDialogAttribute));
 	attr.cText = cTitle;
@@ -380,23 +415,18 @@ void cd_sysmonitor_start_top_dialog (CairoDockModuleInstance *myApplet)
 	attr.pInteractiveWidget = pInteractiveWidget;
 	attr.pActionFunc = (CairoDockActionOnAnswerFunc) _on_change_order;
 	attr.pUserData = myApplet;
+        attr.pFreeDataFunc = (GFreeFunc) _on_dialog_destroyed;
 	const gchar *cButtons[] = {MY_APPLET_SHARE_DATA_DIR"/button-cpu.svg", MY_APPLET_SHARE_DATA_DIR"/button-ram.svg", "cancel", NULL};
 	attr.cButtonsImage = cButtons;
-	myData.pTopDialog = cairo_dock_build_dialog (&attr, myIcon,	myContainer);
+	myData.pTopDialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);
 	
 	g_free (cTitle);
 	g_return_if_fail (myData.pTopDialog != NULL);
 	
-	const gpointer pConfig[2] = {myConfig.pTopTextDescription, (const gpointer)"Loading ..."};
+	// set a dialog renderer of type 'text'.
+	const gpointer pConfig[2] = {myConfig.pTopTextDescription, (const gpointer)D_("Loading")};
 	cairo_dock_set_dialog_renderer_by_name (myData.pTopDialog, "Text", (CairoDialogRendererConfigPtr) pConfig);
 	
-	// on lance la mesure.
-	myData.pTopClock = g_timer_new ();
-	myData.iNbProcesses = 0;
-	if (myData.pTopTask == NULL)
-		myData.pTopTask = cairo_dock_new_task (myConfig.iProcessCheckInterval,
-			(CairoDockGetDataAsyncFunc) _cd_sysmonitor_get_top_list,
-			(CairoDockUpdateSyncFunc) _cd_sysmonitor_update_top_list,
-			myApplet);
-	cairo_dock_launch_task (myData.pTopTask);
+	// launch the 'top' task.
+	cd_sysmonitor_launch_top_task (myApplet);
 }

@@ -32,15 +32,11 @@
 CD_APPLET_ON_CLICK_BEGIN
 	if (myData.bAcquisitionOK)
 	{
-		if (myData.pTopDialog != NULL)
-			cd_sysmonitor_stop_top_dialog (myApplet);
-		else
-			cd_sysmonitor_start_top_dialog (myApplet);
+		cd_sysmonitor_start_top_dialog (myApplet);
 	}
 	else
 	{
-		if (myData.pTopDialog == NULL)
-			cairo_dock_remove_dialog_if_any (myIcon);
+		cairo_dock_remove_dialog_if_any (myIcon);
 		cairo_dock_show_temporary_dialog_with_icon (D_("The acquisition of one or more data has failed.\nYou should remove the data that couldn't be fetched."), myIcon, myContainer, 6e3, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 	}
 CD_APPLET_ON_CLICK_END
@@ -48,7 +44,7 @@ CD_APPLET_ON_CLICK_END
 
 static void _pop_up_dialog_info (CairoDockModuleInstance *myApplet)
 {
-	if (myData.pTopDialog != NULL || cairo_dock_remove_dialog_if_any (myIcon))
+	if (myData.pTopDialog != NULL || cairo_dock_remove_dialog_if_any (myIcon))  // don't popup if another dialog is present.
 		return;
 	
 	GString *pInfo = g_string_new ("");
@@ -76,6 +72,7 @@ static void _pop_up_dialog_info (CairoDockModuleInstance *myApplet)
 	
 	g_string_free (pInfo, TRUE);
 }
+
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	if (myData.bInitialized && myData.bAcquisitionOK)
 	{
@@ -88,7 +85,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
-static void _show_monitor_system (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _open_system_monitor (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
 	if (myConfig.cSystemMonitorCommand != NULL)
 	{
@@ -106,7 +103,7 @@ static void _show_info (GtkMenuItem *menu_item, CairoDockModuleInstance *myApple
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open the System-Monitor"), GTK_STOCK_EXECUTE, _show_monitor_system, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open the System-Monitor"), GTK_STOCK_EXECUTE, _open_system_monitor, CD_APPLET_MY_MENU);
 	
 	gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Show info"), D_("middle-click"));
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_DIALOG_INFO, _show_info, CD_APPLET_MY_MENU);

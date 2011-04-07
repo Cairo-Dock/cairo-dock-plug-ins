@@ -188,8 +188,6 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 		}
 		
-		cd_sysmonitor_stop_top_dialog (myApplet);
-		
 		_set_data_renderer (myApplet, TRUE);
 		
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
@@ -207,11 +205,6 @@ CD_APPLET_RELOAD_BEGIN
 		myData.fPrevFanSpeedPercent = 0;
 		myData.iTimerCount = 0;
 		cairo_dock_relaunch_task_immediately (myData.pPeriodicTask, myConfig.iCheckInterval);
-		
-		g_free (myData.pTopList);
-		myData.pTopList = NULL;
-		if (myData.pTopTask != NULL)
-			cairo_dock_change_task_frequency (myData.pTopTask, myConfig.iProcessCheckInterval);
 		
 		CD_APPLET_MANAGE_APPLICATION (myConfig.cSystemMonitorClass);
 	}

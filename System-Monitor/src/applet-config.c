@@ -111,17 +111,10 @@ CD_APPLET_RESET_DATA_BEGIN
 	
 	CD_APPLET_REMOVE_MY_DATA_RENDERER;
 	
-	cairo_dock_free_task (myData.pTopTask);
-	if (myData.pTopClock != NULL)
-		g_timer_destroy (myData.pTopClock);
-	g_free (myData.pTopList);
-	if (myData.pProcessTable != NULL)
-		g_hash_table_destroy (myData.pProcessTable);
-	cairo_surface_destroy (myData.pTopSurface);
+	cairo_dock_dialog_unreference (myData.pTopDialog);
 	
 	g_free (myData.cModelName);
 	g_free (myData.cGPUName);
 	g_free (myData.cDriverVersion);
-	
 CD_APPLET_RESET_DATA_END
 
