@@ -28,15 +28,6 @@
 
 
 CD_APPLET_ON_CLICK_BEGIN
-	if (cairo_dock_task_is_running (myData.pTask))
-	{
-		cairo_dock_show_temporary_dialog_with_icon (D_("Data are being retrieved, please wait a moment."), 
-			myIcon,
-			myContainer,
-			3000,
-			"same icon");
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
-	}
 	if (pClickedIcon == myIcon)  // en mode dock, on peut recevoir le clic sur l'icone principale si elle n'a pas de sous-dock, autrement dit si la connexion s'est mal passe, ce qui nous permet d'afficher le message d'erreur.
 	{
 		cd_weather_show_current_conditions_dialog (myApplet);
@@ -75,7 +66,7 @@ static inline void _reload (CairoDockModuleInstance *myApplet)
 	}
 	else
 	{
-		cairo_dock_stop_task (myData.pTask);
+		cairo_dock_stop_task (myData.pTask);  // not blocking since the task is not running.
 		
 		cairo_dock_launch_task (myData.pTask);
 	}
@@ -136,27 +127,30 @@ CD_APPLET_ON_DOUBLE_CLICK_BEGIN
 CD_APPLET_ON_DOUBLE_CLICK_END
 
 
-CairoDialog *cd_weather_show_forecast_dialog (CairoDockModuleInstance *myApplet, Icon *pIcon)
+void cd_weather_show_forecast_dialog (CairoDockModuleInstance *myApplet, Icon *pIcon)
 {
+	// remove any other forecast dialog.
 	if (myDock != NULL)
 		g_list_foreach (myIcon->pSubDock->icons, (GFunc) cairo_dock_remove_dialog_if_any_full, GINT_TO_POINTER (TRUE));
 	else
 		cairo_dock_remove_dialog_if_any (myIcon);
 	
-	if (myData.bErrorRetrievingData)
+	// if we never got any result, show an error message. If we lost the connection, but could get some data beforehand, we'll just present the old data, since they are not likely to change very often.
+	if (myData.wdata.cLocation == NULL)
 	{
 		cairo_dock_show_temporary_dialog_with_icon (D_("No data available\n is your connection alive?"), 
 			(myDock ? pIcon : myIcon),
 			(myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer),
 			myConfig.cDialogDuration,
 			"same icon");
-		return NULL;
+		return ;
 	}
 	
+	// present the day's forecast.
 	int iNumDay = ((int) pIcon->fOrder) / 2, iPart = ((int) pIcon->fOrder) - 2 * iNumDay;
-	g_return_val_if_fail (iNumDay < myConfig.iNbDays && iPart < 2, NULL);
+	g_return_if_fail (iNumDay < myConfig.iNbDays && iPart < 2);
 	
-	Day *day = &myData.days[iNumDay];
+	Day *day = &myData.wdata.days[iNumDay];
 	DayPart *part = &day->part[iPart];
 	cairo_dock_show_temporary_dialog_with_icon_printf ("%s (%s) : %s\n %s : %s%s -> %s%s\n %s : %s%%\n %s : %s%s (%s)\n %s : %s%%\n %s : %s  %s %s",
 		(myDock ? pIcon : myIcon),
@@ -164,26 +158,28 @@ CairoDialog *cd_weather_show_forecast_dialog (CairoDockModuleInstance *myApplet,
 		myConfig.cDialogDuration,
 		"same icon",
 		day->cName, day->cDate, part->cWeatherDescription,
-		D_("Temperature"), _display (day->cTempMin), myData.units.cTemp, _display (day->cTempMax), myData.units.cTemp,
+		D_("Temperature"), _display (day->cTempMin), myData.wdata.units.cTemp, _display (day->cTempMax), myData.wdata.units.cTemp,
 		D_("Precipitation probability"), _display (part->cPrecipitationProba),
-		D_("Wind"), _display (part->cWindSpeed), myData.units.cSpeed, _display (part->cWindDirection),
+		D_("Wind"), _display (part->cWindSpeed), myData.wdata.units.cSpeed, _display (part->cWindDirection),
 		D_("Humidity"), _display (part->cHumidity),
 		D_("Sunrise"), _display (day->cSunRise), _("Sunset"), _display (day->cSunSet));
 }
 
-CairoDialog *cd_weather_show_current_conditions_dialog (CairoDockModuleInstance *myApplet)
+void cd_weather_show_current_conditions_dialog (CairoDockModuleInstance *myApplet)
 {
 	cairo_dock_remove_dialog_if_any (myIcon);
-	if (cairo_dock_task_is_running (myData.pTask))
+	
+	// if an error occured, the current conditions are no more valid.
+	if (cairo_dock_task_is_running (myData.pTask))  // current conditions are outdated.
 	{
 		cairo_dock_show_temporary_dialog_with_icon (D_("Data are being fetched, please re-try in a few seconds."),
 			myIcon,
 			myContainer,
 			3000,
 			"same icon");
-		
-		return NULL;
+		return;
 	}
+	
 	if (myData.bErrorRetrievingData)
 	{
 		cairo_dock_show_temporary_dialog_with_icon (D_("No data available\nRetrying now..."),
@@ -192,16 +188,16 @@ CairoDialog *cd_weather_show_current_conditions_dialog (CairoDockModuleInstance 
 			3000,
 			myIcon->cFileName);
 		_reload (myApplet);
-		
-		return NULL;
+		return ;
 	}
 	
-	CurrentContitions *cc = &myData.currentConditions;
+	// show a dialog with the current conditions.
+	CurrentContitions *cc = &myData.wdata.currentConditions;
 	cairo_dock_show_temporary_dialog_with_icon_printf ("%s (%s, %s)\n %s : %s%s (%s : %s%s)\n %s : %s%s (%s)\n %s : %s - %s : %s%s\n %s : %s  %s %s",
 		myIcon, myContainer, myConfig.cDialogDuration, myIcon->cFileName,
 		cc->cWeatherDescription, cc->cDataAcquisitionDate, cc->cObservatory,
-		D_("Temperature"), _display (cc->cTemp), myData.units.cTemp, D_("Feels like"), _display (cc->cFeltTemp), myData.units.cTemp,
-		D_("Wind"), _display (cc->cWindSpeed), myData.units.cSpeed, _display (cc->cWindDirection),
-		D_("Humidity"), _display (cc->cHumidity), D_("Pressure"), _display (cc->cPressure), myData.units.cPressure,  // unite ?...
+		D_("Temperature"), _display (cc->cTemp), myData.wdata.units.cTemp, D_("Feels like"), _display (cc->cFeltTemp), myData.wdata.units.cTemp,
+		D_("Wind"), _display (cc->cWindSpeed), myData.wdata.units.cSpeed, _display (cc->cWindDirection),
+		D_("Humidity"), _display (cc->cHumidity), D_("Pressure"), _display (cc->cPressure), myData.wdata.units.cPressure,  // unite ?...
 		D_("Sunrise"), _display (cc->cSunRise), D_("Sunset"), _display (cc->cSunSet));
 }

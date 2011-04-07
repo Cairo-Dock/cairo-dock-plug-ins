@@ -41,11 +41,7 @@ CD_APPLET_DEFINE_END
 
 CD_APPLET_INIT_BEGIN
 	// On lance la mesure periodique.
-	myData.pTask = cairo_dock_new_task (myConfig.iCheckInterval,
-		(CairoDockGetDataAsyncFunc) cd_weather_get_distant_data,
-		(CairoDockUpdateSyncFunc) cd_weather_update_from_data,
-		myApplet);
-	cairo_dock_launch_task (myData.pTask);
+	cd_weather_launch_periodic_task (myApplet);
 	
 	// On s'abonne aux notifications.
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
@@ -77,13 +73,12 @@ CD_APPLET_RELOAD_BEGIN
 			myIcon->cName = NULL;
 		}
 		
-		cd_weather_reset_all_datas (myApplet);  // on bourrine.
+		///cd_weather_reset_all_datas (myApplet);  // on bourrine.
 		
-		myData.pTask = cairo_dock_new_task (myConfig.iCheckInterval,
-			(CairoDockGetDataAsyncFunc) cd_weather_get_distant_data,
-			(CairoDockUpdateSyncFunc) cd_weather_update_from_data,
-			myApplet);
-		cairo_dock_launch_task (myData.pTask);
+		// relaunch the periodic task immediately.
+		myData.bErrorRetrievingData = FALSE;
+		myData.bSetName = FALSE;
+		cd_weather_launch_periodic_task (myApplet);  // discard the current one if needed.
 	}
 CD_APPLET_RELOAD_END
 

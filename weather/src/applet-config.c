@@ -64,7 +64,6 @@ void cd_weather_reset_all_datas (CairoDockModuleInstance *myApplet)
 	cd_weather_reset_data (myApplet);
 	
 	cd_weather_free_location_list ();
-	g_free (myData.cLocation);
 	
 	CD_APPLET_DELETE_MY_ICONS_LIST;
 	
@@ -108,6 +107,8 @@ static void _on_got_location_data (const gchar *cLocationData, CairoDockModuleIn
 	if (!pCodeEntry)
 	{
 		g_print ("request took too long, discard results\n");
+		cairo_dock_discard_task (myData.pGetLocationTask);
+		myData.pGetLocationTask = NULL;
 		return;
 	}
 	cairo_dock_set_status_message (NULL, "");
@@ -170,6 +171,9 @@ static void _on_got_location_data (const gchar *cLocationData, CairoDockModuleIn
 			1,
 			gtk_get_current_event_time ());
 	}
+	
+	cairo_dock_discard_task (myData.pGetLocationTask);
+	myData.pGetLocationTask = NULL;
 }
 #define CD_WEATHER_BASE_URL "http://xml.weather.com"
 static void _cd_weather_search_for_location (GtkEntry *pEntry, CairoDockModuleInstance *myApplet)
@@ -203,8 +207,8 @@ void cd_weather_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile*
 	
 	GtkWidget *pLocationEntry = gtk_entry_new ();
 	gtk_widget_set_tooltip_text (pLocationEntry, D_("Enter the name of your location and press Enter to choose amongst results."));
-	if (myData.cLocation != NULL)
-		gtk_entry_set_text (GTK_ENTRY (pLocationEntry), myData.cLocation);
+	if (myData.wdata.cLocation != NULL)
+		gtk_entry_set_text (GTK_ENTRY (pLocationEntry), myData.wdata.cLocation);
 	gtk_box_pack_start (GTK_BOX (pWidgetBox), pLocationEntry, FALSE, FALSE, 0);
 	g_signal_connect (pLocationEntry, "activate", G_CALLBACK (_cd_weather_search_for_location), myApplet);
 }

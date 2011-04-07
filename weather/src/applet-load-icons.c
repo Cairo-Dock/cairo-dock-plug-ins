@@ -26,17 +26,17 @@
 const char *cMonthsWeeks[19] = { N_("Monday") , N_("Tuesday") , N_("Wednesday") , N_("Thursday") , N_("Friday") , N_("Saturday") , N_("Sunday") , N_("Jan") , N_("Feb") , N_("Mar") , N_("Apr") , N_("May") ,N_("Jun") , N_("Jui") , N_("Aug") , N_("Sep") , N_("Oct") , N_("Nov") , N_("Dec") };  // pour qu'ils soient listes dans le .pot.
 
 #define _add_icon(i, j)\
-	if (myData.days[i].cName != NULL)\
+	if (myData.wdata.days[i].cName != NULL)\
 	{\
-		pIcon = cairo_dock_create_dummy_launcher (g_strdup (myData.days[i].cName),\
-			g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.days[i].part[j].cIconNumber),\
+		pIcon = cairo_dock_create_dummy_launcher (g_strdup (myData.wdata.days[i].cName),\
+			g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.wdata.days[i].part[j].cIconNumber),\
 			NULL,\
-			(myConfig.bDisplayTemperature ? g_strdup_printf ("%s/%s", _display (myData.days[i].cTempMin), _display (myData.days[i].cTempMax)) : NULL),\
+			(myConfig.bDisplayTemperature ? g_strdup_printf ("%s/%s", _display (myData.wdata.days[i].cTempMin), _display (myData.wdata.days[i].cTempMax)) : NULL),\
 			2*i+j);\
 		if (! g_file_test (pIcon->cFileName, G_FILE_TEST_EXISTS))\
 		{\
 			g_free (pIcon->cFileName);\
-			pIcon->cFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.days[i].part[j].cIconNumber);\
+			pIcon->cFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.wdata.days[i].part[j].cIconNumber);\
 		}\
 		cairo_dock_listen_for_double_click (pIcon);\
 		pIconList = g_list_append (pIconList, pIcon);\
@@ -68,9 +68,9 @@ static void _weather_draw_current_conditions (CairoDockModuleInstance *myApplet)
 	if (myConfig.bCurrentConditions || myData.bErrorRetrievingData)
 	{
 		cd_message ("  chargement de l'icone meteo (%x)", myApplet);
-		if (myConfig.bDisplayTemperature && myData.currentConditions.cTemp != NULL)
+		if (myConfig.bDisplayTemperature && myData.wdata.currentConditions.cTemp != NULL)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s%s", myData.currentConditions.cTemp, myData.units.cTemp);
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s%s", myData.wdata.currentConditions.cTemp, myData.wdata.units.cTemp);
 		}
 		else
 		{
@@ -94,11 +94,11 @@ static void _weather_draw_current_conditions (CairoDockModuleInstance *myApplet)
 		}
 		else
 		{
-			myIcon->cFileName = g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.currentConditions.cIconNumber);
+			myIcon->cFileName = g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.wdata.currentConditions.cIconNumber);
 			if (! g_file_test (myIcon->cFileName, G_FILE_TEST_EXISTS))
 			{
 				g_free (myIcon->cFileName);
-				myIcon->cFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.currentConditions.cIconNumber);
+				myIcon->cFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.wdata.currentConditions.cIconNumber);
 			}
 		}
 		CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->cFileName);
@@ -109,18 +109,52 @@ static void _weather_draw_current_conditions (CairoDockModuleInstance *myApplet)
 	}
 }
 
-gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
+
+
+gboolean cd_weather_update_from_data (CDSharedMemory *pSharedMemory)
 {
+	CairoDockModuleInstance *myApplet = pSharedMemory->pApplet;
 	g_return_val_if_fail (myIcon != NULL, FALSE);  // paranoia
 	CD_APPLET_ENTER;
 	
+	//\_______________________ in case an error occured, keep the current data, and just redraw the main icon.
+	if (pSharedMemory->bErrorInThread)
+	{
+		if (!myData.bErrorRetrievingData)  // no previous error, draw an emblem.
+		{
+			myData.bErrorRetrievingData = TRUE;
+			
+			_weather_draw_current_conditions (myApplet);  // draw the icon, in case we never drawn the icon before.
+			
+			// retry in 20s, in case it's just a temporary network loss, or a slow connection on startup.
+			if (myData.pTask->iPeriod > 20)
+			{
+				cd_message ("no data, will re-try in 20s");
+				cairo_dock_change_task_frequency (myData.pTask, 20);
+			}
+			
+		}
+		cd_weather_reset_weather_data (&pSharedMemory->wdata);  // discard the results, since they are probably empty or incomplete.
+		
+		CD_APPLET_LEAVE (TRUE);  // don't recreate the icons, since data have not changed.
+	}
+	myData.bErrorRetrievingData = FALSE;
+	
+	//\_______________________ copy the shared memory into our data.
+	// free the current saved data.
+	cd_weather_reset_data (myApplet);
+
+	// then save the new data.
+	memcpy (&myData.wdata, &pSharedMemory->wdata, sizeof (CDWeatherData));
+	
+	// and clear the shared memory.
+	memset (&pSharedMemory->wdata, 0, sizeof (CDWeatherData));
+	
 	//\_______________________ On etablit le nom de l'icone.
-	myData.cLocation = myData.cLocation_;
-	myData.cLocation_ = NULL;
 	if ((myIcon->cName == NULL || myData.bSetName) && myDock)
 	{
-		myData.bSetName = (myData.cLocation == NULL);  // cas ou l'applet demarre avant l'etablissesment de la connexion.
-		CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cLocation != NULL ? (const gchar*)myData.cLocation : WEATHER_DEFAULT_NAME);
+		myData.bSetName = (myData.wdata.cLocation == NULL);  // cas ou l'applet demarre avant l'etablissesment de la connexion.
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myData.wdata.cLocation != NULL ? (const gchar*)myData.wdata.cLocation : WEATHER_DEFAULT_NAME);
 	}
 	
 	//\_______________________ On cree la liste des icones de prevision.
@@ -144,21 +178,14 @@ gboolean cd_weather_update_from_data (CairoDockModuleInstance *myApplet)
 		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 	
 	//\_______________________ On recharge l'icone principale.
-	myData.bErrorRetrievingData = myData.bErrorInThread;
 	_weather_draw_current_conditions (myApplet);  // ne lance pas le redraw.
 	CD_APPLET_REDRAW_MY_ICON;
 	
-	if (myData.bErrorRetrievingData && myData.pTask->iPeriod > 20)
-	{
-		cd_message ("no data, will re-try in 20s");
-		cairo_dock_change_task_frequency (myData.pTask, 20);  // on re-essaiera dans 20s.
-	}
-	else if (myData.pTask->iPeriod != myConfig.iCheckInterval)
+	if (myData.pTask->iPeriod != myConfig.iCheckInterval)
 	{
 		cd_message ("revert to normal frequency");
 		cairo_dock_change_task_frequency (myData.pTask, myConfig.iCheckInterval);
 	}
 	
 	CD_APPLET_LEAVE (TRUE);
-	//return TRUE;
 }

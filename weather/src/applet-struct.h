@@ -88,17 +88,27 @@ typedef struct {
 	DayPart part[2];
 	} Day;
 
-struct _AppletData {
-	// shared memory.
-	xmlChar *cLocation_;
-	xmlChar *cLon;
-	xmlChar *cLat;
+typedef struct {
+	xmlChar *cLocation;
+	/**xmlChar *cLon;
+	xmlChar *cLat;*/
 	Unit units;
 	CurrentContitions currentConditions;
 	Day days[WEATHER_NB_DAYS_MAX];
+	} CDWeatherData;
+
+typedef struct {
+	gchar *cLocationCode;
+	gboolean bISUnits;
+	gboolean bCurrentConditions;
+	gint iNbDays;
+	CDWeatherData wdata;
 	gboolean bErrorInThread;
-	// end of shared memory.
-	xmlChar *cLocation;
+	CairoDockModuleInstance *pApplet;
+	} CDSharedMemory;
+		
+struct _AppletData {
+	CDWeatherData wdata;
 	CairoDockTask *pTask;
 	gboolean bErrorRetrievingData;
 	GList *pLocationsList;

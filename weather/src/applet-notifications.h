@@ -32,8 +32,9 @@ CD_APPLET_ON_BUILD_MENU_H
 CD_APPLET_ON_MIDDLE_CLICK_H
 
 
-CairoDialog *cd_weather_show_forecast_dialog (CairoDockModuleInstance *myApplet, Icon *pIcon);
+void cd_weather_show_forecast_dialog (CairoDockModuleInstance *myApplet, Icon *pIcon);
 
-CairoDialog *cd_weather_show_current_conditions_dialog (CairoDockModuleInstance *myApplet);
+void cd_weather_show_current_conditions_dialog (CairoDockModuleInstance *myApplet);
+
 
 #endif

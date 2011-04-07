@@ -17,20 +17,21 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef __APPLET_READ_DATA__
 #define  __APPLET_READ_DATA__
 
 #include <cairo-dock.h>
 
 
-gchar *cd_weather_get_location_data (const gchar *cLocation);
-
 GList *cd_weather_parse_location_data  (const gchar *cData, GError **erreur);
 
 
-void cd_weather_get_distant_data (CairoDockModuleInstance *myApplet);
+void cd_weather_reset_weather_data (CDWeatherData *pData);
 
 void cd_weather_reset_data (CairoDockModuleInstance *myApplet);
+
+
+void cd_weather_launch_periodic_task (CairoDockModuleInstance *myApplet);
+
 
 #endif
