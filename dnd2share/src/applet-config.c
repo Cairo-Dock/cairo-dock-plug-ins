@@ -72,7 +72,7 @@ CD_APPLET_RESET_CONFIG_END
 
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped, in the very end.
 CD_APPLET_RESET_DATA_BEGIN
-	cairo_dock_discard_task (myData.pTask);  // stoppe la tache.
+	cairo_dock_discard_task (myData.pTask);
 	
 	cd_dnd2share_clear_history ();
 	

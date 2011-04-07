@@ -79,6 +79,8 @@ typedef struct _CDSharedMemory {
 	gchar *cCurrentFilePath;
 	CDFileType iCurrentFileType;
 	gboolean bTempFile;
+	CDSiteBackend *pCurrentBackend;
+	gint iTinyURLService;
 	gchar **cResultUrls;
 	} CDSharedMemory;
 

@@ -125,16 +125,16 @@ void cd_dnd2share_clear_history (void)
 static void _cd_dnd2share_threaded_upload (CDSharedMemory *pSharedMemory)
 {
 	gchar *cFilePath = pSharedMemory->cCurrentFilePath;
-	CDSiteBackend *pCurrentBackend = myData.pCurrentBackend[pSharedMemory->iCurrentFileType];
+	CDSiteBackend *pCurrentBackend = pSharedMemory->pCurrentBackend;
 	g_return_if_fail (pCurrentBackend != NULL);
 	
 	pSharedMemory->cResultUrls = g_new0 (gchar *, pCurrentBackend->iNbUrls+1);  // NULL-terminated
 	pCurrentBackend->upload (cFilePath, pSharedMemory->cResultUrls);
 	
-	if (pSharedMemory->cResultUrls[0] && myConfig.iTinyURLService != 0)  // on en fait une tiny-url.
+	if (pSharedMemory->cResultUrls[0] && pSharedMemory->iTinyURLService != 0)  // on en fait une tiny-url.
 	{
 		gchar *Command = NULL;
-		switch (myConfig.iTinyURLService)
+		switch (pSharedMemory->iTinyURLService)
 		{
 			case 1:
 			default:
@@ -379,6 +379,9 @@ void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 	}
 	pSharedMemory->cCurrentFilePath = g_strdup (cFilePath);
 	g_free (cTmpFile);
+	
+	pSharedMemory->iTinyURLService = myConfig.iTinyURLService;
+	pSharedMemory->pCurrentBackend = myData.pCurrentBackend[pSharedMemory->iCurrentFileType];
 	
 	myData.pTask = cairo_dock_new_task_full (0,  // 1 shot task.
 		(CairoDockGetDataAsyncFunc) _cd_dnd2share_threaded_upload,
