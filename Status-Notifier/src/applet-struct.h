@@ -102,6 +102,8 @@ struct _AppletData {
 	gint iNbLines, iNbColumns, iItemSize;  // agencement compact.
 	CDStatusNotifierItem *pPrevItemHovered;
 	gdouble fDesktopNameAlpha;
+	gint iDefaultWidth;
+	gint iDefaultHeight;
 	} ;
 
 

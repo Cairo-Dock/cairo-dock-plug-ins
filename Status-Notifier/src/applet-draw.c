@@ -67,6 +67,73 @@ void cd_satus_notifier_compute_grid (void)
 	//g_print ("=== satus_notifier : %dx%d\n", myData.iNbLines, myData.iNbColumns);
 }
 
+void cd_satus_notifier_compute_icon_size (void)
+{
+	// count the active items.
+	int iNbItems = 0;
+	CDStatusNotifierItem *pItem;
+	GList *it;
+	for (it = myData.pItems; it != NULL; it = it->next)
+	{
+		pItem = it->data;
+		if (pItem->iStatus != CD_STATUS_PASSIVE)
+			iNbItems ++;
+	}
+	
+	int w0, h0;  // default icon size, as set in the config.
+	w0 = myData.iDefaultWidth;
+	h0 = myData.iDefaultHeight;
+	// current available icon size.
+	int iWidth, iHeight;
+	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
+	g_print ("=== icon: %dx%d\n", iWidth, iHeight);
+	if (!myContainer->bIsHorizontal)
+	{
+		int tmp = iWidth;
+		iWidth = iHeight;
+		iHeight = tmp;
+	}
+	
+	// compute the required width and the grid.
+	myData.iNbLines = myConfig.iNbLines;
+	myData.iItemSize = MAX (1, iHeight / myConfig.iNbLines);
+	myData.iNbColumns = ceil ((float)iNbItems / myConfig.iNbLines);  // nb items by line.
+	int w = MAX (w0, myData.iItemSize * myData.iNbColumns);
+	g_print ("=== required width: %d (now: %d)\n", w, iWidth);
+	
+	// if width has changed, update the icon size.
+	if (w != iWidth)
+	{
+		double fMaxScale = cairo_dock_get_max_scale (myContainer);
+		myIcon->fWidth = w / fMaxScale;
+		myIcon->fHeight = h0 / fMaxScale;  // set the height too, because now it takes into account the dock's ratio.
+		myIcon->iImageWidth = 0;  // will be updated when the icon is reloaded.
+		myIcon->iImageHeight = 0;  // will be updated when the icon is reloaded.
+		cairo_dock_load_icon_image (myIcon, myContainer);
+		
+		if (myDrawContext)
+		{
+			cairo_destroy (myDrawContext);
+			myDrawContext = NULL;
+		}
+		if (myIcon->pIconBuffer)
+			myDrawContext = cairo_create (myIcon->pIconBuffer);
+		if (cairo_status (myDrawContext) != CAIRO_STATUS_SUCCESS)
+			myDrawContext = NULL;
+		
+		if (myDock)
+		{
+			cairo_dock_update_dock_size (myDock);
+		}
+		else
+		{
+			gtk_window_resize (GTK_WINDOW (myContainer->pWidget),
+				myIcon->iImageWidth,
+				myIcon->iImageHeight);
+		}
+	}
+}
+
 
 void cd_satus_notifier_draw_compact_icon (void)
 {
@@ -77,7 +144,7 @@ void cd_satus_notifier_draw_compact_icon (void)
 	// erase all.
 	cairo_dock_erase_cairo_context (myDrawContext);
 	
-	// icons background.
+	// draw icons background.
 	if (g_pIconBackgroundBuffer.pSurface != NULL)
 	{
 		cairo_save (myDrawContext);
@@ -92,8 +159,9 @@ void cd_satus_notifier_draw_compact_icon (void)
 		cairo_restore (myDrawContext);
 	}
 	
-	int x_pad = (iWidth - myData.iItemSize * myData.iNbColumns) / 2;  // pour centrer le dessin.
+	int x_pad = (iWidth - myData.iItemSize * myData.iNbColumns) / 2;  // pad to center the drawing.
 	int y_pad = (iHeight - myData.iItemSize * myData.iNbLines) / 2;
+	g_print ("pad: %d;%d; grid: %dx%d, icon: %dx%d\n", x_pad, y_pad, myData.iNbLines, myData.iNbColumns, iWidth, iHeight);
 	
 	// draw each active item, in lines, from left to right.
 	int i = 0, j = 0;  // ligne, colonne
@@ -139,10 +207,13 @@ void cd_satus_notifier_reload_compact_mode (void)
 	g_print ("=== %s ()\n", __func__);
 	// re-compute the grid.
 	int iPrevSize = myData.iItemSize;
-	cd_satus_notifier_compute_grid ();
+	if (myConfig.bResizeIcon)
+		cd_satus_notifier_compute_icon_size ();
+	else
+		cd_satus_notifier_compute_grid ();
 	
 	// reload surfaces if their size has changed.
-	g_print ("===  size: %d -> %d\n", iPrevSize, myData.iItemSize);
+	g_print ("===  item size: %d -> %d, icon size: %dx%d (%p)\n", iPrevSize, myData.iItemSize, myIcon->iImageWidth, myIcon->iImageHeight, myIcon->pIconBuffer);
 	CDStatusNotifierItem *pItem;
 	GList *it;
 	for (it = myData.pItems; it != NULL; it = it->next)

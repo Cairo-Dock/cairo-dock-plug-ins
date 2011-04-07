@@ -146,8 +146,9 @@ static inline void _add_new_item (const gchar *cService, const gchar *cObjectPat
 	
 	pItem->iPosition = iPosition;
 	if (pItem->cLabel == NULL && pItem->cTitle == NULL)
-		pItem->cLabel = g_strdup (cService);
+		pItem->cLabel = g_strdup (pItem->cId);  // cService is often a dbus name like :1.355
 	myData.pItems = g_list_prepend (myData.pItems, pItem);
+	g_print ("item '%s' appended\n", pItem->cId);
 	
 	if (pItem->iStatus == CD_STATUS_PASSIVE)  // don't show a passive item.
 		return;
@@ -357,7 +358,7 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 		if (pItem->iPosition == -1)
 			pItem->iPosition = iPosition;
 		if (pItem->cTitle == NULL && pItem->cLabel == NULL)
-			pItem->cLabel = g_strdup (cLabel);
+			pItem->cLabel = g_strdup (cLabel && *cLabel != '\0' ? cLabel : pItem->cId);
 		myData.pItems = g_list_prepend (myData.pItems, pItem);
 	}
 	

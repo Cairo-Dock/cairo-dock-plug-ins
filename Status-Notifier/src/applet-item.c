@@ -213,7 +213,7 @@ static void on_new_item_status (DBusGProxy *proxy_item, const gchar *cStatus, CD
 static void on_new_item_label (DBusGProxy *proxy_item, const gchar *cLabel, const gchar *cLabelGuide, CDStatusNotifierItem *pItem)
 {
 	CD_APPLET_ENTER;
-	//g_print ("=== %s (%s, %s)\n", __func__, cLabel, cLabelGuide);
+	g_print ("=== %s (%s, %s)\n", __func__, cLabel, cLabelGuide);
 	
 	g_free (pItem->cLabel);
 	pItem->cLabel = g_strdup (cLabel);
@@ -245,7 +245,7 @@ static void on_new_item_title (DBusGProxy *proxy_item, CDStatusNotifierItem *pIt
 	
 	g_free (pItem->cTitle);
 	pItem->cTitle = cairo_dock_dbus_get_property_as_string (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "Title");
-	//g_print ("===  new title : %s\n", pItem->cTitle);
+	g_print ("===  new title : %s\n", pItem->cTitle);
 	
 	//cairo_dock_set_icon_name (cTitle, pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
 	
