@@ -230,6 +230,8 @@ static void _get_html_page (CDHtmlLink *pHtmlLink)
 static gboolean _update_html_link (CDHtmlLink *pHtmlLink)
 {
 	CairoDockModuleInstance *myApplet = pHtmlLink->pApplet;
+	CD_APPLET_ENTER;
+	
 	// store in the conf file.
 	cairo_dock_update_conf_file (pHtmlLink->cConfFilePath,
 		G_TYPE_STRING, "Desktop Entry", "Favicon", pHtmlLink->cFaviconPath,
@@ -265,7 +267,9 @@ static gboolean _update_html_link (CDHtmlLink *pHtmlLink)
 	}
 	
 	cairo_dock_discard_task (pHtmlLink->pTask);
-	return TRUE;
+	myData.pGetPageTaskList = g_list_remove (myData.pGetPageTaskList, pHtmlLink->pTask);
+	
+	CD_APPLET_LEAVE (TRUE);
 }
 
 static void _free_html_link (CDHtmlLink *pHtmlLink)

@@ -29,7 +29,7 @@
 
 
 CD_APPLET_DEFINE_BEGIN (N_("stack"),
-	1, 6, 2,
+	2, 3, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_FILES,
 	N_("This applet allows you to build a stack of files, just like the Stacks applet of MacOS X.\n"
 	"To add file into your stacks, you just have to drag and drop it on the Stacks icon and you're done.\n"
@@ -42,15 +42,6 @@ CD_APPLET_DEFINE_BEGIN (N_("stack"),
 		(CairoDockNotificationFunc) cd_stack_on_drop_data,
 		CAIRO_DOCK_RUN_FIRST, NULL);
 CD_APPLET_DEFINE_END
-
-//~ CD_APPLET_DEFINITION (N_("stack"),
-	//~ 1, 6, 2,
-	//~ CAIRO_DOCK_CATEGORY_APPLET_FILES,
-	//~ N_("This applet allows you to build a stack of files, just like the Stacks applet of MacOS X.\n"
-	//~ "To add file into your stacks, you just have to drag and drop it on the Stacks icon and you're done.\n"
-	//~ "You can drop any file, or web URL, or even some piece of text\n"
-	//~ "You can quickly copy the path/url/text to the clipboard, or open it."),
-	//~ "ChAnGFu (Remy Robertson)")
 
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
@@ -79,19 +70,22 @@ CD_APPLET_STOP_BEGIN
 	
 	if (! g_file_test (myApplet->cConfFilePath, G_FILE_TEST_EXISTS) && myConfig.cStackDir)  // on a efface notre instance, on efface donc aussi le repertoire.
 	{
-		gchar *cCommand = g_strdup_printf ("rm -rf '%s'", myConfig.cStackDir);
+		gchar *cCommand = g_strdup_printf ("rm -rf \"%s\"", myConfig.cStackDir);
 		cd_debug ("Stack : %s", myConfig.cStackDir);
 		int r = system (cCommand);
 		g_free (cCommand);
 	}
 	
+	g_list_foreach (myData.pGetPageTaskList, (GFunc)cairo_dock_discard_task, NULL);
+	g_list_free (myData.pGetPageTaskList);
 CD_APPLET_STOP_END
 
 
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-	if (CD_APPLET_MY_CONFIG_CHANGED) {
+	if (CD_APPLET_MY_CONFIG_CHANGED)
+	{
 		if (myDock)
 			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		
