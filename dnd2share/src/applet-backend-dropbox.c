@@ -32,12 +32,12 @@
 #define NB_URLS 1
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
-static void upload (const gchar *cFilePath, gchar **cResultUrls)
+static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
 {
 	// launch the upload command.
 	gchar *cCommand;
-	if (myConfig.cDropboxDir)
-		cCommand = g_strdup_printf ("cp \"%s\" \"%s\"", cFilePath, myConfig.cDropboxDir);
+	if (cDropboxDir)
+		cCommand = g_strdup_printf ("cp \"%s\" \"%s\"", cFilePath, cDropboxDir);
 	else
 		cCommand= g_strdup_printf ("cp \"%s\" ~/Dropbox/Public", cFilePath);
 	cd_debug ("commande dropbox1 : %s\n", cCommand);
@@ -46,18 +46,18 @@ static void upload (const gchar *cFilePath, gchar **cResultUrls)
 	
 	// get the result URL (available immediately, no need to loop on 'dropbox status' until having 'Idle').
 	gchar *cFileName = g_path_get_basename (cFilePath);
-	if (myConfig.cDropboxDir)
+	if (cDropboxDir)
 	{
-		gchar *str = g_strstr_len (myConfig.cDropboxDir, -1, "Dropbox");
+		gchar *str = g_strstr_len (cDropboxDir, -1, "Dropbox");
 		if (!str)
 		{
-			str = strrchr (myConfig.cDropboxDir, '/');
+			str = strrchr (cDropboxDir, '/');
 			if (str)
 				str ++;
 		}
 		g_return_if_fail (str != NULL);
 			
-		cCommand = g_strdup_printf ("dropbox puburl \"%s/%s\"", myConfig.cDropboxDir, cFileName);
+		cCommand = g_strdup_printf ("dropbox puburl \"%s/%s\"", cDropboxDir, cFileName);
 	}
 	else
 		cCommand = g_strdup_printf ("dropbox puburl \"%s/Dropbox/Public/%s\"", getenv("HOME"), cFileName); 

@@ -125,11 +125,9 @@ void cd_dnd2share_clear_history (void)
 static void _cd_dnd2share_threaded_upload (CDSharedMemory *pSharedMemory)
 {
 	gchar *cFilePath = pSharedMemory->cCurrentFilePath;
-	CDSiteBackend *pCurrentBackend = pSharedMemory->pCurrentBackend;
-	g_return_if_fail (pCurrentBackend != NULL);
 	
-	pSharedMemory->cResultUrls = g_new0 (gchar *, pCurrentBackend->iNbUrls+1);  // NULL-terminated
-	pCurrentBackend->upload (cFilePath, pSharedMemory->cResultUrls);
+	pSharedMemory->cResultUrls = g_new0 (gchar *, pSharedMemory->iNbUrls+1);  // NULL-terminated
+	pSharedMemory->upload (cFilePath, pSharedMemory->cDropboxDir, pSharedMemory->bAnonymous, pSharedMemory->iLimitRate, pSharedMemory->cResultUrls);
 	
 	if (pSharedMemory->cResultUrls[0] && pSharedMemory->iTinyURLService != 0)  // on en fait une tiny-url.
 	{
@@ -153,7 +151,7 @@ static void _cd_dnd2share_threaded_upload (CDSharedMemory *pSharedMemory)
 			http://bit.ly
 			http://is.gd/create.php*/
 		}
-		pSharedMemory->cResultUrls[pCurrentBackend->iNbUrls-1] = cairo_dock_get_url_data (Command, NULL);
+		pSharedMemory->cResultUrls[pSharedMemory->iNbUrls-1] = cairo_dock_get_url_data (Command, NULL);
 		g_free (Command);
 	}
 }
@@ -318,6 +316,7 @@ static gboolean _cd_dnd2share_update_from_result (CDSharedMemory *pSharedMemory)
 }
 static void _free_shared_memory (CDSharedMemory *pSharedMemory)
 {
+	g_free (pSharedMemory->cDropboxDir);
 	g_free (pSharedMemory->cCurrentFilePath);
 	g_strfreev (pSharedMemory->cResultUrls);
 	g_free (pSharedMemory);
@@ -381,7 +380,14 @@ void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 	g_free (cTmpFile);
 	
 	pSharedMemory->iTinyURLService = myConfig.iTinyURLService;
-	pSharedMemory->pCurrentBackend = myData.pCurrentBackend[pSharedMemory->iCurrentFileType];
+	pSharedMemory->cDropboxDir = g_strdup (myConfig.cDropboxDir);
+	pSharedMemory->bAnonymous = myConfig.bAnonymous;
+	pSharedMemory->iLimitRate = myConfig.iLimitRate;
+	
+	CDSiteBackend *pCurrentBackend = myData.pCurrentBackend[pSharedMemory->iCurrentFileType];
+	g_return_if_fail (pCurrentBackend != NULL);
+	pSharedMemory->upload = pCurrentBackend->upload;
+	pSharedMemory->iNbUrls = pCurrentBackend->iNbUrls;
 	
 	myData.pTask = cairo_dock_new_task_full (0,  // 1 shot task.
 		(CairoDockGetDataAsyncFunc) _cd_dnd2share_threaded_upload,

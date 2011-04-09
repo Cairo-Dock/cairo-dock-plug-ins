@@ -51,24 +51,34 @@ static void _free_info_dialog (CairoDockModuleInstance *myApplet)
 		myData.pInfoTask = NULL;
 	}
 }
-static void _measure_trash (CairoDockModuleInstance *myApplet)
+
+static void _free_shared_memory (CDSharedMemory *pSharedMemory)
 {
-	myData._iInfoMeasure = cairo_dock_fm_measure_diretory (myData.cDustbinPath, (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT ? 0 : 1), TRUE, &myData.pInfoTask->bDiscard);
+	g_print ("free dustbin SM\n");
+	g_free (pSharedMemory->cDustbinPath);
+	g_free (pSharedMemory);
 }
-static gboolean _display_result (CairoDockModuleInstance *myApplet)
+static void _measure_trash (CDSharedMemory *pSharedMemory)
+{
+	pSharedMemory->iMeasure = cairo_dock_fm_measure_diretory (pSharedMemory->cDustbinPath,
+		(pSharedMemory->iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT ? 0 : 1),
+		TRUE,
+		pSharedMemory->bDiscard);
+}
+static gboolean _display_result (CDSharedMemory *pSharedMemory)
 {
 	if (myData.pInfoDialog != NULL)
 	{
 		int iSize=-1, iNbFiles=-1, iTrashes=-1;
-		if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
+		if (pSharedMemory->iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
 		{
 			iSize = myData.iMeasure;
-			iNbFiles = myData._iInfoMeasure;
+			iNbFiles = pSharedMemory->iMeasure;
 		}
 		else
 		{
-			iSize = myData._iInfoMeasure;
-			if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES)
+			iSize = pSharedMemory->iMeasure;
+			if (pSharedMemory->iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES)
 				iNbFiles = myData.iMeasure;
 			else
 			{
@@ -77,12 +87,15 @@ static gboolean _display_result (CairoDockModuleInstance *myApplet)
 			}
 		}
 		
-		cairo_dock_set_dialog_message_printf (myData.pInfoDialog, "%s :\n %d %s\n %.2f %s", D_("The trash contains"),
-		iNbFiles > -1 ? iNbFiles : iTrashes,
-		iNbFiles > -1 ? D_("files") : D_("elements"),
-		(iSize > 1e6 ? (iSize >> 10) / 1024. : iSize / 1024.),
-		(iSize > 1e6 ? D_("Mo") : D_("Ko")));
+		cairo_dock_set_dialog_message_printf (myData.pInfoDialog, "%s :\n %d %s\n %.2f %s",
+			D_("The trash contains"),
+			iNbFiles > -1 ? iNbFiles : iTrashes,
+			iNbFiles > -1 ? D_("files") : D_("elements"),
+			(iSize > 1e6 ? (iSize >> 10) / 1024. : iSize / 1024.),
+			(iSize > 1e6 ? D_("Mo") : D_("Ko")));
 	}
+	cairo_dock_discard_task (myData.pInfoTask);
+	myData.pInfoTask = NULL;
 }
 static void _cd_dustbin_show_info (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
@@ -90,9 +103,11 @@ static void _cd_dustbin_show_info (GtkMenuItem *menu_item, CairoDockModuleInstan
 	gint iCancel = 0;
 	
 	if (myData.pInfoDialog != NULL)
+	{
 		cairo_dock_dialog_unreference (myData.pInfoDialog);
-	if (myData.pInfoTask != NULL)
-		cairo_dock_discard_task (myData.pInfoTask);
+		myData.pInfoDialog = NULL;
+	}
+	g_return_if_fail (myData.pInfoTask == NULL);
 	
 	CairoDialogAttribute attr;
 	memset (&attr, 0, sizeof (CairoDialogAttribute));
@@ -103,10 +118,16 @@ static void _cd_dustbin_show_info (GtkMenuItem *menu_item, CairoDockModuleInstan
 	myData.pInfoDialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);
 	
 	// launch the task and update the dialog when finished.
-	myData.pInfoTask = cairo_dock_new_task (0,
+	CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
+	pSharedMemory->cDustbinPath = g_strdup (myData.cDustbinPath);
+	pSharedMemory->iQuickInfoType = myConfig.iQuickInfoType;
+	myData.pInfoTask = cairo_dock_new_task_full (0,
 		(CairoDockGetDataAsyncFunc) _measure_trash,
 		(CairoDockUpdateSyncFunc) _display_result,
-		myApplet);
+		(GFreeFunc) _free_shared_memory,
+		pSharedMemory);
+	pSharedMemory->bDiscard = &myData.pInfoTask->bDiscard;
+	
 	cairo_dock_launch_task (myData.pInfoTask);
 }
 

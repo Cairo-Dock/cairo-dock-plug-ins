@@ -27,14 +27,23 @@
 #include "applet-trashes-manager.h"
 
 
-static void cd_dustbin_measure_trash (CairoDockModuleInstance *myApplet)
+static void _free_shared_memory (CDSharedMemory *pSharedMemory)
 {
-	myData._iMeasure = cairo_dock_fm_measure_diretory (myData.cDustbinPath, (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT ? 1 : 0), (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT || myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES), &myData.pTask->bDiscard);
+	g_free (pSharedMemory->cDustbinPath);
+	g_free (pSharedMemory);
 }
 
-static gboolean cd_dustbin_display_result (CairoDockModuleInstance *myApplet)
+static void cd_dustbin_measure_trash (CDSharedMemory *pSharedMemory)
 {
-	myData.iMeasure = myData._iMeasure;
+	pSharedMemory->iMeasure = cairo_dock_fm_measure_diretory (pSharedMemory->cDustbinPath,
+		(pSharedMemory->iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT ? 1 : 0),
+		(pSharedMemory->iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT || pSharedMemory->iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES),
+		pSharedMemory->bDiscard);
+}
+
+static gboolean cd_dustbin_display_result (CDSharedMemory *pSharedMemory)
+{
+	myData.iMeasure = pSharedMemory->iMeasure;
 	//g_print ("trash measure : %d\n", myData.iMeasure);
 	
 	if (myData.iMeasure == 0)
@@ -85,17 +94,25 @@ static void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gch
 	{
 		case CAIRO_DOCK_FILE_DELETED :
 		case CAIRO_DOCK_FILE_CREATED :
-			if (cairo_dock_task_is_running (myData.pTask) || cairo_dock_task_is_active (myData.pTask))
+			if (cairo_dock_task_is_running (myData.pTask))  // task is running, cancel it since files count has changed, no need to finish this measure.
 			{
 				//g_print ("cancel measure\n");
 				cairo_dock_discard_task (myData.pTask);
-				myData.pTask = cairo_dock_new_task (0,
+				
+				CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
+				pSharedMemory->cDustbinPath = g_strdup (myData.cDustbinPath);
+				pSharedMemory->iQuickInfoType = myConfig.iQuickInfoType;
+				myData.pTask = cairo_dock_new_task_full (0,
 					(CairoDockGetDataAsyncFunc) cd_dustbin_measure_trash,
 					(CairoDockUpdateSyncFunc) cd_dustbin_display_result,
-					myApplet);
+					(GFreeFunc) _free_shared_memory,
+					pSharedMemory);
+				pSharedMemory->bDiscard = &myData.pTask->bDiscard;
 			}
-			else if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT || myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES)
+			else if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT || myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES)  // task was not running, so no waiting message; let's add it before we launch the task.
+			{
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s...", (myDesklet ? D_("calculating") : ""));
+			}
 			cairo_dock_launch_task_delayed (myData.pTask, 500);
 		break ;
 		
@@ -106,20 +123,29 @@ static void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gch
 
 void cd_dustbin_start (CairoDockModuleInstance *myApplet)
 {
+	// get the trash folder if not already done.
 	if (myData.cDustbinPath == NULL)
 		myData.cDustbinPath = cairo_dock_fm_get_trash_path (NULL, NULL);
+	// monitor this folder.
 	if (myData.cDustbinPath != NULL)
 	{
+		// try monitoring the trash folder.
 		myData.bMonitoringOK = cairo_dock_fm_add_monitor_full (myData.cDustbinPath, TRUE, NULL, (CairoDockFMMonitorCallback) cd_dustbin_on_file_event, myApplet);
 		if (! myData.bMonitoringOK)
 		{
 			cd_message ("dustbin : can't monitor trash folder\n we'll check it periodically");
 		}
 		
-		myData.pTask = cairo_dock_new_task (myData.bMonitoringOK ? 0 : 10,  // si le monitoring de fichiers n'est pas disponible, on execute la tache periodiquement.
+		// measure the trash content once, to get the initial stats.
+		CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
+		pSharedMemory->cDustbinPath = g_strdup (myData.cDustbinPath);
+		pSharedMemory->iQuickInfoType = myConfig.iQuickInfoType;
+		myData.pTask = cairo_dock_new_task_full (myData.bMonitoringOK ? 0 : 10,  // si le monitoring de fichiers n'est pas disponible, on execute la tache periodiquement.
 			(CairoDockGetDataAsyncFunc) cd_dustbin_measure_trash,
 			(CairoDockUpdateSyncFunc) cd_dustbin_display_result,
-			myApplet);
+			(GFreeFunc) _free_shared_memory,
+			pSharedMemory);
+		pSharedMemory->bDiscard = &myData.pTask->bDiscard;
 		
 		cairo_dock_launch_task (myData.pTask);  // on la lance meme si on n'affiche rien, pour savoir si le nombre de fichiers est nul ou non.
 		if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT || myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES)  // operation potentiellement longue => on met un petit message discret.
@@ -127,7 +153,7 @@ void cd_dustbin_start (CairoDockModuleInstance *myApplet)
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s...", (myDesklet ? D_("calculating") : ""));
 		}
 	}
-	else
+	else  // no trash, set a N/A icon.
 	{
 		CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cEmptyUserImage);
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
@@ -136,7 +162,7 @@ void cd_dustbin_start (CairoDockModuleInstance *myApplet)
 
 void cd_dustbin_stop (CairoDockModuleInstance *myApplet)
 {
-	cairo_dock_free_task (myData.pTask);
+	cairo_dock_discard_task (myData.pTask);
 	myData.pTask = NULL;
 	
 	if (myData.bMonitoringOK)
@@ -145,7 +171,4 @@ void cd_dustbin_stop (CairoDockModuleInstance *myApplet)
 	}
 	
 	cairo_dock_dialog_unreference (myData.pInfoDialog);
-	
-	cairo_dock_free_task (myData.pInfoTask);
-	myData.pInfoTask = NULL;
 }

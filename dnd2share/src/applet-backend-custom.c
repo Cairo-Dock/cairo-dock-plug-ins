@@ -28,7 +28,7 @@
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
 
-static void _upload (CDFileType iCurrentFileType, const gchar *cFilePath, gchar **cResultUrls)
+static void _upload (CDFileType iCurrentFileType, const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
 {
 	g_return_if_fail (iCurrentFileType < CD_NB_FILE_TYPES && myConfig.cCustomScripts[iCurrentFileType] != NULL);
 	
@@ -61,24 +61,24 @@ static void _upload (CDFileType iCurrentFileType, const gchar *cFilePath, gchar 
 	g_free (cResult);
 }
 
-static void upload_text (const gchar *cFilePath, gchar **cResultUrls)
+static void upload_text (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
 {
-	_upload (CD_TYPE_TEXT, cFilePath, cResultUrls);
+	_upload (CD_TYPE_TEXT, cFilePath, cDropboxDir, bAnonymous, iLimitRate, cResultUrls);
 }
 
-static void upload_image (const gchar *cFilePath, gchar **cResultUrls)
+static void upload_image (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
 {
-	_upload (CD_TYPE_IMAGE, cFilePath, cResultUrls);
+	_upload (CD_TYPE_IMAGE, cFilePath, cDropboxDir, bAnonymous, iLimitRate, cResultUrls);
 }
 
-static void upload_video (const gchar *cFilePath, gchar **cResultUrls)
+static void upload_video (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
 {
-	_upload (CD_TYPE_VIDEO, cFilePath, cResultUrls);
+	_upload (CD_TYPE_VIDEO, cFilePath, cDropboxDir, bAnonymous, iLimitRate, cResultUrls);
 }
 
-static void upload_file (const gchar *cFilePath, gchar **cResultUrls)
+static void upload_file (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
 {
-	_upload (CD_TYPE_FILE, cFilePath, cResultUrls);
+	_upload (CD_TYPE_FILE, cFilePath, cDropboxDir, bAnonymous, iLimitRate, cResultUrls);
 }
 
 static const CDUploadFunc upload_funcs[CD_NB_FILE_TYPES] = {upload_text, upload_image, upload_video, upload_file};

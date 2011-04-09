@@ -32,13 +32,13 @@
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
 
-static void upload (const gchar *cFilePath, gchar **cResultUrls)
+static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
 {
 	// On lance la commande d'upload.
 	gchar *cFileName = g_path_get_basename (cFilePath);
 	gchar *cLocalFilePath;
-	if (myConfig.cDropboxDir)
-		cLocalFilePath = g_strdup_printf ("%s/%s", myConfig.cDropboxDir, cFileName);
+	if (cDropboxDir)
+		cLocalFilePath = g_strdup_printf ("%s/%s", cDropboxDir, cFileName);
 	else
 		cLocalFilePath = g_strdup_printf ("/home/%s/Ubuntu One/%s", g_getenv ("USER"), cFileName);
 	g_free (cFileName);

@@ -46,7 +46,7 @@ typedef struct _CDUploadedItem {
 	CDFileType iFileType;
 	} CDUploadedItem;
 
-typedef void (* CDUploadFunc) (const gchar *cFilePath, gchar **cResultUrls);
+typedef void (* CDUploadFunc) (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls);
 
 typedef struct _CDSiteBackend {
 	const gchar *cSiteName;  // nom du site, pour affichage
@@ -79,8 +79,12 @@ typedef struct _CDSharedMemory {
 	gchar *cCurrentFilePath;
 	CDFileType iCurrentFileType;
 	gboolean bTempFile;
-	CDSiteBackend *pCurrentBackend;
+	CDUploadFunc upload;  // we don't keep a pointer to the current backend in the shard memory, because it can be destroyed meanwhile. so we just copy the part that is useful.
+	gint iNbUrls;
 	gint iTinyURLService;
+	gchar *cDropboxDir;
+	gboolean bAnonymous;
+	gint iLimitRate;
 	gchar **cResultUrls;
 	} CDSharedMemory;
 

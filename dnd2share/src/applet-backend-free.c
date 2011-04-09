@@ -32,10 +32,10 @@
 #define NB_URLS 1
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
-static void upload (const gchar *cFilePath, gchar **cResultUrls)
+static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
 {
 	// On lance la commande d'upload.
-	gchar *cCommand = g_strdup_printf ("%s/%s \"%s\" \"%dk\"", MY_APPLET_SHARE_DATA_DIR, "upload2free.sh", cFilePath, myConfig.iLimitRate);
+	gchar *cCommand = g_strdup_printf ("%s/%s \"%s\" \"%dk\"", MY_APPLET_SHARE_DATA_DIR, "upload2free.sh", cFilePath, iLimitRate);
 	g_print ("%s\n", cCommand);
 	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
 	g_free (cCommand);

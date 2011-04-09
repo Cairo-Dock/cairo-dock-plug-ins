@@ -36,7 +36,7 @@
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
 
-static void upload (const gchar *cText, gchar **cResultUrls)
+static void upload (const gchar *cText, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
 {
 	GError *erreur = NULL;
 	gchar *cResult = cairo_dock_get_url_data_with_post (URL, FALSE, &erreur,

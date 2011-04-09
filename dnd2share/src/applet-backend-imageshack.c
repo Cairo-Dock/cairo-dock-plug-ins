@@ -31,7 +31,7 @@
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink", "Thumbnail"};
 
 
-static void upload (const gchar *cFilePath, gchar **cResultUrls)
+static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
 {
 	// On cree un fichier de log temporaire.
 	gchar *cLogFile = g_strdup ("/tmp/dnd2share-log.XXXXXX");
@@ -45,7 +45,7 @@ static void upload (const gchar *cFilePath, gchar **cResultUrls)
 	
 	// On lance la commande d'upload.
 	gchar *cCommand = NULL;
-	cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 --limit-rate %dk http://imageshack.us -F xml=yes -F tags=Cairo-Dock -F fileupload=@\"%s\" -o \"%s\"", myConfig.iLimitRate, cFilePath, cLogFile);
+	cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 --limit-rate %dk http://imageshack.us -F xml=yes -F tags=Cairo-Dock -F fileupload=@\"%s\" -o \"%s\"", iLimitRate, cFilePath, cLogFile);
 	cd_debug ("%s", cCommand);
 	int r = system (cCommand);
 	g_free (cCommand);

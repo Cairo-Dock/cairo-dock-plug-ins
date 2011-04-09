@@ -45,7 +45,7 @@ Content-Length: 0
 Content-Type: text/html; charset=UTF-8*/
 
 
-static void upload (const gchar *cText, gchar **cResultUrls)
+static void upload (const gchar *cText, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
 {
 	GError *erreur = NULL;
 	gchar *cResult = cairo_dock_get_url_data_with_post (URL, TRUE, &erreur,
@@ -53,7 +53,7 @@ static void upload (const gchar *cText, gchar **cResultUrls)
 		"expiry", EXPIRE,
 		"format", FORMAT,
 		"paste", "Send",
-		"poster", (myConfig.bAnonymous ? "Anonymous" : g_getenv("USER")),
+		"poster", (bAnonymous ? "Anonymous" : g_getenv("USER")),
 		"remember", "0",
 		"parent_pid", "",
 		NULL);

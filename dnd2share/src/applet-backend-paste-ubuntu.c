@@ -42,12 +42,12 @@ Content-Type: text/html; charset=utf-8
 Location: http://paste.ubuntu.com/557014/
 Content-Length: 0*/
 
-static void upload (const gchar *cText, gchar **cResultUrls)
+static void upload (const gchar *cText, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
 {
 	GError *erreur = NULL;
 	gchar *cResult = cairo_dock_get_url_data_with_post (URL, TRUE, &erreur,
 		"content", cText,
-		"poster", (myConfig.bAnonymous ? "Anonymous" : g_getenv("USER")),
+		"poster", (bAnonymous ? "Anonymous" : g_getenv("USER")),
 		"syntax", FORMAT,
 		"submit", "Paste!",
 		NULL);

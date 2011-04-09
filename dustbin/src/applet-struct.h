@@ -38,6 +38,13 @@ struct _AppletConfig {
 	gboolean bAskBeforeDelete;
 	} ;
 
+typedef struct _CDSharedMemory {
+	gchar *cDustbinPath;
+	CdDustbinInfotype iQuickInfoType;
+	gboolean *bDiscard;
+	gsize iMeasure;
+	} CDSharedMemory;
+
 struct _AppletData {
 	CairoDockTask *pTask;  // tache de la mesure.
 	// shared memory
