@@ -27,13 +27,16 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION (N_("Status Notifier"),
-	2, 2, 0,
+CD_APPLET_DEFINE_BEGIN ("Status Notifier",
+	2, 3, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
-	("A <b>notification area</b> for your dock\n"
+	N_("A <b>notification area</b> for your dock\n"
 	"Programs can use it to display their current status.\n"
-	"If a program doesn't appear inside when it should, it's probably because it doesn't support the protocol yet. Please fill a bug report to the devs."),
+	"If a program doesn't appear inside when it should, it's probably because it doesn't support the this feature yet. Please fill a bug report to the devs."),
 	"Fabounet (Fabrice Rey)")
+	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	CD_APPLET_REDEFINE_TITLE (N_("Notification Area"))
+CD_APPLET_DEFINE_END
 
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
@@ -116,6 +119,7 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func_on_object (myContainer,
 		NOTIFICATION_LEAVE_DESKLET,
 		(CairoDockNotificationFunc) on_leave_desklet, myApplet);
+	
 	cd_satus_notifier_stop_service ();
 CD_APPLET_STOP_END
 

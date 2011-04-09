@@ -26,9 +26,10 @@
 
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
-	myConfig.bCompactMode = CD_CONFIG_GET_BOOLEAN ("Configuration", "compact");
-	myConfig.bResizeIcon = TRUE;
-	myConfig.iNbLines = 2;
+	CDDisplayMode iDisplaymode = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "mode", 0);
+	myConfig.bCompactMode = (iDisplaymode == CD_MODE_COMPACT);
+	myConfig.bResizeIcon = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "auto-resize", TRUE);
+	myConfig.iNbLines = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb lines", 2);
 CD_APPLET_GET_CONFIG_END
 
 

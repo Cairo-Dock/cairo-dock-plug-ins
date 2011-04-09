@@ -245,7 +245,6 @@ static GList * _load_icons (CairoDockModuleInstance *myApplet)
 void cd_shortcuts_get_shortcuts_data (CairoDockModuleInstance *myApplet)
 {
 	myData.pIconList = _load_icons (myApplet);
-	g_print ("*** got icons\n");
 }
 
 
@@ -255,7 +254,6 @@ gboolean cd_shortcuts_build_shortcuts_from_data (CairoDockModuleInstance *myAppl
 	CD_APPLET_ENTER;
 	
 	//\_______________________ On efface l'ancienne liste.
-	g_print ("*** delete prev icons\n");
 	CD_APPLET_DELETE_MY_ICONS_LIST;
 	
 	//\_______________________ On charge la nouvelle liste.
@@ -271,12 +269,10 @@ gboolean cd_shortcuts_build_shortcuts_from_data (CairoDockModuleInstance *myAppl
 			cDeskletRendererName = "Tree";
 		break ;
 	}
-	g_print ("*** load icons\n");
 	CD_APPLET_LOAD_MY_ICONS_LIST (myData.pIconList, myConfig.cRenderer, cDeskletRendererName, NULL);
 	myData.pIconList = NULL;
 	
 	//\_______________________ On lance la tache de mesure des disques.
-	g_print ("*** launch tack\n");
 	cd_shortcuts_launch_disk_periodic_task (myApplet);
 	
 	CD_APPLET_LEAVE (TRUE);

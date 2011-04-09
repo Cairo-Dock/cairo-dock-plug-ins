@@ -103,5 +103,11 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#b Display items in compact mode?
-compact = true
+#Y[Compact;1;2;Sub-dock;0;0] How to display items:
+mode = 0
+
+#B Allow the icon to automatically resize itself?
+auto-resize = true
+
+#i[1;4] Number of lines to pack items in:
+nb lines = 2

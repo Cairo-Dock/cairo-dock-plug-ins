@@ -26,6 +26,13 @@
 
 #include <cairo-dock.h>
 
+typedef enum {
+	CD_MODE_COMPACT=0,
+	CD_MODE_SUB_DOCK,
+	CD_NB_MODES
+	} CDDisplayMode;
+
+
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
 	gboolean bCompactMode;  // les items sur l'icone principale ou dans un sous-dock.
@@ -96,13 +103,12 @@ struct _AppletData {
 	DBusGProxy *pProxyIndicatorApplicationService;
 	DBusGProxyCall* pRegisterHostCall;
 	DBusGProxyCall* pGetApplicationsCall;
-	GList *pItems;
-	guint iSidGetWatcher;
+	GList *pItems;  // list of all items.
 	GHashTable *pThemePaths;
 	gint iNbLines, iNbColumns, iItemSize;  // agencement compact.
-	CDStatusNotifierItem *pPrevItemHovered;
-	gdouble fDesktopNameAlpha;
-	gint iDefaultWidth;
+	CDStatusNotifierItem *pCurrentlyHoveredItem;  // in compact mode, item currently hovered.
+	gdouble fDesktopNameAlpha;  // in compact desklet mode, alpha for the currently hovered item title.
+	gint iDefaultWidth;  // in compact mode, initial icon size.
 	gint iDefaultHeight;
 	} ;
 

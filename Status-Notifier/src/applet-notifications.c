@@ -225,9 +225,9 @@ gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pCon
 	
 	CDStatusNotifierItem *pItem = cd_satus_notifier_find_item_from_coord ();
 	
-	if (pItem != myData.pPrevItemHovered)
+	if (pItem != myData.pCurrentlyHoveredItem)
 	{
-		myData.pPrevItemHovered = pItem;
+		myData.pCurrentlyHoveredItem = pItem;
 		myData.fDesktopNameAlpha = 0.;
 		if (pItem == NULL)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (NULL);
@@ -304,6 +304,6 @@ gboolean on_render_desklet (CairoDockModuleInstance *myApplet, CairoContainer *p
 gboolean on_leave_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation)
 {
 	*bStartAnimation = TRUE;
-	myData.pPrevItemHovered = NULL;
+	myData.pCurrentlyHoveredItem = NULL;
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }

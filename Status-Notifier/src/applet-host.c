@@ -677,9 +677,6 @@ void cd_satus_notifier_launch_service (void)
 
 void cd_satus_notifier_stop_service (void)
 {
-	if (myData.iSidGetWatcher != 0)
-		g_source_remove (myData.iSidGetWatcher);
-	
 	g_object_unref (myData.pProxyWatcher);
 	g_object_unref (myData.pProxyIndicatorApplicationService);
 	
