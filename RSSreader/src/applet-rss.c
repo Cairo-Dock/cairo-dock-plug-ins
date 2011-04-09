@@ -119,7 +119,7 @@ void cd_rssreader_cut_line (gchar *cLine, PangoLayout *pLayout, int iMaxWidth)
 }
 
 
-void cd_rssreader_free_item (CDRssItem *pItem)
+static void _free_item (CDRssItem *pItem)
 {
 	if (pItem == NULL)
 		return;
@@ -130,7 +130,6 @@ void cd_rssreader_free_item (CDRssItem *pItem)
 	g_free (pItem->cDate);
 	g_free (pItem);
 }
-
 void cd_rssreader_free_item_list (CairoDockModuleInstance *myApplet)
 {
 	if (myData.pItemList == NULL)
@@ -140,7 +139,7 @@ void cd_rssreader_free_item_list (CairoDockModuleInstance *myApplet)
 	for (it = myData.pItemList; it != NULL; it = it->next)
 	{
 		pItem = it->data;
-		cd_rssreader_free_item (pItem);
+		_free_item (pItem);
 	}
 	g_list_free (myData.pItemList);
 	myData.pItemList = NULL;
@@ -151,32 +150,31 @@ void cd_rssreader_free_item_list (CairoDockModuleInstance *myApplet)
 }
 
 
-static void _get_feeds (CairoDockModuleInstance *myApplet)
+static void _get_feeds (CDSharedMemory *pSharedMemory)
 {
-	if (myConfig.cUrl == NULL)
+	if (pSharedMemory->cUrl == NULL)
 		return ;
 
 	gchar *cUrlWithLoginPwd = NULL;
-	if( myConfig.cUrlLogin && myConfig.cUrlPassword &&
-	    strlen(myConfig.cUrlLogin)>0 &&
-	    strlen(myConfig.cUrlPassword)>0 )
+	if (pSharedMemory->cUrlLogin && pSharedMemory->cUrlPassword
+	&& *pSharedMemory->cUrlLogin != '\0' && *pSharedMemory->cUrlPassword != '\0')
 	{
 		// An URL is composed of that: "protocol://login:password@server/path"
 		// so look for the "://" string and insert "login:password@" at that place
-		gchar *location = g_strstr_len(myConfig.cUrl, 10, "://");
+		gchar *location = g_strstr_len(pSharedMemory->cUrl, 10, "://");
 		if( location )
 		{
-			gsize length_first_part = location - myConfig.cUrl + 3;
+			gsize length_first_part = location - pSharedMemory->cUrl + 3;
 			if( length_first_part > 0 )
 			{
-				gchar *first_part = g_strndup(myConfig.cUrl, length_first_part);
-				cUrlWithLoginPwd = g_strdup_printf("%s%s:%s@%s",first_part,myConfig.cUrlLogin,myConfig.cUrlPassword,location+3);
+				gchar *first_part = g_strndup(pSharedMemory->cUrl, length_first_part);
+				cUrlWithLoginPwd = g_strdup_printf("%s%s:%s@%s", first_part, pSharedMemory->cUrlLogin, pSharedMemory->cUrlPassword, location+3);
 				g_free(first_part);
 			}
 		}
 	}
 	
-	myData.cTaskBridge = cairo_dock_get_url_data (cUrlWithLoginPwd?cUrlWithLoginPwd:myConfig.cUrl, NULL);
+	pSharedMemory->cTaskBridge = cairo_dock_get_url_data (cUrlWithLoginPwd ? cUrlWithLoginPwd : pSharedMemory->cUrl, NULL);
 	g_free (cUrlWithLoginPwd);
 }
 
@@ -186,7 +184,7 @@ static GList * _parse_rss_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemL
 	xmlNodePtr item;
 	for (item = node->children; item != NULL; item = item->next)
 	{
-		g_print ("  + item: %s\n", item->name);
+		cd_debug ("  + item: %s", item->name);
 		if (xmlStrcmp (item->name, (const xmlChar *) "item") == 0)  // c'est un nouvel item.
 		{
 			CDRssItem *pNewItem = g_new0 (CDRssItem, 1);
@@ -248,14 +246,14 @@ static GList * _parse_rss_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemL
 				}
 			}
 			while (balise);
-			g_print ("   + description : '%s'\n", pItem->cDescription);
+			cd_debug ("   + description : '%s'", pItem->cDescription);
 		}
 		else if (xmlStrcmp (item->name, (const xmlChar *) "link") == 0)  // c'est le lien.
 		{
 			content = xmlNodeGetContent (item);
 			pItem->cLink = g_strdup (content);
 			xmlFree (content);
-			g_print ("   + link : '%s'\n", pItem->cLink);
+			cd_debug ("   + link : '%s'", pItem->cLink);
 		}
 		else if (xmlStrcmp (item->name, (const xmlChar *) "pubDate") == 0 || xmlStrcmp (item->name, (const xmlChar *) "date") == 0)  // c'est la date (pubDate pour RSS, data pour RDF).
 		{
@@ -419,8 +417,9 @@ static void _insert_error_message (CairoDockModuleInstance *myApplet, const gcha
 	myData.bError = TRUE;
 }
 
-static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
+static gboolean _update_from_feeds (CDSharedMemory *pSharedMemory)
 {
+	CairoDockModuleInstance *myApplet = pSharedMemory->pApplet;
 	CD_APPLET_ENTER;
 	if (! myData.bInit)  // pas encore initialise, on vire le message d'attente.
 	{
@@ -430,7 +429,7 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 	}
 	
 	// On parse le flux XML.
-	if (myData.cTaskBridge == NULL || *myData.cTaskBridge == '\0')
+	if (pSharedMemory->cTaskBridge == NULL || *pSharedMemory->cTaskBridge == '\0')
 	{
 		cd_warning ("RSSresader : no data");
 		const gchar *cErrorMessage = (myConfig.cUrl == NULL ?
@@ -459,9 +458,9 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 	}
 	
 	//g_print (" --> RSS: '%s'\n", myData.cTaskBridge);
-	xmlDocPtr doc = xmlParseMemory (myData.cTaskBridge, strlen (myData.cTaskBridge));
-	g_free (myData.cTaskBridge);
-	myData.cTaskBridge = NULL;
+	xmlDocPtr doc = xmlParseMemory (pSharedMemory->cTaskBridge, strlen (pSharedMemory->cTaskBridge));
+	g_free (pSharedMemory->cTaskBridge);
+	pSharedMemory->cTaskBridge = NULL;
 	
 	if (doc == NULL)
 	{
@@ -631,39 +630,44 @@ static gboolean _update_from_feeds (CairoDockModuleInstance *myApplet)
 	CD_APPLET_LEAVE (TRUE);
 }
 
-void cd_rssreader_upload_feeds_TASK (CairoDockModuleInstance *myApplet)
+
+static void _free_shared_memory (CDSharedMemory *pSharedMemory)
 {
-	if (myData.pTask == NULL) // la tache n'existe pas, on la cree et on la lance.
+	g_free (pSharedMemory->cUrl);
+	g_free (pSharedMemory->cUrlLogin);
+	g_free (pSharedMemory->cUrlPassword);
+	g_free (pSharedMemory->cTaskBridge);
+	g_free (pSharedMemory);
+}
+void cd_rssreader_launch_task (CairoDockModuleInstance *myApplet)
+{
+	if (myData.pTask != NULL)
 	{
-		myData.pTask = cairo_dock_new_task (myConfig.iRefreshTime,
-			(CairoDockGetDataAsyncFunc) _get_feeds,
-			(CairoDockUpdateSyncFunc) _update_from_feeds,
-			myApplet);
-		cairo_dock_launch_task (myData.pTask);
+		cairo_dock_discard_task (myData.pTask);
+		myData.pTask = NULL;
 	}
-	else // la tache existe, on la relance immediatement, avec la nouvelle frequence eventuellement.
-	{
-		cairo_dock_relaunch_task_immediately (myData.pTask, myConfig.iRefreshTime);
-	}
+	
+	CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
+	pSharedMemory->cUrl = g_strdup (myConfig.cUrl);
+	pSharedMemory->cUrlLogin = g_strdup (myConfig.cUrlLogin);
+	pSharedMemory->cUrlPassword = g_strdup (myConfig.cUrlPassword);
+	pSharedMemory->pApplet = myApplet;
+	
+	myData.pTask = cairo_dock_new_task_full (myConfig.iRefreshTime,
+		(CairoDockGetDataAsyncFunc) _get_feeds,
+		(CairoDockUpdateSyncFunc) _update_from_feeds,
+		(GFreeFunc) _free_shared_memory,
+		pSharedMemory);
+	cairo_dock_launch_task (myData.pTask);
 }
 
 
 
-
-/**static gboolean on_button_press_dialog (GtkWidget *widget,
-	GdkEventButton *pButton,
-	CairoDockModuleInstance *myApplet)
-{
-	CD_APPLET_ENTER;
-	cairo_dock_dialog_unreference (myData.pDialog);
-	myData.pDialog = NULL;
-	CD_APPLET_LEAVE(FALSE);
-}*/
 static void _on_dialog_destroyed (CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	myData.pDialog = NULL;
-	CD_APPLET_LEAVE(FALSE);
+	CD_APPLET_LEAVE();
 }
 void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
 {

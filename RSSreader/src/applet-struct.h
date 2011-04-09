@@ -65,12 +65,17 @@ typedef struct _CDRssItem {
 	gchar *cDate;
 	} CDRssItem ;
 
+typedef struct {
+	gchar *cUrl;
+	gchar *cUrlLogin;
+	gchar *cUrlPassword;
+	gchar *cTaskBridge;
+	CairoDockModuleInstance *pApplet;
+	} CDSharedMemory;
+
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
 	CairoDockTask *pTask;  // tache pour recuperer le flux.
-	// shared memory.
-	gchar *cTaskBridge;
-	// end of shared memory.
 	gboolean bUpdateIsManual;  // TRUE si l'utilisateur a force le refresh.
 	
 	GList *pItemList;  // une liste de CDRssItem.

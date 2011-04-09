@@ -62,7 +62,7 @@ CD_APPLET_INIT_BEGIN
 	pItem->cTitle = g_strdup (D_("Retrieving data..."));
 	
 	// on lance la tache periodique.
-	cd_rssreader_upload_feeds_TASK (myApplet);
+	cd_rssreader_launch_task (myApplet);
 	
 	// en mode desklet on redessine l'icone avec le message d'attente.
 	if (myDesklet)
@@ -124,7 +124,7 @@ CD_APPLET_RELOAD_BEGIN
 		myData.bError = FALSE;
 		
 		// on relance la tache periodique.
-		cd_rssreader_upload_feeds_TASK (myApplet);
+		cd_rssreader_launch_task (myApplet);
 		
 		// redessin.
 		if (myDesklet)

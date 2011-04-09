@@ -60,7 +60,7 @@ static void _new_url_to_conf (CairoDockModuleInstance *myApplet, const gchar *cN
 		if (myDesklet)
 			cd_applet_update_my_icon (myApplet);
 		
-		cd_rssreader_upload_feeds_TASK (myApplet); // On lance l'upload pour mettre a jour notre applet
+		cd_rssreader_launch_task (myApplet); // On lance l'upload pour mettre a jour notre applet
 	}
 	else
 	{
@@ -95,7 +95,7 @@ static inline void _update_feeds (CairoDockModuleInstance *myApplet)
 	myData.bUpdateIsManual = TRUE;
 	// on ne met pas de message d'attente pour conserver les items actuels, on prefere afficher un dialogue signalant ou pas une modification.
 	if (! cairo_dock_task_is_running (myData.pTask))  // sinon on va bloquer jusqu'a ce que la tache courante se termine, pour la relancer aussitot, ce qui n'a aucun interet.
-		cd_rssreader_upload_feeds_TASK (myApplet);
+		cd_rssreader_launch_task (myApplet);
 }
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	_update_feeds (myApplet);

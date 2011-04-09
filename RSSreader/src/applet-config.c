@@ -97,7 +97,6 @@ CD_APPLET_RESET_CONFIG_END
 
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped, in the very end.
 CD_APPLET_RESET_DATA_BEGIN
-	cairo_dock_free_task (myData.pTask);  // stoppe et detruit la tache.
-	g_free (myData.cTaskBridge);
+	cairo_dock_discard_task (myData.pTask);  // stoppe et detruit la tache.
 	cd_rssreader_free_item_list (myApplet);
 CD_APPLET_RESET_DATA_END
