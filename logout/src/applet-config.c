@@ -30,6 +30,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iActionOnClick = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "click", 1);
 	myConfig.iActionOnMiddleClick = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "middle-click", 0);
 	myConfig.iShutdownTime = CD_CONFIG_GET_INTEGER ("Configuration", "shutdown time");
+	myConfig.cEmblemPath = CD_CONFIG_GET_STRING ("Configuration", "emblem");
 	myConfig.cDefaultLabel = CD_CONFIG_GET_STRING ("Icon", "name");
 CD_APPLET_GET_CONFIG_END
 
@@ -37,6 +38,7 @@ CD_APPLET_GET_CONFIG_END
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cUserAction);
 	g_free (myConfig.cDefaultLabel);
+	g_free (myConfig.cEmblemPath);
 CD_APPLET_RESET_CONFIG_END
 
 

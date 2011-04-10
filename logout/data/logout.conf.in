@@ -123,3 +123,9 @@ user action =
 user action2 =
 
 shutdown time = 0
+
+#X[Customisation;gtk-dialog-info]
+frame_perso =
+#S+ Icon image name to use when the system has to be rebooted:
+#{Leave empty to use the default icon.}
+emblem =

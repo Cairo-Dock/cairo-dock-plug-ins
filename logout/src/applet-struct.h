@@ -38,6 +38,7 @@ struct _AppletConfig {
 	CDActionsEnum iActionOnClick;
 	CDActionsEnum iActionOnMiddleClick;
 	gint iShutdownTime;  // time_t
+	gchar *cEmblemPath;
 	gchar *cDefaultLabel;
 	} ;
 
