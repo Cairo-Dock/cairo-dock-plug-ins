@@ -106,7 +106,7 @@ typedef struct {
 	gboolean bErrorInThread;
 	CairoDockModuleInstance *pApplet;
 	} CDSharedMemory;
-		
+
 struct _AppletData {
 	CDWeatherData wdata;
 	CairoDockTask *pTask;

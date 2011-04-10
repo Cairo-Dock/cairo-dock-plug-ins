@@ -49,11 +49,7 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	
 	//\_______________ On charge les icones dans un sous-dock.
-	myData.pTask = cairo_dock_new_task (0,
-		(CairoDockGetDataAsyncFunc) cd_shortcuts_get_shortcuts_data,
-		(CairoDockUpdateSyncFunc) cd_shortcuts_build_shortcuts_from_data,
-		myApplet);
-	cairo_dock_launch_task (myData.pTask);
+	cd_shortcuts_start (myApplet);
 	
 	cairo_dock_register_notification_on_object (&myContainersMgr,
 		NOTIFICATION_CLICK_ICON,
@@ -91,11 +87,7 @@ CD_APPLET_RELOAD_BEGIN
 		if (myDock)
 			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		
-		myData.pTask = cairo_dock_new_task (0,
-			(CairoDockGetDataAsyncFunc) cd_shortcuts_get_shortcuts_data,
-			(CairoDockUpdateSyncFunc) cd_shortcuts_build_shortcuts_from_data,
-			myApplet);
-		cairo_dock_launch_task (myData.pTask);
+		cd_shortcuts_start (myApplet);
 	}
 CD_APPLET_RELOAD_END
 

@@ -225,7 +225,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 	g_free (cURI);
 }
 
-static void _cd_shortcuts_on_drive_event (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
+void cd_shortcuts_on_drive_event (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
 {
 	g_return_if_fail (cURI != NULL);
 	CD_APPLET_ENTER;
@@ -293,7 +293,7 @@ static void _cd_shortcuts_on_drive_event (CairoDockFMEventType iEventType, const
 }
 
 
-GList * cd_shortcuts_list_drives (CairoDockModuleInstance *myApplet)
+GList * cd_shortcuts_list_drives (CDSharedMemory *pSharedMemory)
 {
 	GList *pIconList = NULL;
 	gchar *cFullURI = NULL;
@@ -306,9 +306,7 @@ GList * cd_shortcuts_list_drives (CairoDockModuleInstance *myApplet)
 		cd_warning ("couldn't detect any drives");  // on decide de poursuivre malgre tout, pour les signets.
 	}
 	
-	if (! cairo_dock_fm_add_monitor_full (cFullURI, TRUE, NULL, (CairoDockFMMonitorCallback) _cd_shortcuts_on_drive_event, myApplet))
-		cd_warning ("Shortcuts : can't monitor drives");
-	myData.cDisksURI = cFullURI;
+	pSharedMemory->cDisksURI = cFullURI;
 	
 	//\_______________________ On initialise les usages disque.
 	Icon *pIcon;
@@ -316,7 +314,7 @@ GList * cd_shortcuts_list_drives (CairoDockModuleInstance *myApplet)
 	for (ic = pIconList; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		_init_disk_usage (pIcon, myApplet);
+		_init_disk_usage (pIcon, pSharedMemory->pApplet);
 	}
 	
 	return pIconList;

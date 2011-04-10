@@ -234,6 +234,12 @@ static void _on_text_changed (GtkWidget *pEntry, GtkWidget *pLabel)
 	gtk_label_set_markup (GTK_LABEL (pLabel), cLabel);
 	g_free (cLabel);
 }
+static void _on_dialog_destroyed (dbusApplet *pDbusApplet)
+{
+	CD_APPLET_ENTER;
+	pDbusApplet->pDialog = NULL;
+	CD_APPLET_LEAVE();
+}
 static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDialogAttributes, GHashTable *hWidgetAttributes, const gchar *cIconID, GError **error)
 {
 	g_return_val_if_fail (hDialogAttributes != NULL, FALSE);
@@ -286,6 +292,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 		bUseMarkup = g_value_get_boolean (v);
 	
 	attr.pUserData = pDbusApplet;
+	attr.pFreeDataFunc = (GFreeFunc)_on_dialog_destroyed;
 	
 	// attributs du widget interactif.
 	GtkWidget *pInteractiveWidget = NULL, *pOneWidget = NULL;

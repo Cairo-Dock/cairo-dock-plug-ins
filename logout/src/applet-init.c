@@ -90,8 +90,6 @@ CD_APPLET_RELOAD_BEGIN
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 
 		// the icon can be changed.
-		cairo_dock_fm_remove_monitor_full (CD_REBOOT_NEEDED_FILE, FALSE, NULL);
-		cairo_dock_fm_add_monitor_full (CD_REBOOT_NEEDED_FILE, FALSE, NULL, (CairoDockFMMonitorCallback) cd_logout_check_reboot_required, NULL);
 		cd_logout_check_reboot_required_init ();
 	}
 CD_APPLET_RELOAD_END

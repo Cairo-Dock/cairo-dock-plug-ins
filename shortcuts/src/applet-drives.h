@@ -24,8 +24,10 @@
 
 #include <cairo-dock.h>
 
+void cd_shortcuts_on_drive_event (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet);
 
-GList * cd_shortcuts_list_drives (CairoDockModuleInstance *myApplet);
+
+GList * cd_shortcuts_list_drives (CDSharedMemory *pSharedMemory);
 
 
 #endif

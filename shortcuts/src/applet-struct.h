@@ -51,7 +51,6 @@ struct _AppletConfig {
 	gboolean bListDrives;
 	gboolean bListNetwork;
 	gboolean bListBookmarks;
-	///gboolean bUseSeparator;
 	CDDiskUsageDisplayType iDisplayType;
 	gint iCheckInterval;
 	gboolean bDrawBar;
@@ -68,16 +67,22 @@ typedef struct _CDDiskUsage {
 	int iType;
 	} CDDiskUsage;
 
-struct _AppletData {
-	CairoDockTask *pTask;
-	// shared memory for the loading task
-	GList *pIconList;
-	// end of shared memory
-	
+typedef struct {
+	gboolean bListDrives;
+	gboolean bListNetwork;
+	gboolean bListBookmarks;
 	gchar *cDisksURI;
 	gchar *cNetworkURI;
 	gchar *cBookmarksURI;
-	
+	GList *pIconList;
+	CairoDockModuleInstance *pApplet;
+	} CDSharedMemory;
+
+struct _AppletData {
+	CairoDockTask *pTask;
+	gchar *cDisksURI;
+	gchar *cNetworkURI;
+	gchar *cBookmarksURI;
 	CairoDockTask *pDiskTask;  // tache non threadee.
 	} ;
 

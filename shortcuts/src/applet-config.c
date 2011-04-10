@@ -50,32 +50,32 @@ void cd_shortcuts_reset_all_datas (CairoDockModuleInstance *myApplet)
 {
 	cd_shortcuts_free_disk_periodic_task (myApplet);
 	
-	cairo_dock_free_task (myData.pTask);
-	if (myData.pIconList != NULL)  // des donnees ont ete recuperees et non utilisees, on les libere.
+	if (myData.pTask != NULL)
 	{
-		g_list_foreach (myData.pIconList, (GFunc)g_free, NULL);
-		g_list_free (myData.pIconList);
-		myData.pIconList = NULL;
+		cairo_dock_discard_task (myData.pTask);
+		myData.pTask = NULL;
 	}
 	
 	if (myData.cDisksURI != NULL)
 	{
 		cairo_dock_fm_remove_monitor_full (myData.cDisksURI, FALSE, NULL);
 		g_free (myData.cDisksURI);
+		myData.cDisksURI = NULL;
 	}
 	if (myData.cNetworkURI != NULL)
 	{
 		cairo_dock_fm_remove_monitor_full (myData.cNetworkURI, FALSE, NULL);
 		g_free (myData.cNetworkURI);
+		myData.cNetworkURI = NULL;
 	}
 	if (myData.cBookmarksURI != NULL)
 	{
 		cairo_dock_fm_remove_monitor_full (myData.cBookmarksURI, FALSE, NULL);
 		g_free (myData.cBookmarksURI);
+		myData.cBookmarksURI = NULL;
 	}
 	
 	CD_APPLET_DELETE_MY_ICONS_LIST;
-	memset (myDataPtr, 0, sizeof (AppletData));
 }
 
 CD_APPLET_RESET_DATA_BEGIN

@@ -17,19 +17,16 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef __APPLET_LOAD_ICONS__
 #define  __APPLET_LOAD_ICONS__
-
 
 #include <cairo-dock.h>
 
 
 void cd_shortcuts_set_icon_order_by_name (Icon *pNewIcon, GList *pIconsList);
 
-void cd_shortcuts_get_shortcuts_data (CairoDockModuleInstance *myApplet);
 
-gboolean cd_shortcuts_build_shortcuts_from_data (CairoDockModuleInstance *myApplet);
+void cd_shortcuts_start (CairoDockModuleInstance *myApplet);
 
 
 #endif

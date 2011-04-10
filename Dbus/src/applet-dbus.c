@@ -251,13 +251,12 @@ static void _cd_dbus_register_all_applets_in_dir (const gchar *cDirPath)
 
 static void _get_package_path (gchar *cModuleName)
 {
-	gchar *cSharePackagesDir = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, CD_DBUS_APPLETS_FOLDER);
+	const gchar *cSharePackagesDir = MY_APPLET_SHARE_DATA_DIR"/"CD_DBUS_APPLETS_FOLDER;
 	gchar *cUserPackagesDir = g_strdup_printf ("%s/%s", g_cCairoDockDataDir, CD_DBUS_APPLETS_FOLDER);
 	gchar *cDistantPackagesDir = g_strdup_printf ("%s/%d.%d.%d", CD_DBUS_APPLETS_FOLDER, g_iMajorVersion, g_iMinorVersion, g_iMicroVersion);
 	gchar *cPath = cairo_dock_get_package_path (cModuleName, cSharePackagesDir, cUserPackagesDir, cDistantPackagesDir,  CAIRO_DOCK_UPDATED_PACKAGE);
 	cd_debug ("*** update of the applet '%s' -> got '%s'\n", cModuleName, cPath);
 	g_free (cPath);
-	g_free (cSharePackagesDir);
 	g_free (cUserPackagesDir);
 	g_free (cDistantPackagesDir);
 }
@@ -453,11 +452,11 @@ void cd_dbus_launch_service (void)
 	gchar *cUserPackagesDir = g_strdup_printf ("%s/%s", g_cCairoDockDataDir, CD_DBUS_APPLETS_FOLDER);
 	gchar *cDistantPackagesDir = g_strdup_printf ("%s/%d.%d.%d", CD_DBUS_APPLETS_FOLDER, g_iMajorVersion, g_iMinorVersion, g_iMicroVersion);
 	myData.pGetListTask = cairo_dock_list_packages_async (cSharePackagesDir,
-			cUserPackagesDir,
-			cDistantPackagesDir,
-			(CairoDockGetPackagesFunc) _on_got_list,
-			NULL,  // data
-			NULL);  // table
+		cUserPackagesDir,
+		cDistantPackagesDir,
+		(CairoDockGetPackagesFunc) _on_got_list,
+		NULL,  // data
+		NULL);  // table
 	g_free (cUserPackagesDir);
 	g_free (cDistantPackagesDir);
 }

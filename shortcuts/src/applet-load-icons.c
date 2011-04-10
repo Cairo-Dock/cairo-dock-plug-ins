@@ -185,35 +185,27 @@ static void _cd_shortcuts_on_network_event (CairoDockFMEventType iEventType, con
 }
 
 
-static GList * _load_icons (CairoDockModuleInstance *myApplet)
+static inline GList * _load_icons (CDSharedMemory *pSharedMemory)
 {
 	GList *pIconList = NULL;
-	gchar *cFullURI = NULL;
 	
-	if (myConfig.bListDrives)
+	if (pSharedMemory->bListDrives)
 	{
-		pIconList = cd_shortcuts_list_drives (myApplet);
+		pIconList = cd_shortcuts_list_drives (pSharedMemory);
 	}
 	
-	if (myConfig.bListNetwork)
+	if (pSharedMemory->bListNetwork)
 	{
+		gchar *cFullURI = NULL;
 		GList *pIconList2 = cairo_dock_fm_list_directory (CAIRO_DOCK_FM_NETWORK, CAIRO_DOCK_FM_SORT_BY_NAME, CD_NETWORK_GROUP, FALSE, 100, &cFullURI);
 		cd_message ("  cFullURI : %s", cFullURI);
 		
-		/**if (myConfig.bUseSeparator && myDock && pIconList2 != NULL && pIconList != NULL)
-		{
-			Icon *pSeparatorIcon = cairo_dock_create_separator_icon (7, NULL);  // NULL => ne charge pas l'icone, car on est dans un thread.
-			pIconList = g_list_append (pIconList, pSeparatorIcon);
-		}*/
-		
 		pIconList = g_list_concat (pIconList, pIconList2);
 		
-		if (! cairo_dock_fm_add_monitor_full (cFullURI, TRUE, NULL, (CairoDockFMMonitorCallback) _cd_shortcuts_on_network_event, myApplet))
-			cd_warning ("Shortcuts : can't monitor network");
-		myData.cNetworkURI = cFullURI;
+		pSharedMemory->cNetworkURI = cFullURI;
 	}
 		
-	if (myConfig.bListBookmarks)
+	if (pSharedMemory->bListBookmarks)
 	{
 		gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
 		if (! g_file_test (cBookmarkFilePath, G_FILE_TEST_EXISTS))  // on le cree pour pouvoir ajouter des signets.
@@ -224,34 +216,50 @@ static GList * _load_icons (CairoDockModuleInstance *myApplet)
 		
 		GList *pIconList2 = cd_shortcuts_list_bookmarks (cBookmarkFilePath);
 		
-		/**if (myConfig.bUseSeparator && myDock && pIconList2 != NULL && pIconList != NULL)
-		{
-			Icon *pSeparatorIcon = cairo_dock_create_separator_icon (9, NULL);  // NULL => ne charge pas l'icone, car on est dans un thread.
-			pIconList = g_list_append (pIconList, pSeparatorIcon);
-		}*/
-		
 		pIconList = g_list_concat (pIconList, pIconList2);
 		
-		if (! cairo_dock_fm_add_monitor_full (cBookmarkFilePath, FALSE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_bookmarks_event, myApplet))
-			cd_warning ("Shortcuts : can't monitor bookmarks");
-		
-		myData.cBookmarksURI = cBookmarkFilePath;
+		pSharedMemory->cBookmarksURI = cBookmarkFilePath;
 	}
 	
 	return pIconList;
 }
-
-
-void cd_shortcuts_get_shortcuts_data (CairoDockModuleInstance *myApplet)
+static void cd_shortcuts_get_shortcuts_data (CDSharedMemory *pSharedMemory)
 {
-	myData.pIconList = _load_icons (myApplet);
+	pSharedMemory->pIconList = _load_icons (pSharedMemory);
 }
 
-
-gboolean cd_shortcuts_build_shortcuts_from_data (CairoDockModuleInstance *myApplet)
+static gboolean cd_shortcuts_build_shortcuts_from_data (CDSharedMemory *pSharedMemory)
 {
+	CairoDockModuleInstance *myApplet = pSharedMemory->pApplet;
 	g_return_val_if_fail (myIcon != NULL, FALSE);  // paranoia
 	CD_APPLET_ENTER;
+	
+	//\_______________________ get the result of the thread.
+	GList *pIconList = pSharedMemory->pIconList;
+	pSharedMemory->pIconList = NULL;
+	myData.cDisksURI = pSharedMemory->cDisksURI;
+	pSharedMemory->cDisksURI = NULL;
+	myData.cNetworkURI = pSharedMemory->cNetworkURI;
+	pSharedMemory->cNetworkURI = NULL;
+	myData.cBookmarksURI = pSharedMemory->cBookmarksURI;
+	pSharedMemory->cBookmarksURI = NULL;
+	
+	//\_______________________ monitor the sets.
+	if (myData.cDisksURI)
+	{
+		if (! cairo_dock_fm_add_monitor_full (myData.cDisksURI, TRUE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_drive_event, myApplet))
+			cd_warning ("Shortcuts : can't monitor drives");
+	}
+	if (myData.cNetworkURI)
+	{
+		if (! cairo_dock_fm_add_monitor_full (myData.cNetworkURI, TRUE, NULL, (CairoDockFMMonitorCallback) _cd_shortcuts_on_network_event, myApplet))
+			cd_warning ("Shortcuts : can't monitor network");
+	}
+	if (myData.cBookmarksURI)
+	{
+		if (! cairo_dock_fm_add_monitor_full (myData.cBookmarksURI, FALSE, NULL, (CairoDockFMMonitorCallback) cd_shortcuts_on_bookmarks_event, myApplet))
+			cd_warning ("Shortcuts : can't monitor bookmarks");
+	}
 	
 	//\_______________________ On efface l'ancienne liste.
 	CD_APPLET_DELETE_MY_ICONS_LIST;
@@ -269,11 +277,45 @@ gboolean cd_shortcuts_build_shortcuts_from_data (CairoDockModuleInstance *myAppl
 			cDeskletRendererName = "Tree";
 		break ;
 	}
-	CD_APPLET_LOAD_MY_ICONS_LIST (myData.pIconList, myConfig.cRenderer, cDeskletRendererName, NULL);
-	myData.pIconList = NULL;
+	CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, cDeskletRendererName, NULL);
 	
 	//\_______________________ On lance la tache de mesure des disques.
 	cd_shortcuts_launch_disk_periodic_task (myApplet);
 	
+	cairo_dock_discard_task (myData.pTask);
+	myData.pTask = NULL;
+	
 	CD_APPLET_LEAVE (TRUE);
 }
+
+static void _free_shared_memory (CDSharedMemory *pSharedMemory)
+{
+	g_free (pSharedMemory->cDisksURI);
+	g_free (pSharedMemory->cNetworkURI);
+	g_free (pSharedMemory->cBookmarksURI);
+	g_list_foreach (pSharedMemory->pIconList, (GFunc)g_free, NULL);
+	g_list_free (pSharedMemory->pIconList);
+	g_free (pSharedMemory);
+}
+void cd_shortcuts_start (CairoDockModuleInstance *myApplet)
+{
+	if (myData.pTask != NULL)
+	{
+		cairo_dock_discard_task (myData.pTask);
+		myData.pTask = NULL;
+	}
+	
+	CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
+	pSharedMemory->bListDrives = myConfig.bListDrives;
+	pSharedMemory->bListNetwork = myConfig.bListNetwork;
+	pSharedMemory->bListBookmarks = myConfig.bListBookmarks;
+	pSharedMemory->pApplet = myApplet;
+	
+	myData.pTask = cairo_dock_new_task_full (0,
+		(CairoDockGetDataAsyncFunc) cd_shortcuts_get_shortcuts_data,
+		(CairoDockUpdateSyncFunc) cd_shortcuts_build_shortcuts_from_data,
+		(GFreeFunc) _free_shared_memory,
+		pSharedMemory);
+	cairo_dock_launch_task (myData.pTask);
+}
+
