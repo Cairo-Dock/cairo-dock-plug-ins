@@ -181,7 +181,7 @@ void cd_switcher_compute_desktop_from_coordinates (int iNumLine, int iNumColumn,
 
 int cd_switcher_compute_index (int iNumDesktop, int iNumViewportX, int iNumViewportY)
 {
-	return iNumDesktop * g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY + iNumViewportX * g_desktopGeometry.iNbViewportY + iNumViewportY;
+	return iNumDesktop * g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY + iNumViewportX + iNumViewportY * g_desktopGeometry.iNbViewportX;
 }
 
 void cd_switcher_compute_viewports_from_index (int iIndex, int *iNumDesktop, int *iNumViewportX, int *iNumViewportY)
@@ -194,9 +194,9 @@ void cd_switcher_compute_viewports_from_index (int iIndex, int *iNumDesktop, int
 	
 	*iNumDesktop = iIndex / (g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY);
 	int index2 = iIndex % (g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY);
-	*iNumViewportX = index2 / g_desktopGeometry.iNbViewportY;
-	*iNumViewportY = index2 % g_desktopGeometry.iNbViewportY;
-	//g_print (" -> %d;%d;%d\n", *iNumDesktop, *iNumViewportX, *iNumViewportY);
+	*iNumViewportX = index2 % g_desktopGeometry.iNbViewportX;
+	cd_debug ("[Switcher] New coordinates -> D=%d ; X=%d ; Y=%d ; i1=%d ; i2=%d ; nX=%d ; nY=%d", *iNumDesktop, *iNumViewportX, *iNumViewportY, iIndex, index2, g_desktopGeometry.iNbViewportX, g_desktopGeometry.iNbViewportY);
+	*iNumViewportY = index2 / g_desktopGeometry.iNbViewportX;
 }
 
 
