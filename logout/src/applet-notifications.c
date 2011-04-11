@@ -26,6 +26,8 @@
 #include "applet-struct.h"
 #include "applet-notifications.h"
 
+#define GUEST_SESSION_LAUNCHER "/usr/share/gdm/guest-session/guest-session-launch"
+
 
 static void _logout (void)
 {
@@ -118,6 +120,18 @@ static void _cd_lock_screen (GtkMenuItem *menu_item, gpointer data)
 	CD_APPLET_LEAVE ();
 }
 
+static void _cd_logout_guest_session (GtkMenuItem *menu_item, gpointer data)
+{
+	CD_APPLET_ENTER;
+	gchar *cResult = cairo_dock_launch_command_sync ("which guest-session");
+	if (cResult != NULL && *cResult == '/')
+		cairo_dock_launch_command ("guest-session");
+	else if (g_file_test (GUEST_SESSION_LAUNCHER, G_FILE_TEST_EXISTS))
+		cairo_dock_launch_command (GUEST_SESSION_LAUNCHER);
+	g_free (cResult);
+	CD_APPLET_LEAVE ();
+}
+
 static void _cd_logout_program_shutdown (GtkMenuItem *menu_item, gpointer data)
 {
 	CD_APPLET_ENTER;
@@ -145,7 +159,17 @@ static void _cd_logout_program_shutdown (GtkMenuItem *menu_item, gpointer data)
 CD_APPLET_ON_BUILD_MENU_BEGIN
 {
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-	
+
+	if (g_file_test (GUEST_SESSION_LAUNCHER, G_FILE_TEST_EXISTS)) // Guest Session
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Guest session"), MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, _cd_logout_guest_session, CD_APPLET_MY_MENU);
+	else
+	{
+		gchar *cResult = cairo_dock_launch_command_sync ("which guest-session");
+		if (cResult != NULL && *cResult == '/')
+			CD_APPLET_ADD_IN_MENU (D_("Guest session"), _cd_logout_guest_session, CD_APPLET_MY_MENU);
+		g_free (cResult);
+	}
+
 	gchar *cLabel;
 	if (myConfig.iActionOnClick != CD_LOGOUT)  // logout action not on click => put it in the menu
 	{
@@ -174,7 +198,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, MY_APPLET_SHARE_DATA_DIR"/icon-lock.png", _cd_lock_screen, CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
-	
+
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Program an automatic shut-down"), MY_APPLET_SHARE_DATA_DIR"/icon-scheduling.png", _cd_logout_program_shutdown, CD_APPLET_MY_MENU);  // pas beaucoup d'entrees => on le met dans le menu global.
 	
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
