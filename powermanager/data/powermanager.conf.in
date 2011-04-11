@@ -139,8 +139,10 @@ bg color = .5;.5;1.;.4
 frame_icons=
 
 #S+ 'On-battery' icon filename:
+#{Leave empty to use the default icon.}
 battery icon = 
 #S+ Icon's filename when on charge :
+#{Leave empty to use the default icon.}
 charge icon = 
 #l+[Nothing;Zoom;Transparency;Draw bar] Effect to apply on the icon according to the charge :
 effect=0
@@ -155,6 +157,10 @@ check interval = 30
 
 #l+[Nothing;charge;Timelength] Information to display on the icon :
 quick-info_type=2
+
+#S+ Emblem icon's filename when on charge:
+#{Leave empty to use the default icon.}
+emblem icon = 
 
 use approx = false
 

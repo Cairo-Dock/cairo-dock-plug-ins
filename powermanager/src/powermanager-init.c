@@ -97,7 +97,10 @@ CD_APPLET_INIT_BEGIN
 		// Initialisation du rendu.
 		_set_data_renderer (myApplet, FALSE);
 		
-		myData.pEmblem = CD_APPLET_MAKE_EMBLEM (MY_APPLET_SHARE_DATA_DIR"/charge.svg");
+		if (myConfig.cEmblemIconName == NULL)
+			myData.pEmblem = CD_APPLET_MAKE_EMBLEM (MY_APPLET_SHARE_DATA_DIR"/charge.svg");
+		else
+			myData.pEmblem = CD_APPLET_MAKE_EMBLEM (myConfig.cEmblemIconName);
 		cairo_dock_set_emblem_position (myData.pEmblem, CAIRO_DOCK_EMBLEM_MIDDLE);
 		
 		if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE || myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)
@@ -142,7 +145,10 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	cairo_dock_free_emblem (myData.pEmblem);
-	myData.pEmblem = CD_APPLET_MAKE_EMBLEM (MY_APPLET_SHARE_DATA_DIR"/charge.svg");
+	if (myConfig.cEmblemIconName == NULL)
+		myData.pEmblem = CD_APPLET_MAKE_EMBLEM (MY_APPLET_SHARE_DATA_DIR"/charge.svg");
+	else
+		myData.pEmblem = CD_APPLET_MAKE_EMBLEM (myConfig.cEmblemIconName);
 	cairo_dock_set_emblem_position (myData.pEmblem, CAIRO_DOCK_EMBLEM_MIDDLE);
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)

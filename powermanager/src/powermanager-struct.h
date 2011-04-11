@@ -79,6 +79,7 @@ struct _AppletConfig {
 	
 	gchar *cUserBatteryIconName;
 	gchar *cUserChargeIconName;
+	gchar *cEmblemIconName;
 	MyAppletEffect iEffect;
   } ;
 

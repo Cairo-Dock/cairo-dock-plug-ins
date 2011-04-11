@@ -63,6 +63,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iEffect = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "effect", 0);
 	myConfig.cUserBatteryIconName = CD_CONFIG_GET_STRING ("Configuration", "battery icon");
 	myConfig.cUserChargeIconName = CD_CONFIG_GET_STRING ("Configuration", "charge icon");
+	myConfig.cEmblemIconName = CD_CONFIG_GET_STRING ("Configuration", "emblem icon");
 	
 	
 	GString *sKeyName = g_string_new ("");
@@ -86,6 +87,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cUserBatteryIconName);
 	g_free (myConfig.cUserChargeIconName);
 	g_free (myConfig.cNotificationAnimation);
+	g_free (myConfig.cEmblemIconName);
 	
 	int i;
 	for (i = 0; i < POWER_MANAGER_NB_CHARGE_LEVEL; i ++) {
