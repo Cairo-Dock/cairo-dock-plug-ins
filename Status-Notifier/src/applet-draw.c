@@ -104,7 +104,8 @@ void cd_satus_notifier_compute_icon_size (void)
 	// if width has changed, update the icon size.
 	if (w != iWidth)
 	{
-		double fMaxScale = cairo_dock_get_max_scale (myContainer);
+		cairo_dock_resize_applet (myApplet, w, h0);
+		/**double fMaxScale = cairo_dock_get_max_scale (myContainer);
 		myIcon->fWidth = w / fMaxScale;
 		myIcon->fHeight = h0 / fMaxScale;  // set the height too, because now it takes into account the dock's ratio.
 		myIcon->iImageWidth = 0;  // will be updated when the icon is reloaded.
@@ -130,7 +131,7 @@ void cd_satus_notifier_compute_icon_size (void)
 			gtk_window_resize (GTK_WINDOW (myContainer->pWidget),
 				myIcon->iImageWidth,
 				myIcon->iImageHeight);
-		}
+		}*/
 	}
 }
 

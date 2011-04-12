@@ -100,9 +100,11 @@ typedef struct {
 struct _AppletData {
 	gchar *cHostName;
 	DBusGProxy *pProxyWatcher;
+	DBusGProxy *pProxyWatcherProps;
+	DBusGProxy *pProxyIndicatorService;
 	DBusGProxy *pProxyIndicatorApplicationService;
-	DBusGProxyCall* pRegisterHostCall;
-	DBusGProxyCall* pGetApplicationsCall;
+	gboolean bIASWatched;
+	gboolean bBrokenWatcher;
 	GList *pItems;  // list of all items.
 	GHashTable *pThemePaths;
 	gint iNbLines, iNbColumns, iItemSize;  // agencement compact.
