@@ -199,7 +199,7 @@ CD_APPLET_RELOAD_BEGIN
 		if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
 		{
 			CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
-			if (myDesklet)  // On ne teste le survol des boutons que si l'applet est détachée
+			if (myDesklet)  // On ne teste le survol des boutons que si l'applet est detachee
 				cairo_dock_register_notification_on_object (myContainer,
 					NOTIFICATION_MOUSE_MOVED,
 					(CairoDockNotificationFunc) cd_opengl_test_mouse_over_buttons,
@@ -241,7 +241,7 @@ CD_APPLET_RELOAD_BEGIN
 		// on stoppe l'ancien backend et on relance le nouveau.
 		if (myData.pCurrentHandeler)
 		{
-			cd_musicplayer_stop_handler ();  // libère tout ce qu'occupe notre ancien handler.
+			cd_musicplayer_stop_handler ();  // libere tout ce qu'occupe notre ancien handler.
 			CD_APPLET_MANAGE_APPLICATION (NULL);
 		}
 		myData.pCurrentHandeler = cd_musicplayer_get_handler_by_name (myConfig.cMusicPlayer);

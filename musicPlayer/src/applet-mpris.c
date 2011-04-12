@@ -33,6 +33,12 @@
 #define MP_DBUS_TYPE_PLAYER_STATUS_MPRIS (dbus_g_type_get_struct ("GValueArray", G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_INVALID))
 #define MP_DBUS_TYPE_TRACKLIST_DATA G_TYPE_INT
 
+static DBusGProxyCall *s_pGetSongInfosCall = NULL;
+static DBusGProxyCall *s_pGetStatusCall = NULL;
+static DBusGProxyCall *s_pGetCurrentTrackCall = NULL;
+
+static void cd_mpris_getSongInfos_async (void);
+
 /*
 <node name="/Player">
   <interface name="org.freedesktop.MediaPlayer">
@@ -180,10 +186,10 @@ static inline void _set_playing_status_mpris (int iStatus)
 	}
 }
 
-static inline int _extract_status_mpris (GValueArray *status, int i)
+static inline int _extract_status_mpris (GValueArray *status, int iStatusIndex)
 {
 	int iStatus;
-	GValue *value = g_value_array_get_nth (status, i);
+	GValue *value = g_value_array_get_nth (status, iStatusIndex);
 	if (value != NULL && G_VALUE_HOLDS_INT(value))
 		iStatus = g_value_get_int (value);
 	else
@@ -191,7 +197,7 @@ static inline int _extract_status_mpris (GValueArray *status, int i)
 	return iStatus;
 }
 
-static int _mpris_get_status (int i)
+static int _mpris_get_status (int iStatusIndex)
 {
 	GError *erreur = NULL;
 	GValueArray *status;
@@ -207,15 +213,58 @@ static int _mpris_get_status (int i)
 	}
 	else
 	{
-		int iStatus = _extract_status_mpris (status, i);
+		int iStatus = _extract_status_mpris (status, iStatusIndex);
 		g_value_array_free (status);
 		return iStatus;
 	}
 }
 
+static void _on_got_playing_status (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockModuleInstance *myApplet)
+{
+	g_print ("=== %s ()\n", __func__);
+	CD_APPLET_ENTER;
+	s_pGetStatusCall = NULL;
+	
+	int iStatus = -1;
+	GValueArray *status = NULL;
+	GError *erreur = NULL;
+	gboolean bSuccess = dbus_g_proxy_end_call (proxy,
+		call_id,
+		&erreur,
+		MP_DBUS_TYPE_PLAYER_STATUS_MPRIS, &status,
+		G_TYPE_INVALID);
+	if (erreur != NULL)
+	{
+		cd_warning ("couldn't get MPRIS status (%s)\n", erreur->message);
+		g_error_free (erreur);
+	}
+	else if (status != NULL)
+	{
+		iStatus = _extract_status_mpris (status, 0);
+		g_value_array_free (status);
+	}
+	
+	_set_playing_status_mpris (iStatus);
+	
+	cd_mpris_getSongInfos_async ();
+	
+	CD_APPLET_LEAVE ();
+}
+void cd_mpris_getPlaying_async (void)  // used by Audacious too.
+{
+	if (s_pGetStatusCall != NULL)
+		return;
+	s_pGetStatusCall = dbus_g_proxy_begin_call (myData.dbus_proxy_player,
+		"GetStatus",
+		(DBusGProxyCallNotify)_on_got_playing_status,
+		myApplet,
+		(GDestroyNotify) NULL,
+		G_TYPE_INVALID);
+}
+
 /* Teste si MP joue de la musique ou non
  */
-void cd_mpris_getPlaying (void)
+void cd_mpris_getPlaying (void)  // used by Audacious too.
 {
 	cd_debug ("%s ()\n", __func__);
 	int iStatus = _mpris_get_status (0);
@@ -224,7 +273,7 @@ void cd_mpris_getPlaying (void)
 
 /* Teste si MP joue en boucle ou non
  */
-gboolean cd_mpris_is_loop (void)
+static gboolean cd_mpris_is_loop (void)
 {
 	cd_debug ("%s ()\n", __func__);
 	int iStatus = _mpris_get_status (3);  // Fourth integer: 0 = Stop playing once the last element has been played, 1 = Never give up playing.
@@ -234,7 +283,7 @@ gboolean cd_mpris_is_loop (void)
 
 /* Teste si MP joue aleatoirement ou non
  */
-gboolean cd_mpris_is_shuffle (void)
+static gboolean cd_mpris_is_shuffle (void)
 {
 	cd_debug ("%s ()\n", __func__);
 	int iStatus = _mpris_get_status (1);  // Second interger: 0 = Playing linearly , 1 = Playing randomly.
@@ -244,7 +293,7 @@ gboolean cd_mpris_is_shuffle (void)
 
 /* Renvoie le temps ecoule en secondes..
  */
-void cd_mpris_get_time_elapsed (void)
+void cd_mpris_get_time_elapsed (void)  // used by Audacious too.
 {
 	myData.iCurrentTime = cairo_dock_dbus_get_integer (myData.dbus_proxy_player, "PositionGet");
 	if (myData.iCurrentTime > 0)  // -1 signifie que la valeur n'a pas pu etre retrouvee (lecteur ferme).
@@ -255,6 +304,7 @@ void cd_mpris_get_time_elapsed (void)
  */
 static void _on_get_current_track (DBusGProxy *proxy, DBusGProxyCall *call_id, gpointer data)
 {
+	s_pGetCurrentTrackCall = NULL;
 	gboolean bSuccess = dbus_g_proxy_end_call (proxy,
 		call_id,
 		NULL,
@@ -268,9 +318,11 @@ static void _on_get_current_track (DBusGProxy *proxy, DBusGProxyCall *call_id, g
 		CD_APPLET_REDRAW_MY_ICON;
 	}
 }
-void cd_mpris_get_track_index (void)
+static void cd_mpris_get_track_index_async (void)
 {
-	DBusGProxyCall* pCall= dbus_g_proxy_begin_call (myData.dbus_proxy_shell, "GetCurrentTrack",
+	if (s_pGetCurrentTrackCall != NULL)
+		return;
+	s_pGetCurrentTrackCall = dbus_g_proxy_begin_call (myData.dbus_proxy_shell, "GetCurrentTrack",
 		(DBusGProxyCallNotify)_on_get_current_track,
 		NULL,
 		(GDestroyNotify) NULL,
@@ -401,7 +453,7 @@ static inline void _extract_metadata (GHashTable *data_list)
 
 /* Recupere les infos de la chanson courante, y compris le chemin de la couverture (la telecharge au besoin).
  */
-void cd_mpris_getSongInfos ()
+/**static void cd_mpris_getSongInfos (void)
 {
 	GHashTable *data_list = NULL;
 	const gchar *data;
@@ -433,8 +485,68 @@ void cd_mpris_getSongInfos ()
 		myData.iTrackNumber = 0;
 		myData.cover_exist = FALSE;
 	}
-}
+}*/
 
+static void _on_got_song_infos (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockModuleInstance *myApplet)
+{
+	g_print ("=== %s ()\n", __func__);
+	CD_APPLET_ENTER;
+	s_pGetSongInfosCall = NULL;
+	
+	GHashTable *data_list = NULL;
+	GError *erreur = NULL;
+	gboolean bSuccess = dbus_g_proxy_end_call (proxy,
+		call_id,
+		&erreur,
+		MP_DBUS_TYPE_SONG_METADATA, &data_list,
+		G_TYPE_INVALID);
+	if (erreur != NULL)
+	{
+		cd_warning ("couldn't get MPRIS song infos (%s)\n", erreur->message);
+		g_error_free (erreur);
+		data_list = NULL;
+	}
+	
+	if (data_list != NULL)
+	{
+		_extract_metadata (data_list);
+		
+		g_hash_table_destroy (data_list);
+	}
+	else
+	{
+		cd_warning ("  can't get song properties");
+		g_free (myData.cPlayingUri);
+		myData.cPlayingUri = NULL;
+		g_free (myData.cTitle);
+		myData.cTitle = NULL;
+		g_free (myData.cAlbum);
+		myData.cAlbum = NULL;
+		g_free (myData.cArtist);
+		myData.cArtist = NULL;
+		g_free (myData.cCoverPath);
+		myData.cCoverPath = NULL;
+		myData.iSongLength = 0;
+		myData.iTrackNumber = 0;
+		myData.cover_exist = FALSE;
+	}
+	
+	cd_musicplayer_update_icon (TRUE);
+	cd_musicplayer_relaunch_handler ();
+	
+	CD_APPLET_LEAVE ();
+}
+static void cd_mpris_getSongInfos_async (void)
+{
+	if (s_pGetSongInfosCall != NULL)
+		return;
+	s_pGetSongInfosCall = dbus_g_proxy_begin_call (myData.dbus_proxy_player,
+		"GetMetadata",
+		(DBusGProxyCallNotify)_on_got_song_infos,
+		myApplet,
+		(GDestroyNotify) NULL,
+		G_TYPE_INVALID);
+}
 
 /////////////////////////////////////
 // Les callbacks des signaux DBus. //
@@ -442,7 +554,7 @@ void cd_mpris_getSongInfos ()
 
 /* Fonction executee a chaque changement de musique.
  */
-void onChangeSong_mpris(DBusGProxy *player_proxy, GHashTable *metadata, gpointer data)
+static void onChangeSong_mpris(DBusGProxy *player_proxy, GHashTable *metadata, gpointer data)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("MP : %s ()\n", __func__);
@@ -476,9 +588,9 @@ void onChangeSong_mpris(DBusGProxy *player_proxy, GHashTable *metadata, gpointer
 	CD_APPLET_LEAVE ();
 }
 
-/* Fonction executée à chaque changement play/pause
+/* Fonction executee a chaque changement play/pause
  */
-void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpointer data)
+void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpointer data)  // used by Audacious too.
 {
 	CD_APPLET_ENTER;
 	//cd_debug ("MP : %s (%x)\n", __func__, status);
@@ -502,14 +614,14 @@ void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpoin
 	CD_APPLET_LEAVE ();
 }
 
-/* Fonction executée à chaque changement dans la TrackList.
+/* Fonction execute a chaque changement dans la TrackList.
  */
-void onChangeTrackList_mpris (DBusGProxy *player_proxy, gint iNewTrackListLength, gpointer data)
+static void onChangeTrackList_mpris (DBusGProxy *player_proxy, gint iNewTrackListLength, gpointer data)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("MP : %s (%d)", __func__, iNewTrackListLength);
 	myData.iTrackListLength = iNewTrackListLength;
-	cd_mpris_get_track_index ();
+	cd_mpris_get_track_index_async ();
 	CD_APPLET_LEAVE ();
 }
 
@@ -519,7 +631,7 @@ void onChangeTrackList_mpris (DBusGProxy *player_proxy, gint iNewTrackListLength
 
 /* Fonction de connexion au bus de MP.
  */
-gboolean cd_mpris_dbus_connect_to_bus (void)
+static gboolean cd_mpris_dbus_connect_to_bus (void)
 {
 	if (cairo_dock_dbus_is_enabled ())
 	{
@@ -551,17 +663,37 @@ gboolean cd_mpris_dbus_connect_to_bus (void)
 	return FALSE;
 }
 
-/* Permet de libérer la mémoire prise par le backend.
+/* Permet de liberer la memoire prise par le backend.
  */
-void cd_mpris_free_data (void)
+static void cd_mpris_free_data (void)
 {
 	if (myData.dbus_proxy_player != NULL)
 	{
+		if (s_pGetSongInfosCall != NULL)
+		{
+			dbus_g_proxy_cancel_call (myData.dbus_proxy_player, s_pGetSongInfosCall);
+			s_pGetSongInfosCall = NULL;
+		}
+		
+		if (s_pGetStatusCall != NULL)
+		{
+			dbus_g_proxy_cancel_call (myData.dbus_proxy_player, s_pGetStatusCall);
+			s_pGetStatusCall = NULL;
+		}
+		
 		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "StatusChange",
 			G_CALLBACK(onChangePlaying_mpris), NULL);
 		
 		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "TrackChange",
 			G_CALLBACK(onChangeSong_mpris), NULL);
+	}
+	if (myData.dbus_proxy_shell!= NULL)
+	{
+		if (s_pGetCurrentTrackCall != NULL)
+		{
+			dbus_g_proxy_cancel_call (myData.dbus_proxy_player, s_pGetCurrentTrackCall);
+			s_pGetCurrentTrackCall = NULL;
+		}
 		
 		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_shell, "TrackListChange",
 			G_CALLBACK(onChangeTrackList_mpris), NULL);
@@ -574,7 +706,7 @@ void cd_mpris_free_data (void)
 
 /* Controle du lecteur (permet d'effectuer les actions de bases sur le lecteur).
  */
-void cd_mpris_control (MyPlayerControl pControl, const char* song)
+static void cd_mpris_control (MyPlayerControl pControl, const char* song)
 {
 	gboolean bToggleValue;
 	switch (pControl)
@@ -637,7 +769,7 @@ void cd_mpris_control (MyPlayerControl pControl, const char* song)
 
 /* Recupere le temps ecoule chaque seconde (pas de signal pour ca).
  */
-void cd_mpris_read_data (void)
+static void cd_mpris_read_data (void)
 {
 	if (myData.dbus_enable)
 	{
@@ -686,14 +818,16 @@ static void _on_detect_player (void)
 	if(myData.bIsRunning)  // player en cours d'execution, on recupere son etat.
 	{
 		cd_debug ("MP : MP is running\n");
-		cd_mpris_getPlaying ();
+		
+		cd_mpris_getPlaying_async ();  // will get song infos after playing status.
+		/**cd_mpris_getPlaying ();
 		cd_mpris_getSongInfos ();
 		cd_musicplayer_update_icon (TRUE);
-		cd_musicplayer_relaunch_handler ();
+		cd_musicplayer_relaunch_handler ();*/
 	}
 }
 
-void cd_mpris_configure (void)
+static void cd_mpris_configure (void)
 {
 	myData.DBus_commands.path = "/Player";
 	myData.DBus_commands.path2 = "/TrackList";
