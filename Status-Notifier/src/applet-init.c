@@ -27,7 +27,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN ("Status Notifier",
+CD_APPLET_DEFINE_BEGIN ("Status-Notifier",
 	2, 3, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("A <b>notification area</b> for your dock\n"

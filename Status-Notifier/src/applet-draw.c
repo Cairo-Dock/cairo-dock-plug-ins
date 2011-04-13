@@ -105,33 +105,6 @@ void cd_satus_notifier_compute_icon_size (void)
 	if (w != iWidth)
 	{
 		cairo_dock_resize_applet (myApplet, w, h0);
-		/**double fMaxScale = cairo_dock_get_max_scale (myContainer);
-		myIcon->fWidth = w / fMaxScale;
-		myIcon->fHeight = h0 / fMaxScale;  // set the height too, because now it takes into account the dock's ratio.
-		myIcon->iImageWidth = 0;  // will be updated when the icon is reloaded.
-		myIcon->iImageHeight = 0;  // will be updated when the icon is reloaded.
-		cairo_dock_load_icon_image (myIcon, myContainer);
-		
-		if (myDrawContext)
-		{
-			cairo_destroy (myDrawContext);
-			myDrawContext = NULL;
-		}
-		if (myIcon->pIconBuffer)
-			myDrawContext = cairo_create (myIcon->pIconBuffer);
-		if (cairo_status (myDrawContext) != CAIRO_STATUS_SUCCESS)
-			myDrawContext = NULL;
-		
-		if (myDock)
-		{
-			cairo_dock_update_dock_size (myDock);
-		}
-		else
-		{
-			gtk_window_resize (GTK_WINDOW (myContainer->pWidget),
-				myIcon->iImageWidth,
-				myIcon->iImageHeight);
-		}*/
 	}
 }
 
@@ -246,14 +219,23 @@ CDStatusNotifierItem *cd_satus_notifier_find_item_from_coord (void)
 	if (myData.pItems == NULL)
 		return NULL;
 	
-	int iMouseX, iMouseY;
+	//g_print ("=== %s (%d;%d)\n", __func__, iMouseX, iMouseY);
+	// get grid extent
+	int iWidth, iHeight;
+	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);	
+	
+	// get coordinates on the grid.
+	double fSizeX, fSizeY;
+	cairo_dock_get_current_icon_size (myIcon, myContainer, &fSizeX, &fSizeY);
+	
+	int iMouseX, iMouseY;  // coordinates on the icon (taking into account the zoom).
 	iMouseX = myContainer->iMouseX - myIcon->fDrawX;
 	iMouseY = myContainer->iMouseY - myIcon->fDrawY;
 	
-	//g_print ("=== %s (%d;%d)\n", __func__, iMouseX, iMouseY);
+	iMouseX = iMouseX / fSizeX * iWidth;  // transform to the grid.
+	iMouseY = iMouseY / fSizeY * iHeight;
+	
 	// get index on the grid.
-	int iWidth, iHeight;
-	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 	int x_pad = (iWidth - myData.iItemSize * myData.iNbColumns) / 2;
 	int y_pad = (iHeight - myData.iItemSize * myData.iNbLines) / 2;
 	
