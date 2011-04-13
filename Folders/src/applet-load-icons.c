@@ -109,10 +109,10 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 				return;
 			}
 			
-			Icon *pConcernedIcon = cairo_dock_get_icon_with_base_uri (pIconsList/**myData.pAllFiles*/, cURI);
+			Icon *pConcernedIcon = cairo_dock_get_icon_with_base_uri (pIconsList, cURI);
 			if (pConcernedIcon == NULL)  // on cherche par nom.
 			{
-				pConcernedIcon = cairo_dock_get_icon_with_name (pIconsList/**myData.pAllFiles*/, cURI);
+				pConcernedIcon = cairo_dock_get_icon_with_name (pIconsList, cURI);
 			}
 			if (pConcernedIcon == NULL)
 			{
@@ -121,20 +121,8 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 			}	
 			g_print (" %s will be removed\n", pConcernedIcon->cName);
 			
-			// on l'enleve de la liste.
-			///myData.pAllFiles = g_list_remove (myData.pAllFiles, pConcernedIcon);
-			
 			// on l'enleve du container.
 			gboolean bInContainer = CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pConcernedIcon);  // detruit l'icone.
-			
-			// on la remplace par la 1ere sur la liste d'attente.
-			/**if (bInContainer)
-			{
-				Icon *pNextIcon = g_list_nth_data (myData.pAllFiles, myConfig.iNbIcons - 1);
-				g_print ("  insert next icon : %s\n", pNextIcon?pNextIcon->cBaseURI:"none");
-				if (pNextIcon)
-					CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pNextIcon);
-			}*/
 		}
 		break ;
 		
@@ -148,7 +136,7 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 			}
 			
 			//\_______________________ on verifie qu'elle n'existe pas deja.
-			Icon *pSameIcon = cairo_dock_get_icon_with_base_uri (pIconsList/**myData.pAllFiles*/, cURI);
+			Icon *pSameIcon = cairo_dock_get_icon_with_base_uri (pIconsList, cURI);
 			if (pSameIcon != NULL)
 			{
 				cd_warning ("this file (%s) already exists", pSameIcon->cName);
@@ -165,36 +153,10 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 			pNewIcon->iGroup = (myConfig.bFoldersFirst && pNewIcon->iVolumeID == -1 ? 6 : 8);
 			
 			//\_______________________ on la place au bon endroit suivant son nom.
-			cd_shortcuts_set_icon_order (pNewIcon, pIconsList/**myData.pAllFiles*/, myData.comp);
+			cd_shortcuts_set_icon_order (pNewIcon, pIconsList, myData.comp);
 			g_print (" new file : %s, order = %.2f\n", pNewIcon->cName, pNewIcon->fOrder);
 			
-			//\_______________________ on l'insere dans la liste.
-			///myData.pAllFiles = g_list_insert_sorted (myData.pAllFiles, pNewIcon, (GCompareFunc)cairo_dock_compare_icons_order);
-			
-			//\_______________________ si l'ordre est < la derniere icone du container, on l'insere dans celui-ci.
-			/**Icon *pLastIcon = cairo_dock_get_last_icon (pIconsList);
-			if (pLastIcon)  // container non vide.
-			{
-				guint iCurrentNbIcons = g_list_length (pIconsList);
-				if (pNewIcon->fOrder < pLastIcon->fOrder || iCurrentNbIcons+1 <= myConfig.iNbIcons)
-				{
-					g_print (" on l'affiche\n");
-					CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pNewIcon);
-					pIconsList = CD_APPLET_MY_ICONS_LIST;
-					
-					if (iCurrentNbIcons + 1 > myConfig.iNbIcons)  // trop d'icones, on enleve la derniere.
-					{
-						g_print ("trop d'icones, on enleve la derniere (%s)\n", pLastIcon->cName);
-						CD_APPLET_DETACH_ICON_FROM_MY_ICONS_LIST (pLastIcon);
-					}
-				}
-				else
-					g_print ("ordre >= %.2f => on ne l'affiche pas\n", pLastIcon->fOrder);
-			}
-			else*/ // container vide, on l'insere juste.
-			{
-				CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pNewIcon);
-			}
+			CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pNewIcon);
 		}
 		break ;
 		
@@ -229,7 +191,7 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 			{
 				g_print ("  name changed : '%s' -> '%s'\n", pConcernedIcon->cName, pNewIcon->cName);
 				cairo_dock_set_icon_name (pNewIcon->cName, pConcernedIcon, pContainer);
-				cd_shortcuts_set_icon_order (pConcernedIcon, pIconsList/**myData.pAllFiles*/, myData.comp);
+				cd_shortcuts_set_icon_order (pConcernedIcon, pIconsList, myData.comp);
 			}
 			
 			//\_______________________ on gere le changement d'image.
@@ -249,29 +211,9 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 				g_print ("  order changed : %.2f -> %.2f\n", fCurrentOrder, pConcernedIcon->fOrder);
 				
 				// on la detache.
-				///myData.pAllFiles = g_list_remove (myData.pAllFiles, pConcernedIcon);
 				gboolean bInContainer = CD_APPLET_DETACH_ICON_FROM_MY_ICONS_LIST (pConcernedIcon);
 				pIconsList = CD_APPLET_MY_ICONS_LIST;
 				
-				/**if (bInContainer)
-				{
-					Icon *pNextIcon = g_list_nth_data (myData.pAllFiles, myConfig.iNbIcons);
-					if (!pNextIcon || pConcernedIcon->fOrder < pNextIcon->fOrder)
-					{
-						g_print (" on reinsere l'icone\n");
-						CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pConcernedIcon);
-					}
-				}
-				else
-				{
-					Icon *pLastIcon = cairo_dock_get_last_icon (pIconsList);
-					if (!pLastIcon || pConcernedIcon->fOrder < pLastIcon->fOrder || g_list_length (pIconsList) < myConfig.iNbIcons)
-					{
-						g_print (" on reinsere l'icone\n");
-						CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pConcernedIcon);
-					}
-				}
-				myData.pAllFiles = g_list_insert_sorted (myData.pAllFiles, pConcernedIcon, (GCompareFunc)cairo_dock_compare_icons_order);*/
 				CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pConcernedIcon);
 			}
 			cairo_dock_free_icon (pNewIcon);
@@ -297,19 +239,19 @@ static void _cd_folders_on_file_event (CairoDockFMEventType iEventType, const gc
 }
 
 
-void cd_folders_get_data (CairoDockModuleInstance *myApplet)
+static void _cd_folders_get_data (CDSharedMemory *pSharedMemory)
 {
 	//\_______________________ On recupere les fichiers.
 	gchar *cCommand = NULL;
-	myData.pIconList = cairo_dock_fm_list_directory (myConfig.cDirPath, myConfig.iSortType, 8, myConfig.bShowHiddenFiles, 1e4, &cCommand);
+	pSharedMemory->pIconList = cairo_dock_fm_list_directory (pSharedMemory->cDirPath, pSharedMemory->iSortType, 8, pSharedMemory->bShowHiddenFiles, 1e4, &cCommand);
 	g_free (cCommand);
 	
 	//\_______________________ on classe les icones.
-	if (myConfig.bFoldersFirst)
+	if (pSharedMemory->bFoldersFirst)
 	{
 		Icon *pIcon;
 		GList *ic;
-		for (ic = myData.pIconList; ic != NULL; ic = ic->next)
+		for (ic = pSharedMemory->pIconList; ic != NULL; ic = ic->next)
 		{
 			pIcon = ic->data;
 			if (pIcon->iVolumeID != 0)  // repertoire
@@ -317,24 +259,24 @@ void cd_folders_get_data (CairoDockModuleInstance *myApplet)
 		}
 	}
 	
-	if (myConfig.iSortType == 0)  // sort by name
+	if (pSharedMemory->iSortType == 0)  // sort by name
 	{
-		myData.pIconList = g_list_sort (myData.pIconList, (GCompareFunc) cairo_dock_compare_icons_name);
+		pSharedMemory->pIconList = g_list_sort (pSharedMemory->pIconList, (GCompareFunc) cairo_dock_compare_icons_name);
 	}
-	else if (myConfig.iSortType == 3)  // sort by type
+	else if (pSharedMemory->iSortType == 3)  // sort by type
 	{
-		myData.pIconList = g_list_sort (myData.pIconList, (GCompareFunc) cairo_dock_compare_icons_extension);
+		pSharedMemory->pIconList = g_list_sort (pSharedMemory->pIconList, (GCompareFunc) cairo_dock_compare_icons_extension);
 	}
 	else  // sort by date or size
 	{
-		myData.pIconList = g_list_sort (myData.pIconList, (GCompareFunc) cairo_dock_compare_icons_order);
+		pSharedMemory->pIconList = g_list_sort (pSharedMemory->pIconList, (GCompareFunc) cairo_dock_compare_icons_order);
 	}
 	
 	//g_print ("=== files to display: ===\n");
 	Icon *pIcon;
 	int iOrder = 0;
 	GList *ic;
-	for (ic = myData.pIconList; ic != NULL; ic = ic->next)
+	for (ic = pSharedMemory->pIconList; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
 		//g_print ("  %s (%d)\n", pIcon->cName, pIcon->iVolumeID);
@@ -343,8 +285,9 @@ void cd_folders_get_data (CairoDockModuleInstance *myApplet)
 }
 
 	
-gboolean cd_folders_load_icons_from_data (CairoDockModuleInstance *myApplet)
+static gboolean _cd_folders_load_icons_from_data (CDSharedMemory *pSharedMemory)
 {
+	CairoDockModuleInstance *myApplet = pSharedMemory->pApplet;
 	g_return_val_if_fail (myIcon != NULL, FALSE);  // paranoia
 	CD_APPLET_ENTER;
 	
@@ -352,57 +295,60 @@ gboolean cd_folders_load_icons_from_data (CairoDockModuleInstance *myApplet)
 	CD_APPLET_DELETE_MY_ICONS_LIST;
 	
 	//\_______________________ On charge la nouvelle liste.
-	/**myData.pAllFiles = myData.pIconList;
-	myData.pIconList = NULL;
-	
-	Icon *pIcon;
-	guint i;
-	GList *ic, *pList = NULL;
-	for (i = 0, ic = myData.pAllFiles; i < myConfig.iNbIcons && ic != NULL; i++, ic = ic->next)
-	{
-		pIcon = ic->data;
-		pList = g_list_prepend (pList, pIcon);
-	}
-	pList = g_list_reverse (pList);*/
-	CD_APPLET_LOAD_MY_ICONS_LIST (myData.pIconList/**pList*/, myConfig.cRenderer, "Viewport", NULL);
-	///myData.iNbIcons = myConfig.iNbIcons;
-	myData.pIconList = NULL;
+	CD_APPLET_LOAD_MY_ICONS_LIST (pSharedMemory->pIconList, myConfig.cRenderer, "Viewport", NULL);
+	pSharedMemory->pIconList = NULL;
 	
 	//\_______________________ On se place en ecoute.
-	cairo_dock_fm_add_monitor_full (myConfig.cDirPath, TRUE, NULL, (CairoDockFMMonitorCallback) _cd_folders_on_file_event, myApplet);
+	cairo_dock_fm_add_monitor_full (pSharedMemory->cDirPath, TRUE, NULL, (CairoDockFMMonitorCallback) _cd_folders_on_file_event, myApplet);
 	
+	cairo_dock_discard_task (myData.pTask);
+	myData.pTask = NULL;
 	CD_APPLET_LEAVE (TRUE);
 }
+
+static void _free_shared_memory (CDSharedMemory *pSharedMemory)
+{
+	g_free (pSharedMemory->cDirPath);
+	g_list_foreach (pSharedMemory->pIconList, (GFunc)g_free, NULL);
+	g_list_free (pSharedMemory->pIconList);
+	g_free (pSharedMemory);
+}
+
+void cd_folders_start (CairoDockModuleInstance *myApplet)
+{
+	if (myData.pTask != NULL)
+	{
+		cairo_dock_discard_task (myData.pTask);
+		myData.pTask = NULL;
+	}
+	
+	CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
+	pSharedMemory->cDirPath = g_strdup (myConfig.cDirPath);
+	pSharedMemory->bShowFiles = myConfig.bShowFiles;
+	pSharedMemory->iSortType = myConfig.iSortType;
+	pSharedMemory->bFoldersFirst = myConfig.bFoldersFirst;
+	pSharedMemory->bShowHiddenFiles = myConfig.bShowHiddenFiles;
+	pSharedMemory->pApplet = myApplet;
+	
+	myData.pTask = cairo_dock_new_task_full (0,
+		(CairoDockGetDataAsyncFunc) _cd_folders_get_data,
+		(CairoDockUpdateSyncFunc) _cd_folders_load_icons_from_data,
+		(GFreeFunc) _free_shared_memory,
+		pSharedMemory);
+	cairo_dock_launch_task_delayed (myData.pTask, 0);  // le delai est la pour laisser le temps au backend gvfs de s'initialiser (sinon on a un "g_hash_table_lookup: assertion `hash_table != NULL' failed" lors du listing d'un repertoire, avec en consequence des icones non trouvees).
+}
+
+
 
 
 static void _cd_folders_remove_all_icons (CairoDockModuleInstance *myApplet)
 {
 	//\_______________________ On stoppe la tache.
-	cairo_dock_stop_task (myData.pTask);
-	
-	if (myData.pIconList != NULL)  // des donnees ont ete recuperees et non utilisees, on les libere.
-	{
-		g_list_foreach (myData.pIconList, (GFunc)g_free, NULL);
-		g_list_free (myData.pIconList);
-		myData.pIconList = NULL;
-	}
-	
-	//\_______________________ On detruit d'abord les icones non chargees dans le container.
-	/**Icon *pIcon;
-	GList *ic = g_list_nth (myData.pAllFiles, myData.iNbIcons);
-	for (;ic != NULL; ic = ic->next)
-	{
-		pIcon = ic->data;
-		g_print (" remove %s\n", pIcon->cName);
-		cairo_dock_free_icon (pIcon);
-	}
-	
-	g_list_free (myData.pAllFiles);
-	myData.pAllFiles = NULL;*/
+	cairo_dock_discard_task (myData.pTask);
+	myData.pTask = NULL;
 	
 	//\_______________________ On detruit ensuite les icones chargees dans le container.
 	CD_APPLET_DELETE_MY_ICONS_LIST;  // si le container a change entre-temps, le ModuleManager se chargera de nettoyer derriere nous.
-	///myData.iNbIcons = 0;
 }
 void cd_folders_free_all_data (CairoDockModuleInstance *myApplet)
 {
@@ -411,32 +357,87 @@ void cd_folders_free_all_data (CairoDockModuleInstance *myApplet)
 	
 	_cd_folders_remove_all_icons (myApplet);
 	
-	cairo_dock_free_task (myData.pTask);
-	myData.pTask = NULL;
-	
 	cd_folders_free_apps_list (myApplet);
 }
 
 
+static void _get_order (Icon *pIcon, CairoDockFMSortType iSortType)
+{
+	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL;
+	gboolean bIsDirectory;
+	int iVolumeID;
+	double fOrder;
+	cairo_dock_fm_get_file_info (pIcon->cBaseURI, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, iSortType);
+	g_free (cName);
+	g_free (cURI);
+	g_free (cIconName);
+	pIcon->fOrder = fOrder;
+}
+
+GList *cairo_dock_sort_icons_by_extension (GList *pIconList)
+{
+	GList *pSortedIconList = g_list_sort (pIconList, (GCompareFunc) cairo_dock_compare_icons_extension);
+
+	guint iCurrentGroup = -1;
+	double fCurrentOrder = 0.;
+	Icon *icon;
+	GList *ic;
+	for (ic = pIconList; ic != NULL; ic = ic->next)
+	{
+		icon = ic->data;
+		if (icon->iGroup != iCurrentGroup)
+		{
+			iCurrentGroup = icon->iGroup;
+			fCurrentOrder = 0.;
+		}
+		icon->fOrder = fCurrentOrder++;
+	}
+	return pSortedIconList;
+}
+
 void cd_folders_sort_icons (CairoDockModuleInstance *myApplet, CairoDockFMSortType iSortType)
 {
 	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
+	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+	if (!pIconsList || !pContainer)  // nothing to do.
+		return;
 	
 	switch (iSortType)
 	{
 		case CAIRO_DOCK_FM_SORT_BY_NAME:
-			
+			pIconsList = cairo_dock_sort_icons_by_name (pIconsList);
 		break;
 		case CAIRO_DOCK_FM_SORT_BY_DATE:
-			
+			g_list_foreach (pIconsList, (GFunc)_get_order, CAIRO_DOCK_FM_SORT_BY_DATE);
+			pIconsList = cairo_dock_sort_icons_by_order (pIconsList);
 		break;
 		case CAIRO_DOCK_FM_SORT_BY_SIZE:
-			
+			g_list_foreach (pIconsList, (GFunc)_get_order, CAIRO_DOCK_FM_SORT_BY_SIZE);
+			pIconsList = cairo_dock_sort_icons_by_order (pIconsList);
 		break;
 		case CAIRO_DOCK_FM_SORT_BY_TYPE:
-			
+			pIconsList = cairo_dock_sort_icons_by_extension (pIconsList);
 		break;
 		default:
 		break;
 	}
+	
+	if (myDock)
+	{
+		CairoDock *pSubDock = CAIRO_DOCK (pContainer);
+		pSubDock->icons = pIconsList;
+		cairo_dock_calculate_dock_icons (pSubDock);
+		cairo_dock_update_dock_size (pSubDock);
+	}
+	else
+	{
+		myDesklet->icons = pIconsList;
+		if (myDesklet->pRenderer && myDesklet->pRenderer->calculate_icons != NULL)
+			myDesklet->pRenderer->calculate_icons (myDesklet);  // don't use cairo_dock_update_desklet_icons(), since the number of icons didn't change.
+	}
+	
+	// redraw
+	cairo_dock_redraw_container (pContainer);
+	
+	myConfig.iSortType = iSortType;  // we don't update the conf file, it's a temporary modification.
 }

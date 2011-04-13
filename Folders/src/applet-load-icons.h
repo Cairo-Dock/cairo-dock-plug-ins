@@ -17,7 +17,6 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef __APPLET_LOAD_ICONS__
 #define  __APPLET_LOAD_ICONS__
 
@@ -25,13 +24,13 @@
 #include <cairo-dock.h>
 
 
-void cd_folders_get_data (CairoDockModuleInstance *myApplet);
-
-
-gboolean cd_folders_load_icons_from_data (CairoDockModuleInstance *myApplet);
+void cd_folders_start (CairoDockModuleInstance *myApplet);
 
 
 void cd_folders_free_all_data (CairoDockModuleInstance *myApplet);
+
+
+void cd_folders_sort_icons (CairoDockModuleInstance *myApplet, CairoDockFMSortType iSortType);
 
 
 #endif

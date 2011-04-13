@@ -26,7 +26,7 @@
 
 void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpointer data);  // used by Audacious too.
 
-void cd_mpris_getPlaying (void);  // used by Audacious too.
+void cd_mpris_getPlaying (void);  // used by Audacious.
 
 void cd_mpris_get_time_elapsed (void);  // used by Audacious too.
 

@@ -23,6 +23,7 @@
 #include <time.h>
 
 #include "applet-struct.h"
+#include "applet-load-icons.h"
 #include "applet-notifications.h"
 
 
@@ -307,6 +308,26 @@ static void _cd_folders_launch_with (GtkMenuItem *pMenuItem, gpointer *app)
 	g_free (cUri);
 }
 
+static void _cd_folders_sort_by_name (GtkMenuItem *pMenuItem, CairoDockModuleInstance *myApplet)
+{
+	cd_folders_sort_icons (myApplet, CAIRO_DOCK_FM_SORT_BY_NAME);
+}
+
+static void _cd_folders_sort_by_date (GtkMenuItem *pMenuItem, CairoDockModuleInstance *myApplet)
+{
+	cd_folders_sort_icons (myApplet, CAIRO_DOCK_FM_SORT_BY_DATE);
+}
+
+static void _cd_folders_sort_by_size (GtkMenuItem *pMenuItem, CairoDockModuleInstance *myApplet)
+{
+	cd_folders_sort_icons (myApplet, CAIRO_DOCK_FM_SORT_BY_SIZE);
+}
+
+static void _cd_folders_sort_by_type (GtkMenuItem *pMenuItem, CairoDockModuleInstance *myApplet)
+{
+	cd_folders_sort_icons (myApplet, CAIRO_DOCK_FM_SORT_BY_TYPE);
+}
+
 static void _free_app (gpointer *app)
 {
 	g_free (app[3]);
@@ -392,6 +413,12 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Create a new file"), GTK_STOCK_NEW, _cd_folders_new_file, CD_APPLET_MY_MENU, myApplet);
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Create a new folder"), GTK_STOCK_NEW, _cd_folders_new_folder, CD_APPLET_MY_MENU, myApplet);
 	}
+	
+	GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Sort by"), CD_APPLET_MY_MENU, GTK_STOCK_SORT_DESCENDING);
+	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("By name"), _cd_folders_sort_by_name, pSubMenu, myApplet);
+	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("By date"), _cd_folders_sort_by_date, pSubMenu, myApplet);
+	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("By size"), _cd_folders_sort_by_size, pSubMenu, myApplet);
+	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("By type"), _cd_folders_sort_by_type, pSubMenu, myApplet);
 	
 	if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON != myIcon)
 		CD_APPLET_LEAVE (CAIRO_DOCK_INTERCEPT_NOTIFICATION);

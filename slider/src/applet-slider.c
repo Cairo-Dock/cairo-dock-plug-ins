@@ -64,7 +64,7 @@ static int _compare_images_order (SliderImage *image2, SliderImage *image1) {
 static int _cd_slider_random_compare (gconstpointer a, gconstpointer b, GRand *pRandomGenerator) {
 	return (g_rand_boolean (pRandomGenerator) ? 1 : -1);
 }
-static GList *cd_slider_task_directory (GList *pList, gchar *cDirectory, gboolean bRecursive, gboolean bSortAlpha)
+static GList *cd_slider_list_directory (GList *pList, gchar *cDirectory, gboolean bRecursive, gboolean bSortAlpha)
 {
 	cd_debug ("%s (%s)", __func__, cDirectory);
 	GError *erreur = NULL;
@@ -83,7 +83,7 @@ static GList *cd_slider_task_directory (GList *pList, gchar *cDirectory, gboolea
 		g_string_printf (sFilePath, "%s/%s", cDirectory, cFileName);
 		if (stat (sFilePath->str, &buf) != -1) {
 			if (S_ISDIR (buf.st_mode) && bRecursive) {
-				pList = cd_slider_task_directory (pList, sFilePath->str, bRecursive, bSortAlpha);
+				pList = cd_slider_list_directory (pList, sFilePath->str, bRecursive, bSortAlpha);
 			}
 			else {
 				extension = strrchr(cFileName,'.');
@@ -124,15 +124,14 @@ static GList *cd_slider_task_directory (GList *pList, gchar *cDirectory, gboolea
 }
 
 void cd_slider_get_files_from_dir(CairoDockModuleInstance *myApplet) {
-	CD_APPLET_ENTER;
 	if (myConfig.cDirectory == NULL) {
 	  ///Et si on scannait le dossier image du home a la place? => bonne idee, mais comment trouver son nom ? il depend de la locale.
 	  ///Il devrai y avoir une var d'environement qui le permet, je vais chercher laquelle, ou sinon c'est dans la config de gnome.
 		cd_warning ("Slider : No directory to scan, halt.");
-		CD_APPLET_LEAVE();
+		return;
 	}
 	
-	myData.pList = cd_slider_task_directory (NULL, myConfig.cDirectory, myConfig.bSubDirs, ! myConfig.bRandom); //Nouveau scan
+	myData.pList = cd_slider_list_directory (NULL, myConfig.cDirectory, myConfig.bSubDirs, ! myConfig.bRandom); //Nouveau scan
 	
 	if (myConfig.bRandom) {
 		//cd_debug ("Slider - Mixing images ...");
@@ -140,12 +139,10 @@ void cd_slider_get_files_from_dir(CairoDockModuleInstance *myApplet) {
 		myData.pList = g_list_sort_with_data (myData.pList, (GCompareDataFunc) _cd_slider_random_compare, pRandomGenerator);
 		g_rand_free (pRandomGenerator);
 	}
-	CD_APPLET_LEAVE();
 }
 
 
 void cd_slider_read_image (CairoDockModuleInstance *myApplet) {
-	CD_APPLET_ENTER;
 	SliderImage *pImage = myData.pElement->data;
 	gchar *cImagePath = pImage->cPath;
 	if (!pImage->bGotExifData && myData.iSidExifIdle == 0)  // no exif data yet and no process currently retrieving them.
@@ -184,7 +181,6 @@ void cd_slider_read_image (CairoDockModuleInstance *myApplet) {
 	myData.slideArea.fImgW = fImgW;
 	myData.slideArea.fImgH = fImgH;
 	cd_debug ("  %s loaded", cImagePath);
-	CD_APPLET_LEAVE();
 }
 
 

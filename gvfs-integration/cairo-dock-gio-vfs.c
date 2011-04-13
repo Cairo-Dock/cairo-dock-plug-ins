@@ -1,4 +1,4 @@
-	/**
+/**
 * This file is a part of the Cairo-Dock project
 *
 * Copyright : (C) see the 'copyright' file.
@@ -1657,7 +1657,7 @@ static void cairo_dock_gio_vfs_empty_trash (void)
 				g_object_unref (file);
 			}
 		}
-		else  // poubelle principale : nom de la forme "tèst 1" et URI "trash:///t%C3%A8st%201"
+		else  // poubelle principale : nom de la forme "tȿst 1" et URI "trash:///t%C3%A8st%201"
 		{
 			if (strchr (cFileName, '%'))  // if there is a % inside the name, it disturb gio, so let's remove it.
 			{

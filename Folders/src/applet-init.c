@@ -91,11 +91,7 @@ CD_APPLET_INIT_BEGIN
 	_set_comparaison_func (myApplet);
 	if (myConfig.bShowFiles)
 	{
-		myData.pTask = cairo_dock_new_task (0,
-			(CairoDockGetDataAsyncFunc) cd_folders_get_data,
-			(CairoDockUpdateSyncFunc) cd_folders_load_icons_from_data,
-			myApplet);
-		cairo_dock_launch_task_delayed (myData.pTask, 0);  // le delai est la pour laisser le temps au backend gvfs de s'initialiser (sinon on a un "g_hash_table_lookup: assertion `hash_table != NULL' failed" lors du listing d'un repertoire, avec en consequence des icones non trouvees).
+		cd_folders_start (myApplet);
 	}
 	else if (myDesklet)  // comme on ne charge pas les icones, on met un renderer "simple" sur notre desklet.
 	{
@@ -139,11 +135,7 @@ CD_APPLET_RELOAD_BEGIN
 		_set_comparaison_func (myApplet);
 		if (myConfig.bShowFiles)
 		{
-			myData.pTask = cairo_dock_new_task (0,
-				(CairoDockGetDataAsyncFunc) cd_folders_get_data,
-				(CairoDockUpdateSyncFunc) cd_folders_load_icons_from_data,
-				myApplet);
-			cairo_dock_launch_task (myData.pTask);
+			cd_folders_start (myApplet);
 		}
 		else if (myDock && myIcon->pSubDock)  // on veut un comportement de type lanceur, donc on ne veut pas d'un sous-dock vide.
 		{

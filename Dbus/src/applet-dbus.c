@@ -298,9 +298,19 @@ static gboolean _apply_package_update (gchar *cModuleName)
 		cairo_dock_activate_module (pModule, NULL);
 	}
 	
-	/// get corresponding task and free it...
-	//myData.pUpdateTasksList = g_list_remove (myData.pUpdateTasksList, pUpdateTask);
-	//cairo_dock_free_task (pUpdateTask);
+	// get corresponding task and free it.
+	CairoDockTask *pUpdateTask = NULL;
+	GList *t;
+	for (t = myData.pUpdateTasksList; t != NULL; t = t->next)
+	{
+		pUpdateTask = t->data;
+		if (pUpdateTask->pSharedMemory && strcmp (pUpdateTask->pSharedMemory, cModuleName) == 0)
+		{
+			myData.pUpdateTasksList = g_list_remove_link (myData.pUpdateTasksList, t);  /// g_list_delete_link ?...
+			cairo_dock_discard_task (pUpdateTask);
+			break;
+		}
+	}
 	return TRUE;
 }
 static void _check_update_package (const gchar *cModuleName, CairoDockPackage *pPackage, gpointer data)

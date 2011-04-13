@@ -142,14 +142,8 @@ void cd_shortcuts_launch_disk_periodic_task (CairoDockModuleInstance *myApplet)
 	}
 }
 
-void cd_shortcuts_stop_disk_periodic_task (CairoDockModuleInstance *myApplet)
-{
-	cairo_dock_stop_task (myData.pDiskTask);
-}
-
 void cd_shortcuts_free_disk_periodic_task (CairoDockModuleInstance *myApplet)
 {
-	cd_shortcuts_stop_disk_periodic_task (myApplet);
 	cairo_dock_free_task (myData.pDiskTask);
 	myData.pDiskTask = NULL;
 }

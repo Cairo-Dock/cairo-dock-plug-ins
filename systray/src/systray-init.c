@@ -29,7 +29,7 @@
 #include "systray-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN (N_("systray"),
+CD_APPLET_DEFINE_BEGIN ("systray",
 	2, 2, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("Add a systray to your dock.\n"
@@ -38,6 +38,7 @@ CD_APPLET_DEFINE_BEGIN (N_("systray"),
 	"Ctaf (Cedric Gestes)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_SET_UNRESIZABLE_DESKLET
+	CD_APPLET_REDEFINE_TITLE (N_("Notification Area Old"))
 CD_APPLET_DEFINE_END
 
 

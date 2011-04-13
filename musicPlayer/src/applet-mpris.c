@@ -250,7 +250,7 @@ static void _on_got_playing_status (DBusGProxy *proxy, DBusGProxyCall *call_id, 
 	
 	CD_APPLET_LEAVE ();
 }
-void cd_mpris_getPlaying_async (void)  // used by Audacious too.
+void cd_mpris_getPlaying_async (void)  // used by Audacious.
 {
 	if (s_pGetStatusCall != NULL)
 		return;

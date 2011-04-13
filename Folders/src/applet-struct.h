@@ -28,7 +28,6 @@ struct _AppletConfig {
 	gchar *cImageFile;
 	gchar *cDefaultTitle;
 	gchar *cDirPath;
-	///guint iNbIcons;
 	gboolean bShowFiles;
 	CairoDockFMSortType iSortType;
 	gboolean bFoldersFirst;
@@ -37,14 +36,19 @@ struct _AppletConfig {
 	gchar *cRenderer;
 	} ;
 
+typedef struct {
+	gchar *cDirPath;
+	gboolean bShowFiles;
+	CairoDockFMSortType iSortType;
+	gboolean bFoldersFirst;
+	gboolean bShowHiddenFiles;
+	GList *pIconList;
+	CairoDockModuleInstance *pApplet;
+	} CDSharedMemory;
+
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	// shared memory
-	GList *pIconList;
-	// end of shared memory
 	CairoDockTask *pTask;
-	///GList *pAllFiles;
-	///guint iNbIcons;
 	GCompareFunc comp;
 	GList *pAppList;
 	} ;
