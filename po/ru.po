@@ -26,43 +26,45 @@ msgid "This plug-in provides many different animations for your icons."
 msgstr "Это плагин предоставляет много красивых эффектов для ваших значков."
 
 #: ../Animated-icons/src/applet-init.c:80 ../Animated-icons/data/messages:9
-#: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
-#: ../Animated-icons/data/messages:63 ../Animated-icons/data/messages:171
+#: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:47
+#: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:177
 msgid "Bounce"
 msgstr "Отскакивать от краёв"
 
 #: ../Animated-icons/src/applet-init.c:81 ../Animated-icons/data/messages:11
-#: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
-#: ../Animated-icons/data/messages:65
+#: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:49
+#: ../Animated-icons/data/messages:69
 msgid "Rotate"
 msgstr "Вращение"
 
 #: ../Animated-icons/src/applet-init.c:82 ../Animated-icons/data/messages:13
-#: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:49
-#: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:185
+#: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:51
+#: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:191
 msgid "Blink"
 msgstr "Мигание"
 
 #: ../Animated-icons/src/applet-init.c:83 ../Animated-icons/data/messages:15
-#: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:51
-#: ../Animated-icons/data/messages:69 ../Animated-icons/data/messages:159
+#: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:53
+#: ../Animated-icons/data/messages:73 ../Animated-icons/data/messages:165
 msgid "Pulse"
 msgstr "Пульсирующий"
 
 #: ../Animated-icons/src/applet-init.c:84 ../Animated-icons/data/messages:17
-#: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:53
-#: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:131
+#: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:55
+#: ../Animated-icons/data/messages:75 ../Animated-icons/data/messages:137
 msgid "Wobbly"
 msgstr "Желе"
 
 #: ../Animated-icons/src/applet-init.c:85 ../Animated-icons/data/messages:19
-#: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:55
-#: ../Animated-icons/data/messages:73 ../Animated-icons/data/messages:147
+#: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:57
+#: ../Animated-icons/data/messages:77 ../Animated-icons/data/messages:153
 msgid "Wave"
 msgstr "Волна"
 
 #: ../Animated-icons/src/applet-init.c:86 ../Animated-icons/data/messages:21
-#: ../Animated-icons/data/messages:95 ../Animated-icons/data/messages:103
+#: ../Animated-icons/data/messages:39 ../Animated-icons/data/messages:59
+#: ../Animated-icons/data/messages:79 ../Animated-icons/data/messages:101
+#: ../Animated-icons/data/messages:109
 msgid "Spot"
 msgstr "Точечно"
 
@@ -209,8 +211,27 @@ msgstr ""
 "Коммуникация основана на Dbus."
 
 #: ../Dbus/src/interface-applet-signals.c:365
-#, fuzzy
-msgid "Applet's handbook"
+#: ../Cairo-Penguin/data/messages:15 ../Clipper/data/messages:19
+#: ../Disks/data/messages:19 ../Folders/data/messages:31
+#: ../GMenu/data/messages:19 ../MeMenu/data/messages:13
+#: ../Messaging-Menu/data/messages:15 ../Network-Monitor/data/messages:19
+#: ../RSSreader/data/messages:21 ../Recent-Events/data/messages:19
+#: ../Scooby-Do/data/messages:115 ../Status-Notifier/data/messages:19
+#: ../System-Monitor/data/messages:17 ../Toons/data/messages:17
+#: ../Xgamma/data/messages:21 ../alsaMixer/data/messages:17
+#: ../clock/data/messages:19 ../compiz-icon/data/messages:15
+#: ../dnd2share/data/messages:19 ../dustbin/data/messages:15
+#: ../keyboard-indicator/data/messages:15 ../logout/data/messages:19
+#: ../mail/data/messages:15 ../musicPlayer/data/messages:17
+#: ../netspeed/data/messages:15 ../powermanager/data/messages:19
+#: ../quick-browser/data/messages:21 ../shortcuts/data/messages:19
+#: ../showDesktop/data/messages:23 ../slider/data/messages:17
+#: ../stack/data/messages:21 ../switcher/data/messages:19
+#: ../systray/data/messages:19 ../template/data/messages:19
+#: ../terminal/data/messages:19 ../tomboy/data/messages:29
+#: ../weather/data/messages:17 ../weblets/data/messages:19
+#: ../wifi/data/messages:17
+msgid "Applet's Handbook"
 msgstr "Руководство по апплетам"
 
 #: ../Dbus/src/interface-applet-signals.c:422
@@ -325,7 +346,7 @@ msgstr ""
 "  – НЕОБХОДИМО открепить от панели!\n"
 "  – Средний щелчок для обновления"
 
-#: ../Doncky/src/applet-notifications.c:60
+#: ../Doncky/src/applet-notifications.c:215
 #, fuzzy
 msgid "It doesn't seem to be a valid XML file."
 msgstr "Неверная ссылка на RSS поток."
@@ -352,16 +373,16 @@ msgstr ""
 " – или просто перетащите каталог на панель\n"
 "Средний щелчок на значке открывает каталог.\n"
 
-#: ../Folders/src/applet-notifications.c:41
+#: ../Folders/src/applet-notifications.c:42
 msgid "Open the configuration of the applet to choose a folder to import."
 msgstr ""
 "Откройте настройки этого апплета, чтобы добавить каталог для просмотра."
 
-#: ../Folders/src/applet-notifications.c:53
+#: ../Folders/src/applet-notifications.c:54
 msgid "Empty or unreadable folder."
 msgstr "Пустой или ошибочный каталог."
 
-#: ../Folders/src/applet-notifications.c:204
+#: ../Folders/src/applet-notifications.c:205
 #, c-format
 msgid ""
 "You're about deleting this file\n"
@@ -372,7 +393,7 @@ msgstr ""
 "  (%s)\n"
 "с жёсткого диска. Вы уверены?"
 
-#: ../Folders/src/applet-notifications.c:214
+#: ../Folders/src/applet-notifications.c:215
 msgid ""
 "Warning: could not delete this file.\n"
 "Please check file permissions."
@@ -380,11 +401,11 @@ msgstr ""
 "Внимание: не удалось удалить этот файл. \n"
 "Убедитесь, что вы имеете соответствующие права."
 
-#: ../Folders/src/applet-notifications.c:227
+#: ../Folders/src/applet-notifications.c:228
 msgid "Rename to:"
 msgstr "Переименовать в:"
 
-#: ../Folders/src/applet-notifications.c:234
+#: ../Folders/src/applet-notifications.c:235
 #, c-format
 msgid ""
 "Warning: could not rename %s.\n"
@@ -395,11 +416,11 @@ msgstr ""
 "Убедитесь, что вы имеете права на запись \n"
 "и новое имя уже не присутствует на панели."
 
-#: ../Folders/src/applet-notifications.c:273
+#: ../Folders/src/applet-notifications.c:274
 msgid "Enter a file name:"
 msgstr "Введите название файла:"
 
-#: ../Folders/src/applet-notifications.c:281
+#: ../Folders/src/applet-notifications.c:282
 #, c-format
 msgid ""
 "Warning: could not create %s.\n"
@@ -410,20 +431,20 @@ msgstr ""
 "Проверьте права \n"
 "и убедитесь, что такое имя уже не присутствует."
 
-#: ../Folders/src/applet-notifications.c:339
+#: ../Folders/src/applet-notifications.c:360
 msgid "Open the folder"
 msgstr "Открыть каталог"
 
-#: ../Folders/src/applet-notifications.c:339
+#: ../Folders/src/applet-notifications.c:360
 #: ../GMenu/src/applet-notifications.c:76
 #: ../RSSreader/src/applet-notifications.c:132
-#: ../System-Monitor/src/applet-notifications.c:111
+#: ../System-Monitor/src/applet-notifications.c:108
 #: ../Xgamma/src/applet-notifications.c:89
 #: ../alsaMixer/src/applet-notifications.c:62
-#: ../dustbin/src/applet-notifications.c:118
-#: ../logout/src/applet-notifications.c:153
-#: ../logout/src/applet-notifications.c:162
-#: ../logout/src/applet-notifications.c:171
+#: ../dustbin/src/applet-notifications.c:139
+#: ../logout/src/applet-notifications.c:167
+#: ../logout/src/applet-notifications.c:176
+#: ../logout/src/applet-notifications.c:185
 #: ../mail/src/cd-mail-applet-notifications.c:157
 #: ../netspeed/src/applet-notifications.c:97
 #: ../quick-browser/src/applet-notifications.c:43
@@ -434,7 +455,7 @@ msgstr "Открыть каталог"
 #: ../showDesktop/src/applet-notifications.c:171
 #: ../slider/src/applet-notifications.c:230
 #: ../slider/src/applet-notifications.c:271
-#: ../stack/src/applet-notifications.c:182
+#: ../stack/src/applet-notifications.c:183
 #: ../switcher/src/applet-notifications.c:301
 #: ../switcher/src/applet-notifications.c:306
 #: ../switcher/src/applet-notifications.c:315
@@ -442,35 +463,63 @@ msgstr "Открыть каталог"
 msgid "middle-click"
 msgstr "средний щелчок"
 
-#: ../Folders/src/applet-notifications.c:349
+#: ../Folders/src/applet-notifications.c:370
 msgid "Rename this file"
 msgstr "Переименовать этот файл"
 
-#: ../Folders/src/applet-notifications.c:350
+#: ../Folders/src/applet-notifications.c:371
 msgid "Delete this file"
 msgstr "Удалить этот файл"
 
-#: ../Folders/src/applet-notifications.c:351
+#: ../Folders/src/applet-notifications.c:372
 msgid "Move this file"
 msgstr "Переместить этот файл"
 
-#: ../Folders/src/applet-notifications.c:357
+#: ../Folders/src/applet-notifications.c:378
 #: ../Recent-Events/src/applet-dialog.c:255
 #: ../slider/src/applet-notifications.c:240
 msgid "Open with"
 msgstr "Открыть с помощью"
 
-#: ../Folders/src/applet-notifications.c:389
+#: ../Folders/src/applet-notifications.c:410
 msgid "Properties"
 msgstr "Свойства"
 
-#: ../Folders/src/applet-notifications.c:392
+#: ../Folders/src/applet-notifications.c:413
 msgid "Create a new file"
 msgstr "Создать новый файл"
 
-#: ../Folders/src/applet-notifications.c:393
+#: ../Folders/src/applet-notifications.c:414
 msgid "Create a new folder"
 msgstr "Создать новый каталог"
+
+#: ../Folders/src/applet-notifications.c:417
+#, fuzzy
+msgid "Sort by"
+msgstr "Сортировать по:"
+
+#: ../Folders/src/applet-notifications.c:418
+#, fuzzy
+msgid "By name"
+msgstr "Файл"
+
+#: ../Folders/src/applet-notifications.c:419
+msgid "By date"
+msgstr ""
+
+#: ../Folders/src/applet-notifications.c:420
+#, fuzzy
+msgid "By size"
+msgstr "Размер лучей:"
+
+#: ../Folders/src/applet-notifications.c:421
+msgid "By type"
+msgstr ""
+
+#: ../Folders/src/applet-notifications.c:459
+#, fuzzy
+msgid "The folder has been imported."
+msgstr "Сеть была отключена."
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -510,15 +559,15 @@ msgstr "Последние документы"
 msgid "Clear the list of the recently used documents?"
 msgstr "Очистить список последних документов?"
 
-#: ../GMenu/src/applet-run-dialog.c:349 ../Scooby-Do/data/messages:111
+#: ../GMenu/src/applet-run-dialog.c:350 ../Scooby-Do/data/messages:111
 msgid "Enter a command to launch:"
 msgstr "Введите команду для запуска:"
 
-#: ../MeMenu/src/applet-init.c:31
+#: ../MeMenu/src/applet-init.c:30
 msgid "Me Menu"
 msgstr "Моё Меню"
 
-#: ../MeMenu/src/applet-init.c:34
+#: ../MeMenu/src/applet-init.c:33
 msgid ""
 "A menu that lets you access quickly to your information, your online status, "
 "your friends."
@@ -530,11 +579,11 @@ msgstr ""
 msgid "It seems that the Me-Menu is not installed on your system"
 msgstr "По всей видимости Me-Menu не установлено на вашей системе"
 
-#: ../Messaging-Menu/src/applet-init.c:31
+#: ../Messaging-Menu/src/applet-init.c:30
 msgid "Messaging Menu"
 msgstr "Меню сообщений"
 
-#: ../Messaging-Menu/src/applet-init.c:34
+#: ../Messaging-Menu/src/applet-init.c:33
 msgid ""
 "A menu that notices you about new messages from Mail or Chat applications.\n"
 "It handles Evolution, Pidgin, Empathy, etc"
@@ -638,8 +687,8 @@ msgid "Network ID"
 msgstr "ID сети"
 
 #: ../Network-Monitor/src/applet-draw.c:145
-#: ../musicPlayer/src/applet-draw.c:337 ../musicPlayer/src/applet-draw.c:339
-#: ../musicPlayer/src/applet-draw.c:341
+#: ../musicPlayer/src/applet-draw.c:344 ../musicPlayer/src/applet-draw.c:346
+#: ../musicPlayer/src/applet-draw.c:348
 #: ../powermanager/src/powermanager-draw.c:189
 #: ../powermanager/src/powermanager-draw.c:218
 msgid "Unknown"
@@ -675,6 +724,7 @@ msgstr ""
 
 #: ../Network-Monitor/src/applet-netspeed.c:200
 #: ../System-Monitor/src/applet-monitor.c:90
+#: ../System-Monitor/src/applet-top.c:427
 #: ../netspeed/src/applet-netspeed.c:196
 msgid "Loading"
 msgstr "Загрузка"
@@ -754,35 +804,35 @@ msgstr "Открыть в веб-браузере"
 msgid "Refresh"
 msgstr "Обновить"
 
-#: ../RSSreader/src/applet-rss.c:382
+#: ../RSSreader/src/applet-rss.c:400
 msgid "Warning: couldn't retrieve data last time we tried."
 msgstr "Внимание: не удалось получить данные"
 
-#: ../RSSreader/src/applet-rss.c:417
+#: ../RSSreader/src/applet-rss.c:436
 msgid "No URL is defined."
 msgstr "Не указан URL."
 
-#: ../RSSreader/src/applet-rss.c:418
+#: ../RSSreader/src/applet-rss.c:437
 msgid "No data (no connection?)"
 msgstr "Нет данных (нет соединения?)"
 
-#: ../RSSreader/src/applet-rss.c:449 ../RSSreader/src/applet-rss.c:468
+#: ../RSSreader/src/applet-rss.c:468 ../RSSreader/src/applet-rss.c:487
 msgid "Invalid data (invalid RSS/Atom feed?)"
 msgstr "Ошибочные данные (ошибочный RSS/Atom поток?)"
 
-#: ../RSSreader/src/applet-rss.c:532
+#: ../RSSreader/src/applet-rss.c:551
 msgid "No data"
 msgstr "Нет данных"
 
-#: ../RSSreader/src/applet-rss.c:570
+#: ../RSSreader/src/applet-rss.c:589
 msgid "No modification"
 msgstr "Без изменений"
 
-#: ../RSSreader/src/applet-rss.c:595
+#: ../RSSreader/src/applet-rss.c:614
 msgid "This RSS feed has been modified..."
 msgstr "Этот RSS поток был изменён..."
 
-#: ../RSSreader/src/applet-rss.c:743
+#: ../RSSreader/src/applet-rss.c:775
 msgid ""
 "No URL is defined\n"
 "You can define one by copying the URL in the clipboard,\n"
@@ -793,7 +843,7 @@ msgstr ""
 " а затем в меню выбрать пункт\n"
 " «Вставить URL»"
 
-#: ../RSSreader/src/applet-rss.c:749
+#: ../RSSreader/src/applet-rss.c:781
 msgid ""
 "No data\n"
 "Did you set a valid RSS feed?\n"
@@ -804,7 +854,7 @@ msgstr ""
 "Подключен ли Интернет?"
 
 #: ../Recent-Events/src/applet-dialog.c:280
-#: ../stack/src/applet-notifications.c:180
+#: ../stack/src/applet-notifications.c:181
 msgid "Open parent folder"
 msgstr "Открыть родительский каталог"
 
@@ -1039,9 +1089,18 @@ msgstr "Поиск..."
 msgid "Enter your search"
 msgstr "Введите запрос"
 
-#: ../Status-Notifier/src/applet-init.c:32
-msgid "Status Notifier"
-msgstr "Оповещение о статусе"
+#: ../Status-Notifier/src/applet-init.c:33
+msgid ""
+"A <b>notification area</b> for your dock\n"
+"Programs can use it to display their current status.\n"
+"If a program doesn't appear inside when it should, it's probably because it "
+"doesn't support the this feature yet. Please fill a bug report to the devs."
+msgstr ""
+
+#: ../Status-Notifier/src/applet-init.c:38
+#, fuzzy
+msgid "Notification Area"
+msgstr "Уведомление"
 
 #: ../System-Monitor/src/applet-cpusage.c:57
 msgid "Uptime"
@@ -1051,15 +1110,15 @@ msgstr "Аптайм"
 msgid "Activity time"
 msgstr "Время активности"
 
-#: ../System-Monitor/src/applet-cpusage.c:144
+#: ../System-Monitor/src/applet-cpusage.c:145
 msgid "CPU model"
 msgstr "Модель CPU"
 
-#: ../System-Monitor/src/applet-cpusage.c:145
+#: ../System-Monitor/src/applet-cpusage.c:146
 msgid "Frequency"
 msgstr "Частота"
 
-#: ../System-Monitor/src/applet-cpusage.c:146
+#: ../System-Monitor/src/applet-cpusage.c:147
 msgid "core(s)"
 msgstr "ядро(ер)"
 
@@ -1079,8 +1138,8 @@ msgstr ""
 "Вы можете запустить это апплет несколько раз, чтобы видеть сразу несколько "
 "значений."
 
-#: ../System-Monitor/src/applet-notifications.c:44
-#: ../System-Monitor/src/applet-notifications.c:86
+#: ../System-Monitor/src/applet-notifications.c:40
+#: ../System-Monitor/src/applet-notifications.c:83
 msgid ""
 "The acquisition of one or more data has failed.\n"
 "You should remove the data that couldn't be fetched."
@@ -1088,12 +1147,12 @@ msgstr ""
 "Не удалось собрать информацию с одного или нескольких источников.\n"
 "Вам следует удалить информацию, которую не удалось получить."
 
-#: ../System-Monitor/src/applet-notifications.c:109
+#: ../System-Monitor/src/applet-notifications.c:106
 #: ../netspeed/src/applet-notifications.c:101
 msgid "Open the System-Monitor"
 msgstr "Открыть системный монитор"
 
-#: ../System-Monitor/src/applet-notifications.c:111
+#: ../System-Monitor/src/applet-notifications.c:108
 msgid "Show info"
 msgstr "Показать инфо"
 
@@ -1107,7 +1166,7 @@ msgstr "Память видео"
 
 #: ../System-Monitor/src/applet-nvidia.c:147
 #: ../System-Monitor/src/applet-rame.c:124
-#: ../System-Monitor/src/applet-top.c:288
+#: ../System-Monitor/src/applet-top.c:297
 msgid "Mb"
 msgstr "Мбайт"
 
@@ -1210,9 +1269,14 @@ msgstr "Настройки гаммы:"
 msgid "Apply current luminosity on startup"
 msgstr "Применять текущую яркость при загрузке"
 
-#: ../Xgamma/src/applet-xgamma.c:204 ../Xgamma/src/applet-xgamma.c:274
+#: ../Xgamma/src/applet-xgamma.c:200 ../Xgamma/src/applet-xgamma.c:270
 msgid "Set up gamma:"
 msgstr "Настройки гаммы:"
+
+#: ../Xgamma/src/applet-xgamma.c:283
+#, fuzzy
+msgid "Luminosity"
+msgstr "Яркость экрана"
 
 #: ../alsaMixer/src/applet-init.c:34
 msgid ""
@@ -1264,7 +1328,7 @@ msgstr "Не удалось зарегистрировать опцию"
 msgid "I couldn't load the mixer"
 msgstr "Не удалось загрузить микшер"
 
-#: ../alsaMixer/src/applet-mixer.c:291
+#: ../alsaMixer/src/applet-mixer.c:295
 msgid "Set up volume:"
 msgstr "Установка громкости:"
 
@@ -1296,7 +1360,7 @@ msgstr "Нет заголовка"
 msgid "years"
 msgstr "лет"
 
-#: ../clock/src/applet-calendar.c:646
+#: ../clock/src/applet-calendar.c:651
 msgid "Calendar and tasks"
 msgstr "Календарь и задачи"
 
@@ -1384,7 +1448,7 @@ msgstr "Команда для запуска:"
 msgid "E.g.:"
 msgstr "Например:"
 
-#: ../clock/src/applet-config.c:495 ../weather/src/applet-config.c:201
+#: ../clock/src/applet-config.c:495 ../weather/src/applet-config.c:205
 msgid "Search for your location :"
 msgstr "Поиск местонахождения:"
 
@@ -1479,31 +1543,31 @@ msgstr "Каждый месяц"
 msgid "each year"
 msgstr "Каждый год"
 
-#: ../clock/src/applet-task-editor.c:391
+#: ../clock/src/applet-task-editor.c:392
 msgid "Right-click to add a new task."
 msgstr "Правый щелчок, чтобы добавить событие."
 
-#: ../clock/src/applet-task-editor.c:397 ../musicPlayer/src/applet-draw.c:338
+#: ../clock/src/applet-task-editor.c:398 ../musicPlayer/src/applet-draw.c:345
 #: ../RSSreader/data/messages:139
 msgid "Title"
 msgstr "Название"
 
-#: ../clock/src/applet-task-editor.c:404
+#: ../clock/src/applet-task-editor.c:405
 #: ../dnd2share/src/applet-notifications.c:378 ../Doncky/data/messages:101
 #: ../RSSreader/data/messages:155
 msgid "Text"
 msgstr "Текст"
 
-#: ../clock/src/applet-task-editor.c:411
+#: ../clock/src/applet-task-editor.c:412
 #: ../powermanager/src/powermanager-draw.c:135
 msgid "Time"
 msgstr "Время"
 
-#: ../clock/src/applet-task-editor.c:425
+#: ../clock/src/applet-task-editor.c:426
 msgid "Freq."
 msgstr "Частота"
 
-#: ../clock/src/applet-task-editor.c:432
+#: ../clock/src/applet-task-editor.c:433
 msgid "Tags"
 msgstr "Теги"
 
@@ -1688,12 +1752,12 @@ msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr ""
 "Этот плагин предоставляет несколько видов для ваших облачков напоминаний."
 
-#: ../dnd2share/src/applet-dnd2share.c:167
+#: ../dnd2share/src/applet-dnd2share.c:165
 msgid ""
 "Couldn't upload the file, check that your internet connection is active."
 msgstr "Не удалось загрузить файл, проверьте соединение с Интернет."
 
-#: ../dnd2share/src/applet-dnd2share.c:282
+#: ../dnd2share/src/applet-dnd2share.c:280
 msgid ""
 "File has been uploaded.\n"
 "Just press CTRL+v to paste its URL anywhere."
@@ -1701,11 +1765,11 @@ msgstr ""
 "Файл успешно загружен.\n"
 "Нажмите CTRL+v, чтобы вставить его URL куда угодно."
 
-#: ../dnd2share/src/applet-dnd2share.c:332
+#: ../dnd2share/src/applet-dnd2share.c:331
 msgid "Please wait for the current upload to finish before starting a new one."
 msgstr "Дождитесь завершения текущей закачки прежде чем начать новую."
 
-#: ../dnd2share/src/applet-dnd2share.c:582
+#: ../dnd2share/src/applet-dnd2share.c:591
 msgid "Tiny URL"
 msgstr "Tiny URL"
 
@@ -1907,67 +1971,67 @@ msgstr ""
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr "Вы собираетесь удалить все файлы из всех корзин. Уверены?"
 
-#: ../dustbin/src/applet-notifications.c:80
+#: ../dustbin/src/applet-notifications.c:91
 msgid "The trash contains"
 msgstr "Корзина содержит"
 
-#: ../dustbin/src/applet-notifications.c:82
+#: ../dustbin/src/applet-notifications.c:93
 msgid "files"
 msgstr "файлов"
 
-#: ../dustbin/src/applet-notifications.c:82
+#: ../dustbin/src/applet-notifications.c:93
 msgid "elements"
 msgstr "элементы"
 
-#: ../dustbin/src/applet-notifications.c:84
+#: ../dustbin/src/applet-notifications.c:95
 msgid "Mo"
 msgstr "Мбайт"
 
-#: ../dustbin/src/applet-notifications.c:84
+#: ../dustbin/src/applet-notifications.c:95
 msgid "Ko"
 msgstr "Кбайт"
 
-#: ../dustbin/src/applet-notifications.c:100
+#: ../dustbin/src/applet-notifications.c:115
 msgid "Counting total size and files number..."
 msgstr "Высчитывается общий размер и количество файлов..."
 
-#: ../dustbin/src/applet-notifications.c:117
+#: ../dustbin/src/applet-notifications.c:138
 msgid "Show Trash (click)"
 msgstr "Показать корзину (щелчок)"
 
-#: ../dustbin/src/applet-notifications.c:118
+#: ../dustbin/src/applet-notifications.c:139
 msgid "Empty Trash"
 msgstr "Очистить корзину"
 
-#: ../dustbin/src/applet-notifications.c:122
+#: ../dustbin/src/applet-notifications.c:143
 msgid "Display dustbins information"
 msgstr "Показать информацию о корзинах"
 
-#: ../dustbin/src/applet-notifications.c:135
+#: ../dustbin/src/applet-notifications.c:156
 #, c-format
 msgid "%s successfully unmounted"
 msgstr "%s отсоединён"
 
-#: ../dustbin/src/applet-notifications.c:139
+#: ../dustbin/src/applet-notifications.c:160
 #, c-format
 msgid "failed to unmount %s"
 msgstr "не удалось отсоединить %s"
 
-#: ../dustbin/src/applet-notifications.c:163
+#: ../dustbin/src/applet-notifications.c:184
 #: ../shortcuts/src/applet-notifications.c:167
 msgid "Unmouting this volume ..."
 msgstr "Отсоединяется том..."
 
-#: ../dustbin/src/applet-trashes-manager.c:59
+#: ../dustbin/src/applet-trashes-manager.c:68
 msgid " trashe(s)"
 msgstr " корзин(ы)"
 
-#: ../dustbin/src/applet-trashes-manager.c:63
+#: ../dustbin/src/applet-trashes-manager.c:72
 msgid " file(s)"
 msgstr " файл(ов)"
 
-#: ../dustbin/src/applet-trashes-manager.c:98
-#: ../dustbin/src/applet-trashes-manager.c:127
+#: ../dustbin/src/applet-trashes-manager.c:114
+#: ../dustbin/src/applet-trashes-manager.c:153
 msgid "calculating"
 msgstr "вычисляю"
 
@@ -2095,33 +2159,38 @@ msgstr ""
 "завершения или перезагрузки\n"
 "  (если захотите, вы можете поменять местами эти действия)."
 
-#: ../logout/src/applet-notifications.c:124
+#: ../logout/src/applet-notifications.c:138
 msgid "Choose in how many minutes your PC will stop:"
 msgstr "Укажите через сколько минут остановить компьютер:"
 
-#: ../logout/src/applet-notifications.c:153
-#: ../logout/src/applet-notifications.c:155 ../logout/data/messages:101
+#: ../logout/src/applet-notifications.c:167
+#: ../logout/src/applet-notifications.c:169 ../logout/data/messages:101
 #: ../logout/data/messages:109
 msgid "Log out"
 msgstr "Завершить сеанс"
 
-#: ../logout/src/applet-notifications.c:162
-#: ../logout/src/applet-notifications.c:164 ../logout/data/messages:103
+#: ../logout/src/applet-notifications.c:176
+#: ../logout/src/applet-notifications.c:178 ../logout/data/messages:103
 #: ../logout/data/messages:111
 msgid "Shut down"
 msgstr "Завершить работу"
 
-#: ../logout/src/applet-notifications.c:171
-#: ../logout/src/applet-notifications.c:173 ../logout/data/messages:105
+#: ../logout/src/applet-notifications.c:185
+#: ../logout/src/applet-notifications.c:187 ../logout/data/messages:105
 #: ../logout/data/messages:113
 msgid "Lock screen"
 msgstr "Заблокировать экран"
 
-#: ../logout/src/applet-notifications.c:178
+#: ../logout/src/applet-notifications.c:193
+#: ../logout/src/applet-notifications.c:199
+msgid "Guest session"
+msgstr ""
+
+#: ../logout/src/applet-notifications.c:203
 msgid "Program an automatic shut-down"
 msgstr "Автоматическое завершение"
 
-#: ../logout/src/applet-notifications.c:208
+#: ../logout/src/applet-notifications.c:233
 msgid "Your computer will shut-down in 1 minute."
 msgstr "Ваш компьютер выключится через 1 минуту."
 
@@ -2175,7 +2244,7 @@ msgid "Use a secure connection (SSL)"
 msgstr "Использовать безопасное соединение (SSL)"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39 ../RSSreader/data/messages:113
-#: ../netspeed/data/messages:137 ../powermanager/data/messages:153
+#: ../netspeed/data/messages:137 ../powermanager/data/messages:157
 #: ../weather/data/messages:111
 msgid "Refresh time:"
 msgstr "Интервал обновлений:"
@@ -2347,35 +2416,35 @@ msgstr "Неизвестный исполнитель"
 msgid "Unknown title"
 msgstr "Неизвестный заголовок"
 
-#: ../musicPlayer/src/applet-draw.c:233 ../musicPlayer/src/applet-mpris.c:267
+#: ../musicPlayer/src/applet-draw.c:233 ../musicPlayer/src/applet-mpris.c:317
 msgid "Track"
 msgstr "Дорожка"
 
-#: ../musicPlayer/src/applet-draw.c:327
+#: ../musicPlayer/src/applet-draw.c:334
 msgid "Current song"
 msgstr "Текущая композиция"
 
-#: ../musicPlayer/src/applet-draw.c:336
+#: ../musicPlayer/src/applet-draw.c:343
 msgid "Artist"
 msgstr "Исполнитель"
 
-#: ../musicPlayer/src/applet-draw.c:340
+#: ../musicPlayer/src/applet-draw.c:347
 msgid "Album"
 msgstr "Альбом"
 
-#: ../musicPlayer/src/applet-draw.c:342
+#: ../musicPlayer/src/applet-draw.c:349
 msgid "Length"
 msgstr "Длительность"
 
-#: ../musicPlayer/src/applet-draw.c:344
+#: ../musicPlayer/src/applet-draw.c:351
 msgid "Track n°"
 msgstr "Дорожка №"
 
-#: ../musicPlayer/src/applet-draw.c:345
+#: ../musicPlayer/src/applet-draw.c:352
 msgid "Song n°"
 msgstr "Трек №"
 
-#: ../musicPlayer/src/applet-draw.c:347
+#: ../musicPlayer/src/applet-draw.c:354
 msgid "There is no media playing."
 msgstr "В данный момент ничего не проигрывается."
 
@@ -2869,51 +2938,61 @@ msgstr ""
 "Нет элементов в stack.\n"
 "Вы можете добавить файлы, URL и даже текст, просто перетащив их на значок."
 
-#: ../stack/src/applet-notifications.c:74
+#: ../stack/src/applet-notifications.c:75
 msgid "Clear the stack?"
 msgstr "Очистить стэк?"
 
-#: ../stack/src/applet-notifications.c:95
+#: ../stack/src/applet-notifications.c:96
 msgid "Set new name for this item:"
 msgstr "Задать новое имя для элемента:"
 
-#: ../stack/src/applet-notifications.c:167
+#: ../stack/src/applet-notifications.c:168
 msgid "Paste (drag'n'drop)"
 msgstr "Вставить (перетащить)"
 
-#: ../stack/src/applet-notifications.c:170
+#: ../stack/src/applet-notifications.c:171
 msgid "Clear the stack"
 msgstr "Очистить стэк"
 
-#: ../stack/src/applet-notifications.c:177
+#: ../stack/src/applet-notifications.c:178
 msgid "Open (click)"
 msgstr "Открыть (щелчок)"
 
-#: ../stack/src/applet-notifications.c:182
+#: ../stack/src/applet-notifications.c:183
 #: ../terminal/src/terminal-callbacks.c:82
-#: ../terminal/src/terminal-widget.c:384
+#: ../terminal/src/terminal-widget.c:386
 msgid "Copy"
 msgstr "Копировать"
 
-#: ../stack/src/applet-notifications.c:185
+#: ../stack/src/applet-notifications.c:186
 msgid "Cut"
 msgstr "Вырезать"
 
-#: ../stack/src/applet-notifications.c:188
+#: ../stack/src/applet-notifications.c:189
 msgid "Rename this item"
 msgstr "Переименовать этот элемент"
 
-#: ../stack/src/applet-notifications.c:189
+#: ../stack/src/applet-notifications.c:190
 msgid "Remove this item"
 msgstr "Удалить этот элемент"
 
-#: ../switcher/src/applet-draw.c:617 ../switcher/src/applet-draw.c:624
+#: ../stack/src/applet-notifications.c:259
+#, fuzzy
+msgid "The file has been added to the stack."
+msgstr "Модуль был добавлен, но запустить его не удалось."
+
+#: ../stack/src/applet-notifications.c:260
+#, fuzzy
+msgid "The URL has been added to the stack."
+msgstr "Модуль был добавлен, но запустить его не удалось."
+
+#: ../switcher/src/applet-draw.c:618 ../switcher/src/applet-draw.c:625
 #: ../switcher/src/applet-load-icons.c:43
 #: ../switcher/src/applet-notifications.c:420
 msgid "Current"
 msgstr "Текущий"
 
-#: ../switcher/src/applet-draw.c:624 ../switcher/src/applet-draw.c:626
+#: ../switcher/src/applet-draw.c:625 ../switcher/src/applet-draw.c:627
 #: ../switcher/src/applet-load-icons.c:49
 #: ../switcher/src/applet-notifications.c:216
 #: ../switcher/src/applet-notifications.c:228
@@ -2979,10 +3058,6 @@ msgstr "Список окон"
 msgid "Expose all the windows"
 msgstr "Показать все рабочие столы (Compiz)"
 
-#: ../systray/src/systray-init.c:32
-msgid "systray"
-msgstr "Область уведомлений"
-
 #: ../systray/src/systray-init.c:35
 msgid ""
 "Add a systray to your dock.\n"
@@ -2996,6 +3071,11 @@ msgstr ""
 "клавиатурное сокращение.)\n"
 "Но лучшим вариантом будет открепить её от панели и разместить где-нибудь на "
 "рабочем столе."
+
+#: ../systray/src/systray-init.c:41
+#, fuzzy
+msgid "Notification Area Old"
+msgstr "Уведомление"
 
 #: ../systray/src/systray-interface.c:71
 msgid ""
@@ -3044,7 +3124,7 @@ msgstr ""
 "Чтобы закрыть вкладку: введите 'CTRL+w' или сделайте средний щелчок на ней."
 
 #: ../terminal/src/terminal-menu-functions.c:79
-#: ../terminal/src/terminal-widget.c:400
+#: ../terminal/src/terminal-widget.c:402
 msgid "New Tab"
 msgstr "Новая вкладка"
 
@@ -3060,32 +3140,32 @@ msgstr "Закрыть текущую вкладку"
 msgid "Terminal"
 msgstr "Терминал"
 
-#: ../terminal/src/terminal-widget.c:154
+#: ../terminal/src/terminal-widget.c:155
 msgid "Set title for this tab:"
 msgstr "Задать заголовок для это вкладки:"
 
-#: ../terminal/src/terminal-widget.c:209
+#: ../terminal/src/terminal-widget.c:210
 msgid "Select a color"
 msgstr "Выберите цвет"
 
-#: ../terminal/src/terminal-widget.c:344
+#: ../terminal/src/terminal-widget.c:346
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
 msgstr "Вы можете вызвать десклет Терминала, набрав %s"
 
-#: ../terminal/src/terminal-widget.c:390
+#: ../terminal/src/terminal-widget.c:392
 msgid "Paste"
 msgstr "Вставить"
 
-#: ../terminal/src/terminal-widget.c:406
+#: ../terminal/src/terminal-widget.c:408
 msgid "Rename this Tab"
 msgstr "Переименовать эту вкладку"
 
-#: ../terminal/src/terminal-widget.c:412
+#: ../terminal/src/terminal-widget.c:414
 msgid "Change this Tab's colour"
 msgstr "Изменить цвет этой вкладки"
 
-#: ../terminal/src/terminal-widget.c:418
+#: ../terminal/src/terminal-widget.c:420
 msgid "Close this Tab"
 msgstr "Закрыть эту вкладку"
 
@@ -3157,7 +3237,7 @@ msgstr "Найти заметки для следующей недели"
 msgid "Reset marks"
 msgstr "Удалить пометки"
 
-#: ../weather/src/applet-config.c:119
+#: ../weather/src/applet-config.c:120
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
@@ -3165,23 +3245,23 @@ msgstr ""
 "Не удалось получить информацию\n"
 " Включен ли Интернет?"
 
-#: ../weather/src/applet-config.c:125
+#: ../weather/src/applet-config.c:126
 #, fuzzy
 msgid "Couldn't get the location code (is connection alive?)"
 msgstr ""
 "Не удалось получить информацию\n"
 " Включен ли Интернет?"
 
-#: ../weather/src/applet-config.c:133
+#: ../weather/src/applet-config.c:134
 msgid "I couldn't find this location"
 msgstr "Не удалось найти местонахождение"
 
-#: ../weather/src/applet-config.c:181
+#: ../weather/src/applet-config.c:185
 #, fuzzy
 msgid "Searching the location code..."
 msgstr "Поиск местонахождения:"
 
-#: ../weather/src/applet-config.c:205
+#: ../weather/src/applet-config.c:209
 msgid ""
 "Enter the name of your location and press Enter to choose amongst results."
 msgstr ""
@@ -3257,24 +3337,23 @@ msgstr "Ноя"
 msgid "Dec"
 msgstr "Дек"
 
-#: ../weather/src/applet-notifications.c:33
-#: ../weather/src/applet-notifications.c:70
+#: ../weather/src/applet-notifications.c:61
 msgid "Data are being retrieved, please wait a moment."
 msgstr "Запрашивается информация, подождите немного."
 
-#: ../weather/src/applet-notifications.c:108
+#: ../weather/src/applet-notifications.c:99
 msgid "Show current conditions (middle-click)"
 msgstr "Показать текущую погоду (средний щелчок)"
 
-#: ../weather/src/applet-notifications.c:113
+#: ../weather/src/applet-notifications.c:104
 msgid "Open weather.com (double-click)"
 msgstr "Открыть weather.com (двойной щелчок)"
 
-#: ../weather/src/applet-notifications.c:115
+#: ../weather/src/applet-notifications.c:106
 msgid "Reload now"
 msgstr "Обновить сейчас"
 
-#: ../weather/src/applet-notifications.c:148
+#: ../weather/src/applet-notifications.c:141
 msgid ""
 "No data available\n"
 " is your connection alive?"
@@ -3282,40 +3361,40 @@ msgstr ""
 "Не могу получить информацию\n"
 " Включен ли Интернет?"
 
-#: ../weather/src/applet-notifications.c:167
-#: ../weather/src/applet-notifications.c:203
+#: ../weather/src/applet-notifications.c:161
+#: ../weather/src/applet-notifications.c:199
 msgid "Temperature"
 msgstr "Температура"
 
-#: ../weather/src/applet-notifications.c:168
+#: ../weather/src/applet-notifications.c:162
 msgid "Precipitation probability"
 msgstr "Вероятность выпадения осадков"
 
-#: ../weather/src/applet-notifications.c:169
-#: ../weather/src/applet-notifications.c:204
+#: ../weather/src/applet-notifications.c:163
+#: ../weather/src/applet-notifications.c:200
 msgid "Wind"
 msgstr "Ветер"
 
-#: ../weather/src/applet-notifications.c:170
-#: ../weather/src/applet-notifications.c:205
+#: ../weather/src/applet-notifications.c:164
+#: ../weather/src/applet-notifications.c:201
 msgid "Humidity"
 msgstr "Влажность"
 
-#: ../weather/src/applet-notifications.c:171
-#: ../weather/src/applet-notifications.c:206
+#: ../weather/src/applet-notifications.c:165
+#: ../weather/src/applet-notifications.c:202
 msgid "Sunrise"
 msgstr "Восход солнца"
 
-#: ../weather/src/applet-notifications.c:171
-#: ../weather/src/applet-notifications.c:206
+#: ../weather/src/applet-notifications.c:165
+#: ../weather/src/applet-notifications.c:202
 msgid "Sunset"
 msgstr "Закат солнца"
 
-#: ../weather/src/applet-notifications.c:179
+#: ../weather/src/applet-notifications.c:175
 msgid "Data are being fetched, please re-try in a few seconds."
 msgstr "Обновляется информация, попробуйте обновить позже."
 
-#: ../weather/src/applet-notifications.c:189
+#: ../weather/src/applet-notifications.c:185
 msgid ""
 "No data available\n"
 "Retrying now..."
@@ -3323,11 +3402,11 @@ msgstr ""
 "Нет доступной информации\n"
 "Обновление..."
 
-#: ../weather/src/applet-notifications.c:203
+#: ../weather/src/applet-notifications.c:199
 msgid "Feels like"
 msgstr "Комфорт"
 
-#: ../weather/src/applet-notifications.c:205
+#: ../weather/src/applet-notifications.c:201
 msgid "Pressure"
 msgstr "Давление"
 
@@ -3404,34 +3483,34 @@ msgstr "При щелчке на значке запуска"
 msgid "Effects used on launcher:"
 msgstr "Применять эффекты на значке запуска:"
 
-#: ../Animated-icons/data/messages:39 ../Animated-icons/data/messages:57
-#: ../Animated-icons/data/messages:75
+#: ../Animated-icons/data/messages:41 ../Animated-icons/data/messages:61
+#: ../Animated-icons/data/messages:81
 msgid "Number of times the animation will play:"
 msgstr "Сколько раз проигрывать анимацию:"
 
-#: ../Animated-icons/data/messages:41 ../icon-effect/data/messages:35
+#: ../Animated-icons/data/messages:43 ../icon-effect/data/messages:35
 msgid "when clicking on an application"
 msgstr "При щелчке на приложении"
 
-#: ../Animated-icons/data/messages:43 ../icon-effect/data/messages:37
+#: ../Animated-icons/data/messages:45 ../icon-effect/data/messages:37
 msgid "Effects used on applications:"
 msgstr "Применять эффекты на приложении:"
 
-#: ../Animated-icons/data/messages:59 ../icon-effect/data/messages:51
+#: ../Animated-icons/data/messages:63 ../icon-effect/data/messages:51
 msgid "when clicking on an applet"
 msgstr "При щелчке на апплете"
 
-#: ../Animated-icons/data/messages:61 ../icon-effect/data/messages:53
+#: ../Animated-icons/data/messages:65 ../icon-effect/data/messages:53
 msgid "Effects used on applets:"
 msgstr "Применять эффекты на апплетах:"
 
-#: ../Animated-icons/data/messages:77
+#: ../Animated-icons/data/messages:83
 msgid "Rotation"
 msgstr "Вращение"
 
-#: ../Animated-icons/data/messages:79 ../Animated-icons/data/messages:97
-#: ../Animated-icons/data/messages:149 ../Animated-icons/data/messages:161
-#: ../Animated-icons/data/messages:173 ../Animated-icons/data/messages:187
+#: ../Animated-icons/data/messages:85 ../Animated-icons/data/messages:103
+#: ../Animated-icons/data/messages:155 ../Animated-icons/data/messages:167
+#: ../Animated-icons/data/messages:179 ../Animated-icons/data/messages:193
 #: ../Remote-Control/data/messages:7 ../Scooby-Do/data/messages:15
 #: ../Scooby-Do/data/messages:19 ../Toons/data/messages:101
 #: ../icon-effect/data/messages:101 ../icon-effect/data/messages:123
@@ -3440,8 +3519,8 @@ msgstr "Вращение"
 msgid "In ms."
 msgstr "В мсек."
 
-#: ../Animated-icons/data/messages:81 ../Animated-icons/data/messages:99
-#: ../Animated-icons/data/messages:151 ../icon-effect/data/messages:75
+#: ../Animated-icons/data/messages:87 ../Animated-icons/data/messages:105
+#: ../Animated-icons/data/messages:157 ../icon-effect/data/messages:75
 #: ../icon-effect/data/messages:103 ../icon-effect/data/messages:125
 #: ../icon-effect/data/messages:147 ../icon-effect/data/messages:169
 #: ../icon-effect/data/messages:189 ../illusion/data/messages:33
@@ -3451,20 +3530,20 @@ msgstr "В мсек."
 msgid "Duration of the animation:"
 msgstr "Продолжительность анимации:"
 
-#: ../Animated-icons/data/messages:83 ../Animated-icons/data/messages:101
-#: ../Animated-icons/data/messages:153 ../Animated-icons/data/messages:165
-#: ../Animated-icons/data/messages:177 ../Animated-icons/data/messages:191
+#: ../Animated-icons/data/messages:89 ../Animated-icons/data/messages:107
+#: ../Animated-icons/data/messages:159 ../Animated-icons/data/messages:171
+#: ../Animated-icons/data/messages:183 ../Animated-icons/data/messages:197
 #: ../icon-effect/data/messages:77 ../icon-effect/data/messages:105
 #: ../icon-effect/data/messages:127 ../icon-effect/data/messages:149
 #: ../icon-effect/data/messages:171 ../icon-effect/data/messages:191
 msgid "Repeat while icon is pointed to?"
 msgstr "Повторять пока наведено на значок?"
 
-#: ../Animated-icons/data/messages:85
+#: ../Animated-icons/data/messages:91
 msgid "Type of mesh:"
 msgstr "Тип сетки:"
 
-#: ../Animated-icons/data/messages:87 ../Clipper/data/messages:49
+#: ../Animated-icons/data/messages:93 ../Clipper/data/messages:49
 #: ../Disks/data/messages:37 ../Doncky/data/messages:47
 #: ../Folders/data/messages:61 ../GMenu/data/messages:49
 #: ../MeMenu/data/messages:43 ../Messaging-Menu/data/messages:45
@@ -3487,19 +3566,19 @@ msgstr "Тип сетки:"
 msgid "Normal"
 msgstr "Обычная"
 
-#: ../Animated-icons/data/messages:89
+#: ../Animated-icons/data/messages:95
 msgid "Cube"
 msgstr "Куб"
 
-#: ../Animated-icons/data/messages:91
+#: ../Animated-icons/data/messages:97
 msgid "Capsule"
 msgstr "Капсула"
 
-#: ../Animated-icons/data/messages:93
+#: ../Animated-icons/data/messages:99
 msgid "Colour of the sheen:"
 msgstr "Цвет сияния:"
 
-#: ../Animated-icons/data/messages:105 ../Animated-icons/data/messages:109
+#: ../Animated-icons/data/messages:111 ../Animated-icons/data/messages:115
 #: ../Clipper/data/messages:11 ../Disks/data/messages:11
 #: ../Doncky/data/messages:11 ../Doncky/data/messages:95
 #: ../Folders/data/messages:23 ../GMenu/data/messages:11
@@ -3517,123 +3596,123 @@ msgstr "Цвет сияния:"
 msgid "Leave empty to use the default one."
 msgstr "Оставьте пустым, чтобы использовать стандартное."
 
-#: ../Animated-icons/data/messages:107
+#: ../Animated-icons/data/messages:113
 msgid "Image for the spotlight:"
 msgstr "Цвет прожектора:"
 
-#: ../Animated-icons/data/messages:111
+#: ../Animated-icons/data/messages:117
 msgid "Image for the front spotlight:"
 msgstr "Передний цвет прожектора:"
 
-#: ../Animated-icons/data/messages:113
+#: ../Animated-icons/data/messages:119
 msgid "Spot colour:"
 msgstr "Цвет светогого пятна:"
 
-#: ../Animated-icons/data/messages:115
+#: ../Animated-icons/data/messages:121
 msgid "Halo colour:"
 msgstr "Цвет ореола:"
 
-#: ../Animated-icons/data/messages:117
+#: ../Animated-icons/data/messages:123
 msgid "Rays"
 msgstr "Лучи"
 
-#: ../Animated-icons/data/messages:119 ../icon-effect/data/messages:81
+#: ../Animated-icons/data/messages:125 ../icon-effect/data/messages:81
 #: ../icon-effect/data/messages:109 ../icon-effect/data/messages:131
 #: ../icon-effect/data/messages:153 ../icon-effect/data/messages:175
 #: ../illusion/data/messages:37 ../show-mouse/data/messages:27
 msgid "1st color of gradation :"
 msgstr "Начальный цвет градации:"
 
-#: ../Animated-icons/data/messages:121 ../icon-effect/data/messages:83
+#: ../Animated-icons/data/messages:127 ../icon-effect/data/messages:83
 #: ../icon-effect/data/messages:111 ../icon-effect/data/messages:133
 #: ../icon-effect/data/messages:155 ../icon-effect/data/messages:177
 #: ../illusion/data/messages:39 ../show-mouse/data/messages:29
 msgid "2nd color of gradation :"
 msgstr "Конечный цвет градации"
 
-#: ../Animated-icons/data/messages:123 ../icon-effect/data/messages:85
+#: ../Animated-icons/data/messages:129 ../icon-effect/data/messages:85
 #: ../icon-effect/data/messages:113 ../icon-effect/data/messages:197
 #: ../illusion/data/messages:41 ../show-mouse/data/messages:31
 msgid "Random colours?"
 msgstr "Случайные цвета?"
 
-#: ../Animated-icons/data/messages:125
+#: ../Animated-icons/data/messages:131
 msgid "Number of rays:"
 msgstr "Количество лучей:"
 
-#: ../Animated-icons/data/messages:127
+#: ../Animated-icons/data/messages:133
 msgid "Ray size:"
 msgstr "Размер лучей:"
 
-#: ../Animated-icons/data/messages:129
+#: ../Animated-icons/data/messages:135
 msgid "Ray speed:"
 msgstr "Скорость лучей:"
 
-#: ../Animated-icons/data/messages:133
+#: ../Animated-icons/data/messages:139
 msgid "Initial stretch:"
 msgstr "Начальное растяжение:"
 
-#: ../Animated-icons/data/messages:135
+#: ../Animated-icons/data/messages:141
 msgid "Horizontal stretch"
 msgstr "Горизонтальное растяжение"
 
-#: ../Animated-icons/data/messages:137
+#: ../Animated-icons/data/messages:143
 msgid "Vertical stretch"
 msgstr "Вертикальное растяжение"
 
-#: ../Animated-icons/data/messages:139
+#: ../Animated-icons/data/messages:145
 msgid "Corner stretch"
 msgstr "Угловое растяжение"
 
-#: ../Animated-icons/data/messages:141
+#: ../Animated-icons/data/messages:147
 msgid "Spring constant:"
 msgstr "Величина пружины:"
 
-#: ../Animated-icons/data/messages:143
+#: ../Animated-icons/data/messages:149
 msgid "Friction:"
 msgstr "Трение:"
 
-#: ../Animated-icons/data/messages:145
+#: ../Animated-icons/data/messages:151
 msgid "Number of points on the grid in each direction:"
 msgstr "Количество точек в одном направлении на решётке:"
 
-#: ../Animated-icons/data/messages:155
+#: ../Animated-icons/data/messages:161
 msgid "Wave width:"
 msgstr "Ширина волны:"
 
-#: ../Animated-icons/data/messages:157
+#: ../Animated-icons/data/messages:163
 msgid "Wave amplitude:"
 msgstr "Амплитуда волны:"
 
-#: ../Animated-icons/data/messages:163
+#: ../Animated-icons/data/messages:169
 msgid "Pulse duration:"
 msgstr "Продолжительность пульса:"
 
-#: ../Animated-icons/data/messages:167
+#: ../Animated-icons/data/messages:173
 msgid "Pulse max zoom:"
 msgstr "Максимальное приближение пульса:"
 
-#: ../Animated-icons/data/messages:169
+#: ../Animated-icons/data/messages:175
 msgid "Pulse follows icon shape?"
 msgstr "Должен ли пульс зависеть от формы значка?"
 
-#: ../Animated-icons/data/messages:175
+#: ../Animated-icons/data/messages:181
 msgid "Bounce duration:"
 msgstr "Продолжительность подпрыга:"
 
-#: ../Animated-icons/data/messages:179
+#: ../Animated-icons/data/messages:185
 msgid "When bouncing, resize the icon by:"
 msgstr "Во время подпрыгивания, изменять размер значка:"
 
-#: ../Animated-icons/data/messages:181
+#: ../Animated-icons/data/messages:187
 msgid "the lower the value, the more it will flatten."
 msgstr "чем меньше, тем он больше плоский."
 
-#: ../Animated-icons/data/messages:183
+#: ../Animated-icons/data/messages:189
 msgid "How much the icon will flatten when hitting the ground:"
 msgstr "Насколько плоским должен становиться значок при касании плоскости:"
 
-#: ../Animated-icons/data/messages:189
+#: ../Animated-icons/data/messages:195
 msgid "Blink duration:"
 msgstr "Продолжительность мигания:"
 
@@ -3781,29 +3860,6 @@ msgstr "Установите 0, чтобы использовать станда
 msgid "Icon size for busy penguin:"
 msgstr "Размер значка, когда пингвин не свободен:"
 
-#: ../Cairo-Penguin/data/messages:15 ../Clipper/data/messages:19
-#: ../Disks/data/messages:19 ../Folders/data/messages:31
-#: ../GMenu/data/messages:19 ../MeMenu/data/messages:13
-#: ../Messaging-Menu/data/messages:15 ../Network-Monitor/data/messages:19
-#: ../RSSreader/data/messages:21 ../Recent-Events/data/messages:19
-#: ../Scooby-Do/data/messages:115 ../Status-Notifier/data/messages:19
-#: ../System-Monitor/data/messages:17 ../Toons/data/messages:17
-#: ../Xgamma/data/messages:21 ../alsaMixer/data/messages:17
-#: ../clock/data/messages:19 ../compiz-icon/data/messages:15
-#: ../dnd2share/data/messages:19 ../dustbin/data/messages:15
-#: ../keyboard-indicator/data/messages:15 ../logout/data/messages:19
-#: ../mail/data/messages:15 ../musicPlayer/data/messages:17
-#: ../netspeed/data/messages:15 ../powermanager/data/messages:19
-#: ../quick-browser/data/messages:21 ../shortcuts/data/messages:19
-#: ../showDesktop/data/messages:23 ../slider/data/messages:17
-#: ../stack/data/messages:21 ../switcher/data/messages:19
-#: ../systray/data/messages:19 ../template/data/messages:19
-#: ../terminal/data/messages:19 ../tomboy/data/messages:29
-#: ../weather/data/messages:17 ../weblets/data/messages:19
-#: ../wifi/data/messages:17
-msgid "Applet's Handbook"
-msgstr "Руководство по апплетам"
-
 #: ../Cairo-Penguin/data/messages:17 ../Clipper/data/messages:95
 #: ../Dbus/data/messages:1 ../Disks/data/messages:101
 #: ../Doncky/data/messages:93 ../Folders/data/messages:107
@@ -3844,7 +3900,7 @@ msgstr "Выберите одну из доступных тем:"
 #: ../System-Monitor/data/messages:157 ../System-Monitor/data/messages:203
 #: ../Toons/data/messages:97 ../dnd2share/data/messages:97
 #: ../mail/data/messages:131 ../musicPlayer/data/messages:143
-#: ../netspeed/data/messages:135 ../powermanager/data/messages:151
+#: ../netspeed/data/messages:135 ../powermanager/data/messages:155
 #: ../shortcuts/data/messages:133 ../slider/data/messages:127
 #: ../tomboy/data/messages:119 ../wifi/data/messages:169
 msgid "in seconds."
@@ -5294,7 +5350,7 @@ msgstr "Всегда показывать значок, даже если пан
 
 #: ../Network-Monitor/data/messages:97 ../Network-Monitor/data/messages:169
 #: ../Network-Monitor/data/messages:257 ../System-Monitor/data/messages:131
-#: ../netspeed/data/messages:129 ../powermanager/data/messages:149
+#: ../netspeed/data/messages:129 ../powermanager/data/messages:153
 #: ../tomboy/data/messages:127 ../wifi/data/messages:167
 msgid "Parameters"
 msgstr "Параметры"
@@ -5400,12 +5456,12 @@ msgid "Effect to apply on the icon according to strength :"
 msgstr "Какой эффект силы использовать на значке:"
 
 #: ../Network-Monitor/data/messages:219 ../alsaMixer/data/messages:133
-#: ../powermanager/data/messages:143 ../wifi/data/messages:137
+#: ../powermanager/data/messages:147 ../wifi/data/messages:137
 msgid "Zoom"
 msgstr "Приближение"
 
 #: ../Network-Monitor/data/messages:221 ../alsaMixer/data/messages:135
-#: ../powermanager/data/messages:145 ../wifi/data/messages:139
+#: ../powermanager/data/messages:149 ../wifi/data/messages:139
 msgid "Transparency"
 msgstr "Прозрачность"
 
@@ -5422,9 +5478,11 @@ msgstr "Рисовать линии"
 #: ../compiz-icon/data/messages:177 ../compiz-icon/data/messages:181
 #: ../compiz-icon/data/messages:185 ../compiz-icon/data/messages:189
 #: ../compiz-icon/data/messages:193 ../compiz-icon/data/messages:197
-#: ../musicPlayer/data/messages:177 ../musicPlayer/data/messages:181
-#: ../musicPlayer/data/messages:185 ../musicPlayer/data/messages:189
-#: ../musicPlayer/data/messages:193 ../tomboy/data/messages:13
+#: ../logout/data/messages:127 ../musicPlayer/data/messages:177
+#: ../musicPlayer/data/messages:181 ../musicPlayer/data/messages:185
+#: ../musicPlayer/data/messages:189 ../musicPlayer/data/messages:193
+#: ../powermanager/data/messages:135 ../powermanager/data/messages:139
+#: ../powermanager/data/messages:167 ../tomboy/data/messages:13
 #: ../tomboy/data/messages:17 ../tomboy/data/messages:21
 #: ../tomboy/data/messages:109 ../wifi/data/messages:143
 #: ../wifi/data/messages:147 ../wifi/data/messages:151
@@ -5507,34 +5565,34 @@ msgstr "Поведение"
 msgid "Notify about feed updates:"
 msgstr "Уведомлять об обновлениях ленты:"
 
-#: ../RSSreader/data/messages:119 ../powermanager/data/messages:191
+#: ../RSSreader/data/messages:119 ../powermanager/data/messages:199
 msgid "Icon animation"
 msgstr "Анимация значка"
 
-#: ../RSSreader/data/messages:121 ../powermanager/data/messages:193
+#: ../RSSreader/data/messages:121 ../powermanager/data/messages:201
 msgid "Dialog bubble"
 msgstr "Облачко уведомлений"
 
-#: ../RSSreader/data/messages:123 ../powermanager/data/messages:195
+#: ../RSSreader/data/messages:123 ../powermanager/data/messages:203
 msgid "Icon animation + Dialog bubble"
 msgstr "Анимация значка и облачко уведомлений"
 
-#: ../RSSreader/data/messages:125 ../powermanager/data/messages:197
+#: ../RSSreader/data/messages:125 ../powermanager/data/messages:205
 msgid "Let empty to use the default notification animation."
 msgstr "Оставьте пустым, чтобы использовать стандартное уведомление."
 
-#: ../RSSreader/data/messages:127 ../powermanager/data/messages:199
+#: ../RSSreader/data/messages:127 ../powermanager/data/messages:207
 msgid "Animation of the icon:"
 msgstr "Анимация значка:"
 
-#: ../RSSreader/data/messages:129 ../powermanager/data/messages:201
+#: ../RSSreader/data/messages:129 ../powermanager/data/messages:209
 msgid ""
 "In seconds. Set to 0 for infinite time (need to click on dialog to close it)."
 msgstr ""
 "В секундах. Установите 0 для бесконечности (щёлкните по окну, чтобы закрыть "
 "его)."
 
-#: ../RSSreader/data/messages:131 ../powermanager/data/messages:203
+#: ../RSSreader/data/messages:131 ../powermanager/data/messages:211
 msgid "Duration of the notification:"
 msgstr "Продолжительность анимации:"
 
@@ -5864,8 +5922,27 @@ msgid "Image's filename :"
 msgstr "Имя изображения:"
 
 #: ../Status-Notifier/data/messages:97
-msgid "Display items in compact mode?"
-msgstr "Показать пункты в компактном режиме?"
+#, fuzzy
+msgid "How to display items:"
+msgstr "Как отображать WIFI сигнал:"
+
+#: ../Status-Notifier/data/messages:99
+msgid "Compact"
+msgstr ""
+
+#: ../Status-Notifier/data/messages:101
+#, fuzzy
+msgid "Sub-dock"
+msgstr "Вид суб-панели"
+
+#: ../Status-Notifier/data/messages:103
+msgid "Allow the icon to automatically resize itself?"
+msgstr ""
+
+#: ../Status-Notifier/data/messages:105
+#, fuzzy
+msgid "Number of lines to pack items in:"
+msgstr "Количество отображаемых строк:"
 
 #: ../System-Monitor/data/messages:119 ../powermanager/data/messages:123
 msgid "It's the colour of the graphic for high values."
@@ -6502,18 +6579,18 @@ msgid "Comics"
 msgstr "Комиксы"
 
 #: ../dialog-rendering/data/messages:3 ../dialog-rendering/data/messages:11
-#: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:31
+#: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:29
 #: ../dock-rendering/data/messages:67
 msgid "Corner radius:"
 msgstr "Радиус закругления углов:"
 
 #: ../dialog-rendering/data/messages:5 ../dialog-rendering/data/messages:13
-#: ../dialog-rendering/data/messages:23 ../dialog-rendering/data/messages:33
+#: ../dialog-rendering/data/messages:23 ../dialog-rendering/data/messages:31
 msgid "Border width:"
 msgstr "Ширина линии границы:"
 
 #: ../dialog-rendering/data/messages:7 ../dialog-rendering/data/messages:15
-#: ../dialog-rendering/data/messages:25 ../dialog-rendering/data/messages:35
+#: ../dialog-rendering/data/messages:25 ../dialog-rendering/data/messages:33
 msgid "Bubble's line colour:"
 msgstr "Цвет линии облачка:"
 
@@ -6530,18 +6607,14 @@ msgid "Tooltip"
 msgstr "Подсказка"
 
 #: ../dialog-rendering/data/messages:27
-msgid "Colour of the margin :"
-msgstr "Цвет отступа:"
-
-#: ../dialog-rendering/data/messages:29
 msgid "Curly"
 msgstr "Изогнутый"
 
-#: ../dialog-rendering/data/messages:37
+#: ../dialog-rendering/data/messages:35
 msgid "Curvature of the tip :"
 msgstr "Изогнутость подсказки:"
 
-#: ../dialog-rendering/data/messages:39
+#: ../dialog-rendering/data/messages:37
 msgid "Curve the sides too?"
 msgstr "Изгибать и стороны тоже?"
 
@@ -7242,6 +7315,15 @@ msgstr ""
 msgid "User-defined command to execute for shutdown:"
 msgstr "Пользовательская команда для выключения:"
 
+#: ../logout/data/messages:125 ../musicPlayer/data/messages:175
+#: ../tomboy/data/messages:11
+msgid "Customisation"
+msgstr "Персонализация"
+
+#: ../logout/data/messages:129
+msgid "Icon image name to use when the system has to be rebooted:"
+msgstr ""
+
 #: ../mail/data/messages:93
 msgid ""
 "If you have any problem with the applet, uncheck this option during the "
@@ -7453,13 +7535,13 @@ msgstr "Продолжительность инфо-облачка:"
 msgid "Animation when music changes:"
 msgstr "Анимация при смене музыки:"
 
-#: ../musicPlayer/data/messages:151 ../powermanager/data/messages:155
+#: ../musicPlayer/data/messages:151 ../powermanager/data/messages:159
 #: ../wifi/data/messages:183
 msgid "Information to display on the icon :"
 msgstr "Отображать информацию на значке:"
 
-#: ../musicPlayer/data/messages:153 ../powermanager/data/messages:141
-#: ../powermanager/data/messages:157
+#: ../musicPlayer/data/messages:153 ../powermanager/data/messages:145
+#: ../powermanager/data/messages:161
 msgid "Nothing"
 msgstr "Ничего"
 
@@ -7499,10 +7581,6 @@ msgstr "Использовать 3D темы?"
 msgid "List of available 3D themes for covers :"
 msgstr "Список доступных 3D тем для обложек:"
 
-#: ../musicPlayer/data/messages:175 ../tomboy/data/messages:11
-msgid "Customisation"
-msgstr "Персонализация"
-
 #: ../musicPlayer/data/messages:183
 msgid "Name of the image for the 'play' icon :"
 msgstr "Файл изображения значка 'играть':"
@@ -7540,70 +7618,75 @@ msgstr "Оставьте пустым, чтобы использовать ко�
 msgid "Icon name:"
 msgstr "Имя значка:"
 
-#: ../powermanager/data/messages:135
+#: ../powermanager/data/messages:137
 msgid "'On-battery' icon filename:"
 msgstr "Файл изображения при работе от батареи:"
 
-#: ../powermanager/data/messages:137
+#: ../powermanager/data/messages:141
 msgid "Icon's filename when on charge :"
 msgstr "Файл изображения при работе от сети:"
 
-#: ../powermanager/data/messages:139
+#: ../powermanager/data/messages:143
 msgid "Effect to apply on the icon according to the charge :"
 msgstr "Какой эффект применять на значке при зарядке:"
 
-#: ../powermanager/data/messages:147
+#: ../powermanager/data/messages:151
 msgid "Draw bar"
 msgstr "Рисовать столбцы"
 
-#: ../powermanager/data/messages:159
+#: ../powermanager/data/messages:163
 msgid "charge"
 msgstr "заряд"
 
-#: ../powermanager/data/messages:161
+#: ../powermanager/data/messages:165
 #, fuzzy
 msgid "Timelength"
 msgstr "Оставшееся время"
 
-#: ../powermanager/data/messages:163
+#: ../powermanager/data/messages:169
+#, fuzzy
+msgid "Emblem icon's filename when on charge:"
+msgstr "Файл изображения при работе от сети:"
+
+#: ../powermanager/data/messages:171
 msgid "Notification"
 msgstr "Уведомление"
 
-#: ../powermanager/data/messages:165
+#: ../powermanager/data/messages:173
 msgid "Notification when battery charged ?"
 msgstr "Уведомлять при полной зарадке батареи?"
 
-#: ../powermanager/data/messages:167 ../powermanager/data/messages:177
-#: ../powermanager/data/messages:185
+#: ../powermanager/data/messages:175 ../powermanager/data/messages:185
+#: ../powermanager/data/messages:193
 msgid "Leave it empty for no sound"
 msgstr "Оставьте пустым, чтобы не использовать звук"
 
-#: ../powermanager/data/messages:169 ../powermanager/data/messages:179
-#: ../powermanager/data/messages:187
+#: ../powermanager/data/messages:177 ../powermanager/data/messages:187
+#: ../powermanager/data/messages:195
 msgid "Play a sound:"
 msgstr "Использовать звук:"
 
-#: ../powermanager/data/messages:171
+#: ../powermanager/data/messages:179
 msgid "Notification when low battery ?"
 msgstr "Уведомлять при низком заряде батареи?"
 
-#: ../powermanager/data/messages:173
+#: ../powermanager/data/messages:181
 msgid "in percent."
 msgstr "в процентах."
 
-#: ../powermanager/data/messages:175
+#: ../powermanager/data/messages:183
 msgid "Battery level:"
 msgstr "Заряд батареи:"
 
-#: ../powermanager/data/messages:181
+#: ../powermanager/data/messages:189
 msgid "When battery level is under 4%"
 msgstr "Когда заряд опустится ниже 4%"
 
-#: ../powermanager/data/messages:183
+#: ../powermanager/data/messages:191
 msgid "Notification when battery charge is critical ?"
 msgstr "Уведомлять при критическом заряде батареи?"
 
-#: ../powermanager/data/messages:189
+#: ../powermanager/data/messages:197
 msgid "Notification type:"
 msgstr "Тип оповещения:"
 
@@ -8380,6 +8463,22 @@ msgstr "Служебная информация о сигнале"
 #: ../wifi/data/messages:193
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Заменить стандартную подпись, на имя точки доступа?"
+
+#, fuzzy
+#~ msgid "Applet's handbook"
+#~ msgstr "Руководство по апплетам"
+
+#~ msgid "Status Notifier"
+#~ msgstr "Оповещение о статусе"
+
+#~ msgid "systray"
+#~ msgstr "Область уведомлений"
+
+#~ msgid "Display items in compact mode?"
+#~ msgstr "Показать пункты в компактном режиме?"
+
+#~ msgid "Colour of the margin :"
+#~ msgstr "Цвет отступа:"
 
 #~ msgid "About this applet"
 #~ msgstr "Об апплете"
@@ -10970,9 +11069,6 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgid "Preferred application starting with 'x' :"
 #~ msgstr "Предпочитаемые приложения с буквы 'x':"
 
-#~ msgid "Sub-Dock view"
-#~ msgstr "Вид суб-панели"
-
 #~ msgid "Time length of the dialog :"
 #~ msgstr "Продолжительность диалогового окна:"
 
@@ -11230,9 +11326,6 @@ msgstr "Заменить стандартную подпись, на имя то
 #~ msgid "not used at the moment."
 #~ msgstr "пока не использовать"
 
-#~ msgid "How to display the wifi signal :"
-#~ msgstr "Как отображать WIFI сигнал:"
-
 #~ msgid "Info to display in the icon :"
 #~ msgstr "Информация на значке:"
 
@@ -11347,9 +11440,6 @@ msgstr "Заменить стандартную подпись, на имя то
 
 #~ msgid "Network connection has become inactive."
 #~ msgstr "Сетевое соединение утрачено."
-
-#~ msgid "Network has been disconnected."
-#~ msgstr "Сеть была отключена."
 
 #~ msgid "Fluidity of the transition animation between 2 values :"
 #~ msgstr "Плавность смены анимации между 2 значениями:"

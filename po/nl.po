@@ -26,43 +26,45 @@ msgid "This plug-in provides many different animations for your icons."
 msgstr "Deze plug-in bevat vele verschillende animaties voor uw iconen."
 
 #: ../Animated-icons/src/applet-init.c:80 ../Animated-icons/data/messages:9
-#: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
-#: ../Animated-icons/data/messages:63 ../Animated-icons/data/messages:171
+#: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:47
+#: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:177
 msgid "Bounce"
 msgstr "Stuiteren"
 
 #: ../Animated-icons/src/applet-init.c:81 ../Animated-icons/data/messages:11
-#: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
-#: ../Animated-icons/data/messages:65
+#: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:49
+#: ../Animated-icons/data/messages:69
 msgid "Rotate"
 msgstr "Draaien"
 
 #: ../Animated-icons/src/applet-init.c:82 ../Animated-icons/data/messages:13
-#: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:49
-#: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:185
+#: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:51
+#: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:191
 msgid "Blink"
 msgstr "Knipperen"
 
 #: ../Animated-icons/src/applet-init.c:83 ../Animated-icons/data/messages:15
-#: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:51
-#: ../Animated-icons/data/messages:69 ../Animated-icons/data/messages:159
+#: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:53
+#: ../Animated-icons/data/messages:73 ../Animated-icons/data/messages:165
 msgid "Pulse"
 msgstr "Kloppen"
 
 #: ../Animated-icons/src/applet-init.c:84 ../Animated-icons/data/messages:17
-#: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:53
-#: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:131
+#: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:55
+#: ../Animated-icons/data/messages:75 ../Animated-icons/data/messages:137
 msgid "Wobbly"
 msgstr "Elastiek"
 
 #: ../Animated-icons/src/applet-init.c:85 ../Animated-icons/data/messages:19
-#: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:55
-#: ../Animated-icons/data/messages:73 ../Animated-icons/data/messages:147
+#: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:57
+#: ../Animated-icons/data/messages:77 ../Animated-icons/data/messages:153
 msgid "Wave"
 msgstr "Golven"
 
 #: ../Animated-icons/src/applet-init.c:86 ../Animated-icons/data/messages:21
-#: ../Animated-icons/data/messages:95 ../Animated-icons/data/messages:103
+#: ../Animated-icons/data/messages:39 ../Animated-icons/data/messages:59
+#: ../Animated-icons/data/messages:79 ../Animated-icons/data/messages:101
+#: ../Animated-icons/data/messages:109
 msgid "Spot"
 msgstr "Spotlicht"
 
@@ -209,8 +211,27 @@ msgstr ""
 "De communicatie tussen deze beide is gebaseerd op Dbus"
 
 #: ../Dbus/src/interface-applet-signals.c:365
-#, fuzzy
-msgid "Applet's handbook"
+#: ../Cairo-Penguin/data/messages:15 ../Clipper/data/messages:19
+#: ../Disks/data/messages:19 ../Folders/data/messages:31
+#: ../GMenu/data/messages:19 ../MeMenu/data/messages:13
+#: ../Messaging-Menu/data/messages:15 ../Network-Monitor/data/messages:19
+#: ../RSSreader/data/messages:21 ../Recent-Events/data/messages:19
+#: ../Scooby-Do/data/messages:115 ../Status-Notifier/data/messages:19
+#: ../System-Monitor/data/messages:17 ../Toons/data/messages:17
+#: ../Xgamma/data/messages:21 ../alsaMixer/data/messages:17
+#: ../clock/data/messages:19 ../compiz-icon/data/messages:15
+#: ../dnd2share/data/messages:19 ../dustbin/data/messages:15
+#: ../keyboard-indicator/data/messages:15 ../logout/data/messages:19
+#: ../mail/data/messages:15 ../musicPlayer/data/messages:17
+#: ../netspeed/data/messages:15 ../powermanager/data/messages:19
+#: ../quick-browser/data/messages:21 ../shortcuts/data/messages:19
+#: ../showDesktop/data/messages:23 ../slider/data/messages:17
+#: ../stack/data/messages:21 ../switcher/data/messages:19
+#: ../systray/data/messages:19 ../template/data/messages:19
+#: ../terminal/data/messages:19 ../tomboy/data/messages:29
+#: ../weather/data/messages:17 ../weblets/data/messages:19
+#: ../wifi/data/messages:17
+msgid "Applet's Handbook"
 msgstr "Applet's handleiding"
 
 #: ../Dbus/src/interface-applet-signals.c:422
@@ -326,7 +347,7 @@ msgstr ""
 "  - MOET LOSGEKOPPELD ZIJN VAN HET DOCK OM TE WERKEN !\n"
 "  - Middelklik om de waarden te herladen"
 
-#: ../Doncky/src/applet-notifications.c:60
+#: ../Doncky/src/applet-notifications.c:215
 #, fuzzy
 msgid "It doesn't seem to be a valid XML file."
 msgstr "Dit lijkt geen geldige URL."
@@ -353,17 +374,17 @@ msgstr ""
 " - of versleept een map naar het dock\n"
 "Middellkik op het hoofdicoon om de map te openen.\n"
 
-#: ../Folders/src/applet-notifications.c:41
+#: ../Folders/src/applet-notifications.c:42
 msgid "Open the configuration of the applet to choose a folder to import."
 msgstr ""
 "Open de configuratie van dit applet om een map te selecteren om te "
 "importeren."
 
-#: ../Folders/src/applet-notifications.c:53
+#: ../Folders/src/applet-notifications.c:54
 msgid "Empty or unreadable folder."
 msgstr "Lege of onleesbare map."
 
-#: ../Folders/src/applet-notifications.c:204
+#: ../Folders/src/applet-notifications.c:205
 #, c-format
 msgid ""
 "You're about deleting this file\n"
@@ -374,7 +395,7 @@ msgstr ""
 "  (%s)\n"
 "van uw harde schijf. Weet u het zeker ?"
 
-#: ../Folders/src/applet-notifications.c:214
+#: ../Folders/src/applet-notifications.c:215
 msgid ""
 "Warning: could not delete this file.\n"
 "Please check file permissions."
@@ -382,11 +403,11 @@ msgstr ""
 "Let op : kon dit bestand niet verwijderen.\n"
 "Controleer of u de juiste rechten heeft."
 
-#: ../Folders/src/applet-notifications.c:227
+#: ../Folders/src/applet-notifications.c:228
 msgid "Rename to:"
 msgstr "Hernoemen naar :"
 
-#: ../Folders/src/applet-notifications.c:234
+#: ../Folders/src/applet-notifications.c:235
 #, c-format
 msgid ""
 "Warning: could not rename %s.\n"
@@ -397,11 +418,11 @@ msgstr ""
 "Controleer of u schrijfrechten heeft\n"
 " en of de nieuwe naam niet reeds bestaat."
 
-#: ../Folders/src/applet-notifications.c:273
+#: ../Folders/src/applet-notifications.c:274
 msgid "Enter a file name:"
 msgstr "Voer een bestandsnaam in:"
 
-#: ../Folders/src/applet-notifications.c:281
+#: ../Folders/src/applet-notifications.c:282
 #, c-format
 msgid ""
 "Warning: could not create %s.\n"
@@ -412,20 +433,20 @@ msgstr ""
 "Controleer uw rechten \n"
 "en of de bestandsnaam niet reeds bestaat.."
 
-#: ../Folders/src/applet-notifications.c:339
+#: ../Folders/src/applet-notifications.c:360
 msgid "Open the folder"
 msgstr "Map openen"
 
-#: ../Folders/src/applet-notifications.c:339
+#: ../Folders/src/applet-notifications.c:360
 #: ../GMenu/src/applet-notifications.c:76
 #: ../RSSreader/src/applet-notifications.c:132
-#: ../System-Monitor/src/applet-notifications.c:111
+#: ../System-Monitor/src/applet-notifications.c:108
 #: ../Xgamma/src/applet-notifications.c:89
 #: ../alsaMixer/src/applet-notifications.c:62
-#: ../dustbin/src/applet-notifications.c:118
-#: ../logout/src/applet-notifications.c:153
-#: ../logout/src/applet-notifications.c:162
-#: ../logout/src/applet-notifications.c:171
+#: ../dustbin/src/applet-notifications.c:139
+#: ../logout/src/applet-notifications.c:167
+#: ../logout/src/applet-notifications.c:176
+#: ../logout/src/applet-notifications.c:185
 #: ../mail/src/cd-mail-applet-notifications.c:157
 #: ../netspeed/src/applet-notifications.c:97
 #: ../quick-browser/src/applet-notifications.c:43
@@ -436,7 +457,7 @@ msgstr "Map openen"
 #: ../showDesktop/src/applet-notifications.c:171
 #: ../slider/src/applet-notifications.c:230
 #: ../slider/src/applet-notifications.c:271
-#: ../stack/src/applet-notifications.c:182
+#: ../stack/src/applet-notifications.c:183
 #: ../switcher/src/applet-notifications.c:301
 #: ../switcher/src/applet-notifications.c:306
 #: ../switcher/src/applet-notifications.c:315
@@ -444,35 +465,63 @@ msgstr "Map openen"
 msgid "middle-click"
 msgstr "middelklikken"
 
-#: ../Folders/src/applet-notifications.c:349
+#: ../Folders/src/applet-notifications.c:370
 msgid "Rename this file"
 msgstr "Dit bestand hernoemen"
 
-#: ../Folders/src/applet-notifications.c:350
+#: ../Folders/src/applet-notifications.c:371
 msgid "Delete this file"
 msgstr "Dit bestand verwijderen"
 
-#: ../Folders/src/applet-notifications.c:351
+#: ../Folders/src/applet-notifications.c:372
 msgid "Move this file"
 msgstr "Dit bestand verplaatsen"
 
-#: ../Folders/src/applet-notifications.c:357
+#: ../Folders/src/applet-notifications.c:378
 #: ../Recent-Events/src/applet-dialog.c:255
 #: ../slider/src/applet-notifications.c:240
 msgid "Open with"
 msgstr "Openen met"
 
-#: ../Folders/src/applet-notifications.c:389
+#: ../Folders/src/applet-notifications.c:410
 msgid "Properties"
 msgstr "Eigenschappen"
 
-#: ../Folders/src/applet-notifications.c:392
+#: ../Folders/src/applet-notifications.c:413
 msgid "Create a new file"
 msgstr "Een nieuw bestand aanmaken"
 
-#: ../Folders/src/applet-notifications.c:393
+#: ../Folders/src/applet-notifications.c:414
 msgid "Create a new folder"
 msgstr "Nieuwe map aanmaken"
+
+#: ../Folders/src/applet-notifications.c:417
+#, fuzzy
+msgid "Sort by"
+msgstr "Items sorteren op :"
+
+#: ../Folders/src/applet-notifications.c:418
+#, fuzzy
+msgid "By name"
+msgstr "Bestand"
+
+#: ../Folders/src/applet-notifications.c:419
+msgid "By date"
+msgstr ""
+
+#: ../Folders/src/applet-notifications.c:420
+#, fuzzy
+msgid "By size"
+msgstr "Grootte stralen :"
+
+#: ../Folders/src/applet-notifications.c:421
+msgid "By type"
+msgstr ""
+
+#: ../Folders/src/applet-notifications.c:459
+#, fuzzy
+msgid "The folder has been imported."
+msgstr "Netwerkverbinding is verbroken."
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -512,15 +561,15 @@ msgstr "Recente documenten"
 msgid "Clear the list of the recently used documents?"
 msgstr "Recente documentenlijst wissen ?"
 
-#: ../GMenu/src/applet-run-dialog.c:349 ../Scooby-Do/data/messages:111
+#: ../GMenu/src/applet-run-dialog.c:350 ../Scooby-Do/data/messages:111
 msgid "Enter a command to launch:"
 msgstr "Voer een opdracht in om uit te voeren :"
 
-#: ../MeMenu/src/applet-init.c:31
+#: ../MeMenu/src/applet-init.c:30
 msgid "Me Menu"
 msgstr "Me Menu"
 
-#: ../MeMenu/src/applet-init.c:34
+#: ../MeMenu/src/applet-init.c:33
 msgid ""
 "A menu that lets you access quickly to your information, your online status, "
 "your friends."
@@ -532,11 +581,11 @@ msgstr ""
 msgid "It seems that the Me-Menu is not installed on your system"
 msgstr "Het lijkt erop dat het Me-menu niet geïnstalleerd is op uw systeem"
 
-#: ../Messaging-Menu/src/applet-init.c:31
+#: ../Messaging-Menu/src/applet-init.c:30
 msgid "Messaging Menu"
 msgstr "Berichtenmenu"
 
-#: ../Messaging-Menu/src/applet-init.c:34
+#: ../Messaging-Menu/src/applet-init.c:33
 msgid ""
 "A menu that notices you about new messages from Mail or Chat applications.\n"
 "It handles Evolution, Pidgin, Empathy, etc"
@@ -642,8 +691,8 @@ msgid "Network ID"
 msgstr "Netwerk-ID"
 
 #: ../Network-Monitor/src/applet-draw.c:145
-#: ../musicPlayer/src/applet-draw.c:337 ../musicPlayer/src/applet-draw.c:339
-#: ../musicPlayer/src/applet-draw.c:341
+#: ../musicPlayer/src/applet-draw.c:344 ../musicPlayer/src/applet-draw.c:346
+#: ../musicPlayer/src/applet-draw.c:348
 #: ../powermanager/src/powermanager-draw.c:189
 #: ../powermanager/src/powermanager-draw.c:218
 msgid "Unknown"
@@ -679,6 +728,7 @@ msgstr ""
 
 #: ../Network-Monitor/src/applet-netspeed.c:200
 #: ../System-Monitor/src/applet-monitor.c:90
+#: ../System-Monitor/src/applet-top.c:427
 #: ../netspeed/src/applet-netspeed.c:196
 msgid "Loading"
 msgstr "Laden"
@@ -758,35 +808,35 @@ msgstr "Openen met uw webbrowser"
 msgid "Refresh"
 msgstr "Vernieuwen"
 
-#: ../RSSreader/src/applet-rss.c:382
+#: ../RSSreader/src/applet-rss.c:400
 msgid "Warning: couldn't retrieve data last time we tried."
 msgstr "Waarschuwing : kon data bij laatste poging niet ophalen."
 
-#: ../RSSreader/src/applet-rss.c:417
+#: ../RSSreader/src/applet-rss.c:436
 msgid "No URL is defined."
 msgstr "Geen URL ingevoerd."
 
-#: ../RSSreader/src/applet-rss.c:418
+#: ../RSSreader/src/applet-rss.c:437
 msgid "No data (no connection?)"
 msgstr "Geen data (geen verbinding ?)"
 
-#: ../RSSreader/src/applet-rss.c:449 ../RSSreader/src/applet-rss.c:468
+#: ../RSSreader/src/applet-rss.c:468 ../RSSreader/src/applet-rss.c:487
 msgid "Invalid data (invalid RSS/Atom feed?)"
 msgstr "Ongeldige data (ongeldige RSS/Atom-feed ?)"
 
-#: ../RSSreader/src/applet-rss.c:532
+#: ../RSSreader/src/applet-rss.c:551
 msgid "No data"
 msgstr "Geen data"
 
-#: ../RSSreader/src/applet-rss.c:570
+#: ../RSSreader/src/applet-rss.c:589
 msgid "No modification"
 msgstr "Niet aanpassen"
 
-#: ../RSSreader/src/applet-rss.c:595
+#: ../RSSreader/src/applet-rss.c:614
 msgid "This RSS feed has been modified..."
 msgstr "Deze RSS-feed is aangepast..."
 
-#: ../RSSreader/src/applet-rss.c:743
+#: ../RSSreader/src/applet-rss.c:775
 msgid ""
 "No URL is defined\n"
 "You can define one by copying the URL in the clipboard,\n"
@@ -797,7 +847,7 @@ msgstr ""
 " en \"URL plakken te selecteren\n"
 " in het menu."
 
-#: ../RSSreader/src/applet-rss.c:749
+#: ../RSSreader/src/applet-rss.c:781
 msgid ""
 "No data\n"
 "Did you set a valid RSS feed?\n"
@@ -808,7 +858,7 @@ msgstr ""
 "Werkt uw verbinding ?"
 
 #: ../Recent-Events/src/applet-dialog.c:280
-#: ../stack/src/applet-notifications.c:180
+#: ../stack/src/applet-notifications.c:181
 msgid "Open parent folder"
 msgstr "Bovenliggende map openen"
 
@@ -1043,9 +1093,18 @@ msgstr "Bezig met zoeken..."
 msgid "Enter your search"
 msgstr "Voer uw zoekopdracht in"
 
-#: ../Status-Notifier/src/applet-init.c:32
-msgid "Status Notifier"
-msgstr "Notificatiestatus"
+#: ../Status-Notifier/src/applet-init.c:33
+msgid ""
+"A <b>notification area</b> for your dock\n"
+"Programs can use it to display their current status.\n"
+"If a program doesn't appear inside when it should, it's probably because it "
+"doesn't support the this feature yet. Please fill a bug report to the devs."
+msgstr ""
+
+#: ../Status-Notifier/src/applet-init.c:38
+#, fuzzy
+msgid "Notification Area"
+msgstr "Waarschuwing"
 
 #: ../System-Monitor/src/applet-cpusage.c:57
 msgid "Uptime"
@@ -1055,15 +1114,15 @@ msgstr "Ingeschakeld"
 msgid "Activity time"
 msgstr "Actief"
 
-#: ../System-Monitor/src/applet-cpusage.c:144
+#: ../System-Monitor/src/applet-cpusage.c:145
 msgid "CPU model"
 msgstr "CPU-model"
 
-#: ../System-Monitor/src/applet-cpusage.c:145
+#: ../System-Monitor/src/applet-cpusage.c:146
 msgid "Frequency"
 msgstr "Frequentie"
 
-#: ../System-Monitor/src/applet-cpusage.c:146
+#: ../System-Monitor/src/applet-cpusage.c:147
 msgid "core(s)"
 msgstr "Core(s)"
 
@@ -1082,8 +1141,8 @@ msgstr ""
 "gebruik.\n"
 "U kunt dit applet meerdere keren openen om elke keer andere waarden te tonen."
 
-#: ../System-Monitor/src/applet-notifications.c:44
-#: ../System-Monitor/src/applet-notifications.c:86
+#: ../System-Monitor/src/applet-notifications.c:40
+#: ../System-Monitor/src/applet-notifications.c:83
 msgid ""
 "The acquisition of one or more data has failed.\n"
 "You should remove the data that couldn't be fetched."
@@ -1091,12 +1150,12 @@ msgstr ""
 "Het verkrijgen van één of meer data is mislukt.\n"
 "Verwijder de data die niet verkregen kon worden."
 
-#: ../System-Monitor/src/applet-notifications.c:109
+#: ../System-Monitor/src/applet-notifications.c:106
 #: ../netspeed/src/applet-notifications.c:101
 msgid "Open the System-Monitor"
 msgstr "Systeemmonitor openen"
 
-#: ../System-Monitor/src/applet-notifications.c:111
+#: ../System-Monitor/src/applet-notifications.c:108
 msgid "Show info"
 msgstr "Info tonen"
 
@@ -1110,7 +1169,7 @@ msgstr "Videogeheugen:"
 
 #: ../System-Monitor/src/applet-nvidia.c:147
 #: ../System-Monitor/src/applet-rame.c:124
-#: ../System-Monitor/src/applet-top.c:288
+#: ../System-Monitor/src/applet-top.c:297
 msgid "Mb"
 msgstr "Mb"
 
@@ -1210,9 +1269,14 @@ msgstr "Gamma instellen :"
 msgid "Apply current luminosity on startup"
 msgstr "Huidige helderheid instellen voor bij het opstarten."
 
-#: ../Xgamma/src/applet-xgamma.c:204 ../Xgamma/src/applet-xgamma.c:274
+#: ../Xgamma/src/applet-xgamma.c:200 ../Xgamma/src/applet-xgamma.c:270
 msgid "Set up gamma:"
 msgstr "Gamma instellen :"
+
+#: ../Xgamma/src/applet-xgamma.c:283
+#, fuzzy
+msgid "Luminosity"
+msgstr "Schermhelderheid"
 
 #: ../alsaMixer/src/applet-init.c:34
 msgid ""
@@ -1263,7 +1327,7 @@ msgstr "Kon geen opties vinden"
 msgid "I couldn't load the mixer"
 msgstr "Ik kon de mixer niet laden"
 
-#: ../alsaMixer/src/applet-mixer.c:291
+#: ../alsaMixer/src/applet-mixer.c:295
 msgid "Set up volume:"
 msgstr "Volume instellen :"
 
@@ -1295,7 +1359,7 @@ msgstr "Geen titel"
 msgid "years"
 msgstr "jaren"
 
-#: ../clock/src/applet-calendar.c:646
+#: ../clock/src/applet-calendar.c:651
 msgid "Calendar and tasks"
 msgstr "Kalender en taken"
 
@@ -1383,7 +1447,7 @@ msgstr "Opdracht om uit te voeren:"
 msgid "E.g.:"
 msgstr "B.v.:"
 
-#: ../clock/src/applet-config.c:495 ../weather/src/applet-config.c:201
+#: ../clock/src/applet-config.c:495 ../weather/src/applet-config.c:205
 msgid "Search for your location :"
 msgstr "Zoek uw locatie :"
 
@@ -1478,31 +1542,31 @@ msgstr "elke maand"
 msgid "each year"
 msgstr "elk jaar"
 
-#: ../clock/src/applet-task-editor.c:391
+#: ../clock/src/applet-task-editor.c:392
 msgid "Right-click to add a new task."
 msgstr "Klik met rechts om een nieuwe taak in te stellen."
 
-#: ../clock/src/applet-task-editor.c:397 ../musicPlayer/src/applet-draw.c:338
+#: ../clock/src/applet-task-editor.c:398 ../musicPlayer/src/applet-draw.c:345
 #: ../RSSreader/data/messages:139
 msgid "Title"
 msgstr "Titel"
 
-#: ../clock/src/applet-task-editor.c:404
+#: ../clock/src/applet-task-editor.c:405
 #: ../dnd2share/src/applet-notifications.c:378 ../Doncky/data/messages:101
 #: ../RSSreader/data/messages:155
 msgid "Text"
 msgstr "Tekst"
 
-#: ../clock/src/applet-task-editor.c:411
+#: ../clock/src/applet-task-editor.c:412
 #: ../powermanager/src/powermanager-draw.c:135
 msgid "Time"
 msgstr "Tijd"
 
-#: ../clock/src/applet-task-editor.c:425
+#: ../clock/src/applet-task-editor.c:426
 msgid "Freq."
 msgstr "Freq."
 
-#: ../clock/src/applet-task-editor.c:432
+#: ../clock/src/applet-task-editor.c:433
 msgid "Tags"
 msgstr "Labels"
 
@@ -1687,13 +1751,13 @@ msgstr "Dialoog rendering"
 msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr "Deze plug-in bevat enige dialoogdecorateurs voor dialoogballonnen."
 
-#: ../dnd2share/src/applet-dnd2share.c:167
+#: ../dnd2share/src/applet-dnd2share.c:165
 msgid ""
 "Couldn't upload the file, check that your internet connection is active."
 msgstr ""
 "Kon bestand niet uploaden, controleer of uw verbonden bent met het internet."
 
-#: ../dnd2share/src/applet-dnd2share.c:282
+#: ../dnd2share/src/applet-dnd2share.c:280
 msgid ""
 "File has been uploaded.\n"
 "Just press CTRL+v to paste its URL anywhere."
@@ -1701,13 +1765,13 @@ msgstr ""
 "Bestand is geüpload.\n"
 "Druk op CTRL+v om de URL ergens in te plakken."
 
-#: ../dnd2share/src/applet-dnd2share.c:332
+#: ../dnd2share/src/applet-dnd2share.c:331
 msgid "Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Wacht a.u.b. met het starten van een nieuwe upload, totdat de huidige upload "
 "beëindigd is."
 
-#: ../dnd2share/src/applet-dnd2share.c:582
+#: ../dnd2share/src/applet-dnd2share.c:591
 msgid "Tiny URL"
 msgstr "TinyURL"
 
@@ -1911,67 +1975,67 @@ msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr ""
 "U gaat alle bestanden uit alle prullenbakken verwijderen. Weet u het zeker ?"
 
-#: ../dustbin/src/applet-notifications.c:80
+#: ../dustbin/src/applet-notifications.c:91
 msgid "The trash contains"
 msgstr "De prullenbak bevat"
 
-#: ../dustbin/src/applet-notifications.c:82
+#: ../dustbin/src/applet-notifications.c:93
 msgid "files"
 msgstr "bestanden"
 
-#: ../dustbin/src/applet-notifications.c:82
+#: ../dustbin/src/applet-notifications.c:93
 msgid "elements"
 msgstr "elementen"
 
-#: ../dustbin/src/applet-notifications.c:84
+#: ../dustbin/src/applet-notifications.c:95
 msgid "Mo"
 msgstr "Ma"
 
-#: ../dustbin/src/applet-notifications.c:84
+#: ../dustbin/src/applet-notifications.c:95
 msgid "Ko"
 msgstr "Kb"
 
-#: ../dustbin/src/applet-notifications.c:100
+#: ../dustbin/src/applet-notifications.c:115
 msgid "Counting total size and files number..."
 msgstr "Bezig met tellen van totale grootte en aantal bestanden..."
 
-#: ../dustbin/src/applet-notifications.c:117
+#: ../dustbin/src/applet-notifications.c:138
 msgid "Show Trash (click)"
 msgstr "Prullenbak tonen (klikken)"
 
-#: ../dustbin/src/applet-notifications.c:118
+#: ../dustbin/src/applet-notifications.c:139
 msgid "Empty Trash"
 msgstr "Prullenbak legen"
 
-#: ../dustbin/src/applet-notifications.c:122
+#: ../dustbin/src/applet-notifications.c:143
 msgid "Display dustbins information"
 msgstr "Prullenbakinformatie tonen"
 
-#: ../dustbin/src/applet-notifications.c:135
+#: ../dustbin/src/applet-notifications.c:156
 #, c-format
 msgid "%s successfully unmounted"
 msgstr "%s is nu ontkoppeld"
 
-#: ../dustbin/src/applet-notifications.c:139
+#: ../dustbin/src/applet-notifications.c:160
 #, c-format
 msgid "failed to unmount %s"
 msgstr "Kon %s niet ontkoppelen"
 
-#: ../dustbin/src/applet-notifications.c:163
+#: ../dustbin/src/applet-notifications.c:184
 #: ../shortcuts/src/applet-notifications.c:167
 msgid "Unmouting this volume ..."
 msgstr "Dit volume wordt ontkoppeld ..."
 
-#: ../dustbin/src/applet-trashes-manager.c:59
+#: ../dustbin/src/applet-trashes-manager.c:68
 msgid " trashe(s)"
 msgstr " Prullenbak(ken)"
 
-#: ../dustbin/src/applet-trashes-manager.c:63
+#: ../dustbin/src/applet-trashes-manager.c:72
 msgid " file(s)"
 msgstr " Bestand(en)"
 
-#: ../dustbin/src/applet-trashes-manager.c:98
-#: ../dustbin/src/applet-trashes-manager.c:127
+#: ../dustbin/src/applet-trashes-manager.c:114
+#: ../dustbin/src/applet-trashes-manager.c:153
 msgid "calculating"
 msgstr "Berekenen"
 
@@ -2104,33 +2168,38 @@ msgstr ""
 "te sluiten of herstarten\n"
 "  (U kunt dit omdraaien als u liever met een linkerklik de computer afsluit)."
 
-#: ../logout/src/applet-notifications.c:124
+#: ../logout/src/applet-notifications.c:138
 msgid "Choose in how many minutes your PC will stop:"
 msgstr "Selecteer aantal minuten waarna u PC zal afsluiten :"
 
-#: ../logout/src/applet-notifications.c:153
-#: ../logout/src/applet-notifications.c:155 ../logout/data/messages:101
+#: ../logout/src/applet-notifications.c:167
+#: ../logout/src/applet-notifications.c:169 ../logout/data/messages:101
 #: ../logout/data/messages:109
 msgid "Log out"
 msgstr "Uitloggen"
 
-#: ../logout/src/applet-notifications.c:162
-#: ../logout/src/applet-notifications.c:164 ../logout/data/messages:103
+#: ../logout/src/applet-notifications.c:176
+#: ../logout/src/applet-notifications.c:178 ../logout/data/messages:103
 #: ../logout/data/messages:111
 msgid "Shut down"
 msgstr "Uitschakelen"
 
-#: ../logout/src/applet-notifications.c:171
-#: ../logout/src/applet-notifications.c:173 ../logout/data/messages:105
+#: ../logout/src/applet-notifications.c:185
+#: ../logout/src/applet-notifications.c:187 ../logout/data/messages:105
 #: ../logout/data/messages:113
 msgid "Lock screen"
 msgstr "Beeldscherm vergrendelen"
 
-#: ../logout/src/applet-notifications.c:178
+#: ../logout/src/applet-notifications.c:193
+#: ../logout/src/applet-notifications.c:199
+msgid "Guest session"
+msgstr ""
+
+#: ../logout/src/applet-notifications.c:203
 msgid "Program an automatic shut-down"
 msgstr "Stel automatisch afsluiten in"
 
-#: ../logout/src/applet-notifications.c:208
+#: ../logout/src/applet-notifications.c:233
 msgid "Your computer will shut-down in 1 minute."
 msgstr "Uw computer zal afsluiten na 1 minuut."
 
@@ -2184,7 +2253,7 @@ msgid "Use a secure connection (SSL)"
 msgstr "Gebruik een beveiligde verbinding (SSL)"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39 ../RSSreader/data/messages:113
-#: ../netspeed/data/messages:137 ../powermanager/data/messages:153
+#: ../netspeed/data/messages:137 ../powermanager/data/messages:157
 #: ../weather/data/messages:111
 msgid "Refresh time:"
 msgstr "Vernieuwingstijd :"
@@ -2358,35 +2427,35 @@ msgstr "Onbekende artiest"
 msgid "Unknown title"
 msgstr "Onbekende titel"
 
-#: ../musicPlayer/src/applet-draw.c:233 ../musicPlayer/src/applet-mpris.c:267
+#: ../musicPlayer/src/applet-draw.c:233 ../musicPlayer/src/applet-mpris.c:317
 msgid "Track"
 msgstr "Nummer"
 
-#: ../musicPlayer/src/applet-draw.c:327
+#: ../musicPlayer/src/applet-draw.c:334
 msgid "Current song"
 msgstr "Huidig nummer"
 
-#: ../musicPlayer/src/applet-draw.c:336
+#: ../musicPlayer/src/applet-draw.c:343
 msgid "Artist"
 msgstr "Artiest"
 
-#: ../musicPlayer/src/applet-draw.c:340
+#: ../musicPlayer/src/applet-draw.c:347
 msgid "Album"
 msgstr "Album"
 
-#: ../musicPlayer/src/applet-draw.c:342
+#: ../musicPlayer/src/applet-draw.c:349
 msgid "Length"
 msgstr "Tijd"
 
-#: ../musicPlayer/src/applet-draw.c:344
+#: ../musicPlayer/src/applet-draw.c:351
 msgid "Track n°"
 msgstr "n° van nummer"
 
-#: ../musicPlayer/src/applet-draw.c:345
+#: ../musicPlayer/src/applet-draw.c:352
 msgid "Song n°"
 msgstr "Nummer n°"
 
-#: ../musicPlayer/src/applet-draw.c:347
+#: ../musicPlayer/src/applet-draw.c:354
 msgid "There is no media playing."
 msgstr "Er wordt niets afgespeeld."
 
@@ -2882,51 +2951,61 @@ msgstr ""
 "U kunt bestanden, een URL en zelfs een stuk tekst toevoegen door ze te "
 "verslepen naar het Stapel-icoon."
 
-#: ../stack/src/applet-notifications.c:74
+#: ../stack/src/applet-notifications.c:75
 msgid "Clear the stack?"
 msgstr "Stapel leegmaken ?"
 
-#: ../stack/src/applet-notifications.c:95
+#: ../stack/src/applet-notifications.c:96
 msgid "Set new name for this item:"
 msgstr "Voer nieuwe naam in voor dit item :"
 
-#: ../stack/src/applet-notifications.c:167
+#: ../stack/src/applet-notifications.c:168
 msgid "Paste (drag'n'drop)"
 msgstr "Plakken (verslepen)"
 
-#: ../stack/src/applet-notifications.c:170
+#: ../stack/src/applet-notifications.c:171
 msgid "Clear the stack"
 msgstr "Stapel leegmaken"
 
-#: ../stack/src/applet-notifications.c:177
+#: ../stack/src/applet-notifications.c:178
 msgid "Open (click)"
 msgstr "Open (klik)"
 
-#: ../stack/src/applet-notifications.c:182
+#: ../stack/src/applet-notifications.c:183
 #: ../terminal/src/terminal-callbacks.c:82
-#: ../terminal/src/terminal-widget.c:384
+#: ../terminal/src/terminal-widget.c:386
 msgid "Copy"
 msgstr "Kopiëren"
 
-#: ../stack/src/applet-notifications.c:185
+#: ../stack/src/applet-notifications.c:186
 msgid "Cut"
 msgstr "Knippen"
 
-#: ../stack/src/applet-notifications.c:188
+#: ../stack/src/applet-notifications.c:189
 msgid "Rename this item"
 msgstr "Hernoem dit item"
 
-#: ../stack/src/applet-notifications.c:189
+#: ../stack/src/applet-notifications.c:190
 msgid "Remove this item"
 msgstr "Verwijder dit item"
 
-#: ../switcher/src/applet-draw.c:617 ../switcher/src/applet-draw.c:624
+#: ../stack/src/applet-notifications.c:259
+#, fuzzy
+msgid "The file has been added to the stack."
+msgstr "De module is wel toegevoegd, maar kon niet gestart worden."
+
+#: ../stack/src/applet-notifications.c:260
+#, fuzzy
+msgid "The URL has been added to the stack."
+msgstr "De module is wel toegevoegd, maar kon niet gestart worden."
+
+#: ../switcher/src/applet-draw.c:618 ../switcher/src/applet-draw.c:625
 #: ../switcher/src/applet-load-icons.c:43
 #: ../switcher/src/applet-notifications.c:420
 msgid "Current"
 msgstr "Huidig"
 
-#: ../switcher/src/applet-draw.c:624 ../switcher/src/applet-draw.c:626
+#: ../switcher/src/applet-draw.c:625 ../switcher/src/applet-draw.c:627
 #: ../switcher/src/applet-load-icons.c:49
 #: ../switcher/src/applet-notifications.c:216
 #: ../switcher/src/applet-notifications.c:228
@@ -2991,10 +3070,6 @@ msgstr "Vensterlijst"
 msgid "Expose all the windows"
 msgstr "Alle bureabladen tonen (Compiz)"
 
-#: ../systray/src/systray-init.c:32
-msgid "systray"
-msgstr "systeemvak"
-
 #: ../systray/src/systray-init.c:35
 msgid ""
 "Add a systray to your dock.\n"
@@ -3008,6 +3083,11 @@ msgstr ""
 "hiervoor een sneltoets instellen.)\n"
 "Maar het beste is het om het los te koppelen van het dock en het ergens "
 "boven andere vensters te plaatsen."
+
+#: ../systray/src/systray-init.c:41
+#, fuzzy
+msgid "Notification Area Old"
+msgstr "Waarschuwing"
 
 #: ../systray/src/systray-interface.c:71
 msgid ""
@@ -3056,7 +3136,7 @@ msgstr ""
 "Om een tabblad te sluiten : typ 'CTRL+w' of middelklik erop"
 
 #: ../terminal/src/terminal-menu-functions.c:79
-#: ../terminal/src/terminal-widget.c:400
+#: ../terminal/src/terminal-widget.c:402
 msgid "New Tab"
 msgstr "Nieuw tabblad"
 
@@ -3072,32 +3152,32 @@ msgstr "Huidig tabblad sluiten"
 msgid "Terminal"
 msgstr "Terminal"
 
-#: ../terminal/src/terminal-widget.c:154
+#: ../terminal/src/terminal-widget.c:155
 msgid "Set title for this tab:"
 msgstr "Voer naam in voor dit tabblad :"
 
-#: ../terminal/src/terminal-widget.c:209
+#: ../terminal/src/terminal-widget.c:210
 msgid "Select a color"
 msgstr "Selecteer een kleur"
 
-#: ../terminal/src/terminal-widget.c:344
+#: ../terminal/src/terminal-widget.c:346
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
 msgstr "U kunt het Terminal-desklet terugroepen door %s in te typen"
 
-#: ../terminal/src/terminal-widget.c:390
+#: ../terminal/src/terminal-widget.c:392
 msgid "Paste"
 msgstr "Plakken"
 
-#: ../terminal/src/terminal-widget.c:406
+#: ../terminal/src/terminal-widget.c:408
 msgid "Rename this Tab"
 msgstr "Dit tabblad hernoemen"
 
-#: ../terminal/src/terminal-widget.c:412
+#: ../terminal/src/terminal-widget.c:414
 msgid "Change this Tab's colour"
 msgstr "Kleur van dit tabblad wijzigen"
 
-#: ../terminal/src/terminal-widget.c:418
+#: ../terminal/src/terminal-widget.c:420
 msgid "Close this Tab"
 msgstr "Dit tabblad sluiten"
 
@@ -3170,7 +3250,7 @@ msgstr "Zoeken naar notities van volgende week"
 msgid "Reset marks"
 msgstr "Markeringen verwijderen"
 
-#: ../weather/src/applet-config.c:119
+#: ../weather/src/applet-config.c:120
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
@@ -3178,23 +3258,23 @@ msgstr ""
 "Kon de info niet ophalen\n"
 "Werkt de verbinding ?"
 
-#: ../weather/src/applet-config.c:125
+#: ../weather/src/applet-config.c:126
 #, fuzzy
 msgid "Couldn't get the location code (is connection alive?)"
 msgstr ""
 "Kon de info niet ophalen\n"
 "Werkt de verbinding ?"
 
-#: ../weather/src/applet-config.c:133
+#: ../weather/src/applet-config.c:134
 msgid "I couldn't find this location"
 msgstr "Kon deze locatie niet vinden"
 
-#: ../weather/src/applet-config.c:181
+#: ../weather/src/applet-config.c:185
 #, fuzzy
 msgid "Searching the location code..."
 msgstr "Zoek uw locatie :"
 
-#: ../weather/src/applet-config.c:205
+#: ../weather/src/applet-config.c:209
 msgid ""
 "Enter the name of your location and press Enter to choose amongst results."
 msgstr ""
@@ -3269,24 +3349,23 @@ msgstr "Nov"
 msgid "Dec"
 msgstr "Dec"
 
-#: ../weather/src/applet-notifications.c:33
-#: ../weather/src/applet-notifications.c:70
+#: ../weather/src/applet-notifications.c:61
 msgid "Data are being retrieved, please wait a moment."
 msgstr "Data wordt opgehaaldd, een moment geduld a.u.b."
 
-#: ../weather/src/applet-notifications.c:108
+#: ../weather/src/applet-notifications.c:99
 msgid "Show current conditions (middle-click)"
 msgstr "Huidige weersomstandigheden tonen (middelklik)"
 
-#: ../weather/src/applet-notifications.c:113
+#: ../weather/src/applet-notifications.c:104
 msgid "Open weather.com (double-click)"
 msgstr "weather.com openen (dubbelklikken)"
 
-#: ../weather/src/applet-notifications.c:115
+#: ../weather/src/applet-notifications.c:106
 msgid "Reload now"
 msgstr "Nu herladen"
 
-#: ../weather/src/applet-notifications.c:148
+#: ../weather/src/applet-notifications.c:141
 msgid ""
 "No data available\n"
 " is your connection alive?"
@@ -3294,40 +3373,40 @@ msgstr ""
 "Geen data beschikbaar\n"
 "Werkt de verbinding ?"
 
-#: ../weather/src/applet-notifications.c:167
-#: ../weather/src/applet-notifications.c:203
+#: ../weather/src/applet-notifications.c:161
+#: ../weather/src/applet-notifications.c:199
 msgid "Temperature"
 msgstr "Temperatuur"
 
-#: ../weather/src/applet-notifications.c:168
+#: ../weather/src/applet-notifications.c:162
 msgid "Precipitation probability"
 msgstr "Kans op neerslag"
 
-#: ../weather/src/applet-notifications.c:169
-#: ../weather/src/applet-notifications.c:204
+#: ../weather/src/applet-notifications.c:163
+#: ../weather/src/applet-notifications.c:200
 msgid "Wind"
 msgstr "Wind"
 
-#: ../weather/src/applet-notifications.c:170
-#: ../weather/src/applet-notifications.c:205
+#: ../weather/src/applet-notifications.c:164
+#: ../weather/src/applet-notifications.c:201
 msgid "Humidity"
 msgstr "Vochtigheid"
 
-#: ../weather/src/applet-notifications.c:171
-#: ../weather/src/applet-notifications.c:206
+#: ../weather/src/applet-notifications.c:165
+#: ../weather/src/applet-notifications.c:202
 msgid "Sunrise"
 msgstr "Zonsopkomst"
 
-#: ../weather/src/applet-notifications.c:171
-#: ../weather/src/applet-notifications.c:206
+#: ../weather/src/applet-notifications.c:165
+#: ../weather/src/applet-notifications.c:202
 msgid "Sunset"
 msgstr "Zonsondergang"
 
-#: ../weather/src/applet-notifications.c:179
+#: ../weather/src/applet-notifications.c:175
 msgid "Data are being fetched, please re-try in a few seconds."
 msgstr "Data wordt opgehaald, probeer het over enkele ogenblikken opnieuw."
 
-#: ../weather/src/applet-notifications.c:189
+#: ../weather/src/applet-notifications.c:185
 msgid ""
 "No data available\n"
 "Retrying now..."
@@ -3335,11 +3414,11 @@ msgstr ""
 "Geen data beschikbaar\n"
 "Opnieuw proberen..."
 
-#: ../weather/src/applet-notifications.c:203
+#: ../weather/src/applet-notifications.c:199
 msgid "Feels like"
 msgstr "Gevoelstemperatuur"
 
-#: ../weather/src/applet-notifications.c:205
+#: ../weather/src/applet-notifications.c:201
 msgid "Pressure"
 msgstr "Druk"
 
@@ -3417,34 +3496,34 @@ msgstr "Wanneer u klikt op een starter"
 msgid "Effects used on launcher:"
 msgstr "Gebruikte effecten voor starters :"
 
-#: ../Animated-icons/data/messages:39 ../Animated-icons/data/messages:57
-#: ../Animated-icons/data/messages:75
+#: ../Animated-icons/data/messages:41 ../Animated-icons/data/messages:61
+#: ../Animated-icons/data/messages:81
 msgid "Number of times the animation will play:"
 msgstr "Aantal keer om animatie af te spelen :"
 
-#: ../Animated-icons/data/messages:41 ../icon-effect/data/messages:35
+#: ../Animated-icons/data/messages:43 ../icon-effect/data/messages:35
 msgid "when clicking on an application"
 msgstr "Wanneer u klikt op een toepassing"
 
-#: ../Animated-icons/data/messages:43 ../icon-effect/data/messages:37
+#: ../Animated-icons/data/messages:45 ../icon-effect/data/messages:37
 msgid "Effects used on applications:"
 msgstr "Gebruikte effecten voor toepassingen :"
 
-#: ../Animated-icons/data/messages:59 ../icon-effect/data/messages:51
+#: ../Animated-icons/data/messages:63 ../icon-effect/data/messages:51
 msgid "when clicking on an applet"
 msgstr "Wanneer u klikt op een applet"
 
-#: ../Animated-icons/data/messages:61 ../icon-effect/data/messages:53
+#: ../Animated-icons/data/messages:65 ../icon-effect/data/messages:53
 msgid "Effects used on applets:"
 msgstr "Gebruikte effecten voor applets :"
 
-#: ../Animated-icons/data/messages:77
+#: ../Animated-icons/data/messages:83
 msgid "Rotation"
 msgstr "Draaien"
 
-#: ../Animated-icons/data/messages:79 ../Animated-icons/data/messages:97
-#: ../Animated-icons/data/messages:149 ../Animated-icons/data/messages:161
-#: ../Animated-icons/data/messages:173 ../Animated-icons/data/messages:187
+#: ../Animated-icons/data/messages:85 ../Animated-icons/data/messages:103
+#: ../Animated-icons/data/messages:155 ../Animated-icons/data/messages:167
+#: ../Animated-icons/data/messages:179 ../Animated-icons/data/messages:193
 #: ../Remote-Control/data/messages:7 ../Scooby-Do/data/messages:15
 #: ../Scooby-Do/data/messages:19 ../Toons/data/messages:101
 #: ../icon-effect/data/messages:101 ../icon-effect/data/messages:123
@@ -3453,8 +3532,8 @@ msgstr "Draaien"
 msgid "In ms."
 msgstr "In ms."
 
-#: ../Animated-icons/data/messages:81 ../Animated-icons/data/messages:99
-#: ../Animated-icons/data/messages:151 ../icon-effect/data/messages:75
+#: ../Animated-icons/data/messages:87 ../Animated-icons/data/messages:105
+#: ../Animated-icons/data/messages:157 ../icon-effect/data/messages:75
 #: ../icon-effect/data/messages:103 ../icon-effect/data/messages:125
 #: ../icon-effect/data/messages:147 ../icon-effect/data/messages:169
 #: ../icon-effect/data/messages:189 ../illusion/data/messages:33
@@ -3464,20 +3543,20 @@ msgstr "In ms."
 msgid "Duration of the animation:"
 msgstr "Tijdsduur van de animatie :"
 
-#: ../Animated-icons/data/messages:83 ../Animated-icons/data/messages:101
-#: ../Animated-icons/data/messages:153 ../Animated-icons/data/messages:165
-#: ../Animated-icons/data/messages:177 ../Animated-icons/data/messages:191
+#: ../Animated-icons/data/messages:89 ../Animated-icons/data/messages:107
+#: ../Animated-icons/data/messages:159 ../Animated-icons/data/messages:171
+#: ../Animated-icons/data/messages:183 ../Animated-icons/data/messages:197
 #: ../icon-effect/data/messages:77 ../icon-effect/data/messages:105
 #: ../icon-effect/data/messages:127 ../icon-effect/data/messages:149
 #: ../icon-effect/data/messages:171 ../icon-effect/data/messages:191
 msgid "Repeat while icon is pointed to?"
 msgstr "Herhalen wanneer icoon aangewezen wordt ?"
 
-#: ../Animated-icons/data/messages:85
+#: ../Animated-icons/data/messages:91
 msgid "Type of mesh:"
 msgstr "Soort 3D-vorm :"
 
-#: ../Animated-icons/data/messages:87 ../Clipper/data/messages:49
+#: ../Animated-icons/data/messages:93 ../Clipper/data/messages:49
 #: ../Disks/data/messages:37 ../Doncky/data/messages:47
 #: ../Folders/data/messages:61 ../GMenu/data/messages:49
 #: ../MeMenu/data/messages:43 ../Messaging-Menu/data/messages:45
@@ -3500,19 +3579,19 @@ msgstr "Soort 3D-vorm :"
 msgid "Normal"
 msgstr "Normaal"
 
-#: ../Animated-icons/data/messages:89
+#: ../Animated-icons/data/messages:95
 msgid "Cube"
 msgstr "Kubus"
 
-#: ../Animated-icons/data/messages:91
+#: ../Animated-icons/data/messages:97
 msgid "Capsule"
 msgstr "Capsule"
 
-#: ../Animated-icons/data/messages:93
+#: ../Animated-icons/data/messages:99
 msgid "Colour of the sheen:"
 msgstr "Kleur van de glans :"
 
-#: ../Animated-icons/data/messages:105 ../Animated-icons/data/messages:109
+#: ../Animated-icons/data/messages:111 ../Animated-icons/data/messages:115
 #: ../Clipper/data/messages:11 ../Disks/data/messages:11
 #: ../Doncky/data/messages:11 ../Doncky/data/messages:95
 #: ../Folders/data/messages:23 ../GMenu/data/messages:11
@@ -3530,123 +3609,123 @@ msgstr "Kleur van de glans :"
 msgid "Leave empty to use the default one."
 msgstr "Laat leeg om standaardwaarde te gebruiken."
 
-#: ../Animated-icons/data/messages:107
+#: ../Animated-icons/data/messages:113
 msgid "Image for the spotlight:"
 msgstr "Afbeelding voor het spotlicht :"
 
-#: ../Animated-icons/data/messages:111
+#: ../Animated-icons/data/messages:117
 msgid "Image for the front spotlight:"
 msgstr "Afbeelding voor het voorste spotlicht :"
 
-#: ../Animated-icons/data/messages:113
+#: ../Animated-icons/data/messages:119
 msgid "Spot colour:"
 msgstr "Kleur van het spotlicht :"
 
-#: ../Animated-icons/data/messages:115
+#: ../Animated-icons/data/messages:121
 msgid "Halo colour:"
 msgstr "Kleur van de lichtkrans :"
 
-#: ../Animated-icons/data/messages:117
+#: ../Animated-icons/data/messages:123
 msgid "Rays"
 msgstr "Stralen"
 
-#: ../Animated-icons/data/messages:119 ../icon-effect/data/messages:81
+#: ../Animated-icons/data/messages:125 ../icon-effect/data/messages:81
 #: ../icon-effect/data/messages:109 ../icon-effect/data/messages:131
 #: ../icon-effect/data/messages:153 ../icon-effect/data/messages:175
 #: ../illusion/data/messages:37 ../show-mouse/data/messages:27
 msgid "1st color of gradation :"
 msgstr "1ste kleur van gradatie :"
 
-#: ../Animated-icons/data/messages:121 ../icon-effect/data/messages:83
+#: ../Animated-icons/data/messages:127 ../icon-effect/data/messages:83
 #: ../icon-effect/data/messages:111 ../icon-effect/data/messages:133
 #: ../icon-effect/data/messages:155 ../icon-effect/data/messages:177
 #: ../illusion/data/messages:39 ../show-mouse/data/messages:29
 msgid "2nd color of gradation :"
 msgstr "2e kleur van gradatie :"
 
-#: ../Animated-icons/data/messages:123 ../icon-effect/data/messages:85
+#: ../Animated-icons/data/messages:129 ../icon-effect/data/messages:85
 #: ../icon-effect/data/messages:113 ../icon-effect/data/messages:197
 #: ../illusion/data/messages:41 ../show-mouse/data/messages:31
 msgid "Random colours?"
 msgstr "Willekeurige kleuren ?"
 
-#: ../Animated-icons/data/messages:125
+#: ../Animated-icons/data/messages:131
 msgid "Number of rays:"
 msgstr "Aantal stralen :"
 
-#: ../Animated-icons/data/messages:127
+#: ../Animated-icons/data/messages:133
 msgid "Ray size:"
 msgstr "Grootte stralen :"
 
-#: ../Animated-icons/data/messages:129
+#: ../Animated-icons/data/messages:135
 msgid "Ray speed:"
 msgstr "Snelheid stralen :"
 
-#: ../Animated-icons/data/messages:133
+#: ../Animated-icons/data/messages:139
 msgid "Initial stretch:"
 msgstr "Aanvankelijke uitrekking :"
 
-#: ../Animated-icons/data/messages:135
+#: ../Animated-icons/data/messages:141
 msgid "Horizontal stretch"
 msgstr "Horizontale uitrekking"
 
-#: ../Animated-icons/data/messages:137
+#: ../Animated-icons/data/messages:143
 msgid "Vertical stretch"
 msgstr "Verticale uitrekking"
 
-#: ../Animated-icons/data/messages:139
+#: ../Animated-icons/data/messages:145
 msgid "Corner stretch"
 msgstr "Hoek uitrekking"
 
-#: ../Animated-icons/data/messages:141
+#: ../Animated-icons/data/messages:147
 msgid "Spring constant:"
 msgstr "Constante stijging :"
 
-#: ../Animated-icons/data/messages:143
+#: ../Animated-icons/data/messages:149
 msgid "Friction:"
 msgstr "Frictie :"
 
-#: ../Animated-icons/data/messages:145
+#: ../Animated-icons/data/messages:151
 msgid "Number of points on the grid in each direction:"
 msgstr "Aantal punten op het raster in één richting :"
 
-#: ../Animated-icons/data/messages:155
+#: ../Animated-icons/data/messages:161
 msgid "Wave width:"
 msgstr "Breedte van de golf :"
 
-#: ../Animated-icons/data/messages:157
+#: ../Animated-icons/data/messages:163
 msgid "Wave amplitude:"
 msgstr "Hoogte van de golf :"
 
-#: ../Animated-icons/data/messages:163
+#: ../Animated-icons/data/messages:169
 msgid "Pulse duration:"
 msgstr "Tijdsduur van het kloppen :"
 
-#: ../Animated-icons/data/messages:167
+#: ../Animated-icons/data/messages:173
 msgid "Pulse max zoom:"
 msgstr "Maximale vergroting van het kloppen :"
 
-#: ../Animated-icons/data/messages:169
+#: ../Animated-icons/data/messages:175
 msgid "Pulse follows icon shape?"
 msgstr "Moet het kloppen de vorm van het icoon volgen ?"
 
-#: ../Animated-icons/data/messages:175
+#: ../Animated-icons/data/messages:181
 msgid "Bounce duration:"
 msgstr "Tijdsduur van het stuiteren :"
 
-#: ../Animated-icons/data/messages:179
+#: ../Animated-icons/data/messages:185
 msgid "When bouncing, resize the icon by:"
 msgstr "Tijdens het stuiteren, wijzig afmeting icoon van :"
 
-#: ../Animated-icons/data/messages:181
+#: ../Animated-icons/data/messages:187
 msgid "the lower the value, the more it will flatten."
 msgstr "Hoe kleiner, hoe platter."
 
-#: ../Animated-icons/data/messages:183
+#: ../Animated-icons/data/messages:189
 msgid "How much the icon will flatten when hitting the ground:"
 msgstr "Hoe plat het icoon wordt tijdens het raken van de grond :"
 
-#: ../Animated-icons/data/messages:189
+#: ../Animated-icons/data/messages:195
 msgid "Blink duration:"
 msgstr "Tijdsduur van het knipperen :"
 
@@ -3794,29 +3873,6 @@ msgstr "Stel in op 0 om de standaardgrootte van het applet te gebruiken"
 msgid "Icon size for busy penguin:"
 msgstr "Icoongrootte wanneer de pinguïn niet vrij is :"
 
-#: ../Cairo-Penguin/data/messages:15 ../Clipper/data/messages:19
-#: ../Disks/data/messages:19 ../Folders/data/messages:31
-#: ../GMenu/data/messages:19 ../MeMenu/data/messages:13
-#: ../Messaging-Menu/data/messages:15 ../Network-Monitor/data/messages:19
-#: ../RSSreader/data/messages:21 ../Recent-Events/data/messages:19
-#: ../Scooby-Do/data/messages:115 ../Status-Notifier/data/messages:19
-#: ../System-Monitor/data/messages:17 ../Toons/data/messages:17
-#: ../Xgamma/data/messages:21 ../alsaMixer/data/messages:17
-#: ../clock/data/messages:19 ../compiz-icon/data/messages:15
-#: ../dnd2share/data/messages:19 ../dustbin/data/messages:15
-#: ../keyboard-indicator/data/messages:15 ../logout/data/messages:19
-#: ../mail/data/messages:15 ../musicPlayer/data/messages:17
-#: ../netspeed/data/messages:15 ../powermanager/data/messages:19
-#: ../quick-browser/data/messages:21 ../shortcuts/data/messages:19
-#: ../showDesktop/data/messages:23 ../slider/data/messages:17
-#: ../stack/data/messages:21 ../switcher/data/messages:19
-#: ../systray/data/messages:19 ../template/data/messages:19
-#: ../terminal/data/messages:19 ../tomboy/data/messages:29
-#: ../weather/data/messages:17 ../weblets/data/messages:19
-#: ../wifi/data/messages:17
-msgid "Applet's Handbook"
-msgstr "Applet's handleiding"
-
 #: ../Cairo-Penguin/data/messages:17 ../Clipper/data/messages:95
 #: ../Dbus/data/messages:1 ../Disks/data/messages:101
 #: ../Doncky/data/messages:93 ../Folders/data/messages:107
@@ -3857,7 +3913,7 @@ msgstr "Selecteer één van de beschikbare thema´s :"
 #: ../System-Monitor/data/messages:157 ../System-Monitor/data/messages:203
 #: ../Toons/data/messages:97 ../dnd2share/data/messages:97
 #: ../mail/data/messages:131 ../musicPlayer/data/messages:143
-#: ../netspeed/data/messages:135 ../powermanager/data/messages:151
+#: ../netspeed/data/messages:135 ../powermanager/data/messages:155
 #: ../shortcuts/data/messages:133 ../slider/data/messages:127
 #: ../tomboy/data/messages:119 ../wifi/data/messages:169
 msgid "in seconds."
@@ -5312,7 +5368,7 @@ msgstr "Icoon altijd tonen, ook als het dock verborgen is?"
 
 #: ../Network-Monitor/data/messages:97 ../Network-Monitor/data/messages:169
 #: ../Network-Monitor/data/messages:257 ../System-Monitor/data/messages:131
-#: ../netspeed/data/messages:129 ../powermanager/data/messages:149
+#: ../netspeed/data/messages:129 ../powermanager/data/messages:153
 #: ../tomboy/data/messages:127 ../wifi/data/messages:167
 msgid "Parameters"
 msgstr "Opties"
@@ -5417,12 +5473,12 @@ msgid "Effect to apply on the icon according to strength :"
 msgstr "Effect om toe te passen op icoon, afhankelijk van sterkte :"
 
 #: ../Network-Monitor/data/messages:219 ../alsaMixer/data/messages:133
-#: ../powermanager/data/messages:143 ../wifi/data/messages:137
+#: ../powermanager/data/messages:147 ../wifi/data/messages:137
 msgid "Zoom"
 msgstr "Vergroten"
 
 #: ../Network-Monitor/data/messages:221 ../alsaMixer/data/messages:135
-#: ../powermanager/data/messages:145 ../wifi/data/messages:139
+#: ../powermanager/data/messages:149 ../wifi/data/messages:139
 msgid "Transparency"
 msgstr "Doorzichtigheid"
 
@@ -5439,9 +5495,11 @@ msgstr "Balk tekenen"
 #: ../compiz-icon/data/messages:177 ../compiz-icon/data/messages:181
 #: ../compiz-icon/data/messages:185 ../compiz-icon/data/messages:189
 #: ../compiz-icon/data/messages:193 ../compiz-icon/data/messages:197
-#: ../musicPlayer/data/messages:177 ../musicPlayer/data/messages:181
-#: ../musicPlayer/data/messages:185 ../musicPlayer/data/messages:189
-#: ../musicPlayer/data/messages:193 ../tomboy/data/messages:13
+#: ../logout/data/messages:127 ../musicPlayer/data/messages:177
+#: ../musicPlayer/data/messages:181 ../musicPlayer/data/messages:185
+#: ../musicPlayer/data/messages:189 ../musicPlayer/data/messages:193
+#: ../powermanager/data/messages:135 ../powermanager/data/messages:139
+#: ../powermanager/data/messages:167 ../tomboy/data/messages:13
 #: ../tomboy/data/messages:17 ../tomboy/data/messages:21
 #: ../tomboy/data/messages:109 ../wifi/data/messages:143
 #: ../wifi/data/messages:147 ../wifi/data/messages:151
@@ -5524,34 +5582,34 @@ msgstr "Gedrag"
 msgid "Notify about feed updates:"
 msgstr "Notificatie geven bij feed-updates:"
 
-#: ../RSSreader/data/messages:119 ../powermanager/data/messages:191
+#: ../RSSreader/data/messages:119 ../powermanager/data/messages:199
 msgid "Icon animation"
 msgstr "Icoonanimatie"
 
-#: ../RSSreader/data/messages:121 ../powermanager/data/messages:193
+#: ../RSSreader/data/messages:121 ../powermanager/data/messages:201
 msgid "Dialog bubble"
 msgstr "Dialoogballon"
 
-#: ../RSSreader/data/messages:123 ../powermanager/data/messages:195
+#: ../RSSreader/data/messages:123 ../powermanager/data/messages:203
 msgid "Icon animation + Dialog bubble"
 msgstr "Icoonanimatie + dialoogballon"
 
-#: ../RSSreader/data/messages:125 ../powermanager/data/messages:197
+#: ../RSSreader/data/messages:125 ../powermanager/data/messages:205
 msgid "Let empty to use the default notification animation."
 msgstr "Laat leeg om standaardnotificatie-animatie te gebruiken."
 
-#: ../RSSreader/data/messages:127 ../powermanager/data/messages:199
+#: ../RSSreader/data/messages:127 ../powermanager/data/messages:207
 msgid "Animation of the icon:"
 msgstr "Icoonanimatie:"
 
-#: ../RSSreader/data/messages:129 ../powermanager/data/messages:201
+#: ../RSSreader/data/messages:129 ../powermanager/data/messages:209
 msgid ""
 "In seconds. Set to 0 for infinite time (need to click on dialog to close it)."
 msgstr ""
 "In seconden. Stel in op 0 voor doorlopende tijd (klik op dialoog om te "
 "sluiten)."
 
-#: ../RSSreader/data/messages:131 ../powermanager/data/messages:203
+#: ../RSSreader/data/messages:131 ../powermanager/data/messages:211
 msgid "Duration of the notification:"
 msgstr "Tijdsduur van de notificatie:"
 
@@ -5881,8 +5939,27 @@ msgid "Image's filename :"
 msgstr "Bestandsnaaam afbeelding :"
 
 #: ../Status-Notifier/data/messages:97
-msgid "Display items in compact mode?"
-msgstr "Items in compacte modus weergeven?"
+#, fuzzy
+msgid "How to display items:"
+msgstr "Hoe wilt u het wifi-signaal tonen :"
+
+#: ../Status-Notifier/data/messages:99
+msgid "Compact"
+msgstr ""
+
+#: ../Status-Notifier/data/messages:101
+#, fuzzy
+msgid "Sub-dock"
+msgstr "Dock"
+
+#: ../Status-Notifier/data/messages:103
+msgid "Allow the icon to automatically resize itself?"
+msgstr ""
+
+#: ../Status-Notifier/data/messages:105
+#, fuzzy
+msgid "Number of lines to pack items in:"
+msgstr "Aantal te tonen lijnen :"
 
 #: ../System-Monitor/data/messages:119 ../powermanager/data/messages:123
 msgid "It's the colour of the graphic for high values."
@@ -6523,18 +6600,18 @@ msgid "Comics"
 msgstr "Stripverhaal"
 
 #: ../dialog-rendering/data/messages:3 ../dialog-rendering/data/messages:11
-#: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:31
+#: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:29
 #: ../dock-rendering/data/messages:67
 msgid "Corner radius:"
 msgstr "Kromming hoek :"
 
 #: ../dialog-rendering/data/messages:5 ../dialog-rendering/data/messages:13
-#: ../dialog-rendering/data/messages:23 ../dialog-rendering/data/messages:33
+#: ../dialog-rendering/data/messages:23 ../dialog-rendering/data/messages:31
 msgid "Border width:"
 msgstr "Breedte rand :"
 
 #: ../dialog-rendering/data/messages:7 ../dialog-rendering/data/messages:15
-#: ../dialog-rendering/data/messages:25 ../dialog-rendering/data/messages:35
+#: ../dialog-rendering/data/messages:25 ../dialog-rendering/data/messages:33
 msgid "Bubble's line colour:"
 msgstr "Lijnkleur van de ballon :"
 
@@ -6551,18 +6628,14 @@ msgid "Tooltip"
 msgstr "Tip"
 
 #: ../dialog-rendering/data/messages:27
-msgid "Colour of the margin :"
-msgstr "Kleur van de omtrek :"
-
-#: ../dialog-rendering/data/messages:29
 msgid "Curly"
 msgstr "Gekruld"
 
-#: ../dialog-rendering/data/messages:37
+#: ../dialog-rendering/data/messages:35
 msgid "Curvature of the tip :"
 msgstr "Kromming van de tip :"
 
-#: ../dialog-rendering/data/messages:39
+#: ../dialog-rendering/data/messages:37
 msgid "Curve the sides too?"
 msgstr "De zijkanten ook krommen ?"
 
@@ -7265,6 +7338,15 @@ msgstr ""
 "Door gebruiker bepaalde opdracht om uit te voeren, om computer af te "
 "sluiten :"
 
+#: ../logout/data/messages:125 ../musicPlayer/data/messages:175
+#: ../tomboy/data/messages:11
+msgid "Customisation"
+msgstr "Personaliseren"
+
+#: ../logout/data/messages:129
+msgid "Icon image name to use when the system has to be rebooted:"
+msgstr ""
+
 #: ../mail/data/messages:93
 msgid ""
 "If you have any problem with the applet, uncheck this option during the "
@@ -7475,13 +7557,13 @@ msgstr "Tijdsduur van info-ballonnen :"
 msgid "Animation when music changes:"
 msgstr "Animatie wanneer muziek verandert :"
 
-#: ../musicPlayer/data/messages:151 ../powermanager/data/messages:155
+#: ../musicPlayer/data/messages:151 ../powermanager/data/messages:159
 #: ../wifi/data/messages:183
 msgid "Information to display on the icon :"
 msgstr "Informatie om te tonen op het icoon :"
 
-#: ../musicPlayer/data/messages:153 ../powermanager/data/messages:141
-#: ../powermanager/data/messages:157
+#: ../musicPlayer/data/messages:153 ../powermanager/data/messages:145
+#: ../powermanager/data/messages:161
 msgid "Nothing"
 msgstr "Niets"
 
@@ -7521,10 +7603,6 @@ msgstr "3D-thema´s gebruiken ?"
 msgid "List of available 3D themes for covers :"
 msgstr "Lijst met beschikbare 3D-thema´s voor albumhoezen :"
 
-#: ../musicPlayer/data/messages:175 ../tomboy/data/messages:11
-msgid "Customisation"
-msgstr "Personaliseren"
-
 #: ../musicPlayer/data/messages:183
 msgid "Name of the image for the 'play' icon :"
 msgstr "Naam van een afbeelding voor het 'Afspelen' icoon :"
@@ -7562,70 +7640,75 @@ msgstr "Laat leeg om standaardopdracht te gebruiken."
 msgid "Icon name:"
 msgstr "Icoonnaam :"
 
-#: ../powermanager/data/messages:135
+#: ../powermanager/data/messages:137
 msgid "'On-battery' icon filename:"
 msgstr "Bestandsnaam icoon wanneer op accu :"
 
-#: ../powermanager/data/messages:137
+#: ../powermanager/data/messages:141
 msgid "Icon's filename when on charge :"
 msgstr "Bestandsnaam icoon wanneer op netstroom :"
 
-#: ../powermanager/data/messages:139
+#: ../powermanager/data/messages:143
 msgid "Effect to apply on the icon according to the charge :"
 msgstr "Effect om toe te passen op icoon bij het laden :"
 
-#: ../powermanager/data/messages:147
+#: ../powermanager/data/messages:151
 msgid "Draw bar"
 msgstr "Balk tekenen"
 
-#: ../powermanager/data/messages:159
+#: ../powermanager/data/messages:163
 msgid "charge"
 msgstr "Laden"
 
-#: ../powermanager/data/messages:161
+#: ../powermanager/data/messages:165
 #, fuzzy
 msgid "Timelength"
 msgstr "Resterende tijd"
 
-#: ../powermanager/data/messages:163
+#: ../powermanager/data/messages:169
+#, fuzzy
+msgid "Emblem icon's filename when on charge:"
+msgstr "Bestandsnaam icoon wanneer op netstroom :"
+
+#: ../powermanager/data/messages:171
 msgid "Notification"
 msgstr "Waarschuwing"
 
-#: ../powermanager/data/messages:165
+#: ../powermanager/data/messages:173
 msgid "Notification when battery charged ?"
 msgstr "Waarschuwing wanneer accu opgeladen is ?"
 
-#: ../powermanager/data/messages:167 ../powermanager/data/messages:177
-#: ../powermanager/data/messages:185
+#: ../powermanager/data/messages:175 ../powermanager/data/messages:185
+#: ../powermanager/data/messages:193
 msgid "Leave it empty for no sound"
 msgstr "Laat leeg wanneer u geen geluid wilt"
 
-#: ../powermanager/data/messages:169 ../powermanager/data/messages:179
-#: ../powermanager/data/messages:187
+#: ../powermanager/data/messages:177 ../powermanager/data/messages:187
+#: ../powermanager/data/messages:195
 msgid "Play a sound:"
 msgstr "Gebruik een geluid :"
 
-#: ../powermanager/data/messages:171
+#: ../powermanager/data/messages:179
 msgid "Notification when low battery ?"
 msgstr "Waarschuwing wanneer acculading laag is ?"
 
-#: ../powermanager/data/messages:173
+#: ../powermanager/data/messages:181
 msgid "in percent."
 msgstr "In procenten."
 
-#: ../powermanager/data/messages:175
+#: ../powermanager/data/messages:183
 msgid "Battery level:"
 msgstr "Acculading :"
 
-#: ../powermanager/data/messages:181
+#: ../powermanager/data/messages:189
 msgid "When battery level is under 4%"
 msgstr "Wanneer acculading onder 4% is"
 
-#: ../powermanager/data/messages:183
+#: ../powermanager/data/messages:191
 msgid "Notification when battery charge is critical ?"
 msgstr "Waarschuwing wanneer accu bijna leeg is ?"
 
-#: ../powermanager/data/messages:189
+#: ../powermanager/data/messages:197
 msgid "Notification type:"
 msgstr "Type notificatie:"
 
@@ -8407,6 +8490,22 @@ msgstr "Ruwe signaalinformatie"
 #: ../wifi/data/messages:193
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
+
+#, fuzzy
+#~ msgid "Applet's handbook"
+#~ msgstr "Applet's handleiding"
+
+#~ msgid "Status Notifier"
+#~ msgstr "Notificatiestatus"
+
+#~ msgid "systray"
+#~ msgstr "systeemvak"
+
+#~ msgid "Display items in compact mode?"
+#~ msgstr "Items in compacte modus weergeven?"
+
+#~ msgid "Colour of the margin :"
+#~ msgstr "Kleur van de omtrek :"
 
 #~ msgid "About this applet"
 #~ msgstr "Over dit applet"
@@ -10407,9 +10506,6 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "Show mouse on :"
 #~ msgstr "Toon muis op :"
 
-#~ msgid "dock"
-#~ msgstr "Dock"
-
 #~ msgid "desklet"
 #~ msgstr "Desklet"
 
@@ -11847,9 +11943,6 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 #~ msgid "not used at the moment."
 #~ msgstr "Wordt op dit moment niet gebruikt."
 
-#~ msgid "How to display the wifi signal :"
-#~ msgstr "Hoe wilt u het wifi-signaal tonen :"
-
 #~ msgid "Info to display in the icon :"
 #~ msgstr "Info om op icoon te tonen :"
 
@@ -12004,9 +12097,6 @@ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
 
 #~ msgid "Network connection has become inactive."
 #~ msgstr "Netwerkverbinding is inactief."
-
-#~ msgid "Network has been disconnected."
-#~ msgstr "Netwerkverbinding is verbroken."
 
 #~ msgid "Fluidity of the transition animation between 2 values :"
 #~ msgstr "Vloeiendheid van de overgangsanimatie tussen 2 waarden :"

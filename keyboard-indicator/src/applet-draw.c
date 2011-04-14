@@ -46,6 +46,10 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 		CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 		if (iWidth <= 1 && iHeight <= 1)  // peut arriver au lancement en mode desklet.
 		{
+			myData.pCurrentSurface = NULL;
+			myData.iCurrentTexture = 0;
+			myData.iCurrentTextWidth = 0;
+			myData.iCurrentTextHeight = 0;
 			return;
 		}
 		double fMaxScale = cairo_dock_get_max_scale (myContainer);
@@ -75,13 +79,12 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 			if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
 			{
 				CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN ();
-				cd_xkbd_render_step_opengl (myApplet);	
+				cd_xkbd_render_step_opengl (myIcon, myApplet);	
 				CD_APPLET_FINISH_DRAWING_MY_ICON;
 			}
 			else
 			{
-				cairo_dock_erase_cairo_context (myDrawContext);
-				cd_xkbd_render_step_cairo (myApplet);
+				cd_xkbd_render_step_cairo (myIcon, myApplet);
 				CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
 			}
 			CD_APPLET_REDRAW_MY_ICON;
@@ -99,7 +102,7 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 }
 
 
-gboolean cd_xkbd_render_step_opengl (CairoDockModuleInstance *myApplet)
+gboolean cd_xkbd_render_step_opengl (Icon *pIcon, CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	double f = CD_APPLET_GET_TRANSITION_FRACTION ();
@@ -153,7 +156,7 @@ gboolean cd_xkbd_render_step_opengl (CairoDockModuleInstance *myApplet)
 }
 
 
-gboolean cd_xkbd_render_step_cairo (CairoDockModuleInstance *myApplet)
+gboolean cd_xkbd_render_step_cairo (Icon *pIcon, CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	double f = CD_APPLET_GET_TRANSITION_FRACTION ();
@@ -162,6 +165,8 @@ gboolean cd_xkbd_render_step_cairo (CairoDockModuleInstance *myApplet)
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 	CD_APPLET_LEAVE_IF_FAIL (iHeight != 0, TRUE);
+	
+	cairo_dock_erase_cairo_context (myDrawContext);
 	
 	if (myData.pBackgroundSurface != NULL)
 	{

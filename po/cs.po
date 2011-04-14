@@ -26,43 +26,45 @@ msgid "This plug-in provides many different animations for your icons."
 msgstr "Zásuvný modul poskytuje mnoho různých animací pro vaše ikony."
 
 #: ../Animated-icons/src/applet-init.c:80 ../Animated-icons/data/messages:9
-#: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
-#: ../Animated-icons/data/messages:63 ../Animated-icons/data/messages:171
+#: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:47
+#: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:177
 msgid "Bounce"
 msgstr "Skákat"
 
 #: ../Animated-icons/src/applet-init.c:81 ../Animated-icons/data/messages:11
-#: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
-#: ../Animated-icons/data/messages:65
+#: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:49
+#: ../Animated-icons/data/messages:69
 msgid "Rotate"
 msgstr "Rotovat"
 
 #: ../Animated-icons/src/applet-init.c:82 ../Animated-icons/data/messages:13
-#: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:49
-#: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:185
+#: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:51
+#: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:191
 msgid "Blink"
 msgstr "Blikat"
 
 #: ../Animated-icons/src/applet-init.c:83 ../Animated-icons/data/messages:15
-#: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:51
-#: ../Animated-icons/data/messages:69 ../Animated-icons/data/messages:159
+#: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:53
+#: ../Animated-icons/data/messages:73 ../Animated-icons/data/messages:165
 msgid "Pulse"
 msgstr "Pulzovat"
 
 #: ../Animated-icons/src/applet-init.c:84 ../Animated-icons/data/messages:17
-#: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:53
-#: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:131
+#: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:55
+#: ../Animated-icons/data/messages:75 ../Animated-icons/data/messages:137
 msgid "Wobbly"
 msgstr "Kmitat"
 
 #: ../Animated-icons/src/applet-init.c:85 ../Animated-icons/data/messages:19
-#: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:55
-#: ../Animated-icons/data/messages:73 ../Animated-icons/data/messages:147
+#: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:57
+#: ../Animated-icons/data/messages:77 ../Animated-icons/data/messages:153
 msgid "Wave"
 msgstr "Vlnit"
 
 #: ../Animated-icons/src/applet-init.c:86 ../Animated-icons/data/messages:21
-#: ../Animated-icons/data/messages:95 ../Animated-icons/data/messages:103
+#: ../Animated-icons/data/messages:39 ../Animated-icons/data/messages:59
+#: ../Animated-icons/data/messages:79 ../Animated-icons/data/messages:101
+#: ../Animated-icons/data/messages:109
 msgid "Spot"
 msgstr "Flek"
 
@@ -204,7 +206,27 @@ msgstr ""
 "Komunikace mezi oběma stranami je založena na systému Dbus."
 
 #: ../Dbus/src/interface-applet-signals.c:365
-msgid "Applet's handbook"
+#: ../Cairo-Penguin/data/messages:15 ../Clipper/data/messages:19
+#: ../Disks/data/messages:19 ../Folders/data/messages:31
+#: ../GMenu/data/messages:19 ../MeMenu/data/messages:13
+#: ../Messaging-Menu/data/messages:15 ../Network-Monitor/data/messages:19
+#: ../RSSreader/data/messages:21 ../Recent-Events/data/messages:19
+#: ../Scooby-Do/data/messages:115 ../Status-Notifier/data/messages:19
+#: ../System-Monitor/data/messages:17 ../Toons/data/messages:17
+#: ../Xgamma/data/messages:21 ../alsaMixer/data/messages:17
+#: ../clock/data/messages:19 ../compiz-icon/data/messages:15
+#: ../dnd2share/data/messages:19 ../dustbin/data/messages:15
+#: ../keyboard-indicator/data/messages:15 ../logout/data/messages:19
+#: ../mail/data/messages:15 ../musicPlayer/data/messages:17
+#: ../netspeed/data/messages:15 ../powermanager/data/messages:19
+#: ../quick-browser/data/messages:21 ../shortcuts/data/messages:19
+#: ../showDesktop/data/messages:23 ../slider/data/messages:17
+#: ../stack/data/messages:21 ../switcher/data/messages:19
+#: ../systray/data/messages:19 ../template/data/messages:19
+#: ../terminal/data/messages:19 ../tomboy/data/messages:29
+#: ../weather/data/messages:17 ../weblets/data/messages:19
+#: ../wifi/data/messages:17
+msgid "Applet's Handbook"
 msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:422
@@ -310,7 +332,7 @@ msgstr ""
 "  - Musí být odpojen od doku, aby fungoval!\n"
 "  - Prostředním tlačítkem znovu načtete hodnoty."
 
-#: ../Doncky/src/applet-notifications.c:60
+#: ../Doncky/src/applet-notifications.c:215
 #, fuzzy
 msgid "It doesn't seem to be a valid XML file."
 msgstr "Nezdá se být platnou URL."
@@ -337,15 +359,15 @@ msgstr ""
 " - nebo adresář jednoduše přetáhněte do doku.\n"
 "Kliknutím prostředním tlačítkem na hlavní ikonu, otevřete adresář.\n"
 
-#: ../Folders/src/applet-notifications.c:41
+#: ../Folders/src/applet-notifications.c:42
 msgid "Open the configuration of the applet to choose a folder to import."
 msgstr "Otevřete panel nastavení appletu pro výběr adresáře pro import."
 
-#: ../Folders/src/applet-notifications.c:53
+#: ../Folders/src/applet-notifications.c:54
 msgid "Empty or unreadable folder."
 msgstr "Vyprázdnit nečitelný adresář."
 
-#: ../Folders/src/applet-notifications.c:204
+#: ../Folders/src/applet-notifications.c:205
 #, c-format
 msgid ""
 "You're about deleting this file\n"
@@ -356,7 +378,7 @@ msgstr ""
 "  (%s)\n"
 "z vašeho pevného disku. Jste si jisti?"
 
-#: ../Folders/src/applet-notifications.c:214
+#: ../Folders/src/applet-notifications.c:215
 msgid ""
 "Warning: could not delete this file.\n"
 "Please check file permissions."
@@ -364,11 +386,11 @@ msgstr ""
 "Upozornění: nelze odstranit tento soubor.\n"
 "Zkontrolujte práva souboru."
 
-#: ../Folders/src/applet-notifications.c:227
+#: ../Folders/src/applet-notifications.c:228
 msgid "Rename to:"
 msgstr "Přejmenovat na :"
 
-#: ../Folders/src/applet-notifications.c:234
+#: ../Folders/src/applet-notifications.c:235
 #, c-format
 msgid ""
 "Warning: could not rename %s.\n"
@@ -379,11 +401,11 @@ msgstr ""
 "Zkontrolujte práva souboru \n"
 "a zda se takto již nejmenuje jiný soubor."
 
-#: ../Folders/src/applet-notifications.c:273
+#: ../Folders/src/applet-notifications.c:274
 msgid "Enter a file name:"
 msgstr "Vložte jméno souboru:"
 
-#: ../Folders/src/applet-notifications.c:281
+#: ../Folders/src/applet-notifications.c:282
 #, c-format
 msgid ""
 "Warning: could not create %s.\n"
@@ -394,20 +416,20 @@ msgstr ""
 "Zkontrolujte práva souboru \n"
 "a zda se takto již nejmenuje jiný soubor."
 
-#: ../Folders/src/applet-notifications.c:339
+#: ../Folders/src/applet-notifications.c:360
 msgid "Open the folder"
 msgstr "Otevřít složku"
 
-#: ../Folders/src/applet-notifications.c:339
+#: ../Folders/src/applet-notifications.c:360
 #: ../GMenu/src/applet-notifications.c:76
 #: ../RSSreader/src/applet-notifications.c:132
-#: ../System-Monitor/src/applet-notifications.c:111
+#: ../System-Monitor/src/applet-notifications.c:108
 #: ../Xgamma/src/applet-notifications.c:89
 #: ../alsaMixer/src/applet-notifications.c:62
-#: ../dustbin/src/applet-notifications.c:118
-#: ../logout/src/applet-notifications.c:153
-#: ../logout/src/applet-notifications.c:162
-#: ../logout/src/applet-notifications.c:171
+#: ../dustbin/src/applet-notifications.c:139
+#: ../logout/src/applet-notifications.c:167
+#: ../logout/src/applet-notifications.c:176
+#: ../logout/src/applet-notifications.c:185
 #: ../mail/src/cd-mail-applet-notifications.c:157
 #: ../netspeed/src/applet-notifications.c:97
 #: ../quick-browser/src/applet-notifications.c:43
@@ -418,7 +440,7 @@ msgstr "Otevřít složku"
 #: ../showDesktop/src/applet-notifications.c:171
 #: ../slider/src/applet-notifications.c:230
 #: ../slider/src/applet-notifications.c:271
-#: ../stack/src/applet-notifications.c:182
+#: ../stack/src/applet-notifications.c:183
 #: ../switcher/src/applet-notifications.c:301
 #: ../switcher/src/applet-notifications.c:306
 #: ../switcher/src/applet-notifications.c:315
@@ -426,35 +448,62 @@ msgstr "Otevřít složku"
 msgid "middle-click"
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:349
+#: ../Folders/src/applet-notifications.c:370
 msgid "Rename this file"
 msgstr "Přejmenovat soubor"
 
-#: ../Folders/src/applet-notifications.c:350
+#: ../Folders/src/applet-notifications.c:371
 msgid "Delete this file"
 msgstr "Smazat soubor"
 
-#: ../Folders/src/applet-notifications.c:351
+#: ../Folders/src/applet-notifications.c:372
 msgid "Move this file"
 msgstr "Přesunout soubor"
 
-#: ../Folders/src/applet-notifications.c:357
+#: ../Folders/src/applet-notifications.c:378
 #: ../Recent-Events/src/applet-dialog.c:255
 #: ../slider/src/applet-notifications.c:240
 msgid "Open with"
 msgstr "Otevřít pomocí"
 
-#: ../Folders/src/applet-notifications.c:389
+#: ../Folders/src/applet-notifications.c:410
 msgid "Properties"
 msgstr "Vlastnosti"
 
-#: ../Folders/src/applet-notifications.c:392
+#: ../Folders/src/applet-notifications.c:413
 msgid "Create a new file"
 msgstr "Vytvořit nový soubor"
 
-#: ../Folders/src/applet-notifications.c:393
+#: ../Folders/src/applet-notifications.c:414
 msgid "Create a new folder"
 msgstr "Vytvořit novou složku"
+
+#: ../Folders/src/applet-notifications.c:417
+msgid "Sort by"
+msgstr ""
+
+#: ../Folders/src/applet-notifications.c:418
+#, fuzzy
+msgid "By name"
+msgstr "Soubor"
+
+#: ../Folders/src/applet-notifications.c:419
+msgid "By date"
+msgstr ""
+
+#: ../Folders/src/applet-notifications.c:420
+#, fuzzy
+msgid "By size"
+msgstr "Velikost paprsku :"
+
+#: ../Folders/src/applet-notifications.c:421
+msgid "By type"
+msgstr ""
+
+#: ../Folders/src/applet-notifications.c:459
+#, fuzzy
+msgid "The folder has been imported."
+msgstr "Tento RSS zdroj byl modifikován..."
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -494,15 +543,15 @@ msgstr "Nedávné dokumenty"
 msgid "Clear the list of the recently used documents?"
 msgstr "Smazat seznam nedávno použitých dokumentů?"
 
-#: ../GMenu/src/applet-run-dialog.c:349 ../Scooby-Do/data/messages:111
+#: ../GMenu/src/applet-run-dialog.c:350 ../Scooby-Do/data/messages:111
 msgid "Enter a command to launch:"
 msgstr "Vložte příkaz, který chcete spustit:"
 
-#: ../MeMenu/src/applet-init.c:31
+#: ../MeMenu/src/applet-init.c:30
 msgid "Me Menu"
 msgstr ""
 
-#: ../MeMenu/src/applet-init.c:34
+#: ../MeMenu/src/applet-init.c:33
 msgid ""
 "A menu that lets you access quickly to your information, your online status, "
 "your friends."
@@ -514,11 +563,11 @@ msgstr ""
 msgid "It seems that the Me-Menu is not installed on your system"
 msgstr "Zdá se, že Me-Menu není na vašem systému nainstalováno."
 
-#: ../Messaging-Menu/src/applet-init.c:31
+#: ../Messaging-Menu/src/applet-init.c:30
 msgid "Messaging Menu"
 msgstr "Nabídka zpráv"
 
-#: ../Messaging-Menu/src/applet-init.c:34
+#: ../Messaging-Menu/src/applet-init.c:33
 msgid ""
 "A menu that notices you about new messages from Mail or Chat applications.\n"
 "It handles Evolution, Pidgin, Empathy, etc"
@@ -623,8 +672,8 @@ msgid "Network ID"
 msgstr "ID sítě"
 
 #: ../Network-Monitor/src/applet-draw.c:145
-#: ../musicPlayer/src/applet-draw.c:337 ../musicPlayer/src/applet-draw.c:339
-#: ../musicPlayer/src/applet-draw.c:341
+#: ../musicPlayer/src/applet-draw.c:344 ../musicPlayer/src/applet-draw.c:346
+#: ../musicPlayer/src/applet-draw.c:348
 #: ../powermanager/src/powermanager-draw.c:189
 #: ../powermanager/src/powermanager-draw.c:218
 msgid "Unknown"
@@ -659,6 +708,7 @@ msgstr ""
 
 #: ../Network-Monitor/src/applet-netspeed.c:200
 #: ../System-Monitor/src/applet-monitor.c:90
+#: ../System-Monitor/src/applet-top.c:427
 #: ../netspeed/src/applet-netspeed.c:196
 msgid "Loading"
 msgstr "Načítání"
@@ -737,35 +787,35 @@ msgstr "Otevřít ve vašem webovém prohlížeči"
 msgid "Refresh"
 msgstr "Obnovit"
 
-#: ../RSSreader/src/applet-rss.c:382
+#: ../RSSreader/src/applet-rss.c:400
 msgid "Warning: couldn't retrieve data last time we tried."
 msgstr "Varování : při posledním pokusu nešly přijmout data."
 
-#: ../RSSreader/src/applet-rss.c:417
+#: ../RSSreader/src/applet-rss.c:436
 msgid "No URL is defined."
 msgstr "Žádná URL není definována."
 
-#: ../RSSreader/src/applet-rss.c:418
+#: ../RSSreader/src/applet-rss.c:437
 msgid "No data (no connection?)"
 msgstr "Žádná data (není spojení?)"
 
-#: ../RSSreader/src/applet-rss.c:449 ../RSSreader/src/applet-rss.c:468
+#: ../RSSreader/src/applet-rss.c:468 ../RSSreader/src/applet-rss.c:487
 msgid "Invalid data (invalid RSS/Atom feed?)"
 msgstr "Neplatná data (neplatný RSS/Atom zdroj?)"
 
-#: ../RSSreader/src/applet-rss.c:532
+#: ../RSSreader/src/applet-rss.c:551
 msgid "No data"
 msgstr "Žádná data"
 
-#: ../RSSreader/src/applet-rss.c:570
+#: ../RSSreader/src/applet-rss.c:589
 msgid "No modification"
 msgstr "Žádné modifikace"
 
-#: ../RSSreader/src/applet-rss.c:595
+#: ../RSSreader/src/applet-rss.c:614
 msgid "This RSS feed has been modified..."
 msgstr "Tento RSS zdroj byl modifikován..."
 
-#: ../RSSreader/src/applet-rss.c:743
+#: ../RSSreader/src/applet-rss.c:775
 msgid ""
 "No URL is defined\n"
 "You can define one by copying the URL in the clipboard,\n"
@@ -775,7 +825,7 @@ msgstr ""
 "Mužete jí zadat zkopírováním do schránky\n"
 " a volbou \"Vložit URL\" v nabídce."
 
-#: ../RSSreader/src/applet-rss.c:749
+#: ../RSSreader/src/applet-rss.c:781
 msgid ""
 "No data\n"
 "Did you set a valid RSS feed?\n"
@@ -786,7 +836,7 @@ msgstr ""
 "Je vaše připojení funkční?"
 
 #: ../Recent-Events/src/applet-dialog.c:280
-#: ../stack/src/applet-notifications.c:180
+#: ../stack/src/applet-notifications.c:181
 msgid "Open parent folder"
 msgstr ""
 
@@ -1021,9 +1071,18 @@ msgstr "Hledání ..."
 msgid "Enter your search"
 msgstr "Zadejte co chcete hledat"
 
-#: ../Status-Notifier/src/applet-init.c:32
-msgid "Status Notifier"
+#: ../Status-Notifier/src/applet-init.c:33
+msgid ""
+"A <b>notification area</b> for your dock\n"
+"Programs can use it to display their current status.\n"
+"If a program doesn't appear inside when it should, it's probably because it "
+"doesn't support the this feature yet. Please fill a bug report to the devs."
 msgstr ""
+
+#: ../Status-Notifier/src/applet-init.c:38
+#, fuzzy
+msgid "Notification Area"
+msgstr "Žádné modifikace"
 
 #: ../System-Monitor/src/applet-cpusage.c:57
 msgid "Uptime"
@@ -1033,15 +1092,15 @@ msgstr "Doba běhu"
 msgid "Activity time"
 msgstr "Čas aktivity"
 
-#: ../System-Monitor/src/applet-cpusage.c:144
+#: ../System-Monitor/src/applet-cpusage.c:145
 msgid "CPU model"
 msgstr "Model CPU"
 
-#: ../System-Monitor/src/applet-cpusage.c:145
+#: ../System-Monitor/src/applet-cpusage.c:146
 msgid "Frequency"
 msgstr "Frekvence"
 
-#: ../System-Monitor/src/applet-cpusage.c:146
+#: ../System-Monitor/src/applet-cpusage.c:147
 msgid "core(s)"
 msgstr "jádro(jádra)"
 
@@ -1061,8 +1120,8 @@ msgstr ""
 "spotřebovávají nejvíce zdrojů.\n"
 "Applet můžete spustit vícekrát a v každé instanci nastavit různé informace."
 
-#: ../System-Monitor/src/applet-notifications.c:44
-#: ../System-Monitor/src/applet-notifications.c:86
+#: ../System-Monitor/src/applet-notifications.c:40
+#: ../System-Monitor/src/applet-notifications.c:83
 msgid ""
 "The acquisition of one or more data has failed.\n"
 "You should remove the data that couldn't be fetched."
@@ -1070,12 +1129,12 @@ msgstr ""
 "Získání jedněch nebo více dat se nezdařilo.\n"
 "Měli byste odstranit data, která nemohou být načtena."
 
-#: ../System-Monitor/src/applet-notifications.c:109
+#: ../System-Monitor/src/applet-notifications.c:106
 #: ../netspeed/src/applet-notifications.c:101
 msgid "Open the System-Monitor"
 msgstr "Otevřít Monitor systému"
 
-#: ../System-Monitor/src/applet-notifications.c:111
+#: ../System-Monitor/src/applet-notifications.c:108
 msgid "Show info"
 msgstr "Zobrazit informace"
 
@@ -1089,7 +1148,7 @@ msgstr "Video RAM"
 
 #: ../System-Monitor/src/applet-nvidia.c:147
 #: ../System-Monitor/src/applet-rame.c:124
-#: ../System-Monitor/src/applet-top.c:288
+#: ../System-Monitor/src/applet-top.c:297
 msgid "Mb"
 msgstr "Mb"
 
@@ -1190,9 +1249,14 @@ msgstr "Nastavení gamy:"
 msgid "Apply current luminosity on startup"
 msgstr "Nastavit aktuální jas při spuštění systému."
 
-#: ../Xgamma/src/applet-xgamma.c:204 ../Xgamma/src/applet-xgamma.c:274
+#: ../Xgamma/src/applet-xgamma.c:200 ../Xgamma/src/applet-xgamma.c:270
 msgid "Set up gamma:"
 msgstr "Nastavení gamy:"
+
+#: ../Xgamma/src/applet-xgamma.c:283
+#, fuzzy
+msgid "Luminosity"
+msgstr "Světlost obrazovky"
 
 #: ../alsaMixer/src/applet-init.c:34
 msgid ""
@@ -1243,7 +1307,7 @@ msgstr "Nemohu registrovat nastavení"
 msgid "I couldn't load the mixer"
 msgstr "Nelze načíst mixer"
 
-#: ../alsaMixer/src/applet-mixer.c:291
+#: ../alsaMixer/src/applet-mixer.c:295
 msgid "Set up volume:"
 msgstr "Nastavit hlasitost:"
 
@@ -1275,7 +1339,7 @@ msgstr "Bez názvu"
 msgid "years"
 msgstr "let"
 
-#: ../clock/src/applet-calendar.c:646
+#: ../clock/src/applet-calendar.c:651
 msgid "Calendar and tasks"
 msgstr "Kalendář a úkoly"
 
@@ -1363,7 +1427,7 @@ msgstr "Příkaz ke spuštění:"
 msgid "E.g.:"
 msgstr "Např.:"
 
-#: ../clock/src/applet-config.c:495 ../weather/src/applet-config.c:201
+#: ../clock/src/applet-config.c:495 ../weather/src/applet-config.c:205
 msgid "Search for your location :"
 msgstr "Hledat vaše umístění:"
 
@@ -1456,31 +1520,31 @@ msgstr "každý měsíc"
 msgid "each year"
 msgstr "každý rok"
 
-#: ../clock/src/applet-task-editor.c:391
+#: ../clock/src/applet-task-editor.c:392
 msgid "Right-click to add a new task."
 msgstr "Pravým tlačítkem přidáte novoý úkol."
 
-#: ../clock/src/applet-task-editor.c:397 ../musicPlayer/src/applet-draw.c:338
+#: ../clock/src/applet-task-editor.c:398 ../musicPlayer/src/applet-draw.c:345
 #: ../RSSreader/data/messages:139
 msgid "Title"
 msgstr "Název"
 
-#: ../clock/src/applet-task-editor.c:404
+#: ../clock/src/applet-task-editor.c:405
 #: ../dnd2share/src/applet-notifications.c:378 ../Doncky/data/messages:101
 #: ../RSSreader/data/messages:155
 msgid "Text"
 msgstr "Text"
 
-#: ../clock/src/applet-task-editor.c:411
+#: ../clock/src/applet-task-editor.c:412
 #: ../powermanager/src/powermanager-draw.c:135
 msgid "Time"
 msgstr "Čas"
 
-#: ../clock/src/applet-task-editor.c:425
+#: ../clock/src/applet-task-editor.c:426
 msgid "Freq."
 msgstr "Frekvence"
 
-#: ../clock/src/applet-task-editor.c:432
+#: ../clock/src/applet-task-editor.c:433
 msgid "Tags"
 msgstr "Štítky"
 
@@ -1664,13 +1728,13 @@ msgstr "vykreslování dialogu"
 msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr "Tento zásuvný modul nabízí dekorátory dialogových bublin."
 
-#: ../dnd2share/src/applet-dnd2share.c:167
+#: ../dnd2share/src/applet-dnd2share.c:165
 msgid ""
 "Couldn't upload the file, check that your internet connection is active."
 msgstr ""
 "Nelze nahrát soubor, zkontrolujte zda je vaše připojení k internetu funkční."
 
-#: ../dnd2share/src/applet-dnd2share.c:282
+#: ../dnd2share/src/applet-dnd2share.c:280
 msgid ""
 "File has been uploaded.\n"
 "Just press CTRL+v to paste its URL anywhere."
@@ -1678,11 +1742,11 @@ msgstr ""
 "Soubor byl nahrán.\n"
 "jeho URL můžete vložit kamkoliv stisknutím CTRL+v"
 
-#: ../dnd2share/src/applet-dnd2share.c:332
+#: ../dnd2share/src/applet-dnd2share.c:331
 msgid "Please wait for the current upload to finish before starting a new one."
 msgstr "Počkejte s dalším uploadem, než skončí ten předchozí."
 
-#: ../dnd2share/src/applet-dnd2share.c:582
+#: ../dnd2share/src/applet-dnd2share.c:591
 msgid "Tiny URL"
 msgstr "Tiny URL"
 
@@ -1868,67 +1932,67 @@ msgstr ""
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr "Opravdu chcete odstranit všechny soubory z odpadkového koše?"
 
-#: ../dustbin/src/applet-notifications.c:80
+#: ../dustbin/src/applet-notifications.c:91
 msgid "The trash contains"
 msgstr "Odpadkový koš obsahuje"
 
-#: ../dustbin/src/applet-notifications.c:82
+#: ../dustbin/src/applet-notifications.c:93
 msgid "files"
 msgstr "soubory"
 
-#: ../dustbin/src/applet-notifications.c:82
+#: ../dustbin/src/applet-notifications.c:93
 msgid "elements"
 msgstr ""
 
-#: ../dustbin/src/applet-notifications.c:84
+#: ../dustbin/src/applet-notifications.c:95
 msgid "Mo"
 msgstr "Mo"
 
-#: ../dustbin/src/applet-notifications.c:84
+#: ../dustbin/src/applet-notifications.c:95
 msgid "Ko"
 msgstr "Ko"
 
-#: ../dustbin/src/applet-notifications.c:100
+#: ../dustbin/src/applet-notifications.c:115
 msgid "Counting total size and files number..."
 msgstr ""
 
-#: ../dustbin/src/applet-notifications.c:117
+#: ../dustbin/src/applet-notifications.c:138
 msgid "Show Trash (click)"
 msgstr "Ukázat koš (kliknout)"
 
-#: ../dustbin/src/applet-notifications.c:118
+#: ../dustbin/src/applet-notifications.c:139
 msgid "Empty Trash"
 msgstr "Vysypat koš"
 
-#: ../dustbin/src/applet-notifications.c:122
+#: ../dustbin/src/applet-notifications.c:143
 msgid "Display dustbins information"
 msgstr "Ukázat informace o odpadkovém koši"
 
-#: ../dustbin/src/applet-notifications.c:135
+#: ../dustbin/src/applet-notifications.c:156
 #, c-format
 msgid "%s successfully unmounted"
 msgstr "%s byl úspěšně odpojen"
 
-#: ../dustbin/src/applet-notifications.c:139
+#: ../dustbin/src/applet-notifications.c:160
 #, c-format
 msgid "failed to unmount %s"
 msgstr "%s se nepodařilo odpojit"
 
-#: ../dustbin/src/applet-notifications.c:163
+#: ../dustbin/src/applet-notifications.c:184
 #: ../shortcuts/src/applet-notifications.c:167
 msgid "Unmouting this volume ..."
 msgstr "Odpojuje se tento disk ..."
 
-#: ../dustbin/src/applet-trashes-manager.c:59
+#: ../dustbin/src/applet-trashes-manager.c:68
 msgid " trashe(s)"
 msgstr " koš(e)"
 
-#: ../dustbin/src/applet-trashes-manager.c:63
+#: ../dustbin/src/applet-trashes-manager.c:72
 msgid " file(s)"
 msgstr " soubor(y)"
 
-#: ../dustbin/src/applet-trashes-manager.c:98
-#: ../dustbin/src/applet-trashes-manager.c:127
+#: ../dustbin/src/applet-trashes-manager.c:114
+#: ../dustbin/src/applet-trashes-manager.c:153
 msgid "calculating"
 msgstr "počítá se"
 
@@ -2057,33 +2121,38 @@ msgstr ""
 "tlačítko myši systém vypne, nebo restartuje.\n"
 "  (tlačítka můžete vyměnit, pokud preferujete vypínání levým tlačítkem)"
 
-#: ../logout/src/applet-notifications.c:124
+#: ../logout/src/applet-notifications.c:138
 msgid "Choose in how many minutes your PC will stop:"
 msgstr "Vyberte, za kolik minut se vaše PC zastaví :"
 
-#: ../logout/src/applet-notifications.c:153
-#: ../logout/src/applet-notifications.c:155 ../logout/data/messages:101
+#: ../logout/src/applet-notifications.c:167
+#: ../logout/src/applet-notifications.c:169 ../logout/data/messages:101
 #: ../logout/data/messages:109
 msgid "Log out"
 msgstr "Odhlásit se"
 
-#: ../logout/src/applet-notifications.c:162
-#: ../logout/src/applet-notifications.c:164 ../logout/data/messages:103
+#: ../logout/src/applet-notifications.c:176
+#: ../logout/src/applet-notifications.c:178 ../logout/data/messages:103
 #: ../logout/data/messages:111
 msgid "Shut down"
 msgstr "Vypnout"
 
-#: ../logout/src/applet-notifications.c:171
-#: ../logout/src/applet-notifications.c:173 ../logout/data/messages:105
+#: ../logout/src/applet-notifications.c:185
+#: ../logout/src/applet-notifications.c:187 ../logout/data/messages:105
 #: ../logout/data/messages:113
 msgid "Lock screen"
 msgstr "Zamknout obrazovku"
 
-#: ../logout/src/applet-notifications.c:178
+#: ../logout/src/applet-notifications.c:193
+#: ../logout/src/applet-notifications.c:199
+msgid "Guest session"
+msgstr ""
+
+#: ../logout/src/applet-notifications.c:203
 msgid "Program an automatic shut-down"
 msgstr "Nastavit automatické vypnutí"
 
-#: ../logout/src/applet-notifications.c:208
+#: ../logout/src/applet-notifications.c:233
 msgid "Your computer will shut-down in 1 minute."
 msgstr "Váš počítač se vypne za 1 minutu."
 
@@ -2135,7 +2204,7 @@ msgid "Use a secure connection (SSL)"
 msgstr "Použít zabezpečené spojení (SSL)"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39 ../RSSreader/data/messages:113
-#: ../netspeed/data/messages:137 ../powermanager/data/messages:153
+#: ../netspeed/data/messages:137 ../powermanager/data/messages:157
 #: ../weather/data/messages:111
 msgid "Refresh time:"
 msgstr "Obnovovací čas:"
@@ -2303,35 +2372,35 @@ msgstr "Neznámý autor"
 msgid "Unknown title"
 msgstr "Neznámý název"
 
-#: ../musicPlayer/src/applet-draw.c:233 ../musicPlayer/src/applet-mpris.c:267
+#: ../musicPlayer/src/applet-draw.c:233 ../musicPlayer/src/applet-mpris.c:317
 msgid "Track"
 msgstr "Stopa"
 
-#: ../musicPlayer/src/applet-draw.c:327
+#: ../musicPlayer/src/applet-draw.c:334
 msgid "Current song"
 msgstr "Aktuální skladba"
 
-#: ../musicPlayer/src/applet-draw.c:336
+#: ../musicPlayer/src/applet-draw.c:343
 msgid "Artist"
 msgstr "Interpret"
 
-#: ../musicPlayer/src/applet-draw.c:340
+#: ../musicPlayer/src/applet-draw.c:347
 msgid "Album"
 msgstr "Album"
 
-#: ../musicPlayer/src/applet-draw.c:342
+#: ../musicPlayer/src/applet-draw.c:349
 msgid "Length"
 msgstr "Délka"
 
-#: ../musicPlayer/src/applet-draw.c:344
+#: ../musicPlayer/src/applet-draw.c:351
 msgid "Track n°"
 msgstr "Stopa číslo"
 
-#: ../musicPlayer/src/applet-draw.c:345
+#: ../musicPlayer/src/applet-draw.c:352
 msgid "Song n°"
 msgstr "Skladba č."
 
-#: ../musicPlayer/src/applet-draw.c:347
+#: ../musicPlayer/src/applet-draw.c:354
 msgid "There is no media playing."
 msgstr "Nejsou přehrávána žádná média"
 
@@ -2793,51 +2862,61 @@ msgid ""
 "icon."
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:74
+#: ../stack/src/applet-notifications.c:75
 msgid "Clear the stack?"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:95
+#: ../stack/src/applet-notifications.c:96
 msgid "Set new name for this item:"
 msgstr "Nastavit nový název pro tuto položku :"
 
-#: ../stack/src/applet-notifications.c:167
+#: ../stack/src/applet-notifications.c:168
 msgid "Paste (drag'n'drop)"
 msgstr "Vložit (přetáhnutím)"
 
-#: ../stack/src/applet-notifications.c:170
+#: ../stack/src/applet-notifications.c:171
 msgid "Clear the stack"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:177
+#: ../stack/src/applet-notifications.c:178
 msgid "Open (click)"
 msgstr "Otevřít (kliknutím)"
 
-#: ../stack/src/applet-notifications.c:182
+#: ../stack/src/applet-notifications.c:183
 #: ../terminal/src/terminal-callbacks.c:82
-#: ../terminal/src/terminal-widget.c:384
+#: ../terminal/src/terminal-widget.c:386
 msgid "Copy"
 msgstr "Kopírovat"
 
-#: ../stack/src/applet-notifications.c:185
+#: ../stack/src/applet-notifications.c:186
 msgid "Cut"
 msgstr "Vyjmout"
 
-#: ../stack/src/applet-notifications.c:188
+#: ../stack/src/applet-notifications.c:189
 msgid "Rename this item"
 msgstr "Přejmenovat tuto položku"
 
-#: ../stack/src/applet-notifications.c:189
+#: ../stack/src/applet-notifications.c:190
 msgid "Remove this item"
 msgstr "Odstranit tuto položku"
 
-#: ../switcher/src/applet-draw.c:617 ../switcher/src/applet-draw.c:624
+#: ../stack/src/applet-notifications.c:259
+#, fuzzy
+msgid "The file has been added to the stack."
+msgstr "Modul byl přidán, ale nemůže být spuštěn."
+
+#: ../stack/src/applet-notifications.c:260
+#, fuzzy
+msgid "The URL has been added to the stack."
+msgstr "Modul byl přidán, ale nemůže být spuštěn."
+
+#: ../switcher/src/applet-draw.c:618 ../switcher/src/applet-draw.c:625
 #: ../switcher/src/applet-load-icons.c:43
 #: ../switcher/src/applet-notifications.c:420
 msgid "Current"
 msgstr "Současný"
 
-#: ../switcher/src/applet-draw.c:624 ../switcher/src/applet-draw.c:626
+#: ../switcher/src/applet-draw.c:625 ../switcher/src/applet-draw.c:627
 #: ../switcher/src/applet-load-icons.c:49
 #: ../switcher/src/applet-notifications.c:216
 #: ../switcher/src/applet-notifications.c:228
@@ -2893,10 +2972,6 @@ msgstr "Seznam oken"
 msgid "Expose all the windows"
 msgstr "Otevřít v novém okně"
 
-#: ../systray/src/systray-init.c:32
-msgid "systray"
-msgstr ""
-
 #: ../systray/src/systray-init.c:35
 msgid ""
 "Add a systray to your dock.\n"
@@ -2905,6 +2980,11 @@ msgid ""
 "But the best way to use it is to detach it from the dock, and place it "
 "somewhere, above other windows."
 msgstr ""
+
+#: ../systray/src/systray-init.c:41
+#, fuzzy
+msgid "Notification Area Old"
+msgstr "Žádné modifikace"
 
 #: ../systray/src/systray-interface.c:71
 msgid ""
@@ -2941,7 +3021,7 @@ msgid ""
 msgstr ""
 
 #: ../terminal/src/terminal-menu-functions.c:79
-#: ../terminal/src/terminal-widget.c:400
+#: ../terminal/src/terminal-widget.c:402
 msgid "New Tab"
 msgstr "Nový panel"
 
@@ -2957,32 +3037,32 @@ msgstr "Zavřít aktuální panel"
 msgid "Terminal"
 msgstr "Terminál"
 
-#: ../terminal/src/terminal-widget.c:154
+#: ../terminal/src/terminal-widget.c:155
 msgid "Set title for this tab:"
 msgstr "Nastavit titulek pro tento panel :"
 
-#: ../terminal/src/terminal-widget.c:209
+#: ../terminal/src/terminal-widget.c:210
 msgid "Select a color"
 msgstr "Vyberte barvu"
 
-#: ../terminal/src/terminal-widget.c:344
+#: ../terminal/src/terminal-widget.c:346
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
 msgstr "Terminál můžete vrátit zpět napsáním %s"
 
-#: ../terminal/src/terminal-widget.c:390
+#: ../terminal/src/terminal-widget.c:392
 msgid "Paste"
 msgstr "Vložit"
 
-#: ../terminal/src/terminal-widget.c:406
+#: ../terminal/src/terminal-widget.c:408
 msgid "Rename this Tab"
 msgstr "Přejmenovat tento Panel"
 
-#: ../terminal/src/terminal-widget.c:412
+#: ../terminal/src/terminal-widget.c:414
 msgid "Change this Tab's colour"
 msgstr "Změnit barvu tohoto Panelu"
 
-#: ../terminal/src/terminal-widget.c:418
+#: ../terminal/src/terminal-widget.c:420
 msgid "Close this Tab"
 msgstr "Zavřít tento Panel"
 
@@ -3050,7 +3130,7 @@ msgstr "Hledat poznámku na příští týden"
 msgid "Reset marks"
 msgstr "Vyčistit značky"
 
-#: ../weather/src/applet-config.c:119
+#: ../weather/src/applet-config.c:120
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
@@ -3058,23 +3138,23 @@ msgstr ""
 "Nemohu zjistit informace\n"
 " je připojení v pořádku ?"
 
-#: ../weather/src/applet-config.c:125
+#: ../weather/src/applet-config.c:126
 #, fuzzy
 msgid "Couldn't get the location code (is connection alive?)"
 msgstr ""
 "Nemohu zjistit informace\n"
 " je připojení v pořádku ?"
 
-#: ../weather/src/applet-config.c:133
+#: ../weather/src/applet-config.c:134
 msgid "I couldn't find this location"
 msgstr "Nemohu najít tuto lokaci"
 
-#: ../weather/src/applet-config.c:181
+#: ../weather/src/applet-config.c:185
 #, fuzzy
 msgid "Searching the location code..."
 msgstr "Hledat vaše umístění:"
 
-#: ../weather/src/applet-config.c:205
+#: ../weather/src/applet-config.c:209
 msgid ""
 "Enter the name of your location and press Enter to choose amongst results."
 msgstr "Vložte název své lokace a stiskněte Enter pro vybrání mezi výsledky."
@@ -3141,24 +3221,23 @@ msgstr "Lis"
 msgid "Dec"
 msgstr "Pro"
 
-#: ../weather/src/applet-notifications.c:33
-#: ../weather/src/applet-notifications.c:70
+#: ../weather/src/applet-notifications.c:61
 msgid "Data are being retrieved, please wait a moment."
 msgstr "Získávám data, počkejte moment prosím."
 
-#: ../weather/src/applet-notifications.c:108
+#: ../weather/src/applet-notifications.c:99
 msgid "Show current conditions (middle-click)"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:113
+#: ../weather/src/applet-notifications.c:104
 msgid "Open weather.com (double-click)"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:115
+#: ../weather/src/applet-notifications.c:106
 msgid "Reload now"
 msgstr "Obnovit nyní"
 
-#: ../weather/src/applet-notifications.c:148
+#: ../weather/src/applet-notifications.c:141
 msgid ""
 "No data available\n"
 " is your connection alive?"
@@ -3166,40 +3245,40 @@ msgstr ""
 "Nejsou dostupná žádná data\n"
 " je připojení v pořádku ?"
 
-#: ../weather/src/applet-notifications.c:167
-#: ../weather/src/applet-notifications.c:203
+#: ../weather/src/applet-notifications.c:161
+#: ../weather/src/applet-notifications.c:199
 msgid "Temperature"
 msgstr "Teplota"
 
-#: ../weather/src/applet-notifications.c:168
+#: ../weather/src/applet-notifications.c:162
 msgid "Precipitation probability"
 msgstr "Pravděpodobnost Přeháňky"
 
-#: ../weather/src/applet-notifications.c:169
-#: ../weather/src/applet-notifications.c:204
+#: ../weather/src/applet-notifications.c:163
+#: ../weather/src/applet-notifications.c:200
 msgid "Wind"
 msgstr "Vítr"
 
-#: ../weather/src/applet-notifications.c:170
-#: ../weather/src/applet-notifications.c:205
+#: ../weather/src/applet-notifications.c:164
+#: ../weather/src/applet-notifications.c:201
 msgid "Humidity"
 msgstr "Vlhkost"
 
-#: ../weather/src/applet-notifications.c:171
-#: ../weather/src/applet-notifications.c:206
+#: ../weather/src/applet-notifications.c:165
+#: ../weather/src/applet-notifications.c:202
 msgid "Sunrise"
 msgstr "Východ slunce"
 
-#: ../weather/src/applet-notifications.c:171
-#: ../weather/src/applet-notifications.c:206
+#: ../weather/src/applet-notifications.c:165
+#: ../weather/src/applet-notifications.c:202
 msgid "Sunset"
 msgstr "Západ slunce"
 
-#: ../weather/src/applet-notifications.c:179
+#: ../weather/src/applet-notifications.c:175
 msgid "Data are being fetched, please re-try in a few seconds."
 msgstr "Data jsou přenášena, prosím skuste znovu za pár vteřin."
 
-#: ../weather/src/applet-notifications.c:189
+#: ../weather/src/applet-notifications.c:185
 msgid ""
 "No data available\n"
 "Retrying now..."
@@ -3207,11 +3286,11 @@ msgstr ""
 "Žádná data nejsou dostupná\n"
 "Probíhá opakované zkoušení ..."
 
-#: ../weather/src/applet-notifications.c:203
+#: ../weather/src/applet-notifications.c:199
 msgid "Feels like"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:205
+#: ../weather/src/applet-notifications.c:201
 msgid "Pressure"
 msgstr "Tlak"
 
@@ -3283,34 +3362,34 @@ msgstr "při kliknutí na spouštěč"
 msgid "Effects used on launcher:"
 msgstr "Efekty použité na spouštěč"
 
-#: ../Animated-icons/data/messages:39 ../Animated-icons/data/messages:57
-#: ../Animated-icons/data/messages:75
+#: ../Animated-icons/data/messages:41 ../Animated-icons/data/messages:61
+#: ../Animated-icons/data/messages:81
 msgid "Number of times the animation will play:"
 msgstr "Čas, po který bude animace přehrávána :"
 
-#: ../Animated-icons/data/messages:41 ../icon-effect/data/messages:35
+#: ../Animated-icons/data/messages:43 ../icon-effect/data/messages:35
 msgid "when clicking on an application"
 msgstr ""
 
-#: ../Animated-icons/data/messages:43 ../icon-effect/data/messages:37
+#: ../Animated-icons/data/messages:45 ../icon-effect/data/messages:37
 msgid "Effects used on applications:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:59 ../icon-effect/data/messages:51
+#: ../Animated-icons/data/messages:63 ../icon-effect/data/messages:51
 msgid "when clicking on an applet"
 msgstr "při kliknutí na applet"
 
-#: ../Animated-icons/data/messages:61 ../icon-effect/data/messages:53
+#: ../Animated-icons/data/messages:65 ../icon-effect/data/messages:53
 msgid "Effects used on applets:"
 msgstr "Efekty použité na applety :"
 
-#: ../Animated-icons/data/messages:77
+#: ../Animated-icons/data/messages:83
 msgid "Rotation"
 msgstr "Rotace"
 
-#: ../Animated-icons/data/messages:79 ../Animated-icons/data/messages:97
-#: ../Animated-icons/data/messages:149 ../Animated-icons/data/messages:161
-#: ../Animated-icons/data/messages:173 ../Animated-icons/data/messages:187
+#: ../Animated-icons/data/messages:85 ../Animated-icons/data/messages:103
+#: ../Animated-icons/data/messages:155 ../Animated-icons/data/messages:167
+#: ../Animated-icons/data/messages:179 ../Animated-icons/data/messages:193
 #: ../Remote-Control/data/messages:7 ../Scooby-Do/data/messages:15
 #: ../Scooby-Do/data/messages:19 ../Toons/data/messages:101
 #: ../icon-effect/data/messages:101 ../icon-effect/data/messages:123
@@ -3319,8 +3398,8 @@ msgstr "Rotace"
 msgid "In ms."
 msgstr ""
 
-#: ../Animated-icons/data/messages:81 ../Animated-icons/data/messages:99
-#: ../Animated-icons/data/messages:151 ../icon-effect/data/messages:75
+#: ../Animated-icons/data/messages:87 ../Animated-icons/data/messages:105
+#: ../Animated-icons/data/messages:157 ../icon-effect/data/messages:75
 #: ../icon-effect/data/messages:103 ../icon-effect/data/messages:125
 #: ../icon-effect/data/messages:147 ../icon-effect/data/messages:169
 #: ../icon-effect/data/messages:189 ../illusion/data/messages:33
@@ -3330,20 +3409,20 @@ msgstr ""
 msgid "Duration of the animation:"
 msgstr "Trvání animace :"
 
-#: ../Animated-icons/data/messages:83 ../Animated-icons/data/messages:101
-#: ../Animated-icons/data/messages:153 ../Animated-icons/data/messages:165
-#: ../Animated-icons/data/messages:177 ../Animated-icons/data/messages:191
+#: ../Animated-icons/data/messages:89 ../Animated-icons/data/messages:107
+#: ../Animated-icons/data/messages:159 ../Animated-icons/data/messages:171
+#: ../Animated-icons/data/messages:183 ../Animated-icons/data/messages:197
 #: ../icon-effect/data/messages:77 ../icon-effect/data/messages:105
 #: ../icon-effect/data/messages:127 ../icon-effect/data/messages:149
 #: ../icon-effect/data/messages:171 ../icon-effect/data/messages:191
 msgid "Repeat while icon is pointed to?"
 msgstr "Opakovat při namíření na ikonu ?"
 
-#: ../Animated-icons/data/messages:85
+#: ../Animated-icons/data/messages:91
 msgid "Type of mesh:"
 msgstr "Typ záběru :"
 
-#: ../Animated-icons/data/messages:87 ../Clipper/data/messages:49
+#: ../Animated-icons/data/messages:93 ../Clipper/data/messages:49
 #: ../Disks/data/messages:37 ../Doncky/data/messages:47
 #: ../Folders/data/messages:61 ../GMenu/data/messages:49
 #: ../MeMenu/data/messages:43 ../Messaging-Menu/data/messages:45
@@ -3366,19 +3445,19 @@ msgstr "Typ záběru :"
 msgid "Normal"
 msgstr "Normální"
 
-#: ../Animated-icons/data/messages:89
+#: ../Animated-icons/data/messages:95
 msgid "Cube"
 msgstr "Krychle"
 
-#: ../Animated-icons/data/messages:91
+#: ../Animated-icons/data/messages:97
 msgid "Capsule"
 msgstr "Kapsle"
 
-#: ../Animated-icons/data/messages:93
+#: ../Animated-icons/data/messages:99
 msgid "Colour of the sheen:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:105 ../Animated-icons/data/messages:109
+#: ../Animated-icons/data/messages:111 ../Animated-icons/data/messages:115
 #: ../Clipper/data/messages:11 ../Disks/data/messages:11
 #: ../Doncky/data/messages:11 ../Doncky/data/messages:95
 #: ../Folders/data/messages:23 ../GMenu/data/messages:11
@@ -3396,123 +3475,123 @@ msgstr ""
 msgid "Leave empty to use the default one."
 msgstr "Nechat prázdné použít implicitní."
 
-#: ../Animated-icons/data/messages:107
+#: ../Animated-icons/data/messages:113
 msgid "Image for the spotlight:"
 msgstr "Obrázek pro bod :"
 
-#: ../Animated-icons/data/messages:111
+#: ../Animated-icons/data/messages:117
 msgid "Image for the front spotlight:"
 msgstr "Obrázek pro přední bod :"
 
-#: ../Animated-icons/data/messages:113
+#: ../Animated-icons/data/messages:119
 msgid "Spot colour:"
 msgstr "barva bodu :"
 
-#: ../Animated-icons/data/messages:115
+#: ../Animated-icons/data/messages:121
 msgid "Halo colour:"
 msgstr "barva kruhu :"
 
-#: ../Animated-icons/data/messages:117
+#: ../Animated-icons/data/messages:123
 msgid "Rays"
 msgstr "Paprsky"
 
-#: ../Animated-icons/data/messages:119 ../icon-effect/data/messages:81
+#: ../Animated-icons/data/messages:125 ../icon-effect/data/messages:81
 #: ../icon-effect/data/messages:109 ../icon-effect/data/messages:131
 #: ../icon-effect/data/messages:153 ../icon-effect/data/messages:175
 #: ../illusion/data/messages:37 ../show-mouse/data/messages:27
 msgid "1st color of gradation :"
 msgstr "První barva postupného přechodu :"
 
-#: ../Animated-icons/data/messages:121 ../icon-effect/data/messages:83
+#: ../Animated-icons/data/messages:127 ../icon-effect/data/messages:83
 #: ../icon-effect/data/messages:111 ../icon-effect/data/messages:133
 #: ../icon-effect/data/messages:155 ../icon-effect/data/messages:177
 #: ../illusion/data/messages:39 ../show-mouse/data/messages:29
 msgid "2nd color of gradation :"
 msgstr "Druhá barva postupného přechodu :"
 
-#: ../Animated-icons/data/messages:123 ../icon-effect/data/messages:85
+#: ../Animated-icons/data/messages:129 ../icon-effect/data/messages:85
 #: ../icon-effect/data/messages:113 ../icon-effect/data/messages:197
 #: ../illusion/data/messages:41 ../show-mouse/data/messages:31
 msgid "Random colours?"
 msgstr "Náhodné barvy ?"
 
-#: ../Animated-icons/data/messages:125
+#: ../Animated-icons/data/messages:131
 msgid "Number of rays:"
 msgstr "Množství paprsků :"
 
-#: ../Animated-icons/data/messages:127
+#: ../Animated-icons/data/messages:133
 msgid "Ray size:"
 msgstr "Velikost paprsku :"
 
-#: ../Animated-icons/data/messages:129
+#: ../Animated-icons/data/messages:135
 msgid "Ray speed:"
 msgstr "Rychlost paprsku :"
 
-#: ../Animated-icons/data/messages:133
+#: ../Animated-icons/data/messages:139
 msgid "Initial stretch:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:135
+#: ../Animated-icons/data/messages:141
 msgid "Horizontal stretch"
 msgstr "Horizontální roztažení"
 
-#: ../Animated-icons/data/messages:137
+#: ../Animated-icons/data/messages:143
 msgid "Vertical stretch"
 msgstr "Vertikální roztažení"
 
-#: ../Animated-icons/data/messages:139
+#: ../Animated-icons/data/messages:145
 msgid "Corner stretch"
 msgstr "Roztažení rohu"
 
-#: ../Animated-icons/data/messages:141
+#: ../Animated-icons/data/messages:147
 msgid "Spring constant:"
 msgstr "Konstanta růstu :"
 
-#: ../Animated-icons/data/messages:143
+#: ../Animated-icons/data/messages:149
 msgid "Friction:"
 msgstr "Tření :"
 
-#: ../Animated-icons/data/messages:145
+#: ../Animated-icons/data/messages:151
 msgid "Number of points on the grid in each direction:"
 msgstr "Množství bodů v mřížce v jednom směru"
 
-#: ../Animated-icons/data/messages:155
+#: ../Animated-icons/data/messages:161
 msgid "Wave width:"
 msgstr "Šířka vlny :"
 
-#: ../Animated-icons/data/messages:157
+#: ../Animated-icons/data/messages:163
 msgid "Wave amplitude:"
 msgstr "Amplituda vlny :"
 
-#: ../Animated-icons/data/messages:163
+#: ../Animated-icons/data/messages:169
 msgid "Pulse duration:"
 msgstr "Trvání pulsu"
 
-#: ../Animated-icons/data/messages:167
+#: ../Animated-icons/data/messages:173
 msgid "Pulse max zoom:"
 msgstr "Maximální zoom pulsu"
 
-#: ../Animated-icons/data/messages:169
+#: ../Animated-icons/data/messages:175
 msgid "Pulse follows icon shape?"
 msgstr "Má puls následovat tvar ikony ?"
 
-#: ../Animated-icons/data/messages:175
+#: ../Animated-icons/data/messages:181
 msgid "Bounce duration:"
 msgstr "Trvání poskočení :"
 
-#: ../Animated-icons/data/messages:179
+#: ../Animated-icons/data/messages:185
 msgid "When bouncing, resize the icon by:"
 msgstr "Při poskočení změnit velikost ikony o :"
 
-#: ../Animated-icons/data/messages:181
+#: ../Animated-icons/data/messages:187
 msgid "the lower the value, the more it will flatten."
 msgstr "čím menší, tím víc bude pložší."
 
-#: ../Animated-icons/data/messages:183
+#: ../Animated-icons/data/messages:189
 msgid "How much the icon will flatten when hitting the ground:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:189
+#: ../Animated-icons/data/messages:195
 msgid "Blink duration:"
 msgstr "Trvání bliknutí :"
 
@@ -3660,29 +3739,6 @@ msgstr "Pro použití základní velikosti appletu nastavte na 0"
 msgid "Icon size for busy penguin:"
 msgstr ""
 
-#: ../Cairo-Penguin/data/messages:15 ../Clipper/data/messages:19
-#: ../Disks/data/messages:19 ../Folders/data/messages:31
-#: ../GMenu/data/messages:19 ../MeMenu/data/messages:13
-#: ../Messaging-Menu/data/messages:15 ../Network-Monitor/data/messages:19
-#: ../RSSreader/data/messages:21 ../Recent-Events/data/messages:19
-#: ../Scooby-Do/data/messages:115 ../Status-Notifier/data/messages:19
-#: ../System-Monitor/data/messages:17 ../Toons/data/messages:17
-#: ../Xgamma/data/messages:21 ../alsaMixer/data/messages:17
-#: ../clock/data/messages:19 ../compiz-icon/data/messages:15
-#: ../dnd2share/data/messages:19 ../dustbin/data/messages:15
-#: ../keyboard-indicator/data/messages:15 ../logout/data/messages:19
-#: ../mail/data/messages:15 ../musicPlayer/data/messages:17
-#: ../netspeed/data/messages:15 ../powermanager/data/messages:19
-#: ../quick-browser/data/messages:21 ../shortcuts/data/messages:19
-#: ../showDesktop/data/messages:23 ../slider/data/messages:17
-#: ../stack/data/messages:21 ../switcher/data/messages:19
-#: ../systray/data/messages:19 ../template/data/messages:19
-#: ../terminal/data/messages:19 ../tomboy/data/messages:29
-#: ../weather/data/messages:17 ../weblets/data/messages:19
-#: ../wifi/data/messages:17
-msgid "Applet's Handbook"
-msgstr ""
-
 #: ../Cairo-Penguin/data/messages:17 ../Clipper/data/messages:95
 #: ../Dbus/data/messages:1 ../Disks/data/messages:101
 #: ../Doncky/data/messages:93 ../Folders/data/messages:107
@@ -3723,7 +3779,7 @@ msgstr "Vyberte jedno z dostupných motivů :"
 #: ../System-Monitor/data/messages:157 ../System-Monitor/data/messages:203
 #: ../Toons/data/messages:97 ../dnd2share/data/messages:97
 #: ../mail/data/messages:131 ../musicPlayer/data/messages:143
-#: ../netspeed/data/messages:135 ../powermanager/data/messages:151
+#: ../netspeed/data/messages:135 ../powermanager/data/messages:155
 #: ../shortcuts/data/messages:133 ../slider/data/messages:127
 #: ../tomboy/data/messages:119 ../wifi/data/messages:169
 msgid "in seconds."
@@ -5160,7 +5216,7 @@ msgstr ""
 
 #: ../Network-Monitor/data/messages:97 ../Network-Monitor/data/messages:169
 #: ../Network-Monitor/data/messages:257 ../System-Monitor/data/messages:131
-#: ../netspeed/data/messages:129 ../powermanager/data/messages:149
+#: ../netspeed/data/messages:129 ../powermanager/data/messages:153
 #: ../tomboy/data/messages:127 ../wifi/data/messages:167
 msgid "Parameters"
 msgstr "Parametry"
@@ -5260,12 +5316,12 @@ msgid "Effect to apply on the icon according to strength :"
 msgstr "Efekt k použití na ikonu podle síly :"
 
 #: ../Network-Monitor/data/messages:219 ../alsaMixer/data/messages:133
-#: ../powermanager/data/messages:143 ../wifi/data/messages:137
+#: ../powermanager/data/messages:147 ../wifi/data/messages:137
 msgid "Zoom"
 msgstr "Přiblížení"
 
 #: ../Network-Monitor/data/messages:221 ../alsaMixer/data/messages:135
-#: ../powermanager/data/messages:145 ../wifi/data/messages:139
+#: ../powermanager/data/messages:149 ../wifi/data/messages:139
 msgid "Transparency"
 msgstr "Průhlednost"
 
@@ -5282,9 +5338,11 @@ msgstr ""
 #: ../compiz-icon/data/messages:177 ../compiz-icon/data/messages:181
 #: ../compiz-icon/data/messages:185 ../compiz-icon/data/messages:189
 #: ../compiz-icon/data/messages:193 ../compiz-icon/data/messages:197
-#: ../musicPlayer/data/messages:177 ../musicPlayer/data/messages:181
-#: ../musicPlayer/data/messages:185 ../musicPlayer/data/messages:189
-#: ../musicPlayer/data/messages:193 ../tomboy/data/messages:13
+#: ../logout/data/messages:127 ../musicPlayer/data/messages:177
+#: ../musicPlayer/data/messages:181 ../musicPlayer/data/messages:185
+#: ../musicPlayer/data/messages:189 ../musicPlayer/data/messages:193
+#: ../powermanager/data/messages:135 ../powermanager/data/messages:139
+#: ../powermanager/data/messages:167 ../tomboy/data/messages:13
 #: ../tomboy/data/messages:17 ../tomboy/data/messages:21
 #: ../tomboy/data/messages:109 ../wifi/data/messages:143
 #: ../wifi/data/messages:147 ../wifi/data/messages:151
@@ -5367,32 +5425,32 @@ msgstr ""
 msgid "Notify about feed updates:"
 msgstr ""
 
-#: ../RSSreader/data/messages:119 ../powermanager/data/messages:191
+#: ../RSSreader/data/messages:119 ../powermanager/data/messages:199
 msgid "Icon animation"
 msgstr ""
 
-#: ../RSSreader/data/messages:121 ../powermanager/data/messages:193
+#: ../RSSreader/data/messages:121 ../powermanager/data/messages:201
 msgid "Dialog bubble"
 msgstr ""
 
-#: ../RSSreader/data/messages:123 ../powermanager/data/messages:195
+#: ../RSSreader/data/messages:123 ../powermanager/data/messages:203
 msgid "Icon animation + Dialog bubble"
 msgstr ""
 
-#: ../RSSreader/data/messages:125 ../powermanager/data/messages:197
+#: ../RSSreader/data/messages:125 ../powermanager/data/messages:205
 msgid "Let empty to use the default notification animation."
 msgstr ""
 
-#: ../RSSreader/data/messages:127 ../powermanager/data/messages:199
+#: ../RSSreader/data/messages:127 ../powermanager/data/messages:207
 msgid "Animation of the icon:"
 msgstr ""
 
-#: ../RSSreader/data/messages:129 ../powermanager/data/messages:201
+#: ../RSSreader/data/messages:129 ../powermanager/data/messages:209
 msgid ""
 "In seconds. Set to 0 for infinite time (need to click on dialog to close it)."
 msgstr ""
 
-#: ../RSSreader/data/messages:131 ../powermanager/data/messages:203
+#: ../RSSreader/data/messages:131 ../powermanager/data/messages:211
 msgid "Duration of the notification:"
 msgstr ""
 
@@ -5714,8 +5772,25 @@ msgid "Image's filename :"
 msgstr "Název souboru obrázku :"
 
 #: ../Status-Notifier/data/messages:97
-msgid "Display items in compact mode?"
+msgid "How to display items:"
 msgstr ""
+
+#: ../Status-Notifier/data/messages:99
+msgid "Compact"
+msgstr ""
+
+#: ../Status-Notifier/data/messages:101
+msgid "Sub-dock"
+msgstr ""
+
+#: ../Status-Notifier/data/messages:103
+msgid "Allow the icon to automatically resize itself?"
+msgstr ""
+
+#: ../Status-Notifier/data/messages:105
+#, fuzzy
+msgid "Number of lines to pack items in:"
+msgstr "Počet položek :"
 
 #: ../System-Monitor/data/messages:119 ../powermanager/data/messages:123
 msgid "It's the colour of the graphic for high values."
@@ -6314,18 +6389,18 @@ msgid "Comics"
 msgstr "komiksy"
 
 #: ../dialog-rendering/data/messages:3 ../dialog-rendering/data/messages:11
-#: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:31
+#: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:29
 #: ../dock-rendering/data/messages:67
 msgid "Corner radius:"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:5 ../dialog-rendering/data/messages:13
-#: ../dialog-rendering/data/messages:23 ../dialog-rendering/data/messages:33
+#: ../dialog-rendering/data/messages:23 ../dialog-rendering/data/messages:31
 msgid "Border width:"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:7 ../dialog-rendering/data/messages:15
-#: ../dialog-rendering/data/messages:25 ../dialog-rendering/data/messages:35
+#: ../dialog-rendering/data/messages:25 ../dialog-rendering/data/messages:33
 msgid "Bubble's line colour:"
 msgstr ""
 
@@ -6342,18 +6417,14 @@ msgid "Tooltip"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:27
-msgid "Colour of the margin :"
-msgstr ""
-
-#: ../dialog-rendering/data/messages:29
 msgid "Curly"
 msgstr ""
 
-#: ../dialog-rendering/data/messages:37
+#: ../dialog-rendering/data/messages:35
 msgid "Curvature of the tip :"
 msgstr ""
 
-#: ../dialog-rendering/data/messages:39
+#: ../dialog-rendering/data/messages:37
 msgid "Curve the sides too?"
 msgstr ""
 
@@ -7027,6 +7098,15 @@ msgstr ""
 msgid "User-defined command to execute for shutdown:"
 msgstr ""
 
+#: ../logout/data/messages:125 ../musicPlayer/data/messages:175
+#: ../tomboy/data/messages:11
+msgid "Customisation"
+msgstr ""
+
+#: ../logout/data/messages:129
+msgid "Icon image name to use when the system has to be rebooted:"
+msgstr ""
+
 #: ../mail/data/messages:93
 msgid ""
 "If you have any problem with the applet, uncheck this option during the "
@@ -7228,13 +7308,13 @@ msgstr ""
 msgid "Animation when music changes:"
 msgstr ""
 
-#: ../musicPlayer/data/messages:151 ../powermanager/data/messages:155
+#: ../musicPlayer/data/messages:151 ../powermanager/data/messages:159
 #: ../wifi/data/messages:183
 msgid "Information to display on the icon :"
 msgstr ""
 
-#: ../musicPlayer/data/messages:153 ../powermanager/data/messages:141
-#: ../powermanager/data/messages:157
+#: ../musicPlayer/data/messages:153 ../powermanager/data/messages:145
+#: ../powermanager/data/messages:161
 msgid "Nothing"
 msgstr ""
 
@@ -7274,10 +7354,6 @@ msgstr ""
 msgid "List of available 3D themes for covers :"
 msgstr ""
 
-#: ../musicPlayer/data/messages:175 ../tomboy/data/messages:11
-msgid "Customisation"
-msgstr ""
-
 #: ../musicPlayer/data/messages:183
 msgid "Name of the image for the 'play' icon :"
 msgstr ""
@@ -7315,70 +7391,74 @@ msgstr "Nechte prázdné, pro použití výchozí mailové aplikace."
 msgid "Icon name:"
 msgstr ""
 
-#: ../powermanager/data/messages:135
+#: ../powermanager/data/messages:137
 msgid "'On-battery' icon filename:"
 msgstr ""
 
-#: ../powermanager/data/messages:137
+#: ../powermanager/data/messages:141
 msgid "Icon's filename when on charge :"
 msgstr ""
 
-#: ../powermanager/data/messages:139
+#: ../powermanager/data/messages:143
 msgid "Effect to apply on the icon according to the charge :"
 msgstr ""
 
-#: ../powermanager/data/messages:147
+#: ../powermanager/data/messages:151
 msgid "Draw bar"
 msgstr ""
 
-#: ../powermanager/data/messages:159
+#: ../powermanager/data/messages:163
 msgid "charge"
 msgstr ""
 
-#: ../powermanager/data/messages:161
+#: ../powermanager/data/messages:165
 #, fuzzy
 msgid "Timelength"
 msgstr "Délka"
 
-#: ../powermanager/data/messages:163
-msgid "Notification"
-msgstr ""
-
-#: ../powermanager/data/messages:165
-msgid "Notification when battery charged ?"
-msgstr ""
-
-#: ../powermanager/data/messages:167 ../powermanager/data/messages:177
-#: ../powermanager/data/messages:185
-msgid "Leave it empty for no sound"
-msgstr ""
-
-#: ../powermanager/data/messages:169 ../powermanager/data/messages:179
-#: ../powermanager/data/messages:187
-msgid "Play a sound:"
+#: ../powermanager/data/messages:169
+msgid "Emblem icon's filename when on charge:"
 msgstr ""
 
 #: ../powermanager/data/messages:171
-msgid "Notification when low battery ?"
+msgid "Notification"
 msgstr ""
 
 #: ../powermanager/data/messages:173
-msgid "in percent."
+msgid "Notification when battery charged ?"
 msgstr ""
 
-#: ../powermanager/data/messages:175
-msgid "Battery level:"
+#: ../powermanager/data/messages:175 ../powermanager/data/messages:185
+#: ../powermanager/data/messages:193
+msgid "Leave it empty for no sound"
+msgstr ""
+
+#: ../powermanager/data/messages:177 ../powermanager/data/messages:187
+#: ../powermanager/data/messages:195
+msgid "Play a sound:"
+msgstr ""
+
+#: ../powermanager/data/messages:179
+msgid "Notification when low battery ?"
 msgstr ""
 
 #: ../powermanager/data/messages:181
-msgid "When battery level is under 4%"
+msgid "in percent."
 msgstr ""
 
 #: ../powermanager/data/messages:183
-msgid "Notification when battery charge is critical ?"
+msgid "Battery level:"
 msgstr ""
 
 #: ../powermanager/data/messages:189
+msgid "When battery level is under 4%"
+msgstr ""
+
+#: ../powermanager/data/messages:191
+msgid "Notification when battery charge is critical ?"
+msgstr ""
+
+#: ../powermanager/data/messages:197
 msgid "Notification type:"
 msgstr ""
 
@@ -8673,9 +8753,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Je to obrázek, který se zobrazí nad kresbami, jako například odraz. Pokud "
 #~ "žádný nechcete, ponechte nevyplněné."
-
-#~ msgid "Number of items :"
-#~ msgstr "Počet položek :"
 
 #~ msgid ""
 #~ "It is especially usefull if you often select text with mouse and don't "

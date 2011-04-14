@@ -26,43 +26,45 @@ msgid "This plug-in provides many different animations for your icons."
 msgstr "Ez a bővítmény számos különböző animációt biztosít az ikonjainak."
 
 #: ../Animated-icons/src/applet-init.c:80 ../Animated-icons/data/messages:9
-#: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:45
-#: ../Animated-icons/data/messages:63 ../Animated-icons/data/messages:171
+#: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:47
+#: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:177
 msgid "Bounce"
 msgstr "Pattogás"
 
 #: ../Animated-icons/src/applet-init.c:81 ../Animated-icons/data/messages:11
-#: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:47
-#: ../Animated-icons/data/messages:65
+#: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:49
+#: ../Animated-icons/data/messages:69
 msgid "Rotate"
 msgstr "Forgás"
 
 #: ../Animated-icons/src/applet-init.c:82 ../Animated-icons/data/messages:13
-#: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:49
-#: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:185
+#: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:51
+#: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:191
 msgid "Blink"
 msgstr "Villanás"
 
 #: ../Animated-icons/src/applet-init.c:83 ../Animated-icons/data/messages:15
-#: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:51
-#: ../Animated-icons/data/messages:69 ../Animated-icons/data/messages:159
+#: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:53
+#: ../Animated-icons/data/messages:73 ../Animated-icons/data/messages:165
 msgid "Pulse"
 msgstr "Lüktetés"
 
 #: ../Animated-icons/src/applet-init.c:84 ../Animated-icons/data/messages:17
-#: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:53
-#: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:131
+#: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:55
+#: ../Animated-icons/data/messages:75 ../Animated-icons/data/messages:137
 msgid "Wobbly"
 msgstr "Remegés"
 
 #: ../Animated-icons/src/applet-init.c:85 ../Animated-icons/data/messages:19
-#: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:55
-#: ../Animated-icons/data/messages:73 ../Animated-icons/data/messages:147
+#: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:57
+#: ../Animated-icons/data/messages:77 ../Animated-icons/data/messages:153
 msgid "Wave"
 msgstr "Hullámzás"
 
 #: ../Animated-icons/src/applet-init.c:86 ../Animated-icons/data/messages:21
-#: ../Animated-icons/data/messages:95 ../Animated-icons/data/messages:103
+#: ../Animated-icons/data/messages:39 ../Animated-icons/data/messages:59
+#: ../Animated-icons/data/messages:79 ../Animated-icons/data/messages:101
+#: ../Animated-icons/data/messages:109
 msgid "Spot"
 msgstr "Reflektorfény"
 
@@ -210,7 +212,27 @@ msgstr ""
 "A két oldal közötti kommunikáció DBus-on keresztül zajlik."
 
 #: ../Dbus/src/interface-applet-signals.c:365
-msgid "Applet's handbook"
+#: ../Cairo-Penguin/data/messages:15 ../Clipper/data/messages:19
+#: ../Disks/data/messages:19 ../Folders/data/messages:31
+#: ../GMenu/data/messages:19 ../MeMenu/data/messages:13
+#: ../Messaging-Menu/data/messages:15 ../Network-Monitor/data/messages:19
+#: ../RSSreader/data/messages:21 ../Recent-Events/data/messages:19
+#: ../Scooby-Do/data/messages:115 ../Status-Notifier/data/messages:19
+#: ../System-Monitor/data/messages:17 ../Toons/data/messages:17
+#: ../Xgamma/data/messages:21 ../alsaMixer/data/messages:17
+#: ../clock/data/messages:19 ../compiz-icon/data/messages:15
+#: ../dnd2share/data/messages:19 ../dustbin/data/messages:15
+#: ../keyboard-indicator/data/messages:15 ../logout/data/messages:19
+#: ../mail/data/messages:15 ../musicPlayer/data/messages:17
+#: ../netspeed/data/messages:15 ../powermanager/data/messages:19
+#: ../quick-browser/data/messages:21 ../shortcuts/data/messages:19
+#: ../showDesktop/data/messages:23 ../slider/data/messages:17
+#: ../stack/data/messages:21 ../switcher/data/messages:19
+#: ../systray/data/messages:19 ../template/data/messages:19
+#: ../terminal/data/messages:19 ../tomboy/data/messages:29
+#: ../weather/data/messages:17 ../weblets/data/messages:19
+#: ../wifi/data/messages:17
+msgid "Applet's Handbook"
 msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:422
@@ -311,7 +333,7 @@ msgid ""
 "  - Middle-clic to reload values"
 msgstr ""
 
-#: ../Doncky/src/applet-notifications.c:60
+#: ../Doncky/src/applet-notifications.c:215
 #, fuzzy
 msgid "It doesn't seem to be a valid XML file."
 msgstr "Az URL-cím érvénytelennek tűnik."
@@ -331,15 +353,15 @@ msgid ""
 "Middle-click on the main icon opens the folder.\n"
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:41
+#: ../Folders/src/applet-notifications.c:42
 msgid "Open the configuration of the applet to choose a folder to import."
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:53
+#: ../Folders/src/applet-notifications.c:54
 msgid "Empty or unreadable folder."
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:204
+#: ../Folders/src/applet-notifications.c:205
 #, c-format
 msgid ""
 "You're about deleting this file\n"
@@ -347,17 +369,17 @@ msgid ""
 "from your hard-disk. Sure ?"
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:214
+#: ../Folders/src/applet-notifications.c:215
 msgid ""
 "Warning: could not delete this file.\n"
 "Please check file permissions."
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:227
+#: ../Folders/src/applet-notifications.c:228
 msgid "Rename to:"
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:234
+#: ../Folders/src/applet-notifications.c:235
 #, c-format
 msgid ""
 "Warning: could not rename %s.\n"
@@ -365,11 +387,11 @@ msgid ""
 "and that the new name does not already exist."
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:273
+#: ../Folders/src/applet-notifications.c:274
 msgid "Enter a file name:"
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:281
+#: ../Folders/src/applet-notifications.c:282
 #, c-format
 msgid ""
 "Warning: could not create %s.\n"
@@ -377,20 +399,20 @@ msgid ""
 "and that the new name does not already exist."
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:339
+#: ../Folders/src/applet-notifications.c:360
 msgid "Open the folder"
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:339
+#: ../Folders/src/applet-notifications.c:360
 #: ../GMenu/src/applet-notifications.c:76
 #: ../RSSreader/src/applet-notifications.c:132
-#: ../System-Monitor/src/applet-notifications.c:111
+#: ../System-Monitor/src/applet-notifications.c:108
 #: ../Xgamma/src/applet-notifications.c:89
 #: ../alsaMixer/src/applet-notifications.c:62
-#: ../dustbin/src/applet-notifications.c:118
-#: ../logout/src/applet-notifications.c:153
-#: ../logout/src/applet-notifications.c:162
-#: ../logout/src/applet-notifications.c:171
+#: ../dustbin/src/applet-notifications.c:139
+#: ../logout/src/applet-notifications.c:167
+#: ../logout/src/applet-notifications.c:176
+#: ../logout/src/applet-notifications.c:185
 #: ../mail/src/cd-mail-applet-notifications.c:157
 #: ../netspeed/src/applet-notifications.c:97
 #: ../quick-browser/src/applet-notifications.c:43
@@ -401,7 +423,7 @@ msgstr ""
 #: ../showDesktop/src/applet-notifications.c:171
 #: ../slider/src/applet-notifications.c:230
 #: ../slider/src/applet-notifications.c:271
-#: ../stack/src/applet-notifications.c:182
+#: ../stack/src/applet-notifications.c:183
 #: ../switcher/src/applet-notifications.c:301
 #: ../switcher/src/applet-notifications.c:306
 #: ../switcher/src/applet-notifications.c:315
@@ -409,35 +431,62 @@ msgstr ""
 msgid "middle-click"
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:349
+#: ../Folders/src/applet-notifications.c:370
 msgid "Rename this file"
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:350
+#: ../Folders/src/applet-notifications.c:371
 msgid "Delete this file"
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:351
+#: ../Folders/src/applet-notifications.c:372
 msgid "Move this file"
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:357
+#: ../Folders/src/applet-notifications.c:378
 #: ../Recent-Events/src/applet-dialog.c:255
 #: ../slider/src/applet-notifications.c:240
 msgid "Open with"
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:389
+#: ../Folders/src/applet-notifications.c:410
 msgid "Properties"
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:392
+#: ../Folders/src/applet-notifications.c:413
 msgid "Create a new file"
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:393
+#: ../Folders/src/applet-notifications.c:414
 msgid "Create a new folder"
 msgstr ""
+
+#: ../Folders/src/applet-notifications.c:417
+msgid "Sort by"
+msgstr ""
+
+#: ../Folders/src/applet-notifications.c:418
+#, fuzzy
+msgid "By name"
+msgstr "Fájl"
+
+#: ../Folders/src/applet-notifications.c:419
+msgid "By date"
+msgstr ""
+
+#: ../Folders/src/applet-notifications.c:420
+#, fuzzy
+msgid "By size"
+msgstr "Sugarak mérete:"
+
+#: ../Folders/src/applet-notifications.c:421
+msgid "By type"
+msgstr ""
+
+#: ../Folders/src/applet-notifications.c:459
+#, fuzzy
+msgid "The folder has been imported."
+msgstr "Ez a hírforrás megváltozott..."
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -478,15 +527,15 @@ msgstr "Legutóbbi dokumentumok"
 msgid "Clear the list of the recently used documents?"
 msgstr "Törli a legutóbbi dokumentumok listáját?"
 
-#: ../GMenu/src/applet-run-dialog.c:349 ../Scooby-Do/data/messages:111
+#: ../GMenu/src/applet-run-dialog.c:350 ../Scooby-Do/data/messages:111
 msgid "Enter a command to launch:"
 msgstr "Írja be a futtatandó parancsot:"
 
-#: ../MeMenu/src/applet-init.c:31
+#: ../MeMenu/src/applet-init.c:30
 msgid "Me Menu"
 msgstr ""
 
-#: ../MeMenu/src/applet-init.c:34
+#: ../MeMenu/src/applet-init.c:33
 msgid ""
 "A menu that lets you access quickly to your information, your online status, "
 "your friends."
@@ -496,11 +545,11 @@ msgstr ""
 msgid "It seems that the Me-Menu is not installed on your system"
 msgstr ""
 
-#: ../Messaging-Menu/src/applet-init.c:31
+#: ../Messaging-Menu/src/applet-init.c:30
 msgid "Messaging Menu"
 msgstr ""
 
-#: ../Messaging-Menu/src/applet-init.c:34
+#: ../Messaging-Menu/src/applet-init.c:33
 msgid ""
 "A menu that notices you about new messages from Mail or Chat applications.\n"
 "It handles Evolution, Pidgin, Empathy, etc"
@@ -602,8 +651,8 @@ msgid "Network ID"
 msgstr "Hálózati azonosító"
 
 #: ../Network-Monitor/src/applet-draw.c:145
-#: ../musicPlayer/src/applet-draw.c:337 ../musicPlayer/src/applet-draw.c:339
-#: ../musicPlayer/src/applet-draw.c:341
+#: ../musicPlayer/src/applet-draw.c:344 ../musicPlayer/src/applet-draw.c:346
+#: ../musicPlayer/src/applet-draw.c:348
 #: ../powermanager/src/powermanager-draw.c:189
 #: ../powermanager/src/powermanager-draw.c:218
 msgid "Unknown"
@@ -633,6 +682,7 @@ msgstr ""
 
 #: ../Network-Monitor/src/applet-netspeed.c:200
 #: ../System-Monitor/src/applet-monitor.c:90
+#: ../System-Monitor/src/applet-top.c:427
 #: ../netspeed/src/applet-netspeed.c:196
 msgid "Loading"
 msgstr "Betöltés"
@@ -702,35 +752,35 @@ msgstr "Megnyitás webböngészővel"
 msgid "Refresh"
 msgstr "Frissítés"
 
-#: ../RSSreader/src/applet-rss.c:382
+#: ../RSSreader/src/applet-rss.c:400
 msgid "Warning: couldn't retrieve data last time we tried."
 msgstr ""
 
-#: ../RSSreader/src/applet-rss.c:417
+#: ../RSSreader/src/applet-rss.c:436
 msgid "No URL is defined."
 msgstr "Nincs megadva hivatkozás."
 
-#: ../RSSreader/src/applet-rss.c:418
+#: ../RSSreader/src/applet-rss.c:437
 msgid "No data (no connection?)"
 msgstr "Nincs adat (nincs kapcsolat?)"
 
-#: ../RSSreader/src/applet-rss.c:449 ../RSSreader/src/applet-rss.c:468
+#: ../RSSreader/src/applet-rss.c:468 ../RSSreader/src/applet-rss.c:487
 msgid "Invalid data (invalid RSS/Atom feed?)"
 msgstr "Érvénytelen adat (érvénytelen RSS/Atom forrás?)"
 
-#: ../RSSreader/src/applet-rss.c:532
+#: ../RSSreader/src/applet-rss.c:551
 msgid "No data"
 msgstr "Nincs adat"
 
-#: ../RSSreader/src/applet-rss.c:570
+#: ../RSSreader/src/applet-rss.c:589
 msgid "No modification"
 msgstr "Nincs változás"
 
-#: ../RSSreader/src/applet-rss.c:595
+#: ../RSSreader/src/applet-rss.c:614
 msgid "This RSS feed has been modified..."
 msgstr "Ez a hírforrás megváltozott..."
 
-#: ../RSSreader/src/applet-rss.c:743
+#: ../RSSreader/src/applet-rss.c:775
 msgid ""
 "No URL is defined\n"
 "You can define one by copying the URL in the clipboard,\n"
@@ -741,7 +791,7 @@ msgstr ""
 " és kiválasztja az \"URL-cm beillesztése\"\n"
 " menüpontot."
 
-#: ../RSSreader/src/applet-rss.c:749
+#: ../RSSreader/src/applet-rss.c:781
 msgid ""
 "No data\n"
 "Did you set a valid RSS feed?\n"
@@ -752,7 +802,7 @@ msgstr ""
 "Van internetkapcsolata?"
 
 #: ../Recent-Events/src/applet-dialog.c:280
-#: ../stack/src/applet-notifications.c:180
+#: ../stack/src/applet-notifications.c:181
 msgid "Open parent folder"
 msgstr ""
 
@@ -987,9 +1037,18 @@ msgstr "Keresés..."
 msgid "Enter your search"
 msgstr "Írja be a keresőszavakat"
 
-#: ../Status-Notifier/src/applet-init.c:32
-msgid "Status Notifier"
-msgstr "Állapot értesítő"
+#: ../Status-Notifier/src/applet-init.c:33
+msgid ""
+"A <b>notification area</b> for your dock\n"
+"Programs can use it to display their current status.\n"
+"If a program doesn't appear inside when it should, it's probably because it "
+"doesn't support the this feature yet. Please fill a bug report to the devs."
+msgstr ""
+
+#: ../Status-Notifier/src/applet-init.c:38
+#, fuzzy
+msgid "Notification Area"
+msgstr "Nincs változás"
 
 #: ../System-Monitor/src/applet-cpusage.c:57
 msgid "Uptime"
@@ -999,15 +1058,15 @@ msgstr "Rendszer működési ideje"
 msgid "Activity time"
 msgstr "Működési idő"
 
-#: ../System-Monitor/src/applet-cpusage.c:144
+#: ../System-Monitor/src/applet-cpusage.c:145
 msgid "CPU model"
 msgstr "Processzortípus"
 
-#: ../System-Monitor/src/applet-cpusage.c:145
+#: ../System-Monitor/src/applet-cpusage.c:146
 msgid "Frequency"
 msgstr "Frekvencia"
 
-#: ../System-Monitor/src/applet-cpusage.c:146
+#: ../System-Monitor/src/applet-cpusage.c:147
 msgid "core(s)"
 msgstr "mag(ok)"
 
@@ -1029,8 +1088,8 @@ msgstr ""
 "Több példányt létrehozva a kisalkalmazásokból mindegyiket más érték "
 "mutatására állíthatja be."
 
-#: ../System-Monitor/src/applet-notifications.c:44
-#: ../System-Monitor/src/applet-notifications.c:86
+#: ../System-Monitor/src/applet-notifications.c:40
+#: ../System-Monitor/src/applet-notifications.c:83
 msgid ""
 "The acquisition of one or more data has failed.\n"
 "You should remove the data that couldn't be fetched."
@@ -1038,12 +1097,12 @@ msgstr ""
 "Egy vagy több adat beszerzése meghiúsult.\n"
 "Távolítsa el az adatokat, amiket nem lehet betölteni."
 
-#: ../System-Monitor/src/applet-notifications.c:109
+#: ../System-Monitor/src/applet-notifications.c:106
 #: ../netspeed/src/applet-notifications.c:101
 msgid "Open the System-Monitor"
 msgstr ""
 
-#: ../System-Monitor/src/applet-notifications.c:111
+#: ../System-Monitor/src/applet-notifications.c:108
 msgid "Show info"
 msgstr ""
 
@@ -1057,7 +1116,7 @@ msgstr "Video RAM"
 
 #: ../System-Monitor/src/applet-nvidia.c:147
 #: ../System-Monitor/src/applet-rame.c:124
-#: ../System-Monitor/src/applet-top.c:288
+#: ../System-Monitor/src/applet-top.c:297
 msgid "Mb"
 msgstr "Mb"
 
@@ -1157,9 +1216,13 @@ msgstr "Gamma beállítása"
 msgid "Apply current luminosity on startup"
 msgstr "Jelenlegi fényesség használata indításkor"
 
-#: ../Xgamma/src/applet-xgamma.c:204 ../Xgamma/src/applet-xgamma.c:274
+#: ../Xgamma/src/applet-xgamma.c:200 ../Xgamma/src/applet-xgamma.c:270
 msgid "Set up gamma:"
 msgstr "Gamma beállítása"
+
+#: ../Xgamma/src/applet-xgamma.c:283
+msgid "Luminosity"
+msgstr ""
 
 #: ../alsaMixer/src/applet-init.c:34
 msgid ""
@@ -1212,7 +1275,7 @@ msgstr "Nem sikerült regisztrálni a beállításokat"
 msgid "I couldn't load the mixer"
 msgstr "Nem sikerült betölteni a keverőt"
 
-#: ../alsaMixer/src/applet-mixer.c:291
+#: ../alsaMixer/src/applet-mixer.c:295
 msgid "Set up volume:"
 msgstr "Hangerőbeállítás:"
 
@@ -1244,7 +1307,7 @@ msgstr ""
 msgid "years"
 msgstr ""
 
-#: ../clock/src/applet-calendar.c:646
+#: ../clock/src/applet-calendar.c:651
 msgid "Calendar and tasks"
 msgstr ""
 
@@ -1332,7 +1395,7 @@ msgstr ""
 msgid "E.g.:"
 msgstr ""
 
-#: ../clock/src/applet-config.c:495 ../weather/src/applet-config.c:201
+#: ../clock/src/applet-config.c:495 ../weather/src/applet-config.c:205
 msgid "Search for your location :"
 msgstr "Az Ön helyzetének meghatározása:"
 
@@ -1409,31 +1472,31 @@ msgstr "minden hónapban"
 msgid "each year"
 msgstr "minden évben"
 
-#: ../clock/src/applet-task-editor.c:391
+#: ../clock/src/applet-task-editor.c:392
 msgid "Right-click to add a new task."
 msgstr ""
 
-#: ../clock/src/applet-task-editor.c:397 ../musicPlayer/src/applet-draw.c:338
+#: ../clock/src/applet-task-editor.c:398 ../musicPlayer/src/applet-draw.c:345
 #: ../RSSreader/data/messages:139
 msgid "Title"
 msgstr "Cím"
 
-#: ../clock/src/applet-task-editor.c:404
+#: ../clock/src/applet-task-editor.c:405
 #: ../dnd2share/src/applet-notifications.c:378 ../Doncky/data/messages:101
 #: ../RSSreader/data/messages:155
 msgid "Text"
 msgstr "Szöveg"
 
-#: ../clock/src/applet-task-editor.c:411
+#: ../clock/src/applet-task-editor.c:412
 #: ../powermanager/src/powermanager-draw.c:135
 msgid "Time"
 msgstr ""
 
-#: ../clock/src/applet-task-editor.c:425
+#: ../clock/src/applet-task-editor.c:426
 msgid "Freq."
 msgstr ""
 
-#: ../clock/src/applet-task-editor.c:432
+#: ../clock/src/applet-task-editor.c:433
 msgid "Tags"
 msgstr ""
 
@@ -1618,12 +1681,12 @@ msgstr ""
 msgid "This plug-in provides some decorators for dialog bubbles."
 msgstr ""
 
-#: ../dnd2share/src/applet-dnd2share.c:167
+#: ../dnd2share/src/applet-dnd2share.c:165
 msgid ""
 "Couldn't upload the file, check that your internet connection is active."
 msgstr "Nem sikerült feltölteni a fájlt, ellenőrizze az internetkapcsolatát."
 
-#: ../dnd2share/src/applet-dnd2share.c:282
+#: ../dnd2share/src/applet-dnd2share.c:280
 msgid ""
 "File has been uploaded.\n"
 "Just press CTRL+v to paste its URL anywhere."
@@ -1631,12 +1694,12 @@ msgstr ""
 "A fájl sikeresen feltöltve.\n"
 "A CTRL+v megnyomásával illesztheti be az URL-címét."
 
-#: ../dnd2share/src/applet-dnd2share.c:332
+#: ../dnd2share/src/applet-dnd2share.c:331
 msgid "Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Kérem várjon, amíg a jelenlegi feltöltés befejeződik, mielőtt újat indít."
 
-#: ../dnd2share/src/applet-dnd2share.c:582
+#: ../dnd2share/src/applet-dnd2share.c:591
 msgid "Tiny URL"
 msgstr ""
 
@@ -1820,67 +1883,67 @@ msgstr ""
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr "Biztosan töröl minden fájl a lomtárból?"
 
-#: ../dustbin/src/applet-notifications.c:80
+#: ../dustbin/src/applet-notifications.c:91
 msgid "The trash contains"
 msgstr ""
 
-#: ../dustbin/src/applet-notifications.c:82
+#: ../dustbin/src/applet-notifications.c:93
 msgid "files"
 msgstr ""
 
-#: ../dustbin/src/applet-notifications.c:82
+#: ../dustbin/src/applet-notifications.c:93
 msgid "elements"
 msgstr ""
 
-#: ../dustbin/src/applet-notifications.c:84
+#: ../dustbin/src/applet-notifications.c:95
 msgid "Mo"
 msgstr ""
 
-#: ../dustbin/src/applet-notifications.c:84
+#: ../dustbin/src/applet-notifications.c:95
 msgid "Ko"
 msgstr ""
 
-#: ../dustbin/src/applet-notifications.c:100
+#: ../dustbin/src/applet-notifications.c:115
 msgid "Counting total size and files number..."
 msgstr ""
 
-#: ../dustbin/src/applet-notifications.c:117
+#: ../dustbin/src/applet-notifications.c:138
 msgid "Show Trash (click)"
 msgstr ""
 
-#: ../dustbin/src/applet-notifications.c:118
+#: ../dustbin/src/applet-notifications.c:139
 msgid "Empty Trash"
 msgstr "Kuka ürítése"
 
-#: ../dustbin/src/applet-notifications.c:122
+#: ../dustbin/src/applet-notifications.c:143
 msgid "Display dustbins information"
 msgstr ""
 
-#: ../dustbin/src/applet-notifications.c:135
+#: ../dustbin/src/applet-notifications.c:156
 #, c-format
 msgid "%s successfully unmounted"
 msgstr "%s leválasztva."
 
-#: ../dustbin/src/applet-notifications.c:139
+#: ../dustbin/src/applet-notifications.c:160
 #, c-format
 msgid "failed to unmount %s"
 msgstr "%s leválasztása sikertelen"
 
-#: ../dustbin/src/applet-notifications.c:163
+#: ../dustbin/src/applet-notifications.c:184
 #: ../shortcuts/src/applet-notifications.c:167
 msgid "Unmouting this volume ..."
 msgstr ""
 
-#: ../dustbin/src/applet-trashes-manager.c:59
+#: ../dustbin/src/applet-trashes-manager.c:68
 msgid " trashe(s)"
 msgstr " kuka"
 
-#: ../dustbin/src/applet-trashes-manager.c:63
+#: ../dustbin/src/applet-trashes-manager.c:72
 msgid " file(s)"
 msgstr " fájl(ok)"
 
-#: ../dustbin/src/applet-trashes-manager.c:98
-#: ../dustbin/src/applet-trashes-manager.c:127
+#: ../dustbin/src/applet-trashes-manager.c:114
+#: ../dustbin/src/applet-trashes-manager.c:153
 msgid "calculating"
 msgstr "számító"
 
@@ -1999,33 +2062,38 @@ msgid ""
 "  (you can invert the buttons if you prefer to shutdown on left-click)."
 msgstr ""
 
-#: ../logout/src/applet-notifications.c:124
+#: ../logout/src/applet-notifications.c:138
 msgid "Choose in how many minutes your PC will stop:"
 msgstr ""
 
-#: ../logout/src/applet-notifications.c:153
-#: ../logout/src/applet-notifications.c:155 ../logout/data/messages:101
+#: ../logout/src/applet-notifications.c:167
+#: ../logout/src/applet-notifications.c:169 ../logout/data/messages:101
 #: ../logout/data/messages:109
 msgid "Log out"
 msgstr ""
 
-#: ../logout/src/applet-notifications.c:162
-#: ../logout/src/applet-notifications.c:164 ../logout/data/messages:103
+#: ../logout/src/applet-notifications.c:176
+#: ../logout/src/applet-notifications.c:178 ../logout/data/messages:103
 #: ../logout/data/messages:111
 msgid "Shut down"
 msgstr ""
 
-#: ../logout/src/applet-notifications.c:171
-#: ../logout/src/applet-notifications.c:173 ../logout/data/messages:105
+#: ../logout/src/applet-notifications.c:185
+#: ../logout/src/applet-notifications.c:187 ../logout/data/messages:105
 #: ../logout/data/messages:113
 msgid "Lock screen"
 msgstr ""
 
-#: ../logout/src/applet-notifications.c:178
+#: ../logout/src/applet-notifications.c:193
+#: ../logout/src/applet-notifications.c:199
+msgid "Guest session"
+msgstr ""
+
+#: ../logout/src/applet-notifications.c:203
 msgid "Program an automatic shut-down"
 msgstr ""
 
-#: ../logout/src/applet-notifications.c:208
+#: ../logout/src/applet-notifications.c:233
 msgid "Your computer will shut-down in 1 minute."
 msgstr "A számítógép 1 perc múlva leáll."
 
@@ -2075,7 +2143,7 @@ msgid "Use a secure connection (SSL)"
 msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39 ../RSSreader/data/messages:113
-#: ../netspeed/data/messages:137 ../powermanager/data/messages:153
+#: ../netspeed/data/messages:137 ../powermanager/data/messages:157
 #: ../weather/data/messages:111
 msgid "Refresh time:"
 msgstr ""
@@ -2236,35 +2304,35 @@ msgstr "Ismeretlen előadó"
 msgid "Unknown title"
 msgstr "Ismeretlen cím"
 
-#: ../musicPlayer/src/applet-draw.c:233 ../musicPlayer/src/applet-mpris.c:267
+#: ../musicPlayer/src/applet-draw.c:233 ../musicPlayer/src/applet-mpris.c:317
 msgid "Track"
 msgstr "Szám"
 
-#: ../musicPlayer/src/applet-draw.c:327
+#: ../musicPlayer/src/applet-draw.c:334
 msgid "Current song"
 msgstr "Aktuális szám"
 
-#: ../musicPlayer/src/applet-draw.c:336
+#: ../musicPlayer/src/applet-draw.c:343
 msgid "Artist"
 msgstr "Előadó"
 
-#: ../musicPlayer/src/applet-draw.c:340
+#: ../musicPlayer/src/applet-draw.c:347
 msgid "Album"
 msgstr "Album"
 
-#: ../musicPlayer/src/applet-draw.c:342
+#: ../musicPlayer/src/applet-draw.c:349
 msgid "Length"
 msgstr "Hossz"
 
-#: ../musicPlayer/src/applet-draw.c:344
+#: ../musicPlayer/src/applet-draw.c:351
 msgid "Track n°"
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:345
+#: ../musicPlayer/src/applet-draw.c:352
 msgid "Song n°"
 msgstr ""
 
-#: ../musicPlayer/src/applet-draw.c:347
+#: ../musicPlayer/src/applet-draw.c:354
 msgid "There is no media playing."
 msgstr "Nincs lejátszás."
 
@@ -2698,51 +2766,61 @@ msgid ""
 "icon."
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:74
+#: ../stack/src/applet-notifications.c:75
 msgid "Clear the stack?"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:95
+#: ../stack/src/applet-notifications.c:96
 msgid "Set new name for this item:"
 msgstr "Elem új nevének megadása:"
 
-#: ../stack/src/applet-notifications.c:167
+#: ../stack/src/applet-notifications.c:168
 msgid "Paste (drag'n'drop)"
 msgstr "Beillesztés (\"fogd és vidd\")"
 
-#: ../stack/src/applet-notifications.c:170
+#: ../stack/src/applet-notifications.c:171
 msgid "Clear the stack"
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:177
+#: ../stack/src/applet-notifications.c:178
 msgid "Open (click)"
 msgstr "Megnyitás (kattintson)"
 
-#: ../stack/src/applet-notifications.c:182
+#: ../stack/src/applet-notifications.c:183
 #: ../terminal/src/terminal-callbacks.c:82
-#: ../terminal/src/terminal-widget.c:384
+#: ../terminal/src/terminal-widget.c:386
 msgid "Copy"
 msgstr "Másolás"
 
-#: ../stack/src/applet-notifications.c:185
+#: ../stack/src/applet-notifications.c:186
 msgid "Cut"
 msgstr "Kivágás"
 
-#: ../stack/src/applet-notifications.c:188
+#: ../stack/src/applet-notifications.c:189
 msgid "Rename this item"
 msgstr "Elem átnevezése"
 
-#: ../stack/src/applet-notifications.c:189
+#: ../stack/src/applet-notifications.c:190
 msgid "Remove this item"
 msgstr "Elem eltávolítása"
 
-#: ../switcher/src/applet-draw.c:617 ../switcher/src/applet-draw.c:624
+#: ../stack/src/applet-notifications.c:259
+#, fuzzy
+msgid "The file has been added to the stack."
+msgstr "A(z) %s érték a vágólapra került."
+
+#: ../stack/src/applet-notifications.c:260
+#, fuzzy
+msgid "The URL has been added to the stack."
+msgstr "A(z) %s érték a vágólapra került."
+
+#: ../switcher/src/applet-draw.c:618 ../switcher/src/applet-draw.c:625
 #: ../switcher/src/applet-load-icons.c:43
 #: ../switcher/src/applet-notifications.c:420
 msgid "Current"
 msgstr "Jelenlegi"
 
-#: ../switcher/src/applet-draw.c:624 ../switcher/src/applet-draw.c:626
+#: ../switcher/src/applet-draw.c:625 ../switcher/src/applet-draw.c:627
 #: ../switcher/src/applet-load-icons.c:49
 #: ../switcher/src/applet-notifications.c:216
 #: ../switcher/src/applet-notifications.c:228
@@ -2798,10 +2876,6 @@ msgstr "Ablaklista"
 msgid "Expose all the windows"
 msgstr "Megnyitás új ablakban"
 
-#: ../systray/src/systray-init.c:32
-msgid "systray"
-msgstr ""
-
 #: ../systray/src/systray-init.c:35
 msgid ""
 "Add a systray to your dock.\n"
@@ -2810,6 +2884,11 @@ msgid ""
 "But the best way to use it is to detach it from the dock, and place it "
 "somewhere, above other windows."
 msgstr ""
+
+#: ../systray/src/systray-init.c:41
+#, fuzzy
+msgid "Notification Area Old"
+msgstr "Nincs változás"
 
 #: ../systray/src/systray-interface.c:71
 msgid ""
@@ -2844,7 +2923,7 @@ msgid ""
 msgstr ""
 
 #: ../terminal/src/terminal-menu-functions.c:79
-#: ../terminal/src/terminal-widget.c:400
+#: ../terminal/src/terminal-widget.c:402
 msgid "New Tab"
 msgstr "Új lap"
 
@@ -2860,32 +2939,32 @@ msgstr "Aktuális lap bezárása"
 msgid "Terminal"
 msgstr "Terminál"
 
-#: ../terminal/src/terminal-widget.c:154
+#: ../terminal/src/terminal-widget.c:155
 msgid "Set title for this tab:"
 msgstr "Adja meg a lap címét:"
 
-#: ../terminal/src/terminal-widget.c:209
+#: ../terminal/src/terminal-widget.c:210
 msgid "Select a color"
 msgstr "Válasszon egy színt"
 
-#: ../terminal/src/terminal-widget.c:344
+#: ../terminal/src/terminal-widget.c:346
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
 msgstr "Visszahívhatja a terminál-deskletet a(z) %s begépelésével."
 
-#: ../terminal/src/terminal-widget.c:390
+#: ../terminal/src/terminal-widget.c:392
 msgid "Paste"
 msgstr "Beillesztés"
 
-#: ../terminal/src/terminal-widget.c:406
+#: ../terminal/src/terminal-widget.c:408
 msgid "Rename this Tab"
 msgstr "Lap átnevezése"
 
-#: ../terminal/src/terminal-widget.c:412
+#: ../terminal/src/terminal-widget.c:414
 msgid "Change this Tab's colour"
 msgstr "Lap színének megváltoztatása"
 
-#: ../terminal/src/terminal-widget.c:418
+#: ../terminal/src/terminal-widget.c:420
 msgid "Close this Tab"
 msgstr "Lap bezárása"
 
@@ -2953,27 +3032,27 @@ msgstr "Keresés a jövő heti jegyzetekre"
 msgid "Reset marks"
 msgstr ""
 
-#: ../weather/src/applet-config.c:119
+#: ../weather/src/applet-config.c:120
 msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
 msgstr ""
 
-#: ../weather/src/applet-config.c:125
+#: ../weather/src/applet-config.c:126
 #, fuzzy
 msgid "Couldn't get the location code (is connection alive?)"
 msgstr "Nem sikerült feltölteni a fájlt, ellenőrizze az internetkapcsolatát."
 
-#: ../weather/src/applet-config.c:133
+#: ../weather/src/applet-config.c:134
 msgid "I couldn't find this location"
 msgstr ""
 
-#: ../weather/src/applet-config.c:181
+#: ../weather/src/applet-config.c:185
 #, fuzzy
 msgid "Searching the location code..."
 msgstr "Az Ön helyzetének meghatározása:"
 
-#: ../weather/src/applet-config.c:205
+#: ../weather/src/applet-config.c:209
 msgid ""
 "Enter the name of your location and press Enter to choose amongst results."
 msgstr ""
@@ -3040,73 +3119,72 @@ msgstr "Nov"
 msgid "Dec"
 msgstr "Dec"
 
-#: ../weather/src/applet-notifications.c:33
-#: ../weather/src/applet-notifications.c:70
+#: ../weather/src/applet-notifications.c:61
 msgid "Data are being retrieved, please wait a moment."
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:108
+#: ../weather/src/applet-notifications.c:99
 msgid "Show current conditions (middle-click)"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:113
+#: ../weather/src/applet-notifications.c:104
 msgid "Open weather.com (double-click)"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:115
+#: ../weather/src/applet-notifications.c:106
 msgid "Reload now"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:148
+#: ../weather/src/applet-notifications.c:141
 msgid ""
 "No data available\n"
 " is your connection alive?"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:167
-#: ../weather/src/applet-notifications.c:203
+#: ../weather/src/applet-notifications.c:161
+#: ../weather/src/applet-notifications.c:199
 msgid "Temperature"
 msgstr "Hőmérséklet"
 
-#: ../weather/src/applet-notifications.c:168
+#: ../weather/src/applet-notifications.c:162
 msgid "Precipitation probability"
 msgstr "Csapadék valószínűsége"
 
-#: ../weather/src/applet-notifications.c:169
-#: ../weather/src/applet-notifications.c:204
+#: ../weather/src/applet-notifications.c:163
+#: ../weather/src/applet-notifications.c:200
 msgid "Wind"
 msgstr "Szél"
 
-#: ../weather/src/applet-notifications.c:170
-#: ../weather/src/applet-notifications.c:205
+#: ../weather/src/applet-notifications.c:164
+#: ../weather/src/applet-notifications.c:201
 msgid "Humidity"
 msgstr "Páratartalom"
 
-#: ../weather/src/applet-notifications.c:171
-#: ../weather/src/applet-notifications.c:206
+#: ../weather/src/applet-notifications.c:165
+#: ../weather/src/applet-notifications.c:202
 msgid "Sunrise"
 msgstr "Napfelkelte"
 
-#: ../weather/src/applet-notifications.c:171
-#: ../weather/src/applet-notifications.c:206
+#: ../weather/src/applet-notifications.c:165
+#: ../weather/src/applet-notifications.c:202
 msgid "Sunset"
 msgstr "Napnyugta"
 
-#: ../weather/src/applet-notifications.c:179
+#: ../weather/src/applet-notifications.c:175
 msgid "Data are being fetched, please re-try in a few seconds."
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:189
+#: ../weather/src/applet-notifications.c:185
 msgid ""
 "No data available\n"
 "Retrying now..."
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:203
+#: ../weather/src/applet-notifications.c:199
 msgid "Feels like"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:205
+#: ../weather/src/applet-notifications.c:201
 msgid "Pressure"
 msgstr "Légnyomás"
 
@@ -3173,34 +3251,34 @@ msgstr ""
 msgid "Effects used on launcher:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:39 ../Animated-icons/data/messages:57
-#: ../Animated-icons/data/messages:75
+#: ../Animated-icons/data/messages:41 ../Animated-icons/data/messages:61
+#: ../Animated-icons/data/messages:81
 msgid "Number of times the animation will play:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:41 ../icon-effect/data/messages:35
+#: ../Animated-icons/data/messages:43 ../icon-effect/data/messages:35
 msgid "when clicking on an application"
 msgstr ""
 
-#: ../Animated-icons/data/messages:43 ../icon-effect/data/messages:37
+#: ../Animated-icons/data/messages:45 ../icon-effect/data/messages:37
 msgid "Effects used on applications:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:59 ../icon-effect/data/messages:51
+#: ../Animated-icons/data/messages:63 ../icon-effect/data/messages:51
 msgid "when clicking on an applet"
 msgstr ""
 
-#: ../Animated-icons/data/messages:61 ../icon-effect/data/messages:53
+#: ../Animated-icons/data/messages:65 ../icon-effect/data/messages:53
 msgid "Effects used on applets:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:77
+#: ../Animated-icons/data/messages:83
 msgid "Rotation"
 msgstr "Forgatás"
 
-#: ../Animated-icons/data/messages:79 ../Animated-icons/data/messages:97
-#: ../Animated-icons/data/messages:149 ../Animated-icons/data/messages:161
-#: ../Animated-icons/data/messages:173 ../Animated-icons/data/messages:187
+#: ../Animated-icons/data/messages:85 ../Animated-icons/data/messages:103
+#: ../Animated-icons/data/messages:155 ../Animated-icons/data/messages:167
+#: ../Animated-icons/data/messages:179 ../Animated-icons/data/messages:193
 #: ../Remote-Control/data/messages:7 ../Scooby-Do/data/messages:15
 #: ../Scooby-Do/data/messages:19 ../Toons/data/messages:101
 #: ../icon-effect/data/messages:101 ../icon-effect/data/messages:123
@@ -3209,8 +3287,8 @@ msgstr "Forgatás"
 msgid "In ms."
 msgstr "Milliszekundumokban"
 
-#: ../Animated-icons/data/messages:81 ../Animated-icons/data/messages:99
-#: ../Animated-icons/data/messages:151 ../icon-effect/data/messages:75
+#: ../Animated-icons/data/messages:87 ../Animated-icons/data/messages:105
+#: ../Animated-icons/data/messages:157 ../icon-effect/data/messages:75
 #: ../icon-effect/data/messages:103 ../icon-effect/data/messages:125
 #: ../icon-effect/data/messages:147 ../icon-effect/data/messages:169
 #: ../icon-effect/data/messages:189 ../illusion/data/messages:33
@@ -3220,20 +3298,20 @@ msgstr "Milliszekundumokban"
 msgid "Duration of the animation:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:83 ../Animated-icons/data/messages:101
-#: ../Animated-icons/data/messages:153 ../Animated-icons/data/messages:165
-#: ../Animated-icons/data/messages:177 ../Animated-icons/data/messages:191
+#: ../Animated-icons/data/messages:89 ../Animated-icons/data/messages:107
+#: ../Animated-icons/data/messages:159 ../Animated-icons/data/messages:171
+#: ../Animated-icons/data/messages:183 ../Animated-icons/data/messages:197
 #: ../icon-effect/data/messages:77 ../icon-effect/data/messages:105
 #: ../icon-effect/data/messages:127 ../icon-effect/data/messages:149
 #: ../icon-effect/data/messages:171 ../icon-effect/data/messages:191
 msgid "Repeat while icon is pointed to?"
 msgstr ""
 
-#: ../Animated-icons/data/messages:85
+#: ../Animated-icons/data/messages:91
 msgid "Type of mesh:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:87 ../Clipper/data/messages:49
+#: ../Animated-icons/data/messages:93 ../Clipper/data/messages:49
 #: ../Disks/data/messages:37 ../Doncky/data/messages:47
 #: ../Folders/data/messages:61 ../GMenu/data/messages:49
 #: ../MeMenu/data/messages:43 ../Messaging-Menu/data/messages:45
@@ -3256,19 +3334,19 @@ msgstr ""
 msgid "Normal"
 msgstr "Normál"
 
-#: ../Animated-icons/data/messages:89
+#: ../Animated-icons/data/messages:95
 msgid "Cube"
 msgstr "Kocka"
 
-#: ../Animated-icons/data/messages:91
+#: ../Animated-icons/data/messages:97
 msgid "Capsule"
 msgstr ""
 
-#: ../Animated-icons/data/messages:93
+#: ../Animated-icons/data/messages:99
 msgid "Colour of the sheen:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:105 ../Animated-icons/data/messages:109
+#: ../Animated-icons/data/messages:111 ../Animated-icons/data/messages:115
 #: ../Clipper/data/messages:11 ../Disks/data/messages:11
 #: ../Doncky/data/messages:11 ../Doncky/data/messages:95
 #: ../Folders/data/messages:23 ../GMenu/data/messages:11
@@ -3286,123 +3364,123 @@ msgstr ""
 msgid "Leave empty to use the default one."
 msgstr "Hagyja üresen az alapértelmezés használatához."
 
-#: ../Animated-icons/data/messages:107
+#: ../Animated-icons/data/messages:113
 msgid "Image for the spotlight:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:111
+#: ../Animated-icons/data/messages:117
 msgid "Image for the front spotlight:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:113
+#: ../Animated-icons/data/messages:119
 msgid "Spot colour:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:115
+#: ../Animated-icons/data/messages:121
 msgid "Halo colour:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:117
+#: ../Animated-icons/data/messages:123
 msgid "Rays"
 msgstr "Sugarak"
 
-#: ../Animated-icons/data/messages:119 ../icon-effect/data/messages:81
+#: ../Animated-icons/data/messages:125 ../icon-effect/data/messages:81
 #: ../icon-effect/data/messages:109 ../icon-effect/data/messages:131
 #: ../icon-effect/data/messages:153 ../icon-effect/data/messages:175
 #: ../illusion/data/messages:37 ../show-mouse/data/messages:27
 msgid "1st color of gradation :"
 msgstr ""
 
-#: ../Animated-icons/data/messages:121 ../icon-effect/data/messages:83
+#: ../Animated-icons/data/messages:127 ../icon-effect/data/messages:83
 #: ../icon-effect/data/messages:111 ../icon-effect/data/messages:133
 #: ../icon-effect/data/messages:155 ../icon-effect/data/messages:177
 #: ../illusion/data/messages:39 ../show-mouse/data/messages:29
 msgid "2nd color of gradation :"
 msgstr ""
 
-#: ../Animated-icons/data/messages:123 ../icon-effect/data/messages:85
+#: ../Animated-icons/data/messages:129 ../icon-effect/data/messages:85
 #: ../icon-effect/data/messages:113 ../icon-effect/data/messages:197
 #: ../illusion/data/messages:41 ../show-mouse/data/messages:31
 msgid "Random colours?"
 msgstr "Véletlenszerű színek?"
 
-#: ../Animated-icons/data/messages:125
+#: ../Animated-icons/data/messages:131
 msgid "Number of rays:"
 msgstr "Sugarak száma:"
 
-#: ../Animated-icons/data/messages:127
+#: ../Animated-icons/data/messages:133
 msgid "Ray size:"
 msgstr "Sugarak mérete:"
 
-#: ../Animated-icons/data/messages:129
+#: ../Animated-icons/data/messages:135
 msgid "Ray speed:"
 msgstr "Sugarak sebessége:"
 
-#: ../Animated-icons/data/messages:133
+#: ../Animated-icons/data/messages:139
 msgid "Initial stretch:"
 msgstr "Kiinduló nyújtás"
 
-#: ../Animated-icons/data/messages:135
+#: ../Animated-icons/data/messages:141
 msgid "Horizontal stretch"
 msgstr "Vízszintes nyújtás"
 
-#: ../Animated-icons/data/messages:137
+#: ../Animated-icons/data/messages:143
 msgid "Vertical stretch"
 msgstr "Függőleges nyújtás"
 
-#: ../Animated-icons/data/messages:139
+#: ../Animated-icons/data/messages:145
 msgid "Corner stretch"
 msgstr ""
 
-#: ../Animated-icons/data/messages:141
+#: ../Animated-icons/data/messages:147
 msgid "Spring constant:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:143
+#: ../Animated-icons/data/messages:149
 msgid "Friction:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:145
+#: ../Animated-icons/data/messages:151
 msgid "Number of points on the grid in each direction:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:155
+#: ../Animated-icons/data/messages:161
 msgid "Wave width:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:157
+#: ../Animated-icons/data/messages:163
 msgid "Wave amplitude:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:163
+#: ../Animated-icons/data/messages:169
 msgid "Pulse duration:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:167
+#: ../Animated-icons/data/messages:173
 msgid "Pulse max zoom:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:169
+#: ../Animated-icons/data/messages:175
 msgid "Pulse follows icon shape?"
 msgstr ""
 
-#: ../Animated-icons/data/messages:175
+#: ../Animated-icons/data/messages:181
 msgid "Bounce duration:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:179
+#: ../Animated-icons/data/messages:185
 msgid "When bouncing, resize the icon by:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:181
+#: ../Animated-icons/data/messages:187
 msgid "the lower the value, the more it will flatten."
 msgstr ""
 
-#: ../Animated-icons/data/messages:183
+#: ../Animated-icons/data/messages:189
 msgid "How much the icon will flatten when hitting the ground:"
 msgstr ""
 
-#: ../Animated-icons/data/messages:189
+#: ../Animated-icons/data/messages:195
 msgid "Blink duration:"
 msgstr ""
 
@@ -3550,29 +3628,6 @@ msgstr ""
 msgid "Icon size for busy penguin:"
 msgstr ""
 
-#: ../Cairo-Penguin/data/messages:15 ../Clipper/data/messages:19
-#: ../Disks/data/messages:19 ../Folders/data/messages:31
-#: ../GMenu/data/messages:19 ../MeMenu/data/messages:13
-#: ../Messaging-Menu/data/messages:15 ../Network-Monitor/data/messages:19
-#: ../RSSreader/data/messages:21 ../Recent-Events/data/messages:19
-#: ../Scooby-Do/data/messages:115 ../Status-Notifier/data/messages:19
-#: ../System-Monitor/data/messages:17 ../Toons/data/messages:17
-#: ../Xgamma/data/messages:21 ../alsaMixer/data/messages:17
-#: ../clock/data/messages:19 ../compiz-icon/data/messages:15
-#: ../dnd2share/data/messages:19 ../dustbin/data/messages:15
-#: ../keyboard-indicator/data/messages:15 ../logout/data/messages:19
-#: ../mail/data/messages:15 ../musicPlayer/data/messages:17
-#: ../netspeed/data/messages:15 ../powermanager/data/messages:19
-#: ../quick-browser/data/messages:21 ../shortcuts/data/messages:19
-#: ../showDesktop/data/messages:23 ../slider/data/messages:17
-#: ../stack/data/messages:21 ../switcher/data/messages:19
-#: ../systray/data/messages:19 ../template/data/messages:19
-#: ../terminal/data/messages:19 ../tomboy/data/messages:29
-#: ../weather/data/messages:17 ../weblets/data/messages:19
-#: ../wifi/data/messages:17
-msgid "Applet's Handbook"
-msgstr ""
-
 #: ../Cairo-Penguin/data/messages:17 ../Clipper/data/messages:95
 #: ../Dbus/data/messages:1 ../Disks/data/messages:101
 #: ../Doncky/data/messages:93 ../Folders/data/messages:107
@@ -3613,7 +3668,7 @@ msgstr "Válasszon ki egyet az elérhető témákból:"
 #: ../System-Monitor/data/messages:157 ../System-Monitor/data/messages:203
 #: ../Toons/data/messages:97 ../dnd2share/data/messages:97
 #: ../mail/data/messages:131 ../musicPlayer/data/messages:143
-#: ../netspeed/data/messages:135 ../powermanager/data/messages:151
+#: ../netspeed/data/messages:135 ../powermanager/data/messages:155
 #: ../shortcuts/data/messages:133 ../slider/data/messages:127
 #: ../tomboy/data/messages:119 ../wifi/data/messages:169
 msgid "in seconds."
@@ -5036,7 +5091,7 @@ msgstr ""
 
 #: ../Network-Monitor/data/messages:97 ../Network-Monitor/data/messages:169
 #: ../Network-Monitor/data/messages:257 ../System-Monitor/data/messages:131
-#: ../netspeed/data/messages:129 ../powermanager/data/messages:149
+#: ../netspeed/data/messages:129 ../powermanager/data/messages:153
 #: ../tomboy/data/messages:127 ../wifi/data/messages:167
 msgid "Parameters"
 msgstr "Paraméterek"
@@ -5136,12 +5191,12 @@ msgid "Effect to apply on the icon according to strength :"
 msgstr ""
 
 #: ../Network-Monitor/data/messages:219 ../alsaMixer/data/messages:133
-#: ../powermanager/data/messages:143 ../wifi/data/messages:137
+#: ../powermanager/data/messages:147 ../wifi/data/messages:137
 msgid "Zoom"
 msgstr "Nagyítás"
 
 #: ../Network-Monitor/data/messages:221 ../alsaMixer/data/messages:135
-#: ../powermanager/data/messages:145 ../wifi/data/messages:139
+#: ../powermanager/data/messages:149 ../wifi/data/messages:139
 msgid "Transparency"
 msgstr "Átlátszóság"
 
@@ -5158,9 +5213,11 @@ msgstr ""
 #: ../compiz-icon/data/messages:177 ../compiz-icon/data/messages:181
 #: ../compiz-icon/data/messages:185 ../compiz-icon/data/messages:189
 #: ../compiz-icon/data/messages:193 ../compiz-icon/data/messages:197
-#: ../musicPlayer/data/messages:177 ../musicPlayer/data/messages:181
-#: ../musicPlayer/data/messages:185 ../musicPlayer/data/messages:189
-#: ../musicPlayer/data/messages:193 ../tomboy/data/messages:13
+#: ../logout/data/messages:127 ../musicPlayer/data/messages:177
+#: ../musicPlayer/data/messages:181 ../musicPlayer/data/messages:185
+#: ../musicPlayer/data/messages:189 ../musicPlayer/data/messages:193
+#: ../powermanager/data/messages:135 ../powermanager/data/messages:139
+#: ../powermanager/data/messages:167 ../tomboy/data/messages:13
 #: ../tomboy/data/messages:17 ../tomboy/data/messages:21
 #: ../tomboy/data/messages:109 ../wifi/data/messages:143
 #: ../wifi/data/messages:147 ../wifi/data/messages:151
@@ -5243,32 +5300,32 @@ msgstr "Viselkedés"
 msgid "Notify about feed updates:"
 msgstr ""
 
-#: ../RSSreader/data/messages:119 ../powermanager/data/messages:191
+#: ../RSSreader/data/messages:119 ../powermanager/data/messages:199
 msgid "Icon animation"
 msgstr ""
 
-#: ../RSSreader/data/messages:121 ../powermanager/data/messages:193
+#: ../RSSreader/data/messages:121 ../powermanager/data/messages:201
 msgid "Dialog bubble"
 msgstr ""
 
-#: ../RSSreader/data/messages:123 ../powermanager/data/messages:195
+#: ../RSSreader/data/messages:123 ../powermanager/data/messages:203
 msgid "Icon animation + Dialog bubble"
 msgstr ""
 
-#: ../RSSreader/data/messages:125 ../powermanager/data/messages:197
+#: ../RSSreader/data/messages:125 ../powermanager/data/messages:205
 msgid "Let empty to use the default notification animation."
 msgstr ""
 
-#: ../RSSreader/data/messages:127 ../powermanager/data/messages:199
+#: ../RSSreader/data/messages:127 ../powermanager/data/messages:207
 msgid "Animation of the icon:"
 msgstr ""
 
-#: ../RSSreader/data/messages:129 ../powermanager/data/messages:201
+#: ../RSSreader/data/messages:129 ../powermanager/data/messages:209
 msgid ""
 "In seconds. Set to 0 for infinite time (need to click on dialog to close it)."
 msgstr ""
 
-#: ../RSSreader/data/messages:131 ../powermanager/data/messages:203
+#: ../RSSreader/data/messages:131 ../powermanager/data/messages:211
 msgid "Duration of the notification:"
 msgstr ""
 
@@ -5591,8 +5648,25 @@ msgid "Image's filename :"
 msgstr ""
 
 #: ../Status-Notifier/data/messages:97
-msgid "Display items in compact mode?"
+msgid "How to display items:"
 msgstr ""
+
+#: ../Status-Notifier/data/messages:99
+msgid "Compact"
+msgstr ""
+
+#: ../Status-Notifier/data/messages:101
+msgid "Sub-dock"
+msgstr ""
+
+#: ../Status-Notifier/data/messages:103
+msgid "Allow the icon to automatically resize itself?"
+msgstr ""
+
+#: ../Status-Notifier/data/messages:105
+#, fuzzy
+msgid "Number of lines to pack items in:"
+msgstr "Megjelenítendő sorok száma:"
 
 #: ../System-Monitor/data/messages:119 ../powermanager/data/messages:123
 msgid "It's the colour of the graphic for high values."
@@ -6191,18 +6265,18 @@ msgid "Comics"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:3 ../dialog-rendering/data/messages:11
-#: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:31
+#: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:29
 #: ../dock-rendering/data/messages:67
 msgid "Corner radius:"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:5 ../dialog-rendering/data/messages:13
-#: ../dialog-rendering/data/messages:23 ../dialog-rendering/data/messages:33
+#: ../dialog-rendering/data/messages:23 ../dialog-rendering/data/messages:31
 msgid "Border width:"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:7 ../dialog-rendering/data/messages:15
-#: ../dialog-rendering/data/messages:25 ../dialog-rendering/data/messages:35
+#: ../dialog-rendering/data/messages:25 ../dialog-rendering/data/messages:33
 msgid "Bubble's line colour:"
 msgstr ""
 
@@ -6219,18 +6293,14 @@ msgid "Tooltip"
 msgstr ""
 
 #: ../dialog-rendering/data/messages:27
-msgid "Colour of the margin :"
-msgstr ""
-
-#: ../dialog-rendering/data/messages:29
 msgid "Curly"
 msgstr ""
 
-#: ../dialog-rendering/data/messages:37
+#: ../dialog-rendering/data/messages:35
 msgid "Curvature of the tip :"
 msgstr ""
 
-#: ../dialog-rendering/data/messages:39
+#: ../dialog-rendering/data/messages:37
 msgid "Curve the sides too?"
 msgstr ""
 
@@ -6904,6 +6974,15 @@ msgstr ""
 msgid "User-defined command to execute for shutdown:"
 msgstr ""
 
+#: ../logout/data/messages:125 ../musicPlayer/data/messages:175
+#: ../tomboy/data/messages:11
+msgid "Customisation"
+msgstr "Testreszabás"
+
+#: ../logout/data/messages:129
+msgid "Icon image name to use when the system has to be rebooted:"
+msgstr ""
+
 #: ../mail/data/messages:93
 msgid ""
 "If you have any problem with the applet, uncheck this option during the "
@@ -7105,13 +7184,13 @@ msgstr ""
 msgid "Animation when music changes:"
 msgstr ""
 
-#: ../musicPlayer/data/messages:151 ../powermanager/data/messages:155
+#: ../musicPlayer/data/messages:151 ../powermanager/data/messages:159
 #: ../wifi/data/messages:183
 msgid "Information to display on the icon :"
 msgstr ""
 
-#: ../musicPlayer/data/messages:153 ../powermanager/data/messages:141
-#: ../powermanager/data/messages:157
+#: ../musicPlayer/data/messages:153 ../powermanager/data/messages:145
+#: ../powermanager/data/messages:161
 msgid "Nothing"
 msgstr "Semmi"
 
@@ -7151,10 +7230,6 @@ msgstr "Használjon 3D témát?"
 msgid "List of available 3D themes for covers :"
 msgstr ""
 
-#: ../musicPlayer/data/messages:175 ../tomboy/data/messages:11
-msgid "Customisation"
-msgstr "Testreszabás"
-
 #: ../musicPlayer/data/messages:183
 msgid "Name of the image for the 'play' icon :"
 msgstr ""
@@ -7192,70 +7267,74 @@ msgstr "Hagyja üresen az alapértelmezés használatához."
 msgid "Icon name:"
 msgstr ""
 
-#: ../powermanager/data/messages:135
+#: ../powermanager/data/messages:137
 msgid "'On-battery' icon filename:"
 msgstr ""
 
-#: ../powermanager/data/messages:137
+#: ../powermanager/data/messages:141
 msgid "Icon's filename when on charge :"
 msgstr ""
 
-#: ../powermanager/data/messages:139
+#: ../powermanager/data/messages:143
 msgid "Effect to apply on the icon according to the charge :"
 msgstr ""
 
-#: ../powermanager/data/messages:147
+#: ../powermanager/data/messages:151
 msgid "Draw bar"
 msgstr ""
 
-#: ../powermanager/data/messages:159
+#: ../powermanager/data/messages:163
 msgid "charge"
 msgstr ""
 
-#: ../powermanager/data/messages:161
+#: ../powermanager/data/messages:165
 #, fuzzy
 msgid "Timelength"
 msgstr "Hátralévő idő"
 
-#: ../powermanager/data/messages:163
-msgid "Notification"
-msgstr ""
-
-#: ../powermanager/data/messages:165
-msgid "Notification when battery charged ?"
-msgstr ""
-
-#: ../powermanager/data/messages:167 ../powermanager/data/messages:177
-#: ../powermanager/data/messages:185
-msgid "Leave it empty for no sound"
-msgstr ""
-
-#: ../powermanager/data/messages:169 ../powermanager/data/messages:179
-#: ../powermanager/data/messages:187
-msgid "Play a sound:"
+#: ../powermanager/data/messages:169
+msgid "Emblem icon's filename when on charge:"
 msgstr ""
 
 #: ../powermanager/data/messages:171
-msgid "Notification when low battery ?"
+msgid "Notification"
 msgstr ""
 
 #: ../powermanager/data/messages:173
-msgid "in percent."
+msgid "Notification when battery charged ?"
 msgstr ""
 
-#: ../powermanager/data/messages:175
-msgid "Battery level:"
+#: ../powermanager/data/messages:175 ../powermanager/data/messages:185
+#: ../powermanager/data/messages:193
+msgid "Leave it empty for no sound"
+msgstr ""
+
+#: ../powermanager/data/messages:177 ../powermanager/data/messages:187
+#: ../powermanager/data/messages:195
+msgid "Play a sound:"
+msgstr ""
+
+#: ../powermanager/data/messages:179
+msgid "Notification when low battery ?"
 msgstr ""
 
 #: ../powermanager/data/messages:181
-msgid "When battery level is under 4%"
+msgid "in percent."
 msgstr ""
 
 #: ../powermanager/data/messages:183
-msgid "Notification when battery charge is critical ?"
+msgid "Battery level:"
 msgstr ""
 
 #: ../powermanager/data/messages:189
+msgid "When battery level is under 4%"
+msgstr ""
+
+#: ../powermanager/data/messages:191
+msgid "Notification when battery charge is critical ?"
+msgstr ""
+
+#: ../powermanager/data/messages:197
 msgid "Notification type:"
 msgstr ""
 
@@ -8005,6 +8084,9 @@ msgstr ""
 #: ../wifi/data/messages:193
 msgid "Overwrite the default label with the connection point name?"
 msgstr ""
+
+#~ msgid "Status Notifier"
+#~ msgstr "Állapot értesítő"
 
 #~ msgid "About this applet"
 #~ msgstr "A GMenu névjegye"
