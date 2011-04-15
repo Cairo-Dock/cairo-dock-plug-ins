@@ -361,8 +361,9 @@ void cd_folders_free_all_data (CairoDockModuleInstance *myApplet)
 }
 
 
-static void _get_order (Icon *pIcon, CairoDockFMSortType iSortType)
+static void _get_order (Icon *pIcon, gpointer data)
 {
+	CairoDockFMSortType iSortType = GPOINTER_TO_INT (data);
 	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL;
 	gboolean bIsDirectory;
 	int iVolumeID;
@@ -408,11 +409,11 @@ void cd_folders_sort_icons (CairoDockModuleInstance *myApplet, CairoDockFMSortTy
 			pIconsList = cairo_dock_sort_icons_by_name (pIconsList);
 		break;
 		case CAIRO_DOCK_FM_SORT_BY_DATE:
-			g_list_foreach (pIconsList, (GFunc)_get_order, CAIRO_DOCK_FM_SORT_BY_DATE);
+			g_list_foreach (pIconsList, (GFunc)_get_order, GINT_TO_POINTER (CAIRO_DOCK_FM_SORT_BY_DATE));
 			pIconsList = cairo_dock_sort_icons_by_order (pIconsList);
 		break;
 		case CAIRO_DOCK_FM_SORT_BY_SIZE:
-			g_list_foreach (pIconsList, (GFunc)_get_order, CAIRO_DOCK_FM_SORT_BY_SIZE);
+			g_list_foreach (pIconsList, (GFunc)_get_order, GINT_TO_POINTER (CAIRO_DOCK_FM_SORT_BY_SIZE));
 			pIconsList = cairo_dock_sort_icons_by_order (pIconsList);
 		break;
 		case CAIRO_DOCK_FM_SORT_BY_TYPE:

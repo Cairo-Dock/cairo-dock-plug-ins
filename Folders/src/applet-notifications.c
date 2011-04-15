@@ -433,7 +433,7 @@ gboolean cd_folders_on_drop_data (gpointer data, const gchar *cReceivedData, Ico
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	gchar *cPath = NULL;
-	if (strncmp (cReceivedData, "file://", 7) == 0)  // tous les programmes ne gerent pas les URI; pour parer au cas ou il ne le gererait pas, dans le cas d'un fichier local, on convertit en un chemin
+	if (strncmp (cReceivedData, "file://", 7) == 0)
 		cPath = g_filename_from_uri (cReceivedData, NULL, NULL);
 	else
 		cPath = g_strdup (cReceivedData);

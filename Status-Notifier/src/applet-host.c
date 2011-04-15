@@ -58,6 +58,7 @@
 static DBusGProxyCall *s_pDetectWatcherCall = NULL;
 static DBusGProxyCall *s_pDetectIASCall = NULL;
 
+#if (INDICATOR_OLD_NAMES == 0)
 static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING (GClosure *closure,
 	GValue *return_value G_GNUC_UNUSED,
 	guint n_param_values,
@@ -103,7 +104,55 @@ static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_ST
 		(char*) g_value_get_string (param_values + 7),
 		data2);
 }
+#else
+static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING (GClosure *closure,
+	GValue *return_value G_GNUC_UNUSED,
+	guint n_param_values,
+	const GValue *param_values,
+	gpointer invocation_hint G_GNUC_UNUSED,
+	gpointer marshal_data)
+{
+	//g_print ("=== %s ()\n", __func__);
+	typedef void (*GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING) (
+		gpointer     data1,
+		gchar      *arg_1,
+		gint        arg_2,
+		gchar      *arg_3,
+		gchar      *arg_4,
+		gchar      *arg_5,
+		gchar      *arg_6,
+		gchar      *arg_7,
+		gchar      *arg_8,
+		gpointer     data2);
+	register GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING callback;
+	register GCClosure *cc = (GCClosure*) closure;
+	register gpointer data1, data2;
+	g_return_if_fail (n_param_values == 9);  // return_value est NULL ici, car la callback ne renvoit rien.
 
+	if (G_CCLOSURE_SWAP_DATA (closure))
+	{
+		data1 = closure->data;
+		data2 = g_value_peek_pointer (param_values + 0);
+	}
+	else
+	{
+		data1 = g_value_peek_pointer (param_values + 0);
+		data2 = closure->data;
+	}
+	callback = (GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING) (marshal_data ? marshal_data : cc->callback);
+
+	callback (data1,
+		(char*) g_value_get_string (param_values + 1),
+		g_value_get_int (param_values + 2),
+		(char*) g_value_get_string (param_values + 3),
+		(char*) g_value_get_string (param_values + 4),
+		(char*) g_value_get_string (param_values + 5),
+		(char*) g_value_get_string (param_values + 6),
+		(char*) g_value_get_string (param_values + 7),
+		(char*) g_value_get_string (param_values + 8),
+		data2);
+}
+#endif
 
 static CDStatusNotifierItem * _cd_satus_notifier_find_item_from_service (const gchar *cService)
 {
@@ -211,11 +260,17 @@ static void on_removed_item (DBusGProxy *proxy_watcher, const gchar *cService, C
 	CD_APPLET_LEAVE ();
 }
 
-static void on_new_application (DBusGProxy *proxy_watcher, const gchar *cIconName, gint iPosition, const gchar *cAdress, const gchar *cObjectPath, const gchar *cIconThemePath, const gchar *cLabel, const gchar *cLabelGuide, CairoDockModuleInstance *myApplet)
+static void on_new_application (DBusGProxy *proxy_watcher, const gchar *cIconName, gint iPosition, const gchar *cAdress, const gchar *cObjectPath, const gchar *cIconThemePath, const gchar *cLabel, const gchar *cLabelGuide,
+#if (INDICATOR_OLD_NAMES != 0)
+const gchar *cAccessbleDesc,  // WTF is this new param ??
+#endif
+CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	g_print ("=== %s (%s, %s, %s, %s, %d)\n", __func__, cAdress, cObjectPath, cIconName, cIconThemePath, iPosition);
-	
+	#if (INDICATOR_OLD_NAMES != 0)
+	g_print ("    %s\n", cAccessbleDesc);
+	#endif
 	/// position +1 for items placed after this one...
 	CDStatusNotifierItem *pItem;
 	GList *it;
@@ -398,8 +453,13 @@ static void _cd_satus_notifier_get_items_from_ias (void)
 		G_TYPE_INVALID);
 	
 	// connect to the signals to keep the list of items up-to-date.
+	#if (INDICATOR_OLD_NAMES == 0)
 	dbus_g_object_register_marshaller(_cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING,
 			G_TYPE_NONE, G_TYPE_STRING, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);
+	#else
+	dbus_g_object_register_marshaller(_cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING,
+			G_TYPE_NONE, G_TYPE_STRING, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);
+	#endif
 	dbus_g_proxy_add_signal(myData.pProxyIndicatorApplicationService, "ApplicationAdded",
 		G_TYPE_STRING,  // iconname
 		G_TYPE_INT,  // position
@@ -408,6 +468,9 @@ static void _cd_satus_notifier_get_items_from_ias (void)
 		G_TYPE_STRING,  // iconpath
 		G_TYPE_STRING,  // label
 		G_TYPE_STRING,  // labelguide
+		#if (INDICATOR_OLD_NAMES != 0)
+		G_TYPE_STRING,  // accessibledesc
+		#endif
 		G_TYPE_INVALID);
 	dbus_g_proxy_connect_signal(myData.pProxyIndicatorApplicationService, "ApplicationAdded",
 		G_CALLBACK(on_new_application), myApplet, NULL);

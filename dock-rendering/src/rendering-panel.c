@@ -140,10 +140,10 @@ static void cd_compute_size (CairoDock *pDock)
 	pDock->iMaxDockHeight = myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + hicon * pDock->container.fRatio + myDocksParam.iFrameMargin + myDocksParam.iDockLineWidth + myIconsParam.iLabelSize;
 	
 	pDock->iMaxDockHeight = MAX (pDock->iMaxDockHeight, pDock->iMaxIconHeight * (1 + myIconsParam.fAmplitude));  // au moins la taille du FBO.
-	g_print ("panel view: pDock->iMaxIconHeight = %d\n", pDock->iMaxIconHeight);
+	//g_print ("panel view: pDock->iMaxIconHeight = %d\n", pDock->iMaxIconHeight);
 
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth;
-	pDock->iMinDockHeight = 2 * (myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin) + hicon * pDock->container.fRatio;
+	pDock->iMinDockHeight = 2 * (myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin) + hicon * pDock->container.fRatio;  /// TODO: make the height constant, to avoid moving all windows when space is reserved and ratio changes.
 }
 
 
