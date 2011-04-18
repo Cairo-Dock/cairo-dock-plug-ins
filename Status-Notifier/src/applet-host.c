@@ -41,7 +41,7 @@
 #define CD_STATUS_NOTIFIER_WATCHER_IFACE "org.kde.StatusNotifierWatcher"
 
 // Ubuntu sort-of-high-level-Watcher (new or old address)
-#if (INDICATOR_OLD_NAMES == 0)
+#if (INDICATOR_OLD_NAMES == 0)  // Natty
 #define CD_INDICATOR_APPLICATION_ADDR "com.canonical.indicator.application"
 #define CD_INDICATOR_APPLICATION_OBJ "/com/canonical/indicator/application/service"
 #define CD_INDICATOR_APPLICATION_IFACE "com.canonical.indicator.application.service"
@@ -58,7 +58,7 @@
 static DBusGProxyCall *s_pDetectWatcherCall = NULL;
 static DBusGProxyCall *s_pDetectIASCall = NULL;
 
-#if (INDICATOR_OLD_NAMES == 0)
+#if (INDICATOR_OLD_NAMES != 0)  // Maverick
 static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING (GClosure *closure,
 	GValue *return_value G_GNUC_UNUSED,
 	guint n_param_values,
@@ -104,7 +104,7 @@ static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_ST
 		(char*) g_value_get_string (param_values + 7),
 		data2);
 }
-#else
+#else  // Natty
 static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING (GClosure *closure,
 	GValue *return_value G_GNUC_UNUSED,
 	guint n_param_values,
@@ -145,7 +145,7 @@ static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_ST
 		(char*) g_value_get_string (param_values + 1),
 		g_value_get_int (param_values + 2),
 		(char*) g_value_get_string (param_values + 3),
-		(char*) g_value_get_string (param_values + 4),
+		(char*) g_value_get_boxed (param_values + 4),
 		(char*) g_value_get_string (param_values + 5),
 		(char*) g_value_get_string (param_values + 6),
 		(char*) g_value_get_string (param_values + 7),
@@ -261,14 +261,14 @@ static void on_removed_item (DBusGProxy *proxy_watcher, const gchar *cService, C
 }
 
 static void on_new_application (DBusGProxy *proxy_watcher, const gchar *cIconName, gint iPosition, const gchar *cAdress, const gchar *cObjectPath, const gchar *cIconThemePath, const gchar *cLabel, const gchar *cLabelGuide,
-#if (INDICATOR_OLD_NAMES != 0)
+#if (INDICATOR_OLD_NAMES == 0)  // Natty
 const gchar *cAccessbleDesc,  // WTF is this new param ??
 #endif
 CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	g_print ("=== %s (%s, %s, %s, %s, %d)\n", __func__, cAdress, cObjectPath, cIconName, cIconThemePath, iPosition);
-	#if (INDICATOR_OLD_NAMES != 0)
+	#if (INDICATOR_OLD_NAMES == 0)  // Natty
 	g_print ("    %s\n", cAccessbleDesc);
 	#endif
 	/// position +1 for items placed after this one...
@@ -453,10 +453,10 @@ static void _cd_satus_notifier_get_items_from_ias (void)
 		G_TYPE_INVALID);
 	
 	// connect to the signals to keep the list of items up-to-date.
-	#if (INDICATOR_OLD_NAMES == 0)
+	#if (INDICATOR_OLD_NAMES != 0)  // Maverick
 	dbus_g_object_register_marshaller(_cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING,
 			G_TYPE_NONE, G_TYPE_STRING, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);
-	#else
+	#else  // Natty
 	dbus_g_object_register_marshaller(_cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING,
 			G_TYPE_NONE, G_TYPE_STRING, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);
 	#endif
@@ -464,11 +464,15 @@ static void _cd_satus_notifier_get_items_from_ias (void)
 		G_TYPE_STRING,  // iconname
 		G_TYPE_INT,  // position
 		G_TYPE_STRING,  // dbusaddress
+		#if (INDICATOR_OLD_NAMES != 0)  // Maverick
 		G_TYPE_STRING,  // dbusobject
+		#else  // Natty
+		DBUS_TYPE_G_OBJECT_PATH,  // dbusobject
+		#endif
 		G_TYPE_STRING,  // iconpath
 		G_TYPE_STRING,  // label
 		G_TYPE_STRING,  // labelguide
-		#if (INDICATOR_OLD_NAMES != 0)
+		#if (INDICATOR_OLD_NAMES == 0)  // Natty
 		G_TYPE_STRING,  // accessibledesc
 		#endif
 		G_TYPE_INVALID);
