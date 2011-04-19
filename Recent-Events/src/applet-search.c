@@ -198,7 +198,7 @@ static void on_related_events_received (ZeitgeistLog  *log, GAsyncResult *res, g
 		g_error_free (error);
 		return;
 	}
-	g_print ("Got %i events:\n", zeitgeist_result_set_size (events));
+	cd_debug ("Got %i events:", zeitgeist_result_set_size (events));
 	
 	if (zeitgeist_result_set_has_next (events))
 		pCallback (events, data);
@@ -206,7 +206,7 @@ static void on_related_events_received (ZeitgeistLog  *log, GAsyncResult *res, g
 }
 void cd_find_recent_related_files (const gchar **cMimeTypes, CDOnGetEventsFunc pCallback, gpointer data)  // right-click on a launcher/appli
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	static gpointer s_data[2];
 	s_data[0] = pCallback;
 	s_data[1] = data;
@@ -260,7 +260,7 @@ static void on_recent_events_received (ZeitgeistLog  *log, GAsyncResult *res, gp
 		return;
 	}
 	
-	g_print ("Got %i events:\n", zeitgeist_result_set_size (events));
+	cd_debug ("Got %i events:", zeitgeist_result_set_size (events));
 	
 	if (zeitgeist_result_set_has_next (events))
 		pCallback (events, data);
@@ -324,7 +324,7 @@ void cd_search_events (const gchar *cQuery, CDEventType iEventType, CDOnGetEvent
 	if (myData.pIndex == NULL)
 		myData.pIndex = zeitgeist_index_new ();
 	
-	g_print ("Searching for '%s'...\n", cQuery);
+	cd_debug ("Searching for '%s'...", cQuery);
 	
 	GPtrArray* zg_templates = g_ptr_array_sized_new (1);
 	ZeitgeistEvent *ev = _get_event_template_for_category (iEventType);
@@ -344,7 +344,7 @@ void cd_search_events (const gchar *cQuery, CDEventType iEventType, CDOnGetEvent
 
 static void on_delete_events (ZeitgeistLog *log, GAsyncResult *res, gpointer *user_data)
 {
-	g_print ("events deleted\n");
+	cd_debug ("events deleted");
 	CDOnDeleteEventsFunc pCallback = user_data[0];
 	gpointer data = user_data[1];
 	int iNbEvents = GPOINTER_TO_INT (user_data[2]);
@@ -369,7 +369,7 @@ static void on_deleting_event_received (ZeitgeistLog *log, GAsyncResult *res, gp
 	
 	GError *error = NULL;
 	GArray *event_ids = zeitgeist_log_find_event_ids_finish (log, res, &error);
-	g_print ("got %d events\n", event_ids->len);
+	cd_debug ("got %d events", event_ids->len);
 	if (error)
 	{
 		cd_warning ("Error finding in log: %s", error->message);

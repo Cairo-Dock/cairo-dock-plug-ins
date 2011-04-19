@@ -124,14 +124,14 @@ CD_APPLET_ON_CLICK_BEGIN
 			{
 				str = strchr (str, '/');
 			}
-			g_print ("bookmark '%s' on '%s'\n", CD_APPLET_CLICKED_ICON->cCommand, cVolumeUri);
+			//g_print ("bookmark '%s' on '%s'\n", CD_APPLET_CLICKED_ICON->cCommand, cVolumeUri);
 			gboolean bIsMounted = FALSE;
 			gchar *cActivationURI = cairo_dock_fm_is_mounted (CD_APPLET_CLICKED_ICON->cBaseURI, &bIsMounted);
 			g_free (cActivationURI);
 			* 
 			if (!bIsMounted)
 			{
-				g_print (" volume not mounted\n");
+				//g_print (" volume not mounted\n");
 				cairo_dock_fm_mount_full (cVolumeUri, 1, (CairoDockFMMountCallback) _open_on_mount, myApplet);
 			}
 			else

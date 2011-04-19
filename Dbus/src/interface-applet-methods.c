@@ -1218,7 +1218,7 @@ gboolean cd_dbus_applet_bind_shortkey (dbusApplet *pDbusApplet, const gchar **cS
 			bCouldBind = cd_keybinder_bind (cShortkey, (CDBindkeyHandler) cd_dbus_applet_emit_on_shortkey, pDbusApplet);
 			if (bCouldBind)
 				pDbusApplet->pShortkeyList = g_list_prepend (pDbusApplet->pShortkeyList, g_strdup (cShortkey));
-			g_print ("*** bind %s: %d\n", cShortkey, bCouldBind);
+			cd_debug ("*** bind %s: %d", cShortkey, bCouldBind);
 		}
 	}
 	return TRUE;

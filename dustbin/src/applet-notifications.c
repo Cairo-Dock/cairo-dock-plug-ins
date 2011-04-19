@@ -54,7 +54,7 @@ static void _free_info_dialog (CairoDockModuleInstance *myApplet)
 
 static void _free_shared_memory (CDSharedMemory *pSharedMemory)
 {
-	g_print ("free dustbin SM\n");
+	cd_debug ("free dustbin SM");
 	g_free (pSharedMemory->cDustbinPath);
 	g_free (pSharedMemory);
 }

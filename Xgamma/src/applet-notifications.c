@@ -107,7 +107,7 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 
 static gboolean _on_scroll (gpointer data)
 {
-	g_print ("%s (%d)\n", __func__, myData.iScrollCount);
+	cd_debug ("%s (%d)", __func__, myData.iScrollCount);
 	if (myData.iScrollCount != 0)
 		xgamma_add_gamma (&myData.Xgamma, myData.iScrollCount);
 	myData.iSidScrollAction = 0;

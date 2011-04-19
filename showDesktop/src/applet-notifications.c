@@ -294,7 +294,7 @@ static void _make_link_to_desktop (GtkMenuItem *menu_item, CairoDockModuleInstan
 }
 static void _dl_finished (gpointer data)
 {
-	g_print ("DL IS FINISHED\n");
+	cd_debug ("DL IS FINISHED");
 }
 static void _download_to_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {

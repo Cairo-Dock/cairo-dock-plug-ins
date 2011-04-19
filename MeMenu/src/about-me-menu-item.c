@@ -182,9 +182,9 @@ load_icon (const gchar* filename,
                                      &error);
 	if (error)
 	{
-		g_print ("loading icon '%s' caused error: '%s'",
+		/*//g_print ("loading icon '%s' caused error: '%s'",
              filename,
-             error->message);
+             error->message);*/
 		g_error_free (error);
 		error = NULL;
 		pixbuf = NULL;

@@ -30,7 +30,7 @@ void cd_shortcuts_set_icon_order (Icon *pNewIcon, GList *pIconsList, GCompareFun
 {
 	if (comp == NULL)
 		return;
-	g_print ("%s (%s)\n", __func__, pNewIcon->cName);
+	cd_debug ("%s (%s)", __func__, pNewIcon->cName);
 	// on cherche la 1ere icone du meme type.
 	GList *ic;
 	Icon *pIcon;
@@ -51,7 +51,7 @@ void cd_shortcuts_set_icon_order (Icon *pNewIcon, GList *pIconsList, GCompareFun
 	if (comp (pNewIcon, pIcon) <= 0)
 	{
 		pNewIcon->fOrder = pIcon->fOrder - 1;
-		g_print ("name : %s <= %s -> %.2f\n", pNewIcon->cName, pIcon->cName, pNewIcon->fOrder);
+		cd_debug ("name : %s <= %s -> %.2f", pNewIcon->cName, pIcon->cName, pNewIcon->fOrder);
 		return;
 	}
 	
@@ -59,10 +59,10 @@ void cd_shortcuts_set_icon_order (Icon *pNewIcon, GList *pIconsList, GCompareFun
 	for (ic = ic0; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		g_print ("  compare with %s (%.2f)\n", pIcon->cName, pIcon->fOrder);
+		cd_debug ("  compare with %s (%.2f)", pIcon->cName, pIcon->fOrder);
 		if (pIcon->iGroup != pNewIcon->iGroup)
 		{
-			g_print ("  type differ, break\n");
+			cd_debug ("  type differ, break");
 			break;
 		}
 		if (comp (pNewIcon, pIcon) < 0)
@@ -74,11 +74,11 @@ void cd_shortcuts_set_icon_order (Icon *pNewIcon, GList *pIconsList, GCompareFun
 				Icon *pPrevIcon = ic->prev->data;
 				pNewIcon->fOrder = (pIcon->fOrder + pPrevIcon->fOrder) / 2;
 			}
-			g_print ("  name : %s < %s -> %.2f\n", pNewIcon->cName, pIcon->cName, pNewIcon->fOrder);
+			cd_debug ("  name : %s < %s -> %.2f", pNewIcon->cName, pIcon->cName, pNewIcon->fOrder);
 			break;
 		}
 		pNewIcon->fOrder = pIcon->fOrder + 1;
-		g_print ("  fOrder <- %.2f\n", pNewIcon->fOrder);
+		cd_debug ("  fOrder <- %.2f", pNewIcon->fOrder);
 	}
 }
 
@@ -89,7 +89,7 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 		return;
 	gchar *cURI = g_strdup (cBaseURI);
 	cairo_dock_remove_html_spaces (cURI);
-	g_print (" * event %d on '%s'\n", iEventType, cURI);
+	cd_debug (" * event %d on '%s'", iEventType, cURI);
 	
 	if (!myConfig.bShowHiddenFiles)
 	{
@@ -104,7 +104,7 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 		{
 			if (strcmp (myConfig.cDirPath, cBaseURI) == 0)
 			{
-				g_print ("our folder has been removed\n");
+				cd_debug ("our folder has been removed");
 				_cd_folders_remove_all_icons (myApplet);
 				return;
 			}
@@ -119,7 +119,7 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 				cd_warning ("  an unknown file was removed");
 				return ;
 			}	
-			g_print (" %s will be removed\n", pConcernedIcon->cName);
+			cd_debug (" %s will be removed", pConcernedIcon->cName);
 			
 			// on l'enleve du container.
 			gboolean bInContainer = CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pConcernedIcon);  // detruit l'icone.
@@ -130,7 +130,7 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 		{
 			if (strcmp (myConfig.cDirPath, cBaseURI) == 0)
 			{
-				g_print ("our folder has been re-created\n");
+				cd_debug ("our folder has been re-created");
 				cairo_dock_launch_task (myData.pTask);
 				return;
 			}
@@ -154,7 +154,7 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 			
 			//\_______________________ on la place au bon endroit suivant son nom.
 			cd_shortcuts_set_icon_order (pNewIcon, pIconsList, myData.comp);
-			g_print (" new file : %s, order = %.2f\n", pNewIcon->cName, pNewIcon->fOrder);
+			cd_debug (" new file : %s, order = %.2f", pNewIcon->cName, pNewIcon->fOrder);
 			
 			CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pNewIcon);
 		}
@@ -172,7 +172,7 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 				cd_warning ("  an unknown file was modified");
 				return ;
 			}
-			g_print (" %s is modified\n", pConcernedIcon->cName);
+			cd_debug (" %s is modified", pConcernedIcon->cName);
 			
 			//\_______________________ on recupere les infos actuelles.
 			Icon *pNewIcon = cairo_dock_fm_create_icon_from_URI (cURI, pContainer, myConfig.iSortType);
@@ -189,7 +189,7 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 			//\_______________________ on gere le changement de nom.
 			if (cairo_dock_strings_differ (pConcernedIcon->cName, pNewIcon->cName))  // le nom a change.
 			{
-				g_print ("  name changed : '%s' -> '%s'\n", pConcernedIcon->cName, pNewIcon->cName);
+				cd_debug ("  name changed : '%s' -> '%s'", pConcernedIcon->cName, pNewIcon->cName);
 				cairo_dock_set_icon_name (pNewIcon->cName, pConcernedIcon, pContainer);
 				cd_shortcuts_set_icon_order (pConcernedIcon, pIconsList, myData.comp);
 			}
@@ -197,7 +197,7 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 			//\_______________________ on gere le changement d'image.
 			if (cairo_dock_strings_differ (pConcernedIcon->cFileName, pNewIcon->cFileName))
 			{
-				g_print ("  image changed : '%s' -> '%s'\n", pConcernedIcon->cFileName, pNewIcon->cFileName);
+				cd_debug ("  image changed : '%s' -> '%s'", pConcernedIcon->cFileName, pNewIcon->cFileName);
 				g_free (pConcernedIcon->cFileName);
 				pConcernedIcon->cFileName = g_strdup (pNewIcon->cFileName);
 				
@@ -208,7 +208,7 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 			//\_______________________ on gere le changement d'ordre (du au changement de nom, d'extension, ou de taille, suivant le classement utilise).
 			if (pConcernedIcon->fOrder != fCurrentOrder)
 			{
-				g_print ("  order changed : %.2f -> %.2f\n", fCurrentOrder, pConcernedIcon->fOrder);
+				cd_debug ("  order changed : %.2f -> %.2f", fCurrentOrder, pConcernedIcon->fOrder);
 				
 				// on la detache.
 				gboolean bInContainer = CD_APPLET_DETACH_ICON_FROM_MY_ICONS_LIST (pConcernedIcon);

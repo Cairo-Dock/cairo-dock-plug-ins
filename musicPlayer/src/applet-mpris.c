@@ -221,7 +221,7 @@ static int _mpris_get_status (int iStatusIndex)
 
 static void _on_got_playing_status (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockModuleInstance *myApplet)
 {
-	g_print ("=== %s ()\n", __func__);
+	cd_debug ("=== %s ()", __func__);
 	CD_APPLET_ENTER;
 	s_pGetStatusCall = NULL;
 	
@@ -328,7 +328,7 @@ static void cd_mpris_get_track_index_async (void)
 		(GDestroyNotify) NULL,
 		G_TYPE_INVALID);
 	/**myData.iTrackListIndex = cairo_dock_dbus_get_integer (myData.dbus_proxy_shell, "GetCurrentTrack");
-	g_print ("myData.iTrackListIndex <- %d\n", myData.iTrackListIndex);*/
+	//g_print ("myData.iTrackListIndex <- %d\n", myData.iTrackListIndex);*/
 }
 
 static inline int _get_integer_value (GValue *value)
@@ -489,7 +489,7 @@ static inline void _extract_metadata (GHashTable *data_list)
 
 static void _on_got_song_infos (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockModuleInstance *myApplet)
 {
-	g_print ("=== %s ()\n", __func__);
+	cd_debug ("=== %s ()", __func__);
 	CD_APPLET_ENTER;
 	s_pGetSongInfosCall = NULL;
 	

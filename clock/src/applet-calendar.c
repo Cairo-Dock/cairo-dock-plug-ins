@@ -632,7 +632,7 @@ static void _on_dialog_destroyed (CairoDockModuleInstance *myApplet)
 }
 void cd_clock_show_hide_calendar (CairoDockModuleInstance *myApplet)
 {
-	g_print ("%s (%x)\n", __func__, myData.pCalendarDialog);
+	cd_debug ("%s (%x)", __func__, myData.pCalendarDialog);
 	if (myData.pCalendarDialog != NULL)
 	{
 		cairo_dock_dialog_unreference (myData.pCalendarDialog);

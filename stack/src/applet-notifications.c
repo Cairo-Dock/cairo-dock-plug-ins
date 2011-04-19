@@ -53,7 +53,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	}
 	else if (CD_APPLET_CLICKED_ICON != NULL)
 	{
-		g_print ("_launch_item\n");
+		cd_debug ("_launch_item");
 		_launch_item (CD_APPLET_CLICKED_ICON, myApplet);  // on intercepte la notification.
 	}
 	else

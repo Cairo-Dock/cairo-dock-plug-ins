@@ -58,7 +58,7 @@ static void upload (const gchar *cText, gchar *cDropboxDir, gboolean bAnonymous,
 	}
 	else if (cResult)
 	{
-		g_print (" --> got '%s'\n", cResult);
+		cd_debug (" --> got '%s'", cResult);
 		gchar *str = strstr (cResult, "Location:");
 		if (!str)
 			return;

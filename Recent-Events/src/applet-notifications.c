@@ -54,14 +54,14 @@ void cd_recent_events_reset_uri_list (void)
 }
 static gboolean _on_delete_menu (GtkWidget *widget, GdkEvent *event, gpointer user_data)
 {
-	g_print ("*** menu deleted\n");
+	cd_debug ("*** menu deleted");
 	s_pMenu = NULL;
 	cd_recent_events_reset_uri_list ();
 	return FALSE;
 }
 static void _open_file (GtkMenuItem *menu_item, gchar *cCommand)
 {
-	g_print ("%s (%s)\n", __func__, cCommand);
+	cd_debug ("%s (%s)", __func__, cCommand);
 	
 	cairo_dock_launch_command (cCommand);
 	
@@ -91,7 +91,7 @@ static void _clear_all_events (GtkMenuItem *menu_item, gpointer data)
 }
 static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	cd_recent_events_reset_uri_list ();
 	if (s_pMenu == NULL)
 		return;
@@ -116,7 +116,7 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 		{
 			subject = zeitgeist_event_get_subject (event, i);
 			cEventURI = zeitgeist_subject_get_uri (subject);
-			g_print (" + %s\n", cEventURI);
+			cd_debug (" + %s", cEventURI);
 			
 			cairo_dock_fm_get_file_info (cEventURI, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, 0);
 			//g_free (cName);
@@ -136,11 +136,11 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 		gtk_widget_show_all (pSubMenu);  // sinon des fois il n'apparait pas au 1er survol de son entree.
 		gtk_widget_show_all (s_pMenu);
 	}
-	g_print ("items added\n");
+	cd_debug ("items added");
 }
 CD_APPLET_ON_BUILD_MENU_PROTO
 {
-	g_print ("%s (%s...)\n", __func__, CD_APPLET_CLICKED_ICON && CD_APPLET_CLICKED_ICON->pMimeTypes ?CD_APPLET_CLICKED_ICON->pMimeTypes[0] : "");
+	cd_debug ("%s (%s...)", __func__, CD_APPLET_CLICKED_ICON && CD_APPLET_CLICKED_ICON->pMimeTypes ?CD_APPLET_CLICKED_ICON->pMimeTypes[0] : "");
 	CD_APPLET_ENTER;
 	if (CD_APPLET_CLICKED_ICON != NULL)
 	{

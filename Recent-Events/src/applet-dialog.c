@@ -55,7 +55,7 @@ static void on_click_category_button (GtkButton *button, gpointer data)
 	if (! gtk_toggle_tool_button_get_active (GTK_TOGGLE_TOOL_BUTTON (button)))
 		return;
 	myData.iCurrentCaterogy = GPOINTER_TO_INT (data);
-	g_print ("filter on category %d\n", myData.iCurrentCaterogy);
+	cd_debug ("filter on category %d", myData.iCurrentCaterogy);
 	cd_trigger_search ();
 }
 
@@ -63,7 +63,7 @@ static void on_click_category_button (GtkButton *button, gpointer data)
 static void on_clear_filter (GtkEntry *pEntry, GtkEntryIconPosition icon_pos, GdkEvent *event, gpointer data)
 {
 	gtk_entry_set_text (pEntry, "");
-	g_print ("relaunch the search...\n");
+	cd_debug ("relaunch the search...");
 	cd_trigger_search ();
 }
 #endif
@@ -97,7 +97,7 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 		id = zeitgeist_event_get_id (event);
 		n = zeitgeist_event_num_subjects (event);
 		if (n > 1)
-			g_print (" +++ %s, %s, %d\n", zeitgeist_event_get_interpretation (event), zeitgeist_event_get_manifestation (event), n);
+			cd_debug (" +++ %s, %s, %d", zeitgeist_event_get_interpretation (event), zeitgeist_event_get_manifestation (event), n);
 		for (i = 0; i < n; i++)
 		{
 			subject = zeitgeist_event_get_subject (event, i);
@@ -222,7 +222,7 @@ static gboolean _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButt
 	if ((pButton->button == 3 && pButton->type == GDK_BUTTON_RELEASE)  // right-click
 	|| (pButton->button == 1 && pButton->type == GDK_2BUTTON_PRESS))  // double-click
 	{
-		g_print ("%s ()\n", __func__);
+		cd_debug ("%s ()", __func__);
 		// get the current selected line.
 		GtkTreeSelection *pSelection = gtk_tree_view_get_selection (pTreeView);
 		GtkTreeModel *pModel;

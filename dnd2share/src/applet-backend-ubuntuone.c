@@ -44,7 +44,7 @@ static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonym
 	g_free (cFileName);
 	
 	gchar *cCommand = g_strdup_printf ("cp \"%s\" \"%s\"", cFilePath, cLocalFilePath);
-	g_print ("commande u1 : %s\n", cCommand);
+	cd_debug ("commande u1 : %s", cCommand);
 	int r = system (cCommand);
 	g_free (cCommand);
 	if (r != 0)
@@ -56,7 +56,7 @@ static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonym
 	
 	// On recupere l'URL (dispo tout de suite, sinon il faudra boucler en testant 'dropbox status' jusqu'a avoir 'Idle').
 	cCommand= g_strdup_printf ("u1sdtool --publish-file \"%s\"", cLocalFilePath);
-	g_print ("commande u2 : %s\n", cCommand);
+	cd_debug ("commande u2 : %s", cCommand);
 	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
 	g_free (cCommand);
 	g_free (cLocalFilePath);

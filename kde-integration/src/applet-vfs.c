@@ -203,7 +203,7 @@ static GDrive *_cd_find_drive_from_name (const gchar *cName)
 static gchar *_cd_find_volume_name_from_drive_name (const gchar *cName)
 {
 	g_return_val_if_fail (cName != NULL, NULL);
-	cd_message ("%s (%s)", __func__, cName);
+	cd_debug ("%s (%s)", __func__, cName);
 	GDrive *pDrive = _cd_find_drive_from_name (cName);
 	g_return_val_if_fail (pDrive != NULL, NULL);
 	
@@ -215,12 +215,12 @@ static gchar *_cd_find_volume_name_from_drive_name (const gchar *cName)
 		GList *av;
 		if (pAssociatedVolumes->next != NULL)
 		{
-			cd_message ("ce disque contient plus d'un volume, on garde le nom du disque plutot que de selectionner le nom d'un volume");
-			cd_message ("Pour info, la liste des volumes disponibles sur ce disque est :");
+			cd_debug ("ce disque contient plus d'un volume, on garde le nom du disque plutot que de selectionner le nom d'un volume");
+			cd_debug ("Pour info, la liste des volumes disponibles sur ce disque est :");
 			for (av = pAssociatedVolumes; av != NULL; av = av->next)
 			{
 				pVolume = av->data;
-				cd_message ("  - %s", g_volume_get_name  (pVolume));
+				cd_debug ("  - %s", g_volume_get_name  (pVolume));
 				/*if (cVolumeName == NULL)
 					cVolumeName = g_volume_get_name  (pVolume);
 				else
@@ -234,7 +234,7 @@ static gchar *_cd_find_volume_name_from_drive_name (const gchar *cName)
 			pVolume = pAssociatedVolumes->data;
 			cVolumeName = g_volume_get_name  (pVolume);
 			g_object_unref (pVolume);
-			cd_message ("ce disque contient 1 seul volume (%s), on prend son nom", cVolumeName);
+			cd_debug ("ce disque contient 1 seul volume (%s), on prend son nom", cVolumeName);
 		}
 		g_list_free (pAssociatedVolumes);
 	}

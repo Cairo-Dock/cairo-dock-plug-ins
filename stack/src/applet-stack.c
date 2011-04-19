@@ -124,7 +124,7 @@ static void _get_html_page (CDHtmlLink *pHtmlLink)
 					strcpy (str, str2);
 			}
 		}
-		g_print ("cTitle: '%s'\n", pHtmlLink->cTitle);
+		cd_debug ("cTitle: '%s'", pHtmlLink->cTitle);
 	}
 	
 	// get the domain name.
@@ -137,7 +137,7 @@ static void _get_html_page (CDHtmlLink *pHtmlLink)
 		if (str2)
 			cDomainName = g_strndup (str, str2 - str);
 	}
-	g_print ("cDomainName: %s\n", cDomainName);
+	cd_debug ("cDomainName: %s", cDomainName);
 	
 	// get the favicon or use the existing one.
 	gchar *cLocalFaviconPath = NULL;
@@ -174,13 +174,13 @@ static void _get_html_page (CDHtmlLink *pHtmlLink)
 					if (str3)
 					{
 						cRelPath = g_strndup (str2, str3 - str2);
-						g_print ("favicon: '%s'\n", cRelPath);
+						cd_debug ("favicon: '%s'", cRelPath);
 					}
 				}
 			}
 			else  // no standard favicon, get the default one in the remote root dir.
 			{
-				g_print ("no favicon defined, looking for a default favicon.ico...\n");
+				cd_debug ("no favicon defined, looking for a default favicon.ico...");
 				cRelPath = g_strdup ("favicon.ico");
 			}
 			
@@ -201,13 +201,13 @@ static void _get_html_page (CDHtmlLink *pHtmlLink)
 				{
 					cFaviconURL = g_strdup_printf ("%s/%s", cDomainName, cRelPath);
 				}
-				g_print ("cFaviconURL: %s\n", cFaviconURL);
+				cd_debug ("cFaviconURL: %s", cFaviconURL);
 				
 				gchar *cTmpFavIconPath = cairo_dock_download_file (NULL, NULL, cFaviconURL, NULL, NULL);
 				if (cTmpFavIconPath != NULL)
 				{
 					gchar *cCommand = g_strdup_printf ("mv \"%s\" \"%s\"", cTmpFavIconPath, cLocalFaviconPath);
-					g_print ("%s\n", cCommand);
+					cd_debug ("%s", cCommand);
 					int r = system (cCommand);
 					g_free (cCommand);
 					g_free (cTmpFavIconPath);
@@ -254,7 +254,7 @@ static gboolean _update_html_link (CDHtmlLink *pHtmlLink)
 				
 				cairo_dock_set_icon_name (pHtmlLink->cTitle, pIcon, pContainer);
 				
-				g_print ("draw emblem on %s\n", pIcon->cName);
+				cd_debug ("draw emblem on %s", pIcon->cName);
 				CairoEmblem *pEmblem = cairo_dock_make_emblem (pHtmlLink->cFaviconPath, pIcon, pContainer);
 				cairo_dock_set_emblem_position (pEmblem, CAIRO_DOCK_EMBLEM_LOWER_RIGHT);
 				cairo_dock_draw_emblem_on_icon (pEmblem, pIcon, pContainer);
@@ -310,13 +310,13 @@ static Icon *_cd_stack_create_new_item (CairoDockModuleInstance *myApplet, const
 	int iDate;
 	CDHtmlLink *pHtmlLink = NULL;
 	
-	g_print ("Stack: got '%s'\n", cContent);
+	cd_debug ("Stack: got '%s'", cContent);
 	//\_______________________ On lui trouve un petit nom.
 	if (cairo_dock_string_is_adress (cContent) || *cContent == '/')
 	{
 		if (strncmp (cContent, "http://", 7) == 0 || strncmp (cContent, "www", 3) == 0 || strncmp (cContent, "https://", 8) == 0)
 		{
-			g_print (" -> html page\n");
+			cd_debug (" -> html page");
 			pHtmlLink = g_new0 (CDHtmlLink, 1);
 			pHtmlLink->pApplet = myApplet;
 			pHtmlLink->cURL = g_strdup (cContent);

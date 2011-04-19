@@ -51,7 +51,7 @@ static void upload (const gchar *cText, gchar *cDropboxDir, gboolean bAnonymous,
 	}
 	else
 	{
-		g_print (" --> got '%s'\n", cResult);
+		cd_debug (" --> got '%s'", cResult);
 		cResultUrls[0] = cResult;
 	}
 }

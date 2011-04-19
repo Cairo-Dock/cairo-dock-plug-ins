@@ -36,7 +36,7 @@ static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonym
 {
 	// On lance la commande d'upload.
 	gchar *cCommand = g_strdup_printf ("%s/%s \"%s\" \"%dk\"", MY_APPLET_SHARE_DATA_DIR, "upload2free.sh", cFilePath, iLimitRate);
-	g_print ("%s\n", cCommand);
+	cd_debug ("%s", cCommand);
 	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
 	g_free (cCommand);
 	if (cResult == NULL || *cResult == '\0')

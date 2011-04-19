@@ -106,7 +106,7 @@ static void _on_got_location_data (const gchar *cLocationData, CairoDockModuleIn
 	GtkWidget *pCodeEntry = CD_APPLET_GET_CONFIG_PANEL_WIDGET ("Configuration", "location code");
 	if (!pCodeEntry)
 	{
-		g_print ("request took too long, discard results\n");
+		cd_debug ("request took too long, discard results");
 		cairo_dock_discard_task (myData.pGetLocationTask);
 		myData.pGetLocationTask = NULL;
 		return;

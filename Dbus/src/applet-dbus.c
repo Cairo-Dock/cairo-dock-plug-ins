@@ -406,7 +406,7 @@ void cd_dbus_clean_up_processes (gboolean bAll)
 		gchar *cProcFile = g_strdup_printf ("/proc/%d", iPPid);
 		if (bAll || ! g_file_test (cProcFile, G_FILE_TEST_EXISTS))  // old process
 		{
-			g_print ("this applet (%s %s) is linked to an old gldi process (%d), kill it.\n", cContent, cPid, iPPid);
+			cd_message ("this applet (%s %s) is linked to an old gldi process (%d), kill it.", cContent, cPid, iPPid);
 			iPid = atoi (cPid);
 			kill (iPid, SIGKILL);  // SIGTERM sometimes lets the process alive.
 		}
