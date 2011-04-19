@@ -128,10 +128,10 @@ void cd_indicator_destroy (CDAppletIndicator *pIndicator)
 		g_object_unref (pIndicator->service);
 	if (pIndicator->pServiceProxy)
 		g_object_unref (pIndicator->pServiceProxy);
-	g_print ("destroy indicator menu...\n");
+	cd_debug ("destroy indicator menu...");
 	if (pIndicator->pMenu)
 		g_object_unref (pIndicator->pMenu);
-	g_print ("done.\n");
+	cd_debug ("done.");
 	g_free (pIndicator);
 }
 
@@ -167,7 +167,7 @@ void cd_indicator_set_icon (CDAppletIndicator *pIndicator, const gchar *cStatusI
 		cIconPathFallback = g_strdup_printf ("%s/%s%s", myApplet->pModule->pVisitCard->cShareDataDir, cIconName, bAddSuffix ? ".svg" : "");
 	}
 	
-	g_print ("set %s\n", cIconPathFallback ? cIconPathFallback : cIconName);
+	cd_debug ("set %s", cIconPathFallback ? cIconPathFallback : cIconName);
 	CD_APPLET_SET_IMAGE_ON_MY_ICON (cIconPathFallback ? cIconPathFallback : cIconName);
 	
 	g_free (tmp_icon_name);

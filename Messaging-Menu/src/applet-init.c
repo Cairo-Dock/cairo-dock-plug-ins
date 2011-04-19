@@ -41,7 +41,7 @@ CD_APPLET_INIT_BEGIN
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 	}
-	g_print ("\n>>> INDICATOR_MESSAGES_DBUS_NAME: "INDICATOR_MESSAGES_DBUS_NAME"\n");
+	cd_debug (">>> INDICATOR_MESSAGES_DBUS_NAME: "INDICATOR_MESSAGES_DBUS_NAME);
 	
 	myData.pIndicator = cd_indicator_new (myApplet,
 		INDICATOR_MESSAGES_DBUS_NAME,

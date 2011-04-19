@@ -66,7 +66,7 @@ static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_ST
 	gpointer invocation_hint G_GNUC_UNUSED,
 	gpointer marshal_data)
 {
-	//g_print ("=== %s ()\n", __func__);
+	//cd_debug ("=== %s ()\n", __func__);
 	typedef void (*GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING) (
 		gpointer     data1,
 		gchar      *arg_1,
@@ -112,7 +112,7 @@ static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_ST
 	gpointer invocation_hint G_GNUC_UNUSED,
 	gpointer marshal_data)
 {
-	//g_print ("=== %s ()\n", __func__);
+	//cd_debug ("=== %s ()\n", __func__);
 	typedef void (*GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING) (
 		gpointer     data1,
 		gchar      *arg_1,
@@ -198,7 +198,7 @@ static inline void _add_new_item (const gchar *cService, const gchar *cObjectPat
 	if (pItem->cLabel == NULL && pItem->cTitle == NULL)
 		pItem->cLabel = g_strdup (pItem->cId);  // cService is often a dbus name like :1.355
 	myData.pItems = g_list_prepend (myData.pItems, pItem);
-	g_print ("item '%s' appended\n", pItem->cId);
+	cd_debug ("item '%s' appended", pItem->cId);
 	
 	if (pItem->iStatus == CD_STATUS_PASSIVE)  // don't show a passive item.
 		return;
@@ -232,14 +232,14 @@ static inline void _remove_item (const gchar *cService, int iPosition)
 		CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pIcon);
 	}
 	
-	g_print ("=== item %s removed\n", pItem->cTitle?pItem->cTitle:pItem->cLabel);
+	cd_debug ("=== item %s removed", pItem->cTitle?pItem->cTitle:pItem->cLabel);
 	cd_free_item (pItem);
 }
 
 static void on_new_item (DBusGProxy *proxy_watcher, const gchar *cService, CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
-	g_print ("=== %s (%s)\n", __func__, cService);
+	cd_debug ("=== %s (%s)", __func__, cService);
 	
 	_add_new_item (cService, NULL, -1);  // on suppose que leur indicator-application ne mettra jamais -1 comme position.
 	
@@ -249,7 +249,7 @@ static void on_new_item (DBusGProxy *proxy_watcher, const gchar *cService, Cairo
 static void on_removed_item (DBusGProxy *proxy_watcher, const gchar *cService, CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
-	g_print ("=== %s (%s)\n", __func__, cService);
+	cd_debug ("=== %s (%s)", __func__, cService);
 	
 	gchar *str = strchr (cService, '/');
 	if (str)
@@ -267,9 +267,9 @@ const gchar *cAccessbleDesc,  // WTF is this new param ??
 CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
-	g_print ("=== %s (%s, %s, %s, %s, %d)\n", __func__, cAdress, cObjectPath, cIconName, cIconThemePath, iPosition);
+	cd_debug ("=== %s (%s, %s, %s, %s, %d)", __func__, cAdress, cObjectPath, cIconName, cIconThemePath, iPosition);
 	#if (INDICATOR_OLD_NAMES == 0)  // Natty
-	g_print ("    %s\n", cAccessbleDesc);
+	cd_debug ("    %s", cAccessbleDesc);
 	#endif
 	/// position +1 for items placed after this one...
 	CDStatusNotifierItem *pItem;
@@ -280,7 +280,7 @@ CairoDockModuleInstance *myApplet)
 		if (pItem->iPosition >= iPosition)
 		{
 			pItem->iPosition ++;
-			g_print ("===  %s -> %d -> %d\n", pItem->cId, pItem->iPosition-1, pItem->iPosition);
+			cd_debug ("===  %s -> %d -> %d", pItem->cId, pItem->iPosition-1, pItem->iPosition);
 		}
 	}
 	
@@ -292,7 +292,7 @@ CairoDockModuleInstance *myApplet)
 static void on_removed_application (DBusGProxy *proxy_watcher, gint iPosition, CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
-	g_print ("=== %s (%d)\n", __func__, iPosition);
+	cd_debug ("=== %s (%d)", __func__, iPosition);
 	
 	_remove_item (NULL, iPosition);
 	
@@ -305,7 +305,7 @@ static void on_removed_application (DBusGProxy *proxy_watcher, gint iPosition, C
 		if (pItem->iPosition >= iPosition)
 		{
 			pItem->iPosition --;
-			g_print ("===  %s -> %d -> %d\n", pItem->cId, pItem->iPosition+1, pItem->iPosition);
+			cd_debug ("===  %s -> %d -> %d", pItem->cId, pItem->iPosition+1, pItem->iPosition);
 		}
 	}
 	
@@ -319,7 +319,7 @@ static void on_removed_application (DBusGProxy *proxy_watcher, gint iPosition, C
 
 static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockModuleInstance *myApplet)
 {
-	g_print ("=== %s ()\n", __func__);
+	cd_debug ("=== %s ()", __func__);
 	CD_APPLET_ENTER;
 	
 	//\______________________ get the applications list from the service.
@@ -342,7 +342,7 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 		G_TYPE_INVALID);
 	if (erreur != NULL)
 	{
-		g_print ("=== couldn't get applications in the systray (%s)\n", erreur->message);
+		cd_debug ("=== couldn't get applications in the systray (%s)", erreur->message);
 		g_error_free (erreur);
 		erreur = NULL;
 	}
@@ -350,15 +350,15 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 		CD_APPLET_LEAVE ();
 	
 	//\______________________ build each items.
-	g_print ("=== got %d aplications\n", pApplications->len);
+	cd_debug ("=== got %d aplications", pApplications->len);
 	guint i, j;
 	GValueArray *va;
 	GValue *v;
 	CDStatusNotifierItem *pItem=NULL;
-	//g_print ("=== %d apps in the systray\n", pApplications->len);
+	//cd_debug ("=== %d apps in the systray", pApplications->len);
 	for (i = 0; i < pApplications->len; i ++)
 	{
-		g_print ("=== %d) %p\n", i, pApplications->pdata[i]);
+		cd_debug ("=== %d) %p", i, pApplications->pdata[i]);
 		va = pApplications->pdata[i];
 		if (! va)
 			continue;
@@ -399,7 +399,7 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 		if (v && G_VALUE_HOLDS_STRING (v))
 			cLabelGuide = g_value_get_string (v);
 		
-		g_print ("===  + item {%s ; %d ; %s ; %s ; %s ; %s ; %s}\n",
+		cd_debug ("===  + item {%s ; %d ; %s ; %s ; %s ; %s ; %s}",
 			cIconName,
 			iPosition,
 			cAdress,
@@ -435,7 +435,7 @@ static void _cd_satus_notifier_get_items_from_ias (void)
 {
 	if (! myData.bIASWatched)
 		return;
-	g_print ("=== %s ()\n", __func__);
+	cd_debug ("=== %s ()", __func__);
 	
 	g_return_if_fail (myData.pProxyIndicatorApplicationService == NULL);
 	
@@ -458,7 +458,13 @@ static void _cd_satus_notifier_get_items_from_ias (void)
 			G_TYPE_NONE, G_TYPE_STRING, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);
 	#else  // Natty
 	dbus_g_object_register_marshaller(_cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING,
-			G_TYPE_NONE, G_TYPE_STRING, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);
+			G_TYPE_NONE, G_TYPE_STRING, G_TYPE_INT, G_TYPE_STRING,
+			#if (INDICATOR_OLD_NAMES != 0)  // Maverick
+			G_TYPE_STRING,  // dbusobject
+			#else  // Natty
+			DBUS_TYPE_G_OBJECT_PATH,  // dbusobject
+			#endif
+			G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);
 	#endif
 	dbus_g_proxy_add_signal(myData.pProxyIndicatorApplicationService, "ApplicationAdded",
 		G_TYPE_STRING,  // iconname
@@ -488,7 +494,7 @@ static void _cd_satus_notifier_get_items_from_ias (void)
 
 static void _on_get_applications_from_watcher (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockModuleInstance *myApplet)
 {
-	g_print ("=== %s ()\n", __func__);
+	cd_debug ("=== %s ()", __func__);
 	CD_APPLET_ENTER;
 	
 	gchar **pApplications = NULL;
@@ -500,7 +506,7 @@ static void _on_get_applications_from_watcher (DBusGProxy *proxy, DBusGProxyCall
 		G_TYPE_INVALID);
 	if (erreur != NULL)
 	{
-		g_print ("=== couldn't get applications from the watcher (%s)", erreur->message);
+		cd_debug ("=== couldn't get applications from the watcher (%s)", erreur->message);
 		g_error_free (erreur);
 		erreur = NULL;
 		bSuccess = FALSE;
@@ -517,7 +523,7 @@ static void _on_get_applications_from_watcher (DBusGProxy *proxy, DBusGProxyCall
 			pItem = cd_satus_notifier_create_item (pApplications[i], NULL);
 			if (! pItem)
 				continue;
-			g_print ("===  => + %s\n", pItem->cTitle);
+			cd_debug ("===  => + %s", pItem->cTitle);
 			myData.pItems = g_list_prepend (myData.pItems, pItem);
 		}
 		
@@ -534,7 +540,7 @@ static void _on_get_applications_from_watcher (DBusGProxy *proxy, DBusGProxyCall
 	}
 	else   // un watcher asocial comme celui d'Ubuntu, on essaye avec l'"indicator-application".
 	{
-		g_print ("=== this watcher is not so friendly, let's try the 'application indicator'\n");
+		cd_debug ("=== this watcher is not so friendly, let's try the 'application indicator'");
 		myData.bBrokenWatcher = TRUE;
 		if (myData.bIASWatched)
 			_cd_satus_notifier_get_items_from_ias ();
@@ -549,7 +555,7 @@ static void _on_get_applications_from_watcher (DBusGProxy *proxy, DBusGProxyCall
 
 static void _on_register_host (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockModuleInstance *myApplet)
 {
-	g_print ("=== %s ()\n", __func__);
+	cd_debug ("=== %s ()", __func__);
 	CD_APPLET_ENTER;
 	GError *erreur = NULL;
 	gboolean bSuccess = dbus_g_proxy_end_call (proxy,
@@ -558,7 +564,7 @@ static void _on_register_host (DBusGProxy *proxy, DBusGProxyCall *call_id, Cairo
 		G_TYPE_INVALID);
 	if (erreur != NULL)
 	{
-		g_print ("couldn't register to the Notification Watcher (%s)\n", erreur->message);
+		cd_debug ("couldn't register to the Notification Watcher (%s)", erreur->message);
 		g_error_free (erreur);
 		erreur = NULL;
 		bSuccess = FALSE;
@@ -566,7 +572,7 @@ static void _on_register_host (DBusGProxy *proxy, DBusGProxyCall *call_id, Cairo
 	
 	if (bSuccess)  // we are friend now, let's ask him the current items.
 	{
-		g_print ("=== found a friendly watcher, now ask for the items...\n");
+		cd_debug ("=== found a friendly watcher, now ask for the items...");
 		// get the current items
 		myData.pProxyWatcherProps = cairo_dock_create_new_session_proxy (
 			CD_STATUS_NOTIFIER_WATCHER_ADDR,
@@ -594,7 +600,7 @@ static void _on_register_host (DBusGProxy *proxy, DBusGProxyCall *call_id, Cairo
 	}
 	else  // an asocial watcher like the Ubuntu's one, let's try with the IAS if availeble.
 	{
-		g_print ("=== no friendy watcher, let's try the 'application indicator'\n");
+		cd_debug ("=== no friendy watcher, let's try the 'application indicator'");
 		myData.bBrokenWatcher = TRUE;
 		if (myData.bIASWatched)
 			_cd_satus_notifier_get_items_from_ias ();
@@ -603,7 +609,7 @@ static void _on_register_host (DBusGProxy *proxy, DBusGProxyCall *call_id, Cairo
 }
 static void _on_watcher_owner_changed (gboolean bOwned, gpointer data)
 {
-	g_print ("=== Watcher is on the bus (%d)\n", bOwned);
+	cd_debug ("=== Watcher is on the bus (%d)", bOwned);
 	
 	if (bOwned)
 	{
@@ -614,7 +620,7 @@ static void _on_watcher_owner_changed (gboolean bOwned, gpointer data)
 			CD_STATUS_NOTIFIER_WATCHER_IFACE);  // whenever it appears on the bus, we'll get it.
 		
 		// and register to it.
-		g_print ("=== register to the it\n");
+		cd_debug ("=== register to the it");
 		dbus_g_proxy_begin_call (myData.pProxyWatcher, "RegisterNotificationHost",
 			(DBusGProxyCallNotify)_on_register_host,
 			myApplet,
@@ -651,7 +657,7 @@ static void _on_watcher_owner_changed (gboolean bOwned, gpointer data)
 }
 static void _on_detect_watcher (gboolean bPresent, gpointer data)
 {
-	g_print ("=== Watcher is present: %d\n", bPresent);
+	cd_debug ("=== Watcher is present: %d", bPresent);
 	s_pDetectWatcherCall = NULL;
 	// if present, set up proxy.
 	if (bPresent)
@@ -678,15 +684,15 @@ static void _on_start_service (DBusGProxy *proxy, guint status, GError *error, g
 	// if service has not started, then we'll assume we don't need it (eg.: KDE)
 	if (error != NULL)  // couldn't start the service.
 	{
-		g_print ("=== Unable to start the indicator service (%s), assuming we don't need it\n", error->message);
+		cd_debug ("=== Unable to start the indicator service (%s), assuming we don't need it", error->message);
 		return;
 	}
 	if (status != DBUS_START_REPLY_SUCCESS && status != DBUS_START_REPLY_ALREADY_RUNNING)  // started but wrong status.
 	{
-		g_print ("=== Unable to start the indicator service (got status %d), assuming we don't need it\n", status);
+		cd_debug ("=== Unable to start the indicator service (got status %d), assuming we don't need it", status);
 		return;
 	}
-	g_print ("=== Indicator Service has started\n");
+	cd_debug ("=== Indicator Service has started");
 }
 static void _on_watch_service (DBusGProxy *proxy, DBusGProxyCall *call, gpointer data)
 {
@@ -696,7 +702,7 @@ static void _on_watch_service (DBusGProxy *proxy, DBusGProxyCall *call, gpointer
 		G_TYPE_UINT, &service_api_version,
 		G_TYPE_UINT, &this_service_version,
 		G_TYPE_INVALID);
-	g_print ("=== got indicator service (API: %d, service: %d, broken watcher: %d)\n", service_api_version, this_service_version, myData.bBrokenWatcher);
+	cd_debug ("=== got indicator service (API: %d, service: %d, broken watcher: %d)", service_api_version, this_service_version, myData.bBrokenWatcher);
 	
 	if (service_api_version > 0)  /// shouldn't the 2 versions be equal ?...
 	{
@@ -710,7 +716,7 @@ static void _on_watch_service (DBusGProxy *proxy, DBusGProxyCall *call, gpointer
 }
 static void _on_ias_owner_changed (gboolean bOwned, gpointer data)
 {
-	g_print ("=== Indicator Applications Service is on the bus (%d)\n", bOwned);
+	cd_debug ("=== Indicator Applications Service is on the bus (%d)", bOwned);
 	
 	if (bOwned)
 	{
@@ -721,7 +727,7 @@ static void _on_ias_owner_changed (gboolean bOwned, gpointer data)
 			CD_INDICATOR_SERVICE_INTERFACE);
 		
 		// and watch it.
-		g_print ("=== watch it\n");
+		cd_debug ("=== watch it");
 		dbus_g_proxy_begin_call (myData.pProxyIndicatorService,
 			"Watch",
 			(DBusGProxyCallNotify)_on_watch_service,
@@ -742,7 +748,7 @@ static void _on_ias_owner_changed (gboolean bOwned, gpointer data)
 }
 static void _on_detect_ias (gboolean bPresent, gpointer data)
 {
-	g_print ("=== Indicator Applications Service is present: %d\n", bPresent);
+	cd_debug ("=== Indicator Applications Service is present: %d", bPresent);
 	s_pDetectIASCall = NULL;
 	// if present, set up proxy, else try to start the service.
 	if (bPresent)
@@ -751,7 +757,7 @@ static void _on_detect_ias (gboolean bPresent, gpointer data)
 	}
 	else  // not present, maybe the service is not started => try starting it.
 	{
-		g_print ("=== try to start the Indicator Service...\n");
+		cd_debug ("=== try to start the Indicator Service...");
 		DBusGProxy *dbus_proxy = cairo_dock_get_main_proxy ();
 		org_freedesktop_DBus_start_service_by_name_async (dbus_proxy,
 			CD_INDICATOR_APPLICATION_ADDR,
@@ -781,7 +787,7 @@ void cd_satus_notifier_launch_service (void)
 	// Register our service name on the bus.
 	pid_t pid = getpid ();
 	myData.cHostName = g_strdup_printf (CD_STATUS_NOTIFIER_HOST_ADDR"-%d", pid);
-	//g_print ("=== registering name '%s' on the bus ...\n", myData.cHostName);
+	//cd_debug ("=== registering name '%s' on the bus ...", myData.cHostName);
 	cairo_dock_register_service_name (myData.cHostName);
 	
 	// see if a Watcher and/or an Indicator Application Service (IAS) is on the bus.

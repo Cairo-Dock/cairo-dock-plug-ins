@@ -47,7 +47,7 @@ void cd_satus_notifier_compute_grid (void)
 	// taille disponible.
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
-	g_print ("=== icon: %dx%d\n", iWidth, iHeight);
+	cd_debug ("=== icon: %dx%d", iWidth, iHeight);
 	
 	// on calcule la meilleure grille.
 	int iNbLines, iNbItemsByLine;
@@ -86,7 +86,7 @@ void cd_satus_notifier_compute_icon_size (void)
 	// current available icon size.
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
-	g_print ("=== icon: %dx%d\n", iWidth, iHeight);
+	cd_debug ("=== icon: %dx%d", iWidth, iHeight);
 	if (!myContainer->bIsHorizontal)
 	{
 		int tmp = iWidth;
@@ -99,7 +99,7 @@ void cd_satus_notifier_compute_icon_size (void)
 	myData.iItemSize = MAX (1, iHeight / myConfig.iNbLines);
 	myData.iNbColumns = ceil ((float)iNbItems / myConfig.iNbLines);  // nb items by line.
 	int w = MAX (w0, myData.iItemSize * myData.iNbColumns);
-	g_print ("=== required width: %d (now: %d)\n", w, iWidth);
+	cd_debug ("=== required width: %d (now: %d)", w, iWidth);
 	
 	// if width has changed, update the icon size.
 	if (w != iWidth)
@@ -111,7 +111,7 @@ void cd_satus_notifier_compute_icon_size (void)
 
 void cd_satus_notifier_draw_compact_icon (void)
 {
-	g_print ("=== %s ()\n", __func__);
+	cd_debug ("=== %s ()", __func__);
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 	
@@ -135,7 +135,7 @@ void cd_satus_notifier_draw_compact_icon (void)
 	
 	int x_pad = (iWidth - myData.iItemSize * myData.iNbColumns) / 2;  // pad to center the drawing.
 	int y_pad = (iHeight - myData.iItemSize * myData.iNbLines) / 2;
-	g_print ("pad: %d;%d; grid: %dx%d, icon: %dx%d\n", x_pad, y_pad, myData.iNbLines, myData.iNbColumns, iWidth, iHeight);
+	cd_debug ("pad: %d;%d; grid: %dx%d, icon: %dx%d", x_pad, y_pad, myData.iNbLines, myData.iNbColumns, iWidth, iHeight);
 	
 	// draw each active item, in lines, from left to right.
 	int i = 0, j = 0;  // ligne, colonne
@@ -146,7 +146,7 @@ void cd_satus_notifier_draw_compact_icon (void)
 		pItem = it->data;
 		if (pItem->pSurface != NULL && pItem->iStatus != CD_STATUS_PASSIVE)
 		{
-			g_print ("===  draw %s (%d)\n", pItem->cId, pItem->iPosition);
+			cd_debug ("===  draw %s (%d)", pItem->cId, pItem->iPosition);
 			cairo_set_source_surface (myDrawContext,
 				pItem->pSurface,
 				x_pad + j * myData.iItemSize,
@@ -178,7 +178,7 @@ void cd_satus_notifier_draw_compact_icon (void)
 
 void cd_satus_notifier_reload_compact_mode (void)
 {
-	g_print ("=== %s ()\n", __func__);
+	cd_debug ("=== %s ()", __func__);
 	// re-compute the grid.
 	int iPrevSize = myData.iItemSize;
 	if (myConfig.bResizeIcon)
@@ -187,7 +187,7 @@ void cd_satus_notifier_reload_compact_mode (void)
 		cd_satus_notifier_compute_grid ();
 	
 	// reload surfaces if their size has changed.
-	g_print ("===  item size: %d -> %d, icon size: %dx%d (%p)\n", iPrevSize, myData.iItemSize, myIcon->iImageWidth, myIcon->iImageHeight, myIcon->pIconBuffer);
+	cd_debug ("===  item size: %d -> %d, icon size: %dx%d (%p)", iPrevSize, myData.iItemSize, myIcon->iImageWidth, myIcon->iImageHeight, myIcon->pIconBuffer);
 	CDStatusNotifierItem *pItem;
 	GList *it;
 	for (it = myData.pItems; it != NULL; it = it->next)

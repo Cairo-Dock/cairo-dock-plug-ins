@@ -92,7 +92,7 @@ CD_APPLET_INIT_BEGIN
 	
 	myData.iDefaultWidth = myIcon->iImageWidth;
 	myData.iDefaultHeight = myIcon->iImageHeight;
-	g_print ("=== default size: %dx%d\n", myData.iDefaultWidth, myData.iDefaultHeight);
+	cd_debug ("=== default size: %dx%d", myData.iDefaultWidth, myData.iDefaultHeight);
 	
 	cd_satus_notifier_launch_service ();
 CD_APPLET_INIT_END
@@ -128,7 +128,7 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	myData.iDefaultWidth = myIcon->iImageWidth;
 	myData.iDefaultHeight = myIcon->iImageHeight;
-	g_print ("=== default size <- %dx%d\n", myData.iDefaultWidth, myData.iDefaultHeight);
+	cd_debug ("=== default size <- %dx%d", myData.iDefaultWidth, myData.iDefaultHeight);
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{

@@ -213,7 +213,7 @@ static void on_new_item_status (DBusGProxy *proxy_item, const gchar *cStatus, CD
 static void on_new_item_label (DBusGProxy *proxy_item, const gchar *cLabel, const gchar *cLabelGuide, CDStatusNotifierItem *pItem)
 {
 	CD_APPLET_ENTER;
-	g_print ("=== %s (%s, %s)\n", __func__, cLabel, cLabelGuide);
+	cd_debug ("=== %s (%s, %s)", __func__, cLabel, cLabelGuide);
 	
 	g_free (pItem->cLabel);
 	pItem->cLabel = g_strdup (cLabel);
@@ -245,7 +245,7 @@ static void on_new_item_title (DBusGProxy *proxy_item, CDStatusNotifierItem *pIt
 	
 	g_free (pItem->cTitle);
 	pItem->cTitle = cairo_dock_dbus_get_property_as_string (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "Title");
-	g_print ("===  new title : %s\n", pItem->cTitle);
+	cd_debug ("===  new title : %s", pItem->cTitle);
 	
 	//cairo_dock_set_icon_name (cTitle, pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
 	
@@ -392,7 +392,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		cId = g_value_get_string (v);
 	}
-	g_print ("===   ID '%s'\n", cId);
+	cd_debug ("===   ID '%s'", cId);
 	
 	const gchar *cCategory = NULL;
 	v = g_hash_table_lookup (hProps, "Category");  // (ApplicationStatus, Communications, SystemServices, Hardware) -> fOrder
@@ -449,7 +449,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		iPosition = g_value_get_uint (v);
 	}
-	g_print ("===   iPosition '%d'\n", iPosition);
+	cd_debug ("===   iPosition '%d'", iPosition);
 	// wrong values from the service !
 	iPosition = -1;
 	
@@ -459,7 +459,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		cLabel = g_value_get_string (v);
 	}
-	g_print ("===   cLabel '%s'\n", cLabel);
+	cd_debug ("===   cLabel '%s'", cLabel);
 	
 	const gchar *cLabelGuide = NULL;
 	v = g_hash_table_lookup (hProps, "XAyatanaLabelGuide");
@@ -476,7 +476,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		cTitle = g_value_get_string (v);
 	}
-	g_print ("===   Title '%s\n", cTitle);
+	cd_debug ("===   Title '%s", cTitle);
 	
 	v = g_hash_table_lookup (hProps, "WindowId");
 	guint iWindowId = 0;
