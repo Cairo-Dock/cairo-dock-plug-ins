@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
+"POT-Creation-Date: 2011-04-15 00:27+0000\n"
 "PO-Revision-Date: 2010-10-27 12:45+0000\n"
 "Last-Translator: Ander Elortondo <ander.elor@gmail.com>\n"
 "Language-Team: Basque <eu@li.org>\n"
-"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-01-02 05:08+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Launchpad-Export-Date: 2011-04-16 05:12+0000\n"
+"X-Generator: Launchpad (build 12735)\n"
+"Language: eu\n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -225,7 +226,8 @@ msgstr "Modulua gehitu da baina ezin da abiarazi."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -312,9 +314,8 @@ msgid ""
 msgstr ""
 
 #: ../Doncky/src/applet-notifications.c:215
-#, fuzzy
 msgid "It doesn't seem to be a valid XML file."
-msgstr "Ez ditrudi baliozko URL bat denik"
+msgstr ""
 
 #: ../Folders/src/applet-init.c:29
 msgid "Folders"
@@ -449,9 +450,8 @@ msgid "Sort by"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:418
-#, fuzzy
 msgid "By name"
-msgstr "Fitxategia"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:419
 msgid "By date"
@@ -466,9 +466,8 @@ msgid "By type"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:459
-#, fuzzy
 msgid "The folder has been imported."
-msgstr "RSS hari hau aldatu egin da..."
+msgstr ""
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -776,37 +775,32 @@ msgid "Open parent folder"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:282
-#, fuzzy
 msgid "Copy the location"
-msgstr "Ireki kokapena"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:284
-#, fuzzy
 msgid "Delete this event"
-msgstr "Ezabatu fitxategi hau"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:357
 msgid "All"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:358
-#, fuzzy
 msgid "Document"
-msgstr "Azken dokumentuak"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:360
-#, fuzzy
 msgid "Image"
-msgstr "(F3) irudia"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:361
 msgid "Audio"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:362
-#, fuzzy
 msgid "Video"
-msgstr "Bideo Ram"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:363
 msgid "Web"
@@ -817,18 +811,16 @@ msgid "Other"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:365
-#, fuzzy
 msgid "Top Results"
-msgstr "Erantzunik ez"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:371
 msgid "Look for events"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:421
-#, fuzzy
 msgid "File name"
-msgstr "Fitxategia"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:428
 msgid "Last access"
@@ -839,9 +831,8 @@ msgid "Browse and search in recent events"
 msgstr ""
 
 #: ../Recent-Events/src/applet-init.c:28
-#, fuzzy
 msgid "Recent-Events"
-msgstr "Azken dokumentuak"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:74
 #, c-format
@@ -854,14 +845,12 @@ msgid "Recent files"
 msgstr "Azken fitxategiak"
 
 #: ../Recent-Events/src/applet-notifications.c:154
-#, fuzzy
 msgid "Delete today's events"
-msgstr "Ezabatu zeregin hau"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:156
-#, fuzzy
 msgid "Delete all events"
-msgstr "Ezabatu zeregin hau"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
@@ -1013,9 +1002,8 @@ msgid ""
 msgstr ""
 
 #: ../Status-Notifier/src/applet-init.c:38
-#, fuzzy
 msgid "Notification Area"
-msgstr "Aldaketarik ez"
+msgstr ""
 
 #: ../System-Monitor/src/applet-cpusage.c:57
 msgid "Uptime"
@@ -1351,8 +1339,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1628,7 +1616,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:591
@@ -2555,8 +2544,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -2705,14 +2694,12 @@ msgid "Remove this item"
 msgstr ""
 
 #: ../stack/src/applet-notifications.c:259
-#, fuzzy
 msgid "The file has been added to the stack."
-msgstr "Modulua gehitu da baina ezin da abiarazi."
+msgstr ""
 
 #: ../stack/src/applet-notifications.c:260
-#, fuzzy
 msgid "The URL has been added to the stack."
-msgstr "Modulua gehitu da baina ezin da abiarazi."
+msgstr ""
 
 #: ../switcher/src/applet-draw.c:618 ../switcher/src/applet-draw.c:625
 #: ../switcher/src/applet-load-icons.c:43
@@ -2772,9 +2759,8 @@ msgid "Windows List"
 msgstr ""
 
 #: ../switcher/src/applet-notifications.c:324 ../switcher/data/messages:113
-#, fuzzy
 msgid "Expose all the windows"
-msgstr "Ireki leiho berrian"
+msgstr ""
 
 #: ../systray/src/systray-init.c:35
 msgid ""
@@ -2786,9 +2772,8 @@ msgid ""
 msgstr ""
 
 #: ../systray/src/systray-init.c:41
-#, fuzzy
 msgid "Notification Area Old"
-msgstr "Aldaketarik ez"
+msgstr ""
 
 #: ../systray/src/systray-interface.c:71
 msgid ""
@@ -2947,9 +2932,8 @@ msgid "I couldn't find this location"
 msgstr ""
 
 #: ../weather/src/applet-config.c:185
-#, fuzzy
 msgid "Searching the location code..."
-msgstr "Bilatzen..."
+msgstr ""
 
 #: ../weather/src/applet-config.c:209
 msgid ""
@@ -4817,7 +4801,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:121 ../RSSreader/data/messages:185
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:123 ../RSSreader/data/messages:187
@@ -6427,9 +6412,8 @@ msgid "Small"
 msgstr ""
 
 #: ../dock-rendering/data/messages:41
-#, fuzzy
 msgid "Full screen"
-msgstr "Pantaila blokeatu"
+msgstr ""
 
 #: ../dock-rendering/data/messages:43
 msgid "Zoom when mouse hovers an icon:"
@@ -6550,7 +6534,8 @@ msgid "Space between icons:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:115
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:119
@@ -6676,7 +6661,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -6893,7 +6879,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:109
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:111
@@ -6965,7 +6952,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:95
@@ -7177,9 +7165,8 @@ msgid "charge"
 msgstr ""
 
 #: ../powermanager/data/messages:165
-#, fuzzy
 msgid "Timelength"
-msgstr "Luzera"
+msgstr ""
 
 #: ../powermanager/data/messages:169
 msgid "Emblem icon's filename when on charge:"
@@ -7892,7 +7879,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:109
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:111
@@ -7974,9 +7962,6 @@ msgstr ""
 msgid "Overwrite the default label with the connection point name?"
 msgstr ""
 
-#~ msgid "Status Notifier"
-#~ msgstr "Egoera notifikatzailea"
-
 #~ msgid "Hey, I'm here !"
 #~ msgstr "Hemen nago!"
 
@@ -7988,6 +7973,9 @@ msgstr ""
 
 #~ msgid "Quick launch (Middle-click)"
 #~ msgstr "Abiarazte azkarra (erdiko-klik)"
+
+#~ msgid "Status Notifier"
+#~ msgstr "Egoera notifikatzailea"
 
 #~ msgid "Unmute (middle-click)"
 #~ msgstr "Ez mututu (erdiko-klik)"

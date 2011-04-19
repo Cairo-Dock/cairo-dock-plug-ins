@@ -7,16 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
+"POT-Creation-Date: 2011-04-15 00:27+0000\n"
 "PO-Revision-Date: 2011-01-13 13:41+0000\n"
 "Last-Translator: Daniel Nylander <yeager@ubuntu.com>\n"
 "Language-Team: Cairo-Dock\n"
-"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-01-14 06:02+0000\n"
-"X-Generator: Launchpad (build 12177)\n"
+"X-Launchpad-Export-Date: 2011-04-16 05:16+0000\n"
+"X-Generator: Launchpad (build 12735)\n"
 "X-Poedit-Country: SWEDEN\n"
+"Language: sv\n"
 "X-Poedit-Language: Swedish\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -25,7 +26,8 @@ msgstr "Animerade ikoner"
 
 #: ../Animated-icons/src/applet-init.c:35
 msgid "This plug-in provides many different animations for your icons."
-msgstr "Detta plugin tillhandahåller många olika animeringar till dina ikoner."
+msgstr ""
+"Detta plugin tillhandahåller många olika animeringar till dina ikoner."
 
 #: ../Animated-icons/src/applet-init.c:80 ../Animated-icons/data/messages:9
 #: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:47
@@ -248,7 +250,8 @@ msgstr "Modulen har lagts till, men kunde inte startas."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "Appleten '%s' har blivit framgångsrikt uppdaterat och automatiskt omstartat."
 
@@ -480,9 +483,8 @@ msgid "Create a new folder"
 msgstr "Skapa en ny mapp"
 
 #: ../Folders/src/applet-notifications.c:417
-#, fuzzy
 msgid "Sort by"
-msgstr "Sortera efter:"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:418
 msgid "By name"
@@ -493,18 +495,16 @@ msgid "By date"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:420
-#, fuzzy
 msgid "By size"
-msgstr "Ikonstorlek"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:421
 msgid "By type"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:459
-#, fuzzy
 msgid "The folder has been imported."
-msgstr "En kabel har kopplats in"
+msgstr ""
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -825,37 +825,32 @@ msgid "Open parent folder"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:282
-#, fuzzy
 msgid "Copy the location"
-msgstr "Välj plats..."
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:284
-#, fuzzy
 msgid "Delete this event"
-msgstr "Ta bort anteckning"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:357
 msgid "All"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:358
-#, fuzzy
 msgid "Document"
-msgstr "Tidigare använda dokument"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:360
-#, fuzzy
 msgid "Image"
-msgstr "Bilder"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:361
 msgid "Audio"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:362
-#, fuzzy
 msgid "Video"
-msgstr "Grafikminne"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:363
 msgid "Web"
@@ -866,9 +861,8 @@ msgid "Other"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:365
-#, fuzzy
 msgid "Top Results"
-msgstr "Inga resultat"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:371
 msgid "Look for events"
@@ -887,9 +881,8 @@ msgid "Browse and search in recent events"
 msgstr ""
 
 #: ../Recent-Events/src/applet-init.c:28
-#, fuzzy
 msgid "Recent-Events"
-msgstr "Tidigare använda dokument"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:74
 #, c-format
@@ -902,14 +895,12 @@ msgid "Recent files"
 msgstr "Senaste filer"
 
 #: ../Recent-Events/src/applet-notifications.c:154
-#, fuzzy
 msgid "Delete today's events"
-msgstr "Ta bort anteckning"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:156
-#, fuzzy
 msgid "Delete all events"
-msgstr "Ta bort alla"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
@@ -1061,9 +1052,8 @@ msgid ""
 msgstr ""
 
 #: ../Status-Notifier/src/applet-init.c:38
-#, fuzzy
 msgid "Notification Area"
-msgstr "Meddelande"
+msgstr ""
 
 #: ../System-Monitor/src/applet-cpusage.c:57
 msgid "Uptime"
@@ -1208,9 +1198,8 @@ msgid "Screen Luminosity"
 msgstr ""
 
 #: ../Xgamma/src/applet-notifications.c:89
-#, fuzzy
 msgid "Set up gamma correction"
-msgstr "Justera gamma:"
+msgstr ""
 
 #: ../Xgamma/src/applet-notifications.c:94
 msgid "Apply current luminosity on startup"
@@ -1400,8 +1389,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1677,7 +1666,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:591
@@ -2408,9 +2398,8 @@ msgid "Re-check interface"
 msgstr "Kontrollera gränssnitt igen"
 
 #: ../powermanager/src/powermanager-draw.c:133
-#, fuzzy
 msgid "Charge"
-msgstr "ladda"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:192
 msgid ""
@@ -2611,8 +2600,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -2641,9 +2630,8 @@ msgstr ""
 #: ../showDesktop/src/applet-notifications.c:164
 #: ../switcher/src/applet-notifications.c:315 ../showDesktop/data/messages:115
 #: ../showDesktop/data/messages:129 ../switcher/data/messages:111
-#, fuzzy
 msgid "Expose all the desktops"
-msgstr "Ta bort sista skrivbordet"
+msgstr ""
 
 #: ../showDesktop/src/applet-notifications.c:171
 #: ../showDesktop/src/applet-notifications.c:173
@@ -2762,14 +2750,12 @@ msgid "Remove this item"
 msgstr "Ta bort"
 
 #: ../stack/src/applet-notifications.c:259
-#, fuzzy
 msgid "The file has been added to the stack."
-msgstr "Modulen har lagts till, men kunde inte startas."
+msgstr ""
 
 #: ../stack/src/applet-notifications.c:260
-#, fuzzy
 msgid "The URL has been added to the stack."
-msgstr "Modulen har lagts till, men kunde inte startas."
+msgstr ""
 
 #: ../switcher/src/applet-draw.c:618 ../switcher/src/applet-draw.c:625
 #: ../switcher/src/applet-load-icons.c:43
@@ -2829,9 +2815,8 @@ msgid "Windows List"
 msgstr ""
 
 #: ../switcher/src/applet-notifications.c:324 ../switcher/data/messages:113
-#, fuzzy
 msgid "Expose all the windows"
-msgstr "Placera under andra fönster?"
+msgstr ""
 
 #: ../systray/src/systray-init.c:35
 msgid ""
@@ -2843,9 +2828,8 @@ msgid ""
 msgstr ""
 
 #: ../systray/src/systray-init.c:41
-#, fuzzy
 msgid "Notification Area Old"
-msgstr "Meddelande"
+msgstr ""
 
 #: ../systray/src/systray-interface.c:71
 msgid ""
@@ -2998,20 +2982,16 @@ msgstr ""
 "Är du ansluten till Internet?"
 
 #: ../weather/src/applet-config.c:126
-#, fuzzy
 msgid "Couldn't get the location code (is connection alive?)"
 msgstr ""
-"Kunde inte hämta information\n"
-"Är du ansluten till Internet?"
 
 #: ../weather/src/applet-config.c:134
 msgid "I couldn't find this location"
 msgstr ""
 
 #: ../weather/src/applet-config.c:185
-#, fuzzy
 msgid "Searching the location code..."
-msgstr "Söker ..."
+msgstr ""
 
 #: ../weather/src/applet-config.c:209
 msgid ""
@@ -4886,7 +4866,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:121 ../RSSreader/data/messages:185
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:123 ../RSSreader/data/messages:187
@@ -5388,9 +5369,8 @@ msgid ""
 msgstr ""
 
 #: ../Recent-Events/data/messages:97
-#, fuzzy
 msgid "Shortkey to show/hide the search dialog"
-msgstr "Tangentkombination för att visa/dölja konfigurationsdialog"
+msgstr ""
 
 #: ../Recent-Events/data/messages:99
 msgid "Max number of results to show"
@@ -5626,9 +5606,8 @@ msgid "Allow the icon to automatically resize itself?"
 msgstr ""
 
 #: ../Status-Notifier/data/messages:105
-#, fuzzy
 msgid "Number of lines to pack items in:"
-msgstr "Antal ikoner på första raden:"
+msgstr ""
 
 #: ../System-Monitor/data/messages:119 ../powermanager/data/messages:123
 msgid "It's the colour of the graphic for high values."
@@ -5801,9 +5780,8 @@ msgid "High refresh frequency?"
 msgstr ""
 
 #: ../Xgamma/data/messages:7
-#, fuzzy
 msgid "Leave empty to display the current luminosity."
-msgstr "Lämna tomt för att använda namnet på staden."
+msgstr ""
 
 #: ../Xgamma/data/messages:99 ../alsaMixer/data/messages:115
 msgid "Variation for 1 mouse scroll, in %:"
@@ -6506,9 +6484,8 @@ msgid "Only for sub-docks."
 msgstr ""
 
 #: ../dock-rendering/data/messages:37
-#, fuzzy
 msgid "Maximum size of the dock:"
-msgstr "Maximal storlek för alla papperskorgar:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:39
 msgid "Small"
@@ -6637,7 +6614,8 @@ msgid "Space between icons:"
 msgstr "Avstånd mellan ikoner:"
 
 #: ../dock-rendering/data/messages:115
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 betyder at vågen är helt platt. 1 betyder att vågen är identisk med andra "
 "vyer."
@@ -6767,7 +6745,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -6984,7 +6963,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:109
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:111
@@ -7056,7 +7036,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:95
@@ -7242,9 +7223,8 @@ msgid "Display rate values :"
 msgstr ""
 
 #: ../powermanager/data/messages:7
-#, fuzzy
 msgid "Leave empty to display the current status information."
-msgstr "Lämna tomt för att använda standardkortet."
+msgstr ""
 
 #: ../powermanager/data/messages:9
 msgid "Icon name:"
@@ -7275,9 +7255,8 @@ msgid "Timelength"
 msgstr ""
 
 #: ../powermanager/data/messages:169
-#, fuzzy
 msgid "Emblem icon's filename when on charge:"
-msgstr "Ikon när batteriet laddasi"
+msgstr ""
 
 #: ../powermanager/data/messages:171
 msgid "Notification"
@@ -7599,9 +7578,8 @@ msgid "Choose a background colour :"
 msgstr "Välj bakgrundsfärg:"
 
 #: ../slider/data/messages:173
-#, fuzzy
 msgid "Frame width:"
-msgstr "Konens bredd:"
+msgstr ""
 
 #: ../slider/data/messages:175
 msgid "Gives better image rendering."
@@ -8002,7 +7980,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:109
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:111
@@ -8084,14 +8063,113 @@ msgstr ""
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Visa anslutningsnamnet på etiketten?"
 
-#~ msgid "About this applet"
-#~ msgstr "Om Detta applet"
+#~ msgid "Hey, I'm here !"
+#~ msgstr "Hallå, här är jag!"
 
-#~ msgid "Default title:"
-#~ msgstr "Standardtitel:"
+#~ msgid "Wait, do you want to kill me ?!"
+#~ msgstr "Vänta lite, försöker du döda mig?!"
+
+#~ msgid "Do you know how much painful it is to be clicked on ??"
+#~ msgstr "Har du en aning om hur ont det gör när du klickar på mig?"
+
+#~ msgid "It's my dock now, mwahahaha !"
+#~ msgstr "Det är min docka nu, mwahahaha!"
+
+#~ msgid "I want to be a pirate !"
+#~ msgstr "Jag vill bli pirat!"
+
+#~ msgid "You shall not pass !"
+#~ msgstr "Du får inte passera!"
+
+#~ msgid "I'm your father !"
+#~ msgstr "Jag är din fader!"
+
+#~ msgid ""
+#~ "- What will we do tonight Cortex ?\n"
+#~ "- The same thing as every nights, Minus. Try to take over the Dock !"
+#~ msgstr ""
+#~ "- Vad ska vi göra ikväll Cortex?\n"
+#~ "- Samma om varje kväll, Minus. Försöka ta över dockan!"
+
+#~ msgid "Hey, you there !"
+#~ msgstr "Hallå, du där!"
+
+#~ msgid "Set up gamma :"
+#~ msgstr "Justera gamma:"
+
+#~ msgid "Set up volume :"
+#~ msgstr "Volymkontroll:"
+
+#~ msgid "Adjsut channels"
+#~ msgstr "Justera kanaler"
+
+#~ msgid "Calendar"
+#~ msgstr "Kalender"
+
+#~ msgid "Toggle Widgets Layer"
+#~ msgstr "Växla widgetlager"
+
+#~ msgid "Show Trash"
+#~ msgstr "Visa Papperskorg"
+
+#~ msgid "Delete Trash"
+#~ msgstr "Töm Papperskorg"
+
+#, c-format
+#~ msgid "Show %s"
+#~ msgstr "Visa %s"
 
 #~ msgid "Show All"
 #~ msgstr "Visa alla"
+
+#, c-format
+#~ msgid "Delete %s"
+#~ msgstr "Ta bort %s"
+
+#~ msgid "Delete All"
+#~ msgstr "Ta bort alla"
+
+#, c-format
+#~ msgid "You're about to delete all files in %s. Sure ?"
+#~ msgstr "Alla filer i %s kommer att raderas. Är du säker?"
+
+#, c-format
+#~ msgid ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual file browser,\n"
+#~ "you can change it in the conf panel of this module"
+#~ msgstr ""
+#~ "Ett problem uppstod.\n"
+#~ "Om '%s' inte är din vanliga filhanterare,\n"
+#~ "ändra detta i inställningarna för denna modul."
+
+#~ msgid "Play/Pause (left-click)"
+#~ msgstr "Spela/Pausa (vänsterklick)"
+
+#~ msgid "Next (middle-click)"
+#~ msgstr "Nästa (mellanklick)"
+
+#~ msgid "Estimated time with Charge:"
+#~ msgstr "Beräknad laddningstid:"
+
+#~ msgid "Estimated Charge time:"
+#~ msgstr "Uppskattad laddningstid:"
+
+#~ msgid "No Battery found."
+#~ msgstr "Hittade inget batteri."
+
+#~ msgid "Please put your Laptop on charge."
+#~ msgstr "Var vänlig ladda ditt batteri."
+
+#~ msgid ""
+#~ "PowerManager.\n"
+#~ "Your battery is now Charged"
+#~ msgstr ""
+#~ "Energihanterare.\n"
+#~ "Batteriet är nu uppladdat"
+
+#~ msgid "Set new name for this item :"
+#~ msgstr "Nytt namn:"
 
 #~ msgid "Copy (middle click)"
 #~ msgstr "Kopiera (mellanklick)"
@@ -8099,18 +8177,61 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgid "Add a desktop"
 #~ msgstr "Lägg till skrivbord"
 
+#~ msgid "Remove last desktop"
+#~ msgstr "Ta bort sista skrivbordet"
+
+#~ msgid "Set title for this tab :"
+#~ msgstr "Titel för flik:"
+
+#~ msgid "Change this Tab's color"
+#~ msgstr "Byt färg"
+
+#~ msgid "Search for :"
+#~ msgstr "Sök efter:"
+
+#~ msgid "Search for tag :"
+#~ msgstr "Sök efter nyckelord:"
+
+#~ msgid ""
+#~ "No data were available\n"
+#~ " is connection alive ?"
+#~ msgstr ""
+#~ "Inga data hittades\n"
+#~ "Är du ansluten till Internet?"
+
+#~ msgid "Precipitation Probability"
+#~ msgstr "Risk för nederbörd"
+
+#~ msgid "SunRise"
+#~ msgstr "Soluppgång"
+
+#~ msgid "SunSet"
+#~ msgstr "Solnedgång"
+
 #~ msgid "feeled"
 #~ msgstr "upplevd"
+
+#~ msgid "Wifi disabled."
+#~ msgstr "Wifi inaktiverat."
+
+#~ msgid "Choose one of the available themes :"
+#~ msgstr "Välj ett tema:"
 
 #~ msgid "in seconds"
 #~ msgstr "i sekunder"
 
+#~ msgid "Transparency of the penguin :"
+#~ msgstr "Pingvinens genomskinlighet:"
+
+#~ msgid "Let the penguin wander everywhere in the dock ?"
+#~ msgstr "Tillåt pingvinen att vandra överallt?"
+
 #~ msgid ""
-#~ "Depending on your WindowManager, you can resize it with ALT + "
-#~ "middle_click or ALT + left_click for exemple."
+#~ "Depending on your WindowManager, you can resize it with ALT + middle_click "
+#~ "or ALT + left_click for exemple."
 #~ msgstr ""
-#~ "Beroende på din fönsterhanterare, kan du ändra storlek med ALT"
-#~ "+mellanklick eller ALT+vänsterklick"
+#~ "Beroende på din fönsterhanterare, kan du ändra storlek med ALT+mellanklick "
+#~ "eller ALT+vänsterklick"
 
 #~ msgid "Desklet's dimension (width x height) :"
 #~ msgstr "Storlek på Desklet (bredd x höjd):"
@@ -8118,8 +8239,7 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgid ""
 #~ "Depending on your WindowManager, you can move it with ALT + left_click"
 #~ msgstr ""
-#~ "Beroende på din fönsterhanterare, kan du flytta appleten med ALT"
-#~ "+vänsterklick"
+#~ "Beroende på din fönsterhanterare, kan du flytta appleten med ALT+vänsterklick"
 
 #~ msgid "Desklet's position (x ; y) :"
 #~ msgstr "Deskletens position (x, y):"
@@ -8131,11 +8251,23 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ "If locked, the desklet can't be moved by simply dragging it with the left "
 #~ "mouse button. Of course you can still move it with ALT + left_click."
 #~ msgstr ""
-#~ "En låst desklet kan inte flyttas genom att klicka och dra med du kan "
-#~ "alltid använda ALT+vänsterklick."
+#~ "En låst desklet kan inte flyttas genom att klicka och dra med du kan alltid "
+#~ "använda ALT+vänsterklick."
 
 #~ msgid "Lock position ?"
 #~ msgstr "Lås position?"
+
+#~ msgid "Let extern applications pop-up dialogs in the dock ?"
+#~ msgstr "Tillåt externa program att visa dialoger i dockan?"
+
+#~ msgid "Let extern applications reboot the dock ?"
+#~ msgstr "Tillåt externa program att starta om dockan?"
+
+#~ msgid "Let extern applications show/hide the desklets ?"
+#~ msgstr "Tillåt externa program att visa/dölja desklets?"
+
+#~ msgid "Let extern applications reload the applets ?"
+#~ msgstr "Tillåt externa program att starta om applets?"
 
 #~ msgid ""
 #~ "for exemple Monospace, Purisa, ... Just write the font name wihtout any "
@@ -8144,17 +8276,229 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ "T ex Monospace, Purisa, sans... Ange endast namnet utan storlek eller "
 #~ "liknande"
 
+#~ msgid "Delay between refresh :"
+#~ msgstr "Tid mellan uppdateringar:"
+
+#~ msgid "Number of programs to display in the top list :"
+#~ msgstr "Antal program att visa:"
+
+#~ msgid "It's the first color of the gradation used to write the top list."
+#~ msgstr "Startfärgen för färgtoning i topplistan."
+
+#~ msgid "Start color of the top list :"
+#~ msgstr "Startfärg för topplistan:"
+
+#~ msgid "It's the second color of the gradation used to write the top list."
+#~ msgstr "Slutfärgen för färgtoning i topplistan."
+
+#~ msgid "Stop color of the top list :"
+#~ msgstr "Slutfärg för topplistan:"
+
 #~ msgid "in ms."
 #~ msgstr "i ms."
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can move it with ALT + left_click. "
+#~ "Negative values are counted from the right/bottom of the screen"
+#~ msgstr ""
+#~ "Beroende på din fönsterhanterare, kan du flytta fönstret med "
+#~ "ALT+vänsterklick. Negativa värden beräknas från nedre/högra skärmkanten"
+
+#~ msgid "Let empty to use the default sound card."
+#~ msgstr "Lämna tomt för att använda standardkortet."
+
+#~ msgid "Sound card to control :"
+#~ msgstr "Ljudkort som ska kontrolleras:"
+
+#~ msgid "Choose which channel to control :"
+#~ msgstr "Välj kanal att kontrollera:"
+
+#~ msgid "Let empty to use the defaut command."
+#~ msgstr "Lämna tomt för att använda standardkommando."
+
+#~ msgid "Specific command to run to show an advanced sound mixer :"
+#~ msgstr "Kommando som ska köras för att visa avancerad ljudmixer:"
+
+#~ msgid "Shortkey to show/hide the sound control dialog :"
+#~ msgstr "Tangentkombination för att visa/dölja konfigurationsdialog"
+
+#~ msgid "Hide the scale when mouse leaves the desklet ?"
+#~ msgstr "Dölj skalan när musen lämnar deskleten?"
+
+#~ msgid "Effet to apply on the icon according to volume :"
+#~ msgstr "Volymeffekt på ikonen:"
+
+#~ msgid "Default icon :"
+#~ msgstr "Standard ikon:"
+
+#~ msgid "Broken icon :"
+#~ msgstr "Bruten ikon:"
+
+#~ msgid "Mute icon :"
+#~ msgstr "Tysta ikon:"
+
+#~ msgid "Module"
+#~ msgstr "Inställningar"
+
+#~ msgid "Show the date :"
+#~ msgstr "Visa datum:"
 
 #~ msgid "Should the time be displayed as a 24h format ?"
 #~ msgstr "Visa i 24h format?"
 
+#~ msgid "Show seconds ?"
+#~ msgstr "Visa sekunder?"
+
+#~ msgid "Timezone :"
+#~ msgstr "Tidszon:"
+
+#~ msgid "List of available themes for the analogic display :"
+#~ msgstr "Teman för analogic:"
+
+#~ msgid "Setup time and date"
+#~ msgstr "Justera datum och tid"
+
+#~ msgid ""
+#~ "Except for switching to another WM, you must activate the Dbus plugin in "
+#~ "Compiz, along with the plug-in corresponding to the desired action."
+#~ msgstr ""
+#~ "För att kunna byta till en annan fönsterhanterare, måste du aktivera Dbus i "
+#~ "Compiz och dessutom den applet som ska användas."
+
+#~ msgid "Choose an action for the middle click on the icon :"
+#~ msgstr "Välj aktivitet för mellanklick på ikonen:"
+
 #~ msgid "Show Desktop"
 #~ msgstr "Visa skrivbord"
 
+#~ msgid ""
+#~ "This command will be used to launch the system WM; let it blank to use the "
+#~ "default one."
+#~ msgstr ""
+#~ "Kommando som start systemets fönsterhanterare. Lämna tomt för att använda "
+#~ "standardkommandot."
+
+#~ msgid "Custom command for system's Windows Manager :"
+#~ msgstr "Anpassat kommando för att starta fönsterhanteraren:"
+
+#~ msgid ""
+#~ "If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
+#~ "Compiz from the dock then."
+#~ msgstr ""
+#~ "Om Compiz stängs ner, startas den om av Cairo-Dock. Om det händer, måste du "
+#~ "avsluta Compiz från dockan."
+
+#~ msgid "Auto-reload Compiz ?"
+#~ msgstr "Starta om Compiz automatiskt?"
+
+#~ msgid ""
+#~ "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
+#~ "quit Compiz from the dock then."
+#~ msgstr ""
+#~ "Om fönsterdekoratören stängs ner, startas den om av Cairo-Dock. Om det "
+#~ "händer, måste du avsluta Compiz från dockan."
+
+#~ msgid "Auto-reload the Decorator ?"
+#~ msgstr "Starta om dekoratören automatiskt?"
+
+#~ msgid "Load Compiz with options at applet's startup."
+#~ msgstr "Starta Compiz med alternativ när appleten startas."
+
+#~ msgid "Force Compiz settings at startup ?"
+#~ msgstr "Tvinga Compizinställningar vid start?"
+
+#~ msgid ""
+#~ "It will prevent the CSSM or Emerald icon to appear in the task bar. The "
+#~ "corresponding subdock's icons will then behave as launcher and an appli."
+#~ msgstr ""
+#~ "Gör att CSSM och Emerald ikonen inte visas i aktivitetsfältet. Sub-dockans "
+#~ "ikoner används då för att starta."
+
+#~ msgid "Steal the application's icon in taskbar ?"
+#~ msgstr "Stjäl programmets ikon från aktivitetsfältet?"
+
+#~ msgid ""
+#~ "Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
+#~ "Layer plug-ins. Otherwise they will be available in the menu."
+#~ msgstr ""
+#~ "Visa ikoner för Compiz Exposition och Widgetlager i sub-dockan. Annars visas "
+#~ "de i menyn."
+
+#~ msgid "Add Exposition & Widget Layer to sub-dock ?"
+#~ msgstr "Lägg till Exposition och Widgetlager till sub-dockan?"
+
+#~ msgid ""
+#~ "With strict binding textures are bound whenever they are enabled, with loose "
+#~ "binding they are enabled when created. The Nvidia driver seems a bit slow "
+#~ "when binding textures, that's why this option gives a heavy performance "
+#~ "increase on Nvidia."
+#~ msgstr ""
+#~ "Med strikt bindning, binds texturer när de aktivers, med lös bindning binds "
+#~ "de när de skapas. nVidias drivare är lite långsam när den binder texturer så "
+#~ "denna inställning kan snabba upp hastigheten ganska mycket för nVidia."
+
+#~ msgid "Use Loose Binding ?"
+#~ msgstr "Använd lös bindning?"
+
+#~ msgid "Use thoses options only if you know them."
+#~ msgstr "Använd inställningarna bara om du känner till dem."
+
+#~ msgid "Use Indirect Rendering ?"
+#~ msgstr "Använd indirekt rendering?"
+
+#~ msgid "Usefull when having dual or more X separate screens."
+#~ msgstr "Användbart om du har flera separate X fönster"
+
+#~ msgid "Only Current Screen ?"
+#~ msgstr "Endast aktivt skrivbord?"
+
+#~ msgid "By default it will be Emerald."
+#~ msgstr "Emerald används som standard."
+
+#~ msgid "Choose your Windows Decorator :"
+#~ msgstr "Välj fönsterhanterare:"
+
+#~ msgid "Let it empty to use default sub-dock view."
+#~ msgstr "Lämna tomt för att använda standard sub-docka."
+
 #~ msgid "Name of the view used for the sub-dock :"
 #~ msgstr "Namn på vy för sub-dockan:"
+
+#~ msgid "Let t empty to use the default icon."
+#~ msgstr "Lämna tomt för att använda standardikonen."
+
+#~ msgid "Name of an image for the 'default' icon :"
+#~ msgstr "Bild för standard:"
+
+#~ msgid "Name of an image for the 'broken' icon :"
+#~ msgstr "Bild för bruten:"
+
+#~ msgid "Name of an image for the 'other wm' icon :"
+#~ msgstr "Bild för annan fönsterhanterare:"
+
+#~ msgid "Name of an image for the 'setting' icon :"
+#~ msgstr "Bild för inställningar:"
+
+#~ msgid "Name of an image for the 'emerald' icon :"
+#~ msgstr "Bild för emerald:"
+
+#~ msgid "Name of an image for the 'reload' icon :"
+#~ msgstr "Bild för ladda om:"
+
+#~ msgid "Name of an image for the 'exposition' icon :"
+#~ msgstr "Bild för exposition:"
+
+#~ msgid "Name of an image for the 'widget layer' icon :"
+#~ msgstr "Bild för widget layer:"
+
+#~ msgid "Corner radius :"
+#~ msgstr "Hörnradie:"
+
+#~ msgid "The lower, the more the point of view is low on the plane."
+#~ msgstr "Ju lägre värde, desto mer horisontellt är planet."
+
+#~ msgid "Height of the vanishing point :"
+#~ msgstr "Höjd på flyktpunkten:"
 
 #~ msgid "Choose the way separators are drawn :"
 #~ msgstr "Välj hur avgränsare visas:"
@@ -8171,11 +8515,152 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgid "For flat separators, you can specify their color:"
 #~ msgstr "För platta avgränsare kan du ange en färg:"
 
+#~ msgid ""
+#~ "In degrees, regarding the vertical position. It's a sort of inclination of "
+#~ "the plane on the horizontal, giving the 3D feeling. So setting it to 0 means "
+#~ "the plane is not inclined at all (vertical)."
+#~ msgstr ""
+#~ "I grader relativt vertikalpositionen. Ett sorts horisontellt sluttande plan "
+#~ "som ger 3D känsla. Värdet 0 anger att planet är helt vertikalt."
+
+#~ msgid "Inclination of the plane :"
+#~ msgstr "Planets vinkel:"
+
+#~ msgid ""
+#~ "0.5 means the dock is half-folded, so half the icons are on the foreground, "
+#~ "and half are on the background."
+#~ msgstr ""
+#~ "0.5 betyder att dockan är halvt utfälld, dvs hälften av ikoner är i "
+#~ "förgrunden, den andra hälften i bakgrunden."
+
+#~ msgid "Percentage of the dock's width that appears on the foreground :"
+#~ msgstr "Procent av dockans bredd som visas i förgrunden:"
+
+#~ msgid ""
+#~ "The greater, the deeper. It is in fact the gap between background icons' "
+#~ "bottom and foreground icons' top (in pixels)."
+#~ msgstr ""
+#~ "Ju större, desto djupare. Egentligen avståndet mellan bakgrundsikonens "
+#~ "underkant och förgrundsikonens ovankant (i pixlar)."
+
+#~ msgid "Depth of the plane :"
+#~ msgstr "Djup på planet:"
+
 #~ msgid "otherwise they will turn."
 #~ msgstr "annars vänder de."
 
+#~ msgid "Always show icons' face ?"
+#~ msgstr "Visa alltid ikonens framsida?"
+
+#~ msgid "The higher it is, the sooner the parabole will be curved."
+#~ msgstr "Ju högre värde, desto tidigare börjar parabolens kurvatur."
+
+#~ msgid "Curvature :"
+#~ msgstr "Kurva:"
+
+#~ msgid "The parabole will be conscricted to a rectangle of this proportion."
+#~ msgstr "Parabolen begränsas av en rektangel med dessa dimensioner."
+
+#~ msgid "Ratio height/width :"
+#~ msgstr "Förhållande höjd/bredd:"
+
+#~ msgid "0 means the wave is totally flat, 1 means the wave is maximal."
+#~ msgstr "0 betyder att vågen är helt platt, 1 betyder vågens maxvärde."
+
+#~ msgid "Magnitude of the wave :"
+#~ msgstr "Vågens styrka:"
+
+#~ msgid "Space between icons and their label :"
+#~ msgstr "Avstånd mellan ikon och etikett:"
+
+#~ msgid "Draw labels while unfolding ?"
+#~ msgstr "Visa etiketter under animering?"
+
+#~ msgid "Space between rows :"
+#~ msgstr "Avstånd mellan rader:"
+
+#~ msgid "Space between icons :"
+#~ msgstr "Avstånd mellan ikoner:"
+
+#~ msgid ""
+#~ "0 means the wave is totally flat, 1 means the wave is identical to other "
+#~ "views."
+#~ msgstr ""
+#~ "0 betyder at vågen är helt platt. 1 betyder att vågen är identisk med andra "
+#~ "vyer."
+
+#~ msgid "Number of icons on the first row :"
+#~ msgstr "Antal ikoner på första raden:"
+
+#~ msgid ""
+#~ "in degree. The smaller, the more the cone is narrow. 180° means the cone is "
+#~ "widely opened."
+#~ msgstr ""
+#~ "i grader. Ju lägre värde, desto smalare kon. 180° betyder att konen är "
+#~ "vidöppen."
+
+#~ msgid "Cone's width :"
+#~ msgstr "Konens bredd:"
+
 #~ msgid "SimpleSlide"
 #~ msgstr "Enkelt rutnät"
+
+#~ msgid "Space between columns :"
+#~ msgstr "Avstånd mellan kolumner:"
+
+#~ msgid "Max size of icons :"
+#~ msgstr "Ikonens maxstorlek:"
+
+#~ msgid "Sinusoidal wave radius :"
+#~ msgstr "Sinusvågens radie:"
+
+#~ msgid "Use a linear wave rather than a sinusoidal one ?"
+#~ msgstr "Använd linjär våg istället för sinusformad?"
+
+#~ msgid "Display text for all icons ?"
+#~ msgstr "Visa text för alla ikoner?"
+
+#~ msgid "Draw a background ?"
+#~ msgstr "Rita bakgrund?"
+
+#~ msgid "Top to bottom gradient ?"
+#~ msgstr "Uppifrån och ner?"
+
+#~ msgid "Left to right gradient ?"
+#~ msgstr "Vänster till höger?"
+
+#~ msgid "Arrow Height :"
+#~ msgstr "Pilens höjd:"
+
+#~ msgid "Arrow shift percent :"
+#~ msgstr "Pilens förskjutning i procent:"
+
+#~ msgid "The lower, the more the curve will seem flat."
+#~ msgstr "Ju lägre värde, desto plattare kurva."
+
+#~ msgid "Curvature of the curve in percent :"
+#~ msgstr "Kurvans böjning i procent:"
+
+#~ msgid "Amplitude of the curve."
+#~ msgstr "Kurvans amplitud."
+
+#~ msgid "Name of an image to overwrite the theme's empty image :"
+#~ msgstr "Bild för papperskorgen när den är tom:"
+
+#~ msgid "Name of an image to overwrite the theme's full image :"
+#~ msgstr "Bild för papperskorgen när den inte är tom:"
+
+#~ msgid "Number of trashes"
+#~ msgstr "Antal papperskorgar"
+
+#~ msgid ""
+#~ "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
+#~ msgstr ""
+#~ "i Mb. Du får ett meddelande om du överskrider gränsen. Ange 0 för att "
+#~ "inaktivera."
+
+#~ msgid "Maximum total size of all dustbins :"
+#~ msgstr "Maximal storlek för alla papperskorgar:"
 
 #~ msgid "Maximum size authorized for each dustbin :"
 #~ msgstr "Maximal storlek för enskild papperskorg:"
@@ -8183,13 +8668,82 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgid "Desktop-less support"
 #~ msgstr "Manuell hantering"
 
+#~ msgid "in seconds, only used if you can't monitor directories."
+#~ msgstr "i sekunder. Används endast om du inte kan övervaka mappar."
+
+#~ msgid "Interval of time to check if dustbin is full/empty :"
+#~ msgstr "Tid mellan uppdateringar:"
+
 #~ msgid ""
-#~ "Only use this if you notice that the applet can't display the trash on "
-#~ "click."
+#~ "Only use this if you notice that the applet can't display the trash on click."
 #~ msgstr "Använd bara om papperskorgen inte visas när ikonen klickas."
 
 #~ msgid "Alternative file browser used to show a trash :"
 #~ msgstr "Alternativ filhanterare för att visa papperskorgens innehåll:"
+
+#~ msgid "Let empty to execute the default command."
+#~ msgstr "Lämna tomt för att utföra standardkommandot."
+
+#~ msgid "User-defined command to execute to log-out :"
+#~ msgstr "Eget kommando att köra vid utloggning:"
+
+#~ msgid ""
+#~ "It will prevent the player's icon to appear in the task bar. The applet's "
+#~ "icon will then behave as a launcher, an appli, and an applet."
+#~ msgstr ""
+#~ "Gör att spelarens ikon inte visas i aktivitetsfältet. Appletens ikon används "
+#~ "istället för att styra programmet."
+
+#~ msgid "Steal the player's icon from taskbar ?"
+#~ msgstr "Stjäl spelarens ikon från aktivitetsfältet?"
+
+#~ msgid "Show an info-bubble ?"
+#~ msgstr "Visa infobubbla?"
+
+#~ msgid "Time length of info-bubbles :"
+#~ msgstr "Tid som infobubblor visas:"
+
+#~ msgid "Animation when music changes :"
+#~ msgstr "Animering när musiken ändras:"
+
+#~ msgid "Time Left"
+#~ msgstr "Tid kvar"
+
+#~ msgid "N° of track"
+#~ msgstr "Spårnummer"
+
+#~ msgid "Personnalisation"
+#~ msgstr "Inställningar"
+
+#~ msgid "Let it empty to use the default icon."
+#~ msgstr "Lämna tomt för att använda standardkortet."
+
+#~ msgid "Name of an image for the 'play' icon :"
+#~ msgstr "Bild för spela upp:"
+
+#~ msgid "Name of an image for the 'stop' icon :"
+#~ msgstr "Bild för stop:"
+
+#~ msgid "Name of an image for the 'pause' icon :"
+#~ msgstr "Bild för pausa:"
+
+#~ msgid "By default it will be 'eth0'."
+#~ msgstr "Standard är 'eth0'."
+
+#~ msgid "interface :"
+#~ msgstr "gränssnitt:"
+
+#~ msgid "Delay between 2 measures :"
+#~ msgstr "Tid mellan mätningar:"
+
+#~ msgid "Icon name :"
+#~ msgstr "Ikonetikett:"
+
+#~ msgid "Icon's filename when on battery :"
+#~ msgstr "Ikon när datorn körs på batteri:"
+
+#~ msgid "Effect to apply on the icon according to charge :"
+#~ msgstr "Effekt för laddningsnivå:"
 
 #~ msgid "nothing"
 #~ msgstr "inget"
@@ -8203,11 +8757,35 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgid "draw bar"
 #~ msgstr "visa stapel"
 
+#~ msgid "Interval of time between 2 checks :"
+#~ msgstr "Tid mellan uppdateringar:"
+
 #~ msgid "Information to be displayed on the icon :"
 #~ msgstr "Information på ikonen:"
 
 #~ msgid "time"
 #~ msgstr "tid"
+
+#~ msgid "Alert"
+#~ msgstr "Meddelande"
+
+#~ msgid "Alert when battery charged ?"
+#~ msgstr "Meddela när batteriet är laddat?"
+
+#~ msgid "Let it empty to have no sound"
+#~ msgstr "Lämna tomt om du inte vill spela upp ett ljud"
+
+#~ msgid "Use a sound :"
+#~ msgstr "Använd ljud:"
+
+#~ msgid "Alert when low battery ?"
+#~ msgstr "Meddela vid låg batterinivå?"
+
+#~ msgid "Battery level :"
+#~ msgstr "Batterinivå:"
+
+#~ msgid "Alert when battery charge is critical ?"
+#~ msgstr "Meddela när batterinivån är kritisk?"
 
 #~ msgid "Animate icon during the alert ?"
 #~ msgstr "Animera ikonen vid meddelande?"
@@ -8215,12 +8793,15 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgid "Animation during alert :"
 #~ msgstr "Animering:"
 
+#~ msgid "Default title :"
+#~ msgstr "Standardtitel:"
+
 #~ msgid "Activate info-bubbles ?"
 #~ msgstr "Aktivera infobubblor?"
 
 #~ msgid ""
-#~ "It will prevent the rhythmbox's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an appli, and an applet."
+#~ "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
+#~ "icon will then behave as a launcher, an appli, and an applet."
 #~ msgstr ""
 #~ "Hindrar ikonen att visas i aktivitetsfältet. Appletens ikon kommer då att "
 #~ "bete sig som programmet."
@@ -8240,8 +8821,117 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgid "n° of track"
 #~ msgstr "spårnummer"
 
+#~ msgid "List drives and volumes ?"
+#~ msgstr "Visa diskar och volymer?"
+
+#~ msgid "List network ?"
+#~ msgstr "Visa nätverk?"
+
+#~ msgid "List bookmarks ?"
+#~ msgstr "Visa bokmärken?"
+
+#~ msgid "Separate different shortcuts with separators ?"
+#~ msgstr "Avskilj olika genvägar med avgränsare?"
+
+#~ msgid "Image name to show desklets :"
+#~ msgstr "Bild för att visa desklet:"
+
+#~ msgid "Image name to hide desklets :"
+#~ msgstr "Bild för att dölja desklet:"
+
+#~ msgid "Show/hide desklets that are on the widget layer too ?"
+#~ msgstr "Visa/dölj desklets på widgetlagret också?"
+
 #~ msgid "Shortkey to show/hide the desklets :"
 #~ msgstr "Tangentkombination för att visa/dölja desklet:"
+
+#~ msgid "Directory"
+#~ msgstr "Katalog"
+
+#~ msgid "Directory of the images :"
+#~ msgstr "Bildkatalog:"
+
+#~ msgid "Scan in sub direcotries ?"
+#~ msgstr "Sök i underkataloger?"
+
+#~ msgid "Randomly browse files ?"
+#~ msgstr "Sök efter filer slumpmässigt?"
+
+#~ msgid "Sliding delay :"
+#~ msgstr "Paus mellan bilder:"
+
+#~ msgid "Action when applet is clicked :"
+#~ msgstr "Aktivitet när appleten klickas:"
+
+#~ msgid "Effect while changing image :"
+#~ msgstr "Effekt när bilden byts:"
+
+#~ msgid "fade in out"
+#~ msgstr "tona in ut"
+
+#~ msgid "diaporama"
+#~ msgstr "diaporama"
+
+#~ msgid "shrink down"
+#~ msgstr "krymp neråt"
+
+#~ msgid "Gives a better image rendering."
+#~ msgstr "Ger bättre bildrendering."
+
+#~ msgid "Keep widht/height ratio ?"
+#~ msgstr "Behåll ursprungligt bildförhållande?"
+
+#~ msgid "If the image is too small, it will be zoomed in."
+#~ msgstr "Om bilden är för liten, förstoras den automatiskt."
+
+#~ msgid "Force the image to fill the icon/desklet ?"
+#~ msgstr "Repetera bilden för att fylla hela dockan?"
+
+#~ msgid "Choose a background color :"
+#~ msgstr "Välj bakgrundsfärg:"
+
+#~ msgid "Let empty to use a default name"
+#~ msgstr "Lämna tomt för att använda standardnamnet"
+
+#~ msgid "Image for the 'text' items :"
+#~ msgstr "Bild för textobjekt:"
+
+#~ msgid "They are items created by dropping an URL into the Stack."
+#~ msgstr "Objekt som skapas när URL:er släpps i stacken."
+
+#~ msgid "Image for the 'URL' items :"
+#~ msgstr "Bild för URL-objekt:"
+
+#~ msgid ""
+#~ "This options allow you to avoid some files to be displayed in the stacks "
+#~ "considering their types (video, images, etc...)"
+#~ msgstr ""
+#~ "Gör att du kan utesluta vissa filtyper från att visas i stacken (video, "
+#~ "bilder, etc...)"
+
+#~ msgid "Filter files with their mime types ?"
+#~ msgstr "Filtrera filer efter MIME typ?"
+
+#~ msgid "Eg: image, text, video, audio, application, ..."
+#~ msgstr "T ex bilder, video, ljud, program..."
+
+#~ msgid "Here you can specify a list of mime types to avoid :"
+#~ msgstr "MIME typer som skall undvikas:"
+
+#~ msgid "Sort items by :"
+#~ msgstr "Sortera efter:"
+
+#~ msgid ""
+#~ "It is the selection made by the mouse, by opposition to the usual "
+#~ "ctrl+c/ctrl+v clipboard"
+#~ msgstr "Urval som görs med musen istället för det vanliga Ctrl+C/Ctrl+V"
+
+#~ msgid "When copy/paste/cut, use the selection clipboard ?"
+#~ msgstr ""
+#~ "Använd urklippshanteraren för markeringar vid kopiera/klipp ut/klistra in?"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "Placera under andra fönster?"
 
 #~ msgid "Keep above other windows ?"
 #~ msgstr "Placera ovanför andra fönster?"
@@ -8249,20 +8939,131 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgid "Keep on widget layer ?"
 #~ msgstr "Behåll på widgetlager?"
 
+#~ msgid ""
+#~ "All the desktops will be drawn on the main icon. Otherwise a subdock will "
+#~ "contain all the desktops."
+#~ msgstr ""
+#~ "Markera för att visa alla skrivbord på huvudikonen, avmarkera för att visa "
+#~ "skrivbord i en sub-docka."
+
+#~ msgid "Use the compact mode ?"
+#~ msgstr "Använd kompakt läge?"
+
+#~ msgid "When drawing in compact mode, try to preserve the screen ratio ?"
+#~ msgstr "Försök bibehålla storleksförhållande i kompakt läge?"
+
+#~ msgid "Map the wallpaper on icon ?"
+#~ msgstr "Visa skrivbordsbakgrund på ikonen?"
+
+#~ msgid "Show desktop number on the icons ?"
+#~ msgstr "Visa skrivbordsnummer på ikonen?"
+
+#~ msgid "Draw the windows on icon ?"
+#~ msgstr "Visa fönsterinnehåll på ikonen?"
+
+#~ msgid "r, v, b, a"
+#~ msgstr "r, g, b, a"
+
+#~ msgid "Color of the inside lines :"
+#~ msgstr "Färg på inre linjer:"
+
+#~ msgid "Size of the extern line :"
+#~ msgstr "Storlek på yttre linje:"
+
+#~ msgid "Color of the extern line :"
+#~ msgstr "Färg på yttre linje:"
+
+#~ msgid "Color of the Windows line :"
+#~ msgstr "Färg på fönsterlinje:"
+
+#~ msgid "Color of the current desktop :"
+#~ msgstr "Färg för aktivt skrivbord:"
+
+#~ msgid "How to draw the current desktop :"
+#~ msgstr "Hur ska aktivt skrivbord visas:"
+
+#~ msgid "Icon to use in expanded mode if you don't map the wallpaper :"
+#~ msgstr ""
+#~ "Ikon som ska användas i expanderat läge om om du inte visar "
+#~ "skrivbordsbakgrunden:"
+
+#~ msgid "In expanded mode, render the desklet in 3D ?"
+#~ msgstr "I expanderat läge, visa deskleten i 3D?"
+
+#~ msgid "GUI"
+#~ msgstr "Gränssnitt"
+
+#~ msgid "Terminal's transparency :"
+#~ msgstr "Genomskinlighet för terminalfönstret:"
+
 #~ msgid "Foreground color (r, v, b):"
 #~ msgstr "Förgrundsfärg (r,g.b):"
 
 #~ msgid "Background color (r, v, b):"
 #~ msgstr "Bakgrundsfärg (r,g.b):"
 
+#~ msgid "Size of the terminal (line x columns) :"
+#~ msgstr "Storlek på terminal (rader x kolumner):"
+
+#~ msgid "Name of an image for the 'close' icon :"
+#~ msgstr "Bild för stäng:"
+
+#~ msgid "Draw note's content on their icon ?"
+#~ msgstr "Visa noteringens innehåll på ikonen?"
+
+#~ msgid ""
+#~ "Write the date format you usually use in your notes. The syntax is the one "
+#~ "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
+#~ "digits), etc. Let it blnk to use the default one (%d/%m/%y)."
+#~ msgstr ""
+#~ "Ange datumformat som du oftast använder. Syntax är samma som för 'strftime': "
+#~ "%d för dag, %m för månad, %y för år (2 siffror) etc. Lämna tomt för att "
+#~ "använda standardformatet (%d/%m/%y)."
+
+#~ msgid "Emulate the 'NoteDeleted' signal ?"
+#~ msgstr "Emulera 'NoteDeleted' meddelanden?"
+
+#~ msgid "Let it empty to use the name of the city."
+#~ msgstr "Lämna tomt för att använda namnet på staden."
+
+#~ msgid "Code of your location :"
+#~ msgstr "Kod för din geografiska plats:"
+
+#~ msgid "Use International System Units ?"
+#~ msgstr "Använd internationella enheter?"
+
+#~ msgid "Duration of dialogs :"
+#~ msgstr "Visningstid för fönster:"
+
 #~ msgid "in minutes."
 #~ msgstr "i minuter."
+
+#~ msgid "Display current conditions on the icon instead of the default one ?"
+#~ msgstr "Visa aktuellt väder på ikonen istället för standardbilden?"
+
+#~ msgid "Number of days you want to forecast :"
+#~ msgstr "Antal dagar med väderprognoser:"
+
+#~ msgid "Display nights too ?"
+#~ msgstr "Visa även nattväder?"
+
+#~ msgid "Display temperature as quick info ?"
+#~ msgstr "Visa temperaturen som snabbinformation?"
+
+#~ msgid "Render desklet in 3D ?"
+#~ msgstr "Använd 3D för Desklet?"
+
+#~ msgid "Overwrite the default label with the connection point name ?"
+#~ msgstr "Visa anslutningsnamnet på etiketten?"
 
 #~ msgid "Activate extended desklet mode ?"
 #~ msgstr "Aktivera utökat visningsläge?"
 
 #~ msgid "Extended display mode :"
 #~ msgstr "Utökat visningsläge:"
+
+#~ msgid "Info and Controler"
+#~ msgstr "Info och Controller"
 
 #~ msgid "Controler"
 #~ msgstr "Controller"
@@ -8278,6 +9079,13 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 
 #~ msgid "height :"
 #~ msgstr "höjd:"
+
+#~ msgid ""
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+#~ "dock & type=utility)"
+#~ msgstr ""
+#~ "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
+#~ "type=utility)"
 
 #~ msgid "Size of the icon you wish this applet has (in pixels)"
 #~ msgstr "Storlek på ikonen (i pixlar):"
@@ -8302,6 +9110,9 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 
 #~ msgid "Second gradient color (r,v,b,a) :"
 #~ msgstr "Slutfärg (r,g,b,a):"
+
+#~ msgid "Border line color (r,v,b,a) :"
+#~ msgstr "Linjefärg (r.g.b.a):"
 
 #~ msgid "They don't even need to be real trash directories."
 #~ msgstr "Behöver inte vara riktiga papperskorgsmappar."
@@ -8354,8 +9165,17 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ "Cairo-Penguin applet\n"
 #~ " skapad av Fabrice Rey för Cairo-Dock"
 
+#~ msgid "Icon's name :"
+#~ msgstr "Ikonens namn:"
+
+#~ msgid "Choose a location"
+#~ msgstr "Välj plats..."
+
 #~ msgid "Alarm n°1"
 #~ msgstr "Alarm n°1"
+
+#~ msgid "Repeat every"
+#~ msgstr "Upprepa varje"
 
 #~ msgid "Alarm n°2"
 #~ msgstr "Alarm n°2"
@@ -8372,6 +9192,13 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 
 #~ msgid "Display text only for pointed icon ?"
 #~ msgstr "Visa text endast på aktiv ikon?"
+
+#~ msgid ""
+#~ "This is the dustbin applet for Cairo-Dock\n"
+#~ " made by Fabrice Rey (fabounet@users.berlios.de)"
+#~ msgstr ""
+#~ "dustbin applet för Cairo-Dock\n"
+#~ " skapad av Fabrice Rey (fabounet@users.berlios.de)"
 
 #~ msgid ""
 #~ "This is a very simple logout applet\n"
@@ -8393,6 +9220,9 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgid "Use a gauge instead of icons ?"
 #~ msgstr "Använd visare istället för ikon?"
 
+#~ msgid "Icon size"
+#~ msgstr "Ikonstorlek"
+
 #~ msgid "Width :"
 #~ msgstr "Bredd:"
 
@@ -8412,11 +9242,14 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ "Titel : %s"
 
 #~ msgid ""
-#~ "If you choose 'personnal', you can define your own decoration above, or "
-#~ "let it blank to not use any decoration."
+#~ "If you choose 'personnal', you can define your own decoration above, or let "
+#~ "it blank to not use any decoration."
 #~ msgstr ""
-#~ "Om du anger \"personlig\", kan du välja din egen dekoration. Lämna tomt "
-#~ "för att inte visa några dekorationer."
+#~ "Om du anger \"personlig\", kan du välja din egen dekoration. Lämna tomt för "
+#~ "att inte visa några dekorationer."
+
+#~ msgid "Choose a decoration for the desklet mode :"
+#~ msgstr "Välj dekoration för deskletläge:"
 
 #~ msgid "Personnal"
 #~ msgstr "Personlig"
@@ -8427,8 +9260,27 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgid "frame with reflects"
 #~ msgstr "ram med reflektion"
 
+#~ msgid "scotch"
+#~ msgstr "tejp"
+
+#~ msgid "frame with scotch"
+#~ msgstr "tejpad ram"
+
+#~ msgid ""
+#~ "It's an image that will be displayed below the cover, like a frame for "
+#~ "exemple."
+#~ msgstr "Bild som visas under fodralet, t ex en ram."
+
 #~ msgid "It's typically the width of the left side of your frame, in pixels."
 #~ msgstr "Oftast bredden på den vänstra sidan av ramen, i pixlar."
+
+#~ msgid ""
+#~ "It's an image that will be displayed above the cover, like a reflect for "
+#~ "exemple."
+#~ msgstr "Bild som visas ovanför fodralet, t ex en reflex."
+
+#~ msgid "Reflection image :"
+#~ msgstr "Bild för reflektion:"
 
 #~ msgid "Reflection tansparency :"
 #~ msgstr "Genomskinlighet för reflektion:"
@@ -8516,6 +9368,9 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgid "Choose your location :"
 #~ msgstr "Välj geografisk plats:"
 
+#~ msgid "Search for your location"
+#~ msgstr "Sök efter geografisk plats:"
+
 #~ msgid ""
 #~ "Wifi enabled. \n"
 #~ " Connected on:"
@@ -8553,32 +9408,92 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ "xmms applet\n"
 #~ " skapad av ChAnGFu för Cairo-Dock"
 
+#~ msgid "felt"
+#~ msgstr "upplevd"
+
+#~ msgid "Your dock is so messy ! Let me clean it."
+#~ msgstr "Din docka är en röra! Låt mig städa upp den åt dig."
+
+#~ msgid "Admit my superiority on you as a penguin !"
+#~ msgstr "Erkänn min pingvinska överlägsenhet över dig!"
+
+#~ msgid "For Aiur !"
+#~ msgstr "För Aiur!"
+
+#~ msgid "About this applet"
+#~ msgstr "Om Detta applet"
+
 #~ msgid "Doncky"
 #~ msgstr "Doncky"
+
+#, c-format
+#~ msgid "Alert ! Graphic Card core temperature has reached %d°C"
+#~ msgstr "Varning! Grafikkortets temperatur har nått %d°C"
+
+#~ msgid "Clear the list of the recently used documents ?"
+#~ msgstr "Rensa listan från tidigare använda dokument?"
+
+#~ msgid "Enter a command to launch :"
+#~ msgstr "Skriv ett kommando att köra:"
+
+#~ msgid "Network connection has become inactive."
+#~ msgstr "Närverksanslutingen har inaktiverats."
+
+#~ msgid "Network connection has been established."
+#~ msgstr "Närverksanslutingen har etablerats."
+
+#~ msgid "Network has been disconnected."
+#~ msgstr "Närverket har kopplats från."
+
+#~ msgid "A cable has been pluged"
+#~ msgstr "En kabel har blivit isatt."
+
+#~ msgid "A cable has been unpluged"
+#~ msgstr "En kabel har blivit utdragen."
 
 #~ msgid "Hey, you there!"
 #~ msgstr "Hallå, du där!"
 
+#, c-format
 #~ msgid "You are about to delete all files in %s. Continue?"
 #~ msgstr "Alla filer i %s kommer att raderas. Är du säker?"
+
+#~ msgid "You are about to delete all files in all dustbins. Continue?"
+#~ msgstr "Alla papperskorgar kommer att tömmas. Är du säker?"
+
+#, c-format
+#~ msgid ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual file browser,\n"
+#~ "you can change this in the configuration panel of this module"
+#~ msgstr ""
+#~ "Ett problem uppstod.\n"
+#~ "Om '%s' inte är din vanliga filhanterare,\n"
+#~ "ändra detta i inställningarna för denna modul."
+
+#~ msgid "Leave empty to use the defaut command."
+#~ msgstr "Lämna tomt för att använda standardkommando."
 
 #~ msgid "Choose an action for middle click on the icon:"
 #~ msgstr "Välj aktivitet för mellanklick på ikonen:"
 
+#~ msgid "Inclined Plane"
+#~ msgstr "Sluttande plan"
+
 #~ msgid ""
-#~ "In degrees, relative to the vertical. This is a sort of inclination of "
-#~ "the plane to the horizontal, giving a 3D impression. Setting this to 0 "
-#~ "means that the plane is not inclined at all (vertical)."
+#~ "In degrees, relative to the vertical. This is a sort of inclination of the "
+#~ "plane to the horizontal, giving a 3D impression. Setting this to 0 means "
+#~ "that the plane is not inclined at all (vertical)."
 #~ msgstr ""
-#~ "I grader relativt vertikalpositionen. Ett sorts horisontellt sluttande "
-#~ "plan som ger 3D känsla. Värdet 0 anger att planet är helt vertikalt."
+#~ "I grader relativt vertikalpositionen. Ett sorts horisontellt sluttande plan "
+#~ "som ger 3D känsla. Värdet 0 anger att planet är helt vertikalt."
 
 #~ msgid "Inclination of the plane:"
 #~ msgstr "Planets vinkel:"
 
 #~ msgid ""
-#~ "0.5 means the dock is half-folded, so half the icons are on the "
-#~ "foreground and half are on the background."
+#~ "0.5 means the dock is half-folded, so half the icons are on the foreground "
+#~ "and half are on the background."
 #~ msgstr ""
 #~ "0.5 betyder att dockan är halvt utfälld, dvs hälften av ikoner är i "
 #~ "förgrunden, den andra hälften i bakgrunden."
@@ -8609,8 +9524,7 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgstr "Antal papperskorgar"
 
 #~ msgid ""
-#~ "in Mb. You will be notified when you go over this limit. Set to 0 to "
-#~ "disable."
+#~ "in Mb. You will be notified when you go over this limit. Set to 0 to disable."
 #~ msgstr ""
 #~ "i Mb. Du får ett meddelande om du överskrider gränsen. Ange 0 för att "
 #~ "inaktivera."
@@ -8621,12 +9535,18 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ msgid "Delay between measurements:"
 #~ msgstr "Tid mellan mätningar:"
 
+#~ msgid "Separate different shortcuts with separators?"
+#~ msgstr "Avskilj olika genvägar med avgränsare?"
+
 #~ msgid "Action when applet is clicked:"
 #~ msgstr "Aktivitet när appleten klickas:"
 
 #~ msgid "When copying/pasting/cutting, use the selection clipboard?"
 #~ msgstr ""
 #~ "Använd urklippshanteraren för markeringar vid kopiera/klipp ut/klistra in?"
+
+#~ msgid "Default title:"
+#~ msgstr "Standardtitel:"
 
 #~ msgid ""
 #~ "- What will we do tonight Cortex?\n"
@@ -8651,9 +9571,12 @@ msgstr "Visa anslutningsnamnet på etiketten?"
 #~ "dustbin applet för Cairo-Dock\n"
 #~ " skapad av Fabrice Rey (fabounet@glx-dock.org)"
 
+#~ msgid "Open the folder (middle-click)"
+#~ msgstr "Öppna mappen (mitten-klick)"
+
 #~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-Dock & type=utility)"
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+#~ "Dock & type=utility)"
 #~ msgstr ""
 #~ "För Compiz-Fusion \"widget layer\", ange filter som (name=cairo-dock & "
 #~ "type=utility)"

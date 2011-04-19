@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
+"POT-Creation-Date: 2011-04-15 00:27+0000\n"
 "PO-Revision-Date: 2010-11-13 22:57+0000\n"
 "Last-Translator: Ahmed Mohammed <Unknown>\n"
 "Language-Team: Arabic <ar@li.org>\n"
-"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-01-02 05:08+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Launchpad-Export-Date: 2011-04-16 05:12+0000\n"
+"X-Generator: Launchpad (build 12735)\n"
+"Language: ar\n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -95,7 +96,8 @@ msgstr "عذراً ولكنني مشغول حالياً."
 #: ../Cairo-Penguin/src/applet-notifications.c:31
 msgid ""
 "I don't have time to play with you, I have to dig and mine all these icons."
-msgstr "ليس لدي مايكفي من الوقت للعب معك, علي أن احفر وألغم كل هذه الأيقونات."
+msgstr ""
+"ليس لدي مايكفي من الوقت للعب معك, علي أن احفر وألغم كل هذه الأيقونات."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:32
 msgid "Your dock is so messy! Let me clean it."
@@ -241,7 +243,8 @@ msgstr "الوحدة تم إضافتها, ولكن لا يمكن تشغيلها.
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "البريمج '%s' تم تحديثه وإعادة تشغيله تلقائياً بنجاح"
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -333,9 +336,8 @@ msgstr ""
 " ضغطة بزر الماوس الاوسط لاعادة بناء القيم"
 
 #: ../Doncky/src/applet-notifications.c:215
-#, fuzzy
 msgid "It doesn't seem to be a valid XML file."
-msgstr "لا يبدوا أنه رابط صالح."
+msgstr ""
 
 #: ../Folders/src/applet-init.c:29
 msgid "Folders"
@@ -497,9 +499,8 @@ msgid "By type"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:459
-#, fuzzy
 msgid "The folder has been imported."
-msgstr "خلاصة الآر اس اس هذه تم تعديلها."
+msgstr ""
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -819,37 +820,32 @@ msgid "Open parent folder"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:282
-#, fuzzy
 msgid "Copy the location"
-msgstr "افتح مكان"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:284
-#, fuzzy
 msgid "Delete this event"
-msgstr "إحذف هذا الملف"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:357
 msgid "All"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:358
-#, fuzzy
 msgid "Document"
-msgstr "المستندات المستعملة مؤخراً"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:360
-#, fuzzy
 msgid "Image"
-msgstr "(F3) صورة"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:361
 msgid "Audio"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:362
-#, fuzzy
 msgid "Video"
-msgstr "(F4) فيديو"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:363
 msgid "Web"
@@ -860,9 +856,8 @@ msgid "Other"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:365
-#, fuzzy
 msgid "Top Results"
-msgstr "لا نتائج"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:371
 msgid "Look for events"
@@ -881,9 +876,8 @@ msgid "Browse and search in recent events"
 msgstr ""
 
 #: ../Recent-Events/src/applet-init.c:28
-#, fuzzy
 msgid "Recent-Events"
-msgstr "المستندات المستعملة مؤخراً"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:74
 #, c-format
@@ -1053,9 +1047,8 @@ msgid ""
 msgstr ""
 
 #: ../Status-Notifier/src/applet-init.c:38
-#, fuzzy
 msgid "Notification Area"
-msgstr "لا تعديل"
+msgstr ""
 
 #: ../System-Monitor/src/applet-cpusage.c:57
 msgid "Uptime"
@@ -1391,8 +1384,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1668,7 +1661,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:591
@@ -2593,8 +2587,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -2743,14 +2737,12 @@ msgid "Remove this item"
 msgstr ""
 
 #: ../stack/src/applet-notifications.c:259
-#, fuzzy
 msgid "The file has been added to the stack."
-msgstr "الوحدة تم إضافتها, ولكن لا يمكن تشغيلها."
+msgstr ""
 
 #: ../stack/src/applet-notifications.c:260
-#, fuzzy
 msgid "The URL has been added to the stack."
-msgstr "الوحدة تم إضافتها, ولكن لا يمكن تشغيلها."
+msgstr ""
 
 #: ../switcher/src/applet-draw.c:618 ../switcher/src/applet-draw.c:625
 #: ../switcher/src/applet-load-icons.c:43
@@ -2810,9 +2802,8 @@ msgid "Windows List"
 msgstr ""
 
 #: ../switcher/src/applet-notifications.c:324 ../switcher/data/messages:113
-#, fuzzy
 msgid "Expose all the windows"
-msgstr "فتح في نافذة جديدة"
+msgstr ""
 
 #: ../systray/src/systray-init.c:35
 msgid ""
@@ -2824,9 +2815,8 @@ msgid ""
 msgstr ""
 
 #: ../systray/src/systray-init.c:41
-#, fuzzy
 msgid "Notification Area Old"
-msgstr "لا تعديل"
+msgstr ""
 
 #: ../systray/src/systray-interface.c:71
 msgid ""
@@ -2985,9 +2975,8 @@ msgid "I couldn't find this location"
 msgstr ""
 
 #: ../weather/src/applet-config.c:185
-#, fuzzy
 msgid "Searching the location code..."
-msgstr "يبحث ..."
+msgstr ""
 
 #: ../weather/src/applet-config.c:209
 msgid ""
@@ -4855,7 +4844,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:121 ../RSSreader/data/messages:185
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:123 ../RSSreader/data/messages:187
@@ -6587,7 +6577,8 @@ msgid "Space between icons:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:115
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:119
@@ -6713,7 +6704,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -6930,7 +6922,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:109
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:111
@@ -7002,7 +6995,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:95
@@ -7928,7 +7922,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:109
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:111
@@ -8010,11 +8005,14 @@ msgstr ""
 msgid "Overwrite the default label with the connection point name?"
 msgstr ""
 
-#~ msgid "About this applet"
-#~ msgstr "عن هذا البريمج"
-
 #~ msgid "Hey, you there!"
 #~ msgstr "مهلاً, أنت هنا!"
 
 #~ msgid "Doncky"
 #~ msgstr "حمار"
+
+#~ msgid "About this applet"
+#~ msgstr "عن هذا البريمج"
+
+#~ msgid "Open the folder (middle-click)"
+#~ msgstr "إفتح المجلد (ضغطة بزر الماوس الاوسط)"

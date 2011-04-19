@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
+"POT-Creation-Date: 2011-04-15 00:27+0000\n"
 "PO-Revision-Date: 2011-02-28 12:46+0000\n"
 "Last-Translator: Krasznecz Zoltán <zoltan.krasznecz@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
-"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-03-01 04:54+0000\n"
-"X-Generator: Launchpad (build 12351)\n"
+"X-Launchpad-Export-Date: 2011-04-16 05:14+0000\n"
+"X-Generator: Launchpad (build 12735)\n"
+"Language: hu\n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -247,7 +248,8 @@ msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -334,9 +336,8 @@ msgid ""
 msgstr ""
 
 #: ../Doncky/src/applet-notifications.c:215
-#, fuzzy
 msgid "It doesn't seem to be a valid XML file."
-msgstr "Az URL-cím érvénytelennek tűnik."
+msgstr ""
 
 #: ../Folders/src/applet-init.c:29
 msgid "Folders"
@@ -466,27 +467,24 @@ msgid "Sort by"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:418
-#, fuzzy
 msgid "By name"
-msgstr "Fájl"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:419
 msgid "By date"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:420
-#, fuzzy
 msgid "By size"
-msgstr "Sugarak mérete:"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:421
 msgid "By type"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:459
-#, fuzzy
 msgid "The folder has been imported."
-msgstr "Ez a hírforrás megváltozott..."
+msgstr ""
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -807,61 +805,52 @@ msgid "Open parent folder"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:282
-#, fuzzy
 msgid "Copy the location"
-msgstr "Hely megnyitása"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:284
-#, fuzzy
 msgid "Delete this event"
-msgstr "Jegyzet törlése"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:357
 msgid "All"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:358
-#, fuzzy
 msgid "Document"
-msgstr "Legutóbbi dokumentumok"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:360
-#, fuzzy
 msgid "Image"
-msgstr "(F3) Kép"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:361
 msgid "Audio"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:362
-#, fuzzy
 msgid "Video"
-msgstr "Video RAM"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:363
-#, fuzzy
 msgid "Web"
-msgstr "Feb"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:364
-#, fuzzy
 msgid "Other"
-msgstr "időjárás"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:365
-#, fuzzy
 msgid "Top Results"
-msgstr "Nincs találat"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:371
 msgid "Look for events"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:421
-#, fuzzy
 msgid "File name"
-msgstr "Fájl"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:428
 msgid "Last access"
@@ -872,9 +861,8 @@ msgid "Browse and search in recent events"
 msgstr ""
 
 #: ../Recent-Events/src/applet-init.c:28
-#, fuzzy
 msgid "Recent-Events"
-msgstr "Legutóbbi dokumentumok"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:74
 #, c-format
@@ -887,14 +875,12 @@ msgid "Recent files"
 msgstr "Legutóbbi fájlok"
 
 #: ../Recent-Events/src/applet-notifications.c:154
-#, fuzzy
 msgid "Delete today's events"
-msgstr "Jegyzet törlése"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:156
-#, fuzzy
 msgid "Delete all events"
-msgstr "Összes törlése"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
@@ -1046,9 +1032,8 @@ msgid ""
 msgstr ""
 
 #: ../Status-Notifier/src/applet-init.c:38
-#, fuzzy
 msgid "Notification Area"
-msgstr "Nincs változás"
+msgstr ""
 
 #: ../System-Monitor/src/applet-cpusage.c:57
 msgid "Uptime"
@@ -1186,7 +1171,8 @@ msgstr ""
 
 #: ../Toons/src/applet-init.c:32
 msgid "This applet displays a toon that will look at your mouse."
-msgstr "Ez a kisalkalmazás megjelenít egy rajzfigurát, ami az egerét figyeli."
+msgstr ""
+"Ez a kisalkalmazás megjelenít egy rajzfigurát, ami az egerét figyeli."
 
 #: ../Xgamma/src/applet-init.c:43
 msgid ""
@@ -1208,9 +1194,8 @@ msgid "Screen Luminosity"
 msgstr ""
 
 #: ../Xgamma/src/applet-notifications.c:89
-#, fuzzy
 msgid "Set up gamma correction"
-msgstr "Gamma beállítása"
+msgstr ""
 
 #: ../Xgamma/src/applet-notifications.c:94
 msgid "Apply current luminosity on startup"
@@ -1409,8 +1394,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1695,7 +1680,8 @@ msgstr ""
 "A CTRL+v megnyomásával illesztheti be az URL-címét."
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Kérem várjon, amíg a jelenlegi feltöltés befejeződik, mielőtt újat indít."
 
@@ -2457,9 +2443,8 @@ msgid "Re-check interface"
 msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:133
-#, fuzzy
 msgid "Charge"
-msgstr "Karakterek"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:192
 msgid ""
@@ -2654,8 +2639,8 @@ msgstr "Egér mutatása"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -2684,9 +2669,8 @@ msgstr "Asztal megjelenítése"
 #: ../showDesktop/src/applet-notifications.c:164
 #: ../switcher/src/applet-notifications.c:315 ../showDesktop/data/messages:115
 #: ../showDesktop/data/messages:129 ../switcher/data/messages:111
-#, fuzzy
 msgid "Expose all the desktops"
-msgstr "Asztal megjelenítése"
+msgstr ""
 
 #: ../showDesktop/src/applet-notifications.c:171
 #: ../showDesktop/src/applet-notifications.c:173
@@ -2805,14 +2789,12 @@ msgid "Remove this item"
 msgstr "Elem eltávolítása"
 
 #: ../stack/src/applet-notifications.c:259
-#, fuzzy
 msgid "The file has been added to the stack."
-msgstr "A(z) %s érték a vágólapra került."
+msgstr ""
 
 #: ../stack/src/applet-notifications.c:260
-#, fuzzy
 msgid "The URL has been added to the stack."
-msgstr "A(z) %s érték a vágólapra került."
+msgstr ""
 
 #: ../switcher/src/applet-draw.c:618 ../switcher/src/applet-draw.c:625
 #: ../switcher/src/applet-load-icons.c:43
@@ -2872,9 +2854,8 @@ msgid "Windows List"
 msgstr "Ablaklista"
 
 #: ../switcher/src/applet-notifications.c:324 ../switcher/data/messages:113
-#, fuzzy
 msgid "Expose all the windows"
-msgstr "Megnyitás új ablakban"
+msgstr ""
 
 #: ../systray/src/systray-init.c:35
 msgid ""
@@ -2886,9 +2867,8 @@ msgid ""
 msgstr ""
 
 #: ../systray/src/systray-init.c:41
-#, fuzzy
 msgid "Notification Area Old"
-msgstr "Nincs változás"
+msgstr ""
 
 #: ../systray/src/systray-interface.c:71
 msgid ""
@@ -3039,18 +3019,16 @@ msgid ""
 msgstr ""
 
 #: ../weather/src/applet-config.c:126
-#, fuzzy
 msgid "Couldn't get the location code (is connection alive?)"
-msgstr "Nem sikerült feltölteni a fájlt, ellenőrizze az internetkapcsolatát."
+msgstr ""
 
 #: ../weather/src/applet-config.c:134
 msgid "I couldn't find this location"
 msgstr ""
 
 #: ../weather/src/applet-config.c:185
-#, fuzzy
 msgid "Searching the location code..."
-msgstr "Az Ön helyzetének meghatározása:"
+msgstr ""
 
 #: ../weather/src/applet-config.c:209
 msgid ""
@@ -4923,7 +4901,8 @@ msgid "Background"
 msgstr "Háttér"
 
 #: ../Doncky/data/messages:121 ../RSSreader/data/messages:185
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:123 ../RSSreader/data/messages:187
@@ -5425,14 +5404,12 @@ msgid ""
 msgstr ""
 
 #: ../Recent-Events/data/messages:97
-#, fuzzy
 msgid "Shortkey to show/hide the search dialog"
-msgstr "Gyorsbillentyű a gyorsindító megjelenítéséhez/elrejtéséhez:"
+msgstr ""
 
 #: ../Recent-Events/data/messages:99
-#, fuzzy
 msgid "Max number of results to show"
-msgstr "Találatok maximális száma:"
+msgstr ""
 
 #: ../Remote-Control/data/messages:3
 msgid "Shortkey to trigger the applet:"
@@ -5664,9 +5641,8 @@ msgid "Allow the icon to automatically resize itself?"
 msgstr ""
 
 #: ../Status-Notifier/data/messages:105
-#, fuzzy
 msgid "Number of lines to pack items in:"
-msgstr "Megjelenítendő sorok száma:"
+msgstr ""
 
 #: ../System-Monitor/data/messages:119 ../powermanager/data/messages:123
 msgid "It's the colour of the graphic for high values."
@@ -5839,9 +5815,8 @@ msgid "High refresh frequency?"
 msgstr ""
 
 #: ../Xgamma/data/messages:7
-#, fuzzy
 msgid "Leave empty to display the current luminosity."
-msgstr "Hagyja üresen az alapértelmezés használatához."
+msgstr ""
 
 #: ../Xgamma/data/messages:99 ../alsaMixer/data/messages:115
 msgid "Variation for 1 mouse scroll, in %:"
@@ -6529,9 +6504,8 @@ msgid "Only for sub-docks."
 msgstr ""
 
 #: ../dock-rendering/data/messages:37
-#, fuzzy
 msgid "Maximum size of the dock:"
-msgstr "Találatok maximális száma:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:39
 msgid "Small"
@@ -6660,7 +6634,8 @@ msgid "Space between icons:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:115
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:119
@@ -6786,7 +6761,8 @@ msgid "Colours"
 msgstr "Színek"
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -7003,7 +6979,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:109
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:111
@@ -7075,7 +7052,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:95
@@ -7259,9 +7237,8 @@ msgid "Display rate values :"
 msgstr ""
 
 #: ../powermanager/data/messages:7
-#, fuzzy
 msgid "Leave empty to display the current status information."
-msgstr "Hagyja üresen az alapértelmezés használatához."
+msgstr ""
 
 #: ../powermanager/data/messages:9
 msgid "Icon name:"
@@ -7288,9 +7265,8 @@ msgid "charge"
 msgstr ""
 
 #: ../powermanager/data/messages:165
-#, fuzzy
 msgid "Timelength"
-msgstr "Hátralévő idő"
+msgstr ""
 
 #: ../powermanager/data/messages:169
 msgid "Emblem icon's filename when on charge:"
@@ -8003,7 +7979,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:109
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:111
@@ -8085,20 +8062,6 @@ msgstr ""
 msgid "Overwrite the default label with the connection point name?"
 msgstr ""
 
-#~ msgid "Status Notifier"
-#~ msgstr "Állapot értesítő"
-
-#~ msgid "About this applet"
-#~ msgstr "A GMenu névjegye"
-
-#~ msgid ""
-#~ "Couldn't upload the file, check that your internet connexion is active."
-#~ msgstr ""
-#~ "Nem sikerült feltölteni a fájlt, ellenőrizze az internetkapcsolatát."
-
-#~ msgid "You need to run Compiz and activate its 'DBus' plug-in."
-#~ msgstr "El kell indítania a Compizt és bekapcsolni a 'DBus' beépülő modult."
-
 #~ msgid "You shall not pass !"
 #~ msgstr "Itt úgysem jutsz át!"
 
@@ -8128,14 +8091,17 @@ msgstr ""
 #~ "- The same thing as every nights, Minus. Try to take over the Dock !"
 #~ msgstr ""
 #~ "- Mit csinálunk ma este Cortex?\n"
-#~ "- Ugyanazt, mint minden este, Minus. Megpróbáljuk átvenni a hatalmat a "
-#~ "dokk felett!"
+#~ "- Ugyanazt, mint minden este, Minus. Megpróbáljuk átvenni a hatalmat a dokk "
+#~ "felett!"
 
 #~ msgid "For Aiur !"
 #~ msgstr "Auirért!"
 
 #~ msgid "Clear the list of the recently used documents ?"
 #~ msgstr "Törli a legutóbbi dokumentumok listáját?"
+
+#~ msgid "About this applet"
+#~ msgstr "A GMenu névjegye"
 
 #~ msgid "Enter a command to launch :"
 #~ msgstr "Írja be a futtatandó parancsot:"
@@ -8184,8 +8150,7 @@ msgstr ""
 #~ "This applet is a RSS feed reader\n"
 #~ "(you can add as many instances you want)\n"
 #~ " USAGE:\n"
-#~ "  - Left-clic : Display the feed lines in a dialog (optional in "
-#~ "desklet).\n"
+#~ "  - Left-clic : Display the feed lines in a dialog (optional in desklet).\n"
 #~ "  - Middle-clic : Refresh the feed.\n"
 #~ "  - Add/Modify the RSS feed to display with either Drag'n Drop\n"
 #~ "    a valid RSS feed Url,\"Paste a new RSS Url\" from menu\n"
@@ -8199,8 +8164,8 @@ msgstr ""
 #~ "  - Bal kattintásra megjeleníti a hírvonalakat egy párbeszédablakban "
 #~ "(opcionálisan deskletként).\n"
 #~ "  - Középső kattintásra frissíti a híreket.\n"
-#~ "  - Adja hozzá/módosítsa a megjelenítendő hírforráshoz tartozó érvényes "
-#~ "URL-címet\n"
+#~ "  - Adja hozzá/módosítsa a megjelenítendő hírforráshoz tartozó érvényes URL-"
+#~ "címet\n"
 #~ "    az \"Új hírforrás URL-címének beillesztése\" menüponttal\n"
 #~ "    vagy a Beállító Panellel.\n"
 #~ "  - Használja a \"Megnyitás webböngészővel\" menüpontot\n"
@@ -8210,19 +8175,18 @@ msgstr ""
 #~ msgstr "Új hírforrás URL-címének beillesztése (fogd és vidd módszer)"
 
 #~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
 #~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type some text to launch any command, file or "
 #~ "calculation.\n"
-#~ "  use the arrows to navigate between the results, press Enter to "
-#~ "validate, maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
 #~ "Escape or the same shortkey to cancel."
 #~ msgstr ""
 #~ "A Gnome-Do-like beépülő modul lehetővé teszi a dokk irányítását "
@@ -8233,14 +8197,13 @@ msgstr ""
 #~ "  vagy gépelje be egy indító nevét és nyomja meg a Tab billentyűt a "
 #~ "következő megfelelő indítóra ugráshoz\n"
 #~ "  nyomja meg az Enter billentyűt az ikonon kattintáshoz, Shift+Enter "
-#~ "billentyűket a Shift+kattintáshoz, Alt+Enter billentyűket a középső "
-#~ "gombbal kattintáshoz, és Ctrl+Enter billentyűket a bal egérgombbal "
-#~ "kattintáshoz\n"
-#~ "- kereső mód: gépelje be az indítani kívánt parancs, fájl vagy számítás "
-#~ "egy részét,\n"
-#~ "  és használja a nyílbillentyűket a találatok közötti navigáláshoz, "
-#~ "nyomja meg az Entert a jóváhagyáshoz, és tartsa nyomva a CTRL, ALT vagy "
-#~ "SHIFT billentyűk egyikét az eredmény megtartásához.\n"
+#~ "billentyűket a Shift+kattintáshoz, Alt+Enter billentyűket a középső gombbal "
+#~ "kattintáshoz, és Ctrl+Enter billentyűket a bal egérgombbal kattintáshoz\n"
+#~ "- kereső mód: gépelje be az indítani kívánt parancs, fájl vagy számítás egy "
+#~ "részét,\n"
+#~ "  és használja a nyílbillentyűket a találatok közötti navigáláshoz, nyomja "
+#~ "meg az Entert a jóváhagyáshoz, és tartsa nyomva a CTRL, ALT vagy SHIFT "
+#~ "billentyűk egyikét az eredmény megtartásához.\n"
 #~ "Használja az Escape-et vagy más hasonló gyorsbillentyűt a visszavonáshoz."
 
 #~ msgid "Yahoo"
@@ -8255,9 +8218,13 @@ msgstr ""
 #~ msgid "AlsaMixer"
 #~ msgstr "AlsaMixer"
 
+#~ msgid "Set up gamma :"
+#~ msgstr "Gamma beállítása"
+
 #~ msgid "Monitor System"
 #~ msgstr "Jelzőrendszer"
 
+#, c-format
 #~ msgid "Alert ! Graphic Card core temperature has reached %d°C"
 #~ msgstr "Figyelem! A videokártya hőmérséklete elérte a %d°C-ot!"
 
@@ -8266,6 +8233,10 @@ msgstr ""
 
 #~ msgid "Clear the list of the recently uploaded files ?"
 #~ msgstr "Törli a legutóbb feltöltött fájlok listáját?"
+
+#~ msgid ""
+#~ "Couldn't upload the file, check that your internet connexion is active."
+#~ msgstr "Nem sikerült feltölteni a fájlt, ellenőrizze az internetkapcsolatát."
 
 #~ msgid ""
 #~ "The URL has been stored into the clipboard.\n"
@@ -8280,21 +8251,28 @@ msgstr ""
 #~ msgid "Show Trash"
 #~ msgstr "Kuka mutatása"
 
+#~ msgid "Delete All"
+#~ msgstr "Összes törlése"
+
+#, c-format
 #~ msgid "You're about to delete all files in %s. Sure ?"
 #~ msgstr "Biztosan törli az összes fájlt %s-ben?"
 
+#, c-format
 #~ msgid "Show %s"
 #~ msgstr "%s mutatása"
 
 #~ msgid "Show All"
 #~ msgstr "Összes megjelenítése"
 
+#, c-format
 #~ msgid "Delete %s"
 #~ msgstr "%s törlése"
 
 #~ msgid "You have a new mail :"
 #~ msgstr "Egy új levele érkezett:"
 
+#, c-format
 #~ msgid "You have %d new mails :"
 #~ msgstr "%d új levele érkezett:"
 
@@ -8322,6 +8300,9 @@ msgstr ""
 #~ msgid "Use 3D themes ?"
 #~ msgstr "Használjon 3D témát?"
 
+#~ msgid "Time Left"
+#~ msgstr "Hátralévő idő"
+
 #~ msgid "Personnalisation"
 #~ msgstr "Testreszabás"
 
@@ -8332,8 +8313,8 @@ msgstr ""
 #~ msgstr "Csatornák beállítása"
 
 #~ msgid ""
-#~ "This plug-in displays an animated indicator when you drop something in "
-#~ "the dock."
+#~ "This plug-in displays an animated indicator when you drop something in the "
+#~ "dock."
 #~ msgstr ""
 #~ "Ez a kisalkalmazás megjelenít egy animált jelzőt, amikor valamit a dokkra "
 #~ "dob."
@@ -8352,8 +8333,7 @@ msgstr ""
 
 #~ msgid "in pixels. Use this to adjust the left position of the drawings."
 #~ msgstr ""
-#~ "pixelekben. Ezzel állíthatja be a rajzok bal oldalhoz viszonyított "
-#~ "helyzetét."
+#~ "pixelekben. Ezzel állíthatja be a rajzok bal oldalhoz viszonyított helyzetét."
 
 #~ msgid "Left offset :"
 #~ msgstr "Bal oldali eltolás"
@@ -8411,14 +8391,13 @@ msgstr ""
 #~ "Hírolvasó kisalkalmazás (RSS/Atom).\n"
 #~ "Több példányt is létrehozhat belőle.\n"
 #~ "Használat:\n"
-#~ " - Bal kattintásra megjeleníti a teljes hírvonalat egy "
-#~ "párbeszédablakban.\n"
+#~ " - Bal kattintásra megjeleníti a teljes hírvonalat egy párbeszédablakban.\n"
 #~ " - Középső kattintásra frissíti a hírforrásokat.\n"
 #~ " - Új hírforrás felvételéhez húzzon egy érvényes URL-címet az ikonra,\n"
-#~ "    vagy használja az \"Új hírforrás URL-címének beillesztése\" "
-#~ "menüpontot.\n"
+#~ "    vagy használja az \"Új hírforrás URL-címének beillesztése\" menüpontot.\n"
 #~ "    vagy szerkessze a beállítópanelt."
 
+#, c-format
 #~ msgid ""
 #~ "I couldn't find any audio channel named '%s'\n"
 #~ "You should try to open the configuration panel of the applet,\n"
@@ -8431,18 +8410,18 @@ msgstr ""
 #~ msgid ""
 #~ "This applet displays time and date in your dock.\n"
 #~ "2 view are available : numeric and analogic, based on Cairo-Clock.\n"
-#~ "It is compatible with the Cairo-Clock's themes, and you can detach itself "
-#~ "to be a perfect clone of Cairo-Clock.\n"
-#~ "It supports alarms, and a basic calendar, and allows you to setup time "
-#~ "and date.\n"
+#~ "It is compatible with the Cairo-Clock's themes, and you can detach itself to "
+#~ "be a perfect clone of Cairo-Clock.\n"
+#~ "It supports alarms, and a basic calendar, and allows you to setup time and "
+#~ "date.\n"
 #~ "Left-click to show/hide the calendar, Middle-click to stop an alarm."
 #~ msgstr ""
 #~ "Ez a kisalkalmazás megjeleníti az időt és a dátumot.\n"
 #~ "Két nézet érhető el: analóg és digitális, a Cairo-Clockra épülve.\n"
 #~ "Kompatibilis a Cairo-Clock témáival, leválasztva akár a Cairo-Clock "
 #~ "tökéletes másává is válhat.\n"
-#~ "Támogatja a riasztásokat, van egy alapszintű naptára, valamint "
-#~ "beállíthatja az időt és a dátumot.\n"
+#~ "Támogatja a riasztásokat, van egy alapszintű naptára, valamint beállíthatja "
+#~ "az időt és a dátumot.\n"
 #~ "Bal kattintással hívhatja elő vagy rejtheti el a naptárat, középső "
 #~ "kattintással leállíthatja a riasztást."
 
@@ -8461,13 +8440,14 @@ msgstr ""
 
 #~ msgid ""
 #~ "No uploaded file available\n"
-#~ ".Consider activating the history if you want the applet remembers "
-#~ "previous uploads."
+#~ ".Consider activating the history if you want the applet remembers previous "
+#~ "uploads."
 #~ msgstr ""
 #~ "Nincs feltöltött fájl.\n"
-#~ "Kapcsolja be az előzményeket, ha azt akarja, hogy a kisalkalmazás "
-#~ "emlékezzen a korábbi feltöltésekre."
+#~ "Kapcsolja be az előzményeket, ha azt akarja, hogy a kisalkalmazás emlékezzen "
+#~ "a korábbi feltöltésekre."
 
+#, c-format
 #~ msgid ""
 #~ "A problem occured\n"
 #~ "If '%s' is not your usual file browser,\n"
@@ -8513,6 +8493,7 @@ msgstr ""
 #~ msgid "Add a desktop"
 #~ msgstr "Asztal hozzáadása"
 
+#, c-format
 #~ msgid "You can call back the Terminal desklet by typing %s"
 #~ msgstr "Visszahívhatja a terminál-deskletet a(z) %s begépelésével."
 
@@ -8600,6 +8581,9 @@ msgstr ""
 #~ msgid "Border color"
 #~ msgstr "Keretszín"
 
+#~ msgid "Characters"
+#~ msgstr "Karakterek"
+
 #~ msgid "Do you know how much painful it is to be clicked on ??"
 #~ msgstr "Tudod te, hogy milyen fájdalmas, ha rádkattintanak???"
 
@@ -8612,12 +8596,14 @@ msgstr ""
 #~ msgid "Trash"
 #~ msgstr "lomtár"
 
+#, c-format
 #~ msgid "You are about to delete all files in %s. Continue?"
 #~ msgstr "Biztosan törli az összes fájlt %s-ben?"
 
 #~ msgid "You are about to delete all files in all dustbins. Continue?"
 #~ msgstr "Biztosan töröl minden fájl a lomtárból?"
 
+#, c-format
 #~ msgid ""
 #~ "A problem occured\n"
 #~ "If '%s' is not your usual file browser,\n"
@@ -8642,6 +8628,9 @@ msgstr ""
 #~ msgid "Show Mouse"
 #~ msgstr "Egér mutatása"
 
+#~ msgid "You need to run Compiz and activate its 'DBus' plug-in."
+#~ msgstr "El kell indítania a Compizt és bekapcsolni a 'DBus' beépülő modult."
+
 #~ msgid "Weather"
 #~ msgstr "időjárás"
 
@@ -8650,23 +8639,25 @@ msgstr ""
 #~ "- The same thing as every other nights, Minus. Try to take over the Dock!"
 #~ msgstr ""
 #~ "- Mit csinálunk ma este Cortex?\n"
-#~ "- Ugyanazt, mint minden este, Minus. Megpróbáljuk átvenni a hatalmat a "
-#~ "dokk felett!"
+#~ "- Ugyanazt, mint minden este, Minus. Megpróbáljuk átvenni a hatalmat a dokk "
+#~ "felett!"
+
+#~ msgid "Status Notifier"
+#~ msgstr "Állapot értesítő"
 
 #~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
 #~ "Docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type some text to launch any command, file or "
 #~ "calculation.\n"
-#~ "  use the arrows to navigate between the results, press Enter to "
-#~ "validate, maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
 #~ "Escape or the same shortkey to cancel."
 #~ msgstr ""
 #~ "A Gnome-Do-like beépülő modul lehetővé teszi a dokk irányítását "
@@ -8677,12 +8668,11 @@ msgstr ""
 #~ "  vagy gépelje be egy indító nevét és nyomja meg a Tab billentyűt a "
 #~ "következő megfelelő indítóra ugráshoz\n"
 #~ "  nyomja meg az Enter billentyűt az ikonon kattintáshoz, Shift+Enter "
-#~ "billentyűket a Shift+kattintáshoz, Alt+Enter billentyűket a középső "
-#~ "gombbal kattintáshoz, és Ctrl+Enter billentyűket a bal egérgombbal "
-#~ "kattintáshoz\n"
-#~ "- kereső mód: gépelje be az indítani kívánt parancs, fájl vagy számítás "
-#~ "egy részét,\n"
-#~ "  és használja a nyílbillentyűket a találatok közötti navigáláshoz, "
-#~ "nyomja meg az Entert a jóváhagyáshoz, és tartsa nyomva a CTRL, ALT vagy "
-#~ "SHIFT billentyűk egyikét az eredmény megtartásához.\n"
+#~ "billentyűket a Shift+kattintáshoz, Alt+Enter billentyűket a középső gombbal "
+#~ "kattintáshoz, és Ctrl+Enter billentyűket a bal egérgombbal kattintáshoz\n"
+#~ "- kereső mód: gépelje be az indítani kívánt parancs, fájl vagy számítás egy "
+#~ "részét,\n"
+#~ "  és használja a nyílbillentyűket a találatok közötti navigáláshoz, nyomja "
+#~ "meg az Entert a jóváhagyáshoz, és tartsa nyomva a CTRL, ALT vagy SHIFT "
+#~ "billentyűk egyikét az eredmény megtartásához.\n"
 #~ "Használja az Escape-et vagy más hasonló gyorsbillentyűt a visszavonáshoz."

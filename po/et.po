@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
+"POT-Creation-Date: 2011-04-15 00:27+0000\n"
 "PO-Revision-Date: 2011-02-28 12:44+0000\n"
 "Last-Translator: Fabounet <fabounet03@gmail.com>\n"
 "Language-Team: Estonian <et@li.org>\n"
-"Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-03-01 04:53+0000\n"
-"X-Generator: Launchpad (build 12351)\n"
+"X-Launchpad-Export-Date: 2011-04-16 05:13+0000\n"
+"X-Generator: Launchpad (build 12735)\n"
+"Language: et\n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -233,7 +234,8 @@ msgstr "Moodul lisati, kuid seda ei saa käivitada."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Vidin '%s' uuendati edukalt ja laaditi automaatselt uuesti"
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -320,9 +322,8 @@ msgid ""
 msgstr ""
 
 #: ../Doncky/src/applet-notifications.c:215
-#, fuzzy
 msgid "It doesn't seem to be a valid XML file."
-msgstr "Tundub, et URL pole kehtiv."
+msgstr ""
 
 #: ../Folders/src/applet-init.c:29
 msgid "Folders"
@@ -467,14 +468,12 @@ msgid "Create a new folder"
 msgstr "Loo uus kataloog"
 
 #: ../Folders/src/applet-notifications.c:417
-#, fuzzy
 msgid "Sort by"
-msgstr "Sorteeri failisi :"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:418
-#, fuzzy
 msgid "By name"
-msgstr "Fail"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:419
 msgid "By date"
@@ -489,9 +488,8 @@ msgid "By type"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:459
-#, fuzzy
 msgid "The folder has been imported."
-msgstr "See RSS-voog on muudetud..."
+msgstr ""
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -827,61 +825,52 @@ msgid "Open parent folder"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:282
-#, fuzzy
 msgid "Copy the location"
-msgstr "Ava asukoht"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:284
-#, fuzzy
 msgid "Delete this event"
-msgstr "Kustuta see märkus"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:357
 msgid "All"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:358
-#, fuzzy
 msgid "Document"
-msgstr "Hiljutised dokumendid"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:360
-#, fuzzy
 msgid "Image"
-msgstr "Pildid"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:361
 msgid "Audio"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:362
-#, fuzzy
 msgid "Video"
-msgstr "Videomälu"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:363
-#, fuzzy
 msgid "Web"
-msgstr "Veebr"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:364
-#, fuzzy
 msgid "Other"
-msgstr "ilm"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:365
-#, fuzzy
 msgid "Top Results"
-msgstr "Pole tulemust"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:371
 msgid "Look for events"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:421
-#, fuzzy
 msgid "File name"
-msgstr "Fail"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:428
 msgid "Last access"
@@ -892,9 +881,8 @@ msgid "Browse and search in recent events"
 msgstr ""
 
 #: ../Recent-Events/src/applet-init.c:28
-#, fuzzy
 msgid "Recent-Events"
-msgstr "Hiljutised dokumendid"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:74
 #, c-format
@@ -907,14 +895,12 @@ msgid "Recent files"
 msgstr "Viimati kasutatud"
 
 #: ../Recent-Events/src/applet-notifications.c:154
-#, fuzzy
 msgid "Delete today's events"
-msgstr "Kustuta see ülesanne"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:156
-#, fuzzy
 msgid "Delete all events"
-msgstr "Kustuta see ülesanne"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
@@ -1066,9 +1052,8 @@ msgid ""
 msgstr ""
 
 #: ../Status-Notifier/src/applet-init.c:38
-#, fuzzy
 msgid "Notification Area"
-msgstr "Teavitus"
+msgstr ""
 
 #: ../System-Monitor/src/applet-cpusage.c:57
 msgid "Uptime"
@@ -1221,9 +1206,8 @@ msgid "Screen Luminosity"
 msgstr ""
 
 #: ../Xgamma/src/applet-notifications.c:89
-#, fuzzy
 msgid "Set up gamma correction"
-msgstr "Seadista gamma"
+msgstr ""
 
 #: ../Xgamma/src/applet-notifications.c:94
 msgid "Apply current luminosity on startup"
@@ -1421,8 +1405,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1720,8 +1704,10 @@ msgstr ""
 "URL-i kopeerimiseks vajutage CTRL+V."
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
-msgstr "Palun oodake praeguse üleslaadimise lõpetamist enne kui alustate uut."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
+msgstr ""
+"Palun oodake praeguse üleslaadimise lõpetamist enne kui alustate uut."
 
 #: ../dnd2share/src/applet-dnd2share.c:591
 msgid "Tiny URL"
@@ -2457,9 +2443,8 @@ msgid "Re-check interface"
 msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:133
-#, fuzzy
 msgid "Charge"
-msgstr "laeng"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:192
 msgid ""
@@ -2652,8 +2637,8 @@ msgstr "näita hiirt"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -2682,9 +2667,8 @@ msgstr "Töölaua näitamine"
 #: ../showDesktop/src/applet-notifications.c:164
 #: ../switcher/src/applet-notifications.c:315 ../showDesktop/data/messages:115
 #: ../showDesktop/data/messages:129 ../switcher/data/messages:111
-#, fuzzy
 msgid "Expose all the desktops"
-msgstr "Näita kõiki töölaudasi (Compiz)"
+msgstr ""
 
 #: ../showDesktop/src/applet-notifications.c:171
 #: ../showDesktop/src/applet-notifications.c:173
@@ -2803,14 +2787,12 @@ msgid "Remove this item"
 msgstr "Eemalda see element"
 
 #: ../stack/src/applet-notifications.c:259
-#, fuzzy
 msgid "The file has been added to the stack."
-msgstr "Moodul lisati, kuid seda ei saa käivitada."
+msgstr ""
 
 #: ../stack/src/applet-notifications.c:260
-#, fuzzy
 msgid "The URL has been added to the stack."
-msgstr "Moodul lisati, kuid seda ei saa käivitada."
+msgstr ""
 
 #: ../switcher/src/applet-draw.c:618 ../switcher/src/applet-draw.c:625
 #: ../switcher/src/applet-load-icons.c:43
@@ -2870,9 +2852,8 @@ msgid "Windows List"
 msgstr ""
 
 #: ../switcher/src/applet-notifications.c:324 ../switcher/data/messages:113
-#, fuzzy
 msgid "Expose all the windows"
-msgstr "Näita kõiki töölaudasi (Compiz)"
+msgstr ""
 
 #: ../systray/src/systray-init.c:35
 msgid ""
@@ -2884,9 +2865,8 @@ msgid ""
 msgstr ""
 
 #: ../systray/src/systray-init.c:41
-#, fuzzy
 msgid "Notification Area Old"
-msgstr "Teavitus"
+msgstr ""
 
 #: ../systray/src/systray-interface.c:71
 msgid ""
@@ -3039,20 +3019,16 @@ msgstr ""
 " Kas ühendus on elus ?"
 
 #: ../weather/src/applet-config.c:126
-#, fuzzy
 msgid "Couldn't get the location code (is connection alive?)"
 msgstr ""
-"Ma ei saanud infot\n"
-" Kas ühendus on elus ?"
 
 #: ../weather/src/applet-config.c:134
 msgid "I couldn't find this location"
 msgstr "Ma ei suutnud leida seda asukohta"
 
 #: ../weather/src/applet-config.c:185
-#, fuzzy
 msgid "Searching the location code..."
-msgstr "Otsi oma asukoht:"
+msgstr ""
 
 #: ../weather/src/applet-config.c:209
 msgid ""
@@ -4924,7 +4900,8 @@ msgid "Background"
 msgstr "Tagapõhi"
 
 #: ../Doncky/data/messages:121 ../RSSreader/data/messages:185
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:123 ../RSSreader/data/messages:187
@@ -5426,9 +5403,8 @@ msgid ""
 msgstr ""
 
 #: ../Recent-Events/data/messages:97
-#, fuzzy
 msgid "Shortkey to show/hide the search dialog"
-msgstr "Kiirklahv terminali kuvamiseks:"
+msgstr ""
 
 #: ../Recent-Events/data/messages:99
 msgid "Max number of results to show"
@@ -5656,18 +5632,16 @@ msgid "Compact"
 msgstr ""
 
 #: ../Status-Notifier/data/messages:101
-#, fuzzy
 msgid "Sub-dock"
-msgstr "dokk"
+msgstr ""
 
 #: ../Status-Notifier/data/messages:103
 msgid "Allow the icon to automatically resize itself?"
 msgstr ""
 
 #: ../Status-Notifier/data/messages:105
-#, fuzzy
 msgid "Number of lines to pack items in:"
-msgstr "Ilmaennustuse pikkus päevades:"
+msgstr ""
 
 #: ../System-Monitor/data/messages:119 ../powermanager/data/messages:123
 msgid "It's the colour of the graphic for high values."
@@ -6533,14 +6507,12 @@ msgid "Maximum size of the dock:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:39
-#, fuzzy
 msgid "Small"
-msgstr "väike"
+msgstr ""
 
 #: ../dock-rendering/data/messages:41
-#, fuzzy
 msgid "Full screen"
-msgstr "Ekraani lukustamine"
+msgstr ""
 
 #: ../dock-rendering/data/messages:43
 msgid "Zoom when mouse hovers an icon:"
@@ -6661,7 +6633,8 @@ msgid "Space between icons:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:115
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:119
@@ -6787,7 +6760,8 @@ msgid "Colours"
 msgstr "Värvid"
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -7004,7 +6978,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:109
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:111
@@ -7076,7 +7051,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:95
@@ -7288,9 +7264,8 @@ msgid "charge"
 msgstr "laeng"
 
 #: ../powermanager/data/messages:165
-#, fuzzy
 msgid "Timelength"
-msgstr "Pikkus"
+msgstr ""
 
 #: ../powermanager/data/messages:169
 msgid "Emblem icon's filename when on charge:"
@@ -7616,9 +7591,8 @@ msgid "Choose a background colour :"
 msgstr ""
 
 #: ../slider/data/messages:173
-#, fuzzy
 msgid "Frame width:"
-msgstr "Raami laius:"
+msgstr ""
 
 #: ../slider/data/messages:175
 msgid "Gives better image rendering."
@@ -8004,8 +7978,10 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:109
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
-msgstr "See lubab sul paremklikkata vidinal Cairo-dokki menüü esilekuvamiseks."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgstr ""
+"See lubab sul paremklikkata vidinal Cairo-dokki menüü esilekuvamiseks."
 
 #: ../weblets/data/messages:111
 msgid "Right margin width, in pixels:"
@@ -8086,24 +8062,14 @@ msgstr "Puhta signaali info"
 msgid "Overwrite the default label with the connection point name?"
 msgstr ""
 
-#~ msgid "Status Notifier"
-#~ msgstr "Oleku teavitus"
-
-#~ msgid "systray"
-#~ msgstr "salv"
-
-#~ msgid "About this applet"
-#~ msgstr "Teave sellest vidinast"
-
-#~ msgid ""
-#~ "Couldn't upload the file, check that your internet connexion is active."
-#~ msgstr "Ei saanud faili üleslaadida, kontrolli oma internetiühendust."
+#~ msgid "Hey, you there!"
+#~ msgstr "Hei sina seal!"
 
 #~ msgid "Default title:"
 #~ msgstr "Vaikimisi pealkiri:"
 
-#~ msgid "Hey, you there!"
-#~ msgstr "Hei sina seal!"
+#~ msgid "About this applet"
+#~ msgstr "Teave sellest vidinast"
 
 #~ msgid "Monitor System"
 #~ msgstr "Süsteemi jälgija"
@@ -8116,6 +8082,9 @@ msgstr ""
 
 #~ msgid "Add a desktop"
 #~ msgstr "Lisa töölauale"
+
+#~ msgid "Expose all the desktops (Compiz)"
+#~ msgstr "Näita kõiki töölaudasi (Compiz)"
 
 #~ msgid "Show Desktop"
 #~ msgstr "Näita töölauda"
@@ -8132,11 +8101,20 @@ msgstr ""
 #~ msgid "time"
 #~ msgstr "aeg"
 
+#~ msgid "dock"
+#~ msgstr "dokk"
+
+#~ msgid "Status Notifier"
+#~ msgstr "Oleku teavitus"
+
 #~ msgid "Open the folder (middle-click)"
 #~ msgstr "Ava kaust ( keskmine hiireklahv)"
 
 #~ msgid "Remove last desktop"
 #~ msgstr "Eemalda viimane töölaud"
+
+#~ msgid "systray"
+#~ msgstr "salv"
 
 #~ msgid "Quick launch (Middle-click)"
 #~ msgstr "Kiirkäivitus (Keskmine hiireklikk)"
@@ -8146,6 +8124,10 @@ msgstr ""
 
 #~ msgid "Unmute (middle-click)"
 #~ msgstr "Heli sisse (keskmine hiireklikk)"
+
+#~ msgid ""
+#~ "Couldn't upload the file, check that your internet connexion is active."
+#~ msgstr "Ei saanud faili üleslaadida, kontrolli oma internetiühendust."
 
 #~ msgid "Empty Trash (middle-click)"
 #~ msgstr "Tühjenda prügikast (keskmine hiireklahv)"

@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
+"POT-Creation-Date: 2011-04-15 00:27+0000\n"
 "PO-Revision-Date: 2010-10-28 02:48+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Serbian <sr@li.org>\n"
-"Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-01-02 05:11+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Launchpad-Export-Date: 2011-04-16 05:15+0000\n"
+"X-Generator: Launchpad (build 12735)\n"
+"Language: sr\n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -226,7 +227,8 @@ msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -440,32 +442,28 @@ msgid "Create a new folder"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:417
-#, fuzzy
 msgid "Sort by"
-msgstr "Sortiraj stavke po:"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:418
-#, fuzzy
 msgid "By name"
-msgstr "Fajl"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:419
 msgid "By date"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:420
-#, fuzzy
 msgid "By size"
-msgstr "Veličina zraka:"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:421
 msgid "By type"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:459
-#, fuzzy
 msgid "The folder has been imported."
-msgstr "Kabl je priključen"
+msgstr ""
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -773,61 +771,52 @@ msgid "Open parent folder"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:282
-#, fuzzy
 msgid "Copy the location"
-msgstr "Otvori lokaciju"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:284
-#, fuzzy
 msgid "Delete this event"
-msgstr "Obriši ovu napomenu"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:357
 msgid "All"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:358
-#, fuzzy
 msgid "Document"
-msgstr "Nedavni dokumenti"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:360
-#, fuzzy
 msgid "Image"
-msgstr "Slike"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:361
 msgid "Audio"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:362
-#, fuzzy
 msgid "Video"
-msgstr "Video memorija"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:363
-#, fuzzy
 msgid "Web"
-msgstr "feb."
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:364
-#, fuzzy
 msgid "Other"
-msgstr "vremenski uslovi"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:365
-#, fuzzy
 msgid "Top Results"
-msgstr "Nema rezultata"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:371
 msgid "Look for events"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:421
-#, fuzzy
 msgid "File name"
-msgstr "Fajl"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:428
 msgid "Last access"
@@ -838,9 +827,8 @@ msgid "Browse and search in recent events"
 msgstr ""
 
 #: ../Recent-Events/src/applet-init.c:28
-#, fuzzy
 msgid "Recent-Events"
-msgstr "Nedavni dokumenti"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:74
 #, c-format
@@ -853,14 +841,12 @@ msgid "Recent files"
 msgstr "Nedavni fajlovi"
 
 #: ../Recent-Events/src/applet-notifications.c:154
-#, fuzzy
 msgid "Delete today's events"
-msgstr "Obriši ovaj zadatak"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:156
-#, fuzzy
 msgid "Delete all events"
-msgstr "Obriši ovaj zadatak"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
@@ -1012,9 +998,8 @@ msgid ""
 msgstr ""
 
 #: ../Status-Notifier/src/applet-init.c:38
-#, fuzzy
 msgid "Notification Area"
-msgstr "Obaveštenje"
+msgstr ""
 
 #: ../System-Monitor/src/applet-cpusage.c:57
 msgid "Uptime"
@@ -1350,8 +1335,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1627,7 +1612,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:591
@@ -2064,7 +2050,8 @@ msgstr "Određeni program za e-poštu"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Leave empty to use the default mail application."
-msgstr "Ostavite nepopunjeno da bi koristili podrazumevani program za e-poštu"
+msgstr ""
+"Ostavite nepopunjeno da bi koristili podrazumevani program za e-poštu"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Directory on server:"
@@ -2362,9 +2349,8 @@ msgid "Re-check interface"
 msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:133
-#, fuzzy
 msgid "Charge"
-msgstr "napajanje"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:192
 msgid ""
@@ -2557,8 +2543,8 @@ msgstr "prikaži miša"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -2587,9 +2573,8 @@ msgstr "Prikaži radnu površinu"
 #: ../showDesktop/src/applet-notifications.c:164
 #: ../switcher/src/applet-notifications.c:315 ../showDesktop/data/messages:115
 #: ../showDesktop/data/messages:129 ../switcher/data/messages:111
-#, fuzzy
 msgid "Expose all the desktops"
-msgstr "Prikaži radnu površinu"
+msgstr ""
 
 #: ../showDesktop/src/applet-notifications.c:171
 #: ../showDesktop/src/applet-notifications.c:173
@@ -2708,14 +2693,12 @@ msgid "Remove this item"
 msgstr "Ukloni ovu stavku"
 
 #: ../stack/src/applet-notifications.c:259
-#, fuzzy
 msgid "The file has been added to the stack."
-msgstr "Vrednost %s je prekopirana u klipbord."
+msgstr ""
 
 #: ../stack/src/applet-notifications.c:260
-#, fuzzy
 msgid "The URL has been added to the stack."
-msgstr "Vrednost %s je prekopirana u klipbord."
+msgstr ""
 
 #: ../switcher/src/applet-draw.c:618 ../switcher/src/applet-draw.c:625
 #: ../switcher/src/applet-load-icons.c:43
@@ -2777,9 +2760,8 @@ msgid "Windows List"
 msgstr "Lista prozora"
 
 #: ../switcher/src/applet-notifications.c:324 ../switcher/data/messages:113
-#, fuzzy
 msgid "Expose all the windows"
-msgstr "Otvori u novom prozoru"
+msgstr ""
 
 #: ../systray/src/systray-init.c:35
 msgid ""
@@ -2791,9 +2773,8 @@ msgid ""
 msgstr ""
 
 #: ../systray/src/systray-init.c:41
-#, fuzzy
 msgid "Notification Area Old"
-msgstr "Obaveštenje"
+msgstr ""
 
 #: ../systray/src/systray-interface.c:71
 msgid ""
@@ -2952,9 +2933,8 @@ msgid "I couldn't find this location"
 msgstr ""
 
 #: ../weather/src/applet-config.c:185
-#, fuzzy
 msgid "Searching the location code..."
-msgstr "Pretražujem ..."
+msgstr ""
 
 #: ../weather/src/applet-config.c:209
 msgid ""
@@ -4826,7 +4806,8 @@ msgid "Background"
 msgstr "Pozadina"
 
 #: ../Doncky/data/messages:121 ../RSSreader/data/messages:185
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:123 ../RSSreader/data/messages:187
@@ -5328,14 +5309,12 @@ msgid ""
 msgstr ""
 
 #: ../Recent-Events/data/messages:97
-#, fuzzy
 msgid "Shortkey to show/hide the search dialog"
-msgstr "Prečica za prikaz/skrivanje dijaloga brzog-pokretača:"
+msgstr ""
 
 #: ../Recent-Events/data/messages:99
-#, fuzzy
 msgid "Max number of results to show"
-msgstr "Maksimalan broj rezultata:"
+msgstr ""
 
 #: ../Remote-Control/data/messages:3
 msgid "Shortkey to trigger the applet:"
@@ -5567,9 +5546,8 @@ msgid "Allow the icon to automatically resize itself?"
 msgstr ""
 
 #: ../Status-Notifier/data/messages:105
-#, fuzzy
 msgid "Number of lines to pack items in:"
-msgstr "Broj linija za prikaz:"
+msgstr ""
 
 #: ../System-Monitor/data/messages:119 ../powermanager/data/messages:123
 msgid "It's the colour of the graphic for high values."
@@ -5742,9 +5720,8 @@ msgid "High refresh frequency?"
 msgstr "Visoka frekvencija obnavljanja?"
 
 #: ../Xgamma/data/messages:7
-#, fuzzy
 msgid "Leave empty to display the current luminosity."
-msgstr "Ostavite nepopunjeno da bi se koristila ista slika."
+msgstr ""
 
 #: ../Xgamma/data/messages:99 ../alsaMixer/data/messages:115
 msgid "Variation for 1 mouse scroll, in %:"
@@ -6281,19 +6258,16 @@ msgid "Custom"
 msgstr ""
 
 #: ../dnd2share/data/messages:135
-#, fuzzy
 msgid "Pastebin.com"
-msgstr "Pastebin.ca"
+msgstr ""
 
 #: ../dnd2share/data/messages:137
-#, fuzzy
 msgid "Paste-ubuntu.com"
-msgstr "Pastebin.ca"
+msgstr ""
 
 #: ../dnd2share/data/messages:139
-#, fuzzy
 msgid "Pastebin.mozilla.org"
-msgstr "Pastebin.ca"
+msgstr ""
 
 #: ../dnd2share/data/messages:141
 msgid "Codepad.org"
@@ -6435,19 +6409,16 @@ msgid "Only for sub-docks."
 msgstr ""
 
 #: ../dock-rendering/data/messages:37
-#, fuzzy
 msgid "Maximum size of the dock:"
-msgstr "Relativna veličina teksta:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:39
-#, fuzzy
 msgid "Small"
-msgstr "mali"
+msgstr ""
 
 #: ../dock-rendering/data/messages:41
-#, fuzzy
 msgid "Full screen"
-msgstr "Zaključaj ekran"
+msgstr ""
 
 #: ../dock-rendering/data/messages:43
 msgid "Zoom when mouse hovers an icon:"
@@ -6569,7 +6540,8 @@ msgid "Space between icons:"
 msgstr "Razmak između ikona:"
 
 #: ../dock-rendering/data/messages:115
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:119
@@ -6697,7 +6669,8 @@ msgid "Colours"
 msgstr "Boje"
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -6914,7 +6887,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:109
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:111
@@ -6986,7 +6960,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:95
@@ -7170,9 +7145,8 @@ msgid "Display rate values :"
 msgstr ""
 
 #: ../powermanager/data/messages:7
-#, fuzzy
 msgid "Leave empty to display the current status information."
-msgstr "Ostavite nepopunjeno da bi koristili podrazumevani program za e-poštu"
+msgstr ""
 
 #: ../powermanager/data/messages:9
 msgid "Icon name:"
@@ -7199,14 +7173,12 @@ msgid "charge"
 msgstr "napajanje"
 
 #: ../powermanager/data/messages:165
-#, fuzzy
 msgid "Timelength"
-msgstr "Trajanje"
+msgstr ""
 
 #: ../powermanager/data/messages:169
-#, fuzzy
 msgid "Emblem icon's filename when on charge:"
-msgstr "Naziv fajla za ikonu 'Na-napajanju':"
+msgstr ""
 
 #: ../powermanager/data/messages:171
 msgid "Notification"
@@ -7528,9 +7500,8 @@ msgid "Choose a background colour :"
 msgstr "Odaberite boju pozadine:"
 
 #: ../slider/data/messages:173
-#, fuzzy
 msgid "Frame width:"
-msgstr "Širina talasa:"
+msgstr ""
 
 #: ../slider/data/messages:175
 msgid "Gives better image rendering."
@@ -7916,7 +7887,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:109
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:111
@@ -7998,24 +7970,26 @@ msgstr "Informacije o sirovom signalu"
 msgid "Overwrite the default label with the connection point name?"
 msgstr ""
 
-#, fuzzy
-#~ msgid "Applet's handbook"
-#~ msgstr "Priručnik apleta"
+#~ msgid "Hey, you there!"
+#~ msgstr "Hej ti tamo!"
 
 #~ msgid "About this applet"
 #~ msgstr "O ovom apletu"
 
-#~ msgid "Icon name for busy penguin:"
-#~ msgstr "Naziv ikone za zauzetog pingvina:"
-
-#~ msgid "Hey, you there!"
-#~ msgstr "Hej ti tamo!"
-
 #~ msgid "Empty Trash (middle-click)"
 #~ msgstr "Isparzni đubre (srednji-klik)"
 
+#~ msgid "Timeout"
+#~ msgstr "Vrijeme je isteklo"
+
+#~ msgid "Next (middle-click)"
+#~ msgstr "Sledeći (srednji-klik)"
+
 #~ msgid "Unmount (middle-click)"
 #~ msgstr "Demontiraj (srednji-klik)"
+
+#~ msgid "Mount (middle-click)"
+#~ msgstr "Montiraj (srednji-klik)"
 
 #~ msgid "Copy (middle click)"
 #~ msgstr "Kopiraj (srednji klik)"
@@ -8032,20 +8006,65 @@ msgstr ""
 #~ msgid "Move current Desktop to this Desktop"
 #~ msgstr "Premesti trenutnu radnu površinu na ovu radnu površinu"
 
+#~ msgid "Icon name for busy penguin:"
+#~ msgstr "Naziv ikone za zauzetog pingvina:"
+
+#~ msgid "Maximum number of files to list:"
+#~ msgstr "Maksimalan broj fajlova za listanje:"
+
+#~ msgid "Lock position ?"
+#~ msgstr "Zaključati poziciju?"
+
+#~ msgid "Background tansparency :"
+#~ msgstr "Providnost pozadine:"
+
+#~ msgid "Is detached from the dock ?"
+#~ msgstr "Da li je odvojen od doka?"
+
+#~ msgid "Visibility :"
+#~ msgstr "Vidljivost:"
+
+#~ msgid "Should be visible on all desktops ?"
+#~ msgstr "Vidljivo na svim radnim površinama?"
+
+#~ msgid "Rotation :"
+#~ msgstr "Okretanje:"
+
+#~ msgid "Background image :"
+#~ msgstr "Slika za pozadinu:"
+
+#~ msgid "Foreground tansparency :"
+#~ msgstr "Providnost prednjeg plana:"
+
+#~ msgid "Foreground image :"
+#~ msgstr "Slika za prednji plan:"
+
 #~ msgid "Notification when graphic card temperature is high?"
 #~ msgstr "Obaveštavanje o visokoj temperaturi grafičke kartice?"
 
 #~ msgid "in ms."
 #~ msgstr "u ms."
 
+#~ msgid "Module"
+#~ msgstr "Modul"
+
 #~ msgid "Show Desktop"
 #~ msgstr "Prikaži radnu površinu"
+
+#~ msgid "Pastebin.ca"
+#~ msgstr "Pastebin.ca"
 
 #~ msgid "Arrow shift percentage:"
 #~ msgstr "Pomak strelice u procentima:"
 
 #~ msgid "Duration of the dialogue"
 #~ msgstr "Trajanje dijaloga"
+
+#~ msgid "in seconds"
+#~ msgstr "u sekundama"
+
+#~ msgid "Delay between measurements:"
+#~ msgstr "Pauza između merenja:"
 
 #~ msgid "zoom"
 #~ msgstr "zum"
@@ -8059,8 +8078,20 @@ msgstr ""
 #~ msgid "time"
 #~ msgstr "vreme"
 
+#~ msgid "Interval of time between 2 checks :"
+#~ msgstr "interval između dve provere:"
+
+#~ msgid "In seconds."
+#~ msgstr "U sekundama."
+
+#~ msgid "dock"
+#~ msgstr "dok"
+
 #~ msgid "both"
 #~ msgstr "oba"
+
+#~ msgid "In pixels."
+#~ msgstr "U pikselima."
 
 #~ msgid "Action when applet is clicked:"
 #~ msgstr "Akcija nakon klika na aplet:"
@@ -8082,3 +8113,6 @@ msgstr ""
 
 #~ msgid "Action on middle click :"
 #~ msgstr "Akcija na srednji klik:"
+
+#~ msgid "in minutes."
+#~ msgstr "u minutama."

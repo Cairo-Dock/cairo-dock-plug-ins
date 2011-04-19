@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2011-04-15 01:55+0200\n"
+"POT-Creation-Date: 2011-04-15 00:27+0000\n"
 "PO-Revision-Date: 2011-02-28 12:36+0000\n"
 "Last-Translator: Fabounet <fabounet03@gmail.com>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-03-01 04:56+0000\n"
-"X-Generator: Launchpad (build 12351)\n"
+"X-Launchpad-Export-Date: 2011-04-16 05:17+0000\n"
+"X-Generator: Launchpad (build 12735)\n"
+"Language: \n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -246,7 +246,8 @@ msgstr "The module has been added, but couldn't be launched."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "The applet '%s' has been successfully updated and automatically reloaded"
 
@@ -340,9 +341,8 @@ msgstr ""
 "  - Middle-clic to reload values"
 
 #: ../Doncky/src/applet-notifications.c:215
-#, fuzzy
 msgid "It doesn't seem to be a valid XML file."
-msgstr "It doesn't seem to be a valid URL."
+msgstr ""
 
 #: ../Folders/src/applet-init.c:29
 msgid "Folders"
@@ -486,32 +486,28 @@ msgid "Create a new folder"
 msgstr "Create a new folder"
 
 #: ../Folders/src/applet-notifications.c:417
-#, fuzzy
 msgid "Sort by"
-msgstr "Sort items by:"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:418
-#, fuzzy
 msgid "By name"
-msgstr "File"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:419
 msgid "By date"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:420
-#, fuzzy
 msgid "By size"
-msgstr "Ray size:"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:421
 msgid "By type"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:459
-#, fuzzy
 msgid "The folder has been imported."
-msgstr "Network connection state changed to disconnected."
+msgstr ""
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -851,61 +847,52 @@ msgid "Open parent folder"
 msgstr "Open parent folder"
 
 #: ../Recent-Events/src/applet-dialog.c:282
-#, fuzzy
 msgid "Copy the location"
-msgstr "Open location"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:284
-#, fuzzy
 msgid "Delete this event"
-msgstr "Delete this note"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:357
 msgid "All"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:358
-#, fuzzy
 msgid "Document"
-msgstr "Recent Documents"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:360
-#, fuzzy
 msgid "Image"
-msgstr "Images"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:361
 msgid "Audio"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:362
-#, fuzzy
 msgid "Video"
-msgstr "Video Ram"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:363
-#, fuzzy
 msgid "Web"
-msgstr "Feb"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:364
-#, fuzzy
 msgid "Other"
-msgstr "Weather"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:365
-#, fuzzy
 msgid "Top Results"
-msgstr "No result"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:371
 msgid "Look for events"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:421
-#, fuzzy
 msgid "File name"
-msgstr "File"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:428
 msgid "Last access"
@@ -916,9 +903,8 @@ msgid "Browse and search in recent events"
 msgstr ""
 
 #: ../Recent-Events/src/applet-init.c:28
-#, fuzzy
 msgid "Recent-Events"
-msgstr "Recent Documents"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:74
 #, c-format
@@ -931,14 +917,12 @@ msgid "Recent files"
 msgstr "Recent files"
 
 #: ../Recent-Events/src/applet-notifications.c:154
-#, fuzzy
 msgid "Delete today's events"
-msgstr "Delete this task"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:156
-#, fuzzy
 msgid "Delete all events"
-msgstr "Delete All"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
@@ -1090,9 +1074,8 @@ msgid ""
 msgstr ""
 
 #: ../Status-Notifier/src/applet-init.c:38
-#, fuzzy
 msgid "Notification Area"
-msgstr "Notification"
+msgstr ""
 
 #: ../System-Monitor/src/applet-cpusage.c:57
 msgid "Uptime"
@@ -1251,9 +1234,8 @@ msgid "Screen Luminosity"
 msgstr "Screen Luminosity"
 
 #: ../Xgamma/src/applet-notifications.c:89
-#, fuzzy
 msgid "Set up gamma correction"
-msgstr "Set up gamma:"
+msgstr ""
 
 #: ../Xgamma/src/applet-notifications.c:94
 msgid "Apply current luminosity on startup"
@@ -1264,9 +1246,8 @@ msgid "Set up gamma:"
 msgstr "Set up gamma:"
 
 #: ../Xgamma/src/applet-xgamma.c:283
-#, fuzzy
 msgid "Luminosity"
-msgstr "Screen Luminosity"
+msgstr ""
 
 #: ../alsaMixer/src/applet-init.c:34
 msgid ""
@@ -1451,8 +1432,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1461,8 +1442,8 @@ msgstr ""
 "2 views are available : <b>numeric</b> and <b>analogue</b>.\n"
 " Analogue view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1755,7 +1736,8 @@ msgstr ""
 "Just press CTRL+v to paste its URL anywhere."
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Please wait for the current upload to finish before starting a new one."
 
@@ -2562,9 +2544,8 @@ msgid "Re-check interface"
 msgstr "Re-check interface"
 
 #: ../powermanager/src/powermanager-draw.c:133
-#, fuzzy
 msgid "Charge"
-msgstr "charge"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:192
 msgid ""
@@ -2777,11 +2758,11 @@ msgstr "Show Mouse"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 
 #: ../showDesktop/src/applet-init.c:28
 msgid "showDesktop"
@@ -2816,9 +2797,8 @@ msgstr "Show the desktop"
 #: ../showDesktop/src/applet-notifications.c:164
 #: ../switcher/src/applet-notifications.c:315 ../showDesktop/data/messages:115
 #: ../showDesktop/data/messages:129 ../switcher/data/messages:111
-#, fuzzy
 msgid "Expose all the desktops"
-msgstr "Expose all the desktops (Compiz)"
+msgstr ""
 
 #: ../showDesktop/src/applet-notifications.c:171
 #: ../showDesktop/src/applet-notifications.c:173
@@ -2950,14 +2930,12 @@ msgid "Remove this item"
 msgstr "Remove this item"
 
 #: ../stack/src/applet-notifications.c:259
-#, fuzzy
 msgid "The file has been added to the stack."
-msgstr "The module has been added, but couldn't be launched."
+msgstr ""
 
 #: ../stack/src/applet-notifications.c:260
-#, fuzzy
 msgid "The URL has been added to the stack."
-msgstr "The module has been added, but couldn't be launched."
+msgstr ""
 
 #: ../switcher/src/applet-draw.c:618 ../switcher/src/applet-draw.c:625
 #: ../switcher/src/applet-load-icons.c:43
@@ -3026,9 +3004,8 @@ msgid "Windows List"
 msgstr "Windows List"
 
 #: ../switcher/src/applet-notifications.c:324 ../switcher/data/messages:113
-#, fuzzy
 msgid "Expose all the windows"
-msgstr "Expose all the desktops (Compiz)"
+msgstr ""
 
 #: ../systray/src/systray-init.c:35
 msgid ""
@@ -3040,9 +3017,8 @@ msgid ""
 msgstr ""
 
 #: ../systray/src/systray-init.c:41
-#, fuzzy
 msgid "Notification Area Old"
-msgstr "Notification"
+msgstr ""
 
 #: ../systray/src/systray-interface.c:71
 msgid ""
@@ -3204,20 +3180,16 @@ msgstr ""
 " Is your connection alive?"
 
 #: ../weather/src/applet-config.c:126
-#, fuzzy
 msgid "Couldn't get the location code (is connection alive?)"
 msgstr ""
-"Could not retrieve information\n"
-" Is your connection alive?"
 
 #: ../weather/src/applet-config.c:134
 msgid "I couldn't find this location"
 msgstr "I couldn't find this location"
 
 #: ../weather/src/applet-config.c:185
-#, fuzzy
 msgid "Searching the location code..."
-msgstr "Search for your location:"
+msgstr ""
 
 #: ../weather/src/applet-config.c:209
 msgid ""
@@ -5130,8 +5102,10 @@ msgid "Background"
 msgstr "Background"
 
 #: ../Doncky/data/messages:121 ../RSSreader/data/messages:185
-msgid "You can have more attractive backgrounds using the Desklet decorations"
-msgstr "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
+msgstr ""
+"You can have more attractive backgrounds using the Desklet decorations"
 
 #: ../Doncky/data/messages:123 ../RSSreader/data/messages:187
 msgid "Display a simple background?"
@@ -5641,14 +5615,12 @@ msgstr ""
 "screen"
 
 #: ../Recent-Events/data/messages:97
-#, fuzzy
 msgid "Shortkey to show/hide the search dialog"
-msgstr "Shortkey to show/hide the quick-launch dialog:"
+msgstr ""
 
 #: ../Recent-Events/data/messages:99
-#, fuzzy
 msgid "Max number of results to show"
-msgstr "Maximum number of results :"
+msgstr ""
 
 #: ../Remote-Control/data/messages:3
 msgid "Shortkey to trigger the applet:"
@@ -5868,27 +5840,24 @@ msgid "Image's filename :"
 msgstr "Image filename:"
 
 #: ../Status-Notifier/data/messages:97
-#, fuzzy
 msgid "How to display items:"
-msgstr "How to display the wifi signal:"
+msgstr ""
 
 #: ../Status-Notifier/data/messages:99
 msgid "Compact"
 msgstr ""
 
 #: ../Status-Notifier/data/messages:101
-#, fuzzy
 msgid "Sub-dock"
-msgstr "dock"
+msgstr ""
 
 #: ../Status-Notifier/data/messages:103
 msgid "Allow the icon to automatically resize itself?"
 msgstr ""
 
 #: ../Status-Notifier/data/messages:105
-#, fuzzy
 msgid "Number of lines to pack items in:"
-msgstr "Number of lines to display :"
+msgstr ""
 
 #: ../System-Monitor/data/messages:119 ../powermanager/data/messages:123
 msgid "It's the colour of the graphic for high values."
@@ -6067,9 +6036,8 @@ msgid "High refresh frequency?"
 msgstr "High refresh frequency?"
 
 #: ../Xgamma/data/messages:7
-#, fuzzy
 msgid "Leave empty to display the current luminosity."
-msgstr "Leave empty to use the default icon."
+msgstr ""
 
 #: ../Xgamma/data/messages:99 ../alsaMixer/data/messages:115
 msgid "Variation for 1 mouse scroll, in %:"
@@ -6633,19 +6601,16 @@ msgid "Custom"
 msgstr "Custom"
 
 #: ../dnd2share/data/messages:135
-#, fuzzy
 msgid "Pastebin.com"
-msgstr "Pastebin.ca"
+msgstr ""
 
 #: ../dnd2share/data/messages:137
-#, fuzzy
 msgid "Paste-ubuntu.com"
-msgstr "Pastebin.ca"
+msgstr ""
 
 #: ../dnd2share/data/messages:139
-#, fuzzy
 msgid "Pastebin.mozilla.org"
-msgstr "Pastebin.ca"
+msgstr ""
 
 #: ../dnd2share/data/messages:141
 msgid "Codepad.org"
@@ -6789,19 +6754,16 @@ msgid "Only for sub-docks."
 msgstr ""
 
 #: ../dock-rendering/data/messages:37
-#, fuzzy
 msgid "Maximum size of the dock:"
-msgstr "Max icon size:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:39
-#, fuzzy
 msgid "Small"
-msgstr "small"
+msgstr ""
 
 #: ../dock-rendering/data/messages:41
-#, fuzzy
 msgid "Full screen"
-msgstr "Lock screen"
+msgstr ""
 
 #: ../dock-rendering/data/messages:43
 msgid "Zoom when mouse hovers an icon:"
@@ -6924,7 +6886,8 @@ msgid "Space between icons:"
 msgstr "Space between icons:"
 
 #: ../dock-rendering/data/messages:115
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 represents a flat wave, 1 means the wave is identical to other views."
 
@@ -7057,8 +7020,10 @@ msgid "Colours"
 msgstr "Colours"
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
-msgstr "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
+msgstr ""
+"This will slightly alter your colours, so you may have to modify them."
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
 msgid "Add luminance?"
@@ -7283,7 +7248,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Name of the file for the \"has mail\" image :"
 
 #: ../mail/data/messages:109
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "If checked, the number of messages will be shown even if there is no mail."
 
@@ -7356,8 +7322,10 @@ msgid "Blur amount:"
 msgstr "Blur amount:"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
-msgstr "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
+msgstr ""
+"Leave it empty to display the name of the player currently controlled."
 
 #: ../musicPlayer/data/messages:95
 msgid "Audio Player"
@@ -7542,9 +7510,8 @@ msgid "Display rate values :"
 msgstr "Display rate values :"
 
 #: ../powermanager/data/messages:7
-#, fuzzy
 msgid "Leave empty to display the current status information."
-msgstr "Leave empty to use the defaut command."
+msgstr ""
 
 #: ../powermanager/data/messages:9
 msgid "Icon name:"
@@ -7571,14 +7538,12 @@ msgid "charge"
 msgstr "charge"
 
 #: ../powermanager/data/messages:165
-#, fuzzy
 msgid "Timelength"
-msgstr "Time Remaining"
+msgstr ""
 
 #: ../powermanager/data/messages:169
-#, fuzzy
 msgid "Emblem icon's filename when on charge:"
-msgstr "Icon's filename when on charge :"
+msgstr ""
 
 #: ../powermanager/data/messages:171
 msgid "Notification"
@@ -7909,9 +7874,8 @@ msgid "Choose a background colour :"
 msgstr "Choose a background colour :"
 
 #: ../slider/data/messages:173
-#, fuzzy
 msgid "Frame width:"
-msgstr "Wave width:"
+msgstr ""
 
 #: ../slider/data/messages:175
 msgid "Gives better image rendering."
@@ -8247,7 +8211,8 @@ msgstr "Code for your location:"
 
 #: ../weather/data/messages:101
 msgid "If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
-msgstr "If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
+msgstr ""
+"If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
 
 #: ../weather/data/messages:103
 msgid "Use International System Units?"
@@ -8310,7 +8275,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Position of vertical scrollbar in pixels"
 
 #: ../weblets/data/messages:109
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 
@@ -8396,42 +8362,6 @@ msgstr "Raw Signal Informations"
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Overwrite the default label with the connection point name?"
 
-#, fuzzy
-#~ msgid "Applet's handbook"
-#~ msgstr "Applet's Handbook"
-
-#~ msgid "Status Notifier"
-#~ msgstr "Status Notifier"
-
-#~ msgid "systray"
-#~ msgstr "systray"
-
-#~ msgid "Display items in compact mode?"
-#~ msgstr "Display items in compact mode?"
-
-#~ msgid "Colour of the margin :"
-#~ msgstr "Colour of the margin :"
-
-#~ msgid "About this applet"
-#~ msgstr "About this applet"
-
-#~ msgid ""
-#~ "Couldn't upload the file, check that your internet connexion is active."
-#~ msgstr ""
-#~ "Couldn't upload the file, check that your internet connexion is active."
-
-#~ msgid "You need to run Compiz and activate its 'DBus' plug-in."
-#~ msgstr "You need to run Compiz and activate its 'DBus' plug-in."
-
-#~ msgid "Icon name for busy penguin:"
-#~ msgstr "Icon name for busy penguin:"
-
-#~ msgid "Let extern applications register new module?"
-#~ msgstr "Let extern applications register new module?"
-
-#~ msgid "Default title:"
-#~ msgstr "Default title:"
-
 #~ msgid ""
 #~ "This applet shows you a monitor of your active connections\n"
 #~ "Left-click to pop-up some info,Middle-click to re-check immediately."
@@ -8454,6 +8384,7 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "AlsaMixer"
 #~ msgstr "AlsaMixer"
 
+#, c-format
 #~ msgid ""
 #~ "I couldn't find any audio channel named '%s'\n"
 #~ "You should try to open the configuration panel of the applet,\n"
@@ -8472,33 +8403,45 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 #~ msgstr "This plug-in provides some decorators for dialog bubbles."
 
+#~ msgid ""
+#~ "Couldn't upload the file, check that your internet connexion is active."
+#~ msgstr ""
+#~ "Couldn't upload the file, check that your internet connexion is active."
+
 #~ msgid "Toggle Widgets Layer"
 #~ msgstr "Toggle Widget Layer"
+
+#~ msgid "About this applet"
+#~ msgstr "About this applet"
 
 #~ msgid ""
 #~ "This applet displays time and date in your dock.\n"
 #~ "2 view are available : numeric and analogic, based on Cairo-Clock.\n"
-#~ "It is compatible with the Cairo-Clock's themes, and you can detach itself "
-#~ "to be a perfect clone of Cairo-Clock.\n"
-#~ "It supports alarms, and a basic calendar, and allows you to setup time "
-#~ "and date.\n"
+#~ "It is compatible with the Cairo-Clock's themes, and you can detach itself to "
+#~ "be a perfect clone of Cairo-Clock.\n"
+#~ "It supports alarms, and a basic calendar, and allows you to setup time and "
+#~ "date.\n"
 #~ "Left-click to show/hide the calendar, Middle-click to stop an alarm."
 #~ msgstr ""
 #~ "This applet displays the time and date in your dock.\n"
 #~ "Two views are available: digital and analogue, based on Cairo-Clock.\n"
 #~ "This is compatible with Cairo-Clock themes and can be detached itself to "
 #~ "make a perfect clone of Cairo-Clock.\n"
-#~ "It supports alarms and a basic calendar and allows you to configure the "
-#~ "time and date.\n"
+#~ "It supports alarms and a basic calendar and allows you to configure the time "
+#~ "and date.\n"
 #~ "Left-click to show/hide the calendar, Middle-click to stop an alarm."
 
 #~ msgid ""
-#~ "This plug-in displays an animated indicator when you drop something in "
-#~ "the dock."
+#~ "This plug-in displays an animated indicator when you drop something in the "
+#~ "dock."
 #~ msgstr ""
-#~ "This plug-in displays an animated indicator when you drop something into "
-#~ "the dock."
+#~ "This plug-in displays an animated indicator when you drop something into the "
+#~ "dock."
 
+#~ msgid "Delete All"
+#~ msgstr "Delete All"
+
+#, c-format
 #~ msgid "Show %s"
 #~ msgstr "Show %s"
 
@@ -8510,8 +8453,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "Middle-click to display usefull info about the dustbin."
 #~ msgstr ""
 #~ "This applet manages the dustbin\n"
-#~ "You can discard files and unmount disks by dragging and dropping them on "
-#~ "the icon.\n"
+#~ "You can discard files and unmount disks by dragging and dropping them on the "
+#~ "icon.\n"
 #~ "The applet can warn you if you use too much space\n"
 #~ "Middle-click to display useful info about the dustbin."
 
@@ -8521,9 +8464,11 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Show All"
 #~ msgstr "Show All"
 
+#, c-format
 #~ msgid "Delete %s"
 #~ msgstr "Delete %s"
 
+#, c-format
 #~ msgid ""
 #~ "A problem occured\n"
 #~ "If '%s' is not your usual file browser,\n"
@@ -8533,6 +8478,7 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "If '%s' is not your usual file browser,\n"
 #~ "you can change this in the configuration panel of this module"
 
+#, c-format
 #~ msgid "You're about to delete all files in %s. Sure ?"
 #~ msgstr "You are about to delete all files in %s. Continue?"
 
@@ -8553,6 +8499,7 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "Left click to log out, middle click to shutdown\n"
 #~ "You can invert this order if you prefer to shutdown on left-click."
 
+#, c-format
 #~ msgid ""
 #~ "A problem occured\n"
 #~ "If '%s' is not your usual mail application,\n"
@@ -8569,8 +8516,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "This applet lets you control any music player.\n"
 #~ "Left click to Play/Pause, middle-click to play Next song.\n"
 #~ "Scroll up/down to play previous/next song.\n"
-#~ "You can drag and drop songs on the icon to put them in the queue (depends "
-#~ "on Player),\n"
+#~ "You can drag and drop songs on the icon to put them in the queue (depends on "
+#~ "Player),\n"
 #~ " and jpeg image to use as cover.\n"
 #~ "Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
 #~ "       For SongBird, you have to install its dbus add-on.\n"
@@ -8578,8 +8525,7 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "This applet lets you control any music player.\n"
 #~ "Left click to Play/Pause, middle-click to play Next song.\n"
 #~ "Scroll up/down to play previous/next song.\n"
-#~ "You can drag and drop songs to put them in the queue (depends on "
-#~ "Player).\n"
+#~ "You can drag and drop songs to put them in the queue (depends on Player).\n"
 #~ "Note : For XMMS, you must install the 'xmms-infopipe' plug-in.\n"
 #~ "       For SongBird, you must install its dbus add-on.\n"
 
@@ -8649,18 +8595,18 @@ msgstr "Overwrite the default label with the connection point name?"
 
 #~ msgid ""
 #~ "Add a systray to your dock.\n"
-#~ "Left-click to show the systray in a dialog (you can bind a keyboard "
-#~ "shortcut for it.)\n"
+#~ "Left-click to show the systray in a dialog (you can bind a keyboard shortcut "
+#~ "for it.)\n"
 #~ "Middle-click to close the dalog.\n"
 #~ "But the best way to use it id to detach it from the dock, and place it "
 #~ "somewhere, above other windows."
 #~ msgstr ""
 #~ "Add a systray to your dock.\n"
-#~ "Left-click to show the systray in a dialog (you can bind a keyboard "
-#~ "shortcut for it.)\n"
+#~ "Left-click to show the systray in a dialog (you can bind a keyboard shortcut "
+#~ "for it.)\n"
 #~ "Middle-click to close the dalog.\n"
-#~ "For best results, detach it from the dock and place it somewhere above "
-#~ "other windows."
+#~ "For best results, detach it from the dock and place it somewhere above other "
+#~ "windows."
 
 #~ msgid ""
 #~ "This applet allows you to switch between your virtual desktops.\n"
@@ -8732,11 +8678,11 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "Desklet dimensions (width x height):"
 
 #~ msgid ""
-#~ "Depending on your WindowManager, you can resize it with ALT + "
-#~ "middle_click or ALT + left_click for exemple."
+#~ "Depending on your WindowManager, you can resize it with ALT + middle_click "
+#~ "or ALT + left_click for exemple."
 #~ msgstr ""
-#~ "Depending on your WindowManager, you may be able to resize this with ALT "
-#~ "+ middle-click or ALT + left-click."
+#~ "Depending on your WindowManager, you may be able to resize this with ALT + "
+#~ "middle-click or ALT + left-click."
 
 #~ msgid "Is detached from the dock ?"
 #~ msgstr "Is detached from the dock"
@@ -8766,8 +8712,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "If locked, the desklet can't be moved by simply dragging it with the left "
 #~ "mouse button. Of course you can still move it with ALT + left_click."
 #~ msgstr ""
-#~ "If locked, the desklet cannot be moved by simply dragging it with the "
-#~ "left mouse button. It can still be moved with ALT + left-click."
+#~ "If locked, the desklet cannot be moved by simply dragging it with the left "
+#~ "mouse button. It can still be moved with ALT + left-click."
 
 #~ msgid "Rotation :"
 #~ msgstr "Rotation:"
@@ -8800,8 +8746,7 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "It's an image that will be displayed below the drawings, like a frame for "
 #~ "exemple. Let empty to not use any."
 #~ msgstr ""
-#~ "Image to be displayed below drawings, e.g. a frame. Leave empty for no "
-#~ "image."
+#~ "Image to be displayed below drawings, e.g. a frame. Leave empty for no image."
 
 #~ msgid "in pixels. Use this to adjust the right position of the drawings."
 #~ msgstr "in pixels. Use this to adjust the right position of drawings."
@@ -8816,11 +8761,11 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "Bottom offset:"
 
 #~ msgid ""
-#~ "It's an image that will be displayed above the drawings, like a reflect "
-#~ "for exemple. Let empty to not use any."
+#~ "It's an image that will be displayed above the drawings, like a reflect for "
+#~ "exemple. Let empty to not use any."
 #~ msgstr ""
-#~ "Image to be displayed above the drawings, e.g. a reflection. Leave empty "
-#~ "for no image."
+#~ "Image to be displayed above the drawings, e.g. a reflection. Leave empty for "
+#~ "no image."
 
 #~ msgid "Foreground tansparency :"
 #~ msgstr "Foreground tansparency:"
@@ -8858,12 +8803,12 @@ msgstr "Overwrite the default label with the connection point name?"
 
 #~ msgid ""
 #~ "No uploaded file available\n"
-#~ ".Consider activating the history if you want the applet remembers "
-#~ "previous uploads."
+#~ ".Consider activating the history if you want the applet remembers previous "
+#~ "uploads."
 #~ msgstr ""
 #~ "No uploaded file available.\n"
-#~ "Consider activating the history if you want the applet to remember "
-#~ "previous uploads."
+#~ "Consider activating the history if you want the applet to remember previous "
+#~ "uploads."
 
 #~ msgid ""
 #~ "The current URL has been stored into the clipboard.\n"
@@ -8889,18 +8834,17 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "An applet that let you access quickly to all of your shortcuts.\n"
 #~ "It can manage disks, network points, and Nautilus bookmarks (even if you "
 #~ "don't have Nautilus).\n"
-#~ "Drag and drop a folder on the main icon or the sub-dock to add a "
-#~ "bookmark.\n"
+#~ "Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
 #~ "Middle-click on the main icon to acces your desktop easily.\n"
 #~ "Middle-click on a mounting point icon to (un)mount is quickly.\n"
-#~ "The applet can also display valuable information about your disks, like "
-#~ "free space, type, etc."
+#~ "The applet can also display valuable information about your disks, like free "
+#~ "space, type, etc."
 #~ msgstr ""
 #~ "An applet that lets you access all your shortcuts quickly.\n"
 #~ "It can manage disks, network points and Nautilus bookmarks, even if you "
 #~ "don't have Nautilus installed.\n"
-#~ "You can add or remove bookmarks via drag & drop on the main icon or the "
-#~ "sub-dock.\n"
+#~ "You can add or remove bookmarks via drag & drop on the main icon or the sub-"
+#~ "dock.\n"
 #~ "Middle-click on the main icon to access your desktop easily.\n"
 #~ "Middle-click on a mounting point icon to (un)mount is quickly.\n"
 #~ "The applet can also display valuable informations about your disks, like "
@@ -9165,11 +9109,11 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "Number of programs to display in the top list:"
 
 #~ msgid ""
-#~ "When you left-click on the icon, you will get the list of the N most CPU/"
-#~ "RAM-using programs."
+#~ "When you left-click on the icon, you will get the list of the N most CPU/RAM-"
+#~ "using programs."
 #~ msgstr ""
-#~ "When you left-click on the icon, you will get the list of the N most CPU/"
-#~ "RAM-intensive programs."
+#~ "When you left-click on the icon, you will get the list of the N most CPU/RAM-"
+#~ "intensive programs."
 
 #~ msgid "Stop color of the top list :"
 #~ msgstr "Top list stop colour:"
@@ -9232,13 +9176,13 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "Select channel:"
 
 #~ msgid ""
-#~ "On some cards, a channel only controls 1 side (right or left). You will "
-#~ "then need to specify a second channel here, to control both sides. Most "
-#~ "of the time, you should just let it empty."
+#~ "On some cards, a channel only controls 1 side (right or left). You will then "
+#~ "need to specify a second channel here, to control both sides. Most of the "
+#~ "time, you should just let it empty."
 #~ msgstr ""
-#~ "On some cards, a channel only controls 1 side (right or left). You will "
-#~ "then need to specify a second channel here, to control both sides. Most "
-#~ "of the time, you should just leave this empty."
+#~ "On some cards, a channel only controls 1 side (right or left). You will then "
+#~ "need to specify a second channel here, to control both sides. Most of the "
+#~ "time, you should just leave this empty."
 
 #~ msgid "Default icon :"
 #~ msgstr "Default icon:"
@@ -9266,8 +9210,7 @@ msgstr "Overwrite the default label with the connection point name?"
 
 #~ msgid "if not, then the applet will update time once a minute, saving CPU."
 #~ msgstr ""
-#~ "if not, then the applet will update the time once a minute, saving CPU "
-#~ "power."
+#~ "if not, then the applet will update the time once a minute, saving CPU power."
 
 #~ msgid "for numeric format only."
 #~ msgstr "for digital format only."
@@ -9276,8 +9219,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "Show the date:"
 
 #~ msgid ""
-#~ "In ms. Set 0 to not have a smooth animation, set 1000 to have a "
-#~ "continuous animation. It requires OpenGL."
+#~ "In ms. Set 0 to not have a smooth animation, set 1000 to have a continuous "
+#~ "animation. It requires OpenGL."
 #~ msgstr ""
 #~ "In ms. Set 0 for non-smooth animation, set 1000 to have a continuous "
 #~ "animation. Requires OpenGL."
@@ -9308,11 +9251,11 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "Digital"
 
 #~ msgid ""
-#~ "The analogic view is based on CairoClock; otherwise it will be displayed "
-#~ "in a numeric way."
+#~ "The analogic view is based on CairoClock; otherwise it will be displayed in "
+#~ "a numeric way."
 #~ msgstr ""
-#~ "The analogue view is based on CairoClock; otherwise it will be displayed "
-#~ "in digital format."
+#~ "The analogue view is based on CairoClock; otherwise it will be displayed in "
+#~ "digital format."
 
 #~ msgid "Font used for the numeric display :"
 #~ msgstr "Font used for digital display:"
@@ -9348,8 +9291,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "Show Desktop"
 
 #~ msgid ""
-#~ "This command will be used to launch the system WM; let it blank to use "
-#~ "the default one."
+#~ "This command will be used to launch the system WM; let it blank to use the "
+#~ "default one."
 #~ msgstr ""
 #~ "This command will be used to launch the system WM. Leave blank to use the "
 #~ "default."
@@ -9364,8 +9307,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
 #~ "Compiz from the dock then."
 #~ msgstr ""
-#~ "If Compiz quits unexpectedly, Cairo-Dock will restart it. You must then "
-#~ "quit Compiz from the dock."
+#~ "If Compiz quits unexpectedly, Cairo-Dock will restart it. You must then quit "
+#~ "Compiz from the dock."
 
 #~ msgid "Choose an action for the middle click on the icon :"
 #~ msgstr "Choose an action for middle click on the icon:"
@@ -9381,8 +9324,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "Add or remove an alarm:"
 
 #~ msgid ""
-#~ "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have "
-#~ "to quit Compiz from the dock then."
+#~ "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
+#~ "quit Compiz from the dock then."
 #~ msgstr ""
 #~ "If the decorator quits unexpectedly, Cairo-Dock will restart it. ou must "
 #~ "then quit Compiz from the dock."
@@ -9397,8 +9340,7 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "Display in the applet's sub-dock an icon for the Emerald's configuration "
 #~ "panel."
 #~ msgstr ""
-#~ "Display an icon for the Emerald configuration panel in the applet's sub-"
-#~ "dock."
+#~ "Display an icon for the Emerald configuration panel in the applet's sub-dock."
 
 #~ msgid "Add Exposition & Widget Layer to sub-dock ?"
 #~ msgstr "Add Exposition & Widget Layer to sub-dock?"
@@ -9446,15 +9388,15 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "Use Loose Binding?"
 
 #~ msgid ""
-#~ "With strict binding textures are bound whenever they are enabled, with "
-#~ "loose binding they are enabled when created. The Nvidia driver seems a "
-#~ "bit slow when binding textures, that's why this option gives a heavy "
-#~ "performance increase on Nvidia."
+#~ "With strict binding textures are bound whenever they are enabled, with loose "
+#~ "binding they are enabled when created. The Nvidia driver seems a bit slow "
+#~ "when binding textures, that's why this option gives a heavy performance "
+#~ "increase on Nvidia."
 #~ msgstr ""
 #~ "With strict binding, textures are bound whenever they are enabled. With "
-#~ "loose binding they are enabled when created. The Nvidia driver seems a "
-#~ "bit slow when binding textures, that's why this option gives a heavy "
-#~ "performance increase with Nvidia cards."
+#~ "loose binding they are enabled when created. The Nvidia driver seems a bit "
+#~ "slow when binding textures, that's why this option gives a heavy performance "
+#~ "increase with Nvidia cards."
 
 #~ msgid "Let t empty to use the default icon."
 #~ msgstr "Leave empty to use the default icon."
@@ -9489,6 +9431,9 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Name of an image for the 'widget layer' icon :"
 #~ msgstr "'Widget Layer' icon image name:"
 
+#~ msgid "Pastebin.ca"
+#~ msgstr "Pastebin.ca"
+
 #~ msgid "The lower, the more the point of view is low on the plane."
 #~ msgstr "The lower the value, the lower the point of view on the plane."
 
@@ -9496,23 +9441,23 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "Inclination of the plane:"
 
 #~ msgid ""
-#~ "0.5 means the dock is half-folded, so half the icons are on the "
-#~ "foreground, and half are on the background."
+#~ "0.5 means the dock is half-folded, so half the icons are on the foreground, "
+#~ "and half are on the background."
 #~ msgstr ""
-#~ "0.5 means the dock is half-folded, so half the icons are on the "
-#~ "foreground and half are on the background."
+#~ "0.5 means the dock is half-folded, so half the icons are on the foreground "
+#~ "and half are on the background."
 
 #~ msgid "For flat separators, you can specify their color:"
 #~ msgstr "For flat separators, you can specify their colour:"
 
 #~ msgid ""
-#~ "In degrees, regarding the vertical position. It's a sort of inclination "
-#~ "of the plane on the horizontal, giving the 3D feeling. So setting it to 0 "
-#~ "means the plane is not inclined at all (vertical)."
+#~ "In degrees, regarding the vertical position. It's a sort of inclination of "
+#~ "the plane on the horizontal, giving the 3D feeling. So setting it to 0 means "
+#~ "the plane is not inclined at all (vertical)."
 #~ msgstr ""
-#~ "In degrees, relative to the vertical. This is a sort of inclination of "
-#~ "the plane to the horizontal, giving a 3D impression. Setting this to 0 "
-#~ "means that the plane is not inclined at all (vertical)."
+#~ "In degrees, relative to the vertical. This is a sort of inclination of the "
+#~ "plane to the horizontal, giving a 3D impression. Setting this to 0 means "
+#~ "that the plane is not inclined at all (vertical)."
 
 #~ msgid "Percentage of the dock's width that appears on the foreground :"
 #~ msgstr "Percentage of the dock's width that appears on the foreground:"
@@ -9576,8 +9521,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "Number of icons on the first row:"
 
 #~ msgid ""
-#~ "in degree. The smaller, the more the cone is narrow. 180° means the cone "
-#~ "is widely opened."
+#~ "in degree. The smaller, the more the cone is narrow. 180° means the cone is "
+#~ "widely opened."
 #~ msgstr ""
 #~ "in degrees. The lower the value, the narrower the cone. 180° represents a "
 #~ "wide open cone."
@@ -9589,8 +9534,7 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "Draw captions while unfolding?"
 
 #~ msgid ""
-#~ "It may recquire more CPU during the unfolding animation, except with "
-#~ "OpenGL."
+#~ "It may recquire more CPU during the unfolding animation, except with OpenGL."
 #~ msgstr ""
 #~ "This may recquire more CPU during the unfolding animation, except if you "
 #~ "launch Cairo-Dock with OpenGL."
@@ -9622,6 +9566,9 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Sinusoidal wave radius :"
 #~ msgstr "Sinusoidal wave radius:"
 
+#~ msgid "Max size of icons :"
+#~ msgstr "Max icon size:"
+
 #~ msgid "Use a linear wave rather than a sinusoidal one ?"
 #~ msgstr "Use a linear wave rather than a sinusoidal wave?"
 
@@ -9635,8 +9582,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "If some actions are associated with an item, they will be proposed to you "
 #~ "when the item is created."
 #~ msgstr ""
-#~ "If some actions are associated with an item, they will be proposed when "
-#~ "the item is created."
+#~ "If some actions are associated with an item, they will be proposed when the "
+#~ "item is created."
 
 #~ msgid "Amplitude of the curve."
 #~ msgstr "Amplitude of the curve:"
@@ -9713,8 +9660,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "Duration of the transition animation:"
 
 #~ msgid ""
-#~ "in ms. Set it to 0 if you don't want an animation when the keyboard "
-#~ "layout changes."
+#~ "in ms. Set it to 0 if you don't want an animation when the keyboard layout "
+#~ "changes."
 #~ msgstr ""
 #~ "in ms. Set to 0 if you don't want an animation when the keyboard layout "
 #~ "changes."
@@ -9751,8 +9698,8 @@ msgstr "Overwrite the default label with the connection point name?"
 
 #~ msgid ""
 #~ "It will be available on middle click. Let empty to execute the default "
-#~ "command, that greatly depends on your distribution. Sometimes the command "
-#~ "to shutdown is just the same as the one to log out."
+#~ "command, that greatly depends on your distribution. Sometimes the command to "
+#~ "shutdown is just the same as the one to log out."
 #~ msgstr ""
 #~ "This will be available when middle-clicking. Leave empty to execute the "
 #~ "default command, which depends on your distribution. In some cases the "
@@ -9822,6 +9769,9 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "in s."
 #~ msgstr "in seconds"
 
+#~ msgid "Time Left"
+#~ msgstr "Time Remaining"
+
 #~ msgid ""
 #~ "You need OpenGL for this option. Set it to 0 to not use it, 1 means the "
 #~ "movement is continue."
@@ -9830,8 +9780,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "movement is continue."
 
 #~ msgid ""
-#~ "Allow you to overwrite applet's default command line and launch you "
-#~ "wireless configuration interface."
+#~ "Allow you to overwrite applet's default command line and launch you wireless "
+#~ "configuration interface."
 #~ msgstr ""
 #~ "Allow you to overwrite applet's default command line and launch your "
 #~ "wireless configuration interface."
@@ -9882,8 +9832,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "List bookmarks?"
 
 #~ msgid ""
-#~ "Number of items loaded at once. Setting a high value speeds up a little "
-#~ "the loading, but blocks the appli more."
+#~ "Number of items loaded at once. Setting a high value speeds up a little the "
+#~ "loading, but blocks the appli more."
 #~ msgstr ""
 #~ "Number of items loaded at once. Setting a high value speeds up loading a "
 #~ "little but will hang the application for longer."
@@ -9911,8 +9861,7 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "applet's icon will then behave as a launcher, an appli, and an applet."
 #~ msgstr ""
 #~ "It will prevent the system monitor's icon to show in the taskbar. The "
-#~ "applet's icon will then behave as a launcher, an application, and an "
-#~ "applet."
+#~ "applet's icon will then behave as a launcher, an application, and an applet."
 
 #~ msgid ""
 #~ "in celcius. The temperature will be displayed between this value and the "
@@ -9942,6 +9891,9 @@ msgstr "Overwrite the default label with the connection point name?"
 
 #~ msgid "Show mouse on :"
 #~ msgstr "Show mouse on:"
+
+#~ msgid "dock"
+#~ msgstr "dock"
 
 #~ msgid "both"
 #~ msgstr "both"
@@ -10063,8 +10015,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "An emblem that will be displayed when you try to drop something onto an "
 #~ "icon. Let empty to use the default one."
 #~ msgstr ""
-#~ "An emblem that will be displayed when you try to drop something on an "
-#~ "icon. Leave empty to use the default one."
+#~ "An emblem that will be displayed when you try to drop something on an icon. "
+#~ "Leave empty to use the default one."
 
 #~ msgid "Name of an image to overwrite the theme's empty image :"
 #~ msgstr "Name of the image to overwrite the theme's empty image :"
@@ -10085,11 +10037,9 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "Name of the image to overwrite the theme's full image :"
 
 #~ msgid ""
-#~ "in Mb. You will be notified when you go over this limit. Set 0 to not use "
-#~ "it."
+#~ "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
 #~ msgstr ""
-#~ "in Mb. You will be notified when you go over this limit. Set to 0 to "
-#~ "disable."
+#~ "in Mb. You will be notified when you go over this limit. Set to 0 to disable."
 
 #~ msgid "Number of trashes"
 #~ msgstr "Number of Dustbins"
@@ -10100,11 +10050,9 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "If the Trash folder is not known by the dock, you can specify it here :"
 
 #~ msgid ""
-#~ "Only use this if you notice that the applet can't display the trash on "
-#~ "click."
+#~ "Only use this if you notice that the applet can't display the trash on click."
 #~ msgstr ""
-#~ "Only use this if you notice that the applet can't display the trash on "
-#~ "click."
+#~ "Only use this if you notice that the applet can't display the trash on click."
 
 #~ msgid "Alternative file browser used to show a trash :"
 #~ msgstr "Alternative file browser used to show a trash :"
@@ -10162,8 +10110,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "Current desktop colour:"
 
 #~ msgid ""
-#~ "It is the selection made by the mouse, by opposition to the usual ctrl+c/"
-#~ "ctrl+v clipboard"
+#~ "It is the selection made by the mouse, by opposition to the usual "
+#~ "ctrl+c/ctrl+v clipboard"
 #~ msgstr ""
 #~ "It is the selection made by the mouse, as opposed to usual ctrl+c/ctrl+v "
 #~ "clipboard"
@@ -10174,8 +10122,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "mail accounts you want."
 #~ msgstr ""
 #~ "If you have any problem with the applet, uncheck this option during the "
-#~ "maintenance mode, then after the dock has relaunched, remove/modify the "
-#~ "mail accounts you want."
+#~ "maintenance mode, then after the dock has relaunched, remove/modify the mail "
+#~ "accounts you want."
 
 #~ msgid "The greatest, the fastest the icon will collapse to the center."
 #~ msgstr "The greater, the faster the icon will collapse to the center."
@@ -10267,9 +10215,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "'Good' icon filename:"
 
 #~ msgid ""
-#~ "It is especially usefull if you often select text with mouse and don't "
-#~ "want to lose your clipboard items because of a great number of selection "
-#~ "items."
+#~ "It is especially usefull if you often select text with mouse and don't want "
+#~ "to lose your clipboard items because of a great number of selection items."
 #~ msgstr ""
 #~ "It is especially useful if you often select text with the mouse and don't "
 #~ "want to loose your clipboard items due to too many items in the selection."
@@ -10295,8 +10242,7 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "applet's icon will then behave as a launcher, an appli, and an applet."
 #~ msgstr ""
 #~ "It will prevent the application's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an application, and an "
-#~ "applet."
+#~ "applet's icon will then behave as a launcher, an application, and an applet."
 
 #~ msgid "The new account will be created with specified type and name."
 #~ msgstr "The new account will be created with the specified type and name."
@@ -10388,12 +10334,12 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "If the image is too small, it will be stretched."
 
 #~ msgid ""
-#~ "Write the date format you usually use in your notes. The syntax is the "
-#~ "one of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
+#~ "Write the date format you usually use in your notes. The syntax is the one "
+#~ "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
 #~ "digits), etc. Let it blnk to use the default one (%d/%m/%y)."
 #~ msgstr ""
-#~ "Write the date format you usually use in your notes. The syntax is the "
-#~ "one of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
+#~ "Write the date format you usually use in your notes. The syntax is the one "
+#~ "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
 #~ "digits), etc. Leave it blank to use the default one (%d/%m/%y)."
 
 #~ msgid "Text color of the content :"
@@ -10472,6 +10418,7 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Do you know how much painful it is to be clicked on ??"
 #~ msgstr "Do you know how painful it is to be clicked on??"
 
+#, c-format
 #~ msgid ""
 #~ "Interface '%s' seems to not exist or is not readable.\n"
 #~ " You may have to set up the interface you wish to monitor.\n"
@@ -10717,8 +10664,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "To close a tab : type 'CTRL+w' or middle-click on it."
 #~ msgstr ""
 #~ "Add a terminal to your dock!\n"
-#~ "Left/middle click to show/hide terminal (you can bind a keyboard shortcut "
-#~ "to it.)\n"
+#~ "Left/middle click to show/hide terminal (you can bind a keyboard shortcut to "
+#~ "it.)\n"
 #~ "You can drag & drop files or text and select an action.\n"
 #~ "You can open multiple tabs, rename them and change their colours (right-"
 #~ "click on a tab to interact on it).\n"
@@ -10728,6 +10675,7 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Hey, you there !"
 #~ msgstr "Hey, you there!"
 
+#, c-format
 #~ msgid "Alert ! Graphic Card core temperature has reached %d°C"
 #~ msgstr "Alert! Graphic Card core temperature has reached %d°C"
 
@@ -10740,6 +10688,7 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Preferred applications"
 #~ msgstr "Favorite applications"
 
+#, c-format
 #~ msgid "You can call back the Terminal desklet by typing %s"
 #~ msgstr "You can recall the Terminal desklet by typing %s"
 
@@ -10749,8 +10698,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "icon."
 #~ msgstr ""
 #~ "No items in the stack.\n"
-#~ "You can add files, URL, and even a piece of text by dragging them onto "
-#~ "the icon."
+#~ "You can add files, URL, and even a piece of text by dragging them onto the "
+#~ "icon."
 
 #~ msgid "Preferred application starting with 'h' :"
 #~ msgstr "Favorite application(s) starting with 'h' :"
@@ -10843,11 +10792,11 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "No RSS feed URL defined..."
 
 #~ msgid ""
-#~ "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from "
-#~ "menu to add one."
+#~ "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from menu "
+#~ "to add one."
 #~ msgstr ""
-#~ "Drag and drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from "
-#~ "menu to add one."
+#~ "Drag and drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from menu "
+#~ "to add one."
 
 #~ msgid "Failed to connect..."
 #~ msgstr "Failed to connect..."
@@ -10891,6 +10840,9 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Color to be used for the title"
 #~ msgstr "Colour to be used for the title"
 
+#~ msgid "Expose all the desktops (Compiz)"
+#~ msgstr "Expose all the desktops (Compiz)"
+
 #~ msgid "Let empty to use the same image."
 #~ msgstr "Leave empty to use the same image."
 
@@ -10912,8 +10864,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "USAGE:\n"
 #~ " - Left-click : display the complete feed lines in a dialog.\n"
 #~ " - Middle-click : refresh the feed.\n"
-#~ " - Scroll on the desklet : make the feed lines scroll\\.n - Drag and drop "
-#~ "a valid URL on the icon to use it,\n"
+#~ " - Scroll on the desklet : make the feed lines scroll\\.n - Drag and drop a "
+#~ "valid URL on the icon to use it,\n"
 #~ "    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
 #~ "    or edit the Configuration Panel."
 #~ msgstr ""
@@ -10922,8 +10874,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "USAGE:\n"
 #~ " - Left-click: display the complete feed lines in a dialog.\n"
 #~ " - Middle-click: refresh the feed.\n"
-#~ " - Scroll on the desklet: make the feed lines scroll\\.n - Drag and drop "
-#~ "a valid URL on the icon to use it,\n"
+#~ " - Scroll on the desklet: make the feed lines scroll\\.n - Drag and drop a "
+#~ "valid URL on the icon to use it,\n"
 #~ "    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
 #~ "    or edit the Configuration Panel."
 
@@ -10988,30 +10940,27 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "User command to show Wireless Configuration:"
 
 #~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
 #~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type some text to launch any command, file or "
 #~ "calculation.\n"
-#~ "  use the arrows to navigate between the results, press Enter to "
-#~ "validate, maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
 #~ "Escape or the same shortkey to cancel."
 #~ msgstr ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
-#~ "- the navigation mode: use arrows to navigate into the docks and sub-"
-#~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "- the navigation mode: use arrows to navigate into the docks and sub-docks,\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type some text to launch any command, file or "
 #~ "calculation.\n"
 #~ "  use arrows to navigate between the results, press Enter to validate, "
@@ -11023,6 +10972,9 @@ msgstr "Overwrite the default label with the connection point name?"
 
 #~ msgid "Set up volume :"
 #~ msgstr "Set up volume:"
+
+#~ msgid "Set up gamma :"
+#~ msgstr "Set up gamma:"
 
 #~ msgid ""
 #~ "This applet lets you share files easily :\n"
@@ -11053,6 +11005,7 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "You have a new mail :"
 #~ msgstr "You have a new mail:"
 
+#, c-format
 #~ msgid "You have %d new mails :"
 #~ msgstr "You have %d new mails:"
 
@@ -11067,6 +11020,9 @@ msgstr "Overwrite the default label with the connection point name?"
 
 #~ msgid "not used at the moment."
 #~ msgstr "not used for the moment."
+
+#~ msgid "How to display the wifi signal :"
+#~ msgstr "How to display the wifi signal:"
 
 #~ msgid "URL :"
 #~ msgstr "URL:"
@@ -11083,11 +11039,9 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Title color :"
 #~ msgstr "Title colour:"
 
-#~ msgid ""
-#~ "In seconds. Set to 0 for infinite time (click on dialog to close it)."
+#~ msgid "In seconds. Set to 0 for infinite time (click on dialog to close it)."
 #~ msgstr ""
-#~ "In seconds. Set to 0 for infinite time (need to click on dialog to close "
-#~ "it)."
+#~ "In seconds. Set to 0 for infinite time (need to click on dialog to close it)."
 
 #~ msgid "Display an info-bubble when a feed has changed?"
 #~ msgstr "Display an info bubble when a feed has changed?"
@@ -11230,22 +11184,21 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid ""
 #~ "This applet allows you to monitor your active connections.\n"
 #~ "It can display the download/upload speeds and the wifi signal quality.\n"
-#~ "If you have network-manager running, it can also let you choose the "
-#~ "current wifi network.\n"
+#~ "If you have network-manager running, it can also let you choose the current "
+#~ "wifi network.\n"
 #~ "Left-click to pop-up some info,Middle-click to re-check immediately."
 #~ msgstr ""
 #~ "This applet allows you to monitor your active connections.\n"
 #~ "It can display the download/upload speed as well as the wifi signal "
 #~ "quality.\n"
-#~ "If you have network-manager running, it can also let you choose the "
-#~ "active wifi network.\n"
+#~ "If you have network-manager running, it can also let you choose the active "
+#~ "wifi network.\n"
 #~ "Left-click to pop-up some info,Middle-click to re-check immediately."
 
 #~ msgid "Color of the sheen :"
 #~ msgstr "Colour of the sheen:"
 
-#~ msgid ""
-#~ "Please wait the current upload is finished before starting a new one."
+#~ msgid "Please wait the current upload is finished before starting a new one."
 #~ msgstr ""
 #~ "Please wait for the current upload to finish before starting a new one."
 
@@ -11266,12 +11219,10 @@ msgstr "Overwrite the default label with the connection point name?"
 
 #~ msgid ""
 #~ "You need to activate the Dbus plug-in of Compiz for the last 2 actions. "
-#~ "Showing desktop and desklets can fail on some Window Manager, like "
-#~ "Metacity."
+#~ "Showing desktop and desklets can fail on some Window Manager, like Metacity."
 #~ msgstr ""
 #~ "You need to activate the Dbus plug-in in Compiz for the last 2 actions. "
-#~ "Showing desktop and desklets can fail on some Window Manager (like "
-#~ "Metacity)."
+#~ "Showing desktop and desklets can fail on some Window Manager (like Metacity)."
 
 #~ msgid "Foreground color :"
 #~ msgstr "Foreground colour:"
@@ -11309,6 +11260,9 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Network connection has become inactive."
 #~ msgstr "Network connection state changed to inactive."
 
+#~ msgid "Network has been disconnected."
+#~ msgstr "Network connection state changed to disconnected."
+
 #~ msgid "Open all"
 #~ msgstr "Open all"
 
@@ -11318,12 +11272,11 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "\n"
 #~ "- the finder mode (default shortcut : CTRL + Enter) :\n"
-#~ "    It lets you find and launch applications, files, recent files, "
-#~ "firefox bookmarks, commands, and even calculations.\n"
+#~ "    It lets you find and launch applications, files, recent files, firefox "
+#~ "bookmarks, commands, and even calculations.\n"
 #~ "    Type what you want to search, the results will be displayed in real "
 #~ "time.\n"
-#~ "    The first results of each category are displayed in the main "
-#~ "listing.\n"
+#~ "    The first results of each category are displayed in the main listing.\n"
 #~ "    Use the up/down arrows to navigate inside the list,\n"
 #~ "    and use the left/right arrows to enter into a category, or to display "
 #~ "more actions (when a little arrow is drawn next to text).\n"
@@ -11336,8 +11289,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "    use the arrows to navigate into the docks and sub-docks,\n"
 #~ "    or type the name of a launcher and press Tab to automatically jump to "
 #~ "the next suitable launcher\n"
-#~ "    press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "    press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "Escape or the same shortkey will cancel."
 #~ msgstr ""
 #~ "This plug-in allows you to make different actions directly from the "
@@ -11345,12 +11298,11 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "\n"
 #~ "- the finder mode (default shortcut : CTRL + Enter) :\n"
-#~ "    It lets you find and launch applications, files, recent files, "
-#~ "Firefox bookmarks, commands, and even calculations.\n"
+#~ "    It lets you find and launch applications, files, recent files, Firefox "
+#~ "bookmarks, commands, and even calculations.\n"
 #~ "    Type what you want to search, the results will be displayed in real "
 #~ "time.\n"
-#~ "    The first results of each category are displayed in the main "
-#~ "listing.\n"
+#~ "    The first results of each category are displayed in the main listing.\n"
 #~ "    Use the up/down arrows to navigate inside the list,\n"
 #~ "    and use the left/right arrows to enter into a category, or to display "
 #~ "more actions (when a little arrow is drawn next to text).\n"
@@ -11363,8 +11315,8 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "    use the arrows to navigate into the docks and sub-docks,\n"
 #~ "    or type the name of a launcher and press Tab to automatically jump to "
 #~ "the next suitable launcher\n"
-#~ "    press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "    press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "Escape or the same shortkey will cancel."
 
 #~ msgid "Let empty to use the default one"
@@ -11416,11 +11368,11 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "Leave empty to display the name of the sound card."
 
 #~ msgid ""
-#~ "Maximum number of results tat will be displayed when you select a "
-#~ "category with the right arrow."
+#~ "Maximum number of results tat will be displayed when you select a category "
+#~ "with the right arrow."
 #~ msgstr ""
-#~ "Maximum number of results that will be displayed when you select a "
-#~ "category with the right arrow."
+#~ "Maximum number of results that will be displayed when you select a category "
+#~ "with the right arrow."
 
 #~ msgid "Hey, you there!"
 #~ msgstr "Hey, you there!"
@@ -11437,12 +11389,14 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Trash"
 #~ msgstr "Trash"
 
+#, c-format
 #~ msgid "You are about to delete all files in %s. Continue?"
 #~ msgstr "You are about to delete all files in %s. Continue?"
 
 #~ msgid "You are about to delete all files in all dustbins. Continue?"
 #~ msgstr "You are about to delete all files in all dustbins. Continue?"
 
+#, c-format
 #~ msgid ""
 #~ "A problem occured\n"
 #~ "If '%s' is not your usual file browser,\n"
@@ -11470,6 +11424,9 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Show Mouse"
 #~ msgstr "Show Mouse"
 
+#~ msgid "You need to run Compiz and activate its 'DBus' plug-in."
+#~ msgstr "You need to run Compiz and activate its 'DBus' plug-in."
+
 #~ msgid "Slider"
 #~ msgstr "Slider"
 
@@ -11481,6 +11438,12 @@ msgstr "Overwrite the default label with the connection point name?"
 
 #~ msgid "Weather"
 #~ msgstr "Weather"
+
+#~ msgid "Icon name for busy penguin:"
+#~ msgstr "Icon name for busy penguin:"
+
+#~ msgid "Let extern applications register new module?"
+#~ msgstr "Let extern applications register new module?"
 
 #~ msgid "Display an info bubble when a feed has changed?"
 #~ msgstr "Display an info bubble when a feed has changed?"
@@ -11494,6 +11457,9 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Shortkey to enable/disable the navigation mode:"
 #~ msgstr "Shortkey to enable/disable the navigation mode:"
 
+#~ msgid "Leave empty to use the defaut command."
+#~ msgstr "Leave empty to use the defaut command."
+
 #~ msgid "Choose an action for middle click on the icon:"
 #~ msgstr "Choose an action for middle click on the icon:"
 
@@ -11503,27 +11469,30 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Colour of the plane :"
 #~ msgstr "Colour of the plane :"
 
+#~ msgid "Colour of the margin :"
+#~ msgstr "Colour of the margin :"
+
 #~ msgid "Inclined Plane"
 #~ msgstr "Inclined Plane"
 
 #~ msgid ""
-#~ "In degrees, relative to the vertical. This is a sort of inclination of "
-#~ "the plane to the horizontal, giving a 3D impression. Setting this to 0 "
-#~ "means that the plane is not inclined at all (vertical)."
+#~ "In degrees, relative to the vertical. This is a sort of inclination of the "
+#~ "plane to the horizontal, giving a 3D impression. Setting this to 0 means "
+#~ "that the plane is not inclined at all (vertical)."
 #~ msgstr ""
-#~ "In degrees, relative to the vertical. This is a sort of inclination of "
-#~ "the plane to the horizontal, giving a 3D impression. Setting this to 0 "
-#~ "means that the plane is not inclined at all (vertical)."
+#~ "In degrees, relative to the vertical. This is a sort of inclination of the "
+#~ "plane to the horizontal, giving a 3D impression. Setting this to 0 means "
+#~ "that the plane is not inclined at all (vertical)."
 
 #~ msgid "Inclination of the plane:"
 #~ msgstr "Inclination of the plane:"
 
 #~ msgid ""
-#~ "0.5 means the dock is half-folded, so half the icons are on the "
-#~ "foreground and half are on the background."
+#~ "0.5 means the dock is half-folded, so half the icons are on the foreground "
+#~ "and half are on the background."
 #~ msgstr ""
-#~ "0.5 means the dock is half-folded, so half the icons are on the "
-#~ "foreground and half are on the background."
+#~ "0.5 means the dock is half-folded, so half the icons are on the foreground "
+#~ "and half are on the background."
 
 #~ msgid "Percentage of the dock's width that appears on the foreground:"
 #~ msgstr "Percentage of the dock's width that appears on the foreground:"
@@ -11554,11 +11523,9 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "Number of Dustbins"
 
 #~ msgid ""
-#~ "in Mb. You will be notified when you go over this limit. Set to 0 to "
-#~ "disable."
+#~ "in Mb. You will be notified when you go over this limit. Set to 0 to disable."
 #~ msgstr ""
-#~ "in Mb. You will be notified when you go over this limit. Set to 0 to "
-#~ "disable."
+#~ "in Mb. You will be notified when you go over this limit. Set to 0 to disable."
 
 #~ msgid "Time interval to check if dustbin is full/empty :"
 #~ msgstr "Time interval to check if dustbin is full/empty :"
@@ -11574,12 +11541,10 @@ msgstr "Overwrite the default label with the connection point name?"
 
 #~ msgid ""
 #~ "It will prevent the application's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an application, and an "
-#~ "applet."
+#~ "applet's icon will then behave as a launcher, an application, and an applet."
 #~ msgstr ""
 #~ "It will prevent the application's icon to appear in the task bar. The "
-#~ "applet's icon will then behave as a launcher, an application, and an "
-#~ "applet."
+#~ "applet's icon will then behave as a launcher, an application, and an applet."
 
 #~ msgid "Add a mail account"
 #~ msgstr "Add a mail account"
@@ -11598,6 +11563,9 @@ msgstr "Overwrite the default label with the connection point name?"
 
 #~ msgid "When copying/pasting/cutting, use the selection clipboard?"
 #~ msgstr "When copying/pasting/cutting, use the selection clipboard?"
+
+#~ msgid "Default title:"
+#~ msgstr "Default title:"
 
 #~ msgid ""
 #~ "This applet lets you access your desklets quickly.\n"
@@ -11664,6 +11632,9 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "It is designed to work on any desktop that supports the latest systray "
 #~ "specifications (KDE, Gnome, etc)"
 
+#~ msgid "Status Notifier"
+#~ msgstr "Status Notifier"
+
 #~ msgid "Toto"
 #~ msgstr "Toto"
 
@@ -11673,18 +11644,24 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgid "Empty Trash (middle-click)"
 #~ msgstr "Empty Trash (middle-click)"
 
+#~ msgid "systray"
+#~ msgstr "systray"
+
 #~ msgid "Unmount (middle-click)"
 #~ msgstr "Unmount (middle-click)"
 
 #~ msgid "Mount (middle-click)"
 #~ msgstr "Mount (middle-click)"
 
+#~ msgid "Display items in compact mode?"
+#~ msgstr "Display items in compact mode?"
+
 #~ msgid ""
 #~ "Stacks will act as a the shortcut applet's but with files. To add a file, "
 #~ "just drag and drop it on the Stacks icon"
 #~ msgstr ""
-#~ "Stacks will act as the shortcut applet but with files. To add a file, "
-#~ "just drag and drop it on the Stacks icon"
+#~ "Stacks will act as the shortcut applet but with files. To add a file, just "
+#~ "drag and drop it on the Stacks icon"
 
 #~ msgid "Use only Stacks local directory ?"
 #~ msgstr "Use only Stacks local directory ?"
@@ -11696,11 +11673,9 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "stacks"
 
 #~ msgid ""
-#~ "This option with large files lists can slow down the dock, use it "
-#~ "properly."
+#~ "This option with large files lists can slow down the dock, use it properly."
 #~ msgstr ""
-#~ "This option with large files lists can slow down the dock, use it "
-#~ "properly."
+#~ "This option with large files lists can slow down the dock, use it properly."
 
 #~ msgid "List hidden files ?"
 #~ msgstr "List hidden files?"
@@ -11718,22 +11693,20 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ "An applet that let you access quickly to all of your shortcuts.\n"
 #~ "It can manage disks, network points, and Nautilus bookmarks (even if you "
 #~ "don't have Nautilus).\n"
-#~ "Drag and drop a folder on the main icon or the sub-dock to add a "
-#~ "bookmark.\n"
+#~ "Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
 #~ "Middle-click on the main icon to show your home folder.\n"
 #~ "Middle-click on a mounting point icon to (un)mount it quickly\n"
-#~ "The applet can also display valuable information about your disks, like "
-#~ "free space, type, etc."
+#~ "The applet can also display valuable information about your disks, like free "
+#~ "space, type, etc."
 #~ msgstr ""
 #~ "An applet that let you quickly access all of your short-cuts.\n"
 #~ "It can manage disks, network points, and Nautilus bookmarks (even if you "
 #~ "don't have Nautilus).\n"
-#~ "Drag and drop a folder on the main icon or the sub-dock to add a "
-#~ "bookmark.\n"
+#~ "Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
 #~ "Middle-click on the main icon to show your home folder.\n"
 #~ "Middle-click on a mounting point icon to (un)mount it quickly.\n"
-#~ "The applet can also display valuable information about your disks, like "
-#~ "free space, type, etc."
+#~ "The applet can also display valuable information about your disks, like free "
+#~ "space, type, etc."
 
 #~ msgid "Unmute (middle-click)"
 #~ msgstr "Unmute (middle-click)"
@@ -11748,30 +11721,27 @@ msgstr "Overwrite the default label with the connection point name?"
 #~ msgstr "Refresh all (middle-click)"
 
 #~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
 #~ "Docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type some text to launch any command, file or "
 #~ "calculation.\n"
-#~ "  use the arrows to navigate between the results, press Enter to "
-#~ "validate, maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
 #~ "Escape or the same shortkey to cancel."
 #~ msgstr ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
-#~ "- the navigation mode: use arrows to navigate into the docks and sub-"
-#~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "- the navigation mode: use arrows to navigate into the docks and sub-docks,\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type some text to launch any command, file or "
 #~ "calculation.\n"
 #~ "  use arrows to navigate between the results, press Enter to validate, "

@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2011-02-28 12:50+0000\n"
-"Last-Translator: Fabounet <fabounet03@gmail.com>\n"
+"POT-Creation-Date: 2011-04-15 00:27+0000\n"
+"PO-Revision-Date: 2011-03-06 08:31+0000\n"
+"Last-Translator: Michael Kotsarinis <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
-"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-03-01 04:54+0000\n"
-"X-Generator: Launchpad (build 12351)\n"
+"X-Launchpad-Export-Date: 2011-04-16 05:13+0000\n"
+"X-Generator: Launchpad (build 12735)\n"
+"Language: el\n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -251,7 +252,8 @@ msgstr "Το άρθρωμα προστέθηκε αλλά δεν ήταν δυν
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "Η μικροεφαρμογή '%s' έχει επιτυχώς ενημερωθεί και έχει επαναφορτωθεί "
 "αυτόματα."
@@ -357,9 +359,8 @@ msgstr ""
 "  - Με μεσαίο κλικ επαναφορτώνονται οι τιμές"
 
 #: ../Doncky/src/applet-notifications.c:215
-#, fuzzy
 msgid "It doesn't seem to be a valid XML file."
-msgstr "Δεν φαίνεται να είναι έγκυρη URL."
+msgstr "Δε φαίνεται να είναι έγκυρο αρχείο XML."
 
 #: ../Folders/src/applet-init.c:29
 msgid "Folders"
@@ -506,32 +507,28 @@ msgid "Create a new folder"
 msgstr "Δημιουργία νέου φακέλου"
 
 #: ../Folders/src/applet-notifications.c:417
-#, fuzzy
 msgid "Sort by"
-msgstr "Ταξινόμηση αντικειμένων κατά:"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:418
-#, fuzzy
 msgid "By name"
-msgstr "Αρχείο"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:419
 msgid "By date"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:420
-#, fuzzy
 msgid "By size"
-msgstr "Μέγεθος ακτίνας:"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:421
 msgid "By type"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:459
-#, fuzzy
 msgid "The folder has been imported."
-msgstr "Αυτή η ροή RSS έχει τροποιηθεί…"
+msgstr ""
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -545,8 +542,8 @@ msgstr ""
 "Είναι συμβατή με οποιοδήποτε μενού προδιαγραφών XDG (Gnome, XFCE, KDE, …)\n"
 "Με μεσαίο κλικ ανοίγει ένα παράθυρο διαλόγου για δώσετε γρήγορα οποιαδήποτε "
 "εντολή (μπορείτε να ορίσετε συντόμευση γι' αυτό, όπως το ALT+F2)\n"
-"Μπορείτε επίσης να ορίσετε συντόμευση για να αναδύεται το μενού (όπως το ALT"
-"+F1)"
+"Μπορείτε επίσης να ορίσετε συντόμευση για να αναδύεται το μενού (όπως το "
+"ALT+F1)"
 
 #: ../GMenu/src/applet-init.c:39
 msgid "Applications Menu"
@@ -877,79 +874,69 @@ msgid "Open parent folder"
 msgstr "Άνοιγμα γονικού φακέλου"
 
 #: ../Recent-Events/src/applet-dialog.c:282
-#, fuzzy
 msgid "Copy the location"
-msgstr "Άνοιγμα τοποθεσίας"
+msgstr "Αντιγραφή τοποθεσίας"
 
 #: ../Recent-Events/src/applet-dialog.c:284
-#, fuzzy
 msgid "Delete this event"
-msgstr "Διαγραφή αυτής της σημείωσης"
+msgstr "Διαγραφή γεγονότος"
 
 #: ../Recent-Events/src/applet-dialog.c:357
 msgid "All"
-msgstr ""
+msgstr "Όλα"
 
 #: ../Recent-Events/src/applet-dialog.c:358
-#, fuzzy
 msgid "Document"
-msgstr "Πρόσφατα έγγραφα"
+msgstr "Έγγραφο"
 
 #: ../Recent-Events/src/applet-dialog.c:360
-#, fuzzy
 msgid "Image"
-msgstr "Εικόνες"
+msgstr "Εικόνα"
 
 #: ../Recent-Events/src/applet-dialog.c:361
 msgid "Audio"
-msgstr ""
+msgstr "Ήχος"
 
 #: ../Recent-Events/src/applet-dialog.c:362
-#, fuzzy
 msgid "Video"
-msgstr "Μνήμη βίντεο"
+msgstr "Βίντεο"
 
 #: ../Recent-Events/src/applet-dialog.c:363
-#, fuzzy
 msgid "Web"
-msgstr "Φεβ"
+msgstr "Ιστός"
 
 #: ../Recent-Events/src/applet-dialog.c:364
-#, fuzzy
 msgid "Other"
-msgstr "πρόγνωση καιρού"
+msgstr "Άλλο"
 
 #: ../Recent-Events/src/applet-dialog.c:365
-#, fuzzy
 msgid "Top Results"
-msgstr "Κανένα αποτέλεσμα"
+msgstr "Κύρια αποτελέσματα"
 
 #: ../Recent-Events/src/applet-dialog.c:371
 msgid "Look for events"
-msgstr ""
+msgstr "Αναζήτηση γεγονότων"
 
 #: ../Recent-Events/src/applet-dialog.c:421
-#, fuzzy
 msgid "File name"
-msgstr "Αρχείο"
+msgstr "Όνομα αρχείου"
 
 #: ../Recent-Events/src/applet-dialog.c:428
 msgid "Last access"
-msgstr ""
+msgstr "Τελευταία προσπέλαση"
 
 #: ../Recent-Events/src/applet-dialog.c:469
 msgid "Browse and search in recent events"
-msgstr ""
+msgstr "Περιήγηση και αναζήτηση σε πρόφατα γεγονότα"
 
 #: ../Recent-Events/src/applet-init.c:28
-#, fuzzy
 msgid "Recent-Events"
-msgstr "Πρόσφατα έγγραφα"
+msgstr "Πρόσφατα γεγονότα"
 
 #: ../Recent-Events/src/applet-notifications.c:74
 #, c-format
 msgid "%d event(s) deleted"
-msgstr ""
+msgstr "%d γεγονότα διαγράφηκαν"
 
 #: ../Recent-Events/src/applet-notifications.c:110
 #: ../Scooby-Do/src/applet-backend-recent.c:212 ../Scooby-Do/data/messages:105
@@ -957,14 +944,12 @@ msgid "Recent files"
 msgstr "Πρόσφατα αρχεία"
 
 #: ../Recent-Events/src/applet-notifications.c:154
-#, fuzzy
 msgid "Delete today's events"
-msgstr "Διαγραφή αυτής της εργασίας"
+msgstr "Διαγραφή σημερινών γεγονότων"
 
 #: ../Recent-Events/src/applet-notifications.c:156
-#, fuzzy
 msgid "Delete all events"
-msgstr "Διαγραφή αυτής της εργασίας"
+msgstr "Διαγραφή όλων των γεγονότων"
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
@@ -1116,9 +1101,8 @@ msgid ""
 msgstr ""
 
 #: ../Status-Notifier/src/applet-init.c:38
-#, fuzzy
 msgid "Notification Area"
-msgstr "Ειδοποίηση"
+msgstr ""
 
 #: ../System-Monitor/src/applet-cpusage.c:57
 msgid "Uptime"
@@ -1201,8 +1185,8 @@ msgstr "Θερμοκρασία πυρήνα"
 #, c-format
 msgid "Alert! Graphic Card core temperature has reached %d°C"
 msgstr ""
-"Συναγερμός! Η θερμοκρασία του πυρήνα της κάρτας γραφικών έχει φτάσει τους %d"
-"°C"
+"Συναγερμός! Η θερμοκρασία του πυρήνα της κάρτας γραφικών έχει φτάσει τους "
+"%d°C"
 
 #: ../System-Monitor/src/applet-rame.c:124
 msgid "Gb"
@@ -1283,9 +1267,8 @@ msgid "Screen Luminosity"
 msgstr "Φωτεινότητα οθόνης"
 
 #: ../Xgamma/src/applet-notifications.c:89
-#, fuzzy
 msgid "Set up gamma correction"
-msgstr "Ορισμός γάμμα:"
+msgstr "Ρύθμιση διόθωσης γάμμα"
 
 #: ../Xgamma/src/applet-notifications.c:94
 msgid "Apply current luminosity on startup"
@@ -1296,9 +1279,8 @@ msgid "Set up gamma:"
 msgstr "Ορισμός γάμμα:"
 
 #: ../Xgamma/src/applet-xgamma.c:283
-#, fuzzy
 msgid "Luminosity"
-msgstr "Φωτεινότητα οθόνης"
+msgstr ""
 
 #: ../alsaMixer/src/applet-init.c:34
 msgid ""
@@ -1486,8 +1468,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1795,7 +1777,8 @@ msgstr ""
 "Απλώς πατήστε CTRL+v για να επικολλήσετε το URL του οπουδήποτε."
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Παρακαλώ περιμένετε για το τρέχον ανέβασμα να τελειώσει πριν ξεκινήσετε "
 "καινούριο."
@@ -2637,9 +2620,8 @@ msgid "Re-check interface"
 msgstr "Επανέλεγχος διεπαφής"
 
 #: ../powermanager/src/powermanager-draw.c:133
-#, fuzzy
 msgid "Charge"
-msgstr "φόρτιση"
+msgstr "Φόρτιση"
 
 #: ../powermanager/src/powermanager-draw.c:192
 msgid ""
@@ -2858,8 +2840,8 @@ msgstr "εμφάνιση ποντικιού"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Αυτό το πρόσθετο σχεδιάζει μερικά κινούμενα εφέ γύρω από το δρομέα όταν "
 "βρίσκεται μέσα σε ένα dock/desklet."
@@ -2899,9 +2881,8 @@ msgstr "Εμφάνιση της επιφάνειας εργασίας"
 #: ../showDesktop/src/applet-notifications.c:164
 #: ../switcher/src/applet-notifications.c:315 ../showDesktop/data/messages:115
 #: ../showDesktop/data/messages:129 ../switcher/data/messages:111
-#, fuzzy
 msgid "Expose all the desktops"
-msgstr "Εμφάνιση όλων των επιφανειών εργασίας (Compiz)"
+msgstr "Εμφάνιση όλων των επιφανειών εργασίας"
 
 #: ../showDesktop/src/applet-notifications.c:171
 #: ../showDesktop/src/applet-notifications.c:173
@@ -3035,14 +3016,12 @@ msgid "Remove this item"
 msgstr "Αφαίρεση του αντικειμένου"
 
 #: ../stack/src/applet-notifications.c:259
-#, fuzzy
 msgid "The file has been added to the stack."
-msgstr "Το άρθρωμα προστέθηκε αλλά δεν ήταν δυνατόν να εκκινηθεί."
+msgstr ""
 
 #: ../stack/src/applet-notifications.c:260
-#, fuzzy
 msgid "The URL has been added to the stack."
-msgstr "Το άρθρωμα προστέθηκε αλλά δεν ήταν δυνατόν να εκκινηθεί."
+msgstr ""
 
 #: ../switcher/src/applet-draw.c:618 ../switcher/src/applet-draw.c:625
 #: ../switcher/src/applet-load-icons.c:43
@@ -3113,9 +3092,8 @@ msgid "Windows List"
 msgstr "Λίστα παραθύρων"
 
 #: ../switcher/src/applet-notifications.c:324 ../switcher/data/messages:113
-#, fuzzy
 msgid "Expose all the windows"
-msgstr "Εμφάνιση όλων των επιφανειών εργασίας (Compiz)"
+msgstr "Εμφάνιση όλων των παραθύρων"
 
 #: ../systray/src/systray-init.c:35
 msgid ""
@@ -3132,9 +3110,8 @@ msgstr ""
 "το dock και να το βάλετε αλλού, πάνω από άλλα παράθυρα."
 
 #: ../systray/src/systray-init.c:41
-#, fuzzy
 msgid "Notification Area Old"
-msgstr "Ειδοποίηση"
+msgstr ""
 
 #: ../systray/src/systray-interface.c:71
 msgid ""
@@ -3307,20 +3284,16 @@ msgstr ""
 " Είναι η σύνδεση ενεργή;"
 
 #: ../weather/src/applet-config.c:126
-#, fuzzy
 msgid "Couldn't get the location code (is connection alive?)"
-msgstr ""
-"Αδυναμία λήψης πληροφοριών\n"
-" Είναι η σύνδεση ενεργή;"
+msgstr "Αδυναμία λήψης του κώδικα της τοποθεσίας (υπάρχει σύνδεση;)"
 
 #: ../weather/src/applet-config.c:134
 msgid "I couldn't find this location"
 msgstr "Αδυναμία εύρεσης τοποθεσίας"
 
 #: ../weather/src/applet-config.c:185
-#, fuzzy
 msgid "Searching the location code..."
-msgstr "Αναζήτηση της τοποθεσίας σας :"
+msgstr "Αναζήτηση του κώδικα της τοποθεσίας…"
 
 #: ../weather/src/applet-config.c:209
 msgid ""
@@ -3452,7 +3425,8 @@ msgstr "Δύση"
 
 #: ../weather/src/applet-notifications.c:175
 msgid "Data are being fetched, please re-try in a few seconds."
-msgstr "Δεδομένα ανακτούνται, παρακαλώ προσπαθήστε ξανά σε λίγα δευτερόλεπτα."
+msgstr ""
+"Δεδομένα ανακτούνται, παρακαλώ προσπαθήστε ξανά σε λίγα δευτερόλεπτα."
 
 #: ../weather/src/applet-notifications.c:185
 msgid ""
@@ -5262,7 +5236,8 @@ msgid "Background"
 msgstr "Παρασκήνιο"
 
 #: ../Doncky/data/messages:121 ../RSSreader/data/messages:185
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Μπορείτε να έχετε πιο ελκυστικά παρασκήνια χρησιμοποιώντας τους διάκοσμους "
 "των Desklet"
@@ -5424,8 +5399,8 @@ msgstr ""
 msgid ""
 "Animation of the icon when one of the application demands your attention :"
 msgstr ""
-"Εφέ κίνησης στο εικονίδιο όταν μία από τις εφαρμογές απαιτεί την προσοχή "
-"σας :"
+"Εφέ κίνησης στο εικονίδιο όταν μία από τις εφαρμογές απαιτεί την προσοχή σας "
+":"
 
 #: ../Network-Monitor/data/messages:7
 msgid "Leave empty to use the connection name."
@@ -5783,19 +5758,16 @@ msgid ""
 "left-click.. Negative values are counted from the right/bottom of the screen"
 msgstr ""
 "Ανάλογα με τον διαχειριστή παραθύρων, μπορεί να είναι δυνατόν να το "
-"μετακινήσετε με ALT + αριστερό κλικ. Αρνητικές τιμές μετρώνται από τα δεξιά/"
-"κάτω της οθόνης"
+"μετακινήσετε με ALT + αριστερό κλικ. Αρνητικές τιμές μετρώνται από τα "
+"δεξιά/κάτω της οθόνης"
 
 #: ../Recent-Events/data/messages:97
-#, fuzzy
 msgid "Shortkey to show/hide the search dialog"
-msgstr ""
-"Πλήκτρο συντόμευσης για εμφάνιση/απόκρυψη του διαλόγου γρήγορης εκκίνησης:"
+msgstr "Συντόμευση για εμφάνιση/απόκρυψη του διαλόγου αναζήτησης"
 
 #: ../Recent-Events/data/messages:99
-#, fuzzy
 msgid "Max number of results to show"
-msgstr "Μέγιστος αριθμός αποτελεσμάτων :"
+msgstr "Μέγιστος αριθμός εμφανιζόμενων αποτελεσμάτων"
 
 #: ../Remote-Control/data/messages:3
 msgid "Shortkey to trigger the applet:"
@@ -6024,18 +5996,16 @@ msgid "Compact"
 msgstr ""
 
 #: ../Status-Notifier/data/messages:101
-#, fuzzy
 msgid "Sub-dock"
-msgstr "Προβολή Sub-Dock"
+msgstr ""
 
 #: ../Status-Notifier/data/messages:103
 msgid "Allow the icon to automatically resize itself?"
 msgstr ""
 
 #: ../Status-Notifier/data/messages:105
-#, fuzzy
 msgid "Number of lines to pack items in:"
-msgstr "Αριθμός γραμμών για εμφάνιση:"
+msgstr ""
 
 #: ../System-Monitor/data/messages:119 ../powermanager/data/messages:123
 msgid "It's the colour of the graphic for high values."
@@ -6221,9 +6191,8 @@ msgid "High refresh frequency?"
 msgstr "Υψηλή συχνότητα ανανέωσης;"
 
 #: ../Xgamma/data/messages:7
-#, fuzzy
 msgid "Leave empty to display the current luminosity."
-msgstr "Αφήστε κενό για χρήση του προεπιλεγμένου εικονιδίου."
+msgstr "Αφήστε κενό για εμφάνιση της τρέχουσας φωτεινότητας."
 
 #: ../Xgamma/data/messages:99 ../alsaMixer/data/messages:115
 msgid "Variation for 1 mouse scroll, in %:"
@@ -6309,7 +6278,8 @@ msgstr "Εικονίδιο σίγασης:"
 
 #: ../clock/data/messages:7
 msgid "Leave empty to use the location name if available."
-msgstr "Αφήστε κενό για χρήση του ονόματος της τοποθεσίας αν είναι διαθέσιμο."
+msgstr ""
+"Αφήστε κενό για χρήση του ονόματος της τοποθεσίας αν είναι διαθέσιμο."
 
 #: ../clock/data/messages:99
 msgid "Show the date:"
@@ -6779,7 +6749,8 @@ msgstr "Ιστότοποι"
 
 #: ../dnd2share/data/messages:129
 msgid "Use files hosting site for any kind of files?"
-msgstr "Χρήση του ιστότοπου φιλοξενίας αρχείων για οποιοδήποτε είδος αρχείων;"
+msgstr ""
+"Χρήση του ιστότοπου φιλοξενίας αρχείων για οποιοδήποτε είδος αρχείων;"
 
 #: ../dnd2share/data/messages:131
 msgid "Preferred site for texts hosting :"
@@ -6791,23 +6762,20 @@ msgid "Custom"
 msgstr "Προσαρμοσμένο"
 
 #: ../dnd2share/data/messages:135
-#, fuzzy
 msgid "Pastebin.com"
-msgstr "Pastebin.ca"
+msgstr "Pastebin.com"
 
 #: ../dnd2share/data/messages:137
-#, fuzzy
 msgid "Paste-ubuntu.com"
-msgstr "Pastebin.ca"
+msgstr "Paste-ubuntu.com"
 
 #: ../dnd2share/data/messages:139
-#, fuzzy
 msgid "Pastebin.mozilla.org"
-msgstr "Pastebin.ca"
+msgstr "Pastebin.mozilla.org"
 
 #: ../dnd2share/data/messages:141
 msgid "Codepad.org"
-msgstr ""
+msgstr "Codepad.org"
 
 #: ../dnd2share/data/messages:143
 msgid "Preferred site for images hosting :"
@@ -6847,7 +6815,7 @@ msgstr "DropBox"
 
 #: ../dnd2share/data/messages:167
 msgid "UbuntuOne"
-msgstr ""
+msgstr "UbuntuOne"
 
 #: ../dnd2share/data/messages:169 ../dnd2share/data/messages:173
 #: ../dnd2share/data/messages:177 ../dnd2share/data/messages:181
@@ -6916,7 +6884,8 @@ msgstr "Εύρος της καμπύλης:"
 
 #: ../dock-rendering/data/messages:19
 msgid "At 1, the icons will have the same size as in other views."
-msgstr "Στο 1, τα εικονίδια θα έχουν το ίδιο μέγεθος όπως στις άλλες προβολές."
+msgstr ""
+"Στο 1, τα εικονίδια θα έχουν το ίδιο μέγεθος όπως στις άλλες προβολές."
 
 #: ../dock-rendering/data/messages:21
 msgid "Ratio to apply on icons' size :"
@@ -6944,22 +6913,19 @@ msgstr "Διάστημα μεταξύ των γραμμών:"
 
 #: ../dock-rendering/data/messages:35
 msgid "Only for sub-docks."
-msgstr ""
+msgstr "Μόνο για sub-dock."
 
 #: ../dock-rendering/data/messages:37
-#, fuzzy
 msgid "Maximum size of the dock:"
-msgstr "Σχετικό μέγεθος κειμένου :"
+msgstr "Μέγστο μέγεθος του dock:"
 
 #: ../dock-rendering/data/messages:39
-#, fuzzy
 msgid "Small"
-msgstr "μικρό"
+msgstr "Μικρό"
 
 #: ../dock-rendering/data/messages:41
-#, fuzzy
 msgid "Full screen"
-msgstr "Κλείδωμα οθόνης"
+msgstr "Πλήρης οθόνη"
 
 #: ../dock-rendering/data/messages:43
 msgid "Zoom when mouse hovers an icon:"
@@ -7084,7 +7050,8 @@ msgid "Space between icons:"
 msgstr "Διάστημα μεταξύ των εικονιδίων:"
 
 #: ../dock-rendering/data/messages:115
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "Το 0 αντιπροσωπεύει ένα επίπεδο κύμα, το 1 σημαίνει ότι το κύμα είναι ίδιο "
 "με τις άλλες προβολές."
@@ -7220,7 +7187,8 @@ msgid "Colours"
 msgstr "Χρώματα"
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 "Αυτό θα αλλάξει ελαφρά τα χρώματά σας, έτσι μπορεί να χρειασθεί να τα "
 "τροποποιήσετε."
@@ -7434,8 +7402,8 @@ msgid ""
 "accounts you want."
 msgstr ""
 "Αν έχετε πρόβλημα με τη μικροεφαρμογή, αποεπιλέξτε αυτή την επιλογή κατά τη "
-"λειτουργία συντήρησης, μετά αφού επανεκκινηθεί το dock, αφαιρέστε/"
-"τροποποιήστε τους λογαριασμούς αλληλογραφίας που επιθυμείτε."
+"λειτουργία συντήρησης, μετά αφού επανεκκινηθεί το dock, "
+"αφαιρέστε/τροποποιήστε τους λογαριασμούς αλληλογραφίας που επιθυμείτε."
 
 #: ../mail/data/messages:95
 msgid "Check mail account on startup?"
@@ -7450,7 +7418,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Όνομα του αρχείου για την εικόνα «υπάρχουν μηνύματα» :"
 
 #: ../mail/data/messages:109
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Αν επιλεγεί, θα εμφανίζεται ο αριθμός μηνυμάτων ακόμα και αν δεν υπάρχουν "
 "μηνύματα."
@@ -7501,7 +7470,8 @@ msgstr "για παράδειγμα \"thunderbird\" ή \"firefox mail.google.com
 
 #: ../mail/data/messages:143
 msgid "Preferred mail application to launch on left-click :"
-msgstr "Προτιμώμενη εφαρμογή αλληλογραφίας που θα εκκινείται με αριστερό κλικ:"
+msgstr ""
+"Προτιμώμενη εφαρμογή αλληλογραφίας που θα εκκινείται με αριστερό κλικ:"
 
 #: ../mail/data/messages:145
 msgid "Add a mail account (you've to launch the applet)"
@@ -7510,7 +7480,8 @@ msgstr ""
 
 #: ../mail/data/messages:147
 msgid "The new account will be created with the specified type and name."
-msgstr "Ο νέος λογαριασμός θα δημιουργηθεί με την καθορισμένη μορφή και όνομα."
+msgstr ""
+"Ο νέος λογαριασμός θα δημιουργηθεί με την καθορισμένη μορφή και όνομα."
 
 #: ../mail/data/messages:149
 msgid "Add an account with specified type and name:"
@@ -7525,7 +7496,8 @@ msgid "Blur amount:"
 msgstr "Ποσότητα θολώματος;"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 "Αφήστε κενό για να εμφανίζεται το όνομα του παίκτη που ελέγχετε κάθε στιγμή."
 
@@ -7714,9 +7686,8 @@ msgid "Display rate values :"
 msgstr "Εμφάνιση τιμών ταχύτητας :"
 
 #: ../powermanager/data/messages:7
-#, fuzzy
 msgid "Leave empty to display the current status information."
-msgstr "Αφήστε κενό για να χρησιμοποιήσετε την προεπιλεγμένη εντολή."
+msgstr "Αφήστε κενό για εμφάνιση των πληροφοριών τρέχουσας κατάστασης."
 
 #: ../powermanager/data/messages:9
 msgid "Icon name:"
@@ -7743,14 +7714,12 @@ msgid "charge"
 msgstr "φόρτιση"
 
 #: ../powermanager/data/messages:165
-#, fuzzy
 msgid "Timelength"
-msgstr "Διάρκεια"
+msgstr "Χρονική διάρκεια"
 
 #: ../powermanager/data/messages:169
-#, fuzzy
 msgid "Emblem icon's filename when on charge:"
-msgstr "Όνομα αρχείου εικονιδίου όταν φορτίζει :"
+msgstr ""
 
 #: ../powermanager/data/messages:171
 msgid "Notification"
@@ -8081,9 +8050,8 @@ msgid "Choose a background colour :"
 msgstr "Επιλογή χρώματος παρασκηνίου :"
 
 #: ../slider/data/messages:173
-#, fuzzy
 msgid "Frame width:"
-msgstr "Πλάτος κύματος:"
+msgstr "Πλάτος πλαισίου:"
 
 #: ../slider/data/messages:175
 msgid "Gives better image rendering."
@@ -8387,8 +8355,8 @@ msgid ""
 msgstr ""
 "Γράψτε τη μορφή ημερομηνίας που χρησιμοποιείτε συνήθως στις σημειώσεις σας. "
 "Το συντακτικό είναι αυτό του 'strftime' : %d για την ημέρα, %m για το μήνα, "
-"%y για το έτος (2 ψηφία), κλπ. Αφήστε το κενό για χρήση της προεπιλογής (%d/"
-"%m/%y)."
+"%y για το έτος (2 ψηφία), κλπ. Αφήστε το κενό για χρήση της προεπιλογής "
+"(%d/%m/%y)."
 
 #: ../tomboy/data/messages:143
 msgid "Date format to search for :"
@@ -8416,7 +8384,8 @@ msgstr "Αφήστε κενό για χρήση του ονόματος της �
 
 #: ../weather/data/messages:97
 msgid "Enter the name of your location in the text entry and press Enter."
-msgstr "Εισάγετε το όνομα της τοποθεσίας στο πεδίο κειμένου και πατήστε Enter."
+msgstr ""
+"Εισάγετε το όνομα της τοποθεσίας στο πεδίο κειμένου και πατήστε Enter."
 
 #: ../weather/data/messages:99
 msgid "Code for your location:"
@@ -8487,7 +8456,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Θέση της γραμμής κάθετης κύλισης"
 
 #: ../weblets/data/messages:109
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Αυτό σας επιτρέπει να κάνετε δεξί κλικ στο desklet για να αναδυθεί το μενού "
 "του Cairo-Dock."
@@ -8578,51 +8548,6 @@ msgid "Overwrite the default label with the connection point name?"
 msgstr ""
 "Αντικατάσταση της προεπιλεγμένης ετικέτας με το όνομα του σημείου σύνδεσης;"
 
-#, fuzzy
-#~ msgid "Applet's handbook"
-#~ msgstr "Εγχειρίδιο μικροεφαρμογής"
-
-#~ msgid "Status Notifier"
-#~ msgstr "Ειδοποίηση κατάστασης"
-
-#~ msgid "systray"
-#~ msgstr "systray"
-
-#~ msgid "Display items in compact mode?"
-#~ msgstr "Εμφάνιση αντικειμένων σε συμπτυγμένη κατάσταση;"
-
-#~ msgid "Colour of the margin :"
-#~ msgstr "Χρώμα περιθωρίου :"
-
-#~ msgid "About this applet"
-#~ msgstr "Περί αυτής της μικροεφαρμογής"
-
-#~ msgid ""
-#~ "Couldn't upload the file, check that your internet connexion is active."
-#~ msgstr ""
-#~ "Αδυναμία φόρτωσης του αρχείου, ελέγξτε ότι η σύνδεσή σας με το διαδίκτυο "
-#~ "είναι ενεργή."
-
-#~ msgid "You need to run Compiz and activate its 'DBus' plug-in."
-#~ msgstr ""
-#~ "Πρέπει να εκτελέσετε το Compiz και να ενεργοποιήσετε το πρόσθετο 'DBus'."
-
-#~ msgid "Icon name for busy penguin:"
-#~ msgstr "Όνομα εικονιδίου για απασχολημένο πιγκουΐνο:"
-
-#~ msgid "Let extern applications register new module?"
-#~ msgstr "Να επιτρέπεται στις εξωτερικές εφαρμογές να καταχωρούν νέο άρθρωμα;"
-
-#~ msgid ""
-#~ "If you write here a container's name that doesn't exist yet, a new one "
-#~ "will be created, with this icon inside."
-#~ msgstr ""
-#~ "Αν γράψετε εδώ ένα όνομα περιέκτη που δεν υπάρχει ακόμη, θα δημιουργηθεί "
-#~ "ένας καινούριος, με αυτό το εικονίδιο μέσα."
-
-#~ msgid "Default title:"
-#~ msgstr "Προεπιλεγμένος τίτλος:"
-
 #~ msgid "You shall not pass !"
 #~ msgstr "Δεν θα γίνει το δικό σου!"
 
@@ -8651,8 +8576,8 @@ msgstr ""
 #~ "Add a lively Penguin in your dock!\n"
 #~ "Left click to change the animation,\n"
 #~ "Middle-click to annoy him ^_^\n"
-#~ "Tux images are taken from Pingus, some other characters are available or "
-#~ "can be added easily."
+#~ "Tux images are taken from Pingus, some other characters are available or can "
+#~ "be added easily."
 #~ msgstr ""
 #~ "Προσθέστε έναν ζωηρό πιγκουίνο στο dock σας!\n"
 #~ "Αριστερό κλικ για αλλαγή της κινούμενης απεικόνισης.\n"
@@ -8660,17 +8585,29 @@ msgstr ""
 #~ "Οι εικόνες του Tux πάρθηκαν από το Pingus, ενώ άλλοι χαρακτήρες είναι "
 #~ "διαθέσιμοι ή μπορούν πολύ εύκολα να προστεθούν."
 
+#~ msgid "About this applet"
+#~ msgstr "Περί αυτής της μικροεφαρμογής"
+
 #~ msgid "Open the folder (middle-click)"
 #~ msgstr "Άνοιγμα του φακέλου (μεσαίο-κλικ)"
 
 #~ msgid "Quick launch (Middle-click)"
 #~ msgstr "Γρήγορη εκκίνηση (Μεσαίο κλικ)"
 
+#~ msgid "Status Notifier"
+#~ msgstr "Ειδοποίηση κατάστασης"
+
 #~ msgid "Unmute (middle-click)"
 #~ msgstr "Άρση σίγασης (μεσαίο κλικ)"
 
 #~ msgid "Mute (middle-click)"
 #~ msgstr "Σίγαση (μεσαίο κλικ)"
+
+#~ msgid ""
+#~ "Couldn't upload the file, check that your internet connexion is active."
+#~ msgstr ""
+#~ "Αδυναμία φόρτωσης του αρχείου, ελέγξτε ότι η σύνδεσή σας με το διαδίκτυο "
+#~ "είναι ενεργή."
 
 #~ msgid "Empty Trash (middle-click)"
 #~ msgstr "Άδειασμα απορριμμάτων (μεσαίο κλικ)"
@@ -8690,6 +8627,10 @@ msgstr ""
 #~ msgid "Mount (middle-click)"
 #~ msgstr "Προσάρτηση (μεσαίο κλικ)"
 
+#~ msgid "You need to run Compiz and activate its 'DBus' plug-in."
+#~ msgstr ""
+#~ "Πρέπει να εκτελέσετε το Compiz και να ενεργοποιήσετε το πρόσθετο 'DBus'."
+
 #~ msgid "Copy (middle click)"
 #~ msgstr "Αντιγραφή (μεσαίο κλικ)"
 
@@ -8702,11 +8643,29 @@ msgstr ""
 #~ msgid "Clean local directory"
 #~ msgstr "Εκκαθάριση τοπικού καταλόγου"
 
+#~ msgid "Expose all the desktops (Compiz)"
+#~ msgstr "Εμφάνιση όλων των επιφανειών εργασίας (Compiz)"
+
+#~ msgid "systray"
+#~ msgstr "systray"
+
+#~ msgid "Icon name for busy penguin:"
+#~ msgstr "Όνομα εικονιδίου για απασχολημένο πιγκουΐνο:"
+
+#~ msgid "Let extern applications register new module?"
+#~ msgstr "Να επιτρέπεται στις εξωτερικές εφαρμογές να καταχωρούν νέο άρθρωμα;"
+
+#~ msgid "Display items in compact mode?"
+#~ msgstr "Εμφάνιση αντικειμένων σε συμπτυγμένη κατάσταση;"
+
 #~ msgid "Notification when graphic card temperature is high?"
 #~ msgstr "Ειδοποίηση όταν η θερμοκρασία της κάρτας γραφικών είναι υψηλή;"
 
 #~ msgid "in ms."
 #~ msgstr "σε ms."
+
+#~ msgid "Leave empty to use the defaut command."
+#~ msgstr "Αφήστε κενό για να χρησιμοποιήσετε την προεπιλεγμένη εντολή."
 
 #~ msgid "Show Desktop"
 #~ msgstr "Εμφάνιση επιφάνειας εργασίας"
@@ -8722,6 +8681,12 @@ msgstr ""
 
 #~ msgid "Colour of the plane's line :"
 #~ msgstr "Χρώμα της γραμμής του επιπέδου :"
+
+#~ msgid "Colour of the margin :"
+#~ msgstr "Χρώμα περιθωρίου :"
+
+#~ msgid "Pastebin.ca"
+#~ msgstr "Pastebin.ca"
 
 #~ msgid "SimpleSlide"
 #~ msgstr "SimpleSlide"
@@ -8748,26 +8713,25 @@ msgstr ""
 #~ "Μπορείτε να ανεβάσετε κείμενο, εικόνες, βίντεο και αρχεία.\n"
 #~ "Η URL που προκύπτει αποθηκεύεται αυτόματα στο πρόχειρο για να επικολληθεί "
 #~ "απευθείας με χρήση του CTRL+v.\n"
-#~ "Μπορεί να κρατήσει ιστορικό των τελευταίων φορτώσεων που κάνατε και να "
-#~ "τις ανακτήσεις χωρίς κανένα λογαριασμό.\n"
+#~ "Μπορεί να κρατήσει ιστορικό των τελευταίων φορτώσεων που κάνατε και να τις "
+#~ "ανακτήσεις χωρίς κανένα λογαριασμό.\n"
 #~ "Θα χρειαστεί να εγκαταστήσετε τα 'curl' και 'wget' για να ανεβάσετε τα "
 #~ "δεδομένα."
 
 #~ msgid ""
 #~ "Add a systray to your dock.\n"
-#~ "Left-click to show the systray in a dialog (you can bind a keyboard "
-#~ "shortcut for it.)\n"
+#~ "Left-click to show the systray in a dialog (you can bind a keyboard shortcut "
+#~ "for it.)\n"
 #~ "Middle-click to close the dalog.\n"
 #~ "But the best way to use it id to detach it from the dock, and place it "
 #~ "somewhere, above other windows."
 #~ msgstr ""
 #~ "Προσθέστε ένα systray στο dock σας.\n"
-#~ "Με αριστερό κλικ εμφανίζεται το systray σε ένα παράθυρο διαλόγου "
-#~ "(μπορείτε να ορίσετε συντόμευση πληκτρολογίου).\n"
+#~ "Με αριστερό κλικ εμφανίζεται το systray σε ένα παράθυρο διαλόγου (μπορείτε "
+#~ "να ορίσετε συντόμευση πληκτρολογίου).\n"
 #~ "Μεσαίο κλικ κλείνει το παράθυρο.\n"
-#~ "Αλλά ο καλύτερος τρόπος για να το χρησιμοποιήσετε είναι να το "
-#~ "αποσυνδέσετε από το dock και να το τοποθετήσετε κάπου, πάνω από τα άλλα "
-#~ "παράθυρα."
+#~ "Αλλά ο καλύτερος τρόπος για να το χρησιμοποιήσετε είναι να το αποσυνδέσετε "
+#~ "από το dock και να το τοποθετήσετε κάπου, πάνω από τα άλλα παράθυρα."
 
 #~ msgid ""
 #~ "Add a terminal to your dock !\n"
@@ -8780,15 +8744,17 @@ msgstr ""
 #~ "To close a tab : type 'CTRL+w' or middle-click on it."
 #~ msgstr ""
 #~ "Προσθέστε ένα τερματικό στο dock σας!\n"
-#~ "Αριστερό/μεσαίο κλικ εμφανίζει/αποκρύπτει το τερματικό (μπορείτε να "
-#~ "ορίσετε συντόμευση πληκτρολογίου).\n"
+#~ "Αριστερό/μεσαίο κλικ εμφανίζει/αποκρύπτει το τερματικό (μπορείτε να ορίσετε "
+#~ "συντόμευση πληκτρολογίου).\n"
 #~ "Μπορείτε να σύρετε και αφήσετε αρχεία ή κείμενο και να επιλέξετε μια "
 #~ "ενέργεια.\n"
 #~ "Μπορείτε να ανοίξετε πολλές καρτέλες, να τις μετονομάσετε, να αλλάξετε το "
 #~ "χρώμα τους (δεξί κλικ σε μια καρτέλα για να αλληλεπιδράσετε με αυτή)\n"
-#~ "Άνοιγμα νέας καρτέλας : 'CTRL+t' ή διπλό κλικ δίπλα στην τελευταία "
-#~ "καρτέλα\n"
+#~ "Άνοιγμα νέας καρτέλας : 'CTRL+t' ή διπλό κλικ δίπλα στην τελευταία καρτέλα\n"
 #~ "Κλείσιμο καρτέλας : 'CTRL+w' ή μεσαίο κλικ σε αυτή."
+
+#~ msgid "Sub-Dock view"
+#~ msgstr "Προβολή Sub-Dock"
 
 #~ msgid "Invert buttons?"
 #~ msgstr "Αντιστροφή κουμπιών;"
@@ -8830,8 +8796,7 @@ msgstr ""
 #~ msgstr "Ενέργεια όταν γίνει κλικ στη μικροεφαρμογή:"
 
 #~ msgid ""
-#~ "This option with large files lists can slow down the dock, use it "
-#~ "properly."
+#~ "This option with large files lists can slow down the dock, use it properly."
 #~ msgstr ""
 #~ "Αυτή η επιλογή με λίστες μεγάλων αρχείων μπορεί να επιβραδύνει το dock, "
 #~ "χρησιμοποιήστε τη κατάλληλα."
@@ -8854,12 +8819,10 @@ msgstr ""
 
 #~ msgid ""
 #~ "You can use '_LocalDirectory_' tag to have both stack local and all "
-#~ "monitored directories. Ensure 'Use only Stacks local directory' is "
-#~ "unticked."
+#~ "monitored directories. Ensure 'Use only Stacks local directory' is unticked."
 #~ msgstr ""
-#~ "Μπορείτε να χρησιμοποιήσετε την ετικέτα '_LocalDirectory_' για να έχετε "
-#~ "και τους τοπικούς και όλους τους παρακολουθούμενους καταλόγους της "
-#~ "στοίβας."
+#~ "Μπορείτε να χρησιμοποιήσετε την ετικέτα '_LocalDirectory_' για να έχετε και "
+#~ "τους τοπικούς και όλους τους παρακολουθούμενους καταλόγους της στοίβας."
 
 #~ msgid "Monitored Directories :"
 #~ msgstr "Παρακολουθούμενοι κατάλογοι :"
@@ -8872,3 +8835,16 @@ msgstr ""
 
 #~ msgid "Name of the view used for the sub-dock :"
 #~ msgstr "Όνομα προβολής που χρησιμοποιείται για το sub-dock:"
+
+#~ msgid "Default title:"
+#~ msgstr "Προεπιλεγμένος τίτλος:"
+
+#~ msgid ""
+#~ "If you write here a container's name that doesn't exist yet, a new one will "
+#~ "be created, with this icon inside."
+#~ msgstr ""
+#~ "Αν γράψετε εδώ ένα όνομα περιέκτη που δεν υπάρχει ακόμη, θα δημιουργηθεί "
+#~ "ένας καινούριος, με αυτό το εικονίδιο μέσα."
+
+#~ msgid "Applet's handbook"
+#~ msgstr "Εγχειρίδιο μικροεφαρμογής"

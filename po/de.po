@@ -8,15 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2011-02-28 12:25+0000\n"
-"Last-Translator: Fabounet <fabounet03@gmail.com>\n"
+"POT-Creation-Date: 2011-04-15 00:27+0000\n"
+"PO-Revision-Date: 2011-04-12 19:03+0000\n"
+"Last-Translator: icyfeet <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-03-01 04:53+0000\n"
-"X-Generator: Launchpad (build 12351)\n"
+"X-Launchpad-Export-Date: 2011-04-16 05:13+0000\n"
+"X-Generator: Launchpad (build 12735)\n"
+"Language: de\n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -251,7 +252,8 @@ msgstr "Das Modul wurde hinzugefügt, konnte aber nicht gestartet werden."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "Das Applet '%s' wurde erfolgreich aktualisiert und automatisch neu geladen."
 
@@ -346,9 +348,8 @@ msgstr ""
 "  - Mit dem mittleren Maustasten werden die Werte neu geladen"
 
 #: ../Doncky/src/applet-notifications.c:215
-#, fuzzy
 msgid "It doesn't seem to be a valid XML file."
-msgstr "Die URL scheint nicht gültig zu sein."
+msgstr ""
 
 #: ../Folders/src/applet-init.c:29
 msgid "Folders"
@@ -496,32 +497,28 @@ msgid "Create a new folder"
 msgstr "Neuen Ordner erstellen"
 
 #: ../Folders/src/applet-notifications.c:417
-#, fuzzy
 msgid "Sort by"
-msgstr "Sortiere Einträge nach :"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:418
-#, fuzzy
 msgid "By name"
-msgstr "Datei"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:419
 msgid "By date"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:420
-#, fuzzy
 msgid "By size"
-msgstr "Strahlengröße"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:421
 msgid "By type"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:459
-#, fuzzy
 msgid "The folder has been imported."
-msgstr "Verbindung zum Netzwerk wurde getrennt."
+msgstr ""
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -864,61 +861,52 @@ msgid "Open parent folder"
 msgstr "Eltern-Ordner öffnen"
 
 #: ../Recent-Events/src/applet-dialog.c:282
-#, fuzzy
 msgid "Copy the location"
-msgstr "Ort öffnen"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:284
-#, fuzzy
 msgid "Delete this event"
-msgstr "Diese Notiz löschen"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:357
 msgid "All"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:358
-#, fuzzy
 msgid "Document"
-msgstr "Zuletzt geöffnete Dokumente"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:360
-#, fuzzy
 msgid "Image"
-msgstr "Bilder"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:361
 msgid "Audio"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:362
-#, fuzzy
 msgid "Video"
-msgstr "Video-RAM"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:363
-#, fuzzy
 msgid "Web"
-msgstr "Februar"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:364
-#, fuzzy
 msgid "Other"
-msgstr "Wetter"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:365
-#, fuzzy
 msgid "Top Results"
-msgstr "Kein Ergebnis"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:371
 msgid "Look for events"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:421
-#, fuzzy
 msgid "File name"
-msgstr "Datei"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:428
 msgid "Last access"
@@ -929,9 +917,8 @@ msgid "Browse and search in recent events"
 msgstr ""
 
 #: ../Recent-Events/src/applet-init.c:28
-#, fuzzy
 msgid "Recent-Events"
-msgstr "Zuletzt geöffnete Dokumente"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:74
 #, c-format
@@ -944,14 +931,12 @@ msgid "Recent files"
 msgstr "Zuletzt verwendete Dateien"
 
 #: ../Recent-Events/src/applet-notifications.c:154
-#, fuzzy
 msgid "Delete today's events"
-msgstr "Diese Aufgabe löschen"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:156
-#, fuzzy
 msgid "Delete all events"
-msgstr "Lösche alle"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
@@ -1103,9 +1088,8 @@ msgid ""
 msgstr ""
 
 #: ../Status-Notifier/src/applet-init.c:38
-#, fuzzy
 msgid "Notification Area"
-msgstr "Benachrichtigung"
+msgstr ""
 
 #: ../System-Monitor/src/applet-cpusage.c:57
 msgid "Uptime"
@@ -1266,9 +1250,8 @@ msgid "Screen Luminosity"
 msgstr "Bildschirmhelligkeit"
 
 #: ../Xgamma/src/applet-notifications.c:89
-#, fuzzy
 msgid "Set up gamma correction"
-msgstr "Verwalten der Gamme-Einstellung:"
+msgstr ""
 
 #: ../Xgamma/src/applet-notifications.c:94
 msgid "Apply current luminosity on startup"
@@ -1279,9 +1262,8 @@ msgid "Set up gamma:"
 msgstr "Verwalten der Gamme-Einstellung:"
 
 #: ../Xgamma/src/applet-xgamma.c:283
-#, fuzzy
 msgid "Luminosity"
-msgstr "Bildschirmhelligkeit"
+msgstr ""
 
 #: ../alsaMixer/src/applet-init.c:34
 msgid ""
@@ -1469,8 +1451,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1782,7 +1764,8 @@ msgstr ""
 "Drücken Sie Strg+v um die URL irgendwo einzufügen."
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Bitte beginnen Sie erst mit einem neuen Upload, wen der Aktuelle beendet ist."
 
@@ -2018,7 +2001,7 @@ msgstr "Zeigt ihnen Informationen über den Papierkorb an"
 #: ../dustbin/src/applet-notifications.c:156
 #, c-format
 msgid "%s successfully unmounted"
-msgstr "%s ist nun ausgehangen"
+msgstr "%s ist jetzt ausgehängt"
 
 #: ../dustbin/src/applet-notifications.c:160
 #, c-format
@@ -2179,7 +2162,8 @@ msgstr ""
 
 #: ../logout/src/applet-notifications.c:138
 msgid "Choose in how many minutes your PC will stop:"
-msgstr "Wählen Sie aus, in wieviel Minuten Ihr Computer heruntergefahren wird:"
+msgstr ""
+"Wählen Sie aus, in wieviel Minuten Ihr Computer heruntergefahren wird:"
 
 #: ../logout/src/applet-notifications.c:167
 #: ../logout/src/applet-notifications.c:169 ../logout/data/messages:101
@@ -2610,9 +2594,8 @@ msgid "Re-check interface"
 msgstr "Kontrolliere die Schnittstelle noch einmal"
 
 #: ../powermanager/src/powermanager-draw.c:133
-#, fuzzy
 msgid "Charge"
-msgstr "laden"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:192
 msgid ""
@@ -2669,7 +2652,8 @@ msgstr "Energieverwaltung"
 
 #: ../powermanager/src/powermanager-init.c:34
 msgid "A power manager for laptop batteries. Works with ACPI and DBus."
-msgstr "Ein Energiemanage für Laptopbatterien. Funktioniert mit ACPI und DBus."
+msgstr ""
+"Ein Energiemanage für Laptopbatterien. Funktioniert mit ACPI und DBus."
 
 #: ../powermanager/src/powermanager-menu-functions.c:55
 msgid "Set up power management"
@@ -2740,7 +2724,7 @@ msgstr "%s wurde verbunden"
 #: ../shortcuts/src/applet-drives.c:204
 #, c-format
 msgid "%s is now unmounted"
-msgstr "%s ist nun ausgehangen"
+msgstr "%s ist jetzt ausgehängt"
 
 #: ../shortcuts/src/applet-init.c:32
 msgid "shortcuts"
@@ -2831,8 +2815,8 @@ msgstr "zeige Maus"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Dieses Plugin zeichnet Animationen um den Mauszeiger, wenn er sich in einem "
 "Dock/Desklet befindet."
@@ -2870,9 +2854,8 @@ msgstr "Arbeitsfläche anzeigen"
 #: ../showDesktop/src/applet-notifications.c:164
 #: ../switcher/src/applet-notifications.c:315 ../showDesktop/data/messages:115
 #: ../showDesktop/data/messages:129 ../switcher/data/messages:111
-#, fuzzy
 msgid "Expose all the desktops"
-msgstr "Darstellen aller Arbeitsflächen (Compiz)"
+msgstr ""
 
 #: ../showDesktop/src/applet-notifications.c:171
 #: ../showDesktop/src/applet-notifications.c:173
@@ -3007,14 +2990,12 @@ msgid "Remove this item"
 msgstr "Dieses Element entfernen"
 
 #: ../stack/src/applet-notifications.c:259
-#, fuzzy
 msgid "The file has been added to the stack."
-msgstr "Das Modul wurde hinzugefügt, konnte aber nicht gestartet werden."
+msgstr ""
 
 #: ../stack/src/applet-notifications.c:260
-#, fuzzy
 msgid "The URL has been added to the stack."
-msgstr "Das Modul wurde hinzugefügt, konnte aber nicht gestartet werden."
+msgstr ""
 
 #: ../switcher/src/applet-draw.c:618 ../switcher/src/applet-draw.c:625
 #: ../switcher/src/applet-load-icons.c:43
@@ -3085,9 +3066,8 @@ msgid "Windows List"
 msgstr "Fensterliste"
 
 #: ../switcher/src/applet-notifications.c:324 ../switcher/data/messages:113
-#, fuzzy
 msgid "Expose all the windows"
-msgstr "Darstellen aller Arbeitsflächen (Compiz)"
+msgstr ""
 
 #: ../systray/src/systray-init.c:35
 msgid ""
@@ -3104,9 +3084,8 @@ msgstr ""
 "abzulösen und im Vordergrund anderer Fenster zu plazieren."
 
 #: ../systray/src/systray-init.c:41
-#, fuzzy
 msgid "Notification Area Old"
-msgstr "Benachrichtigung"
+msgstr ""
 
 #: ../systray/src/systray-interface.c:71
 msgid ""
@@ -3282,20 +3261,16 @@ msgstr ""
 " Ist die Verbindung aktiv?"
 
 #: ../weather/src/applet-config.c:126
-#, fuzzy
 msgid "Couldn't get the location code (is connection alive?)"
 msgstr ""
-"Information konnte nicht abgerufen werden.\n"
-" Ist die Verbindung aktiv?"
 
 #: ../weather/src/applet-config.c:134
 msgid "I couldn't find this location"
 msgstr "Ich konnte diesen Standort nicht finden"
 
 #: ../weather/src/applet-config.c:185
-#, fuzzy
 msgid "Searching the location code..."
-msgstr "Suche nach dem Ort:"
+msgstr ""
 
 #: ../weather/src/applet-config.c:209
 msgid ""
@@ -4949,7 +4924,8 @@ msgstr ""
 
 #: ../Dbus/data/messages:3
 msgid "Let external applications pop up dialogs in the dock?"
-msgstr "Externen Anwendungen das Aufklappen von Dialogen im Dock ermöglichen?"
+msgstr ""
+"Externen Anwendungen das Aufklappen von Dialogen im Dock ermöglichen?"
 
 #: ../Dbus/data/messages:5
 msgid "Let external applications reboot the dock?"
@@ -5227,7 +5203,8 @@ msgid "Background"
 msgstr "Hintergrund"
 
 #: ../Doncky/data/messages:121 ../RSSreader/data/messages:185
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Du kannst durch die Desklet Dekorationen attraktivere Hintergründe benutzen."
 
@@ -5733,14 +5710,12 @@ msgid ""
 msgstr ""
 
 #: ../Recent-Events/data/messages:97
-#, fuzzy
 msgid "Shortkey to show/hide the search dialog"
-msgstr "Tastenkürzel zum Anzeigen/Verbergen des Schnellstartdialogs:"
+msgstr ""
 
 #: ../Recent-Events/data/messages:99
-#, fuzzy
 msgid "Max number of results to show"
-msgstr "Maximale Anzahl der Ergebnisse:"
+msgstr ""
 
 #: ../Remote-Control/data/messages:3
 msgid "Shortkey to trigger the applet:"
@@ -5976,9 +5951,8 @@ msgid "Allow the icon to automatically resize itself?"
 msgstr ""
 
 #: ../Status-Notifier/data/messages:105
-#, fuzzy
 msgid "Number of lines to pack items in:"
-msgstr "Anzahl der anzuzeigenden Zeilen:"
+msgstr ""
 
 #: ../System-Monitor/data/messages:119 ../powermanager/data/messages:123
 msgid "It's the colour of the graphic for high values."
@@ -6153,9 +6127,8 @@ msgid "High refresh frequency?"
 msgstr ""
 
 #: ../Xgamma/data/messages:7
-#, fuzzy
 msgid "Leave empty to display the current luminosity."
-msgstr "Leer lassen, um ein Standardsymbol zu verwenden."
+msgstr ""
 
 #: ../Xgamma/data/messages:99 ../alsaMixer/data/messages:115
 msgid "Variation for 1 mouse scroll, in %:"
@@ -6692,19 +6665,16 @@ msgid "Custom"
 msgstr ""
 
 #: ../dnd2share/data/messages:135
-#, fuzzy
 msgid "Pastebin.com"
-msgstr "Pastebin.ca"
+msgstr ""
 
 #: ../dnd2share/data/messages:137
-#, fuzzy
 msgid "Paste-ubuntu.com"
-msgstr "Pastebin.ca"
+msgstr ""
 
 #: ../dnd2share/data/messages:139
-#, fuzzy
 msgid "Pastebin.mozilla.org"
-msgstr "Pastebin.ca"
+msgstr ""
 
 #: ../dnd2share/data/messages:141
 msgid "Codepad.org"
@@ -6846,19 +6816,16 @@ msgid "Only for sub-docks."
 msgstr ""
 
 #: ../dock-rendering/data/messages:37
-#, fuzzy
 msgid "Maximum size of the dock:"
-msgstr "Maximale Anzahl der Ergebnisse:"
+msgstr ""
 
 #: ../dock-rendering/data/messages:39
-#, fuzzy
 msgid "Small"
-msgstr "klein"
+msgstr ""
 
 #: ../dock-rendering/data/messages:41
-#, fuzzy
 msgid "Full screen"
-msgstr "Bildschirm sperren"
+msgstr ""
 
 #: ../dock-rendering/data/messages:43
 msgid "Zoom when mouse hovers an icon:"
@@ -6979,7 +6946,8 @@ msgid "Space between icons:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:115
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:119
@@ -7105,7 +7073,8 @@ msgid "Colours"
 msgstr "Farben"
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -7322,7 +7291,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:109
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:111
@@ -7394,7 +7364,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:95
@@ -7578,9 +7549,8 @@ msgid "Display rate values :"
 msgstr ""
 
 #: ../powermanager/data/messages:7
-#, fuzzy
 msgid "Leave empty to display the current status information."
-msgstr "Leer lassen, um die vorgegebene E-Mail-Anwendung zu verwenden."
+msgstr ""
 
 #: ../powermanager/data/messages:9
 msgid "Icon name:"
@@ -7607,9 +7577,8 @@ msgid "charge"
 msgstr "laden"
 
 #: ../powermanager/data/messages:165
-#, fuzzy
 msgid "Timelength"
-msgstr "Länge"
+msgstr ""
 
 #: ../powermanager/data/messages:169
 msgid "Emblem icon's filename when on charge:"
@@ -7935,9 +7904,8 @@ msgid "Choose a background colour :"
 msgstr "Wähle eine Hintergrundfarbe :"
 
 #: ../slider/data/messages:173
-#, fuzzy
 msgid "Frame width:"
-msgstr "Wellenbreite:"
+msgstr ""
 
 #: ../slider/data/messages:175
 msgid "Gives better image rendering."
@@ -8323,7 +8291,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:109
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:111
@@ -8406,44 +8375,6 @@ msgstr "RAW-Signal-Informationen"
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 
-#, fuzzy
-#~ msgid "Applet's handbook"
-#~ msgstr "Handbuch des Applets"
-
-#~ msgid "Status Notifier"
-#~ msgstr "Status-Benachrichtigung"
-
-#~ msgid "systray"
-#~ msgstr "Benachrichtigungsfeld"
-
-#~ msgid "Display items in compact mode?"
-#~ msgstr "Objekte in Kompaktansicht anzeigen?"
-
-#~ msgid "About this applet"
-#~ msgstr "Info zu dieser Minianwendung"
-
-#~ msgid ""
-#~ "Couldn't upload the file, check that your internet connexion is active."
-#~ msgstr ""
-#~ "Datei konnte nicht hochgeladen werden, kontrollieren Sie ob die "
-#~ "Internetverbindung aktiv ist."
-
-#~ msgid "You need to run Compiz and activate its 'DBus' plug-in."
-#~ msgstr "Sie müssen Compiz ausführen und sein 'DBus' Plug-in aktivieren."
-
-#~ msgid "Icon name for busy penguin:"
-#~ msgstr "Symbolname für fleißigen Pinguin:"
-
-#~ msgid "Let extern applications register new module?"
-#~ msgstr "Neue Module durch externe Anwendungen registrieren lassen?"
-
-#~ msgid ""
-#~ "If you write here a container's name that doesn't exist yet, a new one "
-#~ "will be created, with this icon inside."
-#~ msgstr ""
-#~ "Falls Sie hier den Namen eines noch nicht vorhandenen Containers "
-#~ "eingeben, wird dieser neu erstellt und dieses Symbol eingefügt."
-
 #~ msgid "Do you know how much painful it is to be clicked on ??"
 #~ msgstr "Weißt du, wie sehr es weh tut, geklickt zu werden?!"
 
@@ -8472,8 +8403,8 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ "- What will we do tonight Cortex ?\n"
 #~ "- The same thing as every nights, Minus. Try to take over the Dock !"
 #~ msgstr ""
-#~ "Was wollen wir denn heute abend machen, Brain?- Das Gleiche, wie jeden "
-#~ "Tag, Pinky: Wir versuchen, das Dock an uns zu reißen!"
+#~ "Was wollen wir denn heute abend machen, Brain?- Das Gleiche, wie jeden Tag, "
+#~ "Pinky: Wir versuchen, das Dock an uns zu reißen!"
 
 #~ msgid "For Aiur !"
 #~ msgstr "Für Aiur!"
@@ -8483,6 +8414,9 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 
 #~ msgid "I want to be a pirate !"
 #~ msgstr "Ich will ein Pirat sein!"
+
+#~ msgid "About this applet"
+#~ msgstr "Info zu dieser Minianwendung"
 
 #~ msgid "Clear the list of the recently used documents ?"
 #~ msgstr "Liste der zuletzt geöffneten Dokumente löschen?"
@@ -8497,8 +8431,8 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ msgstr "Verbindung fehlgeschlagen..."
 
 #~ msgid ""
-#~ "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from "
-#~ "menu to add one."
+#~ "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from menu "
+#~ "to add one."
 #~ msgstr ""
 #~ "Füge eine gültige RSS-Feed URL nach dem Drag'n drop-Prinzip hinzu oder "
 #~ "benutze den Menüpunkt \"Einfügen einer neuen RSS URL\"."
@@ -8510,8 +8444,7 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ "This applet shows you a monitor of your active connections\n"
 #~ "Left-click to pop-up some info,Middle-click to re-check immediately."
 #~ msgstr ""
-#~ "Diese Anwendung bildet anhand eines Monitors alle aktiven Verbindungen "
-#~ "ab.\n"
+#~ "Diese Anwendung bildet anhand eines Monitors alle aktiven Verbindungen ab.\n"
 #~ "Linke Maustaste für weitere Informationen, mittlere Maustaste zum "
 #~ "aktualisieren."
 
@@ -8521,18 +8454,29 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ msgid "Calendar"
 #~ msgstr "Kalender"
 
+#~ msgid ""
+#~ "Couldn't upload the file, check that your internet connexion is active."
+#~ msgstr ""
+#~ "Datei konnte nicht hochgeladen werden, kontrollieren Sie ob die "
+#~ "Internetverbindung aktiv ist."
+
 #~ msgid "Show Trash"
 #~ msgstr "Zeige Mülleimer"
 
 #~ msgid "Show All"
 #~ msgstr "Zeige alle"
 
+#, c-format
 #~ msgid "Delete %s"
 #~ msgstr "Lösche %s"
+
+#~ msgid "Delete All"
+#~ msgstr "Lösche alle"
 
 #~ msgid "Your computer will shutdown in 1 minute."
 #~ msgstr "Ihr Computer wird in einer Minute herunterfahren."
 
+#, c-format
 #~ msgid "You have %d new mails :"
 #~ msgstr "Sie haben %d neue E-Mails :"
 
@@ -8599,12 +8543,14 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ msgid "Free"
 #~ msgstr "Frei"
 
+#, c-format
 #~ msgid "Alert ! Graphic Card core temperature has reached %d°C"
 #~ msgstr "Achtung ! Die Kerntemperatur der Grafikkarte hat %d°C erreicht."
 
 #~ msgid "Set up volume :"
 #~ msgstr "Lautstärke einstellen :"
 
+#, c-format
 #~ msgid ""
 #~ "I couldn't find any audio channel named '%s'\n"
 #~ "You should try to open the configuration panel of the applet,\n"
@@ -8631,9 +8577,11 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ "Die derzeitige URL wurde in die Zwischeablage gespeichert\n"
 #~ "Verwenden Sie einfach 'STRG-v', um die URL irgendwo einzufügen."
 
+#, c-format
 #~ msgid "You're about to delete all files in %s. Sure ?"
 #~ msgstr "Sind Sie sicher, dass Sie alle Dateien in %s löschen möchten ?"
 
+#, c-format
 #~ msgid "Show %s"
 #~ msgstr "Zeige %s"
 
@@ -8720,13 +8668,16 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ msgid "Monitor System"
 #~ msgstr "Überwachsungssystem"
 
+#~ msgid "Set up gamma :"
+#~ msgstr "Verwalten der Gamme-Einstellung:"
+
 #~ msgid ""
 #~ "This applet displays time and date in your dock.\n"
 #~ "2 view are available : numeric and analogic, based on Cairo-Clock.\n"
-#~ "It is compatible with the Cairo-Clock's themes, and you can detach itself "
-#~ "to be a perfect clone of Cairo-Clock.\n"
-#~ "It supports alarms, and a basic calendar, and allows you to setup time "
-#~ "and date.\n"
+#~ "It is compatible with the Cairo-Clock's themes, and you can detach itself to "
+#~ "be a perfect clone of Cairo-Clock.\n"
+#~ "It supports alarms, and a basic calendar, and allows you to setup time and "
+#~ "date.\n"
 #~ "Left-click to show/hide the calendar, Middle-click to stop an alarm."
 #~ msgstr ""
 #~ "Dieses Applet zeigt die Zeit und das Datum im Dock.\n"
@@ -8736,27 +8687,25 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ "sodass es am Ende genauso wie die Cairo-Clock ist.\n"
 #~ "Es unterstützt Alarme, einen einfachen Kalender und erlaubt es, Zeit und "
 #~ "Datum einzustellen.\n"
-#~ "Linksklick zum zeigen/verbergen des Kalenders, Mittelklick um einen Alarm "
-#~ "zu beenden."
+#~ "Linksklick zum zeigen/verbergen des Kalenders, Mittelklick um einen Alarm zu "
+#~ "beenden."
 
 #~ msgid "Adjsut channels"
 #~ msgstr "Bearbeiten der Kanaleinstellungen"
 
 #~ msgid "Sorry, couldn't find the orignial file nor a preview of it."
 #~ msgstr ""
-#~ "Entschuldigung, es konnte weder die Originaldatei noch eine Vorschau von "
-#~ "ihr gefunden werden."
+#~ "Entschuldigung, es konnte weder die Originaldatei noch eine Vorschau von ihr "
+#~ "gefunden werden."
 
-#~ msgid ""
-#~ "Please wait the current upload is finished before starting a new one."
+#~ msgid "Please wait the current upload is finished before starting a new one."
 #~ msgstr ""
-#~ "Bitte beginnen Sie erst mit einem neuen Upload, wen der Aktuelle beendet "
-#~ "ist."
+#~ "Bitte beginnen Sie erst mit einem neuen Upload, wen der Aktuelle beendet ist."
 
 #~ msgid ""
 #~ "No uploaded file available\n"
-#~ ".Consider activating the history if you want the applet remembers "
-#~ "previous uploads."
+#~ ".Consider activating the history if you want the applet remembers previous "
+#~ "uploads."
 #~ msgstr ""
 #~ "Keine hochgeladene Datei verfügbar.\n"
 #~ "Denken Sie daran, die Chronik zu aktivieren, damit das Applet sich an "
@@ -8775,39 +8724,37 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ "You'll need to install 'curl' and 'wget' to upload the data."
 #~ msgstr ""
 #~ "Mit diesem Applet können Sie Dateien einfach teilen.\n"
-#~ "Einfach die Datei per Drag-and-Drop auf das Symbol schieben, um es bei "
-#~ "einer verfügbaren Seite hochzuladen.\n"
-#~ "Viele Anbieter, wie beispielsweise Dropbox, Imageshark und Pastebin "
-#~ "werden unterstützt.\n"
+#~ "Einfach die Datei per Drag-and-Drop auf das Symbol schieben, um es bei einer "
+#~ "verfügbaren Seite hochzuladen.\n"
+#~ "Viele Anbieter, wie beispielsweise Dropbox, Imageshark und Pastebin werden "
+#~ "unterstützt.\n"
 #~ "Es können Dateien, Bilder, Videos sowie Text hochgeladen werden.\n"
-#~ "Die Adresse wird dann automatisch in der Zwischenablage gespeichert und "
-#~ "kann mit STRG-V kopiert werden.\n"
-#~ "Es kann eine Chronik der letzten Uploads gespeichert werden, ohne dass "
-#~ "Sie irgendwo ein Konto besitzen müssen.\n"
-#~ "Damit Daten hochgeladen werden können, müssen die Pakete 'curl' und "
-#~ "'wget' installiert sein."
+#~ "Die Adresse wird dann automatisch in der Zwischenablage gespeichert und kann "
+#~ "mit STRG-V kopiert werden.\n"
+#~ "Es kann eine Chronik der letzten Uploads gespeichert werden, ohne dass Sie "
+#~ "irgendwo ein Konto besitzen müssen.\n"
+#~ "Damit Daten hochgeladen werden können, müssen die Pakete 'curl' und 'wget' "
+#~ "installiert sein."
 
 #~ msgid ""
-#~ "This plug-in displays an animated indicator when you drop something in "
-#~ "the dock."
+#~ "This plug-in displays an animated indicator when you drop something in the "
+#~ "dock."
 #~ msgstr ""
 #~ "Diese Erweiterung zeigt einen Hinweis, wenn Sie etwas in das Dock fallen "
 #~ "lassen."
 
 #~ msgid "This plug-in provides some dialog decorators for dialog bubbles."
 #~ msgstr ""
-#~ "Diese Erweiterung stellt einige Dekorationen für Sprechblasen zur "
-#~ "Verfügung."
+#~ "Diese Erweiterung stellt einige Dekorationen für Sprechblasen zur Verfügung."
 
 #~ msgid "This plug-in adds many special effects to your icons."
-#~ msgstr ""
-#~ "Diese Erweiterung fügt viele Spezialeffekte zu Ihren Symbolen hinzu."
+#~ msgstr "Diese Erweiterung fügt viele Spezialeffekte zu Ihren Symbolen hinzu."
 
 #~ msgid ""
 #~ "This plug-in provides animations for appearance & disappearance of icons."
 #~ msgstr ""
-#~ "Diese Erweiterung stellt Animationen für das Erscheinen und Verschwinden "
-#~ "von Symbolen bereit."
+#~ "Diese Erweiterung stellt Animationen für das Erscheinen und Verschwinden von "
+#~ "Symbolen bereit."
 
 #~ msgid "Choose in how many minutes your PC will stop :"
 #~ msgstr ""
@@ -8826,9 +8773,10 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ msgstr ""
 #~ "Ein sehr einfaches Applet, welches ein Symbol zum Ausloggen hinzufügt.\n"
 #~ "Linksklick zum Ausloggen, Mittelklick zum Herunterfahren.\n"
-#~ "Diese Reihenfolge kann geändert werden, wenn Sie das Herunterfahren mit "
-#~ "der linken Maustaste bevorzugen."
+#~ "Diese Reihenfolge kann geändert werden, wenn Sie das Herunterfahren mit der "
+#~ "linken Maustaste bevorzugen."
 
+#, c-format
 #~ msgid ""
 #~ "A problem occured\n"
 #~ "If '%s' is not your usual mail application,\n"
@@ -8844,6 +8792,7 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ msgid "Next (middle-click)"
 #~ msgstr "Nächstes (Mittelklick)"
 
+#, c-format
 #~ msgid ""
 #~ "Interface '%s' seems to not exist or is not readable.\n"
 #~ " You may have to set up the interface you wish to monitor.\n"
@@ -8870,26 +8819,25 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ "This plug-in draw some animation around the cursor when it's inside a "
 #~ "dock/desklet."
 #~ msgstr ""
-#~ "Diese Erweiterung zeichnet einige Animationen um den Mauszeiger, wenn "
-#~ "dieser auf einem Dock oder Applet ist."
+#~ "Diese Erweiterung zeichnet einige Animationen um den Mauszeiger, wenn dieser "
+#~ "auf einem Dock oder Applet ist."
 
 #~ msgid ""
 #~ "An applet that let you access quickly to all of your shortcuts.\n"
 #~ "It can manage disks, network points, and Nautilus bookmarks (even if you "
 #~ "don't have Nautilus).\n"
-#~ "Drag and drop a folder on the main icon or the sub-dock to add a "
-#~ "bookmark.\n"
+#~ "Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
 #~ "Middle-click on the main icon to acces your desktop easily.\n"
 #~ "Middle-click on a mounting point icon to (un)mount is quickly.\n"
-#~ "The applet can also display valuable information about your disks, like "
-#~ "free space, type, etc."
+#~ "The applet can also display valuable information about your disks, like free "
+#~ "space, type, etc."
 #~ msgstr ""
 #~ "Ein Applet mit dem Sie schnell auf Ihre Tastenkombinationen zugreifen "
 #~ "können.\n"
 #~ "Es kann Datenträger, Punkte im Netzwerk und Lesezeichen in Nautilus "
 #~ "verwalten (sogar wenn Sie kein Nautilus haben).\n"
-#~ "Ziehen Sie einen Ordner mit Drag-and-Drop auf das Hauptsymbol oder das "
-#~ "Sub-Dock, um ein Lesezeichen hinzuzufügen.\n"
+#~ "Ziehen Sie einen Ordner mit Drag-and-Drop auf das Hauptsymbol oder das Sub-"
+#~ "Dock, um ein Lesezeichen hinzuzufügen.\n"
 #~ "Mittelklick auf einen auf einen Einhängepunkt, um ihn auszuhängen.\n"
 #~ "Dieses Applet kann außerdem wichtige Informationen über Ihre Datenträger, "
 #~ "wie beispielsweise den freien Speicherplatz, anzeigen."
@@ -8909,39 +8857,37 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ " im Menü festgelegt werden"
 
 #~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
 #~ "docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type some text to launch any command, file or "
 #~ "calculation.\n"
-#~ "  use the arrows to navigate between the results, press Enter to "
-#~ "validate, maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
 #~ "Escape or the same shortkey to cancel."
 #~ msgstr ""
-#~ "Eine Gnome-Do ähnliche Erweiterung, mit der das Dock mit Hilfe der "
-#~ "Tastatur gesteuert werden kann.\n"
-#~ "Es hat zwei Modi, jeder von ihnen wird mit einem Tastaturkürzel "
-#~ "ausgelöst.\n"
+#~ "Eine Gnome-Do ähnliche Erweiterung, mit der das Dock mit Hilfe der Tastatur "
+#~ "gesteuert werden kann.\n"
+#~ "Es hat zwei Modi, jeder von ihnen wird mit einem Tastaturkürzel ausgelöst.\n"
 #~ "- Den Navigationsmodus: Mit Hilfe der Pfeile kann in den Docks und "
 #~ "Unterdocks navigiert werden.\n"
 #~ "Alternativ kann der Name eine Starters eingegeben werden, um zum nächst "
 #~ "passenden zu springen.\n"
-#~ "Enter um auf das Symbol zu klicken, Shift+Enter für Shift+Klick, Alt"
-#~ "+Enter für Klick mit der mittleren Maustaste sowie STRG+Enter zum "
-#~ "Linksklick.\n"
+#~ "Enter um auf das Symbol zu klicken, Shift+Enter für Shift+Klick, Alt+Enter "
+#~ "für Klick mit der mittleren Maustaste sowie STRG+Enter zum Linksklick.\n"
 #~ "- Der Suchmodus: Mach eine Eingabe um ein Kommando, eine Datei oder eine "
 #~ "Rechnung zu starten\n"
-#~ "Verwende die Pfeile um zwischen den Ergebnissen zu navigieren, drücke "
-#~ "Enter zum Ausführen oder halte STRG, ALT bzw. Shift gedrückt um die "
-#~ "Ergebnisse beizubehalten\n"
+#~ "Verwende die Pfeile um zwischen den Ergebnissen zu navigieren, drücke Enter "
+#~ "zum Ausführen oder halte STRG, ALT bzw. Shift gedrückt um die Ergebnisse "
+#~ "beizubehalten\n"
 #~ "Escape zum Abbrechen"
 
+#, c-format
 #~ msgid ""
 #~ "A problem occured\n"
 #~ "If '%s' is not your usual file browser,\n"
@@ -8965,14 +8911,17 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ "Middle-click to display usefull info about the dustbin."
 #~ msgstr ""
 #~ "Dieses Applet verwaltet den Mülleimer\n"
-#~ "Du kannst Dateien in den Mülleimer verschieben und Medien auswerfen, "
-#~ "indem du sie auf das Icon ziehst.\n"
+#~ "Du kannst Dateien in den Mülleimer verschieben und Medien auswerfen, indem "
+#~ "du sie auf das Icon ziehst.\n"
 #~ "Das Applet kann dich darüber hinaus warnen, wenn du zu viel Speicher "
 #~ "verbraucht hast.\n"
 #~ "Ein Mittel-Klick zeigt nützliche Informationen über den Mülleimer."
 
 #~ msgid "Network connection has become inactive."
 #~ msgstr "Die Netzwerkverbindung wurde deaktiviert."
+
+#~ msgid "Network has been disconnected."
+#~ msgstr "Verbindung zum Netzwerk wurde getrennt."
 
 #~ msgid "A power manager for laptop's battery. It works with ACPI and DBus."
 #~ msgstr ""
@@ -8987,8 +8936,7 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ "Dieses Applet erlaubt Ihnen einen schnellen Zugriff auf Ihre Desklets.\n"
 #~ "Linksklick zum Anzeigen/Verbergen der Desklets.\n"
 #~ "Wenn Compiz läuft, wird dieses Applet nicht benötigt,\n"
-#~ " Sie sollten stattdessen die 'Widget Layer'-Funktion Ihrer Desklets "
-#~ "nutzen."
+#~ " Sie sollten stattdessen die 'Widget Layer'-Funktion Ihrer Desklets nutzen."
 
 #~ msgid "StatusNotifier"
 #~ msgstr "Status-Benachrichtigung"
@@ -9023,8 +8971,8 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ "icon."
 #~ msgstr ""
 #~ "Keine Gegenstände auf dem Stapel.\n"
-#~ "Sie können jede Datei, Internetadresse oder sogar Textauszüge auf das "
-#~ "Stapel-Icon fallen lassen."
+#~ "Sie können jede Datei, Internetadresse oder sogar Textauszüge auf das Stapel-"
+#~ "Icon fallen lassen."
 
 #~ msgid "Move current desktop to this desktop"
 #~ msgstr "Bewege aktuelle Arbeitsfläche auf diese"
@@ -9044,8 +8992,7 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ msgid ""
 #~ "If the Trash folder is not known by the dock, you can specify it here :"
 #~ msgstr ""
-#~ "Wenn der Mülleimer dem Dock nicht bekannt ist, können Sie ihn hier "
-#~ "angeben:"
+#~ "Wenn der Mülleimer dem Dock nicht bekannt ist, können Sie ihn hier angeben:"
 
 #~ msgid "Alternative file browser used to show a trash :"
 #~ msgstr "Alternativer Dateibrowser, um den Müll anzuzeigen:"
@@ -9065,14 +9012,15 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ msgid "Trash"
 #~ msgstr "Mülleimer"
 
+#, c-format
 #~ msgid "You are about to delete all files in %s. Continue?"
 #~ msgstr "Sind Sie sicher, dass Sie alle Dateien in %s löschen möchten ?"
 
 #~ msgid "You are about to delete all files in all dustbins. Continue?"
 #~ msgstr ""
-#~ "Sie sind dabei, alle Dateien im Mülleimer zu löschen. Sind Sie sich "
-#~ "sicher?"
+#~ "Sie sind dabei, alle Dateien im Mülleimer zu löschen. Sind Sie sich sicher?"
 
+#, c-format
 #~ msgid ""
 #~ "A problem occured\n"
 #~ "If '%s' is not your usual file browser,\n"
@@ -9100,6 +9048,9 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ msgid "Show Mouse"
 #~ msgstr "zeige Maus"
 
+#~ msgid "You need to run Compiz and activate its 'DBus' plug-in."
+#~ msgstr "Sie müssen Compiz ausführen und sein 'DBus' Plug-in aktivieren."
+
 #~ msgid "Slider"
 #~ msgstr "Schieberegler"
 
@@ -9110,8 +9061,8 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ "- What will we do tonight Cortex?\n"
 #~ "- The same thing as every other nights, Minus. Try to take over the Dock!"
 #~ msgstr ""
-#~ "Was wollen wir denn heute abend machen, Brain?- Das Gleiche, wie jeden "
-#~ "Tag, Pinky: Wir versuchen, das Dock an uns zu reißen!"
+#~ "Was wollen wir denn heute abend machen, Brain?- Das Gleiche, wie jeden Tag, "
+#~ "Pinky: Wir versuchen, das Dock an uns zu reißen!"
 
 #~ msgid "ToolTip"
 #~ msgstr "tooltip"
@@ -9122,12 +9073,11 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "\n"
 #~ "- the finder mode (default shortcut : CTRL + Enter) :\n"
-#~ "    It lets you find and launch applications, files, recent files, "
-#~ "firefox bookmarks, commands, and even calculations.\n"
+#~ "    It lets you find and launch applications, files, recent files, firefox "
+#~ "bookmarks, commands, and even calculations.\n"
 #~ "    Type what you want to search, the results will be displayed in real "
 #~ "time.\n"
-#~ "    The first results of each category are displayed in the main "
-#~ "listing.\n"
+#~ "    The first results of each category are displayed in the main listing.\n"
 #~ "    Use the up/down arrows to navigate inside the list,\n"
 #~ "    and use the left/right arrows to enter into a category, or to display "
 #~ "more actions (when a little arrow is drawn next to text).\n"
@@ -9140,14 +9090,14 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ "    use the arrows to navigate into the docks and sub-docks,\n"
 #~ "    or type the name of a launcher and press Tab to automatically jump to "
 #~ "the next suitable launcher\n"
-#~ "    press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "    press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "Escape or the same shortkey will cancel."
 #~ msgstr ""
 #~ "Dieses Plugin erlaubt es Ihnen verschiedene Aktionen über die Tastatur "
 #~ "auszuführen\n"
-#~ "Es gibt 2 verschiedene Modi, welche ducrch eine Tastenkombination "
-#~ "aktiviert werden können:\n"
+#~ "Es gibt 2 verschiedene Modi, welche ducrch eine Tastenkombination aktiviert "
+#~ "werden können:\n"
 #~ "\n"
 #~ "- der Finder Modus (Standard Tastenkombination : STRG + Enter):\n"
 #~ "    Dieser Modus lässt Sie Programme starten, Dateien suchen, Firefox "
@@ -9155,10 +9105,9 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ "    mathemtische Berechnungen ausführen.\n"
 #~ "    Mögliche Ergebnisse werden während Sie tippen angezeigt.\n"
 #~ "    Das erste Ergebnis jeder Kategorie wird in der Hauptliste angezeigt.\n"
-#~ "    Mit den Hoch- und Runter-Tasten können sie durch die Liste "
-#~ "navigieren.\n"
-#~ "    Die Links- und Rechts-Tasten erlauben es Inen die Kategorien zu "
-#~ "wechseln oder verschiedene Aktionen anzuzeigen(falls\n"
+#~ "    Mit den Hoch- und Runter-Tasten können sie durch die Liste navigieren.\n"
+#~ "    Die Links- und Rechts-Tasten erlauben es Inen die Kategorien zu wechseln "
+#~ "oder verschiedene Aktionen anzuzeigen(falls\n"
 #~ "    ein keiner Pfeil neben dem hervorgehobenen Text zu sehen ist).\n"
 #~ "    Wenn Sie in einer Kategorie sind, können Sie durch tippen einzelner "
 #~ "Buchstaben die Ergebnisse eingrenzen.\n"
@@ -9170,8 +9119,8 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ "navigieren.\n"
 #~ "    Oder sie tippen den Namen eines Starters und können mit der Tabulator "
 #~ "Taste zum nächsten passenden Starter springen.\n"
-#~ "    Enter entspricht dem anklicken des Icons, SHIFT + ENTER entspricht "
-#~ "SHIFT + KLick eines Icons, ALT + ENTER entspricht\n"
+#~ "    Enter entspricht dem anklicken des Icons, SHIFT + ENTER entspricht SHIFT "
+#~ "+ KLick eines Icons, ALT + ENTER entspricht\n"
 #~ "    einem Mittelklick und CTRL + ENTER einem Linksklick.\n"
 #~ "ESCAPE oder die vorher benutzte Tastenkombination zum Starten des "
 #~ "Tastatrmodus beendet diesen."
@@ -9193,6 +9142,9 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ "Es wurde für Arbeitsumgebungen entworfen, welche die neuesten Systray-"
 #~ "Spezifikationen zu unterstützen (KDE, Gnome, usw.)"
 
+#~ msgid "Status Notifier"
+#~ msgstr "Status-Benachrichtigung"
+
 #~ msgid "Toto"
 #~ msgstr "Toto"
 
@@ -9212,10 +9164,13 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ msgid "Timeout"
 #~ msgstr "Wartezeit"
 
+#~ msgid "systray"
+#~ msgstr "Benachrichtigungsfeld"
+
 #~ msgid ""
 #~ "Add a systray to your dock.\n"
-#~ "Left-click to show the systray in a dialog (you can bind a keyboard "
-#~ "shortcut for it.)\n"
+#~ "Left-click to show the systray in a dialog (you can bind a keyboard shortcut "
+#~ "for it.)\n"
 #~ "Middle-click to close the dalog.\n"
 #~ "But the best way to use it id to detach it from the dock, and place it "
 #~ "somewhere, above other windows."
@@ -9224,14 +9179,17 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ "Links klicken, um das Benachrichtigungsfeld in einem Dialog anzuzeigen "
 #~ "(Zuweisung eines Tastenkürzels ist möglich).\n"
 #~ "Mittelklick, um den Dialog zu schließen.\n"
-#~ "Trennen Sie das Benachrichtigungsfeld am besten vom Dock ab und "
-#~ "platzieren Sie es irgendwo anders, oberhalb anderer Fenster."
+#~ "Trennen Sie das Benachrichtigungsfeld am besten vom Dock ab und platzieren "
+#~ "Sie es irgendwo anders, oberhalb anderer Fenster."
 
 #~ msgid "Unmount (middle-click)"
 #~ msgstr "Aushängen (Mittelklick)"
 
 #~ msgid "Mount (middle-click)"
 #~ msgstr "Einhängen (Mittelklick)"
+
+#~ msgid "Icon name for busy penguin:"
+#~ msgstr "Symbolname für fleißigen Pinguin:"
 
 #~ msgid "Maximum number of files to list:"
 #~ msgstr "Maximale Anzahl anzuzeigender Dateien:"
@@ -9260,39 +9218,55 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ msgid "stacks"
 #~ msgstr "Stapel"
 
+#~ msgid "Pastebin.ca"
+#~ msgstr "Pastebin.ca"
+
 #~ msgid "time"
 #~ msgstr "Zeit"
 
 #~ msgid ""
-#~ "A Gnome-Do-like plug-in that lets you control your dock from the "
-#~ "keyboard.\n"
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
 #~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
 #~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
 #~ "Docks,\n"
-#~ "  or type the name of a launcher and press Tab to automatically jump to "
-#~ "the next suitable launcher\n"
-#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt"
-#~ "+Enter for middle click, and Ctrl+Enter for left click\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
 #~ "- the finder mode : type some text to launch any command, file or "
 #~ "calculation.\n"
-#~ "  use the arrows to navigate between the results, press Enter to "
-#~ "validate, maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
 #~ "Escape or the same shortkey to cancel."
 #~ msgstr ""
-#~ "Eine Gnome-Do ähnliche Erweiterung, mit der das Dock mit Hilfe der "
-#~ "Tastatur gesteuert werden kann.\n"
-#~ "Es hat zwei Modi, jeder von ihnen wird mit einem Tastaturkürzel "
-#~ "ausgelöst.\n"
+#~ "Eine Gnome-Do ähnliche Erweiterung, mit der das Dock mit Hilfe der Tastatur "
+#~ "gesteuert werden kann.\n"
+#~ "Es hat zwei Modi, jeder von ihnen wird mit einem Tastaturkürzel ausgelöst.\n"
 #~ "- Den Navigationsmodus: Mit Hilfe der Pfeile kann in den Docks und "
 #~ "Unterdocks navigiert werden.\n"
 #~ "Alternativ kann der Name eine Starters eingegeben werden, um zum nächst "
 #~ "passenden zu springen.\n"
-#~ "Enter um auf das Symbol zu klicken, Shift+Enter für Shift+Klick, Alt"
-#~ "+Enter für Klick mit der mittleren Maustaste sowie STRG+Enter zum "
-#~ "Linksklick.\n"
+#~ "Enter um auf das Symbol zu klicken, Shift+Enter für Shift+Klick, Alt+Enter "
+#~ "für Klick mit der mittleren Maustaste sowie STRG+Enter zum Linksklick.\n"
 #~ "- Der Suchmodus: Mach eine Eingabe um ein Kommando, eine Datei oder eine "
 #~ "Rechnung zu starten\n"
-#~ "Verwende die Pfeile um zwischen den Ergebnissen zu navigieren, drücke "
-#~ "Enter zum Ausführen oder halte STRG, ALT bzw. Shift gedrückt um die "
-#~ "Ergebnisse beizubehalten\n"
+#~ "Verwende die Pfeile um zwischen den Ergebnissen zu navigieren, drücke Enter "
+#~ "zum Ausführen oder halte STRG, ALT bzw. Shift gedrückt um die Ergebnisse "
+#~ "beizubehalten\n"
 #~ "Escape zum Abbrechen"
+
+#~ msgid "Expose all the desktops (Compiz)"
+#~ msgstr "Darstellen aller Arbeitsflächen (Compiz)"
+
+#~ msgid "Let extern applications register new module?"
+#~ msgstr "Neue Module durch externe Anwendungen registrieren lassen?"
+
+#~ msgid ""
+#~ "If you write here a container's name that doesn't exist yet, a new one will "
+#~ "be created, with this icon inside."
+#~ msgstr ""
+#~ "Falls Sie hier den Namen eines noch nicht vorhandenen Containers eingeben, "
+#~ "wird dieser neu erstellt und dieses Symbol eingefügt."
+
+#~ msgid "Display items in compact mode?"
+#~ msgstr "Objekte in Kompaktansicht anzeigen?"
