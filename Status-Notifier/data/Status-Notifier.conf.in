@@ -103,6 +103,9 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
+#b Left click pops up the items' menu
+left click menu = false
+
 #Y[Compact;1;2;Sub-dock;0;0] How to display items:
 mode = 0
 

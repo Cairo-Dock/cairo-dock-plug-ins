@@ -83,17 +83,51 @@ static inline CDStatusNotifierItem *_get_item (Icon *pClickedIcon, CairoContaine
 	return pItem;
 }
 
+
+static inline gboolean _popup_menu (CDStatusNotifierItem *pItem, Icon *pIcon, CairoContainer *pContainer)
+{
+	gboolean r = FALSE;
+	if (pItem->cMenuPath != NULL)
+	{
+		if (pItem->pMenu == NULL)
+			pItem->pMenu = dbusmenu_gtkmenu_new ((gchar *)pItem->cService, (gchar *)pItem->cMenuPath);
+		if (pItem->pMenu != NULL)
+		{
+			cairo_dock_popup_menu_on_icon (GTK_WIDGET (pItem->pMenu), pIcon, pContainer);
+			r = TRUE;
+		}
+	}
+
+	if (!r)
+	{
+		r = _emit_click (pItem, pIcon, pContainer, "ContextMenu");
+	}
+
+	if (!r)
+	{
+		r = _emit_click (pItem, pIcon, pContainer, "Activate");
+	}
+}
+
 CD_APPLET_ON_CLICK_BEGIN
 	CDStatusNotifierItem *pItem = _get_item (CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER);
 	//g_print ("click on item '%s'\n", pItem?pItem->cService:"none");
 	if (pItem != NULL)
 	{
-		gboolean r = _emit_click (pItem, CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER, "Activate");
-		if (!r)
+		if (myConfig.bMenuOnLeftClick)
 		{
-			if (pItem->cId != NULL)
+			_popup_menu (pItem, CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER);
+		}
+		else
+		{
+			gboolean r = _emit_click (pItem, CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER, "Activate");
+			if (!r)
 			{
-				cairo_dock_launch_command (pItem->cId);  // lancer une nouvelle fois l'appli montre sa fenetre (enfin, generalement).
+				if (pItem->cId != NULL)
+				{
+					/// TODO: try to get the icon in the taskbar, because launch the command doesn't raise the window if it was already visible (but it does pop up it if it was hidden, usually).
+					cairo_dock_launch_command (pItem->cId);  // lancer une nouvelle fois l'appli montre sa fenetre (enfin, generalement).
+				}
 			}
 		}
 	}
@@ -137,29 +171,15 @@ CD_APPLET_ON_BUILD_MENU_END
 
 gboolean cd_status_notifier_on_right_click (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer, GtkWidget *pAppletMenu, gboolean *bDiscardMenu)
 {
-	if (pClickedIcon == NULL)
+	if (pClickedIcon == NULL || myConfig.bMenuOnLeftClick)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	CD_APPLET_ENTER;
-	CDStatusNotifierItem *pItem = _get_item (CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER);
+	CDStatusNotifierItem *pItem = _get_item (pClickedIcon, pClickedContainer);
 	if (pItem != NULL)
 	{
-		gboolean r = FALSE;
-		if (pItem->cMenuPath != NULL)
-		{
-			if (pItem->pMenu == NULL)
-				pItem->pMenu = dbusmenu_gtkmenu_new ((gchar *)pItem->cService, (gchar *)pItem->cMenuPath);
-			if (pItem->pMenu != NULL)
-			{
-				cairo_dock_popup_menu_on_icon (GTK_WIDGET (pItem->pMenu), pClickedIcon, pClickedContainer);
-				r = TRUE;
-			}
-		}
-		
-		if (!r)
-		{
-			_emit_click (pItem, pClickedIcon, pClickedContainer, "ContextMenu");
-		}
+		_popup_menu (pItem, pClickedIcon, pClickedContainer);
+
 		*bDiscardMenu = TRUE;
 		CD_APPLET_LEAVE (CAIRO_DOCK_INTERCEPT_NOTIFICATION);
 	}

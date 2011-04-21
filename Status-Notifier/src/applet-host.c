@@ -627,6 +627,7 @@ static void _on_watcher_owner_changed (gboolean bOwned, gpointer data)
 			(GDestroyNotify) NULL,
 			G_TYPE_STRING, myData.cHostName,
 			G_TYPE_INVALID);
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (NULL);  // remove the broken image if it was set beforehand, to get the default icon in the items GUI.
 	}
 	else  // no more watcher on the bus.
 	{
