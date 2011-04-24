@@ -138,12 +138,19 @@ static void cd_compute_size (CairoDock *pDock)
 	//g_print ("iMaxDockWidth : %d (%.2f)\n", pDock->iMaxDockWidth, pDock->container.fRatio);
 	
 	pDock->iMaxDockHeight = myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + hicon * pDock->container.fRatio + myDocksParam.iFrameMargin + myDocksParam.iDockLineWidth + myIconsParam.iLabelSize;
+	//if (! pDock->container.bIsHorizontal)
+	//	pDock->iMaxDockHeight += 10*myIconsParam.iLabelSize;  // vertical dock, add some padding to draw the labels.
 	
 	pDock->iMaxDockHeight = MAX (pDock->iMaxDockHeight, pDock->iMaxIconHeight * (1 + myIconsParam.fAmplitude));  // au moins la taille du FBO.
 	//g_print ("panel view: pDock->iMaxIconHeight = %d\n", pDock->iMaxIconHeight);
 
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth;
 	pDock->iMinDockHeight = 2 * (myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin) + hicon * pDock->container.fRatio;  /// TODO: make the height constant, to avoid moving all windows when space is reserved and ratio changes.
+	
+	pDock->iActiveWidth = pDock->iMaxDockWidth;
+	pDock->iActiveHeight = pDock->iMinDockHeight;
+	if (! pDock->container.bIsHorizontal)
+		pDock->iMaxDockHeight += 8*myIconsParam.iLabelSize;  // vertical dock, add some padding to draw the labels
 }
 
 

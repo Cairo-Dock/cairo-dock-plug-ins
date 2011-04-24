@@ -184,7 +184,10 @@ gboolean cd_dbus_main_create_launcher_from_scratch (dbusMainObject *pDbusCallbac
 		NULL,
 		CAIRO_DOCK_LAST_ORDER);
 	pIcon->cParentDockName = g_strdup (cParentDockName);
-	cairo_dock_set_launcher_class (pIcon, NULL);
+	
+	gchar *cGuessedClass = cairo_dock_guess_class (cCommand, NULL);
+	pIcon->cClass = cairo_dock_register_class (cGuessedClass);
+	g_free (cGuessedClass);
 	
 	cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (pParentDock));
 	

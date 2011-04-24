@@ -62,6 +62,9 @@ static void cd_rendering_calculate_max_dock_size_rainbow (CairoDock *pDock)
 	
 	pDock->iMinDockWidth = pDock->fFlatDockWidth;
 	pDock->iMinDockHeight = pDock->iMaxIconHeight;
+	
+	pDock->iActiveWidth = pDock->iMaxDockWidth;
+	pDock->iActiveHeight = pDock->iMaxDockHeight;
 }
 
 

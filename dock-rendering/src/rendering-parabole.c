@@ -90,7 +90,7 @@ static void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, Cair
 		}
 		//cd_debug ("recalage : %.2f (%d)\n", -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2, pSubDock->iMaxLabelWidth);
 		pSubDock->fAlign = 0;
-		pSubDock->iGapY = (pDock->iGapY + pDock->iMaxDockHeight);
+		pSubDock->iGapY = (pDock->iGapY + pDock->iActiveHeight);
 		pSubDock->iGapX = iX + pDock->container.iWindowPositionX - (pDock->container.bIsHorizontal ? pDock->iScreenOffsetX : pDock->iScreenOffsetY) - pSubDock->iMaxLabelWidth;
 	}
 	else
@@ -103,7 +103,7 @@ static void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, Cair
 			iX += icon->fWidth + (pPointedIcon->fWidth * pPointedIcon->fScale - icon->fWidth) / 2;
 		}
 		pSubDock->fAlign = 1;
-		pSubDock->iGapY = (pDock->iGapY + pDock->iMaxDockHeight);
+		pSubDock->iGapY = (pDock->iGapY + pDock->iActiveHeight);
 		pSubDock->iGapX =  pDock->container.iWindowPositionX - (pDock->container.bIsHorizontal ? pDock->iScreenOffsetX : pDock->iScreenOffsetY) + iX - g_desktopGeometry.iScreenWidth[pDock->container.bIsHorizontal] + pSubDock->iMaxLabelWidth;
 		
 	}
@@ -323,6 +323,9 @@ static void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 	
 	pDock->iMinDockWidth = pDock->fFlatDockWidth;
 	pDock->iMinDockHeight = pDock->iMaxIconHeight;
+	
+	pDock->iActiveWidth = pDock->iMaxDockWidth;
+	pDock->iActiveHeight = pDock->iMaxDockHeight;
 }
 
 

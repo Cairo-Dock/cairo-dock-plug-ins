@@ -91,7 +91,12 @@ static void _on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile 
 	if (pKeyFile != NULL)
 	{
 		if (cairo_dock_conf_file_needs_update (pKeyFile, pModuleInstance->pModule->pVisitCard->cModuleVersion))
-			cairo_dock_flush_conf_file (pKeyFile, pModuleInstance->cConfFilePath, pModuleInstance->pModule->pVisitCard->cShareDataDir, pModuleInstance->pModule->pVisitCard->cConfFileName);
+		{
+			///cairo_dock_flush_conf_file (pKeyFile, pModuleInstance->cConfFilePath, pModuleInstance->pModule->pVisitCard->cShareDataDir, pModuleInstance->pModule->pVisitCard->cConfFileName);
+			gchar *cTemplate = g_strdup_printf ("%s/%s", pModuleInstance->pModule->pVisitCard->cShareDataDir, pModuleInstance->pModule->pVisitCard->cConfFileName);
+			cairo_dock_upgrade_conf_file (pModuleInstance->cConfFilePath, pKeyFile, cTemplate);
+			g_free (cTemplate);
+		}
 	}
 	
 	//\_____________ On (re)lance l'executable de l'applet.

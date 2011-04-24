@@ -376,6 +376,9 @@ static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 	// On affecte ca aussi au cas ou.
 	pDock->fFlatDockWidth = pDock->iMaxDockWidth;
 	pDock->fMagnitudeMax = my_diapo_simple_fScaleMax / (1+myIconsParam.fAmplitude);
+	
+	pDock->iActiveWidth = pDock->iMaxDockWidth;
+	pDock->iActiveHeight = pDock->iMaxDockHeight;
 }
 
 
@@ -1406,12 +1409,12 @@ void cd_rendering_set_subdock_position_slide (Icon *pPointedIcon, CairoDock *pDo
 	{
 		pSubDock->fAlign = 0.5;
 		pSubDock->iGapX = iX + pDock->container.iWindowPositionX - (pDock->container.bIsHorizontal ? pDock->iScreenOffsetX : pDock->iScreenOffsetY) - g_desktopGeometry.iScreenWidth[pDock->container.bIsHorizontal] / 2;  // ici les sous-dock ont un alignement egal a 0.5
-		pSubDock->iGapY = pDock->iGapY + pDock->iMaxDockHeight;
+		pSubDock->iGapY = pDock->iGapY + pDock->iActiveHeight;
 	}
 	else
 	{
 		pSubDock->fAlign = (pDock->container.bDirectionUp ? 1 : 0);
-		pSubDock->iGapX = (pDock->iGapY + pDock->iMaxDockHeight) * (pDock->container.bDirectionUp ? -1 : 1);
+		pSubDock->iGapX = (pDock->iGapY + pDock->iActiveHeight) * (pDock->container.bDirectionUp ? -1 : 1);
 		if (pDock->container.bDirectionUp)
 			pSubDock->iGapY = g_desktopGeometry.iScreenWidth[pDock->container.bIsHorizontal] - (iX + pDock->container.iWindowPositionX - (pDock->container.bIsHorizontal ? pDock->iScreenOffsetX : pDock->iScreenOffsetY)) - pSubDock->iMaxDockHeight / 2;  // les sous-dock ont un alignement egal a 1.
 		else

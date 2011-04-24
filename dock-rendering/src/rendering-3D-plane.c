@@ -38,7 +38,7 @@ extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 
 #define _define_parameters(hi, h0, H, l, r, gamma, h, w, dw)\
 	double hi = myIconsParam.fReflectSize * pDock->container.fRatio + myDocksParam.iFrameMargin;\
-	double h0max = (1 + myIconsParam.fAmplitude) * pDock->iMaxIconHeight/** * pDock->container.fRatio*/ + MAX (myIconsParam.iLabelSize, myDocksParam.iFrameMargin + myDocksParam.iDockLineWidth);\
+	double h0max = (1 + myIconsParam.fAmplitude) * pDock->iMaxIconHeight * pDock->container.fRatio + MAX (myIconsParam.iLabelSize, myDocksParam.iFrameMargin + myDocksParam.iDockLineWidth);\
 	double h0 = pDock->iMaxIconHeight/** * pDock->container.fRatio*/;\
 	double H = iVanishingPointY;\
 	double l = myDocksParam.iDockLineWidth;\
@@ -53,6 +53,7 @@ static void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	
 	_define_parameters (hi, h0, H, l, r, gamma, h, w, dw);
 	pDock->iMaxDockHeight = (int) (hi + h0max + l);
+	
 	// 1ere estimation.
 	// w
 	w = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., 2 * dw));  // pDock->iMaxDockWidth
@@ -117,6 +118,11 @@ static void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	}
 	
 	pDock->iMinDockWidth = MAX (1, pDock->fFlatDockWidth);  // fFlatDockWidth peut etre meme negatif avec un dock vide.
+	
+	pDock->iActiveWidth = pDock->iMaxDockWidth;
+	pDock->iActiveHeight = pDock->iMaxDockHeight;
+	if (! pDock->container.bIsHorizontal)
+		pDock->iMaxDockHeight += 5*myIconsParam.iLabelSize;  // vertical dock, add some padding to draw the labels.	
 }
 
 static void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon, int iWidth, int iHeight, int iMaxDockWidth, double fReflectionOffsetY)
