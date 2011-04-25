@@ -95,10 +95,21 @@ void cd_satus_notifier_compute_icon_size (void)
 	}
 	
 	// compute the required width and the grid.
-	myData.iNbLines = myConfig.iNbLines;
-	myData.iItemSize = MAX (1, iHeight / myConfig.iNbLines);
-	myData.iNbColumns = ceil ((float)iNbItems / myConfig.iNbLines);  // nb items by line.
-	int w = MAX (w0, myData.iItemSize * myData.iNbColumns);
+	int w;
+	if (myContainer->bIsHorizontal)
+	{
+		myData.iNbLines = myConfig.iNbLines;
+		myData.iItemSize = MAX (1, iHeight / myConfig.iNbLines);
+		myData.iNbColumns = ceil ((float)iNbItems / myConfig.iNbLines);  // nb items by line.
+		w = MAX (w0, myData.iItemSize * myData.iNbColumns);
+	}
+	else
+	{
+		myData.iNbColumns = myConfig.iNbLines;
+		myData.iItemSize = MAX (1, iHeight / myConfig.iNbLines);
+		myData.iNbLines = ceil ((float)iNbItems / myConfig.iNbLines);  // nb items by line.
+		w = MAX (w0, myData.iItemSize * myData.iNbLines);
+	}
 	cd_debug ("=== required width: %d (now: %d)", w, iWidth);
 	
 	// if width has changed, update the icon size.
@@ -232,16 +243,31 @@ CDStatusNotifierItem *cd_satus_notifier_find_item_from_coord (void)
 	iMouseX = myContainer->iMouseX - myIcon->fDrawX;
 	iMouseY = myContainer->iMouseY - myIcon->fDrawY;
 	
-	iMouseX = iMouseX / fSizeX * iWidth;  // transform to the grid.
-	iMouseY = iMouseY / fSizeY * iHeight;
+	g_print ("X,Y: %d;%d\n", iMouseX, iMouseY);
+	g_print ("w,h: %d;%d\n", (int)fSizeX, (int)fSizeY);
+	if (myContainer->bIsHorizontal)
+	{
+		iMouseX = iMouseX / fSizeX * iWidth;  // transform to the grid.
+		iMouseY = iMouseY / fSizeY * iHeight;
+	}
+	else
+	{
+		int tmp = iMouseX;
+		iMouseX = iMouseY / fSizeX * iWidth;  // transform to the grid.
+		iMouseY = tmp / fSizeY * iHeight;
+	}
+	g_print ("mouse: %d;%d\n", iMouseX, iMouseY);
+	
 	
 	// get index on the grid.
 	int x_pad = (iWidth - myData.iItemSize * myData.iNbColumns) / 2;
 	int y_pad = (iHeight - myData.iItemSize * myData.iNbLines) / 2;
+	g_print ("pad: %d;%d\n", x_pad, y_pad);
 	
 	int line, col;  // line, column
 	col = (iMouseX - x_pad) / myData.iItemSize;
 	line = (iMouseY - y_pad) / myData.iItemSize;
+	g_print (" -> (%d, %d)\n", col, line);
 	
 	// get item from index.
 	CDStatusNotifierItem *pItem, *pFoundItem = NULL;
