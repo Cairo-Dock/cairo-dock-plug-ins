@@ -37,6 +37,7 @@ CD_APPLET_DEFINE_BEGIN (N_("Folders"),
 	"Middle-click on the main icon opens the folder.\n"),
 	"Fabounet")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	CD_APPLET_ALLOW_EMPTY_TITLE
 	cairo_dock_register_notification_on_object (&myContainersMgr,
 		NOTIFICATION_DROP_DATA,
 		(CairoDockNotificationFunc) cd_folders_on_drop_data,

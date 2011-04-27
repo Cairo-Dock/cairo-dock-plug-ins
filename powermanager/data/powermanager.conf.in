@@ -11,7 +11,7 @@ dock name =
 
 #s Icon name:
 #{Leave empty to display the current status information.}
-name = Battery
+name = 
 
 #F[Display]
 frame_display=

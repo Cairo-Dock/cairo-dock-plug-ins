@@ -44,6 +44,7 @@ CD_APPLET_DEFINE_BEGIN (N_("clock"),
 	"Double-click on a day to edit the tasks for this day."),
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	CD_APPLET_ALLOW_EMPTY_TITLE
 	pInterface->load_custom_widget = cd_clock_load_custom_widget;
 	pInterface->save_custom_widget = cd_clock_save_custom_widget;
 CD_APPLET_DEFINE_END

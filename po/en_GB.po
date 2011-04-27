@@ -2629,7 +2629,7 @@ msgstr ""
 
 #: ../powermanager/src/powermanager-init.c:31
 msgid "PowerManager"
-msgstr "PowerManager"
+msgstr "Power Manager"
 
 #: ../powermanager/src/powermanager-init.c:34
 msgid "A power manager for laptop batteries. Works with ACPI and DBus."
@@ -2705,7 +2705,7 @@ msgstr "%s successfully unmounted"
 
 #: ../shortcuts/src/applet-init.c:32
 msgid "shortcuts"
-msgstr "shortcuts"
+msgstr "Shortcuts"
 
 #: ../shortcuts/src/applet-init.c:35
 msgid ""
@@ -2789,7 +2789,7 @@ msgstr "This plugin draws some animations around the cursor when it's inside a d
 
 #: ../showDesktop/src/applet-init.c:28
 msgid "showDesktop"
-msgstr "showDesktop"
+msgstr "Show Desktop"
 
 #: ../showDesktop/src/applet-init.c:31
 msgid ""

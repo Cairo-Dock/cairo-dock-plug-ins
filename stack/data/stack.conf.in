@@ -11,7 +11,7 @@ dock name =
 
 #s Name of the icon as it will appear in its caption in the dock:
 #{Leave empty to use a default name}
-name = _Stack_
+name = 
 
 #F[Display]
 frame_display=

@@ -39,6 +39,7 @@ CD_APPLET_DEFINE_BEGIN ("AlsaMixer",
 	"This applet works with the Alsa sound driver."),
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	CD_APPLET_ALLOW_EMPTY_TITLE
 	CD_APPLET_REDEFINE_TITLE (N_("Sound Control"))
 	pInterface->load_custom_widget = cd_mixer_load_custom_widget;
 CD_APPLET_DEFINE_END

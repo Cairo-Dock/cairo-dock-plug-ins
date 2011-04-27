@@ -45,7 +45,7 @@
 #include "applet-audacious.h" //Support Audacious
 #include "applet-clementine.h" // Support Clementine
 
-CD_APPLET_DEFINITION (N_("musicPlayer"),
+CD_APPLET_DEFINE_BEGIN (N_("musicPlayer"),
 	2,0,0,
 	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
 	N_("This applet lets you control any music player.\n"
@@ -57,6 +57,9 @@ CD_APPLET_DEFINITION (N_("musicPlayer"),
 	"       For SongBird, you have to install its dbus add-on.\n"
 	"       For Exaile 0.3, you have to activate its MPRIS plug-in"),
 	"ChanGFu (Rémy Robertson), Mav (Yann SLADEK), Tofe, Jackass, Nochka85, Fabounet")
+	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	CD_APPLET_ALLOW_EMPTY_TITLE
+CD_APPLET_DEFINE_END
 
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).

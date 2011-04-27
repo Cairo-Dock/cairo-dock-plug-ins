@@ -29,7 +29,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION (N_("switcher"),
+CD_APPLET_DEFINE_BEGIN (N_("switcher"),
 	2, 0, 9,
 	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("This applet allows you to interact with your workspaces :\n"
@@ -40,6 +40,9 @@ CD_APPLET_DEFINITION (N_("switcher"),
 	" - list all windows on each workspace ((middle-click or in the menu)\n"
 	"It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock)."),
 	"Cchumi &amp; Fabounet")
+	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	CD_APPLET_ALLOW_EMPTY_TITLE
+CD_APPLET_DEFINE_END
 
 
 CD_APPLET_INIT_BEGIN

@@ -10,7 +10,7 @@ frame_maininfo=
 dock name = 
 
 #s Name of the icon as it will appear in its caption in the dock:
-name = Keyboard
+name = 
 
 #F[Display]
 frame_display=

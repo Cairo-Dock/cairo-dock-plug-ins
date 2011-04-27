@@ -35,6 +35,7 @@ CD_APPLET_DEFINE_BEGIN (N_("weather"),
 	"Middle-click on the main icon to have current conditions information, left-click on a sub-icon to have forcast information.\n"),
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	CD_APPLET_ALLOW_EMPTY_TITLE
 	pInterface->load_custom_widget = cd_weather_load_custom_widget;
 CD_APPLET_DEFINE_END
 
