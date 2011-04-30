@@ -27,6 +27,7 @@
 #include "powermanager-dbus.h"
 
 #define MY_BATTERY_DIR "/proc/acpi/battery"
+#define MY_BATTERY_DIR_DEBIAN "/sys/class/power_supply"  // in Debian, they use the "procmeter" package.
 #define MY_DEFAULT_BATTERY_NAME "BAT0"
 
 static DBusGProxy *dbus_proxy_power = NULL;
@@ -36,39 +37,33 @@ static DBusGProxy *dbus_proxy_battery = NULL;
 static void on_battery_changed(DBusGProxy *proxy, gboolean onBattery, gpointer data);
 
 
-gboolean cd_powermanager_find_battery (void)
+static gboolean _find_battery_in_dir (const gchar *cBatteryPath)
 {
-	GError *erreur = NULL;
-	GDir *dir = g_dir_open (MY_BATTERY_DIR, 0, &erreur);
-	if (erreur != NULL)
+	// open the folder containing battery data.
+	GDir *dir = g_dir_open (cBatteryPath, 0, NULL);
+	if (dir == NULL)
 	{
-		cd_warning ("powermanager : %s", erreur->message);
-		g_error_free (erreur);
+		cd_debug ("powermanager: no battery in %s",cBatteryPath );
 		return FALSE;
 	}
 	
-	GString *sBatteryStateFilePath = g_string_new ("");
+	// parse the folder and search the battery files.
+	GString *sBatteryInfoFilePath = g_string_new ("");
 	gchar *cContent = NULL, *cPresentLine;
 	gsize length=0;
 	const gchar *cBatteryName;
 	gboolean bBatteryFound = FALSE;
 	do
 	{
-		cBatteryName = g_dir_read_name (dir);
+		cBatteryName = g_dir_read_name (dir);  // usually "BAT0".
 		if (cBatteryName == NULL)
 			break ;
 		
-		g_string_printf (sBatteryStateFilePath, "%s/%s/info", MY_BATTERY_DIR, cBatteryName);
+		g_string_printf (sBatteryInfoFilePath, "%s/%s/info", cBatteryPath, cBatteryName);
 		length=0;
-		cd_message ("  examen de la batterie '%s' ...", sBatteryStateFilePath->str);
-		g_file_get_contents(sBatteryStateFilePath->str, &cContent, &length, &erreur);
-		if (erreur != NULL)
-		{
-			cd_warning("powermanager : %s", erreur->message);
-			g_error_free(erreur);
-			erreur = NULL;
-		}
-		else
+		cd_debug ("  examen de la batterie '%s' ...", sBatteryInfoFilePath->str);
+		g_file_get_contents (sBatteryInfoFilePath->str, &cContent, &length, NULL);
+		if (cContent != NULL)
 		{
 			gchar *str = strchr (cContent, '\n');  // "present:    yes"
 			if (str != NULL)
@@ -78,7 +73,7 @@ gboolean cd_powermanager_find_battery (void)
 				if (g_strstr_len (cContent, -1, "yes") != NULL)  // on l'a trouvee !
 				{
 					bBatteryFound = TRUE;
-					myData.cBatteryStateFilePath = g_strdup_printf ("%s/%s/state", MY_BATTERY_DIR, cBatteryName);
+					myData.cBatteryStateFilePath = g_strdup_printf ("%s/%s/state", cBatteryPath, cBatteryName);
 					
 					str ++;
 					gchar *str2 = strchr (str, ':');
@@ -102,11 +97,18 @@ gboolean cd_powermanager_find_battery (void)
 					cd_debug ("cette batterie (%s) n'est pas presente.\n", cBatteryName);
 				}
 			}
+			g_free (cContent);
 		}
-		g_free (cContent);
 	}
 	while (! bBatteryFound);
 	g_dir_close (dir);
+	return bBatteryFound;
+}
+gboolean cd_powermanager_find_battery (void)
+{
+	gboolean bBatteryFound = _find_battery_in_dir (MY_BATTERY_DIR);
+	if (!bBatteryFound)
+		bBatteryFound = _find_battery_in_dir (MY_BATTERY_DIR_DEBIAN);
 	return bBatteryFound;
 }
 
@@ -287,7 +289,7 @@ gboolean update_stats(void)
 		cd_powermanager_find_battery ();
 	if (myData.cBatteryStateFilePath == NULL)
 		CD_APPLET_LEAVE (TRUE);
-		//return TRUE;
+	
 	int k;
 	gchar *cContent = NULL;
 	gsize length=0;
@@ -299,13 +301,12 @@ gboolean update_stats(void)
 		g_error_free(erreur);
 		erreur = NULL;
 		CD_APPLET_LEAVE (FALSE);
-		//return FALSE;
 	}
 	CD_APPLET_LEAVE_IF_FAIL (cContent, FALSE);
-	//g_return_val_if_fail (cContent, FALSE);
-	gchar *cCurLine = cContent, *cCurVal = cContent;
 	
 	//\_______________ On gere la presence de la batterie.
+	gchar *cCurLine = cContent, *cCurVal = cContent;
+	
 	jump_to_value
 	gboolean bBatteryPresent = (*cCurVal == 'y');
 	if (bBatteryPresent != myData.battery_present)  // la batterie vient d'etre (de)branchee. 
@@ -317,7 +318,6 @@ gboolean update_stats(void)
 			g_free (cContent);
 			update_icon();
 			CD_APPLET_LEAVE (TRUE);
-			//return TRUE;
 		}
 		
 		// on remet a zero l'historique.
@@ -507,7 +507,6 @@ gboolean update_stats(void)
 	remaining capacity: 47040 mWh
 	present voltage: 15000 mV*/
 	CD_APPLET_LEAVE (TRUE);
-	//return TRUE;
 }
 
 /**void detect_battery(void)
