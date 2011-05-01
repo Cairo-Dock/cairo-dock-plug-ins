@@ -166,8 +166,11 @@ gboolean cd_weather_update_from_data (CDSharedMemory *pSharedMemory)
 	//\_______________________ On charge la nouvelle liste.
 	if (pIconList != NULL)
 	{
-		gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
-		CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Caroussel", pConfig);
+		///gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
+		///CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Caroussel", pConfig);
+		gdouble white[4] = {1., 1., 1., .4};
+		gpointer pConfig[3] = {GINT_TO_POINTER (myConfig.bDisplayNights ? 2 : 1), GINT_TO_POINTER (FALSE), white};
+		CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Panel", pConfig);
 	}
 	else if (myDock)  // sinon on ne veut pas du sous-dock vide.
 	{

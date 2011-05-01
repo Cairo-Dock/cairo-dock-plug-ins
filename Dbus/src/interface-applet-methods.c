@@ -669,8 +669,8 @@ gboolean cd_dbus_sub_applet_add_sub_icons (dbusSubApplet *pDbusSubApplet, const 
 			pIcon->pSubDock = NULL;
 		}
 		pInstance->pDesklet->icons = g_list_concat (pInstance->pDesklet->icons, pIconsList);
-		gpointer data[2] = {GINT_TO_POINTER (TRUE), GINT_TO_POINTER (FALSE)};
-		cairo_dock_set_desklet_renderer_by_name (pInstance->pDesklet, "Caroussel", (CairoDeskletRendererConfigPtr) data);
+		gpointer data[3] = {GINT_TO_POINTER (0), GINT_TO_POINTER (TRUE), NULL};
+		cairo_dock_set_desklet_renderer_by_name (pInstance->pDesklet, "Panel", (CairoDeskletRendererConfigPtr) data);
 	}
 	
 	return TRUE;
