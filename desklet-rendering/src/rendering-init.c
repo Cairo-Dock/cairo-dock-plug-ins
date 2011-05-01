@@ -27,6 +27,7 @@
 //#include "rendering-desklet-mediaplayer.h"
 #include "rendering-desklet-slide.h"
 #include "rendering-desklet-viewport.h"
+#include "rendering-desklet-panel.h"
 #include "rendering-desklet-decorations.h"
 #include "rendering-init.h"
 
@@ -48,7 +49,8 @@ CD_APPLET_DEFINE_BEGIN (N_("desklet rendering"),
 	//rendering_register_controler_desklet_renderer ();
 	//rendering_register_mediaplayer_desklet_renderer ();  // By ChAnGFu
 	rendering_register_slide_desklet_renderer ();  // By ChAnGFu
-	rendering_register_viewport_desklet_renderer ();  // By Tofe
+	rendering_register_viewport_desklet_renderer ();  // By Tofe&Fab
+	rendering_register_panel_desklet_renderer ();
 	
 	//\_______________ On enregistre les decorations.
 	cd_rendering_register_desklet_decorations ();

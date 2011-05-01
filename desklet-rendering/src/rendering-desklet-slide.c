@@ -23,8 +23,6 @@
 
 #include "rendering-desklet-slide.h"
 
-#define _cairo_dock_set_path_as_current(...) _cairo_dock_set_vertex_pointer(pVertexTab)
-
 
 static gboolean on_enter_icon_slide (gpointer pUserData, Icon *pPointedIcon, CairoContainer *pContainer, gboolean *bStartAnimation)
 {
@@ -348,7 +346,6 @@ static void render_opengl (CairoDesklet *pDesklet)
 			fRadius,
 			fLineWidth,
 			pSlide->fLineColor);
-		glTranslatef (-pDesklet->container.iWidth/2, -pDesklet->container.iHeight/2, 0.);
 	}
 	
 	glTranslatef (-pDesklet->container.iWidth/2, -pDesklet->container.iHeight/2, 0.);
