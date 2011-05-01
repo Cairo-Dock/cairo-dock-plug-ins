@@ -914,9 +914,78 @@ static void _cd_rendering_check_if_mouse_inside_diapo_simple (CairoDock *pDock)
 		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_INSIDE;
 	}
 }
-static void _cd_rendering_check_can_drop_linear (CairoDock *pDock)
+#define make_icon_avoid_mouse(icon) \
+	cairo_dock_mark_icon_as_avoiding_mouse (icon);\
+	icon->fAlpha = 0.75;\
+	if (myIconsParam.fAmplitude != 0)\
+		icon->fDrawX += icon->fWidth / 2 * (icon->fScale - 1) / myIconsParam.fAmplitude * (icon->fPhase < G_PI/2 ? -1 : 1);
+///TODO: make it work...
+static inline gboolean _check_can_drop (CairoDock *pDock, CairoDockIconGroup iGroup, double fMargin)
 {
-	pDock->bCanDrop = pDock->bIsDragging;  /// calculer bCanDrop ...
+	gboolean bUndefined = TRUE;
+	gboolean bCanDrop = FALSE;
+	Icon *icon;
+	GList *ic;
+	for (ic = pDock->icons; ic != NULL; ic = ic->next)
+	{
+		icon = ic->data;
+		if (icon->bPointed)
+		{
+			if (pDock->container.iMouseX < icon->fDrawX + icon->fWidth * icon->fScale * fMargin)  // on est a gauche.  // fDrawXAtRest
+			{
+				Icon *prev_icon = cairo_dock_get_previous_element (ic, pDock->icons) -> data;
+				if ((cairo_dock_get_icon_order (icon) == cairo_dock_get_group_order (iGroup) || cairo_dock_get_icon_order (prev_icon) == cairo_dock_get_group_order (iGroup)))  // && prev_icon->iAnimationType != CAIRO_DOCK_FOLLOW_MOUSE
+				{
+					make_icon_avoid_mouse (icon);
+					make_icon_avoid_mouse (prev_icon);
+					//g_print ("%s> <%s\n", prev_icon->cName, icon->cName);
+					bCanDrop = TRUE;
+					bUndefined = FALSE;
+				}
+			}
+			else if (pDock->container.iMouseX > icon->fDrawX + icon->fWidth * icon->fScale * (1 - fMargin))  // on est a droite.  // fDrawXAtRest
+			{
+				Icon *next_icon = cairo_dock_get_next_element (ic, pDock->icons) -> data;
+				if ((icon->iGroup == iGroup || next_icon->iGroup == iGroup))  // && next_icon->iAnimationType != CAIRO_DOCK_FOLLOW_MOUSE
+				{
+					make_icon_avoid_mouse (icon);
+					make_icon_avoid_mouse (next_icon);
+					//g_print ("%s> <%s\n", icon->cName, next_icon->cName);
+					bCanDrop = TRUE;
+					bUndefined = FALSE;
+				}
+				ic = ic->next;  // on la saute pour ne pas la de-marquer.
+			}
+			else  // on the icon
+			{
+				bCanDrop = FALSE;
+				bUndefined = FALSE;
+			}
+		}
+		else
+			cairo_dock_stop_marking_icon_as_avoiding_mouse (icon);
+	}
+	
+	if (bUndefined)  // no pointed icon, so we are either on the side, on between icons.
+	{
+		bCanDrop = (pDock->container.iMouseX > X_BORDER_SPACE && pDock->container.iMouseX < pDock->container.iWidth - X_BORDER_SPACE);  // no drop on the side.
+	}
+	return bCanDrop;
+}
+static void _cd_rendering_check_can_drop (CairoDock *pDock)
+{
+	if (! pDock->bIsDragging)  // not dragging, so no drop possible.
+	{
+		pDock->bCanDrop = FALSE;
+	}
+	else if (pDock->icons == NULL)  // dragging but no icons, so drop always possible.
+	{
+		pDock->bCanDrop = TRUE;
+	}
+	else  // dragging and some icons.
+	{
+		pDock->bCanDrop = _check_can_drop (pDock, pDock->iAvoidingMouseIconType, pDock->fAvoidingMouseMargin);
+	}
 }
 Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock)
 {
@@ -934,7 +1003,7 @@ Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock)
 	
 	_cd_rendering_check_if_mouse_inside_diapo_simple (pDock);
 	
-	_cd_rendering_check_can_drop_linear (pDock);
+	_cd_rendering_check_can_drop (pDock);
 	
 	return pPointedIcon;
 }
