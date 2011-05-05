@@ -25,7 +25,7 @@
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
-	gchar *cImageFile;
+	///gchar *cImageFile;
 	gchar *cDefaultTitle;
 	gchar *cDirPath;
 	gboolean bShowFiles;

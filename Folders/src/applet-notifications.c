@@ -429,7 +429,7 @@ gboolean cd_folders_on_drop_data (gpointer data, const gchar *cReceivedData, Ico
 {
 	//g_print ("Folders received '%s'\n", cReceivedData);
 	
-	if (fOrder == CAIRO_DOCK_LAST_ORDER)  // lachage sur une icone.
+	if (icon != NULL || fOrder == CAIRO_DOCK_LAST_ORDER)  // drop on an icon or outside of icons.
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	gchar *cPath = NULL;

@@ -40,7 +40,7 @@ CD_APPLET_DEFINE_BEGIN (N_("stack"),
 	cairo_dock_register_notification_on_object (&myContainersMgr,
 		NOTIFICATION_DROP_DATA,
 		(CairoDockNotificationFunc) cd_stack_on_drop_data,
-		CAIRO_DOCK_RUN_FIRST, NULL);
+		CAIRO_DOCK_RUN_FIRST, NULL);  // future instances of the applet will register before this, and therefore handle the drop of files on themselves.
 CD_APPLET_DEFINE_END
 
 

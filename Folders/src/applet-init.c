@@ -86,7 +86,8 @@ CD_APPLET_INIT_BEGIN
 	
 	myIcon->iSubdockViewType = myConfig.iSubdockViewType;
 	if (myDock && myConfig.iSubdockViewType == 0)
-		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cImageFile, MY_APPLET_ICON_FILE);
+		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
+		///CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cImageFile, MY_APPLET_ICON_FILE);
 	
 	//\_______________ On lance la tache recuperation des fichiers.
 	_set_comparaison_func (myApplet);
@@ -130,7 +131,8 @@ CD_APPLET_RELOAD_BEGIN
 		
 		myIcon->iSubdockViewType = myConfig.iSubdockViewType;
 		if (myDock && myConfig.iSubdockViewType == 0)
-			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cImageFile, MY_APPLET_ICON_FILE);
+			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
+			///CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cImageFile, MY_APPLET_ICON_FILE);
 		
 		//\_______________ On charge les icones dans un sous-dock.
 		_set_comparaison_func (myApplet);

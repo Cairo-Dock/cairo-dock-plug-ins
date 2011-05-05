@@ -215,7 +215,7 @@ gboolean cd_stack_on_drop_data (gpointer data, const gchar *cReceivedData, Icon 
 	//g_print ("Stack received '%s'\n", cReceivedData);
 	
 	// if we dropped on an icon, let pass the notif to it.
-	if (fOrder == CAIRO_DOCK_LAST_ORDER)  // drop on an icon.
+	if (icon != NULL || fOrder == CAIRO_DOCK_LAST_ORDER)  // drop on an icon or outside of icons.
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	// if it's a .desktop, let pass to the core (it will create the associated launcher).
