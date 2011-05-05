@@ -62,7 +62,11 @@ execute_process(
     OUTPUT_VARIABLE dock_version)
 STRING (REGEX REPLACE "\n" "" dock_version ${dock_version})
 if (NOT "${dock_version}" STREQUAL "${VERSION}")		# Version
-	MESSAGE (FATAL_ERROR "warning : version mismatch with the core : " ${VERSION} <> ${dock_version})
+	if ("${PACKAGEMENT}" STREQUAL "")
+		MESSAGE (FATAL_ERROR "Error : version mismatch with the core : " ${VERSION} <> ${dock_version})
+	else ()
+		MESSAGE (STATUS "Warning : version mismatch with the core : " ${VERSION} <> ${dock_version})
+	endif ()
 endif()
 
 #if( CMAKE_SIZEOF_VOID_P EQUAL 8 AND NOT "${FORCE_LIB64}" STREQUAL "")  # 64bits and force install in lib64
@@ -299,7 +303,7 @@ endif()
 
 ############# DND2SHARE #################
 set (GETTEXT_DND2SHARE ${GETTEXT_PLUGINS})
-set (VERSION_DND2SHARE "1.0.5")
+set (VERSION_DND2SHARE "1.0.6")
 set (PACKAGE_DND2SHARE "cd-dnd2share")
 set (dnd2sharedatadir "${pluginsdatadir}/dnd2share")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/dnd2share/data/dnd2share.conf.in ${CMAKE_CURRENT_BINARY_DIR}/dnd2share/data/dnd2share.conf)

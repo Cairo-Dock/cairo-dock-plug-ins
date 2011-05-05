@@ -53,9 +53,11 @@ static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonym
 		g_free (cLocalFilePath);
 		return;
 	}
-	
-	// On recupere l'URL (dispo tout de suite, sinon il faudra boucler en testant 'dropbox status' jusqu'a avoir 'Idle').
-	cCommand= g_strdup_printf ("u1sdtool --publish-file \"%s\"", cLocalFilePath);
+
+	// We wait for the end of the sync
+	cairo_dock_launch_command_sync ("u1sdtool --wait");
+	// We publish the file and we read the output message
+	cCommand = g_strdup_printf ("u1sdtool --publish-file \"%s\"", cLocalFilePath);
 	cd_debug ("commande u2 : %s", cCommand);
 	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
 	g_free (cCommand);
