@@ -400,6 +400,7 @@ static void _on_dialog_destroyed (CairoDockModuleInstance *myApplet)
 void cd_sysmonitor_start_top_dialog (CairoDockModuleInstance *myApplet)
 {
 	g_return_if_fail (myData.pTopDialog == NULL);
+	cairo_dock_remove_dialog_if_any (myIcon);
 	// build an interactive widget that will be used to display the top list.
 	gchar *cTitle = g_strdup_printf ("  [ Top %d ] :", myConfig.iNbDisplayedProcesses);
 	GtkWidget *pInteractiveWidget = gtk_vbox_new (FALSE, 0);

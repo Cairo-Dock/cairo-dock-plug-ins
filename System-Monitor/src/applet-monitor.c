@@ -102,42 +102,42 @@ gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet)
 				if (myConfig.bShowCpu)
 				{
 					g_string_printf (sInfo, (myData.fCpuPercent < 10 ? "%s%.1f%%%s" : "%s%.0f%%%s"),
-						(myDesklet ? "CPU:" : ""),
+						(myDesklet || bOneLine ? "CPU:" : ""),
 						myData.fCpuPercent,
 						(bOneLine ? " - " : "\n"));
 				}
 				if (myConfig.bShowRam)
 				{
 					g_string_append_printf (sInfo, (myData.fRamPercent < 10 ? "%s%.1f%%%s" : "%s%.0f%%%s"),
-						(myDesklet ? "RAM:" : ""),
+						(myDesklet || bOneLine ? "RAM:" : ""),
 						myData.fRamPercent,
 						(bOneLine ? " - " : "\n"));
 				}
 				if (myConfig.bShowSwap)
 				{
 					g_string_append_printf (sInfo, (myData.fSwapPercent < 10 ? "%s%.1f%%%s" : "%s%.0f%%%s"),
-						(myDesklet ? "SWAP:" : ""),
+						(myDesklet || bOneLine ? "SWAP:" : ""),
 						myData.fSwapPercent,
 						(bOneLine ? " - " : "\n"));
 				}
 				if (myConfig.bShowNvidia)
 				{
 					g_string_append_printf (sInfo, "%s%d°C%s",
-						(myDesklet ? "GPU:" : ""),
+						(myDesklet || bOneLine ? "GPU:" : ""),
 						myData.iGPUTemp,
 						(bOneLine ? " - " : "\n"));
 				}
 				if (myConfig.bShowCpuTemp)
 				{
 					g_string_append_printf (sInfo, "%s%d°C%s",
-						(myDesklet ? "CPU:" : ""),
+						(myDesklet || bOneLine ? "CPU:" : ""),
 						myData.iCPUTemp,
 						(bOneLine ? " - " : "\n"));
 				}
 				if (myConfig.bShowFanSpeed)
 				{
 					g_string_append_printf (sInfo, "%s%drpm%s",
-						(myDesklet ? "FAN:" : ""),
+						(myDesklet || bOneLine ? "FAN:" : ""),
 						myData.iFanSpeed,
 						(bOneLine ? " - " : "\n"));
 				}
