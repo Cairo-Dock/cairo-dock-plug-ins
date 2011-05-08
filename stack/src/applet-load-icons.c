@@ -248,7 +248,7 @@ void cd_stack_build_icons (CairoDockModuleInstance *myApplet)
 	{
 		case CD_DESKLET_SLIDE :
 		default :
-			cDeskletRendererName = "Slide";
+			cDeskletRendererName = "Viewport";
 		break ;
 		
 		case CD_DESKLET_TREE :
