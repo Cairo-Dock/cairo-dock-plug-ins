@@ -844,15 +844,15 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 		pRenderAttr->iMemorySize = (pIcon->fWidth > 1 ? pIcon->fWidth : 32);  // fWidht peut etre <= 1 en mode desklet au chargement.
 		// Line;Plain;Bar;Circle;Plain Circle
 		if (cTheme == NULL || strcmp (cTheme, "Line") == 0)
-			attr.iType = CAIRO_DOCK_GRAPH2_LINE;
+			attr.iType = CAIRO_DOCK_GRAPH_LINE;
 		else if (strcmp (cTheme, "Plain") == 0)
-			attr.iType = CAIRO_DOCK_GRAPH2_PLAIN;
+			attr.iType = CAIRO_DOCK_GRAPH_PLAIN;
 		else if (strcmp (cTheme, "Bar") == 0)
-			attr.iType = CAIRO_DOCK_GRAPH2_BAR;
+			attr.iType = CAIRO_DOCK_GRAPH_BAR;
 		else if (strcmp (cTheme, "Circle") == 0)
-			attr.iType = CAIRO_DOCK_GRAPH2_CIRCLE;
+			attr.iType = CAIRO_DOCK_GRAPH_CIRCLE;
 		else if (strcmp (cTheme, "Plain Circle") == 0)
-			attr.iType = CAIRO_DOCK_GRAPH2_CIRCLE_PLAIN;
+			attr.iType = CAIRO_DOCK_GRAPH_CIRCLE_PLAIN;
 		attr.iRadius = 10;
 		attr.bMixGraphs = FALSE;
 		double *fHighColor = g_new (double, iNbValues*3);
