@@ -71,8 +71,7 @@ void update_icon(void)
 					if (myConfig.cSoundPath[POWER_MANAGER_CHARGE_CRITICAL] != NULL)
 						cairo_dock_play_sound (myConfig.cSoundPath[POWER_MANAGER_CHARGE_CRITICAL]);
 				}
-				//Embleme sur notre icône
-				//CD_APPLET_DRAW_EMBLEM (CAIRO_DOCK_EMBLEM_BLANK, CAIRO_DOCK_EMBLEM_MIDDLE);
+				// emblem is implicitely erased.
 			}
 			else
 			{
@@ -80,7 +79,6 @@ void update_icon(void)
 				if(myData.battery_charge == 100 && ! myData.alerted)
 					cd_powermanager_alert (POWER_MANAGER_CHARGE_FULL);
 					
-				//CD_APPLET_DRAW_EMBLEM (CAIRO_DOCK_EMBLEM_CHARGE, CAIRO_DOCK_EMBLEM_MIDDLE);
 				CD_APPLET_DRAW_EMBLEM_ON_MY_ICON (myData.pEmblem);
 			}
 			

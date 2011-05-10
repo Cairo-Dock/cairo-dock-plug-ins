@@ -96,7 +96,6 @@ struct _AppletData {
 	gboolean alerted;
 	gboolean bCritical;
 	gint checkLoop;
-	Gauge *pGauge;
 	gchar *cBatteryStateFilePath;
 	
 	gdouble fRateHistory[PM_NB_VALUES];
