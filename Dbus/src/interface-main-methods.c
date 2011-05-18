@@ -72,11 +72,9 @@ gboolean cd_dbus_main_reload_module (dbusMainObject *pDbusCallback, const gchar 
 	}
 	else
 	{
-		//CairoDockInternalModule *pInternalModule = cairo_dock_find_internal_module_from_name (cModuleName);
 		GldiManager *pManager = gldi_get_manager (cModuleName);
 		if (pManager != NULL)
 		{
-			//cairo_dock_reload_internal_module (pInternalModule, g_cConfFile);
 			gldi_reload_manager (pManager, g_cConfFile);
 		}
 		else
@@ -96,9 +94,9 @@ gboolean cd_dbus_main_activate_module (dbusMainObject *pDbusCallback, const gcha
 	CairoDockModule *pModule = cairo_dock_find_module_from_name (cModuleName);
 	if (pModule == NULL)
 	{
-		/*if (cairo_dock_find_internal_module_from_name (cModuleName) != NULL)
+		if (gldi_get_manager (cModuleName) != NULL)
 			cd_warning ("Internal modules can't be (de)activated.");
-		else*/
+		else
 			cd_warning ("no such module (%s)", cModuleName);
 		return FALSE;
 	}
@@ -110,7 +108,7 @@ gboolean cd_dbus_main_activate_module (dbusMainObject *pDbusCallback, const gcha
 	return TRUE;
 }
 
-gboolean cd_dbus_main_show_desklet(dbusMainObject *pDbusCallback, gboolean *widgetLayer, GError **error)
+gboolean cd_dbus_main_show_desklet (dbusMainObject *pDbusCallback, gboolean *widgetLayer, GError **error)
 {
 	if (! myConfig.bEnableDesklets)
 		return FALSE;
@@ -136,13 +134,13 @@ static void _show_hide_one_dock (const gchar *cDockName, CairoDock *pDock, gpoin
 	if (bShow)
 	{
 		///cairo_dock_pop_up (pDock);
-		if (pDock->bAutoHide)
+		///if (pDock->bAutoHide)
 			cairo_dock_emit_enter_signal (CAIRO_CONTAINER (pDock));
 	}
 	else
 	{
 		///cairo_dock_pop_down (pDock);  // ne fait rien s'il n'etait pas "popped".
-		if (pDock->bAutoHide)
+		///if (pDock->bAutoHide)
 			cairo_dock_emit_leave_signal (CAIRO_CONTAINER (pDock));
 	}
 }
@@ -183,6 +181,7 @@ gboolean cd_dbus_main_create_launcher_from_scratch (dbusMainObject *pDbusCallbac
 		g_strdup (cCommand),
 		NULL,
 		CAIRO_DOCK_LAST_ORDER);
+	pIcon->iTrueType = CAIRO_DOCK_ICON_TYPE_LAUNCHER;  // make it a launcher, since we have no control on it, so that the dock handles it as any launcher.
 	pIcon->cParentDockName = g_strdup (cParentDockName);
 	
 	gchar *cGuessedClass = cairo_dock_guess_class (cCommand, NULL);
@@ -192,7 +191,7 @@ gboolean cd_dbus_main_create_launcher_from_scratch (dbusMainObject *pDbusCallbac
 	cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (pParentDock));
 	
 	cairo_dock_insert_icon_in_dock (pIcon, pParentDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
-	cairo_dock_launch_animation (CAIRO_CONTAINER (pParentDock));
+	cairo_dock_start_icon_animation (pIcon, pParentDock);
 	
 	if (pIcon->cClass != NULL)
 	{
@@ -212,7 +211,7 @@ gboolean cd_dbus_main_load_launcher_from_file (dbusMainObject *pDbusCallback, co
 	
 	if (pIcon == NULL)
 	{
-		cd_warning ("the icon couldn't be created, check that the file '%s' exists and is a valid and readable .desktop file\n", cDesktopFile);
+		cd_warning ("the icon couldn't be created, check that the file '%s' exists in the current theme, and is a valid and readable .desktop file\n", cDesktopFile);
 		return FALSE;
 	}
 	
@@ -231,12 +230,13 @@ static void _find_launcher_in_dock (Icon *pIcon, CairoDock *pDock, gpointer *dat
 {
 	gchar *cDesktopFile = data[0];
 	Icon **pFoundIcon = data[1];
-	if (pIcon->cDesktopFileName && g_ascii_strncasecmp (cDesktopFile, pIcon->cDesktopFileName, strlen (cDesktopFile)) == 0)
+	if (pIcon->cDesktopFileName && g_ascii_strncasecmp (cDesktopFile, pIcon->cDesktopFileName, strlen (cDesktopFile)) == 0
+	|| pIcon->cCommand && g_ascii_strncasecmp (cDesktopFile, pIcon->cCommand, strlen (cDesktopFile)) == 0)
 	{
 		*pFoundIcon = pIcon;
 	}
 }
-Icon *cd_dbus_find_launcher (const gchar *cDesktopFile)
+static Icon *cd_dbus_find_launcher (const gchar *cDesktopFile)
 {
 	Icon *pIcon = NULL;
 	gpointer data[2];
@@ -263,7 +263,7 @@ gboolean cd_dbus_main_reload_launcher (dbusMainObject *pDbusCallback, const gcha
 	return TRUE;
 }
 
-gboolean cd_dbus_main_remove_launcher (dbusMainObject *pDbusCallback, const gchar *cDesktopFile, GError **error)
+gboolean cd_dbus_main_remove_launcher (dbusMainObject *pDbusCallback, const gchar *cDesktopFile, GError **error)  // cDesktopFile can be the command, for launchers that are created from scratch.
 {
 	if (! myConfig.bEnableTweakingLauncher)
 		return FALSE;
