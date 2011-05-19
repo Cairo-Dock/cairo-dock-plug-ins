@@ -1,4 +1,4 @@
-# This is a part of the external demo applet for Cairo-Dock
+# This is a part of the external applets for Cairo-Dock
 # Copyright : (C) 2010-2011 by Fabounet
 # E-mail : fabounet@glx-dock.org
 #
@@ -24,10 +24,21 @@ import os.path
 import ConfigParser
 import gobject
 import glib
+import gettext
 import dbus
 from dbus.mainloop.glib import DBusGMainLoop
 
 DBusGMainLoop(set_as_default=True)
+
+INSTALL_PREFIX = os.path.abspath("..")  # applets are launched from their install directory, so ".." is the folder containing all applets.
+
+GETTEXT_NAME = 'cairo-dock-plugins-extra'
+LOCALE_DIR = INSTALL_PREFIX + '/locale'  # user version of /usr/share/locale
+gettext.textdomain(GETTEXT_NAME)
+gettext.bind_textdomain_codeset (GETTEXT_NAME, 'UTF-8');
+gettext.bindtextdomain(GETTEXT_NAME, LOCALE_DIR)
+_ = gettext.gettext
+
 
 ####################
 ### Applet class ###
@@ -74,10 +85,11 @@ class CDApplet:
 		self.loop = None
 		self._bEnded = False
 		self._cMenuIconId = None
-		self.cAppletName = sys.argv[0][2:]
+		self.cAppletName = sys.argv[0][2:]  # the command is ./applet_name
 		self.cBusPath = sys.argv[2]
 		self.cConfFile = sys.argv[3]
 		self.cParentAppName = sys.argv[4]
+		self.cShareDataDir = INSTALL_PREFIX + '/' + self.cAppletName
 		
 		self._get_config()
 		self._connect_to_dock()
@@ -217,12 +229,11 @@ class CDApplet:
 	
 	def _connect_to_dock(self):
 		# get our applet on the bus.
-		#~ applet_path = "/org/cairodock/CairoDock/"+self.cAppletName  # path where our object is stored on the bus.
 		bus = dbus.SessionBus()
 		try:
 			applet_object = bus.get_object("org.cairodock.CairoDock", self.cBusPath)
 		except:
-			print ">>> object '"+self.cBusPath+"' can't be found on the bus, exit.\nMake sure that the 'Dbus' plug-in is activated in Cairo-Dock"
+			print ">>> object '"+self.cBusPath+"' can't be found on the bus, exit.\nMake sure that Cairo-Dock is running"
 			sys.exit(2)
 		self.icon = dbus.Interface(applet_object, "org.cairodock.CairoDock.applet")  # this object represents our icon inside the dock or a desklet.
 		sub_icons_object = bus.get_object("org.cairodock.CairoDock", self.cBusPath+"/sub_icons")

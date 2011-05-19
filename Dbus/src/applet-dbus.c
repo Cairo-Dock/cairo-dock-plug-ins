@@ -38,6 +38,7 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 #define __USE_POSIX
 #include <signal.h>  // kill
 #include <glib.h>
+#include <glib/gstdio.h>
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-bindings.h>
 
@@ -47,6 +48,9 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 #include "interface-applet-signals.h"
 #include "applet-dbus.h"
 
+#define DISTANT_DIR "2.4.0"
+#define GETTEXT_NAME_EXTRAS "cairo-dock-plugins-extra"
+#define LOCALE_DIR_NAME "locale"
 
   ///////////////////
  /// MAIN OBJECT ///
@@ -127,7 +131,7 @@ static gboolean _cd_dbus_register_new_module (const gchar *cModuleName, const gc
 		pVisitCard->iMinorVersionNeeded = 1;
 		pVisitCard->iMicroVersionNeeded = 1;
 		pVisitCard->cPreviewFilePath = cShareDataDir ? g_strdup_printf ("%s/preview", cShareDataDir) : NULL;
-		pVisitCard->cGettextDomain = g_strdup_printf ("cd-%s", cModuleName);
+		pVisitCard->cGettextDomain = g_strdup (GETTEXT_NAME_EXTRAS);
 		pVisitCard->cUserDataDir = g_strdup (cModuleName);
 		pVisitCard->cShareDataDir = g_strdup (cShareDataDir);
 		pVisitCard->cConfFileName = g_strdup_printf ("%s.conf", cModuleName);
@@ -229,7 +233,7 @@ static void _cd_dbus_register_all_applets_in_dir (const gchar *cDirPath)
 	const gchar *cFileName;
 	gchar *cThirdPartyPath = g_strdup_printf ("%s/%s", cDirPath, CD_DBUS_APPLETS_FOLDER);
 	
-	GDir *dir = g_dir_open (cThirdPartyPath, 0, NULL);  // si le repertoire n'existe pas, on ne veut de warning.
+	GDir *dir = g_dir_open (cThirdPartyPath, 0, NULL);  // si le repertoire n'existe pas, on ne veut pas de warning.
 	if (dir == NULL)
 	{
 		g_free (cThirdPartyPath);
@@ -241,8 +245,9 @@ static void _cd_dbus_register_all_applets_in_dir (const gchar *cDirPath)
 		cFileName = g_dir_read_name (dir);
 		if (cFileName == NULL)
 			break ;
-	
-		cd_dbus_register_module_in_dir (cFileName, cThirdPartyPath);
+		
+		if (strcmp (cFileName, LOCALE_DIR_NAME) != 0)
+			cd_dbus_register_module_in_dir (cFileName, cThirdPartyPath);
 	}
 	while (1);
 	g_dir_close (dir);
@@ -258,19 +263,23 @@ static void _get_package_path (gchar *cModuleName)
 {
 	const gchar *cSharePackagesDir = MY_APPLET_SHARE_DATA_DIR"/"CD_DBUS_APPLETS_FOLDER;
 	gchar *cUserPackagesDir = g_strdup_printf ("%s/%s", g_cCairoDockDataDir, CD_DBUS_APPLETS_FOLDER);
-	gchar *cDistantPackagesDir = g_strdup_printf ("%s/%d.%d.%d", CD_DBUS_APPLETS_FOLDER, g_iMajorVersion, g_iMinorVersion, g_iMicroVersion);
-	gchar *cPath = cairo_dock_get_package_path (cModuleName, cSharePackagesDir, cUserPackagesDir, cDistantPackagesDir,  CAIRO_DOCK_UPDATED_PACKAGE);
+	///gchar *cDistantPackagesDir = g_strdup_printf ("%s/%d.%d.%d", CD_DBUS_APPLETS_FOLDER, g_iMajorVersion, g_iMinorVersion, g_iMicroVersion);
+	const gchar *cDistantPackagesDir = CD_DBUS_APPLETS_FOLDER"/"DISTANT_DIR;
+	gchar *cPath = cairo_dock_get_package_path (cModuleName,
+		cSharePackagesDir,
+		cUserPackagesDir,
+		cDistantPackagesDir,
+		CAIRO_DOCK_UPDATED_PACKAGE);
 	cd_debug ("*** update of the applet '%s' -> got '%s'\n", cModuleName, cPath);
 	g_free (cPath);
 	g_free (cUserPackagesDir);
-	g_free (cDistantPackagesDir);
+	//g_free (cDistantPackagesDir);
 }
 static gboolean _apply_package_update (gchar *cModuleName)
 {
 	CairoDockModule *pModule = cairo_dock_find_module_from_name (cModuleName);
-	g_return_val_if_fail (pModule != NULL, TRUE);
 	
-	if (pModule->pInstancesList != NULL)  // applet active => on la recharge.
+	if (pModule && pModule->pInstancesList != NULL)  // applet active => reload it (pModule can be NULL in case of "locale").
 	{
 		cd_debug ("*** applet '%s' is active, reload it", cModuleName);
 		CairoDockModuleInstance *pModuleInstance = pModule->pInstancesList->data;
@@ -429,8 +438,8 @@ void cd_dbus_launch_service (void)
 	const gchar *cProgName = g_get_prgname ();
 	g_return_if_fail (cProgName != NULL);
 	int n = strlen (cProgName);
-	gchar *cName1 = g_new0 (gchar, n+1);
-	gchar *cName2 = g_new0 (gchar, n+1);
+	gchar *cName1 = g_new0 (gchar, n+1);  // prog name without '-' and '_'
+	gchar *cName2 = g_new0 (gchar, n+1);  // same but with upper char after the '-' and '_'
 	int i, k=0;
 	for (i = 0; i < n; i ++)
 	{
@@ -455,17 +464,29 @@ void cd_dbus_launch_service (void)
 	cairo_dock_register_service_name ("org.cairodock.CairoDock");  /// what happens if the gldi instance that had registered the name quits while a 2nd instance remains ? do we need to queue ?...
 	
 	//\____________ create the main object on the bus.
-	myData.pMainObject = g_object_new (cd_dbus_main_get_type(), NULL);  // appelle cd_dbus_main_class_init() et cd_dbus_main_init().
+	myData.pMainObject = g_object_new (cd_dbus_main_get_type(), NULL);  // call cd_dbus_main_class_init() and cd_dbus_main_init().
 	
 	//\____________ register the applets installed in the default folders.
 	_cd_dbus_register_all_applets_in_dir (MY_APPLET_SHARE_DATA_DIR);
 	
 	_cd_dbus_register_all_applets_in_dir (g_cCairoDockDataDir);
 	
+	//\____________ internationalize the applets.
+	gchar *cLocaleDir = g_strdup_printf ("%s/"CD_DBUS_APPLETS_FOLDER"/"LOCALE_DIR_NAME, g_cCairoDockDataDir);  // user version of /usr/share/locale
+	if (! g_file_test (cLocaleDir, G_FILE_TEST_EXISTS))  // translations not downloaded yet.
+	{
+		if (g_mkdir (cLocaleDir, 7*8*8+7*8+5) != 0)  // create an empty folder; since there is no date file, the "locale" package will be seen as "to be updated" by the package manager, and will therefore download it.
+			cd_warning ("couldn't create '%s'; applets won't be translated", cLocaleDir);
+	}
+	bindtextdomain (GETTEXT_NAME_EXTRAS, cLocaleDir);  // bind the applets' domain to the user locale folder.
+	bind_textdomain_codeset (GETTEXT_NAME_EXTRAS, "UTF-8");
+	g_free (cLocaleDir);
+	
 	//\____________ download in background the list of existing applets.
-	const gchar *cSharePackagesDir = NULL;  // MY_APPLET_SHARE_DATA_DIR"/"CD_DBUS_APPLETS_FOLDER;
+	const gchar *cSharePackagesDir = NULL;  // no share data dir, since we can't write in /usr
 	gchar *cUserPackagesDir = g_strdup_printf ("%s/%s", g_cCairoDockDataDir, CD_DBUS_APPLETS_FOLDER);
-	gchar *cDistantPackagesDir = g_strdup_printf ("%s/%d.%d.%d", CD_DBUS_APPLETS_FOLDER, g_iMajorVersion, g_iMinorVersion, g_iMicroVersion);
+	///gchar *cDistantPackagesDir = g_strdup_printf ("%s/%d.%d.%d", CD_DBUS_APPLETS_FOLDER, g_iMajorVersion, g_iMinorVersion, g_iMicroVersion);
+	const gchar *cDistantPackagesDir = CD_DBUS_APPLETS_FOLDER"/"DISTANT_DIR;
 	myData.pGetListTask = cairo_dock_list_packages_async (cSharePackagesDir,
 		cUserPackagesDir,
 		cDistantPackagesDir,
@@ -473,7 +494,7 @@ void cd_dbus_launch_service (void)
 		NULL,  // data
 		NULL);  // table
 	g_free (cUserPackagesDir);
-	g_free (cDistantPackagesDir);
+	///g_free (cDistantPackagesDir);
 }
 
 

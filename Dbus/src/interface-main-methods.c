@@ -201,14 +201,40 @@ gboolean cd_dbus_main_create_launcher_from_scratch (dbusMainObject *pDbusCallbac
 	return TRUE;
 }
 
+static void _find_launcher_in_dock (Icon *pIcon, CairoDock *pDock, gpointer *data)
+{
+	gchar *cDesktopFile = data[0];
+	Icon **pFoundIcon = data[1];
+	if ((pIcon->cDesktopFileName && g_ascii_strncasecmp (cDesktopFile, pIcon->cDesktopFileName, strlen (cDesktopFile)) == 0)
+	|| (pIcon->cCommand && g_ascii_strncasecmp (cDesktopFile, pIcon->cCommand, strlen (cDesktopFile)) == 0))
+	{
+		*pFoundIcon = pIcon;
+	}
+}
+static Icon *cd_dbus_find_launcher (const gchar *cDesktopFile)
+{
+	Icon *pIcon = NULL;
+	gpointer data[2];
+	data[0] = (gpointer) cDesktopFile;
+	data[1] = &pIcon;
+	cairo_dock_foreach_icons_in_docks ((CairoDockForeachIconFunc) _find_launcher_in_dock, data);
+	return pIcon;
+}
+
 gboolean cd_dbus_main_load_launcher_from_file (dbusMainObject *pDbusCallback, const gchar *cDesktopFile, GError **error)  // pris de cairo_dock_add_new_launcher_by_uri().
 {
-	if (! myConfig.bEnableTweakingLauncher)
+	if (! myConfig.bEnableCreateLauncher)
 		return FALSE;
 	g_return_val_if_fail (cDesktopFile != NULL, FALSE);
 	
-	Icon *pIcon = cairo_dock_create_icon_from_desktop_file (cDesktopFile);
+	Icon *pIcon = cd_dbus_find_launcher (cDesktopFile);
+	if (pIcon != NULL)
+	{
+		cd_warning ("file '%s' has already been loaded", cDesktopFile);
+		return FALSE;
+	}
 	
+	pIcon = cairo_dock_create_icon_from_desktop_file (cDesktopFile);
 	if (pIcon == NULL)
 	{
 		cd_warning ("the icon couldn't be created, check that the file '%s' exists in the current theme, and is a valid and readable .desktop file\n", cDesktopFile);
@@ -226,35 +252,38 @@ gboolean cd_dbus_main_load_launcher_from_file (dbusMainObject *pDbusCallback, co
 	return TRUE;
 }
 
-static void _find_launcher_in_dock (Icon *pIcon, CairoDock *pDock, gpointer *data)
+gboolean cd_dbus_main_add_launcher (dbusMainObject *pDbusCallback, const gchar *cDesktopFilePath, gdouble fOrder, const gchar *cDockName, gchar **cLauncherFile, GError **error)
 {
-	gchar *cDesktopFile = data[0];
-	Icon **pFoundIcon = data[1];
-	if (pIcon->cDesktopFileName && g_ascii_strncasecmp (cDesktopFile, pIcon->cDesktopFileName, strlen (cDesktopFile)) == 0
-	|| pIcon->cCommand && g_ascii_strncasecmp (cDesktopFile, pIcon->cCommand, strlen (cDesktopFile)) == 0)
+	*cLauncherFile = NULL;
+	if (! myConfig.bEnableCreateLauncher)
+		return FALSE;
+	g_return_val_if_fail (cDesktopFilePath != NULL, FALSE);
+	
+	nullify_argument (cDockName);
+	if (cDockName == NULL)
+		cDockName = CAIRO_DOCK_MAIN_DOCK_NAME;
+	
+	CairoDock * pParentDock = cairo_dock_search_dock_from_name (cDockName);
+		
+	Icon *pNewIcon = cairo_dock_add_new_launcher_by_uri (cDesktopFilePath, pParentDock, fOrder >= 0 ? fOrder : CAIRO_DOCK_LAST_ORDER);
+	if (pNewIcon != NULL)
 	{
-		*pFoundIcon = pIcon;
+		*cLauncherFile = g_strdup (pNewIcon->cDesktopFileName);
+		return TRUE;
 	}
-}
-static Icon *cd_dbus_find_launcher (const gchar *cDesktopFile)
-{
-	Icon *pIcon = NULL;
-	gpointer data[2];
-	data[0] = (gpointer) cDesktopFile;
-	data[1] = &pIcon;
-	cairo_dock_foreach_icons_in_docks ((CairoDockForeachIconFunc) _find_launcher_in_dock, data);
-	return pIcon;
+	else
+		return FALSE;
 }
 
-gboolean cd_dbus_main_reload_launcher (dbusMainObject *pDbusCallback, const gchar *cDesktopFile, GError **error)
+gboolean cd_dbus_main_reload_launcher (dbusMainObject *pDbusCallback, const gchar *cLauncherFile, GError **error)
 {
 	if (! myConfig.bEnableTweakingLauncher)
 		return FALSE;
 	
-	nullify_argument (cDesktopFile);
-	g_return_val_if_fail (cDesktopFile != NULL, FALSE);
+	nullify_argument (cLauncherFile);
+	g_return_val_if_fail (cLauncherFile != NULL, FALSE);
 	
-	Icon *pIcon = cd_dbus_find_launcher (cDesktopFile);
+	Icon *pIcon = cd_dbus_find_launcher (cLauncherFile);
 	if (pIcon == NULL)
 		return FALSE;
 	
@@ -263,15 +292,15 @@ gboolean cd_dbus_main_reload_launcher (dbusMainObject *pDbusCallback, const gcha
 	return TRUE;
 }
 
-gboolean cd_dbus_main_remove_launcher (dbusMainObject *pDbusCallback, const gchar *cDesktopFile, GError **error)  // cDesktopFile can be the command, for launchers that are created from scratch.
+gboolean cd_dbus_main_remove_launcher (dbusMainObject *pDbusCallback, const gchar *cLauncherFile, GError **error)  // cLauncherFile can be the command, for launchers that are created from scratch.
 {
 	if (! myConfig.bEnableTweakingLauncher)
 		return FALSE;
 	
-	nullify_argument (cDesktopFile);
-	g_return_val_if_fail (cDesktopFile != NULL, FALSE);
+	nullify_argument (cLauncherFile);
+	g_return_val_if_fail (cLauncherFile != NULL, FALSE);
 	
-	Icon *pIcon = cd_dbus_find_launcher (cDesktopFile);
+	Icon *pIcon = cd_dbus_find_launcher (cLauncherFile);
 	if (pIcon == NULL)
 		return FALSE;
 	
@@ -285,7 +314,6 @@ gboolean cd_dbus_main_remove_launcher (dbusMainObject *pDbusCallback, const gcha
 	
 	return TRUE;
 }
-
 
 
 

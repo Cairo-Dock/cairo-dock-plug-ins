@@ -28,11 +28,17 @@
 		<method name="LoadLauncherFromFile">
 			<arg name="cDesktopFile" type="s" direction="in"/>
 		</method>
+		<method name="AddLauncher">
+			<arg name="cDesktopFilePath" type="s" direction="in"/>
+			<arg name="fOrder" type="d" direction="in"/>
+			<arg name="cDockName" type="s" direction="in"/>
+			<arg name="cLauncherFile" type="s" direction="out"/>
+		</method>
 		<method name="ReloadLauncher">
-			<arg name="cDesktopFile" type="s" direction="in"/>
+			<arg name="cLauncherFile" type="s" direction="in"/>
 		</method>
 		<method name="RemoveLauncher">
-			<arg name="cDesktopFile" type="s" direction="in"/>
+			<arg name="cLauncherFile" type="s" direction="in"/>
 		</method>
 		<method name="SetQuickInfo">
 			<arg name="cQuickInfo" type="s" direction="in"/>

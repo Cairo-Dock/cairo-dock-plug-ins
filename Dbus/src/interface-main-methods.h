@@ -41,6 +41,8 @@ gboolean cd_dbus_main_load_launcher_from_file (dbusMainObject *dbusMainObject, c
 
 gboolean cd_dbus_main_create_launcher_from_scratch (dbusMainObject *dbusMainObject, const gchar *cIconFile, const gchar *cLabel, const gchar *cCommand, const gchar *cParentDockName, GError **error);
 
+gboolean cd_dbus_main_add_launcher (dbusMainObject *pDbusCallback, const gchar *cDesktopFilePath, gdouble fOrder, const gchar *cDockName, gchar **cLauncherFile, GError **error);
+
 gboolean cd_dbus_main_reload_launcher (dbusMainObject *dbusMainObject, const gchar *cDesktopFile, GError **error);
 
 gboolean cd_dbus_main_remove_launcher (dbusMainObject *dbusMainObject, const gchar *cDesktopFile, GError **error);
