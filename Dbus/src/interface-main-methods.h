@@ -25,17 +25,19 @@
 #include "applet-struct.h"
 
 
-gboolean cd_dbus_main_show_desklet(dbusMainObject *dbusMainObject, gboolean *widgetLayer, GError **error);
-
 gboolean cd_dbus_main_reboot(dbusMainObject *dbusMainObject, GError **error);
 
 gboolean cd_dbus_main_quit (dbusMainObject *dbusMainObject, GError **error);
 
 gboolean cd_dbus_main_show_dock (dbusMainObject *dbusMainObject, gboolean bShow, GError **error);
 
+gboolean cd_dbus_main_show_desklet(dbusMainObject *dbusMainObject, gboolean *widgetLayer, GError **error);
+
+
 gboolean cd_dbus_main_reload_module (dbusMainObject *dbusMainObject, const gchar *cModuleName, GError **error);
 
 gboolean cd_dbus_main_activate_module (dbusMainObject *dbusMainObject, const gchar *cModuleName, gboolean bActivate, GError **error);
+
 
 gboolean cd_dbus_main_load_launcher_from_file (dbusMainObject *dbusMainObject, const gchar *cDesktopFile, GError **error);
 
@@ -48,22 +50,17 @@ gboolean cd_dbus_main_reload_launcher (dbusMainObject *dbusMainObject, const gch
 gboolean cd_dbus_main_remove_launcher (dbusMainObject *dbusMainObject, const gchar *cDesktopFile, GError **error);
 
 
-gboolean cd_dbus_main_set_quick_info (dbusMainObject *dbusMainObject, const gchar *cQuickInfo, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error);
+gboolean cd_dbus_main_set_quick_info (dbusMainObject *dbusMainObject, const gchar *cQuickInfo, gchar *cIconQuery, GError **error);
 
-gboolean cd_dbus_main_set_label (dbusMainObject *dbusMainObject, const gchar *cLabel, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error);
+gboolean cd_dbus_main_set_label (dbusMainObject *dbusMainObject, const gchar *cLabel, gchar *cIconQuery, GError **error);
 
-gboolean cd_dbus_main_set_icon (dbusMainObject *dbusMainObject, const gchar *cImage, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error);
+gboolean cd_dbus_main_set_icon (dbusMainObject *dbusMainObject, const gchar *cImage, gchar *cIconQuery, GError **error);
 
-gboolean cd_dbus_main_set_emblem (dbusMainObject *pDbusCallback, const gchar *cImage, gint iPosition, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error);
+gboolean cd_dbus_main_set_emblem (dbusMainObject *pDbusCallback, const gchar *cImage, gint iPosition, gchar *cIconQuery, GError **error);
 
-gboolean cd_dbus_main_animate (dbusMainObject *dbusMainObject, const gchar *cAnimation, gint iNbRounds, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error);
+gboolean cd_dbus_main_animate (dbusMainObject *dbusMainObject, const gchar *cAnimation, gint iNbRounds, gchar *cIconQuery, GError **error);
 
-gboolean cd_dbus_main_show_dialog (dbusMainObject *dbusMainObject, const gchar *message, gint iDuration, const gchar *cIconName, const gchar *cIconCommand, const gchar *cModuleName, GError **error);
-
-
-gboolean cd_dbus_main_register_new_module (dbusMainObject *pDbusCallback, const gchar *cModuleName, const gchar *cDescription, const gchar *cAuthor, const gchar *cVersion, gint iCategory, const gchar *cShareDataDir, GError **error);
-
-gboolean cd_dbus_main_unregister_module (dbusMainObject *dbusMainObject, const gchar *cModuleName, GError **error);
+gboolean cd_dbus_main_show_dialog (dbusMainObject *dbusMainObject, const gchar *message, gint iDuration, gchar *cIconQuery, GError **error);
 
 
 #endif

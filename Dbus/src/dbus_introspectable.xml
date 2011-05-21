@@ -6,6 +6,9 @@
 		</method>
 		<method name="Quit">
 		</method>
+		<method name="ShowDock">
+			<arg name="show" type="b" direction="in"/>
+		</method>
 		<method name="ShowDesklet">
 			<arg name="widgetLayer" type="b" direction="in"/>
 		</method>
@@ -15,9 +18,6 @@
 		<method name="ActivateModule">
 			<arg name="cModuleName" type="s" direction="in"/>
 			<arg name="bActivate" type="b" direction="in"/>
-		</method>
-		<method name="ShowDock">
-			<arg name="show" type="b" direction="in"/>
 		</method>
 		<method name="CreateLauncherFromScratch">
 			<arg name="cIconFile" type="s" direction="in"/>
@@ -42,42 +42,30 @@
 		</method>
 		<method name="SetQuickInfo">
 			<arg name="cQuickInfo" type="s" direction="in"/>
-			<arg name="cIconName" type="s" direction="in"/>
-			<arg name="cIconCommand" type="s" direction="in"/>
-			<arg name="cModuleName" type="s" direction="in"/>
+			<arg name="cIconQuery" type="s" direction="in"/>
 		</method>
 		<method name="SetLabel">
 			<arg name="cLabel" type="s" direction="in"/>
-			<arg name="cIconName" type="s" direction="in"/>
-			<arg name="cIconCommand" type="s" direction="in"/>
-			<arg name="cModuleName" type="s" direction="in"/>
+			<arg name="cIconQuery" type="s" direction="in"/>
 		</method>
 		<method name="SetIcon">
 			<arg name="cImage" type="s" direction="in"/>
-			<arg name="cIconName" type="s" direction="in"/>
-			<arg name="cIconCommand" type="s" direction="in"/>
-			<arg name="cModuleName" type="s" direction="in"/>
+			<arg name="cIconQuery" type="s" direction="in"/>
 		</method>
 		<method name="SetEmblem">
 			<arg name="cImage" type="s" direction="in"/>
 			<arg name="iPosition" type="i" direction="in"/>
-			<arg name="cIconName" type="s" direction="in"/>
-			<arg name="cIconCommand" type="s" direction="in"/>
-			<arg name="cModuleName" type="s" direction="in"/>
+			<arg name="cIconQuery" type="s" direction="in"/>
 		</method>
 		<method name="Animate">
 			<arg name="cAnimation" type="s" direction="in"/>
 			<arg name="iNbRounds" type="i" direction="in"/>
-			<arg name="cIconName" type="s" direction="in"/>
-			<arg name="cIconCommand" type="s" direction="in"/>
-			<arg name="cModuleName" type="s" direction="in"/>
+			<arg name="cIconQuery" type="s" direction="in"/>
 		</method>
 		<method name="ShowDialog">
 			<arg name="message" type="s" direction="in"/>
 			<arg name="iDuration" type="i" direction="in"/>
-			<arg name="cIconName" type="s" direction="in"/>
-			<arg name="cIconCommand" type="s" direction="in"/>
-			<arg name="cModuleName" type="s" direction="in"/>
+			<arg name="cIconQuery" type="s" direction="in"/>
 		</method>
 	</interface>
 </node>
