@@ -243,17 +243,25 @@ void cd_stack_build_icons (CairoDockModuleInstance *myApplet)
 	GList *pIconList = cd_stack_build_icons_list (myApplet, myConfig.cStackDir);
 	
 	//\_______________________ On charge la nouvelle liste.
-	const gchar *cDeskletRendererName = NULL;
-	switch (myConfig.iDeskletRendererType)
+	if (pIconList != NULL)
 	{
-		case CD_DESKLET_SLIDE :
-		default :
-			cDeskletRendererName = "Viewport";
-		break ;
-		
-		case CD_DESKLET_TREE :
-			cDeskletRendererName = "Tree";
-		break ;
+		const gchar *cDeskletRendererName = NULL;
+		switch (myConfig.iDeskletRendererType)
+		{
+			case CD_DESKLET_SLIDE :
+			default :
+				cDeskletRendererName = "Viewport";
+			break ;
+			
+			case CD_DESKLET_TREE :
+				cDeskletRendererName = "Tree";
+			break ;
+		}
+		CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, cDeskletRendererName, NULL);
 	}
-	CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, cDeskletRendererName, NULL);
+	else if (myDock)  // sinon on ne veut pas du sous-dock vide.
+	{
+		cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->cName);
+		myIcon->pSubDock = NULL;
+	}
 }

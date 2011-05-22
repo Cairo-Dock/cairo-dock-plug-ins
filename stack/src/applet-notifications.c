@@ -44,12 +44,15 @@ static inline void _launch_item (Icon *pIcon, CairoDockModuleInstance *myApplet)
 CD_APPLET_ON_CLICK_BEGIN
 	if (CD_APPLET_CLICKED_ICON == myIcon)
 	{
-		if (CD_APPLET_MY_ICONS_LIST == NULL)
+		if (CD_APPLET_MY_ICONS_LIST == NULL)  // empty sub-dock or desklet.
 		{
 			cairo_dock_remove_dialog_if_any (myIcon);
 			cairo_dock_show_temporary_dialog_with_icon (D_("No items in the stack.\nYou can add files, URL, and even a piece of text by dragging them onto the icon."), myIcon, myContainer, 8000., "same icon");
 		}
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);  // on laisse passer la notification (pour ouvrir le sous-dock au clic).
+		else
+		{
+			CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);  // on laisse passer la notification (pour ouvrir le sous-dock au clic).
+		}
 	}
 	else if (CD_APPLET_CLICKED_ICON != NULL)
 	{
