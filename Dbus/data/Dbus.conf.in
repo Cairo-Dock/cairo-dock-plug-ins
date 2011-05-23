@@ -1,4 +1,4 @@
-#!en;@VERSION_DBUS@
+#@VERSION_DBUS@
 
 #[gtk-preferences]
 [Configuration]

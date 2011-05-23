@@ -378,6 +378,141 @@ GList *cd_dbus_find_matching_icons (gchar *cQuery)
 	}
 	return _find_matching_icons_for_test (cQuery);
 }
+
+gboolean cd_dbus_main_add_temporary_icon (dbusMainObject *pDbusCallback, GHashTable *hIconAttributes, GError **error)
+{
+	if (! myConfig.bEnableCreateLauncher)
+		return FALSE;
+	
+	g_return_val_if_fail (hIconAttributes != NULL, FALSE);
+	
+	GValue *v;
+	
+	const gchar *cType = "Application";
+	v = g_hash_table_lookup (hIconAttributes, "type");  // not used yet.
+	if (v && G_VALUE_HOLDS_STRING (v))
+	{
+		cType = g_value_get_string (v);
+	}
+	
+	const gchar *cIcon = NULL;
+	v = g_hash_table_lookup (hIconAttributes, "icon");
+	if (v && G_VALUE_HOLDS_STRING (v))
+	{
+		cIcon = g_value_get_string (v);
+	}
+	
+	const gchar *cName = NULL;
+	v = g_hash_table_lookup (hIconAttributes, "name");
+	if (v && G_VALUE_HOLDS_STRING (v))
+	{
+		cName = g_value_get_string (v);
+	}
+	
+	const gchar *cParentDockName = CAIRO_DOCK_MAIN_DOCK_NAME;
+	v = g_hash_table_lookup (hIconAttributes, "container");
+	if (v && G_VALUE_HOLDS_STRING (v))
+	{
+		cParentDockName = g_value_get_string (v);
+	}
+	
+	const gchar *cQuickInfo = NULL;
+	v = g_hash_table_lookup (hIconAttributes, "quick-info");
+	if (v && G_VALUE_HOLDS_STRING (v))
+	{
+		cQuickInfo = g_value_get_string (v);
+	}
+	
+	double fOrder = CAIRO_DOCK_LAST_ORDER;
+	v = g_hash_table_lookup (hIconAttributes, "container");
+	if (v && G_VALUE_HOLDS_DOUBLE (v))
+	{
+		fOrder = g_value_get_double (v);
+	}
+	
+	int iPosition = -1;
+	v = g_hash_table_lookup (hIconAttributes, "position");
+	if (v && G_VALUE_HOLDS_INT (v))
+	{
+		iPosition = g_value_get_int (v);
+	}
+	
+	const gchar *cCommand = NULL;
+	v = g_hash_table_lookup (hIconAttributes, "command");
+	if (v && G_VALUE_HOLDS_STRING (v))
+	{
+		cCommand = g_value_get_string (v);
+	}
+	
+	const gchar *cClass = NULL;
+	v = g_hash_table_lookup (hIconAttributes, "class");
+	if (v && G_VALUE_HOLDS_STRING (v))
+	{
+		cClass = g_value_get_string (v);  // "none" to skip taskbar
+	}
+	
+	CairoDock *pParentDock = cairo_dock_search_dock_from_name (cParentDockName);
+	if (pParentDock == NULL)
+	{
+		cd_warning ("dock %s does not exist", cParentDockName);
+		pParentDock = g_pMainDock;
+	}
+	
+	if (iPosition > -1)  // the position will overwrite the order if ever both are defined.
+	{
+		fOrder = 0;
+		Icon *nth_icon;
+		double nth_order = -1;
+		int i;
+		GList *ic;
+		for (i = 0, ic = pParentDock->icons; i < iPosition && ic != NULL; i ++, ic = ic->next)
+		{
+			nth_icon = ic->data;
+			nth_order = nth_icon->fOrder;
+		}
+		if (ic == NULL)  // not enough icons, place the new one just after the last one.
+		{
+			fOrder = nth_order + 1;
+		}
+		else
+		{
+			nth_icon = ic->data;
+			fOrder = (nth_order + nth_icon->fOrder) / 2;
+		}
+	}
+	
+	Icon *pIcon = cairo_dock_create_dummy_launcher (g_strdup (cName),
+		g_strdup (cIcon),
+		g_strdup (cCommand),
+		g_strdup (cQuickInfo),
+		fOrder);
+	pIcon->iTrueType = CAIRO_DOCK_ICON_TYPE_LAUNCHER;  // make it a launcher, since we have no control on it, so that the dock handles it as any launcher.
+	pIcon->cParentDockName = g_strdup (cParentDockName);
+	
+	if (cClass == NULL)
+	{
+		gchar *cGuessedClass = cairo_dock_guess_class (cCommand, NULL);
+		pIcon->cClass = cairo_dock_register_class (cGuessedClass);
+		g_free (cGuessedClass);
+	}
+	else if (strcmp (cClass, "none") != 0)
+	{
+		pIcon->cClass = g_strdup (cClass);
+	}
+	
+	cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (pParentDock));
+	
+	cairo_dock_insert_icon_in_dock (pIcon, pParentDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
+	cairo_dock_start_icon_animation (pIcon, pParentDock);
+	
+	if (pIcon->cClass != NULL)
+	{
+		cairo_dock_inhibite_class (pIcon->cClass, pIcon);
+	}
+	
+	return TRUE;
+}
+
 gboolean cd_dbus_main_create_launcher_from_scratch (dbusMainObject *pDbusCallback, const gchar *cIconFile, const gchar *cLabel, const gchar *cCommand, const gchar *cParentDockName, GError **error)
 {
 	if (! myConfig.bEnableCreateLauncher)
@@ -482,7 +617,12 @@ gboolean cd_dbus_main_add_launcher (dbusMainObject *pDbusCallback, const gchar *
 		cDockName = CAIRO_DOCK_MAIN_DOCK_NAME;
 	
 	CairoDock * pParentDock = cairo_dock_search_dock_from_name (cDockName);
-		
+	if (pParentDock == NULL)
+	{
+		cd_warning ("dock %s does not exist", cDockName);
+		pParentDock = g_pMainDock;
+	}
+	
 	Icon *pNewIcon = cairo_dock_add_new_launcher_by_uri (cDesktopFilePath, pParentDock, fOrder >= 0 ? fOrder : CAIRO_DOCK_LAST_ORDER);
 	if (pNewIcon != NULL)
 	{

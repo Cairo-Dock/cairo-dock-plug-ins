@@ -37,8 +37,7 @@ LOCALE_DIR = INSTALL_PREFIX + '/locale'  # user version of /usr/share/locale
 gettext.textdomain(GETTEXT_NAME)
 gettext.bind_textdomain_codeset (GETTEXT_NAME, 'UTF-8');
 gettext.bindtextdomain(GETTEXT_NAME, LOCALE_DIR)
-_ = gettext.gettext
-
+_ = lambda x: gettext.dgettext(GETTEXT_NAME,x)
 
 ####################
 ### Applet class ###

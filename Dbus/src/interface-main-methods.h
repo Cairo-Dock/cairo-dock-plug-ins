@@ -45,6 +45,8 @@ gboolean cd_dbus_main_create_launcher_from_scratch (dbusMainObject *dbusMainObje
 
 gboolean cd_dbus_main_add_launcher (dbusMainObject *pDbusCallback, const gchar *cDesktopFilePath, gdouble fOrder, const gchar *cDockName, gchar **cLauncherFile, GError **error);
 
+gboolean cd_dbus_main_add_temporary_icon (dbusMainObject *pDbusCallback, GHashTable *hIconAttributes, GError **error);
+
 gboolean cd_dbus_main_reload_launcher (dbusMainObject *dbusMainObject, const gchar *cDesktopFile, GError **error);
 
 gboolean cd_dbus_main_remove_launcher (dbusMainObject *dbusMainObject, const gchar *cDesktopFile, GError **error);
