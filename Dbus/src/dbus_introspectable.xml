@@ -19,14 +19,9 @@
 			<arg name="cModuleName" type="s" direction="in"/>
 			<arg name="bActivate" type="b" direction="in"/>
 		</method>
-		<method name="CreateLauncherFromScratch">
-			<arg name="cIconFile" type="s" direction="in"/>
-			<arg name="cLabel" type="s" direction="in"/>
-			<arg name="cCommand" type="s" direction="in"/>
-			<arg name="cParentDockName" type="s" direction="in"/>
-		</method>
-		<method name="LoadLauncherFromFile">
-			<arg name="cDesktopFile" type="s" direction="in"/>
+		<method name="GetIconProperties">
+			<arg name="cIconQuery" type="s" direction="in"/>
+			<arg name="pIconProperties" direction="out" type="aa{sv}"/>
 		</method>
 		<method name="AddLauncher">
 			<arg name="cDesktopFilePath" type="s" direction="in"/>
@@ -43,6 +38,7 @@
 		<method name="RemoveLauncher">
 			<arg name="cLauncherFile" type="s" direction="in"/>
 		</method>
+		
 		<method name="SetQuickInfo">
 			<arg name="cQuickInfo" type="s" direction="in"/>
 			<arg name="cIconQuery" type="s" direction="in"/>
@@ -65,10 +61,24 @@
 			<arg name="iNbRounds" type="i" direction="in"/>
 			<arg name="cIconQuery" type="s" direction="in"/>
 		</method>
+		<method name="DemandsAttention">
+			<arg name="bStart" type="b" direction="in"/>
+			<arg name="cAnimation" type="s" direction="in"/>
+			<arg name="cIconQuery" type="s" direction="in"/>
+		</method>
 		<method name="ShowDialog">
 			<arg name="message" type="s" direction="in"/>
 			<arg name="iDuration" type="i" direction="in"/>
 			<arg name="cIconQuery" type="s" direction="in"/>
+		</method>
+		<method name="CreateLauncherFromScratch">
+			<arg name="cIconFile" type="s" direction="in"/>
+			<arg name="cLabel" type="s" direction="in"/>
+			<arg name="cCommand" type="s" direction="in"/>
+			<arg name="cParentDockName" type="s" direction="in"/>
+		</method>
+		<method name="LoadLauncherFromFile">
+			<arg name="cDesktopFile" type="s" direction="in"/>
 		</method>
 	</interface>
 </node>

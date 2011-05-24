@@ -39,9 +39,7 @@ gboolean cd_dbus_main_reload_module (dbusMainObject *dbusMainObject, const gchar
 gboolean cd_dbus_main_activate_module (dbusMainObject *dbusMainObject, const gchar *cModuleName, gboolean bActivate, GError **error);
 
 
-gboolean cd_dbus_main_load_launcher_from_file (dbusMainObject *dbusMainObject, const gchar *cDesktopFile, GError **error);
-
-gboolean cd_dbus_main_create_launcher_from_scratch (dbusMainObject *dbusMainObject, const gchar *cIconFile, const gchar *cLabel, const gchar *cCommand, const gchar *cParentDockName, GError **error);
+gboolean cd_dbus_main_get_icon_properties (dbusMainObject *pDbusCallback, gchar *cIconQuery, GPtrArray **pIconAttributes, GError **error);
 
 gboolean cd_dbus_main_add_launcher (dbusMainObject *pDbusCallback, const gchar *cDesktopFilePath, gdouble fOrder, const gchar *cDockName, gchar **cLauncherFile, GError **error);
 
@@ -62,7 +60,13 @@ gboolean cd_dbus_main_set_emblem (dbusMainObject *pDbusCallback, const gchar *cI
 
 gboolean cd_dbus_main_animate (dbusMainObject *dbusMainObject, const gchar *cAnimation, gint iNbRounds, gchar *cIconQuery, GError **error);
 
+gboolean cd_dbus_main_demands_attention (dbusMainObject *pDbusCallback, gboolean bStart, const gchar *cAnimation, gchar *cIconQuery, GError **error);
+
 gboolean cd_dbus_main_show_dialog (dbusMainObject *dbusMainObject, const gchar *message, gint iDuration, gchar *cIconQuery, GError **error);
 
+
+gboolean cd_dbus_main_load_launcher_from_file (dbusMainObject *dbusMainObject, const gchar *cDesktopFile, GError **error);
+
+gboolean cd_dbus_main_create_launcher_from_scratch (dbusMainObject *dbusMainObject, const gchar *cIconFile, const gchar *cLabel, const gchar *cCommand, const gchar *cParentDockName, GError **error);
 
 #endif
