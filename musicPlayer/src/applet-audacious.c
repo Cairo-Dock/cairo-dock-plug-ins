@@ -477,7 +477,7 @@ void cd_musicplayer_register_audacious_handler (void)
 	
 	pAudacious->appclass = "audacious";  // les classes sont passees en minuscule par le dock.
 	pAudacious->name = "Audacious";
-	pAudacious->launch = "audacious2";
+	pAudacious->launch = "audacious";
 	pAudacious->cMprisService = "org.mpris.audacious";
 	pAudacious->iPlayer = MP_AUDACIOUS;
 	pAudacious->bSeparateAcquisition = FALSE;  // inutile de threader.
