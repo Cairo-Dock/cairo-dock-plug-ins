@@ -41,6 +41,11 @@ gboolean cd_dbus_main_activate_module (dbusMainObject *dbusMainObject, const gch
 
 gboolean cd_dbus_main_get_icon_properties (dbusMainObject *pDbusCallback, gchar *cIconQuery, GPtrArray **pIconAttributes, GError **error);
 
+gboolean cd_dbus_main_get_container_properties (dbusMainObject *pDbusCallback, const gchar *cName, GPtrArray **pAttributes, GError **error);
+
+gboolean cd_dbus_main_get_module_properties (dbusMainObject *pDbusCallback, const gchar *cName, GPtrArray **pAttributes, GError **error);
+
+
 gboolean cd_dbus_main_add_launcher (dbusMainObject *pDbusCallback, const gchar *cDesktopFilePath, gdouble fOrder, const gchar *cDockName, gchar **cLauncherFile, GError **error);
 
 gboolean cd_dbus_main_add_temporary_icon (dbusMainObject *pDbusCallback, GHashTable *hIconAttributes, GError **error);

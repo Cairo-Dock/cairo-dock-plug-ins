@@ -1268,7 +1268,7 @@ gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GV
 	}
 	else if (strcmp (cProperty, "orientation") == 0)
 	{
-		CairoDockPositionType iScreenBorder = (g_pMainDock ? ((! g_pMainDock->container.bIsHorizontal) << 1) | (! g_pMainDock->container.bDirectionUp) : 0);
+		CairoDockPositionType iScreenBorder = ((! pContainer->bIsHorizontal) << 1) | (! pContainer->bDirectionUp);
 		g_value_init (v, G_TYPE_UINT);
 		g_value_set_uint (v, iScreenBorder);
 	}

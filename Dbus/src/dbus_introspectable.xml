@@ -23,6 +23,15 @@
 			<arg name="cIconQuery" type="s" direction="in"/>
 			<arg name="pIconProperties" direction="out" type="aa{sv}"/>
 		</method>
+		<method name="GetContainerProperties">
+			<arg name="cName" type="s" direction="in"/>
+			<arg name="pContainerProperties" direction="out" type="aa{sv}"/>
+		</method>
+		<method name="GetModuleProperties">
+			<arg name="cName" type="s" direction="in"/>
+			<arg name="pModuleProperties" direction="out" type="aa{sv}"/>
+		</method>
+		
 		<method name="AddLauncher">
 			<arg name="cDesktopFilePath" type="s" direction="in"/>
 			<arg name="fOrder" type="d" direction="in"/>

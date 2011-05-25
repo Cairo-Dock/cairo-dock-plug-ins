@@ -178,7 +178,7 @@ typedef struct {
 	gint iPosition;
 	gboolean bMatchAll;
 	GList *pMatchingIcons;
-} CDQueryIconBuffer;
+} CDIconQueryBuffer;
 static inline gboolean _strings_match (const gchar *q, const gchar *p)  // query, parameter
 {
 	if (!p)
@@ -197,7 +197,7 @@ static inline gboolean _strings_match_case (const gchar *q, const gchar *p)  // 
 		return (g_ascii_strncasecmp (q, p, n-1) == 0);
 	return (g_ascii_strcasecmp (q, p) == 0);
 }
-static gboolean _icon_is_matching (Icon *pIcon, CairoContainer *pContainer, CDQueryIconBuffer *pQuery)
+static gboolean _icon_is_matching (Icon *pIcon, CairoContainer *pContainer, CDIconQueryBuffer *pQuery)
 {
 	gboolean bOr = FALSE;
 	gboolean bAnd = TRUE;  // at least 1 of the fields is not nul.
@@ -290,25 +290,25 @@ static gboolean _icon_is_matching (Icon *pIcon, CairoContainer *pContainer, CDQu
 	
 	return ((pQuery->bMatchAll && bAnd) || (!pQuery->bMatchAll && bOr));
 }
-static void _check_icon_matching (Icon *pIcon, CairoContainer *pContainer, CDQueryIconBuffer *pQuery)
+static void _check_icon_matching (Icon *pIcon, CairoContainer *pContainer, CDIconQueryBuffer *pQuery)
 {
 	if (_icon_is_matching (pIcon, pContainer, pQuery))
 		pQuery->pMatchingIcons = g_list_prepend (pQuery->pMatchingIcons, pIcon);
 }
-static void _get_icon_at_position_in_dock (const gchar *cDockName, CairoDock *pDock, CDQueryIconBuffer *pQuery)
+static void _get_icon_at_position_in_dock (const gchar *cDockName, CairoDock *pDock, CDIconQueryBuffer *pQuery)
 {
 	Icon *pIcon = g_list_nth_data (pDock->icons, pQuery->iPosition);
 	if (pIcon != NULL)
 		pQuery->pMatchingIcons = g_list_prepend (pQuery->pMatchingIcons, pIcon);
 }
-static gboolean _get_icon_at_position_in_desklet (CairoDesklet *pDesklet, CDQueryIconBuffer *pQuery)
+static gboolean _get_icon_at_position_in_desklet (CairoDesklet *pDesklet, CDIconQueryBuffer *pQuery)
 {
 	Icon *pIcon = g_list_nth_data (pDesklet->icons, pQuery->iPosition);
 	if (pIcon != NULL)
 		pQuery->pMatchingIcons = g_list_prepend (pQuery->pMatchingIcons, pIcon);
 	return FALSE;  // don't stop.
 }
-static gboolean _prepare_query (CDQueryIconBuffer *pQuery, const gchar *cKey, const gchar *cValue)
+static gboolean _prepare_query (CDIconQueryBuffer *pQuery, const gchar *cKey, const gchar *cValue)
 {
 	g_return_val_if_fail (cKey != NULL, FALSE);
 	if (cValue == NULL)  // use "none" keyword to look for "icons that don't have key".
@@ -342,8 +342,8 @@ static gboolean _prepare_query (CDQueryIconBuffer *pQuery, const gchar *cKey, co
 static GList *_find_matching_icons_for_key (const gchar *cKey, const gchar *cValue)
 {
 	//g_print ("  %s (%s, %s)\n", __func__, cKey, cValue);
-	CDQueryIconBuffer query;
-	memset (&query, 0, sizeof (CDQueryIconBuffer));
+	CDIconQueryBuffer query;
+	memset (&query, 0, sizeof (CDIconQueryBuffer));
 	query.iPosition = -1;
 	query.bMatchAll = TRUE;
 	
@@ -432,11 +432,10 @@ GList *cd_dbus_find_matching_icons (gchar *cQuery)
 	return _find_matching_icons_for_test (cQuery);
 }
 
+
 gboolean cd_dbus_main_get_icon_properties (dbusMainObject *pDbusCallback, gchar *cIconQuery, GPtrArray **pIconAttributes, GError **error)
 {
-	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
-	if (pList == NULL)
-		return FALSE;
+	GList *pList = cd_dbus_find_matching_icons (cIconQuery);  // if NULL, will just return an empty array.
 	
 	GPtrArray *pTab = g_ptr_array_new ();
 	*pIconAttributes = pTab;
@@ -566,6 +565,245 @@ gboolean cd_dbus_main_get_icon_properties (dbusMainObject *pDbusCallback, gchar 
 	return TRUE;
 }
 
+static void _set_container_props (CairoContainer *pContainer, GHashTable *h)
+{
+	GValue *v;
+	int x, y, w, ht;
+	if (pContainer->bIsHorizontal)
+	{
+		x = pContainer->iWindowPositionX;
+		y = pContainer->iWindowPositionY;
+		w = pContainer->iWidth;
+		ht = pContainer->iHeight;
+	}
+	else
+	{
+		y = pContainer->iWindowPositionX;
+		x = pContainer->iWindowPositionY;
+		ht = pContainer->iWidth;
+		w = pContainer->iHeight;
+	}
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_INT);
+	g_value_set_int (v, pContainer->iWindowPositionX);
+	g_hash_table_insert (h, g_strdup ("x"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_INT);
+	g_value_set_int (v, y);
+	g_hash_table_insert (h, g_strdup ("y"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_INT);
+	g_value_set_int (v, w);
+	g_hash_table_insert (h, g_strdup ("width"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_INT);
+	g_value_set_int (v, ht);
+	g_hash_table_insert (h, g_strdup ("height"), v);
+	
+	CairoDockPositionType iScreenBorder = ((! pContainer->bIsHorizontal) << 1) | (! pContainer->bDirectionUp);
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_UINT);
+	g_value_set_uint (v, iScreenBorder);
+	g_hash_table_insert (h, g_strdup ("orientation"), v);
+}
+static void _insert_dock_props (const gchar *cDockName, CairoDock *pDock, GPtrArray *pTab)
+{
+	GHashTable *h = g_hash_table_new_full (g_str_hash,
+		g_str_equal,
+		g_free,  /// can we use const char here instead of duplicating each string ?...
+		g_free);
+	g_ptr_array_add (pTab, h);
+	
+	GValue *v;
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, "Dock");
+	g_hash_table_insert (h, g_strdup ("type"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, cDockName);
+	g_hash_table_insert (h, g_strdup ("name"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_BOOLEAN);
+	g_value_set_boolean (v, (pDock->iRefCount > 0));
+	g_hash_table_insert (h, g_strdup ("is-sub-dock"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_INT);
+	g_value_set_int (v, g_list_length (pDock->icons));
+	g_hash_table_insert (h, g_strdup ("nb-icons"), v);
+	
+	_set_container_props (CAIRO_CONTAINER (pDock), h);
+}
+static gboolean _insert_desklet_props (CairoDesklet *pDesklet, GPtrArray *pTab)
+{
+	GHashTable *h = g_hash_table_new_full (g_str_hash,
+		g_str_equal,
+		g_free,  /// can we use const char here instead of duplicating each string ?...
+		g_free);
+	g_ptr_array_add (pTab, h);
+	
+	GValue *v;
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, "Desklet");
+	g_hash_table_insert (h, g_strdup ("type"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, CAIRO_DOCK_IS_APPLET (pDesklet->pIcon) ? pDesklet->pIcon->pModuleInstance->pModule->pVisitCard->cModuleName : "");
+	g_hash_table_insert (h, g_strdup ("name"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_INT);
+	g_value_set_int (v, 1 + g_list_length (pDesklet->icons));
+	g_hash_table_insert (h, g_strdup ("nb-icons"), v);
+	
+	_set_container_props (CAIRO_CONTAINER (pDesklet), h);
+	return FALSE;
+}
+static gboolean _check_desklet_name (CairoDesklet *pDesklet, const gchar *cName)
+{
+	if (CAIRO_DOCK_IS_APPLET (pDesklet->pIcon))
+	{
+		return (strcmp (cName, pDesklet->pIcon->pModuleInstance->pModule->pVisitCard->cModuleName) == 0);
+	}
+	return FALSE;
+}
+gboolean cd_dbus_main_get_container_properties (dbusMainObject *pDbusCallback, const gchar *cName, GPtrArray **pAttributes, GError **error)
+{
+	nullify_argument (cName);
+	
+	GPtrArray *pTab = g_ptr_array_new ();
+	*pAttributes = pTab;
+	
+	if (cName == NULL)
+	{
+		cairo_dock_foreach_docks ((GHFunc)_insert_dock_props, pTab);
+		cairo_dock_foreach_desklet ((CairoDockForeachDeskletFunc) _insert_desklet_props, pTab);
+	}
+	else
+	{
+		CairoDock *pDock = cairo_dock_search_dock_from_name (cName);
+		if (pDock != NULL)
+		{
+			_insert_dock_props (cName, pDock, pTab);
+		}
+		else
+		{
+			CairoDesklet *pDesklet = cairo_dock_foreach_desklet ((CairoDockForeachDeskletFunc) _check_desklet_name, (gpointer)cName);
+			if (pDesklet != NULL)
+			{
+				_insert_desklet_props (pDesklet, pTab);
+			}
+		}
+	}
+	
+	return TRUE;
+}
+
+static gboolean _insert_module_props (CairoDockModule *pModule, GPtrArray *pTab)
+{
+	GHashTable *h = g_hash_table_new_full (g_str_hash,
+		g_str_equal,
+		g_free,  /// can we use const char here instead of duplicating each string ?...
+		g_free);
+	g_ptr_array_add (pTab, h);
+	
+	GValue *v;
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, pModule->pVisitCard->cModuleName);
+	g_hash_table_insert (h, g_strdup ("name"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_UINT);
+	g_value_set_uint (v, pModule->pVisitCard->iContainerType);
+	g_hash_table_insert (h, g_strdup ("type"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_UINT);
+	g_value_set_uint (v, pModule->pVisitCard->iCategory);
+	g_hash_table_insert (h, g_strdup ("category"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, dgettext (pModule->pVisitCard->cGettextDomain, pModule->pVisitCard->cTitle));
+	g_hash_table_insert (h, g_strdup ("title"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, pModule->pVisitCard->cIconFilePath);
+	g_hash_table_insert (h, g_strdup ("icon"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, pModule->pVisitCard->cPreviewFilePath);
+	g_hash_table_insert (h, g_strdup ("preview"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, pModule->pVisitCard->cDescription);
+	g_hash_table_insert (h, g_strdup ("description"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, pModule->pVisitCard->cAuthor);
+	g_hash_table_insert (h, g_strdup ("author"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_BOOLEAN);
+	g_value_set_boolean (v, pModule->pVisitCard->bMultiInstance);
+	g_hash_table_insert (h, g_strdup ("is-multi-instance"), v);
+	
+	g_print ("list instances ...\n");
+	gchar **pInstances = g_new0 (gchar*, g_list_length (pModule->pInstancesList)+1);
+	CairoDockModuleInstance *pInstance;
+	int i = 0;
+	GList *mi;
+	for (mi = pModule->pInstancesList; mi != NULL; mi = mi->next)
+	{
+		pInstance = mi->data;
+		pInstances[i++] = g_strdup (pInstance->cConfFilePath);
+	}
+	g_print ("write instances ...\n");
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRV);
+	g_value_set_boxed (v, pInstances);
+	g_hash_table_insert (h, g_strdup ("instances"), v);
+	g_print ("done.\n");
+	return TRUE;  // continue
+}
+gboolean cd_dbus_main_get_module_properties (dbusMainObject *pDbusCallback, const gchar *cName, GPtrArray **pAttributes, GError **error)
+{
+	nullify_argument (cName);
+	
+	GPtrArray *pTab = g_ptr_array_new ();
+	*pAttributes = pTab;
+	
+	if (cName == NULL)
+	{
+		cairo_dock_foreach_module_in_alphabetical_order ((GCompareFunc) _insert_module_props, pTab);
+	}
+	else
+	{
+		CairoDockModule *pModule = cairo_dock_find_module_from_name (cName);
+		if (pModule != NULL)
+		{
+			_insert_module_props (pModule, pTab);
+		}
+	}
+	return TRUE;
+}
+
 gboolean cd_dbus_main_add_launcher (dbusMainObject *pDbusCallback, const gchar *cDesktopFilePath, gdouble fOrder, const gchar *cDockName, gchar **cLauncherFile, GError **error)
 {
 	*cLauncherFile = NULL;
@@ -591,7 +829,7 @@ gboolean cd_dbus_main_add_launcher (dbusMainObject *pDbusCallback, const gchar *
 		iLauncherType = CAIRO_DOCK_DESKTOP_FILE_FOR_SEPARATOR;
 	else if (strcmp (cDesktopFilePath, "container.desktop") == 0)
 		iLauncherType = CAIRO_DOCK_DESKTOP_FILE_FOR_CONTAINER;
-	else if (strcmp (cDesktopFilePath, "container.desktop") == 0)
+	else if (strcmp (cDesktopFilePath, "launcher.desktop") == 0)
 		iLauncherType = CAIRO_DOCK_DESKTOP_FILE_FOR_LAUNCHER;
 	
 	if (fOrder < 0)
@@ -620,7 +858,7 @@ gboolean cd_dbus_main_add_temporary_icon (dbusMainObject *pDbusCallback, GHashTa
 	//\_______________ get the attributes.
 	GValue *v;
 	const gchar *cType = "Launcher";
-	v = g_hash_table_lookup (hIconAttributes, "type");  // not used yet.
+	v = g_hash_table_lookup (hIconAttributes, "type");
 	if (v && G_VALUE_HOLDS_STRING (v))
 	{
 		cType = g_value_get_string (v);
@@ -713,24 +951,64 @@ gboolean cd_dbus_main_add_temporary_icon (dbusMainObject *pDbusCallback, GHashTa
 	}
 	
 	//\_______________ create a corresponding icon.
-	Icon *pIcon = cairo_dock_create_dummy_launcher (g_strdup (cName),
-		g_strdup (cIcon),
-		g_strdup (cCommand),
-		g_strdup (cQuickInfo),
-		fOrder);
-	pIcon->iTrueType = CAIRO_DOCK_ICON_TYPE_LAUNCHER;  // make it a launcher, since we have no control on it, so that the dock handles it as any launcher.
+	Icon *pIcon;
+	if (cType == NULL || strcmp (cType, "Launcher") == 0)
+	{
+		pIcon = cairo_dock_create_dummy_launcher (g_strdup (cName),
+			g_strdup (cIcon),
+			g_strdup (cCommand),
+			g_strdup (cQuickInfo),
+			fOrder);
+		pIcon->iTrueType = CAIRO_DOCK_ICON_TYPE_LAUNCHER;  // make it a launcher, since we have no control on it, so that the dock handles it as any launcher.
+		if (cClass == NULL)
+		{
+			gchar *cGuessedClass = cairo_dock_guess_class (cCommand, NULL);
+			pIcon->cClass = cairo_dock_register_class (cGuessedClass);
+			g_free (cGuessedClass);
+		}
+		else if (strcmp (cClass, "none") != 0)
+		{
+			pIcon->cClass = g_strdup (cClass);
+		}
+	}
+	else if (strcmp (cType, "Container") == 0)
+	{
+		int iSubdockViewType = 0;
+		if (!cIcon || strcmp (cIcon, "Box") == 0)
+		{
+			iSubdockViewType = 3;
+			cIcon = NULL;
+		}
+		else if (strcmp (cIcon, "Stack") == 0)
+		{
+			iSubdockViewType = 2;
+			cIcon = NULL;
+		}
+		else if (strcmp (cIcon, "Emblems") == 0)
+		{
+			iSubdockViewType = 1;
+			cIcon = NULL;
+		}
+		gchar *cUniqueName = cairo_dock_get_unique_dock_name (cName);
+		pIcon = cairo_dock_create_dummy_launcher (cUniqueName,
+			g_strdup (cIcon),
+			NULL,
+			NULL,
+			fOrder);
+		pIcon->iTrueType = CAIRO_DOCK_ICON_TYPE_CONTAINER;
+		pIcon->iSubdockViewType = iSubdockViewType;
+		pIcon->pSubDock = cairo_dock_create_subdock_from_scratch (NULL, pIcon->cName, pParentDock);  // NULL <=> default sub-docks view.
+	}
+	else if (strcmp (cType, "Separator") == 0)
+	{
+		pIcon = cairo_dock_create_separator_icon (CAIRO_DOCK_LAUNCHER, NULL);  // NULL because we'll load the icon ourselves later.
+	}
+	else
+	{
+		cd_warning ("type '%s' invalid", cType);
+		return FALSE;
+	}
 	pIcon->cParentDockName = g_strdup (cParentDockName);
-	
-	if (cClass == NULL)
-	{
-		gchar *cGuessedClass = cairo_dock_guess_class (cCommand, NULL);
-		pIcon->cClass = cairo_dock_register_class (cGuessedClass);
-		g_free (cGuessedClass);
-	}
-	else if (strcmp (cClass, "none") != 0)
-	{
-		pIcon->cClass = g_strdup (cClass);
-	}
 	
 	//\_______________ load it inside the dock.
 	cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (pParentDock));
