@@ -539,7 +539,7 @@ else()
 	add_subdirectory ("mail")
 endif()
 
-############# MEMENU #################
+############# DISTRIBUTION #################
 # We try to detect if the user is on Ubuntu to know which bus we have to use...
 execute_process(
 	COMMAND lsb_release -i
@@ -577,11 +577,16 @@ else()
 	endif()
 endif()
 
-set (INDICATOR_OLD_NAMES 0)
 if (NOT "${DISTRO_ID}" STREQUAL "")
 	message (STATUS "DISTRO_ID: ${DISTRO_ID}, DISTRO_RELEASE: ${DISTRO_RELEASE}")
 endif()
-if ("${DISTRO_ID}" STREQUAL "Ubuntu")
+
+############# MEMENU #################
+set (INDICATOR_OLD_NAMES 0)
+if ("${force_old_indicator_names}" STREQUAL "yes")
+	set (INDICATOR_OLD_NAMES 1)
+	message (STATUS "Indicators: use old Ayatana Dbus names (forced)")
+elseif ("${DISTRO_ID}" STREQUAL "Ubuntu")
 	STRING (REGEX REPLACE "\\..*" "" DISTRO_RELEASE_MAJOR ${DISTRO_RELEASE})
 	# message (STATUS "DISTRO_RELEASE_MAJOR: ${DISTRO_RELEASE_MAJOR}")
 	if (${DISTRO_RELEASE_MAJOR} LESS 11)  # from 11.04, new names are used.
