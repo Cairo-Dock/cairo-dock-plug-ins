@@ -304,13 +304,13 @@ static void cd_weather_get_distant_data (CDSharedMemory *pSharedMemory)
 	{
 		gchar *cURL = g_strdup_printf (CD_WEATHER_BASE_URL"/weather/local/%s?cc=*%s", pSharedMemory->cLocationCode, (pSharedMemory->bISUnits ? "&unit=m" : ""));
 		cCCData = cairo_dock_get_url_data (cURL, &erreur);
-		g_free (cURL);
 		if (erreur != NULL)
 		{
 			cd_warning ("while downloading current conditions data:\n%s -> %s", cURL, erreur->message);
 			g_error_free (erreur);
 			erreur = NULL;
 		}
+		g_free (cURL);
 		if (cCCData == NULL)
 		{
 			pSharedMemory->bErrorInThread = TRUE;
@@ -324,7 +324,6 @@ static void cd_weather_get_distant_data (CDSharedMemory *pSharedMemory)
 	{
 		gchar *cURL = g_strdup_printf (CD_WEATHER_BASE_URL"/weather/local/%s?dayf=%d%s", pSharedMemory->cLocationCode, pSharedMemory->iNbDays, (pSharedMemory->bISUnits ? "&unit=m" : ""));
 		cForecastData = cairo_dock_get_url_data (cURL, &erreur);
-		g_free (cURL);
 		if (erreur != NULL)
 		{
 			cd_warning ("while downloading forecast data:\n%s ->  %s", cURL, erreur->message);
@@ -332,6 +331,7 @@ static void cd_weather_get_distant_data (CDSharedMemory *pSharedMemory)
 			erreur = NULL;
 			pSharedMemory->bErrorInThread = TRUE;
 		}
+		g_free (cURL);
 		if (cForecastData == NULL)
 		{
 			pSharedMemory->bErrorInThread = TRUE;
