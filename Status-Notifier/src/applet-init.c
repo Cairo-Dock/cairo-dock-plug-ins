@@ -32,7 +32,7 @@ CD_APPLET_DEFINE_BEGIN ("Status-Notifier",
 	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("A <b>notification area</b> for your dock\n"
 	"Programs can use it to display their current status.\n"
-	"If a program doesn't appear inside when it should, it's probably because it doesn't support the this feature yet. Please fill a bug report to the devs."),
+	"If a program doesn't appear inside when it should, it's probably because it doesn't support this feature yet. Please fill a bug report to the devs."),
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_REDEFINE_TITLE (N_("Notification Area"))

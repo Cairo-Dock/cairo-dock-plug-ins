@@ -1058,7 +1058,7 @@ msgstr "Sartu zure bilaketa"
 msgid ""
 "A <b>notification area</b> for your dock\n"
 "Programs can use it to display their current status.\n"
-"If a program doesn't appear inside when it should, it's probably because it doesn't support the this feature yet. Please fill a bug report to the devs."
+"If a program doesn't appear inside when it should, it's probably because it doesn't support this feature yet. Please fill a bug report to the devs."
 msgstr ""
 
 #: ../Status-Notifier/src/applet-init.c:38
