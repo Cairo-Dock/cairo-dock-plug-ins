@@ -26,7 +26,7 @@ set (CPACK_SOURCE_IGNORE_FILES
 	"/build/;/.bzr/;bzrignore$;/misc/;~$;${CPACK_SOURCE_IGNORE_FILES}")
 include (CPack)
 
-add_custom_target( dist
+add_custom_target(dist
 	COMMAND ${CMAKE_MAKE_PROGRAM} package_source)
 add_custom_target(dist-bzr
 	COMMAND bzr export ${CMAKE_PROJECT_NAME}-${VERSION}.tar.gz
@@ -768,6 +768,7 @@ add_subdirectory (stack)
 ############# STATUS NOTIFIER #################
 if ("${DBUSMENU_GTK_FOUND}" STREQUAL "")
 	message (STATUS "Could not find Status-Notifier libs; Cairo-Dock won't be built with Status-Notifier support.")
+	set (with_status_notifier "no")
 else()
 	set (GETTEXT_STATUS_NOTIFIER ${GETTEXT_PLUGINS})
 	set (VERSION_STATUS_NOTIFIER "0.1.3")
@@ -939,7 +940,7 @@ message (STATUS " - with Python interface:          ${with_python}")
 message (STATUS " - with Ruby interface:            ${with_ruby}")
 message (STATUS " - with Mono interface:            ${with_mono}")
 message (STATUS " - with Vala interface:            ${with_vala}")
-message (STATUS " - with Vala Translator (valac) :  ${with_valac}")
+message (STATUS " - with Vala Translator (valac):   ${with_valac}")
 message (STATUS "Unstable:")
 message (STATUS " - with Disks applet:              ${with_disks}")
 message (STATUS " - with Doncky applet:             ${with_doncky}")
