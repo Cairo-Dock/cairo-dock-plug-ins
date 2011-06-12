@@ -929,7 +929,9 @@ gboolean cd_dbus_applet_control_appli (dbusApplet *pDbusApplet, const gchar *cAp
 		if (pIcon->cClass != NULL)
 			cairo_dock_deinhibite_class (pIcon->cClass, pIcon);
 		if (cClass != NULL)
-			cairo_dock_inhibite_class (cClass, pIcon);
+		{
+			cairo_dock_inhibite_class (cClass, pIcon);  /// useful to use cairo_dock_register_class ?...
+		}
 		if (! cairo_dock_is_loading ())
 		{
 			CairoContainer *pContainer = pInstance->pContainer;

@@ -968,7 +968,9 @@ gboolean cd_dbus_main_add_temporary_icon (dbusMainObject *pDbusCallback, GHashTa
 		}
 		else if (strcmp (cClass, "none") != 0)
 		{
-			pIcon->cClass = g_strdup (cClass);
+			pIcon->cClass = cairo_dock_register_class (cClass);
+			if (pIcon->cClass == NULL)  // if we couldn't find the class desktop file, set the class anyway, since it was explicitely specified; the method caller probably knows more than us what he's doing.
+				pIcon->cClass = g_strdup (cClass);
 		}
 	}
 	else if (strcmp (cType, "Container") == 0)

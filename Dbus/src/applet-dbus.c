@@ -228,8 +228,9 @@ gboolean cd_dbus_register_module_in_dir (const gchar *cModuleName, const gchar *
 	return bActivationOk;
 }
 
-static void _cd_dbus_register_all_applets_in_dir (const gchar *cDirPath)
+static gboolean _cd_dbus_register_all_applets_in_dir (const gchar *cDirPath)
 {
+	gboolean bAppletRegistered = FALSE;
 	const gchar *cFileName;
 	gchar *cThirdPartyPath = g_strdup_printf ("%s/%s", cDirPath, CD_DBUS_APPLETS_FOLDER);
 	
@@ -237,7 +238,7 @@ static void _cd_dbus_register_all_applets_in_dir (const gchar *cDirPath)
 	if (dir == NULL)
 	{
 		g_free (cThirdPartyPath);
-		return ;
+		return bAppletRegistered;
 	}
 
 	do
@@ -247,11 +248,12 @@ static void _cd_dbus_register_all_applets_in_dir (const gchar *cDirPath)
 			break ;
 		
 		if (strcmp (cFileName, LOCALE_DIR_NAME) != 0)
-			cd_dbus_register_module_in_dir (cFileName, cThirdPartyPath);
+			bAppletRegistered |= cd_dbus_register_module_in_dir (cFileName, cThirdPartyPath);
 	}
 	while (1);
 	g_dir_close (dir);
 	g_free (cThirdPartyPath);
+	return bAppletRegistered;
 }
 
 
@@ -467,9 +469,10 @@ void cd_dbus_launch_service (void)
 	myData.pMainObject = g_object_new (cd_dbus_main_get_type(), NULL);  // call cd_dbus_main_class_init() and cd_dbus_main_init().
 	
 	//\____________ register the applets installed in the default folders.
-	_cd_dbus_register_all_applets_in_dir (MY_APPLET_SHARE_DATA_DIR);
+	gboolean bAppletRegistered = FALSE;
+	bAppletRegistered |= _cd_dbus_register_all_applets_in_dir (MY_APPLET_SHARE_DATA_DIR);
 	
-	_cd_dbus_register_all_applets_in_dir (g_cCairoDockDataDir);
+	bAppletRegistered |= _cd_dbus_register_all_applets_in_dir (g_cCairoDockDataDir);
 	
 	//\____________ internationalize the applets.
 	gchar *cLocaleDir = g_strdup_printf ("%s/"CD_DBUS_APPLETS_FOLDER"/"LOCALE_DIR_NAME, g_cCairoDockDataDir);  // user version of /usr/share/locale
@@ -483,18 +486,19 @@ void cd_dbus_launch_service (void)
 	g_free (cLocaleDir);
 	
 	//\____________ download in background the list of existing applets.
-	const gchar *cSharePackagesDir = NULL;  // no share data dir, since we can't write in /usr
-	gchar *cUserPackagesDir = g_strdup_printf ("%s/%s", g_cCairoDockDataDir, CD_DBUS_APPLETS_FOLDER);
-	///gchar *cDistantPackagesDir = g_strdup_printf ("%s/%d.%d.%d", CD_DBUS_APPLETS_FOLDER, g_iMajorVersion, g_iMinorVersion, g_iMicroVersion);
-	const gchar *cDistantPackagesDir = CD_DBUS_APPLETS_FOLDER"/"DISTANT_DIR;
-	myData.pGetListTask = cairo_dock_list_packages_async (cSharePackagesDir,
-		cUserPackagesDir,
-		cDistantPackagesDir,
-		(CairoDockGetPackagesFunc) _on_got_list,
-		NULL,  // data
-		NULL);  // table
-	g_free (cUserPackagesDir);
-	///g_free (cDistantPackagesDir);
+	if (bAppletRegistered)  // only if some third-party applets are present on the disk.
+	{
+		const gchar *cSharePackagesDir = NULL;  // no share data dir, since we can't write in /usr
+		gchar *cUserPackagesDir = g_strdup_printf ("%s/%s", g_cCairoDockDataDir, CD_DBUS_APPLETS_FOLDER);
+		const gchar *cDistantPackagesDir = CD_DBUS_APPLETS_FOLDER"/"DISTANT_DIR;
+		myData.pGetListTask = cairo_dock_list_packages_async (cSharePackagesDir,
+			cUserPackagesDir,
+			cDistantPackagesDir,
+			(CairoDockGetPackagesFunc) _on_got_list,
+			NULL,  // data
+			NULL);  // table
+		g_free (cUserPackagesDir);
+	}
 }
 
 
