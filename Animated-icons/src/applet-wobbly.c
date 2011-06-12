@@ -473,7 +473,7 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 		
 		///glActiveTextureARB(GL_TEXTURE0_ARB); // Go pour le multitexturing 1ere passe
 		glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
-		glColor4f(1.0f, 1.0f, 1.0f, myIconsParam.fAlbedo * pIcon->fAlpha);  // transparence du reflet.
+		glColor4f(1.0f, 1.0f, 1.0f, myIconsParam.fAlbedo * pIcon->fAlpha / 2);  // transparence du reflet.
 		glBlendFuncSeparate (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA,
 			GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 		glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
