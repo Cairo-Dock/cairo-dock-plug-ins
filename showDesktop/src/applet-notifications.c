@@ -147,16 +147,17 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	
 	gchar *cLabel;
+	
 	if (myConfig.iActionOnLeftClick != CD_SHOW_DESKTOP)  // action is not bound to left-click => put it in the menu
 	{
 		if (myConfig.iActionOnMiddleClick == CD_SHOW_DESKTOP)
-			cLabel = g_strdup_printf ("%s (%s)", D_("Show the desktop"), D_("middle-click"));
+			cLabel = g_strdup_printf ("%s (%s)", D_("Show desktop"), D_("middle-click"));
 		else
-			cLabel = g_strdup (D_("Show the desktop"));
+			cLabel = g_strdup (D_("Show desktop"));
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_FULLSCREEN, _show_desktop, CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
-	if (myConfig.iActionOnLeftClick != CD_EXPOSE)  // action is not bound to left-click => put it in the menu
+	if (myConfig.iActionOnLeftClick != CD_EXPOSE && cairo_dock_wm_can_present_desktops ())  // action is not bound to left-click => put it in the menu
 	{
 		if (myConfig.iActionOnMiddleClick == CD_EXPOSE)
 			cLabel = g_strdup_printf ("%s (%s)", D_("Expose all the desktops"), D_("middle-click"));
@@ -165,12 +166,12 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_LEAVE_FULLSCREEN, _cd_expose, CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
-	if (myConfig.iActionOnLeftClick != CD_SHOW_WIDGET_LAYER)  // action is not bound to left-click => put it in the menu
+	if (myConfig.iActionOnLeftClick != CD_SHOW_WIDGET_LAYER && cairo_dock_wm_can_show_widget_layer ())  // action is not bound to left-click => put it in the menu
 	{
 		if (myConfig.iActionOnMiddleClick == CD_SHOW_WIDGET_LAYER)
-			cLabel = g_strdup_printf ("%s (%s)", D_("Show the Widget Layer (Compiz)"), D_("middle-click"));
+			cLabel = g_strdup_printf ("%s (%s)", D_("Show the Widget Layer"), D_("middle-click"));
 		else
-			cLabel = g_strdup (D_("Show the Widget Layer (Compiz)"));
+			cLabel = g_strdup (D_("Show the Widget Layer"));
 		CD_APPLET_ADD_IN_MENU (cLabel, _cd_show_widget_layer, CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}  // on ne met pas les actions sur les desklets, surement assez peu utilisees.
@@ -317,14 +318,14 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 	
 	if (*CD_APPLET_RECEIVED_DATA == '/' || strncmp (CD_APPLET_RECEIVED_DATA, "file://", 7))  // fichier local
 	{
-		cairo_dock_add_in_menu_with_stock_and_data (D_("Move to the Desktop"), GTK_STOCK_CUT, (GFunc) _move_to_desktop, pMenu, myApplet);
-		cairo_dock_add_in_menu_with_stock_and_data (D_("Copy to the Desktop"), GTK_STOCK_COPY, (GFunc) _copy_to_desktop, pMenu, myApplet);
-		cairo_dock_add_in_menu_with_stock_and_data (D_("Link to the Desktop"), GTK_STOCK_JUMP_TO, (GFunc) _link_to_desktop, pMenu, myApplet);
+		cairo_dock_add_in_menu_with_stock_and_data (("Move to the Desktop"), GTK_STOCK_CUT, (GFunc) _move_to_desktop, pMenu, myApplet);
+		cairo_dock_add_in_menu_with_stock_and_data (("Copy to the Desktop"), GTK_STOCK_COPY, (GFunc) _copy_to_desktop, pMenu, myApplet);
+		cairo_dock_add_in_menu_with_stock_and_data (("Link to the Desktop"), GTK_STOCK_JUMP_TO, (GFunc) _link_to_desktop, pMenu, myApplet);
 	}
 	else  // fichier a telecharger.
 	{
-		cairo_dock_add_in_menu_with_stock_and_data (D_("Link to the Desktop"), GTK_STOCK_JUMP_TO, (GFunc) _make_link_to_desktop, pMenu, myApplet);
-		cairo_dock_add_in_menu_with_stock_and_data (D_("Download onto the Desktop"), GTK_STOCK_COPY, (GFunc) _download_to_desktop, pMenu, myApplet);
+		cairo_dock_add_in_menu_with_stock_and_data (("Link to the Desktop"), GTK_STOCK_JUMP_TO, (GFunc) _make_link_to_desktop, pMenu, myApplet);
+		cairo_dock_add_in_menu_with_stock_and_data (("Download onto the Desktop"), GTK_STOCK_COPY, (GFunc) _download_to_desktop, pMenu, myApplet);
 	}
 	CD_APPLET_POPUP_MENU_ON_MY_ICON (pMenu);
 	
