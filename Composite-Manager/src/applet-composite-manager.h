@@ -17,26 +17,27 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __APPLET_COMPIZ__
-#define  __APPLET_COMPIZ _
+#ifndef __APPLET_COMPOSITE_MANAGER__
+#define  __APPLET_COMPOSITE_MANAGER__
 
 #include <cairo-dock.h>
 
 
-void cd_compiz_start_system_wm (void);
+void cd_init_wms (void);
 
-void cd_compiz_start_compiz (void);
-
-void cd_compiz_switch_manager(void);
-
-void cd_compiz_start_favorite_decorator (void);
-void cd_compiz_start_decorator (compizDecorator iDecorator);
-
-void cd_compiz_kill_compmgr(void);
+void cd_stop_wms (void);
 
 
-void cd_compiz_read_data (void);
-gboolean cd_compiz_update_from_data (void);
+void cd_define_prefered_wms (void);
+
+
+void cd_draw_current_state (void);
+
+
+void cd_toggle_composite (void);
+
+
+void cd_open_wm_config (void);
 
 
 #endif
