@@ -136,7 +136,7 @@ static void _cd_find_mount_from_volume_name (const gchar *cVolumeName, GMount **
 		&erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("gnome_integration : %s", erreur->message);
+		cd_warning ("gvfs-integration : %s", erreur->message);
 		g_error_free (erreur);
 		g_object_unref (pFile);
 		return ;
@@ -150,7 +150,7 @@ static void _cd_find_mount_from_volume_name (const gchar *cVolumeName, GMount **
 		pFileInfo = g_file_enumerator_next_file (pFileEnum, NULL, &erreur);
 		if (erreur != NULL)
 		{
-			cd_warning ("gnome_integration : %s", erreur->message);
+			cd_warning ("gvfs-integration : %s", erreur->message);
 			g_error_free (erreur);
 			erreur = NULL;
 		}
@@ -311,7 +311,7 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 		cValidUri = g_filename_from_uri (cNautilusFile, NULL, &erreur);
 		if (erreur != NULL)
 		{
-			cd_warning ("gnome_integration : %s", erreur->message);
+			cd_warning ("gvfs-integration : %s", erreur->message);
 			g_error_free (erreur);
 			return ;
 		}
@@ -370,7 +370,7 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 	//g_object_unref (pFile);
 	if (erreur != NULL)  // peut arriver si l'emplacement n'est pas monte.
 	{
-		cd_debug ("gnome_integration : %s", erreur->message);  // inutile d'en faire un warning.
+		cd_debug ("gvfs-integration : %s", erreur->message);  // inutile d'en faire un warning.
 		g_error_free (erreur);
 		g_free (cValidUri);
 		g_object_unref (pFile);
@@ -698,7 +698,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 		&erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("gnome_integration : %s", erreur->message);
+		cd_warning ("gvfs-integration : %s", erreur->message);
 		g_error_free (erreur);
 		g_object_unref (pFile);
 		return NULL;
@@ -714,7 +714,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 		pFileInfo = g_file_enumerator_next_file (pFileEnum, NULL, &erreur);
 		if (erreur != NULL)
 		{
-			cd_warning ("gnome_integration : %s", erreur->message);
+			cd_warning ("gvfs-integration : %s", erreur->message);
 			g_error_free (erreur);
 			erreur = NULL;
 			continue;
@@ -888,12 +888,12 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 		
 		icon = cairo_dock_create_dummy_launcher (g_strdup ("home"),
 			g_strdup (pRootIcon->cFileName),
-			g_strdup ("/home"),
+			g_strdup (g_getenv ("HOME")),
 			NULL,
 			iOrder++);
 		icon->iTrueType = CAIRO_DOCK_ICON_TYPE_FILE;
 		icon->iGroup = iNewIconsGroup;
-		icon->cBaseURI = g_strdup_printf ("file://%s", "/home");
+		icon->cBaseURI = g_strdup_printf ("file://%s", g_getenv ("HOME"));
 		icon->iVolumeID = 0;
 		
 		pIconList = g_list_insert_sorted (pIconList,
@@ -929,7 +929,7 @@ static gsize cairo_dock_gio_vfs_measure_directory (const gchar *cBaseURI, gint i
 		&erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("gnome_integration : %s", erreur->message);
+		cd_warning ("gvfs-integration : %s", erreur->message);
 		g_error_free (erreur);
 		g_object_unref (pFile);
 		return 0;
@@ -943,7 +943,7 @@ static gsize cairo_dock_gio_vfs_measure_directory (const gchar *cBaseURI, gint i
 		pFileInfo = g_file_enumerator_next_file (pFileEnum, NULL, &erreur);
 		if (erreur != NULL)
 		{
-			cd_warning ("gnome_integration : %s", erreur->message);
+			cd_warning ("gvfs-integration : %s", erreur->message);
 			g_error_free (erreur);
 			erreur = NULL;
 			continue;
@@ -1026,7 +1026,7 @@ static void cairo_dock_gio_vfs_launch_uri (const gchar *cURI)
 	g_free (cTargetURI);
 	if (erreur != NULL)
 	{
-		cd_warning ("gnome_integration : couldn't launch '%s' [%s]", cURI, erreur->message);
+		cd_warning ("gvfs-integration : couldn't launch '%s' [%s]", cURI, erreur->message);
 		g_error_free (erreur);
 	}
 }
@@ -1143,7 +1143,7 @@ static void _gio_vfs_mount_callback (gpointer pObject, GAsyncResult *res, gpoint
 		bSuccess = g_mount_eject_finish (G_MOUNT (pObject), res, &erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("gnome-integration : %s", erreur->message);
+		cd_warning ("gvfs-integration : %s", erreur->message);
 		g_error_free (erreur);
 	}
 	
@@ -1298,7 +1298,7 @@ static void cairo_dock_gio_vfs_add_monitor (const gchar *cURI, gboolean bDirecto
 	//g_object_unref (pFile);
 	if (erreur != NULL)
 	{
-		cd_warning ("gnome-integration : couldn't add monitor on '%s' (%d) [%s]", cURI, bDirectory, erreur->message);
+		cd_warning ("gvfs-integration : couldn't add monitor on '%s' (%d) [%s]", cURI, bDirectory, erreur->message);
 		g_error_free (erreur);
 		return ;
 	}
@@ -1341,7 +1341,7 @@ static gboolean cairo_dock_gio_vfs_delete_file (const gchar *cURI, gboolean bNoT
 			&erreur);
 		if (erreur != NULL)
 		{
-			cd_warning ("gnome_integration : %s", erreur->message);
+			cd_warning ("gvfs-integration : %s", erreur->message);
 			g_error_free (erreur);
 			g_object_unref (pFile);
 			return FALSE;
@@ -1356,7 +1356,7 @@ static gboolean cairo_dock_gio_vfs_delete_file (const gchar *cURI, gboolean bNoT
 		bSuccess = g_file_delete (pFile, NULL, &erreur);
 		if (erreur != NULL)
 		{
-			cd_warning ("gnome-integration : %s", erreur->message);
+			cd_warning ("gvfs-integration : %s", erreur->message);
 			g_error_free (erreur);
 		}
 	}
@@ -1365,7 +1365,7 @@ static gboolean cairo_dock_gio_vfs_delete_file (const gchar *cURI, gboolean bNoT
 		bSuccess = g_file_trash (pFile, NULL, &erreur);
 		if (erreur != NULL)
 		{
-			cd_warning ("gnome-integration : %s", erreur->message);
+			cd_warning ("gvfs-integration : %s", erreur->message);
 			g_error_free (erreur);
 		}
 	}
@@ -1381,7 +1381,7 @@ static gboolean cairo_dock_gio_vfs_rename_file (const gchar *cOldURI, const gcha
 	GFile *pNewFile = g_file_set_display_name (pOldFile, cNewName, NULL, &erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("gnome-integration : %s", erreur->message);
+		cd_warning ("gvfs-integration : %s", erreur->message);
 		g_error_free (erreur);
 	}
 	gboolean bSuccess = (pNewFile != NULL);
@@ -1413,7 +1413,7 @@ static gboolean cairo_dock_gio_vfs_move_file (const gchar *cURI, const gchar *cD
 		&erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("gnome-integration : %s", erreur->message);
+		cd_warning ("gvfs-integration : %s", erreur->message);
 		g_error_free (erreur);
 	}
 	g_object_unref (pFile);
@@ -1436,7 +1436,7 @@ static gboolean cairo_dock_gio_vfs_create_file (const gchar *cURI, gboolean bDir
 		g_file_create (pFile, G_FILE_CREATE_PRIVATE, NULL, &erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("gnome-integration : %s", erreur->message);
+		cd_warning ("gvfs-integration : %s", erreur->message);
 		g_error_free (erreur);
 		bSuccess = FALSE;
 	}
@@ -1465,7 +1465,7 @@ static void cairo_dock_gio_vfs_get_file_properties (const gchar *cURI, guint64 *
 		&erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("gnome-integration : couldn't get file properties for '%s' [%s]", cURI, erreur->message);
+		cd_warning ("gvfs-integration : couldn't get file properties for '%s' [%s]", cURI, erreur->message);
 		g_error_free (erreur);
 	}
 	
@@ -1532,7 +1532,7 @@ static void _cairo_dock_gio_vfs_empty_dir (const gchar *cBaseURI)
 		&erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("gnome_integration : %s", erreur->message);
+		cd_warning ("gvfs-integration : %s", erreur->message);
 		g_object_unref (pFile);
 		g_error_free (erreur);
 		return ;
@@ -1546,7 +1546,7 @@ static void _cairo_dock_gio_vfs_empty_dir (const gchar *cBaseURI)
 		pFileInfo = g_file_enumerator_next_file (pFileEnum, NULL, &erreur);
 		if (erreur != NULL)
 		{
-			cd_warning ("gnome_integration : %s", erreur->message);
+			cd_warning ("gvfs-integration : %s", erreur->message);
 			g_error_free (erreur);
 			erreur = NULL;
 			continue;
@@ -1567,7 +1567,7 @@ static void _cairo_dock_gio_vfs_empty_dir (const gchar *cBaseURI)
 		g_file_delete (file, NULL, &erreur);
 		if (erreur != NULL)
 		{
-			cd_warning ("gnome_integration : %s", erreur->message);
+			cd_warning ("gvfs-integration : %s", erreur->message);
 			g_error_free (erreur);
 			erreur = NULL;
 		}
@@ -1604,7 +1604,7 @@ static void cairo_dock_gio_vfs_empty_trash (void)
 		&erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("gnome_integration : %s", erreur->message);
+		cd_warning ("gvfs-integration : %s", erreur->message);
 		g_object_unref (pFile);
 		g_error_free (erreur);
 		return ;
@@ -1618,7 +1618,7 @@ static void cairo_dock_gio_vfs_empty_trash (void)
 		pFileInfo = g_file_enumerator_next_file (pFileEnum, NULL, &erreur);
 		if (erreur != NULL)
 		{
-			cd_warning ("gnome_integration : %s", erreur->message);
+			cd_warning ("gvfs-integration : %s", erreur->message);
 			g_error_free (erreur);
 			erreur = NULL;
 			continue;
@@ -1681,7 +1681,7 @@ static void cairo_dock_gio_vfs_empty_trash (void)
 		}
 		if (erreur != NULL)
 		{
-			cd_warning ("gnome_integration : %s", erreur->message);
+			cd_warning ("gvfs-integration : %s", erreur->message);
 			g_error_free (erreur);
 			erreur = NULL;
 		}
@@ -1713,7 +1713,7 @@ static GList *cairo_dock_gio_vfs_list_apps_for_file (const gchar *cBaseURI)
 	
 	if (erreur != NULL)  // peut arriver si l'emplacement n'est pas monte, mais on signale tout de meme la raison avec un warning.
 	{
-		cd_warning ("gnome_integration : %s", erreur->message);
+		cd_warning ("gvfs-integration : %s", erreur->message);
 		g_error_free (erreur);
 		g_free (cValidUri);
 		g_object_unref (pFile);
