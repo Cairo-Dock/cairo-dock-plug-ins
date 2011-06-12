@@ -183,7 +183,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		}
 		if (myData.pCurrentHandeler->iPlayerControls & PLAYER_PLAY_PAUSE)
 		{
-			gchar *cLabel = (myConfig.bPauseOnClick ? g_strdup_printf ("%s (%s)", D_("Play/Pause"), D_("left-click")) : g_strdup (D_("Play/Pause")));
+			gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Play/Pause"), myConfig.bPauseOnClick ? D_("left-click") : D_("middle-click"));
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, (myData.iPlayingStatus != PLAYER_PLAYING ? GTK_STOCK_MEDIA_PLAY : GTK_STOCK_MEDIA_PAUSE), _cd_musicplayer_pp, CD_APPLET_MY_MENU);
 			g_free (cLabel);
 		}
