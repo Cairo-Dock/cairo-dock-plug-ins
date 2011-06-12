@@ -44,6 +44,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iNotificationType 	= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "notifications", -1);
 	myConfig.cNotificationAnimation = CD_CONFIG_GET_STRING ("Configuration", "animation_feed_changed");
 	myConfig.iNotificationDuration = CD_CONFIG_GET_INTEGER ("Configuration", "dialogs_duration");
+	if (myConfig.iNotificationDuration == 0)  // prevent for blocking dialogs.
+		myConfig.iNotificationDuration = 1e5;
 	if (myConfig.iNotificationType == -1)  // anciens parametres.
 	{
 		gboolean bShowDialog = CD_CONFIG_GET_BOOLEAN ("Configuration", "dialog_feed_changed");
