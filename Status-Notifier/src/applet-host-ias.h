@@ -17,30 +17,17 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __APPLET_HOST__
-#define  __APPLET_HOST__
-
-#include <cairo-dock.h>
+#ifndef __APPLET_HOST_IAS__
+#define  __APPLET_HOST_IAS__
 
 
-void cd_satus_notifier_add_new_item (const gchar *cService, const gchar *cObjectPath, int iPosition);
-
-void cd_satus_notifier_remove_item (const gchar *cService, int iPosition);
+void cd_satus_notifier_get_items_from_ias (void);
 
 
-void cd_satus_notifier_launch_service (void);
-
-void cd_satus_notifier_stop_service (void);
-
-void cd_satus_notifier_launch_our_watcher (void);
+void cd_satus_notifier_detect_ias (void);
 
 
-void cd_satus_notifier_add_theme_path (const gchar * cThemePath);
-
-void cd_satus_notifier_remove_theme_path (const gchar * cThemePath);
-
-
-void cd_satus_notifier_load_icons_from_items (void);
+void cd_satus_notifier_unregister_from_ias (void);
 
 
 #endif

@@ -5,6 +5,8 @@ SET(cd-StatusNotifier_LIB_SRCS
 	applet-init.c 		applet-init.h
 	applet-config.c 		applet-config.h
 	applet-host.c 		applet-host.h
+	applet-host-kde.c 	applet-host-kde.h
+	applet-host-ias.c 	applet-host-ias.h
 	applet-item.c 		applet-item.h
 	applet-draw.c 		applet-draw.h
 	applet-notifications.c 	applet-notifications.h

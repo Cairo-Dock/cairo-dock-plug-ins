@@ -106,6 +106,8 @@ struct _AppletData {
 	DBusGProxy *pProxyIndicatorApplicationService;
 	gboolean bIASWatched;
 	gboolean bBrokenWatcher;
+	gboolean bNoIAS;
+	gboolean bNoWatcher;
 	GList *pItems;  // list of all items.
 	GHashTable *pThemePaths;
 	gint iNbLines, iNbColumns, iItemSize;  // agencement compact.
