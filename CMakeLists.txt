@@ -111,6 +111,7 @@ pkg_check_modules (GLIB glib-2.0)
 	STRING (REGEX REPLACE "-.*" "" GLIB_NANO "${GLIB_NANO}")
 
 ############# ALSA_MIXER #################
+message (STATUS "> AlsaMixer:")
 set (with_alsa "no")
 if (NOT "${enable-alsa-mixer}" STREQUAL "no")
 	pkg_check_modules (ALSA_MIXER_PACKAGE alsa)
@@ -128,6 +129,7 @@ if (NOT "${enable-alsa-mixer}" STREQUAL "no")
 endif()
 
 ############# ANIMATED ICONS #################
+message (STATUS "> Animated Icons:")
 set (GETTEXT_ANIMATED_ICONS ${GETTEXT_PLUGINS})
 set (VERSION_ANIMATED_ICONS "1.0.10")
 set (PACKAGE_ANIMATED_ICONS "cd-Animated-icons")
@@ -136,6 +138,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Animated-icons/data/Animated-icons.c
 add_subdirectory (Animated-icons)
 
 ############# CAIRO_PENGUIN #################
+message (STATUS "> Cairo Penguin:")
 set (GETTEXT_CAIRO_PENGUIN ${GETTEXT_PLUGINS})
 set (VERSION_CAIRO_PENGUIN "1.1.9")
 set (PACKAGE_CAIRO_PENGUIN "cd-Cairo-Penguin")
@@ -145,6 +148,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Cairo-Penguin/data/Cairo-Penguin.con
 add_subdirectory (Cairo-Penguin)
 
 ############# CLIPPER #################
+message (STATUS "> Clipper:")
 set (GETTEXT_CLIPPER ${GETTEXT_PLUGINS})
 set (VERSION_CLIPPER "1.1.5")
 set (PACKAGE_CLIPPER "cd-Clipper")
@@ -153,6 +157,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Clipper/data/Clipper.conf.in ${CMAKE
 add_subdirectory (Clipper)
 
 ############# CLOCK #################
+message (STATUS "> Clock:")
 set (with_ical "yes")
 pkg_check_modules ("LIBICAL_PACKAGE" "libical")
 if ("${LIBICAL_PACKAGE_FOUND}" STREQUAL "")
@@ -168,14 +173,17 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/clock/data/clock.conf.in ${CMAKE_CUR
 add_subdirectory (clock)
 
 ############# COMPOSITE_MANAGER #################
+message (STATUS "> Coposite Manager:")
 set (GETTEXT_COMPOSITE_MANAGER ${GETTEXT_PLUGINS})
 set (VERSION_COMPOSITE_MANAGER "0.0.1")
 set (PACKAGE_COMPOSITE_MANAGER "cd-Composite-Manager")
 set (composite_managerdatadir "${pluginsdatadir}/Composite-Manager")
-configure_file (Composite-Manager/data/Composite-Manager.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/Composite-Manager/data/Composite-Manager.conf)
+configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Composite-Manager/data/Composite-Manager.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Composite-Manager/data/Composite-Manager.conf)
 add_subdirectory (Composite-Manager)
 
 ############# DBUS #################
+message (STATUS "> DBus:")
+message (STATUS "* Python:")
 find_program (PYTHON_EXECUTABLE python)
 EXECUTE_PROCESS(COMMAND ${PYTHON_EXECUTABLE} -c "import sys; print sys.version" OUTPUT_VARIABLE PYTHON_VERSION)
 if ("${PYTHON_VERSION}" STREQUAL "") 
@@ -193,6 +201,7 @@ else()
 	set (with_python "yes") 
 endif()
 
+message (STATUS "* Ruby:")
 # find_package(Ruby) found libs of ruby-dev but we only need a directory where we can install ruby libs.
 find_program (RUBY_EXECUTABLE ruby)
 EXECUTE_PROCESS(COMMAND ${RUBY_EXECUTABLE} -r rbconfig -e "print Config::CONFIG['rubylibdir']"
@@ -210,6 +219,7 @@ else()
 	set (with_ruby "yes")
 endif()
 
+message (STATUS "* Mono:")
 #find_package (Mono)
 find_program (GMCS_EXECUTABLE gmcs)
 if ("${GMCS_EXECUTABLE}" STREQUAL "" OR NOT EXISTS ${GMCS_EXECUTABLE})
@@ -226,6 +236,7 @@ else()
 	endif()
 endif()
 
+message (STATUS "* Vala:")
 # Valac is only riquired to convert vala files to C files.
 #  So we can directly use produced files (c, h, vapi) without using valac.
 set (with_vala "yes")
@@ -274,6 +285,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Dbus/data/Dbus.conf.in ${CMAKE_CURRE
 add_subdirectory (Dbus)
 
 ############# DESKLET_RENDERING #################
+message (STATUS "> Desklet Rendering:")
 set (GETTEXT_DESKLET_RENDERING ${GETTEXT_PLUGINS})
 set (VERSION_DESKLET_RENDERING "1.5.6")
 set (PACKAGE_DESKLET_RENDERING "cd-desklet-rendering")
@@ -282,6 +294,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/desklet-rendering/data/desklet-rende
 add_subdirectory (desklet-rendering)
 
 ############# DIALOG_RENDERING #################
+message (STATUS "> Dialog Rendering:")
 set (GETTEXT_DIALOG_RENDERING ${GETTEXT_PLUGINS})
 set (VERSION_DIALOG_RENDERING "0.5.1")
 set (PACKAGE_DIALOG_RENDERING "cd-dialog-rendering")
@@ -292,6 +305,7 @@ add_subdirectory (dialog-rendering)
 ############# DISKS #################
 set (with_disks "no")
 if ("${enable-disks}" STREQUAL "yes")
+	message (STATUS "> Disks:")
 	set (GETTEXT_DISKS ${GETTEXT_PLUGINS})
 	set (VERSION_DISKS "0.0.2")
 	set (PACKAGE_DISKS "cd-disks")
@@ -302,6 +316,7 @@ if ("${enable-disks}" STREQUAL "yes")
 endif()
 
 ############# DND2SHARE #################
+message (STATUS "> DND2Share:")
 set (GETTEXT_DND2SHARE ${GETTEXT_PLUGINS})
 set (VERSION_DND2SHARE "1.0.6")
 set (PACKAGE_DND2SHARE "cd-dnd2share")
@@ -310,6 +325,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/dnd2share/data/dnd2share.conf.in ${C
 add_subdirectory (dnd2share)
 
 ############# DOCK RENDERING #################
+message (STATUS "> Dock Rendering:")
 set (GETTEXT_RENDERING ${GETTEXT_PLUGINS})
 set (VERSION_RENDERING "1.5.9")
 set (PACKAGE_RENDERING "cd-rendering")
@@ -320,6 +336,7 @@ add_subdirectory (dock-rendering)
 ############# DONCKY #################
 set (with_doncky "no")
 if ("${enable-doncky}" STREQUAL "yes")
+	message (STATUS "> Doncky:")
 	set (GETTEXT_DONCKY ${GETTEXT_PLUGINS})
 	set (VERSION_DONCKY "0.0.5")
 	set (PACKAGE_DONCKY "cd-doncky")
@@ -330,6 +347,7 @@ if ("${enable-doncky}" STREQUAL "yes")
 endif()
 
 ############# DROP INDICATOR #################
+message (STATUS "> Drop Indicator:")
 set (GETTEXT_DROP_INDICATOR ${GETTEXT_PLUGINS})
 set (VERSION_DROP_INDICATOR "1.1.4")
 set (PACKAGE_DROP_INDICATOR "cd-drop_indicator")
@@ -338,6 +356,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/drop-indicator/data/drop_indicator.c
 add_subdirectory (drop-indicator)
 
 ############# DUSTBIN #################
+message (STATUS "> Dustbin:")
 set (GETTEXT_DUSTBIN ${GETTEXT_PLUGINS})
 set (VERSION_DUSTBIN "2.3.2")
 set (PACKAGE_DUSTBIN "cd-dustbin")
@@ -347,6 +366,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/dustbin/data/dustbin.conf.in ${CMAKE
 add_subdirectory (dustbin)
 
 ############# FOLDERS #################
+message (STATUS "> Folders:")
 set (GETTEXT_FOLDERS ${GETTEXT_PLUGINS})
 set (VERSION_FOLDERS "0.2.2")
 set (PACKAGE_FOLDERS "cd-Folders")
@@ -355,6 +375,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Folders/data/Folders.conf.in ${CMAKE
 add_subdirectory (Folders)
 
 ############# GMENU #################
+message (STATUS "> GMenu:")
 set (with_gmenu "no")
 if (NOT "${enable-gmenu}" STREQUAL "no")
 	pkg_check_modules (GMENU_PACKAGE libgnome-menu)
@@ -372,10 +393,12 @@ if (NOT "${enable-gmenu}" STREQUAL "no")
 endif()
 
 ############# GVFS-INTEGRATION #################
+message (STATUS "> GVFS-Integration:")
 pkg_check_modules ("LIBGIO" "gio-2.0")
 add_subdirectory (gvfs-integration)
 
 ############# GNOME-INTEGRATION #################
+message (STATUS "> Gnome-Integration:")
 set (with_gnome_integration "no")
 if (NOT "${enable-gnome-integration}" STREQUAL "no")
 	pkg_check_modules (GNOME_INTEGRATION gio-2.0)
@@ -393,6 +416,7 @@ endif()
 ############# GNOME-INTEGRATION-OLD #################
 set (with_gnome_integration_old "no")
 if ("${enable-old-gnome-integration}" STREQUAL "yes")
+	message (STATUS "> Gnome-Integration:")
 	pkg_check_modules (OLD_GNOME_INTEGRATION gnome-vfs-2.0 libgnomeui-2.0)
 	if ("${OLD_GNOME_INTEGRATION_FOUND}" STREQUAL "")
 		message (STATUS "Could not find gnome-vfs and/or gnomeui; Cairo-Dock won't be built with Gnome<2.22 support.")
@@ -405,7 +429,8 @@ if ("${enable-old-gnome-integration}" STREQUAL "yes")
 	endif()
 endif()
 
-############# ICON EFFECT #################
+############# ICON EFFECTS #################
+message (STATUS "> Icon Effects:")
 set (GETTEXT_ICON_EFFECTS ${GETTEXT_PLUGINS})
 set (VERSION_ICON_EFFECTS "1.2.4")
 set (PACKAGE_ICON_EFFECTS "cd-icon-effect")
@@ -414,6 +439,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/icon-effect/data/icon-effect.conf.in
 add_subdirectory (icon-effect)
 
 ############# INDICATOR-APPLET #################
+message (STATUS "> Indicator-Applet:")
 # Note: the names of dbusmenu-glib and dbusmenu-gtk have changed...
 pkg_check_modules (DBUSMENU_04 QUIET dbusmenu-glib-0.4)
 pkg_check_modules (DBUSMENU_GTK_04 QUIET dbusmenu-gtk-0.4)
@@ -451,6 +477,7 @@ if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1" AND "${DBUSMENU_FOUND}" STREQUAL "1
 endif()
 
 ############# ILLUSION #################
+message (STATUS "> Illusion:")
 set (GETTEXT_ILLUSION ${GETTEXT_PLUGINS})
 set (VERSION_ILLUSION "1.0.7")
 set (PACKAGE_ILLUSION "cd-illusion")
@@ -459,36 +486,53 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/illusion/data/illusion.conf.in ${CMA
 add_subdirectory (illusion)
 
 ############# KDE-INTEGRATION #################
+message (STATUS "> KDE-Integration:")
 set (with_kde_integration "no")
 if (NOT "${enable-kde-integration}" STREQUAL "no")
 	#find_package(KDE4)
 	find_package(Qt4)
-	
-	message (STATUS " ===> Qt: ${QT_INCLUDES}")
-	message (STATUS " ===> Qt: ${QT_DEFINITIONS}")
-	message (STATUS " ===> Qt: ${QT_QTCORE_LIBRARY} / ${PACKAGE_LIBRARIES}")
-	
+	if (NOT "${QT_INCLUDES}" STREQUAL "")
+		message (STATUS " * Qt Includes: ${QT_INCLUDES}")
+		message (STATUS " * Qt Definitions: ${QT_DEFINITIONS}")
+		message (STATUS " * QtCore Library: ${QT_QTCORE_LIBRARY} / ${PACKAGE_LIBRARIES}")
+	else()
+		message (STATUS " * Qt unavailable")
+	endif()
+
 	find_path(KDECORE_INCLUDE_DIR "kdecore_export.h")
 	find_library(KDECORE_LIBRARY NAMES "kdecore")
 	GET_FILENAME_COMPONENT(KDECORE_LIBRARY ${KDECORE_LIBRARY} PATH) 
-	
+
 	find_path(KIO_INCLUDE_DIR "kio_export.h" PATH_SUFFIXES "kio")
 	find_library(KIO_LIBRARY NAMES "kio")
 	GET_FILENAME_COMPONENT(KIO_LIBRARY ${KIO_LIBRARY} PATH) 
-	
+
 	find_path(KDE_INCLUDE_DIR "KDirWatch" PATH_SUFFIXES "KDE")
-	
-	message (STATUS " ===> KDE4: ${KDECORE_INCLUDE_DIR}")
-	message (STATUS " ===> KDE4: ${KDECORE_LIBRARY}")
-	message (STATUS " ===> KDE4: ${KIO_INCLUDE_DIR}")
-	message (STATUS " ===> KDE4: ${KIO_LIBRARY}")
-	message (STATUS " ===> KDE4: ${KDE_INCLUDE_DIR}")
-	
+
+	if (NOT "${KDECORE_LIBRARY}" STREQUAL "")
+		message (STATUS " * KDECORE Dir: ${KDECORE_INCLUDE_DIR}")
+		message (STATUS " * KDECORE Library: ${KDECORE_LIBRARY}")
+	else()
+		message (STATUS " * KDECORE unavailable")
+	endif()
+	if (NOT "${KIO_LIBRARY}" STREQUAL "")
+		message (STATUS " * KIO Dir: ${KIO_INCLUDE_DIR}")
+		message (STATUS " * KIO Library: ${KIO_LIBRARY}")
+	else()
+		message (STATUS " * KIO unavailable")
+	endif()
+	if (NOT "${KDE_LIBRARY}" STREQUAL "")
+		message (STATUS " * KDE4 Dir: ${KDE_INCLUDE_DIR}")
+		message (STATUS " * KDE4 Library: ${KDE_LIBRARY}")
+	else()
+		message (STATUS " * KDE4 unavailable")
+	endif()
+
 	if (KDECORE_INCLUDE_DIR
-	AND KDECORE_LIBRARY
-	AND KIO_INCLUDE_DIR
-	AND KIO_LIBRARY
-	AND KDE_INCLUDE_DIR)
+		 AND KDECORE_LIBRARY
+		 AND KIO_INCLUDE_DIR
+		 AND KIO_LIBRARY
+		 AND KDE_INCLUDE_DIR)
 		message (STATUS "KDE: OK")
 		set (VERSION_KDE_INTEGRATION "0.0.3")
 		set (PACKAGE_KDE_INTEGRATION "cd_kde-integration")
@@ -501,6 +545,7 @@ if (NOT "${enable-kde-integration}" STREQUAL "no")
 endif()
 
 ############# KEYBOARD_INDICATOR #################
+message (STATUS "> Keyboard-Indicator:")
 set (with_keyboard_indicator "no")
 pkg_check_modules (KEYBOARD_INDICATOR_PACKAGE libxklavier)
 if ("${KEYBOARD_INDICATOR_PACKAGE_FOUND}" STREQUAL "")
@@ -516,6 +561,7 @@ else()
 endif()
 
 ############# LOGOUT #################
+message (STATUS "> LogOut:")
 set (GETTEXT_LOGOUT ${GETTEXT_PLUGINS})
 set (VERSION_LOGOUT "1.2.11")
 set (PACKAGE_LOGOUT "cd-logout")
@@ -524,6 +570,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/logout/data/logout.conf.in ${CMAKE_C
 add_subdirectory (logout)
 
 ############# MAIL #################
+message (STATUS "> Mail:")
 set (with_mail "no")
 # find the compilation flags
 execute_process(
@@ -567,6 +614,7 @@ else()
 endif()
 
 ############# DISTRIBUTION #################
+message (STATUS "> Distribution:")
 # We try to detect if the user is on Ubuntu to know which bus we have to use...
 execute_process(
 	COMMAND lsb_release -i
@@ -609,6 +657,7 @@ if (NOT "${DISTRO_ID}" STREQUAL "")
 endif()
 
 ############# MEMENU #################
+message (STATUS "> MeMenu:")
 set (INDICATOR_OLD_NAMES 0)
 if ("${force_old_indicator_names}" STREQUAL "yes")
 	set (INDICATOR_OLD_NAMES 1)
@@ -634,6 +683,7 @@ if ("${with_indicator}" STREQUAL "yes")
 endif()
 
 ############# MESSAGING_MENU #################
+message (STATUS "> Messaging-Menu:")
 set (with_messaging_menu "no")
 if ("${with_indicator}" STREQUAL "yes")
 	set (GETTEXT_MESSAGING_MENU ${GETTEXT_PLUGINS})
@@ -646,6 +696,7 @@ if ("${with_indicator}" STREQUAL "yes")
 endif()
 
 ############# MOTION BLUR #################
+message (STATUS "> Motion Blur:")
 set (GETTEXT_MOTION_BLUR ${GETTEXT_PLUGINS})
 set (VERSION_MOTION_BLUR "1.0.4")
 set (PACKAGE_MOTION_BLUR "cd-motion_blur")
@@ -654,6 +705,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/motion-blur/data/motion_blur.conf.in
 add_subdirectory (motion-blur)
 
 ############# MUSICPLAYER #################
+message (STATUS "> MusicPlayer:")
 set (GETTEXT_MUSICPLAYER ${GETTEXT_PLUGINS})
 set (VERSION_MUSICPLAYER "1.0.8")
 set (PACKAGE_MUSICPLAYER "cd-musicPlayer")
@@ -662,6 +714,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/musicPlayer/data/musicPlayer.conf.in
 add_subdirectory (musicPlayer)
 
 ############# NETSPEED #################
+message (STATUS "> NetSpeed:")
 set (GETTEXT_NETSPEED ${GETTEXT_PLUGINS})
 set (VERSION_NETSPEED "1.2.6")
 set (PACKAGE_NETSPEED "cd-netspeed")
@@ -672,6 +725,7 @@ add_subdirectory (netspeed)
 ############# NETWORK_MONITOR #################
 set (with_network_monitor "no")
 if ("${enable-network-monitor}" STREQUAL "yes")
+	message (STATUS "> Network Monitor:")
 	set (GETTEXT_NETWORK_MONITOR ${GETTEXT_PLUGINS})
 	set (VERSION_NETWORK_MONITOR "0.2.4")
 	set (PACKAGE_NETWORK_MONITOR "cd-network-monitor")
@@ -682,6 +736,7 @@ if ("${enable-network-monitor}" STREQUAL "yes")
 endif()
 
 ############# POWERMANAGER #################
+message (STATUS "> PowerManager:")
 set (GETTEXT_POWERMANAGER ${GETTEXT_PLUGINS})
 set (VERSION_POWERMANAGER "1.3.5")
 set (PACKAGE_POWERMANAGER "cd-powermanager")
@@ -690,6 +745,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/powermanager/data/powermanager.conf.
 add_subdirectory (powermanager)
 
 ############# QUICK BROWSER #################
+message (STATUS "> Quick Browser:")
 set (GETTEXT_QUICK_BROWSER ${GETTEXT_PLUGINS})
 set (VERSION_QUICK_BROWSER "1.0.9")
 set (PACKAGE_QUICK_BROWSER "cd-quick-browser")
@@ -698,6 +754,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/quick-browser/data/quick-browser.con
 add_subdirectory (quick-browser)
 
 ############# RECENT-EVENTS #################
+message (STATUS "> Recent-Events:")
 set (with_recent_events "no")
 pkg_check_modules (RECENT_EVENTS zeitgeist-1.0)
 if ("${RECENT_EVENTS_FOUND}" STREQUAL "")
@@ -713,6 +770,7 @@ else()
 endif()
 
 ############# REMOTE_CONTROL #################
+message (STATUS "> Remote Control:")
 set (GETTEXT_REMOTE_CONTROL ${GETTEXT_PLUGINS})
 set (VERSION_REMOTE_CONTROL "0.0.2")
 set (PACKAGE_REMOTE_CONTROL "cd-Remote-Control")
@@ -721,6 +779,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Remote-Control/data/Remote-Control.c
 add_subdirectory (Remote-Control)
 
 ############# RSSREADER #################
+message (STATUS "> RSSreader:")
 set (GETTEXT_RSS_READER ${GETTEXT_PLUGINS})
 set (VERSION_RSS_READER "1.0.4")
 set (PACKAGE_RSS_READER "cd-rssreader")
@@ -731,6 +790,7 @@ add_subdirectory (RSSreader)
 ############# SCOOBY_DO #################
 set (with_scooby_do "no")
 if ("${enable-scooby-do}" STREQUAL "yes")
+	message (STATUS "> Scooby-Do:")
 	set (GETTEXT_SCOOBY_DO ${GETTEXT_PLUGINS})
 	set (VERSION_SCOOBY_DO "0.1.1")
 	set (PACKAGE_SCOOBY_DO "cd-scooby-do")
@@ -741,6 +801,7 @@ if ("${enable-scooby-do}" STREQUAL "yes")
 endif()
 
 ############# SHORTCUTS #################
+message (STATUS "> Shortcuts:")
 set (GETTEXT_SHORTCUTS ${GETTEXT_PLUGINS})
 set (VERSION_SHORTCUTS "1.3.2")
 set (PACKAGE_SHORTCUTS "cd-shortcuts")
@@ -749,6 +810,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/shortcuts/data/shortcuts.conf.in ${C
 add_subdirectory (shortcuts)
 
 ############# SHOW DESKTOP #################
+message (STATUS "> ShowDesktop:")
 set (with_xrandr "yes")
 pkg_check_modules (SHOW_DESKTOP_XRANDR xrandr)
 if ("${SHOW_DESKTOP_XRANDR_FOUND}" STREQUAL "")
@@ -763,6 +825,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/showDesktop/data/showDesktop.conf.in
 add_subdirectory (showDesktop)
 
 ############# SHOW MOUSE #################
+message (STATUS "> Show Mouse:")
 set (GETTEXT_SHOW_MOUSE ${GETTEXT_PLUGINS})
 set (VERSION_SHOW_MOUSE "1.0.4")
 set (PACKAGE_SHOW_MOUSE "cd-show_mouse")
@@ -771,6 +834,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/show-mouse/data/show_mouse.conf.in $
 add_subdirectory (show-mouse)
 
 ############# SLIDER #################
+message (STATUS "> Slider:")
 set (with_exif "yes")
 pkg_check_modules (EXIF libexif)
 if ("${EXIF_FOUND}" STREQUAL "")
@@ -785,6 +849,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/slider/data/slider.conf.in ${CMAKE_C
 add_subdirectory (slider)
 
 ############# STACK #################
+message (STATUS "> Stack:")
 set (GETTEXT_STACK ${GETTEXT_PLUGINS})
 set (VERSION_STACK "0.3.2")
 set (PACKAGE_STACK "cd-stack")
@@ -793,6 +858,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/stack/data/stack.conf.in ${CMAKE_CUR
 add_subdirectory (stack)
 
 ############# STATUS NOTIFIER #################
+message (STATUS "> Status Notifier:")
 if ("${DBUSMENU_GTK_FOUND}" STREQUAL "")
 	message (STATUS "Could not find Status-Notifier libs; Cairo-Dock won't be built with Status-Notifier support.")
 	set (with_status_notifier "no")
@@ -807,6 +873,7 @@ else()
 endif()
 
 ############# SWITCHER #################
+message (STATUS "> Switcher:")
 set (GETTEXT_SWITCHER ${GETTEXT_PLUGINS})
 set (VERSION_SWITCHER "2.1.7")
 set (PACKAGE_SWITCHER "cd-switcher")
@@ -815,6 +882,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/switcher/data/switcher.conf.in ${CMA
 add_subdirectory (switcher)
 
 ############# SYSTEM MONITOR #################
+message (STATUS "> System Monitor:")
 set (with_sensors "yes")
 find_package (Sensors)
 if (NOT "${SENSORS_FOUND}" STREQUAL "TRUE")
@@ -829,6 +897,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/System-Monitor/data/System-Monitor.c
 add_subdirectory (System-Monitor)
 
 ############# SYSTRAY #################
+message (STATUS "> Systray:")
 set (GETTEXT_SYSTRAY ${GETTEXT_PLUGINS})
 set (VERSION_SYSTRAY "0.2.3")
 set (PACKAGE_SYSTRAY "cd-systray")
@@ -837,6 +906,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/systray/data/systray.conf.in ${CMAKE
 add_subdirectory (systray)
 
 ############# TERMINAL #################
+message (STATUS "> Terminal:")
 pkg_check_modules (TERMINAL_PACKAGE vte)
 if ("${TERMINAL_PACKAGE_FOUND}" STREQUAL "")
 	message (STATUS "Could not find libvte; Cairo-Dock won't be built with terminal applet.")
@@ -852,6 +922,7 @@ else()
 endif()
 
 ############# TOMBOY #################
+message (STATUS "> Tomboy:")
 set (GETTEXT_TOMBOY ${GETTEXT_PLUGINS})
 set (VERSION_TOMBOY "1.3.2")
 set (PACKAGE_TOMBOY "cd-tomboy")
@@ -860,6 +931,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/tomboy/data/tomboy.conf.in ${CMAKE_C
 add_subdirectory (tomboy)
 
 ############# TOONS #################
+message (STATUS "> Toons:")
 set (GETTEXT_TOONS ${GETTEXT_PLUGINS})
 set (VERSION_TOONS "1.0.9")
 set (PACKAGE_TOONS "cd-Toons")
@@ -869,6 +941,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Toons/data/Toons.conf.in ${CMAKE_CUR
 add_subdirectory (Toons)
 
 ############# WEATHER #################
+message (STATUS "> Weather:")
 set (GETTEXT_WEATHER ${GETTEXT_PLUGINS})
 set (VERSION_WEATHER "1.2.11")
 set (PACKAGE_WEATHER "cd-weather")
@@ -878,6 +951,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/weather/data/weather.conf.in ${CMAKE
 add_subdirectory (weather)
 
 ############# WEBLETS #################
+message (STATUS "> Weblets:")
 set (with_weblets "no")
 if (NOT "${enable-weblets}" STREQUAL "no")
 	pkg_check_modules (WEBKIT webkit-1.0)
@@ -895,6 +969,7 @@ if (NOT "${enable-weblets}" STREQUAL "no")
 endif()
 
 ############# WIFI #################
+message (STATUS "> WiFi:")
 set (GETTEXT_WIFI ${GETTEXT_PLUGINS})
 set (VERSION_WIFI "1.2.7")
 set (PACKAGE_WIFI "cd-wifi")
@@ -903,6 +978,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/wifi/data/wifi.conf.in ${CMAKE_CURRE
 add_subdirectory (wifi)
 
 ############# XFCE-INTEGRATION #################
+message (STATUS "> XFCE-Integration:")
 set (with_xfce_integration "no")
 if (NOT "${enable-xfce-integration}" STREQUAL "no")
 	pkg_check_modules (XFCE_INTEGRATION_THUNAR thunar-vfs-1)
@@ -919,6 +995,7 @@ if (NOT "${enable-xfce-integration}" STREQUAL "no")
 endif()
 
 ############# XGAMMA #################
+message (STATUS "> XGamma:")
 pkg_check_modules (XGAMMA_PACKAGE x11 xxf86vm)
 if ("${XGAMMA_PACKAGE_FOUND}" STREQUAL "")
 	message (STATUS "Could not find xxf86vm; Cairo-Dock won't be built with Xgamma applet.")
