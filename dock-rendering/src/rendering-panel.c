@@ -90,6 +90,12 @@ static void cd_compute_size (CairoDock *pDock)
 	//\_____________ On calcule la position au repos des icones et la taille du dock.
 	double xg = fScreenBorderGap;  // abscisse de l'icone courante, et abscisse du debut du groupe courant.
 	double x = xg;
+	if (iNbGroups == 1 && pDock->icons)  // if the first icon is a separator, place icons to the right.
+	{
+		pIcon = pDock->icons->data;
+		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
+			x += fGroupGap;
+	}
 	fCurrentGroupWidth = - myIconsParam.iIconGap;
 	iCurrentOrder = -1;
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)

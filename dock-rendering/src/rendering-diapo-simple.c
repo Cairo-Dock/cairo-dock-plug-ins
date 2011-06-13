@@ -325,8 +325,8 @@ static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 	}
 	else
 	{
-		iDockWidth = X_BORDER_SPACE * 2 + 1;
-		iDockHeight = my_diapo_simple_lineWidth + my_diapo_simple_arrowHeight + ARROW_TIP + 1;
+		iDockWidth = X_BORDER_SPACE * 2 + my_diapo_simple_arrowWidth + 10;
+		iDockHeight = my_diapo_simple_lineWidth + my_diapo_simple_arrowHeight + ARROW_TIP + 10;
 	}
 	
 	CDSlideData *pData = pDock->pRendererData;

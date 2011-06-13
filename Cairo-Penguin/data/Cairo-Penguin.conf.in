@@ -1,9 +1,9 @@
-#!en;@VERSION_CAIRO_PENGUIN@
+#@VERSION_CAIRO_PENGUIN@
 
 #[gtk-about]
 [Icon]
 
-#F[Applet]
+#F[Icon]
 frame_maininfo=
 
 #d Name of the dock it belongs to:
@@ -11,13 +11,12 @@ dock name =
 
 #s Name of the icon as it will appear in its caption in the dock:
 name = 
-
-#F[Display]
-frame_display=
+ #v
+sep_display=
 
 icon =
 
-#j+[0;128] Icon size for busy penguin:
+#j+[0;128] Desired icon size for this applet
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 

@@ -122,6 +122,9 @@ Files: 	Network-Monitor/*
 Copyright: 2008 Yann Sladek and Fabrice Rey <fabounet@glx-dock.org>
 Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
 
+Files:  Composite-Manager/data/composite*.svg
+Copyright: John Varouhakis
+Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
 
 Files: 	alsaMixer/*
 	Animated-icons/*

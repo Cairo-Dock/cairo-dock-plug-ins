@@ -1,4 +1,4 @@
-#!en;@VERSION_SCOOBY_DO@
+#@VERSION_SCOOBY_DO@
 
 #[gtk-preferences]
 [Configuration]

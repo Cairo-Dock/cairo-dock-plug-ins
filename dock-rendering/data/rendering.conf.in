@@ -1,4 +1,4 @@
-#!en;@VERSION_RENDERING@
+#@VERSION_RENDERING@
 
 #[;3D plane]
 [Inclinated Plane]
@@ -44,7 +44,7 @@ simple_max_size = .7
 simple_fScaleMax = 2.
 
 #i+[50;500] Sinusoidal wave radius:
-simple_sinW = 200
+simple_sinW = 100
 
 #b+ Use a linear wave rather than a sinusoidal wave?
 simple_lineaire = false

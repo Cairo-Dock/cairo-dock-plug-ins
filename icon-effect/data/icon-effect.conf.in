@@ -1,4 +1,4 @@
-#!en;@VERSION_ICON_EFFECTS@
+#@VERSION_ICON_EFFECTS@
 
 #[gtk-preferences]
 [Global]

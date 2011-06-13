@@ -3,7 +3,7 @@
 
 SET(MODULE_SRCS
 	applet-struct.h
-	applet-init.c 			applet-init.h
+	applet-init.c 				applet-init.h
 	applet-config.c 			applet-config.h
 	applet-notifications.c 		applet-notifications.h
 )

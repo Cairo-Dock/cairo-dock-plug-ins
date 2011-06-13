@@ -1,4 +1,4 @@
-#!en;@VERSION_DROP_INDICATOR@
+#@VERSION_DROP_INDICATOR@
 
 #[@drop_indicatordatadir@/icon.svg]
 [Drag and drop indicator]

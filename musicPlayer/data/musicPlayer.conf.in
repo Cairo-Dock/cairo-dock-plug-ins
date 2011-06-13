@@ -1,9 +1,9 @@
-#!en;@VERSION_MUSICPLAYER@
+#@VERSION_MUSICPLAYER@
 
 #[gtk-about]
 [Icon]
 
-#F[Applet]
+#F[Icon]
 frame_maininfo=
 
 #d Name of the dock it belongs to:
@@ -12,9 +12,8 @@ dock name =
 #s Name of the icon as it will appear in its caption in the dock:
 #{Leave it empty to display the name of the player currently controlled.}
 name =
-
-#F[Display]
-frame_display=
+ #v
+sep_display=
 
 icon =
 
@@ -28,6 +27,7 @@ order=
 frame_hand=
 #A
 handbook=musicPlayer
+
 
 #[gtk-convert]
 [Desklet]
@@ -65,8 +65,6 @@ accessibility=0
 sticky=true
 
 
-
-
 #F[Decorations;gtk-orientation-portrait]
 frame_deco=
 
@@ -99,6 +97,7 @@ bottom offset = 0
 fg desklet =
 #e+[0;1] Foreground tansparency:
 fg alpha = 1
+
 
 #[gtk-preferences]
 [Configuration]

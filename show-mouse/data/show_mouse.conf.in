@@ -1,4 +1,4 @@
-#!en;@VERSION_SHOW_MOUSE@
+#@VERSION_SHOW_MOUSE@
 
 #[gtk-preferences]
 [Configuration]

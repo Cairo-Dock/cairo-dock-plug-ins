@@ -1,9 +1,9 @@
-#!en;@VERSION_CD_PKG@
+#@VERSION_CD_PKG@
 
 #[gtk-about]
 [Icon]
 
-#F[Applet]
+#F[Icon]
 frame_maininfo=
 
 #d Name of the dock it belongs to:
@@ -11,9 +11,8 @@ dock name =
 
 #s Name of the icon as it will appear in its caption in the dock:
 name = 
-
-#F[Display]
-frame_display=
+ #v
+sep_display=
 
 #S+ Image filename:
 #{Leave empty to use the default one.}

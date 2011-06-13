@@ -1,4 +1,4 @@
-#!en;@VERSION_DIALOG_RENDERING@
+#@VERSION_DIALOG_RENDERING@
 
 #[gtk-preference]
 [Comics]

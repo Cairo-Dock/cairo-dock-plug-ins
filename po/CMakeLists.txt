@@ -1,7 +1,7 @@
 
 find_program (MSGFMT_EXECUTABLE msgfmt)
 
-#on cree une nouvelle cible i18n liée à la cible all.
+#on cree une nouvelle cible i18n liee a la cible "all".
 add_custom_target (i18n ALL COMMENT “Building i18n messages.”)
 
 # on liste tous les .po

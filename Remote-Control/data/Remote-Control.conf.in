@@ -1,4 +1,4 @@
-#!en;@VERSION_REMOTE_CONTROL@
+#@VERSION_REMOTE_CONTROL@
 
 #[gtk-preferences]
 [Configuration]

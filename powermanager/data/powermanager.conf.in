@@ -1,9 +1,9 @@
-#!en;@VERSION_POWERMANAGER@
+#@VERSION_POWERMANAGER@
 
 #[gtk-about]
 [Icon]
 
-#F[Applet]
+#F[Icon]
 frame_maininfo=
 
 #d Name of the dock it belongs to:
@@ -12,9 +12,8 @@ dock name =
 #s Icon name:
 #{Leave empty to display the current status information.}
 name = 
-
-#F[Display]
-frame_display=
+ #v
+sep_display=
 
 icon=
 

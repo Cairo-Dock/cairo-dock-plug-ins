@@ -1,18 +1,17 @@
-#!en;@VERSION_MEMENU@
+#@VERSION_MEMENU@
 
 #[gtk-about]
 [Icon]
 
-#F[Applet]
+#F[Icon]
 frame_maininfo=
 
 #d Name of the dock it belongs to:
 dock name = 
 
 name = 
-
-#F[Display]
-frame_display=
+ #v
+sep_display=
 
 icon=
 

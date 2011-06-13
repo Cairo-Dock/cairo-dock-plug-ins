@@ -1,4 +1,4 @@
-#!en;@VERSION_ILLUSION@
+#@VERSION_ILLUSION@
 
 #[gtk-preferences]
 [Global]

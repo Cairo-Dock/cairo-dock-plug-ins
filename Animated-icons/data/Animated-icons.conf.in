@@ -1,4 +1,4 @@
-#!en;@VERSION_ANIMATED_ICONS@
+#@VERSION_ANIMATED_ICONS@
 
 #[gtk-preferences]
 [Global]
