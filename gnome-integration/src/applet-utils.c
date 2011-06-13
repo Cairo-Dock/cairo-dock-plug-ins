@@ -25,12 +25,24 @@
 
 void env_backend_logout (void)
 {
-	cairo_dock_launch_command ("gnome-session-save --kill --gui");
+	// since Gnome 3, gnome-session-save has been replaced by gnome-session-quit
+	gchar *cResult = cairo_dock_launch_command_sync ("which gnome-session-quit");
+	if (cResult != NULL && *cResult == '/')
+		cairo_dock_launch_command ("gnome-session-quit --logout");
+	else
+		cairo_dock_launch_command ("gnome-session-save --kill --gui");
+	g_free (cResult);
 }
 
 void env_backend_shutdown (void)
 {
-	cairo_dock_launch_command ("gnome-session-save --shutdown-dialog");
+	// since Gnome 3, gnome-session-save has been replaced by gnome-session-quit
+	gchar *cResult = cairo_dock_launch_command_sync ("which gnome-session-quit");
+	if (cResult != NULL && *cResult == '/')
+		cairo_dock_launch_command ("gnome-session-quit --power-off");
+	else
+		cairo_dock_launch_command ("gnome-session-save --shutdown-dialog");
+	g_free (cResult);
 }
 
 void env_backend_lock_screen (void)
