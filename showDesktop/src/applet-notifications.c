@@ -154,7 +154,10 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			cLabel = g_strdup_printf ("%s (%s)", D_("Show desktop"), D_("middle-click"));
 		else
 			cLabel = g_strdup (D_("Show desktop"));
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_FULLSCREEN, _show_desktop, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel,
+			MY_APPLET_SHARE_DATA_DIR"/../shared-images/show-desktop.svg",
+			_show_desktop,
+			CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
 	if (myConfig.iActionOnLeftClick != CD_EXPOSE && cairo_dock_wm_can_present_desktops ())  // action is not bound to left-click => put it in the menu
@@ -163,7 +166,10 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			cLabel = g_strdup_printf ("%s (%s)", D_("Expose all the desktops"), D_("middle-click"));
 		else
 			cLabel = g_strdup (D_("Expose all the desktops"));
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_LEAVE_FULLSCREEN, _cd_expose, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel,
+			MY_APPLET_SHARE_DATA_DIR"/../shared-images/expose-desktops.svg",
+			_cd_expose,
+			CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
 	if (myConfig.iActionOnLeftClick != CD_SHOW_WIDGET_LAYER && cairo_dock_wm_can_show_widget_layer ())  // action is not bound to left-click => put it in the menu
@@ -172,7 +178,10 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			cLabel = g_strdup_printf ("%s (%s)", D_("Show the Widget Layer"), D_("middle-click"));
 		else
 			cLabel = g_strdup (D_("Show the Widget Layer"));
-		CD_APPLET_ADD_IN_MENU (cLabel, _cd_show_widget_layer, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel,
+			MY_APPLET_SHARE_DATA_DIR"/../shared-images/widget-layer.svg",
+		_cd_show_widget_layer,
+		CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}  // on ne met pas les actions sur les desklets, surement assez peu utilisees.
 	

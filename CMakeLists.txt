@@ -491,24 +491,24 @@ set (with_kde_integration "no")
 if (NOT "${enable-kde-integration}" STREQUAL "no")
 	#find_package(KDE4)
 	find_package(Qt4)
-	if (NOT "${QT_INCLUDES}" STREQUAL "")
+	if (QT4_FOUND)
 		message (STATUS " * Qt Includes: ${QT_INCLUDES}")
 		message (STATUS " * Qt Definitions: ${QT_DEFINITIONS}")
 		message (STATUS " * QtCore Library: ${QT_QTCORE_LIBRARY} / ${PACKAGE_LIBRARIES}")
 	else()
 		message (STATUS " * Qt unavailable")
 	endif()
-
+	
 	find_path(KDECORE_INCLUDE_DIR "kdecore_export.h")
 	find_library(KDECORE_LIBRARY NAMES "kdecore")
 	GET_FILENAME_COMPONENT(KDECORE_LIBRARY ${KDECORE_LIBRARY} PATH) 
-
+	
 	find_path(KIO_INCLUDE_DIR "kio_export.h" PATH_SUFFIXES "kio")
 	find_library(KIO_LIBRARY NAMES "kio")
 	GET_FILENAME_COMPONENT(KIO_LIBRARY ${KIO_LIBRARY} PATH) 
-
+	
 	find_path(KDE_INCLUDE_DIR "KDirWatch" PATH_SUFFIXES "KDE")
-
+	
 	if (NOT "${KDECORE_LIBRARY}" STREQUAL "")
 		message (STATUS " * KDECORE Dir: ${KDECORE_INCLUDE_DIR}")
 		message (STATUS " * KDECORE Library: ${KDECORE_LIBRARY}")
@@ -527,8 +527,9 @@ if (NOT "${enable-kde-integration}" STREQUAL "no")
 	else()
 		message (STATUS " * KDE4 unavailable")
 	endif()
-
-	if (KDECORE_INCLUDE_DIR
+	
+	if (QT4_FOUND
+		 AND KDECORE_INCLUDE_DIR
 		 AND KDECORE_LIBRARY
 		 AND KIO_INCLUDE_DIR
 		 AND KIO_LIBRARY
@@ -799,6 +800,10 @@ if ("${enable-scooby-do}" STREQUAL "yes")
 	configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Scooby-Do/data/Scooby-Do.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Scooby-Do/data/Scooby-Do.conf)
 	add_subdirectory (Scooby-Do)
 endif()
+
+############# SHARED-IMAGES #################
+set (shared_imagesdatadir "${pluginsdatadir}/shared-images")
+add_subdirectory (shared-images)
 
 ############# SHORTCUTS #################
 message (STATUS "> Shortcuts:")
