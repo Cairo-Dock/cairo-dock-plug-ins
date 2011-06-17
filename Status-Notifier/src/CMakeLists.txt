@@ -25,6 +25,7 @@ add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_STATUSNOTIFIER}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 add_definitions (-DINDICATOR_OLD_NAMES=${INDICATOR_OLD_NAMES})
+add_definitions (-DCD_PLUGINS_DIR="${pluginsdir}")
 
 include_directories (
 	${PACKAGE_INCLUDE_DIRS}

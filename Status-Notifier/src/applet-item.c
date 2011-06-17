@@ -30,6 +30,8 @@
 #define CD_STATUS_NOTIFIER_ITEM_IFACE "org.kde.StatusNotifierItem"
 #define CD_STATUS_NOTIFIER_ITEM_OBJ "/StatusNotifierItem"
 
+#define CD_INDICATOR_APPLICATION_ITEM_OBJ "/org/ayatana/NotificationItem"
+
 
 static CDCategoryEnum _find_category (const gchar *cCategory)
 {
@@ -351,27 +353,38 @@ gchar *cd_satus_notifier_search_item_icon_s_path (CDStatusNotifierItem *pItem)
 CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, const gchar *cObjectPath)
 {
 	g_return_val_if_fail  (cService != NULL, NULL);
-	g_print ("=== %s (%s, %s)\n", __func__, cService, cObjectPath);
+	//g_print ("=== %s (%s)\n", __func__, cService);
 	
 	gchar *str = strchr (cService, '/');  // just to be sure.
 	if (str)
 		*str = '\0';
 	
-	if (cObjectPath == NULL || *cObjectPath == '\0')  // no path, let's assume it's the common one.
+	// special case for Ubuntu indicators: we don't know their object path.
+	if (cObjectPath != NULL && strncmp (cObjectPath, CD_INDICATOR_APPLICATION_ITEM_OBJ, strlen (CD_INDICATOR_APPLICATION_ITEM_OBJ)) == 0)
+	{
+		// I think this is because this path is actually the menu path, and fortunately it's just under the item object's path.
+		gchar *str = strrchr (cObjectPath, '/');
+		if (str)
+			*str = '\0';
+	}
+	else if (cObjectPath == NULL || *cObjectPath == '\0')  // no path, let's assume it's the common one.
 	{
 		cObjectPath = CD_STATUS_NOTIFIER_ITEM_OBJ;
 	}
 	
+	//g_print ("=== %s (cObjectPath: %s)\n", __func__, cObjectPath);
+	
 	//\_________________ get the properties of the item.
-	g_print ("toto\n");
 	DBusGProxy *pProxyItemProp = cairo_dock_create_new_session_proxy (
 		cService,
 		cObjectPath,
 		DBUS_INTERFACE_PROPERTIES);
 	if (pProxyItemProp == NULL)
 		return NULL;
-	g_print ("=== owner : %s\n", dbus_g_proxy_get_bus_name (pProxyItemProp));
-	
+	//g_print ("=== owner : %s\n", dbus_g_proxy_get_bus_name (pProxyItemProp));
+
+	cd_debug ("%s, %s, %s", cService, cObjectPath, dbus_g_proxy_get_bus_name (pProxyItemProp));
+
 	//g_print ("=== getting properties ...\n");
 	GHashTable *hProps = cairo_dock_dbus_get_all_properties (pProxyItemProp, CD_STATUS_NOTIFIER_ITEM_IFACE);
 	if (hProps == NULL)

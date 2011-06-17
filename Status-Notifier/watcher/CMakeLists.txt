@@ -13,6 +13,6 @@
 # execute_process(COMMAND python setup.py install ${DEBIAN_INSTALL_LAYOUT})
 
 install(FILES status-notifier-watcher.py
-	DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
+	DESTINATION ${pluginsdir}
 	RENAME status-notifier-watcher
 	PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ)

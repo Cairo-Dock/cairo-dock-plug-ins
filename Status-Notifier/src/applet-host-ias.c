@@ -274,14 +274,15 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 		v = g_value_array_get_nth (va, 3);
 		if (v && G_VALUE_HOLDS_BOXED (v))
 			cObjectPath = (gchar*)g_value_get_boxed (v);
-		g_print ("=== cObjectPath : %s\n", cObjectPath);
+
+		/*g_print ("=== cObjectPath : %s\n", cObjectPath);
 		if (cObjectPath != NULL && strncmp (cObjectPath, CD_INDICATOR_APPLICATION_ITEM_OBJ, strlen (CD_INDICATOR_APPLICATION_ITEM_OBJ)) == 0)
 		{
 			gchar *str = strrchr (cObjectPath, '/');  // I think this is because this path is actually the menu path, and fortunately it's just under the item object's path.
 			if (str)
 				*str = '\0';
-		}
-		
+		}*/ // => we will do that in cd_satus_notifier_create_item because this function is also called when a new application is added => host.c
+
 		v = g_value_array_get_nth (va, 4);
 		if (v && G_VALUE_HOLDS_STRING (v))
 			cIconThemePath = g_value_get_string (v);
