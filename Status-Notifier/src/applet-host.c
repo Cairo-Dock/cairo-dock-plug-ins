@@ -167,8 +167,8 @@ void cd_satus_notifier_launch_our_watcher (void)
 {
 	if (myData.bNoIAS && myData.bNoWatcher)
 	{
-		g_print ("starting our own watcher...\n");
-		/// TODO: cairo_dock_launch_command ("/usr/bin/status-notifier-watcher.pyc");
+		cd_message ("starting our own watcher...\n");
+		cairo_dock_launch_command ("status-notifier-watcher");
 	}
 }
 
