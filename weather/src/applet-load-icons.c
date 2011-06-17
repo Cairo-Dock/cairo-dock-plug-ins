@@ -135,6 +135,7 @@ gboolean cd_weather_update_from_data (CDSharedMemory *pSharedMemory)
 			
 		}
 		cd_weather_reset_weather_data (&pSharedMemory->wdata);  // discard the results, since they are probably empty or incomplete.
+		memset (&pSharedMemory->wdata, 0, sizeof (CDWeatherData));
 		
 		CD_APPLET_LEAVE (TRUE);  // don't recreate the icons, since data have not changed.
 	}
