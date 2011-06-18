@@ -255,7 +255,7 @@ static void on_recent_events_received (ZeitgeistLog  *log, GAsyncResult *res, gp
 	events = zeitgeist_log_find_events_finish (log, res, &error);
 	if (error)
 	{
-		g_warning ("Error reading results: %s", error->message);
+		cd_warning ("Error reading results: %s", error->message);
 		g_error_free (error);
 		return;
 	}
@@ -461,4 +461,12 @@ void cd_delete_event (guint32 id, CDOnDeleteEventsFunc pCallback, gpointer data)
 		(GCancellable *)NULL,
 		(GAsyncReadyCallback)on_delete_events,
 		s_data);  // this function unrefs the array
+}
+
+
+gboolean cd_check_zeitgeist_is_running (void)
+{
+	if (myData.pLog == NULL)
+		myData.pLog = zeitgeist_log_new ();
+	return zeitgeist_log_is_connected (myData.pLog);
 }

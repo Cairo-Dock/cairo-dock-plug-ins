@@ -442,13 +442,6 @@ static GtkWidget *cd_build_events_widget (void)
 	return pMainBox;
 }
 
-/**static gboolean on_button_press_dialog (GtkWidget *widget, GdkEventButton *pButton, CairoDockModuleInstance *myApplet)
-{
-	CD_APPLET_ENTER;
-	cairo_dock_dialog_unreference (myData.pDialog);
-	myData.pDialog = NULL;
-	CD_APPLET_LEAVE(FALSE);
-}*/
 static void _on_dialog_destroyed (CairoDockModuleInstance *myApplet)
 {
 	myData.pDialog = NULL;
@@ -458,13 +451,20 @@ static void _on_dialog_destroyed (CairoDockModuleInstance *myApplet)
 }
 void cd_toggle_dialog (void)
 {
-	if (myData.pDialog != NULL)
+	if (myData.pDialog != NULL)  // the dialog can be opened in the case it was called from the shortkey.
 	{
 		cairo_dock_dialog_unreference (myData.pDialog);
 		myData.pDialog = NULL;
 	}
 	else
 	{
+		if (! cd_check_zeitgeist_is_running ())
+		{
+			cairo_dock_remove_dialog_if_any (myIcon);
+			cairo_dock_show_temporary_dialog_with_icon (D_("You need to install the Zeitgeist data engine."), myIcon, myContainer, 6000, "same icon");
+			return;
+		}
+		
 		GtkWidget *pInteractiveWidget = cd_build_events_widget ();
 		myData.pDialog = cairo_dock_show_dialog_full (D_("Browse and search in recent events"),
 			myIcon,
@@ -476,10 +476,6 @@ void cd_toggle_dialog (void)
 			myApplet,
 			(GFreeFunc) _on_dialog_destroyed);
 		gtk_widget_grab_focus (myData.pEntry);
-		/**g_signal_connect (G_OBJECT (myData.pDialog->container.pWidget),
-			"button-press-event",
-			G_CALLBACK (on_button_press_dialog),
-			myApplet);*/
 		
 		cd_trigger_search ();
 	}
