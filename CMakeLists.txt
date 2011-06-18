@@ -488,7 +488,7 @@ add_subdirectory (illusion)
 ############# KDE-INTEGRATION #################
 message (STATUS "> KDE-Integration:")
 set (with_kde_integration "no")
-if (NOT "${enable-kde-integration}" STREQUAL "no")
+if ("${enable-kde-integration}" STREQUAL "yes")
 	#find_package(KDE4)
 	find_package(Qt4)
 	if (QT4_FOUND)

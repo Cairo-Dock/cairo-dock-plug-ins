@@ -90,7 +90,7 @@ static void _define_known_wms (void)
 	myData.pWmList[CD_XFWM].cName = "Xfwm";
 	myData.pWmList[CD_XFWM].cCommand = "xfwm4 --replace";
 	myData.pWmList[CD_XFWM].activate_composite = _set_xfwm_composite;
-	myData.pWmList[CD_XFWM].cConfigTool = "xfce4-settings-manager";  /// TODO: check
+	myData.pWmList[CD_XFWM].cConfigTool = "xfwm4-settings";  // there is also xfwm4-tweaks-settings, wish they merge both ...
 	
 	myData.pWmList[CD_METACITY].cName = "Metacity";
 	myData.pWmList[CD_METACITY].cCommand = "metacity --replace";
@@ -218,6 +218,7 @@ static CDWM *_get_prefered_wmc (CDWMIndex iCurrentWm)
 	for (i = 0; i < NB_COMPOSITE_WM; i ++)
 	{
 		wm = _get_wm_by_index (index[i]);
+		g_print (" %d) %s, %d\n", index[i], wm->cName, wm->bIsAvailable);
 		if (wm->bIsAvailable)
 			return wm;
 	}
@@ -248,6 +249,7 @@ static CDWM *_get_prefered_wmfb (CDWMIndex iCurrentWm)
 		if (!myData.bIsComposited)  // and it is a fallback => let's take it!
 		{
 			wm = _get_wm_by_index (iCurrentWm);
+			g_print ("current wm: %d, %d\n", iCurrentWm, wm->bIsAvailable);
 			if (wm->bIsAvailable)  // just to be sure.
 				return wm;
 		}
@@ -284,7 +286,7 @@ static CDWM *_get_prefered_wmfb (CDWMIndex iCurrentWm)
 
 static inline gchar *_get_running_wm (void)
 {
-	return cairo_dock_launch_command_sync ("pgrep -l \"kwin|compiz|xfwm4|metacity\"");  // -l = write the name next to the PID.
+	return cairo_dock_launch_command_sync ("pgrep -l \"kwin$|compiz$|xfwm4$|metacity$\"");  // -l = write the name of the program (not the command next to the PID in 'ps -ef'. we add a '$' after the names to avoid listing things like compiz-decorator or xfwm4-settings
 }
 static void _define_prefered_wms (gchar *cPs)
 {
@@ -339,7 +341,7 @@ void cd_init_wms (void)
 		(CairoDockUpdateSyncFunc) _update_from_data,
 		(GFreeFunc) _free_shared_memory,
 		pSharedMemory);
-	cairo_dock_launch_task_delayed (myData.pTask, 4000);  // 4s delay, since we don't need these info right away.
+	cairo_dock_launch_task_delayed (myData.pTask, 3000);  // 3s delay, since we don't need these info right away.
 }
 
 
@@ -397,10 +399,13 @@ static gboolean _activate_composite_delayed (gpointer data)
 static gboolean _wm_is_running (CDWM *wm)
 {
 	const gchar *cCommand = wm->cCommand;
-	gchar *cWhich = g_strdup_printf ("pgrep %s", cCommand);
-	gchar *str = strchr (cWhich+6, ' ');
-	if (str)
-		*str = '\0';
+	gchar *cWhich = g_strdup_printf ("pgrep %s$", cCommand);  // see above for the '$' character.
+	gchar *str = strchr (cWhich+6, ' ');  // remove any parameter to the command, we just want the program name.
+	if (str)  // a space is found.
+	{
+		*str = '$';
+		*(str+1) = '\0';
+	}
 	gchar *cResult = cairo_dock_launch_command_sync (cWhich);
 	gboolean bIsRunning = (cResult != NULL && *cResult != '\0');
 	

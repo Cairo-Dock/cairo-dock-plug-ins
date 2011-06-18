@@ -36,6 +36,11 @@ CD_APPLET_DEFINITION (N_("Composite-Manager"),
 
 
 CD_APPLET_INIT_BEGIN
+	if (myDesklet)
+	{
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+	}
+	
 	cd_init_wms ();
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
@@ -56,6 +61,11 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		if (myDesklet && CD_APPLET_MY_CONTAINER_TYPE_CHANGED)  // we are now in a desklet, set a renderer.
+		{
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		}
+		
 		cd_define_prefered_wms ();
 		
 		cd_draw_current_state ();
