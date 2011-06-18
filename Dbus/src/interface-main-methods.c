@@ -736,7 +736,7 @@ static gboolean _insert_module_props (CairoDockModule *pModule, GPtrArray *pTab)
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
-	g_value_set_string (v, dgettext (pModule->pVisitCard->cGettextDomain, pModule->pVisitCard->cTitle));
+	g_value_set_string (v, pModule->pVisitCard->cTitle);
 	g_hash_table_insert (h, g_strdup ("title"), v);
 	
 	v = g_new0 (GValue, 1);

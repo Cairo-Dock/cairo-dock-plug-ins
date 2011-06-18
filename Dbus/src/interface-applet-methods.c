@@ -435,6 +435,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 					gtk_range_set_value (GTK_RANGE (pScale), fInitialValue);
 					
 					gtk_widget_set (pScale, "width-request", 150, NULL);
+					cairo_dock_set_dialog_widget_text_color (pScale);
 					
 					if (cMinLabel || cMaxLabel)
 					{
