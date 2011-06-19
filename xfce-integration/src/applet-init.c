@@ -61,7 +61,7 @@ CD_APPLET_DEFINE_BEGIN ("xfce integration",
 			pVFSBackend->get_desktop_path = vfs_backend_get_desktop_path;
 		}
 #endif
-		if(NULL != pVFSBackend)
+		if(pVFSBackend != NULL)
 		{
 			pVFSBackend->logout = env_backend_logout;
 			pVFSBackend->shutdown = env_backend_shutdown;

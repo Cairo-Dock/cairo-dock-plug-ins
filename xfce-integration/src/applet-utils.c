@@ -39,11 +39,11 @@ void env_backend_lock_screen (void)
 
 void env_backend_setup_time (void)
 {
-	cairo_dock_launch_command ("gksu time-admin");
+	cairo_dock_launch_command ("gksu system-config-date");  // not installed by default
 }
 
 void env_backend_show_system_monitor (void)
 {
-	cairo_dock_launch_command ("xfce-task-manager");
+	cairo_dock_launch_command ("xfce4-taskmanager");  // not installed by default
 }
 
