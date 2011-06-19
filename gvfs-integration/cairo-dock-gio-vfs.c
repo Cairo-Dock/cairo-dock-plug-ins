@@ -1014,21 +1014,65 @@ static gchar *_cd_find_target_uri (const gchar *cBaseURI)
 static void cairo_dock_gio_vfs_launch_uri (const gchar *cURI)
 {
 	g_return_if_fail (cURI != NULL);
+	
+	// in case it's a mount point, take the URI that can actually be launched. 
 	GError *erreur = NULL;
 	gchar *cValidUri = (*cURI == '/' ? g_strconcat ("file://", cURI, NULL) : g_strdup (cURI));
 	cd_message ("%s (%s)", __func__, cValidUri);
 	
 	gchar *cTargetURI = _cd_find_target_uri (cValidUri);
-	gboolean bSuccess = g_app_info_launch_default_for_uri (cTargetURI != NULL ? cTargetURI : cValidUri,
+	cURI= (cTargetURI ? cTargetURI : cValidUri);
+	
+	// now, try to launch it with the default program know by gvfs.
+	gboolean bSuccess = g_app_info_launch_default_for_uri (cURI,
 		NULL,
 		&erreur);
+	if (erreur != NULL)  // error can happen (for instance, opening 'trash:/' on XFCE with a previous installation of nautilus) => try with another method.
+	{
+		cd_debug ("gvfs-integration : couldn't launch '%s' [%s]", cURI, erreur->message);
+		g_error_free (erreur);
+		erreur = NULL;
+		
+		// get the mime-type.
+		GFile *pFile = (*cURI == '/' ? g_file_new_for_path (cURI) : g_file_new_for_uri (cURI));
+		const gchar *cQuery = G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE;
+		GFileInfo *pFileInfo = g_file_query_info (pFile,
+			cQuery,
+			G_FILE_QUERY_INFO_NONE,
+			NULL,
+			&erreur);
+		if (erreur != NULL)  // if no mime-type (can happen with not mounted volumes), abort.
+		{
+			cd_warning ("gvfs-integration : %s", erreur->message);
+			g_error_free (erreur);
+		}
+		else
+		{
+			// get all the apps that can launch it.
+			const gchar *cMimeType = g_file_info_get_content_type (pFileInfo);
+			GList *pAppsList = g_app_info_get_all_for_type (cMimeType);
+			gchar *cCommand;
+			GAppInfo *pAppInfo;
+			const char *cExec;
+			GList *a;
+			for (a = pAppsList; a != NULL; a = a->next)
+			{
+				pAppInfo = a->data;
+				cExec = g_app_info_get_executable (pAppInfo);
+				if (cExec)  // use the first available. it is supposed to be the most suitable, but the default method doesn't seem to use it.
+				{
+					gchar *cPath = g_filename_from_uri (cURI, NULL, NULL);
+					cairo_dock_launch_command_printf ("%s \"%s\"", NULL, cExec, cPath?cPath:cURI);  // in case the program doesn't handle URI (geeqie, etc).
+					g_free (cPath);
+					break;
+				}
+			}
+			g_list_free (pAppsList);
+		}
+		g_object_unref (pFile);
+	}
 	g_free (cValidUri);
 	g_free (cTargetURI);
-	if (erreur != NULL)
-	{
-		cd_warning ("gvfs-integration : couldn't launch '%s' [%s]", cURI, erreur->message);
-		g_error_free (erreur);
-	}
 }
 
 static GMount *_cd_find_mount_from_uri (const gchar *cURI, gchar **cTargetURI)
