@@ -93,8 +93,11 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_IN_MENU (D_("Show this week's tasks"), _cd_clock_show_tasks_week, CD_APPLET_MY_MENU);
 	
 	// Sub-Menu
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Set up time and date"), GTK_STOCK_PREFERENCES, _cd_clock_launch_time_admin, pSubMenu);
-	CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
+	if (cairo_dock_fm_can_setup_time ())
+	{
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Set up time and date"), GTK_STOCK_PREFERENCES, _cd_clock_launch_time_admin, pSubMenu);
+		CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
+	}
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
