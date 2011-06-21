@@ -58,6 +58,9 @@ void cd_menu_append_recent_to_menu (GtkWidget *top_menu, CairoDockModuleInstance
 		GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cIconPath, 24, 24, NULL);
 		GtkWidget *image = gtk_image_new_from_pixbuf (pixbuf);
 		g_object_unref (pixbuf);
+#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
+		gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (pMenuItem), TRUE);
+#endif
 		gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
 		gtk_menu_shell_append (GTK_MENU_SHELL (top_menu), pMenuItem);
 		gtk_widget_show_all (pMenuItem);

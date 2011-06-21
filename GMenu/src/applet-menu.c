@@ -273,8 +273,14 @@ void panel_load_menu_image_deferred (GtkWidget   *image_menu_item,
 				(GDestroyNotify) g_object_unref);
  
 	if (myConfig.bHasIcons)
+	{
+#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
+		gtk_image_menu_item_set_always_show_image (
+			GTK_IMAGE_MENU_ITEM (image_menu_item), TRUE);
+#endif
 		gtk_image_menu_item_set_image (
 			GTK_IMAGE_MENU_ITEM (image_menu_item), image);
+	}
 
 	g_signal_connect_data (image, "map",
 			       G_CALLBACK (image_menu_shown), icon,
@@ -514,8 +520,14 @@ void setup_menuitem (GtkWidget   *menuitem,
 					(GDestroyNotify) g_object_unref);
 		gtk_widget_show (image);
 		if (myConfig.bHasIcons)
+		{
+#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
+			gtk_image_menu_item_set_always_show_image (
+				GTK_IMAGE_MENU_ITEM (menuitem), TRUE);
+#endif
 			gtk_image_menu_item_set_image (
 				GTK_IMAGE_MENU_ITEM (menuitem), image);
+		}
 	} else if (icon_size != GTK_ICON_SIZE_INVALID)
 		g_signal_connect (menuitem, "size_request",
 				  G_CALLBACK (image_menuitem_size_request),

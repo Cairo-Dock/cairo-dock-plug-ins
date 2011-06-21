@@ -106,6 +106,9 @@ static void _init_fill_menu_from_dir (CDQuickBrowserItem *pItem)
 	{
 		pMenuItem = gtk_image_menu_item_new_with_label (D_("Open this folder"));
 		GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU);
+#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
+		gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (pMenuItem), TRUE);
+#endif
 		gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
 	}
 	else
@@ -154,6 +157,9 @@ static void _fill_submenu_with_items (CDQuickBrowserItem *pRootItem, int iNbSubI
 			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cIconName, myConfig.iIconSize, myConfig.iIconSize, NULL);
 			GtkWidget *image = gtk_image_new_from_pixbuf (pixbuf);
 			g_object_unref (pixbuf);
+#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
+			gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (pMenuItem), TRUE);
+#endif
 			gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
 			g_free (cIconName);
 			cIconName = NULL;

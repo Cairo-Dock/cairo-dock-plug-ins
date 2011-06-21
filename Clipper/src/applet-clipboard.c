@@ -451,6 +451,9 @@ GtkWidget *cd_clipper_build_action_menu (CDClipperAction *pAction)
 			pImage = gtk_image_new_from_pixbuf (pixbuf);
 			g_free (cIconFilePath);
 			g_object_unref (pixbuf);
+#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
+			gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (pMenuItem), TRUE);
+#endif
 			gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), pImage);
 		}
 		gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);

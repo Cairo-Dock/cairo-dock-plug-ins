@@ -1127,6 +1127,9 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 					{
 						image = gtk_image_new_from_stock (cIcon, GTK_ICON_SIZE_MENU);
 					}
+#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
+					gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (pMenuItem), TRUE);
+#endif
 					gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
 				}
 			}
