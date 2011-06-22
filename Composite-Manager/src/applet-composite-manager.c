@@ -371,9 +371,9 @@ void cd_draw_current_state (void)
 {
 	g_print ("%s (%d)\n", __func__, myData.bIsComposited);
 	if (myData.bIsComposited)
-		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconCompositeON, "composite-on.svg");
+		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconCompositeON, "composite-on.png");
 	else
-		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconCompositeOFF, "composite-off.svg");
+		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconCompositeOFF, "composite-off.png");
 }
 
 
