@@ -68,11 +68,9 @@ struct _AppletConfig {
 	gboolean highBatteryWitness;
 	gboolean lowBatteryWitness;
 	gboolean criticalBatteryWitness;
-	gboolean bUseApprox;
 	gint lowBatteryValue;
 	const gchar *cGThemePath;
 	gchar *cSoundPath[POWER_MANAGER_NB_CHARGE_LEVEL];
-	gboolean bUseDBusFallback;
 	
 	gdouble fLastDischargeMeanRate;
 	gdouble fLastChargeMeanRate;
@@ -85,18 +83,23 @@ struct _AppletConfig {
 
 #define PM_NB_VALUES 100
 struct _AppletData {
+	DBusGProxy *pProxyPower;
+	DBusGProxy *pProxyStats;
+	DBusGProxy *pProxyWidget;
+	gchar *cBatteryStateFilePath;
+	gint iTime, iPrevTime;
+	gint iPercentage, iPrevPercentage;  // charge
+	gboolean bOnBattery, bPrevOnBattery;
+	gboolean bBatteryPresent;
+	gboolean bProcAcpiFound;
+	gboolean bSysClassFound;
+	
 	cairo_surface_t *pSurfaceBattery;
 	cairo_surface_t *pSurfaceCharge;
-	gboolean dbus_enable;
-	gboolean battery_present, prev_battery_present;
 	gint iCapacity;
-	gboolean on_battery, previously_on_battery;
-	gdouble battery_time, previous_battery_time;
-	gdouble battery_charge, previous_battery_charge;
-	gboolean alerted;
+	gboolean bAlerted;
 	gboolean bCritical;
 	gint checkLoop;
-	gchar *cBatteryStateFilePath;
 	
 	gdouble fRateHistory[PM_NB_VALUES];
 	gint iCurrentIndex;

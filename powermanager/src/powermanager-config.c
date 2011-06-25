@@ -43,7 +43,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iNotificationDuration = CD_CONFIG_GET_INTEGER ("Configuration", "notif_duration");
 	
 	myConfig.lowBatteryValue = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "low value", 15);
-	myConfig.bUseDBusFallback = CD_CONFIG_GET_BOOLEAN ("Configuration", "use_dbus");
 	
 	if (! g_key_file_has_key (CD_APPLET_MY_KEY_FILE, "Configuration", "renderer", NULL))  // old version.
 	{
@@ -73,8 +72,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 		myConfig.cSoundPath[i] = CD_CONFIG_GET_STRING ("Configuration", sKeyName->str);
 	}
 	g_string_free (sKeyName, TRUE);
-	
-	myConfig.bUseApprox = CD_CONFIG_GET_BOOLEAN ("Configuration", "use approx");
 	
 	myConfig.fLastDischargeMeanRate = CD_CONFIG_GET_DOUBLE ("Configuration", "discharge rate");
 	myConfig.fLastChargeMeanRate = CD_CONFIG_GET_DOUBLE ("Configuration", "charge rate");

@@ -17,21 +17,16 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __POWERMANAGER_DBUS__
-#define  __POWERMANAGER_DBUS__
+#ifndef __POWERMANAGER_SYS_CLASS__
+#define  __POWERMANAGER_SYS_CLASS__
 
 #include <glib.h>
 
-void cd_detect_power_manager_on_bus (void);
 
-gboolean update_stats(void);
-gboolean update_stats_loop (void);
+gboolean cd_find_battery_sys_class (void);
 
-void cd_disconnect_from_bus (void);
 
-void power_halt(void);
-void power_hibernate(void);
-void power_suspend(void);
-void power_reboot(void);
+gboolean cd_get_stats_from_sys_class (void);
+
 
 #endif

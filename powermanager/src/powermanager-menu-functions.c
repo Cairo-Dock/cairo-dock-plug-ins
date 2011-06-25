@@ -52,8 +52,9 @@ static void power_config (void) {  /// a mettre dans les plug-ins d'integration.
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	// Sub-Menu
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Set up power management"), MY_APPLET_SHARE_DATA_DIR"/default-battery.svg", power_config, CD_APPLET_MY_MENU);
-	if (myData.dbus_enable)
+	if (g_iDesktopEnv == CAIRO_DOCK_GNOME)  /// TODO: other DE...
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Set up power management"), MY_APPLET_SHARE_DATA_DIR"/default-battery.svg", power_config, CD_APPLET_MY_MENU);
+	if (myData.pProxyPower)
 	{
 		CD_APPLET_ADD_IN_MENU (D_("Halt"), power_halt, pSubMenu);
 		CD_APPLET_ADD_IN_MENU (D_("Hibernate"), power_hibernate, pSubMenu);

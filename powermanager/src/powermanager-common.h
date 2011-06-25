@@ -17,21 +17,19 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __POWERMANAGER_DBUS__
-#define  __POWERMANAGER_DBUS__
+#ifndef __POWERMANAGER_COMMON__
+#define  __POWERMANAGER_COMMON__
 
 #include <glib.h>
 
-void cd_detect_power_manager_on_bus (void);
 
-gboolean update_stats(void);
-gboolean update_stats_loop (void);
+double cd_compute_current_rate (void);
 
-void cd_disconnect_from_bus (void);
 
-void power_halt(void);
-void power_hibernate(void);
-void power_suspend(void);
-void power_reboot(void);
+void cd_store_current_rate (double fPresentRate);
+
+
+double cd_compute_time (double fPresentRate, int iRemainingCapacity);
+
 
 #endif

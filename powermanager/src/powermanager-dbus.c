@@ -24,522 +24,557 @@
 
 #include "powermanager-draw.h"
 #include "powermanager-struct.h"
+#include "powermanager-proc-acpi.h"
+#include "powermanager-sys-class.h"
 #include "powermanager-dbus.h"
+/* KDE:
+$ qdbus org.kde.powerdevil /modules/powerdevil # tab tab
+[...]
+org.kde.PowerDevil.brightnessChanged
+org.kde.PowerDevil.getSupportedSuspendMethods
+org.kde.PowerDevil.lidClosed
+org.kde.PowerDevil.profileChanged
+org.kde.PowerDevil.refreshStatus
+org.kde.PowerDevil.reloadAndStream
+org.kde.PowerDevil.setBrightness
+org.kde.PowerDevil.setPowerSave
+org.kde.PowerDevil.setProfile
+org.kde.PowerDevil.stateChanged
+org.kde.PowerDevil.streamData
+org.kde.PowerDevil.suspend
+org.kde.PowerDevil.turnOffScreen */
 
-#define MY_BATTERY_DIR "/proc/acpi/battery"
-#define MY_BATTERY_DIR_DEBIAN "/sys/class/power_supply"  // in Debian, they use the "procmeter" package.
-#define MY_DEFAULT_BATTERY_NAME "BAT0"
+/*
+get /org/freedesktop/PowerManagement -> ko => display broken.svg, abort
+get /org/freedesktop/PowerManagement/Widget -> ko => display ourselves
+get /org/freedesktop/PowerManagement/Statistics -> ko => if Widget: use it, else: display broken.svg, abort (possibly use a fallback low-level method)
 
-static DBusGProxy *dbus_proxy_power = NULL;
-static DBusGProxy *dbus_proxy_stats = NULL;
-static DBusGProxy *dbus_proxy_battery = NULL;
+representation: gauge/graph/icons/Widget
 
+title: Widget, else: "time until discharge/charge: xxmn / xhyy (xx%)"
+quick-info: none/charge "xx%"/time "xhyy"
+*/
+
+#define CD_POWER_MANAGER_ADDR "org.freedesktop.PowerManagement"
+#define CD_POWER_MANAGER_OBJ "org/freedesktop/PowerManagement"
+#define CD_POWER_MANAGER_IFACE "org.freedesktop.PowerManagement"
+#define CD_POWER_MANAGER_STATS_OBJ "org/freedesktop/PowerManagement/Statistics"
+#define CD_POWER_MANAGER_STATS_IFACE "org.freedesktop.PowerManagement.Statistics"
+#define CD_POWER_MANAGER_WIDGET_IFACE "org.freedesktop.PowerManagement.Widget	"
+#define CD_POWER_MANAGER_WIDGET_OBJ "/org/freedesktop/PowerManagement/Widget"
+
+static DBusGProxyCall *s_pDetectPMCall = NULL;
+static DBusGProxyCall *s_pGetStateCall = NULL;
+static DBusGProxyCall *s_pGetStatsCall = NULL;
+static DBusGProxyCall *s_pGetDescriptionCall = NULL;
+static DBusGProxyCall *s_pGetIconCall = NULL;
 static void on_battery_changed(DBusGProxy *proxy, gboolean onBattery, gpointer data);
 
 
-static gboolean _find_battery_in_dir (const gchar *cBatteryPath)
-{
-	// open the folder containing battery data.
-	GDir *dir = g_dir_open (cBatteryPath, 0, NULL);
-	if (dir == NULL)
-	{
-		cd_debug ("powermanager: no battery in %s",cBatteryPath );
-		return FALSE;
-	}
-	
-	// parse the folder and search the battery files.
-	GString *sBatteryInfoFilePath = g_string_new ("");
-	gchar *cContent = NULL, *cPresentLine;
-	gsize length=0;
-	const gchar *cBatteryName;
-	gboolean bBatteryFound = FALSE;
-	do
-	{
-		cBatteryName = g_dir_read_name (dir);  // usually "BAT0".
-		if (cBatteryName == NULL)
-			break ;
-		
-		g_string_printf (sBatteryInfoFilePath, "%s/%s/info", cBatteryPath, cBatteryName);
-		length=0;
-		cd_debug ("  examen de la batterie '%s' ...", sBatteryInfoFilePath->str);
-		g_file_get_contents (sBatteryInfoFilePath->str, &cContent, &length, NULL);
-		if (cContent != NULL)
-		{
-			gchar *str = strchr (cContent, '\n');  // "present:    yes"
-			if (str != NULL)
-			{
-				*str = '\0';
-				
-				if (g_strstr_len (cContent, -1, "yes") != NULL)  // on l'a trouvee !
-				{
-					bBatteryFound = TRUE;
-					myData.cBatteryStateFilePath = g_strdup_printf ("%s/%s/state", cBatteryPath, cBatteryName);
-					
-					str ++;
-					gchar *str2 = strchr (str, ':');
-					if (str2 != NULL)
-					{
-						str2 ++;
-						myData.iCapacity = atoi (str2);
-						cd_debug ("Design capacity : %d mWsh\n", myData.iCapacity);
-					}
-					
-					gchar *str3 = strchr (str2, ':');
-					if (str3 != NULL)
-					{
-						str3 ++;
-						myData.iCapacity = atoi (str3);
-						cd_debug ("Last full capacity : %d mWsh\n", myData.iCapacity);
-					}
-				}
-				else
-				{
-					cd_debug ("cette batterie (%s) n'est pas presente.\n", cBatteryName);
-				}
-			}
-			g_free (cContent);
-		}
-	}
-	while (! bBatteryFound);
-	g_dir_close (dir);
-	return bBatteryFound;
-}
-gboolean cd_powermanager_find_battery (void)
-{
-	gboolean bBatteryFound = _find_battery_in_dir (MY_BATTERY_DIR);
-	if (!bBatteryFound)
-		bBatteryFound = _find_battery_in_dir (MY_BATTERY_DIR_DEBIAN);
-	return bBatteryFound;
-}
+  ///////////////
+ /// SIGNALS ///
+///////////////
 
-gboolean dbus_connect_to_bus (void)
-{
-	cd_message ("");
-	
-	if (cairo_dock_dbus_is_enabled ())
-	{
-		dbus_proxy_power = cairo_dock_create_new_session_proxy (
-			"org.freedesktop.PowerManagement",
-			"/org/freedesktop/PowerManagement",
-			"org.freedesktop.PowerManagement"
-		);
-		if (dbus_proxy_power == NULL)
-			return FALSE;
-		
-		/**dbus_proxy_stats = cairo_dock_create_new_session_proxy (
-			"org.freedesktop.PowerManagement",
-			"/org/freedesktop/PowerManagement/Statistics",
-			"org.freedesktop.PowerManagement.Statistics");*/
-		
-		dbus_g_proxy_add_signal(dbus_proxy_power, "OnBatteryChanged",
-			G_TYPE_BOOLEAN,
-			G_TYPE_INVALID);
-			
-		dbus_g_proxy_connect_signal(dbus_proxy_power, "OnBatteryChanged",
-			G_CALLBACK(on_battery_changed), NULL, NULL);
-		cd_debug ("connected to OnBatteryChanged\n");
-		
-		/*gboolean bBatteryFound = cd_powermanager_find_battery();
-		if (! bBatteryFound)  // on n'a pas trouve de batterie nous-meme.
-		{
-			gchar *cBatteryName = MY_DEFAULT_BATTERY_NAME;  // utile ? si on a rien trouve, c'est surement qu'il n'y a pas de batterie non ?
-			cd_warning ("No battery were found");
-			
-			cd_message ("Battery Name : %s", cBatteryName);
-			gchar *batteryPath = g_strdup_printf ("/org/freedesktop/Hal/devices/acpi_%s", cBatteryName);
-			cd_message ("  batteryPath : %s", batteryPath);
-			dbus_proxy_battery = cairo_dock_create_new_system_proxy (
-				"org.freedesktop.Hal",
-				batteryPath,
-				"org.freedesktop.Hal.Device"
-			);
-			cd_message ("  acquisition de la batterie -> %x", dbus_proxy_battery);
-			myData.battery_present = (dbus_proxy_battery != NULL);  // a priori toujours vrai.
-			g_free (batteryPath);
-			
-			detect_battery ();
-		}
-		else
-		{
-			myData.battery_present = TRUE;  // a verifier mais ca parait logique.
-			cd_debug ("batterie presente\n");
-		}*/
-		
-		return TRUE;
-	}
-	return FALSE;
-}
-
-void dbus_disconnect_from_bus (void)
-{
-	cd_message ("");
-	if (dbus_proxy_power != NULL)
-	{
-		dbus_g_proxy_disconnect_signal(dbus_proxy_power, "OnBatteryChanged",
-			G_CALLBACK(on_battery_changed), NULL);
-		cd_message ("OnBatteryChanged deconnecte");
-		g_object_unref (dbus_proxy_power);
-		dbus_proxy_power = NULL;
-	}
-	/**if (dbus_proxy_battery != NULL)
-	{
-		g_object_unref (dbus_proxy_battery);
-		dbus_proxy_battery = NULL;
-	}*/
-	if (dbus_proxy_stats != NULL)
-	{
-		g_object_unref (dbus_proxy_stats);
-		dbus_proxy_stats = NULL;
-	}
-}
-
-
-static void on_battery_changed(DBusGProxy *proxy, gboolean onBattery, gpointer data)
+static void on_battery_changed (DBusGProxy *proxy, gboolean bOnBattery, gpointer data)
 {
 	CD_APPLET_ENTER;
-	cd_debug ("Dbus : battery changed\n");
-	if (myData.on_battery != onBattery)
-	{
-		update_stats();
-		update_icon();
-	}
+	cd_debug ("%s (%d)", __func__, bOnBattery);
+	
+	// store the new state
+	myData.bOnBattery = bOnBattery;
+	
+	// update the icon.
+	update_icon ();
+	
+	CD_APPLET_LEAVE ();
+}
+
+static void on_description_changed (DBusGProxy *proxy, const gchar *cDescription, gpointer data)
+{
+	CD_APPLET_ENTER;
+	cd_debug ("%s (%s)", __func__, cDescription);
+	CD_APPLET_SET_NAME_FOR_MY_ICON (cDescription);
+	CD_APPLET_LEAVE ();
+}
+
+static void on_icon_changed (DBusGProxy *proxy, const gchar *cImage, gpointer data)
+{
+	CD_APPLET_ENTER;
+	cd_debug ("%s (%s)", __func__, cImage);
+	if (myData.pProxyStats == NULL)
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (cImage);  // the image represents both the current charge and the state.
 	CD_APPLET_LEAVE ();
 }
 
 
-#define go_to_next_line \
-	cCurLine = strchr (cCurVal, '\n'); \
-	g_return_val_if_fail (cCurLine != NULL, FALSE); \
-	cCurLine ++; \
-	cCurVal = cCurLine;
+  ////////////////
+ /// GET DATA ///
+////////////////
 
-#define jump_to_value \
-	cCurVal = strchr (cCurLine, ':'); \
-	g_return_val_if_fail (cCurVal != NULL, FALSE); \
-	cCurVal ++; \
-	while (*cCurVal == ' ') \
-		cCurVal ++;
-
-/*void get_on_battery(void)
+static void _on_get_state (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockModuleInstance *myApplet)
 {
-	dbus_g_proxy_call (dbus_proxy_power, "GetOnBattery", NULL,
-		G_TYPE_INVALID,
-		G_TYPE_BOOLEAN, &myData.on_battery,
-		G_TYPE_INVALID);
-}*/
-
-
-static int get_stats(const gchar *dataType)  // code repris de Gnome-power-manager.
-{
-	if (dbus_proxy_stats == NULL)
-		dbus_proxy_stats = cairo_dock_create_new_session_proxy (
-			"org.freedesktop.PowerManagement",
-			"/org/freedesktop/PowerManagement/Statistics",
-			"org.freedesktop.PowerManagement.Statistics"
-		);
-	g_return_val_if_fail (dbus_proxy_stats != NULL, 0);
+	CD_APPLET_ENTER;
+	cd_debug ("%s ()", __func__);
+	s_pGetStateCall = NULL;
+	gboolean bOnBattery;
+	GError *erreur = NULL;
 	
-	GValueArray *gva;
-	GValue *gv;
-	GPtrArray *ptrarray = NULL;
-	GType g_type_ptrarray;
-	guint i;
-	int x, y=0, col;  /// mettre des nom comprehensibles...
-	gint time = 0;
+	// fetch the state from the request result.
+	gboolean bSuccess = dbus_g_proxy_end_call (proxy,
+		call_id,
+		&erreur,
+		G_TYPE_BOOLEAN, &bOnBattery,
+		G_TYPE_INVALID);
+	if (erreur != NULL)
+	{
+		cd_debug (" couldn't get the current state (%s)", erreur->message);
+		g_error_free (erreur);
+		erreur = NULL;
+		myData.bOnBattery = FALSE;
+	}
+	else
+	{
+		myData.bOnBattery = bOnBattery;
+	}
+	
+	// get the stats
+	update_stats ();
+	
+	// update the icon.
+	update_icon ();
+	
+	CD_APPLET_LEAVE ();
+}
+void cd_get_current_state (void)
+{
+	if (s_pGetStateCall != NULL)
+		return;
+	cd_debug ("");
+	s_pGetStateCall = dbus_g_proxy_begin_call (myData.pProxyPower,
+		"GetOnBattery",
+		(DBusGProxyCallNotify)_on_get_state,
+		myApplet,
+		(GDestroyNotify) NULL,
+		G_TYPE_INVALID);
+}
 
-	g_type_ptrarray = dbus_g_type_get_collection ("GPtrArray",
+static void _on_get_description (DBusGProxy *proxy, DBusGProxyCall *call_id, gpointer data)
+{
+	CD_APPLET_ENTER;
+	cd_debug ("%s ()", __func__);
+	s_pGetDescriptionCall = NULL;
+	gchar *cDescription = NULL;
+	GError *erreur = NULL;
+	
+	// fetch the state from the request result.
+	gboolean bSuccess = dbus_g_proxy_end_call (proxy,
+		call_id,
+		&erreur,
+		G_TYPE_STRING, &cDescription,
+		G_TYPE_INVALID);
+	if (erreur != NULL)
+	{
+		cd_debug (" couldn't get the current description (%s)", erreur->message);
+		g_error_free (erreur);
+		erreur = NULL;
+		// don't try this method any more.
+		if (myData.pProxyWidget)
+		{
+			g_object_unref (myData.pProxyWidget);
+			myData.pProxyWidget = NULL;
+		}
+	}
+	else
+	{
+		CD_APPLET_SET_NAME_FOR_MY_ICON (cDescription);
+	}
+	
+	g_free (cDescription);
+	CD_APPLET_LEAVE ();
+}
+void cd_get_widget_description (void)
+{
+	if (s_pGetDescriptionCall != NULL || myData.pProxyWidget == NULL)
+		return;
+	s_pGetDescriptionCall = dbus_g_proxy_begin_call (myData.pProxyWidget,
+		"GetDescription",
+		(DBusGProxyCallNotify)_on_get_description,
+		NULL,
+		(GDestroyNotify) NULL,
+		G_TYPE_INVALID);
+}
+
+static void _on_get_icon (DBusGProxy *proxy, DBusGProxyCall *call_id, gpointer data)
+{
+	CD_APPLET_ENTER;
+	cd_debug ("%s ()", __func__);
+	s_pGetIconCall = NULL;
+	gchar *cImage = NULL;
+	GError *erreur = NULL;
+	
+	// fetch the state from the request result.
+	gboolean bSuccess = dbus_g_proxy_end_call (proxy,
+		call_id,
+		&erreur,
+		G_TYPE_STRING, &cImage,
+		G_TYPE_INVALID);
+	if (erreur != NULL)
+	{
+		cd_debug (" couldn't get the current image (%s)", erreur->message);
+		g_error_free (erreur);
+		erreur = NULL;
+		// don't try this method any more.
+		if (myData.pProxyWidget)
+		{
+			g_object_unref (myData.pProxyWidget);
+			myData.pProxyWidget = NULL;
+		}
+	}
+	else
+	{
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (cImage);
+	}
+	
+	g_free (cImage);
+	CD_APPLET_LEAVE ();
+}
+void cd_get_widget_icon (void)
+{
+	if (s_pGetIconCall != NULL || myData.pProxyWidget == NULL)
+		return;
+	s_pGetIconCall = dbus_g_proxy_begin_call (myData.pProxyWidget,
+		"GetIcon",
+		(DBusGProxyCallNotify)_on_get_icon,
+		NULL,
+		(GDestroyNotify) NULL,
+		G_TYPE_INVALID);
+}
+
+static void _cd_get_one_stat (const gchar *cDataType, gboolean bFirst);
+static void _on_get_data (DBusGProxy *proxy, DBusGProxyCall *call_id, gpointer data)
+{
+	CD_APPLET_ENTER;
+	cd_debug ("%s ()", __func__);
+	gboolean bFirstRound = (data != NULL);
+	s_pGetStatsCall = NULL;
+	
+	GError *erreur = NULL;
+	
+	// fetch the data from the request result.
+	int val = 0;
+	GType g_type_ptrarray = dbus_g_type_get_collection ("GPtrArray",
 		dbus_g_type_get_struct("GValueArray",
 			G_TYPE_INT,
 			G_TYPE_INT,
 			G_TYPE_INT,
 			G_TYPE_INVALID));
-	
-	dbus_g_proxy_call (dbus_proxy_stats, "GetData", NULL,
-		G_TYPE_INT, time,
-		G_TYPE_STRING, dataType,
-		G_TYPE_INVALID,
+	GPtrArray *ptrarray = NULL;
+	gboolean bSuccess = dbus_g_proxy_end_call (proxy,
+		call_id,
+		&erreur,
 		g_type_ptrarray, &ptrarray,
 		G_TYPE_INVALID);
-	g_return_val_if_fail (ptrarray != NULL, 0);
-	
-	for (i=0; i< ptrarray->len; i++)  /// il semble que seule la derniere valeur ait de l'interet ....
-	{
-		gva = (GValueArray *) g_ptr_array_index (ptrarray, i);
-		gv = g_value_array_get_nth (gva, 0);
-		x = g_value_get_int (gv);
-		g_value_unset (gv);
-		gv = g_value_array_get_nth (gva, 1);
-		y = g_value_get_int (gv);
-		g_value_unset (gv);
-		gv = g_value_array_get_nth (gva, 2);
-		col = g_value_get_int (gv);
-		g_value_unset (gv);
-		g_value_array_free (gva);
-	}
-	g_ptr_array_free (ptrarray, TRUE);
-	
-	cd_message ("PowerManager [%s]: %d", dataType, y);
-	return y;  /// a quoi servent x et col alors ??
-}
-gboolean update_stats(void)
-{
-	CD_APPLET_ENTER;
-	//\_______________ On recupere le contenu du buffer de la batterie.
-	if (myData.cBatteryStateFilePath == NULL)
-		cd_powermanager_find_battery ();
-	if (myData.cBatteryStateFilePath == NULL)
-		CD_APPLET_LEAVE (TRUE);
-	
-	int k;
-	gchar *cContent = NULL;
-	gsize length=0;
-	GError *erreur = NULL;
-	g_file_get_contents(myData.cBatteryStateFilePath, &cContent, &length, &erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("powermanager : %s", erreur->message);
-		g_error_free(erreur);
+		cd_debug (" couldn't get the current data (%s)", erreur->message);
+		g_error_free (erreur);
 		erreur = NULL;
-		CD_APPLET_LEAVE (FALSE);
-	}
-	CD_APPLET_LEAVE_IF_FAIL (cContent, FALSE);
-	
-	//\_______________ On gere la presence de la batterie.
-	gchar *cCurLine = cContent, *cCurVal = cContent;
-	
-	jump_to_value
-	gboolean bBatteryPresent = (*cCurVal == 'y');
-	if (bBatteryPresent != myData.battery_present)  // la batterie vient d'etre (de)branchee. 
-	{
-		myData.battery_present = bBatteryPresent;
-		if (! bBatteryPresent)
-		{
-			cd_debug ("la batterie a ete enlevee\n");
-			g_free (cContent);
-			update_icon();
-			CD_APPLET_LEAVE (TRUE);
-		}
-		
-		// on remet a zero l'historique.
-		cd_debug ("la batterie a ete connectee\n");
-		myData.previous_battery_time = 0;
-		myData.previous_battery_charge = 0;
-		
-		for (k = 0; k < PM_NB_VALUES; k ++)
-			myData.fRateHistory[k] = 0;
-		myData.iCurrentIndex = 0;
-		myData.iIndexMax = 0;
-	}
-	
-	go_to_next_line  // "present: yes"
-	
-	go_to_next_line  // capacity state: ok
-	///Ajouter un warning si ce n'est pas le cas...
-	
-	//\_______________ On gere le (de)branchage de la batterie.
-	jump_to_value
-	gboolean bOnBatteryOld = myData.on_battery;
-	myData.on_battery = (*cCurVal == 'd');  // discharging
-	if (bOnBatteryOld != myData.on_battery)  // (de)branchage de la batterie.
-	{
-		for (k = 0; k < PM_NB_VALUES; k ++)  // on remet a zero l'historique.
-			myData.fRateHistory[k] = 0;
-		myData.iCurrentIndex = 0;
-		myData.iIndexMax = 0;
-	}
-	
-	go_to_next_line  // charging state: discharging
-	
-	//\_______________ On recupere le taux de (de)charge.
-	jump_to_value
-	double fPresentRate = atoi (cCurVal);  // 15000 mW OU 1400 mA
-	
-	/*cCurVal ++;
-	while (*cCurVal != ' ')
-		cCurVal ++;
-	while (*cCurVal == ' ')
-		cCurVal ++;
-	if (*cCurVal != 'm')
-		cd_warning ("PowerManager : expecting mA or mW as the present rate unit");
-	cCurVal ++;
-	if (*cCurVal == 'W')
-		bWatt = TRUE;
-	else if (*cCurVal == 'A')
-		bWatt = FALSE;
-	else
-		cd_warning ("PowerManager : expecting A or W as the present rate unit");*/
-	
-	go_to_next_line  // present rate: 15000 mW
-	
-	jump_to_value
-	int iRemainingCapacity = atoi (cCurVal);  // 47040 mWh
-	
-	go_to_next_line  // remaining capacity: 47040 mWh
-	
-	jump_to_value
-	int iPresentVoltage = atoi (cCurVal);  // 15000 mV
-	
-	myData.battery_charge = 100. * iRemainingCapacity / myData.iCapacity;
-	cd_debug ("myData.battery_charge : %.2f (%d / %d)", myData.battery_charge, iRemainingCapacity, myData.iCapacity);
-	if (myData.battery_charge > 100)
-		myData.battery_charge = 100;
-	if (myData.battery_charge < 0)
-		myData.battery_charge = 0.;
-	
-	//\_______________ On calcule le taux de variation par derive de la charge s'il n'est pas présent dans le buffer.
-	if (fPresentRate == 0 && myConfig.bUseDBusFallback)
-	{
-		cd_message ("on se rabat sur DBus");
-		myData.battery_time = get_stats("time");
-	}
-	else if (fPresentRate == 0 && myData.previous_battery_charge > 0)
-	{
-		fPresentRate = (myData.previous_battery_charge - myData.battery_charge) * 36. * myData.iCapacity / myConfig.iCheckInterval;
-		cd_message ("instant rate : %.2f -> %.2f => %.2f", myData.previous_battery_charge, myData.battery_charge, fPresentRate);
-		myData.fRateHistory[myData.iCurrentIndex] = fPresentRate;
-		
-		double fMeanRate = 0.;
-		int nb_values=0;
-		double fNextValue = 0.;
-		int iNbStackingValues = 0;
-		int i;
-		for (k = 0; k < myData.iIndexMax; k ++)
-		{
-			if (myData.iIndexMax == PM_NB_VALUES)
-				i = (myData.iCurrentIndex + 1 + k) % PM_NB_VALUES;
-			else
-				i = k;
-			if (myData.fRateHistory[i] != 0)
-			{
-				if (fNextValue != 0)
-				{
-					nb_values += iNbStackingValues;
-					fMeanRate += fNextValue;
-				}
-				fNextValue = myData.fRateHistory[i];
-				iNbStackingValues = 1;
-			}
-			else
-			{
-				iNbStackingValues ++;
-			}
-		}
-		if (nb_values != 0)
-			fPresentRate = fabs (fMeanRate) / nb_values;
-		cd_message ("mean calculated on %d value(s) : %.2f (current index:%d/%d)", nb_values, fPresentRate, myData.iCurrentIndex, myData.iIndexMax);
-		
-		myData.iCurrentIndex ++;
-		if (myData.iIndexMax < PM_NB_VALUES)
-			myData.iIndexMax = myData.iCurrentIndex;
-		if (myData.iCurrentIndex == PM_NB_VALUES)
-			myData.iCurrentIndex = 0;
+		// don't try this method any more.
+		g_object_unref (myData.pProxyStats);
+		myData.pProxyStats = NULL;
+		// instead, rely on the widget icon.
+		cd_get_widget_icon ();
+		CD_APPLET_LEAVE ();
 	}
 	else
-		cd_message ("found fPresentRate = %.2f\n", fPresentRate);
-	
-	//\_______________ On enregistre les dernieres valeurs si elles ont beaucoup change.
-	if (fPresentRate > 0)
 	{
-		if (myData.on_battery)
-		{
-			myData.fDischargeMeanRate = (myData.fDischargeMeanRate * myData.iNbDischargeMeasures + fPresentRate) / (myData.iNbDischargeMeasures + 1);
-			myData.iNbDischargeMeasures ++;
-			cd_debug ("fDischargeMeanRate : %.2f (%d)\n", myData.fDischargeMeanRate, myData.iNbDischargeMeasures);
-			
-			if (fabs (myConfig.fLastDischargeMeanRate - myData.fDischargeMeanRate) > 30)  // l'ecart avec la valeur stockee en conf est devenue grande, on met a jour cette derniere.
-			{
-				myConfig.fLastDischargeMeanRate = myData.fDischargeMeanRate;
-				cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
-					G_TYPE_DOUBLE, "Configuration", "discharge rate", myConfig.fLastDischargeMeanRate,
-					G_TYPE_INVALID);
-			}
-		}
-		else
-		{
-			myData.fChargeMeanRate = (myData.fChargeMeanRate * myData.iNbChargeMeasures + fPresentRate) / (myData.iNbChargeMeasures + 1);
-			myData.iNbChargeMeasures ++;
-			cd_debug ("fChargeMeanRate : %.2f (%d)\n", myData.fChargeMeanRate, myData.iNbChargeMeasures);
-			if (fabs (myConfig.fLastChargeMeanRate - myData.fChargeMeanRate) > 30)  // l'ecart avec la valeur stockee en conf est devenue grande, on met a jour cette derniere.
-			{
-				myConfig.fLastChargeMeanRate = myData.fChargeMeanRate;
-				cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
-					G_TYPE_DOUBLE, "Configuration", "charge rate", myConfig.fLastChargeMeanRate,
-					G_TYPE_INVALID);
-			}
-		}
+		cd_debug (" got %d values", ptrarray->len);
+		GValueArray *va = (GValueArray *) g_ptr_array_index (ptrarray, ptrarray->len-1);  // get the latest data
+		GValue *v = g_value_array_get_nth (va, 2);  // (x, y, data)
+		if (v && G_VALUE_HOLDS_INT (v))
+			val = g_value_get_int (v);
+		cd_debug (" data: %d", val);
+		
+		g_ptr_array_foreach (ptrarray, (GFunc)g_value_array_free, NULL);
+		g_ptr_array_free (ptrarray, TRUE);
 	}
-	else if (myData.on_battery || myData.battery_charge < 99.9)
+	
+	if (bFirstRound)
 	{
-		cd_debug ("no rate, using last know values : %.2f ; %.2f\n", myConfig.fLastDischargeMeanRate, myConfig.fLastChargeMeanRate);
-		fPresentRate = (myData.on_battery ? myConfig.fLastDischargeMeanRate : myConfig.fLastChargeMeanRate);
+		cd_debug ("  got percentage: %d%%\n", (int)val);
+		myData.iPercentage = val;
+		_cd_get_one_stat ("time", FALSE);
 	}
-	
-	//Utile de connaitre l'autonomie estimée quand la batterie est chargée
-	if (myData.battery_charge > 99.9)  // on evite le point a 100, trop instable
+	else
 	{
-		myData.battery_time = 0.;
-	}
-	else if (myData.on_battery/** || myData.battery_charge == 100*/) { //Decompte avant décharge complete
-		if (fPresentRate > 0) {
-			myData.battery_time = 3600. * iRemainingCapacity / fPresentRate;
-		}
-		else
-			myData.battery_time = 0.;
-	}
-	else {
-		if (fPresentRate > 0) { //Decompte avant charge complete
-			myData.battery_time = 3600. * (myData.iCapacity - iRemainingCapacity) / fPresentRate;
-		}
-		else
-			myData.battery_time = 0.;
+		cd_debug ("  got time: %d%%\n", (int)val);
+		myData.iTime = val;
+		update_icon ();
 	}
 	
-	//cd_message ("PowerManager : On Battery:%d ; iCapacity:%dmWh ; iRemainingCapacity:%dmWh ; fPresentRate:%.2fmW ; iPresentVoltage:%dmV", myData.on_battery, myData.iCapacity, iRemainingCapacity, fPresentRate, iPresentVoltage); 
-	g_free (cContent);
-	
-	//\_______________ On met a jour l'icone.
-	update_icon();
-	
-	/*present: yes
-	capacity state: ok
-	charging state: discharging
-	present rate: 15000 mW
-	remaining capacity: 47040 mWh
-	present voltage: 15000 mV*/
-	CD_APPLET_LEAVE (TRUE);
+	CD_APPLET_LEAVE ();
+}
+static void _cd_get_one_stat (const gchar *cDataType, gboolean bFirst)
+{
+	if (s_pGetStatsCall != NULL || myData.pProxyStats == NULL)
+		return;
+	s_pGetStatsCall = dbus_g_proxy_begin_call (myData.pProxyStats,
+		"GetData",
+		(DBusGProxyCallNotify)_on_get_data,
+		GINT_TO_POINTER (bFirst),
+		(GDestroyNotify) NULL,
+		G_TYPE_UINT, 0,  // we just want the latest data
+		G_TYPE_STRING, cDataType,
+		G_TYPE_INVALID);
+}
+void cd_get_stats_from_bus (void)
+{
+	cd_debug ("");
+	_cd_get_one_stat ("percentage", TRUE);
 }
 
-/**void detect_battery(void)
+
+  ////////////////
+ /// SERVICE ///
+////////////////
+
+static void _on_start_service (DBusGProxy *proxy, guint status, GError *error, gpointer data)  // just for info
 {
-	if (dbus_proxy_battery != NULL)
-		dbus_g_proxy_call (dbus_proxy_battery, "GetPropertyBoolean", NULL,
-			G_TYPE_STRING,"battery.present",
-			G_TYPE_INVALID,
-			G_TYPE_BOOLEAN, &myData.battery_present,
+	if (status != DBUS_START_REPLY_SUCCESS && status != DBUS_START_REPLY_ALREADY_RUNNING)  // service is not started.
+	{
+		if (error != NULL)  // couldn't start the service
+			cd_debug ("Unable to start the Power-Manager service (%s)", error->message);
+		else
+			cd_debug ("Unable to start the Power-Manager service (got status %d)", status);
+		return;
+	}
+	cd_debug ("Power-Manager service has started");
+}
+
+static void _on_power_manager_owner_changed (gboolean bOwned, gpointer data)
+{
+	CD_APPLET_ENTER;
+	cd_debug ("Power-Manager service is on the bus (%d)", bOwned);
+	if (bOwned)
+	{
+		// set up a proxy to the Service
+		myData.pProxyPower = cairo_dock_create_new_session_proxy (
+			CD_POWER_MANAGER_ADDR,
+			CD_POWER_MANAGER_OBJ,
+			CD_POWER_MANAGER_IFACE);
+		
+		dbus_g_proxy_add_signal(myData.pProxyPower, "OnBatteryChanged",
+			G_TYPE_BOOLEAN,
 			G_TYPE_INVALID);
-}*/
+		dbus_g_proxy_connect_signal(myData.pProxyPower, "OnBatteryChanged",
+			G_CALLBACK(on_battery_changed), NULL, NULL);
+		
+		// set up a proxy to the optionnal Statistics object
+		myData.pProxyStats = cairo_dock_create_new_session_proxy (
+			CD_POWER_MANAGER_ADDR,
+			CD_POWER_MANAGER_STATS_OBJ,
+			CD_POWER_MANAGER_STATS_IFACE);
+		
+		// set up a proxy to the optionnal Widget object
+		myData.pProxyWidget = cairo_dock_create_new_session_proxy (
+			CD_POWER_MANAGER_ADDR,
+			CD_POWER_MANAGER_WIDGET_OBJ,
+			CD_POWER_MANAGER_WIDGET_IFACE);
+		
+		dbus_g_proxy_add_signal(myData.pProxyWidget, "DescriptionChanged",
+			G_TYPE_STRING,
+			G_TYPE_INVALID);
+		dbus_g_proxy_connect_signal(myData.pProxyPower, "DescriptionChanged",
+			G_CALLBACK(on_description_changed), NULL, NULL);
+		
+		dbus_g_proxy_add_signal(myData.pProxyWidget, "IconChanged",
+			G_TYPE_STRING,
+			G_TYPE_INVALID);
+		dbus_g_proxy_connect_signal(myData.pProxyPower, "IconChanged",
+			G_CALLBACK(on_icon_changed), NULL, NULL);
+		
+		// get the current state.
+		if (myData.cBatteryStateFilePath == NULL)  // couldn't get the state from files, so get it now from dbus.
+			cd_get_current_state ();
+		
+		// get the current description.
+		cd_get_widget_description ();
+	}
+	else  // no more service on the bus.
+	{
+		g_object_unref (myData.pProxyPower);
+		myData.pProxyPower = NULL;
+		
+		if (myData.pProxyStats)
+		{
+			g_object_unref (myData.pProxyStats);
+			myData.pProxyStats = NULL;
+		}
+		
+		if (myData.pProxyWidget)
+		{
+			g_object_unref (myData.pProxyWidget);
+			myData.pProxyWidget = NULL;
+		}
+	}
+	CD_APPLET_LEAVE ();
+}
+static void _on_detect_power_manager (gboolean bPresent, gpointer data)
+{
+	CD_APPLET_ENTER;
+	cd_debug ("Power-Manager is present: %d", bPresent);
+	s_pDetectPMCall = NULL;
+	if (bPresent)
+	{
+		_on_power_manager_owner_changed (TRUE, NULL);
+	}
+	else  // not present, maybe the service is not started => try starting it.
+	{
+		cd_debug ("  try to start the Power-Manager service...");
+		DBusGProxy *dbus_proxy = cairo_dock_get_main_proxy ();
+		org_freedesktop_DBus_start_service_by_name_async (dbus_proxy,
+			CD_POWER_MANAGER_ADDR,
+			0,
+			_on_start_service,
+			myApplet);
+		
+		// until it's launched, get the current values from files.
+		update_stats ();
+		update_icon ();
+	}
+	
+	// now that we know if we can use Dbus or not, get the current values with what we have found since the beginning.
+	update_stats ();
+	update_icon();
+	
+	// and periodically update the data.
+	if (myData.checkLoop == 0)
+		myData.checkLoop = g_timeout_add_seconds (myConfig.iCheckInterval, (GSourceFunc) update_stats_loop, (gpointer) NULL);
+	
+	// watch whenever the Service goes up or down.
+	cairo_dock_watch_dbus_name_owner (CD_POWER_MANAGER_ADDR,
+		(CairoDockDbusNameOwnerChangedFunc) _on_power_manager_owner_changed,
+		NULL);
+	CD_APPLET_LEAVE ();
+}
+void cd_detect_power_manager_on_bus (void)
+{
+	s_pDetectPMCall = cairo_dock_dbus_detect_application_async (CD_POWER_MANAGER_ADDR,
+		(CairoDockOnAppliPresentOnDbus) _on_detect_power_manager,
+		NULL);
+}
+
+
+void cd_disconnect_from_bus (void)
+{
+	// cancel current calls
+	if (s_pDetectPMCall != NULL)
+	{
+		dbus_g_proxy_cancel_call (myData.pProxyPower, s_pDetectPMCall);
+		s_pDetectPMCall = NULL;
+		
+	}
+	if (s_pGetStateCall != NULL)
+	{
+		dbus_g_proxy_cancel_call (myData.pProxyPower, s_pGetStateCall);
+		s_pGetStateCall = NULL;
+		
+	}
+	if (s_pGetStatsCall != NULL)
+	{
+		dbus_g_proxy_cancel_call (myData.pProxyStats, s_pGetStatsCall);
+		s_pGetStatsCall = NULL;
+		
+	}
+	if (s_pGetDescriptionCall != NULL)
+	{
+		dbus_g_proxy_cancel_call (myData.pProxyWidget, s_pGetDescriptionCall);
+		s_pGetDescriptionCall = NULL;
+		
+	}
+	if (s_pGetIconCall != NULL)
+	{
+		dbus_g_proxy_cancel_call (myData.pProxyWidget, s_pGetIconCall);
+		s_pGetIconCall = NULL;
+		
+	}
+	
+	// destroy proxies
+	g_object_unref (myData.pProxyPower);
+	myData.pProxyPower = NULL;
+
+	if (myData.pProxyStats)
+	{
+		g_object_unref (myData.pProxyStats);
+		myData.pProxyStats = NULL;
+	}
+
+	if (myData.pProxyWidget)
+	{
+		g_object_unref (myData.pProxyWidget);
+		myData.pProxyWidget = NULL;
+	}
+}
+
+gboolean update_stats (void)
+{
+	if (myData.cBatteryStateFilePath != NULL)  // found the battery, get the info from files and compute ourselves.
+	{
+		if (myData.bProcAcpiFound)
+			cd_get_stats_from_proc_acpi ();
+		else
+			cd_get_stats_from_sys_class ();
+	}
+	else if (myData.pProxyStats != NULL)
+	{
+		cd_get_stats_from_bus ();
+	}
+	else
+	{
+		return FALSE;
+	}
+	return TRUE;
+}
+
+gboolean update_stats_loop (void)
+{
+	CD_APPLET_ENTER;
+	
+	gboolean bContinue = update_stats ();
+	
+	update_icon ();
+	
+	if (! bContinue)
+		myData.checkLoop = 0;
+	CD_APPLET_LEAVE (bContinue);
+}
+
+
+  ///////////////
+ /// ACTIONS ///
+///////////////
 
 void power_halt(void)
 {
-	dbus_g_proxy_call (dbus_proxy_power, "Shutdown", NULL,
+	dbus_g_proxy_call (myData.pProxyPower, "Shutdown", NULL,
 		G_TYPE_INVALID,
 		G_TYPE_INVALID);
 }
 void power_hibernate(void)
 {
-	dbus_g_proxy_call (dbus_proxy_power, "Hibernate", NULL,
+	dbus_g_proxy_call (myData.pProxyPower, "Hibernate", NULL,
 		G_TYPE_INVALID,
 		G_TYPE_INVALID);
 }
 void power_suspend(void)
 {
-	dbus_g_proxy_call (dbus_proxy_power, "Suspend", NULL,
+	dbus_g_proxy_call (myData.pProxyPower, "Suspend", NULL,
 		G_TYPE_INVALID,
 		G_TYPE_INVALID);
 }
 void power_reboot(void)
 {
-	dbus_g_proxy_call (dbus_proxy_power, "Reboot", NULL,
+	dbus_g_proxy_call (myData.pProxyPower, "Reboot", NULL,
 		G_TYPE_INVALID,
 		G_TYPE_INVALID);
 }
