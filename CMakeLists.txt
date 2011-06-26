@@ -1076,12 +1076,3 @@ if ("${enable-help}" STREQUAL "yes")
 	add_subdirectory (Help)
 endif()
 
-############# HELP #################
-if (NOT "${enable-help}" STREQUAL "no")
-	set (GETTEXT_HELP ${GETTEXT_PLUGINS})
-	set (VERSION_HELP "0.0.1")
-	set (PACKAGE_HELP "cd-Help")
-	set (helpdatadir "${pluginsdatadir}/Help")
-	configure_file (Help/data/Help.conf.in ${CMAKE_CURRENT_SOURCE_DIR}/Help/data/Help.conf)
-	add_subdirectory (Help)
-endif()
