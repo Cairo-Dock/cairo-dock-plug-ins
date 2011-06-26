@@ -103,7 +103,9 @@ CD_APPLET_INIT_BEGIN
 		myData.bSysClassFound = cd_find_battery_sys_class ();
 	
 	// try to detect the PowerManager on the bus (we want the OnBatteryChanged signal at least).
-	cd_detect_power_manager_on_bus ();
+	///cd_detect_power_manager_on_bus ();
+	if (myData.checkLoop == 0)
+		myData.checkLoop = g_timeout_add_seconds (myConfig.iCheckInterval, (GSourceFunc) update_stats_loop, (gpointer) NULL);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -114,7 +116,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	
-	cd_disconnect_from_bus ();
+	///cd_disconnect_from_bus ();
 	
 	if (myData.checkLoop != 0)
 	{

@@ -27,8 +27,8 @@
 #include "powermanager-common.h"
 #include "powermanager-proc-acpi.h"
 
-//#define CD_BATTERY_DIR "/proc/acpi/battery"
-#define CD_BATTERY_DIR "/home/fab/proc/acpi/battery"
+#define CD_BATTERY_DIR "/proc/acpi/battery"
+//#define CD_BATTERY_DIR "/home/fab/proc/acpi/battery"
 
 /*present: yes
 capacity state: ok

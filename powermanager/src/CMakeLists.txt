@@ -24,6 +24,9 @@ add_definitions (-DMY_APPLET_VERSION="${VERSION_POWERMANAGER}")
 add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_POWERMANAGER}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
+if (${POWERMANAGER_FOUND})
+	add_definitions (-DCD_UPOWER_AVAILABLE="1")
+endif()
 
 include_directories (
 	${PACKAGE_INCLUDE_DIRS})
