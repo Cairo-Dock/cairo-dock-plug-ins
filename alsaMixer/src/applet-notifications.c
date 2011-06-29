@@ -42,7 +42,16 @@ static void _mixer_show_advanced_mixer (GtkMenuItem *menu_item, gpointer data)
 	}
 	else
 	{
-		g_spawn_command_line_async ("gnome-volume-control -p applications", &erreur);
+		gchar *cResult = cairo_dock_launch_command_sync ("which gnome-volume-control");
+		if (cResult != NULL && *cResult == '/')
+			g_spawn_command_line_async ("gnome-volume-control -p applications", &erreur); // gnome 2
+		else
+		{
+			/*cResult = cairo_dock_launch_command_sync ("which gnome-control-center");
+			if (cResult != NULL && *cResult == '/')*/
+			g_spawn_command_line_async ("gnome-control-center sound", &erreur); // Gnome 3
+		}
+		g_free (cResult);
 	}
 	
 	if (erreur != NULL)
