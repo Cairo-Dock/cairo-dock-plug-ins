@@ -35,6 +35,25 @@ CD_APPLET_DEFINITION (N_("Impulse"),
 	"It will analyse the signal given by PulseAudio."),
 	"Matthieu Baerts (matttbe)")
 
+void _init_shared_memory (void)
+{
+	myData.pSharedMemory = g_new0 (CDSharedMemory, 1);
+	myData.pSharedMemory->pIconsList = NULL; // without separators
+	myData.pSharedMemory->bIsUpdatingIconsList = TRUE; // without separators
+	myData.pSharedMemory->cIconAnimation = g_strdup (myConfig.cIconAnimation);
+	myData.pSharedMemory->iNbAnimations = myConfig.iNbAnimations;
+	myData.pSharedMemory->fMinValueToAnim = myConfig.fMinValueToAnim;
+	myData.pSharedMemory->bStopAnimations = myConfig.bStopAnimations;
+	myData.pSharedMemory->pDock = myConfig.pDock;
+	// myData.pSharedMemory->pApplet = myApplet;
+}
+
+void _free_shared_memory (void)
+{
+	g_free (myData.pSharedMemory->cIconAnimation);
+	g_list_free (myData.pSharedMemory->pIconsList);
+	g_free (myData.pSharedMemory);
+}
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
@@ -45,10 +64,13 @@ CD_APPLET_INIT_BEGIN
 
 	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 
+	myData.iSidAnimate = 0;
 	myData.bPulseLaunched = FALSE;
 
+	_init_shared_memory ();
+
 	// Registration:
-	cairo_dock_register_notification_on_object (&myDocksMgr,
+	/*cairo_dock_register_notification_on_object (&myDocksMgr,
 		NOTIFICATION_ICON_MOVED,
 		(CairoDockNotificationFunc) cd_impulse_on_icon_changed,
 		CAIRO_DOCK_RUN_FIRST, NULL);
@@ -59,7 +81,7 @@ CD_APPLET_INIT_BEGIN
 	cairo_dock_register_notification_on_object (&myDocksMgr,
 		NOTIFICATION_REMOVE_ICON,
 		(CairoDockNotificationFunc) cd_impulse_on_icon_changed,
-		CAIRO_DOCK_RUN_FIRST, NULL);
+		CAIRO_DOCK_RUN_FIRST, NULL);*/
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 CD_APPLET_INIT_END
@@ -70,11 +92,14 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	
-	if (myData.pTask != NULL)
+	//if (myData.pTask != NULL)
+	if (myData.iSidAnimate != 0)
 		cd_impulse_stop_animations();
 
+	_free_shared_memory ();
+
 	// Unregistration:
-	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
+	/*cairo_dock_remove_notification_func_on_object (&myDocksMgr,
 		NOTIFICATION_ICON_MOVED,
 		(CairoDockNotificationFunc) cd_impulse_on_icon_changed, NULL);
 	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
@@ -82,7 +107,7 @@ CD_APPLET_STOP_BEGIN
 		(CairoDockNotificationFunc) cd_impulse_on_icon_changed, NULL);
 	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
 		NOTIFICATION_REMOVE_ICON,
-		(CairoDockNotificationFunc) cd_impulse_on_icon_changed, NULL);
+		(CairoDockNotificationFunc) cd_impulse_on_icon_changed, NULL);*/
 
 	// We stoppe the main loop.
 	/*if (myData.iSidAnimate != 0)
@@ -101,8 +126,11 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
-		if (myData.pTask != NULL)
-		{ // to check?
+		// if (myData.pTask != NULL)
+		_free_shared_memory ();
+		_init_shared_memory ();
+		if (myData.iSidAnimate != 0)
+		{ // maybe the time has changed...
 			cd_impulse_launch_task();// (myApplet);
 		}
 	}

@@ -46,11 +46,11 @@ typedef struct {
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	CairoDockTask *pTask;  // task for the animation
+	// CairoDockTask *pTask;  // task for the animation
 	CDSharedMemory *pSharedMemory;
 	// gboolean isRunning;
 	gboolean bPulseLaunched; // can we stop the pulseaudio client/server?
-	// guint iSidAnimate;
+	guint iSidAnimate;
 	} ;
 
 

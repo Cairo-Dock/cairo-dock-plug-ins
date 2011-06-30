@@ -27,7 +27,9 @@
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
 CD_APPLET_ON_CLICK_BEGIN
-	if (myData.pTask != NULL)
+	//if (myData.pTask != NULL)
+	cd_debug ("Impulse animation state: %d", myData.iSidAnimate);
+	if (myData.iSidAnimate != 0)
 		cd_impulse_stop_animations();
 	else
 		cd_impulse_launch_task();// (myApplet);

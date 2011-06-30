@@ -59,19 +59,20 @@ static void _get_icons_list_without_separators (CDSharedMemory *pSharedMemory)
 	cd_debug ("Impulse: updated icons list: %d", g_list_length(pSharedMemory->pIconsList));
 }
 
-static gboolean _animate_the_dock (CDSharedMemory *pSharedMemory)
+//static gboolean _animate_the_dock (CDSharedMemory *pSharedMemory)
+static gboolean _animate_the_dock (gpointer data)
 {
 	CD_APPLET_ENTER;
 	// cd_debug ("Impulse: in");
-	if (pSharedMemory->bIsUpdatingIconsList || pSharedMemory->pIconsList == NULL)
+	if (myData.pSharedMemory->bIsUpdatingIconsList || myData.pSharedMemory->pIconsList == NULL)
 		CD_APPLET_LEAVE (TRUE);
 
-	guint iIcons = 256 / g_list_length(pSharedMemory->pIconsList); // number of icons (without separators)
+	guint iIcons = 256 / g_list_length(myData.pSharedMemory->pIconsList); // number of icons (without separators)
 
 	double *array = im_getSnapshot(IM_FFT);
 	int i;
 	double l = 0.0;
-	GList *ic = pSharedMemory->pIconsList;
+	GList *ic = myData.pSharedMemory->pIconsList;
 	Icon *pIcon;
 	for (i = 0; ic != NULL; i++) // i < 256
 	{
@@ -80,12 +81,12 @@ static gboolean _animate_the_dock (CDSharedMemory *pSharedMemory)
 		{
 			pIcon = ic->data;
 			// cd_debug ("Impulse: Average: i=%d, l=%f ; I=%d ; l/I=%f ; %s", i, l, iIcons, l/iIcons, pIcon->cName);
-			if ((l/iIcons) > pSharedMemory->fMinValueToAnim) // animation
+			if ((l/iIcons) > myData.pSharedMemory->fMinValueToAnim) // animation
 			{
 				//cd_debug ("Impulse: animation on this icon=%s", pIcon->cName);
-				cairo_dock_request_icon_animation (pIcon, pSharedMemory->pDock, pSharedMemory->cIconAnimation, pSharedMemory->iNbAnimations);
+				cairo_dock_request_icon_animation (pIcon, myData.pSharedMemory->pDock, myData.pSharedMemory->cIconAnimation, myData.pSharedMemory->iNbAnimations);
 			}
-			else if (pSharedMemory->bStopAnimations)
+			else if (myData.pSharedMemory->bStopAnimations)
 				cairo_dock_stop_icon_animation (pIcon);
 			l = 0.0;
 			ic = ic->next;
@@ -102,23 +103,50 @@ static gboolean _animate_the_dock (CDSharedMemory *pSharedMemory)
 	myData.iSidAnimate = g_timeout_add (myConfig.iLoopTime, (GSourceFunc) _animate_the_dock, NULL);
 }*/
 
+void _remove_notifications (void)
+{
+	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
+		NOTIFICATION_ICON_MOVED,
+		(CairoDockNotificationFunc) cd_impulse_on_icon_changed, NULL);
+	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
+		NOTIFICATION_INSERT_ICON,
+		(CairoDockNotificationFunc) cd_impulse_on_icon_changed, NULL);
+	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
+		NOTIFICATION_REMOVE_ICON,
+		(CairoDockNotificationFunc) cd_impulse_on_icon_changed, NULL);
+}
+
+void _register_notifications (void)
+{
+	cairo_dock_register_notification_on_object (&myDocksMgr,
+		NOTIFICATION_ICON_MOVED,
+		(CairoDockNotificationFunc) cd_impulse_on_icon_changed,
+		CAIRO_DOCK_RUN_FIRST, NULL);
+	cairo_dock_register_notification_on_object (&myDocksMgr,
+		NOTIFICATION_INSERT_ICON,
+		(CairoDockNotificationFunc) cd_impulse_on_icon_changed,
+		CAIRO_DOCK_RUN_FIRST, NULL);
+	cairo_dock_register_notification_on_object (&myDocksMgr,
+		NOTIFICATION_REMOVE_ICON,
+		(CairoDockNotificationFunc) cd_impulse_on_icon_changed,
+		CAIRO_DOCK_RUN_FIRST, NULL);
+}
+
 void cd_impulse_stop_animations (void)
 {
-	if (myData.pTask != NULL)
+	//if (myData.pTask != NULL)
+	if (myData.iSidAnimate != 0)
 	{
-		cairo_dock_discard_task (myData.pTask);
-		myData.pTask = NULL;
+		/*cairo_dock_discard_task (myData.pTask);
+		myData.pTask = NULL;*/
+		g_source_remove (myData.iSidAnimate);
+		myData.iSidAnimate = 0;
+		// _free_shared_memory (myData.pSharedMemory);
+		_remove_notifications ();
 	}
 	if (myData.bPulseLaunched)
 		_im_stop();
 	// myData.bPulseLaunched = FALSE; //FIXME
-}
-
-static void _free_shared_memory (CDSharedMemory *pSharedMemory)
-{
-	g_free (pSharedMemory->cIconAnimation);
-	g_list_free (pSharedMemory->pIconsList);
-	g_free (pSharedMemory);
 }
 
 void cd_impulse_launch_task (void) //(CairoDockModuleInstance *myApplet)
@@ -131,37 +159,36 @@ void cd_impulse_launch_task (void) //(CairoDockModuleInstance *myApplet)
 	}
 
 	// if a task is already launching
-	if (myData.pTask != NULL)
+	/*if (myData.pTask != NULL)
 	{
 		cairo_dock_discard_task (myData.pTask);
 		myData.pTask = NULL;
-	}
+	}*/
+	if (myData.iSidAnimate != 0)
+		cd_impulse_stop_animations();
 	
-	myData.pSharedMemory = g_new0 (CDSharedMemory, 1);
-	myData.pSharedMemory->pIconsList = NULL; // without separators
-	myData.pSharedMemory->bIsUpdatingIconsList = TRUE; // without separators
-	myData.pSharedMemory->cIconAnimation = g_strdup (myConfig.cIconAnimation);
-	myData.pSharedMemory->iNbAnimations = myConfig.iNbAnimations;
-	myData.pSharedMemory->fMinValueToAnim = myConfig.fMinValueToAnim;
-	myData.pSharedMemory->bStopAnimations = myConfig.bStopAnimations;
-	myData.pSharedMemory->pDock = myConfig.pDock;
-	// pSharedMemory->pApplet = myApplet;
 	
-	myData.pTask = cairo_dock_new_task_full (1,// TODO (SECOND) myConfig.iLoopTime,
+	/*myData.pTask = cairo_dock_new_task_full (1,// TODO (SECOND) myConfig.iLoopTime,
 		// (CairoDockGetDataAsyncFunc) _get_icons_list_without_separators,
 		NULL,
 		(CairoDockUpdateSyncFunc) _animate_the_dock,
 		(GFreeFunc) _free_shared_memory,
 		myData.pSharedMemory);
 	_get_icons_list_without_separators (myData.pSharedMemory);
-	cairo_dock_launch_task (myData.pTask);
+	cairo_dock_launch_task (myData.pTask);*/
+
+	_get_icons_list_without_separators (myData.pSharedMemory);
+	_register_notifications();
+
+	myData.iSidAnimate = g_timeout_add (myConfig.iLoopTime, (GSourceFunc) _animate_the_dock, NULL); // or into a thread + time?
+	cd_debug ("Impulse: animations started");
 }
 
 gboolean cd_impulse_on_icon_changed (gpointer pUserData, Icon *pIcon, CairoDock *pDock)
 {
 	// launched and something has changed in the right dock
 	//cd_debug ("Impulse: update needed? %d | %d", pDock, myConfig.pDock);
-	if (myData.pTask != NULL && pDock == myConfig.pDock)
+	if (myData.iSidAnimate != 0 && pDock == myConfig.pDock)
 	{
 		_get_icons_list_without_separators (myData.pSharedMemory);
 	}
