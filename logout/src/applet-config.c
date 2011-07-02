@@ -37,6 +37,7 @@ CD_APPLET_GET_CONFIG_END
 
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cUserAction);
+	g_free (myConfig.cUserAction2);
 	g_free (myConfig.cDefaultLabel);
 	g_free (myConfig.cEmblemPath);
 CD_APPLET_RESET_CONFIG_END

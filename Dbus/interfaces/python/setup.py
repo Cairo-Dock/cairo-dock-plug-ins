@@ -21,5 +21,5 @@ setup(name='CDApplet',
 		author_email='fabounet@glx-dock.org',
 		description='Python interface for Cairo-Dock',
 		url='https://launchpad.net/cairo-dock',
-		py_modules=['CDApplet']
+		py_modules=['CDApplet', 'CairoDock']
 	)

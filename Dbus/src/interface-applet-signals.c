@@ -734,7 +734,7 @@ void cd_dbus_action_on_stop_module (CairoDockModuleInstance *pModuleInstance)
 
 void cd_dbus_emit_on_stop_module (CairoDockModuleInstance *pModuleInstance)
 {
-	//g_print ("%s (%s, %d)\n", __func__, pModuleInstance->pModule->pVisitCard->cModuleName, myData.bKeepObjectAlive);
+	//g_print ("%s (%s)\n", __func__, pModuleInstance->pModule->pVisitCard->cModuleName);
 	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pModuleInstance);
 	if (pDbusApplet != NULL)
 		g_signal_emit (pDbusApplet,

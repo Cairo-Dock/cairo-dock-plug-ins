@@ -86,7 +86,6 @@ static void _on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile 
 	
 	//\_____________ On initialise l'icone.
 	cd_dbus_action_on_init_module (pModuleInstance);
-	
 	//\_____________ On cree l'objet sur le bus.
 	dbusApplet *pDbusApplet = cd_dbus_create_remote_applet_object (pModuleInstance);
 	g_return_if_fail (pDbusApplet != NULL);
