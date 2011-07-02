@@ -517,4 +517,7 @@ void cd_satus_notifier_unregister_from_ias (void)
 		dbus_g_proxy_cancel_call (pProxy, s_pDetectIASCall);
 		s_pDetectIASCall = NULL;
 	}
+	
+	cairo_dock_stop_watching_dbus_name_owner (CD_INDICATOR_APPLICATION_ADDR,
+		(CairoDockOnAppliPresentOnDbus) _on_detect_ias);
 }

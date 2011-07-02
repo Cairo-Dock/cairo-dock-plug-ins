@@ -320,4 +320,6 @@ void cd_satus_notifier_unregister_from_watcher (void)
 		dbus_g_proxy_cancel_call (pProxy, s_pDetectWatcherCall);
 		s_pDetectWatcherCall = NULL;
 	}
+	cairo_dock_stop_watching_dbus_name_owner (CD_STATUS_NOTIFIER_WATCHER_ADDR,
+		(CairoDockOnAppliPresentOnDbus) _on_detect_watcher);
 }
