@@ -4,8 +4,6 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 # Jens Maucher <defcon.ubuntu@online.de>, 2010.
 #
-#: ../Composite-Manager/data/messages:107
-#: ../Composite-Manager/data/messages:121
 msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
@@ -209,22 +207,22 @@ msgstr ""
 "Keine dauerhaften Einträge.\n"
 "Zum Erstellen einen Textausschnitt mit der Maus auf das Symbol ziehen."
 
-#: ../Composite-Manager/src/applet-composite-manager.c:416
-#: ../Composite-Manager/src/applet-composite-manager.c:431
+#: ../Composite-Manager/src/applet-composite-manager.c:421
+#: ../Composite-Manager/src/applet-composite-manager.c:436
 msgid "No compositor is available."
 msgstr ""
 
-#: ../Composite-Manager/src/applet-composite-manager.c:439
-#: ../Composite-Manager/src/applet-composite-manager.c:454
+#: ../Composite-Manager/src/applet-composite-manager.c:444
+#: ../Composite-Manager/src/applet-composite-manager.c:459
 msgid "No fallback is available."
 msgstr ""
 
-#: ../Composite-Manager/src/applet-composite-manager.c:494
+#: ../Composite-Manager/src/applet-composite-manager.c:499
 #, c-format
 msgid "You need to install '%s'"
 msgstr ""
 
-#: ../Composite-Manager/src/applet-composite-manager.c:505
+#: ../Composite-Manager/src/applet-composite-manager.c:510
 msgid "No configuration tool is available."
 msgstr ""
 
@@ -252,7 +250,7 @@ msgid "Toggle composite?"
 msgstr "Ändern des Darstellungsmodus"
 
 #: ../Composite-Manager/src/applet-notifications.c:114
-#: ../Composite-Manager/data/messages:135
+#: ../Composite-Manager/data/messages:131
 #, fuzzy
 msgid "Edit Window-Manager settings"
 msgstr "Wechsel den Fenstermanager"
@@ -267,7 +265,7 @@ msgstr "Wechsel den Fenstermanager"
 #: ../RSSreader/src/applet-notifications.c:132
 #: ../System-Monitor/src/applet-notifications.c:108
 #: ../Xgamma/src/applet-notifications.c:89
-#: ../alsaMixer/src/applet-notifications.c:62
+#: ../alsaMixer/src/applet-notifications.c:71
 #: ../dustbin/src/applet-notifications.c:139
 #: ../logout/src/applet-notifications.c:167
 #: ../logout/src/applet-notifications.c:176
@@ -279,8 +277,8 @@ msgstr "Wechsel den Fenstermanager"
 #: ../shortcuts/src/applet-notifications.c:250
 #: ../shortcuts/src/applet-notifications.c:271
 #: ../showDesktop/src/applet-notifications.c:154
-#: ../showDesktop/src/applet-notifications.c:163
-#: ../showDesktop/src/applet-notifications.c:172
+#: ../showDesktop/src/applet-notifications.c:166
+#: ../showDesktop/src/applet-notifications.c:178
 #: ../slider/src/applet-notifications.c:230
 #: ../slider/src/applet-notifications.c:271
 #: ../stack/src/applet-notifications.c:186
@@ -294,30 +292,31 @@ msgstr "Mittelklick"
 #: ../Composite-Manager/src/applet-notifications.c:121
 #: ../showDesktop/src/applet-notifications.c:154
 #: ../showDesktop/src/applet-notifications.c:156
-#: ../Composite-Manager/data/messages:137 ../showDesktop/data/messages:105
-#: ../showDesktop/data/messages:119 ../switcher/data/messages:107
+#: ../Composite-Manager/data/messages:133 ../compiz-icon/data/messages:107
+#: ../showDesktop/data/messages:105 ../showDesktop/data/messages:119
+#: ../switcher/data/messages:107
 msgid "Show desktop"
 msgstr "Zeige Desktop"
 
 #: ../Composite-Manager/src/applet-notifications.c:130
-#: ../showDesktop/src/applet-notifications.c:163
-#: ../showDesktop/src/applet-notifications.c:165
+#: ../showDesktop/src/applet-notifications.c:166
+#: ../showDesktop/src/applet-notifications.c:168
 #: ../switcher/src/applet-notifications.c:315
-#: ../Composite-Manager/data/messages:139 ../showDesktop/data/messages:113
+#: ../Composite-Manager/data/messages:135 ../showDesktop/data/messages:113
 #: ../showDesktop/data/messages:127 ../switcher/data/messages:109
 msgid "Expose all the desktops"
 msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:139
 #: ../switcher/src/applet-notifications.c:324
-#: ../Composite-Manager/data/messages:141 ../switcher/data/messages:111
+#: ../Composite-Manager/data/messages:137 ../switcher/data/messages:111
 msgid "Expose all the windows"
 msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:148
-#: ../showDesktop/src/applet-notifications.c:172
-#: ../showDesktop/src/applet-notifications.c:174
-#: ../Composite-Manager/data/messages:143 ../showDesktop/data/messages:111
+#: ../showDesktop/src/applet-notifications.c:178
+#: ../showDesktop/src/applet-notifications.c:180
+#: ../Composite-Manager/data/messages:139 ../showDesktop/data/messages:111
 #: ../showDesktop/data/messages:125
 #, fuzzy
 msgid "Show the Widget Layer"
@@ -335,12 +334,13 @@ msgstr ""
 #: ../Cairo-Penguin/data/messages:13 ../Clipper/data/messages:17
 #: ../Composite-Manager/data/messages:13 ../Disks/data/messages:17
 #: ../Folders/data/messages:29 ../GMenu/data/messages:17
-#: ../MeMenu/data/messages:11 ../Messaging-Menu/data/messages:13
-#: ../Network-Monitor/data/messages:17 ../RSSreader/data/messages:19
-#: ../Recent-Events/data/messages:17 ../Scooby-Do/data/messages:115
-#: ../Status-Notifier/data/messages:17 ../System-Monitor/data/messages:15
-#: ../Toons/data/messages:15 ../Xgamma/data/messages:19
-#: ../alsaMixer/data/messages:15 ../clock/data/messages:17
+#: ../Impulse/data/messages:17 ../MeMenu/data/messages:11
+#: ../Messaging-Menu/data/messages:13 ../Network-Monitor/data/messages:17
+#: ../RSSreader/data/messages:19 ../Recent-Events/data/messages:17
+#: ../Scooby-Do/data/messages:115 ../Status-Notifier/data/messages:17
+#: ../System-Monitor/data/messages:15 ../Toons/data/messages:15
+#: ../Xgamma/data/messages:19 ../alsaMixer/data/messages:15
+#: ../clock/data/messages:17 ../compiz-icon/data/messages:15
 #: ../dnd2share/data/messages:17 ../dustbin/data/messages:13
 #: ../keyboard-indicator/data/messages:13 ../logout/data/messages:17
 #: ../mail/data/messages:13 ../musicPlayer/data/messages:15
@@ -641,13 +641,26 @@ msgstr "Liste der zuletzt geöffneten Dokumente löschen"
 msgid "Recent Documents"
 msgstr "Zuletzt geöffnete Dokumente"
 
-#: ../GMenu/src/applet-recent.c:108
+#: ../GMenu/src/applet-recent.c:111
 msgid "Clear the list of the recently used documents?"
 msgstr "Liste der zuletzt geöffneten Dokumente löschen?"
 
 #: ../GMenu/src/applet-run-dialog.c:350 ../Scooby-Do/data/messages:111
 msgid "Enter a command to launch:"
 msgstr "Auszuführender Befehl:"
+
+#: ../Impulse/src/applet-init.c:29
+#, fuzzy
+msgid "Impulse"
+msgstr "Pulsieren"
+
+#: ../Impulse/src/applet-init.c:32
+msgid ""
+"Did you know that your dock can dance? :)\n"
+"If you click on this icon, the dock will dance!\n"
+"In fact, you will have a graphical equalizer into the dock\n"
+"It will analyse the signal given by PulseAudio."
+msgstr ""
 
 #: ../MeMenu/src/applet-init.c:30
 msgid "Me Menu"
@@ -707,11 +720,11 @@ msgid "A cable has been unplugged"
 msgstr "Ein Kabel wurde entfernt"
 
 #: ../Network-Monitor/src/applet-draw.c:30
-#: ../powermanager/src/powermanager-draw.c:159 ../wifi/src/applet-draw.c:31
+#: ../powermanager/src/powermanager-draw.c:136 ../wifi/src/applet-draw.c:31
 #: ../Clipper/data/messages:101 ../Network-Monitor/data/messages:215
-#: ../alsaMixer/data/messages:129 ../dnd2share/data/messages:113
-#: ../dustbin/data/messages:103 ../wifi/data/messages:133
-#: ../wifi/data/messages:183
+#: ../alsaMixer/data/messages:129 ../compiz-icon/data/messages:99
+#: ../dnd2share/data/messages:113 ../dustbin/data/messages:103
+#: ../wifi/data/messages:133 ../wifi/data/messages:183
 msgid "None"
 msgstr "Keines"
 
@@ -776,8 +789,8 @@ msgstr "Netzwerk-ID"
 #: ../Network-Monitor/src/applet-draw.c:145
 #: ../musicPlayer/src/applet-draw.c:344 ../musicPlayer/src/applet-draw.c:346
 #: ../musicPlayer/src/applet-draw.c:348
-#: ../powermanager/src/powermanager-draw.c:187
-#: ../powermanager/src/powermanager-draw.c:216
+#: ../powermanager/src/powermanager-draw.c:165
+#: ../powermanager/src/powermanager-draw.c:218
 msgid "Unknown"
 msgstr "Unbekannt"
 
@@ -998,6 +1011,10 @@ msgstr ""
 msgid "Last access"
 msgstr ""
 
+#: ../Recent-Events/src/applet-dialog.c:464
+msgid "You need to install the Zeitgeist data engine."
+msgstr ""
+
 #: ../Recent-Events/src/applet-dialog.c:469
 msgid "Browse and search in recent events"
 msgstr ""
@@ -1082,7 +1099,7 @@ msgid "Open in new window"
 msgstr "In neuem Fenster öffnen"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:433
-#: ../dnd2share/src/applet-notifications.c:470
+#: ../dnd2share/src/applet-notifications.c:473
 msgid "Open file"
 msgstr "Öffne Datei"
 
@@ -1403,23 +1420,23 @@ msgstr "Optionen konnten nicht registriert werden"
 msgid "I couldn't load the mixer"
 msgstr "Ich konnte den Mixer nicht laden."
 
-#: ../alsaMixer/src/applet-mixer.c:295
+#: ../alsaMixer/src/applet-mixer.c:297
 msgid "Set up volume:"
 msgstr "Lautstärke einstellen :"
 
-#: ../alsaMixer/src/applet-notifications.c:59
+#: ../alsaMixer/src/applet-notifications.c:68
 msgid "Adjust channels"
 msgstr "Bearbeiten der Kanaleinstellungen"
 
-#: ../alsaMixer/src/applet-notifications.c:59
+#: ../alsaMixer/src/applet-notifications.c:68
 msgid "double-click"
 msgstr "Doppelklick"
 
-#: ../alsaMixer/src/applet-notifications.c:62
+#: ../alsaMixer/src/applet-notifications.c:71
 msgid "Unmute"
 msgstr "Laut schalten"
 
-#: ../alsaMixer/src/applet-notifications.c:62
+#: ../alsaMixer/src/applet-notifications.c:71
 msgid "Mute"
 msgstr "Stumm schalten"
 
@@ -1589,7 +1606,7 @@ msgstr "Heutige Aufgaben anzeigen"
 msgid "Show this week's tasks"
 msgstr "Aufgaben für diese Woche anzeigen"
 
-#: ../clock/src/applet-notifications.c:96
+#: ../clock/src/applet-notifications.c:98
 msgid "Set up time and date"
 msgstr "Stelle Datum und Zeit ein"
 
@@ -1638,7 +1655,6 @@ msgid "Text"
 msgstr "Text"
 
 #: ../clock/src/applet-task-editor.c:412
-#: ../powermanager/src/powermanager-draw.c:133
 msgid "Time"
 msgstr "Zeit"
 
@@ -1686,6 +1702,81 @@ msgstr "Heute ist folgender Jahrestag:"
 #: ../clock/src/applet-timer.c:491
 msgid "Tomorrow is the following anniversary:"
 msgstr "Morgen ist folgender Jahrestag:"
+
+#: ../compiz-icon/src/applet-init.c:31
+msgid "compiz-icon"
+msgstr "compiz-symbol"
+
+#: ../compiz-icon/src/applet-init.c:34
+msgid ""
+"This applet allows you to manage compiz and other windows manager\n"
+"The sub-dock gives you to acces to CCSM, Emerald and some basic Compiz "
+"actions.\n"
+"You can bind one of these actions with the middle-click.\n"
+"The configuration panel gives you some options to launch Compiz."
+msgstr ""
+"Dieses Applet ermöglicht es, Compiz und andere Fenstermanager zu verwalten.\n"
+"Die Unter-Docks erlauben den Zugriff auf den Konfigurationsmanager von "
+"Compiz, Emerald und einige grundlegende Aktionen mit Compiz.\n"
+"Eine dieser Vorgänge kann an den Klick mit der mittleren Maustaste gebunden "
+"werden.\n"
+"Das Konfigurationsfeld stellt  einige Optionen bereit um Compiz zu starten."
+
+#: ../compiz-icon/src/applet-load-icon.c:31
+msgid "Configure Compiz"
+msgstr "Konfiguriere compiz"
+
+#: ../compiz-icon/src/applet-load-icon.c:31
+#: ../compiz-icon/src/applet-notifications.c:180
+msgid "Emerald Manager"
+msgstr "Emerald-Manager"
+
+#: ../compiz-icon/src/applet-load-icon.c:31
+msgid "Reload WM"
+msgstr "Lade den Fesntermanager neu"
+
+#: ../compiz-icon/src/applet-load-icon.c:31
+msgid "Exposition"
+msgstr "Darstellung"
+
+#: ../compiz-icon/src/applet-load-icon.c:31 ../compiz-icon/data/messages:103
+msgid "Widget Layer"
+msgstr "Widget Layer"
+
+#: ../compiz-icon/src/applet-notifications.c:94
+msgid ""
+"To configure Compiz, you need to install CCSM\n"
+" through your package manager (Synaptic, YasT, etc)"
+msgstr ""
+"Um Compiz zu konfigurieren muss der Compiz-Einstellungsmanager installiert "
+"werden.\n"
+" Dies ist mit Hilfe von Synaptic möglich."
+
+#: ../compiz-icon/src/applet-notifications.c:181
+msgid "Reload Emerald"
+msgstr "Lade Emerald neu"
+
+#: ../compiz-icon/src/applet-notifications.c:184
+#, fuzzy
+msgid "Switch Windows Manager"
+msgstr "Ändere Fensterdekoration"
+
+#: ../compiz-icon/src/applet-notifications.c:185
+msgid "Switch Windows Decorator"
+msgstr "Ändere Fensterdekoration"
+
+#: ../compiz-icon/src/applet-notifications.c:194
+#, fuzzy
+msgid "Toggle Exposition Mode"
+msgstr "Ändern des Darstellungsmodus"
+
+#: ../compiz-icon/src/applet-notifications.c:195
+msgid "Toggle Widget Layer"
+msgstr "Wechselt zwischen den einzelnen Widget Ebenen."
+
+#: ../compiz-icon/src/applet-notifications.c:198
+msgid "Toggle Show Desktop"
+msgstr "Wechsle Arbeitsfläche anzeigen"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:46
 msgid "frame&reflects"
@@ -1883,15 +1974,15 @@ msgstr "Sende den Inhalt der Zwischenablage"
 msgid "History"
 msgstr "Verlauf"
 
-#: ../dnd2share/src/applet-notifications.c:472
+#: ../dnd2share/src/applet-notifications.c:475
 msgid "Get text"
 msgstr "Hole einen Text"
 
-#: ../dnd2share/src/applet-notifications.c:474
+#: ../dnd2share/src/applet-notifications.c:477
 msgid "Remove from history"
 msgstr "Von der Chronik entfernen"
 
-#: ../dnd2share/src/applet-notifications.c:477
+#: ../dnd2share/src/applet-notifications.c:480
 msgid "Clear History"
 msgstr "Verlauf leeren"
 
@@ -2607,40 +2698,70 @@ msgstr "Netzwerk aktivieren/deaktivieren"
 msgid "Re-check interface"
 msgstr "Kontrolliere die Schnittstelle noch einmal"
 
-#: ../powermanager/src/powermanager-draw.c:131
-msgid "Charge"
+#: ../powermanager/src/powermanager-draw.c:115
+msgid "Time before empty"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:190
-msgid ""
-"Laptop on Battery.\n"
-" Battery charged at:"
+#: ../powermanager/src/powermanager-draw.c:115
+msgid "Time before full"
+msgstr ""
+
+#: ../powermanager/src/powermanager-draw.c:171
+#, fuzzy
+msgid "Laptop on Battery."
 msgstr ""
 "Laptopbetrieb über Akku.\n"
 " Akkuladezustand bei:"
 
-#: ../powermanager/src/powermanager-draw.c:190
-#: ../powermanager/src/powermanager-draw.c:222
-msgid "Estimated time with charge:"
-msgstr "Mit Laden vergangene Zeit:"
-
-#: ../powermanager/src/powermanager-draw.c:194
-msgid ""
-"Laptop on Charge.\n"
-" Battery charged at:"
+#: ../powermanager/src/powermanager-draw.c:172
+#, fuzzy
+msgid "Battery charged at:"
 msgstr ""
 "Laptopbetrieb über Netzadapter.\n"
 " Akkuladezustand bei:"
 
-#: ../powermanager/src/powermanager-draw.c:194
-msgid "Estimated charge time:"
-msgstr "Noch für das Laden benötigte Zeit:"
+#: ../powermanager/src/powermanager-draw.c:173
+#, fuzzy
+msgid "Estimated time before empty:"
+msgstr "Mit Laden vergangene Zeit:"
 
-#: ../powermanager/src/powermanager-draw.c:200
+#: ../powermanager/src/powermanager-draw.c:180
+#, fuzzy
+msgid "Laptop on Charge."
+msgstr ""
+"Laptopbetrieb über Netzadapter.\n"
+" Akkuladezustand bei:"
+
+#: ../powermanager/src/powermanager-draw.c:181
+#, fuzzy
+msgid " Battery charged at:"
+msgstr ""
+"Laptopbetrieb über Netzadapter.\n"
+" Akkuladezustand bei:"
+
+#: ../powermanager/src/powermanager-draw.c:182
+#, fuzzy
+msgid "Estimated time before full:"
+msgstr "Mit Laden vergangene Zeit:"
+
+#: ../powermanager/src/powermanager-draw.c:189
+#, fuzzy
+msgid "Model"
+msgstr "Modern"
+
+#: ../powermanager/src/powermanager-draw.c:193
+msgid "Technology"
+msgstr ""
+
+#: ../powermanager/src/powermanager-draw.c:197
+msgid "Maximum capacity"
+msgstr ""
+
+#: ../powermanager/src/powermanager-draw.c:202
 msgid "No battery found."
 msgstr "Keinen Akku gefunden."
 
-#: ../powermanager/src/powermanager-draw.c:222
+#: ../powermanager/src/powermanager-draw.c:224
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -2648,11 +2769,15 @@ msgstr ""
 "Energieverwaltung.\n"
 "Der Ladezustand ihres Akkus scheint gering zu sein."
 
-#: ../powermanager/src/powermanager-draw.c:222
+#: ../powermanager/src/powermanager-draw.c:224
+msgid "Estimated time with charge:"
+msgstr "Mit Laden vergangene Zeit:"
+
+#: ../powermanager/src/powermanager-draw.c:224
 msgid "Please put your laptop on charge."
 msgstr "Bitte schließen Sie Ihren Laptop an die Ladestation an"
 
-#: ../powermanager/src/powermanager-draw.c:236
+#: ../powermanager/src/powermanager-draw.c:238
 msgid ""
 "PowerManager.\n"
 "Your battery is now charged"
@@ -2665,28 +2790,24 @@ msgid "PowerManager"
 msgstr "Energieverwaltung"
 
 #: ../powermanager/src/powermanager-init.c:34
-msgid "A power manager for laptop batteries. Works with ACPI and DBus."
-msgstr "Ein Energiemanage für Laptopbatterien. Funktioniert mit ACPI und DBus."
+msgid ""
+"This applet displays the current state of your <b>laptop battery</b>: "
+"charge, time remaining, etc\n"
+"<b>Click</b> on the icon to have useful inforamtion,\n"
+"<b>Right-click</b> on the icon to hibernate or suspend the system."
+msgstr ""
 
-#: ../powermanager/src/powermanager-menu-functions.c:55
+#: ../powermanager/src/powermanager-menu-functions.c:56
 msgid "Set up power management"
 msgstr "Einstellen der Energieverwaltung"
 
 #: ../powermanager/src/powermanager-menu-functions.c:58
-msgid "Halt"
-msgstr "Stoppen"
-
-#: ../powermanager/src/powermanager-menu-functions.c:59
 msgid "Hibernate"
 msgstr "Ruhezustand"
 
 #: ../powermanager/src/powermanager-menu-functions.c:60
 msgid "Suspend"
 msgstr "Bereitschaft"
-
-#: ../powermanager/src/powermanager-menu-functions.c:61
-msgid "Reboot"
-msgstr "Neustart"
 
 #: ../quick-browser/src/applet-init.c:29
 msgid "Quick Browser"
@@ -2709,7 +2830,7 @@ msgstr ""
 "verschiedene Ordner blättern wollen."
 
 #: ../quick-browser/src/applet-menu.c:107
-#: ../quick-browser/src/applet-menu.c:113
+#: ../quick-browser/src/applet-menu.c:116
 msgid "Open this folder"
 msgstr "Öffne dieses Verzeichnis"
 
@@ -2856,7 +2977,7 @@ msgstr ""
 "Mittelklick, um entweder den Desktop, die Desklets, den Widget-Layer oder "
 "alle Desktops auf einmal zu zeigen/verbergen."
 
-#: ../showDesktop/src/applet-notifications.c:181
+#: ../showDesktop/src/applet-notifications.c:190
 msgid "Change screen resolution"
 msgstr "Bildschirmauflösung ändern"
 
@@ -2973,13 +3094,13 @@ msgstr ""
 msgid "The URL has been added to the stack."
 msgstr ""
 
-#: ../switcher/src/applet-draw.c:618 ../switcher/src/applet-draw.c:625
+#: ../switcher/src/applet-draw.c:621 ../switcher/src/applet-draw.c:628
 #: ../switcher/src/applet-load-icons.c:43
 #: ../switcher/src/applet-notifications.c:420
 msgid "Current"
 msgstr "Aktuell"
 
-#: ../switcher/src/applet-draw.c:625 ../switcher/src/applet-draw.c:627
+#: ../switcher/src/applet-draw.c:628 ../switcher/src/applet-draw.c:630
 #: ../switcher/src/applet-load-icons.c:49
 #: ../switcher/src/applet-notifications.c:216
 #: ../switcher/src/applet-notifications.c:228
@@ -3113,7 +3234,7 @@ msgstr ""
 "den betreffenden Reiter."
 
 #: ../terminal/src/terminal-menu-functions.c:79
-#: ../terminal/src/terminal-widget.c:402
+#: ../terminal/src/terminal-widget.c:408
 msgid "New Tab"
 msgstr "Neuer Tab"
 
@@ -3142,19 +3263,19 @@ msgstr "Wählen Sie eine Farbe"
 msgid "You can recall the Terminal desklet by typing %s"
 msgstr "Sie können das Konsole-Desklet wiederaufrufen indem sie  %s eingeben"
 
-#: ../terminal/src/terminal-widget.c:392
+#: ../terminal/src/terminal-widget.c:395
 msgid "Paste"
 msgstr "Einfügen"
 
-#: ../terminal/src/terminal-widget.c:408
+#: ../terminal/src/terminal-widget.c:417
 msgid "Rename this Tab"
 msgstr "Diesen Tab umbenennen"
 
-#: ../terminal/src/terminal-widget.c:414
+#: ../terminal/src/terminal-widget.c:426
 msgid "Change this Tab's colour"
 msgstr "Die Farbe dieses Tabs ändern"
 
-#: ../terminal/src/terminal-widget.c:420
+#: ../terminal/src/terminal-widget.c:435
 msgid "Close this Tab"
 msgstr "Schließe diesen Tab"
 
@@ -3538,12 +3659,13 @@ msgstr "Mesh-Typ:"
 #: ../Animated-icons/data/messages:93 ../Clipper/data/messages:47
 #: ../Composite-Manager/data/messages:43 ../Disks/data/messages:35
 #: ../Doncky/data/messages:45 ../Folders/data/messages:59
-#: ../GMenu/data/messages:47 ../MeMenu/data/messages:41
-#: ../Messaging-Menu/data/messages:43 ../Network-Monitor/data/messages:47
-#: ../RSSreader/data/messages:49 ../Recent-Events/data/messages:47
-#: ../Status-Notifier/data/messages:47 ../System-Monitor/data/messages:45
-#: ../Toons/data/messages:45 ../Xgamma/data/messages:49
-#: ../alsaMixer/data/messages:45 ../clock/data/messages:47
+#: ../GMenu/data/messages:47 ../Impulse/data/messages:47
+#: ../MeMenu/data/messages:41 ../Messaging-Menu/data/messages:43
+#: ../Network-Monitor/data/messages:47 ../RSSreader/data/messages:49
+#: ../Recent-Events/data/messages:47 ../Status-Notifier/data/messages:47
+#: ../System-Monitor/data/messages:45 ../Toons/data/messages:45
+#: ../Xgamma/data/messages:49 ../alsaMixer/data/messages:45
+#: ../clock/data/messages:47 ../compiz-icon/data/messages:45
 #: ../dnd2share/data/messages:43 ../dustbin/data/messages:43
 #: ../keyboard-indicator/data/messages:43 ../logout/data/messages:47
 #: ../mail/data/messages:43 ../musicPlayer/data/messages:45
@@ -3575,17 +3697,18 @@ msgstr "Glanzfarbe:"
 #: ../Composite-Manager/data/messages:97 ../Disks/data/messages:9
 #: ../Doncky/data/messages:9 ../Doncky/data/messages:93
 #: ../Folders/data/messages:21 ../GMenu/data/messages:9
-#: ../GMenu/data/messages:101 ../RSSreader/data/messages:11
-#: ../RSSreader/data/messages:131 ../Recent-Events/data/messages:9
-#: ../System-Monitor/data/messages:173 ../System-Monitor/data/messages:181
-#: ../Xgamma/data/messages:11 ../alsaMixer/data/messages:137
-#: ../alsaMixer/data/messages:141 ../alsaMixer/data/messages:145
-#: ../dnd2share/data/messages:9 ../logout/data/messages:9
-#: ../quick-browser/data/messages:11 ../shortcuts/data/messages:9
-#: ../showDesktop/data/messages:9 ../stack/data/messages:11
-#: ../switcher/data/messages:9 ../switcher/data/messages:145
-#: ../systray/data/messages:9 ../template/data/messages:9
-#: ../terminal/data/messages:9 ../weblets/data/messages:9
+#: ../GMenu/data/messages:101 ../Impulse/data/messages:9
+#: ../RSSreader/data/messages:11 ../RSSreader/data/messages:131
+#: ../Recent-Events/data/messages:9 ../System-Monitor/data/messages:173
+#: ../System-Monitor/data/messages:181 ../Xgamma/data/messages:11
+#: ../alsaMixer/data/messages:137 ../alsaMixer/data/messages:141
+#: ../alsaMixer/data/messages:145 ../dnd2share/data/messages:9
+#: ../logout/data/messages:9 ../quick-browser/data/messages:11
+#: ../shortcuts/data/messages:9 ../showDesktop/data/messages:9
+#: ../stack/data/messages:11 ../switcher/data/messages:9
+#: ../switcher/data/messages:145 ../systray/data/messages:9
+#: ../template/data/messages:9 ../terminal/data/messages:9
+#: ../weblets/data/messages:9
 msgid "Leave empty to use the default one."
 msgstr "Leer lassen, um die Vorgabe zu verwenden."
 
@@ -3715,7 +3838,8 @@ msgstr "Blinkdauer:"
 #: ../Disks/data/messages:1 ../Disks/data/messages:3 ../Doncky/data/messages:1
 #: ../Doncky/data/messages:3 ../Folders/data/messages:1
 #: ../Folders/data/messages:3 ../GMenu/data/messages:1
-#: ../GMenu/data/messages:3 ../MeMenu/data/messages:1
+#: ../GMenu/data/messages:3 ../Impulse/data/messages:1
+#: ../Impulse/data/messages:3 ../MeMenu/data/messages:1
 #: ../MeMenu/data/messages:3 ../Messaging-Menu/data/messages:1
 #: ../Messaging-Menu/data/messages:3 ../Network-Monitor/data/messages:1
 #: ../Network-Monitor/data/messages:3 ../RSSreader/data/messages:1
@@ -3726,19 +3850,19 @@ msgstr "Blinkdauer:"
 #: ../Toons/data/messages:3 ../Xgamma/data/messages:1
 #: ../Xgamma/data/messages:3 ../alsaMixer/data/messages:1
 #: ../alsaMixer/data/messages:3 ../clock/data/messages:1
-#: ../clock/data/messages:3 ../dnd2share/data/messages:1
-#: ../dnd2share/data/messages:3 ../dustbin/data/messages:1
-#: ../dustbin/data/messages:3 ../keyboard-indicator/data/messages:1
-#: ../keyboard-indicator/data/messages:3 ../logout/data/messages:1
-#: ../logout/data/messages:3 ../mail/data/messages:1 ../mail/data/messages:3
-#: ../musicPlayer/data/messages:1 ../musicPlayer/data/messages:3
-#: ../netspeed/data/messages:1 ../netspeed/data/messages:3
-#: ../powermanager/data/messages:1 ../powermanager/data/messages:3
-#: ../quick-browser/data/messages:1 ../quick-browser/data/messages:3
-#: ../shortcuts/data/messages:1 ../shortcuts/data/messages:3
-#: ../showDesktop/data/messages:1 ../showDesktop/data/messages:3
-#: ../slider/data/messages:1 ../slider/data/messages:3
-#: ../stack/data/messages:1 ../stack/data/messages:3
+#: ../clock/data/messages:3 ../compiz-icon/data/messages:1
+#: ../dnd2share/data/messages:1 ../dnd2share/data/messages:3
+#: ../dustbin/data/messages:1 ../dustbin/data/messages:3
+#: ../keyboard-indicator/data/messages:1 ../keyboard-indicator/data/messages:3
+#: ../logout/data/messages:1 ../logout/data/messages:3 ../mail/data/messages:1
+#: ../mail/data/messages:3 ../musicPlayer/data/messages:1
+#: ../musicPlayer/data/messages:3 ../netspeed/data/messages:1
+#: ../netspeed/data/messages:3 ../powermanager/data/messages:1
+#: ../powermanager/data/messages:3 ../quick-browser/data/messages:1
+#: ../quick-browser/data/messages:3 ../shortcuts/data/messages:1
+#: ../shortcuts/data/messages:3 ../showDesktop/data/messages:1
+#: ../showDesktop/data/messages:3 ../slider/data/messages:1
+#: ../slider/data/messages:3 ../stack/data/messages:1 ../stack/data/messages:3
 #: ../switcher/data/messages:1 ../switcher/data/messages:3
 #: ../systray/data/messages:1 ../systray/data/messages:3
 #: ../template/data/messages:1 ../template/data/messages:3
@@ -3753,12 +3877,13 @@ msgstr "Symbol"
 #: ../Cairo-Penguin/data/messages:5 ../Clipper/data/messages:5
 #: ../Composite-Manager/data/messages:5 ../Doncky/data/messages:5
 #: ../Folders/data/messages:5 ../GMenu/data/messages:5
-#: ../MeMenu/data/messages:5 ../Messaging-Menu/data/messages:5
-#: ../Network-Monitor/data/messages:5 ../RSSreader/data/messages:5
-#: ../Recent-Events/data/messages:5 ../Status-Notifier/data/messages:5
-#: ../System-Monitor/data/messages:5 ../Toons/data/messages:5
-#: ../Xgamma/data/messages:5 ../alsaMixer/data/messages:5
-#: ../clock/data/messages:5 ../dnd2share/data/messages:5
+#: ../Impulse/data/messages:5 ../MeMenu/data/messages:5
+#: ../Messaging-Menu/data/messages:5 ../Network-Monitor/data/messages:5
+#: ../RSSreader/data/messages:5 ../Recent-Events/data/messages:5
+#: ../Status-Notifier/data/messages:5 ../System-Monitor/data/messages:5
+#: ../Toons/data/messages:5 ../Xgamma/data/messages:5
+#: ../alsaMixer/data/messages:5 ../clock/data/messages:5
+#: ../compiz-icon/data/messages:5 ../dnd2share/data/messages:5
 #: ../dustbin/data/messages:5 ../keyboard-indicator/data/messages:5
 #: ../logout/data/messages:5 ../mail/data/messages:5
 #: ../musicPlayer/data/messages:5 ../netspeed/data/messages:5
@@ -3775,11 +3900,12 @@ msgstr "Name des Docks, zu dem es gehört:"
 #: ../Cairo-Penguin/data/messages:7 ../Clipper/data/messages:7
 #: ../Composite-Manager/data/messages:7 ../Disks/data/messages:7
 #: ../Doncky/data/messages:7 ../Folders/data/messages:9
-#: ../GMenu/data/messages:7 ../Messaging-Menu/data/messages:7
-#: ../Network-Monitor/data/messages:9 ../RSSreader/data/messages:9
-#: ../Recent-Events/data/messages:7 ../System-Monitor/data/messages:7
-#: ../Toons/data/messages:7 ../Xgamma/data/messages:9
-#: ../alsaMixer/data/messages:9 ../clock/data/messages:9
+#: ../GMenu/data/messages:7 ../Impulse/data/messages:7
+#: ../Messaging-Menu/data/messages:7 ../Network-Monitor/data/messages:9
+#: ../RSSreader/data/messages:9 ../Recent-Events/data/messages:7
+#: ../System-Monitor/data/messages:7 ../Toons/data/messages:7
+#: ../Xgamma/data/messages:9 ../alsaMixer/data/messages:9
+#: ../clock/data/messages:9 ../compiz-icon/data/messages:7
 #: ../dnd2share/data/messages:7 ../dustbin/data/messages:7
 #: ../keyboard-indicator/data/messages:7 ../logout/data/messages:7
 #: ../mail/data/messages:7 ../musicPlayer/data/messages:9
@@ -3795,12 +3921,13 @@ msgstr "Name des Symbols, so wie es als Beschriftung im Dock erscheint:"
 #: ../Cairo-Penguin/data/messages:9 ../Clipper/data/messages:13
 #: ../Composite-Manager/data/messages:9 ../Disks/data/messages:13
 #: ../Doncky/data/messages:13 ../Folders/data/messages:25
-#: ../GMenu/data/messages:13 ../MeMenu/data/messages:7
-#: ../Messaging-Menu/data/messages:9 ../Network-Monitor/data/messages:11
-#: ../RSSreader/data/messages:15 ../Recent-Events/data/messages:13
-#: ../Status-Notifier/data/messages:13 ../System-Monitor/data/messages:9
-#: ../Toons/data/messages:9 ../Xgamma/data/messages:15
-#: ../alsaMixer/data/messages:11 ../clock/data/messages:11
+#: ../GMenu/data/messages:13 ../Impulse/data/messages:13
+#: ../MeMenu/data/messages:7 ../Messaging-Menu/data/messages:9
+#: ../Network-Monitor/data/messages:11 ../RSSreader/data/messages:15
+#: ../Recent-Events/data/messages:13 ../Status-Notifier/data/messages:13
+#: ../System-Monitor/data/messages:9 ../Toons/data/messages:9
+#: ../Xgamma/data/messages:15 ../alsaMixer/data/messages:11
+#: ../clock/data/messages:11 ../compiz-icon/data/messages:11
 #: ../dnd2share/data/messages:13 ../dustbin/data/messages:9
 #: ../keyboard-indicator/data/messages:9 ../logout/data/messages:13
 #: ../mail/data/messages:9 ../musicPlayer/data/messages:11
@@ -3818,12 +3945,13 @@ msgstr "Tragen Sie 0 ein, um die standardmäßige Appletgröße zu verwenden"
 #: ../Cairo-Penguin/data/messages:11 ../Clipper/data/messages:15
 #: ../Composite-Manager/data/messages:11 ../Disks/data/messages:15
 #: ../Doncky/data/messages:15 ../Folders/data/messages:27
-#: ../GMenu/data/messages:15 ../MeMenu/data/messages:9
-#: ../Messaging-Menu/data/messages:11 ../Network-Monitor/data/messages:13
-#: ../RSSreader/data/messages:17 ../Recent-Events/data/messages:15
-#: ../Status-Notifier/data/messages:15 ../System-Monitor/data/messages:11
-#: ../Toons/data/messages:11 ../Xgamma/data/messages:17
-#: ../alsaMixer/data/messages:13 ../clock/data/messages:13
+#: ../GMenu/data/messages:15 ../Impulse/data/messages:15
+#: ../MeMenu/data/messages:9 ../Messaging-Menu/data/messages:11
+#: ../Network-Monitor/data/messages:13 ../RSSreader/data/messages:17
+#: ../Recent-Events/data/messages:15 ../Status-Notifier/data/messages:15
+#: ../System-Monitor/data/messages:11 ../Toons/data/messages:11
+#: ../Xgamma/data/messages:17 ../alsaMixer/data/messages:13
+#: ../clock/data/messages:13 ../compiz-icon/data/messages:13
 #: ../dnd2share/data/messages:15 ../dustbin/data/messages:11
 #: ../keyboard-indicator/data/messages:11 ../logout/data/messages:15
 #: ../mail/data/messages:11 ../musicPlayer/data/messages:13
@@ -3842,13 +3970,14 @@ msgstr "Gewünschte Symbolgröße für dieses Applet"
 #: ../Composite-Manager/data/messages:89 ../Dbus/data/messages:1
 #: ../Disks/data/messages:99 ../Doncky/data/messages:91
 #: ../Folders/data/messages:105 ../GMenu/data/messages:93
-#: ../MeMenu/data/messages:87 ../Messaging-Menu/data/messages:89
-#: ../Network-Monitor/data/messages:93 ../RSSreader/data/messages:95
-#: ../Recent-Events/data/messages:93 ../Remote-Control/data/messages:1
-#: ../Scooby-Do/data/messages:1 ../Status-Notifier/data/messages:93
-#: ../System-Monitor/data/messages:91 ../Toons/data/messages:91
-#: ../Xgamma/data/messages:95 ../alsaMixer/data/messages:91
-#: ../clock/data/messages:93 ../dnd2share/data/messages:89
+#: ../Impulse/data/messages:93 ../MeMenu/data/messages:87
+#: ../Messaging-Menu/data/messages:89 ../Network-Monitor/data/messages:93
+#: ../RSSreader/data/messages:95 ../Recent-Events/data/messages:93
+#: ../Remote-Control/data/messages:1 ../Scooby-Do/data/messages:1
+#: ../Status-Notifier/data/messages:93 ../System-Monitor/data/messages:91
+#: ../Toons/data/messages:91 ../Xgamma/data/messages:95
+#: ../alsaMixer/data/messages:91 ../clock/data/messages:93
+#: ../compiz-icon/data/messages:91 ../dnd2share/data/messages:89
 #: ../dustbin/data/messages:89 ../keyboard-indicator/data/messages:89
 #: ../logout/data/messages:93 ../mail/data/messages:89
 #: ../motion-blur/data/messages:1 ../musicPlayer/data/messages:91
@@ -3907,25 +4036,27 @@ msgstr ""
 
 #: ../Clipper/data/messages:11 ../Doncky/data/messages:11
 #: ../Folders/data/messages:23 ../GMenu/data/messages:11
-#: ../RSSreader/data/messages:13 ../Recent-Events/data/messages:11
-#: ../Xgamma/data/messages:13 ../dnd2share/data/messages:11
-#: ../logout/data/messages:11 ../quick-browser/data/messages:13
-#: ../shortcuts/data/messages:11 ../showDesktop/data/messages:11
-#: ../stack/data/messages:13 ../switcher/data/messages:11
-#: ../systray/data/messages:11 ../template/data/messages:11
-#: ../terminal/data/messages:11 ../weblets/data/messages:11
+#: ../Impulse/data/messages:11 ../RSSreader/data/messages:13
+#: ../Recent-Events/data/messages:11 ../Xgamma/data/messages:13
+#: ../dnd2share/data/messages:11 ../logout/data/messages:11
+#: ../quick-browser/data/messages:13 ../shortcuts/data/messages:11
+#: ../showDesktop/data/messages:11 ../stack/data/messages:13
+#: ../switcher/data/messages:11 ../systray/data/messages:11
+#: ../template/data/messages:11 ../terminal/data/messages:11
+#: ../weblets/data/messages:11
 msgid "Image filename:"
 msgstr "Name der Bilddatei:"
 
 #: ../Clipper/data/messages:19 ../Composite-Manager/data/messages:15
 #: ../Disks/data/messages:19 ../Doncky/data/messages:17
 #: ../Folders/data/messages:31 ../GMenu/data/messages:19
-#: ../MeMenu/data/messages:13 ../Messaging-Menu/data/messages:15
-#: ../Network-Monitor/data/messages:19 ../RSSreader/data/messages:21
-#: ../Recent-Events/data/messages:19 ../Status-Notifier/data/messages:19
-#: ../System-Monitor/data/messages:17 ../Toons/data/messages:17
-#: ../Xgamma/data/messages:21 ../alsaMixer/data/messages:17
-#: ../clock/data/messages:19 ../dnd2share/data/messages:19
+#: ../Impulse/data/messages:19 ../MeMenu/data/messages:13
+#: ../Messaging-Menu/data/messages:15 ../Network-Monitor/data/messages:19
+#: ../RSSreader/data/messages:21 ../Recent-Events/data/messages:19
+#: ../Status-Notifier/data/messages:19 ../System-Monitor/data/messages:17
+#: ../Toons/data/messages:17 ../Xgamma/data/messages:21
+#: ../alsaMixer/data/messages:17 ../clock/data/messages:19
+#: ../compiz-icon/data/messages:17 ../dnd2share/data/messages:19
 #: ../dustbin/data/messages:15 ../keyboard-indicator/data/messages:15
 #: ../logout/data/messages:19 ../mail/data/messages:15
 #: ../musicPlayer/data/messages:17 ../netspeed/data/messages:15
@@ -3943,12 +4074,13 @@ msgstr "Desklet"
 #: ../Clipper/data/messages:21 ../Composite-Manager/data/messages:17
 #: ../Disks/data/messages:47 ../Doncky/data/messages:19
 #: ../Folders/data/messages:33 ../GMenu/data/messages:21
-#: ../MeMenu/data/messages:15 ../Messaging-Menu/data/messages:17
-#: ../Network-Monitor/data/messages:21 ../RSSreader/data/messages:23
-#: ../Recent-Events/data/messages:21 ../Status-Notifier/data/messages:21
-#: ../System-Monitor/data/messages:19 ../Toons/data/messages:19
-#: ../Xgamma/data/messages:23 ../alsaMixer/data/messages:19
-#: ../clock/data/messages:21 ../dnd2share/data/messages:21
+#: ../Impulse/data/messages:21 ../MeMenu/data/messages:15
+#: ../Messaging-Menu/data/messages:17 ../Network-Monitor/data/messages:21
+#: ../RSSreader/data/messages:23 ../Recent-Events/data/messages:21
+#: ../Status-Notifier/data/messages:21 ../System-Monitor/data/messages:19
+#: ../Toons/data/messages:19 ../Xgamma/data/messages:23
+#: ../alsaMixer/data/messages:19 ../clock/data/messages:21
+#: ../compiz-icon/data/messages:19 ../dnd2share/data/messages:21
 #: ../dustbin/data/messages:17 ../keyboard-indicator/data/messages:17
 #: ../logout/data/messages:21 ../mail/data/messages:17
 #: ../musicPlayer/data/messages:19 ../netspeed/data/messages:17
@@ -3965,12 +4097,13 @@ msgstr "Position"
 #: ../Clipper/data/messages:23 ../Composite-Manager/data/messages:19
 #: ../Disks/data/messages:49 ../Doncky/data/messages:21
 #: ../Folders/data/messages:35 ../GMenu/data/messages:23
-#: ../MeMenu/data/messages:17 ../Messaging-Menu/data/messages:19
-#: ../Network-Monitor/data/messages:23 ../RSSreader/data/messages:25
-#: ../Recent-Events/data/messages:23 ../Status-Notifier/data/messages:23
-#: ../System-Monitor/data/messages:21 ../Toons/data/messages:21
-#: ../Xgamma/data/messages:25 ../alsaMixer/data/messages:21
-#: ../clock/data/messages:23 ../dnd2share/data/messages:23
+#: ../Impulse/data/messages:23 ../MeMenu/data/messages:17
+#: ../Messaging-Menu/data/messages:19 ../Network-Monitor/data/messages:23
+#: ../RSSreader/data/messages:25 ../Recent-Events/data/messages:23
+#: ../Status-Notifier/data/messages:23 ../System-Monitor/data/messages:21
+#: ../Toons/data/messages:21 ../Xgamma/data/messages:25
+#: ../alsaMixer/data/messages:21 ../clock/data/messages:23
+#: ../compiz-icon/data/messages:21 ../dnd2share/data/messages:23
 #: ../dustbin/data/messages:19 ../keyboard-indicator/data/messages:19
 #: ../logout/data/messages:23 ../mail/data/messages:19
 #: ../musicPlayer/data/messages:21 ../netspeed/data/messages:19
@@ -3992,12 +4125,13 @@ msgstr ""
 #: ../Clipper/data/messages:25 ../Composite-Manager/data/messages:21
 #: ../Disks/data/messages:51 ../Doncky/data/messages:23
 #: ../Folders/data/messages:37 ../GMenu/data/messages:25
-#: ../MeMenu/data/messages:19 ../Messaging-Menu/data/messages:21
-#: ../Network-Monitor/data/messages:25 ../RSSreader/data/messages:27
-#: ../Recent-Events/data/messages:25 ../Status-Notifier/data/messages:25
-#: ../System-Monitor/data/messages:23 ../Toons/data/messages:23
-#: ../Xgamma/data/messages:27 ../alsaMixer/data/messages:23
-#: ../clock/data/messages:25 ../dnd2share/data/messages:25
+#: ../Impulse/data/messages:25 ../MeMenu/data/messages:19
+#: ../Messaging-Menu/data/messages:21 ../Network-Monitor/data/messages:25
+#: ../RSSreader/data/messages:27 ../Recent-Events/data/messages:25
+#: ../Status-Notifier/data/messages:25 ../System-Monitor/data/messages:23
+#: ../Toons/data/messages:23 ../Xgamma/data/messages:27
+#: ../alsaMixer/data/messages:23 ../clock/data/messages:25
+#: ../compiz-icon/data/messages:23 ../dnd2share/data/messages:25
 #: ../dustbin/data/messages:21 ../keyboard-indicator/data/messages:21
 #: ../logout/data/messages:25 ../mail/data/messages:21
 #: ../musicPlayer/data/messages:23 ../netspeed/data/messages:21
@@ -4014,12 +4148,13 @@ msgstr "Position sperren?"
 #: ../Clipper/data/messages:27 ../Composite-Manager/data/messages:23
 #: ../Disks/data/messages:25 ../Doncky/data/messages:25
 #: ../Folders/data/messages:39 ../GMenu/data/messages:27
-#: ../MeMenu/data/messages:21 ../Messaging-Menu/data/messages:23
-#: ../Network-Monitor/data/messages:27 ../RSSreader/data/messages:29
-#: ../Recent-Events/data/messages:27 ../Status-Notifier/data/messages:27
-#: ../System-Monitor/data/messages:25 ../Toons/data/messages:25
-#: ../Xgamma/data/messages:29 ../alsaMixer/data/messages:25
-#: ../clock/data/messages:27 ../dnd2share/data/messages:27
+#: ../Impulse/data/messages:27 ../MeMenu/data/messages:21
+#: ../Messaging-Menu/data/messages:23 ../Network-Monitor/data/messages:27
+#: ../RSSreader/data/messages:29 ../Recent-Events/data/messages:27
+#: ../Status-Notifier/data/messages:27 ../System-Monitor/data/messages:25
+#: ../Toons/data/messages:25 ../Xgamma/data/messages:29
+#: ../alsaMixer/data/messages:25 ../clock/data/messages:27
+#: ../compiz-icon/data/messages:25 ../dnd2share/data/messages:27
 #: ../dustbin/data/messages:23 ../keyboard-indicator/data/messages:23
 #: ../logout/data/messages:27 ../mail/data/messages:23
 #: ../musicPlayer/data/messages:25 ../netspeed/data/messages:23
@@ -4040,12 +4175,13 @@ msgstr ""
 #: ../Clipper/data/messages:29 ../Composite-Manager/data/messages:25
 #: ../Disks/data/messages:27 ../Doncky/data/messages:27
 #: ../Folders/data/messages:41 ../GMenu/data/messages:29
-#: ../MeMenu/data/messages:23 ../Messaging-Menu/data/messages:25
-#: ../Network-Monitor/data/messages:29 ../RSSreader/data/messages:31
-#: ../Recent-Events/data/messages:29 ../Status-Notifier/data/messages:29
-#: ../System-Monitor/data/messages:27 ../Toons/data/messages:27
-#: ../Xgamma/data/messages:31 ../alsaMixer/data/messages:27
-#: ../clock/data/messages:29 ../dnd2share/data/messages:29
+#: ../Impulse/data/messages:29 ../MeMenu/data/messages:23
+#: ../Messaging-Menu/data/messages:25 ../Network-Monitor/data/messages:29
+#: ../RSSreader/data/messages:31 ../Recent-Events/data/messages:29
+#: ../Status-Notifier/data/messages:29 ../System-Monitor/data/messages:27
+#: ../Toons/data/messages:27 ../Xgamma/data/messages:31
+#: ../alsaMixer/data/messages:27 ../clock/data/messages:29
+#: ../compiz-icon/data/messages:27 ../dnd2share/data/messages:29
 #: ../dustbin/data/messages:25 ../keyboard-indicator/data/messages:25
 #: ../logout/data/messages:29 ../mail/data/messages:25
 #: ../musicPlayer/data/messages:27 ../netspeed/data/messages:25
@@ -4065,14 +4201,14 @@ msgstr "Abmessungen des Desklets (Breite x Höhe):"
 #: ../Messaging-Menu/data/messages:27 ../Network-Monitor/data/messages:31
 #: ../RSSreader/data/messages:33 ../System-Monitor/data/messages:29
 #: ../Toons/data/messages:29 ../Xgamma/data/messages:33
-#: ../dnd2share/data/messages:31 ../keyboard-indicator/data/messages:27
-#: ../logout/data/messages:31 ../mail/data/messages:27
-#: ../musicPlayer/data/messages:29 ../powermanager/data/messages:31
-#: ../quick-browser/data/messages:33 ../shortcuts/data/messages:31
-#: ../showDesktop/data/messages:35 ../slider/data/messages:29
-#: ../stack/data/messages:33 ../terminal/data/messages:31
-#: ../weather/data/messages:29 ../weblets/data/messages:31
-#: ../wifi/data/messages:29
+#: ../compiz-icon/data/messages:29 ../dnd2share/data/messages:31
+#: ../keyboard-indicator/data/messages:27 ../logout/data/messages:31
+#: ../mail/data/messages:27 ../musicPlayer/data/messages:29
+#: ../powermanager/data/messages:31 ../quick-browser/data/messages:33
+#: ../shortcuts/data/messages:31 ../showDesktop/data/messages:35
+#: ../slider/data/messages:29 ../stack/data/messages:33
+#: ../terminal/data/messages:31 ../weather/data/messages:29
+#: ../weblets/data/messages:31 ../wifi/data/messages:29
 msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
@@ -4083,12 +4219,13 @@ msgstr ""
 #: ../Clipper/data/messages:33 ../Composite-Manager/data/messages:29
 #: ../Disks/data/messages:55 ../Doncky/data/messages:31
 #: ../Folders/data/messages:45 ../GMenu/data/messages:33
-#: ../MeMenu/data/messages:27 ../Messaging-Menu/data/messages:29
-#: ../Network-Monitor/data/messages:33 ../RSSreader/data/messages:35
-#: ../Recent-Events/data/messages:33 ../Status-Notifier/data/messages:33
-#: ../System-Monitor/data/messages:31 ../Toons/data/messages:31
-#: ../Xgamma/data/messages:35 ../alsaMixer/data/messages:31
-#: ../clock/data/messages:33 ../dnd2share/data/messages:33
+#: ../Impulse/data/messages:33 ../MeMenu/data/messages:27
+#: ../Messaging-Menu/data/messages:29 ../Network-Monitor/data/messages:33
+#: ../RSSreader/data/messages:35 ../Recent-Events/data/messages:33
+#: ../Status-Notifier/data/messages:33 ../System-Monitor/data/messages:31
+#: ../Toons/data/messages:31 ../Xgamma/data/messages:35
+#: ../alsaMixer/data/messages:31 ../clock/data/messages:33
+#: ../compiz-icon/data/messages:31 ../dnd2share/data/messages:33
 #: ../dustbin/data/messages:29 ../keyboard-indicator/data/messages:29
 #: ../logout/data/messages:33 ../mail/data/messages:29
 #: ../musicPlayer/data/messages:31 ../netspeed/data/messages:29
@@ -4105,12 +4242,13 @@ msgstr "Position des Desklets (x, y):"
 #: ../Clipper/data/messages:35 ../Composite-Manager/data/messages:31
 #: ../Disks/data/messages:57 ../Doncky/data/messages:33
 #: ../Folders/data/messages:47 ../GMenu/data/messages:35
-#: ../MeMenu/data/messages:29 ../Messaging-Menu/data/messages:31
-#: ../Network-Monitor/data/messages:35 ../RSSreader/data/messages:37
-#: ../Recent-Events/data/messages:35 ../Status-Notifier/data/messages:35
-#: ../System-Monitor/data/messages:33 ../Toons/data/messages:33
-#: ../Xgamma/data/messages:37 ../alsaMixer/data/messages:33
-#: ../clock/data/messages:35 ../dustbin/data/messages:31
+#: ../Impulse/data/messages:35 ../MeMenu/data/messages:29
+#: ../Messaging-Menu/data/messages:31 ../Network-Monitor/data/messages:35
+#: ../RSSreader/data/messages:37 ../Recent-Events/data/messages:35
+#: ../Status-Notifier/data/messages:35 ../System-Monitor/data/messages:33
+#: ../Toons/data/messages:33 ../Xgamma/data/messages:37
+#: ../alsaMixer/data/messages:33 ../clock/data/messages:35
+#: ../compiz-icon/data/messages:33 ../dustbin/data/messages:31
 #: ../keyboard-indicator/data/messages:31 ../logout/data/messages:35
 #: ../mail/data/messages:31 ../musicPlayer/data/messages:33
 #: ../netspeed/data/messages:31 ../powermanager/data/messages:35
@@ -4130,12 +4268,13 @@ msgstr ""
 #: ../Clipper/data/messages:37 ../Composite-Manager/data/messages:33
 #: ../Disks/data/messages:59 ../Doncky/data/messages:35
 #: ../Folders/data/messages:49 ../GMenu/data/messages:37
-#: ../MeMenu/data/messages:31 ../Messaging-Menu/data/messages:33
-#: ../Network-Monitor/data/messages:37 ../RSSreader/data/messages:39
-#: ../Recent-Events/data/messages:37 ../Status-Notifier/data/messages:37
-#: ../System-Monitor/data/messages:35 ../Toons/data/messages:35
-#: ../Xgamma/data/messages:39 ../alsaMixer/data/messages:35
-#: ../clock/data/messages:37 ../dustbin/data/messages:33
+#: ../Impulse/data/messages:37 ../MeMenu/data/messages:31
+#: ../Messaging-Menu/data/messages:33 ../Network-Monitor/data/messages:37
+#: ../RSSreader/data/messages:39 ../Recent-Events/data/messages:37
+#: ../Status-Notifier/data/messages:37 ../System-Monitor/data/messages:35
+#: ../Toons/data/messages:35 ../Xgamma/data/messages:39
+#: ../alsaMixer/data/messages:35 ../clock/data/messages:37
+#: ../compiz-icon/data/messages:35 ../dustbin/data/messages:33
 #: ../keyboard-indicator/data/messages:33 ../logout/data/messages:37
 #: ../mail/data/messages:33 ../musicPlayer/data/messages:35
 #: ../netspeed/data/messages:33 ../powermanager/data/messages:37
@@ -4151,12 +4290,13 @@ msgstr "Drehung:"
 #: ../Clipper/data/messages:39 ../Composite-Manager/data/messages:35
 #: ../Disks/data/messages:29 ../Doncky/data/messages:37
 #: ../Folders/data/messages:51 ../GMenu/data/messages:39
-#: ../MeMenu/data/messages:33 ../Messaging-Menu/data/messages:35
-#: ../Network-Monitor/data/messages:39 ../RSSreader/data/messages:41
-#: ../Recent-Events/data/messages:39 ../Status-Notifier/data/messages:39
-#: ../System-Monitor/data/messages:37 ../Toons/data/messages:37
-#: ../Xgamma/data/messages:41 ../alsaMixer/data/messages:37
-#: ../clock/data/messages:39 ../dnd2share/data/messages:35
+#: ../Impulse/data/messages:39 ../MeMenu/data/messages:33
+#: ../Messaging-Menu/data/messages:35 ../Network-Monitor/data/messages:39
+#: ../RSSreader/data/messages:41 ../Recent-Events/data/messages:39
+#: ../Status-Notifier/data/messages:39 ../System-Monitor/data/messages:37
+#: ../Toons/data/messages:37 ../Xgamma/data/messages:41
+#: ../alsaMixer/data/messages:37 ../clock/data/messages:39
+#: ../compiz-icon/data/messages:37 ../dnd2share/data/messages:35
 #: ../dustbin/data/messages:35 ../keyboard-indicator/data/messages:35
 #: ../logout/data/messages:39 ../mail/data/messages:35
 #: ../musicPlayer/data/messages:37 ../netspeed/data/messages:35
@@ -4173,12 +4313,13 @@ msgstr "Sichtbarkeit"
 #: ../Clipper/data/messages:41 ../Composite-Manager/data/messages:37
 #: ../Disks/data/messages:23 ../Doncky/data/messages:39
 #: ../Folders/data/messages:53 ../GMenu/data/messages:41
-#: ../MeMenu/data/messages:35 ../Messaging-Menu/data/messages:37
-#: ../Network-Monitor/data/messages:41 ../RSSreader/data/messages:43
-#: ../Recent-Events/data/messages:41 ../Scooby-Do/data/messages:25
-#: ../Status-Notifier/data/messages:41 ../System-Monitor/data/messages:39
-#: ../Toons/data/messages:39 ../Xgamma/data/messages:43
-#: ../alsaMixer/data/messages:39 ../clock/data/messages:41
+#: ../Impulse/data/messages:41 ../MeMenu/data/messages:35
+#: ../Messaging-Menu/data/messages:37 ../Network-Monitor/data/messages:41
+#: ../RSSreader/data/messages:43 ../Recent-Events/data/messages:41
+#: ../Scooby-Do/data/messages:25 ../Status-Notifier/data/messages:41
+#: ../System-Monitor/data/messages:39 ../Toons/data/messages:39
+#: ../Xgamma/data/messages:43 ../alsaMixer/data/messages:39
+#: ../clock/data/messages:41 ../compiz-icon/data/messages:39
 #: ../dnd2share/data/messages:37 ../dustbin/data/messages:37
 #: ../keyboard-indicator/data/messages:37 ../logout/data/messages:41
 #: ../mail/data/messages:37 ../musicPlayer/data/messages:39
@@ -4196,12 +4337,13 @@ msgstr "Ist vom Dock abgetrennt"
 #: ../Clipper/data/messages:43 ../Composite-Manager/data/messages:39
 #: ../Disks/data/messages:31 ../Doncky/data/messages:41
 #: ../Folders/data/messages:55 ../GMenu/data/messages:43
-#: ../MeMenu/data/messages:37 ../Messaging-Menu/data/messages:39
-#: ../Network-Monitor/data/messages:43 ../RSSreader/data/messages:45
-#: ../Recent-Events/data/messages:43 ../Status-Notifier/data/messages:43
-#: ../System-Monitor/data/messages:41 ../Toons/data/messages:41
-#: ../Xgamma/data/messages:45 ../alsaMixer/data/messages:41
-#: ../clock/data/messages:43 ../dnd2share/data/messages:39
+#: ../Impulse/data/messages:43 ../MeMenu/data/messages:37
+#: ../Messaging-Menu/data/messages:39 ../Network-Monitor/data/messages:43
+#: ../RSSreader/data/messages:45 ../Recent-Events/data/messages:43
+#: ../Status-Notifier/data/messages:43 ../System-Monitor/data/messages:41
+#: ../Toons/data/messages:41 ../Xgamma/data/messages:45
+#: ../alsaMixer/data/messages:41 ../clock/data/messages:43
+#: ../compiz-icon/data/messages:41 ../dnd2share/data/messages:39
 #: ../dustbin/data/messages:39 ../keyboard-indicator/data/messages:39
 #: ../logout/data/messages:43 ../mail/data/messages:39
 #: ../musicPlayer/data/messages:41 ../netspeed/data/messages:39
@@ -4220,12 +4362,13 @@ msgstr ""
 #: ../Clipper/data/messages:45 ../Composite-Manager/data/messages:41
 #: ../Disks/data/messages:33 ../Doncky/data/messages:43
 #: ../Folders/data/messages:57 ../GMenu/data/messages:45
-#: ../MeMenu/data/messages:39 ../Messaging-Menu/data/messages:41
-#: ../Network-Monitor/data/messages:45 ../RSSreader/data/messages:47
-#: ../Recent-Events/data/messages:45 ../Status-Notifier/data/messages:45
-#: ../System-Monitor/data/messages:43 ../Toons/data/messages:43
-#: ../Xgamma/data/messages:47 ../alsaMixer/data/messages:43
-#: ../clock/data/messages:45 ../dnd2share/data/messages:41
+#: ../Impulse/data/messages:45 ../MeMenu/data/messages:39
+#: ../Messaging-Menu/data/messages:41 ../Network-Monitor/data/messages:45
+#: ../RSSreader/data/messages:47 ../Recent-Events/data/messages:45
+#: ../Status-Notifier/data/messages:45 ../System-Monitor/data/messages:43
+#: ../Toons/data/messages:43 ../Xgamma/data/messages:47
+#: ../alsaMixer/data/messages:43 ../clock/data/messages:45
+#: ../compiz-icon/data/messages:43 ../dnd2share/data/messages:41
 #: ../dustbin/data/messages:41 ../keyboard-indicator/data/messages:41
 #: ../logout/data/messages:45 ../mail/data/messages:41
 #: ../musicPlayer/data/messages:43 ../netspeed/data/messages:41
@@ -4242,12 +4385,13 @@ msgstr "Sichtbarkeit :"
 #: ../Clipper/data/messages:49 ../Composite-Manager/data/messages:45
 #: ../Disks/data/messages:37 ../Doncky/data/messages:47
 #: ../Folders/data/messages:61 ../GMenu/data/messages:49
-#: ../MeMenu/data/messages:43 ../Messaging-Menu/data/messages:45
-#: ../Network-Monitor/data/messages:49 ../RSSreader/data/messages:51
-#: ../Recent-Events/data/messages:49 ../Status-Notifier/data/messages:49
-#: ../System-Monitor/data/messages:47 ../Toons/data/messages:47
-#: ../Xgamma/data/messages:51 ../alsaMixer/data/messages:47
-#: ../clock/data/messages:49 ../dnd2share/data/messages:45
+#: ../Impulse/data/messages:49 ../MeMenu/data/messages:43
+#: ../Messaging-Menu/data/messages:45 ../Network-Monitor/data/messages:49
+#: ../RSSreader/data/messages:51 ../Recent-Events/data/messages:49
+#: ../Status-Notifier/data/messages:49 ../System-Monitor/data/messages:47
+#: ../Toons/data/messages:47 ../Xgamma/data/messages:51
+#: ../alsaMixer/data/messages:47 ../clock/data/messages:49
+#: ../compiz-icon/data/messages:47 ../dnd2share/data/messages:45
 #: ../dustbin/data/messages:45 ../keyboard-indicator/data/messages:45
 #: ../logout/data/messages:49 ../mail/data/messages:45
 #: ../musicPlayer/data/messages:47 ../netspeed/data/messages:45
@@ -4264,12 +4408,13 @@ msgstr "Im Vordergrund halten"
 #: ../Clipper/data/messages:51 ../Composite-Manager/data/messages:47
 #: ../Disks/data/messages:39 ../Doncky/data/messages:49
 #: ../Folders/data/messages:63 ../GMenu/data/messages:51
-#: ../MeMenu/data/messages:45 ../Messaging-Menu/data/messages:47
-#: ../Network-Monitor/data/messages:51 ../RSSreader/data/messages:53
-#: ../Recent-Events/data/messages:51 ../Status-Notifier/data/messages:51
-#: ../System-Monitor/data/messages:49 ../Toons/data/messages:49
-#: ../Xgamma/data/messages:53 ../alsaMixer/data/messages:49
-#: ../clock/data/messages:51 ../dnd2share/data/messages:47
+#: ../Impulse/data/messages:51 ../MeMenu/data/messages:45
+#: ../Messaging-Menu/data/messages:47 ../Network-Monitor/data/messages:51
+#: ../RSSreader/data/messages:53 ../Recent-Events/data/messages:51
+#: ../Status-Notifier/data/messages:51 ../System-Monitor/data/messages:49
+#: ../Toons/data/messages:49 ../Xgamma/data/messages:53
+#: ../alsaMixer/data/messages:49 ../clock/data/messages:51
+#: ../compiz-icon/data/messages:49 ../dnd2share/data/messages:47
 #: ../dustbin/data/messages:47 ../keyboard-indicator/data/messages:47
 #: ../logout/data/messages:51 ../mail/data/messages:47
 #: ../musicPlayer/data/messages:49 ../netspeed/data/messages:47
@@ -4286,12 +4431,13 @@ msgstr "Im Hintergrund"
 #: ../Clipper/data/messages:53 ../Composite-Manager/data/messages:49
 #: ../Disks/data/messages:41 ../Doncky/data/messages:51
 #: ../Folders/data/messages:65 ../GMenu/data/messages:53
-#: ../MeMenu/data/messages:47 ../Messaging-Menu/data/messages:49
-#: ../Network-Monitor/data/messages:53 ../RSSreader/data/messages:55
-#: ../Recent-Events/data/messages:53 ../Status-Notifier/data/messages:53
-#: ../System-Monitor/data/messages:51 ../Toons/data/messages:51
-#: ../Xgamma/data/messages:55 ../alsaMixer/data/messages:51
-#: ../clock/data/messages:53 ../dnd2share/data/messages:49
+#: ../Impulse/data/messages:53 ../MeMenu/data/messages:47
+#: ../Messaging-Menu/data/messages:49 ../Network-Monitor/data/messages:53
+#: ../RSSreader/data/messages:55 ../Recent-Events/data/messages:53
+#: ../Status-Notifier/data/messages:53 ../System-Monitor/data/messages:51
+#: ../Toons/data/messages:51 ../Xgamma/data/messages:55
+#: ../alsaMixer/data/messages:51 ../clock/data/messages:53
+#: ../compiz-icon/data/messages:51 ../dnd2share/data/messages:49
 #: ../dustbin/data/messages:49 ../keyboard-indicator/data/messages:49
 #: ../logout/data/messages:53 ../mail/data/messages:49
 #: ../musicPlayer/data/messages:51 ../netspeed/data/messages:49
@@ -4308,12 +4454,13 @@ msgstr "In der Widget-Ebene behalten"
 #: ../Clipper/data/messages:55 ../Composite-Manager/data/messages:51
 #: ../Disks/data/messages:43 ../Doncky/data/messages:53
 #: ../Folders/data/messages:67 ../GMenu/data/messages:55
-#: ../MeMenu/data/messages:49 ../Messaging-Menu/data/messages:51
-#: ../Network-Monitor/data/messages:55 ../RSSreader/data/messages:57
-#: ../Recent-Events/data/messages:55 ../Status-Notifier/data/messages:55
-#: ../System-Monitor/data/messages:53 ../Toons/data/messages:53
-#: ../Xgamma/data/messages:57 ../alsaMixer/data/messages:53
-#: ../clock/data/messages:55 ../dnd2share/data/messages:51
+#: ../Impulse/data/messages:55 ../MeMenu/data/messages:49
+#: ../Messaging-Menu/data/messages:51 ../Network-Monitor/data/messages:55
+#: ../RSSreader/data/messages:57 ../Recent-Events/data/messages:55
+#: ../Status-Notifier/data/messages:55 ../System-Monitor/data/messages:53
+#: ../Toons/data/messages:53 ../Xgamma/data/messages:57
+#: ../alsaMixer/data/messages:53 ../clock/data/messages:55
+#: ../compiz-icon/data/messages:53 ../dnd2share/data/messages:51
 #: ../dustbin/data/messages:51 ../keyboard-indicator/data/messages:51
 #: ../logout/data/messages:55 ../mail/data/messages:51
 #: ../musicPlayer/data/messages:53 ../netspeed/data/messages:51
@@ -4330,12 +4477,13 @@ msgstr "Platz reservieren"
 #: ../Clipper/data/messages:57 ../Composite-Manager/data/messages:53
 #: ../Disks/data/messages:45 ../Doncky/data/messages:55
 #: ../Folders/data/messages:69 ../GMenu/data/messages:57
-#: ../MeMenu/data/messages:51 ../Messaging-Menu/data/messages:53
-#: ../Network-Monitor/data/messages:57 ../RSSreader/data/messages:59
-#: ../Recent-Events/data/messages:57 ../Status-Notifier/data/messages:57
-#: ../System-Monitor/data/messages:55 ../Toons/data/messages:55
-#: ../Xgamma/data/messages:59 ../alsaMixer/data/messages:55
-#: ../clock/data/messages:57 ../dnd2share/data/messages:53
+#: ../Impulse/data/messages:57 ../MeMenu/data/messages:51
+#: ../Messaging-Menu/data/messages:53 ../Network-Monitor/data/messages:57
+#: ../RSSreader/data/messages:59 ../Recent-Events/data/messages:57
+#: ../Status-Notifier/data/messages:57 ../System-Monitor/data/messages:55
+#: ../Toons/data/messages:55 ../Xgamma/data/messages:59
+#: ../alsaMixer/data/messages:55 ../clock/data/messages:57
+#: ../compiz-icon/data/messages:55 ../dnd2share/data/messages:53
 #: ../dustbin/data/messages:53 ../keyboard-indicator/data/messages:53
 #: ../logout/data/messages:57 ../mail/data/messages:53
 #: ../musicPlayer/data/messages:55 ../netspeed/data/messages:53
@@ -4352,12 +4500,13 @@ msgstr "Auf allen Arbeitsfächen sichtbar?"
 #: ../Clipper/data/messages:59 ../Composite-Manager/data/messages:55
 #: ../Disks/data/messages:61 ../Doncky/data/messages:57
 #: ../Folders/data/messages:71 ../GMenu/data/messages:59
-#: ../MeMenu/data/messages:53 ../Messaging-Menu/data/messages:55
-#: ../Network-Monitor/data/messages:59 ../RSSreader/data/messages:61
-#: ../Recent-Events/data/messages:59 ../Status-Notifier/data/messages:59
-#: ../System-Monitor/data/messages:57 ../Toons/data/messages:57
-#: ../Xgamma/data/messages:61 ../alsaMixer/data/messages:57
-#: ../clock/data/messages:59 ../dnd2share/data/messages:55
+#: ../Impulse/data/messages:59 ../MeMenu/data/messages:53
+#: ../Messaging-Menu/data/messages:55 ../Network-Monitor/data/messages:59
+#: ../RSSreader/data/messages:61 ../Recent-Events/data/messages:59
+#: ../Status-Notifier/data/messages:59 ../System-Monitor/data/messages:57
+#: ../Toons/data/messages:57 ../Xgamma/data/messages:61
+#: ../alsaMixer/data/messages:57 ../clock/data/messages:59
+#: ../compiz-icon/data/messages:57 ../dnd2share/data/messages:55
 #: ../dustbin/data/messages:55 ../keyboard-indicator/data/messages:55
 #: ../logout/data/messages:59 ../mail/data/messages:55
 #: ../musicPlayer/data/messages:57 ../netspeed/data/messages:55
@@ -4374,12 +4523,13 @@ msgstr "Dekorationen"
 #: ../Clipper/data/messages:61 ../Composite-Manager/data/messages:57
 #: ../Disks/data/messages:63 ../Doncky/data/messages:59
 #: ../Folders/data/messages:73 ../GMenu/data/messages:61
-#: ../MeMenu/data/messages:55 ../Messaging-Menu/data/messages:57
-#: ../Network-Monitor/data/messages:61 ../RSSreader/data/messages:63
-#: ../Recent-Events/data/messages:61 ../Status-Notifier/data/messages:61
-#: ../System-Monitor/data/messages:59 ../Toons/data/messages:59
-#: ../Xgamma/data/messages:63 ../alsaMixer/data/messages:59
-#: ../clock/data/messages:61 ../dnd2share/data/messages:57
+#: ../Impulse/data/messages:61 ../MeMenu/data/messages:55
+#: ../Messaging-Menu/data/messages:57 ../Network-Monitor/data/messages:61
+#: ../RSSreader/data/messages:63 ../Recent-Events/data/messages:61
+#: ../Status-Notifier/data/messages:61 ../System-Monitor/data/messages:59
+#: ../Toons/data/messages:59 ../Xgamma/data/messages:63
+#: ../alsaMixer/data/messages:59 ../clock/data/messages:61
+#: ../compiz-icon/data/messages:59 ../dnd2share/data/messages:57
 #: ../dustbin/data/messages:57 ../keyboard-indicator/data/messages:57
 #: ../logout/data/messages:61 ../mail/data/messages:57
 #: ../musicPlayer/data/messages:59 ../netspeed/data/messages:57
@@ -4398,12 +4548,13 @@ msgstr ""
 #: ../Clipper/data/messages:63 ../Composite-Manager/data/messages:59
 #: ../Disks/data/messages:65 ../Doncky/data/messages:61
 #: ../Folders/data/messages:75 ../GMenu/data/messages:63
-#: ../MeMenu/data/messages:57 ../Messaging-Menu/data/messages:59
-#: ../Network-Monitor/data/messages:63 ../RSSreader/data/messages:65
-#: ../Recent-Events/data/messages:63 ../Status-Notifier/data/messages:63
-#: ../System-Monitor/data/messages:61 ../Toons/data/messages:61
-#: ../Xgamma/data/messages:65 ../alsaMixer/data/messages:61
-#: ../clock/data/messages:63 ../dnd2share/data/messages:59
+#: ../Impulse/data/messages:63 ../MeMenu/data/messages:57
+#: ../Messaging-Menu/data/messages:59 ../Network-Monitor/data/messages:63
+#: ../RSSreader/data/messages:65 ../Recent-Events/data/messages:63
+#: ../Status-Notifier/data/messages:63 ../System-Monitor/data/messages:61
+#: ../Toons/data/messages:61 ../Xgamma/data/messages:65
+#: ../alsaMixer/data/messages:61 ../clock/data/messages:63
+#: ../compiz-icon/data/messages:61 ../dnd2share/data/messages:59
 #: ../dustbin/data/messages:59 ../keyboard-indicator/data/messages:59
 #: ../logout/data/messages:63 ../mail/data/messages:59
 #: ../musicPlayer/data/messages:61 ../netspeed/data/messages:59
@@ -4420,12 +4571,13 @@ msgstr "Wählen Sie ein Dekorationsthema für dieses Desklet:"
 #: ../Clipper/data/messages:65 ../Composite-Manager/data/messages:61
 #: ../Disks/data/messages:69 ../Doncky/data/messages:63
 #: ../Folders/data/messages:77 ../GMenu/data/messages:65
-#: ../MeMenu/data/messages:59 ../Messaging-Menu/data/messages:61
-#: ../Network-Monitor/data/messages:65 ../RSSreader/data/messages:67
-#: ../Recent-Events/data/messages:65 ../Status-Notifier/data/messages:65
-#: ../System-Monitor/data/messages:63 ../Toons/data/messages:63
-#: ../Xgamma/data/messages:67 ../alsaMixer/data/messages:63
-#: ../clock/data/messages:65 ../dnd2share/data/messages:61
+#: ../Impulse/data/messages:65 ../MeMenu/data/messages:59
+#: ../Messaging-Menu/data/messages:61 ../Network-Monitor/data/messages:65
+#: ../RSSreader/data/messages:67 ../Recent-Events/data/messages:65
+#: ../Status-Notifier/data/messages:65 ../System-Monitor/data/messages:63
+#: ../Toons/data/messages:63 ../Xgamma/data/messages:67
+#: ../alsaMixer/data/messages:63 ../clock/data/messages:65
+#: ../compiz-icon/data/messages:63 ../dnd2share/data/messages:61
 #: ../dustbin/data/messages:61 ../keyboard-indicator/data/messages:61
 #: ../logout/data/messages:65 ../mail/data/messages:61
 #: ../musicPlayer/data/messages:63 ../netspeed/data/messages:61
@@ -4445,12 +4597,13 @@ msgstr ""
 #: ../Clipper/data/messages:67 ../Composite-Manager/data/messages:63
 #: ../Disks/data/messages:71 ../Doncky/data/messages:65
 #: ../Folders/data/messages:79 ../GMenu/data/messages:67
-#: ../MeMenu/data/messages:61 ../Messaging-Menu/data/messages:63
-#: ../Network-Monitor/data/messages:67 ../RSSreader/data/messages:69
-#: ../Recent-Events/data/messages:67 ../Status-Notifier/data/messages:67
-#: ../System-Monitor/data/messages:65 ../Toons/data/messages:65
-#: ../Xgamma/data/messages:69 ../alsaMixer/data/messages:65
-#: ../clock/data/messages:67 ../clock/data/messages:159
+#: ../Impulse/data/messages:67 ../MeMenu/data/messages:61
+#: ../Messaging-Menu/data/messages:63 ../Network-Monitor/data/messages:67
+#: ../RSSreader/data/messages:69 ../Recent-Events/data/messages:67
+#: ../Status-Notifier/data/messages:67 ../System-Monitor/data/messages:65
+#: ../Toons/data/messages:65 ../Xgamma/data/messages:69
+#: ../alsaMixer/data/messages:65 ../clock/data/messages:67
+#: ../clock/data/messages:159 ../compiz-icon/data/messages:65
 #: ../dnd2share/data/messages:63 ../dustbin/data/messages:63
 #: ../keyboard-indicator/data/messages:63
 #: ../keyboard-indicator/data/messages:115 ../logout/data/messages:67
@@ -4469,12 +4622,13 @@ msgstr "Hintergrundbild:"
 #: ../Clipper/data/messages:69 ../Composite-Manager/data/messages:65
 #: ../Disks/data/messages:73 ../Doncky/data/messages:67
 #: ../Folders/data/messages:81 ../GMenu/data/messages:69
-#: ../MeMenu/data/messages:63 ../Messaging-Menu/data/messages:65
-#: ../Network-Monitor/data/messages:69 ../RSSreader/data/messages:71
-#: ../Recent-Events/data/messages:69 ../Status-Notifier/data/messages:69
-#: ../System-Monitor/data/messages:67 ../Toons/data/messages:67
-#: ../Xgamma/data/messages:71 ../alsaMixer/data/messages:67
-#: ../clock/data/messages:69 ../dnd2share/data/messages:65
+#: ../Impulse/data/messages:69 ../MeMenu/data/messages:63
+#: ../Messaging-Menu/data/messages:65 ../Network-Monitor/data/messages:69
+#: ../RSSreader/data/messages:71 ../Recent-Events/data/messages:69
+#: ../Status-Notifier/data/messages:69 ../System-Monitor/data/messages:67
+#: ../Toons/data/messages:67 ../Xgamma/data/messages:71
+#: ../alsaMixer/data/messages:67 ../clock/data/messages:69
+#: ../compiz-icon/data/messages:67 ../dnd2share/data/messages:65
 #: ../dustbin/data/messages:65 ../keyboard-indicator/data/messages:65
 #: ../logout/data/messages:69 ../mail/data/messages:65
 #: ../musicPlayer/data/messages:67 ../netspeed/data/messages:65
@@ -4491,12 +4645,13 @@ msgstr "Hintergrund-Transparenz:"
 #: ../Clipper/data/messages:71 ../Composite-Manager/data/messages:67
 #: ../Disks/data/messages:83 ../Doncky/data/messages:69
 #: ../Folders/data/messages:83 ../GMenu/data/messages:71
-#: ../MeMenu/data/messages:65 ../Messaging-Menu/data/messages:67
-#: ../Network-Monitor/data/messages:71 ../RSSreader/data/messages:73
-#: ../Recent-Events/data/messages:71 ../Status-Notifier/data/messages:71
-#: ../System-Monitor/data/messages:69 ../Toons/data/messages:69
-#: ../Xgamma/data/messages:73 ../alsaMixer/data/messages:69
-#: ../clock/data/messages:71 ../dnd2share/data/messages:67
+#: ../Impulse/data/messages:71 ../MeMenu/data/messages:65
+#: ../Messaging-Menu/data/messages:67 ../Network-Monitor/data/messages:71
+#: ../RSSreader/data/messages:73 ../Recent-Events/data/messages:71
+#: ../Status-Notifier/data/messages:71 ../System-Monitor/data/messages:69
+#: ../Toons/data/messages:69 ../Xgamma/data/messages:73
+#: ../alsaMixer/data/messages:69 ../clock/data/messages:71
+#: ../compiz-icon/data/messages:69 ../dnd2share/data/messages:67
 #: ../dustbin/data/messages:67 ../keyboard-indicator/data/messages:67
 #: ../logout/data/messages:71 ../mail/data/messages:67
 #: ../musicPlayer/data/messages:69 ../netspeed/data/messages:67
@@ -4515,12 +4670,13 @@ msgstr ""
 #: ../Clipper/data/messages:73 ../Composite-Manager/data/messages:69
 #: ../Disks/data/messages:85 ../Doncky/data/messages:71
 #: ../Folders/data/messages:85 ../GMenu/data/messages:73
-#: ../MeMenu/data/messages:67 ../Messaging-Menu/data/messages:69
-#: ../Network-Monitor/data/messages:73 ../RSSreader/data/messages:75
-#: ../Recent-Events/data/messages:73 ../Status-Notifier/data/messages:73
-#: ../System-Monitor/data/messages:71 ../Toons/data/messages:71
-#: ../Xgamma/data/messages:75 ../alsaMixer/data/messages:71
-#: ../clock/data/messages:73 ../dnd2share/data/messages:69
+#: ../Impulse/data/messages:73 ../MeMenu/data/messages:67
+#: ../Messaging-Menu/data/messages:69 ../Network-Monitor/data/messages:73
+#: ../RSSreader/data/messages:75 ../Recent-Events/data/messages:73
+#: ../Status-Notifier/data/messages:73 ../System-Monitor/data/messages:71
+#: ../Toons/data/messages:71 ../Xgamma/data/messages:75
+#: ../alsaMixer/data/messages:71 ../clock/data/messages:73
+#: ../compiz-icon/data/messages:71 ../dnd2share/data/messages:69
 #: ../dustbin/data/messages:69 ../keyboard-indicator/data/messages:69
 #: ../logout/data/messages:73 ../mail/data/messages:69
 #: ../musicPlayer/data/messages:71 ../netspeed/data/messages:69
@@ -4537,12 +4693,13 @@ msgstr "Linker Versatz:"
 #: ../Clipper/data/messages:75 ../Composite-Manager/data/messages:71
 #: ../Disks/data/messages:87 ../Doncky/data/messages:73
 #: ../Folders/data/messages:87 ../GMenu/data/messages:75
-#: ../MeMenu/data/messages:69 ../Messaging-Menu/data/messages:71
-#: ../Network-Monitor/data/messages:75 ../RSSreader/data/messages:77
-#: ../Recent-Events/data/messages:75 ../Status-Notifier/data/messages:75
-#: ../System-Monitor/data/messages:73 ../Toons/data/messages:73
-#: ../Xgamma/data/messages:77 ../alsaMixer/data/messages:73
-#: ../clock/data/messages:75 ../dnd2share/data/messages:71
+#: ../Impulse/data/messages:75 ../MeMenu/data/messages:69
+#: ../Messaging-Menu/data/messages:71 ../Network-Monitor/data/messages:75
+#: ../RSSreader/data/messages:77 ../Recent-Events/data/messages:75
+#: ../Status-Notifier/data/messages:75 ../System-Monitor/data/messages:73
+#: ../Toons/data/messages:73 ../Xgamma/data/messages:77
+#: ../alsaMixer/data/messages:73 ../clock/data/messages:75
+#: ../compiz-icon/data/messages:73 ../dnd2share/data/messages:71
 #: ../dustbin/data/messages:71 ../keyboard-indicator/data/messages:71
 #: ../logout/data/messages:75 ../mail/data/messages:71
 #: ../musicPlayer/data/messages:73 ../netspeed/data/messages:71
@@ -4561,12 +4718,13 @@ msgstr ""
 #: ../Clipper/data/messages:77 ../Composite-Manager/data/messages:73
 #: ../Disks/data/messages:89 ../Doncky/data/messages:75
 #: ../Folders/data/messages:89 ../GMenu/data/messages:77
-#: ../MeMenu/data/messages:71 ../Messaging-Menu/data/messages:73
-#: ../Network-Monitor/data/messages:77 ../RSSreader/data/messages:79
-#: ../Recent-Events/data/messages:77 ../Status-Notifier/data/messages:77
-#: ../System-Monitor/data/messages:75 ../Toons/data/messages:75
-#: ../Xgamma/data/messages:79 ../alsaMixer/data/messages:75
-#: ../clock/data/messages:77 ../dnd2share/data/messages:73
+#: ../Impulse/data/messages:77 ../MeMenu/data/messages:71
+#: ../Messaging-Menu/data/messages:73 ../Network-Monitor/data/messages:77
+#: ../RSSreader/data/messages:79 ../Recent-Events/data/messages:77
+#: ../Status-Notifier/data/messages:77 ../System-Monitor/data/messages:75
+#: ../Toons/data/messages:75 ../Xgamma/data/messages:79
+#: ../alsaMixer/data/messages:75 ../clock/data/messages:77
+#: ../compiz-icon/data/messages:75 ../dnd2share/data/messages:73
 #: ../dustbin/data/messages:73 ../keyboard-indicator/data/messages:73
 #: ../logout/data/messages:77 ../mail/data/messages:73
 #: ../musicPlayer/data/messages:75 ../netspeed/data/messages:73
@@ -4583,12 +4741,13 @@ msgstr "Oberer Versatz:"
 #: ../Clipper/data/messages:79 ../Composite-Manager/data/messages:75
 #: ../Disks/data/messages:91 ../Doncky/data/messages:77
 #: ../Folders/data/messages:91 ../GMenu/data/messages:79
-#: ../MeMenu/data/messages:73 ../Messaging-Menu/data/messages:75
-#: ../Network-Monitor/data/messages:79 ../RSSreader/data/messages:81
-#: ../Recent-Events/data/messages:79 ../Status-Notifier/data/messages:79
-#: ../System-Monitor/data/messages:77 ../Toons/data/messages:77
-#: ../Xgamma/data/messages:81 ../alsaMixer/data/messages:77
-#: ../clock/data/messages:79 ../dnd2share/data/messages:75
+#: ../Impulse/data/messages:79 ../MeMenu/data/messages:73
+#: ../Messaging-Menu/data/messages:75 ../Network-Monitor/data/messages:79
+#: ../RSSreader/data/messages:81 ../Recent-Events/data/messages:79
+#: ../Status-Notifier/data/messages:79 ../System-Monitor/data/messages:77
+#: ../Toons/data/messages:77 ../Xgamma/data/messages:81
+#: ../alsaMixer/data/messages:77 ../clock/data/messages:79
+#: ../compiz-icon/data/messages:77 ../dnd2share/data/messages:75
 #: ../dustbin/data/messages:75 ../keyboard-indicator/data/messages:75
 #: ../logout/data/messages:79 ../mail/data/messages:75
 #: ../musicPlayer/data/messages:77 ../netspeed/data/messages:75
@@ -4607,12 +4766,13 @@ msgstr ""
 #: ../Clipper/data/messages:81 ../Composite-Manager/data/messages:77
 #: ../Disks/data/messages:93 ../Doncky/data/messages:79
 #: ../Folders/data/messages:93 ../GMenu/data/messages:81
-#: ../MeMenu/data/messages:75 ../Messaging-Menu/data/messages:77
-#: ../Network-Monitor/data/messages:81 ../RSSreader/data/messages:83
-#: ../Recent-Events/data/messages:81 ../Status-Notifier/data/messages:81
-#: ../System-Monitor/data/messages:79 ../Toons/data/messages:79
-#: ../Xgamma/data/messages:83 ../alsaMixer/data/messages:79
-#: ../clock/data/messages:81 ../dnd2share/data/messages:77
+#: ../Impulse/data/messages:81 ../MeMenu/data/messages:75
+#: ../Messaging-Menu/data/messages:77 ../Network-Monitor/data/messages:81
+#: ../RSSreader/data/messages:83 ../Recent-Events/data/messages:81
+#: ../Status-Notifier/data/messages:81 ../System-Monitor/data/messages:79
+#: ../Toons/data/messages:79 ../Xgamma/data/messages:83
+#: ../alsaMixer/data/messages:79 ../clock/data/messages:81
+#: ../compiz-icon/data/messages:79 ../dnd2share/data/messages:77
 #: ../dustbin/data/messages:77 ../keyboard-indicator/data/messages:77
 #: ../logout/data/messages:81 ../mail/data/messages:77
 #: ../musicPlayer/data/messages:79 ../netspeed/data/messages:77
@@ -4629,12 +4789,13 @@ msgstr "Rechter Versatz:"
 #: ../Clipper/data/messages:83 ../Composite-Manager/data/messages:79
 #: ../Disks/data/messages:95 ../Doncky/data/messages:81
 #: ../Folders/data/messages:95 ../GMenu/data/messages:83
-#: ../MeMenu/data/messages:77 ../Messaging-Menu/data/messages:79
-#: ../Network-Monitor/data/messages:83 ../RSSreader/data/messages:85
-#: ../Recent-Events/data/messages:83 ../Status-Notifier/data/messages:83
-#: ../System-Monitor/data/messages:81 ../Toons/data/messages:81
-#: ../Xgamma/data/messages:85 ../alsaMixer/data/messages:81
-#: ../clock/data/messages:83 ../dnd2share/data/messages:79
+#: ../Impulse/data/messages:83 ../MeMenu/data/messages:77
+#: ../Messaging-Menu/data/messages:79 ../Network-Monitor/data/messages:83
+#: ../RSSreader/data/messages:85 ../Recent-Events/data/messages:83
+#: ../Status-Notifier/data/messages:83 ../System-Monitor/data/messages:81
+#: ../Toons/data/messages:81 ../Xgamma/data/messages:85
+#: ../alsaMixer/data/messages:81 ../clock/data/messages:83
+#: ../compiz-icon/data/messages:81 ../dnd2share/data/messages:79
 #: ../dustbin/data/messages:79 ../keyboard-indicator/data/messages:79
 #: ../logout/data/messages:83 ../mail/data/messages:79
 #: ../musicPlayer/data/messages:81 ../netspeed/data/messages:79
@@ -4653,12 +4814,13 @@ msgstr ""
 #: ../Clipper/data/messages:85 ../Composite-Manager/data/messages:81
 #: ../Disks/data/messages:97 ../Doncky/data/messages:83
 #: ../Folders/data/messages:97 ../GMenu/data/messages:85
-#: ../MeMenu/data/messages:79 ../Messaging-Menu/data/messages:81
-#: ../Network-Monitor/data/messages:85 ../RSSreader/data/messages:87
-#: ../Recent-Events/data/messages:85 ../Status-Notifier/data/messages:85
-#: ../System-Monitor/data/messages:83 ../Toons/data/messages:83
-#: ../Xgamma/data/messages:87 ../alsaMixer/data/messages:83
-#: ../clock/data/messages:85 ../dnd2share/data/messages:81
+#: ../Impulse/data/messages:85 ../MeMenu/data/messages:79
+#: ../Messaging-Menu/data/messages:81 ../Network-Monitor/data/messages:85
+#: ../RSSreader/data/messages:87 ../Recent-Events/data/messages:85
+#: ../Status-Notifier/data/messages:85 ../System-Monitor/data/messages:83
+#: ../Toons/data/messages:83 ../Xgamma/data/messages:87
+#: ../alsaMixer/data/messages:83 ../clock/data/messages:85
+#: ../compiz-icon/data/messages:83 ../dnd2share/data/messages:81
 #: ../dustbin/data/messages:81 ../keyboard-indicator/data/messages:81
 #: ../logout/data/messages:85 ../mail/data/messages:81
 #: ../musicPlayer/data/messages:83 ../netspeed/data/messages:81
@@ -4675,12 +4837,13 @@ msgstr "Unterer Versatz:"
 #: ../Clipper/data/messages:87 ../Composite-Manager/data/messages:83
 #: ../Disks/data/messages:75 ../Doncky/data/messages:85
 #: ../Folders/data/messages:99 ../GMenu/data/messages:87
-#: ../MeMenu/data/messages:81 ../Messaging-Menu/data/messages:83
-#: ../Network-Monitor/data/messages:87 ../RSSreader/data/messages:89
-#: ../Recent-Events/data/messages:87 ../Status-Notifier/data/messages:87
-#: ../System-Monitor/data/messages:85 ../Toons/data/messages:85
-#: ../Xgamma/data/messages:89 ../alsaMixer/data/messages:85
-#: ../clock/data/messages:87 ../dnd2share/data/messages:83
+#: ../Impulse/data/messages:87 ../MeMenu/data/messages:81
+#: ../Messaging-Menu/data/messages:83 ../Network-Monitor/data/messages:87
+#: ../RSSreader/data/messages:89 ../Recent-Events/data/messages:87
+#: ../Status-Notifier/data/messages:87 ../System-Monitor/data/messages:85
+#: ../Toons/data/messages:85 ../Xgamma/data/messages:89
+#: ../alsaMixer/data/messages:85 ../clock/data/messages:87
+#: ../compiz-icon/data/messages:85 ../dnd2share/data/messages:83
 #: ../dustbin/data/messages:83 ../keyboard-indicator/data/messages:83
 #: ../logout/data/messages:87 ../mail/data/messages:83
 #: ../musicPlayer/data/messages:85 ../netspeed/data/messages:83
@@ -4701,12 +4864,13 @@ msgstr ""
 #: ../Clipper/data/messages:89 ../Composite-Manager/data/messages:85
 #: ../Disks/data/messages:77 ../Doncky/data/messages:87
 #: ../Folders/data/messages:101 ../GMenu/data/messages:89
-#: ../MeMenu/data/messages:83 ../Messaging-Menu/data/messages:85
-#: ../Network-Monitor/data/messages:89 ../RSSreader/data/messages:91
-#: ../Recent-Events/data/messages:89 ../Status-Notifier/data/messages:89
-#: ../System-Monitor/data/messages:87 ../Toons/data/messages:87
-#: ../Xgamma/data/messages:91 ../alsaMixer/data/messages:87
-#: ../clock/data/messages:89 ../dnd2share/data/messages:85
+#: ../Impulse/data/messages:89 ../MeMenu/data/messages:83
+#: ../Messaging-Menu/data/messages:85 ../Network-Monitor/data/messages:89
+#: ../RSSreader/data/messages:91 ../Recent-Events/data/messages:89
+#: ../Status-Notifier/data/messages:89 ../System-Monitor/data/messages:87
+#: ../Toons/data/messages:87 ../Xgamma/data/messages:91
+#: ../alsaMixer/data/messages:87 ../clock/data/messages:89
+#: ../compiz-icon/data/messages:87 ../dnd2share/data/messages:85
 #: ../dustbin/data/messages:85 ../keyboard-indicator/data/messages:85
 #: ../logout/data/messages:89 ../mail/data/messages:85
 #: ../musicPlayer/data/messages:87 ../netspeed/data/messages:85
@@ -4723,12 +4887,13 @@ msgstr "Vordergrundbild:"
 #: ../Clipper/data/messages:91 ../Composite-Manager/data/messages:87
 #: ../Disks/data/messages:79 ../Doncky/data/messages:89
 #: ../Folders/data/messages:103 ../GMenu/data/messages:91
-#: ../MeMenu/data/messages:85 ../Messaging-Menu/data/messages:87
-#: ../Network-Monitor/data/messages:91 ../RSSreader/data/messages:93
-#: ../Recent-Events/data/messages:91 ../Status-Notifier/data/messages:91
-#: ../System-Monitor/data/messages:89 ../Toons/data/messages:89
-#: ../Xgamma/data/messages:93 ../alsaMixer/data/messages:89
-#: ../clock/data/messages:91 ../dnd2share/data/messages:87
+#: ../Impulse/data/messages:91 ../MeMenu/data/messages:85
+#: ../Messaging-Menu/data/messages:87 ../Network-Monitor/data/messages:91
+#: ../RSSreader/data/messages:93 ../Recent-Events/data/messages:91
+#: ../Status-Notifier/data/messages:91 ../System-Monitor/data/messages:89
+#: ../Toons/data/messages:89 ../Xgamma/data/messages:93
+#: ../alsaMixer/data/messages:89 ../clock/data/messages:91
+#: ../compiz-icon/data/messages:89 ../dnd2share/data/messages:87
 #: ../dustbin/data/messages:87 ../keyboard-indicator/data/messages:87
 #: ../logout/data/messages:91 ../mail/data/messages:87
 #: ../musicPlayer/data/messages:89 ../netspeed/data/messages:87
@@ -4824,7 +4989,7 @@ msgstr "Tastenkürzel zum Aufklappen des Objektmenüs:"
 msgid "Pop-up menus at mouse position?"
 msgstr "Aufklappmenüs an der Mausposition?"
 
-#: ../Clipper/data/messages:131
+#: ../Clipper/data/messages:131 ../compiz-icon/data/messages:93
 msgid "Actions"
 msgstr "Aktionen"
 
@@ -4862,11 +5027,12 @@ msgstr ""
 "Eine Liste dauerhaft verfügbarer Objekte, die über einen Mittelklick "
 "verfügbar sind:"
 
-#: ../Composite-Manager/data/messages:27 ../Recent-Events/data/messages:31
-#: ../Status-Notifier/data/messages:31 ../alsaMixer/data/messages:29
-#: ../clock/data/messages:31 ../dustbin/data/messages:27
-#: ../netspeed/data/messages:27 ../systray/data/messages:27
-#: ../template/data/messages:31 ../tomboy/data/messages:41
+#: ../Composite-Manager/data/messages:27 ../Impulse/data/messages:31
+#: ../Recent-Events/data/messages:31 ../Status-Notifier/data/messages:31
+#: ../alsaMixer/data/messages:29 ../clock/data/messages:31
+#: ../dustbin/data/messages:27 ../netspeed/data/messages:27
+#: ../systray/data/messages:27 ../template/data/messages:31
+#: ../tomboy/data/messages:41
 msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click.. Negative values are counted from the right/bottom of the screen"
@@ -4891,7 +5057,7 @@ msgid "Behaviour"
 msgstr "Verhalten"
 
 #: ../Composite-Manager/data/messages:103
-#: ../Composite-Manager/data/messages:117
+#: ../Composite-Manager/data/messages:115
 #, fuzzy
 msgid ""
 "Let empty to use the default one. Alternatively, you can set any command you "
@@ -4902,41 +5068,41 @@ msgstr "Leer lassen, um die Vorgabeanimation zu verwenden."
 msgid "Composite window-manager:"
 msgstr ""
 
-#: ../Composite-Manager/data/messages:109
-#: ../Composite-Manager/data/messages:123
+#: ../Composite-Manager/data/messages:107
+#: ../Composite-Manager/data/messages:119
 msgid "Compiz"
 msgstr ""
 
-#: ../Composite-Manager/data/messages:111
-#: ../Composite-Manager/data/messages:125
+#: ../Composite-Manager/data/messages:109
+#: ../Composite-Manager/data/messages:121
 msgid "KWin"
 msgstr ""
 
-#: ../Composite-Manager/data/messages:113
-#: ../Composite-Manager/data/messages:127
+#: ../Composite-Manager/data/messages:111
+#: ../Composite-Manager/data/messages:123
 msgid "Xfwm"
 msgstr ""
 
-#: ../Composite-Manager/data/messages:115
-#: ../Composite-Manager/data/messages:129
+#: ../Composite-Manager/data/messages:113
+#: ../Composite-Manager/data/messages:125
 msgid "Metacity"
 msgstr ""
 
-#: ../Composite-Manager/data/messages:119
+#: ../Composite-Manager/data/messages:117
 msgid "Fallback window-manager:"
 msgstr ""
 
-#: ../Composite-Manager/data/messages:131
+#: ../Composite-Manager/data/messages:127
 msgid "Ask before switching:"
 msgstr ""
 
-#: ../Composite-Manager/data/messages:133 ../logout/data/messages:105
-#: ../showDesktop/data/messages:117 ../slider/data/messages:117
-#: ../switcher/data/messages:103
+#: ../Composite-Manager/data/messages:129 ../compiz-icon/data/messages:97
+#: ../logout/data/messages:105 ../showDesktop/data/messages:117
+#: ../slider/data/messages:117 ../switcher/data/messages:103
 msgid "Action on middle-click:"
 msgstr ""
 
-#: ../Composite-Manager/data/messages:145
+#: ../Composite-Manager/data/messages:141
 #, fuzzy
 msgid "Shortkey to toggle the composite ON/OFF:"
 msgstr "Tastenkürzel zum Aufklappen des Objektmenüs:"
@@ -5108,11 +5274,11 @@ msgid "Show all values on same graph?"
 msgstr "Alle Werte in einem Diagramm anzeigen?"
 
 #: ../Disks/data/messages:137 ../alsaMixer/data/messages:117
-#: ../keyboard-indicator/data/messages:99 ../mail/data/messages:95
-#: ../musicPlayer/data/messages:147 ../shortcuts/data/messages:95
-#: ../shortcuts/data/messages:105 ../slider/data/messages:157
-#: ../stack/data/messages:97 ../tomboy/data/messages:105
-#: ../weather/data/messages:121
+#: ../compiz-icon/data/messages:9 ../keyboard-indicator/data/messages:99
+#: ../mail/data/messages:95 ../musicPlayer/data/messages:147
+#: ../shortcuts/data/messages:95 ../shortcuts/data/messages:105
+#: ../slider/data/messages:157 ../stack/data/messages:97
+#: ../tomboy/data/messages:105 ../weather/data/messages:121
 msgid "Display"
 msgstr "Anzeige"
 
@@ -5382,6 +5548,41 @@ msgstr "in Tagen. \"0\" wenn ungenutzt."
 msgid "Only show files whose last modification date is less than ;"
 msgstr "Zeige nur Dateien an deren letzte Modifikation vor ;"
 
+#: ../Impulse/data/messages:95
+#, fuzzy
+msgid "Animation of the icons :"
+msgstr "Animation des Symbols:"
+
+#: ../Impulse/data/messages:97
+msgid ""
+"It's the sensitivity in order to know if the animation is played or not."
+msgstr ""
+
+#: ../Impulse/data/messages:99
+#, fuzzy
+msgid "Sensitivity of the animation:"
+msgstr "Dauer der Animation:"
+
+#: ../Impulse/data/messages:101
+#, fuzzy
+msgid "in ms."
+msgstr "In ms."
+
+#: ../Impulse/data/messages:103
+#, fuzzy
+msgid "Time between two animations:"
+msgstr "Verzögerung zwischen Animationswechsel:"
+
+#: ../Impulse/data/messages:105
+msgid ""
+"Do we have to stop the animation on a icon which doesn't have to be animated "
+"each refresh?"
+msgstr ""
+
+#: ../Impulse/data/messages:107
+msgid "Stop animations sooner?"
+msgstr ""
+
 #: ../Messaging-Menu/data/messages:91
 msgid ""
 "Animation of the icon when one of the application demands your attention :"
@@ -5520,6 +5721,10 @@ msgstr "Zeichnungsleiste"
 #: ../Network-Monitor/data/messages:231 ../Network-Monitor/data/messages:235
 #: ../Network-Monitor/data/messages:239 ../Network-Monitor/data/messages:243
 #: ../Network-Monitor/data/messages:247 ../Network-Monitor/data/messages:251
+#: ../compiz-icon/data/messages:169 ../compiz-icon/data/messages:173
+#: ../compiz-icon/data/messages:177 ../compiz-icon/data/messages:181
+#: ../compiz-icon/data/messages:185 ../compiz-icon/data/messages:189
+#: ../compiz-icon/data/messages:193 ../compiz-icon/data/messages:197
 #: ../logout/data/messages:125 ../musicPlayer/data/messages:175
 #: ../musicPlayer/data/messages:179 ../musicPlayer/data/messages:183
 #: ../musicPlayer/data/messages:187 ../musicPlayer/data/messages:191
@@ -6354,6 +6559,212 @@ msgstr ""
 msgid "Add or remove an alarm:"
 msgstr ""
 
+#: ../compiz-icon/data/messages:3
+msgid "Applet"
+msgstr "Applet"
+
+#: ../compiz-icon/data/messages:95
+msgid ""
+"Except when switching to another WM, you must activate the Dbus plugin in "
+"Compiz along with the plugin corresponding to the desired action."
+msgstr ""
+
+#: ../compiz-icon/data/messages:101
+msgid "Switch WM"
+msgstr ""
+
+#: ../compiz-icon/data/messages:105
+#, fuzzy
+msgid "Expose"
+msgstr "Darstellung"
+
+#: ../compiz-icon/data/messages:109
+msgid ""
+"This command will be used to launch the system WM. Leave blank to use the "
+"default."
+msgstr ""
+
+#: ../compiz-icon/data/messages:111
+msgid "Custom command for system's Windows Manager:"
+msgstr ""
+
+#: ../compiz-icon/data/messages:113
+msgid ""
+"If Compiz quits unexpectedly, Cairo-Dock will restart it. You must then quit "
+"Compiz from the dock."
+msgstr ""
+
+#: ../compiz-icon/data/messages:115
+msgid "Auto-reload Compiz?"
+msgstr ""
+
+#: ../compiz-icon/data/messages:117
+msgid ""
+"If the decorator quits unexpectedly, Cairo-Dock will restart it. ou must "
+"then quit Compiz from the dock."
+msgstr ""
+
+#: ../compiz-icon/data/messages:119
+msgid "Auto-reload the Decorator?"
+msgstr ""
+
+#: ../compiz-icon/data/messages:121
+msgid "Load Compiz with options on startup."
+msgstr ""
+
+#: ../compiz-icon/data/messages:123
+msgid "Force Compiz settings on startup?"
+msgstr ""
+
+#: ../compiz-icon/data/messages:125
+msgid ""
+"This will prevent the CSSM or Emerald icons appearing in the taskbar. The "
+"corresponding sub-dock's icons will then behave as a launcher and an "
+"application."
+msgstr ""
+
+#: ../compiz-icon/data/messages:127
+#, fuzzy
+msgid "Steal the application's icon from the taskbar?"
+msgstr "Das Dock durch externe Anwendungen neu starten lassen?"
+
+#: ../compiz-icon/data/messages:129
+msgid ""
+"Display two icons for Compiz Exposition & Widget Layer plug-ins in the "
+"applet's sub-dock. Otherwise they will be available in the menu."
+msgstr ""
+
+#: ../compiz-icon/data/messages:131
+msgid "Add Exposition & Widget Layer to sub-dock?"
+msgstr ""
+
+#: ../compiz-icon/data/messages:133
+msgid ""
+"Display an icon for the Emerald configuration panel in the applet's sub-dock."
+msgstr ""
+
+#: ../compiz-icon/data/messages:135
+msgid "Add Emerald Configuration to sub-dock?"
+msgstr ""
+
+#: ../compiz-icon/data/messages:137
+#, fuzzy
+msgid "Compiz Options"
+msgstr "Optionen"
+
+#: ../compiz-icon/data/messages:139
+msgid ""
+"With strict binding, textures are bound whenever they are enabled. With "
+"loose binding they are enabled when created. The Nvidia driver seems a bit "
+"slow when binding textures, that's why this option gives a heavy performance "
+"increase with Nvidia cards."
+msgstr ""
+
+#: ../compiz-icon/data/messages:141
+msgid "Use Loose Binding?"
+msgstr ""
+
+#: ../compiz-icon/data/messages:143
+msgid "Only use these options if you know what you're doing.?"
+msgstr ""
+
+#: ../compiz-icon/data/messages:145
+#, fuzzy
+msgid "Use Indirect Rendering?"
+msgstr "Desklet Darstellung"
+
+#: ../compiz-icon/data/messages:147
+msgid "Useful when using two or more separate X screens."
+msgstr ""
+
+#: ../compiz-icon/data/messages:149
+msgid "Only Current Screen?"
+msgstr ""
+
+#: ../compiz-icon/data/messages:151
+#, fuzzy
+msgid "By default this will be Emerald."
+msgstr "Als Vorgabe wird die erste aktive Schnittstelle verwendet."
+
+#: ../compiz-icon/data/messages:153
+#, fuzzy
+msgid "Choose your Window Decorator:"
+msgstr "Ändere Fensterdekoration"
+
+#: ../compiz-icon/data/messages:155
+msgid "emerald"
+msgstr "emerald"
+
+#: ../compiz-icon/data/messages:157
+msgid "gtk-window-decorator"
+msgstr "gtk-window-decorator"
+
+#: ../compiz-icon/data/messages:159
+msgid "kde-window-decorator"
+msgstr "kde-window-decorator"
+
+#: ../compiz-icon/data/messages:161
+msgid "heliodor"
+msgstr ""
+
+#: ../compiz-icon/data/messages:163 ../mail/data/messages:111
+#: ../shortcuts/data/messages:107 ../stack/data/messages:99
+#: ../switcher/data/messages:149 ../tomboy/data/messages:121
+#: ../weather/data/messages:125
+msgid "Leave empty to use default sub-dock view."
+msgstr ""
+
+#: ../compiz-icon/data/messages:165 ../mail/data/messages:113
+#: ../shortcuts/data/messages:109 ../stack/data/messages:101
+#: ../switcher/data/messages:151 ../tomboy/data/messages:123
+#: ../weather/data/messages:127
+msgid "Sub-dock view name:"
+msgstr ""
+
+#: ../compiz-icon/data/messages:167 ../drop-indicator/data/messages:3
+msgid "Images"
+msgstr "Bilder"
+
+#: ../compiz-icon/data/messages:171 ../musicPlayer/data/messages:177
+#: ../tomboy/data/messages:13
+msgid "'Default' icon image name:"
+msgstr ""
+
+#: ../compiz-icon/data/messages:175 ../musicPlayer/data/messages:193
+#: ../tomboy/data/messages:21
+msgid "'Broken' icon image name:"
+msgstr ""
+
+#: ../compiz-icon/data/messages:179
+#, fuzzy
+msgid "'Other WM' icon image name:"
+msgstr "'Sehr niedrig' Symboldateiname:"
+
+#: ../compiz-icon/data/messages:183
+#, fuzzy
+msgid "'Settings' icon image name:"
+msgstr "'Durchschnittlich' Symboldateiname:"
+
+#: ../compiz-icon/data/messages:187
+#, fuzzy
+msgid "'Emerald' icon image name:"
+msgstr "'Durchschnittlich' Symboldateiname:"
+
+#: ../compiz-icon/data/messages:191
+#, fuzzy
+msgid "'Reload' icon image name:"
+msgstr "'Gut' Symboldateiname:"
+
+#: ../compiz-icon/data/messages:195
+#, fuzzy
+msgid "'Exhibition' icon image name:"
+msgstr "'Exzellent' Symboldateiname:"
+
+#: ../compiz-icon/data/messages:199
+#, fuzzy
+msgid "'Widget Layer' icon image name:"
+msgstr "'Durchschnittlich' Symboldateiname:"
+
 #: ../dialog-rendering/data/messages:1
 msgid "Comics"
 msgstr ""
@@ -6786,10 +7197,6 @@ msgstr ""
 msgid "Drag and drop indicator"
 msgstr ""
 
-#: ../drop-indicator/data/messages:3
-msgid "Images"
-msgstr "Bilder"
-
 #: ../drop-indicator/data/messages:5
 msgid ""
 "Typically an arrow, this will be displayed when you try to drop a new "
@@ -7107,18 +7514,6 @@ msgstr ""
 msgid "Show '0' if there is no mail?"
 msgstr ""
 
-#: ../mail/data/messages:111 ../shortcuts/data/messages:107
-#: ../stack/data/messages:99 ../switcher/data/messages:149
-#: ../tomboy/data/messages:121 ../weather/data/messages:125
-msgid "Leave empty to use default sub-dock view."
-msgstr ""
-
-#: ../mail/data/messages:113 ../shortcuts/data/messages:109
-#: ../stack/data/messages:101 ../switcher/data/messages:151
-#: ../tomboy/data/messages:123 ../weather/data/messages:127
-msgid "Sub-dock view name:"
-msgstr ""
-
 #: ../mail/data/messages:115
 msgid "Action on new mail"
 msgstr ""
@@ -7339,10 +7734,6 @@ msgstr ""
 msgid "List of available 3D themes for covers :"
 msgstr ""
 
-#: ../musicPlayer/data/messages:177 ../tomboy/data/messages:13
-msgid "'Default' icon image name:"
-msgstr ""
-
 #: ../musicPlayer/data/messages:181
 msgid "Name of the image for the 'play' icon :"
 msgstr "Bildname für das Symbol \"Wiedergabe\""
@@ -7354,10 +7745,6 @@ msgstr "Bildname für das Symbol \"Stopp\""
 #: ../musicPlayer/data/messages:189
 msgid "Name of the image for the 'pause' icon :"
 msgstr "Bildname für das Symbol \"Pause\""
-
-#: ../musicPlayer/data/messages:193 ../tomboy/data/messages:21
-msgid "'Broken' icon image name:"
-msgstr ""
 
 #: ../netspeed/data/messages:129
 msgid "By default this will be 'eth0'."
@@ -8201,59 +8588,18 @@ msgstr "RAW-Signal-Informationen"
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 
-#~ msgid "compiz-icon"
-#~ msgstr "compiz-symbol"
+#~ msgid "Estimated charge time:"
+#~ msgstr "Noch für das Laden benötigte Zeit:"
 
-#~ msgid ""
-#~ "This applet allows you to manage compiz and other windows manager\n"
-#~ "The sub-dock gives you to acces to CCSM, Emerald and some basic Compiz "
-#~ "actions.\n"
-#~ "You can bind one of these actions with the middle-click.\n"
-#~ "The configuration panel gives you some options to launch Compiz."
+#~ msgid "Halt"
+#~ msgstr "Stoppen"
+
+#~ msgid "Reboot"
+#~ msgstr "Neustart"
+
+#~ msgid "A power manager for laptop batteries. Works with ACPI and DBus."
 #~ msgstr ""
-#~ "Dieses Applet ermöglicht es, Compiz und andere Fenstermanager zu "
-#~ "verwalten.\n"
-#~ "Die Unter-Docks erlauben den Zugriff auf den Konfigurationsmanager von "
-#~ "Compiz, Emerald und einige grundlegende Aktionen mit Compiz.\n"
-#~ "Eine dieser Vorgänge kann an den Klick mit der mittleren Maustaste "
-#~ "gebunden werden.\n"
-#~ "Das Konfigurationsfeld stellt  einige Optionen bereit um Compiz zu "
-#~ "starten."
-
-#~ msgid "Configure Compiz"
-#~ msgstr "Konfiguriere compiz"
-
-#~ msgid "Emerald Manager"
-#~ msgstr "Emerald-Manager"
-
-#~ msgid "Reload WM"
-#~ msgstr "Lade den Fesntermanager neu"
-
-#~ msgid "Exposition"
-#~ msgstr "Darstellung"
-
-#~ msgid "Widget Layer"
-#~ msgstr "Widget Layer"
-
-#~ msgid ""
-#~ "To configure Compiz, you need to install CCSM\n"
-#~ " through your package manager (Synaptic, YasT, etc)"
-#~ msgstr ""
-#~ "Um Compiz zu konfigurieren muss der Compiz-Einstellungsmanager "
-#~ "installiert werden.\n"
-#~ " Dies ist mit Hilfe von Synaptic möglich."
-
-#~ msgid "Reload Emerald"
-#~ msgstr "Lade Emerald neu"
-
-#~ msgid "Switch Windows Decorator"
-#~ msgstr "Ändere Fensterdekoration"
-
-#~ msgid "Toggle Widget Layer"
-#~ msgstr "Wechselt zwischen den einzelnen Widget Ebenen."
-
-#~ msgid "Toggle Show Desktop"
-#~ msgstr "Wechsle Arbeitsfläche anzeigen"
+#~ "Ein Energiemanage für Laptopbatterien. Funktioniert mit ACPI und DBus."
 
 #~ msgid "Move to the Desktop"
 #~ msgstr "Auf die Arbeitsfläche verschieben"
@@ -8267,17 +8613,5 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ msgid "Download onto the Desktop"
 #~ msgstr "Auf die Arbeitsfläche herunterladen"
 
-#~ msgid "Applet"
-#~ msgstr "Applet"
-
 #~ msgid "Icon size for busy penguin:"
 #~ msgstr "Symbolgröße für fleißigen Pinguin:"
-
-#~ msgid "emerald"
-#~ msgstr "emerald"
-
-#~ msgid "gtk-window-decorator"
-#~ msgstr "gtk-window-decorator"
-
-#~ msgid "kde-window-decorator"
-#~ msgstr "kde-window-decorator"
