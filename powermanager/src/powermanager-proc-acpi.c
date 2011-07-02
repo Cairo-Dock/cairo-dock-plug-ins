@@ -152,10 +152,12 @@ gboolean cd_get_stats_from_proc_acpi (void)
 		cd_debug ("la batterie a ete connectee\n");
 		myData.iPrevTime = 0;
 		myData.iPrevPercentage = 0;
-		for (k = 0; k < PM_NB_VALUES; k ++)
+		/**for (k = 0; k < PM_NB_VALUES; k ++)
 			myData.fRateHistory[k] = 0;
 		myData.iCurrentIndex = 0;
-		myData.iIndexMax = 0;
+		myData.iIndexMax = 0;*/
+		myData.iStatPercentageBegin = 0;
+		myData.iStatPercentage = 0;
 	}
 	
 	go_to_next_line  // -> "capacity state: ok"
@@ -167,10 +169,12 @@ gboolean cd_get_stats_from_proc_acpi (void)
 	gboolean bOnBattery = (*cCurVal == 'd');  // "discharging"
 	if (bOnBattery != myData.bOnBattery)  // state changed
 	{
-		for (k = 0; k < PM_NB_VALUES; k ++)  // reset the history.
+		/**for (k = 0; k < PM_NB_VALUES; k ++)  // reset the history.
 			myData.fRateHistory[k] = 0;
 		myData.iCurrentIndex = 0;
-		myData.iIndexMax = 0;
+		myData.iIndexMax = 0;*/
+		myData.iStatPercentageBegin = 0;
+		myData.iStatPercentage = 0;
 		myData.bOnBattery = bOnBattery;
 	}
 	

@@ -20,7 +20,7 @@
 #include <stdlib.h>
 #include <glib/gi18n.h>
 
-#include "powermanager-dbus.h"
+#include "powermanager-upower.h"
 #include "powermanager-draw.h"
 #include "powermanager-struct.h"
 #include "powermanager-menu-functions.h"
@@ -28,7 +28,7 @@
 
 CD_APPLET_ON_CLICK_BEGIN
 	cairo_dock_remove_dialog_if_any (myIcon);
-	cd_powermanager_bubble();
+	cd_powermanager_bubble ();
 CD_APPLET_ON_CLICK_END
 
 static void power_config (void) {  /// a mettre dans les plug-ins d'integration.
@@ -39,7 +39,7 @@ static void power_config (void) {  /// a mettre dans les plug-ins d'integration.
 	}
 	else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
 	{
-		//Ajouter les lignes de KDE
+		/// Ajouter les lignes de KDE...
 	}
 	if (erreur != NULL)
 	{
@@ -54,13 +54,10 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	if (g_iDesktopEnv == CAIRO_DOCK_GNOME)  /// TODO: other DE...
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Set up power management"), MY_APPLET_SHARE_DATA_DIR"/default-battery.svg", power_config, CD_APPLET_MY_MENU);
-	if (myData.pProxyPower)
-	{
-		CD_APPLET_ADD_IN_MENU (D_("Halt"), power_halt, pSubMenu);
-		CD_APPLET_ADD_IN_MENU (D_("Hibernate"), power_hibernate, pSubMenu);
-		CD_APPLET_ADD_IN_MENU (D_("Suspend"), power_suspend, pSubMenu);
-		CD_APPLET_ADD_IN_MENU (D_("Reboot"), power_reboot, pSubMenu);
-	}
+	if (cd_power_can_hibernate ())
+		CD_APPLET_ADD_IN_MENU (D_("Hibernate"), cd_power_hibernate, pSubMenu);
+	if (cd_power_can_suspend ())
+		CD_APPLET_ADD_IN_MENU (D_("Suspend"), cd_power_suspend, pSubMenu);
 	CD_APPLET_ADD_SEPARATOR (pSubMenu);
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END

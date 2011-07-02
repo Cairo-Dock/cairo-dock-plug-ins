@@ -20,22 +20,22 @@
 #include <stdlib.h>
 #include <cairo-dock.h>
 
-#include "powermanager-draw.h"
-#include "powermanager-config.h"
-#include "powermanager-dbus.h"
-#include "powermanager-sys-class.h"
-#include "powermanager-proc-acpi.h"
-#include "powermanager-menu-functions.h"
 #include "powermanager-struct.h"
+#include "powermanager-config.h"
+#include "powermanager-upower.h"
+#include "powermanager-menu-functions.h"
+#include "powermanager-draw.h"
 #include "powermanager-init.h"
 
 
 CD_APPLET_DEFINITION (N_("PowerManager"),
 	2, 3, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
-	N_("This applet displays the current state of your <b>laptop battery</b>: charge, time remaining, etc"
-	"It also provides some actions on <b>right-click</b>: hibernate, reboot, etc"),
+	N_("This applet displays the current state of your <b>laptop battery</b>: charge, time remaining, etc\n"
+	"<b>Click</b> on the icon to have useful inforamtion,\n"
+	"<b>Right-click</b> on the icon to hibernate or suspend the system."),
 	"Necropotame (Adrien Pilleboue) and Fabounet")
+
 
 static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
 {
@@ -83,7 +83,6 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 
 
 CD_APPLET_INIT_BEGIN
-	
 	if (myDesklet)
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
@@ -97,15 +96,7 @@ CD_APPLET_INIT_BEGIN
 		myData.pEmblem = CD_APPLET_MAKE_EMBLEM (myConfig.cEmblemIconName);
 	cairo_dock_set_emblem_position (myData.pEmblem, CAIRO_DOCK_EMBLEM_MIDDLE);
 	
-	// try to find the battery
-	myData.bProcAcpiFound = cd_find_battery_proc_acpi ();
-	if (! myData.bProcAcpiFound)
-		myData.bSysClassFound = cd_find_battery_sys_class ();
-	
-	// try to detect the PowerManager on the bus (we want the OnBatteryChanged signal at least).
-	///cd_detect_power_manager_on_bus ();
-	if (myData.checkLoop == 0)
-		myData.checkLoop = g_timeout_add_seconds (myConfig.iCheckInterval, (GSourceFunc) update_stats_loop, (gpointer) NULL);
+	cd_powermanager_start ();
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -116,14 +107,17 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	
-	///cd_disconnect_from_bus ();
+	cairo_dock_discard_task (myData.pTask);
+	
+	if (myData.pUPowerClient != NULL)
+	{
+		g_object_unref (myData.pUPowerClient);
+	}
 	
 	if (myData.checkLoop != 0)
 	{
 		g_source_remove (myData.checkLoop);
-		myData.checkLoop = 0;
 	}
-	
 CD_APPLET_STOP_END
 
 
@@ -145,11 +139,7 @@ CD_APPLET_RELOAD_BEGIN
 		
 		_set_data_renderer (myApplet, TRUE);
 		
-		if (myData.checkLoop != 0)  // la frequence peut avoir change.
-		{
-			g_source_remove (myData.checkLoop);
-			myData.checkLoop = g_timeout_add_seconds (myConfig.iCheckInterval, (GSourceFunc) update_stats_loop, (gpointer) NULL);
-		}
+		cd_powermanager_change_loop_frequency (myConfig.iCheckInterval);
 	}
 	else
 	{

@@ -72,10 +72,11 @@ static gboolean _find_battery_in_dir (const gchar *cBatteryPath)
 		length=0;
 		cd_debug ("  examen de la batterie '%s' ...", sBatteryInfoFilePath->str);
 		g_file_get_contents (sBatteryInfoFilePath->str, &cContent, &length, NULL);
-		if (cContent != NULL && strcmp (cContent, "Battery") == 0)  // that's a battery => take it.
+		if (cContent != NULL && strncmp (cContent, "Battery", 7) == 0)  // there may be a \n at the end, so let's ignore it.
 		{
 			myData.cBatteryStateFilePath = g_strdup_printf ("%s/%s/uevent", cBatteryPath, cBatteryName);
 			bBatteryFound = TRUE;  // get the capacity when we read the uevent for the first time.
+			cd_debug ("  myData.cBatteryStateFilePath: %s", myData.cBatteryStateFilePath);
 		}
 		g_free (cContent);
 	}
@@ -89,6 +90,13 @@ gboolean cd_find_battery_sys_class (void)
 	return bBatteryFound;
 }
 
+#define _get_static_value(s, x) \
+str = strstr (cContent, s);\
+if (str) { \
+	str += strlen(s)+1;\
+	cr = strchr (str, '\n');\
+	if (cr) x = g_strndup (str, cr - str);\
+	else x = g_strdup (str); }
 
 gboolean cd_get_stats_from_sys_class (void)
 {
@@ -107,19 +115,20 @@ gboolean cd_get_stats_from_sys_class (void)
 	g_return_val_if_fail (cContent != NULL, FALSE);
 	
 	int k;
-	gchar *cCurLine = cContent, *cCurVal = cContent;
 	
 	//\_______________ check 'on battery' state.
 	gchar *str = strstr (cContent, "STATUS");
 	g_return_val_if_fail (str != NULL, FALSE);
 	str += 7;
-	gboolean bOnBattery = (*cCurVal == 'D');  // "Discharging"
+	gboolean bOnBattery = (*str == 'D');  // "Discharging"
 	if (bOnBattery != myData.bOnBattery)  // state changed
 	{
-		for (k = 0; k < PM_NB_VALUES; k ++)  // reset the history.
+		/**for (k = 0; k < PM_NB_VALUES; k ++)  // reset the history.
 			myData.fRateHistory[k] = 0;
 		myData.iCurrentIndex = 0;
-		myData.iIndexMax = 0;
+		myData.iIndexMax = 0;*/
+		myData.iStatPercentageBegin = 0;
+		myData.iStatPercentage = 0;
 		myData.bOnBattery = bOnBattery;
 	}
 	
@@ -127,7 +136,7 @@ gboolean cd_get_stats_from_sys_class (void)
 	str = strstr (cContent, "PRESENT");
 	g_return_val_if_fail (str != NULL, FALSE);
 	str += 8;
-	gboolean bBatteryPresent = (*cCurVal == '1');
+	gboolean bBatteryPresent = (*str == '1');
 	if (bBatteryPresent != myData.bBatteryPresent)  // the battery has just been inserted/removed. 
 	{
 		myData.bBatteryPresent = bBatteryPresent;
@@ -141,13 +150,15 @@ gboolean cd_get_stats_from_sys_class (void)
 		}
 		
 		// reset the history.
-		cd_debug ("la batterie a ete connectee\n");
+		cd_debug ("la batterie a ete connectee");
 		myData.iPrevTime = 0;
 		myData.iPrevPercentage = 0;
-		for (k = 0; k < PM_NB_VALUES; k ++)
+		/**for (k = 0; k < PM_NB_VALUES; k ++)
 			myData.fRateHistory[k] = 0;
 		myData.iCurrentIndex = 0;
-		myData.iIndexMax = 0;
+		myData.iIndexMax = 0;*/
+		myData.iStatPercentageBegin = 0;
+		myData.iStatPercentage = 0;
 	}
 	
 	//\_______________ get the current charge.
@@ -158,6 +169,19 @@ gboolean cd_get_stats_from_sys_class (void)
 		str += 12;
 		myData.iCapacity = atoi (str);
 		g_return_val_if_fail (myData.iCapacity != 0, FALSE);
+		// also get few other static params.
+		gchar *cr;
+		_get_static_value ("TECHNOLOGY", myData.cTechnology)
+		_get_static_value ("MANUFACTURER", myData.cVendor)
+		_get_static_value ("MODEL_NAME", myData.cModel)
+		str = strstr (cContent, "FULL_DESIGN");
+		if (str)
+		{
+			str += 12;
+			int iMaxCapacity = atoi (str);
+			if (iMaxCapacity != 0)
+				myData.fMaxAvailableCapacity = 100. * myData.iCapacity / iMaxCapacity;
+		}
 	}
 	
 	str = strstr (cContent, "CHARGE_NOW");
@@ -189,7 +213,6 @@ gboolean cd_get_stats_from_sys_class (void)
 	//\_______________ now compute the time.
 	myData.iTime = cd_compute_time (fPresentRate, iRemainingCapacity);
 	
-	//cd_message ("PowerManager : On Battery:%d ; iCapacity:%dmWh ; iRemainingCapacity:%dmWh ; fPresentRate:%.2fmW ; iPresentVoltage:%dmV", myData.bOnBattery, myData.iCapacity, iRemainingCapacity, fPresentRate, iPresentVoltage); 
 	g_free (cContent);
 	return (TRUE);
 }

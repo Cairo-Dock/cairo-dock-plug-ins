@@ -103,6 +103,10 @@ CD_APPLET_RESET_DATA_BEGIN
 	
 	g_free (myData.cBatteryStateFilePath);
 	
+	g_free (myData.cTechnology);
+	g_free (myData.cVendor);
+	g_free (myData.cModel);
+	
 	cairo_dock_free_emblem (myData.pEmblem);
 	
 CD_APPLET_RESET_DATA_END

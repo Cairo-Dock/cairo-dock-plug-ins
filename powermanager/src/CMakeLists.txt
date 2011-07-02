@@ -7,7 +7,7 @@ SET(cd-powermanager_LIB_SRCS
 	powermanager-draw.c		powermanager-draw.h
 	powermanager-config.c		powermanager-config.h
 	powermanager-common.c		powermanager-common.h
-	powermanager-dbus.c		powermanager-dbus.h
+	powermanager-upower.c		powermanager-upower.h
 	powermanager-proc-acpi.c	powermanager-proc-acpi.h
 	powermanager-sys-class.c	powermanager-sys-class.h
 	powermanager-menu-functions.c	powermanager-menu-functions.h
@@ -29,12 +29,15 @@ if (${POWERMANAGER_FOUND})
 endif()
 
 include_directories (
+	${POWERMANAGER_INCLUDE_DIRS}
 	${PACKAGE_INCLUDE_DIRS})
 
 link_directories (
+	${POWERMANAGER_LIBRARY_DIRS}
 	${PACKAGE_LIBRARY_DIRS})
 
 target_link_libraries (${PACKAGE_POWERMANAGER}
+	${POWERMANAGER_LIBRARIES}
 	${PACKAGE_LIBRARIES})
 
 ########### install files ###############

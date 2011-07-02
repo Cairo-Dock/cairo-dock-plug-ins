@@ -161,12 +161,6 @@ quick-info_type=2
 #{Leave empty to use the default icon.}
 emblem icon = 
 
-use approx = false
-
-use_dbus = false
-
-use gauge = true
-
 discharge rate = 0
 charge rate = 0
 

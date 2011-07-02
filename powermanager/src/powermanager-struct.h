@@ -21,7 +21,9 @@
 #define  __POWERMANAGER_STRUCT__
 
 #include <cairo-dock.h>
-
+#ifdef CD_UPOWER_AVAILABLE
+#include <upower.h>
+#endif
 
 typedef enum _CDPowermanagerDisplayType {
 	CD_POWERMANAGER_GAUGE=0,
@@ -81,18 +83,48 @@ struct _AppletConfig {
 	MyAppletEffect iEffect;
   } ;
 
+
+/**typedef struct {
+	gint iTime;
+	gint iPercentage;
+	gboolean bOnBattery;
+	gboolean bBatteryPresent;
+	} CDBateryState;*/
+
+typedef struct {
+	#ifdef CD_UPOWER_AVAILABLE
+	UpClient *pUPowerClient;
+	UpDevice *pBatteryDevice;
+	#else
+	gpointer pUPowerClient;  // will stay NULL.
+	gpointer pBatteryDevice;  // will stay NULL.
+	#endif
+	} CDSharedMemory;
+
 #define PM_NB_VALUES 100
 struct _AppletData {
-	DBusGProxy *pProxyPower;
-	DBusGProxy *pProxyStats;
-	DBusGProxy *pProxyWidget;
+	CairoDockTask *pTask;
+	#ifdef CD_UPOWER_AVAILABLE
+	UpClient *pUPowerClient;
+	#else
+	gpointer pUPowerClient;  // will stay NULL.
+	#endif
 	gchar *cBatteryStateFilePath;
-	gint iTime, iPrevTime;
-	gint iPercentage, iPrevPercentage;  // charge
-	gboolean bOnBattery, bPrevOnBattery;
-	gboolean bBatteryPresent;
 	gboolean bProcAcpiFound;
 	gboolean bSysClassFound;
+	
+	gchar *cTechnology;
+	gchar *cVendor;
+	gchar *cModel;
+	gdouble fMaxAvailableCapacity;
+	
+	gint iTime;
+	gint iPercentage;
+	gboolean bOnBattery;
+	gboolean bBatteryPresent;
+	gint iPrevTime;
+	gint iPrevPercentage;
+	gboolean bPrevOnBattery;
 	
 	cairo_surface_t *pSurfaceBattery;
 	cairo_surface_t *pSurfaceCharge;
@@ -101,15 +133,19 @@ struct _AppletData {
 	gboolean bCritical;
 	gint checkLoop;
 	
-	gdouble fRateHistory[PM_NB_VALUES];
+	/**gdouble fRateHistory[PM_NB_VALUES];
 	gint iCurrentIndex;
-	gint iIndexMax;
-	gboolean bUseDBus;
+	gint iIndexMax;*/
 	
 	gdouble fChargeMeanRate;
 	gint iNbChargeMeasures;
 	gdouble fDischargeMeanRate;
 	gint iNbDischargeMeasures;
+	
+	gint iStatPercentage;
+	gint iStatPercentageBegin;
+	gint iStatTime;
+	gint iStatTimeCount;
 	
 	CairoEmblem *pEmblem;
 	} ;

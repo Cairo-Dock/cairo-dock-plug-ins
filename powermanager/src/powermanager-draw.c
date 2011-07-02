@@ -23,14 +23,25 @@
 #include "powermanager-struct.h"
 #include "powermanager-draw.h"
 
+/* 3 states:
+no battery -> empty gauge (0%), on-sector emblem, no alert
+on battery -> gauge + %, no emblem, alert
+on sector -> gauge + %, on-sector emblem, alert
+*/
 
 void update_icon (void)
 {
 	gboolean bNeedRedraw = FALSE;
 	cd_message ("%s (on battery: %d -> %d; time:%.1f -> %.1f ; charge:%.1f -> %.1f)", __func__, myData.bPrevOnBattery, myData.bOnBattery, (double)myData.iPrevTime, (double)myData.iTime, (double)myData.iPrevPercentage, (double)myData.iPercentage);
 	
+	if (myData.cBatteryStateFilePath == NULL && myData.pUPowerClient == NULL)
+	{
+		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("sector.svg");
+		CD_APPLET_REDRAW_MY_ICON;
+		return;
+	}
 	// on prend en compte la nouvelle charge.
-	if (myData.bPrevOnBattery != myData.bOnBattery || myData.iPrevPercentage != myData.iPercentage)
+	if (myData.bPrevOnBattery != myData.bOnBattery || myData.iPrevPercentage != myData.iPercentage || myData.iTime != myData.iPrevTime)
 	{
 		if (myData.bPrevOnBattery != myData.bOnBattery)
 		{
@@ -40,6 +51,7 @@ void update_icon (void)
 		}
 		
 		// on redessine l'icone.
+		g_print ("redraw icon\n");
 		if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE || myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)
 		{
 			double fPercent = (double) myData.iPercentage / 100.;
@@ -99,11 +111,10 @@ void update_icon (void)
 			{
 				strncpy (cFormatBuffer, "-:--", iBufferLength);
 			}
-			CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s: %d%% - %s: %s",
-				D_("Charge"),
-				(int)myData.iPercentage,
-				D_("Time"),
-				cFormatBuffer);
+			CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s: %s (%d%%)",
+				myData.bOnBattery ? D_("Time before empty") : D_("Time before full"),
+				cFormatBuffer,
+				(int)myData.iPercentage);
 		}
 		
 		myData.bPrevOnBattery = myData.bOnBattery;
@@ -118,13 +129,11 @@ void update_icon (void)
 gchar *get_hours_minutes (int iTimeInSeconds)
 {
 	gchar *cTimeString;
-	int h=0, m=0;
-	m = iTimeInSeconds / 60;
-	h = m / 60;
-	m = m - (h * 60);
-	if (h > 0) cTimeString = g_strdup_printf("%dh%02dm", h, m);
+	int h = iTimeInSeconds / 3600;
+	int m = (iTimeInSeconds % 3600) / 60;
+	if (h > 0) 		cTimeString = g_strdup_printf("%dh%02dm", h, m);
 	else if (m > 0) cTimeString = g_strdup_printf("%dm", m);
-	else cTimeString = g_strdup (D_("None"));
+	else 			cTimeString = g_strdup (D_("None"));
 	
 	return cTimeString;
 }
@@ -133,21 +142,22 @@ static void _cd_powermanager_dialog (const gchar *cInfo, int iDuration)
 {
 	cairo_dock_remove_dialog_if_any (myIcon);
 	
-	const gchar *cIconPath;
+	/**const gchar *cIconPath;
 	if (!myData.bOnBattery)
 		cIconPath = MY_APPLET_SHARE_DATA_DIR"/sector.svg";
 	else
 		cIconPath = MY_APPLET_SHARE_DATA_DIR"/default-battery.svg";
 	
-	cd_debug ("%s (%s)", cInfo, cIconPath);
-	cairo_dock_show_temporary_dialog_with_icon (cInfo, myIcon, myContainer, 1000*iDuration, cIconPath);
+	cd_debug ("%s (%s)", cInfo, cIconPath);*/
+	cairo_dock_show_temporary_dialog_with_icon (cInfo, myIcon, myContainer, 1000*iDuration, "same icon");
 }
 
 void cd_powermanager_bubble (void)
 {
 	GString *sInfo = g_string_new ("");
-	if (myData.cBatteryStateFilePath != NULL || myData.pProxyStats != NULL)
+	if (myData.cBatteryStateFilePath != NULL || myData.pUPowerClient != NULL)
 	{
+		// time and charge.
 		gchar *hms = NULL;
 		if (myData.iTime > 0.)
 			hms = get_hours_minutes (myData.iTime);
@@ -155,20 +165,44 @@ void cd_powermanager_bubble (void)
 			hms = g_strdup_printf ("%s", D_("Unknown"));
 		if(myData.bOnBattery)
 		{
-			g_string_printf (sInfo, "%s %d%% \n %s %s", D_("Laptop on Battery.\n Battery charged at:"), (int)myData.iPercentage, D_("Estimated time with charge:"), hms);
+			g_string_printf (sInfo, "%s\n"
+				"%s %d%%\n"
+				"%s %s",
+				D_("Laptop on Battery."),
+				D_("Battery charged at:"), (int)myData.iPercentage,
+				D_("Estimated time before empty:"), hms);
 		}
 		else
 		{
-			g_string_printf (sInfo, "%s %d%% \n %s %s", D_("Laptop on Charge.\n Battery charged at:"), (int)myData.iPercentage, D_("Estimated charge time:"), (myData.iPercentage > 99.9 ? "0" : hms));
+			g_string_printf (sInfo, "%s\n"
+			"%s %d%%\n"
+			"%s %s",
+			D_("Laptop on Charge."),
+			D_(" Battery charged at:"), (int)myData.iPercentage,
+			D_("Estimated time before full:"), (myData.iPercentage > 99.9 ? "0" : hms));
 		}
 		g_free (hms);
+		
+		// static info
+		if (myData.cVendor != NULL || myData.cModel != NULL)
+		{
+			g_string_append_printf (sInfo, "\n%s: %s %s", D_("Model"), myData.cVendor ? myData.cVendor : "", myData.cModel ? myData.cModel : "");
+		}
+		if (myData.cTechnology != NULL)
+		{
+			g_string_append_printf (sInfo, "\n%s: %s", D_("Technology"), myData.cTechnology);
+		}
+		if (myData.fMaxAvailableCapacity != 0)
+		{
+			g_string_append_printf (sInfo, "\n%s: %d%%", D_("Maximum capacity"), (int)myData.fMaxAvailableCapacity);
+		}
 	}
 	else
 	{
 		g_string_assign (sInfo, D_("No battery found."));
 	}
 	
-	_cd_powermanager_dialog (sInfo->str, 6);
+	_cd_powermanager_dialog (sInfo->str, 7);
 	g_string_free (sInfo, TRUE);
 }
 
@@ -284,6 +318,7 @@ void cd_powermanager_format_value (CairoDataRenderer *pRenderer, int iNumValue, 
 			int time = myData.iTime;
 			int hours = time / 3600;
 			int minutes = (time % 3600) / 60;
+			g_print ("time: %d -> %d;%d\n", time, hours, minutes);
 			if (hours != 0)
 				snprintf (cFormatBuffer, iBufferLength, "%dh%02d", hours, abs (minutes));
 			else
