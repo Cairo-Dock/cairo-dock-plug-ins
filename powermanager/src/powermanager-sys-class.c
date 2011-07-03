@@ -196,22 +196,8 @@ gboolean cd_get_stats_from_sys_class (void)
 	if (myData.iPercentage < 0)
 		myData.iPercentage = 0.;
 	
-	//\_______________ compute the variation rate.
-	double fPresentRate = cd_compute_current_rate ();
-	
-	//\_______________ store this value in conf if it has changed too much.
-	if (fPresentRate > 0)
-	{
-		cd_store_current_rate (fPresentRate);
-	}
-	else if (myData.bOnBattery || myData.iPercentage < 99.9)  // if we are on sector and fully charged, the rate is of course 0.
-	{
-		cd_debug ("no rate, using last know values : %.2f ; %.2f\n", myConfig.fLastDischargeMeanRate, myConfig.fLastChargeMeanRate);
-		fPresentRate = (myData.bOnBattery ? myConfig.fLastDischargeMeanRate : myConfig.fLastChargeMeanRate);
-	}
-	
 	//\_______________ now compute the time.
-	myData.iTime = cd_compute_time (fPresentRate, iRemainingCapacity);
+	myData.iTime = cd_estimate_time ();
 	
 	g_free (cContent);
 	return (TRUE);

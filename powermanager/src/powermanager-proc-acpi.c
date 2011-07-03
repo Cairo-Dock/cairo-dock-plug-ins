@@ -216,25 +216,8 @@ gboolean cd_get_stats_from_proc_acpi (void)
 	if (myData.iPercentage < 0)
 		myData.iPercentage = 0.;
 	
-	//\_______________ compute the variation rate if not available in the file.
-	if (fPresentRate == 0)
-		fPresentRate = cd_compute_current_rate ();
-	else
-		cd_message ("found fPresentRate = %.2f\n", fPresentRate);
-	
-	//\_______________ store this value in conf if it has changed too much.
-	if (fPresentRate > 0)
-	{
-		cd_store_current_rate (fPresentRate);
-	}
-	else if (myData.bOnBattery || myData.iPercentage < 99.9)  // if we are on sector and fully charged, the rate is of course 0.
-	{
-		cd_debug ("no rate, using last know values : %.2f ; %.2f\n", myConfig.fLastDischargeMeanRate, myConfig.fLastChargeMeanRate);
-		fPresentRate = (myData.bOnBattery ? myConfig.fLastDischargeMeanRate : myConfig.fLastChargeMeanRate);
-	}
-	
 	//\_______________ now compute the time.
-	myData.iTime = cd_compute_time (fPresentRate, iRemainingCapacity);
+	myData.iTime = cd_estimate_time ();
 	
 	//cd_message ("PowerManager : On Battery:%d ; iCapacity:%dmWh ; iRemainingCapacity:%dmWh ; fPresentRate:%.2fmW ; iPresentVoltage:%dmV", myData.bOnBattery, myData.iCapacity, iRemainingCapacity, fPresentRate, iPresentVoltage); 
 	g_free (cContent);

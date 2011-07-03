@@ -22,6 +22,7 @@
 
 #include "powermanager-struct.h"
 #include "powermanager-config.h"
+#include "powermanager-common.h"
 #include "powermanager-upower.h"
 #include "powermanager-menu-functions.h"
 #include "powermanager-draw.h"

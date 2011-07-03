@@ -23,13 +23,13 @@
 #include <glib.h>
 
 
-double cd_compute_current_rate (void);
+int cd_estimate_time (void);
 
 
-void cd_store_current_rate (double fPresentRate);
+void cd_check_power_files (void);
 
 
-double cd_compute_time (double fPresentRate, int iRemainingCapacity);
+void cd_powermanager_change_loop_frequency (gint iSeconds);
 
 
 #endif

@@ -51,7 +51,6 @@ void update_icon (void)
 		}
 		
 		// on redessine l'icone.
-		g_print ("redraw icon\n");
 		if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE || myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)
 		{
 			double fPercent = (double) myData.iPercentage / 100.;
@@ -95,26 +94,35 @@ void update_icon (void)
 		
 		if (myConfig.defaultTitle == NULL || *myConfig.defaultTitle == '\0')
 		{
-			gchar cFormatBuffer[21];
-			int iBufferLength = 20;
-			if (myData.iTime != 0)
+			if (! myData.bOnBattery && myData.iPercentage > 99.9)
 			{
-				int time = myData.iTime;
-				int hours = time / 3600;
-				int minutes = (time % 3600) / 60;
-				if (hours != 0)
-					snprintf (cFormatBuffer, iBufferLength, "%dh%02d", hours, abs (minutes));
-				else
-					snprintf (cFormatBuffer, iBufferLength, "%dmn", minutes);
+				CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s (%d%%)",
+					D_("Battery charged"),
+					(int)myData.iPercentage);
 			}
 			else
 			{
-				strncpy (cFormatBuffer, "-:--", iBufferLength);
+				gchar cFormatBuffer[21];
+				int iBufferLength = 20;
+				if (myData.iTime != 0)
+				{
+					int time = myData.iTime;
+					int hours = time / 3600;
+					int minutes = (time % 3600) / 60;
+					if (hours != 0)
+						snprintf (cFormatBuffer, iBufferLength, "%dh%02d", hours, abs (minutes));
+					else
+						snprintf (cFormatBuffer, iBufferLength, "%dmn", minutes);
+				}
+				else
+				{
+					strncpy (cFormatBuffer, "-:--", iBufferLength);
+				}
+				CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s: %s (%d%%)",
+					myData.bOnBattery ? D_("Time before empty") : D_("Time before full"),
+					cFormatBuffer,
+					(int)myData.iPercentage);
 			}
-			CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s: %s (%d%%)",
-				myData.bOnBattery ? D_("Time before empty") : D_("Time before full"),
-				cFormatBuffer,
-				(int)myData.iPercentage);
 		}
 		
 		myData.bPrevOnBattery = myData.bOnBattery;
@@ -131,8 +139,8 @@ gchar *get_hours_minutes (int iTimeInSeconds)
 	gchar *cTimeString;
 	int h = iTimeInSeconds / 3600;
 	int m = (iTimeInSeconds % 3600) / 60;
-	if (h > 0) 		cTimeString = g_strdup_printf("%dh%02dm", h, m);
-	else if (m > 0) cTimeString = g_strdup_printf("%dm", m);
+	if (h > 0) 		cTimeString = g_strdup_printf ("%dh%02dm", h, m);
+	else if (m > 0) cTimeString = g_strdup_printf ("%dm", m);
 	else 			cTimeString = g_strdup (D_("None"));
 	
 	return cTimeString;
@@ -163,7 +171,7 @@ void cd_powermanager_bubble (void)
 			hms = get_hours_minutes (myData.iTime);
 		else
 			hms = g_strdup_printf ("%s", D_("Unknown"));
-		if(myData.bOnBattery)
+		if (myData.bOnBattery)
 		{
 			g_string_printf (sInfo, "%s\n"
 				"%s %d%%\n"
@@ -175,11 +183,11 @@ void cd_powermanager_bubble (void)
 		else
 		{
 			g_string_printf (sInfo, "%s\n"
-			"%s %d%%\n"
-			"%s %s",
-			D_("Laptop on Charge."),
-			D_(" Battery charged at:"), (int)myData.iPercentage,
-			D_("Estimated time before full:"), (myData.iPercentage > 99.9 ? "0" : hms));
+				"%s %d%%\n"
+				"%s %s",
+				D_("Laptop on Charge."),
+				D_("Battery charged at:"), (int)myData.iPercentage,
+				D_("Estimated time before full:"), (myData.iPercentage > 99.9 ? "0" : hms));
 		}
 		g_free (hms);
 		
@@ -188,7 +196,7 @@ void cd_powermanager_bubble (void)
 		{
 			g_string_append_printf (sInfo, "\n%s: %s %s", D_("Model"), myData.cVendor ? myData.cVendor : "", myData.cModel ? myData.cModel : "");
 		}
-		if (myData.cTechnology != NULL)
+		if (0&&myData.cTechnology != NULL)
 		{
 			g_string_append_printf (sInfo, "\n%s: %s", D_("Technology"), myData.cTechnology);
 		}
