@@ -36,6 +36,7 @@ void cd_systray_build_dialog (void)
 	CairoDialogAttribute attr;
 	memset (&attr, 0, sizeof (CairoDialogAttribute));
 	attr.pInteractiveWidget = GTK_WIDGET (myData.tray);
+	attr.bHideOnClick = TRUE;  // keep the dialog alive on click (hide it).
 	myData.dialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);
 	gtk_window_set_resizable (GTK_WINDOW(myData.dialog->container.pWidget), FALSE);  /// utile ?...
 	cairo_dock_hide_dialog (myData.dialog);
