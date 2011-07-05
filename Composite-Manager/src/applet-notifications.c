@@ -118,6 +118,15 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_MY_MENU);
 	g_free (cLabel);
 	
+	cLabel = (myConfig.iActionOnMiddleClick == CD_RELOAD_WM ? g_strdup_printf ("%s (%s)", D_("Reload Window-Manager"), D_("middle-click")) : g_strdup (D_("Reload Window-Manager")));
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel,
+		GTK_STOCK_REFRESH,
+		cd_reload_wm,
+		CD_APPLET_MY_MENU);
+	g_free (cLabel);
+	
+	CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
+	
 	cLabel = (myConfig.iActionOnMiddleClick == CD_SHOW_DESKTOP ? g_strdup_printf ("%s (%s)", D_("Show desktop"), D_("middle-click")) : g_strdup (D_("Show desktop")));
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel,
 		MY_APPLET_SHARE_DATA_DIR"/../shared-images/show-desktop.svg",

@@ -46,6 +46,7 @@ typedef enum {
 
 typedef enum {
 	CD_EDIT_CONFIG,
+	CD_RELOAD_WM,
 	CD_SHOW_DESKTOP,
 	CD_EXPOSE_DESKTOPS,
 	CD_EXPOSE_WINDOWS,

@@ -40,4 +40,7 @@ void cd_toggle_composite (void);
 void cd_open_wm_config (void);
 
 
+void cd_reload_wm (void);
+
+
 #endif

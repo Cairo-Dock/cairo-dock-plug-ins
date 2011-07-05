@@ -130,7 +130,7 @@ ask = true
 #v
 sep_act=
 
-#l[Edit Window-Manager settings;Show desktop;Expose all the desktops;Expose all the windows;Show the Widget Layer] Action on middle-click:
+#l[Edit Window-Manager settings;Reload Window-Manager;Show desktop;Expose all the desktops;Expose all the windows;Show the Widget Layer] Action on middle-click:
 action on click = 0
 
 #k Shortkey to toggle the composite ON/OFF:

@@ -510,3 +510,26 @@ void cd_open_wm_config (void)
 		cairo_dock_show_temporary_dialog_with_icon (D_("No configuration tool is available."), myIcon, myContainer, 6000, "same icon");
 	}
 }
+
+
+static const gchar *_get_command (void)
+{
+	if (myData.bIsComposited && myData.wmc)
+	{
+		return myData.wmc->cCommand;
+	}
+	else if (!myData.bIsComposited && myData.wmfb)
+	{
+		return myData.wmfb->cCommand;
+	}
+	return NULL;
+}
+
+void cd_reload_wm (void)
+{
+	const gchar *cCommand = _get_command ();
+	if (cCommand != NULL)
+	{
+		cairo_dock_launch_command (cCommand);
+	}
+}
