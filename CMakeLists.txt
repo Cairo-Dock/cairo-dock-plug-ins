@@ -48,17 +48,17 @@ set (GETTEXT_PACKAGE ${PACKAGE})
 
 # get plug-ins install dir
 execute_process(
-    COMMAND pkg-config cairo-dock --variable=pluginsdir		# /usr/lib/cairo-dock
+    COMMAND pkg-config gldi --variable=pluginsdir		# /usr/lib/cairo-dock
     OUTPUT_VARIABLE pluginsdir)
 STRING (REGEX REPLACE "\n" "" pluginsdir ${pluginsdir})  # la commande rajoute un retour chariot ...
 # get plug-ins data dir
 execute_process(
-    COMMAND pkg-config cairo-dock --variable=pluginsdatadir	# /usr/share/cairo-dock/plug-ins
+    COMMAND pkg-config gldi --variable=pluginsdatadir	# /usr/share/cairo-dock/plug-ins
     OUTPUT_VARIABLE pluginsdatadir)
 STRING (REGEX REPLACE "\n" "" pluginsdatadir ${pluginsdatadir})
 # check that version matches with the core
 execute_process(
-    COMMAND pkg-config --modversion cairo-dock			# 2.2.0-3
+    COMMAND pkg-config --modversion gldi			# 2.2.0-3
     OUTPUT_VARIABLE dock_version)
 STRING (REGEX REPLACE "\n" "" dock_version ${dock_version})
 if (NOT "${dock_version}" STREQUAL "${VERSION}")		# Version
@@ -100,7 +100,8 @@ message (STATUS "Check dependancies...")
 message (STATUS "=====================")
 message ("")
 
-pkg_check_modules ("PACKAGE" REQUIRED "gtk+-2.0" "gthread-2.0" "cairo" "librsvg-2.0" "dbus-1" "dbus-glib-1" "libxml-2.0" "gtkglext-1.0" "cairo-dock")
+pkg_check_modules ("PACKAGE" REQUIRED "gtk+-2.0" "gthread-2.0" "cairo" "librsvg-2.0" "dbus-1" "dbus-glib-1" "libxml-2.0" "gtkglext-1.0" "gldi")
+message (STATUS "PACKAGE: ${PACKAGE_INCLUDE_DIRS}")
 
 #############    GLIB    #################
 pkg_check_modules (GLIB glib-2.0)
