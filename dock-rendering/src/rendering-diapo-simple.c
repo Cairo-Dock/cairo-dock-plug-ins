@@ -1004,6 +1004,8 @@ Icon *cd_rendering_calculate_icons_diapo_simple (CairoDock *pDock)
 	// On recupere la configuration de la grille
 	gint nRowsX = pData->nRowsX;
 	gint nRowsY = pData->nRowsY;
+	if (nRowsX == 0 || nRowsY == 0)  // maybe a dock with no displayed icons (like 1 separator); anyway the grid is not valid, so discard.
+		return NULL;
 	
 	// On calcule les parametres des icones
 	Icon *pPointedIcon = _cd_rendering_calculate_icons_for_diapo_simple (pDock, nRowsX, nRowsY, pDock->container.iMouseX, pDock->container.iMouseY);
