@@ -100,7 +100,9 @@ message (STATUS "Check dependancies...")
 message (STATUS "=====================")
 message ("")
 
-pkg_check_modules ("PACKAGE" REQUIRED "gtk+-2.0" "gthread-2.0" "cairo" "librsvg-2.0" "dbus-1" "dbus-glib-1" "libxml-2.0" "gtkglext-1.0" "cairo-dock")
+pkg_check_modules ("PACKAGE" REQUIRED "gtk+-2.0" "gthread-2.0" "cairo" "librsvg-2.0" "dbus-1" "dbus-glib-1" "libxml-2.0" "gtkglext-1.0")
+pkg_check_modules ("GLDI" REQUIRED "gldi")  # we don't want to link with gldi
+set (PACKAGE_INCLUDE_DIRS "${PACKAGE_INCLUDE_DIRS} ${GLDI_INCLUDE_DIRS}")
 message (STATUS "PACKAGE: ${PACKAGE_INCLUDE_DIRS}")
 
 #############    GLIB    #################
