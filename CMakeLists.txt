@@ -100,7 +100,7 @@ message (STATUS "Check dependancies...")
 message (STATUS "=====================")
 message ("")
 
-pkg_check_modules ("PACKAGE" REQUIRED "gtk+-2.0" "gthread-2.0" "cairo" "librsvg-2.0" "dbus-1" "dbus-glib-1" "libxml-2.0" "gtkglext-1.0" "gldi")
+pkg_check_modules ("PACKAGE" REQUIRED "gtk+-2.0" "gthread-2.0" "cairo" "librsvg-2.0" "dbus-1" "dbus-glib-1" "libxml-2.0" "gtkglext-1.0" "cairo-dock")
 message (STATUS "PACKAGE: ${PACKAGE_INCLUDE_DIRS}")
 
 #############    GLIB    #################
