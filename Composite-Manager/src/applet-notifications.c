@@ -81,6 +81,11 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 			 cd_open_wm_config();
 		}
 		break;
+		case CD_RELOAD_WM:
+		{
+			 cd_reload_wm();
+		}
+		break;
 		case CD_SHOW_DESKTOP:
 		{
 			_cd_show_desktop ();
@@ -102,7 +107,8 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 			_cd_show_widget_layer ();
 		}
 		break;
-		default:
+		default: // shouldn't happen.
+			cd_warning ("problem in the config!");
 		break;
 	}
 CD_APPLET_ON_MIDDLE_CLICK_END
