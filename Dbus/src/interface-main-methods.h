@@ -50,9 +50,9 @@ gboolean cd_dbus_main_add_launcher (dbusMainObject *pDbusCallback, const gchar *
 
 gboolean cd_dbus_main_add_temporary_icon (dbusMainObject *pDbusCallback, GHashTable *hIconAttributes, GError **error);
 
-gboolean cd_dbus_main_reload_launcher (dbusMainObject *dbusMainObject, const gchar *cDesktopFile, GError **error);
+gboolean cd_dbus_main_reload_icon (dbusMainObject *dbusMainObject, gchar *cIconQuery, GError **error);
 
-gboolean cd_dbus_main_remove_launcher (dbusMainObject *dbusMainObject, const gchar *cDesktopFile, GError **error);
+gboolean cd_dbus_main_remove_icon (dbusMainObject *pDbusCallback, gchar *cIconQuery, GError **error);
 
 
 gboolean cd_dbus_main_set_quick_info (dbusMainObject *dbusMainObject, const gchar *cQuickInfo, gchar *cIconQuery, GError **error);

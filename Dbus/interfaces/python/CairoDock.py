@@ -22,7 +22,7 @@ import os.path
 import dbus
 import re
 
-USER_DIR = os.path.abspath("~/.config")
+USER_CONFIG_DIR = os.path.abspath("~/.config")
 
 
 ##################
@@ -30,8 +30,51 @@ USER_DIR = os.path.abspath("~/.config")
 ##################
 class CairoDock:
 	
+	#############
+	### Enums ###
+	#############
+	# orientation
+	BOTTOM = 0
+	TOP    = 1
+	RIGHT  = 2
+	LEFT   = 3
+	# container type
+	DOCK    = "Dock"
+	DESKLET = "Desklet"
+	# emblem position
+	UPPER_LEFT  = 0
+	LOWER_RIGHT = 1
+	LOWER_LEFT  = 2
+	UPPER_RIGHT = 3
+	MIDDLE      = 4
+	# module category
+	CATEGORY_BEHAVIOR         = 0
+	CATEGORY_THEME            = 1
+	CATEGORY_APPLET_FILES     = 2
+	CATEGORY_APPLET_INTERNET  = 3
+	CATEGORY_APPLET_DESKTOP   = 4
+	CATEGORY_APPLET_ACCESSORY = 5
+	CATEGORY_APPLET_SYSTEM    = 6
+	CATEGORY_APPLET_FUN       = 7
+	# module type
+	CAN_DOCK    = 1
+	CAN_DESKLET = 2
+	# icon type
+	TYPE_LAUNCHER        = "Launcher"
+	TYPE_APPLICATION     = "Application"
+	TYPE_APPLET          = "Applet"
+	TYPE_SEPARATOR       = "Separator"
+	TYPE_CONTAINER       = "Container"
+	TYPE_CLASS_CONTAINER = "Class-Container"
+	TYPE_OTHER           = "Other"
+	
+	
+	#####################
+	### INIT AND DBUS ###
+	#####################
+	
 	def __init__(self, app_name="cairo-dock"):
-		""" initialize the interface.
+		""" Initialize the interface.
 		It defines the following:
 		 - cDataDir: main dir
 		 - cCurrentThemeDir: current theme dir
@@ -39,8 +82,10 @@ class CairoDock:
 		 """
 		self.dock = None
 		self.cAppName = app_name
-		self.cDataDir = USER_DIR + '/' + app_name
+		self.cDataDir = USER_CONFIG_DIR + '/' + app_name
 		self.cCurrentThemeDir = self.cDataDir + '/current_theme'
+		self.cLaunchersDir = self.cCurrentThemeDir + '/launchers'
+		self.cPluginsDir = self.cCurrentThemeDir + '/plug-ins'
 		self.cConfFile = self.cCurrentThemeDir + '/' + app_name + '.conf'
 		
 		self._connect()
@@ -59,5 +104,5 @@ class CairoDock:
 		except:
 			print ">>> object '"+cBusPath+"' can't be found on the bus, exit.\nMake sure that Cairo-Dock is running"
 			return
-		self.dock = dbus.Interface(dbus_object, "org.cairodock.CairoDock")  # this object represents gldi.
+		self.iface = dbus.Interface(dbus_object, "org.cairodock.CairoDock")  # this object represents gldi.
 		

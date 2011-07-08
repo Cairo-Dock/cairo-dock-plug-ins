@@ -19,6 +19,7 @@
 			<arg name="cModuleName" type="s" direction="in"/>
 			<arg name="bActivate" type="b" direction="in"/>
 		</method>
+		
 		<method name="GetIconProperties">
 			<arg name="cIconQuery" type="s" direction="in"/>
 			<arg name="pIconProperties" direction="out" type="aa{sv}"/>
@@ -41,11 +42,11 @@
 		<method name="AddTemporaryIcon">
 			<arg name="hIconProperties" direction="in" type="a{sv}"/>
 		</method>
-		<method name="ReloadLauncher">
-			<arg name="cLauncherFile" type="s" direction="in"/>
+		<method name="ReloadIcon">
+			<arg name="cIconQuery" type="s" direction="in"/>
 		</method>
-		<method name="RemoveLauncher">
-			<arg name="cLauncherFile" type="s" direction="in"/>
+		<method name="RemoveIcon">
+			<arg name="cIconQuery" type="s" direction="in"/>
 		</method>
 		
 		<method name="SetQuickInfo">
@@ -79,15 +80,6 @@
 			<arg name="message" type="s" direction="in"/>
 			<arg name="iDuration" type="i" direction="in"/>
 			<arg name="cIconQuery" type="s" direction="in"/>
-		</method>
-		<method name="CreateLauncherFromScratch">
-			<arg name="cIconFile" type="s" direction="in"/>
-			<arg name="cLabel" type="s" direction="in"/>
-			<arg name="cCommand" type="s" direction="in"/>
-			<arg name="cParentDockName" type="s" direction="in"/>
-		</method>
-		<method name="LoadLauncherFromFile">
-			<arg name="cDesktopFile" type="s" direction="in"/>
 		</method>
 	</interface>
 </node>

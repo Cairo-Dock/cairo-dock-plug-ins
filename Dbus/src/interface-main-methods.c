@@ -21,15 +21,9 @@
 exemples : 
 ----------
 
-dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.cairodock.CairoDock.CreateLauncherFromScratch string:gimp.png string:"fake gimp" string:gimp string:none
+dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.cairodock.CairoDock.SetQuickInfo string:123 string:"class=firefox"
 
-dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.cairodock.CairoDock.SetLabel string:new_label string:icon_name string:any string:none
-
-dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.cairodock.CairoDock.SetQuickInfo string:123 string:none string:none string:dustbin
-
-dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.cairodock.CairoDock.Animate string:default int32:2 string:any string:firefox string:none
-
-dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.cairodock.CairoDock.SetIcon string:firefox-3.0 string:any string:nautilus string:none
+dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.cairodock.CairoDock.Animate string:default int32:2 string:"class=firefox"
 
 ******************************************************************************/
 
@@ -314,7 +308,7 @@ static gboolean _prepare_query (CDIconQueryBuffer *pQuery, const gchar *cKey, co
 	if (cValue == NULL)  // use "none" keyword to look for "icons that don't have key".
 		return FALSE;
 	
-	if (strcmp (cKey, "name") == 0)
+	if (strcmp (cKey, "name") == 0 || strcmp (cKey, "label") == 0)
 		pQuery->cName = cValue;
 	else if (strcmp (cKey, "command") == 0)
 		pQuery->cCommand = cValue;
@@ -873,6 +867,8 @@ gboolean cd_dbus_main_add_temporary_icon (dbusMainObject *pDbusCallback, GHashTa
 	
 	const gchar *cName = NULL;
 	v = g_hash_table_lookup (hIconAttributes, "name");
+	if (!v)
+		v = g_hash_table_lookup (hIconAttributes, "label");
 	if (v && G_VALUE_HOLDS_STRING (v))
 	{
 		cName = g_value_get_string (v);
@@ -893,7 +889,7 @@ gboolean cd_dbus_main_add_temporary_icon (dbusMainObject *pDbusCallback, GHashTa
 	}
 	
 	double fOrder = CAIRO_DOCK_LAST_ORDER;
-	v = g_hash_table_lookup (hIconAttributes, "container");
+	v = g_hash_table_lookup (hIconAttributes, "order");
 	if (v && G_VALUE_HOLDS_DOUBLE (v))
 	{
 		fOrder = g_value_get_double (v);
@@ -1046,43 +1042,107 @@ static Icon *cd_dbus_find_launcher (const gchar *cDesktopFile)
 	return pIcon;
 }
 
-gboolean cd_dbus_main_reload_launcher (dbusMainObject *pDbusCallback, const gchar *cLauncherFile, GError **error)
+gboolean cd_dbus_main_reload_icon (dbusMainObject *pDbusCallback, gchar *cIconQuery, GError **error)
 {
 	if (! myConfig.bEnableTweakingLauncher)
 		return FALSE;
-	
-	nullify_argument (cLauncherFile);
-	g_return_val_if_fail (cLauncherFile != NULL, FALSE);
-	
-	Icon *pIcon = cd_dbus_find_launcher (cLauncherFile);
-	if (pIcon == NULL)
+	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
+	if (pList == NULL)
 		return FALSE;
 	
-	cairo_dock_reload_launcher (pIcon);
+	Icon *pIcon;
+	CairoContainer *pContainer;
+	GList *ic;
+	for (ic = pList; ic != NULL; ic = ic->next)
+	{
+		pIcon = ic->data;
+		
+		if ((CAIRO_DOCK_ICON_TYPE_IS_LAUNCHER (pIcon)
+			|| CAIRO_DOCK_ICON_TYPE_IS_CONTAINER (pIcon)
+			|| CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
+		&& pIcon->cDesktopFileName != NULL)  // user icon.
+		{
+			cairo_dock_reload_launcher (pIcon);
+		}
+		else if (CAIRO_DOCK_IS_APPLET (pIcon))
+		{
+			cairo_dock_reload_module_instance (pIcon->pModuleInstance, TRUE);  // TRUE <=> reload config.
+		}
+		else  // for appli icons, reload their image (custom image for instance).
+		{
+			pContainer = cairo_dock_search_container_from_icon (pIcon);
+			if (pContainer == NULL)
+				continue;
+			
+			cairo_dock_reload_icon_image (pIcon, pContainer);
+			cairo_dock_redraw_icon (pIcon, pContainer);
+		}
+	}
 	
 	return TRUE;
 }
 
-gboolean cd_dbus_main_remove_launcher (dbusMainObject *pDbusCallback, const gchar *cLauncherFile, GError **error)  // cLauncherFile can be the command, for launchers that are created from scratch.
+static gboolean _on_icon_deleted (GList *ic, Icon *pIcon)
+{
+	ic->data = NULL;
+}
+gboolean cd_dbus_main_remove_icon (dbusMainObject *pDbusCallback, gchar *cIconQuery, GError **error)
 {
 	if (! myConfig.bEnableTweakingLauncher)
 		return FALSE;
 	
-	nullify_argument (cLauncherFile);
-	g_return_val_if_fail (cLauncherFile != NULL, FALSE);
-	
-	Icon *pIcon = cd_dbus_find_launcher (cLauncherFile);
-	if (pIcon == NULL)
+	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
+	if (pList == NULL)
 		return FALSE;
 	
-	if (pIcon->pSubDock != NULL)  // on detruit le sous-dock et ce qu'il contient.
+	// first connect to the "delete" signal, to not destroy 2 times an icon (case of an icon in a sub-dock that is destroyed just before).
+	Icon *pIcon;
+	CairoContainer *pContainer;
+	GList *ic;
+	for (ic = pList; ic != NULL; ic = ic->next)
 	{
-		cairo_dock_destroy_dock (pIcon->pSubDock, (pIcon->cClass != NULL ? pIcon->cClass : pIcon->cName));
-		pIcon->pSubDock = NULL;
+		pIcon = ic->data;
+		cairo_dock_register_notification_on_object (pIcon,
+			NOTIFICATION_STOP_ICON,
+			(CairoDockNotificationFunc) _on_icon_deleted,
+			CAIRO_DOCK_RUN_FIRST, ic);
 	}
 	
-	cairo_dock_trigger_icon_removal_from_dock (pIcon);
+	// delete all the matching icons, including their sub-icons.
+	for (ic = pList; ic != NULL; ic = ic->next)
+	{
+		pIcon = ic->data;
+		if (pIcon == NULL)  // icon has been destroyed just before.
+			continue;
+		
+		cairo_dock_remove_notification_func_on_object (pIcon,
+			NOTIFICATION_STOP_ICON,
+			(CairoDockNotificationFunc) _on_icon_deleted,
+			ic);  // remove it now, since maybe this icon won't be deleted.
+		
+		pContainer = cairo_dock_search_container_from_icon (pIcon);
+		if (pContainer == NULL)
+			continue;
+		
+		if (CAIRO_DOCK_ICON_TYPE_IS_LAUNCHER (pIcon)
+		|| CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon)
+		|| CAIRO_DOCK_ICON_TYPE_IS_CONTAINER (pIcon))  // case of a launcher/separator/sub-dock inside a dock.
+		{
+			if (pIcon->pSubDock != NULL)  // on detruit le sous-dock et ce qu'il contient.
+			{
+				cairo_dock_destroy_dock (pIcon->pSubDock, (pIcon->cClass != NULL ? pIcon->cClass : pIcon->cName));
+				pIcon->pSubDock = NULL;
+			}
+
+			cairo_dock_trigger_icon_removal_from_dock (pIcon);
+		}
+		else if (CAIRO_DOCK_IS_APPLET (pIcon))  // case of an applet inside a dock or a desklet.
+		{
+			cairo_dock_remove_module_instance (pIcon->pModuleInstance);
+		}  // don't remove appli icons, as they would anyway be re-created automatically by the applications-manager.
+	}
 	
+	g_list_free (pList);
 	return TRUE;
 }
 
@@ -1300,80 +1360,5 @@ gboolean cd_dbus_main_show_dialog (dbusMainObject *pDbusCallback, const gchar *m
 		cairo_dock_show_general_message (message, 1000 * iDuration);
 	
 	g_list_free (pList);
-	return TRUE;
-}
-
-
-
-
-gboolean cd_dbus_main_create_launcher_from_scratch (dbusMainObject *pDbusCallback, const gchar *cIconFile, const gchar *cLabel, const gchar *cCommand, const gchar *cParentDockName, GError **error)
-{
-	if (! myConfig.bEnableCreateLauncher)
-		return FALSE;
-	
-	nullify_argument (cParentDockName);
-	if (cParentDockName == NULL)
-		cParentDockName = CAIRO_DOCK_MAIN_DOCK_NAME;
-	
-	CairoDock *pParentDock = cairo_dock_search_dock_from_name (cParentDockName);
-	if (pParentDock == NULL)
-	{
-		cd_message ("le dock parent (%s) n'existe pas, on le cree", cParentDockName);
-		pParentDock = cairo_dock_create_dock (cParentDockName, NULL);
-	}
-	
-	Icon *pIcon = cairo_dock_create_dummy_launcher (g_strdup (cLabel),
-		g_strdup (cIconFile),
-		g_strdup (cCommand),
-		NULL,
-		CAIRO_DOCK_LAST_ORDER);
-	pIcon->iTrueType = CAIRO_DOCK_ICON_TYPE_LAUNCHER;  // make it a launcher, since we have no control on it, so that the dock handles it as any launcher.
-	pIcon->cParentDockName = g_strdup (cParentDockName);
-	
-	gchar *cGuessedClass = cairo_dock_guess_class (cCommand, NULL);
-	pIcon->cClass = cairo_dock_register_class (cGuessedClass);
-	g_free (cGuessedClass);
-	
-	cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (pParentDock));
-	
-	cairo_dock_insert_icon_in_dock (pIcon, pParentDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
-	cairo_dock_start_icon_animation (pIcon, pParentDock);
-	
-	if (pIcon->cClass != NULL)
-	{
-		cairo_dock_inhibite_class (pIcon->cClass, pIcon);
-	}
-	
-	return TRUE;
-}
-
-gboolean cd_dbus_main_load_launcher_from_file (dbusMainObject *pDbusCallback, const gchar *cDesktopFile, GError **error)  // pris de cairo_dock_add_new_launcher_by_uri().
-{
-	if (! myConfig.bEnableCreateLauncher)
-		return FALSE;
-	g_return_val_if_fail (cDesktopFile != NULL, FALSE);
-	
-	Icon *pIcon = cd_dbus_find_launcher (cDesktopFile);
-	if (pIcon != NULL)
-	{
-		cd_warning ("file '%s' has already been loaded", cDesktopFile);
-		return FALSE;
-	}
-	
-	pIcon = cairo_dock_create_icon_from_desktop_file (cDesktopFile);
-	if (pIcon == NULL)
-	{
-		cd_warning ("the icon couldn't be created, check that the file '%s' exists in the current theme, and is a valid and readable .desktop file\n", cDesktopFile);
-		return FALSE;
-	}
-	
-	CairoDock * pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
-	if (pParentDock != NULL)  // a priori toujours vrai puisqu'il est cree au besoin. En fait c'est probablement le main dock pour un .desktop de base.
-	{
-		cairo_dock_insert_icon_in_dock (pIcon, pParentDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
-		cairo_dock_start_icon_animation (pIcon, pParentDock);
-	}
-	cd_debug (" => cDesktopFileName : %s\n", pIcon->cDesktopFileName);
-	
 	return TRUE;
 }
