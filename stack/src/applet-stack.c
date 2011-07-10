@@ -26,6 +26,24 @@
  
 
 void cd_stack_check_local (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile) {
+
+	// be sure to not use the stack dir of another instance (it can happen when the applet is multi-instanciated, since new instances are initialized with the conf file of the first instance when they are created).
+ 	GList *mi;
+ 	CairoDockModuleInstance *applet;
+ 	AppletConfig *cfg;
+ 	for (mi = myApplet->pModule->pInstancesList; mi!= NULL; mi = mi->next)
+ 	{
+ 		applet = mi->data;
+ 		if (applet == myApplet)
+ 			continue;
+ 		cfg = (AppletConfig*)applet->pConfig;
+ 		if (cfg->cStackDir && strcmp (cfg->cStackDir, myConfig.cStackDir) == 0)
+ 		{
+ 			g_free (myConfig.cStackDir);
+ 			myConfig.cStackDir = NULL;
+ 		}
+ 	}
+
 	
 	if (! g_file_test (myConfig.cStackDir, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_EXECUTABLE))
 	{
