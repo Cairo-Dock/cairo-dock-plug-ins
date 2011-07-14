@@ -23,7 +23,7 @@
 #include <cairo-dock.h>
 
 
-void cd_logout_display_dialog (void);
+void cd_logout_display_actions (void);
 
 
 void cd_logout_set_timer (void);

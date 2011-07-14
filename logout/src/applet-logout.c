@@ -21,6 +21,10 @@
 #include <string.h>
 #include <math.h>
 
+#ifdef CD_UPOWER_AVAILABLE
+#include <upower.h>
+#endif
+
 #include "applet-struct.h"
 #include "applet-logout.h"
 
@@ -36,22 +40,26 @@ static void _display_menu (void);
 static void _cd_logout_check_capabilities_async (CDSharedMemory *pSharedMemory)
 {
 	GError *error = NULL;
-	#ifdef UPOWER_FOUND
+	
+	// get capabilities from UPower.
+	#ifdef CD_UPOWER_AVAILABLE
 	UpClient *pUPowerClient = up_client_new ();
-	if (up_client_get_properties_sync (pUPowerClient, NULL, &error))
-	{
-		pSharedMemory->bCanHibernate = up_client_get_can_hibernate (pUPowerClient);
-		pSharedMemory->bCanSuspend = up_client_get_can_suspend (pUPowerClient);
-	}
-	else if (error)
+	up_client_get_properties_sync (pUPowerClient, NULL, &error);  // this function always returns false ...
+	if (error)
 	{
 		cd_warning ("UPower error: %s", error->message);
 		g_error_free (error);
 		error = NULL;
 	}
+	else
+	{
+		pSharedMemory->bCanHibernate = up_client_get_can_hibernate (pUPowerClient);
+		pSharedMemory->bCanSuspend = up_client_get_can_suspend (pUPowerClient);
+	}
 	g_object_unref (pUPowerClient);
 	#endif
 	
+	// get capabilities from ConsoleKit.
 	DBusGProxy *pProxy = cairo_dock_create_new_system_proxy (
 		"org.freedesktop.ConsoleKit",
 		"/org/freedesktop/ConsoleKit/Manager",
@@ -87,6 +95,7 @@ static gboolean _cd_logout_got_capabilities (CDSharedMemory *pSharedMemory)
 {
 	CD_APPLET_ENTER;
 	
+	// fetch the capabilities.
 	myData.bCapabilitiesChecked = TRUE;
 	myData.bCanHibernate = pSharedMemory->bCanHibernate;
 	myData.bCanSuspend = pSharedMemory->bCanSuspend;
@@ -94,9 +103,11 @@ static gboolean _cd_logout_got_capabilities (CDSharedMemory *pSharedMemory)
 	myData.bCanStop = pSharedMemory->bCanStop;
 	cd_debug ("capabilities: %d; %d; %d; %d", myData.bCanHibernate, myData.bCanSuspend, myData.bCanRestart, myData.bCanStop);
 	
+	// display the menu that has been asked beforehand.
 	//_display_dialog ();
 	_display_menu ();
 	
+	// sayonara the task.
 	cairo_dock_discard_task (myData.pTask);
 	myData.pTask = NULL;
 	
@@ -104,7 +115,7 @@ static gboolean _cd_logout_got_capabilities (CDSharedMemory *pSharedMemory)
 }
 
 
-void cd_logout_display_dialog (void)
+void cd_logout_display_actions (void)
 {
 	if (myData.pTask != NULL)
 		return;
@@ -146,7 +157,7 @@ static void _console_kit_action (const gchar *cAction)
 }
 static void _upower_action (gboolean bSuspend)
 {
-	#ifdef UPOWER_FOUND
+	#ifdef CD_UPOWER_AVAILABLE
 	UpClient *pUPowerClient = up_client_new ();
 	if (bSuspend)
 		up_client_suspend_sync (pUPowerClient, NULL, NULL);

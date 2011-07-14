@@ -38,7 +38,7 @@ static void _logout (void)
 		gboolean bLoggedOut = cairo_dock_fm_logout ();
 		if (! bLoggedOut)
 		{
-			cd_logout_display_dialog ();
+			cd_logout_display_actions ();
 		}
 	}
 }
@@ -53,7 +53,7 @@ static void _shutdown (void)
 		gboolean bShutdowned = cairo_dock_fm_shutdown ();
 		if (! bShutdowned)
 		{
-			cd_logout_display_dialog ();
+			cd_logout_display_actions ();
 		}
 	}
 }
