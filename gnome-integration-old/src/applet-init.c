@@ -27,9 +27,9 @@
 CD_APPLET_DEFINE_BEGIN ("gnome integration old",
 	1, 6, 2,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
-	N_("This applet provides functions for a better integration into a GNOME environnement.\n"
+	"This applet provides functions for a better integration into a GNOME environnement.\n"
 	"It is auto-activated, so you don't need to activate it.\n"
-	"It is designed for old Gnome version (prior to 2.22)."),
+	"It is designed for old Gnome version (prior to 2.22).",
 	"Fabounet (Fabrice Rey)")
 	//if (g_iDesktopEnv == CAIRO_DOCK_GNOME)  ///  && glib_major_version == 2 && glib_minor_version < 16  <--- quand il y'aura les 2...
 	if (g_iDesktopEnv == CAIRO_DOCK_GNOME && glib_major_version == 2 && glib_minor_version < 16)

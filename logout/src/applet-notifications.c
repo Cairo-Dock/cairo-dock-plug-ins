@@ -19,11 +19,9 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <signal.h>
-#include <math.h>
-#include <glib/gi18n.h>
 
 #include "applet-struct.h"
+#include "applet-logout.h"
 #include "applet-notifications.h"
 
 #define GUEST_SESSION_LAUNCHER "/usr/share/gdm/guest-session/guest-session-launch"
@@ -40,7 +38,7 @@ static void _logout (void)
 		gboolean bLoggedOut = cairo_dock_fm_logout ();
 		if (! bLoggedOut)
 		{
-			cd_warning ("couldn't guess what to do to log out, you may try to specify the command in the config.");
+			cd_logout_display_dialog ();
 		}
 	}
 }
@@ -55,7 +53,7 @@ static void _shutdown (void)
 		gboolean bShutdowned = cairo_dock_fm_shutdown ();
 		if (! bShutdowned)
 		{
-			cd_warning ("couldn't guess what to do to shutdown, you may try to specify the command in the config.");
+			cd_logout_display_dialog ();
 		}
 	}
 }
@@ -123,37 +121,14 @@ static void _cd_lock_screen (GtkMenuItem *menu_item, gpointer data)
 static void _cd_logout_guest_session (GtkMenuItem *menu_item, gpointer data)
 {
 	CD_APPLET_ENTER;
-	gchar *cResult = cairo_dock_launch_command_sync ("which guest-session");
-	if (cResult != NULL && *cResult == '/')
-		cairo_dock_launch_command ("guest-session");
-	else if (g_file_test (GUEST_SESSION_LAUNCHER, G_FILE_TEST_EXISTS))
-		cairo_dock_launch_command (GUEST_SESSION_LAUNCHER);
-	g_free (cResult);
+	cd_logout_launch_guest_session ();
 	CD_APPLET_LEAVE ();
 }
 
 static void _cd_logout_program_shutdown (GtkMenuItem *menu_item, gpointer data)
 {
 	CD_APPLET_ENTER;
-	int iDeltaT = (int) (cairo_dock_show_value_and_wait (D_("Choose in how many minutes your PC will stop:"), myIcon, myContainer, 30, 150) * 60);
-	if (iDeltaT == -1)  // cancel
-		CD_APPLET_LEAVE ();
-		//return ;
-	
-	time_t t_cur = (time_t) time (NULL);
-	if (iDeltaT > 0)
-	{
-		//g_print ("iShutdownTime <- %ld + %d\n", t_cur, iDeltaT);
-		myConfig.iShutdownTime = (int) (t_cur + iDeltaT);
-	}
-	else if (iDeltaT == 0)  // on annule l'eventuel precedent.
-	{
-		myConfig.iShutdownTime = 0;
-	}
-	cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
-		G_TYPE_INT, "Configuration", "shutdown time", myConfig.iShutdownTime,
-		G_TYPE_INVALID);
-	cd_logout_set_timer ();
+	cd_logout_program_shutdown ();
 	CD_APPLET_LEAVE ();
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
@@ -167,7 +142,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			cLabel = g_strdup_printf ("%s (%s)", D_("Log out"), D_("middle-click"));
 		else
 			cLabel = g_strdup (D_("Log out"));
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, _cd_logout, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, MY_APPLET_SHARE_DATA_DIR"/icon-session-logout.png", _cd_logout, CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
 	if (myConfig.iActionOnClick != CD_SHUTDOWN)  // shutdown action not on click => put it in the menu
@@ -188,16 +163,9 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, MY_APPLET_SHARE_DATA_DIR"/icon-lock.png", _cd_lock_screen, CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
-	if (g_file_test (GUEST_SESSION_LAUNCHER, G_FILE_TEST_EXISTS)) // Guest Session
+	if (cd_logout_have_guest_session ()) // Guest Session
 	{
 		CD_APPLET_ADD_IN_MENU (D_("Guest session"), _cd_logout_guest_session, CD_APPLET_MY_MENU);
-	}
-	else
-	{
-		gchar *cResult = cairo_dock_launch_command_sync ("which guest-session");
-		if (cResult != NULL && *cResult == '/')
-			CD_APPLET_ADD_IN_MENU (D_("Guest session"), _cd_logout_guest_session, CD_APPLET_MY_MENU);
-		g_free (cResult);
 	}
 	
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Program an automatic shut-down"), MY_APPLET_SHARE_DATA_DIR"/icon-scheduling.png", _cd_logout_program_shutdown, CD_APPLET_MY_MENU);  // pas beaucoup d'entrees => on le met dans le menu global.
@@ -205,105 +173,3 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 }
 CD_APPLET_ON_BUILD_MENU_END
-
-
-
-static gboolean _timer (gpointer data)
-{
-	CD_APPLET_ENTER;
-	time_t t_cur = (time_t) time (NULL);
-	if (t_cur >= myConfig.iShutdownTime)
-	{
-		cd_debug ("shutdown !\n");
-		if (g_iDesktopEnv == CAIRO_DOCK_KDE)
-			cairo_dock_launch_command ("dbus-send --session --type=method_call --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:0 int32:2 int32:2");
-		else
-			///cairo_dock_launch_command ("dbus-send --session --type=method_call --dest=org.freedesktop.PowerManagement /org/freedesktop/PowerManagement org.freedesktop.PowerManagement.Shutdown");  // --print-reply --reply-timeout=2000
-			cairo_dock_launch_command ("dbus-send --system --print-reply --dest=org.freedesktop.ConsoleKit /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop");  // Suspend est aussi possible
-		
-		myData.iSidTimer = 0;
-		CD_APPLET_LEAVE (FALSE);  // inutile de faire quoique ce soit d'autre, puisque l'ordi s'eteint.
-	}
-	else
-	{
-		cd_debug ("shutdown in %d minutes\n", (int) (myConfig.iShutdownTime - t_cur) / 60);
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%dmn", (int) ceil ((double)(myConfig.iShutdownTime - t_cur) / 60.));
-		CD_APPLET_REDRAW_MY_ICON;
-		if (t_cur >= myConfig.iShutdownTime - 60)
-			cairo_dock_show_temporary_dialog_with_icon (D_("Your computer will shut-down in 1 minute."), myIcon, myContainer, 8000, "same icon");
-	}
-	CD_APPLET_LEAVE (TRUE);
-	
-}
-void cd_logout_set_timer (void)
-{
-	time_t t_cur = (time_t) time (NULL);
-	if (myConfig.iShutdownTime > t_cur)
-	{
-		if (myData.iSidTimer == 0)
-			myData.iSidTimer = g_timeout_add_seconds (60, _timer, NULL);
-		_timer (NULL);
-	}
-	else if (myData.iSidTimer != 0)
-	{
-		g_source_remove (myData.iSidTimer);
-		myData.iSidTimer = 0;
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
-	}
-}
-
-static void _set_reboot_message (void)
-{
-	gchar *cMessage = NULL;
-	gsize length = 0;
-	g_file_get_contents (CD_REBOOT_NEEDED_FILE,
-		&cMessage,
-		&length,
-		NULL);
-	if (cMessage != NULL)
-	{
-		int len = strlen (cMessage);
-		if (cMessage[len-1] == '\n')
-			cMessage[len-1] = '\0';
-		CD_APPLET_SET_NAME_FOR_MY_ICON (cMessage);
-	}
-	else
-		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultLabel);
-	g_free (cMessage);
-}
-void cd_logout_check_reboot_required (CairoDockFMEventType iEventType, const gchar *cURI, gpointer data)
-{
-	switch (iEventType)
-	{
-		case CAIRO_DOCK_FILE_MODIFIED:  // new message
-			_set_reboot_message ();
-		break;
-		
-		case CAIRO_DOCK_FILE_DELETED:  // reboot no more required (shouldn't happen)
-			myData.bRebootNeeded = FALSE;
-			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultLabel);
-			CD_APPLET_STOP_DEMANDING_ATTENTION;
-		break;
-		
-		case CAIRO_DOCK_FILE_CREATED:  // reboot required
-			myData.bRebootNeeded = TRUE;
-			_set_reboot_message ();
-			CD_APPLET_DEMANDS_ATTENTION ("pulse", 20);
-			cairo_dock_show_temporary_dialog_with_icon (myIcon->cName, myIcon, myContainer, 5e3, "same icon");
-			if (myConfig.cEmblemPath != NULL && *myConfig.cEmblemPath != '\0' && g_file_test (myConfig.cEmblemPath, G_FILE_TEST_EXISTS))
-				CD_APPLET_SET_EMBLEM_ON_MY_ICON (myConfig.cEmblemPath, CAIRO_DOCK_EMBLEM_UPPER_RIGHT);
-			else
-				CD_APPLET_SET_EMBLEM_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/emblem-reboot.png", CAIRO_DOCK_EMBLEM_UPPER_RIGHT);
-		break;
-		default:
-		break;
-	}
-}
-
-void cd_logout_check_reboot_required_init (void)
-{
-	if (g_file_test (CD_REBOOT_NEEDED_FILE, G_FILE_TEST_EXISTS))
-	{
-		cd_logout_check_reboot_required (CAIRO_DOCK_FILE_CREATED, CD_REBOOT_NEEDED_FILE, NULL);
-	}
-}

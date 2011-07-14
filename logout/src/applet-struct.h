@@ -32,6 +32,15 @@ typedef enum {
 	CD_NB_ACTIONS
 	} CDActionsEnum;
 
+typedef enum {
+	CD_RESTART,
+	CD_STOP,
+	CD_SUSPEND,
+	CD_HIBERNATE,
+	CD_LOG_OUT,
+	CD_NB_COMMANDS
+	} CDCommandsEnum;
+
 struct _AppletConfig {
 	gchar *cUserAction;
 	gchar *cUserAction2;
@@ -42,9 +51,23 @@ struct _AppletConfig {
 	gchar *cDefaultLabel;
 	} ;
 
+typedef struct {
+	gboolean bCanHibernate;
+	gboolean bCanSuspend;
+	gboolean bCanStop;
+	gboolean bCanRestart;
+	} CDSharedMemory;
+
 struct _AppletData {
 	guint iSidTimer;
 	gboolean bRebootNeeded;
+	// manual capabilities.
+	CairoDockTask *pTask;
+	gboolean bCapabilitiesChecked;
+	gboolean bCanHibernate;
+	gboolean bCanSuspend;
+	gboolean bCanStop;
+	gboolean bCanRestart;
 	} ;
 
 #endif

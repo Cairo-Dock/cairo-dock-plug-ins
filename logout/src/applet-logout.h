@@ -17,33 +17,28 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <stdlib.h>
+#ifndef __APPLET_LOGOUT__
+#define  __APPLET_LOGOUT__
 
-#include "applet-utils.h"
+#include <cairo-dock.h>
 
 
-void env_backend_logout (void)
-{
-	cairo_dock_launch_command ("xfce4-session-logout");
-}
+void cd_logout_display_dialog (void);
 
-void env_backend_shutdown (void)
-{
-	cairo_dock_launch_command ("xfce4-session-logout");  // avec les options telles que --halt, la fenetre n'est pas montree.
-}
 
-void env_backend_lock_screen (void)
-{
-	cairo_dock_launch_command ("xscreensaver-command -lock");  // xflock4 ?
-}
+void cd_logout_set_timer (void);
 
-void env_backend_setup_time (void)
-{
-	cairo_dock_launch_command ("gksu system-config-date");  // not installed by default
-}
+void cd_logout_program_shutdown (void);
 
-void env_backend_show_system_monitor (void)
-{
-	cairo_dock_launch_command ("xfce4-taskmanager");  // not installed by default
-}
 
+void cd_logout_check_reboot_required (CairoDockFMEventType iEventType, const gchar *cURI, gpointer data);
+
+void cd_logout_check_reboot_required_init (void);
+
+
+gboolean cd_logout_have_guest_session (void);
+
+void cd_logout_launch_guest_session (void);
+
+
+#endif

@@ -28,7 +28,7 @@
 CD_APPLET_DEFINE_BEGIN (N_("drop indicator"),
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_THEME,
-	N_("This plug-in displays an animated indicator when you drop something into the dock."),
+	"This plug-in displays an animated indicator when you drop something into the dock.",
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE;
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);

@@ -29,8 +29,8 @@
 CD_APPLET_DEFINE_BEGIN ("xfce integration",
 	1, 6, 2,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
-	N_("This applet provides functions for a better integration into a XFCE environnement.\n"
-	"It is auto-activated, so you don't need to activate it."),
+	"This applet provides functions for a better integration into a XFCE environnement.\n"
+	"It is auto-activated, so you don't need to activate it.",
 	"Tofe (Christophe Chapuis")
 	if (g_iDesktopEnv == CAIRO_DOCK_XFCE)
 	{

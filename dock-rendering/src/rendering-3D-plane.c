@@ -99,7 +99,8 @@ static void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth;
 	
 	// taille min.
-	pDock->iMinDockHeight = myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + myIconsParam.fReflectSize * pDock->container.fRatio + pDock->iMaxIconHeight * pDock->container.fRatio;
+	double fRatio = (pDock->iRefCount == 0 && pDock->iVisibility == CAIRO_DOCK_VISI_RESERVE ? 1. : pDock->container.fRatio);  // prevent the dock from resizing itself and all the maximized windows each time an icon is removed/inserted.
+	pDock->iMinDockHeight = myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + myIconsParam.fReflectSize * fRatio + pDock->iMaxIconHeight * fRatio;
 	
 	double gamma_min = pDock->fFlatDockWidth / 2 / H;
 	double dw_min = h * gamma_min + r + (l+(r==0)*2)*sqrt(1+gamma_min*gamma_min);

@@ -128,9 +128,9 @@ gdouble my_fSeparatorColor[4];
 CD_APPLET_DEFINE_BEGIN ("dock rendering",
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_THEME,
-	N_("This module adds different views to your dock.\n"
+	"This module adds different views to your dock.\n"
 	"Any dock or sub-dock can be displayed with the view of your choice.\n"
-	"Currently, 3D-plane, Caroussel, Parabolic, Rainbow, Slide, and Curve views are provided."),
+	"Currently, 3D-plane, Caroussel, Parabolic, Rainbow, Slide, and Curve views are provided.",
 	"Fabounet (Fabrice Rey) &amp; parAdOxxx_ZeRo")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE;
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);

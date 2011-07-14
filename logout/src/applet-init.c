@@ -19,12 +19,13 @@
 
 #include "stdlib.h"
 
+#include "applet-struct.h"
 #include "applet-config.h"
 #include "applet-notifications.h"
-#include "applet-struct.h"
+#include "applet-logout.h"
 #include "applet-init.h"
 
-CD_APPLET_DEFINITION (N_("logout"),
+CD_APPLET_DEFINE_BEGIN ("logout",
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("A very simple applet that adds an icon to log out from your session\n"
@@ -33,6 +34,9 @@ CD_APPLET_DEFINITION (N_("logout"),
 	"You can also lock the screen from the menu on right-click,\n"
 	"  and program an automatic shutdown at a given time.\n"),
 	"Fabounet (Fabrice Rey)")
+	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	CD_APPLET_REDEFINE_TITLE (N_("Log out"))
+CD_APPLET_DEFINE_END
 
 
 CD_APPLET_INIT_BEGIN
@@ -44,9 +48,9 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	
 	if (g_iDesktopEnv == CAIRO_DOCK_GNOME)  // on prend le controle de l'icone de la fenetre.
-		CD_APPLET_MANAGE_APPLICATION ("gnome-session");  // en fait depuis Gnome 2.28 seulement, avant c'etait x-session-manager.
+		CD_APPLET_MANAGE_APPLICATION ("gnome-session");  // x-session-manager before 2.28
 	else if (g_iDesktopEnv == CAIRO_DOCK_XFCE)
-		CD_APPLET_MANAGE_APPLICATION ("x-session-manager");
+		CD_APPLET_MANAGE_APPLICATION ("xfce4-session-logout");  // x-session-manager before 4.8
 	else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
 		CD_APPLET_MANAGE_APPLICATION ("ksmserver");  /// pas du tout sur...
 	
@@ -71,6 +75,8 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	
 	CD_APPLET_MANAGE_APPLICATION (NULL);  // on relache le controle de l'icone de la fenetre.
+	
+	cairo_dock_discard_task (myData.pTask);
 	
 	if (myData.iSidTimer != 0)
 		g_source_remove (myData.iSidTimer);

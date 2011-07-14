@@ -597,6 +597,12 @@ endif()
 
 ############# LOGOUT #################
 message (STATUS "> LogOut:")
+pkg_check_modules (UPOWER upower-glib)  # useful for Powermanager too.
+if (${UPOWER_FOUND})
+	set (with_upower_support "yes")
+else()
+	set (with_upower_support "no")
+endif()
 set (GETTEXT_LOGOUT ${GETTEXT_PLUGINS})
 set (VERSION_LOGOUT "1.2.11")
 set (PACKAGE_LOGOUT "cd-logout")
@@ -772,12 +778,6 @@ endif()
 
 ############# POWERMANAGER #################
 message (STATUS "> PowerManager:")
-pkg_check_modules (POWERMANAGER upower-glib)
-if (${POWERMANAGER_FOUND})
-	set (with_upower_support "yes")
-else()
-	set (with_upower_support "no")
-endif()
 set (GETTEXT_POWERMANAGER ${GETTEXT_PLUGINS})
 set (VERSION_POWERMANAGER "1.3.5")
 set (PACKAGE_POWERMANAGER "cd-powermanager")
