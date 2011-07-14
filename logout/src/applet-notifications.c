@@ -142,7 +142,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			cLabel = g_strdup_printf ("%s (%s)", D_("Log out"), D_("middle-click"));
 		else
 			cLabel = g_strdup (D_("Log out"));
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, MY_APPLET_SHARE_DATA_DIR"/icon-session-logout.png", _cd_logout, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", _cd_logout, CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
 	if (myConfig.iActionOnClick != CD_SHUTDOWN)  // shutdown action not on click => put it in the menu
@@ -151,7 +151,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			cLabel = g_strdup_printf ("%s (%s)", D_("Shut down"), D_("middle-click"));
 		else
 			cLabel = g_strdup (D_("Shut down"));
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, _cd_shutdown, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, MY_APPLET_SHARE_DATA_DIR"/system-shutdown.svg", _cd_shutdown, CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
 	if (myConfig.iActionOnClick != CD_LOCK_SCREEN)  // lockscreen action not on click => put it in the menu
@@ -160,15 +160,15 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			cLabel = g_strdup_printf ("%s (%s)", D_("Lock screen"), D_("middle-click"));
 		else
 			cLabel = g_strdup (D_("Lock screen"));
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, MY_APPLET_SHARE_DATA_DIR"/icon-lock.png", _cd_lock_screen, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, MY_APPLET_SHARE_DATA_DIR"/locked.svg", _cd_lock_screen, CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
 	if (cd_logout_have_guest_session ()) // Guest Session
 	{
-		CD_APPLET_ADD_IN_MENU (D_("Guest session"), _cd_logout_guest_session, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Guest session"), MY_APPLET_SHARE_DATA_DIR"/system-guest.svg", _cd_logout_guest_session, CD_APPLET_MY_MENU);
 	}
 	
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Program an automatic shut-down"), MY_APPLET_SHARE_DATA_DIR"/icon-scheduling.png", _cd_logout_program_shutdown, CD_APPLET_MY_MENU);  // pas beaucoup d'entrees => on le met dans le menu global.
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Program an automatic shut-down"), MY_APPLET_SHARE_DATA_DIR"/icon-scheduling.svg", _cd_logout_program_shutdown, CD_APPLET_MY_MENU);  // pas beaucoup d'entrees => on le met dans le menu global.
 	
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 }

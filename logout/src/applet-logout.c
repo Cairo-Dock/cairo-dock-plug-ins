@@ -319,19 +319,19 @@ static GtkWidget *_build_menu (void)
 	if (!myData.bCanSuspend)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Log out"), MY_APPLET_SHARE_DATA_DIR"/system-switch-user.svg", on_select_action, pMenu, GINT_TO_POINTER (CD_LOG_OUT));
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Log out"), MY_APPLET_SHARE_DATA_DIR"/system-log-out", on_select_action, pMenu, GINT_TO_POINTER (CD_LOG_OUT));
 	
 	CD_APPLET_ADD_SEPARATOR_IN_MENU (pMenu);
 	
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Lock screen"), MY_APPLET_SHARE_DATA_DIR"/icon-lock.png", cairo_dock_fm_lock_screen, pMenu);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Lock screen"), MY_APPLET_SHARE_DATA_DIR"/locked.svg", cairo_dock_fm_lock_screen, pMenu);
 	
 	if (cd_logout_have_guest_session ())  // seems not very common yet, so we only add it if it exists.
 	{
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Guest session"), MY_APPLET_SHARE_DATA_DIR"/system-users.svg", cd_logout_launch_guest_session, pMenu);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Guest session"), MY_APPLET_SHARE_DATA_DIR"/system-guest.svg", cd_logout_launch_guest_session, pMenu);
 	}
 	
 	if (myData.bCanStop)
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Program an automatic shut-down"), MY_APPLET_SHARE_DATA_DIR"/icon-scheduling.png", cd_logout_program_shutdown, pMenu);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Program an automatic shut-down"), MY_APPLET_SHARE_DATA_DIR"/icon-scheduling.svg", cd_logout_program_shutdown, pMenu);
 	
 	return pMenu;
 }
@@ -459,7 +459,7 @@ void cd_logout_check_reboot_required (CairoDockFMEventType iEventType, const gch
 			if (myConfig.cEmblemPath != NULL && *myConfig.cEmblemPath != '\0' && g_file_test (myConfig.cEmblemPath, G_FILE_TEST_EXISTS))
 				CD_APPLET_SET_EMBLEM_ON_MY_ICON (myConfig.cEmblemPath, CAIRO_DOCK_EMBLEM_UPPER_RIGHT);
 			else
-				CD_APPLET_SET_EMBLEM_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/emblem-reboot.png", CAIRO_DOCK_EMBLEM_UPPER_RIGHT);
+				CD_APPLET_SET_EMBLEM_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/system-restart.svg", CAIRO_DOCK_EMBLEM_UPPER_RIGHT);
 		break;
 		default:
 		break;
