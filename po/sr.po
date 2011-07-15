@@ -242,9 +242,9 @@ msgstr ""
 #: ../Xgamma/src/applet-notifications.c:89
 #: ../alsaMixer/src/applet-notifications.c:71
 #: ../dustbin/src/applet-notifications.c:139
-#: ../logout/src/applet-notifications.c:164
-#: ../logout/src/applet-notifications.c:173
-#: ../logout/src/applet-notifications.c:182
+#: ../logout/src/applet-notifications.c:144
+#: ../logout/src/applet-notifications.c:153
+#: ../logout/src/applet-notifications.c:163
 #: ../mail/src/cd-mail-applet-notifications.c:157
 #: ../musicPlayer/src/applet-notifications.c:186
 #: ../netspeed/src/applet-notifications.c:97
@@ -919,19 +919,19 @@ msgstr ""
 msgid "Look for events"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:421
+#: ../Recent-Events/src/applet-dialog.c:422
 msgid "File name"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:428
+#: ../Recent-Events/src/applet-dialog.c:429
 msgid "Last access"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:464
+#: ../Recent-Events/src/applet-dialog.c:478
 msgid "You need to install the Zeitgeist data engine."
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:469
+#: ../Recent-Events/src/applet-dialog.c:484
 msgid "Browse and search in recent events"
 msgstr ""
 
@@ -1940,55 +1940,68 @@ msgid ""
 "  and program an automatic shutdown at a given time.\n"
 msgstr ""
 
-#: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:269
-#: ../logout/src/applet-logout.c:275 ../logout/src/applet-notifications.c:164
-#: ../logout/src/applet-notifications.c:166 ../logout/data/messages:99
+#: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:335
+#: ../logout/src/applet-notifications.c:144
+#: ../logout/src/applet-notifications.c:146 ../logout/data/messages:99
 #: ../logout/data/messages:107
 msgid "Log out"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:236 ../logout/src/applet-notifications.c:173
-#: ../logout/src/applet-notifications.c:175 ../logout/data/messages:101
+#: ../logout/src/applet-logout.c:317 ../logout/src/applet-notifications.c:153
+#: ../logout/src/applet-notifications.c:155 ../logout/data/messages:101
 #: ../logout/data/messages:109
 msgid "Shut down"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:245
+#: ../logout/src/applet-logout.c:321
 msgid "Restart"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:253
+#: ../logout/src/applet-logout.c:325
 #: ../powermanager/src/powermanager-menu-functions.c:58
 msgid "Hibernate"
 msgstr "U hibernaciju"
 
-#: ../logout/src/applet-logout.c:261
+#: ../logout/src/applet-logout.c:326
+#, fuzzy
+msgid "Your computer will still consume a small amount of energy."
+msgstr "Vaš računar će prestati sa radom za 1 minut."
+
+#: ../logout/src/applet-logout.c:330
 #: ../powermanager/src/powermanager-menu-functions.c:60
 msgid "Suspend"
 msgstr "Obustavljanje"
 
-#: ../logout/src/applet-logout.c:312
-msgid "Your computer will shut-down in 1 minute."
+#: ../logout/src/applet-logout.c:331
+#, fuzzy
+msgid "Your computer will not consume any energy."
 msgstr "Vaš računar će prestati sa radom za 1 minut."
 
-#: ../logout/src/applet-notifications.c:136
-msgid "Choose in how many minutes your PC will stop:"
-msgstr "Odaberite za koliko minuta će se vaš PC prestati sa radom:"
+#: ../logout/src/applet-logout.c:336
+msgid "Close your session and allow to open a new one."
+msgstr ""
 
-#: ../logout/src/applet-notifications.c:182
-#: ../logout/src/applet-notifications.c:184 ../logout/data/messages:103
+#: ../logout/src/applet-logout.c:340 ../logout/src/applet-notifications.c:163
+#: ../logout/src/applet-notifications.c:165 ../logout/data/messages:103
 #: ../logout/data/messages:111
 msgid "Lock screen"
 msgstr "Zaključaj ekran"
 
-#: ../logout/src/applet-notifications.c:190
-#: ../logout/src/applet-notifications.c:196
+#: ../logout/src/applet-logout.c:344 ../logout/src/applet-notifications.c:171
 msgid "Guest session"
 msgstr ""
 
-#: ../logout/src/applet-notifications.c:200
+#: ../logout/src/applet-logout.c:348 ../logout/src/applet-notifications.c:174
 msgid "Program an automatic shut-down"
 msgstr ""
+
+#: ../logout/src/applet-logout.c:386
+msgid "Your computer will shut-down in 1 minute."
+msgstr "Vaš računar će prestati sa radom za 1 minut."
+
+#: ../logout/src/applet-logout.c:410
+msgid "Choose in how many minutes your PC will stop:"
+msgstr "Odaberite za koliko minuta će se vaš PC prestati sa radom:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Server address:"

@@ -136,32 +136,35 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	
 	gchar *cLabel;
-	if (myConfig.iActionOnClick != CD_LOGOUT)  // logout action not on click => put it in the menu
+	if (! myData.bCapabilitiesChecked)  // if we're using our own logout methods, they are all accessible from the left-click, so no need to add the following actions in the right-click menu.
 	{
-		if (myConfig.iActionOnMiddleClick == CD_LOGOUT)  // logout action on middle-click
-			cLabel = g_strdup_printf ("%s (%s)", D_("Log out"), D_("middle-click"));
-		else
-			cLabel = g_strdup (D_("Log out"));
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", _cd_logout, CD_APPLET_MY_MENU);
-		g_free (cLabel);
-	}
-	if (myConfig.iActionOnClick != CD_SHUTDOWN)  // shutdown action not on click => put it in the menu
-	{
-		if (myConfig.iActionOnMiddleClick == CD_SHUTDOWN)  // logout action on middle-click
-			cLabel = g_strdup_printf ("%s (%s)", D_("Shut down"), D_("middle-click"));
-		else
-			cLabel = g_strdup (D_("Shut down"));
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, MY_APPLET_SHARE_DATA_DIR"/system-shutdown.svg", _cd_shutdown, CD_APPLET_MY_MENU);
-		g_free (cLabel);
-	}
-	if (myConfig.iActionOnClick != CD_LOCK_SCREEN)  // lockscreen action not on click => put it in the menu
-	{
-		if (myConfig.iActionOnMiddleClick == CD_LOCK_SCREEN)  // lockscreen action on middle-click
-			cLabel = g_strdup_printf ("%s (%s)", D_("Lock screen"), D_("middle-click"));
-		else
-			cLabel = g_strdup (D_("Lock screen"));
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, MY_APPLET_SHARE_DATA_DIR"/locked.svg", _cd_lock_screen, CD_APPLET_MY_MENU);
-		g_free (cLabel);
+		if (myConfig.iActionOnClick != CD_LOGOUT)  // logout action not on click => put it in the menu
+		{
+			if (myConfig.iActionOnMiddleClick == CD_LOGOUT)  // logout action on middle-click
+				cLabel = g_strdup_printf ("%s (%s)", D_("Log out"), D_("middle-click"));
+			else
+				cLabel = g_strdup (D_("Log out"));
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", _cd_logout, CD_APPLET_MY_MENU);
+			g_free (cLabel);
+		}
+		if (myConfig.iActionOnClick != CD_SHUTDOWN)  // shutdown action not on click => put it in the menu
+		{
+			if (myConfig.iActionOnMiddleClick == CD_SHUTDOWN)  // logout action on middle-click
+				cLabel = g_strdup_printf ("%s (%s)", D_("Shut down"), D_("middle-click"));
+			else
+				cLabel = g_strdup (D_("Shut down"));
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, MY_APPLET_SHARE_DATA_DIR"/system-shutdown.svg", _cd_shutdown, CD_APPLET_MY_MENU);
+			g_free (cLabel);
+		}
+		if (myConfig.iActionOnClick != CD_LOCK_SCREEN)  // lockscreen action not on click => put it in the menu
+		{
+			if (myConfig.iActionOnMiddleClick == CD_LOCK_SCREEN)  // lockscreen action on middle-click
+				cLabel = g_strdup_printf ("%s (%s)", D_("Lock screen"), D_("middle-click"));
+			else
+				cLabel = g_strdup (D_("Lock screen"));
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, MY_APPLET_SHARE_DATA_DIR"/locked.svg", _cd_lock_screen, CD_APPLET_MY_MENU);
+			g_free (cLabel);
+		}
 	}
 	if (cd_logout_have_guest_session ()) // Guest Session
 	{
