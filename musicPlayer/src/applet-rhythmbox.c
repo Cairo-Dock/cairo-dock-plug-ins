@@ -216,7 +216,7 @@ static void onElapsedChanged (DBusGProxy *player_proxy, int elapsed, gpointer da
 }
 
 
-static void onCoverArtChanged(DBusGProxy *player_proxy,const gchar *cImageURI, gpointer data)  // je n'ai jamais vu ce signal appelle...
+/*static void onSongPropertyChanged (DBusGProxy *player_proxy, const gchar *a, const gchar *cProperty, GValue *c, GValue *d, gpointer data)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("\n%s (%s)\n\n",__func__,cImageURI);
@@ -232,7 +232,7 @@ static void onCoverArtChanged(DBusGProxy *player_proxy,const gchar *cImageURI, g
 		myData.iSidCheckCover = 0;
 	}
 	CD_APPLET_LEAVE ();
-}
+}*/
 
 
 ////////////////////////////
@@ -252,15 +252,22 @@ gboolean cd_rhythmbox_dbus_connect_to_bus (void)
 		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "playingChanged",
 			G_TYPE_BOOLEAN,
 			G_TYPE_INVALID);
+		
 		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "playingUriChanged",
 			G_TYPE_STRING,
 			G_TYPE_INVALID);
+		
 		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "elapsedChanged",
 			G_TYPE_UINT,
 			G_TYPE_INVALID);
-		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "rb:CovertArt-uri",
+		
+		/*TODO
+		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "playingSongPropertyChanged",
 			G_TYPE_STRING,
-			G_TYPE_INVALID);
+			G_TYPE_STRING,
+			G_TYPE_VALUE,
+			G_TYPE_VALUE,
+			G_TYPE_INVALID);*/
 		
 		dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "playingChanged",
 			G_CALLBACK(onChangePlaying), NULL, NULL);
@@ -271,8 +278,8 @@ gboolean cd_rhythmbox_dbus_connect_to_bus (void)
 		dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "elapsedChanged",
 			G_CALLBACK(onElapsedChanged), NULL, NULL);
 		
-		dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "rb:CovertArt-uri",
-			G_CALLBACK(onCoverArtChanged), NULL, NULL);
+		/*dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "playingSongPropertyChanged",
+			G_CALLBACK(onSongPropertyChanged), NULL, NULL);*/
 		
 		return TRUE;
 	}
@@ -293,8 +300,8 @@ void cd_rhythmbox_free_data (void) {
 		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "elapsedChanged",
 			G_CALLBACK(onElapsedChanged), NULL);
 		
-		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "rb:CovertArt-uri",
-			G_CALLBACK(onCoverArtChanged), NULL);
+		/*dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "playingSongPropertyChanged",
+			G_CALLBACK(onSongPropertyChanged), NULL);*/
 	}
 	
 	musicplayer_dbus_disconnect_from_bus();
