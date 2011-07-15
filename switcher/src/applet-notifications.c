@@ -355,9 +355,9 @@ static gboolean _cd_switcher_redraw_main_icon_idle (CairoDockModuleInstance *myA
 	CD_APPLET_LEAVE (FALSE);
 	//return FALSE;
 }
-static void _cd_switcher_queue_draw (CairoDockModuleInstance *myApplet)
+static void _cd_switcher_trigger_redraw (CairoDockModuleInstance *myApplet)
 {
-	if (myData.iSidRedrawMainIconIdle == 0)
+	if (myData.iSidRedrawMainIconIdle == 0 && myData.iSidUpdateIdle == 0)
 	{
 		myData.iSidRedrawMainIconIdle = g_idle_add ((GSourceFunc) _cd_switcher_redraw_main_icon_idle, myApplet);
 	}
@@ -366,7 +366,7 @@ static void _cd_switcher_queue_draw (CairoDockModuleInstance *myApplet)
 gboolean on_change_active_window (CairoDockModuleInstance *myApplet, Window *XActiveWindow)
 {
 	CD_APPLET_ENTER;
-	_cd_switcher_queue_draw (myApplet);
+	_cd_switcher_trigger_redraw (myApplet);
 	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 }
 
@@ -386,7 +386,7 @@ gboolean on_change_desktop (CairoDockModuleInstance *myApplet)
 	
 	if (myConfig.bCompactView)
 	{
-		_cd_switcher_queue_draw (myApplet);
+		_cd_switcher_trigger_redraw (myApplet);
 	}
 	else
 	{
@@ -435,7 +435,7 @@ gboolean on_change_screen_geometry (CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("");
-	cd_switcher_update_from_screen_geometry ();
+	cd_switcher_trigger_update_from_screen_geometry (TRUE);  // TRUE = now
 	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 }
 
@@ -443,7 +443,7 @@ gboolean on_window_configured (CairoDockModuleInstance *myApplet, Window Xid, XC
 {
 	CD_APPLET_ENTER;
 	cd_debug ("");
-	_cd_switcher_queue_draw (myApplet);
+	_cd_switcher_trigger_redraw (myApplet);
 	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 }
 

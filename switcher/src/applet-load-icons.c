@@ -200,7 +200,6 @@ void cd_switcher_load_desktop_bg_map_surface (void)
 
 void cd_switcher_load_default_map_surface (void)
 {
-	g_return_if_fail (myDrawContext != NULL);
 	if (myData.pDefaultMapSurface != NULL)
 		cairo_surface_destroy (myData.pDefaultMapSurface);
 	cd_debug ("%s (%.2fx%.2f)", __func__, myIcon->fWidth, myIcon->fHeight);

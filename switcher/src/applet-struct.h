@@ -83,7 +83,7 @@ struct _AppletData {
 	cairo_surface_t *pDefaultMapSurface;
 	cairo_surface_t *pDesktopBgMapSurface;
 	gint iSidRedrawMainIconIdle;
-	gint iSidAutoRefresh;
+	gint iSidUpdateIdle;
 	gint iPrevIndexHovered;
 	gdouble fDesktopNameAlpha;
 	guint iSidPainIcons;

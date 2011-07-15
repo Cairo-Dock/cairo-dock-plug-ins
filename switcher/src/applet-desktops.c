@@ -28,13 +28,13 @@
 void cd_switcher_get_current_desktop (void)
 {
 	cairo_dock_get_current_desktop_and_viewport (&myData.switcher.iCurrentDesktop, &myData.switcher.iCurrentViewportX, &myData.switcher.iCurrentViewportY);
-	//g_print ("%s () -> %d;%d;%d\n", __func__, myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
 	
 	myData.switcher.iNbViewportTotal = g_desktopGeometry.iNbDesktops * g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY;
 	
 	cd_switcher_compute_desktop_coordinates (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY, &myData.switcher.iCurrentLine, &myData.switcher.iCurrentColumn);
+	
+	cd_debug ("desktop: %d;%d;%d, %dx%d", g_desktopGeometry.iNbDesktops, g_desktopGeometry.iNbViewportX, g_desktopGeometry.iNbViewportY, myData.switcher.iCurrentLine, myData.switcher.iCurrentColumn);
 }
-
 
 
 static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLines, int *iBestNbColumns)
@@ -48,7 +48,7 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 	cairo_dock_get_icon_extent (myIcon, myContainer, &w, &h);
 	if (w == 0 || h == 0)  // may happen in desklet mode on startup, until the desklet's window reaches its definite size.
 		return;
-	cd_debug ("%d; %dx%d", iNbViewports, w, h);
+	//cd_debug ("%d; %dx%d", iNbViewports, w, h);
 	
 	double fZoomX, fZoomY;
 	int iNbLines, iNbDesktopByLine;
@@ -60,7 +60,7 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 		fZoomX = (double)w / (iNbDesktopByLine * g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL]);
 		fZoomY = (double)h / (iNbLines * g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL]);
 		fZoom = MIN (fZoomX, fZoomY);  // on preserve le ratio
-		cd_debug ("%d lignes => iNbDesktopByLine: %d, zooms: %.3f,%.3f", iNbLines, iNbDesktopByLine, fZoomX, fZoomY);
+		//cd_debug ("%d lignes => iNbDesktopByLine: %d, zooms: %.3f,%.3f", iNbLines, iNbDesktopByLine, fZoomX, fZoomY);
 		if (fZoom > fZoomMax)
 		{
 			fZoomMax = fZoom;
@@ -226,7 +226,7 @@ void cd_switcher_remove_last_desktop (void)
 }
 
 
-void cd_switcher_update_from_screen_geometry (void)
+static gboolean _update_idle (gpointer data)
 {
 	//\___________________ On calcule la geometrie de l'icone en mode compact.
 	cd_switcher_compute_nb_lines_and_columns ();
@@ -239,16 +239,35 @@ void cd_switcher_update_from_screen_geometry (void)
 	
 	//\___________________ On dessine l'icone principale.
 	cd_switcher_draw_main_icon ();
+	
+	//\___________________ draw the current desktop number.
+	if (myConfig.bDisplayNumDesk)
+	{
+		int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", iIndex+1);
+	}
+	
+	myData.iSidUpdateIdle = 0;
+	return FALSE;
+}
+void cd_switcher_trigger_update_from_screen_geometry (gboolean bNow)
+{
+	if (myData.iSidUpdateIdle == 0)
+	{
+		if (bNow)
+			myData.iSidUpdateIdle = g_idle_add (_update_idle, NULL);
+		else
+			myData.iSidUpdateIdle = g_timeout_add_seconds (1, _update_idle, NULL);
+	}
 }
 
-gboolean cd_switcher_refresh_desktop_values (CairoDockModuleInstance *myApplet)
+
+void cd_switcher_refresh_desktop_values (CairoDockModuleInstance *myApplet)
 {
 	g_desktopGeometry.iNbDesktops = cairo_dock_get_nb_desktops ();
 	cairo_dock_get_nb_viewports (&g_desktopGeometry.iNbViewportX, &g_desktopGeometry.iNbViewportY);
 	cd_debug ("refresh -> %d/%d/%d", g_desktopGeometry.iNbDesktops, g_desktopGeometry.iNbViewportX, g_desktopGeometry.iNbViewportY);
-	cd_switcher_update_from_screen_geometry ();
-	myData.iSidAutoRefresh = 0;
-	return FALSE;
+	cd_switcher_trigger_update_from_screen_geometry (TRUE);
 }
 
 

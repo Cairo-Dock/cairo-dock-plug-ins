@@ -90,18 +90,19 @@ CD_APPLET_INIT_BEGIN
 		}
 	}
 	
-	cd_switcher_update_from_screen_geometry ();
+	///cd_switcher_update_from_screen_geometry ();
 	
 	//\___________________ On affiche le numero du bureau courant.
-	if (myConfig.bDisplayNumDesk)
+	/**if (myConfig.bDisplayNumDesk)
 	{
 		int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", iIndex+1);
-	}
+	}*/
 	
-	//\___________________ Dans le cas ou l'applet demarre au chargement de la session, le nombre de bureaux peut etre incorrect.
-	if (cairo_dock_is_loading ())
-		myData.iSidAutoRefresh = g_timeout_add_seconds (2, (GSourceFunc) cd_switcher_refresh_desktop_values, myApplet);
+	//\___________________ load the desktops with a delay (because it's quite heavy and because the desktop may not be up-to-date at the very beginning of the session).
+	if (myDesklet)
+		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+	cd_switcher_trigger_update_from_screen_geometry (FALSE);  // FALSE = delayed
 CD_APPLET_INIT_END
 
 
@@ -111,9 +112,9 @@ CD_APPLET_STOP_BEGIN
 	{
 		g_source_remove (myData.iSidRedrawMainIconIdle);
 	}
-	if (myData.iSidAutoRefresh != 0)
+	if (myData.iSidUpdateIdle != 0)
 	{
-		g_source_remove (myData.iSidAutoRefresh);
+		g_source_remove (myData.iSidUpdateIdle);
 	}
 	if (myData.iSidPainIcons != 0)
 		g_source_remove (myData.iSidPainIcons);
@@ -155,9 +156,12 @@ CD_APPLET_RELOAD_BEGIN
 		myData.iSidRedrawMainIconIdle = 0;
 	}
 	
-	cd_switcher_compute_nb_lines_and_columns ();
-	
-	cd_switcher_compute_desktop_coordinates (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY, &myData.switcher.iCurrentLine, &myData.switcher.iCurrentColumn);
+	if (myData.iSidUpdateIdle == 0)
+	{
+		cd_switcher_compute_nb_lines_and_columns ();
+		
+		cd_switcher_compute_desktop_coordinates (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY, &myData.switcher.iCurrentLine, &myData.switcher.iCurrentColumn);
+	}
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
@@ -209,48 +213,20 @@ CD_APPLET_RELOAD_BEGIN
 			}
 		}
 		
-		//~ if (CD_APPLET_MY_OLD_CONTAINER != myContainer || ! myConfig.bCompactView)
-		//~ {
-			//~ cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
-				//~ NOTIFICATION_MOUSE_MOVED,
-				//~ (CairoDockNotificationFunc) on_mouse_moved, myApplet);
-			//~ cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
-				//~ NOTIFICATION_RENDER_DESKLET,
-				//~ (CairoDockNotificationFunc) on_render_desklet, myApplet);
-			//~ if (myConfig.bCompactView)
-			//~ {
-				//~ cairo_dock_register_notification_on_object (myContainer,
-					//~ NOTIFICATION_MOUSE_MOVED,
-					//~ (CairoDockNotificationFunc) on_mouse_moved,
-					//~ CAIRO_DOCK_RUN_AFTER, myApplet);
-				//~ if (myDesklet)
-				//~ {
-					//~ cairo_dock_register_notification_on_object (myDesklet,
-						//~ NOTIFICATION_RENDER_DESKLET,
-						//~ (CairoDockNotificationFunc) on_render_desklet,
-						//~ CAIRO_DOCK_RUN_AFTER, myApplet);
-					//~ cairo_dock_register_notification_on_object (myDesklet,
-						//~ NOTIFICATION_UPDATE_DESKLET,
-						//~ (CairoDockNotificationFunc) on_update_desklet,
-						//~ CAIRO_DOCK_RUN_AFTER, myApplet);
-					//~ cairo_dock_register_notification_on_object (myDesklet,
-						//~ NOTIFICATION_LEAVE_DESKLET,
-						//~ (CairoDockNotificationFunc) on_leave_desklet,
-						//~ CAIRO_DOCK_RUN_AFTER, myApplet);
-				//~ }
-			//~ }
-		//~ }
-		if (myConfig.bDisplayNumDesk)
+		if (myData.iSidUpdateIdle == 0)
 		{
-			int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", iIndex+1);
+			if (myConfig.bDisplayNumDesk)
+			{
+				int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", iIndex+1);
+			}
+			else
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
+			
+			cd_switcher_load_icons ();
 		}
-		else
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
-		
-		cd_switcher_load_icons ();
 	}
-	else
+	else if (myData.iSidUpdateIdle == 0)
 	{
 		if (myConfig.bMapWallpaper)  // on recharge le wallpaper a la taille de l'applet.
 		{
@@ -262,5 +238,6 @@ CD_APPLET_RELOAD_BEGIN
 			cd_switcher_trigger_paint_icons ();
 	}
 	
-	cd_switcher_draw_main_icon ();
+	if (myData.iSidUpdateIdle == 0)
+		cd_switcher_draw_main_icon ();
 CD_APPLET_RELOAD_END
