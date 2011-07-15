@@ -150,7 +150,7 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	
 	//\_______________ On redessine notre icone.
-	if (myData.cBatteryStateFilePath)
+	if (myData.cBatteryStateFilePath || myData.pUPowerClient != NULL)
 	{
 		if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE || myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)  // On recharge la jauge.
 		{
