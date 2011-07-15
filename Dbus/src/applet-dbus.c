@@ -477,6 +477,14 @@ void cd_dbus_launch_service (void)
 	gchar *cLocaleDir = g_strdup_printf ("%s/"CD_DBUS_APPLETS_FOLDER"/"LOCALE_DIR_NAME, g_cCairoDockDataDir);  // user version of /usr/share/locale
 	if (! g_file_test (cLocaleDir, G_FILE_TEST_EXISTS))  // translations not downloaded yet.
 	{
+		gchar *cUserAppletsFolder = g_strdup_printf ("%s/"CD_DBUS_APPLETS_FOLDER, g_cCairoDockDataDir);
+		if (! g_file_test (cUserAppletsFolder, G_FILE_TEST_EXISTS))
+		{
+			if (g_mkdir (cUserAppletsFolder, 7*8*8+7*8+5) != 0)  // create an empty folder; since there is no date file, the "locale" package will be seen as "to be updated" by the package manager, and will therefore download it.
+				cd_warning ("couldn't create '%s'; third-party applets can't be added", cUserAppletsFolder);
+		}
+		g_free (cUserAppletsFolder);
+		
 		if (g_mkdir (cLocaleDir, 7*8*8+7*8+5) != 0)  // create an empty folder; since there is no date file, the "locale" package will be seen as "to be updated" by the package manager, and will therefore download it.
 			cd_warning ("couldn't create '%s'; applets won't be translated", cLocaleDir);
 	}
