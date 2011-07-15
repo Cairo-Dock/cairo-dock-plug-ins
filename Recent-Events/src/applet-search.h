@@ -38,7 +38,4 @@ void cd_delete_recent_events (int iNbDays, CDOnDeleteEventsFunc pCallback, gpoin
 void cd_delete_event (guint32 id, CDOnDeleteEventsFunc pCallback, gpointer data);
 
 
-gboolean cd_check_zeitgeist_is_running (void);
-
-
 #endif

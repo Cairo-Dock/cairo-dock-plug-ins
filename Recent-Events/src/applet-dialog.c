@@ -369,6 +369,7 @@ static GtkWidget *cd_build_events_widget (void)
 	gtk_box_pack_start (GTK_BOX (pMainBox), pFilterBox, FALSE, FALSE, MARGIN);
 	
 	GtkWidget *pFilterLabel = gtk_label_new (D_("Look for events"));
+	cairo_dock_set_dialog_widget_text_color (GTK_WIDGET (pFilterLabel));
 	gtk_box_pack_start (GTK_BOX (pFilterBox), pFilterLabel, FALSE, FALSE, MARGIN);
 	
 	GtkWidget *pEntry = gtk_entry_new ();
@@ -449,6 +450,11 @@ static void _on_dialog_destroyed (CairoDockModuleInstance *myApplet)
 	myData.iCurrentCaterogy = CD_EVENT_ALL;
 	myData.pModel = NULL;	
 }
+static gboolean _show_dialog_delayed (gpointer data)
+{
+	cd_toggle_dialog ();
+	return FALSE;
+}
 void cd_toggle_dialog (void)
 {
 	if (myData.pDialog != NULL)  // the dialog can be opened in the case it was called from the shortkey.
@@ -458,13 +464,22 @@ void cd_toggle_dialog (void)
 	}
 	else
 	{
-		if (! cd_check_zeitgeist_is_running ())
+		// establish the connection to Zeitgesit.
+		if (myData.pLog == NULL)  // first search.
+		{
+			myData.pLog = zeitgeist_log_new ();  // will launch the Zeitgeist daemon if it's not yet running.
+			if (! zeitgeist_log_is_connected (myData.pLog))  // the connection is not immediate (even if the daemon is already running), so come back in 1s.
+				g_timeout_add_seconds (1, _show_dialog_delayed, NULL);
+			return;
+		}
+		else if (! zeitgeist_log_is_connected (myData.pLog))
 		{
 			cairo_dock_remove_dialog_if_any (myIcon);
 			cairo_dock_show_temporary_dialog_with_icon (D_("You need to install the Zeitgeist data engine."), myIcon, myContainer, 6000, "same icon");
 			return;
 		}
 		
+		// build the dialog and the tree model.
 		GtkWidget *pInteractiveWidget = cd_build_events_widget ();
 		myData.pDialog = cairo_dock_show_dialog_full (D_("Browse and search in recent events"),
 			myIcon,
@@ -477,6 +492,7 @@ void cd_toggle_dialog (void)
 			(GFreeFunc) _on_dialog_destroyed);
 		gtk_widget_grab_focus (myData.pEntry);
 		
+		// trigger the search that will fill the model.
 		cd_trigger_search ();
 	}
 }

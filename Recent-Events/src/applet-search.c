@@ -463,11 +463,3 @@ void cd_delete_event (guint32 id, CDOnDeleteEventsFunc pCallback, gpointer data)
 		(GAsyncReadyCallback)on_delete_events,
 		s_data);  // this function unrefs the array
 }
-
-
-gboolean cd_check_zeitgeist_is_running (void)
-{
-	if (myData.pLog == NULL)
-		myData.pLog = zeitgeist_log_new ();
-	return zeitgeist_log_is_connected (myData.pLog);
-}
