@@ -43,6 +43,7 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 		memset (&attr, 0, sizeof (CairoGaugeAttribute));
 		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
 		pRenderAttr->cModelName = "gauge";
+		pRenderAttr->iRotateTheme = myConfig.iRotateTheme;
 		attr.cThemePath = myConfig.cGThemePath;
 	}
 	else if (myConfig.iDisplayType == CD_NETSPEED_GRAPH)
@@ -51,7 +52,7 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 		memset (&attr, 0, sizeof (CairoGraphAttribute));
 		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
 		pRenderAttr->cModelName = "graph";
-		pRenderAttr->iMemorySize = (myIcon->fWidth > 1 ? myIcon->fWidth : 32);  // fWidht peut etre <= 1 en mode desklet au chargement.
+		pRenderAttr->iMemorySize = (myIcon->fWidth > 1 ? myIcon->fWidth : 32);  // fWidth peut etre <= 1 en mode desklet au chargement.
 		attr.iType = myConfig.iGraphType;
 		attr.iRadius = 10;
 		attr.bMixGraphs = myConfig.bMixGraph;

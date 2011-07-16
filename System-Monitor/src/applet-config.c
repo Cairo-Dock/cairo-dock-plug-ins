@@ -45,6 +45,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iDisplayType = CD_CONFIG_GET_INTEGER ("Configuration", "renderer");
 	
 	myConfig.cGThemePath = CD_CONFIG_GET_GAUGE_THEME ("Configuration", "theme");
+	myConfig.iRotateTheme = CD_CONFIG_GET_INTEGER ("Configuration", "rotate theme");
 	
 	myConfig.iGraphType = CD_CONFIG_GET_INTEGER ("Configuration", "graphic type");
 	myConfig.bMixGraph = CD_CONFIG_GET_BOOLEAN ("Configuration", "mix graph");
