@@ -354,7 +354,7 @@ static GtkWidget *cd_build_events_widget (void)
 	gtk_box_pack_start (GTK_BOX (pMainBox), pToolBar, TRUE, TRUE, MARGIN);
 	
 	int i = 0;
-	GtkToolItem *group = _add_category_button (pToolBar, D_("All"), "stock_all", i++, NULL);
+	GtkToolItem *group = _add_category_button (pToolBar, D_("All"), "stock_search", i++, NULL);
 	_add_category_button (pToolBar, D_("Document"), "document", i++, group);
 	///_add_category_button (pToolBar, D_("Folder"), "folder", i++, group);
 	_add_category_button (pToolBar, D_("Image"), "image", i++, group);
