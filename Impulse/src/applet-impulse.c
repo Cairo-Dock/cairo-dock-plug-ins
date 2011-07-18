@@ -146,6 +146,7 @@ void cd_impulse_stop_animations (void)
 	}
 	if (myData.bPulseLaunched)
 		_im_stop();
+	cd_impulse_draw_current_state ();
 	// myData.bPulseLaunched = FALSE; //FIXME
 }
 
@@ -182,6 +183,7 @@ void cd_impulse_launch_task (void) //(CairoDockModuleInstance *myApplet)
 
 	myData.iSidAnimate = g_timeout_add (myConfig.iLoopTime, (GSourceFunc) _animate_the_dock, NULL); // or into a thread + time?
 	cd_debug ("Impulse: animations started");
+	cd_impulse_draw_current_state ();
 }
 
 gboolean cd_impulse_on_icon_changed (gpointer pUserData, Icon *pIcon, CairoDock *pDock)
@@ -193,4 +195,12 @@ gboolean cd_impulse_on_icon_changed (gpointer pUserData, Icon *pIcon, CairoDock 
 		_get_icons_list_without_separators (myData.pSharedMemory);
 	}
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+void cd_impulse_draw_current_state (void)
+{
+	if (myData.iSidAnimate != 0)
+		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconImpulseON, "impulse-running.svg");
+	else
+		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconImpulseOFF, "impulse-stopped.svg");
 }

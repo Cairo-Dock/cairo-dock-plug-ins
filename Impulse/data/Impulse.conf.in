@@ -9,9 +9,7 @@ frame_maininfo=
 #d Name of the dock it belongs to:
 dock name = 
 
-#s Name of the icon as it will appear in its caption in the dock:
-name = 
- #v
+#v
 sep_display=
 
 #S+ Image filename:
@@ -119,5 +117,16 @@ refresh = 250
 #b Stop animations sooner?
 #{Do we have to stop the animation on a icon which doesn't have to be animated each refresh?}
 stop animations = true
+
+#F[Style;gtk-color-picker]
+frame_style =
+
+#S+ Image when the applet is active:
+#{Leave empty to use the default one.}
+icon on = 
+
+#S+ Image when the applet is inactive:
+#{Leave empty to use the default one.}
+icon off = 
 
 dock name = _MainDock_

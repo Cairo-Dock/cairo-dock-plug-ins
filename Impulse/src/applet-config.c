@@ -32,12 +32,17 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iLoopTime = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "refresh", 250);
 	myConfig.pDock = cairo_dock_search_dock_from_name (CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "dock", "_MainDock_"));
 	myConfig.bStopAnimations = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "stop animations", TRUE);
+
+	myConfig.cIconImpulseON = CD_CONFIG_GET_STRING ("Configuration", "icon on");
+	myConfig.cIconImpulseOFF = CD_CONFIG_GET_STRING ("Configuration", "icon off");
 CD_APPLET_GET_CONFIG_END
 
 
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before you get the applet's config, and when your applet is stopped, in the end.
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cIconAnimation);
+	g_free (myConfig.cIconImpulseON);
+	g_free (myConfig.cIconImpulseOFF);
 CD_APPLET_RESET_CONFIG_END
 
 
