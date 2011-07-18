@@ -104,19 +104,17 @@ fg alpha = 1
 #a+ Animation of the icons :
 animation=bounce
 
-#e[0;1] Sensitivity of the animation:
+#e+[0;1;More;Less] Sensitivity of the animation:
 #{It's the sensitivity in order to know if the animation is played or not.}
-sensitivity=0.08
+sensitivity = 0.25
 
-nb animations=1
-
-#I[50;10000] Time between two animations:
+#I+[10;3000;Less;More] Time between two animations:
 #{in ms.}
 refresh = 250
 
 #b Stop animations sooner?
 #{Do we have to stop the animation on a icon which doesn't have to be animated each refresh?}
-stop animations = true
+stop animations = false
 
 #F[Style;gtk-color-picker]
 frame_style =
@@ -128,5 +126,7 @@ icon on =
 #S+ Image when the applet is inactive:
 #{Leave empty to use the default one.}
 icon off = 
+
+nb animations=1
 
 dock name = _MainDock_

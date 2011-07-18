@@ -126,10 +126,11 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
-		// if (myData.pTask != NULL)
+		cd_impulse_draw_current_state (); // if the user has specified other icons.
+
 		_free_shared_memory ();
 		_init_shared_memory ();
+
 		if (myData.iSidAnimate != 0)
 		{ // maybe the time has changed...
 			cd_impulse_launch_task();// (myApplet);
