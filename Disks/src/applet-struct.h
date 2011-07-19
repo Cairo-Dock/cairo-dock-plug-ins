@@ -66,6 +66,9 @@ struct _AppletConfig {
 	gchar **cDisks;
 	gsize iNumberDisks;
 	
+	gchar **cParts;
+	gsize iNumberParts;
+	
 	gchar *cSystemMonitorCommand;
 } ;
 
@@ -74,6 +77,7 @@ struct _AppletData {
 	// shared memory
 	gsize iNumberDisks;
 	GList *lDisks;
+	GList *lParts;
 	
 	// end of shared memory
 	CairoDockTask *pPeriodicTask;

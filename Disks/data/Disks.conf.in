@@ -43,9 +43,6 @@ initially detached=false
 #{Depending on your WindowManager, you may be able to resize this with ALT + middle-click or ALT + left-click.}
 size = 96;96
 
-#F[Visibility;gtk-find]
-frame_visi =
-
 #l[Normal;Keep above;Keep below;Keep on widget layer;Reserve space] Visibility:
 #{for CompizFusion's "widget layer", set behaviour in Compiz to: (class=Cairo-dock & type=utility)}
 accessibility=0
@@ -81,9 +78,6 @@ frame_deco=
 #{Choose 'Custom decorations' to define your own decorations below.}
 decorations = default
 
-#X[Custom decorations;gtk-orientation-portrait]
-frame_custom=
-
 #v
 sep_deco =
 #S Background image:
@@ -97,8 +91,8 @@ fg desklet =
 #e[0;1] Foreground tansparency:
 fg alpha = 1
 
-#X[Custom margins;gtk-leave-fullscreen]
-frame_offset=
+#v
+sep_offset=
 
 #i[0;256] Left offset:
 #{in pixels. Use this to adjust the left position of drawings.}
@@ -163,6 +157,12 @@ delay = 3
 #{You need OpenGL for this option. Set it to 0 to disable it, 1 means the transition is continue.}
 smooth = .33
 
+#F[Partitions monitored : Size;gtk-preferences]
+frame_parts =
+
+#U
+#{E.g. sda1, sdb5...}/
+partitions = 
 
 #F[Disks monitored : Speed;gtk-preferences]
 frame_disks =
@@ -170,13 +170,6 @@ frame_disks =
 #U
 #{E.g. sda, sdb... Up to 5 values allowed}/
 disks = sda
-
-#F[Partitions monitored : Size;gtk-preferences]
-frame_parts =
-
-#U
-#{E.g. sda1, sdb5...}/
-partitions = 
 
 #F[Preferences;gtk-preferences]
 frame_prefs =

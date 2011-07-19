@@ -29,14 +29,31 @@
 CD_APPLET_DEFINITION (N_("Disks"),
 	2, 0, 5,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
-	N_("<b><i>monitors disks activity</i></b>.\n\n"
-	"Initial release, a lot more need to be done :\n"
-	" - All disks option\n"
-	" - Pop up showing disks info to know what to add in the list\n"
-	" - Free space\n"
-	" - Find actions : left, middle click, drop and wheel\n"
-	" - Fill menu with actions\n"
+	N_("<b><i>Monitors disks speed and space</i></b>.\n"
+	"\n"
+	"This applet show your disks informations. You can activate both options at once, but they're better separated in 2 or more instances of the applet.\n"
+	"Using both in the same applet can cause problems with the speed display not scaling down.\n"
+	"\n"
+	"<b>Disk space</b> :  Show disk transfer rates. Up to 10 partitions\n"
+	"  You need to configure the mount point of each monitored partition like / or /home\n"
+	"  Better seen in a gauge, with 30 or 60s refresh rate and really short or no transition delay.\n"
+	"\n"
+	"<b>Disk speed</b> :  Show disk transfer rates. Up to 5 disks\n"
+	"  You need to configure the name of each monitored disk with his device name like sda or sdb\n"
+	"  Better seen in a graph, with 2 or 3s refresh rate and no delay between transitions.\n"
+	"\n"
+	"Second release, a lot more need to be done :\n"
+	" <u>Free space :</u>\n"
+	" - Popup with detailed informations.\n"
 	" - Editable labels ?\n"
+	" <u>Speed :</u>\n"
+	" - All disks option.\n"
+	" - Pop up showing disks info to know what to add in the list.\n"
+	" - Editable labels ?\n"
+	" - Get real block size for disks\n"
+	" <u>Global</u>\n"
+	" - Find actions : left, middle click, drop and wheel.\n"
+	" - Fill menu with actions.\n"
 	),
 	"SQP");
 
@@ -80,6 +97,20 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 	if (pRenderAttr != NULL)  // attributs generiques.
 	{
 		const gchar *labels[CD_DISKS_NB_MAX_VALUES] = {};
+		
+		if (myConfig.iNumberParts > 0)
+		{
+			gsize i;
+			for (i = 0; i < myConfig.iNumberParts; i++)
+			{
+        /// Ca non plus je suppose :)
+				double *pSize;
+				pSize = g_new0 (double, 1);
+				myData.lParts = g_list_append (myData.lParts, pSize);
+				labels[i] = myConfig.cParts[i];
+			}
+		}
+
 		if (myData.iNumberDisks > 0)
 		{
 			gsize i;
@@ -97,8 +128,13 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 
 		pRenderAttr->cLabels = (gchar **)labels;
 		pRenderAttr->iLatencyTime = myConfig.iCheckInterval * 1000 * myConfig.fSmoothFactor;
-		pRenderAttr->iNbValues = 2 * myData.iNumberDisks;
-		pRenderAttr->bUpdateMinMax = TRUE;
+		pRenderAttr->iNbValues = myConfig.iNumberParts + 2 * myData.iNumberDisks;
+		
+		/// Problem here : should be FALSE for size and TRUE for speed.
+		/// This version force FALSE when size is monitored, so applets using both monitors
+		/// could have some display problems on speed display.
+		pRenderAttr->bUpdateMinMax = !(myConfig.iNumberParts > 0);
+
 		if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 		{
 			pRenderAttr->bWriteValues = TRUE;
@@ -155,7 +191,8 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 		}
 		
-		reset_disks_list (myApplet);
+		cd_disks_reset_parts_list (myApplet);
+		cd_disks_reset_disks_list (myApplet);
 		
 		_set_data_renderer (myApplet, TRUE);
 		

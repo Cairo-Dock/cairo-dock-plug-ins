@@ -26,6 +26,4 @@
 
 CD_APPLET_CONFIG_H
 
-void reset_disks_list (CairoDockModuleInstance *myApplet);
-
 #endif

@@ -23,6 +23,7 @@
 
 #include "applet-struct.h"
 #include "applet-config.h"
+#include "applet-disks.h"
 
 
 CD_APPLET_GET_CONFIG_BEGIN
@@ -49,6 +50,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 
 	///\_________________ Parameters
 	myConfig.cDisks = CD_CONFIG_GET_STRING_LIST ("Configuration", "disks", &myConfig.iNumberDisks);
+	myConfig.cParts = CD_CONFIG_GET_STRING_LIST ("Configuration", "partitions", &myConfig.iNumberParts);
 	myConfig.cSystemMonitorCommand = CD_CONFIG_GET_STRING ("Configuration", "sys monitor");
 CD_APPLET_GET_CONFIG_END
 
@@ -72,27 +74,6 @@ CD_APPLET_RESET_DATA_BEGIN
 	
 	g_timer_destroy (myData.pClock);
 	
-	reset_disks_list (myApplet);
+	cd_disks_reset_parts_list (myApplet);
+	cd_disks_reset_disks_list (myApplet);
 CD_APPLET_RESET_DATA_END
-
-
-void reset_disks_list (CairoDockModuleInstance *myApplet)
-{
-	if (myData.iNumberDisks > 0)
-	{
-		gsize i;
-		CDDiskSpeedData *pSpeed;
-		for (i = 0; i < myData.iNumberDisks; i++)
-		{
-			pSpeed = g_list_nth_data (myData.lDisks, i);  /// maladroit
-			if (pSpeed != NULL) 
-			{
-				if (pSpeed->cName != NULL)
-					g_free (pSpeed->cName);
-				g_free (pSpeed);
-			}
-		}
-		g_list_free (myData.lDisks);
-		myData.lDisks = NULL;
-	}
-}

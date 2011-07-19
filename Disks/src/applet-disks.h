@@ -26,4 +26,7 @@ void cd_disks_get_data (CairoDockModuleInstance *myApplet);
 void cd_disks_format_value_on_icon (CairoDataRenderer *pRenderer, int iNumValue, gchar *cFormatBuffer, int iBufferLength, CairoDockModuleInstance *myApplet);
 gboolean cd_disks_update_from_data (CairoDockModuleInstance *myApplet);
 
+void cd_disks_reset_parts_list (CairoDockModuleInstance *myApplet);
+void cd_disks_reset_disks_list (CairoDockModuleInstance *myApplet);
+
 #endif

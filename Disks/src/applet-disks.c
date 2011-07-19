@@ -24,6 +24,8 @@
 #include <glib.h>
 #include <glib/gprintf.h>
 
+#include <sys/statvfs.h>
+
 #include "applet-struct.h"
 #include "applet-notifications.h"
 #include "applet-disks.h"
@@ -88,17 +90,28 @@ static void _cd_speed_formatRate (unsigned long long rate, gchar* debit, int iBu
 
 void cd_disks_format_value_on_icon (CairoDataRenderer *pRenderer, int iNumValue, gchar *cFormatBuffer, int iBufferLength, CairoDockModuleInstance *myApplet)
 {
-	static gchar s_upRateFormatted[11];
-	double fValue = cairo_data_renderer_get_normalized_current_value_with_latency (pRenderer, iNumValue);
-	int i = iNumValue / 2;
-	CDDiskSpeedData *pSpeed = g_list_nth_data (myData.lDisks, i);
-	fValue *= (iNumValue == i * 2 ? pSpeed->uMaxReadRate : pSpeed->uMaxWriteRate);
-
-	_cd_speed_formatRate (fValue, s_upRateFormatted, 11, FALSE);
-	snprintf (cFormatBuffer, iBufferLength,
-		"%s%s",
-		cairo_data_renderer_can_write_values (pRenderer) ? (iNumValue == i * 2 ?"↑" : "↓") : "",
-		s_upRateFormatted);
+	if (iNumValue < (int) myConfig.iNumberParts)
+		{
+			double *pSize;
+			pSize = g_list_nth_data (myData.lParts, iNumValue);
+			snprintf (cFormatBuffer, iBufferLength,
+				"%.f%%",
+				*pSize * 100);
+		}
+	else
+	{
+		static gchar s_upRateFormatted[11];
+		double fValue = cairo_data_renderer_get_normalized_current_value_with_latency (pRenderer, iNumValue);
+		int i = iNumValue / 2;
+		CDDiskSpeedData *pSpeed = g_list_nth_data (myData.lDisks, i);
+		fValue *= (iNumValue == i * 2 ? pSpeed->uMaxReadRate : pSpeed->uMaxWriteRate);
+	
+		_cd_speed_formatRate (fValue, s_upRateFormatted, 11, FALSE);
+		snprintf (cFormatBuffer, iBufferLength,
+			"%s%s",
+			cairo_data_renderer_can_write_values (pRenderer) ? (iNumValue == i * 2 ?"↑" : "↓") : "",
+			s_upRateFormatted);
+	}
 }
 
 
@@ -107,13 +120,33 @@ gboolean cd_disks_update_from_data (CairoDockModuleInstance *myApplet)
 	static gchar s_readRateFormatted[11], s_writeRateFormatted[11];
 	static double s_fValues[CD_DISKS_NB_MAX_VALUES];
 		//~ memset (s_fValues, 0, sizeof (s_fValues));
-	CDDiskSpeedData *pSpeed;
 	GString *sLabel = g_string_new ("");
 	gsize i;
 
 	CD_APPLET_ENTER;
+	if (myConfig.iNumberParts > 0)
+	{
+		double *pSize;
+		for (i = 0; i < myConfig.iNumberParts; i++)
+		{
+			pSize = g_list_nth_data (myData.lParts, i);
+			s_fValues[i] = *pSize;
+			//cd_warning("Partition %d = %s : %.1f%%", i, myConfig.cParts[i], *pSize * 100);
+
+			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
+			{
+				if (i > 0) 
+					g_string_append (sLabel, " - ");
+
+				g_string_append_printf (sLabel, "%s : %.1f%%", myConfig.cParts[i], *pSize * 100);
+
+			}
+		}
+	}
+	
 	if (myData.iNumberDisks > 0)
 	{
+		CDDiskSpeedData *pSpeed;
 		for (i = 0; i < myData.iNumberDisks; i++)
 		{
 			pSpeed = g_list_nth_data (myData.lDisks, i);
@@ -144,14 +177,17 @@ gboolean cd_disks_update_from_data (CairoDockModuleInstance *myApplet)
 			}
 
 		}
-		
+	}
+
+	if (myConfig.iNumberParts + myData.iNumberDisks > 0)
+	{
 		/// Display data
 		CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
 		if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (sLabel->str);
-		g_string_free (sLabel, TRUE);
 	}
 
+	g_string_free (sLabel, TRUE);
 	CD_APPLET_LEAVE (TRUE);
 }
 
@@ -183,82 +219,130 @@ void cd_disks_get_data (CairoDockModuleInstance *myApplet)
 	double fTimeElapsed = g_timer_elapsed (myData.pClock, NULL);
 	g_timer_start (myData.pClock);
 
-	if (!(myData.iNumberDisks > 0))
+	if (!(myConfig.iNumberParts + myData.iNumberDisks > 0))
 	{
 		cairo_dock_downgrade_task_frequency (myData.pPeriodicTask);
 		cd_warning("Disks : No disk defined");
 	}
-	g_return_if_fail ((fTimeElapsed > 0.1) || (myData.iNumberDisks > 0));
+	g_return_if_fail ((fTimeElapsed > 0.1) || (myConfig.iNumberParts + myData.iNumberDisks > 0));
 	
-	char disk_name [16];
-	//~ int disk_major;
-
-	FILE* fd;
-	buff[BUFFSIZE-1] = 0; 
-	fd = fopen (DISKS_SPEED_DATA_PIPE, "rb");
-	if (!fd) 
+	if (myConfig.iNumberParts > 0)
 	{
-		cairo_dock_downgrade_task_frequency (myData.pPeriodicTask);
-		cd_warning("Disks : Your kernel doesn't support diskstat. (2.5.70 or above required)");
-	}
-	else
-	{
-		//~ cairo_dock_set_normal_task_frequency (myData.pPeriodicTask);
 		gsize i;
-		CDDiskSpeedData* pSpeed;
-		long long unsigned uReadBlocks, uWriteBlocks;
-		gboolean bFound;
-		for (;;)
+		struct statvfs buffer;
+		int            status;
+		double *pSize;
+		for (i = 0; i < myConfig.iNumberParts; i++)
 		{
-			if (!fgets(buff,BUFFSIZE-1,fd))
-			{
-				fclose(fd);
-				break;
-			}
-	
-			/// Using Linux iostat : http://www.kernel.org/doc/Documentation/iostats.txt
-			/// gathering fields 3, 6 and 10
-			sscanf(buff,  "   %*d    %*d %15s %*u %*u %llu %*u %*u %*u %llu %*u %*u %*u %*u",
-				//&disk_major, // field 1
-				disk_name,
-				&uReadBlocks,
-				&uWriteBlocks 
-				);
-
-			bFound = FALSE;
-			if (strlen (disk_name) == 3)
-				for (i = 0; i < myData.iNumberDisks; i++)
-				{
-					pSpeed = g_list_nth_data (myData.lDisks, i);
-					if (strcmp (pSpeed->cName, disk_name) == 0)
-					{
-						if (pSpeed->bInitialized)  // la 1ere iteration on ne peut pas calculer le debit.
-						{
-							pSpeed->uReadSpeed = (uReadBlocks - pSpeed->uReadBlocks) * DISK_BLOCK_SIZE / fTimeElapsed;
-							pSpeed->uWriteSpeed = (uWriteBlocks - pSpeed->uWriteBlocks) * DISK_BLOCK_SIZE / fTimeElapsed;
-						}
-						else
-							pSpeed->bInitialized = TRUE;
-					
-						pSpeed->uReadBlocks = uReadBlocks;
-						pSpeed->uWriteBlocks = uWriteBlocks;
-						 //~ cd_warning("%s %u %u", pSpeed->cName, pSpeed->uReadSpeed, pSpeed->uWriteSpeed);
-				
-						pSpeed->bAcquisitionOK = TRUE;
-						bFound = TRUE;
-						break;
-					}
-				}
-
-				// if (myConfig.bListAll && !bFound) // need monitor
-					/// create new
-			//~ cd_warning("creation");
-					//~ pSpeed = g_new0 (CDDiskSpeedData, 1);
-					//~ pSpeed->cName = g_strdup (disk_name);
-					//~ myData.lDisks = g_list_append (myData.lDisks, pSpeed);
-					// speed_set_data (pDisk, new_reads, new_writes);
-			//~ } 
+			pSize = g_list_nth_data (myData.lParts, i);
+			status = statvfs(myConfig.cParts[i], &buffer);
+			*pSize = 1. - (double) buffer.f_bfree / (double) buffer.f_blocks;
 		}
 	}
+
+	if (myData.iNumberDisks > 0) 
+	{
+		char disk_name [16];
+		//~ int disk_major;
+	
+		FILE* fd;
+		buff[BUFFSIZE-1] = 0; 
+		fd = fopen (DISKS_SPEED_DATA_PIPE, "rb");
+		if (!fd) 
+		{
+			cairo_dock_downgrade_task_frequency (myData.pPeriodicTask);
+			cd_warning("Disks : Your kernel doesn't support diskstat. (2.5.70 or above required)");
+		}
+		else
+		{
+			//~ cairo_dock_set_normal_task_frequency (myData.pPeriodicTask);
+			gsize i;
+			CDDiskSpeedData* pSpeed;
+			long long unsigned uReadBlocks, uWriteBlocks;
+			gboolean bFound;
+			for (;;)
+			{
+				if (!fgets(buff,BUFFSIZE-1,fd))
+				{
+					fclose(fd);
+					break;
+				}
+		
+				/// Using Linux iostat : http://www.kernel.org/doc/Documentation/iostats.txt
+				/// gathering fields 3, 6 and 10
+				sscanf(buff,  "   %*d    %*d %15s %*u %*u %llu %*u %*u %*u %llu %*u %*u %*u %*u",
+					//&disk_major, // field 1
+					disk_name,
+					&uReadBlocks,
+					&uWriteBlocks 
+					);
+	
+				bFound = FALSE;
+				if (strlen (disk_name) == 3)
+					for (i = 0; i < myData.iNumberDisks; i++)
+					{
+						pSpeed = g_list_nth_data (myData.lDisks, i);
+						if (strcmp (pSpeed->cName, disk_name) == 0)
+						{
+							if (pSpeed->bInitialized)  // la 1ere iteration on ne peut pas calculer le debit.
+							{
+								pSpeed->uReadSpeed = (uReadBlocks - pSpeed->uReadBlocks) * DISK_BLOCK_SIZE / fTimeElapsed;
+								pSpeed->uWriteSpeed = (uWriteBlocks - pSpeed->uWriteBlocks) * DISK_BLOCK_SIZE / fTimeElapsed;
+							}
+							else
+								pSpeed->bInitialized = TRUE;
+							
+							pSpeed->uReadBlocks = uReadBlocks;
+							pSpeed->uWriteBlocks = uWriteBlocks;
+							 //~ cd_warning("%s %u %u", pSpeed->cName, pSpeed->uReadSpeed, pSpeed->uWriteSpeed);
+							
+							pSpeed->bAcquisitionOK = TRUE;
+							bFound = TRUE;
+							break;
+						}
+					}
+
+					// if (myConfig.bListAll && !bFound) // need monitor
+						/// create new
+				//~ cd_warning("creation");
+						//~ pSpeed = g_new0 (CDDiskSpeedData, 1);
+						//~ pSpeed->cName = g_strdup (disk_name);
+						//~ myData.lDisks = g_list_append (myData.lDisks, pSpeed);
+						// speed_set_data (pDisk, new_reads, new_writes);
+				//~ } 
+			}
+		}
+	}
+
 }
+
+
+
+void cd_disks_reset_parts_list (CairoDockModuleInstance *myApplet)
+{
+	if (myConfig.iNumberParts > 0)
+	{
+		g_list_free_full (myData.lParts, g_free);
+		myData.lParts = NULL;
+	}
+}
+
+
+void _reset_one_disk (CDDiskSpeedData *pSpeed)
+{
+	if (pSpeed->cName != NULL)
+		g_free (pSpeed->cName);
+	g_free (pSpeed);
+}
+
+void cd_disks_reset_disks_list (CairoDockModuleInstance *myApplet)
+{
+	if (myData.iNumberDisks > 0)
+	{
+		g_list_foreach (myData.lDisks, (GFunc) _reset_one_disk, NULL);
+		g_list_free (myData.lDisks);
+		myData.lDisks = NULL;
+	}
+}
+
 
