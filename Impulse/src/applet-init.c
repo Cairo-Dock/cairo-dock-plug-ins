@@ -74,6 +74,8 @@ CD_APPLET_INIT_BEGIN
 
 	_init_shared_memory ();
 
+	cd_impulse_im_setSourceIndex (myConfig.iSourceIndex);
+
 	if (myConfig.bLaunchAtStartup)
 		cd_impulse_start_animating_with_delay ();
 
@@ -118,6 +120,8 @@ CD_APPLET_RELOAD_BEGIN
 		_free_shared_memory ();
 		_init_shared_memory ();
 
+		cd_impulse_im_setSourceIndex (myConfig.iSourceIndex);
+
 		// if the icon has to be destroyed
 		if (myConfig.bLaunchAtStartup && myConfig.bFree)
 		{
@@ -127,7 +131,7 @@ CD_APPLET_RELOAD_BEGIN
 		else
 			cairo_dock_insert_icon_in_dock (myIcon, myDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
 
-		if (bWasLaunched || myConfig.bFree) // maybe the time has changed... or if it's automatically launched
+		if (bWasLaunched || (myConfig.bLaunchAtStartup && myConfig.bFree)) // maybe the time has changed... or if it's automatically launched
 			cd_impulse_launch_task ();
 	}
 CD_APPLET_RELOAD_END

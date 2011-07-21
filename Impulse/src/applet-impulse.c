@@ -25,6 +25,8 @@
 #include "applet-impulse.h"
 #include "Impulse.h"
 
+#define IM_TAB_SIZE 256
+
 void _im_start (void)
 {
 	cd_debug ("Impulse: start im");
@@ -35,6 +37,12 @@ void _im_stop (void)
 {
 	cd_debug ("Impulse: stop im");
 	//im_stop(); // FIXME => if stopped, the client is not stopped and im_getSnapshot(IM_FFT) give always the same thing...
+}
+
+void cd_impulse_im_setSourceIndex (gint iSourceIndex)
+{
+	cd_debug ("Impulse: iSourceIndex = %d", iSourceIndex);
+	im_setSourceIndex (iSourceIndex);
 }
 
 static void _get_icons_list_without_separators (CDSharedMemory *pSharedMemory)
@@ -74,13 +82,36 @@ static gboolean _animate_the_dock (gpointer data)
 	if (myData.pSharedMemory->pIconsList == NULL)
 		CD_APPLET_LEAVE (FALSE);
 
-	guint iIcons = 256 / g_list_length(myData.pSharedMemory->pIconsList); // number of icons (without separators)
+	guint iIcons = IM_TAB_SIZE / g_list_length(myData.pSharedMemory->pIconsList); // number of icons (without separators)
 
 	double *array = im_getSnapshot(IM_FFT);
+
+	// we check if there is a signal
+	if (array[0] == 0.0)
+	{	// is it really null?
+		int j = 0;
+		for (j = 1; j < IM_TAB_SIZE; j++)
+		{
+			if (array[j] != 0)
+				break; // there is a signal
+		}
+
+		cd_debug ("Impulse: No Signal? %d", j);
+		if (j == IM_TAB_SIZE)
+			CD_APPLET_LEAVE (TRUE);
+		/* TODO?
+			* if null, increase the time of the loop?
+			* Maybe use: PA_SUBSCRIPTION_EVENT_CLIENT?
+			* or something else in pulse?
+			*/
+	}
+
+	// Computing and animations
 	int i;
 	double l = 0.0;
 	GList *ic = myData.pSharedMemory->pIconsList;
 	Icon *pIcon;
+	// gboolean bNeedRefresh = TRUE; // has not been animated
 	for (i = 0; ic != NULL; i++) // i < 256
 	{
 		l += array[i]; // a sum for the average
@@ -91,7 +122,11 @@ static gboolean _animate_the_dock (gpointer data)
 			if ((l/iIcons) > myData.pSharedMemory->fMinValueToAnim) // animation
 			{
 				//cd_debug ("Impulse: animation on this icon=%s", pIcon->cName);
-				cairo_dock_request_icon_animation (pIcon, myData.pSharedMemory->pDock, myData.pSharedMemory->cIconAnimation, myData.pSharedMemory->iNbAnimations);
+				cairo_dock_request_icon_animation (pIcon,
+					myData.pSharedMemory->pDock,
+					myData.pSharedMemory->cIconAnimation,
+					myData.pSharedMemory->iNbAnimations);
+				// bHasBeenAnimated = FALSE;
 			}
 			else if (myData.pSharedMemory->bStopAnimations)
 				cairo_dock_stop_icon_animation (pIcon);
@@ -100,6 +135,8 @@ static gboolean _animate_the_dock (gpointer data)
 		}
 	}
 	//cd_debug ("Impulse: out");
+	//if (bHasBeenAnimated && myData.pSharedMemory->bStopAnimations)
+		// TODO? If no animations and (myData.pSharedMemory->bStopAnimations), refresh the dock?
 	g_list_free (ic);
 	CD_APPLET_LEAVE (TRUE);
 }

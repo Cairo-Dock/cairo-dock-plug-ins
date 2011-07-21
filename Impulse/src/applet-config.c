@@ -34,6 +34,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bStopAnimations = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "stop animations", FALSE);
 	myConfig.bLaunchAtStartup = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "startup", FALSE);
 	myConfig.bFree = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "free", FALSE);
+	myConfig.iSourceIndex = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "source_index", 0);
 
 	myConfig.cIconImpulseON = CD_CONFIG_GET_STRING ("Configuration", "icon on");
 	myConfig.cIconImpulseOFF = CD_CONFIG_GET_STRING ("Configuration", "icon off");

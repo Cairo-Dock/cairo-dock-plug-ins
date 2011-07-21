@@ -35,6 +35,7 @@ struct _AppletConfig {
 	gboolean bFree;
 	gchar *cIconImpulseON;
 	gchar *cIconImpulseOFF;
+	gint iSourceIndex;
 	} ;
 
 typedef struct {
