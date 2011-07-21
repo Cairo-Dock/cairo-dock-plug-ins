@@ -31,6 +31,7 @@ struct _AppletConfig {
 	gint iLoopTime;
 	CairoDock *pDock;
 	gboolean bStopAnimations;
+	gboolean bLaunchAtStartup;
 	gchar *cIconImpulseON;
 	gchar *cIconImpulseOFF;
 	} ;

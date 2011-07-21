@@ -101,7 +101,7 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#a+ Animation of the icons :
+#a+ Animation of the icons:
 animation=bounce
 
 #e+[0;1;More;Less] Sensitivity of the animation:
@@ -115,6 +115,9 @@ refresh = 250
 #b Stop animations sooner?
 #{Do we have to stop the animation on a icon which doesn't have to be animated each refresh?}
 stop animations = false
+
+#b Launch automatically at startup?
+startup = false
 
 #F[Style;gtk-color-picker]
 frame_style =

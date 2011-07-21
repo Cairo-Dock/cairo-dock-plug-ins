@@ -147,18 +147,11 @@ void cd_impulse_stop_animations (void)
 	if (myData.bPulseLaunched)
 		_im_stop();
 	cd_impulse_draw_current_state ();
-	// myData.bPulseLaunched = FALSE; //FIXME
+	// myData.bPulseLaunched = FALSE; //FIXME => if already started and stopped, it will crash... because not correctly stopped...
 }
 
 void cd_impulse_launch_task (void) //(CairoDockModuleInstance *myApplet)
 {
-	// PulseAudio Server
-	if (! myData.bPulseLaunched)
-	{
-		_im_start(); // FIXME => if already started and stopped, it will crash... because not correctly stopped...
-		myData.bPulseLaunched = TRUE;
-	}
-
 	// if a task is already launching
 	/*if (myData.pTask != NULL)
 	{
@@ -167,9 +160,15 @@ void cd_impulse_launch_task (void) //(CairoDockModuleInstance *myApplet)
 	}*/
 	if (myData.iSidAnimate != 0)
 		cd_impulse_stop_animations();
-	
-	
-	/*myData.pTask = cairo_dock_new_task_full (1,// TODO (SECOND) myConfig.iLoopTime,
+
+	// PulseAudio Server
+	if (! myData.bPulseLaunched)
+	{
+		_im_start(); // FIXME => if already started and stopped, it will crash... because not correctly stopped...
+		myData.bPulseLaunched = TRUE;
+	}
+
+	/*myData.pTask = cairo_dock_new_task_full (1,// (SECOND) myConfig.iLoopTime,
 		// (CairoDockGetDataAsyncFunc) _get_icons_list_without_separators,
 		NULL,
 		(CairoDockUpdateSyncFunc) _animate_the_dock,

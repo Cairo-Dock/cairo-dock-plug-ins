@@ -70,19 +70,9 @@ CD_APPLET_INIT_BEGIN
 
 	_init_shared_memory ();
 
-	// Registration:
-	/*cairo_dock_register_notification_on_object (&myDocksMgr,
-		NOTIFICATION_ICON_MOVED,
-		(CairoDockNotificationFunc) cd_impulse_on_icon_changed,
-		CAIRO_DOCK_RUN_FIRST, NULL);
-	cairo_dock_register_notification_on_object (&myDocksMgr,
-		NOTIFICATION_INSERT_ICON,
-		(CairoDockNotificationFunc) cd_impulse_on_icon_changed,
-		CAIRO_DOCK_RUN_FIRST, NULL);
-	cairo_dock_register_notification_on_object (&myDocksMgr,
-		NOTIFICATION_REMOVE_ICON,
-		(CairoDockNotificationFunc) cd_impulse_on_icon_changed,
-		CAIRO_DOCK_RUN_FIRST, NULL);*/
+	if (myConfig.bLaunchAtStartup)
+		cd_impulse_launch_task();
+
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 CD_APPLET_INIT_END
@@ -92,28 +82,11 @@ CD_APPLET_INIT_END
 CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
-	
-	//if (myData.pTask != NULL)
+
 	if (myData.iSidAnimate != 0)
 		cd_impulse_stop_animations();
 
 	_free_shared_memory ();
-
-	// Unregistration:
-	/*cairo_dock_remove_notification_func_on_object (&myDocksMgr,
-		NOTIFICATION_ICON_MOVED,
-		(CairoDockNotificationFunc) cd_impulse_on_icon_changed, NULL);
-	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
-		NOTIFICATION_INSERT_ICON,
-		(CairoDockNotificationFunc) cd_impulse_on_icon_changed, NULL);
-	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
-		NOTIFICATION_REMOVE_ICON,
-		(CairoDockNotificationFunc) cd_impulse_on_icon_changed, NULL);*/
-
-	// We stoppe the main loop.
-	/*if (myData.iSidAnimate != 0)
-		g_source_remove (myData.iSidAnimate);*/
-	
 CD_APPLET_STOP_END
 
 

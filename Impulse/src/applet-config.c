@@ -32,6 +32,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iLoopTime = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "refresh", 250);
 	myConfig.pDock = cairo_dock_search_dock_from_name (CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "dock", "_MainDock_"));
 	myConfig.bStopAnimations = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "stop animations", FALSE);
+	myConfig.bLaunchAtStartup = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "startup", FALSE);
 
 	myConfig.cIconImpulseON = CD_CONFIG_GET_STRING ("Configuration", "icon on");
 	myConfig.cIconImpulseOFF = CD_CONFIG_GET_STRING ("Configuration", "icon off");
