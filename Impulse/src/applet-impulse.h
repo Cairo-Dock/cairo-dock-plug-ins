@@ -27,5 +27,6 @@ void cd_impulse_stop_animations (void);
 void cd_impulse_launch_task (void); //(CairoDockModuleInstance *myApplet);
 gboolean cd_impulse_on_icon_changed (gpointer pUserData, Icon *pIcon, CairoDock *pDock);
 void cd_impulse_draw_current_state (void);
+void cd_impulse_start_animating_with_delay (void);
 
 #endif

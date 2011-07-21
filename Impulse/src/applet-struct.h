@@ -32,6 +32,7 @@ struct _AppletConfig {
 	CairoDock *pDock;
 	gboolean bStopAnimations;
 	gboolean bLaunchAtStartup;
+	gboolean bFree;
 	gchar *cIconImpulseON;
 	gchar *cIconImpulseOFF;
 	} ;
@@ -54,6 +55,8 @@ struct _AppletData {
 	// gboolean isRunning;
 	gboolean bPulseLaunched; // can we stop the pulseaudio client/server?
 	guint iSidAnimate;
+	guint iSidRestartDelayed;
+	gboolean bHasBeenStarted;
 	} ;
 
 

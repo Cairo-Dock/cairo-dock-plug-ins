@@ -26,7 +26,7 @@
 #include "applet-impulse.h"
 
 
-CD_APPLET_DEFINITION (N_("Impulse"),
+CD_APPLET_DEFINE_BEGIN ("Impulse",
 	2, 4, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_FUN,
 	N_("Did you know that your dock can dance? :)\n"
@@ -34,6 +34,10 @@ CD_APPLET_DEFINITION (N_("Impulse"),
 	"In fact, you will have a graphical equalizer into the dock\n"
 	"It will analyse the signal given by PulseAudio."),
 	"Matthieu Baerts (matttbe)")
+	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	CD_APPLET_REDEFINE_TITLE (N_("Cairo-Penguin"));
+	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_CAN_DOCK);
+CD_APPLET_DEFINE_END
 
 void _init_shared_memory (void)
 {
@@ -71,7 +75,7 @@ CD_APPLET_INIT_BEGIN
 	_init_shared_memory ();
 
 	if (myConfig.bLaunchAtStartup)
-		cd_impulse_launch_task();
+		cd_impulse_start_animating_with_delay ();
 
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -84,7 +88,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 
 	if (myData.iSidAnimate != 0)
-		cd_impulse_stop_animations();
+		cd_impulse_stop_animations ();
 
 	_free_shared_memory ();
 CD_APPLET_STOP_END
@@ -99,14 +103,31 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
+		gboolean bWasLaunched;
+		if (myData.iSidAnimate != 0)
+		{
+			cd_impulse_stop_animations();
+			bWasLaunched = TRUE;
+		}
+		else
+			bWasLaunched = FALSE;
+
 		cd_impulse_draw_current_state (); // if the user has specified other icons.
 
+		// Shared Memory (cleaning)
 		_free_shared_memory ();
 		_init_shared_memory ();
 
-		if (myData.iSidAnimate != 0)
-		{ // maybe the time has changed...
-			cd_impulse_launch_task();// (myApplet);
+		// if the icon has to be destroyed
+		if (myConfig.bLaunchAtStartup && myConfig.bFree)
+		{
+			cairo_dock_detach_icon_from_dock (myIcon, myDock, myIconsParam.iSeparateIcons);
+			cairo_dock_update_dock_size (myDock);
 		}
+		else
+			cairo_dock_insert_icon_in_dock (myIcon, myDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
+
+		if (bWasLaunched || myConfig.bFree) // maybe the time has changed... or if it's automatically launched
+			cd_impulse_launch_task ();
 	}
 CD_APPLET_RELOAD_END

@@ -101,23 +101,35 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#a+ Animation of the icons:
+#F[Display;gtk-dialog-info]
+frame_disp =
+
+#a Animation of the icons:
 animation=bounce
-
-#e+[0;1;More;Less] Sensitivity of the animation:
-#{It's the sensitivity in order to know if the animation is played or not.}
-sensitivity = 0.25
-
-#I+[10;3000;Less;More] Time between two animations:
-#{in ms.}
-refresh = 250
 
 #b Stop animations sooner?
 #{Do we have to stop the animation on a icon which doesn't have to be animated each refresh?}
 stop animations = false
 
-#b Launch automatically at startup?
+#F[Control;gtk-execute]
+frame_ctrl =
+
+#e[0;1;More;Less] Sensitivity of the animation:
+#{It's the sensitivity in order to know if the animation is played or not.}
+sensitivity = 0.25
+
+#I[10;3000;Less;More] Time between two animations:
+#{in ms.}
+refresh = 250
+
+#F[Action at Startup;gtk-preferences]
+frame_info=
+
+#B- Launch automatically at startup?
 startup = false
+
+#b- Hide the icon?
+free = false
 
 #F[Style;gtk-color-picker]
 frame_style =

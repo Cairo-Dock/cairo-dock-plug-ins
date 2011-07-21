@@ -40,7 +40,10 @@ void _im_stop (void)
 static void _get_icons_list_without_separators (CDSharedMemory *pSharedMemory)
 {
 	if (pSharedMemory->pDock == NULL)
-		return ;
+	{
+		pSharedMemory->pIconsList = NULL;
+		return;
+	}
 
 	pSharedMemory->bIsUpdatingIconsList = TRUE;
 
@@ -64,8 +67,12 @@ static gboolean _animate_the_dock (gpointer data)
 {
 	CD_APPLET_ENTER;
 	// cd_debug ("Impulse: in");
-	if (myData.pSharedMemory->bIsUpdatingIconsList || myData.pSharedMemory->pIconsList == NULL)
+	if (myData.pSharedMemory->bIsUpdatingIconsList
+		|| myData.pSharedMemory->pDock->bTemporaryHidden) // not needed for the animations but not for pulse.
 		CD_APPLET_LEAVE (TRUE);
+
+	if (myData.pSharedMemory->pIconsList == NULL)
+		CD_APPLET_LEAVE (FALSE);
 
 	guint iIcons = 256 / g_list_length(myData.pSharedMemory->pIconsList); // number of icons (without separators)
 
@@ -202,4 +209,38 @@ void cd_impulse_draw_current_state (void)
 		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconImpulseON, "impulse-running.svg");
 	else
 		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconImpulseOFF, "impulse-stopped.svg");
+}
+
+static gboolean _impulse_restart_delayed (void)
+{
+	myData.iSidRestartDelayed = 0;
+
+	if (! myData.bHasBeenStarted)
+	{
+		myData.bHasBeenStarted = TRUE;
+		cd_message ("Impulse has been started");
+		
+		if (myConfig.bFree) // It's maybe a hack but Cairo-Penguin does that :)
+		{
+			cairo_dock_detach_icon_from_dock (myIcon, myDock, myIconsParam.iSeparateIcons);
+			cairo_dock_update_dock_size (myDock);
+		}
+		else
+			cairo_dock_insert_icon_in_dock (myIcon, myDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
+
+		cd_impulse_launch_task (); // launched the animations
+	}
+
+	return FALSE;
+}
+
+void cd_impulse_start_animating_with_delay (void)
+{
+	if (myData.iSidRestartDelayed != 0)
+		return ;
+
+	if (cairo_dock_is_loading ())
+		myData.iSidRestartDelayed = g_timeout_add_seconds (2, (GSourceFunc) _impulse_restart_delayed, NULL);  // priority to the loading of the dock
+	else
+		myData.iSidRestartDelayed = g_timeout_add_seconds (1, (GSourceFunc) _impulse_restart_delayed, NULL);  // if we have to detach the icon
 }
