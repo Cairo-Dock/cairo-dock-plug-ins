@@ -35,7 +35,7 @@ CD_APPLET_DEFINE_BEGIN ("Impulse",
 	"It will analyse the signal given by PulseAudio."),
 	"Matthieu Baerts (matttbe)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
-	CD_APPLET_REDEFINE_TITLE (N_("Cairo-Penguin"));
+	// CD_APPLET_REDEFINE_TITLE (N_("Impulse")); do we have to translate it?
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_CAN_DOCK);
 CD_APPLET_DEFINE_END
 
