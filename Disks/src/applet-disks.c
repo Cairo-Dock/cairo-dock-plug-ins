@@ -316,13 +316,22 @@ void cd_disks_get_data (CairoDockModuleInstance *myApplet)
 
 }
 
-
+#if (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION < 28)
+void _reset_parts_list (double *pSize)
+{
+	g_free (pSize);
+}
+#endif
 
 void cd_disks_reset_parts_list (CairoDockModuleInstance *myApplet)
 {
 	if (myConfig.iNumberParts > 0)
 	{
+#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 28)
 		g_list_free_full (myData.lParts, g_free);
+#else
+		g_list_foreach (myData.lParts, (GFunc) _reset_parts_list, NULL);
+#endif
 		myData.lParts = NULL;
 	}
 }
