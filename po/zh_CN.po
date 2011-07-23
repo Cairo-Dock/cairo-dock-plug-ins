@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2011-04-19 12:52+0100\n"
-"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
+"POT-Creation-Date: 2011-07-15 23:57+0000\n"
+"PO-Revision-Date: 2011-06-27 10:50+0000\n"
+"Last-Translator: 安 <Unknown>\n"
 "Language-Team: Simplified Chinese <tigersoldi@gmail.com>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-04-16 05:17+0000\n"
-"X-Generator: Launchpad (build 12735)\n"
+"X-Launchpad-Export-Date: 2011-07-17 04:40+0000\n"
+"X-Generator: Launchpad (build 13405)\n"
+"Language: \n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -178,6 +179,11 @@ msgid ""
 "Drop text on the icon to create persistent items, and middle-clck to recall "
 "them."
 msgstr ""
+"这个小程序用来监控剪贴板以及鼠标的选取,\n"
+"方便你快速的重新使用.这是著名的Klipper的仿照版本.\n"
+"它支持剪贴板和鼠标选取,预定义动作,和持久项目.\n"
+"左键弹出剪贴板和鼠标选取历史.\n"
+"将文本拖拽到图标上可以建立持久项目,中键点击使用它们."
 
 #: ../Clipper/src/applet-init.c:39
 msgid "Clipboard history"
@@ -202,11 +208,11 @@ msgstr ""
 #: ../Composite-Manager/src/applet-composite-manager.c:499
 #, c-format
 msgid "You need to install '%s'"
-msgstr ""
+msgstr "你需要安装 '%s'"
 
 #: ../Composite-Manager/src/applet-composite-manager.c:510
 msgid "No configuration tool is available."
-msgstr ""
+msgstr "没有可用的设置工具"
 
 #: ../Composite-Manager/src/applet-init.c:27
 msgid "Composite-Manager"
@@ -226,15 +232,13 @@ msgid ""
 msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:43
-#, fuzzy
 msgid "Toggle composite?"
-msgstr "切换展示模式"
+msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:120
 #: ../Composite-Manager/data/messages:131
-#, fuzzy
 msgid "Edit Window-Manager settings"
-msgstr "切换窗口管理器"
+msgstr "编辑窗口管理器设置"
 
 #: ../Composite-Manager/src/applet-notifications.c:120
 #: ../Composite-Manager/src/applet-notifications.c:127
@@ -269,13 +273,12 @@ msgstr "切换窗口管理器"
 #: ../switcher/src/applet-notifications.c:315
 #: ../switcher/src/applet-notifications.c:324
 msgid "middle-click"
-msgstr ""
+msgstr "中键点击"
 
 #: ../Composite-Manager/src/applet-notifications.c:127
 #: ../Composite-Manager/data/messages:133
-#, fuzzy
 msgid "Reload Window-Manager"
-msgstr "切换窗口管理器"
+msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:136
 #: ../showDesktop/src/applet-notifications.c:154
@@ -283,7 +286,7 @@ msgstr "切换窗口管理器"
 #: ../Composite-Manager/data/messages:135 ../showDesktop/data/messages:105
 #: ../showDesktop/data/messages:119 ../switcher/data/messages:107
 msgid "Show desktop"
-msgstr ""
+msgstr "显示桌面"
 
 #: ../Composite-Manager/src/applet-notifications.c:145
 #: ../showDesktop/src/applet-notifications.c:166
@@ -292,22 +295,21 @@ msgstr ""
 #: ../Composite-Manager/data/messages:137 ../showDesktop/data/messages:113
 #: ../showDesktop/data/messages:127 ../switcher/data/messages:109
 msgid "Expose all the desktops"
-msgstr ""
+msgstr "显示所有桌面"
 
 #: ../Composite-Manager/src/applet-notifications.c:154
 #: ../switcher/src/applet-notifications.c:324
 #: ../Composite-Manager/data/messages:139 ../switcher/data/messages:111
 msgid "Expose all the windows"
-msgstr ""
+msgstr "显示所有窗口"
 
 #: ../Composite-Manager/src/applet-notifications.c:163
 #: ../showDesktop/src/applet-notifications.c:178
 #: ../showDesktop/src/applet-notifications.c:180
 #: ../Composite-Manager/data/messages:141 ../showDesktop/data/messages:111
 #: ../showDesktop/data/messages:125
-#, fuzzy
 msgid "Show the Widget Layer"
-msgstr "切换Widget层"
+msgstr "显示Widget层"
 
 #: ../Dbus/src/applet-init.c:36
 msgid ""
@@ -353,7 +355,8 @@ msgstr "这个模块已经被添加,但是无法启动."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "这个小程序'%s'已经成功升级并且自动重启."
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -405,7 +408,7 @@ msgstr ""
 
 #: ../Disks/src/applet-init.c:29
 msgid "Disks"
-msgstr ""
+msgstr "磁盘"
 
 #: ../Disks/src/applet-init.c:32
 msgid ""
@@ -428,7 +431,7 @@ msgstr "系统监视器"
 #: ../Doncky/src/applet-cpusage.c:65 ../System-Monitor/src/applet-cpusage.c:58
 #: ../System-Monitor/src/applet-cpusage.c:63
 msgid "day(s)"
-msgstr "日"
+msgstr "天"
 
 #: ../Doncky/src/applet-init.c:35
 msgid ""
@@ -551,7 +554,7 @@ msgstr "创建新文件夹"
 
 #: ../Folders/src/applet-notifications.c:419
 msgid "Sort by"
-msgstr ""
+msgstr "排序方式"
 
 #: ../Folders/src/applet-notifications.c:420
 msgid "By name"
@@ -559,19 +562,19 @@ msgstr ""
 
 #: ../Folders/src/applet-notifications.c:421
 msgid "By date"
-msgstr ""
+msgstr "按日期"
 
 #: ../Folders/src/applet-notifications.c:422
 msgid "By size"
-msgstr ""
+msgstr "按大小"
 
 #: ../Folders/src/applet-notifications.c:423
 msgid "By type"
-msgstr ""
+msgstr "按类型"
 
 #: ../Folders/src/applet-notifications.c:452
 msgid "The folder has been imported."
-msgstr ""
+msgstr "文件夹已经被导入"
 
 #: ../Folders/src/applet-notifications.c:485
 msgid "Do you want to import the content of the folder too?"
@@ -619,9 +622,8 @@ msgid "Enter a command to launch:"
 msgstr "输入命令并启动"
 
 #: ../Impulse/src/applet-init.c:29
-#, fuzzy
 msgid "Impulse"
-msgstr "脉动"
+msgstr ""
 
 #: ../Impulse/src/applet-init.c:32
 msgid ""
@@ -835,6 +837,13 @@ msgid ""
 "    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
 "    or edit the Configuration Panel."
 msgstr ""
+"这个小程序是一个 RSS/Atom 阅读器\n"
+"你能够同时使用多个实例。\n"
+"用法：\n"
+"       -左键：在一个对话框中显示feed的所有行\n"
+"       -中键：刷新feed\n"
+"       -在平台上滑动：滑动feed行\n"
+"       -拖拽一个有效的URL到图标上进行订阅，或者复制地址并使用菜单中的“拷贝新RSS地址”，或者编辑配置栏"
 
 #: ../RSSreader/src/applet-init.c:65 ../RSSreader/src/applet-init.c:125
 #: ../RSSreader/src/applet-notifications.c:56
@@ -920,7 +929,7 @@ msgstr "删除该事件"
 
 #: ../Recent-Events/src/applet-dialog.c:357
 msgid "All"
-msgstr ""
+msgstr "全选"
 
 #: ../Recent-Events/src/applet-dialog.c:358
 msgid "Document"
@@ -972,12 +981,12 @@ msgstr "在最近事件中浏览和查找"
 
 #: ../Recent-Events/src/applet-init.c:28
 msgid "Recent-Events"
-msgstr ""
+msgstr "最近的事件"
 
 #: ../Recent-Events/src/applet-notifications.c:74
 #, c-format
 msgid "%d event(s) deleted"
-msgstr ""
+msgstr "%d 条事件已经被删除"
 
 #: ../Recent-Events/src/applet-notifications.c:110
 #: ../Scooby-Do/src/applet-backend-recent.c:212 ../Scooby-Do/data/messages:105
@@ -1085,35 +1094,35 @@ msgstr "Amazon"
 
 #: ../Scooby-Do/src/applet-listing.c:510
 msgid "(F1) Match case"
-msgstr ""
+msgstr "(F1) 大小写匹配"
 
 #: ../Scooby-Do/src/applet-listing.c:517
 msgid "(F2) Music"
-msgstr ""
+msgstr "(F2) Music 音乐"
 
 #: ../Scooby-Do/src/applet-listing.c:524
 msgid "(F3) Image"
-msgstr ""
+msgstr "(F3) 图像"
 
 #: ../Scooby-Do/src/applet-listing.c:531
 msgid "(F4) Video"
-msgstr ""
+msgstr "(F4) 视频"
 
 #: ../Scooby-Do/src/applet-listing.c:538
 msgid "(F5) Text"
-msgstr ""
+msgstr "(F5) 文本"
 
 #: ../Scooby-Do/src/applet-listing.c:545
 msgid "(F6) Html"
-msgstr ""
+msgstr "(F6) HTML文本"
 
 #: ../Scooby-Do/src/applet-listing.c:552
 msgid "(F7) Sources"
-msgstr ""
+msgstr "(F7) 资源"
 
 #: ../Scooby-Do/src/applet-listing.c:671 ../Scooby-Do/src/applet-search.c:362
 msgid "No result"
-msgstr ""
+msgstr "没有结果"
 
 #: ../Scooby-Do/src/applet-listing.c:675 ../Scooby-Do/src/applet-search.c:358
 #: ../tomboy/src/tomboy-draw.c:156 ../tomboy/src/tomboy-draw.c:169
@@ -1143,7 +1152,7 @@ msgstr ""
 
 #: ../Status-Notifier/src/applet-init.c:38
 msgid "Notification Area"
-msgstr ""
+msgstr "通知区域"
 
 #: ../System-Monitor/src/applet-cpusage.c:57
 msgid "Uptime"
@@ -1232,7 +1241,7 @@ msgstr "可用"
 
 #: ../System-Monitor/src/applet-rame.c:136
 msgid "Cached"
-msgstr ""
+msgstr "缓存"
 
 #: ../System-Monitor/src/applet-rame.c:137
 msgid "Buffers"
@@ -1289,7 +1298,7 @@ msgstr ""
 
 #: ../Xgamma/src/applet-notifications.c:89
 msgid "Set up gamma correction"
-msgstr ""
+msgstr "设置GAMMA修正量"
 
 #: ../Xgamma/src/applet-notifications.c:94
 msgid "Apply current luminosity on startup"
@@ -1301,7 +1310,7 @@ msgstr "设置Gamma值："
 
 #: ../Xgamma/src/applet-xgamma.c:283
 msgid "Luminosity"
-msgstr ""
+msgstr "亮度"
 
 #: ../alsaMixer/src/applet-init.c:34
 msgid ""
@@ -1479,8 +1488,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1675,7 +1684,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:591
@@ -1824,8 +1834,7 @@ msgid ""
 "icon.\n"
 "Middle-click on the icon will empty the dustbin."
 msgstr ""
-"该插件管理回收站，您可以直接把文件拖进回收站；如果把已加载(mount)的磁盘图标拖"
-"进回收站，则会卸载它(umount)。\n"
+"该插件管理回收站，您可以直接把文件拖进回收站；如果把已加载(mount)的磁盘图标拖进回收站，则会卸载它(umount)。\n"
 "在图标上按鼠标中键，将清空回收站。"
 
 #: ../dustbin/src/applet-notifications.c:32
@@ -2541,8 +2550,7 @@ msgid ""
 "space, type, etc."
 msgstr ""
 "通过该插件，您可以快速访问所有快捷方式。\n"
-"它可以管理磁盘、网络挂载点，以及 Nautilus 文件管理器的书签（即使您没有安装"
-"Nautilus）。\n"
+"它可以管理磁盘、网络挂载点，以及 Nautilus 文件管理器的书签（即使您没有安装Nautilus）。\n"
 "将文件夹拖到该“快捷方式”图标或者子 dock 上，就可以创建一个书签。\n"
 "在图标上点击鼠标中键，即显示您的主目录。\n"
 "在一个挂载点的图标上点鼠标中键，可以将其迅速卸载。\n"
@@ -2610,8 +2618,8 @@ msgstr "显示鼠标"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -3674,9 +3682,7 @@ msgstr ""
 msgid ""
 "If locked, the desklet cannot be moved by simply dragging it with the left "
 "mouse button. It can still be moved with ALT + left-click."
-msgstr ""
-"一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来"
-"移动。"
+msgstr "一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来移动。"
 
 #: ../Clipper/data/messages:25 ../Composite-Manager/data/messages:21
 #: ../Disks/data/messages:51 ../Doncky/data/messages:23
@@ -3723,9 +3729,7 @@ msgstr "锁定位置?"
 msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
-msgstr ""
-"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理"
-"器。"
+msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理器。"
 
 #: ../Clipper/data/messages:29 ../Composite-Manager/data/messages:25
 #: ../Disks/data/messages:27 ../Doncky/data/messages:27
@@ -4589,9 +4593,8 @@ msgstr ""
 
 #: ../Composite-Manager/data/messages:107
 #: ../Composite-Manager/data/messages:119
-#, fuzzy
 msgid "Compiz"
-msgstr "Compiz首选项"
+msgstr "Compiz"
 
 #: ../Composite-Manager/data/messages:109
 #: ../Composite-Manager/data/messages:121
@@ -4606,7 +4609,7 @@ msgstr ""
 #: ../Composite-Manager/data/messages:113
 #: ../Composite-Manager/data/messages:125
 msgid "Metacity"
-msgstr ""
+msgstr "Metaxity"
 
 #: ../Composite-Manager/data/messages:117
 msgid "Fallback window-manager:"
@@ -4913,7 +4916,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:121 ../RSSreader/data/messages:185
@@ -5064,9 +5068,8 @@ msgid "Only show files whose last modification date is less than ;"
 msgstr ""
 
 #: ../Impulse/data/messages:95
-#, fuzzy
 msgid "Animation of the icons :"
-msgstr "动态图标"
+msgstr ""
 
 #: ../Impulse/data/messages:97
 msgid ""
@@ -5074,18 +5077,16 @@ msgid ""
 msgstr ""
 
 #: ../Impulse/data/messages:99
-#, fuzzy
 msgid "Sensitivity of the animation:"
-msgstr "消失点高度:"
+msgstr ""
 
 #: ../Impulse/data/messages:101
 msgid "in ms."
-msgstr ""
+msgstr "以毫秒为单位。"
 
 #: ../Impulse/data/messages:103
-#, fuzzy
 msgid "Time between two animations:"
-msgstr "动画间隔时间："
+msgstr ""
 
 #: ../Impulse/data/messages:105
 msgid ""
@@ -6459,7 +6460,8 @@ msgid "Space between icons:"
 msgstr "图标间隔:"
 
 #: ../dock-rendering/data/messages:115
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr "0意味着平波，1意味着与其它视图一样"
 
 #: ../dock-rendering/data/messages:119
@@ -6589,7 +6591,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -6771,9 +6774,7 @@ msgid ""
 "This will be available when middle-clicking. Leave empty to execute the "
 "default command, which depends on your distribution. In some cases the "
 "command to shutdown is the same as the one to log out."
-msgstr ""
-"中键单击时使用。留空则使用默认命令，该命令取决于您所使用的发行版。有时关机和"
-"注销是同一个命令。"
+msgstr "中键单击时使用。留空则使用默认命令，该命令取决于您所使用的发行版。有时关机和注销是同一个命令。"
 
 #: ../logout/data/messages:121
 msgid "User-defined command to execute for shutdown:"
@@ -6808,7 +6809,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "“有邮件”图像文件名:"
 
 #: ../mail/data/messages:107
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:109
@@ -6892,7 +6894,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:93
@@ -6967,9 +6970,7 @@ msgstr "XMMS"
 msgid ""
 "This will prevent the player icon appearing in the taskbar. The applet's "
 "icon will then behave as a launcher, an application and an applet."
-msgstr ""
-"这将阻止播放器的图标显示于任务栏。小程序的图标将具有启动器、应用程序和小程序"
-"的功能。"
+msgstr "这将阻止播放器的图标显示于任务栏。小程序的图标将具有启动器、应用程序和小程序的功能。"
 
 #: ../musicPlayer/data/messages:129
 msgid "Steal the player's icon from the taskbar?"
@@ -7488,8 +7489,7 @@ msgstr ""
 msgid ""
 "These options allow you to prevent some files from displaying in stacks "
 "based on their type (video, image, etc.)"
-msgstr ""
-"此选项允许您根据文件的类型（影像、图片等），使特定的文件不在stack中显示"
+msgstr "此选项允许您根据文件的类型（影像、图片等），使特定的文件不在stack中显示"
 
 #: ../stack/data/messages:121
 msgid "Filter files on MIME type?"
@@ -7675,9 +7675,7 @@ msgstr ""
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
-msgstr ""
-"当终端在对话框中时。当位于桌面小工具中时，您可以如平常一样改变桌面小工具的大"
-"小。"
+msgstr "当终端在对话框中时。当位于桌面小工具中时，您可以如平常一样改变桌面小工具的大小。"
 
 #: ../terminal/data/messages:113
 msgid "Size of the terminal (line x columns):"
@@ -7737,8 +7735,8 @@ msgid ""
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
 "digits), etc. Leave it blank to use the default one (%d/%m/%y)."
 msgstr ""
-"写下您便签平时使用的日期格式。语法为'strftime'的一种: %d表示日，%m表示月, %y"
-"表示年（2位数字）等。如使用默认的（%d/%m/%y）格式，则留空。"
+"写下您便签平时使用的日期格式。语法为'strftime'的一种: %d表示日，%m表示月, "
+"%y表示年（2位数字）等。如使用默认的（%d/%m/%y）格式，则留空。"
 
 #: ../tomboy/data/messages:141
 msgid "Date format to search for :"
@@ -7751,9 +7749,8 @@ msgid ""
 "message like <<No marshaller for signature of signal 'NoteDeleted'>> in the "
 "terminal."
 msgstr ""
-"如果您使用了某些tomboy的版本，便签的删除可能不会自动通知。仅当您在终端中发现"
-"类似<<No marshaller for signature of signal 'NoteDeleted'>>的错误的时候，启用"
-"此项目"
+"如果您使用了某些tomboy的版本，便签的删除可能不会自动通知。仅当您在终端中发现类似<<No marshaller for signature of "
+"signal 'NoteDeleted'>>的错误的时候，启用此项目"
 
 #: ../tomboy/data/messages:145
 msgid "Emulate the 'NoteDeleted' signal?"
@@ -7836,7 +7833,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "垂直卷轴位置"
 
 #: ../weblets/data/messages:107
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:109
@@ -7918,6 +7916,61 @@ msgstr "原始信号信息"
 msgid "Overwrite the default label with the connection point name?"
 msgstr "以接入点名称替代默认标签"
 
+#~ msgid "Hey, I'm here !"
+#~ msgstr "嘿，我在这儿！"
+
+#~ msgid "Your dock is so messy ! Let me clean it."
+#~ msgstr "你的dock乱套了！我来帮你打扫一下吧。"
+
+#~ msgid "Admit my superiority on you as a penguin !"
+#~ msgstr "承认我这个企鹅比你优秀吧！"
+
+#~ msgid "Wait, do you want to kill me ?!"
+#~ msgstr "不要啊~~你要杀死我么？！"
+
+#~ msgid "Do you know how much painful it is to be clicked on ??"
+#~ msgstr "你知道这么被点来点去多疼么？！！"
+
+#~ msgid "It's my dock now, mwahahaha !"
+#~ msgstr "现在这是我的dock啦，哇咔咔咔咔！"
+
+#~ msgid "I want to be a pirate !"
+#~ msgstr "我要成为一名伟大的海贼！"
+
+#~ msgid "You shall not pass !"
+#~ msgstr "禁止通过！"
+
+#~ msgid "I'm your father !"
+#~ msgstr "我是你父亲！"
+
+#~ msgid ""
+#~ "- What will we do tonight Cortex ?\n"
+#~ "- The same thing as every nights, Minus. Try to take over the Dock !"
+#~ msgstr ""
+#~ "- Cortex， 我们晚做些什么？\n"
+#~ "- 跟每天晚上一样啊，Minus。占据这个Dock！"
+
+#~ msgid "For Aiur !"
+#~ msgstr "为了Aiur！"
+
+#~ msgid "Up time"
+#~ msgstr "运行时间"
+
+#~ msgid "Monitor System"
+#~ msgstr "系统监视器"
+
+#~ msgid "Set up gamma :"
+#~ msgstr "设置Gamma值："
+
+#~ msgid "Set up volume :"
+#~ msgstr "设置音量："
+
+#~ msgid "Adjsut channels"
+#~ msgstr "调整通道"
+
+#~ msgid "Calendar"
+#~ msgstr "日历"
+
 #~ msgid "Configure Compiz"
 #~ msgstr "配置Compiz"
 
@@ -7936,39 +7989,1831 @@ msgstr "以接入点名称替代默认标签"
 #~ msgid "Reload Emerald"
 #~ msgstr "重新加载Emerald"
 
-#, fuzzy
 #~ msgid "Switch Windows Manager"
-#~ msgstr "切换窗口装饰器"
+#~ msgstr "切换窗口管理器"
 
 #~ msgid "Switch Windows Decorator"
 #~ msgstr "切换窗口装饰器"
 
-#, fuzzy
 #~ msgid "Toggle Exposition Mode"
 #~ msgstr "切换展示模式"
 
-#, fuzzy
-#~ msgid "Toggle Widget Layer"
-#~ msgstr "Widget层"
+#~ msgid "Toggle Widgets Layer"
+#~ msgstr "切换Widget层"
 
 #~ msgid "Toggle Show Desktop"
 #~ msgstr "切换显示桌面"
 
-#~ msgid "logout"
-#~ msgstr "“退出”插件"
+#~ msgid "Show Trash"
+#~ msgstr "显示垃圾"
+
+#~ msgid "Delete Trash"
+#~ msgstr "清空回收站"
+
+#, c-format
+#~ msgid "Show %s"
+#~ msgstr "显示%s"
+
+#~ msgid "Show All"
+#~ msgstr "全部显示"
+
+#, c-format
+#~ msgid "Delete %s"
+#~ msgstr "删除%s"
+
+#~ msgid "Delete All"
+#~ msgstr "全部删除"
+
+#, c-format
+#~ msgid "You're about to delete all files in %s. Sure ?"
+#~ msgstr "您将删除%s中的所有文件，确定?"
+
+#, c-format
+#~ msgid ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual file browser,\n"
+#~ "you can change it in the conf panel of this module"
+#~ msgstr ""
+#~ "发生问题。\n"
+#~ "如果“%s”不是您平时使用的文件浏览器，\n"
+#~ "您可以在此模块的配置面板中进行更改。"
+
+#, c-format
+#~ msgid ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual mail application,\n"
+#~ "you can change it in the conf panel of this module"
+#~ msgstr ""
+#~ "出现问题\n"
+#~ "如果“%s”不是您日常使用的邮件程序，您可以在此模块的配置面板中进行更改"
+
+#~ msgid "Play/Pause (left-click)"
+#~ msgstr "播放/暂停(左键点击)"
+
+#~ msgid "Next (middle-click)"
+#~ msgstr "下一首(中键点击)"
+
+#~ msgid "Reload Stacks"
+#~ msgstr "重载Stacks"
+
+#~ msgid "Clean local directory"
+#~ msgstr "清除本地目录"
+
+#~ msgid "Set title for this tab :"
+#~ msgstr "设置此标签标题:"
+
+#~ msgid "Change this Tab's color"
+#~ msgstr "变更此标签颜色"
+
+#~ msgid "Search for :"
+#~ msgstr "搜索:"
+
+#~ msgid "Search for tag :"
+#~ msgstr "搜索标签:"
 
 #~ msgid ""
-#~ "Except when switching to another WM, you must activate the Dbus plugin in "
-#~ "Compiz along with the plugin corresponding to the desired action."
-#~ msgstr ""
-#~ "除非要切换至其他窗口管理器，您必须启用Dbus插件，并根据您需要的动作启用相应"
-#~ "插件"
+#~ "No data were available\n"
+#~ " is connection alive ?"
+#~ msgstr "无数据。请检查互联网连接"
+
+#~ msgid "Precipitation Probability"
+#~ msgstr "冰雹概率"
+
+#~ msgid "SunRise"
+#~ msgstr "日出"
+
+#~ msgid "SunSet"
+#~ msgstr "日落"
+
+#~ msgid "feeled"
+#~ msgstr "体感温度"
+
+#~ msgid "Wifi disabled."
+#~ msgstr "Wifi已禁用。"
+
+#~ msgid "Choose one of the available themes :"
+#~ msgstr "选择主题:"
+
+#~ msgid "Transparency of the penguin :"
+#~ msgstr "企鹅透明度："
+
+#~ msgid "Let the penguin wander everywhere in the dock ?"
+#~ msgstr "允许企鹅在dock的任何地方漫步？"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can resize it with ALT + middle_click "
+#~ "or ALT + left_click for exemple."
+#~ msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理器。"
+
+#~ msgid "Desklet's dimension (width x height) :"
+#~ msgstr "桌面小工具尺寸(宽×高):"
+
+#~ msgid ""
+#~ "Depending on your WindowManager, you can move it with ALT + left_click"
+#~ msgstr "您可以用诸如ALT+左键点击来移动，此功能依赖于您的窗口管理器"
+
+#~ msgid "Desklet's position (x ; y) :"
+#~ msgstr "桌面小工具位置(x ; y):"
+
+#~ msgid "Is detached from the dock ?"
+#~ msgstr "与dock分离?"
+
+#~ msgid ""
+#~ "If locked, the desklet can't be moved by simply dragging it with the left "
+#~ "mouse button. Of course you can still move it with ALT + left_click."
+#~ msgstr "一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来移动。"
+
+#~ msgid "Lock position ?"
+#~ msgstr "锁定位置?"
+
+#~ msgid "in degrees."
+#~ msgstr "以角度为单位。"
+
+#~ msgid "Rotation :"
+#~ msgstr "旋转:"
+
+#~ msgid "Choose the 'personnal' one to define your own decorations below."
+#~ msgstr "要自己定置下面的装饰选项，请选择“personnal”。"
+
+#~ msgid "Choose a decoration theme for this desklet :"
+#~ msgstr "为这个桌面小工具选择一个装饰主题:"
+
+#~ msgid ""
+#~ "It's an image that will be displayed below the drawings, like a frame for "
+#~ "exemple. Let empty to not use any."
+#~ msgstr "在图画下面显示的图片，例如边框。留空则为不使用图片。"
+
+#~ msgid "Background image :"
+#~ msgstr "背景图片:"
+
+#~ msgid "Background tansparency :"
+#~ msgstr "背景透明度:"
+
+#~ msgid "in pixels. Use this to adjust the left position of the drawings."
+#~ msgstr "以象素为单位。使用此设置调整图画的左边位置。"
+
+#~ msgid "Left offset :"
+#~ msgstr "左偏移:"
+
+#~ msgid "in pixels. Use this to adjust the top position of the drawings."
+#~ msgstr "以象素为单位。使用此设置调整图画的上边位置。"
+
+#~ msgid "Top offset :"
+#~ msgstr "顶偏移:"
+
+#~ msgid "in pixels. Use this to adjust the right position of the drawings."
+#~ msgstr "以象素为单位。使用此设置调整图画的右边位置。"
+
+#~ msgid "Right offset :"
+#~ msgstr "右偏移:"
+
+#~ msgid "in pixels. Use this to adjust the bottom position of the drawings."
+#~ msgstr "以象素为单位。使用此设置调整图画的下边位置。"
+
+#~ msgid "Bottom offset :"
+#~ msgstr "底偏移:"
+
+#~ msgid ""
+#~ "It's an image that will be displayed above the drawings, like a reflect for "
+#~ "exemple. Let empty to not use any."
+#~ msgstr "在图画上面显示的图片，例如反射。留空则为不使用图片。"
+
+#~ msgid "Foreground image :"
+#~ msgstr "前景图片:"
+
+#~ msgid "Foreground tansparency :"
+#~ msgstr "前景透明度:"
+
+#~ msgid "Let extern applications pop-up dialogs in the dock ?"
+#~ msgstr "令外部应用程序的弹出对话框出现在dock上？"
+
+#~ msgid "Let extern applications reboot the dock ?"
+#~ msgstr "允许外部应用程序重启dock？"
+
+#~ msgid "Let extern applications show/hide the desklets ?"
+#~ msgstr "令外部应用程序显示/隐藏桌面小应用程序？"
+
+#~ msgid "It's the color of the graphic for high CPU values."
+#~ msgstr "高CPU占用率图表颜色。"
+
+#~ msgid "High values color :"
+#~ msgstr "高信号强度颜色:"
+
+#~ msgid "It's the color of the graphic for low CPU values."
+#~ msgstr "低CPU占用率图表颜色。"
+
+#~ msgid "Low values color :"
+#~ msgstr "低信号强度颜色:"
+
+#~ msgid "Background color of the graphic :"
+#~ msgstr "图表背景色:"
+
+#~ msgid "Delay between refresh :"
+#~ msgstr "刷新间隔:"
+
+#~ msgid "User command to show a system monitor :"
+#~ msgstr "显示系统监视器的用户命令:"
+
+#~ msgid "Number of programs to display in the top list :"
+#~ msgstr "占用率列表上显示的程序数目:"
+
+#~ msgid "It's the first color of the gradation used to write the top list."
+#~ msgstr "用于显示CPU占用率列表的渐变色的第一种颜色。"
+
+#~ msgid "Start color of the top list :"
+#~ msgstr "占用率列表的起始颜色:"
+
+#~ msgid "It's the second color of the gradation used to write the top list."
+#~ msgstr "用于显示CPU占用率列表的渐变色的第二种颜色。"
+
+#~ msgid "Stop color of the top list :"
+#~ msgstr "占用率列表的结束颜色:"
+
+#~ msgid "Delay between refresh of the top list :"
+#~ msgstr "占用率列表刷新时间间隔:"
+
+#~ msgid "Let empty to use the default sound card."
+#~ msgstr "留空则使用默认声卡。"
+
+#~ msgid "Sound card to control :"
+#~ msgstr "控制的声卡："
+
+#~ msgid "Choose which channel to control :"
+#~ msgstr "选择控制的通道："
+
+#~ msgid "Let empty to use the defaut command."
+#~ msgstr "留空则使用默认指令。"
+
+#~ msgid "Specific command to run to show an advanced sound mixer :"
+#~ msgstr "指定显示高级混音器的命令："
+
+#~ msgid "Shortkey to show/hide the sound control dialog :"
+#~ msgstr "用于显示/隐藏音量控制对话框的快捷键："
+
+#~ msgid "Hide the scale when mouse leaves the desklet ?"
+#~ msgstr "鼠标离开桌面提示时，隐藏刻度？"
+
+#~ msgid "Effet to apply on the icon according to volume :"
+#~ msgstr "根据音量置于图标的效果："
+
+#~ msgid "Default icon :"
+#~ msgstr "默认图标："
+
+#~ msgid "Broken icon :"
+#~ msgstr "毁坏的图标："
+
+#~ msgid "Mute icon :"
+#~ msgstr "静音图标："
+
+#~ msgid "Module"
+#~ msgstr "モジュール"
+
+#~ msgid "Show the date :"
+#~ msgstr "显示日期："
+
+#~ msgid "for numeric format only."
+#~ msgstr "数字时钟专用。"
+
+#~ msgid "Should the time be displayed as a 24h format ?"
+#~ msgstr "以24小时制式显示时间么？"
+
+#~ msgid "if not, then the applet will update time once a minute, saving CPU."
+#~ msgstr "如果为否，则小应用程序将一分钟更新时间一次，以节省CPU。"
+
+#~ msgid "Show seconds ?"
+#~ msgstr "显示秒针？"
+
+#~ msgid "Timezone :"
+#~ msgstr "时区"
+
+#~ msgid ""
+#~ "The analogic view is based on CairoClock; otherwise it will be displayed in "
+#~ "a numeric way."
+#~ msgstr "指针时钟基于CairoClock；否则将以数字时钟显示。"
+
+#~ msgid "Text color for the numeric display:"
+#~ msgstr "数字时钟使用的文字颜色："
+
+#~ msgid "Font used for the numeric display :"
+#~ msgstr "用于数字显示的字体："
+
+#~ msgid "List of available themes for the analogic display :"
+#~ msgstr "可用的表盘主题列表:"
+
+#~ msgid "Setup time and date"
+#~ msgstr "设置时间和日期"
+
+#~ msgid "Let empty to use default command."
+#~ msgstr "保持为空以使用默认的命令。"
+
+#~ msgid "Specific command to run :"
+#~ msgstr "指定运行的命令："
+
+#~ msgid ""
+#~ "Except for switching to another WM, you must activate the Dbus plugin in "
+#~ "Compiz, along with the plug-in corresponding to the desired action."
+#~ msgstr "除非要切换至其他窗口管理器，您必须启用Dbus插件，并根据您需要的动作启用相应插件"
+
+#~ msgid "Choose an action for the middle click on the icon :"
+#~ msgstr "选择中间点击图标执行的行为："
 
 #~ msgid "Switch WM"
 #~ msgstr "切换窗口管理器"
 
 #~ msgid "Expose"
 #~ msgstr "展示"
+
+#~ msgid "Show Desktop"
+#~ msgstr "显示桌面"
+
+#~ msgid ""
+#~ "This command will be used to launch the system WM; let it blank to use the "
+#~ "default one."
+#~ msgstr "此命令用于载入系统窗口管理器；留空则使用默认窗口管理器。"
+
+#~ msgid "Custom command for system's Windows Manager :"
+#~ msgstr "系统窗口管理器自定义命令："
+
+#~ msgid ""
+#~ "If Compiz unexpectedly quit, Cairo-Dock will restart it. You have to quit "
+#~ "Compiz from the dock then."
+#~ msgstr "如果Compiz异常退出，Cairo-Dock将自动重启之。那时，您必须从dock上退出Compiz。"
+
+#~ msgid "Auto-reload Compiz ?"
+#~ msgstr "自动重载Compiz？"
+
+#~ msgid ""
+#~ "If the decorator unexpectedly quit, Cairo-Dock will restart it. You have to "
+#~ "quit Compiz from the dock then."
+#~ msgstr "如果窗口装饰器异常退出，Cairo-Dock将自动重启之。那时，您必须从dock上退出Compiz"
+
+#~ msgid "Auto-reload the Decorator ?"
+#~ msgstr "自动重载装饰器？"
+
+#~ msgid "Load Compiz with options at applet's startup."
+#~ msgstr "小应用程序启动的时候载入包括设置的Compiz。"
+
+#~ msgid "Force Compiz settings at startup ?"
+#~ msgstr "启动时强制使用Compiz设置？"
+
+#~ msgid ""
+#~ "It will prevent the CSSM or Emerald icon to appear in the task bar. The "
+#~ "corresponding subdock's icons will then behave as launcher and an appli."
+#~ msgstr "这将避免CSSM或Emerald的图标出现在任务栏上。子dock上相应的图标将取代它们实现起动器和应用程序的功能"
+
+#~ msgid ""
+#~ "Display in the applet's sub-dock 2 icons for Compiz Exposition & Widget "
+#~ "Layer plug-ins. Otherwise they will be available in the menu."
+#~ msgstr "在小应用程序的子dock中显示Compiz展示和Widget层插件。否则，它们将位于菜单中。"
+
+#~ msgid "Add Exposition & Widget Layer to sub-dock ?"
+#~ msgstr "在子dock上添加展示和Widget层图标？"
+
+#~ msgid "Compiz Options"
+#~ msgstr "Compiz首选项"
+
+#~ msgid ""
+#~ "With strict binding textures are bound whenever they are enabled, with loose "
+#~ "binding they are enabled when created. The Nvidia driver seems a bit slow "
+#~ "when binding textures, that's why this option gives a heavy performance "
+#~ "increase on Nvidia."
+#~ msgstr ""
+#~ "使用严格绑定时，纹理在它们启用时被绑定；而使用松散绑定时，仅在创建时启用。Nvidia驱动在纹理绑定的时候有些慢。所以使用此选项时，Nvidia显卡的用户"
+#~ "会感到性能影响。"
+
+#~ msgid "Use Loose Binding ?"
+#~ msgstr "使用松散绑定？"
+
+#~ msgid "Use thoses options only if you know them."
+#~ msgstr "仅当你了解这些选项时方可使用。"
+
+#~ msgid "Use Indirect Rendering ?"
+#~ msgstr "使用间接渲染？"
+
+#~ msgid "Usefull when having dual or more X separate screens."
+#~ msgstr "当使用双头显示或多个X屏幕时有用。"
+
+#~ msgid "Only Current Screen ?"
+#~ msgstr "仅使用当前屏幕？"
+
+#~ msgid "By default it will be Emerald."
+#~ msgstr "默认为Emerald。"
+
+#~ msgid "Choose your Windows Decorator :"
+#~ msgstr "选择您的窗口装饰器："
+
+#~ msgid "emerald"
+#~ msgstr "emerald"
+
+#~ msgid "gtk-window-decorator"
+#~ msgstr "gtk窗口装饰器"
+
+#~ msgid "kde-window-decorator"
+#~ msgstr "kde窗口装饰器"
+
+#~ msgid "heliodor"
+#~ msgstr "heliodor"
+
+#~ msgid "Let it empty to use default sub-dock view."
+#~ msgstr "留空以使用默认的子dock视图。"
+
+#~ msgid "Name of the view used for the sub-dock :"
+#~ msgstr "子dock使用的视图名称:"
+
+#~ msgid "Let t empty to use the default icon."
+#~ msgstr "留空以使用默认图标。"
+
+#~ msgid "Name of an image for the 'default' icon :"
+#~ msgstr "“默认”图标的图片名称:"
+
+#~ msgid "Name of an image for the 'broken' icon :"
+#~ msgstr "“破损”图标的图片名称:"
+
+#~ msgid "Name of an image for the 'other wm' icon :"
+#~ msgstr "'其它窗口管理器'图标使用的图片名称："
+
+#~ msgid "Name of an image for the 'setting' icon :"
+#~ msgstr "'设置'图标使用的图片名称："
+
+#~ msgid "Name of an image for the 'emerald' icon :"
+#~ msgstr "'emerald'图标使用的图片名称："
+
+#~ msgid "Name of an image for the 'reload' icon :"
+#~ msgstr "'重新载入'图标使用的图片名称："
+
+#~ msgid "Name of an image for the 'exposition' icon :"
+#~ msgstr "'展示'图标使用的图片名称："
+
+#~ msgid "Name of an image for the 'widget layer' icon :"
+#~ msgstr "'widget层'图标使用的图片名称："
+
+#~ msgid "Corner radius :"
+#~ msgstr "角弧度:"
+
+#~ msgid "The lower, the more the point of view is low on the plane."
+#~ msgstr "越低，则视点相对于板平面越低。"
+
+#~ msgid "Height of the vanishing point :"
+#~ msgstr "消失点高度:"
+
+#~ msgid "Choose the way separators are drawn :"
+#~ msgstr "选择间隔的绘制方式:"
+
+#~ msgid "Normal separator"
+#~ msgstr "普通间隔"
+
+#~ msgid "Flat separator"
+#~ msgstr "平间隔"
+
+#~ msgid "Physical separator"
+#~ msgstr "物理间隔"
+
+#~ msgid "For flat separators, you can specify their color:"
+#~ msgstr "您可以指定平间隔的颜色:"
+
+#~ msgid ""
+#~ "In degrees, regarding the vertical position. It's a sort of inclination of "
+#~ "the plane on the horizontal, giving the 3D feeling. So setting it to 0 means "
+#~ "the plane is not inclined at all (vertical)."
+#~ msgstr "相对于垂直位置，以角度为单位。这是一种水平方向的斜度，以造成3D效果。所以如果设为0则意味着板面无倾斜（垂直）"
+
+#~ msgid "Inclination of the plane :"
+#~ msgstr "平板斜度"
+
+#~ msgid ""
+#~ "0.5 means the dock is half-folded, so half the icons are on the foreground, "
+#~ "and half are on the background."
+#~ msgstr "0.5意味着半折叠，于是图标的一半位于前景，一半位于背景"
+
+#~ msgid "Percentage of the dock's width that appears on the foreground :"
+#~ msgstr "显示于前景的dock的宽度的百分比:"
+
+#~ msgid ""
+#~ "The greater, the deeper. It is in fact the gap between background icons' "
+#~ "bottom and foreground icons' top (in pixels)."
+#~ msgstr "取值越大越深。这其实是背景图标的底部和前景图标的顶部之间的间隔（以点为单位）"
+
+#~ msgid "Depth of the plane :"
+#~ msgstr "板深度:"
+
+#~ msgid "otherwise they will turn."
+#~ msgstr "否则它们会翻转。"
+
+#~ msgid "Always show icons' face ?"
+#~ msgstr "总是显示图标?"
+
+#~ msgid "The higher it is, the sooner the parabole will be curved."
+#~ msgstr "取值越高，抛物线越陡"
+
+#~ msgid "Curvature :"
+#~ msgstr "弧度:"
+
+#~ msgid "The parabole will be conscricted to a rectangle of this proportion."
+#~ msgstr "抛物线将受限于此比例"
+
+#~ msgid "Ratio height/width :"
+#~ msgstr "高宽比:"
+
+#~ msgid "0 means the wave is totally flat, 1 means the wave is maximal."
+#~ msgstr "0意味着无波，1意味着大波。"
+
+#~ msgid "Magnitude of the wave :"
+#~ msgstr "波幅:"
+
+#~ msgid "Space between icons and their label :"
+#~ msgstr "图标及其标签之间的空隙:"
+
+#~ msgid "Draw labels while unfolding ?"
+#~ msgstr "展开时绘制标签"
+
+#~ msgid "Space between rows :"
+#~ msgstr "行间隔:"
+
+#~ msgid "Space between icons :"
+#~ msgstr "图标间隔:"
+
+#~ msgid ""
+#~ "0 means the wave is totally flat, 1 means the wave is identical to other "
+#~ "views."
+#~ msgstr "0意味着平波，1意味着与其它视图一样"
+
+#~ msgid "Number of icons on the first row :"
+#~ msgstr "第一行的图标数:"
+
+#~ msgid ""
+#~ "in degree. The smaller, the more the cone is narrow. 180° means the cone is "
+#~ "widely opened."
+#~ msgstr "以角度为单位，取值越小则锥体越窄。180°意味着圆锥是完全开放的。"
+
+#~ msgid "Cone's width :"
+#~ msgstr "锥形宽度:"
+
+#~ msgid "Set transparency to 0 to not use it. It is quite slow with cairo."
+#~ msgstr "将透明度设为0则不使用此颜色。在使用cairo时很慢。"
+
+#~ msgid "Bow color :"
+#~ msgstr "弓形颜色:"
+
+#~ msgid "Line color :"
+#~ msgstr "直线颜色:"
+
+#~ msgid "SimpleSlide"
+#~ msgstr "简单滑动"
+
+#~ msgid "Space between columns :"
+#~ msgstr "列间隙:"
+
+#~ msgid "Max size of icons :"
+#~ msgstr "图标最大尺寸:"
+
+#~ msgid "Sinusoidal wave radius :"
+#~ msgstr "正弦曲线半径:"
+
+#~ msgid "Use a linear wave rather than a sinusoidal one ?"
+#~ msgstr "使用线性波替代正弦曲线?"
+
+#~ msgid "Display text for all icons ?"
+#~ msgstr "为所有图标显示文本?"
+
+#~ msgid "Draw a background ?"
+#~ msgstr "绘制背景?"
+
+#~ msgid "Top to bottom gradient ?"
+#~ msgstr "由上至下渐变?"
+
+#~ msgid "Left to right gradient ?"
+#~ msgstr "由左至右渐变?"
+
+#~ msgid "Arrow Height :"
+#~ msgstr "箭头高度:"
+
+#~ msgid "Arrow shift percent :"
+#~ msgstr "箭头变换百分比"
+
+#~ msgid "The lower, the more the curve will seem flat."
+#~ msgstr "取值越低，曲线越平。"
+
+#~ msgid "Curvature of the curve in percent :"
+#~ msgstr "曲线弧度，以百分比表示:"
+
+#~ msgid "Amplitude of the curve."
+#~ msgstr "曲线波幅。"
+
+#~ msgid "Name of an image to overwrite the theme's empty image :"
+#~ msgstr "用于覆盖主题空回收站的图片名称:"
+
+#~ msgid "Name of an image to overwrite the theme's full image :"
+#~ msgstr "用于覆盖主题满回收站的图片名称:"
+
+#~ msgid "Number of trashes"
+#~ msgstr "垃圾数量"
+
+#~ msgid ""
+#~ "in Mb. You will be notified when you go over this limit. Set 0 to not use it."
+#~ msgstr "以Mb为单位。当超过这个限额的时候，您会得到通知。设置为0则禁用此功能。"
+
+#~ msgid "Maximum total size of all dustbins :"
+#~ msgstr "所有回收站最大容量:"
+
+#~ msgid "Maximum size authorized for each dustbin :"
+#~ msgstr "每个回收站的最大容量:"
+
+#~ msgid "Desktop-less support"
+#~ msgstr "无桌面支持"
+
+#~ msgid "in seconds, only used if you can't monitor directories."
+#~ msgstr "以秒为单位，仅用于无法监视目录的情况。"
+
+#~ msgid "Interval of time to check if dustbin is full/empty :"
+#~ msgstr "监视回收站满/空状态的时间间隔:"
+
+#~ msgid ""
+#~ "Only use this if you notice that the applet can't display the trash on click."
+#~ msgstr "仅用于您发现在回收站上点击后，小应用程序无法显示垃圾的情况下。"
+
+#~ msgid "Alternative file browser used to show a trash :"
+#~ msgstr "用于显示垃圾的替代文件浏览器:"
+
+#~ msgid "Let empty to execute the default command."
+#~ msgstr "留空以执行默认的命令。"
+
+#~ msgid "User-defined command to execute to log-out :"
+#~ msgstr "用户指定执行的注销命令:"
+
+#~ msgid ""
+#~ "It will be available on middle click. Let empty to execute the default "
+#~ "command, that greatly depends on your distribution. Sometimes the command to "
+#~ "shutdown is just the same as the one to log out."
+#~ msgstr "中键单击时使用。留空则使用默认命令，该命令取决于您所使用的发行版。有时关机和注销是同一个命令。"
+
+#~ msgid "User-defined command to execute to shutdown :"
+#~ msgstr "用户指定执行的关机命令:"
+
+#~ msgid "Invert buttons ?"
+#~ msgstr "反转按钮?"
+
+#~ msgid "Theme overriding"
+#~ msgstr "覆盖主题"
+
+#~ msgid "The new account will be created with specified type and name."
+#~ msgstr "新账户将用指定类型和名称创建。"
+
+#~ msgid ""
+#~ "It will prevent the player's icon to appear in the task bar. The applet's "
+#~ "icon will then behave as a launcher, an appli, and an applet."
+#~ msgstr "这将阻止播放器的图标显示于任务栏。小程序的图标将具有启动器、应用程序和小程序的功能。"
+
+#~ msgid "Steal the player's icon from taskbar ?"
+#~ msgstr "由任务栏窃取播放器图标？"
+
+#~ msgid "Show an info-bubble ?"
+#~ msgstr "显示信息泡泡？"
+
+#~ msgid "Time length of info-bubbles :"
+#~ msgstr "信息泡泡的时间长度："
+
+#~ msgid "Animation when music changes :"
+#~ msgstr "音乐切换时的动画:"
+
+#~ msgid "Time Left"
+#~ msgstr "剩余时间"
+
+#~ msgid "N° of track"
+#~ msgstr "第N°首"
+
+#~ msgid "Personnalisation"
+#~ msgstr "个性化"
+
+#~ msgid "Let it empty to use the default icon."
+#~ msgstr "留空以使用默认图标。"
+
+#~ msgid "Name of an image for the 'play' icon :"
+#~ msgstr "“播放”图标的图片名称:"
+
+#~ msgid "Name of an image for the 'stop' icon :"
+#~ msgstr "“停止”图标的图片名称:"
+
+#~ msgid "Name of an image for the 'pause' icon :"
+#~ msgstr "“暂停”图标的图片名称:"
+
+#~ msgid "By default it will be 'eth0'."
+#~ msgstr "默认为“eth0”。"
+
+#~ msgid "interface :"
+#~ msgstr "网卡:"
+
+#~ msgid "Delay between 2 measures :"
+#~ msgstr "两次取值间隔:"
+
+#~ msgid "Let empty to use he default one."
+#~ msgstr "留空则使用默认值。"
+
+#~ msgid "nothing"
+#~ msgstr "なし"
+
+#~ msgid "Interval of time between 2 checks :"
+#~ msgstr "两次检查间的间隔时间:"
+
+#~ msgid "Default title :"
+#~ msgstr "默认标题:"
+
+#~ msgid "Activate info-bubbles ?"
+#~ msgstr "吹き出しによる情報表示を有効化?"
+
+#~ msgid ""
+#~ "It will prevent the rhythmbox's icon to appear in the task bar. The applet's "
+#~ "icon will then behave as a launcher, an appli, and an applet."
+#~ msgstr "这将阻止rhythmbox的图标显示于任务栏。小程序的图标将具有启动器、应用程序和小程序的功能。"
+
+#~ msgid "Steal the rhythmbox's icon in taskbar ?"
+#~ msgstr "由任务栏偷取rhythmbox的图标?"
+
+#~ msgid "time elapsed"
+#~ msgstr "経過時間"
+
+#~ msgid "time left"
+#~ msgstr "残り時間"
+
+#~ msgid "time in %"
+#~ msgstr "%之后"
+
+#~ msgid "n° of track"
+#~ msgstr "第N°首"
+
+#~ msgid "List drives and volumes ?"
+#~ msgstr "列出驱动器与卷标?"
+
+#~ msgid "List network ?"
+#~ msgstr "列出网络?"
+
+#~ msgid "List bookmarks ?"
+#~ msgstr "列出书签?"
+
+#~ msgid "Separate different shortcuts with separators ?"
+#~ msgstr "用间隔隔开不同的快捷方式?"
+
+#~ msgid "Image name to show desklets :"
+#~ msgstr "显示桌面小工具的图片名称:"
+
+#~ msgid "Image name to hide desklets :"
+#~ msgstr "隐藏桌面小工具的图片名称:"
+
+#~ msgid "Show/hide desklets that are on the widget layer too ?"
+#~ msgstr "同时显示/隐藏在小工具层的桌面小工具?"
+
+#~ msgid "Shortkey to show/hide the desklets :"
+#~ msgstr "用于显示/隐藏桌面小应用的快捷键:"
+
+#~ msgid "Directory"
+#~ msgstr "目录"
+
+#~ msgid "Directory of the images :"
+#~ msgstr "图片目录:"
+
+#~ msgid "Scan in sub direcotries ?"
+#~ msgstr "扫描子目录?"
+
+#~ msgid "Randomly browse files ?"
+#~ msgstr "随机浏览文件?"
+
+#~ msgid "Display image name as quickinfo ?"
+#~ msgstr "在快捷信息中显示图片名称?"
+
+#~ msgid ""
+#~ "It will prevent the dock from freezing during the image loading, but does "
+#~ "not work with cairo."
+#~ msgstr "这可以防止dock在转入图片时无法响应，但不能在cairo模式下使用。"
+
+#~ msgid "Use another thread to load the images ?"
+#~ msgstr "使用另一个线程载入图片?"
+
+#~ msgid "Sliding delay :"
+#~ msgstr "切换间隔:"
+
+#~ msgid "Action when applet is clicked :"
+#~ msgstr "当小程序被点击时执行操作:"
+
+#~ msgid "Effect while changing image :"
+#~ msgstr "图片切换效果:"
+
+#~ msgid "fade in out"
+#~ msgstr "淡入淡出"
+
+#~ msgid "diaporama"
+#~ msgstr "幻灯效果"
+
+#~ msgid "shrink down"
+#~ msgstr "凋落"
+
+#~ msgid "Number of steps for a transition :"
+#~ msgstr "转换步数:"
+
+#~ msgid "Gives a better image rendering."
+#~ msgstr "优化图像渲染"
+
+#~ msgid "Keep widht/height ratio ?"
+#~ msgstr "维持纵横比?"
+
+#~ msgid "If the image is too small, it will be zoomed in."
+#~ msgstr "如果图片太小，将进行放大。"
+
+#~ msgid "Force the image to fill the icon/desklet ?"
+#~ msgstr "强制图片充填图标/桌面小工具?"
+
+#~ msgid "Choose a background color :"
+#~ msgstr "选择背景色:"
+
+#~ msgid ""
+#~ "This options allow you to avoid some files to be displayed in the stacks "
+#~ "considering their types (video, images, etc...)"
+#~ msgstr "此选项允许您根据文件的类型（影像、图片等），使特定的文件不在stack中显示"
+
+#~ msgid "Filter files with their mime types ?"
+#~ msgstr "根据MIME类型过滤文件"
+
+#~ msgid "Here you can specify a list of mime types to avoid :"
+#~ msgstr "在此指定不显示的文件MIME类型列表:"
+
+#~ msgid "Keep below other windows ?"
+#~ msgstr "在其他窗口之下?"
+
+#~ msgid "Keep above other windows ?"
+#~ msgstr "在其他窗口之上?"
+
+#~ msgid "Keep on widget layer ?"
+#~ msgstr "保持于小应用程序层？"
+
+#~ msgid "Directory & Options"
+#~ msgstr "目录及选项"
+
+#~ msgid ""
+#~ "Stacks will act as a the shortcut applet's but with files. To add a file, "
+#~ "just drag and drop it on the Stacks icon"
+#~ msgstr "Stacks将表现成跟shortcut小程序一样。如果想添加一个文件，您只需将它拖放到Stacks的图标上。"
+
+#~ msgid "Use only Stacks local directory ?"
+#~ msgstr "仅使用Stacks本地目录?"
+
+#~ msgid ""
+#~ "You can use '_LocalDirectory_' tag to have both stack local and all "
+#~ "monitored directories. Ensure 'Use only Stacks local directory' is unticked."
+#~ msgstr "您可以使用“_LocalDirectory_”标签表示stack本地目录和所有监控目录。请确保没有选中“仅使用Stacks本地目录。"
+
+#~ msgid "Monitored Directories :"
+#~ msgstr "监控目录:"
+
+#~ msgid ""
+#~ "This option with large files lists can slow down the dock, use it properly."
+#~ msgstr "此选项在大量文件列表的情况下将降低dock的速度，请酌情使用。"
+
+#~ msgid "List hidden files ?"
+#~ msgstr "列出隐藏文件?"
+
+#~ msgid "Separate different directories with separators ?"
+#~ msgstr "使用间隔分隔不同的目录"
+
+#~ msgid "Eg: image, text, video, audio, application..."
+#~ msgstr "例如: 图片、文本、影像、音频、应用程序……"
+
+#~ msgid "r, v, b, a"
+#~ msgstr "红, 绿, 蓝, 阿尔法"
+
+#~ msgid "GUI"
+#~ msgstr "GUI"
+
+#~ msgid "Terminal's transparency :"
+#~ msgstr "终端透明度:"
+
+#~ msgid "Foreground color (r, v, b):"
+#~ msgstr "前景色(红、绿、蓝):"
+
+#~ msgid "Background color (r, v, b):"
+#~ msgstr "背景色(红、绿、蓝):"
+
+#~ msgid "Size of the terminal (line x columns) :"
+#~ msgstr "终端尺寸(行×列):"
+
+#~ msgid "Name of an image for the 'close' icon :"
+#~ msgstr "用于关闭图标的图片名"
+
+#~ msgid "Draw note's content on their icon ?"
+#~ msgstr "在图标上绘制便签内容?"
+
+#~ msgid ""
+#~ "Write the date format you usually use in your notes. The syntax is the one "
+#~ "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
+#~ "digits), etc. Let it blnk to use the default one (%d/%m/%y)."
+#~ msgstr ""
+#~ "写下您便签平时使用的日期格式。语法为'strftime'的一种: %d表示日，%m表示月, "
+#~ "%y表示年（2位数字）等。如使用默认的（%d/%m/%y）格式，则留空。"
+
+#~ msgid "Emulate the 'NoteDeleted' signal ?"
+#~ msgstr "模拟“删除便签”信号?"
+
+#~ msgid "Let it empty to use the name of the city."
+#~ msgstr "留空则使用城市名称。"
+
+#~ msgid "Code of your location :"
+#~ msgstr "您的位置代码:"
+
+#~ msgid "Use International System Units ?"
+#~ msgstr "使用国际单位?"
+
+#~ msgid "Duration of dialogs :"
+#~ msgstr "对话框持续时间:"
+
+#~ msgid "in minutes."
+#~ msgstr "以分为单位。"
+
+#~ msgid "Display current conditions on the icon instead of the default one ?"
+#~ msgstr "以当前情况图标取代默认图标?"
+
+#~ msgid "Number of days you want to forecast :"
+#~ msgstr "预报天数:"
+
+#~ msgid "Display nights too ?"
+#~ msgstr "显示夜晚情况?"
+
+#~ msgid "Display temperature as quick info ?"
+#~ msgstr "以快速信息显示温度?"
+
+#~ msgid "Render desklet in 3D ?"
+#~ msgstr "以3D渲染桌面小应用?"
+
+#~ msgid "Show scrollbars ?"
+#~ msgstr "显示卷轴"
+
+#~ msgid "Horizontal scroll of the browser in pixel"
+#~ msgstr "以点为单位的浏览器水平卷轴位置"
+
+#~ msgid "Vertical scroll of the browser in pixel"
+#~ msgstr "以点为单位的浏览器垂直卷轴位置"
+
+#~ msgid "Name of an image for the 'no signal' icon :"
+#~ msgstr "用于“无信号”图标的图片名称:"
+
+#~ msgid "Name of an image for the 'very low' icon :"
+#~ msgstr "用于“信号很弱”图标的图片名称:"
+
+#~ msgid "Name of an image for the 'low' icon :"
+#~ msgstr "用于“信号弱”图标的图片名称:"
+
+#~ msgid "Name of an image for the 'middle' icon :"
+#~ msgstr "用于“信号中等”图标的图片名称:"
+
+#~ msgid "Name of an image for the 'good' icon :"
+#~ msgstr "用于“信号良好”图标的图片名称:"
+
+#~ msgid "Name of an image for the 'exellent' icon :"
+#~ msgstr "用于“信号很好”图标的图片名称:"
+
+#~ msgid ""
+#~ "Allow you to overwrite applet's default command line and launch you wireless "
+#~ "configuration interface."
+#~ msgstr "允许您启动自己的无线配置界面以替代默认命令行。"
+
+#~ msgid "Overwrite the default label with the connection point name ?"
+#~ msgstr "以接入点名称替代默认标签"
+
+#~ msgid "Activate extended desklet mode ?"
+#~ msgstr "启用扩展桌面小工具模式？"
+
+#~ msgid "Extended display mode :"
+#~ msgstr "扩展显示模式："
+
+#~ msgid "Info and Controler"
+#~ msgstr "信息及控制器"
+
+#~ msgid "Controler"
+#~ msgstr "控制器"
+
+#~ msgid "Animate icon ?"
+#~ msgstr "动画图标？"
+
+#~ msgid "Use the analogic view ?"
+#~ msgstr "使用指针时钟？"
+
+#~ msgid "width :"
+#~ msgstr "宽："
+
+#~ msgid "height :"
+#~ msgstr "高："
+
+#~ msgid ""
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+#~ "dock & type=utility)"
+#~ msgstr ""
+#~ "面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & type=utility)"
+
+#~ msgid "Size of the icon you wish this applet has (in pixels)"
+#~ msgstr "期望此小应用程序的图标大小（以点为单位）"
+
+#~ msgid ""
+#~ "For exemple :Europe/Paris, :Japan, etc. Right click on the icon to select "
+#~ "your location from a list. Let empty to get the local time."
+#~ msgstr "比如：Europe/Paris，:Japan之类。右击图标则由列表选择您的位置，留空则使用当地时间"
+
+#~ msgid "red, blue, green, alpha"
+#~ msgstr "红，蓝，绿，alpha"
+
+#~ msgid ""
+#~ "It may recquire more CPU during the unfolding animation, except if you "
+#~ "launch Cairo-Dock with Glitz."
+#~ msgstr "这将在展开动画时消耗更多的CPU，除非您是用Glitz加载Cairo-Dock的。"
+
+#~ msgid "Use a wide shape ?"
+#~ msgstr "使用宽的形状?"
+
+#~ msgid "First gradient color (r,v,b,a) :"
+#~ msgstr "第一种渐变颜色（红，绿，蓝，透明）:"
+
+#~ msgid "Second gradient color (r,v,b,a) :"
+#~ msgstr "第二种渐变颜色（红，绿，蓝，透明）:"
+
+#~ msgid "Border line color (r,v,b,a) :"
+#~ msgstr "边线颜色（红，绿，蓝，透明）:"
+
+#~ msgid "They don't even need to be real trash directories."
+#~ msgstr "它们甚至不必真的是回收站目录。"
+
+#~ msgid ""
+#~ "Here you can specify a list of additionnal Trash directories to monitor :"
+#~ msgstr "您可以在此指定需要监视的额外的回收站目录:"
+
+#~ msgid "Display the cover ?"
+#~ msgstr "显示封面？"
+
+#~ msgid "Desklet display mode :"
+#~ msgstr "桌面小应用程序显示模式："
+
+#~ msgid "Simple"
+#~ msgstr "简易"
+
+#~ msgid "With a icon ?"
+#~ msgstr "使用图标？"
+
+#~ msgid "bounce"
+#~ msgstr "弹跳"
+
+#~ msgid "rotate"
+#~ msgstr "旋转"
+
+#~ msgid "blink"
+#~ msgstr "闪烁"
+
+#~ msgid "pulse"
+#~ msgstr "脉冲"
+
+#~ msgid "upside-down"
+#~ msgstr "倒立"
+
+#~ msgid "wobbly"
+#~ msgstr "抖动"
+
+#~ msgid "Display speed values :"
+#~ msgstr "显示速度值:"
+
+#~ msgid "Data acquisition has failed"
+#~ msgstr "数据采集失败"
+
+#~ msgid "Model Name"
+#~ msgstr "模型名"
+
+#~ msgid "Display a graphic rather than a gauge ?"
+#~ msgstr "显示图表而不是表盘?"
+
+#~ msgid ""
+#~ "Let it empty to use the default image. Set the transparency to 0 if you "
+#~ "don't want to have any watermark."
+#~ msgstr "留空则使用默认图像。如果您不想要水印，请将透明度设为0。"
+
+#~ msgid "Image to display as a watermark :"
+#~ msgstr "水印图片:"
+
+#~ msgid "Set it up to 0 if you don't want to have a watermark."
+#~ msgstr "如果您不想要水印，请设为0."
+
+#~ msgid "Transparency of the watermark :"
+#~ msgstr "水印透明度:"
+
+#~ msgid "Display CPU usage values :"
+#~ msgstr "显示CPU占用率:"
+
+#~ msgid ""
+#~ "When you left-click on the icon, you will get the list of the N most CPU-"
+#~ "using programs."
+#~ msgstr "左键单击图标时，将显示N个CPU占用率最高的程序的列表。"
+
+#~ msgid "I couldn't find any element '%s'"
+#~ msgstr "无法找到原件：'%s'"
+
+#~ msgid ""
+#~ "This is the AlsaMixer applet\n"
+#~ " made by Fabounet (Fabrice Rey) for Cairo-Dock"
+#~ msgstr ""
+#~ "AlsaMixer小应用程序\n"
+#~ "作者Fabounet (Fabrice Rey)"
+
+#~ msgid "Command to run to show an advanced sound mixer :"
+#~ msgstr "用于显示高级声音混合器的命令:"
+
+#~ msgid "Open an advanced sound mixer with :"
+#~ msgstr "用以下打开高级混音器："
+
+#~ msgid "Lockposition ?"
+#~ msgstr "位置を固定？"
+
+#~ msgid ""
+#~ "This is the CD_APPLET_NAME applet\n"
+#~ " made by CD_MY_NAME for Cairo-Dock"
+#~ msgstr ""
+#~ "これは CD_MY_NAME によって \n"
+#~ "Cairo-Dock 用に製作された CD_APPLET_NAME アプレットです。"
+
+#~ msgid "Icon's name :"
+#~ msgstr "アイコンの名前 :"
+
+#~ msgid ""
+#~ "This is the Cairo-Penguin applet\n"
+#~ " made by Fabrice Rey for Cairo-Dock"
+#~ msgstr ""
+#~ "这是Cairo企鹅小应用程序\n"
+#~ " Fabrice Rey为Cairo-Dock所作"
+
+#~ msgid ""
+#~ "This is the Cairo-Dock's clock applet\n"
+#~ " made by Fabrice Rey (fabounet@users.berlios.de) for Cairo-Dock.\n"
+#~ "The analogic representation is a port of the well-known Cairo-Clock\n"
+#~ " from MacSlow (http://macslow.thepimp.net)."
+#~ msgstr ""
+#~ "这是Cairo-Dock的时钟小应用程序。\n"
+#~ "由Fabrice Rey (fabounet_03@yahoo.fr)为Cario-Dock制作。 \n"
+#~ "指针式时钟由著名的MacSlow（http://macslow.thepimp.net）\n"
+#~ "的Cairo-Clock移植而来。"
+
+#~ msgid "List of available themes for the numeric display :"
+#~ msgstr "指针时钟存在的主题列表："
+
+#~ msgid "Choose a location"
+#~ msgstr "选择位置"
+
+#~ msgid "Alarm n°1"
+#~ msgstr "闹钟n°1"
+
+#~ msgid "in the form xx:xx. For exemple, 20:35 for 8:35pm"
+#~ msgstr "使用xx:xx的格式。比如：20:35用于8:35pm"
+
+#~ msgid "Time you want to be notified :"
+#~ msgstr "您想被提醒的时间："
+
+#~ msgid "Repeat every"
+#~ msgstr "重复每"
+
+#~ msgid "If every month, which day of the month ? :"
+#~ msgstr "如果每月进行，选择哪天？："
+
+#~ msgid "Message you want to use to be notified :"
+#~ msgstr "您想被提醒的内容："
+
+#~ msgid "For exemple, < play /path/to/file.ogg >."
+#~ msgstr "比如说：< play /chemin/vers/le/fichier.ogg >。"
+
+#~ msgid "Command to execute :"
+#~ msgstr "执行的命令："
+
+#~ msgid "Alarm n°2"
+#~ msgstr "闹钟n°2"
+
+#~ msgid "Alarm n°3"
+#~ msgstr "闹钟n°3"
+
+#~ msgid "Show the date ?"
+#~ msgstr "显示日期？"
+
+#~ msgid "ALARM"
+#~ msgstr "闹钟"
+
+#~ msgid "default"
+#~ msgstr "défaut"
+
+#~ msgid ""
+#~ "This is the compiz-icon applet\n"
+#~ " made by ChAnGFu for Cairo-Dock"
+#~ msgstr ""
+#~ "compiz-icon小应用程序\n"
+#~ "由ChAnGFu为Cairo-Dock制作"
+
+#~ msgid "Windows Manager"
+#~ msgstr "Gestionnaire de Fenêtres"
+
+#~ msgid "Select your Windows Manager :"
+#~ msgstr "Choisissez votre Gestionnaire de Fenêtres :"
+
+#~ msgid "Force settings at startup"
+#~ msgstr "Forcer ma configuration au démarrage"
+
+#~ msgid "Load default Windows Manager with options at startup."
+#~ msgstr "Charge le Gestionnaire de Fenêtres par defaut au démarrage."
+
+#~ msgid "broken"
+#~ msgstr "cassé"
+
+#~ msgid "other"
+#~ msgstr "autre"
+
+#~ msgid "Kwin"
+#~ msgstr "Kwin"
+
+#~ msgid "XFCE"
+#~ msgstr "XFCE"
+
+#~ msgid "Load Compiz with options at startup."
+#~ msgstr "Charger Compiz avec les options au démarrage."
+
+#~ msgid "Display text only for pointed icon ?"
+#~ msgstr "仅为指向的图标显示文本?"
+
+#~ msgid "it's the 'a' in y=k*x^a"
+#~ msgstr "rappresenta 'a' in y=k*x^a"
+
+#~ msgid ""
+#~ "not including the labels. The 'k' coef will be adjusted to preserve this "
+#~ "ratio."
+#~ msgstr ""
+#~ "non include le etichette. Il coefficiente 'k' sarà aggiustato per mantenere "
+#~ "questo rapporto."
+
+#~ msgid "Use a flat separator instead of the defined separator icon ?"
+#~ msgstr "Utilizzare un separatore piatto al posto dell'icona di default ?"
+
+#~ msgid "If so, you can specify its color:"
+#~ msgstr "Se sì, precisate il suo colore:"
+
+#~ msgid "Diapo"
+#~ msgstr "Diapo"
+
+#~ msgid ""
+#~ "This is the dustbin applet for Cairo-Dock\n"
+#~ " made by Fabrice Rey (fabounet@users.berlios.de)"
+#~ msgstr ""
+#~ "这是回收站小程序。\n"
+#~ "由Fabrice Rey(fabounet@users.berlios.de)为Cairo-Dock制作"
+
+#~ msgid ""
+#~ "This is a very simple logout applet\n"
+#~ " made by Fabrice Rey for Cairo-Dock"
+#~ msgstr ""
+#~ "这是一个非常简单的注销小程序\n"
+#~ "由Fabrice Rey为Cairo-Dock作的"
+
+#~ msgid "You have"
+#~ msgstr "您有"
+
+#~ msgid ""
+#~ "This is the mail applet\n"
+#~ " made by Christophe Chapuis for Cairo-Dock"
+#~ msgstr ""
+#~ "这是邮件小程序\n"
+#~ "由Christophe Chapuis为Cairo-Dock开发"
+
+#~ msgid "Modify a mail account"
+#~ msgstr "编辑邮件用户"
+
+#~ msgid ""
+#~ "Unable to set socket to non-blocking mode.  If the connect attempt hangs, "
+#~ "the panel may hang on close."
+#~ msgstr "不能将socket设置为非阻塞模式。 如果一个连接尝试挂起， 面板会在关闭时失去反应"
+
+#~ msgid "Failed to connect to server: %s"
+#~ msgstr "无法连接到服务器:%s"
+
+#~ msgid ""
+#~ "Unable to return socket to blocking mode.  Data may not be retreived "
+#~ "correctly."
+#~ msgstr "无法将socket置于阻塞模式，取回的数据可能会失真。"
+
+#~ msgid "TLS handshake failed: %s"
+#~ msgstr "TLS握手失败:%s"
+
+#~ msgid ""
+#~ "Received HTTP response code %d.  The most likely reason for this is that "
+#~ "your GMail username or password is incorrect."
+#~ msgstr "收到HTTP响应码:%d。 最可能的原因是您的Gmail用户名或密码错误。"
+
+#~ msgid ""
+#~ "Received HTTP response code %d, which should be 200.  There may be a problem "
+#~ "with GMail's servers, or they have incompatibly changed their authentication "
+#~ "method or location of the new messages feed."
+#~ msgstr "收到HTTP响应码%d，它本应是200。这可能是GMail服务器的错误，或是它们将验证方式或新邮件推送位置做了不兼容的变更。"
+
+#~ msgid "_Username:"
+#~ msgstr "_用户名:"
+
+#~ msgid "_Password:"
+#~ msgstr "_密码:"
+
+#~ msgid "Check for _new messages every"
+#~ msgstr "检查新邮件间隔每"
+
+#~ msgid "minute(s)."
+#~ msgstr "分钟。"
+
+#~ msgid "Remote GMail Mailbox"
+#~ msgstr "移除Gmail邮箱"
+
+#~ msgid ""
+#~ "The GMail plugin can connect to Google's mail service and securely retrieve "
+#~ "the number of new messages."
+#~ msgstr "GMail插件可以连接至Google的邮件服务，并安全的取回您的新邮件数目。"
+
+#~ msgid ""
+#~ "Secure IMAP is not available, and the IMAP server does not support plaintext "
+#~ "logins."
+#~ msgstr "安全IMAP方式不存在，而且IMAP服务器不支持纯文本登录。"
+
+#~ msgid "STARTTLS security was requested, but this server does not support it."
+#~ msgstr "需要STARTTLS安全，但此服务器不予支持。"
+
+#~ msgid ""
+#~ "A buffer was too small to receive all of an IMAP response.  This is a bug!"
+#~ msgstr "缓冲区太小以致无法接收所有的IMAP响应。这是一个bug！"
+
+#~ msgid "Failed to get folder list"
+#~ msgstr "获取邮件夹失败"
+
+#~ msgid "Please wait..."
+#~ msgstr "请稍候……"
+
+#~ msgid "Set New Mail Folders"
+#~ msgstr "设置新邮件夹"
+
+#~ msgid "New Mail Folders"
+#~ msgstr "新邮件夹"
+
+#~ msgid "Advanced IMAP Options"
+#~ msgstr "高级IMAP选项"
+
+#~ msgid "Connection"
+#~ msgstr "连接"
+
+#~ msgid "Use unsecured connection"
+#~ msgstr "使用不安全连接"
+
+#~ msgid "Use SSL/TLS on alternate port"
+#~ msgstr "使用替代端口上的SSL/TLS"
+
+#~ msgid "Use SSL/TLS via STARTTLS"
+#~ msgstr "通过STARTTLS使用SSL/TLS"
+
+#~ msgid "Use non-standard IMAP _port:"
+#~ msgstr "使用非标准IMAP端口:"
+
+#~ msgid "IMAP server _directory:"
+#~ msgstr "IMAP服务器目录:"
+
+#~ msgid "IMAP Server"
+#~ msgstr "IMAP服务器"
+
+#~ msgid "_Mail server:"
+#~ msgstr "_邮件服务器:"
+
+#~ msgid "_Advanced..."
+#~ msgstr "_高级……"
+
+#~ msgid "New mail _folders..."
+#~ msgstr "新邮件_邮件夹……"
+
+#~ msgid "Remote IMAP Mailbox"
+#~ msgstr "远程IMAP邮箱"
+
+#~ msgid ""
+#~ "The IMAP plugin can connect to a remote mail server that supports the IMAP "
+#~ "protocol, optionally using SSL for link protection."
+#~ msgstr "IMAP插件可以连接至支持IMAP协议的远程邮件服务器，更支持SSL链接以保护数据"
+
+#~ msgid "Failed to get status of file %s: %s"
+#~ msgstr "获取文件 %s: %s 状态失败"
+
+#~ msgid "%s is not a directory. Is %s really a valid maildir?"
+#~ msgstr "%s 不是一个目录。%s真的是一个合法的邮件目录么?"
+
+#~ msgid "Select Maildir Folder"
+#~ msgstr "选择邮件目录"
+
+#~ msgid "Maildir _Path:"
+#~ msgstr "邮件目录_路径:"
+
+#~ msgid "_Interval:"
+#~ msgstr "_间隔:"
+
+#~ msgid "Local Maildir Spool"
+#~ msgstr "本地邮件目录缓冲池"
+
+#~ msgid ""
+#~ "The Maildir plugin can watch a local maildir-style mail spool for new "
+#~ "messages."
+#~ msgstr "邮件目录插件用于监视一个本地邮件目录格式的邮件缓冲池，以获取新邮件"
+
+#~ msgid "Select mbox file"
+#~ msgstr "选择mbox文件"
+
+#~ msgid "Mbox _Filename:"
+#~ msgstr "Mbox_文件名:"
+
+#~ msgid "Local Mbox spool"
+#~ msgstr "本地Mbox缓冲池"
+
+#~ msgid "Mbox plugin watches a local mbox-type mail spool for new messages."
+#~ msgstr "Mbox插件监视一个本地mbox形态的邮件缓冲池以发现新邮件"
+
+#~ msgid "Malformed line %s in %s ignored."
+#~ msgstr "不规范行%s位于%s被忽略。"
+
+#~ msgid ""
+#~ "The configuration of this plugin is read from\n"
+#~ "the default mh maildir profile file ~/.mh_profile"
+#~ msgstr "此插件的配置由默认mh邮件目录下存档文件~/.mh_profile中读取"
+
+#~ msgid "Local MH mail folder"
+#~ msgstr "本地MH邮件目录"
+
+#~ msgid "MH plugin watches local MH folders for new mail"
+#~ msgstr "MH插件监视本地MH目录以获取新邮件"
+
+#~ msgid "Advanced POP3 Options"
+#~ msgstr "高级POP3选项"
+
+#~ msgid "Use SSL/TLS via STLS"
+#~ msgstr "通过STLS使用SSL/TLS"
+
+#~ msgid "Use non-standard POP3 _port:"
+#~ msgstr "使用非标准POP3_端口:"
+
+#~ msgid "POP3 Server"
+#~ msgstr "POP3服务器"
+
+#~ msgid "Remote POP3 Mailbox"
+#~ msgstr "远程POP3邮箱"
+
+#~ msgid ""
+#~ "The POP3 plugin can connect to a remote mail server that supports the POP3 "
+#~ "protocol, optionally using SSL for link protection."
+#~ msgstr "POP3插件可以连接至支持POP3协议的远程邮件服务器，并支持SSL链接保护"
+
+#~ msgid "XfceMailwatch: TLS handshake failed: %s"
+#~ msgstr "XfceMailwatch:TLS握手失败:%s"
+
+#~ msgid "Not compiled with SSL/TLS support"
+#~ msgstr "编译时未加入SSL/TLS支持"
+
+#~ msgid "XfceMailwatch: TLS handshake failed: not compiled with SSL support."
+#~ msgstr "XfceMailwatch:TLS握手失败:编译时未加入SSL/TLS支持"
+
+#~ msgid "A secure connection was requested, but gnutls was not initialised"
+#~ msgstr "需要安全链接，但gnutls未初始化"
+
+#~ msgid "This mailbox type does not require any configuration settings."
+#~ msgstr "此邮箱类型不必进行配置"
+
+#~ msgid "Mailbox _Name:"
+#~ msgstr "邮箱_名称:"
+
+#~ msgid "Edit Mailbox: %s"
+#~ msgstr "编辑邮箱:%s"
+
+#~ msgid "Select Mailbox Type"
+#~ msgstr "选择邮箱类型"
+
+#~ msgid "Select a mailbox type.  A description of the type will appear below."
+#~ msgstr "选择邮箱类型。类型的描述如下。"
+
+#~ msgid "Add New Mailbox"
+#~ msgstr "添加新邮箱"
+
+#~ msgid "Mailboxes"
+#~ msgstr "邮箱"
+
+#~ msgid ""
+#~ "This is the musicPlayer applet\n"
+#~ " made by ChAnGFu for Cairo-Dock"
+#~ msgstr "这是ChAnGFu为Cairo-Dock之做的音乐播放器插件"
+
+#~ msgid ""
+#~ "If you choose 'personnal', you can define your own decoration above, or let "
+#~ "it blank to not use any decoration."
+#~ msgstr "如果选择‘个性化’您将可以在上面定义您自己的装饰，否则请留空以使用别的装饰。"
+
+#~ msgid "Choose a decoration for the desklet mode :"
+#~ msgstr "为桌面小应用模式选择装饰:"
+
+#~ msgid "Personnal"
+#~ msgstr "个性化"
+
+#~ msgid "Extended 3D mode"
+#~ msgstr "扩展3D模式"
+
+#~ msgid "frame with reflects"
+#~ msgstr "反射镜框"
+
+#~ msgid "scotch"
+#~ msgstr "磨砂"
+
+#~ msgid "frame with scotch"
+#~ msgstr "磨砂镜框"
+
+#~ msgid ""
+#~ "It's an image that will be displayed below the cover, like a frame for "
+#~ "exemple."
+#~ msgstr "显示于封面下的图片，比如一个镜框"
+
+#~ msgid "It's typically the width of the left side of your frame, in pixels."
+#~ msgstr "这是您镜框的左边宽度，以点为单位。"
+
+#~ msgid "Reflection image :"
+#~ msgstr "反射图片:"
+
+#~ msgid "Reflection tansparency :"
+#~ msgstr "反射透明度:"
+
+#~ msgid "High values color for the download speed :"
+#~ msgstr "下载速度快时的颜色:"
+
+#~ msgid "Low values color for the download speed :"
+#~ msgstr "下载速度慢时的颜色:"
+
+#~ msgid "High values color for the upload speed :"
+#~ msgstr "上传速度快时的颜色:"
+
+#~ msgid "Low values color for the upload speed :"
+#~ msgstr "上传速度慢时的颜色:"
+
+#~ msgid "Draw both values on the same graph ?"
+#~ msgstr "在同一张图里绘制上传和下载速度值?"
+
+#~ msgid "Image to display as a watermark on the gauge :"
+#~ msgstr "表盘水印图片:"
+
+#~ msgid "Interface '%s' seems to not exist or is not readable"
+#~ msgstr "网卡“%s”不存在或不可读"
+
+#~ msgid ""
+#~ "This is the netspeed applet\n"
+#~ " made by parAdOxxx_ZeRo for Cairo-Dock"
+#~ msgstr "这是由parAdOxxx_ZeRo为Cairo-Dock编写的netspeed小应用程序"
+
+#~ msgid ""
+#~ "Total amount of data :\n"
+#~ "  downloaded : %.2f%s\n"
+#~ "  uploaded : %.2f%s"
+#~ msgstr ""
+#~ "数据总量:\n"
+#~ "  下载:%.2f%s\n"
+#~ "  上传:%.2f%s"
+
+#~ msgid "Waiting"
+#~ msgstr "Waiting"
+
+#~ msgid "Debug"
+#~ msgstr "Debug"
+
+#~ msgid "in milliseconds."
+#~ msgstr "en millisecondes."
+
+#~ msgid ""
+#~ "Total amount of data :\n"
+#~ "  downloaded : %.2fKB\n"
+#~ "  uploaded : %.2fKB"
+#~ msgstr ""
+#~ "Quantité total de données :\n"
+#~ "  Down : %.2fKo\n"
+#~ " Up : %.2fKo"
+
+#~ msgid "Draw desklet in a 3D fashion (experimental) ?"
+#~ msgstr "以3D效果绘制桌面小工具(实验性)?"
+
+#~ msgid "Applet by Necropotame (Adrien Pilleboue)"
+#~ msgstr "Necropotame (Adrien Pilleboue)制作的小程序"
+
+#~ msgid ""
+#~ "Artist : %s\n"
+#~ "Album : %s\n"
+#~ "Title : %s"
+#~ msgstr ""
+#~ "アーティスト : %s\n"
+#~ "アルバム : %s\n"
+#~ "タイトル : %s"
+
+#~ msgid ""
+#~ "This is the shortcuts applet\n"
+#~ " made by Fabounet for Cairo-Dock"
+#~ msgstr "这是Fabounet为Cairo-Dock制作的Shortcuts小应用程序"
+
+#~ msgid ""
+#~ "This is the showDesklets applet\n"
+#~ " made by Fabrice Rey for Cairo-Dock"
+#~ msgstr "这是由Fabrice Rey为Cairo-Dock制作的showDesklets小应用程序"
+
+#~ msgid ""
+#~ "This is the showDesktop applet\n"
+#~ " made by Romain Perol for Cairo-Dock"
+#~ msgstr "这是Romain Perol为Cairo-Dock制作的显示桌面小程序。"
+
+#~ msgid ""
+#~ "This is the Slider applet\n"
+#~ " made by ChAnGFu for Cairo-Dock"
+#~ msgstr "这是ChAnGFu为Cairo-Dock制作的幻灯片小应用程序"
+
+#~ msgid "Choose a background and foreground decoration :"
+#~ msgstr "选择背景和前景的装饰:"
+
+#~ msgid ""
+#~ "It's an image that will be displayed below the slide, like a frame for "
+#~ "exemple."
+#~ msgstr "显示于幻灯片下的图片，比如一个镜框"
+
+#~ msgid ""
+#~ "It's an image that will be displayed above the slide, like a reflect for "
+#~ "exemple."
+#~ msgstr "显示于封面之上的图片，如同反射一样"
+
+#~ msgid "Not yet implemented."
+#~ msgstr "尚未实现"
+
+#~ msgid "Not implemented yet"
+#~ msgstr "未だ実装していません"
+
+#~ msgid "Give better image rendering"
+#~ msgstr "画像の描画をより良くします"
+
+#~ msgid "Not  yetimplemented."
+#~ msgstr "未だ実装していません"
+
+#~ msgid "Background & Reflection"
+#~ msgstr "背景と反射"
+
+#~ msgid "Set it to zero if you don't want to use a background"
+#~ msgstr "背景を使用したくない場合は 0 に設定してください。"
+
+#~ msgid "Set it to zero if you dont don't want to use a foreground"
+#~ msgstr "前景を使用したくない場合は 0 に設定してください。"
+
+#~ msgid ""
+#~ "It's an image that will be displayed belox the slide, like a frame for "
+#~ "exemple. Let it empty to use the default one."
+#~ msgstr "例えばフレームのように、スライドの背後に表示される画像です。デフォルトのものを使用するには空欄のままにしてください。"
+
+#~ msgid ""
+#~ "This is the stacks applet\n"
+#~ " made by ChAnGFu for Cairo-Dock"
+#~ msgstr "这是ChAnGFu为Cairo-Dock编写的stacks小应用程序。"
+
+#~ msgid ""
+#~ "This is the cpusage applet\n"
+#~ " made by parAdOxxx_ZeRo for Cairo-Dock"
+#~ msgstr ""
+#~ "这是显示CPU占用率的小程序\n"
+#~ "由parAdOxxx_ZeRo为Cairo-Dock制作。"
+
+#~ msgid "turbo-night-fuel"
+#~ msgstr "夜色油量表"
+
+#~ msgid "Always on top ?"
+#~ msgstr "常に最前面に表示?"
+
+#~ msgid "Rename Tab"
+#~ msgstr "タブ名の変更"
+
+#~ msgid "Searh for tag"
+#~ msgstr "搜索标签"
+
+#~ msgid "Display album's cover instead of icon ?"
+#~ msgstr "アイコンの代わりにアルバムのカバーを表示?"
+
+#~ msgid "° of track"
+#~ msgstr "トラック番号"
+
+#~ msgid ""
+#~ "If your tomboy version is not recent enough, it may not have this signal. "
+#~ "Only check this box if you notice some message like <<No marshaller for "
+#~ "signature of signal 'NoteDeleted'>> in the terminal."
+#~ msgstr ""
+#~ "Tomboy のバージョンが最近のものでない場合、この信号が存在しない可能性があります。端末上で <<No marshaller for "
+#~ "signature of signal 'NoteDeleted'>> "
+#~ "のようなエラーメッセージに気づいた場合にのみこのオプションにチェックを入れてください。"
+
+#~ msgid ""
+#~ "Right click on the icon to let Cairo-Dock help you to find your location "
+#~ "code."
+#~ msgstr "右击图标使Cario-Dock帮助您寻找您的位置代码。"
+
+#~ msgid ""
+#~ "This is the weather applet\n"
+#~ " made by Fabrice Rey for Cairo-Dock"
+#~ msgstr "这是由Fabrice Rey为Cairo-Dock制作的天气小应用程序。"
+
+#~ msgid ""
+#~ "Enter your location\n"
+#~ " (for exemple : Paris, France)"
+#~ msgstr ""
+#~ "输入您的位置\n"
+#~ "（比如:Beijing, China）"
+
+#~ msgid "Choose your location :"
+#~ msgstr "选择您的位置"
+
+#~ msgid "Search for your location"
+#~ msgstr "查询您的位置"
+
+#~ msgid ""
+#~ "This is the weblets applet\n"
+#~ " made by Christophe Chapuis for Cairo-Dock"
+#~ msgstr "这是Chiristophe Chapuis为Cairo-Dock制作的weblets小应用程序。"
+
+#~ msgid ""
+#~ "Wifi enabled. \n"
+#~ " Connected on:"
+#~ msgstr ""
+#~ "Wifi已启用。\n"
+#~ "接入:"
+
+#~ msgid "Signal Strength:"
+#~ msgstr "信号强度:"
+
+#~ msgid "Display type :"
+#~ msgstr "显示类型"
+
+#~ msgid "Gauges"
+#~ msgstr "表盘"
+
+#~ msgid "Graphic"
+#~ msgstr "图表"
+
+#~ msgid "It's the color of the graphic for high Strength values."
+#~ msgstr "信号强度高时的图表颜色。"
+
+#~ msgid "It's the color of the graphic for low Strength values."
+#~ msgstr "信号强度低时的图表颜色。"
+
+#~ msgid "radium"
+#~ msgstr "镭"
+
+#~ msgid ""
+#~ "This is the wifi applet\n"
+#~ " made by ChAnGFu for Cairo-Dock"
+#~ msgstr "这是ChAnGFu为Cairo-Dock制作的wifi小程序"
+
+#~ msgid "Use a jauge instead of icons?"
+#~ msgstr "以标尺替代图标?"
+
+#~ msgid ""
+#~ "This is the Xgamma applet\n"
+#~ " made by Fabrice Rey for Cairo-Dock"
+#~ msgstr "这是Fabrice Rey为Cairo-Dock制作的Xgamma小应用程序。"
+
+#~ msgid ""
+#~ "This is the xmms applet\n"
+#~ " made by ChAnGFu for Cairo-Dock"
+#~ msgstr "这是ChAnGFu为Cairo-Dock制作的xmms小应用程序。"
+
+#~ msgid "Clear the list of the recently used documents ?"
+#~ msgstr "清除最近使用的文档列表？"
+
+#~ msgid "Enter a command to launch :"
+#~ msgstr "输入命令并启动"
+
+#~ msgid "felt"
+#~ msgstr "体感温度"
+
+#~ msgid "Toggle Widget Layer"
+#~ msgstr "切换Widget层"
+
+#, c-format
+#~ msgid "You are about to delete all files in %s. Continue?"
+#~ msgstr "您将删除%s中的所有文件，确定?"
+
+#~ msgid "You are about to delete all files in all dustbins. Continue?"
+#~ msgstr "您将删除全部回收站中的所有文件。确定?"
+
+#, c-format
+#~ msgid ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual file browser,\n"
+#~ "you can change this in the configuration panel of this module"
+#~ msgstr ""
+#~ "发生问题。\n"
+#~ "如果“%s”不是您平时使用的文件浏览器，\n"
+#~ "您可以在此模块的配置面板中进行更改。"
+
+#~ msgid "Leave empty to use the defaut command."
+#~ msgstr "留空则使用默认指令。"
+
+#~ msgid ""
+#~ "Except when switching to another WM, you must activate the Dbus plugin in "
+#~ "Compiz along with the plugin corresponding to the desired action."
+#~ msgstr "除非要切换至其他窗口管理器，您必须启用Dbus插件，并根据您需要的动作启用相应插件"
+
+#~ msgid "Choose an action for middle click on the icon:"
+#~ msgstr "选择中间点击图标执行的行为："
 
 #~ msgid ""
 #~ "This command will be used to launch the system WM. Leave blank to use the "
@@ -7979,11 +9824,9 @@ msgstr "以接入点名称替代默认标签"
 #~ msgstr "系统窗口管理器自定义命令："
 
 #~ msgid ""
-#~ "If Compiz quits unexpectedly, Cairo-Dock will restart it. You must then "
-#~ "quit Compiz from the dock."
-#~ msgstr ""
-#~ "如果Compiz异常退出，Cairo-Dock将自动重启之。那时，您必须从dock上退出"
-#~ "Compiz。"
+#~ "If Compiz quits unexpectedly, Cairo-Dock will restart it. You must then quit "
+#~ "Compiz from the dock."
+#~ msgstr "如果Compiz异常退出，Cairo-Dock将自动重启之。那时，您必须从dock上退出Compiz。"
 
 #~ msgid "Auto-reload Compiz?"
 #~ msgstr "自动重载Compiz？"
@@ -7991,9 +9834,7 @@ msgstr "以接入点名称替代默认标签"
 #~ msgid ""
 #~ "If the decorator quits unexpectedly, Cairo-Dock will restart it. ou must "
 #~ "then quit Compiz from the dock."
-#~ msgstr ""
-#~ "如果窗口装饰器异常退出，Cairo-Dock将自动重启之。那时，您必须从dock上退出"
-#~ "Compiz"
+#~ msgstr "如果窗口装饰器异常退出，Cairo-Dock将自动重启之。那时，您必须从dock上退出Compiz"
 
 #~ msgid "Auto-reload the Decorator?"
 #~ msgstr "自动重载装饰器？"
@@ -8008,41 +9849,24 @@ msgstr "以接入点名称替代默认标签"
 #~ "This will prevent the CSSM or Emerald icons appearing in the taskbar. The "
 #~ "corresponding sub-dock's icons will then behave as a launcher and an "
 #~ "application."
-#~ msgstr ""
-#~ "这将避免CSSM或Emerald的图标出现在任务栏上。子dock上相应的图标将取代它们实"
-#~ "现起动器和应用程序的功能"
-
-#, fuzzy
-#~ msgid "Steal the application's icon from the taskbar?"
-#~ msgstr "由任务栏窃取播放器图标？"
+#~ msgstr "这将避免CSSM或Emerald的图标出现在任务栏上。子dock上相应的图标将取代它们实现起动器和应用程序的功能"
 
 #~ msgid ""
 #~ "Display two icons for Compiz Exposition & Widget Layer plug-ins in the "
 #~ "applet's sub-dock. Otherwise they will be available in the menu."
-#~ msgstr ""
-#~ "在小应用程序的子dock中显示Compiz展示和Widget层插件。否则，它们将位于菜单"
-#~ "中。"
+#~ msgstr "在小应用程序的子dock中显示Compiz展示和Widget层插件。否则，它们将位于菜单中。"
 
 #~ msgid "Add Exposition & Widget Layer to sub-dock?"
 #~ msgstr "在子dock上添加展示和Widget层图标？"
 
-#, fuzzy
-#~ msgid "Add Emerald Configuration to sub-dock?"
-#~ msgstr "在子dock上添加展示和Widget层图标？"
-
-#, fuzzy
-#~ msgid "Compiz Options"
-#~ msgstr "Compiz首选项"
-
 #~ msgid ""
 #~ "With strict binding, textures are bound whenever they are enabled. With "
-#~ "loose binding they are enabled when created. The Nvidia driver seems a "
-#~ "bit slow when binding textures, that's why this option gives a heavy "
-#~ "performance increase with Nvidia cards."
+#~ "loose binding they are enabled when created. The Nvidia driver seems a bit "
+#~ "slow when binding textures, that's why this option gives a heavy performance "
+#~ "increase with Nvidia cards."
 #~ msgstr ""
-#~ "使用严格绑定时，纹理在它们启用时被绑定；而使用松散绑定时，仅在创建时启用。"
-#~ "Nvidia驱动在纹理绑定的时候有些慢。所以使用此选项时，Nvidia显卡的用户会感到"
-#~ "性能影响。"
+#~ "使用严格绑定时，纹理在它们启用时被绑定；而使用松散绑定时，仅在创建时启用。Nvidia驱动在纹理绑定的时候有些慢。所以使用此选项时，Nvidia显卡的用户"
+#~ "会感到性能影响。"
 
 #~ msgid "Use Loose Binding?"
 #~ msgstr "使用松散绑定？"
@@ -8065,18 +9889,6 @@ msgstr "以接入点名称替代默认标签"
 #~ msgid "Choose your Window Decorator:"
 #~ msgstr "选择您的窗口装饰器："
 
-#~ msgid "emerald"
-#~ msgstr "emerald"
-
-#~ msgid "gtk-window-decorator"
-#~ msgstr "gtk窗口装饰器"
-
-#~ msgid "kde-window-decorator"
-#~ msgstr "kde窗口装饰器"
-
-#~ msgid "heliodor"
-#~ msgstr "heliodor"
-
 #~ msgid "'Other WM' icon image name:"
 #~ msgstr "'其它窗口管理器'图标使用的图片名称："
 
@@ -8095,6 +9907,175 @@ msgstr "以接入点名称替代默认标签"
 #~ msgid "'Widget Layer' icon image name:"
 #~ msgstr "'widget层'图标使用的图片名称："
 
+#~ msgid "Inclined Plane"
+#~ msgstr "斜板"
+
+#~ msgid ""
+#~ "In degrees, relative to the vertical. This is a sort of inclination of the "
+#~ "plane to the horizontal, giving a 3D impression. Setting this to 0 means "
+#~ "that the plane is not inclined at all (vertical)."
+#~ msgstr "相对于垂直位置，以角度为单位。这是一种水平方向的斜度，以造成3D效果。所以如果设为0则意味着板面无倾斜（垂直）"
+
+#~ msgid "Inclination of the plane:"
+#~ msgstr "平板斜度"
+
+#~ msgid ""
+#~ "0.5 means the dock is half-folded, so half the icons are on the foreground "
+#~ "and half are on the background."
+#~ msgstr "0.5意味着半折叠，于是图标的一半位于前景，一半位于背景"
+
+#~ msgid "Percentage of the dock's width that appears on the foreground:"
+#~ msgstr "显示于前景的dock的宽度的百分比:"
+
+#~ msgid ""
+#~ "The greater, the deeper. This represents the gap between the bottoms "
+#~ "ofbackground icons and the tops of foreground icons (in pixels)."
+#~ msgstr "取值越大越深。这其实是背景图标的底部和前景图标的顶部之间的间隔（以点为单位）"
+
+#~ msgid "Depth of the plane:"
+#~ msgstr "板深度:"
+
+#~ msgid "Always show the fronts of icons?"
+#~ msgstr "总是显示图标?"
+
+#~ msgid "Max icon size:"
+#~ msgstr "图标最大尺寸:"
+
+#~ msgid "Arrow shift percentage:"
+#~ msgstr "箭头变换百分比"
+
+#~ msgid "Number of Dustbins"
+#~ msgstr "垃圾数量"
+
+#~ msgid ""
+#~ "in Mb. You will be notified when you go over this limit. Set to 0 to disable."
+#~ msgstr "以Mb为单位。当超过这个限额的时候，您会得到通知。设置为0则禁用此功能。"
+
+#~ msgid "Time interval to check if dustbin is full/empty :"
+#~ msgstr "监视回收站满/空状态的时间间隔:"
+
+#~ msgid "Invert buttons?"
+#~ msgstr "反转按钮?"
+
+#~ msgid "Delay between measurements:"
+#~ msgstr "两次取值间隔:"
+
+#~ msgid "Separate different shortcuts with separators?"
+#~ msgstr "用间隔隔开不同的快捷方式?"
+
+#~ msgid "Action when applet is clicked:"
+#~ msgstr "当小程序被点击时执行操作:"
+
+#~ msgid "Default title:"
+#~ msgstr "默认标题:"
+
+#~ msgid ""
+#~ "- What will we do tonight Cortex?\n"
+#~ "- The same thing as every other nights, Minus. Try to take over the Dock!"
+#~ msgstr ""
+#~ "- Cortex， 我们晚做些什么？\n"
+#~ "- 跟每天晚上一样啊，Minus。占据这个Dock！"
+
+#~ msgid "Location not found"
+#~ msgstr "我无法找到这个位置"
+
+#~ msgid "Show/hide desklets that are on the widget layer too?"
+#~ msgstr "同时显示/隐藏在小工具层的桌面小工具?"
+
+#~ msgid ""
+#~ "This is the Cairo-Dock's clock applet\n"
+#~ " made by Fabrice Rey (fabounet@glx-dock.org) for Cairo-Dock.\n"
+#~ "The analogic representation is a port of the well-known Cairo-Clock\n"
+#~ " from MacSlow (http://macslow.thepimp.net)."
+#~ msgstr ""
+#~ "这是Cairo-Dock的时钟小应用程序。\n"
+#~ "由Fabrice Rey (fabounet_03@yahoo.fr)为Cario-Dock制作。 \n"
+#~ "指针式时钟由著名的MacSlow（http://macslow.thepimp.net）\n"
+#~ "的Cairo-Clock移植而来。"
+
+#~ msgid ""
+#~ "This is the dustbin applet for Cairo-Dock\n"
+#~ " made by Fabrice Rey (fabounet@glx-dock.org)"
+#~ msgstr ""
+#~ "这是回收站小程序。\n"
+#~ "由Fabrice Rey(fabounet@glx-dock.org)为Cairo-Dock制作"
+
+#~ msgid "Hey, you there!"
+#~ msgstr "嘿,你好啊."
+
+#~ msgid "About this applet"
+#~ msgstr "关于这个小程序"
+
+#~ msgid "Doncky"
+#~ msgstr "Doncky"
+
+#~ msgid ""
+#~ "This plug-in allows you to make different actions directly from the "
+#~ "keyboard.\n"
+#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+#~ "\n"
+#~ "- the finder mode (default shortcut : CTRL + Enter) :\n"
+#~ "    It lets you find and launch applications, files, recent files, firefox "
+#~ "bookmarks, commands, and even calculations.\n"
+#~ "    Type what you want to search, the results will be displayed in real "
+#~ "time.\n"
+#~ "    The first results of each category are displayed in the main listing.\n"
+#~ "    Use the up/down arrows to navigate inside the list,\n"
+#~ "    and use the left/right arrows to enter into a category, or to display "
+#~ "more actions (when a little arrow is drawn next to text).\n"
+#~ "    Once inside a category, you can filter the results by typing some "
+#~ "letters.\n"
+#~ "    Press Enter to validate, maintain SHIFT or ALT to keep the list of "
+#~ "results opened.\n"
+#~ "\n"
+#~ "- the navigation mode (default shortcut : CTRL + F9) :\n"
+#~ "    use the arrows to navigate into the docks and sub-docks,\n"
+#~ "    or type the name of a launcher and press Tab to automatically jump to "
+#~ "the next suitable launcher\n"
+#~ "    press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
+#~ "Escape or the same shortkey will cancel."
+#~ msgstr ""
+#~ "此插件让你能够直接通过键盘快捷键完成不同的行为.\n"
+#~ "它有两种模式,可以通过键盘快捷键激活:\n"
+#~ "-查找模式(默认快捷键:CTRL + ENTER):\n"
+#~ "     让你查找并且启动程序,文件,最近打开的文件,firefox书签,命令,甚至是计算器.\n"
+#~ "     每种种类的结果在主列表种显示出来.\n"
+#~ "     使用上/下方向键在列表中切换,\n"
+#~ "     使用左/右方向键进入一个类别,或者显示更多命令(当一个小箭头显示时)\n"
+#~ "     一旦进入了此类别,你可以输入字母对结果进行筛选.\n"
+#~ "     按下Enter确认,同时按下SHIFT或ALT时可以保持结果列表打开.\n"
+#~ "-导航模式(默认快捷键:CTRL + F9)\n"
+#~ "     使用方向键在dock和子dock中导航\n"
+#~ "     或者键入一个启动器的名字并且按下Tab,自动跳转到下一个合适的启动器\n"
+#~ "     按下Enter用以点击此图标,Shift+Enter等于Shift+单击, ALT+ENTER等于中键点击, "
+#~ "CTRL+ENTER等于左键点击\n"
+#~ "Esc或者等同的快捷键将取消."
+
+#~ msgid "Expose all the desktops (Compiz)"
+#~ msgstr "显示所有桌面 (Compiz)"
+
+#~ msgid "logout"
+#~ msgstr "“退出”插件"
+
+#~ msgid "Empty Trash (middle-click)"
+#~ msgstr "清空回收站（按鼠标中键）"
+
+#~ msgid "Open the folder (middle-click)"
+#~ msgstr "打开该文件夹（鼠标中键）"
+
+#~ msgid "Quick launch (Middle-click)"
+#~ msgstr "快速加载（按鼠标中键）"
+
+#~ msgid "Unmount (middle-click)"
+#~ msgstr "卸载（点击鼠标中键）"
+
+#~ msgid "Mount (middle-click)"
+#~ msgstr "挂载（点击鼠标中键）"
+
+#~ msgid "You need to run Compiz and activate its 'DBus' plug-in."
+#~ msgstr "您需要运行 Compiz 并启用其 DBus 插件。"
+
 #~ msgid "Move to the Desktop"
 #~ msgstr "移到桌面"
 
@@ -8106,3 +10087,12 @@ msgstr "以接入点名称替代默认标签"
 
 #~ msgid "Download onto the Desktop"
 #~ msgstr "下载到桌面"
+
+#~ msgid ""
+#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (name=cairo-"
+#~ "Dock & type=utility)"
+#~ msgstr ""
+#~ "面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock & type=utility)"
+
+#~ msgid "Applet's handbook"
+#~ msgstr "Applet 使用手册"

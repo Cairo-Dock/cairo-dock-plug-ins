@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2011-04-19 12:54+0100\n"
-"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
+"POT-Creation-Date: 2011-07-15 23:57+0000\n"
+"PO-Revision-Date: 2010-10-27 12:45+0000\n"
+"Last-Translator: Ander Elortondo <ander.elor@gmail.com>\n"
 "Language-Team: Basque <eu@li.org>\n"
-"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-04-16 05:12+0000\n"
-"X-Generator: Launchpad (build 12735)\n"
+"X-Launchpad-Export-Date: 2011-07-17 04:35+0000\n"
+"X-Generator: Launchpad (build 13405)\n"
+"Language: eu\n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -225,9 +226,8 @@ msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:120
 #: ../Composite-Manager/data/messages:131
-#, fuzzy
 msgid "Edit Window-Manager settings"
-msgstr "Aldatu leiho kudeatzailea"
+msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:120
 #: ../Composite-Manager/src/applet-notifications.c:127
@@ -266,9 +266,8 @@ msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:127
 #: ../Composite-Manager/data/messages:133
-#, fuzzy
 msgid "Reload Window-Manager"
-msgstr "Aldatu leiho kudeatzailea"
+msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:136
 #: ../showDesktop/src/applet-notifications.c:154
@@ -343,7 +342,8 @@ msgstr "Modulua gehitu da baina ezin da abiarazi."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -599,9 +599,8 @@ msgid "Enter a command to launch:"
 msgstr "sartu komandoa abiarazteko:"
 
 #: ../Impulse/src/applet-init.c:29
-#, fuzzy
 msgid "Impulse"
-msgstr "Pultsua"
+msgstr ""
 
 #: ../Impulse/src/applet-init.c:32
 msgid ""
@@ -1448,8 +1447,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1644,7 +1643,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:591
@@ -1965,9 +1965,8 @@ msgid "Hibernate"
 msgstr ""
 
 #: ../logout/src/applet-logout.c:326
-#, fuzzy
 msgid "Your computer will still consume a small amount of energy."
-msgstr "Zure ordenagailua minutu baten itzaliko da"
+msgstr ""
 
 #: ../logout/src/applet-logout.c:330
 #: ../powermanager/src/powermanager-menu-functions.c:60
@@ -1975,9 +1974,8 @@ msgid "Suspend"
 msgstr ""
 
 #: ../logout/src/applet-logout.c:331
-#, fuzzy
 msgid "Your computer will not consume any energy."
-msgstr "Zure ordenagailua minutu baten itzaliko da"
+msgstr ""
 
 #: ../logout/src/applet-logout.c:336
 msgid "Close your session and allow to open a new one."
@@ -2571,8 +2569,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -4867,7 +4865,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:121 ../RSSreader/data/messages:185
@@ -5018,9 +5017,8 @@ msgid "Only show files whose last modification date is less than ;"
 msgstr ""
 
 #: ../Impulse/data/messages:95
-#, fuzzy
 msgid "Animation of the icons :"
-msgstr "Ikono animatuak"
+msgstr ""
 
 #: ../Impulse/data/messages:97
 msgid ""
@@ -6411,7 +6409,8 @@ msgid "Space between icons:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:115
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:119
@@ -6541,7 +6540,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -6758,7 +6758,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:107
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:109
@@ -6842,7 +6843,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:93
@@ -7776,7 +7778,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:107
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:109
@@ -7858,40 +7861,50 @@ msgstr ""
 msgid "Overwrite the default label with the connection point name?"
 msgstr ""
 
+#~ msgid "Hey, I'm here !"
+#~ msgstr "Hemen nago!"
+
+#~ msgid "Doncky"
+#~ msgstr "Doncky"
+
+#~ msgid "Open the folder (middle-click)"
+#~ msgstr "Ireki karpeta (erdiko.klik)"
+
+#~ msgid "Quick launch (Middle-click)"
+#~ msgstr "Abiarazte azkarra (erdiko-klik)"
+
+#~ msgid "Status Notifier"
+#~ msgstr "Egoera notifikatzailea"
+
+#~ msgid "Unmute (middle-click)"
+#~ msgstr "Ez mututu (erdiko-klik)"
+
+#~ msgid "Mute (middle-click)"
+#~ msgstr "Mututu (erdiko-klik)"
+
+#~ msgid "Reload WM"
+#~ msgstr "Leiho kudeatzailea birkargatu"
+
 #~ msgid "Configure Compiz"
 #~ msgstr "Compiz konfiguratu"
 
 #~ msgid "Emerald Manager"
 #~ msgstr "Emerald kudeatzailea"
 
-#~ msgid "Reload WM"
-#~ msgstr "Leiho kudeatzailea birkargatu"
+#~ msgid "Switch Windows Manager"
+#~ msgstr "Aldatu leiho kudeatzailea"
 
 #~ msgid "Reload Emerald"
 #~ msgstr "Emerald Birkargatu"
 
-#, fuzzy
-#~ msgid "Switch Windows Manager"
-#~ msgstr "Aldatu leiho dekoratzailea"
-
-#~ msgid "Switch Windows Decorator"
-#~ msgstr "Aldatu leiho dekoratzailea"
+#~ msgid "Empty Trash (middle-click)"
+#~ msgstr "Hustu zakarrontzia (erdiko-klik)"
 
 #~ msgid "logout"
 #~ msgstr "Saioa amaitu"
 
-#, fuzzy
-#~ msgid "Choose your Window Decorator:"
-#~ msgstr "Aldatu leiho dekoratzailea"
+#~ msgid "Next (middle-click)"
+#~ msgstr "Hurrengoa (erdiko-klik)"
 
-#, fuzzy
-#~ msgid "emerald"
-#~ msgstr "Emerald Birkargatu"
-
-#, fuzzy
-#~ msgid "gtk-window-decorator"
-#~ msgstr "Aldatu leiho dekoratzailea"
-
-#, fuzzy
-#~ msgid "kde-window-decorator"
+#~ msgid "Switch Windows Decorator"
 #~ msgstr "Aldatu leiho dekoratzailea"

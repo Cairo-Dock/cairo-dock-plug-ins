@@ -8,15 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2011-04-19 12:54+0100\n"
-"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
+"POT-Creation-Date: 2011-07-15 23:57+0000\n"
+"PO-Revision-Date: 2011-04-12 19:03+0000\n"
+"Last-Translator: icyfeet <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-04-16 05:13+0000\n"
-"X-Generator: Launchpad (build 12735)\n"
+"X-Launchpad-Export-Date: 2011-07-17 04:36+0000\n"
+"X-Generator: Launchpad (build 13405)\n"
+"Language: de\n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -227,9 +228,8 @@ msgid "No configuration tool is available."
 msgstr ""
 
 #: ../Composite-Manager/src/applet-init.c:27
-#, fuzzy
 msgid "Composite-Manager"
-msgstr "Energieverwaltung"
+msgstr ""
 
 #: ../Composite-Manager/src/applet-init.c:30
 msgid ""
@@ -245,15 +245,13 @@ msgid ""
 msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:43
-#, fuzzy
 msgid "Toggle composite?"
-msgstr "Ändern des Darstellungsmodus"
+msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:120
 #: ../Composite-Manager/data/messages:131
-#, fuzzy
 msgid "Edit Window-Manager settings"
-msgstr "Wechsel den Fenstermanager"
+msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:120
 #: ../Composite-Manager/src/applet-notifications.c:127
@@ -292,9 +290,8 @@ msgstr "Mittelklick"
 
 #: ../Composite-Manager/src/applet-notifications.c:127
 #: ../Composite-Manager/data/messages:133
-#, fuzzy
 msgid "Reload Window-Manager"
-msgstr "Wechsel den Fenstermanager"
+msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:136
 #: ../showDesktop/src/applet-notifications.c:154
@@ -324,9 +321,8 @@ msgstr ""
 #: ../showDesktop/src/applet-notifications.c:180
 #: ../Composite-Manager/data/messages:141 ../showDesktop/data/messages:111
 #: ../showDesktop/data/messages:125
-#, fuzzy
 msgid "Show the Widget Layer"
-msgstr "Zeige Widget-Ebene (Compiz)"
+msgstr ""
 
 #: ../Dbus/src/applet-init.c:36
 msgid ""
@@ -372,7 +368,8 @@ msgstr "Das Modul wurde hinzugefügt, konnte aber nicht gestartet werden."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "Das Applet '%s' wurde erfolgreich aktualisiert und automatisch neu geladen."
 
@@ -659,9 +656,8 @@ msgid "Enter a command to launch:"
 msgstr "Auszuführender Befehl:"
 
 #: ../Impulse/src/applet-init.c:29
-#, fuzzy
 msgid "Impulse"
-msgstr "Pulsieren"
+msgstr ""
 
 #: ../Impulse/src/applet-init.c:32
 msgid ""
@@ -1563,8 +1559,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1785,7 +1781,8 @@ msgstr ""
 "Drücken Sie Strg+v um die URL irgendwo einzufügen."
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Bitte beginnen Sie erst mit einem neuen Upload, wen der Aktuelle beendet ist."
 
@@ -2105,7 +2102,6 @@ msgid "Keyboard preferences"
 msgstr "Tastatureinstellungen"
 
 #: ../logout/src/applet-init.c:31
-#, fuzzy
 msgid ""
 "A very simple applet that adds an icon to log out from your session\n"
 "Left click to log out or change the user, middle click to shutdown or "
@@ -2114,11 +2110,6 @@ msgid ""
 "can also lock the screen from the menu on right-click,\n"
 "  and program an automatic shutdown at a given time.\n"
 msgstr ""
-"Eine einfache Anwendung die eine Abmelden-Schaltfläche hinzufügt\n"
-"Mit Linksklick können sie sich ausloggen oder den Benutzer wechseln, mit der "
-"mittleren Maustaste den Rechner herunterfahren oder Neustarten\n"
-"  (sie können die Tastenbelegung vertauschen wenn sie mit der linken "
-"Maustaste Herunterfahren wollen)"
 
 #: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:335
 #: ../logout/src/applet-notifications.c:144
@@ -2143,9 +2134,8 @@ msgid "Hibernate"
 msgstr "Ruhezustand"
 
 #: ../logout/src/applet-logout.c:326
-#, fuzzy
 msgid "Your computer will still consume a small amount of energy."
-msgstr "Ihr Computer wird in einer Minute herunterfahren."
+msgstr ""
 
 #: ../logout/src/applet-logout.c:330
 #: ../powermanager/src/powermanager-menu-functions.c:60
@@ -2153,9 +2143,8 @@ msgid "Suspend"
 msgstr "Bereitschaft"
 
 #: ../logout/src/applet-logout.c:331
-#, fuzzy
 msgid "Your computer will not consume any energy."
-msgstr "Ihr Computer wird in einer Minute herunterfahren."
+msgstr ""
 
 #: ../logout/src/applet-logout.c:336
 msgid "Close your session and allow to open a new one."
@@ -2181,7 +2170,8 @@ msgstr "Ihr Computer wird in einer Minute herunterfahren."
 
 #: ../logout/src/applet-logout.c:410
 msgid "Choose in how many minutes your PC will stop:"
-msgstr "Wählen Sie aus, in wieviel Minuten Ihr Computer heruntergefahren wird:"
+msgstr ""
+"Wählen Sie aus, in wieviel Minuten Ihr Computer heruntergefahren wird:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Server address:"
@@ -2581,11 +2571,8 @@ msgid "Re-check interface"
 msgstr "Kontrolliere die Schnittstelle noch einmal"
 
 #: ../powermanager/src/powermanager-draw.c:100
-#, fuzzy
 msgid "Battery charged"
 msgstr ""
-"Laptopbetrieb über Netzadapter.\n"
-" Akkuladezustand bei:"
 
 #: ../powermanager/src/powermanager-draw.c:122
 msgid "Time before empty"
@@ -2596,41 +2583,29 @@ msgid "Time before full"
 msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:179
-#, fuzzy
 msgid "Laptop on Battery."
 msgstr ""
-"Laptopbetrieb über Akku.\n"
-" Akkuladezustand bei:"
 
 #: ../powermanager/src/powermanager-draw.c:180
 #: ../powermanager/src/powermanager-draw.c:189
-#, fuzzy
 msgid "Battery charged at:"
 msgstr ""
-"Laptopbetrieb über Netzadapter.\n"
-" Akkuladezustand bei:"
 
 #: ../powermanager/src/powermanager-draw.c:181
-#, fuzzy
 msgid "Estimated time before empty:"
-msgstr "Mit Laden vergangene Zeit:"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:188
-#, fuzzy
 msgid "Laptop on Charge."
 msgstr ""
-"Laptopbetrieb über Netzadapter.\n"
-" Akkuladezustand bei:"
 
 #: ../powermanager/src/powermanager-draw.c:190
-#, fuzzy
 msgid "Estimated time before full:"
-msgstr "Mit Laden vergangene Zeit:"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:197
-#, fuzzy
 msgid "Model"
-msgstr "Modern"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:201
 msgid "Technology"
@@ -2824,8 +2799,8 @@ msgstr "zeige Maus"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Dieses Plugin zeichnet Animationen um den Mauszeiger, wenn er sich in einem "
 "Dock/Desklet befindet."
@@ -4911,11 +4886,10 @@ msgstr "Verhalten"
 
 #: ../Composite-Manager/data/messages:103
 #: ../Composite-Manager/data/messages:115
-#, fuzzy
 msgid ""
 "Let empty to use the default one. Alternatively, you can set any command you "
 "want."
-msgstr "Leer lassen, um die Vorgabeanimation zu verwenden."
+msgstr ""
 
 #: ../Composite-Manager/data/messages:105
 msgid "Composite window-manager:"
@@ -4956,13 +4930,13 @@ msgid "Action on middle-click:"
 msgstr ""
 
 #: ../Composite-Manager/data/messages:143
-#, fuzzy
 msgid "Shortkey to toggle the composite ON/OFF:"
-msgstr "Tastenkürzel zum Aufklappen des Objektmenüs:"
+msgstr ""
 
 #: ../Dbus/data/messages:3
 msgid "Let external applications pop up dialogs in the dock?"
-msgstr "Externen Anwendungen das Aufklappen von Dialogen im Dock ermöglichen?"
+msgstr ""
+"Externen Anwendungen das Aufklappen von Dialogen im Dock ermöglichen?"
 
 #: ../Dbus/data/messages:5
 msgid "Let external applications reboot the dock?"
@@ -5249,7 +5223,8 @@ msgid "Background"
 msgstr "Hintergrund"
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Du kannst durch die Desklet Dekorationen attraktivere Hintergründe benutzen."
 
@@ -5402,9 +5377,8 @@ msgid "Only show files whose last modification date is less than ;"
 msgstr "Zeige nur Dateien an deren letzte Modifikation vor ;"
 
 #: ../Impulse/data/messages:95
-#, fuzzy
 msgid "Animation of the icons :"
-msgstr "Animation des Symbols:"
+msgstr ""
 
 #: ../Impulse/data/messages:97
 msgid ""
@@ -5412,19 +5386,16 @@ msgid ""
 msgstr ""
 
 #: ../Impulse/data/messages:99
-#, fuzzy
 msgid "Sensitivity of the animation:"
-msgstr "Dauer der Animation:"
+msgstr ""
 
 #: ../Impulse/data/messages:101
-#, fuzzy
 msgid "in ms."
-msgstr "In ms."
+msgstr "in ms."
 
 #: ../Impulse/data/messages:103
-#, fuzzy
 msgid "Time between two animations:"
-msgstr "Verzögerung zwischen Animationswechsel:"
+msgstr ""
 
 #: ../Impulse/data/messages:105
 msgid ""
@@ -5995,9 +5966,8 @@ msgid "Image's filename :"
 msgstr "Dateiname der Grafik:"
 
 #: ../Status-Notifier/data/messages:95
-#, fuzzy
 msgid "Left click pops up the items' menu"
-msgstr "Tastenkürzel zum Aufklappen des Objektmenüs:"
+msgstr ""
 
 #: ../Status-Notifier/data/messages:97
 msgid "How to display items:"
@@ -6807,7 +6777,8 @@ msgid "Space between icons:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:115
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:119
@@ -6937,7 +6908,8 @@ msgid "Colours"
 msgstr "Farben"
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -7154,7 +7126,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:107
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:109
@@ -7238,7 +7211,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:93
@@ -8172,7 +8146,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:107
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:109
@@ -8255,8 +8230,361 @@ msgstr "RAW-Signal-Informationen"
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 
-#~ msgid "compiz-icon"
-#~ msgstr "compiz-symbol"
+#~ msgid "Do you know how much painful it is to be clicked on ??"
+#~ msgstr "Weißt du, wie sehr es weh tut, geklickt zu werden?!"
+
+#~ msgid "Wait, do you want to kill me ?!"
+#~ msgstr "Warte, du willst mich töten?!"
+
+#~ msgid "Hey, I'm here !"
+#~ msgstr "Hey, hier bin ich!"
+
+#~ msgid "Admit my superiority on you as a penguin !"
+#~ msgstr "Gib zu, ich bin dir als Pinguin überlegen!"
+
+#~ msgid "Your dock is so messy ! Let me clean it."
+#~ msgstr "Dein Dock ist so unordentlich! Lass mich aufräumen."
+
+#~ msgid "You shall not pass !"
+#~ msgstr "Du kannst nicht vorbei!"
+
+#~ msgid "Hey, you there !"
+#~ msgstr "Hey, du da!"
+
+#~ msgid "I'm your father !"
+#~ msgstr "Ich bin dein Vater!"
+
+#~ msgid ""
+#~ "- What will we do tonight Cortex ?\n"
+#~ "- The same thing as every nights, Minus. Try to take over the Dock !"
+#~ msgstr ""
+#~ "Was wollen wir denn heute abend machen, Brain?- Das Gleiche, wie jeden Tag, "
+#~ "Pinky: Wir versuchen, das Dock an uns zu reißen!"
+
+#~ msgid "For Aiur !"
+#~ msgstr "Für Aiur!"
+
+#~ msgid "It's my dock now, mwahahaha !"
+#~ msgstr "Jetzt ist es mein Dock, muhahaha!"
+
+#~ msgid "I want to be a pirate !"
+#~ msgstr "Ich will ein Pirat sein!"
+
+#~ msgid "About this applet"
+#~ msgstr "Info zu dieser Minianwendung"
+
+#~ msgid "Clear the list of the recently used documents ?"
+#~ msgstr "Liste der zuletzt geöffneten Dokumente löschen?"
+
+#~ msgid "Enter a command to launch :"
+#~ msgstr "Auszuführender Befehl:"
+
+#~ msgid "Yahoo"
+#~ msgstr "Yahoo"
+
+#~ msgid "Failed to connect..."
+#~ msgstr "Verbindung fehlgeschlagen..."
+
+#~ msgid ""
+#~ "Drag'n drop a valid RSS feed URL, or use \"Paste a new RSS Url\" from menu "
+#~ "to add one."
+#~ msgstr ""
+#~ "Füge eine gültige RSS-Feed URL nach dem Drag'n drop-Prinzip hinzu oder "
+#~ "benutze den Menüpunkt \"Einfügen einer neuen RSS URL\"."
+
+#~ msgid "No RSS feed URL defined..."
+#~ msgstr "Es wurde keine URL für den RSS-Feed festgelegt..."
+
+#~ msgid ""
+#~ "This applet shows you a monitor of your active connections\n"
+#~ "Left-click to pop-up some info,Middle-click to re-check immediately."
+#~ msgstr ""
+#~ "Diese Anwendung bildet anhand eines Monitors alle aktiven Verbindungen ab.\n"
+#~ "Linke Maustaste für weitere Informationen, mittlere Maustaste zum "
+#~ "aktualisieren."
+
+#~ msgid "AlsaMixer"
+#~ msgstr "AlsaMixer"
+
+#~ msgid "Calendar"
+#~ msgstr "Kalender"
+
+#~ msgid "Configure Compiz"
+#~ msgstr "Konfiguriere compiz"
+
+#~ msgid ""
+#~ "Couldn't upload the file, check that your internet connexion is active."
+#~ msgstr ""
+#~ "Datei konnte nicht hochgeladen werden, kontrollieren Sie ob die "
+#~ "Internetverbindung aktiv ist."
+
+#~ msgid "Show Trash"
+#~ msgstr "Zeige Mülleimer"
+
+#~ msgid "Show All"
+#~ msgstr "Zeige alle"
+
+#, c-format
+#~ msgid "Delete %s"
+#~ msgstr "Lösche %s"
+
+#~ msgid "Delete All"
+#~ msgstr "Lösche alle"
+
+#~ msgid "Your computer will shutdown in 1 minute."
+#~ msgstr "Ihr Computer wird in einer Minute herunterfahren."
+
+#, c-format
+#~ msgid "You have %d new mails :"
+#~ msgstr "Sie haben %d neue E-Mails :"
+
+#~ msgid "You have a new mail :"
+#~ msgstr "Sie haben eine neue E-Mail :"
+
+#~ msgid "Allow Cairo-Dock to download missing covers ?"
+#~ msgstr "Erlaube Cairo-Dock fehlende Covers herunterzuladen ?"
+
+#~ msgid "Icon name :"
+#~ msgstr "Symbolname :"
+
+#~ msgid "Battery level :"
+#~ msgstr "Batteriezustand :"
+
+#~ msgid "Scattering :"
+#~ msgstr "Streuung :"
+
+#~ msgid "Directory"
+#~ msgstr "Verzeichnis"
+
+#~ msgid "Directory of the images :"
+#~ msgstr "Verzeichnis der Bilder :"
+
+#~ msgid "Choose a background color :"
+#~ msgstr "Wähle eine Hintergrundfarbe :"
+
+#~ msgid "Sort items by :"
+#~ msgstr "Sortiere Einträge nach :"
+
+#~ msgid "Show windows list"
+#~ msgstr "Zeige Fensterliste"
+
+#~ msgid "Icons size :"
+#~ msgstr "Symbolgröße :"
+
+#~ msgid "View"
+#~ msgstr "Ansicht"
+
+#~ msgid "Transparent background ?"
+#~ msgstr "Transparenter Hintergrund ?"
+
+#~ msgid "Warning : couldn't retrieve data last time we tried."
+#~ msgstr "Warnung : Beim letzen Versuch konnten keine Daten empfangen werden."
+
+#~ msgid "No data (no connection ?)"
+#~ msgstr "Keine Daten gefunden ( Verbindung inaktiv ?)"
+
+#~ msgid "Invalid data (invalid RSS/Atom feed ?)"
+#~ msgstr "Unzulässige Daten (RSS/Atom feed ungültig ?)"
+
+#~ msgid "Retrieving data ..."
+#~ msgstr "Empfange Daten ..."
+
+#~ msgid ""
+#~ "No data\n"
+#~ "Did you set a valid RSS feed ?\n"
+#~ "Is your connection alive ?"
+#~ msgstr ""
+#~ "Keine Daten empfangen.\n"
+#~ "Haben Sie einen gültigen RSS feed eingestellt ?\n"
+#~ "Ist ihre Verbindung aktiv ?"
+
+#~ msgid "Free"
+#~ msgstr "Frei"
+
+#, c-format
+#~ msgid "Alert ! Graphic Card core temperature has reached %d°C"
+#~ msgstr "Achtung ! Die Kerntemperatur der Grafikkarte hat %d°C erreicht."
+
+#~ msgid "Set up volume :"
+#~ msgstr "Lautstärke einstellen :"
+
+#, c-format
+#~ msgid ""
+#~ "I couldn't find any audio channel named '%s'\n"
+#~ "You should try to open the configuration panel of the applet,\n"
+#~ " and select the proper audio channel you want to control."
+#~ msgstr ""
+#~ "Ich konnte keine Audiokanäle mit dem Namen '%s' finden.\n"
+#~ "Sie sollten versuchen, das Konfigurationspanel des Applets zu öffnen,\n"
+#~ "und dort einen funktionsfähigen Audiokanal für die Verwendung auszuwählen."
+
+#~ msgid "desklet rendering"
+#~ msgstr "Desklet Darstellung"
+
+#~ msgid "This module provides different views for your desklets."
+#~ msgstr "Dieses Modul stellt verschiedene Ansichten für Ihre Desklets bereit."
+
+#~ msgid "dialog rendering"
+#~ msgstr "Dialog Darstellung"
+
+#~ msgid "Clear the list of the recently uploaded files ?"
+#~ msgstr "Die Liste der kürzlich hochgeladenen Dateien leeren ?"
+
+#~ msgid ""
+#~ "The URL has been stored into the clipboard.\n"
+#~ "Just use 'CTRL+v' to paste it anywhere."
+#~ msgstr ""
+#~ "Die URL wurde in Ihre Zwischenablage gespeichert.\n"
+#~ "Verwenden Sie einfach 'STRG-v', um die URL irgendwo einzufügen."
+
+#~ msgid ""
+#~ "The current URL has been stored into the clipboard.\n"
+#~ "Just use 'CTRL+v' to paste it anywhere."
+#~ msgstr ""
+#~ "Die derzeitige URL wurde in die Zwischeablage gespeichert\n"
+#~ "Verwenden Sie einfach 'STRG-v', um die URL irgendwo einzufügen."
+
+#, c-format
+#~ msgid "You're about to delete all files in %s. Sure ?"
+#~ msgstr "Sind Sie sicher, dass Sie alle Dateien in %s löschen möchten ?"
+
+#, c-format
+#~ msgid "Show %s"
+#~ msgstr "Zeige %s"
+
+#~ msgid "logout"
+#~ msgstr "Abmelden"
+
+#~ msgid "Mark all mails as read"
+#~ msgstr "Markiere alle Mails als gelesen"
+
+#~ msgid "Play/Pause (left-click)"
+#~ msgstr "Abspielen/Pause (links-Klick)"
+
+#~ msgid ""
+#~ "Laptop on Battery.\n"
+#~ " Battery charged at:"
+#~ msgstr ""
+#~ "Laptopbetrieb über Akku.\n"
+#~ " Akkuladezustand bei:"
+
+#~ msgid ""
+#~ "Laptop on Charge.\n"
+#~ " Battery charged at:"
+#~ msgstr ""
+#~ "Laptopbetrieb über Netzadapter.\n"
+#~ " Akkuladezustand bei:"
+
+#~ msgid "No Battery found."
+#~ msgstr "Keinen Akku gefunden."
+
+#~ msgid "You need to run Compiz and to activate its 'DBus' plug-in."
+#~ msgstr "Sie müssen Compiz ausführen und sein 'DBus' Plug-in aktivieren."
+
+#~ msgid "desktop"
+#~ msgstr "desktop"
+
+#~ msgid "Add a desktop"
+#~ msgstr "Füge zum Desktop hinzu"
+
+#~ msgid "Remove last desktop"
+#~ msgstr "Entferne letzten Desktop"
+
+#~ msgid "Change this Tab's color"
+#~ msgstr "Die Farbe dieses Tabs ändern"
+
+#~ msgid "Search for tag :"
+#~ msgstr "Suche nach dem tag :"
+
+#~ msgid "Search for :"
+#~ msgstr "Suche nach :"
+
+#~ msgid "Delete this note ?"
+#~ msgstr "Diese Notiz entfernen ?"
+
+#~ msgid "SunRise"
+#~ msgstr "Sonnenaufgang"
+
+#~ msgid "SunSet"
+#~ msgstr "Sonnenuntergang"
+
+#~ msgid ""
+#~ "No data were available\n"
+#~ "Re-trying now ..."
+#~ msgstr ""
+#~ "Es waren keine Daten verfügbar\n"
+#~ "Versuche es erneut ..."
+
+#~ msgid "Precipitation Probability"
+#~ msgstr "Niederschlagswahrscheinlichkeit"
+
+#~ msgid "felt"
+#~ msgstr "gefühlt"
+
+#~ msgid "Wifi disabled."
+#~ msgstr "Wifi deaktiviert"
+
+#~ msgid ""
+#~ "No data were available\n"
+#~ " is connection alive ?"
+#~ msgstr ""
+#~ "Es waren keine Daten verfügbar\n"
+#~ " ist die Verbindung aktiv ?"
+
+#~ msgid ""
+#~ "This applet provides functions for a better integration into a XFCE "
+#~ "environnement.\n"
+#~ "It is auto-activated, so you don't need to activate it."
+#~ msgstr ""
+#~ "Dieses Applet bietet Funktionen, für eine bessere Integration in eine XFCE "
+#~ "Umgebung.\n"
+#~ "Sie brauchen das Applet nicht zu aktivieren, da es automatisch aktiviert ist."
+
+#~ msgid "in seconds"
+#~ msgstr "in Sekunden"
+
+#~ msgid "Choose one of the available themes :"
+#~ msgstr "Eines der verfügbaren Themen wählen:"
+
+#~ msgid "Paste a new RSS Url (drag'n'drop)"
+#~ msgstr "Fügen Sie einen neuen RSS-Link ein"
+
+#~ msgid "A cable has been pluged"
+#~ msgstr "Ein Kabel wurde eingesteckt"
+
+#~ msgid "A cable has been unpluged"
+#~ msgstr "Ein Kabel wurde entfernt"
+
+#~ msgid "Up time"
+#~ msgstr "Betriebszeit"
+
+#~ msgid "Monitor System"
+#~ msgstr "Überwachsungssystem"
+
+#~ msgid "Set up gamma :"
+#~ msgstr "Verwalten der Gamme-Einstellung:"
+
+#~ msgid ""
+#~ "This applet displays time and date in your dock.\n"
+#~ "2 view are available : numeric and analogic, based on Cairo-Clock.\n"
+#~ "It is compatible with the Cairo-Clock's themes, and you can detach itself to "
+#~ "be a perfect clone of Cairo-Clock.\n"
+#~ "It supports alarms, and a basic calendar, and allows you to setup time and "
+#~ "date.\n"
+#~ "Left-click to show/hide the calendar, Middle-click to stop an alarm."
+#~ msgstr ""
+#~ "Dieses Applet zeigt die Zeit und das Datum im Dock.\n"
+#~ "Zwei Ansichten sind verfügbar: Digital und Analog, basierend auf Cairo-"
+#~ "Clock.\n"
+#~ "Es ist mit den Cairo-Clock-Themen kompatibel und kann abgetrennt werden, "
+#~ "sodass es am Ende genauso wie die Cairo-Clock ist.\n"
+#~ "Es unterstützt Alarme, einen einfachen Kalender und erlaubt es, Zeit und "
+#~ "Datum einzustellen.\n"
+#~ "Linksklick zum zeigen/verbergen des Kalenders, Mittelklick um einen Alarm zu "
+#~ "beenden."
+
+#~ msgid "Adjsut channels"
+#~ msgstr "Bearbeiten der Kanaleinstellungen"
 
 #~ msgid ""
 #~ "This applet allows you to manage compiz and other windows manager\n"
@@ -8265,17 +8593,12 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ "You can bind one of these actions with the middle-click.\n"
 #~ "The configuration panel gives you some options to launch Compiz."
 #~ msgstr ""
-#~ "Dieses Applet ermöglicht es, Compiz und andere Fenstermanager zu "
-#~ "verwalten.\n"
+#~ "Dieses Applet ermöglicht es, Compiz und andere Fenstermanager zu verwalten.\n"
 #~ "Die Unter-Docks erlauben den Zugriff auf den Konfigurationsmanager von "
 #~ "Compiz, Emerald und einige grundlegende Aktionen mit Compiz.\n"
-#~ "Eine dieser Vorgänge kann an den Klick mit der mittleren Maustaste "
-#~ "gebunden werden.\n"
-#~ "Das Konfigurationsfeld stellt  einige Optionen bereit um Compiz zu "
-#~ "starten."
-
-#~ msgid "Configure Compiz"
-#~ msgstr "Konfiguriere compiz"
+#~ "Eine dieser Vorgänge kann an den Klick mit der mittleren Maustaste gebunden "
+#~ "werden.\n"
+#~ "Das Konfigurationsfeld stellt  einige Optionen bereit um Compiz zu starten."
 
 #~ msgid "Emerald Manager"
 #~ msgstr "Emerald-Manager"
@@ -8283,85 +8606,73 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ msgid "Reload WM"
 #~ msgstr "Lade den Fesntermanager neu"
 
-#~ msgid "Exposition"
-#~ msgstr "Darstellung"
-
-#~ msgid "Widget Layer"
-#~ msgstr "Widget Layer"
-
-#~ msgid ""
-#~ "To configure Compiz, you need to install CCSM\n"
-#~ " through your package manager (Synaptic, YasT, etc)"
-#~ msgstr ""
-#~ "Um Compiz zu konfigurieren muss der Compiz-Einstellungsmanager "
-#~ "installiert werden.\n"
-#~ " Dies ist mit Hilfe von Synaptic möglich."
-
 #~ msgid "Reload Emerald"
 #~ msgstr "Lade Emerald neu"
 
-#, fuzzy
-#~ msgid "Switch Windows Manager"
-#~ msgstr "Ändere Fensterdekoration"
-
-#~ msgid "Switch Windows Decorator"
-#~ msgstr "Ändere Fensterdekoration"
-
-#, fuzzy
-#~ msgid "Toggle Exposition Mode"
-#~ msgstr "Ändern des Darstellungsmodus"
-
-#~ msgid "Toggle Widget Layer"
-#~ msgstr "Wechselt zwischen den einzelnen Widget Ebenen."
-
-#~ msgid "Toggle Show Desktop"
-#~ msgstr "Wechsle Arbeitsfläche anzeigen"
-
-#~ msgid "desklet rendering"
-#~ msgstr "Desklet Darstellung"
-
-#~ msgid "This module provides different views for your desklets."
+#~ msgid "Sorry, couldn't find the orignial file nor a preview of it."
 #~ msgstr ""
-#~ "Dieses Modul stellt verschiedene Ansichten für Ihre Desklets bereit."
+#~ "Entschuldigung, es konnte weder die Originaldatei noch eine Vorschau von ihr "
+#~ "gefunden werden."
 
-#~ msgid "dialog rendering"
-#~ msgstr "Dialog Darstellung"
-
-#~ msgid "This plug-in provides some decorators for dialog bubbles."
+#~ msgid "Please wait the current upload is finished before starting a new one."
 #~ msgstr ""
-#~ "Diese Erweiterung stellt einige Dekorationen für Sprechblasen zur "
-#~ "Verfügung."
+#~ "Bitte beginnen Sie erst mit einem neuen Upload, wen der Aktuelle beendet ist."
 
 #~ msgid ""
-#~ "This module adds different views to your dock.\n"
-#~ "Any dock or sub-dock can be displayed with the view of your choice.\n"
-#~ "Currently, 3D-plane, Caroussel, Parabolic, Rainbow, Slide, and Curve "
-#~ "views are provided."
+#~ "No uploaded file available\n"
+#~ ".Consider activating the history if you want the applet remembers previous "
+#~ "uploads."
 #~ msgstr ""
-#~ "Dieses Modul fügt verschiedene Ansichten zu Ihrem Dock hinzu.\n"
-#~ "Jedes Dock oder Sub-Dock kann mit der Ansicht Ihrer Wahl angezeigt "
-#~ "werden.\n"
-#~ "Verfügbar sind das Aktuelle, 3D-Ebene, Karussell, Parabolisch , "
-#~ "Regenbogen, Gleiten und Wölbung."
+#~ "Keine hochgeladene Datei verfügbar.\n"
+#~ "Denken Sie daran, die Chronik zu aktivieren, damit das Applet sich an "
+#~ "frühere Uploads erinnert."
 
 #~ msgid ""
-#~ "This plug-in displays an animated indicator when you drop something into "
-#~ "the dock."
+#~ "This applet lets you share files easily :\n"
+#~ "Drag-and-drop a file on the icon to upload it to one of the available "
+#~ "hosting sites.\n"
+#~ "It supports many sites, like DropBox, Imageshack, pastebin, etc\n"
+#~ "You can upload text, image, video, and files.\n"
+#~ "The resulting URL is automatically stored in the clipboard to be directly "
+#~ "copied by CTRL+v.\n"
+#~ "It can keep an history of your last uploads to retrieve them without any "
+#~ "account.\n"
+#~ "You'll need to install 'curl' and 'wget' to upload the data."
+#~ msgstr ""
+#~ "Mit diesem Applet können Sie Dateien einfach teilen.\n"
+#~ "Einfach die Datei per Drag-and-Drop auf das Symbol schieben, um es bei einer "
+#~ "verfügbaren Seite hochzuladen.\n"
+#~ "Viele Anbieter, wie beispielsweise Dropbox, Imageshark und Pastebin werden "
+#~ "unterstützt.\n"
+#~ "Es können Dateien, Bilder, Videos sowie Text hochgeladen werden.\n"
+#~ "Die Adresse wird dann automatisch in der Zwischenablage gespeichert und kann "
+#~ "mit STRG-V kopiert werden.\n"
+#~ "Es kann eine Chronik der letzten Uploads gespeichert werden, ohne dass Sie "
+#~ "irgendwo ein Konto besitzen müssen.\n"
+#~ "Damit Daten hochgeladen werden können, müssen die Pakete 'curl' und 'wget' "
+#~ "installiert sein."
+
+#~ msgid ""
+#~ "This plug-in displays an animated indicator when you drop something in the "
+#~ "dock."
 #~ msgstr ""
 #~ "Diese Erweiterung zeigt einen Hinweis, wenn Sie etwas in das Dock fallen "
 #~ "lassen."
 
 #~ msgid ""
-#~ "This applet provides functions for a better integration into a GNOME "
-#~ "environnement.\n"
-#~ "It is auto-activated, so you don't need to activate it.\n"
-#~ "It is designed for old Gnome version (prior to 2.22)."
+#~ "This module adds different views to your dock.\n"
+#~ "Any dock or sub-dock can be displayed with the view of your choice.\n"
+#~ "Currently, 3D-plane, Caroussel, Parabolic, Rainbow, Slide, and Curve views "
+#~ "are provided."
 #~ msgstr ""
-#~ "Dieses Applet stellt Funktionen für eine bessere Integration in eine "
-#~ "Gnome-Umgebung bereit.\n"
-#~ "Es ist automatisch angeschaltet, eine Aktivierung ist deshalb nicht "
-#~ "notwendig.\n"
-#~ "Es ist für ältere Gnome-Versionen (vor Version 2.22) gedacht."
+#~ "Dieses Modul fügt verschiedene Ansichten zu Ihrem Dock hinzu.\n"
+#~ "Jedes Dock oder Sub-Dock kann mit der Ansicht Ihrer Wahl angezeigt werden.\n"
+#~ "Verfügbar sind das Aktuelle, 3D-Ebene, Karussell, Parabolisch , Regenbogen, "
+#~ "Gleiten und Wölbung."
+
+#~ msgid "This plug-in provides some dialog decorators for dialog bubbles."
+#~ msgstr ""
+#~ "Diese Erweiterung stellt einige Dekorationen für Sprechblasen zur Verfügung."
 
 #~ msgid ""
 #~ "This applet provides functions for a better integration into a GNOME "
@@ -8369,11 +8680,32 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ "It is auto-activated, so you don't need to activate it.\n"
 #~ "It is designed for the a GNOME version >= 2.22"
 #~ msgstr ""
-#~ "Dieses Applet stellt Funktionen für eine bessere Integration in eine "
-#~ "Gnome-Umgebung bereit.\n"
+#~ "Dieses Applet stellt Funktionen für eine bessere Integration in eine Gnome-"
+#~ "Umgebung bereit.\n"
 #~ "Es ist automatisch angeschaltet, eine Aktivierung ist deshalb nicht "
 #~ "notwendig.\n"
 #~ "Es ist für eine Gnome-Version >= 2.22 ausgelegt."
+
+#~ msgid ""
+#~ "This applet provides functions for a better integration into a GNOME "
+#~ "environnement.\n"
+#~ "It is auto-activated, so you don't need to activate it.\n"
+#~ "It is designed for old Gnome version (prior to 2.22)."
+#~ msgstr ""
+#~ "Dieses Applet stellt Funktionen für eine bessere Integration in eine Gnome-"
+#~ "Umgebung bereit.\n"
+#~ "Es ist automatisch angeschaltet, eine Aktivierung ist deshalb nicht "
+#~ "notwendig.\n"
+#~ "Es ist für ältere Gnome-Versionen (vor Version 2.22) gedacht."
+
+#~ msgid "This plug-in adds many special effects to your icons."
+#~ msgstr "Diese Erweiterung fügt viele Spezialeffekte zu Ihren Symbolen hinzu."
+
+#~ msgid ""
+#~ "This plug-in provides animations for appearance & disappearance of icons."
+#~ msgstr ""
+#~ "Diese Erweiterung stellt Animationen für das Erscheinen und Verschwinden von "
+#~ "Symbolen bereit."
 
 #~ msgid ""
 #~ "This applet provides functions for a better integration into a KDE "
@@ -8387,51 +8719,547 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ "notwendig.\n"
 #~ "Es ist für KDE4 ausgelegt."
 
-#~ msgid "logout"
-#~ msgstr "Abmelden"
-
-#, fuzzy
-#~ msgid " Battery charged at:"
+#~ msgid "Choose in how many minutes your PC will stop :"
 #~ msgstr ""
-#~ "Laptopbetrieb über Netzadapter.\n"
-#~ " Akkuladezustand bei:"
+#~ "Wählen Sie aus, in wieviel Minuten Ihr Computer heruntergefahren wird:"
+
+#~ msgid "This plug-in adds a motion blur effect on docks."
+#~ msgstr "Diese Erweiterung fügt einen Motion-Blur-Effekt zu den Docks hinzu"
+
+#~ msgid "Program an automatic shutdown"
+#~ msgstr "Stellen Sie das automatische Herunterfahren ein"
 
 #~ msgid ""
-#~ "This applet provides functions for a better integration into a XFCE "
-#~ "environnement.\n"
-#~ "It is auto-activated, so you don't need to activate it."
+#~ "A very simple applet that adds an icon to log out from your session\n"
+#~ "Left click to log out, middle click to shutdown\n"
+#~ "You can invert this order if you prefer to shutdown on left-click."
 #~ msgstr ""
-#~ "Dieses Applet bietet Funktionen, für eine bessere Integration in eine "
-#~ "XFCE Umgebung.\n"
-#~ "Sie brauchen das Applet nicht zu aktivieren, da es automatisch aktiviert "
-#~ "ist."
+#~ "Ein sehr einfaches Applet, welches ein Symbol zum Ausloggen hinzufügt.\n"
+#~ "Linksklick zum Ausloggen, Mittelklick zum Herunterfahren.\n"
+#~ "Diese Reihenfolge kann geändert werden, wenn Sie das Herunterfahren mit der "
+#~ "linken Maustaste bevorzugen."
 
-#~ msgid "Applet"
-#~ msgstr "Applet"
+#, c-format
+#~ msgid ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual mail application,\n"
+#~ "you can change it in the conf panel of this module"
+#~ msgstr ""
+#~ "Ein Problem fand statt.\n"
+#~ "Wenn '%s' nicht Ihr übliches Mailprogramm ist, können Sie dies in der "
+#~ "Konfigurationsleiste dieses Moduls ändern."
 
-#, fuzzy
-#~ msgid "Expose"
+#~ msgid "Estimated time with Charge:"
+#~ msgstr "Mit Laden vergangene Zeit:"
+
+#~ msgid "Next (middle-click)"
+#~ msgstr "Nächstes (Mittelklick)"
+
+#, c-format
+#~ msgid ""
+#~ "Interface '%s' seems to not exist or is not readable.\n"
+#~ " You may have to set up the interface you wish to monitor.\n"
+#~ " Do you want to do it now ?"
+#~ msgstr ""
+#~ "Die Schnittstelle '%s scheint nicht zu existieren oder ist nicht lesbar.\n"
+#~ " Sie muss möglicherweise aktiviert werden, um sie beobachten zu können.\n"
+#~ " Wollen Sie dies nun tun?"
+
+#~ msgid "Estimated Charge time:"
+#~ msgstr "Noch für das Laden benötigte Zeit:"
+
+#~ msgid "Please put your Laptop on charge."
+#~ msgstr "Bitte schließen Sie Ihren Laptop an die Ladestation an"
+
+#~ msgid ""
+#~ "PowerManager.\n"
+#~ "Your battery is now Charged"
+#~ msgstr ""
+#~ "Energieverwaltung.\n"
+#~ "Ihr Akku ist nun aufgeladen"
+
+#~ msgid ""
+#~ "This plug-in draw some animation around the cursor when it's inside a "
+#~ "dock/desklet."
+#~ msgstr ""
+#~ "Diese Erweiterung zeichnet einige Animationen um den Mauszeiger, wenn dieser "
+#~ "auf einem Dock oder Applet ist."
+
+#~ msgid ""
+#~ "An applet that let you access quickly to all of your shortcuts.\n"
+#~ "It can manage disks, network points, and Nautilus bookmarks (even if you "
+#~ "don't have Nautilus).\n"
+#~ "Drag and drop a folder on the main icon or the sub-dock to add a bookmark.\n"
+#~ "Middle-click on the main icon to acces your desktop easily.\n"
+#~ "Middle-click on a mounting point icon to (un)mount is quickly.\n"
+#~ "The applet can also display valuable information about your disks, like free "
+#~ "space, type, etc."
+#~ msgstr ""
+#~ "Ein Applet mit dem Sie schnell auf Ihre Tastenkombinationen zugreifen "
+#~ "können.\n"
+#~ "Es kann Datenträger, Punkte im Netzwerk und Lesezeichen in Nautilus "
+#~ "verwalten (sogar wenn Sie kein Nautilus haben).\n"
+#~ "Ziehen Sie einen Ordner mit Drag-and-Drop auf das Hauptsymbol oder das Sub-"
+#~ "Dock, um ein Lesezeichen hinzuzufügen.\n"
+#~ "Mittelklick auf einen auf einen Einhängepunkt, um ihn auszuhängen.\n"
+#~ "Dieses Applet kann außerdem wichtige Informationen über Ihre Datenträger, "
+#~ "wie beispielsweise den freien Speicherplatz, anzeigen."
+
+#~ msgid "Halt"
+#~ msgstr "Stoppen"
+
+#~ msgid "showDesklets"
+#~ msgstr "Zeige Desklets"
+
+#~ msgid ""
+#~ "No URL is defined\n"
+#~ "You can define one by copying the URL in the clipboard,\n"
+#~ " and selecting \"Paste the RL\n"
+#~ " in the menu."
+#~ msgstr ""
+#~ "Keine Adresse ausgewählt.\n"
+#~ "Es kann eine durch Kopieren in die Zwischenablage\n"
+#~ " und Auswählen von \"Einfügen der RL(?)\"\n"
+#~ " im Menü festgelegt werden"
+
+#~ msgid ""
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
+#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+#~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
+#~ "docks,\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
+#~ "- the finder mode : type some text to launch any command, file or "
+#~ "calculation.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "Escape or the same shortkey to cancel."
+#~ msgstr ""
+#~ "Eine Gnome-Do ähnliche Erweiterung, mit der das Dock mit Hilfe der Tastatur "
+#~ "gesteuert werden kann.\n"
+#~ "Es hat zwei Modi, jeder von ihnen wird mit einem Tastaturkürzel ausgelöst.\n"
+#~ "- Den Navigationsmodus: Mit Hilfe der Pfeile kann in den Docks und "
+#~ "Unterdocks navigiert werden.\n"
+#~ "Alternativ kann der Name eine Starters eingegeben werden, um zum nächst "
+#~ "passenden zu springen.\n"
+#~ "Enter um auf das Symbol zu klicken, Shift+Enter für Shift+Klick, Alt+Enter "
+#~ "für Klick mit der mittleren Maustaste sowie STRG+Enter zum Linksklick.\n"
+#~ "- Der Suchmodus: Mach eine Eingabe um ein Kommando, eine Datei oder eine "
+#~ "Rechnung zu starten\n"
+#~ "Verwende die Pfeile um zwischen den Ergebnissen zu navigieren, drücke Enter "
+#~ "zum Ausführen oder halte STRG, ALT bzw. Shift gedrückt um die Ergebnisse "
+#~ "beizubehalten\n"
+#~ "Escape zum Abbrechen"
+
+#~ msgid ""
+#~ "To configure Compiz, you need to install CCSM\n"
+#~ " through your package manager (Synaptic, YasT, etc)"
+#~ msgstr ""
+#~ "Um Compiz zu konfigurieren muss der Compiz-Einstellungsmanager installiert "
+#~ "werden.\n"
+#~ " Dies ist mit Hilfe von Synaptic möglich."
+
+#~ msgid "Switch Windows Manager"
+#~ msgstr "Wechsel den Fenstermanager"
+
+#, c-format
+#~ msgid ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual file browser,\n"
+#~ "you can change it in the conf panel of this module"
+#~ msgstr ""
+#~ "Ein Problem ist aufgetreten.\n"
+#~ "Wenn '%s' nicht Ihr üblicher Dateimanager ist, können Sie dies in der "
+#~ "Konfigurationsleiste dieses Moduls ändern."
+
+#~ msgid "Delete Trash"
+#~ msgstr "Leere Mülleimer"
+
+#~ msgid "Network connection has been established."
+#~ msgstr "Netzwerkverbindung wurder hergestellt"
+
+#~ msgid ""
+#~ "This applet manages the dustbin\n"
+#~ "You can threw files and unmount disks by drag andn droping them on the "
+#~ "icon.\n"
+#~ "The applet can warn you if you use too much space\n"
+#~ "Middle-click to display usefull info about the dustbin."
+#~ msgstr ""
+#~ "Dieses Applet verwaltet den Mülleimer\n"
+#~ "Du kannst Dateien in den Mülleimer verschieben und Medien auswerfen, indem "
+#~ "du sie auf das Icon ziehst.\n"
+#~ "Das Applet kann dich darüber hinaus warnen, wenn du zu viel Speicher "
+#~ "verbraucht hast.\n"
+#~ "Ein Mittel-Klick zeigt nützliche Informationen über den Mülleimer."
+
+#~ msgid "Reboot"
+#~ msgstr "Neustart"
+
+#~ msgid "Network connection has become inactive."
+#~ msgstr "Die Netzwerkverbindung wurde deaktiviert."
+
+#~ msgid "Network has been disconnected."
+#~ msgstr "Verbindung zum Netzwerk wurde getrennt."
+
+#~ msgid "Toggle Exposition Mode"
+#~ msgstr "Ändern des Darstellungsmodus"
+
+#~ msgid "Exposition"
 #~ msgstr "Darstellung"
 
-#, fuzzy
-#~ msgid "Steal the application's icon from the taskbar?"
-#~ msgstr "Das Dock durch externe Anwendungen neu starten lassen?"
+#~ msgid "A power manager for laptop's battery. It works with ACPI and DBus."
+#~ msgstr ""
+#~ "Ein Energiemanage für Laptopbatterien. Funktioniert mit ACPI und DBus."
 
-#, fuzzy
-#~ msgid "Compiz Options"
-#~ msgstr "Optionen"
-
-#, fuzzy
-#~ msgid "Use Indirect Rendering?"
-#~ msgstr "Desklet Darstellung"
-
-#, fuzzy
-#~ msgid "By default this will be Emerald."
-#~ msgstr "Als Vorgabe wird die erste aktive Schnittstelle verwendet."
-
-#, fuzzy
-#~ msgid "Choose your Window Decorator:"
+#~ msgid "Switch Windows Decorator"
 #~ msgstr "Ändere Fensterdekoration"
+
+#~ msgid "Widget Layer"
+#~ msgstr "Widget Layer"
+
+#~ msgid ""
+#~ "This applet let you access quickly to your desklets.\n"
+#~ "Left click to show/hide your desklets.\n"
+#~ "Basically, if you run under Compiz, you don't need this applet;\n"
+#~ " you should just use the 'Widget Layer' capabilities of desklets."
+#~ msgstr ""
+#~ "Dieses Applet erlaubt Ihnen einen schnellen Zugriff auf Ihre Desklets.\n"
+#~ "Linksklick zum Anzeigen/Verbergen der Desklets.\n"
+#~ "Wenn Compiz läuft, wird dieses Applet nicht benötigt,\n"
+#~ " Sie sollten stattdessen die 'Widget Layer'-Funktion Ihrer Desklets nutzen."
+
+#~ msgid "StatusNotifier"
+#~ msgstr "Status-Benachrichtigung"
+
+#~ msgid "Open all"
+#~ msgstr "Alle Öffnen"
+
+#~ msgid "Toggle Show Desktop"
+#~ msgstr "Wechsle Arbeitsfläche anzeigen"
+
+#~ msgid "Reload Stacks"
+#~ msgstr "Stapel neu laden"
+
+#~ msgid "Clean local directory"
+#~ msgstr "Lokales Verzeichnis aufräumen"
+
+#~ msgid "frame with scotch"
+#~ msgstr "Rahmen mit Klebeband"
+
+#~ msgid "scotch"
+#~ msgstr "Klebeband"
+
+#~ msgid "Toggle Widgets Layer"
+#~ msgstr "(De)Aktiviere Widgets-Ebene"
+
+#~ msgid "Clear the stack ?"
+#~ msgstr "Leere den Stapel?"
+
+#~ msgid "Set new name for this item :"
+#~ msgstr "Geben Sie den neuen Namen für diesen Gegenstand ein:"
+
+#~ msgid ""
+#~ "No items in the stack.\n"
+#~ "You can add files, URL, and even piece of text by dragging them onto the "
+#~ "icon."
+#~ msgstr ""
+#~ "Keine Gegenstände auf dem Stapel.\n"
+#~ "Sie können jede Datei, Internetadresse oder sogar Textauszüge auf das Stapel-"
+#~ "Icon fallen lassen."
+
+#~ msgid "Move current desktop to this desktop"
+#~ msgstr "Bewege aktuelle Arbeitsfläche auf diese"
+
+#~ msgid "current"
+#~ msgstr "aktuell"
+
+#~ msgid "Set title for this tab :"
+#~ msgstr "Setzen Sie einen Titel für die Registerkarte:"
+
+#~ msgid "Auto-reload Compiz ?"
+#~ msgstr "Automatisch Compiz neu laden?"
+
+#~ msgid "Let extern applications reload the applets ?"
+#~ msgstr "Externen Anwendungen erlauben, die Mini-Anwendungen neu zu laden?"
+
+#~ msgid ""
+#~ "If the Trash folder is not known by the dock, you can specify it here :"
+#~ msgstr ""
+#~ "Wenn der Mülleimer dem Dock nicht bekannt ist, können Sie ihn hier angeben:"
+
+#~ msgid "Alternative file browser used to show a trash :"
+#~ msgstr "Alternativer Dateibrowser, um den Müll anzuzeigen:"
+
+#~ msgid "Ask confirmation before empty Trash ?"
+#~ msgstr "Fragen vor Leerung des Mülleimers?"
+
+#~ msgid "Number of trashes"
+#~ msgstr "Anzahl der Mülleimer"
+
+#~ msgid "Hey, you there!"
+#~ msgstr "Hey, du da!"
+
+#~ msgid "3DPlan"
+#~ msgstr "3D-Ebene"
+
+#~ msgid "This plug-in provides some decorators for dialog bubbles."
+#~ msgstr ""
+#~ "Diese Erweiterung stellt einige Dekorationen für Sprechblasen zur Verfügung."
+
+#~ msgid ""
+#~ "This plug-in displays an animated indicator when you drop something into the "
+#~ "dock."
+#~ msgstr ""
+#~ "Diese Erweiterung zeigt einen Hinweis, wenn Sie etwas in das Dock fallen "
+#~ "lassen."
+
+#~ msgid "Trash"
+#~ msgstr "Mülleimer"
+
+#, c-format
+#~ msgid "You are about to delete all files in %s. Continue?"
+#~ msgstr "Sind Sie sicher, dass Sie alle Dateien in %s löschen möchten ?"
+
+#~ msgid "You are about to delete all files in all dustbins. Continue?"
+#~ msgstr ""
+#~ "Sie sind dabei, alle Dateien im Mülleimer zu löschen. Sind Sie sich sicher?"
+
+#, c-format
+#~ msgid ""
+#~ "A problem occured\n"
+#~ "If '%s' is not your usual file browser,\n"
+#~ "you can change this in the configuration panel of this module"
+#~ msgstr ""
+#~ "Ein Problem ist aufgetreten.\n"
+#~ "Wenn '%s' nicht Ihr üblicher Dateimanager ist, können Sie dies in der "
+#~ "Konfigurationsleiste dieses Moduls ändern."
+
+#~ msgid "Icon Effects"
+#~ msgstr "Symbol-Effekte"
+
+#~ msgid "Illusion"
+#~ msgstr "Illusion"
+
+#~ msgid "Keyboard Indicator"
+#~ msgstr "Tastatur-Layout-Anzeige"
+
+#~ msgid "Log-out"
+#~ msgstr "Abmelden"
+
+#~ msgid "Motion Blur"
+#~ msgstr "Motion-Blur"
+
+#~ msgid "Estimated charge time:"
+#~ msgstr "Noch für das Laden benötigte Zeit:"
+
+#~ msgid "A power manager for laptop batteries. Works with ACPI and DBus."
+#~ msgstr ""
+#~ "Ein Energiemanage für Laptopbatterien. Funktioniert mit ACPI und DBus."
+
+#~ msgid "Show Mouse"
+#~ msgstr "zeige Maus"
+
+#~ msgid "You need to run Compiz and activate its 'DBus' plug-in."
+#~ msgstr "Sie müssen Compiz ausführen und sein 'DBus' Plug-in aktivieren."
+
+#~ msgid "Slider"
+#~ msgstr "Schieberegler"
+
+#~ msgid "Weather"
+#~ msgstr "Wetter"
+
+#~ msgid ""
+#~ "- What will we do tonight Cortex?\n"
+#~ "- The same thing as every other nights, Minus. Try to take over the Dock!"
+#~ msgstr ""
+#~ "Was wollen wir denn heute abend machen, Brain?- Das Gleiche, wie jeden Tag, "
+#~ "Pinky: Wir versuchen, das Dock an uns zu reißen!"
+
+#~ msgid "ToolTip"
+#~ msgstr "tooltip"
+
+#~ msgid "Toggle Widget Layer"
+#~ msgstr "Wechselt zwischen den einzelnen Widget Ebenen."
+
+#~ msgid ""
+#~ "This plug-in allows you to make different actions directly from the "
+#~ "keyboard.\n"
+#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+#~ "\n"
+#~ "- the finder mode (default shortcut : CTRL + Enter) :\n"
+#~ "    It lets you find and launch applications, files, recent files, firefox "
+#~ "bookmarks, commands, and even calculations.\n"
+#~ "    Type what you want to search, the results will be displayed in real "
+#~ "time.\n"
+#~ "    The first results of each category are displayed in the main listing.\n"
+#~ "    Use the up/down arrows to navigate inside the list,\n"
+#~ "    and use the left/right arrows to enter into a category, or to display "
+#~ "more actions (when a little arrow is drawn next to text).\n"
+#~ "    Once inside a category, you can filter the results by typing some "
+#~ "letters.\n"
+#~ "    Press Enter to validate, maintain SHIFT or ALT to keep the list of "
+#~ "results opened.\n"
+#~ "\n"
+#~ "- the navigation mode (default shortcut : CTRL + F9) :\n"
+#~ "    use the arrows to navigate into the docks and sub-docks,\n"
+#~ "    or type the name of a launcher and press Tab to automatically jump to "
+#~ "the next suitable launcher\n"
+#~ "    press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
+#~ "Escape or the same shortkey will cancel."
+#~ msgstr ""
+#~ "Dieses Plugin erlaubt es Ihnen verschiedene Aktionen über die Tastatur "
+#~ "auszuführen\n"
+#~ "Es gibt 2 verschiedene Modi, welche ducrch eine Tastenkombination aktiviert "
+#~ "werden können:\n"
+#~ "\n"
+#~ "- der Finder Modus (Standard Tastenkombination : STRG + Enter):\n"
+#~ "    Dieser Modus lässt Sie Programme starten, Dateien suchen, Firefox "
+#~ "Lesezeichen starten, Befehle und sogar \n"
+#~ "    mathemtische Berechnungen ausführen.\n"
+#~ "    Mögliche Ergebnisse werden während Sie tippen angezeigt.\n"
+#~ "    Das erste Ergebnis jeder Kategorie wird in der Hauptliste angezeigt.\n"
+#~ "    Mit den Hoch- und Runter-Tasten können sie durch die Liste navigieren.\n"
+#~ "    Die Links- und Rechts-Tasten erlauben es Inen die Kategorien zu wechseln "
+#~ "oder verschiedene Aktionen anzuzeigen(falls\n"
+#~ "    ein keiner Pfeil neben dem hervorgehobenen Text zu sehen ist).\n"
+#~ "    Wenn Sie in einer Kategorie sind, können Sie durch tippen einzelner "
+#~ "Buchstaben die Ergebnisse eingrenzen.\n"
+#~ "    Mit Enter können sie Aktionen bestätigen, durch drücken der ALT oder "
+#~ "SIFT Taste bleibt de Liste geöffnet.\n"
+#~ "\n"
+#~ "- Navigations Modus (Standard Tastenkombination : STRG + F9):\n"
+#~ "    Mit den Pfeiltasten können sie durch das Dock und seine SUb-Docks "
+#~ "navigieren.\n"
+#~ "    Oder sie tippen den Namen eines Starters und können mit der Tabulator "
+#~ "Taste zum nächsten passenden Starter springen.\n"
+#~ "    Enter entspricht dem anklicken des Icons, SHIFT + ENTER entspricht SHIFT "
+#~ "+ KLick eines Icons, ALT + ENTER entspricht\n"
+#~ "    einem Mittelklick und CTRL + ENTER einem Linksklick.\n"
+#~ "ESCAPE oder die vorher benutzte Tastenkombination zum Starten des "
+#~ "Tastatrmodus beendet diesen."
+
+#~ msgid "in minutes."
+#~ msgstr "in Minuten"
+
+#~ msgid "Menus to control your session, connection state, etc."
+#~ msgstr "Menüs zur kontrolle der Sitzung, Verbindungsstatus, usw."
+
+#~ msgid ""
+#~ "A <b>notification area</b> for your dock\n"
+#~ "Also called 'systray'.\n"
+#~ "It is designed to work on any desktop that supports the latest systray "
+#~ "specifications (KDE, Gnome, etc)"
+#~ msgstr ""
+#~ "Ein <b>Benachrichtigungsfeld</b> für Ihr Dock\n"
+#~ "Auch »Systray« genannt.\n"
+#~ "Es wurde für Arbeitsumgebungen entworfen, welche die neuesten Systray-"
+#~ "Spezifikationen zu unterstützen (KDE, Gnome, usw.)"
+
+#~ msgid "Status Notifier"
+#~ msgstr "Status-Benachrichtigung"
+
+#~ msgid "Toto"
+#~ msgstr "Toto"
+
+#~ msgid "Move current Desktop to this Desktop"
+#~ msgstr "Aktuelle Arbeitsfläche auf diese Arbeitsfläche verschieben"
+
+#~ msgid "Move to the Desktop"
+#~ msgstr "Auf die Arbeitsfläche verschieben"
+
+#~ msgid "Copy to the Desktop"
+#~ msgstr "Auf die Arbeitsfläche kopieren"
+
+#~ msgid "Download onto the Desktop"
+#~ msgstr "Auf die Arbeitsfläche herunterladen"
+
+#~ msgid "Link to the Desktop"
+#~ msgstr "Verknüpfung auf der Arbeitsfläche erstellen"
+
+#~ msgid ""
+#~ "Load folders inside the Dock\n"
+#~ "You can have as many instances of this applet as you want."
+#~ msgstr ""
+#~ "Ordner im Dock laden\n"
+#~ "Die Anzahl der möglichen Instanzen dieses Applets ist unbegrenzt."
+
+#~ msgid "Empty Trash (middle-click)"
+#~ msgstr "Müll leeren (Mittelklick)"
+
+#~ msgid "Timeout"
+#~ msgstr "Wartezeit"
+
+#~ msgid "systray"
+#~ msgstr "Benachrichtigungsfeld"
+
+#~ msgid ""
+#~ "Add a systray to your dock.\n"
+#~ "Left-click to show the systray in a dialog (you can bind a keyboard shortcut "
+#~ "for it.)\n"
+#~ "Middle-click to close the dalog.\n"
+#~ "But the best way to use it id to detach it from the dock, and place it "
+#~ "somewhere, above other windows."
+#~ msgstr ""
+#~ "Fügt ein Benachrichtigungsfeld zu Ihrem Dock hinzu.\n"
+#~ "Links klicken, um das Benachrichtigungsfeld in einem Dialog anzuzeigen "
+#~ "(Zuweisung eines Tastenkürzels ist möglich).\n"
+#~ "Mittelklick, um den Dialog zu schließen.\n"
+#~ "Trennen Sie das Benachrichtigungsfeld am besten vom Dock ab und platzieren "
+#~ "Sie es irgendwo anders, oberhalb anderer Fenster."
+
+#~ msgid "Unmount (middle-click)"
+#~ msgstr "Aushängen (Mittelklick)"
+
+#~ msgid "Mount (middle-click)"
+#~ msgstr "Einhängen (Mittelklick)"
+
+#~ msgid "Icon size for busy penguin:"
+#~ msgstr "Symbolgröße für fleißigen Pinguin:"
+
+#~ msgid "Icon name for busy penguin:"
+#~ msgstr "Symbolname für fleißigen Pinguin:"
+
+#~ msgid "Maximum number of files to list:"
+#~ msgstr "Maximale Anzahl anzuzeigender Dateien:"
+
+#~ msgid "compiz-icon"
+#~ msgstr "compiz-symbol"
+
+#~ msgid ""
+#~ "A very simple applet that adds an icon to log out from your session\n"
+#~ "Left click to log out or change the user, middle click to shutdown or "
+#~ "restart\n"
+#~ "  (you can invert the buttons if you prefer to shutdown on left-click)."
+#~ msgstr ""
+#~ "Eine einfache Anwendung die eine Abmelden-Schaltfläche hinzufügt\n"
+#~ "Mit Linksklick können sie sich ausloggen oder den Benutzer wechseln, mit der "
+#~ "mittleren Maustaste den Rechner herunterfahren oder Neustarten\n"
+#~ "  (sie können die Tastenbelegung vertauschen wenn sie mit der linken "
+#~ "Maustaste Herunterfahren wollen)"
+
+#~ msgid "Open the folder (middle-click)"
+#~ msgstr "Den Ordner öffnen (Mittelklick)"
+
+#~ msgid "Quick launch (Middle-click)"
+#~ msgstr "Schnellstart (Mittelklick)"
+
+#~ msgid "Unmute (middle-click)"
+#~ msgstr "Stummschaltung aufheben (Mittelklick)"
+
+#~ msgid "Mute (middle-click)"
+#~ msgstr "Stumm schalten (Mittelklick)"
+
+#~ msgid "Refresh all (Middle-click)"
+#~ msgstr "Alles aktualisieren (Mittelklick)"
+
+#~ msgid "Copy (middle click)"
+#~ msgstr "Kopieren (Mittelklick)"
+
+#~ msgid "stacks"
+#~ msgstr "Stapel"
 
 #~ msgid "emerald"
 #~ msgstr "emerald"
@@ -8442,54 +9270,61 @@ msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben?"
 #~ msgid "kde-window-decorator"
 #~ msgstr "kde-window-decorator"
 
-#, fuzzy
-#~ msgid "'Other WM' icon image name:"
-#~ msgstr "'Sehr niedrig' Symboldateiname:"
+#~ msgid "Pastebin.ca"
+#~ msgstr "Pastebin.ca"
 
-#, fuzzy
-#~ msgid "'Settings' icon image name:"
-#~ msgstr "'Durchschnittlich' Symboldateiname:"
+#~ msgid "time"
+#~ msgstr "Zeit"
 
-#, fuzzy
-#~ msgid "'Emerald' icon image name:"
-#~ msgstr "'Durchschnittlich' Symboldateiname:"
-
-#, fuzzy
-#~ msgid "'Reload' icon image name:"
-#~ msgstr "'Gut' Symboldateiname:"
-
-#, fuzzy
-#~ msgid "'Exhibition' icon image name:"
-#~ msgstr "'Exzellent' Symboldateiname:"
-
-#, fuzzy
-#~ msgid "'Widget Layer' icon image name:"
-#~ msgstr "'Durchschnittlich' Symboldateiname:"
-
-#~ msgid "Estimated charge time:"
-#~ msgstr "Noch für das Laden benötigte Zeit:"
-
-#~ msgid "Halt"
-#~ msgstr "Stoppen"
-
-#~ msgid "Reboot"
-#~ msgstr "Neustart"
-
-#~ msgid "A power manager for laptop batteries. Works with ACPI and DBus."
+#~ msgid ""
+#~ "A Gnome-Do-like plug-in that lets you control your dock from the keyboard.\n"
+#~ "It has 2 modes, each one being triggered by a keyboard shortcut:\n"
+#~ "- the navigation mode : use the arrows to navigate into the docks and sub-"
+#~ "Docks,\n"
+#~ "  or type the name of a launcher and press Tab to automatically jump to the "
+#~ "next suitable launcher\n"
+#~ "  press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter "
+#~ "for middle click, and Ctrl+Enter for left click\n"
+#~ "- the finder mode : type some text to launch any command, file or "
+#~ "calculation.\n"
+#~ "  use the arrows to navigate between the results, press Enter to validate, "
+#~ "maintain CTRL, ALT or SHIFT to keep the results.\n"
+#~ "Escape or the same shortkey to cancel."
 #~ msgstr ""
-#~ "Ein Energiemanage für Laptopbatterien. Funktioniert mit ACPI und DBus."
+#~ "Eine Gnome-Do ähnliche Erweiterung, mit der das Dock mit Hilfe der Tastatur "
+#~ "gesteuert werden kann.\n"
+#~ "Es hat zwei Modi, jeder von ihnen wird mit einem Tastaturkürzel ausgelöst.\n"
+#~ "- Den Navigationsmodus: Mit Hilfe der Pfeile kann in den Docks und "
+#~ "Unterdocks navigiert werden.\n"
+#~ "Alternativ kann der Name eine Starters eingegeben werden, um zum nächst "
+#~ "passenden zu springen.\n"
+#~ "Enter um auf das Symbol zu klicken, Shift+Enter für Shift+Klick, Alt+Enter "
+#~ "für Klick mit der mittleren Maustaste sowie STRG+Enter zum Linksklick.\n"
+#~ "- Der Suchmodus: Mach eine Eingabe um ein Kommando, eine Datei oder eine "
+#~ "Rechnung zu starten\n"
+#~ "Verwende die Pfeile um zwischen den Ergebnissen zu navigieren, drücke Enter "
+#~ "zum Ausführen oder halte STRG, ALT bzw. Shift gedrückt um die Ergebnisse "
+#~ "beizubehalten\n"
+#~ "Escape zum Abbrechen"
 
-#~ msgid "Move to the Desktop"
-#~ msgstr "Auf die Arbeitsfläche verschieben"
+#~ msgid "Expose all the desktops (Compiz)"
+#~ msgstr "Darstellen aller Arbeitsflächen (Compiz)"
 
-#~ msgid "Copy to the Desktop"
-#~ msgstr "Auf die Arbeitsfläche kopieren"
+#~ msgid "Show the Widget Layer (Compiz)"
+#~ msgstr "Zeige Widget-Ebene (Compiz)"
 
-#~ msgid "Link to the Desktop"
-#~ msgstr "Verknüpfung auf der Arbeitsfläche erstellen"
+#~ msgid "Let extern applications register new module?"
+#~ msgstr "Neue Module durch externe Anwendungen registrieren lassen?"
 
-#~ msgid "Download onto the Desktop"
-#~ msgstr "Auf die Arbeitsfläche herunterladen"
+#~ msgid "Applet"
+#~ msgstr "Applet"
 
-#~ msgid "Icon size for busy penguin:"
-#~ msgstr "Symbolgröße für fleißigen Pinguin:"
+#~ msgid ""
+#~ "If you write here a container's name that doesn't exist yet, a new one will "
+#~ "be created, with this icon inside."
+#~ msgstr ""
+#~ "Falls Sie hier den Namen eines noch nicht vorhandenen Containers eingeben, "
+#~ "wird dieser neu erstellt und dieses Symbol eingefügt."
+
+#~ msgid "Display items in compact mode?"
+#~ msgstr "Objekte in Kompaktansicht anzeigen?"
