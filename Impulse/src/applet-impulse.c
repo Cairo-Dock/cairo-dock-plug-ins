@@ -80,16 +80,19 @@ static gboolean _animate_the_dock (gpointer data)
 		CD_APPLET_LEAVE (TRUE);
 
 	if (myData.pSharedMemory->pIconsList == NULL)
+	{
+		cd_impulse_stop_animations ();
 		CD_APPLET_LEAVE (FALSE);
+	}
 
 	guint iIcons = IM_TAB_SIZE / g_list_length(myData.pSharedMemory->pIconsList); // number of icons (without separators)
 
 	double *array = im_getSnapshot(IM_FFT);
 
-	// we check if there is a signal
+	// we check if there is a signal (most of the time, all values are > 0)
 	if (array[0] == 0.0)
 	{	// is it really null?
-		int j = 0;
+		int j;
 		for (j = 1; j < IM_TAB_SIZE; j++)
 		{
 			if (array[j] != 0)
@@ -111,7 +114,7 @@ static gboolean _animate_the_dock (gpointer data)
 	double l = 0.0;
 	GList *ic = myData.pSharedMemory->pIconsList;
 	Icon *pIcon;
-	// gboolean bNeedRefresh = TRUE; // has not been animated
+	gboolean bHasNotBeenAnimated = TRUE;
 	for (i = 0; ic != NULL; i++) // i < 256
 	{
 		l += array[i]; // a sum for the average
@@ -126,7 +129,8 @@ static gboolean _animate_the_dock (gpointer data)
 					myData.pSharedMemory->pDock,
 					myData.pSharedMemory->cIconAnimation,
 					myData.pSharedMemory->iNbAnimations);
-				// bHasBeenAnimated = FALSE;
+				bHasNotBeenAnimated = FALSE;
+				myData.pSharedMemory->bNeedRefreshIfNotAnimated = TRUE;
 			}
 			else if (myData.pSharedMemory->bStopAnimations)
 				cairo_dock_stop_icon_animation (pIcon);
@@ -134,9 +138,14 @@ static gboolean _animate_the_dock (gpointer data)
 			ic = ic->next;
 		}
 	}
+	if (bHasNotBeenAnimated && myData.pSharedMemory->bStopAnimations && myData.pSharedMemory->bNeedRefreshIfNotAnimated)
+	{
+		cd_debug ("Impulse: refresh container");
+		cairo_dock_redraw_container (CAIRO_CONTAINER (myData.pSharedMemory->pDock));
+		myData.pSharedMemory->bNeedRefreshIfNotAnimated = FALSE; // no need of refresh until the next animation and if bHasNotBeenAnimated
+	}
+
 	//cd_debug ("Impulse: out");
-	//if (bHasBeenAnimated && myData.pSharedMemory->bStopAnimations)
-		// TODO? If no animations and (myData.pSharedMemory->bStopAnimations), refresh the dock?
 	g_list_free (ic);
 	CD_APPLET_LEAVE (TRUE);
 }

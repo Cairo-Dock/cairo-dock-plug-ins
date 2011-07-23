@@ -48,6 +48,7 @@ void _init_shared_memory (void)
 	myData.pSharedMemory->iNbAnimations = myConfig.iNbAnimations;
 	myData.pSharedMemory->fMinValueToAnim = myConfig.fMinValueToAnim;
 	myData.pSharedMemory->bStopAnimations = myConfig.bStopAnimations;
+	myData.pSharedMemory->bNeedRefreshIfNotAnimated = FALSE; // will be TRUE when animated for the first time
 	myData.pSharedMemory->pDock = myConfig.pDock;
 	// myData.pSharedMemory->pApplet = myApplet;
 }

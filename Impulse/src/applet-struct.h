@@ -45,6 +45,7 @@ typedef struct {
 	gint iNbAnimations;
 	double fMinValueToAnim;
 	gboolean bStopAnimations;
+	gboolean bNeedRefreshIfNotAnimated; // if bStopAnimations and there is no animation after, the icon is not refreshed
 	CairoDock *pDock;
 	//CairoDockModuleInstance *pApplet;
 	} CDSharedMemory;
