@@ -20,6 +20,7 @@
 #include <string.h>
 #include <cairo-dock.h>
 #include <gdk/gdkkeysyms.h>
+#include <gio/gio.h>
 
 #include "applet-struct.h"
 #include "applet-menu.h"
@@ -171,6 +172,125 @@ void submenu_to_display (GtkWidget *menu)
 }
 
 
+
+void cd_menu_launch_command_old_method (const gchar* cCommand)
+{
+	GError *error = NULL;
+	gchar *cResult = cairo_dock_launch_command_sync ("which gnome-session-save");
+	if (cResult != NULL && *cResult == '/')
+		g_spawn_command_line_async (cCommand, &error); // gnome 2
+	else
+	{
+		/*cResult = cairo_dock_launch_command_sync ("which gnome-control-center");
+		if (cResult != NULL && *cResult == '/')*/
+		//g_spawn_command_line_async ("gnome-control-center sound", &error); // Gnome 3
+	}
+	g_free (cResult);
+}
+
+/**
+ * Launch command using GIO as adviced here :
+ * http://developer.gnome.org/gtk3/stable/gtk-migrating-2-to-3.html#id1391127
+ */
+void cd_menu_launch_command (const gchar* cCommand)
+{
+	GAppLaunchContext *context = NULL;
+	GError *error = NULL;
+	
+	//cd_warning("GMenu - Launch Command : %s", cCommand);
+	
+	GAppInfo *info = g_app_info_create_from_commandline (cCommand, NULL, G_APP_INFO_CREATE_NONE, &error);
+	/// TODO: Should handle error
+
+	/// TODO: Should use context
+	GdkDisplay *display; // = gdk_display_get_default ();
+	//context = (GAppLaunchContext*) gdk_display_get_app_launch_context (display);
+	
+	g_app_info_launch (info, NULL, context, &error);
+	
+	if (error)
+	{
+		g_warning ("Failed to launch gnome-session-save : %s", error->message);
+		g_error_free (error);
+	}
+	
+	g_object_unref (info);
+	//~ g_object_unref (context);
+}
+
+
+void cd_menu_launch_logout (void)
+{
+	cd_menu_launch_command ("gnome-session-save --logout-dialog");
+}
+
+void cd_menu_launch_shutdown (void)
+{
+	cd_menu_launch_command ("gnome-session-save --shutdown-dialog");
+}
+
+
+void cd_menu_append_one_item_to_menu (GtkWidget *menu, GCallback callback, const gchar* cTitle, const gchar* cIconPath)
+{
+	GtkWidget  *pMenuItem = gtk_image_menu_item_new ();
+	gtk_menu_shell_append (GTK_MENU_SHELL (menu), pMenuItem);
+
+	setup_menuitem (pMenuItem,
+		PANEL_DEFAULT_MENU_ICON_SIZE, //panel_menu_icon_get_size (),
+		NULL,
+		cTitle);
+
+		GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cIconPath, 24, 24, NULL);
+		GtkWidget *image = gtk_image_new_from_pixbuf (pixbuf);
+		g_object_unref (pixbuf);
+#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
+		gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (pMenuItem), TRUE);
+#endif
+		gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
+
+  g_signal_connect (pMenuItem, "activate", callback, NULL);
+}
+
+
+
+void cd_menu_append_poweroff_to_menu (GtkWidget *menu, CairoDockModuleInstance *myApplet)
+{
+	//cd_warning ("Show Quit :  %d", myConfig.iShowQuit);
+
+	GAppLaunchContext *context;
+	/* 
+	// Disabled because I can't find the gdk_display_get_app_launch_context function
+	* 
+	* example in file-roller : http://file-roller.sourcearchive.com/documentation/3.0.2-1/fr-window_8c_source.html
+	* with it's commit change : http://mail.gnome.org/archives/commits-list/2011-March/msg02893.html
+	*/
+	/*
+	//context = (GAppLaunchContext*) gdk_display_get_app_launch_context (display);
+	CairoContainer *container = myApplet->pContainer;
+	GtkWidget *pWindow = GTK_WIDGET (gtk_widget_get_display (container->pWidget));
+	context = gdk_display_get_app_launch_context (pWindow);
+	*/
+
+	GtkWidget *pSeparator = gtk_separator_menu_item_new ();
+	gtk_menu_shell_append (GTK_MENU_SHELL (menu), pSeparator);
+
+	if (myConfig.iShowQuit == CD_GMENU_SHOW_QUIT_LOGOUT || myConfig.iShowQuit == CD_GMENU_SHOW_QUIT_BOTH)
+		cd_menu_append_one_item_to_menu (menu, 
+			G_CALLBACK (cd_menu_launch_logout),
+			D_("Logout"), 
+			MY_APPLET_SHARE_DATA_DIR"/logout.svg"
+			);
+
+	if (myConfig.iShowQuit == CD_GMENU_SHOW_QUIT_SHUTDOWN || myConfig.iShowQuit == CD_GMENU_SHOW_QUIT_BOTH)
+		cd_menu_append_one_item_to_menu (menu, 
+			G_CALLBACK (cd_menu_launch_shutdown),
+			D_("Shutdown"), 
+			MY_APPLET_SHARE_DATA_DIR"/shutdown.svg"
+			);
+}
+
+
+
 void panel_desktop_menu_item_append_menu (GtkWidget *menu,
 				     gpointer   data)
 {
@@ -242,6 +362,12 @@ void main_menu_append (GtkWidget *main_menu,
 	{
 		cd_menu_append_recent_to_menu (main_menu, myApplet);
 	}
+
+	if (myConfig.iShowQuit != CD_GMENU_SHOW_QUIT_NONE)
+	{
+		cd_menu_append_poweroff_to_menu (main_menu, myApplet);
+	}
+
 	/*item = panel_place_menu_item_new (TRUE);
 	panel_place_menu_item_set_panel (item, panel);
 	gtk_menu_shell_append (GTK_MENU_SHELL (main_menu), item);
