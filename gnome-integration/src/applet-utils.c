@@ -47,7 +47,7 @@ void env_backend_shutdown (void)
 
 void env_backend_lock_screen (void)
 {
-	cairo_dock_launch_command ("gnome-screensaver-command --lock");
+	cairo_dock_launch_command (MY_APPLET_SHARE_DATA_DIR"/../xfce-integration/lock-screen.sh");  // should probably be shared somewhere...
 }
 
 void env_backend_setup_time (void)

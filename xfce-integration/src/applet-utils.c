@@ -34,7 +34,7 @@ void env_backend_shutdown (void)
 
 void env_backend_lock_screen (void)
 {
-	cairo_dock_launch_command ("xscreensaver-command -lock");  // xflock4 ?
+	cairo_dock_launch_command (MY_APPLET_SHARE_DATA_DIR"/lock-screen.sh");
 }
 
 void env_backend_setup_time (void)
