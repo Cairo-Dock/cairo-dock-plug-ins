@@ -24,8 +24,6 @@
 #include "applet-logout.h"
 #include "applet-notifications.h"
 
-#define GUEST_SESSION_LAUNCHER "/usr/share/gdm/guest-session/guest-session-launch"
-
 
 static void _logout (void)
 {
