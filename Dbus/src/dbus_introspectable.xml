@@ -7,7 +7,7 @@
 		<method name="Quit">
 		</method>
 		<method name="ShowDock">
-			<arg name="show" type="b" direction="in"/>
+			<arg name="iVisibility" type="i" direction="in"/>
 		</method>
 		<method name="ShowDesklet">
 			<arg name="widgetLayer" type="b" direction="in"/>

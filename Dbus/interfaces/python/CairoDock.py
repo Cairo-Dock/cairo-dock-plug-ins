@@ -67,7 +67,10 @@ class CairoDock:
 	TYPE_CONTAINER       = "Container"
 	TYPE_CLASS_CONTAINER = "Class-Container"
 	TYPE_OTHER           = "Other"
-	
+	# toggle dock visibility
+	HIDE_DOCK   = 0
+	SHOW_DOCK   = 1
+	TOGGLE_DOCK = 2
 	
 	#####################
 	### INIT AND DBUS ###

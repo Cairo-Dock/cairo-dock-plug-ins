@@ -29,9 +29,9 @@ gboolean cd_dbus_main_reboot(dbusMainObject *dbusMainObject, GError **error);
 
 gboolean cd_dbus_main_quit (dbusMainObject *dbusMainObject, GError **error);
 
-gboolean cd_dbus_main_show_dock (dbusMainObject *dbusMainObject, gboolean bShow, GError **error);
+gboolean cd_dbus_main_show_dock (dbusMainObject *dbusMainObject, gint iVisibiliy, GError **error);
 
-gboolean cd_dbus_main_show_desklet(dbusMainObject *dbusMainObject, gboolean *widgetLayer, GError **error);
+gboolean cd_dbus_main_show_desklet (dbusMainObject *dbusMainObject, gboolean *widgetLayer, GError **error);
 
 
 gboolean cd_dbus_main_reload_module (dbusMainObject *dbusMainObject, const gchar *cModuleName, GError **error);

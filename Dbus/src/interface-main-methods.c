@@ -30,6 +30,7 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 #include <unistd.h>
 #include <glib.h>
 
+#include "cairo-dock.h"
 #include "interface-main-methods.h"
 
 #define nullify_argument(string) do {\
@@ -73,10 +74,28 @@ static void _show_hide_one_dock (const gchar *cDockName, CairoDock *pDock, gpoin
 			cairo_dock_emit_leave_signal (CAIRO_CONTAINER (pDock));
 	}
 }
-gboolean cd_dbus_main_show_dock (dbusMainObject *pDbusCallback, gboolean bShow, GError **error)
+gboolean cd_dbus_main_show_dock (dbusMainObject *pDbusCallback, gint iVisibiliy, GError **error)
 {
 	if (! myConfig.bEnableShowDock)
 		return FALSE;
+	
+	if (g_pMainDock == NULL)
+		return FALSE;
+	
+	gboolean bShow;
+	switch (iVisibiliy)
+	{
+		case 0:  // hide
+			bShow = FALSE;
+		break;
+		case 1:  // show
+			bShow = TRUE;
+		break;
+		case 2:  // toggle
+		default:
+			bShow = (g_pMainDock->bIsBelow || (g_pMainDock->bAutoHide && g_pMainDock->fHideOffset == 1));
+		break;		
+	}
 	
 	if (bShow)
 		cairo_dock_stop_quick_hide ();
