@@ -130,3 +130,8 @@ recent root dir =
 #{in days. Set 0 if unsued.}
 recent age = 0
 
+#F[Session management buttons]
+quit=
+
+#l+[None;Logout;Shutdown;Both] Show Logout and/or Shutdown : 
+show quit = 0

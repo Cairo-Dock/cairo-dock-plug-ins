@@ -40,6 +40,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 		g_free (tmp);
 	}
 	myConfig.iRecentAge = CD_CONFIG_GET_INTEGER ("Configuration", "recent age");
+	myConfig.iShowQuit = CD_CONFIG_GET_INTEGER ("Configuration", "show quit");
 CD_APPLET_GET_CONFIG_END
 
 

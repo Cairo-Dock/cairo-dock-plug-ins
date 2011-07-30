@@ -45,6 +45,14 @@ typedef struct {
 	GtkIconSize  icon_size;
 } IconToAdd;
 
+typedef enum _CDGMenuShowQuit {
+	CD_GMENU_SHOW_QUIT_NONE=0,
+	CD_GMENU_SHOW_QUIT_LOGOUT,
+	CD_GMENU_SHOW_QUIT_SHUTDOWN,
+	CD_GMENU_SHOW_QUIT_BOTH,
+	CD_GMENU_NB_SHOW_QUIT
+	} CDGMenuShowQuit; 
+
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
@@ -55,6 +63,7 @@ struct _AppletConfig {
 	gchar *cConfigureMenuCommand;
 	gchar *cRecentRootDirFilter;
 	gint iRecentAge;
+	CDGMenuShowQuit iShowQuit;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
@@ -62,6 +71,7 @@ struct _AppletData {
 	GtkWidget *pMenu;
 	CairoDialog *pQuickLaunchDialog;
 	gboolean bIconsLoaded;
+	CDGMenuShowQuit iShowQuit;
 	guint iSidFakeMenuIdle;
 	guint iSidCreateMenuIdle;
 	guint iSidTreeChangeIdle;

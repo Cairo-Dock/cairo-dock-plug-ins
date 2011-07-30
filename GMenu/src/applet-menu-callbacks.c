@@ -171,6 +171,56 @@ void submenu_to_display (GtkWidget *menu)
 }
 
 
+// == cairo_dock_add_in_menu_with_stock_and_data   with icon size 24
+GtkWidget *cd_menu_append_one_item_to_menu (const gchar *cLabel, const gchar *gtkStock, GFunc pFunction, GtkWidget *pMenu, gpointer pData)
+{
+	GtkWidget *pMenuItem = gtk_image_menu_item_new_with_label (cLabel);
+	if (gtkStock)
+	{
+		GtkWidget *image = NULL;
+		if (*gtkStock == '/')
+		{
+			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (gtkStock, 24, 24, NULL);
+			image = gtk_image_new_from_pixbuf (pixbuf);
+			g_object_unref (pixbuf);
+		}
+		else
+		{
+			const gchar *cIconPath = cairo_dock_search_icon_s_path (gtkStock);
+			if (cIconPath == NULL)
+			{
+				cIconPath = g_strconcat (MY_APPLET_SHARE_DATA_DIR"/", gtkStock, NULL);
+				cIconPath = g_strconcat (cIconPath, ".svg", NULL);
+			}
+			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cIconPath, 24, 24, NULL);
+			image = gtk_image_new_from_pixbuf (pixbuf);
+			g_object_unref (pixbuf);
+		}
+#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
+		gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (pMenuItem), TRUE);
+#endif
+		gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
+	}
+	gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);
+	if (pFunction)
+		g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK (pFunction), pData);
+	return pMenuItem;
+}
+
+void cd_menu_append_poweroff_to_menu (GtkWidget *menu, CairoDockModuleInstance *myApplet)
+{
+	GtkWidget *pSeparator = gtk_separator_menu_item_new ();
+	gtk_menu_shell_append (GTK_MENU_SHELL (menu), pSeparator);
+
+	if (myConfig.iShowQuit == CD_GMENU_SHOW_QUIT_LOGOUT || myConfig.iShowQuit == CD_GMENU_SHOW_QUIT_BOTH)
+		cd_menu_append_one_item_to_menu (D_("Logout"), "system-log-out", (GFunc) cairo_dock_fm_logout, menu, NULL);
+
+	if (myConfig.iShowQuit == CD_GMENU_SHOW_QUIT_SHUTDOWN || myConfig.iShowQuit == CD_GMENU_SHOW_QUIT_BOTH)
+		cd_menu_append_one_item_to_menu (D_("Shutdown"), "system-shutdown", (GFunc) cairo_dock_fm_shutdown, menu, NULL);
+}
+
+
+
 void panel_desktop_menu_item_append_menu (GtkWidget *menu,
 				     gpointer   data)
 {
@@ -242,6 +292,12 @@ void main_menu_append (GtkWidget *main_menu,
 	{
 		cd_menu_append_recent_to_menu (main_menu, myApplet);
 	}
+
+	if (myConfig.iShowQuit != CD_GMENU_SHOW_QUIT_NONE)
+	{
+		cd_menu_append_poweroff_to_menu (main_menu, myApplet);
+	}
+
 	/*item = panel_place_menu_item_new (TRUE);
 	panel_place_menu_item_set_panel (item, panel);
 	gtk_menu_shell_append (GTK_MENU_SHELL (main_menu), item);

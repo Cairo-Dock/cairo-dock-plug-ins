@@ -54,6 +54,7 @@ CD_APPLET_INIT_BEGIN
 		cd_menu_init_recent (myApplet);
 	}
 	myData.pMenu = create_main_menu (myApplet);
+	myData.iShowQuit = myConfig.iShowQuit;
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -96,11 +97,14 @@ CD_APPLET_RELOAD_BEGIN
 		// on reset ce qu'il faut.
 		cd_menu_reset_recent (myApplet);  // le fitre peut avoir change.
 		if (myData.pMenu != NULL &&
-			(myConfig.bHasIcons != myData.bIconsLoaded) || (myConfig.bShowRecent && myData.pRecentMenuItem == NULL))
+			(myConfig.bHasIcons != myData.bIconsLoaded) ||
+			(myConfig.bShowRecent && myData.pRecentMenuItem == NULL) ||
+			(myConfig.iShowQuit != myData.iShowQuit))
 		{
 			gtk_widget_destroy (myData.pMenu);  // detruit le sous-menu des recent items ?
 			myData.pMenu = NULL;
 			myData.pRecentMenuItem = NULL;
+			myData.iShowQuit = myConfig.iShowQuit;
 		}
 		
 		// on reconstruit ce qu'il faut.
