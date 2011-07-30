@@ -209,8 +209,7 @@ GtkWidget *cd_menu_append_one_item_to_menu (const gchar *cLabel, const gchar *gt
 
 void cd_menu_append_poweroff_to_menu (GtkWidget *menu, CairoDockModuleInstance *myApplet)
 {
-	GtkWidget *pSeparator = gtk_separator_menu_item_new ();
-	gtk_menu_shell_append (GTK_MENU_SHELL (menu), pSeparator);
+	add_menu_separator (menu);
 
 	if (myConfig.iShowQuit == CD_GMENU_SHOW_QUIT_LOGOUT || myConfig.iShowQuit == CD_GMENU_SHOW_QUIT_BOTH)
 		cd_menu_append_one_item_to_menu (D_("Logout"), "system-log-out", (GFunc) cairo_dock_fm_logout, menu, NULL);
@@ -221,35 +220,17 @@ void cd_menu_append_poweroff_to_menu (GtkWidget *menu, CairoDockModuleInstance *
 
 
 
-void panel_desktop_menu_item_append_menu (GtkWidget *menu,
-				     gpointer   data)
+void panel_desktop_menu_item_append_menu (GtkWidget *menu, gpointer data)
 {
-	//g_print ("%s ()\n", __func__);	
-	CairoDockModuleInstance *myApplet;
-	gboolean              add_separator;
-	GList                *children;
-	GList                *last;
-
-	myApplet = (CairoDockModuleInstance *) data;
-
-	add_separator = FALSE;
-	children = gtk_container_get_children (GTK_CONTAINER (menu));
-	last = g_list_last (children);
-
-	///if (last != NULL)
-	///	add_separator = !GTK_IS_SEPARATOR (GTK_WIDGET (last->data));
-
-	g_list_free (children);
-
-	if (add_separator)
-		add_menu_separator (menu);
-
-	//panel_menu_items_append_from_desktop (menu, "yelp.desktop", NULL);
-	//panel_menu_items_append_from_desktop (menu, "gnome-about.desktop", NULL);
-
-	//if (parent->priv->append_lock_logout)
-	//	panel_menu_items_append_lock_logout (menu);
+	CairoDockModuleInstance *myApplet = (CairoDockModuleInstance *) data;
+ 
+ 	//panel_menu_items_append_from_desktop (menu, "yelp.desktop", NULL);
+ 	//panel_menu_items_append_from_desktop (menu, "gnome-about.desktop", NULL);
+ 
+	if (myConfig.iShowQuit != CD_GMENU_SHOW_QUIT_NONE)
+		cd_menu_append_poweroff_to_menu (menu, myApplet);
 }
+
 void main_menu_append (GtkWidget *main_menu,
 		  gpointer   data)
 {
@@ -293,10 +274,6 @@ void main_menu_append (GtkWidget *main_menu,
 		cd_menu_append_recent_to_menu (main_menu, myApplet);
 	}
 
-	if (myConfig.iShowQuit != CD_GMENU_SHOW_QUIT_NONE)
-	{
-		cd_menu_append_poweroff_to_menu (main_menu, myApplet);
-	}
 
 	/*item = panel_place_menu_item_new (TRUE);
 	panel_place_menu_item_set_panel (item, panel);
