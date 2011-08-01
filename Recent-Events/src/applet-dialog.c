@@ -467,10 +467,14 @@ void cd_toggle_dialog (void)
 		// establish the connection to Zeitgesit.
 		if (myData.pLog == NULL)  // first search.
 		{
-			myData.pLog = zeitgeist_log_new ();  // will launch the Zeitgeist daemon if it's not yet running.
-			if (! zeitgeist_log_is_connected (myData.pLog))  // the connection is not immediate (even if the daemon is already running), so come back in 1s.
+			g_print ("first search\n");
+			myData.pLog = zeitgeist_log_new ();  // may launch the Zeitgeist daemon if it's not yet running.
+			if (! zeitgeist_log_is_connected (myData.pLog))  // the connection may not be immediate (even if the daemon is already running), in this case come back in 1s.
+			{
+				g_print ("come back in 1s...\n");
 				g_timeout_add_seconds (1, _show_dialog_delayed, NULL);
-			return;
+				return;
+			}
 		}
 		else if (! zeitgeist_log_is_connected (myData.pLog))
 		{
