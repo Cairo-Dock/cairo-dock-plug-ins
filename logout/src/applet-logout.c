@@ -331,9 +331,12 @@ static GtkWidget *_build_menu (void)
 	gtk_widget_set_tooltip_text (pMenuItem, D_("Your computer will still consume a small amount of energy."));
 	if (!myData.bCanSuspend)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
-
-	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Log out"), MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", on_select_action, pMenu, GINT_TO_POINTER (CD_LOG_OUT));
-	gtk_widget_set_tooltip_text (pMenuItem, D_("Close your session and allow to open a new one."));
+	
+	if (g_getenv ("SESSION_MANAGER") != NULL)  // needs a session manager for this.
+	{
+		pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Log out"), MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", on_select_action, pMenu, GINT_TO_POINTER (CD_LOG_OUT));
+		gtk_widget_set_tooltip_text (pMenuItem, D_("Close your session and allow to open a new one."));
+	}
 	
 	CD_APPLET_ADD_SEPARATOR_IN_MENU (pMenu);
 	
@@ -496,6 +499,8 @@ void cd_logout_check_reboot_required_init (void)
 gboolean cd_logout_have_guest_session (void)
 {
 	gboolean has = FALSE;
+	if (g_getenv ("SESSION_MANAGER") == NULL)  // needs a session manager for this.
+		return FALSE;
 	if (g_file_test (GUEST_SESSION_LAUNCHER, G_FILE_TEST_EXISTS))
 	{
 		has = TRUE;
