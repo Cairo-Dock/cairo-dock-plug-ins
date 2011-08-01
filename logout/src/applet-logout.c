@@ -323,16 +323,16 @@ static GtkWidget *_build_menu (void)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Hibernate"), MY_APPLET_SHARE_DATA_DIR"/system-hibernate.svg", on_select_action, pMenu, GINT_TO_POINTER (CD_HIBERNATE));
-	gtk_widget_set_tooltip_text (pMenuItem, D_("Your computer will still consume a small amount of energy."));
+	gtk_widget_set_tooltip_text (pMenuItem, D_("Your computer will not consume any energy."));
 	if (!myData.bCanHibernate)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Suspend"), MY_APPLET_SHARE_DATA_DIR"/system-suspend.svg", on_select_action, pMenu, GINT_TO_POINTER (CD_SUSPEND));
-	gtk_widget_set_tooltip_text (pMenuItem, D_("Your computer will not consume any energy."));
+	gtk_widget_set_tooltip_text (pMenuItem, D_("Your computer will still consume a small amount of energy."));
 	if (!myData.bCanSuspend)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Log out"), MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", on_select_action, pMenu, GINT_TO_POINTER (CD_LOG_OUT));
+	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Log out"), MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", on_select_action, pMenu, GINT_TO_POINTER (CD_LOG_OUT));
 	gtk_widget_set_tooltip_text (pMenuItem, D_("Close your session and allow to open a new one."));
 	
 	CD_APPLET_ADD_SEPARATOR_IN_MENU (pMenu);
