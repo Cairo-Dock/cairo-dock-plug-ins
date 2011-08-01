@@ -19,7 +19,7 @@ endif()
 add_library(${PACKAGE_XFCE_INTEGRATION} SHARED ${cd_xfce-integration_LIB_SRCS})
 
 ########### compil ###############
-add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${xfce_integration}")
+add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${xfce_integrationdatadir}")
 add_definitions (-DMY_APPLET_PREVIEW_FILE="none")
 add_definitions (-DMY_APPLET_CONF_FILE="none")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="xfce-integration")
