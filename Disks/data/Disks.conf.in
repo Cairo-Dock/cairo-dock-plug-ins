@@ -14,8 +14,6 @@ name =
  #v
 sep_display=
 
-#S Image's name or path :
-#{Leave empty to use the default one.}
 icon = 
 
 #j+[0;128] Desired icon size for this applet

@@ -20,7 +20,7 @@ view type = 3
 
 #S+ Image filename:
 #{Leave empty to use the default one.}
-image file = 
+image file=folder
 
 icon =
 

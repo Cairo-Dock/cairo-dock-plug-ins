@@ -782,6 +782,7 @@ if ("${with_indicator}" STREQUAL "yes")
 endif()
 
 ############# MESSAGING_MENU #################
+set (with_messaging_menu "no")
 if ("${with_indicator}" STREQUAL "yes")
 	message (STATUS "> Messaging-Menu:")
 	set (GETTEXT_MESSAGING_MENU ${GETTEXT_PLUGINS})
