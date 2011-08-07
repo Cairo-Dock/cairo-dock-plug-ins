@@ -27,12 +27,14 @@
 
 #define IM_TAB_SIZE 256
 
+extern CairoDockHidingEffect *g_pHidingBackend;  // cairo_dock_is_hidden
+
 ////////////////// IMPULSE \\\\\\\\\\\\\\\\\\\\
 
 void _im_start (void)
 {
 	cd_debug ("Impulse: start im");
-	im_start();
+	im_start ();
 }
 
 void _im_stop (void)
@@ -80,7 +82,7 @@ static gboolean _animate_the_dock (gpointer data)
 	CD_APPLET_ENTER;
 	// cd_debug ("Impulse: in");
 	if (myData.pSharedMemory->bIsUpdatingIconsList
-		|| myData.pSharedMemory->pDock->bTemporaryHidden) // not needed for the animations but not for pulse.
+		|| cairo_dock_is_hidden (myData.pSharedMemory->pDock)) // not needed for the animations but not for pulse.
 		CD_APPLET_LEAVE (TRUE);
 
 	if (myData.pSharedMemory->pIconsList == NULL)
@@ -89,7 +91,7 @@ static gboolean _animate_the_dock (gpointer data)
 		CD_APPLET_LEAVE (FALSE);
 	}
 
-	guint iIcons = IM_TAB_SIZE / g_list_length(myData.pSharedMemory->pIconsList); // number of icons (without separators)
+	guint iIcons = IM_TAB_SIZE / g_list_length (myData.pSharedMemory->pIconsList); // number of icons (without separators)
 
 	double *array = im_getSnapshot(IM_FFT);
 
