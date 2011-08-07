@@ -22,7 +22,7 @@ add_definitions (-DGL_GLEXT_PROTOTYPES="1")
 
 set (CPACK_SOURCE_GENERATOR "TGZ")
 set (CPACK_SOURCE_PACKAGE_FILE_NAME "${CMAKE_PROJECT_NAME}-${VERSION}")
-set (CPACK_SOURCE_IGNORE_FILES 
+set (CPACK_SOURCE_IGNORE_FILES
 	"/build/;/.bzr/;bzrignore$;/misc/;~$;${CPACK_SOURCE_IGNORE_FILES}")
 include (CPack)
 
@@ -199,21 +199,21 @@ message (STATUS "> DBus:")
 message (STATUS "* Python:")
 find_program (PYTHON_EXECUTABLE python)
 EXECUTE_PROCESS(COMMAND ${PYTHON_EXECUTABLE} -c "import sys; print sys.version" OUTPUT_VARIABLE PYTHON_VERSION)
-if ("${PYTHON_VERSION}" STREQUAL "") 
+if ("${PYTHON_VERSION}" STREQUAL "")
 	message (STATUS "Could not find Python, won't install Python interface.")
 	message (WARNING "This program is required to compile DBus applet with Python interface: python (version 2)")
 	set (PROGRAMS_MISSING "${PROGRAMS_MISSING} python")
-	set (with_python "no") 
-else() 
+	set (with_python "no")
+else()
 	STRING (REGEX REPLACE "\n" "" PYTHON_VERSION ${PYTHON_VERSION})
-	message (STATUS "Python Version: ${PYTHON_VERSION}") 
-	GET_FILENAME_COMPONENT(DEBIAN_VERSION /etc/debian_version ABSOLUTE) 
-	if (EXISTS ${DEBIAN_VERSION}) 
-		message (STATUS "  will use '--install-layout deb' with 'python setup.py install'") 
+	message (STATUS "Python Version: ${PYTHON_VERSION}")
+	GET_FILENAME_COMPONENT(DEBIAN_VERSION /etc/debian_version ABSOLUTE)
+	if (EXISTS ${DEBIAN_VERSION})
+		message (STATUS "  will use '--install-layout deb' with 'python setup.py install'")
 		set (DEBIAN_INSTALL_LAYOUT "--install-layout deb")
 	endif()
 	set (PYTHON_FOUND "TRUE")
-	set (with_python "yes") 
+	set (with_python "yes")
 endif()
 
 message (STATUS "* Ruby:")
@@ -277,7 +277,7 @@ elseif (NOT "${VALAC_EXE}" STREQUAL "VALAC_EXE-NOTFOUND") # now it works with 0.
 
 	STRING (REGEX REPLACE "\\..*" "" VALA_MAJOR "${VALA_VERSION}")
 	# message (STATUS "VALA_MAJOR : ${VALA_MAJOR}")
-	
+
 	STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" VALA_MINOR "${VALA_VERSION}")  # 0.1.7 => 1.7
 	STRING (REGEX REPLACE "\\.[0-9]*" "" VALA_MINOR "${VALA_MINOR}")
 	# message (STATUS "VALA_MINOR : ${VALA_MINOR}")
@@ -286,12 +286,12 @@ elseif (NOT "${VALAC_EXE}" STREQUAL "VALAC_EXE-NOTFOUND") # now it works with 0.
 	STRING (REGEX REPLACE "-.*" "" VALA_NANO "${VALA_NANO}")
 	# message (STATUS "VALA_NANO  : ${VALA_NANO}")
 
-	if (${VALA_MAJOR} GREATER 0 OR ${VALA_MINOR} GREATER 9)  # vala > 0.10
-		message (STATUS " Vala compiler OK (>= 0.10).")
+	if ((${VALA_MAJOR} GREATER 0 OR ${VALA_MINOR} GREATER 9) AND (${VALA_MAJOR} LESS 1 AND ${VALA_MINOR} LESS 13))  # vala >= 0.10 and <= 0.12
+		message (STATUS " Vala compiler OK (>= 0.10 and <= 0.12).")
 		set (VALAC_FOUND "TRUE")
 		set (with_valac "yes")
 	else()
-		message (STATUS "Vala compiler is too old (0.10 required), won't build Vala interface.")
+		message (STATUS "Vala compiler is too old (0.10 required) or too new (> 0.12), won't build Vala interface.")
 	endif()
 else()
 	message (STATUS "Could not find ValaC, won't build Vala interface with the version of your distribution.")
@@ -490,10 +490,10 @@ endif()
 
 ############# INDICATOR-APPLET #################
 message (STATUS "> Indicator-Applet:")
-# Note: the names of dbusmenu-glib and dbusmenu-gtk have changed...
+# Note: the names of dbusmenu-glib, dbusmenu-gtk and indicator have changed...
 pkg_check_modules (DBUSMENU_04 QUIET dbusmenu-glib-0.4)
 pkg_check_modules (DBUSMENU_GTK_04 QUIET dbusmenu-gtk-0.4)
-pkg_check_modules (INDICATOR_APPLET indicator libido-0.1)
+pkg_check_modules (INDICATOR_04 QUIET indicator-0.4)
 if ("${DBUSMENU_04_FOUND}" STREQUAL "1")
 	pkg_check_modules (DBUSMENU dbusmenu-glib-0.4)
 else()
@@ -504,29 +504,41 @@ if ("${DBUSMENU_GTK_04_FOUND}" STREQUAL "1")
 else()
 	pkg_check_modules (DBUSMENU_GTK dbusmenu-gtk)
 endif()
+if ("${INDICATOR_04_FOUND}" STREQUAL "1")
+	pkg_check_modules (INDICATOR_APPLET indicator-0.4 libido-0.1)
+else()
+	pkg_check_modules (INDICATOR_APPLET indicator libido-0.1)
+endif()
+
 if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1" AND "${DBUSMENU_FOUND}" STREQUAL "1" AND "${DBUSMENU_GTK_FOUND}" STREQUAL "1")
 	#message (STATUS "DBUSMENU_VERSION : ${DBUSMENU_VERSION}")
-	
+
 	STRING (REGEX REPLACE "\\..*" "" DBUSMENU_MAJOR "${DBUSMENU_VERSION}")
 	# message (STATUS "DBUSMENU_MAJOR : ${DBUSMENU_MAJOR}")
-	
+
 	STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" DBUSMENU_MINOR "${DBUSMENU_VERSION}")  # 0.1.7 => 1.7
 	STRING (REGEX REPLACE "\\.[0-9]*" "" DBUSMENU_MINOR "${DBUSMENU_MINOR}")
 	# message (STATUS "DBUSMENU_MINOR : ${DBUSMENU_MINOR}")
-	
+
 	STRING (REGEX REPLACE ".*\\." "" DBUSMENU_NANO "${DBUSMENU_VERSION}")
 	STRING (REGEX REPLACE "-.*" "" DBUSMENU_NANO "${DBUSMENU_NANO}")
 	# message (STATUS "DBUSMENU_NANO  : ${DBUSMENU_NANO}")
-	
-	execute_process(
-		COMMAND pkg-config --variable=iconsdir indicator
-		OUTPUT_VARIABLE INDICATORICONSDIR)
+
+	if ("${INDICATOR_04_FOUND}" STREQUAL "1")
+		execute_process(
+			COMMAND pkg-config --variable=iconsdir indicator-0.4
+			OUTPUT_VARIABLE INDICATORICONSDIR)
+	else()
+		execute_process(
+			COMMAND pkg-config --variable=iconsdir indicator
+			OUTPUT_VARIABLE INDICATORICONSDIR)
+	endif()
 	STRING (REGEX REPLACE "\n" "" INDICATORICONSDIR ${INDICATORICONSDIR})  # la commande rajoute un retour chariot ...
 	add_subdirectory (Indicator-applet)
 	set (with_indicator "yes")
 else()
-	message (WARNING "These modules are required to compile Indicators applet (MeMenu and Messaging-Menu): indicator, libido-0.1, dbusmenu-glib(-0.4), dbusmenu-gtk(-0.4)")
-	set (MODULES_MISSING "${MODULES_MISSING} indicator libido-0.1 dbusmenu-glib(-0.4) dbusmenu-gtk(-0.4)")
+	message (WARNING "These modules are required to compile Indicators applet (MeMenu and Messaging-Menu): indicator(-0.4), libido-0.1, dbusmenu-glib(-0.4), dbusmenu-gtk(-0.4)")
+	set (MODULES_MISSING "${MODULES_MISSING} indicator(-0.4) libido-0.1 dbusmenu-glib(-0.4) dbusmenu-gtk(-0.4)")
 endif()
 
 ############# ILLUSION #################
@@ -552,17 +564,17 @@ if ("${enable-kde-integration2}" STREQUAL "yes")
 	else()
 		message (STATUS " * Qt unavailable")
 	endif()
-	
+
 	find_path(KDECORE_INCLUDE_DIR "kdecore_export.h")
 	find_library(KDECORE_LIBRARY NAMES "kdecore")
-	GET_FILENAME_COMPONENT(KDECORE_LIBRARY ${KDECORE_LIBRARY} PATH) 
-	
+	GET_FILENAME_COMPONENT(KDECORE_LIBRARY ${KDECORE_LIBRARY} PATH)
+
 	find_path(KIO_INCLUDE_DIR "kio_export.h" PATH_SUFFIXES "kio")
 	find_library(KIO_LIBRARY NAMES "kio")
-	GET_FILENAME_COMPONENT(KIO_LIBRARY ${KIO_LIBRARY} PATH) 
-	
+	GET_FILENAME_COMPONENT(KIO_LIBRARY ${KIO_LIBRARY} PATH)
+
 	find_path(KDE_INCLUDE_DIR "KDirWatch" PATH_SUFFIXES "KDE")
-	
+
 	if (NOT "${KDECORE_LIBRARY}" STREQUAL "")
 		message (STATUS " * KDECORE Dir: ${KDECORE_INCLUDE_DIR}")
 		message (STATUS " * KDECORE Library: ${KDECORE_LIBRARY}")
@@ -581,7 +593,7 @@ if ("${enable-kde-integration2}" STREQUAL "yes")
 	else()
 		message (STATUS " * KDE4 unavailable")
 	endif()
-	
+
 	if (QT4_FOUND
 		 AND KDECORE_INCLUDE_DIR
 		 AND KDECORE_LIBRARY
