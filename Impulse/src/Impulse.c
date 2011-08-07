@@ -173,6 +173,24 @@ static void context_state_callback( pa_context *c, void *userdata ) {
 	}
 }
 
+int im_context_state (void)
+{
+	if (context == NULL)
+	return IM_FAILED;
+
+	switch (pa_context_get_state (context))
+	{
+		case PA_CONTEXT_CONNECTING:
+		case PA_CONTEXT_AUTHORIZING:
+		case PA_CONTEXT_SETTING_NAME:
+			return IM_SUCCESS;
+		case PA_CONTEXT_TERMINATED:
+		case PA_CONTEXT_FAILED:
+		default:
+			return IM_FAILED;
+	}
+}
+
 void im_stop (void) {
 
 	pa_threaded_mainloop_stop( mainloop );
@@ -253,7 +271,7 @@ void im_start ( void ) {
 
 	if ( ! ( mainloop = pa_threaded_mainloop_new( ) ) ) {
 		fprintf( stderr, "pa_mainloop_new() failed.\n" );
-		return;
+		return; // IM_FAILED;
 	}
 
 	mainloop_api = pa_threaded_mainloop_get_api( mainloop );
@@ -272,7 +290,7 @@ void im_start ( void ) {
 	// create a new connection context
 	if ( ! ( context = pa_context_new( mainloop_api, client_name ) ) ) {
 		fprintf( stderr, "pa_context_new() failed.\n" );
-		return;
+		return; // IM_FAILED;
 	}
 
 	pa_context_set_state_callback( context, context_state_callback, NULL );
@@ -283,5 +301,5 @@ void im_start ( void ) {
 	// pulseaudio thread
 	pa_threaded_mainloop_start( mainloop );
 
-	return;
+	return; // context_state (context);
 }

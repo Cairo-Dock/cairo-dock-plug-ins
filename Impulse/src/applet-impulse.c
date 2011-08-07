@@ -27,6 +27,8 @@
 
 #define IM_TAB_SIZE 256
 
+////////////////// IMPULSE \\\\\\\\\\\\\\\\\\\\
+
 void _im_start (void)
 {
 	cd_debug ("Impulse: start im");
@@ -44,6 +46,8 @@ void cd_impulse_im_setSourceIndex (gint iSourceIndex)
 	cd_debug ("Impulse: iSourceIndex = %d", iSourceIndex);
 	im_setSourceIndex (iSourceIndex);
 }
+
+////////////////// USEFUL FUNCTIONS \\\\\\\\\\\\\\\\\\\\
 
 static void _get_icons_list_without_separators (CDSharedMemory *pSharedMemory)
 {
@@ -150,6 +154,29 @@ static gboolean _animate_the_dock (gpointer data)
 	CD_APPLET_LEAVE (TRUE);
 }
 
+static gboolean _impulse_check_pulse_status (void)
+{
+	myData.iSidCheckStatus = 0;
+
+	cd_debug ("Impulse: checking PulseAudio Context status");
+
+	if (! myData.bHasBeenStarted && im_context_state () == IM_FAILED)
+	{
+		cd_impulse_stop_animations ();
+		cd_debug ("Impulse: starting failed");
+		cairo_dock_remove_dialog_if_any (myIcon);
+		cairo_dock_show_temporary_dialog_with_icon (D_("There is something wrong with PulseAudio.\nCan you check its status (installed? running? version?) and report this bug (if any) to forum.glx-dock.org"),
+			myIcon,
+			myContainer,
+			5000,
+			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconImpulseERROR, "impulse-error.svg");
+	}
+
+	return FALSE;
+}
+
+////////////////// NOTIFICATIONS \\\\\\\\\\\\\\\\\\\\
 
 /*void cd_impulse_start_animations (void)
 {
@@ -185,6 +212,8 @@ void _register_notifications (void)
 		CAIRO_DOCK_RUN_FIRST, NULL);
 }
 
+////////////////// GENERAL FUNCTIONS \\\\\\\\\\\\\\\\\\\\
+
 void cd_impulse_stop_animations (void)
 {
 	//if (myData.pTask != NULL)
@@ -212,12 +241,12 @@ void cd_impulse_launch_task (void) //(CairoDockModuleInstance *myApplet)
 		myData.pTask = NULL;
 	}*/
 	if (myData.iSidAnimate != 0)
-		cd_impulse_stop_animations();
+		cd_impulse_stop_animations ();
 
 	// PulseAudio Server
 	if (! myData.bPulseLaunched)
 	{
-		_im_start(); // FIXME => if already started and stopped, it will crash... because not correctly stopped...
+		_im_start (); // FIXME => if already started and stopped, it will crash... because not correctly stopped...
 		myData.bPulseLaunched = TRUE;
 	}
 
@@ -234,8 +263,11 @@ void cd_impulse_launch_task (void) //(CairoDockModuleInstance *myApplet)
 	_register_notifications();
 
 	myData.iSidAnimate = g_timeout_add (myConfig.iLoopTime, (GSourceFunc) _animate_the_dock, NULL); // or into a thread + time?
-	cd_debug ("Impulse: animations started");
+	cd_debug ("Impulse: animations started (checking status: %d)", myData.iSidCheckStatus);
 	cd_impulse_draw_current_state ();
+
+	if (myData.iSidCheckStatus == 0)
+		myData.iSidCheckStatus = g_timeout_add_seconds (1, (GSourceFunc) _impulse_check_pulse_status, NULL);
 }
 
 gboolean cd_impulse_on_icon_changed (gpointer pUserData, Icon *pIcon, CairoDock *pDock)
@@ -257,6 +289,8 @@ void cd_impulse_draw_current_state (void)
 		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconImpulseOFF, "impulse-stopped.svg");
 }
 
+////////////////// DELAY \\\\\\\\\\\\\\\\\\\\
+
 static gboolean _impulse_restart_delayed (void)
 {
 	myData.iSidRestartDelayed = 0;
@@ -265,7 +299,7 @@ static gboolean _impulse_restart_delayed (void)
 	{
 		myData.bHasBeenStarted = TRUE;
 		cd_message ("Impulse has been started");
-		
+
 		if (myConfig.bFree) // It's maybe a hack but Cairo-Penguin does that :)
 		{
 			cairo_dock_detach_icon_from_dock (myIcon, myDock, myIconsParam.iSeparateIcons);

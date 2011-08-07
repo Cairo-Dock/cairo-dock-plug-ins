@@ -22,6 +22,8 @@
 
 #define IM_NOFFT 0
 #define IM_FFT 1
+#define IM_FAILED 0
+#define IM_SUCCESS 1
 
 double *im_getSnapshot( int fft );
 
@@ -30,3 +32,5 @@ void im_setSourceIndex( uint32_t index );
 void im_start( void );
 
 void im_stop( void );
+
+int im_context_state (void);

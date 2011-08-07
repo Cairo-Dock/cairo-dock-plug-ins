@@ -7,14 +7,14 @@
 frame_maininfo=
 
 #d Name of the dock it belongs to:
-dock name = 
+dock name =
 
 #v
 sep_display=
 
 #S+ Image filename:
 #{Leave empty to use the default one.}
-icon = 
+icon =
 
 #j[0;128] Desired icon size for this applet
 #{Set to 0 to use the default applet size}
@@ -131,16 +131,20 @@ startup = false
 #b- Hide the icon?
 free = false
 
-#F[Style;gtk-color-picker]
+#X[Style;gtk-color-picker]
 frame_style =
 
 #S+ Image when the applet is active:
 #{Leave empty to use the default one.}
-icon on = 
+icon on =
 
 #S+ Image when the applet is inactive:
 #{Leave empty to use the default one.}
-icon off = 
+icon off =
+
+#S+ 'Broken' icon image name:
+#{Leave empty to use the default one.}
+icon error =
 
 #X[PulseAudio;gtk-preferences]
 frame_pulse=

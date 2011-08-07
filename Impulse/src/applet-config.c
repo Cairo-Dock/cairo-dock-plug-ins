@@ -38,6 +38,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 
 	myConfig.cIconImpulseON = CD_CONFIG_GET_STRING ("Configuration", "icon on");
 	myConfig.cIconImpulseOFF = CD_CONFIG_GET_STRING ("Configuration", "icon off");
+	myConfig.cIconImpulseERROR = CD_CONFIG_GET_STRING ("Configuration", "icon error");
 CD_APPLET_GET_CONFIG_END
 
 
@@ -46,6 +47,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cIconAnimation);
 	g_free (myConfig.cIconImpulseON);
 	g_free (myConfig.cIconImpulseOFF);
+	g_free (myConfig.cIconImpulseERROR);
 CD_APPLET_RESET_CONFIG_END
 
 

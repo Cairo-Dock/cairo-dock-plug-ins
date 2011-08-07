@@ -35,6 +35,7 @@ struct _AppletConfig {
 	gboolean bFree;
 	gchar *cIconImpulseON;
 	gchar *cIconImpulseOFF;
+	gchar *cIconImpulseERROR;
 	gint iSourceIndex;
 	} ;
 
@@ -58,6 +59,7 @@ struct _AppletData {
 	gboolean bPulseLaunched; // can we stop the pulseaudio client/server?
 	guint iSidAnimate;
 	guint iSidRestartDelayed;
+	guint iSidCheckStatus;
 	gboolean bHasBeenStarted;
 	} ;
 
