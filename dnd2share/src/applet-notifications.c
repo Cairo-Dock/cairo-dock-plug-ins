@@ -297,6 +297,15 @@ static void _send_clipboard (GtkMenuItem *menu_item, gpointer *data)
 	CD_APPLET_LEAVE ();
 }
 
+// checkbox => Use only a file web hosting
+static void _set_use_only_file_type (GtkCheckMenuItem *pMenuItem, gpointer *data)
+{
+	myConfig.bUseOnlyFileType = gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM (pMenuItem));
+	cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
+		G_TYPE_BOOLEAN, "Configuration", "only file type", myConfig.bUseOnlyFileType,
+		G_TYPE_INVALID); // updated the config file => maybe not needed if we want a temporary status
+}
+
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
 CD_APPLET_ON_CLICK_BEGIN
@@ -481,6 +490,12 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	}
 	else
 		gtk_widget_set_sensitive (GTK_WIDGET (mi), FALSE);
-	
+
+	pMenuItem = gtk_check_menu_item_new_with_label (_("Use only a files hosting site"));
+	gtk_menu_shell_append (GTK_MENU_SHELL (CD_APPLET_MY_MENU), pMenuItem);
+	if (myConfig.bUseOnlyFileType)
+		gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (pMenuItem), TRUE);
+	g_signal_connect (G_OBJECT (pMenuItem), "toggled", G_CALLBACK (_set_use_only_file_type), NULL);
+
 	CD_APPLET_ADD_ABOUT_IN_MENU (pModuleSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
