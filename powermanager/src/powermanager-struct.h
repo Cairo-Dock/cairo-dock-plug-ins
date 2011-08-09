@@ -148,6 +148,8 @@ struct _AppletData {
 	gint iStatTimeCount;
 	
 	CairoEmblem *pEmblem;
+
+	gint iSignalID;
 	} ;
 
 

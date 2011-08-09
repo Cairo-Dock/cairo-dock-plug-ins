@@ -102,8 +102,8 @@ CD_APPLET_RESET_DATA_BEGIN
 	cairo_surface_destroy (myData.pSurfaceCharge);
 	
 	g_free (myData.cBatteryStateFilePath);
-	
-	g_free (myData.cTechnology);
+
+	// g_free (myData.cTechnology); // can't be freed
 	g_free (myData.cVendor);
 	g_free (myData.cModel);
 	

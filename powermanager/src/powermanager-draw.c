@@ -196,10 +196,10 @@ void cd_powermanager_bubble (void)
 		{
 			g_string_append_printf (sInfo, "\n%s: %s %s", D_("Model"), myData.cVendor ? myData.cVendor : "", myData.cModel ? myData.cModel : "");
 		}
-		if (0&&myData.cTechnology != NULL)
+		/*if (0&&myData.cTechnology != NULL) // if (0 && (...)) ??? :)
 		{
 			g_string_append_printf (sInfo, "\n%s: %s", D_("Technology"), myData.cTechnology);
-		}
+		}*/
 		if (myData.fMaxAvailableCapacity != 0)
 		{
 			g_string_append_printf (sInfo, "\n%s: %d%%", D_("Maximum capacity"), (int)myData.fMaxAvailableCapacity);
