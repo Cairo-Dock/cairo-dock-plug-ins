@@ -13,9 +13,13 @@ if ("${VALAC_FOUND}" STREQUAL "TRUE")
 	else()
 		set (VALA_DIR ${CMAKE_CURRENT_BINARY_DIR})
 	endif()
+	if (${VALA_MAJOR} LESS 1 AND ${VALA_MINOR} LESS 13)
+		set (DISABLE_DBUS_TRANSFORMATION "--disable-dbus-transformation")
+	endif()
 	# first, precompile the Vala code into C code.
 	execute_process(COMMAND
-		${VALAC_EXE} -q -C --disable-warnings --disable-dbus-transformation
+		${VALAC_EXE} -q -C
+		--disable-warnings ${DISABLE_DBUS_TRANSFORMATION}
 		--pkg gio-2.0
 		--vapi=${VALA_DIR}/src/${CDAPPLET}.vapi
 		--header=${VALA_DIR}/src/${CDAPPLET}.h

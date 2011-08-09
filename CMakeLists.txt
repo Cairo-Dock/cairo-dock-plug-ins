@@ -286,8 +286,9 @@ elseif (NOT "${VALAC_EXE}" STREQUAL "VALAC_EXE-NOTFOUND") # now it works with 0.
 	STRING (REGEX REPLACE "-.*" "" VALA_NANO "${VALA_NANO}")
 	# message (STATUS "VALA_NANO  : ${VALA_NANO}")
 
-	if ((${VALA_MAJOR} GREATER 0 OR ${VALA_MINOR} GREATER 9) AND (${VALA_MAJOR} LESS 1 AND ${VALA_MINOR} LESS 13))  # vala >= 0.10 and <= 0.12
-		message (STATUS " Vala compiler OK (>= 0.10 and <= 0.12).")
+	if (${VALA_MAJOR} GREATER 0 OR ${VALA_MINOR} GREATER 9) # vala >= 0.10 
+		# AND (${VALA_MAJOR} LESS 1 AND ${VALA_MINOR} LESS 13)) # and <= 0.12
+		message (STATUS " Vala compiler OK (>= 0.10).")# and <= 0.12).")
 		set (VALAC_FOUND "TRUE")
 		set (with_valac "yes")
 	else()
