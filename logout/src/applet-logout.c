@@ -172,10 +172,16 @@ static void on_select_action (GtkButton *button, gpointer data)
 	switch (iAction)
 	{
 		case CD_RESTART:
-			_console_kit_action ("Restart");
+			if (myData.bCanRestart)
+				_console_kit_action ("Restart");
+			else if (myConfig.cUserAction)
+				cairo_dock_launch_command (myConfig.cUserAction);
 		break;
 		case CD_STOP:
-			_console_kit_action ("Stop");
+			if (myData.bCanStop)
+				_console_kit_action ("Stop");
+			else if (myConfig.cUserAction2)
+				cairo_dock_launch_command (myConfig.cUserAction2);
 		break;
 		case CD_SUSPEND:
 			_upower_action (TRUE);
@@ -315,11 +321,11 @@ static GtkWidget *_build_menu (void)
 	GtkWidget *pMenuItem;
 	
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Shut down"), MY_APPLET_SHARE_DATA_DIR"/system-shutdown.svg", on_select_action, pMenu, GINT_TO_POINTER (CD_STOP));
-	if (!myData.bCanStop)
+	if (!myData.bCanStop && ! myConfig.cUserAction && ! myConfig.cUserAction2)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Restart"), MY_APPLET_SHARE_DATA_DIR"/system-restart.svg", on_select_action, pMenu, GINT_TO_POINTER (CD_RESTART));
-	if (!myData.bCanRestart)
+	if (!myData.bCanRestart && ! myConfig.cUserAction && ! myConfig.cUserAction2)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Hibernate"), MY_APPLET_SHARE_DATA_DIR"/system-hibernate.svg", on_select_action, pMenu, GINT_TO_POINTER (CD_HIBERNATE));
