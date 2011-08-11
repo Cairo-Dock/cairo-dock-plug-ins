@@ -429,7 +429,7 @@ static void _on_watch_service (DBusGProxy *proxy, DBusGProxyCall *call, gpointer
 	}
 	CD_APPLET_LEAVE ();
 }
-static void _on_ias_owner_changed (gboolean bOwned, gpointer data)
+static void _on_ias_owner_changed (const gchar *cName, gboolean bOwned, gpointer data)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("=== Indicator Applications Service is on the bus (%d)", bOwned);

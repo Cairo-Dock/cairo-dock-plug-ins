@@ -220,7 +220,7 @@ static void _on_register_host (DBusGProxy *proxy, DBusGProxyCall *call_id, Cairo
 	}
 	CD_APPLET_LEAVE ();
 }
-static void _on_watcher_owner_changed (gboolean bOwned, gpointer data)
+static void _on_watcher_owner_changed (const gchar *cName, gboolean bOwned, gpointer data)
 {
 	cd_debug ("=== Watcher is on the bus (%d)", bOwned);
 	CD_APPLET_ENTER;
