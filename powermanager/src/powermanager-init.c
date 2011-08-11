@@ -115,6 +115,13 @@ CD_APPLET_STOP_BEGIN
 		g_object_unref (myData.pUPowerClient);
 	}
 	
+	if (myData.pBatteryDevice != NULL)
+	{
+		if (myData.iSignalID != 0)
+			g_source_remove (myData.iSignalID);
+		g_object_unref (myData.pBatteryDevice);  // remove the ref we took on the device. it may or not destroy the object, that's why we disconnected manually the signal above.
+	}
+	
 	if (myData.checkLoop != 0)
 	{
 		g_source_remove (myData.checkLoop);
@@ -157,8 +164,7 @@ CD_APPLET_RELOAD_BEGIN
 			double fPercent = (double) myData.iPercentage / 100.;
 			CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&fPercent);
 			
-			//Embleme sur notre icône
-			//CD_APPLET_DRAW_EMBLEM ((myData.bOnBattery ? CAIRO_DOCK_EMBLEM_BLANK : CAIRO_DOCK_EMBLEM_CHARGE), CAIRO_DOCK_EMBLEM_MIDDLE);
+			//Embleme sur notre icone
 			if (! myData.bOnBattery)
 				CD_APPLET_DRAW_EMBLEM_ON_MY_ICON (myData.pEmblem);
 		}
@@ -181,7 +187,7 @@ CD_APPLET_RELOAD_BEGIN
 		update_icon();
 
 	}
-	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
+	else  // sinon on signale par l'icone appropriee qu'aucune donnee n'est  accessible.
 		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("sector.svg");
 	
 CD_APPLET_RELOAD_END

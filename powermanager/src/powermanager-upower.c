@@ -67,7 +67,7 @@ static void _cd_upower_connect_async (CDSharedMemory *pSharedMemory)
 	}
 	
 	pSharedMemory->pUPowerClient = pUPowerClient;
-	g_object_ref (pBatteryDevice);  // just to be sure it won't be destroyed before we go back to the main loop (shouldn't happen, since devices don't change over time).
+	g_object_ref (pBatteryDevice);  // since the object does not belong to us, we ref it here, and we'll keep our ref until the end of the applet.
 	pSharedMemory->pBatteryDevice = pBatteryDevice;
 }
 
@@ -125,7 +125,6 @@ static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
 	else  // UPower is available, fetch the values we got from it.
 	{
 		// fetch the values we got on the device, and keep them up-to-date (we don't need the device itself).
-		// a priori, no need to watch the "onBattery" signal on the client, since we can deduce this property from the device state.
 		_fetch_current_values (pSharedMemory->pBatteryDevice);
 		
 		g_object_get (pSharedMemory->pBatteryDevice, "technology", &myData.cTechnology, NULL);
@@ -133,11 +132,14 @@ static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
 		g_object_get (pSharedMemory->pBatteryDevice, "model", &myData.cModel, NULL);
 		g_object_get (pSharedMemory->pBatteryDevice, "capacity", &myData.fMaxAvailableCapacity, NULL);
 		
-		myData.iSignalID = g_signal_connect (pSharedMemory->pBatteryDevice, "changed", G_CALLBACK (_on_device_changed), NULL);  // a battery not present is still a valid device. So if we could find a battery device, it will stay here forever, so we don't need to watch for the destruction/creation of a battery device.
-		
-		// keep our client.
+		// keep our client and device.
 		myData.pUPowerClient = pSharedMemory->pUPowerClient;
 		pSharedMemory->pUPowerClient = NULL;
+		myData.pBatteryDevice = pSharedMemory->pBatteryDevice;
+		pSharedMemory->pBatteryDevice = NULL;  // so we won't unref it in the destroy callback of the task.
+		
+		// watch for any change. A priori, no need to watch the "onBattery" signal on the client, since we can deduce this property from the device state.
+		myData.iSignalID = g_signal_connect (myData.pBatteryDevice, "changed", G_CALLBACK (_on_device_changed), NULL);  // a battery not present is still a valid device. So if we could find a battery device, it will stay here forever, so we don't need to watch for the destruction/creation of a battery device.
 	}
 	
 	// in any case, update the icon to show the current state we are in.
@@ -154,12 +156,7 @@ static void _free_shared_memory (CDSharedMemory *pSharedMemory)
 	if (pSharedMemory->pUPowerClient)
 		g_object_unref (pSharedMemory->pUPowerClient);
 	if (pSharedMemory->pBatteryDevice)
-	{
-		// _on_device_changed can still be called
-		if (g_signal_handler_is_connected (pSharedMemory->pBatteryDevice, myData.iSignalID))
-			g_signal_handler_disconnect (pSharedMemory->pBatteryDevice, myData.iSignalID);
 		g_object_unref (pSharedMemory->pBatteryDevice);  // remove the ref we took on it.
-	}
 	g_free (pSharedMemory);
 }
 

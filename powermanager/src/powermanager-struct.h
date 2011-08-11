@@ -53,6 +53,7 @@ typedef enum {
 	POWER_MANAGER_NB_CHARGE_LEVEL,
 	} MyAppletCharge;
 
+	
 struct _AppletConfig {
 	gchar *defaultTitle;
 	MyAppletQuickInfoType quickInfoType;
@@ -81,15 +82,8 @@ struct _AppletConfig {
 	gchar *cUserChargeIconName;
 	gchar *cEmblemIconName;
 	MyAppletEffect iEffect;
-  } ;
+} ;
 
-
-/**typedef struct {
-	gint iTime;
-	gint iPercentage;
-	gboolean bOnBattery;
-	gboolean bBatteryPresent;
-	} CDBateryState;*/
 
 typedef struct {
 	#ifdef CD_UPOWER_AVAILABLE
@@ -101,13 +95,14 @@ typedef struct {
 	#endif
 	} CDSharedMemory;
 
-#define PM_NB_VALUES 100
 struct _AppletData {
 	CairoDockTask *pTask;
 	#ifdef CD_UPOWER_AVAILABLE
 	UpClient *pUPowerClient;
+	UpDevice *pBatteryDevice;
 	#else
 	gpointer pUPowerClient;  // will stay NULL.
+	gpointer pBatteryDevice;  // will stay NULL.
 	#endif
 	gchar *cBatteryStateFilePath;
 	gboolean bProcAcpiFound;
@@ -132,10 +127,6 @@ struct _AppletData {
 	gboolean bAlerted;
 	gboolean bCritical;
 	gint checkLoop;
-	
-	/**gdouble fRateHistory[PM_NB_VALUES];
-	gint iCurrentIndex;
-	gint iIndexMax;*/
 	
 	gdouble fChargeMeanRate;
 	gint iNbChargeMeasures;
