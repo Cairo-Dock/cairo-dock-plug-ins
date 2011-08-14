@@ -283,7 +283,7 @@ static void _on_detect_watcher (gboolean bPresent, gpointer data)
 	// if present, set up proxy.
 	if (bPresent)
 	{
-		_on_watcher_owner_changed (TRUE, NULL);
+		_on_watcher_owner_changed (CD_STATUS_NOTIFIER_WATCHER_ADDR, TRUE, NULL);
 	}
 	else if (myConfig.bCompactMode)  // in compact mode, draw a 'failed' image to not have an empty icon.
 	{
@@ -321,5 +321,5 @@ void cd_satus_notifier_unregister_from_watcher (void)
 		s_pDetectWatcherCall = NULL;
 	}
 	cairo_dock_stop_watching_dbus_name_owner (CD_STATUS_NOTIFIER_WATCHER_ADDR,
-		(CairoDockOnAppliPresentOnDbus) _on_detect_watcher);
+		(CairoDockDbusNameOwnerChangedFunc) _on_watcher_owner_changed);
 }

@@ -475,7 +475,7 @@ static void _on_detect_ias (gboolean bPresent, gpointer data)
 	// if present, set up proxy, else try to start the service.
 	if (bPresent)
 	{
-		_on_ias_owner_changed (TRUE, NULL);
+		_on_ias_owner_changed (CD_INDICATOR_APPLICATION_ADDR, TRUE, NULL);
 	}
 	else  // not present, maybe the service is not started => try starting it.
 	{
@@ -519,5 +519,5 @@ void cd_satus_notifier_unregister_from_ias (void)
 	}
 	
 	cairo_dock_stop_watching_dbus_name_owner (CD_INDICATOR_APPLICATION_ADDR,
-		(CairoDockOnAppliPresentOnDbus) _on_detect_ias);
+		(CairoDockDbusNameOwnerChangedFunc) _on_ias_owner_changed);
 }
