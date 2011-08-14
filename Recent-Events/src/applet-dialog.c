@@ -81,13 +81,13 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 	gint64 iTimeStamp;
 	const gchar *cEventURI;
 	guint id;
-	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL, *cPath = NULL;
+	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL, *cIconPath, *cPath = NULL;
 	double fOrder;
 	int iVolumeID;
 	gboolean bIsDirectory;
 	GdkPixbuf *pixbuf;
 	GtkTreeIter iter;
-	GHashTable *pHashTable = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, NULL);
+	GHashTable *pHashTable = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, NULL);  // used to prevent doubles
 	
 	//\_____________ parse all the events.
 	while (zeitgeist_result_set_has_next (pEvents))
@@ -121,11 +121,13 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 			else
 			{
 				cairo_dock_fm_get_file_info (cEventURI, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_DATE);
-				g_free (cName);
-				g_free (cURI);
 			}
 			if (cIconName != NULL)
-				pixbuf = gdk_pixbuf_new_from_file_at_size (cIconName, 32, 32, NULL);
+			{
+				cIconPath = cairo_dock_search_icon_s_path (cIconName);
+				pixbuf = gdk_pixbuf_new_from_file_at_size (cIconPath, 32, 32, NULL);
+				g_free (cIconPath);
+			}
 			else
 				pixbuf = NULL;
 			
@@ -166,7 +168,13 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 				CD_MODEL_ICON, pixbuf,
 				CD_MODEL_DATE, iTimeStamp,
 				CD_MODEL_ID, id, -1);
+			
 			g_free (cIconName);
+			cIconName = NULL;
+			g_free (cName);
+			cName = NULL;
+			g_free (cURI);
+			cURI = NULL;
 			if (pixbuf)
 				g_object_unref (pixbuf);
 			g_free (cPath);

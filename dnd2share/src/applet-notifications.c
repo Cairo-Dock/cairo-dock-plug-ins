@@ -403,19 +403,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Send the clipboard's content"), GTK_STOCK_PASTE, _send_clipboard, CD_APPLET_MY_MENU);
 	
-	GtkWidget *pHistoryMenu = gtk_menu_new ();
-	GtkWidget *mi = gtk_image_menu_item_new_with_label (D_("History"));
-	
-	GtkWidget *im = gtk_image_new_from_stock (GTK_STOCK_INDEX, GTK_ICON_SIZE_MENU);
-#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
-	gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (mi), TRUE);
-#endif
-	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), im);
-	
-	gtk_menu_shell_append (GTK_MENU_SHELL (CD_APPLET_MY_MENU), mi); 
-	gtk_menu_item_set_submenu (GTK_MENU_ITEM (mi), pHistoryMenu);
-	
-	//GtkWidget *pHistoryMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("History"), CD_APPLET_MY_MENU, GTK_STOCK_INDEX);
+	GtkWidget *pHistoryMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("History"), CD_APPLET_MY_MENU, GTK_STOCK_INDEX);
 	if (myData.pUpoadedItems != NULL)
 	{
 		CDSiteBackend *pBackend;
@@ -453,7 +441,10 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			}
 			if (cPreview == NULL)
 			{
-				cairo_dock_fm_get_file_info (pItem->cLocalPath, &cName, &cURI, &cPreview, &bIsDirectory, &iVolumeID, &fOrder, 0);
+				gchar *cIconName = NULL;
+				cairo_dock_fm_get_file_info (pItem->cLocalPath, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, 0);
+				cPreview = cairo_dock_search_icon_s_path (cIconName);
+				g_free (cIconName);
 				g_free (cName);
 				cName = NULL;
 				g_free (cURI);
@@ -491,7 +482,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	else
 		gtk_widget_set_sensitive (GTK_WIDGET (mi), FALSE);
 
-	pMenuItem = gtk_check_menu_item_new_with_label (_("Use only a files hosting site"));
+	pMenuItem = gtk_check_menu_item_new_with_label (D_("Use only a files hosting site"));
 	gtk_menu_shell_append (GTK_MENU_SHELL (CD_APPLET_MY_MENU), pMenuItem);
 	if (myConfig.bUseOnlyFileType)
 		gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (pMenuItem), TRUE);

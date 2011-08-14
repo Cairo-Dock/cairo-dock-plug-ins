@@ -101,7 +101,7 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 	gint                i,n;
 	GtkWidget *pMenuItem = NULL, *pSubMenu = NULL;
 	const gchar *cEventURI;
-	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL;
+	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL, *cIconPath;
 	gchar *cCommand;
 	double fOrder;
 	int iVolumeID;
@@ -119,16 +119,21 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 			cd_debug (" + %s", cEventURI);
 			
 			cairo_dock_fm_get_file_info (cEventURI, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, 0);
-			//g_free (cName);
-			//g_free (cURI);
 			
 			gchar *cPath = g_filename_from_uri (cEventURI, NULL, NULL);  // some programs dont support URI, so we feed them with path.
 			cCommand = g_strdup_printf ("%s \"%s\"", pIcon->cCommand, cPath);
 			g_free (cPath);
 			s_pEventList = g_list_prepend (s_pEventList, cCommand);
 			
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (zeitgeist_subject_get_text (subject), cIconName, _open_file, pSubMenu, cCommand);
-			//g_free (cIconName);
+			cIconPath = cairo_dock_search_icon_s_path (cIconName);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (zeitgeist_subject_get_text (subject), cIconPath, _open_file, pSubMenu, cCommand);
+			g_free (cIconPath);
+			g_free (cIconName);
+			cIconName = NULL;
+			g_free (cName);
+			cName = NULL;
+			g_free (cURI);
+			cURI = NULL;
 		}
 	}
 	if (pSubMenu)

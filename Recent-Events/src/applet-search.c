@@ -417,7 +417,6 @@ void cd_delete_recent_events (int iNbDays, CDOnDeleteEventsFunc pCallback, gpoin
 	if (iNbDays > 0)
 	{
 		// find events IDs of less than 'iNbDays' days
-		GArray *event_ids;
 		time_t t = (time_t) time (NULL);
 		gint64 now = t * 1e3;  // msec
 		ZeitgeistTimeRange *time_range = zeitgeist_time_range_new (now - iNbDays*24*3600*1e3, now);

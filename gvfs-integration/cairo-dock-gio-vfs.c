@@ -91,7 +91,14 @@ static gchar *_cd_get_icon_path (GIcon *pIcon, const gchar *cTargetURI)  // cTar
 		for (i = 0; cFileNames[i] != NULL && cIconPath == NULL; i ++)
 		{
 			//g_print (" une icone possible est : %s\n", cFileNames[i]);
-			cIconPath = cairo_dock_search_icon_s_path (cFileNames[i]);
+			
+			gchar *path = cairo_dock_search_icon_s_path (cFileNames[i]);
+			if (path)
+			{
+				g_free (path);
+				cIconPath = g_strdup (cFileNames[i]);
+			}
+			
 			//g_print ("  chemin trouve : %s\n", cIconPath);
 		}
 	}
@@ -319,13 +326,26 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 		cd_message ("cVolumeName : %s", cVolumeName);
 		
 		GMount *pMount = NULL;
-		_cd_find_mount_from_volume_name (cVolumeName, &pMount, cURI, cIconName);
+		gchar *uri=NULL, *iconname=NULL;
+		_cd_find_mount_from_volume_name (cVolumeName, &pMount, &uri, &iconname);
 		g_return_if_fail (pMount != NULL);
 		
-		*cName = g_strdup (cVolumeName);
-		*bIsDirectory = TRUE;
-		*iVolumeID = 1;
-		*fOrder = 0;
+		if (cURI)
+			*cURI = uri;
+		else
+			g_free (uri);
+		if (cIconName)
+			*cIconName = iconname;
+		else
+			g_free (iconname);
+		if (cName)
+			*cName = g_strdup (cVolumeName);
+		if (bIsDirectory)
+			*bIsDirectory = TRUE;
+		if (iVolumeID)
+			*iVolumeID = 1;
+		if (fOrder)
+			*fOrder = 0;
 		//g_object_unref (pMount);
 		
 		g_free (cValidUri);
@@ -367,7 +387,6 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 		G_FILE_QUERY_INFO_NONE,  /// G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS
 		NULL,
 		&erreur);
-	//g_object_unref (pFile);
 	if (erreur != NULL)  // peut arriver si l'emplacement n'est pas monte.
 	{
 		cd_debug ("gvfs-integration : %s", erreur->message);  // inutile d'en faire un warning.
@@ -380,135 +399,155 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 	const gchar *cFileName = g_file_info_get_name (pFileInfo);
 	const gchar *cMimeType = g_file_info_get_content_type (pFileInfo);
 	GFileType iFileType = g_file_info_get_file_type (pFileInfo);
-	
-	if (iSortType == CAIRO_DOCK_FM_SORT_BY_DATE)
-	{
-		GTimeVal t;
-		g_file_info_get_modification_time (pFileInfo, &t);
-		*fOrder = t.tv_sec;
-	}
-	else if (iSortType == CAIRO_DOCK_FM_SORT_BY_ACCESS)
-		*fOrder =  g_file_info_get_attribute_uint64 (pFileInfo, G_FILE_ATTRIBUTE_TIME_ACCESS);
-	else if (iSortType == CAIRO_DOCK_FM_SORT_BY_SIZE)
-		*fOrder = g_file_info_get_size (pFileInfo);
-	else if (iSortType == CAIRO_DOCK_FM_SORT_BY_TYPE)
-		*fOrder = (cMimeType != NULL ? *((int *) cMimeType) : 0);
-	else
-		*fOrder = 0;
-	
-	*bIsDirectory = (iFileType == G_FILE_TYPE_DIRECTORY);
-	cd_message (" => '%s' (mime:%s ; bIsDirectory:%d)", cFileName, cMimeType, *bIsDirectory);
-	
 	const gchar *cTargetURI = g_file_info_get_attribute_string (pFileInfo, G_FILE_ATTRIBUTE_STANDARD_TARGET_URI);
 	
-	// if it's a mount point, find a readable name.
+	// find the order of the file
+	if (fOrder)
+	{
+		if (iSortType == CAIRO_DOCK_FM_SORT_BY_DATE)
+		{
+			GTimeVal t;
+			g_file_info_get_modification_time (pFileInfo, &t);
+			*fOrder = t.tv_sec;
+		}
+		else if (iSortType == CAIRO_DOCK_FM_SORT_BY_ACCESS)
+			*fOrder =  g_file_info_get_attribute_uint64 (pFileInfo, G_FILE_ATTRIBUTE_TIME_ACCESS);
+		else if (iSortType == CAIRO_DOCK_FM_SORT_BY_SIZE)
+			*fOrder = g_file_info_get_size (pFileInfo);
+		else if (iSortType == CAIRO_DOCK_FM_SORT_BY_TYPE)
+			*fOrder = (cMimeType != NULL ? *((int *) cMimeType) : 0);
+		else
+			*fOrder = 0;
+	}
+	
+	if (bIsDirectory)
+		*bIsDirectory = (iFileType == G_FILE_TYPE_DIRECTORY);
+	
+	
+	// find a readable name if it's a mount point.
 	if (iFileType == G_FILE_TYPE_MOUNTABLE)
 	{
-		*cName = NULL;
-		*iVolumeID = 1;
+		if (iVolumeID)
+			*iVolumeID = 1;
 		
-		cd_message ("  cTargetURI:%s", cTargetURI);
-		GMount *pMount = NULL;
-		if (cTargetURI != NULL)
+		if (cName)
 		{
-			GFile *file = g_file_new_for_uri (cTargetURI);
-			pMount = g_file_find_enclosing_mount (file, NULL, NULL);
-			//g_object_unref (file);
-		}
-		if (pMount != NULL)
-		{
-			*cName = g_mount_get_name (pMount);
-			cd_message ("un GMount existe (%s)",* cName);
-		}
-		else
-		{
-			gchar *cMountName = g_strdup (cFileName);
-			gchar *str = strrchr (cMountName, '.');  // on vire l'extension ".volume" ou ".drive".
-			if (str != NULL)
+			*cName = NULL;
+			
+			cd_message ("  cTargetURI:%s", cTargetURI);
+			GMount *pMount = NULL;
+			if (cTargetURI != NULL)
 			{
-				*str = '\0';
-				if (strcmp (str+1, "link") == 0)  // pour les liens, on prend le nom du lien.
-				{
-					if (strcmp (cMountName, "root") == 0)  // on remplace 'root' par un nom plus parlant, sinon on prendra le nom du lien.
-					{
-						*cName = g_strdup ("/");
-					}
-				}
-				else if (strcmp (str+1, "drive") == 0)  // on cherche un nom plus parlant si possible.
-				{
-					gchar *cVolumeName = _cd_find_volume_name_from_drive_name (cMountName);
-					if (cVolumeName != NULL)
-					{
-						*cName = cVolumeName;
-					}
-				}
+				GFile *file = g_file_new_for_uri (cTargetURI);
+				pMount = g_file_find_enclosing_mount (file, NULL, NULL);
+				//g_object_unref (file);
 			}
-			if (*cName == NULL)
-				*cName = cMountName;
-			//else
-				//g_free (cMountName);
+			if (pMount != NULL)
+			{
+				*cName = g_mount_get_name (pMount);
+				cd_message ("un GMount existe (%s)",* cName);
+			}
+			else
+			{
+				gchar *cMountName = g_strdup (cFileName);
+				gchar *str = strrchr (cMountName, '.');  // on vire l'extension ".volume" ou ".drive".
+				if (str != NULL)
+				{
+					*str = '\0';
+					if (strcmp (str+1, "link") == 0)  // pour les liens, on prend le nom du lien.
+					{
+						if (strcmp (cMountName, "root") == 0)  // on remplace 'root' par un nom plus parlant, sinon on prendra le nom du lien.
+						{
+							*cName = g_strdup ("/");
+						}
+					}
+					else if (strcmp (str+1, "drive") == 0)  // on cherche un nom plus parlant si possible.
+					{
+						gchar *cVolumeName = _cd_find_volume_name_from_drive_name (cMountName);
+						if (cVolumeName != NULL)
+						{
+							*cName = cVolumeName;
+						}
+					}
+				}
+				if (*cName == NULL)
+					*cName = cMountName;
+				//else
+					//g_free (cMountName);
+			}
+			if (*cName ==  NULL)
+				*cName = g_strdup (cFileName);
 		}
-		if (*cName ==  NULL)
+	}
+	else  // for an normal file, just re-use the filename
+	{
+		if (iVolumeID)
+			*iVolumeID = 0;
+		if (cName)
 			*cName = g_strdup (cFileName);
 	}
-	else
-	{
-		*iVolumeID = 0;
-		*cName = g_strdup (cFileName);
-	}
 	
-	if (cTargetURI)
+	// find the target URI if it's a mount point
+	if (cURI)
 	{
-		*cURI = g_strdup (cTargetURI);
-		g_free (cValidUri);
-		cValidUri = NULL;
+		if (cTargetURI)
+		{
+			*cURI = g_strdup (cTargetURI);
+			g_free (cValidUri);
+			cValidUri = NULL;
+		}
+		else
+			*cURI = cValidUri;
 	}
-	else
-		*cURI = cValidUri;
 	
 	// find an icon.
-	*cIconName = NULL;
-	*cIconName = g_strdup (g_file_info_get_attribute_byte_string (pFileInfo, G_FILE_ATTRIBUTE_THUMBNAIL_PATH));
-	#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
-	/**if (*cIconName == NULL)
+	if (cIconName)
 	{
-		GIcon *pPreviewIcon = (GIcon *)g_file_info_get_attribute_object (pFileInfo, G_FILE_ATTRIBUTE_PREVIEW_ICON);
-		if (pPreviewIcon != NULL)
+		*cIconName = NULL;
+		// first use an available thumbnail.
+		*cIconName = g_strdup (g_file_info_get_attribute_byte_string (pFileInfo, G_FILE_ATTRIBUTE_THUMBNAIL_PATH));
+		#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
+		/**if (*cIconName == NULL)
 		{
-			*cIconName = _cd_get_icon_path (pPreviewIcon, NULL);
-			//g_print ("got preview icon '%s'\n", *cIconName);
-		}
-	}*/
-	#endif
-	if (*cIconName == NULL && cMimeType != NULL && strncmp (cMimeType, "image", 5) == 0)
-	{
-		gchar *cHostname = NULL;
-		GError *erreur = NULL;
-		gchar *cFilePath = g_filename_from_uri (cBaseURI, &cHostname, &erreur);
-		if (erreur != NULL)
+			GIcon *pPreviewIcon = (GIcon *)g_file_info_get_attribute_object (pFileInfo, G_FILE_ATTRIBUTE_PREVIEW_ICON);
+			if (pPreviewIcon != NULL)
+			{
+				*cIconName = _cd_get_icon_path (pPreviewIcon, NULL);
+				//g_print ("got preview icon '%s'\n", *cIconName);
+			}
+		}*/
+		#endif
+		// if no thumbnail available and the file is an image, use it directly.
+		if (*cIconName == NULL && cMimeType != NULL && strncmp (cMimeType, "image", 5) == 0)
 		{
-			g_error_free (erreur);
+			gchar *cHostname = NULL;
+			GError *erreur = NULL;
+			gchar *cFilePath = g_filename_from_uri (cBaseURI, &cHostname, &erreur);
+			if (erreur != NULL)
+			{
+				g_error_free (erreur);
+			}
+			else if (cHostname == NULL || strcmp (cHostname, "localhost") == 0)  // on ne recupere la vignette que sur les fichiers locaux.
+			{
+				*cIconName = g_strdup (cFilePath);
+				cairo_dock_remove_html_spaces (*cIconName);
+			}
+			g_free (cHostname);
 		}
-		else if (cHostname == NULL || strcmp (cHostname, "localhost") == 0)  // on ne recupere la vignette que sur les fichiers locaux.
+		// else, get the icon for the mime-types.
+		if (*cIconName == NULL)
 		{
-			*cIconName = g_strdup (cFilePath);
-			cairo_dock_remove_html_spaces (*cIconName);
+			GIcon *pSystemIcon = g_file_info_get_icon (pFileInfo);
+			if (pSystemIcon != NULL)
+			{
+				*cIconName = _cd_get_icon_path (pSystemIcon, cTargetURI ? cTargetURI : *cURI);
+			}
 		}
-		//g_free (cHostname);
+		cd_message ("cIconName : %s", *cIconName);
 	}
-	if (*cIconName == NULL)
-	{
-		GIcon *pSystemIcon = g_file_info_get_icon (pFileInfo);
-		if (pSystemIcon != NULL)
-		{
-			*cIconName = _cd_get_icon_path (pSystemIcon, cTargetURI ? cTargetURI : *cURI);
-		}
-	}
-	cd_message ("cIconName : %s", *cIconName);
 	
-	//*iVolumeID = g_file_info_get_attribute_uint32 (pFileInfo, G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE);
-	//cd_message ("ID : %d\n", *iVolumeID);
 	g_object_unref (pFileInfo);
+	g_object_unref (pFile);
 }
 
 static Icon *_cd_get_icon_for_volume (GVolume *pVolume, GMount *pMount)
