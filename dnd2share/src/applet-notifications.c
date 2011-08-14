@@ -403,7 +403,18 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Send the clipboard's content"), GTK_STOCK_PASTE, _send_clipboard, CD_APPLET_MY_MENU);
 	
-	GtkWidget *pHistoryMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("History"), CD_APPLET_MY_MENU, GTK_STOCK_INDEX);
+	GtkWidget *pHistoryMenu = gtk_menu_new ();  // we don't use CD_APPLET_ADD_SUB_MENU_WITH_IMAGE, because we want to be able to set the menu-item unsensitive.
+	GtkWidget *mi = gtk_image_menu_item_new_with_label (D_("History"));
+
+	GtkWidget *im = gtk_image_new_from_stock (GTK_STOCK_INDEX, GTK_ICON_SIZE_MENU);
+	#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
+	gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (mi), TRUE);
+	#endif
+	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), im);
+
+	gtk_menu_shell_append (GTK_MENU_SHELL (CD_APPLET_MY_MENU), mi); 
+	gtk_menu_item_set_submenu (GTK_MENU_ITEM (mi), pHistoryMenu);
+	
 	if (myData.pUpoadedItems != NULL)
 	{
 		CDSiteBackend *pBackend;
