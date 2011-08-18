@@ -428,11 +428,19 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 CD_APPLET_ON_BUILD_MENU_END
 
 
-static void _on_answer_import (int iClickedButton, GtkWidget *pInteractiveWidget, const gchar *cReceivedData, CairoDialog *pDialog)
+typedef struct {
+	gchar *cReceivedData;
+	double fOrder;
+} CDDropData;
+
+static void _on_answer_import (int iClickedButton, GtkWidget *pInteractiveWidget, CDDropData *data, CairoDialog *pDialog)
 {
 	cd_debug ("%s (%d)", __func__, iClickedButton);
+	const gchar *cReceivedData = data->cReceivedData;
+	double fOrder = data->fOrder;
 	gboolean bImportFiles = (iClickedButton == 0 || iClickedButton == -1);  // ok or Enter.
 	
+	// add a new conf file for the "Folders" module, with proper values.
 	CairoDockModule *pModule = cairo_dock_find_module_from_name ("Folders");
 	g_return_if_fail (pModule != NULL);
 
@@ -440,29 +448,37 @@ static void _on_answer_import (int iClickedButton, GtkWidget *pInteractiveWidget
 	cairo_dock_update_conf_file (cConfFilePath,
 		G_TYPE_STRING, "Configuration", "dir path", cReceivedData,
 		G_TYPE_BOOLEAN, "Configuration", "show files", bImportFiles,
+		G_TYPE_DOUBLE, "Icon", "order", fOrder,
 		G_TYPE_INVALID);
-
+	
+	// instanciate the module from this conf file.
 	CairoDockModuleInstance *pNewInstance = cairo_dock_instanciate_module (pModule, cConfFilePath);  // prend le 'cConfFilePath'.
 	if (pNewInstance != NULL && pNewInstance->pDock)
 	{
 		cairo_dock_update_dock_size (pNewInstance->pDock);
 	}
-
+	
+	// show a success message on the new icon.
 	if (pNewInstance != NULL)
 		cairo_dock_show_temporary_dialog_with_icon (D_("The folder has been imported."),
 			pNewInstance->pIcon, pNewInstance->pContainer,
 			5000,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);  // not "same icon" because the icon may not be loaded yet (eg. stack or emblem icon).
-
+	
+	// if the module has just been activated for the first time, write it down so that it is loaded on the next startup.
 	if (pModule->pInstancesList && pModule->pInstancesList->next == NULL)  // module nouvellement active.
 	{
 		cairo_dock_write_active_modules ();
 	}
 }
+static void _free_dialog_data (CDDropData *data)
+{
+	g_free (data->cReceivedData);
+	g_free (data);
+}
 gboolean cd_folders_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *icon, double fOrder, CairoContainer *pContainer)
 {
 	//g_print ("Folders received '%s'\n", cReceivedData);
-	
 	if (icon != NULL || fOrder == CAIRO_DOCK_LAST_ORDER)  // drop on an icon or outside of icons.
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
@@ -474,22 +490,42 @@ gboolean cd_folders_on_drop_data (gpointer data, const gchar *cReceivedData, Ico
 	
 	if (g_file_test (cPath, G_FILE_TEST_IS_DIR))  // it's a folder, let's add a new instance of the applet that will handle it.
 	{
-		//g_print (" ajout d'un repertoire...\n");
-		if (icon == NULL)
+		// search the closest icon to the drop point (we want to place the dialog on it).
+		GList *pIconsList = NULL, *ic;
+		if (CAIRO_DOCK_IS_DOCK (pContainer))
+			pIconsList = CAIRO_DOCK (pContainer)->icons;
+		else if (CAIRO_DOCK_IS_DESKLET (pContainer))
+			pIconsList = CAIRO_DESKLET (pContainer)->icons;
+		Icon *pIcon = NULL;
+		for (ic = pIconsList; ic != NULL; ic = ic->next)
+		{
+			icon = ic->data;
+			if (icon->fOrder > fOrder)
+			{
+				pIcon = icon;
+				break;
+			}
+		}
+		if (pIcon == NULL)
 		{
 			if (CAIRO_DOCK_IS_DOCK (pContainer))
-				icon = cairo_dock_get_dialogless_icon_full (CAIRO_DOCK (pContainer));
+				pIcon = cairo_dock_get_dialogless_icon_full (CAIRO_DOCK (pContainer));
 			else
-				icon = cairo_dock_get_dialogless_icon ();
+				pIcon = cairo_dock_get_dialogless_icon ();
 		}
+		
+		// ask the user whether (s)he wants to import the folder's content.
+		CDDropData *data = g_new0 (CDDropData, 1);
+		data->cReceivedData = g_strdup (cReceivedData);
+		data->fOrder = fOrder;
 		cairo_dock_show_dialog_full (D_("Do you want to import the content of the folder too?"),
-			icon, pContainer,
+			pIcon, pContainer,
 			0,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
 			NULL,
 			(CairoDockActionOnAnswerFunc) _on_answer_import,
-			g_strdup (cReceivedData),
-			(GFreeFunc)g_free);
+			data,
+			(GFreeFunc)_free_dialog_data);
 		
 		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 	}
