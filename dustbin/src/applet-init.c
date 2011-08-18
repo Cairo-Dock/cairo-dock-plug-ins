@@ -37,6 +37,7 @@ CD_APPLET_DEFINITION (N_("dustbin"),
 
 static void _get_theme (void)
 {
+	// get the user images first, as they overwrite the theme.
 	if (myConfig.cEmptyUserImage != NULL)
 	{
 		gchar *cPath = cairo_dock_search_icon_s_path (myConfig.cEmptyUserImage);
@@ -57,6 +58,7 @@ static void _get_theme (void)
 		}
                 g_free (cPath);
 	}
+	// if a theme is defined, and user images are not defined, use the theme.
 	if (myConfig.cThemePath != NULL)
 	{
 		if (myConfig.cEmptyUserImage == NULL)
@@ -66,11 +68,11 @@ static void _get_theme (void)
 			{
 				g_free (myConfig.cEmptyUserImage);
 				myConfig.cEmptyUserImage = g_strdup_printf ("%s/%s", myConfig.cThemePath, "trashcan_empty.png");
-				if (! g_file_test (myConfig.cEmptyUserImage, G_FILE_TEST_EXISTS))
+				if (! g_file_test (myConfig.cEmptyUserImage, G_FILE_TEST_EXISTS))  // no svg nor png, use the default theme.
 				{
 					g_free (myConfig.cEmptyUserImage);
-					myConfig.cEmptyUserImage = NULL;
-					cd_warning ("dustbin : couldn't find an image for empty dustbin, check the existence of the files in %s", myConfig.cThemePath);
+					myConfig.cEmptyUserImage = g_strdup (MY_APPLET_SHARE_DATA_DIR"/themes/default/trashcan_empty.svg");
+					cd_warning ("using the default theme for Dustbin, as neither the user image (%s) nor the theme (%s) are valid", myConfig.cEmptyUserImage, myConfig.cThemePath);
 				}
 			}
 		}
@@ -84,8 +86,8 @@ static void _get_theme (void)
 				if (! g_file_test (myConfig.cFullUserImage, G_FILE_TEST_EXISTS))
 				{
 					g_free (myConfig.cFullUserImage);
-					myConfig.cFullUserImage = NULL;
-					cd_warning ("dustbin : couldn't find an image for full dustbin, check the existence of the files in %s", myConfig.cThemePath);
+					myConfig.cFullUserImage = g_strdup (MY_APPLET_SHARE_DATA_DIR"/themes/default/trashcan_full.svg");
+					cd_warning ("using the default theme for Dustbin, as neither the user image (%s) nor the theme (%s) are valid", myConfig.cFullUserImage, myConfig.cThemePath);
 				}
 			}
 		}
