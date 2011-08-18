@@ -81,24 +81,31 @@ static inline void _set_icon_label (CairoDockModuleInstance *myApplet)
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
 	
-	//\_______________ On definit le dessin de l'icone principale.
-	_set_icon_label (myApplet);
-	
-	myIcon->iSubdockViewType = myConfig.iSubdockViewType;
-	if (myDock && myConfig.iSubdockViewType == 0)
-		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
-		///CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cImageFile, MY_APPLET_ICON_FILE);
-	
 	//\_______________ On lance la tache recuperation des fichiers.
 	_set_comparaison_func (myApplet);
 	if (myConfig.bShowFiles)
 	{
 		cd_folders_start (myApplet);
 	}
-	else if (myDesklet)  // comme on ne charge pas les icones, on met un renderer "simple" sur notre desklet.
+	
+	//\_______________ set the icon rendering
+	if (myDock)  // dock mode: set the image or the sub-dock renderer
 	{
-		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+		cairo_dock_set_subdock_content_renderer (myIcon, myConfig.iSubdockViewType);
+		if (myConfig.iSubdockViewType == 0)
+			CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cImageFile);
 	}
+	else  // desklet mode: set the image if we don't show the files.
+	{
+		if (! myConfig.bShowFiles)
+		{
+			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+			CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cImageFile);
+		}
+	}
+	
+	//\_______________ set the label
+	_set_icon_label (myApplet);
 	
 	//\_______________ On enregistre nos notifications.
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
@@ -126,28 +133,35 @@ CD_APPLET_RELOAD_BEGIN
 		//\_______________ On detruit les icones des fichiers.
 		cd_folders_free_all_data (myApplet);
 		
-		//\_______________ On met a jour l'icone principale.
-		_set_icon_label (myApplet);
-		
-		myIcon->iSubdockViewType = myConfig.iSubdockViewType;
-		if (myDock && myConfig.iSubdockViewType == 0)
-			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
-			///CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cImageFile, MY_APPLET_ICON_FILE);
-		
 		//\_______________ On charge les icones dans un sous-dock.
 		_set_comparaison_func (myApplet);
 		if (myConfig.bShowFiles)
 		{
 			cd_folders_start (myApplet);
 		}
-		else if (myDock && myIcon->pSubDock)  // on veut un comportement de type lanceur, donc on ne veut pas d'un sous-dock vide.
+		else if (myDock && myIcon->pSubDock)  // dans ce cas on veut un comportement de type lanceur, donc on ne veut pas d'un sous-dock vide.
 		{
 			cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->cName);
 			myIcon->pSubDock = NULL;
 		}
-		else if (myDesklet)
+		
+		//\_______________ set the icon rendering
+		if (myDock)  // dock mode: set the image or the sub-dock renderer
 		{
-			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+			cairo_dock_set_subdock_content_renderer (myIcon, myConfig.iSubdockViewType);
+			if (myConfig.iSubdockViewType == 0)
+				CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cImageFile);
 		}
+		else  // desklet mode: set the image if we don't show the files.
+		{
+			if (! myConfig.bShowFiles)
+			{
+				CD_APPLET_SET_DESKLET_RENDERER ("Simple");
+				CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cImageFile);
+			}
+		}
+		
+		//\_______________ set the label
+		_set_icon_label (myApplet);
 	}
 CD_APPLET_RELOAD_END
