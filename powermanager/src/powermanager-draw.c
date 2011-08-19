@@ -36,7 +36,7 @@ void update_icon (void)
 	
 	if (myData.cBatteryStateFilePath == NULL && myData.pUPowerClient == NULL)
 	{
-		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON ("sector.svg");
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/sector.svg");
 		CD_APPLET_REDRAW_MY_ICON;
 		return;
 	}

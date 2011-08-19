@@ -61,7 +61,7 @@ static void _load_html_icon (Icon *pIcon)
 				
 				CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 				
-				CairoEmblem *pEmblem = cairo_dock_make_emblem (pIcon->cWorkingDirectory, pIcon, pContainer);
+				CairoEmblem *pEmblem = cairo_dock_make_emblem (pIcon->cWorkingDirectory, pIcon);
 				cairo_dock_set_emblem_position (pEmblem, CAIRO_DOCK_EMBLEM_LOWER_RIGHT);
 				cairo_dock_draw_emblem_on_icon (pEmblem, pIcon, pContainer);
 				cairo_dock_free_emblem (pEmblem);

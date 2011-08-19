@@ -82,7 +82,7 @@ void cd_tomboy_draw_content_on_icon (cairo_t *pIconContext, Icon *pIcon)
 	if (pIcon->cClass == NULL || *pIcon->cClass == '\0')  // note vide => rien a afficher.
 		return ;
 	int w, h;
-	cairo_dock_get_icon_extent (pIcon, CD_APPLET_MY_ICONS_LIST_CONTAINER, &w, &h);
+	cairo_dock_get_icon_extent (pIcon, &w, &h);
 	const int iNeedleOffset = 42./200*h;  // on laisse de la place pour l'aiguille de la punaise.
 	gchar **cLines = g_strsplit (pIcon->cClass, "\n", -1);
 	

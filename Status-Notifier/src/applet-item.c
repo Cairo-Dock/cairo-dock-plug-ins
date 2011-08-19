@@ -269,7 +269,7 @@ static void on_new_item_overlay_icon (DBusGProxy *proxy_item, CDStatusNotifierIt
 		
 		if (pItem->cOverlayIconName != NULL)
 		{
-			CairoEmblem *pEmblem = cairo_dock_make_emblem (pItem->cOverlayIconName, pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
+			CairoEmblem *pEmblem = cairo_dock_make_emblem (pItem->cOverlayIconName, pIcon);
 			cairo_dock_set_emblem_position (pEmblem, CAIRO_DOCK_EMBLEM_MIDDLE);
 			cairo_dock_draw_emblem_on_icon (pEmblem, pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
 			cairo_dock_free_emblem (pEmblem);

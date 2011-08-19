@@ -68,7 +68,6 @@ struct _AppletData {
 	guint iSidCheckVolume;
 	CairoDialog *pDialog;
 	cairo_surface_t *pSurface;
-	//cairo_surface_t *pBrokenSurface;
 	cairo_surface_t *pMuteSurface;
 	int iCurrentVolume;  // volume courant en %.
 	gboolean bIsMute;

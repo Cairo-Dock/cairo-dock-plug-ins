@@ -89,7 +89,7 @@ static void _penguin_draw_texture (CairoDockModuleInstance *myApplet, PenguinAni
 {
 	g_return_if_fail (pAnimation->iTexture != 0);
 	int iIconWidth, iIconHeight;
-	cairo_dock_get_icon_extent (myIcon, myContainer, &iIconWidth, &iIconHeight);
+	CD_APPLET_GET_MY_ICON_EXTENT (&iIconWidth, &iIconHeight);
 	
 	_cairo_dock_enable_texture ();
 	_cairo_dock_set_blend_alpha ();
@@ -198,7 +198,7 @@ void penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN ();
 		
 		int iIconWidth, iIconHeight;
-		cairo_dock_get_icon_extent (myIcon, myContainer, &iIconWidth, &iIconHeight);
+		CD_APPLET_GET_MY_ICON_EXTENT (&iIconWidth, &iIconHeight);
 		
 		g_return_if_fail (pAnimation->iTexture != 0);
 		double f = (1 + myIconsParam.fAmplitude) / fScale;

@@ -26,6 +26,8 @@
 #include "applet-mixer.h"
 #include "applet-draw.h"
 
+static void _load_mute_surface (void);
+
 
 int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 {
@@ -62,7 +64,18 @@ int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 		break;
 	}
 	
-	cairo_surface_t *pSurface = (myData.bIsMute ? myData.pMuteSurface : myData.pSurface);
+	
+	cairo_surface_t *pSurface;
+	if (myData.bIsMute)
+	{
+		if (myData.pMuteSurface == NULL)
+			_load_mute_surface ();
+		pSurface = myData.pMuteSurface;
+	}
+	else
+	{
+		pSurface = myData.pSurface;
+	}
 	
 	switch (myConfig.iVolumeEffect)
 	{
@@ -99,7 +112,6 @@ int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 	}
 	
 	CD_APPLET_LEAVE(0);
-	//return 0;
 }
 
 
@@ -118,4 +130,57 @@ void mixer_apply_transparency_effect (cairo_surface_t *pSurface)
 void mixer_draw_bar (cairo_surface_t *pSurface)
 {
 	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR (pSurface, myData.iCurrentVolume * .01);
+}
+
+
+void mixer_load_surfaces (void)
+{
+	if (myData.pSurface != NULL)
+	{
+		cairo_surface_destroy (myData.pSurface);
+		myData.pSurface = NULL;
+	}
+	
+	if (myConfig.cDefaultIcon != NULL)
+	{
+		gchar *cImagePath = cairo_dock_search_icon_s_path (myConfig.cDefaultIcon);
+		if (cImagePath == NULL)
+			cImagePath = cairo_dock_search_image_s_path (myConfig.cDefaultIcon);
+		if (cImagePath != NULL)
+		{
+			myData.pSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
+			g_free (cImagePath);
+		}
+	}
+	
+	if (myData.pSurface == NULL)
+	{
+		myData.pSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (MY_APPLET_SHARE_DATA_DIR"/default.svg");
+	}
+	
+	if (myData.pMuteSurface != NULL)
+	{
+		cairo_surface_destroy (myData.pMuteSurface);
+		myData.pMuteSurface = NULL;
+	}  // don't load the mute surface now, as we often won't even need it in the session. we'll load it on demand.
+}
+
+static void _load_mute_surface (void)
+{
+	if (myConfig.cMuteIcon != NULL)
+	{
+		gchar *cImagePath = cairo_dock_search_icon_s_path (myConfig.cMuteIcon);
+		if (cImagePath == NULL)
+			cImagePath = cairo_dock_search_image_s_path (myConfig.cMuteIcon);
+		if (cImagePath != NULL)
+		{
+			myData.pMuteSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
+			g_free (cImagePath);
+		}
+	}
+	
+	if (myData.pMuteSurface == NULL)
+	{
+		myData.pMuteSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (MY_APPLET_SHARE_DATA_DIR"/mute.svg");
+	}
 }

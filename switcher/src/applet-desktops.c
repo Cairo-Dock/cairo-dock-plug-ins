@@ -45,7 +45,7 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 	//g_print ("%s (%d)\n", __func__, iNbViewports);
 	
 	int w, h;
-	cairo_dock_get_icon_extent (myIcon, myContainer, &w, &h);
+	CD_APPLET_GET_MY_ICON_EXTENT (&w, &h);
 	if (w == 0 || h == 0)  // may happen in desklet mode on startup, until the desklet's window reaches its definite size.
 		return;
 	//cd_debug ("%d; %dx%d", iNbViewports, w, h);

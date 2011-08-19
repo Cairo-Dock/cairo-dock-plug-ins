@@ -45,42 +45,6 @@ CD_APPLET_DEFINE_BEGIN ("AlsaMixer",
 CD_APPLET_DEFINE_END
 
 
-static void _load_surfaces (void)
-{
-	GString *sImagePath = g_string_new ("");
-	
-	if (myData.pSurface != NULL)
-		cairo_surface_destroy (myData.pSurface);
-	if (myConfig.cDefaultIcon != NULL)
-	{
-		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cDefaultIcon);
-		myData.pSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
-		g_free (cUserImagePath);
-	}
-	else
-	{
-		g_string_printf (sImagePath, "%s/default.svg", MY_APPLET_SHARE_DATA_DIR);
-		myData.pSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	}
-	
-	if (myData.pMuteSurface != NULL)
-		cairo_surface_destroy (myData.pMuteSurface);
-	if (myConfig.cMuteIcon != NULL)
-	{
-		gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.cMuteIcon);
-		myData.pMuteSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
-		g_free (cUserImagePath);
-	}
-	else
-	{
-		g_string_printf (sImagePath, "%s/mute.svg", MY_APPLET_SHARE_DATA_DIR);
-		myData.pMuteSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (sImagePath->str);
-	}
-	
-	g_string_free (sImagePath, TRUE);
-}
-
-
 static gboolean _cd_mixer_on_enter (GtkWidget* pWidget,
 	GdkEventCrossing* pEvent,
 	gpointer data)
@@ -121,7 +85,7 @@ CD_APPLET_INIT_BEGIN
 		}
 	}
 	
-	_load_surfaces ();
+	mixer_load_surfaces ();
 	
 	mixer_init (myConfig.card_id);
 	
@@ -186,7 +150,7 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-	_load_surfaces ();
+	mixer_load_surfaces ();
 	
 	//\_______________ On recharge le mixer si necessaire.
 	if (CD_APPLET_MY_CONFIG_CHANGED)

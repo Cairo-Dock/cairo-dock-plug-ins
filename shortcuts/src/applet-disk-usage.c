@@ -105,7 +105,7 @@ static gboolean _cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myAppl
 				if (myConfig.bDrawBar && pIcon->pIconBuffer != NULL)
 				{
 					int iWidth, iHeight;
-					cairo_dock_get_icon_extent (pIcon, pContainer, &iWidth, &iHeight);
+					cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
 					cairo_surface_t *pSurface = cairo_dock_create_surface_for_icon (pIcon->cFileName, iWidth, iHeight);
 					cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
 					

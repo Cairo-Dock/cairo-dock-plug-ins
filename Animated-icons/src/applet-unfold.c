@@ -29,7 +29,7 @@ void cd_animations_draw_unfolding_icon_cairo (Icon *pIcon, CairoDock *pDock, CDA
 {
 	g_return_if_fail (pIcon->pSubDock != NULL && pIcon->pIconBuffer != NULL);
 	int w, h;
-	cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pDock), &w, &h);
+	cairo_dock_get_icon_extent (pIcon, &w, &h);
 	double f = 1. - pIcon->pSubDock->fFoldingFactor;
 	double fMaxScale = cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock));
 	double z = pIcon->fScale / fMaxScale * pDock->container.fRatio;
@@ -149,7 +149,7 @@ void cd_animations_draw_unfolding_icon (Icon *pIcon, CairoDock *pDock, CDAnimati
 {
 	g_return_if_fail (pIcon->pSubDock != NULL);
 	int w, h;
-	cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pDock), &w, &h);
+	cairo_dock_get_icon_extent (pIcon, &w, &h);
 	double f = 1. - pIcon->pSubDock->fFoldingFactor;
 	double fMaxScale = cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock));
 	double z = pIcon->fScale / fMaxScale * pDock->container.fRatio;

@@ -416,7 +416,7 @@ void cd_dnd2share_clear_working_directory (void)
 	
 	if (myConfig.bDisplayLastImage)
 	{
-		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 	}
 }
 

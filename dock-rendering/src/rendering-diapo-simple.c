@@ -81,10 +81,6 @@ static inline void _get_gridXY_from_index (guint nRowsX, guint index, guint* gri
 	*gridX = index % nRowsX;
 	*gridY = index / nRowsX;
 }
-static inline guint _get_index_from_gridXY (guint nRowsX, guint gridX, guint gridY)
-{
-	return gridX + gridY * nRowsX;
-}
 
 static guint _cd_rendering_diapo_simple_guess_grid (GList *pIconList, guint *nRowX, guint *nRowY)
 {

@@ -168,7 +168,12 @@ void cd_indicator_set_icon (CDAppletIndicator *pIndicator, const gchar *cStatusI
 	}
 	
 	cd_debug ("set %s", cIconPathFallback ? cIconPathFallback : cIconName);
-	CD_APPLET_SET_IMAGE_ON_MY_ICON (cIconPathFallback ? cIconPathFallback : cIconName);
+	//CD_APPLET_SET_IMAGE_ON_MY_ICON (cIconPathFallback ? cIconPathFallback : cIconName);
+	cairo_dock_set_image_on_icon_with_default (myDrawContext,
+		cIconPathFallback ? cIconPathFallback : cIconName,
+		myIcon,
+		myContainer,
+		myApplet->pModule->pVisitCard->cIconFilePath);
 	
 	g_free (tmp_icon_name);
 	g_free (cIconPath);

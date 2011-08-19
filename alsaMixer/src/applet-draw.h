@@ -17,7 +17,6 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef __APPLET_DRAW__
 #define  __APPLET_DRAW__
 
@@ -32,6 +31,8 @@ void mixer_apply_zoom_effect (cairo_surface_t *pSurface);
 void mixer_apply_transparency_effect (cairo_surface_t *pSurface);
 
 void mixer_draw_bar (cairo_surface_t *pSurface);
+
+void mixer_load_surfaces (void);
 
 
 #endif

@@ -131,7 +131,7 @@ static gboolean _applet_set_emblem (dbusApplet *pDbusApplet, const gchar *cImage
 	
 	g_return_val_if_fail (pIcon->pIconBuffer != NULL, FALSE);
 	
-	CairoEmblem *pEmblem = cairo_dock_make_emblem (cImage, pIcon, pContainer);
+	CairoEmblem *pEmblem = cairo_dock_make_emblem (cImage, pIcon);
 	pEmblem->iPosition = iPosition;
 	cairo_dock_draw_emblem_on_icon (pEmblem, pIcon, pContainer);
 	cairo_dock_free_emblem (pEmblem);
@@ -1286,7 +1286,7 @@ gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GV
 	else if (strcmp (cProperty, "width") == 0)
 	{
 		int iWidth, iHeight;
-		cairo_dock_get_icon_extent (pIcon, pContainer, &iWidth, &iHeight);
+		cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
 		if (pInstance->pDock)
 		{
 			double a = cairo_dock_get_max_scale (pContainer);
@@ -1299,7 +1299,7 @@ gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GV
 	else if (strcmp (cProperty, "height") == 0)
 	{
 		int iWidth, iHeight;
-		cairo_dock_get_icon_extent (pIcon, pContainer, &iWidth, &iHeight);
+		cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
 		if (pInstance->pDock)
 		{
 			double a = cairo_dock_get_max_scale (pContainer);
@@ -1354,7 +1354,7 @@ gboolean cd_dbus_applet_get_all (dbusApplet *pDbusApplet, GHashTable **hProperti
 	}
 	CairoDockPositionType iScreenBorder = ((! pContainer->bIsHorizontal) << 1) | (! pContainer->bDirectionUp);
 	int iWidth, iHeight;
-	cairo_dock_get_icon_extent (pIcon, pContainer, &iWidth, &iHeight);
+	cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
 	if (pInstance->pDock)
 	{
 		double a = cairo_dock_get_max_scale (pContainer);

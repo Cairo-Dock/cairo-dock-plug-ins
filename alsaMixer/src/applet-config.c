@@ -88,7 +88,8 @@ CD_APPLET_RESET_DATA_BEGIN
 	}
 	mixer_stop ();
 	cairo_surface_destroy (myData.pSurface);
-	cairo_surface_destroy (myData.pMuteSurface);
+	if (myData.pMuteSurface)
+		cairo_surface_destroy (myData.pMuteSurface);
 	cairo_dock_dialog_unreference (myData.pDialog);
 	g_free (myData.cErrorMessage);
 	g_free (myData.mixer_card_name);

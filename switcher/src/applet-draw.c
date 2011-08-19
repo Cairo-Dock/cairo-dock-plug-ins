@@ -91,7 +91,7 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDeskto
 	if (pIcon->pIconBuffer != NULL)
 	{
 		int iWidth, iHeight;
-		cairo_dock_get_icon_extent (pIcon, NULL, &iWidth, &iHeight);
+		cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
 		double fZoomX = (double) w/g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL]*iOneViewportWidth / iWidth;
 		double fZoomY = (double) h/g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL]*iOneViewportHeight / iHeight;
 		double fZoom = MIN (fZoomX, fZoomY);  // on garde le ratio.
@@ -371,7 +371,7 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 	}
 	else
 	{
-		CD_APPLET_SET_LOCAL_IMAGE_ON_MY_ICON (MY_APPLET_ICON_FILE);
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 	}
 
 	if (myConfig.bDrawWindows)
@@ -391,7 +391,7 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 		for (ic = pIconsList; ic != NULL; ic = ic->next)
 		{
 			pIcon = ic->data;
-			cairo_dock_get_icon_extent (pIcon, pContainer, &iWidth, &iHeight);
+			cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
 			pCairoContext = cairo_create (pIcon->pIconBuffer);
 			cairo_set_line_width (pCairoContext, 1.);
 			cairo_set_source_rgba (pCairoContext, myConfig.RGBWLineColors[0], myConfig.RGBWLineColors[1], myConfig.RGBWLineColors[2], myConfig.RGBWLineColors[3]);
@@ -521,7 +521,7 @@ static void _cd_switcher_list_window_on_viewport (Icon *pIcon, int iNumDesktop, 
 	//g_print (" + %s\n", pIcon->cName);
 	// on recupere la taille de l'icone.
 	int iWidth, iHeight;
-	cairo_dock_get_icon_extent (pIcon, NULL, &iWidth, &iHeight);
+	cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
 	
 	// on cree une copie de la surface de l'icone a la taille du menu.
 	GdkPixbuf *pixbuf = NULL;

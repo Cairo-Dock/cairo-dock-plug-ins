@@ -1013,7 +1013,7 @@ gboolean cd_dbus_main_add_temporary_icon (dbusMainObject *pDbusCallback, GHashTa
 			NULL,
 			fOrder);
 		pIcon->iTrueType = CAIRO_DOCK_ICON_TYPE_CONTAINER;
-		pIcon->iSubdockViewType = iSubdockViewType;
+		cairo_dock_set_subdock_content_renderer (pIcon, iSubdockViewType);
 		pIcon->pSubDock = cairo_dock_create_subdock_from_scratch (NULL, pIcon->cName, pParentDock);  // NULL <=> default sub-docks view.
 	}
 	else if (strcmp (cType, "Separator") == 0)
@@ -1283,7 +1283,7 @@ gboolean cd_dbus_main_set_emblem (dbusMainObject *pDbusCallback, const gchar *cI
 		
 		cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
 	
-		CairoEmblem *pEmblem = cairo_dock_make_emblem (cImage, pIcon, pContainer);
+		CairoEmblem *pEmblem = cairo_dock_make_emblem (cImage, pIcon);
 		pEmblem->iPosition = iPosition;
 		cairo_dock_draw_emblem_on_icon (pEmblem, pIcon, pContainer);
 		cairo_dock_free_emblem (pEmblem);

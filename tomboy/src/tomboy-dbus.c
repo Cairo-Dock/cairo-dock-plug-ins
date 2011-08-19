@@ -181,7 +181,7 @@ static void onNoteSaved (DBusGProxy *proxy, const gchar *note_uri, gpointer data
 			if (myData.pSurfaceNote == NULL)
 			{
 				int iWidth, iHeight;
-				cairo_dock_get_icon_extent (pIcon, CD_APPLET_MY_ICONS_LIST_CONTAINER, &iWidth, &iHeight);
+				cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
 				cd_debug ("on cree la surface a la taille %dx%d\n", iWidth, iHeight);
 				myData.pSurfaceNote = cairo_dock_create_surface_from_image_simple (myConfig.cNoteIcon != NULL ? myConfig.cNoteIcon : MY_APPLET_SHARE_DATA_DIR"/note.svg",
 					iWidth,

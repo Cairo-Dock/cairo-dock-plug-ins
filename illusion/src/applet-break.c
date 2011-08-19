@@ -123,7 +123,7 @@ gboolean cd_illusion_init_break (Icon *pIcon, CairoDock *pDock, CDIllusionData *
 void cd_illusion_update_break (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)
 {
 	int iWidth, iHeight;
-	cairo_dock_get_icon_extent (pIcon, CAIRO_CONTAINER (pDock), &iWidth, &iHeight);
+	cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
 	double fSizeX, fSizeY;
 	cairo_dock_get_current_icon_size (pIcon, CAIRO_CONTAINER (pDock), &fSizeX, &fSizeY);
 	

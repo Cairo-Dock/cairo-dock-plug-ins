@@ -272,7 +272,7 @@ static gboolean _update_html_link (CDHtmlLink *pHtmlLink)
 				cairo_dock_set_icon_name (pHtmlLink->cTitle, pIcon, pContainer);
 				
 				cd_debug ("draw emblem on %s", pIcon->cName);
-				CairoEmblem *pEmblem = cairo_dock_make_emblem (pHtmlLink->cFaviconPath, pIcon, pContainer);
+				CairoEmblem *pEmblem = cairo_dock_make_emblem (pHtmlLink->cFaviconPath, pIcon);
 				cairo_dock_set_emblem_position (pEmblem, CAIRO_DOCK_EMBLEM_LOWER_RIGHT);
 				cairo_dock_draw_emblem_on_icon (pEmblem, pIcon, pContainer);
 				cairo_dock_free_emblem (pEmblem);

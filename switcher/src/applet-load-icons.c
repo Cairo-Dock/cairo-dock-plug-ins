@@ -117,7 +117,7 @@ void cd_switcher_paint_icons (void)
 	Icon *pFirstIcon = pIconList->data;
 	
 	int iWidth, iHeight;
-	cairo_dock_get_icon_extent (pFirstIcon, pContainer, &iWidth, &iHeight);
+	cairo_dock_get_icon_extent (pFirstIcon, &iWidth, &iHeight);
 	int _iWidth, _iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&_iWidth, &_iHeight);
 	
