@@ -180,14 +180,14 @@ int im_context_state (void)
 
 	switch (pa_context_get_state (context))
 	{
+		case PA_CONTEXT_TERMINATED:
+		case PA_CONTEXT_FAILED:
+			return IM_FAILED;
 		case PA_CONTEXT_CONNECTING:
 		case PA_CONTEXT_AUTHORIZING:
 		case PA_CONTEXT_SETTING_NAME:
+		default: // default seems to be ok...
 			return IM_SUCCESS;
-		case PA_CONTEXT_TERMINATED:
-		case PA_CONTEXT_FAILED:
-		default:
-			return IM_FAILED;
 	}
 }
 
