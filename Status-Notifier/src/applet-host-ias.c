@@ -94,7 +94,12 @@ static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_ST
 		data2);
 }
 #else  // Natty
-static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING (GClosure *closure,
+#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
+static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING_STRING (
+#else
+static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING (
+#endif
+	GClosure *closure,
 	GValue *return_value G_GNUC_UNUSED,
 	guint n_param_values,
 	const GValue *param_values,
@@ -102,7 +107,11 @@ static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_ST
 	gpointer marshal_data)
 {
 	//cd_debug ("=== %s ()\n", __func__);
+	#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
+	typedef void (*GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING_STRING) (
+	#else
 	typedef void (*GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING) (
+	#endif
 		gpointer     data1,
 		gchar      *arg_1,
 		gint        arg_2,
@@ -112,11 +121,23 @@ static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_ST
 		gchar      *arg_6,
 		gchar      *arg_7,
 		gchar      *arg_8,
+		#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
+		gchar      *arg_9,
+		#endif
 		gpointer     data2);
+	#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
+	register GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING_STRING callback;
+	#else
 	register GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING callback;
+	#endif
 	register GCClosure *cc = (GCClosure*) closure;
 	register gpointer data1, data2;
-	g_return_if_fail (n_param_values == 9);  // return_value est NULL ici, car la callback ne renvoit rien.
+	// return_value est NULL ici, car la callback ne renvoit rien.
+	#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
+	g_return_if_fail (n_param_values == 10);
+	#else
+	g_return_if_fail (n_param_values == 9);
+	#endif
 
 	if (G_CCLOSURE_SWAP_DATA (closure))
 	{
@@ -128,7 +149,12 @@ static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_ST
 		data1 = g_value_peek_pointer (param_values + 0);
 		data2 = closure->data;
 	}
-	callback = (GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING) (marshal_data ? marshal_data : cc->callback);
+	#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
+	callback = (GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING_STRING)
+	#else
+	callback = (GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING)
+	#endif
+		(marshal_data ? marshal_data : cc->callback);
 
 	callback (data1,
 		(char*) g_value_get_string (param_values + 1),
@@ -139,6 +165,9 @@ static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_ST
 		(char*) g_value_get_string (param_values + 6),
 		(char*) g_value_get_string (param_values + 7),
 		(char*) g_value_get_string (param_values + 8),
+		#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
+		(char*) g_value_get_string (param_values + 9),
+		#endif
 		data2);
 }
 #endif
@@ -150,6 +179,9 @@ static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_ST
 static void on_new_application (DBusGProxy *proxy_watcher, const gchar *cIconName, gint iPosition, const gchar *cAdress, const gchar *cObjectPath, const gchar *cIconThemePath, const gchar *cLabel, const gchar *cLabelGuide,
 #if (INDICATOR_OLD_NAMES == 0)  // Natty
 const gchar *cAccessbleDesc,  // WTF is this new param ??
+#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
+const gchar *cHint,
+#endif
 #endif
 CairoDockModuleInstance *myApplet)
 {
@@ -157,6 +189,9 @@ CairoDockModuleInstance *myApplet)
 	cd_debug ("=== %s (%s, %s, %s, %s, %d)", __func__, cAdress, cObjectPath, cIconName, cIconThemePath, iPosition);
 	#if (INDICATOR_OLD_NAMES == 0)  // Natty
 	cd_debug ("    %s", cAccessbleDesc);
+	#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
+	cd_debug ("    %s", cHint);
+	#endif
 	#endif
 	
 	// position +1 for items placed after this one.
@@ -353,14 +388,19 @@ void cd_satus_notifier_get_items_from_ias (void)
 	dbus_g_object_register_marshaller(_cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING,
 			G_TYPE_NONE, G_TYPE_STRING, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);
 	#else  // Natty
-	dbus_g_object_register_marshaller(_cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING,
+	dbus_g_object_register_marshaller(
+	#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
+	_cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING_STRING,
+	#else
+	_cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING,
+	#endif
 			G_TYPE_NONE, G_TYPE_STRING, G_TYPE_INT, G_TYPE_STRING,
-			#if (INDICATOR_OLD_NAMES != 0)  // Maverick
-			G_TYPE_STRING,  // dbusobject
-			#else  // Natty
 			DBUS_TYPE_G_OBJECT_PATH,  // dbusobject
+			G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,
+			#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
+			G_TYPE_STRING,
 			#endif
-			G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);
+			G_TYPE_INVALID);
 	#endif
 	dbus_g_proxy_add_signal(myData.pProxyIndicatorApplicationService, "ApplicationAdded",
 		G_TYPE_STRING,  // iconname
@@ -376,6 +416,9 @@ void cd_satus_notifier_get_items_from_ias (void)
 		G_TYPE_STRING,  // labelguide
 		#if (INDICATOR_OLD_NAMES == 0)  // Natty
 		G_TYPE_STRING,  // accessibledesc
+		#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
+		G_TYPE_STRING, // hint => only with indicator-0.4 (Oneiric)
+		#endif
 		#endif
 		G_TYPE_INVALID);
 	dbus_g_proxy_connect_signal(myData.pProxyIndicatorApplicationService, "ApplicationAdded",

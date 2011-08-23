@@ -27,6 +27,8 @@
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cIconAnimation = CD_CONFIG_GET_STRING ("Configuration", "animation");
+	if (myConfig.cIconAnimation == NULL)
+		myConfig.cIconAnimation = g_strdup ("default");
 	myConfig.fMinValueToAnim = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "sensitivity", 0.25) / 3; // PER 3
 	myConfig.iNbAnimations = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb animations", 1);
 	myConfig.iLoopTime = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "refresh", 250);
