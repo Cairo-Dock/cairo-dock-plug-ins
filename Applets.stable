@@ -23,7 +23,7 @@ weather
 terminal
 Cairo-Penguin
 showDesktop
-compiz-icon
+# compiz-icon # removed in v2.4.0
 slider
 Clipper
 GMenu
@@ -44,7 +44,7 @@ keyboard-indicator
 ###Last addition of v2.1.0 :
 System-Monitor
 dnd2share
-Music-Player
+musicPlayer
 mail
 ###Added in v2.1.3
 RSSReader
@@ -57,6 +57,12 @@ Folders
 Remote-Control
 Recent-Events
 Status-Notifier
+###Added in v2.4.0
+Composite-Manager
+Impulse
 ###All other applets are considered to be either not enough functionnal, buggy/untested, or under heavy development.
 #Scooby-Do
 #Network-Monitor
+#Disks
+#Doncky
+#KDE experimental
