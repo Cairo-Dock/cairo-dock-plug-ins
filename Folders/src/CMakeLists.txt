@@ -19,7 +19,7 @@ add_definitions (-DMY_APPLET_USER_DATA_DIR="Folders")
 add_definitions (-DMY_APPLET_VERSION="${VERSION_FOLDERS}")
 add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_FOLDERS}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
-add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
+add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
 ### uncomment the following line to allow extended OpenGL drawing.
 #add_definitions (-DGL_GLEXT_PROTOTYPES="1")

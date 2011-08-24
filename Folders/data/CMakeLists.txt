@@ -5,6 +5,6 @@
 
 install (FILES ${CMAKE_CURRENT_BINARY_DIR}/Folders.conf
 	preview.jpg
-	icon.svg
+	icon.png
 	DESTINATION ${foldersdatadir})
 
