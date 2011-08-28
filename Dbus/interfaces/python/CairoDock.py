@@ -42,11 +42,15 @@ class CairoDock:
 	DOCK    = "Dock"
 	DESKLET = "Desklet"
 	# emblem position
-	UPPER_LEFT  = 0
-	LOWER_RIGHT = 1
-	LOWER_LEFT  = 2
-	UPPER_RIGHT = 3
-	MIDDLE      = 4
+	EMBLEM_TOP_LEFT     = 0
+	EMBLEM_BOTTOM_RIGHT = 1
+	EMBLEM_BOTTOM_LEFT  = 2
+	EMBLEM_TOP_RIGHT    = 3
+	EMBLEM_MIDDLE       = 4
+	EMBLEM_BOTTOM       = 5
+	EMBLEM_TOP          = 6
+	EMBLEM_RIGHT        = 7
+	EMBLEM_LEFT         = 8
 	# module category
 	CATEGORY_BEHAVIOR         = 0
 	CATEGORY_THEME            = 1

@@ -18,11 +18,15 @@ namespace CairoDock {
 			}
 			[CCode (cprefix = "CAIRO_DOCK_APPLET_CD_APPLET_EMBLEM_POSITION_", cheader_filename = "CDApplet.h")]
 			public enum EmblemPosition {
-				UPPER_LEFT,
-				LOWER_RIGHT,
-				LOWER_LEFT,
-				UPPER_RIGHT,
-				MIDDLE
+				EMBLEM_TOP_LEFT,
+				EMBLEM_BOTTOM_RIGHT,
+				EMBLEM_BOTTOM_LEFT,
+				EMBLEM_TOP_RIGHT,
+				EMBLEM_MIDDLE,
+				EMBLEM_BOTTOM,
+				EMBLEM_TOP,
+				EMBLEM_RIGHT,
+				EMBLEM_LEFT
 			}
 			[CCode (cprefix = "CAIRO_DOCK_APPLET_CD_APPLET_MENU_ITEM_ID_", cheader_filename = "CDApplet.h")]
 			public enum MenuItemId {

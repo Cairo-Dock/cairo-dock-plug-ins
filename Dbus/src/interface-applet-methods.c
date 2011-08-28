@@ -131,10 +131,18 @@ static gboolean _applet_set_emblem (dbusApplet *pDbusApplet, const gchar *cImage
 	
 	g_return_val_if_fail (pIcon->pIconBuffer != NULL, FALSE);
 	
-	CairoEmblem *pEmblem = cairo_dock_make_emblem (cImage, pIcon);
+	if (cImage == NULL || *cImage == '\0' || strcmp (cImage, "none") == 0)
+	{
+		cairo_dock_remove_overlay_at_position (pIcon, iPosition);
+	}
+	else
+	{
+		cairo_dock_add_overlay_from_image (pIcon, cImage, iPosition);
+	}
+	/**CairoEmblem *pEmblem = cairo_dock_make_emblem (cImage, pIcon);
 	pEmblem->iPosition = iPosition;
 	cairo_dock_draw_emblem_on_icon (pEmblem, pIcon, pContainer);
-	cairo_dock_free_emblem (pEmblem);
+	cairo_dock_free_emblem (pEmblem);*/
 	
 	cairo_dock_redraw_icon (pIcon, pContainer);
 	return TRUE;

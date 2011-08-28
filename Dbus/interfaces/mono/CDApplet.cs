@@ -56,11 +56,15 @@ public class CDApplet
 		DESKLET
 	}
 	public enum EmblemPosition {
-		UPPER_LEFT = 0,
-		LOWER_RIGHT,
-		LOWER_LEFT,
-		UPPER_RIGHT,
-		MIDDLE
+		EMBLEM_TOP_LEFT = 0,
+		EMBLEM_BOTTOM_RIGHT,
+		EMBLEM_BOTTOM_LEFT,
+		EMBLEM_TOP_RIGHT,
+		EMBLEM_MIDDLE,
+		EMBLEM_BOTTOM,
+		EMBLEM_TOP,
+		EMBLEM_RIGHT,
+		EMBLEM_LEFT
 	}
 	public enum MenuItemType {
 		MENU_ENTRY = 0,

@@ -1281,14 +1281,22 @@ gboolean cd_dbus_main_set_emblem (dbusMainObject *pDbusCallback, const gchar *cI
 		if (pContainer == NULL)
 			continue;
 		
-		cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
-	
-		CairoEmblem *pEmblem = cairo_dock_make_emblem (cImage, pIcon);
+		if (cImage == NULL || *cImage == '\0' || strcmp (cImage, "none") == 0)
+		{
+			cairo_dock_remove_overlay_at_position (pIcon, iPosition);
+		}
+		else
+		{
+			if (iPosition < 0)
+				cairo_dock_print_overlay_on_icon (pIcon, pContainer, cImage, -iPosition);
+			else
+				cairo_dock_add_overlay_from_image (pIcon, cImage, iPosition);
+		}
+		/**CairoEmblem *pEmblem = cairo_dock_make_emblem (cImage, pIcon);
 		pEmblem->iPosition = iPosition;
 		cairo_dock_draw_emblem_on_icon (pEmblem, pIcon, pContainer);
-		cairo_dock_free_emblem (pEmblem);
+		cairo_dock_free_emblem (pEmblem);*/
 
-		cairo_destroy (pIconContext);
 		cairo_dock_redraw_icon (pIcon, pContainer);
 	}
 	
