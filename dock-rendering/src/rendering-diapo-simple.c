@@ -816,12 +816,13 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 	int iOffsetY;
 	if (pDock->container.bDirectionUp)
 		iOffsetY = .5 * pDock->iMaxIconHeight * pDock->container.fRatio * (my_diapo_simple_fScaleMax - 1) +  // les icones de la 1ere ligne zooment
-			myIconsParam.iLabelSize +  // le texte des icones de la 1ere ligne
+			(pDock->container.bIsHorizontal ? myIconsParam.iLabelSize : .5*myIconsParam.iLabelSize) +  // le texte des icones de la 1ere ligne
 			.5 * my_diapo_simple_lineWidth +  // demi-ligne du haut;
 			fScrollOffset;
 	else
 		iOffsetY = .5 * pDock->iMaxIconHeight * pDock->container.fRatio * (my_diapo_simple_fScaleMax - 1) +  // les icones de la 1ere ligne zooment
 				.5 * my_diapo_simple_lineWidth +  // demi-ligne du bas;
+				(pDock->container.bIsHorizontal ? 0 : myIconsParam.iLabelSize/2) +
 				fScrollOffset;
 	double fFoldingX = (pDock->fFoldingFactor > .2 ? (pDock->fFoldingFactor - .2) / .8 : 0.);  // placement de 1 a 0.2
 	double fFoldingY = (pDock->fFoldingFactor > .5 ? (pDock->fFoldingFactor - .5) / .5 : 0.);  // placement de 1 a 0.5
