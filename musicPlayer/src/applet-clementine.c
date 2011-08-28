@@ -33,11 +33,10 @@
  */
 void cd_musicplayer_register_clementine_handler (void)
 {
-	MusicPlayerHandeler *pClementine = cd_mpris_new_handler ();
+	MusicPlayerHandler *pClementine = cd_mpris_new_handler ();
 	pClementine->cMprisService = "org.mpris.clementine";
 	pClementine->appclass = "clementine";  // les classes sont passees en minuscule par le dock.
 	pClementine->launch = "clementine";
 	pClementine->name = "Clementine";
-	pClementine->iPlayer = MP_CLEMENTINE;
-	cd_musicplayer_register_my_handler (pClementine, "Clementine");
+	cd_musicplayer_register_my_handler (pClementine);
 }

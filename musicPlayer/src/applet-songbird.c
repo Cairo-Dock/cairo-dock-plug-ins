@@ -27,13 +27,13 @@
 #include "applet-mpris.h"
 #include "applet-songbird.h"
 
-void cd_musicplayer_register_songbird_handler (void) { //On enregistre notre lecteur
-	MusicPlayerHandeler *pSongbird = cd_mpris_new_handler ();
-	pSongbird->cMprisService = "org.mpris.songbird";
-	pSongbird->appclass = "songbird";
-	pSongbird->launch = "songbird-bin";
-	pSongbird->name = "Songbird";
- 	pSongbird->iPlayer = MP_SONGBIRD;
-	pSongbird->name = "Songbird";
-	cd_musicplayer_register_my_handler (pSongbird, "Songbird");
+void cd_musicplayer_register_songbird_handler (void)
+{
+	MusicPlayerHandler *pHandler = cd_mpris_new_handler ();
+	pHandler->cMprisService = "org.mpris.songbird";
+	pHandler->appclass = "songbird";
+	pHandler->launch = "songbird-bin";
+	pHandler->name = "Songbird";
+	pHandler->name = "Songbird";
+	cd_musicplayer_register_my_handler (pHandler);
 }

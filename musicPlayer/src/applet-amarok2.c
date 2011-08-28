@@ -32,11 +32,10 @@
  */
 void cd_musicplayer_register_amarok2_handler (void)
 {
-	MusicPlayerHandeler *pAmarok2 = cd_mpris_new_handler ();
+	MusicPlayerHandler *pAmarok2 = cd_mpris_new_handler ();
 	pAmarok2->cMprisService = "org.kde.amarok";
 	pAmarok2->appclass = "amarok";
 	pAmarok2->launch = "amarok";
 	pAmarok2->name = "Amarok 2";
-	pAmarok2->iPlayer = MP_AMAROK2;
-	cd_musicplayer_register_my_handler (pAmarok2, "Amarok 2");
+	cd_musicplayer_register_my_handler (pAmarok2);
 }

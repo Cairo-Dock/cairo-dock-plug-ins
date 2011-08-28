@@ -33,11 +33,10 @@
  */
 void cd_musicplayer_register_exaile3_handler (void)
 {
-	MusicPlayerHandeler *pExaile3 = cd_mpris_new_handler ();
-	pExaile3->cMprisService = "org.mpris.exaile";
-	pExaile3->appclass = "exaile";  // en vrai "Exaile.py", mais le dock tronque les extensions et passe tout en minuscule.
-	pExaile3->launch = "exaile";
-	pExaile3->name = "Exaile 0.3";
-	pExaile3->iPlayer = MP_EXAILE3;
-	cd_musicplayer_register_my_handler (pExaile3, "Exaile 0.3");
+	MusicPlayerHandler *pHandler = cd_mpris_new_handler ();
+	pHandler->cMprisService = "org.mpris.exaile";
+	pHandler->appclass = "exaile";  // en vrai "Exaile.py", mais le dock tronque les extensions et passe tout en minuscule.
+	pHandler->launch = "exaile";
+	pHandler->name = "Exaile 0.3";
+	cd_musicplayer_register_my_handler (pHandler);
 }

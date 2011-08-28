@@ -37,7 +37,7 @@ static const gchar *s_cDefaultIconName3D[PLAYER_NB_STATUS] = {"default.jpg", "pl
  */
 gboolean cd_musicplayer_draw_icon (gpointer data)
 {
-	g_return_val_if_fail (myData.pCurrentHandeler->iLevel != PLAYER_EXCELLENT, FALSE);
+	g_return_val_if_fail (myData.pCurrentHandler->iLevel != PLAYER_EXCELLENT, FALSE);
 	//cd_debug ("MP - %s (%d : %d -> %d)\n", __func__, myData.iPlayingStatus, myData.iPreviousCurrentTime, myData.iCurrentTime);
 	
 	CD_APPLET_ENTER;
@@ -66,8 +66,6 @@ gboolean cd_musicplayer_draw_icon (gpointer data)
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 			if (myData.iCurrentTime < 0)  // a priori cela signifie qu'une erreur est survenue la derniere fois qu'on a voulu recuperer le temps, donc que le lecteur est ferme.
 			{
-				cd_debug ("MP - test of the player ...");
-				cd_musicplayer_dbus_detect_player ();
 				cd_debug ("MP -  -> is running : %d\n", myData.bIsRunning);
 				if (myData.bIsRunning)
 					cd_musicplayer_set_surface (PLAYER_STOPPED);
@@ -78,7 +76,7 @@ gboolean cd_musicplayer_draw_icon (gpointer data)
 		bNeedRedraw = TRUE;
 	}
 	
-	if (myData.pCurrentHandeler->iLevel == PLAYER_BAD)
+	if (myData.pCurrentHandler->iLevel == PLAYER_BAD)
 	{
 		if (myData.iPlayingStatus != myData.pPreviousPlayingStatus)  // changement de l'etat du lecteur.
 		{
@@ -109,8 +107,8 @@ gboolean cd_musicplayer_draw_icon (gpointer data)
 	if (bNeedRedraw)
 		CD_APPLET_REDRAW_MY_ICON;
 	
-	CD_APPLET_LEAVE (myData.pCurrentHandeler->iLevel == PLAYER_BAD || (myData.pCurrentHandeler->iLevel == PLAYER_GOOD && myData.iPlayingStatus == PLAYER_PLAYING));
-	//return (myData.pCurrentHandeler->iLevel == PLAYER_BAD || (myData.pCurrentHandeler->iLevel == PLAYER_GOOD && myData.iPlayingStatus == PLAYER_PLAYING));
+	CD_APPLET_LEAVE (myData.pCurrentHandler->iLevel == PLAYER_BAD || (myData.pCurrentHandler->iLevel == PLAYER_GOOD && myData.iPlayingStatus == PLAYER_PLAYING));
+	//return (myData.pCurrentHandler->iLevel == PLAYER_BAD || (myData.pCurrentHandler->iLevel == PLAYER_GOOD && myData.iPlayingStatus == PLAYER_PLAYING));
 }
 
 
@@ -196,7 +194,7 @@ gboolean cd_musiplayer_set_cover_if_present (gboolean bCheckSize)
 static gboolean _cd_musicplayer_check_distant_cover_twice (gpointer data)
 {
 	CD_APPLET_ENTER;
-	myData.pCurrentHandeler->get_cover ();  // on ne recupere que la couverture.
+	myData.pCurrentHandler->get_cover ();  // on ne recupere que la couverture.
 	cd_musicplayer_update_icon (FALSE);
 	myData.iSidGetCoverInfoTwice = 0;
 	CD_APPLET_LEAVE (FALSE);
@@ -247,7 +245,7 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 		/**else
 		{
 			cd_musicplayer_set_surface (PLAYER_STOPPED);
-			CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cTitle ? myData.cTitle : myData.pCurrentHandeler ? myData.pCurrentHandeler->name : myConfig.cDefaultTitle);
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cTitle ? myData.cTitle : myData.pCurrentHandler ? myData.pCurrentHandler->name : myConfig.cDefaultTitle);
 		}*/
 		
 		//Affichage de la couverture de l'album.
@@ -263,7 +261,7 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 		}
 		if (myConfig.bEnableCover)
 		{
-			if (myData.cCoverPath == NULL && bFirstTime && myData.pCurrentHandeler->get_cover != NULL)  // info manquante, cela arrive avec les chansons distantes (bug du lecteur ?) on teste 2 fois de suite a 2 secondes d'intervalle.
+			if (myData.cCoverPath == NULL && bFirstTime && myData.pCurrentHandler->get_cover != NULL)  // info manquante, cela arrive avec les chansons distantes (bug du lecteur ?) on teste 2 fois de suite a 2 secondes d'intervalle.
 			{
 				cd_debug ("MP - on reviendra dans 2s\n");
 				myData.iSidGetCoverInfoTwice = g_timeout_add_seconds (2, (GSourceFunc) _cd_musicplayer_check_distant_cover_twice, NULL);
@@ -301,12 +299,30 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 		if (myData.bIsRunning)
 		{
 			cd_musicplayer_set_surface (PLAYER_STOPPED);
-			CD_APPLET_SET_NAME_FOR_MY_ICON (myData.pCurrentHandeler ? myData.pCurrentHandeler->name : myConfig.cDefaultTitle);
+			if (myConfig.cDefaultTitle)
+			{
+				CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle);
+			}
+			else if (strcmp (myData.pCurrentHandler->name, "Mpris2") == 0)
+			{
+				CD_APPLET_SET_NAME_FOR_MY_ICON (myData.pCurrentHandler->launch);
+			}
+			else
+			{
+				CD_APPLET_SET_NAME_FOR_MY_ICON (myData.pCurrentHandler->name);
+			}
 		}
 		else
 		{
 			cd_musicplayer_set_surface (PLAYER_NONE);
-			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle);
+			if (myConfig.cDefaultTitle)
+			{
+				CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle);
+			}
+			else
+			{
+				CD_APPLET_SET_NAME_FOR_MY_ICON (myApplet->pModule->pVisitCard->cTitle);
+			}
 		}
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 	}

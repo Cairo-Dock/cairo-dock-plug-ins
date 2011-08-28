@@ -98,9 +98,9 @@ void cd_musicplayer_get_cover_path (const gchar *cGivenCoverPath, gboolean bHand
 		{
 			cd_debug ("MP : Le fichier est distant\n");
 			
-			if (myData.pCurrentHandeler->cCoverDir)
+			if (myData.pCurrentHandler->cCoverDir)
 			{
-				myData.cCoverPath = g_strdup_printf("%s/%s - %s.jpg", myData.pCurrentHandeler->cCoverDir, myData.cArtist, myData.cAlbum);
+				myData.cCoverPath = g_strdup_printf("%s/%s - %s.jpg", myData.pCurrentHandler->cCoverDir, myData.cArtist, myData.cAlbum);
 			}
 			else  // le lecteur n'a pas de cache, on utilise le notre.
 			{
@@ -185,9 +185,9 @@ void cd_musicplayer_get_cover_path (const gchar *cGivenCoverPath, gboolean bHand
 		{
 			cd_debug("MP : On regarde dans le répertoire cache");
 			
-			if (myData.pCurrentHandeler->cCoverDir)
+			if (myData.pCurrentHandler->cCoverDir)
 			{
-				myData.cCoverPath = g_strdup_printf("%s/%s - %s.jpg", myData.pCurrentHandeler->cCoverDir, myData.cArtist, myData.cAlbum);
+				myData.cCoverPath = g_strdup_printf("%s/%s - %s.jpg", myData.pCurrentHandler->cCoverDir, myData.cArtist, myData.cAlbum);
 				myData.bCoverNeedsTest = TRUE;  // on testera sur sa taille.
 			}
 			else  // le lecteur n'a pas de cache, on utilise le notre.
@@ -250,9 +250,9 @@ static gboolean _check_xml_file (gpointer data)
 			{
 				cd_debug ("MP - on corrige cCoverPath\n");
 				g_free (myData.cCoverPath);
-				if (myData.pCurrentHandeler->cCoverDir)
+				if (myData.pCurrentHandler->cCoverDir)
 				{
-					myData.cCoverPath = g_strdup_printf("%s/%s - %s.jpg", myData.pCurrentHandeler->cCoverDir, myData.cArtist, myData.cAlbum);
+					myData.cCoverPath = g_strdup_printf("%s/%s - %s.jpg", myData.pCurrentHandler->cCoverDir, myData.cArtist, myData.cAlbum);
 				}
 				else  // le lecteur n'a pas de cache, on utilise le notre.
 				{

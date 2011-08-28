@@ -129,7 +129,7 @@ static void cd_rhythmbox_getSongInfos (gboolean bGetAll)
 // Les callbacks des signaux DBus. //
 /////////////////////////////////////
 
-/* Fonction executée à chaque changement de musique.
+/* Fonction executee a chaque changement de musique.
  */
 static void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer data)
 {
@@ -140,7 +140,6 @@ static void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer dat
 	if(uri != NULL && *uri != '\0')
 	{
 		myData.cPlayingUri = g_strdup (uri);
-		myData.bIsRunning = TRUE;
 		cd_rhythmbox_getSongInfos (TRUE);  // TRUE <=> get all
 	}
 	else
@@ -158,14 +157,12 @@ static void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer dat
 		myData.cCoverPath = NULL;
 		myData.iSongLength = 0;
 		myData.iTrackNumber = 0;
-		
-		cd_musicplayer_dbus_detect_player ();
 	}
 	cd_musicplayer_update_icon (TRUE);
 	CD_APPLET_LEAVE ();
 }
 
-/* Fonction executée à chaque changement play/pause
+/* Fonction executee a chaque changement play/pause
  */
 static void onChangePlaying(DBusGProxy *player_proxy, gboolean playing, gpointer data)
 {
@@ -187,7 +184,7 @@ static void onChangePlaying(DBusGProxy *player_proxy, gboolean playing, gpointer
 }
 
 
-/* Fonction executée à chaque changement de temps joué
+/* Fonction executee a chaque changement de temps joué
  */
 static void onElapsedChanged (DBusGProxy *player_proxy, int elapsed, gpointer data)
 {
@@ -239,76 +236,6 @@ static void onElapsedChanged (DBusGProxy *player_proxy, int elapsed, gpointer da
 // Definition du backend. //
 ////////////////////////////
 
-/* Fonction de connexion au bus de rhythmbox.
- */
-gboolean cd_rhythmbox_dbus_connect_to_bus (void)
-{
-	if (cairo_dock_dbus_is_enabled ())
-	{
-		myData.dbus_enable = cd_musicplayer_dbus_connect_to_bus (); // cree le proxy.
-		
-		myData.dbus_enable_shell = musicplayer_dbus_connect_to_bus_Shell ();  // cree le proxy pour la 2eme interface car RB en a 2.
-		
-		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "playingChanged",
-			G_TYPE_BOOLEAN,
-			G_TYPE_INVALID);
-		
-		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "playingUriChanged",
-			G_TYPE_STRING,
-			G_TYPE_INVALID);
-		
-		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "elapsedChanged",
-			G_TYPE_UINT,
-			G_TYPE_INVALID);
-		
-		/*TODO
-		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "playingSongPropertyChanged",
-			G_TYPE_STRING,
-			G_TYPE_STRING,
-			G_TYPE_VALUE,
-			G_TYPE_VALUE,
-			G_TYPE_INVALID);*/
-		
-		dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "playingChanged",
-			G_CALLBACK(onChangePlaying), NULL, NULL);
-			
-		dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "playingUriChanged",
-			G_CALLBACK(onChangeSong), NULL, NULL);
-		
-		dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "elapsedChanged",
-			G_CALLBACK(onElapsedChanged), NULL, NULL);
-		
-		/*dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "playingSongPropertyChanged",
-			G_CALLBACK(onSongPropertyChanged), NULL, NULL);*/
-		
-		return TRUE;
-	}
-	return FALSE;
-}
-
-/* Permet de libérer la mémoire prise par notre controleur
- */
-void cd_rhythmbox_free_data (void) {
-	if (myData.dbus_proxy_player != NULL)
-	{
-		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "playingChanged",
-			G_CALLBACK(onChangePlaying), NULL);
-		
-		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "playingUriChanged",
-			G_CALLBACK(onChangeSong), NULL);
-		
-		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "elapsedChanged",
-			G_CALLBACK(onElapsedChanged), NULL);
-		
-		/*dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "playingSongPropertyChanged",
-			G_CALLBACK(onSongPropertyChanged), NULL);*/
-	}
-	
-	musicplayer_dbus_disconnect_from_bus();
-	musicplayer_dbus_disconnect_from_bus_Shell();
-}
-
-
 /* Controle du lecteur (permet d'effectuer les actions de bases sur le lecteur)
  */
 void cd_rhythmbox_control (MyPlayerControl pControl, const char* song)
@@ -318,15 +245,15 @@ void cd_rhythmbox_control (MyPlayerControl pControl, const char* song)
 		
 	switch (pControl) {
 		case PLAYER_PREVIOUS :
-			cCommand = myData.DBus_commands.previous;  // ou bien rhythmbox-client --previous
+			cCommand = "previous";  // ou bien rhythmbox-client --previous
 		break;
 		
 		case PLAYER_PLAY_PAUSE :
-			cCommand = myData.DBus_commands.play;  // ou bien rhythmbox-client --pause/--play
+			cCommand = "playPause";  // ou bien rhythmbox-client --pause/--play
 		break;
 
 		case PLAYER_NEXT :
-			cCommand = myData.DBus_commands.next;  // ou bien rhythmbox-client --next
+			cCommand = "next";  // ou bien rhythmbox-client --next
 		break;
 		
 		case PLAYER_ENQUEUE :
@@ -364,64 +291,68 @@ void cd_rhythmbox_get_cover_path (void)
 
 /* Initialise le backend de RB.
  */
-void cd_rhythmbox_configure (void)
+static void cd_rhythmbox_start (void)
 {
-	cd_debug ("");
-	myData.DBus_commands.service = "org.gnome.Rhythmbox";
-	myData.DBus_commands.path = "/org/gnome/Rhythmbox/Player";
-	myData.DBus_commands.path2 = "/org/gnome/Rhythmbox/Shell";
-	myData.DBus_commands.interface = "org.gnome.Rhythmbox.Player";
-	myData.DBus_commands.interface2 = "org.gnome.Rhythmbox.Shell";
-	myData.DBus_commands.play = "playPause";
-	myData.DBus_commands.pause = "playPause";
-	myData.DBus_commands.stop = "";
-	myData.DBus_commands.next = "next";
-	myData.DBus_commands.previous = "previous";
+	// register to the signals
+	dbus_g_proxy_add_signal(myData.dbus_proxy_player, "playingChanged",
+		G_TYPE_BOOLEAN,
+		G_TYPE_INVALID);
+	dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "playingChanged",
+		G_CALLBACK(onChangePlaying), NULL, NULL);
 	
-	myData.dbus_enable = cd_rhythmbox_dbus_connect_to_bus ();  // se connecte au bus et aux signaux de RB.
-	if (myData.dbus_enable)
-	{
-		cd_musicplayer_dbus_detect_player ();  // on teste la presence de RB sur le bus <=> s'il est ouvert ou pas.
-		if(myData.bIsRunning)  // player en cours d'execution, on recupere son etat.
-		{
-			cd_debug ("MP : RB is running");
-			_rhythmbox_getPlaying();
-			_rhythmbox_getPlayingUri();
-			cd_rhythmbox_getSongInfos (TRUE);  // TRUE <=> get all
-			cd_musicplayer_update_icon (TRUE);
-		}
-		else  // player eteint.
-		{
-			cd_musicplayer_set_surface (PLAYER_NONE);
-		}
-	}
-	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
-	{
-		cd_musicplayer_set_surface (PLAYER_BROKEN);
-	}
+	dbus_g_proxy_add_signal(myData.dbus_proxy_player, "playingUriChanged",
+		G_TYPE_STRING,
+		G_TYPE_INVALID);
+	dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "playingUriChanged",
+		G_CALLBACK(onChangeSong), NULL, NULL);
+	
+	dbus_g_proxy_add_signal(myData.dbus_proxy_player, "elapsedChanged",
+		G_TYPE_UINT,
+		G_TYPE_INVALID);
+	dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "elapsedChanged",
+		G_CALLBACK(onElapsedChanged), NULL, NULL);
+	
+	/*TODO (or maybe not, if they included MPRIS2)
+	dbus_g_proxy_add_signal(myData.dbus_proxy_player, "playingSongPropertyChanged",
+		G_TYPE_STRING,
+		G_TYPE_STRING,
+		G_TYPE_VALUE,
+		G_TYPE_VALUE,
+		G_TYPE_INVALID);
+	/*dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "playingSongPropertyChanged",
+		G_CALLBACK(onSongPropertyChanged), NULL, NULL);*/
+	
+	// get the current state.
+	_rhythmbox_getPlaying();
+	_rhythmbox_getPlayingUri();
+	cd_rhythmbox_getSongInfos (TRUE);  // TRUE <=> get all
+	cd_musicplayer_update_icon (TRUE);
 }
 
 /* On enregistre notre lecteur.
  */
 void cd_musicplayer_register_rhythmbox_handler (void)
 {
-	cd_debug ("");
-	MusicPlayerHandeler *pRhythmbox = g_new0 (MusicPlayerHandeler, 1);
-	pRhythmbox->read_data = NULL;  // rien a faire vu que l'echange de donnees se fait entierement avec les proxys DBus.
-	pRhythmbox->free_data = cd_rhythmbox_free_data;
-	pRhythmbox->configure = cd_rhythmbox_configure;  // renseigne les proprietes DBus et se connecte au bus.
-	pRhythmbox->control = cd_rhythmbox_control;
-	pRhythmbox->get_cover = cd_rhythmbox_get_cover_path;
+	MusicPlayerHandler *pHandler = g_new0 (MusicPlayerHandler, 1);
+	pHandler->name = "Rhythmbox";
+	pHandler->get_data = NULL;  // rien a faire vu que l'echange de donnees se fait entierement avec les proxys DBus.
+	pHandler->stop = NULL;  // signals are disconnected when the proxy is destroyed.
+	pHandler->start = cd_rhythmbox_start;  // renseigne les proprietes DBus et se connecte au bus.
+	pHandler->control = cd_rhythmbox_control;
+	pHandler->get_cover = cd_rhythmbox_get_cover_path;
 	
-	pRhythmbox->appclass = "rhythmbox";
-	pRhythmbox->name = "Rhythmbox";
-	pRhythmbox->launch = "rhythmbox";
-	pRhythmbox->cMprisService = "org.gnome.Rhythmbox";
-	pRhythmbox->cCoverDir = g_strdup_printf ("%s/.cache/rhythmbox/covers", g_getenv ("HOME"));
-	pRhythmbox->iPlayer = MP_RHYTHMBOX;
-	pRhythmbox->bSeparateAcquisition = FALSE;
-	pRhythmbox->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_ENQUEUE;
-	pRhythmbox->iLevel = PLAYER_EXCELLENT;
+	pHandler->appclass = "rhythmbox";
+	pHandler->launch = "rhythmbox";
+	pHandler->cMprisService = "org.gnome.Rhythmbox";
+	pHandler->path = "/org/gnome/Rhythmbox/Player";
+	pHandler->interface = "org.gnome.Rhythmbox.Player";
+	pHandler->path2 = "/org/gnome/Rhythmbox/Shell";
+	pHandler->interface2 = "org.gnome.Rhythmbox.Shell";
 	
-	cd_musicplayer_register_my_handler(pRhythmbox, "rhythmbox");
+	pHandler->cCoverDir = g_strdup_printf ("%s/.cache/rhythmbox/covers", g_getenv ("HOME"));
+	pHandler->bSeparateAcquisition = FALSE;
+	pHandler->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_ENQUEUE;
+	pHandler->iLevel = PLAYER_EXCELLENT;
+	
+	cd_musicplayer_register_my_handler(pHandler);
 }

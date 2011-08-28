@@ -33,11 +33,10 @@
  */
 void cd_musicplayer_register_guayadeque_handler (void)
 {
-	MusicPlayerHandeler *pGuayadeque = cd_mpris_new_handler ();
+	MusicPlayerHandler *pGuayadeque = cd_mpris_new_handler ();
 	pGuayadeque->cMprisService = "org.mpris.guayadeque";
 	pGuayadeque->appclass = "guayadeque";
 	pGuayadeque->launch = "guayadeque";
 	pGuayadeque->name = "Guayadeque";
-	pGuayadeque->iPlayer = MP_GUAYADEQUE;
-	cd_musicplayer_register_my_handler (pGuayadeque, "Guayadeque");
+	cd_musicplayer_register_my_handler (pGuayadeque);
 }

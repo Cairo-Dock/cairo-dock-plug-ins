@@ -26,17 +26,21 @@
 #include "applet-struct.h"
 
 
-MusicPlayerHandeler *cd_musicplayer_get_handler_by_name (const gchar *cName);
+MusicPlayerHandler *cd_musicplayer_get_handler_by_name (const gchar *cName);
+
+MusicPlayerHandler *cd_musicplayer_get_handler_by_service (const gchar *cService);
 
 void cd_musicplayer_launch_handler (void);
 
 void cd_musicplayer_relaunch_handler (void);
 
-void cd_musicplayer_stop_handler (void);
+void cd_musicplayer_stop_current_handler (void);
 
-void cd_musicplayer_register_my_handler (MusicPlayerHandeler *pHandeler, const gchar *cName);
+void cd_musicplayer_register_my_handler (MusicPlayerHandler *pHandler);
 
-void cd_musicplayer_free_handler (MusicPlayerHandeler *pHandeler);
+void cd_musicplayer_free_handler (MusicPlayerHandler *pHandler);
+
+void cd_musicplayer_set_current_handler (const gchar *cName);
 
 
 #endif

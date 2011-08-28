@@ -31,7 +31,7 @@ void cd_mpris_getPlaying (void);  // used by Audacious.
 void cd_mpris_get_time_elapsed (void);  // used by Audacious too.
 
 
-MusicPlayerHandeler *cd_mpris_new_handler (void);
+MusicPlayerHandler *cd_mpris_new_handler (void);
 
 
 #endif

@@ -90,7 +90,7 @@ static void cd_xmms_control (MyPlayerControl pControl, const gchar *cFile) { //P
 		break;
 	}
 	
-	cd_debug ("Handeler XMMS: will use '%s'", cCommand?cCommand:cCommand2);
+	cd_debug ("Handler XMMS: will use '%s'", cCommand?cCommand:cCommand2);
 	g_spawn_command_line_async (cCommand?cCommand:cCommand2, &erreur);
 	g_free (cCommand2);
 	
@@ -238,7 +238,7 @@ static void cd_xmms_read_data (void) {
 }
 
 void cd_musicplayer_register_xmms_handler (void) { //On enregistre notre lecteurs
-	MusicPlayerHandeler *pXMMS = g_new0 (MusicPlayerHandeler, 1);
+	MusicPlayerHandler *pXMMS = g_new0 (MusicPlayerHandler, 1);
 	pXMMS->read_data = cd_xmms_read_data;
 	pXMMS->free_data = cd_xmms_free_data;
 	pXMMS->configure = NULL; //Cette fonction permettera de préparer le controleur
@@ -248,7 +248,6 @@ void cd_musicplayer_register_xmms_handler (void) { //On enregistre notre lecteur
 	pXMMS->name = "XMMS";
 	pXMMS->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_STOP | PLAYER_JUMPBOX | PLAYER_SHUFFLE | PLAYER_ENQUEUE | PLAYER_REPEAT;
 	pXMMS->launch = "xmms";
-	pXMMS->iPlayer = MP_XMMS;
 	pXMMS->bSeparateAcquisition = TRUE;
-	cd_musicplayer_register_my_handler (pXMMS, "XMMS");
+	cd_musicplayer_register_my_handler (pXMMS);
 }

@@ -27,33 +27,32 @@
 #include "applet-musicplayer.h"
 
 
-gboolean cd_musicplayer_dbus_connect_to_bus (void)
+gboolean cd_musicplayer_dbus_connect_handler (MusicPlayerHandler *pHandler)
 {
+	g_return_val_if_fail (pHandler != NULL && pHandler->cMprisService != NULL, FALSE);
 	if (cairo_dock_dbus_is_enabled ())
 	{
-		myData.dbus_proxy_player = cairo_dock_create_new_session_proxy (
-			myData.DBus_commands.service,
-			myData.DBus_commands.path,
-			myData.DBus_commands.interface);
-		return (myData.dbus_proxy_player != NULL);
+		if (pHandler->path != NULL)
+		{
+			myData.dbus_proxy_player = cairo_dock_create_new_session_proxy (
+				pHandler->cMprisService,
+				pHandler->path,
+				pHandler->interface);
+		}
+		if (pHandler->path2 != NULL)
+		{
+			myData.dbus_proxy_shell = cairo_dock_create_new_session_proxy (
+				pHandler->cMprisService,
+				pHandler->path2,
+				pHandler->interface2);
+		}
+		return (myData.dbus_proxy_player != NULL || myData.dbus_proxy_shell != NULL);
 	}
 	return FALSE;
 }
 
-gboolean musicplayer_dbus_connect_to_bus_Shell (void)
-{
-	if (cairo_dock_dbus_is_enabled ())
-	{
-		myData.dbus_proxy_shell = cairo_dock_create_new_session_proxy (
-			myData.DBus_commands.service,
-			myData.DBus_commands.path2,
-			myData.DBus_commands.interface2);
-		return (myData.dbus_proxy_shell != NULL);
-	}
-	return FALSE;
-}
 
-void musicplayer_dbus_disconnect_from_bus (void)
+void cd_musicplayer_dbus_disconnect_from_bus (void)
 {
 	if (myData.dbus_proxy_player != NULL)
 	{
@@ -66,10 +65,6 @@ void musicplayer_dbus_disconnect_from_bus (void)
 		dbus_g_proxy_cancel_call (pProxy, myData.pDetectPlayerCall);
 		myData.pDetectPlayerCall = NULL;
 	}
-}
-
-void musicplayer_dbus_disconnect_from_bus_Shell (void)
-{
 	if (myData.dbus_proxy_shell != NULL)
 	{
 		g_object_unref (myData.dbus_proxy_shell);
@@ -77,122 +72,59 @@ void musicplayer_dbus_disconnect_from_bus_Shell (void)
 	}
 }
 
-static void _on_detect_player (gboolean bPresent, GVoidFunc pCallback)
-{
-	myData.bIsRunning = bPresent;
-	pCallback ();
-}
-void cd_musicplayer_dbus_detect_player_async (GVoidFunc pCallback)
-{
-	myData.bIsRunning = FALSE;
-	if (myData.pDetectPlayerCall != NULL)
-	{
-		DBusGProxy *pProxy = cairo_dock_get_main_proxy ();
-		dbus_g_proxy_cancel_call (pProxy, myData.pDetectPlayerCall);
-	}
-	myData.pDetectPlayerCall = cairo_dock_dbus_detect_application_async (myData.DBus_commands.service, (CairoDockOnAppliPresentOnDbus) _on_detect_player, pCallback);
-}
 
-void cd_musicplayer_dbus_detect_player (void)
+MusicPlayerHandler *cd_musicplayer_dbus_find_opened_player (void)
 {
-	myData.bIsRunning = cairo_dock_dbus_detect_application (myData.DBus_commands.service);
-}
-
-
-//*********************************************************************************
-// musicplayer_getStatus_*() : Test si musicplayer joue de la musique ou non
-//*********************************************************************************
-void cd_musicplayer_getStatus_string (const char *status_paused, const char *status_playing, const char* status_stopped )
-{
-		gchar *status=NULL;
-		status = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_status);
-		myData.pPreviousPlayingStatus = myData.iPlayingStatus;
-		if ((! g_ascii_strcasecmp(status, status_playing)) || (!g_ascii_strcasecmp(status, "1")))
-		{
-			//cd_debug("MP : le lecteur est en statut PLAY");
-			myData.iPlayingStatus = PLAYER_PLAYING;
-		}
-		else if (! g_ascii_strcasecmp(status, status_paused))
-		{
-			//cd_debug("MP : le lecteur est en statut PAUSED");
-			myData.iPlayingStatus = PLAYER_PAUSED;
-		}
-		else if ((status_stopped) &&(! g_ascii_strcasecmp(status, status_stopped)))
-		{
-			//cd_debug("MP : le lecteur est en statut STOPPED");
-			myData.iPlayingStatus = PLAYER_STOPPED;
-		}
-		if (status != NULL)
-		{
-			g_free(status);
-			status=NULL;
-		}
-}
-
-void cd_musicplayer_getStatus_integer (int status_paused, int status_playing)
-{
-	int status;
+	if (myData.pCurrentHandler != NULL && myData.bIsRunning)
+		return myData.pCurrentHandler;
 	
-	status=cairo_dock_dbus_get_integer(myData.dbus_proxy_player, myData.DBus_commands.get_status);
-	//cd_debug("MP : Statut du lecteur : %d",status);
-	if (status == status_paused) myData.iPlayingStatus = PLAYER_PAUSED;
-	else if (status == status_playing) myData.iPlayingStatus = PLAYER_PLAYING;
-	else myData.iPlayingStatus = PLAYER_STOPPED;
-}
-
-//*********************************************************************************
-// musicplayer_getCoverPath() : Retourne l'adresse de la pochette
-//*********************************************************************************
-
-void cd_musicplayer_getCoverPath (void)
-{
-	if (myData.cCoverPath != NULL) {
-		g_free (myData.cCoverPath);
-		myData.cCoverPath = NULL;
-	}
-	
-	myData.cCoverPath = cairo_dock_dbus_get_string (myData.dbus_proxy_player, myData.DBus_commands.get_cover_path);
-	if (myData.cCoverPath != NULL)
-		cd_message("MP : Couverture -> %s", myData.cCoverPath);
-	else
-		cd_message("MP : Pas de couverture dispo");
-}
-
-
-MusicPlayerHandeler *cd_musicplayer_dbus_find_opened_player (void)
-{
-	// on recupere la liste des services existants.
+	// get the list of services.	
+	MusicPlayerHandler *pHandler = NULL;
 	gchar **name_list = cairo_dock_dbus_get_services ();
-	if (name_list)
+	
+	if (name_list != NULL)
 	{
-		// on teste chaque lecteur.
-		MusicPlayerHandeler *pHandler = NULL;
+		// check if an MPRIS2 service is present.
 		int i;
-		GList *h;
-		for (h = myData.pHandelers; h != NULL; h = h->next)
+		for (i = 0; name_list[i] != NULL; i ++)
 		{
-			pHandler = h->data;
-			//cd_debug ("%s : %s\n", pHandler->name, pHandler->cMprisService);
-			if (pHandler->cMprisService == NULL)
-				continue;
+			if (strncmp (name_list[i], CD_MPRIS2_SERVICE_BASE, strlen (CD_MPRIS2_SERVICE_BASE)) == 0)  // it's an MPRIS2 player.
+			{
+				pHandler = cd_musicplayer_get_handler_by_name ("Mpris2");
+				g_free ((gchar*)pHandler->cMprisService);
+				pHandler->cMprisService = g_strdup (name_list[i]);
+				pHandler->launch = g_strdup (name_list[i] + strlen (CD_MPRIS2_SERVICE_BASE)+1);
+				gchar *str = strchr (pHandler->launch, '.');
+				if (str)
+					*str = '\0';
+				/// set the properties (command, class), manage the class...
+				
+				break;
+			}
+		}
+		
+		// if no MPRIS2 service is present, look for a known handler.
+		if (pHandler == NULL)
+		{
+			GList *h;
+			MusicPlayerHandler *handler;
 			for (i = 0; name_list[i] != NULL; i ++)
 			{
-				cd_debug ("%s : %s\n", pHandler->cMprisService, name_list[i]);
-				if (strcmp (name_list[i], pHandler->cMprisService) == 0)  // trouve, on quitte.
+				for (h = myData.pHandlers; h != NULL; h = h->next)  // see if a known handler matches.
 				{
-					cd_debug ("found %s\n", pHandler->name);
-					break;
+					handler = h->data;
+					if (handler->cMprisService == NULL)
+						continue;
+					if (strcmp (name_list[i], handler->cMprisService) == 0)
+					{
+						pHandler = handler;
+						break;
+					}
 				}
 			}
-			if (name_list[i] != NULL)
-				break ;
 		}
+		
 		g_strfreev (name_list);
-		return (h ? pHandler : NULL);
 	}
-	else
-	{
-		return NULL;
-	}
+	return pHandler;
 }
-

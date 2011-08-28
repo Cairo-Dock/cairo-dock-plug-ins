@@ -71,7 +71,6 @@ static void cd_exaile_getSongInfos(void)
 	if (cQuery == NULL)
 	{
 		myData.iPlayingStatus = PLAYER_STOPPED;
-		myData.bIsRunning = FALSE;
 		g_free (myData.cPlayingUri);
 		myData.cPlayingUri = NULL;
 		g_free (myData.cTitle);
@@ -166,26 +165,6 @@ static void cd_exaile_getCoverPath (void)
  // Definition du backend. //
 ////////////////////////////
 
-/* Fonction de connexion au bus de EX.
- */
-static gboolean _cd_exaile_dbus_connect_to_bus (void)
-{
-	if (cairo_dock_dbus_is_enabled ())
-	{
-		myData.dbus_enable = cd_musicplayer_dbus_connect_to_bus ();  // cree le proxy.
-		
-		return TRUE;
-	}
-	return FALSE;
-}
-
-/* Permet de libérer la mémoire prise par notre controleur
- */
-static void cd_exaile_free_data (void)
-{
-	musicplayer_dbus_disconnect_from_bus();
-}
-
 /* Controle du lecteur
  */
 static void cd_exaile_control (MyPlayerControl pControl, const char* file)
@@ -219,86 +198,55 @@ static void cd_exaile_control (MyPlayerControl pControl, const char* file)
 
 /* Recupere tout chaque seconde (aucun signal).
  */
-static void cd_exaile_read_data (void)
+static void cd_exaile_get_data (void)
 {
-	if (! myData.dbus_enable)
+	cd_debug ("Exaile is running\n");
+	cd_exaile_getSongInfos ();
+	if (myData.iPlayingStatus == PLAYER_PLAYING && cairo_dock_strings_differ (myData.cRawTitle, myData.cPreviousRawTitle))
+		cd_exaile_getCoverPath ();
+	else if (myData.iPlayingStatus == PLAYER_STOPPED)  // en pause le temps et la chanson reste constants.
 	{
-		cd_warning ("couldn't connect to bus");
-		return;
+		myData.iCurrentTime = 0;
 	}
+	cd_message (" myData.iCurrentTime <- %d", __func__, myData.iCurrentTime);
 	
-	if (! myData.bIsRunning)
-		cd_musicplayer_dbus_detect_player ();
-	
-	if (myData.bIsRunning)
-	{
-		cd_debug ("Exaile is running\n");
-		cd_exaile_getSongInfos ();
-		if (myData.iPlayingStatus == PLAYER_PLAYING && cairo_dock_strings_differ (myData.cRawTitle, myData.cPreviousRawTitle))
-			cd_exaile_getCoverPath ();
-		else if (myData.iPlayingStatus == PLAYER_STOPPED)  // en pause le temps et la chanson reste constants.
-		{
-			myData.iCurrentTime = 0;
-		}
-		cd_message (" myData.iCurrentTime <- %d", __func__, myData.iCurrentTime);
-	}
-	else
-	{
-		cd_debug ("MP : lecteur non ouvert");
-		myData.iPlayingStatus = PLAYER_NONE;
-	}
 }
 
 /* Initialise le backend de EX.
  */
-static void cd_exaile_configure (void)
+static void cd_exaile_start (void)
 {
-	myData.DBus_commands.service = "org.exaile.DBusInterface";
-	myData.DBus_commands.path = "/DBusInterfaceObject";
-	myData.DBus_commands.interface = "org.exaile.DBusInterface";
-	
-	myData.dbus_enable = _cd_exaile_dbus_connect_to_bus ();  // se connecte au bus.
-	if (myData.dbus_enable)
-	{
-		cd_musicplayer_dbus_detect_player ();  // on teste la presence de EX sur le bus <=> s'il est ouvert ou pas.
-		if(myData.bIsRunning)  // player en cours d'execution, on recupere son etat.
-		{
-			cd_debug ("MP : EX is running\n");
-			cd_exaile_getSongInfos ();
-			cd_exaile_getCoverPath ();
-			cd_musicplayer_update_icon (TRUE);
-		}
-		else  // player eteint.
-		{
-			cd_musicplayer_set_surface (PLAYER_NONE);
-		}
-	}
-	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
-	{
-		cd_musicplayer_set_surface (PLAYER_BROKEN);
-	}
+	// get the current state.
+	cd_exaile_getSongInfos ();
+	cd_exaile_getCoverPath ();
+	cd_musicplayer_update_icon (TRUE);
 }
 
 /* On enregistre notre lecteur.
  */
 void cd_musicplayer_register_exaile_handler (void) { //On enregistre notre lecteur
 	//cd_debug ("");
-	MusicPlayerHandeler *pExaile = g_new0 (MusicPlayerHandeler, 1);
-	pExaile->read_data = cd_exaile_read_data;
-	pExaile->free_data = cd_exaile_free_data;
-	pExaile->configure = cd_exaile_configure;
-	pExaile->control = cd_exaile_control;
-	pExaile->get_cover = NULL;
-	pExaile->cCoverDir = NULL;  /// visiblement il sait gerer les covers, sauf que je l'ai jamais vu en afficher une...
+	MusicPlayerHandler *pHandler = g_new0 (MusicPlayerHandler, 1);
+	pHandler->name = "Exaile";
+	pHandler->get_data = cd_exaile_get_data;
+	pHandler->stop = NULL;
+	pHandler->start = cd_exaile_start;  // we could also let the loop get the state on the first iteration.
+	pHandler->control = cd_exaile_control;
+	pHandler->get_cover = NULL;
+	pHandler->cCoverDir = NULL;  /// visiblement il sait gerer les covers, sauf que je l'ai jamais vu en afficher une...
 	
-	pExaile->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT;
-	pExaile->appclass = "exaile.py";
-	pExaile->name = "Exaile";
-	pExaile->launch = "exaile";
-	pExaile->cMprisService = "org.exaile.DBusInterface";
-	pExaile->iPlayer = MP_EXAILE;
-	pExaile->bSeparateAcquisition = FALSE;
-	pExaile->iLevel = PLAYER_BAD;  // API DBus moisie sans aucun signal.
+	pHandler->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT;
+	pHandler->appclass = "exaile.py";
+	pHandler->launch = "exaile";
+	pHandler->cMprisService = "org.exaile.DBusInterface";
+	pHandler->bSeparateAcquisition = FALSE;
+	pHandler->iLevel = PLAYER_BAD;  // API DBus moisie sans aucun signal.
 	
-	cd_musicplayer_register_my_handler (pExaile, "Exaile");
+	pHandler->cMprisService = "org.exaile.DBusInterface";
+	pHandler->path = "/DBusInterfaceObject";
+	pHandler->interface = "org.exaile.DBusInterface";
+	pHandler->path2 = NULL;
+	pHandler->interface2 = NULL;
+	
+	cd_musicplayer_register_my_handler (pHandler);
 }

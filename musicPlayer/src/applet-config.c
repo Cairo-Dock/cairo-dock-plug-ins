@@ -31,11 +31,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.cMusicPlayer 			= CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "current-player", "Rhythmbox");
 	myConfig.cDefaultTitle			= CD_CONFIG_GET_STRING ("Icon", "name");
-	if (myConfig.cDefaultTitle == NULL || *myConfig.cDefaultTitle == '\0')
-	{
-		g_free (myConfig.cDefaultTitle);
-		myConfig.cDefaultTitle = g_strdup (myConfig.cMusicPlayer);
-	}
 	
 	myConfig.bEnableDialogs 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_dialogs");
 	myConfig.iDialogDuration 		= 1000 * CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "time_dialog", 4);
@@ -52,8 +47,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cUserImage[PLAYER_BROKEN] 	= CD_CONFIG_GET_STRING ("Configuration", "broken icon");
 
 	myConfig.bDownload   = CD_CONFIG_GET_BOOLEAN ("Configuration", "DOWNLOAD");
-	myConfig.bPauseOnClick = (CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "pause on click", 0) == 0);  // c'est une liste numerotee de 2 elements.
-	if (!myConfig.bPauseOnClick)  // pour pouvoir agir sur la fenetre, il faut voler l'appli.
+	myConfig.bPauseOnClick = (CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "pause on click", 1) == 0);  // c'est une liste numerotee de 2 elements.
+	if (!myConfig.bPauseOnClick)  // pour pouvoir agir sur la fenetre, il faut voler l'appli (plus tellement vrai avec MPRIS2...).
 		myConfig.bStealTaskBarIcon = TRUE;
 	
 	//\_______________ On on recupere le theme choisi.
@@ -98,12 +93,11 @@ CD_APPLET_RESET_DATA_BEGIN
 	g_free (myData.cMissingCover);
 	g_free (myData.cPreviousRawTitle);
 	
-	//On s'occupe des handlers.
-	cd_musicplayer_stop_handler ();
-	g_list_foreach (myData.pHandelers, (GFunc) cd_musicplayer_free_handler, NULL);
-	g_list_free (myData.pHandelers);
+	// On s'occupe des handlers.
+	g_list_foreach (myData.pHandlers, (GFunc) cd_musicplayer_free_handler, NULL);
+	g_list_free (myData.pHandlers);
 	
-	//Bye bye pauvres textures opengl
+	// Bye bye pauvres textures opengl
 	cd_opengl_reset_opengl_datas (myApplet);
 	
 CD_APPLET_RESET_DATA_END

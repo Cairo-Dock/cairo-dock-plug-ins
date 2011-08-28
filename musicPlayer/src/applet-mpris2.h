@@ -17,21 +17,14 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __POWERMANAGER_DBUS__
-#define  __POWERMANAGER_DBUS__
+#ifndef __APPLET_MPRIS2__
+#define  __APPLET_MPRIS2__
 
-#include <glib.h>
+#include <cairo-dock.h>
+#include "applet-struct.h"
 
-void cd_detect_power_manager_on_bus (void);
 
-gboolean update_stats(void);
-gboolean update_stats_loop (void);
+void cd_musicplayer_register_mpris2_handler (void);
 
-void cd_disconnect_from_bus (void);
-
-void power_halt(void);
-void power_hibernate(void);
-void power_suspend(void);
-void power_reboot(void);
 
 #endif

@@ -250,7 +250,7 @@ static void _on_got_playing_status (DBusGProxy *proxy, DBusGProxyCall *call_id, 
 	
 	CD_APPLET_LEAVE ();
 }
-void cd_mpris_getPlaying_async (void)  // used by Audacious.
+void cd_mpris_getPlaying_async (void)
 {
 	if (s_pGetStatusCall != NULL)
 		return;
@@ -264,7 +264,7 @@ void cd_mpris_getPlaying_async (void)  // used by Audacious.
 
 /* Teste si MP joue de la musique ou non
  */
-void cd_mpris_getPlaying (void)  // used by Audacious too.
+void cd_mpris_getPlaying (void)  // sync version, used by Audacious.
 {
 	cd_debug ("%s ()\n", __func__);
 	int iStatus = _mpris_get_status (0);
@@ -451,42 +451,6 @@ static inline void _extract_metadata (GHashTable *data_list)
 	cd_musicplayer_get_cover_path (cCoverPath, TRUE);
 }
 
-/* Recupere les infos de la chanson courante, y compris le chemin de la couverture (la telecharge au besoin).
- */
-/**static void cd_mpris_getSongInfos (void)
-{
-	GHashTable *data_list = NULL;
-	const gchar *data;
-		
-	if(dbus_g_proxy_call (myData.dbus_proxy_player, "GetMetadata", NULL,
-		G_TYPE_INVALID,
-		MP_DBUS_TYPE_SONG_METADATA,
-		&data_list,
-		G_TYPE_INVALID))
-	{
-		_extract_metadata (data_list);
-		
-		g_hash_table_destroy (data_list);
-	}
-	else
-	{
-		cd_warning ("  can't get song properties");
-		g_free (myData.cPlayingUri);
-		myData.cPlayingUri = NULL;
-		g_free (myData.cTitle);
-		myData.cTitle = NULL;
-		g_free (myData.cAlbum);
-		myData.cAlbum = NULL;
-		g_free (myData.cArtist);
-		myData.cArtist = NULL;
-		g_free (myData.cCoverPath);
-		myData.cCoverPath = NULL;
-		myData.iSongLength = 0;
-		myData.iTrackNumber = 0;
-		myData.cover_exist = FALSE;
-	}
-}*/
-
 static void _on_got_song_infos (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockModuleInstance *myApplet)
 {
 	cd_debug ("=== %s ()", __func__);
@@ -562,7 +526,6 @@ static void onChangeSong_mpris(DBusGProxy *player_proxy, GHashTable *metadata, g
 	if (metadata != NULL)
 	{
 		_extract_metadata (metadata);
-		myData.bIsRunning = TRUE;
 		myData.iPlayingStatus = PLAYER_PLAYING;  // pour les lecteurs bugues comem Exaile qui envoit un statut "stop" au changement de musique sans envoyer de status "play" par la suite. On considere donc que si le lecteur joue une nouvelle musique, c'est qu'il est en "play".
 	}
 	else
@@ -581,8 +544,6 @@ static void onChangeSong_mpris(DBusGProxy *player_proxy, GHashTable *metadata, g
 		myData.iSongLength = 0;
 		myData.iTrackNumber = 0;
 		myData.cover_exist = FALSE;
-		
-		cd_musicplayer_dbus_detect_player ();
 	}
 	cd_musicplayer_update_icon (TRUE);
 	CD_APPLET_LEAVE ();
@@ -594,7 +555,6 @@ void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpoin
 {
 	CD_APPLET_ENTER;
 	//cd_debug ("MP : %s (%x)\n", __func__, status);
-	myData.bIsRunning = TRUE;
 	myData.iGetTimeFailed = 0;
 	int iStatus = _extract_status_mpris (status, 0);
 	_set_playing_status_mpris (iStatus);
@@ -603,7 +563,10 @@ void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpoin
 	if (myData.iPlayingStatus == PLAYER_PLAYING)  // le handler est stoppe lorsque le lecteur ne joue rien.
 		cd_musicplayer_relaunch_handler ();
 	
-	if(! myData.cover_exist && (myData.cPlayingUri != NULL || myData.cTitle != NULL))
+	if (myData.iPlayingStatus == PLAYER_STOPPED)
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
+	
+	if(! myData.cover_exist/** && (myData.cPlayingUri != NULL || myData.cTitle != NULL)*/)
 	{
 		cd_musicplayer_set_surface (myData.iPlayingStatus);
 	}
@@ -629,43 +592,9 @@ static void onChangeTrackList_mpris (DBusGProxy *player_proxy, gint iNewTrackLis
 // Definition du backend. //
 ////////////////////////////
 
-/* Fonction de connexion au bus de MP.
- */
-static gboolean cd_mpris_dbus_connect_to_bus (void)
-{
-	if (cairo_dock_dbus_is_enabled ())
-	{
-		// cree les proxys.
-		myData.dbus_enable = cd_musicplayer_dbus_connect_to_bus ();
-		
-		myData.dbus_enable_shell = musicplayer_dbus_connect_to_bus_Shell ();
-		
-		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "StatusChange",
-			MP_DBUS_TYPE_PLAYER_STATUS_MPRIS,
-			G_TYPE_INVALID);
-		dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "StatusChange",
-			G_CALLBACK(onChangePlaying_mpris), NULL, NULL);
-		
-		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "TrackChange",
-			MP_DBUS_TYPE_SONG_METADATA,
-			G_TYPE_INVALID);
-		dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "TrackChange",
-			G_CALLBACK(onChangeSong_mpris), NULL, NULL);
-		
-		dbus_g_proxy_add_signal(myData.dbus_proxy_shell, "TrackListChange",
-			MP_DBUS_TYPE_TRACKLIST_DATA,
-			G_TYPE_INVALID);
-		dbus_g_proxy_connect_signal(myData.dbus_proxy_shell, "TrackListChange",
-			G_CALLBACK(onChangeTrackList_mpris), NULL, NULL);
-		
-		return TRUE;
-	}
-	return FALSE;
-}
-
 /* Permet de liberer la memoire prise par le backend.
  */
-static void cd_mpris_free_data (void)
+static void cd_mpris_stop (void)
 {
 	if (myData.dbus_proxy_player != NULL)
 	{
@@ -698,9 +627,6 @@ static void cd_mpris_free_data (void)
 		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_shell, "TrackListChange",
 			G_CALLBACK(onChangeTrackList_mpris), NULL);
 	}
-	
-	musicplayer_dbus_disconnect_from_bus();
-	musicplayer_dbus_disconnect_from_bus_Shell();
 }
 
 
@@ -769,92 +695,76 @@ static void cd_mpris_control (MyPlayerControl pControl, const char* song)
 
 /* Recupere le temps ecoule chaque seconde (pas de signal pour ca).
  */
-static void cd_mpris_read_data (void)
+static void cd_mpris_get_data (void)
 {
-	if (myData.dbus_enable)
+	if (myData.iPlayingStatus == PLAYER_PLAYING)
 	{
-		if (myData.bIsRunning)
+		cd_mpris_get_time_elapsed ();
+		if (myData.iCurrentTime < 0)  // aucune info de temps sur le bus => lecteur ferme.
 		{
-			if (myData.iPlayingStatus == PLAYER_PLAYING)
+			myData.iGetTimeFailed ++;  // certains lecteurs (qmmp par exemple) envoient le signal 'playing' trop tot lorsqu'on les relance, ils ne fournissent pas de duree tout de suite, et donc l'applet stoppe. On fait donc 3 tentatives avant de declarer le lecteur ferme.
+			cd_debug ("failed to get time %d time(s)", myData.iGetTimeFailed);
+			if (myData.iGetTimeFailed > 2)
 			{
-				cd_mpris_get_time_elapsed ();
-				if (myData.iCurrentTime < 0)  // aucune info de temps sur le bus => lecteur ferme.
-				{
-					myData.iGetTimeFailed ++;  // certains lecteurs (qmmp par exemple) envoient le signal 'playing' trop tot lorsqu'on les relance, ils ne fournissent pas de duree tout de suite, et donc l'applet stoppe. On fait donc 3 tentatives avant de declarer le lecteur ferme.
-					cd_debug ("failed to get time %d time(s)", myData.iGetTimeFailed);
-					if (myData.iGetTimeFailed > 2)
-					{
-						cd_debug (" => player is likely closed");
-						myData.iPlayingStatus = PLAYER_NONE;
-						myData.iCurrentTime = -2;  // le temps etait a -1, on le change pour provoquer un redraw.
-						myData.bIsRunning = FALSE;
-					}
-				}
-				else
-					myData.iGetTimeFailed = 0;
-			}
-			else if (myData.iPlayingStatus != PLAYER_PAUSED)  // en pause le temps reste constant.
-			{
-				myData.iCurrentTime = 0;
-				myData.iGetTimeFailed = 0;
+				cd_debug (" => player is likely closed");
+				myData.iPlayingStatus = PLAYER_NONE;
+				myData.iCurrentTime = -2;  // le temps etait a -1, on le change pour provoquer un redraw.
 			}
 		}
-		else 
-		{
-			myData.iCurrentTime = 0;
+		else
 			myData.iGetTimeFailed = 0;
-		}
-		//cd_message (" myData.iCurrentTime <- %d", __func__, myData.iCurrentTime);
 	}
-}
-
-/* Initialise le backend de MP.
- */
-static void _on_detect_player (void)
-{
-	if (myApplet == NULL)  // precaution.
-		return ;
-	cd_debug ("myData.bIsRunning : %d\n", myData.bIsRunning);
-	if(myData.bIsRunning)  // player en cours d'execution, on recupere son etat.
+	else if (myData.iPlayingStatus != PLAYER_PAUSED)  // en pause le temps reste constant.
 	{
-		cd_debug ("MP : MP is running\n");
-		
-		cd_mpris_getPlaying_async ();  // will get song infos after playing status.
-		/**cd_mpris_getPlaying ();
-		cd_mpris_getSongInfos ();
-		cd_musicplayer_update_icon (TRUE);
-		cd_musicplayer_relaunch_handler ();*/
+		myData.iCurrentTime = 0;
+		myData.iGetTimeFailed = 0;
 	}
 }
 
-static void cd_mpris_configure (void)
+static void cd_mpris_start (void)
 {
-	myData.DBus_commands.path = "/Player";
-	myData.DBus_commands.path2 = "/TrackList";
-	myData.DBus_commands.interface = "org.freedesktop.MediaPlayer";
-	myData.DBus_commands.interface2 = "org.freedesktop.MediaPlayer";
+	// register to the signals
+	dbus_g_proxy_add_signal(myData.dbus_proxy_player, "StatusChange",
+		MP_DBUS_TYPE_PLAYER_STATUS_MPRIS,
+		G_TYPE_INVALID);
+	dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "StatusChange",
+		G_CALLBACK(onChangePlaying_mpris), NULL, NULL);
+
+	dbus_g_proxy_add_signal(myData.dbus_proxy_player, "TrackChange",
+		MP_DBUS_TYPE_SONG_METADATA,
+		G_TYPE_INVALID);
+	dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "TrackChange",
+		G_CALLBACK(onChangeSong_mpris), NULL, NULL);
+
+	dbus_g_proxy_add_signal(myData.dbus_proxy_shell, "TrackListChange",
+		MP_DBUS_TYPE_TRACKLIST_DATA,
+		G_TYPE_INVALID);
+	dbus_g_proxy_connect_signal(myData.dbus_proxy_shell, "TrackListChange",
+		G_CALLBACK(onChangeTrackList_mpris), NULL, NULL);
 	
-	myData.dbus_enable = cd_mpris_dbus_connect_to_bus ();  // se connecte au bus et aux signaux du lecteur.
-	if (myData.dbus_enable)
-	{
-		cd_musicplayer_dbus_detect_player_async (_on_detect_player);  // on teste la presence du lecteur sur le bus <=> s'il est ouvert ou pas.
-		cd_musicplayer_set_surface (PLAYER_NONE);  // en attendant de le savoir, on considere qu'il est eteint.
-	}
-	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
-	{
-		cd_musicplayer_set_surface (PLAYER_BROKEN);
-	}
+	// get the current state.
+	cd_mpris_getPlaying_async ();  // will get song infos after playing status.
+	/**cd_mpris_getPlaying ();
+	cd_mpris_getSongInfos ();
+	cd_musicplayer_update_icon (TRUE);
+	cd_musicplayer_relaunch_handler ();*/
 }
 
-MusicPlayerHandeler *cd_mpris_new_handler (void)
+MusicPlayerHandler *cd_mpris_new_handler (void)
 {
-	MusicPlayerHandeler *pHandler = g_new0 (MusicPlayerHandeler, 1);
-	pHandler->read_data = cd_mpris_read_data;
-	pHandler->free_data = cd_mpris_free_data;
-	pHandler->configure = cd_mpris_configure;
+	MusicPlayerHandler *pHandler = g_new0 (MusicPlayerHandler, 1);
+	pHandler->get_data = cd_mpris_get_data;
+	pHandler->stop = cd_mpris_stop;
+	pHandler->start = cd_mpris_start;
 	pHandler->control = cd_mpris_control;
 	pHandler->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_STOP | PLAYER_SHUFFLE | PLAYER_REPEAT | PLAYER_ENQUEUE;
 	pHandler->bSeparateAcquisition = FALSE;
 	pHandler->iLevel = PLAYER_GOOD;
+	
+	pHandler->path = "/Player";
+	pHandler->interface = "org.freedesktop.MediaPlayer";
+	pHandler->path2 = "/TrackList";
+	pHandler->interface2 = "org.freedesktop.MediaPlayer";
+	
 	return pHandler;
 }

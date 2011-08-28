@@ -92,7 +92,7 @@ static void _quodlibet_getPlaying (void)
 
 /* Renvoie le temps ecoule en secondes.
  */
-gint64 cairo_dock_dbus_get_integer64 (DBusGProxy *pDbusProxy, const gchar *cAccessor)
+static gint64 cairo_dock_dbus_get_integer64 (DBusGProxy *pDbusProxy, const gchar *cAccessor)
 {
 	GError *erreur = NULL;
 	gint64 iValue = 0;
@@ -167,7 +167,7 @@ static inline void _extract_metadata (GHashTable *data_list)  // album, date, di
 	cd_musicplayer_get_cover_path (NULL, TRUE);
 }
 
-void cd_quodlibet_getSongInfos (void)
+static void cd_quodlibet_getSongInfos (void)
 {
 	GHashTable *data_list = NULL;
 	
@@ -205,7 +205,7 @@ void cd_quodlibet_getSongInfos (void)
 // Les callbacks des signaux DBus. //
 /////////////////////////////////////
 
-/* Fonction executée à chaque changement de musique.
+/* Fonction executee à chaque changement de musique.
  */
 static void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointer data)
 {
@@ -215,7 +215,6 @@ static void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointe
 	if (metadata != NULL)
 	{
 		_extract_metadata (metadata);
-		myData.bIsRunning = TRUE;
 	}
 	else
 	{
@@ -232,20 +231,17 @@ static void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointe
 		myData.iSongLength = 0;
 		myData.iTrackNumber = 0;
 		myData.cover_exist = FALSE;
-		
-		cd_musicplayer_dbus_detect_player ();
 	}
 	cd_musicplayer_update_icon (TRUE);
 	CD_APPLET_LEAVE ();
 }
 
-/* Fonction executée à chaque changement "paused".
+/* Fonction executee à chaque changement "paused".
  */
-static void onChangePlaying (DBusGProxy *player_proxy, gpointer data)  // paused
+static void on_pause (DBusGProxy *player_proxy, gpointer data)  // paused
 {
 	CD_APPLET_ENTER;
 	cd_debug ("MP : %s ()\n", __func__);
-	myData.bIsRunning = TRUE;
 	
 	myData.iPlayingStatus = PLAYER_PAUSED;
 	
@@ -266,13 +262,12 @@ static void onChangePlaying (DBusGProxy *player_proxy, gpointer data)  // paused
 	}
 	CD_APPLET_LEAVE ();
 }
-/* Fonction executée à chaque changement "unpaused".
+/* Fonction executee à chaque changement "unpaused".
  */
-static void onChangePlaying2 (DBusGProxy *player_proxy, gpointer data)  // unpaused
+static void on_unpaused (DBusGProxy *player_proxy, gpointer data)  // unpaused
 {
 	CD_APPLET_ENTER;
 	cd_debug ("MP : %s ()\n", __func__);
-	myData.bIsRunning = TRUE;
 	
 	myData.iPlayingStatus = PLAYER_PLAYING;
 	
@@ -292,57 +287,9 @@ static void onChangePlaying2 (DBusGProxy *player_proxy, gpointer data)  // unpau
 // Definition du backend. //
 ////////////////////////////
 
-/* Fonction de connexion au bus de QL.
- */
-static gboolean _cd_quodlibet_dbus_connect_to_bus (void)
-{
-	if (cairo_dock_dbus_is_enabled ())
-	{
-		myData.dbus_enable = cd_musicplayer_dbus_connect_to_bus (); // cree le proxy.
-
-		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "paused",
-			G_TYPE_INVALID);
-		dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "paused",
-			G_CALLBACK(onChangePlaying), NULL, NULL);
-		
-		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "unpaused",
-			G_TYPE_NONE,
-			G_TYPE_INVALID);  // idem.
-		dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "unpaused",
-			G_CALLBACK(onChangePlaying2), NULL, NULL);
-		
-		dbus_g_proxy_add_signal(myData.dbus_proxy_player, "song-started",
-			QL_DBUS_TYPE_SONG_METADATA,
-			G_TYPE_INVALID);
-		dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "song-started",
-			G_CALLBACK(onChangeSong), NULL, NULL);
-		
-		return TRUE;
-	}
-	return FALSE;
-}
-
-/* Permet de libérer la mémoire prise par le backend.
- */
-void cd_quodlibet_free_data (void)
-{
-	if (myData.dbus_proxy_player != NULL)
-	{
-		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "paused",
-			G_CALLBACK(onChangePlaying), NULL);
-		
-		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "unpaused",
-			G_CALLBACK(onChangePlaying2), NULL);
-				
-		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_player, "song-started",
-			G_CALLBACK(onChangeSong), NULL);
-	}
-	musicplayer_dbus_disconnect_from_bus();
-}
-
 /* Controle du lecteur
  */
-void cd_quodlibet_control (MyPlayerControl pControl, const char* song)
+static void cd_quodlibet_control (MyPlayerControl pControl, const char* song)
 {
 	const gchar *cCommand = NULL;
 		
@@ -366,64 +313,51 @@ void cd_quodlibet_control (MyPlayerControl pControl, const char* song)
 	
 	if (cCommand != NULL)
 	{
-		cd_debug ("MP : Handeler QuodLibet : will use '%s'", cCommand);
+		cd_debug ("MP : Handler QuodLibet : will use '%s'", cCommand);
 		cairo_dock_dbus_call (myData.dbus_proxy_player, cCommand);
 	}
 }
 
 /* Recupere le temps ecoule chaque seconde (pas de signal pour ca).
  */
-static void cd_quodlibet_read_data (void)
+static void cd_quodlibet_get_data (void)
 {
-	if (myData.dbus_enable)
+	if (myData.iPlayingStatus == PLAYER_PLAYING)
 	{
-		if (myData.bIsRunning)
-		{
-			if (myData.iPlayingStatus == PLAYER_PLAYING)
-			{
-				_quodlibet_get_time_elapsed ();
-				if (myData.iCurrentTime < 0)
-					myData.iPlayingStatus = PLAYER_STOPPED;
-			}
-			else if (myData.iPlayingStatus != PLAYER_PAUSED)  // en pause le temps reste constant.
-				myData.iCurrentTime = 0;
-		}
-		else 
-		{
-			myData.iCurrentTime = 0;
-		}
-		cd_message (" myData.iCurrentTime <- %d", __func__, myData.iCurrentTime);
+		_quodlibet_get_time_elapsed ();
+		if (myData.iCurrentTime < 0)
+			myData.iPlayingStatus = PLAYER_STOPPED;
 	}
+	else if (myData.iPlayingStatus != PLAYER_PAUSED)  // en pause le temps reste constant.
+		myData.iCurrentTime = 0;
 }
 
 /* Initialise le backend de QL.
  */
-static void cd_quodlibet_configure (void)
+static void cd_quodlibet_start (void)
 {
-	myData.DBus_commands.service = "net.sacredchao.QuodLibet";
-	myData.DBus_commands.path = "/net/sacredchao/QuodLibet";
-	myData.DBus_commands.interface = "net.sacredchao.QuodLibet";
+	// register to the signals
+	dbus_g_proxy_add_signal(myData.dbus_proxy_player, "paused",
+		G_TYPE_INVALID);
+	dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "paused",
+		G_CALLBACK(on_pause), NULL, NULL);
+
+	dbus_g_proxy_add_signal(myData.dbus_proxy_player, "unpaused",
+		G_TYPE_NONE,
+		G_TYPE_INVALID);  // idem.
+	dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "unpaused",
+		G_CALLBACK(on_unpaused), NULL, NULL);
+
+	dbus_g_proxy_add_signal(myData.dbus_proxy_player, "song-started",
+		QL_DBUS_TYPE_SONG_METADATA,
+		G_TYPE_INVALID);
+	dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "song-started",
+		G_CALLBACK(onChangeSong), NULL, NULL);
 	
-	myData.dbus_enable = _cd_quodlibet_dbus_connect_to_bus ();  // se connecte au bus et aux signaux de QL.
-	if (myData.dbus_enable)
-	{
-		cd_musicplayer_dbus_detect_player ();  // on teste la presence de QL sur le bus <=> s'il est ouvert ou pas.
-		if(myData.bIsRunning)  // player en cours d'execution, on recupere son etat.
-		{
-			cd_debug ("MP : QL is running\n");
-			_quodlibet_getPlaying ();
-			cd_quodlibet_getSongInfos ();
-			cd_musicplayer_update_icon (TRUE);
-		}
-		else  // player eteint.
-		{
-			cd_musicplayer_set_surface (PLAYER_NONE);
-		}
-	}
-	else  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
-	{
-		cd_musicplayer_set_surface (PLAYER_BROKEN);
-	}
+	// get the current state.
+	_quodlibet_getPlaying ();
+	cd_quodlibet_getSongInfos ();
+	cd_musicplayer_update_icon (TRUE);
 }
 
 
@@ -431,21 +365,25 @@ static void cd_quodlibet_configure (void)
  */
 void cd_musicplayer_register_quodlibet_handler (void)
 {
-	MusicPlayerHandeler *pQuodlibet = g_new0 (MusicPlayerHandeler, 1);
-	pQuodlibet->read_data = cd_quodlibet_read_data;
-	pQuodlibet->free_data = cd_quodlibet_free_data;
-	pQuodlibet->configure = cd_quodlibet_configure;  // renseigne les proprietes DBus et se connecte au bus.
-	pQuodlibet->control = cd_quodlibet_control;
-	pQuodlibet->get_cover = NULL;
-	pQuodlibet->cCoverDir = NULL;  /// il me semble que QL gere les pochettes ...
+	MusicPlayerHandler *pHandler = g_new0 (MusicPlayerHandler, 1);
+	pHandler->name = "QuodLibet";
+	pHandler->get_data = cd_quodlibet_get_data;
+	pHandler->stop = NULL;
+	pHandler->start = cd_quodlibet_start;
+	pHandler->control = cd_quodlibet_control;
+	pHandler->get_cover = NULL;
+	pHandler->cCoverDir = NULL;  /// il me semble que QL gere les pochettes ...
 	
-	pQuodlibet->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT;
-	pQuodlibet->appclass = "quodlibet";
-	pQuodlibet->launch = "quodlibet";
-	pQuodlibet->name = "QuodLibet";
-	pQuodlibet->cMprisService = "net.sacredchao.QuodLibet";
-	pQuodlibet->iPlayer = MP_QUODLIBET;
-	pQuodlibet->bSeparateAcquisition = FALSE;
-	pQuodlibet->iLevel = PLAYER_GOOD;  // n'a besoin d'une boucle que pour afficher le temps ecoule.
-	cd_musicplayer_register_my_handler (pQuodlibet, "QuodLibet");
+	pHandler->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT;
+	pHandler->appclass = "quodlibet";
+	pHandler->launch = "quodlibet";
+	pHandler->cMprisService = "net.sacredchao.QuodLibet";
+	pHandler->path = "/net/sacredchao/QuodLibet";
+	pHandler->interface = "net.sacredchao.QuodLibet";
+	pHandler->path2 = NULL;
+	pHandler->interface2 = NULL;
+	
+	pHandler->bSeparateAcquisition = FALSE;
+	pHandler->iLevel = PLAYER_GOOD;  // n'a besoin d'une boucle que pour afficher le temps ecoule.
+	cd_musicplayer_register_my_handler (pHandler);
 }

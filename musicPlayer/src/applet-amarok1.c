@@ -77,7 +77,7 @@ void cd_amarok1_control (MyPlayerControl pControl, const gchar *cFile) { //Perme
 		break;
 	}
 	
-	cd_debug ("Handeler Amarok 1.4: will use '%s'", cCommand);
+	cd_debug ("Handler Amarok 1.4: will use '%s'", cCommand);
 	g_spawn_command_line_async (cCommand, &erreur);
 	if (pControl == PLAYER_ENQUEUE)
 		g_free (cCommand);
@@ -138,7 +138,7 @@ void cd_amarok1_acquisition (void) {
 
 
 void cd_musicplayer_register_amarok1_handler (void) { //On enregistre notre lecteurs
-	MusicPlayerHandeler *pAmarok1 = g_new0 (MusicPlayerHandeler, 1);
+	MusicPlayerHandler *pAmarok1 = g_new0 (MusicPlayerHandler, 1);
 	pAmarok1->read_data = cd_amarok1_read_data;
 	pAmarok1->free_data = cd_amarok1_free_data;
 	pAmarok1->configure = NULL; //Cette fonction permettera de préparé le controleur
@@ -148,7 +148,6 @@ void cd_musicplayer_register_amarok1_handler (void) { //On enregistre notre lect
 	pAmarok1->appclass = "amarok";
 	pAmarok1->name = "Amarok 1.4";
 	pAmarok1->launch = "amarok";
-	pAmarok1->iPlayer = MP_AMAROK1;
 	pAmarok1->bSeparateAcquisition = FALSE;
-	cd_musicplayer_register_my_handler (pAmarok1, "Amarok 1.4");
+	cd_musicplayer_register_my_handler (pAmarok1);
 }

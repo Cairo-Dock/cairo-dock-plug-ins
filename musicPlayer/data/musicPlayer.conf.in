@@ -12,7 +12,8 @@ dock name =
 #s Name of the icon as it will appear in its caption in the dock:
 #{Leave it empty to display the name of the player currently controlled.}
 name =
- #v
+
+#v
 sep_display=
 
 icon =
@@ -104,15 +105,15 @@ fg alpha = 1
 
 #F[Audio Player;gtk-cdrom]
 frame_player =
-#L[Amarok 2;Audacious;Banshee;Clementine;Exaile;Exaile 0.3;GMusicBrowser;Guayadeque;Listen;Qmmp;QuodLibet;Rhythmbox;Songbird;XMMS 2;XMMS] Player to control:
-current-player=Rhythmbox
+#E[;Amarok 2;Audacious;Banshee;Clementine;Exaile;Exaile 0.3;GMusicBrowser;Guayadeque;Listen;Qmmp;QuodLibet;Rhythmbox;Songbird;XMMS 2] Player to control:
+current-player=
 
 #b Steal the player's icon from the taskbar?
 #{This will prevent the player icon appearing in the taskbar. The applet's icon will then behave as a launcher, an application and an applet.}
 inhibate appli = true
 
 #l[Play/Pause on click, Next on middle-click;Show/Hide player on click, Play/Pause on middle-click] Actions on click and middle-click :
-pause on click = 0
+pause on click = 1
 
 
 #F[Action on music change;gtk-preferences]

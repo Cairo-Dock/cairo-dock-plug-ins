@@ -33,11 +33,10 @@
  */
 void cd_musicplayer_register_qmmp_handler (void)
 {
-	MusicPlayerHandeler *pQmmp = cd_mpris_new_handler ();
-	pQmmp->cMprisService = "org.mpris.qmmp";
-	pQmmp->appclass = "qmmp";  // les classes sont passees en minuscule par le dock.
-	pQmmp->launch = "qmmp";
-	pQmmp->name = "Qmmp";
-	pQmmp->iPlayer = MP_QMMP;
-	cd_musicplayer_register_my_handler (pQmmp, "Qmmp");
+	MusicPlayerHandler *pHandler = cd_mpris_new_handler ();
+	pHandler->cMprisService = "org.mpris.qmmp";
+	pHandler->appclass = "qmmp";  // les classes sont passees en minuscule par le dock.
+	pHandler->launch = "qmmp";
+	pHandler->name = "Qmmp";
+	cd_musicplayer_register_my_handler (pHandler);
 }

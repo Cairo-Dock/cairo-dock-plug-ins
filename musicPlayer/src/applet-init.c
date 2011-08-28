@@ -44,6 +44,7 @@
 #include "applet-amarok2.h" //Support Amarok 2
 #include "applet-audacious.h" //Support Audacious
 #include "applet-clementine.h" // Support Clementine
+#include "applet-mpris2.h" // Support Clementine
 
 CD_APPLET_DEFINE_BEGIN (N_("musicPlayer"),
 	2,0,0,
@@ -66,7 +67,7 @@ CD_APPLET_DEFINE_END
 CD_APPLET_INIT_BEGIN
 	// Add here all player's registering functions
 	// Don't forget to add the registered Name in ../data/musicPlayer.conf.in
-	cd_musicplayer_register_xmms_handler ();
+	//cd_musicplayer_register_xmms_handler ();
 	cd_musicplayer_register_exaile_handler();
 	cd_musicplayer_register_exaile3_handler();
 	cd_musicplayer_register_songbird_handler();
@@ -81,6 +82,7 @@ CD_APPLET_INIT_BEGIN
 	cd_musicplayer_register_guayadeque_handler();
 	cd_musicplayer_register_clementine_handler();
 	cd_musicplayer_register_gmusicbrowser_handler();
+	cd_musicplayer_register_mpris2_handler();
 	
 	gchar *cCoverPath = g_strdup_printf ("%s/musicplayer", g_cCairoDockDataDir);
 	if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))
@@ -111,17 +113,7 @@ CD_APPLET_INIT_BEGIN
 	myData.iPreviousTrackNumber = -1;
 	myData.iPreviousCurrentTime = -1;
 	
-	myData.pCurrentHandeler = cd_musicplayer_get_handler_by_name (myConfig.cMusicPlayer);
-	if (myData.pCurrentHandeler == NULL) {
- 		cd_warning ("MP : this player (%s) is not supported.", myConfig.cMusicPlayer); 
- 		return; 
-	}
-	
-	cd_musicplayer_launch_handler ();  // connexion au bus, detection de l'appli, recuperation de l'etat du lecteur si il est en marche, sinon dessin de l'icone "eteint".
-	
-	//\_______________ On prend en charge l'icone de l'appli player.
-	if (myConfig.bStealTaskBarIcon)
-		CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandeler->appclass);
+	cd_musicplayer_set_current_handler (myConfig.cMusicPlayer);
 	
 	//\_______________ On s'abonne aux notifications.
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
@@ -132,7 +124,7 @@ CD_APPLET_INIT_BEGIN
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
 	{
 		CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;  // pour les animation de transitions.
-		if (myDesklet)  // On ne teste le survol des boutons que si l'applet est détachée
+		if (myDesklet)  // On ne teste le survol des boutons que si l'applet est detachee
 		{
 			cairo_dock_register_notification_on_object (myContainer,
 				NOTIFICATION_MOUSE_MOVED,
@@ -156,6 +148,9 @@ CD_APPLET_STOP_BEGIN
 		(CairoDockNotificationFunc) cd_opengl_test_mouse_over_buttons,
 		myApplet);
 	
+	// stop the current handler.
+	cd_musicplayer_stop_current_handler ();
+	
 	// On stoppe les boucles de recup de la pochette.
 	if (myData.iSidCheckXmlFile != 0)
 		g_source_remove (myData.iSidCheckXmlFile);
@@ -171,9 +166,6 @@ CD_APPLET_STOP_END
 
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
-	if (myDock && (myIcon->cName == NULL || *myIcon->cName == '\0'))
-		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cMusicPlayer);
-	
 	//\_______________ On reset surfaces et textures.
 	int i;
 	for (i = 0; i < PLAYER_NB_STATUS; i ++) { // reset surfaces.
@@ -240,29 +232,21 @@ CD_APPLET_RELOAD_BEGIN
 	myData.iGetTimeFailed = 0;
 	
 	//\_______________ On gere le changement de player ou on redessine juste l'icone.
-	if (CD_APPLET_MY_CONFIG_CHANGED) {
+	if (CD_APPLET_MY_CONFIG_CHANGED)
+	{
 		// on stoppe l'ancien backend et on relance le nouveau.
-		if (myData.pCurrentHandeler)
-		{
-			cd_musicplayer_stop_handler ();  // libere tout ce qu'occupe notre ancien handler.
-			CD_APPLET_MANAGE_APPLICATION (NULL);
-		}
-		myData.pCurrentHandeler = cd_musicplayer_get_handler_by_name (myConfig.cMusicPlayer);
-		if (myData.pCurrentHandeler == NULL)
-		{
- 			cd_warning ("MP : this player (%s) is not supported.", myConfig.cMusicPlayer); 
- 			return FALSE; 
-		}
-		cd_musicplayer_launch_handler ();
+		cd_musicplayer_stop_current_handler ();  // libere tout ce qu'occupe notre ancien handler.
 		
-		if (myConfig.bStealTaskBarIcon)
-			CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandeler->appclass);
+		CD_APPLET_MANAGE_APPLICATION (NULL);
+		
+		cd_musicplayer_set_current_handler (myConfig.cMusicPlayer);
 	}
-	else { // on redessine juste l'icone.
+	else  // on redessine juste l'icone.
+	{
 		cd_musicplayer_update_icon (FALSE);  // FALSE pour ne pas avoir 2 fois le dialogue.
 		if (! myData.cover_exist)
 		{
-			if(myData.iPlayingStatus == PLAYER_PLAYING)
+			if (myData.iPlayingStatus == PLAYER_PLAYING)
 			{
 				cd_musicplayer_set_surface (PLAYER_PLAYING);
 			}

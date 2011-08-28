@@ -534,11 +534,7 @@ void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight
 		}
 		else if (myData.iPlayingStatus != PLAYER_PLAYING)
 		{
-			if (myData.bIsRunning)  // on verifie que le lecteur est bien ouvert (il se peut qu'il ne nous previenne pas lorsqu'il quitte).
-			{
-				cd_musicplayer_dbus_detect_player ();
-			}
-			if (myData.bIsRunning)  // si rhythmbox n'est pas lancé, on n'affiche pas l'osd de pause ;-)
+			if (myData.bIsRunning)  // si rhythmbox n'est pas lance, on n'affiche pas l'osd de pause ;-)
 			{
 				_draw_osd (myData.TextureOsdPause, myData.osdPausecoordX, myData.osdPausecoordY, myData.osdPausesizeX, myData.osdPausesizeY);
 			}

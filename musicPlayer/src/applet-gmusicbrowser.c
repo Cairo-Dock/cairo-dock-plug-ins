@@ -33,11 +33,10 @@
  */
 void cd_musicplayer_register_gmusicbrowser_handler (void)
 {
-	MusicPlayerHandeler *pGmusicbrowser = cd_mpris_new_handler ();
-	pGmusicbrowser->cMprisService = "org.mpris.gmusicbrowser";
-	pGmusicbrowser->appclass = "gmusicbrowser";
-	pGmusicbrowser->launch = "gmusicbrowser";
-	pGmusicbrowser->name = "GMusicBrowser";
-	pGmusicbrowser->iPlayer = MP_GMUSICBROWSER;
-	cd_musicplayer_register_my_handler (pGmusicbrowser, "GMusicBrowser");
+	MusicPlayerHandler *pHandler = cd_mpris_new_handler ();
+	pHandler->cMprisService = "org.mpris.gmusicbrowser";
+	pHandler->appclass = "gmusicbrowser";
+	pHandler->launch = "gmusicbrowser";
+	pHandler->name = "GMusicBrowser";
+	cd_musicplayer_register_my_handler (pHandler);
 }

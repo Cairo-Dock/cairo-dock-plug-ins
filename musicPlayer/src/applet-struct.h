@@ -17,34 +17,13 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef __CD_APPLET_STRUCT__
 #define  __CD_APPLET_STRUCT__
 
 #include <cairo-dock.h>
 
 //Canvas
-typedef struct _MusicPlayerHandeler MusicPlayerHandeler;
-
-// Players supportes
-typedef enum {
-	MP_RHYTHMBOX=0,
-	MP_AMAROK2,
-	MP_EXAILE,
-	MP_EXAILE3,
-	MP_LISTEN,
-	MP_SONGBIRD,
-	MP_QMMP,
-	MP_GMUSICBROWSER,
-	MP_GUAYADEQUE,
-	MP_CLEMENTINE,
-	MP_QUODLIBET,
-	MP_BANSHEE,
-	MP_AUDACIOUS,
-	MP_XMMS2,
-	MP_XMMS,
-	MB_NB_PLAYERS
-} MySupportedPlayers;
+typedef struct _MusicPlayerHandler MusicPlayerHandler;
 
 typedef enum {
 	PLAYER_NONE = 0,
@@ -76,46 +55,27 @@ typedef enum {
 
 
 typedef void (*MusicPlayerGetDataFunc) (void);  // acquisition des donnees, threade.
-typedef void (*MusicPlayerFreeDataFunc) (void);  // libere les ressources specifiques au backend (deconnexion des signaux, etc)
-typedef void (*MusicPlayerConfigureFunc) (void);  // initialise le backend (connexion des signaux, etc)
+typedef void (*MusicPlayerStopFunc) (void);  // libere les ressources specifiques au backend (deconnexion des signaux, etc)
+typedef void (*MusicPlayerStartFunc) (void);  // initialise le backend (connexion des signaux, etc)
 typedef void (*MusicPlayerControlerFunc) (MyPlayerControl pControl, const gchar *cFile);  // controle du lecteur (play/pause/next/etc)
 typedef void (*MusicPlayerGetCoverFunc) (void);  // pour les lecteurs buggues, recupere la couverture. Renseigner ce champ fera que si le lecteur n'a pas renvoye de couverture au changement de chanson, on retentera 2 secondes plus tard avec cette fonction.
 
-//A remplir lors du configure pour les players utilisant DBus.
-typedef struct {
-	const gchar *service;
-	const gchar *path;
-	const gchar *interface;
-	const gchar *path2;
-	const gchar *interface2;
-	const gchar *play;
-	const gchar *pause;
-	const gchar *play_pause;
-	const gchar *stop;
-	const gchar *next;
-	const gchar *previous;
-	const gchar *get_status;
-	const gchar *get_title;
-	const gchar *get_artist;
-	const gchar *get_album;
-	const gchar *get_cover_path;
-	const gchar *duration;
-	const gchar *current_position;
-} MusicPlayerDBus;
-
-struct _MusicPlayerHandeler {
-	MusicPlayerGetDataFunc 			read_data;
-	MusicPlayerFreeDataFunc 		free_data;
-	MusicPlayerConfigureFunc		configure;
-	MusicPlayerControlerFunc		control;
-	MusicPlayerGetCoverFunc			get_cover;
-	const gchar *cMprisService;  // nom du service DBus si le lecteur respecte la norme MPRIS.
-	const gchar *appclass;  // classe de l'appli.
+struct _MusicPlayerHandler {
 	const gchar *name;  // nom du backend.
+	MusicPlayerGetDataFunc 		get_data;
+	MusicPlayerStopFunc 		stop;
+	MusicPlayerStartFunc		start;
+	MusicPlayerControlerFunc	control;
+	MusicPlayerGetCoverFunc		get_cover;
+	const gchar *cMprisService;  // old Dbus service name
+	const gchar *path;  // Player object
+	const gchar *interface;
+	const gchar *path2;  // TrackList object.
+	const gchar *interface2;
+	const gchar *appclass;  // classe de l'appli.
 	const gchar *launch;  // commande lancant le lecteur.
 	gchar *cCoverDir;  // repertoire utilisateur de l'appli, contenant les couvertures.
-	gboolean bSeparateAcquisition;  // Sert a activer le thread ou pas (TRUE = activé; False = désactivé)
-	MySupportedPlayers iPlayer;  // ID du backend.
+	gboolean bSeparateAcquisition;  // Sert a activer le thread ou pas (TRUE = active; False = desactive)
 	MyPlayerControl iPlayerControls;  // un masque "OU" de MyPlayerControl.
 	MyLevel iLevel;
 };
@@ -134,6 +94,9 @@ typedef enum {
 
 #define MP_DBUS_TYPE_SONG_METADATA (dbus_g_type_get_map ("GHashTable", G_TYPE_STRING, G_TYPE_VALUE))
 
+#define CD_MPRIS2_SERVICE_BASE "org.mpris.MediaPlayer2"
+#define CD_MPRIS2_OBJ /org/mpris/MediaPlayer2
+#define CD_MPRIS2_MAIN_IFACE org.mpris.MediaPlayer2
 
 struct _AppletConfig {
 	gboolean bEnableDialogs;
@@ -156,10 +119,11 @@ struct _AppletConfig {
 };
 
 struct _AppletData {
-	//Pointeurs du canvas
+	// general
 	CairoDockTask *pTask;
-	GList *pHandelers;
-	MusicPlayerHandeler *pCurrentHandeler;
+	GList *pHandlers;
+	MusicPlayerHandler *pCurrentHandler;
+	gchar *cMpris2Service;  // MPRIS2 service associated with the current handler.
 	
 	//Informations essentielles
 	DBusGProxy *dbus_proxy_player;
@@ -169,6 +133,7 @@ struct _AppletData {
 	gchar *cArtist;
 	gchar *cAlbum;
 	gchar* cPlayingUri;
+	gchar* cTrackID;
 	MyPlayerStatus iPlayingStatus, pPreviousPlayingStatus;
 	gint iTrackNumber, iPreviousTrackNumber;  // track number = position dans la play-list, et non pas numero de piste dans l'album (qui ne nous interesse pas).
 	gint iCurrentTime, iPreviousCurrentTime, iGetTimeFailed;
@@ -178,13 +143,10 @@ struct _AppletData {
 	gint iTrackListIndex;
 	
 	// Pour les lecteurs utilisant DBus
-	MusicPlayerDBus DBus_commands;
-	gboolean dbus_enable;
-	gboolean dbus_enable_shell;
 	gboolean bIsRunning;
 	DBusGProxyCall *pDetectPlayerCall;
 	
-	//Données de dessin
+	//Donnees de dessin
 	cairo_surface_t *pSurfaces[PLAYER_NB_STATUS];
 	cairo_surface_t *pCover;
 	
