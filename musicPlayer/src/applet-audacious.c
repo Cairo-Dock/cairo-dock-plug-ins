@@ -406,7 +406,22 @@ void cd_musicplayer_register_audacious_handler (void)
 	pHandler->control = cd_audacious_control;
 	pHandler->get_cover = NULL;
 	pHandler->cCoverDir = NULL;
-	
+
+	// TODO: to check because I think that the class was audacious2 before and not audacious...
+	/*gchar *cResult = cairo_dock_launch_command_sync ("which audacious2");
+	if (cResult != NULL && *cResult == '/')
+	{
+		cd_debug ("MusicPlayer: Audacious2");
+		pHandler->appclass = "audacious2";
+		pHandler->launch = "audacious2";
+	}
+	else
+	{
+		cd_debug ("MusicPlayer: Audacious (without 2)");
+		pHandler->appclass = "audacious"; // now it's without this '2'
+		pHandler->launch = "audacious";
+	}
+	g_free (cResult);*/
 	pHandler->appclass = "audacious";  // desktop file is audasious2.desktop, and command is audacious2, but audacious also exists, and the class is Audacious ... this is really not serious.
 	pHandler->launch = "audacious";
 	pHandler->cMprisService = "org.mpris.audacious";

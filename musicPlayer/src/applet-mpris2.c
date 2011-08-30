@@ -209,19 +209,12 @@ static gboolean _extract_metadata (GHashTable *pMetadata)
 	}
 
 	v = g_hash_table_lookup (pMetadata, "mpris:length");  // length of the track, in microseconds (signed 64-bit integer)
-	if (v != NULL && G_VALUE_HOLDS_UINT64 (v))
+	if (v != NULL && G_VALUE_HOLDS_INT64 (v))
 	{
-		myData.iSongLength = g_value_get_uint64 (v) / 1000;
+		myData.iSongLength = g_value_get_int64 (v) / 1000000;
+		cd_debug ("Length: %d", myData.iSongLength);
 	}
-	
-	const gchar *cCoverPath = NULL;
-	v = g_hash_table_lookup(pMetadata, "mpris:artUrl");
-	if (v != NULL && G_VALUE_HOLDS_STRING(v))
-	{
-		cCoverPath = g_value_get_string(v);
-	}
-	cd_musicplayer_get_cover_path (cCoverPath, TRUE);
-	
+
 	g_free (myData.cArtist);
 	myData.cArtist = NULL;
 	v = (GValue *) g_hash_table_lookup(pMetadata, "xesam:artist");
@@ -275,6 +268,14 @@ static gboolean _extract_metadata (GHashTable *pMetadata)
 		myData.iTrackNumber = g_value_get_int (v);
 	}
 	cd_message ("  iTrackNumber <- %d", myData.iTrackNumber);
+
+	const gchar *cCoverPath = NULL;
+	v = g_hash_table_lookup(pMetadata, "mpris:artUrl");
+	if (v != NULL && G_VALUE_HOLDS_STRING(v))
+	{
+		cCoverPath = g_value_get_string(v);
+	}
+	cd_musicplayer_get_cover_path (cCoverPath, TRUE); // did it at the end (we have to know the artist and the album if (cCoverPath == NULL))
 
 	/// we miss iTrackListIndex and tracklist-length ...
 	
@@ -376,6 +377,7 @@ static void on_properties_changed (DBusGProxy *player_proxy, const gchar *cInter
 			if (! myData.cover_exist && (myData.cPlayingUri != NULL || myData.cTitle != NULL))
 			{
 				cd_musicplayer_set_surface (myData.iPlayingStatus);
+				cd_debug ("cover (%d), cPlayingUri (%s), cTitle (%s)", myData.cover_exist, myData.cPlayingUri, myData.cTitle);
 			}
 			else
 			{
@@ -396,10 +398,11 @@ static void on_properties_changed (DBusGProxy *player_proxy, const gchar *cInter
 			}
 		}
 	}
-	else if (strcmp (cInterface, "org.mpris.MediaPlayer2.TrackList") == 0)
+	else /*if (strcmp (cInterface, "org.mpris.MediaPlayer2.TrackList") == 0)
 	{
 		
-	}
+	}*/
+		cd_debug ("Another interface: %s", cInterface);
 }
 
   ////////////////////////
