@@ -149,7 +149,7 @@ CD_APPLET_STOP_BEGIN
 		myApplet);
 	
 	// stop the current handler.
-	cd_musicplayer_stop_current_handler ();
+	cd_musicplayer_stop_current_handler (TRUE);
 	
 	// On stoppe les boucles de recup de la pochette.
 	if (myData.iSidCheckXmlFile != 0)
@@ -235,7 +235,7 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		// on stoppe l'ancien backend et on relance le nouveau.
-		cd_musicplayer_stop_current_handler ();  // libere tout ce qu'occupe notre ancien handler.
+		cd_musicplayer_stop_current_handler (TRUE);  // libere tout ce qu'occupe notre ancien handler.
 		
 		CD_APPLET_MANAGE_APPLICATION (NULL);
 		

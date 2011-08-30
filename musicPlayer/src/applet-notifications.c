@@ -90,7 +90,7 @@ static void _cd_musicplayer_find_player (GtkMenuItem *menu_item, gpointer *data)
 	{
 		if (myData.pCurrentHandler != NULL)
 		{
-			cd_musicplayer_stop_current_handler ();
+			cd_musicplayer_stop_current_handler (TRUE);
 		}
 		
 		// get the name of the running player.

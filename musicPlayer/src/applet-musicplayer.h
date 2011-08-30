@@ -34,7 +34,7 @@ void cd_musicplayer_launch_handler (void);
 
 void cd_musicplayer_relaunch_handler (void);
 
-void cd_musicplayer_stop_current_handler (void);
+void cd_musicplayer_stop_current_handler (gboolean bStopWatching);
 
 void cd_musicplayer_register_my_handler (MusicPlayerHandler *pHandler);
 

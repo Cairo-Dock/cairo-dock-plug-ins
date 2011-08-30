@@ -146,7 +146,7 @@ void cd_musicplayer_relaunch_handler (void)
 
 /* Arrete le backend en nettoyant la memoire
  */
-void cd_musicplayer_stop_current_handler (void)
+void cd_musicplayer_stop_current_handler (gboolean bStopWatching)
 {
 	if (myData.pCurrentHandler == NULL)
 		return ;
@@ -230,7 +230,7 @@ static void _on_name_owner_changed (const gchar *cName, gboolean bOwned, gpointe
 					g_free (myData.cMpris2Service);
 					myData.cMpris2Service = NULL;
 				}
-				cd_musicplayer_stop_current_handler ();  // so once we detect the MPRIS2 service on the bus, the other one is dropped forever.
+				cd_musicplayer_stop_current_handler (TRUE);  // so once we detect the MPRIS2 service on the bus, the other one is dropped forever.
 				
 				myData.pCurrentHandler = cd_musicplayer_get_handler_by_name ("Mpris2");
 				g_free ((gchar*)myData.pCurrentHandler->cMprisService);  // well, in _this_ case the string is not constant.
@@ -259,7 +259,7 @@ static void _on_name_owner_changed (const gchar *cName, gboolean bOwned, gpointe
 	else  // else stop the handler.
 	{
 		cd_debug ("stop the handler");
-		cd_musicplayer_stop_current_handler ();
+		cd_musicplayer_stop_current_handler (FALSE);  // FALSE = keep watching it.
 		cd_musicplayer_set_surface (PLAYER_NONE);
 		if (myConfig.cDefaultTitle != NULL)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle);
@@ -311,7 +311,7 @@ detect async -> present => owned*/
 void cd_musicplayer_set_current_handler (const gchar *cName)
 {
 	cd_debug ("%s (%s)", __func__, cName);
-	cd_musicplayer_stop_current_handler ();
+	cd_musicplayer_stop_current_handler (TRUE);
 	
 	if (cName == NULL)
 	{
