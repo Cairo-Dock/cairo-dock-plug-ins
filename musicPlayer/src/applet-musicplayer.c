@@ -159,7 +159,8 @@ void cd_musicplayer_stop_current_handler (gboolean bStopWatching)
 		myData.pDetectPlayerCall = NULL;
 	}
 	
-	cairo_dock_stop_watching_dbus_name_owner (myData.pCurrentHandler->cMprisService, (CairoDockDbusNameOwnerChangedFunc)_on_name_owner_changed);
+	if (bStopWatching)
+		cairo_dock_stop_watching_dbus_name_owner (myData.pCurrentHandler->cMprisService, (CairoDockDbusNameOwnerChangedFunc)_on_name_owner_changed);
 	if (myData.cMpris2Service != NULL)  // can be null if we already got the MPRIS2 handler.
 	{
 		cairo_dock_stop_watching_dbus_name_owner (myData.cMpris2Service, (CairoDockDbusNameOwnerChangedFunc)_on_name_owner_changed);
