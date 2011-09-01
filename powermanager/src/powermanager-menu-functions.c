@@ -33,14 +33,8 @@ CD_APPLET_ON_CLICK_END
 
 static void power_config (void) {  /// a mettre dans les plug-ins d'integration.
 	GError *erreur = NULL;
-	if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE)
-	{
-		g_spawn_command_line_async ("gnome-power-preferences", &erreur);
-	}
-	else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
-	{
-		/// Ajouter les lignes de KDE...
-	}
+	g_spawn_command_line_async ("gnome-power-preferences", &erreur);
+
 	if (erreur != NULL)
 	{
 		cd_warning ("PM : %s", erreur->message);
@@ -48,12 +42,28 @@ static void power_config (void) {  /// a mettre dans les plug-ins d'integration.
 	}
 }
 
+static void power_stat (void)
+{
+	GError *erreur = NULL;
+	g_spawn_command_line_async ("gnome-power-statistics", &erreur);
+
+	if (erreur != NULL)
+	{
+		cd_warning ("PM : %s", erreur->message);
+		g_error_free (erreur);
+	}
+}
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	// Sub-Menu
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-	if (g_iDesktopEnv == CAIRO_DOCK_GNOME)  /// TODO: other DE...
+	gchar *cResult = cairo_dock_launch_command_sync ("which gnome-power-preferences"); // not available on Gnome3 => gnome-control-center => Energy
+	if (cResult != NULL && *cResult == '/')  /// TODO: other DE...
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Set up power management"), MY_APPLET_SHARE_DATA_DIR"/default-battery.svg", power_config, CD_APPLET_MY_MENU);
+	cResult = cairo_dock_launch_command_sync ("which gnome-power-statistics");
+	if (cResult != NULL && *cResult == '/')
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Power statistics"), MY_APPLET_SHARE_DATA_DIR"/default-battery.svg", power_stat, CD_APPLET_MY_MENU);
+	g_free (cResult);
 	if (cd_power_can_hibernate ())
 		CD_APPLET_ADD_IN_MENU (D_("Hibernate"), cd_power_hibernate, pSubMenu);
 	if (cd_power_can_suspend ())

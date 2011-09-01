@@ -46,7 +46,7 @@ void update_icon (void)
 		}
 		if (myData.iPrevPercentage != myData.iPercentage && myData.iPercentage == 100)
 		{
-			if (! myData.bAlerted) // in order to prevent to have a few alert at the same time.
+			if (! myData.bAlerted) // in order to prevent to have a few dialogues at the same time.
 			{
 				cd_powermanager_alert (POWER_MANAGER_CHARGE_FULL); // alert if needed
 				myData.bAlerted = TRUE;
