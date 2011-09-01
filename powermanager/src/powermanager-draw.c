@@ -45,7 +45,15 @@ void update_icon (void)
 			cairo_dock_redraw_container (CAIRO_CONTAINER (myDock)); // dock refresh forced
 		}
 		if (myData.iPrevPercentage != myData.iPercentage && myData.iPercentage == 100)
-			cd_powermanager_alert (POWER_MANAGER_CHARGE_FULL); // alert if needed
+		{
+			if (! myData.bAlerted) // in order to prevent to have a few alert at the same time.
+			{
+				cd_powermanager_alert (POWER_MANAGER_CHARGE_FULL); // alert if needed
+				myData.bAlerted = TRUE;
+			}
+		}
+		else
+			myData.bAlerted = FALSE;
 		return; // no need any redraw if the icon is hidden.
 	}
 
