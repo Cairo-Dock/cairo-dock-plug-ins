@@ -63,6 +63,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cUserBatteryIconName = CD_CONFIG_GET_STRING ("Configuration", "battery icon");
 	myConfig.cUserChargeIconName = CD_CONFIG_GET_STRING ("Configuration", "charge icon");
 	myConfig.cEmblemIconName = CD_CONFIG_GET_STRING ("Configuration", "emblem icon");
+	myConfig.bHideNotOnBattery = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "hide not on battery", FALSE);
 	
 	
 	GString *sKeyName = g_string_new ("");

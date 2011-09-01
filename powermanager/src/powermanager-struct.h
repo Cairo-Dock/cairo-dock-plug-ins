@@ -81,6 +81,7 @@ struct _AppletConfig {
 	gchar *cUserBatteryIconName;
 	gchar *cUserChargeIconName;
 	gchar *cEmblemIconName;
+	gboolean bHideNotOnBattery;
 	MyAppletEffect iEffect;
 } ;
 
@@ -120,6 +121,7 @@ struct _AppletData {
 	gint iPrevTime;
 	gint iPrevPercentage;
 	gboolean bPrevOnBattery;
+	gboolean bIsHidden;
 	
 	cairo_surface_t *pSurfaceBattery;
 	cairo_surface_t *pSurfaceCharge;

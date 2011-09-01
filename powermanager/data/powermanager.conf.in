@@ -162,7 +162,10 @@ quick-info_type=2
 
 #S+ Emblem icon's filename when on charge:
 #{Leave empty to use the default icon.}
-emblem icon = 
+emblem icon =
+
+#b Hide the icon when not on battery?
+hide not on battery = false
 
 discharge rate = 0
 charge rate = 0

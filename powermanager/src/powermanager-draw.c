@@ -33,7 +33,30 @@ void update_icon (void)
 {
 	gboolean bNeedRedraw = FALSE;
 	cd_message ("%s (on battery: %d -> %d; time:%.1f -> %.1f ; charge:%.1f -> %.1f)", __func__, myData.bPrevOnBattery, myData.bOnBattery, (double)myData.iPrevTime, (double)myData.iTime, (double)myData.iPrevPercentage, (double)myData.iPercentage);
-	
+
+	// hide the icon when not on battery
+	if (myConfig.bHideNotOnBattery && ! myData.bOnBattery)
+	{
+		if (! myData.bIsHidden)
+		{ // we remove the icon
+			cairo_dock_detach_icon_from_dock (myIcon, myDock, myIconsParam.iSeparateIcons);
+			myData.bIsHidden = TRUE;
+			cairo_dock_update_dock_size (myDock);
+			cairo_dock_redraw_container (CAIRO_CONTAINER (myDock)); // dock refresh forced
+		}
+		if (myData.iPrevPercentage != myData.iPercentage && myData.iPercentage == 100)
+			cd_powermanager_alert (POWER_MANAGER_CHARGE_FULL); // alert if needed
+		return; // no need any redraw if the icon is hidden.
+	}
+
+	if (myData.bIsHidden) // if the icon is hidden but we are now on battery, we (re-)insert the icon.
+	{
+		cd_debug ("Re-insert the icon");
+		cairo_dock_insert_icon_in_dock (myIcon, myDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
+		cairo_dock_redraw_container (CAIRO_CONTAINER (myDock)); // dock refresh forced
+		myData.bIsHidden = FALSE;
+	}
+
 	if (myData.cBatteryStateFilePath == NULL && myData.pUPowerClient == NULL)
 	{
 		CD_APPLET_SET_IMAGE_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/sector.svg");
@@ -246,7 +269,7 @@ gboolean cd_powermanager_alert (MyAppletCharge alert)
 			g_string_printf (sInfo, "%s (%d%%)", D_("PowerManager.\nYour battery is now charged"), (int)myData.iPercentage);
 			_cd_powermanager_dialog (sInfo->str, myConfig.iNotificationDuration);
 		}
-		if (myConfig.iNotificationType != 2)
+		if (! myData.bIsHidden && myConfig.iNotificationType != 2)
 		{
 			CD_APPLET_DEMANDS_ATTENTION (myConfig.cNotificationAnimation, myConfig.iNotificationDuration);
 		}
