@@ -60,6 +60,11 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.iVolumeEffect = CD_CONFIG_GET_INTEGER ("Configuration", "effect");
 	
+	if (myConfig.iVolumeEffect == VOLUME_EFFECT_GAUGE)
+	{
+		myConfig.cGThemePath = CD_CONFIG_GET_GAUGE_THEME ("Configuration", "theme");
+	}
+	
 	myConfig.cDefaultIcon = CD_CONFIG_GET_STRING ("Configuration", "default icon");
 	myConfig.cBrokenIcon = CD_CONFIG_GET_STRING ("Configuration", "broken icon");
 	myConfig.cMuteIcon = CD_CONFIG_GET_STRING ("Configuration", "mute icon");
@@ -77,6 +82,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cDefaultIcon);
 	g_free (myConfig.cBrokenIcon);
 	g_free (myConfig.cMuteIcon);
+	g_free (myConfig.cGThemePath);
 CD_APPLET_RESET_CONFIG_END
 
 

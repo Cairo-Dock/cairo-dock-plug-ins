@@ -140,17 +140,26 @@ frame_disp =
 #l[No;On label;On icon] Display volume :
 display volume = 1
 
-#l+[None;Zoom;Transparency;Draw Bar] Effect to apply to the icon when adjusting volume:
+#v
+sep_disp_vol =
+
+#Y+[None;0;0;Zoom;1;2;Transparency;1;2;Draw Bar;1;2;Gauge;3;1] Effect to apply to the icon when adjusting volume:
 effect = 3
 
 #S+ Default icon:
 #{Leave empty to use the default one.}
 default icon = 
 
-#S+ Broken icon:
-#{Leave empty to use the default one.}
-broken icon = 
-
 #S+ Mute icon:
 #{Leave empty to use the default one.}
 mute icon = 
+
+#h+[@gaugesdir@;gauges;gauges2;sound] Choose one of the available themes:/
+theme = Turbo-night-fuel
+
+#v
+sep_disp =
+
+#S+ Broken icon:
+#{Leave empty to use the default one.}
+broken icon = 

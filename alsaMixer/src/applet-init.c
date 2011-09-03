@@ -49,7 +49,7 @@ static gboolean _cd_mixer_on_enter (GtkWidget* pWidget,
 	GdkEventCrossing* pEvent,
 	gpointer data)
 {
-	if (myDesklet && myDesklet->container.iHeight > 64)
+	if (myData.pScale && myDesklet && myDesklet->container.iHeight > 64)
 	{
 		gtk_widget_show (myData.pScale);
 	}
@@ -58,7 +58,7 @@ gboolean _cd_mixer_on_leave (GtkWidget* pWidget,
 	GdkEventCrossing* pEvent,
 	gpointer data)
 {
-	if (myDesklet && myDesklet->container.iHeight > 64)
+	if (myData.pScale && myDesklet && myDesklet->container.iHeight > 64)
 	{
 		if (! myDesklet->container.bInside)
 			gtk_widget_hide (myData.pScale);
@@ -66,6 +66,7 @@ gboolean _cd_mixer_on_leave (GtkWidget* pWidget,
 }
 
 CD_APPLET_INIT_BEGIN
+	// scale widget visibility in desklet
 	if (myDesklet)
 	{
 		int iScaleWidth = (myDesklet->container.iHeight > 64 ? 15 : 0);
@@ -85,8 +86,24 @@ CD_APPLET_INIT_BEGIN
 		}
 	}
 	
-	mixer_load_surfaces ();
+	// data renderer
+	if (myConfig.iVolumeEffect == VOLUME_EFFECT_GAUGE)
+	{
+		CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs du data-renderer global.
+		CairoGaugeAttribute attr;  // les attributs de la jauge.
+		memset (&attr, 0, sizeof (CairoGaugeAttribute));
+		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+		pRenderAttr->cModelName = "gauge";
+		attr.cThemePath = myConfig.cGThemePath;
+		
+		CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
+	}
+	else
+	{
+		mixer_load_surfaces ();
+	}
 	
+	// listen to the sound card
 	mixer_init (myConfig.card_id);
 	
 	mixer_get_controlled_element ();
@@ -121,12 +138,14 @@ CD_APPLET_INIT_BEGIN
 		myData.iSidCheckVolume = g_timeout_add (1000, (GSourceFunc) mixer_check_events, (gpointer) NULL);
 	}
 	
+	// mouse events
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
 	CD_APPLET_REGISTER_FOR_DOUBLE_CLICK_EVENT;
-
+	
+	// keyboard events
 	cd_keybinder_bind (myConfig.cShortcut, (CDBindkeyHandler) mixer_on_keybinding_pull, (gpointer)NULL);
 CD_APPLET_INIT_END
 
@@ -150,7 +169,8 @@ CD_APPLET_STOP_END
 
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
-	mixer_load_surfaces ();
+	if (myConfig.iVolumeEffect != VOLUME_EFFECT_GAUGE)
+		mixer_load_surfaces ();
 	
 	//\_______________ On recharge le mixer si necessaire.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
@@ -188,6 +208,21 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		else
 		{
+			if (myConfig.iVolumeEffect == VOLUME_EFFECT_GAUGE)
+			{
+				CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs du data-renderer global.
+				CairoGaugeAttribute attr;  // les attributs de la jauge.
+				memset (&attr, 0, sizeof (CairoGaugeAttribute));
+				pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+				pRenderAttr->cModelName = "gauge";
+				attr.cThemePath = myConfig.cGThemePath;
+				
+				if (cairo_dock_get_icon_data_renderer (myIcon))
+					CD_APPLET_RELOAD_MY_DATA_RENDERER (pRenderAttr);
+				else
+					CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
+			}
+			
 			mixer_element_update_with_event (myData.pControledElement, 1);
 			if (myData.iSidCheckVolume == 0)
 				myData.iSidCheckVolume = g_timeout_add (1000, (GSourceFunc) mixer_check_events, (gpointer) NULL);
@@ -253,5 +288,7 @@ CD_APPLET_RELOAD_BEGIN
 		
 		if (myDesklet && myDesklet->container.iHeight <= 64)
 			gtk_widget_hide (myData.pScale);
+		
+		CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
 	}
 CD_APPLET_RELOAD_END

@@ -99,6 +99,14 @@ int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 			bNeedRedraw = FALSE;
 		break;
 		
+		case VOLUME_EFFECT_GAUGE :
+		{
+			double fPercent = (double) myData.iCurrentVolume / 100.;
+			CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&fPercent);
+			bNeedRedraw = FALSE;
+		}
+		break;
+		
 		default :
 		break;
 	}

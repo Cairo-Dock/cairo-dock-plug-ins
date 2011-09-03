@@ -37,6 +37,7 @@ typedef enum {
 	VOLUME_EFFECT_ZOOM,
 	VOLUME_EFFECT_TRANSPARENCY,
 	VOLUME_EFFECT_BAR,
+	VOLUME_EFFECT_GAUGE,
 	VOLUME_NB_EFFECTS
 	} VolumeTypeEffect;
 
@@ -53,6 +54,7 @@ struct _AppletConfig {
 	gchar *cShortcut;
 	gint iScrollVariation;
 	gboolean bHideScaleOnLeave;
+	gchar *cGThemePath;
 	} ;
 
 struct _AppletData {
