@@ -126,8 +126,6 @@ struct _AppletData {
 	cairo_surface_t *pSurfaceBattery;
 	cairo_surface_t *pSurfaceCharge;
 	gint iCapacity;
-	gboolean bAlerted;
-	gboolean bCritical;
 	gint checkLoop;
 	
 	gdouble fChargeMeanRate;

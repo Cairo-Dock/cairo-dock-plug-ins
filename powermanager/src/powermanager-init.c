@@ -158,51 +158,43 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_MY_DATA_RENDERER_HISTORY_TO_MAX;
 	}
 
-	if (myConfig.bHideNotOnBattery && ! myData.bOnBattery)
-	{ // hide the icon when not on battery and if needed
-		cairo_dock_detach_icon_from_dock (myIcon, myDock, myIconsParam.iSeparateIcons);
-		myData.bIsHidden = TRUE;
-		cairo_dock_update_dock_size (myDock);
-	}
-	else
+	if (myDock)
 	{
-		cairo_dock_insert_icon_in_dock (myIcon, myDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
-		if (myData.bIsHidden)
-			cairo_dock_redraw_container (CAIRO_CONTAINER (myDock));
-		myData.bIsHidden = FALSE;
-
-		//\_______________ On redessine notre icone.
-		if (myData.cBatteryStateFilePath || myData.pUPowerClient != NULL)
-		{
-			if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE || myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)  // On recharge la jauge.
-			{
-				double fPercent = (double) myData.iPercentage / 100.;
-				CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&fPercent);
-				
-				//Embleme sur notre icone
-				if (! myData.bOnBattery)
-					CD_APPLET_DRAW_EMBLEM_ON_MY_ICON (myData.pEmblem);
-			}
-			else if (myConfig.iDisplayType == CD_POWERMANAGER_ICONS)
-				cd_powermanager_draw_icon_with_effect (myData.bOnBattery);
-			
-			if (!myData.bOnBattery && myData.iPercentage < 100)
-				myData.bAlerted = FALSE; //We will alert when battery charge reach 100%
-			if (myData.bOnBattery)
-			{
-				if (myData.iPercentage > myConfig.lowBatteryValue)
-					myData.bAlerted = FALSE; //We will alert when battery charge is under myConfig.lowBatteryValue
-				
-				if (myData.iPercentage > 4)
-					myData.bCritical = FALSE; //We will alert when battery charge is critical (under 4%)
-			}
-			
-			myData.iPrevPercentage = -1;
-			myData.iPrevTime = -1;
-			update_icon();
-
+		if (myConfig.bHideNotOnBattery && ! myData.bOnBattery)
+		{ // hide the icon when not on battery and if needed
+			cairo_dock_detach_icon_from_dock (myIcon, myDock, myIconsParam.iSeparateIcons);
+			myData.bIsHidden = TRUE;
+			cairo_dock_update_dock_size (myDock);
 		}
-		else  // sinon on signale par l'icone appropriee qu'aucune donnee n'est  accessible.
-			CD_APPLET_SET_IMAGE_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/sector.svg");
+		else if (myData.bIsHidden)
+		{
+			cairo_dock_insert_icon_in_dock (myIcon, myDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
+			if (myData.bIsHidden)
+				cairo_dock_redraw_container (CAIRO_CONTAINER (myDock));
+			myData.bIsHidden = FALSE;
+		}
 	}
+	
+	//\_______________ On redessine notre icone.
+	if (myData.cBatteryStateFilePath || myData.pUPowerClient != NULL)
+	{
+		if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE || myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)  // On recharge la jauge.
+		{
+			double fPercent = (double) myData.iPercentage / 100.;
+			CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&fPercent);
+			
+			//Embleme sur notre icone
+			if (! myData.bOnBattery)
+				CD_APPLET_DRAW_EMBLEM_ON_MY_ICON (myData.pEmblem);
+		}
+		else if (myConfig.iDisplayType == CD_POWERMANAGER_ICONS)
+			cd_powermanager_draw_icon_with_effect (myData.bOnBattery);
+		
+		myData.iPrevPercentage = -1;
+		myData.iPrevTime = -1;
+		update_icon();
+
+	}
+	else  // sinon on signale par l'icone appropriee qu'aucune donnee n'est  accessible.
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/sector.svg");
 CD_APPLET_RELOAD_END

@@ -32,10 +32,18 @@ on sector -> gauge + %, on-sector emblem, alert
 void update_icon (void)
 {
 	gboolean bNeedRedraw = FALSE;
-	cd_message ("%s (on battery: %d -> %d; time:%.1f -> %.1f ; charge:%.1f -> %.1f)", __func__, myData.bPrevOnBattery, myData.bOnBattery, (double)myData.iPrevTime, (double)myData.iTime, (double)myData.iPrevPercentage, (double)myData.iPercentage);
-
+	cd_debug ("%s (on battery: %d -> %d; time:%.1f -> %.1f ; charge:%.1f -> %.1f)", __func__, myData.bPrevOnBattery, myData.bOnBattery, (double)myData.iPrevTime, (double)myData.iTime, (double)myData.iPrevPercentage, (double)myData.iPercentage);
+	
+	// no information available, draw a default icon.
+	if (myData.cBatteryStateFilePath == NULL && myData.pUPowerClient == NULL)
+	{
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/sector.svg");
+		CD_APPLET_REDRAW_MY_ICON;
+		return;
+	}
+	
 	// hide the icon when not on battery
-	if (myConfig.bHideNotOnBattery && ! myData.bOnBattery)
+	if (myConfig.bHideNotOnBattery && ! myData.bOnBattery && myDock)
 	{
 		if (! myData.bIsHidden)
 		{ // we remove the icon
@@ -44,20 +52,9 @@ void update_icon (void)
 			cairo_dock_update_dock_size (myDock);
 			cairo_dock_redraw_container (CAIRO_CONTAINER (myDock)); // dock refresh forced
 		}
-		if (myData.iPrevPercentage != myData.iPercentage && myData.iPercentage == 100)
-		{
-			if (! myData.bAlerted) // in order to prevent to have a few dialogues at the same time.
-			{
-				cd_powermanager_alert (POWER_MANAGER_CHARGE_FULL); // alert if needed
-				myData.bAlerted = TRUE;
-			}
-		}
-		else
-			myData.bAlerted = FALSE;
-		return; // no need any redraw if the icon is hidden.
+		return; // no need any redraw if the icon is hidden, and can't display the dialog properly without the icon.
 	}
-
-	if (myData.bIsHidden) // if the icon is hidden but we are now on battery, we (re-)insert the icon.
+	else if (myData.bIsHidden && myData.bOnBattery && myDock) // if the icon is hidden but we are now on battery, we (re-)insert the icon.
 	{
 		cd_debug ("Re-insert the icon");
 		cairo_dock_insert_icon_in_dock (myIcon, myDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
@@ -65,22 +62,9 @@ void update_icon (void)
 		myData.bIsHidden = FALSE;
 	}
 
-	if (myData.cBatteryStateFilePath == NULL && myData.pUPowerClient == NULL)
-	{
-		CD_APPLET_SET_IMAGE_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/sector.svg");
-		CD_APPLET_REDRAW_MY_ICON;
-		return;
-	}
 	// on prend en compte la nouvelle charge.
 	if (myData.bPrevOnBattery != myData.bOnBattery || myData.iPrevPercentage != myData.iPercentage || myData.iTime != myData.iPrevTime)
 	{
-		if (myData.bPrevOnBattery != myData.bOnBattery)
-		{
-			myData.bPrevOnBattery = myData.bOnBattery;
-			myData.bAlerted = FALSE;  // On a change de statut, donc on reinitialise les alertes
-			myData.bCritical = FALSE;
-		}
-		
 		// on redessine l'icone.
 		if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE || myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)
 		{
@@ -93,36 +77,37 @@ void update_icon (void)
 			cd_powermanager_draw_icon_with_effect (myData.bOnBattery);
 			bNeedRedraw = FALSE;
 		}
+		if (! myData.bOnBattery)
+		{
+			CD_APPLET_DRAW_EMBLEM_ON_MY_ICON (myData.pEmblem);
+		}  // else emblem is implicitely erased.
 		
 		// on declenche les alarmes.
 		if (myData.bOnBattery)
 		{
-			// Alert when battery charge is under a configured value in %
-			if (myData.iPercentage <= myConfig.lowBatteryValue && ! myData.bAlerted)
+			// Alert when battery charge goes under a configured value in %
+			if (myData.iPrevPercentage > myConfig.lowBatteryValue && myData.iPercentage <= myConfig.lowBatteryValue)
 			{
 				cd_powermanager_alert(POWER_MANAGER_CHARGE_LOW);
 				if (myConfig.cSoundPath[POWER_MANAGER_CHARGE_LOW] != NULL)
 					cairo_dock_play_sound (myConfig.cSoundPath[POWER_MANAGER_CHARGE_LOW]);
 			}
 			// Alert when battery charge is under 4%
-			if (myData.iPercentage <= 4 && ! myData.bCritical)
+			if (myData.iPrevPercentage > 4 && myData.iPercentage <= 4)
 			{
-				myData.bCritical = TRUE;
 				cd_powermanager_alert (POWER_MANAGER_CHARGE_CRITICAL);
 				if (myConfig.cSoundPath[POWER_MANAGER_CHARGE_CRITICAL] != NULL)
 					cairo_dock_play_sound (myConfig.cSoundPath[POWER_MANAGER_CHARGE_CRITICAL]);
 			}
-			// emblem is implicitely erased.
 		}
 		else
 		{
 			// Alert when battery is charged
-			if(myData.iPercentage == 100 && ! myData.bAlerted)
+			if(myData.iPrevPercentage < 100 && myData.iPercentage == 100)
 				cd_powermanager_alert (POWER_MANAGER_CHARGE_FULL);
-				
-			CD_APPLET_DRAW_EMBLEM_ON_MY_ICON (myData.pEmblem);
 		}
 		
+		// update the icon's label.
 		if (myConfig.defaultTitle == NULL || *myConfig.defaultTitle == '\0')
 		{
 			if (! myData.bOnBattery && myData.iPercentage > 99.9)
@@ -287,7 +272,6 @@ gboolean cd_powermanager_alert (MyAppletCharge alert)
 	
 	g_free (hms);
 	g_string_free (sInfo, TRUE);
-	myData.bAlerted = TRUE;
 	return FALSE;
 }
 

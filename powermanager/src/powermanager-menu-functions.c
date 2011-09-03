@@ -31,21 +31,11 @@ CD_APPLET_ON_CLICK_BEGIN
 	cd_powermanager_bubble ();
 CD_APPLET_ON_CLICK_END
 
-static void power_config (void) {  /// a mettre dans les plug-ins d'integration.
-	GError *erreur = NULL;
-	g_spawn_command_line_async ("gnome-power-preferences", &erreur);
-
-	if (erreur != NULL)
-	{
-		cd_warning ("PM : %s", erreur->message);
-		g_error_free (erreur);
-	}
-}
-
-static void power_stat (void)
+/// a mettre dans les plug-ins d'integration.
+static void power_launch_cmd (GtkMenuItem *menu_item, const gchar *cCommand)
 {
 	GError *erreur = NULL;
-	g_spawn_command_line_async ("gnome-power-statistics", &erreur);
+	g_spawn_command_line_async (cCommand, &erreur);
 
 	if (erreur != NULL)
 	{
@@ -57,13 +47,41 @@ static void power_stat (void)
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	// Sub-Menu
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-	gchar *cResult = cairo_dock_launch_command_sync ("which gnome-power-preferences"); // not available on Gnome3 => gnome-control-center => Energy
-	if (cResult != NULL && *cResult == '/')  /// TODO: other DE...
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Set up power management"), MY_APPLET_SHARE_DATA_DIR"/default-battery.svg", power_config, CD_APPLET_MY_MENU);
-	cResult = cairo_dock_launch_command_sync ("which gnome-power-statistics");
-	if (cResult != NULL && *cResult == '/')
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Power statistics"), MY_APPLET_SHARE_DATA_DIR"/default-battery.svg", power_stat, CD_APPLET_MY_MENU);
-	g_free (cResult);
+	
+	// Power preferences
+	static gboolean bPowerPrefChecked = FALSE;
+	static const gchar *cPowerPrefCmd = NULL;
+	if (!bPowerPrefChecked)
+	{
+		bPowerPrefChecked = TRUE;
+		gchar *cResult = cairo_dock_launch_command_sync ("which gnome-power-preferences"); // not available on Gnome3 => gnome-control-center => Energy
+		/// => can't we open the control center on the Enery tab directly ?
+		if (cResult != NULL && *cResult == '/')  /// TODO: other DE...
+			cPowerPrefCmd = "gnome-power-preferences";
+		g_free (cResult);
+	}
+	if (cPowerPrefCmd)
+	{
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Set up power management"), MY_APPLET_SHARE_DATA_DIR"/default-battery.svg", power_launch_cmd, CD_APPLET_MY_MENU, (gpointer)cPowerPrefCmd);
+	}
+	
+	// Power statistics
+	static gboolean bPowerStatsChecked = FALSE;
+	static const gchar *cPowerStatsCmd = NULL;
+	if (!bPowerStatsChecked)
+	{
+		bPowerStatsChecked = TRUE;
+		gchar *cResult = cairo_dock_launch_command_sync ("which gnome-power-statistics");
+		if (cResult != NULL && *cResult == '/')  /// TODO: other DE...
+			cPowerStatsCmd = "gnome-power-statistics";
+		g_free (cResult);
+	}
+	if (cPowerStatsCmd)
+	{
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Power statistics"), MY_APPLET_SHARE_DATA_DIR"/default-battery.svg", power_launch_cmd, CD_APPLET_MY_MENU, (gpointer)cPowerStatsCmd);
+	}
+	
+	// Power actions (Hibernate/Suspend)
 	if (cd_power_can_hibernate ())
 		CD_APPLET_ADD_IN_MENU (D_("Hibernate"), cd_power_hibernate, pSubMenu);
 	if (cd_power_can_suspend ())
