@@ -331,6 +331,7 @@ void cd_disks_reset_parts_list (CairoDockModuleInstance *myApplet)
 		g_list_free_full (myData.lParts, g_free);
 #else
 		g_list_foreach (myData.lParts, (GFunc) _reset_parts_list, NULL);
+		g_list_free (myData.lParts);
 #endif
 		myData.lParts = NULL;
 	}

@@ -41,12 +41,20 @@ static GtkSizeGroup * indicator_right_group = NULL;
 
 /* Sets the icon when it changes. */
 static void
+#if (INDICATOR_OLD_NAMES == 0)
+application_icon_change_cb (DbusmenuMenuitem * mi, gchar * prop, GVariant * value, gpointer user_data)
+#else
 application_icon_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value, gpointer user_data)
+#endif
 {
 	if (!g_strcmp0(prop, APPLICATION_MENUITEM_PROP_ICON)) {
 		/* Set the main icon */
 		if (GTK_IS_IMAGE(user_data)) {
+#if (INDICATOR_OLD_NAMES == 0)
+			gtk_image_set_from_icon_name(GTK_IMAGE(user_data), g_variant_get_string(value, NULL), GTK_ICON_SIZE_MENU);
+#else
 			gtk_image_set_from_icon_name(GTK_IMAGE(user_data), g_value_get_string(value), GTK_ICON_SIZE_MENU);
+#endif
 		}
 	}
 
@@ -55,12 +63,20 @@ application_icon_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value,
 
 /* Sets the label when it changes. */
 static void
+#if (INDICATOR_OLD_NAMES == 0)
+application_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GVariant * value, gpointer user_data)
+#else
 application_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value, gpointer user_data)
+#endif
 {
 	if (!g_strcmp0(prop, APPLICATION_MENUITEM_PROP_NAME)) {
 		/* Set the main label */
 		if (GTK_IS_LABEL(user_data)) {
+#if (INDICATOR_OLD_NAMES == 0)
+			gtk_label_set_text(GTK_LABEL(user_data), g_variant_get_string(value, NULL));
+#else
 			gtk_label_set_text(GTK_LABEL(user_data), g_value_get_string(value));
+#endif
 		}
 	}
 
@@ -186,12 +202,39 @@ numbers_draw_cb (GtkWidget *widget, GdkEventExpose *event, gpointer data)
 	return TRUE;
 }
 
+gboolean _already_added (GList *pApplications, gchar *cName)
+{
+	GList *ic;
+	gboolean bResult = FALSE;
+	for (ic = g_list_copy (pApplications); ic != NULL; ic = ic->next)
+	{
+		if (strcmp (ic->data, cName) == 0)
+		{
+			bResult = TRUE;
+			break;
+		}
+	}
+	g_list_free (ic);
+	return bResult;
+}
+
 /* Builds a menu item representing a running application in the
    messaging menu */
 static gboolean
 new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, DbusmenuClient * client)
 {
-	g_debug ("%s (\"%s\")", __func__, dbusmenu_menuitem_property_get(newitem, APPLICATION_MENUITEM_PROP_NAME));
+	gchar *cName = g_strdup (dbusmenu_menuitem_property_get(newitem, APPLICATION_MENUITEM_PROP_NAME));
+
+	cd_debug ("%s (\"%s\")", __func__, cName);
+
+	if (_already_added (myData.pApplicationsList, cName))
+	{
+		cd_debug ("Already added: %s", cName);
+		g_free (cName);
+		return TRUE;
+	}
+
+	myData.pApplicationsList = g_list_append (myData.pApplicationsList, cName);
 
 	GtkMenuItem * gmi = GTK_MENU_ITEM(gtk_image_menu_item_new());
 #if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
@@ -220,7 +263,7 @@ new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbu
 	gtk_widget_show(icon);
 
 	/* Application name in a label */
-	GtkWidget * label = gtk_label_new(dbusmenu_menuitem_property_get(newitem, APPLICATION_MENUITEM_PROP_NAME));
+	GtkWidget * label = gtk_label_new(cName);
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
 	gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, padding);
 	gtk_widget_show(label);
@@ -254,14 +297,32 @@ struct _indicator_item_t {
 /* Whenever we have a property change on a DbusmenuMenuitem
    we need to be responsive to that. */
 static void
+#if (INDICATOR_OLD_NAMES == 0)
+indicator_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GVariant * value, indicator_item_t * mi_data)
+#else
 indicator_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value, indicator_item_t * mi_data)
+#endif
 {
+#if (INDICATOR_OLD_NAMES == 0)
+	cd_debug ("%s (\"%s\": %s)", __func__, prop, g_variant_get_string(value, NULL));
+#else
+	cd_debug ("%s (\"%s\": %s)", __func__, prop, g_value_get_string(value));
+#endif
+
 	if (!g_strcmp0(prop, INDICATOR_MENUITEM_PROP_LABEL)) {
 		/* Set the main label */
+#if (INDICATOR_OLD_NAMES == 0)
+		gtk_label_set_text(GTK_LABEL(mi_data->label), g_variant_get_string(value, NULL));
+#else
 		gtk_label_set_text(GTK_LABEL(mi_data->label), g_value_get_string(value));
+#endif
 	} else if (!g_strcmp0(prop, INDICATOR_MENUITEM_PROP_RIGHT)) {
 		/* Set the right label */
+#if (INDICATOR_OLD_NAMES == 0)
+		gtk_label_set_text(GTK_LABEL(mi_data->right), g_variant_get_string(value, NULL));
+#else
 		gtk_label_set_text(GTK_LABEL(mi_data->right), g_value_get_string(value));
+#endif
 	} else if (!g_strcmp0(prop, INDICATOR_MENUITEM_PROP_ICON)) {
 		/* We don't use the value here, which is probably less efficient, 
 		   but it's easier to use the easy function.  And since th value
@@ -275,13 +336,13 @@ indicator_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value, i
 			gtk_icon_size_lookup(GTK_ICON_SIZE_MENU, &width, &height);
 			if (gdk_pixbuf_get_width(pixbuf) > width ||
 					gdk_pixbuf_get_height(pixbuf) > height) {
-				g_debug("Resizing icon from %dx%d to %dx%d", gdk_pixbuf_get_width(pixbuf), gdk_pixbuf_get_height(pixbuf), width, height);
+				cd_debug("Resizing icon from %dx%d to %dx%d", gdk_pixbuf_get_width(pixbuf), gdk_pixbuf_get_height(pixbuf), width, height);
 				resized_pixbuf = gdk_pixbuf_scale_simple(pixbuf,
 				                                         width,
 				                                         height,
 				                                         GDK_INTERP_BILINEAR);
 			} else {
-				g_debug("Happy with icon sized %dx%d", gdk_pixbuf_get_width(pixbuf), gdk_pixbuf_get_height(pixbuf));
+				cd_debug("Happy with icon sized %dx%d", gdk_pixbuf_get_width(pixbuf), gdk_pixbuf_get_height(pixbuf));
 				resized_pixbuf = pixbuf;
 			}
 	  
@@ -337,13 +398,13 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 		GdkPixbuf * resized_pixbuf;
 		if (gdk_pixbuf_get_width(pixbuf) > width ||
 		        gdk_pixbuf_get_height(pixbuf) > height) {
-			g_debug("Resizing icon from %dx%d to %dx%d", gdk_pixbuf_get_width(pixbuf), gdk_pixbuf_get_height(pixbuf), width, height);
+			cd_debug("Resizing icon from %dx%d to %dx%d", gdk_pixbuf_get_width(pixbuf), gdk_pixbuf_get_height(pixbuf), width, height);
 			resized_pixbuf = gdk_pixbuf_scale_simple(pixbuf,
 			                                         width,
 			                                         height,
 			                                         GDK_INTERP_BILINEAR);
 		} else {
-			g_debug("Happy with icon sized %dx%d", gdk_pixbuf_get_width(pixbuf), gdk_pixbuf_get_height(pixbuf));
+			cd_debug("Happy with icon sized %dx%d", gdk_pixbuf_get_width(pixbuf), gdk_pixbuf_get_height(pixbuf));
 			resized_pixbuf = pixbuf;
 		}
   
@@ -398,6 +459,6 @@ void cd_messaging_add_menu_handler (DbusmenuGtkClient * client)
 {
 	indicator_right_group = gtk_size_group_new(GTK_SIZE_GROUP_HORIZONTAL);
 	
-	dbusmenu_client_add_type_handler(DBUSMENU_CLIENT(client), INDICATOR_MENUITEM_TYPE, new_indicator_item);
-	dbusmenu_client_add_type_handler(DBUSMENU_CLIENT(client), APPLICATION_MENUITEM_TYPE, new_application_item);
+	dbusmenu_client_add_type_handler(DBUSMENU_CLIENT(client), INDICATOR_MENUITEM_TYPE, (DbusmenuClientTypeHandler) new_indicator_item);
+	dbusmenu_client_add_type_handler(DBUSMENU_CLIENT(client), APPLICATION_MENUITEM_TYPE, (DbusmenuClientTypeHandler) new_application_item);
 }

@@ -74,7 +74,7 @@ static void
 attention_cb (DBusGProxy * proxy, gboolean dot, GError * error, CairoDockModuleInstance *myApplet)
 {
 	if (error != NULL) {
-		g_warning("Unable to get attention status: %s", error->message);
+		cd_warning ("Unable to get attention status: %s", error->message);
 		g_error_free(error);
 		return;
 	}
@@ -87,7 +87,7 @@ static void
 icon_cb (DBusGProxy * proxy, gboolean hidden, GError * error, CairoDockModuleInstance *myApplet)
 {
 	if (error != NULL) {
-		g_warning("Unable to get icon visibility: %s", error->message);
+		cd_warning ("Unable to get icon visibility: %s", error->message);
 		g_error_free(error);
 		return;
 	}
