@@ -277,18 +277,26 @@ CD_APPLET_RELOAD_BEGIN
 				g_signal_handler_disconnect (G_OBJECT (myDesklet->container.pWidget), iOnLeaveCallbackID);
 			}
 		}
+		else
+		{
+			if (CD_APPLET_MY_CONTAINER_TYPE_CHANGED)
+			{
+				gtk_widget_destroy (myData.pScale);
+				myData.pScale = NULL;
+			}
+		}
 	}
 	else
 	{
 		///\_______________ On redessine notre icone.
-		if (myData.pControledElement != NULL)
-		{
-			mixer_element_update_with_event (myData.pControledElement, 0);
-		}
-		
 		if (myDesklet && myDesklet->container.iHeight <= 64)
 			gtk_widget_hide (myData.pScale);
 		
 		CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
+		
+		if (myData.pControledElement != NULL)
+		{
+			mixer_element_update_with_event (myData.pControledElement, 0);
+		}
 	}
 CD_APPLET_RELOAD_END
