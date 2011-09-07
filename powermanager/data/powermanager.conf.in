@@ -115,7 +115,7 @@ renderer = 0
 #X[Gauge;gtk-dialog-info]
 frame_gauge=
 
-#h+[@gaugesdir@;gauges;gauges2;battery] Choose one of the available themes:/
+#h+[@gaugesdir@;gauges;gauges3;battery] Choose one of the available themes:/
 theme = Battery
 
 

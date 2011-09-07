@@ -107,7 +107,7 @@ renderer = 0
 #X[Gauge;gtk-dialog-info]
 frame_gauge=
 
-#h+[@gaugesdir@;gauges;gauges2] Choose one of the available themes:/
+#h+[@gaugesdir@;gauges;gauges3] Choose one of the available themes:/
 theme = Turbo-night-fuel
 
 #l+[No;With dock orientation;Yes] Rotate applet theme :
