@@ -270,7 +270,7 @@ static void _on_name_owner_changed (const gchar *cName, gboolean bOwned, gpointe
 		{
 			if (strcmp (myData.pCurrentHandler->name, "Mpris2") == 0)
 			{
-				CD_APPLET_SET_NAME_FOR_MY_ICON (myData.pCurrentHandler->launch);
+				CD_APPLET_SET_NAME_FOR_MY_ICON (cd_musicplayer_get_string_with_first_char_to_upper (myData.pCurrentHandler->launch));
 			}
 			else
 			{
@@ -377,17 +377,22 @@ void cd_musicplayer_set_current_handler (const gchar *cName)
 	{
 		if (strcmp (myData.pCurrentHandler->name, "Mpris2") == 0)
 		{
-			CD_APPLET_SET_NAME_FOR_MY_ICON (myData.pCurrentHandler->launch);
-			g_print ("SET NAME %s\n", myData.pCurrentHandler->launch);
+			CD_APPLET_SET_NAME_FOR_MY_ICON (cd_musicplayer_get_string_with_first_char_to_upper (myData.pCurrentHandler->launch));
+			cd_debug ("musicPlayer label: set name (with upper): %s", cd_musicplayer_get_string_with_first_char_to_upper (myData.pCurrentHandler->launch));
 		}
 		else
 		{
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myData.pCurrentHandler->name);
-			g_print ("SET NAME %s\n", myData.pCurrentHandler->name);
+			cd_debug ("musicPlayer label: set name: %s", myData.pCurrentHandler->name);
 		}
 	}
 	
 	// manage its taskbar icon.
 	if (myConfig.bStealTaskBarIcon)
 		CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandler->appclass);
+}
+
+gchar *cd_musicplayer_get_string_with_first_char_to_upper (const gchar *cName)
+{
+	return (g_strdup_printf ("%c%s", g_ascii_toupper (*cName), cName + 1));
 }

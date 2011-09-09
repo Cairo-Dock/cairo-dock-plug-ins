@@ -65,6 +65,7 @@ CD_APPLET_DEFINE_END
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
+	myData.bForceCoverNeedsTest = FALSE;
 	// Add here all player's registering functions
 	// Don't forget to add the registered Name in ../data/musicPlayer.conf.in
 	//cd_musicplayer_register_xmms_handler ();
@@ -98,7 +99,9 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
 	else if (myIcon->cName == NULL || *myIcon->cName == '\0')
-		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cMusicPlayer);
+	{
+		CD_APPLET_SET_NAME_FOR_MY_ICON (cd_musicplayer_get_string_with_first_char_to_upper (myConfig.cMusicPlayer));
+	}
 	
 	
 	//\_______________ on charge le theme 3D si necessaire.
@@ -236,7 +239,9 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		// on stoppe l'ancien backend et on relance le nouveau.
 		cd_musicplayer_stop_current_handler (TRUE);  // libere tout ce qu'occupe notre ancien handler.
-		
+
+		myData.bForceCoverNeedsTest = FALSE;
+
 		CD_APPLET_MANAGE_APPLICATION (NULL);
 		
 		cd_musicplayer_set_current_handler (myConfig.cMusicPlayer);

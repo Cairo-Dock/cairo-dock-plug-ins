@@ -160,6 +160,7 @@ struct _AppletData {
 	gchar *cCurrentXmlFile;
 	gboolean cover_exist;
 	gboolean bCoverNeedsTest;
+	gboolean bForceCoverNeedsTest; // some players copy covers on their cache folder but it takes a few time...
 	
 	// pochette 3D
 	gint iCoverTransition;

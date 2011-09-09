@@ -370,6 +370,7 @@ static void on_properties_changed (DBusGProxy *player_proxy, const gchar *cInter
 		{
 			const gchar *cStatus = g_value_get_string (v);  // "Playing", "Paused" or "Stopped"
 			myData.iPlayingStatus = _extract_status (cStatus);
+			cd_debug ("PlaybackStatus: Status: %s, %d", cStatus, myData.iPlayingStatus);
 			
 			if (myData.iPlayingStatus == PLAYER_PLAYING)  // le handler est stoppe lorsque le lecteur ne joue rien.
 				cd_musicplayer_relaunch_handler ();
@@ -396,6 +397,8 @@ static void on_properties_changed (DBusGProxy *player_proxy, const gchar *cInter
 				myData.iPlayingStatus = PLAYER_PLAYING;  // pour les lecteurs bugues comme Exaile qui envoit un statut "stop" au changement de musique sans envoyer de status "play" par la suite. On considere donc que si le lecteur joue une nouvelle musique, c'est qu'il est en "play".
 				cd_musicplayer_update_icon (TRUE);
 			}
+			else if (myData.iPlayingStatus == PLAYER_STOPPED)
+				cd_musicplayer_update_icon (TRUE); // Force the update of the icon if the player is now stopped.
 		}
 	}
 	else /*if (strcmp (cInterface, "org.mpris.MediaPlayer2.TrackList") == 0)

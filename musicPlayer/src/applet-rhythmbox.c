@@ -350,15 +350,18 @@ void cd_musicplayer_register_rhythmbox_handler (void)
 {
 	if (_is_MPRIS2_available ())
 	{
+		cd_debug ("MP - MPRIS2 for RB seems to be available");
 		MusicPlayerHandler *pHandler = cd_mpris_new_handler ();
 		pHandler->cMprisService = "org.mpris.MediaPlayer2.rhythmbox";
 		pHandler->appclass = "rhythmbox";
 		pHandler->launch = "rhythmbox";
 		pHandler->name = "Rhythmbox";
 		cd_musicplayer_register_my_handler (pHandler);
+		myData.bForceCoverNeedsTest = TRUE; // it seems RB copy the cover on its cache but it takes a few time...
 	}
 	else
 	{
+		cd_debug ("MP - Used RB DBus methods");
 		MusicPlayerHandler *pHandler = g_new0 (MusicPlayerHandler, 1);
 		pHandler->name = "Rhythmbox";
 		pHandler->get_data = NULL;  // rien a faire vu que l'echange de donnees se fait entierement avec les proxys DBus.

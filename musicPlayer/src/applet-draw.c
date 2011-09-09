@@ -117,6 +117,7 @@ gboolean cd_musicplayer_check_size_is_constant (const gchar *cFilePath)
 	int iSize = cairo_dock_get_file_size (cFilePath);
 	gboolean bConstantSize = (iSize != 0 && iSize == myData.iCurrentFileSize);
 	myData.iCurrentFileSize = iSize;
+	cd_debug ("MP: file size: %d", iSize);
 	//if (iSize == 0)
 	//	myData.iNbCheckFile ++;
 	return bConstantSize;
@@ -127,14 +128,14 @@ gboolean cd_musicplayer_check_size_is_constant (const gchar *cFilePath)
 gboolean cd_musiplayer_set_cover_if_present (gboolean bCheckSize)
 {
 	CD_APPLET_ENTER;
-	cd_debug ("MP - %s (%s)\n", __func__, myData.cCoverPath);
+	cd_debug ("MP - %s (%s)", __func__, myData.cCoverPath);
 	if (g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
 	{
 		cd_message ("MP : la couverture '%s' est presente sur le disque", myData.cCoverPath);
 		
 		if (!bCheckSize || cd_musicplayer_check_size_is_constant (myData.cCoverPath))
 		{
-			cd_message ("MP : sa taille est constante (%d)", myData.iCurrentFileSize);
+			cd_message ("MP : sa taille est constante (%d, %d)", myData.iCurrentFileSize, bCheckSize);
 			if (bCheckSize && myData.iCurrentFileSize <= 910 && myData.cMissingCover)  // l'image vide de Amazon fait 910 octets, toutes les autres sont plus grandes.
 			{
 				cd_debug ("MP - cette pochette est trop petite, c'est surement une pochette vide, on l'ignore\n");
@@ -266,7 +267,7 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 				cd_debug ("MP - on reviendra dans 2s\n");
 				myData.iSidGetCoverInfoTwice = g_timeout_add_seconds (2, (GSourceFunc) _cd_musicplayer_check_distant_cover_twice, NULL);
 			}
-			else if (myData.cCoverPath != NULL && ! myData.cover_exist && myConfig.bEnableCover)  // couverture connue mais pas encore chargee.
+			else if (myData.cCoverPath != NULL && ! myData.cover_exist)  // couverture connue mais pas encore chargee.
 			{
 				if (myData.bCoverNeedsTest)  // il faut lancer le test en boucle.
 				{
@@ -277,12 +278,20 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 						myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc) cd_musiplayer_set_cover_if_present, GINT_TO_POINTER (TRUE));  // TRUE <=> tester la taille contante.
 					}
 				}
+				else if (myData.bForceCoverNeedsTest)
+				{
+					cd_debug ("MP - test cover forced");
+					myData.iCurrentFileSize = -1; // force to not use empty file
+					myData.iNbCheckFile = 0;
+					myData.iSidCheckCover = g_timeout_add (50, (GSourceFunc) cd_musiplayer_set_cover_if_present, GINT_TO_POINTER (TRUE));
+				}
 				else  // la couverture est deja disponible, on peut tester tout de suite.
 				{
+					cd_debug ("MP - test cover not forced");
 					cd_musiplayer_set_cover_if_present (FALSE);  // FALSE <=> tester seulement l'existence du fichier.
 				}
 			}
-			cd_debug ("MP - cover_exist : %d\n", myData.cover_exist);
+			cd_debug ("MP - cover_exist : %d", myData.cover_exist);
 		}
 		else
 		{
@@ -305,7 +314,7 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 			}
 			else if (strcmp (myData.pCurrentHandler->name, "Mpris2") == 0)
 			{
-				CD_APPLET_SET_NAME_FOR_MY_ICON (myData.pCurrentHandler->launch);
+				CD_APPLET_SET_NAME_FOR_MY_ICON (cd_musicplayer_get_string_with_first_char_to_upper (myData.pCurrentHandler->launch));
 			}
 			else
 			{

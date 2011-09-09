@@ -341,7 +341,7 @@ void cd_powermanager_format_value (CairoDataRenderer *pRenderer, int iNumValue, 
 			int time = myData.iTime;
 			int hours = time / 3600;
 			int minutes = (time % 3600) / 60;
-			g_print ("time: %d -> %d;%d\n", time, hours, minutes);
+			cd_debug ("time: %d -> %d;%d", time, hours, minutes);
 			if (hours != 0)
 				snprintf (cFormatBuffer, iBufferLength, "%dh%02d", hours, abs (minutes));
 			else

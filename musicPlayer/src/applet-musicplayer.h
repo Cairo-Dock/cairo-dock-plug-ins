@@ -42,5 +42,7 @@ void cd_musicplayer_free_handler (MusicPlayerHandler *pHandler);
 
 void cd_musicplayer_set_current_handler (const gchar *cName);
 
+gchar *cd_musicplayer_get_string_with_first_char_to_upper (const gchar *cName);
+
 
 #endif
