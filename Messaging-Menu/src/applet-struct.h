@@ -41,7 +41,6 @@ struct _AppletConfig {
 struct _AppletData {
 	CDAppletIndicator *pIndicator;
 	GtkSizeGroup * indicator_right_group;
-	GList *pApplicationsList;
 	} ;
 
 

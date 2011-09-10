@@ -202,22 +202,6 @@ numbers_draw_cb (GtkWidget *widget, GdkEventExpose *event, gpointer data)
 	return TRUE;
 }
 
-gboolean _already_added (GList *pApplications, gchar *cName)
-{
-	GList *ic;
-	gboolean bResult = FALSE;
-	for (ic = g_list_copy (pApplications); ic != NULL; ic = ic->next)
-	{
-		if (strcmp (ic->data, cName) == 0)
-		{
-			bResult = TRUE;
-			break;
-		}
-	}
-	g_list_free (ic);
-	return bResult;
-}
-
 /* Builds a menu item representing a running application in the
    messaging menu */
 static gboolean
@@ -227,24 +211,19 @@ new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbu
 
 	cd_debug ("%s (\"%s\")", __func__, cName);
 
-	if (_already_added (myData.pApplicationsList, cName))
+#if (INDICATOR_OLD_NAMES == 0)
+	if (newitem == NULL || !dbusmenu_menuitem_property_get_bool(newitem, DBUSMENU_MENUITEM_PROP_VISIBLE))
 	{
-		cd_debug ("Already added: %s", cName);
+		cd_debug ("Not visible: %s", cName);
 		g_free (cName);
 		return TRUE;
 	}
-
-	myData.pApplicationsList = g_list_append (myData.pApplicationsList, cName);
+#endif
 
 	GtkMenuItem * gmi = GTK_MENU_ITEM(gtk_image_menu_item_new());
 #if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
 	gtk_image_menu_item_set_always_show_image(GTK_IMAGE_MENU_ITEM(gmi), TRUE);
 #endif
-
-	gint padding = 4;
-	gtk_widget_style_get(GTK_WIDGET(gmi), "horizontal-padding", &padding, NULL);
-
-	GtkWidget * hbox = gtk_hbox_new(FALSE, 0);
 
 	/* Set the minimum size, we always want it to take space */
 	gint width, height;
@@ -265,12 +244,10 @@ new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbu
 	/* Application name in a label */
 	GtkWidget * label = gtk_label_new(cName);
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-	gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, padding);
 	gtk_widget_show(label);
 
 	/* Insert the hbox */
-	gtk_container_add(GTK_CONTAINER(gmi), hbox);
-	gtk_widget_show(hbox);
+	gtk_container_add(GTK_CONTAINER(gmi), label);
 
 	/* Attach some of the standard GTK stuff */
 	dbusmenu_gtkclient_newitem_base(DBUSMENU_GTKCLIENT(client), newitem, gmi, parent);
@@ -372,6 +349,16 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 	g_return_val_if_fail(DBUSMENU_IS_MENUITEM(newitem), FALSE);
 	g_return_val_if_fail(DBUSMENU_IS_GTKCLIENT(client), FALSE);
 	/* Note: not checking parent, it's reasonable for it to be NULL */
+
+	cd_debug ("%s (\"%s\")", __func__, dbusmenu_menuitem_property_get(newitem, INDICATOR_MENUITEM_PROP_LABEL));
+
+#if (INDICATOR_OLD_NAMES == 0)
+	if (newitem == NULL || !dbusmenu_menuitem_property_get_bool(newitem, DBUSMENU_MENUITEM_PROP_VISIBLE))
+	{
+		cd_debug ("Not visible: %s", dbusmenu_menuitem_property_get(newitem, INDICATOR_MENUITEM_PROP_LABEL));
+		return TRUE;
+	}
+#endif
 
 	indicator_item_t * mi_data = g_new0(indicator_item_t, 1);
 

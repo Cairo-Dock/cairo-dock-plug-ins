@@ -33,19 +33,10 @@ CD_APPLET_GET_CONFIG_END
 
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before you get the applet's config, and when your applet is stopped, in the end.
 CD_APPLET_RESET_CONFIG_BEGIN
-	g_free (myConfig.cAnimationName);
 	
 CD_APPLET_RESET_CONFIG_END
 
-
-void _reset_char_list (gchar *cName)
-{
-	g_free (cName);
-}
-
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped, in the very end.
 CD_APPLET_RESET_DATA_BEGIN
-	g_list_foreach (myData.pApplicationsList, (GFunc) _reset_char_list, NULL);
-	g_list_free (myData.pApplicationsList);
 	
 CD_APPLET_RESET_DATA_END

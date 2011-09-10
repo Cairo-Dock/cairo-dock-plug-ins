@@ -57,7 +57,7 @@ attention_changed_cb (DBusGProxy * proxy, gboolean dot, CairoDockModuleInstance 
 static void
 icon_changed_cb (DBusGProxy * proxy, gboolean hidden, CairoDockModuleInstance *myApplet)
 {
-	//g_print ("%s (hidden : %d)\n", __func__, hidden);
+	cd_debug ("%s (hidden : %d)", __func__, hidden);
 	if (hidden)
 	{
 		myIcon->fAlpha = .5;
