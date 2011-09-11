@@ -214,7 +214,7 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 						break;
 					val = get_value (chip, sf);  // rpm
 					if (val == 0)
-						return;
+						break;
 					
 					// alarm
 					sf = sensors_get_subfeature (chip, feature,
@@ -383,7 +383,7 @@ void cd_sysmonitor_get_sensors_info (CairoDockModuleInstance *myApplet, GString 
 						break;
 					val = get_value (chip, sf);  // rpm
 					if (val == 0)
-						return;
+						break;
 					
 					// alarm
 					sf = sensors_get_subfeature (chip, feature,
