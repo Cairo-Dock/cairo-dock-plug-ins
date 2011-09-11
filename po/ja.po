@@ -4105,10 +4105,10 @@ msgstr "ドックから分離？"
 #: ../weblets/data/messages:43 ../wifi/data/messages:41
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
+"(class=Cairo-dock & type=Utility)"
 msgstr ""
 "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz における"
-"動作設定での指定法 : (Class=Cairo-dock & type=utility)"
+"動作設定での指定法 : (Class=Cairo-dock & type=Utility)"
 
 #: ../Clipper/data/messages:45 ../Composite-Manager/data/messages:41
 #: ../Disks/data/messages:33 ../Doncky/data/messages:43
@@ -10207,10 +10207,10 @@ msgstr "デフォルトのラベルを接続ポイント名によって上書き
 
 #~ msgid ""
 #~ "or CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(class=Cairo-dock & type=utility)}"
+#~ "(class=Cairo-dock & type=Utility)}"
 #~ msgstr ""
 #~ "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz におけ"
-#~ "る動作設定での指定法 : (class=Cairo-dock & type=utility)"
+#~ "る動作設定での指定法 : (class=Cairo-dock & type=Utility)"
 
 #~ msgid "Use Opengl themes (Fake 3D) ?"
 #~ msgstr "OpenGL テーマ（擬似 3D）を使用？"
@@ -11204,20 +11204,20 @@ msgstr "デフォルトのラベルを接続ポイント名によって上書き
 
 #~ msgid ""
 #~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(class=cairo-dock & type=utility)"
+#~ "(class=cairo-dock & type=Utility)"
 #~ msgstr ""
 #~ "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz におけ"
-#~ "る動作設定での指定法 : (class=cairo-dock & type=utility)"
+#~ "る動作設定での指定法 : (class=cairo-dock & type=Utility)"
 
 #~ msgid "Monitored Directories :"
 #~ msgstr "モニタ対象のディレクトリ :"
 
 #~ msgid ""
 #~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
+#~ "(name=cairo-dock & type=Utility)"
 #~ msgstr ""
 #~ "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz におけ"
-#~ "る動作設定での指定法 : (name=cairo-dock & type=utility)"
+#~ "る動作設定での指定法 : (name=cairo-dock & type=Utility)"
 
 #~ msgid "Estimated time with Charge:"
 #~ msgstr "およその充電残量時間:"
@@ -12015,10 +12015,10 @@ msgstr "デフォルトのラベルを接続ポイント名によって上書き
 
 #~ msgid ""
 #~ "or CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(class=Cairo-Dock & type=utility)}"
+#~ "(class=Cairo-Dock & type=Utility)}"
 #~ msgstr ""
 #~ "CompizFusion の \"ウィジェット・レイヤ\" プラグインのための、Compiz におけ"
-#~ "る動作設定での指定法 : (class=Cairo-Dock & type=utility)"
+#~ "る動作設定での指定法 : (class=Cairo-Dock & type=Utility)"
 
 #~ msgid ""
 #~ "A Gnome-Do-like plug-in that lets you control your dock from the "

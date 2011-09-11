@@ -4204,10 +4204,10 @@ msgstr "Είναι αποσυνδεδεμένο από το dock"
 #: ../weblets/data/messages:43 ../wifi/data/messages:41
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
+"(class=Cairo-dock & type=Utility)"
 msgstr ""
 "για το «επίπεδο widget» του CompizFusion, ορίστε τη συμπεριφορά στο Compiz "
-"σε: (class=Cairo-dock & type=utility)"
+"σε: (class=Cairo-dock & type=Utility)"
 
 #: ../Clipper/data/messages:45 ../Composite-Manager/data/messages:41
 #: ../Disks/data/messages:33 ../Doncky/data/messages:43

@@ -4196,10 +4196,10 @@ msgstr "E' staccata dalla dock?"
 #: ../weblets/data/messages:43 ../wifi/data/messages:41
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
+"(class=Cairo-dock & type=Utility)"
 msgstr ""
 "Nel \"livello widget\" di CompizFusion, modifica il comportamento di Compiz "
-"in: (class=Cairo-dock & type=utility)"
+"in: (class=Cairo-dock & type=Utility)"
 
 #: ../Clipper/data/messages:45 ../Composite-Manager/data/messages:41
 #: ../Disks/data/messages:33 ../Doncky/data/messages:43
@@ -9143,10 +9143,10 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 
 #~ msgid ""
 #~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
+#~ "(name=cairo-dock & type=Utility)"
 #~ msgstr ""
 #~ "per il plug-in \"widget layer\" di CompizFusion, regolare il "
-#~ "comportamento di Compiz a : (name=cairo-dock & type=utility)"
+#~ "comportamento di Compiz a : (name=cairo-dock & type=Utility)"
 
 #~ msgid "They don't even need to be real trash directories."
 #~ msgstr "Non è necessario che questa sia la cartella del Cestino."
@@ -12916,10 +12916,10 @@ msgstr "Riscrivi l'etichetta predefinita con il nome del punto d'accesso?"
 
 #~ msgid ""
 #~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-Dock & type=utility)"
+#~ "(name=cairo-Dock & type=Utility)"
 #~ msgstr ""
 #~ "per il plug-in \"widget layer\" di CompizFusion, regolare il "
-#~ "comportamento di Compiz a : (name=cairo-dock & type=utility)"
+#~ "comportamento di Compiz a : (name=cairo-dock & type=Utility)"
 
 #~ msgid ""
 #~ "A Gnome-Do-like plug-in that lets you control your dock from the "

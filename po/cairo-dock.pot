@@ -3765,7 +3765,7 @@ msgstr ""
 #: ../template/data/messages:43 ../terminal/data/messages:43
 #: ../tomboy/data/messages:53 ../weather/data/messages:41
 #: ../weblets/data/messages:43 ../wifi/data/messages:41
-msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=utility)"
+msgid "for CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-dock & type=Utility)"
 msgstr ""
 
 #: ../Clipper/data/messages:45 ../Composite-Manager/data/messages:41

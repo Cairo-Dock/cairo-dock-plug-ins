@@ -3910,7 +3910,7 @@ msgstr "与dock分离?"
 #: ../weblets/data/messages:43 ../wifi/data/messages:41
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
+"(class=Cairo-dock & type=Utility)"
 msgstr ""
 
 #: ../Clipper/data/messages:45 ../Composite-Manager/data/messages:41
@@ -9037,10 +9037,10 @@ msgstr "以接入点名称替代默认标签"
 
 #~ msgid ""
 #~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
+#~ "(name=cairo-dock & type=Utility)"
 #~ msgstr ""
 #~ "面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock "
-#~ "& type=utility)"
+#~ "& type=Utility)"
 
 #~ msgid "Size of the icon you wish this applet has (in pixels)"
 #~ msgstr "期望此小应用程序的图标大小（以点为单位）"
@@ -10156,10 +10156,10 @@ msgstr "以接入点名称替代默认标签"
 
 #~ msgid ""
 #~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-Dock & type=utility)"
+#~ "(name=cairo-Dock & type=Utility)"
 #~ msgstr ""
 #~ "面向CompizFusion的“小应用程序层”，将Compiz的行为设置为：(name=cairo-dock "
-#~ "& type=utility)"
+#~ "& type=Utility)"
 
 #~ msgid "Applet's handbook"
 #~ msgstr "Applet 使用手册"

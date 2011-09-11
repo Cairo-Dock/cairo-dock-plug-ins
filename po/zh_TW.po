@@ -4058,10 +4058,10 @@ msgstr "與 Dock 分離開來"
 #: ../weblets/data/messages:43 ../wifi/data/messages:41
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
+"(class=Cairo-dock & type=Utility)"
 msgstr ""
 "要在 CompizFusion's 的 桌面面板程式層(Widget Layer) 當中，行為(behaviour) 設"
-"置裏面設定 class=Cairo-dock & type=utility"
+"置裏面設定 class=Cairo-dock & type=Utility"
 
 #: ../Clipper/data/messages:45 ../Composite-Manager/data/messages:41
 #: ../Disks/data/messages:33 ../Doncky/data/messages:43

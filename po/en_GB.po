@@ -4101,10 +4101,10 @@ msgstr "Is detached from the dock"
 #: ../weblets/data/messages:43 ../wifi/data/messages:41
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
+"(class=Cairo-dock & type=Utility)"
 msgstr ""
 "or CompizFusion's \"widget layer\", set behaviour in Compiz to: (class=Cairo-"
-"dock & type=utility)"
+"dock & type=Utility)"
 
 #: ../Clipper/data/messages:45 ../Composite-Manager/data/messages:41
 #: ../Disks/data/messages:33 ../Doncky/data/messages:43

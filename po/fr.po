@@ -4208,10 +4208,10 @@ msgstr "Est-il détaché du dock ?"
 #: ../weblets/data/messages:43 ../wifi/data/messages:41
 msgid ""
 "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-"(class=Cairo-dock & type=utility)"
+"(class=Cairo-dock & type=Utility)"
 msgstr ""
 "pour le plug-in \"widget layer\" de CompizFusion, réglez le comportement de "
-"Compiz à : (class=Cairo-dock & type=utility)"
+"Compiz à : (class=Cairo-dock & type=Utility)"
 
 #: ../Clipper/data/messages:45 ../Composite-Manager/data/messages:41
 #: ../Disks/data/messages:33 ../Doncky/data/messages:43
@@ -10742,10 +10742,10 @@ msgstr "Écraser l'étiquette par défaut avec le nom du point d'accès ?"
 
 #~ msgid ""
 #~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(name=cairo-dock & type=utility)"
+#~ "(name=cairo-dock & type=Utility)"
 #~ msgstr ""
 #~ "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement "
-#~ "de Compiz à : (class=Cairo-dock & type=utility)"
+#~ "de Compiz à : (class=Cairo-dock & type=Utility)"
 
 #~ msgid "Shortkey to toggle the systray"
 #~ msgstr "Raccourci clavier pour montrer le systray :"
@@ -10814,10 +10814,10 @@ msgstr "Écraser l'étiquette par défaut avec le nom du point d'accès ?"
 
 #~ msgid ""
 #~ "or CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(class=Cairo-dock & type=utility)}"
+#~ "(class=Cairo-dock & type=Utility)}"
 #~ msgstr ""
 #~ "pour le plug-in \"widget layer\" de CompizFusion, régler le comportement "
-#~ "de Compiz à : (class=Cairo-dock & type=utility)"
+#~ "de Compiz à : (class=Cairo-dock & type=Utility)"
 
 #~ msgid "Use Opengl themes (Fake 3D) ?"
 #~ msgstr "Utilisez les thèmes OpenGL (fausse 3D) ?"
@@ -10935,10 +10935,10 @@ msgstr "Écraser l'étiquette par défaut avec le nom du point d'accès ?"
 
 #~ msgid ""
 #~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(class=cairo-dock & type=utility)"
+#~ "(class=cairo-dock & type=Utility)"
 #~ msgstr ""
 #~ "Pour utiliser la couche widget de Compiz, indiquer ce comportement dans "
-#~ "les options de Compiz: (class=cairo-dock & type=utility)"
+#~ "les options de Compiz: (class=cairo-dock & type=Utility)"
 
 #~ msgid "Directory & Options"
 #~ msgstr "Répertoire & Options"
