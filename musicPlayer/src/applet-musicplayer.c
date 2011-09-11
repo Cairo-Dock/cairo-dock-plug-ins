@@ -394,5 +394,5 @@ void cd_musicplayer_set_current_handler (const gchar *cName)
 
 gchar *cd_musicplayer_get_string_with_first_char_to_upper (const gchar *cName)
 {
-	return (g_strdup_printf ("%c%s", g_ascii_toupper (*cName), cName + 1));
+	return (cName == NULL) ? NULL : g_strdup_printf ("%c%s", g_ascii_toupper (*cName), cName + 1);
 }
