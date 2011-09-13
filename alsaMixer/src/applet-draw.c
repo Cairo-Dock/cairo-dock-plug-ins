@@ -65,16 +65,19 @@ int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 	}
 	
 	
-	cairo_surface_t *pSurface;
-	if (myData.bIsMute)
+	cairo_surface_t *pSurface = NULL;
+	if (myConfig.iVolumeEffect != VOLUME_EFFECT_GAUGE)
 	{
-		if (myData.pMuteSurface == NULL)
-			_load_mute_surface ();
-		pSurface = myData.pMuteSurface;
-	}
-	else
-	{
-		pSurface = myData.pSurface;
+		if (myData.bIsMute)
+		{
+			if (myData.pMuteSurface == NULL)
+				_load_mute_surface ();
+			pSurface = myData.pMuteSurface;
+		}
+		else
+		{
+			pSurface = myData.pSurface;
+		}
 	}
 	
 	switch (myConfig.iVolumeEffect)
@@ -101,7 +104,11 @@ int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 		
 		case VOLUME_EFFECT_GAUGE :
 		{
-			double fPercent = (double) myData.iCurrentVolume / 100.;
+			double fPercent;
+			if (myData.bIsMute)
+				fPercent = CAIRO_DATA_RENDERER_UNDEF_VALUE;
+			else
+				fPercent = (double) myData.iCurrentVolume / 100.;
 			CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&fPercent);
 			bNeedRedraw = FALSE;
 		}
