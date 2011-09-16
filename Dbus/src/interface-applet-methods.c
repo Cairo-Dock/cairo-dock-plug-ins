@@ -850,7 +850,9 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 		memset (&attr, 0, sizeof (CairoGraphAttribute));
 		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
 		pRenderAttr->cModelName = "graph";
-		pRenderAttr->iMemorySize = (pIcon->fWidth > 1 ? pIcon->fWidth : 32);  // fWidht peut etre <= 1 en mode desklet au chargement.
+		int w, h;
+		cairo_dock_get_icon_extent (pIcon, &w, &h);
+		pRenderAttr->iMemorySize = (w > 1 ? w : 32);
 		// Line;Plain;Bar;Circle;Plain Circle
 		if (cTheme == NULL || strcmp (cTheme, "Line") == 0)
 			attr.iType = CAIRO_DOCK_GRAPH_LINE;
@@ -862,7 +864,6 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 			attr.iType = CAIRO_DOCK_GRAPH_CIRCLE;
 		else if (strcmp (cTheme, "Plain Circle") == 0)
 			attr.iType = CAIRO_DOCK_GRAPH_CIRCLE_PLAIN;
-		attr.iRadius = 10;
 		attr.bMixGraphs = FALSE;
 		double *fHighColor = g_new (double, iNbValues*3);
 		double *fLowColor = g_new (double, iNbValues*3);

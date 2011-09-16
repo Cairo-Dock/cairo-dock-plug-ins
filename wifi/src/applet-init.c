@@ -53,9 +53,10 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 		memset (&attr, 0, sizeof (CairoGraphAttribute));
 		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
 		pRenderAttr->cModelName = "graph";
-		pRenderAttr->iMemorySize = (myIcon->fWidth > 1 ? myIcon->fWidth : 32);  // fWidht peut etre <= 1 en mode desklet au chargement.
+		int w, h;
+		CD_APPLET_GET_MY_ICON_EXTENT (&w, &h);
+		pRenderAttr->iMemorySize = (w > 1 ? w : 32);  // fWidth peut etre <= 1 en mode desklet au chargement.  // fWidht peut etre <= 1 en mode desklet au chargement.
 		attr.iType = myConfig.iGraphType;
-		attr.iRadius = 10;
 		attr.fHighColor = myConfig.fHigholor;
 		attr.fLowColor = myConfig.fLowColor;
 		memcpy (attr.fBackGroundColor, myConfig.fBgColor, 4*sizeof (double));
