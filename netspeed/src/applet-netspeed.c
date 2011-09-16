@@ -177,7 +177,12 @@ gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
 	if ( ! myData.bAcquisitionOK)
 	{
 		if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
-			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
+		{
+			if (myConfig.defaultTitle) // has another default name
+				CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
+			else
+				CD_APPLET_SET_NAME_FOR_MY_ICON (myApplet->pModule->pVisitCard->cTitle);
+		}
 		else if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
 		

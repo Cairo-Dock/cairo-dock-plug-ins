@@ -202,7 +202,10 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_ON_LABEL)
 		{
-			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
+			if (myConfig.defaultTitle) // has another default name
+				CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
+			else
+				CD_APPLET_SET_NAME_FOR_MY_ICON (myApplet->pModule->pVisitCard->cTitle);
 		}
 		
 		cairo_dock_relaunch_task_immediately (myData.pPeriodicTask, myConfig.iCheckInterval);

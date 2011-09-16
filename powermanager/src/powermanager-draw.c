@@ -68,7 +68,11 @@ void update_icon (void)
 		// on redessine l'icone.
 		if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE || myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)
 		{
-			double fPercent = (double) myData.iPercentage / 100.;
+			double fPercent;
+			if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE && ! myData.bBatteryPresent)
+				fPercent = CAIRO_DATA_RENDERER_UNDEF_VALUE;
+			else
+				fPercent = (double) myData.iPercentage / 100.;
 			CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&fPercent);
 			bNeedRedraw = FALSE;
 		}

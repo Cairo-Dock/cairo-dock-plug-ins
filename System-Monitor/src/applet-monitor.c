@@ -78,7 +78,12 @@ gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet)
 		cd_warning ("One or more datas couldn't be retrieved");
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");  // plus discret qu'une bulle de dialogue.
 		if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
-			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
+		{
+			if (myConfig.defaultTitle) // has another default name
+				CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
+			else
+				CD_APPLET_SET_NAME_FOR_MY_ICON (myApplet->pModule->pVisitCard->cTitle);
+		}
 		memset (s_fValues, 0, sizeof (s_fValues));
 		CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
 	}

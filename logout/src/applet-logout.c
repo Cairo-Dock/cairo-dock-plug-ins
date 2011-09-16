@@ -457,7 +457,12 @@ static void _set_reboot_message (void)
 		CD_APPLET_SET_NAME_FOR_MY_ICON (cMessage);
 	}
 	else
-		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultLabel);
+	{
+		if (myConfig.cDefaultLabel) // has another default name
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultLabel);
+		else
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myApplet->pModule->pVisitCard->cTitle);
+	}
 	g_free (cMessage);
 }
 void cd_logout_check_reboot_required (CairoDockFMEventType iEventType, const gchar *cURI, gpointer data)
@@ -470,7 +475,10 @@ void cd_logout_check_reboot_required (CairoDockFMEventType iEventType, const gch
 		
 		case CAIRO_DOCK_FILE_DELETED:  // reboot no more required (shouldn't happen)
 			myData.bRebootNeeded = FALSE;
-			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultLabel);
+			if (myConfig.cDefaultLabel) // has another default name
+				CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultLabel);
+			else
+				CD_APPLET_SET_NAME_FOR_MY_ICON (myApplet->pModule->pVisitCard->cTitle);
 			CD_APPLET_STOP_DEMANDING_ATTENTION;
 		break;
 		
