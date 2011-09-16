@@ -31,21 +31,49 @@ static const gchar *s_cIconName[WIFI_NB_QUALITY] = {"link-0.svg", "link-1.svg", 
 static const gchar *s_cLevelQualityName[WIFI_NB_QUALITY] = {N_("None"), N_("Very Low"), N_("Low"), N_("Middle"), N_("Good"), N_("Excellent")};
 
 
-void cd_wifi_draw_no_wireless_extension (void) {
-	if (myData.iPreviousQuality != myData.iQuality) {
+void cd_wifi_draw_no_wireless_extension (void)
+{
+	cd_debug ("No Wireless: %d, %d", myData.iPreviousQuality, myData.iQuality);
+	if (myData.iPreviousQuality != myData.iQuality)
+	{
 		if (myDesklet != NULL)
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		
 		myData.iPreviousQuality = myData.iQuality;
-		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
-		cd_wifi_draw_icon_with_effect (WIFI_QUALITY_NO_SIGNAL);
-		
+		if (myConfig.defaultTitle) // has another default name
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
+		else
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myApplet->pModule->pVisitCard->cTitle);
+		if (myConfig.quickInfoType != WIFI_INFO_NONE) // if we want to have a quick info
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("N/A");
+		if (myConfig.iDisplayType == CD_WIFI_BAR) // undef value
+			cd_wifi_draw_icon_with_effect (WIFI_QUALITY_NO_SIGNAL);
+		else
+		{
+			double fValue;
+			if (myConfig.iDisplayType == CD_WIFI_GAUGE)
+				fValue = CAIRO_DATA_RENDERER_UNDEF_VALUE;
+			else
+				fValue = 0.0;
+			CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&fValue);
+		}
 		CD_APPLET_REDRAW_MY_ICON;
+	}
+	else if (myConfig.iDisplayType == CD_WIFI_GRAPH)
+	{
+		 double fValue = 0.0;
+		CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&fValue);
 	}
 }
 
-void cd_wifi_draw_icon (void) {
+void cd_wifi_draw_icon (void)
+{
+	cd_debug ("Draw Wireless: %d, %d", myData.iPreviousQuality, myData.iQuality);
+	if (myData.iPercent <= 0)
+	{
+		cd_wifi_draw_no_wireless_extension (); // not connected
+		return;
+	}
 	gboolean bNeedRedraw = FALSE;
 	switch (myConfig.quickInfoType) {
 		case WIFI_INFO_NONE :
