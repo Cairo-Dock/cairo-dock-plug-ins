@@ -143,7 +143,7 @@ display volume = 1
 #v
 sep_disp_vol =
 
-#Y+[None;0;0;Zoom;1;2;Transparency;1;2;Draw Bar;1;2;Gauge;3;1] Effect to apply to the icon when adjusting volume:
+#Y+[None;0;0;Zoom;1;2;Transparency;1;2;Draw Bar;1;2;Gauge;3;2] Effect to apply to the icon when adjusting volume:
 effect = 3
 
 #S+ Default icon:
@@ -156,6 +156,9 @@ mute icon =
 
 #h+[@gaugesdir@;gauges;gauges3;sound] Choose one of the available themes:/
 theme = Turbo-night-fuel
+
+#l+[No;With dock orientation;Yes] Rotate applet theme :
+rotate theme = No
 
 #v
 sep_disp =

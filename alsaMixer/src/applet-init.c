@@ -94,6 +94,7 @@ CD_APPLET_INIT_BEGIN
 		memset (&attr, 0, sizeof (CairoGaugeAttribute));
 		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
 		pRenderAttr->cModelName = "gauge";
+		pRenderAttr->iRotateTheme = myConfig.iRotateTheme;
 		attr.cThemePath = myConfig.cGThemePath;
 		
 		CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
@@ -215,6 +216,7 @@ CD_APPLET_RELOAD_BEGIN
 				memset (&attr, 0, sizeof (CairoGaugeAttribute));
 				pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
 				pRenderAttr->cModelName = "gauge";
+				pRenderAttr->iRotateTheme = myConfig.iRotateTheme;
 				attr.cThemePath = myConfig.cGThemePath;
 				
 				if (cairo_dock_get_icon_data_renderer (myIcon))

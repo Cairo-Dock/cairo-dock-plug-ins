@@ -63,6 +63,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	if (myConfig.iVolumeEffect == VOLUME_EFFECT_GAUGE)
 	{
 		myConfig.cGThemePath = CD_CONFIG_GET_GAUGE_THEME ("Configuration", "theme");
+		myConfig.iRotateTheme = CD_CONFIG_GET_INTEGER ("Configuration", "rotate theme");
 	}
 	
 	myConfig.cDefaultIcon = CD_CONFIG_GET_STRING ("Configuration", "default icon");
