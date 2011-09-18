@@ -258,7 +258,7 @@ void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass)
 	}
 }
 
-#define CAIRO_DOCK_IS_EXTERNAL_APPLET(pIcon) (CAIRO_DOCK_IS_APPLET (pIcon) && pIcon->pModuleInstance->pModule->cSoFilePath == NULL)
+#define CAIRO_DOCK_IS_EXTERNAL_APPLET(pIcon) (CAIRO_DOCK_IS_APPLET (pIcon) && pIcon->pModuleInstance->pModule->cSoFilePath == NULL && pIcon->pModuleInstance->pModule->pInterface->stopModule == cd_dbus_emit_on_stop_module)
 
 static inline Icon *_get_main_icon_from_clicked_icon (Icon *pIcon, CairoContainer *pContainer)
 {
