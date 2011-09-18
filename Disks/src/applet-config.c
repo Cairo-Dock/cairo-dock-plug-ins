@@ -35,6 +35,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 
 	///\_________________ Gauge
 	myConfig.cGThemePath = CD_CONFIG_GET_GAUGE_THEME ("Configuration", "theme");
+	myConfig.iRotateTheme = CD_CONFIG_GET_INTEGER ("Configuration", "rotate theme");
 		
 	///\_________________ Graph
 	myConfig.iGraphType = CD_CONFIG_GET_INTEGER ("Configuration", "graphic type");

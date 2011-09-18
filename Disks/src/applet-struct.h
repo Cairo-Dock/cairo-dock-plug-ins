@@ -47,6 +47,7 @@ typedef struct {
 struct _AppletConfig {
 	gchar *defaultTitle;
 	gchar *cGThemePath;
+	RendererRotateTheme iRotateTheme;
 	gchar *cWatermarkImagePath;  // delete ?
 	gdouble fAlpha;
 	

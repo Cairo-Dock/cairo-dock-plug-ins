@@ -258,10 +258,10 @@ public class CDApplet : GLib.Object
 	}
 	private void _on_reload(bool bConfigHasChanged)
 	{
-		print (">>> our module is reloaded");
+		print (">>> our module is reloaded\n");
 		if (bConfigHasChanged)
 		{
-			print (">>>  and our config has changed");
+			print (">>>  and our config has changed\n");
 			this._get_config();
 			this.reload();
 		}
@@ -298,7 +298,7 @@ public class CDApplet : GLib.Object
 		}
 		catch (IOError e)
 		{
-			GLib.error (">>> module '%s' can't be found on the bus, exit.\nError was: %s", this.cAppletName, e.message);
+			GLib.error (">>> module '%s' can't be found on the bus, exit.\nError was: %s\n", this.cAppletName, e.message);
 		}
 		try
 		{
@@ -308,7 +308,7 @@ public class CDApplet : GLib.Object
 		}
 		catch (IOError e)
 		{
-			GLib.error (">>> module '%s' can't be found on the bus, exit.\nError was: %s", this.cAppletName, e.message);
+			GLib.error (">>> module '%s' can't be found on the bus, exit.\nError was: %s\n", this.cAppletName, e.message);
 		}
 		this.icon.on_click.connect(on_click);  // when the user left-clicks on our icon.
 		this.icon.on_middle_click.connect(on_middle_click);  // when the user middle-clicks on our icon.

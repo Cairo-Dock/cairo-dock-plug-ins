@@ -55,6 +55,7 @@ struct _AppletConfig {
 	gint iScrollVariation;
 	gboolean bHideScaleOnLeave;
 	gchar *cGThemePath;
+	RendererRotateTheme iRotateTheme;
 	} ;
 
 struct _AppletData {
