@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2011-02-28 12:47+0000\n"
+"POT-Creation-Date: 2011-09-15 23:51+0000\n"
+"PO-Revision-Date: 2011-09-16 00:53+0000\n"
 "Last-Translator: Jan Dolejš <jackdown3csr@gmail.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-17 04:35+0000\n"
-"X-Generator: Launchpad (build 13405)\n"
+"X-Launchpad-Export-Date: 2011-09-17 05:13+0000\n"
+"X-Generator: Launchpad (build 13955)\n"
+"Language: cs\n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -357,7 +358,8 @@ msgstr "Modul byl přidán, ale nemůže být spuštěn."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Aplet '%s' byl úspěšně aktualizován a automaticky znovu načten."
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -635,14 +637,12 @@ msgid "Applications Menu"
 msgstr "Menu Aplikace"
 
 #: ../GMenu/src/applet-menu-callbacks.c:215 ../GMenu/data/messages:123
-#, fuzzy
 msgid "Logout"
-msgstr "Odhlášení"
+msgstr ""
 
 #: ../GMenu/src/applet-menu-callbacks.c:218 ../GMenu/data/messages:125
-#, fuzzy
 msgid "Shutdown"
-msgstr "Vypnout"
+msgstr ""
 
 #: ../GMenu/src/applet-notifications.c:76
 msgid "Quick launch"
@@ -1566,8 +1566,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1781,7 +1781,8 @@ msgstr ""
 "jeho URL můžete vložit kamkoliv stisknutím CTRL+v"
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr "Počkejte s dalším uploadem, než skončí ten předchozí."
 
 #: ../dnd2share/src/applet-dnd2share.c:591
@@ -2373,7 +2374,8 @@ msgstr "pohybové rozmazání obrazu"
 
 #: ../motion-blur/src/applet-init.c:31
 msgid "This plugin adds a motion blur effect to docks."
-msgstr "Tento zásuvný modul přidává efekt pohybového rozmazání obrazu do docků"
+msgstr ""
+"Tento zásuvný modul přidává efekt pohybového rozmazání obrazu do docků"
 
 #: ../musicPlayer/src/applet-draw.c:226
 msgid "Unknown artist"
@@ -2777,8 +2779,8 @@ msgstr "ukázat myš"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -2948,7 +2950,8 @@ msgstr "Přesunout současnou plochu na tuto plochu"
 msgid ""
 "This will move all windows from the current desktop to the one you clicked "
 "on."
-msgstr "Toto přesune všechna okna z současné plochy na tu, na kterou kliknete."
+msgstr ""
+"Toto přesune všechna okna z současné plochy na tu, na kterou kliknete."
 
 #: ../switcher/src/applet-notifications.c:301
 msgid "Windows List"
@@ -5094,7 +5097,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:121 ../RSSreader/data/messages:185
@@ -5235,8 +5239,8 @@ msgstr ""
 #: ../GMenu/data/messages:111
 msgid "Only show files that are under this folder or its sub-folder:"
 msgstr ""
-"Zobrazovat pouze soubory, které jsou pod touto složkou, nebo její "
-"podsložkou :"
+"Zobrazovat pouze soubory, které jsou pod touto složkou, nebo její podsložkou "
+":"
 
 #: ../GMenu/data/messages:113
 msgid "in days. Set 0 if unsued."
@@ -5244,7 +5248,8 @@ msgstr "ve dnech. Pro vypnutí tohoto filtru nastavte na 0"
 
 #: ../GMenu/data/messages:115
 msgid "Only show files whose last modification date is less than ;"
-msgstr "Zobrazovat pouze soubory, jejichž datum poslední úpravy je méŇe než :"
+msgstr ""
+"Zobrazovat pouze soubory, jejichž datum poslední úpravy je méŇe než :"
 
 #: ../GMenu/data/messages:117
 msgid "Session management buttons"
@@ -5255,9 +5260,8 @@ msgid "Show Logout and/or Shutdown : "
 msgstr ""
 
 #: ../Impulse/data/messages:95
-#, fuzzy
 msgid "Animation of the icons:"
-msgstr "Animované ikony"
+msgstr ""
 
 #: ../Impulse/data/messages:97
 msgid ""
@@ -5324,18 +5328,16 @@ msgid "'Broken' icon image name:"
 msgstr ""
 
 #: ../Impulse/data/messages:139
-#, fuzzy
 msgid "PulseAudio"
-msgstr "Pulzovat"
+msgstr ""
 
 #: ../Impulse/data/messages:141
 msgid "0 in most cases"
 msgstr ""
 
 #: ../Impulse/data/messages:143
-#, fuzzy
 msgid "Index of the source:"
-msgstr "Trvání poskočení :"
+msgstr ""
 
 #: ../Messaging-Menu/data/messages:91
 msgid ""
@@ -5357,9 +5359,8 @@ msgstr ""
 #: ../Toons/data/messages:15 ../clock/data/messages:17
 #: ../powermanager/data/messages:17 ../slider/data/messages:15
 #: ../wifi/data/messages:15
-#, fuzzy
 msgid "Background color to add in this case"
-msgstr "Barva pozadí grafiky :"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:97 ../Network-Monitor/data/messages:169
 #: ../Network-Monitor/data/messages:257 ../System-Monitor/data/messages:139
@@ -6716,7 +6717,8 @@ msgid "Space between icons:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:115
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:119
@@ -6846,7 +6848,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -7063,7 +7066,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:107
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:109
@@ -7147,7 +7151,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:93
@@ -8073,7 +8078,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:107
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:109
@@ -8154,973 +8160,3 @@ msgstr ""
 #: ../wifi/data/messages:193
 msgid "Overwrite the default label with the connection point name?"
 msgstr ""
-
-#~ msgid "Wait, do you want to kill me ?!"
-#~ msgstr "Počkej, chceš mě zabít ?!"
-
-#~ msgid "It's my dock now, mwahahaha !"
-#~ msgstr "Teď je to můj dock, mwhahaha !"
-
-#~ msgid "I want to be a pirate !"
-#~ msgstr "Chci být pirát !"
-
-#~ msgid "Your dock is so messy ! Let me clean it."
-#~ msgstr "Ve tvém docku je nepořádek ! Nech mě to uklidit."
-
-#~ msgid "Hey, you there !"
-#~ msgstr "Hej, ty tam !"
-
-#~ msgid "I'm your father !"
-#~ msgstr "Jsem tvůj otec !"
-
-#~ msgid "For Aiur !"
-#~ msgstr "Za Aiur !"
-
-#~ msgid "Clear the list of the recently used documents ?"
-#~ msgstr "Smazat seznam nedávných dokumentů ?"
-
-#~ msgid "About this applet"
-#~ msgstr "O tomto appletu"
-
-#~ msgid "Enter a command to launch :"
-#~ msgstr "Vložte příkaz pro spuštění :"
-
-#~ msgid "Warning : couldn't retrieve data last time we tried."
-#~ msgstr "Varování : při posledním pokusu nešly přijmout data."
-
-#~ msgid "No data (no connection ?)"
-#~ msgstr "Žádná data (žádné spojení ?)"
-
-#~ msgid "Paste a new RSS Url (drag'n'drop)"
-#~ msgstr "Vložit novou RSS Url (drag'n'drop)"
-
-#~ msgid "Retrieving data ..."
-#~ msgstr "Získávám data ..."
-
-#~ msgid "Invalid data (invalid RSS/Atom feed ?)"
-#~ msgstr "Neplatná data (neplatný RSS/Atom zdroj ?)"
-
-#~ msgid ""
-#~ "No URL is defined\n"
-#~ "You can define one by copying the URL in the clipboard,\n"
-#~ " and selecting \"Paste the RL\n"
-#~ " in the menu."
-#~ msgstr ""
-#~ "URL není definována\n"
-#~ "Můžete ji definovat nakopírováním do schránky\n"
-#~ " a vybráním \"Vložit URL\n"
-#~ " v menu"
-
-#~ msgid ""
-#~ "No data\n"
-#~ "Did you set a valid RSS feed ?\n"
-#~ "Is your connection alive ?"
-#~ msgstr ""
-#~ "Žádná data\n"
-#~ "Nastavil jste platný RSS zdroj ?\n"
-#~ "Je vaše připojení v chodu ?"
-
-#~ msgid "Yahoo"
-#~ msgstr "Yahoo"
-
-#~ msgid "Monitor System"
-#~ msgstr "Sledování systému"
-
-#~ msgid "Alert ! Graphic Card core temperature has reached %d°C"
-#~ msgstr "Varování ! Jádo grafické karty dosáhlo %d°C"
-
-#~ msgid "Free"
-#~ msgstr "Volné"
-
-#~ msgid "AlsaMixer"
-#~ msgstr "AlsaMixer"
-
-#~ msgid "Set up volume :"
-#~ msgstr "Nastavit hlasitost :"
-
-#~ msgid "Adjsut channels"
-#~ msgstr "Upravit kanály"
-
-#~ msgid "Calendar"
-#~ msgstr "Kalendář"
-
-#~ msgid "Emerald Manager"
-#~ msgstr "Emerald Manager"
-
-#~ msgid "This module provides different views for your desklets."
-#~ msgstr "Tento modul poskytuje různé vzhledy pro vaše desklety."
-
-#~ msgid "This plug-in provides some dialog decorators for dialog bubbles."
-#~ msgstr ""
-#~ "Tento zásuvný modul poskytuje několik dialogových dekorátorů pro "
-#~ "dialogové bubliny."
-
-#~ msgid "Clear the list of the recently uploaded files ?"
-#~ msgstr "Smazat seznam nedávno nahraných souborů ?"
-
-#~ msgid "Sorry, couldn't find the orignial file nor a preview of it."
-#~ msgstr "Omlouvám se, nemohu najít originální soubor ani jeho náhled."
-
-#~ msgid ""
-#~ "The URL has been stored into the clipboard.\n"
-#~ "Just use 'CTRL+v' to paste it anywhere."
-#~ msgstr ""
-#~ "URL byla uložena do schránky.\n"
-#~ "Můžete ji vložit kamkoliv stisknutím 'CTRL+v'."
-
-#~ msgid ""
-#~ "The current URL has been stored into the clipboard.\n"
-#~ "Just use 'CTRL+v' to paste it anywhere."
-#~ msgstr ""
-#~ "Aktuální URL byla uložena do schránky.\n"
-#~ "Pro vložení kamkoliv stiskněte 'CTRL+v'."
-
-#~ msgid ""
-#~ "This applet provides functions for a better integration into a KDE "
-#~ "environnement.\n"
-#~ "It is auto-activated, so you don't need to activate it.\n"
-#~ "It is designed for KDE4"
-#~ msgstr ""
-#~ "Tento applet poskytuje funkce pro lepší integrování do prostředí KDE.\n"
-#~ "Je již automaticky aktivovaný, takže ho není třeba aktivovat.\n"
-#~ "Je navržený pro KDE4"
-
-#~ msgid ""
-#~ "This plug-in provides animations for appearance & disappearance of icons."
-#~ msgstr "Tento zásuvný modul poskytuje animace pro objevování a mizení ikon."
-
-#~ msgid "Choose in how many minutes your PC will stop :"
-#~ msgstr "Vyberte, za kolik minut se vaše PC zastaví :"
-
-#~ msgid "Program an automatic shutdown"
-#~ msgstr "Nastavit automatické vypnutí"
-
-#~ msgid "Your computer will shutdown in 1 minute."
-#~ msgstr "Váš počítač se vypne za 1 minutu."
-
-#~ msgid ""
-#~ "A very simple applet that adds an icon to log out from your session\n"
-#~ "Left click to log out, middle click to shutdown\n"
-#~ "You can invert this order if you prefer to shutdown on left-click."
-#~ msgstr ""
-#~ "Velmi jednoduchý applet, který přidává ikonu pro odhlášení se z vašeho "
-#~ "přihlášení\n"
-#~ "Kliknutím levého tlačítka myši se odhlásíte, prostředním tlačítkem "
-#~ "provedete vypnutí\n"
-#~ "Pokud preferujete levé tlačítko myši pro vypnutí, můžete tento povel "
-#~ "invertovat."
-
-#~ msgid "You have a new mail :"
-#~ msgstr "Máte nový email :"
-
-#~ msgid "You have %d new mails :"
-#~ msgstr "Máte %d nových emailů :"
-
-#~ msgid ""
-#~ "A problem occured\n"
-#~ "If '%s' is not your usual mail application,\n"
-#~ "you can change it in the conf panel of this module"
-#~ msgstr ""
-#~ "Naskytl se problém\n"
-#~ "Pokud '%s' není vaše obvyklá emailová aplikace,\n"
-#~ "můžete to změnit v panelu nastavení tohoto modulu"
-
-#~ msgid "Mark all mails as read"
-#~ msgstr "Označit všechny emaily jako přečtené"
-
-#~ msgid "This plug-in adds a motion blur effect on docks."
-#~ msgstr ""
-#~ "Tento zásuvný modul přidává efekt pohybového rozmazání obrazu do docků"
-
-#~ msgid "Next (middle-click)"
-#~ msgstr "Další (prostřední tlačítko myši)"
-
-#~ msgid "Play/Pause (left-click)"
-#~ msgstr "Přehrát/Pozastavit (levé tlačítko myši)"
-
-#~ msgid "Estimated time with Charge:"
-#~ msgstr "Předpokládaný čas s Nabíjením:"
-
-#~ msgid ""
-#~ "Laptop on Battery.\n"
-#~ " Battery charged at:"
-#~ msgstr ""
-#~ "Laptop na Baterii.\n"
-#~ " Baterie nabita na:"
-
-#~ msgid "Estimated Charge time:"
-#~ msgstr "Předpokládaný čas Nabíjení:"
-
-#~ msgid ""
-#~ "Laptop on Charge.\n"
-#~ " Battery charged at:"
-#~ msgstr ""
-#~ "Laptop na Nabíjení.\n"
-#~ " Baterie nabita na:"
-
-#~ msgid "No Battery found."
-#~ msgstr "Nenalezena žádná baterie."
-
-#~ msgid "Halt"
-#~ msgstr "Zastavit"
-
-#~ msgid "A power manager for laptop's battery. It works with ACPI and DBus."
-#~ msgstr "Správce nabití pro baterii laptopu. Pracuje s ACPI a DBus."
-
-#~ msgid "Reboot"
-#~ msgstr "Restartovat"
-
-#~ msgid ""
-#~ "PowerManager.\n"
-#~ "Your battery is now Charged"
-#~ msgstr ""
-#~ "PowerManager.\n"
-#~ "Vaše baterie je nyní nabita."
-
-#~ msgid "Please put your Laptop on charge."
-#~ msgstr "Prosím, zapojte svůj Laptop do nabíjení."
-
-#~ msgid ""
-#~ "This plug-in draw some animation around the cursor when it's inside a "
-#~ "dock/desklet."
-#~ msgstr ""
-#~ "Tento zásuvný modul vykresluje různé animace okolu kurzoru, když je v "
-#~ "docku/deskletu."
-
-#~ msgid "showDesklets"
-#~ msgstr "ukázatDesklety"
-
-#~ msgid "You need to run Compiz and to activate its 'DBus' plug-in."
-#~ msgstr "Pro aktivování zásuvného modulu 'DBus' je potřeba spustit Compiz"
-
-#~ msgid "Set new name for this item :"
-#~ msgstr "Nastavit nový název pro tuto položku :"
-
-#~ msgid "Copy (middle click)"
-#~ msgstr "kopírovat (prostřední tlačítko myši)"
-
-#~ msgid "current"
-#~ msgstr "současný"
-
-#~ msgid "desktop"
-#~ msgstr "plocha"
-
-#~ msgid "Add a desktop"
-#~ msgstr "Přidat plochu"
-
-#~ msgid "Clean local directory"
-#~ msgstr "Vyčistit místní adresář"
-
-#~ msgid "Move current desktop to this desktop"
-#~ msgstr "Přesunout současnou plochu na tuto plochu"
-
-#~ msgid "Remove last desktop"
-#~ msgstr "Odstranit poslední plochu"
-
-#~ msgid "You can call back the Terminal desklet by typing %s"
-#~ msgstr "Terminál můžete vrátit zpět napsáním %s"
-
-#~ msgid "Set title for this tab :"
-#~ msgstr "Nastavit titulek pro tento panel :"
-
-#~ msgid "Search for tag :"
-#~ msgstr "Hledat značku :"
-
-#~ msgid "Search for :"
-#~ msgstr "Hledat :"
-
-#~ msgid "Delete this note ?"
-#~ msgstr "Vymazat tuto poznámku ?"
-
-#~ msgid "Change this Tab's color"
-#~ msgstr "Změnit barvu tohoto Panelu"
-
-#~ msgid "Clear marks"
-#~ msgstr "Vyčistit značky"
-
-#~ msgid "SunSet"
-#~ msgstr "Západ slunce"
-
-#~ msgid "SunRise"
-#~ msgstr "Východ slunce"
-
-#~ msgid "Precipitation Probability"
-#~ msgstr "Pravděpodobnost Přeháňky"
-
-#~ msgid ""
-#~ "No data were available\n"
-#~ " is connection alive ?"
-#~ msgstr ""
-#~ "Nejsou dostupná žádná data\n"
-#~ " je připojení v pořádku ?"
-
-#~ msgid ""
-#~ "This applet provides functions for a better integration into a XFCE "
-#~ "environnement.\n"
-#~ "It is auto-activated, so you don't need to activate it."
-#~ msgstr ""
-#~ "Tento applet poskytuje funkce pro lepší integrování do prostředí XFCE.\n"
-#~ "Je automaticky aktivován, není ho tedy třeba aktivovat."
-
-#~ msgid "when hovering an icon"
-#~ msgstr "když je nad ikonou"
-
-#~ msgid ""
-#~ "No data were available\n"
-#~ "Re-trying now ..."
-#~ msgstr ""
-#~ "Žádná data nejsou dostupná\n"
-#~ "Probíhá opakované zkoušení ..."
-
-#~ msgid "Wifi disabled."
-#~ msgstr "Wifi zakázána"
-
-#~ msgid "Effects used :"
-#~ msgstr "Použitý efekt"
-
-#~ msgid "Effects used on launcher :"
-#~ msgstr "Efekty použité na spouštěč"
-
-#~ msgid "Number of time the animation will play :"
-#~ msgstr "Čas, po který bude animace přehrávána :"
-
-#~ msgid "Effects used on applets :"
-#~ msgstr "Efekty použité na applety :"
-
-#~ msgid "Image for the spot :"
-#~ msgstr "Obrázek pro bod :"
-
-#~ msgid "Image for the front spot :"
-#~ msgstr "Obrázek pro přední bod :"
-
-#~ msgid "color of the mesh :"
-#~ msgstr "barva záběru :"
-
-#~ msgid "Repeat while icon is pointed ?"
-#~ msgstr "Opakovat při namíření na ikonu ?"
-
-#~ msgid "Type of mesh :"
-#~ msgstr "Typ záběru :"
-
-#~ msgid "Duration of the animation :"
-#~ msgstr "Trvání animace :"
-
-#~ msgid "color of the spot :"
-#~ msgstr "barva bodu :"
-
-#~ msgid "color of the halo :"
-#~ msgstr "barva kruhu :"
-
-#~ msgid "Rays speed :"
-#~ msgstr "Rychlost paprsku :"
-
-#~ msgid "Random colors ?"
-#~ msgstr "Náhodné barvy ?"
-
-#~ msgid "Rays size :"
-#~ msgstr "Velikost paprsku :"
-
-#~ msgid "Number of rays :"
-#~ msgstr "Množství paprsků :"
-
-#~ msgid "Friction :"
-#~ msgstr "Tření :"
-
-#~ msgid "Number of points on the grid in one direction :"
-#~ msgstr "Množství bodů v mřížce v jednom směru"
-
-#~ msgid "Width of the wave :"
-#~ msgstr "Šířka vlny :"
-
-#~ msgid "Amplitude of the wave :"
-#~ msgstr "Amplituda vlny :"
-
-#~ msgid "Duration of the pulse :"
-#~ msgstr "Trvání pulsu"
-
-#~ msgid "Zoom max of the pulse :"
-#~ msgstr "Maximální zoom pulsu"
-
-#~ msgid "Spring constant :"
-#~ msgstr "Konstanta růstu :"
-
-#~ msgid "When bouncing, resize the icon of :"
-#~ msgstr "Při poskočení změnit velikost ikony o :"
-
-#~ msgid "Duration of the blink :"
-#~ msgstr "Trvání bliknutí :"
-
-#~ msgid "Ground offset :"
-#~ msgstr "Základní odsazení :"
-
-#~ msgid "Let the penguin wander everywhere in the dock ?"
-#~ msgstr "Nechat tučňáka potulovat se kdekoliv v docku ?"
-
-#~ msgid "Transparency of the penguin :"
-#~ msgstr "Průhlednost tučňáka :"
-
-#~ msgid "Action_0"
-#~ msgstr "Akce_0"
-
-#~ msgid "in seconds"
-#~ msgstr "v sekundách"
-
-#~ msgid "Choose one of the available themes :"
-#~ msgstr "Vyberte jedno z dostupných motivů :"
-
-#~ msgid "Action_2/Command_0"
-#~ msgstr "Akce_2/Příkaz_0"
-
-#~ msgid "Action_2/Command_1"
-#~ msgstr "Akce_2/Příkaz_1"
-
-#~ msgid "Action_1/Command_0"
-#~ msgstr "Akce_1/Příkaz_0"
-
-#~ msgid "Action_1/Command_1"
-#~ msgstr "Akce_1/Příkaz_1"
-
-#~ msgid "Action_0/Command_0"
-#~ msgstr "Akce_0/Příkaz_0"
-
-#~ msgid "Action_1"
-#~ msgstr "Akce_1"
-
-#~ msgid "Action_1/Command_4"
-#~ msgstr "Akce_1/Příkaz_4"
-
-#~ msgid "Action_2"
-#~ msgstr "Akce_2"
-
-#~ msgid "Action_1/Command_2"
-#~ msgstr "Akce_1/Příkaz_2"
-
-#~ msgid "Action_1/Command_3"
-#~ msgstr "Akce_1/Příkaz_3"
-
-#~ msgid "Action_5/Command_1"
-#~ msgstr "Akce_5/Příkaz_1"
-
-#~ msgid "Action_6"
-#~ msgstr "Akce_6"
-
-#~ msgid "Action_3/Command_0"
-#~ msgstr "Akce_3/Příkaz_0"
-
-#~ msgid "Action_3"
-#~ msgstr "Akce_3"
-
-#~ msgid "Action_4"
-#~ msgstr "Akce_4"
-
-#~ msgid "Action_3/Command_1"
-#~ msgstr "Akce_3/Příkaz_1"
-
-#~ msgid "Action_4/Command_1"
-#~ msgstr "Akce_4/Příkaz_1"
-
-#~ msgid "Action_4/Command_0"
-#~ msgstr "Akce_4/Příkaz_0"
-
-#~ msgid "Action_5/Command_0"
-#~ msgstr "Akce_5/Příkaz_0"
-
-#~ msgid "Action_5"
-#~ msgstr "Akce_5"
-
-#~ msgid "Action_6/Command_4"
-#~ msgstr "Akce_6/Příkaz_4"
-
-#~ msgid "Action_6/Command_0"
-#~ msgstr "Akce_6/Příkaz_0"
-
-#~ msgid "Action_6/Command_1"
-#~ msgstr "Akce_6/Příkaz_1"
-
-#~ msgid "Action_6/Command_2"
-#~ msgstr "Akce_6/Příkaz_2"
-
-#~ msgid "Action_6/Command_3"
-#~ msgstr "Akce_6/Příkaz_3"
-
-#~ msgid "Desklet's dimension (width x height) :"
-#~ msgstr "Rozměry deskletu (šířka x výška)"
-
-#~ msgid "Is detached from the dock ?"
-#~ msgstr "Je vzhledem k docku samostatný ?"
-
-#~ msgid "Accessibility :"
-#~ msgstr "Dostupnost :"
-
-#~ msgid "Desklet's position (x ; y) :"
-#~ msgstr "Pozice deskletu (x ; y) :"
-
-#~ msgid "On Widget Layer"
-#~ msgstr "Na Grafické Vrstvě"
-
-#~ msgid "in degrees."
-#~ msgstr "ve stupních."
-
-#~ msgid "Lock position ?"
-#~ msgstr "Zamknout pozici ?"
-
-#~ msgid ""
-#~ "If locked, the desklet can't be moved by simply dragging it with the left "
-#~ "mouse button. Of course you can still move it with ALT + left_click."
-#~ msgstr ""
-#~ "Pokud je zamknut, nelze s deskletem pohnout pouhým přetažením levým "
-#~ "tlačítkem myši. Samozřejmě s ním stále můžete pohybovat kombinací ALT + "
-#~ "levé tlačítko myši."
-
-#~ msgid "Should be visible on all desktops ?"
-#~ msgstr "Má být neviditelný na všech plochách ?"
-
-#~ msgid "Choose a decoration theme for this desklet :"
-#~ msgstr "Vyberte dekorační motiv pro tento desklet :"
-
-#~ msgid "Choose the 'personnal' one to define your own decorations below."
-#~ msgstr "Níže vyberte tu 'osobní' pro definování vašich vlastních dekorací."
-
-#~ msgid "Rotation :"
-#~ msgstr "Rotace :"
-
-#~ msgid "Background image :"
-#~ msgstr "Obrázek pozadí :"
-
-#~ msgid ""
-#~ "It's an image that will be displayed below the drawings, like a frame for "
-#~ "exemple. Let empty to not use any."
-#~ msgstr ""
-#~ "Je to obrázek, který se zobrazí pod kresbami, jako například rámeček. "
-#~ "Pokud žádný nechcete, ponechte nevyplněné."
-
-#~ msgid "in pixels. Use this to adjust the right position of the drawings."
-#~ msgstr "v pixelech. Použijte pro upravení pravé pozice kreseb."
-
-#~ msgid "Top offset :"
-#~ msgstr "Odsazení zezhora :"
-
-#~ msgid "Right offset :"
-#~ msgstr "Odsazení z prava :"
-
-#~ msgid "in pixels. Use this to adjust the bottom position of the drawings."
-#~ msgstr "v pixelech. Použijte pro upravení spodní pozice kreseb."
-
-#~ msgid "Background tansparency :"
-#~ msgstr "Průhlednost pozadí :"
-
-#~ msgid "in pixels. Use this to adjust the left position of the drawings."
-#~ msgstr "v pixelech. Použijte pro upravení levé pozice kreseb."
-
-#~ msgid "Left offset :"
-#~ msgstr "Odsazení z leva :"
-
-#~ msgid "in pixels. Use this to adjust the top position of the drawings."
-#~ msgstr "v pixelech. Použijte pro upravení horní pozice kreseb."
-
-#~ msgid "Bottom offset :"
-#~ msgstr "Odsazení zespoda :"
-
-#~ msgid ""
-#~ "It's an image that will be displayed above the drawings, like a reflect "
-#~ "for exemple. Let empty to not use any."
-#~ msgstr ""
-#~ "Je to obrázek, který se zobrazí nad kresbami, jako například odraz. Pokud "
-#~ "žádný nechcete, ponechte nevyplněné."
-
-#~ msgid "Number of items :"
-#~ msgstr "Počet položek :"
-
-#~ msgid ""
-#~ "It is especially usefull if you often select text with mouse and don't "
-#~ "want to lose your clipboard items because of a great number of selection "
-#~ "items."
-#~ msgstr ""
-#~ "Je to obzvlášťe užitečné, pokud často označujete text myší a nechcete "
-#~ "ztratit položky ze schránky kvůli velkému množství označených položek."
-
-#~ msgid "Separate clipboard and selection ?"
-#~ msgstr "Rozlišovat schránku a výběr ?"
-
-#~ msgid "Foreground tansparency :"
-#~ msgstr "Průhlednost popředí :"
-
-#~ msgid "Foreground image :"
-#~ msgstr "Obrázek popředí :"
-
-#~ msgid "Which items should be remembered ?"
-#~ msgstr "Jaké položky mají být zapamatovány ?"
-
-#~ msgid "Enable actions ?"
-#~ msgstr "Povolit akce ?"
-
-#~ msgid ""
-#~ "If some actions are associated with an item, they will be proposed to you "
-#~ "when the item is created."
-#~ msgstr ""
-#~ "Pokud budou nějaké akce přiřazeny k položce, budou vám navrženy když bude "
-#~ "položka vytvořena."
-
-#~ msgid "Shortkey to pop-up the items menu :"
-#~ msgstr "Klávesová zkratka pro zobrazení menu položek :"
-
-#~ msgid "Paste into Clipboard ?"
-#~ msgstr "Vložit do Schránky ?"
-
-#~ msgid "If so, number of selection items :"
-#~ msgstr "Počet označených položek (pokud nějaké označené jsou) :"
-
-#~ msgid "Paste into Selection ?"
-#~ msgstr "Vložit do  Výběru ?"
-
-#~ msgid "Pop-up menus at mouse position ?"
-#~ msgstr "Zobrazovat menu u pozice myši ?"
-
-#~ msgid "Duration of the action menu :"
-#~ msgstr "Trvání menu akce :"
-
-#~ msgid "Replay actions ?"
-#~ msgstr "Přehrát akce ?"
-
-#~ msgid "Display the actions when selecting an item in the history."
-#~ msgstr "Zobrazit akce při označení položky v historii."
-
-#~ msgid "Let extern applications show/hide the desklets ?"
-#~ msgstr "Povolit externím aplikacím zobrazovat/Skrývat desklety ?"
-
-#~ msgid "Let extern applications pop-up dialogs in the dock ?"
-#~ msgstr "Povolit externím aplikacím zobrazovat dialogy v docku ?"
-
-#~ msgid "Let extern applications quit the dock ?"
-#~ msgstr "Povolit externím aplikacím ukončit dock ?"
-
-#~ msgid "Let extern applications reboot the dock ?"
-#~ msgstr "Povolit externím aplikacím restartovat dock ?"
-
-#~ msgid "Let extern applications animate the icons ?"
-#~ msgstr "Povolit externím aplikacím animovat ikony ?"
-
-#~ msgid "Let extern applications register new module ?"
-#~ msgstr "Povolit externím aplikacím rwegistrovat nový modul ?"
-
-#~ msgid "Let extern applications modify the image of icons ?"
-#~ msgstr "Povolit externím aplikacím upravovat obrázky ikon ?"
-
-#~ msgid "Shortkey to show/hide the menu :"
-#~ msgstr "Klávesová zkratka pro zobrazení/schování menu :"
-
-#~ msgid "Display icons in the menu ?"
-#~ msgstr "Zobrazovat ikony v menu ?"
-
-#~ msgid "Let extern applications modify the quick-infos on icons ?"
-#~ msgstr "Povolit externím aplikacím upravovat rychlé-info na ikonách ?"
-
-#~ msgid "Let extern applications modify the labels of icons ?"
-#~ msgstr "Povolit externím aplikacím upravovat označení ikon ?"
-
-#~ msgid "Let extern applications reload the applets ?"
-#~ msgstr "Povolit externím aplikacím obnovit applety ?"
-
-#~ msgid "Let extern applications add launchers into the docks ?"
-#~ msgstr "Povolit externím aplikacím přidávat spouštěče do docků ?"
-
-#~ msgid "Let extern applications show/hide the docks ?"
-#~ msgstr "Povolit externím aplikacím zobrazit/schovat docky ?"
-
-#~ msgid "Choose the style of the display : "
-#~ msgstr "Zvolte styl zobrazení : "
-
-#~ msgid "in days. Set 0 to not use this filter."
-#~ msgstr "ve dnech. Pro vypnutí tohoto filtru nastavte na 0"
-
-#~ msgid "Let empty to use the connection name."
-#~ msgstr "Nechte prázdné pro použití jména připojení."
-
-#~ msgid "Only show files that are under this folder or its sub-folder :"
-#~ msgstr ""
-#~ "Zobrazovat pouze soubory, které jsou pod touto složkou, nebo její "
-#~ "podsložkou :"
-
-#~ msgid "Command to use to configure the menu :"
-#~ msgstr "Příkaz k nastavování menu :"
-
-#~ msgid "Shortkey to show/hide the quick-launch dialog :"
-#~ msgstr ""
-#~ "Klávesová skratka pro zobrazení/schování dialogu rychlého spuštění :"
-
-#~ msgid "Show recent documents ?"
-#~ msgstr "Zobrazit nedávné dokumenty ?"
-
-#~ msgid "It's the color of the graphic for high quality signal."
-#~ msgstr "Je to barva grafiky zobrazující vysokou kvalitu signálu."
-
-#~ msgid "Name of an image for the 'No signal' icon :"
-#~ msgstr "Jméno obrázku pro ikonu 'Žádný signál' :"
-
-#~ msgid "Let it empty to use the default icon."
-#~ msgstr "Pro použití výchozí ikony ponechte prázdné."
-
-#~ msgid "High values color :"
-#~ msgstr "Barva vysokých hodnot :"
-
-#~ msgid "Low values color :"
-#~ msgstr "Barva nízkých hodnot :"
-
-#~ msgid "It's the color of the graphic for low quality signal."
-#~ msgstr "Je to barva grafiky zobrazující nízkou kvalitu signálu."
-
-#~ msgid "Name of an image for the 'Low' icon :"
-#~ msgstr "Jméno obrázku pro ikonu 'Nízký' :"
-
-#~ msgid "Name of an image for the 'Very low' icon :"
-#~ msgstr "Jméno obrázku pro ikonu 'Velmi nízký' :"
-
-#~ msgid "Name of an image for the 'Middle' icon :"
-#~ msgstr "Jméno obrázku pro ikonu 'Střední' :"
-
-#~ msgid "Delay between net speed checks :"
-#~ msgstr "Prodleva mezi kontrolováním rychlosti sítě :"
-
-#~ msgid "Name of an image for the 'Not connected' icon :"
-#~ msgstr "Jméno obrázku pro ikonu 'Nepřipojeno' :"
-
-#~ msgid "Name of an image for the 'Excellent' icon :"
-#~ msgstr "Jméno obrázku pro ikonu 'Výborný' :"
-
-#~ msgid "Name of an image for the 'Wired connection' icon :"
-#~ msgstr "Jméno obrázku pro ikonu 'Drátové připojení' :"
-
-#~ msgid "Delay between wifi signal checks :"
-#~ msgstr "Prodleva mezi kontrolováním wifi signálu :"
-
-#~ msgid "You shall not pass !"
-#~ msgstr "Neprojdeš !"
-
-#~ msgid "Do you know how much painful it is to be clicked on ??"
-#~ msgstr "Víš jak moc to bolí když na mě klikáš ?!"
-
-#~ msgid "Hey, I'm here !"
-#~ msgstr "Hej, já sem tady!"
-
-#~ msgid "Admit my superiority on you as a penguin !"
-#~ msgstr "Jsem tvým nadřízeným protože jsem tučňák !"
-
-#~ msgid ""
-#~ "- What will we do tonight Cortex ?\n"
-#~ "- The same thing as every nights, Minus. Try to take over the Dock !"
-#~ msgstr ""
-#~ "- Co dnes budem dělat ?\n"
-#~ "- To samé jako každý večer. Snažit se dostat za okraj Docku!"
-
-#~ msgid "Should the pulse follow the shape of the icon ?"
-#~ msgstr "Má puls následovat tvar ikony ?"
-
-#~ msgid "the smaller, the more it will flatten."
-#~ msgstr "čím menší, tím víc bude pložší."
-
-#~ msgid "Initial stretch :"
-#~ msgstr "Počáteční roztažení:"
-
-#~ msgid "Hey, you there!"
-#~ msgstr "Hej, ty tam !"
-
-#~ msgid "3DPlan"
-#~ msgstr "3Dletadlo"
-
-#~ msgid "Illusion"
-#~ msgstr "iluze"
-
-#~ msgid "Keyboard Indicator"
-#~ msgstr "indikátor klávesnice"
-
-#~ msgid "Log-out"
-#~ msgstr "odhlásit se"
-
-#~ msgid "Motion Blur"
-#~ msgstr "pohybové rozmazání obrazu"
-
-#~ msgid "Estimated charge time:"
-#~ msgstr "Předpokládaný čas Nabíjení:"
-
-#~ msgid "A power manager for laptop batteries. Works with ACPI and DBus."
-#~ msgstr "Správce nabití pro baterii laptopu. Pracuje s ACPI a DBus."
-
-#~ msgid "Show Mouse"
-#~ msgstr "ukázat myš"
-
-#~ msgid "You need to run Compiz and activate its 'DBus' plug-in."
-#~ msgstr "Pro aktivování zásuvného modulu 'DBus' je potřeba spustit Compiz"
-
-#~ msgid "Slider"
-#~ msgstr "posuvník"
-
-#~ msgid "Switcher"
-#~ msgstr "Přepínač"
-
-#~ msgid "Move current Desktop to this Desktop"
-#~ msgstr "Přesunout současnou plochu na tuto plochu"
-
-#~ msgid "Weather"
-#~ msgstr "počasí"
-
-#~ msgid "Let extern applications register new module?"
-#~ msgstr "Povolit externím aplikacím rwegistrovat nový modul ?"
-
-#~ msgid "Location not found"
-#~ msgstr "Nemohu najít tuto lokaci"
-
-#~ msgid "Open the folder (middle-click)"
-#~ msgstr "Otevřít soubor (kliknout prostředním)"
-
-#~ msgid ""
-#~ "A <b>notification area</b> for your dock\n"
-#~ "Also called 'systray'.\n"
-#~ "It is designed to work on any desktop that supports the latest systray "
-#~ "specifications (KDE, Gnome, etc)"
-#~ msgstr ""
-#~ "<b>Oznamovací oblast\" pro váš dok\n"
-#~ "Funguje na všech desktopech, které podporují poslední specifikace "
-#~ "oznamovací oblasti (KDE, Gnome, atd.)"
-
-#~ msgid ""
-#~ "To configure Compiz, you need to install CCSM\n"
-#~ " through your package manager (Synaptic, YasT, etc)"
-#~ msgstr ""
-#~ "Pro nastavení Compizu je třeba nainstalovat CCSM.\n"
-#~ " pomocí vašeho správce balíků (Synaptic, YasT, atd.)"
-
-#~ msgid "Reload Emerald"
-#~ msgstr "Znovu načíst Emerald"
-
-#~ msgid "Widget Layer"
-#~ msgstr "Vrstva widgetů"
-
-#~ msgid "Exposition"
-#~ msgstr "Expo"
-
-#~ msgid "Configure Compiz"
-#~ msgstr "Nastavit Compiz"
-
-#~ msgid "compiz-icon"
-#~ msgstr "Compiz"
-
-#~ msgid "Reload WM"
-#~ msgstr "Znovu načíst správce oken"
-
-#~ msgid "Toggle Exposition Mode"
-#~ msgstr "Přepnout režim Expo"
-
-#~ msgid "Switch Windows Decorator"
-#~ msgstr "Přepnout dekorátor oken"
-
-#~ msgid "Switch Windows Manager"
-#~ msgstr "Přepnout správce oken"
-
-#~ msgid "Toggle Show Desktop"
-#~ msgstr "Přepnout ukázat plochu"
-
-#~ msgid "Toggle Widget Layer"
-#~ msgstr "Přepnout vrstvu widgetů"
-
-#~ msgid "desklet rendering"
-#~ msgstr "vykreslení deskletu"
-
-#~ msgid "dialog rendering"
-#~ msgstr "vykreslování dialogu"
-
-#~ msgid ""
-#~ "Couldn't upload the file, check that your internet connexion is active."
-#~ msgstr ""
-#~ "Nelze nahrát soubor, zkontrolujte zda je vaše připojení k internetu "
-#~ "funkční."
-
-#~ msgid ""
-#~ "This applet lets you share files easily :\n"
-#~ "Drag-and-drop a file on the icon to upload it to one of the available "
-#~ "hosting sites.\n"
-#~ "It supports many sites, like DropBox, Imageshack, pastebin, etc\n"
-#~ "You can upload text, image, video, and files.\n"
-#~ "The resulting URL is automatically stored in the clipboard to be directly "
-#~ "copied by CTRL+v.\n"
-#~ "It can keep an history of your last uploads to retrieve them without any "
-#~ "account.\n"
-#~ "You'll need to install 'curl' and 'wget' to upload the data."
-#~ msgstr ""
-#~ "Tento applet umožňuje jednoduché sdílení souborů:\n"
-#~ "Přetažením souboru nad ikonu appletu jej nahrajete na jeden z "
-#~ "hostingových serverů.\n"
-#~ "Podporuje mnoho serverů jako je Dropbox, Imageshack, Pastebin, atd.\n"
-#~ "Můžete nahrávat text, obrázky, video a ostatní soubory.\n"
-#~ "Obdržená URL je automaticky skopírována do schránky pro přímé vložení "
-#~ "pomocí CTRL+v.\n"
-#~ "Umožňuje uchovávat historii posledních uploadů, aby byly dostupné bez "
-#~ "potřeby jakéhokoliv účtu.\n"
-#~ "Je třeba nainstalovat programy 'curl' a 'wget' pro nahrávání dat."
-
-#~ msgid "This plug-in provides some decorators for dialog bubbles."
-#~ msgstr "Tento zásuvný modul nabízí dekorátory dialogových bublin."
-
-#~ msgid ""
-#~ "This plug-in displays an animated indicator when you drop something into "
-#~ "the dock."
-#~ msgstr ""
-#~ "Tento zásuvný modul zobrazuje animované indikátory když něco pustíte do "
-#~ "doku."
-
-#~ msgid "Empty Trash (middle-click)"
-#~ msgstr "Vyprázdnit koš (prostřední klik)"
-
-#~ msgid ""
-#~ "This applet provides functions for a better integration into a GNOME "
-#~ "environnement.\n"
-#~ "It is auto-activated, so you don't need to activate it.\n"
-#~ "It is designed for old Gnome version (prior to 2.22)."
-#~ msgstr ""
-#~ "Tento applet zajišťuje lepší integraci doku do prostředí Gnome.\n"
-#~ "Aktivuje se automaticky, takže ho nemusíte aktivovat ručně.\n"
-#~ "Je navržen pro staré verze Gnome (před 2.22)."
-
-#~ msgid ""
-#~ "This applet provides functions for a better integration into a GNOME "
-#~ "environnement.\n"
-#~ "It is auto-activated, so you don't need to activate it.\n"
-#~ "It is designed for the a GNOME version >= 2.22"
-#~ msgstr ""
-#~ "Tento applet zajišťuje lepší integraci doku do prostředí Gnome.\n"
-#~ "Aktivuje se automaticky, takže ho nemusíte aktivovat ručně.\n"
-#~ "Je navržen pro Gnome od verze 2.22."
-
-#~ msgid ""
-#~ "A very simple applet that adds an icon to log out from your session\n"
-#~ "Left click to log out or change the user, middle click to shutdown or "
-#~ "restart\n"
-#~ "  (you can invert the buttons if you prefer to shutdown on left-click)."
-#~ msgstr ""
-#~ "Velmi jednoduchý applet, který přidává ikonu pro odhlášení z vašeho "
-#~ "sezení.\n"
-#~ "Kliknutím levým tlačítkem se odhlásíte, nebo změníte uživatele, "
-#~ "prostřední tlačítko myši systém vypne, nebo restartuje.\n"
-#~ "  (tlačítka můžete vyměnit, pokud preferujete vypínání levým tlačítkem)"
-
-#~ msgid ""
-#~ "This applet allows you to manage compiz and other windows manager\n"
-#~ "The sub-dock gives you to acces to CCSM, Emerald and some basic Compiz "
-#~ "actions.\n"
-#~ "You can bind one of these actions with the middle-click.\n"
-#~ "The configuration panel gives you some options to launch Compiz."
-#~ msgstr ""
-#~ "Tento applet umožňuje ovládat Compiz a jiné správce oken.\n"
-#~ "Sub-dok nabízí přístup k CCSM, Emeraldu a pár základním akcím Compizu.\n"
-#~ "Jednu z těchto akcí si můžete přiřadit prostřednímu tlačítku myši.\n"
-#~ "Panel nastavení některé možnosti spuštění Compizu."
-
-#~ msgid ""
-#~ "This module adds different views to your dock.\n"
-#~ "Any dock or sub-dock can be displayed with the view of your choice.\n"
-#~ "Currently, 3D-plane, Caroussel, Parabolic, Rainbow, Slide, and Curve "
-#~ "views are provided."
-#~ msgstr ""
-#~ "Tento modul přidává různé vzhledy vašemu doku.\n"
-#~ "Kterýkoliv dok, nebo sub-dok, může být zobrazen podle vaší volby.\n"
-#~ "Aktuálně 3D panel, Kolotoč, Parabola, Duha, Slide a Oblouk jsou k "
-#~ "dispozici."
