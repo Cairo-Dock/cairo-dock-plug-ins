@@ -33,7 +33,7 @@ static void _cd_indicator_make_menu (CDAppletIndicator *pIndicator)
 {
 	if (pIndicator->pMenu == NULL)
 	{
-		pIndicator->pMenu = dbusmenu_gtkmenu_new (pIndicator->cBusName, pIndicator->cMenuObject);
+		pIndicator->pMenu = dbusmenu_gtkmenu_new (g_strdup (pIndicator->cBusName), g_strdup (pIndicator->cMenuObject));
 		if (pIndicator->pMenu != NULL)
 		{
 			DbusmenuGtkClient * client = dbusmenu_gtkmenu_get_client (pIndicator->pMenu);
@@ -111,7 +111,7 @@ CDAppletIndicator *cd_indicator_new (CairoDockModuleInstance *pApplet, const gch
 	pIndicator->cServiceInterface = cServiceInterface;
 	pIndicator->cMenuObject = cMenuObject;
 	
-	pIndicator->service = indicator_service_manager_new_version (cBusName, INDICATOR_APPLET_DBUS_VERSION);
+	pIndicator->service = indicator_service_manager_new_version (g_strdup (cBusName), INDICATOR_APPLET_DBUS_VERSION);
 	g_signal_connect (G_OBJECT(pIndicator->service), INDICATOR_SERVICE_MANAGER_SIGNAL_CONNECTION_CHANGE, G_CALLBACK(connection_changed), pIndicator);  // on sera appele une fois la connexion etablie.
 	
 	return pIndicator;

@@ -318,6 +318,7 @@ indicator_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value, i
 				                                         width,
 				                                         height,
 				                                         GDK_INTERP_BILINEAR);
+				g_object_unref(pixbuf);
 			} else {
 				cd_debug("Happy with icon sized %dx%d", gdk_pixbuf_get_width(pixbuf), gdk_pixbuf_get_height(pixbuf));
 				resized_pixbuf = pixbuf;
@@ -325,10 +326,7 @@ indicator_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value, i
 	  
 			gtk_image_set_from_pixbuf(GTK_IMAGE(mi_data->icon), resized_pixbuf);
 
-			/* The other pixbuf should be free'd by the dbusmenu. */
-			if (resized_pixbuf != pixbuf) {
-				g_object_unref(resized_pixbuf);
-			}
+			g_object_unref(resized_pixbuf);
 
 			gtk_widget_show(mi_data->icon);
 		} else {
@@ -390,6 +388,7 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 			                                         width,
 			                                         height,
 			                                         GDK_INTERP_BILINEAR);
+			g_object_unref(pixbuf);
 		} else {
 			cd_debug("Happy with icon sized %dx%d", gdk_pixbuf_get_width(pixbuf), gdk_pixbuf_get_height(pixbuf));
 			resized_pixbuf = pixbuf;
@@ -397,10 +396,7 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
   
 		gtk_image_set_from_pixbuf(GTK_IMAGE(mi_data->icon), resized_pixbuf);
 
-		/* The other pixbuf should be free'd by the dbusmenu. */
-		if (resized_pixbuf != pixbuf) {
-			g_object_unref(resized_pixbuf);
-		}
+		g_object_unref(pixbuf);
 	}
 	gtk_misc_set_alignment(GTK_MISC(mi_data->icon), 0.0, 0.5);
 	gtk_box_pack_start(GTK_BOX(hbox), mi_data->icon, FALSE, FALSE, padding);
