@@ -201,11 +201,20 @@ gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
 		}
 		else
 		{
-			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
+			if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_NONE)
 			{
 				cd_netspeed_formatRate (myData.iUploadSpeed, s_upRateFormatted, 11, myDesklet != NULL);
 				cd_netspeed_formatRate (myData.iDownloadSpeed, s_downRateFormatted, 11, myDesklet != NULL);
-				CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("↓%s - ↑%s", s_downRateFormatted, s_upRateFormatted);
+				if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
+				{
+					CairoDataRenderer *pRenderer = cairo_dock_get_icon_data_renderer (myIcon);
+					if (!pRenderer || ! cairo_data_renderer_can_write_values (pRenderer))
+						CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("↓%s\n↑%s", s_downRateFormatted, s_upRateFormatted);
+				}
+				else
+				{
+					CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("↓%s - ↑%s", s_downRateFormatted, s_upRateFormatted);
+				}
 			}
 			
 			if(myData.iUploadSpeed > myData.iMaxUpRate) {
