@@ -89,10 +89,7 @@ static void cd_netspeed_formatRate (unsigned long long rate, gchar* debit, int i
 void cd_netspeed_format_value (CairoDataRenderer *pRenderer, int iNumValue, gchar *cFormatBuffer, int iBufferLength, CairoDockModuleInstance *myApplet)
 {
 	static gchar s_upRateFormatted[11];
-	double fValue = cairo_data_renderer_get_normalized_current_value_with_latency (pRenderer, iNumValue);
-	
-	fValue *= (iNumValue == 0 ? myData.iMaxUpRate : myData.iMaxDownRate);
-	cd_netspeed_formatRate (fValue, s_upRateFormatted, 11, FALSE);
+	cd_netspeed_formatRate (iNumValue == 0 ? myData.iDownloadSpeed : myData.iUploadSpeed, s_upRateFormatted, 11, FALSE);
 	snprintf (cFormatBuffer, iBufferLength,
 		"%s%s",
 		cairo_data_renderer_can_write_values (pRenderer) ? (iNumValue == 0 ?"↓" : "↑") : "",
@@ -135,7 +132,7 @@ void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
 					iReceivedBytes = atoll (tmp);
 					
 					int i = 0;
-					for (i = 0; i < 8; i ++)  // on saute les 8 valeurs suivantes.
+					for (i = 0; i <= 8; i ++)  // on saute les 8 valeurs suivantes.
 					{
 						while (*tmp != ' ')  // saute le chiffre courant.
 							tmp ++;
@@ -199,21 +196,11 @@ gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
 		}
 		else
 		{
-			if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_NONE)
+			if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_LABEL)
 			{
 				cd_netspeed_formatRate (myData.iUploadSpeed, s_upRateFormatted, 11, myDesklet != NULL);
 				cd_netspeed_formatRate (myData.iDownloadSpeed, s_downRateFormatted, 11, myDesklet != NULL);
-				
-				if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
-				{
-					CairoDataRenderer *pRenderer = cairo_dock_get_icon_data_renderer (myIcon);
-					if (!pRenderer || ! cairo_data_renderer_can_write_values (pRenderer))
-						CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("↓%s\n↑%s", s_downRateFormatted, s_upRateFormatted);
-				}
-				else
-				{
-					CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("↓%s\n↑%s", s_downRateFormatted, s_upRateFormatted);
-				}
+				CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("↓%s - ↑%s", s_downRateFormatted, s_upRateFormatted);
 			}
 			
 			if(myData.iUploadSpeed > myData.iMaxUpRate) {

@@ -84,7 +84,7 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 			pRenderAttr->format_value = (CairoDataRendererFormatValueFunc)cd_netspeed_format_value;
 			pRenderAttr->pFormatData = myApplet;
 		}
-		const gchar *labels[2] = {"UP", "DOWN"};
+		const gchar *labels[2] = {"DOWN", "UP"};
 		pRenderAttr->cLabels = (gchar **)labels;
 		if (! bReload)
 			CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
