@@ -314,7 +314,7 @@ static int cd_rendering_calculate_wave_on_each_lines (int x_abs, int iMaxIconHei
 		x_abs = fFlatDockWidth+1;
 	
 	float x_cumulated = 0, fXMiddle, fDeltaExtremum;
-	double fPhase, fScale, fX;
+	double fPhase, fX, fScale = 0.0;
 	int iNumRow, iPointedRow=-1;
 	for (iNumRow = 0; iNumRow < iNbRows; iNumRow ++)
 	{

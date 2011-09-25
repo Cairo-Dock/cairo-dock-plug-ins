@@ -91,7 +91,7 @@ static void _cd_NetworkMonitor_show_config (GtkMenuItem *menu_item, gpointer dat
 	else if (g_iDesktopEnv == CAIRO_DOCK_KDE) { //Ajouter les lignes de KDE
 		//cCommand = 
 	}*/
-        cCommand = "nm-connection-editor";  // network-admin n'est plus present depuis Intrepid, et nm-connection-editor marche aussi sous KDE.
+        cCommand = g_strdup ("nm-connection-editor");  // network-admin n'est plus present depuis Intrepid, et nm-connection-editor marche aussi sous KDE.
 	
 	cairo_dock_launch_command (cCommand);
 }

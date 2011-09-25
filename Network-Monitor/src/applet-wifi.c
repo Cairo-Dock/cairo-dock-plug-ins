@@ -122,7 +122,7 @@ pan0 no wireless extensions.");*/
 	gchar **cInfopipesList = g_strsplit (cResult, "\n", -1);
 	g_free (cResult);
 	gchar *cOneInfopipe, *str, *str2;
-	int i, iMaxValue;
+	int i, iMaxValue = 0;
 	for (i = 0; cInfopipesList[i] != NULL; i ++)
 	{
 		cOneInfopipe = cInfopipesList[i];
@@ -164,9 +164,8 @@ pan0 no wireless extensions.");*/
 			_pick_string ("Access Point", myData.wifi._cAccessPoint);
 		}
 		
-		if (myData.wifi._iQuality == -1)  // Link Quality=54/100 Signal level=-76 dBm Noise level=-78 dBm OU Link Quality:5  Signal level:219  Noise level:177
+		if ((int) myData.wifi._iQuality == -1)  // Link Quality=54/100 Signal level=-76 dBm Noise level=-78 dBm OU Link Quality:5  Signal level:219  Noise level:177
 		{
-			iMaxValue = 0;
 			_pick_value ("Link Quality", myData.wifi._iQuality, iMaxValue);
 			if (iMaxValue != 0)  // vieille version, qualite indiquee en %
 			{

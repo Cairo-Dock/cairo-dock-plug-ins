@@ -33,7 +33,7 @@ static GList *cd_NetworkMonitor_get_connections_for_access_point (const gchar *c
 	GHashTable *pSettings, *pSubSettings;
 	GValue *v;
 	int i;
-	for (i = 0; i < paConnections->len; i++)
+	for (i = 0; i < (int) paConnections->len; i++)
 	{
 		cConnection = (gchar *)g_ptr_array_index(paConnections, i);
 		cd_debug (" Connection path : %s\n", cConnection);
@@ -120,7 +120,7 @@ static GList *cd_NetworkMonitor_get_connections_for_wired_device (const gchar *c
 	//\_____________ On cherche une connection qui ait le meme type (wifi ou filaire), et soit le meme SSID, soit la meme interface.
 	gchar *cConnection;
 	int i;
-	for (i = 0; i < paConnections->len; i++)
+	for (i = 0; i < (int) paConnections->len; i++)
 	{
 		cConnection = (gchar *)g_ptr_array_index(paConnections, i);
 		cd_debug (" Connection path : %s\n", cConnection);
@@ -141,22 +141,22 @@ static void _on_select_access_point (GtkMenuItem *menu_item, CDMenuItemData *pIt
 		GHashTable *pSettings = g_hash_table_new_full (g_str_hash,
 			g_str_equal,
 			g_free,
-			g_hash_table_destroy);
+			(GDestroyNotify) g_hash_table_destroy);
 		
 		GHashTable *pSubSettings = g_hash_table_new_full (g_str_hash,
 			g_str_equal,
 			g_free,
 			g_free);
-		g_hash_table_insert (pSettings, "connection", pSubSettings);
-		g_hash_table_insert (pSubSettings, "type", g_strdup ("802-11-wireless"));
-		g_hash_table_insert (pSettings, "id", g_strdup_printf ("CD - %s", pItemData->cSsid));
+		g_hash_table_insert (pSettings, g_strdup ("connection"), pSubSettings);
+		g_hash_table_insert (pSubSettings, g_strdup ("type"), g_strdup ("802-11-wireless"));
+		g_hash_table_insert (pSettings, g_strdup ("id"), g_strdup_printf ("CD - %s", pItemData->cSsid));
 		
 		pSubSettings = g_hash_table_new_full (g_str_hash,
 			g_str_equal,
 			g_free,
 			g_free);
-		g_hash_table_insert (pSubSettings, "ssid", g_strdup (pItemData->cSsid));
-		g_hash_table_insert (pSubSettings, "mode", g_strdup ("infrastructure"));
+		g_hash_table_insert (pSubSettings, g_strdup ("ssid"), g_strdup (pItemData->cSsid));
+		g_hash_table_insert (pSubSettings, g_strdup ("mode"), g_strdup ("infrastructure"));
 		
 		// AddConnection
 		DBusGProxy *dbus_proxy_Settings = cairo_dock_create_new_system_proxy (
@@ -191,7 +191,7 @@ static void _on_select_access_point (GtkMenuItem *menu_item, CDMenuItemData *pIt
 		
 		//ActivateConnection ( s: service_name, o: connection, o: device, o: specific_object )o
 		GError *erreur = NULL;
-		GValue active_connection_path = {0};
+		GValue active_connection_path = { 0, { { 0 } } };
 		g_value_init (&active_connection_path, DBUS_TYPE_G_OBJECT_PATH);
 		
 		gchar *cNewActiveConnectionPath = NULL;
@@ -234,7 +234,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 		GError *erreur = NULL;
 		GHashTable *pSettingsTable;
 		int i;
-		for (i = 0; i < paConnections->len; i++)
+		for (i = 0; i < (int) paConnections->len; i++)
 		{
 			cConnection = (gchar *)g_ptr_array_index(paConnections, i);
 			cd_debug (" Connection path : %s\n", cConnection);
@@ -282,13 +282,13 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 	GHashTable *hProperties;
 	GValue *v;
 	guint iPercent;
-	gchar *cSsid;
+	gchar *cSsid = NULL;
 	const gchar *cHwAddress;
 	int iMode, iWirelessCapabilities;
 	CDMenuItemData *pItemData;
 	GtkWidget *pHBox;
 	int i, j;
-	for (i = 0; i < paDevices->len; i++)
+	for (i = 0; i < (int) paDevices->len; i++)
 	{
 		// on recupere le device.
 		cDevice = (gchar *)g_ptr_array_index(paDevices, i);
@@ -366,7 +366,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 			}
 			
 			// on insere chaque point d'acces dans le menu.
-			for (j = 0; j < pAccessPoints->len; j ++)
+			for (j = 0; j < (int) pAccessPoints->len; j ++)
 			{
 				// on recupere le point d'acces.
 				cAccessPointPath = (gchar *)g_ptr_array_index (pAccessPoints, j);
@@ -401,7 +401,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 				pItemData = g_hash_table_lookup (pSsidTable, cSsid);
 				if (pItemData != NULL)
 				{
-					if (pItemData->iPercent > iPercent)
+					if ((guint) pItemData->iPercent > iPercent)
 					{
 						g_free (cSsid);
 						g_object_unref (dbus_proxy_AccessPoint_prop);
@@ -439,17 +439,17 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 				
 				gchar *cImage = NULL;
 				if (iPercent > 80)
-					cImage = MY_APPLET_SHARE_DATA_DIR"/link-5.svg";
+					cImage = g_strdup (MY_APPLET_SHARE_DATA_DIR"/link-5.svg");
 				else if (iPercent > 60)
-					cImage = MY_APPLET_SHARE_DATA_DIR"/link-4.svg";
+					cImage = g_strdup (MY_APPLET_SHARE_DATA_DIR"/link-4.svg");
 				else if (iPercent > 40)
-					cImage = MY_APPLET_SHARE_DATA_DIR"/link-3.svg";
+					cImage = g_strdup (MY_APPLET_SHARE_DATA_DIR"/link-3.svg");
 				else if (iPercent > 20)
-					cImage = MY_APPLET_SHARE_DATA_DIR"/link-2.svg";
+					cImage = g_strdup (MY_APPLET_SHARE_DATA_DIR"/link-2.svg");
 				else if (iPercent > 0)
-					cImage = MY_APPLET_SHARE_DATA_DIR"/link-1.svg";
+					cImage = g_strdup (MY_APPLET_SHARE_DATA_DIR"/link-1.svg");
 				else
-					cImage = MY_APPLET_SHARE_DATA_DIR"/link-0.svg";
+					cImage = g_strdup (MY_APPLET_SHARE_DATA_DIR"/link-0.svg");
 				
 				/// recuperer les flags, wpa flags, et rsn flags -> encrypted.
 				/// et le mode -> ad_hoc
@@ -480,7 +480,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 						int n = GPOINTER_TO_INT (pConnList->data);
 						pItemData->cConnection = g_strdup (g_ptr_array_index (paConnections, n));
 					}
-					cairo_dock_add_in_menu_with_stock_and_data (cSsid, cImage, _on_select_access_point, pMenu, pItemData);
+					cairo_dock_add_in_menu_with_stock_and_data (cSsid, cImage, (GFunc) _on_select_access_point, pMenu, pItemData);
 				}
 				else
 				{
@@ -505,7 +505,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 							pItemData->cDevice = g_strdup (cDevice);
 							pItemData->cAccessPoint = g_strdup (cAccessPointPath);
 							
-							cairo_dock_add_in_menu_with_stock_and_data (cID, NULL, _on_select_access_point, pSubMenu, GINT_TO_POINTER (n));
+							cairo_dock_add_in_menu_with_stock_and_data (cID, NULL, (GFunc) _on_select_access_point, pSubMenu, GINT_TO_POINTER (n));
 						}
 					}
 				}

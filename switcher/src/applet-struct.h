@@ -61,6 +61,7 @@ struct _AppletConfig {
 	SwitcherDrawCurrentDesktopMode iDrawCurrentDesktopMode;
 	gboolean bDisplayHiddenWindows;
 	gchar **cDesktopNames;
+	gsize iNbNamesSize;
 	gint iNbNames;
 	SwitcherAction iActionOnMiddleClick;
 	} ;

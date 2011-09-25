@@ -379,7 +379,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 					}
 					if (iNbCharsMax != 0)
 					{
-						gchar *cLabel = g_strdup_printf ("<b>%d</b>", cInitialText ? strlen (cInitialText) : 0);
+						gchar *cLabel = g_strdup_printf ("<b>%d</b>", cInitialText ? (gint) strlen (cInitialText) : 0);
 						GtkWidget *pLabel = gtk_label_new (cLabel);
 						g_free (cLabel);
 						gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
