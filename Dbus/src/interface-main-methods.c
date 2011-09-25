@@ -777,7 +777,7 @@ static gboolean _insert_module_props (CairoDockModule *pModule, GPtrArray *pTab)
 	g_value_set_boolean (v, pModule->pVisitCard->bMultiInstance);
 	g_hash_table_insert (h, g_strdup ("is-multi-instance"), v);
 	
-	g_print ("list instances ...\n");
+	cd_debug ("list instances ...");
 	gchar **pInstances = g_new0 (gchar*, g_list_length (pModule->pInstancesList)+1);
 	CairoDockModuleInstance *pInstance;
 	int i = 0;
@@ -787,12 +787,12 @@ static gboolean _insert_module_props (CairoDockModule *pModule, GPtrArray *pTab)
 		pInstance = mi->data;
 		pInstances[i++] = g_strdup (pInstance->cConfFilePath);
 	}
-	g_print ("write instances ...\n");
+	cd_debug ("write instances ...");
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRV);
 	g_value_set_boxed (v, pInstances);
 	g_hash_table_insert (h, g_strdup ("instances"), v);
-	g_print ("done.\n");
+	cd_debug ("done.");
 	return TRUE;  // continue
 }
 gboolean cd_dbus_main_get_module_properties (dbusMainObject *pDbusCallback, const gchar *cName, GPtrArray **pAttributes, GError **error)

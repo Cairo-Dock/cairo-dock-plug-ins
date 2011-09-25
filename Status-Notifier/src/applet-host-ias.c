@@ -310,7 +310,7 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 		if (v && G_VALUE_HOLDS_BOXED (v))
 			cObjectPath = (gchar*)g_value_get_boxed (v);
 
-		/*g_print ("=== cObjectPath : %s\n", cObjectPath);
+		/*cd_debug ("=== cObjectPath : %s", cObjectPath);
 		if (cObjectPath != NULL && strncmp (cObjectPath, CD_INDICATOR_APPLICATION_ITEM_OBJ, strlen (CD_INDICATOR_APPLICATION_ITEM_OBJ)) == 0)
 		{
 			gchar *str = strrchr (cObjectPath, '/');  // I think this is because this path is actually the menu path, and fortunately it's just under the item object's path.

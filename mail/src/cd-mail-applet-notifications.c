@@ -345,7 +345,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 	{
 		if( myData.pMessagesDialog == NULL )
 		{
-			g_print( "Displaying messages\n" );
+			cd_debug ( "Displaying messages" );
 			if( pMailAccount->pUnseenMessageList != NULL )
 			{
 				myData.pMessagesDialog = cairo_dock_show_dialog_full (_("Mail"),

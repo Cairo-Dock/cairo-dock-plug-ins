@@ -99,7 +99,7 @@ static void _cd_musicplayer_find_player (GtkMenuItem *menu_item, gpointer *data)
 			cPlayerName = pHandler->launch;
 		else
 			cPlayerName = pHandler->name;
-		g_print ("found %s (%s)\n", pHandler->name, cPlayerName);
+		cd_debug ("found %s (%s)", pHandler->name, cPlayerName);
 		
 		// write it down into our conf file
 		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,

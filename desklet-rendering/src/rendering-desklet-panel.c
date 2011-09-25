@@ -62,7 +62,7 @@ static inline void _compute_icons_grid (CairoDesklet *pDesklet, CDPanelParameter
 	double w = pDesklet->container.iWidth - 2 * pPanel->fMargin;
 	double h = pDesklet->container.iHeight - 2 * pPanel->fMargin;
 	pPanel->iMainIconSize = MIN (w, h) / 3;
-	g_print ("  desklet: %dx%d\n", (int)w, (int)h);
+	cd_debug ("  desklet: %dx%d", (int)w, (int)h);
 	
 	int iNbIcons = 0;
 	Icon *pIcon;
@@ -90,7 +90,7 @@ static inline void _compute_icons_grid (CairoDesklet *pDesklet, CDPanelParameter
 		{
 			q = (int) ceil ((double)pPanel->iNbIcons / p);
 			iSize = MIN ((h - p * dy) / p - dh, ((w - (q - 1) * dx) / q - dw) / 2);
-			g_print ("  %dx%d -> %d\n", p, q, iSize);
+			cd_debug ("  %dx%d -> %d", p, q, iSize);
 			if (iSize > pPanel->iIconSize)
 			{
 				pPanel->iIconSize = iSize;
@@ -107,7 +107,7 @@ static inline void _compute_icons_grid (CairoDesklet *pDesklet, CDPanelParameter
 		pPanel->iIconSize = MIN ((h - p * dy) / p - dh, ((w - (q - 1) * dx) / q - dw) / 2);
 	}
 	pPanel->iIconSize = MIN (pPanel->iIconSize, pPanel->iMainIconSize);
-	g_print (" panel desklet: %dx%d, %d\n", pPanel->iNbLines, pPanel->iNbColumns, pPanel->iIconSize);
+	cd_debug (" panel desklet: %dx%d, %d", pPanel->iNbLines, pPanel->iNbColumns, pPanel->iIconSize);
 	
 	if ((h - pPanel->iNbLines * (pPanel->iIconSize + dh)) / pPanel->iNbLines > dy)
 	{

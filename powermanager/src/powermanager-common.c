@@ -109,7 +109,7 @@ static void cd_store_current_rate (double fPresentRate)
 
 		if (myConfig.fLastDischargeMeanRate == 0 || (double) fabs (myConfig.fLastDischargeMeanRate - myData.fDischargeMeanRate) / myConfig.fLastDischargeMeanRate > .01)  // l'ecart avec la valeur stockee en conf est devenue grande, on met a jour cette derniere.
 		{
-			g_print ("write discharge rate : %.2f -> %.2f\n", myConfig.fLastDischargeMeanRate, myData.fDischargeMeanRate);
+			cd_debug ("write discharge rate : %.2f -> %.2f", myConfig.fLastDischargeMeanRate, myData.fDischargeMeanRate);
 			cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
 				G_TYPE_DOUBLE, "Configuration", "discharge rate", myConfig.fLastDischargeMeanRate,
 				G_TYPE_INVALID);
@@ -120,10 +120,10 @@ static void cd_store_current_rate (double fPresentRate)
 	{
 		myData.fChargeMeanRate = (myData.fChargeMeanRate * myData.iNbChargeMeasures + fPresentRate) / (myData.iNbChargeMeasures + 1);
 		myData.iNbChargeMeasures ++;
-		cd_debug ("fChargeMeanRate : %.3f (%d)\n", myData.fChargeMeanRate, myData.iNbChargeMeasures);
+		cd_debug ("fChargeMeanRate : %.3f (%d)", myData.fChargeMeanRate, myData.iNbChargeMeasures);
 		if (myConfig.fLastChargeMeanRate == 0 || (double) fabs (myConfig.fLastChargeMeanRate - myData.fChargeMeanRate) / myConfig.fLastChargeMeanRate > .01)  // l'ecart avec la valeur stockee en conf est devenue grande, on met a jour cette derniere.
 		{
-			g_print ("charge rate : %.2f -> %.2f\n", myConfig.fLastChargeMeanRate, myData.fChargeMeanRate);
+			cd_debug ("charge rate : %.2f -> %.2f", myConfig.fLastChargeMeanRate, myData.fChargeMeanRate);
 			cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
 				G_TYPE_DOUBLE, "Configuration", "charge rate", myConfig.fLastChargeMeanRate,
 				G_TYPE_INVALID);

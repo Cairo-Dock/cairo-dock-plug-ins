@@ -180,17 +180,17 @@ gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Wind
 		if (pConfigRec->layouts != NULL)
 		{
 			for (i = 0; pConfigRec->layouts[i] != NULL; i ++)
-				g_print(" layout : %s\n", pConfigRec->layouts[i]);
+				cd_debug(" layout : %s", pConfigRec->layouts[i]);
 		}
 		if (pConfigRec->variants != NULL)
 		{
 			for (i = 0; pConfigRec->variants[i] != NULL; i ++)
-				g_print(" variants : %s\n", pConfigRec->variants[i]);
+				cd_debug(" variants : %s", pConfigRec->variants[i]);
 		}
 		if (pConfigRec->options != NULL)
 		{
 			for (i = 0; pConfigRec->options[i] != NULL; i ++)
-				g_print(" options : %s\n", pConfigRec->options[i]);
+				cd_debug(" options : %s", pConfigRec->options[i]);
 		}*/
 	}
 	

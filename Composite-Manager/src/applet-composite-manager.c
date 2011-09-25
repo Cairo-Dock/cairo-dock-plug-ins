@@ -171,7 +171,7 @@ static void _start_watching_composite_state (void)
 
 static CDWM *_get_prefered_wmc (CDWMIndex iCurrentWm)
 {
-	g_print ("%s (%s, %d)\n", __func__, myConfig.cWmCompositor, iCurrentWm);
+	cd_debug ("%s (%s, %d)", __func__, myConfig.cWmCompositor, iCurrentWm);
 	CDWM *wm;
 	if (myConfig.cWmCompositor != NULL)  // a composite WM is defined.
 	{
@@ -218,7 +218,7 @@ static CDWM *_get_prefered_wmc (CDWMIndex iCurrentWm)
 	for (i = 0; i < NB_COMPOSITE_WM; i ++)
 	{
 		wm = _get_wm_by_index (index[i]);
-		g_print (" %d) %s, %d\n", index[i], wm->cName, wm->bIsAvailable);
+		cd_debug (" %d) %s, %d", index[i], wm->cName, wm->bIsAvailable);
 		if (wm->bIsAvailable)
 			return wm;
 	}
@@ -227,7 +227,7 @@ static CDWM *_get_prefered_wmc (CDWMIndex iCurrentWm)
 
 static CDWM *_get_prefered_wmfb (CDWMIndex iCurrentWm)
 {
-	g_print ("%s (%s, %d)\n", __func__, myConfig.cWmFallback, iCurrentWm);
+	cd_debug ("%s (%s, %d)", __func__, myConfig.cWmFallback, iCurrentWm);
 	CDWM *wm;
 	if (myConfig.cWmFallback != NULL)  // a fallback WM is defined.
 	{
@@ -249,7 +249,7 @@ static CDWM *_get_prefered_wmfb (CDWMIndex iCurrentWm)
 		if (!myData.bIsComposited)  // and it is a fallback => let's take it!
 		{
 			wm = _get_wm_by_index (iCurrentWm);
-			g_print ("current wm: %d, %d\n", iCurrentWm, wm->bIsAvailable);
+			cd_debug ("current wm: %d, %d", iCurrentWm, wm->bIsAvailable);
 			if (wm->bIsAvailable)  // just to be sure.
 				return wm;
 		}
@@ -277,7 +277,7 @@ static CDWM *_get_prefered_wmfb (CDWMIndex iCurrentWm)
 	for (i = 0; i < NB_FALLBACK_WM; i ++)
 	{
 		wm = _get_wm_by_index (index[i]);
-		g_print ("  %s (%d)\n", wm->cName, wm->bIsAvailable);
+		cd_debug ("  %s (%d)", wm->cName, wm->bIsAvailable);
 		if (wm->bIsAvailable)
 			return wm;
 	}
@@ -294,7 +294,7 @@ static void _define_prefered_wms (gchar *cPs)
 	CDWMIndex iCurrentWm = _check_current_wm (cPs);
 	myData.wmc = _get_prefered_wmc (iCurrentWm);
 	myData.wmfb = _get_prefered_wmfb (iCurrentWm);
-	g_print ("***** WM: %s / %s\n", myData.wmc?myData.wmc->cName:NULL, myData.wmfb?myData.wmfb->cName:NULL);
+	cd_debug ("***** WM: %s / %s", myData.wmc?myData.wmc->cName:NULL, myData.wmfb?myData.wmfb->cName:NULL);
 }
 void cd_define_prefered_wms (void)
 {
@@ -369,7 +369,7 @@ void cd_stop_wms (void)
 
 void cd_draw_current_state (void)
 {
-	g_print ("%s (%d)\n", __func__, myData.bIsComposited);
+	cd_debug ("%s (%d)", __func__, myData.bIsComposited);
 	if (myData.bIsComposited)
 		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconCompositeON, "composite-on.png");
 	else

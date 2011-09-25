@@ -133,7 +133,7 @@ static icalcomponent *find_task(const char* uid)
 	{
 		//if( ICAL_VCALENDAR_COMPONENT != icalcomponent_isa(piCalComponent) ) continue;
 		cTaskID = g_strdup(icalcomponent_get_uid(piCalComponent));
-		g_print( "...Found task ID=%s\n", cTaskID );
+		cd_debug ( "...Found task ID=%s", cTaskID );
 		if( cTaskID != NULL && strcmp( uid, cTaskID ) == 0 )
 		{
 			break;
