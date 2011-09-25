@@ -134,7 +134,7 @@ void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
 					iReceivedBytes = atoll (tmp);
 					
 					int i = 0;
-					for (i = 0; i <= 8; i ++)  // on saute les 8 valeurs suivantes.
+					for (i = 0; i < 8; i ++)  // on saute les 8 valeurs suivantes.
 					{
 						while (*tmp != ' ')  // saute le chiffre courant.
 							tmp ++;
