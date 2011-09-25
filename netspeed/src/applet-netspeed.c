@@ -129,6 +129,8 @@ void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
 				if (strncmp (tmp, myConfig.cInterface, myConfig.iStringLen) == 0 && *(tmp+myConfig.iStringLen) == ':')  // c'est l'interface qu'on veut.
 				{
 					tmp += myConfig.iStringLen+1;  // on saute le ':' avec.
+					while (*tmp == ' ')  // on saute les espaces.
+						tmp ++;
 					iReceivedBytes = atoll (tmp);
 					
 					int i = 0;

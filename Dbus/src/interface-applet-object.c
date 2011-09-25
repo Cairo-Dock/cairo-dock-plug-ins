@@ -29,6 +29,7 @@
 #include "interface-applet-object.h"
 
 static int s_iModuleId = 1;
+static GList *s_pAppletList = NULL;
 
 static void cd_dbus_applet_dispose (GObject *object);
 static void cd_dbus_applet_finalize (GObject *object);
@@ -93,7 +94,7 @@ dbusApplet * cd_dbus_get_dbus_applet_from_instance (CairoDockModuleInstance *pMo
 {
 	dbusApplet *pDbusApplet = NULL;
 	GList *a;
-	for (a = myData.pAppletList; a != NULL; a = a->next)
+	for (a = s_pAppletList; a != NULL; a = a->next)
 	{
 		pDbusApplet = a->data;
 		if (pDbusApplet->pModuleInstance == pModuleInstance)
@@ -103,7 +104,7 @@ dbusApplet * cd_dbus_get_dbus_applet_from_instance (CairoDockModuleInstance *pMo
 }
 
 
-#define _applet_list_is_empty() (myData.pAppletList == NULL)
+#define _applet_list_is_empty() (s_pAppletList == NULL)
 
 dbusApplet *cd_dbus_create_remote_applet_object (CairoDockModuleInstance *pModuleInstance)
 {
@@ -182,13 +183,13 @@ dbusApplet *cd_dbus_create_remote_applet_object (CairoDockModuleInstance *pModul
 		myData.xActiveWindow = cairo_dock_get_current_active_window ();
 	}
 	
-	myData.pAppletList = g_list_prepend (myData.pAppletList, pDbusApplet);
+	s_pAppletList = g_list_prepend (s_pAppletList, pDbusApplet);
 	return pDbusApplet;
 }
 
 void cd_dbus_delete_remote_applet_object (dbusApplet *pDbusApplet)
 {
-	myData.pAppletList = g_list_remove (myData.pAppletList, pDbusApplet);
+	s_pAppletList = g_list_remove (s_pAppletList, pDbusApplet);
 	
 	if (_applet_list_is_empty ())  // si plus d'applet dbus, inutile de garder les notifications actives.
 	{
