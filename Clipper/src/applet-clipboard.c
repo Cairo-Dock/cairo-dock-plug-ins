@@ -618,7 +618,7 @@ void cd_clipper_load_items (const gchar *cItems)
 	for (i = 0; cItemList[i] != NULL; i ++)
 	{
 		pItem = g_new0 (CDClipperItem, 1);
-		pItem->iType = CD_CLIPPER_CLIPBOARD;
+		pItem->iType = (myConfig.bSeparateSelections ? CD_CLIPPER_CLIPBOARD : CD_CLIPPER_BOTH);
 		pItem->cText = cItemList[i];
 		pItem->cDisplayedText = cairo_dock_cut_string (pItem->cText, 50);
 		myData.pItems = g_list_insert_sorted (myData.pItems, pItem, (GCompareFunc)_cd_clipper_compare_item);
