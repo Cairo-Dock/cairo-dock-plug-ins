@@ -25,6 +25,7 @@
 #include <cairo-dock.h>
 #include "applet-struct.h"
 
+GList *cd_clipper_get_last_item (CDClipperItemType iItemType);
 
 void _on_text_received (GtkClipboard *pClipBoard, const gchar *text, gpointer user_data); // temporairement declaree ici.
 

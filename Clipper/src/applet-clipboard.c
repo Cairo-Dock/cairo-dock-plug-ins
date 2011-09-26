@@ -25,6 +25,8 @@
 
 const gchar *cEnvName[4] = {"other", "gnome", "kde", "xfce"};  // "other" allows to handle all the other DE (put your own actions into the corresponding file).
 
+// TODO idea: cairo_dock_cut_string => g_strstrip + cut X first char, then add '...', then the X last char + removed '\n'
+
 static int _cd_clipper_compare_item (CDClipperItem *pItem1, CDClipperItem *pItem2)
 {
 	if (pItem1->iType < pItem2->iType)  // on insere en 1er les items de la primary.
@@ -35,7 +37,7 @@ static int _cd_clipper_compare_item (CDClipperItem *pItem1, CDClipperItem *pItem
 		return 0;
 }
 
-static GList *_cd_clipper_get_last_item (CDClipperItemType iItemType)
+GList *cd_clipper_get_last_item (CDClipperItemType iItemType)
 {
 	CDClipperItem *pItem = NULL;
 	GList *pElement;
@@ -136,10 +138,10 @@ void _on_text_received (GtkClipboard *pClipBoard, const gchar *text, gpointer us
 		myData.pItems = g_list_delete_link (myData.pItems, pElement);
 		myData.iNbItems[pItem->iType] --;
 		
-		if (pItem->iType != iType && myData.iNbItems[iType] == myConfig.iNbItems[iType])
+		if (pItem->iType != iType && myData.iNbItems[iType] >= myConfig.iNbItems[iType])
 		{
 			cd_debug ("Clipper : %s remplace le dernier de l'autre selection", text);
-			pElement = _cd_clipper_get_last_item (iType);
+			pElement = cd_clipper_get_last_item (iType);
 			CD_APPLET_LEAVE_IF_FAIL (pElement != NULL);
 			cd_clipper_free_item (pElement->data);
 			myData.pItems = g_list_delete_link (myData.pItems, pElement);
@@ -152,10 +154,10 @@ void _on_text_received (GtkClipboard *pClipBoard, const gchar *text, gpointer us
 	{
 		bExistingItem = FALSE;
 		cd_debug ("%d items / %d", myData.iNbItems[iType], myConfig.iNbItems[iType]);
-		if (myData.iNbItems[iType] == myConfig.iNbItems[iType])
+		if (myData.iNbItems[iType] >= myConfig.iNbItems[iType])
 		{
 			cd_debug ("Clipper : %s remplace le dernier", text);
-			pElement = _cd_clipper_get_last_item (iType);
+			pElement = cd_clipper_get_last_item (iType);
 			CD_APPLET_LEAVE_IF_FAIL (pElement != NULL);
 			cd_clipper_free_item (pElement->data);
 			myData.pItems = g_list_delete_link (myData.pItems, pElement);
@@ -168,7 +170,7 @@ void _on_text_received (GtkClipboard *pClipBoard, const gchar *text, gpointer us
 		pItem = g_new0 (CDClipperItem, 1);
 		pItem->iType = iType;
 		pItem->cText = g_strdup (text);
-		pItem->cDisplayedText = cairo_dock_cut_string (text, 50);
+		pItem->cDisplayedText = cairo_dock_cut_string (g_strstrip (g_strdup (text)), 50); // g_strstrip: Removes leading and trailing whitespace from a string
 	}
 	myData.pItems = g_list_insert_sorted (myData.pItems, pItem, (GCompareFunc)_cd_clipper_compare_item);
 	myData.iNbItems[pItem->iType] ++;
@@ -613,16 +615,20 @@ gchar *cd_clipper_concat_items_of_type (CDClipperItemType iType, const gchar *cS
 void cd_clipper_load_items (const gchar *cItems)
 {
 	CDClipperItem *pItem;
+	int iClipperItemType = myConfig.bSeparateSelections ? CD_CLIPPER_CLIPBOARD : CD_CLIPPER_BOTH;
 	gchar **cItemList = g_strsplit (cItems, CD_ITEMS_DELIMITER, -1);
 	int i;
 	for (i = 0; cItemList[i] != NULL; i ++)
 	{
+		// if we have reduced the number of items to display
+		if (i == myConfig.iNbItems[iClipperItemType])
+			break;
 		pItem = g_new0 (CDClipperItem, 1);
-		pItem->iType = (myConfig.bSeparateSelections ? CD_CLIPPER_CLIPBOARD : CD_CLIPPER_BOTH);
+		pItem->iType = iClipperItemType;
 		pItem->cText = cItemList[i];
-		pItem->cDisplayedText = cairo_dock_cut_string (pItem->cText, 50);
+		pItem->cDisplayedText = cairo_dock_cut_string (g_strstrip (pItem->cText), 50); // g_strstrip: Removes leading and trailing whitespace from a string
 		myData.pItems = g_list_insert_sorted (myData.pItems, pItem, (GCompareFunc)_cd_clipper_compare_item);
-		myData.iNbItems[pItem->iType] ++;
+		myData.iNbItems[iClipperItemType] ++;
 	}
 	g_free (cItemList);
 }

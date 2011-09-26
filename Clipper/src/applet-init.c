@@ -166,5 +166,19 @@ CD_APPLET_RELOAD_BEGIN
 			g_free (myConfig.cRememberedItems);
 			myConfig.cRememberedItems = NULL;
 		}
+		// if myConfig.iNbItems[X] has decreased...
+		int i;
+		for (i = 0; i < 4; i++)
+		{
+			while (myData.iNbItems[i] > myConfig.iNbItems[i])
+			{
+				GList *pElement = cd_clipper_get_last_item (i);
+				if (pElement == NULL)
+					continue;
+				cd_clipper_free_item (pElement->data);
+				myData.pItems = g_list_delete_link (myData.pItems, pElement);
+				myData.iNbItems[i] --;
+			}
+		}
 	}
 CD_APPLET_RELOAD_END
