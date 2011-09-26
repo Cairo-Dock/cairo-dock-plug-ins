@@ -65,11 +65,11 @@ static gboolean cd_dustbin_display_result (CDSharedMemory *pSharedMemory)
 		
 		if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_TRASHES)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%s", (gint) myData.iMeasure, (myDesklet ? D_(" trashe(s)") : ""));
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%ld%s", myData.iMeasure, (myDesklet ? D_(" trashe(s)") : ""));
 		}
 		else if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%s", (gint) myData.iMeasure, (myDesklet ? D_(" file(s)") : ""));
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%ld%s", myData.iMeasure, (myDesklet ? D_(" file(s)") : ""));
 		}
 		else if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT)
 		{

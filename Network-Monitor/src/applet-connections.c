@@ -92,8 +92,8 @@ gboolean cd_NetworkMonitor_get_device (void)
 	cd_debug ("%d devices\n", paDevices->len);
 	DBusGProxy *dbus_proxy_Device, *dbus_proxy_Device_prop;
 	gchar *cDevice;
-	int i;
-	for (i = 0; i < (int) paDevices->len; i++)
+	uint i;
+	for (i = 0; i < paDevices->len; i++)
 	{
 		// on recupere le device.
 		cDevice = (gchar *)g_ptr_array_index(paDevices, i);
@@ -217,8 +217,8 @@ gboolean cd_NetworkMonitor_get_connection (void)
 	
 	//\_____________ On en choisit une.
 	gchar *cConnection;
-	int i;
-	for (i = 0; i < (int) paConnections->len; i++)
+	uint i;
+	for (i = 0; i < paConnections->len; i++)
 	{
 		cConnection = (gchar *)g_ptr_array_index(paConnections, i);
 		cd_debug (" Connection path : %s\n", cConnection);
@@ -257,7 +257,7 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 	DBusGProxy *dbus_proxy_ActiveAccessPoint_prop = NULL;
 	GError *erreur = NULL;
 	
-	gint j,k;
+	uint j,k;
 	GValue value = { 0, { { 0 } } };
 	GPtrArray *paActiveConnections = NULL;
 	GPtrArray *paDevices = NULL;
@@ -267,7 +267,7 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 	//\_____________ On recupere la liste des connexions actives (ce sont les configs tout-en-un de NM qui sont actuellement utilisees).
 	paActiveConnections = (GPtrArray*) cairo_dock_dbus_get_property_as_boxed (myData.dbus_proxy_NM_prop, "org.freedesktop.NetworkManager", "ActiveConnections");
 	cd_debug ("%d connections\n", paActiveConnections->len);
-	for (j=0;  j < (gint) paActiveConnections->len; j++)
+	for (j=0;  j < paActiveConnections->len; j++)
 	{
 		cActiveConnection = (gchar *)g_ptr_array_index(paActiveConnections,j);
 		cd_debug ("Network-Monitor : Active Connection path : %s\n", cActiveConnection);
@@ -328,7 +328,7 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 		{
 			GPtrArray *paDevices = g_value_get_boxed (v);
 			cd_debug (" %d devices\n", paDevices->len);
-			for (k=0;  k < (gint) paDevices->len; k++)
+			for (k=0;  k < paDevices->len; k++)
 			{
 				// on recupere le device.
 				cDevice = (gchar *)g_ptr_array_index(paDevices,k);
@@ -595,7 +595,7 @@ void cd_NetworkMonitor_fetch_access_point_properties (GHashTable *hProperties)
 	{
 		GByteArray *a = g_value_get_boxed (v);
 		myData.cESSID = g_new0 (gchar, a->len+1);
-		for (int i = 0; i < (int) a->len; i ++)
+		for (uint i = 0; i < a->len; i ++)
 		{
 			myData.cESSID[i] = a->data[i];
 		}

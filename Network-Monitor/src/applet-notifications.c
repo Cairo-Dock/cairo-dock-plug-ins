@@ -94,6 +94,7 @@ static void _cd_NetworkMonitor_show_config (GtkMenuItem *menu_item, gpointer dat
         cCommand = g_strdup ("nm-connection-editor");  // network-admin n'est plus present depuis Intrepid, et nm-connection-editor marche aussi sous KDE.
 	
 	cairo_dock_launch_command (cCommand);
+	g_free (cCommand);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();

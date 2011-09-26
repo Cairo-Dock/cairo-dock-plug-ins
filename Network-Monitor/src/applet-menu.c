@@ -32,8 +32,8 @@ static GList *cd_NetworkMonitor_get_connections_for_access_point (const gchar *c
 	gchar *cConnection;
 	GHashTable *pSettings, *pSubSettings;
 	GValue *v;
-	int i;
-	for (i = 0; i < (int) paConnections->len; i++)
+	uint i;
+	for (i = 0; i < paConnections->len; i++)
 	{
 		cConnection = (gchar *)g_ptr_array_index(paConnections, i);
 		cd_debug (" Connection path : %s\n", cConnection);
@@ -119,8 +119,8 @@ static GList *cd_NetworkMonitor_get_connections_for_wired_device (const gchar *c
 	GList *pConnList = NULL;
 	//\_____________ On cherche une connection qui ait le meme type (wifi ou filaire), et soit le meme SSID, soit la meme interface.
 	gchar *cConnection;
-	int i;
-	for (i = 0; i < (int) paConnections->len; i++)
+	uint i;
+	for (i = 0; i < paConnections->len; i++)
 	{
 		cConnection = (gchar *)g_ptr_array_index(paConnections, i);
 		cd_debug (" Connection path : %s\n", cConnection);
@@ -147,16 +147,24 @@ static void _on_select_access_point (GtkMenuItem *menu_item, CDMenuItemData *pIt
 			g_str_equal,
 			g_free,
 			g_free);
-		g_hash_table_insert (pSettings, g_strdup ("connection"), pSubSettings);
-		g_hash_table_insert (pSubSettings, g_strdup ("type"), g_strdup ("802-11-wireless"));
-		g_hash_table_insert (pSettings, g_strdup ("id"), g_strdup_printf ("CD - %s", pItemData->cSsid));
+		const gchar *cConnectionTxt = "connection";
+		const gchar *cTypeTxt = "type";
+		const gchar *cWirelessTxt = "802-11-wireless";
+		const gchar *cIdTxt = "id";
+		const gchar *cSsidTxt = "ssid";
+		const gchar *cModeTxt = "mode";
+		const gchar *cInfrastructureTxt = "infrastructure";
+		const gchar *cCSsidTxt = g_strdup_printf ("CD - %s", pItemData->cSsid);
+		g_hash_table_insert (pSettings, &cConnectionTxt, pSubSettings);
+		g_hash_table_insert (pSubSettings, &cTypeTxt, &cWirelessTxt);
+		g_hash_table_insert (pSettings, &cIdTxt, &cCSsidTxt);
 		
 		pSubSettings = g_hash_table_new_full (g_str_hash,
 			g_str_equal,
 			g_free,
 			g_free);
-		g_hash_table_insert (pSubSettings, g_strdup ("ssid"), g_strdup (pItemData->cSsid));
-		g_hash_table_insert (pSubSettings, g_strdup ("mode"), g_strdup ("infrastructure"));
+		g_hash_table_insert (pSubSettings, &cSsidTxt, &pItemData->cSsid);
+		g_hash_table_insert (pSubSettings, &cModeTxt, &cInfrastructureTxt);
 		
 		// AddConnection
 		DBusGProxy *dbus_proxy_Settings = cairo_dock_create_new_system_proxy (
@@ -233,8 +241,8 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 		DBusGProxy *dbus_proxy_ConnectionSettings;
 		GError *erreur = NULL;
 		GHashTable *pSettingsTable;
-		int i;
-		for (i = 0; i < (int) paConnections->len; i++)
+		uint i;
+		for (i = 0; i < paConnections->len; i++)
 		{
 			cConnection = (gchar *)g_ptr_array_index(paConnections, i);
 			cd_debug (" Connection path : %s\n", cConnection);
@@ -281,14 +289,14 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 	gchar *cAccessPointPath;
 	GHashTable *hProperties;
 	GValue *v;
-	guint iPercent;
+	gint iPercent;
 	gchar *cSsid = NULL;
 	const gchar *cHwAddress;
 	int iMode, iWirelessCapabilities;
 	CDMenuItemData *pItemData;
 	GtkWidget *pHBox;
-	int i, j;
-	for (i = 0; i < (int) paDevices->len; i++)
+	uint i, j;
+	for (i = 0; i < paDevices->len; i++)
 	{
 		// on recupere le device.
 		cDevice = (gchar *)g_ptr_array_index(paDevices, i);
@@ -366,7 +374,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 			}
 			
 			// on insere chaque point d'acces dans le menu.
-			for (j = 0; j < (int) pAccessPoints->len; j ++)
+			for (j = 0; j < pAccessPoints->len; j ++)
 			{
 				// on recupere le point d'acces.
 				cAccessPointPath = (gchar *)g_ptr_array_index (pAccessPoints, j);
@@ -387,7 +395,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 				v = (GValue *)g_hash_table_lookup (hProperties, "Strength");
 				if (v != NULL && G_VALUE_HOLDS_UCHAR (v))
 				{
-					iPercent = (gint) g_value_get_uchar (v);
+					iPercent = g_value_get_uchar (v);
 				}
 				
 				v = (GValue *)g_hash_table_lookup (hProperties, "Ssid");
@@ -401,7 +409,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 				pItemData = g_hash_table_lookup (pSsidTable, cSsid);
 				if (pItemData != NULL)
 				{
-					if ((guint) pItemData->iPercent > iPercent)
+					if (pItemData->iPercent > iPercent)
 					{
 						g_free (cSsid);
 						g_object_unref (dbus_proxy_AccessPoint_prop);
@@ -437,19 +445,19 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 				
 				cd_debug ("%d) %s : %s (%s, %d%%)\n", j, cSsid, cAccessPointPath, cHwAddress, iPercent);
 				
-				gchar *cImage = NULL;
+				const gchar *cImage = NULL;
 				if (iPercent > 80)
-					cImage = g_strdup (MY_APPLET_SHARE_DATA_DIR"/link-5.svg");
+					cImage = MY_APPLET_SHARE_DATA_DIR"/link-5.svg";
 				else if (iPercent > 60)
-					cImage = g_strdup (MY_APPLET_SHARE_DATA_DIR"/link-4.svg");
+					cImage = MY_APPLET_SHARE_DATA_DIR"/link-4.svg";
 				else if (iPercent > 40)
-					cImage = g_strdup (MY_APPLET_SHARE_DATA_DIR"/link-3.svg");
+					cImage = MY_APPLET_SHARE_DATA_DIR"/link-3.svg";
 				else if (iPercent > 20)
-					cImage = g_strdup (MY_APPLET_SHARE_DATA_DIR"/link-2.svg");
+					cImage = MY_APPLET_SHARE_DATA_DIR"/link-2.svg";
 				else if (iPercent > 0)
-					cImage = g_strdup (MY_APPLET_SHARE_DATA_DIR"/link-1.svg");
+					cImage = MY_APPLET_SHARE_DATA_DIR"/link-1.svg";
 				else
-					cImage = g_strdup (MY_APPLET_SHARE_DATA_DIR"/link-0.svg");
+					cImage = MY_APPLET_SHARE_DATA_DIR"/link-0.svg";
 				
 				/// recuperer les flags, wpa flags, et rsn flags -> encrypted.
 				/// et le mode -> ad_hoc

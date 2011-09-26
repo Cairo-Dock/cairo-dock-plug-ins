@@ -163,8 +163,9 @@ pan0 no wireless extensions.");*/
 		{
 			_pick_string ("Access Point", myData.wifi._cAccessPoint);
 		}
-		
-		if ((int) myData.wifi._iQuality == -1)  // Link Quality=54/100 Signal level=-76 dBm Noise level=-78 dBm OU Link Quality:5  Signal level:219  Noise level:177
+
+		uint iQuality = -1;
+		if (myData.wifi._iQuality == iQuality)  // Link Quality=54/100 Signal level=-76 dBm Noise level=-78 dBm OU Link Quality:5  Signal level:219  Noise level:177
 		{
 			_pick_value ("Link Quality", myData.wifi._iQuality, iMaxValue);
 			if (iMaxValue != 0)  // vieille version, qualite indiquee en %
