@@ -396,7 +396,7 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
   
 		gtk_image_set_from_pixbuf(GTK_IMAGE(mi_data->icon), resized_pixbuf);
 
-		g_object_unref(pixbuf);
+		g_object_unref(resized_pixbuf);
 	}
 	gtk_misc_set_alignment(GTK_MISC(mi_data->icon), 0.0, 0.5);
 	gtk_box_pack_start(GTK_BOX(hbox), mi_data->icon, FALSE, FALSE, padding);
