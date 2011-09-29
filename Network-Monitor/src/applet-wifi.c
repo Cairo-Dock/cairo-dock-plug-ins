@@ -61,7 +61,7 @@
 void cd_wifi_get_data (gpointer data)
 {
 	myData.wifi._iPreviousQuality = myData.wifi._iQuality;
-	myData.wifi._iQuality = -1;
+	myData.wifi._iQuality = -1;  /// beurk ! TODO...
 	myData.wifi._iPrevPercent = myData.wifi._iPercent;
 	myData.wifi._iPercent = -1;
 	myData.wifi._iPrevSignalLevel = myData.wifi._iSignalLevel;
@@ -164,7 +164,7 @@ pan0 no wireless extensions.");*/
 			_pick_string ("Access Point", myData.wifi._cAccessPoint);
 		}
 
-		uint iQuality = -1;
+		uint iQuality = -1;  /// TODO: uint can't be < 0...
 		if (myData.wifi._iQuality == iQuality)  // Link Quality=54/100 Signal level=-76 dBm Noise level=-78 dBm OU Link Quality:5  Signal level:219  Noise level:177
 		{
 			_pick_value ("Link Quality", myData.wifi._iQuality, iMaxValue);

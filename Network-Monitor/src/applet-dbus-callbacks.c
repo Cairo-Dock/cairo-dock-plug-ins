@@ -73,7 +73,7 @@ void onChangeNMProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpoin
 			
 			case 2:  // NM_STATE_CONNECTING
 				cairo_dock_show_temporary_dialog_with_icon (D_("Connecting..."), myIcon, myContainer, 4000, "same icon");
-				cairo_dock_request_icon_animation (myIcon, CAIRO_DOCK (myContainer), myConfig.cAnimation, 1e3);
+				cairo_dock_request_icon_animation (myIcon, myContainer, myConfig.cAnimation, 1e3);
 				myData.iPreviousQuality = 0;
 				cd_NetworkMonitor_draw_icon ();
 			break;

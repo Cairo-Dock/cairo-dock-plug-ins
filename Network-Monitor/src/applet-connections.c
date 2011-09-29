@@ -258,7 +258,7 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 	GError *erreur = NULL;
 	
 	uint j,k;
-	GValue value = { 0, { { 0 } } };
+	GValue value = G_VALUE_INIT;
 	GPtrArray *paActiveConnections = NULL;
 	GPtrArray *paDevices = NULL;
 	gchar *cActiveConnection, *cDevice, *cAccessPointPath, *cConnection;
@@ -267,7 +267,7 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 	//\_____________ On recupere la liste des connexions actives (ce sont les configs tout-en-un de NM qui sont actuellement utilisees).
 	paActiveConnections = (GPtrArray*) cairo_dock_dbus_get_property_as_boxed (myData.dbus_proxy_NM_prop, "org.freedesktop.NetworkManager", "ActiveConnections");
 	cd_debug ("%d connections\n", paActiveConnections->len);
-	for (j=0;  j < paActiveConnections->len; j++)
+	for (j=0; j < paActiveConnections->len; j++)
 	{
 		cActiveConnection = (gchar *)g_ptr_array_index(paActiveConnections,j);
 		cd_debug ("Network-Monitor : Active Connection path : %s\n", cActiveConnection);

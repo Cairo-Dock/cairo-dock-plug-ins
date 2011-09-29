@@ -141,30 +141,26 @@ static void _on_select_access_point (GtkMenuItem *menu_item, CDMenuItemData *pIt
 		GHashTable *pSettings = g_hash_table_new_full (g_str_hash,
 			g_str_equal,
 			g_free,
-			(GDestroyNotify) g_hash_table_destroy);
+			(GDestroyNotify) g_hash_table_destroy);  // a table of tables.
+		GHashTable *pSubSettings;
 		
-		GHashTable *pSubSettings = g_hash_table_new_full (g_str_hash,
-			g_str_equal,
-			g_free,
-			g_free);
-		const gchar *cConnectionTxt = "connection";
-		const gchar *cTypeTxt = "type";
-		const gchar *cWirelessTxt = "802-11-wireless";
-		const gchar *cIdTxt = "id";
-		const gchar *cSsidTxt = "ssid";
-		const gchar *cModeTxt = "mode";
-		const gchar *cInfrastructureTxt = "infrastructure";
-		const gchar *cCSsidTxt = g_strdup_printf ("CD - %s", pItemData->cSsid);
-		g_hash_table_insert (pSettings, &cConnectionTxt, pSubSettings);
-		g_hash_table_insert (pSubSettings, &cTypeTxt, &cWirelessTxt);
-		g_hash_table_insert (pSettings, &cIdTxt, &cCSsidTxt);
-		
+		// connection: type, id, uuid
 		pSubSettings = g_hash_table_new_full (g_str_hash,
 			g_str_equal,
 			g_free,
 			g_free);
-		g_hash_table_insert (pSubSettings, &cSsidTxt, &pItemData->cSsid);
-		g_hash_table_insert (pSubSettings, &cModeTxt, &cInfrastructureTxt);
+		g_hash_table_insert (pSettings, g_strdup ("connection"), pSubSettings);
+		g_hash_table_insert (pSubSettings, g_strdup ("type"), g_strdup ("802-11-wireless"));
+		g_hash_table_insert (pSubSettings, g_strdup ("id"), g_strdup_printf ("CD - %s", pItemData->cSsid));
+		
+		// 802-11-wireless: ssid, mode, seen-bssids
+		pSubSettings = g_hash_table_new_full (g_str_hash,
+			g_str_equal,
+			g_free,
+			g_free);
+		g_hash_table_insert (pSettings, g_strdup ("802-11-wireless"), pSubSettings);
+		g_hash_table_insert (pSubSettings, g_strdup ("ssid"), g_strdup (pItemData->cSsid));
+		g_hash_table_insert (pSubSettings, g_strdup ("mode"), g_strdup ("infrastructure"));
 		
 		// AddConnection
 		DBusGProxy *dbus_proxy_Settings = cairo_dock_create_new_system_proxy (
@@ -199,7 +195,7 @@ static void _on_select_access_point (GtkMenuItem *menu_item, CDMenuItemData *pIt
 		
 		//ActivateConnection ( s: service_name, o: connection, o: device, o: specific_object )o
 		GError *erreur = NULL;
-		GValue active_connection_path = { 0, { { 0 } } };
+		GValue active_connection_path = G_VALUE_INIT;
 		g_value_init (&active_connection_path, DBUS_TYPE_G_OBJECT_PATH);
 		
 		gchar *cNewActiveConnectionPath = NULL;
@@ -406,7 +402,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 				}
 				
 				// on empeche les doublons.
-				pItemData = g_hash_table_lookup (pSsidTable, cSsid);
+				pItemData = (cSsid ? g_hash_table_lookup (pSsidTable, cSsid) : NULL);
 				if (pItemData != NULL)
 				{
 					if (pItemData->iPercent > iPercent)
@@ -488,7 +484,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 						int n = GPOINTER_TO_INT (pConnList->data);
 						pItemData->cConnection = g_strdup (g_ptr_array_index (paConnections, n));
 					}
-					cairo_dock_add_in_menu_with_stock_and_data (cSsid, cImage, (GFunc) _on_select_access_point, pMenu, pItemData);
+					cairo_dock_add_in_menu_with_stock_and_data (cSsid, cImage, G_CALLBACK (_on_select_access_point), pMenu, pItemData);
 				}
 				else
 				{
@@ -513,7 +509,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 							pItemData->cDevice = g_strdup (cDevice);
 							pItemData->cAccessPoint = g_strdup (cAccessPointPath);
 							
-							cairo_dock_add_in_menu_with_stock_and_data (cID, NULL, (GFunc) _on_select_access_point, pSubMenu, GINT_TO_POINTER (n));
+							cairo_dock_add_in_menu_with_stock_and_data (cID, NULL, G_CALLBACK (_on_select_access_point), pSubMenu, GINT_TO_POINTER (n));
 						}
 					}
 				}
