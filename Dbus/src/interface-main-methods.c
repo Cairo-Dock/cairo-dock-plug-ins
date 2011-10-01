@@ -1322,7 +1322,7 @@ gboolean cd_dbus_main_animate (dbusMainObject *pDbusCallback, const gchar *cAnim
 		pContainer = cairo_dock_search_container_from_icon (pIcon);
 		if (! CAIRO_DOCK_IS_DOCK (pContainer))
 			continue;
-		cairo_dock_request_icon_animation (pIcon, CAIRO_DOCK (pContainer), cAnimation, iNbRounds);
+		cairo_dock_request_icon_animation (pIcon, pContainer, cAnimation, iNbRounds);
 	}
 	
 	g_list_free (pList);

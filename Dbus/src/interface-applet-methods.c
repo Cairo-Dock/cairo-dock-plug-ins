@@ -157,7 +157,7 @@ static gboolean _applet_animate (dbusApplet *pDbusApplet, const gchar *cAnimatio
 	
 	if (CAIRO_DOCK_IS_DOCK (pContainer) && cAnimation != NULL)
 	{
-		cairo_dock_request_icon_animation (pIcon, CAIRO_DOCK (pContainer), cAnimation, iNbRounds);
+		cairo_dock_request_icon_animation (pIcon, pContainer, cAnimation, iNbRounds);
 		return TRUE;
 	}
 	return FALSE;
@@ -379,7 +379,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 					}
 					if (iNbCharsMax != 0)
 					{
-						gchar *cLabel = g_strdup_printf ("<b>%ld</b>", cInitialText ? strlen (cInitialText) : 0);
+						gchar *cLabel = g_strdup_printf ("<b>%zd</b>", cInitialText ? strlen (cInitialText) : 0);
 						GtkWidget *pLabel = gtk_label_new (cLabel);
 						g_free (cLabel);
 						gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
