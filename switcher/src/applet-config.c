@@ -57,7 +57,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
 	myConfig.bDesklet3D = CD_CONFIG_GET_BOOLEAN ("Configuration", "3D desklet");
 	
-	myConfig.cDesktopNames = CD_CONFIG_GET_STRING_LIST_WITH_DEFAULT ("Configuration", "desktop names", &myConfig.iNbNamesSize, "Work;Game;Video;Chat");
+	gsize iNbNamesSize;
+	myConfig.cDesktopNames = CD_CONFIG_GET_STRING_LIST_WITH_DEFAULT ("Configuration", "desktop names", &iNbNamesSize, "Work;Game;Video;Chat");
 	myConfig.iNbNames = (gint) myConfig.iNbNamesSize;
 CD_APPLET_GET_CONFIG_END
 
