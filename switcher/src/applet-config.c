@@ -59,7 +59,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	gsize iNbNamesSize;
 	myConfig.cDesktopNames = CD_CONFIG_GET_STRING_LIST_WITH_DEFAULT ("Configuration", "desktop names", &iNbNamesSize, "Work;Game;Video;Chat");
-	myConfig.iNbNames = (gint) myConfig.iNbNamesSize;
+	myConfig.iNbNames = (gint) iNbNamesSize;
 CD_APPLET_GET_CONFIG_END
 
 
