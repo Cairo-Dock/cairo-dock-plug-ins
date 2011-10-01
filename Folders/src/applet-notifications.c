@@ -134,9 +134,9 @@ static void _cd_folders_show_file_properties (GtkMenuItem *pMenuItem, gpointer *
 		gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
 		g_string_printf (sInfo, "<u>Size</u> : %"G_GUINT64_FORMAT" bytes", iSize);
 		if (iSize > 1024*1024)
-			g_string_append_printf (sInfo, " (%.1f Mo)", 1. * iSize / 1024 / 1024);
+			g_string_append_printf (sInfo, " (%.1f MB)", 1. * iSize / 1024 / 1024);
 		else if (iSize > 1024)
-			g_string_append_printf (sInfo, " (%.1f Ko)", 1. * iSize / 1024);
+			g_string_append_printf (sInfo, " (%.1f KB)", 1. * iSize / 1024);
 		gtk_label_set_markup (GTK_LABEL (pLabel), sInfo->str);
 		gtk_container_add (GTK_CONTAINER (pVBox), pLabel);
 
