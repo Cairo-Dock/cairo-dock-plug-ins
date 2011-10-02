@@ -1398,7 +1398,7 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 				{
 					_cairo_dock_set_alpha (fAlpha);
 					///_cairo_dock_set_alpha (fAlpha * icon->fScale / my_diapo_simple_fScaleMax);
-					double text_width = icon->fWidth + my_diapo_simple_iconGapX - 10;  // 10 pixels d'ecart entre 2 labels.
+					double text_width = floor (icon->fWidth + my_diapo_simple_iconGapX - 10);  // 10 pixels d'ecart entre 2 labels.
 					if (icon->iTextWidth > text_width)
 					{
 						fOffsetX = 0.;
@@ -1424,10 +1424,11 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 				else
 				{
 					_cairo_dock_set_alpha (fAlpha * icon->fScale / my_diapo_simple_fScaleMax);
-					if (icon->iTextWidth > icon->fWidth + 2 * myIconsParam.iLabelSize)
+					double text_width = floor (icon->fWidth + 2 * myIconsParam.iLabelSize);
+					if (icon->iTextWidth > text_width)
 					{
 						fOffsetX = 0.;
-						u1 = (double) (icon->fWidth + 2 * myIconsParam.iLabelSize) / icon->iTextWidth;
+						u1 = text_width / icon->iTextWidth;
 					}
 				}
 				dx = .5 * (((int)ceil (icon->iTextWidth * (u1 - u0))) & 1);
