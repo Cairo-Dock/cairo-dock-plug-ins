@@ -484,7 +484,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 						int n = GPOINTER_TO_INT (pConnList->data);
 						pItemData->cConnection = g_strdup (g_ptr_array_index (paConnections, n));
 					}
-					cairo_dock_add_in_menu_with_stock_and_data (cSsid, cImage, G_CALLBACK (_on_select_access_point), pMenu, pItemData);
+					cairo_dock_add_in_menu_with_stock_and_data (cSsid, cImage, (GFunc) _on_select_access_point, pMenu, pItemData);
 				}
 				else
 				{
@@ -509,7 +509,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 							pItemData->cDevice = g_strdup (cDevice);
 							pItemData->cAccessPoint = g_strdup (cAccessPointPath);
 							
-							cairo_dock_add_in_menu_with_stock_and_data (cID, NULL, G_CALLBACK (_on_select_access_point), pSubMenu, GINT_TO_POINTER (n));
+							cairo_dock_add_in_menu_with_stock_and_data (cID, NULL, (GFunc) _on_select_access_point, pSubMenu, GINT_TO_POINTER (n));
 						}
 					}
 				}

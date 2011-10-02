@@ -73,7 +73,7 @@ static void _cd_NetworkMonitor_show_config (GtkMenuItem *menu_item, gpointer dat
 		return;
 	}
 	
-	/**if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE) {
+	/*if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE) {
 		int iMajor, iMinor, iMicro;
 		cairo_dock_get_gnome_version (&iMajor, &iMinor, &iMicro);
 		if (iMajor == 2 && iMinor < 22) {

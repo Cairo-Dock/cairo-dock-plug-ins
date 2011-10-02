@@ -215,7 +215,7 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 		}
 		myData.iMouseX = x;
 		myData.iMouseY = y;
-		cairo_dock_request_icon_animation (pIcon, pDock, myConfig.cIconAnimation, 1e6);  // interrompt l'animation de "mouse over".
+		cairo_dock_request_icon_animation (pIcon, CAIRO_CONTAINER (pDock), myConfig.cIconAnimation, 1e6);  // interrompt l'animation de "mouse over".
 		cairo_dock_launch_animation (CAIRO_CONTAINER (pDock));
 		//if (myAccessibility.bShowSubDockOnClick)
 		//	cairo_dock_show_subdock (pIcon, pDock, FALSE);
