@@ -112,7 +112,7 @@ static void _cd_folders_show_file_properties (GtkMenuItem *pMenuItem, gpointer *
 			GTK_DIALOG_DESTROY_WITH_PARENT,
 			GTK_MESSAGE_INFO,
 			GTK_BUTTONS_OK,
-			"Properties :");
+			D_("Properties:"));
 
 		GString *sInfo = g_string_new ("");
 		g_string_printf (sInfo, "<b>%s</b>", icon->cName);
@@ -132,11 +132,11 @@ static void _cd_folders_show_file_properties (GtkMenuItem *pMenuItem, gpointer *
 
 		pLabel = gtk_label_new (NULL);
 		gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
-		g_string_printf (sInfo, "<u>Size</u> : %"G_GUINT64_FORMAT" bytes", iSize);
+		g_string_printf (sInfo, "<u>%s</u>: %"G_GUINT64_FORMAT" %s", D_("Size"), iSize, D_("bytes"));
 		if (iSize > 1024*1024)
-			g_string_append_printf (sInfo, " (%.1f MB)", 1. * iSize / 1024 / 1024);
+			g_string_append_printf (sInfo, " (%.1f %s)", 1. * iSize / 1024 / 1024, D_("MB"));
 		else if (iSize > 1024)
-			g_string_append_printf (sInfo, " (%.1f KB)", 1. * iSize / 1024);
+			g_string_append_printf (sInfo, " (%.1f %s)", 1. * iSize / 1024, D_("KB"));
 		gtk_label_set_markup (GTK_LABEL (pLabel), sInfo->str);
 		gtk_container_add (GTK_CONTAINER (pVBox), pLabel);
 
@@ -146,7 +146,7 @@ static void _cd_folders_show_file_properties (GtkMenuItem *pMenuItem, gpointer *
 		localtime_r (&iLastModificationTime, &epoch_tm);  // et non pas gmtime_r.
 		gchar *cTimeChain = g_new0 (gchar, 100);
 		strftime (cTimeChain, 100, "%F, %T", &epoch_tm);
-		g_string_printf (sInfo, "<u>Last Modification</u> : %s", cTimeChain);
+		g_string_printf (sInfo, "<u>%s</u>: %s", D_("Last Modification"), cTimeChain);
 		g_free (cTimeChain);
 		gtk_label_set_markup (GTK_LABEL (pLabel), sInfo->str);
 		gtk_container_add (GTK_CONTAINER (pVBox), pLabel);
@@ -155,7 +155,7 @@ static void _cd_folders_show_file_properties (GtkMenuItem *pMenuItem, gpointer *
 		{
 			pLabel = gtk_label_new (NULL);
 			gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
-			g_string_printf (sInfo, "<u>Mime Type</u> : %s", cMimeType);
+			g_string_printf (sInfo, "<u>%s</u>: %s", D_("Mime Type"), cMimeType);
 			gtk_label_set_markup (GTK_LABEL (pLabel), sInfo->str);
 			gtk_container_add (GTK_CONTAINER (pVBox), pLabel);
 		}
@@ -165,7 +165,7 @@ static void _cd_folders_show_file_properties (GtkMenuItem *pMenuItem, gpointer *
 
 		pLabel = gtk_label_new (NULL);
 		gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
-		g_string_printf (sInfo, "<u>User ID</u> : %d / <u>Group ID</u> : %d", iUID, iGID);
+		g_string_printf (sInfo, "<u>%s</u>: %d \t <u>%s</u>: %d", D_("User ID"), iUID, D_("Group ID"), iGID);
 		gtk_label_set_markup (GTK_LABEL (pLabel), sInfo->str);
 		gtk_container_add (GTK_CONTAINER (pVBox), pLabel);
 
@@ -174,10 +174,11 @@ static void _cd_folders_show_file_properties (GtkMenuItem *pMenuItem, gpointer *
 		int iOwnerPermissions = iPermissionsMask >> 6;  // 8*8.
 		int iGroupPermissions = (iPermissionsMask - (iOwnerPermissions << 6)) >> 3;
 		int iOthersPermissions = (iPermissionsMask % 8);
-		g_string_printf (sInfo, "<u>Permissions</u> : read:%s / write:%s / execute:%s",
-			iOwnerPermissions?"yes":"no",
-			iGroupPermissions?"yes":"no",
-			iOthersPermissions?"yes":"no");
+		g_string_printf (sInfo, "<u>%s</u>: %s: %s / %s: %s / %s: %s",
+			D_("Permissions"), D_("Read"),
+			iOwnerPermissions ? D_("Yes") : D_("No"), D_("Write"),
+			iGroupPermissions ? D_("Yes") : D_("No"), D_("Execute"),
+			iOthersPermissions ? D_("Yes") : D_("No"));
 		gtk_label_set_markup (GTK_LABEL (pLabel), sInfo->str);
 		gtk_container_add (GTK_CONTAINER (pVBox), pLabel);
 
@@ -246,7 +247,7 @@ static void _cd_folders_move_file (GtkMenuItem *pMenuItem, gpointer *data)
 	cd_message ("%s (%s)", __func__, icon->cName);
 	
 	GtkWidget* pFileChooserDialog = gtk_file_chooser_dialog_new (
-		"Pick up a folder",
+		_("Pick up a directory"),
 		GTK_WINDOW (pContainer->pWidget),
 		GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER,
 		GTK_STOCK_OK,
