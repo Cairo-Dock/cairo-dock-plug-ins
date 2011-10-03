@@ -21,12 +21,6 @@ frame_appli =
 #V+[Fire;Stars;Rain;Snow;Storm;Firework] Effects used on applications:
 click applis = 1
 
-#F-[when clicking on an applet]
-frame_applet =
-
-#V+[Fire;Stars;Rain;Snow;Storm;Firework] Effects used on applets:
-click applets = 2
-
 #F-
 frame_appli_ =
 

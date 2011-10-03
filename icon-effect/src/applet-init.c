@@ -181,9 +181,6 @@ static gboolean _effect_is_used (CDIconEffectsEnum iEffect)
 	if (bUsed)
 		return TRUE;
 	bUsed = _effect_is_used_in_table (iEffect, myConfig.iEffectsOnClick[CAIRO_DOCK_APPLI]);
-	if (bUsed)
-		return TRUE;
-	bUsed = _effect_is_used_in_table (iEffect, myConfig.iEffectsOnClick[CAIRO_DOCK_APPLET]);
 	return bUsed;
 }
 CD_APPLET_RELOAD_BEGIN

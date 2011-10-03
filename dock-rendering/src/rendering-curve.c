@@ -44,8 +44,7 @@ extern gint my_iCurveAmplitude;
 
 extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 
-
-//const guint curveOffsetX = 75;
+// the curve is given by:
 // OM(t) = sum ([k=0..n] Bn,k(t)*OAk)
 // Bn,k(x) = Cn,k*x^k*(1-x)^(n-k)
 
@@ -926,10 +925,7 @@ static void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDo
 					
 					if (fXLeft <= fXMax && floor (fXRight) > fXMin)
 					{
-						//if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->container.iWidth)
-							icon->fAlpha = 1;
-						//else
-						//	icon->fAlpha = .25;
+						icon->fAlpha = 1;
 						
 						cairo_save (pCairoContext);
 						
@@ -971,10 +967,7 @@ static void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDo
 				
 				if (fXLeft <= fXMax && floor (fXRight) > fXMin)
 				{
-					//if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->container.iWidth)
-						icon->fAlpha = 1;
-					//else
-					//	icon->fAlpha = .25;
+					icon->fAlpha = 1;
 					
 					cairo_save (pCairoContext);
 					
@@ -1058,11 +1051,7 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 		icon->fHeightFactor = 1.;
 		///icon->fDeltaYReflection = 0.;
 		icon->fOrientation = 0.;
-		//if (icon->fDrawX >= 0 && icon->fDrawX + icon->fWidth * icon->fScale <= pDock->container.iWidth)
-			icon->fAlpha = 1;
-		//else
-		//	icon->fAlpha = .25;
-		//g_print ("fDrawX:%.2f / %d (%.2f)\n", icon->fDrawX, pDock->container.iWidth, icon->fAlpha);
+		icon->fAlpha = 1;
 	}
 	
 	cairo_dock_check_can_drop_linear (pDock);
@@ -1072,7 +1061,6 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 
 
 #define DELTA_ROUND_DEGREE 1
-#define RADIAN (G_PI / 180.0)  // Conversion Radian/Degres
 #define P(t,p,q,r,s) (1-t) * (1-t) * (1-t) * p + 3 * t * (1-t) * (1 - t) * q + 3 * t * t * (1-t) * r + t * t * t * s
 const CairoDockGLPath *cairo_dock_generate_curve_path (double fRelativeControlHeight)
 {
@@ -1088,41 +1076,11 @@ const CairoDockGLPath *cairo_dock_generate_curve_path (double fRelativeControlHe
 		pPath = cairo_dock_new_gl_path (iNbPoints+1, xp, yp, 1., 1.);
 	else
 	{
-		cairo_dock_gl_path_move_to (pPath, xp, yp);
+		cairo_dock_gl_path_move_to (pPath, xp, yp);  // drawing from the middle of the bottom rectilinear line sounds better for the GL_TRIANGLE_FAN, however in practice I haven't noticed any difference.
 	}
 	
 	cairo_dock_gl_path_curve_to (pPath, iNbPoints, xq, yq, xr, yr, xs, ys);
 	return pPath;
-	/** //static GLfloat pVertexTab[((180/DELTA_ROUND_DEGREE+1)+1)*3];
-	_cairo_dock_define_static_vertex_tab ((180/DELTA_ROUND_DEGREE+1)+1);
-	0, 0
-	(1 - my_fCurveCurvature) * fFrameWidth / 2, -sens * fControlHeight,
-	(1 + my_fCurveCurvature) * fFrameWidth / 2, -sens * fControlHeight,
-	fFrameWidth, 0
-	double w = 1. / 2;
-	double h = 1. / 2;
-	double xp = -w, xq = - my_fCurveCurvature * w, xr = - xq, xs = - xp;
-	double yp = 0., yq = fRelativeControlHeight, yr = yq, ys = yp;
-	
-	//g_print ("%s (%.2f)\n", __func__, yq);
-	int iPrecision = DELTA_ROUND_DEGREE;
-	int i=0, t;
-	for (t = 0; t <= 180; t += iPrecision, i++)
-	{
-		_cairo_dock_set_vertex_xy (i,
-			P (t/180., xp, xq, xr, xs),
-			P (t/180., yp, yq, yr, ys) - h);
-		//vx(i) = P (t/180., xp, xq, xr, xs);
-		//vy(i) = P (t/180., yp, yq, yr, ys) - h;
-	}
-	
-	// on trace la ligne du bas.
-	_cairo_dock_close_path (i);  // on boucle.
-	//vx(i) = vx(0);  // on boucle.
-	//vy(i) = vy(0);
-	
-	*iNbPoints = i+1;
-	_cairo_dock_return_vertex_tab ();*/
 }
 
 
@@ -1174,11 +1132,6 @@ static void cd_rendering_render_curve_opengl (CairoDock *pDock)
 	glScalef (w + 2 * dw, fFrameHeight + fLineWidth + fEpsilon, 1.);
 	cairo_dock_fill_gl_path (pFramePath, 0);
 	
-	/*cairo_dock_draw_frame_background_opengl (0,
-		w + 2 * dw, fFrameHeight + fLineWidth + fEpsilon,
-		dx, dy + (fLineWidth+fEpsilon)/2,
-		pVertexTab, iNbVertex,
-		pDock->container.bIsHorizontal, pDock->container.bDirectionUp, pDock->fDecorationsOffsetX);  // le cadre est trace au milieu de la ligne, donc on augmente de l la hauteur (et donc de l/2 pixels la hauteur du cadre, car [-.5, .5]), et pour compenser on se translate de l/2.*/
 	glPopMatrix ();
 	
 	glColorMask (TRUE, TRUE, TRUE, TRUE);
@@ -1194,11 +1147,6 @@ static void cd_rendering_render_curve_opengl (CairoDock *pDock)
 		0.);
 	glScalef (w + 2 * dw, fFrameHeight, 1.);
 	cairo_dock_fill_gl_path (pFramePath, pDock->backgroundBuffer.iTexture);
-	/*cairo_dock_draw_frame_background_opengl (pDock->backgroundBuffer.iTexture,
-		w + 2 * dw, fFrameHeight,
-		dx, dy,
-		pVertexTab, iNbVertex,
-		pDock->container.bIsHorizontal, pDock->container.bDirectionUp, pDock->fDecorationsOffsetX);*/
 	
 	//\____________________ On dessine le cadre.
 	if (fLineWidth > 0)

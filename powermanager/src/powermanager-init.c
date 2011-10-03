@@ -162,7 +162,7 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		if (myConfig.bHideNotOnBattery && ! myData.bOnBattery)
 		{ // hide the icon when not on battery and if needed
-			cairo_dock_detach_icon_from_dock (myIcon, myDock, myIconsParam.iSeparateIcons);
+			cairo_dock_detach_icon_from_dock (myIcon, myDock);
 			myData.bIsHidden = TRUE;
 			cairo_dock_update_dock_size (myDock);
 		}

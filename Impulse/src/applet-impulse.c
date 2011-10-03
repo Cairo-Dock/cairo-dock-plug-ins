@@ -304,7 +304,7 @@ static gboolean _impulse_restart_delayed (void)
 
 		if (myConfig.bFree) // It's maybe a hack but Cairo-Penguin does that :)
 		{
-			cairo_dock_detach_icon_from_dock (myIcon, myDock, myIconsParam.iSeparateIcons);
+			cairo_dock_detach_icon_from_dock (myIcon, myDock);
 			cairo_dock_update_dock_size (myDock);
 		}
 		else

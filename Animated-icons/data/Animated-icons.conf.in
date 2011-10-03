@@ -28,15 +28,6 @@ click applis = 0
 #i+[1;5] Number of times the animation will play:
 nb rounds applis = 1
 
-#F-[when clicking on an applet]
-frame_applet =
-
-#V+[Bounce;Rotate;Blink;Pulse;Wobbly;Wave;Spot] Effects used on applets:
-click applets = 0
-
-#i+[1;5] Number of times the animation will play:
-nb rounds applets = 1
-
 
 #[@animated_iconsdatadir@/icon-rotation.png]
 [Rotation]

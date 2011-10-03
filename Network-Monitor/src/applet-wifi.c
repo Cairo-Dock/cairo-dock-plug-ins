@@ -61,7 +61,7 @@
 void cd_wifi_get_data (gpointer data)
 {
 	myData.wifi._iPreviousQuality = myData.wifi._iQuality;
-	myData.wifi._iQuality = -1;
+	myData.wifi._iQuality = -1;  // it's an uint, so actually it's a big number; we don't care, we just want to know if we already got a value or not.
 	myData.wifi._iPrevPercent = myData.wifi._iPercent;
 	myData.wifi._iPercent = -1;
 	myData.wifi._iPrevSignalLevel = myData.wifi._iSignalLevel;

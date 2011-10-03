@@ -67,30 +67,14 @@ static void cd_NetworkMonitor_recheck_wireless_extension (GtkMenuItem *menu_item
 	cairo_dock_launch_task (myData.netSpeed.pTask);
 }
 static void _cd_NetworkMonitor_show_config (GtkMenuItem *menu_item, gpointer data)
-{  /// a mettre dans les plug-ins d'integration.
+{
 	if (myConfig.cWifiConfigCommand != NULL) {
 		cairo_dock_launch_command (myConfig.cWifiConfigCommand);
-		return;
 	}
-	
-	/*if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE) {
-		int iMajor, iMinor, iMicro;
-		cairo_dock_get_gnome_version (&iMajor, &iMinor, &iMicro);
-		if (iMajor == 2 && iMinor < 22) {
-			cCommand = "gksu network-admin";
-		}
-		else {
-		  if (iMajor == 2 && iMinor > 22)
-		    cCommand = "nm-connection-editor";
-		  else {
-			  cCommand = "network-admin";
-			}
-		}
+	else
+	{
+		cairo_dock_launch_command ("nm-connection-editor");  // network-admin n'est plus present depuis Intrepid, et nm-connection-editor marche aussi sous KDE.
 	}
-	else if (g_iDesktopEnv == CAIRO_DOCK_KDE) { //Ajouter les lignes de KDE
-		//cCommand = 
-	}*/
-	cairo_dock_launch_command ("nm-connection-editor");  // network-admin n'est plus present depuis Intrepid, et nm-connection-editor marche aussi sous KDE.
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();

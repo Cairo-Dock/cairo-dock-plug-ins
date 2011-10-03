@@ -849,7 +849,7 @@ gboolean cd_dbus_main_add_launcher (dbusMainObject *pDbusCallback, const gchar *
 		fOrder = CAIRO_DOCK_LAST_ORDER;
 	Icon *pNewIcon;
 	if (iLauncherType != -1)
-		pNewIcon = cairo_dock_add_new_launcher_by_type (iLauncherType, pParentDock, fOrder, CAIRO_DOCK_LAUNCHER);
+		pNewIcon = cairo_dock_add_new_launcher_by_type (iLauncherType, pParentDock, fOrder);
 	else
 		pNewIcon = cairo_dock_add_new_launcher_by_uri (cDesktopFilePath, pParentDock, fOrder);
 	if (pNewIcon != NULL)

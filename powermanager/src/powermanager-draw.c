@@ -47,7 +47,7 @@ void update_icon (void)
 	{
 		if (! myData.bIsHidden)
 		{ // we remove the icon
-			cairo_dock_detach_icon_from_dock (myIcon, myDock, myIconsParam.iSeparateIcons);
+			cairo_dock_detach_icon_from_dock (myIcon, myDock);
 			myData.bIsHidden = TRUE;
 			cairo_dock_update_dock_size (myDock);
 			cairo_dock_redraw_container (CAIRO_CONTAINER (myDock)); // dock refresh forced

@@ -130,7 +130,7 @@ CD_APPLET_RELOAD_BEGIN
 		//\_______________ On libere le pingouin ou au contraire on le cloisonne.
 		if (myConfig.bFree)
 		{
-			cairo_dock_detach_icon_from_dock (myIcon, myDock, myIconsParam.iSeparateIcons);
+			cairo_dock_detach_icon_from_dock (myIcon, myDock);
 			cairo_dock_update_dock_size (myDock);
 		}
 		else

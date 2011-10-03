@@ -554,7 +554,7 @@ static gboolean _penguin_restart_delayed (CairoDockModuleInstance *myApplet)
 		
 		if (myConfig.bFree)  // attention : c'est un hack moyen; il faudrait pouvoir indiquer a cairo-dock de ne pas inserer notre icone...
 		{
-			cairo_dock_detach_icon_from_dock (myIcon, myDock, myIconsParam.iSeparateIcons);
+			cairo_dock_detach_icon_from_dock (myIcon, myDock);
 			cairo_dock_update_dock_size (myDock);
 		}
 		else

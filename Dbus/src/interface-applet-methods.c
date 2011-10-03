@@ -726,7 +726,7 @@ gboolean cd_dbus_sub_applet_remove_sub_icon (dbusSubApplet *pDbusSubApplet, cons
 		Icon *pOneIcon = cairo_dock_get_icon_with_command (pIconsList, cIconID);
 		if (pInstance->pDock)
 		{
-			cairo_dock_detach_icon_from_dock (pOneIcon, pIcon->pSubDock, FALSE);
+			cairo_dock_detach_icon_from_dock_full (pOneIcon, pIcon->pSubDock, FALSE);
 			cairo_dock_update_dock_size (pIcon->pSubDock);
 		}
 		else
@@ -989,7 +989,7 @@ gboolean cd_dbus_applet_populate_menu (dbusApplet *pDbusApplet, const gchar **pL
 		{
 			cairo_dock_add_in_menu_with_stock_and_data (pLabels[i],
 				NULL,
-				(GFunc) cd_dbus_emit_on_menu_select,
+				G_CALLBACK (cd_dbus_emit_on_menu_select),
 				myData.pModuleSubMenu,
 				GINT_TO_POINTER (i));
 		}

@@ -61,9 +61,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_GET_INTEGER_LIST ("Global", "click applis", CD_ICON_EFFECT_NB_EFFECTS,
 		(int *)myConfig.iEffectsOnClick[CAIRO_DOCK_APPLI]);
 	
-	CD_CONFIG_GET_INTEGER_LIST ("Global", "click applets", CD_ICON_EFFECT_NB_EFFECTS,
-		(int *)myConfig.iEffectsOnClick[CAIRO_DOCK_APPLET]);
-	
 	myConfig.iFireDuration = CD_CONFIG_GET_INTEGER ("Fire", "duration");
 	myConfig.bContinueFire = CD_CONFIG_GET_BOOLEAN ("Fire", "continue");
 	CD_CONFIG_GET_COLOR_RVB ("Fire", "color1", myConfig.pFireColor1);

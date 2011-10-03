@@ -49,11 +49,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 		(int *)myConfig.iEffectsOnClick[CAIRO_DOCK_APPLI]);
 	myConfig.iNbRoundsOnClick[CAIRO_DOCK_APPLI] = CD_CONFIG_GET_INTEGER ("Global", "nb rounds applis");
 	
-	CD_CONFIG_GET_INTEGER_LIST ("Global", "click applets", CD_ANIMATIONS_NB_EFFECTS,
-		(int *)myConfig.iEffectsOnClick[CAIRO_DOCK_APPLET]);
-	myConfig.iNbRoundsOnClick[CAIRO_DOCK_APPLET] = CD_CONFIG_GET_INTEGER ("Global", "nb rounds applets");
-	
-	
 	myConfig.iRotationDuration = CD_CONFIG_GET_INTEGER ("Rotation", "duration");
 	myConfig.bContinueRotation = CD_CONFIG_GET_BOOLEAN ("Rotation", "continue");
 	myConfig.iMeshType = CD_CONFIG_GET_INTEGER ("Rotation", "mesh");
