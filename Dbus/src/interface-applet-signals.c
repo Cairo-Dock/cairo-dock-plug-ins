@@ -364,7 +364,7 @@ gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, C
 	
 	cairo_dock_add_in_menu_with_stock_and_data (_("Applet's Handbook"),
 		GTK_STOCK_ABOUT,
-		(GFunc) cairo_dock_pop_up_about_applet,
+		G_CALLBACK (cairo_dock_pop_up_about_applet),
 		myData.pModuleSubMenu,
 		pAppletIcon->pModuleInstance);
 	

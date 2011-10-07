@@ -327,14 +327,14 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 	
 	if (*CD_APPLET_RECEIVED_DATA == '/' || strncmp (CD_APPLET_RECEIVED_DATA, "file://", 7))  // fichier local
 	{
-		cairo_dock_add_in_menu_with_stock_and_data (("Move to the Desktop"), GTK_STOCK_CUT, (GFunc) _move_to_desktop, pMenu, myApplet);
-		cairo_dock_add_in_menu_with_stock_and_data (("Copy to the Desktop"), GTK_STOCK_COPY, (GFunc) _copy_to_desktop, pMenu, myApplet);
-		cairo_dock_add_in_menu_with_stock_and_data (("Link to the Desktop"), GTK_STOCK_JUMP_TO, (GFunc) _link_to_desktop, pMenu, myApplet);
+		cairo_dock_add_in_menu_with_stock_and_data (("Move to the Desktop"), GTK_STOCK_CUT, G_CALLBACK (_move_to_desktop), pMenu, myApplet);
+		cairo_dock_add_in_menu_with_stock_and_data (("Copy to the Desktop"), GTK_STOCK_COPY, G_CALLBACK (_copy_to_desktop), pMenu, myApplet);
+		cairo_dock_add_in_menu_with_stock_and_data (("Link to the Desktop"), GTK_STOCK_JUMP_TO, G_CALLBACK (_link_to_desktop), pMenu, myApplet);
 	}
 	else  // fichier a telecharger.
 	{
-		cairo_dock_add_in_menu_with_stock_and_data (("Link to the Desktop"), GTK_STOCK_JUMP_TO, (GFunc) _make_link_to_desktop, pMenu, myApplet);
-		cairo_dock_add_in_menu_with_stock_and_data (("Download onto the Desktop"), GTK_STOCK_COPY, (GFunc) _download_to_desktop, pMenu, myApplet);
+		cairo_dock_add_in_menu_with_stock_and_data (("Link to the Desktop"), GTK_STOCK_JUMP_TO, G_CALLBACK (_make_link_to_desktop), pMenu, myApplet);
+		cairo_dock_add_in_menu_with_stock_and_data (("Download onto the Desktop"), GTK_STOCK_COPY, G_CALLBACK (_download_to_desktop), pMenu, myApplet);
 	}
 	CD_APPLET_POPUP_MENU_ON_MY_ICON (pMenu);
 	
