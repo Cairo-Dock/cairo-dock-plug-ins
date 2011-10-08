@@ -504,7 +504,7 @@ else()
 	pkg_check_modules (DBUSMENU_GTK dbusmenu-gtk)
 endif()
 if ("${INDICATOR_04_FOUND}" STREQUAL "1")
-	pkg_check_modules (INDICATOR_APPLET indicator-0.4 libido-0.1)
+	pkg_check_modules (INDICATOR_APPLET indicator-0.4)
 	set (INDICATOR_APPLICATIONADDED_HAS_HINT 1) # now the ApplicationAdded signal (Status-Notifier) has a new parameter (hint) => https://code.launchpad.net/~ted/indicator-application/name-hints/+merge/67213
 else()
 	pkg_check_modules (INDICATOR_APPLET indicator libido-0.1)
