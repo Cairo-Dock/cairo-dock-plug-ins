@@ -43,6 +43,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.cStackDir = CD_CONFIG_GET_STRING ("Configuration", "stack dir");
 	
+	myConfig.bSeparateTypes = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "separate", TRUE);
 CD_APPLET_GET_CONFIG_END
 
 

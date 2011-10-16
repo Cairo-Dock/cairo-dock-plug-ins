@@ -61,7 +61,6 @@ frame_visi =
 #b Is detached from the dock
 initially detached=false
 #l[Normal;Keep above;Keep below;Keep on widget layer;Reserve space] Visibility:
-#{for CompizFusion's "widget layer", set behaviour in Compiz to: (class=Cairo-dock & type=Utility)}
 accessibility=0
 #b Should be visible on all desktops?
 sticky=true
@@ -125,6 +124,10 @@ url icon =
 
 #X[Options;gtk-file]
 frame_opt = 
+
+#b Separate the items by type (file/web page/text)
+separate = true
+
 #B Filter files on MIME type?
 #{These options allow you to prevent some files from displaying in stacks based on their type (video, image, etc.)}
 filter = false

@@ -61,6 +61,7 @@ struct _AppletConfig {
 	gboolean bSelectionClipBoard;
 	gchar *cStackDir;
 	CDDeskletRendererType iDeskletRendererType;
+	gboolean bSeparateTypes;  // separate files/web links/texts
 } ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.

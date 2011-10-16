@@ -172,8 +172,8 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		
 		// Sub-Menu
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear the stack"), GTK_STOCK_CLEAR, _cd_stack_clear_stack, pSubMenu);
-		CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
-		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+		///CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
+		///CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 	}
 	else if (CD_APPLET_CLICKED_ICON != NULL)  // clic on an item
 	{

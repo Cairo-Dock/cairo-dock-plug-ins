@@ -61,10 +61,11 @@ static void _load_html_icon (Icon *pIcon)
 				
 				CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 				
-				CairoEmblem *pEmblem = cairo_dock_make_emblem (pIcon->cWorkingDirectory, pIcon);
+				cairo_dock_print_overlay_on_icon (pIcon, pContainer, pIcon->cWorkingDirectory, CAIRO_OVERLAY_LOWER_RIGHT);
+				/**CairoEmblem *pEmblem = cairo_dock_make_emblem (pIcon->cWorkingDirectory, pIcon);
 				cairo_dock_set_emblem_position (pEmblem, CAIRO_DOCK_EMBLEM_LOWER_RIGHT);
 				cairo_dock_draw_emblem_on_icon (pEmblem, pIcon, pContainer);
-				cairo_dock_free_emblem (pEmblem);
+				cairo_dock_free_emblem (pEmblem);*/
 			}
 		}
 		g_free (cIconPath);
@@ -93,6 +94,8 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 				NULL,
 				0);
 			pIcon->iface.load_image = _load_html_icon;
+			if (myConfig.bSeparateTypes)
+				pIcon->iGroup = 6;
 		}
 		else  // URI file
 		{
@@ -118,16 +121,20 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 				NULL,
 				0);
 			g_free (cCanonicName);
+			if (myConfig.bSeparateTypes)
+				pIcon->iGroup = 8;
 		}
 		pIcon->iVolumeID = 1;  // let's use this as a flag for the URI items.
 	}
 	else  // text
 	{
 		pIcon = cairo_dock_create_dummy_launcher (NULL,
-				g_strdup (myConfig.cTextIcon),
-				cContent,
-				NULL,
-				0);
+			g_strdup (myConfig.cTextIcon),
+			cContent,
+			NULL,
+			0);
+		if (myConfig.bSeparateTypes)
+			pIcon->iGroup = 10;
 	}
 	
 	pIcon->cName = g_key_file_get_string (pKeyFile, "Desktop Entry", "Name", &erreur);
