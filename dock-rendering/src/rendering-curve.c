@@ -366,7 +366,12 @@ static void cd_rendering_make_3D_curve_separator (Icon *icon, cairo_t *pCairoCon
 		{
 			if (! pDock->container.bDirectionUp)
 				cairo_scale (pCairoContext, 1, -1);
-			cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], MIN (0, (fHeight + hi) * fLeftInclination), 0);
+			/**cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], MIN (0, (fHeight + hi) * fLeftInclination), 0);*/
+			
+			cairo_clip (pCairoContext);
+			cairo_translate (pCairoContext, MIN (0, (fHeight + hi) * fLeftInclination), 0);
+			cairo_scale (pCairoContext, (fLittleWidth + MAX (fabs (fDeltaXRight), fabs (fDeltaXLeft)))/1, 1.);
+			cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], 0, 0);
 		}
 	}
 	else
@@ -383,7 +388,12 @@ static void cd_rendering_make_3D_curve_separator (Icon *icon, cairo_t *pCairoCon
 		{
 			if (! pDock->container.bDirectionUp)
 				cairo_scale (pCairoContext, -1, 1);
-			cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL], 0, MIN (0, (fHeight + hi) * fLeftInclination));
+			/**cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL], 0, MIN (0, (fHeight + hi) * fLeftInclination));*/
+			
+			cairo_clip (pCairoContext);
+			cairo_translate (pCairoContext, 0, MIN (0, (fHeight + hi) * fLeftInclination));
+			cairo_scale (pCairoContext, 1., (fLittleWidth + MAX (fabs (fDeltaXRight), fabs (fDeltaXLeft)))/1);
+			cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL], 0, 0);
 		}
 	}
 }
@@ -481,6 +491,7 @@ static void cd_rendering_draw_3D_curve_separator (Icon *icon, cairo_t *pCairoCon
 	else
 	{
 		cairo_fill (pCairoContext);
+		cairo_paint (pCairoContext);
 	}
 }
 

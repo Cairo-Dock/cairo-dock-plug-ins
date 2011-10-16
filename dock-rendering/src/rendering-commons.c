@@ -31,6 +31,7 @@ extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 extern GLuint my_iFlatSeparatorTexture;
 extern int iVanishingPointY;
 
+
 cairo_surface_t *cd_rendering_create_flat_separator_surface (int iWidth, int iHeight)
 {
 	cairo_pattern_t *pStripesPattern = cairo_pattern_create_linear (0.0f,
@@ -41,39 +42,46 @@ cairo_surface_t *cd_rendering_create_flat_separator_surface (int iWidth, int iHe
 	
 	cairo_pattern_set_extend (pStripesPattern, CAIRO_EXTEND_REPEAT);
 	
-	double fStep = 1.;
-	double y = 0, h0 = (fStep * (1 + sqrt (1 + 4. * iHeight / fStep)) / 2) - 1, hk = h0;
-	int k = 0;
-	for (k = 0; k < h0 / fStep; k ++)
+	double h = 30;  // we'll simulate an observer placed at 'h'px height from the "ground".
+	double d = 15;  // each line has a 'd'px width (a typical separator height is ~ 100px)
+	double s = 25;  // lines are separated from each other by 's'px.
+	double dk, sk;  // size we see at the k-th step.
+	double ak;  // a temporary variable
+	double yk = 0;  // current y after k step
+	int k;	
+	for (k = 0, yk = 0; yk < iHeight; k ++)
 	{
-		//g_print ("step : %f ; y = %.2f\n", 1.*hk / iHeight, y);
+		ak = yk / h;
+		sk =  (s / sqrt (1 + ak * ak));
 		cairo_pattern_add_color_stop_rgba (pStripesPattern,
-			y,
+			yk/iHeight,
 			0.,
 			0.,
 			0.,
 			0.);
-		y += 1.*hk / iHeight;
+		yk += sk;
 		cairo_pattern_add_color_stop_rgba (pStripesPattern,
-			y,
+			yk/iHeight,
 			0.,
 			0.,
 			0.,
 			0.);
+		
+		ak = yk / h;
+		dk =  (d / sqrt (1 + ak * ak));
 		cairo_pattern_add_color_stop_rgba (pStripesPattern,
-			y,
+			yk/iHeight,
 			myIconsParam.fSeparatorColor[0],
 			myIconsParam.fSeparatorColor[1],
 			myIconsParam.fSeparatorColor[2],
 			myIconsParam.fSeparatorColor[3]);
-		y += 1.*hk / iHeight;
+		yk += dk;
 		cairo_pattern_add_color_stop_rgba (pStripesPattern,
-			y,
+			yk/iHeight,
 			myIconsParam.fSeparatorColor[0],
 			myIconsParam.fSeparatorColor[1],
 			myIconsParam.fSeparatorColor[2],
 			myIconsParam.fSeparatorColor[3]);
-		hk -= fStep;
 	}
 	
 	cairo_surface_t *pNewSurface = cairo_dock_create_blank_surface (
@@ -89,12 +97,13 @@ cairo_surface_t *cd_rendering_create_flat_separator_surface (int iWidth, int iHe
 	return pNewSurface;
 }
 
+
 void cd_rendering_load_flat_separator (CairoContainer *pContainer)
 {
 	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
 	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL]);
 	
-	my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = cd_rendering_create_flat_separator_surface ((g_bUseOpenGL?10:200), (g_bUseOpenGL?50:150));  // en opengl on etire la texture, donc pas besoin de la charger en grand.
+	my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] = cd_rendering_create_flat_separator_surface (1, (g_bUseOpenGL?100:150));  // on etire la surface/texture, donc on peut la creer petite (au moins en largeur).
 	
 	if (g_bUseOpenGL)
 	{
@@ -107,7 +116,7 @@ void cd_rendering_load_flat_separator (CairoContainer *pContainer)
 	}
 	else
 	{
-		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = cairo_dock_rotate_surface (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], 200, 150, -G_PI / 2);
+		my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL] = cairo_dock_rotate_surface (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], 1, 150, -G_PI / 2);  // 200
 	}
 }
 

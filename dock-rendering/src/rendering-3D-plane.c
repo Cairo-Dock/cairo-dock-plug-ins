@@ -191,7 +191,10 @@ static void cd_rendering_make_3D_separator (Icon *icon, cairo_t *pCairoContext, 
 	
 	if (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR)
 	{
-		cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], MIN (0, (fHeight + hi) * fLeftInclination), 0);
+		cairo_clip (pCairoContext);
+		cairo_translate (pCairoContext, MIN (0, (fHeight + hi) * fLeftInclination), 0);
+		cairo_scale (pCairoContext, (fLittleWidth + MAX (fabs (fDeltaXRight), fabs (fDeltaXLeft)))/1, 1.);
+		cairo_set_source_surface (pCairoContext, my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL], 0, 0);
 	}
 }
 
@@ -269,7 +272,8 @@ static void cd_rendering_draw_3D_separator (Icon *icon, cairo_t *pCairoContext, 
 	}
 	else
 	{
-		cairo_fill (pCairoContext);
+		///cairo_fill (pCairoContext);
+		cairo_paint (pCairoContext);
 	}
 }
 
