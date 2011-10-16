@@ -42,7 +42,6 @@ initially detached=false
 size = 96;96
 
 #l[Normal;Keep above;Keep below;Keep on widget layer;Reserve space] Visibility:
-#{for CompizFusion's "widget layer", set behaviour in Compiz to: (class=Cairo-dock & type=Utility)}
 accessibility=0
 
 #b Should be visible on all desktops?
