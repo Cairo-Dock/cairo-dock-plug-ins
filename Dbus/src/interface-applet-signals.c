@@ -358,7 +358,7 @@ gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, C
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	myData.pModuleMainMenu = pAppletMenu;
-	myData.pModuleSubMenu = cairo_dock_create_sub_menu (pAppletIcon->pModuleInstance->pModule->pVisitCard->cModuleName,
+	/**myData.pModuleSubMenu = cairo_dock_create_sub_menu (pAppletIcon->pModuleInstance->pModule->pVisitCard->cModuleName,
 		pAppletMenu,
 		pAppletIcon->pModuleInstance->pModule->pVisitCard->cIconFilePath);
 	
@@ -366,7 +366,8 @@ gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, C
 		GTK_STOCK_ABOUT,
 		G_CALLBACK (cairo_dock_pop_up_about_applet),
 		myData.pModuleSubMenu,
-		pAppletIcon->pModuleInstance);
+		pAppletIcon->pModuleInstance);*/
+	myData.pModuleSubMenu = pAppletMenu;
 	
 	g_signal_connect (G_OBJECT (pAppletMenu),
 		"deactivate",

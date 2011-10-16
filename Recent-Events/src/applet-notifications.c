@@ -107,7 +107,7 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 	int iVolumeID;
 	gboolean bIsDirectory;
 	
-	pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Recent files"), s_pMenu, GTK_STOCK_FILE);
+	pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Recent files"), s_pMenu, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);  // GTK_STOCK_FILE
 	while (zeitgeist_result_set_has_next (pEvents))
 	{
 		event = zeitgeist_result_set_next (pEvents);

@@ -93,11 +93,6 @@ CD_APPLET_INIT_BEGIN
 	myData.bIsHidden = FALSE;
 
 	_set_data_renderer (myApplet, FALSE);
-	if (myConfig.cEmblemIconName == NULL)
-		myData.pEmblem = CD_APPLET_MAKE_EMBLEM (MY_APPLET_SHARE_DATA_DIR"/charge.svg");
-	else
-		myData.pEmblem = CD_APPLET_MAKE_EMBLEM (myConfig.cEmblemIconName);
-	cairo_dock_set_emblem_position (myData.pEmblem, CAIRO_DOCK_EMBLEM_MIDDLE);
 	
 	cd_powermanager_start ();
 	
@@ -132,12 +127,7 @@ CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
-	cairo_dock_free_emblem (myData.pEmblem);
-	if (myConfig.cEmblemIconName == NULL)
-		myData.pEmblem = CD_APPLET_MAKE_EMBLEM (MY_APPLET_SHARE_DATA_DIR"/charge.svg");
-	else
-		myData.pEmblem = CD_APPLET_MAKE_EMBLEM (myConfig.cEmblemIconName);
-	cairo_dock_set_emblem_position (myData.pEmblem, CAIRO_DOCK_EMBLEM_MIDDLE);
+	CD_APPLET_REMOVE_OVERLAY_ON_MY_ICON (CAIRO_OVERLAY_MIDDLE);
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
@@ -182,13 +172,15 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			double fPercent = (double) myData.iPercentage / 100.;
 			CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&fPercent);
-			
-			//Embleme sur notre icone
-			if (! myData.bOnBattery)
-				CD_APPLET_DRAW_EMBLEM_ON_MY_ICON (myData.pEmblem);
 		}
 		else if (myConfig.iDisplayType == CD_POWERMANAGER_ICONS)
+		{
 			cd_powermanager_draw_icon_with_effect (myData.bOnBattery);
+		}
+		
+		// re-set the overlay if on sector
+		if (! myData.bOnBattery)
+			CD_APPLET_ADD_OVERLAY_ON_MY_ICON (myConfig.cEmblemIconName ? myConfig.cEmblemIconName : MY_APPLET_SHARE_DATA_DIR"/charge.svg", CAIRO_OVERLAY_MIDDLE);
 		
 		myData.iPrevPercentage = -1;
 		myData.iPrevTime = -1;

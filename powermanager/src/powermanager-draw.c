@@ -81,10 +81,19 @@ void update_icon (void)
 			cd_powermanager_draw_icon_with_effect (myData.bOnBattery);
 			bNeedRedraw = FALSE;
 		}
-		if (! myData.bOnBattery)
+		
+		// add or remove the charge overlay if the 'on_battery' status has changed.
+		if (myData.bPrevOnBattery != myData.bOnBattery)
 		{
-			CD_APPLET_DRAW_EMBLEM_ON_MY_ICON (myData.pEmblem);
-		}  // else emblem is implicitely erased.
+			if (! myData.bOnBattery)
+			{
+				CD_APPLET_ADD_OVERLAY_ON_MY_ICON (myConfig.cEmblemIconName ? myConfig.cEmblemIconName : MY_APPLET_SHARE_DATA_DIR"/charge.svg", CAIRO_OVERLAY_MIDDLE);
+			}
+			else
+			{
+				CD_APPLET_REMOVE_OVERLAY_ON_MY_ICON (CAIRO_OVERLAY_MIDDLE);
+			}
+		}
 		
 		// on declenche les alarmes.
 		if (myData.bOnBattery)

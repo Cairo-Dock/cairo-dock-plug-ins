@@ -487,10 +487,10 @@ void cd_logout_check_reboot_required (CairoDockFMEventType iEventType, const gch
 			_set_reboot_message ();
 			CD_APPLET_DEMANDS_ATTENTION ("pulse", 20);
 			cairo_dock_show_temporary_dialog_with_icon (myIcon->cName, myIcon, myContainer, 5e3, "same icon");
-			if (myConfig.cEmblemPath != NULL && *myConfig.cEmblemPath != '\0' && g_file_test (myConfig.cEmblemPath, G_FILE_TEST_EXISTS))
-				CD_APPLET_SET_EMBLEM_ON_MY_ICON (myConfig.cEmblemPath, CAIRO_DOCK_EMBLEM_UPPER_RIGHT);
+			if (myConfig.cEmblemPath != NULL && g_file_test (myConfig.cEmblemPath, G_FILE_TEST_EXISTS))
+				CD_APPLET_PRINT_OVERLAY_ON_MY_ICON (myConfig.cEmblemPath, CAIRO_OVERLAY_UPPER_RIGHT);
 			else
-				CD_APPLET_SET_EMBLEM_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/system-restart.svg", CAIRO_DOCK_EMBLEM_UPPER_RIGHT);
+				CD_APPLET_PRINT_OVERLAY_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/system-restart.svg", CAIRO_OVERLAY_UPPER_RIGHT);
 		break;
 		default:
 		break;

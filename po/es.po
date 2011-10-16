@@ -759,7 +759,7 @@ msgid "A cable has been unplugged"
 msgstr "Un cable ha sido desconectado"
 
 #: ../Network-Monitor/src/applet-draw.c:30
-#: ../powermanager/src/powermanager-draw.c:160 ../wifi/src/applet-draw.c:31
+#: ../powermanager/src/powermanager-draw.c:164 ../wifi/src/applet-draw.c:31
 #: ../Clipper/data/messages:101 ../GMenu/data/messages:121
 #: ../Network-Monitor/data/messages:217 ../alsaMixer/data/messages:129
 #: ../dnd2share/data/messages:113 ../dustbin/data/messages:103
@@ -795,7 +795,7 @@ msgstr "No conectado"
 msgid "Wired connection"
 msgstr "Conexión cableada"
 
-#: ../Network-Monitor/src/applet-draw.c:123 ../wifi/src/applet-draw.c:143
+#: ../Network-Monitor/src/applet-draw.c:126 ../wifi/src/applet-draw.c:171
 msgid ""
 "Checking connection...\n"
 "Please retry in a few seconds"
@@ -803,41 +803,41 @@ msgstr ""
 "Verificando conexión...\n"
 "Por favor intente de nuevo en unos segundos."
 
-#: ../Network-Monitor/src/applet-draw.c:131
+#: ../Network-Monitor/src/applet-draw.c:134
 msgid "Wired Connection."
 msgstr "Conexión cableada."
 
-#: ../Network-Monitor/src/applet-draw.c:133
-#: ../Network-Monitor/src/applet-draw.c:148 ../wifi/src/applet-draw.c:160
+#: ../Network-Monitor/src/applet-draw.c:136
+#: ../Network-Monitor/src/applet-draw.c:151 ../wifi/src/applet-draw.c:188
 msgid "Interface"
 msgstr "Interfaz"
 
-#: ../Network-Monitor/src/applet-draw.c:134
-#: ../Network-Monitor/src/applet-draw.c:146
+#: ../Network-Monitor/src/applet-draw.c:137
+#: ../Network-Monitor/src/applet-draw.c:149
 msgid "Speed"
 msgstr "Velocidad"
 
-#: ../Network-Monitor/src/applet-draw.c:143 ../wifi/src/applet-draw.c:156
+#: ../Network-Monitor/src/applet-draw.c:146 ../wifi/src/applet-draw.c:184
 msgid "Wifi enabled."
 msgstr "Wifi activado."
 
-#: ../Network-Monitor/src/applet-draw.c:145 ../wifi/src/applet-draw.c:158
+#: ../Network-Monitor/src/applet-draw.c:148 ../wifi/src/applet-draw.c:186
 msgid "Network ID"
 msgstr "ID de red"
 
-#: ../Network-Monitor/src/applet-draw.c:145
+#: ../Network-Monitor/src/applet-draw.c:148
 #: ../musicPlayer/src/applet-draw.c:369 ../musicPlayer/src/applet-draw.c:371
 #: ../musicPlayer/src/applet-draw.c:373
-#: ../powermanager/src/powermanager-draw.c:189
-#: ../powermanager/src/powermanager-draw.c:242
+#: ../powermanager/src/powermanager-draw.c:193
+#: ../powermanager/src/powermanager-draw.c:246
 msgid "Unknown"
 msgstr "Desconocido"
 
-#: ../Network-Monitor/src/applet-draw.c:147 ../wifi/src/applet-draw.c:159
+#: ../Network-Monitor/src/applet-draw.c:150 ../wifi/src/applet-draw.c:187
 msgid "Access point"
 msgstr "Punto de acceso"
 
-#: ../Network-Monitor/src/applet-draw.c:149 ../wifi/src/applet-draw.c:161
+#: ../Network-Monitor/src/applet-draw.c:152 ../wifi/src/applet-draw.c:189
 msgid "Signal Quality"
 msgstr "Calidad de la señal"
 
@@ -863,9 +863,9 @@ msgstr ""
 "el icono intercambia el visor entre red y wifi."
 
 #: ../Network-Monitor/src/applet-netspeed.c:200
-#: ../System-Monitor/src/applet-monitor.c:90
+#: ../System-Monitor/src/applet-monitor.c:95
 #: ../System-Monitor/src/applet-top.c:428
-#: ../netspeed/src/applet-netspeed.c:196
+#: ../netspeed/src/applet-netspeed.c:201
 msgid "Loading"
 msgstr "Cargando"
 
@@ -2343,7 +2343,7 @@ msgstr "Ingrese el nombre para esta cuenta. Puede darle el nombre que desee."
 msgid "Remove Account"
 msgstr "Eliminar cuenta"
 
-#: ../mail/src/cd-mail-applet-etpan.c:236 ../wifi/src/applet-draw.c:158
+#: ../mail/src/cd-mail-applet-etpan.c:236 ../wifi/src/applet-draw.c:186
 msgid "unknown"
 msgstr "desconocido"
 
@@ -2624,52 +2624,52 @@ msgstr "Activar/desactivar red"
 msgid "Re-check interface"
 msgstr "Volver a verificar la interfaz"
 
-#: ../powermanager/src/powermanager-draw.c:116
+#: ../powermanager/src/powermanager-draw.c:120
 msgid "Battery charged"
 msgstr "Batería cargada"
 
-#: ../powermanager/src/powermanager-draw.c:138
+#: ../powermanager/src/powermanager-draw.c:142
 msgid "Time before empty"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:138
+#: ../powermanager/src/powermanager-draw.c:142
 msgid "Time before full"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:195
+#: ../powermanager/src/powermanager-draw.c:199
 msgid "Laptop on Battery."
 msgstr "Portatil con Bateria."
 
-#: ../powermanager/src/powermanager-draw.c:196
-#: ../powermanager/src/powermanager-draw.c:205
+#: ../powermanager/src/powermanager-draw.c:200
+#: ../powermanager/src/powermanager-draw.c:209
 msgid "Battery charged at:"
 msgstr "Batería cargada en:"
 
-#: ../powermanager/src/powermanager-draw.c:197
+#: ../powermanager/src/powermanager-draw.c:201
 msgid "Estimated time before empty:"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:204
+#: ../powermanager/src/powermanager-draw.c:208
 msgid "Laptop on Charge."
 msgstr "Portatil Cargando."
 
-#: ../powermanager/src/powermanager-draw.c:206
+#: ../powermanager/src/powermanager-draw.c:210
 msgid "Estimated time before full:"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:213
+#: ../powermanager/src/powermanager-draw.c:217
 msgid "Model"
 msgstr "Modelo"
 
-#: ../powermanager/src/powermanager-draw.c:221
+#: ../powermanager/src/powermanager-draw.c:225
 msgid "Maximum capacity"
 msgstr "Maxima capacidad"
 
-#: ../powermanager/src/powermanager-draw.c:226
+#: ../powermanager/src/powermanager-draw.c:230
 msgid "No battery found."
 msgstr "No se encontró ninguna batería."
 
-#: ../powermanager/src/powermanager-draw.c:248
+#: ../powermanager/src/powermanager-draw.c:252
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -2677,15 +2677,15 @@ msgstr ""
 "Adminitrador de energía.\n"
 "La carga de la batería parace baja."
 
-#: ../powermanager/src/powermanager-draw.c:248
+#: ../powermanager/src/powermanager-draw.c:252
 msgid "Estimated time with charge:"
 msgstr "Tiempo estimado con carga:"
 
-#: ../powermanager/src/powermanager-draw.c:248
+#: ../powermanager/src/powermanager-draw.c:252
 msgid "Please put your laptop on charge."
 msgstr "Ponga su PC Portátil en carga."
 
-#: ../powermanager/src/powermanager-draw.c:262
+#: ../powermanager/src/powermanager-draw.c:266
 msgid ""
 "PowerManager.\n"
 "Your battery is now charged"
@@ -3446,7 +3446,7 @@ msgstr ""
 msgid "Weblets"
 msgstr "Complementos Web"
 
-#: ../wifi/src/applet-draw.c:151
+#: ../wifi/src/applet-draw.c:179
 msgid "WiFi disabled."
 msgstr "Conexión inalámbrica no disponible."
 
@@ -3598,7 +3598,7 @@ msgstr "Color del lustre:"
 #: ../Recent-Events/data/messages:9 ../System-Monitor/data/messages:183
 #: ../System-Monitor/data/messages:191 ../Xgamma/data/messages:11
 #: ../alsaMixer/data/messages:139 ../alsaMixer/data/messages:143
-#: ../alsaMixer/data/messages:149 ../dnd2share/data/messages:9
+#: ../alsaMixer/data/messages:157 ../dnd2share/data/messages:9
 #: ../logout/data/messages:9 ../quick-browser/data/messages:11
 #: ../shortcuts/data/messages:9 ../showDesktop/data/messages:9
 #: ../stack/data/messages:11 ../switcher/data/messages:9
@@ -3897,7 +3897,7 @@ msgid "Choose one of the available themes:"
 msgstr "Seleccione uno de los temas disponibles:"
 
 #: ../Cairo-Penguin/data/messages:19 ../Clipper/data/messages:141
-#: ../Disks/data/messages:137 ../Network-Monitor/data/messages:171
+#: ../Disks/data/messages:145 ../Network-Monitor/data/messages:171
 #: ../System-Monitor/data/messages:165 ../System-Monitor/data/messages:211
 #: ../Toons/data/messages:97 ../dnd2share/data/messages:95
 #: ../mail/data/messages:129 ../musicPlayer/data/messages:139
@@ -5073,7 +5073,7 @@ msgstr "Seleccione el estilo de la visualización: "
 msgid "Gauge"
 msgstr "Medidor"
 
-#: ../Disks/data/messages:95 ../Disks/data/messages:101
+#: ../Disks/data/messages:95 ../Disks/data/messages:109
 #: ../Network-Monitor/data/messages:139 ../Network-Monitor/data/messages:145
 #: ../Network-Monitor/data/messages:181 ../Network-Monitor/data/messages:189
 #: ../System-Monitor/data/messages:99 ../System-Monitor/data/messages:113
@@ -5083,83 +5083,109 @@ msgstr "Medidor"
 msgid "Graph"
 msgstr "Gráfico"
 
-#: ../Disks/data/messages:103 ../Network-Monitor/data/messages:147
+#: ../Disks/data/messages:101 ../System-Monitor/data/messages:105
+#: ../alsaMixer/data/messages:149 ../netspeed/data/messages:101
+msgid "Rotate applet theme :"
+msgstr ""
+
+#: ../Disks/data/messages:103 ../Disks/data/messages:139
+#: ../Network-Monitor/data/messages:113 ../RSSreader/data/messages:115
+#: ../System-Monitor/data/messages:107 ../System-Monitor/data/messages:159
+#: ../alsaMixer/data/messages:121 ../alsaMixer/data/messages:151
+#: ../clock/data/messages:101 ../netspeed/data/messages:103
+#: ../netspeed/data/messages:151 ../shortcuts/data/messages:121
+#: ../slider/data/messages:163
+msgid "No"
+msgstr "No"
+
+#: ../Disks/data/messages:105 ../System-Monitor/data/messages:109
+#: ../alsaMixer/data/messages:153 ../netspeed/data/messages:105
+msgid "With dock orientation"
+msgstr ""
+
+#: ../Disks/data/messages:107 ../System-Monitor/data/messages:111
+#: ../alsaMixer/data/messages:155 ../netspeed/data/messages:107
+#: ../slider/data/messages:165
+msgid "Yes"
+msgstr "Si"
+
+#: ../Disks/data/messages:111 ../Network-Monitor/data/messages:147
 #: ../Network-Monitor/data/messages:191 ../System-Monitor/data/messages:115
 #: ../netspeed/data/messages:111 ../powermanager/data/messages:111
 #: ../wifi/data/messages:109
 msgid "Type of graphic :"
 msgstr "Tipo de gráfico:"
 
-#: ../Disks/data/messages:105 ../Network-Monitor/data/messages:149
+#: ../Disks/data/messages:113 ../Network-Monitor/data/messages:149
 #: ../Network-Monitor/data/messages:193 ../System-Monitor/data/messages:117
 #: ../netspeed/data/messages:113 ../powermanager/data/messages:113
 #: ../wifi/data/messages:111
 msgid "Line"
 msgstr "Línea"
 
-#: ../Disks/data/messages:107 ../Network-Monitor/data/messages:151
+#: ../Disks/data/messages:115 ../Network-Monitor/data/messages:151
 #: ../Network-Monitor/data/messages:195 ../System-Monitor/data/messages:119
 #: ../netspeed/data/messages:115 ../powermanager/data/messages:115
 #: ../wifi/data/messages:113
 msgid "Plain"
 msgstr "Plano"
 
-#: ../Disks/data/messages:109 ../Network-Monitor/data/messages:153
+#: ../Disks/data/messages:117 ../Network-Monitor/data/messages:153
 #: ../Network-Monitor/data/messages:197 ../System-Monitor/data/messages:121
 #: ../netspeed/data/messages:117 ../powermanager/data/messages:117
 #: ../wifi/data/messages:115
 msgid "Bar"
 msgstr "Barra"
 
-#: ../Disks/data/messages:111 ../Network-Monitor/data/messages:155
+#: ../Disks/data/messages:119 ../Network-Monitor/data/messages:155
 #: ../Network-Monitor/data/messages:199 ../System-Monitor/data/messages:123
 #: ../netspeed/data/messages:119 ../powermanager/data/messages:119
 #: ../wifi/data/messages:117
 msgid "Circle"
 msgstr "Círculo"
 
-#: ../Disks/data/messages:113 ../Network-Monitor/data/messages:157
+#: ../Disks/data/messages:121 ../Network-Monitor/data/messages:157
 #: ../Network-Monitor/data/messages:201 ../System-Monitor/data/messages:125
 #: ../netspeed/data/messages:121 ../powermanager/data/messages:121
 #: ../wifi/data/messages:119
 msgid "Plain Circle"
 msgstr "Círculo plano"
 
-#: ../Disks/data/messages:115 ../netspeed/data/messages:123
+#: ../Disks/data/messages:123 ../netspeed/data/messages:123
 msgid "It's the colour of the graphic for high rate values."
 msgstr "Es el color de la gráfica para valores de tasa alta."
 
-#: ../Disks/data/messages:117 ../Network-Monitor/data/messages:161
+#: ../Disks/data/messages:125 ../Network-Monitor/data/messages:161
 #: ../Network-Monitor/data/messages:205 ../System-Monitor/data/messages:129
 #: ../netspeed/data/messages:125 ../powermanager/data/messages:125
 #: ../wifi/data/messages:123
 msgid "High value's colour :"
 msgstr "Color de valor alto:"
 
-#: ../Disks/data/messages:119 ../netspeed/data/messages:127
+#: ../Disks/data/messages:127 ../netspeed/data/messages:127
 msgid "Graph colour for low rate vaues:"
 msgstr "Color del gráfico para valores de bajo rendimiento:"
 
-#: ../Disks/data/messages:121 ../Network-Monitor/data/messages:165
+#: ../Disks/data/messages:129 ../Network-Monitor/data/messages:165
 #: ../Network-Monitor/data/messages:209 ../System-Monitor/data/messages:133
 #: ../netspeed/data/messages:129 ../powermanager/data/messages:129
 #: ../wifi/data/messages:127
 msgid "Low value's colour :"
 msgstr "¿Color del valor minimo?"
 
-#: ../Disks/data/messages:123 ../Network-Monitor/data/messages:167
+#: ../Disks/data/messages:131 ../Network-Monitor/data/messages:167
 #: ../Network-Monitor/data/messages:211 ../System-Monitor/data/messages:135
 #: ../netspeed/data/messages:131 ../powermanager/data/messages:131
 #: ../wifi/data/messages:129
 msgid "Background colour of the graphic :"
 msgstr "Color de fondo para el gráfico:"
 
-#: ../Disks/data/messages:125 ../System-Monitor/data/messages:137
+#: ../Disks/data/messages:133 ../System-Monitor/data/messages:137
 #: ../netspeed/data/messages:133
 msgid "Show all values on same graph?"
 msgstr "Mostrar todos los valores en el mismo gráfico?"
 
-#: ../Disks/data/messages:127 ../Impulse/data/messages:93
+#: ../Disks/data/messages:135 ../Impulse/data/messages:93
 #: ../alsaMixer/data/messages:117 ../keyboard-indicator/data/messages:99
 #: ../mail/data/messages:95 ../musicPlayer/data/messages:145
 #: ../shortcuts/data/messages:95 ../shortcuts/data/messages:105
@@ -5168,36 +5194,27 @@ msgstr "Mostrar todos los valores en el mismo gráfico?"
 msgid "Display"
 msgstr "Visualizar"
 
-#: ../Disks/data/messages:129
+#: ../Disks/data/messages:137
 msgid "Display values"
 msgstr "Mostrar valores"
 
-#: ../Disks/data/messages:131 ../Network-Monitor/data/messages:113
-#: ../RSSreader/data/messages:115 ../System-Monitor/data/messages:107
-#: ../System-Monitor/data/messages:159 ../alsaMixer/data/messages:121
-#: ../clock/data/messages:101 ../netspeed/data/messages:103
-#: ../netspeed/data/messages:151 ../shortcuts/data/messages:121
-#: ../slider/data/messages:163
-msgid "No"
-msgstr "No"
-
-#: ../Disks/data/messages:133 ../Network-Monitor/data/messages:115
+#: ../Disks/data/messages:141 ../Network-Monitor/data/messages:115
 #: ../System-Monitor/data/messages:161 ../alsaMixer/data/messages:125
 #: ../clock/data/messages:103 ../netspeed/data/messages:153
 msgid "On icon"
 msgstr "En el icono"
 
-#: ../Disks/data/messages:135 ../Network-Monitor/data/messages:117
+#: ../Disks/data/messages:143 ../Network-Monitor/data/messages:117
 #: ../System-Monitor/data/messages:163 ../alsaMixer/data/messages:123
 #: ../clock/data/messages:105 ../netspeed/data/messages:155
 msgid "On label"
 msgstr "En la etiqueta"
 
-#: ../Disks/data/messages:139
+#: ../Disks/data/messages:147
 msgid "Refresh time"
 msgstr "Tiempo de actualización"
 
-#: ../Disks/data/messages:141 ../netspeed/data/messages:145
+#: ../Disks/data/messages:149 ../netspeed/data/messages:145
 msgid ""
 "You need OpenGL for this option. Set it to 0 to disable it, 1 means the "
 "transition is continue."
@@ -5205,36 +5222,36 @@ msgstr ""
 "Esta opción requiere de OpenGL. Establezca a cero para desabilitarla, uno "
 "significa que la transición es contínua."
 
-#: ../Disks/data/messages:143
+#: ../Disks/data/messages:151
 msgid "Fluidity of the transition between 2 values"
 msgstr "Fluidez de la transicion entre dos elementos"
 
-#: ../Disks/data/messages:145
+#: ../Disks/data/messages:153
 msgid "Partitions monitored : Size"
 msgstr "Particiones monitoreadas: Tamaño"
 
-#: ../Disks/data/messages:147
+#: ../Disks/data/messages:155
 msgid "E.g. sda1, sdb5..."
 msgstr "P. ej.: sda1, sdb5..."
 
-#: ../Disks/data/messages:149
+#: ../Disks/data/messages:157
 msgid "Disks monitored : Speed"
 msgstr "Discos monitoreados: Velocidad"
 
-#: ../Disks/data/messages:151
+#: ../Disks/data/messages:159
 msgid "E.g. sda, sdb... Up to 5 values allowed"
 msgstr "Ej. sda, sdb... Se permiten hasta 5 valores"
 
-#: ../Disks/data/messages:153
+#: ../Disks/data/messages:161
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: ../Disks/data/messages:155 ../Network-Monitor/data/messages:129
+#: ../Disks/data/messages:163 ../Network-Monitor/data/messages:129
 #: ../netspeed/data/messages:157
 msgid "Leave empty to use the default."
 msgstr "Deje en blanco para usar el valor predeterminado."
 
-#: ../Disks/data/messages:157
+#: ../Disks/data/messages:165
 msgid "System monitor command"
 msgstr "Comando del monitor del sistema"
 
@@ -6130,19 +6147,6 @@ msgstr "Dejar que el icono ajuste  automáticamente su tamaño?"
 msgid "Number of lines to pack items in:"
 msgstr "Número de líneas para empaquetar elementos en:"
 
-#: ../System-Monitor/data/messages:105 ../netspeed/data/messages:101
-msgid "Rotate applet theme :"
-msgstr ""
-
-#: ../System-Monitor/data/messages:109 ../netspeed/data/messages:105
-msgid "With dock orientation"
-msgstr ""
-
-#: ../System-Monitor/data/messages:111 ../netspeed/data/messages:107
-#: ../slider/data/messages:165
-msgid "Yes"
-msgstr "Si"
-
 #: ../System-Monitor/data/messages:127 ../powermanager/data/messages:123
 msgid "It's the colour of the graphic for high values."
 msgstr "Es el color de la gráfica para valores altos."
@@ -6404,7 +6408,7 @@ msgstr "Icono predeterminado:"
 msgid "Mute icon:"
 msgstr "Icono para silenciar:"
 
-#: ../alsaMixer/data/messages:151
+#: ../alsaMixer/data/messages:159
 msgid "Broken icon:"
 msgstr "Icono roto:"
 

@@ -760,7 +760,7 @@ msgid "A cable has been unplugged"
 msgstr "Кабель был отсоединён"
 
 #: ../Network-Monitor/src/applet-draw.c:30
-#: ../powermanager/src/powermanager-draw.c:160 ../wifi/src/applet-draw.c:31
+#: ../powermanager/src/powermanager-draw.c:164 ../wifi/src/applet-draw.c:31
 #: ../Clipper/data/messages:101 ../GMenu/data/messages:121
 #: ../Network-Monitor/data/messages:217 ../alsaMixer/data/messages:129
 #: ../dnd2share/data/messages:113 ../dustbin/data/messages:103
@@ -796,7 +796,7 @@ msgstr "Нет соединения"
 msgid "Wired connection"
 msgstr "Проводное подключение"
 
-#: ../Network-Monitor/src/applet-draw.c:123 ../wifi/src/applet-draw.c:143
+#: ../Network-Monitor/src/applet-draw.c:126 ../wifi/src/applet-draw.c:171
 msgid ""
 "Checking connection...\n"
 "Please retry in a few seconds"
@@ -804,41 +804,41 @@ msgstr ""
 "Проверяется подключение...\n"
 "Попробуйте снова через несколько секунд"
 
-#: ../Network-Monitor/src/applet-draw.c:131
+#: ../Network-Monitor/src/applet-draw.c:134
 msgid "Wired Connection."
 msgstr "Проводное подключение."
 
-#: ../Network-Monitor/src/applet-draw.c:133
-#: ../Network-Monitor/src/applet-draw.c:148 ../wifi/src/applet-draw.c:160
+#: ../Network-Monitor/src/applet-draw.c:136
+#: ../Network-Monitor/src/applet-draw.c:151 ../wifi/src/applet-draw.c:188
 msgid "Interface"
 msgstr "Интерфейс"
 
-#: ../Network-Monitor/src/applet-draw.c:134
-#: ../Network-Monitor/src/applet-draw.c:146
+#: ../Network-Monitor/src/applet-draw.c:137
+#: ../Network-Monitor/src/applet-draw.c:149
 msgid "Speed"
 msgstr "Скорость"
 
-#: ../Network-Monitor/src/applet-draw.c:143 ../wifi/src/applet-draw.c:156
+#: ../Network-Monitor/src/applet-draw.c:146 ../wifi/src/applet-draw.c:184
 msgid "Wifi enabled."
 msgstr "Wifi активен."
 
-#: ../Network-Monitor/src/applet-draw.c:145 ../wifi/src/applet-draw.c:158
+#: ../Network-Monitor/src/applet-draw.c:148 ../wifi/src/applet-draw.c:186
 msgid "Network ID"
 msgstr "ID сети"
 
-#: ../Network-Monitor/src/applet-draw.c:145
+#: ../Network-Monitor/src/applet-draw.c:148
 #: ../musicPlayer/src/applet-draw.c:369 ../musicPlayer/src/applet-draw.c:371
 #: ../musicPlayer/src/applet-draw.c:373
-#: ../powermanager/src/powermanager-draw.c:189
-#: ../powermanager/src/powermanager-draw.c:242
+#: ../powermanager/src/powermanager-draw.c:193
+#: ../powermanager/src/powermanager-draw.c:246
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: ../Network-Monitor/src/applet-draw.c:147 ../wifi/src/applet-draw.c:159
+#: ../Network-Monitor/src/applet-draw.c:150 ../wifi/src/applet-draw.c:187
 msgid "Access point"
 msgstr "Точка доступа"
 
-#: ../Network-Monitor/src/applet-draw.c:149 ../wifi/src/applet-draw.c:161
+#: ../Network-Monitor/src/applet-draw.c:152 ../wifi/src/applet-draw.c:189
 msgid "Signal Quality"
 msgstr "Качество сигнала"
 
@@ -863,9 +863,9 @@ msgstr ""
 "информации о скорости или WiFi."
 
 #: ../Network-Monitor/src/applet-netspeed.c:200
-#: ../System-Monitor/src/applet-monitor.c:90
+#: ../System-Monitor/src/applet-monitor.c:95
 #: ../System-Monitor/src/applet-top.c:428
-#: ../netspeed/src/applet-netspeed.c:196
+#: ../netspeed/src/applet-netspeed.c:201
 msgid "Loading"
 msgstr "Загрузка"
 
@@ -2343,7 +2343,7 @@ msgstr "Введите имя для этого аккаунта. Можете �
 msgid "Remove Account"
 msgstr "Удалить аккаунт"
 
-#: ../mail/src/cd-mail-applet-etpan.c:236 ../wifi/src/applet-draw.c:158
+#: ../mail/src/cd-mail-applet-etpan.c:236 ../wifi/src/applet-draw.c:186
 msgid "unknown"
 msgstr "неизвестно"
 
@@ -2620,52 +2620,52 @@ msgstr "Включить/выключить сеть"
 msgid "Re-check interface"
 msgstr "Перепроверить интерфейс"
 
-#: ../powermanager/src/powermanager-draw.c:116
+#: ../powermanager/src/powermanager-draw.c:120
 msgid "Battery charged"
 msgstr "Батарея полностью зяряжена"
 
-#: ../powermanager/src/powermanager-draw.c:138
+#: ../powermanager/src/powermanager-draw.c:142
 msgid "Time before empty"
 msgstr "Осталось времени"
 
-#: ../powermanager/src/powermanager-draw.c:138
+#: ../powermanager/src/powermanager-draw.c:142
 msgid "Time before full"
 msgstr "Осталось до полного заряда"
 
-#: ../powermanager/src/powermanager-draw.c:195
+#: ../powermanager/src/powermanager-draw.c:199
 msgid "Laptop on Battery."
 msgstr "Работа от батареи."
 
-#: ../powermanager/src/powermanager-draw.c:196
-#: ../powermanager/src/powermanager-draw.c:205
+#: ../powermanager/src/powermanager-draw.c:200
+#: ../powermanager/src/powermanager-draw.c:209
 msgid "Battery charged at:"
 msgstr "Батарея заряжена на:"
 
-#: ../powermanager/src/powermanager-draw.c:197
+#: ../powermanager/src/powermanager-draw.c:201
 msgid "Estimated time before empty:"
 msgstr "Примерно осталось:"
 
-#: ../powermanager/src/powermanager-draw.c:204
+#: ../powermanager/src/powermanager-draw.c:208
 msgid "Laptop on Charge."
 msgstr "Работа от сети."
 
-#: ../powermanager/src/powermanager-draw.c:206
+#: ../powermanager/src/powermanager-draw.c:210
 msgid "Estimated time before full:"
 msgstr "Примерно осталось до полного заряда:"
 
-#: ../powermanager/src/powermanager-draw.c:213
+#: ../powermanager/src/powermanager-draw.c:217
 msgid "Model"
 msgstr "Модель"
 
-#: ../powermanager/src/powermanager-draw.c:221
+#: ../powermanager/src/powermanager-draw.c:225
 msgid "Maximum capacity"
 msgstr "Максимальная ёмкость"
 
-#: ../powermanager/src/powermanager-draw.c:226
+#: ../powermanager/src/powermanager-draw.c:230
 msgid "No battery found."
 msgstr "Батарея не обнаружена."
 
-#: ../powermanager/src/powermanager-draw.c:248
+#: ../powermanager/src/powermanager-draw.c:252
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -2673,15 +2673,15 @@ msgstr ""
 "PowerManager.\n"
 "Низкий заряд батареи"
 
-#: ../powermanager/src/powermanager-draw.c:248
+#: ../powermanager/src/powermanager-draw.c:252
 msgid "Estimated time with charge:"
 msgstr "время работы от батареи:"
 
-#: ../powermanager/src/powermanager-draw.c:248
+#: ../powermanager/src/powermanager-draw.c:252
 msgid "Please put your laptop on charge."
 msgstr "Поставьте на зарядку."
 
-#: ../powermanager/src/powermanager-draw.c:262
+#: ../powermanager/src/powermanager-draw.c:266
 msgid ""
 "PowerManager.\n"
 "Your battery is now charged"
@@ -3428,7 +3428,7 @@ msgstr ""
 msgid "Weblets"
 msgstr "Веблет"
 
-#: ../wifi/src/applet-draw.c:151
+#: ../wifi/src/applet-draw.c:179
 msgid "WiFi disabled."
 msgstr "Wifi отключен."
 
@@ -3578,7 +3578,7 @@ msgstr "Цвет сияния:"
 #: ../Recent-Events/data/messages:9 ../System-Monitor/data/messages:183
 #: ../System-Monitor/data/messages:191 ../Xgamma/data/messages:11
 #: ../alsaMixer/data/messages:139 ../alsaMixer/data/messages:143
-#: ../alsaMixer/data/messages:149 ../dnd2share/data/messages:9
+#: ../alsaMixer/data/messages:157 ../dnd2share/data/messages:9
 #: ../logout/data/messages:9 ../quick-browser/data/messages:11
 #: ../shortcuts/data/messages:9 ../showDesktop/data/messages:9
 #: ../stack/data/messages:11 ../switcher/data/messages:9
@@ -3877,7 +3877,7 @@ msgid "Choose one of the available themes:"
 msgstr "Выберите одну из доступных тем:"
 
 #: ../Cairo-Penguin/data/messages:19 ../Clipper/data/messages:141
-#: ../Disks/data/messages:137 ../Network-Monitor/data/messages:171
+#: ../Disks/data/messages:145 ../Network-Monitor/data/messages:171
 #: ../System-Monitor/data/messages:165 ../System-Monitor/data/messages:211
 #: ../Toons/data/messages:97 ../dnd2share/data/messages:95
 #: ../mail/data/messages:129 ../musicPlayer/data/messages:139
@@ -5038,7 +5038,7 @@ msgstr "Выберите стиль отображения: "
 msgid "Gauge"
 msgstr "Датчик"
 
-#: ../Disks/data/messages:95 ../Disks/data/messages:101
+#: ../Disks/data/messages:95 ../Disks/data/messages:109
 #: ../Network-Monitor/data/messages:139 ../Network-Monitor/data/messages:145
 #: ../Network-Monitor/data/messages:181 ../Network-Monitor/data/messages:189
 #: ../System-Monitor/data/messages:99 ../System-Monitor/data/messages:113
@@ -5048,83 +5048,109 @@ msgstr "Датчик"
 msgid "Graph"
 msgstr "График"
 
-#: ../Disks/data/messages:103 ../Network-Monitor/data/messages:147
+#: ../Disks/data/messages:101 ../System-Monitor/data/messages:105
+#: ../alsaMixer/data/messages:149 ../netspeed/data/messages:101
+msgid "Rotate applet theme :"
+msgstr ""
+
+#: ../Disks/data/messages:103 ../Disks/data/messages:139
+#: ../Network-Monitor/data/messages:113 ../RSSreader/data/messages:115
+#: ../System-Monitor/data/messages:107 ../System-Monitor/data/messages:159
+#: ../alsaMixer/data/messages:121 ../alsaMixer/data/messages:151
+#: ../clock/data/messages:101 ../netspeed/data/messages:103
+#: ../netspeed/data/messages:151 ../shortcuts/data/messages:121
+#: ../slider/data/messages:163
+msgid "No"
+msgstr "Нет"
+
+#: ../Disks/data/messages:105 ../System-Monitor/data/messages:109
+#: ../alsaMixer/data/messages:153 ../netspeed/data/messages:105
+msgid "With dock orientation"
+msgstr ""
+
+#: ../Disks/data/messages:107 ../System-Monitor/data/messages:111
+#: ../alsaMixer/data/messages:155 ../netspeed/data/messages:107
+#: ../slider/data/messages:165
+msgid "Yes"
+msgstr "Да"
+
+#: ../Disks/data/messages:111 ../Network-Monitor/data/messages:147
 #: ../Network-Monitor/data/messages:191 ../System-Monitor/data/messages:115
 #: ../netspeed/data/messages:111 ../powermanager/data/messages:111
 #: ../wifi/data/messages:109
 msgid "Type of graphic :"
 msgstr "Тип графики:"
 
-#: ../Disks/data/messages:105 ../Network-Monitor/data/messages:149
+#: ../Disks/data/messages:113 ../Network-Monitor/data/messages:149
 #: ../Network-Monitor/data/messages:193 ../System-Monitor/data/messages:117
 #: ../netspeed/data/messages:113 ../powermanager/data/messages:113
 #: ../wifi/data/messages:111
 msgid "Line"
 msgstr "Линия"
 
-#: ../Disks/data/messages:107 ../Network-Monitor/data/messages:151
+#: ../Disks/data/messages:115 ../Network-Monitor/data/messages:151
 #: ../Network-Monitor/data/messages:195 ../System-Monitor/data/messages:119
 #: ../netspeed/data/messages:115 ../powermanager/data/messages:115
 #: ../wifi/data/messages:113
 msgid "Plain"
 msgstr "Простой"
 
-#: ../Disks/data/messages:109 ../Network-Monitor/data/messages:153
+#: ../Disks/data/messages:117 ../Network-Monitor/data/messages:153
 #: ../Network-Monitor/data/messages:197 ../System-Monitor/data/messages:121
 #: ../netspeed/data/messages:117 ../powermanager/data/messages:117
 #: ../wifi/data/messages:115
 msgid "Bar"
 msgstr "Полоса"
 
-#: ../Disks/data/messages:111 ../Network-Monitor/data/messages:155
+#: ../Disks/data/messages:119 ../Network-Monitor/data/messages:155
 #: ../Network-Monitor/data/messages:199 ../System-Monitor/data/messages:123
 #: ../netspeed/data/messages:119 ../powermanager/data/messages:119
 #: ../wifi/data/messages:117
 msgid "Circle"
 msgstr "Окружность"
 
-#: ../Disks/data/messages:113 ../Network-Monitor/data/messages:157
+#: ../Disks/data/messages:121 ../Network-Monitor/data/messages:157
 #: ../Network-Monitor/data/messages:201 ../System-Monitor/data/messages:125
 #: ../netspeed/data/messages:121 ../powermanager/data/messages:121
 #: ../wifi/data/messages:119
 msgid "Plain Circle"
 msgstr "Простая окружность"
 
-#: ../Disks/data/messages:115 ../netspeed/data/messages:123
+#: ../Disks/data/messages:123 ../netspeed/data/messages:123
 msgid "It's the colour of the graphic for high rate values."
 msgstr "Цвет графики при высоких значениях."
 
-#: ../Disks/data/messages:117 ../Network-Monitor/data/messages:161
+#: ../Disks/data/messages:125 ../Network-Monitor/data/messages:161
 #: ../Network-Monitor/data/messages:205 ../System-Monitor/data/messages:129
 #: ../netspeed/data/messages:125 ../powermanager/data/messages:125
 #: ../wifi/data/messages:123
 msgid "High value's colour :"
 msgstr "Цвет высоких значений:"
 
-#: ../Disks/data/messages:119 ../netspeed/data/messages:127
+#: ../Disks/data/messages:127 ../netspeed/data/messages:127
 msgid "Graph colour for low rate vaues:"
 msgstr "Цвет графики при низких значениях."
 
-#: ../Disks/data/messages:121 ../Network-Monitor/data/messages:165
+#: ../Disks/data/messages:129 ../Network-Monitor/data/messages:165
 #: ../Network-Monitor/data/messages:209 ../System-Monitor/data/messages:133
 #: ../netspeed/data/messages:129 ../powermanager/data/messages:129
 #: ../wifi/data/messages:127
 msgid "Low value's colour :"
 msgstr "Цвет низких значений:"
 
-#: ../Disks/data/messages:123 ../Network-Monitor/data/messages:167
+#: ../Disks/data/messages:131 ../Network-Monitor/data/messages:167
 #: ../Network-Monitor/data/messages:211 ../System-Monitor/data/messages:135
 #: ../netspeed/data/messages:131 ../powermanager/data/messages:131
 #: ../wifi/data/messages:129
 msgid "Background colour of the graphic :"
 msgstr "Цвет заднего фона графика:"
 
-#: ../Disks/data/messages:125 ../System-Monitor/data/messages:137
+#: ../Disks/data/messages:133 ../System-Monitor/data/messages:137
 #: ../netspeed/data/messages:133
 msgid "Show all values on same graph?"
 msgstr "Показывать все значения на одном графике?"
 
-#: ../Disks/data/messages:127 ../Impulse/data/messages:93
+#: ../Disks/data/messages:135 ../Impulse/data/messages:93
 #: ../alsaMixer/data/messages:117 ../keyboard-indicator/data/messages:99
 #: ../mail/data/messages:95 ../musicPlayer/data/messages:145
 #: ../shortcuts/data/messages:95 ../shortcuts/data/messages:105
@@ -5133,36 +5159,27 @@ msgstr "Показывать все значения на одном графи�
 msgid "Display"
 msgstr "Отображение"
 
-#: ../Disks/data/messages:129
+#: ../Disks/data/messages:137
 msgid "Display values"
 msgstr "Показать значения"
 
-#: ../Disks/data/messages:131 ../Network-Monitor/data/messages:113
-#: ../RSSreader/data/messages:115 ../System-Monitor/data/messages:107
-#: ../System-Monitor/data/messages:159 ../alsaMixer/data/messages:121
-#: ../clock/data/messages:101 ../netspeed/data/messages:103
-#: ../netspeed/data/messages:151 ../shortcuts/data/messages:121
-#: ../slider/data/messages:163
-msgid "No"
-msgstr "Нет"
-
-#: ../Disks/data/messages:133 ../Network-Monitor/data/messages:115
+#: ../Disks/data/messages:141 ../Network-Monitor/data/messages:115
 #: ../System-Monitor/data/messages:161 ../alsaMixer/data/messages:125
 #: ../clock/data/messages:103 ../netspeed/data/messages:153
 msgid "On icon"
 msgstr "На значке"
 
-#: ../Disks/data/messages:135 ../Network-Monitor/data/messages:117
+#: ../Disks/data/messages:143 ../Network-Monitor/data/messages:117
 #: ../System-Monitor/data/messages:163 ../alsaMixer/data/messages:123
 #: ../clock/data/messages:105 ../netspeed/data/messages:155
 msgid "On label"
 msgstr "В подписи"
 
-#: ../Disks/data/messages:139
+#: ../Disks/data/messages:147
 msgid "Refresh time"
 msgstr "Обновить время"
 
-#: ../Disks/data/messages:141 ../netspeed/data/messages:145
+#: ../Disks/data/messages:149 ../netspeed/data/messages:145
 msgid ""
 "You need OpenGL for this option. Set it to 0 to disable it, 1 means the "
 "transition is continue."
@@ -5170,36 +5187,36 @@ msgstr ""
 "Требуется поддержка OpenGL. Установите 0, чтобы не использовать, при "
 "значении 1 переход будет очень плавным."
 
-#: ../Disks/data/messages:143
+#: ../Disks/data/messages:151
 msgid "Fluidity of the transition between 2 values"
 msgstr "Плавность перехода между двумя значениями"
 
-#: ../Disks/data/messages:145
+#: ../Disks/data/messages:153
 msgid "Partitions monitored : Size"
 msgstr "Отслеживание разделов: Размер"
 
-#: ../Disks/data/messages:147
+#: ../Disks/data/messages:155
 msgid "E.g. sda1, sdb5..."
 msgstr "Например: sda1, sdb5..."
 
-#: ../Disks/data/messages:149
+#: ../Disks/data/messages:157
 msgid "Disks monitored : Speed"
 msgstr "Отслеживание дисков: Скорость"
 
-#: ../Disks/data/messages:151
+#: ../Disks/data/messages:159
 msgid "E.g. sda, sdb... Up to 5 values allowed"
 msgstr "Например: hda, sda, sdb... До 5 значений"
 
-#: ../Disks/data/messages:153
+#: ../Disks/data/messages:161
 msgid "Preferences"
 msgstr "Настройки"
 
-#: ../Disks/data/messages:155 ../Network-Monitor/data/messages:129
+#: ../Disks/data/messages:163 ../Network-Monitor/data/messages:129
 #: ../netspeed/data/messages:157
 msgid "Leave empty to use the default."
 msgstr "Оставьте пустым, чтобы использовать стандартный."
 
-#: ../Disks/data/messages:157
+#: ../Disks/data/messages:165
 msgid "System monitor command"
 msgstr "Команда для системного монитора"
 
@@ -6089,19 +6106,6 @@ msgstr "Позволить значку автоматиески изменят�
 msgid "Number of lines to pack items in:"
 msgstr "Количество строк упаковки:"
 
-#: ../System-Monitor/data/messages:105 ../netspeed/data/messages:101
-msgid "Rotate applet theme :"
-msgstr ""
-
-#: ../System-Monitor/data/messages:109 ../netspeed/data/messages:105
-msgid "With dock orientation"
-msgstr ""
-
-#: ../System-Monitor/data/messages:111 ../netspeed/data/messages:107
-#: ../slider/data/messages:165
-msgid "Yes"
-msgstr "Да"
-
 #: ../System-Monitor/data/messages:127 ../powermanager/data/messages:123
 msgid "It's the colour of the graphic for high values."
 msgstr "Цвет графика при высоких значениях."
@@ -6356,7 +6360,7 @@ msgstr "Стандартный значок:"
 msgid "Mute icon:"
 msgstr "Значок приглушения:"
 
-#: ../alsaMixer/data/messages:151
+#: ../alsaMixer/data/messages:159
 msgid "Broken icon:"
 msgstr "Значок поломки:"
 
