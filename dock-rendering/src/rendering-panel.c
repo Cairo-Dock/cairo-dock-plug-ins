@@ -701,6 +701,7 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 		{
 			pIcon->fX = x;
 			pIcon->fDrawX = pIcon->fX;
+			pIcon->fWidthFactor = 0;
 			if (CAIRO_DOCK_IS_USER_SEPARATOR (pIcon))  // si c'est un separateur automatique, le changement de groupe incrementera le compteur a l'icone suivante.
 			{
 				if (fCurrentGroupWidth > 0)  // le groupe courant est non vide, sinon c'est juste 2 separateurs cote a cote.
@@ -715,6 +716,7 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 						pIcon->bPointed = FALSE;
 					x = xg;
 					fCurrentGroupWidth = - myIconsParam.iIconGap;
+					pIcon->fWidthFactor = fGroupGap;
 				}
 			}
 			continue;
@@ -763,6 +765,38 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 }
 
 
+void cd_set_input_shape (CairoDock *pDock)
+{
+	g_print ("update separator shape (%p)\n", pDock->pShapeBitmap);
+	if (pDock->pShapeBitmap != NULL)
+	{
+		cairo_t *pCairoContext = gdk_cairo_create (pDock->pShapeBitmap);
+		if  (pCairoContext != NULL)
+		{
+			cairo_set_source_rgba (pCairoContext, 0.0f, 0.0f, 0.0f, 0.0f);
+			cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE);
+			
+			GList *ic;
+			Icon *pIcon;
+			for (ic = pDock->icons; ic != NULL; ic = ic->next)
+			{
+				pIcon = ic->data;
+				if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
+				{
+					cairo_rectangle (pCairoContext,
+						pIcon->fDrawX + 2 * my_fPanelRadius,  // we let a few pixels to be able to grab the separtator, and to avoid leaving the dock too easily.
+						0,
+						pIcon->fWidthFactor - 4 * my_fPanelRadius,
+						pDock->container.iHeight);
+					cairo_fill (pCairoContext);
+				}
+			}
+			
+			cairo_destroy (pCairoContext);
+		}
+	}
+}
+
 void cd_rendering_register_panel_renderer (const gchar *cRendererName)
 {
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
@@ -773,6 +807,7 @@ void cd_rendering_register_panel_renderer (const gchar *cRendererName)
 	pRenderer->render_optimized = cd_render_optimized;
 	pRenderer->render_opengl = cd_render_opengl;
 	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;
+	pRenderer->set_input_shape = cd_set_input_shape;
 	// parametres
 	pRenderer->bUseReflect = FALSE;
 	pRenderer->cDisplayedName = D_ (cRendererName);
