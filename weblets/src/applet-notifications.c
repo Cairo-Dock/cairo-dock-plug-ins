@@ -113,7 +113,6 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			s_pUriList = g_list_prepend (s_pUriList, data);
 			i++;
 		}
-		CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
 	}
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END

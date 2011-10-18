@@ -71,7 +71,6 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (! myData.bWirelessExt)
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Check for Wireless Extension"), GTK_STOCK_REFRESH, _wifi_recheck_wireless_extension, pSubMenu);
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Network Administration"), GTK_STOCK_PREFERENCES, _cd_wifi_show_config, pSubMenu);
-	CD_APPLET_ADD_SEPARATOR (pSubMenu);
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 

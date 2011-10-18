@@ -255,7 +255,6 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK (myData.pCurrentHandler->name, GTK_STOCK_MEDIA_PLAY, _cd_musicplayer_launch, CD_APPLET_MY_MENU);
 		else
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Choose a player"), GTK_STOCK_INDEX, _cd_musicplayer_choose_player, CD_APPLET_MY_MENU);
-		CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
 	}
 	else
 	{

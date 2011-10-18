@@ -232,8 +232,6 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			}
 		}
 	}
-	if (pSubMenu == CD_APPLET_MY_MENU)
-		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 	
 	if (bClickOnNotes && pClickedIcon != NULL)

@@ -92,7 +92,6 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	}
 	//Sub-Menu
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Apply current luminosity on startup"), GTK_STOCK_DIALOG_WARNING, _cd_xgamma_remember_current_gamma, pSubMenu);
-	CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
 	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
