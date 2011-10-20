@@ -767,7 +767,6 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 
 void cd_set_input_shape (CairoDock *pDock)
 {
-	g_print ("update separator shape (%p)\n", pDock->pShapeBitmap);
 	if (pDock->pShapeBitmap != NULL)
 	{
 		cairo_t *pCairoContext = gdk_cairo_create (pDock->pShapeBitmap);
@@ -783,11 +782,22 @@ void cd_set_input_shape (CairoDock *pDock)
 				pIcon = ic->data;
 				if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 				{
-					cairo_rectangle (pCairoContext,
-						pIcon->fDrawX + 2 * my_fPanelRadius,  // we let a few pixels to be able to grab the separtator, and to avoid leaving the dock too easily.
-						0,
-						pIcon->fWidthFactor - 4 * my_fPanelRadius,
-						pDock->container.iHeight);
+					if (pDock->container.bIsHorizontal)
+					{
+						cairo_rectangle (pCairoContext,
+							pIcon->fDrawX + 2 * my_fPanelRadius,  // we let a few pixels to be able to grab the separtator, and to avoid leaving the dock too easily.
+							0,
+							pIcon->fWidthFactor - 4 * my_fPanelRadius,
+							pDock->iMaxDockHeight);  // we use iMaxDockHeight instead of the actual window size, because at this time, the dock's window may not have its definite size.
+					}
+					else
+					{
+						cairo_rectangle (pCairoContext,
+							0,
+							pIcon->fDrawX + 2 * my_fPanelRadius,  // we let a few pixels to be able to grab the separtator, and to avoid leaving the dock too easily.
+							pDock->iMaxDockHeight,
+							pIcon->fWidthFactor - 4 * my_fPanelRadius);
+					}
 					cairo_fill (pCairoContext);
 				}
 			}
