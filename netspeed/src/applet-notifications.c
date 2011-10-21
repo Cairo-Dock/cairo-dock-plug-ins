@@ -91,21 +91,16 @@ static void _show_system_monitor (GtkMenuItem *menu_item, CairoDockModuleInstanc
 	}
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-	
-	// Main Menu
 	gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Enable/disable network"), D_("middle-click"));
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_MEDIA_PAUSE, _netspeed_sleep, CD_APPLET_MY_MENU);
 	g_free (cLabel);
 	
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open the System-Monitor"), GTK_STOCK_EXECUTE, _show_system_monitor, CD_APPLET_MY_MENU);
 	
-	// Sub-Menu
-	if (! myData.bAcquisitionOK) {
-		CD_APPLET_ADD_IN_MENU (D_("Re-check interface"), _netspeed_recheck, pSubMenu);
-		CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
+	if (! myData.bAcquisitionOK)
+	{
+		CD_APPLET_ADD_IN_MENU (D_("Re-check interface"), _netspeed_recheck, CD_APPLET_MY_MENU);
 	}
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 
 CD_APPLET_ON_BUILD_MENU_END
 

@@ -203,8 +203,6 @@ static void _cd_slider_run_dir (GtkMenuItem *menu_item, CairoDockModuleInstance 
 	CD_APPLET_LEAVE();
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-	
 	// get the current image selected at the moment of the click.
 	g_free (myData.cSelectedImagePath);
 	if (myData.pElement != NULL && myData.pElement->data != NULL)
@@ -215,7 +213,6 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	else
 		myData.cSelectedImagePath = NULL;
 	
-	// Main Menu
 	gchar *cLabel;
 	if (myConfig.iClickOption != SLIDER_PAUSE)
 	{
@@ -273,9 +270,6 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		cLabel = g_strdup (D_("Browse images folder"));
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_DIRECTORY, _cd_slider_run_dir, CD_APPLET_MY_MENU);
 	g_free (cLabel);
-	
-	// Sub-Menu
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 

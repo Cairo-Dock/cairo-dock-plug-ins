@@ -38,13 +38,9 @@ static void _open_dir (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet
 	cairo_dock_fm_launch_uri (myConfig.cDirPath);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-	
 	gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Open folder"), D_("middle-click"));
-        CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GTK_STOCK_OPEN, _open_dir, CD_APPLET_MY_MENU, myApplet);
-        g_free (cLabel);
-	
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GTK_STOCK_OPEN, _open_dir, CD_APPLET_MY_MENU, myApplet);
+	g_free (cLabel);
 CD_APPLET_ON_BUILD_MENU_END
 
 

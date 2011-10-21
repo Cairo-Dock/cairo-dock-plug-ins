@@ -165,15 +165,9 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	
 	if (CD_APPLET_CLICKED_ICON == myIcon)  // clic on main icon
 	{
-		GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-		
-		// Main Menu
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Paste (drag'n'drop)"), GTK_STOCK_PASTE, _cd_stack_paste_content, CD_APPLET_MY_MENU);
 		
-		// Sub-Menu
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear the stack"), GTK_STOCK_CLEAR, _cd_stack_clear_stack, pSubMenu);
-		///CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
-		///CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear the stack"), GTK_STOCK_CLEAR, _cd_stack_clear_stack, CD_APPLET_MY_MENU);
 	}
 	else if (CD_APPLET_CLICKED_ICON != NULL)  // clic on an item
 	{

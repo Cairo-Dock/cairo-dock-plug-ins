@@ -66,12 +66,9 @@ static void _cd_wifi_show_config (GtkMenuItem *menu_item, gpointer data) {  /// 
 	cairo_dock_launch_command (cCommand);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	// Sub-Menu
-	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	if (! myData.bWirelessExt)
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Check for Wireless Extension"), GTK_STOCK_REFRESH, _wifi_recheck_wireless_extension, pSubMenu);
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Network Administration"), GTK_STOCK_PREFERENCES, _cd_wifi_show_config, pSubMenu);
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Check for Wireless Extension"), GTK_STOCK_REFRESH, _wifi_recheck_wireless_extension, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Network Administration"), GTK_STOCK_PREFERENCES, _cd_wifi_show_config, CD_APPLET_MY_MENU);
 CD_APPLET_ON_BUILD_MENU_END
 
 

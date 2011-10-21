@@ -262,16 +262,15 @@ static void _cd_switcher_expose_desktops (GtkMenuItem *menu_item, CairoDockModul
 	_cd_expose_desktops ();
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	// Sub-Menu
-	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
+	// Workspaces
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Add a workspace"),
 		GTK_STOCK_ADD,
 		_cd_switcher_add_desktop,
-		pSubMenu);
+		CD_APPLET_MY_MENU);
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Remove last workspace"),
 		GTK_STOCK_REMOVE,
 		_cd_switcher_remove_last_desktop,
-		pSubMenu);
+		CD_APPLET_MY_MENU);
 	
 	int iNumDesktop, iNumViewportX, iNumViewportY;
 	if (_cd_switcher_get_viewport_from_clic (pClickedIcon, &iNumDesktop, &iNumViewportX, &iNumViewportY))
@@ -280,24 +279,24 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this workspace"),
 			GTK_STOCK_EDIT,
 			_cd_switcher_rename_desktop,
-			pSubMenu,
+			CD_APPLET_MY_MENU,
 			GINT_TO_POINTER (iIndex));
 		if (iNumDesktop != myData.switcher.iCurrentDesktop || iNumViewportX != myData.switcher.iCurrentViewportX || iNumViewportY != myData.switcher.iCurrentViewportY)
 		{
 			GtkWidget *pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Move current workspace to this workspace"),
 				GTK_STOCK_JUMP_TO,
 				_cd_switcher_move_to_desktop,
-				pSubMenu,
+				CD_APPLET_MY_MENU,
 				GINT_TO_POINTER (iIndex));
 			gtk_widget_set_tooltip_text (pMenuItem, D_("This will move all windows from the current desktop to the one you clicked on."));
 		}
 	}
 	
-	// Main Menu
-	if (pSubMenu == CD_APPLET_MY_MENU)
-		CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
+	// separator
+	CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 	gchar *cLabel;
 	
+	// desktop actions
 	cLabel = (myConfig.iActionOnMiddleClick == SWICTHER_WINDOWS_LIST ? g_strdup_printf ("%s (%s)", D_("Windows List"), D_("middle-click")) : g_strdup (D_("Windows List")));
 	GtkWidget *pWindowsListMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (cLabel, CD_APPLET_MY_MENU, GTK_STOCK_DND_MULTIPLE);
 	g_free (cLabel);
@@ -329,14 +328,11 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		g_free (cLabel);
 	}
 	
-	// Sub-Menu
-	CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
+	CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Refresh"),
 		GTK_STOCK_REFRESH,
 		_cd_switcher_refresh,
-		pSubMenu);
-	
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+		CD_APPLET_MY_MENU);
 CD_APPLET_ON_BUILD_MENU_END
 
 

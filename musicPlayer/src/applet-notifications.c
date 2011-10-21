@@ -247,7 +247,6 @@ CD_APPLET_ON_CLICK_END
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	if (! myData.bIsRunning)
 	{
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Find opened player"), GTK_STOCK_FIND, _cd_musicplayer_find_player, CD_APPLET_MY_MENU);
@@ -279,28 +278,24 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		if (myData.pCurrentHandler->iPlayerControls & PLAYER_STOP)
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Stop"), GTK_STOCK_MEDIA_STOP, _cd_musicplayer_stop, CD_APPLET_MY_MENU);
 		
-		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);  // on n'a jamais aucune action, don con met toujours un separateur.
+		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);  // on n'a jamais zero action, donc on met toujours un separateur.
 		
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Information"), GTK_STOCK_INFO, _cd_musicplayer_info, CD_APPLET_MY_MENU);
 
 		if (myIcon->Xid == 0)  // lecteur dans le systray.
 			CD_APPLET_ADD_IN_MENU (D_("Show the Window"), _cd_musicplayer_show_from_systray, CD_APPLET_MY_MENU);
 		
-		if (pSubMenu == CD_APPLET_MY_MENU)
-			CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 		
 		if (myData.pCurrentHandler->iPlayerControls & PLAYER_JUMPBOX)
-			CD_APPLET_ADD_IN_MENU (D_("Show JumpBox"), _cd_musicplayer_jumpbox, pSubMenu);
+			CD_APPLET_ADD_IN_MENU (D_("Show JumpBox"), _cd_musicplayer_jumpbox, CD_APPLET_MY_MENU);
 		if (myData.pCurrentHandler->iPlayerControls & PLAYER_SHUFFLE)
-			CD_APPLET_ADD_IN_MENU (D_("Toggle Shuffle"), _cd_musicplayer_shuffle, pSubMenu);
+			CD_APPLET_ADD_IN_MENU (D_("Toggle Shuffle"), _cd_musicplayer_shuffle, CD_APPLET_MY_MENU);
 		if (myData.pCurrentHandler->iPlayerControls & PLAYER_REPEAT)
-			CD_APPLET_ADD_IN_MENU (D_("Toggle Repeat"), _cd_musicplayer_repeat, pSubMenu);
+			CD_APPLET_ADD_IN_MENU (D_("Toggle Repeat"), _cd_musicplayer_repeat, CD_APPLET_MY_MENU);
 		if (myData.pCurrentHandler->iPlayerControls & PLAYER_RATE)
-			CD_APPLET_ADD_IN_MENU (D_("Rate this song"), _cd_musicplayer_rate, pSubMenu);
-		if (myData.pCurrentHandler->iPlayerControls & (PLAYER_REPEAT | PLAYER_SHUFFLE | PLAYER_RATE | PLAYER_JUMPBOX))
-			CD_APPLET_ADD_SEPARATOR_IN_MENU (pSubMenu);
+			CD_APPLET_ADD_IN_MENU (D_("Rate this song"), _cd_musicplayer_rate, CD_APPLET_MY_MENU);
 	}
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 

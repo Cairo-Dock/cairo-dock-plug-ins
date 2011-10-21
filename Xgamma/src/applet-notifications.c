@@ -82,17 +82,13 @@ static void _cd_xgamma_remember_current_gamma (GtkMenuItem *menu_item, CairoDock
 		G_TYPE_INVALID);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-	// Main Menu
 	if (myDock)
 	{
 		gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Set up gamma correction"), D_("middle-click"));
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_DIALOG_INFO, _cd_xgamma_set_up_gamma_correction, CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
-	//Sub-Menu
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Apply current luminosity on startup"), GTK_STOCK_DIALOG_WARNING, _cd_xgamma_remember_current_gamma, pSubMenu);
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Apply current luminosity on startup"), GTK_STOCK_DIALOG_WARNING, _cd_xgamma_remember_current_gamma, CD_APPLET_MY_MENU);
 CD_APPLET_ON_BUILD_MENU_END
 
 

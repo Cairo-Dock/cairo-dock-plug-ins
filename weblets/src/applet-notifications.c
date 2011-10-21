@@ -96,10 +96,8 @@ static void _cd_weblets_reload_webpage (GtkMenuItem *menu_item, CairoDockModuleI
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	gint i = 0;
-	// Main Menu
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK ("Reload webpage", GTK_STOCK_REFRESH, _cd_weblets_reload_webpage, CD_APPLET_MY_MENU);
-	// Sub Menu
-	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
+	
 	if( myConfig.cListURI != NULL )
 	{
 		cd_weblet_free_uri_list ();
@@ -109,12 +107,11 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			data = g_new (gpointer, 2);
 			data[0] = myApplet;
 			data[1] = GINT_TO_POINTER (i);
-			CD_APPLET_ADD_IN_MENU_WITH_DATA (myConfig.cListURI[i], _cd_weblets_open_URI, pSubMenu, data);
+			CD_APPLET_ADD_IN_MENU_WITH_DATA (myConfig.cListURI[i], _cd_weblets_open_URI, CD_APPLET_MY_MENU, data);
 			s_pUriList = g_list_prepend (s_pUriList, data);
 			i++;
 		}
 	}
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 

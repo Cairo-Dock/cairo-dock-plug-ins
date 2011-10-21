@@ -139,9 +139,6 @@ static void _cd_mail_mark_all_as_read (GtkMenuItem *menu_item, CairoDockModuleIn
 	_cd_mail_force_update(myApplet);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-	
-	// Main Menu
 	if(myData.pMailAccounts && myData.pMailAccounts->len > 0)
 	{
 		if (myData.pMailAccounts->len > 1)  // many accounts -> list them in a sub-menu
@@ -174,9 +171,6 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_EXECUTE, _cd_mail_launch_mail_appli, CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
-	
-	// Sub-Menu
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 void _cd_mail_show_current_mail(CDMailAccount *pMailAccount)

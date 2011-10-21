@@ -246,11 +246,9 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	
 	if (CD_APPLET_CLICKED_ICON == myIcon)  // clic sur l'icone principale (mode dock donc).
 	{
-		GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 		gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Open Home directory"), D_("middle-click"));
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_OPEN, _open_home_dir, CD_APPLET_MY_MENU);
 		g_free (cLabel);
-		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 	}
 	else if (CD_APPLET_CLICKED_ICON != NULL)  // clic sur un item.
 	{

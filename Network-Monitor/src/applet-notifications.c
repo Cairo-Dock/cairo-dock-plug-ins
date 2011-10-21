@@ -77,21 +77,19 @@ static void _cd_NetworkMonitor_show_config (GtkMenuItem *menu_item, gpointer dat
 	}
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
 	if (! myData.bWirelessExt && myData.bDbusConnection)
-		CD_APPLET_ADD_IN_MENU (D_("Check for Wireless Extension"), cd_NetworkMonitor_recheck_wireless_extension, pSubMenu);
-	CD_APPLET_ADD_IN_MENU (D_("Network Administration"), _cd_NetworkMonitor_show_config, pSubMenu);
+		CD_APPLET_ADD_IN_MENU (D_("Check for Wireless Extension"), cd_NetworkMonitor_recheck_wireless_extension, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU (D_("Network Administration"), _cd_NetworkMonitor_show_config, CD_APPLET_MY_MENU);
 	if (myData.bDbusConnection)
 	{
 		guint iState = cairo_dock_dbus_get_property_as_uint (myData.dbus_proxy_NM_prop, "org.freedesktop.NetworkManager", "State");
-		CD_APPLET_ADD_IN_MENU (iState == 1 ? D_("Activate network") : D_("Deactivate network"), _cd_NetworkMonitor_activate_network, pSubMenu);
+		CD_APPLET_ADD_IN_MENU (iState == 1 ? D_("Activate network") : D_("Deactivate network"), _cd_NetworkMonitor_activate_network, CD_APPLET_MY_MENU);
 		if (myData.bWirelessExt)  /// remplacer ca par un booleen qui dit si un device wifi existe...
 		{
 			gboolean bWirelessEnabled = cairo_dock_dbus_get_property_as_boolean (myData.dbus_proxy_NM_prop, "org.freedesktop.NetworkManager", "WirelessEnabled");
-			CD_APPLET_ADD_IN_MENU (bWirelessEnabled ? D_("Deactivate wifi") : D_("Activate wifi"), _cd_NetworkMonitor_activate_wifi, pSubMenu);
+			CD_APPLET_ADD_IN_MENU (bWirelessEnabled ? D_("Deactivate wifi") : D_("Activate wifi"), _cd_NetworkMonitor_activate_wifi, CD_APPLET_MY_MENU);
 		}
 	}
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 

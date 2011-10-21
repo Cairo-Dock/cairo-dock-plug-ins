@@ -144,8 +144,6 @@ static void _show_desktop (GtkMenuItem *menu_item, gpointer data)
 	_cd_show_hide_desktop (FALSE);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-	
 	gchar *cLabel;
 	
 	if (myConfig.iActionOnLeftClick != CD_SHOW_DESKTOP)  // action is not bound to left-click => put it in the menu
@@ -231,9 +229,6 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		XRRFreeScreenConfigInfo (conf);
 	}
 	#endif
-	
-	//Sub-Menu
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 

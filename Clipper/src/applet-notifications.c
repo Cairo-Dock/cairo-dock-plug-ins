@@ -86,11 +86,9 @@ static void _cd_clipper_paste_all (GtkMenuItem *menu_item, gpointer data)
 	CD_APPLET_LEAVE();
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	// Sub-Menu
-	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK ("Clear clipboard History", GTK_STOCK_CLEAR, _cd_clipper_clear_history, pSubMenu);
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK ("Paste all copied items", GTK_STOCK_PASTE, _cd_clipper_paste_all, pSubMenu);
-		CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK ("Clear clipboard History", GTK_STOCK_CLEAR, _cd_clipper_clear_history, CD_APPLET_MY_MENU);
+	
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK ("Paste all copied items", GTK_STOCK_PASTE, _cd_clipper_paste_all, CD_APPLET_MY_MENU);
 CD_APPLET_ON_BUILD_MENU_END
 
 

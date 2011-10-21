@@ -147,15 +147,13 @@ CD_APPLET_ON_BUILD_MENU_PROTO
 {
 	cd_debug ("%s (%s...)", __func__, CD_APPLET_CLICKED_ICON && CD_APPLET_CLICKED_ICON->pMimeTypes ?CD_APPLET_CLICKED_ICON->pMimeTypes[0] : "");
 	CD_APPLET_ENTER;
+	GtkWidget *pMenuItem, *image;
+	CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);  // because we are called before the main callback.
+	
 	if (CD_APPLET_CLICKED_ICON != NULL)
 	{
-		GtkWidget *pMenuItem, *image;
-		
 		if (CD_APPLET_CLICKED_ICON == myIcon)
 		{
-			GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-			CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
-			
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Delete today's events"), GTK_STOCK_CLEAR, _clear_today_events, CD_APPLET_MY_MENU, myApplet);
 			
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Delete all events"), GTK_STOCK_DELETE, _clear_all_events, CD_APPLET_MY_MENU, myApplet);

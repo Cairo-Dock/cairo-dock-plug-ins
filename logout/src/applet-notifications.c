@@ -131,8 +131,6 @@ static void _cd_logout_program_shutdown (GtkMenuItem *menu_item, gpointer data)
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 {
-	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-	
 	gchar *cLabel;
 	if (! myData.bCapabilitiesChecked)  // if we're using our own logout methods, they are all accessible from the left-click, so no need to add the following actions in the right-click menu.
 	{
@@ -169,8 +167,6 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Guest session"), MY_APPLET_SHARE_DATA_DIR"/system-guest.svg", _cd_logout_guest_session, CD_APPLET_MY_MENU);
 	}
 	
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Program an automatic shut-down"), MY_APPLET_SHARE_DATA_DIR"/icon-scheduling.svg", _cd_logout_program_shutdown, CD_APPLET_MY_MENU);  // pas beaucoup d'entrees => on le met dans le menu global.
-	
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Program an automatic shut-down"), MY_APPLET_SHARE_DATA_DIR"/icon-scheduling.svg", _cd_logout_program_shutdown, CD_APPLET_MY_MENU);
 }
 CD_APPLET_ON_BUILD_MENU_END

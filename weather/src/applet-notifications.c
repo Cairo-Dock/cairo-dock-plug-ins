@@ -92,8 +92,6 @@ static void _cd_weather_show_cc (GtkMenuItem *menu_item, CairoDockModuleInstance
 	CD_APPLET_LEAVE ();
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	GtkWidget *pSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-	// Main Menu
 	if (pClickedIcon == myIcon)
 	{
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Show current conditions (middle-click)"), GTK_STOCK_DIALOG_INFO, _cd_weather_show_cc, CD_APPLET_MY_MENU);
@@ -104,8 +102,6 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open weather.com (double-click)"), GTK_STOCK_JUMP_TO, _cd_weather_show_site, CD_APPLET_MY_MENU);
 	}
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Reload now"), GTK_STOCK_REFRESH, _cd_weather_reload, CD_APPLET_MY_MENU);
-	// Sub-Menu
-	CD_APPLET_ADD_ABOUT_IN_MENU (pSubMenu);
 CD_APPLET_ON_BUILD_MENU_END
 
 

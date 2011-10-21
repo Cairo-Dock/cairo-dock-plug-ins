@@ -399,8 +399,6 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	GtkWidget *pModuleSubMenu = CD_APPLET_CREATE_MY_SUB_MENU ();
-	
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Send the clipboard's content"), GTK_STOCK_PASTE, _send_clipboard, CD_APPLET_MY_MENU);
 	
 	GtkWidget *pHistoryMenu = gtk_menu_new ();  // we don't use CD_APPLET_ADD_SUB_MENU_WITH_IMAGE, because we want to be able to set the menu-item unsensitive.
@@ -498,6 +496,4 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (myConfig.bUseOnlyFileType)
 		gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (pMenuItem), TRUE);
 	g_signal_connect (G_OBJECT (pMenuItem), "toggled", G_CALLBACK (_set_use_only_file_type), NULL);
-
-	CD_APPLET_ADD_ABOUT_IN_MENU (pModuleSubMenu);
 CD_APPLET_ON_BUILD_MENU_END

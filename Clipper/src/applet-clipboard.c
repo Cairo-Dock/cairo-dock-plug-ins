@@ -554,7 +554,7 @@ GtkWidget *cd_clipper_build_items_menu (void)
 		CD_APPLET_ADD_IN_MENU_WITH_DATA ((pItem->cDisplayedText != NULL ? pItem->cDisplayedText : pItem->cText), _cd_clipper_activate_item, pMenu, pItem);
 		if (pElement->next != NULL && ((CDClipperItem *)pElement->next->data)->iType != pItem->iType)
 		{
-			CD_APPLET_ADD_SEPARATOR (pMenu);
+			CD_APPLET_ADD_SEPARATOR_IN_MENU (pMenu);
 		}
 	}
 	return pMenu;
