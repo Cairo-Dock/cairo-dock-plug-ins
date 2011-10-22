@@ -95,7 +95,7 @@ CD_APPLET_STOP_BEGIN
 	
 	if (myConfig.bRememberItems)  // on se souvient des items courants.
 	{
-		gchar *cRememberedItems = cd_clipper_concat_items_of_type (CD_CLIPPER_CLIPBOARD, CD_ITEMS_DELIMITER);  // on prend que les CTRL+c.
+		gchar *cRememberedItems = cd_clipper_concat_items_of_type (myConfig.bSeparateSelections ? CD_CLIPPER_CLIPBOARD : CD_CLIPPER_BOTH, CD_ITEMS_DELIMITER);  // on prend que les CTRL+c.
 		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
 			G_TYPE_STRING, "Configuration", "last items", cRememberedItems,
 			G_TYPE_INVALID);
