@@ -33,10 +33,14 @@ extern gdouble my_fPanelInclination;
 extern gdouble my_fPanelRatio;
 const int iNbCurveSteps = 10;
 
+typedef struct {
+	gdouble fGroupGap;  // gap between 2 groups of icons (= width of a separator), at rest.
+	} CDPanelData;
+
 static void cd_compute_size (CairoDock *pDock)
 {
 	//\_____________ On calcule le nombre de groupes et la place qu'ils occupent.
-	int iNbGroups = 1, iCurrentOrder = -1;
+	int iNbGroups = 1;
 	double fCurrentGroupWidth = - myIconsParam.iIconGap, fGroupsWidth = 0.;
 	GList *ic;
 	Icon *pIcon;
@@ -45,20 +49,6 @@ static void cd_compute_size (CairoDock *pDock)
 		pIcon = ic->data;
 		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 		{
-			if (CAIRO_DOCK_IS_USER_SEPARATOR (pIcon))  // si c'est un separateur automatique, le changement de groupe incrementera le compteur a l'icone suivante.
-			{
-				if (fCurrentGroupWidth > 0)  // le groupe courant est non vide, sinon c'est juste 2 separateurs cote a cote.
-				{
-					iNbGroups ++;
-					fGroupsWidth += MAX (0, fCurrentGroupWidth);
-					//g_print ("fGroupsWidth += %.2f\n", fCurrentGroupWidth);
-					fCurrentGroupWidth = - myIconsParam.iIconGap;
-				}
-			}
-			continue;
-		}
-		if (iCurrentOrder != (int)cairo_dock_get_icon_order (pIcon))
-		{
 			if (fCurrentGroupWidth > 0)  // le groupe courant est non vide, sinon c'est juste 2 separateurs cote a cote.
 			{
 				iNbGroups ++;
@@ -66,8 +56,9 @@ static void cd_compute_size (CairoDock *pDock)
 				//g_print ("fGroupsWidth += %.2f\n", fCurrentGroupWidth);
 				fCurrentGroupWidth = - myIconsParam.iIconGap;
 			}
+			
+			continue;
 		}
-		iCurrentOrder = cairo_dock_get_icon_order (pIcon);
 		fCurrentGroupWidth += pIcon->fWidth * my_fPanelRatio + myIconsParam.iIconGap;
 		//g_print ("fCurrentGroupWidth <- %.2f\n", fCurrentGroupWidth);
 	}
@@ -97,26 +88,12 @@ static void cd_compute_size (CairoDock *pDock)
 			x += fGroupGap;
 	}
 	fCurrentGroupWidth = - myIconsParam.iIconGap;
-	iCurrentOrder = -1;
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
 		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 		{
-			if (CAIRO_DOCK_IS_USER_SEPARATOR (pIcon))  // si c'est un separateur automatique, le changement de groupe incrementera le compteur a l'icone suivante.
-			{
-				if (fCurrentGroupWidth > 0)  // le groupe courant est non vide, sinon c'est juste 2 separateurs cote a cote.
-				{
-					xg += fCurrentGroupWidth + fGroupGap;
-					x = xg;
-					//g_print ("jump to %.2f\n", x);
-					fCurrentGroupWidth = - myIconsParam.iIconGap;
-				}
-			}
-			continue;
-		}
-		if (iCurrentOrder != (int)cairo_dock_get_icon_order (pIcon))
-		{
+			pIcon->fXAtRest = x;
 			if (fCurrentGroupWidth > 0)  // le groupe courant est non vide, sinon c'est juste 2 separateurs cote a cote.
 			{
 				xg += fCurrentGroupWidth + fGroupGap;
@@ -124,11 +101,11 @@ static void cd_compute_size (CairoDock *pDock)
 				//g_print ("jump to %.2f\n", x);
 				fCurrentGroupWidth = - myIconsParam.iIconGap;
 			}
+			
+			continue;
 		}
-		iCurrentOrder = cairo_dock_get_icon_order (pIcon);
 		fCurrentGroupWidth += pIcon->fWidth * my_fPanelRatio + myIconsParam.iIconGap;
 		
-		//g_print ("icon at %.2f\n", x);
 		pIcon->fXAtRest = x;
 		x += pIcon->fWidth * my_fPanelRatio + myIconsParam.iIconGap;
 	}
@@ -155,6 +132,14 @@ static void cd_compute_size (CairoDock *pDock)
 	pDock->iActiveHeight = pDock->iMinDockHeight;
 	if (! pDock->container.bIsHorizontal && myIconsParam.bTextAlwaysHorizontal)
 		pDock->iMaxDockHeight += 8*myIconsParam.iLabelSize;  // vertical dock, add some padding to draw the labels
+	
+	CDPanelData *pData = pDock->pRendererData;
+	if (pData == NULL)
+	{
+		pData = g_new0 (CDPanelData, 1);
+		pDock->pRendererData = pData;
+	}
+	pData->fGroupGap = fGroupGap;
 }
 
 
@@ -600,9 +585,12 @@ static void cd_render_opengl (CairoDock *pDock)
 	{
 		pIcon = ic->data;
 		
-		glPushMatrix ();
-		cairo_dock_render_one_icon_opengl (pIcon, pDock, fDockMagnitude, pIcon->bPointed);
-		glPopMatrix ();
+		if (! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
+		{
+			glPushMatrix ();
+			cairo_dock_render_one_icon_opengl (pIcon, pDock, fDockMagnitude, pIcon->bPointed);
+			glPopMatrix ();
+		}
 		
 		ic = cairo_dock_get_next_element (ic, pDock->icons);
 	} while (ic != pFirstDrawnElement);
@@ -613,7 +601,7 @@ static void cd_render_opengl (CairoDock *pDock)
 static Icon *cd_calculate_icons (CairoDock *pDock)
 {
 	//\_____________ On calcule le nombre de groupes et la place qu'ils occupent.
-	int iNbGroups = 1, iCurrentOrder = -1;
+	int iNbGroups = 1;
 	double fCurrentGroupWidth = - myIconsParam.iIconGap, fGroupsWidth = 0.;
 	double fSeparatorsPonderation = 0;
 	GList *ic;
@@ -632,27 +620,15 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 					pIcon->fScale *= (1 + pIcon->fInsertRemoveFactor);
 			}
 			
-			if (CAIRO_DOCK_IS_USER_SEPARATOR (pIcon))  // si c'est un separateur automatique, le changement de groupe incrementera le compteur a l'icone suivante.
-			{
-				if (fCurrentGroupWidth > 0)  // le groupe courant est non vide, sinon c'est juste 2 separateurs cote a cote.
-				{
-					iNbGroups ++;
-					fSeparatorsPonderation += pIcon->fScale;
-					fGroupsWidth += MAX (0, fCurrentGroupWidth);
-					fCurrentGroupWidth = - myIconsParam.iIconGap;
-				}
-			}
-			continue;
-		}
-		if (iCurrentOrder != (int)cairo_dock_get_icon_order (pIcon))
-		{
 			if (fCurrentGroupWidth > 0)  // le groupe courant est non vide, sinon c'est juste 2 separateurs cote a cote.
 			{
 				iNbGroups ++;
-				fSeparatorsPonderation ++; // seuls les separateurs utilisateurs peuvent zoomer.
+				fSeparatorsPonderation += pIcon->fScale;
 				fGroupsWidth += MAX (0, fCurrentGroupWidth);
 				fCurrentGroupWidth = - myIconsParam.iIconGap;
 			}
+			
+			continue;
 		}
 		
 		pIcon->fScale = my_fPanelRatio;
@@ -664,7 +640,6 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 				pIcon->fScale *= (1 + pIcon->fInsertRemoveFactor);
 		}
 		
-		iCurrentOrder = cairo_dock_get_icon_order (pIcon);
 		fCurrentGroupWidth += pIcon->fWidth * pIcon->fScale + myIconsParam.iIconGap;
 	}
 	if (fCurrentGroupWidth > 0)  // le groupe courant est non vide, sinon c'est juste un separateur a la fin.
@@ -693,7 +668,6 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 	double xg = fScreenBorderGap;  // abscisse de l'icone courante, et abscisse du debut du groupe courant.
 	double x = xg;
 	fCurrentGroupWidth = - myIconsParam.iIconGap;
-	iCurrentOrder = -1;
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
@@ -701,36 +675,32 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 		{
 			pIcon->fX = x;
 			pIcon->fDrawX = pIcon->fX;
+			
+			if (pDock->container.bDirectionUp)
+				pIcon->fY = pDock->iMaxDockHeight - pDock->iMinDockHeight;
+			else
+				pIcon->fY = pDock->iMinDockHeight;
+			pIcon->fDrawY = pIcon->fY;
+			
 			pIcon->fWidthFactor = 0;
-			if (CAIRO_DOCK_IS_USER_SEPARATOR (pIcon))  // si c'est un separateur automatique, le changement de groupe incrementera le compteur a l'icone suivante.
-			{
-				if (fCurrentGroupWidth > 0)  // le groupe courant est non vide, sinon c'est juste 2 separateurs cote a cote.
-				{
-					xg += fCurrentGroupWidth + fGroupGap * pIcon->fScale;
-					if (pPointedIcon == NULL && xm > x && xm < xg)
-					{
-						pIcon->bPointed = TRUE;
-						pPointedIcon = pIcon;
-					}
-					else
-						pIcon->bPointed = FALSE;
-					x = xg;
-					fCurrentGroupWidth = - myIconsParam.iIconGap;
-					pIcon->fWidthFactor = fGroupGap;
-				}
-			}
-			continue;
-		}
-		if (iCurrentOrder != (int)cairo_dock_get_icon_order (pIcon))
-		{
+			
 			if (fCurrentGroupWidth > 0)  // le groupe courant est non vide, sinon c'est juste 2 separateurs cote a cote.
 			{
-				xg += fCurrentGroupWidth + fGroupGap;
+				xg += fCurrentGroupWidth + fGroupGap * pIcon->fScale;
+				if (pPointedIcon == NULL && xm > x && xm < xg)
+				{
+					pIcon->bPointed = TRUE;
+					pPointedIcon = pIcon;
+				}
+				else
+					pIcon->bPointed = FALSE;
 				x = xg;
 				fCurrentGroupWidth = - myIconsParam.iIconGap;
 			}
+			
+			continue;
 		}
-		iCurrentOrder = cairo_dock_get_icon_order (pIcon);
+		
 		fCurrentGroupWidth += pIcon->fWidth * pIcon->fScale + myIconsParam.iIconGap;
 		
 		pIcon->fX = x;
@@ -769,6 +739,9 @@ void cd_set_input_shape (CairoDock *pDock)
 {
 	if (pDock->pShapeBitmap != NULL)
 	{
+		CDPanelData *pData = pDock->pRendererData;
+		g_return_if_fail (pData != NULL);
+		
 		cairo_t *pCairoContext = gdk_cairo_create (pDock->pShapeBitmap);
 		if  (pCairoContext != NULL)
 		{
@@ -785,18 +758,18 @@ void cd_set_input_shape (CairoDock *pDock)
 					if (pDock->container.bIsHorizontal)
 					{
 						cairo_rectangle (pCairoContext,
-							pIcon->fDrawX + 2 * my_fPanelRadius,  // we let a few pixels to be able to grab the separtator, and to avoid leaving the dock too easily.
+							pIcon->fXAtRest + 2 * my_fPanelRadius,  // we let a few pixels to be able to grab the separtator, and to avoid leaving the dock too easily.
 							0,
-							pIcon->fWidthFactor - 4 * my_fPanelRadius,
+							pData->fGroupGap - 4 * my_fPanelRadius,
 							pDock->iMaxDockHeight);  // we use iMaxDockHeight instead of the actual window size, because at this time, the dock's window may not have its definite size.
 					}
 					else
 					{
 						cairo_rectangle (pCairoContext,
 							0,
-							pIcon->fDrawX + 2 * my_fPanelRadius,  // we let a few pixels to be able to grab the separtator, and to avoid leaving the dock too easily.
+							pIcon->fXAtRest + 2 * my_fPanelRadius,  // we let a few pixels to be able to grab the separtator, and to avoid leaving the dock too easily.
 							pDock->iMaxDockHeight,
-							pIcon->fWidthFactor - 4 * my_fPanelRadius);
+							pData->fGroupGap - 4 * my_fPanelRadius);
 					}
 					cairo_fill (pCairoContext);
 				}
