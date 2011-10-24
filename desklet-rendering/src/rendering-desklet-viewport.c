@@ -87,6 +87,8 @@ static void _compute_icons_grid (CairoDesklet *pDesklet, CDViewportParameters *p
 
 static void _compute_icons_position (CairoDesklet *pDesklet, CDViewportParameters *pViewport)
 {
+	if (pViewport->nRowsX == 0)  // either the grid has not yet been calculated, or there is no icon => nothing to do.
+		return;
 	double fScrollOffset = - pViewport->iScrollOffset;
 	int iOffsetY = myIconsParam.iLabelSize +  // le texte des icones de la 1ere ligne
 		fScrollOffset;
