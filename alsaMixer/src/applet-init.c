@@ -134,6 +134,10 @@ CD_APPLET_INIT_BEGIN
 				G_CALLBACK (_cd_mixer_on_leave),
 				NULL);
 		}
+		else if (myIcon->cName == NULL)
+		{
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myData.mixer_card_name);
+		}
 		
 		mixer_element_update_with_event (myData.pControledElement, 1);
 		myData.iSidCheckVolume = g_timeout_add (1000, (GSourceFunc) mixer_check_events, (gpointer) NULL);
@@ -285,6 +289,11 @@ CD_APPLET_RELOAD_BEGIN
 			{
 				gtk_widget_destroy (myData.pScale);
 				myData.pScale = NULL;
+			}
+			
+			if (myIcon->cName == NULL)
+			{
+				CD_APPLET_SET_NAME_FOR_MY_ICON (myData.mixer_card_name);
 			}
 		}
 	}
