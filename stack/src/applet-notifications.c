@@ -163,7 +163,8 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	data[0] = myApplet;
 	data[1] = CD_APPLET_CLICKED_ICON;
 	
-	if (CD_APPLET_CLICKED_ICON == myIcon)  // clic on main icon
+	if (CD_APPLET_CLICKED_ICON == myIcon
+	|| (CD_APPLET_CLICKED_ICON == NULL && CD_APPLET_CLICKED_CONTAINER == CAIRO_CONTAINER (myDesklet)))  // click on main icon or in the desklet
 	{
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Paste (drag'n'drop)"), GTK_STOCK_PASTE, _cd_stack_paste_content, CD_APPLET_MY_MENU);
 		
