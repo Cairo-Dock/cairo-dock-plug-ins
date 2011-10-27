@@ -82,10 +82,12 @@ struct _AppletData {
 	SwitcherApplet switcher;
 	cairo_surface_t *pDefaultMapSurface;
 	cairo_surface_t *pDesktopBgMapSurface;
+	gint iSurfaceWidth;
+	gint iSurfaceHeight;
 	gint iSidRedrawMainIconIdle;
 	gint iSidUpdateIdle;
 	gint iPrevIndexHovered;
 	gdouble fDesktopNameAlpha;
-	guint iSidPainIcons;
+	///guint iSidPainIcons;
 } ;
 #endif

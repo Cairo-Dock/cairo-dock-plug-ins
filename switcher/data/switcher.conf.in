@@ -105,11 +105,11 @@ frame_conf =
 #{All desktops will be drawn on the main icon. Otherwise a sub-dock will contain all desktops.}
 Vue Simple = true
 
+#B Map wallpaper to icons?
+Map Wallpaper = true
+
 #b Preserve the ratio of the screen ?
 preserve ratio = true
-
-#b Map wallpaper to icons?
-Map Wallpaper = true
 
 #b Show desktop number on icons?
 display numero desktop = true
