@@ -180,7 +180,7 @@ static void on_new_application (DBusGProxy *proxy_watcher, const gchar *cIconNam
 #if (INDICATOR_OLD_NAMES == 0)  // Natty
 const gchar *cAccessbleDesc,  // WTF is this new param ??
 #if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
-const gchar *cHint,
+const gchar *cHint,  // <irony> is this a hint to work around a clumsy API ? </irony>
 #endif
 #endif
 CairoDockModuleInstance *myApplet)
@@ -207,7 +207,14 @@ CairoDockModuleInstance *myApplet)
 		}
 	}
 	
-	cd_satus_notifier_add_new_item (cAdress, cObjectPath, iPosition);
+	cd_satus_notifier_add_new_item_with_default (cAdress, cObjectPath, iPosition,
+		#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
+		cIconName ? cIconName : cHint,
+		#else
+		cIconName,
+		#endif
+		cIconThemePath,
+		cLabel);
 	
 	CD_APPLET_LEAVE ();
 }

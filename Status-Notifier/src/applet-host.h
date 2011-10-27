@@ -23,7 +23,9 @@
 #include <cairo-dock.h>
 
 
-void cd_satus_notifier_add_new_item (const gchar *cService, const gchar *cObjectPath, int iPosition);
+void cd_satus_notifier_add_new_item_with_default (const gchar *cService, const gchar *cObjectPath, int iPosition, const gchar *cIconName, const gchar *cIconThemePath, const gchar *cLabel);
+
+#define cd_satus_notifier_add_new_item(cService, cObjectPath, iPosition) cd_satus_notifier_add_new_item_with_default (cService, cObjectPath, iPosition, NULL, NULL, NULL)
 
 void cd_satus_notifier_remove_item (const gchar *cService, int iPosition);
 
