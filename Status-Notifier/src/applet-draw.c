@@ -197,7 +197,7 @@ void cd_satus_notifier_reload_compact_mode (void)
 	else
 		cd_satus_notifier_compute_grid ();
 	
-	// reload surfaces if their size has changed.
+	// load surfaces, or reload them if their size has changed.
 	cd_debug ("===  item size: %d -> %d, icon size: %dx%d (%p)", iPrevSize, myData.iItemSize, myIcon->iImageWidth, myIcon->iImageHeight, myIcon->pIconBuffer);
 	CDStatusNotifierItem *pItem;
 	GList *it;

@@ -360,12 +360,13 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 		*str = '\0';
 	
 	// special case for Ubuntu indicators: we don't know their object path.
+	gchar *cRealObjectPath = NULL;
 	if (cObjectPath != NULL && strncmp (cObjectPath, CD_INDICATOR_APPLICATION_ITEM_OBJ, strlen (CD_INDICATOR_APPLICATION_ITEM_OBJ)) == 0)
 	{
 		// I think this is because this path is actually the menu path, and fortunately it's just under the item object's path.
-		gchar *str = strrchr (cObjectPath, '/');
+		const gchar *str = strrchr (cObjectPath, '/');
 		if (str)
-			*str = '\0';
+			cRealObjectPath = g_strndup (cObjectPath, str - cObjectPath);
 	}
 	else if (cObjectPath == NULL || *cObjectPath == '\0')  // no path, let's assume it's the common one.
 	{
@@ -377,7 +378,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	//\_________________ get the properties of the item.
 	DBusGProxy *pProxyItemProp = cairo_dock_create_new_session_proxy (
 		cService,
-		cObjectPath,
+		cRealObjectPath ? cRealObjectPath : cObjectPath,
 		DBUS_INTERFACE_PROPERTIES);
 	if (pProxyItemProp == NULL)
 		return NULL;
@@ -422,7 +423,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		cIconName = g_value_get_string (v);
 	}
-	//g_print ("===   IconName '%s'\n", cIconName);
+	cd_debug ("===   IconName '%s'", cIconName);
 	
 	const gchar *cIconThemePath = NULL;
 	v = g_hash_table_lookup (hProps, "IconThemePath");
@@ -430,7 +431,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		cIconThemePath = g_value_get_string (v);
 	}
-	//g_print ("===   IconThemePath '%s'\n", cIconThemePath);
+	cd_debug ("===   IconThemePath '%s'", cIconThemePath);
 	
 	const gchar *cAttentionIconName = NULL;
 	v = g_hash_table_lookup (hProps, "AttentionIconName");  // -> keep for demands of attention
@@ -446,7 +447,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		cMenuPath = (gchar*) g_value_get_boxed (v);
 	}
-	//g_print ("===   cMenuPath '%s'\n", cMenuPath);
+	cd_debug ("===   cMenuPath '%s'", cMenuPath);
 	
 	// properties supported by Ubuntu.
 	gint iPosition = -1;
@@ -517,7 +518,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	
 	DBusGProxy *pProxyItem = cairo_dock_create_new_session_proxy (
 		cService,
-		cObjectPath,
+		cRealObjectPath ? cRealObjectPath : cObjectPath,
 		CD_STATUS_NOTIFIER_ITEM_IFACE);
 	if (pProxyItem == NULL)
 		return NULL;
@@ -532,7 +533,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	pItem->cTitle = g_strdup (cTitle);
 	pItem->cLabel = g_strdup (cLabel);
 	pItem->cLabelGuide = g_strdup (cLabelGuide);
-	pItem->cMenuPath = g_strdup (cMenuPath);
+	pItem->cMenuPath = (cMenuPath ? g_strdup (cMenuPath) : g_strdup (cObjectPath));
 	pItem->iWindowId = iWindowId;
 	pItem->iCategory = _find_category (cCategory);
 	pItem->iStatus = _find_status (cStatus);
@@ -600,6 +601,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	g_signal_connect (G_OBJECT(pProxyItem), "destroy", G_CALLBACK (_on_item_proxy_destroyed), pItem);  // attention, dangereux car on va etre appele lorsqu'on detruit un item.
 	
 	g_hash_table_destroy (hProps);
+	g_free (cRealObjectPath);
 	return pItem;
 }
 
