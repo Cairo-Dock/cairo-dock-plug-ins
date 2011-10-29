@@ -5583,7 +5583,7 @@ msgstr "Toujours afficher l'icône même si le dock est caché?"
 #: ../powermanager/data/messages:17 ../slider/data/messages:15
 #: ../wifi/data/messages:15
 msgid "Background color to add in this case"
-msgstr "Image d'arrière plan à ajouter dans ce cas"
+msgstr "Couleur d'arrière plan à ajouter dans ce cas"
 
 #: ../Network-Monitor/data/messages:97 ../Network-Monitor/data/messages:169
 #: ../Network-Monitor/data/messages:257 ../System-Monitor/data/messages:139

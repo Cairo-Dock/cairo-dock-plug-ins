@@ -147,6 +147,7 @@ static gboolean _cd_dbus_register_new_module (const gchar *cModuleName, const gc
 		pVisitCard->cTitle = g_strdup (dgettext (pVisitCard->cGettextDomain, cModuleName));
 		pVisitCard->iContainerType = CAIRO_DOCK_MODULE_CAN_DOCK | CAIRO_DOCK_MODULE_CAN_DESKLET;
 		pVisitCard->bMultiInstance = bMultiInstance;
+		pVisitCard->bActAsLauncher = TRUE;  // by default, consider the applet as a launcher (only effective if it will inhibit a class later).
 		pModule->pInterface = g_new0 (CairoDockModuleInterface, 1);
 		pModule->pInterface->initModule = _on_init_module;
 		pModule->pInterface->stopModule = cd_dbus_emit_on_stop_module;

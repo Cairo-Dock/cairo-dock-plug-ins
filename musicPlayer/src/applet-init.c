@@ -54,12 +54,11 @@ CD_APPLET_DEFINE_BEGIN (N_("musicPlayer"),
 	"Scroll up/down to play previous/next song.\n"
 	"You can drag and drop songs on the icon to put them in the queue (depends on Player),\n"
 	" and jpeg image to use as cover.\n"
-	"Note : For XMMS, you have to install the 'xmms-infopipe' plug-in.\n"
-	"       For SongBird, you have to install its dbus add-on.\n"
-	"       For Exaile 0.3, you have to activate its MPRIS plug-in"),
+	"Note: you may have to install or activate the MPRIS plug-in of the player."),
 	"ChanGFu (Rémy Robertson), Mav (Yann SLADEK), Tofe, Jackass, Nochka85, Fabounet")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_ALLOW_EMPTY_TITLE
+	CD_APPLET_ACT_AS_LAUNCHER
 CD_APPLET_DEFINE_END
 
 

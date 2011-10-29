@@ -378,7 +378,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	//\_________________ get the properties of the item.
 	DBusGProxy *pProxyItemProp = cairo_dock_create_new_session_proxy (
 		cService,
-		cRealObjectPath,
+		cRealObjectPath ? cRealObjectPath : cObjectPath,
 		DBUS_INTERFACE_PROPERTIES);
 	if (pProxyItemProp == NULL)
 		return NULL;
@@ -518,7 +518,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	
 	DBusGProxy *pProxyItem = cairo_dock_create_new_session_proxy (
 		cService,
-		cRealObjectPath,
+		cRealObjectPath ? cRealObjectPath : cObjectPath,
 		CD_STATUS_NOTIFIER_ITEM_IFACE);
 	if (pProxyItem == NULL)
 		return NULL;

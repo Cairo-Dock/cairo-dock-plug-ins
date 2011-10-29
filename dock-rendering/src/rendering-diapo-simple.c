@@ -692,8 +692,8 @@ static inline gboolean _check_can_drop (CairoDock *pDock, CairoDockIconGroup iGr
 			{
 				GList *prev_ic = ic->prev;
 				Icon *prev_icon = (prev_ic ? prev_ic->data : NULL);
-				if (cairo_dock_get_icon_order (icon) == cairo_dock_get_group_order (iGroup)
-				|| (prev_icon && cairo_dock_get_icon_order (prev_icon) == cairo_dock_get_group_order (iGroup)) )
+				if (icon->iGroup == iGroup
+				|| (prev_icon && prev_icon->iGroup == iGroup) )
 				{
 					make_icon_avoid_mouse (icon, 1);
 					if (prev_icon)
@@ -707,8 +707,8 @@ static inline gboolean _check_can_drop (CairoDock *pDock, CairoDockIconGroup iGr
 			{
 				GList *next_ic = ic->next;
 				Icon *next_icon = (next_ic ? next_ic->data : NULL);
-				if (cairo_dock_get_icon_order (icon) == cairo_dock_get_group_order (iGroup)
-				|| (next_icon && cairo_dock_get_icon_order (next_icon) == cairo_dock_get_group_order (iGroup)) )
+				if (icon->iGroup == iGroup
+				|| (next_icon && next_icon->iGroup == iGroup) )
 				{
 					make_icon_avoid_mouse (icon, -1);
 					if (next_icon)

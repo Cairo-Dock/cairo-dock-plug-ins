@@ -51,7 +51,7 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 		if (w == 0 || h == 0)  // may happen in desklet mode on startup, until the desklet's window reaches its definite size.
 			return;
 	}
-	else
+	else  // in expanded mode, we don't use the grid, except for computing an index, so any size will be ok.
 	{
 		w = h = 48;
 	}

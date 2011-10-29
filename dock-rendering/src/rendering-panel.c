@@ -735,7 +735,7 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 }
 
 
-void cd_set_input_shape (CairoDock *pDock)
+void cd_update_input_shape (CairoDock *pDock)
 {
 	if (pDock->pShapeBitmap != NULL)
 	{
@@ -790,7 +790,7 @@ void cd_rendering_register_panel_renderer (const gchar *cRendererName)
 	pRenderer->render_optimized = cd_render_optimized;
 	pRenderer->render_opengl = cd_render_opengl;
 	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;
-	pRenderer->set_input_shape = cd_set_input_shape;
+	pRenderer->update_input_shape = cd_update_input_shape;
 	// parametres
 	pRenderer->bUseReflect = FALSE;
 	pRenderer->cDisplayedName = D_ (cRendererName);
