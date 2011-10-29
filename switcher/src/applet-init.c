@@ -46,6 +46,7 @@ CD_APPLET_DEFINE_END
 
 
 CD_APPLET_INIT_BEGIN
+	//\_______________ Rregister the notifications we'll need
 	CD_APPLET_SET_STATIC_ICON;
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -67,13 +68,13 @@ CD_APPLET_INIT_BEGIN
 		NOTIFICATION_WINDOW_ACTIVATED,
 		(CairoDockNotificationFunc) on_change_active_window,
 		CAIRO_DOCK_RUN_AFTER, myApplet);
-	if (myConfig.bCompactView)
+	if (myConfig.bCompactView)  // in this mode we need to monitor the cursor
 	{
 		cairo_dock_register_notification_on_object (myContainer,
 			NOTIFICATION_MOUSE_MOVED,
 			(CairoDockNotificationFunc) on_mouse_moved,
 			CAIRO_DOCK_RUN_AFTER, myApplet);
-		if (myDesklet)
+		if (myDesklet)  // in this mode we draw the name of the pointed desktop
 		{
 			cairo_dock_register_notification_on_object (myContainer,
 				NOTIFICATION_RENDER_DESKLET,
@@ -90,15 +91,6 @@ CD_APPLET_INIT_BEGIN
 		}
 	}
 	
-	///cd_switcher_update_from_screen_geometry ();
-	
-	//\___________________ On affiche le numero du bureau courant.
-	/**if (myConfig.bDisplayNumDesk)
-	{
-		int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", iIndex+1);
-	}*/
-	
 	//\___________________ load the desktops with a delay (because it's quite heavy and because the desktop may not be up-to-date at the very beginning of the session).
 	if (myDesklet)
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
@@ -107,7 +99,7 @@ CD_APPLET_INIT_END
 
 
 CD_APPLET_STOP_BEGIN
-	//\_______________ On se desabonne de nos notifications.
+	//\_______________ Discard the pending drawings.
 	if (myData.iSidRedrawMainIconIdle != 0)
 	{
 		g_source_remove (myData.iSidRedrawMainIconIdle);
@@ -116,8 +108,10 @@ CD_APPLET_STOP_BEGIN
 	{
 		g_source_remove (myData.iSidUpdateIdle);
 	}
-	if (myData.iSidPainIcons != 0)
-		g_source_remove (myData.iSidPainIcons);
+	///if (myData.iSidPainIcons != 0)
+	///	g_source_remove (myData.iSidPainIcons);
+	
+	//\_______________ Unregister notifications
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -156,6 +150,7 @@ CD_APPLET_RELOAD_BEGIN
 		myData.iSidRedrawMainIconIdle = 0;
 	}
 	
+	// if our size has changed, re-compute the grid.
 	if (myData.iSidUpdateIdle == 0)
 	{
 		cd_switcher_compute_nb_lines_and_columns ();
@@ -177,6 +172,7 @@ CD_APPLET_RELOAD_BEGIN
 			}
 		}
 		
+		// in case our container or our mode has changed (desklet <-> dock, compact <-> expanded), register to the needed notifications.
 		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
 			NOTIFICATION_MOUSE_MOVED,
 			(CairoDockNotificationFunc) on_mouse_moved, myApplet);
@@ -226,7 +222,7 @@ CD_APPLET_RELOAD_BEGIN
 			cd_switcher_load_icons ();
 		}
 	}
-	else if (myData.iSidUpdateIdle == 0)
+	else if (myData.iSidUpdateIdle == 0)  // if only our size has changed, re-load the images.
 	{
 		if (myConfig.bMapWallpaper)  // on recharge le wallpaper a la taille de l'applet.
 		{
@@ -234,10 +230,11 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		if (myData.pDesktopBgMapSurface == NULL)
 			cd_switcher_load_default_map_surface ();
-		if (! myConfig.bCompactView)
-			cd_switcher_trigger_paint_icons ();
+		///if (! myConfig.bCompactView)
+		///	cd_switcher_trigger_paint_icons ();
 	}
 	
+	// redraw.
 	if (myData.iSidUpdateIdle == 0)
 		cd_switcher_draw_main_icon ();
 CD_APPLET_RELOAD_END

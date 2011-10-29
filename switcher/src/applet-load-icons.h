@@ -28,8 +28,8 @@ void load_icons (void);
 
 void cd_switcher_load_icons (void);
 
-void cd_switcher_paint_icons (void);
-void cd_switcher_trigger_paint_icons (void);
+///void cd_switcher_paint_icons (void);
+///void cd_switcher_trigger_paint_icons (void);
 
 void cd_switcher_load_desktop_bg_map_surface (void);
 void cd_switcher_load_default_map_surface (void);

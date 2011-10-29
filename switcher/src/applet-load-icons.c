@@ -25,6 +25,16 @@
 #include "applet-load-icons.h"
 
 
+static void _load_desktop_icon (Icon *pIcon)
+{
+	int iWidth = pIcon->iImageWidth;
+	int iHeight = pIcon->iImageHeight;
+	
+	pIcon->pIconBuffer = cairo_dock_duplicate_surface (myData.pDesktopBgMapSurface,
+		myData.iSurfaceWidth, myData.iSurfaceHeight,
+		iWidth, iHeight);
+}
+
 static GList * _load_icons (void)
 {
 	GList *pIconList = NULL;
@@ -51,6 +61,11 @@ static GList * _load_icons (void)
 			pIcon->fAlpha = 1.;
 		}
 		pIcon->cParentDockName = g_strdup (myIcon->cName);
+		
+		if (myConfig.bMapWallpaper)
+		{
+			pIcon->iface.load_image = _load_desktop_icon;
+		}
 		
 		pIconList = g_list_append (pIconList, pIcon);
 	}
@@ -96,15 +111,14 @@ void cd_switcher_load_icons (void)
 		GList *pIconList = _load_icons ();
 		
 		//\_______________________ On charge la nouvelle liste.
-		///gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
 		CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Slide", NULL);
 		
 		//\_______________________ On peint les icones.
-		cd_switcher_trigger_paint_icons ();
+		///cd_switcher_trigger_paint_icons ();
 	}
 }
 
-void cd_switcher_paint_icons (void)
+/**void cd_switcher_paint_icons (void)
 {
 	//\_______________________ On applique la surface.
 	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
@@ -153,11 +167,10 @@ void cd_switcher_paint_icons (void)
 	}
 }
 
-
 static gboolean _paint_icons (gpointer data)
 {
 	CD_APPLET_ENTER;
-	if (myConfig.bCompactView)
+	if (! myConfig.bCompactView)
 		cd_switcher_paint_icons ();
 	myData.iSidPainIcons = 0;
 	CD_APPLET_LEAVE (FALSE);
@@ -167,14 +180,14 @@ void cd_switcher_trigger_paint_icons (void)
 	if (myData.iSidPainIcons != 0)  // on la lance en idle, car les icones sont chargees en idle.
 		g_source_remove (myData.iSidPainIcons);
 	myData.iSidPainIcons = g_idle_add ((GSourceFunc)_paint_icons, NULL);
-}
+}*/
 
 
 void cd_switcher_load_desktop_bg_map_surface (void)
 {
+	// get the background surface
 	CairoDockDesktopBackground *db = cairo_dock_get_desktop_background (FALSE);  // FALSE <=> sans texture.
 	cairo_surface_t *pBgSurface = cairo_dock_get_desktop_bg_surface (db);
-	cd_debug ("on a recupere le fond d'ecran (%x)", pBgSurface);
 	
 	if (myData.pDesktopBgMapSurface != NULL)
 		cairo_surface_destroy (myData.pDesktopBgMapSurface);
@@ -185,16 +198,23 @@ void cd_switcher_load_desktop_bg_map_surface (void)
 		cairo_dock_destroy_desktop_background (db);
 		return ;
 	}
-	int iWidth, iHeight;
-	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
-	cd_debug ("%s (%dx%d)", __func__, iWidth, iHeight);
 	
-	cairo_t *pCairoContext = cairo_dock_create_context_from_container (myContainer);
+	// load it at a decent size.
+	if (myDock)
+	{
+		CD_APPLET_GET_MY_ICON_EXTENT (&myData.iSurfaceWidth, &myData.iSurfaceHeight);
+	}
+	else
+	{
+		myData.iSurfaceWidth = myContainer->iWidth / myData.switcher.iNbViewportTotal;
+		myData.iSurfaceHeight = myContainer->iHeight / myData.switcher.iNbViewportTotal;
+	}
+	g_print ("%s (%dx%d)\n", __func__, myData.iSurfaceWidth, myData.iSurfaceHeight);
+	
 	myData.pDesktopBgMapSurface = cairo_dock_duplicate_surface (pBgSurface,
 		g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL], g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL],
-		iWidth, iHeight);
+		myData.iSurfaceWidth, myData.iSurfaceHeight);
 	
-	cairo_destroy (pCairoContext);
 	cairo_dock_destroy_desktop_background (db);
 }
 
@@ -202,6 +222,17 @@ void cd_switcher_load_default_map_surface (void)
 {
 	if (myData.pDefaultMapSurface != NULL)
 		cairo_surface_destroy (myData.pDefaultMapSurface);
-	cd_debug ("%s (%.2fx%.2f)", __func__, myIcon->fWidth, myIcon->fHeight);
-	myData.pDefaultMapSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (myConfig.cDefaultIcon);
+	if (myDock)
+	{
+		CD_APPLET_GET_MY_ICON_EXTENT (&myData.iSurfaceWidth, &myData.iSurfaceHeight);
+	}
+	else
+	{
+		myData.iSurfaceWidth = myContainer->iWidth / myData.switcher.iNbViewportTotal;
+		myData.iSurfaceHeight = myContainer->iHeight / myData.switcher.iNbViewportTotal;
+	}
+	g_print ("%s (%dx%d)\n", __func__, myData.iSurfaceWidth, myData.iSurfaceHeight);
+	myData.pDefaultMapSurface = cairo_dock_create_surface_from_image_simple (myConfig.cDefaultIcon,
+		myData.iSurfaceWidth,
+		myData.iSurfaceHeight);
 }
