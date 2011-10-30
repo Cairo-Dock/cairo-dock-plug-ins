@@ -346,7 +346,7 @@ gboolean cd_dbus_applet_emit_on_scroll_icon (gpointer data, Icon *pClickedIcon, 
 
 static void _delete_menu (GtkMenuShell *menu, CairoDockModuleInstance *myApplet)
 {
-	myData.pModuleSubMenu = NULL;
+	///myData.pModuleSubMenu = NULL;
 	myData.pModuleMainMenu = NULL;
 }
 gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, CairoContainer *pClickedContainer, GtkWidget *pAppletMenu)
@@ -367,7 +367,6 @@ gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, C
 		G_CALLBACK (cairo_dock_pop_up_about_applet),
 		myData.pModuleSubMenu,
 		pAppletIcon->pModuleInstance);*/
-	myData.pModuleSubMenu = pAppletMenu;
 	
 	g_signal_connect (G_OBJECT (pAppletMenu),
 		"deactivate",

@@ -105,7 +105,7 @@ struct _AppletData {
 	dbusMainObject *pMainObject;
 	const gchar *cProgName;
 	gchar *cBasePath;
-	GtkWidget *pModuleSubMenu;
+	///GtkWidget *pModuleSubMenu;
 	GtkWidget *pModuleMainMenu;
 	dbusApplet *pCurrentMenuDbusApplet;
 	Window xActiveWindow;

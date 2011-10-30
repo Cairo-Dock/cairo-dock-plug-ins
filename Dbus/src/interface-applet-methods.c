@@ -972,7 +972,7 @@ gboolean cd_dbus_applet_show_appli (dbusApplet *pDbusApplet, gboolean bShow, GEr
 
 gboolean cd_dbus_applet_populate_menu (dbusApplet *pDbusApplet, const gchar **pLabels, GError **error)
 {
-	if (myData.pModuleSubMenu == NULL || pDbusApplet != myData.pCurrentMenuDbusApplet)
+	if (myData.pModuleMainMenu == NULL || pDbusApplet != myData.pCurrentMenuDbusApplet)
 	{
 		cd_warning ("the 'PopulateMenu' method can only be used to populate the menu that was summoned from a right-click on your applet !\nthat is to say, after you received a 'build-menu' event.");
 		return FALSE;
@@ -983,32 +983,32 @@ gboolean cd_dbus_applet_populate_menu (dbusApplet *pDbusApplet, const gchar **pL
 	{
 		if (*pLabels[i] == '\0')
 		{
-			gtk_menu_shell_append (GTK_MENU_SHELL (myData.pModuleSubMenu), gtk_separator_menu_item_new ());
+			gtk_menu_shell_append (GTK_MENU_SHELL (myData.pModuleMainMenu), gtk_separator_menu_item_new ());
 		}
 		else
 		{
 			cairo_dock_add_in_menu_with_stock_and_data (pLabels[i],
 				NULL,
 				G_CALLBACK (cd_dbus_emit_on_menu_select),
-				myData.pModuleSubMenu,
+				myData.pModuleMainMenu,
 				GINT_TO_POINTER (i));
 		}
 	}
-	gtk_widget_show_all (myData.pModuleSubMenu);
+	gtk_widget_show_all (myData.pModuleMainMenu);
 	
 	return TRUE;
 }
 
 gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pItems, GError **error)
 {
-	if (myData.pModuleMainMenu == NULL || myData.pModuleSubMenu == NULL || pDbusApplet != myData.pCurrentMenuDbusApplet)
+	if (myData.pModuleMainMenu == NULL/** || myData.pModuleSubMenu == NULL*/ || pDbusApplet != myData.pCurrentMenuDbusApplet)
 	{
 		cd_warning ("the 'AddMenuItems' method can only be used to populate the menu that was summoned from a right-click on your applet !\nthat is to say, after you received a 'build-menu' event.");
 		return FALSE;
 	}
 	
 	// on recupere la position du sous-menu par defaut, afin d'inserer les items apres lui dans le menu principal.
-	GList *pChildren = gtk_container_get_children (GTK_CONTAINER (myData.pModuleMainMenu));
+	/**GList *pChildren = gtk_container_get_children (GTK_CONTAINER (myData.pModuleMainMenu));
 	GList *c = g_list_find (pChildren, myData.pModuleSubMenu);
 	GtkMenuItem *item;
 	for (c = pChildren; c != NULL; c = c->next)
@@ -1019,7 +1019,10 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 	}
 	g_return_val_if_fail (c, FALSE);
 	int iPosition = g_list_position (pChildren, c) + 1;
-	g_list_free (pChildren);
+	g_list_free (pChildren);*/
+	
+	// insert a separator
+	gtk_menu_shell_append (GTK_MENU_SHELL (myData.pModuleMainMenu), gtk_separator_menu_item_new ());
 	
 	// table des menus et groupes de radio-boutons.
 	GHashTable *pSubMenus = g_hash_table_new_full (g_int_hash,
@@ -1155,20 +1158,20 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 		v = g_hash_table_lookup (pItem, "menu");
 		if (v && G_VALUE_HOLDS_INT (v))
 			iMenuID = g_value_get_int (v);
-		if (iMenuID == 0)
+		if (iMenuID <= 0)
 			pMenu = myData.pModuleMainMenu;
-		else if (iMenuID == -1)
-			pMenu = myData.pModuleSubMenu;
+		/**else if (iMenuID == -1)
+			pMenu = myData.pModuleSubMenu;*/
 		else
 		{
 			pMenu = g_hash_table_lookup (pSubMenus, &iMenuID);
 			if (pMenu == NULL)
-				pMenu = myData.pModuleSubMenu;
+				pMenu = myData.pModuleMainMenu;
 		}
 		
-		if (pMenu == myData.pModuleMainMenu)
+		/**if (pMenu == myData.pModuleMainMenu)
 			gtk_menu_shell_insert (GTK_MENU_SHELL (pMenu), pMenuItem, iPosition++);
-		else
+		else*/
 			gtk_menu_shell_append (GTK_MENU_SHELL (pMenu), pMenuItem);
 	}
 	
