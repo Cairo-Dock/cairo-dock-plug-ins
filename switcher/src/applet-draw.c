@@ -174,8 +174,8 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	{
 		pSurface = myData.pDefaultMapSurface;
 	}
-	fZoomX = (double) myData.switcher.fOneViewportWidth / iWidth;  // both surfaces are loaded at the size of the applet.
-	fZoomY= (double) myData.switcher.fOneViewportHeight / iHeight;
+	fZoomX = (double) myData.switcher.fOneViewportWidth / myData.iSurfaceWidth;  // both surfaces are loaded at the same size.
+	fZoomY= (double) myData.switcher.fOneViewportHeight / myData.iSurfaceHeight;
 	
 	// cadre exterieur.
 	cairo_set_line_width (myDrawContext,myConfig.iLineSize);
@@ -344,8 +344,8 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 			cairo_dock_erase_cairo_context (myDrawContext);
 
 			pSurface = myData.pDesktopBgMapSurface;
-			fZoomX = 1. * iWidth / iWidth;
-			fZoomY= 1. * iHeight / iHeight;
+			fZoomX = 1. * iWidth / myData.iSurfaceWidth;
+			fZoomY= 1. * iHeight / myData.iSurfaceHeight;
 			cairo_translate (myDrawContext,
 				0.,
 				0.);

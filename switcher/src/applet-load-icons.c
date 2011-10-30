@@ -206,10 +206,10 @@ void cd_switcher_load_desktop_bg_map_surface (void)
 	}
 	else
 	{
-		myData.iSurfaceWidth = myContainer->iWidth / myData.switcher.iNbViewportTotal;
-		myData.iSurfaceHeight = myContainer->iHeight / myData.switcher.iNbViewportTotal;
+		myData.iSurfaceWidth = MAX (1, myContainer->iWidth / myData.switcher.iNbViewportTotal);
+		myData.iSurfaceHeight = MAX (1, myContainer->iHeight / myData.switcher.iNbViewportTotal);
 	}
-	g_print ("%s (%dx%d)\n", __func__, myData.iSurfaceWidth, myData.iSurfaceHeight);
+	//g_print ("%s (%dx%d)\n", __func__, myData.iSurfaceWidth, myData.iSurfaceHeight);
 	
 	myData.pDesktopBgMapSurface = cairo_dock_duplicate_surface (pBgSurface,
 		g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL], g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL],
@@ -228,8 +228,8 @@ void cd_switcher_load_default_map_surface (void)
 	}
 	else
 	{
-		myData.iSurfaceWidth = myContainer->iWidth / myData.switcher.iNbViewportTotal;
-		myData.iSurfaceHeight = myContainer->iHeight / myData.switcher.iNbViewportTotal;
+		myData.iSurfaceWidth = MAX (1, myContainer->iWidth / myData.switcher.iNbViewportTotal);
+		myData.iSurfaceHeight = MAX (1, myContainer->iHeight / myData.switcher.iNbViewportTotal);
 	}
 	g_print ("%s (%dx%d)\n", __func__, myData.iSurfaceWidth, myData.iSurfaceHeight);
 	myData.pDefaultMapSurface = cairo_dock_create_surface_from_image_simple (myConfig.cDefaultIcon,
