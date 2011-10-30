@@ -699,19 +699,37 @@ GtkWidget * create_applications_menu (const char *menu_file,
 	return menu;
 }
 
+#define XDG_MENUS_PATH "/etc/xdg/menus"
 GtkWidget * create_main_menu (CairoDockModuleInstance *myApplet)
 {
 	GtkWidget *main_menu;
 	
 	// workaround pour KDE, qui ne loupe pas une occasion de se distinguer.
 	const gchar *cMenuFileName = NULL;
-	if (! g_file_test ("/etc/xdg/menus/applications.menu", G_FILE_TEST_EXISTS))  // on pourrait aussi aller lire le start-here.menu, mais je suis pas sur que ce soit standard.
+	if (g_file_test (XDG_MENUS_PATH"/applications.menu", G_FILE_TEST_EXISTS))  // first check 
+		cMenuFileName = "applications.menu";
+	else if (g_file_test (XDG_MENUS_PATH"/kde-applications.menu", G_FILE_TEST_EXISTS))
+		cMenuFileName = "kde-applications.menu";
+	else if (g_file_test (XDG_MENUS_PATH"/xfce-applications.menu", G_FILE_TEST_EXISTS))
+		cMenuFileName = "xfce-applications.menu";
+	else  // kde4-applications.menu, lxde-applications.menu, ...; let's check any *-applications.menu
 	{
-		if (g_file_test ("/etc/xdg/menus/kde-applications.menu", G_FILE_TEST_EXISTS))
-			cMenuFileName = "kde-applications.menu";
-		else if (g_file_test ("/etc/xdg/menus/xfce-applications.menu", G_FILE_TEST_EXISTS))
-			cMenuFileName = "xfce-applications.menu";
+		const gchar *cFileName;
+		GDir *dir = g_dir_open (XDG_MENUS_PATH, 0, NULL);
+		if (dir)
+		{
+			while (cFileName = g_dir_read_name (dir))
+			{
+				if (g_str_has_suffix (cFileName, "-applications.menu"))
+				{
+					cMenuFileName = cFileName;
+					break;
+				}
+			}
+			g_dir_close (dir);
+		}
 	}
+	
 	if (cMenuFileName == NULL)
 		cMenuFileName = "applications.menu";
 	
