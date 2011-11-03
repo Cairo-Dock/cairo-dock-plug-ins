@@ -151,17 +151,23 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_DOUBLE_CLICK_EVENT;
 	
 	// keyboard events
-	cd_keybinder_bind (myConfig.cShortcut, (CDBindkeyHandler) mixer_on_keybinding_pull, (gpointer)NULL);
+	myData.cKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortcut,
+		D_("Show/hide the sound volume dialog"),
+		"Configuration", "shortkey",
+		(CDBindkeyHandler) mixer_on_keybinding_pull);
 CD_APPLET_INIT_END
 
 
 CD_APPLET_STOP_BEGIN
-	//\_______________ On se desabonne de nos notifications.
+	//\_______________ mouse events.
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
 	CD_APPLET_UNREGISTER_FOR_DOUBLE_CLICK_EVENT;
+	
+	// keyboard events
+	cd_keybinder_unbind (myData.cKeyBinding);
 	
 	//\_________________ On stoppe le timer.
 	if (myData.iSidCheckVolume != 0)
@@ -234,7 +240,7 @@ CD_APPLET_RELOAD_BEGIN
 				myData.iSidCheckVolume = g_timeout_add (1000, (GSourceFunc) mixer_check_events, (gpointer) NULL);
 		}
 		
-		cd_keybinder_bind (myConfig.cShortcut, (CDBindkeyHandler) mixer_on_keybinding_pull, (gpointer)NULL);
+		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cShortcut);
 		
 		if (myDesklet)
 		{

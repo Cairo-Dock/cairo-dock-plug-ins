@@ -62,7 +62,7 @@ struct _AppletConfig {
 	gchar *cIconCompositeOFF;
 	gboolean bAskBeforeSwitching;
 	CDWMAction iActionOnMiddleClick;
-	gchar *cShortCut;
+	gchar *cShortcut;
 } ;
 
 typedef struct {
@@ -77,6 +77,7 @@ struct _AppletData {
 	gboolean bIsComposited;
 	CDWM *wmc;
 	CDWM *wmfb;
+	CairoKeyBinding *cKeyBinding;
 } ;
 
 

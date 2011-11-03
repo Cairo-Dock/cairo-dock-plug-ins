@@ -340,7 +340,7 @@ static guint _cd_rendering_diapo_simple_guess_grid (GList *pIconList, guint *nRo
 			|| ! my_diapo_simple_wide_grid && ncols <= nl)
 			{
 				delta_lc = abs (ncols - nl);
-				iSurfaceMin = ncols * nl;
+				iSurface = ncols * nl;
 				if (delta_lc < delta_lc_min
 				|| (delta_lc == delta_lc_min && iSurface < iSurfaceMin))  // we want to have something roughly square, and which minimizes the lost space.
 				{
@@ -559,13 +559,13 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 			
 			icon->fWidthFactor = ((pDock->container.bDirectionUp?pDock->container.iWidth - 2*X_BORDER_SPACE - my_diapo_simple_iconGapX:pDock->container.iHeight - my_diapo_simple_arrowHeight - ARROW_TIP)) * (1 - fFoldingX);  // we'll use it as the width of the line.
 			
-			icon->fX = ((pDock->container.bDirectionUp?pDock->container.iWidth:pDock->container.iHeight) - icon->fWidthFactor) / 2 + sep_offset[CAIRO_DOCK_HORIZONTAL];
+			icon->fX = ((pDock->container.bIsHorizontal?pDock->container.iWidth:pDock->container.iHeight) - icon->fWidthFactor) / 2 + sep_offset[CAIRO_DOCK_HORIZONTAL];
 			if (pDock->container.bDirectionUp)
 				icon->fY = iOffsetY + (pDock->iMaxIconHeight + my_diapo_simple_iconGapY) * y + iSeparatorHeight + sep_offset[CAIRO_DOCK_VERTICAL]  // top of the icon on the next line.
 				-  myIconsParam.iLabelSize - (my_diapo_simple_iconGapY + iSeparatorHeight - myIconsParam.iLabelSize)/2 - iSeparatorHeight/2;  // place the separator between the top of the label of the next line, and the bottom of the icon on the previous line.
 			else
 			{
-				icon->fY = (pDock->container.bDirectionUp?pDock->container.iHeight:pDock->container.iWidth) - iOffsetY - (nRowsY - y) * (pDock->iMaxIconHeight + my_diapo_simple_iconGapY) + sep_offset[CAIRO_DOCK_VERTICAL]
+				icon->fY = (pDock->container.bIsHorizontal?pDock->container.iHeight:pDock->container.iWidth) - iOffsetY - (nRowsY - y) * (pDock->iMaxIconHeight + my_diapo_simple_iconGapY) + sep_offset[CAIRO_DOCK_VERTICAL]
 				+ (my_diapo_simple_iconGapY + iSeparatorHeight - myIconsParam.iLabelSize)/2 - iSeparatorHeight/2;
 			}
 			

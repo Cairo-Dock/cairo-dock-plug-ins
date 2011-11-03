@@ -55,8 +55,11 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	}
 	
-	gboolean bKeyBinded = cd_keybinder_bind (myConfig.shortcut, (CDBindkeyHandler)term_on_keybinding_pull, (gpointer)NULL);
-	if (! bKeyBinded)  // si le bind n'a pas eu lieu, on s'en souvient. En effet, on a besoin de savoir si on pourra rappeler le desklet lors d'un 'exit' dans le dernier onglet pour cacher ou non le desklet.
+	myData.cKeyBinding = CD_APPLET_BIND_KEY (myConfig.shortcut,
+		D_("Show/hide the terminal"),
+		"Configuration", "shortkey",
+		(CDBindkeyHandler) term_on_keybinding_pull);
+	if (! cd_keybinder_could_grab (myData.cKeyBinding))  // si le bind n'a pas eu lieu, on s'en souvient. En effet, on a besoin de savoir si on pourra rappeler le desklet lors d'un 'exit' dans le dernier onglet pour cacher ou non le desklet.
 	{
 		g_free (myConfig.shortcut);
 		myConfig.shortcut = NULL;
@@ -68,6 +71,8 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
+	
+	cd_keybinder_unbind (myData.cKeyBinding);
 CD_APPLET_STOP_END
 
 
@@ -114,5 +119,7 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		}
+		
+		cd_keybinder_rebind (myData.cKeyBinding, myConfig.shortcut);
 	}
 CD_APPLET_RELOAD_END

@@ -67,6 +67,12 @@ CD_APPLET_INIT_BEGIN
 		cd_clipper_load_items (myConfig.cRememberedItems);
 	}
 	
+	// shortkey
+	myData.cKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortcut,
+		D_("Pop-up the items menu"),
+		"Configuration", "shortkey",
+		(CDBindkeyHandler) cd_clipper_on_keybinding_pull);
+	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -101,6 +107,8 @@ CD_APPLET_STOP_BEGIN
 			G_TYPE_INVALID);
 		g_free (cRememberedItems);
 	}
+	
+	cd_keybinder_unbind (myData.cKeyBinding);
 CD_APPLET_STOP_END
 
 
@@ -158,6 +166,8 @@ CD_APPLET_RELOAD_BEGIN
 			}
 		}
 		
+		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cShortcut);
+		
 		if (myConfig.cRememberedItems != NULL && ! myConfig.bRememberItems)  // on ne veut plus s'en souvenir.
 		{
 			cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
@@ -173,8 +183,8 @@ CD_APPLET_RELOAD_BEGIN
 			while (myData.iNbItems[i] > myConfig.iNbItems[i])
 			{
 				GList *pElement = cd_clipper_get_last_item (i);
-				if (pElement == NULL)
-					continue;
+				if (pElement == NULL)  // shouldn't happen
+					break;
 				cd_clipper_free_item (pElement->data);
 				myData.pItems = g_list_delete_link (myData.pItems, pElement);
 				myData.iNbItems[i] --;

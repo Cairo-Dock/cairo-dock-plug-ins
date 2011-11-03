@@ -24,11 +24,6 @@
 #include "applet-config.h"
 
 
-static void _cd_on_keybinding_pull (const char *keystring, gpointer user_data)
-{
-	cd_toggle_composite ();
-}
-
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cWmCompositor = CD_CONFIG_GET_STRING ("Configuration", "compositor");
 	myConfig.cWmFallback = CD_CONFIG_GET_STRING ("Configuration", "fallback");
@@ -40,8 +35,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.iActionOnMiddleClick = CD_CONFIG_GET_INTEGER ("Configuration", "action on click");
 	
-	myConfig.cShortCut = CD_CONFIG_GET_STRING ("Configuration", "shortkey");
-	cd_keybinder_bind (myConfig.cShortCut, (CDBindkeyHandler)_cd_on_keybinding_pull, (gpointer)NULL);
+	myConfig.cShortcut = CD_CONFIG_GET_STRING ("Configuration", "shortkey");
 CD_APPLET_GET_CONFIG_END
 
 
@@ -50,11 +44,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cWmFallback);
 	g_free (myConfig.cIconCompositeON);
 	g_free (myConfig.cIconCompositeOFF);
-	if (myConfig.cShortCut)
-	{
-		cd_keybinder_unbind(myConfig.cShortCut, (CDBindkeyHandler)_cd_on_keybinding_pull);
-		g_free (myConfig.cShortCut);
-	}
+	g_free (myConfig.cShortcut);
 CD_APPLET_RESET_CONFIG_END
 
 

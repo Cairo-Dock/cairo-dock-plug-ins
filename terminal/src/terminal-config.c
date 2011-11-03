@@ -53,8 +53,6 @@ CD_APPLET_GET_CONFIG_END
 
 
 CD_APPLET_RESET_CONFIG_BEGIN
-	if (myConfig.shortcut)
-		cd_keybinder_unbind(myConfig.shortcut, (CDBindkeyHandler)term_on_keybinding_pull);
 	g_free (myConfig.shortcut);
 	myConfig.shortcut = NULL;
 CD_APPLET_RESET_CONFIG_END

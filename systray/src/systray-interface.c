@@ -60,8 +60,6 @@ void cd_systray_build_systray (void)
 		CD_APPLET_SET_DESKLET_RENDERER (NULL);
 	}
 	gtk_widget_show (GTK_WIDGET (myData.tray));
-	
-	systray_set_shortcut ();
 }
 
 
@@ -83,11 +81,6 @@ void systray_on_keybinding_pull (const char *keystring, gpointer user_data)
 		else if (myData.dialog)
 			cairo_dock_unhide_dialog(myData.dialog);
 	}
-}
-
-void systray_set_shortcut (void)
-{
-	cd_keybinder_bind (myConfig.shortcut, (CDBindkeyHandler)systray_on_keybinding_pull, 0);
 }
 
 

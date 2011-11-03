@@ -62,7 +62,11 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cVisibleImage);
 	else
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
-	cd_keybinder_bind (myConfig.cShortcut, (CDBindkeyHandler) on_keybinding_pull, (gpointer)NULL);
+	
+	myData.cKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortcut,
+		D_("Show/hide the desktop"),  /// TODO: neeed to write the description that corresponds to the real action ...
+		"Configuration", "shortkey",
+		(CDBindkeyHandler) on_keybinding_pull);
 CD_APPLET_INIT_END
 
 
@@ -74,6 +78,8 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
 		NOTIFICATION_DESKTOP_VISIBILITY_CHANGED,
 		(CairoDockNotificationFunc) on_show_desktop, myApplet);
+	
+	cd_keybinder_unbind (myData.cKeyBinding);
 CD_APPLET_STOP_END
 
 
@@ -91,6 +97,6 @@ CD_APPLET_RELOAD_BEGIN
 		else
 			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 		
-		cd_keybinder_bind (myConfig.cShortcut, (CDBindkeyHandler) on_keybinding_pull, (gpointer)NULL);
+		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cShortcut);
 	}
 CD_APPLET_RELOAD_END

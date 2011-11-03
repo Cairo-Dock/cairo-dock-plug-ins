@@ -34,8 +34,6 @@ void cd_systray_check_running (void);
 
 void systray_on_keybinding_pull (const char *keystring, gpointer user_data);
 
-void systray_set_shortcut (void);
-
 void cd_systray_set_orientation (GtkOrientation o);
 
 

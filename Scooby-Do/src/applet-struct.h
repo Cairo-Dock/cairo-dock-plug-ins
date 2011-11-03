@@ -184,6 +184,7 @@ struct _AppletData {
 	gchar *cSearchText;
 	
 	GList *pBackends;
+	CairoKeyBinding *cKeyBinding;
 	} ;
 
 

@@ -39,6 +39,7 @@ struct _AppletConfig {
 struct _AppletData {
 	CairoDialog *dialog;
 	NaTray *tray;
+	CairoKeyBinding *cKeyBinding;
 } ;
 
 

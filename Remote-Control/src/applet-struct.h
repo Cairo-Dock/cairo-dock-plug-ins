@@ -45,6 +45,7 @@ struct _AppletData {
 	int iPrevMouseX, iPrevMouseY;
 	int iMouseX, iMouseY;
 	int iMotionCount;
+	CairoKeyBinding *cKeyBinding;
 	} ;
 
 

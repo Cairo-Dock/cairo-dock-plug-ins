@@ -60,8 +60,16 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	
-	cd_keybinder_bind (myConfig.cMenuShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_menu, myApplet);
-	cd_keybinder_bind (myConfig.cQuickLaunchShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_quick_launch, myApplet);
+	// keyboard events
+	myData.cKeyBinding = CD_APPLET_BIND_KEY (myConfig.cMenuShortkey,
+		D_("Show/hide the Applications menu"),
+		"Configuration", "menu shortkey",
+		(CDBindkeyHandler) cd_menu_on_shortkey_menu);
+	
+	myData.cKeyBindingQuickLaunch = CD_APPLET_BIND_KEY (myConfig.cQuickLaunchShortkey,
+		D_("Show/hide the quick-launch dialog"),
+		"Configuration", "quick launch shortkey",
+		(CDBindkeyHandler) cd_menu_on_shortkey_quick_launch);
 CD_APPLET_INIT_END
 
 
@@ -77,6 +85,10 @@ CD_APPLET_STOP_BEGIN
 		g_source_remove (myData.iSidCreateMenuIdle);
 	if (myData.iSidTreeChangeIdle != 0)
 		g_source_remove (myData.iSidTreeChangeIdle);
+	
+	// keyboard events
+	cd_keybinder_unbind (myData.cKeyBinding);
+	cd_keybinder_unbind (myData.cKeyBindingQuickLaunch);
 CD_APPLET_STOP_END
 
 
@@ -91,8 +103,8 @@ CD_APPLET_RELOAD_BEGIN
 
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		
-		cd_keybinder_bind (myConfig.cMenuShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_menu, myApplet);  // shortkey were unbinded during reset_config.
-		cd_keybinder_bind (myConfig.cQuickLaunchShortkey, (CDBindkeyHandler) cd_menu_on_shortkey_quick_launch, myApplet);
+		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cMenuShortkey);
+		cd_keybinder_rebind (myData.cKeyBindingQuickLaunch, myConfig.cQuickLaunchShortkey);
 		
 		// on reset ce qu'il faut.
 		cd_menu_reset_recent (myApplet);  // le fitre peut avoir change.

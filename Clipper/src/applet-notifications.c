@@ -133,3 +133,20 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 		g_string_free (pString, TRUE);
 	}
 CD_APPLET_ON_DROP_DATA_END
+
+
+void cd_clipper_on_keybinding_pull (const char *keystring, gpointer user_data)
+{
+	if (myData.pItems == NULL)
+	{
+		gchar *cIconPath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_ICON_FILE);
+		cairo_dock_show_temporary_dialog_with_icon (D_("No items yet."), myIcon, myContainer, 2000, cIconPath);
+		g_free (cIconPath);
+	}
+	else
+	{
+		GtkWidget *pMenu = cd_clipper_build_items_menu ();
+		
+		cd_clipper_popup_menu (pMenu);
+	}
+}

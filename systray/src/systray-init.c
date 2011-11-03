@@ -60,7 +60,11 @@ CD_APPLET_INIT_BEGIN
 	{
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 	}
-
+	
+	myData.cKeyBinding = CD_APPLET_BIND_KEY (myConfig.shortcut,
+		D_("Show/hide the systray"),
+		"Configuration", "shortkey",
+		(CDBindkeyHandler) systray_on_keybinding_pull);
 CD_APPLET_INIT_END
 
 
@@ -69,7 +73,9 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
-
+	
+	cd_keybinder_unbind (myData.cKeyBinding);
+	
 CD_APPLET_STOP_END
 
 
@@ -85,9 +91,6 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			// changement de l'orientation.
 			cd_systray_set_orientation (myConfig.iIconPacking == 0 ? GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL);
-			
-			// on remet le raccourci.
-			systray_set_shortcut();
 			
 			// changement de container.
 			if (CD_APPLET_MY_CONTAINER_TYPE_CHANGED)
@@ -110,6 +113,8 @@ CD_APPLET_RELOAD_BEGIN
 				g_object_unref (G_OBJECT (myData.tray));  // le 'steal' a ajoute une reference, et l'insertion dans le container aussi.
 			}
 		}
+		
+		cd_keybinder_rebind (myData.cKeyBinding, myConfig.shortcut);
 	}
 	
 	if (myDesklet)  // on cloue le desklet.

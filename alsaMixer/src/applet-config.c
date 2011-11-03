@@ -77,8 +77,6 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cMixerElementName);
 	g_free (myConfig.cMixerElementName2);
 	g_free (myConfig.cShowAdvancedMixerCommand);
-	if (myConfig.cShortcut)
-		cd_keybinder_unbind(myConfig.cShortcut, (CDBindkeyHandler) mixer_on_keybinding_pull);
 	g_free (myConfig.cShortcut);
 	g_free (myConfig.cDefaultIcon);
 	g_free (myConfig.cBrokenIcon);

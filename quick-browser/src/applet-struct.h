@@ -50,6 +50,7 @@ struct _AppletData {
 	gboolean bFoldersFirst;
 	CDQuickBrowserItem *pRootItem;
 	gint iSidFillDirIdle;
+	CairoKeyBinding *cKeyBinding;
 	} ;
 
 

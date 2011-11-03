@@ -46,6 +46,12 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
+	
+	// keyboard events
+	myData.cKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortcut,
+		D_("toggle the composite ON/OFF"),
+		"Configuration", "shortkey",
+		(CDBindkeyHandler) cd_on_keybinding_pull);
 CD_APPLET_INIT_END
 
 
@@ -55,6 +61,9 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
+	
+	// shortkey
+	cd_keybinder_unbind (myData.cKeyBinding);
 CD_APPLET_STOP_END
 
 
@@ -69,5 +78,7 @@ CD_APPLET_RELOAD_BEGIN
 		cd_define_prefered_wms ();
 		
 		cd_draw_current_state ();
+		
+		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cShortcut);
 	}
 CD_APPLET_RELOAD_END

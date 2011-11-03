@@ -256,7 +256,7 @@ else()
 endif()
 
 message (STATUS " * Vala:")
-# Valac is only riquired to convert vala files to C files.
+# Valac is only required to convert vala files to C files.
 #  So we can directly use produced files (c, h, vapi) without using valac.
 set (with_vala "yes")
 set (with_valac "no")
@@ -265,10 +265,11 @@ message (STATUS "   Path to valac: ${VALAC_EXE}")
 
 if ("${WITH_VALA}" STREQUAL "no")
 	set (with_vala "no")
-# >= Glib 2.26
+# Glib < 2.26
 elseif (${GLIB_MAJOR} LESS 3 AND ${GLIB_MINOR} LESS 26)
 	set (with_vala "no")
-elseif (NOT "${VALAC_EXE}" STREQUAL "VALAC_EXE-NOTFOUND") # now it works with 0.10 and 0.11 (= next 0.12)
+elseif ( (NOT "${VALAC_EXE}" STREQUAL "VALAC_EXE-NOTFOUND")
+	AND (EXISTS ${VALAC_EXE}) ) # now it works with 0.10 and 0.11 (= next 0.12) # $VALAC_EXE may be the correct path, even if valac is not installed !
 	execute_process(COMMAND ${VALAC_EXE} "--version"
 		OUTPUT_VARIABLE "VALA_VERSION")
 	string(REPLACE "Vala" "" "VALA_VERSION" ${VALA_VERSION})

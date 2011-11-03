@@ -31,20 +31,16 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iNbResultsMax = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb results", 100);
 	myConfig.iNbRelatedFilesMax = 20;
 	myConfig.b24Mode = TRUE;
-	
 CD_APPLET_GET_CONFIG_END
 
 
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before you get the applet's config, and when your applet is stopped, in the end.
 CD_APPLET_RESET_CONFIG_BEGIN
-	if (myConfig.cShortkey)
-		cd_keybinder_unbind (myConfig.cShortkey, (CDBindkeyHandler) cd_on_shortkey);
 	g_free (myConfig.cShortkey);
 CD_APPLET_RESET_CONFIG_END
 
 
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped, in the very end.
 CD_APPLET_RESET_DATA_BEGIN
-	
 	
 CD_APPLET_RESET_DATA_END

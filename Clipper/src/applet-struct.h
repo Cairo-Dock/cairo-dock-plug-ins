@@ -62,7 +62,7 @@ struct _AppletConfig {
 	gboolean bSeparateSelections;
 	gboolean bReplayAction;
 	gint iActionMenuDuration;
-	gchar *cShortCut;
+	gchar *cShortcut;
 	gchar **pPersistentItems;
 	gboolean bRememberItems;
 	gchar *cRememberedItems;
@@ -78,6 +78,7 @@ struct _AppletData {
 	gboolean bActionsLoaded;
 	gboolean bActionBlocked;
 	GtkWidget *pActionMenu;
+	CairoKeyBinding *cKeyBinding;
 	} ;
 
 #endif

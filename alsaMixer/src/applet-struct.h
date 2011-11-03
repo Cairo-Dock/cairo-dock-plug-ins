@@ -75,6 +75,7 @@ struct _AppletData {
 	int iCurrentVolume;  // volume courant en %.
 	gboolean bIsMute;
 	GtkWidget *pScale;
+	CairoKeyBinding *cKeyBinding;
 	} ;
 
 

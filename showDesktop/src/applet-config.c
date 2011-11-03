@@ -41,8 +41,6 @@ CD_APPLET_GET_CONFIG_END
 
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before yo get the applet's config, and when your applet is stopped.
 CD_APPLET_RESET_CONFIG_BEGIN
-	if (myConfig.cShortcut)
-		cd_keybinder_unbind(myConfig.cShortcut, (CDBindkeyHandler) on_keybinding_pull);
 	g_free (myConfig.cShortcut);
 	g_free (myConfig.cVisibleImage);
 	g_free (myConfig.cHiddenImage);

@@ -69,7 +69,10 @@ CD_APPLET_INIT_BEGIN
 		(CairoDockNotificationFunc) cd_do_key_pressed,
 		CAIRO_DOCK_RUN_AFTER, NULL);
 	
-	cd_keybinder_bind (myConfig.cShortkeySearch, (CDBindkeyHandler) cd_do_on_shortkey_search, myApplet);
+	myData.cKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortkeySearch,
+		D_("Enable/disable the Finder"),
+		"Configuration", "shortkey search",
+		(CDBindkeyHandler) cd_do_on_shortkey_search);
 	
 	_register_backends ();
 CD_APPLET_INIT_END
@@ -80,6 +83,8 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
 		NOTIFICATION_KEY_PRESSED,
 		(CairoDockNotificationFunc) cd_do_key_pressed, NULL);
+	
+	cd_keybinder_unbind (myData.cKeyBinding);
 	
 	cd_do_exit_session ();
 	cd_do_stop_all_backends ();
@@ -97,7 +102,7 @@ CD_APPLET_RELOAD_BEGIN
 		cd_do_destroy_listing (myData.pListing);
 		myData.pListing = NULL;
 		
-		cd_keybinder_bind (myConfig.cShortkeySearch, (CDBindkeyHandler) cd_do_on_shortkey_search, myApplet);  // shortkey were unbinded during reset_config.
+		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cShortkeySearch);
 		
 		if (myData.sCurrentText != NULL)  // peu probable.
 		{

@@ -168,3 +168,9 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		g_free (cLabel);
 	}
 CD_APPLET_ON_BUILD_MENU_END
+
+
+void cd_on_keybinding_pull (const char *keystring, gpointer user_data)
+{
+	cd_toggle_composite ();
+}

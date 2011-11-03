@@ -199,13 +199,15 @@ void cd_dbus_delete_remote_applet_object (dbusApplet *pDbusApplet)
 	if (pDbusApplet != NULL)
 	{
 		// on enleve les raccourcis clavier de l'applet.
-		GList *sk;
-		gchar *key;
-		for (sk = pDbusApplet->pShortkeyList; sk != NULL; sk = sk->next)
+		GList *kb;
+		CairoKeyBinding *pKeyBinding;
+		for (kb = pDbusApplet->pShortkeyList; kb != NULL; kb = kb->next)
 		{
-			key = sk->data;
-			cd_keybinder_unbind (key, (CDBindkeyHandler) cd_dbus_applet_emit_on_shortkey);
+			pKeyBinding = kb->data;
+			cd_keybinder_unbind (pKeyBinding);
 		}
+		g_list_free (pDbusApplet->pShortkeyList);
+		pDbusApplet->pShortkeyList = NULL;
 		
 		// on detruit l'objet.
 		g_object_unref (pDbusApplet);

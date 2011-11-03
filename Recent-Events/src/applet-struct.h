@@ -67,6 +67,7 @@ struct _AppletData {
 	GtkListStore *pModel;
 	CairoDialog *pDialog;
 	CDEventType iCurrentCaterogy;
+	CairoKeyBinding *pKeyBinding;
 	} ;
 
 

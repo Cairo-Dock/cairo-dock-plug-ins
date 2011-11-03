@@ -1191,12 +1191,36 @@ gboolean cd_dbus_applet_bind_shortkey (dbusApplet *pDbusApplet, const gchar **cS
 	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
 	g_return_val_if_fail (pInstance != NULL, FALSE);
 	
-	const gchar *cShortkey;
+	const gchar *cShortkey, *cDescription = "Pouet", *cGroupName = "Configuration", *cKeyName = "shortkey";
+	CairoKeyBinding *pKeyBinding;
 	int i;
-	GList *sk, *next_sk;
-	gchar *key;
+	GList *kb;
 	
-	// on enleve les vieux raccourcis dont l'applet ne veut plus.
+	if (pDbusApplet->pShortkeyList == NULL)
+	{
+		for (i = 0; cShortkeys[i] != NULL; i ++)
+		{
+			cShortkey = cShortkeys[i];
+			pKeyBinding = cd_keybinder_bind (cShortkey,
+				pInstance->pModule->pVisitCard->cTitle,
+				cDescription,
+				pInstance->pModule->pVisitCard->cIconFilePath,
+				pInstance->cConfFilePath,
+				cGroupName, cKeyName,
+				(CDBindkeyHandler) cd_dbus_applet_emit_on_shortkey, pDbusApplet),
+			pDbusApplet->pShortkeyList = g_list_append (pDbusApplet->pShortkeyList, pKeyBinding);
+		}
+	}
+	else  // just rebind, we consider that the applet wants to rebind the same shortkeys.
+	{
+		for (i = 0, kb = pDbusApplet->pShortkeyList; cShortkeys[i] != NULL, kb != NULL; i ++, kb = kb->next)
+		{
+			cShortkey = cShortkeys[i];
+			pKeyBinding = kb->data;
+			cd_keybinder_rebind (pKeyBinding, cShortkey);
+		}
+	}
+	/** // on enleve les vieux raccourcis dont l'applet ne veut plus.
 	sk = pDbusApplet->pShortkeyList;
 	while (sk != NULL)
 	{
@@ -1238,7 +1262,7 @@ gboolean cd_dbus_applet_bind_shortkey (dbusApplet *pDbusApplet, const gchar **cS
 				pDbusApplet->pShortkeyList = g_list_prepend (pDbusApplet->pShortkeyList, g_strdup (cShortkey));
 			cd_debug ("*** bind %s: %d", cShortkey, bCouldBind);
 		}
-	}
+	}*/
 	return TRUE;
 }
 

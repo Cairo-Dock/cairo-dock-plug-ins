@@ -52,7 +52,10 @@ CD_APPLET_INIT_BEGIN
 		CAIRO_DOCK_RUN_FIRST,
 		myApplet);
 	
-	cd_keybinder_bind (myConfig.cShortkey, (CDBindkeyHandler) cd_on_shortkey, myApplet);
+	myData.pKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortkey,
+		D_("Show/hide the Recent Events"),
+		"Configuration", "shortkey",
+		(CDBindkeyHandler) cd_on_shortkey);
 CD_APPLET_INIT_END
 
 
@@ -63,7 +66,7 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
 		NOTIFICATION_BUILD_ICON_MENU, (CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU_FUNC, myApplet);
 	
-	
+	cd_keybinder_unbind (myData.pKeyBinding);
 CD_APPLET_STOP_END
 
 
@@ -78,6 +81,6 @@ CD_APPLET_RELOAD_BEGIN
 		
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		
-		cd_keybinder_bind (myConfig.cShortkey, (CDBindkeyHandler) cd_on_shortkey, myApplet);  // shortkey has been unbinded during reset_config.
+		cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey);
 	}
 CD_APPLET_RELOAD_END

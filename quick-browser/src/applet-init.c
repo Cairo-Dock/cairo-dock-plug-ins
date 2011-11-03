@@ -59,7 +59,11 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	
-	cd_keybinder_bind (myConfig.cMenuShortkey, (CDBindkeyHandler) cd_quick_browser_on_shortkey_menu, myApplet);
+	// keyboard events
+	myData.cKeyBinding = CD_APPLET_BIND_KEY (myConfig.cMenuShortkey,
+		D_("Show/hide the folder menu"),
+		"Configuration", "menu shortkey",
+		(CDBindkeyHandler) cd_quick_browser_on_shortkey_menu);
 CD_APPLET_INIT_END
 
 
@@ -68,6 +72,8 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
+	
+	cd_keybinder_unbind (myData.cKeyBinding);
 CD_APPLET_STOP_END
 
 
@@ -89,6 +95,6 @@ CD_APPLET_RELOAD_BEGIN
 			g_free (cDirName);
 		}
 		
-		cd_keybinder_bind (myConfig.cMenuShortkey, (CDBindkeyHandler) cd_quick_browser_on_shortkey_menu, myApplet);  // shortkey were unbinded during reset_config.
+		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cMenuShortkey);
 	}
 CD_APPLET_RELOAD_END
