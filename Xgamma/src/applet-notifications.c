@@ -113,5 +113,15 @@ CD_APPLET_ON_SCROLL_BEGIN
 	myData.iScrollCount += (CD_APPLET_SCROLL_UP ? 1 : -1);
 	if (myData.iSidScrollAction == 0)
 		myData.iSidScrollAction = g_timeout_add (200, (GSourceFunc) _on_scroll, NULL);
-	xgamma_add_gamma (&myData.Xgamma, CD_APPLET_SCROLL_UP);
 CD_APPLET_ON_SCROLL_END
+
+
+void cd_xgamma_on_keybinding_pull (const gchar *keystring, gpointer user_data)
+{
+	xgamma_add_gamma (&myData.Xgamma, +1);
+}
+
+void cd_xgamma_on_keybinding_pull2 (const gchar *keystring, gpointer user_data)
+{
+	xgamma_add_gamma (&myData.Xgamma, -1);
+}

@@ -26,7 +26,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN (("Remote-Control"),
+CD_APPLET_DEFINE_BEGIN (N_("Remote-Control"),
 	2, 2, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	("This plug-in lets you control your dock from the keyboard,\n"
@@ -63,6 +63,6 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cShortkeyNav);
+		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cShortkeyNav, NULL);
 	}
 CD_APPLET_RELOAD_END

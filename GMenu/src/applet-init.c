@@ -103,8 +103,8 @@ CD_APPLET_RELOAD_BEGIN
 
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		
-		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cMenuShortkey);
-		cd_keybinder_rebind (myData.cKeyBindingQuickLaunch, myConfig.cQuickLaunchShortkey);
+		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cMenuShortkey, NULL);
+		cd_keybinder_rebind (myData.cKeyBindingQuickLaunch, myConfig.cQuickLaunchShortkey, NULL);
 		
 		// on reset ce qu'il faut.
 		cd_menu_reset_recent (myApplet);  // le fitre peut avoir change.

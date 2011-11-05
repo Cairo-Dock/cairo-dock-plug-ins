@@ -29,11 +29,15 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iScrollVariation = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "scroll_variation", 5);
 	myConfig.fInitialGamma = CD_CONFIG_GET_DOUBLE ("Configuration", "initial gamma");
 	myConfig.cDefaultTitle = CD_CONFIG_GET_STRING ("Icon", "name");
+	myConfig.cShortkey = CD_CONFIG_GET_STRING ("Configuration", "shortkey");
+	myConfig.cShortkey2 = CD_CONFIG_GET_STRING ("Configuration", "shortkey2");
 CD_APPLET_GET_CONFIG_END
 
 
 CD_APPLET_RESET_CONFIG_BEGIN	
 	g_free (myConfig.cDefaultTitle);
+	g_free (myConfig.cShortkey);
+	g_free (myConfig.cShortkey2);
 CD_APPLET_RESET_CONFIG_END
 
 

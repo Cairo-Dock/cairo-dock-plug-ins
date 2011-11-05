@@ -32,6 +32,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iShutdownTime = CD_CONFIG_GET_INTEGER ("Configuration", "shutdown time");
 	myConfig.cEmblemPath = CD_CONFIG_GET_STRING ("Configuration", "emblem");
 	myConfig.cDefaultLabel = CD_CONFIG_GET_STRING ("Icon", "name");
+	myConfig.cShortkey = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "shortkey", "<Control><Alt>F12");
+	myConfig.cShortkey2 = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "shortkey2", "<Super>L");
 CD_APPLET_GET_CONFIG_END
 
 
@@ -40,6 +42,8 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cUserAction2);
 	g_free (myConfig.cDefaultLabel);
 	g_free (myConfig.cEmblemPath);
+	g_free (myConfig.cShortkey);
+	g_free (myConfig.cShortkey2);
 CD_APPLET_RESET_CONFIG_END
 
 

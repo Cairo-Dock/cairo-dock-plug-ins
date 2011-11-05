@@ -102,7 +102,7 @@ CD_APPLET_RELOAD_BEGIN
 		cd_do_destroy_listing (myData.pListing);
 		myData.pListing = NULL;
 		
-		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cShortkeySearch);
+		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cShortkeySearch, NULL);
 		
 		if (myData.sCurrentText != NULL)  // peu probable.
 		{

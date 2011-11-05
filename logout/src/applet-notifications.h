@@ -39,4 +39,9 @@ void cd_logout_check_reboot_required (CairoDockFMEventType iEventType, const gch
 void cd_logout_check_reboot_required_init (void);
 
 
+void cd_logout_on_keybinding_pull (const gchar *keystring, gpointer user_data);
+
+void cd_logout_on_keybinding_pull2 (const gchar *keystring, gpointer user_data);
+
+
 #endif

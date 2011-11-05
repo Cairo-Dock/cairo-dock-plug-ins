@@ -36,6 +36,8 @@ struct _AppletConfig {
 	gint iScrollVariation;
 	gdouble fInitialGamma;
 	gchar *cDefaultTitle;
+	gchar *cShortkey;
+	gchar *cShortkey2;
 	} ;
 
 struct _AppletData {
@@ -54,6 +56,8 @@ struct _AppletData {
 	XF86VidModeGamma XoldGamma;
 	guint iSidScrollAction;
 	gint iScrollCount;
+	CairoKeyBinding *pKeyBinding;
+	CairoKeyBinding *pKeyBinding2;
 	} ;
 
 

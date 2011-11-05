@@ -36,6 +36,8 @@ CD_APPLET_DEFINITION (N_("showDesktop"),
 	"Rom1 (Romain PEROL) &amp; Fabounet (Fabrice Rey)")
 
 
+static const gchar *s_cShortkeyDescription[CD_NB_ACTIONS] = {"Show desktop", "Show the desklets", "Show desktop and desklets", "Show the Widget Layer", "Expose all the desktops"};  // same names as in the config file, so no need to add N_()
+
 static void _show_desktop_for_drop (Icon *pIcon)
 {
 	cairo_dock_show_hide_desktop (! myData.bDesktopVisible);
@@ -64,7 +66,7 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 	
 	myData.cKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortcut,
-		D_("Show/hide the desktop"),  /// TODO: neeed to write the description that corresponds to the real action ...
+		D_(s_cShortkeyDescription[myConfig.iActionOnMiddleClick]),
 		"Configuration", "shortkey",
 		(CDBindkeyHandler) on_keybinding_pull);
 CD_APPLET_INIT_END
@@ -97,6 +99,6 @@ CD_APPLET_RELOAD_BEGIN
 		else
 			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 		
-		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cShortcut);
+		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cShortcut, D_(s_cShortkeyDescription[myConfig.iActionOnMiddleClick]));
 	}
 CD_APPLET_RELOAD_END

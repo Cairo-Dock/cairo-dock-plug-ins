@@ -170,3 +170,14 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Program an automatic shut-down"), MY_APPLET_SHARE_DATA_DIR"/icon-scheduling.svg", _cd_logout_program_shutdown, CD_APPLET_MY_MENU);
 }
 CD_APPLET_ON_BUILD_MENU_END
+
+
+void cd_logout_on_keybinding_pull (const gchar *keystring, gpointer user_data)
+{
+	_execute_action (myConfig.iActionOnClick);
+}
+
+void cd_logout_on_keybinding_pull2 (const gchar *keystring, gpointer user_data)
+{
+	_execute_action (myConfig.iActionOnMiddleClick);
+}

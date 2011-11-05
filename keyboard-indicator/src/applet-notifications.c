@@ -64,3 +64,9 @@ CD_APPLET_ON_BUILD_MENU_END
 CD_APPLET_ON_SCROLL_BEGIN
 	cd_xkbd_set_prev_next_group (CD_APPLET_SCROLL_UP ? +1 : -1);
 CD_APPLET_ON_SCROLL_END
+
+
+void cd_xkbd_on_keybinding_pull (const gchar *keystring, gpointer user_data)
+{
+	cd_xkbd_set_prev_next_group (+1);
+}

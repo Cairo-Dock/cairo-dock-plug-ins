@@ -58,6 +58,16 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
 	
+	// shortkey
+	myData.pKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortkey,
+		D_("Increase the brightness"),
+		"Configuration", "shortkey",
+		(CDBindkeyHandler) cd_xgamma_on_keybinding_pull);
+	myData.pKeyBinding2 = CD_APPLET_BIND_KEY (myConfig.cShortkey2,
+		D_("Decrease the brightness"),
+		"Configuration", "shortkey",
+		(CDBindkeyHandler) cd_xgamma_on_keybinding_pull2);
+	
 	if (! s_bVideoExtensionChecked)
 	{
 		s_bVideoExtensionChecked = TRUE;
@@ -124,6 +134,9 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
 	
+	cd_keybinder_unbind (myData.pKeyBinding);
+	cd_keybinder_unbind (myData.pKeyBinding2);
+	
 	if (myData.iSidScrollAction != 0)
 		g_source_remove (myData.iSidScrollAction);
 CD_APPLET_STOP_END
@@ -162,6 +175,9 @@ CD_APPLET_RELOAD_BEGIN
 			double fGamma = xgamma_get_gamma (&myData.Xgamma);
 			cd_gamma_display_gamma_on_label (fGamma);
 		}
+		
+		cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
+		cd_keybinder_rebind (myData.pKeyBinding2, myConfig.cShortkey2, NULL);
 	}
 	
 	if (myDock)

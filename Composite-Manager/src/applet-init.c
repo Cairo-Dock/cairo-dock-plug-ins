@@ -49,7 +49,7 @@ CD_APPLET_INIT_BEGIN
 	
 	// keyboard events
 	myData.cKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortcut,
-		D_("toggle the composite ON/OFF"),
+		D_("Toggle the composite ON/OFF"),
 		"Configuration", "shortkey",
 		(CDBindkeyHandler) cd_on_keybinding_pull);
 CD_APPLET_INIT_END
@@ -79,6 +79,6 @@ CD_APPLET_RELOAD_BEGIN
 		
 		cd_draw_current_state ();
 		
-		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cShortcut);
+		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cShortcut, NULL);
 	}
 CD_APPLET_RELOAD_END

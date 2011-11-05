@@ -108,3 +108,10 @@ scroll_variation = 5
 #e-[0;2] Brightness to apply automatically on startup:
 #{Use 0 for none.}
 initial gamma = 0
+
+
+#k Shortkey to increase the brightness:
+shortkey = XF86MonBrightnessUp
+
+#k Shortkey to decrease the brightness:
+shortkey2 = XF86MonBrightnessDown

@@ -77,6 +77,12 @@ CD_APPLET_INIT_BEGIN
 		CAIRO_DOCK_RUN_AFTER,
 		myApplet);
 	
+	// shortkey
+	myData.pKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortkey,
+		D_("Switch keyboard language"),
+		"Configuration", "shortkey",
+		(CDBindkeyHandler) cd_xkbd_on_keybinding_pull);
+	
 	_load_bg_image ();
 	
 	myData.iCurrentGroup = -1;  // pour forcer le redessin.
@@ -103,6 +109,8 @@ CD_APPLET_STOP_BEGIN
 		(CairoDockNotificationFunc) cd_xkbd_keyboard_state_changed,
 		myApplet);
 	CD_APPLET_REMOVE_TRANSITION_ON_MY_ICON;
+	
+	cd_keybinder_unbind (myData.pKeyBinding);
 CD_APPLET_STOP_END
 
 
@@ -125,6 +133,8 @@ CD_APPLET_RELOAD_BEGIN
 		//\_____________ On declenche le redessin de l'icone.
 		Window Xid = cairo_dock_get_current_active_window ();
 		cd_xkbd_keyboard_state_changed (myApplet, &Xid);
+		
+		cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
 	}
 	else
 	{

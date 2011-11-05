@@ -95,6 +95,6 @@ CD_APPLET_RELOAD_BEGIN
 			g_free (cDirName);
 		}
 		
-		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cMenuShortkey);
+		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cMenuShortkey, NULL);
 	}
 CD_APPLET_RELOAD_END

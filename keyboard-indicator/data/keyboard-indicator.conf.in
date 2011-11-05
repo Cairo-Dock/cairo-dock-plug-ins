@@ -100,6 +100,9 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
+#k Shortkey to pop-up the items menu:
+shortkey = <Alt><Shift>
+
 #b- Display keyboard locks as quick-info?
 #{caps lock, num lock, etc.}
 show indic = true

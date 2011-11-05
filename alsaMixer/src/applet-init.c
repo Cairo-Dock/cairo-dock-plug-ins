@@ -240,7 +240,7 @@ CD_APPLET_RELOAD_BEGIN
 				myData.iSidCheckVolume = g_timeout_add (1000, (GSourceFunc) mixer_check_events, (gpointer) NULL);
 		}
 		
-		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cShortcut);
+		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cShortcut, NULL);
 		
 		if (myDesklet)
 		{

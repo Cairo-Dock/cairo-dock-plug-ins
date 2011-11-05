@@ -106,8 +106,18 @@ frame_action=
 #l- [Log out;Shut down;Lock screen] Action on left-click:
 click=1
 
+#k Shortkey to this action:
+shortkey = <Control><Alt>F12
+
+#v
+sep_act =
+
+
 #l- [Log out;Shut down;Lock screen] Action on middle-click:
 middle-click=0
+
+#k Shortkey to this action:
+shortkey2 = <Super>L
 
 #F[Commands;gtk-preferences]
 frame_comm=

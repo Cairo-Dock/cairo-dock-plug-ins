@@ -81,6 +81,6 @@ CD_APPLET_RELOAD_BEGIN
 		
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		
-		cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey);
+		cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
 	}
 CD_APPLET_RELOAD_END

@@ -17,7 +17,6 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef __CD_APPLET_STRUCT__
 #define  __CD_APPLET_STRUCT__
 
@@ -30,6 +29,7 @@ struct _AppletConfig {
 	gdouble fTextRatio;
 	CairoDockLabelDescription textDescription;
 	gint iTransitionDuration;
+	gchar *cShortkey;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
@@ -44,6 +44,7 @@ struct _AppletData {
 	GLuint iCurrentTexture;
 	gint iCurrentGroup;
 	guint iCurrentIndic;
+	CairoKeyBinding *pKeyBinding;
 	} ;
 
 

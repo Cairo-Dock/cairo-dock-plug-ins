@@ -166,7 +166,7 @@ CD_APPLET_RELOAD_BEGIN
 			}
 		}
 		
-		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cShortcut);
+		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cShortcut, NULL);
 		
 		if (myConfig.cRememberedItems != NULL && ! myConfig.bRememberItems)  // on ne veut plus s'en souvenir.
 		{

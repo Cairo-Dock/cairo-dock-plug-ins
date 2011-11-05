@@ -49,6 +49,8 @@ struct _AppletConfig {
 	gint iShutdownTime;  // time_t
 	gchar *cEmblemPath;
 	gchar *cDefaultLabel;
+	gchar *cShortkey;
+	gchar *cShortkey2;
 	} ;
 
 typedef struct {
@@ -68,6 +70,8 @@ struct _AppletData {
 	gboolean bCanSuspend;
 	gboolean bCanStop;
 	gboolean bCanRestart;
+	CairoKeyBinding *pKeyBinding;
+	CairoKeyBinding *pKeyBinding2;
 	} ;
 
 #endif

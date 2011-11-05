@@ -114,7 +114,7 @@ CD_APPLET_RELOAD_BEGIN
 			}
 		}
 		
-		cd_keybinder_rebind (myData.cKeyBinding, myConfig.shortcut);
+		cd_keybinder_rebind (myData.cKeyBinding, myConfig.shortcut, NULL);
 	}
 	
 	if (myDesklet)  // on cloue le desklet.

@@ -1217,7 +1217,7 @@ gboolean cd_dbus_applet_bind_shortkey (dbusApplet *pDbusApplet, const gchar **cS
 		{
 			cShortkey = cShortkeys[i];
 			pKeyBinding = kb->data;
-			cd_keybinder_rebind (pKeyBinding, cShortkey);
+			cd_keybinder_rebind (pKeyBinding, cShortkey, NULL);
 		}
 	}
 	/** // on enleve les vieux raccourcis dont l'applet ne veut plus.
