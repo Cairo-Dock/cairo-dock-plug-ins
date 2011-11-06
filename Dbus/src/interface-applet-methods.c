@@ -970,6 +970,47 @@ gboolean cd_dbus_applet_show_appli (dbusApplet *pDbusApplet, gboolean bShow, GEr
 	return TRUE;
 }
 
+gboolean cd_dbus_applet_act_on_appli (dbusApplet *pDbusApplet, const gchar *cAction, GError **error)
+{
+	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
+	g_return_val_if_fail (pInstance != NULL, FALSE);
+	
+	Icon *pIcon = pInstance->pIcon;
+	g_return_val_if_fail (pIcon != NULL && pIcon->Xid != 0, FALSE);
+	
+	g_return_val_if_fail (cAction != NULL, FALSE);
+	
+	if (strcmp (cAction, "minimize") == 0)
+		cairo_dock_minimize_xwindow (pIcon->Xid);
+	else if (strcmp (cAction, "show") == 0)
+		cairo_dock_show_xwindow (pIcon->Xid);
+	else if (strcmp (cAction, "toggle-visibility") == 0)
+	{
+		if (pIcon->bIsHidden)
+			cairo_dock_show_xwindow (pIcon->Xid);
+		else
+			cairo_dock_minimize_xwindow (pIcon->Xid);
+	}	
+	else if (strcmp (cAction, "maximize") == 0)
+		cairo_dock_maximize_xwindow (pIcon->Xid, TRUE);
+	else if (strcmp (cAction, "restaure") == 0)
+		cairo_dock_maximize_xwindow (pIcon->Xid, FALSE);
+	else if (strcmp (cAction, "toggle-size") == 0)
+	{
+		cairo_dock_maximize_xwindow (pIcon->Xid, ! pIcon->bIsMaximized);
+	}
+	else if (strcmp (cAction, "close") == 0)
+		cairo_dock_close_xwindow (pIcon->Xid);
+	else if (strcmp (cAction, "kill") == 0)
+		cairo_dock_kill_xwindow (pIcon->Xid);
+	else
+	{
+		cd_warning ("invalid action '%s' on window %s", cAction, pIcon->cName);
+	}
+	
+	return TRUE;
+}
+
 gboolean cd_dbus_applet_populate_menu (dbusApplet *pDbusApplet, const gchar **pLabels, GError **error)
 {
 	if (myData.pModuleMainMenu == NULL || pDbusApplet != myData.pCurrentMenuDbusApplet)

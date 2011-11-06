@@ -65,6 +65,9 @@
 		<method name="ShowAppli">
 			<arg name="bShow" type="b" direction="in"/>
 		</method>
+		<method name="ActOnAppli">
+			<arg name="cAction" type="s" direction="in"/>
+		</method>
 		<method name="PopulateMenu">
 			<arg name="pLabels" type="as" direction="in"/>
 		</method>
