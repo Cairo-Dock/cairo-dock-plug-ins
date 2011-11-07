@@ -378,6 +378,10 @@ gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, C
 	g_return_val_if_fail (pDbusApplet != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	myData.pCurrentMenuDbusApplet = pDbusApplet;
 	
+	GList *pChildren = gtk_container_get_children (GTK_CONTAINER (pAppletMenu));
+	myData.iMenuPosition = g_list_length (pChildren);
+	g_list_free (pChildren);
+	
 	if (pClickedIcon == pAppletIcon)
 		g_signal_emit (pDbusApplet, s_iSignals[BUILD_MENU], 0);
 	else if (pDbusApplet->pSubApplet != NULL)

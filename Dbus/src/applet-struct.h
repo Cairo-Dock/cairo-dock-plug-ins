@@ -108,6 +108,7 @@ struct _AppletData {
 	///GtkWidget *pModuleSubMenu;
 	GtkWidget *pModuleMainMenu;
 	dbusApplet *pCurrentMenuDbusApplet;
+	gint iMenuPosition;
 	Window xActiveWindow;
 	CairoDockTask *pGetListTask;
 	GList *pUpdateTasksList;

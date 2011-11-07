@@ -1048,22 +1048,11 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 		return FALSE;
 	}
 	
-	// on recupere la position du sous-menu par defaut, afin d'inserer les items apres lui dans le menu principal.
-	/**GList *pChildren = gtk_container_get_children (GTK_CONTAINER (myData.pModuleMainMenu));
-	GList *c = g_list_find (pChildren, myData.pModuleSubMenu);
-	GtkMenuItem *item;
-	for (c = pChildren; c != NULL; c = c->next)
-	{
-		item = c->data;
-		if (gtk_menu_item_get_submenu (item) == myData.pModuleSubMenu)
-			break;
-	}
-	g_return_val_if_fail (c, FALSE);
-	int iPosition = g_list_position (pChildren, c) + 1;
-	g_list_free (pChildren);*/
+	// get the position of our items in the menu.
+	int iPosition = myData.iMenuPosition;
 	
 	// insert a separator
-	gtk_menu_shell_append (GTK_MENU_SHELL (myData.pModuleMainMenu), gtk_separator_menu_item_new ());
+	gtk_menu_shell_insert (GTK_MENU_SHELL (myData.pModuleMainMenu), gtk_separator_menu_item_new (), iPosition++);
 	
 	// table des menus et groupes de radio-boutons.
 	GHashTable *pSubMenus = g_hash_table_new_full (g_int_hash,
@@ -1201,8 +1190,6 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 			iMenuID = g_value_get_int (v);
 		if (iMenuID <= 0)
 			pMenu = myData.pModuleMainMenu;
-		/**else if (iMenuID == -1)
-			pMenu = myData.pModuleSubMenu;*/
 		else
 		{
 			pMenu = g_hash_table_lookup (pSubMenus, &iMenuID);
@@ -1210,10 +1197,7 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 				pMenu = myData.pModuleMainMenu;
 		}
 		
-		/**if (pMenu == myData.pModuleMainMenu)
-			gtk_menu_shell_insert (GTK_MENU_SHELL (pMenu), pMenuItem, iPosition++);
-		else*/
-			gtk_menu_shell_append (GTK_MENU_SHELL (pMenu), pMenuItem);
+		gtk_menu_shell_insert (GTK_MENU_SHELL (pMenu), pMenuItem, iPosition++);
 	}
 	
 	g_hash_table_destroy (pSubMenus);
