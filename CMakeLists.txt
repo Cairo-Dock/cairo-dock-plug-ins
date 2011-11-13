@@ -1108,7 +1108,7 @@ add_subdirectory (wifi)
 message (STATUS "> XFCE-Integration:")
 set (with_xfce_integration "no")
 if (NOT "${enable-xfce-integration}" STREQUAL "no")
-	pkg_check_modules (XFCE_INTEGRATION_THUNAR thunar-vfs-1)
+	pkg_check_modules (XFCE_INTEGRATION_THUNAR QUIET thunar-vfs-1) # thunar-vfs is not used if gvfs (gio) is available
 	pkg_check_modules (XFCE_INTEGRATION_GVFS gio-2.0)
 	if ("${XFCE_INTEGRATION_THUNAR_FOUND}" STREQUAL "" AND "${XFCE_INTEGRATION_GVFS_FOUND}" STREQUAL "")
 		message (STATUS "Could find neither thunar-vfs or libgio-2.0; Cairo-Dock won't be built with XFCE support.")
