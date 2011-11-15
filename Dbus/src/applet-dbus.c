@@ -105,7 +105,7 @@ static void _on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile 
 	//\_____________ On (re)lance l'executable de l'applet.
 	cd_dbus_launch_applet_process (pModuleInstance, pDbusApplet);
 }
-static gboolean _cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDescription, const gchar *cAuthor, const gchar *cVersion, gint iCategory, const gchar *cIconName, const gchar *cShareDataDir, gboolean bMultiInstance)
+static gboolean _cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDescription, const gchar *cAuthor, const gchar *cVersion, gint iCategory, const gchar *cIconName, const gchar *cShareDataDir, gboolean bMultiInstance, gboolean bActAsLauncher)
 {
 	cd_message ("%s (%s)", __func__, cModuleName);
 	
@@ -147,7 +147,7 @@ static gboolean _cd_dbus_register_new_module (const gchar *cModuleName, const gc
 		pVisitCard->cTitle = g_strdup (dgettext (pVisitCard->cGettextDomain, cModuleName));
 		pVisitCard->iContainerType = CAIRO_DOCK_MODULE_CAN_DOCK | CAIRO_DOCK_MODULE_CAN_DESKLET;
 		pVisitCard->bMultiInstance = bMultiInstance;
-		pVisitCard->bActAsLauncher = TRUE;  // by default, consider the applet as a launcher (only effective if it will inhibit a class later).
+		pVisitCard->bActAsLauncher = bActAsLauncher;  // ex.: XChat controls xchat/xchat-gnome, but it does that only after initializing; we need to know if it's a launcher before the taskbar is loaded, hence this parameter.
 		pModule->pInterface = g_new0 (CairoDockModuleInterface, 1);
 		pModule->pInterface->initModule = _on_init_module;
 		pModule->pInterface->stopModule = cd_dbus_emit_on_stop_module;
@@ -214,11 +214,13 @@ gboolean cd_dbus_register_module_in_dir (const gchar *cModuleName, const gchar *
 	
 	gboolean bMultiInstance = g_key_file_get_boolean (pKeyFile, "Register", "multi-instance", NULL);  // false if not specified
 	
+	gboolean bActAsLauncher = g_key_file_get_boolean (pKeyFile, "Register", "act as launcher", NULL);  // false if not specified
+	
 	gchar *cShareDataDir = g_strdup_printf ("%s/%s", cThirdPartyPath, cModuleName);
 	
 	g_key_file_free (pKeyFile);
 	
-	gboolean bActivationOk = _cd_dbus_register_new_module (cModuleName, cDescription, cAuthor, cVersion, iCategory, cIconName, cShareDataDir, bMultiInstance);
+	gboolean bActivationOk = _cd_dbus_register_new_module (cModuleName, cDescription, cAuthor, cVersion, iCategory, cIconName, cShareDataDir, bMultiInstance, bActAsLauncher);
 	g_free (cDescription);
 	g_free (cAuthor);
 	g_free (cVersion);
