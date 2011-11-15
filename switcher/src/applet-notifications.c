@@ -122,16 +122,16 @@ static gboolean _cd_switcher_get_viewport_from_clic (Icon *pClickedIcon, int *iN
 		iMouseX -= dx;
 		iMouseY -= dy;
 		
-		if (iMouseX < 0 || iMouseX > w || iMouseY < 0 || iMouseY > h)
-			return FALSE;
-		/**if (iMouseX < 0)
+		/**if (iMouseX < 0 || iMouseX > w || iMouseY < 0 || iMouseY > h)
+			return FALSE;*/
+		if (iMouseX < 0)
 			iMouseX = 0;
 		if (iMouseY < 0)
 			iMouseY = 0;
 		if (iMouseX > w)
 			iMouseX = w;
 		if (iMouseY > h)
-			iMouseY = h;*/
+			iMouseY = h;
 		
 		int iNumLine = (int) (iMouseY / (h) * myData.switcher.iNbLines);
 		int iNumColumn = (int) (iMouseX / (w) * myData.switcher.iNbColumns);

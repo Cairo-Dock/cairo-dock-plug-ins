@@ -41,8 +41,15 @@ typedef enum {
 	SWICTHER_NB_ACTIONS
 	} SwitcherAction;
 
+	typedef enum {
+	SWICTHER_LAYOUT_AUTO,
+	SWICTHER_LAYOUT_SINGLE_LINE,
+	SWICTHER_NB_LAYOUTS
+	} SwitcherDesktopsLayout;
+
 struct _AppletConfig {
 	gboolean bCompactView;
+	SwitcherDesktopsLayout iDesktopsLayout;
 	gboolean bMapWallpaper;
 	gboolean bDrawWindows;
 	gboolean bDisplayNumDesk;

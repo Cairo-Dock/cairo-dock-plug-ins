@@ -33,6 +33,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bDrawWindows = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "Draw Windows", TRUE);
 	myConfig.bDisplayHiddenWindows = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "Draw hidden Windows", TRUE);
 	myConfig.iActionOnMiddleClick = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "action on click", 0);
+	myConfig.iDesktopsLayout = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "layout", SWICTHER_LAYOUT_AUTO);
 	
 	// couleur des lignes interieures
 	myConfig.iInLineSize = CD_CONFIG_GET_INTEGER("Configuration", "inlinesize");

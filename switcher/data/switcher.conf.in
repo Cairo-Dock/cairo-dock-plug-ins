@@ -105,6 +105,9 @@ frame_conf =
 #{All desktops will be drawn on the main icon. Otherwise a sub-dock will contain all desktops.}
 Vue Simple = true
 
+#l+[Automatic;On a single line] Desktops layout
+layout = 0
+
 #B Map wallpaper to icons?
 Map Wallpaper = true
 

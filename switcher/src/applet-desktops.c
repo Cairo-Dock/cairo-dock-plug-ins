@@ -86,29 +86,37 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 }
 void cd_switcher_compute_nb_lines_and_columns (void)
 {
-	if (g_desktopGeometry.iNbDesktops > 1)  // plusieurs bureaux simples (Metacity) ou etendus (Compiz avec 2 cubes).
+	if (myConfig.iDesktopsLayout == SWICTHER_LAYOUT_AUTO)
 	{
-		if (g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY > 1)  // plusieurs bureaux etendus (Compiz avec N cubes).
+		if (g_desktopGeometry.iNbDesktops > 1)  // plusieurs bureaux simples (Metacity) ou etendus (Compiz avec 2 cubes).
 		{
-			myData.switcher.iNbLines = g_desktopGeometry.iNbDesktops;  // on respecte l'agencement de l'utilisateur (groupement par bureau).
-			myData.switcher.iNbColumns = g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY;
+			if (g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY > 1)  // plusieurs bureaux etendus (Compiz avec N cubes).
+			{
+				myData.switcher.iNbLines = g_desktopGeometry.iNbDesktops;  // on respecte l'agencement de l'utilisateur (groupement par bureau).
+				myData.switcher.iNbColumns = g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY;
+			}
+			else  // plusieurs bureaux simples (Metacity)
+			{
+				_cd_switcher_get_best_agencement (g_desktopGeometry.iNbDesktops, &myData.switcher.iNbLines, &myData.switcher.iNbColumns);
+			}
 		}
-		else  // plusieurs bureaux simples (Metacity)
+		else  // un seul bureau etendu.
 		{
-			_cd_switcher_get_best_agencement (g_desktopGeometry.iNbDesktops, &myData.switcher.iNbLines, &myData.switcher.iNbColumns);
+			if (g_desktopGeometry.iNbViewportY > 1)  // desktop wall.
+			{
+				myData.switcher.iNbLines = g_desktopGeometry.iNbViewportY;  // on respecte l'agencement de l'utilisateur.
+				myData.switcher.iNbColumns = g_desktopGeometry.iNbViewportX;
+			}
+			else  // cube.
+			{
+				_cd_switcher_get_best_agencement (g_desktopGeometry.iNbViewportX, &myData.switcher.iNbLines, &myData.switcher.iNbColumns);
+			}
 		}
 	}
-	else  // un seul bureau etendu.
+	else  // force the layout on N lines.
 	{
-		if (g_desktopGeometry.iNbViewportY > 1)  // desktop wall.
-		{
-			myData.switcher.iNbLines = g_desktopGeometry.iNbViewportY;  // on respecte l'agencement de l'utilisateur.
-			myData.switcher.iNbColumns = g_desktopGeometry.iNbViewportX;
-		}
-		else  // cube.
-		{
-			_cd_switcher_get_best_agencement (g_desktopGeometry.iNbViewportX, &myData.switcher.iNbLines, &myData.switcher.iNbColumns);
-		}
+		myData.switcher.iNbLines = myConfig.iDesktopsLayout;  // single-line, 2-lines, etc. Note: currently the config window only gives us access to the "single-line" choice, we might add more.
+		myData.switcher.iNbColumns = ceil ((double) g_desktopGeometry.iNbDesktops * g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY / myData.switcher.iNbLines);
 	}
 	myData.iPrevIndexHovered = -1;  // cela invalide le dernier bureau survole.
 }
