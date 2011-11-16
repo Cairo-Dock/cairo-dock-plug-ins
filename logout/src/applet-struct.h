@@ -44,13 +44,12 @@ typedef enum {
 struct _AppletConfig {
 	gchar *cUserAction;
 	gchar *cUserAction2;
-	CDActionsEnum iActionOnClick;
+	CDActionsEnum iActionOnShortkey;
 	CDActionsEnum iActionOnMiddleClick;
 	gint iShutdownTime;  // time_t
 	gchar *cEmblemPath;
 	gchar *cDefaultLabel;
 	gchar *cShortkey;
-	gchar *cShortkey2;
 	} ;
 
 typedef struct {
@@ -58,6 +57,7 @@ typedef struct {
 	gboolean bCanSuspend;
 	gboolean bCanStop;
 	gboolean bCanRestart;
+	gboolean bHasGuestAccount;
 	} CDSharedMemory;
 
 struct _AppletData {
@@ -70,8 +70,9 @@ struct _AppletData {
 	gboolean bCanSuspend;
 	gboolean bCanStop;
 	gboolean bCanRestart;
+	gboolean bHasGuestAccount;
 	CairoKeyBinding *pKeyBinding;
-	CairoKeyBinding *pKeyBinding2;
+	GList *pUserList;
 	} ;
 
 #endif

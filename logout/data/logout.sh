@@ -13,7 +13,7 @@ if test -n "$gdm_proc"; then
 fi
 
 # if the display manager couldn't be found, look for an endless sleep (likely to be the last process of the session), and kill it.
-sleep_proc=`ps -ef | grep sleep | head -1`
+sleep_proc=`ps -ef | grep sleep | grep -v grep | head -1`
 if test -n "$sleep_proc"; then
 	sleep_time=`echo $sleep_proc | sed "s/.*sleep//g"`
 	if test $sleep_time -gt 3600; then

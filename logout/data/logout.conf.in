@@ -97,27 +97,25 @@ fg desklet =
 #e+[0;1] Foreground tansparency:
 fg alpha = 1
 
+
 #[gtk-preferences]
 [Configuration]
 
 #F[Action;gtk-execute]
 frame_action=
 
-#l- [Log out;Shut down;Lock screen] Action on left-click:
-click=1
-
-#k Shortkey to this action:
-shortkey = <Control><Alt>F12
+#l- [Log out;Shut down;Lock screen] Action on middle-click:
+middle-click = 2
 
 #v
 sep_act =
 
-
-#l- [Log out;Shut down;Lock screen] Action on middle-click:
-middle-click=0
+#l- [Log out;Shut down;Lock screen] Action on shortkey:
+shortkey action = 2
 
 #k Shortkey to this action:
-shortkey2 = <Super>L
+shortkey = <Super>L
+
 
 #F[Commands;gtk-preferences]
 frame_comm=
@@ -131,6 +129,7 @@ user action =
 user action2 =
 
 shutdown time = 0
+
 
 #X[Customisation;gtk-dialog-info]
 frame_perso =

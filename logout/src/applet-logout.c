@@ -29,12 +29,21 @@
 #include "applet-logout.h"
 
 #define GUEST_SESSION_LAUNCHER "/usr/share/gdm/guest-session/guest-session-launch"
+static void cd_logout_switch_to_user (const gchar *cUser);
+static void cd_logout_switch_to_guest (void);
+static gboolean cd_logout_switch_to_greeter (void);
 
+/*
+ck -> GetCurrentSession -> session -> GetSeatId -> seat -> CanActivateSessions
+ck -> CanRestart, CanStop
+$XDG_SEAT_PATH -> org.freedesktop.DisplayManager.Seat -> Get HasGuestAccount
+get users -> build sub-menu + guest -> switch to user/guest
+stop, restart, close session, switch to user ({users}, guest), lock, schedule stop
+*/
   ////////////////////////////
  /// SESSION-LESS ACTIONS ///
 ////////////////////////////
 
-static void _display_dialog (void);
 static void _display_menu (void);
 
 static void _cd_logout_check_capabilities_async (CDSharedMemory *pSharedMemory)
@@ -89,6 +98,17 @@ static void _cd_logout_check_capabilities_async (CDSharedMemory *pSharedMemory)
 		return;
 	}
 	g_object_unref (pProxy);
+	
+	// get capabilities from DisplayManager
+	const gchar *seat = g_getenv ("XDG_SEAT_PATH");
+	if (seat)  // else, we could possibly get it by: ck -> GetCurrentSession -> session -> GetSeatId
+	{
+		pProxy = cairo_dock_create_new_system_proxy (
+			"org.freedesktop.DisplayManager",
+			seat,
+			DBUS_INTERFACE_PROPERTIES);
+		pSharedMemory->bHasGuestAccount = cairo_dock_dbus_get_property_as_boolean (pProxy, "org.freedesktop.DisplayManager.Seat", "HasGuestAccount");
+	}
 }
 
 static gboolean _cd_logout_got_capabilities (CDSharedMemory *pSharedMemory)
@@ -101,13 +121,13 @@ static gboolean _cd_logout_got_capabilities (CDSharedMemory *pSharedMemory)
 	myData.bCanSuspend = pSharedMemory->bCanSuspend;
 	myData.bCanRestart = pSharedMemory->bCanRestart;
 	myData.bCanStop = pSharedMemory->bCanStop;
-	cd_debug ("capabilities: %d; %d; %d; %d", myData.bCanHibernate, myData.bCanSuspend, myData.bCanRestart, myData.bCanStop);
+	myData.bHasGuestAccount = pSharedMemory->bHasGuestAccount;
+	cd_debug ("capabilities: %d; %d; %d; %d; %d", myData.bCanHibernate, myData.bCanSuspend, myData.bCanRestart, myData.bCanStop, myData.bHasGuestAccount);
 	
 	// display the menu that has been asked beforehand.
-	//_display_dialog ();
 	_display_menu ();
 	
-	// sayonara the task.
+	// sayonara task-san ^^
 	cairo_dock_discard_task (myData.pTask);
 	myData.pTask = NULL;
 	
@@ -131,7 +151,6 @@ void cd_logout_display_actions (void)
 	}
 	else
 	{
-		//_display_dialog ();
 		_display_menu ();
 	}
 }
@@ -190,130 +209,35 @@ static void on_select_action (GtkButton *button, gpointer data)
 			_upower_action (FALSE);
 		break;
 		case CD_LOG_OUT:
-			cairo_dock_launch_command (MY_APPLET_SHARE_DATA_DIR"/logout.sh");
+			if (! cd_logout_switch_to_greeter ())
+				cairo_dock_launch_command (MY_APPLET_SHARE_DATA_DIR"/logout.sh");
 		break;
 		default:  // can't happen
 		break;
 	}
 }
 
-/**static GtkWidget *_make_image (const gchar *cImage, int iSize)
+typedef struct {
+	gchar *cUserName;
+	gchar *cIconFile;
+} CDUser;
+static void _free_user (CDUser *pUser)
 {
-	GtkWidget *pImage = NULL;
-	if (strncmp (cImage, "gtk-", 4) == 0)
-	{
-		if (iSize >= 48)
-			iSize = GTK_ICON_SIZE_DIALOG;
-		else if (iSize >= 32)
-			iSize = GTK_ICON_SIZE_LARGE_TOOLBAR;
-		else
-			iSize = GTK_ICON_SIZE_BUTTON;
-		pImage = gtk_image_new_from_stock (cImage, iSize);
-	}
-	else
-	{
-		gchar *cIconPath = NULL;
-		if (*cImage != '/')
-		{
-			cIconPath = cairo_dock_search_icon_s_path (cImage);
-			if (cIconPath == NULL)
-			{
-				cIconPath = g_strconcat (MY_APPLET_SHARE_DATA_DIR"/", cImage, NULL);
-			}
-		}
-		GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cIconPath ? cIconPath : cImage, iSize, iSize, NULL);
-		g_free (cIconPath);
-		if (pixbuf != NULL)
-		{
-			pImage = gtk_image_new_from_pixbuf (pixbuf);
-			gdk_pixbuf_unref (pixbuf);
-		}
-	}
-	return pImage;
+	g_free (pUser->cUserName);
+	g_free (pUser->cIconFile);
+	g_free (pUser);
 }
-
-static GtkWidget *_make_button (const gchar *cLabel, const gchar *cImage, CDCommandsEnum iAction)
+static void _switch_to_user (GtkMenuItem *menu_item, gchar *cUserName)
 {
-	GtkWidget *pButton = gtk_button_new_with_label (cLabel);
-	
-	GtkWidget *pImage = _make_image (cImage, 32);
-	if (pImage != NULL)
+	if (cUserName != NULL)
 	{
-		gtk_button_set_image (GTK_BUTTON (pButton), pImage);
+		cd_logout_switch_to_user (cUserName);
 	}
-	
-	g_signal_connect (G_OBJECT (pButton), "clicked", G_CALLBACK(on_select_action), GINT_TO_POINTER (iAction));
-	
-	cairo_dock_set_dialog_widget_bg_color (GTK_WIDGET (pButton));
-	cairo_dock_set_dialog_widget_text_color (GTK_WIDGET (pButton));
-	
-	GdkColor color;
-	color.red = myDialogsParam.dialogTextDescription.fColorStart[0] * 65535;
-	color.green = myDialogsParam.dialogTextDescription.fColorStart[1] * 65535;
-	color.blue = myDialogsParam.dialogTextDescription.fColorStart[2] * 65535;
-	gtk_widget_modify_text (pButton, GTK_STATE_NORMAL, &color);
-	
-	return pButton;
+	else  // guest
+	{
+		cd_logout_switch_to_guest ();
+	}
 }
-
-static void _display_dialog (void)
-{
-	GtkWidget *pInteractiveWidget = gtk_table_new (2,
-		3,
-		TRUE);  // 2 lines, 3 columns
-	GtkWidget *pButton;
-	
-	pButton = _make_button (D_("Shut down"), GTK_STOCK_QUIT, CD_STOP);  // system-shutdown
-	gtk_table_attach_defaults (GTK_TABLE (pInteractiveWidget),
-		pButton,
-		0, 0+1,
-		0, 0+1);
-	gtk_widget_grab_focus (pButton);
-	if (!myData.bCanStop)
-		gtk_widget_set_sensitive (pButton, FALSE);
-	
-	pButton = _make_button (D_("Restart"), GTK_STOCK_REFRESH, CD_RESTART);  // system-restart
-	gtk_table_attach_defaults (GTK_TABLE (pInteractiveWidget),
-		pButton,
-		1, 1+1,
-		0, 0+1);
-	if (!myData.bCanRestart)
-		gtk_widget_set_sensitive (pButton, FALSE);
-	
-	pButton = _make_button (D_("Hibernate"), "/usr/share/icons/Humanity/actions/48/sleep.svg", CD_HIBERNATE);  // system-hibernate
-	gtk_table_attach_defaults (GTK_TABLE (pInteractiveWidget),
-		pButton,	
-		0, 0+1,
-		1, 1+1);
-	if (!myData.bCanHibernate)
-		gtk_widget_set_sensitive (pButton, FALSE);
-	
-	pButton = _make_button (D_("Suspend"), "/usr/share/icons/Humanity/actions/48/stock_media-pause.svg", CD_SUSPEND);  // system-suspend
-	gtk_table_attach_defaults (GTK_TABLE (pInteractiveWidget),
-		pButton,
-		1, 1+1,
-		1, 1+1);
-	if (!myData.bCanSuspend)
-		gtk_widget_set_sensitive (pButton, FALSE);
-
-	pButton = _make_button (D_("Log out"), "/usr/share/icons/Humanity/actions/48/system-log-out.svg", 4);  // system-switch-user
-	gtk_table_attach_defaults (GTK_TABLE (pInteractiveWidget),
-		pButton,
-		2, 2+1,
-		1, 1+1);
-	
-	cairo_dock_show_dialog_full (D_("Log out"),
-		myIcon,
-		myContainer,
-		0,
-		"same icon",
-		pInteractiveWidget,
-		NULL,
-		NULL,
-		NULL);
-}
-*/
-
 static GtkWidget *_build_menu (void)
 {
 	GtkWidget *pMenu = gtk_menu_new ();
@@ -344,14 +268,36 @@ static GtkWidget *_build_menu (void)
 		gtk_widget_set_tooltip_text (pMenuItem, D_("Close your session and allow to open a new one."));
 	}
 	
+	if (myData.pUserList != NULL)  // refresh the users list (we could listen for the UserAdded,UserDeleted, UserChanged signals too).
+	{
+		g_list_foreach (myData.pUserList, (GFunc)_free_user, NULL);
+		g_list_free (myData.pUserList);
+	}
+	myData.pUserList = cd_logout_get_users_list ();
+	if (myData.pUserList != NULL && (myData.bHasGuestAccount || myData.pUserList->next != NULL))  // at least 2 users
+	{
+		GtkWidget *pUsersSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Switch user"), pMenu, GTK_STOCK_JUMP_TO);
+		
+		const gchar *cCurrentUser = g_getenv ("USER");
+		CDUser *pUser;
+		GList *u;
+		for (u = myData.pUserList; u != NULL; u = u->next)
+		{
+			pUser = u->data;
+			pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pUser->cUserName, pUser->cIconFile, _switch_to_user, pUsersSubMenu, pUser->cUserName);
+			if (cCurrentUser && strcmp (cCurrentUser, pUser->cUserName) == 0)
+				gtk_widget_set_sensitive (pMenuItem, FALSE);
+		}
+		
+		if (myData.bHasGuestAccount)
+		{
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Guest session"), NULL, _switch_to_user, pUsersSubMenu, NULL);  // NULL will mean "guest"
+		}
+	}
+	
 	CD_APPLET_ADD_SEPARATOR_IN_MENU (pMenu);
 	
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Lock screen"), MY_APPLET_SHARE_DATA_DIR"/locked.svg", cairo_dock_fm_lock_screen, pMenu);
-	
-	if (cd_logout_have_guest_session ())  // seems not very common yet, so we only add it if it exists.
-	{
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Guest session"), MY_APPLET_SHARE_DATA_DIR"/system-guest.svg", cd_logout_launch_guest_session, pMenu);
-	}
 	
 	if (myData.bCanStop)
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Program an automatic shut-down"), MY_APPLET_SHARE_DATA_DIR"/icon-scheduling.svg", cd_logout_program_shutdown, pMenu);
@@ -506,34 +452,169 @@ void cd_logout_check_reboot_required_init (void)
 }
 
 
-  /////////////////////
- /// GUEST SESSION ///
-/////////////////////
+  ///////////////
+ /// ACTIONS ///
+///////////////
 
-gboolean cd_logout_have_guest_session (void)
+void cd_logout_shut_down (void)
 {
-	gboolean has = FALSE;
-	if (g_getenv ("SESSION_MANAGER") == NULL)  // needs a session manager for this.
-		return FALSE;
-	if (g_file_test (GUEST_SESSION_LAUNCHER, G_FILE_TEST_EXISTS))
+	if (myData.bCanStop)
 	{
-		has = TRUE;
+		_console_kit_action ("Stop");
 	}
-	else
+	else if (myConfig.cUserAction)
 	{
-		gchar *cResult = cairo_dock_launch_command_sync ("which guest-session");
-		has = (cResult != NULL && *cResult == '/');
-		g_free (cResult);
+		cairo_dock_launch_command (myConfig.cUserAction);
 	}
-	return has;
+
 }
 
-void cd_logout_launch_guest_session (void)
+void cd_logout_restart (void)
 {
-	gchar *cResult = cairo_dock_launch_command_sync ("which guest-session");
-	if (cResult != NULL && *cResult == '/')
-		cairo_dock_launch_command ("guest-session");
-	else if (g_file_test (GUEST_SESSION_LAUNCHER, G_FILE_TEST_EXISTS))
-		cairo_dock_launch_command (GUEST_SESSION_LAUNCHER);
-	g_free (cResult);
+	if (myData.bCanRestart)
+	{
+		_console_kit_action ("Restart");
+	}
+	else if (myConfig.cUserAction2)
+	{
+		cairo_dock_launch_command (myConfig.cUserAction2);
+	}
+}
+
+void cd_logout_suspend (void)
+{
+	_upower_action (TRUE);
+}
+
+void cd_logout_hibernate (void)
+{
+	_upower_action (FALSE);
+}
+
+static void cd_logout_switch_to_user (const gchar *cUser)
+{
+	const gchar *seat = g_getenv ("XDG_SEAT_PATH");
+	if (seat)  // else, we could possibly get it by: ck -> GetCurrentSession -> session -> GetSeatId
+	{
+		GError *error = NULL;
+		DBusGProxy *pProxy = cairo_dock_create_new_system_proxy (
+			"org.freedesktop.DisplayManager",
+			seat,
+			"org.freedesktop.DisplayManager.Seat");
+		dbus_g_proxy_call (pProxy, "SwitchToUser", &error,
+			G_TYPE_STRING, cUser,
+			G_TYPE_STRING, "",  // session, but actually it can be NULL so why bother?
+			G_TYPE_INVALID,
+			G_TYPE_INVALID);
+		if (error)
+		{
+			cd_warning ("DisplayManager error: %s", error->message);
+			g_error_free (error);
+		}
+		g_object_unref (pProxy);
+	}
+}
+
+static void cd_logout_switch_to_guest (void)
+{
+	const gchar *seat = g_getenv ("XDG_SEAT_PATH");
+	if (seat)  // else, we could possibly get it by: ck -> GetCurrentSession -> session -> GetSeatId
+	{
+		GError *error = NULL;
+		DBusGProxy *pProxy = cairo_dock_create_new_system_proxy (
+			"org.freedesktop.DisplayManager",
+			seat,
+			"org.freedesktop.DisplayManager.Seat");
+		dbus_g_proxy_call (pProxy, "SwitchToGuest", &error,
+			G_TYPE_STRING, "",  // session, but actually it can be NULL so why bother?
+			G_TYPE_INVALID,
+			G_TYPE_INVALID);
+		if (error)
+		{
+			cd_warning ("DisplayManager error: %s", error->message);
+			g_error_free (error);
+		}
+		g_object_unref (pProxy);
+	}
+}
+
+static gboolean cd_logout_switch_to_greeter (void)
+{
+	const gchar *seat = g_getenv ("XDG_SEAT_PATH");
+	if (!seat)
+		return FALSE;
+	
+	GError *error = NULL;
+	DBusGProxy *pProxy = cairo_dock_create_new_system_proxy (
+		"org.freedesktop.DisplayManager",
+		seat,
+		"org.freedesktop.DisplayManager.Seat");
+	dbus_g_proxy_call (pProxy, "SwitchToGreeter", &error,
+		G_TYPE_INVALID,
+		G_TYPE_INVALID);
+	if (error)
+	{
+		cd_warning ("DisplayManager error: %s", error->message);
+		g_error_free (error);
+		g_object_unref (pProxy);
+		return FALSE;
+	}
+	g_object_unref (pProxy);
+	return TRUE;
+}
+
+
+  //////////////////
+ /// USERS LIST ///
+//////////////////
+
+static int _compare_user_name (CDUser *pUser1, CDUser *pUser2)
+{
+	return strcmp (pUser1->cUserName, pUser2->cUserName);
+}
+GList *cd_logout_get_users_list (void)
+{
+	// get the list of users
+	GError *error = NULL;
+	DBusGProxy *pProxy = cairo_dock_create_new_system_proxy ("org.freedesktop.Accounts",
+		"/org/freedesktop/Accounts",
+		"org.freedesktop.Accounts");
+	
+	GPtrArray *users =  NULL;
+	dbus_g_proxy_call (pProxy, "ListCachedUsers", &error,
+		G_TYPE_INVALID,
+		dbus_g_type_get_collection ("GPtrArray", DBUS_TYPE_G_OBJECT_PATH), &users,
+		G_TYPE_INVALID);
+	g_object_unref (pProxy);
+	
+	if (error)
+	{
+		cd_warning ("Accounts error: %s", error->message);
+		g_error_free (error);
+		return NULL;
+	}
+	g_return_val_if_fail (users != NULL, NULL);
+	
+	// foreach user, get its properties (name & icon).
+	CDUser *pUser;
+	GList *pUserList = NULL;
+	gchar *cUserObjectPath;
+	guint i;
+	for (i = 0; i < users->len; i++)
+	{
+		cUserObjectPath = g_ptr_array_index (users, i);
+		pProxy = cairo_dock_create_new_system_proxy ("org.freedesktop.Accounts",
+			cUserObjectPath,
+			DBUS_INTERFACE_PROPERTIES);
+		
+		pUser = g_new0 (CDUser, 1);
+		pUser->cUserName = cairo_dock_dbus_get_property_as_string (pProxy, "org.freedesktop.Accounts.User", "UserName");  // used to identify the user in SwitchToUser()
+		if (pUser->cUserName == NULL) // shouldn't happen
+			continue;
+		pUser->cIconFile = cairo_dock_dbus_get_property_as_string (pProxy, "org.freedesktop.Accounts.User", "IconFile");
+		pUserList = g_list_insert_sorted (pUserList, pUser, (GCompareFunc)_compare_user_name);
+		
+		g_object_unref (pProxy);
+	}
+	return pUserList;
 }

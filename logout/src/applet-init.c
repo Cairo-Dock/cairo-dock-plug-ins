@@ -63,14 +63,9 @@ CD_APPLET_INIT_BEGIN
 	// shortkey
 	
 	myData.pKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortkey,
-		D_(s_cShortkeyDescription[myConfig.iActionOnClick]),
+		D_(s_cShortkeyDescription[myConfig.iActionOnShortkey]),
 		"Configuration", "shortkey",
 		(CDBindkeyHandler) cd_logout_on_keybinding_pull);
-	
-	myData.pKeyBinding2 = CD_APPLET_BIND_KEY (myConfig.cShortkey2,
-		D_(s_cShortkeyDescription[myConfig.iActionOnMiddleClick]),
-		"Configuration", "shortkey2",
-		(CDBindkeyHandler) cd_logout_on_keybinding_pull2);
 	
 	//\_______________ On (re)lance l'eteignage programme.
 	cd_logout_set_timer ();
@@ -88,7 +83,6 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	
 	cd_keybinder_unbind (myData.pKeyBinding);
-	cd_keybinder_unbind (myData.pKeyBinding2);
 	
 	CD_APPLET_MANAGE_APPLICATION (NULL);  // on relache le controle de l'icone de la fenetre.
 	
@@ -114,7 +108,6 @@ CD_APPLET_RELOAD_BEGIN
 		// the icon can be changed.
 		cd_logout_check_reboot_required_init ();
 		
-		cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey, D_(s_cShortkeyDescription[myConfig.iActionOnClick]));
-		cd_keybinder_rebind (myData.pKeyBinding2, myConfig.cShortkey2, D_(s_cShortkeyDescription[myConfig.iActionOnMiddleClick]));
+		cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey, D_(s_cShortkeyDescription[myConfig.iActionOnShortkey]));
 	}
 CD_APPLET_RELOAD_END
