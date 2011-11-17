@@ -540,7 +540,7 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 	Icon* icon;
 	GList* ic, *pointed_ic=NULL;
 	int x=0, y=0;  // index of the current icon on the grid.
-	int X, Y;
+	int X, Y, Ny;
 	double sep_offset[2] = {0, 0};
 	if (! pDock->container.bDirectionUp)
 	{
@@ -585,11 +585,13 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 			{
 				X = x;
 				Y = y;
+				Ny = nRowsY;
 			}
 			else
 			{
 				X = y;
 				Y = x;
+				Ny = nRowsX;
 			}
 			// on en deduit la position au repos.
 			icon->fX = X_BORDER_SPACE + .5*my_diapo_simple_iconGapX + (icon->fWidth + my_diapo_simple_iconGapX) * X + sep_offset[CAIRO_DOCK_HORIZONTAL];
@@ -597,7 +599,7 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 				icon->fY = iOffsetY + (pDock->iMaxIconHeight + my_diapo_simple_iconGapY) * Y + sep_offset[CAIRO_DOCK_VERTICAL];
 			else
 			{
-				icon->fY = pDock->container.iHeight - iOffsetY - icon->fHeight - (nRowsY - 1 - Y) * (pDock->iMaxIconHeight + my_diapo_simple_iconGapY) + sep_offset[CAIRO_DOCK_VERTICAL];
+				icon->fY = pDock->container.iHeight - iOffsetY - icon->fHeight - (Ny - 1 - Y) * (pDock->iMaxIconHeight + my_diapo_simple_iconGapY) + sep_offset[CAIRO_DOCK_VERTICAL];
 			}
 
 			// on en deduit le zoom par rapport a la position de la souris.
