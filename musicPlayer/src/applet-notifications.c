@@ -382,12 +382,22 @@ CD_APPLET_ON_DROP_DATA_END
 CD_APPLET_ON_SCROLL_BEGIN
 	if (myData.pCurrentHandler != NULL)
 	{
-		if (CD_APPLET_SCROLL_DOWN) {
-  			_cd_musicplayer_next (NULL, NULL);
+		if (myConfig.bNextPrevOnScroll)
+		{
+			if (CD_APPLET_SCROLL_DOWN)
+  				_cd_musicplayer_next (NULL, NULL);
+			else if (CD_APPLET_SCROLL_UP)
+  				_cd_musicplayer_prev (NULL, NULL);
 		}
-		else if (CD_APPLET_SCROLL_UP) {
-  			_cd_musicplayer_prev (NULL, NULL);
+		else if (myData.pCurrentHandler->iPlayerControls & PLAYER_VOLUME)
+		{
+			if (CD_APPLET_SCROLL_DOWN)
+				myData.pCurrentHandler->control (PLAYER_VOLUME, "down");
+			else if (CD_APPLET_SCROLL_UP)
+  				myData.pCurrentHandler->control (PLAYER_VOLUME, "up");
 		}
+		else
+			cd_warning ("can't control the volume with the player '%s'", myData.pCurrentHandler->name);
 	}
 	else
 	{

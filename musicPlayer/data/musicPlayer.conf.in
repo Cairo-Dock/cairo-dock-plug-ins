@@ -114,6 +114,9 @@ inhibate appli = true
 #l[Play/Pause on click, Next on middle-click;Show/Hide player on click, Play/Pause on middle-click] Actions on click and middle-click :
 pause on click = 1
 
+#l[Next/previous song;Control the volume] Actions on scroll up/down:
+scrolling = 0
+
 
 #F[Action on music change;gtk-preferences]
 frame_info=

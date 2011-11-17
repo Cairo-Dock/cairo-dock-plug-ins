@@ -302,7 +302,6 @@ static void cd_audacious_control (MyPlayerControl pControl, const char* song)
 		case PLAYER_SHUFFLE :
 		case PLAYER_REPEAT :
 		{
-			
 			DBusGProxy *dbus_proxy_atheme = cairo_dock_create_new_session_proxy (
 				"org.atheme.audacious",
 				"/org/atheme/audacious",
@@ -343,6 +342,22 @@ static void cd_audacious_control (MyPlayerControl pControl, const char* song)
 				G_TYPE_BOOLEAN, FALSE,
 				G_TYPE_INVALID);
 		break;
+		
+		case PLAYER_VOLUME :
+		{
+			int iVolume = cd_mpris_get_volume ();  // [0, 100]
+			if (song && strcmp (song, "up") == 0)
+				iVolume += 4;
+			else
+				iVolume -= 4;
+			
+			if (iVolume > 100)
+				iVolume = 100;
+			else if (iVolume < 0)
+			iVolume = 0;
+			
+			cd_mpris_set_volume (iVolume);
+		}
 		
 		default :
 			return;
@@ -426,7 +441,7 @@ void cd_musicplayer_register_audacious_handler (void)
 	pHandler->launch = "audacious";
 	pHandler->cMprisService = "org.mpris.audacious";
 	pHandler->bSeparateAcquisition = FALSE;
-	pHandler->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_STOP | PLAYER_JUMPBOX | PLAYER_SHUFFLE | PLAYER_REPEAT | PLAYER_ENQUEUE;
+	pHandler->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_STOP | PLAYER_JUMPBOX | PLAYER_SHUFFLE | PLAYER_REPEAT | PLAYER_ENQUEUE | PLAYER_VOLUME;
 	pHandler->iLevel = PLAYER_GOOD;
 	
 	pHandler->cMprisService = "org.mpris.audacious";

@@ -44,6 +44,7 @@ typedef enum {
 	PLAYER_REPEAT		= 1<<6,
 	PLAYER_ENQUEUE		= 1<<7,
 	PLAYER_RATE			= 1<<8,
+	PLAYER_VOLUME		= 1<<9
 } MyPlayerControl;
 
 typedef enum {
@@ -116,6 +117,7 @@ struct _AppletConfig {
 	gboolean bOpenglThemes;
 	
 	gboolean bPauseOnClick;
+	gboolean bNextPrevOnScroll;
 };
 
 struct _AppletData {

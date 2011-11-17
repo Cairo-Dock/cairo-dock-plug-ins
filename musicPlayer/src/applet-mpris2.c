@@ -190,6 +190,11 @@ static void cd_mpris2_get_time_elapsed (void)
 	}
 }
 
+static int cd_mpris2_get_volume (void)
+{
+	return cairo_dock_dbus_get_property_as_int (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "Volume");
+}
+
 static gboolean _extract_metadata (GHashTable *pMetadata)
 {
 	gboolean bTrackHasChanged = FALSE;
@@ -512,6 +517,22 @@ static void cd_mpris2_control (MyPlayerControl pControl, const char* song)
 		}
 		break;
 		
+		case PLAYER_VOLUME :
+		{
+			int iVolume = cd_mpris2_get_volume ();  // [0, 100]
+			if (song && strcmp (song, "up") == 0)
+				iVolume += 2;
+			else
+				iVolume -= 2;
+			cd_debug ("volume <- %d\n", iVolume);
+			dbus_g_proxy_call_no_reply (myData.dbus_proxy_player, "Set",
+				G_TYPE_INVALID,
+				G_TYPE_STRING, "org.mpris.MediaPlayer2.Player",
+				G_TYPE_STRING, "Volume",
+				G_TYPE_INT, iVolume,
+				G_TYPE_INVALID);
+		}
+		
 		default :
 		break;
 	}
@@ -632,6 +653,6 @@ void cd_musicplayer_register_mpris2_handler (void)
 	
 	pHandler->appclass = NULL;  // will be filled later.
 	pHandler->launch = NULL;  // will be filled later.
-	pHandler->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_STOP | PLAYER_SHUFFLE | PLAYER_REPEAT | PLAYER_ENQUEUE;
+	pHandler->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_STOP | PLAYER_SHUFFLE | PLAYER_REPEAT | PLAYER_ENQUEUE | PLAYER_VOLUME;
 	cd_musicplayer_register_my_handler (pHandler);
 }

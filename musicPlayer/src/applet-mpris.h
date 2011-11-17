@@ -30,6 +30,9 @@ void cd_mpris_getPlaying (void);  // used by Audacious.
 
 void cd_mpris_get_time_elapsed (void);  // used by Audacious too.
 
+int cd_mpris_get_volume (void);  // used by Audacious too.
+void cd_mpris_set_volume (int iVolume);  // used by Audacious too.
+
 
 MusicPlayerHandler *cd_mpris_new_handler (void);
 

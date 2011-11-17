@@ -262,6 +262,25 @@ void cd_mpris_getPlaying_async (void)
 		G_TYPE_INVALID);
 }
 
+int cd_mpris_get_volume (void)
+{
+	GError *erreur = NULL;
+	int iVolume;
+	dbus_g_proxy_call (myData.dbus_proxy_player, "VolumeGet", &erreur,
+		G_TYPE_INVALID,
+		G_TYPE_INT, &iVolume,
+		G_TYPE_INVALID);
+	return iVolume;
+}
+
+void cd_mpris_set_volume (int iVolume)
+{
+	dbus_g_proxy_call_no_reply (myData.dbus_proxy_player, "VolumeSet",
+		G_TYPE_INT, iVolume,
+		G_TYPE_INVALID,
+		G_TYPE_INVALID);
+}
+
 /* Teste si MP joue de la musique ou non
  */
 void cd_mpris_getPlaying (void)  // sync version, used by Audacious.
@@ -687,6 +706,22 @@ static void cd_mpris_control (MyPlayerControl pControl, const char* song)
 				G_TYPE_INVALID);
 		break;
 		
+		case PLAYER_VOLUME :
+		{
+			int iVolume = cd_mpris_get_volume ();  // [0, 100]
+			if (song && strcmp (song, "up") == 0)
+				iVolume += 4;
+			else
+				iVolume -= 4;
+			
+			if (iVolume > 100)
+				iVolume = 100;
+			else if (iVolume < 0)
+			iVolume = 0;
+			
+			cd_mpris_set_volume (iVolume);
+		}
+		
 		default :
 		break;
 	}
@@ -757,7 +792,7 @@ MusicPlayerHandler *cd_mpris_new_handler (void)
 	pHandler->stop = cd_mpris_stop;
 	pHandler->start = cd_mpris_start;
 	pHandler->control = cd_mpris_control;
-	pHandler->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_STOP | PLAYER_SHUFFLE | PLAYER_REPEAT | PLAYER_ENQUEUE;
+	pHandler->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_STOP | PLAYER_SHUFFLE | PLAYER_REPEAT | PLAYER_ENQUEUE | PLAYER_VOLUME;
 	pHandler->bSeparateAcquisition = FALSE;
 	pHandler->iLevel = PLAYER_GOOD;
 	

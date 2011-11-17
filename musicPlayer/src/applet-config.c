@@ -50,6 +50,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bPauseOnClick = (CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "pause on click", 1) == 0);  // c'est une liste numerotee de 2 elements.
 	if (!myConfig.bPauseOnClick)  // pour pouvoir agir sur la fenetre, il faut voler l'appli (plus tellement vrai avec MPRIS2...).
 		myConfig.bStealTaskBarIcon = TRUE;
+	myConfig.bNextPrevOnScroll = (CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "scrolling", 0) == 0);  // c'est une liste numerotee de 2 elements.
 	
 	//\_______________ On on recupere le theme choisi.
 	if (myConfig.bOpenglThemes)
