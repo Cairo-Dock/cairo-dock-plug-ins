@@ -28,23 +28,30 @@
 #include "applet-struct.h"
 #include "applet-logout.h"
 
-#define GUEST_SESSION_LAUNCHER "/usr/share/gdm/guest-session/guest-session-launch"
+
+typedef struct {
+	gchar *cUserName;
+	gchar *cIconFile;
+} CDUser;
+
+static void cd_logout_shut_down (void);
+static void cd_logout_restart (void);
+static void cd_logout_suspend (void);
+static void cd_logout_hibernate (void);
+static void cd_logout_close_session (void);
 static void cd_logout_switch_to_user (const gchar *cUser);
 static void cd_logout_switch_to_guest (void);
 static gboolean cd_logout_switch_to_greeter (void);
 
-/*
-ck -> GetCurrentSession -> session -> GetSeatId -> seat -> CanActivateSessions
-ck -> CanRestart, CanStop
-$XDG_SEAT_PATH -> org.freedesktop.DisplayManager.Seat -> Get HasGuestAccount
-get users -> build sub-menu + guest -> switch to user/guest
-stop, restart, close session, switch to user ({users}, guest), lock, schedule stop
-*/
-  ////////////////////////////
- /// SESSION-LESS ACTIONS ///
-////////////////////////////
+static void _free_user (CDUser *pUser);
+static GList *cd_logout_get_users_list (void);
 
 static void _display_menu (void);
+
+
+  ////////////////////
+ /// CAPABILITIES ///
+////////////////////
 
 static void _cd_logout_check_capabilities_async (CDSharedMemory *pSharedMemory)
 {
@@ -156,77 +163,10 @@ void cd_logout_display_actions (void)
 }
 
 
-static void _console_kit_action (const gchar *cAction)
-{
-	GError *error = NULL;
-	DBusGProxy *pProxy = cairo_dock_create_new_system_proxy (
-		"org.freedesktop.ConsoleKit",
-		"/org/freedesktop/ConsoleKit/Manager",
-		"org.freedesktop.ConsoleKit.Manager");
-	
-	dbus_g_proxy_call (pProxy, cAction, &error,
-		G_TYPE_INVALID,
-		G_TYPE_INVALID);
-	if (error)
-	{
-		cd_warning ("ConsoleKit error: %s", error->message);
-		g_error_free (error);
-	}
-	g_object_unref (pProxy);
-}
-static void _upower_action (gboolean bSuspend)
-{
-	#ifdef CD_UPOWER_AVAILABLE
-	UpClient *pUPowerClient = up_client_new ();
-	if (bSuspend)
-		up_client_suspend_sync (pUPowerClient, NULL, NULL);
-	else
-		up_client_hibernate_sync (pUPowerClient, NULL, NULL);
-	g_object_unref (pUPowerClient);
-	#endif
-}
-static void on_select_action (GtkButton *button, gpointer data)
-{
-	CDCommandsEnum iAction = GPOINTER_TO_INT (data);
-	switch (iAction)
-	{
-		case CD_RESTART:
-			if (myData.bCanRestart)
-				_console_kit_action ("Restart");
-			else if (myConfig.cUserAction)
-				cairo_dock_launch_command (myConfig.cUserAction);
-		break;
-		case CD_STOP:
-			if (myData.bCanStop)
-				_console_kit_action ("Stop");
-			else if (myConfig.cUserAction2)
-				cairo_dock_launch_command (myConfig.cUserAction2);
-		break;
-		case CD_SUSPEND:
-			_upower_action (TRUE);
-		break;
-		case CD_HIBERNATE:
-			_upower_action (FALSE);
-		break;
-		case CD_LOG_OUT:
-			if (! cd_logout_switch_to_greeter ())
-				cairo_dock_launch_command (MY_APPLET_SHARE_DATA_DIR"/logout.sh");
-		break;
-		default:  // can't happen
-		break;
-	}
-}
+  ////////////
+ /// MENU ///
+////////////
 
-typedef struct {
-	gchar *cUserName;
-	gchar *cIconFile;
-} CDUser;
-static void _free_user (CDUser *pUser)
-{
-	g_free (pUser->cUserName);
-	g_free (pUser->cIconFile);
-	g_free (pUser);
-}
 static void _switch_to_user (GtkMenuItem *menu_item, gchar *cUserName)
 {
 	if (cUserName != NULL)
@@ -244,27 +184,27 @@ static GtkWidget *_build_menu (void)
 	
 	GtkWidget *pMenuItem;
 	
-	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Shut down"), MY_APPLET_SHARE_DATA_DIR"/system-shutdown.svg", on_select_action, pMenu, GINT_TO_POINTER (CD_STOP));
-	if (!myData.bCanStop && ! myConfig.cUserAction && ! myConfig.cUserAction2)
+	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Shut down"), MY_APPLET_SHARE_DATA_DIR"/system-shutdown.svg", cd_logout_shut_down, pMenu);
+	if (!myData.bCanStop && ! myConfig.cUserAction2)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
-	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Restart"), MY_APPLET_SHARE_DATA_DIR"/system-restart.svg", on_select_action, pMenu, GINT_TO_POINTER (CD_RESTART));
-	if (!myData.bCanRestart && ! myConfig.cUserAction && ! myConfig.cUserAction2)
+	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Restart"), MY_APPLET_SHARE_DATA_DIR"/system-restart.svg", cd_logout_restart, pMenu);
+	if (!myData.bCanRestart)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
-	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Hibernate"), MY_APPLET_SHARE_DATA_DIR"/system-hibernate.svg", on_select_action, pMenu, GINT_TO_POINTER (CD_HIBERNATE));
+	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Hibernate"), MY_APPLET_SHARE_DATA_DIR"/system-hibernate.svg", cd_logout_hibernate, pMenu);
 	gtk_widget_set_tooltip_text (pMenuItem, D_("Your computer will not consume any energy."));
 	if (!myData.bCanHibernate)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
-	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Suspend"), MY_APPLET_SHARE_DATA_DIR"/system-suspend.svg", on_select_action, pMenu, GINT_TO_POINTER (CD_SUSPEND));
+	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Suspend"), MY_APPLET_SHARE_DATA_DIR"/system-suspend.svg", cd_logout_suspend, pMenu);
 	gtk_widget_set_tooltip_text (pMenuItem, D_("Your computer will still consume a small amount of energy."));
 	if (!myData.bCanSuspend)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
 	if (g_getenv ("SESSION_MANAGER") != NULL)  // needs a session manager for this.
 	{
-		pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Log out"), MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", on_select_action, pMenu, GINT_TO_POINTER (CD_LOG_OUT));
+		pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Log out"), MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", cd_logout_close_session, pMenu);
 		gtk_widget_set_tooltip_text (pMenuItem, D_("Close your session and allow to open a new one."));
 	}
 	
@@ -278,6 +218,7 @@ static GtkWidget *_build_menu (void)
 	{
 		GtkWidget *pUsersSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Switch user"), pMenu, GTK_STOCK_JUMP_TO);
 		
+		gboolean bFoundUser = FALSE;
 		const gchar *cCurrentUser = g_getenv ("USER");
 		CDUser *pUser;
 		GList *u;
@@ -286,10 +227,13 @@ static GtkWidget *_build_menu (void)
 			pUser = u->data;
 			pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pUser->cUserName, pUser->cIconFile, _switch_to_user, pUsersSubMenu, pUser->cUserName);
 			if (cCurrentUser && strcmp (cCurrentUser, pUser->cUserName) == 0)
+			{
+				bFoundUser = TRUE;
 				gtk_widget_set_sensitive (pMenuItem, FALSE);
+			}
 		}
 		
-		if (myData.bHasGuestAccount)
+		if (myData.bHasGuestAccount && bFoundUser)  // if we didn't find the user yet, it means we are the guest, so don't show this entry.
 		{
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Guest session"), NULL, _switch_to_user, pUsersSubMenu, NULL);  // NULL will mean "guest"
 		}
@@ -456,24 +400,54 @@ void cd_logout_check_reboot_required_init (void)
  /// ACTIONS ///
 ///////////////
 
+static void _console_kit_action (const gchar *cAction)
+{
+	GError *error = NULL;
+	DBusGProxy *pProxy = cairo_dock_create_new_system_proxy (
+		"org.freedesktop.ConsoleKit",
+		"/org/freedesktop/ConsoleKit/Manager",
+		"org.freedesktop.ConsoleKit.Manager");
+	
+	dbus_g_proxy_call (pProxy, cAction, &error,
+		G_TYPE_INVALID,
+		G_TYPE_INVALID);
+	if (error)
+	{
+		cd_warning ("ConsoleKit error: %s", error->message);
+		g_error_free (error);
+	}
+	g_object_unref (pProxy);
+}
+
+static void _upower_action (gboolean bSuspend)
+{
+	#ifdef CD_UPOWER_AVAILABLE
+	UpClient *pUPowerClient = up_client_new ();
+	if (bSuspend)
+		up_client_suspend_sync (pUPowerClient, NULL, NULL);
+	else
+		up_client_hibernate_sync (pUPowerClient, NULL, NULL);
+	g_object_unref (pUPowerClient);
+	#endif
+}
+
 void cd_logout_shut_down (void)
 {
 	if (myData.bCanStop)
 	{
-		_console_kit_action ("Stop");
+		_console_kit_action ("Stop");  // could use org.gnome.SessionManager.RequestShutdown
 	}
-	else if (myConfig.cUserAction)
+	else if (myConfig.cUserAction2)
 	{
-		cairo_dock_launch_command (myConfig.cUserAction);
+		cairo_dock_launch_command (myConfig.cUserAction2);
 	}
-
 }
 
 void cd_logout_restart (void)
 {
 	if (myData.bCanRestart)
 	{
-		_console_kit_action ("Restart");
+		_console_kit_action ("Restart");  // could use org.gnome.SessionManager.RequestReboot
 	}
 	else if (myConfig.cUserAction2)
 	{
@@ -489,6 +463,11 @@ void cd_logout_suspend (void)
 void cd_logout_hibernate (void)
 {
 	_upower_action (FALSE);
+}
+
+void cd_logout_close_session (void)  // could use org.gnome.SessionManager.Logout
+{
+	cairo_dock_launch_command (MY_APPLET_SHARE_DATA_DIR"/logout.sh");  // SwitchToGreeter will only show the greeter, we want to close the session
 }
 
 static void cd_logout_switch_to_user (const gchar *cUser)
@@ -538,7 +517,7 @@ static void cd_logout_switch_to_guest (void)
 	}
 }
 
-static gboolean cd_logout_switch_to_greeter (void)
+static gboolean cd_logout_switch_to_greeter (void)  // not really sure how to use it.
 {
 	const gchar *seat = g_getenv ("XDG_SEAT_PATH");
 	if (!seat)
@@ -567,6 +546,13 @@ static gboolean cd_logout_switch_to_greeter (void)
   //////////////////
  /// USERS LIST ///
 //////////////////
+
+static void _free_user (CDUser *pUser)
+{
+	g_free (pUser->cUserName);
+	g_free (pUser->cIconFile);
+	g_free (pUser);
+}
 
 static int _compare_user_name (CDUser *pUser1, CDUser *pUser2)
 {

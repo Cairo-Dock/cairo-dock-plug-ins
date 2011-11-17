@@ -29,21 +29,13 @@ typedef enum {
 	CD_LOGOUT=0,
 	CD_SHUTDOWN,
 	CD_LOCK_SCREEN,
+	CD_POP_UP_MENU,
 	CD_NB_ACTIONS
 	} CDActionsEnum;
 
-typedef enum {
-	CD_RESTART,
-	CD_STOP,
-	CD_SUSPEND,
-	CD_HIBERNATE,
-	CD_LOG_OUT,
-	CD_NB_COMMANDS
-	} CDCommandsEnum;
-
 struct _AppletConfig {
-	gchar *cUserAction;
-	gchar *cUserAction2;
+	gchar *cUserAction;  // custom logout command
+	gchar *cUserAction2;  // custom shutdown command
 	CDActionsEnum iActionOnShortkey;
 	CDActionsEnum iActionOnMiddleClick;
 	gint iShutdownTime;  // time_t
@@ -51,6 +43,7 @@ struct _AppletConfig {
 	gchar *cDefaultLabel;
 	gchar *cShortkey;
 	} ;
+
 
 typedef struct {
 	gboolean bCanHibernate;

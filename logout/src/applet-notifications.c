@@ -67,7 +67,6 @@ static inline void _execute_action (gint iAction)
 	switch (iAction)
 	{
 		case CD_LOGOUT:
-		default:
 			_logout ();
 		break;
 		case CD_SHUTDOWN:
@@ -75,6 +74,10 @@ static inline void _execute_action (gint iAction)
 		break;
 		case CD_LOCK_SCREEN:
 			cairo_dock_fm_lock_screen ();
+		break;
+		case CD_POP_UP_MENU:
+		default:
+			cd_logout_display_actions ();
 		break;
 	}
 }
@@ -85,8 +88,20 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
+static void cd_logout_manage_users (GtkMenuItem *menu_item, gchar *cUserName)
+{
+	GError * error = NULL;
+	if (! g_spawn_command_line_async("gnome-control-center user-accounts", &error))  // Gnome3
+	{
+		cd_warning ("Couldn't launch 'gnome-control-center user-accounts': %s", error->message);
+		g_error_free(error);
+	}  /// TODO: handle other DE ...
+}
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	
+	if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
+	{
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Manage users"), GTK_STOCK_EDIT, cd_logout_manage_users, CD_APPLET_MY_MENU);
+	}
 CD_APPLET_ON_BUILD_MENU_END
 
 

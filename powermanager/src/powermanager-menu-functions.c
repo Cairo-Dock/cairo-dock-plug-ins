@@ -51,10 +51,18 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (!bPowerPrefChecked)
 	{
 		bPowerPrefChecked = TRUE;
-		gchar *cResult = cairo_dock_launch_command_sync ("which gnome-power-preferences"); // not available on Gnome3 => gnome-control-center => Energy
-		/// => can't we open the control center on the Enery tab directly ?
-		if (cResult != NULL && *cResult == '/')  /// TODO: other DE...
-			cPowerPrefCmd = "gnome-power-preferences";
+		gchar *cResult = cairo_dock_launch_command_sync ("which gnome-control-center");  // Gnome3
+		if (cResult != NULL && *cResult == '/')
+		{
+			cPowerPrefCmd = "gnome-control-center power";
+		}
+		else
+		{
+			g_free (cResult);
+			cResult = cairo_dock_launch_command_sync ("which gnome-power-preferences");  // Gnome2
+			if (cResult != NULL && *cResult == '/')  /// TODO: other DE...
+				cPowerPrefCmd = "gnome-power-preferences";
+		}  /// TODO: handle other DE ...
 		g_free (cResult);
 	}
 	if (cPowerPrefCmd)

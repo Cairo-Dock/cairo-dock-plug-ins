@@ -36,7 +36,4 @@ void cd_logout_check_reboot_required (CairoDockFMEventType iEventType, const gch
 void cd_logout_check_reboot_required_init (void);
 
 
-GList *cd_logout_get_users_list (void);
-
-
 #endif

@@ -42,7 +42,25 @@ static void _select_group (GtkMenuItem *menu_item, gpointer data)
 }
 static void _open_keyboard_properties (GtkMenuItem *menu_item, gpointer data)
 {
-	cairo_dock_launch_command ("gnome-keyboard-properties");
+	const gchar *cCommand = NULL;
+	gchar *cResult = cairo_dock_launch_command_sync ("which gnome-control-center");  // Gnome3
+	if (cResult != NULL && *cResult == '/')
+	{
+		cCommand = "gnome-control-center keyboard";
+	}
+	else
+	{
+		g_free (cResult);
+		cResult = cairo_dock_launch_command_sync ("which gnome-keyboard-properties");  // Gnome2
+		if (cResult != NULL && *cResult == '/')
+			cCommand = "gnome-keyboard-properties";
+	}  /// TODO: handle other DE ...
+	g_free (cResult);
+	
+	if (cCommand)
+	{
+		cairo_dock_launch_command ("cCommand");
+	}
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	XklEngine *pEngine = xkl_engine_get_instance (cairo_dock_get_Xdisplay ());  // singleton.
