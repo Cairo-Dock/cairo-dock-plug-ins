@@ -70,7 +70,7 @@ static inline void _compute_icons_grid (CairoDesklet *pDesklet, CDSlideParameter
 	double w = pDesklet->container.iWidth - 2 * pSlide->fMargin;
 	double h = pDesklet->container.iHeight - 2 * pSlide->fMargin;
 	int dh = myIconsParam.iLabelSize;  // taille verticale ajoutee a chaque icone.
-	int dw = 2 * dh;  // taille horizontale ajoutee a chaque icone.
+	int dw = 0* 2 * dh;  // taille horizontale ajoutee a chaque icone.
 	int di = pSlide->iGapBetweenIcons;  // ecart entre 2 lignes/colonnes.
 	
 	int p, q;  // nombre de lignes et colonnes.

@@ -10,7 +10,7 @@ include (CheckSymbolExists)
 ########### project ###############
 
 project ("cairo-dock-plugins")
-set (VERSION "2.5.0.0alpha1")
+set (VERSION "3.0.0.0alpha1")
 
 add_definitions (-std=c99 -Wextra -Wwrite-strings -Wuninitialized -Werror-implicit-function-declaration -Wstrict-prototypes) # removed for stable versions: -Wstrict-prototypes #-Wunreachable-code -Wno-unused-parameter -Wall
 if (NOT ${CMAKE_BUILD_TYPE})
@@ -106,10 +106,9 @@ message (STATUS "Check dependancies...")
 message (STATUS "=====================")
 message ("")
 
-pkg_check_modules ("PACKAGE" REQUIRED "gtk+-2.0" "gthread-2.0" "cairo" "librsvg-2.0" "dbus-1" "dbus-glib-1" "libxml-2.0" "gtkglext-1.0")
-pkg_check_modules ("GLDI" REQUIRED "gldi")  # we don't want to link with gldi
+pkg_check_modules ("PACKAGE" REQUIRED "cairo" "librsvg-2.0" "dbus-1" "dbus-glib-1" "libxml-2.0")
+pkg_check_modules ("GLDI" REQUIRED "gldi")  # we don't want to link with gldi, so we check it separately.
 set (PACKAGE_INCLUDE_DIRS "${GLDI_INCLUDE_DIRS}")
-#message (STATUS "PACKAGE: ${PACKAGE_INCLUDE_DIRS}")
 
 #############    GLIB    #################
 pkg_check_modules (GLIB glib-2.0)
