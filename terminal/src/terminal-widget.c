@@ -29,6 +29,7 @@
 #include <gdk/gdkkeysyms.h>
 // gdk.h semble necessaire pour certains
 #include <gdk/gdk.h>
+#include <gdk/gdkx.h>
 
 #include <vte/vte.h>
 

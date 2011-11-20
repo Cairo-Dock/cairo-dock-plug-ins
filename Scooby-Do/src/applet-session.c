@@ -20,6 +20,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <gdk/gdkx.h>
+
 #include "applet-struct.h"
 #include "applet-search.h"
 #include "applet-listing.h"

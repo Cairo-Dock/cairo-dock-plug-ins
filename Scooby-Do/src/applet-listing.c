@@ -73,9 +73,7 @@ static gboolean on_expose_listing (GtkWidget *pWidget, GdkEventExpose *pExpose, 
 {
 	if (g_bUseOpenGL && pListing->container.glContext)
 	{
-		GdkGLContext *pGlContext = gtk_widget_get_gl_context (pWidget);
-		GdkGLDrawable *pGlDrawable = gtk_widget_get_gl_drawable (pWidget);
-		if (!gdk_gl_drawable_gl_begin (pGlDrawable, pGlContext))
+		if (! gldi_opengl_rendering_begin (CAIRO_CONTAINER (pListing)))
 			return FALSE;
 		
 		if (pExpose->area.x + pExpose->area.y != 0)
@@ -92,11 +90,7 @@ static gboolean on_expose_listing (GtkWidget *pWidget, GdkEventExpose *pExpose, 
 		
 		glDisable (GL_SCISSOR_TEST);
 		
-		if (gdk_gl_drawable_is_double_buffered (pGlDrawable))
-			gdk_gl_drawable_swap_buffers (pGlDrawable);
-		else
-			glFlush ();
-		gdk_gl_drawable_gl_end (pGlDrawable);
+		gldi_opengl_rendering_swap_buffers (CAIRO_CONTAINER (pListing));
 	}
 	else
 	{
@@ -142,18 +136,14 @@ static gboolean on_configure_listing (GtkWidget* pWidget, GdkEventConfigure* pEv
 		
 		if (g_bUseOpenGL && pListing->container.glContext)
 		{
-			GdkGLContext* pGlContext = gtk_widget_get_gl_context (pWidget);
-			GdkGLDrawable* pGlDrawable = gtk_widget_get_gl_drawable (pWidget);
 			GLsizei w = pEvent->width;
 			GLsizei h = pEvent->height;
-			if (!gdk_gl_drawable_gl_begin (pGlDrawable, pGlContext))
+			if (! gldi_opengl_rendering_begin (CAIRO_CONTAINER (pListing)))
 				return FALSE;
 			
 			glViewport(0, 0, w, h);
 			
 			cairo_dock_set_ortho_view (CAIRO_CONTAINER (pListing));
-			
-			gdk_gl_drawable_gl_end (pGlDrawable);
 		}
 	}
 	return FALSE;

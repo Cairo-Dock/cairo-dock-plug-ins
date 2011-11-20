@@ -20,7 +20,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+
 #include <gdk/gdkkeysyms.h>
+#include <gdk/gdkx.h>
 
 #include "applet-struct.h"
 #include "applet-icon-finder.h"

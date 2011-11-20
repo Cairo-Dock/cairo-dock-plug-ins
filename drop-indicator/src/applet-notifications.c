@@ -19,9 +19,7 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <GL/gl.h> 
-#include <gdk/x11/gdkglx.h>
-#include <gtk/gtkgl.h>
+#include <GL/gl.h>
 
 #include "applet-struct.h"
 #include "applet-notifications.h"

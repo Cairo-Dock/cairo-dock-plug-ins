@@ -25,6 +25,8 @@
 #include<X11/extensions/Xrandr.h>
 #endif
 
+#include <gdk/gdkx.h>
+
 #include "applet-struct.h"
 #include "applet-notifications.h"
 

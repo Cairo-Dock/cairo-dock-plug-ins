@@ -17,6 +17,8 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <gdk/gdkx.h>
+
 #include <cairo-dock.h>
 
 #include "applet-struct.h"

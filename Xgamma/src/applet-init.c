@@ -26,6 +26,8 @@
 #include <ctype.h>
 #include <stdlib.h>
 
+#include <gdk/gdkx.h>
+
 #include <cairo-dock.h>
 
 #include "applet-config.h"
