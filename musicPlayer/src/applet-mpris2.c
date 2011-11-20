@@ -190,9 +190,14 @@ static void cd_mpris2_get_time_elapsed (void)
 	}
 }
 
-static int cd_mpris2_get_volume (void)
+/*static gboolean _can_control (void)
 {
-	return cairo_dock_dbus_get_property_as_int (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "Volume");
+	return cairo_dock_dbus_get_property_as_int (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "CanControl");
+}*/
+
+static double cd_mpris2_get_volume (void)
+{
+	return cairo_dock_dbus_get_property_as_double (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "Volume");
 }
 
 static gboolean _extract_metadata (GHashTable *pMetadata)
@@ -442,6 +447,7 @@ static void cd_mpris2_stop (void)
  */
 static void cd_mpris2_control (MyPlayerControl pControl, const char* song)
 {
+	static GValue s_pValue = G_VALUE_INIT;
 	gboolean bToggleValue;
 	switch (pControl)
 	{
@@ -471,23 +477,19 @@ static void cd_mpris2_control (MyPlayerControl pControl, const char* song)
 		case PLAYER_SHUFFLE :
 			bToggleValue = cd_mpris2_is_shuffle ();
 			cd_debug ("SetRandom <- %d\n", !bToggleValue);
-			dbus_g_proxy_call_no_reply (myData.dbus_proxy_player, "Set",
-				G_TYPE_INVALID,
-				G_TYPE_STRING, "org.mpris.MediaPlayer2.Player",
-				G_TYPE_STRING, "Shuffle",
-				G_TYPE_BOOLEAN, !bToggleValue,
-				G_TYPE_INVALID);
+			g_value_init (&s_pValue, G_TYPE_BOOLEAN);
+			g_value_set_boolean (&s_pValue, !bToggleValue);
+			cairo_dock_dbus_set_property (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "Shuffle", &s_pValue);
+			g_value_unset (&s_pValue);
 		break;
 		
 		case PLAYER_REPEAT :
 			bToggleValue = cd_mpris2_is_loop ();
 			cd_debug ("SetLoop <- %d\n", !bToggleValue);
-			dbus_g_proxy_call_no_reply (myData.dbus_proxy_player, "Set",
-				G_TYPE_INVALID,
-				G_TYPE_STRING, "org.mpris.MediaPlayer2.Player",
-				G_TYPE_STRING, "LoopStatus",
-				G_TYPE_STRING, (bToggleValue ? "None" : "Playlist"),
-				G_TYPE_INVALID);
+			g_value_init (&s_pValue, G_TYPE_STRING);
+			g_value_set_static_string (&s_pValue, bToggleValue ? "None" : "Playlist");
+			cairo_dock_dbus_set_property (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "LoopStatus", &s_pValue);
+			g_value_unset (&s_pValue);
 		break;
 		
 		case PLAYER_ENQUEUE :
@@ -519,18 +521,16 @@ static void cd_mpris2_control (MyPlayerControl pControl, const char* song)
 		
 		case PLAYER_VOLUME :
 		{
-			int iVolume = cd_mpris2_get_volume ();  // [0, 100]
+			double fVolume = cd_mpris2_get_volume ();  // [0, 1]
 			if (song && strcmp (song, "up") == 0)
-				iVolume += 2;
+				fVolume += .05;
 			else
-				iVolume -= 2;
-			cd_debug ("volume <- %d\n", iVolume);
-			dbus_g_proxy_call_no_reply (myData.dbus_proxy_player, "Set",
-				G_TYPE_INVALID,
-				G_TYPE_STRING, "org.mpris.MediaPlayer2.Player",
-				G_TYPE_STRING, "Volume",
-				G_TYPE_INT, iVolume,
-				G_TYPE_INVALID);
+				fVolume -= .05;
+			cd_debug ("volume <- %f\n", fVolume);
+			g_value_init (&s_pValue, G_TYPE_DOUBLE);
+			g_value_set_double (&s_pValue, fVolume);
+			cairo_dock_dbus_set_property (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "Volume", &s_pValue);
+			g_value_unset (&s_pValue);
 		}
 		
 		default :
