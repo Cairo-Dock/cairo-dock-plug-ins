@@ -904,9 +904,9 @@ if ("${enable-scooby-do}" STREQUAL "yes")
 	add_subdirectory (Scooby-Do)
 endif()
 
-############# SHARED-IMAGES #################
-set (shared_imagesdatadir "${pluginsdatadir}/shared-images")
-add_subdirectory (shared-images)
+############# SHARED-FILES #################
+set (shared_filesdatadir "${pluginsdatadir}/shared-files")
+add_subdirectory (shared-files)
 
 ############# SHORTCUTS #################
 message (STATUS "> Shortcuts:")

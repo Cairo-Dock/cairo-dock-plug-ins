@@ -6,4 +6,4 @@ install(FILES
 	expose-windows.svg
 	show-desktop.svg
 	widget-layer.svg
-	DESTINATION ${shared_imagesdatadir})
+	DESTINATION ${shared_filesdatadir}/images)

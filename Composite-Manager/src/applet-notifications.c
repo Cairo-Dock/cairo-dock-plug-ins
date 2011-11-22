@@ -135,7 +135,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	
 	cLabel = (myConfig.iActionOnMiddleClick == CD_SHOW_DESKTOP ? g_strdup_printf ("%s (%s)", D_("Show desktop"), D_("middle-click")) : g_strdup (D_("Show desktop")));
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel,
-		MY_APPLET_SHARE_DATA_DIR"/../shared-images/show-desktop.svg",
+		MY_APPLET_SHARE_DATA_DIR"/../shared-files/images/show-desktop.svg",
 		_cd_show_desktop,
 		CD_APPLET_MY_MENU);
 	g_free (cLabel);
@@ -144,7 +144,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	{
 		cLabel = (myConfig.iActionOnMiddleClick == CD_EXPOSE_DESKTOPS ? g_strdup_printf ("%s (%s)", D_("Expose all the desktops"), D_("middle-click")) : g_strdup (D_("Expose all the desktops")));
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel,
-			MY_APPLET_SHARE_DATA_DIR"/../shared-images/expose-desktops.svg",
+			MY_APPLET_SHARE_DATA_DIR"/../shared-files/images/expose-desktops.svg",
 			_cd_expose_desktops,
 			CD_APPLET_MY_MENU);
 		g_free (cLabel);
@@ -153,7 +153,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	{
 		cLabel = (myConfig.iActionOnMiddleClick == CD_EXPOSE_WINDOWS ? g_strdup_printf ("%s (%s)", D_("Expose all the windows"), D_("middle-click")) : g_strdup (D_("Expose all the windows")));
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel,
-			MY_APPLET_SHARE_DATA_DIR"/../shared-images/expose-windows.svg",
+			MY_APPLET_SHARE_DATA_DIR"/../shared-files/images/expose-windows.svg",
 			_cd_expose_windows,
 			CD_APPLET_MY_MENU);
 		g_free (cLabel);
