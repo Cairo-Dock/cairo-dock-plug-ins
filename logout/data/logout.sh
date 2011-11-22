@@ -1,9 +1,26 @@
 #!/bin/bash
-
-# look for GDM/KDM/LDM/XDM
+#
+# Copyright : (C) see the 'copyright' file.
+# E-mail    : see the 'copyright' file.
+#
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 3
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# http://www.gnu.org/licenses/licenses.html#GPL
+#
+#
+# look for GDM/KDM/LDM/XDM/lightdm
 # if one of them is used, then it has launched either the session-manager, or the stand-alone script, both blocking.
 # so just take this one, and kill it so that we return to GDM.
-gdm_proc=`pgrep "gdm|kdm|ldm|xdm" | tail -1`
+
+gdm_proc=`pgrep "gdm|kdm|ldm|xdm|lightdm" | tail -1`
 if test -n "$gdm_proc"; then
 	last_process=`ps -ef | grep $gdm_proc | grep -v grep | tail -1 | tr -s " " | cut -d " " -f 2`
 	if test -n "$last_process"; then
