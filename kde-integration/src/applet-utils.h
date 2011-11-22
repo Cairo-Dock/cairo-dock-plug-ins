@@ -29,6 +29,8 @@ void env_backend_logout (void);
 
 void env_backend_shutdown (void);
 
+void env_backend_reboot (void);
+
 void env_backend_lock_screen (void);
 
 void env_backend_setup_time (void);

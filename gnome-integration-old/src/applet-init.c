@@ -53,6 +53,7 @@ CD_APPLET_DEFINE_BEGIN ("gnome integration old",
 			pVFSBackend->get_desktop_path = vfs_backend_get_desktop_path;
 			pVFSBackend->logout = env_backend_logout;
 			pVFSBackend->shutdown = env_backend_logout;
+			pVFSBackend->reboot = env_backend_logout;
 			pVFSBackend->setup_time = env_backend_setup_time;
 			pVFSBackend->show_system_monitor = env_backend_show_system_monitor;
 			cairo_dock_fm_register_vfs_backend (pVFSBackend);

@@ -444,6 +444,9 @@ static void _upower_action (gboolean bSuspend)
 
 void cd_logout_shut_down (void)
 {
+	if (myConfig.bConfirmAction && cairo_dock_fm_shutdown ())
+		return;
+
 	if (myData.bCanStop)
 	{
 		_console_kit_action ("Stop");  // could use org.gnome.SessionManager.RequestShutdown
@@ -456,6 +459,9 @@ void cd_logout_shut_down (void)
 
 void cd_logout_restart (void)
 {
+	if (myConfig.bConfirmAction && cairo_dock_fm_reboot ())
+		return;
+
 	if (myData.bCanRestart)
 	{
 		_console_kit_action ("Restart");  // could use org.gnome.SessionManager.RequestReboot
@@ -478,7 +484,8 @@ void cd_logout_hibernate (void)
 
 void cd_logout_close_session (void)  // could use org.gnome.SessionManager.Logout
 {
-	cairo_dock_launch_command (MY_APPLET_SHARE_DATA_DIR"/logout.sh");  // SwitchToGreeter will only show the greeter, we want to close the session
+	if (! (myConfig.bConfirmAction && cairo_dock_fm_logout ()))
+		cairo_dock_launch_command (MY_APPLET_SHARE_DATA_DIR"/logout.sh");  // SwitchToGreeter will only show the greeter, we want to close the session
 }
 
 static void cd_logout_switch_to_user (const gchar *cUser)

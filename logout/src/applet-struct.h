@@ -42,6 +42,7 @@ struct _AppletConfig {
 	gchar *cEmblemPath;
 	gchar *cDefaultLabel;
 	gchar *cShortkey;
+	gboolean bConfirmAction;
 	} ;
 
 

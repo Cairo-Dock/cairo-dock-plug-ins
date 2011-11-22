@@ -47,12 +47,12 @@ void env_backend_shutdown (void)
 
 void env_backend_lock_screen (void)
 {
-	cairo_dock_launch_command (MY_APPLET_SHARE_DATA_DIR"/../xfce-integration/lock-screen.sh");  // should probably be shared somewhere...
+	cairo_dock_launch_command (MY_APPLET_SHARE_DATA_DIR"/../shared-files/scripts/lock-screen.sh");
 }
 
 void env_backend_setup_time (void)
 {
-	cairo_dock_launch_command ("time-admin");  // utilise PolicyKit => pas de gksudo.
+	cairo_dock_launch_command ("time-admin");  // it uses PolicyKit => no gksudo.
 }
 
 void env_backend_show_system_monitor (void)

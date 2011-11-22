@@ -48,7 +48,12 @@ void env_backend_logout (void)
 
 void env_backend_shutdown (void)
 {
-	cairo_dock_launch_command ("qdbus org.kde.ksmserver /KSMServer logout 1 2 -1");
+	cairo_dock_launch_command ("qdbus org.kde.ksmserver /KSMServer logout 1 2 -1"); // or should we display other options too? => ShutdownTypeDefault?
+}
+
+void env_backend_reboot (void)
+{
+	cairo_dock_launch_command ("qdbus org.kde.ksmserver /KSMServer logout 1 1 -1");
 }
 
 void env_backend_lock_screen (void)

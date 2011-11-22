@@ -116,6 +116,12 @@ shortkey action = 2
 #k Shortkey to this action:
 shortkey = <Super>L
 
+#v
+sep_act2 =
+
+#b Display a dialog of your desktop environment to confirm your action:
+#{If your desktop environment is supported}
+confirm action = true
 
 #F[Commands;gtk-preferences]
 frame_comm=
