@@ -142,3 +142,6 @@ frame_perso =
 #S+ Icon image name to use when the system has to be rebooted:
 #{Leave empty to use the default icon.}
 emblem =
+
+#l[Emblem;Image] Display this image as an emblem or replace applet's icon with this image?
+replace image = 0

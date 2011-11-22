@@ -34,6 +34,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iShutdownTime = CD_CONFIG_GET_INTEGER ("Configuration", "shutdown time");
 	myConfig.cEmblemPath = CD_CONFIG_GET_STRING ("Configuration", "emblem");
 	myConfig.cDefaultLabel = CD_CONFIG_GET_STRING ("Icon", "name");
+	myConfig.iRebootNeededImage = CD_CONFIG_GET_INTEGER ("Configuration", "replace image");
 CD_APPLET_GET_CONFIG_END
 
 

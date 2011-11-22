@@ -67,7 +67,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	if (myConfig.cDirPath == NULL || ! g_file_test (myConfig.cDirPath, G_FILE_TEST_IS_DIR))
 	{
-		cd_debug ("Quick Browser : this path (%s) is not a valid folder\n We'll use the 'home' instead.", myConfig.cDirPath);
+		cd_warning ("Quick Browser : this path (%s) is not a valid folder\n We'll use the 'home' instead.", myConfig.cDirPath);
 		g_free (myConfig.cDirPath);
 		myConfig.cDirPath = g_strdup (g_getenv ("HOME"));
 	}

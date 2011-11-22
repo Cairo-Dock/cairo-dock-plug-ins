@@ -33,6 +33,12 @@ typedef enum {
 	CD_NB_ACTIONS
 	} CDActionsEnum;
 
+typedef enum {
+	CD_DISPLAY_EMBLEM,
+	CD_DISPLAY_IMAGE,
+	CD_NB_REBOOT_NEEDED
+	} CDDisplayRebootNeeded;
+
 struct _AppletConfig {
 	gchar *cUserAction;  // custom logout command
 	gchar *cUserAction2;  // custom shutdown command
@@ -43,6 +49,7 @@ struct _AppletConfig {
 	gchar *cDefaultLabel;
 	gchar *cShortkey;
 	gboolean bConfirmAction;
+	CDDisplayRebootNeeded iRebootNeededImage;
 	} ;
 
 
