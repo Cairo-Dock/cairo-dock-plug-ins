@@ -73,7 +73,7 @@ static gboolean on_expose_listing (GtkWidget *pWidget, GdkEventExpose *pExpose, 
 {
 	if (g_bUseOpenGL && pListing->container.glContext)
 	{
-		if (! gldi_opengl_rendering_begin (CAIRO_CONTAINER (pListing)))
+		if (! gldi_glx_begin_draw_container (CAIRO_CONTAINER (pListing)))
 			return FALSE;
 		
 		if (pExpose->area.x + pExpose->area.y != 0)
@@ -90,7 +90,7 @@ static gboolean on_expose_listing (GtkWidget *pWidget, GdkEventExpose *pExpose, 
 		
 		glDisable (GL_SCISSOR_TEST);
 		
-		gldi_opengl_rendering_swap_buffers (CAIRO_CONTAINER (pListing));
+		gldi_glx_end_draw_container (CAIRO_CONTAINER (pListing));
 	}
 	else
 	{
@@ -138,7 +138,7 @@ static gboolean on_configure_listing (GtkWidget* pWidget, GdkEventConfigure* pEv
 		{
 			GLsizei w = pEvent->width;
 			GLsizei h = pEvent->height;
-			if (! gldi_opengl_rendering_begin (CAIRO_CONTAINER (pListing)))
+			if (! gldi_glx_begin_draw_container (CAIRO_CONTAINER (pListing)))
 				return FALSE;
 			
 			glViewport(0, 0, w, h);
