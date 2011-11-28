@@ -137,8 +137,9 @@ void on_terminal_drag_data_received (GtkWidget *pWidget, GdkDragContext *dc, gin
 	cd_message ("%s ()\n", __func__);
 
 	g_free (cReceivedData);
-	cReceivedData = (gchar *) selection_data->data;
-	g_return_if_fail (cReceivedData != NULL);
+	cReceivedData = NULL;
+	const gchar *cText = gtk_selection_data_get_text (selection_data);;
+	g_return_if_fail (cText != NULL);
 
 	int length = strlen (cReceivedData);
 	if (cReceivedData[length-1] == '\n')
@@ -147,10 +148,10 @@ void on_terminal_drag_data_received (GtkWidget *pWidget, GdkDragContext *dc, gin
 		cReceivedData[--length] = '\0';  // on vire ce ... c'est quoi ce truc ??!
 	cd_message ("cReceivedData : %s\n", cReceivedData);
 
-	if (strncmp (cReceivedData, "file://", 7) == 0)  // on gere le cas des URI.
+	if (strncmp (cText, "file://", 7) == 0)  // on gere le cas des URI.
 	{
 		GError *erreur = NULL;
-		cReceivedData = g_filename_from_uri (cReceivedData, NULL, &erreur);
+		cReceivedData = g_filename_from_uri (cText, NULL, &erreur);
 		if (erreur != NULL)
 		{
 			cd_message ("Terminal : %s\n", erreur->message);
@@ -159,7 +160,7 @@ void on_terminal_drag_data_received (GtkWidget *pWidget, GdkDragContext *dc, gin
 		}
 	}
 	else
-		cReceivedData = g_strdup (cReceivedData);
+		cReceivedData = g_strdup (cText);
 
 	GtkWidget *menu = _terminal_build_menu (pWidget, cReceivedData);
 

@@ -107,6 +107,7 @@ message (STATUS "=====================")
 message ("")
 
 pkg_check_modules ("PACKAGE" REQUIRED "cairo" "librsvg-2.0" "dbus-1" "dbus-glib-1" "libxml-2.0")
+#pkg_check_modules ("PACKAGE" REQUIRED "gldi")
 pkg_check_modules ("GLDI" REQUIRED "gldi")  # we don't want to link with gldi, so we check it separately.
 set (PACKAGE_INCLUDE_DIRS "${GLDI_INCLUDE_DIRS}")
 
@@ -296,7 +297,7 @@ elseif ( (NOT "${VALAC_EXE}" STREQUAL "VALAC_EXE-NOTFOUND")
 	endif()
 else()
 	message (STATUS "Could not find ValaC, won't build Vala interface with the version of your distribution.")
-	message (WARNING "This program is required to compile DBus applet with Python interface: valac (version > 0.10)")
+	message (WARNING "This program is required to compile DBus applet with Vala interface: valac (version > 0.10)")
 	set (PROGRAMS_MISSING "${PROGRAMS_MISSING} valac")
 endif()
 
@@ -968,6 +969,19 @@ set (sliderdatadir "${pluginsdatadir}/slider")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/slider/data/slider.conf.in ${CMAKE_CURRENT_BINARY_DIR}/slider/data/slider.conf)
 add_subdirectory (slider)
 
+############# SOUND_MENU #################
+#set (with_sound_menu "no")
+#if ("${with_indicator}" STREQUAL "yes") 
+	#message (STATUS "> Sound-Menu:")
+	#set (GETTEXT_SOUND_MENU ${GETTEXT_PLUGINS})
+	#set (VERSION_SOUND_MENU "1.0.2")
+	#set (PACKAGE_SOUND_MENU "cd-Sound-Menu")
+	#set (with_sound_menu "yes")
+	#set (sound_menudatadir "${pluginsdatadir}/Sound-Menu")
+	#configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Sound-Menu/data/Sound-Menu.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Sound-Menu/data/Sound-Menu.conf)
+	#add_subdirectory (Sound-Menu)
+#endif()
+
 ############# STACK #################
 message (STATUS "> Stack:")
 set (GETTEXT_STACK ${GETTEXT_PLUGINS})
@@ -1201,7 +1215,7 @@ message (STATUS " - with old Gnome support:         ${with_gnome_integration_old
 if (NOT "${MODULES_MISSING}" STREQUAL "")
 	message ("")
 	message (STATUS "WARNING: It seems that one (or more) module(s) is (are) missing:${MODULES_MISSING}")
-	message (STATUS "It can be interesting to install them (even more if you're a maintainer of Cairo-Dock's packages).")
+	message (STATUS "It can be interesting to install them (especially if you're a maintainer of Cairo-Dock's packages).")
 endif ()
 
 if (NOT "${PROGRAMS_MISSING}" STREQUAL "")

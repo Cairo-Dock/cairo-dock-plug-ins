@@ -119,7 +119,7 @@ CD_APPLET_RELOAD_BEGIN
 			area.y = myDock->container.iHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight;
 			area.width = pAnimation->iFrameWidth;
 			area.height = pAnimation->iFrameHeight + myDock->container.bUseReflect * myIconsParam.fReflectSize;
-			gdk_window_invalidate_rect (myContainer->pWidget->window, &area, FALSE);
+			cairo_dock_redraw_container_area (myContainer, &area);
 		}
 		
 		//\_______________ On recharge tout de zero (changement de theme).

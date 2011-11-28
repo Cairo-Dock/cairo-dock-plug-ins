@@ -742,6 +742,7 @@ void cd_update_input_shape (CairoDock *pDock)
 		CDPanelData *pData = pDock->pRendererData;
 		g_return_if_fail (pData != NULL);
 		
+		#if (GTK_MAJOR_VERSION < 3)
 		cairo_t *pCairoContext = gdk_cairo_create (pDock->pShapeBitmap);
 		if  (pCairoContext != NULL)
 		{
@@ -777,6 +778,34 @@ void cd_update_input_shape (CairoDock *pDock)
 			
 			cairo_destroy (pCairoContext);
 		}
+		#else
+		/// TODO: add the rectangles to the region...
+		cairo_rectangle_int_t rect;
+		GList *ic;
+			Icon *pIcon;
+			for (ic = pDock->icons; ic != NULL; ic = ic->next)
+			{
+				pIcon = ic->data;
+				if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
+				{
+					if (pDock->container.bIsHorizontal)
+					{
+						rect.x = pIcon->fXAtRest + 2 * my_fPanelRadius;  // we let a few pixels to be able to grab the separtator, and to avoid leaving the dock too easily.
+						rect.y = 0;
+						rect.width = pData->fGroupGap - 4 * my_fPanelRadius;
+						rect.height = pDock->iMaxDockHeight;  // we use iMaxDockHeight instead of the actual window size, because at this time, the dock's window may not have its definite size.
+					}
+					else
+					{
+						rect.x = 0;
+						rect.y = pIcon->fXAtRest + 2 * my_fPanelRadius;  // we let a few pixels to be able to grab the separtator, and to avoid leaving the dock too easily.
+						rect.width = pDock->iMaxDockHeight;
+						rect.height = pData->fGroupGap - 4 * my_fPanelRadius;
+					}
+					cairo_region_subtract_rectangle (pDock->pShapeBitmap, &rect);
+				}
+			}
+		#endif
 	}
 }
 

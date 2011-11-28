@@ -346,7 +346,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 						GtkWidget *pScrolledWindow = gtk_scrolled_window_new (NULL, NULL);
 						gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (pScrolledWindow), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
 						gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (pScrolledWindow), pOneWidget);
-						gtk_widget_set (pScrolledWindow, "width-request", 230, "height-request", 130, NULL);
+						g_object_set (pScrolledWindow, "width-request", 230, "height-request", 130, NULL);
 						pInteractiveWidget = pScrolledWindow;
 						
 						if (! bEditable)
@@ -366,7 +366,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 						pOneWidget = gtk_entry_new ();
 						pInteractiveWidget = pOneWidget;
 						gtk_entry_set_has_frame (GTK_ENTRY (pOneWidget), FALSE);
-						gtk_widget_set (pOneWidget, "width-request", CAIRO_DIALOG_MIN_ENTRY_WIDTH, NULL);
+						g_object_set (pOneWidget, "width-request", CAIRO_DIALOG_MIN_ENTRY_WIDTH, NULL);
 						if (cInitialText != NULL)
 							gtk_entry_set_text (GTK_ENTRY (pOneWidget), cInitialText);
 						if (! bEditable)
@@ -442,7 +442,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 					gtk_scale_set_digits (GTK_SCALE (pScale), iNbDigit);
 					gtk_range_set_value (GTK_RANGE (pScale), fInitialValue);
 					
-					gtk_widget_set (pScale, "width-request", 150, NULL);
+					g_object_set (pScale, "width-request", 150, NULL);
 					cairo_dock_set_dialog_widget_text_color (pScale);
 					
 					if (cMinLabel || cMaxLabel)
@@ -484,10 +484,17 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 					if (cValues != NULL)
 						cValuesList = g_strsplit (cValues, ";", -1);
 					
+					#if (GTK_MAJOR_VERSION < 3)
 					if (bEditable)
 						pOneWidget = gtk_combo_box_entry_new_text ();
 					else
 						pOneWidget = gtk_combo_box_new_text ();
+					#else
+					if (bEditable)
+						pOneWidget = gtk_combo_box_text_new_with_entry ();
+					else
+						pOneWidget = gtk_combo_box_text_new ();
+					#endif
 					pInteractiveWidget = pOneWidget;
 					
 					if (cValuesList != NULL)
@@ -495,7 +502,11 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 						int i;
 						for (i = 0; cValuesList[i] != NULL; i ++)
 						{
+							#if (GTK_MAJOR_VERSION < 3)
 							gtk_combo_box_append_text (GTK_COMBO_BOX (pInteractiveWidget), cValuesList[i]);
+							#else
+							gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (pInteractiveWidget), cValuesList[i]);
+							#endif
 						}
 					}
 					

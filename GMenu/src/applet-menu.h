@@ -41,7 +41,7 @@ GdkPixbuf * panel_make_menu_icon (GtkIconTheme *icon_theme,
 
 void setup_menuitem (GtkWidget   *menuitem,
 		GtkIconSize  icon_size,
-		GtkWidget   *image,
+		///GtkWidget   *image,
 		const char  *title);
 
 GtkWidget * populate_menu_from_directory (GtkWidget          *menu,

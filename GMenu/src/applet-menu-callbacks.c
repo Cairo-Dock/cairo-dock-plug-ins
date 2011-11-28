@@ -50,9 +50,12 @@ void handle_gmenu_tree_changed (GMenuTree *tree,
 	return ;
 	
 	guint idle_id;
-
-	while (GTK_MENU_SHELL (menu)->children)
-                gtk_widget_destroy (GTK_MENU_SHELL (menu)->children->data);
+	
+	GList *children = gtk_container_get_children (GTK_CONTAINER (menu));
+	g_list_foreach (children, (GFunc)gtk_widget_destroy, NULL);
+	g_list_free (children);
+	///while (GTK_MENU_SHELL (menu)->children)
+	///	gtk_widget_destroy (GTK_MENU_SHELL (menu)->children->data);
 
 	g_object_set_data_full (G_OBJECT (menu),
 				"panel-menu-tree-directory",
@@ -362,7 +365,7 @@ static void menu_item_style_set (GtkImage *image,
 
 	widget = GTK_WIDGET (image);
 
-	is_mapped = GTK_WIDGET_MAPPED (widget);
+	is_mapped = gtk_widget_get_mapped (widget);  // since gtk-2.20
 	if (is_mapped)
 		gtk_widget_unmap (widget);
 
@@ -378,12 +381,12 @@ static void do_icons_to_add (void)
 
 		icons_to_add = g_list_delete_link (icons_to_add, icons_to_add);
 
-		if (icon_to_add->stock_id)
+		/**if (icon_to_add->stock_id)
 			gtk_image_set_from_stock (
 				GTK_IMAGE (icon_to_add->image),
 				icon_to_add->stock_id,
 				icon_to_add->icon_size);
-		else {
+		else {*/
 			g_assert (icon_to_add->pixbuf);
 
 			gtk_image_set_from_pixbuf (
@@ -395,7 +398,7 @@ static void do_icons_to_add (void)
 					  GINT_TO_POINTER (icon_to_add->icon_size));
 
 			g_object_unref (icon_to_add->pixbuf);
-		}
+		///}
 
 		g_object_unref (icon_to_add->image);
 		g_free (icon_to_add);
@@ -410,9 +413,9 @@ void icon_to_load_free (IconToLoad *icon)
 		g_object_unref (icon->pixmap);
 	icon->pixmap = NULL;
 
-	if (icon->gicon)
+	/**if (icon->gicon)
 		g_object_unref (icon->gicon);
-	icon->gicon = NULL;
+	icon->gicon = NULL;*/
 
 	g_free (icon->image);          icon->image = NULL;
 	g_free (icon->fallback_image); icon->fallback_image = NULL;
@@ -438,14 +441,14 @@ load_icons_handler_again:
 	icons_to_load = g_list_delete_link (icons_to_load, icons_to_load);
 
 	/* if not visible anymore, just ignore */
-	if ( ! GTK_WIDGET_VISIBLE (icon->pixmap)) {
+	if ( ! gtk_widget_get_visible (icon->pixmap)) {  // since 2.18
 		icon_to_load_free (icon);
 		/* we didn't do anything long/hard, so just do this again,
 		 * this is fun, don't go back to main loop */
 		goto load_icons_handler_again;
 	}
 
-	if (icon->stock_id) {
+	/**if (icon->stock_id) {
 		IconToAdd *icon_to_add;
 
 		icon_to_add            = g_new (IconToAdd, 1);
@@ -488,13 +491,13 @@ load_icons_handler_again:
 		if (!pb) {
 			icon_to_load_free (icon);
 			if (long_operation)
-				/* this may have been a long operation so jump
-				 * back to the main loop for a while */
+				// this may have been a long operation so jump
+				// back to the main loop for a while 
 				return TRUE;
 			else
-				/* we didn't do anything long/hard, so just do
-				 * this again, this is fun, don't go back to
-				 * main loop */
+				// we didn't do anything long/hard, so just do
+				// this again, this is fun, don't go back to
+				// main loop
 				goto load_icons_handler_again;
 		}
 
@@ -507,7 +510,7 @@ load_icons_handler_again:
 		icons_to_add = g_list_prepend (icons_to_add, icon_to_add);
 	}
 	#endif
-	else {
+	else {*/
 		IconToAdd *icon_to_add;
 		GdkPixbuf *pb;
 		int        icon_height = PANEL_DEFAULT_MENU_ICON_SIZE;
@@ -533,12 +536,12 @@ load_icons_handler_again:
 
 		icon_to_add            = g_new (IconToAdd, 1);
 		icon_to_add->image     = g_object_ref (icon->pixmap);
-		icon_to_add->stock_id  = NULL;
+		///icon_to_add->stock_id  = NULL;
 		icon_to_add->pixbuf    = pb;
 		icon_to_add->icon_size = icon->icon_size;
 
 		icons_to_add = g_list_prepend (icons_to_add, icon_to_add);
-	}
+	///}
 
 	icon_to_load_free (icon);
 
@@ -570,13 +573,13 @@ static IconToLoad * icon_to_load_copy (IconToLoad *icon)
 	retval = g_new0 (IconToLoad, 1);
 
 	retval->pixmap         = g_object_ref (icon->pixmap);
-	if (icon->gicon)
+	/**if (icon->gicon)
 		retval->gicon  = g_object_ref (icon->gicon);
 	else
-		retval->gicon  = NULL;
+		retval->gicon  = NULL;*/
 	retval->image          = g_strdup (icon->image);
 	retval->fallback_image = g_strdup (icon->fallback_image);
-	retval->stock_id       = icon->stock_id;
+	///retval->stock_id       = icon->stock_id;
 	retval->icon_size      = icon->icon_size;
 
 	return retval;
@@ -626,17 +629,15 @@ void  drag_begin_menu_cb (GtkWidget *widget, GdkDragContext     *context)
  */
 void  drag_end_menu_cb (GtkWidget *widget, GdkDragContext     *context)
 {
-  GtkWidget *xgrab_shell;
+  /**GtkWidget *xgrab_shell;
   GtkWidget *parent;
 
-  /* Find the last viewable ancestor, and make an X grab on it
-   */
+  // Find the last viewable ancestor, and make an X grab on it
   parent = widget->parent;
   xgrab_shell = NULL;
 
-  /* FIXME: workaround for a possible gtk+ bug
-   *    See bugs #92085(gtk+) and #91184(panel) for details.
-   */
+  // FIXME: workaround for a possible gtk+ bug
+  //    See bugs #92085(gtk+) and #91184(panel) for details.
   g_object_set (widget, "has-tooltip", TRUE, NULL);
 
   while (parent)
@@ -680,7 +681,7 @@ void  drag_end_menu_cb (GtkWidget *widget, GdkDragContext     *context)
 	}
 
       gdk_cursor_unref (cursor);
-    }
+    }*/
 }
 
 void  drag_data_get_menu_cb (GtkWidget        *widget,
@@ -700,7 +701,7 @@ void  drag_data_get_menu_cb (GtkWidget        *widget,
 	g_free (uri);
 
 	gtk_selection_data_set (selection_data,
-				selection_data->target, 8, (guchar *)uri_list,
+				gtk_selection_data_get_target (selection_data), 8, (guchar *)uri_list,
 				strlen (uri_list));
 	g_free (uri_list);
 }

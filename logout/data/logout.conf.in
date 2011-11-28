@@ -119,8 +119,7 @@ shortkey = <Super>L
 #v
 sep_act2 =
 
-#b Display a dialog of your desktop environment to confirm your action:
-#{If your desktop environment is supported}
+#b Demand confirmation before closing
 confirm action = true
 
 #F[Commands;gtk-preferences]

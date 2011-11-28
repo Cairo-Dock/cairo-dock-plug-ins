@@ -21,8 +21,9 @@
 #include <string.h>
 #include <math.h>
 
-#include <gdk/gdkkeysyms.h>
 #include <gdk/gdkx.h>
+#include <gdk/gdkkeysyms.h>
+#include <gdk/gdkkeysyms-compat.h>
 
 #include "applet-struct.h"
 #include "applet-icon-finder.h"
@@ -376,7 +377,7 @@ gboolean cd_do_check_icon_stopped (gpointer pUserData, Icon *pIcon)
 static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, Window *data)
 {
 	Window xActiveWindow = data[0];
-	if (GDK_WINDOW_XID (pDock->container.pWidget->window) == xActiveWindow)
+	if (gldi_container_get_Xid (CAIRO_CONTAINER (pDock)) == xActiveWindow)
 		data[1] = 1;
 }
 gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow)

@@ -26,7 +26,6 @@
 
 #include <glib/gi18n.h>
 #include <gdk/gdk.h>
-#include <gdk/gdkx.h>
 #include <X11/Xatom.h>
 
 #if (GTK_MAJOR_VERSION <= 2 && GTK_MINOR_VERSION < 20)
@@ -57,17 +56,20 @@ na_tray_child_realize (GtkWidget *widget)
 
       /* Set a transparent background */
       GdkColor transparent = { 0, 0, 0, 0 }; /* only pixel=0 matters */
-      gdk_window_set_background (widget->window, &transparent);
-      gdk_window_set_composited (widget->window, TRUE);
+      gdk_window_set_background (gtk_widget_get_window (widget), &transparent);
+      gdk_window_set_composited (gtk_widget_get_window (widget), TRUE);
 
       child->parent_relative_bg = FALSE;
     }
-  else if (visual == gdk_drawable_get_visual (GDK_DRAWABLE (gdk_window_get_parent (widget->window))))
+  else if (visual == gdk_window_get_visual (gdk_window_get_parent (gtk_widget_get_window (widget))))
     {
       /* Otherwise, if the visual matches the visual of the parent window, we
        * can use a parent-relative background and fake transparency. */
-      gdk_window_set_back_pixmap (widget->window, NULL, TRUE);
-
+	  #if (GTK_MAJOR_VERSION < 3)
+      gdk_window_set_back_pixmap (gtk_widget_get_window (widget), NULL, TRUE);
+      #else
+	  gdk_window_set_background_pattern (gtk_widget_get_window (widget), NULL);
+	  #endif
       child->parent_relative_bg = TRUE;
     }
   else
@@ -76,7 +78,7 @@ na_tray_child_realize (GtkWidget *widget)
       child->parent_relative_bg = FALSE;
     }
 
-  gdk_window_set_composited (widget->window, child->composited);
+  gdk_window_set_composited (gtk_widget_get_window (widget), child->composited);
 
   gtk_widget_set_app_paintable (GTK_WIDGET (child),
                                 child->parent_relative_bg || child->has_alpha);
@@ -134,10 +136,12 @@ na_tray_child_size_allocate (GtkWidget      *widget,
 {
   NaTrayChild *child = NA_TRAY_CHILD (widget);
 
-  gboolean moved = allocation->x != widget->allocation.x ||
-                   allocation->y != widget->allocation.y;
-  gboolean resized = allocation->width != widget->allocation.width ||
-                     allocation->height != widget->allocation.height;
+	GtkAllocation wallocation;
+	gtk_widget_get_allocation (widget, &wallocation);
+  gboolean moved = allocation->x != wallocation.x ||
+                   allocation->y != wallocation.y;
+  gboolean resized = allocation->width != wallocation.width ||
+                     allocation->height != wallocation.height;
 
   /* When we are allocating the widget while mapped we need special handling
    * for both real and fake transparency.
@@ -152,8 +156,8 @@ na_tray_child_size_allocate (GtkWidget      *widget,
   if ((moved || resized) && gtk_widget_get_mapped (widget))
     {
       if (na_tray_child_has_alpha (child))
-        gdk_window_invalidate_rect (gdk_window_get_parent (widget->window),
-                                    &widget->allocation, FALSE);
+        gdk_window_invalidate_rect (gdk_window_get_parent (gtk_widget_get_window (widget)),
+                                    &wallocation, FALSE);
     }
 
   GTK_WIDGET_CLASS (na_tray_child_parent_class)->size_allocate (widget,
@@ -162,8 +166,8 @@ na_tray_child_size_allocate (GtkWidget      *widget,
   if ((moved || resized) && gtk_widget_get_mapped (widget))
     {
       if (na_tray_child_has_alpha (NA_TRAY_CHILD (widget)))
-        gdk_window_invalidate_rect (gdk_window_get_parent (widget->window),
-                                    &widget->allocation, FALSE);
+        gdk_window_invalidate_rect (gdk_window_get_parent (gtk_widget_get_window (widget)),
+                                    &wallocation, FALSE);
       else if (moved && child->parent_relative_bg)
         na_tray_child_force_redraw (child);
     }
@@ -173,6 +177,7 @@ na_tray_child_size_allocate (GtkWidget      *widget,
  * get an expose event. But in case we do (the plug unmaps itself, say), this
  * expose handler draws with real or fake transparency.
  */
+#if (GTK_MAJOR_VERSION < 3)
 static gboolean
 na_tray_child_expose_event (GtkWidget      *widget,
                             GdkEventExpose *event)
@@ -182,7 +187,7 @@ na_tray_child_expose_event (GtkWidget      *widget,
   if (na_tray_child_has_alpha (child))
     {
       /* Clear to transparent */
-      cairo_t *cr = gdk_cairo_create (widget->window);
+      cairo_t *cr = gdk_cairo_create (gtk_widget_get_window (widget));
       cairo_set_source_rgba (cr, 0, 0, 0, 0);
       cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
       gdk_cairo_region (cr, event->region);
@@ -192,13 +197,34 @@ na_tray_child_expose_event (GtkWidget      *widget,
   else if (child->parent_relative_bg)
     {
       /* Clear to parent-relative pixmap */
-      gdk_window_clear_area (widget->window,
+      gdk_window_clear_area (gtk_widget_get_window (widget),
                              event->area.x, event->area.y,
                              event->area.width, event->area.height);
     }
-
   return FALSE;
 }
+#else
+static gboolean
+na_tray_child_draw_event (GtkWidget      *widget,
+                            cairo_t *cr)
+{
+  NaTrayChild *child = NA_TRAY_CHILD (widget);
+
+  if (na_tray_child_has_alpha (child))
+    {
+      /* Clear to transparent */
+      cairo_set_source_rgba (cr, 0, 0, 0, 0);
+      cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
+      cairo_fill (cr);
+    }
+  else if (child->parent_relative_bg)
+    {
+      /* Clear to parent-relative pixmap */
+      ///TODO...
+    }
+  return FALSE;
+}
+#endif
 
 static void
 na_tray_child_init (NaTrayChild *child)
@@ -218,7 +244,11 @@ na_tray_child_class_init (NaTrayChildClass *klass)
   widget_class->style_set = na_tray_child_style_set;
   widget_class->realize = na_tray_child_realize;
   widget_class->size_allocate = na_tray_child_size_allocate;
+  #if (GTK_MAJOR_VERSION < 3)
   widget_class->expose_event = na_tray_child_expose_event;
+  #else
+  widget_class->draw = na_tray_child_draw_event;
+  #endif
 }
 
 GtkWidget *
@@ -230,8 +260,10 @@ na_tray_child_new (GdkScreen *screen,
   NaTrayChild *child;
   GdkVisual *visual;
   gboolean visual_has_alpha;
+  #if (GTK_MAJOR_VERSION < 3)
   GdkColormap *colormap;
   gboolean new_colormap;
+  #endif
   int result;
 
   g_return_val_if_fail (GDK_IS_SCREEN (screen), NULL);
@@ -246,7 +278,7 @@ na_tray_child_new (GdkScreen *screen,
   gdk_error_trap_push ();
   result = XGetWindowAttributes (xdisplay, icon_window,
                                  &window_attributes);
-  gdk_error_trap_pop ();
+  int r = gdk_error_trap_pop ();
 
   if (!result) /* Window already gone */
     return NULL;
@@ -256,8 +288,12 @@ na_tray_child_new (GdkScreen *screen,
   if (!visual) /* Icon window is on another screen? */
     return NULL;
 
-  new_colormap = FALSE;
+  child = g_object_new (NA_TYPE_TRAY_CHILD, NULL);
+  child->icon_window = icon_window;
 
+  #if (GTK_MAJOR_VERSION < 3)
+  new_colormap = FALSE;
+  
   if (visual == gdk_screen_get_rgb_visual (screen))
     colormap = gdk_screen_get_rgb_colormap (screen);
   else if (visual == gdk_screen_get_rgba_visual (screen))
@@ -270,22 +306,29 @@ na_tray_child_new (GdkScreen *screen,
       new_colormap = TRUE;
     }
 
-  child = g_object_new (NA_TYPE_TRAY_CHILD, NULL);
-  child->icon_window = icon_window;
-
   gtk_widget_set_colormap (GTK_WIDGET (child), colormap);
-
+  
   /* We have alpha if the visual has something other than red, green,
    * and blue */
   visual_has_alpha = visual->red_prec + visual->blue_prec + visual->green_prec < visual->depth;
+  #else
+	GdkVisual *pGdkVisual = gdk_screen_get_rgba_visual (screen);
+	if (pGdkVisual == NULL)
+		pGdkVisual = gdk_screen_get_system_visual (screen);
+	else
+		visual_has_alpha = TRUE;
+	gtk_widget_set_visual (GTK_WIDGET (child), pGdkVisual);
+  #endif
+  
   child->has_alpha = (visual_has_alpha &&
                       gdk_display_supports_composite (gdk_screen_get_display (screen)));
 
   child->composited = child->has_alpha;
 
+#if (GTK_MAJOR_VERSION < 3)
   if (new_colormap)
     g_object_unref (colormap);
-
+#endif
   return GTK_WIDGET (child);
 }
 
@@ -384,7 +427,7 @@ na_tray_child_set_composited (NaTrayChild *child,
 
   child->composited = composited;
   if (gtk_widget_get_realized (GTK_WIDGET (child)))
-    gdk_window_set_composited (GTK_WIDGET (child)->window, composited);
+    gdk_window_set_composited (gtk_widget_get_window (GTK_WIDGET (child)), composited);
 }
 
 /* If we are faking transparency with a window-relative background, force a
@@ -403,15 +446,18 @@ na_tray_child_force_redraw (NaTrayChild *child)
        * icon is expecting the server to clear-to-background before
        * the redraw. It should be ok for GtkStatusIcon or EggTrayIcon.
        */
+		GtkAllocation allocation;
+		gtk_widget_get_allocation (widget, &allocation);
+       
       Display *xdisplay = GDK_DISPLAY_XDISPLAY (gtk_widget_get_display (widget));
       XEvent xev;
 
       xev.xexpose.type = Expose;
-      xev.xexpose.window = GDK_WINDOW_XWINDOW (GTK_SOCKET (child)->plug_window);
+      xev.xexpose.window = GDK_WINDOW_XID (gtk_socket_get_plug_window (GTK_SOCKET (child)));
       xev.xexpose.x = 0;
       xev.xexpose.y = 0;
-      xev.xexpose.width = widget->allocation.width;
-      xev.xexpose.height = widget->allocation.height;
+      xev.xexpose.width = allocation.width;
+      xev.xexpose.height = allocation.height;
       xev.xexpose.count = 0;
 
       gdk_error_trap_push ();
@@ -423,13 +469,13 @@ na_tray_child_force_redraw (NaTrayChild *child)
        * since that is asynchronous.
        */
       XSync (xdisplay, False);
-      gdk_error_trap_pop ();
+      int r = gdk_error_trap_pop ();
 #else
       /* Hiding and showing is the safe way to do it, but can result in more
        * flickering.
        */
-      gdk_window_hide (widget->window);
-      gdk_window_show (widget->window);
+      gdk_window_hide (gtk_widget_get_window (widget));
+      gdk_window_show (gtk_widget_get_window (widget));
 #endif
     }
 }
@@ -467,7 +513,7 @@ _get_wmclass (Display *xdisplay,
 
   gdk_error_trap_push ();
   XGetClassHint (xdisplay, xwindow, &ch);
-  gdk_error_trap_pop ();
+  int r = gdk_error_trap_pop ();
 
   if (res_class)
     *res_class = NULL;

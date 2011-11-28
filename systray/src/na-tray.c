@@ -539,18 +539,26 @@ na_tray_expose_icon (GtkWidget *widget,
 
   if (na_tray_child_has_alpha (NA_TRAY_CHILD (widget)))
     {
-      gdk_cairo_set_source_pixmap (cr, widget->window,
-				   widget->allocation.x,
-				   widget->allocation.y);
+		GtkAllocation allocation;
+		gtk_widget_get_allocation (widget, &allocation);
+	
+      #if (GTK_MAJOR_VERSION < 3)
+      gdk_cairo_set_source_pixmap (cr, gtk_widget_get_window (widget),
+      #else
+      gdk_cairo_set_source_window (cr, gtk_widget_get_window (widget),
+      #endif
+				   allocation.x,
+				   allocation.y);
       cairo_paint (cr);
     }
 }
 
+#if (GTK_MAJOR_VERSION < 3)
 static void
 na_tray_expose_box (GtkWidget      *box,
 		    GdkEventExpose *event)
 {
-  cairo_t *cr = gdk_cairo_create (box->window);
+  cairo_t *cr = gdk_cairo_create (gtk_widget_get_window (box));
 
   gdk_cairo_region (cr, event->region);
   cairo_clip (cr);
@@ -559,6 +567,14 @@ na_tray_expose_box (GtkWidget      *box,
 
   cairo_destroy (cr);
 }
+#else
+static void
+na_tray_draw_box (GtkWidget      *box,
+		    cairo_t *cr)
+{
+  gtk_container_foreach (GTK_CONTAINER (box), na_tray_expose_icon, cr);
+}
+#endif
 
 static void
 na_tray_init (NaTray *tray)
@@ -575,8 +591,13 @@ na_tray_init (NaTray *tray)
   gtk_widget_show (priv->frame);
 
   priv->box = g_object_new (na_box_get_type (), NULL);
+  #if (GTK_MAJOR_VERSION < 3)
   g_signal_connect (priv->box, "expose-event",
 		    G_CALLBACK (na_tray_expose_box), tray);
+  #else
+  g_signal_connect (priv->box, "draw",
+		    G_CALLBACK (na_tray_draw_box), tray);
+  #endif
   gtk_box_set_spacing (GTK_BOX (priv->box), ICON_SPACING);
   gtk_container_add (GTK_CONTAINER (priv->frame), priv->box);
   gtk_widget_show (priv->box);
@@ -729,12 +750,6 @@ na_tray_set_property (GObject      *object,
     }
 }
 
-static void
-na_tray_size_request (GtkWidget        *widget,
-                      GtkRequisition   *requisition)
-{
-  gtk_widget_size_request (gtk_bin_get_child (GTK_BIN (widget)), requisition);
-}
 
 static void
 na_tray_size_allocate (GtkWidget        *widget,
@@ -742,7 +757,33 @@ na_tray_size_allocate (GtkWidget        *widget,
 {
   gtk_widget_size_allocate (gtk_bin_get_child (GTK_BIN (widget)), allocation);
 }
-
+#if (GTK_MAJOR_VERSION < 3)
+static void
+na_tray_size_request (GtkWidget        *widget,
+                      GtkRequisition   *requisition)
+{
+  gtk_widget_size_request (gtk_bin_get_child (GTK_BIN (widget)), requisition);
+}
+#else
+static void get_preferred_height (GtkWidget *widget,
+	gint *minimum_height,
+	gint *natural_height)
+{
+	gint mw, nw;
+	gtk_widget_get_preferred_width (gtk_bin_get_child (GTK_BIN (widget)), &mw, &nw);
+	*minimum_height = mw;
+	*natural_height = nw;
+}
+static void get_preferred_width (GtkWidget *widget,
+	gint *minimum_width,
+	gint *natural_width)
+{
+	gint mh, nh;
+	gtk_widget_get_preferred_height (gtk_bin_get_child (GTK_BIN (widget)), &mh, &nh);
+	*minimum_width = mh;
+	*natural_width = nh;
+}
+#endif
 static void
 na_tray_class_init (NaTrayClass *klass)
 {
@@ -753,7 +794,12 @@ na_tray_class_init (NaTrayClass *klass)
   gobject_class->set_property = na_tray_set_property;
   gobject_class->dispose = na_tray_dispose;
 
+  #if (GTK_MAJOR_VERSION < 3)
   widget_class->size_request = na_tray_size_request;
+  #else
+  widget_class->get_preferred_height = get_preferred_height;
+  widget_class->get_preferred_width = get_preferred_width;
+  #endif
   widget_class->size_allocate = na_tray_size_allocate;
 
   g_object_class_install_property

@@ -31,7 +31,8 @@ CD_APPLET_DEFINE_BEGIN (N_("Messaging Menu"),
 	2, 2, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_INTERNET,
 	N_("A menu that notices you about new messages from Mail or Chat applications.\n"
-	"It handles Evolution, Pidgin, Empathy, etc"),
+	"It handles Evolution, Pidgin, Empathy, etc\n"
+	"It requires the Messaging service, which is available on Ubuntu by default."),
 	"Fabounet")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_ALLOW_EMPTY_TITLE
@@ -44,7 +45,6 @@ CD_APPLET_INIT_BEGIN
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 	}
-	cd_debug (">>> INDICATOR_MESSAGES_DBUS_NAME: "INDICATOR_MESSAGES_DBUS_NAME);
 	
 	myData.pIndicator = cd_indicator_new (myApplet,
 		INDICATOR_MESSAGES_DBUS_NAME,
@@ -56,15 +56,26 @@ CD_APPLET_INIT_BEGIN
 	myData.pIndicator->get_initial_values 	= cd_messaging_get_initial_values;
 	myData.pIndicator->add_menu_handler 	= cd_messaging_add_menu_handler;
 	
+	// mouse events
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
+	
+	// keyboard events
+	myData.pKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortkey,
+		D_("Show/hide the Messaging menu"),
+		"Configuration", "shortkey",
+		(CDBindkeyHandler) cd_messaging_on_keybinding_pull);
 CD_APPLET_INIT_END
 
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
+	// mouse events
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
+	
+	// keyboard events
+	cd_keybinder_unbind (myData.pKeyBinding);
 	
 	cd_indicator_destroy (myData.pIndicator);
 CD_APPLET_STOP_END
@@ -80,5 +91,7 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		}
+		
+		cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
 	}
 CD_APPLET_RELOAD_END

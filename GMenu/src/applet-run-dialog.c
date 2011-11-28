@@ -31,6 +31,7 @@
 #include <sys/stat.h>
 
 #include <gdk/gdkkeysyms.h>
+#include <gdk/gdkkeysyms-compat.h>
 
 
 static GList *

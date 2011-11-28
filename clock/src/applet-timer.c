@@ -49,7 +49,7 @@ static gboolean _task_warning (CDClockTask *pTask, const gchar *cMessage)
 	GtkWidget *pScale = gtk_hscale_new_with_range (1, 60, 1);  // 1mn-60mn et 1 cran/mn.
 	gtk_scale_set_digits (GTK_SCALE (pScale), 0);
 	gtk_range_set_value (GTK_RANGE (pScale), pTask->iWarningDelay != 0 ? pTask->iWarningDelay : 15);  // 15mn par defaut.
-	gtk_widget_set (pScale, "width-request", CAIRO_DIALOG_MIN_SCALE_WIDTH, NULL);
+	g_object_set (pScale, "width-request", CAIRO_DIALOG_MIN_SCALE_WIDTH, NULL);
 	
 	GtkWidget *pExtendedWidget = gtk_hbox_new (FALSE, 0);
 	GtkWidget *label = gtk_label_new (D_("1mn"));

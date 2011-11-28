@@ -27,6 +27,7 @@
 #include <string.h>
 #include <signal.h>
 #include <gdk/gdkkeysyms.h>
+#include <gdk/gdkkeysyms-compat.h>
 // gdk.h semble necessaire pour certains
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
@@ -61,7 +62,7 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 	{
 		if (myDesklet)
 		{
-			gboolean bHasFocus = (gtk_window_has_toplevel_focus (GTK_WINDOW (myDesklet->container.pWidget)) || GTK_WIDGET_HAS_FOCUS (myData.tab) || GTK_WIDGET_HAS_FOCUS (myDesklet->container.pWidget));
+			gboolean bHasFocus = (gtk_window_has_toplevel_focus (GTK_WINDOW (myDesklet->container.pWidget)) || gtk_widget_has_focus (myData.tab) || gtk_widget_has_focus (myDesklet->container.pWidget));
 			if (! bHasFocus)
 			{
 				GtkWidget *vterm;
@@ -69,9 +70,9 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 				for (i = 0; i < iNbPages && ! bHasFocus; ++i)
 				{
 					vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), i);
-					bHasFocus = GTK_WIDGET_HAS_FOCUS (vterm);
+					bHasFocus = gtk_widget_has_focus (vterm);
 				}
-				bHasFocus |= (GDK_WINDOW_XID (myDesklet->container.pWidget->window) == cairo_dock_get_current_active_window ());
+				bHasFocus |= (gldi_container_get_Xid (myContainer) == cairo_dock_get_current_active_window ());
 			}
 			cd_debug ("%s (%d)\n", __func__, bHasFocus);
 			
@@ -87,7 +88,7 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 		}
 		else if (myData.dialog)
 		{
-			if (GTK_WIDGET_VISIBLE (myData.dialog->container.pWidget))
+			if (gldi_container_is_visible (CAIRO_CONTAINER (myData.dialog)))
 			{
 				cairo_dock_hide_dialog (myData.dialog);
 			}
@@ -209,6 +210,7 @@ void terminal_change_color_tab (GtkWidget *vterm)
 		GtkLabel *pLabel = pTabWidgetList->data;
 		
 		GtkWidget *pColorDialog = gtk_color_selection_dialog_new (D_("Select a color"));
+		GtkWidget *colorsel = gtk_color_selection_dialog_get_color_selection ((GtkColorSelectionDialog *) pColorDialog);
 		
 		const gchar *cCurrentLabel = gtk_label_get_text (pLabel);
 		GdkColor color;
@@ -216,14 +218,19 @@ void terminal_change_color_tab (GtkWidget *vterm)
 		gchar *cUsefulLabel = _get_label_and_color (cCurrentLabel, &color, &bColorSet);
 		if (bColorSet)
 		{
-			gtk_color_selection_set_current_color (GTK_COLOR_SELECTION (((GtkColorSelectionDialog *) pColorDialog)->colorsel), &color);
+			
+			gtk_color_selection_set_current_color (GTK_COLOR_SELECTION (colorsel), &color);
 		}
 		
-		gtk_color_selection_set_has_opacity_control (GTK_COLOR_SELECTION (((GtkColorSelectionDialog *) pColorDialog)->colorsel), FALSE);
-		g_signal_connect (((GtkColorSelectionDialog *) pColorDialog)->colorsel, "color-changed", GTK_SIGNAL_FUNC (_set_color), pLabel);
+		gtk_color_selection_set_has_opacity_control (GTK_COLOR_SELECTION (colorsel), FALSE);
+		g_signal_connect (colorsel, "color-changed", G_CALLBACK (_set_color), pLabel);
+		#if (GTK_MAJOR_VERSION < 3)
 		gtk_widget_hide (((GtkColorSelectionDialog *) pColorDialog)->cancel_button);
 		gtk_widget_hide (((GtkColorSelectionDialog *) pColorDialog)->help_button);
-		g_signal_connect_swapped (((GtkColorSelectionDialog *) pColorDialog)->ok_button, "clicked", GTK_SIGNAL_FUNC (gtk_widget_destroy), pColorDialog);
+		g_signal_connect_swapped (((GtkColorSelectionDialog *) pColorDialog)->ok_button, "clicked", G_CALLBACK (gtk_widget_destroy), pColorDialog);
+		#else
+		/// TODO: alternative for GTK3?...
+		#endif
 		
 		gtk_window_present (GTK_WINDOW (pColorDialog));
 	}
@@ -260,8 +267,8 @@ static void _term_apply_settings_on_vterm(GtkWidget *vterm)
 	if (myDock)
 	{
 		//g_print ("set_size (%d , %d)\n", myConfig.iNbColumns, myConfig.iNbRows);
-		gtk_widget_set (vterm, "width-request", 0, NULL);
-		gtk_widget_set (vterm, "height-request", 0, NULL);
+		g_object_set (vterm, "width-request", 0, NULL);
+		g_object_set (vterm, "height-request", 0, NULL);
 		vte_terminal_set_size(VTE_TERMINAL(vterm), myConfig.iNbColumns, myConfig.iNbRows);
 		GtkRequisition requisition = {0, 0};
 		gtk_widget_size_request (vterm, &requisition);
@@ -271,8 +278,8 @@ static void _term_apply_settings_on_vterm(GtkWidget *vterm)
 	}
 	else
 	{
-		gtk_widget_set (vterm, "width-request", 64, NULL);
-		gtk_widget_set (vterm, "height-request", 64, NULL);
+		g_object_set (vterm, "width-request", 64, NULL);
+		g_object_set (vterm, "height-request", 64, NULL);
 	}
 }
 
@@ -689,7 +696,7 @@ static void _hide_show_tab_button (GtkNotebook *pNotebook, int iNumPage, gboolea
 	g_list_free (pTabWidgetList);
 }
 static void on_switch_page (GtkNotebook *pNotebook,
-	GtkNotebookPage *pNextPage,
+	GtkWidget *pNextPage,
 	guint iNextNumPage,
 	gpointer user_data)
 {

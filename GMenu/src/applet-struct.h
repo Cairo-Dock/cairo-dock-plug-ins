@@ -22,16 +22,16 @@
 #define  __CD_APPLET_STRUCT__
 
 #include <cairo-dock.h>
-#ifdef HAVE_GIO
+/**#ifdef HAVE_GIO
 #include <gio/gio.h>
 #else
 #define GIcon gpointer
-#endif
+#endif*/
 
 typedef struct {
 	GtkWidget    *pixmap;
-	const char   *stock_id;
-	GIcon        *gicon;
+	///const char   *stock_id;
+	///GIcon        *gicon;
 	char         *image;
 	char         *fallback_image;
 	GtkIconTheme *icon_theme;
@@ -40,7 +40,7 @@ typedef struct {
 
 typedef struct {
 	GtkWidget   *image;
-	const char  *stock_id;
+	///const char  *stock_id;
 	GdkPixbuf   *pixbuf;
 	GtkIconSize  icon_size;
 } IconToAdd;

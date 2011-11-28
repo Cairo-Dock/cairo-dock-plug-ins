@@ -322,7 +322,7 @@ gboolean cd_drop_indicator_update_dock (gpointer pUserData, CairoDock *pDock, gb
 	//g_print ("rect (%d;%d) (%dx%d)\n", rect.x, rect.y, rect.width, rect.height);
 	if (rect.width > 0 && rect.height > 0)
 	{
-		gdk_window_invalidate_rect (pDock->container.pWidget->window, &rect, FALSE);
+		cairo_dock_redraw_container_area (CAIRO_CONTAINER (pDock), &rect);
 	}
 	
 	if (pData && pData->fAlphaHover > 0)

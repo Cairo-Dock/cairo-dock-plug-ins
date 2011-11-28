@@ -51,6 +51,7 @@ button_press_handler (GtkWidget      *fixedtip,
   return FALSE;
 }
 
+#if (GTK_MAJOR_VERSION < 3)
 static gboolean
 expose_handler (GtkWidget *fixedtip)
 {
@@ -58,13 +59,29 @@ expose_handler (GtkWidget *fixedtip)
 
   gtk_widget_size_request (fixedtip, &req);
 
-  gtk_paint_flat_box (fixedtip->style, fixedtip->window,
+  gtk_paint_flat_box (gtk_widget_get_style (fixedtip), gtk_widget_get_window (fixedtip),
                       GTK_STATE_NORMAL, GTK_SHADOW_OUT, 
                       NULL, fixedtip, "tooltip",
                       0, 0, req.width, req.height);
 
   return FALSE;
 }
+#else
+static gboolean
+draw_handler (GtkWidget *fixedtip, cairo_t *cr)
+{
+  GtkRequisition req;
+
+  gtk_widget_size_request (fixedtip, &req);
+
+  gtk_paint_flat_box (gtk_widget_get_style (fixedtip), cr,
+                      GTK_STATE_NORMAL, GTK_SHADOW_OUT, 
+                      fixedtip, "tooltip",
+                      0, 0, req.width, req.height);
+
+  return FALSE;
+}
+#endif
 
 static void
 na_fixed_tip_class_init (NaFixedTipClass *class)
@@ -105,9 +122,14 @@ na_fixed_tip_init (NaFixedTip *fixedtip)
   gtk_container_add (GTK_CONTAINER (fixedtip), label);
   fixedtip->priv->label = label;
 
+#if (GTK_MAJOR_VERSION < 3)
   g_signal_connect (fixedtip, "expose_event",
                     G_CALLBACK (expose_handler), NULL);
+#else
+  g_signal_connect (fixedtip, "draw",
+                    G_CALLBACK (draw_handler), NULL);
 
+#endif
   gtk_widget_add_events (GTK_WIDGET (fixedtip), GDK_BUTTON_PRESS_MASK);
   
   g_signal_connect (fixedtip, "button_press_event",
@@ -133,10 +155,16 @@ na_fixed_tip_position (NaFixedTip *fixedtip)
 
   gtk_widget_size_request (GTK_WIDGET (fixedtip), &req);
 
-  gdk_window_get_origin (fixedtip->priv->parent->window, &root_x, &root_y);
+  gdk_window_get_origin (gtk_widget_get_window (fixedtip->priv->parent), &root_x, &root_y);
+  #if (GTK_MAJOR_VERSION < 3)
   gdk_drawable_get_size (GDK_DRAWABLE (fixedtip->priv->parent->window),
                          &parent_width, &parent_height);
-
+	#else
+	GtkRequisition  req2;
+	gtk_widget_size_request (GTK_WIDGET (fixedtip->priv->parent), &req2);  /// not sure about this one...
+	parent_width = req2.width;
+	parent_height = req2.height;
+	#endif
   screen_width = gdk_screen_get_width (screen);
   screen_height = gdk_screen_get_height (screen);
 
@@ -195,7 +223,9 @@ na_fixed_tip_new (GtkWidget      *parent,
   fixedtip = g_object_new (NA_TYPE_FIXED_TIP, NULL);
 
   /* It doesn't work if we do this in na_fixed_tip_init(), so do it here */
-  GTK_WINDOW (fixedtip)->type = GTK_WINDOW_POPUP;
+  #if (GTK_MAJOR_VERSION < 3)
+  GTK_WINDOW (fixedtip)->type = GTK_WINDOW_POPUP;  /// how handle this with GTK3 ?...
+  #endif
 
   fixedtip->priv->parent = parent;
 

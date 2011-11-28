@@ -26,10 +26,11 @@
 
 #include "na-tray-manager.h"
 
+#if (GTK_MAJOR_VERSION < 3)
 #include <gdkconfig.h>
+#endif
 #include <glib/gi18n.h>
 #if defined (GDK_WINDOWING_X11)
-#include <gdk/gdkx.h>
 #include <X11/Xatom.h>
 #elif defined (GDK_WINDOWING_WIN32)
 #include <gdk/gdkwin32.h>
@@ -41,6 +42,11 @@
 #if (GTK_MAJOR_VERSION <= 2 && GTK_MINOR_VERSION < 20)
 #define gtk_widget_get_realized GTK_WIDGET_REALIZED
 #endif
+
+static GdkFilterReturn
+na_tray_manager_handle_client_message_opcode (GdkXEvent *xev,
+                                              GdkEvent  *event,
+                                              gpointer   data);
 
 /* Signals */
 enum
@@ -300,7 +306,7 @@ na_tray_manager_handle_dock_request (NaTrayManager       *manager,
 
   gtk_socket_add_id (GTK_SOCKET (child), icon_window);
 
-  if (!GTK_SOCKET (child)->plug_window)
+  if (!gtk_socket_get_plug_window (GTK_SOCKET (child)))
     {
       /* Embedding failed, we won't get a plug-removed signal */
       g_signal_emit (manager, manager_signals[TRAY_ICON_REMOVED], 0, child);
@@ -369,6 +375,33 @@ na_tray_manager_handle_client_message_message_data (GdkXEvent *xev,
 
   return GDK_FILTER_REMOVE;
 }
+
+#if (GTK_MAJOR_VERSION >= 3)
+static GdkFilterReturn na_tray_manager_handle_client_message (GdkXEvent *xevent, GdkEvent *event, gpointer data)
+{
+	XClientMessageEvent *evt;
+	Atom             opcode_atom;
+	Atom             message_data_atom;
+
+	if (((XEvent *)xevent)->type != ClientMessage)
+		return GDK_FILTER_CONTINUE;
+
+	evt = (XClientMessageEvent *)xevent;
+	
+	opcode_atom = XInternAtom (evt->display, "_NET_SYSTEM_TRAY_OPCODE", FALSE);
+	message_data_atom = XInternAtom (evt->display, "_NET_SYSTEM_TRAY_MESSAGE_DATA", FALSE);
+	
+	if (evt->message_type == opcode_atom)
+	{
+		return na_tray_manager_handle_client_message_opcode (xevent, event, data);
+	}
+	else if (evt->message_type == message_data_atom)
+	{
+		return na_tray_manager_handle_client_message_message_data (xevent, event, data);
+	}
+	return GDK_FILTER_CONTINUE;
+}
+#endif
 
 static void
 na_tray_manager_handle_begin_message (NaTrayManager       *manager,
@@ -550,14 +583,14 @@ na_tray_manager_unmanage (NaTrayManager *manager)
   invisible = manager->invisible;
   g_assert (GTK_IS_INVISIBLE (invisible));
   g_assert (gtk_widget_get_realized (invisible));
-  g_assert (GDK_IS_WINDOW (invisible->window));
+  ///g_assert (GDK_IS_WINDOW (invisible->window));
   
   display = gtk_widget_get_display (invisible);
   
   if (gdk_selection_owner_get_for_display (display, manager->selection_atom) ==
-      invisible->window)
+      gtk_widget_get_window (invisible))
     {
-      timestamp = gdk_x11_get_server_time (invisible->window);      
+      timestamp = gdk_x11_get_server_time (gtk_widget_get_window (invisible));      
       gdk_selection_owner_set_for_display (display,
                                            NULL,
                                            manager->selection_atom,
@@ -568,7 +601,7 @@ na_tray_manager_unmanage (NaTrayManager *manager)
   //FIXME: we should also use gdk_remove_client_message_filter when it's
   //available
   // See bug #351254
-  gdk_window_remove_filter (invisible->window,
+  gdk_window_remove_filter (gtk_widget_get_window (invisible),
                             na_tray_manager_window_filter, manager);  
 
   manager->invisible = NULL; /* prior to destroy for reentrancy paranoia */
@@ -585,7 +618,7 @@ na_tray_manager_set_orientation_property (NaTrayManager *manager)
   Atom        orientation_atom;
   gulong      data[1];
 
-  if (!manager->invisible || !manager->invisible->window)
+  if (!manager->invisible || !gtk_widget_get_window (manager->invisible))
     return;
 
   display = gtk_widget_get_display (manager->invisible);
@@ -597,7 +630,7 @@ na_tray_manager_set_orientation_property (NaTrayManager *manager)
 		SYSTEM_TRAY_ORIENTATION_VERT;
 
   XChangeProperty (GDK_DISPLAY_XDISPLAY (display),
-		   GDK_WINDOW_XWINDOW (manager->invisible->window),
+		   GDK_WINDOW_XID (gtk_widget_get_window (manager->invisible)),
                    orientation_atom,
 		   XA_CARDINAL, 32,
 		   PropModeReplace,
@@ -614,7 +647,7 @@ na_tray_manager_set_visual_property (NaTrayManager *manager)
   Atom        visual_atom;
   gulong      data[1];
 
-  if (!manager->invisible || !manager->invisible->window)
+  if (!manager->invisible || !gtk_widget_get_window (manager->invisible))
     return;
 
   /* The visual property is a hint to the tray icons as to what visual they
@@ -640,16 +673,20 @@ na_tray_manager_set_visual_property (NaTrayManager *manager)
        * be embedded. In almost all cases, this will be the same as the visual
        * of the screen.
        */
+       #if (GTK_MAJOR_VERSION < 3)
       GdkColormap *colormap;
-
       colormap = gdk_screen_get_default_colormap (manager->screen);
       xvisual = GDK_VISUAL_XVISUAL (gdk_colormap_get_visual (colormap));
+      #else
+      xvisual = GDK_VISUAL_XVISUAL (gdk_window_get_visual (gdk_get_default_root_window ()));
+      #endif
+      
     }
 
   data[0] = XVisualIDFromVisual (xvisual);
 
   XChangeProperty (GDK_DISPLAY_XDISPLAY (display),
-                   GDK_WINDOW_XWINDOW (manager->invisible->window),
+                   GDK_WINDOW_XID (gtk_widget_get_window (manager->invisible)),
                    visual_atom,
                    XA_VISUALID, 32,
                    PropModeReplace,
@@ -702,11 +739,11 @@ na_tray_manager_manage_screen_x11 (NaTrayManager *manager,
   na_tray_manager_set_orientation_property (manager);
   na_tray_manager_set_visual_property (manager);
   
-  timestamp = gdk_x11_get_server_time (invisible->window);
+  timestamp = gdk_x11_get_server_time (gtk_widget_get_window (invisible));
 
   /* Check if we could set the selection owner successfully */
   if (gdk_selection_owner_set_for_display (display,
-                                           invisible->window,
+                                           gtk_widget_get_window (invisible),
                                            manager->selection_atom,
                                            timestamp,
                                            TRUE))
@@ -724,7 +761,7 @@ na_tray_manager_manage_screen_x11 (NaTrayManager *manager,
       xev.data.l[0] = timestamp;
       xev.data.l[1] = gdk_x11_atom_to_xatom_for_display (display,
                                                          manager->selection_atom);
-      xev.data.l[2] = GDK_WINDOW_XWINDOW (invisible->window);
+      xev.data.l[2] = GDK_WINDOW_XID (gtk_widget_get_window (invisible));
       xev.data.l[3] = 0;	/* manager specific data */
       xev.data.l[4] = 0;	/* manager specific data */
 
@@ -747,9 +784,10 @@ na_tray_manager_manage_screen_x11 (NaTrayManager *manager,
                         manager);
 #endif
       /* This is for SYSTEM_TRAY_REQUEST_DOCK and SelectionClear */
-      gdk_window_add_filter (invisible->window,
+      gdk_window_add_filter (gtk_widget_get_window (invisible),
                              na_tray_manager_window_filter, manager);
       /* This is for SYSTEM_TRAY_BEGIN_MESSAGE and SYSTEM_TRAY_CANCEL_MESSAGE */
+      #if (GTK_MAJOR_VERSION < 3)
       gdk_display_add_client_message_filter (display, opcode_atom,
                                              na_tray_manager_handle_client_message_opcode,
                                              manager);
@@ -757,6 +795,9 @@ na_tray_manager_manage_screen_x11 (NaTrayManager *manager,
       gdk_display_add_client_message_filter (display, message_data_atom,
                                              na_tray_manager_handle_client_message_message_data,
                                              manager);
+		#else
+		gdk_window_add_filter (NULL, na_tray_manager_handle_client_message, manager);
+		#endif
       return TRUE;
     }
   else

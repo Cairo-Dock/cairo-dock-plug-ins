@@ -124,8 +124,8 @@ static void _cd_folders_show_file_properties (GtkMenuItem *pMenuItem, gpointer *
 		GtkWidget *pFrame = gtk_frame_new (NULL);
 		gtk_container_set_border_width (GTK_CONTAINER (pFrame), 3);
 		gtk_frame_set_label_widget (GTK_FRAME (pFrame), pLabel);
+		gtk_container_add (GTK_CONTAINER (gtk_dialog_get_content_area (GTK_DIALOG(pDialog))), pFrame);
 		gtk_frame_set_shadow_type (GTK_FRAME (pFrame), GTK_SHADOW_OUT);
-		gtk_container_add (GTK_CONTAINER (GTK_DIALOG (pDialog)->vbox), pFrame);
 
 		GtkWidget *pVBox = gtk_vbox_new (FALSE, 3);
 		gtk_container_add (GTK_CONTAINER (pFrame), pVBox);
@@ -185,7 +185,7 @@ static void _cd_folders_show_file_properties (GtkMenuItem *pMenuItem, gpointer *
 		gtk_window_set_type_hint (GTK_WINDOW (pDialog), GDK_WINDOW_TYPE_HINT_DOCK);  // sinon le dialogue sera toujours derriere le sous-dock, meme avec un 'set_keep_above'. en contrepartie, le dialgue n'aura pas de bordure (du moins avec Compiz).
 		gtk_window_set_keep_above (GTK_WINDOW (pDialog), TRUE);
 		
-		gtk_widget_show_all (GTK_DIALOG (pDialog)->vbox);
+		gtk_widget_show_all (gtk_dialog_get_content_area (GTK_DIALOG(pDialog)));
 		gtk_window_set_position (GTK_WINDOW (pDialog), GTK_WIN_POS_CENTER_ALWAYS);
 		int answer = gtk_dialog_run (GTK_DIALOG (pDialog));
 		gtk_widget_destroy (pDialog);

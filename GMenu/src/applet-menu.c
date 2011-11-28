@@ -92,8 +92,9 @@ static void reload_image_menu_items (void)
 		GtkWidget *image = l->data;
 		gboolean   is_mapped;
       
-		is_mapped = GTK_WIDGET_MAPPED (image);
-
+		///is_mapped = GTK_WIDGET_MAPPED (image);
+		is_mapped = gtk_widget_get_mapped (image);
+		
 		if (is_mapped)
 			gtk_widget_unmap (image);
 
@@ -235,8 +236,8 @@ GdkPixbuf * panel_make_menu_icon (GtkIconTheme *icon_theme,
 
 void panel_load_menu_image_deferred (GtkWidget   *image_menu_item,
 				GtkIconSize  icon_size,
-				const char  *stock_id,
-				GIcon       *gicon,
+				///const char  *stock_id,
+				///GIcon       *gicon,
 				const char  *image_filename,
 				const char  *fallback_image_filename)
 {
@@ -244,33 +245,33 @@ void panel_load_menu_image_deferred (GtkWidget   *image_menu_item,
 	GtkWidget *image;
 	int        icon_height = PANEL_DEFAULT_MENU_ICON_SIZE;
 
-	icon = g_new (IconToLoad, 1);
+	icon = g_new0 (IconToLoad, 1);
 
 	gtk_icon_size_lookup (icon_size, NULL, &icon_height);
 
 	image = gtk_image_new ();
-	image->requisition.width  = icon_height;
-	image->requisition.height = icon_height;
+	///image->requisition.width  = icon_height;
+	///image->requisition.height = icon_height;
 
 	/* this takes over the floating ref */
 	icon->pixmap = g_object_ref (G_OBJECT (image));
-	gtk_object_sink (GTK_OBJECT (image));
+	g_object_ref_sink (G_OBJECT (image));
 
-	icon->stock_id       = stock_id;
+	/**icon->stock_id       = stock_id;
 	if (gicon)
 		icon->gicon  = g_object_ref (gicon);
 	else
-		icon->gicon  = NULL;
+		icon->gicon  = NULL;*/
 	icon->image          = g_strdup (image_filename);
 	icon->fallback_image = g_strdup (fallback_image_filename);
 	icon->icon_size      = icon_size;
 
 	gtk_widget_show (image);
 
-	g_object_set_data_full (G_OBJECT (image_menu_item),
+	/**g_object_set_data_full (G_OBJECT (image_menu_item),
 				"Panel:Image",
 				g_object_ref (image),
-				(GDestroyNotify) g_object_unref);
+				(GDestroyNotify) g_object_unref);*/
  
 	if (myConfig.bHasIcons)
 	{
@@ -300,13 +301,13 @@ GtkWidget * create_submenu_entry (GtkWidget          *menu,
 
 	panel_load_menu_image_deferred (menuitem,
 					32, //panel_menu_icon_get_size (),
-					NULL, NULL,
+					///NULL, NULL,
 					gmenu_tree_directory_get_icon (directory),
 					PANEL_ICON_FOLDER);
 
 	setup_menuitem (menuitem,
 			32, //panel_menu_icon_get_size (),
-			NULL,
+			///NULL,
 			gmenu_tree_directory_get_name (directory));
 
 	gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
@@ -375,14 +376,14 @@ void create_menuitem (GtkWidget          *menu,
 
 	panel_load_menu_image_deferred (menuitem,
 					PANEL_DEFAULT_MENU_ICON_SIZE, //panel_menu_icon_get_size (),
-					NULL, NULL,
+					///NULL, NULL,
 					alias_directory ? gmenu_tree_directory_get_icon (alias_directory) :
 							  gmenu_tree_entry_get_icon (entry),
 					NULL);
 
 	setup_menuitem (menuitem,
 			PANEL_DEFAULT_MENU_ICON_SIZE, //panel_menu_icon_get_size (),
-			NULL,
+			///NULL,
 			alias_directory ? gmenu_tree_directory_get_name (alias_directory) :
 					  gmenu_tree_entry_get_name (entry));
 
@@ -466,7 +467,7 @@ void create_menuitem_from_alias (GtkWidget      *menu,
 }
 
 
-static void
+/**static void
 image_menuitem_size_request (GtkWidget      *menuitem,
 			     GtkRequisition *requisition,
 			     gpointer        data)
@@ -478,20 +479,19 @@ image_menuitem_size_request (GtkWidget      *menuitem,
 	if (!gtk_icon_size_lookup (icon_size, NULL, &icon_height))
 		return;
 
-	/* If we don't have a pixmap for this menuitem
-	 * at least make sure its the same height as
-	 * the rest.
-	 * This is a bit ugly, since we should keep this in sync with what's in
-	 * gtk_menu_item_size_request()
-	 */
+	// If we don't have a pixmap for this menuitem
+	// at least make sure its the same height as
+	// the rest.
+	// This is a bit ugly, since we should keep this in sync with what's in
+	// gtk_menu_item_size_request()
 	req_height = icon_height;
 	req_height += (GTK_CONTAINER (menuitem)->border_width +
-		       menuitem->style->ythickness) * 2;
+		       menuitem->style->thickness) * 2;
 	requisition->height = MAX (requisition->height, req_height);
-}
+}*/
 void setup_menuitem (GtkWidget   *menuitem,
 		GtkIconSize  icon_size,
-		GtkWidget   *image,
+		///GtkWidget   *image,
 		const char  *title)
 			       
 {
@@ -513,7 +513,7 @@ void setup_menuitem (GtkWidget   *menuitem,
 
 	gtk_container_add (GTK_CONTAINER (menuitem), label);
 
-	if (image) {
+	/**if (image) {
 		g_object_set_data_full (G_OBJECT (menuitem),
 					"Panel:Image",
 					g_object_ref (image),
@@ -532,7 +532,7 @@ void setup_menuitem (GtkWidget   *menuitem,
 		g_signal_connect (menuitem, "size_request",
 				  G_CALLBACK (image_menuitem_size_request),
 				  GINT_TO_POINTER (icon_size));
-
+	*/
 	gtk_widget_show (menuitem);
 }
 
@@ -543,8 +543,11 @@ GtkWidget * populate_menu_from_directory (GtkWidget          *menu,
 	GSList   *items;
 	gboolean  add_separator;
 
-	add_separator = (GTK_MENU_SHELL (menu)->children != NULL);
-
+	///add_separator = (GTK_MENU_SHELL (menu)->children != NULL);
+	GList *children = gtk_container_get_children (GTK_CONTAINER (menu));
+	add_separator = (children != NULL);
+	g_list_free (children);  // not very optimized ...	
+	
 	items = gmenu_tree_directory_get_contents (directory);
 
 	for (l = items; l; l = l->next) {

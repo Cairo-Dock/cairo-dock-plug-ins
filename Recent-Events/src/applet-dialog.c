@@ -356,7 +356,7 @@ static GtkWidget *cd_build_events_widget (void)
 	
 	// category toolbar.
 	GtkWidget *pToolBar = gtk_toolbar_new ();
-	gtk_toolbar_set_orientation (GTK_TOOLBAR (pToolBar), GTK_ORIENTATION_HORIZONTAL);
+	///gtk_toolbar_set_orientation (GTK_TOOLBAR (pToolBar), GTK_ORIENTATION_HORIZONTAL);
 	gtk_toolbar_set_style (GTK_TOOLBAR (pToolBar), GTK_TOOLBAR_BOTH);  // overwrite system preference (GTK_TOOLBAR_ICONS)
 	gtk_toolbar_set_show_arrow (GTK_TOOLBAR (pToolBar), FALSE);  // force to display all the entries.
 	gtk_box_pack_start (GTK_BOX (pMainBox), pToolBar, TRUE, TRUE, MARGIN);
@@ -440,10 +440,15 @@ static GtkWidget *cd_build_events_widget (void)
 	gtk_tree_view_append_column (GTK_TREE_VIEW (pOneWidget), col);
 	
 	// barres de defilement
-	GtkObject *adj = gtk_adjustment_new (0., 0., 100., 1, 10, 10);
+	#if (GTK_MAJOR_VERSION < 3)
+	GtkObject
+	#else
+	GtkAdjustment
+	#endif
+	*adj = gtk_adjustment_new (0., 0., 100., 1, 10, 10);
 	gtk_tree_view_set_vadjustment (GTK_TREE_VIEW (pOneWidget), GTK_ADJUSTMENT (adj));
 	GtkWidget *pScrolledWindow = gtk_scrolled_window_new (NULL, NULL);
-	gtk_widget_set (pScrolledWindow, "height-request", 300, NULL);
+	g_object_set (pScrolledWindow, "height-request", 300, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (pScrolledWindow), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
 	gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (pScrolledWindow), pOneWidget);
 	gtk_box_pack_start (GTK_BOX (pMainBox), pScrolledWindow, FALSE, FALSE, MARGIN);

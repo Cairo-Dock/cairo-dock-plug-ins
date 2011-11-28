@@ -30,7 +30,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	if (myData.pItems == NULL)
 	{
 		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog_with_icon (D_("No items yet."), myIcon, myContainer, 2000, "same icon");
+		cairo_dock_show_temporary_dialog_with_icon (D_("The clipboard history is empty."), myIcon, myContainer, 3000, "same icon");
 	}
 	else
 	{

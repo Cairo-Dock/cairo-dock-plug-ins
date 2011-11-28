@@ -35,12 +35,13 @@
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
 	gchar *cAnimationName;
+	gchar *cShortkey;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
 	CDAppletIndicator *pIndicator;
-	GtkSizeGroup * indicator_right_group;
+	CairoKeyBinding *pKeyBinding;
 	} ;
 
 

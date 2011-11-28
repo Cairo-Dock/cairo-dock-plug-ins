@@ -20,8 +20,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <gdk/gdkkeysyms.h>
 #include <gdk/gdkx.h>
+#include <gdk/gdkkeysyms.h>
+#include <gdk/gdkkeysyms-compat.h>
 
 #include "applet-struct.h"
 #include "applet-draw.h"
@@ -132,7 +133,7 @@ gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer,
 static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, Window *data)
 {
 	Window xActiveWindow = data[0];
-	if (GDK_WINDOW_XID (pDock->container.pWidget->window) == xActiveWindow)
+	if (gldi_container_get_Xid (CAIRO_CONTAINER (pDock)) == xActiveWindow)
 		data[1] = 1;
 }
 gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow)
@@ -294,7 +295,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	}
 	else if (iKeyVal >= GDK_F1 && iKeyVal <= GDK_F9)
 	{
-		if (myData.pListing != NULL && GTK_WIDGET_VISIBLE (myData.pListing->container.pWidget))
+		if (myData.pListing != NULL && gldi_container_is_visible (CAIRO_CONTAINER (myData.pListing)))
 		{
 			cd_debug ("modification du filtre : option n°%d", iKeyVal - GDK_F1);
 			cd_do_activate_filter_option (iKeyVal - GDK_F1);

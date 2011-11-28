@@ -153,7 +153,7 @@ static GtkWidget *_xgamma_add_channel_widget (GtkWidget *pInteractiveWidget, con
 	GtkWidget *pHScale = gtk_hscale_new_with_range (GAMMA_MIN, GAMMA_MAX, .02);
 	gtk_scale_set_digits (GTK_SCALE (pHScale), 2);
 	gtk_range_set_value (GTK_RANGE (pHScale), fChannelGamma);
-	gtk_widget_set (pHScale, "width-request", 150, NULL);
+	g_object_set (pHScale, "width-request", 150, NULL);
 	
 	*iSignalID = g_signal_connect (G_OBJECT (pHScale),
 		"value-changed",
@@ -263,7 +263,7 @@ CairoDialog *xgamma_build_dialog_simple (void)
 	GtkWidget *pHScale = gtk_hscale_new_with_range (0, 100., 1.);
 	gtk_scale_set_digits (GTK_SCALE (pHScale), 0);
 	gtk_range_set_value (GTK_RANGE (pHScale), fGammaPercent);
-	gtk_widget_set (pHScale, "width-request", 150, NULL);
+	g_object_set (pHScale, "width-request", 150, NULL);
 	g_signal_connect (G_OBJECT (pHScale),
 		"value-changed",
 		G_CALLBACK (on_scale_value_changed_simple),

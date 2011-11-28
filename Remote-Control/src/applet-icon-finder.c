@@ -250,8 +250,12 @@ gboolean cairo_dock_emit_motion_signal (CairoDock *pDock, int iMouseX, int iMous
 	motion.x_root = pDock->container.iWindowPositionX + pDock->container.iMouseX;
 	motion.y_root = pDock->container.iWindowPositionY + pDock->container.iMouseY;
 	motion.time = 0;
-	motion.window = pDock->container.pWidget->window;
+	motion.window = gldi_container_get_gdk_window (CAIRO_CONTAINER (pDock));
+	#if (GTK_MAJOR_VERSION < 3)
 	motion.device = gdk_device_get_core_pointer ();
+	#else
+	motion.device = NULL;
+	#endif
 	g_signal_emit_by_name (pDock->container.pWidget, "motion-notify-event", &motion, &bReturn);
 	return FALSE;
 }

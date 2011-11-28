@@ -77,15 +77,15 @@ void weblet_build_and_show(CairoDockModuleInstance *myApplet)
 	
 	myData.pWebKitView = WEBKIT_WEB_VIEW (webkit_web_view_new ());
 	gtk_container_add (GTK_CONTAINER (myData.pGtkMozEmbed), GTK_WIDGET (myData.pWebKitView));
-	gtk_signal_connect(GTK_OBJECT(myData.pWebKitView),
+	g_signal_connect(G_OBJECT(myData.pWebKitView),
 		"load_finished",
-		GTK_SIGNAL_FUNC(load_finished_cb),
+		G_CALLBACK (load_finished_cb),
 		myApplet);
 	gtk_widget_show_all (myData.pGtkMozEmbed);
 				 					 
 	if (myDock)
 	{
-		gtk_widget_set (GTK_WIDGET (myData.pWebKitView), "width-request", 600, "height-request", 400, NULL);
+		g_object_set (GTK_WIDGET (myData.pWebKitView), "width-request", 600, "height-request", 400, NULL);
 		myData.dialog = cd_weblets_build_dialog(myApplet);
 	}
 	else

@@ -283,9 +283,9 @@ GtkWidget *cd_mail_messages_container_new(CDMailAccount *pMailAccount)
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, TRUE, 0);
 	
 	// then we need to put the callbacks
-	gtk_signal_connect( GTK_OBJECT(myData.pPrevButton), "clicked", G_CALLBACK(_cd_mail_show_prev_mail_cb), (gpointer)pMailAccount );
-	gtk_signal_connect( GTK_OBJECT(myData.pNextButton), "clicked", G_CALLBACK(_cd_mail_show_next_mail_cb), (gpointer)pMailAccount );
-	gtk_signal_connect( GTK_OBJECT(pCloseButton),       "clicked", G_CALLBACK(_cd_mail_close_preview_cb), (gpointer)pMailAccount );
+	g_signal_connect( G_OBJECT(myData.pPrevButton), "clicked", G_CALLBACK(_cd_mail_show_prev_mail_cb), (gpointer)pMailAccount );
+	g_signal_connect( G_OBJECT(myData.pNextButton), "clicked", G_CALLBACK(_cd_mail_show_next_mail_cb), (gpointer)pMailAccount );
+	g_signal_connect( G_OBJECT(pCloseButton),       "clicked", G_CALLBACK(_cd_mail_close_preview_cb), (gpointer)pMailAccount );
 
 	GList *l = pMailAccount->pUnseenMessageList;
 	const gchar *cMessage = "";

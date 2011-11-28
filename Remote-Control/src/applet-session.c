@@ -19,7 +19,6 @@
 
 #include <stdlib.h>
 #include <string.h>
-
 #include <gdk/gdkx.h>
 
 #include "applet-struct.h"
@@ -75,7 +74,7 @@ void cd_do_open_session (void)
 	myData.iPreviouslyActiveWindow = cairo_dock_get_active_xwindow ();
 	
 	///gtk_window_present (GTK_WINDOW (g_pMainDock->container.pWidget));
-	gtk_window_present_with_time (GTK_WINDOW (g_pMainDock->container.pWidget), gdk_x11_get_server_time (g_pMainDock->container.pWidget->window));  // pour eviter la prevention du vol de focus.
+	gtk_window_present_with_time (GTK_WINDOW (g_pMainDock->container.pWidget), gdk_x11_get_server_time (gldi_container_get_gdk_window(CAIRO_CONTAINER (g_pMainDock))));  // pour eviter la prevention du vol de focus.
 	cairo_dock_freeze_docks (TRUE);
 	
 	// launch animation.
@@ -108,7 +107,7 @@ void cd_do_close_session (void)
 	{
 		// ne le faire que si on a encore le focus, sinon c'est que l'utilisateur a change lui-meme de fenetre...
 		Window iActiveWindow = cairo_dock_get_active_xwindow ();
-		if (myData.pCurrentDock && iActiveWindow == GDK_WINDOW_XID (myData.pCurrentDock->container.pWidget->window))
+		if (myData.pCurrentDock && iActiveWindow == gldi_container_get_Xid (CAIRO_CONTAINER (myData.pCurrentDock)))
 			cairo_dock_show_xwindow (myData.iPreviouslyActiveWindow);
 		
 		myData.iPreviouslyActiveWindow = 0;

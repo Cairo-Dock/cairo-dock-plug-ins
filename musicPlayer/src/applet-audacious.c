@@ -347,9 +347,9 @@ static void cd_audacious_control (MyPlayerControl pControl, const char* song)
 		{
 			int iVolume = cd_mpris_get_volume ();  // [0, 100]
 			if (song && strcmp (song, "up") == 0)
-				iVolume += 4;
+				iVolume += 5;
 			else
-				iVolume -= 4;
+				iVolume -= 5;
 			
 			if (iVolume > 100)
 				iVolume = 100;

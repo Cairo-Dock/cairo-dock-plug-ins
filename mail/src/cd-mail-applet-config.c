@@ -362,14 +362,22 @@ void cd_mail_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pK
 		0);
 	
 	//\____________ On cree un combo pour selectionner le type de compte mail qu'on voudrait ajouter
+	#if (GTK_MAJOR_VERSION < 3)
 	GtkWidget *pMailTypesCombo = gtk_combo_box_new_text();
+	#else
+	GtkWidget *pMailTypesCombo = gtk_combo_box_text_new ();
+	#endif
+	
 	if( pMailTypesCombo )
 	{
 		guint j;
 		for( j = 0; j < MAIL_NB_STORAGE_TYPES; j++ )
 		{
+			#if (GTK_MAJOR_VERSION < 3)
 			gtk_combo_box_append_text( GTK_COMBO_BOX (pMailTypesCombo), storage_tab[j].description );
-			//gtk_widget_set_tooltip_text (pMenuItem, D_("description du type de compte"));
+			#else
+			gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (pMailTypesCombo), storage_tab[j].description );
+			#endif
 		}
 	}
 	gtk_box_pack_start (GTK_BOX (pCustomWidgetBox),

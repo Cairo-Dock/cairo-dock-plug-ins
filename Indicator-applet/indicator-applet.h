@@ -24,7 +24,7 @@
 #include <cairo-dock.h>
 
 #include <libindicator/indicator.h>
-#include <libindicator/indicator-object.h>
+///#include <libindicator/indicator-object.h>
 #include <libindicator/indicator-service-manager.h>
 
 #include <libdbusmenu-gtk/menuitem.h>

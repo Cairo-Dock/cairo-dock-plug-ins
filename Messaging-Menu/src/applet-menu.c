@@ -33,7 +33,7 @@
 #define RIGHT_LABEL_FONT_SIZE 12
 #define RIGHT_LABEL_RADIUS 20
 
-static GtkSizeGroup * indicator_right_group = NULL;
+static GtkSizeGroup * indicator_right_group = NULL;  /// TODO: check if it needs to be freed...
 
   //////////////////////
  // APPLICATION ITEM //
@@ -105,15 +105,17 @@ application_triangle_draw_cb (GtkWidget *widget, GdkEventExpose *event, gpointer
 
 	/* get style */
 	style = gtk_widget_get_style (widget);
+	GtkAllocation allocation;
+	gtk_widget_get_allocation (widget, &allocation);
 
 	/* set arrow position / dimensions */
 	arrow_width = 5; /* the pixel-based reference triangle is 5x9 */
 	arrow_height = 9;
-	x = widget->allocation.x;
-	y = widget->allocation.y + widget->allocation.height/2.0 - (double)arrow_height/2.0;
+	x = allocation.x;
+	y = allocation.y + allocation.height/2.0 - (double)arrow_height/2.0;
 
 	/* initialize cairo drawing area */
-	cr = (cairo_t*) gdk_cairo_create (widget->window);
+	cr = (cairo_t*) gdk_cairo_create (gtk_widget_get_window (widget));
 
 	/* set line width */	
 	cairo_set_line_width (cr, 1.0);
@@ -164,10 +166,12 @@ numbers_draw_cb (GtkWidget *widget, GdkEventExpose *event, gpointer data)
 	style = gtk_widget_get_style (widget);
 
 	/* set arrow position / dimensions */
-	w = widget->allocation.width;
-	h = widget->allocation.height;
-	x = widget->allocation.x;
-	y = widget->allocation.y;
+	GtkAllocation allocation;
+	gtk_widget_get_allocation (widget, &allocation);
+	w = allocation.width;
+	h = allocation.height;
+	x = allocation.x;
+	y = allocation.y;
 
 	layout = gtk_label_get_layout (GTK_LABEL(widget));
 
@@ -178,7 +182,7 @@ numbers_draw_cb (GtkWidget *widget, GdkEventExpose *event, gpointer data)
 	font_size = pango_font_description_get_size (font_description); */
 
 	/* initialize cairo drawing area */
-	cr = (cairo_t*) gdk_cairo_create (widget->window);
+	cr = (cairo_t*) gdk_cairo_create (gtk_widget_get_window (widget));
 
 	/* set line width */	
 	cairo_set_line_width (cr, 1.0);

@@ -102,3 +102,6 @@ fg alpha = 1
 
 #a Animation of the icon when one of the application demands your attention :
 animation = rotate
+
+#k Shortkey to show/hide the menu:
+shortkey = <Control><Alt>m

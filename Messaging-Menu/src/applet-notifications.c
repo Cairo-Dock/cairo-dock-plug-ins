@@ -25,10 +25,15 @@
 #include "applet-notifications.h"
 
 
+static inline void _show_menu (void)
+{
+	if (! cd_indicator_show_menu (myData.pIndicator))
+		cairo_dock_show_temporary_dialog_with_icon (D_("The Messaging service did not reply.\nPlease check that it is correctly installed."), myIcon, myContainer, 4000., "same icon");
+}
+
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
 CD_APPLET_ON_CLICK_BEGIN
-	if (! cd_indicator_show_menu (myData.pIndicator))
-		cairo_dock_show_temporary_dialog_with_icon (D_("It seems that the Messaging-Menu is not installed on your system"), myIcon, myContainer, 3000., "same icon");
+	_show_menu ();
 CD_APPLET_ON_CLICK_END
 
 
@@ -50,3 +55,11 @@ CD_APPLET_ON_SCROLL_END
 CD_APPLET_ON_BUILD_MENU_BEGIN
 
 CD_APPLET_ON_BUILD_MENU_END
+
+
+void cd_messaging_on_keybinding_pull (const gchar *keystring, CairoDockModuleInstance *myApplet)
+{
+	CD_APPLET_ENTER;
+	_show_menu ();
+	CD_APPLET_LEAVE();
+}
