@@ -245,18 +245,7 @@ static GtkWidget *_build_menu (void)
 	
 	if (myData.bCanStop)
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Program an automatic shut-down"), MY_APPLET_SHARE_DATA_DIR"/icon-scheduling.svg", cd_logout_program_shutdown, pMenu);
-
-	if ((myDock && myDock->container.bIsHorizontal && ! myDock->container.bDirectionUp) // on the top, we inverse the menu
-		|| (myDesklet && myDesklet->container.iWindowPositionY < (g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL] / 2)))
-	{
-		GList *pMenuList;
-		for (pMenuList = gtk_container_get_children (GTK_CONTAINER (pMenu)); pMenuList != NULL; pMenuList = pMenuList->next)
-		{
-			pMenuItem = pMenuList->data;
-			gtk_menu_reorder_child (GTK_MENU (pMenu), pMenuItem, 0);
-		}
-	}
-
+	
 	return pMenu;
 }
 
@@ -448,11 +437,19 @@ static void _upower_action (gboolean bSuspend)
 	#endif
 }
 
-void cd_logout_shut_down (void)
-{
-	if (myConfig.bConfirmAction && cairo_dock_fm_shutdown ())
-		return;
 
+static void _exec_action (int iClickedButton, GtkWidget *pInteractiveWidget, void (*callback) (void), CairoDialog *pDialog)
+{
+	if (iClickedButton == 0 || iClickedButton == -1)  // 'OK' button or 'Enter'
+		callback ();
+}
+static void _demand_confirmation (const gchar *cMessage, const gchar *cIconImage, void (*callback) (void))
+{
+	cairo_dock_show_dialog_full (cMessage, myIcon, myContainer, 0, cIconImage, NULL, (CairoDockActionOnAnswerFunc) _exec_action, callback, NULL);
+}
+
+static void _shut_down (void)
+{
 	if (myData.bCanStop)
 	{
 		_console_kit_action ("Stop");  // could use org.gnome.SessionManager.RequestShutdown
@@ -462,12 +459,20 @@ void cd_logout_shut_down (void)
 		cairo_dock_launch_command (myConfig.cUserAction2);
 	}
 }
-
-void cd_logout_restart (void)
+void cd_logout_shut_down (void)
 {
-	if (myConfig.bConfirmAction && cairo_dock_fm_reboot ())
-		return;
+	if (myConfig.bConfirmAction)
+	{
+		_demand_confirmation (D_("Shut down the computer?"), MY_APPLET_SHARE_DATA_DIR"/system-shutdown.svg", _shut_down);
+	}
+	else
+	{
+		_shut_down ();
+	}
+}
 
+static void _restart (void)
+{
 	if (myData.bCanRestart)
 	{
 		_console_kit_action ("Restart");  // could use org.gnome.SessionManager.RequestReboot
@@ -475,6 +480,17 @@ void cd_logout_restart (void)
 	else if (myConfig.cUserAction2)
 	{
 		cairo_dock_launch_command (myConfig.cUserAction2);
+	}
+}
+void cd_logout_restart (void)
+{
+	if (myConfig.bConfirmAction)
+	{
+		_demand_confirmation (D_("Restart the computer?"), MY_APPLET_SHARE_DATA_DIR"/system-restart.svg", _restart);
+	}
+	else
+	{
+		_restart ();
 	}
 }
 
@@ -488,10 +504,21 @@ void cd_logout_hibernate (void)
 	_upower_action (FALSE);
 }
 
+static void _logout (void)
+{
+	if (! cairo_dock_fm_logout ())
+		cairo_dock_launch_command (MY_APPLET_SHARE_DATA_DIR"/logout.sh");  // SwitchToGreeter will only show the greeter, we want to close the session
+}
 void cd_logout_close_session (void)  // could use org.gnome.SessionManager.Logout
 {
-	if (! (myConfig.bConfirmAction && cairo_dock_fm_logout ()))
-		cairo_dock_launch_command (MY_APPLET_SHARE_DATA_DIR"/logout.sh");  // SwitchToGreeter will only show the greeter, we want to close the session
+	if (myConfig.bConfirmAction)
+	{
+		_demand_confirmation (D_("Close the current session?"), MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", _logout);
+	}
+	else
+	{
+		_logout ();
+	}
 }
 
 static void cd_logout_switch_to_user (const gchar *cUser)
