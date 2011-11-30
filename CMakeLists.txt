@@ -48,17 +48,22 @@ set (GETTEXT_PACKAGE ${PACKAGE})
 
 # get plug-ins install dir
 execute_process(
-    COMMAND pkg-config gldi --variable=pluginsdir		# /usr/lib/cairo-dock
+    COMMAND pkg-config gldi --variable=pluginsdir  # /usr/lib/cairo-dock
     OUTPUT_VARIABLE pluginsdir)
-STRING (REGEX REPLACE "\n" "" pluginsdir ${pluginsdir})  # la commande rajoute un retour chariot ...
+STRING (REGEX REPLACE "\n" "" pluginsdir ${pluginsdir})  # remove the \n
 # get plug-ins data dir
 execute_process(
-    COMMAND pkg-config gldi --variable=pluginsdatadir	# /usr/share/cairo-dock/plug-ins
+    COMMAND pkg-config gldi --variable=pluginsdatadir  # /usr/share/cairo-dock/plug-ins
     OUTPUT_VARIABLE pluginsdatadir)
 STRING (REGEX REPLACE "\n" "" pluginsdatadir ${pluginsdatadir})
+# get GTK version (must be the same as the core, as GTK2 and GTK3 can't coexist at runtime)
+execute_process(
+    COMMAND pkg-config gldi --variable=gtkversion  # 2 or 3
+    OUTPUT_VARIABLE gtkversion)
+STRING (REGEX REPLACE "\n" "" gtkversion ${gtkversion})
 # check that version matches with the core
 execute_process(
-    COMMAND pkg-config --modversion gldi			# 2.2.0-3
+    COMMAND pkg-config --modversion gldi  # 2.2.0-3
     OUTPUT_VARIABLE dock_version)
 STRING (REGEX REPLACE "\n" "" dock_version ${dock_version})
 if (NOT "${dock_version}" STREQUAL "${VERSION}")		# Version
@@ -107,9 +112,11 @@ message (STATUS "=====================")
 message ("")
 
 pkg_check_modules ("PACKAGE" REQUIRED "cairo" "librsvg-2.0" "dbus-1" "dbus-glib-1" "libxml-2.0")
-#pkg_check_modules ("PACKAGE" REQUIRED "gldi")
+#pkg_check_modules ("PACKAGE" REQUIRED "ig")
 pkg_check_modules ("GLDI" REQUIRED "gldi")  # we don't want to link with gldi, so we check it separately.
 set (PACKAGE_INCLUDE_DIRS "${GLDI_INCLUDE_DIRS}")
+
+add_definitions (-DGTK_DISABLE_DEPRECATED="1")
 
 #############    GLIB    #################
 pkg_check_modules (GLIB glib-2.0)
@@ -491,21 +498,27 @@ endif()
 ############# INDICATOR-APPLET #################
 message (STATUS "> Indicator-Applet:")
 # Note: the names of dbusmenu-glib, dbusmenu-gtk and indicator have changed...
-pkg_check_modules (DBUSMENU_04 QUIET dbusmenu-glib-0.4)
-pkg_check_modules (DBUSMENU_GTK_04 QUIET dbusmenu-gtk-0.4)
-pkg_check_modules (INDICATOR_04 QUIET indicator-0.4)
-if ("${DBUSMENU_04_FOUND}" STREQUAL "1")
-	pkg_check_modules (DBUSMENU dbusmenu-glib-0.4)
-else()
+
+pkg_check_modules (DBUSMENU QUIET dbusmenu-glib-0.4)
+if (NOT "${DBUSMENU_FOUND}")
 	pkg_check_modules (DBUSMENU dbusmenu-glib)
 endif()
-if ("${DBUSMENU_GTK_04_FOUND}" STREQUAL "1")
-	pkg_check_modules (DBUSMENU_GTK dbusmenu-gtk-0.4)
+
+if ("${gtkversion}" STREQUAL "2")
+	pkg_check_modules (DBUSMENU_GTK QUIET dbusmenu-gtk-0.4)
 else()
-	pkg_check_modules (DBUSMENU_GTK dbusmenu-gtk)
+	pkg_check_modules (DBUSMENU_GTK QUIET dbusmenu-gtk3-0.4)
 endif()
-if ("${INDICATOR_04_FOUND}" STREQUAL "1")
-	pkg_check_modules (INDICATOR_APPLET indicator-0.4)
+if (NOT "${DBUSMENU_GTK_FOUND}")
+	if ("${gtkversion}" STREQUAL "2")
+		pkg_check_modules (DBUSMENU_GTK QUIET dbusmenu-gtk)
+	else()
+		pkg_check_modules (DBUSMENU_GTK QUIET dbusmenu-gtk3)
+	endif()
+endif()
+
+pkg_check_modules (INDICATOR_APPLET QUIET indicator-0.4)
+if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1")
 	set (INDICATOR_APPLICATIONADDED_HAS_HINT 1) # now the ApplicationAdded signal (Status-Notifier) has a new parameter (hint) => https://code.launchpad.net/~ted/indicator-application/name-hints/+merge/67213
 else()
 	pkg_check_modules (INDICATOR_APPLET indicator libido-0.1)
@@ -526,7 +539,7 @@ if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1" AND "${DBUSMENU_FOUND}" STREQUAL "1
 	STRING (REGEX REPLACE "-.*" "" DBUSMENU_NANO "${DBUSMENU_NANO}")
 	# message (STATUS "DBUSMENU_NANO  : ${DBUSMENU_NANO}")
 
-	if ("${INDICATOR_04_FOUND}" STREQUAL "1")
+	if ("${INDICATOR_APPLICATIONADDED_HAS_HINT}" STREQUAL "1")
 		execute_process(
 			COMMAND pkg-config --variable=iconsdir indicator-0.4
 			OUTPUT_VARIABLE INDICATORICONSDIR)

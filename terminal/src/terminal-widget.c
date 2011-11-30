@@ -271,7 +271,11 @@ static void _term_apply_settings_on_vterm(GtkWidget *vterm)
 		g_object_set (vterm, "height-request", 0, NULL);
 		vte_terminal_set_size(VTE_TERMINAL(vterm), myConfig.iNbColumns, myConfig.iNbRows);
 		GtkRequisition requisition = {0, 0};
+		#if (GTK_MAJOR_VERSION < 3)
 		gtk_widget_size_request (vterm, &requisition);
+		#else
+		gtk_widget_get_preferred_size (vterm, &requisition, NULL);
+		#endif
 		//g_print (" -> %dx%d\n", requisition.width, requisition.height);
 		if (myData.dialog)
 			gtk_window_resize (GTK_WINDOW (myData.dialog->container.pWidget), requisition.width, requisition.height);
@@ -610,7 +614,7 @@ void terminal_new_tab(void)
 	
 	cairo_dock_allow_widget_to_receive_data (vterm, G_CALLBACK (on_terminal_drag_data_received), NULL);
 
-	GtkWidget *pHBox = gtk_hbox_new (FALSE, 0);
+	GtkWidget *pHBox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 	
 	//\_________________ On choisit un nom qui ne soit pas deja present, de la forme " # n ".
 	int i, iNbPages = gtk_notebook_get_n_pages (GTK_NOTEBOOK(myData.tab));
@@ -714,7 +718,11 @@ static GtkWidget * _terminal_find_clicked_tab_child (int x, int y)  // x,y relat
 	int iCurrentNumPage = gtk_notebook_get_current_page (GTK_NOTEBOOK (myData.tab));
 	pPageChild = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), iCurrentNumPage);
 	pTabLabelWidget = gtk_notebook_get_tab_label (GTK_NOTEBOOK(myData.tab), pPageChild);
+	#if (GTK_MAJOR_VERSION < 3)
 	gtk_widget_get_child_requisition (pTabLabelWidget, &requisition);
+	#else
+	gtk_widget_get_preferred_size (pTabLabelWidget, &requisition, NULL);
+	#endif
 	iMaxTabHeight = requisition.height;
 	//g_print ("iMaxTabHeight : %d\n", iMaxTabHeight);
 	
@@ -724,7 +732,11 @@ static GtkWidget * _terminal_find_clicked_tab_child (int x, int y)  // x,y relat
 	{
 		pPageChild = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), i);
 		pTabLabelWidget = gtk_notebook_get_tab_label (GTK_NOTEBOOK(myData.tab), pPageChild);
+		#if (GTK_MAJOR_VERSION < 3)
 		gtk_widget_get_child_requisition (pTabLabelWidget, &requisition);
+		#else
+		gtk_widget_get_preferred_size (pTabLabelWidget, &requisition, NULL);
+		#endif
 		gtk_widget_translate_coordinates (myData.tab,
 			pTabLabelWidget,
 			x, y,

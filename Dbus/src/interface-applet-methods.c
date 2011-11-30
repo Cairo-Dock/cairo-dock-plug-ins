@@ -383,7 +383,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 						GtkWidget *pLabel = gtk_label_new (cLabel);
 						g_free (cLabel);
 						gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
-						GtkWidget *pBox = gtk_hbox_new (FALSE, 3);
+						GtkWidget *pBox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 3);
 						gtk_box_pack_start (GTK_BOX (pBox), pInteractiveWidget, TRUE, TRUE, 0);
 						gtk_box_pack_start (GTK_BOX (pBox), pLabel, FALSE, FALSE, 0);
 						pInteractiveWidget = pBox;
@@ -437,7 +437,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 					if (v && G_VALUE_HOLDS_STRING (v))
 						cMaxLabel = g_value_get_string (v);
 					
-					pScale = gtk_hscale_new_with_range (fMinValue, fMaxValue, (fMaxValue - fMinValue) / 100.);
+					pScale = gtk_scale_new_with_range (GTK_ORIENTATION_HORIZONTAL, fMinValue, fMaxValue, (fMaxValue - fMinValue) / 100.);
 					pOneWidget = pScale;
 					gtk_scale_set_digits (GTK_SCALE (pScale), iNbDigit);
 					gtk_range_set_value (GTK_RANGE (pScale), fInitialValue);
@@ -447,7 +447,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 					
 					if (cMinLabel || cMaxLabel)
 					{
-						GtkWidget *pExtendedWidget = gtk_hbox_new (FALSE, 0);
+						GtkWidget *pExtendedWidget = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 						GtkWidget *label = gtk_label_new (cMinLabel);
 						GtkWidget *pAlign = gtk_alignment_new (1., 1., 0., 0.);
 						gtk_container_add (GTK_CONTAINER (pAlign), label);

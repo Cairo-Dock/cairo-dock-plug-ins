@@ -92,7 +92,6 @@ application_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value,
 static gboolean
 application_triangle_draw_cb (GtkWidget *widget, GdkEventExpose *event, gpointer data)
 {
-	GtkStyle *style;
 	cairo_t *cr;
 	int x, y, arrow_width, arrow_height;
 
@@ -104,7 +103,20 @@ application_triangle_draw_cb (GtkWidget *widget, GdkEventExpose *event, gpointer
 		return FALSE;;
 
 	/* get style */
-	style = gtk_widget_get_style (widget);
+	double red, green, blue;
+	#if (GTK_MAJOR_VERSION < 3)
+	GtkStyle *style = gtk_widget_get_style (widget);
+	red = style->fg[gtk_widget_get_state(widget)].red/65535.0;
+	green = style->fg[gtk_widget_get_state(widget)].green/65535.0;
+	blue = style->fg[gtk_widget_get_state(widget)].blue/65535.0;
+	#else
+	GtkStyleContext *style = gtk_widget_get_style_context (widget);
+	GdkRGBA color;
+	gtk_style_context_get_color (style, gtk_widget_get_state(widget), &color);
+	red = color.red;
+	green = color.green;
+	blue = color.blue;
+	#endif
 	GtkAllocation allocation;
 	gtk_widget_get_allocation (widget, &allocation);
 
@@ -125,9 +137,7 @@ application_triangle_draw_cb (GtkWidget *widget, GdkEventExpose *event, gpointer
 	cairo_line_to (cr, x, y + arrow_height);
 	cairo_line_to (cr, x + arrow_width, y + (double)arrow_height/2.0);
 	cairo_close_path (cr);
-	cairo_set_source_rgb (cr, style->fg[gtk_widget_get_state(widget)].red/65535.0,
-	                          style->fg[gtk_widget_get_state(widget)].green/65535.0,
-	                          style->fg[gtk_widget_get_state(widget)].blue/65535.0);
+	cairo_set_source_rgb (cr, red, green, blue);
 	cairo_fill (cr);
 
 	/* remember to destroy cairo context to avoid leaks */
@@ -154,7 +164,6 @@ custom_cairo_rounded_rectangle (cairo_t *cr,
 static gboolean
 numbers_draw_cb (GtkWidget *widget, GdkEventExpose *event, gpointer data)
 {
-	GtkStyle *style;
 	cairo_t *cr;
 	double x, y, w, h;
 	PangoLayout * layout;
@@ -163,8 +172,21 @@ numbers_draw_cb (GtkWidget *widget, GdkEventExpose *event, gpointer data)
 	if (!GTK_IS_WIDGET (widget)) return FALSE;
 
 	/* get style */
-	style = gtk_widget_get_style (widget);
-
+	double red, green, blue;
+	#if (GTK_MAJOR_VERSION < 3)
+	GtkStyle *style = gtk_widget_get_style (widget);
+	red = style->fg[gtk_widget_get_state(widget)].red/65535.0;
+	green = style->fg[gtk_widget_get_state(widget)].green/65535.0;
+	blue = style->fg[gtk_widget_get_state(widget)].blue/65535.0;
+	#else
+	GtkStyleContext *style = gtk_widget_get_style_context (widget);
+	GdkRGBA color;
+	gtk_style_context_get_color (style, gtk_widget_get_state(widget), &color);
+	red = color.red;
+	green = color.green;
+	blue = color.blue;
+	#endif
+	
 	/* set arrow position / dimensions */
 	GtkAllocation allocation;
 	gtk_widget_get_allocation (widget, &allocation);
@@ -192,9 +214,9 @@ numbers_draw_cb (GtkWidget *widget, GdkEventExpose *event, gpointer data)
 	/* cairo drawing code */
 	custom_cairo_rounded_rectangle (cr, x - font_size/2.0, y, w + font_size, h);
 
-	cairo_set_source_rgba (cr, style->fg[gtk_widget_get_state(widget)].red/65535.0,
-	                           style->fg[gtk_widget_get_state(widget)].green/65535.0,
-	                           style->fg[gtk_widget_get_state(widget)].blue/65535.0, 0.5);
+	cairo_set_source_rgba (cr, red,
+	                           green,
+	                           blue, 0.5);
 
 	cairo_move_to (cr, x, y);
 	pango_cairo_layout_path (cr, layout);
@@ -370,7 +392,7 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 	gint font_size = RIGHT_LABEL_FONT_SIZE;
 	gtk_widget_style_get(GTK_WIDGET(gmi), "horizontal-padding", &padding, NULL);
 
-	GtkWidget * hbox = gtk_hbox_new(FALSE, 0);
+	GtkWidget * hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 
 	/* Icon, probably someone's face or avatar on an IM */
 	mi_data->icon = gtk_image_new();

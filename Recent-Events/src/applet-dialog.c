@@ -352,7 +352,7 @@ static inline GtkToolItem *_add_category_button (GtkWidget *pToolBar, const gcha
 #define MARGIN 3
 static GtkWidget *cd_build_events_widget (void)
 {
-	GtkWidget *pMainBox = gtk_vbox_new (FALSE, MARGIN);
+	GtkWidget *pMainBox = gtk_box_new (GTK_ORIENTATION_VERTICAL, MARGIN);
 	
 	// category toolbar.
 	GtkWidget *pToolBar = gtk_toolbar_new ();
@@ -373,7 +373,7 @@ static GtkWidget *cd_build_events_widget (void)
 	_add_category_button (pToolBar, D_("Top Results"), "gtk-about", i++, group);
 	
 	// search entry.
-	GtkWidget *pFilterBox = gtk_hbox_new (FALSE, CAIRO_DOCK_GUI_MARGIN);
+	GtkWidget *pFilterBox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, CAIRO_DOCK_GUI_MARGIN);
 	gtk_box_pack_start (GTK_BOX (pMainBox), pFilterBox, FALSE, FALSE, MARGIN);
 	
 	GtkWidget *pFilterLabel = gtk_label_new (D_("Look for events"));
@@ -441,12 +441,12 @@ static GtkWidget *cd_build_events_widget (void)
 	
 	// barres de defilement
 	#if (GTK_MAJOR_VERSION < 3)
-	GtkObject
-	#else
-	GtkAdjustment
-	#endif
-	*adj = gtk_adjustment_new (0., 0., 100., 1, 10, 10);
+	GtkObject *adj = gtk_adjustment_new (0., 0., 100., 1, 10, 10);
 	gtk_tree_view_set_vadjustment (GTK_TREE_VIEW (pOneWidget), GTK_ADJUSTMENT (adj));
+	#else
+	GtkAdjustment *adj = gtk_adjustment_new (0., 0., 100., 1, 10, 10);
+	gtk_scrollable_set_vadjustment (GTK_SCROLLABLE (pOneWidget), GTK_ADJUSTMENT (adj));
+	#endif
 	GtkWidget *pScrolledWindow = gtk_scrolled_window_new (NULL, NULL);
 	g_object_set (pScrolledWindow, "height-request", 300, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (pScrolledWindow), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);

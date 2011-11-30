@@ -96,6 +96,7 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
 
+#define MARGIN 3
 static void _cd_folders_show_file_properties (GtkMenuItem *pMenuItem, gpointer *data)
 {
 	Icon *icon = data[0];
@@ -122,12 +123,12 @@ static void _cd_folders_show_file_properties (GtkMenuItem *pMenuItem, gpointer *
 		gtk_label_set_markup (GTK_LABEL (pLabel), sInfo->str);
 
 		GtkWidget *pFrame = gtk_frame_new (NULL);
-		gtk_container_set_border_width (GTK_CONTAINER (pFrame), 3);
+		gtk_container_set_border_width (GTK_CONTAINER (pFrame), MARGIN);
 		gtk_frame_set_label_widget (GTK_FRAME (pFrame), pLabel);
 		gtk_container_add (GTK_CONTAINER (gtk_dialog_get_content_area (GTK_DIALOG(pDialog))), pFrame);
 		gtk_frame_set_shadow_type (GTK_FRAME (pFrame), GTK_SHADOW_OUT);
 
-		GtkWidget *pVBox = gtk_vbox_new (FALSE, 3);
+		GtkWidget *pVBox = gtk_box_new (GTK_ORIENTATION_VERTICAL, MARGIN);
 		gtk_container_add (GTK_CONTAINER (pFrame), pVBox);
 
 		pLabel = gtk_label_new (NULL);
@@ -160,7 +161,7 @@ static void _cd_folders_show_file_properties (GtkMenuItem *pMenuItem, gpointer *
 			gtk_container_add (GTK_CONTAINER (pVBox), pLabel);
 		}
 
-		GtkWidget *pSeparator = gtk_hseparator_new ();
+		GtkWidget *pSeparator = gtk_separator_new (GTK_ORIENTATION_HORIZONTAL);
 		gtk_container_add (GTK_CONTAINER (pVBox), pSeparator);
 
 		pLabel = gtk_label_new (NULL);

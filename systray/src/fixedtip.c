@@ -72,11 +72,9 @@ draw_handler (GtkWidget *fixedtip, cairo_t *cr)
 {
   GtkRequisition req;
 
-  gtk_widget_size_request (fixedtip, &req);
+  gtk_widget_get_preferred_size (fixedtip, &req, NULL);
 
-  gtk_paint_flat_box (gtk_widget_get_style (fixedtip), cr,
-                      GTK_STATE_NORMAL, GTK_SHADOW_OUT, 
-                      fixedtip, "tooltip",
+  gtk_render_frame (gtk_widget_get_style_context (fixedtip), cr,
                       0, 0, req.width, req.height);
 
   return FALSE;
@@ -153,15 +151,19 @@ na_fixed_tip_position (NaFixedTip *fixedtip)
   screen = gtk_widget_get_screen (fixedtip->priv->parent);
   gtk_window_set_screen (GTK_WINDOW (fixedtip), screen);
 
+  #if (GTK_MAJOR_VERSION < 3)
   gtk_widget_size_request (GTK_WIDGET (fixedtip), &req);
-
+  #else
+  gtk_widget_get_preferred_size (GTK_WIDGET (fixedtip), &req, NULL);
+  #endif
+  
   gdk_window_get_origin (gtk_widget_get_window (fixedtip->priv->parent), &root_x, &root_y);
   #if (GTK_MAJOR_VERSION < 3)
   gdk_drawable_get_size (GDK_DRAWABLE (fixedtip->priv->parent->window),
                          &parent_width, &parent_height);
 	#else
 	GtkRequisition  req2;
-	gtk_widget_size_request (GTK_WIDGET (fixedtip->priv->parent), &req2);  /// not sure about this one...
+	gtk_widget_get_preferred_size (GTK_WIDGET (fixedtip->priv->parent), &req2, NULL);  /// not sure about this one...
 	parent_width = req2.width;
 	parent_height = req2.height;
 	#endif
