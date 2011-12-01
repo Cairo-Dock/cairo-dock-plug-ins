@@ -403,7 +403,11 @@ void cd_sysmonitor_start_top_dialog (CairoDockModuleInstance *myApplet)
 	cairo_dock_remove_dialog_if_any (myIcon);
 	// build an interactive widget that will be used to display the top list.
 	gchar *cTitle = g_strdup_printf ("  [ Top %d ] :", myConfig.iNbDisplayedProcesses);
+	#if (GTK_MAJOR_VERSION < 3)
+	GtkWidget *pInteractiveWidget = gtk_vbox_new (FALSE, 0);
+	#else
 	GtkWidget *pInteractiveWidget = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+	#endif
 	gtk_widget_set_size_request (pInteractiveWidget,
 		myConfig.pTopTextDescription->iSize * 15,
 		myConfig.pTopTextDescription->iSize * myConfig.iNbDisplayedProcesses);  // approximatif au depart.

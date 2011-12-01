@@ -614,8 +614,12 @@ void terminal_new_tab(void)
 	
 	cairo_dock_allow_widget_to_receive_data (vterm, G_CALLBACK (on_terminal_drag_data_received), NULL);
 
+	#if (GTK_MAJOR_VERSION < 3)
+	GtkWidget *pHBox = gtk_hbox_new (FALSE, 0);
+	#else
 	GtkWidget *pHBox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-	
+	#endif
+
 	//\_________________ On choisit un nom qui ne soit pas deja present, de la forme " # n ".
 	int i, iNbPages = gtk_notebook_get_n_pages (GTK_NOTEBOOK(myData.tab));
 	GList *pTabNameList = NULL;

@@ -24,7 +24,9 @@
 #define __NA_TRAY_CHILD_H__
 
 #include <gtk/gtk.h>
+#if (GTK_MAJOR_VERSION >= 3)
 #include <gtk/gtkx.h>
+#endif
 #include <gdk/gdkx.h>
 
 G_BEGIN_DECLS

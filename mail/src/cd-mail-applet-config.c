@@ -353,8 +353,12 @@ void cd_mail_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pK
 	//\____________ On recupere notre widget personnalise (un simple container vide qu'on va remplir avec nos trucs).
 	CairoDockGroupKeyWidget *pGroupKeyWidget = CD_APPLET_GET_CONFIG_PANEL_GROUP_KEY_WIDGET ("Configuration", "add account");
 	g_return_if_fail (pGroupKeyWidget != NULL);
-	
+
+	#if (GTK_MAJOR_VERSION < 3)
+	GtkWidget *pCustomWidgetBox = gtk_hbox_new (FALSE, 3);
+	#else
 	GtkWidget *pCustomWidgetBox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 3);
+	#endif
 	gtk_box_pack_end (GTK_BOX (pGroupKeyWidget->pKeyBox),
 		pCustomWidgetBox,
 		FALSE,
@@ -362,7 +366,7 @@ void cd_mail_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pK
 		0);
 	
 	//\____________ On cree un combo pour selectionner le type de compte mail qu'on voudrait ajouter
-	#if (GTK_MAJOR_VERSION < 3)
+	#if (GTK_MAJOR_VERSION < 3 && GTK_MINOR_VERSION < 24)
 	GtkWidget *pMailTypesCombo = gtk_combo_box_new_text();
 	#else
 	GtkWidget *pMailTypesCombo = gtk_combo_box_text_new ();
@@ -373,8 +377,8 @@ void cd_mail_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pK
 		guint j;
 		for( j = 0; j < MAIL_NB_STORAGE_TYPES; j++ )
 		{
-			#if (GTK_MAJOR_VERSION < 3)
-			gtk_combo_box_append_text( GTK_COMBO_BOX (pMailTypesCombo), storage_tab[j].description );
+			#if (GTK_MAJOR_VERSION < 3 && GTK_MINOR_VERSION < 24)
+			gtk_combo_box_append_text ( GTK_COMBO_BOX (pMailTypesCombo), storage_tab[j].description );
 			#else
 			gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (pMailTypesCombo), storage_tab[j].description );
 			#endif

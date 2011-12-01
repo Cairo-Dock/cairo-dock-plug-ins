@@ -149,8 +149,12 @@ static GtkWidget *_xgamma_add_channel_widget (GtkWidget *pInteractiveWidget, con
 {
 	GtkWidget *pLabel = gtk_label_new (cLabel);
 	gtk_table_attach_defaults (GTK_TABLE (pInteractiveWidget), pLabel, 0, 1, iChannelNumber, iChannelNumber+1);
-	
+
+	#if (GTK_MAJOR_VERSION < 3)
+	GtkWidget *pHScale = gtk_hscale_new_with_range (GAMMA_MIN, GAMMA_MAX, .02);
+	#else
 	GtkWidget *pHScale = gtk_scale_new_with_range (GTK_ORIENTATION_HORIZONTAL, GAMMA_MIN, GAMMA_MAX, .02);
+	#endif
 	gtk_scale_set_digits (GTK_SCALE (pHScale), 2);
 	gtk_range_set_value (GTK_RANGE (pHScale), fChannelGamma);
 	g_object_set (pHScale, "width-request", 150, NULL);
@@ -259,8 +263,12 @@ CairoDialog *xgamma_build_dialog_simple (void)
 	
 	CairoDialogAttribute attr;
 	memset (&attr, 0, sizeof (CairoDialogAttribute));
-	
+
+	#if (GTK_MAJOR_VERSION < 3)
+	GtkWidget *pHScale = gtk_hscale_new_with_range (0, 100., 1.);
+	#else
 	GtkWidget *pHScale = gtk_scale_new_with_range (GTK_ORIENTATION_HORIZONTAL, 0, 100., 1.);
+	#endif
 	gtk_scale_set_digits (GTK_SCALE (pHScale), 0);
 	gtk_range_set_value (GTK_RANGE (pHScale), fGammaPercent);
 	g_object_set (pHScale, "width-request", 150, NULL);

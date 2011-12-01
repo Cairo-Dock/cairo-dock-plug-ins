@@ -117,7 +117,11 @@ CD_APPLET_INIT_BEGIN
 	{
 		if (myDesklet)
 		{
+			#if (GTK_MAJOR_VERSION < 3)
+			GtkWidget *box = gtk_hbox_new (FALSE, 0);
+			#else
 			GtkWidget *box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+			#endif
 			myData.pScale = mixer_build_widget (FALSE);
 			gtk_box_pack_end (GTK_BOX (box), myData.pScale, FALSE, FALSE, 0);
 			gtk_container_add (GTK_CONTAINER (myDesklet->container.pWidget), box);
@@ -248,8 +252,12 @@ CD_APPLET_RELOAD_BEGIN
 			{
 				cairo_dock_dialog_unreference (myData.pDialog);
 				myData.pDialog = NULL;
-				
+
+				#if (GTK_MAJOR_VERSION < 3)
+				GtkWidget *box = gtk_hbox_new (FALSE, 0);
+				#else
 				GtkWidget *box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+				#endif
 				myData.pScale = mixer_build_widget (FALSE);
 				gtk_box_pack_end (GTK_BOX (box), myData.pScale, FALSE, FALSE, 0);
 				gtk_widget_show_all (box);

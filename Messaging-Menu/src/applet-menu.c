@@ -392,7 +392,11 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 	gint font_size = RIGHT_LABEL_FONT_SIZE;
 	gtk_widget_style_get(GTK_WIDGET(gmi), "horizontal-padding", &padding, NULL);
 
+	#if (GTK_MAJOR_VERSION < 3)
+	GtkWidget * hbox = gtk_hbox_new(FALSE, 0);
+	#else
 	GtkWidget * hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+	#endif
 
 	/* Icon, probably someone's face or avatar on an IM */
 	mi_data->icon = gtk_image_new();
