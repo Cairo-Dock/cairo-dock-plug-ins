@@ -245,7 +245,18 @@ static GtkWidget *_build_menu (void)
 	
 	if (myData.bCanStop)
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Program an automatic shut-down"), MY_APPLET_SHARE_DATA_DIR"/icon-scheduling.svg", cd_logout_program_shutdown, pMenu);
-	
+
+	if ((myDock && myDock->container.bIsHorizontal && ! myDock->container.bDirectionUp) // on the top, we inverse the menu
+		|| (myDesklet && myDesklet->container.iWindowPositionY < (g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL] / 2)))
+	{
+		GList *pMenuList;
+		for (pMenuList = gtk_container_get_children (GTK_CONTAINER (pMenu)); pMenuList != NULL; pMenuList = pMenuList->next)
+		{
+			pMenuItem = pMenuList->data;
+			gtk_menu_reorder_child (GTK_MENU (pMenu), pMenuItem, 0);
+		}
+	}
+
 	return pMenu;
 }
 

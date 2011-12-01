@@ -281,7 +281,11 @@ new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbu
 	/* Make sure we can handle the label changing */
 	g_signal_connect(G_OBJECT(newitem), DBUSMENU_MENUITEM_SIGNAL_PROPERTY_CHANGED, G_CALLBACK(application_prop_change_cb), label);
 	g_signal_connect(G_OBJECT(newitem), DBUSMENU_MENUITEM_SIGNAL_PROPERTY_CHANGED, G_CALLBACK(application_icon_change_cb), icon);
+	#if (GTK_MAJOR_VERSION < 3)
 	g_signal_connect_after(G_OBJECT (gmi), "expose_event", G_CALLBACK (application_triangle_draw_cb), newitem);
+	#else
+	g_signal_connect_after(G_OBJECT (gmi), "draw", G_CALLBACK (application_triangle_draw_cb), newitem);
+	#endif
 
 	return TRUE;
 }
@@ -446,7 +450,12 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 	mi_data->right = gtk_label_new(dbusmenu_menuitem_property_get(newitem, INDICATOR_MENUITEM_PROP_RIGHT));
 	gtk_size_group_add_widget(indicator_right_group, mi_data->right);
 	/* install extra decoration overlay */
-	g_signal_connect (G_OBJECT (mi_data->right), "expose_event",
+	g_signal_connect (G_OBJECT (mi_data->right),
+	#if (GTK_MAJOR_VERSION < 3)
+	                  "expose_event",
+	#else
+	                  "draw",
+	#endif
 	                  G_CALLBACK (numbers_draw_cb), NULL);
 
 	gtk_misc_set_alignment(GTK_MISC(mi_data->right), 1.0, 0.5);
