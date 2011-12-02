@@ -26,8 +26,8 @@
 
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iActionOnMiddleClick = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "middle-click", 2);
-	myConfig.iActionOnShortkey = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "shortkey action", 2);
 	myConfig.cShortkey = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "shortkey", "<Super>L");
+	myConfig.cShortkey2 = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "shortkey2", "<Control>F12");
 	myConfig.bConfirmAction = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "confirm action", TRUE);
 	myConfig.cUserAction = CD_CONFIG_GET_STRING ("Configuration", "user action");
 	myConfig.cUserAction2 = CD_CONFIG_GET_STRING ("Configuration", "user action2");
@@ -44,6 +44,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cDefaultLabel);
 	g_free (myConfig.cEmblemPath);
 	g_free (myConfig.cShortkey);
+	g_free (myConfig.cShortkey2);
 CD_APPLET_RESET_CONFIG_END
 
 

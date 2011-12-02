@@ -251,7 +251,6 @@ GtkWidget *mixer_build_widget (gboolean bHorizontal)
 		NULL);
 	
 	cairo_dock_set_dialog_widget_text_color (pScale);
-	
 	return pScale;
 }
 

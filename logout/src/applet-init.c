@@ -28,17 +28,16 @@
 CD_APPLET_DEFINE_BEGIN ("logout",
 	2, 0, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
-	N_("A very simple applet that adds an icon to log out from your session\n"
-	"Left click to log out or change the user, middle click to shutdown or restart\n"
-	"  (you can invert the buttons if you prefer to shutdown on left-click)."
-	"You can also lock the screen from the menu on right-click,\n"
-	"  and program an automatic shutdown at a given time.\n"),
+	N_("This applet lets you manage the current session. You can either:\n"
+	"shut down, restart, hibernate, suspend, log out, lock the screen, switch to another user, or program an automatic shutdown\n"
+	"It will also tell you if your system needs to be restarted.\n"
+	"<b>Click</b> on the icon to pop the menu up.\n"
+	"You can bind a <b>shortcut</b> to it, and also to lock the screen."),
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_REDEFINE_TITLE (N_("Log out"))
 CD_APPLET_DEFINE_END
 
-static const gchar *s_cShortkeyDescription[CD_NB_ACTIONS] = {"Log out", "Shut down", "Lock screen"};  // same names as in the config file, so no need to add N_()
 
 CD_APPLET_INIT_BEGIN
 	if (myDesklet)
@@ -63,9 +62,13 @@ CD_APPLET_INIT_BEGIN
 	// shortkey
 	
 	myData.pKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortkey,
-		D_(s_cShortkeyDescription[myConfig.iActionOnShortkey]),
+		D_("Lock the screen"),
 		"Configuration", "shortkey",
 		(CDBindkeyHandler) cd_logout_on_keybinding_pull);
+	myData.pKeyBinding2 = CD_APPLET_BIND_KEY (myConfig.cShortkey2,
+		D_("Show the log-out menu"),
+		"Configuration", "shortkey2",
+		(CDBindkeyHandler) cd_logout_on_keybinding_pull2);
 	
 	//\_______________ On (re)lance l'eteignage programme.
 	cd_logout_set_timer ();
@@ -83,6 +86,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	
 	cd_keybinder_unbind (myData.pKeyBinding);
+	cd_keybinder_unbind (myData.pKeyBinding2);
 	
 	CD_APPLET_MANAGE_APPLICATION (NULL);  // on relache le controle de l'icone de la fenetre.
 	
@@ -108,6 +112,7 @@ CD_APPLET_RELOAD_BEGIN
 		// the icon can be changed.
 		cd_logout_check_reboot_required_init ();
 		
-		cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey, D_(s_cShortkeyDescription[myConfig.iActionOnShortkey]));
+		cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
+		cd_keybinder_rebind (myData.pKeyBinding2, myConfig.cShortkey2, NULL);
 	}
 CD_APPLET_RELOAD_END

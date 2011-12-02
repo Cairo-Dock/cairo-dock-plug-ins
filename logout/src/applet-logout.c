@@ -241,7 +241,7 @@ static GtkWidget *_build_menu (void)
 	
 	CD_APPLET_ADD_SEPARATOR_IN_MENU (pMenu);
 	
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Lock screen"), MY_APPLET_SHARE_DATA_DIR"/locked.svg", cairo_dock_fm_lock_screen, pMenu);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Lock screen"), MY_APPLET_SHARE_DATA_DIR"/locked.svg", cairo_dock_fm_lock_screen, pMenu);  /// TODO: same question...
 	
 	if (myData.bCanStop)
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Program an automatic shut-down"), MY_APPLET_SHARE_DATA_DIR"/icon-scheduling.svg", cd_logout_program_shutdown, pMenu);
@@ -474,7 +474,7 @@ void cd_logout_shut_down (void)
 {
 	if (myConfig.bConfirmAction)
 	{
-		_demand_confirmation (D_("Shut down the computer?"), MY_APPLET_SHARE_DATA_DIR"/system-shutdown.svg", _shut_down);
+		_demand_confirmation (D_("Shut down the computer?"), "system-shutdown.svg", _shut_down);
 	}
 	else
 	{
@@ -497,7 +497,7 @@ void cd_logout_restart (void)
 {
 	if (myConfig.bConfirmAction)
 	{
-		_demand_confirmation (D_("Restart the computer?"), MY_APPLET_SHARE_DATA_DIR"/system-restart.svg", _restart);
+		_demand_confirmation (D_("Restart the computer?"), "system-restart.svg", _restart);
 	}
 	else
 	{
@@ -524,7 +524,7 @@ void cd_logout_close_session (void)  // could use org.gnome.SessionManager.Logou
 {
 	if (myConfig.bConfirmAction)
 	{
-		_demand_confirmation (D_("Close the current session?"), MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", _logout);
+		_demand_confirmation (D_("Close the current session?"), MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", _logout);  /// same question, see above...
 	}
 	else
 	{
@@ -641,7 +641,8 @@ GList *cd_logout_get_users_list (void)
 		g_error_free (error);
 		return NULL;
 	}
-	g_return_val_if_fail (users != NULL, NULL);
+	if (users == NULL)
+		return NULL;
 	
 	// foreach user, get its properties (name & icon).
 	CDUser *pUser;

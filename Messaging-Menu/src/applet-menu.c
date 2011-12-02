@@ -90,9 +90,14 @@ application_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value,
 
 /* Draws a triangle on the left, using fg[STATE_TYPE] color. */
 static gboolean
-application_triangle_draw_cb (GtkWidget *widget, GdkEventExpose *event, gpointer data)
+application_triangle_draw_cb (GtkWidget *widget,
+#if (GTK_MAJOR_VERSION < 3)
+GdkEventExpose *event,
+#else
+cairo_t *ctx,
+#endif
+gpointer data)
 {
-	cairo_t *cr;
 	int x, y, arrow_width, arrow_height;
 
 	if (!GTK_IS_WIDGET (widget)) return FALSE;
@@ -102,13 +107,20 @@ application_triangle_draw_cb (GtkWidget *widget, GdkEventExpose *event, gpointer
 	if (! dbusmenu_menuitem_property_get_bool (DBUSMENU_MENUITEM(data), APPLICATION_MENUITEM_PROP_RUNNING))
 		return FALSE;;
 
-	/* get style */
+	arrow_width = 5; /* the pixel-based reference triangle is 5x9 */
+	arrow_height = 9;
+	
+	/* get style + arrow position */
 	double red, green, blue;
 	#if (GTK_MAJOR_VERSION < 3)
 	GtkStyle *style = gtk_widget_get_style (widget);
 	red = style->fg[gtk_widget_get_state(widget)].red/65535.0;
 	green = style->fg[gtk_widget_get_state(widget)].green/65535.0;
 	blue = style->fg[gtk_widget_get_state(widget)].blue/65535.0;
+	GtkAllocation allocation;
+	gtk_widget_get_allocation (widget, &allocation);
+	x = allocation.x;
+	y = allocation.y + allocation.height/2.0 - (double)arrow_height/2.0;
 	#else
 	GtkStyleContext *style = gtk_widget_get_style_context (widget);
 	GdkRGBA color;
@@ -116,33 +128,28 @@ application_triangle_draw_cb (GtkWidget *widget, GdkEventExpose *event, gpointer
 	red = color.red;
 	green = color.green;
 	blue = color.blue;
+	x = 0;  // the context is already translated so that (0;0) is the top-left corner of the widget.
+	y = gtk_widget_get_allocated_height (widget)/2.0 - (double)arrow_height/2.0;
 	#endif
-	GtkAllocation allocation;
-	gtk_widget_get_allocation (widget, &allocation);
-
-	/* set arrow position / dimensions */
-	arrow_width = 5; /* the pixel-based reference triangle is 5x9 */
-	arrow_height = 9;
-	x = allocation.x;
-	y = allocation.y + allocation.height/2.0 - (double)arrow_height/2.0;
-
-	/* initialize cairo drawing area */
-	cr = (cairo_t*) gdk_cairo_create (gtk_widget_get_window (widget));
-
-	/* set line width */	
-	cairo_set_line_width (cr, 1.0);
+	
+	/* initialize cairo context */
+	#if (GTK_MAJOR_VERSION < 3)
+	cairo_t *ctx = (cairo_t*) gdk_cairo_create (gtk_widget_get_window (widget));
+	#endif
+	cairo_set_line_width (ctx, 1.0);
 
 	/* cairo drawing code */
-	cairo_move_to (cr, x, y);
-	cairo_line_to (cr, x, y + arrow_height);
-	cairo_line_to (cr, x + arrow_width, y + (double)arrow_height/2.0);
-	cairo_close_path (cr);
-	cairo_set_source_rgb (cr, red, green, blue);
-	cairo_fill (cr);
+	cairo_move_to (ctx, x, y);
+	cairo_line_to (ctx, x, y + arrow_height);
+	cairo_line_to (ctx, x + arrow_width, y + (double)arrow_height/2.0);
+	cairo_close_path (ctx);
+	cairo_set_source_rgb (ctx, red, green, blue);
+	cairo_fill (ctx);
 
-	/* remember to destroy cairo context to avoid leaks */
-	cairo_destroy (cr);
-
+	#if (GTK_MAJOR_VERSION < 3)
+	cairo_destroy (ctx);
+	#endif
+	
 	return FALSE;
 }
 
@@ -162,22 +169,33 @@ custom_cairo_rounded_rectangle (cairo_t *cr,
 
 /* Draws a rounded rectangle with text inside. */
 static gboolean
-numbers_draw_cb (GtkWidget *widget, GdkEventExpose *event, gpointer data)
+numbers_draw_cb (GtkWidget *widget,
+#if (GTK_MAJOR_VERSION < 3)
+GdkEventExpose *event,
+#else
+cairo_t *ctx,
+#endif
+gpointer data)
 {
-	cairo_t *cr;
 	double x, y, w, h;
 	PangoLayout * layout;
 	gint font_size = RIGHT_LABEL_FONT_SIZE;
-
+	
 	if (!GTK_IS_WIDGET (widget)) return FALSE;
 
-	/* get style */
+	/* get style + arrow position / dimensions */
 	double red, green, blue;
 	#if (GTK_MAJOR_VERSION < 3)
 	GtkStyle *style = gtk_widget_get_style (widget);
 	red = style->fg[gtk_widget_get_state(widget)].red/65535.0;
 	green = style->fg[gtk_widget_get_state(widget)].green/65535.0;
 	blue = style->fg[gtk_widget_get_state(widget)].blue/65535.0;
+	GtkAllocation allocation;
+	gtk_widget_get_allocation (widget, &allocation);
+	w = allocation.width;
+	h = allocation.height;
+	x = allocation.x;
+	y = allocation.y;
 	#else
 	GtkStyleContext *style = gtk_widget_get_style_context (widget);
 	GdkRGBA color;
@@ -185,16 +203,11 @@ numbers_draw_cb (GtkWidget *widget, GdkEventExpose *event, gpointer data)
 	red = color.red;
 	green = color.green;
 	blue = color.blue;
+	w = gtk_widget_get_allocated_width (widget);
+	h = gtk_widget_get_allocated_height (widget);
+	x = y = 0;
 	#endif
 	
-	/* set arrow position / dimensions */
-	GtkAllocation allocation;
-	gtk_widget_get_allocation (widget, &allocation);
-	w = allocation.width;
-	h = allocation.height;
-	x = allocation.x;
-	y = allocation.y;
-
 	layout = gtk_label_get_layout (GTK_LABEL(widget));
 
 	/* This does not work, don't ask me why but font_size is 0.
@@ -203,27 +216,29 @@ numbers_draw_cb (GtkWidget *widget, GdkEventExpose *event, gpointer data)
 	/* const PangoFontDescription * font_description = pango_layout_get_font_description (layout);
 	font_size = pango_font_description_get_size (font_description); */
 
-	/* initialize cairo drawing area */
-	cr = (cairo_t*) gdk_cairo_create (gtk_widget_get_window (widget));
+	/* initialize cairo context */
+	#if (GTK_MAJOR_VERSION < 3)
+	cairo_t *ctx = (cairo_t*) gdk_cairo_create (gtk_widget_get_window (widget));
+	#endif
+	
+	cairo_set_line_width (ctx, 1.0);
 
-	/* set line width */	
-	cairo_set_line_width (cr, 1.0);
-
-	cairo_set_fill_rule (cr, CAIRO_FILL_RULE_EVEN_ODD);
+	cairo_set_fill_rule (ctx, CAIRO_FILL_RULE_EVEN_ODD);
 
 	/* cairo drawing code */
-	custom_cairo_rounded_rectangle (cr, x - font_size/2.0, y, w + font_size, h);
+	custom_cairo_rounded_rectangle (ctx, x - font_size/2.0, y, w + font_size, h);
 
-	cairo_set_source_rgba (cr, red,
+	cairo_set_source_rgba (ctx, red,
 	                           green,
 	                           blue, 0.5);
 
-	cairo_move_to (cr, x, y);
-	pango_cairo_layout_path (cr, layout);
-	cairo_fill (cr);
+	cairo_move_to (ctx, x, y);
+	pango_cairo_layout_path (ctx, layout);
+	cairo_fill (ctx);
 
-	/* remember to destroy cairo context to avoid leaks */
-        cairo_destroy (cr);
+	#if (GTK_MAJOR_VERSION < 3)
+	cairo_destroy (ctx);
+	#endif
 
 	return TRUE;
 }
@@ -281,11 +296,13 @@ new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbu
 	/* Make sure we can handle the label changing */
 	g_signal_connect(G_OBJECT(newitem), DBUSMENU_MENUITEM_SIGNAL_PROPERTY_CHANGED, G_CALLBACK(application_prop_change_cb), label);
 	g_signal_connect(G_OBJECT(newitem), DBUSMENU_MENUITEM_SIGNAL_PROPERTY_CHANGED, G_CALLBACK(application_icon_change_cb), icon);
+	g_signal_connect_after(G_OBJECT (gmi),
 	#if (GTK_MAJOR_VERSION < 3)
-	g_signal_connect_after(G_OBJECT (gmi), "expose_event", G_CALLBACK (application_triangle_draw_cb), newitem);
+	"expose_event",
 	#else
-	g_signal_connect_after(G_OBJECT (gmi), "draw", G_CALLBACK (application_triangle_draw_cb), newitem);
+	"draw",
 	#endif
+	G_CALLBACK (application_triangle_draw_cb), newitem);
 
 	return TRUE;
 }
@@ -452,12 +469,12 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 	/* install extra decoration overlay */
 	g_signal_connect (G_OBJECT (mi_data->right),
 	#if (GTK_MAJOR_VERSION < 3)
-	                  "expose_event",
+	"expose_event",
 	#else
-	                  "draw",
+	"draw",
 	#endif
-	                  G_CALLBACK (numbers_draw_cb), NULL);
-
+	G_CALLBACK (numbers_draw_cb), NULL);
+	
 	gtk_misc_set_alignment(GTK_MISC(mi_data->right), 1.0, 0.5);
 	gtk_box_pack_start(GTK_BOX(hbox), mi_data->right, FALSE, FALSE, padding + font_size/2.0);
 	gtk_widget_show(mi_data->right);

@@ -20,7 +20,6 @@
 #ifndef __LOGOUT_NOTIFICATIONS__
 #define  __LOGOUT_NOTIFICATIONS__
 
-
 #include <cairo-dock.h>
 
 
@@ -31,15 +30,9 @@ CD_APPLET_ON_MIDDLE_CLICK_H
 CD_APPLET_ON_BUILD_MENU_H
 
 
-void cd_logout_set_timer (void);
-
-
-void cd_logout_check_reboot_required (CairoDockFMEventType iEventType, const gchar *cURI, gpointer data);
-
-void cd_logout_check_reboot_required_init (void);
-
-
 void cd_logout_on_keybinding_pull (const gchar *keystring, gpointer user_data);
+
+void cd_logout_on_keybinding_pull2 (const gchar *keystring, gpointer user_data);
 
 
 #endif

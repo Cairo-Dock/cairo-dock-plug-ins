@@ -110,11 +110,13 @@ middle-click = 2
 #v
 sep_act =
 
-#l- [Log out;Shut down;Lock screen] Action on shortkey:
-shortkey action = 2
 
-#k Shortkey to this action:
+#k Shortkey to lock the screen
 shortkey = <Super>L
+
+#k Shortkey to show the menu
+shortkey2 = <Control>F12
+
 
 #v
 sep_act2 =

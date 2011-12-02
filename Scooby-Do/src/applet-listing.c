@@ -69,9 +69,15 @@ void cd_do_free_listing_backup (CDListingBackup *pBackup)
 	g_free (pBackup);
 }
 
-static gboolean on_expose_listing (GtkWidget *pWidget, GdkEventExpose *pExpose, CDListing *pListing)
+static gboolean on_expose_listing (GtkWidget *pWidget,
+	#if (GTK_MAJOR_VERSION < 3)
+	GdkEventExpose *pExpose,
+	#else
+	cairo_t *ctx,
+	#endif
+	CDListing *pListing)
 {
-	if (g_bUseOpenGL && pListing->container.glContext)
+	/**if (g_bUseOpenGL && pListing->container.glContext)
 	{
 		if (! gldi_glx_begin_draw_container (CAIRO_CONTAINER (pListing)))
 			return FALSE;
@@ -92,8 +98,9 @@ static gboolean on_expose_listing (GtkWidget *pWidget, GdkEventExpose *pExpose, 
 		
 		gldi_glx_end_draw_container (CAIRO_CONTAINER (pListing));
 	}
-	else
+	else*/
 	{
+		#if (GTK_MAJOR_VERSION < 3)
 		cairo_t *pCairoContext;
 		if (pExpose->area.x > 0 || pExpose->area.y > 0)
 		{
@@ -108,6 +115,9 @@ static gboolean on_expose_listing (GtkWidget *pWidget, GdkEventExpose *pExpose, 
 		cairo_dock_notify_on_object (CAIRO_CONTAINER (pListing), NOTIFICATION_RENDER_DEFAULT_CONTAINER, pListing, pCairoContext);
 		
 		cairo_destroy (pCairoContext);
+		#else
+		cairo_dock_notify_on_object (CAIRO_CONTAINER (pListing), NOTIFICATION_RENDER_DEFAULT_CONTAINER, pListing, ctx);
+		#endif
 	}
 	return FALSE;
 }
@@ -199,7 +209,11 @@ CDListing *cd_do_create_listing (void)
 	gtk_window_set_title (GTK_WINDOW (pWindow), "cairo-dock-listing");
 	//gtk_widget_add_events (pWindow, GDK_BUTTON_PRESS_MASK | GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK);
 	g_signal_connect (G_OBJECT (pWindow),
+		#if (GTK_MAJOR_VERSION < 3)
 		"expose-event",
+		#else
+		"draw",
+		#endif
 		G_CALLBACK (on_expose_listing),
 		pListing);
 	g_signal_connect (G_OBJECT (pWindow),

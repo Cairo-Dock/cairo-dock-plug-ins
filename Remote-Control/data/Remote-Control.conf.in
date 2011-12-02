@@ -4,7 +4,11 @@
 [Configuration]
 
 #k Shortkey to trigger the applet:
-shortkey = <Control>F9
+shortkey = <Super>Return
+
+#d Dock to control initially
+dock name = 
+
 
 #a+ Animation of the current icon :
 animation=pulse

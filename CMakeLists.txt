@@ -1234,7 +1234,7 @@ endif ()
 if (NOT "${PROGRAMS_MISSING}" STREQUAL "")
 	message ("")
 	message (STATUS "WARNING: It seems that one (or more) program(s) or package(s) is (are) missing:${PROGRAMS_MISSING}")
-	message (STATUS "It can be interesting to install them (even more if you're a maintainer of Cairo-Dock's packages).")
+	message (STATUS "It can be interesting to install them (especially if you're a maintainer of Cairo-Dock's packages).")
 endif ()
 
 if (NOT "${MODULES_INTEGRATION_MISSING}" STREQUAL "")

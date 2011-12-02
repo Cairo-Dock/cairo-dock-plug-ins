@@ -107,5 +107,10 @@ CD_APPLET_ON_BUILD_MENU_END
 
 void cd_logout_on_keybinding_pull (const gchar *keystring, gpointer user_data)
 {
-	_execute_action (myConfig.iActionOnShortkey);
+	cairo_dock_fm_lock_screen ();
+}
+
+void cd_logout_on_keybinding_pull2 (const gchar *keystring, gpointer user_data)
+{
+	cd_logout_display_actions ();
 }

@@ -285,11 +285,12 @@ static void _on_detect_watcher (gboolean bPresent, gpointer data)
 	{
 		_on_watcher_owner_changed (CD_STATUS_NOTIFIER_WATCHER_ADDR, TRUE, NULL);
 	}
-	else if (myConfig.bCompactMode)  // in compact mode, draw a 'failed' image to not have an empty icon.
+	else
 	{
 		myData.bNoWatcher = TRUE;
 		cd_satus_notifier_launch_our_watcher ();
-		CD_APPLET_SET_IMAGE_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/icon-broken.svg");
+		if (myConfig.bCompactMode)  // in compact mode, draw a 'failed' image to not have an empty icon.
+			CD_APPLET_SET_IMAGE_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/icon-broken.svg");
 	}
 	
 	// watch whenever the Watcher goes up or down.

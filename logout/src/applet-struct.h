@@ -36,18 +36,18 @@ typedef enum {
 typedef enum {
 	CD_DISPLAY_EMBLEM,
 	CD_DISPLAY_IMAGE,
-	CD_NB_REBOOT_NEEDED
+	CD_NB_REBOOT_NEEDED_DISPLAYS
 	} CDDisplayRebootNeeded;
 
 struct _AppletConfig {
 	gchar *cUserAction;  // custom logout command
 	gchar *cUserAction2;  // custom shutdown command
-	CDActionsEnum iActionOnShortkey;
 	CDActionsEnum iActionOnMiddleClick;
 	gint iShutdownTime;  // time_t
 	gchar *cEmblemPath;
 	gchar *cDefaultLabel;
 	gchar *cShortkey;
+	gchar *cShortkey2;
 	gboolean bConfirmAction;
 	CDDisplayRebootNeeded iRebootNeededImage;
 	} ;
@@ -73,6 +73,7 @@ struct _AppletData {
 	gboolean bCanRestart;
 	gboolean bHasGuestAccount;
 	CairoKeyBinding *pKeyBinding;
+	CairoKeyBinding *pKeyBinding2;
 	GList *pUserList;
 	} ;
 

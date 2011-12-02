@@ -612,7 +612,7 @@ void terminal_new_tab(void)
 	g_signal_connect (G_OBJECT (vterm), "eof",
 				G_CALLBACK (applet_on_terminal_eof), NULL);
 	
-	cairo_dock_allow_widget_to_receive_data (vterm, G_CALLBACK (on_terminal_drag_data_received), NULL);
+	///cairo_dock_allow_widget_to_receive_data (vterm, G_CALLBACK (on_terminal_drag_data_received), NULL);
 
 	#if (GTK_MAJOR_VERSION < 3)
 	GtkWidget *pHBox = gtk_hbox_new (FALSE, 0);
