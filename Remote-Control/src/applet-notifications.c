@@ -30,7 +30,7 @@
 #include "applet-session.h"
 #include "applet-notifications.h"
 
-#define _alpha_prompt(k,n) cos (G_PI/2*fabs ((double) ((k % (2*n)) - n) / n));
+#define _alpha_prompt(k,n) .8*cos (G_PI/2*fabs ((double) ((k % (2*n)) - n) / n))
 
 const int s_iNbPromptAnimationSteps = 40;
 
@@ -97,16 +97,99 @@ static void _find_next_dock (CairoDock *pDock, gpointer *data)
 	else if (data[2])  // we take this one.
 		data[1] = pDock;
 }
-gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guint iKeyVal, guint iModifierType, const gchar *string)
+static void _activate_nth_icon (guint iKeyVal, guint iModifierType)  // iKeyVal is already in the correct interval.
+{
+	g_print ("%s (%d)\n", __func__, iKeyVal);
+	// get the index of the icon: we want "1" to be the first icon, because it's more natural and it follows the keyboard layout. So "0" will actually be the 10th icon.
+	int iIndex;  // from 0
+	if (iKeyVal >= GDK_0 && iKeyVal <= GDK_9)
+	{
+		if (iKeyVal == GDK_0)
+			iIndex = 9;
+		else
+			iIndex = iKeyVal - GDK_1;
+	}
+	else
+	{
+		if (iKeyVal == GDK_KP_0)
+			iIndex = 9;
+		else
+			iIndex = iKeyVal - GDK_KP_1;
+	}
+	g_print ("click on %d\n", iIndex);
+	// retrieve the nth icon in the current dock.
+	int n = 0;
+	Icon *pNthIcon = NULL, *pIcon;
+	GList *ic;
+	for (ic = myData.pCurrentDock->icons; ic != NULL; ic = ic->next)
+	{
+		pIcon = ic->data;
+		if (! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
+		{
+			if (n == iIndex)
+			{
+				pNthIcon = pIcon;
+				break;
+			}
+			n ++;
+		}
+	}
+
+	// execute the icon directly.
+	if (pNthIcon != NULL)
+	{
+		g_print ("click on %s\n", pNthIcon->cName);
+		cairo_dock_notify_on_object (&myContainersMgr, NOTIFICATION_CLICK_ICON, pNthIcon, myData.pCurrentDock, iModifierType);
+		cairo_dock_notify_on_object (CAIRO_CONTAINER (myData.pCurrentDock), NOTIFICATION_CLICK_ICON, pNthIcon, myData.pCurrentDock, iModifierType);
+
+		cairo_dock_start_icon_animation (pNthIcon, myData.pCurrentDock);
+		myData.bIgnoreIconState = FALSE;
+		myData.pCurrentIcon = NULL;  // sinon on va interrompre l'animation en fermant la session.
+
+		cd_do_close_session ();
+	}
+}
+
+gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guint iKeyVal, guint iModifierType, const gchar *string, int iKeyCode)
 {
 	g_return_val_if_fail (cd_do_session_is_running (), CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	g_return_val_if_fail (myData.pCurrentDock != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	
 	const gchar *cKeyName = gdk_keyval_name (iKeyVal);
 	guint32 iUnicodeChar = gdk_keyval_to_unicode (iKeyVal);
-	cd_debug ("+ cKeyName : %s (%c, %s)\n", cKeyName, iUnicodeChar, string);
+	cd_debug ("+ cKeyName : %s (%c, %s, %d)", cKeyName, iUnicodeChar, string, iKeyCode);
+	
+	if (myData.sCurrentText->len == 0)
+	{
+		GdkKeymapKey *keys = NULL;
+		guint *keyvals = NULL;
+		int i, n_entries = 0;
+		int iKeyVal2;
+		gdk_keymap_get_entries_for_keycode (gdk_keymap_get_default (),
+			iKeyCode,
+			&keys,
+			&keyvals,
+			&n_entries);
+		for (i = 0; i < n_entries; i ++)
+		{
+			iKeyVal2 = keyvals[i];
+			if ((iKeyVal2 >= GDK_0 && iKeyVal2 <= GDK_9) || (iKeyVal2 >= GDK_KP_0 && iKeyVal2 <= GDK_KP_9))
+			{
+				iKeyVal = iKeyVal2;
+				break;
+			}
+		}
+		g_free (keys);
+		g_free (keyvals);
+	}
 	
 	if (iKeyVal == GDK_Escape)  // on clot la session.
 	{
+		// give the focus back to the window that had it before the user opened this session.
+		if (myData.iPreviouslyActiveWindow != 0)
+		{
+			cairo_dock_show_xwindow (myData.iPreviouslyActiveWindow);
+		}
 		cd_do_close_session ();
 	}
 	else if (iKeyVal == GDK_space && myData.sCurrentText->len == 0)  // pas d'espace en debut de chaine.
@@ -119,7 +202,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	}
 	else if (iKeyVal == GDK_Menu)  // emulation du clic droit.
 	{
-		if (myData.pCurrentIcon != NULL && myData.pCurrentDock != NULL)
+		if (myData.pCurrentIcon != NULL)
 		{
 			myData.bIgnoreIconState = TRUE;
 			cairo_dock_stop_icon_animation (myData.pCurrentIcon);  // car on va perdre le focus.
@@ -153,7 +236,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	}
 	else if (iKeyVal == GDK_Return)
 	{
-		if (myData.pCurrentIcon != NULL && myData.pCurrentDock != NULL)
+		if (myData.pCurrentIcon != NULL)
 		{
 			cd_debug ("on clique sur l'icone '%s' [%d, %d]\n", myData.pCurrentIcon->cName, iModifierType, GDK_SHIFT_MASK);
 			
@@ -180,8 +263,6 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			{
 				cairo_dock_notify_on_object (&myContainersMgr, NOTIFICATION_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock, iModifierType);
 				cairo_dock_notify_on_object (CAIRO_CONTAINER (myData.pCurrentDock), NOTIFICATION_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock, iModifierType);
-				if (CAIRO_DOCK_IS_APPLI (myData.pCurrentIcon))
-					myData.iPreviouslyActiveWindow = 0;
 			}
 			cairo_dock_start_icon_animation (myData.pCurrentIcon, myData.pCurrentDock);
 			myData.bIgnoreIconState = FALSE;
@@ -203,7 +284,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		}
 		else if (iKeyVal == GDK_Down)
 		{
-			if (myData.pCurrentDock != NULL && myData.pCurrentDock->iRefCount > 0)
+			if (myData.pCurrentDock->iRefCount > 0)
 			{
 				CairoDock *pParentDock = NULL;
 				Icon *pPointingIcon = cairo_dock_search_icon_pointing_on_dock (myData.pCurrentDock, &pParentDock);
@@ -216,17 +297,6 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		}
 		else if (iKeyVal == GDK_Left)
 		{
-			if (myData.pCurrentDock == NULL)  // on initialise le deplacement.
-			{
-				myData.pCurrentDock = g_pMainDock;
-				int n = g_list_length (g_pMainDock->icons);
-				if (n > 0)
-				{
-					myData.pCurrentIcon =  g_list_nth_data (g_pMainDock->icons, (n-1) / 2);
-					if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (myData.pCurrentIcon) && n > 1)
-						myData.pCurrentIcon = g_list_nth_data (g_pMainDock->icons, (n+1) / 2);
-				}
-			}
 			if (myData.pCurrentDock->icons != NULL)
 			{
 				Icon *pPrevIcon = cairo_dock_get_previous_icon (myData.pCurrentDock->icons, myData.pCurrentIcon);
@@ -243,17 +313,6 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		}
 		else  // Gdk_Right.
 		{
-			if (myData.pCurrentDock == NULL)  // on initialise le deplacement.
-			{
-				myData.pCurrentDock = g_pMainDock;
-				int n = g_list_length (g_pMainDock->icons);
-				if (n > 0)
-				{
-					myData.pCurrentIcon =  g_list_nth_data (g_pMainDock->icons, (n-1) / 2);
-					if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (myData.pCurrentIcon) && n > 1)
-						myData.pCurrentIcon = g_list_nth_data (g_pMainDock->icons, (n+1) / 2);
-				}
-			}
 			if (myData.pCurrentDock->icons != NULL)
 			{
 				Icon *pNextIcon = cairo_dock_get_next_icon (myData.pCurrentDock->icons, myData.pCurrentIcon);
@@ -296,6 +355,11 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		cd_debug ("on se deplace a l'extremite sur %s\n", pIcon ? pIcon->cName : "none");
 		cd_do_change_current_icon (pIcon, myData.pCurrentDock);
 	}
+	else if ( ((iKeyVal >= GDK_0 && iKeyVal <= GDK_9) || (iKeyVal >= GDK_KP_0 && iKeyVal <= GDK_KP_9))
+	&& myData.sCurrentText->len == 0)
+	{
+		_activate_nth_icon (iKeyVal, iModifierType);
+	}
 	else if (string)  /// utiliser l'unichar ...
 	{
 		cd_debug ("string:'%s'\n", string);
@@ -316,6 +380,11 @@ void cd_do_on_shortkey_nav (const char *keystring, gpointer data)
 	}
 	else
 	{
+		// give the focus back to the window that had it before the user opened this session.
+		if (myData.iPreviouslyActiveWindow != 0)
+		{
+			cairo_dock_show_xwindow (myData.iPreviouslyActiveWindow);
+		}
 		cd_do_close_session ();
 	}
 }
@@ -364,10 +433,21 @@ gboolean cd_do_check_icon_stopped (gpointer pUserData, Icon *pIcon)
 	if (pIcon == myData.pCurrentIcon && ! myData.bIgnoreIconState)
 	{
 		cd_debug ("notre icone vient de se faire stopper\n");
-		myData.pCurrentIcon = NULL;
-		myData.pCurrentDock = NULL;
-		
-		// eventuellement emuler un TAB pour trouver la suivante ...
+		Icon *pNextIcon = NULL;
+		if (myData.pCurrentDock != NULL)
+		{
+			pNextIcon = cairo_dock_get_next_icon (myData.pCurrentDock->icons, pIcon);
+			if (! pNextIcon || CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pNextIcon))
+			{
+				pNextIcon = cairo_dock_get_previous_icon (myData.pCurrentDock->icons, pIcon);
+				if (! pNextIcon || CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pNextIcon))
+					pNextIcon = cairo_dock_get_first_icon (myData.pCurrentDock->icons);
+			}
+		}
+		if (pNextIcon != NULL)
+			cd_do_change_current_icon (pNextIcon, myData.pCurrentDock);
+		else
+			cd_do_exit_session ();
 	}
 	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
@@ -382,13 +462,20 @@ static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, Window *d
 }
 gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow)
 {
-	if (myData.sCurrentText == NULL || XActiveWindow == NULL)
+	if (! cd_do_session_is_running ())
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	if (XActiveWindow == NULL)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	// check if a dock has the focus (the user has switched to either another dock, or another window)
 	Window data[2] = {*XActiveWindow, 0};
 	cairo_dock_foreach_docks ((GHFunc) _check_dock_is_active, data);
 	
-	if (data[1] == 0)
-		gtk_window_present (GTK_WINDOW (g_pMainDock->container.pWidget));
+	if (data[1] == 0)  // no dock is active, so the current dock has lost the focus.
+	{
+		cd_do_close_session ();
+		///gtk_window_present (GTK_WINDOW (myData.pCurrentDock->container.pWidget));
+	}
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
@@ -482,3 +569,13 @@ gboolean cd_do_render (gpointer pUserData, CairoContainer *pContainer, cairo_t *
 	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
+
+gboolean cd_do_on_click (gpointer pUserData, Icon *icon, CairoContainer *pContainer)
+{
+	g_return_val_if_fail (!cd_do_session_is_off (), CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	
+	cd_do_close_session ();
+	
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+

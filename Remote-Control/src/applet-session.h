@@ -30,9 +30,9 @@ void cd_do_close_session (void);
 
 void cd_do_exit_session (void);
 
-#define cd_do_session_is_running(...) (myData.iSessionState == 2)
-#define cd_do_session_is_closing(...) (myData.iSessionState == 1)
-#define cd_do_session_is_off(...) (myData.iSessionState == 0)
+#define cd_do_session_is_running(...) (myData.iSessionState == CD_SESSION_RUNNING)
+#define cd_do_session_is_closing(...) (myData.iSessionState == CD_SESSION_CLOSING)
+#define cd_do_session_is_off(...) (myData.iSessionState == CD_SESSION_NONE)
 
 
 #endif

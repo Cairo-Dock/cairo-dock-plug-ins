@@ -27,6 +27,51 @@
 #include "applet-session.h"
 
 
+static void _cd_do_numberize_icons (void)
+{
+	int n = 0;
+	int iWidth, iHeight;
+	gchar number[2];
+	number[1] = '\0';
+	cairo_surface_t *pSurface;
+	Icon *pIcon;
+	GList *ic;
+	for (ic = myData.pCurrentDock->icons; ic != NULL && n < 10; ic = ic->next)
+	{
+		pIcon = ic->data;
+		if (! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
+		{
+			if (n == 9)  // 10th icon is "0"
+				number[0] = '0';
+			else
+				number[0] = '1' + n;  // the first icon will take the "1" number.
+			
+			pSurface = cairo_dock_create_surface_from_text (number, &myIconsParam.quickInfoTextDescription, &iWidth, &iHeight);
+			cairo_dock_add_overlay_from_surface (pIcon, pSurface, iWidth, iHeight, CAIRO_OVERLAY_UPPER_RIGHT);  // we could remember the existing overlay to replace it later ...
+			n ++;
+		}
+	}
+}
+
+static void _cd_do_remove_icons_number (void)
+{
+	if (!myData.pCurrentDock)
+		return;
+	int n = 0;
+	Icon *pIcon;
+	GList *ic;
+	for (ic = myData.pCurrentDock->icons; ic != NULL && n < 10; ic = ic->next)
+	{
+		pIcon = ic->data;
+		if (! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
+		{
+			cairo_dock_remove_overlay_at_position (pIcon, CAIRO_OVERLAY_UPPER_RIGHT);
+			n ++;
+		}
+	}
+}
+
+
 void cd_do_open_session (void)
 {
 	if (cd_do_session_is_running ())  // session already running
@@ -41,22 +86,16 @@ void cd_do_open_session (void)
 		NOTIFICATION_WINDOW_ACTIVATED, (CairoDockNotificationFunc) cd_do_check_active_dock, CAIRO_DOCK_RUN_AFTER, NULL);
 	
 	myData.sCurrentText = g_string_sized_new (20);
-	myData.iPromptAnimationCount = 0;
-	if (myData.pArrowImage == NULL)
-	{
-		myData.pArrowImage = cairo_dock_create_image_buffer (MY_APPLET_SHARE_DATA_DIR"/arrows.svg",
-			g_pMainDock->iMaxDockHeight,
-			g_pMainDock->iMaxDockHeight,
-			CAIRO_DOCK_KEEP_RATIO);
-	}
 	
-	// set initial position.
+	// set initial position (dock, icon).
 	myData.pCurrentDock = NULL;
 	myData.pCurrentIcon =  NULL;
 	
-	CairoDock *pDock = g_pMainDock;
+	CairoDock *pDock = cairo_dock_search_dock_from_name (myConfig.cDockName);
+	if (pDock == NULL)
+		pDock = g_pMainDock;
 	Icon *pIcon = NULL;
-	int n = g_list_length (g_pMainDock->icons);
+	int n = g_list_length (pDock->icons);
 	if (n > 0)
 	{
 		pIcon =  g_list_nth_data (pDock->icons, (n-1) / 2);
@@ -65,22 +104,32 @@ void cd_do_open_session (void)
 	}
 	cd_do_change_current_icon (pIcon, pDock);
 	
-	// show main dock.
+	// show the number of the 10 first icons
+	_cd_do_numberize_icons ();
+	
+	// show the dock.
 	myData.bIgnoreIconState = TRUE;
-	cairo_dock_emit_enter_signal (CAIRO_CONTAINER (g_pMainDock));
+	cairo_dock_emit_enter_signal (CAIRO_CONTAINER (pDock));
 	myData.bIgnoreIconState = FALSE;
 	
-	// give focus to main dock for inputs.
+	// give it focus for inputs.
 	myData.iPreviouslyActiveWindow = cairo_dock_get_active_xwindow ();
-	
-	///gtk_window_present (GTK_WINDOW (g_pMainDock->container.pWidget));
-	gtk_window_present_with_time (GTK_WINDOW (g_pMainDock->container.pWidget), gdk_x11_get_server_time (gldi_container_get_gdk_window(CAIRO_CONTAINER (g_pMainDock))));  // pour eviter la prevention du vol de focus.
+	///gtk_window_present (GTK_WINDOW (pDock->container.pWidget));
+	gtk_window_present_with_time (GTK_WINDOW (pDock->container.pWidget), gdk_x11_get_server_time (gldi_container_get_gdk_window(CAIRO_CONTAINER (pDock))));  // pour eviter la prevention du vol de focus.
 	cairo_dock_freeze_docks (TRUE);
 	
-	// launch animation.
-	cairo_dock_launch_animation (CAIRO_CONTAINER (g_pMainDock));
+	// launch the animation.
+	myData.iPromptAnimationCount = 0;
+	if (myData.pArrowImage == NULL)
+	{
+		myData.pArrowImage = cairo_dock_create_image_buffer (MY_APPLET_SHARE_DATA_DIR"/arrows.svg",
+			pDock->iActiveHeight,
+			pDock->iActiveHeight,
+			CAIRO_DOCK_KEEP_RATIO);
+	}
+	cairo_dock_launch_animation (CAIRO_CONTAINER (pDock));
 	
-	myData.iSessionState = 2;
+	myData.iSessionState = CD_SESSION_RUNNING;
 }
 
 void cd_do_close_session (void)
@@ -102,17 +151,6 @@ void cd_do_close_session (void)
 	g_string_free (myData.sCurrentText, TRUE);
 	myData.sCurrentText = NULL;
 	
-	// give back focus.
-	if (myData.iPreviouslyActiveWindow != 0)
-	{
-		// ne le faire que si on a encore le focus, sinon c'est que l'utilisateur a change lui-meme de fenetre...
-		Window iActiveWindow = cairo_dock_get_active_xwindow ();
-		if (myData.pCurrentDock && iActiveWindow == gldi_container_get_Xid (CAIRO_CONTAINER (myData.pCurrentDock)))
-			cairo_dock_show_xwindow (myData.iPreviouslyActiveWindow);
-		
-		myData.iPreviouslyActiveWindow = 0;
-	}
-	
 	// reset session state.
 	if (myData.pCurrentIcon != NULL)
 	{
@@ -127,12 +165,17 @@ void cd_do_close_session (void)
 		cairo_dock_emit_leave_signal (CAIRO_CONTAINER (myData.pCurrentDock));
 	}
 	
+	myData.iPreviouslyActiveWindow = 0;
+	
+	_cd_do_remove_icons_number ();
+	
 	// launch closing animation.
 	myData.iCloseTime = myConfig.iCloseDuration;
-	cairo_dock_launch_animation (CAIRO_CONTAINER (g_pMainDock));
+	if (myData.pCurrentDock != NULL)
+		cairo_dock_launch_animation (CAIRO_CONTAINER (myData.pCurrentDock));
 	cairo_dock_freeze_docks (FALSE);
 	
-	myData.iSessionState = 1;
+	myData.iSessionState = CD_SESSION_CLOSING;
 }
 
 
@@ -147,5 +190,5 @@ void cd_do_exit_session (void)
 	
 	cd_do_change_current_icon (NULL, NULL);
 	
-	myData.iSessionState = 0;
+	myData.iSessionState = CD_SESSION_NONE;
 }

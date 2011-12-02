@@ -17,14 +17,13 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef __APPLET_NOTIFICATIONS__
 #define  __APPLET_NOTIFICATIONS__
 
 #include <cairo-dock.h>
 
 
-gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guint iKeyVal, guint iModifierType, const gchar *string);
+gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guint iKeyVal, guint iModifierType, const gchar *string, int iKeyCode);
 
 
 void cd_do_on_shortkey_nav (const char *keystring, gpointer data);
@@ -41,5 +40,6 @@ gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow);
 
 gboolean cd_do_render (gpointer pUserData, CairoContainer *pContainer, cairo_t *pCairoContext);
 
+gboolean cd_do_on_click (gpointer pUserData, Icon *icon, CairoContainer *pContainer);
 
 #endif

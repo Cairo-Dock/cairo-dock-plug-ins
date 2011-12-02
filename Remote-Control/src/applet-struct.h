@@ -17,7 +17,6 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef __CD_APPLET_STRUCT__
 #define  __CD_APPLET_STRUCT__
 
@@ -25,14 +24,22 @@
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
-	gchar *cShortkeyNav;
+	gchar *cShortkey;
+	gchar *cDockName;
 	gchar *cIconAnimation;
 	gint iCloseDuration;
 	} ;
 
+typedef enum {
+	CD_SESSION_NONE,
+	CD_SESSION_CLOSING,
+	CD_SESSION_RUNNING,
+	CD_SESSION_NB_STATES
+} CDSesssionState;
+
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	gint iSessionState;  // 0:no session, 1: session closing, 2: session running
+	CDSesssionState iSessionState;
 	GString *sCurrentText;
 	CairoDockImageBuffer *pArrowImage;
 	gint iPromptAnimationCount;
@@ -45,7 +52,7 @@ struct _AppletData {
 	int iPrevMouseX, iPrevMouseY;
 	int iMouseX, iMouseY;
 	int iMotionCount;
-	CairoKeyBinding *cKeyBinding;
+	CairoKeyBinding *pKeyBinding;
 	} ;
 
 

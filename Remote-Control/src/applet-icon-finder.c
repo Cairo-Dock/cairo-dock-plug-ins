@@ -61,7 +61,7 @@ static void _find_icon_in_dock_with_command (Icon *pIcon, CairoDock *pDock, gpoi
 	CairoDock **pFoundDock = data[4];
 	Icon **pFirstIcon = data[5];
 	CairoDock **pFirstParentDock = data[6];
-	if (pDock == g_pMainDock || *pFoundIcon != NULL) // on a deja cherche dans le main dock, ou deja trouve ce qu'on cherchait.
+	if (pDock == myData.pCurrentDock || *pFoundIcon != NULL) // on a deja cherche dans le main dock, ou deja trouve ce qu'on cherchait.
 		return ;
 	
 	gboolean bFound = _cd_do_icon_match (pIcon, cCommandPrefix, length);
@@ -77,7 +77,7 @@ static void _find_icon_in_dock_with_command (Icon *pIcon, CairoDock *pDock, gpoi
 			if (*pFirstIcon == NULL)  // on garde une trace de la 1ere icone pour boucler dans la liste.
 			{
 				*pFirstIcon = pIcon;
-				*pFirstParentDock = g_pMainDock;
+				*pFirstParentDock = pDock;
 			}
 			if (pIcon == pAfterIcon)
 			{
@@ -90,19 +90,19 @@ Icon *cd_do_search_icon_by_command (const gchar *cCommandPrefix, Icon *pAfterIco
 {
 	g_return_val_if_fail (cCommandPrefix != NULL, NULL);
 	
-	//\_________________ on cherche en premier dans le main dock, car il est deja visible.
+	//\_________________ on cherche en premier dans le dock courant, car il est deja visible.
 	int length = strlen (cCommandPrefix);
 	Icon *pIcon, *pFirstIcon = NULL;
 	CairoDock *pParentDock, *pFirstParentDock = NULL;
 	GList *ic;
-	for (ic = g_pMainDock->icons; ic != NULL; ic = ic->next)
+	for (ic = myData.pCurrentDock->icons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
 		if (pIcon->cCommand && g_ascii_strncasecmp (cCommandPrefix, pIcon->cCommand, length) == 0)
 		{
 			if (pAfterIcon == NULL)
 			{
-				*pDock = g_pMainDock;
+				*pDock = myData.pCurrentDock;
 				return pIcon;
 			}
 			else
@@ -110,7 +110,7 @@ Icon *cd_do_search_icon_by_command (const gchar *cCommandPrefix, Icon *pAfterIco
 				if (pFirstIcon == NULL)  // on garde une trace de la 1ere icone pour boucler dans la liste.
 				{
 					pFirstIcon = pIcon;
-					pFirstParentDock = g_pMainDock;
+					pFirstParentDock = myData.pCurrentDock;
 				}
 				if (pIcon == pAfterIcon)
 				{
@@ -147,12 +147,16 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 	//\_________________ on gere le cachage et le montrage du dock precedent et actuel.
 	if (myData.pCurrentDock != NULL && pDock != myData.pCurrentDock)  // on remet au repos le dock precedemment anime.
 	{
+		g_print ("leave this dock\n");
 		cairo_dock_emit_leave_signal (CAIRO_CONTAINER (myData.pCurrentDock));
 		cairo_dock_remove_notification_func_on_object (myData.pCurrentDock, NOTIFICATION_RENDER_DOCK, (CairoDockNotificationFunc) cd_do_render, NULL);
 		cairo_dock_remove_notification_func_on_object (myData.pCurrentDock, NOTIFICATION_UPDATE_DOCK, (CairoDockNotificationFunc) cd_do_update_container, NULL);
+		cairo_dock_remove_notification_func_on_object (myData.pCurrentDock, NOTIFICATION_CLICK_ICON, (CairoDockNotificationFunc) cd_do_on_click, NULL);
+		cairo_dock_remove_notification_func_on_object (myData.pCurrentDock, NOTIFICATION_MIDDLE_CLICK_ICON, (CairoDockNotificationFunc) cd_do_on_click, NULL);
 	}
 	if (pDock != NULL && pDock != myData.pCurrentDock)  // on montre le nouveau dock
 	{
+		g_print (" dock %p <- %d\n", myData.pCurrentDock, pDock);
 		if (pDock != NULL)
 		{
 			if (pDock->iRefCount > 0)
@@ -167,6 +171,7 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 			else
 			{
 				/// utile de faire ca si on entre dedans ?...
+				g_print ("enter this dock\n");
 				if (pDock->bAutoHide)
 					cairo_dock_start_showing (pDock);
 				if (pDock->iVisibility == CAIRO_DOCK_VISI_KEEP_BELOW)
@@ -182,6 +187,14 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 		cairo_dock_register_notification_on_object (pDock,
 			NOTIFICATION_RENDER_DOCK,
 			(CairoDockNotificationFunc) cd_do_render,
+			CAIRO_DOCK_RUN_AFTER, NULL);
+		cairo_dock_register_notification_on_object (pDock,
+			NOTIFICATION_CLICK_ICON,
+			(CairoDockNotificationFunc) cd_do_on_click,
+			CAIRO_DOCK_RUN_AFTER, NULL);  // we don't disable the clicks, rather we will close the session.
+		cairo_dock_register_notification_on_object (pDock,
+			NOTIFICATION_MIDDLE_CLICK_ICON,
+			(CairoDockNotificationFunc) cd_do_on_click,
 			CAIRO_DOCK_RUN_AFTER, NULL);
 	}
 	if (pDock != NULL)
@@ -217,14 +230,11 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 		myData.iMouseY = y;
 		cairo_dock_request_icon_animation (pIcon, CAIRO_CONTAINER (pDock), myConfig.cIconAnimation, 1e6);  // interrompt l'animation de "mouse over".
 		cairo_dock_launch_animation (CAIRO_CONTAINER (pDock));
-		//if (myAccessibility.bShowSubDockOnClick)
-		//	cairo_dock_show_subdock (pIcon, pDock, FALSE);
 	}
 	
 	myData.pCurrentDock = pDock;
 	myData.pCurrentIcon = pIcon;
-	if (myData.pCurrentDock == NULL)
-		gtk_window_present (GTK_WINDOW (g_pMainDock->container.pWidget));
+	g_print ("myData.pCurrentDock <- %p\n", myData.pCurrentDock);
 }
 
 
@@ -254,7 +264,8 @@ gboolean cairo_dock_emit_motion_signal (CairoDock *pDock, int iMouseX, int iMous
 	#if (GTK_MAJOR_VERSION < 3)
 	motion.device = gdk_device_get_core_pointer ();
 	#else
-	motion.device = NULL;
+	GdkDeviceManager *manager = gdk_display_get_device_manager (gdk_window_get_display (motion.window));
+	motion.device = gdk_device_manager_get_client_pointer(manager);
 	#endif
 	g_signal_emit_by_name (pDock->container.pWidget, "motion-notify-event", &motion, &bReturn);
 	return FALSE;

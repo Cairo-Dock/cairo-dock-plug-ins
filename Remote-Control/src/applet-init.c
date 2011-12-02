@@ -26,25 +26,26 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN (N_("Remote-Control"),
+CD_APPLET_DEFINE_BEGIN ("Remote-Control",
 	2, 2, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
-	("This plug-in lets you control your dock from the keyboard,\n"
-	" or even a remote controller.\n"
-	"Press the shortcut (by default CTRL + F9),\n"
-	" then use the arrows to navigate into the docks and sub-docks,\n"
-	" or type the name of a launcher and press Tab to automatically jump to the next suitable launcher\n"
+	N_("This plug-in lets you control your dock from the keyboard\n"
+	"Press the shortcut (by default Super + Return), then either:\n"
+	" - press the number of the icon that you want to activate"
+	" - or use the arrows to navigate into the docks and sub-docks,\n"
+	" - or type the name of a launcher and press Tab to automatically jump to the next suitable launcher\n"
 	"Press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter for middle click, and Ctrl+Enter for left click\n"
 	"Escape or the same shortkey will cancel."),
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
+	CD_APPLET_REDEFINE_TITLE (N_("Control from keyboard"))
 CD_APPLET_DEFINE_END
 
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
-	myData.cKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortkeyNav,
+	myData.pKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortkey,
 		D_("Enable/disable the keyboard control of the dock"),
 		"Configuration", "shortkey",
 		(CDBindkeyHandler) cd_do_on_shortkey_nav);
@@ -55,7 +56,7 @@ CD_APPLET_INIT_END
 CD_APPLET_STOP_BEGIN
 	cd_do_exit_session ();
 
-	cd_keybinder_unbind (myData.cKeyBinding);
+	cd_keybinder_unbind (myData.pKeyBinding);
 CD_APPLET_STOP_END
 
 
@@ -63,6 +64,7 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cShortkeyNav, NULL);
+		cd_do_exit_session ();
+		cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
 	}
 CD_APPLET_RELOAD_END
