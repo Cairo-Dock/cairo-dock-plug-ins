@@ -354,11 +354,7 @@ void cd_mail_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pK
 	CairoDockGroupKeyWidget *pGroupKeyWidget = CD_APPLET_GET_CONFIG_PANEL_GROUP_KEY_WIDGET ("Configuration", "add account");
 	g_return_if_fail (pGroupKeyWidget != NULL);
 
-	#if (GTK_MAJOR_VERSION < 3)
-	GtkWidget *pCustomWidgetBox = gtk_hbox_new (FALSE, 3);
-	#else
-	GtkWidget *pCustomWidgetBox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 3);
-	#endif
+	GtkWidget *pCustomWidgetBox = _gtk_hbox_new (3);
 	gtk_box_pack_end (GTK_BOX (pGroupKeyWidget->pKeyBox),
 		pCustomWidgetBox,
 		FALSE,

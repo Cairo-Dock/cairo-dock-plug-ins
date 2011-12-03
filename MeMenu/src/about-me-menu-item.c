@@ -283,11 +283,7 @@ about_me_menu_item_constructor (GType                  type,
   gtk_misc_set_padding (GTK_MISC (priv->label), 2, 2);
   gtk_container_add (GTK_CONTAINER (align), priv->label);
 
-  #if (GTK_MAJOR_VERSION < 3)
-  hbox = gtk_hbox_new (FALSE, 0);
-  #else
-  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-  #endif
+  hbox = _gtk_hbox_new (0);
   gtk_box_pack_start (GTK_BOX (hbox), frame, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (hbox), align, TRUE, TRUE, DEFAULT_PIXELS_PER_EM);
 

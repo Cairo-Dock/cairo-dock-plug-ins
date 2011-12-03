@@ -682,11 +682,7 @@ void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
 	if (myData.pItemList != NULL && myData.pItemList->next != NULL && (myData.pItemList->next->next != NULL || ! myData.bError))  // on construit le dialogue contenant toutes les infos.
 	{
 		// On construit le widget GTK qui contient les lignes avec les liens.
-		#if (GTK_MAJOR_VERSION < 3)
-		GtkWidget *pVBox = gtk_vbox_new (FALSE, 0);  // le widget qu'on va inserer dans le dialogue.
-		#else
-		GtkWidget *pVBox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);  // le widget qu'on va inserer dans le dialogue.
-		#endif
+		GtkWidget *pVBox = _gtk_vbox_new (0);  // le widget qu'on va inserer dans le dialogue.
 		GtkWidget *pScrolledWindow = gtk_scrolled_window_new (NULL, NULL);
 		g_object_set (pScrolledWindow, "height-request", 250, NULL);
 		gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (pScrolledWindow), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);

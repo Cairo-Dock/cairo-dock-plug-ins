@@ -352,11 +352,7 @@ static inline GtkToolItem *_add_category_button (GtkWidget *pToolBar, const gcha
 #define MARGIN 3
 static GtkWidget *cd_build_events_widget (void)
 {
-	#if (GTK_MAJOR_VERSION < 3)
-	GtkWidget *pMainBox = gtk_vbox_new (FALSE, MARGIN);
-	#else
-	GtkWidget *pMainBox = gtk_box_new (GTK_ORIENTATION_VERTICAL, MARGIN);
-	#endif
+	GtkWidget *pMainBox = _gtk_vbox_new (MARGIN);
 	
 	// category toolbar.
 	GtkWidget *pToolBar = gtk_toolbar_new ();
@@ -377,11 +373,7 @@ static GtkWidget *cd_build_events_widget (void)
 	_add_category_button (pToolBar, D_("Top Results"), "gtk-about", i++, group);
 	
 	// search entry.
-	#if (GTK_MAJOR_VERSION < 3)
-	GtkWidget *pFilterBox = gtk_hbox_new (FALSE, CAIRO_DOCK_GUI_MARGIN);
-	#else
-	GtkWidget *pFilterBox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, CAIRO_DOCK_GUI_MARGIN);
-	#endif
+	GtkWidget *pFilterBox = _gtk_hbox_new (CAIRO_DOCK_GUI_MARGIN);
 	gtk_box_pack_start (GTK_BOX (pMainBox), pFilterBox, FALSE, FALSE, MARGIN);
 	
 	GtkWidget *pFilterLabel = gtk_label_new (D_("Look for events"));

@@ -383,11 +383,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 						GtkWidget *pLabel = gtk_label_new (cLabel);
 						g_free (cLabel);
 						gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
-						#if (GTK_MAJOR_VERSION < 3)
-						GtkWidget *pBox = gtk_hbox_new (FALSE, 3);
-						#else
-						GtkWidget *pBox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 3);
-						#endif
+						GtkWidget *pBox = _gtk_hbox_new (3);
 						gtk_box_pack_start (GTK_BOX (pBox), pInteractiveWidget, TRUE, TRUE, 0);
 						gtk_box_pack_start (GTK_BOX (pBox), pLabel, FALSE, FALSE, 0);
 						pInteractiveWidget = pBox;
@@ -455,11 +451,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 					
 					if (cMinLabel || cMaxLabel)
 					{
-						#if (GTK_MAJOR_VERSION < 3)
-						GtkWidget *pExtendedWidget = gtk_hbox_new (FALSE, 0);
-						#else
-						GtkWidget *pExtendedWidget = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-						#endif
+						GtkWidget *pExtendedWidget = _gtk_hbox_new (0);
 						GtkWidget *label = gtk_label_new (cMinLabel);
 						GtkWidget *pAlign = gtk_alignment_new (1., 1., 0., 0.);
 						gtk_container_add (GTK_CONTAINER (pAlign), label);

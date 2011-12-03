@@ -55,11 +55,7 @@ static gboolean _task_warning (CDClockTask *pTask, const gchar *cMessage)
 	gtk_range_set_value (GTK_RANGE (pScale), pTask->iWarningDelay != 0 ? pTask->iWarningDelay : 15);  // 15mn par defaut.
 	g_object_set (pScale, "width-request", CAIRO_DIALOG_MIN_SCALE_WIDTH, NULL);
 
-	#if (GTK_MAJOR_VERSION < 3)
-	GtkWidget *pExtendedWidget = gtk_hbox_new (FALSE, 0);
-	#else
-	GtkWidget *pExtendedWidget = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-	#endif
+	GtkWidget *pExtendedWidget = _gtk_hbox_new (0);
 	GtkWidget *label = gtk_label_new (D_("1mn"));
 	GtkWidget *pAlign = gtk_alignment_new (1., 1., 0., 0.);
 	gtk_container_add (GTK_CONTAINER (pAlign), label);

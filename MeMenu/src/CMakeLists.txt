@@ -36,6 +36,7 @@ include_directories (
 	${DBUSMENU_INCLUDE_DIRS}
 	${DBUSMENU_GTK_INCLUDE_DIRS}
 	${INDICATOR_APPLET_INCLUDE_DIRS}
+	${IDO_INCLUDE_DIRS}
 	${CMAKE_SOURCE_DIR}/Indicator-applet)
 
 link_directories (
@@ -43,6 +44,7 @@ link_directories (
 	${DBUSMENU_LIBRARY_DIRS}
 	${DBUSMENU_GTK_LIBRARY_DIRS}
 	${INDICATOR_APPLET_LIBRARY_DIRS}
+	${IDO_LIBRARY_DIRS}
 	${CMAKE_SOURCE_DIR}/Indicator-applet)
 
 target_link_libraries (${PACKAGE_MEMENU}
@@ -50,6 +52,7 @@ target_link_libraries (${PACKAGE_MEMENU}
 	${DBUSMENU_LIBRARIES}
 	${DBUSMENU_GTK_LIBRARIES}
 	${INDICATOR_APPLET_LIBRARIES}
+	${IDO_LIBRARIES}
 	indicator-applet)
 
 ########### install files ###############
