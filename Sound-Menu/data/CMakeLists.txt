@@ -3,7 +3,7 @@
 
 install (FILES ${CMAKE_CURRENT_BINARY_DIR}/Sound-Menu.conf
 	preview.jpg
-	icon.svg
+	icon.png
 	default.svg
 	mute.svg
 	audio-volume-off.svg
