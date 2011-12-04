@@ -156,7 +156,7 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 	}
 	if (pDock != NULL && pDock != myData.pCurrentDock)  // on montre le nouveau dock
 	{
-		g_print (" dock %p <- %d\n", myData.pCurrentDock, pDock);
+		g_print (" dock %p <- %p\n", myData.pCurrentDock, pDock);
 		if (pDock != NULL)
 		{
 			if (pDock->iRefCount > 0)
@@ -217,8 +217,8 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 		if (1||myData.pCurrentDock != pDock)
 		{
 			cairo_dock_emit_motion_signal (pDock,
-				x,
-				y);
+				pDock->container.bIsHorizontal ? x : y,
+				pDock->container.bIsHorizontal ? y : x);
 		}
 		else
 		{

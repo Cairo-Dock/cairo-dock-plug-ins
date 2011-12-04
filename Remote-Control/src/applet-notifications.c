@@ -30,7 +30,7 @@
 #include "applet-session.h"
 #include "applet-notifications.h"
 
-#define _alpha_prompt(k,n) .8*cos (G_PI/2*fabs ((double) ((k % (2*n)) - n) / n))
+#define _alpha_prompt(k,n) .6*cos (G_PI/2*fabs ((double) ((k % (2*n)) - n) / n))
 
 const int s_iNbPromptAnimationSteps = 40;
 
