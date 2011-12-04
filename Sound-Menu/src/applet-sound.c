@@ -62,10 +62,18 @@ static const gchar *_get_icon_from_state (gint iState)
  // PROXY //
 ///////////
 
+static void _update_sound_state_icon (gint iNewState, CairoDockModuleInstance *myApplet);
+
+static gboolean _get_volume (gint iNewState)
+{
+	_update_sound_state_icon (iNewState, myApplet);
+	return FALSE;
+}
+
 static void _update_sound_state_icon (gint iNewState, CairoDockModuleInstance *myApplet)
 {
 	g_return_if_fail (iNewState >= 0 && iNewState < NB_STATES);
-	gboolean bWasMute = (iNewState == MUTED || iNewState == UNAVAILABLE || iNewState == BLOCKED);
+	gboolean bWasMute = ! (iNewState == MUTED || iNewState == UNAVAILABLE || iNewState == BLOCKED);
 	myData.iCurrentState = iNewState;
 	
 	switch (myConfig.iVolumeEffect)
@@ -91,6 +99,8 @@ static void _update_sound_state_icon (gint iNewState, CairoDockModuleInstance *m
 				double fVolume = 0;
 				if (myData.volume_widget)
 					fVolume = volume_widget_get_current_volume (myData.volume_widget);
+				if (fVolume == 0.0 && iNewState != ZERO_LEVEL) // strange... should not be null, volume_widget_get_current_volume gives a wrong value at startup
+					g_timeout_add_seconds (1, (GSourceFunc) _get_volume, GINT_TO_POINTER (iNewState));
 				CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR (myData.pSurface, fVolume * .01);
 			}
 		case VOLUME_EFFECT_GAUGE:
@@ -101,10 +111,16 @@ static void _update_sound_state_icon (gint iNewState, CairoDockModuleInstance *m
 			}
 			else if (bWasMute)
 			{
-				double fVolume = 0;
+				double fVolume = 0, fPercent;
 				if (myData.volume_widget)
 					fVolume = volume_widget_get_current_volume (myData.volume_widget);
-				double fPercent = (double) fVolume / 100.;
+				if (fVolume == 0.0 && iNewState != ZERO_LEVEL) // strange... should not be null, volume_widget_get_current_volume gives a wrong value at startup
+				{
+					g_timeout_add_seconds (1, (GSourceFunc) _get_volume, GINT_TO_POINTER (iNewState));
+					fPercent = CAIRO_DATA_RENDERER_UNDEF_VALUE;
+				}
+				else
+					fPercent = (double) fVolume / 100.;
 				CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&fPercent);
 			}
 		break;
@@ -167,7 +183,7 @@ void cd_sound_get_initial_values (CairoDockModuleInstance *myApplet)
 {
 	// query the service to display initial values.
 	DBusGProxy * pServiceProxy = myData.pIndicator->pServiceProxy;
-	
+
 	DBusGProxyCall *pCall = dbus_g_proxy_begin_call (myData.pIndicator->pServiceProxy, "GetSoundState",
 		(DBusGProxyCallNotify)_on_got_sound_state,
 		myApplet,
