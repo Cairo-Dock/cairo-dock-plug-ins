@@ -159,7 +159,7 @@ static void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	pDock->iActiveWidth = pDock->iMaxDockWidth;
 	pDock->iActiveHeight = pDock->iMaxDockHeight;
 	if (! pDock->container.bIsHorizontal && myIconsParam.bTextAlwaysHorizontal)
-		pDock->iMaxDockHeight += 6*myIconsParam.iLabelSize;  // vertical dock, add some padding to draw the labels.	
+		pDock->iMaxDockHeight += 8*myIconsParam.iLabelSize;  // vertical dock, add some padding to draw the labels.	
 }
 
 

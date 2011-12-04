@@ -25,8 +25,6 @@
 
 #include "indicator-applet.h"
 
-#define INDICATOR_APPLET_DBUS_VERSION  1
-
 static gboolean s_bIndicatorIconThemeAdded = FALSE;
 
 static void _cd_indicator_make_menu (CDAppletIndicator *pIndicator)
@@ -96,7 +94,7 @@ connection_changed (IndicatorServiceManager * sm, gboolean connected, CDAppletIn
 	return;
 }
 
-CDAppletIndicator *cd_indicator_new (CairoDockModuleInstance *pApplet, const gchar *cBusName, const gchar *cServiceObject, const gchar *cServiceInterface, const gchar *cMenuObject)
+CDAppletIndicator *cd_indicator_new (CairoDockModuleInstance *pApplet, const gchar *cBusName, const gchar *cServiceObject, const gchar *cServiceInterface, const gchar *cMenuObject, int iVersion)
 {
 	if (!s_bIndicatorIconThemeAdded)
 	{
@@ -111,7 +109,7 @@ CDAppletIndicator *cd_indicator_new (CairoDockModuleInstance *pApplet, const gch
 	pIndicator->cServiceInterface = cServiceInterface;
 	pIndicator->cMenuObject = cMenuObject;
 	
-	pIndicator->service = indicator_service_manager_new_version ((gchar*)cBusName, INDICATOR_APPLET_DBUS_VERSION);
+	pIndicator->service = indicator_service_manager_new_version ((gchar*)cBusName, iVersion);
 	g_signal_connect (G_OBJECT(pIndicator->service), INDICATOR_SERVICE_MANAGER_SIGNAL_CONNECTION_CHANGE, G_CALLBACK(connection_changed), pIndicator);  // on sera appele une fois la connexion etablie.  // pour le cast, cf plus haut.
 	
 	return pIndicator;

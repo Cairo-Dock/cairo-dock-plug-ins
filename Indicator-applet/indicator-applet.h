@@ -55,9 +55,10 @@ struct _CDAppletIndicator {
 	void (*add_menu_handler) (DbusmenuGtkClient * client);
 	};
 
+#define INDICATOR_APPLET_DEFAULT_VERSION 1
 
 
-CDAppletIndicator *cd_indicator_new (CairoDockModuleInstance *pApplet, const gchar *cBusName, const gchar *cObjectName, const gchar *cServiceInterface, const gchar *cMenuObject);
+CDAppletIndicator *cd_indicator_new (CairoDockModuleInstance *pApplet, const gchar *cBusName, const gchar *cObjectName, const gchar *cServiceInterface, const gchar *cMenuObject, int iVersion);
 
 void cd_indicator_destroy (CDAppletIndicator *pIndicator);
 

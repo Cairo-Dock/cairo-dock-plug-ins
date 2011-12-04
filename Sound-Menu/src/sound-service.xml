@@ -1,0 +1,25 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node name="/com/canonical/indicators/sound">
+  <interface name="com.canonical.indicators.sound">
+    <method name = "BlacklistMediaPlayer">
+        <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
+        <arg type='s' name='player_desktop_name' direction="in"/>
+        <arg type='b' name='blacklist' direction="in"/>
+        <arg type='b' name='result' direction="out"/>
+    </method>
+    <method name = "IsBlacklisted">
+        <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
+        <arg type='s' name='player_desktop_name' direction="in"/>
+        <arg type='b' name='result' direction="out"/>
+    </method>
+
+    <method name = "GetSoundState">
+        <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
+        <arg type='i' name='current_state' direction="out"/>
+    </method>
+    <signal name="SoundStateUpdate">
+      <arg name="new_state" type="i" direction="out"/>
+    </signal>
+  </interface>
+</node>
+

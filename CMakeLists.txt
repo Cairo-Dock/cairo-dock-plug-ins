@@ -990,17 +990,17 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/slider/data/slider.conf.in ${CMAKE_C
 add_subdirectory (slider)
 
 ############# SOUND_MENU #################
-#~ set (with_sound_menu "no")
-#~ if ("${with_indicator}" STREQUAL "yes" AND "${IDO_FOUND}") 
-	#~ message (STATUS "> Sound-Menu:")
-	#~ set (GETTEXT_SOUND_MENU ${GETTEXT_PLUGINS})
-	#~ set (VERSION_SOUND_MENU "0.0.1")
-	#~ set (PACKAGE_SOUND_MENU "cd-Sound-Menu")
-	#~ set (with_sound_menu "yes")
-	#~ set (sound_menudatadir "${pluginsdatadir}/Sound-Menu")
-	#~ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Sound-Menu/data/Sound-Menu.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Sound-Menu/data/Sound-Menu.conf)
-	#~ add_subdirectory (Sound-Menu)
-#~ endif()
+set (with_sound_menu "no")
+if ("${with_indicator}" STREQUAL "yes" AND "${IDO_FOUND}") 
+	message (STATUS "> Sound-Menu:")
+	set (GETTEXT_SOUND_MENU ${GETTEXT_PLUGINS})
+	set (VERSION_SOUND_MENU "0.0.1")
+	set (PACKAGE_SOUND_MENU "cd-Sound-Menu")
+	set (with_sound_menu "yes")
+	set (sound_menudatadir "${pluginsdatadir}/Sound-Menu")
+	configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Sound-Menu/data/Sound-Menu.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Sound-Menu/data/Sound-Menu.conf)
+	add_subdirectory (Sound-Menu)
+endif()
 
 ############# STACK #################
 message (STATUS "> Stack:")
