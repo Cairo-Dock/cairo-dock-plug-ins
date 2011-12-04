@@ -711,6 +711,8 @@ GtkWidget * create_main_menu (CairoDockModuleInstance *myApplet)
 	const gchar *cMenuFileName = NULL;
 	if (g_file_test (XDG_MENUS_PATH"/applications.menu", G_FILE_TEST_EXISTS))  // first check 
 		cMenuFileName = "applications.menu";
+	else if (g_file_test (XDG_MENUS_PATH"/gnome-applications.menu", G_FILE_TEST_EXISTS))
+		cMenuFileName = "gnome-applications.menu";
 	else if (g_file_test (XDG_MENUS_PATH"/kde-applications.menu", G_FILE_TEST_EXISTS))
 		cMenuFileName = "kde-applications.menu";
 	else if (g_file_test (XDG_MENUS_PATH"/xfce-applications.menu", G_FILE_TEST_EXISTS))

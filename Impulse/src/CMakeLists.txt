@@ -25,18 +25,25 @@ add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 #add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
 ### uncomment the following line to allow extended OpenGL drawing.
 #add_definitions (-DGL_GLEXT_PROTOTYPES="1")
+if (NOT "${FFTW3_FOUND}" STREQUAL "")
+	message (STATUS "   Without FFTW3 support")
+	add_definitions (-DFFT="1")
+endif()
 
 include_directories (
 	${PACKAGE_INCLUDE_DIRS}
-	${IMPULSE_PACKAGES_INCLUDE_DIRS})
+	${FFTW3_INCLUDE_DIRS}
+	${LIBPULSE_INCLUDE_DIRS})
 
 link_directories (
 	${PACKAGE_LIBRARY_DIRS}
-	${IMPULSE_PACKAGES_LIBRARY_DIRS})
+	${FFTW3_LIBRARY_DIRS}
+	${LIBPULSE_LIBRARY_DIRS})
 
 target_link_libraries (${PACKAGE_IMPULSE}
 	${PACKAGE_LIBRARIES}
-	${IMPULSE_PACKAGES_LIBRARIES})
+	${FFTW3_LIBRARIES}
+	${LIBPULSE_LIBRARIES})
 
 ########### install files ###############
 

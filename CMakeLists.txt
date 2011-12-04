@@ -6,6 +6,7 @@ include (CheckLibraryExists)
 include (CheckIncludeFiles)
 include (CheckFunctionExists)
 include (CheckSymbolExists)
+include ("${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules/GNUInstallDirs.cmake")
 
 ########### project ###############
 
@@ -48,7 +49,7 @@ set (GETTEXT_PACKAGE ${PACKAGE})
 
 # get plug-ins install dir
 execute_process(
-    COMMAND pkg-config gldi --variable=pluginsdir  # /usr/lib/cairo-dock
+    COMMAND pkg-config gldi --variable=pluginsdir  # /usr/lib/cairo-dock # or /usr/lib/x86_64-linux-gnu/cairo-dock
     OUTPUT_VARIABLE pluginsdir)
 STRING (REGEX REPLACE "\n" "" pluginsdir ${pluginsdir})  # remove the \n
 # get plug-ins data dir
@@ -56,6 +57,11 @@ execute_process(
     COMMAND pkg-config gldi --variable=pluginsdatadir  # /usr/share/cairo-dock/plug-ins
     OUTPUT_VARIABLE pluginsdatadir)
 STRING (REGEX REPLACE "\n" "" pluginsdatadir ${pluginsdatadir})
+# get prefix dir
+execute_process(
+    COMMAND pkg-config gldi --variable=prefix  # /usr/share/cairo-dock/plug-ins
+    OUTPUT_VARIABLE prefix)
+STRING (REGEX REPLACE "\n" "" prefix ${prefix})
 # get GTK version (must be the same as the core, as GTK2 and GTK3 can't coexist at runtime)
 execute_process(
     COMMAND pkg-config gldi --variable=gtkversion  # 2 or 3
@@ -74,18 +80,13 @@ if (NOT "${dock_version}" STREQUAL "${VERSION}")		# Version
 	endif ()
 endif()
 
-#if( CMAKE_SIZEOF_VOID_P EQUAL 8 AND NOT "${FORCE_LIB64}" STREQUAL "")  # 64bits and force install in lib64
-#	set (libname "lib64")
-#else()
-#	set (libname "lib${LIB_SUFFIX}")
-#endif()
-#set (libdir "${CMAKE_INSTALL_PREFIX}/${libname}/cairo-dock")	# /usr/lib
-
 # check that installation dir matches with the core
-GET_FILENAME_COMPONENT(libdir "${pluginsdir}/.." ABSOLUTE)  # /usr/lib
-GET_FILENAME_COMPONENT(prefix "${pluginsdir}/../.." ABSOLUTE)  # /usr
-if (NOT "${CMAKE_INSTALL_PREFIX}" STREQUAL "${prefix}")
-	message (STATUS "It seems that the current CMAKE_INSTALL_PREFIX flag is not the same that you have used with the core.")
+GET_FILENAME_COMPONENT(libdir "${pluginsdir}/.." ABSOLUTE)  # /usr/lib # or /usr/lib/x86_64-linux-gnu
+GET_FILENAME_COMPONENT(datadir "${pluginsdatadir}/../.." ABSOLUTE)  # /usr/share
+if (NOT "${CMAKE_INSTALL_PREFIX}" STREQUAL "${prefix}"
+		OR NOT "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}" STREQUAL "${libdir}"
+		OR NOT "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}" STREQUAL "${datadir}")
+	message (STATUS "It seems that the current CMAKE_INSTALL_{PREFIX,LIBDIR,DATAROOTDIR} flags are not the same that you have used with the core.")
 	message (STATUS " It will be replaced by this value: ${prefix}")
 	message (WARNING "Plug-ins should be installed in the same directory as the core, that is to say in ${pluginsdir}")
 	set (CMAKE_INSTALL_PREFIX "${prefix}")
@@ -94,7 +95,7 @@ endif()
 
 # set internationalisation
 set (GETTEXT_PLUGINS "cairo-dock-plugins")
-set (localedir "${CMAKE_INSTALL_PREFIX}/share/locale")
+set (localedir "${CMAKE_INSTALL_LOCALEDIR}")
 set (gaugesdir "${CMAKE_INSTALL_PREFIX}/share/cairo-dock/gauges")
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules/")  # additionnal FindPackage files
@@ -480,8 +481,9 @@ add_subdirectory (icon-effect)
 ############# IMPULSE #################
 set (with_impulse "no")
 message (STATUS "> Impulse:")
-pkg_check_modules (IMPULSE_PACKAGES libpulse fftw3)
-if ("${IMPULSE_PACKAGES_FOUND}" STREQUAL "")
+pkg_check_modules (LIBPULSE libpulse)
+pkg_check_modules (FFTW3 fftw3)
+if ("${LIBPULSE_FOUND}" STREQUAL "")
 	message (STATUS "Could not find libpulse; Cairo-Dock won't be built with Impulse applet.")
 	message (WARNING "These modules are required to compile Impulse applet: libpulse fftw3")
 	set (MODULES_MISSING "${MODULES_MISSING} libpulse fftw3")
@@ -526,9 +528,9 @@ else()
 endif()
 
 if ("${gtkversion}" STREQUAL "2")
-	pkg_check_modules (IDO QUIET libido-0.1)
+	pkg_check_modules (IDO libido-0.1)
 else()
-	pkg_check_modules (IDO QUIET libido3-0.1)
+	pkg_check_modules (IDO libido3-0.1)
 endif()
 
 
@@ -800,7 +802,7 @@ endif()
 
 ############# MEMENU #################
 set (with_me_menu "no")
-if ("${INDICATOR_APPLICATIONADDED_HAS_HINT}" STREQUAL "1")
+if ("${INDICATOR_APPLICATIONADDED_HAS_HINT}" STREQUAL "1" AND NOT "${enable-memenu}" STREQUAL "yes")
 	message (STATUS "> MeMenu: this applet has been automatically merged with Messaging-Menu")
 elseif ("${with_indicator}" STREQUAL "yes" AND "${IDO_FOUND}")
 	message (STATUS "> MeMenu:")
@@ -1201,23 +1203,26 @@ message (STATUS " - with KDE support:               ${with_kde_integration}")
 message (STATUS " - with XFCE support:              ${with_xfce_integration}")
 message (STATUS " Plug-ins:")
 message (STATUS " - with Alsa-Mixer applet:         ${with_alsa}")
-message (STATUS " - with iCal support:              ${with_ical}")
 message (STATUS " - with GMenu applet:              ${with_gmenu}")
 message (STATUS " - with Impulse applet:            ${with_impulse}")
 message (STATUS " - with Keyboard-indicator applet: ${with_keyboard_indicator}")
 message (STATUS " - with Mail applet:               ${with_mail}")
-if (NOT "${INDICATOR_APPLICATIONADDED_HAS_HINT}" STREQUAL "1")
-message (STATUS " - with Me-Menu applet:            ${with_me_menu}")
+if (NOT "${INDICATOR_APPLICATIONADDED_HAS_HINT}" STREQUAL "1" OR "${enable-memenu}" STREQUAL "yes")
+message (STATUS " - with Me-Menu applet applet:     ${with_me_menu}")
 endif()
-message (STATUS " - with Messaging-Menu:            ${with_messaging_menu}")
-message (STATUS " - with Screen Resolution support: ${with_xrandr}")
+message (STATUS " - with Messaging-Menu applet:     ${with_messaging_menu}")
+message (STATUS " - with Recent-Events applet:      ${with_recent_events}")
+message (STATUS " - with Sound-Menu applet:         ${with_sound_menu}")
 message (STATUS " - with Status-Notifier applet:    ${with_status_notifier}")
-message (STATUS " - with Sensors support:           ${with_sensors}")
 message (STATUS " - with Terminal applet:           ${with_terminal}")
 message (STATUS " - with Weblets applet:            ${with_weblets}")
 message (STATUS " - with Xgamma applet:             ${with_xgamma}")
-message (STATUS " - with Recent-Events applet:      ${with_recent_events}")
+message (STATUS "Add On:")
+message (STATUS " - with iCal support:              ${with_ical}")
+message (STATUS " - with Screen Resolution support: ${with_xrandr}")
+message (STATUS " - with Sensors support:           ${with_sensors}")
 message (STATUS " - with UPower support:            ${with_upower_support}")
+message (STATUS "Third Party Interface:")
 message (STATUS " - with Python interface:          ${with_python}")
 message (STATUS " - with Ruby interface:            ${with_ruby}")
 message (STATUS " - with Mono interface:            ${with_mono}")

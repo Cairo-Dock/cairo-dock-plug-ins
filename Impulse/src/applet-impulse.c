@@ -93,7 +93,7 @@ static gboolean _animate_the_dock (gpointer data)
 
 	guint iIcons = IM_TAB_SIZE / g_list_length (myData.pSharedMemory->pIconsList); // number of icons (without separators)
 
-	double *array = im_getSnapshot(IM_FFT);
+	double *array = im_getSnapshot();
 
 	// we check if there is a signal (most of the time, all values are > 0)
 	if (array[0] == 0.0)
