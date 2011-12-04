@@ -21,8 +21,13 @@
 #ifndef __CD_APPLET_STRUCT__
 #define  __CD_APPLET_STRUCT__
 
+#if (GTK_MAJOR_VERSION < 3)
 #include <libdbusmenu-gtk/menuitem.h>
 #include <libdbusmenu-gtk/menu.h>
+#else
+#include <libdbusmenu-gtk3/menuitem.h>
+#include <libdbusmenu-gtk3/menu.h>
+#endif
 
 #include <cairo-dock.h>
 

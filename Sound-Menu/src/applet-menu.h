@@ -22,7 +22,11 @@
 #define  __APPLET_MENU__
 
 #include <cairo-dock.h>
+#if (GTK_MAJOR_VERSION < 3)
 #include <libdbusmenu-gtk/menu.h>
+#else
+#include <libdbusmenu-gtk3/menu.h>
+#endif
 
 
 void cd_sound_add_menu_handler (DbusmenuGtkClient * client);

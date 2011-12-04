@@ -21,7 +21,11 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <glib.h>
 #include <glib-object.h>
+#if (GTK_MAJOR_VERSION < 3)
 #include <libdbusmenu-gtk/menuitem.h>
+#else
+#include <libdbusmenu-gtk3/menuitem.h>
+#endif
 #include <libindicator/indicator-object.h>
 
 G_BEGIN_DECLS
