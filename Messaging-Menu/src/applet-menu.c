@@ -23,6 +23,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "applet-struct.h"
+#include "applet-menu.h"
 
 #if (GTK_MAJOR_VERSION < 3)
 #include <libdbusmenu-gtk/menuitem.h>
@@ -31,9 +33,6 @@
 #include <libdbusmenu-gtk3/menuitem.h>
 #include <libdbusmenu-gtk3/menu.h>
 #endif
-
-#include "applet-struct.h"
-#include "applet-menu.h"
 
 #define M_PI G_PI
 #define RIGHT_LABEL_FONT_SIZE 12

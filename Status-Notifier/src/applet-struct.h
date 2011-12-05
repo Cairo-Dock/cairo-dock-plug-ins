@@ -21,6 +21,8 @@
 #ifndef __CD_APPLET_STRUCT__
 #define  __CD_APPLET_STRUCT__
 
+#include <cairo-dock.h>
+
 #if (GTK_MAJOR_VERSION < 3)
 #include <libdbusmenu-gtk/menuitem.h>
 #include <libdbusmenu-gtk/menu.h>
@@ -28,8 +30,6 @@
 #include <libdbusmenu-gtk3/menuitem.h>
 #include <libdbusmenu-gtk3/menu.h>
 #endif
-
-#include <cairo-dock.h>
 
 typedef enum {
 	CD_MODE_COMPACT=0,

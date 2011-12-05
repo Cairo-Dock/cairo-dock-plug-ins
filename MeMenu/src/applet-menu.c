@@ -23,6 +23,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "dbus-shared-names.h"
+#include "applet-struct.h"
+#include "about-me-menu-item.h"
+#include "applet-menu.h"
+
 #if (GTK_MAJOR_VERSION < 3)
 #include <libdbusmenu-gtk/menuitem.h>
 #include <libdbusmenu-gtk/menu.h>
@@ -31,11 +36,6 @@
 #include <libdbusmenu-gtk3/menu.h>
 #endif
 #include <libido/idoentrymenuitem.h>
-
-#include "dbus-shared-names.h"
-#include "applet-struct.h"
-#include "about-me-menu-item.h"
-#include "applet-menu.h"
 
 #if (DBUSMENU_MAJOR > 0 || DBUSMENU_MINOR >= 2)
 static void

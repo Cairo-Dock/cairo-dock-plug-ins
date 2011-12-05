@@ -25,6 +25,14 @@
 
 #include <gdk/gdkkeysyms-compat.h>
 
+#include "applet-struct.h"
+#include "applet-menu.h"
+#include "transport-widget.h"
+#include "volume-widget.h"
+#include "voip-input-widget.h"
+#include "title-widget.h"
+#include "metadata-widget.h"
+
 #if (GTK_MAJOR_VERSION < 3)
 #include <libdbusmenu-gtk/menuitem.h>
 #include <libdbusmenu-gtk/menu.h>
@@ -34,15 +42,6 @@
 #endif
 
 #include <libido/libido.h>
-
-#include "applet-struct.h"
-#include "applet-menu.h"
-#include "transport-widget.h"
-#include "volume-widget.h"
-#include "voip-input-widget.h"
-#include "title-widget.h"
-#include "metadata-widget.h"
-
 
 static gboolean
 new_transport_widget (DbusmenuMenuitem * newitem,
