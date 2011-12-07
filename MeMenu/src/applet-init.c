@@ -48,7 +48,8 @@ CD_APPLET_INIT_BEGIN
 		INDICATOR_ME_DBUS_NAME,
 		INDICATOR_ME_SERVICE_DBUS_OBJECT,
 		INDICATOR_ME_SERVICE_DBUS_INTERFACE,
-		INDICATOR_ME_DBUS_OBJECT);	
+		INDICATOR_ME_DBUS_OBJECT,
+		INDICATOR_APPLET_DEFAULT_VERSION);
 	myData.pIndicator->on_connect 			= cd_me_on_connect;
 	myData.pIndicator->on_disconnect 		= cd_me_on_disconnect;
 	myData.pIndicator->get_initial_values 	= cd_me_get_initial_values;

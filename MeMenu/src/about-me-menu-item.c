@@ -31,7 +31,7 @@
 
 #include <glib/gstdio.h>
 
-#include <gtk/gtk.h>
+#include <cairo-dock.h>
 #include "about-me-menu-item.h"
 
 static GObject* about_me_menu_item_constructor            (GType                  type,
@@ -143,16 +143,28 @@ get_pixels_per_em (GtkWidget *widget)
 	g_return_val_if_fail (GTK_IS_WIDGET (widget), DEFAULT_PIXELS_PER_EM);
 
 	/* Note: taken from indicator-session */
+	#if (GTK_MAJOR_VERSION < 3)
 	GtkStyle * style = gtk_widget_get_style(widget);
+	#else
+	GtkStyleContext *style = gtk_widget_get_style_context (widget);
+	#endif
 
 	PangoLayout * layout = pango_layout_new(gtk_widget_get_pango_context(widget));
 	pango_layout_set_text(layout, "M", -1);
+	#if (GTK_MAJOR_VERSION < 3)
 	pango_layout_set_font_description(layout, style->font_desc);
+	#else
+	pango_layout_set_font_description(layout, gtk_style_context_get_font (style, GTK_STATE_FLAG_NORMAL));
+	#endif
 
 	gint width;
 	pango_layout_get_pixel_size(layout, &width, NULL);
 
+	#if (GTK_MAJOR_VERSION < 3)
 	gint point = pango_font_description_get_size(style->font_desc);
+	#else
+	gint point = pango_font_description_get_size(gtk_style_context_get_font (style, GTK_STATE_FLAG_NORMAL));
+	#endif
 	gdouble dpi = gdk_screen_get_resolution(gdk_screen_get_default());
 
 	return ((point * dpi) / 72.0f) / PANGO_SCALE;

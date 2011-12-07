@@ -39,10 +39,19 @@
 
 #if (DBUSMENU_MAJOR > 0 || DBUSMENU_MINOR >= 2)
 static void
+#if (INDICATOR_OLD_NAMES == 0)
+entry_prop_change_cb (DbusmenuMenuitem *mi, gchar *prop, GVariant *value, GtkEntry *entry)
+#else
 entry_prop_change_cb (DbusmenuMenuitem *mi, gchar *prop, GValue *value, GtkEntry *entry)
+#endif
 {
 	if (g_strcmp0 (prop, DBUSMENU_ENTRY_MENUITEM_PROP_TEXT) == 0) {
+#if (INDICATOR_OLD_NAMES == 0)
+		gtk_entry_set_text (entry, g_variant_get_string (value, NULL));
+
+#else
 		gtk_entry_set_text (entry, g_value_get_string (value));
+#endif
 	}
 }
 
@@ -52,12 +61,17 @@ entry_activate_cb (GtkEntry *entry, DbusmenuMenuitem *mi)
 	g_return_if_fail (GTK_IS_ENTRY (entry));
 	g_return_if_fail (DBUSMENU_IS_MENUITEM (mi));
 
+#if (INDICATOR_OLD_NAMES == 0)
+	GVariant *value = g_variant_new_string (gtk_entry_get_text (entry));
+	dbusmenu_menuitem_handle_event (mi, "send", value, gtk_get_current_event_time());
+#else
 	GValue value = G_VALUE_INIT;
 	g_value_init (&value, G_TYPE_STRING);
 	g_value_set_static_string (&value, gtk_entry_get_text (entry));
 
 	//g_print ("user typed: %s\n", g_value_get_string (&value));
 	dbusmenu_menuitem_handle_event (mi, "send", &value, gtk_get_current_event_time());
+#endif
 }
 
 static gboolean
@@ -127,13 +141,21 @@ new_entry_item (DbusmenuMenuitem * newitem,
 /* Whenever we have a property change on a DbusmenuMenuitem
    we need to be responsive to that. */
 static void
+#if (INDICATOR_OLD_NAMES == 0)
+about_me_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GVariant * value, AboutMeMenuItem *item)
+#else
 about_me_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value, AboutMeMenuItem *item)
+#endif
 {
   g_return_if_fail (ABOUT_IS_ME_MENU_ITEM (item));
 
 	if (!g_strcmp0(prop, DBUSMENU_ABOUT_ME_MENUITEM_PROP_ICON)) {
     /* reload the avatar icon */
+#if (INDICATOR_OLD_NAMES == 0)
+    about_me_menu_item_load_avatar (item, g_variant_get_string (value, NULL));
+#else
     about_me_menu_item_load_avatar (item, g_value_get_string(value));
+#endif
   } else if (!g_strcmp0(prop, DBUSMENU_MENUITEM_PROP_VISIBLE)) {
     /* normal, ignore */
 	} else {
@@ -171,8 +193,15 @@ new_about_me_item (DbusmenuMenuitem * newitem,
 
 void cd_me_add_menu_handler (DbusmenuGtkClient * client)
 {
+#if (INDICATOR_OLD_NAMES == 0)
+	#if (DBUSMENU_MAJOR > 0 || DBUSMENU_MINOR >= 2)
+	dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client), DBUSMENU_ENTRY_MENUITEM_TYPE, (DbusmenuClientTypeHandler) new_entry_item);
+	#endif
+	dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client), DBUSMENU_ABOUT_ME_MENUITEM_TYPE, (DbusmenuClientTypeHandler) new_about_me_item);
+#else
 	#if (DBUSMENU_MAJOR > 0 || DBUSMENU_MINOR >= 2)
 	dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client), DBUSMENU_ENTRY_MENUITEM_TYPE, new_entry_item);
 	#endif
 	dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client), DBUSMENU_ABOUT_ME_MENUITEM_TYPE, new_about_me_item);
+#endif
 }

@@ -51,7 +51,7 @@ CD_APPLET_INIT_BEGIN
 		INDICATOR_MESSAGES_DBUS_SERVICE_OBJECT,
 		INDICATOR_MESSAGES_DBUS_SERVICE_INTERFACE,
 		INDICATOR_MESSAGES_DBUS_OBJECT,
-		INDICATOR_APPLET_DEFAULT_VERSION);	
+		INDICATOR_APPLET_DEFAULT_VERSION);
 	myData.pIndicator->on_connect 			= cd_messaging_on_connect;
 	myData.pIndicator->on_disconnect 		= cd_messaging_on_disconnect;
 	myData.pIndicator->get_initial_values 	= cd_messaging_get_initial_values;
