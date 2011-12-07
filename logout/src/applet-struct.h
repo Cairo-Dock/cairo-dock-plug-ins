@@ -75,6 +75,10 @@ struct _AppletData {
 	CairoKeyBinding *pKeyBinding;
 	CairoKeyBinding *pKeyBinding2;
 	GList *pUserList;
+	// shut-down confirmation
+	gint iCountDown;
+	guint iSidShutDown;
+	CairoDialog *pConfirmationDialog;
 	} ;
 
 #endif

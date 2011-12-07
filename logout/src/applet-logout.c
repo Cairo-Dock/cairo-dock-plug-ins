@@ -451,30 +451,72 @@ static void _upower_action (gboolean bSuspend)
 
 static void _exec_action (int iClickedButton, GtkWidget *pInteractiveWidget, void (*callback) (void), CairoDialog *pDialog)
 {
-	if (iClickedButton == 0 || iClickedButton == -1)  // 'OK' button or 'Enter'
+	if (iClickedButton == 0 || iClickedButton == -1)  // 'OK' button or 'Enter', execute the action.
 		callback ();
+	else if (myData.iSidShutDown != 0)  // 'Cancel' or 'Escap', if a countdown was scheduled, remove it.
+	{
+		g_source_remove (myData.iSidShutDown);
+		myData.iSidShutDown = 0;
+	}
+	myData.pConfirmationDialog = NULL;
 }
 static void _demand_confirmation (const gchar *cMessage, const gchar *cIconImage, void (*callback) (void))
 {
-	cairo_dock_show_dialog_full (cMessage, myIcon, myContainer, 0, cIconImage, NULL, (CairoDockActionOnAnswerFunc) _exec_action, callback, NULL);
+	myData.pConfirmationDialog = cairo_dock_show_dialog_full (cMessage, myIcon, myContainer, 0, cIconImage, NULL, (CairoDockActionOnAnswerFunc) _exec_action, callback, NULL);
 }
 
 static void _shut_down (void)
 {
 	if (myData.bCanStop)
 	{
-		_console_kit_action ("Stop");  // could use org.gnome.SessionManager.RequestShutdown
+		_console_kit_action ("Stop");  // could use org.gnome.SessionManager.RequestShutdown, but it's not standard.
 	}
 	else if (myConfig.cUserAction2)
 	{
 		cairo_dock_launch_command (myConfig.cUserAction2);
 	}
 }
+static inline gchar *_info_msg (void)
+{
+	gchar *cInfo = g_strdup_printf (D_("It will automatically shut-down in %ds"), myData.iCountDown);
+	gchar *cMessage = g_strdup_printf ("%s\n\n (%s)", D_("Shut down the computer?"), cInfo);
+	g_free (cInfo);
+	return cMessage;
+}
+static gboolean _auto_shot_down (gpointer data)
+{
+	myData.iCountDown --;
+	if (myData.iCountDown <= 0)
+	{
+		myData.iSidShutDown = 0;
+		cairo_dock_dialog_unreference (myData.pConfirmationDialog);
+		myData.pConfirmationDialog = NULL;
+		_shut_down ();
+		return FALSE;
+	}
+	else
+	{
+		if (myData.pConfirmationDialog)  // paranoia
+		{
+			gchar *cMessage = _info_msg ();
+			cairo_dock_set_dialog_message (myData.pConfirmationDialog, cMessage);
+			g_free (cMessage);
+		}
+		return TRUE;
+	}
+}
 void cd_logout_shut_down (void)
 {
 	if (myConfig.bConfirmAction)
 	{
-		_demand_confirmation (D_("Shut down the computer?"), "system-shutdown.svg", _shut_down);
+		gchar *cMessage = _info_msg ();
+		_demand_confirmation (cMessage, "system-shutdown.svg", _shut_down);
+		g_free (cMessage);
+		if (myData.iSidShutDown == 0)
+		{
+			myData.iCountDown = 60;
+			myData.iSidShutDown = g_timeout_add_seconds (1, _auto_shot_down, NULL);
+		}
 	}
 	else
 	{
