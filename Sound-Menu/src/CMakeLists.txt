@@ -13,7 +13,6 @@ SET(MODULE_SRCS
 	transport-widget.c		transport-widget.h
 	title-widget.c			title-widget.h
 	metadata-widget.c		metadata-widget.h
-	dbus-shared-names.h
 )
 
 add_library(${PACKAGE_SOUND_MENU} SHARED ${MODULE_SRCS})

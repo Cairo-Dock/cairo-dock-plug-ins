@@ -188,10 +188,11 @@ volume_widget_property_update( DbusmenuMenuitem* item, gchar* property,
 
         level = g_variant_get_double (variant);
 #else
-        GValue value = dbusmenu_menuitem_property_get_value (priv->twin_item,
+        const GValue *value;
+        value = dbusmenu_menuitem_property_get_value (priv->twin_item,
                                                                     DBUSMENU_VOLUME_MENUITEM_LEVEL);
-        g_return_if_fail (G_VALUE_TYPE (&value) == G_TYPE_DOUBLE);
-        level = g_value_get_double (&value);
+        g_return_if_fail (G_VALUE_TYPE (value) == G_TYPE_DOUBLE);
+        level = g_value_get_double (value);
 #endif
       }
 /*

@@ -23,7 +23,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+#if (INDICATOR_OLD_NAMES == 0)
 #include "dbus-shared-names.h"
+#else
+#include "dbus-shared-names-old.h"
+#endif
+
 #include "common-defs.h"
 #include "volume-widget.h"
 #include "applet-struct.h"
