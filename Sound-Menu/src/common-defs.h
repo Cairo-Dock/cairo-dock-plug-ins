@@ -89,4 +89,8 @@ typedef enum {
 
 #define DBUSMENU_PLAYLIST_MENUITEM_PATH         "x-canonical-sound-menu-player-playlist-path"
 
+#if (INDICATOR_OLD_NAMES != 0)
+#define G_VALUE_INIT {0,{{0}}}
+#endif
+
 #endif

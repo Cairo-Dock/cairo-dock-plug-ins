@@ -28,6 +28,9 @@ Uses code from ctk
 #include <math.h>
 #include "transport-widget.h"
 
+#if (INDICATOR_OLD_NAMES != 0)
+#define G_VALUE_INIT {0,{{0}}}
+#endif
 
 #define RECT_WIDTH 130.0f
 #define Y 7.0f
@@ -426,7 +429,7 @@ transport_widget_seek (gpointer userdata)
                                      0 );
   }
 #else
-  GValue* new_transport_state = G_VALUE_INIT;
+  GValue new_transport_state = G_VALUE_INIT;
   if(priv->current_command ==  TRANSPORT_ACTION_NEXT){
     //g_debug ("we should be skipping forward");
     g_value_init (&new_transport_state, G_TYPE_INT);

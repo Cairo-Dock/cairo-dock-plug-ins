@@ -514,29 +514,29 @@ metadata_widget_property_update(DbusmenuMenuitem* item, gchar* property,
     GValue new_value = G_VALUE_INIT;
 	g_value_init (&new_value, G_TYPE_STRING);
 	g_value_set_static_string (&new_value, "");
-    value = new_value;
+    value = &new_value;
   }
   
   MetadataWidget* mitem = METADATA_WIDGET(userdata);
   MetadataWidgetPrivate * priv = METADATA_WIDGET_GET_PRIVATE(mitem);
   
   if(g_ascii_strcasecmp(DBUSMENU_METADATA_MENUITEM_ARTIST, property) == 0){  
-    gtk_label_set_text(GTK_LABEL(priv->artist_label), g_value_get_string (value, NULL));
+    gtk_label_set_text(GTK_LABEL(priv->artist_label), g_value_get_string (value));
     metadata_widget_style_labels(mitem, GTK_LABEL(priv->artist_label));
   }
   else if(g_ascii_strcasecmp(DBUSMENU_METADATA_MENUITEM_TITLE, property) == 0){  
-    gtk_label_set_text(GTK_LABEL(priv->piece_label), g_value_get_string (value, NULL));    
+    gtk_label_set_text(GTK_LABEL(priv->piece_label), g_value_get_string (value));    
     metadata_widget_style_labels(mitem, GTK_LABEL(priv->piece_label));
   } 
   else if(g_ascii_strcasecmp(DBUSMENU_METADATA_MENUITEM_ALBUM, property) == 0){  
-    gtk_label_set_text(GTK_LABEL(priv->container_label), g_value_get_string (value, NULL));
+    gtk_label_set_text(GTK_LABEL(priv->container_label), g_value_get_string (value));
     metadata_widget_style_labels(mitem, GTK_LABEL(priv->container_label));
   } 
   else if(g_ascii_strcasecmp(DBUSMENU_METADATA_MENUITEM_ARTURL, property) == 0){
     g_string_erase(priv->image_path, 0, -1);
-    g_string_overwrite(priv->image_path, 0, g_value_get_string  (value, NULL));
+    g_string_overwrite(priv->image_path, 0, g_value_get_string  (value));
     // if its a remote image queue a redraw incase the download took too long
-    if (g_str_has_prefix(g_value_get_string (value, NULL), g_get_user_cache_dir())){
+    if (g_str_has_prefix(g_value_get_string (value), g_get_user_cache_dir())){
       //g_debug("the image update is a download so redraw");
       gtk_widget_queue_draw(GTK_WIDGET(mitem));
     }

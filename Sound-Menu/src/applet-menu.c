@@ -372,19 +372,19 @@ void cd_sound_add_menu_handler (DbusmenuGtkClient * client)
 {
 	dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
 		DBUSMENU_VOLUME_MENUITEM_TYPE,
-		new_volume_slider_widget);
+		(DbusmenuClientTypeHandler) new_volume_slider_widget);
 	dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
 		DBUSMENU_VOIP_INPUT_MENUITEM_TYPE,
-		new_voip_slider_widget);
+		(DbusmenuClientTypeHandler) new_voip_slider_widget);
 	dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
 		DBUSMENU_TRANSPORT_MENUITEM_TYPE,
-		new_transport_widget);
+		(DbusmenuClientTypeHandler) new_transport_widget);
 	dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
 		DBUSMENU_METADATA_MENUITEM_TYPE,
-		new_metadata_widget);
+		(DbusmenuClientTypeHandler) new_metadata_widget);
 	dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
 		DBUSMENU_TITLE_MENUITEM_TYPE,
-		new_title_widget);
+		(DbusmenuClientTypeHandler) new_title_widget);
 	
 	// Note: Not ideal but all key handling needs to be managed here and then 
 	// delegated to the appropriate widget.

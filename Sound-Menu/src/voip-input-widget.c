@@ -177,10 +177,10 @@ voip_input_widget_property_update (DbusmenuMenuitem* item, gchar* property,
         g_return_if_fail (g_variant_is_of_type (variant, G_VARIANT_TYPE_DOUBLE));
         level = g_variant_get_double (variant);
 #else
-        GValue *value = dbusmenu_menuitem_property_get_value (priv->twin_item,
+        GValue value = dbusmenu_menuitem_property_get_value (priv->twin_item,
                                                               DBUSMENU_VOIP_INPUT_MENUITEM_LEVEL);
-        g_return_if_fail (G_VALUE_TYPE (value) == G_TYPE_DOUBLE);
-        level = g_value_get_double (value);
+        g_return_if_fail (G_VALUE_TYPE (&value) == G_TYPE_DOUBLE);
+        level = g_value_get_double (&value);
 #endif
       }
       gtk_range_set_value(range, level);

@@ -178,7 +178,7 @@ title_widget_property_update (DbusmenuMenuitem* item, gchar* property,
 #if (INDICATOR_OLD_NAMES == 0)
                                 g_variant_get_string(value, NULL));
 #else
-                                g_value_get_string (value, NULL));
+                                g_value_get_string (value));
 #endif
   }
   else if(g_ascii_strcasecmp(DBUSMENU_TITLE_MENUITEM_ICON, property) == 0){
