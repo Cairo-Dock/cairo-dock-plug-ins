@@ -48,7 +48,11 @@ static gboolean title_widget_button_release_event (GtkWidget *menuitem,
 
 // Dbusmenuitem properties update callback
 static void title_widget_property_update(DbusmenuMenuitem* item, gchar* property, 
+#if (INDICATOR_OLD_NAMES == 0)
                                        GVariant* value, gpointer userdata);
+#else
+                                       GValue *value, gpointer userdata);
+#endif
 static void title_widget_set_twin_item( TitleWidget* self,
                                         DbusmenuMenuitem* twin_item);
 static gboolean title_widget_triangle_draw_cb (GtkWidget *widget,
@@ -141,23 +145,41 @@ title_widget_button_release_event (GtkWidget *menuitem,
   //g_debug("TitleWidget::menu_press_event");
   TitleWidgetPrivate * priv = TITLE_WIDGET_GET_PRIVATE(menuitem);
   
+#if (INDICATOR_OLD_NAMES == 0)
   GVariant* new_title_event = g_variant_new_boolean(TRUE);
   dbusmenu_menuitem_handle_event (priv->twin_item,
                                   "Title menu event",
                                   new_title_event,
                                   0);
+#else
+  GValue new_title_event = G_VALUE_INIT;
+  g_value_init (&new_title_event, G_TYPE_BOOLEAN);
+  g_value_set_boolean (&new_title_event, TRUE);
+  dbusmenu_menuitem_handle_event (priv->twin_item,
+                                  "Transport state change",
+                                  &new_title_event,
+                                  0);
+#endif
   return FALSE;
 }
 
 static void 
 title_widget_property_update (DbusmenuMenuitem* item, gchar* property,
+#if (INDICATOR_OLD_NAMES == 0)
                               GVariant* value, gpointer userdata)
+#else
+                              GValue *value, gpointer userdata)
+#endif
 {
   g_return_if_fail (IS_TITLE_WIDGET (userdata));  
   TitleWidget* mitem = TITLE_WIDGET(userdata);
   if(g_ascii_strcasecmp(DBUSMENU_TITLE_MENUITEM_NAME, property) == 0){
         gtk_menu_item_set_label (GTK_MENU_ITEM(mitem),
+#if (INDICATOR_OLD_NAMES == 0)
                                 g_variant_get_string(value, NULL));
+#else
+                                g_value_get_string (value, NULL));
+#endif
   }
   else if(g_ascii_strcasecmp(DBUSMENU_TITLE_MENUITEM_ICON, property) == 0){
     title_widget_set_icon (mitem);

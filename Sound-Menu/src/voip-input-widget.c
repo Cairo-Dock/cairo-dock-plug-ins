@@ -48,7 +48,11 @@ static void voip_input_widget_finalize   (GObject *object);
 static void voip_input_widget_set_twin_item( VoipInputWidget* self,
                                         DbusmenuMenuitem* twin_item);
 static void voip_input_widget_property_update( DbusmenuMenuitem* item, gchar* property,
+#if (INDICATOR_OLD_NAMES == 0)
                                            GVariant* value, gpointer userdata );
+#else
+                                           GValue* value, gpointer userdata );
+#endif
 
 static gboolean voip_input_widget_change_value_cb (GtkRange     *range,
                                               GtkScrollType scroll,
@@ -124,36 +128,60 @@ voip_input_widget_finalize (GObject *object)
 
 static void
 voip_input_widget_property_update (DbusmenuMenuitem* item, gchar* property,
+#if (INDICATOR_OLD_NAMES == 0)
                                    GVariant* value, gpointer userdata)
+#else
+                                   GValue* value, gpointer userdata)
+#endif
 {
   g_return_if_fail (IS_VOIP_INPUT_WIDGET (userdata));
   VoipInputWidget* mitem = VOIP_INPUT_WIDGET(userdata);
   VoipInputWidgetPrivate * priv = VOIP_INPUT_WIDGET_GET_PRIVATE(mitem);
   if(g_ascii_strcasecmp(DBUSMENU_VOIP_INPUT_MENUITEM_LEVEL, property) == 0){
+#if (INDICATOR_OLD_NAMES == 0)
     g_return_if_fail (g_variant_is_of_type (value, G_VARIANT_TYPE_DOUBLE));
+#else
+    g_return_if_fail (G_VALUE_TYPE (value) == G_TYPE_DOUBLE);
+#endif
     if (priv->grabbed == FALSE){
       GtkWidget *slider = ido_scale_menu_item_get_scale((IdoScaleMenuItem*)priv->ido_voip_input_slider);
       GtkRange *range = (GtkRange*)slider;
+#if (INDICATOR_OLD_NAMES == 0)
       gdouble update = g_variant_get_double (value);
+#else
+      gdouble update = g_value_get_double (value);
+#endif
       //g_debug("volume-widget - update level with value %f", update);
       gtk_range_set_value(range, update);
     }
   }
   if(g_ascii_strcasecmp(DBUSMENU_VOIP_INPUT_MENUITEM_MUTE, property) == 0){
     if(priv->grabbed == FALSE){
+#if (INDICATOR_OLD_NAMES == 0)
       g_return_if_fail (g_variant_is_of_type (value, G_VARIANT_TYPE_INT32));
+      gint update = g_variant_get_int32 (value);
+#else
+      g_return_if_fail (G_VALUE_TYPE (value) == G_TYPE_INT);
+      gint update = g_value_get_int (value);
+#endif
       GtkWidget *slider = ido_scale_menu_item_get_scale((IdoScaleMenuItem*)priv->ido_voip_input_slider);
       GtkRange *range = (GtkRange*)slider;
-      gint update = g_variant_get_int32 (value);
       gdouble level;
       if (update == 1){
         level = 0;
       }
       else{
+#if (INDICATOR_OLD_NAMES == 0)
         GVariant* variant = dbusmenu_menuitem_property_get_variant (priv->twin_item,
                                                                     DBUSMENU_VOIP_INPUT_MENUITEM_LEVEL);
         g_return_if_fail (g_variant_is_of_type (variant, G_VARIANT_TYPE_DOUBLE));
         level = g_variant_get_double (variant);
+#else
+        GValue *value = dbusmenu_menuitem_property_get_value (priv->twin_item,
+                                                              DBUSMENU_VOIP_INPUT_MENUITEM_LEVEL);
+        g_return_if_fail (G_VALUE_TYPE (value) == G_TYPE_DOUBLE);
+        level = g_value_get_double (value);
+#endif
       }
       gtk_range_set_value(range, level);
 
@@ -171,15 +199,25 @@ voip_input_widget_set_twin_item (VoipInputWidget* self,
   g_object_ref(priv->twin_item);
   g_signal_connect(G_OBJECT(twin_item), "property-changed",
                    G_CALLBACK(voip_input_widget_property_update), self);
+#if (INDICATOR_OLD_NAMES == 0)
   gdouble initial_level = g_variant_get_double (dbusmenu_menuitem_property_get_variant(twin_item,
                                                 DBUSMENU_VOIP_INPUT_MENUITEM_LEVEL));
+#else
+  gdouble initial_level = g_value_get_double (dbusmenu_menuitem_property_get_value(twin_item,
+                                              DBUSMENU_VOIP_INPUT_MENUITEM_LEVEL));
+#endif
   //g_debug("voip_input_widget_set_twin_item initial level = %f", initial_level);
   GtkWidget *slider = ido_scale_menu_item_get_scale((IdoScaleMenuItem*)priv->ido_voip_input_slider);
   GtkRange *range = (GtkRange*)slider;
   gtk_range_set_value(range, initial_level);
 
+#if (INDICATOR_OLD_NAMES == 0)
   gint mute = g_variant_get_int32 (dbusmenu_menuitem_property_get_variant (priv->twin_item,
                                                                            DBUSMENU_VOIP_INPUT_MENUITEM_MUTE));
+#else
+  gint mute = g_value_get_int (dbusmenu_menuitem_property_get_value (priv->twin_item,
+                                                                     DBUSMENU_VOIP_INPUT_MENUITEM_MUTE));
+#endif
   if (mute == 1){
     gtk_range_set_value (range, 0.0);
   }
@@ -213,8 +251,13 @@ voip_input_widget_value_changed_cb(GtkRange *range, gpointer user_data)
   GtkWidget *slider = ido_scale_menu_item_get_scale((IdoScaleMenuItem*)priv->ido_voip_input_slider);
   gdouble current_value =  CLAMP(gtk_range_get_value(GTK_RANGE(slider)), 0, 100);
 
+#if (INDICATOR_OLD_NAMES == 0)
   gint mute = g_variant_get_int32 (dbusmenu_menuitem_property_get_variant (priv->twin_item,
                                                                            DBUSMENU_VOIP_INPUT_MENUITEM_MUTE));
+#else
+  gint mute = g_value_get_int (dbusmenu_menuitem_property_get_value (priv->twin_item,
+                                                                     DBUSMENU_VOIP_INPUT_MENUITEM_MUTE));
+#endif
   if ((current_value == 0 && mute != 1) || current_value == 100 ){
     voip_input_widget_update(mitem, current_value);
   }
@@ -226,8 +269,15 @@ voip_input_widget_update(VoipInputWidget* self, gdouble update)
 {
   VoipInputWidgetPrivate * priv = VOIP_INPUT_WIDGET_GET_PRIVATE(self);
   gdouble clamped = CLAMP(update, 0, 100);
+#if (INDICATOR_OLD_NAMES == 0)
   GVariant* new_volume = g_variant_new_double(clamped);
   dbusmenu_menuitem_handle_event (priv->twin_item, "update", new_volume, 0);
+#else
+  GValue value = G_VALUE_INIT;
+  g_value_init (&value, G_TYPE_DOUBLE);
+  g_value_set_double (&value, clamped);
+  dbusmenu_menuitem_handle_event (priv->twin_item, "update", &value, 0);
+#endif
 }
 
 GtkWidget*

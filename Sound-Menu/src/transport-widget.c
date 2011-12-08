@@ -119,7 +119,11 @@ static gboolean transport_widget_leave_notify_event    (GtkWidget      *menuitem
                                                       GdkEventCrossing *event);  
 static void transport_widget_property_update ( DbusmenuMenuitem* item,
                                                gchar * property, 
+#if (INDICATOR_OLD_NAMES == 0)
                                                GVariant * value,
+#else
+                                               GValue * value,
+#endif
                                                gpointer userdata );
 static void transport_widget_menu_hidden ( GtkWidget        *menu,
                                            TransportWidget *transport);
@@ -400,6 +404,7 @@ transport_widget_seek (gpointer userdata)
 {
   g_return_val_if_fail ( IS_TRANSPORT_WIDGET(userdata), FALSE );
   TransportWidgetPrivate* priv = TRANSPORT_WIDGET_GET_PRIVATE (TRANSPORT_WIDGET(userdata));
+#if (INDICATOR_OLD_NAMES == 0)
   GVariant* new_transport_state;
   if(priv->current_command ==  TRANSPORT_ACTION_NEXT){
     //g_debug ("we should be skipping forward");
@@ -420,6 +425,30 @@ transport_widget_seek (gpointer userdata)
                                      new_transport_state,
                                      0 );
   }
+#else
+  GValue* new_transport_state = G_VALUE_INIT;
+  if(priv->current_command ==  TRANSPORT_ACTION_NEXT){
+    //g_debug ("we should be skipping forward");
+    g_value_init (&new_transport_state, G_TYPE_INT);
+    g_value_set_int (&new_transport_state, (int) TRANSPORT_ACTION_FORWIND);
+
+    dbusmenu_menuitem_handle_event ( priv->twin_item,
+                                     "Transport state change",
+                                     &new_transport_state,
+                                     0 );
+
+  }
+  else if(priv->current_command ==  TRANSPORT_ACTION_PREVIOUS){
+    //g_debug ("we should be skipping back");
+    g_value_init (&new_transport_state, G_TYPE_INT);
+    g_value_set_int (&new_transport_state, (int) TRANSPORT_ACTION_REWIND);
+
+    dbusmenu_menuitem_handle_event ( priv->twin_item,
+                                     "Transport state change",
+                                     &new_transport_state,
+                                     0 );
+  }
+#endif
 
   return TRUE;
 }
@@ -436,11 +465,21 @@ transport_widget_button_release_event (GtkWidget *menuitem,
   if (result != TRANSPORT_ACTION_NO_ACTION &&
       priv->current_command == result &&
       priv->skip_frequency == 0){
+#if (INDICATOR_OLD_NAMES == 0)
     GVariant* new_transport_state = g_variant_new_int32 ((int)result);
     dbusmenu_menuitem_handle_event ( priv->twin_item,
                                      "Transport state change",
                                      new_transport_state,
                                      0 );
+#else
+    GValue new_transport_state = G_VALUE_INIT;
+    g_value_init (&new_transport_state, G_TYPE_INT);
+    g_value_set_int (&new_transport_state, (int) result);
+    dbusmenu_menuitem_handle_event (priv->twin_item,
+                                    "Transport state change",
+                                    &new_transport_state,
+                                    0);
+#endif
   }
   transport_widget_react_to_button_release ( transport,
                                              result );
@@ -485,14 +524,24 @@ transport_widget_react_to_key_release_event ( TransportWidget* transport,
                                               TransportAction transport_event )
 {
   if(transport_event != TRANSPORT_ACTION_NO_ACTION){
-    TransportWidgetPrivate * priv = TRANSPORT_WIDGET_GET_PRIVATE ( transport );     
+    TransportWidgetPrivate * priv = TRANSPORT_WIDGET_GET_PRIVATE ( transport );   
+#if (INDICATOR_OLD_NAMES == 0)  
     GVariant* new_transport_event = g_variant_new_int32((int)transport_event);
-    if (priv->skip_frequency == 0){
+    if (priv->skip_frequency == 0)
       dbusmenu_menuitem_handle_event ( priv->twin_item,
                                        "Transport state change",
                                        new_transport_event,
                                        0 );
-    }
+#else
+    GValue new_transport_event = G_VALUE_INIT;
+    g_value_init (&new_transport_event, G_TYPE_INT);
+    g_value_set_int (&new_transport_event, (int) transport_event);
+    if (priv->skip_frequency == 0)
+      dbusmenu_menuitem_handle_event (priv->twin_item,
+                                      "Transport state change",
+                                      &new_transport_event,
+                                      0);
+#endif
   }
   transport_widget_react_to_button_release ( transport,
                                              transport_event );  
@@ -1866,7 +1915,11 @@ transport_widget_fade_playbutton (gpointer userdata)
 **/ 
 static void 
 transport_widget_property_update(DbusmenuMenuitem* item, gchar* property, 
+#if (INDICATOR_OLD_NAMES == 0)
                                  GVariant* value, gpointer userdata)
+#else
+                                 GValue *value, gpointer userdata)
+#endif
 {
   //g_debug("transport_widget_update_state - with property  %s", property);
   TransportWidget* bar = (TransportWidget*)userdata;
@@ -1875,7 +1928,11 @@ transport_widget_property_update(DbusmenuMenuitem* item, gchar* property,
 
   if(g_ascii_strcasecmp(DBUSMENU_TRANSPORT_MENUITEM_PLAY_STATE, property) == 0)
   {
+#if (INDICATOR_OLD_NAMES == 0)
     TransportState new_state = (TransportState)g_variant_get_int32(value);
+#else
+    TransportState new_state = (TransportState) g_value_get_int (value);
+#endif
     //g_debug("transport_widget_update_state - with value  %i", update_value);
     if (new_state == TRANSPORT_STATE_LAUNCHING){
       priv->current_state = TRANSPORT_STATE_LAUNCHING;
