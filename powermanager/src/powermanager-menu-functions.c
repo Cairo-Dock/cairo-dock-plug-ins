@@ -67,7 +67,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	}
 	if (cPowerPrefCmd)
 	{
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Set up power management"), MY_APPLET_SHARE_DATA_DIR"/default-battery.svg", power_launch_cmd, CD_APPLET_MY_MENU, (gpointer)cPowerPrefCmd);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Set up power management"), MY_APPLET_SHARE_DATA_DIR"/default-charge.svg", power_launch_cmd, CD_APPLET_MY_MENU, (gpointer)cPowerPrefCmd);
 	}
 	
 	// Power statistics
@@ -83,7 +83,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	}
 	if (cPowerStatsCmd)
 	{
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Power statistics"), MY_APPLET_SHARE_DATA_DIR"/default-battery.svg", power_launch_cmd, CD_APPLET_MY_MENU, (gpointer)cPowerStatsCmd);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Power statistics"), MY_APPLET_SHARE_DATA_DIR"/default-charge.svg", power_launch_cmd, CD_APPLET_MY_MENU, (gpointer)cPowerStatsCmd);
 	}
 	
 	CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
