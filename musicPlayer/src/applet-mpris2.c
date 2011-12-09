@@ -633,8 +633,7 @@ static void cd_mpris2_start (void)
 	cd_mpris2_getPlaying_async ();  // will get song infos after playing status.
 }
 
-
-void cd_musicplayer_register_mpris2_handler (void)
+MusicPlayerHandler *cd_mpris2_new_handler (void)
 {
 	MusicPlayerHandler *pHandler = g_new0 (MusicPlayerHandler, 1);
 	pHandler->name = "Mpris2";
@@ -654,5 +653,12 @@ void cd_musicplayer_register_mpris2_handler (void)
 	pHandler->appclass = NULL;  // will be filled later.
 	pHandler->launch = NULL;  // will be filled later.
 	pHandler->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_STOP | PLAYER_SHUFFLE | PLAYER_REPEAT | PLAYER_ENQUEUE | PLAYER_VOLUME;
+
+	return pHandler;
+}
+
+void cd_musicplayer_register_mpris2_handler (void)
+{
+	MusicPlayerHandler *pHandler = cd_mpris2_new_handler ();
 	cd_musicplayer_register_my_handler (pHandler);
 }

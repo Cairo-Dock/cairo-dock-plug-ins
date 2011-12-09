@@ -223,7 +223,7 @@ static void _on_name_owner_changed (const gchar *cName, gboolean bOwned, gpointe
 		if (strncmp (cName, CD_MPRIS2_SERVICE_BASE, strlen (CD_MPRIS2_SERVICE_BASE)) == 0)  // the MPRIS2 service is now on the bus, it has priority.
 		{
 			cd_debug ("the MPRIS2 service is now on the bus, it has priority");
-			if (strcmp (myData.pCurrentHandler->name, "Mpris2") != 0)  // our current handler is not the MPRIS2 one, stop it and use the latter instead.
+			if (strcmp (myData.pCurrentHandler->path, "/org/mpris/MediaPlayer2") != 0)  // our current handler is not the MPRIS2 one, stop it and use the latter instead.
 			{
 				cd_debug ("our current handler is not the MPRIS2 one, stop it and use the latter instead");
 				gboolean bAlreadyWatching = FALSE;

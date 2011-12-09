@@ -24,6 +24,7 @@
 #include "applet-struct.h"
 
 
+MusicPlayerHandler *cd_mpris2_new_handler (void);
 void cd_musicplayer_register_mpris2_handler (void);
 
 
