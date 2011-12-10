@@ -75,6 +75,7 @@ struct _MusicPlayerHandler {
 	const gchar *interface2;
 	const gchar *appclass;  // classe de l'appli.
 	const gchar *launch;  // commande lancant le lecteur.
+	gchar *cDisplayedName;  // displayed name, or NULL
 	gchar *cCoverDir;  // repertoire utilisateur de l'appli, contenant les couvertures.
 	gboolean bSeparateAcquisition;  // Sert a activer le thread ou pas (TRUE = active; False = desactive)
 	MyPlayerControl iPlayerControls;  // un masque "OU" de MyPlayerControl.
@@ -147,6 +148,7 @@ struct _AppletData {
 	// Pour les lecteurs utilisant DBus
 	gboolean bIsRunning;
 	DBusGProxyCall *pDetectPlayerCall;
+	DBusGProxyCall *pGetPropsCall;
 	
 	//Donnees de dessin
 	cairo_surface_t *pSurfaces[PLAYER_NB_STATUS];

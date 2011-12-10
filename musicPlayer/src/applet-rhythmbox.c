@@ -28,7 +28,7 @@
 #include "applet-dbus.h"
 #include "applet-draw.h"
 #include "applet-cover.h"
-#include "applet-mpris2.h"
+#include "applet-mpris.h"
 #include "applet-rhythmbox.h"
 
 /////////////////////////////////
@@ -331,40 +331,33 @@ static void cd_rhythmbox_start (void)
 }
 
 /*
- * We can't test if a bus is available because the player can be launched after.
+ * We can't test if a bus is available because the dock is launched after.
  * Or we have to connect to a bus before and react if there is something after...
  *  but it's a bit annoying because we have to register the handler and then disable it (e.g. MPRIS vs MPRIS2)!
- * But with the version 2.90 of RB, we have to use MPRIS2 because rhythmbox-client is unavailable or the dbus services have changed.
+ * But with the version 2.90 of RB, we have to use MPRIS2 because rhythmbox-client is unavailable.
  */
-static gboolean _is_MPRIS2_available (gboolean *bRhythmbox2)
+static gboolean _is_MPRIS2_available (void)
 {
 	gchar *cResult = cairo_dock_launch_command_sync ("which rhythmbox-client");
-	*bRhythmbox2 = ! (cResult != NULL && *cResult == '/');
+	gboolean bResult = ! (cResult != NULL && *cResult == '/');
 	g_free (cResult);
-	if (*bRhythmbox2 || g_file_test ("/usr/share/dbus-1/services/org.gnome.Rhythmbox3.service", G_FILE_TEST_EXISTS))
-		return TRUE;
-	return FALSE;
+	return bResult;
 }
 
 /* On enregistre notre lecteur.
  */
 void cd_musicplayer_register_rhythmbox_handler (void)
 {
-	gboolean bRhythmbox2 = FALSE;
-	if (_is_MPRIS2_available (&bRhythmbox2))
+	if (_is_MPRIS2_available ())
 	{
-		MusicPlayerHandler *pHandler = cd_mpris2_new_handler ();
-		if (bRhythmbox2) // if unavailable, we can use MPRIS2 with .rhythmbox
-			pHandler->cMprisService = "org.mpris.MediaPlayer2.rhythmbox";
-		else
-			pHandler->cMprisService = "org.mpris.MediaPlayer2.rhythmbox3";
-		cd_debug ("MP - MPRIS2 for RB seems to be available: %s", pHandler);
+		cd_debug ("MP - MPRIS2 for RB seems to be available");
+		MusicPlayerHandler *pHandler = cd_mpris_new_handler ();
+		pHandler->cMprisService = "org.mpris.MediaPlayer2.rhythmbox";
 		pHandler->appclass = "rhythmbox";
 		pHandler->launch = "rhythmbox";
 		pHandler->name = "Rhythmbox";
-		myData.bForceCoverNeedsTest = TRUE; // it seems RB copy the cover on its cache but it takes a few time...
-
 		cd_musicplayer_register_my_handler (pHandler);
+		myData.bForceCoverNeedsTest = TRUE; // it seems RB copy the cover on its cache but it takes a few time...
 	}
 	else
 	{

@@ -158,6 +158,11 @@ void cd_musicplayer_stop_current_handler (gboolean bStopWatching)
 		dbus_g_proxy_cancel_call (cairo_dock_get_main_proxy (), myData.pDetectPlayerCall);
 		myData.pDetectPlayerCall = NULL;
 	}
+	if (myData.pGetPropsCall)
+	{
+		dbus_g_proxy_cancel_call (cairo_dock_get_main_proxy (), myData.pGetPropsCall);
+		myData.pGetPropsCall = NULL;
+	}
 	
 	if (bStopWatching)
 	{
@@ -212,6 +217,71 @@ void cd_musicplayer_free_handler (MusicPlayerHandler *pHandler)
 	g_free (pHandler);
 }
 
+static void _on_got_desktop_entry (DBusGProxy *proxy, DBusGProxyCall *call_id, gpointer data)
+{
+	g_print ("%s ()\n", __func__);
+	myData.pGetPropsCall = NULL;
+	
+	GKeyFile* pKeyFile = NULL;
+	GValue v = G_VALUE_INIT;
+	GError *error = NULL;
+	gboolean bSuccess = dbus_g_proxy_end_call (proxy,
+		call_id,
+		&error,
+		G_TYPE_VALUE,
+		&v,
+		G_TYPE_INVALID);
+	if (error)
+	{
+		g_print ("%s\n", error->message);
+		g_error_free (error);
+	}
+	if (bSuccess && G_VALUE_HOLDS_STRING (&v))
+	{
+		const gchar *cDesktopFileName = g_value_get_string (&v);
+		g_print (" -> %s\n", cDesktopFileName);
+		gchar *cDesktopFilePath = g_strdup_printf ("/usr/share/applications/%s.desktop", cDesktopFileName);  /// handle other paths...
+		pKeyFile = cairo_dock_open_key_file (cDesktopFilePath);
+		g_free (cDesktopFilePath);
+		
+	}
+	g_free ((gchar*)myData.pCurrentHandler->launch);
+	g_free ((gchar*)myData.pCurrentHandler->appclass);
+	if (pKeyFile != NULL)
+	{
+		// get the class
+		gchar *cCommand = g_key_file_get_string (pKeyFile, "Desktop Entry", "Exec", NULL);
+		gchar *cStartupWMClass = g_key_file_get_string (pKeyFile, "Desktop Entry", "StartupWMClass", NULL);
+		
+		myData.pCurrentHandler->appclass = cairo_dock_guess_class (cCommand, cStartupWMClass);
+		g_free (cStartupWMClass);
+		
+		// get other params
+		/// actually we should probably take them from the class-manager...
+		gchar *str = strchr (cCommand, '%');  // search the first one.
+		if (str != NULL)
+		{
+			if (str != cCommand && (*(str-1) == '"' || *(str-1) == '\''))  // take care of "" around the option.
+				str --;
+			*str = '\0';  // il peut rester un espace en fin de chaine, ce n'est pas grave.
+		}
+		myData.pCurrentHandler->launch = cCommand;
+		
+		g_free (myData.pCurrentHandler->cDisplayedName);
+		myData.pCurrentHandler->cDisplayedName = g_key_file_get_string (pKeyFile, "Desktop Entry", "Name", NULL);
+		g_print (" MP: got %s, %s, %s\n", myData.pCurrentHandler->launch, myData.pCurrentHandler->appclass, myData.pCurrentHandler->cDisplayedName);
+		
+		g_key_file_free (pKeyFile);
+	}
+	else
+	{
+		myData.pCurrentHandler->launch = g_strdup (myData.pCurrentHandler->cMprisService + strlen (CD_MPRIS2_SERVICE_BASE"."));
+		myData.pCurrentHandler->appclass = g_strdup (myData.pCurrentHandler->cMprisService + strlen (CD_MPRIS2_SERVICE_BASE"."));
+	}
+	
+	if (myConfig.bStealTaskBarIcon)
+		CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandler->appclass);
+}
 static void _on_name_owner_changed (const gchar *cName, gboolean bOwned, gpointer data)
 {
 	CD_APPLET_ENTER;
@@ -223,7 +293,7 @@ static void _on_name_owner_changed (const gchar *cName, gboolean bOwned, gpointe
 		if (strncmp (cName, CD_MPRIS2_SERVICE_BASE, strlen (CD_MPRIS2_SERVICE_BASE)) == 0)  // the MPRIS2 service is now on the bus, it has priority.
 		{
 			cd_debug ("the MPRIS2 service is now on the bus, it has priority");
-			if (strcmp (myData.pCurrentHandler->path, "/org/mpris/MediaPlayer2") != 0)  // our current handler is not the MPRIS2 one, stop it and use the latter instead.
+			if (strcmp (myData.pCurrentHandler->name, "Mpris2") != 0)  // our current handler is not the MPRIS2 one, stop it and use the latter instead.
 			{
 				cd_debug ("our current handler is not the MPRIS2 one, stop it and use the latter instead");
 				gboolean bAlreadyWatching = FALSE;
@@ -236,17 +306,33 @@ static void _on_name_owner_changed (const gchar *cName, gboolean bOwned, gpointe
 				cd_musicplayer_stop_current_handler (TRUE);  // so once we detect the MPRIS2 service on the bus, the other one is dropped forever.
 				
 				myData.pCurrentHandler = cd_musicplayer_get_handler_by_name ("Mpris2");
-				g_free ((gchar*)myData.pCurrentHandler->cMprisService);  // well, in _this_ case the string is not constant.
+				g_free ((gchar*)myData.pCurrentHandler->cMprisService);  // for the Mpris2 handler, the string is actually not constant, but dynamic.
 				myData.pCurrentHandler->cMprisService = g_strdup (cName);
 				
-				myData.pCurrentHandler->launch = g_strdup (cName+strlen (CD_MPRIS2_SERVICE_BASE"."));
+				/**myData.pCurrentHandler->launch = g_strdup (cName+strlen (CD_MPRIS2_SERVICE_BASE"."));
 				myData.pCurrentHandler->appclass = g_strdup (cName+strlen (CD_MPRIS2_SERVICE_BASE"."));
+				
 				if (myConfig.bStealTaskBarIcon)
-					CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandler->appclass);
+					CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandler->appclass);*/
 				
 				if (! bAlreadyWatching)
 					cairo_dock_watch_dbus_name_owner (myData.pCurrentHandler->cMprisService, (CairoDockDbusNameOwnerChangedFunc) _on_name_owner_changed, NULL);
 			}
+			// get the properties of the player.
+			// we do it now, because we can't guess them for sure from the MPRIS service name only (ex.: Rhythmbox has "org.mpris.MediaPlayer2.rhythmbox3" but its class is "rhythmbox").
+			DBusGProxy *pProxyProp = cairo_dock_create_new_session_proxy (
+				myData.pCurrentHandler->cMprisService,
+				"/org/mpris/MediaPlayer2",
+				DBUS_INTERFACE_PROPERTIES);
+			if (myData.pGetPropsCall)
+				dbus_g_proxy_cancel_call (cairo_dock_get_main_proxy (), myData.pGetPropsCall);
+			myData.pGetPropsCall = dbus_g_proxy_begin_call (pProxyProp, "Get",
+				(DBusGProxyCallNotify)_on_got_desktop_entry,
+				myApplet,
+				(GDestroyNotify) NULL,
+				G_TYPE_STRING, "org.mpris.MediaPlayer2",
+				G_TYPE_STRING, "DesktopEntry",
+				G_TYPE_INVALID);
 		}
 		else  // it's not the MPRIS2 service, ignore it if we already have the MPRIS2 service (shouldn't happen though).
 		{
