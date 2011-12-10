@@ -162,17 +162,19 @@ void cd_logout_display_actions (void)
 	}
 }
 
-static gchar *_check_icon (const gchar *cIconStock)
-{
-	gchar *cImagePath = cairo_dock_search_icon_s_path (cIconStock);
-	if (! (cImagePath != NULL && g_file_test (cImagePath, G_FILE_TEST_EXISTS)))
-		return NULL;
-	return cImagePath;
-}
 
   ////////////
  /// MENU ///
 ////////////
+
+static gchar *_check_icon (const gchar *cIconStock)
+{
+	gchar *cImagePath = cairo_dock_search_icon_s_path (cIconStock);
+	if (cImagePath != NULL && g_file_test (cImagePath, G_FILE_TEST_EXISTS))
+		return cImagePath;
+	else
+		return NULL;
+}
 
 static void _switch_to_user (GtkMenuItem *menu_item, gchar *cUserName)
 {
@@ -194,22 +196,26 @@ static GtkWidget *_build_menu (void)
 	gchar *cImagePath;
 	cImagePath = _check_icon ("system-shutdown");
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Shut down"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-shutdown.svg", cd_logout_shut_down, pMenu);
+	g_free (cImagePath);
 	if (!myData.bCanStop && ! myConfig.cUserAction2)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
 	cImagePath = _check_icon (GTK_STOCK_REFRESH);
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Restart"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-restart.svg", cd_logout_restart, pMenu);
+	g_free (cImagePath);
 	if (!myData.bCanRestart)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
 	cImagePath = _check_icon ("sleep");
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Hibernate"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-hibernate.svg", cd_logout_hibernate, pMenu);
+	g_free (cImagePath);
 	gtk_widget_set_tooltip_text (pMenuItem, D_("Your computer will not consume any energy."));
 	if (!myData.bCanHibernate)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
 	cImagePath = _check_icon ("clock");
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Suspend"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-suspend.svg", cd_logout_suspend, pMenu);
+	g_free (cImagePath);
 	gtk_widget_set_tooltip_text (pMenuItem, D_("Your computer will still consume a small amount of energy."));
 	if (!myData.bCanSuspend)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
@@ -218,6 +224,7 @@ static GtkWidget *_build_menu (void)
 	{
 		cImagePath = _check_icon ("system-log-out");
 		pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Log out"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", cd_logout_close_session, pMenu);
+		g_free (cImagePath);
 		gtk_widget_set_tooltip_text (pMenuItem, D_("Close your session and allow to open a new one."));
 	}
 	
@@ -256,11 +263,12 @@ static GtkWidget *_build_menu (void)
 	
 	cImagePath = _check_icon ("system-lock-screen");
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Lock screen"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/locked.svg", cairo_dock_fm_lock_screen, pMenu);  /// TODO: same question...
-	
+	g_free (cImagePath);
 	if (myData.bCanStop)
 	{
 		cImagePath = _check_icon ("document-open-recent");
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Program an automatic shut-down"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/icon-scheduling.svg", cd_logout_program_shutdown, pMenu);
+		g_free (cImagePath);
 	}
 
 	if ((myDock && myDock->container.bIsHorizontal && ! myDock->container.bDirectionUp) // on the top, we inverse the menu
@@ -273,7 +281,6 @@ static GtkWidget *_build_menu (void)
 			gtk_menu_reorder_child (GTK_MENU (pMenu), pMenuItem, 0);
 		}
 	}
-	g_free (cImagePath);
 
 	return pMenu;
 }
