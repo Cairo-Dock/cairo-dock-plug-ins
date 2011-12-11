@@ -25,9 +25,9 @@ add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 #add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
 ### uncomment the following line to allow extended OpenGL drawing.
 #add_definitions (-DGL_GLEXT_PROTOTYPES="1")
-if (NOT ${FFTW3_FOUND})
-	message (STATUS "   Without FFTW3 support")
-	add_definitions (-DFFT="1")
+if (${FFTW3_FOUND})
+	message (STATUS "   With FFTW3 support")
+	add_definitions (-DFFT_IS_AVAILABLE="1")
 endif()
 
 include_directories (
