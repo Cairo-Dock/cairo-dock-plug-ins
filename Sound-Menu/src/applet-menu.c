@@ -24,7 +24,6 @@
 #include <string.h>
 
 #include <gdk/gdkkeysyms.h>
-#include <gdk/gdkkeysyms-compat.h>
 
 #include "applet-struct.h"
 #include "applet-menu.h"
@@ -40,6 +39,10 @@
 #else
 #include <libdbusmenu-gtk3/menuitem.h>
 #include <libdbusmenu-gtk3/menu.h>
+#endif
+
+#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION > 20)
+#include <gdk/gdkkeysyms-compat.h>
 #endif
 
 #include <libido/libido.h>

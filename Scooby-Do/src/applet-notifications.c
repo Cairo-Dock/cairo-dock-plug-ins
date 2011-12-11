@@ -22,7 +22,6 @@
 
 #include <gdk/gdkx.h>
 #include <gdk/gdkkeysyms.h>
-#include <gdk/gdkkeysyms-compat.h>
 
 #include "applet-struct.h"
 #include "applet-draw.h"
@@ -32,6 +31,9 @@
 #include "applet-listing.h"
 #include "applet-notifications.h"
 
+#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION > 20)
+#include <gdk/gdkkeysyms-compat.h>
+#endif
 
 gboolean cd_do_render (gpointer pUserData, CairoContainer *pContainer, cairo_t *pCairoContext)
 {

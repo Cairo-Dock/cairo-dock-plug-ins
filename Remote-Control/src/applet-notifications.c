@@ -23,12 +23,15 @@
 
 #include <gdk/gdkx.h>
 #include <gdk/gdkkeysyms.h>
-#include <gdk/gdkkeysyms-compat.h>
 
 #include "applet-struct.h"
 #include "applet-icon-finder.h"
 #include "applet-session.h"
 #include "applet-notifications.h"
+
+#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION > 20)
+#include <gdk/gdkkeysyms-compat.h>
+#endif
 
 #define _alpha_prompt(k,n) .6*cos (G_PI/2*fabs ((double) ((k % (2*n)) - n) / n))
 

@@ -27,7 +27,6 @@
 #include <string.h>
 #include <signal.h>
 #include <gdk/gdkkeysyms.h>
-#include <gdk/gdkkeysyms-compat.h>
 // gdk.h semble necessaire pour certains
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
@@ -38,6 +37,10 @@
 #include "terminal-struct.h"
 #include "terminal-menu-functions.h"
 #include "terminal-widget.h"
+
+#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION > 20)
+#include <gdk/gdkkeysyms-compat.h>
+#endif
 
 void cd_terminal_grab_focus (void)
 {

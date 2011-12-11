@@ -31,7 +31,9 @@
 #include <sys/stat.h>
 
 #include <gdk/gdkkeysyms.h>
+#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION > 20)
 #include <gdk/gdkkeysyms-compat.h>
+#endif
 
 
 static GList *
