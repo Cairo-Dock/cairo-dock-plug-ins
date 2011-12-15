@@ -999,17 +999,31 @@ set (sliderdatadir "${pluginsdatadir}/slider")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/slider/data/slider.conf.in ${CMAKE_CURRENT_BINARY_DIR}/slider/data/slider.conf)
 add_subdirectory (slider)
 
-############# SOUND_MENU #################
+############# SOUND-MENU #################
 set (with_sound_menu "no")
 if ("${with_indicator}" STREQUAL "yes" AND "${IDO_FOUND}") 
 	message (STATUS "> Sound-Menu:")
-	set (GETTEXT_SOUND_MENU ${GETTEXT_PLUGINS})
-	set (VERSION_SOUND_MENU "0.0.1")
-	set (PACKAGE_SOUND_MENU "cd-Sound-Menu")
-	set (with_sound_menu "yes")
-	set (sound_menudatadir "${pluginsdatadir}/Sound-Menu")
-	configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Sound-Menu/data/Sound-Menu.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Sound-Menu/data/Sound-Menu.conf)
-	add_subdirectory (Sound-Menu)
+
+	STRING (REGEX REPLACE "\\..*" "" IDO_MAJOR "${IDO_VERSION}")
+	# message (STATUS "IDO_MAJOR : ${IDO_MAJOR}")
+	STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" IDO_MINOR "${IDO_VERSION}")  # 0.1.7 => 1.7
+	STRING (REGEX REPLACE "\\.[0-9]*" "" IDO_MINOR "${IDO_MINOR}")
+	# message (STATUS "IDO_MINOR : ${IDO_MINOR}")
+	STRING (REGEX REPLACE ".*\\." "" IDO_NANO "${IDO_VERSION}")
+	STRING (REGEX REPLACE "-.*" "" IDO_NANO "${IDO_NANO}")
+	# message (STATUS "IDO_NANO  : ${IDO_NANO}")
+
+	if (${IDO_MAJOR} GREATER 0 OR ${IDO_MINOR} GREATER 1 OR ${IDO_NANO} GREATER 10)
+		set (GETTEXT_SOUND_MENU ${GETTEXT_PLUGINS})
+		set (VERSION_SOUND_MENU "0.0.1")
+		set (PACKAGE_SOUND_MENU "cd-Sound-Menu")
+		set (with_sound_menu "yes")
+		set (sound_menudatadir "${pluginsdatadir}/Sound-Menu")
+		configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Sound-Menu/data/Sound-Menu.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Sound-Menu/data/Sound-Menu.conf)
+		add_subdirectory (Sound-Menu)
+	else ()
+		message (STATUS "  Your version of libido-0.1 is too old to build this applet.")
+	endif ()
 endif()
 
 ############# STACK #################
