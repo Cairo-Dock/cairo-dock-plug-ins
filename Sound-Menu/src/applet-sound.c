@@ -69,18 +69,18 @@ static const gchar *_get_icon_from_state (gint iState)
 
 static void _update_sound_state_icon (gint iNewState, CairoDockModuleInstance *myApplet);
 
-static gboolean _get_volume (gint iNewState)
-{
-	_update_sound_state_icon (iNewState, myApplet);
-	return FALSE;
-}
-
 static void _update_sound_state_icon (gint iNewState, CairoDockModuleInstance *myApplet)
 {
 	g_return_if_fail (iNewState >= 0 && iNewState < NB_STATES);
-	gboolean bWasMute = ! (iNewState == MUTED || iNewState == UNAVAILABLE || iNewState == BLOCKED);
+	g_print ("%s (%d -> %d\n", __func__, myData.iCurrentState, iNewState);
+	gboolean bWasMute = (myData.iCurrentState == MUTED
+		|| myData.iCurrentState == UNAVAILABLE
+		|| myData.iCurrentState == BLOCKED);
+	gboolean bIsMute = (iNewState == MUTED
+		|| iNewState == UNAVAILABLE
+		|| iNewState == BLOCKED);
 	myData.iCurrentState = iNewState;
-	
+	g_print ("  bWasMute: %d; bIsMute: %d\n", bWasMute, bIsMute);
 	switch (myConfig.iVolumeEffect)
 	{
 		// if we rely on the state to draw the icon, do it now
@@ -92,40 +92,33 @@ static void _update_sound_state_icon (gint iNewState, CairoDockModuleInstance *m
 		}
 		break;
 
-		// if we rely on the volume to draw the icon, juste handle the 'mute' case.
+		// if we rely on the volume to draw the icon, just handle the 'mute' case.
 		case VOLUME_EFFECT_BAR:
-			if (iNewState == MUTED)
+			if (bIsMute)  // is now mute -> draw the 'mute' icon
 			{
 				CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cMuteIcon, MY_APPLET_SHARE_DATA_DIR"/mute.svg");
 				CD_APPLET_REDRAW_MY_ICON;
 			}
-			else if (bWasMute)
+			else if (bWasMute)  // it was mute but not any more, so we need to remove the 'mute' icon.
 			{
 				double fVolume = 0;
 				if (myData.volume_widget)
 					fVolume = volume_widget_get_current_volume (myData.volume_widget);
-				if (fVolume == 0.0 && iNewState != ZERO_LEVEL) // strange... should not be null, volume_widget_get_current_volume gives a wrong value at startup
-					g_timeout_add_seconds (1, (GSourceFunc) _get_volume, GINT_TO_POINTER (iNewState));
 				CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR (myData.pSurface, fVolume * .01);
 			}
 		case VOLUME_EFFECT_GAUGE:
-			if (iNewState == MUTED)
+			if (bIsMute)  // is now mute -> set the 'undef' value
 			{
 				double fPercent = CAIRO_DATA_RENDERER_UNDEF_VALUE;
 				CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&fPercent);
 			}
-			else if (bWasMute)
+			else if (bWasMute)  // it was mute but not any more, so we need to set the real value.
 			{
 				double fVolume = 0, fPercent;
 				if (myData.volume_widget)
 					fVolume = volume_widget_get_current_volume (myData.volume_widget);
-				if (fVolume == 0.0 && iNewState != ZERO_LEVEL) // strange... should not be null, volume_widget_get_current_volume gives a wrong value at startup
-				{
-					g_timeout_add_seconds (1, (GSourceFunc) _get_volume, GINT_TO_POINTER (iNewState));
-					fPercent = CAIRO_DATA_RENDERER_UNDEF_VALUE;
-				}
-				else
-					fPercent = (double) fVolume / 100.;
+				g_print ("fVolume : %.2f\n", fVolume);
+				fPercent = (double) fVolume / 100.;
 				CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&fPercent);
 			}
 		break;
@@ -200,6 +193,7 @@ void cd_sound_get_initial_values (CairoDockModuleInstance *myApplet)
 
 void update_accessible_desc (CairoDockModuleInstance *myApplet)
 {
+	g_print ("%s (%p)\n", __func__, myData.volume_widget);
 	if (!myData.volume_widget)
 		return;
 	double fVolume = volume_widget_get_current_volume (myData.volume_widget);

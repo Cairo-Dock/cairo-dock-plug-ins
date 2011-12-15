@@ -26,12 +26,13 @@
 #include <gdk/gdkkeysyms.h>
 
 #include "applet-struct.h"
-#include "applet-menu.h"
+#include "applet-sound.h"
 #include "transport-widget.h"
 #include "volume-widget.h"
 #include "voip-input-widget.h"
 #include "title-widget.h"
 #include "metadata-widget.h"
+#include "applet-menu.h"
 
 #if (GTK_MAJOR_VERSION < 3)
 #include <libdbusmenu-gtk/menuitem.h>
@@ -148,7 +149,9 @@ new_volume_slider_widget(DbusmenuMenuitem * newitem,
   /**g_signal_connect (ido_slider_widget, "style-set",
                     G_CALLBACK(sound_state_manager_style_changed_cb),
                     myApplet.state_manager);*/
-
+	
+	update_accessible_desc(myApplet);
+	
   GtkMenuItem *menu_volume_item = GTK_MENU_ITEM(ido_slider_widget);
   dbusmenu_gtkclient_newitem_base(DBUSMENU_GTKCLIENT(client),
                                   newitem,

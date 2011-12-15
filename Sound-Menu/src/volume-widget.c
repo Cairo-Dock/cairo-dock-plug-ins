@@ -152,9 +152,8 @@ volume_widget_property_update( DbusmenuMenuitem* item, gchar* property,
       gdouble update = g_value_get_double (value);
 #endif
       gtk_range_set_value(range, update);
-/*
-      g_debug ("volume-widget::volume_widget_property_update - volume - value %f", update);
-*/
+      
+      g_print ("volume-widget::volume_widget_property_update - volume - value %.2f\n", update);
       update_accessible_desc(myApplet);
     }
   }
@@ -231,7 +230,8 @@ volume_widget_set_twin_item(VolumeWidget* self,
     initial_level = 0;
   }
   gtk_range_set_value(range, initial_level);
-  update_accessible_desc(myApplet);
+  //g_print (" initial_level: %.2f\n", initial_level);
+  //update_accessible_desc(myApplet);
 }
 
 static gboolean
@@ -248,6 +248,9 @@ volume_widget_change_value_cb (GtkRange     *range,
 */
 
   volume_widget_update(mitem, new_value, "change-value");
+  
+  update_accessible_desc(myApplet);
+  
   return FALSE;
 }
 
