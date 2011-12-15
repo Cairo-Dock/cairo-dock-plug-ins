@@ -490,7 +490,7 @@ void cd_musicplayer_register_banshee_handler (void)
 	
 	pHandler->appclass = "banshee";  // en fait la vraie classe est plus compliquee (Mono oblige), mais le dock sait extraire ca.
 	pHandler->launch = "banshee";
-	pHandler->cMprisService = "org.bansheeproject.Banshee";
+	pHandler->cMpris2Service = "org.mpris.MediaPlayer2.banshee";
 	pHandler->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_SHUFFLE | PLAYER_REPEAT | PLAYER_ENQUEUE;
 	pHandler->bSeparateAcquisition = FALSE;
 	pHandler->iLevel = PLAYER_GOOD;  // n'a besoin d'une boucle que pour afficher le temps ecoule.

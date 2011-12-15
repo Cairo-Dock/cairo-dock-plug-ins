@@ -35,6 +35,7 @@ void cd_musicplayer_register_guayadeque_handler (void)
 {
 	MusicPlayerHandler *pGuayadeque = cd_mpris_new_handler ();
 	pGuayadeque->cMprisService = "org.mpris.guayadeque";
+	pGuayadeque->cMpris2Service = "org.mpris.MediaPlayer2.guayadeque";
 	pGuayadeque->appclass = "guayadeque";
 	pGuayadeque->launch = "guayadeque";
 	pGuayadeque->name = "Guayadeque";

@@ -144,7 +144,7 @@ static void _on_got_playing_status (DBusGProxy *proxy, DBusGProxyCall *call_id, 
 	
 	CD_APPLET_LEAVE ();
 }
-static void cd_mpris2_getPlaying_async (void)  // used by Audacious.
+static void cd_mpris2_getPlaying_async (void)
 {
 	if (s_pGetStatusCall != NULL)
 		return;
@@ -285,7 +285,7 @@ static gboolean _extract_metadata (GHashTable *pMetadata)
 	{
 		cCoverPath = g_value_get_string(v);
 	}
-	cd_musicplayer_get_cover_path (cCoverPath, TRUE); // did it at the end (we have to know the artist and the album if (cCoverPath == NULL))
+	cd_musicplayer_get_cover_path (cCoverPath, TRUE);  // do it at the end (we have to know the artist and the album if (cCoverPath == NULL))
 
 	/// we miss iTrackListIndex and tracklist-length ...
 	
@@ -411,10 +411,11 @@ static void on_properties_changed (DBusGProxy *player_proxy, const gchar *cInter
 				cd_musicplayer_update_icon (TRUE); // Force the update of the icon if the player is now stopped.
 		}
 	}
-	else /*if (strcmp (cInterface, "org.mpris.MediaPlayer2.TrackList") == 0)
+	/*else if (strcmp (cInterface, "org.mpris.MediaPlayer2.TrackList") == 0)
 	{
 		
 	}*/
+	else
 		cd_debug ("Another interface: %s", cInterface);
 }
 

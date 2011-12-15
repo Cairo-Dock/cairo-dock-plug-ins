@@ -38,5 +38,6 @@ void cd_musicplayer_register_clementine_handler (void)
 	pClementine->appclass = "clementine";  // les classes sont passees en minuscule par le dock.
 	pClementine->launch = "clementine";
 	pClementine->name = "Clementine";
+	pClementine->cMpris2Service = "org.mpris.MediaPlayer2.clementine";
 	cd_musicplayer_register_my_handler (pClementine);
 }

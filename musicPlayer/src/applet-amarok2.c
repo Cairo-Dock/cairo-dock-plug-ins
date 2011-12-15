@@ -37,5 +37,6 @@ void cd_musicplayer_register_amarok2_handler (void)
 	pAmarok2->appclass = "amarok";
 	pAmarok2->launch = "amarok";
 	pAmarok2->name = "Amarok 2";
+	pAmarok2->cMpris2Service = "org.mpris.MediaPlayer2.amarok";
 	cd_musicplayer_register_my_handler (pAmarok2);
 }

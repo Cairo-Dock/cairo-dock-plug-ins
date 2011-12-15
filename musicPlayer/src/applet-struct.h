@@ -80,6 +80,7 @@ struct _MusicPlayerHandler {
 	gboolean bSeparateAcquisition;  // Sert a activer le thread ou pas (TRUE = active; False = desactive)
 	MyPlayerControl iPlayerControls;  // un masque "OU" de MyPlayerControl.
 	MyLevel iLevel;
+	const gchar *cMpris2Service;  // MPRIS2 dbus name.
 };
 
 //Structures essentielles de l'applet
@@ -97,8 +98,8 @@ typedef enum {
 #define MP_DBUS_TYPE_SONG_METADATA (dbus_g_type_get_map ("GHashTable", G_TYPE_STRING, G_TYPE_VALUE))
 
 #define CD_MPRIS2_SERVICE_BASE "org.mpris.MediaPlayer2"
-#define CD_MPRIS2_OBJ /org/mpris/MediaPlayer2
-#define CD_MPRIS2_MAIN_IFACE org.mpris.MediaPlayer2
+#define CD_MPRIS2_OBJ "/org/mpris/MediaPlayer2"
+#define CD_MPRIS2_MAIN_IFACE "org.mpris.MediaPlayer2"
 
 struct _AppletConfig {
 	gboolean bEnableDialogs;
@@ -107,6 +108,7 @@ struct _AppletConfig {
 	gboolean bEnableAnim;
 	gchar *cChangeAnimation;
 	gchar *cMusicPlayer;
+	gchar *cLastKnownDesktopFile;  // "desktop-entry" property of the MPRIS2 service. Since we can't have it until we connect to the service, and therefore until the player is running, we can't launch the player (the MPRIS2 name and the binary name are not necessarily the same).
 	MyAppletQuickInfoType iQuickInfoType;
 	gchar *cDefaultTitle;
 	gchar *cUserImage[PLAYER_NB_STATUS];
@@ -163,6 +165,7 @@ struct _AppletData {
 	gint iCurrentFileSize;
 	gchar *cCurrentXmlFile;
 	gboolean cover_exist;
+	gint iNbCheckCover;
 	gboolean bCoverNeedsTest;
 	gboolean bForceCoverNeedsTest; // some players copy covers on their cache folder but it takes a few time...
 	

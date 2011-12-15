@@ -378,6 +378,7 @@ void cd_musicplayer_register_quodlibet_handler (void)
 	pHandler->appclass = "quodlibet";
 	pHandler->launch = "quodlibet";
 	pHandler->cMprisService = "net.sacredchao.QuodLibet";
+	pHandler->cMpris2Service = "org.mpris.MediaPlayer2.quodlibet";
 	pHandler->path = "/net/sacredchao/QuodLibet";
 	pHandler->interface = "net.sacredchao.QuodLibet";
 	pHandler->path2 = NULL;

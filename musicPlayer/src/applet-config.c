@@ -29,7 +29,8 @@
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iQuickInfoType 		= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "quick-info_type", MY_APPLET_TIME_ELAPSED);
 	
-	myConfig.cMusicPlayer 			= CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "current-player", "Rhythmbox");
+	myConfig.cMusicPlayer 			= CD_CONFIG_GET_STRING ("Configuration", "current-player");  // NULL by default
+	myConfig.cLastKnownDesktopFile 	= CD_CONFIG_GET_STRING ("Configuration", "desktop-entry");  // see applet-struct.h
 	myConfig.cDefaultTitle			= CD_CONFIG_GET_STRING ("Icon", "name");
 	
 	myConfig.bEnableDialogs 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable_dialogs");
@@ -63,6 +64,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 
 	g_free (myConfig.cDefaultTitle);
 	g_free (myConfig.cMusicPlayer);
+	g_free (myConfig.cLastKnownDesktopFile);
 	
 	int i;
 	for (i = 0; i < PLAYER_NB_STATUS; i ++) {

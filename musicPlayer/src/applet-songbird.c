@@ -31,6 +31,7 @@ void cd_musicplayer_register_songbird_handler (void)
 {
 	MusicPlayerHandler *pHandler = cd_mpris_new_handler ();
 	pHandler->cMprisService = "org.mpris.songbird";
+	pHandler->cMpris2Service = "org.mpris.MediaPlayer2.songbird";
 	pHandler->appclass = "songbird";
 	pHandler->launch = "songbird-bin";
 	pHandler->name = "Songbird";

@@ -35,6 +35,7 @@ void cd_musicplayer_register_gmusicbrowser_handler (void)
 {
 	MusicPlayerHandler *pHandler = cd_mpris_new_handler ();
 	pHandler->cMprisService = "org.mpris.gmusicbrowser";
+	pHandler->cMpris2Service = "org.mpris.MediaPlayer2.gmusicbrowser";
 	pHandler->appclass = "gmusicbrowser";
 	pHandler->launch = "gmusicbrowser";
 	pHandler->name = "GMusicBrowser";

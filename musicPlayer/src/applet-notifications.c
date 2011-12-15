@@ -137,7 +137,7 @@ static void _show_players_list_dialog (void)
 	#if (GTK_MAJOR_VERSION < 3 && GTK_MINOR_VERSION < 24)
 	GtkWidget *pComboBox = gtk_combo_box_entry_new_text ();
 	#else
-	GtkWidget *pComboBox = gtk_combo_box_text_new ();
+	GtkWidget *pComboBox = gtk_combo_box_text_new_with_entry ();
 	#endif
 	GList *h;
 	MusicPlayerHandler *handler;
@@ -259,7 +259,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	{
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Find opened player"), GTK_STOCK_FIND, _cd_musicplayer_find_player, CD_APPLET_MY_MENU);
 		if (myData.pCurrentHandler != NULL)
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (myData.pCurrentHandler->name, GTK_STOCK_MEDIA_PLAY, _cd_musicplayer_launch, CD_APPLET_MY_MENU);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (myData.pCurrentHandler->cDisplayedName?myData.pCurrentHandler->cDisplayedName:myData.pCurrentHandler->name, GTK_STOCK_MEDIA_PLAY, _cd_musicplayer_launch, CD_APPLET_MY_MENU);
 		else
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Choose a player"), GTK_STOCK_INDEX, _cd_musicplayer_choose_player, CD_APPLET_MY_MENU);
 	}

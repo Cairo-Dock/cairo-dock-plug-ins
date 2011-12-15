@@ -35,6 +35,7 @@ void cd_musicplayer_register_qmmp_handler (void)
 {
 	MusicPlayerHandler *pHandler = cd_mpris_new_handler ();
 	pHandler->cMprisService = "org.mpris.qmmp";
+	pHandler->cMpris2Service = "org.mpris.MediaPlayer2.qmmp";
 	pHandler->appclass = "qmmp";  // les classes sont passees en minuscule par le dock.
 	pHandler->launch = "qmmp";
 	pHandler->name = "Qmmp";

@@ -71,6 +71,114 @@
 	return cURI;
 }*/
 
+/*
+if it's a file, check that it exists
+  if not, re-try 3 times
+  if it exists, check until the size is constant
+    -> apply it
+  if no file present, launch a search+dl task
+if it's an adress, or NULL, wait for 2s, maybe we can get a property update
+if nothing came, if it's an adress, dl it, otherwise, search+dl it.
+*/		
+
+
+static gboolean _check_cover_file_size (gpointer data)
+{
+	myData.iNbCheckCover ++;
+	if (myData.iNbCheckCover > 5)
+	{
+		/// still not complete, try to download it ourselves...
+		if (myConfig.bDownload)
+		{
+			
+		}
+		
+		myData.iSidCheckCover = 0;
+		return FALSE;
+	}
+	if (cd_musicplayer_check_size_is_constant (myData.cCoverPath))
+	{
+		/// file is complete, apply it on the icon...
+		myData.cover_exist = TRUE;
+		
+		myData.iSidCheckCover = 0;
+		return FALSE;
+	}
+	return TRUE;
+}
+static gboolean _check_cover_file_exists (gpointer data)
+{
+	myData.iNbCheckCover ++;
+	if (myData.iNbCheckCover > 3)
+	{
+		/// still no file, try to download it ourselves...
+		if (myConfig.bDownload)
+		{
+			
+		}
+		
+		myData.iSidCheckCover = 0;
+		return FALSE;
+	}
+	if (myData.cCoverPath && g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
+	{
+		/// file exists, check for its size
+		myData.iNbCheckCover = 0;
+		myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc)_check_cover_file_size, NULL);
+		
+		return FALSE;
+	}
+	return TRUE;
+}
+void cd_musicplayer_set_cover_path (const gchar *cGivenCoverPath)
+{
+	if (! myConfig.bEnableCover)
+	{
+		myData.cover_exist = FALSE;
+		return;
+	}
+	
+	if (! cairo_dock_strings_differ (myData.cCoverPath, cGivenCoverPath))  // cover has not changed, so nothing to do (if we are checking for it, keep doing).
+	{
+		return;
+	}
+	
+	myData.cPreviousCoverPath = myData.cCoverPath;  // on memorise la precedente couverture.
+	myData.cCoverPath = NULL;
+	myData.iCurrentFileSize = 0;
+	myData.cover_exist = FALSE;
+	if (myData.iSidCheckCover != 0)
+	{
+		g_source_remove (myData.iSidCheckCover);
+		myData.iSidCheckCover = 0;
+	}
+	myData.iNbCheckCover = 0;
+	
+	if (cGivenCoverPath != NULL)  // we got something from the service, check it.
+	{
+		if (strncmp (cGivenCoverPath, "file://", 7) == 0)  // local URI
+		{
+			myData.cCoverPath = g_filename_from_uri (cGivenCoverPath, NULL, NULL);
+		}
+		else  // local file or remote adress.
+		{
+			myData.cCoverPath = g_strdup (cGivenCoverPath);
+		}
+		
+		if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))  // file does not exist, re-try a few times.
+		{
+			myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc)_check_cover_file_exists, NULL);
+		}
+		else  // file exists, check its size until it's constant
+		{
+			myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc)_check_cover_file_size, NULL);
+		}
+	}
+	else  // no data from the service, re-try a few times, maybe we'll get a property update from the service.
+	{
+		myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc)_check_cover_file_exists, NULL);
+	}
+}
 
 void cd_musicplayer_get_cover_path (const gchar *cGivenCoverPath, gboolean bHandleCover)  // bHandleCover permet de ne pas regarder dans le cache ou dl la couverture, pour le cas ou le lecteur ne refilerait une adresse qu'au bout d'un certain temps. Dans ce cas-la, on fera l'operation 2 fois en laissant une tempo de ~1s, et on ne gerera la couverture nous-memes que la 2eme fois si le lecteur ne nous a toujours rien refile.
 {

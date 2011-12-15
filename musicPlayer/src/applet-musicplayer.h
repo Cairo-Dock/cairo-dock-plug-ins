@@ -28,7 +28,7 @@
 
 MusicPlayerHandler *cd_musicplayer_get_handler_by_name (const gchar *cName);
 
-MusicPlayerHandler *cd_musicplayer_get_handler_by_service (const gchar *cService);
+///MusicPlayerHandler *cd_musicplayer_get_handler_by_service (const gchar *cService);
 
 void cd_musicplayer_launch_handler (void);
 

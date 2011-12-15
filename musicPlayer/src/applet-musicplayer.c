@@ -66,7 +66,7 @@ MusicPlayerHandler *cd_musicplayer_get_handler_by_name (const gchar *cName)
 	return NULL;
 }
 
-MusicPlayerHandler *cd_musicplayer_get_handler_by_service (const gchar *cService)
+/**MusicPlayerHandler *cd_musicplayer_get_handler_by_service (const gchar *cService)
 {
 	g_return_val_if_fail (cService != NULL, NULL);
 	GList *h;
@@ -78,7 +78,7 @@ MusicPlayerHandler *cd_musicplayer_get_handler_by_service (const gchar *cService
 			return handler;
 	}
 	return NULL;
-}
+}*/
 
 
 static void _cd_musicplayer_get_data_async (gpointer data) {
@@ -219,7 +219,7 @@ void cd_musicplayer_free_handler (MusicPlayerHandler *pHandler)
 
 static void _on_got_desktop_entry (DBusGProxy *proxy, DBusGProxyCall *call_id, gpointer data)
 {
-	g_print ("%s ()\n", __func__);
+	CD_APPLET_ENTER;
 	myData.pGetPropsCall = NULL;
 	
 	GKeyFile* pKeyFile = NULL;
@@ -233,54 +233,48 @@ static void _on_got_desktop_entry (DBusGProxy *proxy, DBusGProxyCall *call_id, g
 		G_TYPE_INVALID);
 	if (error)
 	{
-		g_print ("%s\n", error->message);
+		cd_warning ("%s", error->message);
 		g_error_free (error);
 	}
 	if (bSuccess && G_VALUE_HOLDS_STRING (&v))
 	{
 		const gchar *cDesktopFileName = g_value_get_string (&v);
-		g_print (" -> %s\n", cDesktopFileName);
-		gchar *cDesktopFilePath = g_strdup_printf ("/usr/share/applications/%s.desktop", cDesktopFileName);  /// handle other paths...
-		pKeyFile = cairo_dock_open_key_file (cDesktopFilePath);
-		g_free (cDesktopFilePath);
+		g_print (" got desktop-entry '%s' from the service '%s'\n", cDesktopFileName, myData.pCurrentHandler->cMprisService);
 		
-	}
-	g_free ((gchar*)myData.pCurrentHandler->launch);
-	g_free ((gchar*)myData.pCurrentHandler->appclass);
-	if (pKeyFile != NULL)
-	{
-		// get the class
-		gchar *cCommand = g_key_file_get_string (pKeyFile, "Desktop Entry", "Exec", NULL);
-		gchar *cStartupWMClass = g_key_file_get_string (pKeyFile, "Desktop Entry", "StartupWMClass", NULL);
-		
-		myData.pCurrentHandler->appclass = cairo_dock_guess_class (cCommand, cStartupWMClass);
-		g_free (cStartupWMClass);
-		
-		// get other params
-		/// actually we should probably take them from the class-manager...
-		gchar *str = strchr (cCommand, '%');  // search the first one.
-		if (str != NULL)
+		if (cDesktopFileName != NULL)
 		{
-			if (str != cCommand && (*(str-1) == '"' || *(str-1) == '\''))  // take care of "" around the option.
-				str --;
-			*str = '\0';  // il peut rester un espace en fin de chaine, ce n'est pas grave.
+			if (myConfig.cLastKnownDesktopFile == NULL || strcmp (cDesktopFileName, myConfig.cLastKnownDesktopFile) != 0)  // the property has changed from the previous time.
+			{
+				g_print ("  desktop-entry has changed, update\n");
+				// store the desktop filename, since we can't have it until the service is up, the next time the applet is started, which means we wouldn't be able to launch the player.
+				cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
+					G_TYPE_STRING, "Configuration", "desktop-entry", cDesktopFileName,
+					G_TYPE_INVALID);
+				g_free (myConfig.cLastKnownDesktopFile);
+				myConfig.cLastKnownDesktopFile = g_strdup (cDesktopFileName);
+				
+				// register the desktop file, and get the common properties of this class.
+				g_free ((gchar*)myData.pCurrentHandler->launch);
+				g_free ((gchar*)myData.pCurrentHandler->appclass);
+				g_free ((gchar*)myData.pCurrentHandler->cDisplayedName);
+				
+				myData.pCurrentHandler->appclass = cairo_dock_register_class (cDesktopFileName);
+				myData.pCurrentHandler->launch = g_strdup (cairo_dock_get_class_command (myData.pCurrentHandler->appclass));
+				myData.pCurrentHandler->cDisplayedName = g_strdup (cairo_dock_get_class_name (myData.pCurrentHandler->appclass));
+				g_print ("  class is now '%s'\n", myData.pCurrentHandler->appclass);
+				
+				if (myData.pCurrentHandler->appclass != NULL)
+				{
+					cairo_dock_set_data_from_class (myData.pCurrentHandler->appclass, myIcon);
+				}
+				
+				if (myConfig.bStealTaskBarIcon)
+					CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandler->appclass);
+			}
 		}
-		myData.pCurrentHandler->launch = cCommand;
-		
-		g_free (myData.pCurrentHandler->cDisplayedName);
-		myData.pCurrentHandler->cDisplayedName = g_key_file_get_string (pKeyFile, "Desktop Entry", "Name", NULL);
-		g_print (" MP: got %s, %s, %s\n", myData.pCurrentHandler->launch, myData.pCurrentHandler->appclass, myData.pCurrentHandler->cDisplayedName);
-		
-		g_key_file_free (pKeyFile);
+		g_value_unset (&v);
 	}
-	else
-	{
-		myData.pCurrentHandler->launch = g_strdup (myData.pCurrentHandler->cMprisService + strlen (CD_MPRIS2_SERVICE_BASE"."));
-		myData.pCurrentHandler->appclass = g_strdup (myData.pCurrentHandler->cMprisService + strlen (CD_MPRIS2_SERVICE_BASE"."));
-	}
-	
-	if (myConfig.bStealTaskBarIcon)
-		CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandler->appclass);
+	CD_APPLET_LEAVE ();
 }
 static void _on_name_owner_changed (const gchar *cName, gboolean bOwned, gpointer data)
 {
@@ -293,36 +287,28 @@ static void _on_name_owner_changed (const gchar *cName, gboolean bOwned, gpointe
 		if (strncmp (cName, CD_MPRIS2_SERVICE_BASE, strlen (CD_MPRIS2_SERVICE_BASE)) == 0)  // the MPRIS2 service is now on the bus, it has priority.
 		{
 			cd_debug ("the MPRIS2 service is now on the bus, it has priority");
-			if (strcmp (myData.pCurrentHandler->name, "Mpris2") != 0)  // our current handler is not the MPRIS2 one, stop it and use the latter instead.
+			// set the MPRIS2 handler as the current one if not already the case.
+			if (strcmp (myData.pCurrentHandler->name, "Mpris2") != 0)  // the current handler is not the MPRIS2 one, stop it and use the latter instead.
 			{
 				cd_debug ("our current handler is not the MPRIS2 one, stop it and use the latter instead");
-				gboolean bAlreadyWatching = FALSE;
-				if (myData.cMpris2Service && strcmp (myData.cMpris2Service, cName) == 0)  // we're already watching it, don't unwatch (we can't unwatch ourselves in the callback, plus it's a waste of CPU).
-				{
-					bAlreadyWatching = TRUE;
+				// stop the old handler
+				if (myData.cMpris2Service != cName)
 					g_free (myData.cMpris2Service);
-					myData.cMpris2Service = NULL;
-				}
+				myData.cMpris2Service = NULL;  // we're already watching it, don't re-watch (we can't unwatch ourselves in the callback, plus it's a waste of CPU).
+				
 				cd_musicplayer_stop_current_handler (TRUE);  // so once we detect the MPRIS2 service on the bus, the other one is dropped forever.
 				
-				myData.pCurrentHandler = cd_musicplayer_get_handler_by_name ("Mpris2");
-				g_free ((gchar*)myData.pCurrentHandler->cMprisService);  // for the Mpris2 handler, the string is actually not constant, but dynamic.
+				// set the MPRIS2 handler as the current one
+				myData.pCurrentHandler = cd_musicplayer_get_handler_by_name ("Mpris2");  // no need to watch it, it was already done (that's why we are here !)
+				
+				g_free ((gchar*)myData.pCurrentHandler->cMprisService);
 				myData.pCurrentHandler->cMprisService = g_strdup (cName);
-				
-				/**myData.pCurrentHandler->launch = g_strdup (cName+strlen (CD_MPRIS2_SERVICE_BASE"."));
-				myData.pCurrentHandler->appclass = g_strdup (cName+strlen (CD_MPRIS2_SERVICE_BASE"."));
-				
-				if (myConfig.bStealTaskBarIcon)
-					CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandler->appclass);*/
-				
-				if (! bAlreadyWatching)
-					cairo_dock_watch_dbus_name_owner (myData.pCurrentHandler->cMprisService, (CairoDockDbusNameOwnerChangedFunc) _on_name_owner_changed, NULL);
 			}
-			// get the properties of the player.
-			// we do it now, because we can't guess them for sure from the MPRIS service name only (ex.: Rhythmbox has "org.mpris.MediaPlayer2.rhythmbox3" but its class is "rhythmbox").
+			// get the desktop properties of the player.
+			// we do it now that the service is on the bus, because we can't guess them for sure from the MPRIS service name only (ex.: Rhythmbox has "org.mpris.MediaPlayer2.rhythmbox3" but its class is "rhythmbox").
 			DBusGProxy *pProxyProp = cairo_dock_create_new_session_proxy (
 				myData.pCurrentHandler->cMprisService,
-				"/org/mpris/MediaPlayer2",
+				CD_MPRIS2_OBJ,
 				DBUS_INTERFACE_PROPERTIES);
 			if (myData.pGetPropsCall)
 				dbus_g_proxy_cancel_call (cairo_dock_get_main_proxy (), myData.pGetPropsCall);
@@ -330,7 +316,7 @@ static void _on_name_owner_changed (const gchar *cName, gboolean bOwned, gpointe
 				(DBusGProxyCallNotify)_on_got_desktop_entry,
 				myApplet,
 				(GDestroyNotify) NULL,
-				G_TYPE_STRING, "org.mpris.MediaPlayer2",
+				G_TYPE_STRING, CD_MPRIS2_MAIN_IFACE,
 				G_TYPE_STRING, "DesktopEntry",
 				G_TYPE_INVALID);
 		}
@@ -351,7 +337,9 @@ static void _on_name_owner_changed (const gchar *cName, gboolean bOwned, gpointe
 		cd_musicplayer_stop_current_handler (FALSE);  // FALSE = keep watching it.
 		cd_musicplayer_set_surface (PLAYER_NONE);
 		if (myConfig.cDefaultTitle != NULL)
+		{
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle);
+		}
 		else
 		{
 			if (strcmp (myData.pCurrentHandler->name, "Mpris2") == 0)
@@ -371,7 +359,7 @@ static void _on_detect_handler (gboolean bPresent, gpointer data)
 {
 	CD_APPLET_ENTER;
 	myData.pDetectPlayerCall = NULL;
-	cd_debug ("%s is present on the bus: %d\n", myData.pCurrentHandler->cMprisService, bPresent);
+	cd_debug ("%s presence on the bus: %d", myData.pCurrentHandler->cMprisService, bPresent);
 	if (bPresent)
 	{
 		_on_name_owner_changed (myData.pCurrentHandler->cMprisService, bPresent, data);
@@ -383,7 +371,7 @@ static void _on_detect_mpris2 (gboolean bPresent, gpointer data)
 {
 	CD_APPLET_ENTER;
 	myData.pDetectPlayerCall = NULL;
-	cd_debug ("MPRIS2 is present on the bus: %d\n", bPresent);
+	cd_debug ("MPRIS2 presence on the bus: %d", bPresent);
 	if (bPresent)
 		_on_name_owner_changed (myData.cMpris2Service, bPresent, data);
 	else if (myData.pCurrentHandler->cMprisService != NULL)  // couldn't detect it, but it has another service, so try this one.
@@ -391,17 +379,19 @@ static void _on_detect_mpris2 (gboolean bPresent, gpointer data)
 	CD_APPLET_LEAVE ();
 }
 
-/*if prefered player is defined:
-get handler from name
-if none: make a generic handler from the service
-set as current
-watch it; watch mpris2 too
-detect async -> present => owned*/
+/**
+Set the current handler from its name.
+It can be either the name of an old handler, or the name of an MPRIS2 service.
+ - if an old handler matches the name, use it, and detect it on the bus; also detect an MPRIS2 with the same name
+ - if no handler matches, then it's an MPRIS2 service; set the MPRIS2 handler as the current one, and detect it on the bus.
+*/
 void cd_musicplayer_set_current_handler (const gchar *cName)
 {
 	cd_debug ("%s (%s)", __func__, cName);
+	// stop completely any previous handler
 	cd_musicplayer_stop_current_handler (TRUE);
 	
+	// if no handler is defined, go to a neutral state.
 	if (cName == NULL)
 	{
 		myData.pCurrentHandler = NULL;
@@ -411,65 +401,76 @@ void cd_musicplayer_set_current_handler (const gchar *cName)
 		return;
 	}
 	
-	// find a handler which has this name
+	// find a handler from the given name
 	myData.pCurrentHandler = cd_musicplayer_get_handler_by_name (cName);
 	
-	// make the corresponding MPRIS2 name in any case, as it is the standard way.
-	gchar *cMpris2Service;
-	if (strncmp (cName, CD_MPRIS2_SERVICE_BASE, strlen (CD_MPRIS2_SERVICE_BASE)) == 0)  // it's already an MPRIS2 service name
+	if (myData.pCurrentHandler != NULL)  // an old handler exist with this name, use it but also look for the associated MPRIS2 service.
 	{
-		cMpris2Service = g_strdup (cName);
+		myData.cMpris2Service = g_strdup_printf (CD_MPRIS2_SERVICE_BASE".%s",
+			myData.pCurrentHandler->cMpris2Service ? myData.pCurrentHandler->cMpris2Service : cName);
+		
+		cairo_dock_watch_dbus_name_owner (myData.cMpris2Service, (CairoDockDbusNameOwnerChangedFunc) _on_name_owner_changed, NULL);
+		
+		myData.pDetectPlayerCall = cairo_dock_dbus_detect_application_async (myData.cMpris2Service, (CairoDockOnAppliPresentOnDbus) _on_detect_mpris2, NULL);  // mpris2 first, and then the other one.	
 	}
-	else  // make the default MPRIS2 service name.
+	else  // no such handler, make an MPRIS2 service with this name.
 	{
-		cMpris2Service = g_strdup_printf (CD_MPRIS2_SERVICE_BASE".%s", cName);
-	}
-	
-	// if no such handler, make a generic MPRIS2 handler.
-	if (myData.pCurrentHandler == NULL)  // no such handler
-	{
+		// get the MPRIS2 handler
 		myData.pCurrentHandler = cd_musicplayer_get_handler_by_name ("Mpris2");
 		
-		if (strncmp (cName, CD_MPRIS2_SERVICE_BASE".", strlen (CD_MPRIS2_SERVICE_BASE".")) == 0)
+		// fill its properties
+		if (myConfig.cLastKnownDesktopFile != NULL)
 		{
-			myData.pCurrentHandler->launch = g_strdup (cName+strlen (CD_MPRIS2_SERVICE_BASE"."));
-			myData.pCurrentHandler->appclass = g_strdup (cName+strlen (CD_MPRIS2_SERVICE_BASE"."));
+			myData.pCurrentHandler->appclass = cairo_dock_register_class (myConfig.cLastKnownDesktopFile);
+			myData.pCurrentHandler->launch = g_strdup (cairo_dock_get_class_command (myData.pCurrentHandler->appclass));
+			myData.pCurrentHandler->cDisplayedName = g_strdup (cairo_dock_get_class_name (myData.pCurrentHandler->appclass));
 		}
-		else
+		else  // can happen when transitionning from an old version of the applet where we didn't use the "Desktop Entry" property yet -> use some heuristic as a fallback.
 		{
-			myData.pCurrentHandler->launch = g_strdup (cName);
-			myData.pCurrentHandler->appclass = g_strdup (cName);
+			myData.pCurrentHandler->appclass = cairo_dock_register_class (cName);
+			myData.pCurrentHandler->launch = g_strdup (cairo_dock_get_class_command (myData.pCurrentHandler->appclass));
+			myData.pCurrentHandler->cDisplayedName = g_strdup (cairo_dock_get_class_name (myData.pCurrentHandler->appclass));
+			if (myData.pCurrentHandler->launch == NULL)  // we really need a command to launch it on click, so insist a little
+			{
+				myData.pCurrentHandler->launch = g_strdup (cName);
+			}
 		}
-		myData.pCurrentHandler->cMprisService = cMpris2Service;
-	}
-	else
-	{
-		myData.cMpris2Service = cMpris2Service;
+		myData.pCurrentHandler->cMprisService = g_strdup_printf (CD_MPRIS2_SERVICE_BASE".%s", cName);
+		myData.cMpris2Service = NULL;
 	}
 	
 	// watch it on the bus.
-	if (myData.cMpris2Service != NULL)
-		cairo_dock_watch_dbus_name_owner (myData.cMpris2Service, (CairoDockDbusNameOwnerChangedFunc) _on_name_owner_changed, NULL);
-	if (myData.pCurrentHandler->cMprisService != NULL)  // watch both, but MPRIS2 will have the priority.
+	if (myData.pCurrentHandler->cMprisService != NULL)  // paranoia
+	{
 		cairo_dock_watch_dbus_name_owner (myData.pCurrentHandler->cMprisService, (CairoDockDbusNameOwnerChangedFunc) _on_name_owner_changed, NULL);
 	
-	// detect its current presence on the bus.
-	if (myData.cMpris2Service != NULL)
-		myData.pDetectPlayerCall = cairo_dock_dbus_detect_application_async (myData.cMpris2Service, (CairoDockOnAppliPresentOnDbus) _on_detect_mpris2, NULL);  // mpris2 first, and then the other one.	
-	else if (myData.pCurrentHandler->cMprisService != NULL)
-		myData.pDetectPlayerCall = cairo_dock_dbus_detect_application_async (myData.pCurrentHandler->cMprisService, (CairoDockOnAppliPresentOnDbus) _on_detect_handler, NULL);
-	cd_musicplayer_set_surface (PLAYER_NONE);  // meanwhile, consider it's not running.
+		// detect its presence on the bus.
+		if (myData.pDetectPlayerCall == NULL)  // if we're already detecting MPRIS2, we'll detect this handler after we got the answer.
+			myData.pDetectPlayerCall = cairo_dock_dbus_detect_application_async (myData.pCurrentHandler->cMprisService, (CairoDockOnAppliPresentOnDbus) _on_detect_handler, NULL);
+	}
+	
+	// set the current icon and label.
+	if (myData.pCurrentHandler->appclass != NULL)
+	{
+		cairo_dock_set_data_from_class (myData.pCurrentHandler->appclass, myIcon);
+	}
+	
+	cd_musicplayer_set_surface (PLAYER_NONE);  // until we detect any service, consider it's not running.
 	if (myConfig.cDefaultTitle == NULL)
 	{
-		if (strcmp (myData.pCurrentHandler->name, "Mpris2") == 0)
+		if (myIcon->cName != NULL)
 		{
-			CD_APPLET_SET_NAME_FOR_MY_ICON (cd_musicplayer_get_string_with_first_char_to_upper (myData.pCurrentHandler->launch));
-			cd_debug ("musicPlayer label: set name (with upper): %s", cd_musicplayer_get_string_with_first_char_to_upper (myData.pCurrentHandler->launch));
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myIcon->cName);
+		}
+		else if (strcmp (myData.pCurrentHandler->name, "Mpris2") != 0)
+		{
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myData.pCurrentHandler->name);
 		}
 		else
 		{
-			CD_APPLET_SET_NAME_FOR_MY_ICON (myData.pCurrentHandler->name);
-			cd_debug ("musicPlayer label: set name: %s", myData.pCurrentHandler->name);
+			gchar *cDefaultName = cd_musicplayer_get_string_with_first_char_to_upper (myData.pCurrentHandler->launch);
+			CD_APPLET_SET_NAME_FOR_MY_ICON (cDefaultName);
+			g_free (cDefaultName);
 		}
 	}
 	

@@ -97,6 +97,7 @@ void cd_musicplayer_register_listen_handler (void) { //On enregistre notre lecte
 	pHandler->launch = "listen";  /// a verifier ..
 	
 	pHandler->cMprisService = "org.gnome.Listen";
+	pHandler->cMpris2Service = "org.mpris.MediaPlayer2.listen";
 	pHandler->path = "/org/gnome/listen";
 	pHandler->interface = "org.gnome.Listen";
 	pHandler->path2 = NULL;

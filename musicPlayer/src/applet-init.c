@@ -29,7 +29,6 @@
 #include "applet-dbus.h" 
 #include "3dcover-draw.h"
 
-#include "applet-xmms.h" //Support XMMS
 #include "applet-xmms2.h" //Support XMMS2
 #include "applet-exaile.h" //Support Exaile
 #include "applet-exaile3.h" //Support Exaile 0.3
@@ -50,8 +49,10 @@ CD_APPLET_DEFINE_BEGIN (N_("musicPlayer"),
 	2,0,0,
 	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
 	N_("This applet lets you control any music player.\n"
-	"Left click to Play/Pause, middle-click to play Next song.\n"
-	"Scroll up/down to play previous/next song.\n"
+	"First choose the player you want to control.\n"
+	"<b>click</b> to show/hide the player or pause,\n"
+	"<b>middle-click</b> to pause or go to next song,\n"
+	"<b>Scroll up/down</b> to change the song or control the volume.\n"
 	"You can drag and drop songs on the icon to put them in the queue (depends on Player),\n"
 	" and jpeg image to use as cover.\n"
 	"Note: you may have to install or activate the MPRIS plug-in of the player."),
@@ -65,9 +66,10 @@ CD_APPLET_DEFINE_END
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
 	myData.bForceCoverNeedsTest = FALSE;
-	// Add here all player's registering functions
-	// Don't forget to add the registered Name in ../data/musicPlayer.conf.in
-	//cd_musicplayer_register_xmms_handler ();
+	
+	// Register the players
+	// Note: with MPRIS2, we don't need to register a custom handler for each player. We only register handlers of old interfaces (MPRIS1 and before).
+	// Once all players use MPRIS2, we can drop all handlers but the MPRIS2 one.
 	cd_musicplayer_register_exaile_handler();
 	cd_musicplayer_register_exaile3_handler();
 	cd_musicplayer_register_songbird_handler();
@@ -88,7 +90,7 @@ CD_APPLET_INIT_BEGIN
 	if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))
 	{
 		if (g_mkdir (cCoverPath, 7*8*8+7*8+5) != 0)
-			cd_warning ("couldn't create directory %s", cCoverPath);
+			cd_warning ("couldn't create directory %s to download covers", cCoverPath);
 	}
 	g_free (cCoverPath);
 	

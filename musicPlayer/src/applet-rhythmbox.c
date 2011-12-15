@@ -373,6 +373,7 @@ void cd_musicplayer_register_rhythmbox_handler (void)
 		pHandler->appclass = "rhythmbox";
 		pHandler->launch = "rhythmbox";
 		pHandler->cMprisService = "org.gnome.Rhythmbox";
+		pHandler->cMpris2Service = "org.mpris.MediaPlayer2.rhythmbox3";
 		pHandler->path = "/org/gnome/Rhythmbox/Player";
 		pHandler->interface = "org.gnome.Rhythmbox.Player";
 		pHandler->path2 = "/org/gnome/Rhythmbox/Shell";

@@ -440,6 +440,7 @@ void cd_musicplayer_register_audacious_handler (void)
 	pHandler->appclass = "audacious";  // desktop file is audasious2.desktop, and command is audacious2, but audacious also exists, and the class is Audacious ... this is really not serious.
 	pHandler->launch = "audacious";
 	pHandler->cMprisService = "org.mpris.audacious";
+	pHandler->cMpris2Service = "org.mpris.MediaPlayer2.audacious";
 	pHandler->bSeparateAcquisition = FALSE;
 	pHandler->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_STOP | PLAYER_JUMPBOX | PLAYER_SHUFFLE | PLAYER_REPEAT | PLAYER_ENQUEUE | PLAYER_VOLUME;
 	pHandler->iLevel = PLAYER_GOOD;
