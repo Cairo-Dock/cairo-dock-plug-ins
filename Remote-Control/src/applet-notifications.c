@@ -493,17 +493,21 @@ static void _render_cairo (CairoContainer *pContainer, cairo_t *pCairoContext)
 	
 	if (myData.pArrowImage->pSurface != NULL)
 	{
-		double fFrameWidth = myData.pArrowImage->iWidth;
-		double fFrameHeight = myData.pArrowImage->iHeight;
-		
+		double fFrameWidth, fFrameHeight;
 		double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du prompt.
 		if (pContainer->bIsHorizontal)
 		{
+			fFrameWidth = MIN (myData.pArrowImage->iWidth, pContainer->iWidth);
+			fFrameHeight = MIN (myData.pArrowImage->iHeight, pContainer->iHeight);
+			
 			fDockOffsetX = (pContainer->iWidth - fFrameWidth) / 2;
 			fDockOffsetY = (pContainer->iHeight - fFrameHeight) / 2;
 		}
 		else
 		{
+			fFrameWidth = MIN (myData.pArrowImage->iWidth, pContainer->iHeight);
+			fFrameHeight = MIN (myData.pArrowImage->iHeight, pContainer->iWidth);
+			
 			fDockOffsetY = (pContainer->iWidth - fFrameWidth) / 2;
 			fDockOffsetX = (pContainer->iHeight - fFrameHeight) / 2;
 		}
@@ -513,7 +517,8 @@ static void _render_cairo (CairoContainer *pContainer, cairo_t *pCairoContext)
 		if (fAlpha != 0)
 		{
 			cairo_translate (pCairoContext, fDockOffsetX, fDockOffsetY);
-			cairo_dock_draw_surface (pCairoContext, myData.pArrowImage->pSurface, fFrameWidth, fFrameHeight, pContainer->bDirectionUp, pContainer->bIsHorizontal, fAlpha);
+			cairo_scale (pCairoContext, fFrameWidth / myData.pArrowImage->iWidth, fFrameHeight / myData.pArrowImage->iHeight);
+			cairo_dock_draw_surface (pCairoContext, myData.pArrowImage->pSurface, myData.pArrowImage->iWidth, myData.pArrowImage->iHeight, pContainer->bDirectionUp, pContainer->bIsHorizontal, fAlpha);
 		}
 	}
 }
@@ -530,6 +535,9 @@ static void _render_opengl (CairoContainer *pContainer)
 	{
 		double fFrameWidth = myData.pArrowImage->iWidth;
 		double fFrameHeight = myData.pArrowImage->iHeight;
+		
+		fFrameWidth = MIN (myData.pArrowImage->iWidth, pContainer->iWidth);
+		fFrameHeight = MIN (myData.pArrowImage->iHeight, pContainer->iHeight);
 		
 		double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du prompt.
 		fDockOffsetX = (pContainer->iWidth - fFrameWidth) / 2;

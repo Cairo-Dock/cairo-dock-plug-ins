@@ -27,7 +27,7 @@
 #include "applet-session.h"
 
 
-static void _cd_do_numberize_icons (void)
+void cd_do_numberize_icons (CairoDock *pDock)
 {
 	int n = 0;
 	int iWidth, iHeight;
@@ -36,7 +36,7 @@ static void _cd_do_numberize_icons (void)
 	cairo_surface_t *pSurface;
 	Icon *pIcon;
 	GList *ic;
-	for (ic = myData.pCurrentDock->icons; ic != NULL && n < 10; ic = ic->next)
+	for (ic = pDock->icons; ic != NULL && n < 10; ic = ic->next)
 	{
 		pIcon = ic->data;
 		if (! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
@@ -53,14 +53,12 @@ static void _cd_do_numberize_icons (void)
 	}
 }
 
-static void _cd_do_remove_icons_number (void)
+void cd_do_remove_icons_number (CairoDock *pDock)
 {
-	if (!myData.pCurrentDock)
-		return;
 	int n = 0;
 	Icon *pIcon;
 	GList *ic;
-	for (ic = myData.pCurrentDock->icons; ic != NULL && n < 10; ic = ic->next)
+	for (ic = pDock->icons; ic != NULL && n < 10; ic = ic->next)
 	{
 		pIcon = ic->data;
 		if (! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
@@ -74,8 +72,11 @@ static void _cd_do_remove_icons_number (void)
 
 void cd_do_open_session (void)
 {
-	if (cd_do_session_is_running ())  // session already running
+	if (cd_do_session_is_running ())  // session already running, noting to do
 		return;
+	
+	if (! cd_do_session_is_off ())  // session not yet closed, close it first to reset the state.
+		cd_do_exit_session ();
 	
 	// wait for keyboard input.
 	cairo_dock_register_notification_on_object (&myContainersMgr,
@@ -105,7 +106,7 @@ void cd_do_open_session (void)
 	cd_do_change_current_icon (pIcon, pDock);
 	
 	// show the number of the 10 first icons
-	_cd_do_numberize_icons ();
+	cd_do_numberize_icons (pDock);
 	
 	// show the dock.
 	myData.bIgnoreIconState = TRUE;
@@ -160,19 +161,19 @@ void cd_do_close_session (void)
 		myData.pCurrentIcon = NULL;
 	}
 	
+	myData.iPreviouslyActiveWindow = 0;
+	
 	if (myData.pCurrentDock != NULL)
 	{
 		cairo_dock_emit_leave_signal (CAIRO_CONTAINER (myData.pCurrentDock));
+		
+		cd_do_remove_icons_number (myData.pCurrentDock);
+		
+		// launch closing animation.
+		myData.iCloseTime = myConfig.iCloseDuration;
+		cairo_dock_launch_animation (CAIRO_CONTAINER (myData.pCurrentDock));
 	}
 	
-	myData.iPreviouslyActiveWindow = 0;
-	
-	_cd_do_remove_icons_number ();
-	
-	// launch closing animation.
-	myData.iCloseTime = myConfig.iCloseDuration;
-	if (myData.pCurrentDock != NULL)
-		cairo_dock_launch_animation (CAIRO_CONTAINER (myData.pCurrentDock));
 	cairo_dock_freeze_docks (FALSE);
 	
 	myData.iSessionState = CD_SESSION_CLOSING;

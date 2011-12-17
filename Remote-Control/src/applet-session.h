@@ -24,6 +24,11 @@
 #include "applet-struct.h"
 
 
+void cd_do_numberize_icons (CairoDock *pDock);
+
+void cd_do_remove_icons_number (CairoDock *pDock);
+
+
 void cd_do_open_session (void);
 
 void cd_do_close_session (void);

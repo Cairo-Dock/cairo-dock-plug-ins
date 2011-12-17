@@ -149,6 +149,9 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 	{
 		g_print ("leave this dock\n");
 		cairo_dock_emit_leave_signal (CAIRO_CONTAINER (myData.pCurrentDock));
+		
+		cd_do_remove_icons_number (myData.pCurrentDock);
+		
 		cairo_dock_remove_notification_func_on_object (myData.pCurrentDock, NOTIFICATION_RENDER_DOCK, (CairoDockNotificationFunc) cd_do_render, NULL);
 		cairo_dock_remove_notification_func_on_object (myData.pCurrentDock, NOTIFICATION_UPDATE_DOCK, (CairoDockNotificationFunc) cd_do_update_container, NULL);
 		cairo_dock_remove_notification_func_on_object (myData.pCurrentDock, NOTIFICATION_CLICK_ICON, (CairoDockNotificationFunc) cd_do_on_click, NULL);
@@ -157,28 +160,27 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 	if (pDock != NULL && pDock != myData.pCurrentDock)  // on montre le nouveau dock
 	{
 		g_print (" dock %p <- %p\n", myData.pCurrentDock, pDock);
-		if (pDock != NULL)
+		if (pDock->iRefCount > 0)
 		{
-			if (pDock->iRefCount > 0)
+			CairoDock *pParentDock = NULL;
+			Icon *pPointingIcon = cairo_dock_search_icon_pointing_on_dock (pDock, &pParentDock);
+			if (pPointingIcon != NULL)
 			{
-				CairoDock *pParentDock = NULL;
-				Icon *pPointingIcon = cairo_dock_search_icon_pointing_on_dock (pDock, &pParentDock);
-				if (pPointingIcon != NULL)
-				{
-					cairo_dock_show_subdock (pPointingIcon, pParentDock);  // utile pour le montrage des sous-docks au clic.
-				}
+				cairo_dock_show_subdock (pPointingIcon, pParentDock);  // utile pour le montrage des sous-docks au clic.
 			}
-			else
-			{
-				/// utile de faire ca si on entre dedans ?...
-				g_print ("enter this dock\n");
-				if (pDock->bAutoHide)
-					cairo_dock_start_showing (pDock);
-				if (pDock->iVisibility == CAIRO_DOCK_VISI_KEEP_BELOW)
-					cairo_dock_pop_up (pDock);
-			}
-			cairo_dock_emit_enter_signal (CAIRO_CONTAINER (pDock));
 		}
+		else
+		{
+			/// utile de faire ca si on entre dedans ?...
+			g_print ("enter this dock\n");
+			if (pDock->bAutoHide)
+				cairo_dock_start_showing (pDock);
+			if (pDock->iVisibility == CAIRO_DOCK_VISI_KEEP_BELOW)
+				cairo_dock_pop_up (pDock);
+		}
+		cairo_dock_emit_enter_signal (CAIRO_CONTAINER (pDock));
+		
+		cd_do_numberize_icons (pDock);
 		
 		cairo_dock_register_notification_on_object (pDock,
 			NOTIFICATION_UPDATE_DOCK,
@@ -196,6 +198,8 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 			NOTIFICATION_MIDDLE_CLICK_ICON,
 			(CairoDockNotificationFunc) cd_do_on_click,
 			CAIRO_DOCK_RUN_AFTER, NULL);
+		
+		
 	}
 	if (pDock != NULL)
 	{
