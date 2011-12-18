@@ -12,7 +12,7 @@ dock name =
 #s Name of the icon as it will appear in its caption in the dock:
 #{Leave empty to use the default sound card.}
 name = 
- #v
+#v
 sep_display=
 
 icon=
