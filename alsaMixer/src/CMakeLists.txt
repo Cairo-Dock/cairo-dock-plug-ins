@@ -36,3 +36,4 @@ target_link_libraries (${PACKAGE_ALSA_MIXER}
 ########### install files ###############
 
 install(TARGETS ${PACKAGE_ALSA_MIXER} DESTINATION ${pluginsdir})
+

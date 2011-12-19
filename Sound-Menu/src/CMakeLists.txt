@@ -25,7 +25,7 @@ add_definitions (-DMY_APPLET_USER_DATA_DIR="Sound-Menu")
 add_definitions (-DMY_APPLET_VERSION="${VERSION_SOUND_MENU}")
 add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_SOUND_MENU}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
-add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
+add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 add_definitions (-DINDICATOR_OLD_NAMES=${INDICATOR_OLD_NAMES})
 ### uncomment the following line to allow multi-instance applet.
 #add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
