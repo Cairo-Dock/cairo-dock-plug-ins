@@ -3,6 +3,6 @@
 
 install (FILES ${CMAKE_CURRENT_BINARY_DIR}/Application-Menu.conf
 	preview.jpg
-	icon.png
+	icon.svg
 	DESTINATION ${application_menudatadir})
 
