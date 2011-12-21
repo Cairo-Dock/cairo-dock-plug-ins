@@ -278,17 +278,12 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 						myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc) cd_musiplayer_set_cover_if_present, GINT_TO_POINTER (TRUE));  // TRUE <=> tester la taille contante.
 					}
 				}
-				else if (myData.bForceCoverNeedsTest)
+				else // some players copy covers on their cache folder but it takes a few time...
 				{
 					cd_debug ("MP - test cover forced");
 					myData.iCurrentFileSize = -1; // force to not use empty file
 					myData.iNbCheckFile = 0;
 					myData.iSidCheckCover = g_timeout_add (50, (GSourceFunc) cd_musiplayer_set_cover_if_present, GINT_TO_POINTER (TRUE));
-				}
-				else  // la couverture est deja disponible, on peut tester tout de suite.
-				{
-					cd_debug ("MP - test cover not forced");
-					cd_musiplayer_set_cover_if_present (FALSE);  // FALSE <=> tester seulement l'existence du fichier.
 				}
 			}
 			cd_debug ("MP - cover_exist : %d", myData.cover_exist);

@@ -167,8 +167,7 @@ struct _AppletData {
 	gboolean cover_exist;
 	gint iNbCheckCover;
 	gboolean bCoverNeedsTest;
-	gboolean bForceCoverNeedsTest; // some players copy covers on their cache folder but it takes a few time...
-	
+
 	// pochette 3D
 	gint iCoverTransition;
 	GLuint iPrevTextureCover;

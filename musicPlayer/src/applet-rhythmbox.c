@@ -330,60 +330,32 @@ static void cd_rhythmbox_start (void)
 	cd_musicplayer_update_icon (TRUE);
 }
 
-/*
- * We can't test if a bus is available because the dock is launched after.
- * Or we have to connect to a bus before and react if there is something after...
- *  but it's a bit annoying because we have to register the handler and then disable it (e.g. MPRIS vs MPRIS2)!
- * But with the version 2.90 of RB, we have to use MPRIS2 because rhythmbox-client is unavailable.
- */
-static gboolean _is_MPRIS2_available (void)
-{
-	gchar *cResult = cairo_dock_launch_command_sync ("which rhythmbox-client");
-	gboolean bResult = ! (cResult != NULL && *cResult == '/');
-	g_free (cResult);
-	return bResult;
-}
-
 /* On enregistre notre lecteur.
  */
 void cd_musicplayer_register_rhythmbox_handler (void)
 {
-	if (_is_MPRIS2_available ())
-	{
-		cd_debug ("MP - MPRIS2 for RB seems to be available");
-		MusicPlayerHandler *pHandler = cd_mpris_new_handler ();
-		pHandler->cMprisService = "org.mpris.MediaPlayer2.rhythmbox";
-		pHandler->appclass = "rhythmbox";
-		pHandler->launch = "rhythmbox";
-		pHandler->name = "Rhythmbox";
-		cd_musicplayer_register_my_handler (pHandler);
-		myData.bForceCoverNeedsTest = TRUE; // it seems RB copy the cover on its cache but it takes a few time...
-	}
-	else
-	{
-		cd_debug ("MP - Used RB DBus methods");
-		MusicPlayerHandler *pHandler = g_new0 (MusicPlayerHandler, 1);
-		pHandler->name = "Rhythmbox";
-		pHandler->get_data = NULL;  // rien a faire vu que l'echange de donnees se fait entierement avec les proxys DBus.
-		pHandler->stop = NULL;  // signals are disconnected when the proxy is destroyed.
-		pHandler->start = cd_rhythmbox_start;  // renseigne les proprietes DBus et se connecte au bus.
-		pHandler->control = cd_rhythmbox_control;
-		pHandler->get_cover = cd_rhythmbox_get_cover_path;
-		
-		pHandler->appclass = "rhythmbox";
-		pHandler->launch = "rhythmbox";
-		pHandler->cMprisService = "org.gnome.Rhythmbox";
-		pHandler->cMpris2Service = "org.mpris.MediaPlayer2.rhythmbox3";
-		pHandler->path = "/org/gnome/Rhythmbox/Player";
-		pHandler->interface = "org.gnome.Rhythmbox.Player";
-		pHandler->path2 = "/org/gnome/Rhythmbox/Shell";
-		pHandler->interface2 = "org.gnome.Rhythmbox.Shell";
-		
-		pHandler->cCoverDir = g_strdup_printf ("%s/.cache/rhythmbox/covers", g_getenv ("HOME"));
-		pHandler->bSeparateAcquisition = FALSE;
-		pHandler->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_ENQUEUE;
-		pHandler->iLevel = PLAYER_EXCELLENT;
-		
-		cd_musicplayer_register_my_handler(pHandler);
-	}
+	cd_debug ("MP - Used RB DBus methods");
+	MusicPlayerHandler *pHandler = g_new0 (MusicPlayerHandler, 1);
+	pHandler->name = "Rhythmbox";
+	pHandler->get_data = NULL;  // rien a faire vu que l'echange de donnees se fait entierement avec les proxys DBus.
+	pHandler->stop = NULL;  // signals are disconnected when the proxy is destroyed.
+	pHandler->start = cd_rhythmbox_start;  // renseigne les proprietes DBus et se connecte au bus.
+	pHandler->control = cd_rhythmbox_control;
+	pHandler->get_cover = cd_rhythmbox_get_cover_path;
+	
+	pHandler->appclass = "rhythmbox";
+	pHandler->launch = "rhythmbox";
+	pHandler->cMprisService = "org.mpris.MediaPlayer2.rhythmbox"; // 2.90.1~20110908
+	pHandler->cMpris2Service = "org.mpris.MediaPlayer2.rhythmbox3"; // 2.90.1~20111126
+	pHandler->path = "/org/gnome/Rhythmbox/Player"; // <= 0.13
+	pHandler->interface = "org.gnome.Rhythmbox.Player";
+	pHandler->path2 = "/org/gnome/Rhythmbox/Shell";
+	pHandler->interface2 = "org.gnome.Rhythmbox.Shell";
+	
+	pHandler->cCoverDir = g_strdup_printf ("%s/.cache/rhythmbox/covers", g_getenv ("HOME"));
+	pHandler->bSeparateAcquisition = FALSE;
+	pHandler->iPlayerControls = PLAYER_PREVIOUS | PLAYER_PLAY_PAUSE | PLAYER_NEXT | PLAYER_ENQUEUE;
+	pHandler->iLevel = PLAYER_EXCELLENT;
+	
+	cd_musicplayer_register_my_handler(pHandler);
 }
