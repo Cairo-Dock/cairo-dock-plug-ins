@@ -205,7 +205,10 @@ add_subdirectory (Composite-Manager)
 ############# DBUS #################
 message (STATUS "> DBus:")
 message (STATUS " * Python:")
-find_program (PYTHON_EXECUTABLE python)
+find_program (PYTHON_EXECUTABLE python2)  # if python v3 is the default python interpreter (e.g. on ArchLinux), python2 program should exist and we have to use it...
+if ("${PYTHON_EXECUTABLE}" STREQUAL "" OR NOT EXISTS ${PYTHON_EXECUTABLE})
+	find_program (PYTHON_EXECUTABLE python)
+endif()
 EXECUTE_PROCESS(COMMAND ${PYTHON_EXECUTABLE} -c "import sys; print sys.version" OUTPUT_VARIABLE PYTHON_VERSION)
 if ("${PYTHON_VERSION}" STREQUAL "")
 	message (STATUS "Could not find Python, won't install Python interface.")
@@ -215,6 +218,7 @@ if ("${PYTHON_VERSION}" STREQUAL "")
 else()
 	STRING (REGEX REPLACE "\n" "" PYTHON_VERSION ${PYTHON_VERSION})
 	message (STATUS "   Python Version: ${PYTHON_VERSION}")
+	message (STATUS "   Python executable program: ${PYTHON_EXECUTABLE}")
 	GET_FILENAME_COMPONENT(DEBIAN_VERSION /etc/debian_version ABSOLUTE)
 	if (EXISTS ${DEBIAN_VERSION})
 		message (STATUS "   will use '--install-layout deb' with 'python setup.py install'")
@@ -526,7 +530,7 @@ else()
 endif()
 if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1")
 	set (INDICATOR_APPLICATIONADDED_HAS_HINT 1) # now the ApplicationAdded signal (Status-Notifier) has a new parameter (hint) => https://code.launchpad.net/~ted/indicator-application/name-hints/+merge/67213
-	set (INDICATOR_NEW_VERSION 1) # a few things have changed (new bus names, new functions, etc.)
+	set (INDICATOR_NEW_VERSION 1)  # oneiric and newer
 else()
 	if ("${gtkversion}" STREQUAL "2")
 		pkg_check_modules (INDICATOR_APPLET indicator)
@@ -557,14 +561,35 @@ if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1" AND "${DBUSMENU_FOUND}" STREQUAL "1
 	STRING (REGEX REPLACE "-.*" "" DBUSMENU_NANO "${DBUSMENU_NANO}")
 	# message (STATUS "DBUSMENU_NANO  : ${DBUSMENU_NANO}")
 
-	if ("${INDICATOR_NEW_VERSION}" STREQUAL "1")
-		execute_process(
-			COMMAND pkg-config --variable=iconsdir indicator-0.4
-			OUTPUT_VARIABLE INDICATORICONSDIR)
+	STRING (REGEX REPLACE "\\..*" "" INDICATOR_MAJOR "${INDICATOR_APPLET_VERSION}")
+	# message (STATUS "INDICATOR_MAJOR : ${INDICATOR_MAJOR}")
+	STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" INDICATOR_MINOR "${INDICATOR_APPLET_VERSION}")  # 0.1.7 => 1.7
+	STRING (REGEX REPLACE "\\.[0-9]*" "" INDICATOR_MINOR "${INDICATOR_MINOR}")
+	# message (STATUS "INDICATOR_MINOR : ${INDICATOR_MINOR}")
+	STRING (REGEX REPLACE ".*\\." "" INDICATOR_NANO "${INDICATOR_APPLET_VERSION}")
+	STRING (REGEX REPLACE "-.*" "" INDICATOR_NANO "${INDICATOR_NANO}")
+	# message (STATUS "INDICATOR_NANO  : ${INDICATOR_NANO}")
+
+	if ("${INDICATOR_NEW_VERSION}" STREQUAL "1")  # oneiric and newer
+		if ("${gtkversion}" STREQUAL "2")
+			execute_process(
+				COMMAND pkg-config --variable=iconsdir indicator-0.4
+				OUTPUT_VARIABLE INDICATORICONSDIR)
+		else()
+			execute_process(
+				COMMAND pkg-config --variable=iconsdir indicator3-0.4
+				OUTPUT_VARIABLE INDICATORICONSDIR)
+		endif()
 	else()
-		execute_process(
-			COMMAND pkg-config --variable=iconsdir indicator
-			OUTPUT_VARIABLE INDICATORICONSDIR)
+		if ("${gtkversion}" STREQUAL "2")
+			execute_process(
+				COMMAND pkg-config --variable=iconsdir indicator
+				OUTPUT_VARIABLE INDICATORICONSDIR)
+		else()
+			execute_process(
+				COMMAND pkg-config --variable=iconsdir indicator3
+				OUTPUT_VARIABLE INDICATORICONSDIR)
+		endif()
 	endif()
 	STRING (REGEX REPLACE "\n" "" INDICATORICONSDIR ${INDICATORICONSDIR})  # la commande rajoute un retour chariot ...
 	add_subdirectory (Indicator-applet)
@@ -794,7 +819,7 @@ if (NOT "${DISTRO_ID}" STREQUAL "")
 	message (STATUS "  DISTRO_ID: ${DISTRO_ID}, DISTRO_RELEASE: ${DISTRO_RELEASE}")
 endif()
 
-############# INDICATOR_NAME #################
+############# INDICATOR-NAME #################
 message (STATUS "> Indicator Names:")
 set (INDICATOR_OLD_NAMES 0)
 if ("${force_old_indicator_names}" STREQUAL "yes")
@@ -807,14 +832,14 @@ if ("${force_old_indicator_names}" STREQUAL "yes")
 		#~ set (INDICATOR_OLD_NAMES 1)
 		#~ message (STATUS "  Indicators: use old Ayatana Dbus names")
 	#~ endif()
-elseif (NOT "${INDICATOR_NEW_VERSION}" STREQUAL "1")
-	set (INDICATOR_OLD_NAMES 1)
+elseif (NOT (${INDICATOR_MAJOR} GREATER 0 OR ${INDICATOR_MINOR} GREATER 3 OR ${INDICATOR_NANO} GREATER 20))
+	set (INDICATOR_OLD_NAMES 1)  # maverick or older
 	message (STATUS "  Indicators: use old Ayatana Dbus names")
 endif()
 
 ############# APPLICATION-MENU #################
 set (with_application_menu "no")
-if ("${enable-application-menu}" STREQUAL "yes" AND "${INDICATOR_NEW_VERSION}" STREQUAL "1" AND "${DBUSMENU_FOUND}" AND "${DBUSMENU_GTK_FOUND}")
+if ("${enable-application-menu}" STREQUAL "yes" AND "${INDICATOR_OLD_NAMES}" STREQUAL "0" AND "${DBUSMENU_FOUND}" AND "${DBUSMENU_GTK_FOUND}")  # currently only supported with new name of the indicator module and with newer version of dbusmenu
 	message (STATUS "> Application-Menu:")
 	set (GETTEXT_APPLICATION_MENU ${GETTEXT_PLUGINS})
 	set (VERSION_APPLICATION_MENU "0.0.1")
@@ -828,7 +853,7 @@ endif()
 ############# MEMENU #################
 set (with_me_menu "no")
 if ("${INDICATOR_NEW_VERSION}" STREQUAL "1" AND NOT "${enable-memenu}" STREQUAL "yes")
-	message (STATUS "> MeMenu: this applet has been automatically merged with Messaging-Menu")
+	message (STATUS "> MeMenu: this applet has been automatically merged with Messaging-Menu")  # oneiric or newer
 elseif ("${with_indicator}" STREQUAL "yes" AND "${IDO_FOUND}")
 	message (STATUS "> MeMenu:")
 	set (GETTEXT_MEMENU ${GETTEXT_PLUGINS})
@@ -1242,12 +1267,11 @@ message (STATUS " - with KDE support:               ${with_kde_integration}")
 message (STATUS " - with XFCE support:              ${with_xfce_integration}")
 message (STATUS " Plug-ins:")
 message (STATUS " - with Alsa-Mixer applet:         ${with_alsa}")
-message (STATUS " - with Application-Menu applet:   ${with_application_menu}")
 message (STATUS " - with GMenu applet:              ${with_gmenu}")
 message (STATUS " - with Impulse applet:            ${with_impulse}")
 message (STATUS " - with Keyboard-indicator applet: ${with_keyboard_indicator}")
 message (STATUS " - with Mail applet:               ${with_mail}")
-if (NOT "${INDICATOR_NEW_VERSION}" STREQUAL "1" OR "${enable-memenu}" STREQUAL "yes")
+if (NOT "${INDICATOR_NEW_VERSION}" STREQUAL "1" OR "${enable-memenu}" STREQUAL "yes")  # oneiric or newer
 message (STATUS " - with Me-Menu applet applet:     ${with_me_menu}")
 endif()
 message (STATUS " - with Messaging-Menu applet:     ${with_messaging_menu}")
@@ -1269,6 +1293,7 @@ message (STATUS " - with Mono interface:            ${with_mono}")
 message (STATUS " - with Vala interface:            ${with_vala}")
 message (STATUS " - with Vala Translator (valac):   ${with_valac}")
 message (STATUS "Unstable:")
+message (STATUS " - with Application-Menu applet:   ${with_application_menu}")
 message (STATUS " - with Disks applet:              ${with_disks}")
 message (STATUS " - with Doncky applet:             ${with_doncky}")
 message (STATUS " - with KDE experimental support:  ${with_kde_integration2}")

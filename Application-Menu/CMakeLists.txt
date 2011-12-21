@@ -1,3 +1,6 @@
 add_subdirectory(src)
 add_subdirectory(data)
-add_subdirectory(registrar)
+
+if ("${PYTHON_FOUND}" STREQUAL "TRUE")
+	add_subdirectory(registrar)
+endif()
