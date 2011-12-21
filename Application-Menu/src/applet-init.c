@@ -48,12 +48,17 @@ CD_APPLET_INIT_BEGIN
 	
 	cairo_dock_register_notification_on_object (&myDesktopMgr,
 		NOTIFICATION_WINDOW_ACTIVATED, (CairoDockNotificationFunc) cd_app_menu_on_active_window_changed, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification_on_object (&myDesktopMgr,
+		NOTIFICATION_WINDOW_PROPERTY_CHANGED,
+		(CairoDockNotificationFunc) cd_app_menu_on_property_changed,
+		CAIRO_DOCK_RUN_AFTER, NULL);
 	
 	// detect the registrar (launch it if not present).
 	cd_app_detect_registrar ();
 	
 	// mouse events
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
 	
@@ -70,11 +75,15 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
 		NOTIFICATION_WINDOW_ACTIVATED,
 		(CairoDockNotificationFunc) cd_app_menu_on_active_window_changed, NULL);
-		
+	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
+		NOTIFICATION_WINDOW_PROPERTY_CHANGED,
+		(CairoDockNotificationFunc) cd_app_menu_on_property_changed, NULL);
+	
 	cd_app_disconnect_from_registrar ();
 
 	// mouse events
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
 	

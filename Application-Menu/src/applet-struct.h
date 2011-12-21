@@ -21,6 +21,7 @@
 #define  __CD_APPLET_STRUCT__
 
 #include <cairo-dock.h>
+#include <gtk/gtk.h>
 
 #if (GTK_MAJOR_VERSION < 3)
 #include <libdbusmenu-gtk/menuitem.h>
@@ -33,8 +34,8 @@
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
-	gchar *cDefaultIcon;
 	gchar *cShortkey;
+	gboolean bNoWindowBorder;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.

@@ -37,6 +37,8 @@ CD_APPLET_ON_BUILD_MENU_H
 
 gboolean cd_app_menu_on_active_window_changed (gpointer pUserData, Window *XActiveWindow);
 
+gboolean cd_app_menu_on_property_changed (gpointer data, Window Xid, Atom aProperty, int iState);
+
 
 void cd_app_menu_on_keybinding_pull (const gchar *keystring, CairoDockModuleInstance *myApplet);
 

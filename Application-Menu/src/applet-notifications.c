@@ -22,7 +22,6 @@
 #include "gdk/gdkx.h"
 
 #include "applet-struct.h"
-#include "applet-menu.h"
 #include "applet-app.h"
 #include "applet-notifications.h"
 
@@ -31,7 +30,7 @@ static void _show_menu (void)
 {
 	if (myData.pMenu != NULL)
 	{
-		cairo_dock_popup_menu_on_icon (myData.pMenu, myIcon, myContainer);
+		cairo_dock_popup_menu_on_icon (GTK_WIDGET (myData.pMenu), myIcon, myContainer);
 	}
 	else  /// either show a message, or remember the user demand, so that we pop the menu as soon as we get it...
 	{
@@ -47,7 +46,7 @@ CD_APPLET_ON_CLICK_END
 
 //\___________ Same as ON_CLICK, but with middle-click.
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	/// some action ?...
+	/// set the window behind all the others...
 	
 CD_APPLET_ON_MIDDLE_CLICK_END
 
@@ -96,4 +95,19 @@ gboolean cd_app_menu_on_active_window_changed (gpointer pUserData, Window *XActi
 		cd_app_menu_set_current_window (*XActiveWindow);
 	}
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+gboolean cd_app_menu_on_property_changed (gpointer data, Window Xid, Atom aProperty, int iState)
+{
+	if (Xid != 0 && Xid == myData.iCurrentWindow)
+	{
+		Display *dpy = cairo_dock_get_Xdisplay();
+		Atom aNetWmState = XInternAtom (dpy, "_NET_WM_STATE", False);
+		if (aProperty == aNetWmState)
+		{
+			Icon *icon = cairo_dock_get_icon_with_Xid (Xid);
+			if (icon)
+				cd_app_menu_set_window_border (Xid, ! icon->bIsMaximized);
+		}
+	}
 }

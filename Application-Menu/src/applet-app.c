@@ -27,6 +27,8 @@
 #include <X11/Xutil.h>
 #include <X11/Xatom.h>
 
+#include "MwmUtil.h"
+
 #include "applet-struct.h"
 #include "applet-app.h"
 
@@ -37,6 +39,21 @@
 static DBusGProxyCall *s_pDetectRegistrarCall = NULL;
 static DBusGProxyCall *s_pGetMenuCall = NULL;
 
+
+void cd_app_menu_set_window_border (Window Xid, gboolean bWithBorder)
+{
+	Display *dpy = cairo_dock_get_Xdisplay();
+	MwmHints mwmhints;
+	Atom prop;
+	memset(&mwmhints, 0, sizeof(mwmhints));
+	prop = XInternAtom(dpy, "_MOTIF_WM_HINTS", False);
+	mwmhints.flags = MWM_HINTS_DECORATIONS;
+	mwmhints.decorations = bWithBorder;
+	XChangeProperty (dpy, Xid, prop,
+		prop, 32, PropModeReplace,
+		(unsigned char *) &mwmhints,
+		PROP_MWM_HINTS_ELEMENTS);
+}
 
 static void _get_window_allowed_actions (Window Xid)
 {
@@ -55,7 +72,6 @@ static void _get_window_allowed_actions (Window Xid)
 	XGetWindowProperty (dpy,
 		Xid, allowedActions, 0, G_MAXULONG, False, XA_ATOM,
 		&aReturnedType, &aReturnedFormat, &iBufferNbElements, &iLeftBytes, (guchar **)&pXStateBuffer);
-	
 	
 	gboolean bIsInState = FALSE;
 	if (iBufferNbElements > 0)
@@ -183,6 +199,10 @@ void cd_app_disconnect_from_registrar (void)
 	{
 		
 	}
+	
+	
+	/// TODO: set back the window border of maximized windows...
+	
 }
 
 
@@ -227,6 +247,9 @@ void cd_app_menu_set_current_window (Window iActiveWindow)
 	g_print ("%s (%ld)\n", __func__, iActiveWindow);
 	if (iActiveWindow != myData.iCurrentWindow)
 	{
+		//cd_app_menu_set_window_border (myData.iCurrentWindow, TRUE);
+		//cd_app_menu_set_window_border (iActiveWindow, FALSE);
+		
 		myData.iCurrentWindow = iActiveWindow;
 		
 		// destroy the current menu

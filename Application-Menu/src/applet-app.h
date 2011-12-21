@@ -23,6 +23,9 @@
 #include <cairo-dock.h>
 
 
+void cd_app_menu_set_window_border (Window Xid, gboolean bWithBorder);
+
+
 void cd_app_detect_registrar (void);
 
 void cd_app_disconnect_from_registrar (void);
