@@ -1014,7 +1014,7 @@ gboolean cd_dbus_main_add_temporary_icon (dbusMainObject *pDbusCallback, GHashTa
 			fOrder);
 		pIcon->iTrueType = CAIRO_DOCK_ICON_TYPE_CONTAINER;
 		cairo_dock_set_subdock_content_renderer (pIcon, iSubdockViewType);
-		pIcon->pSubDock = cairo_dock_create_subdock_from_scratch (NULL, pIcon->cName, pParentDock);  // NULL <=> default sub-docks view.
+		pIcon->pSubDock = cairo_dock_create_subdock (pIcon->cName, NULL, pParentDock, NULL);  // NULL <=> default sub-docks view.
 	}
 	else if (strcmp (cType, "Separator") == 0)
 	{

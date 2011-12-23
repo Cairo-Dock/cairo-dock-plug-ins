@@ -269,7 +269,7 @@ static void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 	}
 	
 	pDock->fMagnitudeMax = my_fParaboleMagnitude;
-	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth, pDock->iScrollOffset);
+	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth);
 	
 	int iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., 0));
 	GList* ic;

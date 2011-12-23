@@ -503,7 +503,7 @@ static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 	pDock->iDecorationsHeight = 0;
 	pDock->iDecorationsWidth  = 0;
 	// On affecte ca aussi au cas ou.
-	pDock->fFlatDockWidth = pDock->iMaxDockWidth;
+	///pDock->fFlatDockWidth = pDock->iMaxDockWidth;
 	pDock->fMagnitudeMax = my_diapo_simple_fScaleMax / (1+myIconsParam.fAmplitude);
 	
 	pDock->iActiveWidth = pDock->iMaxDockWidth;
@@ -1763,7 +1763,8 @@ void cd_rendering_set_subdock_position_slide (Icon *pPointedIcon, CairoDock *pDo
 	CDSlideData *pData = pSubDock->pRendererData;
 	g_return_if_fail (pData != NULL);
 	
-	int iX = pPointedIcon->fXAtRest - (pDock->fFlatDockWidth - pDock->iMaxDockWidth) / 2 + pPointedIcon->fWidth / 2 + (pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2);
+	///int iX = pPointedIcon->fXAtRest - (pDock->fFlatDockWidth - pDock->iMaxDockWidth) / 2 + pPointedIcon->fWidth / 2 + (pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2);
+	int iX = pPointedIcon->fXDraw + pPointedIcon->fWidth / 2 + (pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2);
 	if (pSubDock->container.bIsHorizontal == pDock->container.bIsHorizontal)
 	{
 		pSubDock->fAlign = 0.5;

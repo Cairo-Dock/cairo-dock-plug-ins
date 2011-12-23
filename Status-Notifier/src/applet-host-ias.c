@@ -255,7 +255,7 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 	//\______________________ get the applications list from the service.
 	GPtrArray *pApplications = NULL;
 	GError *erreur = NULL;
-	GType g_type_ptrarray = g_type_ptrarray = dbus_g_type_get_collection ("GPtrArray",
+	GType g_type_ptrarray = dbus_g_type_get_collection ("GPtrArray",
 		dbus_g_type_get_struct("GValueArray",
 			G_TYPE_STRING,  // iconname
 			G_TYPE_INT,  // position
@@ -314,7 +314,7 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 			cAdress = g_value_get_string (v);
 		
 		v = g_value_array_get_nth (va, 3);
-		if (v && G_VALUE_HOLDS_BOXED (v))
+		if (v && G_VALUE_HOLDS (v, DBUS_TYPE_G_OBJECT_PATH))
 			cObjectPath = (gchar*)g_value_get_boxed (v);
 
 		/*cd_debug ("=== cObjectPath : %s", cObjectPath);

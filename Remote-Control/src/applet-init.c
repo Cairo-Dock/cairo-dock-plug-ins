@@ -32,7 +32,7 @@ CD_APPLET_DEFINE_BEGIN ("Remote-Control",
 	N_("This plug-in lets you control your dock from the keyboard\n"
 	"Press the shortcut (by default Super + Return), then either:\n"
 	" - press the number of the icon that you want to activate"
-	" - or use the arrows to navigate into the docks and sub-docks,\n"
+	" - or use the arrows to navigate into the docks and sub-docks (Ctrl + Page up/down to change to another main dock)\n"
 	" - or type the name of a launcher and press Tab to automatically jump to the next suitable launcher\n"
 	"Press Enter to click on the icon, Shift+Enter for Shift+click, Alt+Enter for middle click, and Ctrl+Enter for left click\n"
 	"Escape or the same shortkey will cancel."),

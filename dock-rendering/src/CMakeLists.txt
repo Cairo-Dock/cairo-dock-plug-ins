@@ -4,7 +4,7 @@
 SET(cd-rendering_LIB_SRCS
 	rendering-init.c 		rendering-init.h
 	rendering-config.c 		rendering-config.h
-	rendering-caroussel.c 		rendering-caroussel.h
+	#rendering-caroussel.c 		rendering-caroussel.h
 	rendering-parabole.c 		rendering-parabole.h
 	rendering-3D-plane.c 		rendering-3D-plane.h
 	rendering-rainbow.c 		rendering-rainbow.h

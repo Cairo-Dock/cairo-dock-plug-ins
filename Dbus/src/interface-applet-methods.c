@@ -668,7 +668,7 @@ gboolean cd_dbus_sub_applet_add_sub_icons (dbusSubApplet *pDbusSubApplet, const 
 				cairo_dock_set_icon_name (pInstance->pModule->pVisitCard->cModuleName, pIcon, pContainer);
 			if (cairo_dock_check_unique_subdock_name (pIcon))
 				cairo_dock_set_icon_name (pIcon->cName, pIcon, pContainer);
-			pIcon->pSubDock = cairo_dock_create_subdock_from_scratch (pIconsList, pIcon->cName, pInstance->pDock);
+			pIcon->pSubDock = cairo_dock_create_subdock (pIcon->cName, NULL, pInstance->pDock, pIconsList);
 			//cairo_dock_set_renderer (pIcon->pSubDock, cRenderer);
 			cairo_dock_update_dock_size (pIcon->pSubDock);
 		}
