@@ -100,5 +100,16 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#k Shortkey to pop-up the menu:
+#Y[Steal window menu;1;2;Steal window border;3;1;Steal window menu and border;1;3] Behavior
+#{The applet can steal the top border of maximized windows, in which case it will display the window control buttons.
+# The applet can steal the menu from the windows, in which case it will display a button to pop up the menu of the current window.}
+steal = 2
+
+#k Shortkey to pop up the menu
 shortkey = <Alt>F1
+
+#b Pop up the menu at mouse position
+menu on mouse = false
+
+#b Compact mode
+compact = false

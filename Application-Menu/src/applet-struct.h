@@ -34,8 +34,11 @@
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
-	gchar *cShortkey;
-	gboolean bNoWindowBorder;
+	gboolean bDisplayControls;  // steal the window top border
+	gboolean bDisplayMenu;  // steal the menu from the window
+	gboolean bCompactMode;  // TRUE = if bDisplayControls, display all control buttons on the icon
+	gchar *cShortkey;  // if bDisplayMenu, shortkey to pop up the menu
+	gboolean bMenuOnMouse;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
@@ -49,6 +52,7 @@ struct _AppletData {
 	DbusmenuGtkMenu *pMenu;
 	CairoKeyBinding *pKeyBinding;
 	guint iSidRenderIcon;
+	CairoDockImageBuffer defaultIcon;
 	} ;
 
 #endif

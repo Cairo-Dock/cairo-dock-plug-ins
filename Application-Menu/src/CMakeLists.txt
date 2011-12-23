@@ -7,6 +7,7 @@ SET(MODULE_SRCS
 	applet-config.c 			applet-config.h
 	applet-notifications.c 		applet-notifications.h
 	applet-app.c 				applet-app.h
+	applet-draw.c 				applet-draw.h
 )
 
 add_library(${PACKAGE_APPLICATION_MENU} SHARED ${MODULE_SRCS})

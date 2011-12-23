@@ -26,11 +26,25 @@
 #include "applet-notifications.h"
 
 
-static void _show_menu (void)
+static void _show_menu (gboolean bOnMouse)
 {
 	if (myData.pMenu != NULL)
 	{
-		cairo_dock_popup_menu_on_icon (GTK_WIDGET (myData.pMenu), myIcon, myContainer);
+		if (bOnMouse)
+		{
+			gtk_widget_show_all (GTK_WIDGET (myData.pMenu));
+			gtk_menu_popup (GTK_MENU (myData.pMenu),
+				NULL,
+				NULL,
+				(GtkMenuPositionFunc) NULL,
+				NULL,
+				0,
+				gtk_get_current_event_time ());
+		}
+		else
+		{
+			CD_APPLET_POPUP_MENU_ON_MY_ICON (GTK_WIDGET (myData.pMenu));
+		}
 	}
 	else  /// either show a message, or remember the user demand, so that we pop the menu as soon as we get it...
 	{
@@ -40,35 +54,47 @@ static void _show_menu (void)
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
 CD_APPLET_ON_CLICK_BEGIN
-	_show_menu ();
+	_show_menu (FALSE);
 CD_APPLET_ON_CLICK_END
 
 
 //\___________ Same as ON_CLICK, but with middle-click.
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	/// set the window behind all the others...
-	
+	// set the window behind all the others...
+	if (myData.iCurrentWindow != 0)
+		cairo_dock_lower_xwindow (myData.iCurrentWindow);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
 //\___________ Same as ON_CLICK, but with scroll. Moreover, CD_APPLET_SCROLL_UP tels you is the user scrolled up, CD_APPLET_SCROLL_DOWN the opposite.
 CD_APPLET_ON_SCROLL_BEGIN
-	/// minimize...
-	
+	// minimize...
+	if (myData.iCurrentWindow != 0 && CD_APPLET_SCROLL_DOWN)
+		cairo_dock_minimize_xwindow (myData.iCurrentWindow);
 CD_APPLET_ON_SCROLL_END
 
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	/// add the usual window actions ...
-		
+	// nothing to do here, since the icon is considered as an appli.
+	
 CD_APPLET_ON_BUILD_MENU_END
+
+		
+CD_APPLET_ON_DOUBLE_CLICK_BEGIN
+	if (myData.iCurrentWindow != 0)
+	{
+		Icon *pAppli = cairo_dock_get_icon_with_Xid (myData.iCurrentWindow);
+		if (pAppli)
+			cairo_dock_maximize_xwindow (pAppli->Xid, ! pAppli->bIsMaximized);
+	}
+CD_APPLET_ON_DOUBLE_CLICK_END
 
 
 void cd_app_menu_on_keybinding_pull (const gchar *keystring, CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
-	_show_menu ();
+	_show_menu (myConfig.bMenuOnMouse);
 	CD_APPLET_LEAVE();
 }
 
@@ -91,7 +117,7 @@ gboolean cd_app_menu_on_active_window_changed (gpointer pUserData, Window *XActi
 	
 	if (data[1] == 0)  // not a dock, so let's take it.
 	{
-		// take this new window
+		// take this new window (possibly 0).
 		cd_app_menu_set_current_window (*XActiveWindow);
 	}
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;

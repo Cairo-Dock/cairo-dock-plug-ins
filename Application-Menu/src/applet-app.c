@@ -30,6 +30,7 @@
 #include "MwmUtil.h"
 
 #include "applet-struct.h"
+#include "applet-draw.h"
 #include "applet-app.h"
 
 #define CD_APP_MENU_REGISTRAR_ADDR "com.canonical.AppMenu.Registrar"
@@ -230,7 +231,7 @@ static void _on_got_menu (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockM
 	{
 		g_print (" -> %s\n", cService);
 		g_print ("    %s\n", cMenuObject);
-		myData.pMenu = dbusmenu_gtkmenu_new (cService, cMenuObject);
+		myData.pMenu = dbusmenu_gtkmenu_new (cService, cMenuObject);  /// can this object disappear by itself ? it seems to crash with 2 instances of inkscape, when closing one of them... 
 	}
 	
 	g_free (cService);
@@ -247,10 +248,8 @@ void cd_app_menu_set_current_window (Window iActiveWindow)
 	g_print ("%s (%ld)\n", __func__, iActiveWindow);
 	if (iActiveWindow != myData.iCurrentWindow)
 	{
-		//cd_app_menu_set_window_border (myData.iCurrentWindow, TRUE);
-		//cd_app_menu_set_window_border (iActiveWindow, FALSE);
-		
 		myData.iCurrentWindow = iActiveWindow;
+		myIcon->Xid = iActiveWindow;
 		
 		// destroy the current menu
 		if (myData.pMenu != NULL)
@@ -266,61 +265,34 @@ void cd_app_menu_set_current_window (Window iActiveWindow)
 			s_pGetMenuCall = NULL;
 		}
 		
-		// get the new one.
-		if (myData.pProxyRegistrar != NULL)
+		if (iActiveWindow != 0)
 		{
-			s_pGetMenuCall = dbus_g_proxy_begin_call (myData.pProxyRegistrar,
-				"GetMenuForWindow",
-				(DBusGProxyCallNotify)_on_got_menu,
-				myApplet,
-				(GDestroyNotify) NULL,
-				G_TYPE_UINT, iActiveWindow,
-				G_TYPE_INVALID);
+			// get the new one.
+			if (myData.pProxyRegistrar != NULL)
+			{
+				s_pGetMenuCall = dbus_g_proxy_begin_call (myData.pProxyRegistrar,
+					"GetMenuForWindow",
+					(DBusGProxyCallNotify)_on_got_menu,
+					myApplet,
+					(GDestroyNotify) NULL,
+					G_TYPE_UINT, iActiveWindow,
+					G_TYPE_INVALID);
+			}
+
+			// get window controls.
+			_get_window_allowed_actions (iActiveWindow);
+			g_print (" %d/%d/%d, %d\n", myData.bCanMinimize, myData.bCanMaximize, myData.bCanClose, myData.iSidRenderIcon);
 		}
-		
-		// get window controls.
-		_get_window_allowed_actions (iActiveWindow);
-		g_print (" %d/%d/%d, %d\n", myData.bCanMinimize, myData.bCanMaximize, myData.bCanClose, myData.iSidRenderIcon);
+		else
+		{
+			myData.bCanMinimize = FALSE;
+			myData.bCanMaximize = FALSE;
+			myData.bCanClose = FALSE;
+		}
 		
 		// update the icon (do it in idle).
 		/// TODO: use a transition ...
 		if (myData.iSidRenderIcon == 0)
 			myData.iSidRenderIcon = g_idle_add (_render_icon, NULL);
-	}
-}
-
-
-void cd_app_menu_render_icon (void)
-{
-	Icon *pIcon = cairo_dock_get_icon_with_Xid (myData.iCurrentWindow);
-	if (pIcon != NULL)
-	{
-		if (pIcon->iIconTexture != 0 && CD_APPLET_START_DRAWING_MY_ICON)
-		{
-			int w, h;
-			CD_APPLET_GET_MY_ICON_EXTENT (&w, &h);
-			
-			_cairo_dock_enable_texture ();
-			_cairo_dock_set_blend_source ();
-			_cairo_dock_apply_texture_at_size (pIcon->iIconTexture, w, h);
-			_cairo_dock_disable_texture ();
-			
-			/// draw the controls ...
-			
-			CD_APPLET_FINISH_DRAWING_MY_ICON;
-		}
-		else if (pIcon->pIconBuffer != NULL)
-		{
-			CD_APPLET_SET_SURFACE_ON_MY_ICON (pIcon->pIconBuffer);
-			
-			/// draw the controls ...
-			
-		}
-		
-		CD_APPLET_REDRAW_MY_ICON;
-	}
-	else
-	{
-		CD_APPLET_SET_IMAGE_ON_MY_ICON ("");  /// use the default icon of the core ...
 	}
 }
