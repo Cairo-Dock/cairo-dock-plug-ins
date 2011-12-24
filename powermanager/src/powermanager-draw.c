@@ -116,7 +116,7 @@ void update_icon (void)
 		else
 		{
 			// Alert when battery is charged
-			if(myData.iPrevPercentage < 100 && myData.iPercentage == 100)
+			if(myData.iPrevPercentage > 0 && myData.iPrevPercentage < 100 && myData.iPercentage == 100)  // the first condition is to prevent the dialog on startup.
 				cd_powermanager_alert (POWER_MANAGER_CHARGE_FULL);
 		}
 		
