@@ -9,7 +9,7 @@ frame_maininfo=
 #d Name of the dock it belongs to:
 dock name = 
 
-#s[default] Name of the icon as it will appear in its caption in the dock:
+#s[Default] Name of the icon as it will appear in its caption in the dock:
 #{Leave empty to use the default sound card.}
 name = 
 #v
@@ -145,11 +145,11 @@ sep_disp_vol =
 #Y+[None;0;0;Zoom;1;2;Transparency;1;2;Draw Bar;1;2;Gauge;3;2] Effect to apply to the icon when adjusting volume:
 effect = 3
 
-#S+[default] Default icon:
+#S+[Default] Default icon:
 #{Leave empty to use the default one.}
 default icon = 
 
-#S+[default] Mute icon:
+#S+[Default] Mute icon:
 #{Leave empty to use the default one.}
 mute icon = 
 
@@ -162,6 +162,6 @@ rotate theme = No
 #v
 sep_disp =
 
-#S+[default] Broken icon:
+#S+[Default] Broken icon:
 #{Leave empty to use the default one.}
 broken icon = 

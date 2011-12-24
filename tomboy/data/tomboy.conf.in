@@ -9,7 +9,7 @@ frame_maininfo=
 #d Name of the dock it belongs to:
 dock name = 
 
-#s[default] Name of the icon as it will appear in its caption in the dock:
+#s[Default] Name of the icon as it will appear in its caption in the dock:
 name = 
 #v
 sep_display=
@@ -115,7 +115,7 @@ fg alpha = 1
 #F[Display;gtk-orientation-portrait]
 frame_view=
 
-#S+[default] Image file for the notes:
+#S+[Default] Image file for the notes:
 #{Leave empty to use the default icon.}
 notes icon =
 
@@ -150,7 +150,7 @@ ask delete = false
 #{Otherwise you will be asked to name it.}
 auto-naming = true
 
-#s[default] Date format to search for :
+#s[Default] Date format to search for :
 #{Write the date format you usually use in your notes. The syntax is the one of 'strftime' : %d for the day, %m for the month, %y for the year (2 digits), etc. Leave it blank to use the default one (%d/%m/%y).}
 date format = 
 

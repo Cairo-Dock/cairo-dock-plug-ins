@@ -156,18 +156,18 @@ theme = cd_box_simple
 
 #X[Customisation;gtk-dialog-info]
 frame_perso =
-#S+[default] 'Default' icon image name:
+#S+[Default] 'Default' icon image name:
 #{Leave empty to use the default icon.}
 default icon =
-#S+[default] Name of the image for the 'play' icon :
+#S+[Default] Name of the image for the 'play' icon :
 #{Leave empty to use the default icon.}
 play icon =
-#S+[default] Name of the image for the 'stop' icon :
+#S+[Default] Name of the image for the 'stop' icon :
 #{Leave empty to use the default icon.}
 stop icon =
-#S+[default] Name of the image for the 'pause' icon :
+#S+[Default] Name of the image for the 'pause' icon :
 #{Leave empty to use the default icon.}
 pause icon =
-#S+[default] 'Broken' icon image name:
+#S+[Default] 'Broken' icon image name:
 #{Leave empty to use the default icon.}
 broken icon =

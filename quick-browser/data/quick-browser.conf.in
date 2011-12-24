@@ -15,7 +15,7 @@ name =
 #v
 sep_display=
 
-#S+[default] Image filename:
+#S+[Default] Image filename:
 #{Leave empty to use the default one.}
 icon=folder-documents
 

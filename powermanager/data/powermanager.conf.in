@@ -159,7 +159,7 @@ check interval = 30
 #l+[Nothing;charge;Timelength] Information to display on the icon :
 quick-info_type=2
 
-#S+[default] Emblem icon's filename when on charge:
+#S+[Default] Emblem icon's filename when on charge:
 #{Leave empty to use the default icon.}
 emblem icon =
 

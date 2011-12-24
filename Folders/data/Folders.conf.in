@@ -18,7 +18,7 @@ sep_display=
 #Y[Use an image;1;1;Draw sub-dock's content as emblems;0;0;Draw sub-dock's content as stack;0;0;Draw sub-dock's content inside a box;0;0] How to render the icon :
 view type = 3
 
-#S+[default] Image filename:
+#S+[Default] Image filename:
 #{Leave empty to use the default one.}
 image file=folder
 

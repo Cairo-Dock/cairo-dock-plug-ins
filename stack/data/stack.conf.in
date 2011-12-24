@@ -9,13 +9,13 @@ frame_maininfo=
 #d Name of the dock it belongs to:
 dock name = 
 
-#s[default] Name of the icon as it will appear in its caption in the dock:
+#s[Default] Name of the icon as it will appear in its caption in the dock:
 #{Leave empty to use a default name}
 name = 
 #v
 sep_display=
 
-#S+[default] Image filename:
+#S+[Default] Image filename:
 #{Leave empty to use the default one.}
 icon=folder-pictures
 
@@ -113,11 +113,11 @@ renderer =
 #l+[Slide;Tree] Type of view for the desklet mode :
 desklet renderer = 0
 
-#S+[default] Image for 'text' items:
+#S+[Default] Image for 'text' items:
 #{They are items created by dropping a text into the Stack.}
 text icon = 
 
-#S+[default] Image for 'URL' items:
+#S+[Default] Image for 'URL' items:
 #{These are items created by dropping a URL into the Stack.}
 url icon = 
 

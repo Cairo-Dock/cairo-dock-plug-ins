@@ -9,7 +9,7 @@ frame_maininfo=
 #d Name of the dock it belongs to:
 dock name = 
 
-#s[default] Name of the icon as it will appear in its caption in the dock:
+#s[Default] Name of the icon as it will appear in its caption in the dock:
 name = 
 #v
 sep_display=
@@ -191,7 +191,7 @@ sound path = /usr/share/sounds/error.wav
 #F[System-Monitor;gtk-execute]
 frame_sysmon=
 
-#s[default] User command to display a system monitor:
+#s[Default] User command to display a system monitor:
 #{Leave empty to use the default one.}
 sys monitor =
 
@@ -199,7 +199,7 @@ sys monitor =
 #{It will prevent the system monitor's icon to show in the taskbar. The applet's icon will then behave as a launcher, an application, and an applet.}
 inhibate appli = true
 
-#s[default] Class of the system monitor program:
+#s[Default] Class of the system monitor program:
 #{Leave empty to use the default one.}
 sys monitor class =
 

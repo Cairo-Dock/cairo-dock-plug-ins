@@ -9,7 +9,7 @@ frame_maininfo=
 #d Name of the dock it belongs to:
 dock name = 
 
-#s[default] Name of the icon as it will appear in its caption in the dock:
+#s[Default] Name of the icon as it will appear in its caption in the dock:
 name =
 #v
 sep_display=
@@ -112,11 +112,11 @@ sep_disp_vol =
 #Y+[Icons;0;0;Draw Bar;1;2;Gauge;3;1] How to represent the icon:
 effect = 0
 
-#S+[default] Default icon:
+#S+[Default] Default icon:
 #{Leave empty to use the default one.}
 default icon = 
 
-#S+[default] Mute icon:
+#S+[Default] Mute icon:
 #{Leave empty to use the default one.}
 mute icon = 
 
