@@ -9,16 +9,16 @@ frame_maininfo=
 #d Name of the dock it belongs to:
 dock name = 
 
-#s Name of the icon as it will appear in its caption in the dock:
+#s[folder name] Name of the icon as it will appear in its caption in the dock:
 #{Let empty to use the name of the folder.}
 name =
- #v
+#v
 sep_display=
 
 #Y[Use an image;1;1;Draw sub-dock's content as emblems;0;0;Draw sub-dock's content as stack;0;0;Draw sub-dock's content inside a box;0;0] How to render the icon :
 view type = 3
 
-#S+ Image filename:
+#S+[default] Image filename:
 #{Leave empty to use the default one.}
 image file=folder
 

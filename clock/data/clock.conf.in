@@ -9,10 +9,10 @@ frame_maininfo=
 #d Name of the dock it belongs to:
 dock name = 
 
-#s Name of the icon as it will appear in its caption in the dock:
+#s[default] Name of the icon as it will appear in its caption in the dock:
 #{Leave empty to use the location name if available.}
 name = 
- #v
+#v
 sep_display=
 
 icon=

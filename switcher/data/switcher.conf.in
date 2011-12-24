@@ -9,12 +9,12 @@ frame_maininfo=
 #d Name of the dock it belongs to:
 dock name =
 
-#s Name of the icon as it will appear in its caption in the dock:
+#s[default] Name of the icon as it will appear in its caption in the dock:
 name = 
- #v
+#v
 sep_display=
 
-#S+ Image filename:
+#S+[default] Image filename:
 #{Leave empty to use the default one.}
 icon = 
 
@@ -167,7 +167,7 @@ fill current = 1
 #v
 sep_other =
 
-#S+ Icon to use in expanded mode if wallpaper is not mapped:
+#S+[default] Icon to use in expanded mode if wallpaper is not mapped:
 #{Leave empty to use the default one.}
 default icon = 
 

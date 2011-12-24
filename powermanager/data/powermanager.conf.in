@@ -9,10 +9,10 @@ frame_maininfo=
 #d Name of the dock it belongs to:
 dock name = 
 
-#s Icon name:
+#s[current status] Name of the icon as it will appear in its caption in the dock:
 #{Leave empty to display the current status information.}
 name = 
- #v
+#v
 sep_display=
 
 icon=
@@ -159,7 +159,7 @@ check interval = 30
 #l+[Nothing;charge;Timelength] Information to display on the icon :
 quick-info_type=2
 
-#S+ Emblem icon's filename when on charge:
+#S+[default] Emblem icon's filename when on charge:
 #{Leave empty to use the default icon.}
 emblem icon =
 

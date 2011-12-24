@@ -9,9 +9,9 @@ frame_maininfo=
 #d Name of the dock it belongs to:
 dock name = 
 
-#s Name of the icon as it will appear in its caption in the dock:
+#s[default] Name of the icon as it will appear in its caption in the dock:
 name = 
- #v
+#v
 sep_display=
 
 icon = 
@@ -103,11 +103,11 @@ fg alpha = 1
 #F[Style;gtk-color-picker]
 frame_style =
 
-#S+ Image when composite is active:
+#S+[default] Image when composite is active:
 #{Leave empty to use the default one.}
 icon on = 
 
-#S+ Image when composite is inactive:
+#S+[default] Image when composite is inactive:
 #{Leave empty to use the default one.}
 icon off = 
 

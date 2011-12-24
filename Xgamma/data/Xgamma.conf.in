@@ -9,13 +9,13 @@ frame_maininfo=
 #d Name of the dock it belongs to:
 dock name = 
 
-#s Name of the icon as it will appear in its caption in the dock:
+#s[current luminosity] Name of the icon as it will appear in its caption in the dock:
 #{Leave empty to display the current luminosity.}
 name = 
- #v
+#v
 sep_display=
 
-#S+ Image filename:
+#S+[default] Image filename:
 #{Leave empty to use the default one.}
 icon = 
 

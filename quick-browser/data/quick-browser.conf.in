@@ -9,13 +9,13 @@ frame_maininfo=
 #d Name of the dock it belongs to:
 dock name = 
 
-#s Name of the icon as it will appear in its caption in the dock:
+#s[folder name] Name of the icon as it will appear in its caption in the dock:
 #{Leave empty to use the folder's name.}
 name = 
- #v
+#v
 sep_display=
 
-#S+ Image filename:
+#S+[default] Image filename:
 #{Leave empty to use the default one.}
 icon=folder-documents
 

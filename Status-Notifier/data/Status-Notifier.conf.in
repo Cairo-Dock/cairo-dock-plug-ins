@@ -9,12 +9,12 @@ frame_maininfo=
 #d Name of the dock it belongs to:
 dock name = 
 
-#s Name of the icon as it will appear in its label in the dock :
+#s[default] Name of the icon as it will appear in its caption in the dock:
 name = 
- #v
+#v
 sep_display=
 
-#S+ Image's filename :
+#S+[default] Image's filename :
 #{Let empty to use the default one.}
 icon = 
 
@@ -102,7 +102,7 @@ fg alpha = 1
 [Configuration]
 
 #b Left click pops up the items' menu
-left click menu = false
+left click menu = true
 
 #Y[Compact;1;2;Sub-dock;0;0] How to display items:
 mode = 0

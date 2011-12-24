@@ -12,7 +12,7 @@ dock name =
 #v
 sep_display=
 
-#S+ Image filename:
+#S+[default] Image filename:
 #{Leave empty to use the default one.}
 icon =
 

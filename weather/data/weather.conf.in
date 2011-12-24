@@ -9,10 +9,10 @@ frame_maininfo=
 #d Name of the dock it belongs to:
 dock name = 
 
-#s Name of the icon as it will appear in its caption in the dock:
+#s[city name] Name of the icon as it will appear in its caption in the dock:
 #{Leave empty to use the name of the city.}
 name = 
- #v
+#v
 sep_display=
 
 icon=
@@ -61,8 +61,6 @@ initially detached=false
 accessibility=0
 #b Should be visible on all desktops?
 sticky=true
-
-
 
 
 #F[Decorations;gtk-orientation-portrait]

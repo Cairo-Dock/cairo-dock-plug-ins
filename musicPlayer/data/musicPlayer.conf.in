@@ -9,7 +9,7 @@ frame_maininfo=
 #d Name of the dock it belongs to:
 dock name =
 
-#s Name of the icon as it will appear in its caption in the dock:
+#s[player name] Name of the icon as it will appear in its caption in the dock:
 #{Leave it empty to display the name of the player currently controlled.}
 name =
 
@@ -156,18 +156,18 @@ theme = cd_box_simple
 
 #X[Customisation;gtk-dialog-info]
 frame_perso =
-#S+ 'Default' icon image name:
+#S+[default] 'Default' icon image name:
 #{Leave empty to use the default icon.}
 default icon =
-#S+ Name of the image for the 'play' icon :
+#S+[default] Name of the image for the 'play' icon :
 #{Leave empty to use the default icon.}
 play icon =
-#S+ Name of the image for the 'stop' icon :
+#S+[default] Name of the image for the 'stop' icon :
 #{Leave empty to use the default icon.}
 stop icon =
-#S+ Name of the image for the 'pause' icon :
+#S+[default] Name of the image for the 'pause' icon :
 #{Leave empty to use the default icon.}
 pause icon =
-#S+ 'Broken' icon image name:
+#S+[default] 'Broken' icon image name:
 #{Leave empty to use the default icon.}
 broken icon =
