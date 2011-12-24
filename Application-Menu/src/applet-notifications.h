@@ -32,12 +32,15 @@ CD_APPLET_ON_MIDDLE_CLICK_H
 CD_APPLET_ON_SCROLL_H
 
 
+CD_APPLET_ON_DOUBLE_CLICK_H
+
+
 CD_APPLET_ON_BUILD_MENU_H
 
 
-gboolean cd_app_menu_on_active_window_changed (gpointer pUserData, Window *XActiveWindow);
+gboolean cd_app_menu_on_active_window_changed (CairoDockModuleInstance *myApplet, Window *XActiveWindow);
 
-gboolean cd_app_menu_on_property_changed (gpointer data, Window Xid, Atom aProperty, int iState);
+gboolean cd_app_menu_on_property_changed (CairoDockModuleInstance *myApplet, Window Xid, Atom aProperty, int iState);
 
 
 void cd_app_menu_on_keybinding_pull (const gchar *keystring, CairoDockModuleInstance *myApplet);

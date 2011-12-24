@@ -64,12 +64,12 @@ class Registrar(dbus.service.Object):
 	
 	@dbus.service.method(dbus_interface = bus_iface_str, in_signature = 'u', out_signature = 'so')
 	def GetMenuForWindow(self, Xid):
-		print "GetMenuForWindow(%d)" % Xid
+		print "GetMenuForWindow(%d)..." % Xid
 		try:
 			service,menu = self.windows[Xid]
 			return service,menu  # dbus.ObjectPath(menu)
 		except:
-			return None,None
+			return "","/"  # return an empty string to avoid ugly warnings; clients should be able to deal with it.
 	
 	@dbus.service.method(dbus_interface = bus_iface_str, in_signature = None, out_signature = 'a(uso)')
 	def GetMenus(self):

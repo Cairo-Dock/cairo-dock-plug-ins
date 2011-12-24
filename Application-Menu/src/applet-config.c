@@ -32,6 +32,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cShortkey = CD_CONFIG_GET_STRING ("Configuration", "shortkey");
 	myConfig.bMenuOnMouse = CD_CONFIG_GET_BOOLEAN ("Configuration", "menu on mouse");
 	myConfig.bCompactMode = CD_CONFIG_GET_BOOLEAN ("Configuration", "compact");
+	myConfig.iTransitionDuration = 500;
 CD_APPLET_GET_CONFIG_END
 
 

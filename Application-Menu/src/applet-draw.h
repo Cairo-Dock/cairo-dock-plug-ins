@@ -17,28 +17,13 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __APPLET_APP_MENU__
-#define  __APPLET_APP_MENU__
+#ifndef __APPLET_DRAW__
+#define  __APPLET_DRAW__
 
 #include <cairo-dock.h>
 
 
-void cd_app_menu_set_window_border (Window Xid, gboolean bWithBorder);
-
-
-void cd_app_menu_set_windows_borders (gboolean bWithBorder);
-
-
-void cd_app_detect_registrar (void);
-
-void cd_app_disconnect_from_registrar (void);
-
-
-void cd_app_menu_start (void);
-
-void cd_app_menu_stop (void);
-
-void cd_app_menu_set_current_window (Window iActiveWindow);
+void cd_app_menu_redraw_icon (void);
 
 
 #endif

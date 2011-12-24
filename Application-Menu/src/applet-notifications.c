@@ -52,36 +52,30 @@ static void _show_menu (gboolean bOnMouse)
 	}
 }
 
-//\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
+//\___________ Action on click: show the menu
 CD_APPLET_ON_CLICK_BEGIN
-	_show_menu (FALSE);
+	if (myConfig.bDisplayMenu)
+		_show_menu (FALSE);
 CD_APPLET_ON_CLICK_END
 
 
-//\___________ Same as ON_CLICK, but with middle-click.
+//\___________ Other actions are defined to mime the usual actions available on windows top border
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	// set the window behind all the others...
+	// set the window behind all the others.
 	if (myData.iCurrentWindow != 0)
 		cairo_dock_lower_xwindow (myData.iCurrentWindow);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
-//\___________ Same as ON_CLICK, but with scroll. Moreover, CD_APPLET_SCROLL_UP tels you is the user scrolled up, CD_APPLET_SCROLL_DOWN the opposite.
 CD_APPLET_ON_SCROLL_BEGIN
-	// minimize...
+	// minimize the window (we could also use the scroll to (un)shade the window, but I'm afraid that a maximized shaded window would be too much hidden, users could be confused).
 	if (myData.iCurrentWindow != 0 && CD_APPLET_SCROLL_DOWN)
 		cairo_dock_minimize_xwindow (myData.iCurrentWindow);
 CD_APPLET_ON_SCROLL_END
 
-
-//\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
-CD_APPLET_ON_BUILD_MENU_BEGIN
-	// nothing to do here, since the icon is considered as an appli.
-	
-CD_APPLET_ON_BUILD_MENU_END
-
 		
 CD_APPLET_ON_DOUBLE_CLICK_BEGIN
+	// maximize/restaure the window.
 	if (myData.iCurrentWindow != 0)
 	{
 		Icon *pAppli = cairo_dock_get_icon_with_Xid (myData.iCurrentWindow);
@@ -89,6 +83,11 @@ CD_APPLET_ON_DOUBLE_CLICK_BEGIN
 			cairo_dock_maximize_xwindow (pAppli->Xid, ! pAppli->bIsMaximized);
 	}
 CD_APPLET_ON_DOUBLE_CLICK_END
+
+
+CD_APPLET_ON_BUILD_MENU_BEGIN
+	// nothing to do here, since the icon is considered as an appli, the dock will fill it for free !
+CD_APPLET_ON_BUILD_MENU_END
 
 
 void cd_app_menu_on_keybinding_pull (const gchar *keystring, CairoDockModuleInstance *myApplet)
@@ -99,14 +98,16 @@ void cd_app_menu_on_keybinding_pull (const gchar *keystring, CairoDockModuleInst
 }
 
 
+//\___________ Other notifications, that are not from the user (but from the Applications-manager)
 static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, Window *data)
 {
 	Window xActiveWindow = data[0];
 	if (gldi_container_get_Xid (CAIRO_CONTAINER (pDock)) == xActiveWindow)
 		data[1] = 1;
 }
-gboolean cd_app_menu_on_active_window_changed (gpointer pUserData, Window *XActiveWindow)
+gboolean cd_app_menu_on_active_window_changed (CairoDockModuleInstance *myApplet, Window *XActiveWindow)
 {
+	g_print ("**** %p %d\n", XActiveWindow, XActiveWindow?*XActiveWindow:-1);
 	if (XActiveWindow == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
@@ -123,17 +124,24 @@ gboolean cd_app_menu_on_active_window_changed (gpointer pUserData, Window *XActi
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
-gboolean cd_app_menu_on_property_changed (gpointer data, Window Xid, Atom aProperty, int iState)
+gboolean cd_app_menu_on_property_changed (CairoDockModuleInstance *myApplet, Window Xid, Atom aProperty, int iState)
 {
 	if (Xid != 0 && Xid == myData.iCurrentWindow)
 	{
 		Display *dpy = cairo_dock_get_Xdisplay();
 		Atom aNetWmState = XInternAtom (dpy, "_NET_WM_STATE", False);
+		Atom s_aNetWmName = XInternAtom (dpy, "_NET_WM_NAME", False);
+		Atom s_aWmName = XInternAtom (dpy, "WM_NAME", False);
 		if (aProperty == aNetWmState)
 		{
 			Icon *icon = cairo_dock_get_icon_with_Xid (Xid);
 			if (icon)
 				cd_app_menu_set_window_border (Xid, ! icon->bIsMaximized);
 		}
+		else if (iState == PropertyNewValue && (aProperty == s_aNetWmName || aProperty == s_aWmName))
+		{
+			Icon *icon = cairo_dock_get_icon_with_Xid (Xid);
+			CD_APPLET_SET_NAME_FOR_MY_ICON (icon ? icon->cName : NULL);
+		}  // ignore the change of icon, we just want to use the default application icon.
 	}
 }

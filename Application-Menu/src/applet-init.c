@@ -47,26 +47,30 @@ CD_APPLET_INIT_BEGIN
 	}
 	
 	cairo_dock_register_notification_on_object (&myDesktopMgr,
-		NOTIFICATION_WINDOW_ACTIVATED, (CairoDockNotificationFunc) cd_app_menu_on_active_window_changed, CAIRO_DOCK_RUN_AFTER, NULL);
+		NOTIFICATION_WINDOW_ACTIVATED,
+		(CairoDockNotificationFunc) cd_app_menu_on_active_window_changed,
+		CAIRO_DOCK_RUN_AFTER, myApplet);
 	cairo_dock_register_notification_on_object (&myDesktopMgr,
 		NOTIFICATION_WINDOW_PROPERTY_CHANGED,
 		(CairoDockNotificationFunc) cd_app_menu_on_property_changed,
-		CAIRO_DOCK_RUN_AFTER, NULL);
+		CAIRO_DOCK_RUN_AFTER, myApplet);
 	
-	// detect the registrar (launch it if not present).
-	cd_app_detect_registrar ();
+	// start !
+	cd_app_menu_start ();
 	
 	// mouse events
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
+	CD_APPLET_REGISTER_FOR_DOUBLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
 	
 	// keyboard events
-	myData.pKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortkey,
-		D_("Show/hide the current application menu"),
-		"Configuration", "shortkey",
-		(CDBindkeyHandler) cd_app_menu_on_keybinding_pull);
+	if (myConfig.bDisplayMenu)
+		myData.pKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortkey,
+			D_("Show/hide the current application menu"),
+			"Configuration", "shortkey",
+			(CDBindkeyHandler) cd_app_menu_on_keybinding_pull);
 CD_APPLET_INIT_END
 
 
@@ -74,26 +78,31 @@ CD_APPLET_INIT_END
 CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
 		NOTIFICATION_WINDOW_ACTIVATED,
-		(CairoDockNotificationFunc) cd_app_menu_on_active_window_changed, NULL);
+		(CairoDockNotificationFunc) cd_app_menu_on_active_window_changed, myApplet);
 	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
 		NOTIFICATION_WINDOW_PROPERTY_CHANGED,
-		(CairoDockNotificationFunc) cd_app_menu_on_property_changed, NULL);
+		(CairoDockNotificationFunc) cd_app_menu_on_property_changed, myApplet);
 	
-	cd_app_disconnect_from_registrar ();
+	cd_app_menu_stop ();
 
 	// mouse events
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
+	CD_APPLET_UNREGISTER_FOR_DOUBLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
 	
 	// keyboard events
-	cd_keybinder_unbind (myData.pKeyBinding);
+	if (myConfig.bDisplayMenu)
+		cd_keybinder_unbind (myData.pKeyBinding);
 CD_APPLET_STOP_END
 
 
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
+	/// if they are loaded, reload the controls icons...
+	
+	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		if (myDesklet && CD_APPLET_MY_CONTAINER_TYPE_CHANGED)  // we are now in a desklet, set a renderer.
@@ -101,9 +110,35 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		}
 		
-		/// redraw ...
+		// windows borders
+		cd_app_menu_set_windows_borders (!myConfig.bDisplayControls);
 		
+		// registrar
+		if (myConfig.bDisplayMenu && !myData.pProxyRegistrar)
+			cd_app_detect_registrar ();
+		else if (! myConfig.bDisplayMenu)  // even if myData.pProxyRegistrar is NULL, we have to cancel the detection
+			cd_app_disconnect_from_registrar ();
 		
-		cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
+		// to update any param that could have changed, simply re-set the current window.
+		Window iActiveWindow = myData.iCurrentWindow;
+		myData.iCurrentWindow = 0;
+		cd_app_menu_set_current_window (iActiveWindow);
+		
+		// shortkey
+		if (myConfig.bDisplayMenu)
+		{
+			if (myData.pKeyBinding)
+				cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
+			else
+				myData.pKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortkey,
+					D_("Show/hide the current application menu"),
+					"Configuration", "shortkey",
+					(CDBindkeyHandler) cd_app_menu_on_keybinding_pull);
+		}
+		else if (myData.pKeyBinding)
+		{
+			cd_keybinder_unbind (myData.pKeyBinding);
+		}
+		
 	}
 CD_APPLET_RELOAD_END

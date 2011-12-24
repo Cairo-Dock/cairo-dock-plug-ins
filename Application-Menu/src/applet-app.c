@@ -41,6 +41,10 @@ static DBusGProxyCall *s_pDetectRegistrarCall = NULL;
 static DBusGProxyCall *s_pGetMenuCall = NULL;
 
 
+  ///////////////////////
+ /// WINDOW CONTROLS ///
+///////////////////////
+
 void cd_app_menu_set_window_border (Window Xid, gboolean bWithBorder)
 {
 	Display *dpy = cairo_dock_get_Xdisplay();
@@ -58,7 +62,14 @@ void cd_app_menu_set_window_border (Window Xid, gboolean bWithBorder)
 
 static void _get_window_allowed_actions (Window Xid)
 {
-	g_return_if_fail (Xid > 0);
+	if (Xid == 0)
+	{
+		myData.bCanMinimize = FALSE;
+		myData.bCanMaximize = FALSE;
+		myData.bCanClose = FALSE;
+		return;
+	}
+	
 	Atom aReturnedType = 0;
 	int aReturnedFormat = 0;
 	unsigned long iLeftBytes, iBufferNbElements = 0;
@@ -108,6 +119,23 @@ static void _get_window_allowed_actions (Window Xid)
 	XFree (pXStateBuffer);
 }
 
+static void _set_border (Icon *icon, CairoContainer *pContainer, gboolean bWithBorder)
+{
+	g_print ("%s (%s, %d\n", __func__, icon->cName, icon->bIsMaximized);
+	if (icon->bIsMaximized)
+		cd_app_menu_set_window_border (icon->Xid, bWithBorder);
+}
+void cd_app_menu_set_windows_borders (gboolean bWithBorder)
+{
+	g_print ("%s (%d\n", __func__, bWithBorder);
+	cairo_dock_foreach_applis ((CairoDockForeachIconFunc)_set_border, FALSE, GINT_TO_POINTER (bWithBorder));
+}
+
+
+  ////////////////////////
+ /// APPLICATION MENU ///
+////////////////////////
+
 static void cd_app_menu_launch_our_registrar (void)
 {
 	g_print ("%s\n", CD_PLUGINS_DIR"/appmenu-registrar");
@@ -129,7 +157,7 @@ static void _on_registrar_owner_changed (const gchar *cName, gboolean bOwned, gp
 			CD_APP_MENU_REGISTRAR_IFACE);  // whenever it appears on the bus, we'll get it.
 		
 		// get the controls and menu of the current window.
-		Window iActiveWindow = cairo_dock_get_active_xwindow ();
+		Window iActiveWindow = cairo_dock_get_current_active_window ();
 		
 		cd_app_menu_set_current_window (iActiveWindow);
 	}
@@ -164,17 +192,18 @@ static void _on_detect_registrar (gboolean bPresent, gpointer data)
 		NULL);
 	CD_APPLET_LEAVE ();
 }
-
 void cd_app_detect_registrar (void)
 {
-	s_pDetectRegistrarCall = cairo_dock_dbus_detect_application_async (CD_APP_MENU_REGISTRAR_ADDR,
-		(CairoDockOnAppliPresentOnDbus) _on_detect_registrar,
-		NULL);
+	if (s_pDetectRegistrarCall == NULL)
+		s_pDetectRegistrarCall = cairo_dock_dbus_detect_application_async (CD_APP_MENU_REGISTRAR_ADDR,
+			(CairoDockOnAppliPresentOnDbus) _on_detect_registrar,
+			NULL);
 }
 
 
 void cd_app_disconnect_from_registrar (void)
 {
+	// stop detecting/watching the registrar
 	cairo_dock_stop_watching_dbus_name_owner (CD_APP_MENU_REGISTRAR_ADDR,
 		(CairoDockDbusNameOwnerChangedFunc) _on_registrar_owner_changed);
 	
@@ -185,6 +214,7 @@ void cd_app_disconnect_from_registrar (void)
 		s_pDetectRegistrarCall = NULL;
 	}
 	
+	// discard the menu
 	if (s_pGetMenuCall != NULL)
 	{
 		DBusGProxy *pProxy = cairo_dock_get_main_proxy ();
@@ -192,20 +222,64 @@ void cd_app_disconnect_from_registrar (void)
 		s_pGetMenuCall = NULL;
 	}
 	
-	if (myData.iSidRenderIcon != 0)
-		g_source_remove (myData.iSidRenderIcon);
-	
-	/// TODO: kill the registrar if it's our own one...
-	if (myData.bOwnRegistrar)
+	if (myData.pMenu != NULL)
 	{
-		
+		gtk_widget_destroy (GTK_WIDGET (myData.pMenu));
+		myData.pMenu = NULL;
 	}
 	
+	if (myData.pTask != NULL)
+	{
+		cairo_dock_discard_task (myData.pTask);
+		myData.pTask = NULL;
+	}
 	
-	/// TODO: set back the window border of maximized windows...
-	
+	// kill the registrar if it's our own one
+	if (myData.bOwnRegistrar)
+	{
+		int r = system ("pkill appmenu-registr");  // 15 chars limit; 'pkill -f' doesn't work :-/ this is not very clean, we should get the PID when we spawn it, and use it.
+		myData.bOwnRegistrar = FALSE;
+	}
 }
 
+
+typedef struct {
+	gchar *cService;
+	gchar *cMenuObject;
+	DbusmenuGtkMenu *pMenu;
+} CDSharedMemory;
+
+static void _on_menu_destroyed (CairoDockModuleInstance *myApplet, GObject *old_menu_pointer)
+{
+	if (old_menu_pointer == (GObject*)myData.pMenu)
+		myData.pMenu = NULL;
+}
+
+static void _free_shared_memory (CDSharedMemory *pSharedMemory)
+{
+	g_free (pSharedMemory->cService);
+	g_free (pSharedMemory->cMenuObject);
+	if (pSharedMemory->pMenu)
+		gtk_widget_destroy (GTK_WIDGET (pSharedMemory->pMenu));
+	g_free (pSharedMemory);
+}
+
+static void _get_menu_async (CDSharedMemory *pSharedMemory)
+{
+	pSharedMemory->pMenu = dbusmenu_gtkmenu_new (pSharedMemory->cService, pSharedMemory->cMenuObject);  /// can this object disappear by itself ? it seems to crash with 2 instances of inkscape, when closing one of them... 
+}
+
+static gboolean _fetch_menu (CDSharedMemory *pSharedMemory)
+{
+	CD_APPLET_ENTER;
+	myData.pMenu = pSharedMemory->pMenu;
+	pSharedMemory->pMenu = NULL;
+	
+	g_object_weak_ref (G_OBJECT (pSharedMemory->pMenu),
+		(GWeakNotify)_on_menu_destroyed,
+		myApplet);
+	CD_APPLET_LEAVE (TRUE);
+}
 
 static void _on_got_menu (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockModuleInstance *myApplet)
 {
@@ -231,68 +305,168 @@ static void _on_got_menu (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockM
 	{
 		g_print (" -> %s\n", cService);
 		g_print ("    %s\n", cMenuObject);
-		myData.pMenu = dbusmenu_gtkmenu_new (cService, cMenuObject);  /// can this object disappear by itself ? it seems to crash with 2 instances of inkscape, when closing one of them... 
+		if (cService && *cService != '\0')
+		{
+			if (myData.pTask != NULL)
+			{
+				cairo_dock_discard_task (myData.pTask);
+				myData.pTask = NULL;
+			}
+			CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
+			pSharedMemory->cService = cService;
+			pSharedMemory->cMenuObject = cMenuObject;
+			
+			myData.pTask = cairo_dock_new_task_full (0,
+				(CairoDockGetDataAsyncFunc) _get_menu_async,
+				(CairoDockUpdateSyncFunc) _fetch_menu,
+				(GFreeFunc) _free_shared_memory,
+				pSharedMemory);
+			cairo_dock_launch_task_delayed (myData.pTask, 0);
+			/// TODO: it seems to hang he dock for a second, even with a task :-/
+			/// so maybe we need to cache the {window,menu} couples...
+			
+			/**myData.pMenu = dbusmenu_gtkmenu_new (cService, cMenuObject);  /// can this object disappear by itself ? it seems to crash with 2 instances of inkscape, when closing one of them... 
+			g_object_weak_ref (G_OBJECT (myData.pMenu),
+				(GWeakNotify)_on_menu_destroyed,
+				myApplet);*/
+		}
 	}
 	
-	g_free (cService);
+	///g_free (cService);
+	///g_free (cMenuObject);
 	CD_APPLET_LEAVE ();
 }
-static gboolean _render_icon  (gpointer data)
+static void _get_application_menu (Window Xid)
 {
-	cd_app_menu_render_icon  ();
-	myData.iSidRenderIcon = 0;
+	// destroy the current menu
+	if (myData.pMenu != NULL)
+	{
+		gtk_widget_destroy (GTK_WIDGET (myData.pMenu));
+		myData.pMenu = NULL;
+	}
+
+	if (s_pGetMenuCall != NULL)
+	{
+		DBusGProxy *pProxy = cairo_dock_get_main_proxy ();
+		dbus_g_proxy_cancel_call (pProxy, s_pGetMenuCall);
+		s_pGetMenuCall = NULL;
+	}
+	
+	if (myData.pTask != NULL)
+	{
+		cairo_dock_discard_task (myData.pTask);
+		myData.pTask = NULL;
+	}
+	
+	// get the new one.
+	if (Xid != 0)
+	{
+		if (myData.pProxyRegistrar != NULL)
+		{
+			s_pGetMenuCall = dbus_g_proxy_begin_call (myData.pProxyRegistrar,
+				"GetMenuForWindow",
+				(DBusGProxyCallNotify)_on_got_menu,
+				myApplet,
+				(GDestroyNotify) NULL,
+				G_TYPE_UINT, Xid,
+				G_TYPE_INVALID);
+		}
+	}
+}
+
+
+  ////////////////////
+ /// START / STOP ///
+////////////////////
+
+static gboolean _get_current_window_idle (CairoDockModuleInstance *myApplet)
+{
+	// get the controls and menu of the current window.
+	Window iActiveWindow = cairo_dock_get_current_active_window ();
+	
+	cd_app_menu_set_current_window (iActiveWindow);
+	
+	myData.iSidInitIdle = 0;
 	return FALSE;
 }
+static gboolean _remove_windows_borders (CairoDockModuleInstance *myApplet)
+{
+	cd_app_menu_set_windows_borders (FALSE);
+	
+	myData.iSidInitIdle2 = 0;
+	return FALSE;
+}
+void cd_app_menu_start (void)
+{
+	// connect to the registrar or directly get the current window.
+	if (myConfig.bDisplayMenu)
+	{
+		cd_app_detect_registrar ();  // -> will get the current window once connected to the registrar
+	}
+	else
+	{
+		myData.iSidInitIdle = g_idle_add ((GSourceFunc)_get_current_window_idle, myApplet);  // in idle, because it's heavy + the applications-manager is started after the plug-ins.
+	}
+	
+	// remove borders from all maximised windows
+	if (myConfig.bDisplayControls)
+	{
+		myData.iSidInitIdle2 = g_idle_add ((GSourceFunc)_remove_windows_borders, myApplet);  // in idle, because it's heavy + the applications-manager is started after the plug-ins.
+	}
+	
+	if (myConfig.bDisplayControls)
+	{
+		int iWidth, iHeight;
+		CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
+		/// TODO: resize
+		/**if (myContainer->bIsHorizontal)
+			cairo_dock_resize_applet (myApplet, MAX (iWidth, 4*iHeight), iHeight);
+		else
+			cairo_dock_resize_applet (myApplet, iWidth, MAX (4*iWidth, iHeight));*/
+	}  /// TODO: handle the reload ...
+}
+
+
+void cd_app_menu_stop (void)
+{
+	// disconnect from the registrar.
+	if (myConfig.bDisplayMenu)
+	{
+		cd_app_disconnect_from_registrar ();
+	}
+	
+	// set back the window border of maximized windows.
+	if (myConfig.bDisplayControls)
+	{	
+		cd_app_menu_set_windows_borders (TRUE);
+	}
+	
+	if (myData.iSidInitIdle != 0)
+		g_source_remove (myData.iSidInitIdle);
+	if (myData.iSidInitIdle2 != 0)
+		g_source_remove (myData.iSidInitIdle2);
+}
+
+
 void cd_app_menu_set_current_window (Window iActiveWindow)
 {
 	g_print ("%s (%ld)\n", __func__, iActiveWindow);
 	if (iActiveWindow != myData.iCurrentWindow)
 	{
+		myData.iPreviousWindow = myData.iCurrentWindow;
 		myData.iCurrentWindow = iActiveWindow;
-		myIcon->Xid = iActiveWindow;
+		myIcon->Xid = iActiveWindow;  // set the Xid on our icon, so that the dock adds the usual actions in our right-click menu.
 		
-		// destroy the current menu
-		if (myData.pMenu != NULL)
-		{
-			gtk_widget_destroy (GTK_WIDGET (myData.pMenu));
-			myData.pMenu = NULL;
-		}
+		if (myConfig.bDisplayMenu)
+			_get_application_menu (iActiveWindow);
 		
-		if (s_pGetMenuCall != NULL)
-		{
-			DBusGProxy *pProxy = cairo_dock_get_main_proxy ();
-			dbus_g_proxy_cancel_call (pProxy, s_pGetMenuCall);
-			s_pGetMenuCall = NULL;
-		}
-		
-		if (iActiveWindow != 0)
-		{
-			// get the new one.
-			if (myData.pProxyRegistrar != NULL)
-			{
-				s_pGetMenuCall = dbus_g_proxy_begin_call (myData.pProxyRegistrar,
-					"GetMenuForWindow",
-					(DBusGProxyCallNotify)_on_got_menu,
-					myApplet,
-					(GDestroyNotify) NULL,
-					G_TYPE_UINT, iActiveWindow,
-					G_TYPE_INVALID);
-			}
-
-			// get window controls.
+		if (myConfig.bDisplayControls)
 			_get_window_allowed_actions (iActiveWindow);
-			g_print (" %d/%d/%d, %d\n", myData.bCanMinimize, myData.bCanMaximize, myData.bCanClose, myData.iSidRenderIcon);
-		}
-		else
-		{
-			myData.bCanMinimize = FALSE;
-			myData.bCanMaximize = FALSE;
-			myData.bCanClose = FALSE;
-		}
 		
-		// update the icon (do it in idle).
-		/// TODO: use a transition ...
-		if (myData.iSidRenderIcon == 0)
-			myData.iSidRenderIcon = g_idle_add (_render_icon, NULL);
+		// update the icon
+		Icon *icon = cairo_dock_get_icon_with_Xid (iActiveWindow);
+		CD_APPLET_SET_NAME_FOR_MY_ICON (icon ? icon->cName : NULL);
+		
+		cd_app_menu_redraw_icon ();
 	}
 }

@@ -39,6 +39,7 @@ struct _AppletConfig {
 	gboolean bCompactMode;  // TRUE = if bDisplayControls, display all control buttons on the icon
 	gchar *cShortkey;  // if bDisplayMenu, shortkey to pop up the menu
 	gboolean bMenuOnMouse;
+	gint iTransitionDuration;  // ms
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
@@ -51,8 +52,14 @@ struct _AppletData {
 	gboolean bCanMaximize;
 	DbusmenuGtkMenu *pMenu;
 	CairoKeyBinding *pKeyBinding;
-	guint iSidRenderIcon;
 	CairoDockImageBuffer defaultIcon;
+	CairoDockImageBuffer minimizeButton;
+	CairoDockImageBuffer maximizeButton;
+	CairoDockImageBuffer restoreButton;
+	CairoDockImageBuffer closeButton;
+	guint iSidInitIdle;
+	guint iSidInitIdle2;
+	CairoDockTask *pTask;
 	} ;
 
 #endif
