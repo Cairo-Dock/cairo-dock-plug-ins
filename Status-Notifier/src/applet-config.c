@@ -30,7 +30,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bCompactMode = (iDisplaymode == CD_MODE_COMPACT);
 	myConfig.bResizeIcon = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "auto-resize", TRUE);
 	myConfig.iNbLines = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb lines", 2);
-	myConfig.bMenuOnLeftClick = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "left click menu", FALSE);
+	myConfig.bMenuOnLeftClick = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "left click menu", TRUE);
 CD_APPLET_GET_CONFIG_END
 
 

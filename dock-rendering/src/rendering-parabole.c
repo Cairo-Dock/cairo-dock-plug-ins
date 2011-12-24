@@ -320,7 +320,7 @@ static void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 	pDock->iDecorationsWidth = 0;
 	pDock->iDecorationsHeight = 0;
 	
-	pDock->iMinDockWidth = pDock->fFlatDockWidth;
+	pDock->iMinDockWidth = pDock->iMaxDockWidth;
 	pDock->iMinDockHeight = pDock->iMaxIconHeight;
 	
 	pDock->iActiveWidth = pDock->iMaxDockWidth;

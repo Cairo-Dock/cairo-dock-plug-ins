@@ -503,7 +503,7 @@ static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 	pDock->iDecorationsHeight = 0;
 	pDock->iDecorationsWidth  = 0;
 	// On affecte ca aussi au cas ou.
-	///pDock->fFlatDockWidth = pDock->iMaxDockWidth;
+	pDock->fFlatDockWidth = pDock->iMaxDockWidth;
 	pDock->fMagnitudeMax = my_diapo_simple_fScaleMax / (1+myIconsParam.fAmplitude);
 	
 	pDock->iActiveWidth = pDock->iMaxDockWidth;

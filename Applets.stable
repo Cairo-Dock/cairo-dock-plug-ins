@@ -61,6 +61,8 @@ Status-Notifier
 Composite-Manager
 Impulse
 ###All other applets are considered to be either not enough functionnal, buggy/untested, or under heavy development.
+#Sound-Menu
+#Application-Menu
 #Scooby-Do
 #Network-Monitor
 #Disks
