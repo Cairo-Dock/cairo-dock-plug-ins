@@ -37,9 +37,21 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iSortType = CD_CONFIG_GET_INTEGER ("Configuration", "sort by");
 	myConfig.bSelectionClipBoard = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "selection_", FALSE);
 	
-	myConfig.cTextIcon = CD_CONFIG_GET_FILE_PATH ("Configuration", "text icon", CD_STACK_DEFAULT_TEXT_ICON);
+	myConfig.cTextIcon = CD_CONFIG_GET_FILE_PATH ("Configuration", "text icon", NULL);
+	if (myConfig.cTextIcon == NULL)
+	{
+		myConfig.cTextIcon = cairo_dock_search_icon_s_path ("text-x-generic");
+		if (myConfig.cTextIcon == NULL)
+			myConfig.cTextIcon = g_strdup (MY_APPLET_SHARE_DATA_DIR"/"CD_STACK_DEFAULT_TEXT_ICON);
+	}
 	
-	myConfig.cUrlIcon = CD_CONFIG_GET_FILE_PATH ("Configuration", "url icon", CD_STACK_DEFAULT_URL_ICON);
+	myConfig.cUrlIcon = CD_CONFIG_GET_FILE_PATH ("Configuration", "url icon", NULL);
+	if (myConfig.cUrlIcon == NULL)
+	{
+		myConfig.cUrlIcon = cairo_dock_search_icon_s_path ("text-html");
+		if (myConfig.cUrlIcon == NULL)
+			myConfig.cUrlIcon = g_strdup (MY_APPLET_SHARE_DATA_DIR"/"CD_STACK_DEFAULT_TEXT_ICON);
+	}
 	
 	myConfig.cStackDir = CD_CONFIG_GET_STRING ("Configuration", "stack dir");
 	
