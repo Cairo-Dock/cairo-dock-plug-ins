@@ -112,3 +112,17 @@ menu on mouse = false
 
 #b Compact mode
 compact = false
+
+#S+[Default] Image for the 'minimize' button
+min button =
+
+#S+[Default] Image for the 'maximize' button
+max button =
+
+#S+[Default] Image for the 'restore' button
+restore button =
+
+#S+[Default] Image for the 'close' button
+close button =
+
+

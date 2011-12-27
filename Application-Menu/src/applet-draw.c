@@ -115,7 +115,7 @@ static gboolean cd_app_menu_render_step_opengl (Icon *pIcon, CairoDockModuleInst
 		if (iWidth > iHeight)  // horizontal alignment
 			x += w;
 		else
-			y -= w;
+			y -= h;
 		if (myData.bCanClose)
 			_cairo_dock_set_alpha (1);
 		else
@@ -178,14 +178,14 @@ static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, CairoDockModuleInsta
 	Icon *pPrevIcon = cairo_dock_get_icon_with_Xid (myData.iPreviousWindow);
 	cairo_surface_t *pPrevSurface = (pPrevIcon ? pPrevIcon->pIconBuffer : myData.defaultIcon.pSurface);
 	
-	if (pSurface != NULL)
-	{
-		cairo_set_source_surface (myDrawContext, pSurface, x, y);
-		cairo_paint_with_alpha (myDrawContext, 1-f);
-	}
 	if (pPrevSurface != NULL)
 	{
 		cairo_set_source_surface (myDrawContext, pPrevSurface, x, y);
+		cairo_paint_with_alpha (myDrawContext, 1-f);
+	}
+	if (pSurface != NULL)
+	{
+		cairo_set_source_surface (myDrawContext, pSurface, x, y);
 		cairo_paint_with_alpha (myDrawContext, f);
 	}
 	
@@ -196,13 +196,103 @@ static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, CairoDockModuleInsta
 		if (iWidth > iHeight)  // horizontal alignment
 			x += w;
 		else
-			y += w;
+			y += h;
 		
+		cairo_set_source_surface (myDrawContext, myData.minimizeButton.pSurface, x, y);
 		
+		if (myData.bCanMinimize)
+			cairo_paint (myDrawContext);
+		else
+			cairo_paint_with_alpha (myDrawContext, .6);
 		
+		// restore/maximize button
+		if (iWidth > iHeight)  // horizontal alignment
+			x += w;
+		else
+			y += h;
+		
+		cairo_set_source_surface (myDrawContext, pAppli && pAppli->bIsMaximized ? myData.restoreButton.pSurface : myData.maximizeButton.pSurface, x, y);
+		
+		if (myData.bCanMaximize)
+			cairo_paint (myDrawContext);
+		else
+			cairo_paint_with_alpha (myDrawContext, .6);
+		
+		// close button
+		if (iWidth > iHeight)  // horizontal alignment
+			x += w;
+		else
+			y += h;
+		
+		cairo_set_source_surface (myDrawContext, myData.closeButton.pSurface, x, y);
+		
+		if (myData.bCanClose)
+			cairo_paint (myDrawContext);
+		else
+			cairo_paint_with_alpha (myDrawContext, .6);
 	}
 	
 	CD_APPLET_LEAVE (TRUE);
+}
+
+
+void cd_app_menu_load_button_images (void)
+{
+	/// TODO: handle animated images (emerald themes)...
+	int iWidth, iHeight;
+	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
+	g_return_if_fail (iHeight != 0);
+	
+	int w, h;
+	if (myConfig.bDisplayControls)
+	{
+		w = MIN (iWidth, iHeight);
+		h = w;
+	}
+	else
+	{
+		w = iWidth;
+		h = iHeight;
+	}
+	cairo_dock_unload_image_buffer (&myData.minimizeButton);
+	cairo_dock_load_image_buffer (&myData.minimizeButton,
+		myConfig.cMinimizeImage,
+		w, h, 0);
+	cairo_dock_unload_image_buffer (&myData.maximizeButton);
+	cairo_dock_load_image_buffer (&myData.maximizeButton,
+		myConfig.cMaximizeImage,
+		w, h, 0);
+	cairo_dock_unload_image_buffer (&myData.restoreButton);
+	cairo_dock_load_image_buffer (&myData.restoreButton,
+		myConfig.cRestoreImage,
+		w, h, 0);
+	cairo_dock_unload_image_buffer (&myData.closeButton);
+	cairo_dock_load_image_buffer (&myData.closeButton,
+		myConfig.cCloseImage,
+		w, h, 0);
+}
+
+
+void cd_app_menu_default_image (void)
+{
+	int iWidth, iHeight;
+	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
+	g_return_if_fail (iHeight != 0);
+	
+	int w, h;
+	if (myConfig.bDisplayControls)
+	{
+		w = MIN (iWidth, iHeight);
+		h = w;
+	}
+	else
+	{
+		w = iWidth;
+		h = iHeight;
+	}
+	cairo_dock_load_image_buffer (&myData.defaultIcon,
+		MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
+		w, h, 0);
 }
 
 
@@ -211,12 +301,12 @@ void cd_app_menu_redraw_icon (void)
 	// load the buttons and the default icon
 	if (myData.iCurrentWindow == 0 && myData.defaultIcon.iWidth == 0)
 	{
-		
+		cd_app_menu_default_image ();
 	}
 	
 	if (myData.minimizeButton.iWidth == 0)
 	{
-		
+		cd_app_menu_load_button_images ();
 	}
 	
 	// set and launch a transition
@@ -225,7 +315,12 @@ void cd_app_menu_redraw_icon (void)
 		g_bUseOpenGL,  // bFastPace : vite si opengl, lent si cairo.
 		myConfig.iTransitionDuration,
 		TRUE);  // bRemoveWhenFinished
-	/*if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+}
+
+
+void cd_app_menu_redraw_buttons (void)
+{
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
 	{
 		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN ();
 		cd_app_menu_render_step_opengl (myIcon, myApplet);	
@@ -236,5 +331,61 @@ void cd_app_menu_redraw_icon (void)
 		cd_app_menu_render_step_cairo (myIcon, myApplet);
 		CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
 	}
-	CD_APPLET_REDRAW_MY_ICON;*/
+	CD_APPLET_REDRAW_MY_ICON;
+}
+
+
+void cd_app_menu_resize (void)
+{
+	int iWidth, iHeight;
+	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
+	if (myContainer->bIsHorizontal)
+		cairo_dock_resize_applet (myApplet, MAX (iWidth, myData.iNbButtons*iHeight), iHeight);
+	else
+		cairo_dock_resize_applet (myApplet, iWidth, MAX (myData.iNbButtons*iWidth, iHeight));
+}
+
+
+CDButtonEnum cd_app_menu_find_button (CairoDockModuleInstance *myApplet)
+{
+	int iNumButton = -1;
+	int iMouseX, iMouseY;
+	if (myDesklet)  /// TODO: handle the opengl picking...
+	{
+		iMouseX = myDesklet->iMouseX2d;
+		iMouseY = myDesklet->iMouseY2d;
+	}
+	else
+	{
+		iMouseX = myContainer->iMouseX - myIcon->fDrawX;
+		iMouseY = myContainer->iMouseY - myIcon->fDrawY;
+	}
+	
+	int w, h;
+	if (myContainer->bIsHorizontal)
+	{
+		w = myIcon->fWidth * myIcon->fScale;
+		h = myIcon->fHeight * myIcon->fScale;
+	}
+	else
+	{
+		h = myIcon->fWidth * myIcon->fScale;
+		w = myIcon->fHeight * myIcon->fScale;
+		int tmp = iMouseX;
+		iMouseX = iMouseY;
+		iMouseY = tmp;
+	}
+	if (w >= h)  // horizontal alignment
+	{
+		iNumButton = iMouseX / (w/myData.iNbButtons);
+	}
+	else  // vertical alignment
+	{
+		iNumButton = iMouseY / (h/myData.iNbButtons);
+	}
+	
+	if (!myConfig.bDisplayMenu)
+		iNumButton++;
+	
+	return iNumButton;
 }

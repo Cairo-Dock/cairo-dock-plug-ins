@@ -22,6 +22,7 @@
 #include "gdk/gdkx.h"
 
 #include "applet-struct.h"
+#include "applet-draw.h"
 #include "applet-app.h"
 #include "applet-notifications.h"
 
@@ -54,7 +55,38 @@ static void _show_menu (gboolean bOnMouse)
 
 //\___________ Action on click: show the menu
 CD_APPLET_ON_CLICK_BEGIN
-	if (myConfig.bDisplayMenu)
+	if (myData.iCurrentWindow == 0)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	if (myConfig.bDisplayControls)
+	{
+		int iNumButton = cd_app_menu_find_button (myApplet);
+		if (iNumButton >= 0)
+		{
+			switch (iNumButton)
+			{
+				case CD_BUTTON_MENU:
+					_show_menu (FALSE);
+				break;
+				case CD_BUTTON_MINIMIZE:
+					if (myData.bCanMinimize)
+						cairo_dock_minimize_xwindow (myData.iCurrentWindow);
+				break;
+				case CD_BUTTON_MAXIMIZE:
+					if (myData.bCanMaximize)
+					{
+						Icon *pAppli = cairo_dock_get_icon_with_Xid (myData.iCurrentWindow);
+						if (pAppli)
+							cairo_dock_maximize_xwindow (pAppli->Xid, ! pAppli->bIsMaximized);
+					}
+				break;
+				case CD_BUTTON_CLOSE:
+					if (myData.bCanClose)
+						cairo_dock_close_xwindow (myData.iCurrentWindow);
+				break;
+			}
+		}
+	}
+	else if (myConfig.bDisplayMenu)
 		_show_menu (FALSE);
 CD_APPLET_ON_CLICK_END
 
@@ -98,6 +130,28 @@ void cd_app_menu_on_keybinding_pull (const gchar *keystring, CairoDockModuleInst
 }
 
 
+gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation)
+{
+	CD_APPLET_ENTER;
+	if (! myIcon->bPointed || ! pContainer->bInside)
+		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	
+	// find the pointed button
+	int iNumButton = cd_app_menu_find_button (myApplet);
+	if (iNumButton >= 0)
+	{
+		// trigger redraw or animation
+		if (myDock)
+			CAIRO_DOCK_REDRAW_MY_CONTAINER;
+		else
+			*bStartAnimation = TRUE;
+	}
+	
+	
+	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+}
+
+
 //\___________ Other notifications, that are not from the user (but from the Applications-manager)
 static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, Window *data)
 {
@@ -107,7 +161,6 @@ static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, Window *d
 }
 gboolean cd_app_menu_on_active_window_changed (CairoDockModuleInstance *myApplet, Window *XActiveWindow)
 {
-	g_print ("**** %p %d\n", XActiveWindow, XActiveWindow?*XActiveWindow:-1);
 	if (XActiveWindow == NULL)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
@@ -137,6 +190,8 @@ gboolean cd_app_menu_on_property_changed (CairoDockModuleInstance *myApplet, Win
 			Icon *icon = cairo_dock_get_icon_with_Xid (Xid);
 			if (icon)
 				cd_app_menu_set_window_border (Xid, ! icon->bIsMaximized);
+			// update the icon to reflect the change of state (max/restore button)
+			cd_app_menu_redraw_buttons ();
 		}
 		else if (iState == PropertyNewValue && (aProperty == s_aNetWmName || aProperty == s_aWmName))
 		{

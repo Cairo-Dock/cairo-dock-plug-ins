@@ -22,8 +22,23 @@
 
 #include <cairo-dock.h>
 
+#include "applet-struct.h"
+
+
+void cd_app_menu_load_button_images (void);
+
+void cd_app_menu_default_image (void);
+
 
 void cd_app_menu_redraw_icon (void);
+
+void cd_app_menu_redraw_buttons (void);
+
+
+void cd_app_menu_resize (void);
+
+
+CDButtonEnum cd_app_menu_find_button (CairoDockModuleInstance *myApplet);
 
 
 #endif

@@ -22,12 +22,13 @@
 #include "applet-config.h"
 #include "applet-notifications.h"
 #include "applet-app.h"
+#include "applet-draw.h"
 #include "applet-struct.h"
 #include "applet-init.h"
 
 
 CD_APPLET_DEFINE_BEGIN (N_("Application Menu"),
-	2, 4, 0,
+	3, 0, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("This applet allows you to control the current active window:\n"
 	"  close, minimize, maximize, and display the application menu."
@@ -57,6 +58,12 @@ CD_APPLET_INIT_BEGIN
 	
 	// start !
 	cd_app_menu_start ();
+	myData.iNbButtons = myConfig.bDisplayControls * 3 + 1;  // we display the icon even if we don't provide the menu.
+	
+	if (myConfig.bDisplayControls)  // no animation on mouse hover if the buttons are displayed, it's hard to click
+	{
+		CD_APPLET_SET_STATIC_ICON;
+	}
 	
 	// mouse events
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
@@ -64,6 +71,11 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_DOUBLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
+	
+	cairo_dock_register_notification_on_object (myContainer,
+		NOTIFICATION_MOUSE_MOVED,
+		(CairoDockNotificationFunc) on_mouse_moved,
+		CAIRO_DOCK_RUN_AFTER, myApplet);
 	
 	// keyboard events
 	if (myConfig.bDisplayMenu)
@@ -100,8 +112,9 @@ CD_APPLET_STOP_END
 
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
-	/// if they are loaded, reload the controls icons...
-	
+	// if they are loaded, reload the controls icons.
+	cd_app_menu_load_button_images ();
+	cd_app_menu_default_image ();
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
@@ -120,6 +133,7 @@ CD_APPLET_RELOAD_BEGIN
 			cd_app_disconnect_from_registrar ();
 		
 		// to update any param that could have changed, simply re-set the current window.
+		myData.iNbButtons = myConfig.bDisplayControls * 3 + 1;
 		Window iActiveWindow = myData.iCurrentWindow;
 		myData.iCurrentWindow = 0;
 		cd_app_menu_set_current_window (iActiveWindow);
@@ -140,5 +154,12 @@ CD_APPLET_RELOAD_BEGIN
 			cd_keybinder_unbind (myData.pKeyBinding);
 		}
 		
+		cairo_dock_set_icon_static (myIcon, myConfig.bDisplayControls);
 	}
+	
+	if (myConfig.bDisplayControls)
+	{
+		cd_app_menu_resize ();
+	}
+	
 CD_APPLET_RELOAD_END

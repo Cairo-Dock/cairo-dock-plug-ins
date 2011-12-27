@@ -85,7 +85,6 @@ static void _get_window_allowed_actions (Window Xid)
 		Xid, allowedActions, 0, G_MAXULONG, False, XA_ATOM,
 		&aReturnedType, &aReturnedFormat, &iBufferNbElements, &iLeftBytes, (guchar **)&pXStateBuffer);
 	
-	gboolean bIsInState = FALSE;
 	if (iBufferNbElements > 0)
 	{
 		myData.bCanMinimize = FALSE;
@@ -255,7 +254,7 @@ static void _on_menu_destroyed (CairoDockModuleInstance *myApplet, GObject *old_
 		myData.pMenu = NULL;
 }
 
-static void _free_shared_memory (CDSharedMemory *pSharedMemory)
+/*static void _free_shared_memory (CDSharedMemory *pSharedMemory)
 {
 	g_free (pSharedMemory->cService);
 	g_free (pSharedMemory->cMenuObject);
@@ -263,23 +262,24 @@ static void _free_shared_memory (CDSharedMemory *pSharedMemory)
 		gtk_widget_destroy (GTK_WIDGET (pSharedMemory->pMenu));
 	g_free (pSharedMemory);
 }
-
 static void _get_menu_async (CDSharedMemory *pSharedMemory)
 {
+	g_print ("%s()\n", __func__);
 	pSharedMemory->pMenu = dbusmenu_gtkmenu_new (pSharedMemory->cService, pSharedMemory->cMenuObject);  /// can this object disappear by itself ? it seems to crash with 2 instances of inkscape, when closing one of them... 
+	g_print ("menu built\n");
 }
-
 static gboolean _fetch_menu (CDSharedMemory *pSharedMemory)
 {
+	g_print ("%s()\n", __func__);
 	CD_APPLET_ENTER;
 	myData.pMenu = pSharedMemory->pMenu;
 	pSharedMemory->pMenu = NULL;
 	
-	g_object_weak_ref (G_OBJECT (pSharedMemory->pMenu),
+	g_object_weak_ref (G_OBJECT (myData.pMenu),
 		(GWeakNotify)_on_menu_destroyed,
 		myApplet);
 	CD_APPLET_LEAVE (TRUE);
-}
+}*/
 
 static void _on_got_menu (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockModuleInstance *myApplet)
 {
@@ -307,7 +307,7 @@ static void _on_got_menu (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockM
 		g_print ("    %s\n", cMenuObject);
 		if (cService && *cService != '\0')
 		{
-			if (myData.pTask != NULL)
+			/*if (myData.pTask != NULL)
 			{
 				cairo_dock_discard_task (myData.pTask);
 				myData.pTask = NULL;
@@ -315,20 +315,19 @@ static void _on_got_menu (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockM
 			CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
 			pSharedMemory->cService = cService;
 			pSharedMemory->cMenuObject = cMenuObject;
-			
 			myData.pTask = cairo_dock_new_task_full (0,
 				(CairoDockGetDataAsyncFunc) _get_menu_async,
 				(CairoDockUpdateSyncFunc) _fetch_menu,
 				(GFreeFunc) _free_shared_memory,
 				pSharedMemory);
-			cairo_dock_launch_task_delayed (myData.pTask, 0);
+			cairo_dock_launch_task_delayed (myData.pTask, 0);*/
 			/// TODO: it seems to hang he dock for a second, even with a task :-/
 			/// so maybe we need to cache the {window,menu} couples...
-			
-			/**myData.pMenu = dbusmenu_gtkmenu_new (cService, cMenuObject);  /// can this object disappear by itself ? it seems to crash with 2 instances of inkscape, when closing one of them... 
-			g_object_weak_ref (G_OBJECT (myData.pMenu),
-				(GWeakNotify)_on_menu_destroyed,
-				myApplet);*/
+			myData.pMenu = dbusmenu_gtkmenu_new (cService, cMenuObject);  /// can this object disappear by itself ? it seems to crash with 2 instances of inkscape, when closing one of them... 
+			if (myData.pMenu)
+				g_object_weak_ref (G_OBJECT (myData.pMenu),
+					(GWeakNotify)_on_menu_destroyed,
+					myApplet);
 		}
 	}
 	
@@ -416,14 +415,8 @@ void cd_app_menu_start (void)
 	
 	if (myConfig.bDisplayControls)
 	{
-		int iWidth, iHeight;
-		CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
-		/// TODO: resize
-		/**if (myContainer->bIsHorizontal)
-			cairo_dock_resize_applet (myApplet, MAX (iWidth, 4*iHeight), iHeight);
-		else
-			cairo_dock_resize_applet (myApplet, iWidth, MAX (4*iWidth, iHeight));*/
-	}  /// TODO: handle the reload ...
+		cd_app_menu_resize ();
+	}
 }
 
 

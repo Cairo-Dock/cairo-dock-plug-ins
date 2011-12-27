@@ -31,6 +31,13 @@
 #include <libdbusmenu-gtk3/menu.h>
 #endif
 
+typedef enum {
+	CD_BUTTON_MENU,
+	CD_BUTTON_MINIMIZE,
+	CD_BUTTON_MAXIMIZE,
+	CD_BUTTON_CLOSE,
+	CD_NB_BUTTONS
+	} CDButtonEnum;
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
@@ -40,6 +47,10 @@ struct _AppletConfig {
 	gchar *cShortkey;  // if bDisplayMenu, shortkey to pop up the menu
 	gboolean bMenuOnMouse;
 	gint iTransitionDuration;  // ms
+	gchar *cMinimizeImage;
+	gchar *cMaximizeImage;
+	gchar *cRestoreImage;
+	gchar *cCloseImage;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
@@ -59,7 +70,9 @@ struct _AppletData {
 	CairoDockImageBuffer closeButton;
 	guint iSidInitIdle;
 	guint iSidInitIdle2;
-	CairoDockTask *pTask;
+	//CairoDockTask *pTask;
+	gint iNbButtons;
+	GHashTable *windows;
 	} ;
 
 #endif
