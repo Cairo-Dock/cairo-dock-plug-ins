@@ -240,6 +240,7 @@ static void _on_text_changed (GtkWidget *pEntry, GtkWidget *pLabel)
 	else
 		cLabel = g_strdup_printf ("<span color=\"red\"><b>%d</b></span>", iNbChars);
 	gtk_label_set_markup (GTK_LABEL (pLabel), cLabel);
+	cairo_dock_set_dialog_widget_text_color (pLabel);
 	g_free (cLabel);
 }
 static void _on_dialog_destroyed (dbusApplet *pDbusApplet)
@@ -398,6 +399,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 						{
 							g_signal_connect (pOneWidget, "changed", G_CALLBACK (_on_text_changed), pLabel);
 							g_object_set_data (G_OBJECT (pOneWidget), "nb-chars-max", GINT_TO_POINTER (iNbCharsMax));
+							gtk_entry_set_width_chars (GTK_ENTRY (pOneWidget), MIN (iNbCharsMax/2, 100));  // a rough estimate is: 140 chars ~ 1024 pixels
 						}
 					}
 				}
