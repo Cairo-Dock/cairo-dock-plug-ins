@@ -70,7 +70,7 @@ struct _AppletData {
 	CairoDockImageBuffer closeButton;
 	guint iSidInitIdle;
 	guint iSidInitIdle2;
-	//CairoDockTask *pTask;
+	CairoDockTask *pTask;
 	gint iNbButtons;
 	GHashTable *windows;
 	} ;

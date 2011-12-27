@@ -120,7 +120,7 @@ static Icon *_cd_tomboy_create_icon_for_note (const gchar *cNoteURI)
 	if (myConfig.bDrawContent)
 	{
 		pIcon->cClass = getNoteContent (cNoteURI);
-		cairo_dock_set_icon_static (pIcon);  // pour la lisibilite, pas d'animation.
+		cairo_dock_set_icon_static (pIcon, TRUE);  // pour la lisibilite, pas d'animation.
 		pIcon->iface.load_image = _load_note_image;
 	}
 	return pIcon;
