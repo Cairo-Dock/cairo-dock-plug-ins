@@ -259,29 +259,26 @@ void terminal_close_tab (GtkWidget *vterm)
 
 static void _term_apply_settings_on_vterm(GtkWidget *vterm)
 {
-  g_return_if_fail (vterm != NULL);
-  vte_terminal_set_colors(VTE_TERMINAL(vterm), &myConfig.forecolor, &myConfig.backcolor, NULL, 0);
-      //vte_terminal_set_background_saturation(VTE_TERMINAL(vterm), 1.0);
-      //vte_terminal_set_background_transparent(VTE_TERMINAL(vterm), TRUE);
-#if GTK_MINOR_VERSION >= 12
-  vte_terminal_set_opacity(VTE_TERMINAL(vterm), myConfig.transparency);
-#endif
-  
+	g_return_if_fail (vterm != NULL);
+	vte_terminal_set_colors(VTE_TERMINAL(vterm), &myConfig.forecolor, &myConfig.backcolor, NULL, 0);
+	#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 12)
+	vte_terminal_set_opacity(VTE_TERMINAL(vterm), myConfig.transparency);
+	#endif
+	
 	if (myDock)
 	{
-		//g_print ("set_size (%d , %d)\n", myConfig.iNbColumns, myConfig.iNbRows);
-		g_object_set (vterm, "width-request", 0, NULL);
+		// since dialogs can't be resized (like desklets), set the size as defined in the config.
+		// Note: vte_terminal_set_size() doesn't work since the port to GTK3.
+		#ifdef LIBVTE_IS_NOT_BUGGY
+		g_object_set (vterm, "width-request", 0, NULL);  // reset if ever it was previously set (removing this line doesn't make vte_terminal_set_size() work ...)
 		g_object_set (vterm, "height-request", 0, NULL);
 		vte_terminal_set_size(VTE_TERMINAL(vterm), myConfig.iNbColumns, myConfig.iNbRows);
-		GtkRequisition requisition = {0, 0};
-		#if (GTK_MAJOR_VERSION < 3)
-		gtk_widget_size_request (vterm, &requisition);
 		#else
-		gtk_widget_get_preferred_size (vterm, &requisition, NULL);
+		g_object_set (vterm,
+			"width-request", myConfig.iNbColumns * vte_terminal_get_char_width (VTE_TERMINAL(vterm)),
+			"height-request", myConfig.iNbRows * vte_terminal_get_char_height (VTE_TERMINAL(vterm)),
+			NULL);
 		#endif
-		//g_print (" -> %dx%d\n", requisition.width, requisition.height);
-		if (myData.dialog)
-			gtk_window_resize (GTK_WINDOW (myData.dialog->container.pWidget), requisition.width, requisition.height);
 	}
 	else
 	{
@@ -560,16 +557,19 @@ static gchar * _terminal_get_tab_name (int iNumPage)
 	}
 	return NULL;
 }
+
+static AtkObject *
+_get_dummy_accessible(GtkWidget *widget)
+{
+	return NULL;
+}
+
 void terminal_new_tab(void)
 {
 	//\_________________ On cree un nouveau terminal.
 	GtkWidget *vterm = vte_terminal_new();
-	//transparency enable, otherwise we cant change value after
-	//vte_terminal_set_background_transparent(VTE_TERMINAL(vterm), TRUE);
-	#if GTK_MINOR_VERSION >= 12
-	vte_terminal_set_opacity(VTE_TERMINAL(vterm), myConfig.transparency);
-	#endif
-	vte_terminal_set_emulation(VTE_TERMINAL(vterm), "xterm");
+	GTK_WIDGET_GET_CLASS (vterm)->get_accessible = _get_dummy_accessible;  // this is to prevent a bug in libvet2.90; it gives a warning, but it's better than a crash !
+	vte_terminal_set_emulation (VTE_TERMINAL(vterm), "xterm");
 	pid_t pid; 
 	#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 18)  // VTE_CHECK_VERSION doesn't exist in Hardy.
 		#if VTE_CHECK_VERSION(0,26,0)
@@ -615,7 +615,7 @@ void terminal_new_tab(void)
 	g_signal_connect (G_OBJECT (vterm), "eof",
 				G_CALLBACK (applet_on_terminal_eof), NULL);
 	
-	///cairo_dock_allow_widget_to_receive_data (vterm, G_CALLBACK (on_terminal_drag_data_received), NULL);
+	cairo_dock_allow_widget_to_receive_data (vterm, G_CALLBACK (on_terminal_drag_data_received), NULL);
 
 	GtkWidget *pHBox = _gtk_hbox_new (0);
 
@@ -673,10 +673,9 @@ void terminal_new_tab(void)
 		0);
 	
 	gtk_widget_show_all (pHBox);
-	int num_new_tab = gtk_notebook_append_page(GTK_NOTEBOOK(myData.tab), vterm, pHBox);
-	GtkWidget *pNewTab = gtk_notebook_get_nth_page (GTK_NOTEBOOK(myData.tab), num_new_tab);
-	
 	gtk_widget_show(vterm);
+	int num_new_tab = gtk_notebook_append_page(GTK_NOTEBOOK(myData.tab), vterm, pHBox);
+	
 	cd_message ("num_new_tab : %d", num_new_tab);
 	gtk_notebook_set_current_page (GTK_NOTEBOOK (myData.tab), num_new_tab);
 	
@@ -827,7 +826,7 @@ void terminal_build_and_show_tab (void)
 	terminal_new_tab();
 	gtk_widget_show(myData.tab);
 
-	term_apply_settings();
+	///term_apply_settings();
 
 	//\_________________ On insere le notebook dans le container.
 	if (myDock)
