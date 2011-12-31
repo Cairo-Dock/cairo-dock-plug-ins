@@ -42,6 +42,7 @@ struct _CDAppletIndicator {
 	DBusGProxy * pServiceProxy;
 	DbusmenuGtkMenu *pMenu;
 	guint iSidGetMenuOnce;
+	guint iSidCheckIndicator;
 	gchar *cStatusIcon;
 	gboolean bConnected;
 	const gchar *cBusName;

@@ -94,6 +94,16 @@ connection_changed (IndicatorServiceManager * sm, gboolean connected, CDAppletIn
 	return;
 }
 
+static gboolean _check_indicator (CDAppletIndicator *pIndicator)
+{
+	CairoDockModuleInstance *myApplet = pIndicator->pApplet;
+	if (!pIndicator->bConnected && pIndicator->on_disconnect)
+		pIndicator->on_disconnect (myApplet);
+		
+	pIndicator->iSidCheckIndicator = 0;
+	return FALSE;
+}
+
 CDAppletIndicator *cd_indicator_new (CairoDockModuleInstance *pApplet, const gchar *cBusName, const gchar *cServiceObject, const gchar *cServiceInterface, const gchar *cMenuObject, int iVersion)
 {
 	if (!s_bIndicatorIconThemeAdded)
@@ -112,6 +122,9 @@ CDAppletIndicator *cd_indicator_new (CairoDockModuleInstance *pApplet, const gch
 	pIndicator->service = indicator_service_manager_new_version ((gchar*)cBusName, iVersion);
 	g_signal_connect (G_OBJECT(pIndicator->service), INDICATOR_SERVICE_MANAGER_SIGNAL_CONNECTION_CHANGE, G_CALLBACK(connection_changed), pIndicator);  // on sera appele une fois la connexion etablie.  // pour le cast, cf plus haut.
 	
+	// indicators don't send the 'connection-change' signal if the connection couldn't be done, so we have to handle this case ourselves.
+	pIndicator->iSidCheckIndicator = g_timeout_add_seconds (2, (GSourceFunc)_check_indicator, pIndicator);
+	
 	return pIndicator;
 }
 
@@ -122,6 +135,8 @@ void cd_indicator_destroy (CDAppletIndicator *pIndicator)
 		return;
 	if (pIndicator->iSidGetMenuOnce != 0)
 		g_source_remove (pIndicator->iSidGetMenuOnce);
+	if (pIndicator->iSidCheckIndicator != 0)
+		g_source_remove (pIndicator->iSidCheckIndicator);
 	if (pIndicator->service)
 		g_object_unref (pIndicator->service);
 	if (pIndicator->pServiceProxy)
@@ -187,11 +202,14 @@ void cd_indicator_reload_icon (CDAppletIndicator *pIndicator)
 
 gboolean cd_indicator_show_menu (CDAppletIndicator *pIndicator)
 {
-	_cd_indicator_make_menu (pIndicator);
-	if (pIndicator->pMenu != NULL)
+	if (pIndicator->bConnected)
 	{
-		cairo_dock_popup_menu_on_icon (GTK_WIDGET (pIndicator->pMenu), myIcon, myContainer);
-		return TRUE;
+		_cd_indicator_make_menu (pIndicator);
+		if (pIndicator->pMenu != NULL)
+		{
+			cairo_dock_popup_menu_on_icon (GTK_WIDGET (pIndicator->pMenu), myIcon, myContainer);
+			return TRUE;
+		}
 	}
 	return FALSE;
 }
