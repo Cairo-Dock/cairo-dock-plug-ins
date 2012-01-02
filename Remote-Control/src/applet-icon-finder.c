@@ -152,8 +152,8 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 		
 		cd_do_remove_icons_number (myData.pCurrentDock);
 		
-		cairo_dock_remove_notification_func_on_object (myData.pCurrentDock, NOTIFICATION_RENDER_DOCK, (CairoDockNotificationFunc) cd_do_render, NULL);
-		cairo_dock_remove_notification_func_on_object (myData.pCurrentDock, NOTIFICATION_UPDATE_DOCK, (CairoDockNotificationFunc) cd_do_update_container, NULL);
+		cairo_dock_remove_notification_func_on_object (myData.pCurrentDock, NOTIFICATION_RENDER, (CairoDockNotificationFunc) cd_do_render, NULL);
+		cairo_dock_remove_notification_func_on_object (myData.pCurrentDock, NOTIFICATION_UPDATE, (CairoDockNotificationFunc) cd_do_update_container, NULL);
 		cairo_dock_remove_notification_func_on_object (myData.pCurrentDock, NOTIFICATION_CLICK_ICON, (CairoDockNotificationFunc) cd_do_on_click, NULL);
 		cairo_dock_remove_notification_func_on_object (myData.pCurrentDock, NOTIFICATION_MIDDLE_CLICK_ICON, (CairoDockNotificationFunc) cd_do_on_click, NULL);
 	}
@@ -183,11 +183,11 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 		cd_do_numberize_icons (pDock);
 		
 		cairo_dock_register_notification_on_object (pDock,
-			NOTIFICATION_UPDATE_DOCK,
+			NOTIFICATION_UPDATE,
 			(CairoDockNotificationFunc) cd_do_update_container,
 			CAIRO_DOCK_RUN_AFTER, NULL);
 		cairo_dock_register_notification_on_object (pDock,
-			NOTIFICATION_RENDER_DOCK,
+			NOTIFICATION_RENDER,
 			(CairoDockNotificationFunc) cd_do_render,
 			CAIRO_DOCK_RUN_AFTER, NULL);
 		cairo_dock_register_notification_on_object (pDock,

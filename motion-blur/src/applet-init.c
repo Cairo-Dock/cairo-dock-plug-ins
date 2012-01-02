@@ -44,11 +44,11 @@ CD_APPLET_INIT_BEGIN
 		return;
 	
 	cairo_dock_register_notification_on_object (&myDocksMgr,
-		NOTIFICATION_RENDER_DOCK,
+		NOTIFICATION_RENDER,
 		(CairoDockNotificationFunc) cd_motion_blur_pre_render,
 		CAIRO_DOCK_RUN_FIRST, NULL);
 	cairo_dock_register_notification_on_object (&myDocksMgr,
-		NOTIFICATION_RENDER_DOCK,
+		NOTIFICATION_RENDER,
 		(CairoDockNotificationFunc) cd_motion_blur_post_render,
 		CAIRO_DOCK_RUN_AFTER, NULL);
 	if (myConfig.bAlways)
@@ -61,7 +61,7 @@ CD_APPLET_INIT_BEGIN
 		(CairoDockNotificationFunc) cd_motion_blur_mouse_moved,
 		CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification_on_object (&myDocksMgr,
-		NOTIFICATION_UPDATE_DOCK,
+		NOTIFICATION_UPDATE,
 		(CairoDockNotificationFunc) cd_motion_blur_update_dock,
 		CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification_on_object (&myDocksMgr,
@@ -78,10 +78,10 @@ static void _free_data_on_dock (const gchar *cDockName, CairoDock *pDock, gpoint
 }
 CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
-		NOTIFICATION_RENDER_DOCK,
+		NOTIFICATION_RENDER,
 		(CairoDockNotificationFunc) cd_motion_blur_pre_render, NULL);
 	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
-		NOTIFICATION_RENDER_DOCK,
+		NOTIFICATION_RENDER,
 		(CairoDockNotificationFunc) cd_motion_blur_post_render, NULL);
 	if (myConfig.bAlways)
 		cairo_dock_remove_notification_func_on_object (&myContainersMgr,
@@ -91,7 +91,7 @@ CD_APPLET_STOP_BEGIN
 		NOTIFICATION_ENTER_DOCK,
 		(CairoDockNotificationFunc) cd_motion_blur_mouse_moved, NULL);
 	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
-		NOTIFICATION_UPDATE_DOCK,
+		NOTIFICATION_UPDATE,
 		(CairoDockNotificationFunc) cd_motion_blur_update_dock, NULL);
 	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
 		NOTIFICATION_STOP_DOCK,

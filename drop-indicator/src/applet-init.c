@@ -63,11 +63,11 @@ CD_APPLET_INIT_BEGIN
 		(CairoDockNotificationFunc) cd_drop_indicator_mouse_moved,
 		CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification_on_object (&myDocksMgr,
-		NOTIFICATION_RENDER_DOCK,
+		NOTIFICATION_RENDER,
 		(CairoDockNotificationFunc) cd_drop_indicator_render,
 		CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification_on_object (&myDocksMgr,
-		NOTIFICATION_UPDATE_DOCK,
+		NOTIFICATION_UPDATE,
 		(CairoDockNotificationFunc) cd_drop_indicator_update_dock,
 		CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification_on_object (&myDocksMgr,
@@ -88,10 +88,10 @@ CD_APPLET_STOP_BEGIN
 		NOTIFICATION_MOUSE_MOVED,
 		(CairoDockNotificationFunc) cd_drop_indicator_mouse_moved, NULL);
 	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
-		NOTIFICATION_RENDER_DOCK,
+		NOTIFICATION_RENDER,
 		(CairoDockNotificationFunc) cd_drop_indicator_render, NULL);
 	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
-		NOTIFICATION_UPDATE_DOCK,
+		NOTIFICATION_UPDATE,
 		(CairoDockNotificationFunc) cd_drop_indicator_update_dock, NULL);
 	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
 		NOTIFICATION_STOP_DOCK,

@@ -30,8 +30,8 @@
 
 #define penguin_remove_notfications() do {\
 	cairo_dock_remove_notification_func_on_object (myIcon, NOTIFICATION_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, myApplet);\
-	cairo_dock_remove_notification_func_on_object (myDock, NOTIFICATION_UPDATE_DOCK_SLOW, (CairoDockNotificationFunc) penguin_update_container, myApplet);\
-	cairo_dock_remove_notification_func_on_object (myDock, NOTIFICATION_RENDER_DOCK, (CairoDockNotificationFunc) penguin_render_on_container, myApplet); } while (0)
+	cairo_dock_remove_notification_func_on_object (myDock, NOTIFICATION_UPDATE_SLOW, (CairoDockNotificationFunc) penguin_update_container, myApplet);\
+	cairo_dock_remove_notification_func_on_object (myDock, NOTIFICATION_RENDER, (CairoDockNotificationFunc) penguin_render_on_container, myApplet); } while (0)
 
 void penguin_move_in_dock (CairoDockModuleInstance *myApplet);
 gboolean penguin_render_on_container (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, cairo_t *pCairoContext);

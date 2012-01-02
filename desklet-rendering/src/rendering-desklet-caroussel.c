@@ -141,7 +141,7 @@ static CDCarousselParameters *configure (CairoDesklet *pDesklet, gpointer *pConf
 		pCaroussel->bRotateIconsOnEllipse = GPOINTER_TO_INT (pConfig[1]);
 	}
 	
-	cairo_dock_register_notification_on_object (pDesklet, NOTIFICATION_UPDATE_DESKLET, (CairoDockNotificationFunc) on_update_desklet, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification_on_object (pDesklet, NOTIFICATION_UPDATE, (CairoDockNotificationFunc) on_update_desklet, CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDesklet), NOTIFICATION_MOUSE_MOVED, (CairoDockNotificationFunc) on_mouse_move, CAIRO_DOCK_RUN_AFTER, NULL);
 	
 	return pCaroussel;
@@ -196,7 +196,7 @@ static void load_data (CairoDesklet *pDesklet)
 
 static void free_data (CairoDesklet *pDesklet)
 {
-	cairo_dock_remove_notification_func_on_object (pDesklet, NOTIFICATION_UPDATE_DESKLET, (CairoDockNotificationFunc) on_update_desklet, NULL);
+	cairo_dock_remove_notification_func_on_object (pDesklet, NOTIFICATION_UPDATE, (CairoDockNotificationFunc) on_update_desklet, NULL);
 	cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDesklet), NOTIFICATION_MOUSE_MOVED, (CairoDockNotificationFunc) on_mouse_move, NULL);
 	
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;

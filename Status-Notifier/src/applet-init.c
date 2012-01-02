@@ -76,11 +76,11 @@ CD_APPLET_INIT_BEGIN
 		if (myDesklet)
 		{
 			cairo_dock_register_notification_on_object (myContainer,
-				NOTIFICATION_RENDER_DESKLET,
+				NOTIFICATION_RENDER,
 				(CairoDockNotificationFunc) on_render_desklet,
 				CAIRO_DOCK_RUN_AFTER, myApplet);
 			cairo_dock_register_notification_on_object (myContainer,
-				NOTIFICATION_UPDATE_DESKLET,
+				NOTIFICATION_UPDATE,
 				(CairoDockNotificationFunc) on_update_desklet,
 				CAIRO_DOCK_RUN_AFTER, myApplet);
 			cairo_dock_register_notification_on_object (myContainer,
@@ -111,10 +111,10 @@ CD_APPLET_STOP_BEGIN
 		NOTIFICATION_MOUSE_MOVED,
 		(CairoDockNotificationFunc) on_mouse_moved, myApplet);
 	cairo_dock_remove_notification_func_on_object (myContainer,
-		NOTIFICATION_RENDER_DESKLET,
+		NOTIFICATION_RENDER,
 		(CairoDockNotificationFunc) on_render_desklet, myApplet);
 	cairo_dock_remove_notification_func_on_object (myContainer,
-		NOTIFICATION_UPDATE_DESKLET,
+		NOTIFICATION_UPDATE,
 		(CairoDockNotificationFunc) on_update_desklet, myApplet);
 	cairo_dock_remove_notification_func_on_object (myContainer,
 		NOTIFICATION_LEAVE_DESKLET,
@@ -136,10 +136,10 @@ CD_APPLET_RELOAD_BEGIN
 			NOTIFICATION_MOUSE_MOVED,
 			(CairoDockNotificationFunc) on_mouse_moved, myApplet);
 		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
-			NOTIFICATION_RENDER_DESKLET,
+			NOTIFICATION_RENDER,
 			(CairoDockNotificationFunc) on_render_desklet, myApplet);
 		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
-			NOTIFICATION_UPDATE_DESKLET,
+			NOTIFICATION_UPDATE,
 			(CairoDockNotificationFunc) on_update_desklet, myApplet);
 		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
 			NOTIFICATION_LEAVE_DESKLET,
@@ -154,11 +154,11 @@ CD_APPLET_RELOAD_BEGIN
 			if (myDesklet)
 			{
 				cairo_dock_register_notification_on_object (myContainer,
-					NOTIFICATION_RENDER_DESKLET,
+					NOTIFICATION_RENDER,
 					(CairoDockNotificationFunc) on_render_desklet,
 					CAIRO_DOCK_RUN_AFTER, myApplet);
 				cairo_dock_register_notification_on_object (myContainer,
-					NOTIFICATION_UPDATE_DESKLET,
+					NOTIFICATION_UPDATE,
 					(CairoDockNotificationFunc) on_update_desklet,
 					CAIRO_DOCK_RUN_AFTER, myApplet);
 				cairo_dock_register_notification_on_object (myContainer,

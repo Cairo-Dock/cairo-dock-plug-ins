@@ -39,22 +39,22 @@ CD_APPLET_DEFINE_END
 
 #define _cd_mouse_register_on_dock(...) \
 	cairo_dock_register_notification_on_object (&myDocksMgr, NOTIFICATION_ENTER_DOCK, (CairoDockNotificationFunc) cd_show_mouse_enter_container, CAIRO_DOCK_RUN_AFTER, NULL);\
-	cairo_dock_register_notification_on_object (&myDocksMgr, NOTIFICATION_UPDATE_DOCK, (CairoDockNotificationFunc) cd_show_mouse_update_container, CAIRO_DOCK_RUN_AFTER, NULL);\
-	cairo_dock_register_notification_on_object (&myDocksMgr, NOTIFICATION_RENDER_DOCK, (CairoDockNotificationFunc) cd_show_mouse_render, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification_on_object (&myDocksMgr, NOTIFICATION_UPDATE, (CairoDockNotificationFunc) cd_show_mouse_update_container, CAIRO_DOCK_RUN_AFTER, NULL);\
+	cairo_dock_register_notification_on_object (&myDocksMgr, NOTIFICATION_RENDER, (CairoDockNotificationFunc) cd_show_mouse_render, CAIRO_DOCK_RUN_AFTER, NULL);
 
 #define _cd_mouse_register_on_desklet(...) \
 	cairo_dock_register_notification_on_object (&myDeskletsMgr, NOTIFICATION_ENTER_DESKLET, (CairoDockNotificationFunc) cd_show_mouse_enter_container, CAIRO_DOCK_RUN_AFTER, NULL);\
-	cairo_dock_register_notification_on_object (&myDeskletsMgr, NOTIFICATION_UPDATE_DESKLET, (CairoDockNotificationFunc) cd_show_mouse_update_container, CAIRO_DOCK_RUN_AFTER, NULL);\
-	cairo_dock_register_notification_on_object (&myDeskletsMgr, NOTIFICATION_RENDER_DESKLET, (CairoDockNotificationFunc) cd_show_mouse_render, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification_on_object (&myDeskletsMgr, NOTIFICATION_UPDATE, (CairoDockNotificationFunc) cd_show_mouse_update_container, CAIRO_DOCK_RUN_AFTER, NULL);\
+	cairo_dock_register_notification_on_object (&myDeskletsMgr, NOTIFICATION_RENDER, (CairoDockNotificationFunc) cd_show_mouse_render, CAIRO_DOCK_RUN_AFTER, NULL);
 
 #define _cd_mouse_unregister_from_dock(...) \
-	cairo_dock_remove_notification_func_on_object (&myDocksMgr, NOTIFICATION_RENDER_DOCK, (CairoDockNotificationFunc) cd_show_mouse_render, NULL);\
-	cairo_dock_remove_notification_func_on_object (&myDocksMgr, NOTIFICATION_UPDATE_DOCK, (CairoDockNotificationFunc) cd_show_mouse_update_container, NULL);\
+	cairo_dock_remove_notification_func_on_object (&myDocksMgr, NOTIFICATION_RENDER, (CairoDockNotificationFunc) cd_show_mouse_render, NULL);\
+	cairo_dock_remove_notification_func_on_object (&myDocksMgr, NOTIFICATION_UPDATE, (CairoDockNotificationFunc) cd_show_mouse_update_container, NULL);\
 	cairo_dock_remove_notification_func_on_object (&myDocksMgr, NOTIFICATION_ENTER_DOCK, (CairoDockNotificationFunc) cd_show_mouse_enter_container, NULL);
 
 #define _cd_mouse_unregister_from_desklet(...) \
-	cairo_dock_remove_notification_func_on_object (&myDeskletsMgr, NOTIFICATION_RENDER_DESKLET, (CairoDockNotificationFunc) cd_show_mouse_render, NULL);\
-	cairo_dock_remove_notification_func_on_object (&myDeskletsMgr, NOTIFICATION_UPDATE_DESKLET, (CairoDockNotificationFunc) cd_show_mouse_update_container, NULL);\
+	cairo_dock_remove_notification_func_on_object (&myDeskletsMgr, NOTIFICATION_RENDER, (CairoDockNotificationFunc) cd_show_mouse_render, NULL);\
+	cairo_dock_remove_notification_func_on_object (&myDeskletsMgr, NOTIFICATION_UPDATE, (CairoDockNotificationFunc) cd_show_mouse_update_container, NULL);\
 	cairo_dock_remove_notification_func_on_object (&myDeskletsMgr, NOTIFICATION_ENTER_DESKLET, (CairoDockNotificationFunc) cd_show_mouse_enter_container, NULL);
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).

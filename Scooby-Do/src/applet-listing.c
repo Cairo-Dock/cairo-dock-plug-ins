@@ -92,7 +92,7 @@ static gboolean on_expose_listing (GtkWidget *pWidget,
 				(int) pExpose->area.height);
 		}
 		
-		cairo_dock_notify_on_object (CAIRO_CONTAINER (pListing), NOTIFICATION_RENDER_DEFAULT_CONTAINER, pListing, NULL);
+		cairo_dock_notify_on_object (CAIRO_CONTAINER (pListing), NOTIFICATION_RENDER, pListing, NULL);
 		
 		glDisable (GL_SCISSOR_TEST);
 		
@@ -112,11 +112,11 @@ static gboolean on_expose_listing (GtkWidget *pWidget,
 			pCairoContext = cairo_dock_create_drawing_context (CAIRO_CONTAINER (pListing));
 		}
 		
-		cairo_dock_notify_on_object (CAIRO_CONTAINER (pListing), NOTIFICATION_RENDER_DEFAULT_CONTAINER, pListing, pCairoContext);
+		cairo_dock_notify_on_object (CAIRO_CONTAINER (pListing), NOTIFICATION_RENDER, pListing, pCairoContext);
 		
 		cairo_destroy (pCairoContext);
 		#else
-		cairo_dock_notify_on_object (CAIRO_CONTAINER (pListing), NOTIFICATION_RENDER_DEFAULT_CONTAINER, pListing, ctx);
+		cairo_dock_notify_on_object (CAIRO_CONTAINER (pListing), NOTIFICATION_RENDER, pListing, ctx);
 		#endif
 	}
 	return FALSE;
@@ -568,12 +568,12 @@ void cd_do_show_listing (void)
 		myData.pListing = cd_do_create_listing ();
 		
 		cairo_dock_register_notification_on_object (CAIRO_CONTAINER (myData.pListing),
-			NOTIFICATION_UPDATE_DEFAULT_CONTAINER,
+			NOTIFICATION_UPDATE,
 			(CairoDockNotificationFunc) cd_do_update_listing_notification,
 			CAIRO_DOCK_RUN_AFTER,
 			NULL);
 		cairo_dock_register_notification_on_object (CAIRO_CONTAINER (myData.pListing),
-			NOTIFICATION_RENDER_DEFAULT_CONTAINER,
+			NOTIFICATION_RENDER,
 			(CairoDockNotificationFunc) cd_do_render_listing_notification,
 			CAIRO_DOCK_RUN_AFTER,
 			NULL);
