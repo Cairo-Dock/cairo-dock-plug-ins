@@ -120,13 +120,11 @@ static void _get_window_allowed_actions (Window Xid)
 
 static void _set_border (Icon *icon, CairoContainer *pContainer, gboolean bWithBorder)
 {
-	g_print ("%s (%s, %d\n", __func__, icon->cName, icon->bIsMaximized);
 	if (icon->bIsMaximized)
 		cd_app_menu_set_window_border (icon->Xid, bWithBorder);
 }
 void cd_app_menu_set_windows_borders (gboolean bWithBorder)
 {
-	g_print ("%s (%d\n", __func__, bWithBorder);
 	cairo_dock_foreach_applis ((CairoDockForeachIconFunc)_set_border, FALSE, GINT_TO_POINTER (bWithBorder));
 }
 
@@ -137,7 +135,6 @@ void cd_app_menu_set_windows_borders (gboolean bWithBorder)
 
 static void cd_app_menu_launch_our_registrar (void)
 {
-	g_print ("%s\n", CD_PLUGINS_DIR"/appmenu-registrar");
 	cairo_dock_launch_command (CD_PLUGINS_DIR"/appmenu-registrar");
 	myData.bOwnRegistrar = TRUE;
 }

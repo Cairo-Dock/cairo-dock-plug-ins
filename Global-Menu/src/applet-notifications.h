@@ -47,4 +47,6 @@ gboolean cd_app_menu_on_active_window_changed (CairoDockModuleInstance *myApplet
 gboolean cd_app_menu_on_property_changed (CairoDockModuleInstance *myApplet, Window Xid, Atom aProperty, int iState);
 
 
+gboolean cd_app_menu_on_update_container (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bContinueAnimation);
+
 #endif

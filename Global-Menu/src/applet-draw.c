@@ -22,6 +22,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #include "applet-struct.h"
 #include "applet-draw.h"
@@ -82,7 +83,7 @@ static gboolean cd_app_menu_render_step_opengl (Icon *pIcon, CairoDockModuleInst
 	}
 	_cairo_dock_set_alpha (1);
 	
-	// draw window controls
+	// draw window buttons
 	if (myConfig.bDisplayControls)
 	{
 		// minimize button
@@ -91,12 +92,11 @@ static gboolean cd_app_menu_render_step_opengl (Icon *pIcon, CairoDockModuleInst
 		else
 			y -= w;
 		if (myData.bCanMinimize)
-			_cairo_dock_set_alpha (1);
+			_cairo_dock_set_alpha (1. - .4 * sin (G_PI * myData.iAnimIterMin / (CD_ANIM_STEPS - 1)));
 		else
 			_cairo_dock_set_alpha (.6);
 		
-		glBindTexture (GL_TEXTURE_2D, myData.minimizeButton.iTexture);
-		_cairo_dock_apply_current_texture_at_size_with_offset (w, h, x, y);
+		cairo_dock_apply_image_buffer_texture_with_offset (&myData.minimizeButton, x, y);
 		
 		// restore/maximize button
 		if (iWidth > iHeight)  // horizontal alignment
@@ -104,12 +104,11 @@ static gboolean cd_app_menu_render_step_opengl (Icon *pIcon, CairoDockModuleInst
 		else
 			y -= w;
 		if (myData.bCanMaximize)
-			_cairo_dock_set_alpha (1);
+			_cairo_dock_set_alpha (1. - .4 * sin (G_PI * myData.iAnimIterMax / (CD_ANIM_STEPS - 1)));
 		else
 			_cairo_dock_set_alpha (.6);
 		
-		glBindTexture (GL_TEXTURE_2D, pAppli && pAppli->bIsMaximized ? myData.restoreButton.iTexture : myData.maximizeButton.iTexture);
-		_cairo_dock_apply_current_texture_at_size_with_offset (w, h, x, y);
+		cairo_dock_apply_image_buffer_texture_with_offset (pAppli && pAppli->bIsMaximized ? &myData.restoreButton : &myData.maximizeButton, x, y);
 		
 		// close button
 		if (iWidth > iHeight)  // horizontal alignment
@@ -117,12 +116,11 @@ static gboolean cd_app_menu_render_step_opengl (Icon *pIcon, CairoDockModuleInst
 		else
 			y -= h;
 		if (myData.bCanClose)
-			_cairo_dock_set_alpha (1);
+			_cairo_dock_set_alpha (1. - .4 * sin (G_PI * myData.iAnimIterClose / (CD_ANIM_STEPS - 1)));
 		else
 			_cairo_dock_set_alpha (.6);
 		
-		glBindTexture (GL_TEXTURE_2D, myData.closeButton.iTexture);
-		_cairo_dock_apply_current_texture_at_size_with_offset (w, h, x, y);
+		cairo_dock_apply_image_buffer_texture_with_offset (&myData.closeButton, x, y);
 	}
 	_cairo_dock_disable_texture ();
 	
@@ -189,7 +187,7 @@ static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, CairoDockModuleInsta
 		cairo_paint_with_alpha (myDrawContext, f);
 	}
 	
-	// draw window controls
+	// draw window buttons
 	if (myConfig.bDisplayControls)
 	{
 		// minimize button
@@ -198,12 +196,8 @@ static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, CairoDockModuleInsta
 		else
 			y += h;
 		
-		cairo_set_source_surface (myDrawContext, myData.minimizeButton.pSurface, x, y);
-		
-		if (myData.bCanMinimize)
-			cairo_paint (myDrawContext);
-		else
-			cairo_paint_with_alpha (myDrawContext, .6);
+		cairo_dock_apply_image_buffer_surface_with_offset (&myData.minimizeButton, myDrawContext,
+			x, y, myData.bCanMinimize ? 1. : .6);
 		
 		// restore/maximize button
 		if (iWidth > iHeight)  // horizontal alignment
@@ -211,12 +205,8 @@ static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, CairoDockModuleInsta
 		else
 			y += h;
 		
-		cairo_set_source_surface (myDrawContext, pAppli && pAppli->bIsMaximized ? myData.restoreButton.pSurface : myData.maximizeButton.pSurface, x, y);
-		
-		if (myData.bCanMaximize)
-			cairo_paint (myDrawContext);
-		else
-			cairo_paint_with_alpha (myDrawContext, .6);
+		cairo_dock_apply_image_buffer_surface_with_offset (pAppli && pAppli->bIsMaximized ? &myData.restoreButton : &myData.maximizeButton, myDrawContext,
+			x, y, myData.bCanClose ? 1. : .6);
 		
 		// close button
 		if (iWidth > iHeight)  // horizontal alignment
@@ -224,12 +214,8 @@ static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, CairoDockModuleInsta
 		else
 			y += h;
 		
-		cairo_set_source_surface (myDrawContext, myData.closeButton.pSurface, x, y);
-		
-		if (myData.bCanClose)
-			cairo_paint (myDrawContext);
-		else
-			cairo_paint_with_alpha (myDrawContext, .6);
+		cairo_dock_apply_image_buffer_surface_with_offset (&myData.closeButton, myDrawContext,
+			x, y, myData.bCanClose ? 1. : .6);
 	}
 	
 	CD_APPLET_LEAVE (TRUE);
@@ -257,19 +243,19 @@ void cd_app_menu_load_button_images (void)
 	cairo_dock_unload_image_buffer (&myData.minimizeButton);
 	cairo_dock_load_image_buffer (&myData.minimizeButton,
 		myConfig.cMinimizeImage,
-		w, h, 0);
+		w, h, CAIRO_DOCK_ANIMATED_IMAGE);
 	cairo_dock_unload_image_buffer (&myData.maximizeButton);
 	cairo_dock_load_image_buffer (&myData.maximizeButton,
 		myConfig.cMaximizeImage,
-		w, h, 0);
+		w, h, CAIRO_DOCK_ANIMATED_IMAGE);
 	cairo_dock_unload_image_buffer (&myData.restoreButton);
 	cairo_dock_load_image_buffer (&myData.restoreButton,
 		myConfig.cRestoreImage,
-		w, h, 0);
+		w, h, CAIRO_DOCK_ANIMATED_IMAGE);
 	cairo_dock_unload_image_buffer (&myData.closeButton);
 	cairo_dock_load_image_buffer (&myData.closeButton,
 		myConfig.cCloseImage,
-		w, h, 0);
+		w, h, CAIRO_DOCK_ANIMATED_IMAGE);
 }
 
 

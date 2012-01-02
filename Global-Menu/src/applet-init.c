@@ -27,9 +27,9 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN (N_("Application Menu"),
+CD_APPLET_DEFINE_BEGIN (N_("Global Menu"),
 	3, 0, 0,
-	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
+	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
 	N_("This applet allows you to control the current active window:\n"
 	"  close, minimize, maximize, and display the application menu."
 	"To display the menu, applications have to support this feature, which is the case on Ubuntu by default.\n"
@@ -56,9 +56,18 @@ CD_APPLET_INIT_BEGIN
 		(CairoDockNotificationFunc) cd_app_menu_on_property_changed,
 		CAIRO_DOCK_RUN_AFTER, myApplet);
 	
+	cairo_dock_register_notification_on_object (myContainer,
+		NOTIFICATION_MOUSE_MOVED,
+		(CairoDockNotificationFunc) on_mouse_moved,
+		CAIRO_DOCK_RUN_AFTER, myApplet);
+	cairo_dock_register_notification_on_object (myContainer,
+		NOTIFICATION_UPDATE_SLOW,
+		(CairoDockNotificationFunc) cd_app_menu_on_update_container,
+		CAIRO_DOCK_RUN_AFTER, myApplet);
+	
 	// start !
-	cd_app_menu_start ();
 	myData.iNbButtons = myConfig.bDisplayControls * 3 + 1;  // we display the icon even if we don't provide the menu.
+	cd_app_menu_start ();
 	
 	if (myConfig.bDisplayControls)  // no animation on mouse hover if the buttons are displayed, it's hard to click
 	{
@@ -71,11 +80,6 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_DOUBLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
-	
-	cairo_dock_register_notification_on_object (myContainer,
-		NOTIFICATION_MOUSE_MOVED,
-		(CairoDockNotificationFunc) on_mouse_moved,
-		CAIRO_DOCK_RUN_AFTER, myApplet);
 	
 	// keyboard events
 	if (myConfig.bDisplayMenu)
@@ -94,6 +98,13 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
 		NOTIFICATION_WINDOW_PROPERTY_CHANGED,
 		(CairoDockNotificationFunc) cd_app_menu_on_property_changed, myApplet);
+	
+	cairo_dock_remove_notification_func_on_object (myContainer,
+		NOTIFICATION_MOUSE_MOVED,
+		(CairoDockNotificationFunc) on_mouse_moved, myApplet);
+	cairo_dock_remove_notification_func_on_object (myContainer,
+		NOTIFICATION_UPDATE_SLOW,
+		(CairoDockNotificationFunc) cd_app_menu_on_update_container, myApplet);
 	
 	cd_app_menu_stop ();
 
@@ -123,6 +134,25 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		}
 		
+		if (CD_APPLET_MY_OLD_CONTAINER != myContainer)
+		{
+			cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+				NOTIFICATION_MOUSE_MOVED,
+				(CairoDockNotificationFunc) on_mouse_moved, myApplet);
+			cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+				NOTIFICATION_UPDATE_SLOW,
+				(CairoDockNotificationFunc) cd_app_menu_on_update_container, myApplet);
+			
+			cairo_dock_register_notification_on_object (myContainer,
+				NOTIFICATION_MOUSE_MOVED,
+				(CairoDockNotificationFunc) on_mouse_moved,
+				CAIRO_DOCK_RUN_AFTER, myApplet);
+			cairo_dock_register_notification_on_object (myContainer,
+				NOTIFICATION_UPDATE_SLOW,
+				(CairoDockNotificationFunc) cd_app_menu_on_update_container,
+				CAIRO_DOCK_RUN_AFTER, myApplet);
+		}
+		
 		// windows borders
 		cd_app_menu_set_windows_borders (!myConfig.bDisplayControls);
 		
@@ -134,6 +164,8 @@ CD_APPLET_RELOAD_BEGIN
 		
 		// to update any param that could have changed, simply re-set the current window.
 		myData.iNbButtons = myConfig.bDisplayControls * 3 + 1;
+		myData.iAnimIterMin = myData.iAnimIterMax = myData.iAnimIterClose = 0;
+		myData.bButtonAnimating = FALSE;
 		Window iActiveWindow = myData.iCurrentWindow;
 		myData.iCurrentWindow = 0;
 		cd_app_menu_set_current_window (iActiveWindow);

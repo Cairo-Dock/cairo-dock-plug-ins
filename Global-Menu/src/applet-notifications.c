@@ -130,28 +130,6 @@ void cd_app_menu_on_keybinding_pull (const gchar *keystring, CairoDockModuleInst
 }
 
 
-gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation)
-{
-	CD_APPLET_ENTER;
-	if (! myIcon->bPointed || ! pContainer->bInside)
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
-	
-	// find the pointed button
-	int iNumButton = cd_app_menu_find_button (myApplet);
-	if (iNumButton >= 0)
-	{
-		// trigger redraw or animation
-		if (myDock)
-			CAIRO_DOCK_REDRAW_MY_CONTAINER;
-		else
-			*bStartAnimation = TRUE;
-	}
-	
-	
-	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
-}
-
-
 //\___________ Other notifications, that are not from the user (but from the Applications-manager)
 static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, Window *data)
 {
@@ -199,4 +177,157 @@ gboolean cd_app_menu_on_property_changed (CairoDockModuleInstance *myApplet, Win
 			CD_APPLET_SET_NAME_FOR_MY_ICON (icon ? icon->cName : NULL);
 		}  // ignore the change of icon, we just want to use the default application icon.
 	}
+}
+
+
+//\___________ Other notifications, for animation of the buttons.
+
+gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation)
+{
+	CD_APPLET_ENTER;
+	if (! myIcon->bPointed || ! pContainer->bInside)
+		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	
+	// find the pointed button
+	int iNumButton = cd_app_menu_find_button (myApplet);
+	if (iNumButton >= 0 && iNumButton < myData.iNbButtons)
+	{
+		// trigger animation
+		*bStartAnimation = TRUE;
+	}
+	
+	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+}
+
+
+gboolean cd_app_menu_on_update_container (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bContinueAnimation)
+{
+	CD_APPLET_ENTER;
+	int iNumButton = 0;
+	if (! myIcon->bPointed || ! pContainer->bInside)  // our icon is not pointed, only update it to finish the current button animations.
+	{
+		if (myData.bButtonAnimating)  // one or more button is animating.
+		{
+			myData.bButtonAnimating = FALSE;
+			
+			if (cairo_dock_image_buffer_is_animated (&myData.minimizeButton))
+			{
+				if (iNumButton == CD_BUTTON_MINIMIZE || myData.minimizeButton.iCurrentFrame != 0)
+					cairo_dock_image_buffer_next_frame (&myData.minimizeButton);
+				myData.bButtonAnimating |= (iNumButton == CD_BUTTON_MINIMIZE || myData.minimizeButton.iCurrentFrame != 0);
+			}
+			else
+			{
+				if (iNumButton == CD_BUTTON_MINIMIZE || myData.iAnimIterMin != 0)
+				{
+					myData.iAnimIterMin ++;
+					if (myData.iAnimIterMin >= CD_ANIM_STEPS)
+						myData.iAnimIterMin = 0;
+				}
+				myData.bButtonAnimating |= (iNumButton == CD_BUTTON_MINIMIZE || myData.iAnimIterMin != 0);
+			}
+			
+			if (cairo_dock_image_buffer_is_animated (&myData.maximizeButton))
+			{
+				if (iNumButton == CD_BUTTON_MAXIMIZE || myData.maximizeButton.iCurrentFrame != 0)
+				{
+					cairo_dock_image_buffer_next_frame (&myData.maximizeButton);
+					cairo_dock_image_buffer_next_frame (&myData.restoreButton);
+				}
+				myData.bButtonAnimating |= (iNumButton == CD_BUTTON_MAXIMIZE || myData.maximizeButton.iCurrentFrame != 0);
+			}
+			else
+			{
+				if (iNumButton == CD_BUTTON_MAXIMIZE || myData.iAnimIterMax != 0)
+				{
+					myData.iAnimIterMax ++;
+					if (myData.iAnimIterMax >= CD_ANIM_STEPS)
+						myData.iAnimIterMax = 0;
+				}
+				myData.bButtonAnimating |= (iNumButton == CD_BUTTON_MAXIMIZE || myData.iAnimIterMax != 0);
+			}
+			
+			if (cairo_dock_image_buffer_is_animated (&myData.closeButton))
+			{
+				if (iNumButton == CD_BUTTON_CLOSE || myData.closeButton.iCurrentFrame != 0)
+					cairo_dock_image_buffer_next_frame (&myData.closeButton);
+				myData.bButtonAnimating |= (iNumButton == CD_BUTTON_CLOSE || myData.closeButton.iCurrentFrame != 0);
+			}
+			else
+			{
+				if (iNumButton == CD_BUTTON_CLOSE || myData.iAnimIterClose != 0)
+				{
+					myData.iAnimIterClose ++;
+					if (myData.iAnimIterClose >= CD_ANIM_STEPS)
+						myData.iAnimIterClose = 0;
+				}
+				myData.bButtonAnimating |= (iNumButton == CD_BUTTON_CLOSE || myData.iAnimIterClose != 0);
+			}
+			
+			cd_app_menu_redraw_buttons ();
+			*bContinueAnimation = myData.bButtonAnimating;
+		}
+		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	}
+	
+	iNumButton = cd_app_menu_find_button (myApplet);
+	myData.bButtonAnimating = FALSE;
+	
+	if (cairo_dock_image_buffer_is_animated (&myData.minimizeButton))
+	{
+		if (iNumButton == CD_BUTTON_MINIMIZE || myData.minimizeButton.iCurrentFrame != 0)
+			cairo_dock_image_buffer_next_frame (&myData.minimizeButton);
+		myData.bButtonAnimating |= (iNumButton == CD_BUTTON_MINIMIZE || myData.minimizeButton.iCurrentFrame != 0);
+	}
+	else
+	{
+		if (iNumButton == CD_BUTTON_MINIMIZE || myData.iAnimIterMin != 0)
+		{
+			myData.iAnimIterMin ++;
+			if (myData.iAnimIterMin >= CD_ANIM_STEPS)
+				myData.iAnimIterMin = 0;
+		}
+		myData.bButtonAnimating |= (iNumButton == CD_BUTTON_MINIMIZE || myData.iAnimIterMin != 0);
+	}
+	
+	if (cairo_dock_image_buffer_is_animated (&myData.maximizeButton))
+	{
+		if (iNumButton == CD_BUTTON_MAXIMIZE || myData.maximizeButton.iCurrentFrame != 0)
+		{
+			cairo_dock_image_buffer_next_frame (&myData.maximizeButton);
+			cairo_dock_image_buffer_next_frame (&myData.restoreButton);
+		}
+		myData.bButtonAnimating |= (iNumButton == CD_BUTTON_MAXIMIZE || myData.maximizeButton.iCurrentFrame != 0);
+	}
+	else
+	{
+		if (iNumButton == CD_BUTTON_MAXIMIZE || myData.iAnimIterMax != 0)
+		{
+			myData.iAnimIterMax ++;
+			if (myData.iAnimIterMax >= CD_ANIM_STEPS)
+				myData.iAnimIterMax = 0;
+		}
+		myData.bButtonAnimating |= (iNumButton == CD_BUTTON_MAXIMIZE || myData.iAnimIterMax != 0);
+	}
+	
+	if (cairo_dock_image_buffer_is_animated (&myData.closeButton))
+	{
+		if (iNumButton == CD_BUTTON_CLOSE || myData.closeButton.iCurrentFrame != 0)
+			cairo_dock_image_buffer_next_frame (&myData.closeButton);
+		myData.bButtonAnimating |= (iNumButton == CD_BUTTON_CLOSE || myData.closeButton.iCurrentFrame != 0);
+	}
+	else
+	{
+		if (iNumButton == CD_BUTTON_CLOSE || myData.iAnimIterClose != 0)
+		{
+			myData.iAnimIterClose ++;
+			if (myData.iAnimIterClose >= CD_ANIM_STEPS)
+				myData.iAnimIterClose = 0;
+		}
+		myData.bButtonAnimating |= (iNumButton == CD_BUTTON_CLOSE || myData.iAnimIterClose != 0);
+	}
+	
+	cd_app_menu_redraw_buttons ();
+	*bContinueAnimation = myData.bButtonAnimating;
+	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 }

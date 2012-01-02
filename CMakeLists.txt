@@ -11,7 +11,7 @@ include ("${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules/GNUInstallDirs.cmake")
 ########### project ###############
 
 project ("cairo-dock-plugins")
-set (VERSION "3.0.0.0alpha1")
+set (VERSION "3.0.0.0alpha2")
 
 add_definitions (-std=c99 -Wextra -Wwrite-strings -Wuninitialized -Werror-implicit-function-declaration -Wstrict-prototypes) # removed for stable versions: -Wstrict-prototypes #-Wunreachable-code -Wno-unused-parameter -Wall
 if (NOT ${CMAKE_BUILD_TYPE})
@@ -607,7 +607,7 @@ if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1" AND "${DBUSMENU_FOUND}" STREQUAL "1
 	add_subdirectory (Indicator-applet)
 	set (with_indicator "yes")
 else()
-	message (WARNING "These modules are required to compile Indicators applet (MeMenu, Messaging-Menu, Sound-Menu, Status-Notifier and Application-Menu): ${INDICATOR_APPLET_MODULE}(-0.4), ${IDO_MODULE}, ${DBUSMENU_MODULE}(-0.4), ${DBUSMENU_GTK_MODULE}(-0.4)")
+	message (WARNING "These modules are required to compile Indicators applet (MeMenu, Messaging-Menu, Sound-Menu, Status-Notifier and Global-Menu): ${INDICATOR_APPLET_MODULE}(-0.4), ${IDO_MODULE}, ${DBUSMENU_MODULE}(-0.4), ${DBUSMENU_GTK_MODULE}(-0.4)")
 	set (MODULES_MISSING "${MODULES_MISSING} ${INDICATOR_APPLET_MODULE}(-0.4) (${IDO_MODULE}) ${DBUSMENU_MODULE}(-0.4) ${DBUSMENU_GTK_MODULE}(-0.4)")
 endif()
 
@@ -849,17 +849,17 @@ elseif (NOT (${INDICATOR_MAJOR} GREATER 0 OR ${INDICATOR_MINOR} GREATER 3 OR ${I
 	message (STATUS "  Indicators: use old Ayatana Dbus names")
 endif()
 
-############# APPLICATION-MENU #################
-set (with_application_menu "no")
-if ("${enable-application-menu}" STREQUAL "yes" AND "${INDICATOR_OLD_NAMES}" STREQUAL "0" AND "${DBUSMENU_FOUND}" AND "${DBUSMENU_GTK_FOUND}")  # currently only supported with new name of the indicator module and with newer version of dbusmenu
-	message (STATUS "> Application-Menu:")
-	set (GETTEXT_APPLICATION_MENU ${GETTEXT_PLUGINS})
-	set (VERSION_APPLICATION_MENU "0.0.2")
-	set (PACKAGE_APPLICATION_MENU "cd-Application-Menu")
-	set (with_application_menu "yes")
-	set (application_menudatadir "${pluginsdatadir}/Application-Menu")
-	configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Application-Menu/data/Application-Menu.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Application-Menu/data/Application-Menu.conf)
-	add_subdirectory (Application-Menu)
+############# GLOBAL-MENU #################
+set (with_global_menu "no")
+if ("${enable-global-menu}" STREQUAL "yes" AND "${INDICATOR_OLD_NAMES}" STREQUAL "0" AND "${DBUSMENU_FOUND}" AND "${DBUSMENU_GTK_FOUND}")  # currently only supported with new name of the indicator module and with newer version of dbusmenu
+	message (STATUS "> Global-Menu:")
+	set (GETTEXT_GLOBAL_MENU ${GETTEXT_PLUGINS})
+	set (VERSION_GLOBAL_MENU "0.1.0")
+	set (PACKAGE_GLOBAL_MENU "cd-Global-Menu")
+	set (with_global_menu "yes")
+	set (global_menudatadir "${pluginsdatadir}/Global-Menu")
+	configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Global-Menu/data/Global-Menu.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Global-Menu/data/Global-Menu.conf)
+	add_subdirectory (Global-Menu)
 endif()
 
 ############# MEMENU #################
@@ -1315,7 +1315,7 @@ message (STATUS " - with Mono interface:            ${with_mono}")
 message (STATUS " - with Vala interface:            ${with_vala}")
 message (STATUS " - with Vala Translator (valac):   ${with_valac}")
 message (STATUS "Unstable:")
-message (STATUS " - with Application-Menu applet:   ${with_application_menu}")
+message (STATUS " - with Global-Menu applet:        ${with_global_menu}")
 message (STATUS " - with Disks applet:              ${with_disks}")
 message (STATUS " - with Doncky applet:             ${with_doncky}")
 message (STATUS " - with KDE experimental support:  ${with_kde_integration2}")

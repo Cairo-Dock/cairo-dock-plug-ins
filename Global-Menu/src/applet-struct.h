@@ -54,6 +54,8 @@ struct _AppletConfig {
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
+#define CD_ANIM_STEPS 15
+
 struct _AppletData {
 	DBusGProxy *pProxyRegistrar;
 	gboolean bOwnRegistrar;
@@ -68,6 +70,8 @@ struct _AppletData {
 	CairoDockImageBuffer maximizeButton;
 	CairoDockImageBuffer restoreButton;
 	CairoDockImageBuffer closeButton;
+	gint iAnimIterMin, iAnimIterMax, iAnimIterClose;
+	gboolean bButtonAnimating;
 	guint iSidInitIdle;
 	guint iSidInitIdle2;
 	CairoDockTask *pTask;
