@@ -590,18 +590,13 @@ void cd_logout_hibernate (void)
 
 static void _logout (void)
 {
-	if (! cairo_dock_fm_logout ())
-		cairo_dock_launch_command (MY_APPLET_SHARE_DATA_DIR"/logout.sh");  // SwitchToGreeter will only show the greeter, we want to close the session
+	cairo_dock_launch_command (MY_APPLET_SHARE_DATA_DIR"/logout.sh");  // SwitchToGreeter will only show the greeter, we want to close the session
 }
 void cd_logout_close_session (void)  // could use org.gnome.SessionManager.Logout
 {
-	if (myConfig.bConfirmAction)
+	if (! cairo_dock_fm_logout () && myConfig.bConfirmAction)
 	{
 		_demand_confirmation (D_("Close the current session?"), "system-log-out", MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", _logout);  /// same question, see above...
-	}
-	else
-	{
-		_logout ();
 	}
 }
 
