@@ -33,10 +33,10 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bMenuOnMouse = CD_CONFIG_GET_BOOLEAN ("Configuration", "menu on mouse");
 	myConfig.bCompactMode = CD_CONFIG_GET_BOOLEAN ("Configuration", "compact");
 	myConfig.iTransitionDuration = 500;
-	myConfig.cMinimizeImage = CD_CONFIG_GET_FILE_PATH ("Configuration", "min button", "icon-minimize.svg");
-	myConfig.cMaximizeImage = CD_CONFIG_GET_FILE_PATH ("Configuration", "max button", "icon-maximize.svg");
-	myConfig.cRestoreImage = CD_CONFIG_GET_FILE_PATH ("Configuration", "restore button", "icon-restore.svg");
-	myConfig.cCloseImage = CD_CONFIG_GET_FILE_PATH ("Configuration", "close button", "icon-close.svg");
+	myConfig.cMinimizeImage = CD_CONFIG_GET_FILE_PATH ("Configuration", "min button", "button-min.svg");
+	myConfig.cMaximizeImage = CD_CONFIG_GET_FILE_PATH ("Configuration", "max button", "button-max.svg");
+	myConfig.cRestoreImage = CD_CONFIG_GET_FILE_PATH ("Configuration", "restore button", "button-restore.svg");
+	myConfig.cCloseImage = CD_CONFIG_GET_FILE_PATH ("Configuration", "close button", "button-close.svg");
 CD_APPLET_GET_CONFIG_END
 
 
