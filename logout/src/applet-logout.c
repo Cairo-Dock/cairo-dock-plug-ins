@@ -590,19 +590,29 @@ void cd_logout_hibernate (void)
 
 static void _logout (void)
 {
-	// SwitchToGreeter will only show the greeter, we want to close the session
-	if (! cairo_dock_fm_logout ())
+	if (myConfig.cUserAction != NULL)
+		cairo_dock_launch_command (myConfig.cUserAction);
+	else  // SwitchToGreeter will only show the greeter, we want to close the session
 		cairo_dock_launch_command (MY_APPLET_SHARE_DATA_DIR"/logout.sh");
 }
 void cd_logout_close_session (void)  // could use org.gnome.SessionManager.Logout
 {
-	if (myConfig.bConfirmAction)
+	/* Currently, cairo_dock_fm_logout displays to us a window from the DE
+	 * to confirm if we want to close the session or not. So there is a
+	 * confirmation box if cairo_dock_fm_logout returns TRUE.
+	 * Now, if it returns FALSE, we will use logout.sh script and display
+	 * a confirmation box if the user wants to have this dialogue.
+	 */
+	if (! cairo_dock_fm_logout ()) // it seems it's better to use tools from the DE for the logout action
 	{
-		_demand_confirmation (D_("Close the current session?"), "system-log-out", MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", _logout);
-	}
-	else
-	{
-		_logout ();
+		if (myConfig.bConfirmAction)
+		{
+			_demand_confirmation (D_("Close the current session?"), "system-log-out", MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", _logout);  /// same question, see above...
+		}
+		else
+		{
+			_logout ();
+		}
 	}
 }
 
