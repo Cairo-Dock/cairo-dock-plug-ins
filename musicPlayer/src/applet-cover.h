@@ -24,7 +24,8 @@
 #include "applet-struct.h"
 
 
-void cd_musicplayer_get_cover_path (const gchar *cGivenCoverPath, gboolean bHandleCover);
+void cd_musicplayer_set_cover_path (const gchar *cGivenCoverPath);
+
 
 void cd_musicplayer_dl_cover (void);
 

@@ -49,7 +49,6 @@ owned =>
  if mpris2: set mpris2 handler as current
  launch it
 not owned => stop handler
-
 */
 
 MusicPlayerHandler *cd_musicplayer_get_handler_by_name (const gchar *cName)
@@ -66,31 +65,77 @@ MusicPlayerHandler *cd_musicplayer_get_handler_by_name (const gchar *cName)
 	return NULL;
 }
 
-/**MusicPlayerHandler *cd_musicplayer_get_handler_by_service (const gchar *cService)
-{
-	g_return_val_if_fail (cService != NULL, NULL);
-	GList *h;
-	MusicPlayerHandler *handler;
-	for (h = myData.pHandlers; h != NULL; h = h->next)
-	{
-		handler = h->data;
-		if (handler->cMprisService && strcmp (handler->cMprisService, cService) == 0)
-			return handler;
-	}
-	return NULL;
-}*/
-
 
 static void _cd_musicplayer_get_data_async (gpointer data) {
 	if (myData.pCurrentHandler->get_data)
 		myData.pCurrentHandler->get_data();
 }
 
+static gboolean _cd_musicplayer_update_from_data (gpointer data)
+{
+	g_return_val_if_fail (myData.pCurrentHandler->iLevel != PLAYER_EXCELLENT, FALSE);
+	//cd_debug ("MP - %s (%d : %d -> %d)\n", __func__, myData.iPlayingStatus, myData.iPreviousCurrentTime, myData.iCurrentTime);
+	CD_APPLET_ENTER;
+	gboolean bNeedRedraw = FALSE;
+	
+	// All players: update the time.
+	if (myData.iCurrentTime != myData.iPreviousCurrentTime)
+	{
+		myData.iPreviousCurrentTime = myData.iCurrentTime;
+		if (myData.iPlayingStatus == PLAYER_PLAYING || myData.iPlayingStatus == PLAYER_PAUSED)
+		{
+			if (myData.iCurrentTime >= 0)  // peut etre -1 si le lecteur a demarre mais ne fournit pas encore de temps.
+			{
+				if (myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED)
+				{
+					CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime);
+				}
+				else if (myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT)
+				{
+					CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime - myData.iSongLength);
+				}
+			}
+			else
+				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
+		}
+		else
+		{
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
+		}
+		bNeedRedraw = TRUE;
+	}
+	
+	// Bad players: update the icon if the state or song has changed (no signals for this).
+	if (myData.pCurrentHandler->iLevel == PLAYER_BAD)
+	{
+		if (myData.iPlayingStatus != myData.pPreviousPlayingStatus)  // state has changed.
+		{
+			cd_debug ("MP : PlayingStatus : %d -> %d\n", myData.pPreviousPlayingStatus, myData.iPlayingStatus);
+			myData.pPreviousPlayingStatus = myData.iPlayingStatus;
+			
+			cd_musicplayer_update_icon ();
+			bNeedRedraw = FALSE;
+		}
+		else if (cairo_dock_strings_differ (myData.cPreviousRawTitle, myData.cRawTitle))  // song has changed.
+		{
+			g_free (myData.cPreviousRawTitle);
+			myData.cPreviousRawTitle = g_strdup (myData.cRawTitle);
+			cd_musicplayer_update_icon ();
+			bNeedRedraw = FALSE;
+		}
+	}
+	
+	if (bNeedRedraw)
+		CD_APPLET_REDRAW_MY_ICON;
+	
+	CD_APPLET_LEAVE (myData.pCurrentHandler->iLevel == PLAYER_BAD || (myData.pCurrentHandler->iLevel == PLAYER_GOOD && myData.iPlayingStatus == PLAYER_PLAYING));
+}
+
 static gboolean _cd_musicplayer_get_data_and_update (gpointer data) {
 	CD_APPLET_ENTER;
 	if (myData.pCurrentHandler->get_data)
 		myData.pCurrentHandler->get_data();
-	return cd_musicplayer_draw_icon (data);  // cette fonction sort.
+	return _cd_musicplayer_update_from_data (data);  // cette fonction sort.
 }
 
 /* Initialise le backend et lance la tache periodique si necessaire.
@@ -117,7 +162,7 @@ void cd_musicplayer_launch_handler (void)
 		{
   			myData.pTask = cairo_dock_new_task (1,
   				(CairoDockGetDataAsyncFunc) _cd_musicplayer_get_data_async,
-  				(CairoDockUpdateSyncFunc) cd_musicplayer_draw_icon,
+  				(CairoDockUpdateSyncFunc) _cd_musicplayer_update_from_data,
   				NULL);
 		}
 		else
@@ -335,7 +380,7 @@ static void _on_name_owner_changed (const gchar *cName, gboolean bOwned, gpointe
 	{
 		cd_debug ("stop the handler");
 		cd_musicplayer_stop_current_handler (FALSE);  // FALSE = keep watching it.
-		cd_musicplayer_set_surface (PLAYER_NONE);
+		cd_musicplayer_apply_status_surface (PLAYER_NONE);
 		if (myConfig.cDefaultTitle != NULL)
 		{
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle);
@@ -395,7 +440,7 @@ void cd_musicplayer_set_current_handler (const gchar *cName)
 	if (cName == NULL)
 	{
 		myData.pCurrentHandler = NULL;
-		cd_musicplayer_set_surface (PLAYER_NONE);
+		cd_musicplayer_apply_status_surface (PLAYER_NONE);
 		if (myConfig.cDefaultTitle == NULL)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myApplet->pModule->pVisitCard->cTitle);
 		return;
@@ -455,7 +500,7 @@ void cd_musicplayer_set_current_handler (const gchar *cName)
 		cairo_dock_set_data_from_class (myData.pCurrentHandler->appclass, myIcon);
 	}
 	
-	cd_musicplayer_set_surface (PLAYER_NONE);  // until we detect any service, consider it's not running.
+	cd_musicplayer_apply_status_surface (PLAYER_NONE);  // until we detect any service, consider it's not running.
 	if (myConfig.cDefaultTitle == NULL)
 	{
 		if (myIcon->cName != NULL)

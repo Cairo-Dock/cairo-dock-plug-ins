@@ -361,7 +361,6 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 						cDirPath,
 						myData.cArtist,
 						myData.cAlbum);
-
 				}
 				cd_debug ("MP - on recupere la pochette par : '%s'", cCommand);
 				cairo_dock_launch_command (cCommand);
@@ -370,8 +369,8 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 				g_free (cHost);
 				g_free (cDirPath);
 
-				cd_musicplayer_get_cover_path (NULL, TRUE);
-				cd_musicplayer_update_icon (FALSE);
+				cd_musicplayer_set_cover_path (NULL);
+				cd_musicplayer_update_icon ();
 			}
 		}
 		else

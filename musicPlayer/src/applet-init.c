@@ -245,17 +245,13 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else  // on redessine juste l'icone.
 	{
-		cd_musicplayer_update_icon (FALSE);  // FALSE pour ne pas avoir 2 fois le dialogue.
-		if (! myData.cover_exist)
+		if (myConfig.bEnableCover && myData.cover_exist && myData.cCoverPath != NULL)  // cover is available
 		{
-			if (myData.iPlayingStatus == PLAYER_PLAYING)
-			{
-				cd_musicplayer_set_surface (PLAYER_PLAYING);
-			}
-			else
-			{
-				cd_musicplayer_set_surface (PLAYER_PAUSED);
-			}
+			cd_musiplayer_apply_cover ();
+		}
+		else  // no cover -> set the status surface.
+		{
+			cd_musicplayer_apply_status_surface (myData.iPlayingStatus);
 		}
 	}
 CD_APPLET_RELOAD_END

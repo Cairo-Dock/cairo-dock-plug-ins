@@ -164,7 +164,7 @@ static inline void _extract_metadata (GHashTable *data_list)  // album, date, di
 		myData.cPlayingUri = NULL;
 	cd_debug ("  cUri <- %s\n", myData.cPlayingUri);
 	
-	cd_musicplayer_get_cover_path (NULL, TRUE);
+	cd_musicplayer_set_cover_path (NULL);
 }
 
 static void cd_quodlibet_getSongInfos (void)
@@ -232,7 +232,7 @@ static void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointe
 		myData.iTrackNumber = 0;
 		myData.cover_exist = FALSE;
 	}
-	cd_musicplayer_update_icon (TRUE);
+	cd_musicplayer_update_icon ();
 	CD_APPLET_LEAVE ();
 }
 
@@ -249,11 +249,11 @@ static void on_pause (DBusGProxy *player_proxy, gpointer data)  // paused
 	{
 		if(myData.iPlayingStatus == PLAYER_PLAYING)
 		{
-			cd_musicplayer_set_surface (PLAYER_PLAYING);
+			cd_musicplayer_apply_status_surface (PLAYER_PLAYING);
 		}
 		else
 		{
-			cd_musicplayer_set_surface (PLAYER_PAUSED);
+			cd_musicplayer_apply_status_surface (PLAYER_PAUSED);
 		}
 	}
 	else
@@ -274,7 +274,7 @@ static void on_unpaused (DBusGProxy *player_proxy, gpointer data)  // unpaused
 	cd_musicplayer_relaunch_handler ();
 	if(! myData.cover_exist && (myData.cPlayingUri != NULL || myData.cTitle != NULL))
 	{
-		cd_musicplayer_set_surface (myData.iPlayingStatus);
+		cd_musicplayer_apply_status_surface (myData.iPlayingStatus);
 	}
 	else
 	{
@@ -357,7 +357,7 @@ static void cd_quodlibet_start (void)
 	// get the current state.
 	_quodlibet_getPlaying ();
 	cd_quodlibet_getSongInfos ();
-	cd_musicplayer_update_icon (TRUE);
+	cd_musicplayer_update_icon ();
 }
 
 

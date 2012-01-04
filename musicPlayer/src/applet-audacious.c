@@ -191,7 +191,7 @@ static inline void _extract_metadata (GHashTable *data_list)
 	else myData.cPlayingUri = NULL;
 	cd_message ("  cUri <- %s", myData.cPlayingUri);
 	
-	cd_musicplayer_get_cover_path (NULL, TRUE);
+	cd_musicplayer_set_cover_path (NULL);
 }
 
 /* Recupere les infos de la chanson courante, y compris le chemin de la couverture (la telecharge au besoin).
@@ -263,7 +263,7 @@ static void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointe
 		myData.iTrackNumber = 0;
 		myData.cover_exist = FALSE;
 	}
-	cd_musicplayer_update_icon (TRUE);
+	cd_musicplayer_update_icon ();
 	CD_APPLET_LEAVE ();
 }
 
@@ -406,7 +406,7 @@ static void cd_audacious_start (void)
 	// get the current state.
 	cd_mpris_getPlaying ();  ///_audacious_getPlaying_mpris ();
 	cd_audacious_getSongInfos ();
-	cd_musicplayer_update_icon (TRUE);
+	cd_musicplayer_update_icon ();
 }
 
 /* On enregistre notre lecteur.

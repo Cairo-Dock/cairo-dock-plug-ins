@@ -156,7 +156,7 @@ static void cd_exaile_getCoverPath (void)
 		cd_debug ("MP : Couverture de exaile : %s\n", cCoverPath);  /// gerer le cas "nocover.jpg" ...
 	else
 		cd_debug ("MP : Pas de couverture chez exaile\n");
-	cd_musicplayer_get_cover_path (cCoverPath, TRUE);
+	cd_musicplayer_set_cover_path (cCoverPath);
 	g_free (cCoverPath);
 }
 
@@ -219,7 +219,7 @@ static void cd_exaile_start (void)
 	// get the current state.
 	cd_exaile_getSongInfos ();
 	cd_exaile_getCoverPath ();
-	cd_musicplayer_update_icon (TRUE);
+	cd_musicplayer_update_icon ();
 }
 
 /* On enregistre notre lecteur.

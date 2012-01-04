@@ -106,7 +106,7 @@ static void cd_rhythmbox_getSongInfos (gboolean bGetAll)
 		value = (GValue *) g_hash_table_lookup(data_list, "rb:coverArt-uri");
 		if (value != NULL && G_VALUE_HOLDS_STRING(value))  // RB nous donne une adresse, eventuellement distante.
 			cString = g_value_get_string(value);
-		cd_musicplayer_get_cover_path (cString, ! bGetAll);  // la 2eme fois on ne recupere que la couverture et donc on cherche aussi en cache.
+		cd_musicplayer_set_cover_path (cString);
 		cd_debug ("MP :  cCoverPath <- %s\n", myData.cCoverPath);
 		
 		g_hash_table_destroy (data_list);
@@ -159,7 +159,7 @@ static void onChangeSong(DBusGProxy *player_proxy,const gchar *uri, gpointer dat
 		myData.iSongLength = 0;
 		myData.iTrackNumber = 0;
 	}
-	cd_musicplayer_update_icon (TRUE);
+	cd_musicplayer_update_icon ();
 	CD_APPLET_LEAVE ();
 }
 
@@ -175,7 +175,7 @@ static void onChangePlaying(DBusGProxy *player_proxy, gboolean playing, gpointer
 	if(! myData.cover_exist && myData.cPlayingUri != NULL)
 	{
 		cd_message ("  cPlayingUri : %s", myData.cPlayingUri);
-		cd_musicplayer_set_surface (myData.iPlayingStatus);
+		cd_musicplayer_apply_status_surface (myData.iPlayingStatus);
 	}
 	else
 	{
@@ -327,7 +327,7 @@ static void cd_rhythmbox_start (void)
 	_rhythmbox_getPlaying();
 	_rhythmbox_getPlayingUri();
 	cd_rhythmbox_getSongInfos (TRUE);  // TRUE <=> get all
-	cd_musicplayer_update_icon (TRUE);
+	cd_musicplayer_update_icon ();
 }
 
 /* On enregistre notre lecteur.

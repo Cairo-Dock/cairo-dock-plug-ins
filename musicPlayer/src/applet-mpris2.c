@@ -285,7 +285,7 @@ static gboolean _extract_metadata (GHashTable *pMetadata)
 	{
 		cCoverPath = g_value_get_string(v);
 	}
-	cd_musicplayer_get_cover_path (cCoverPath, TRUE);  // do it at the end (we have to know the artist and the album if (cCoverPath == NULL))
+	cd_musicplayer_set_cover_path (cCoverPath);  // do it at the end (we have to know the artist and the album if (cCoverPath == NULL))
 
 	/// we miss iTrackListIndex and tracklist-length ...
 	
@@ -344,7 +344,7 @@ static void _on_got_song_infos (DBusGProxy *proxy, DBusGProxyCall *call_id, Cair
 		myData.cover_exist = FALSE;
 	}
 	
-	cd_musicplayer_update_icon (TRUE);
+	cd_musicplayer_update_icon ();
 	cd_musicplayer_relaunch_handler ();
 	
 	CD_APPLET_LEAVE ();
@@ -376,7 +376,7 @@ static void on_properties_changed (DBusGProxy *player_proxy, const gchar *cInter
 	if (strcmp (cInterface, "org.mpris.MediaPlayer2.Player") == 0)
 	{
 		v = g_hash_table_lookup (pChangedProps, "PlaybackStatus");
-		if (v != NULL && G_VALUE_HOLDS_STRING (v))
+		if (v != NULL && G_VALUE_HOLDS_STRING (v))  // status has changed
 		{
 			const gchar *cStatus = g_value_get_string (v);  // "Playing", "Paused" or "Stopped"
 			myData.iPlayingStatus = _extract_status (cStatus);
@@ -385,15 +385,7 @@ static void on_properties_changed (DBusGProxy *player_proxy, const gchar *cInter
 			if (myData.iPlayingStatus == PLAYER_PLAYING)  // le handler est stoppe lorsque le lecteur ne joue rien.
 				cd_musicplayer_relaunch_handler ();
 			
-			if (! myData.cover_exist && (myData.cPlayingUri != NULL || myData.cTitle != NULL))
-			{
-				cd_musicplayer_set_surface (myData.iPlayingStatus);
-				cd_debug ("cover (%d), cPlayingUri (%s), cTitle (%s)", myData.cover_exist, myData.cPlayingUri, myData.cTitle);
-			}
-			else
-			{
-				CD_APPLET_REDRAW_MY_ICON;
-			}
+			cd_musicplayer_update_icon ();
 		}
 		
 		v = g_hash_table_lookup (pChangedProps, "Metadata");
@@ -402,13 +394,11 @@ static void on_properties_changed (DBusGProxy *player_proxy, const gchar *cInter
 			GHashTable *pMetadata = g_value_get_boxed (v);
 			gboolean bTrackHasChanged = _extract_metadata (pMetadata);
 			
-			if (bTrackHasChanged)
+			if (bTrackHasChanged)  // new song (song changed or started playing)
 			{
 				myData.iPlayingStatus = PLAYER_PLAYING;  // pour les lecteurs bugues comme Exaile qui envoit un statut "stop" au changement de musique sans envoyer de status "play" par la suite. On considere donc que si le lecteur joue une nouvelle musique, c'est qu'il est en "play".
-				cd_musicplayer_update_icon (TRUE);
+				cd_musicplayer_update_icon ();
 			}
-			else if (myData.iPlayingStatus == PLAYER_STOPPED)
-				cd_musicplayer_update_icon (TRUE); // Force the update of the icon if the player is now stopped.
 		}
 	}
 	/*else if (strcmp (cInterface, "org.mpris.MediaPlayer2.TrackList") == 0)

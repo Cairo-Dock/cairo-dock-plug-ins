@@ -33,184 +33,17 @@
 static const gchar *s_cDefaultIconName[PLAYER_NB_STATUS] = {"default.svg", "play.svg", "pause.svg", "stop.svg", "broken.svg"};
 static const gchar *s_cDefaultIconName3D[PLAYER_NB_STATUS] = {"default.jpg", "play.jpg", "pause.jpg", "stop.jpg", "broken.jpg"};
 
-/* redessine l'icone chaque seconde.
+
+/* Update the icon on new song / status.
  */
-gboolean cd_musicplayer_draw_icon (gpointer data)
+void cd_musicplayer_update_icon (void)
 {
-	g_return_val_if_fail (myData.pCurrentHandler->iLevel != PLAYER_EXCELLENT, FALSE);
-	//cd_debug ("MP - %s (%d : %d -> %d)\n", __func__, myData.iPlayingStatus, myData.iPreviousCurrentTime, myData.iCurrentTime);
-	
-	CD_APPLET_ENTER;
-	gboolean bNeedRedraw = FALSE;
-	if (myData.iCurrentTime != myData.iPreviousCurrentTime)
-	{
-		myData.iPreviousCurrentTime = myData.iCurrentTime;
-		if (myData.iPlayingStatus == PLAYER_PLAYING || myData.iPlayingStatus == PLAYER_PAUSED)
-		{
-			if (myData.iCurrentTime >= 0)  // peut etre -1 si le lecteur a demarre mais ne fournit pas encore de temps.
-			{
-				if (myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED)
-				{
-					CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime);
-				}
-				else if (myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT)
-				{
-					CD_APPLET_SET_MINUTES_SECONDES_AS_QUICK_INFO (myData.iCurrentTime - myData.iSongLength);
-				}
-			}
-			else
-				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
-		}
-		else
-		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
-			if (myData.iCurrentTime < 0)  // a priori cela signifie qu'une erreur est survenue la derniere fois qu'on a voulu recuperer le temps, donc que le lecteur est ferme.
-			{
-				cd_debug ("MP -  -> is running : %d\n", myData.bIsRunning);
-				if (myData.bIsRunning)
-					cd_musicplayer_set_surface (PLAYER_STOPPED);
-				else
-					cd_musicplayer_set_surface (PLAYER_NONE);
-			}
-		}
-		bNeedRedraw = TRUE;
-	}
-	
-	if (myData.pCurrentHandler->iLevel == PLAYER_BAD)
-	{
-		if (myData.iPlayingStatus != myData.pPreviousPlayingStatus)  // changement de l'etat du lecteur.
-		{
-			cd_debug ("MP : PlayingStatus : %d -> %d\n", myData.pPreviousPlayingStatus, myData.iPlayingStatus);
-			myData.pPreviousPlayingStatus = myData.iPlayingStatus;
-			
-			cd_musicplayer_update_icon (FALSE);
-			bNeedRedraw = FALSE;
-		}
-		else if (cairo_dock_strings_differ (myData.cPreviousRawTitle, myData.cRawTitle))  // changement de chanson.
-		{
-			g_free (myData.cPreviousRawTitle);
-			myData.cPreviousRawTitle = g_strdup (myData.cRawTitle);
-			cd_musicplayer_update_icon (TRUE);
-			bNeedRedraw = FALSE;
-		}
-		else if (cairo_dock_strings_differ (myData.cPreviousCoverPath, myData.cCoverPath))
-		{
-			g_free (myData.cPreviousCoverPath);
-			myData.cPreviousCoverPath = g_strdup (myData.cCoverPath);
-			myData.cover_exist = FALSE;
-			cd_musiplayer_set_cover_if_present (FALSE);
-			//cd_musicplayer_update_icon (FALSE);
-			bNeedRedraw = FALSE;
-		}
-	}
-	
-	if (bNeedRedraw)
-		CD_APPLET_REDRAW_MY_ICON;
-	
-	CD_APPLET_LEAVE (myData.pCurrentHandler->iLevel == PLAYER_BAD || (myData.pCurrentHandler->iLevel == PLAYER_GOOD && myData.iPlayingStatus == PLAYER_PLAYING));
-	//return (myData.pCurrentHandler->iLevel == PLAYER_BAD || (myData.pCurrentHandler->iLevel == PLAYER_GOOD && myData.iPlayingStatus == PLAYER_PLAYING));
-}
-
-
-gboolean cd_musicplayer_check_size_is_constant (const gchar *cFilePath)
-{
-	int iSize = cairo_dock_get_file_size (cFilePath);
-	gboolean bConstantSize = (iSize != 0 && iSize == myData.iCurrentFileSize);
-	myData.iCurrentFileSize = iSize;
-	cd_debug ("MP: file size: %d", iSize);
-	//if (iSize == 0)
-	//	myData.iNbCheckFile ++;
-	return bConstantSize;
-}
-
-/* Teste la disponibilite de la pochette, et l'affiche sur l'icone si possible.
- */
-gboolean cd_musiplayer_set_cover_if_present (gboolean bCheckSize)
-{
-	CD_APPLET_ENTER;
-	cd_debug ("MP - %s (%s)", __func__, myData.cCoverPath);
-	if (g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
-	{
-		cd_message ("MP : la couverture '%s' est presente sur le disque", myData.cCoverPath);
-		
-		if (!bCheckSize || cd_musicplayer_check_size_is_constant (myData.cCoverPath))
-		{
-			cd_message ("MP : sa taille est constante (%d, %d)", myData.iCurrentFileSize, bCheckSize);
-			if (bCheckSize && myData.iCurrentFileSize <= 910 && myData.cMissingCover)  // l'image vide de Amazon fait 910 octets, toutes les autres sont plus grandes.
-			{
-				cd_debug ("MP - cette pochette est trop petite, c'est surement une pochette vide, on l'ignore\n");
-				g_remove (myData.cMissingCover);
-				g_free (myData.cMissingCover);
-				myData.cMissingCover = NULL;
-				myData.iSidCheckCover = 0;
-				CD_APPLET_LEAVE (FALSE);
-				//return FALSE;
-			}
-			if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
-			{
-				if (myData.iPrevTextureCover != 0)
-					_cairo_dock_delete_texture (myData.iPrevTextureCover);
-				myData.iPrevTextureCover = myData.TextureCover;
-				myData.TextureCover = cairo_dock_create_texture_from_image (myData.cCoverPath);
-				if (myData.iPrevTextureCover != 0)
-				{
-					myData.iCoverTransition = NB_TRANSITION_STEP;
-					cairo_dock_launch_animation (myContainer);
-				}
-				else
-				{
-					cd_opengl_render_to_texture (myApplet);
-					CD_APPLET_REDRAW_MY_ICON;
-				}
-			}
-			else
-			{
-				CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.cCoverPath);
-				CD_APPLET_REDRAW_MY_ICON;
-			}
-			myData.cover_exist = TRUE;
-			myData.iSidCheckCover = 0;
-			g_free (myData.cMissingCover);
-			myData.cMissingCover = NULL;
-			CD_APPLET_LEAVE (FALSE);
-			//return FALSE;
-		}
-	}
-	myData.iNbCheckFile ++;
-	if (myData.iNbCheckFile > 5)  // on abandonne au bout de 5s.
-	{
-		cd_debug ("MP - on abandonne la pochette\n");
-		g_remove (myData.cMissingCover);
-		g_free (myData.cMissingCover);
-		myData.cMissingCover = NULL;
-		myData.iSidCheckCover = 0;
-		CD_APPLET_LEAVE (FALSE);
-		//return FALSE;
-	}
-	CD_APPLET_LEAVE (TRUE);
-	//return TRUE;
-}
-
-
-static gboolean _cd_musicplayer_check_distant_cover_twice (gpointer data)
-{
-	CD_APPLET_ENTER;
-	myData.pCurrentHandler->get_cover ();  // on ne recupere que la couverture.
-	cd_musicplayer_update_icon (FALSE);
-	myData.iSidGetCoverInfoTwice = 0;
-	CD_APPLET_LEAVE (FALSE);
-	//return FALSE;
-}
-/* Met entierement a jour l'icone au changement d'etat ou de chanson.
- */
-void cd_musicplayer_update_icon (gboolean bFirstTime)
-{
-	cd_message ("%s (%d, uri : %s / title : %s)", __func__, bFirstTime, myData.cPlayingUri, myData.cTitle);
+	cd_message ("%s (uri : %s / title : %s)", __func__, myData.cPlayingUri, myData.cTitle);
 	if (myData.cPlayingUri != NULL || myData.cTitle != NULL)
 	{
-		if (bFirstTime && (myData.iPlayingStatus == PLAYER_PLAYING || myData.iPlayingStatus == PLAYER_PAUSED))
+		if (myData.iPlayingStatus == PLAYER_PLAYING || myData.iPlayingStatus == PLAYER_PAUSED)
 		{
-			//Affichage de la chanson courante sur l'etiquette.
+			// display current song on the label
 			if (myDock)
 			{
 				if ((!myData.cArtist || !myData.cTitle) && myData.cPlayingUri)
@@ -226,7 +59,7 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 					CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s - %s", myData.cArtist ? myData.cArtist : D_("Unknown artist"), myData.cTitle ? myData.cTitle : D_("Unknown title"));
 			}
 			
-			//Affichage de l'info-rapide.
+			// display current track on the quick-info.
 			if (myConfig.iQuickInfoType == MY_APPLET_TRACK && myData.iTrackListLength > 0 && myData.iTrackListIndex > 0)
 			{
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s%d", (myDesklet && myDesklet->container.iWidth >= 64 ? D_("Track") : ""), myData.iTrackListIndex);  // inutile de redessiner notre icone, ce sera fait plus loin.
@@ -236,80 +69,47 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 			}
 			
-			//Animation de l'icone et dialogue.
-			cd_musicplayer_animate_icon (1);
-			if(myConfig.bEnableDialogs)
+			// animate the icon and pop-up the dialog.
+			if (myData.iPlayingStatus == PLAYER_PLAYING)
 			{
-				cd_musicplayer_popup_info ();
+				cd_musicplayer_animate_icon (1);
+				if(myConfig.bEnableDialogs)
+				{
+					cd_musicplayer_popup_info ();
+				}
 			}
 		}
 		/**else
 		{
-			cd_musicplayer_set_surface (PLAYER_STOPPED);
+			cd_musicplayer_apply_status_surface (PLAYER_STOPPED);
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cTitle ? myData.cTitle : myData.pCurrentHandler ? myData.pCurrentHandler->name : myConfig.cDefaultTitle);
 		}*/
 		
-		//Affichage de la couverture de l'album.
-		if (myData.iSidCheckCover != 0)  // on stoppe la precedente boucle de verification de la couverture.
+		// re-paint the icon if needed.
+		if (myConfig.bEnableCover && myData.cover_exist && myData.cCoverPath != NULL)  // cover is available
 		{
-			g_source_remove (myData.iSidCheckCover);
-			myData.iSidCheckCover = 0;
+			if (cairo_dock_strings_differ (myData.cCoverPath, myData.cPreviousCoverPath))  // and cover has changed -> apply the new one
+				cd_musiplayer_apply_cover ();
 		}
-		if (myData.iSidGetCoverInfoTwice != 0)  // on stoppe la precedente boucle de temporisation.
+		else  // no cover -> set the status surface.
 		{
-			g_source_remove (myData.iSidGetCoverInfoTwice);
-			myData.iSidGetCoverInfoTwice = 0;
-		}
-		if (myConfig.bEnableCover)
-		{
-			if (myData.cCoverPath == NULL && bFirstTime && myData.pCurrentHandler->get_cover != NULL)  // info manquante, cela arrive avec les chansons distantes (bug du lecteur ?) on teste 2 fois de suite a 2 secondes d'intervalle.
-			{
-				cd_debug ("MP - on reviendra dans 2s\n");
-				myData.iSidGetCoverInfoTwice = g_timeout_add_seconds (2, (GSourceFunc) _cd_musicplayer_check_distant_cover_twice, NULL);
-			}
-			else if (myData.cCoverPath != NULL && ! myData.cover_exist)  // couverture connue mais pas encore chargee.
-			{
-				if (myData.bCoverNeedsTest)  // il faut lancer le test en boucle.
-				{
-					if (myData.iSidCheckXmlFile == 0 && myData.iSidCheckCover == 0)  // pas de fichier XML intermediaire a telecharger ou alors c'est deja fait.
-					{
-						myData.iCurrentFileSize = 0;
-						myData.iNbCheckFile = 0;
-						myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc) cd_musiplayer_set_cover_if_present, GINT_TO_POINTER (TRUE));  // TRUE <=> tester la taille contante.
-					}
-				}
-				else // some players copy covers on their cache folder but it takes a few time...
-				{
-					cd_debug ("MP - test cover forced");
-					myData.iCurrentFileSize = -1; // force to not use empty file
-					myData.iNbCheckFile = 0;
-					myData.iSidCheckCover = g_timeout_add (50, (GSourceFunc) cd_musiplayer_set_cover_if_present, GINT_TO_POINTER (TRUE));
-				}
-			}
-			cd_debug ("MP - cover_exist : %d", myData.cover_exist);
-		}
-		else
-		{
-			myData.cover_exist = FALSE;
-		}
-		
-		if (! myData.cover_exist && bFirstTime)  // en attendant d'avoir une couverture, ou s'il n'y en a tout simplement pas, on met les images par defaut. La 2eme fois ce n'est pas la peine de le refaire, puisque si on passe une 2eme fois dans cette fonction, c'est bien parce que la couverture n'existait pas la 1ere fois.
-		{
-			cd_musicplayer_set_surface (myData.iPlayingStatus);
+			if ((myConfig.bEnableCover && myData.cPreviousCoverPath != NULL)  // currently a cover is set
+			|| myData.pPreviousPlayingStatus != myData.iPlayingStatus)  // or the status has changed
+			cd_musicplayer_apply_status_surface (myData.iPlayingStatus);
 		}
 	}
 	else  // aucune donnees, c'est soit un probleme soit le lecteur qui s'est ferme.
 	{
 		if (myData.bIsRunning)
 		{
-			cd_musicplayer_set_surface (PLAYER_STOPPED);
+			cd_musicplayer_apply_status_surface (PLAYER_STOPPED);
 			if (myConfig.cDefaultTitle)
 			{
 				CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle);
 			}
-			else if (strcmp (myData.pCurrentHandler->name, "Mpris2") == 0)
+			else if (myData.pCurrentHandler->cDisplayedName != NULL)
 			{
-				CD_APPLET_SET_NAME_FOR_MY_ICON (cd_musicplayer_get_string_with_first_char_to_upper (myData.pCurrentHandler->launch));
+				CD_APPLET_SET_NAME_FOR_MY_ICON (myData.pCurrentHandler->cDisplayedName);
 			}
 			else
 			{
@@ -318,7 +118,7 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 		}
 		else
 		{
-			cd_musicplayer_set_surface (PLAYER_NONE);
+			cd_musicplayer_apply_status_surface (PLAYER_NONE);
 			if (myConfig.cDefaultTitle)
 			{
 				CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDefaultTitle);
@@ -338,44 +138,51 @@ void cd_musicplayer_update_icon (gboolean bFirstTime)
 void cd_musicplayer_popup_info (void)
 {
 	cairo_dock_remove_dialog_if_any (myIcon);
-	if (!myData.cTitle && !myData.cArtist && !myData.cAlbum && myData.cPlayingUri)
-	{ // no tags but with a path...
-		gchar *str = strrchr (myData.cPlayingUri, '/');
-		if (str)
-			str ++;
-		else
-			str = myData.cPlayingUri;
-		cairo_dock_remove_html_spaces (str); // %20 => " "
-		cairo_dock_show_temporary_dialog_with_icon_printf ("%s : %s",
-			myIcon,
-			myContainer,
-			myConfig.iDialogDuration,
-			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
-			D_("Current song"),
-			str);
+	if (myData.iPlayingStatus == PLAYER_PLAYING || myData.iPlayingStatus == PLAYER_PAUSED)
+	{
+		if (myData.cTitle || myData.cArtist || myData.cAlbum)
+		{ // no tags but with a path...
+			gchar *str = strrchr (myData.cPlayingUri, '/');
+			if (str)
+				str ++;
+			else
+				str = myData.cPlayingUri;
+			cairo_dock_remove_html_spaces (str); // %20 => " "
+			cairo_dock_show_temporary_dialog_with_icon_printf ("%s : %s",
+				myIcon,
+				myContainer,
+				myConfig.iDialogDuration,
+				MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
+				D_("Current song"),
+				str);
+		}
+		else if (myData.cPlayingUri)
+		{
+			cairo_dock_show_temporary_dialog_with_icon_printf ("%s: %s\n%s: %s\n%s: %s\n%s: %d:%02d\n%s %d, %s %d/%d",
+				myIcon,
+				myContainer,
+				myConfig.iDialogDuration,
+				MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
+				D_("Artist"),
+				myData.cArtist != NULL ? myData.cArtist : D_("Unknown"),
+				D_("Title"),
+				myData.cTitle != NULL ? myData.cTitle : D_("Unknown"),
+				D_("Album"),
+				myData.cAlbum != NULL ? myData.cAlbum : D_("Unknown"),
+				D_("Length"),
+				myData.iSongLength/60, myData.iSongLength%60,  // les chansons de plus d'1h, c'est rare !
+				D_("Track n°"), myData.iTrackNumber,
+				D_("Song n°"), myData.iTrackListIndex+1, myData.iTrackListLength);  // iTrackListIndex commence a 0.
+		}  // else just ignore silently
 	}
-	else if (myData.iPlayingStatus == PLAYER_PLAYING || myData.iPlayingStatus == PLAYER_PAUSED)
-		cairo_dock_show_temporary_dialog_with_icon_printf ("%s: %s\n%s: %s\n%s: %s\n%s: %d:%02d\n%s %d, %s %d/%d",
-			myIcon,
-			myContainer,
-			myConfig.iDialogDuration,
-			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
-			D_("Artist"),
-			myData.cArtist != NULL ? myData.cArtist : D_("Unknown"),
-			D_("Title"),
-			myData.cTitle != NULL ? myData.cTitle : D_("Unknown"),
-			D_("Album"),
-			myData.cAlbum != NULL ? myData.cAlbum : D_("Unknown"),
-			D_("Length"),
-			myData.iSongLength/60, myData.iSongLength%60,  // les chansons de plus d'1h, c'est rare !
-			D_("Track n°"), myData.iTrackNumber,
-			D_("Song n°"), myData.iTrackListIndex+1, myData.iTrackListLength);  // iTrackListIndex commence a 0.
 	else
+	{
 		cairo_dock_show_temporary_dialog_with_icon (D_("There is no media playing."),
 			myIcon,
 			myContainer,
 			myConfig.iDialogDuration,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+	}
 }
 
 /* Anime l'icone au changement de musique
@@ -390,13 +197,15 @@ void cd_musicplayer_animate_icon (int animationLength)
 
 /* Applique la surface correspondant a un etat sur l'icone.
  */
-void cd_musicplayer_set_surface (MyPlayerStatus iStatus)
+void cd_musicplayer_apply_status_surface (MyPlayerStatus iStatus)
 {
+	g_print ("%s (%d)\n", __func__, iStatus);
 	g_return_if_fail (iStatus < PLAYER_NB_STATUS);
 	gboolean bUse3DTheme = (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes);
 	cairo_surface_t *pSurface = myData.pSurfaces[iStatus];
 	
-	if (pSurface == NULL)  // surface pas encore chargee.
+	// load the surface if not already in cache
+	if (pSurface == NULL)
 	{
 		gchar *cUserIcon = myConfig.cUserImage[iStatus];
 		if (cUserIcon != NULL)  // l'utilisateur a defini une icone perso pour ce statut => on essaye de la charger.
@@ -412,50 +221,59 @@ void cd_musicplayer_set_surface (MyPlayerStatus iStatus)
 			myData.pSurfaces[iStatus] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
 			g_free (cImagePath);
 		}
-		if (bUse3DTheme)  // si on utilise un theme 3D, il faut aussi charger la nouvelle texture, et lancer une transition avec la precedente.
-		{
-			if (myData.iPrevTextureCover != 0)
-				_cairo_dock_delete_texture (myData.iPrevTextureCover);
-			myData.iPrevTextureCover = myData.TextureCover;
-			myData.TextureCover = cairo_dock_create_texture_from_surface (myData.pSurfaces[iStatus]);
-			if (myData.iPrevTextureCover != 0)
-			{
-				myData.iCoverTransition = NB_TRANSITION_STEP;
-				cairo_dock_launch_animation (myContainer);
-			}
-			else
-			{
-				cd_opengl_render_to_texture (myApplet);
-				CD_APPLET_REDRAW_MY_ICON;
-			}
-		}
-		else  // pas de theme 3D, on applique juste la surface du statut.
-		{
-			CD_APPLET_SET_SURFACE_ON_MY_ICON (myData.pSurfaces[iStatus]);
-		}
+		pSurface = myData.pSurfaces[iStatus];
+		g_return_if_fail (pSurface != NULL);
 	}
-	else  // surface en memoire.
+	
+	// apply the surface
+	if (bUse3DTheme)  // 3D theme -> make a transition
 	{
-		if (bUse3DTheme)
+		if (myData.iPrevTextureCover != 0)
+			_cairo_dock_delete_texture (myData.iPrevTextureCover);
+		myData.iPrevTextureCover = myData.TextureCover;
+		myData.TextureCover = cairo_dock_create_texture_from_surface (pSurface);
+		if (myData.iPrevTextureCover != 0)
 		{
-			if (myData.iPrevTextureCover != 0)
-				_cairo_dock_delete_texture (myData.iPrevTextureCover);
-			myData.iPrevTextureCover = myData.TextureCover;
-			myData.TextureCover = cairo_dock_create_texture_from_surface (pSurface);
-			if (myData.iPrevTextureCover != 0)
-			{
-				myData.iCoverTransition = NB_TRANSITION_STEP;
-				cairo_dock_launch_animation (myContainer);
-			}
-			else
-			{
-				cd_opengl_render_to_texture (myApplet);
-				CD_APPLET_REDRAW_MY_ICON;
-			}
+			myData.iCoverTransition = NB_TRANSITION_STEP;
+			cairo_dock_launch_animation (myContainer);
 		}
 		else
 		{
-			CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
+			cd_opengl_render_to_texture (myApplet);
+			CD_APPLET_REDRAW_MY_ICON;
 		}
+	}
+	else  // just apply the surface (we could make a transition too ...)
+	{
+		CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
+	}
+}
+
+void cd_musiplayer_apply_cover (void)
+{
+	g_print ("%s (%s)\n", __func__, myData.cCoverPath);
+	g_return_if_fail (myData.cCoverPath != NULL);
+	
+	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
+	{
+		if (myData.iPrevTextureCover != 0)
+			_cairo_dock_delete_texture (myData.iPrevTextureCover);
+		myData.iPrevTextureCover = myData.TextureCover;
+		myData.TextureCover = cairo_dock_create_texture_from_image (myData.cCoverPath);
+		if (myData.iPrevTextureCover != 0)
+		{
+			myData.iCoverTransition = NB_TRANSITION_STEP;
+			cairo_dock_launch_animation (myContainer);
+		}
+		else
+		{
+			cd_opengl_render_to_texture (myApplet);
+			CD_APPLET_REDRAW_MY_ICON;
+		}
+	}
+	else
+	{
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (myData.cCoverPath);
+		CD_APPLET_REDRAW_MY_ICON;
 	}
 }

@@ -180,7 +180,7 @@ static inline void _extract_metadata (GHashTable *data_list)
 		g_free (cCoverPath);
 		cCoverPath = g_strdup_printf ("%s/.cache/media-art/%s.jpg", g_getenv ("HOME"), cString);
 	}
-	cd_musicplayer_get_cover_path (cCoverPath, FALSE);
+	cd_musicplayer_set_cover_path (cCoverPath);
 	g_free (cCoverPath);
 }
 
@@ -255,7 +255,7 @@ static void cd_banshee_getCoverPath (void)
 				}
 			}
 		}
-		cd_musicplayer_get_cover_path (cString, TRUE);  // TRUE <=> on cherche nous-meme si aucune fournie.
+		cd_musicplayer_set_cover_path (cString);
 		g_free (cCoverPath);
 		g_hash_table_destroy (data_list);
 	}
@@ -268,26 +268,22 @@ static void onChangeSong(DBusGProxy *player_proxy, const gchar *cEvent, const gc
 	cd_debug ("MP : %s (%s, %s, %.2f)\n", __func__, cEvent, cMessage, fBufferingPercent);
 	if (cMessage != NULL)
 	{
-		if (strcmp (cMessage, "startofstream") == 0)
+		if (strcmp (cMessage, "startofstream") == 0)  // new song
+		{
 			cd_banshee_getSongInfos ();
-		else if (strcmp (cMessage, "trackinfoupdated") == 0)
+		}
+		else if (strcmp (cMessage, "trackinfoupdated") == 0)  // song update, in practice only the cover can be updated.
 		{
 			cd_debug ("MP -  trackinfoupdated\n");
-			if (myData.cCoverPath == NULL)
+			if (myData.cCoverPath == NULL)  // the player didn't provide a cover the first time, see if it does now.
 			{
 				cd_debug ("MP -   aucune pochette, on regarde si Banshee a mieux a nous proposer\n");
 				cd_banshee_getCoverPath ();
-			}
-			else if (!myData.cover_exist) // le lecteur nous avait deja refile l'adresse en avance, on regarde si le fichier est desormais present.
-			{
-				cd_musiplayer_set_cover_if_present (FALSE);
 				CD_APPLET_LEAVE ();
-				//return ;
 			}
 		}
 		else
 			CD_APPLET_LEAVE ();
-			//return ;
 	}
 	else
 	{
@@ -306,7 +302,7 @@ static void onChangeSong(DBusGProxy *player_proxy, const gchar *cEvent, const gc
 		myData.iTrackNumber = 0;
 		myData.cover_exist = FALSE;
 	}
-	cd_musicplayer_update_icon (TRUE);
+	cd_musicplayer_update_icon ();
 	CD_APPLET_LEAVE ();
 }
 
@@ -354,7 +350,7 @@ static void onChangePlaying(DBusGProxy *player_proxy, const gchar *cCurrentStatu
 		cd_musicplayer_relaunch_handler ();
 	if(! myData.cover_exist && myData.cPlayingUri != NULL)
 	{
-		cd_musicplayer_set_surface (myData.iPlayingStatus);
+		cd_musicplayer_apply_status_surface (myData.iPlayingStatus);
 	}
 	else
 	{
@@ -439,7 +435,7 @@ static void cd_banshee_get_data (void)
 		if (myData.iPlayingStatus == PLAYER_STOPPED && myData.pPreviousPlayingStatus != PLAYER_STOPPED)  /// utile ?...
 		{
 			myData.pPreviousPlayingStatus = PLAYER_STOPPED;
-			cd_musicplayer_set_surface (PLAYER_NONE);
+			cd_musicplayer_apply_status_surface (PLAYER_NONE);
 			g_free (myData.cCoverPath);
 			myData.cCoverPath = NULL;
 		}
@@ -468,7 +464,7 @@ static void cd_banshee_start (void)
 	// get the current state.
 	_banshee_getPlaying ();
 	cd_banshee_getSongInfos ();
-	cd_musicplayer_update_icon (TRUE);
+	cd_musicplayer_update_icon ();
 }
 
 void cd_musicplayer_register_banshee_handler (void)

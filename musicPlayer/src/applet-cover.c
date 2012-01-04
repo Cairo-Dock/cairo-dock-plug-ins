@@ -22,75 +22,107 @@
 #include "applet-draw.h"
 #include "applet-cover.h"
 
-/*gchar *cd_check_musicPlayer_cover_exists (gchar *cURI, MySupportedPlayers iSMP) {
-	gchar **cCleanURI;
-	gchar **cSplitedURI;
-	gint cpt=0;
+static gchar *_find_cover_in_common_dirs (void)
+{
+	gchar *cCoverPath = NULL;
+	gchar *cSongPath = (myData.cPlayingUri ? g_filename_from_uri (myData.cPlayingUri, NULL, NULL) : NULL);  // on teste d'abord dans le repertoire de la chanson.
+	if (cSongPath != NULL)  // c'est une chanson en local.
+	{
+		gchar *cSongDir = g_path_get_dirname (cSongPath);
+		g_free (cSongPath);
 
-	if( !cURI ) return NULL;
-	
-	switch (iSMP) {
-		case MP_AMAROK1 :
-			cCleanURI = g_strsplit (cURI,"@",0);
-			cSplitedURI = g_strsplit (cCleanURI[1],".",0);
-			if (g_strcasecmp(cSplitedURI[0],"nocover")==0) {
-				g_strfreev (cCleanURI);
-				g_strfreev (cSplitedURI);
-				myData.iCheckIter = 0;
-				
-				if (myData.iPlayingStatus == PLAYER_PLAYING)
-					g_timeout_add (1000, (GSourceFunc) cd_download_musicPlayer_cover, (gpointer) NULL);
-				return NULL;
+		cCoverPath = g_strdup_printf ("%s/%s - %s.jpg", cSongDir, myData.cArtist, myData.cAlbum);
+		cd_debug ("MP -   test de %s", cCoverPath);
+		if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))
+		{
+			g_free (cCoverPath);
+			cCoverPath = g_strdup_printf ("%s/cover.jpg", cSongDir);
+			cd_debug ("MP -   test de %s", cCoverPath);
+			if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))
+			{
+				g_free (cCoverPath);
+				cCoverPath = g_strdup_printf ("%s/Cover.jpg", cSongDir);
+				cd_debug ("MP -   test de %s", cCoverPath);
+				if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))
+				{
+					g_free (cCoverPath);
+					cCoverPath = g_strdup_printf ("%s/cover.jpeg", cSongDir);
+					cd_debug ("MP -   test de %s", cCoverPath);
+					if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))
+					{
+						g_free (cCoverPath);
+						cCoverPath = g_strdup_printf ("%s/album.jpg", cSongDir);
+						cd_debug ("MP -   test de %s", cCoverPath);
+						if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))
+						{
+							g_free (cCoverPath);
+							cCoverPath = g_strdup_printf ("%s/albumart.jpg", cSongDir);
+							cd_debug ("MP -   test de %s", cCoverPath);
+							if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))
+							{
+								g_free (cCoverPath);
+								cCoverPath = g_strdup_printf ("%s/folder.jpg", cSongDir);
+								cd_debug ("MP -   test de %s", cCoverPath);
+								if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))
+								{
+									g_free (cCoverPath);
+									cCoverPath = NULL;
+								}
+							}
+						}
+					}
+				}
 			}
-			g_strfreev (cCleanURI);
-			g_strfreev (cSplitedURI);
-		break;
-		
-		case MP_EXAILE :
-			cCleanURI = g_strsplit (cURI,"/",0);
-			while (cCleanURI[cpt]!=NULL) 
-				cpt++;
-			cSplitedURI = g_strsplit (cCleanURI[cpt-1],".",0);
-			if (g_strcasecmp(cSplitedURI[0],"nocover")==0) {
-				g_strfreev (cCleanURI);
-				g_strfreev (cSplitedURI);
-				myData.iCheckIter = 0;
-				
-				if (myData.iPlayingStatus == PLAYER_PLAYING)
-					g_timeout_add (1000, (GSourceFunc) cd_download_musicPlayer_cover, (gpointer) NULL);
-				return NULL;
-			}
-			g_strfreev (cCleanURI);
-			g_strfreev (cSplitedURI);
-		break;
-		
-		default:
-			return cURI;
-		break;
+		}
+		g_free (cSongDir);
 	}
-	return cURI;
-}*/
+	
+	if (cCoverPath == NULL)  // on regarde maintenant dans le cache.
+	{
+		cd_debug("MP : we can also check the 'cache' directory");
 
-/*
-if it's a file, check that it exists
-  if not, re-try 3 times
-  if it exists, check until the size is constant
-    -> apply it
-  if no file present, launch a search+dl task
-if it's an adress, or NULL, wait for 2s, maybe we can get a property update
-if nothing came, if it's an adress, dl it, otherwise, search+dl it.
-*/		
+		if (myData.pCurrentHandler->cCoverDir)
+		{
+			cCoverPath = g_strdup_printf("%s/%s - %s.jpg", myData.pCurrentHandler->cCoverDir, myData.cArtist, myData.cAlbum);
+			myData.bCoverNeedsTest = TRUE;  // on testera sur sa taille.
+		}
+		else  // le lecteur n'a pas de cache, on utilise le notre.
+		{
+			cCoverPath = g_strdup_printf ("%s/musicplayer/%s - %s.jpg", g_cCairoDockDataDir, myData.cArtist, myData.cAlbum);
+		}
+	}
+	
+	return cCoverPath;
+}
 
+static gboolean cd_musicplayer_check_size_is_constant (const gchar *cFilePath)
+{
+	int iSize = cairo_dock_get_file_size (cFilePath);
+	gboolean bConstantSize = (iSize != 0 && iSize == myData.iCurrentFileSize);
+	myData.iCurrentFileSize = iSize;
+	cd_debug ("MP: file size: %d", iSize);
+	return bConstantSize;
+}
 
 static gboolean _check_cover_file_size (gpointer data)
 {
 	myData.iNbCheckCover ++;
 	if (myData.iNbCheckCover > 5)
 	{
-		/// still not complete, try to download it ourselves...
-		if (myConfig.bDownload)
+		// still no file, try to set it ourselves.
+		g_free (myData.cCoverPath);
+		myData.cCoverPath = _find_cover_in_common_dirs ();
+		if (myData.cCoverPath != NULL)
 		{
-			
+			if (cairo_dock_strings_differ (myData.cCoverPath, myData.cPreviousCoverPath))  // cover has changed, apply it.
+			{
+				cd_musiplayer_apply_cover ();
+			}
+		}
+		else if (myConfig.bDownload)
+		{
+			/// search it online ...
+			cd_musicplayer_dl_cover ();  // seems that the Amazon service no longer works :-/
 		}
 		
 		myData.iSidCheckCover = 0;
@@ -100,6 +132,10 @@ static gboolean _check_cover_file_size (gpointer data)
 	{
 		/// file is complete, apply it on the icon...
 		myData.cover_exist = TRUE;
+		if (myData.iPlayingStatus == PLAYER_PLAYING || myData.iPlayingStatus == PLAYER_PAUSED)  // if it has stopped before we got the cover, don't draw it.
+		{
+			cd_musiplayer_apply_cover ();
+		}
 		
 		myData.iSidCheckCover = 0;
 		return FALSE;
@@ -111,18 +147,31 @@ static gboolean _check_cover_file_exists (gpointer data)
 	myData.iNbCheckCover ++;
 	if (myData.iNbCheckCover > 3)
 	{
-		/// still no file, try to download it ourselves...
-		if (myConfig.bDownload)
+		// still no file, try to set it ourselves.
+		g_free (myData.cCoverPath);
+		myData.cCoverPath = _find_cover_in_common_dirs ();
+		if (myData.cCoverPath != NULL)
 		{
-			
+			if (cairo_dock_strings_differ (myData.cCoverPath, myData.cPreviousCoverPath))  // cover has changed, apply it.
+			{
+				myData.iNbCheckCover = 0;
+				myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc)_check_cover_file_size, NULL);
+				return FALSE;
+			}
+		}
+		else if (myConfig.bDownload)
+		{
+			/// search it online ...
+			cd_musicplayer_dl_cover ();  // seems that the Amazon service no longer works :-/
 		}
 		
 		myData.iSidCheckCover = 0;
 		return FALSE;
 	}
+	
 	if (myData.cCoverPath && g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
 	{
-		/// file exists, check for its size
+		/// file exists, now check for its size
 		myData.iNbCheckCover = 0;
 		myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc)_check_cover_file_size, NULL);
 		
@@ -130,20 +179,58 @@ static gboolean _check_cover_file_exists (gpointer data)
 	}
 	return TRUE;
 }
+static gboolean _get_cover_again (gpointer data)
+{
+	g_print ("%s ()\n", __func__);
+	myData.iNbCheckCover ++;
+	if (myData.iNbCheckCover > 1)
+	{
+		// still no file, try to set it ourselves.
+		g_free (myData.cCoverPath);
+		myData.cCoverPath = _find_cover_in_common_dirs ();
+		if (myData.cCoverPath != NULL)
+		{
+			if (cairo_dock_strings_differ (myData.cCoverPath, myData.cPreviousCoverPath))  // cover has changed, apply it.
+			{
+				myData.iNbCheckCover = 0;
+				myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc)_check_cover_file_size, NULL);
+				return FALSE;
+			}
+		}
+		else if (myConfig.bDownload)
+		{
+			/// search it online ...
+			cd_musicplayer_dl_cover ();  // seems that the Amazon service no longer works :-/
+		}
+		
+		myData.iSidCheckCover = 0;
+		return FALSE;
+	}
+	
+	myData.pCurrentHandler->get_cover ();  // will call 'cd_musicplayer_set_cover_path()' if it got a cover.
+	return TRUE;
+}
+/* 3 cases:
+- a file is given and exists -> wait until its size is constant
+- a file is given but doesn't exist yet -> wait until it exists, then until its size is constant
+- nothing -> re-try, and it will call 'cd_musicplayer_set_cover_path' back.
+*/
 void cd_musicplayer_set_cover_path (const gchar *cGivenCoverPath)
 {
-	if (! myConfig.bEnableCover)
+	if (! myConfig.bEnableCover)  // cover not welcome => abort the mission.
 	{
 		myData.cover_exist = FALSE;
 		return;
 	}
 	
-	if (! cairo_dock_strings_differ (myData.cCoverPath, cGivenCoverPath))  // cover has not changed, so nothing to do (if we are checking for it, keep doing).
+	if (myData.cCoverPath && ! cairo_dock_strings_differ (myData.cCoverPath, cGivenCoverPath))  // cover has not changed => nothing to do (if we are checking for it, keep doing).
 	{
 		return;
 	}
+	g_print ("%s (%s -> %s)\n", __func__, myData.cCoverPath, cGivenCoverPath);
 	
-	myData.cPreviousCoverPath = myData.cCoverPath;  // on memorise la precedente couverture.
+	g_free (myData.cPreviousCoverPath);
+	myData.cPreviousCoverPath = myData.cCoverPath;  // remember the previous cover..
 	myData.cCoverPath = NULL;
 	myData.iCurrentFileSize = 0;
 	myData.cover_exist = FALSE;
@@ -174,149 +261,27 @@ void cd_musicplayer_set_cover_path (const gchar *cGivenCoverPath)
 			myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc)_check_cover_file_size, NULL);
 		}
 	}
-	else  // no data from the service, re-try a few times, maybe we'll get a property update from the service.
+	else  // no data from the service, re-try later if possible.
 	{
-		myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc)_check_cover_file_exists, NULL);
-	}
-}
-
-void cd_musicplayer_get_cover_path (const gchar *cGivenCoverPath, gboolean bHandleCover)  // bHandleCover permet de ne pas regarder dans le cache ou dl la couverture, pour le cas ou le lecteur ne refilerait une adresse qu'au bout d'un certain temps. Dans ce cas-la, on fera l'operation 2 fois en laissant une tempo de ~1s, et on ne gerera la couverture nous-memes que la 2eme fois si le lecteur ne nous a toujours rien refile.
-{
-	if (! myConfig.bEnableCover)
-	{
-		myData.cover_exist = FALSE;
-		return;
-	}
-	g_free (myData.cPreviousCoverPath);
-	myData.cPreviousCoverPath = myData.cCoverPath;  // on memorise la precedente couverture.
-	myData.cCoverPath = NULL;
-	myData.bCoverNeedsTest = FALSE;
-	if (myData.cArtist == NULL || myData.cAlbum == NULL)
-	{
-		myData.cover_exist = FALSE;
-		cd_debug ("MP : no artist and/or album, skip");
-		return ;
-	}
-	if (cGivenCoverPath != NULL)  // le lecteur nous donne une adresse, eventuellement distante.
-	{
-		const gchar *cString = cGivenCoverPath;
-		cd_debug ("MP : the player give us this address : %s", cString);
-		
-		if (strncmp(cString, "http://", 7) == 0)  // fichier distant, on decide de le telecharger nous-memes.
+		if (myData.pCurrentHandler->get_cover != NULL)
+			myData.iSidCheckCover = g_timeout_add_seconds (2, (GSourceFunc)_get_cover_again, NULL);
+		else
 		{
-			cd_debug ("MP : this file is outside");
-			
-			if (myData.pCurrentHandler->cCoverDir)
+			g_free (myData.cCoverPath);
+			myData.cCoverPath = _find_cover_in_common_dirs ();
+			if (myData.cCoverPath != NULL)
 			{
-				myData.cCoverPath = g_strdup_printf("%s/%s - %s.jpg", myData.pCurrentHandler->cCoverDir, myData.cArtist, myData.cAlbum);
-			}
-			else  // le lecteur n'a pas de cache, on utilise le notre.
-			{
-				myData.cCoverPath = g_strdup_printf("%s/musicplayer/%s - %s.jpg", g_cCairoDockDataDir, myData.cArtist, myData.cAlbum);
-			}
-			
-			if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))  // si le lecteur n'est pas deja en train de le telecharger.
-			{
-				gchar *cCommand = g_strdup_printf ("wget -O \"%s\" \"%s\"",
-					myData.cCoverPath,
-					cString);
-				g_spawn_command_line_async (cCommand, NULL);
-				g_free (cCommand);
-			}
-			myData.bCoverNeedsTest = TRUE;  // on testera sur sa taille.
-		}
-		else if (strncmp (cString, "file://", 7) == 0)  // URI locale, on l'accepte sans verifier.
-		{
-			myData.cCoverPath = g_filename_from_uri (cString, NULL, NULL);
-		}
-		else if (*cString == '/')  // fichier local, on l'accepte sans verifier.
-		{
-			myData.cCoverPath = g_strdup (cString);
-		}
-	}
-	else if (bHandleCover)  // le lecteur ne nous a rien file => on va etablir une adresse locale qu'on testera dans le update_icon.
-	{
-		cd_debug ("MP : we don't have any address... Maybe available near the file location");
-		gchar *cSongPath = (myData.cPlayingUri ? g_filename_from_uri (myData.cPlayingUri, NULL, NULL) : NULL);  // on teste d'abord dans le repertoire de la chanson.
-		if (cSongPath != NULL)  // c'est une chanson en local.
-		{
-			gchar *cSongDir = g_path_get_dirname (cSongPath);
-			g_free (cSongPath);
-			
-			myData.cCoverPath = g_strdup_printf ("%s/%s - %s.jpg", cSongDir, myData.cArtist, myData.cAlbum);
-			cd_debug ("MP -   test de %s", myData.cCoverPath);
-			if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
-			{
-				g_free (myData.cCoverPath);
-				myData.cCoverPath = g_strdup_printf ("%s/cover.jpg", cSongDir);
-				cd_debug ("MP -   test de %s", myData.cCoverPath);
-				if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
+				if (cairo_dock_strings_differ (myData.cCoverPath, myData.cPreviousCoverPath))  // cover has changed, apply it.
 				{
-					g_free (myData.cCoverPath);
-					myData.cCoverPath = g_strdup_printf ("%s/Cover.jpg", cSongDir);
-					cd_debug ("MP -   test de %s", myData.cCoverPath);
-					if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
-					{
-						g_free (myData.cCoverPath);
-						myData.cCoverPath = g_strdup_printf ("%s/cover.jpeg", cSongDir);
-						cd_debug ("MP -   test de %s", myData.cCoverPath);
-						if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
-						{
-							g_free (myData.cCoverPath);
-							myData.cCoverPath = g_strdup_printf ("%s/album.jpg", cSongDir);
-							cd_debug ("MP -   test de %s", myData.cCoverPath);
-							if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
-							{
-								g_free (myData.cCoverPath);
-								myData.cCoverPath = g_strdup_printf ("%s/albumart.jpg", cSongDir);
-								cd_debug ("MP -   test de %s", myData.cCoverPath);
-								if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
-								{
-									g_free (myData.cCoverPath);
-									myData.cCoverPath = g_strdup_printf ("%s/folder.jpg", cSongDir);
-									cd_debug ("MP -   test de %s", myData.cCoverPath);
-									if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS))
-									{
-										g_free (myData.cCoverPath);
-										myData.cCoverPath = NULL;
-									}
-								}
-							}
-						}
-					}
+					cd_musiplayer_apply_cover ();
 				}
 			}
-			g_free (cSongDir);
-		}
-		
-		if (myData.cCoverPath == NULL)  // on regarde maintenant dans le cache.
-		{
-			cd_debug("MP : we can also check the 'cache' directory");
-			
-			if (myData.pCurrentHandler->cCoverDir)
+			else if (myConfig.bDownload)
 			{
-				myData.cCoverPath = g_strdup_printf("%s/%s - %s.jpg", myData.pCurrentHandler->cCoverDir, myData.cArtist, myData.cAlbum);
-				myData.bCoverNeedsTest = TRUE;  // on testera sur sa taille.
+				/// search it online ...
+				cd_musicplayer_dl_cover ();  // seems that the Amazon service no longer works :-/
 			}
-			else  // le lecteur n'a pas de cache, on utilise le notre.
-			{
-				myData.cCoverPath = g_strdup_printf ("%s/musicplayer/%s - %s.jpg", g_cCairoDockDataDir, myData.cArtist, myData.cAlbum);
-			}
-			// It seems that the Amazon service no longer works :-/
-			/*if (! g_file_test (myData.cCoverPath, G_FILE_TEST_EXISTS) && myConfig.bDownload)  // la couverture n'est pas en cache, on la telecharge nous-memes.
-			{
-				cd_musicplayer_dl_cover ();
-				myData.bCoverNeedsTest = TRUE;  // on testera sur sa taille.
-			}*/
 		}
-	}
-	
-	cd_debug ("MP :  cCoverPath <- %s (%d)\n", myData.cCoverPath, bHandleCover);
-
-	if (myData.cCoverPath == NULL || cairo_dock_strings_differ (myData.cPreviousCoverPath, myData.cCoverPath))  // la couverture a change, son existence est incertaine et il faudra charger la surface/texture avec une transition. Sinon son existence ne change pas et il n'y a rien a faire.
-	{
-		cd_debug ("MP -  it's a new cover (%s -> %s)", myData.cPreviousCoverPath, myData.cCoverPath);
-		myData.cover_exist = FALSE;
 	}
 }
 
@@ -354,7 +319,7 @@ static gboolean _check_xml_file (gpointer data)
 			gchar *cURL = cd_extract_url_from_xml_file (myData.cCurrentXmlFile, &myData.cArtist, &myData.cAlbum, &myData.cTitle);
 			cd_debug ("MP - after the extraction: %s / %s", myData.cArtist, myData.cAlbum);
 			cd_debug ("MP - we can download this cover: %s -> %s", cURL, myData.cCoverPath);
-			if (g_strstr_len (myData.cCoverPath, -1, "(null)") != NULL && myData.cArtist && myData.cAlbum)
+			if ((!myData.cCoverPath || g_strstr_len (myData.cCoverPath, -1, "(null)") != NULL) && myData.cArtist && myData.cAlbum)
 			{
 				g_free (myData.cCoverPath);
 				if (myData.pCurrentHandler->cCoverDir)
@@ -375,7 +340,7 @@ static gboolean _check_xml_file (gpointer data)
 			// on teste en boucle sur la taille du fichier image.
 			myData.iCurrentFileSize = 0;
 			myData.iNbCheckFile = 0;
-			myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc) cd_musiplayer_set_cover_if_present, GINT_TO_POINTER (TRUE));  // TRUE <=> tester la taille contante.
+			myData.iSidCheckCover = g_timeout_add_seconds (1, (GSourceFunc)_check_cover_file_size, NULL);  /// TODO: we need to pass a parameter to not redo the online search if the download fails ...
 			
 			// on quitte la boucle de test du fichier XML.
 			g_remove (myData.cCurrentXmlFile);
@@ -404,21 +369,23 @@ static gboolean _check_xml_file (gpointer data)
 }
 void cd_musicplayer_dl_cover (void)
 {
-	cd_debug ("MP - %s (%s, %s, %s)", __func__, myData.cArtist, myData.cAlbum, myData.cPlayingUri);
+	g_print ("MP-COVER - %s (%s, %s, %s)\n", __func__, myData.cArtist, myData.cAlbum, myData.cPlayingUri);
 	// on oublie ce qu'on etait en train de recuperer.
 	g_free (myData.cCurrentXmlFile);
 	myData.cCurrentXmlFile = NULL;
+	myData.bCoverNeedsTest = TRUE;  // on testera sur sa taille.
 	
 	// lance le dl du fichier XML.
 	myData.cCurrentXmlFile = cd_get_xml_file (myData.cArtist, myData.cAlbum, myData.cPlayingUri);
 	
+	g_print ("XML file: %s\n", myData.cCurrentXmlFile);
 	// on teste en boucle sur la taille du fichier XML.
 	myData.iCurrentFileSize = 0;
 	myData.iNbCheckFile = 0;
 	if (myData.iSidCheckXmlFile == 0)
 	{
 		if (myData.cCurrentXmlFile != NULL)
-			myData.iSidCheckXmlFile = g_timeout_add (250, (GSourceFunc) _check_xml_file, NULL);
+			myData.iSidCheckXmlFile = g_timeout_add (500, (GSourceFunc) _check_xml_file, NULL);
 	}
 	else if (myData.cCurrentXmlFile == NULL)
 	{

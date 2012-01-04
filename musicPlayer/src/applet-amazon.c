@@ -124,7 +124,7 @@ Steps to Sign the Example Request
 */
 #define BASE_URL "http://webservices.amazon.com/onca/xml"
 #define HEADER "GET\nwebservices.amazon.com\n/onca/xml\n"
-#define REQUEST "AWSAccessKeyId=%s&Keywords=%s&Operation=ItemSearch&ResponseGroup=ItemAttributes%%2CImages&SearchIndex=Music&Service=AWSECommerceService&Timestamp=%s&Version=2009-01-06"
+#define REQUEST "AWSAccessKeyId=%s&AssociateTag=none&Keywords=%s&Operation=ItemSearch&ResponseGroup=ItemAttributes%%2CImages&SearchIndex=Music&Service=AWSECommerceService&Timestamp=%s&Version=2009-01-06"
 #define LICENCE_KEY "AKIAIAW2QBGIHVG4UIKA"  // if you reuse the code below, please take the time to make your own key !
 #define PRIVATE_KEY "j7cHTob2EJllKGDScXCvuzTB108WDPpIUnVQTC4P"  // please do not use this key ! It is reserved for Cairo-Dock.
 

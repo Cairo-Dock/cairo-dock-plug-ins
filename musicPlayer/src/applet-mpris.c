@@ -467,7 +467,7 @@ static inline void _extract_metadata (GHashTable *data_list)
 	{
 		cCoverPath = g_value_get_string(value);
 	}
-	cd_musicplayer_get_cover_path (cCoverPath, TRUE);
+	cd_musicplayer_set_cover_path (cCoverPath);
 }
 
 static void _on_got_song_infos (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockModuleInstance *myApplet)
@@ -514,7 +514,7 @@ static void _on_got_song_infos (DBusGProxy *proxy, DBusGProxyCall *call_id, Cair
 		myData.cover_exist = FALSE;
 	}
 	
-	cd_musicplayer_update_icon (TRUE);
+	cd_musicplayer_update_icon ();
 	cd_musicplayer_relaunch_handler ();
 	
 	CD_APPLET_LEAVE ();
@@ -564,7 +564,7 @@ static void onChangeSong_mpris(DBusGProxy *player_proxy, GHashTable *metadata, g
 		myData.iTrackNumber = 0;
 		myData.cover_exist = FALSE;
 	}
-	cd_musicplayer_update_icon (TRUE);
+	cd_musicplayer_update_icon ();
 	CD_APPLET_LEAVE ();
 }
 
@@ -587,7 +587,7 @@ void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpoin
 	
 	if(! myData.cover_exist/** && (myData.cPlayingUri != NULL || myData.cTitle != NULL)*/)
 	{
-		cd_musicplayer_set_surface (myData.iPlayingStatus);
+		cd_musicplayer_apply_status_surface (myData.iPlayingStatus);
 	}
 	else
 	{
@@ -781,7 +781,7 @@ static void cd_mpris_start (void)
 	cd_mpris_getPlaying_async ();  // will get song infos after playing status.
 	/**cd_mpris_getPlaying ();
 	cd_mpris_getSongInfos ();
-	cd_musicplayer_update_icon (TRUE);
+	cd_musicplayer_update_icon ();
 	cd_musicplayer_relaunch_handler ();*/
 }
 
