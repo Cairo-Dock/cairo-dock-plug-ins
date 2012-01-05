@@ -133,7 +133,7 @@ void cd_musicplayer_update_icon (void)
 }
 
 
-/* Affiche les infos de la chanson courante dans une bulle de dialogue.
+/* Display information about the current song in a dialog.
  */
 void cd_musicplayer_popup_info (void)
 {
@@ -141,7 +141,27 @@ void cd_musicplayer_popup_info (void)
 	if (myData.iPlayingStatus == PLAYER_PLAYING || myData.iPlayingStatus == PLAYER_PAUSED)
 	{
 		if (myData.cTitle || myData.cArtist || myData.cAlbum)
-		{ // no tags but with a path...
+		{
+			cairo_dock_show_temporary_dialog_with_icon_printf (
+				"%s: %s\n%s: %s\n%s: %s\n%s: %d:%02d\n%s %d, %s %d/%d",
+				myIcon,
+				myContainer,
+				myConfig.iDialogDuration,
+				MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
+				D_("Artist"),
+				myData.cArtist != NULL ? myData.cArtist : D_("Unknown"),
+				D_("Title"),
+				myData.cTitle != NULL ? myData.cTitle : D_("Unknown"),
+				D_("Album"),
+				myData.cAlbum != NULL ? myData.cAlbum : D_("Unknown"),
+				D_("Length"),
+				myData.iSongLength/60, myData.iSongLength%60,  // it's not often to have a song more than 1h!
+				D_("Track n°"), myData.iTrackNumber,
+				D_("Song n°"), myData.iTrackListIndex+1, myData.iTrackListLength);  // iTrackListIndex start with 0.
+		}
+		else if (myData.cPlayingUri)
+		{
+			// no tags but with a path...
 			gchar *str = strrchr (myData.cPlayingUri, '/');
 			if (str)
 				str ++;
@@ -155,24 +175,6 @@ void cd_musicplayer_popup_info (void)
 				MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
 				D_("Current song"),
 				str);
-		}
-		else if (myData.cPlayingUri)
-		{
-			cairo_dock_show_temporary_dialog_with_icon_printf ("%s: %s\n%s: %s\n%s: %s\n%s: %d:%02d\n%s %d, %s %d/%d",
-				myIcon,
-				myContainer,
-				myConfig.iDialogDuration,
-				MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
-				D_("Artist"),
-				myData.cArtist != NULL ? myData.cArtist : D_("Unknown"),
-				D_("Title"),
-				myData.cTitle != NULL ? myData.cTitle : D_("Unknown"),
-				D_("Album"),
-				myData.cAlbum != NULL ? myData.cAlbum : D_("Unknown"),
-				D_("Length"),
-				myData.iSongLength/60, myData.iSongLength%60,  // les chansons de plus d'1h, c'est rare !
-				D_("Track n°"), myData.iTrackNumber,
-				D_("Song n°"), myData.iTrackListIndex+1, myData.iTrackListLength);  // iTrackListIndex commence a 0.
 		}  // else just ignore silently
 	}
 	else
