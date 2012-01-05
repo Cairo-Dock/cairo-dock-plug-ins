@@ -93,7 +93,6 @@ CD_APPLET_RESET_DATA_BEGIN
 	g_free (myData.cAlbum);
 	g_free (myData.cCoverPath);
 	g_free (myData.cPreviousCoverPath);
-	g_free (myData.cMissingCover);
 	g_free (myData.cPreviousRawTitle);
 	
 	// On s'occupe des handlers.

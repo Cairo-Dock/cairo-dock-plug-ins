@@ -154,12 +154,9 @@ CD_APPLET_STOP_BEGIN
 	cd_musicplayer_stop_current_handler (TRUE);
 	
 	// On stoppe les boucles de recup de la pochette.
-	if (myData.iSidCheckXmlFile != 0)
-		g_source_remove (myData.iSidCheckXmlFile);
 	if (myData.iSidCheckCover != 0)
 		g_source_remove (myData.iSidCheckCover);
-	if (myData.iSidGetCoverInfoTwice != 0)
-		g_source_remove (myData.iSidGetCoverInfoTwice);
+	cairo_dock_free_task (myData.pCoverTask);
 	
 	// on libere la classe.
 	CD_APPLET_MANAGE_APPLICATION (NULL);
@@ -228,8 +225,6 @@ CD_APPLET_RELOAD_BEGIN
 	myData.iPreviousCurrentTime = -1;
 	
 	myData.cover_exist = FALSE;
-	myData.bCoverNeedsTest = FALSE;
-	myData.iNbCheckFile = 0;
 	myData.iCurrentFileSize = 0;
 	myData.iGetTimeFailed = 0;
 	

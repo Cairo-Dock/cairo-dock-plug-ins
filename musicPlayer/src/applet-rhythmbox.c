@@ -99,7 +99,6 @@ static void cd_rhythmbox_getSongInfos (gboolean bGetAll)
 			if (value != NULL && G_VALUE_HOLDS_UINT(value)) myData.iSongLength = g_value_get_uint(value);
 			else myData.iSongLength = 0;
 			cd_message ("  iSongLength <- %ds", myData.iSongLength);
-			myData.bCoverNeedsTest = FALSE;
 		}
 		
 		const gchar *cString = NULL;
@@ -345,7 +344,7 @@ void cd_musicplayer_register_rhythmbox_handler (void)
 	
 	pHandler->appclass = "rhythmbox";
 	pHandler->launch = "rhythmbox";
-	pHandler->cMprisService = "org.mpris.MediaPlayer2.rhythmbox"; // 2.90.1~20110908
+	pHandler->cMprisService = "org.gnome.Rhythmbox";  // they used MPRIS from version 2.90.1~20110908 with org.mpris.MediaPlayer2.rhythmbox, but we don't care as they quickly switched to MPRIS2 in version 2.90.1~20111126
 	pHandler->cMpris2Service = "org.mpris.MediaPlayer2.rhythmbox3"; // 2.90.1~20111126
 	pHandler->path = "/org/gnome/Rhythmbox/Player"; // <= 0.13
 	pHandler->interface = "org.gnome.Rhythmbox.Player";

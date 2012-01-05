@@ -22,6 +22,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <time.h>
+#include <glib/gstdio.h>
 #include "applet-amazon.h"
 #include "applet-struct.h"
 
@@ -124,7 +125,7 @@ Steps to Sign the Example Request
 */
 #define BASE_URL "http://webservices.amazon.com/onca/xml"
 #define HEADER "GET\nwebservices.amazon.com\n/onca/xml\n"
-#define REQUEST "AWSAccessKeyId=%s&AssociateTag=none&Keywords=%s&Operation=ItemSearch&ResponseGroup=ItemAttributes%%2CImages&SearchIndex=Music&Service=AWSECommerceService&Timestamp=%s&Version=2009-01-06"
+#define REQUEST "AWSAccessKeyId=%s&AssociateTag=none&Keywords=%s&Operation=ItemSearch&ResponseGroup=ItemAttributes%%2CImages&SearchIndex=Music&Service=AWSECommerceService&Timestamp=%s&Version=2009-01-06"  // 'AssociateTag' is requested
 #define LICENCE_KEY "AKIAIAW2QBGIHVG4UIKA"  // if you reuse the code below, please take the time to make your own key !
 #define PRIVATE_KEY "j7cHTob2EJllKGDScXCvuzTB108WDPpIUnVQTC4P"  // please do not use this key ! It is reserved for Cairo-Dock.
 
@@ -268,22 +269,6 @@ static gchar *_make_keywords (const gchar *artist, const gchar *album, const gch
 	{
 		cKeyWords = g_strdup_printf ("%s,%s", artist, album);
 		g_strdelimit (cKeyWords, "-_~", ' ');
-		/**gchar *str = cKeyWords;
-		for (str = cKeyWords; *str != '\0'; str ++)
-		{
-			if (*str == ' ')
-			{
-				*str = '|';
-				while (*str == ' ')
-					str ++;
-			}
-			if (*str == '.')
-			{
-				gchar *ptr;
-				for (ptr = str; *ptr != '\0'; ptr ++)
-					*ptr = *(ptr+1);
-			}
-		}*/
 	}
 	else  // on essaie de se baser sur le nom du fichier.
 	{
@@ -302,20 +287,6 @@ static gchar *_make_keywords (const gchar *artist, const gchar *album, const gch
 		if (str)
 			*str = '\0';
 		g_strdelimit (cKeyWords, "-_~", ' ');
-		/**gchar **words = g_strsplit (cKeyWords, "|", -1);
-		int i;
-		GString *s = g_string_new ("");
-		if (words)
-		{
-			for (i = 0; words[i] != NULL; i ++)
-			{
-				g_string_append_printf (s, "\"%s\"|", words[i]);
-			}
-			g_strfreev (words);
-		}
-		g_free (cKeyWords);
-		cKeyWords = s->str;
-		g_string_free (s, FALSE);*/
 	}
 	cd_debug ("cKeyWords : '%s'\n", cKeyWords);
 	return cKeyWords;
@@ -338,46 +309,61 @@ static gchar *_build_url (const gchar *cArtist, const gchar *cAlbum, const gchar
 	return cUrl;
 }
 
-gchar *cd_get_xml_file (const gchar *artist, const gchar *album, const gchar *cUri)
+static gboolean _download_file (const gchar *cURL, const gchar *cLocalPath)
+{
+	GError *error = NULL;
+	gchar *cTmpFile = cairo_dock_download_file (NULL, NULL, cURL, NULL, &error);
+	if (error)
+	{
+		cd_warning ("while trying to downoad the file %s: %s", cURL, error->message);
+		g_error_free (error);
+		return FALSE;
+	}
+	if (cTmpFile == NULL)
+	{
+		cd_message ("no data for URL %s", cURL);
+		return FALSE;
+	}
+	
+	g_print ("rename '%s' -> '%s'\n", cTmpFile, cLocalPath);
+	char *cmd = g_strdup_printf ("mv '%s' '%s'", cTmpFile, cLocalPath);  /// rename doesn't work (err 18) ...
+	int r = system (cmd);
+	g_free (cmd);
+	
+	g_free (cTmpFile);
+	return TRUE;
+}
+
+gboolean cd_amazon_dl_cover (const gchar *artist, const gchar *album, const gchar *cUri, const gchar *cLocalPath)
 {
 	g_return_val_if_fail ((artist != NULL && album != NULL) || (cUri != NULL), FALSE);
 	
-	gchar *cFileToDownload = _build_url (artist, album, cUri);
+	// build the request to the Amazon Web Service.
+	gchar *cRequest = _build_url (artist, album, cUri);
 	
-	gchar *cTmpFilePath = g_strdup ("/tmp/amazon-cover.XXXXXX");
-	int fds = mkstemp (cTmpFilePath);
-	if (fds == -1)
+	// make the request and wait for the answer.
+	GError *error = NULL;
+	gchar *cXmlData =  cairo_dock_get_url_data (cRequest, &error);
+	g_free (cRequest);
+	if (error)
 	{
-		g_free (cTmpFilePath);
-		return NULL;
+		cd_warning ("while trying to get data from Amazon about %s/%s/%s: %s", artist, album, cUri, error->message);
+		g_error_free (error);
+		return FALSE;
+	}
+	if (cXmlData == NULL)
+	{
+		cd_message ("no data from Amazon");
+		return FALSE;
 	}
 	
-	gchar *cCommand = g_strdup_printf ("wget \"%s\" -O \"%s\" -t 3 -T 4 30 /dev/null 2>&1", cFileToDownload, cTmpFilePath);
-	cd_debug ("WGET : '%s'", cCommand);
-	cairo_dock_launch_command (cCommand);
-	
-	g_free (cCommand);
-	g_free (cFileToDownload);
-	close(fds);
-	return cTmpFilePath;
-}
-
-
-gchar *cd_extract_url_from_xml_file (const gchar *filename, gchar **artist, gchar **album, gchar **title)
-{
-	gsize length = 0;
-	gchar *cContent = NULL;
-	g_file_get_contents (filename,
-		&cContent,
-		&length,
-		NULL);
-	g_return_val_if_fail (cContent != NULL, NULL);
+	// extract the URL of the cover from the data we got.
+	// Note: the XML data also contains various info, but since we only get it when we dl the cover, and since the cover will stay in the cache, we won't come here again, so there is no point in getting these info only once.
+	const gchar *cCoverURL = NULL;
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
-	//cd_debug ("cover size : %d\n", iWidth);
-	const gchar *cImageSize = (iWidth > 1 && iWidth < 64 ? "SmallImage" : (iWidth < 200 ? "MediumImage" : "LargeImage"));  // small size : 80; medium size : 160; large size : 320
-	gchar *str = g_strstr_len (cContent, -1, cImageSize);
-	gchar *cResult = NULL;
+	const gchar *cImageSize = (iWidth > 1 && iWidth <= 80 ? "SmallImage" : (iWidth <= 160 ? "MediumImage" : "LargeImage"));  // small size : 80; medium size : 160; large size : 320
+	gchar *str = g_strstr_len (cXmlData, -1, cImageSize);
 	if (str)
 	{
 		str = g_strstr_len (str, -1, "<URL>");
@@ -387,71 +373,26 @@ gchar *cd_extract_url_from_xml_file (const gchar *filename, gchar **artist, gcha
 			gchar *str2 = g_strstr_len (str, -1, "</URL>");
 			if (str2)
 			{
-				cResult = g_strndup (str, str2 - str);
+				*str2 = '\0';
+				cCoverURL = str;
 			}
 		}
 	}
-	if (artist != NULL && *artist == NULL)
+	
+	if (cCoverURL == NULL)  // it's probably an answer stating that there is no result, ignore silently.
 	{
-		str = g_strstr_len (cContent, -1, "<Artist>");
-		if (str)
-		{
-			str += 8;
-			gchar *str2 = g_strstr_len (str, -1, "</Artist>");
-			if (str2)
-			{
-				*artist = g_strndup (str, str2 - str);
-				cd_debug ("artist <- %s\n", *artist);
-			}
-		}
+		g_free (cXmlData);
+		return FALSE;
 	}
-	if (album != NULL && *album == NULL)
+	
+	// now download the image
+	if (!_download_file (cCoverURL, cLocalPath))
 	{
-		str = g_strstr_len (cContent, -1, "<Album>");
-		if (str)
-		{
-			str += 7;
-			gchar *str2 = g_strstr_len (str, -1, "</Album>");
-			if (str2)
-			{
-				*album = g_strndup (str, str2 - str);
-				cd_debug ("album <- %s\n", *album);
-			}
-		}
+		cd_warning ("couldn't downoad the image from Amazon about %s/%s/%s", artist, album, cUri);
+		g_free (cXmlData);
+		return FALSE;
 	}
-	if ((album != NULL && *album == NULL) || (title != NULL && *title == NULL))
-	{
-		str = g_strstr_len (cContent, -1, "<Title>");
-		if (str)
-		{
-			str += 7;
-			gchar *str2 = g_strstr_len (str, -1, "</Title>");
-			if (str2)
-			{
-				gchar *cTitle = g_strndup (str, str2 - str);
-				if (album != NULL && *album == NULL)
-				{
-					str = strchr (cTitle, '/');
-					if (str)
-					{
-						*album = g_strndup (cTitle, str - cTitle);
-						cd_debug ("album <- %s\n", *album);
-						if (title != NULL && *title == NULL)
-							*title = g_strndup (str+1, str2 - str - 1);
-						g_free (cTitle);
-						cTitle = NULL;
-					}
-				}
-				if (album != NULL && *album == NULL)
-				{
-					*album = cTitle;
-					cd_debug ("album <- %s\n", *album);
-				}
-				else
-					g_free (cTitle);
-			}
-		}
-	}
-	g_free (cContent);
-	return cResult;
+	
+	g_free (cXmlData);
+	return TRUE;
 }

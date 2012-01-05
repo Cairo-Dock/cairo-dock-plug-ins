@@ -67,8 +67,8 @@ struct _MusicPlayerHandler {
 	MusicPlayerStopFunc 		stop;
 	MusicPlayerStartFunc		start;
 	MusicPlayerControlerFunc	control;
-	MusicPlayerGetCoverFunc		get_cover;
-	const gchar *cMprisService;  // old Dbus service name
+	MusicPlayerGetCoverFunc		get_cover;  // actually deprecated, since now most players will send a signal when the 'cover' param is changed.
+	const gchar *cMprisService;  // old Dbus service name (may not even follow the MPRIS protocole)
 	const gchar *path;  // Player object
 	const gchar *interface;
 	const gchar *path2;  // TrackList object.
@@ -123,6 +123,14 @@ struct _AppletConfig {
 	gboolean bNextPrevOnScroll;
 };
 
+typedef struct {
+	gchar *cArtist;
+	gchar *cAlbum;
+	gchar *cPlayingUri;
+	gchar *cLocalPath;
+	gboolean bSuccess;
+	} CDSharedMemory;
+
 struct _AppletData {
 	// general
 	CairoDockTask *pTask;
@@ -157,17 +165,13 @@ struct _AppletData {
 	cairo_surface_t *pCover;
 	
 	// Les pochettes
-	gchar *cCoverPath, *cPreviousCoverPath, *cMissingCover;
-	gint iSidGetCoverInfoTwice;
-	guint iSidCheckCover;
-	gint iNbCheckFile;
-	guint iSidCheckXmlFile;
-	gint iCurrentFileSize;
-	gchar *cCurrentXmlFile;
+	gchar *cCoverPath, *cPreviousCoverPath;
 	gboolean cover_exist;
+	guint iSidCheckCover;
 	gint iNbCheckCover;
-	gboolean bCoverNeedsTest;
-
+	gint iCurrentFileSize;
+	CairoDockTask *pCoverTask;  // async task to download the cover on the net.
+	
 	// pochette 3D
 	gint iCoverTransition;
 	GLuint iPrevTextureCover;

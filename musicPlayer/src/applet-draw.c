@@ -199,7 +199,7 @@ void cd_musicplayer_animate_icon (int animationLength)
  */
 void cd_musicplayer_apply_status_surface (MyPlayerStatus iStatus)
 {
-	g_print ("%s (%d)\n", __func__, iStatus);
+	g_print ("*** %s (%d)\n", __func__, iStatus);
 	g_return_if_fail (iStatus < PLAYER_NB_STATUS);
 	gboolean bUse3DTheme = (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes);
 	cairo_surface_t *pSurface = myData.pSurfaces[iStatus];
@@ -251,7 +251,7 @@ void cd_musicplayer_apply_status_surface (MyPlayerStatus iStatus)
 
 void cd_musiplayer_apply_cover (void)
 {
-	g_print ("%s (%s)\n", __func__, myData.cCoverPath);
+	g_print ("*** %s (%s)\n", __func__, myData.cCoverPath);
 	g_return_if_fail (myData.cCoverPath != NULL);
 	
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
