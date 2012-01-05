@@ -39,6 +39,14 @@ CD_APPLET_DEFINE_BEGIN (N_("Global Menu"),
 	CD_APPLET_ALLOW_EMPTY_TITLE
 CD_APPLET_DEFINE_END
 
+static gboolean _reversed_buttons_order (void)
+{	// TRUE: on the left (close, min, max) || FALSE: on the right (min, max, close)
+	if (myConfig.iButtonsOrder == CD_GM_BUTTON_ORDER_AUTO
+	        && ((myDock && (int) myIcon->fXAtRest < (g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL] / 2))
+	        || (myDesklet && myDesklet->container.iWindowPositionX < (g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL] / 2))))
+		return TRUE;
+	return (myConfig.iButtonsOrder == CD_GM_BUTTON_ORDER_LEFT);
+}
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
@@ -72,6 +80,7 @@ CD_APPLET_INIT_BEGIN
 	if (myConfig.bDisplayControls)  // no animation on mouse hover if the buttons are displayed, it's hard to click
 	{
 		CD_APPLET_SET_STATIC_ICON;
+		myData.bReversedButtonsOrder = FALSE; /// _reversed_buttons_order (); => TODO? check if the position of the icon has changed. => the position of the icon seems to not be correct if we call this function here... we can check if something has changed with CD_APPLET_RELOAD but the order doesn't change if the icon has been moved in the same dock (it works if the container has changed). Do we have to register to this notifications? => NOTIFICATION_ICON_MOVED
 	}
 	
 	// mouse events
@@ -191,6 +200,7 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (myConfig.bDisplayControls)
 	{
+		myData.bReversedButtonsOrder = _reversed_buttons_order ();
 		cd_app_menu_resize ();
 	}
 	

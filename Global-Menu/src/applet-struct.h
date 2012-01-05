@@ -39,11 +39,18 @@ typedef enum {
 	CD_NB_BUTTONS
 	} CDButtonEnum;
 
+typedef enum {
+	CD_GM_BUTTON_ORDER_AUTO,
+	CD_GM_BUTTON_ORDER_RIGHT,
+	CD_GM_BUTTON_ORDER_LEFT
+	} CDGMReversedMenu; 
+
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
 	gboolean bDisplayControls;  // steal the window top border
 	gboolean bDisplayMenu;  // steal the menu from the window
 	gboolean bCompactMode;  // TRUE = if bDisplayControls, display all control buttons on the icon
+	gint iButtonsOrder;  // Buttons' order (auto / right / left)
 	gchar *cShortkey;  // if bDisplayMenu, shortkey to pop up the menu
 	gboolean bMenuOnMouse;
 	gint iTransitionDuration;  // ms
@@ -77,6 +84,7 @@ struct _AppletData {
 	CairoDockTask *pTask;
 	gint iNbButtons;
 	GHashTable *windows;
+	gboolean bReversedButtonsOrder;
 	} ;
 
 #endif

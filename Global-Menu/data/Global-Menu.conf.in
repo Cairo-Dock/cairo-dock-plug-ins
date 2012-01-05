@@ -1,4 +1,4 @@
-#@VERSION_APPLICATION_MENU@
+#@VERSION_GLOBAL_MENU@
 
 #[gtk-about]
 [Icon]
@@ -24,7 +24,7 @@ order=
 #F[Applet's Handbook]
 frame_hand=
 #A
-handbook=Application Menu
+handbook=Global Menu
 
 
 #[gtk-convert]
@@ -99,7 +99,7 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#Y[Steal window menu;1;2;Steal window border;3;1;Steal window menu and border;1;3] Behavior
+#Y[Steal window menu;1;2;Steal window decoration;3;2;Steal window menu and border;1;4] Behavior
 #{The applet can steal the top border of maximized windows, in which case it will display the window control buttons.
 # The applet can steal the menu from the windows, in which case it will display a button to pop up the menu of the current window.}
 steal = 2
@@ -112,6 +112,9 @@ menu on mouse = false
 
 #b Compact mode
 compact = false
+
+#l+[Auto;Close button at the end;Close button at first] Order of the buttons: 
+buttons order = 0
 
 #S+[Default] Image for the 'minimize' button
 min button =

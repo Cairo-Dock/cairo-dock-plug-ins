@@ -32,6 +32,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cShortkey = CD_CONFIG_GET_STRING ("Configuration", "shortkey");
 	myConfig.bMenuOnMouse = CD_CONFIG_GET_BOOLEAN ("Configuration", "menu on mouse");
 	myConfig.bCompactMode = CD_CONFIG_GET_BOOLEAN ("Configuration", "compact");
+	myConfig.iButtonsOrder = CD_CONFIG_GET_INTEGER ("Configuration", "buttons order"); // (auto / right / left)
 	myConfig.iTransitionDuration = 500;
 	myConfig.cMinimizeImage = CD_CONFIG_GET_FILE_PATH ("Configuration", "min button", "button-min.svg");
 	myConfig.cMaximizeImage = CD_CONFIG_GET_FILE_PATH ("Configuration", "max button", "button-max.svg");
