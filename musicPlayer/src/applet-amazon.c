@@ -309,31 +309,6 @@ static gchar *_build_url (const gchar *cArtist, const gchar *cAlbum, const gchar
 	return cUrl;
 }
 
-static gboolean _download_file (const gchar *cURL, const gchar *cLocalPath)
-{
-	GError *error = NULL;
-	gchar *cTmpFile = cairo_dock_download_file (NULL, NULL, cURL, NULL, &error);
-	if (error)
-	{
-		cd_warning ("while trying to downoad the file %s: %s", cURL, error->message);
-		g_error_free (error);
-		return FALSE;
-	}
-	if (cTmpFile == NULL)
-	{
-		cd_message ("no data for URL %s", cURL);
-		return FALSE;
-	}
-	
-	g_print ("rename '%s' -> '%s'\n", cTmpFile, cLocalPath);
-	char *cmd = g_strdup_printf ("mv '%s' '%s'", cTmpFile, cLocalPath);  /// rename doesn't work (err 18) ...
-	int r = system (cmd);
-	g_free (cmd);
-	
-	g_free (cTmpFile);
-	return TRUE;
-}
-
 gboolean cd_amazon_dl_cover (const gchar *artist, const gchar *album, const gchar *cUri, const gchar *cLocalPath)
 {
 	g_return_val_if_fail ((artist != NULL && album != NULL) || (cUri != NULL), FALSE);
@@ -386,7 +361,7 @@ gboolean cd_amazon_dl_cover (const gchar *artist, const gchar *album, const gcha
 	}
 	
 	// now download the image
-	if (!_download_file (cCoverURL, cLocalPath))
+	if (!cairo_dock_download_file (cCoverURL, cLocalPath))
 	{
 		cd_warning ("couldn't downoad the image from Amazon about %s/%s/%s", artist, album, cUri);
 		g_free (cXmlData);

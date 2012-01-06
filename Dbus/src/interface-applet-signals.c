@@ -410,12 +410,8 @@ gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceived
 		//\________________ On telecharge l'archive de l'applet et on l'installe/la met a jour.
 		GError *erreur = NULL;
 		//g_print ("dropped a distant applet\n");
-		gchar *cServerAdress = g_path_get_dirname (cReceivedData);
-		gchar *cDistantFileName = g_path_get_basename (cReceivedData);
 		gchar *cExtractTo = g_strdup_printf ("%s/%s", g_cCairoDockDataDir, CD_DBUS_APPLETS_FOLDER);
-		gchar *cAppletDirPath = cairo_dock_download_file (cServerAdress, "", cDistantFileName, cExtractTo, &erreur);
-		g_free (cServerAdress);
-		g_free (cDistantFileName);
+		gchar *cAppletDirPath = cairo_dock_download_archive (cReceivedData, cExtractTo);
 		if (erreur != NULL)
 		{
 			cd_warning (erreur->message);

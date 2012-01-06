@@ -308,7 +308,7 @@ static void _download_to_desktop (GtkMenuItem *menu_item, CairoDockModuleInstanc
 	if (cDesktopDir != NULL)
 	{
 		
-		CairoDockTask *pTask = cairo_dock_download_file_async (NULL, NULL, myData.cPendingFile, NULL, (GFunc)_dl_finished, myApplet);
+		CairoDockTask *pTask = cairo_dock_download_file_async (myData.cPendingFile, NULL, (GFunc)_dl_finished, myApplet);
 		
 		
 		

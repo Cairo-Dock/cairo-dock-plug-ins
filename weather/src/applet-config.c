@@ -189,12 +189,14 @@ static void _cd_weather_search_for_location (GtkEntry *pEntry, CairoDockModuleIn
 		cairo_dock_discard_task (myData.pGetLocationTask);
 		myData.pGetLocationTask = NULL;
 	}
-	gchar *cFileName = g_strdup_printf ("search?where=%s", cLocationName);
-	myData.pGetLocationTask = cairo_dock_get_distant_file_content_async (CD_WEATHER_BASE_URL, "search", cFileName, (GFunc) _on_got_location_data, myApplet);
-	g_free (cFileName);
+	gchar *cURL = g_strdup_printf (CD_WEATHER_BASE_URL"/search/search?where=%s", cLocationName);
+	myData.pGetLocationTask = cairo_dock_get_url_data_async (cURL, (GFunc) _on_got_location_data, myApplet);
+	g_free (cURL);
 }
 void cd_weather_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile)
 {
+	if (!myApplet)  // if called when the applet is not started
+		return;
 	cd_debug ("%s (%s)\n", __func__, myIcon->cName);
 	//\____________ On recupere le widget.
 	GtkWidget *pCodeEntry = CD_APPLET_GET_CONFIG_PANEL_WIDGET ("Configuration", "location code");

@@ -220,16 +220,8 @@ static void _get_html_page (CDHtmlLink *pHtmlLink)
 				}
 				cd_debug ("cFaviconURL: %s", cFaviconURL);
 				
-				gchar *cTmpFavIconPath = cairo_dock_download_file (NULL, NULL, cFaviconURL, NULL, NULL);
-				if (cTmpFavIconPath != NULL)
-				{
-					gchar *cCommand = g_strdup_printf ("mv \"%s\" \"%s\"", cTmpFavIconPath, cLocalFaviconPath);
-					cd_debug ("%s", cCommand);
-					int r = system (cCommand);
-					g_free (cCommand);
-					g_free (cTmpFavIconPath);
-					bGotFavIcon = TRUE;
-				}
+				bGotFavIcon = cairo_dock_download_file (cFaviconURL, cLocalFaviconPath);
+				
 				g_free (cFaviconURL);
 				g_free (cRelPath);
 			}
