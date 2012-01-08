@@ -22,7 +22,7 @@
 #include <cairo-dock.h>
 
 #include "applet-struct.h"
-#include "applet-mixer.h"
+#include "applet-backend-alsamixer.h"  // mixer_get_elements_list
 #include "applet-notifications.h"
 #include "applet-config.h"
 
@@ -96,9 +96,6 @@ CD_APPLET_RESET_DATA_BEGIN
 	if (myData.pMuteSurface)
 		cairo_surface_destroy (myData.pMuteSurface);
 	cairo_dock_dialog_unreference (myData.pDialog);
-	g_free (myData.cErrorMessage);
-	g_free (myData.mixer_card_name);
-	g_free (myData.mixer_device_name);
 CD_APPLET_RESET_DATA_END
 
 

@@ -25,10 +25,10 @@
 
 #include "applet-struct.h"
 #include "applet-draw.h"
-#include "applet-mixer.h"
+#include "applet-generic.h"
+#include "applet-backend-alsamixer.h"
 
-
-static int	 mixer_level = 0;
+static int mixer_level = 0;
 static struct snd_mixer_selem_regopt mixer_options;
 
 
@@ -101,6 +101,13 @@ void mixer_stop (void)
 		myData.mixer_handle = NULL;
 		myData.pControledElement = NULL;
 		myData.pControledElement2 = NULL;
+		
+		g_free (myData.cErrorMessage);
+		myData.cErrorMessage = NULL;
+		g_free (myData.mixer_card_name);
+		myData.mixer_card_name = NULL;
+		g_free (myData.mixer_device_name);
+		myData.mixer_device_name= NULL;
 	}
 }
 
@@ -144,7 +151,25 @@ static snd_mixer_elem_t *_mixer_get_element_by_name (const gchar *cName)
 	return NULL;*/
 }
 
-void mixer_get_controlled_element (void)
+
+static int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
+{
+	CD_APPLET_ENTER;
+	cd_debug ("%s (%d)", __func__, mask);
+	
+	if (mask != 0)
+	{
+		myData.iCurrentVolume = mixer_get_mean_volume ();
+		myData.bIsMute = mixer_is_mute ();
+		cd_debug (" iCurrentVolume <- %d bIsMute <- %d", myData.iCurrentVolume, myData.bIsMute);
+	}
+	
+	cd_update_icon ();
+	
+	CD_APPLET_LEAVE(0);
+}
+
+static void mixer_get_controlled_element (void)
 {
 	myData.pControledElement = _mixer_get_element_by_name (myConfig.cMixerElementName);
 	if (myData.pControledElement != NULL)
@@ -182,7 +207,7 @@ int mixer_get_mean_volume (void)
 	return (100. * (iMeanVolume - myData.iVolumeMin) / (myData.iVolumeMax - myData.iVolumeMin));
 }
 
-void mixer_set_volume (int iNewVolume)
+static void mixer_set_volume (int iNewVolume)
 {
 	g_return_if_fail (myData.pControledElement != NULL);
 	cd_debug ("%s (%d)", __func__, iNewVolume);
@@ -191,7 +216,7 @@ void mixer_set_volume (int iNewVolume)
 	if (myData.pControledElement2 != NULL)
 		snd_mixer_selem_set_playback_volume_all (myData.pControledElement2, iVolume);
 	myData.iCurrentVolume = iNewVolume;
-	mixer_element_update_with_event (myData.pControledElement, 0);  // on ne recoit pas d'evenements pour nos actions.
+	cd_update_icon ();  // on ne recoit pas d'evenements pour nos actions.
 }
 
 gboolean mixer_is_mute (void)
@@ -210,7 +235,7 @@ gboolean mixer_is_mute (void)
 		return FALSE;
 }
 
-void mixer_switch_mute (void)
+static void mixer_switch_mute (void)
 {
 	g_return_if_fail (myData.pControledElement != NULL);
 	gboolean bIsMute = mixer_is_mute ();
@@ -218,60 +243,16 @@ void mixer_switch_mute (void)
 	if (myData.pControledElement2 != NULL)
 		snd_mixer_selem_set_playback_switch_all (myData.pControledElement2, bIsMute);
 	myData.bIsMute = ! bIsMute;
-	mixer_element_update_with_event (myData.pControledElement, 0);  // on ne recoit pas d'evenements pour nos actions.
+	cd_update_icon ();  // on ne recoit pas d'evenements pour nos actions.
 }
 
-
-
-static void on_change_volume (GtkRange *range, gpointer data)
-{
-	CD_APPLET_ENTER;
-	int iNewVolume = (int) gtk_range_get_value (GTK_RANGE (range));
-	cd_debug ("%s (%d)", __func__, iNewVolume);
-	mixer_set_volume (iNewVolume);
-	CD_APPLET_LEAVE();
-}
-GtkWidget *mixer_build_widget (gboolean bHorizontal)
-{
-	g_return_val_if_fail (myData.pControledElement != NULL, NULL);
-	#if (GTK_MAJOR_VERSION < 3)
-	GtkWidget *pScale = (bHorizontal ? gtk_hscale_new_with_range (0., 100., .5*myConfig.iScrollVariation) : gtk_vscale_new_with_range (0., 100., .5*myConfig.iScrollVariation));
-	#else
-	GtkWidget *pScale = gtk_scale_new_with_range (bHorizontal ? GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL, 0., 100., .5*myConfig.iScrollVariation);
-	#endif
-	if (! bHorizontal)
-		gtk_range_set_inverted (GTK_RANGE (pScale), TRUE);  // de bas en haut.
-	
-	myData.iCurrentVolume = mixer_get_mean_volume ();
-	gtk_range_set_value (GTK_RANGE (pScale), myData.iCurrentVolume);
-	
-	g_signal_connect (G_OBJECT (pScale),
-		"value-changed",
-		G_CALLBACK (on_change_volume),
-		NULL);
-	
-	cairo_dock_set_dialog_widget_text_color (pScale);
-	return pScale;
-}
-
-
-void mixer_set_volume_with_no_callback (GtkWidget *pScale, int iVolume)
-{
-	g_signal_handlers_block_matched (GTK_WIDGET(pScale),
-		G_SIGNAL_MATCH_FUNC,
-		0, 0, NULL, (void*)on_change_volume, NULL);
-	gtk_range_set_value (GTK_RANGE (pScale), (double) iVolume);
-	g_signal_handlers_unblock_matched (GTK_WIDGET(pScale),
-		G_SIGNAL_MATCH_FUNC,
-		0, 0, NULL, (void*)on_change_volume, NULL);
-}
 
 
 static void _on_dialog_destroyed (CairoDockModuleInstance *myApplet)
 {
 	myData.pDialog = NULL;
 }
-void mixer_show_hide_dialog (void)
+static void mixer_show_hide_dialog (void)
 {
 	if (myDesklet)
 		return ;
@@ -309,4 +290,91 @@ gboolean mixer_check_events (gpointer data)
 	CD_APPLET_ENTER;
 	snd_mixer_handle_events (myData.mixer_handle);  // ne renvoie pas d'evenements pour nos actions !
 	CD_APPLET_LEAVE(TRUE);
+}
+
+
+static void cd_mixer_stop_alsa (void)
+{
+	if (myData.mixer_handle != NULL)
+	{
+		mixer_stop ();
+		
+		g_free (myData.cErrorMessage);
+		myData.cErrorMessage = NULL;
+		g_free (myData.mixer_card_name);
+		myData.mixer_card_name = NULL;
+		g_free (myData.mixer_device_name);
+		myData.mixer_device_name= NULL;
+		
+		if (myData.iSidCheckVolume != 0)
+		{
+			g_source_remove (myData.iSidCheckVolume);
+			myData.iSidCheckVolume = 0;
+		}
+	}
+}
+
+static void cd_mixer_reload_alsa (void)
+{
+	cd_mixer_stop_alsa ();
+	
+	mixer_init (myConfig.card_id);
+	mixer_get_controlled_element ();
+	
+	if (myData.pControledElement == NULL)
+	{
+		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cBrokenIcon, "broken.svg");
+	}
+	else
+	{
+		mixer_element_update_with_event (myData.pControledElement, 1);  // 1 => get the current state (card may have changed).
+		
+		myData.iSidCheckVolume = g_timeout_add (1000, (GSourceFunc) mixer_check_events, (gpointer) NULL);
+	}
+}
+
+void cd_mixer_init_alsa (void)
+{
+	// connect to the sound card
+	mixer_init (myConfig.card_id);
+	
+	// get the mixer element
+	mixer_get_controlled_element ();
+	
+	// update the icon
+	if (myData.pControledElement == NULL)  // no luck
+	{
+		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cBrokenIcon, "broken.svg");
+	}
+	else  // mixer aquired
+	{
+		// set the interface
+		myData.ctl.get_volume = mixer_get_mean_volume;
+		myData.ctl.set_volume = mixer_set_volume;
+		myData.ctl.toggle_mute = mixer_switch_mute;
+		myData.ctl.show_hide = mixer_show_hide_dialog;
+		myData.ctl.stop = cd_mixer_stop_alsa;
+		myData.ctl.reload = cd_mixer_reload_alsa;
+		
+		// build the scale now if we're in a desklet
+		if (myDesklet)
+		{
+			GtkWidget *box = _gtk_hbox_new (0);
+			myData.pScale = mixer_build_widget (FALSE);
+			gtk_box_pack_end (GTK_BOX (box), myData.pScale, FALSE, FALSE, 0);
+			gtk_container_add (GTK_CONTAINER (myDesklet->container.pWidget), box);
+			gtk_widget_show_all (box);
+			
+			if (myConfig.bHideScaleOnLeave && ! myDesklet->container.bInside)
+				gtk_widget_hide (myData.pScale);
+		}
+		else if (myIcon->cName == NULL)  // in dock, set the label
+		{
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myData.mixer_card_name);
+		}
+		
+		// trigger the callback to update the icon
+		mixer_element_update_with_event (myData.pControledElement, 1);  // 1 => get the current state.
+		myData.iSidCheckVolume = g_timeout_add (1000, (GSourceFunc) mixer_check_events, (gpointer) NULL);
+	}
 }

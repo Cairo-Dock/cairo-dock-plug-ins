@@ -23,8 +23,8 @@
 #include "applet-config.h"
 #include "applet-notifications.h"
 #include "applet-struct.h"
-#include "applet-mixer.h"
 #include "applet-draw.h"
+#include "applet-generic.h"
 #include "applet-init.h"
 
 
@@ -66,13 +66,14 @@ gboolean _cd_mixer_on_leave (GtkWidget* pWidget,
 }
 
 CD_APPLET_INIT_BEGIN
-	// scale widget visibility in desklet
+	// set a desklet renderer
 	if (myDesklet)
 	{
 		int iScaleWidth = (myDesklet->container.iHeight > 64 ? 15 : 0);
 		gpointer pConfig[4] = {GINT_TO_POINTER (0), GINT_TO_POINTER (0), GINT_TO_POINTER (iScaleWidth), GINT_TO_POINTER (iScaleWidth)};
 		CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Simple", pConfig);
 		
+		// scale widget visibility in desklet
 		if (myConfig.bHideScaleOnLeave)
 		{
 			g_signal_connect (G_OBJECT (myDesklet->container.pWidget),
@@ -104,44 +105,7 @@ CD_APPLET_INIT_BEGIN
 		mixer_load_surfaces ();
 	}
 	
-	// listen to the sound card
-	mixer_init (myConfig.card_id);
-	
-	mixer_get_controlled_element ();
-	
-	if (myData.pControledElement == NULL)
-	{
-		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cBrokenIcon, "broken.svg");
-	}
-	else
-	{
-		if (myDesklet)
-		{
-			GtkWidget *box = _gtk_hbox_new (0);
-			myData.pScale = mixer_build_widget (FALSE);
-			gtk_box_pack_end (GTK_BOX (box), myData.pScale, FALSE, FALSE, 0);
-			gtk_container_add (GTK_CONTAINER (myDesklet->container.pWidget), box);
-			gtk_widget_show_all (box);
-			
-			if (myConfig.bHideScaleOnLeave && ! myDesklet->container.bInside)
-				gtk_widget_hide (myData.pScale);
-			g_signal_connect (G_OBJECT (myDesklet->container.pWidget),
-				"enter-notify-event",
-				G_CALLBACK (_cd_mixer_on_enter),
-				NULL);
-			g_signal_connect (G_OBJECT (myDesklet->container.pWidget),
-				"leave-notify-event",
-				G_CALLBACK (_cd_mixer_on_leave),
-				NULL);
-		}
-		else if (myIcon->cName == NULL)
-		{
-			CD_APPLET_SET_NAME_FOR_MY_ICON (myData.mixer_card_name);
-		}
-		
-		mixer_element_update_with_event (myData.pControledElement, 1);
-		myData.iSidCheckVolume = g_timeout_add (1000, (GSourceFunc) mixer_check_events, (gpointer) NULL);
-	}
+	cd_start ();
 	
 	// mouse events
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
@@ -152,7 +116,7 @@ CD_APPLET_INIT_BEGIN
 	
 	// keyboard events
 	myData.cKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortcut,
-		D_("Show/hide the sound volume dialog"),
+		D_("Show/hide the Sound menu"),  //  if no sound service, it's just a dialog though ...
 		"Configuration", "shortkey",
 		(CDBindkeyHandler) mixer_on_keybinding_pull);
 CD_APPLET_INIT_END
@@ -169,12 +133,8 @@ CD_APPLET_STOP_BEGIN
 	// keyboard events
 	cd_keybinder_unbind (myData.cKeyBinding);
 	
-	//\_________________ On stoppe le timer.
-	if (myData.iSidCheckVolume != 0)
-	{
-		g_source_remove (myData.iSidCheckVolume);
-		myData.iSidCheckVolume = 0;
-	}
+	// stop the current controller.
+	cd_stop ();
 CD_APPLET_STOP_END
 
 
@@ -193,55 +153,33 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_DESKLET_RENDERER_WITH_DATA ("Simple", pConfig);
 		}
 		
-		if (myData.iSidCheckVolume != 0)
-		{
-			g_source_remove (myData.iSidCheckVolume);
-			myData.iSidCheckVolume = 0;
-		}
-		
-		mixer_stop ();
-		g_free (myData.cErrorMessage);
-		myData.cErrorMessage = NULL;
-		g_free (myData.mixer_card_name);
-		myData.mixer_card_name = NULL;
-		g_free (myData.mixer_device_name);
-		myData.mixer_device_name= NULL;
-		
 		if (myConfig.iVolumeDisplay != VOLUME_ON_ICON)
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL);
 		
-		mixer_init (myConfig.card_id);
-		mixer_get_controlled_element ();
-		
-		if (myData.pControledElement == NULL)
+		// reload the data renderer
+		if (myConfig.iVolumeEffect == VOLUME_EFFECT_GAUGE)
 		{
-			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cBrokenIcon, "broken.svg");
-		}
-		else
-		{
-			if (myConfig.iVolumeEffect == VOLUME_EFFECT_GAUGE)
-			{
-				CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs du data-renderer global.
-				CairoGaugeAttribute attr;  // les attributs de la jauge.
-				memset (&attr, 0, sizeof (CairoGaugeAttribute));
-				pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
-				pRenderAttr->cModelName = "gauge";
-				pRenderAttr->iRotateTheme = myConfig.iRotateTheme;
-				attr.cThemePath = myConfig.cGThemePath;
-				
-				if (cairo_dock_get_icon_data_renderer (myIcon))
-					CD_APPLET_RELOAD_MY_DATA_RENDERER (pRenderAttr);
-				else
-					CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
-			}
+			CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs du data-renderer global.
+			CairoGaugeAttribute attr;  // les attributs de la jauge.
+			memset (&attr, 0, sizeof (CairoGaugeAttribute));
+			pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+			pRenderAttr->cModelName = "gauge";
+			pRenderAttr->iRotateTheme = myConfig.iRotateTheme;
+			attr.cThemePath = myConfig.cGThemePath;
 			
-			mixer_element_update_with_event (myData.pControledElement, 1);
-			if (myData.iSidCheckVolume == 0)
-				myData.iSidCheckVolume = g_timeout_add (1000, (GSourceFunc) mixer_check_events, (gpointer) NULL);
+			if (cairo_dock_get_icon_data_renderer (myIcon))
+				CD_APPLET_RELOAD_MY_DATA_RENDERER (pRenderAttr);
+			else
+				CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
 		}
 		
+		// reload the controller
+		cd_reload ();
+		
+		// shortkey
 		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cShortcut, NULL);
 		
+		// scale
 		if (myDesklet)
 		{
 			if (CD_APPLET_MY_CONTAINER_TYPE_CHANGED)
@@ -291,7 +229,7 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		else
 		{
-			if (CD_APPLET_MY_CONTAINER_TYPE_CHANGED)
+			if (CD_APPLET_MY_CONTAINER_TYPE_CHANGED && myData.pScale)
 			{
 				gtk_widget_destroy (myData.pScale);
 				myData.pScale = NULL;
@@ -313,7 +251,7 @@ CD_APPLET_RELOAD_BEGIN
 		
 		if (myData.pControledElement != NULL)
 		{
-			mixer_element_update_with_event (myData.pControledElement, 0);
+			cd_update_icon ();
 		}
 	}
 CD_APPLET_RELOAD_END

@@ -17,39 +17,16 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __CD_APPLET_STRUCT__
-#define  __CD_APPLET_STRUCT__
+#ifndef __APPLET_SOUND__
+#define  __APPLET_SOUND__
 
 #include <cairo-dock.h>
-#include "indicator-applet.h"
 
 
-typedef enum {
-	VOLUME_EFFECT_ICONS,
-	VOLUME_EFFECT_BAR,
-	VOLUME_EFFECT_GAUGE,
-	VOLUME_NB_EFFECTS
-	} VolumeTypeEffect;
+void update_accessible_desc (CairoDockModuleInstance *myApplet);
 
-//\___________ structure containing the applet's configuration parameters.
-struct _AppletConfig {
-	VolumeTypeEffect iVolumeEffect;
-	gchar *cDefaultIcon;
-	gchar *cMuteIcon;
-	gchar *cGThemePath;
-	RendererRotateTheme iRotateTheme;
-	gchar *cShortkey;
-	} ;
 
-//\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
-struct _AppletData {
-	CDAppletIndicator *pIndicator;
-	GtkWidget* volume_widget;
-	GList *transport_widgets_list;
-	GtkWidget* voip_widget;
-	gint iCurrentState;
-	cairo_surface_t *pSurface;
-	CairoKeyBinding *pKeyBinding;
-	} ;
+void cd_mixer_connect_to_sound_service (void);
+
 
 #endif

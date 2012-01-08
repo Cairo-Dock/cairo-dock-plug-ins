@@ -23,7 +23,9 @@
 
 #include <cairo-dock.h>
 #include <alsa/asoundlib.h>
-
+#ifdef SOUND_SERVICE_SUPPORT
+#include "indicator-applet.h"
+#endif
 
 typedef enum {
 	VOLUME_NO_DISPLAY = 0,
@@ -58,7 +60,19 @@ struct _AppletConfig {
 	RendererRotateTheme iRotateTheme;
 	} ;
 
+typedef struct {
+	int (*get_volume) (void);
+	void (*set_volume) (int iVolume);
+	void (*toggle_mute) (void);
+	void (*show_hide) (void);
+	void (*stop) (void);
+	void (*reload) (void);
+	} CDSoundCtl;
+
 struct _AppletData {
+	// generic interface
+	CDSoundCtl ctl;
+	// alsa
 	snd_mixer_t *mixer_handle;
 	gchar *mixer_card_name;
 	gchar *mixer_device_name;
@@ -74,6 +88,16 @@ struct _AppletData {
 	cairo_surface_t *pMuteSurface;
 	int iCurrentVolume;  // volume courant en %.
 	gboolean bIsMute;
+	// sound service
+	#ifdef SOUND_SERVICE_SUPPORT
+	CDAppletIndicator *pIndicator;
+	GtkWidget* volume_widget;
+	GList *transport_widgets_list;
+	GtkWidget* voip_widget;
+	GtkWidget* mute_widget;
+	gint iCurrentState;
+	#endif
+	// other
 	GtkWidget *pScale;
 	CairoKeyBinding *cKeyBinding;
 	} ;

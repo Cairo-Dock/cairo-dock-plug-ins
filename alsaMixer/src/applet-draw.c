@@ -23,23 +23,34 @@
 #include <alsa/asoundlib.h>
 
 #include "applet-struct.h"
-#include "applet-mixer.h"
+#include "applet-generic.h"
 #include "applet-draw.h"
 
 static void _load_mute_surface (void);
 
 
-int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
+
+/// DRAW ICON ///
+
+static void mixer_apply_zoom_effect (cairo_surface_t *pSurface)
 {
-	CD_APPLET_ENTER;
-	cd_debug ("%s (%d)", __func__, mask);
-	
-	if (mask != 0)
-	{
-		myData.iCurrentVolume = mixer_get_mean_volume ();
-		myData.bIsMute = mixer_is_mute ();
-		cd_debug (" iCurrentVolume <- %d bIsMute <- %d", myData.iCurrentVolume, myData.bIsMute);
-	}
+	double fScale = .3 + .7 * myData.iCurrentVolume / 100.;
+	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ZOOM (pSurface, fScale);
+}
+
+static void mixer_apply_transparency_effect (cairo_surface_t *pSurface)
+{
+	double fAlpha = .3 + .7 * myData.iCurrentVolume / 100.;
+	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ALPHA (pSurface, fAlpha);
+}
+
+static void mixer_draw_bar (cairo_surface_t *pSurface)
+{
+	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR (pSurface, myData.iCurrentVolume * .01);
+}
+
+void cd_update_icon (void)
+{
 	gboolean bNeedRedraw = FALSE;
 	
 	switch (myConfig.iVolumeDisplay)
@@ -49,7 +60,7 @@ int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 		
 		case VOLUME_ON_LABEL :
 		{
-			gchar *cLabel = g_strdup_printf ("%s : %d%%", myData.mixer_card_name, myData.iCurrentVolume);
+			gchar *cLabel = g_strdup_printf ("%s: %d%%", myData.mixer_card_name?myData.mixer_card_name:D_("Volume"), myData.iCurrentVolume);
 			CD_APPLET_SET_NAME_FOR_MY_ICON (cLabel);
 			g_free (cLabel);
 		}
@@ -63,7 +74,6 @@ int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 		default :
 		break;
 	}
-	
 	
 	cairo_surface_t *pSurface = NULL;
 	if (myConfig.iVolumeEffect != VOLUME_EFFECT_GAUGE)
@@ -121,30 +131,10 @@ int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int mask)
 	if (bNeedRedraw)
 		CD_APPLET_REDRAW_MY_ICON;
 	
-	if (/**myDesklet && */myData.pScale/** && mask != 0*/)
+	if (myData.pScale)
 	{
-		mixer_set_volume_with_no_callback (myData.pScale, myData.iCurrentVolume);
+		cd_mixer_set_volume_with_no_callback (myData.pScale, myData.iCurrentVolume);
 	}
-	
-	CD_APPLET_LEAVE(0);
-}
-
-
-void mixer_apply_zoom_effect (cairo_surface_t *pSurface)
-{
-	double fScale = .3 + .7 * myData.iCurrentVolume / 100.;
-	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ZOOM (pSurface, fScale);
-}
-
-void mixer_apply_transparency_effect (cairo_surface_t *pSurface)
-{
-	double fAlpha = .3 + .7 * myData.iCurrentVolume / 100.;
-	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ALPHA (pSurface, fAlpha);
-}
-
-void mixer_draw_bar (cairo_surface_t *pSurface)
-{
-	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR (pSurface, myData.iCurrentVolume * .01);
 }
 
 

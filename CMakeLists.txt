@@ -127,6 +127,128 @@ pkg_check_modules (GLIB glib-2.0)
 	STRING (REGEX REPLACE ".*\\." "" GLIB_NANO "${GLIB_VERSION}") # 2.28.3 => 3
 	STRING (REGEX REPLACE "-.*" "" GLIB_NANO "${GLIB_NANO}")
 
+############# INDICATOR-APPLET #################
+message (STATUS "> Indicator-Applet:")
+# Note: the names of dbusmenu-glib, dbusmenu-gtk and indicator have changed...
+set (DBUSMENU_MODULE dbusmenu-glib-0.4)
+pkg_check_modules (DBUSMENU ${DBUSMENU_MODULE})
+if (NOT "${DBUSMENU_FOUND}")
+	set (DBUSMENU_MODULE dbusmenu-glib)
+	pkg_check_modules (DBUSMENU ${DBUSMENU_MODULE})
+endif()
+
+if ("${gtkversion}" STREQUAL "2")
+	set (DBUSMENU_GTK_MODULE dbusmenu-gtk-0.4)
+else()
+	set (DBUSMENU_GTK_MODULE dbusmenu-gtk3-0.4)
+endif()
+pkg_check_modules (DBUSMENU_GTK ${DBUSMENU_GTK_MODULE})
+if (NOT "${DBUSMENU_GTK_FOUND}")
+	if ("${gtkversion}" STREQUAL "2")
+		set (DBUSMENU_GTK_MODULE dbusmenu-gtk)
+	else()
+		set (DBUSMENU_GTK_MODULE dbusmenu-gtk3)
+	endif()
+	pkg_check_modules (DBUSMENU_GTK ${DBUSMENU_GTK_MODULE})
+endif()
+
+if ("${gtkversion}" STREQUAL "2")
+	set (INDICATOR_APPLET_MODULE indicator-0.4)
+else()
+	set (INDICATOR_APPLET_MODULE indicator3-0.4)
+endif()
+pkg_check_modules (INDICATOR_APPLET ${INDICATOR_APPLET_MODULE})
+if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1")
+	set (INDICATOR_APPLICATIONADDED_HAS_HINT 1) # now the ApplicationAdded signal (Status-Notifier) has a new parameter (hint) => https://code.launchpad.net/~ted/indicator-application/name-hints/+merge/67213
+	set (INDICATOR_NEW_VERSION 1)  # oneiric and newer
+else()
+	if ("${gtkversion}" STREQUAL "2")
+		set (INDICATOR_APPLET_MODULE indicator)
+	else()
+		set (INDICATOR_APPLET_MODULE indicator3)
+	endif()
+	pkg_check_modules (INDICATOR_APPLET ${INDICATOR_APPLET_MODULE})
+	set (INDICATOR_APPLICATIONADDED_HAS_HINT 0)
+endif()
+
+if ("${gtkversion}" STREQUAL "2")
+	set (IDO_MODULE libido-0.1)
+else()
+	set (IDO_MODULE libido3-0.1)
+endif()
+pkg_check_modules (IDO ${IDO_MODULE})
+
+
+if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1" AND "${DBUSMENU_FOUND}" STREQUAL "1" AND "${DBUSMENU_GTK_FOUND}" STREQUAL "1")
+	#message (STATUS "DBUSMENU_VERSION : ${DBUSMENU_VERSION}")
+
+	STRING (REGEX REPLACE "\\..*" "" DBUSMENU_MAJOR "${DBUSMENU_VERSION}")
+	# message (STATUS "DBUSMENU_MAJOR : ${DBUSMENU_MAJOR}")
+
+	STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" DBUSMENU_MINOR "${DBUSMENU_VERSION}")  # 0.1.7 => 1.7
+	STRING (REGEX REPLACE "\\.[0-9]*" "" DBUSMENU_MINOR "${DBUSMENU_MINOR}")
+	# message (STATUS "DBUSMENU_MINOR : ${DBUSMENU_MINOR}")
+
+	STRING (REGEX REPLACE ".*\\." "" DBUSMENU_NANO "${DBUSMENU_VERSION}")
+	STRING (REGEX REPLACE "-.*" "" DBUSMENU_NANO "${DBUSMENU_NANO}")
+	# message (STATUS "DBUSMENU_NANO  : ${DBUSMENU_NANO}")
+
+	STRING (REGEX REPLACE "\\..*" "" INDICATOR_MAJOR "${INDICATOR_APPLET_VERSION}")
+	# message (STATUS "INDICATOR_MAJOR : ${INDICATOR_MAJOR}")
+	STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" INDICATOR_MINOR "${INDICATOR_APPLET_VERSION}")  # 0.1.7 => 1.7
+	STRING (REGEX REPLACE "\\.[0-9]*" "" INDICATOR_MINOR "${INDICATOR_MINOR}")
+	# message (STATUS "INDICATOR_MINOR : ${INDICATOR_MINOR}")
+	STRING (REGEX REPLACE ".*\\." "" INDICATOR_NANO "${INDICATOR_APPLET_VERSION}")
+	STRING (REGEX REPLACE "-.*" "" INDICATOR_NANO "${INDICATOR_NANO}")
+	# message (STATUS "INDICATOR_NANO  : ${INDICATOR_NANO}")
+
+	if ("${INDICATOR_NEW_VERSION}" STREQUAL "1")  # oneiric and newer
+		if ("${gtkversion}" STREQUAL "2")
+			execute_process(
+				COMMAND pkg-config --variable=iconsdir indicator-0.4
+				OUTPUT_VARIABLE INDICATORICONSDIR)
+		else()
+			execute_process(
+				COMMAND pkg-config --variable=iconsdir indicator3-0.4
+				OUTPUT_VARIABLE INDICATORICONSDIR)
+		endif()
+	else()
+		if ("${gtkversion}" STREQUAL "2")
+			execute_process(
+				COMMAND pkg-config --variable=iconsdir indicator
+				OUTPUT_VARIABLE INDICATORICONSDIR)
+		else()
+			execute_process(
+				COMMAND pkg-config --variable=iconsdir indicator3
+				OUTPUT_VARIABLE INDICATORICONSDIR)
+		endif()
+	endif()
+	STRING (REGEX REPLACE "\n" "" INDICATORICONSDIR ${INDICATORICONSDIR})  # la commande rajoute un retour chariot ...
+	add_subdirectory (Indicator-applet)
+	set (with_indicator "yes")
+else()
+	message (WARNING "These modules are required to compile Indicators applet (MeMenu, Messaging-Menu, Sound-Control, Status-Notifier and Global-Menu): ${INDICATOR_APPLET_MODULE}(-0.4), ${IDO_MODULE}, ${DBUSMENU_MODULE}(-0.4), ${DBUSMENU_GTK_MODULE}(-0.4)")
+	set (MODULES_MISSING "${MODULES_MISSING} ${INDICATOR_APPLET_MODULE}(-0.4) (${IDO_MODULE}) ${DBUSMENU_MODULE}(-0.4) ${DBUSMENU_GTK_MODULE}(-0.4)")
+endif()
+
+############# INDICATOR-NAME #################
+message (STATUS "> Indicator Names:")
+set (INDICATOR_OLD_NAMES 0)
+if ("${force_old_indicator_names}" STREQUAL "yes")
+	set (INDICATOR_OLD_NAMES 1)
+	message (STATUS "  Indicators: use old Ayatana Dbus names (forced)")
+#~ elseif ("${DISTRO_ID}" STREQUAL "Ubuntu")
+	#~ STRING (REGEX REPLACE "\\..*" "" DISTRO_RELEASE_MAJOR ${DISTRO_RELEASE})
+	#~ # message (STATUS "DISTRO_RELEASE_MAJOR: ${DISTRO_RELEASE_MAJOR}")
+	#~ if (${DISTRO_RELEASE_MAJOR} LESS 11)  # from 11.04, new names are used.
+		#~ set (INDICATOR_OLD_NAMES 1)
+		#~ message (STATUS "  Indicators: use old Ayatana Dbus names")
+	#~ endif()
+elseif (NOT (${INDICATOR_MAJOR} GREATER 0 OR ${INDICATOR_MINOR} GREATER 3 OR ${INDICATOR_NANO} GREATER 20))
+	set (INDICATOR_OLD_NAMES 1)  # maverick or older
+	message (STATUS "  Indicators: use old Ayatana Dbus names")
+endif()
+
 ############# ALSA_MIXER #################
 message (STATUS "> AlsaMixer:")
 set (with_alsa "no")
@@ -138,7 +260,7 @@ if (NOT "${enable-alsa-mixer}" STREQUAL "no")
 		set (MODULES_MISSING "${MODULES_MISSING} alsa")
 	else()
 		set (GETTEXT_ALSA_MIXER ${GETTEXT_PLUGINS})
-		set (VERSION_ALSA_MIXER "1.1.2")
+		set (VERSION_ALSA_MIXER "2.0.0")
 		set (PACKAGE_ALSA_MIXER "cd-AlsaMixer")
 		set (with_alsa "yes")
 		set (alsa_mixerdatadir "${pluginsdatadir}/AlsaMixer")
@@ -507,110 +629,6 @@ else()
 	add_subdirectory (Impulse)
 endif()
 
-############# INDICATOR-APPLET #################
-message (STATUS "> Indicator-Applet:")
-# Note: the names of dbusmenu-glib, dbusmenu-gtk and indicator have changed...
-set (DBUSMENU_MODULE dbusmenu-glib-0.4)
-pkg_check_modules (DBUSMENU ${DBUSMENU_MODULE})
-if (NOT "${DBUSMENU_FOUND}")
-	set (DBUSMENU_MODULE dbusmenu-glib)
-	pkg_check_modules (DBUSMENU ${DBUSMENU_MODULE})
-endif()
-
-if ("${gtkversion}" STREQUAL "2")
-	set (DBUSMENU_GTK_MODULE dbusmenu-gtk-0.4)
-else()
-	set (DBUSMENU_GTK_MODULE dbusmenu-gtk3-0.4)
-endif()
-pkg_check_modules (DBUSMENU_GTK ${DBUSMENU_GTK_MODULE})
-if (NOT "${DBUSMENU_GTK_FOUND}")
-	if ("${gtkversion}" STREQUAL "2")
-		set (DBUSMENU_GTK_MODULE dbusmenu-gtk)
-	else()
-		set (DBUSMENU_GTK_MODULE dbusmenu-gtk3)
-	endif()
-	pkg_check_modules (DBUSMENU_GTK ${DBUSMENU_GTK_MODULE})
-endif()
-
-if ("${gtkversion}" STREQUAL "2")
-	set (INDICATOR_APPLET_MODULE indicator-0.4)
-else()
-	set (INDICATOR_APPLET_MODULE indicator3-0.4)
-endif()
-pkg_check_modules (INDICATOR_APPLET ${INDICATOR_APPLET_MODULE})
-if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1")
-	set (INDICATOR_APPLICATIONADDED_HAS_HINT 1) # now the ApplicationAdded signal (Status-Notifier) has a new parameter (hint) => https://code.launchpad.net/~ted/indicator-application/name-hints/+merge/67213
-	set (INDICATOR_NEW_VERSION 1)  # oneiric and newer
-else()
-	if ("${gtkversion}" STREQUAL "2")
-		set (INDICATOR_APPLET_MODULE indicator)
-	else()
-		set (INDICATOR_APPLET_MODULE indicator3)
-	endif()
-	pkg_check_modules (INDICATOR_APPLET ${INDICATOR_APPLET_MODULE})
-	set (INDICATOR_APPLICATIONADDED_HAS_HINT 0)
-endif()
-
-if ("${gtkversion}" STREQUAL "2")
-	set (IDO_MODULE libido-0.1)
-else()
-	set (IDO_MODULE libido3-0.1)
-endif()
-pkg_check_modules (IDO ${IDO_MODULE})
-
-
-if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1" AND "${DBUSMENU_FOUND}" STREQUAL "1" AND "${DBUSMENU_GTK_FOUND}" STREQUAL "1")
-	#message (STATUS "DBUSMENU_VERSION : ${DBUSMENU_VERSION}")
-
-	STRING (REGEX REPLACE "\\..*" "" DBUSMENU_MAJOR "${DBUSMENU_VERSION}")
-	# message (STATUS "DBUSMENU_MAJOR : ${DBUSMENU_MAJOR}")
-
-	STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" DBUSMENU_MINOR "${DBUSMENU_VERSION}")  # 0.1.7 => 1.7
-	STRING (REGEX REPLACE "\\.[0-9]*" "" DBUSMENU_MINOR "${DBUSMENU_MINOR}")
-	# message (STATUS "DBUSMENU_MINOR : ${DBUSMENU_MINOR}")
-
-	STRING (REGEX REPLACE ".*\\." "" DBUSMENU_NANO "${DBUSMENU_VERSION}")
-	STRING (REGEX REPLACE "-.*" "" DBUSMENU_NANO "${DBUSMENU_NANO}")
-	# message (STATUS "DBUSMENU_NANO  : ${DBUSMENU_NANO}")
-
-	STRING (REGEX REPLACE "\\..*" "" INDICATOR_MAJOR "${INDICATOR_APPLET_VERSION}")
-	# message (STATUS "INDICATOR_MAJOR : ${INDICATOR_MAJOR}")
-	STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" INDICATOR_MINOR "${INDICATOR_APPLET_VERSION}")  # 0.1.7 => 1.7
-	STRING (REGEX REPLACE "\\.[0-9]*" "" INDICATOR_MINOR "${INDICATOR_MINOR}")
-	# message (STATUS "INDICATOR_MINOR : ${INDICATOR_MINOR}")
-	STRING (REGEX REPLACE ".*\\." "" INDICATOR_NANO "${INDICATOR_APPLET_VERSION}")
-	STRING (REGEX REPLACE "-.*" "" INDICATOR_NANO "${INDICATOR_NANO}")
-	# message (STATUS "INDICATOR_NANO  : ${INDICATOR_NANO}")
-
-	if ("${INDICATOR_NEW_VERSION}" STREQUAL "1")  # oneiric and newer
-		if ("${gtkversion}" STREQUAL "2")
-			execute_process(
-				COMMAND pkg-config --variable=iconsdir indicator-0.4
-				OUTPUT_VARIABLE INDICATORICONSDIR)
-		else()
-			execute_process(
-				COMMAND pkg-config --variable=iconsdir indicator3-0.4
-				OUTPUT_VARIABLE INDICATORICONSDIR)
-		endif()
-	else()
-		if ("${gtkversion}" STREQUAL "2")
-			execute_process(
-				COMMAND pkg-config --variable=iconsdir indicator
-				OUTPUT_VARIABLE INDICATORICONSDIR)
-		else()
-			execute_process(
-				COMMAND pkg-config --variable=iconsdir indicator3
-				OUTPUT_VARIABLE INDICATORICONSDIR)
-		endif()
-	endif()
-	STRING (REGEX REPLACE "\n" "" INDICATORICONSDIR ${INDICATORICONSDIR})  # la commande rajoute un retour chariot ...
-	add_subdirectory (Indicator-applet)
-	set (with_indicator "yes")
-else()
-	message (WARNING "These modules are required to compile Indicators applet (MeMenu, Messaging-Menu, Sound-Menu, Status-Notifier and Global-Menu): ${INDICATOR_APPLET_MODULE}(-0.4), ${IDO_MODULE}, ${DBUSMENU_MODULE}(-0.4), ${DBUSMENU_GTK_MODULE}(-0.4)")
-	set (MODULES_MISSING "${MODULES_MISSING} ${INDICATOR_APPLET_MODULE}(-0.4) (${IDO_MODULE}) ${DBUSMENU_MODULE}(-0.4) ${DBUSMENU_GTK_MODULE}(-0.4)")
-endif()
-
 ############# ILLUSION #################
 message (STATUS "> Illusion:")
 set (GETTEXT_ILLUSION ${GETTEXT_PLUGINS})
@@ -831,24 +849,6 @@ if (NOT "${DISTRO_ID}" STREQUAL "")
 	message (STATUS "  DISTRO_ID: ${DISTRO_ID}, DISTRO_RELEASE: ${DISTRO_RELEASE}")
 endif()
 
-############# INDICATOR-NAME #################
-message (STATUS "> Indicator Names:")
-set (INDICATOR_OLD_NAMES 0)
-if ("${force_old_indicator_names}" STREQUAL "yes")
-	set (INDICATOR_OLD_NAMES 1)
-	message (STATUS "  Indicators: use old Ayatana Dbus names (forced)")
-#~ elseif ("${DISTRO_ID}" STREQUAL "Ubuntu")
-	#~ STRING (REGEX REPLACE "\\..*" "" DISTRO_RELEASE_MAJOR ${DISTRO_RELEASE})
-	#~ # message (STATUS "DISTRO_RELEASE_MAJOR: ${DISTRO_RELEASE_MAJOR}")
-	#~ if (${DISTRO_RELEASE_MAJOR} LESS 11)  # from 11.04, new names are used.
-		#~ set (INDICATOR_OLD_NAMES 1)
-		#~ message (STATUS "  Indicators: use old Ayatana Dbus names")
-	#~ endif()
-elseif (NOT (${INDICATOR_MAJOR} GREATER 0 OR ${INDICATOR_MINOR} GREATER 3 OR ${INDICATOR_NANO} GREATER 20))
-	set (INDICATOR_OLD_NAMES 1)  # maverick or older
-	message (STATUS "  Indicators: use old Ayatana Dbus names")
-endif()
-
 ############# GLOBAL-MENU #################
 set (with_global_menu "no")
 if ("${enable-global-menu}" STREQUAL "yes" AND "${INDICATOR_OLD_NAMES}" STREQUAL "0" AND "${DBUSMENU_FOUND}" AND "${DBUSMENU_GTK_FOUND}")  # currently only supported with new name of the indicator module and with newer version of dbusmenu
@@ -1052,33 +1052,6 @@ set (PACKAGE_SLIDER "cd-slider")
 set (sliderdatadir "${pluginsdatadir}/slider")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/slider/data/slider.conf.in ${CMAKE_CURRENT_BINARY_DIR}/slider/data/slider.conf)
 add_subdirectory (slider)
-
-############# SOUND-MENU #################
-set (with_sound_menu "no")
-if ("${with_indicator}" STREQUAL "yes" AND "${IDO_FOUND}") 
-	message (STATUS "> Sound-Menu:")
-
-	STRING (REGEX REPLACE "\\..*" "" IDO_MAJOR "${IDO_VERSION}")
-	# message (STATUS "IDO_MAJOR : ${IDO_MAJOR}")
-	STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" IDO_MINOR "${IDO_VERSION}")  # 0.1.7 => 1.7
-	STRING (REGEX REPLACE "\\.[0-9]*" "" IDO_MINOR "${IDO_MINOR}")
-	# message (STATUS "IDO_MINOR : ${IDO_MINOR}")
-	STRING (REGEX REPLACE ".*\\." "" IDO_NANO "${IDO_VERSION}")
-	STRING (REGEX REPLACE "-.*" "" IDO_NANO "${IDO_NANO}")
-	# message (STATUS "IDO_NANO  : ${IDO_NANO}")
-
-	if (${IDO_MAJOR} GREATER 0 OR ${IDO_MINOR} GREATER 1 OR ${IDO_NANO} GREATER 10)
-		set (GETTEXT_SOUND_MENU ${GETTEXT_PLUGINS})
-		set (VERSION_SOUND_MENU "0.0.2")
-		set (PACKAGE_SOUND_MENU "cd-Sound-Menu")
-		set (with_sound_menu "yes")
-		set (sound_menudatadir "${pluginsdatadir}/Sound-Menu")
-		configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Sound-Menu/data/Sound-Menu.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Sound-Menu/data/Sound-Menu.conf)
-		add_subdirectory (Sound-Menu)
-	else ()
-		message (STATUS "  Your version of libido-0.1 is too old to build this applet.")
-	endif ()
-endif()
 
 ############# STACK #################
 message (STATUS "> Stack:")
@@ -1298,16 +1271,16 @@ message (STATUS " - with Me-Menu applet applet:     ${with_me_menu}")
 endif()
 message (STATUS " - with Messaging-Menu applet:     ${with_messaging_menu}")
 message (STATUS " - with Recent-Events applet:      ${with_recent_events}")
-message (STATUS " - with Sound-Menu applet:         ${with_sound_menu}")
 message (STATUS " - with Status-Notifier applet:    ${with_status_notifier}")
 message (STATUS " - with Terminal applet:           ${with_terminal}")
 message (STATUS " - with Weblets applet:            ${with_weblets}")
 message (STATUS " - with Xgamma applet:             ${with_xgamma}")
 message (STATUS "Add On:")
-message (STATUS " - with iCal support:              ${with_ical}")
+message (STATUS " - with Sound-Menu support:        ${with_indicator}")
 message (STATUS " - with Screen Resolution support: ${with_xrandr}")
 message (STATUS " - with Sensors support:           ${with_sensors}")
 message (STATUS " - with UPower support:            ${with_upower_support}")
+message (STATUS " - with iCal support:              ${with_ical}")
 message (STATUS "Third Party Interfaces:")
 message (STATUS " - with Python interface:          ${with_python}")
 message (STATUS " - with Ruby interface:            ${with_ruby}")

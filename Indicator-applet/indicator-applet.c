@@ -55,40 +55,51 @@ connection_changed (IndicatorServiceManager * sm, gboolean connected, CDAppletIn
 	CairoDockModuleInstance *myApplet = pIndicator->pApplet;
 	if (connected)
 	{
-		// connect to the service.
-		if (pIndicator->pServiceProxy == NULL)
+		if (!pIndicator->bConnected)
 		{
-			GError * error = NULL;
-			DBusGConnection * sbus = cairo_dock_get_session_connection ();
-			pIndicator->pServiceProxy = dbus_g_proxy_new_for_name_owner(sbus,
-				pIndicator->cBusName,
-				pIndicator->cServiceObject,
-				pIndicator->cServiceInterface,
-				&error);
-			if (error != NULL)
-			{
-				cd_warning ("'%s' service not found on the bus : %s", pIndicator->cServiceObject, error->message);
-				g_error_free(error);
-			}
+			// connect to the service.
 			if (pIndicator->pServiceProxy == NULL)
-				return;
+			{
+				GError * error = NULL;
+				DBusGConnection * sbus = cairo_dock_get_session_connection ();
+				pIndicator->pServiceProxy = dbus_g_proxy_new_for_name_owner(sbus,
+					pIndicator->cBusName,
+					pIndicator->cServiceObject,
+					pIndicator->cServiceInterface,
+					&error);
+				if (error != NULL)
+				{
+					cd_warning ("'%s' service not found on the bus : %s", pIndicator->cServiceObject, error->message);
+					g_error_free(error);
+				}
+				if (pIndicator->pServiceProxy == NULL)
+					return;
+				
+				if (pIndicator->on_connect)
+					pIndicator->on_connect (myApplet);
+			}
 			
-			if (pIndicator->on_connect)
-				pIndicator->on_connect (myApplet);
+			// query the service to display initial values.
+			if (pIndicator->get_initial_values)
+				pIndicator->get_initial_values (myApplet);
+			
+			pIndicator->iSidGetMenuOnce = g_idle_add ((GSourceFunc)_get_menu_once, pIndicator);
+			pIndicator->bConnected = TRUE;
 		}
-		
-		// query the service to display initial values.
-		if (pIndicator->get_initial_values)
-			pIndicator->get_initial_values (myApplet);
-		
-		pIndicator->iSidGetMenuOnce = g_idle_add ((GSourceFunc)_get_menu_once, pIndicator);
-		pIndicator->bConnected = TRUE;
 	}
 	else  // If we're disconnecting, go back to offline.
 	{
-		if (pIndicator->on_disconnect)
-			pIndicator->on_disconnect (myApplet);
-		pIndicator->bConnected = FALSE;
+		if (pIndicator->bConnected)
+		{
+			if (pIndicator->on_disconnect)
+				pIndicator->on_disconnect (myApplet);
+			if (pIndicator->pMenu)
+			{
+				g_object_unref (pIndicator->pMenu);
+				pIndicator->pMenu = NULL;
+			}
+			pIndicator->bConnected = FALSE;
+		}
 	}
 
 	return;
@@ -123,7 +134,7 @@ CDAppletIndicator *cd_indicator_new (CairoDockModuleInstance *pApplet, const gch
 	g_signal_connect (G_OBJECT(pIndicator->service), INDICATOR_SERVICE_MANAGER_SIGNAL_CONNECTION_CHANGE, G_CALLBACK(connection_changed), pIndicator);  // on sera appele une fois la connexion etablie.  // pour le cast, cf plus haut.
 	
 	// indicators don't send the 'connection-change' signal if the connection couldn't be done, so we have to handle this case ourselves.
-	pIndicator->iSidCheckIndicator = g_timeout_add_seconds (2, (GSourceFunc)_check_indicator, pIndicator);
+	pIndicator->iSidCheckIndicator = g_timeout_add_seconds (3, (GSourceFunc)_check_indicator, pIndicator);
 	
 	return pIndicator;
 }

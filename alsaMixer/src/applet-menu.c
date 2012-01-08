@@ -26,11 +26,12 @@
 #include <gdk/gdkkeysyms.h>
 
 #include "applet-struct.h"
-#include "applet-sound.h"
+#include "applet-backend-sound-menu.h"  // update_accessible_desc
 #include "transport-widget.h"
 #include "volume-widget.h"
 #include "voip-input-widget.h"
 #include "title-widget.h"
+#include "mute-widget.h"
 #include "metadata-widget.h"
 #include "applet-menu.h"
 
@@ -54,7 +55,7 @@ new_transport_widget (DbusmenuMenuitem * newitem,
                       DbusmenuClient * client,
                       gpointer user_data)
 {
-  g_debug("indicator-sound: new_transport_bar() called ");
+  //g_debug("indicator-sound: new_transport_bar() called ");
 
   GtkWidget* bar = NULL;
 
@@ -80,7 +81,7 @@ new_metadata_widget (DbusmenuMenuitem * newitem,
                      DbusmenuClient * client,
                      gpointer user_data)
 {
-  g_debug("indicator-sound: new_metadata_widget");
+  //g_debug("indicator-sound: new_metadata_widget");
 
   GtkWidget* metadata = NULL;
 
@@ -105,7 +106,7 @@ new_title_widget(DbusmenuMenuitem * newitem,
   g_return_val_if_fail(DBUSMENU_IS_MENUITEM(newitem), FALSE);
   g_return_val_if_fail(DBUSMENU_IS_GTKCLIENT(client), FALSE);
 
-  g_debug ("%s (\"%s\")", __func__, dbusmenu_menuitem_property_get(newitem, DBUSMENU_TITLE_MENUITEM_NAME));
+  //g_debug ("%s (\"%s\")", __func__, dbusmenu_menuitem_property_get(newitem, DBUSMENU_TITLE_MENUITEM_NAME));
 
   GtkWidget* title = NULL;
 
@@ -121,13 +122,36 @@ new_title_widget(DbusmenuMenuitem * newitem,
 }
 
 static gboolean
+new_mute_widget(DbusmenuMenuitem * newitem,
+                DbusmenuMenuitem * parent,
+                DbusmenuClient * client,
+                gpointer user_data)
+{
+  g_return_val_if_fail(DBUSMENU_IS_MENUITEM(newitem), FALSE);
+  g_return_val_if_fail(DBUSMENU_IS_GTKCLIENT(client), FALSE);
+  
+  if (myData.mute_widget != NULL){ 
+    gtk_widget_destroy (myData.mute_widget);
+    myData.mute_widget = NULL;
+  }
+  myData.mute_widget = (GtkWidget*)mute_widget_new(newitem);
+  GtkMenuItem *item = mute_widget_get_menu_item (MUTE_WIDGET (myData.mute_widget));
+
+  dbusmenu_gtkclient_newitem_base(DBUSMENU_GTKCLIENT(client),
+                                  newitem,
+                                  item,
+                                  parent);
+
+  return TRUE;
+}
+
+
+static gboolean
 new_volume_slider_widget(DbusmenuMenuitem * newitem,
                          DbusmenuMenuitem * parent,
                          DbusmenuClient * client,
                          gpointer user_data)
 {
-  g_print ("++++ indicator-sound: new_volume_slider_widget\n");
-
   GtkWidget* volume_widget = NULL;
 
   g_return_val_if_fail(DBUSMENU_IS_MENUITEM(newitem), FALSE);
@@ -173,7 +197,7 @@ new_voip_slider_widget (DbusmenuMenuitem * newitem,
                         DbusmenuClient * client,
                         gpointer user_data)
 {
-  g_debug("indicator-sound: new_voip_slider_widget");
+  //g_debug("indicator-sound: new_voip_slider_widget");
   GtkWidget* voip_widget = NULL;
 
   g_return_val_if_fail(DBUSMENU_IS_MENUITEM(newitem), FALSE);
@@ -227,7 +251,7 @@ key_press_cb(GtkWidget* widget, GdkEventKey* event, CairoDockModuleInstance *myA
     gboolean is_voip_slider = FALSE;
 
     if (g_ascii_strcasecmp (ido_scale_menu_item_get_primary_label (IDO_SCALE_MENU_ITEM(menuitem)), "VOLUME") == 0) {
-      g_debug ("vOLUME SLIDER KEY PRESS");
+      //g_debug ("vOLUME SLIDER KEY PRESS");
       GtkWidget* slider_widget = volume_widget_get_ido_slider(VOLUME_WIDGET(myData.volume_widget));
       GtkWidget* slider = ido_scale_menu_item_get_scale((IdoScaleMenuItem*)slider_widget);
       GtkRange* range = (GtkRange*)slider;
@@ -236,7 +260,7 @@ key_press_cb(GtkWidget* widget, GdkEventKey* event, CairoDockModuleInstance *myA
       new_value = current_value;
     }
     else if (g_ascii_strcasecmp (ido_scale_menu_item_get_primary_label (IDO_SCALE_MENU_ITEM(menuitem)), "VOIP") == 0) {
-      g_debug ("VOIP SLIDER KEY PRESS");
+      //g_debug ("VOIP SLIDER KEY PRESS");
       GtkWidget* slider_widget = voip_input_widget_get_ido_slider(VOIP_INPUT_WIDGET(myData.voip_widget));
       GtkWidget* slider = ido_scale_menu_item_get_scale((IdoScaleMenuItem*)slider_widget);
       GtkRange* range = (GtkRange*)slider;
@@ -391,6 +415,9 @@ void cd_sound_add_menu_handler (DbusmenuGtkClient * client)
 	dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
 		DBUSMENU_TITLE_MENUITEM_TYPE,
 		(DbusmenuClientTypeHandler) new_title_widget);
+	dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
+		DBUSMENU_MUTE_MENUITEM_TYPE,
+		(DbusmenuClientTypeHandler) new_mute_widget);
 	
 	// Note: Not ideal but all key handling needs to be managed here and then 
 	// delegated to the appropriate widget.

@@ -69,5 +69,6 @@ void cd_indicator_reload_icon (CDAppletIndicator *pIndicator);
 
 gboolean cd_indicator_show_menu (CDAppletIndicator *pIndicator);
 
+#define cd_indicator_is_connected(pIndicator) (pIndicator)->bConnected
 
 #endif

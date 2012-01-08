@@ -23,12 +23,12 @@
 #include <glib/gi18n.h>
 
 #include "applet-struct.h"
-#include "applet-mixer.h"
+#include "applet-generic.h"
 #include "applet-notifications.h"
 
 
 CD_APPLET_ON_CLICK_BEGIN
-	mixer_show_hide_dialog ();
+	cd_show_hide ();
 CD_APPLET_ON_CLICK_END
 
 
@@ -44,11 +44,11 @@ static void _mixer_show_advanced_mixer (GtkMenuItem *menu_item, gpointer data)
 	{
 		gchar *cResult = cairo_dock_launch_command_sync ("which gnome-volume-control");
 		if (cResult != NULL && *cResult == '/')
-			g_spawn_command_line_async ("gnome-volume-control -p applications", &erreur); // gnome 2
-		else
 		{
-			/*cResult = cairo_dock_launch_command_sync ("which gnome-control-center");
-			if (cResult != NULL && *cResult == '/')*/
+			g_spawn_command_line_async ("gnome-volume-control -p applications", &erreur); // gnome 2
+		}
+		else  /// TODO: we need to handle the other DE too ...
+		{
 			g_spawn_command_line_async ("gnome-control-center sound", &erreur); // Gnome 3
 		}
 		g_free (cResult);
@@ -69,13 +69,13 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	g_free (cLabel);
 	
 	cLabel = g_strdup_printf ("%s (%s)", (myData.bIsMute ? D_("Unmute") : D_("Mute")), D_("middle-click"));
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, MY_APPLET_SHARE_DATA_DIR"/emblem-mute.svg", mixer_switch_mute, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, MY_APPLET_SHARE_DATA_DIR"/emblem-mute.svg", cd_toggle_mute, CD_APPLET_MY_MENU);
 	g_free (cLabel);
 CD_APPLET_ON_BUILD_MENU_END
 
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	mixer_switch_mute ();
+	cd_toggle_mute ();
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
@@ -84,26 +84,24 @@ CD_APPLET_ON_DOUBLE_CLICK_BEGIN
 CD_APPLET_ON_DOUBLE_CLICK_END
 
 
+CD_APPLET_ON_SCROLL_BEGIN
+	double delta;
+	if (CD_APPLET_SCROLL_UP)
+		delta = myConfig.iScrollVariation;
+	else
+		delta = - myConfig.iScrollVariation;
+	
+	int iVolume = cd_get_volume ();
+	
+	iVolume = MAX (0, MIN (iVolume + delta, 100));
+	
+	cd_set_volume (iVolume);
+CD_APPLET_ON_SCROLL_END
+
+
 void mixer_on_keybinding_pull (const char *keystring, gpointer user_data)
 {
 	CD_APPLET_ENTER;
-	mixer_show_hide_dialog ();
+	cd_show_hide ();
 	CD_APPLET_LEAVE();
 }
-
-CD_APPLET_ON_SCROLL_BEGIN
-	int iVolume = mixer_get_mean_volume ();  // [0;100]
-	double delta = myConfig.iScrollVariation;
-	if (CD_APPLET_SCROLL_DOWN)
-	{
-		iVolume = MAX (iVolume - delta, 0);
-	}
-	else if (CD_APPLET_SCROLL_UP)
-	{
-		iVolume = MIN (iVolume + delta, 100);
-	}
-	else
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
-	
-	mixer_set_volume (iVolume);
-CD_APPLET_ON_SCROLL_END

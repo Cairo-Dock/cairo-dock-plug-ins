@@ -102,24 +102,6 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#F[Alsa]
-frame_alsa =
-
-#s Sound card:
-#{Leave empty to use the default sound card.}
-card id = 
-
-#L[] Select channel:
-mixer element = Master
-#E[] Choose a second channel to control (optional):
-#{On some cards, a channel only controls 1 side (right or left). You will then need to specify a second channel here, to control both sides. Most of the time, you should just leave this empty.}
-mixer element 2 = 
-
-#s Specific command to run to show an advanced sound mixer:
-#{Leave empty to use the default command.}
-show mixer = 
-
-
 #F[Control;gtk-execute]
 frame_ctrl =
 
@@ -165,3 +147,22 @@ sep_disp =
 #S+[Default] Broken icon:
 #{Leave empty to use the default one.}
 broken icon = 
+
+
+#X[Alsa]
+frame_alsa =
+
+#s Sound card:
+#{Leave empty to use the default sound card.}
+card id = 
+
+#L[] Select channel:
+mixer element = Master
+#E[] Choose a second channel to control (optional):
+#{On some cards, a channel only controls 1 side (right or left). You will then need to specify a second channel here, to control both sides. Most of the time, you should just leave this empty.}
+mixer element 2 = 
+
+#s Specific command to run to show an advanced sound mixer:
+#{Leave empty to use the default command.}
+show mixer = 
+

@@ -25,7 +25,7 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "volume-widget.h"
 #include "common-defs.h"
-#include "applet-sound.h"
+#include "applet-backend-sound-menu.h"
 #include "applet-struct.h"
 
 typedef struct _VolumeWidgetPrivate VolumeWidgetPrivate;

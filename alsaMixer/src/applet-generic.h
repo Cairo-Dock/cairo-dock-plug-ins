@@ -17,39 +17,29 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifndef __APPLET_GENERIC__
+#define  __APPLET_GENERIC__
 
-#ifndef __APPLET_MIXER__
-#define  __APPLET_MIXER__
-
-
-#include <gtk/gtk.h>
+#include <cairo-dock.h>
 
 
-void mixer_init (gchar *cCardID);
+int cd_get_volume (void);
 
-void mixer_stop (void);
+void cd_set_volume (int iVolume);
 
-GList *mixer_get_elements_list (void);
+void cd_toggle_mute (void);
 
-void mixer_get_controlled_element (void);
+void cd_show_hide (void);
 
+void cd_stop (void);
 
-int mixer_get_mean_volume (void);
+void cd_reload (void);
 
-
-void mixer_set_volume (int iNewVolume);
-
-gboolean mixer_is_mute (void);
-
-void mixer_switch_mute (void);
+void cd_start (void);
 
 
 GtkWidget *mixer_build_widget (gboolean bHorizontal);
 
-void mixer_set_volume_with_no_callback (GtkWidget *pScale, int iVolume);
-
-void mixer_show_hide_dialog (void);
-
-gboolean mixer_check_events (gpointer data);
+void cd_mixer_set_volume_with_no_callback (GtkWidget *pScale, int iVolume);
 
 #endif

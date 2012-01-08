@@ -18,14 +18,33 @@
 */
 
 
-#ifndef __APPLET_INIT__
-#define  __APPLET_INIT__
+#ifndef __APPLET_MIXER__
+#define  __APPLET_MIXER__
 
 
-#include <cairo-dock.h>
+#include <gtk/gtk.h>
 
 
-CD_APPLET_H
+void mixer_init (gchar *cCardID);
+
+void mixer_stop (void);
+
+GList *mixer_get_elements_list (void);
+
+
+int mixer_get_mean_volume (void);
+
+
+gboolean mixer_is_mute (void);
+
+
+GtkWidget *mixer_build_widget (gboolean bHorizontal);
+
+
+gboolean mixer_check_events (gpointer data);
+
+
+void cd_mixer_init_alsa (void);
 
 
 #endif
