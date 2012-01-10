@@ -12,7 +12,7 @@ set (cd-AlsaMixer_LIB_SRCS
 	applet-struct.h)
 
 # Sound service backend (optionnal)
-if ("${with_indicator}" STREQUAL "yes")
+if ("${with_soundmenu}" STREQUAL "yes")
 	set (cd-AlsaMixer_LIB_SRCS
 		${cd-AlsaMixer_LIB_SRCS}
 		applet-backend-sound-menu.c applet-backend-sound-menu.h
@@ -37,36 +37,51 @@ add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_ALSA_MIXER}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 add_definitions (-DINDICATOR_OLD_NAMES=${INDICATOR_OLD_NAMES})
-if ("${with_indicator}" STREQUAL "yes")
+if ("${with_soundmenu}" STREQUAL "yes")
 	add_definitions (-DSOUND_SERVICE_SUPPORT="1")
 endif()
 
-include_directories (
-	${PACKAGE_INCLUDE_DIRS}
-	${ALSA_MIXER_PACKAGE_INCLUDE_DIRS}
-	${DBUSMENU_INCLUDE_DIRS}
-	${DBUSMENU_GTK_INCLUDE_DIRS}
-	${INDICATOR_APPLET_INCLUDE_DIRS}
-	${IDO_INCLUDE_DIRS}
-	${CMAKE_SOURCE_DIR}/Indicator-applet)
 
-link_directories (
-	${PACKAGE_LIBRARY_DIRS}
-	${ALSA_MIXER_PACKAGE_LIBRARY_DIRS}
-	${DBUSMENU_LIBRARY_DIRS}
-	${DBUSMENU_GTK_LIBRARY_DIRS}
-	${INDICATOR_APPLET_LIBRARY_DIRS}
-	${IDO_LIBRARY_DIRS}
-	${CMAKE_SOURCE_DIR}/Indicator-applet)
+if ("${with_soundmenu}" STREQUAL "yes")
+	include_directories (
+		${PACKAGE_INCLUDE_DIRS}
+		${ALSA_MIXER_PACKAGE_INCLUDE_DIRS}
+		${DBUSMENU_INCLUDE_DIRS}
+		${DBUSMENU_GTK_INCLUDE_DIRS}
+		${INDICATOR_APPLET_INCLUDE_DIRS}
+		${IDO_INCLUDE_DIRS}
+		${CMAKE_SOURCE_DIR}/Indicator-applet)
 
-target_link_libraries (${PACKAGE_ALSA_MIXER}
-	${PACKAGE_LIBRARIES}
-	${ALSA_MIXER_PACKAGE_LIBRARIES}
-	${DBUSMENU_LIBRARIES}
-	${DBUSMENU_GTK_LIBRARIES}
-	${INDICATOR_APPLET_LIBRARIES}
-	${IDO_LIBRARIES}
-	indicator-applet)
+	link_directories (
+		${PACKAGE_LIBRARY_DIRS}
+		${ALSA_MIXER_PACKAGE_LIBRARY_DIRS}
+		${DBUSMENU_LIBRARY_DIRS}
+		${DBUSMENU_GTK_LIBRARY_DIRS}
+		${INDICATOR_APPLET_LIBRARY_DIRS}
+		${IDO_LIBRARY_DIRS}
+		${CMAKE_SOURCE_DIR}/Indicator-applet)
+
+	target_link_libraries (${PACKAGE_ALSA_MIXER}
+		${PACKAGE_LIBRARIES}
+		${ALSA_MIXER_PACKAGE_LIBRARIES}
+		${DBUSMENU_LIBRARIES}
+		${DBUSMENU_GTK_LIBRARIES}
+		${INDICATOR_APPLET_LIBRARIES}
+		${IDO_LIBRARIES}
+		indicator-applet)
+else()
+	include_directories (
+		${PACKAGE_INCLUDE_DIRS}
+		${ALSA_MIXER_PACKAGE_INCLUDE_DIRS})
+
+	link_directories (
+		${PACKAGE_LIBRARY_DIRS}
+		${ALSA_MIXER_PACKAGE_LIBRARY_DIRS})
+
+	target_link_libraries (${PACKAGE_ALSA_MIXER}
+		${PACKAGE_LIBRARIES}
+		${ALSA_MIXER_PACKAGE_LIBRARIES})
+endif()
 
 ########### install files ###############
 
