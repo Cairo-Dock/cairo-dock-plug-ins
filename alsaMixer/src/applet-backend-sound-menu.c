@@ -107,17 +107,6 @@ static void _toggle_mute (void)
 {
 	if (myData.mute_widget)
 		mute_widget_toggle (MUTE_WIDGET (myData.mute_widget));
-	//~ /// TODO: is there any way to send a "mute" to the service ?...
-	//~ static double s_fVolume=0;
-	//~ if (myData.volume_widget)
-	//~ {
-		//~ double fVolume = _get_volume ();
-		//~ if (fVolume == 0)  // currently mute, set the previous value
-			//~ _set_volume (s_fVolume);
-		//~ else  // not mute -> set 0
-			//~ _set_volume (0.);
-		//~ s_fVolume = fVolume;
-	//~ }
 }
 
 static void _show_menu (void)
@@ -128,13 +117,15 @@ static void _show_menu (void)
 static void _stop (void)
 {
 	cd_indicator_destroy (myData.pIndicator);
+	
+	g_list_free (myData.transport_widgets_list);
 }
 
 static void cd_sound_on_connect (CairoDockModuleInstance *myApplet)
 {
 	g_print ("%s ()\n", __func__);
 	// the sound service is up and running, stop the alsa mixer if ever we initialized it before.
-	mixer_stop ();
+	cd_stop ();
 	
 	// and set the interface
 	myData.ctl.get_volume = _get_volume;
@@ -142,7 +133,7 @@ static void cd_sound_on_connect (CairoDockModuleInstance *myApplet)
 	myData.ctl.toggle_mute = _toggle_mute;
 	myData.ctl.show_hide = _show_menu;
 	myData.ctl.stop = _stop;
-	myData.ctl.reload = NULL;
+	myData.ctl.reload = cd_update_icon;
 	
 	// connect to the service signals.
 	DBusGProxy * pServiceProxy = myData.pIndicator->pServiceProxy;
@@ -163,6 +154,8 @@ static void cd_sound_on_disconnect (CairoDockModuleInstance *myApplet)
 	if (myData.ctl.get_volume == _get_volume)  // the backend was set, unset it
 	{
 		memset (&myData.ctl, 0, sizeof (CDSoundCtl));
+		
+		g_print ("clean\n");
 		myData.volume_widget = NULL;
 		myData.transport_widgets_list = NULL;
 		myData.voip_widget = NULL;
@@ -211,13 +204,13 @@ static void cd_sound_get_initial_values (CairoDockModuleInstance *myApplet)
 
 
 
-void update_accessible_desc (CairoDockModuleInstance *myApplet)
+void update_accessible_desc (double new_value)
 {
 	g_print ("%s (%p)\n", __func__, myData.volume_widget);
 	if (!myData.volume_widget)
 		return;
 	
-	myData.iCurrentVolume = volume_widget_get_current_volume (myData.volume_widget);
+	myData.iCurrentVolume = (new_value < 0 ? _get_volume() : new_value);
 	cd_update_icon ();
 }
 

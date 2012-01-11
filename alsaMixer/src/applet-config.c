@@ -91,7 +91,6 @@ CD_APPLET_RESET_DATA_BEGIN
 		gtk_widget_destroy (myData.pScale);
 		myData.pScale = NULL;
 	}
-	mixer_stop ();
 	cairo_surface_destroy (myData.pSurface);
 	if (myData.pMuteSurface)
 		cairo_surface_destroy (myData.pMuteSurface);

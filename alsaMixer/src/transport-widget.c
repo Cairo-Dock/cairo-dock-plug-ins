@@ -28,13 +28,10 @@ Uses code from ctk
 #include <math.h>
 #include "transport-widget.h"
 
-#if (INDICATOR_OLD_NAMES != 0)
-#define G_VALUE_INIT {0,{{0}}}
-#endif
 
 #define RECT_WIDTH 130.0f
 #define Y 7.0f
-#define X 80.0f
+#define X 70.0f
 #define INNER_RADIUS 12.5
 #define MIDDLE_RADIUS 13.0f
 #define OUTER_RADIUS  14.5f
@@ -46,16 +43,16 @@ Uses code from ctk
 #define TRI_WIDTH  11.0f
 #define TRI_HEIGHT 13.0f
 #define TRI_OFFSET  6.0f
-#define PREV_X 78.0f
+#define PREV_X 68.0f
 #define PREV_Y 13.0f
-#define NEXT_X 156.0f
+#define NEXT_X 146.0f
 #define NEXT_Y 13.0f //prev_y
 #define PAUSE_WIDTH 21.0f
 #define PAUSE_HEIGHT 27.0f
 #define BAR_WIDTH 4.5f
 #define BAR_HEIGHT 24.0f
 #define BAR_OFFSET 10.0f
-#define PAUSE_X 121.0f
+#define PAUSE_X 111.0f
 #define PAUSE_Y 7.0f
 #define PLAY_WIDTH 28.0f
 #define PLAY_HEIGHT 29.0f
@@ -88,10 +85,13 @@ struct _TransportWidgetPrivate
   gboolean            has_focus;
   gint                hold_timer;
   gint                skip_frequency;
-  gint                launching_timer;
-  gdouble             launching_transparency;
-  gboolean            fade_out;
 };
+
+#if GTK_CHECK_VERSION(3, 0, 0)
+static GList *transport_widget_list = NULL;
+static GtkStyleContext *spinner_style_context = NULL;
+static GtkWidgetPath *spinner_widget_path = NULL;
+#endif
 
 // TODO refactor the UI handlers, consolidate functionality between key press /release
 // and button press / release.
@@ -107,9 +107,10 @@ G_DEFINE_TYPE (TransportWidget, transport_widget, GTK_TYPE_MENU_ITEM);
 /* essentials */
 static void transport_widget_set_twin_item ( TransportWidget* self,
                                              DbusmenuMenuitem* twin_item);
+#if ! GTK_CHECK_VERSION(3, 0, 0)
 static gboolean transport_widget_expose ( GtkWidget *button, GdkEventExpose *event);
-static gboolean transport_widget_draw ( GtkWidget *button, cairo_t *cr);
-static void draw (GtkWidget* button, cairo_t *cr);
+#endif
+static gboolean draw (GtkWidget* button, cairo_t *cr);
 
 /* UI and dbusmenu callbacks */
 static gboolean transport_widget_button_press_event   (GtkWidget      *menuitem,
@@ -122,11 +123,7 @@ static gboolean transport_widget_leave_notify_event    (GtkWidget      *menuitem
                                                       GdkEventCrossing *event);  
 static void transport_widget_property_update ( DbusmenuMenuitem* item,
                                                gchar * property, 
-#if (INDICATOR_OLD_NAMES == 0)
                                                GVariant * value,
-#else
-                                               GValue * value,
-#endif
                                                gpointer userdata );
 static void transport_widget_menu_hidden ( GtkWidget        *menu,
                                            TransportWidget *transport);
@@ -141,13 +138,12 @@ static void transport_widget_react_to_button_release ( TransportWidget* button,
                                                        TransportAction command);
 static void transport_widget_toggle_play_pause ( TransportWidget* button,
                                                  TransportState update);
-static void transport_widget_select (GtkMenuItem* menu, gpointer Userdata);
-static void transport_widget_deselect (GtkMenuItem* menu, gpointer Userdata);
+static void transport_widget_select (GtkWidget* menu, gpointer Userdata);
+static void transport_widget_deselect (GtkWidget* menu, gpointer Userdata);
 static TransportAction transport_widget_collision_detection (gint x, gint y);
 static void transport_widget_start_timing (TransportWidget* widget);
 static gboolean transport_widget_trigger_seek (gpointer userdata);
 static gboolean transport_widget_seek (gpointer userdata);
-static gboolean transport_widget_fade_playbutton (gpointer userdata);
 
 
 /// Init functions //////////////////////////////////////////////////////////
@@ -163,11 +159,12 @@ transport_widget_class_init (TransportWidgetClass *klass)
   widget_class->button_release_event = transport_widget_button_release_event;
   widget_class->motion_notify_event = transport_widget_motion_notify_event;
   widget_class->leave_notify_event = transport_widget_leave_notify_event;
-#if (GTK_MAJOR_VERSION < 3)
+#if GTK_CHECK_VERSION(3, 0, 0)
+  widget_class->draw = draw;
+#else
   widget_class->expose_event = transport_widget_expose;
-#else  
-  widget_class->draw = transport_widget_draw;
 #endif
+  
   gobject_class->dispose = transport_widget_dispose;
   gobject_class->finalize = transport_widget_finalize;
 }
@@ -175,7 +172,29 @@ transport_widget_class_init (TransportWidgetClass *klass)
 static void
 transport_widget_init (TransportWidget *self)
 {
-  TransportWidgetPrivate* priv = TRANSPORT_WIDGET_GET_PRIVATE(self);  
+  TransportWidgetPrivate* priv = TRANSPORT_WIDGET_GET_PRIVATE(self);
+  #if GTK_CHECK_VERSION(3, 0, 0)
+  if (transport_widget_list == NULL){
+    /* append the object to the static linked list. */
+    transport_widget_list = g_list_append (transport_widget_list, self);
+
+    /* create widget path */
+    spinner_widget_path = gtk_widget_path_new();
+
+    gtk_widget_path_append_type (spinner_widget_path, GTK_TYPE_MENU);
+    gtk_widget_path_append_type (spinner_widget_path, GTK_TYPE_MENU_ITEM);
+    gint pos = gtk_widget_path_append_type (spinner_widget_path, GTK_TYPE_SPINNER);
+    gtk_widget_path_iter_set_name (spinner_widget_path, pos, "IndicatorSoundSpinner");
+
+    /* create style context and append path */
+    spinner_style_context = gtk_style_context_new();
+
+    gtk_style_context_set_path (spinner_style_context, spinner_widget_path);
+    gtk_style_context_add_class (spinner_style_context, GTK_STYLE_CLASS_MENU);
+    gtk_style_context_add_class (spinner_style_context, GTK_STYLE_CLASS_MENUITEM);
+    gtk_style_context_add_class (spinner_style_context, GTK_STYLE_CLASS_SPINNER);
+  }
+  #endif
   priv->current_command = TRANSPORT_ACTION_NO_ACTION;
   priv->current_state = TRANSPORT_STATE_PAUSED;
   priv->key_event = TRANSPORT_ACTION_NO_ACTION;
@@ -183,9 +202,6 @@ transport_widget_init (TransportWidget *self)
   priv->has_focus = FALSE;
   priv->hold_timer = 0;
   priv->skip_frequency = 0;
-  priv->launching_timer = 0;
-  priv->launching_transparency = 1.0f;
-  priv->fade_out = TRUE;
   priv->command_coordinates =  g_hash_table_new_full(g_direct_hash,
                                                       g_direct_equal,
                                                       NULL,
@@ -223,11 +239,11 @@ transport_widget_init (TransportWidget *self)
                     "notify",
                     G_CALLBACK (transport_widget_notify),
                     NULL);
-  g_signal_connect (GTK_MENU_ITEM(self),
+  g_signal_connect (G_OBJECT(self),
                     "select",
                     G_CALLBACK (transport_widget_select),
                     NULL);
-  g_signal_connect (GTK_MENU_ITEM(self),
+  g_signal_connect (G_OBJECT(self),
                     "deselect",
                     G_CALLBACK (transport_widget_deselect),
                     NULL);  
@@ -238,23 +254,39 @@ transport_widget_init (TransportWidget *self)
 static void
 transport_widget_dispose (GObject *object)
 {
+  #if GTK_CHECK_VERSION(3, 0, 0)  
+  transport_widget_list = g_list_remove (transport_widget_list, object);
+
+  if (transport_widget_list == NULL){
+    if (spinner_widget_path != NULL){
+      gtk_widget_path_free (spinner_widget_path);
+      spinner_widget_path = NULL;
+    }
+
+    if (spinner_style_context != NULL){
+      g_object_unref (spinner_style_context);
+      spinner_style_context = NULL;
+    }
+  }
+  #endif
   G_OBJECT_CLASS (transport_widget_parent_class)->dispose (object);
 }
 
 static void
 transport_widget_finalize (GObject *object)
 {
+ 
+  
   G_OBJECT_CLASS (transport_widget_parent_class)->finalize (object);
 }
 
-#if (GTK_MAJOR_VERSION < 3)
+#if ! GTK_CHECK_VERSION(3, 0, 0)
 static gboolean
 transport_widget_expose (GtkWidget *button, GdkEventExpose *event)
 {
   cairo_t *cr;
-  cr = gdk_cairo_create (button->window);
+  cr = gdk_cairo_create (gtk_widget_get_window (button));
 
-    //g_debug("In the playbutton's expose method, x = %i, y=%i and width: %i and height: %i'");
   cairo_rectangle (cr,
                      event->area.x, event->area.y,
                      event->area.width, event->area.height);
@@ -263,14 +295,6 @@ transport_widget_expose (GtkWidget *button, GdkEventExpose *event)
   draw (button, cr);
 
   cairo_destroy (cr);
-  return FALSE;
-}
-#else
-static gboolean
-transport_widget_draw (GtkWidget *button, cairo_t *cr)
-{
-    //g_debug("In the playbutton's expose method, x = %i, y=%i and width: %i and height: %i'");
-  draw (button, cr);
   return FALSE;
 }
 #endif
@@ -288,7 +312,6 @@ transport_widget_toggle_play_pause(TransportWidget* button,
 {
   TransportWidgetPrivate* priv = TRANSPORT_WIDGET_GET_PRIVATE(button);
   priv->current_state = update;
-  //g_debug("TransportWidget::toggle play state : %i", priv->current_state); 
   gtk_widget_queue_draw (GTK_WIDGET(button));
 }
 
@@ -319,6 +342,8 @@ static gboolean
 transport_widget_motion_notify_event (GtkWidget *menuitem, 
                                       GdkEventMotion *event)
 {
+  //g_debug("transport_widget_motion_notify_event()");
+  
   g_return_val_if_fail ( IS_TRANSPORT_WIDGET(menuitem), FALSE );
   TransportWidgetPrivate* priv = TRANSPORT_WIDGET_GET_PRIVATE ( TRANSPORT_WIDGET(menuitem) );
   TransportAction result = transport_widget_determine_motion_event ( TRANSPORT_WIDGET(menuitem),
@@ -340,6 +365,8 @@ static gboolean
 transport_widget_leave_notify_event (GtkWidget *menuitem, 
                                      GdkEventCrossing *event)
 {
+  //g_debug("transport_widget_leave_notify_event()");
+  
   g_return_val_if_fail ( IS_TRANSPORT_WIDGET(menuitem), FALSE );
   TransportWidgetPrivate* priv = TRANSPORT_WIDGET_GET_PRIVATE ( TRANSPORT_WIDGET(menuitem) );
   
@@ -354,6 +381,8 @@ static gboolean
 transport_widget_button_press_event (GtkWidget *menuitem, 
                                      GdkEventButton *event)
 {
+  //g_debug("transport_widget_button_press_event()");
+  
   g_return_val_if_fail ( IS_TRANSPORT_WIDGET(menuitem), FALSE );
   TransportWidgetPrivate* priv = TRANSPORT_WIDGET_GET_PRIVATE ( TRANSPORT_WIDGET(menuitem) );
   TransportAction result = transport_widget_determine_button_event ( TRANSPORT_WIDGET(menuitem),
@@ -407,7 +436,6 @@ transport_widget_seek (gpointer userdata)
 {
   g_return_val_if_fail ( IS_TRANSPORT_WIDGET(userdata), FALSE );
   TransportWidgetPrivate* priv = TRANSPORT_WIDGET_GET_PRIVATE (TRANSPORT_WIDGET(userdata));
-#if (INDICATOR_OLD_NAMES == 0)
   GVariant* new_transport_state;
   if(priv->current_command ==  TRANSPORT_ACTION_NEXT){
     //g_debug ("we should be skipping forward");
@@ -428,30 +456,6 @@ transport_widget_seek (gpointer userdata)
                                      new_transport_state,
                                      0 );
   }
-#else
-  GValue new_transport_state = G_VALUE_INIT;
-  if(priv->current_command ==  TRANSPORT_ACTION_NEXT){
-    //g_debug ("we should be skipping forward");
-    g_value_init (&new_transport_state, G_TYPE_INT);
-    g_value_set_int (&new_transport_state, (int) TRANSPORT_ACTION_FORWIND);
-
-    dbusmenu_menuitem_handle_event ( priv->twin_item,
-                                     "Transport state change",
-                                     &new_transport_state,
-                                     0 );
-
-  }
-  else if(priv->current_command ==  TRANSPORT_ACTION_PREVIOUS){
-    //g_debug ("we should be skipping back");
-    g_value_init (&new_transport_state, G_TYPE_INT);
-    g_value_set_int (&new_transport_state, (int) TRANSPORT_ACTION_REWIND);
-
-    dbusmenu_menuitem_handle_event ( priv->twin_item,
-                                     "Transport state change",
-                                     &new_transport_state,
-                                     0 );
-  }
-#endif
 
   return TRUE;
 }
@@ -468,21 +472,11 @@ transport_widget_button_release_event (GtkWidget *menuitem,
   if (result != TRANSPORT_ACTION_NO_ACTION &&
       priv->current_command == result &&
       priv->skip_frequency == 0){
-#if (INDICATOR_OLD_NAMES == 0)
     GVariant* new_transport_state = g_variant_new_int32 ((int)result);
     dbusmenu_menuitem_handle_event ( priv->twin_item,
                                      "Transport state change",
                                      new_transport_state,
                                      0 );
-#else
-    GValue new_transport_state = G_VALUE_INIT;
-    g_value_init (&new_transport_state, G_TYPE_INT);
-    g_value_set_int (&new_transport_state, (int) result);
-    dbusmenu_menuitem_handle_event (priv->twin_item,
-                                    "Transport state change",
-                                    &new_transport_state,
-                                    0);
-#endif
   }
   transport_widget_react_to_button_release ( transport,
                                              result );
@@ -490,7 +484,7 @@ transport_widget_button_release_event (GtkWidget *menuitem,
 }
 
 static void 
-transport_widget_select (GtkMenuItem* item, gpointer Userdata)
+transport_widget_select (GtkWidget* item, gpointer Userdata)
 {
   TransportWidget* transport = TRANSPORT_WIDGET(item);
   TransportWidgetPrivate * priv = TRANSPORT_WIDGET_GET_PRIVATE ( transport ); 
@@ -498,7 +492,7 @@ transport_widget_select (GtkMenuItem* item, gpointer Userdata)
 }
 
 static void 
-transport_widget_deselect (GtkMenuItem* item, gpointer Userdata)
+transport_widget_deselect (GtkWidget* item, gpointer Userdata)
 {
   TransportWidget* transport = TRANSPORT_WIDGET(item);
   TransportWidgetPrivate * priv = TRANSPORT_WIDGET_GET_PRIVATE ( transport ); 
@@ -527,24 +521,14 @@ transport_widget_react_to_key_release_event ( TransportWidget* transport,
                                               TransportAction transport_event )
 {
   if(transport_event != TRANSPORT_ACTION_NO_ACTION){
-    TransportWidgetPrivate * priv = TRANSPORT_WIDGET_GET_PRIVATE ( transport );   
-#if (INDICATOR_OLD_NAMES == 0)  
+    TransportWidgetPrivate * priv = TRANSPORT_WIDGET_GET_PRIVATE ( transport );     
     GVariant* new_transport_event = g_variant_new_int32((int)transport_event);
-    if (priv->skip_frequency == 0)
+    if (priv->skip_frequency == 0){
       dbusmenu_menuitem_handle_event ( priv->twin_item,
                                        "Transport state change",
                                        new_transport_event,
                                        0 );
-#else
-    GValue new_transport_event = G_VALUE_INIT;
-    g_value_init (&new_transport_event, G_TYPE_INT);
-    g_value_set_int (&new_transport_event, (int) transport_event);
-    if (priv->skip_frequency == 0)
-      dbusmenu_menuitem_handle_event (priv->twin_item,
-                                      "Transport state change",
-                                      &new_transport_event,
-                                      0);
-#endif
+    }
   }
   transport_widget_react_to_button_release ( transport,
                                              transport_event );  
@@ -577,15 +561,15 @@ transport_widget_collision_detection ( gint x,
 {
   TransportAction event = TRANSPORT_ACTION_NO_ACTION;
   
-  if (x > 67 && x < 112
+  if (x > 57 && x < 102
       && y > 12 && y < 40){
     event = TRANSPORT_ACTION_PREVIOUS;
   }
-  else if (x > 111 && x < 153
+  else if (x > 101 && x < 143
            && y > 5 && y < 47){
     event = TRANSPORT_ACTION_PLAY_PAUSE;
   }
-  else if (x > 152 && x < 197
+  else if (x > 142 && x < 187
            && y > 12 && y < 40){
     event = TRANSPORT_ACTION_NEXT;
   }   
@@ -1280,48 +1264,53 @@ _surface_blur (cairo_surface_t* surface,
   cairo_surface_mark_dirty (surface); 
 }
 
-static void
+static gboolean
 draw (GtkWidget* button, cairo_t *cr)
 {
-  g_return_if_fail(IS_TRANSPORT_WIDGET(button));
-  g_return_if_fail( cr != NULL );
+  g_return_val_if_fail(IS_TRANSPORT_WIDGET(button), FALSE);
+  g_return_val_if_fail(cr != NULL, FALSE);
   TransportWidgetPrivate* priv = TRANSPORT_WIDGET_GET_PRIVATE(button);  
-
+  
+  //g_debug("transport-widget draw()");
+  
   cairo_surface_t*  surf = NULL;
   cairo_t*       cr_surf = NULL;
 
-  #if (GTK_MAJOR_VERSION < 3)
+#if ! GTK_CHECK_VERSION(3, 0, 0)
   GtkAllocation allocation;
   gtk_widget_get_allocation (button, &allocation);
-  cairo_translate (cr, allocation.x, allocation.y);
-  #endif
-  
-  //g_debug("button x allocation = %i", button->allocation.x);
-  //g_debug("button y allocation = %i", button->allocation.y);
+  cairo_translate (cr, allocation.x, allocation.y);  
+#endif
 
+  
+  
+#if GTK_CHECK_VERSION(3, 0, 0)
+  gtk_style_context_add_class (gtk_widget_get_style_context (button),
+                               GTK_STYLE_CLASS_MENU);
+#endif
   CairoColorRGB bg_color, fg_color, bg_selected, bg_prelight;
   CairoColorRGB color_middle[2], color_middle_prelight[2], color_outer[2], color_outer_prelight[2],
                 color_play_outer[2], color_play_outer_prelight[2],
                 color_button[4], color_button_shadow, color_inner[2], color_inner_compressed[2];
 
 	#if (GTK_MAJOR_VERSION < 3)
-	GtkStyle *style = gtk_widget_get_style (button);
-	
-	bg_color.r = style->bg[0].red/65535.0;
-	bg_color.g = style->bg[0].green/65535.0;
-	bg_color.b = style->bg[0].blue/65535.0;
+  GtkStyle *style = gtk_widget_get_style (button);
 
-	bg_prelight.r = style->bg[GTK_STATE_PRELIGHT].red/65535.0;
-	bg_prelight.g = style->bg[GTK_STATE_PRELIGHT].green/65535.0;
-	bg_prelight.b = style->bg[GTK_STATE_PRELIGHT].blue/65535.0;
+  bg_color.r = style->bg[0].red/65535.0;
+  bg_color.g = style->bg[0].green/65535.0;
+  bg_color.b = style->bg[0].blue/65535.0;
 
-	bg_selected.r = style->bg[GTK_STATE_SELECTED].red/65535.0;
-	bg_selected.g = style->bg[GTK_STATE_SELECTED].green/65535.0;
-	bg_selected.b = style->bg[GTK_STATE_SELECTED].blue/65535.0;
+  bg_prelight.r = style->bg[GTK_STATE_PRELIGHT].red/65535.0;
+  bg_prelight.g = style->bg[GTK_STATE_PRELIGHT].green/65535.0;
+  bg_prelight.b = style->bg[GTK_STATE_PRELIGHT].blue/65535.0;
 
-	fg_color.r = style->fg[0].red/65535.0;
-	fg_color.g = style->fg[0].green/65535.0;
-	fg_color.b = style->fg[0].blue/65535.0;
+  bg_selected.r = style->bg[GTK_STATE_SELECTED].red/65535.0;
+  bg_selected.g = style->bg[GTK_STATE_SELECTED].green/65535.0;
+  bg_selected.b = style->bg[GTK_STATE_SELECTED].blue/65535.0;
+
+  fg_color.r = style->fg[0].red/65535.0;
+  fg_color.g = style->fg[0].green/65535.0;
+  fg_color.b = style->fg[0].blue/65535.0;
 	#else
 	GtkStyleContext *style = gtk_widget_get_style_context (button);
 	gtk_style_context_get_background_color (style, 0, (GdkRGBA*)&bg_color);
@@ -1329,7 +1318,7 @@ draw (GtkWidget* button, cairo_t *cr)
 	gtk_style_context_get_background_color (style, GTK_STATE_SELECTED, (GdkRGBA*)&bg_selected);
 	gtk_style_context_get_color (style, 0, (GdkRGBA*)&fg_color);
 	#endif
-
+	
   _color_shade (&bg_color,    MIDDLE_START_SHADE, &color_middle[0]);
   _color_shade (&bg_color,    MIDDLE_END_SHADE, &color_middle[1]);
   _color_shade (&bg_prelight, MIDDLE_START_SHADE, &color_middle_prelight[0]);
@@ -1437,7 +1426,7 @@ draw (GtkWidget* button, cairo_t *cr)
     draw_gradient (cr,
                    RECT_WIDTH / 2 + X,
                    Y + 1,
-                   (RECT_WIDTH - 7)/2,
+                   (RECT_WIDTH - 4.5)/2,
                    MIDDLE_RADIUS,
                    INNER_COMPRESSED_START,
                    INNER_COMPRESSED_END);
@@ -1489,7 +1478,7 @@ draw (GtkWidget* button, cairo_t *cr)
     draw_gradient (cr,
                    RECT_WIDTH / 2 + X,
                    Y + 1,
-                   (RECT_WIDTH - 7)/2,
+                   (RECT_WIDTH - 4.5)/2,
                    MIDDLE_RADIUS,
                    MIDDLE_START_PRELIGHT,
                    MIDDLE_END_PRELIGHT);
@@ -1816,61 +1805,14 @@ draw (GtkWidget* button, cairo_t *cr)
            FALSE);
     _finalize (cr, &cr_surf, &surf, PAUSE_X-0.5f, PAUSE_Y);
   }
+  #if GTK_CHECK_VERSION(3, 0, 0)
   else if(priv->current_state == TRANSPORT_STATE_LAUNCHING)
   {
-/*
-    g_debug ("launching in draw");
-*/
-    _setup (&cr_surf, &surf, PLAY_WIDTH+6, PLAY_HEIGHT+6);
-    _mask_play (cr_surf,
-                PLAY_PADDING,
-                PLAY_PADDING,
-                PLAY_WIDTH - (2*PLAY_PADDING),
-                PLAY_HEIGHT - (2*PLAY_PADDING));
-
-    double BUTTON_SHADOW_LAUNCHING[] = {color_button[3].r,
-                                        color_button[3].g,
-                                        color_button[3].b,
-                                        priv->launching_transparency};
-    double BUTTON_LAUNCHING_END[] = {color_button[0].r,
-                                     color_button[0].g,
-                                     color_button[0].b,
-                                     priv->launching_transparency};
-    double BUTTON_LAUNCHING_START[] = {color_button[1].r,
-                                       color_button[1].g,
-                                       color_button[1].b,
-                                       priv->launching_transparency};
-    _fill (cr_surf,
-           PLAY_PADDING,
-           PLAY_PADDING,
-           PLAY_WIDTH - (2*PLAY_PADDING),
-           PLAY_HEIGHT - (2*PLAY_PADDING),
-           BUTTON_SHADOW_LAUNCHING,
-           BUTTON_SHADOW_LAUNCHING,
-           FALSE);
-    _surface_blur (surf, 3);
-    _finalize_repaint (cr, &cr_surf, &surf, PAUSE_X-0.5f, PAUSE_Y + 0.5f, 3);
-    
-    // draw play-button
-    _setup (&cr_surf, &surf, PLAY_WIDTH, PLAY_HEIGHT);
-    cairo_set_line_width (cr, 10.5);
-    cairo_set_line_cap(cr, CAIRO_LINE_CAP_ROUND);
-    cairo_set_line_join(cr, CAIRO_LINE_JOIN_ROUND);
-    _mask_play (cr_surf,
-                PLAY_PADDING,
-                PLAY_PADDING,
-                PLAY_WIDTH - (2*PLAY_PADDING),
-                PLAY_HEIGHT - (2*PLAY_PADDING));
-    _fill (cr_surf,
-           PLAY_PADDING,
-           PLAY_PADDING,
-           PLAY_WIDTH - (2*PLAY_PADDING),
-           PLAY_HEIGHT - (2*PLAY_PADDING),
-           BUTTON_LAUNCHING_START,
-           BUTTON_LAUNCHING_END,
-           FALSE);
-    _finalize (cr, &cr_surf, &surf, PAUSE_X-0.5f, PAUSE_Y);
+    // the spinner is not aligned, why? because the play button has odd width/height numbers
+    gtk_render_activity (spinner_style_context, cr, 106, 6, 30, 30);
   }
+  #endif
+  return FALSE;
 }
 
 static void 
@@ -1888,41 +1830,13 @@ transport_widget_set_twin_item(TransportWidget* self,
                                        (TransportState)initial_state);
 }
 
-static gboolean
-transport_widget_fade_playbutton (gpointer userdata)
-{
-  TransportWidget* bar = (TransportWidget*)userdata;
-  g_return_val_if_fail(IS_TRANSPORT_WIDGET(bar), FALSE);
-/*
-  g_debug ("fade in /out timeout");
-*/
-  TransportWidgetPrivate* priv = TRANSPORT_WIDGET_GET_PRIVATE(bar);
-  if (priv->launching_transparency == 1.0f){
-    priv->fade_out = TRUE;
-  }
-  else if (priv->launching_transparency <= 0.3F){
-    priv->fade_out = FALSE;
-  }
-  if (priv->fade_out == TRUE){
-    priv->launching_transparency -= 0.05f;
-  }
-  else{
-    priv->launching_transparency += 0.05f;
-  }
-  gtk_widget_queue_draw (GTK_WIDGET(bar));
-  return TRUE;
-}
 /**
 * transport_widget_update_state()
 * Callback for updates from the other side of dbus
 **/ 
 static void 
 transport_widget_property_update(DbusmenuMenuitem* item, gchar* property, 
-#if (INDICATOR_OLD_NAMES == 0)
                                  GVariant* value, gpointer userdata)
-#else
-                                 GValue *value, gpointer userdata)
-#endif
 {
   //g_debug("transport_widget_update_state - with property  %s", property);
   TransportWidget* bar = (TransportWidget*)userdata;
@@ -1931,26 +1845,22 @@ transport_widget_property_update(DbusmenuMenuitem* item, gchar* property,
 
   if(g_ascii_strcasecmp(DBUSMENU_TRANSPORT_MENUITEM_PLAY_STATE, property) == 0)
   {
-#if (INDICATOR_OLD_NAMES == 0)
     TransportState new_state = (TransportState)g_variant_get_int32(value);
-#else
-    TransportState new_state = (TransportState) g_value_get_int (value);
-#endif
-    //g_debug("transport_widget_update_state - with value  %i", update_value);
+    //g_debug("transport_widget_update_state - with value  %i", new_state);
     if (new_state == TRANSPORT_STATE_LAUNCHING){
+      #if GTK_CHECK_VERSION(3, 0, 0)
+      gtk_style_context_notify_state_change (spinner_style_context, 
+                                             gtk_widget_get_window ( GTK_WIDGET(userdata)),
+                                             NULL,
+                                             GTK_STATE_FLAG_ACTIVE,
+                                             TRUE);
+      gtk_style_context_set_state (spinner_style_context, GTK_STATE_FLAG_ACTIVE);
+      #endif
+
       priv->current_state = TRANSPORT_STATE_LAUNCHING;
-      priv->launching_timer = g_timeout_add (100,
-                                             transport_widget_fade_playbutton,
-                                             bar);
-      //g_debug("TransportWidget::toggle play state : %i", priv->current_state);
+      g_debug("TransportWidget::toggle play state : %i", priv->current_state);
     }
     else{
-      if (priv->launching_timer != 0){
-        g_source_remove (priv->launching_timer);
-        priv->launching_timer = 0;
-        priv->fade_out = TRUE;
-        priv->launching_transparency = 1.0f;
-      }
       transport_widget_toggle_play_pause(bar, new_state);
     }
   }

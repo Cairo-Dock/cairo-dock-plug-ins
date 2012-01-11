@@ -20,6 +20,8 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/// This file is essentially indicator-sound.c, adapted to Cairo-Dock.
+
 #include <stdlib.h>
 #include <string.h>
 
@@ -30,7 +32,6 @@
 #include "transport-widget.h"
 #include "volume-widget.h"
 #include "voip-input-widget.h"
-#include "title-widget.h"
 #include "mute-widget.h"
 #include "metadata-widget.h"
 #include "applet-menu.h"
@@ -42,6 +43,7 @@
 #include <libdbusmenu-gtk3/menuitem.h>
 #include <libdbusmenu-gtk3/menu.h>
 #endif
+#include <libido/idoscalemenuitem.h>
 
 #if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION > 20)
 #include <gdk/gdkkeysyms-compat.h>
@@ -55,16 +57,20 @@ new_transport_widget (DbusmenuMenuitem * newitem,
                       DbusmenuClient * client,
                       gpointer user_data)
 {
-  //g_debug("indicator-sound: new_transport_bar() called ");
+  g_debug("indicator-sound: new_transport_bar() called ");
 
   GtkWidget* bar = NULL;
+  ///IndicatorObject *io = NULL;
 
   g_return_val_if_fail(DBUSMENU_IS_MENUITEM(newitem), FALSE);
   g_return_val_if_fail(DBUSMENU_IS_GTKCLIENT(client), FALSE);
 
   bar = transport_widget_new(newitem);
-  myData.transport_widgets_list = g_list_append ( myData.transport_widgets_list, bar );
-
+  /**io = g_object_get_data (G_OBJECT (client), "indicator");
+  IndicatorSoundPrivate* priv = INDICATOR_SOUND_GET_PRIVATE(INDICATOR_SOUND (io));
+  priv->transport_widgets_list = g_list_append ( priv->transport_widgets_list, bar );*/
+	myData.transport_widgets_list = g_list_append ( myData.transport_widgets_list, bar );
+  
   GtkMenuItem *menu_transport_bar = GTK_MENU_ITEM(bar);
 
   gtk_widget_show_all(bar);
@@ -81,70 +87,28 @@ new_metadata_widget (DbusmenuMenuitem * newitem,
                      DbusmenuClient * client,
                      gpointer user_data)
 {
-  //g_debug("indicator-sound: new_metadata_widget");
+  g_debug("indicator-sound: new_metadata_widget");
 
   GtkWidget* metadata = NULL;
 
   g_return_val_if_fail(DBUSMENU_IS_MENUITEM(newitem), FALSE);
   g_return_val_if_fail(DBUSMENU_IS_GTKCLIENT(client), FALSE);
 
+
   metadata = metadata_widget_new (newitem);
+  
+  g_debug ("%s (\"%s\")", __func__,
+           dbusmenu_menuitem_property_get(newitem, DBUSMENU_METADATA_MENUITEM_PLAYER_NAME));
+  
   GtkMenuItem *menu_metadata_widget = GTK_MENU_ITEM(metadata);
 
   gtk_widget_show_all(metadata);
   dbusmenu_gtkclient_newitem_base (DBUSMENU_GTKCLIENT(client),
-                                   newitem, menu_metadata_widget, parent);
+                                   newitem,
+                                   menu_metadata_widget,
+                                   parent);
   return TRUE;
 }
-
-static gboolean
-new_title_widget(DbusmenuMenuitem * newitem,
-                 DbusmenuMenuitem * parent,
-                 DbusmenuClient * client,
-                 gpointer user_data)
-{
-  g_return_val_if_fail(DBUSMENU_IS_MENUITEM(newitem), FALSE);
-  g_return_val_if_fail(DBUSMENU_IS_GTKCLIENT(client), FALSE);
-
-  //g_debug ("%s (\"%s\")", __func__, dbusmenu_menuitem_property_get(newitem, DBUSMENU_TITLE_MENUITEM_NAME));
-
-  GtkWidget* title = NULL;
-
-  title = title_widget_new (newitem);
-  GtkMenuItem *menu_title_widget = GTK_MENU_ITEM(title);
-  
-  gtk_widget_show_all(title);
-
-  dbusmenu_gtkclient_newitem_base(DBUSMENU_GTKCLIENT(client),
-                                  newitem,
-                                  menu_title_widget, parent); 
-  return TRUE;
-}
-
-static gboolean
-new_mute_widget(DbusmenuMenuitem * newitem,
-                DbusmenuMenuitem * parent,
-                DbusmenuClient * client,
-                gpointer user_data)
-{
-  g_return_val_if_fail(DBUSMENU_IS_MENUITEM(newitem), FALSE);
-  g_return_val_if_fail(DBUSMENU_IS_GTKCLIENT(client), FALSE);
-  
-  if (myData.mute_widget != NULL){ 
-    gtk_widget_destroy (myData.mute_widget);
-    myData.mute_widget = NULL;
-  }
-  myData.mute_widget = (GtkWidget*)mute_widget_new(newitem);
-  GtkMenuItem *item = mute_widget_get_menu_item (MUTE_WIDGET (myData.mute_widget));
-
-  dbusmenu_gtkclient_newitem_base(DBUSMENU_GTKCLIENT(client),
-                                  newitem,
-                                  item,
-                                  parent);
-
-  return TRUE;
-}
-
 
 static gboolean
 new_volume_slider_widget(DbusmenuMenuitem * newitem,
@@ -152,30 +116,39 @@ new_volume_slider_widget(DbusmenuMenuitem * newitem,
                          DbusmenuClient * client,
                          gpointer user_data)
 {
+  g_debug("indicator-sound: new_volume_slider_widget");
+
   GtkWidget* volume_widget = NULL;
+  ///IndicatorObject *io = NULL;
 
   g_return_val_if_fail(DBUSMENU_IS_MENUITEM(newitem), FALSE);
   g_return_val_if_fail(DBUSMENU_IS_GTKCLIENT(client), FALSE);
 
-  if (myData.volume_widget != NULL){ 
-    volume_widget_tidy_up (myData.volume_widget);
-    gtk_widget_destroy (myData.volume_widget);
-    myData.volume_widget = NULL;
-  }
-  volume_widget = volume_widget_new (newitem);
-  myData.volume_widget = volume_widget;
+  /**io = g_object_get_data (G_OBJECT (client), "indicator");
+  IndicatorSoundPrivate* priv = INDICATOR_SOUND_GET_PRIVATE(INDICATOR_SOUND (io));*/
+	AppletData *priv = myDataPtr;
 
-  GtkWidget* ido_slider_widget = volume_widget_get_ido_slider(VOLUME_WIDGET(myData.volume_widget));
+  if (priv->volume_widget != NULL){ 
+    ///volume_widget_tidy_up (priv->volume_widget);
+    gtk_widget_destroy (priv->volume_widget);
+    priv->volume_widget = NULL;
+  }
+  volume_widget = volume_widget_new (newitem/**, io*/);
+  priv->volume_widget = volume_widget;
+  // Don't forget to set the accessible desc.
+  /// TODO: check that it's not needed...
+  update_accessible_desc (-1/**io*/);
+  
+
+  GtkWidget* ido_slider_widget = volume_widget_get_ido_slider(VOLUME_WIDGET(priv->volume_widget));
 
   gtk_widget_show_all(ido_slider_widget);
   // register the style callback on this widget with state manager's style change
   // handler (needs to remake the blocking animation for each style).
   /**g_signal_connect (ido_slider_widget, "style-set",
                     G_CALLBACK(sound_state_manager_style_changed_cb),
-                    myApplet.state_manager);*/
-	
-	update_accessible_desc(myApplet);
-	
+                    priv->state_manager);*/
+
   GtkMenuItem *menu_volume_item = GTK_MENU_ITEM(ido_slider_widget);
   dbusmenu_gtkclient_newitem_base(DBUSMENU_GTKCLIENT(client),
                                   newitem,
@@ -189,6 +162,7 @@ new_volume_slider_widget(DbusmenuMenuitem * newitem,
  * @param newitem
  * @param parent
  * @param client
+ * @param user_data
  * @return
  */
 static gboolean
@@ -197,20 +171,25 @@ new_voip_slider_widget (DbusmenuMenuitem * newitem,
                         DbusmenuClient * client,
                         gpointer user_data)
 {
-  //g_debug("indicator-sound: new_voip_slider_widget");
+  g_debug("indicator-sound: new_voip_slider_widget");
   GtkWidget* voip_widget = NULL;
+  ///IndicatorObject *io = NULL;
 
   g_return_val_if_fail(DBUSMENU_IS_MENUITEM(newitem), FALSE);
   g_return_val_if_fail(DBUSMENU_IS_GTKCLIENT(client), FALSE);
 
-  if (myData.voip_widget != NULL){ 
-    voip_input_widget_tidy_up (myData.voip_widget);
-    gtk_widget_destroy (myData.voip_widget);
-    myData.voip_widget = NULL;
+  /**io = g_object_get_data (G_OBJECT (client), "indicator");
+  IndicatorSoundPrivate* priv = INDICATOR_SOUND_GET_PRIVATE(INDICATOR_SOUND (io));*/
+	AppletData *priv = myDataPtr;
+
+  if (priv->voip_widget != NULL){ 
+    ///voip_input_widget_tidy_up (priv->voip_widget);
+    gtk_widget_destroy (priv->voip_widget);
+    priv->voip_widget = NULL;
   }
 
   voip_widget = voip_input_widget_new (newitem);
-  myData.voip_widget = voip_widget;
+  priv->voip_widget = voip_widget;
 
   GtkWidget* ido_slider_widget = voip_input_widget_get_ido_slider(VOIP_INPUT_WIDGET(voip_widget));
 
@@ -224,20 +203,78 @@ new_voip_slider_widget (DbusmenuMenuitem * newitem,
   return TRUE;
 }
 
+static gboolean
+new_mute_widget(DbusmenuMenuitem * newitem,
+                DbusmenuMenuitem * parent,
+                DbusmenuClient * client,
+                gpointer user_data)
+{
+  ///IndicatorObject *io = NULL;
+
+  g_return_val_if_fail(DBUSMENU_IS_MENUITEM(newitem), FALSE);
+  g_return_val_if_fail(DBUSMENU_IS_GTKCLIENT(client), FALSE);
+
+  /**io = g_object_get_data (G_OBJECT (client), "indicator");
+  IndicatorSoundPrivate* priv = INDICATOR_SOUND_GET_PRIVATE(INDICATOR_SOUND (io));*/
+	AppletData *priv = myDataPtr;
+  
+  if (priv->mute_widget != NULL){ 
+    g_object_unref (priv->mute_widget);
+    priv->mute_widget = NULL;
+  }
+
+  priv->mute_widget = mute_widget_new(newitem);
+  GtkMenuItem *item = mute_widget_get_menu_item (priv->mute_widget);
+
+  dbusmenu_gtkclient_newitem_base(DBUSMENU_GTKCLIENT(client),
+                                  newitem,
+                                  item,
+                                  parent);
+
+  return TRUE;
+}
+
+
 /*******************************************************************/
 //UI callbacks
 /******************************************************************/
+
+/**static GtkWidget *
+get_current_item (GtkContainer * container)
+{
+  GList *children = gtk_container_get_children (container);
+  GList *iter;
+  GtkWidget *rv = NULL;
+
+  // Suprisingly, GTK+ doesn't really let us query "what is the currently
+  // selected item?".  But it does note it internally by prelighting the
+  // widget, so we watch for that.
+  for (iter = children; iter; iter = iter->next) {
+    if (gtk_widget_get_state (GTK_WIDGET (iter->data)) & GTK_STATE_PRELIGHT) {
+      rv = GTK_WIDGET (iter->data);
+      break;
+    }
+  }
+
+  return rv;
+}*/
 
 /**
 key_press_cb:
 **/
 static gboolean
-key_press_cb(GtkWidget* widget, GdkEventKey* event, CairoDockModuleInstance *myApplet)
+key_press_cb(GtkWidget* widget, GdkEventKey* event, gpointer data)
 {
   gboolean digested = FALSE;
 
+  ///g_return_val_if_fail(IS_INDICATOR_SOUND(data), FALSE);
+
+  ///IndicatorSound *indicator = INDICATOR_SOUND (data);
+
+  ///IndicatorSoundPrivate* priv = INDICATOR_SOUND_GET_PRIVATE(indicator);
+  AppletData *priv = myDataPtr;
   GtkWidget *menuitem;
-  
+  ///menuitem = get_current_item (GTK_CONTAINER (widget));
 	#if (GTK_MAJOR_VERSION < 3)
 	menuitem = GTK_MENU_SHELL (widget)->active_menu_item;
 	#else
@@ -251,8 +288,8 @@ key_press_cb(GtkWidget* widget, GdkEventKey* event, CairoDockModuleInstance *myA
     gboolean is_voip_slider = FALSE;
 
     if (g_ascii_strcasecmp (ido_scale_menu_item_get_primary_label (IDO_SCALE_MENU_ITEM(menuitem)), "VOLUME") == 0) {
-      //g_debug ("vOLUME SLIDER KEY PRESS");
-      GtkWidget* slider_widget = volume_widget_get_ido_slider(VOLUME_WIDGET(myData.volume_widget));
+      g_debug ("vOLUME SLIDER KEY PRESS");
+      GtkWidget* slider_widget = volume_widget_get_ido_slider(VOLUME_WIDGET(priv->volume_widget));
       GtkWidget* slider = ido_scale_menu_item_get_scale((IdoScaleMenuItem*)slider_widget);
       GtkRange* range = (GtkRange*)slider;
       g_return_val_if_fail(GTK_IS_RANGE(range), FALSE);
@@ -260,8 +297,8 @@ key_press_cb(GtkWidget* widget, GdkEventKey* event, CairoDockModuleInstance *myA
       new_value = current_value;
     }
     else if (g_ascii_strcasecmp (ido_scale_menu_item_get_primary_label (IDO_SCALE_MENU_ITEM(menuitem)), "VOIP") == 0) {
-      //g_debug ("VOIP SLIDER KEY PRESS");
-      GtkWidget* slider_widget = voip_input_widget_get_ido_slider(VOIP_INPUT_WIDGET(myData.voip_widget));
+      g_debug ("VOIP SLIDER KEY PRESS");
+      GtkWidget* slider_widget = voip_input_widget_get_ido_slider(VOIP_INPUT_WIDGET(priv->voip_widget));
       GtkWidget* slider = ido_scale_menu_item_get_scale((IdoScaleMenuItem*)slider_widget);
       GtkRange* range = (GtkRange*)slider;
       g_return_val_if_fail(GTK_IS_RANGE(range), FALSE);
@@ -271,19 +308,19 @@ key_press_cb(GtkWidget* widget, GdkEventKey* event, CairoDockModuleInstance *myA
     }
 
     switch (event->keyval) {
-    case GDK_Right:
+    case GDK_KEY_Right:
       digested = TRUE;
       new_value = current_value + five_percent;
       break;
-    case GDK_Left:
+    case GDK_KEY_Left:
       digested = TRUE;
       new_value = current_value - five_percent;
       break;
-    case GDK_plus:
+    case GDK_KEY_plus:
       digested = TRUE;
       new_value = current_value + five_percent;
       break;
-    case GDK_minus:
+    case GDK_KEY_minus:
       digested = TRUE;
       new_value = current_value - five_percent;
       break;
@@ -293,10 +330,10 @@ key_press_cb(GtkWidget* widget, GdkEventKey* event, CairoDockModuleInstance *myA
     new_value = CLAMP(new_value, 0, 100);
     if (new_value != current_value){
       if (is_voip_slider == TRUE){
-        voip_input_widget_update (VOIP_INPUT_WIDGET(myData.voip_widget), new_value);
+        voip_input_widget_update (VOIP_INPUT_WIDGET(priv->voip_widget), new_value);
       }
       else{
-        volume_widget_update (VOLUME_WIDGET(myData.volume_widget), new_value, "keypress-update");
+        volume_widget_update (VOLUME_WIDGET(priv->volume_widget), new_value, "keypress-update");
       }
     }
   }
@@ -304,19 +341,19 @@ key_press_cb(GtkWidget* widget, GdkEventKey* event, CairoDockModuleInstance *myA
     TransportWidget* transport_widget = NULL;
     GList* elem;
 
-    for ( elem = myData.transport_widgets_list; elem; elem = elem->next ) {
+    for ( elem = priv->transport_widgets_list; elem; elem = elem->next ) {
       transport_widget = TRANSPORT_WIDGET ( elem->data );
       if ( transport_widget_is_selected( transport_widget ) ) 
         break;
     }
 
     switch (event->keyval) {
-    case GDK_Right:
+    case GDK_KEY_Right:
       transport_widget_react_to_key_press_event ( transport_widget,
                                                   TRANSPORT_ACTION_NEXT );
       digested = TRUE;         
       break;        
-    case GDK_Left:
+    case GDK_KEY_Left:
       transport_widget_react_to_key_press_event ( transport_widget,
                                                   TRANSPORT_ACTION_PREVIOUS );
       digested = TRUE;         
@@ -326,8 +363,8 @@ key_press_cb(GtkWidget* widget, GdkEventKey* event, CairoDockModuleInstance *myA
                                                   TRANSPORT_ACTION_PLAY_PAUSE );
       digested = TRUE;         
       break;
-    case GDK_Up:
-    case GDK_Down:
+    case GDK_KEY_Up:
+    case GDK_KEY_Down:
       digested = FALSE;     
       break;
     default:
@@ -342,35 +379,41 @@ key_press_cb(GtkWidget* widget, GdkEventKey* event, CairoDockModuleInstance *myA
 key_release_cb:
 **/
 static gboolean
-key_release_cb(GtkWidget* widget, GdkEventKey* event, CairoDockModuleInstance *myApplet)
+key_release_cb(GtkWidget* widget, GdkEventKey* event, gpointer data)
 {
   gboolean digested = FALSE;
 
+  ///g_return_val_if_fail(IS_INDICATOR_SOUND(data), FALSE);
+
+  ///IndicatorSound *indicator = INDICATOR_SOUND (data);
+
+  ///IndicatorSoundPrivate* priv = INDICATOR_SOUND_GET_PRIVATE(indicator);
+	AppletData *priv = myDataPtr;
   GtkWidget *menuitem;
 
+  ///menuitem = get_current_item (GTK_CONTAINER (widget));
 	#if (GTK_MAJOR_VERSION < 3)
 	menuitem = GTK_MENU_SHELL (widget)->active_menu_item;
 	#else
 	menuitem = gtk_menu_shell_get_selected_item (GTK_MENU_SHELL (widget));
 	#endif
-
   if (IS_TRANSPORT_WIDGET(menuitem) == TRUE) {
     TransportWidget* transport_widget = NULL;
     GList* elem;
 
-    for(elem = myData.transport_widgets_list; elem; elem = elem->next) {
+    for(elem = priv->transport_widgets_list; elem; elem = elem->next) {
       transport_widget = TRANSPORT_WIDGET (elem->data);
       if ( transport_widget_is_selected( transport_widget ) ) 
         break;
     }
 
     switch (event->keyval) {
-    case GDK_Right:
+    case GDK_KEY_Right:
       transport_widget_react_to_key_release_event ( transport_widget,
                                                     TRANSPORT_ACTION_NEXT );
       digested = TRUE;
       break;        
-    case GDK_Left:
+    case GDK_KEY_Left:
       transport_widget_react_to_key_release_event ( transport_widget,
                                                     TRANSPORT_ACTION_PREVIOUS );
       digested = TRUE;         
@@ -380,8 +423,8 @@ key_release_cb(GtkWidget* widget, GdkEventKey* event, CairoDockModuleInstance *m
                                                     TRANSPORT_ACTION_PLAY_PAUSE );
       digested = TRUE;         
       break;
-    case GDK_Up:
-    case GDK_Down:
+    case GDK_KEY_Up:
+    case GDK_KEY_Down:
       digested = FALSE;     
       break;
     default:
@@ -392,8 +435,6 @@ key_release_cb(GtkWidget* widget, GdkEventKey* event, CairoDockModuleInstance *m
 }
 
 
-
-
   ///////////////
  // MAKE MENU //
 ///////////////
@@ -401,23 +442,20 @@ key_release_cb(GtkWidget* widget, GdkEventKey* event, CairoDockModuleInstance *m
 void cd_sound_add_menu_handler (DbusmenuGtkClient * client)
 {
 	dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
-		DBUSMENU_VOLUME_MENUITEM_TYPE,
-		(DbusmenuClientTypeHandler) new_volume_slider_widget);
+                              	DBUSMENU_VOLUME_MENUITEM_TYPE,
+                              	new_volume_slider_widget);
 	dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
-		DBUSMENU_VOIP_INPUT_MENUITEM_TYPE,
-		(DbusmenuClientTypeHandler) new_voip_slider_widget);
+                              	DBUSMENU_VOIP_INPUT_MENUITEM_TYPE,
+                              	new_voip_slider_widget);
 	dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
-		DBUSMENU_TRANSPORT_MENUITEM_TYPE,
-		(DbusmenuClientTypeHandler) new_transport_widget);
+                              	DBUSMENU_TRANSPORT_MENUITEM_TYPE,
+                              	new_transport_widget);
 	dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
-		DBUSMENU_METADATA_MENUITEM_TYPE,
-		(DbusmenuClientTypeHandler) new_metadata_widget);
+                              	DBUSMENU_METADATA_MENUITEM_TYPE,
+                              	new_metadata_widget);
 	dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
-		DBUSMENU_TITLE_MENUITEM_TYPE,
-		(DbusmenuClientTypeHandler) new_title_widget);
-	dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
-		DBUSMENU_MUTE_MENUITEM_TYPE,
-		(DbusmenuClientTypeHandler) new_mute_widget);
+                              	DBUSMENU_MUTE_MENUITEM_TYPE,
+                              	new_mute_widget);
 	
 	// Note: Not ideal but all key handling needs to be managed here and then 
 	// delegated to the appropriate widget.

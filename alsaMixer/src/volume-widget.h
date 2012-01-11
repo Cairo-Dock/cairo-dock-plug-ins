@@ -22,12 +22,12 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <glib.h>
 #include <glib-object.h>
 #include <gtk/gtk.h>
-#if (GTK_MAJOR_VERSION < 3)
-#include <libdbusmenu-gtk/menuitem.h>
-#else
+#if GTK_CHECK_VERSION(3, 0, 0)
 #include <libdbusmenu-gtk3/menuitem.h>
+#else
+#include <libdbusmenu-gtk/menuitem.h>
 #endif
-#include <libindicator/indicator-object.h>
+///#include <libindicator/indicator-object.h>
 
 G_BEGIN_DECLS
 
@@ -50,7 +50,7 @@ struct _VolumeWidget {
 };
 
 GType volume_widget_get_type (void) G_GNUC_CONST;
-GtkWidget* volume_widget_new(DbusmenuMenuitem *item);
+GtkWidget* volume_widget_new(DbusmenuMenuitem *item/**, IndicatorObject* io*/);
 GtkWidget* volume_widget_get_ido_slider(VolumeWidget* self);
 void volume_widget_update(VolumeWidget* self, gdouble update, const gchar* label);
 void volume_widget_tidy_up (GtkWidget *widget);

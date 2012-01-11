@@ -20,7 +20,6 @@ if ("${with_soundmenu}" STREQUAL "yes")
 		volume-widget.c				volume-widget.h
 		voip-input-widget.c			voip-input-widget.h
 		transport-widget.c			transport-widget.h
-		title-widget.c				title-widget.h
 		mute-widget.c				mute-widget.h
 		metadata-widget.c			metadata-widget.h)
 endif()

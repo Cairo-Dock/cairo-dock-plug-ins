@@ -31,7 +31,7 @@ typedef enum {
   HIGH_LEVEL,
   BLOCKED,
   UNAVAILABLE,
-  NB_STATES
+  AVAILABLE
 }SoundState;
 
 typedef enum {
@@ -67,16 +67,17 @@ typedef enum {
 #define DBUSMENU_TRANSPORT_MENUITEM_TYPE        "x-canonical-sound-menu-player-transport-type"
 #define DBUSMENU_TRANSPORT_MENUITEM_PLAY_STATE  "x-canonical-sound-menu-player-transport-state"
 
-#define DBUSMENU_METADATA_MENUITEM_TYPE         "x-canonical-sound-menu-player-metadata-type"
-#define DBUSMENU_METADATA_MENUITEM_ARTIST       "x-canonical-sound-menu-player-metadata-xesam:artist"
-#define DBUSMENU_METADATA_MENUITEM_TITLE        "x-canonical-sound-menu-player-metadata-xesam:title"
-#define DBUSMENU_METADATA_MENUITEM_ALBUM        "x-canonical-sound-menu-player-metadata-xesam:album"
-#define DBUSMENU_METADATA_MENUITEM_ARTURL       "x-canonical-sound-menu-player-metadata-mpris:artUrl"
+#define DBUSMENU_TRACK_SPECIFIC_MENUITEM_TYPE   "x-canonical-sound-menu-player-track-specific-type"
 
-#define DBUSMENU_TITLE_MENUITEM_TYPE            "x-canonical-sound-menu-player-title-type"
-#define DBUSMENU_TITLE_MENUITEM_NAME            "x-canonical-sound-menu-player-title-name"
-#define DBUSMENU_TITLE_MENUITEM_ICON            "x-canonical-sound-menu-player-title-icon"
-#define DBUSMENU_TITLE_MENUITEM_RUNNING         "x-canonical-sound-menu-player-title-running"
+#define DBUSMENU_METADATA_MENUITEM_TYPE                "x-canonical-sound-menu-player-metadata-type"
+#define DBUSMENU_METADATA_MENUITEM_ARTIST              "x-canonical-sound-menu-player-metadata-xesam:artist"
+#define DBUSMENU_METADATA_MENUITEM_TITLE               "x-canonical-sound-menu-player-metadata-xesam:title"
+#define DBUSMENU_METADATA_MENUITEM_ALBUM               "x-canonical-sound-menu-player-metadata-xesam:album"
+#define DBUSMENU_METADATA_MENUITEM_ARTURL              "x-canonical-sound-menu-player-metadata-mpris:artUrl"
+#define DBUSMENU_METADATA_MENUITEM_PLAYER_NAME         "x-canonical-sound-menu-player-metadata-player-name"
+#define DBUSMENU_METADATA_MENUITEM_PLAYER_ICON         "x-canonical-sound-menu-player-metadata-player-icon"
+#define DBUSMENU_METADATA_MENUITEM_PLAYER_RUNNING      "x-canonical-sound-menu-player-metadata-player-running"
+#define DBUSMENU_METADATA_MENUITEM_HIDE_TRACK_DETAILS  "x-canonical-sound-menu-player-metadata-hide-track-details"
 
 #define DBUSMENU_SCRUB_MENUITEM_TYPE            "x-canonical-sound-menu-player-scrub-type"
 #define DBUSMENU_SCRUB_MENUITEM_DURATION        "x-canonical-sound-menu-player-scrub-mpris:length"
@@ -88,9 +89,5 @@ typedef enum {
 #define DBUSMENU_PLAYLISTS_MENUITEM_PLAYLISTS   "x-canonical-sound-menu-player-playlists-playlists"
 
 #define DBUSMENU_PLAYLIST_MENUITEM_PATH         "x-canonical-sound-menu-player-playlist-path"
-
-#if (INDICATOR_OLD_NAMES != 0)
-#define G_VALUE_INIT {0,{{0}}}
-#endif
 
 #endif

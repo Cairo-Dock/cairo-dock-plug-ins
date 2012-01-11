@@ -30,14 +30,9 @@
 
 static int mixer_level = 0;
 static struct snd_mixer_selem_regopt mixer_options;
+static gboolean mixer_is_mute (void);
+static int mixer_get_mean_volume (void);
 
-
-static int
-mixer_event (snd_mixer_t *mixer, unsigned int mask, snd_mixer_elem_t *elem)
-{
-	cd_debug ("");
-	return 0;
-}
 
 void mixer_init (gchar *cCardID)  // this function is taken from AlsaMixer.
 {
@@ -78,7 +73,6 @@ void mixer_init (gchar *cCardID)  // this function is taken from AlsaMixer.
 		myData.cErrorMessage = g_strdup (D_("I couldn't register options"));
 		return ;
 	}
-	///snd_mixer_set_callback (myData.mixer_handle, mixer_event);
 	if ((err = snd_mixer_load (myData.mixer_handle)) < 0)
 	{
 		snd_mixer_free (myData.mixer_handle);
@@ -187,7 +181,7 @@ static void mixer_get_controlled_element (void)
 	}
 }
 
-int mixer_get_mean_volume (void)
+static int mixer_get_mean_volume (void)
 {
 	g_return_val_if_fail (myData.pControledElement != NULL, 0);
 	long iVolumeLeft=0, iVolumeRight=0;
@@ -219,7 +213,7 @@ static void mixer_set_volume (int iNewVolume)
 	cd_update_icon ();  // on ne recoit pas d'evenements pour nos actions.
 }
 
-gboolean mixer_is_mute (void)
+static gboolean mixer_is_mute (void)
 {
 	cd_debug ("");
 	g_return_val_if_fail (myData.pControledElement != NULL, FALSE);
@@ -285,13 +279,6 @@ static void mixer_show_hide_dialog (void)
 	}
 }
 
-gboolean mixer_check_events (gpointer data)
-{
-	CD_APPLET_ENTER;
-	snd_mixer_handle_events (myData.mixer_handle);  // ne renvoie pas d'evenements pour nos actions !
-	CD_APPLET_LEAVE(TRUE);
-}
-
 
 static void cd_mixer_stop_alsa (void)
 {
@@ -312,6 +299,14 @@ static void cd_mixer_stop_alsa (void)
 			myData.iSidCheckVolume = 0;
 		}
 	}
+}
+
+static gboolean mixer_check_events (gpointer data)
+{
+	CD_APPLET_ENTER;
+	CD_APPLET_LEAVE_IF_FAIL (myData.mixer_handle, FALSE);
+	snd_mixer_handle_events (myData.mixer_handle);  // ne renvoie pas d'evenements pour nos actions !
+	CD_APPLET_LEAVE(TRUE);
 }
 
 static void cd_mixer_reload_alsa (void)

@@ -25,6 +25,7 @@
 #include <alsa/asoundlib.h>
 #ifdef SOUND_SERVICE_SUPPORT
 #include "indicator-applet.h"
+#include "mute-widget.h"
 #endif
 
 typedef enum {
@@ -94,7 +95,7 @@ struct _AppletData {
 	GtkWidget* volume_widget;
 	GList *transport_widgets_list;
 	GtkWidget* voip_widget;
-	GtkWidget* mute_widget;
+	MuteWidget* mute_widget;
 	gint iCurrentState;
 	#endif
 	// other

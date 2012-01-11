@@ -20,10 +20,10 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define __TRANSPORT_WIDGET_H__
 
 #include <gtk/gtk.h>
-#if (GTK_MAJOR_VERSION < 3)
-#include <libdbusmenu-gtk/menuitem.h>
-#else
+#if GTK_CHECK_VERSION(3, 0, 0)
 #include <libdbusmenu-gtk3/menuitem.h>
+#else
+#include <libdbusmenu-gtk/menuitem.h>
 #endif
 
 #include "common-defs.h"
@@ -54,6 +54,7 @@ typedef struct
   double r;
   double g;
   double b;
+  /// make it a GdkRGBA
   double a;
 } CairoColorRGB;
 

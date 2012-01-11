@@ -17,7 +17,6 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef __APPLET_MIXER__
 #define  __APPLET_MIXER__
 
@@ -25,23 +24,7 @@
 #include <gtk/gtk.h>
 
 
-void mixer_init (gchar *cCardID);
-
-void mixer_stop (void);
-
 GList *mixer_get_elements_list (void);
-
-
-int mixer_get_mean_volume (void);
-
-
-gboolean mixer_is_mute (void);
-
-
-GtkWidget *mixer_build_widget (gboolean bHorizontal);
-
-
-gboolean mixer_check_events (gpointer data);
 
 
 void cd_mixer_init_alsa (void);
