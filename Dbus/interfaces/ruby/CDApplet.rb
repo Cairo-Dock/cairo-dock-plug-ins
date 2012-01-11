@@ -57,8 +57,6 @@ class CDApplet
 	DIALOG_KEY_ESCAPE = -2
 
 	def initialize
-		#~ self.cAppletName = File.basename(Dir.getwd)
-		#~ self.cConfFile = File.expand_path("~/.config/cairo-dock/current_theme/plug-ins/#{self.cAppletName}/#{self.cAppletName}.conf")
 		self.config = {}
 		self.bus = nil
 		self.icon = nil
@@ -67,7 +65,9 @@ class CDApplet
 		self.cAppletName = $0[2,999]
 		self.cBusPath = ARGV[1]
 		self.cConfFile = ARGV[2]
-		self.cParentAppName = ARGV[3]
+		self.cRootDataDir = ARGV[3]
+		self.cParentAppName = ARGV[4]
+		self.cShareDataDir = Dir.getwd
 		
 		self._get_config()
 		self._connect_to_dock()

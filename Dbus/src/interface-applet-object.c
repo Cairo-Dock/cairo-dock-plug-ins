@@ -245,12 +245,13 @@ void cd_dbus_launch_applet_process (CairoDockModuleInstance *pModuleInstance, db
 	const gchar *cDirPath = pModuleInstance->pModule->pVisitCard->cShareDataDir;
 	cd_message ("%s (%s)", __func__, cModuleName);
 	
- 	gchar *cCommand = g_strdup_printf ("cd \"%s\" && ./\"%s\" %d \"%s\" \"%s\" %s %d",
+ 	gchar *cCommand = g_strdup_printf ("cd \"%s\" && ./\"%s\" %d \"%s\" \"%s\" \"%s\" %s %d",
  		cDirPath,
  		cModuleName,
  		pDbusApplet->id,
  		pDbusApplet->cBusPath,
  		pModuleInstance->cConfFilePath,
+		g_cCairoDockDataDir,
  		myData.cProgName,
  		getpid());
 	cd_debug ("launching distant applet with: '%s'", cCommand);

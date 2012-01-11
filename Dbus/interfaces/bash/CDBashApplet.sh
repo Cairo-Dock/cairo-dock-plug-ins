@@ -27,8 +27,11 @@ shift 1
 DBUS_INTERFACE="org.cairodock.CairoDock"
 CONF_FILE="$1"
 shift 1
+ROOT_DATA_DIR="$1"
+shift 1
 PARENT_APP_NAME="$1"
 shift 1
+SHARE_DATA_DIR="$PWD"
 
 BOTTOM=0
 TOP=1

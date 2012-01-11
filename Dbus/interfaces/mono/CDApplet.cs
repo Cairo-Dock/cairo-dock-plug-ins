@@ -40,6 +40,8 @@ public class CDApplet
 	public string cParentAppName = null;
 	public string cBusPath = null;
 	public string cConfFile = null;
+	public string cShareDataDir = null;
+	public string cRootDataDir = null;
 	public IApplet icon = null;
 	public ISubApplet sub_icons= null;
 	private GLib.MainLoop loop = null;
@@ -89,7 +91,9 @@ public class CDApplet
 		this.cAppletName = argv[0].Substring(2);
 		this.cBusPath = argv[2];
 		this.cConfFile = argv[3];
-		this.cParentAppName = argv[4];
+		this.cRootDataDir = argv[4];
+		this.cParentAppName = argv[5];
+		//this.cShareDataDir = Environment.CurrentDir();  // not sure of the exact syntax...
 		
 		this._get_config ();
 		this._connect_to_dock ();

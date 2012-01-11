@@ -83,6 +83,8 @@ public class CDApplet : GLib.Object
 	public string cConfFile;
 	public string cParentAppName;
 	public string cBusPath;
+	public string cShareDataDir;
+	public string cRootDataDir;
 	private MainLoop loop;
 	private string _cMenuIconId;
 	
@@ -129,7 +131,9 @@ public class CDApplet : GLib.Object
 		this.cAppletName = argv[0].substring(2,999);
 		this.cBusPath = argv[2];
 		this.cConfFile = argv[3];
-		this.cParentAppName = argv[4];
+		this.cRootDataDir = argv[4];
+		this.cParentAppName = argv[5];
+		//this.cShareDataDir = get_current_dir();  // not sure of the exact syntax...
 		
 		this._get_config();
 		this._connect_to_bus();

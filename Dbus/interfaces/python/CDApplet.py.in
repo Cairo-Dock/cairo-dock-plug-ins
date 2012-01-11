@@ -101,7 +101,8 @@ class CDApplet:
 		self.cAppletName = sys.argv[0][2:]  # the command is ./applet_name
 		self.cBusPath = sys.argv[2]
 		self.cConfFile = sys.argv[3]
-		self.cParentAppName = sys.argv[4]
+		self.cRootDataDir = sys.argv[4]
+		self.cParentAppName = sys.argv[5]
 		self.cShareDataDir = INSTALL_PREFIX + '/' + self.cAppletName
 		
 		self._get_config()
