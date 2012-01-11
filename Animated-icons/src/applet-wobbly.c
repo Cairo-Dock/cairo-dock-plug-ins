@@ -498,7 +498,7 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 		//	0, 1, 8, 2, &pColorPts[0][0][0]);
 		glMap2f(GL_MAP2_COLOR_4, 0.0, 1.0, 4, 4,
 			0.0, 1.0, 16, 4, &colorPoints[0][0][0]);*/
-		glEvalMesh2(GL_FILL, 0, myConfig.iNbGridNodes, myConfig.iNbGridNodes*0, myConfig.iNbGridNodes*1);
+		glEvalMesh2(GL_FILL, 0, myConfig.iNbGridNodes, 0, myConfig.iNbGridNodes);
 		
 		/**glActiveTextureARB(GL_TEXTURE1_ARB);
 		glDisable(GL_TEXTURE_2D);

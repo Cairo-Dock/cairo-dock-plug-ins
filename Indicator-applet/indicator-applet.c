@@ -27,6 +27,13 @@
 
 static gboolean s_bIndicatorIconThemeAdded = FALSE;
 
+static void _on_menu_destroyed (CDAppletIndicator *pIndicator, GObject *old_menu_pointer)
+{
+	g_print (" --------- no more menu (%p / %p\n", old_menu_pointer, pIndicator->pMenu);
+	if (old_menu_pointer == (GObject*)pIndicator->pMenu)
+		pIndicator->pMenu = NULL;
+}
+
 static void _cd_indicator_make_menu (CDAppletIndicator *pIndicator)
 {
 	if (pIndicator->pMenu == NULL)
@@ -34,6 +41,10 @@ static void _cd_indicator_make_menu (CDAppletIndicator *pIndicator)
 		pIndicator->pMenu = dbusmenu_gtkmenu_new ((gchar*)pIndicator->cBusName, (gchar*)pIndicator->cMenuObject);  // the cast is unorthodox, but the function definition is clumsy (it should require 2 const gchar*, since it actually duplicates the strings).
 		if (pIndicator->pMenu != NULL)
 		{
+			g_object_ref_sink (G_OBJECT (pIndicator->pMenu));
+			g_object_weak_ref (G_OBJECT (pIndicator->pMenu),
+				(GWeakNotify)_on_menu_destroyed,
+				pIndicator);
 			DbusmenuGtkClient * client = dbusmenu_gtkmenu_get_client (pIndicator->pMenu);
 			
 			if (pIndicator->add_menu_handler)
@@ -95,7 +106,9 @@ connection_changed (IndicatorServiceManager * sm, gboolean connected, CDAppletIn
 				pIndicator->on_disconnect (myApplet);
 			if (pIndicator->pMenu)
 			{
+				g_print ("destroy menu...\n");
 				g_object_unref (pIndicator->pMenu);
+				g_print ("done.\n");
 				pIndicator->pMenu = NULL;
 			}
 			pIndicator->bConnected = FALSE;
