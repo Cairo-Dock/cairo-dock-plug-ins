@@ -43,7 +43,7 @@ struct _AppletData {
 	GLuint iOldTexture;
 	GLuint iCurrentTexture;
 	gint iCurrentGroup;
-	guint iCurrentIndic;
+	guint iCurrentIndic, iPreviousIndic;
 	CairoKeyBinding *pKeyBinding;
 	} ;
 

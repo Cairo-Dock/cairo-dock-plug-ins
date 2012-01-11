@@ -20,6 +20,12 @@ icon =
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 
+#B Always display the icon, even when the dock is hidden?
+always visi = false
+
+#C+ Background color to add in this case
+bg color = .8;.8;.8;.5
+
 order=
 
 #F[Applet's Handbook]

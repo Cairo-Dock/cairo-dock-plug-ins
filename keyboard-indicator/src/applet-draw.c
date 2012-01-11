@@ -25,11 +25,12 @@
 #include "applet-draw.h"
 
 
+/// TODO: remove 'cIndicatorName' if the overlays are a good replacement...
 void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName, const gchar *cIndicatorName, gboolean bRedrawSurface)
 {
 	//g_print ("%s (%s;%s;%d)\n", __func__, cGroupName, cShortGroupName, bRedrawSurface);
 	
-	if (bRedrawSurface)
+	if (bRedrawSurface)  // group has changed -> update the icon and label
 	{
 		//\__________________ On sauvegarde l'ancienne surface/texture.
 		if (myData.pOldSurface != NULL)
@@ -90,14 +91,40 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 			CD_APPLET_REDRAW_MY_ICON;
 		}
 		
-		//\__________________ On met a jour le reste.
+		//\__________________ update the label.
 		CD_APPLET_SET_NAME_FOR_MY_ICON (cGroupName);
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (cIndicatorName);
 	}
-	else
+	else  // only the indicators have changed -> trigger a redraw event only  (overlay update).
 	{
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (!cIndicatorName || *cIndicatorName == '\0' ? NULL : cIndicatorName);
 		CD_APPLET_REDRAW_MY_ICON;
+	}
+	
+	//\__________________ lock indicators
+	///CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (!cIndicatorName || *cIndicatorName == '\0' ? NULL : cIndicatorName);
+	if (myConfig.bShowKbdIndicator)
+	{
+		if (myData.iCurrentIndic & 1)  // caps-lock
+		{
+			if (! (myData.iPreviousIndic & 1))
+				CD_APPLET_ADD_OVERLAY_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/caps-lock.png", CAIRO_OVERLAY_UPPER_RIGHT);
+		}
+		else
+		{
+			if (myData.iPreviousIndic & 1)
+				CD_APPLET_REMOVE_OVERLAY_ON_MY_ICON (CAIRO_OVERLAY_UPPER_RIGHT);
+		}
+
+		if (myData.iCurrentIndic & 2)  // num-lock
+		{
+			if (! (myData.iPreviousIndic & 2))
+				CD_APPLET_ADD_OVERLAY_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/num-lock.png", CAIRO_OVERLAY_UPPER_LEFT);
+		}
+		else
+		{
+			if (myData.iPreviousIndic & 2)
+				CD_APPLET_REMOVE_OVERLAY_ON_MY_ICON (CAIRO_OVERLAY_UPPER_LEFT);
+		}
+		myData.iPreviousIndic = myData.iCurrentIndic;
 	}
 }
 

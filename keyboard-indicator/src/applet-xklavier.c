@@ -138,7 +138,7 @@ gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Wind
 				xkl_engine_save_state (pEngine, Xid, &state);
 				xkl_engine_lock_group (pEngine, state.group);
 			}
-			for (i = 0; i < 2; i ++)  // on parcours le champ de bits, mais les indicateurs Compose/Suspend/Misc/Mail/Mouse Keys/etc ne nous interessent pas !
+			/**for (i = 0; i < 2; i ++)  // on parcours le champ de bits, mais les indicateurs Compose/Suspend/Misc/Mail/Mouse Keys/etc ne nous interessent pas !
 			{
 				if ((state.indicators >> i) & 1)  // i-eme bit a 1.
 				{
@@ -147,7 +147,7 @@ gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Wind
 					g_string_append_printf (sCurrentIndicator, "%s%s", (sCurrentIndicator->len == 0 ? "" : "/"), pIndicatorNames[i]);
 				}
 			}
-			cd_debug (" indicator name : %s", sCurrentIndicator?sCurrentIndicator->str:"none");
+			cd_debug (" indicator name : %s", sCurrentIndicator?sCurrentIndicator->str:"none");*/
 		}
 		
 		// on se souvient de l'etat courant.

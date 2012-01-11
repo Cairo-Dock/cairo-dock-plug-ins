@@ -129,6 +129,12 @@ CD_APPLET_RELOAD_BEGIN
 		_load_bg_image ();
 		
 		myData.iCurrentGroup = -1;  // pour forcer le redessin.
+		if (!myConfig.bShowKbdIndicator)  // no more indicators
+		{
+			CD_APPLET_REMOVE_OVERLAY_ON_MY_ICON (CAIRO_OVERLAY_UPPER_RIGHT);
+			CD_APPLET_REMOVE_OVERLAY_ON_MY_ICON (CAIRO_OVERLAY_UPPER_LEFT);
+			myData.iPreviousIndic = 0;
+		}
 		
 		//\_____________ On declenche le redessin de l'icone.
 		Window Xid = cairo_dock_get_current_active_window ();
