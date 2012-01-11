@@ -50,6 +50,8 @@ static CDCategoryEnum _find_category (const gchar *cCategory)
 
 static CDStatusEnum _find_status (const gchar *cStatus)
 {
+	g_print ("STATUS: %s\n", cStatus);
+	return CD_STATUS_ACTIVE;  /// TODO: it seems that a lot of indicators are hidden if we take into account the "passive" state. Let's ignore it until it's clearer.
 	if (!cStatus)
 		return CD_STATUS_ACTIVE;
 	if (*cStatus == 'N')
@@ -353,7 +355,7 @@ gchar *cd_satus_notifier_search_item_icon_s_path (CDStatusNotifierItem *pItem)
 CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, const gchar *cObjectPath)
 {
 	g_return_val_if_fail  (cService != NULL, NULL);
-	//g_print ("=== %s (%s)\n", __func__, cService);
+	g_print ("=== %s (%s, %s)\n", __func__, cService, cObjectPath);
 	
 	gchar *str = strchr (cService, '/');  // just to be sure.
 	if (str)
@@ -361,19 +363,22 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	
 	// special case for Ubuntu indicators: we don't know their object path.
 	gchar *cRealObjectPath = NULL;
-	if (cObjectPath != NULL && strncmp (cObjectPath, CD_INDICATOR_APPLICATION_ITEM_OBJ, strlen (CD_INDICATOR_APPLICATION_ITEM_OBJ)) == 0)
+	if (cObjectPath != NULL && strncmp (cObjectPath, CD_INDICATOR_APPLICATION_ITEM_OBJ, strlen (CD_INDICATOR_APPLICATION_ITEM_OBJ)) == 0 && g_str_has_suffix (cObjectPath, "/Menu"))
 	{
 		// I think this is because this path is actually the menu path, and fortunately it's just under the item object's path.
 		const gchar *str = strrchr (cObjectPath, '/');
 		if (str)
+		{
+			
 			cRealObjectPath = g_strndup (cObjectPath, str - cObjectPath);
+		}
 	}
 	else if (cObjectPath == NULL || *cObjectPath == '\0')  // no path, let's assume it's the common one.
 	{
 		cObjectPath = CD_STATUS_NOTIFIER_ITEM_OBJ;
 	}
 	
-	//g_print ("=== %s (cObjectPath: %s)\n", __func__, cObjectPath);
+	//g_print ("=== %s (cObjectPath: %s)\n", __func__, cRealObjectPath ? cRealObjectPath : cObjectPath);
 	
 	//\_________________ get the properties of the item.
 	DBusGProxy *pProxyItemProp = cairo_dock_create_new_session_proxy (
@@ -384,7 +389,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 		return NULL;
 	//g_print ("=== owner : %s\n", dbus_g_proxy_get_bus_name (pProxyItemProp));
 
-	cd_debug ("%s, %s, %s", cService, cObjectPath, dbus_g_proxy_get_bus_name (pProxyItemProp));
+	//cd_debug ("%s, %s, %s", cService, cObjectPath, dbus_g_proxy_get_bus_name (pProxyItemProp));
 
 	//g_print ("=== getting properties ...\n");
 	GHashTable *hProps = cairo_dock_dbus_get_all_properties (pProxyItemProp, CD_STATUS_NOTIFIER_ITEM_IFACE);
