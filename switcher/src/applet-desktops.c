@@ -115,8 +115,18 @@ void cd_switcher_compute_nb_lines_and_columns (void)
 	}
 	else  // force the layout on N lines.
 	{
-		myData.switcher.iNbLines = myConfig.iDesktopsLayout;  // single-line, 2-lines, etc. Note: currently the config window only gives us access to the "single-line" choice, we might add more.
-		myData.switcher.iNbColumns = ceil ((double) g_desktopGeometry.iNbDesktops * g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY / myData.switcher.iNbLines);
+		int w, h;
+		CD_APPLET_GET_MY_ICON_EXTENT (&w, &h);
+		if (w >= h)  // icon is wide.
+		{
+			myData.switcher.iNbLines = myConfig.iDesktopsLayout;  // single-line, 2-lines, etc. Note: currently the config window only gives us access to the "single-line" choice, we might add more.
+			myData.switcher.iNbColumns = ceil ((double) g_desktopGeometry.iNbDesktops * g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY / myData.switcher.iNbLines);
+		}
+		else  // icon is high
+		{
+			myData.switcher.iNbColumns = myConfig.iDesktopsLayout;
+			myData.switcher.iNbLines = ceil ((double) g_desktopGeometry.iNbDesktops * g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY / myData.switcher.iNbColumns);
+		}
 	}
 	myData.iPrevIndexHovered = -1;  // cela invalide le dernier bureau survole.
 }
