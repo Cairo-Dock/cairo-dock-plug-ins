@@ -92,8 +92,7 @@ mute_widget_get_status (MuteWidget *self)
   g_return_val_if_fail(self, MUTE_STATUS_UNAVAILABLE);
   MuteStatus status = MUTE_STATUS_UNAVAILABLE;
   MuteWidgetPrivate *priv = MUTE_WIDGET_GET_PRIVATE(self);
-  
-#if (INDICATOR_OLD_NAMES == 0)
+
   GVariant *vstatus = dbusmenu_menuitem_property_get_variant(priv->item,
                                                   DBUSMENU_MUTE_MENUITEM_VALUE);
 
@@ -104,19 +103,6 @@ mute_widget_get_status (MuteWidget *self)
     else
       status = MUTE_STATUS_UNMUTED;
   }
-#else
-  const GValue *vstatus;
-  vstatus = dbusmenu_menuitem_property_get_value (priv->item,
-                                                  DBUSMENU_MUTE_MENUITEM_VALUE);
-
-  if (G_VALUE_TYPE (vstatus) == G_TYPE_BOOLEAN)
-  {
-    if (g_value_get_boolean (vstatus))
-      status = MUTE_STATUS_MUTED;
-    else
-      status = MUTE_STATUS_UNMUTED;
-  }
-#endif
 
   return status;
 }
@@ -139,19 +125,11 @@ mute_widget_new (DbusmenuMenuitem *item)
   MuteWidgetPrivate* priv = MUTE_WIDGET_GET_PRIVATE(widget);
   priv->item = g_object_ref(item);
 
-#if (INDICATOR_OLD_NAMES == 0)
   GVariant *label = dbusmenu_menuitem_property_get_variant(priv->item,
                                                   DBUSMENU_MENUITEM_PROP_LABEL);
 
   if (g_variant_is_of_type(label, G_VARIANT_TYPE_STRING))
     gtk_menu_item_set_label(priv->gitem, g_variant_get_string(label, NULL));
-#else
-  const GValue *label;
-  label = dbusmenu_menuitem_property_get_value (priv->item,
-                                                DBUSMENU_MENUITEM_PROP_LABEL);
-  if (G_VALUE_TYPE (label) == G_TYPE_STRING)
-    gtk_menu_item_set_label (priv->gitem, g_value_get_string (label));
-#endif
 
   return widget;
 }

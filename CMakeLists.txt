@@ -273,7 +273,7 @@ if (NOT "${enable-alsa-mixer}" STREQUAL "no")
 		set (alsa_mixerdatadir "${pluginsdatadir}/AlsaMixer")
 		configure_file (${CMAKE_CURRENT_SOURCE_DIR}/alsaMixer/data/AlsaMixer.conf.in ${CMAKE_CURRENT_BINARY_DIR}/alsaMixer/data/AlsaMixer.conf)
 		if ("${with_indicator}" STREQUAL "yes" AND "${IDO_FOUND}"
-			AND (${IDO_MAJOR} GREATER 0 OR ${IDO_MINOR} GREATER 1 OR ${IDO_NANO} GREATER 10))
+			AND "${INDICATOR_OLD_NAMES}" STREQUAL "0")
 			set (with_soundmenu "yes")
 		endif()
 		add_subdirectory ("alsaMixer")
