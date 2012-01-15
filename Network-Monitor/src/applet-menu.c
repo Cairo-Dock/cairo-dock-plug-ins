@@ -28,6 +28,7 @@
 
 static GList *cd_NetworkMonitor_get_connections_for_access_point (const gchar *cAccessPoint, const gchar *cDevice, const gchar *cSsid, const gchar *cHwAddress, int iMode, int iWirelessCapabilities, GPtrArray *paConnections, GPtrArray *paSettings)
 {
+	g_return_val_if_fail (paConnections != NULL, NULL);
 	GList *pConnList = NULL;
 	gchar *cConnection;
 	GHashTable *pSettings, *pSubSettings;

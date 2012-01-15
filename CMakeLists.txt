@@ -108,7 +108,7 @@ set (PROGRAMS_MISSING "")
 
 message ("")
 message (STATUS "=====================")
-message (STATUS "Check dependancies...")
+message (STATUS "Check dependencies...")
 message (STATUS "=====================")
 message ("")
 
@@ -177,14 +177,6 @@ else()
 	set (IDO_MODULE libido3-0.1)
 endif()
 pkg_check_modules (IDO ${IDO_MODULE})
-
-if ("${IDO_FOUND}" STREQUAL "1")
-	STRING (REGEX REPLACE "\\..*" "" IDO_MAJOR "${IDO_VERSION}")
-	STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" IDO_MINOR "${IDO_VERSION}")  # 0.1.7 => 1.7
-	STRING (REGEX REPLACE "\\.[0-9]*" "" IDO_MINOR "${IDO_MINOR}")
-	STRING (REGEX REPLACE ".*\\." "" IDO_NANO "${IDO_VERSION}")
-	STRING (REGEX REPLACE "-.*" "" IDO_NANO "${IDO_NANO}")
-endif()
 
 if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1" AND "${DBUSMENU_FOUND}" STREQUAL "1" AND "${DBUSMENU_GTK_FOUND}" STREQUAL "1")
 	#message (STATUS "DBUSMENU_VERSION : ${DBUSMENU_VERSION}")
