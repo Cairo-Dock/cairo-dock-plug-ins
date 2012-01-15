@@ -147,7 +147,7 @@ gdouble *cd_show_mouse_init_sources (void)
 CairoParticleSystem *cd_show_mouse_init_system (CairoContainer *pContainer, double dt, double *pSourceCoords)
 {
 	if (myData.iTexture == 0)
-		myData.iTexture = cairo_dock_load_texture_from_raw_data (starTex, 32, 32);  /// 32 = sqrt (4096/4)
+		myData.iTexture = cairo_dock_create_texture_from_raw_data (starTex, 32, 32);  /// 32 = sqrt (4096/4)
 	double fHeight = pContainer->iHeight;  // iMaxDockHeight ?
 	CairoParticleSystem *pParticleSystem = cairo_dock_create_particle_system (myConfig.iNbParticles * myConfig.iNbSources, myData.iTexture, 2*fHeight, fHeight);
 	pParticleSystem->dt = dt;

@@ -26,7 +26,7 @@
 #include "evaporate-tex.h"
 
 
-#define cd_illusion_load_evaporate_texture(...) cairo_dock_load_texture_from_raw_data (evaporateTex, 32, 32)
+#define cd_illusion_load_evaporate_texture(...) cairo_dock_create_texture_from_raw_data (evaporateTex, 32, 32)
 
 
 gboolean cd_illusion_init_evaporate (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData);

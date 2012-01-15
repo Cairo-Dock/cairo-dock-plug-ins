@@ -109,13 +109,6 @@ CD_APPLET_ON_BUILD_MENU_PROTO
 	
 	if ((myConfig.bFree && pClickedContainer == myContainer && myDock->container.iMouseX >  (myDock->container.iWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX && myDock->container.iMouseX < (myDock->container.iWidth - myDock->fFlatDockWidth) / 2 +  myData.iCurrentPositionX + pAnimation->iFrameWidth && myDock->container.iMouseY > myContainer->iHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight && myDock->container.iMouseY < myContainer->iHeight - myData.iCurrentPositionY) || (! myConfig.bFree && pClickedIcon == myIcon))
 	{
-		/**if (pClickedIcon != myIcon && ! (CAIRO_DOCK_IS_APPLET (pClickedIcon) && pClickedIcon->pModuleInstance->pModule == myIcon->pModuleInstance->pModule))
-		{
-			cd_debug ("%s\n", myApplet->cConfFilePath);
-			cairo_dock_notify_on_object (myContainer, NOTIFICATION_BUILD_ICON_MENU, myIcon, myContainer, CD_APPLET_MY_MENU, &stop);
-			CD_APPLET_LEAVE (CAIRO_DOCK_INTERCEPT_NOTIFICATION);
-		}*/
-		
 		GtkWidget *pMenuItem, *image;
 		
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);

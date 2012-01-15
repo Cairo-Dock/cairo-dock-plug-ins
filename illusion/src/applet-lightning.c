@@ -46,7 +46,7 @@ gboolean cd_illusion_init_lightning (Icon *pIcon, CairoDock *pDock, CDIllusionDa
 	}
 	
 	if (myData.iLightningTexture == 0)
-		myData.iLightningTexture = cairo_dock_load_texture_from_raw_data (evaporateTex, 32, 1);
+		myData.iLightningTexture = cairo_dock_create_texture_from_raw_data (evaporateTex, 32, 1);
 	
 	return TRUE;
 }

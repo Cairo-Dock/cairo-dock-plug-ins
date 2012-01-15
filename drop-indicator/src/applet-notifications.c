@@ -354,7 +354,7 @@ void cd_drop_indicator_load_drop_indicator (gchar *cImage, int iWidth, int iHeig
 	}
 	if (myData.dropIndicator.iTexture != 0 && myData.iBilinearGradationTexture == 0)
 	{
-		myData.iBilinearGradationTexture = cairo_dock_load_texture_from_raw_data (gradationTex, 1, 32);
+		myData.iBilinearGradationTexture = cairo_dock_create_texture_from_raw_data (gradationTex, 1, 32);
 	}
 }
 

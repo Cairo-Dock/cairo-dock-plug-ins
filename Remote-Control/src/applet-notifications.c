@@ -142,7 +142,7 @@ static void _activate_nth_icon (guint iKeyVal, guint iModifierType)  // iKeyVal 
 	if (pNthIcon != NULL)
 	{
 		g_print ("click on %s\n", pNthIcon->cName);
-		cairo_dock_notify_on_object (&myContainersMgr, NOTIFICATION_CLICK_ICON, pNthIcon, myData.pCurrentDock, iModifierType);
+		///cairo_dock_notify_on_object (&myContainersMgr, NOTIFICATION_CLICK_ICON, pNthIcon, myData.pCurrentDock, iModifierType);
 		cairo_dock_notify_on_object (CAIRO_CONTAINER (myData.pCurrentDock), NOTIFICATION_CLICK_ICON, pNthIcon, myData.pCurrentDock, iModifierType);
 
 		cairo_dock_start_icon_animation (pNthIcon, myData.pCurrentDock);
@@ -249,7 +249,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				myData.bIgnoreIconState = TRUE;
 				cairo_dock_stop_icon_animation (myData.pCurrentIcon);  // car aucune animation ne va la remplacer.
 				myData.bIgnoreIconState = FALSE;
-				cairo_dock_notify_on_object (&myContainersMgr, NOTIFICATION_MIDDLE_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock);
+				///cairo_dock_notify_on_object (&myContainersMgr, NOTIFICATION_MIDDLE_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock);
 				cairo_dock_notify_on_object (CAIRO_CONTAINER (myData.pCurrentDock), NOTIFICATION_MIDDLE_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock);
 			}
 			else if (iModifierType & GDK_CONTROL_MASK)  // CTRL
@@ -264,7 +264,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			}
 			else
 			{
-				cairo_dock_notify_on_object (&myContainersMgr, NOTIFICATION_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock, iModifierType);
+				///cairo_dock_notify_on_object (&myContainersMgr, NOTIFICATION_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock, iModifierType);
 				cairo_dock_notify_on_object (CAIRO_CONTAINER (myData.pCurrentDock), NOTIFICATION_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock, iModifierType);
 			}
 			cairo_dock_start_icon_animation (myData.pCurrentIcon, myData.pCurrentDock);
