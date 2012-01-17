@@ -82,7 +82,7 @@ static void cd_dbus_main_init (dbusMainObject *pMainObject)
 
 static void _on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile *pKeyFile)
 {
-	cd_debug ("%s (%d)", __func__, (int)pModuleInstance->pModule->fLastLoadingTime);
+	cd_debug ("%s ()", __func__);
 	
 	//\_____________ On initialise l'icone.
 	cd_dbus_action_on_init_module (pModuleInstance);
