@@ -28,7 +28,7 @@
 #include "applet-draw.h"
 
 
-void cd_satus_notifier_compute_grid (void)
+static void cd_satus_notifier_compute_grid (void)
 {
 	if (myData.pItems == NULL)
 		return;
@@ -40,7 +40,7 @@ void cd_satus_notifier_compute_grid (void)
 	for (it = myData.pItems; it != NULL; it = it->next)
 	{
 		pItem = it->data;
-		if (pItem->iStatus != CD_STATUS_PASSIVE)
+		if (_item_is_visible (pItem))
 			iNbItems ++;
 	}
 	
@@ -67,7 +67,7 @@ void cd_satus_notifier_compute_grid (void)
 	//g_print ("=== satus_notifier : %dx%d\n", myData.iNbLines, myData.iNbColumns);
 }
 
-void cd_satus_notifier_compute_icon_size (void)
+static void cd_satus_notifier_compute_icon_size (void)
 {
 	// count the active items.
 	int iNbItems = 0;
@@ -76,7 +76,7 @@ void cd_satus_notifier_compute_icon_size (void)
 	for (it = myData.pItems; it != NULL; it = it->next)
 	{
 		pItem = it->data;
-		if (pItem->iStatus != CD_STATUS_PASSIVE)
+		if (_item_is_visible (pItem))
 			iNbItems ++;
 	}
 	
@@ -120,7 +120,7 @@ void cd_satus_notifier_compute_icon_size (void)
 }
 
 
-void cd_satus_notifier_draw_compact_icon (void)
+static void cd_satus_notifier_draw_compact_icon (void)
 {
 	cd_debug ("=== %s ()", __func__);
 	int iWidth, iHeight;
@@ -155,7 +155,7 @@ void cd_satus_notifier_draw_compact_icon (void)
 	for (it = myData.pItems; it != NULL; it = it->next)
 	{
 		pItem = it->data;
-		if (pItem->pSurface != NULL && pItem->iStatus != CD_STATUS_PASSIVE)
+		if (pItem->pSurface != NULL && _item_is_visible (pItem))
 		{
 			cd_debug ("===  draw %s (%d)", pItem->cId, pItem->iPosition);
 			cairo_set_source_surface (myDrawContext,
@@ -204,7 +204,7 @@ void cd_satus_notifier_reload_compact_mode (void)
 	for (it = myData.pItems; it != NULL; it = it->next)
 	{
 		pItem = it->data;
-		if (pItem->iStatus != CD_STATUS_PASSIVE)
+		if (_item_is_visible (pItem))
 		{
 			if (iPrevSize != myData.iItemSize || pItem->pSurface == NULL)
 			{
@@ -270,7 +270,7 @@ CDStatusNotifierItem *cd_satus_notifier_find_item_from_coord (void)
 	for (it = myData.pItems; it != NULL; it = it->next)
 	{
 		pItem = it->data;
-		if (pItem->pSurface != NULL && pItem->iStatus != CD_STATUS_PASSIVE)
+		if (pItem->pSurface != NULL && _item_is_visible (pItem))
 		{
 			if (i == line && j == col)
 			{

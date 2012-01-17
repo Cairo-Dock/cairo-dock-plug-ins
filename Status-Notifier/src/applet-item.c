@@ -51,7 +51,6 @@ static CDCategoryEnum _find_category (const gchar *cCategory)
 static CDStatusEnum _find_status (const gchar *cStatus)
 {
 	g_print ("STATUS: %s\n", cStatus);
-	return CD_STATUS_ACTIVE;  /// TODO: it seems that a lot of indicators are hidden if we take into account the "passive" state. Let's ignore it until it's clearer.
 	if (!cStatus)
 		return CD_STATUS_ACTIVE;
 	if (*cStatus == 'N')
@@ -116,7 +115,7 @@ static void _show_item_tooltip (Icon *pIcon, CDStatusNotifierItem *pItem)
 	g_free (cText);
 }
 
-static void _show_item_status (Icon *pIcon, CDStatusNotifierItem *pItem)
+/*static void _show_item_status (Icon *pIcon, CDStatusNotifierItem *pItem)
 {
 	switch (pItem->iStatus)
 	{
@@ -136,7 +135,7 @@ static void _show_item_status (Icon *pIcon, CDStatusNotifierItem *pItem)
 			cairo_dock_request_icon_attention (pIcon, myIcon->pSubDock, "rotate", 60);
 		break;
 	}
-}
+}*/
 
 
 static void on_new_item_icon (DBusGProxy *proxy_item, CDStatusNotifierItem *pItem)
@@ -183,7 +182,8 @@ static void on_new_item_status (DBusGProxy *proxy_item, const gchar *cStatus, CD
 		CD_APPLET_LEAVE ();
 	
 	// update the item
-	if (iPrevStatus == CD_STATUS_PASSIVE || pItem->iStatus == CD_STATUS_PASSIVE)  // hide/show the item.
+	if ((iPrevStatus == CD_STATUS_PASSIVE || pItem->iStatus == CD_STATUS_PASSIVE)
+	&& myConfig.bHideInactive)  // status was/is passive => hide/show the item.
 	{
 		if (myConfig.bCompactMode)
 		{

@@ -43,6 +43,7 @@ struct _AppletConfig {
 	gboolean bCompactMode;  // les items sur l'icone principale ou dans un sous-dock.
 	gboolean bResizeIcon;  // si compact, redimensionner l'icone principale automatiquement.
 	gint iNbLines;  // si compact et redimensionnement auto, nbre de lignes (colonnes en mode vertical).
+	gboolean bHideInactive;
 	gboolean bMenuOnLeftClick;
 	} ;
 
@@ -97,8 +98,6 @@ typedef struct {
 	gboolean bInvalid;  // item deja en cours de destruction
 	DbusmenuGtkMenu *pMenu;
 	cairo_surface_t *pSurface;
-	/*GLuint iTexture;
-	Icon *pIcon;*/
 } CDStatusNotifierItem;
 
 

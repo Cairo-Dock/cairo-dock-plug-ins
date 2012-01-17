@@ -23,12 +23,6 @@
 #include <cairo-dock.h>
 
 
-void cd_satus_notifier_compute_grid (void);
-
-
-void cd_satus_notifier_draw_compact_icon (void);
-
-
 void cd_satus_notifier_reload_compact_mode (void);
 
 

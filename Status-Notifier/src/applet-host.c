@@ -98,7 +98,7 @@ void cd_satus_notifier_add_new_item_with_default (const gchar *cService, const g
 	myData.pItems = g_list_prepend (myData.pItems, pItem);
 	cd_debug ("item '%s' appended", pItem->cId);
 	
-	if (pItem->iStatus == CD_STATUS_PASSIVE)  // don't show a passive item.
+	if (! _item_is_visible (pItem))  // don't show a passive item.
 		return;
 	if (myConfig.bCompactMode)
 	{
@@ -118,7 +118,7 @@ void cd_satus_notifier_remove_item (const gchar *cService, int iPosition)
 	
 	myData.pItems = g_list_remove (myData.pItems, pItem);
 	
-	if (pItem->iStatus == CD_STATUS_PASSIVE)  // the item was passive, therefore not visible.
+	if (! _item_is_visible (pItem))  // the item was passive, therefore not visible.
 		return;
 	if (myConfig.bCompactMode)
 	{
@@ -257,7 +257,7 @@ void cd_satus_notifier_load_icons_from_items (void)
 	for (it = myData.pItems; it != NULL; it = it->next)
 	{
 		pItem = it->data;
-		if (pItem->iStatus != CD_STATUS_PASSIVE)
+		if (_item_is_visible (pItem))
 		{
 			Icon *pIcon = cd_satus_notifier_create_icon_for_item (pItem);
 			if (pIcon)

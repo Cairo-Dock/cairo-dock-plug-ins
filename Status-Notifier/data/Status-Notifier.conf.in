@@ -107,8 +107,11 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#b Left click pops up the items' menu
-left click menu = true
+#F[Display;gtk-dialog-info]
+frame_disp =
+
+#b Hide inactive items
+hide inactive = true
 
 #Y[Compact;1;2;Sub-dock;0;0] How to display items:
 mode = 0
@@ -118,3 +121,9 @@ auto-resize = true
 
 #i[1;4] Number of lines to pack items in:
 nb lines = 2
+
+#F[Behaviour;gtk-execute]
+frame_behav =
+
+#b Left click pops up the items' menu
+left-click menu = true
