@@ -336,7 +336,7 @@ gchar *cd_satus_notifier_search_item_icon_s_path (CDStatusNotifierItem *pItem)
 	gchar *cIconPath = NULL;
 	if (pItem->cIconThemePath != NULL)  // workaround pour des applis telles que dropbox qui trouvent malin de specifier des icones avec des noms hyper generiques (idle.png).
 	{
-		cIconPath = g_strdup_printf ("%s/%s", pItem->cIconThemePath, pItem->cIconName);
+		cIconPath = g_strdup_printf ("%s/%s", pItem->cIconThemePath, cImageName);
 		if (! g_file_test (cIconPath, G_FILE_TEST_EXISTS))
 		{
 			g_free (cIconPath);
@@ -346,9 +346,12 @@ gchar *cd_satus_notifier_search_item_icon_s_path (CDStatusNotifierItem *pItem)
 	
 	if (cIconPath == NULL)
 	{
-		cIconPath = cairo_dock_search_icon_s_path (pItem->cIconName);
+		cIconPath = cairo_dock_search_icon_s_path (cImageName);
 	}
-	
+
+	if (cIconPath == NULL)
+		cIconPath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+
 	return cIconPath;
 }
 
