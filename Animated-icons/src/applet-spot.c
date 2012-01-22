@@ -51,7 +51,7 @@ void cd_animation_render_spot (Icon *pIcon, CairoDock *pDock, gdouble fRadiusFac
 		glRotatef (90, 0., 0., 1.);
 	double fY = (- pIcon->fHeight + CD_ANIMATIONS_SPOT_HEIGHT) * pIcon->fScale/2;  // * fRadiusFactor
 	if (pDock->container.bUseReflect)
-		fY -= MIN (myIconsParam.fReflectSize, CD_ANIMATIONS_SPOT_HEIGHT/2);
+		fY -= MIN (pDock->iIconSize * myIconsParam.fReflectHeightRatio, CD_ANIMATIONS_SPOT_HEIGHT/2);
 	if (! pDock->container.bDirectionUp)
 		fY = -fY;
 	glTranslatef (0., fY, 0.);
@@ -81,7 +81,7 @@ void cd_animation_render_halo (Icon *pIcon, CairoDock *pDock, gdouble fRadiusFac
 		glRotatef (90, 0., 0., 1.);
 	double fY = CD_ANIMATIONS_SPOT_HEIGHT * (1 + cos (G_PI * fHaloRotationAngle / 180.))/2 - pIcon->fHeight * pIcon->fScale/2;  // * fRadiusFactor
 	if (pDock->container.bUseReflect)
-		fY -= MIN (myIconsParam.fReflectSize, CD_ANIMATIONS_SPOT_HEIGHT/2);
+		fY -= MIN (pDock->iIconSize * myIconsParam.fReflectHeightRatio, CD_ANIMATIONS_SPOT_HEIGHT/2);
 	if (! pDock->container.bDirectionUp)
 		fY = -fY;
 	double fX = .9 * pIcon->fWidth * pIcon->fScale/2;  // * fRadiusFactor
@@ -115,7 +115,7 @@ void cd_animation_render_spot_front (Icon *pIcon, CairoDock *pDock, gdouble fRad
 		glRotatef (90, 0., 0., 1.);
 	double fY = (- pIcon->fHeight + CD_ANIMATIONS_SPOT_HEIGHT/2 + pIcon->fHeight * fRadiusFactor) * pIcon->fScale/2;  // CD_ANIMATIONS_SPOT_HEIGHT/2 * fRadiusFactor
 	if (pDock->container.bUseReflect)
-		fY -= MIN (myIconsParam.fReflectSize, CD_ANIMATIONS_SPOT_HEIGHT/2);
+		fY -= MIN (pDock->iIconSize * myIconsParam.fReflectHeightRatio, CD_ANIMATIONS_SPOT_HEIGHT/2);
 	if (! pDock->container.bDirectionUp)
 		fY = -fY;
 	glTranslatef (0., fY, 0.);

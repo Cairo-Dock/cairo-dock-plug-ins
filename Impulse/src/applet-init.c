@@ -127,10 +127,11 @@ CD_APPLET_RELOAD_BEGIN
 		if (myConfig.bLaunchAtStartup && myConfig.bFree)
 		{
 			cairo_dock_detach_icon_from_dock (myIcon, myDock);
-			cairo_dock_update_dock_size (myDock);
 		}
 		else
-			cairo_dock_insert_icon_in_dock (myIcon, myDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
+		{
+			cairo_dock_insert_icon_in_dock (myIcon, myDock, CAIRO_DOCK_ANIMATE_ICON);
+		}
 
 		if (bWasLaunched || (myConfig.bLaunchAtStartup && myConfig.bFree)) // maybe the time has changed... or if it's automatically launched
 			cd_impulse_launch_task ();

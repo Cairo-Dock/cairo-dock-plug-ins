@@ -62,8 +62,8 @@ static void calculate_icons (CairoDesklet *pDesklet)
 	
 	pIcon->fWidth = MAX (1, pDesklet->container.iWidth - pSimple->iLeftMargin - pSimple->iRightMargin);
 	pIcon->fHeight = MAX (1, pDesklet->container.iHeight - pSimple->iTopMargin - pSimple->iBottomMargin);
-	//pIcon->iImageWidth = pIcon->fWidth;
-	//pIcon->iImageHeight = pIcon->fHeight;
+	pIcon->iImageWidth = pIcon->fWidth;
+	pIcon->iImageHeight = pIcon->fHeight;
 	pIcon->fDrawX = pSimple->iLeftMargin;
 	pIcon->fDrawY = pSimple->iTopMargin;
 	pIcon->fWidthFactor = 1.;

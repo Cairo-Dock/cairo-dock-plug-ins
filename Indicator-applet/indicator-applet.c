@@ -220,6 +220,7 @@ void cd_indicator_set_icon (CDAppletIndicator *pIndicator, const gchar *cStatusI
 
 void cd_indicator_reload_icon (CDAppletIndicator *pIndicator)
 {
+	g_return_if_fail (pIndicator != NULL);
 	cd_indicator_set_icon (pIndicator, pIndicator->cStatusIcon);
 }
 

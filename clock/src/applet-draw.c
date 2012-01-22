@@ -124,7 +124,8 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			}
 			if (fZoomY_ > fZoomX_)
 			{
-				double fMaxScale = cairo_dock_get_max_scale (myContainer);
+				///double fMaxScale = cairo_dock_get_max_scale (myContainer);
+				double fMaxScale = (myIcon->fHeight != 0 ? (myContainer->bIsHorizontal ? myIcon->iImageHeight : myIcon->iImageWidth) / myIcon->fHeight : 1.);
 				fZoomY_ = MAX (fZoomX_, 16. * fMaxScale / h_);  // en mode horizontal, on n'a pas besoin que le texte remplisse toute la hauteur de l'icone. 16 pixels de haut sont suffisant pour etre lisible.
 			}
 		}

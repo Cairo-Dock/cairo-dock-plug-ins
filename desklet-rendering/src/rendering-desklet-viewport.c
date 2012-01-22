@@ -335,7 +335,9 @@ static void calculate_icons (CairoDesklet *pDesklet)
 		{
 			pIcon->fWidth = pViewport->iIconSize;
 			pIcon->fHeight = pViewport->iIconSize;
-		
+			pIcon->iImageWidth = pIcon->fWidth;
+			pIcon->iImageHeight = pIcon->fHeight;
+			
 			pIcon->fScale = 1.;
 			pIcon->fAlpha = 1.;
 			pIcon->fWidthFactor = 1.;

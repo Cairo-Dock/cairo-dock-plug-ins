@@ -104,7 +104,7 @@ gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Wind
 		///CD_APPLET_LEAVE_IF_FAIL (bSuccess, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 		if (!bSuccess)
 		{
-			cd_warning ("xkl_engine_get_state() failed, we use the first keyboard layout as a workaround");
+			cd_warning ("xkl_engine_get_state() failed, we use the first keyboard layout as a workaround (%d, %d)", state.group, state.indicators);
 			state.group = 0;
 			state.indicators = 0;
 		}
@@ -131,13 +131,13 @@ gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Wind
 		int i;
 		if (myConfig.bShowKbdIndicator && pIndicatorNames != NULL)
 		{
-			if (myData.iCurrentGroup == -1 && state.indicators == 0)  // c'est probablement un bug dans libxklavier qui fait que l'indicateur n'est pas defini au debut.
+			/**if (myData.iCurrentGroup == -1 && state.indicators == 0)  // c'est probablement un bug dans libxklavier qui fait que l'indicateur n'est pas defini au debut.
 			{
 				cd_debug ("on force le num lock");
 				state.indicators = 2;  // num lock, enfin j'espere que c'est toujours le cas ...
 				xkl_engine_save_state (pEngine, Xid, &state);
 				xkl_engine_lock_group (pEngine, state.group);
-			}
+			}*/
 			/**for (i = 0; i < 2; i ++)  // on parcours le champ de bits, mais les indicateurs Compose/Suspend/Misc/Mail/Mouse Keys/etc ne nous interessent pas !
 			{
 				if ((state.indicators >> i) & 1)  // i-eme bit a 1.

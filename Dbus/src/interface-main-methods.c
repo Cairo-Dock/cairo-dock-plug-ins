@@ -1018,7 +1018,7 @@ gboolean cd_dbus_main_add_temporary_icon (dbusMainObject *pDbusCallback, GHashTa
 	}
 	else if (strcmp (cType, "Separator") == 0)
 	{
-		pIcon = cairo_dock_create_separator_icon (CAIRO_DOCK_LAUNCHER, NULL);  // NULL because we'll load the icon ourselves later.
+		pIcon = cairo_dock_create_separator_icon (CAIRO_DOCK_LAUNCHER);
 	}
 	else
 	{
@@ -1028,10 +1028,9 @@ gboolean cd_dbus_main_add_temporary_icon (dbusMainObject *pDbusCallback, GHashTa
 	pIcon->cParentDockName = g_strdup (cParentDockName);
 	
 	//\_______________ load it inside the dock.
-	cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (pParentDock));
+	cairo_dock_insert_icon_in_dock (pIcon, pParentDock, CAIRO_DOCK_ANIMATE_ICON);
 	
-	cairo_dock_insert_icon_in_dock (pIcon, pParentDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
-	cairo_dock_start_icon_animation (pIcon, pParentDock);
+	///cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (pParentDock));
 	
 	if (pIcon->cClass != NULL)
 	{

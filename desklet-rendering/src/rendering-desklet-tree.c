@@ -142,6 +142,8 @@ static void calculate_icons (CairoDesklet *pDesklet)
 			pIcon->fWidth = 48 * MIN (pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
 			pIcon->fHeight = 48 * MIN (pTree->fTreeWidthFactor, pTree->fTreeHeightFactor);
 		}
+		pIcon->iImageWidth = pIcon->fWidth;
+		pIcon->iImageHeight = pIcon->fHeight;
 	}
 }
 

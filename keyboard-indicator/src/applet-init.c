@@ -60,13 +60,21 @@ static void _load_bg_image (void)
 }
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
+static gboolean _init (gpointer data)
+{
+	cd_debug ("INIT XKBD");
+	g_return_val_if_fail (myApplet != NULL, FALSE);
+	Window Xid = cairo_dock_get_current_active_window ();
+	cd_xkbd_keyboard_state_changed (myApplet, &Xid);
+	return FALSE;
+}
 CD_APPLET_INIT_BEGIN
 	if (myDesklet)
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 	}
 	
-	myConfig.textDescription.iSize = (int) myIcon->fHeight * myConfig.fTextRatio;
+	myConfig.textDescription.iSize = (int) myIcon->iImageHeight * myConfig.fTextRatio;
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -91,8 +99,9 @@ CD_APPLET_INIT_BEGIN
 	XklEngine *pEngine = xkl_engine_get_instance (dsp);
 	xkl_engine_start_listen (pEngine, XKLL_MANAGE_WINDOW_STATES | XKLL_MANAGE_LAYOUTS);*/
 	
-	Window Xid = cairo_dock_get_current_active_window ();
-	cd_xkbd_keyboard_state_changed (myApplet, &Xid);
+	g_timeout_add_seconds (1, _init, NULL);
+	///Window Xid = cairo_dock_get_current_active_window ();
+	///cd_xkbd_keyboard_state_changed (myApplet, &Xid);
 CD_APPLET_INIT_END
 
 
@@ -116,7 +125,7 @@ CD_APPLET_STOP_END
 
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
-	myConfig.textDescription.iSize = (int) myIcon->fHeight * myConfig.fTextRatio;
+	myConfig.textDescription.iSize = (int) myIcon->iImageHeight * myConfig.fTextRatio;
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{

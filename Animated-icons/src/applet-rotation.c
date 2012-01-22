@@ -261,7 +261,7 @@ void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimatio
 			else
 			{
 				glTranslatef (0., fOffsetY, 0.);
-				//glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, myIconsParam.fReflectSize * pDock->container.fRatio, 1.);
+				//glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio, 1.);
 			}
 			glScalef (1., -1., 1.);
 		}
@@ -270,12 +270,12 @@ void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimatio
 			if (pDock->container.bDirectionUp)
 			{
 				glTranslatef (fOffsetY, 0., 0.);
-				//glScalef (- myIconsParam.fReflectSize * pDock->container.fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
+				//glScalef (- pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
 			}
 			else
 			{
 				glTranslatef (- fOffsetY, 0., 0.);
-				//glScalef (myIconsParam.fReflectSize * pDock->container.fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
+				//glScalef (pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
 			}
 			glScalef (-1., 1., 1.);
 		}

@@ -422,8 +422,8 @@ void cd_animations_draw_wobbly_icon (Icon *pIcon, CairoDock *pDock, CDAnimationD
 	{
 		glPushMatrix ();
 		double x0, y0, x1, y1;
-		double fReflectRatio = myIconsParam.fReflectSize * pDock->container.fRatio / pIcon->fHeight / pIcon->fScale;
-		///double fOffsetY = pIcon->fHeight * pIcon->fScale/2 + (myIconsParam.fReflectSize/2 + pIcon->fDeltaYReflection) * pDock->container.fRatio;
+		double fReflectRatio = pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio / pIcon->fHeight / pIcon->fScale;
+		///double fOffsetY = pIcon->fHeight * pIcon->fScale/2 + (pDock->iIconSize * myIconsParam.fReflectHeightRatio/2 + pIcon->fDeltaYReflection) * pDock->container.fRatio;
 		double fOffsetY = pIcon->fHeight * pIcon->fScale + pIcon->fDeltaYReflection;
 		if (pDock->container.bIsHorizontal)
 		{

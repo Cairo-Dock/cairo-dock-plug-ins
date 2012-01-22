@@ -277,8 +277,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 				&labelDescription,
 				fScale,
 				iWidth,
-				&myData.iDateWidth, &myData.iDateHeight,
-				NULL, NULL);
+				&myData.iDateWidth, &myData.iDateHeight);
 			myData.iDateWidth *= fScale;
 			myData.iDateHeight *= fScale;
 			//g_print ("date : %dx%d\n", myData.iDateWidth, myData.iDateHeight);

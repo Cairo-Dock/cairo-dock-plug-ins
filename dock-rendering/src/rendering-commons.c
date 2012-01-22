@@ -145,7 +145,7 @@ double cd_rendering_interpol (double x, double *fXValues, double *fYValues)
 
 void cd_rendering_draw_flat_separator_opengl (Icon *icon, CairoDock *pDock)
 {
-	double hi = myIconsParam.fReflectSize * pDock->container.fRatio + myDocksParam.iFrameMargin;
+	double hi = /**myIconsParam.fReflectSize*/pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio + myDocksParam.iFrameMargin;
 	double fLeftInclination = (icon->fDrawX - pDock->container.iWidth / 2) / iVanishingPointY;
 	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / iVanishingPointY;
 	
@@ -213,7 +213,7 @@ void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, 
 		prev_icon = icon;
 	if (next_icon == NULL)
 		next_icon = icon;
-	double hi = myIconsParam.fReflectSize * pDock->container.fRatio + myDocksParam.iFrameMargin;
+	double hi = /**myIconsParam.fReflectSize*/pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio + myDocksParam.iFrameMargin;
 	hi = (pDock->container.bDirectionUp ? pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale) : icon->fDrawY);
 	//g_print ("%s : hi = %.2f/%.2f\n", icon->cName, myIconsParam.fReflectSize * pDock->container.fRatio + myDocksParam.iFrameMargin, pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale));
 	double fLeftInclination = (icon->fDrawX - pDock->container.iWidth / 2) / iVanishingPointY;

@@ -37,7 +37,7 @@ extern double my_fSeparatorColor[4];
 extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 
 #define _define_parameters(hi, h0, H, l, r, gamma, h, w, dw)\
-	double hi = myIconsParam.fReflectSize * pDock->container.fRatio + myDocksParam.iFrameMargin;\
+	double hi = /**myIconsParam.fReflectSize*/pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio + myDocksParam.iFrameMargin;\
 	double h0max = (1 + myIconsParam.fAmplitude) * pDock->iMaxIconHeight * pDock->container.fRatio + MAX ((pDock->container.bIsHorizontal || !myIconsParam.bTextAlwaysHorizontal ? myIconsParam.iLabelSize : 0), myDocksParam.iFrameMargin + myDocksParam.iDockLineWidth);\
 	double h0 = pDock->iMaxIconHeight/** * pDock->container.fRatio*/;\
 	double H = iVanishingPointY;\
@@ -100,7 +100,7 @@ static void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	
 	// taille min.
 	double fRatio = (pDock->iRefCount == 0 && pDock->iVisibility == CAIRO_DOCK_VISI_RESERVE ? 1. : pDock->container.fRatio);  // prevent the dock from resizing itself and all the maximized windows each time an icon is removed/inserted.
-	pDock->iMinDockHeight = myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + myIconsParam.fReflectSize * fRatio + pDock->iMaxIconHeight * fRatio;
+	pDock->iMinDockHeight = myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + /**myIconsParam.fReflectSize*/pDock->iIconSize * myIconsParam.fReflectHeightRatio * fRatio + pDock->iMaxIconHeight * fRatio;
 	
 	double gamma_min = pDock->fFlatDockWidth / 2 / H;
 	double dw_min = h * gamma_min + r + (l+(r==0)*2)*sqrt(1+gamma_min*gamma_min);
@@ -147,7 +147,7 @@ static void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon,
 
 static void cd_rendering_make_3D_separator (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock, gboolean bIncludeEdges, gboolean bBackGround)
 {
-	double hi = myIconsParam.fReflectSize * pDock->container.fRatio + myDocksParam.iFrameMargin;
+	double hi = /**myIconsParam.fReflectSize*/pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio + myDocksParam.iFrameMargin;
 	hi = (pDock->container.bDirectionUp ? pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale) : icon->fDrawY);
 	double fLeftInclination = (icon->fDrawX - pDock->container.iWidth / 2) / iVanishingPointY;
 	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / iVanishingPointY;
@@ -200,7 +200,7 @@ static void cd_rendering_make_3D_separator (Icon *icon, cairo_t *pCairoContext, 
 
 static void cd_rendering_draw_3D_separator_edge (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock, gboolean bBackGround)
 {
-	double hi = myIconsParam.fReflectSize * pDock->container.fRatio + myDocksParam.iFrameMargin;
+	double hi = /**myIconsParam.fReflectSize*/pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio + myDocksParam.iFrameMargin;
 	hi = (pDock->container.bDirectionUp ? pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale) : icon->fDrawY);
 	double fLeftInclination = (icon->fDrawX - pDock->container.iWidth / 2) / iVanishingPointY;
 	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / iVanishingPointY;
@@ -427,7 +427,7 @@ static void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDo
 
 static gboolean _cd_separator_is_impacted (Icon *icon, CairoDock *pDock, double fXMin, double fXMax, gboolean bBackGround, gboolean bIncludeEdges)
 {
-	double hi = myIconsParam.fReflectSize * pDock->container.fRatio + myDocksParam.iFrameMargin;
+	double hi = /**myIconsParam.fReflectSize*/pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio + myDocksParam.iFrameMargin;
 	hi = (pDock->container.bDirectionUp ? pDock->container.iHeight - (icon->fDrawY + icon->fHeight * icon->fScale) : icon->fDrawY);
 	double fLeftInclination = fabs (icon->fDrawX - pDock->container.iWidth / 2) / iVanishingPointY;
 	double fRightInclination = fabs (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / iVanishingPointY;
@@ -716,7 +716,7 @@ static Icon *cd_rendering_calculate_icons_3D_plane (CairoDock *pDock)
 	Icon *pPointedIcon = cairo_dock_apply_wave_effect (pDock);
 	
 	//\____________________ On calcule les position/etirements/alpha des icones.
-	double fReflectionOffsetY = (pDock->container.bDirectionUp ? -1 : 1) * myIconsParam.fReflectSize * pDock->container.fRatio;
+	double fReflectionOffsetY = (pDock->container.bDirectionUp ? -1 : 1) * /**myIconsParam.fReflectSize*/pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio;
 	Icon* icon;
 	GList* ic;
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)

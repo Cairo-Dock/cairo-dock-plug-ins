@@ -59,7 +59,7 @@ static void cd_compute_size (CairoDock *pDock)
 			
 			continue;
 		}
-		fCurrentGroupWidth += pIcon->fWidth * my_fPanelRatio + myIconsParam.iIconGap;
+		fCurrentGroupWidth += pIcon->fWidth/** * my_fPanelRatio*/ + myIconsParam.iIconGap;
 		//g_print ("fCurrentGroupWidth <- %.2f\n", fCurrentGroupWidth);
 	}
 	if (fCurrentGroupWidth > 0)  // le groupe courant est non vide, sinon c'est juste un separateur a la fin.
@@ -104,17 +104,17 @@ static void cd_compute_size (CairoDock *pDock)
 			
 			continue;
 		}
-		fCurrentGroupWidth += pIcon->fWidth * my_fPanelRatio + myIconsParam.iIconGap;
+		fCurrentGroupWidth += pIcon->fWidth/** * my_fPanelRatio*/ + myIconsParam.iIconGap;
 		
 		pIcon->fXAtRest = x;
-		x += pIcon->fWidth * my_fPanelRatio + myIconsParam.iIconGap;
+		x += pIcon->fWidth/** * my_fPanelRatio*/ + myIconsParam.iIconGap;
 	}
 	
 	pDock->fMagnitudeMax = 0.;  // pas de vague.
 	
 	pDock->pFirstDrawnElement = pDock->icons;
 	
-	double hicon = pDock->iMaxIconHeight * my_fPanelRatio;
+	double hicon = pDock->iMaxIconHeight/** * my_fPanelRatio*/;
 	pDock->iDecorationsHeight = hicon * pDock->container.fRatio + 2 * myDocksParam.iFrameMargin;
 	
 	pDock->iMaxDockWidth = pDock->fFlatDockWidth = pDock->iMinDockWidth = MAX (W, x);
@@ -631,7 +631,7 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 			continue;
 		}
 		
-		pIcon->fScale = my_fPanelRatio;
+		pIcon->fScale = 1./** * my_fPanelRatio*/;
 		if (pIcon->fInsertRemoveFactor != 0)
 		{
 			if (pIcon->fInsertRemoveFactor > 0)
@@ -714,7 +714,7 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 		pIcon->fDrawX = pIcon->fX;
 		
 		if (pDock->container.bDirectionUp)
-			pIcon->fY = pDock->iMaxDockHeight - (myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + pIcon->fHeight * my_fPanelRatio);
+			pIcon->fY = pDock->iMaxDockHeight - (myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + pIcon->fHeight/** * my_fPanelRatio*/);
 		else
 			pIcon->fY = myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin;
 		pIcon->fDrawY = pIcon->fY;
@@ -809,6 +809,71 @@ void cd_update_input_shape (CairoDock *pDock)
 	}
 }
 
+static void set_icon_size (Icon *icon, CairoDock *pDock)
+{
+	int wi, hi;
+	if (pDock->iIconSize != 0)
+	{
+		wi = hi = pDock->iIconSize;
+	}
+	else  // same size as main dock.
+	{
+		wi = myIconsParam.iIconWidth;
+		hi = myIconsParam.iIconHeight;
+	}
+	wi *= my_fPanelRatio;
+	hi *= my_fPanelRatio;
+	g_print (" ~~~~~~~~~~~~ size: %d => %dx%d\n", pDock->iIconSize, wi, hi);
+	
+	// set the visible size at rest.
+	if (CAIRO_DOCK_ICON_TYPE_IS_APPLET (icon))  // for applets, consider (fWidth,fHeight) as a requested size, if not 0.
+	{
+		//g_print ("%s (%s, %.1fx%.1f\n", __func__, icon->pModuleInstance->pModule->pVisitCard->cModuleName, icon->fWidth, icon->fHeight);
+		if (icon->iImageWidth != 0)
+		{
+			if (pDock->container.bIsHorizontal)
+				icon->fWidth = icon->iImageWidth;
+			else
+				icon->fHeight = icon->iImageWidth;
+		}
+		if (icon->iImageHeight != 0)
+		{
+			if (pDock->container.bIsHorizontal)
+				icon->fHeight = icon->iImageHeight;
+			else
+				icon->fWidth = icon->iImageHeight;
+		}
+		if (icon->fWidth == 0)
+			icon->fWidth = wi;
+		if (icon->fHeight == 0 || icon->fHeight > hi)
+			icon->fHeight = hi;
+	}
+	else if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))  // separators have their own size.
+	{
+		icon->fWidth = myIconsParam.iSeparatorWidth * my_fPanelRatio;;
+		icon->fHeight = MIN (myIconsParam.iSeparatorHeight * my_fPanelRatio, hi);
+	}
+	else  // any other icon use the global size
+	{
+		icon->fWidth = wi;
+		icon->fHeight = hi;
+	}
+	
+	// texture size can be deduced then.
+	if (pDock->container.bIsHorizontal
+	|| (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon) && myIconsParam.bRevolveSeparator))
+	{
+		icon->iImageWidth = icon->fWidth;
+		icon->iImageHeight = icon->fHeight;
+	}
+	else
+	{
+		icon->iImageWidth = icon->fHeight;
+		icon->iImageHeight = icon->fWidth;
+	}
+	g_print (" ~~~~~~~~~~~~ => %dx%d\n", icon->iImageWidth, icon->iImageHeight);
+}
+
 void cd_rendering_register_panel_renderer (const gchar *cRendererName)
 {
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
@@ -820,6 +885,7 @@ void cd_rendering_register_panel_renderer (const gchar *cRendererName)
 	pRenderer->render_opengl = cd_render_opengl;
 	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;
 	pRenderer->update_input_shape = cd_update_input_shape;
+	pRenderer->set_icon_size = set_icon_size;
 	// parametres
 	pRenderer->bUseReflect = FALSE;
 	pRenderer->cDisplayedName = D_ (cRendererName);

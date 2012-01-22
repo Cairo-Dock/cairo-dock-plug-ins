@@ -118,7 +118,7 @@ CD_APPLET_RELOAD_BEGIN
 			area.x = (myDock->container.iWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX;
 			area.y = myDock->container.iHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight;
 			area.width = pAnimation->iFrameWidth;
-			area.height = pAnimation->iFrameHeight + myDock->container.bUseReflect * myIconsParam.fReflectSize;
+			area.height = pAnimation->iFrameHeight + myDock->container.bUseReflect * myDock->iIconSize * myIconsParam.fReflectHeightRatio;
 			cairo_dock_redraw_container_area (myContainer, &area);
 		}
 		
@@ -135,7 +135,7 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		else
 		{
-			cairo_dock_insert_icon_in_dock (myIcon, myDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON);
+			cairo_dock_insert_icon_in_dock (myIcon, myDock, ! CAIRO_DOCK_ANIMATE_ICON);
 		}
 		
 		penguin_start_animating (myApplet);

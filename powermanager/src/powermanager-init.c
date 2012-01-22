@@ -154,13 +154,11 @@ CD_APPLET_RELOAD_BEGIN
 		{ // hide the icon when not on battery and if needed
 			cairo_dock_detach_icon_from_dock (myIcon, myDock);
 			myData.bIsHidden = TRUE;
-			cairo_dock_update_dock_size (myDock);
 		}
 		else if (myData.bIsHidden)
 		{
-			cairo_dock_insert_icon_in_dock (myIcon, myDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
-			if (myData.bIsHidden)
-				cairo_dock_redraw_container (CAIRO_CONTAINER (myDock));
+			cairo_dock_insert_icon_in_dock (myIcon, myDock, CAIRO_DOCK_ANIMATE_ICON);
+			///cairo_dock_redraw_container (CAIRO_CONTAINER (myDock));
 			myData.bIsHidden = FALSE;
 		}
 	}

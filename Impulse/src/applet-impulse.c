@@ -305,10 +305,11 @@ static gboolean _impulse_restart_delayed (void)
 		if (myConfig.bFree) // It's maybe a hack but Cairo-Penguin does that :)
 		{
 			cairo_dock_detach_icon_from_dock (myIcon, myDock);
-			cairo_dock_update_dock_size (myDock);
 		}
 		else
-			cairo_dock_insert_icon_in_dock (myIcon, myDock, CAIRO_DOCK_UPDATE_DOCK_SIZE, CAIRO_DOCK_ANIMATE_ICON);
+		{
+			cairo_dock_insert_icon_in_dock (myIcon, myDock, CAIRO_DOCK_ANIMATE_ICON);
+		}
 
 		cd_impulse_launch_task (); // launched the animations
 	}

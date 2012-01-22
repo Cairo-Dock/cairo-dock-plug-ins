@@ -169,8 +169,8 @@ static void load_data (CairoDesklet *pDesklet)
 		fCentralSphereWidth = MAX (1, MIN (pDesklet->container.iWidth/3, pDesklet->container.iHeight/2));
 		fCentralSphereHeight = fCentralSphereWidth;
 		
-		pCaroussel->iEllipseHeight = MIN (fCentralSphereHeight, pDesklet->container.iHeight - 2 * (myIconsParam.iconTextDescription.iSize + myIconsParam.fReflectSize) - 1);
-		pCaroussel->iFrameHeight = MIN (pCaroussel->iEllipseHeight + myIconsParam.fReflectSize, pDesklet->container.iHeight);
+		pCaroussel->iEllipseHeight = MIN (fCentralSphereHeight, pDesklet->container.iHeight - 2 * (myIconsParam.iconTextDescription.iSize + /**myIconsParam.fReflectSize*/iMaxIconWidth * myIconsParam.fReflectHeightRatio) - 1);
+		pCaroussel->iFrameHeight = MIN (pCaroussel->iEllipseHeight + /**myIconsParam.fReflectSize*/iMaxIconWidth * myIconsParam.fReflectHeightRatio, pDesklet->container.iHeight);
 		pCaroussel->fInclinationOnHorizon = atan2 (pDesklet->container.iWidth/4, pCaroussel->iFrameHeight);
 		pCaroussel->fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pCaroussel->iFrameHeight, pCaroussel->fInclinationOnHorizon, myDocksParam.iDockRadius, myDocksParam.iDockLineWidth);
 		
@@ -266,8 +266,8 @@ static void calculate_icons (CairoDesklet *pDesklet)
 			pIcon->fWidth = MAX (1, pDesklet->container.iWidth * CAROUSSEL_RATIO_MAIN_ICON_DESKLET);
 			pIcon->fHeight = MAX (1, pDesklet->container.iHeight * CAROUSSEL_RATIO_MAIN_ICON_DESKLET);
 		}
-		//pIcon->iImageWidth = pIcon->fWidth;
-		//pIcon->iImageHeight = pIcon->fHeight;
+		pIcon->iImageWidth = pIcon->fWidth;
+		pIcon->iImageHeight = pIcon->fHeight;
 		
 		pIcon->fDrawX = (pDesklet->container.iWidth - pIcon->fWidth) / 2;
 		pIcon->fDrawY = (pDesklet->container.iHeight - pIcon->fHeight) / 2 + (pCaroussel->b3D ? myIconsParam.iconTextDescription.iSize : 0);
@@ -293,8 +293,8 @@ static void calculate_icons (CairoDesklet *pDesklet)
 			pIcon->fWidth = MAX (1, .2 * pDesklet->container.iWidth - myIconsParam.iconTextDescription.iSize);
 			pIcon->fHeight = MAX (1, .2 * pDesklet->container.iHeight - myIconsParam.iconTextDescription.iSize);
 		}
-		//pIcon->iImageWidth = pIcon->fWidth;
-		//pIcon->iImageHeight = pIcon->fHeight;
+		pIcon->iImageWidth = pIcon->fWidth;
+		pIcon->iImageHeight = pIcon->fHeight;
 		
 		pIcon->fScale = 1.;
 		pIcon->fAlpha = 1.;

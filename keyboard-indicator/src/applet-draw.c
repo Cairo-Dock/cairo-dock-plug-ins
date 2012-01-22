@@ -53,14 +53,16 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 			myData.iCurrentTextHeight = 0;
 			return;
 		}
-		double fMaxScale = cairo_dock_get_max_scale (myContainer);
+		///double fMaxScale = cairo_dock_get_max_scale (myContainer);
+		//double fMaxScale = (myIcon->fHeight != 0 ? (myContainer->bIsHorizontal ? myIcon->iImageHeight : myIcon->iImageWidth) / myIcon->fHeight : 1.);
 		myData.pCurrentSurface = cairo_dock_create_surface_from_text_full (cShortGroupName,
 			&myConfig.textDescription,
-			fMaxScale,
+			/**fMaxScale*/1.,
 			iWidth,
-			&myData.iCurrentTextWidth, &myData.iCurrentTextHeight, NULL, NULL);
-		myData.iCurrentTextWidth *= fMaxScale;
-		myData.iCurrentTextHeight *= fMaxScale;
+			&myData.iCurrentTextWidth, &myData.iCurrentTextHeight);
+		g_print ("KEYBOARD: %dx%d / %dx%d\n", myData.iCurrentTextWidth, myData.iCurrentTextHeight, myIcon->iImageWidth, myIcon->iImageHeight);
+		///myData.iCurrentTextWidth *= fMaxScale;
+		///myData.iCurrentTextHeight *= fMaxScale;
 		if (g_bUseOpenGL)
 		{
 			myData.iCurrentTexture = cairo_dock_create_texture_from_surface (myData.pCurrentSurface);
@@ -133,7 +135,7 @@ gboolean cd_xkbd_render_step_opengl (Icon *pIcon, CairoDockModuleInstance *myApp
 {
 	CD_APPLET_ENTER;
 	double f = CD_APPLET_GET_TRANSITION_FRACTION ();
-	//g_print ("%s (%.2f; %.2fx%.2f)\n", __func__, f, myIcon->fWidth, myIcon->fHeight);
+	g_print ("%s (%.2f; %.2fx%.2f)\n", __func__, f, myIcon->fWidth, myIcon->fHeight);
 	
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);

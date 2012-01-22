@@ -1003,7 +1003,7 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 	if(pDock->icons  == NULL)
 		return NULL;
 	gint sens = pDock->container.bDirectionUp ? 1 : -1;
-	double fReflectionOffsetY = - sens * myIconsParam.fReflectSize;
+	double fReflectionOffsetY = - sens * /**myIconsParam.fReflectSize*/pDock->iIconSize * myIconsParam.fReflectHeightRatio;
 	// On va calculer une parabole pour approcher la courbe de bézier : 
 	// Soient A: (xa,ya) B: (xb,yb) C: (xc,yc) trois points qui appartiennent à la parabole. xa, xb et xc sont distincts.
 	// P1(x)=(x-xb)(x-xc)

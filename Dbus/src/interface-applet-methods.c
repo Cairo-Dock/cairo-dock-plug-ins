@@ -670,9 +670,8 @@ gboolean cd_dbus_sub_applet_add_sub_icons (dbusSubApplet *pDbusSubApplet, const 
 				cairo_dock_set_icon_name (pInstance->pModule->pVisitCard->cModuleName, pIcon, pContainer);
 			if (cairo_dock_check_unique_subdock_name (pIcon))
 				cairo_dock_set_icon_name (pIcon->cName, pIcon, pContainer);
-			pIcon->pSubDock = cairo_dock_create_subdock (pIcon->cName, NULL, pInstance->pDock, pIconsList);
-			//cairo_dock_set_renderer (pIcon->pSubDock, cRenderer);
-			cairo_dock_update_dock_size (pIcon->pSubDock);
+			pIcon->pSubDock = cairo_dock_create_subdock (pIcon->cName, NULL, pInstance->pDock, pIconsList);  // NULL <=> default sub-docks renderer
+			///cairo_dock_update_dock_size (pIcon->pSubDock);
 		}
 		else
 		{
@@ -680,10 +679,9 @@ gboolean cd_dbus_sub_applet_add_sub_icons (dbusSubApplet *pDbusSubApplet, const 
 			for (ic = pIconsList; ic != NULL; ic = ic->next)
 			{
 				pOneIcon = ic->data;
-				cairo_dock_load_icon_buffers (pOneIcon, CAIRO_CONTAINER (pIcon->pSubDock));
-				cairo_dock_insert_icon_in_dock (pOneIcon, pIcon->pSubDock, ! CAIRO_DOCK_UPDATE_DOCK_SIZE, ! CAIRO_DOCK_ANIMATE_ICON);
+				///cairo_dock_load_icon_buffers (pOneIcon, CAIRO_CONTAINER (pIcon->pSubDock));
+				cairo_dock_insert_icon_in_dock (pOneIcon, pIcon->pSubDock, ! CAIRO_DOCK_ANIMATE_ICON);  // will load the buffer in idle
 			}
-			cairo_dock_update_dock_size (pIcon->pSubDock);
 			g_list_free (pIconsList);
 		}
 	}
