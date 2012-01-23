@@ -99,7 +99,8 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 				Icon *pExistingIcon = cairo_dock_get_icon_with_base_uri (pIconsList, cOneBookmark);
 				if (pExistingIcon != NULL)
 				{
-					if (cairo_dock_strings_differ (pExistingIcon->cName, cUserName) || cURI == NULL)  // signet inexistant ou qui a change => on le cree.
+					if ((cUserName && cairo_dock_strings_differ (pExistingIcon->cName, cUserName))
+					|| cURI == NULL)  // signet inexistant ou qui a change => on le cree. 'cUserName' may be NULL if the user has never set a user-name yet, but once he does, 'cUserName' is not NULL. so if 'cUserName' is NULL, it has not changed.
 					{
 						//g_print ("le signet '%s' a change, on le recree\n", pExistingIcon->cName);
 						CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pExistingIcon);
