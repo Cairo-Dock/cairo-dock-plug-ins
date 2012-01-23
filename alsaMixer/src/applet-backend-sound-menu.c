@@ -73,6 +73,7 @@ on_sound_state_updated (DBusGProxy * proxy, gint iNewState, CairoDockModuleInsta
 	CD_APPLET_ENTER;
 	if (iNewState != myData.iCurrentState)
 	{
+		myData.iCurrentState = iNewState;
 		gboolean bIsMute = (iNewState == MUTED
 		|| iNewState == UNAVAILABLE
 		|| iNewState == BLOCKED);
