@@ -821,8 +821,11 @@ static void set_icon_size (Icon *icon, CairoDock *pDock)
 		wi = myIconsParam.iIconWidth;
 		hi = myIconsParam.iIconHeight;
 	}
-	wi *= my_fPanelRatio;
-	hi *= my_fPanelRatio;
+	if (my_fPanelRatio != 0)  /// workaround; TODO: we need to load the config before loading any icon...
+	{
+		wi *= my_fPanelRatio;
+		hi *= my_fPanelRatio;
+	}
 	g_print (" ~~~~~~~~~~~~ size: %d => %dx%d\n", pDock->iIconSize, wi, hi);
 	
 	// set the visible size at rest.

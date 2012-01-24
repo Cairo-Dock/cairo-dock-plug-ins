@@ -662,40 +662,8 @@ gboolean cd_dbus_sub_applet_add_sub_icons (dbusSubApplet *pDbusSubApplet, const 
 		cd_warning ("the number of argument is incorrect\nThis may result in an incorrect number of loaded icons.");
 	}
 	
-	if (pInstance->pDock)
-	{
-		if (pIcon->pSubDock == NULL)
-		{
-			if (pIcon->cName == NULL)
-				cairo_dock_set_icon_name (pInstance->pModule->pVisitCard->cModuleName, pIcon, pContainer);
-			if (cairo_dock_check_unique_subdock_name (pIcon))
-				cairo_dock_set_icon_name (pIcon->cName, pIcon, pContainer);
-			pIcon->pSubDock = cairo_dock_create_subdock (pIcon->cName, NULL, pInstance->pDock, pIconsList);  // NULL <=> default sub-docks renderer
-			///cairo_dock_update_dock_size (pIcon->pSubDock);
-		}
-		else
-		{
-			GList *ic;
-			for (ic = pIconsList; ic != NULL; ic = ic->next)
-			{
-				pOneIcon = ic->data;
-				///cairo_dock_load_icon_buffers (pOneIcon, CAIRO_CONTAINER (pIcon->pSubDock));
-				cairo_dock_insert_icon_in_dock (pOneIcon, pIcon->pSubDock, ! CAIRO_DOCK_ANIMATE_ICON);  // will load the buffer in idle
-			}
-			g_list_free (pIconsList);
-		}
-	}
-	else
-	{
-		if (pIcon->pSubDock != NULL)  // precaution.
-		{
-			cairo_dock_destroy_dock (pIcon->pSubDock, pIcon->cName);
-			pIcon->pSubDock = NULL;
-		}
-		pInstance->pDesklet->icons = g_list_concat (pInstance->pDesklet->icons, pIconsList);
-		gpointer data[3] = {GINT_TO_POINTER (0), GINT_TO_POINTER (TRUE), NULL};
-		cairo_dock_set_desklet_renderer_by_name (pInstance->pDesklet, "Panel", (CairoDeskletRendererConfigPtr) data);
-	}
+	gpointer data[3] = {GINT_TO_POINTER (0), GINT_TO_POINTER (TRUE), NULL};
+	cairo_dock_insert_icons_in_applet (pInstance, pIconsList, NULL, "Panel", (CairoDeskletRendererConfigPtr) data);  // NULL <=> default sub-docks renderer
 	
 	return TRUE;
 }
@@ -713,43 +681,13 @@ gboolean cd_dbus_sub_applet_remove_sub_icon (dbusSubApplet *pDbusSubApplet, cons
 	
 	if (cIconID == NULL || strcmp (cIconID, "any") == 0)  // remove all
 	{
-		if (pInstance->pDesklet && pInstance->pDesklet->icons != NULL)
-		{
-			g_list_foreach (pInstance->pDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
-			g_list_free (pInstance->pDesklet->icons);
-			pInstance->pDesklet->icons = NULL;
-		}
-		if (pIcon->pSubDock != NULL)
-		{
-			if (pInstance->pDesklet)
-			{
-				cairo_dock_destroy_dock (pIcon->pSubDock, pIcon->cName);
-				pIcon->pSubDock = NULL;
-			}
-			else
-			{
-				g_list_foreach (pIcon->pSubDock->icons, (GFunc) cairo_dock_free_icon, NULL);
-				g_list_free (pIcon->pSubDock->icons);
-				pIcon->pSubDock->icons = NULL;
-				pIcon->pSubDock->pFirstDrawnElement = NULL;
-			}
-		}
+		cairo_dock_remove_all_icons_from_applet (pInstance);
 	}
 	else
 	{
 		GList *pIconsList = (pInstance->pDock ? (pIcon->pSubDock ? pIcon->pSubDock->icons : NULL) : pInstance->pDesklet->icons);
 		Icon *pOneIcon = cairo_dock_get_icon_with_command (pIconsList, cIconID);
-		if (pInstance->pDock)
-		{
-			cairo_dock_detach_icon_from_dock_full (pOneIcon, pIcon->pSubDock, FALSE);
-			cairo_dock_update_dock_size (pIcon->pSubDock);
-		}
-		else
-		{
-			pInstance->pDesklet->icons = g_list_remove (pInstance->pDesklet->icons, pOneIcon);
-			gtk_widget_queue_draw (pInstance->pDesklet->container.pWidget);
-		}
-		cairo_dock_free_icon (pOneIcon);
+		cairo_dock_remove_icon_from_applet (pInstance, pOneIcon);
 	}
 	
 	return TRUE;
