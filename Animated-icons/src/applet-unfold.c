@@ -31,7 +31,8 @@ void cd_animations_draw_unfolding_icon_cairo (Icon *pIcon, CairoDock *pDock, CDA
 	int w, h;
 	cairo_dock_get_icon_extent (pIcon, &w, &h);
 	double f = 1. - pIcon->pSubDock->fFoldingFactor;
-	double fMaxScale = cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock));
+	///double fMaxScale = cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock));
+	double fMaxScale = (pIcon->fHeight != 0 ? (pDock->container.bIsHorizontal ? pIcon->iImageHeight : pIcon->iImageWidth) / pIcon->fHeight : 1.);
 	double z = pIcon->fScale / fMaxScale * pDock->container.fRatio;
 	
 	//\______________ On dessine la boite derriere.
@@ -80,11 +81,12 @@ void cd_animations_draw_unfolding_icon_cairo (Icon *pIcon, CairoDock *pDock, CDA
 		if (! pDock->container.bDirectionUp)
 			cairo_translate (pCairoContext, .2*h, 0.);
 	}
-	cairo_scale(pCairoContext,
+	/**cairo_scale(pCairoContext,
 		.8,
-		.8);
+		.8);*/
 	int i;
 	double dx, dy;
+	int wi, hi;
 	Icon *icon;
 	GList *ic;
 	for (ic = pIcon->pSubDock->icons, i = 0; ic != NULL && i < 3; ic = ic->next, i++)
@@ -112,11 +114,18 @@ void cd_animations_draw_unfolding_icon_cairo (Icon *pIcon, CairoDock *pDock, CDA
 			else
 				dx = - (.1*i - f*1.5) * h/z;
 		}
+		
+		cairo_dock_get_icon_extent (icon, &wi, &hi);
+		
+		cairo_save (pCairoContext);
+		cairo_translate (pCairoContext, dx, dy);
+		cairo_scale (pCairoContext, .8 * w / wi, .8 * h / hi);
 		cairo_set_source_surface (pCairoContext,
 			icon->pIconBuffer,
-			dx,
-			dy);
+			0,
+			0);
 		cairo_paint_with_alpha (pCairoContext, 1. - f);
+		cairo_restore (pCairoContext);
 	}
 	cairo_restore (pCairoContext);
 	
@@ -151,7 +160,8 @@ void cd_animations_draw_unfolding_icon (Icon *pIcon, CairoDock *pDock, CDAnimati
 	int w, h;
 	cairo_dock_get_icon_extent (pIcon, &w, &h);
 	double f = 1. - pIcon->pSubDock->fFoldingFactor;
-	double fMaxScale = cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock));
+	///double fMaxScale = cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock));
+	double fMaxScale = (pIcon->fHeight != 0 ? (pDock->container.bIsHorizontal ? pIcon->iImageHeight : pIcon->iImageWidth) / pIcon->fHeight : 1.);
 	double z = pIcon->fScale / fMaxScale * pDock->container.fRatio;
 	
 	//\______________ On dessine la boite derriere.
