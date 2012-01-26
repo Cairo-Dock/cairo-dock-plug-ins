@@ -20,6 +20,9 @@ amplitude = 25
 
 [Panel]
 
+#b Physically separate groups of icons
+separators = true
+
 #e+[0.5;1.;smaller icons;normal icons] Ratio to apply on icons' size :
 #{At 1, the icons will have the same size as in other views.}
 ratio = .75

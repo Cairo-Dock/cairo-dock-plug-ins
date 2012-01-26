@@ -107,6 +107,7 @@ extern gint my_iCurveAmplitude;
 extern gdouble my_fPanelRadius;
 extern gdouble my_fPanelInclination;
 extern gdouble my_fPanelRatio;
+extern gboolean my_bPanelPhysicalSeparator;
 
 extern CairoDockSpeparatorType my_iDrawSeparator3D;
 
@@ -210,6 +211,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	my_fPanelRadius = 16;
 	my_fPanelInclination = 45. / 180. * G_PI;
 	my_fPanelRatio = cairo_dock_get_double_key_value (pKeyFile, "Panel", "ratio",  &bFlushConfFileNeeded, .75,   NULL, NULL);
+	my_bPanelPhysicalSeparator = cairo_dock_get_boolean_key_value (pKeyFile, "Panel", "separators",  &bFlushConfFileNeeded, TRUE,   NULL, NULL);
 	
 	cd_rendering_reload_rainbow_buffers ();
 CD_APPLET_GET_CONFIG_END
