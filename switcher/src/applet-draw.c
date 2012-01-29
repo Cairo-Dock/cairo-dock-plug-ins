@@ -148,14 +148,14 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 		if (r_ > r)  // on etire trop en largeur.
 		{
 			myData.switcher.fOneViewportWidth /= r_ / r;
-			dx = (double) iWidth/2 * (1 - r / r_);
-			w /= r_ / r;
+			w = myData.switcher.fOneViewportWidth * myData.switcher.iNbColumns + 2 * myConfig.iLineSize + (myData.switcher.iNbColumns - 1) * myConfig.iInLineSize;
+			dx = (double) (iWidth - w) / 2;
 		}
 		else
 		{
 			myData.switcher.fOneViewportHeight /= r / r_;
-			dy = (double) iHeight/2 * (1 - r_ / r);
-			h /= r / r_;
+			h = myData.switcher.fOneViewportHeight * myData.switcher.iNbLines + 2 * myConfig.iLineSize + (myData.switcher.iNbLines - 1) * myConfig.iInLineSize;
+			dy = (iHeight - h) / 2;
 		}
 	}
 	myData.switcher.fOffsetX = dx;

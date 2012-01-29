@@ -63,7 +63,6 @@ struct _AppletConfig {
 	gdouble RGBIndColors[4];
 	gint iInLineSize;
 	gint iLineSize;
-	gint iWLineSize;
 	gboolean bPreserveScreenRatio;
 	SwitcherDrawCurrentDesktopMode iDrawCurrentDesktopMode;
 	gboolean bDisplayHiddenWindows;
