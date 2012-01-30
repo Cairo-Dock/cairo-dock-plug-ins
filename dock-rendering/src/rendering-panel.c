@@ -113,8 +113,6 @@ static void cd_compute_size (CairoDock *pDock)
 	
 	pDock->fMagnitudeMax = 0.;  // pas de vague.
 	
-	pDock->pFirstDrawnElement = pDock->icons;
-	
 	double hicon = pDock->iMaxIconHeight/** * my_fPanelRatio*/;
 	pDock->iDecorationsHeight = hicon * pDock->container.fRatio + 2 * myDocksParam.iFrameMargin;
 	
@@ -162,7 +160,7 @@ static void cd_render (cairo_t *pCairoContext, CairoDock *pDock)
 	else
 	{
 		fDockWidth = cairo_dock_get_current_dock_width_linear (pDock);
-		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+		Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
 		fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX - fMargin : fExtraWidth / 2);
 		if (fDockOffsetX < fExtraWidth / 2)
 			fDockOffsetX = fExtraWidth / 2;
@@ -355,7 +353,7 @@ static void cd_render_optimized (cairo_t *pCairoContext, CairoDock *pDock, GdkRe
 	}
 	else
 	{
-		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+		Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
 		fOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX - fMargin : fRadius + fLineWidth / 2);
 	}
 	double fDockWidth = cairo_dock_get_current_dock_width_linear (pDock);
@@ -400,7 +398,7 @@ static void cd_render_optimized (cairo_t *pCairoContext, CairoDock *pDock, GdkRe
 	//\____________________ On dessine les icones impactees.
 	cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
 
-	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+	GList *pFirstDrawnElement = pDock->icons;
 	if (pFirstDrawnElement != NULL)
 	{
 		double fXMin = (pDock->container.bIsHorizontal ? pArea->x : pArea->y), fXMax = (pDock->container.bIsHorizontal ? pArea->x + pArea->width : pArea->y + pArea->height);
@@ -450,7 +448,7 @@ static void cd_render_opengl (CairoDock *pDock)
 	double fFrameHeight = pDock->iDecorationsHeight + fLineWidth;
 	
 	double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du cadre.
-	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+	GList *pFirstDrawnElement = pDock->icons;
 	if (pFirstDrawnElement == NULL)
 		return ;
 	if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.

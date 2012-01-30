@@ -47,7 +47,7 @@ extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 
 static void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 {
-	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth);
+	cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth);
 	
 	//pDock->iMaxDockHeight = (int) ((1 + myIconsParam.fAmplitude) * pDock->iMaxIconHeight + myIconsParam.fReflectSize * pDock->container.fRatio) + myIconsParam.iLabelSize + myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin;
 	
@@ -56,7 +56,7 @@ static void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	
 	// 1ere estimation.
 	// w
-	w = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., 2 * dw));  // pDock->iMaxDockWidth
+	w = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->fFlatDockWidth, 1., 2 * dw));  // pDock->iMaxDockWidth
 	// -> gamma
 	gamma = w / 2 / H;
 	// -> h
@@ -80,7 +80,7 @@ static void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	if (cairo_dock_is_extended_dock (pDock) && w + 2 * dw < Ws)  // alors on etend.
 	{
 		double extra = Ws - w;
-		pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., extra));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
+		pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->fFlatDockWidth, 1., extra));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
 		double W = Ws - 2 * (r + (l+(r==0)*2)*sqrt(1+gamma*gamma));
 		double a = H + hi;
 		double b = H + hi + h0 - W / 2;
@@ -91,7 +91,7 @@ static void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	}
 	else  // rien d'autre a faire
 	{
-		pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., 2 * dw));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
+		pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->fFlatDockWidth, 1., 2 * dw));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
 	}
 	pDock->iDecorationsHeight = h;
 	//g_print ("h : %.2f -> %d\n", h, pDock->iDecorationsHeight);
@@ -309,7 +309,7 @@ static void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDo
 		gamma = w / 2 / H;
 		dw = h * gamma + r + (l+(r==0)*2)*sqrt(1+gamma*gamma);
 		h = pDock->iDecorationsHeight;
-		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+		Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
 		dx = (pFirstIcon != NULL ? pFirstIcon->fX - 0*myDocksParam.iFrameMargin : r);
 	}
 	
@@ -558,7 +558,7 @@ static void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, Cair
 	}
 	else
 	{
-		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+		Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
 		fOffsetX = (pFirstIcon != NULL ? pFirstIcon->fX - fMargin : fRadius + fLineWidth / 2);
 	}
 	double fDockWidth = cairo_dock_get_current_dock_width_linear (pDock);
@@ -613,7 +613,7 @@ static void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, Cair
 	cairo_restore (pCairoContext);
 	
 	//\____________________ On dessine les icones impactees.
-	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+	GList *pFirstDrawnElement = pDock->icons;
 	if (pFirstDrawnElement != NULL)
 	{
 		double fXMin = (pDock->container.bIsHorizontal ? pArea->x : pArea->y), fXMax = (pDock->container.bIsHorizontal ? pArea->x + pArea->width : pArea->y + pArea->height);
@@ -764,7 +764,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 		gamma = w / 2 / H;
 		dw = h * gamma + r + (l+(r==0)*2)*sqrt(1+gamma*gamma);
 		h = pDock->iDecorationsHeight;
-		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+		Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
 		dx = (pFirstIcon != NULL ? pFirstIcon->fX - myDocksParam.iFrameMargin : r);
 	}
 	

@@ -62,13 +62,13 @@ extern double my_fScrollSpeed;
 
 void cd_rendering_calculate_max_dock_size_caroussel (CairoDock *pDock)
 {
-	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth, pDock->iScrollOffset);
+	cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth, pDock->iScrollOffset);
 	
 	int iEllipseHeight = (1 + myIconsParam.fAmplitude) * pDock->iMaxIconHeight / sqrt (1 + my_fInclinationOnHorizon * my_fInclinationOnHorizon) + my_iGapOnEllipse;
 	pDock->iDecorationsHeight = iEllipseHeight + 2 * myDocksParam.iFrameMargin + myIconsParam.fReflectSize;
 	
 	double fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, my_fInclinationOnHorizon, myDocksParam.iDockRadius, myDocksParam.iDockLineWidth);
-	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, my_fForegroundRatio, fExtraWidth));  // fExtraWidth/2 de chaque cote.
+	pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->fFlatDockWidth, my_fForegroundRatio, fExtraWidth));  // fExtraWidth/2 de chaque cote.
 	///pDock->iMaxDockWidth = MIN (pDock->iMaxDockWidth, g_iMaxAuthorizedWidth);
 	
 	pDock->iMaxDockHeight = myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + myIconsParam.fReflectSize + iEllipseHeight + pDock->iMaxIconHeight;  // de bas en haut;
@@ -171,7 +171,7 @@ void cd_rendering_calculate_construction_parameters_caroussel2 (Icon *icon, Cair
 
 void cd_rendering_render_icons_caroussel (cairo_t *pCairoContext, CairoDock *pDock)
 {
-	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+	GList *pFirstDrawnElement = pDock->icons;
 	if (pFirstDrawnElement == NULL)
 		return;
 	//double fChangeAxes = 0.5 * (pDock->container.iWidth - pDock->iMaxDockWidth);
@@ -288,7 +288,7 @@ Icon *cd_rendering_calculate_icons_caroussel (CairoDock *pDock)
 	int iFrameHeight = iEllipseHeight + 2 * myDocksParam.iFrameMargin + myIconsParam.fReflectSize;
 	double fExtraWidth = cairo_dock_calculate_extra_width_for_trapeze (iFrameHeight, my_fInclinationOnHorizon, myDocksParam.iDockRadius, myDocksParam.iDockLineWidth);
 	double fLinearWidth = cairo_dock_get_current_dock_width_linear (pDock);
-	Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+	Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
 	double fXFirstIcon = (pFirstIcon != NULL ? pFirstIcon->fX : 0);
 	Icon* icon;
 	GList* ic;

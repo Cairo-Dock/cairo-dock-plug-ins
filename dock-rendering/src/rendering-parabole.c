@@ -269,9 +269,9 @@ static void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 	}
 	
 	pDock->fMagnitudeMax = my_fParaboleMagnitude;
-	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth);
+	cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth);
 	
-	int iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., 0));
+	int iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->fFlatDockWidth, 1., 0));
 	GList* ic;
 	Icon *icon;
 	pDock->iMaxLabelWidth = 0;
@@ -344,7 +344,7 @@ static void cd_rendering_render_parabole (cairo_t *pCairoContext, CairoDock *pDo
 	
 	
 	//\____________________ On dessine les icones et leurs etiquettes, mais separement.
-	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+	GList *pFirstDrawnElement = pDock->icons;
 	if (pFirstDrawnElement == NULL)
 		return;
 	
@@ -512,7 +512,7 @@ static double cd_rendering_calculate_wave_position (CairoDock *pDock, double fCu
 {
 	//cd_debug ("%s (%.2f)", __func__, fCurvilignAbscisse);
 	
-	Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+	Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
 	if (pFirstIcon == NULL || fCurvilignAbscisse <= 0)
 		return 0;
 	double fWaveOffset, fWaveExtrema;
@@ -522,7 +522,7 @@ static double cd_rendering_calculate_wave_position (CairoDock *pDock, double fCu
 	do
 	{
 		//cd_debug ("  x_abs : %.2f / %.2f", x_abs, pDock->fFlatDockWidth);
-		cairo_dock_calculate_wave_with_position_linear (pDock->icons, pDock->pFirstDrawnElement, x_abs, fMagnitude, pDock->fFlatDockWidth, pDock->fFlatDockWidth, pDock->container.iHeight, 0*pDock->fAlign, pDock->fFoldingFactor, pDock->container.bDirectionUp);
+		cairo_dock_calculate_wave_with_position_linear (pDock->icons, x_abs, fMagnitude, pDock->fFlatDockWidth, pDock->fFlatDockWidth, pDock->container.iHeight, 0*pDock->fAlign, pDock->fFoldingFactor, pDock->container.bDirectionUp);
 		fWaveOffset = - pFirstIcon->fX;
 		
 		fWaveExtrema = fWaveOffset + x_abs;
@@ -581,7 +581,7 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	//cd_debug (" => x_abs : %d (fMagnitude:%.2f ; fFoldingFactor:%.2f)", x_abs, fMagnitude, pDock->fFoldingFactor);
 	
 	//\_______________ On en deduit l'ensemble des parametres des icones.
-	pPointedIcon = cairo_dock_calculate_wave_with_position_linear (pDock->icons, pDock->pFirstDrawnElement, x_abs, fMagnitude, (int) pDock->fFlatDockWidth, (int) pDock->fFlatDockWidth, pDock->container.iHeight, 0*pDock->fAlign, pDock->fFoldingFactor, pDock->container.bDirectionUp);
+	pPointedIcon = cairo_dock_calculate_wave_with_position_linear (pDock->icons, x_abs, fMagnitude, (int) pDock->fFlatDockWidth, (int) pDock->fFlatDockWidth, pDock->container.iHeight, 0*pDock->fAlign, pDock->fFoldingFactor, pDock->container.bDirectionUp);
 	//cd_debug (" => pPointedIcon : %s; %.2f", pPointedIcon->cName, pPointedIcon->fX);
 	
 	
@@ -595,7 +595,7 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 		theta_ = -theta_;
 	//g_print ("theta_ : %.2fdeg\n", theta_);
 	
-	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+	GList *pFirstDrawnElement = pDock->icons;
 	ic = pFirstDrawnElement;
 	Icon *pFirstIcon = pFirstDrawnElement->data;
 	double fOrientationMax = G_PI/2 - atan (my_fParaboleRatio * my_fParaboleCurvature);
@@ -688,7 +688,7 @@ static void cd_rendering_render_parabole_opengl (CairoDock *pDock)
 		cairo_dock_draw_string_opengl (pDock, myIconsParam.iStringLineWidth, FALSE, FALSE);
 	
 	//\____________________ On dessine les icones et leurs etiquettes, mais separement.
-	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+	GList *pFirstDrawnElement = pDock->icons;
 	if (pFirstDrawnElement == NULL)
 		return;
 	

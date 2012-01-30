@@ -37,11 +37,7 @@ void penguin_move_in_dock (CairoDockModuleInstance *myApplet)
 	g_return_if_fail (pAnimation != NULL);
 	int iPreviousPositionX = myData.iCurrentPositionX, iPreviousPositionY = myData.iCurrentPositionY;
 	
-	Icon *pFirstDrawnIcon = NULL;
-	if (myDock->pFirstDrawnElement != NULL)
-		pFirstDrawnIcon = myDock->pFirstDrawnElement->data;
-	if (pFirstDrawnIcon == NULL && myDock->icons != NULL)
-		pFirstDrawnIcon = myDock->icons->data;
+	Icon *pFirstDrawnIcon = cairo_dock_get_first_icon (myDock->icons);
 	int iXMin = (pFirstDrawnIcon != NULL ? pFirstDrawnIcon->fXAtRest : 0);
 	iXMin = 0;
 	int iXMax = iXMin + myDock->fFlatDockWidth;

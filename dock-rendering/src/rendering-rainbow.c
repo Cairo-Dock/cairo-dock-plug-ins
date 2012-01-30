@@ -43,7 +43,7 @@ static GLfloat* pColorTab = NULL;
 static void cd_rendering_calculate_max_dock_size_rainbow (CairoDock *pDock)
 {
 	pDock->fMagnitudeMax = my_fRainbowMagnitude;
-	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth);
+	cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth);
 	
 	double fMaxScale =  1. + my_fRainbowMagnitude * myIconsParam.fAmplitude;
 	int iMaxIconWidth = pDock->iMaxIconHeight + my_iSpaceBetweenIcons;
@@ -113,7 +113,7 @@ static void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDoc
 			0.,
 			0.);
 		
-		GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+		GList *pFirstDrawnElement = pDock->icons;
 		GList *ic = pFirstDrawnElement;
 		Icon *pFirstIcon = pFirstDrawnElement->data;
 		double fCurrentRadius=0;
@@ -160,7 +160,7 @@ static void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDoc
 	//\____________________ On dessine le cadre.
 	if (fRadius == 0)
 	{
-		Icon *icon = cairo_dock_get_last_drawn_icon (pDock);
+		Icon *icon = cairo_dock_get_last_icon (pDock->icons);
 		if (icon)
 			fRadius = icon->fX - (pDock->container.bDirectionUp ? pDock->iMaxIconHeight * fMaxScale : 0);
 	}
@@ -416,7 +416,7 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	Icon* icon, *prev_icon;
 	GList* ic;
 	
-	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+	GList *pFirstDrawnElement = pDock->icons;
 	ic = pFirstDrawnElement;
 	Icon *pFirstIcon = pFirstDrawnElement->data;
 	
@@ -600,7 +600,7 @@ static void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 			glScalef (1., -1., 1.);
 		}
 		
-		GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+		GList *pFirstDrawnElement = pDock->icons;
 		GList *ic = pFirstDrawnElement;
 		Icon *pFirstIcon = pFirstDrawnElement->data;
 		double fCurrentRadius=0;
@@ -646,7 +646,7 @@ static void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 	//\____________________ On dessine le cadre.
 	if (fRadius == 0)
 	{
-		Icon *icon = cairo_dock_get_last_drawn_icon (pDock);
+		Icon *icon = cairo_dock_get_last_icon (pDock->icons);
 		if (icon)
 			fRadius = icon->fX - (pDock->container.bDirectionUp ? pDock->iMaxIconHeight * fMaxScale : 0);
 	}

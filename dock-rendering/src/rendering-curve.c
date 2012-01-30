@@ -109,7 +109,7 @@ static void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	}
 	
 	// on calcule tout ce qu'on peut.
-	pDock->pFirstDrawnElement = cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth);
+	cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth);
 	
 	pDock->iDecorationsHeight = myDocksParam.iFrameMargin + my_iCurveAmplitude + .5 * pDock->iMaxIconHeight;  // de bas en haut.
 	
@@ -122,7 +122,7 @@ static void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	
 	// taille max
 	//w
-	w = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., 0.));  // etendue max des icones, sans le cadre.
+	w = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->fFlatDockWidth, 1., 0.));  // etendue max des icones, sans le cadre.
 	// -> dw
 	dw = w * xi / (1 - 2 * xi);  // abscisse de la 1ere icone pour satisfaire a la contrainte y=hi.
 	// -> pointe
@@ -135,11 +135,11 @@ static void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	if (cairo_dock_is_extended_dock (pDock) && w + 2 * dw < Ws)  // alors on etend.
 	{
 		double extra = Ws - w;
-		pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., extra));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
+		pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->fFlatDockWidth, 1., extra));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
 	}
 	else  // rien d'autre a faire
 	{
-		pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->pFirstDrawnElement, pDock->fFlatDockWidth, 1., 2 * dw));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
+		pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->fFlatDockWidth, 1., 2 * dw));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
 	}
 	
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth - 4 * fDeltaTip;  // 4 car 2*(interieur+exterieur).
@@ -253,7 +253,7 @@ static void cd_rendering_make_3D_curve_separator (Icon *icon, cairo_t *pCairoCon
 		double xi = xCurve (my_fCurveCurvature, ti);
 		double curveOffsetX = fDockWidth * xi / (1 - 2 * xi);
 		
-		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+		Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
 		double fDockOffsetX = (pFirstIcon != NULL ? pFirstIcon->fDrawX - curveOffsetX : fLineWidth / 2);
 		
 		
@@ -546,7 +546,7 @@ static void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 	else
 	{
 		dw = w * xi / (1 - 2 * xi);
-		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+		Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
 		dx = (pFirstIcon != NULL ? pFirstIcon->fDrawX - dw : fLineWidth / 2);
 	}
 	if (pDock->container.bDirectionUp)
@@ -771,7 +771,7 @@ static void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDo
 	else
 	{
 		dw = w * xi / (1 - 2 * xi);
-		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+		Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
 		dx = (pFirstIcon != NULL ? pFirstIcon->fX - dw : fLineWidth / 2);  // la gauche du cadre suit la 1ere icone.
 	}
 	
@@ -897,7 +897,7 @@ static void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDo
 	//g_print ("x : %.2f => t : %.2f\n", x, t);*/
 	
 	//\____________________ On dessine les icones impactees.
-	GList *pFirstDrawnElement = (pDock->pFirstDrawnElement != NULL ? pDock->pFirstDrawnElement : pDock->icons);
+	GList *pFirstDrawnElement = pDock->icons;
 	if (pFirstDrawnElement != NULL)
 	{
 		double fXMin = (pDock->container.bIsHorizontal ? pArea->x : pArea->y), fXMax = (pDock->container.bIsHorizontal ? pArea->x + pArea->width : pArea->y + pArea->height);
@@ -1025,8 +1025,8 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 	}
 	else  // A et C correspondent au bas des icones extremes
 	{
-		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
-		Icon *pLastIcon = cairo_dock_get_last_drawn_icon (pDock);
+		Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
+		Icon *pLastIcon = cairo_dock_get_last_icon (pDock->icons);
 		xa = pFirstIcon->fX ; // icone de gauche
 		ya = 0;
 		xc = pLastIcon->fX;  // icone de droite
@@ -1115,7 +1115,7 @@ static void cd_rendering_render_curve_opengl (CairoDock *pDock)
 	}
 	else
 	{
-		Icon *pFirstIcon = cairo_dock_get_first_drawn_icon (pDock);
+		Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
 		dx = (pFirstIcon != NULL ? pFirstIcon->fDrawX - dw : fLineWidth / 2);
 	}
 	
