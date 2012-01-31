@@ -242,7 +242,7 @@ void penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 		}
 		
 		//\________________ les reflets.
-		CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
+		///CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
 	}
 	
 	CD_APPLET_REDRAW_MY_ICON;
@@ -331,11 +331,11 @@ void penguin_advance_to_next_frame (CairoDockModuleInstance *myApplet, PenguinAn
 			{
 				cairo_dock_erase_cairo_context (myDrawContext);  // CD_APPLET_SET_SURFACE_ON_MY_ICON (NULL)
 				
-				if (myIcon->pReflectionBuffer != NULL)
+				/**if (myIcon->pReflectionBuffer != NULL)
 				{
 					cairo_surface_destroy (myIcon->pReflectionBuffer);
 					myIcon->pReflectionBuffer = NULL;
-				}
+				}*/
 				if (CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer))
 					cairo_dock_update_icon_texture (myIcon);
 			}

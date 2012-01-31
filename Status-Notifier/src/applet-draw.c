@@ -178,10 +178,10 @@ static void cd_satus_notifier_draw_compact_icon (void)
 	{
 		cairo_dock_update_icon_texture (myIcon);
 	}
-	else if (myDock)  // les reflets pour cairo.
+	/**else if (myDock)  // les reflets pour cairo.
 	{
 		CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
-	}
+	}*/
 	
 	CD_APPLET_REDRAW_MY_ICON;
 }

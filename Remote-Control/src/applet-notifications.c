@@ -431,11 +431,11 @@ gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer,
 }
 
 
-gboolean cd_do_check_icon_stopped (gpointer pUserData, Icon *pIcon)
+gboolean cd_do_check_icon_destroyed (gpointer pUserData, Icon *pIcon)
 {
 	if (pIcon == myData.pCurrentIcon && ! myData.bIgnoreIconState)
 	{
-		cd_debug ("notre icone vient de se faire stopper\n");
+		cd_debug ("notre icone vient de se faire detruire");
 		Icon *pNextIcon = NULL;
 		if (myData.pCurrentDock != NULL)
 		{

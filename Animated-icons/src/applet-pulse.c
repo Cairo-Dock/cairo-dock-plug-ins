@@ -86,7 +86,8 @@ void cd_animations_draw_pulse_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationD
 	else
 		cairo_translate (pCairoContext, pIcon->fHeight * pIcon->fScale * (1 - fScaleFactor) / 2, pIcon->fWidth * pIcon->fScale * (1 - fScaleFactor) / 2);
 	
-	cairo_dock_set_icon_scale_on_context (pCairoContext, pIcon, pDock->container.bIsHorizontal, pDock->container.fRatio * fScaleFactor, pDock->container.bDirectionUp);
+	cairo_dock_set_icon_scale_on_context (pCairoContext, pIcon, pDock->container.bIsHorizontal, 1., pDock->container.bDirectionUp);
+	cairo_scale (pCairoContext, fScaleFactor, fScaleFactor);
 	
 	cairo_set_source_surface (pCairoContext, pIcon->pIconBuffer, 0.0, 0.0);
 	cairo_paint_with_alpha (pCairoContext, pData->fPulseAlpha * pIcon->fAlpha);

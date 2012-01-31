@@ -334,7 +334,7 @@ void cd_app_menu_redraw_buttons (void)
 	else
 	{
 		cd_app_menu_render_step_cairo (myIcon, myApplet);
-		CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
+		///CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
 	}
 	CD_APPLET_REDRAW_MY_ICON;
 }

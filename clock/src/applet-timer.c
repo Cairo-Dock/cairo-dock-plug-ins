@@ -306,10 +306,10 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 			cairo_dock_update_icon_texture (myIcon);
 	}
 	
-	if (myDock && ! CD_APPLET_MY_CONTAINER_IS_OPENGL)  // les reflets pour cairo.
+	/**if (myDock && ! CD_APPLET_MY_CONTAINER_IS_OPENGL)  // les reflets pour cairo.
 	{
 		CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
-	}
+	}*/
 	
 	CD_APPLET_REDRAW_MY_ICON;
 	

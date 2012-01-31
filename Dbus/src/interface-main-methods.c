@@ -1121,7 +1121,7 @@ gboolean cd_dbus_main_remove_icon (dbusMainObject *pDbusCallback, gchar *cIconQu
 	{
 		pIcon = ic->data;
 		cairo_dock_register_notification_on_object (pIcon,
-			NOTIFICATION_STOP_ICON,
+			NOTIFICATION_DESTROY,
 			(CairoDockNotificationFunc) _on_icon_deleted,
 			CAIRO_DOCK_RUN_FIRST, ic);
 	}
@@ -1134,7 +1134,7 @@ gboolean cd_dbus_main_remove_icon (dbusMainObject *pDbusCallback, gchar *cIconQu
 			continue;
 		
 		cairo_dock_remove_notification_func_on_object (pIcon,
-			NOTIFICATION_STOP_ICON,
+			NOTIFICATION_DESTROY,
 			(CairoDockNotificationFunc) _on_icon_deleted,
 			ic);  // remove it now, since maybe this icon won't be deleted.
 		

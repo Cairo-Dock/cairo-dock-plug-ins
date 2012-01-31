@@ -383,7 +383,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 				cairo_save (pCairoContext);
 				
 				if (pIcon->fDrawY + pIcon->fHeight < pDesklet->container.iHeight / 2 + myIconsParam.iconTextDescription.iSize && pIcon->fDrawX + pIcon->fWidth/2 > pDesklet->container.iWidth / 2)  // arriere-plan droite.
-					cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, TRUE, TRUE, pDesklet->container.iWidth);
+					cairo_dock_render_one_icon_in_desklet (pIcon, CAIRO_CONTAINER (pDesklet), pCairoContext, TRUE);
 				
 				cairo_restore (pCairoContext);
 			}
@@ -396,7 +396,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 				cairo_save (pCairoContext);
 				
 				if (pIcon->fDrawY + pIcon->fHeight < pDesklet->container.iHeight / 2 + myIconsParam.iconTextDescription.iSize && pIcon->fDrawX + pIcon->fWidth/2 <= pDesklet->container.iWidth / 2)  // arriere-plan gauche.
-					cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, TRUE, TRUE, pDesklet->container.iWidth);
+					cairo_dock_render_one_icon_in_desklet (pIcon, CAIRO_CONTAINER (pDesklet), pCairoContext, TRUE);
 				
 				cairo_restore (pCairoContext);
 			}
@@ -404,7 +404,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 		
 		cairo_save (pCairoContext);
 		pDesklet->pIcon->fDrawY = pDesklet->container.iHeight/2 - pDesklet->pIcon->fHeight + myIconsParam.iconTextDescription.iSize;
-		cairo_dock_render_one_icon_in_desklet (pDesklet->pIcon, pCairoContext, TRUE, FALSE, pDesklet->container.iWidth);
+		cairo_dock_render_one_icon_in_desklet (pDesklet->pIcon, CAIRO_CONTAINER (pDesklet), pCairoContext, FALSE);
 		cairo_restore (pCairoContext);
 		
 		for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
@@ -415,7 +415,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 				cairo_save (pCairoContext);
 				
 				if (pIcon->fDrawY + pIcon->fHeight >= pDesklet->container.iHeight / 2 + myIconsParam.iconTextDescription.iSize && pIcon->fDrawX + pIcon->fWidth/2 > pDesklet->container.iWidth / 2)  // avant-plan droite.
-					cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, TRUE, TRUE, pDesklet->container.iWidth);
+					cairo_dock_render_one_icon_in_desklet (pIcon, CAIRO_CONTAINER (pDesklet), pCairoContext, TRUE);
 				
 				cairo_restore (pCairoContext);
 			}
@@ -429,7 +429,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 				cairo_save (pCairoContext);
 				
 				if (pIcon->fDrawY + pIcon->fHeight >= pDesklet->container.iHeight / 2 + myIconsParam.iconTextDescription.iSize && pIcon->fDrawX + pIcon->fWidth/2 <= pDesklet->container.iWidth / 2)  // avant-plan gauche.
-					cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, TRUE, TRUE, pDesklet->container.iWidth);
+					cairo_dock_render_one_icon_in_desklet (pIcon, CAIRO_CONTAINER (pDesklet), pCairoContext, TRUE);
 				
 				cairo_restore (pCairoContext);
 			}
@@ -438,7 +438,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 	else
 	{
 		cairo_save (pCairoContext);
-		cairo_dock_render_one_icon_in_desklet (pDesklet->pIcon, pCairoContext, FALSE, FALSE, pDesklet->container.iWidth);
+		cairo_dock_render_one_icon_in_desklet (pDesklet->pIcon, CAIRO_CONTAINER (pDesklet), pCairoContext, FALSE);
 		cairo_restore (pCairoContext);
 		
 		gboolean bFlip = (pDesklet->pIcon->fHeight > pDesklet->pIcon->fWidth);
@@ -451,7 +451,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 				
 				pIcon->fDrawX = pDesklet->pIcon->fDrawX + pDesklet->pIcon->fWidth / 2 + (bFlip ? b : a) * cos (fTheta) - pIcon->fWidth/2;
 				pIcon->fDrawY = pDesklet->pIcon->fDrawY + pDesklet->pIcon->fHeight / 2 + (bFlip ? a : b) * sin (fTheta) - pIcon->fHeight/2 + myIconsParam.iconTextDescription.iSize;
-				cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, TRUE, pDesklet->container.iWidth);
+				cairo_dock_render_one_icon_in_desklet (pIcon, CAIRO_CONTAINER (pDesklet), pCairoContext, TRUE);
 				
 				cairo_restore (pCairoContext);
 			}

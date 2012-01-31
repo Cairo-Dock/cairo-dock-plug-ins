@@ -321,8 +321,8 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
 		cairo_dock_update_icon_texture (myIcon);
-	else
-		CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
+	/**else
+		CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;*/
 }
 
 
@@ -363,8 +363,8 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 
 			if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
 				cairo_dock_update_icon_texture (myIcon);
-			else
-				CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
+			/**else
+				CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;*/
 		}
 		else
 		{

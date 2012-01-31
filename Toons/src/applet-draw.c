@@ -140,5 +140,5 @@ void cd_xeyes_render_to_surface (CairoDockModuleInstance *myApplet, int iWidth, 
 	
 	cairo_paint (myDrawContext);
 	
-	CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
+	///CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
 }

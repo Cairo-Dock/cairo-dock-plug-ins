@@ -103,7 +103,7 @@ static void _load_note_image (Icon *pIcon)
 	cd_tomboy_load_note_surface (iWidth, iHeight);
 	
 	cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
-	cairo_dock_set_icon_surface (pIconContext, myData.pSurfaceNote);
+	cairo_dock_set_icon_surface (pIconContext, myData.pSurfaceNote, pIcon);
 	cd_tomboy_draw_content_on_icon (pIconContext, pIcon);
 	cairo_destroy (pIconContext);
 	CD_APPLET_LEAVE ();
@@ -187,7 +187,7 @@ static void onNoteSaved (DBusGProxy *proxy, const gchar *note_uri, gpointer data
 					iWidth,
 					iHeight);
 			}
-			cairo_dock_set_icon_surface (pIconContext, myData.pSurfaceNote);  // on efface l'ancien texte.
+			cairo_dock_set_icon_surface (pIconContext, myData.pSurfaceNote, pIcon);  // on efface l'ancien texte.
 			cd_tomboy_draw_content_on_icon (pIconContext, pIcon);
 			cairo_destroy (pIconContext);
 		}

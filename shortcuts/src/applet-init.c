@@ -56,7 +56,7 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT;
 	cairo_dock_register_notification_on_object (&myIconsMgr,
-		NOTIFICATION_STOP_ICON,
+		NOTIFICATION_DESTROY,
 		(CairoDockNotificationFunc) cd_shortcuts_free_data,
 		CAIRO_DOCK_RUN_AFTER, myApplet);
 CD_APPLET_INIT_END
@@ -69,7 +69,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT;
 	cairo_dock_remove_notification_func_on_object (&myIconsMgr,
-		NOTIFICATION_STOP_ICON,
+		NOTIFICATION_DESTROY,
 		(CairoDockNotificationFunc) cd_shortcuts_free_data, myApplet);
 CD_APPLET_STOP_END
 

@@ -88,7 +88,7 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 			else
 			{
 				cd_xkbd_render_step_cairo (myIcon, myApplet);
-				CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
+				///CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
 			}
 			CD_APPLET_REDRAW_MY_ICON;
 		}
@@ -205,7 +205,7 @@ gboolean cd_xkbd_render_step_cairo (Icon *pIcon, CairoDockModuleInstance *myAppl
 			0.,
 			0.);
 		cairo_paint (myDrawContext);
-		cairo_dock_set_icon_surface_full (myDrawContext, myData.pBackgroundSurface, 1., 1., myIcon, myContainer);
+		cairo_dock_set_icon_surface (myDrawContext, myData.pBackgroundSurface, myIcon);
 	}
 	
 	double dx, dy, fScale;

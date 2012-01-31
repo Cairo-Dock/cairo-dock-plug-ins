@@ -191,7 +191,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 		pIcon->fHeightFactor = 1;
 		
 		cairo_save (pCairoContext);
-		cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, TRUE, pDesklet->container.iWidth);
+		cairo_dock_render_one_icon_in_desklet (pIcon, CAIRO_CONTAINER (pDesklet), pCairoContext, TRUE);
 		cairo_restore (pCairoContext);
 		
 		iLeafNumber ++;

@@ -241,7 +241,7 @@ void rendering_draw_mediaplayer_in_desklet (cairo_t *pCairoContext, CairoDesklet
 			if (pIcon->pIconBuffer != NULL)
 			{
 				cairo_save (pCairoContext);
-				cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, TRUE, TRUE, pDesklet->container.iWidth);
+				cairo_dock_render_one_icon_in_desklet (pIcon, CAIRO_CONTAINER (pDesklet), pCairoContext, TRUE);
 				cairo_restore (pCairoContext);
 			}
 		}

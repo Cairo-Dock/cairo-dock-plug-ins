@@ -82,7 +82,7 @@ void cd_do_open_session (void)
 	cairo_dock_register_notification_on_object (&myContainersMgr,
 		NOTIFICATION_KEY_PRESSED, (CairoDockNotificationFunc) cd_do_key_pressed, CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification_on_object (&myIconsMgr,
-		NOTIFICATION_STOP_ICON, (CairoDockNotificationFunc) cd_do_check_icon_stopped, CAIRO_DOCK_RUN_AFTER, NULL);
+		NOTIFICATION_DESTROY, (CairoDockNotificationFunc) cd_do_check_icon_destroyed, CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification_on_object (&myDesktopMgr,
 		NOTIFICATION_WINDOW_ACTIVATED, (CairoDockNotificationFunc) cd_do_check_active_dock, CAIRO_DOCK_RUN_AFTER, NULL);
 	
@@ -143,8 +143,8 @@ void cd_do_close_session (void)
 		NOTIFICATION_KEY_PRESSED,
 		(CairoDockNotificationFunc) cd_do_key_pressed, NULL);
 	cairo_dock_remove_notification_func_on_object (&myIconsMgr,
-		NOTIFICATION_STOP_ICON,
-		(CairoDockNotificationFunc) cd_do_check_icon_stopped, NULL);
+		NOTIFICATION_DESTROY,
+		(CairoDockNotificationFunc) cd_do_check_icon_destroyed, NULL);
 	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
 		NOTIFICATION_WINDOW_ACTIVATED,
 		(CairoDockNotificationFunc) cd_do_check_active_dock, NULL);

@@ -253,7 +253,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 		{
 			cairo_save (pCairoContext);
 			
-			cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, FALSE, pDesklet->container.iWidth);
+			cairo_dock_render_one_icon_in_desklet (pIcon, CAIRO_CONTAINER (pDesklet), pCairoContext, FALSE);
 			
 			cairo_restore (pCairoContext);
 			

@@ -31,7 +31,6 @@ void cd_animations_draw_unfolding_icon_cairo (Icon *pIcon, CairoDock *pDock, CDA
 	int w, h;
 	cairo_dock_get_icon_extent (pIcon, &w, &h);
 	double f = 1. - pIcon->pSubDock->fFoldingFactor;
-	///double fMaxScale = cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock));
 	double fMaxScale = (pIcon->fHeight != 0 ? (pDock->container.bIsHorizontal ? pIcon->iImageHeight : pIcon->iImageWidth) / pIcon->fHeight : 1.);
 	double z = pIcon->fScale / fMaxScale * pDock->container.fRatio;
 	
@@ -56,11 +55,6 @@ void cd_animations_draw_unfolding_icon_cairo (Icon *pIcon, CairoDock *pDock, CDA
 	cairo_scale(pCairoContext,
 		(double) w / g_pBoxBelowBuffer.iWidth,
 		(double) h / g_pBoxBelowBuffer.iHeight);
-	/**cairo_set_source_surface (pCairoContext,
-		g_pBoxBelowBuffer.pSurface,
-		0.,
-		0.);
-	cairo_paint (pCairoContext);*/
 	cairo_dock_draw_surface (pCairoContext,
 		g_pBoxBelowBuffer.pSurface,
 		g_pBoxBelowBuffer.iWidth, g_pBoxBelowBuffer.iHeight,
@@ -81,9 +75,6 @@ void cd_animations_draw_unfolding_icon_cairo (Icon *pIcon, CairoDock *pDock, CDA
 		if (! pDock->container.bDirectionUp)
 			cairo_translate (pCairoContext, .2*h, 0.);
 	}
-	/**cairo_scale(pCairoContext,
-		.8,
-		.8);*/
 	int i;
 	double dx, dy;
 	int wi, hi;
@@ -134,11 +125,6 @@ void cd_animations_draw_unfolding_icon_cairo (Icon *pIcon, CairoDock *pDock, CDA
 	cairo_scale(pCairoContext,
 		(double) w / g_pBoxAboveBuffer.iWidth,
 		(double) h / g_pBoxAboveBuffer.iHeight);
-	/**cairo_set_source_surface (pCairoContext,
-		g_pBoxAboveBuffer.pSurface,
-		0.,
-		0.);
-	cairo_paint (pCairoContext);*/
 	cairo_dock_draw_surface (pCairoContext,
 		g_pBoxAboveBuffer.pSurface,
 		g_pBoxAboveBuffer.iWidth, g_pBoxAboveBuffer.iHeight,
@@ -148,9 +134,9 @@ void cd_animations_draw_unfolding_icon_cairo (Icon *pIcon, CairoDock *pDock, CDA
 	cairo_restore (pCairoContext);
 	
 	//\_____________________ On dessine son reflet.
-	cairo_dock_draw_icon_reflect_cairo (pIcon, pDock, pCairoContext);
+	cairo_restore (pCairoContext);  // come back to the original context
 	
-	cairo_restore (pCairoContext);
+	cairo_dock_draw_icon_reflect_cairo (pIcon, CAIRO_CONTAINER (pDock), pCairoContext);
 }
 
 
@@ -160,7 +146,6 @@ void cd_animations_draw_unfolding_icon (Icon *pIcon, CairoDock *pDock, CDAnimati
 	int w, h;
 	cairo_dock_get_icon_extent (pIcon, &w, &h);
 	double f = 1. - pIcon->pSubDock->fFoldingFactor;
-	///double fMaxScale = cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock));
 	double fMaxScale = (pIcon->fHeight != 0 ? (pDock->container.bIsHorizontal ? pIcon->iImageHeight : pIcon->iImageWidth) / pIcon->fHeight : 1.);
 	double z = pIcon->fScale / fMaxScale * pDock->container.fRatio;
 	

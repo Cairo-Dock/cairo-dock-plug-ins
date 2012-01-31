@@ -63,7 +63,7 @@ CD_APPLET_INIT_BEGIN
 		CAIRO_DOCK_RUN_FIRST,
 		myApplet);
 	cairo_dock_register_notification_on_object (myDock,
-		NOTIFICATION_STOP_DOCK,
+		NOTIFICATION_DESTROY,
 		(CairoDockNotificationFunc) cd_on_dock_destroyed,
 		CAIRO_DOCK_RUN_AFTER,
 		myApplet);
@@ -85,7 +85,7 @@ CD_APPLET_STOP_BEGIN
 		(CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU_FUNC,
 		myApplet);
 	cairo_dock_remove_notification_func_on_object (myDock,
-		NOTIFICATION_STOP_DOCK,
+		NOTIFICATION_DESTROY,
 		(CairoDockNotificationFunc) cd_on_dock_destroyed,
 		myApplet);
 	penguin_remove_notfications();

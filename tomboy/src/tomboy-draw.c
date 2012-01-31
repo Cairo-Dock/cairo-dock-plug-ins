@@ -114,8 +114,8 @@ void cd_tomboy_draw_content_on_icon (cairo_t *pIconContext, Icon *pIcon)
 	
 	if (g_bUseOpenGL)
 		cairo_dock_update_icon_texture (pIcon);
-	else if (myDock)
-		cairo_dock_add_reflection_to_icon (pIcon, CD_APPLET_MY_ICONS_LIST_CONTAINER);
+	/**else if (myDock)
+		cairo_dock_add_reflection_to_icon (pIcon, CD_APPLET_MY_ICONS_LIST_CONTAINER);*/
 }
 
 

@@ -266,7 +266,7 @@ void rendering_draw_controler_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 		//\____________________ On dessine les icones.
 		cairo_save (pCairoContext);
 		pDesklet->pIcon->fDrawY = myIconsParam.iconTextDescription.iSize;
-		cairo_dock_render_one_icon_in_desklet (pDesklet->pIcon, pCairoContext, TRUE, TRUE, pDesklet->container.iWidth);
+		cairo_dock_render_one_icon_in_desklet (pDesklet->pIcon, CAIRO_CONTAINER (pDesklet), pCairoContext, TRUE);
 		cairo_restore (pCairoContext);
 		
 		for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
@@ -276,7 +276,7 @@ void rendering_draw_controler_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 			{
 				cairo_save (pCairoContext);
 				
-				cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, FALSE, pDesklet->container.iWidth);
+				cairo_dock_render_one_icon_in_desklet (pIcon, CAIRO_CONTAINER (pDesklet), pCairoContext, FALSE);
 				
 				cairo_restore (pCairoContext);
 			}
@@ -285,7 +285,7 @@ void rendering_draw_controler_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 	else
 	{
 		cairo_save (pCairoContext);
-		cairo_dock_render_one_icon_in_desklet (pDesklet->pIcon, pCairoContext, FALSE, TRUE, pDesklet->container.iWidth);
+		cairo_dock_render_one_icon_in_desklet (pDesklet->pIcon, CAIRO_CONTAINER (pDesklet), pCairoContext, TRUE);
 		cairo_restore (pCairoContext);
 		
 		double fX = myDocksParam.iDockRadius + pControler->fGapBetweenIcons, fY = myIconsParam.iconTextDescription.iSize + pDesklet->pIcon->fHeight;
@@ -306,7 +306,7 @@ void rendering_draw_controler_in_desklet (cairo_t *pCairoContext, CairoDesklet *
 			{
 				cairo_save (pCairoContext);
 				
-				cairo_dock_render_one_icon_in_desklet (pIcon, pCairoContext, FALSE, FALSE, pDesklet->container.iWidth);
+				cairo_dock_render_one_icon_in_desklet (pIcon, CAIRO_CONTAINER (pDesklet), pCairoContext, FALSE);
 				
 				cairo_restore (pCairoContext);
 			}
