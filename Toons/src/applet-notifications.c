@@ -40,7 +40,7 @@ CD_APPLET_ON_UPDATE_ICON_BEGIN
 	
 	//\_________________ On calcule les nouvelles coordonnees.
 	gboolean bNeedsUpdate = FALSE;
-	double fScale = myIcon->fScale / cairo_dock_get_max_scale (myContainer) * myContainer->fRatio;
+	double fScale = myIcon->fScale / cairo_dock_get_icon_max_scale (myIcon) * myContainer->fRatio;
 	int dx, dy;
 	double tana, cosa, sina, x, y;
 	int i;

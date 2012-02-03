@@ -28,8 +28,10 @@ CairoParticleSystem *cd_animations_init_rays (Icon *pIcon, CairoDock *pDock, dou
 {
 	if (myData.iRaysTexture == 0)
 		myData.iRaysTexture = cd_animations_load_rays_texture ();
-	double fMaxScale = cairo_dock_get_max_scale (CAIRO_CONTAINER (pDock));
-	CairoParticleSystem *pRaysParticleSystem = cairo_dock_create_particle_system (myConfig.iNbRaysParticles, myData.iRaysTexture, pIcon->fWidth, pIcon->fHeight * fMaxScale);
+	CairoParticleSystem *pRaysParticleSystem = cairo_dock_create_particle_system (myConfig.iNbRaysParticles,
+		myData.iRaysTexture,
+		pIcon->fWidth,
+		pDock->container.bIsHorizontal ? pIcon->iImageHeight : pIcon->iImageWidth);
 	pRaysParticleSystem->dt = dt;
 	pRaysParticleSystem->bDirectionUp = (pDock->container.bIsHorizontal ? pDock->container.bDirectionUp : ! pDock->container.bDirectionUp);
 	pRaysParticleSystem->bAddLuminance = TRUE;

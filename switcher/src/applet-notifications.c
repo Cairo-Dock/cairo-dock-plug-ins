@@ -114,7 +114,7 @@ static gboolean _cd_switcher_get_viewport_from_clic (Icon *pClickedIcon, int *iN
 			iMouseX = iMouseY;
 			iMouseY = tmp;
 		}
-		double fMaxScale = cairo_dock_get_max_scale (myContainer);
+		double fMaxScale = cairo_dock_get_icon_max_scale (myIcon);
 		double dx = myData.switcher.fOffsetX / fMaxScale * myIcon->fScale;
 		double dy = myData.switcher.fOffsetY / fMaxScale * myIcon->fScale;
 		w -= 2 * dx;

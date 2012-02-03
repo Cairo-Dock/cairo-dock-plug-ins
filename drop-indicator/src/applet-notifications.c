@@ -52,7 +52,6 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 					(int) myData.dropIndicator.iWidth);
 			cairo_clip (pCairoContext);
 			
-			//cairo_move_to (pCairoContext, fX, 0);
 			if (pDock->container.bIsHorizontal)
 				cairo_translate (pCairoContext, fX, (pDock->container.bDirectionUp ? 0 : pDock->iActiveHeight));
 			else
@@ -100,7 +99,6 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 				0.);
 		
 			cairo_mask (pCairoContext, pGradationPattern);
-			//cairo_paint (pCairoContext);
 			
 			cairo_pattern_destroy (pPattern);
 			cairo_pattern_destroy (pGradationPattern);
@@ -114,13 +112,23 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 			{
 				cairo_save (pCairoContext);
 				if (pDock->container.bIsHorizontal)
+				{
 					cairo_translate (pCairoContext,
 						pIcon->fDrawX + 2./3*pIcon->fWidth*pIcon->fScale,
-						pIcon->fDrawY);
+						pIcon->fDrawY);  // top right corner
+					cairo_scale (pCairoContext,
+						pIcon->fWidth*pIcon->fScale/3 / myData.hoverIndicator.iWidth,
+						pIcon->fHeight*pIcon->fScale/3 / myData.hoverIndicator.iHeight);
+				}
 				else
+				{
 					cairo_translate (pCairoContext,
 						pIcon->fDrawY + 2./3*pIcon->fWidth*pIcon->fScale,
 						pIcon->fDrawX);
+					cairo_scale (pCairoContext,
+						pIcon->fHeight*pIcon->fScale/3 / myData.hoverIndicator.iWidth,
+						pIcon->fWidth*pIcon->fScale/3 / myData.hoverIndicator.iHeight);
+				}
 				cairo_set_source_surface (pCairoContext, myData.hoverIndicator.pSurface, 0., 0.);
 				cairo_paint_with_alpha (pCairoContext, pData->fAlphaHover);
 				cairo_restore (pCairoContext);
@@ -131,7 +139,7 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 	{
 		if (pData->fAlpha > 0)
 		{
-			;double fX = pDock->container.iMouseX;
+			double fX = pDock->container.iMouseX;
 			double fY = (pDock->container.bDirectionUp ? pDock->iActiveHeight - myData.dropIndicator.iHeight : myData.dropIndicator.iHeight);
 			glPushMatrix();
 			glLoadIdentity();

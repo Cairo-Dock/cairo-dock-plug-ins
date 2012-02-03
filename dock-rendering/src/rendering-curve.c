@@ -995,7 +995,7 @@ static void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDo
 
 Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 {
-	Icon *pPointedIcon = cairo_dock_apply_wave_effect (pDock);
+	Icon *pPointedIcon = cairo_dock_apply_wave_effect_linear (pDock);
 	
 	cairo_dock_check_if_mouse_inside_linear (pDock);
 	
