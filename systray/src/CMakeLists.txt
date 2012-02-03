@@ -6,11 +6,11 @@ SET(cd-systray_LIB_SRCS
 	systray-config.c 		systray-config.h
 	systray-notifications.c systray-notifications.h
 	systray-interface.c 	systray-interface.h
-	na-tray.c 			na-tray.h
-	na-tray-manager.c 	na-tray-manager.h
-	na-tray-child.c 		na-tray-child.h
-	na-marshal.h 		na-marshal.c
-	fixedtip.c 		fixedtip.h
+	gtk${gtkversion}/na-tray.c 			gtk${gtkversion}/na-tray.h
+	gtk${gtkversion}/na-tray-manager.c 	gtk${gtkversion}/na-tray-manager.h
+	gtk${gtkversion}/na-tray-child.c 	gtk${gtkversion}/na-tray-child.h
+	gtk${gtkversion}/na-marshal.h 		gtk${gtkversion}/na-marshal.c
+	gtk${gtkversion}/fixedtip.c 		gtk${gtkversion}/fixedtip.h
 	systray-struct.h
 )
 
@@ -27,7 +27,8 @@ add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 
 include_directories (
-	${PACKAGE_INCLUDE_DIRS})
+	${PACKAGE_INCLUDE_DIRS}
+	gtk${gtkversion})
 
 link_directories (
 	${PACKAGE_LIBRARY_DIRS})
