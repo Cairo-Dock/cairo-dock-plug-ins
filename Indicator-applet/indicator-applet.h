@@ -27,7 +27,7 @@
 ///#include <libindicator/indicator-object.h>
 #include <libindicator/indicator-service-manager.h>
 
-#if (GTK_MAJOR_VERSION < 3)
+#if (GTK_MAJOR_VERSION < 3) || defined (DBUSMENU_GTK3_NEW)
 #include <libdbusmenu-gtk/menuitem.h>
 #include <libdbusmenu-gtk/menu.h>
 #else

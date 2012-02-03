@@ -38,6 +38,9 @@ add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 if ("${with_soundmenu}" STREQUAL "yes")
 	add_definitions (-DSOUND_SERVICE_SUPPORT="1")
 endif()
+if (DBUSMENU_GTK3_NEW)
+	add_definitions (-DDBUSMENU_GTK3_NEW=1)
+endif()
 
 
 if ("${with_soundmenu}" STREQUAL "yes")

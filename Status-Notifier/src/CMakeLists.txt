@@ -27,6 +27,9 @@ add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 add_definitions (-DINDICATOR_OLD_NAMES=${INDICATOR_OLD_NAMES})
 add_definitions (-DINDICATOR_APPLICATIONADDED_HAS_HINT=${INDICATOR_APPLICATIONADDED_HAS_HINT})
 add_definitions (-DCD_PLUGINS_DIR="${pluginsdir}")
+if (DBUSMENU_GTK3_NEW)
+	add_definitions (-DDBUSMENU_GTK3_NEW=1)
+endif()
 
 include_directories (
 	${PACKAGE_INCLUDE_DIRS}

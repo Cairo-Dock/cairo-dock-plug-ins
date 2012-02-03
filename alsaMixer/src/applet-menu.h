@@ -22,7 +22,7 @@
 #define  __APPLET_MENU__
 
 #include <cairo-dock.h>
-#if (GTK_MAJOR_VERSION < 3)
+#if (GTK_MAJOR_VERSION < 3) || defined (DBUSMENU_GTK3_NEW)
 #include <libdbusmenu-gtk/menu.h>
 #else
 #include <libdbusmenu-gtk3/menu.h>

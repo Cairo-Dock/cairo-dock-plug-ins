@@ -36,7 +36,7 @@
 #include "metadata-widget.h"
 #include "applet-menu.h"
 
-#if (GTK_MAJOR_VERSION < 3)
+#if (GTK_MAJOR_VERSION < 3) || defined (DBUSMENU_GTK3_NEW)
 #include <libdbusmenu-gtk/menuitem.h>
 #include <libdbusmenu-gtk/menu.h>
 #else
