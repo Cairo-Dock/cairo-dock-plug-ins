@@ -34,14 +34,13 @@ struct _AppletConfig {
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	cairo_surface_t *pBackgroundSurface;
-	cairo_surface_t *pOldSurface;
+	CairoDockImageBuffer bgImage;
 	cairo_surface_t *pCurrentSurface;
-	gint iOldTextWidth, iOldTextHeight;
-	gint iCurrentTextWidth, iCurrentTextHeight;
-	GLuint iBackgroundTexture;
-	GLuint iOldTexture;
 	GLuint iCurrentTexture;
+	gint iCurrentTextWidth, iCurrentTextHeight;
+	cairo_surface_t *pOldSurface;
+	GLuint iOldTexture;
+	gint iOldTextWidth, iOldTextHeight;
 	gint iCurrentGroup;
 	guint iCurrentIndic, iPreviousIndic;
 	CairoKeyBinding *pKeyBinding;

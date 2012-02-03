@@ -53,16 +53,12 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 			myData.iCurrentTextHeight = 0;
 			return;
 		}
-		///double fMaxScale = cairo_dock_get_max_scale (myContainer);
-		//double fMaxScale = (myIcon->fHeight != 0 ? (myContainer->bIsHorizontal ? myIcon->iImageHeight : myIcon->iImageWidth) / myIcon->fHeight : 1.);
 		myData.pCurrentSurface = cairo_dock_create_surface_from_text_full (cShortGroupName,
 			&myConfig.textDescription,
-			/**fMaxScale*/1.,
+			1.,
 			iWidth,
 			&myData.iCurrentTextWidth, &myData.iCurrentTextHeight);
 		g_print ("KEYBOARD: %dx%d / %dx%d\n", myData.iCurrentTextWidth, myData.iCurrentTextHeight, myIcon->iImageWidth, myIcon->iImageHeight);
-		///myData.iCurrentTextWidth *= fMaxScale;
-		///myData.iCurrentTextHeight *= fMaxScale;
 		if (g_bUseOpenGL)
 		{
 			myData.iCurrentTexture = cairo_dock_create_texture_from_surface (myData.pCurrentSurface);
@@ -105,6 +101,7 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 	///CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (!cIndicatorName || *cIndicatorName == '\0' ? NULL : cIndicatorName);
 	if (myConfig.bShowKbdIndicator)
 	{
+		g_print ("XKBD: caps-lock: %d; num-lock: %d\n", myData.iCurrentIndic & 1, myData.iCurrentIndic & 2);
 		if (myData.iCurrentIndic & 1)  // caps-lock
 		{
 			if (! (myData.iPreviousIndic & 1))
@@ -140,7 +137,6 @@ gboolean cd_xkbd_render_step_opengl (Icon *pIcon, CairoDockModuleInstance *myApp
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 	
-	///cairo_dock_set_perspective_view (iWidth, iHeight);
 	cairo_dock_set_perspective_view_for_icon (myIcon, myContainer);
 	glScalef (1., -1., 1.);
 	
@@ -149,29 +145,47 @@ gboolean cd_xkbd_render_step_opengl (Icon *pIcon, CairoDockModuleInstance *myApp
 	_cairo_dock_set_alpha (1.);
 	
 	// fond
-	if (myData.iBackgroundTexture != 0)
-		cairo_dock_apply_texture_at_size (myData.iBackgroundTexture, iWidth, iHeight);
+	if (myData.bgImage.iTexture != 0)
+		cairo_dock_apply_texture_at_size (myData.bgImage.iTexture, iWidth, iHeight);
 	
 	double fTheta = - 45. + f * 90.;  // -45 -> 45
 	glTranslatef (0., 0., - iWidth * sqrt(2)/2 * cos (fTheta/180.*G_PI));  // pour faire tenir le cube dans la fenetre.
 	glEnable (GL_DEPTH_TEST);
 	
 	// image precedente.
+	int w=0, h;
 	if (fTheta < 25 && myData.iOldTexture != 0)  // inutile de dessiner si elle est derriere l'image courante, par l'effet de perspective (en fait 22.5, mais bizarrement ca a l'air un peu trop tot).
 	{
+		w = iWidth * myConfig.fTextRatio;  // fill horizontally
+		h = myData.iOldTextHeight * (double)w/myData.iOldTextWidth;  // keep ratio
+		if (h > iHeight * myConfig.fTextRatio)
+		{
+			w *= iHeight * myConfig.fTextRatio / h;
+			h = iHeight * myConfig.fTextRatio;
+		}
+		
 		glPushMatrix ();
 		glRotatef (45. + fTheta, 0., 1., 0.);  // 0 -> 90
-		glTranslatef (0., 0., (myData.iCurrentTextWidth ? myData.iCurrentTextWidth : iWidth)/2);
-		cairo_dock_apply_texture_at_size (myData.iOldTexture, myData.iOldTextWidth, MIN (iHeight, myData.iOldTextHeight));
+		glTranslatef (0., (-iHeight + h)/2, w/2);  // H center, V bottom
+		cairo_dock_apply_texture_at_size (myData.iOldTexture, w, h);
 		glPopMatrix ();
 	}
 	
 	// image courante a 90deg.
-	glRotatef (45. + fTheta, 0., 1., 0.);  // 0 -> 90
-	glTranslatef (- (myData.iOldTextWidth ? myData.iOldTextWidth : iWidth)/2, 0., 0.);
-	
-	glRotatef (-90., 0., 1., 0.);
-	cairo_dock_apply_texture_at_size (myData.iCurrentTexture, myData.iCurrentTextWidth, MIN (iHeight, myData.iCurrentTextHeight));
+	w = iWidth * myConfig.fTextRatio;  // fill horizontally
+	h = myData.iCurrentTextHeight * (double)w/myData.iCurrentTextWidth;  // keep ratio
+	if (h > iHeight * myConfig.fTextRatio)
+	{
+		w *= iHeight * myConfig.fTextRatio / h;
+		h = iHeight * myConfig.fTextRatio;
+	}
+
+	/**glRotatef (45. + fTheta, 0., 1., 0.);  // 0 -> 90
+	glTranslatef (- (w ? w : iWidth)/2, 0., 0.);
+	glRotatef (-90., 0., 1., 0.);*/
+	glRotatef (-45. + fTheta, 0., 1., 0.);  // -90 -> 0
+	glTranslatef (0., (-iHeight + h)/2, w/2);  // H center, V bottom
+	cairo_dock_apply_texture_at_size (myData.iCurrentTexture, w, h);
 	
 	glDisable (GL_DEPTH_TEST);
 	_cairo_dock_disable_texture ();
@@ -197,61 +211,59 @@ gboolean cd_xkbd_render_step_cairo (Icon *pIcon, CairoDockModuleInstance *myAppl
 	
 	cairo_dock_erase_cairo_context (myDrawContext);
 	
-	if (myData.pBackgroundSurface != NULL)
+	if (myData.bgImage.pSurface != NULL)
 	{
 		cairo_set_source_surface (
 			myDrawContext,
-			myData.pBackgroundSurface,
+			myData.bgImage.pSurface,
 			0.,
 			0.);
 		cairo_paint (myDrawContext);
-		cairo_dock_set_icon_surface (myDrawContext, myData.pBackgroundSurface, myIcon);
 	}
 	
 	double dx, dy, fScale;
 	if (myData.pOldSurface != NULL && 1-f > .01)
 	{
-		dx = (iWidth - myData.iOldTextWidth)/2;
-		dy = (iHeight - myData.iOldTextHeight)/2;
-		if (dy < 0)  // peut arriver si une police de la taille de l'icone n'existe pas.
+		fScale = (double)iWidth / myData.iOldTextWidth;  // scale to fill the icon horizontally
+		if (fScale * myData.iOldTextHeight > iHeight)  // if the text is too height, scale down
 		{
-			dy = 0;
-			fScale = (double)iHeight / myData.iOldTextHeight;
-			cairo_save (myDrawContext);
-			cairo_scale (myDrawContext, 1., fScale);  // a priori la difference n'est pas enorme, on laisse donc remplit en largeur.
+			fScale = (double)iHeight / myData.iOldTextHeight;  // that's smaller than the previous value.
 		}
-		else
-			fScale=0;
+		dx = (iWidth - fScale * myData.iOldTextWidth)/2;  // center horizontally
+		dy = iHeight - fScale * myData.iOldTextHeight;  // bottom (we draw the caps/num lock on top).
+		
+		cairo_save (myDrawContext);
+		cairo_translate (myDrawContext, dx, dy);
+		cairo_scale (myDrawContext, fScale, fScale);  // keep ratio
 		cairo_set_source_surface (
 			myDrawContext,
 			myData.pOldSurface,
-			dx,
-			dy);
+			0,
+			0);
 		cairo_paint_with_alpha (myDrawContext, 1-f);
-		if (fScale != 0)
-			cairo_restore (myDrawContext);
+		cairo_restore (myDrawContext);
 	}
+	
 	if (myData.pCurrentSurface != NULL)
 	{
-		dx = (iWidth - myData.iCurrentTextWidth)/2;
-		dy = (iHeight - myData.iCurrentTextHeight)/2;
-		if (dy < 0)
+		fScale = (double)iWidth / myData.iCurrentTextWidth;  // scale to fill the icon horizontally
+		if (fScale * myData.iCurrentTextHeight > iHeight)  // if the text is too height, scale down
 		{
-			dy = 0;
-			fScale = (double)iHeight / myData.iCurrentTextHeight;
-			cairo_save (myDrawContext);
-			cairo_scale (myDrawContext, 1., fScale);
+			fScale = (double)iHeight / myData.iCurrentTextHeight;  // that's smaller than the previous value.
 		}
-		else
-			fScale=0;
+		dx = (iWidth - fScale * myData.iCurrentTextWidth)/2;  // center horizontally
+		dy = iHeight - fScale * myData.iCurrentTextHeight;  // bottom (we draw the caps/num lock on top).
+		
+		cairo_save (myDrawContext);
+		cairo_translate (myDrawContext, dx, dy);
+		cairo_scale (myDrawContext, fScale, fScale);  // keep ratio
 		cairo_set_source_surface (
 			myDrawContext,
 			myData.pCurrentSurface,
-			dx,
-			dy);
-		cairo_paint_with_alpha (myDrawContext, f);
-		if (fScale != 0)
-			cairo_restore (myDrawContext);
+			0,
+			0);
+		cairo_paint_with_alpha (myDrawContext, 1-f);
+		cairo_restore (myDrawContext);
 	}
 	
 	CD_APPLET_LEAVE (TRUE);

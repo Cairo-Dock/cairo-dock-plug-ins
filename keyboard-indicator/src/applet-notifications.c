@@ -59,7 +59,7 @@ static void _open_keyboard_properties (GtkMenuItem *menu_item, gpointer data)
 	
 	if (cCommand)
 	{
-		cairo_dock_launch_command ("cCommand");
+		cairo_dock_launch_command (cCommand);
 	}
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN

@@ -74,10 +74,7 @@ CD_APPLET_RESET_CONFIG_END
 
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped, in the very end.
 CD_APPLET_RESET_DATA_BEGIN
-	if (myData.pBackgroundSurface != NULL)
-		cairo_surface_destroy (myData.pBackgroundSurface);
-	if (myData.iBackgroundTexture != 0)
-		_cairo_dock_delete_texture (myData.iBackgroundTexture);
+	cairo_dock_unload_image_buffer (&myData.bgImage);
 	if (myData.pOldSurface != NULL)
 		cairo_surface_destroy (myData.pOldSurface);
 	if (myData.iOldTexture != 0)

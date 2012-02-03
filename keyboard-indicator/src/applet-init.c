@@ -40,23 +40,14 @@ CD_APPLET_DEFINITION (N_("keyboard indicator"),
 
 static void _load_bg_image (void)
 {
-	if (myData.pBackgroundSurface != NULL)
-	{
-		cairo_surface_destroy (myData.pBackgroundSurface);
-		myData.pBackgroundSurface = NULL;
-	}
-	if (myData.iBackgroundTexture != 0)
-	{
-		_cairo_dock_delete_texture (myData.iBackgroundTexture);
-		myData.iBackgroundTexture = 0;
-	}
-	
-	if (myConfig.cBackgroundImage != NULL)
-	{
-		myData.pBackgroundSurface = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (myConfig.cBackgroundImage);
-		if (g_bUseOpenGL)
-			myData.iBackgroundTexture = cairo_dock_create_texture_from_surface (myData.pBackgroundSurface);
-	}
+	int iWidth, iHeight;
+	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
+	cairo_dock_unload_image_buffer (&myData.bgImage);
+	cairo_dock_load_image_buffer (&myData.bgImage,
+		myConfig.cBackgroundImage,
+		iWidth,
+		iHeight,
+		0);
 }
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
@@ -95,21 +86,12 @@ CD_APPLET_INIT_BEGIN
 	
 	myData.iCurrentGroup = -1;  // pour forcer le redessin.
 	
-	/*Display *dsp = (Display*)cairo_dock_get_Xdisplay (); // const
-	XklEngine *pEngine = xkl_engine_get_instance (dsp);
-	xkl_engine_start_listen (pEngine, XKLL_MANAGE_WINDOW_STATES | XKLL_MANAGE_LAYOUTS);*/
-	
 	g_timeout_add_seconds (1, _init, NULL);
-	///Window Xid = cairo_dock_get_current_active_window ();
-	///cd_xkbd_keyboard_state_changed (myApplet, &Xid);
 CD_APPLET_INIT_END
 
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
-	/*Display *dsp = (Display*)cairo_dock_get_Xdisplay (); // const
-	XklEngine *pEngine = xkl_engine_get_instance (dsp);
-	xkl_engine_stop_listen (pEngine, XKLL_MANAGE_WINDOW_STATES | XKLL_MANAGE_LAYOUTS);*/
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;

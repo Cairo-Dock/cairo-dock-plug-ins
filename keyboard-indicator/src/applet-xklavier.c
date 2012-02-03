@@ -92,7 +92,7 @@ gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Wind
 		Xid = DefaultRootWindow (dsp);
 	gchar *cShortGroupName = NULL;
 	const gchar *cCurrentGroup = NULL;
-	GString *sCurrentIndicator = NULL;
+	///GString *sCurrentIndicator = NULL;
 	gboolean bRedrawSurface = FALSE;
 	
 	if (Xid != 0)
@@ -101,7 +101,6 @@ gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Wind
 		XklEngine *pEngine = xkl_engine_get_instance (dsp); // const
 		XklState state;
 		gboolean bSuccess = xkl_engine_get_state (pEngine, Xid, &state);
-		///CD_APPLET_LEAVE_IF_FAIL (bSuccess, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 		if (!bSuccess)
 		{
 			cd_warning ("xkl_engine_get_state() failed, we use the first keyboard layout as a workaround (%d, %d)", state.group, state.indicators);
@@ -119,26 +118,26 @@ gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Wind
 		// on recupere le groupe courant.
 		int n = xkl_engine_get_num_groups (pEngine);
 		CD_APPLET_LEAVE_IF_FAIL (n > 0, CAIRO_DOCK_LET_PASS_NOTIFICATION);
-		//g_return_val_if_fail (n > 0, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 		int iNewGroup = MAX (0, MIN (n-1, state.group));  // en 64bits, on dirait qu'on peut recuperer des nombres invraisemblables dans 'state' (bug de libxklavier ?).
 		const gchar **pGroupNames = xkl_engine_get_groups_names (pEngine);
 		CD_APPLET_LEAVE_IF_FAIL (pGroupNames != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 		cCurrentGroup = pGroupNames[iNewGroup];
+		CD_APPLET_LEAVE_IF_FAIL (cCurrentGroup != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
 		cd_debug (" group name : %s (%d groups)", cCurrentGroup, n);
 		
 		// on recupere l'indicateur courant.
-		const gchar **pIndicatorNames = xkl_engine_get_indicators_names (pEngine);
 		int i;
+		/**const gchar **pIndicatorNames = xkl_engine_get_indicators_names (pEngine);
 		if (myConfig.bShowKbdIndicator && pIndicatorNames != NULL)
 		{
-			/**if (myData.iCurrentGroup == -1 && state.indicators == 0)  // c'est probablement un bug dans libxklavier qui fait que l'indicateur n'est pas defini au debut.
+			if (myData.iCurrentGroup == -1 && state.indicators == 0)  // c'est probablement un bug dans libxklavier qui fait que l'indicateur n'est pas defini au debut.
 			{
 				cd_debug ("on force le num lock");
 				state.indicators = 2;  // num lock, enfin j'espere que c'est toujours le cas ...
 				xkl_engine_save_state (pEngine, Xid, &state);
 				xkl_engine_lock_group (pEngine, state.group);
-			}*/
-			/**for (i = 0; i < 2; i ++)  // on parcours le champ de bits, mais les indicateurs Compose/Suspend/Misc/Mail/Mouse Keys/etc ne nous interessent pas !
+			}
+			for (i = 0; i < 2; i ++)  // on parcours le champ de bits, mais les indicateurs Compose/Suspend/Misc/Mail/Mouse Keys/etc ne nous interessent pas !
 			{
 				if ((state.indicators >> i) & 1)  // i-eme bit a 1.
 				{
@@ -147,24 +146,29 @@ gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Wind
 					g_string_append_printf (sCurrentIndicator, "%s%s", (sCurrentIndicator->len == 0 ? "" : "/"), pIndicatorNames[i]);
 				}
 			}
-			cd_debug (" indicator name : %s", sCurrentIndicator?sCurrentIndicator->str:"none");*/
+			cd_debug (" indicator name : %s", sCurrentIndicator?sCurrentIndicator->str:"none");
+		}*/
+		if (myConfig.bShowKbdIndicator && myData.iCurrentGroup == -1 && state.indicators == 0)  // c'est probablement un bug dans libxklavier qui fait que l'indicateur n'est pas defini au debut.
+		{
+			cd_debug ("on force le num lock");
+			state.indicators = 2;  // num lock, enfin j'espere que c'est toujours le cas ...
+			xkl_engine_save_state (pEngine, Xid, &state);
+			xkl_engine_lock_group (pEngine, state.group);
 		}
 		
 		// on se souvient de l'etat courant.
 		myData.iCurrentGroup = state.group;
 		myData.iCurrentIndic = state.indicators;
 		
-		// on construit le nom court du groupe courant.
+		// build the displayed group name
+		cShortGroupName = g_strndup (cCurrentGroup, 3);
 		int index = 0;
-		for (i = 0; i < state.group; i ++)  // on cherche les noms identiques.
+		for (i = 0; i < state.group; i ++)  // look for groups before us having the same name.
 		{
 			if (strncmp (cCurrentGroup, pGroupNames[i], 3) == 0)
 				index ++;
 		}
-		cShortGroupName = g_strndup (cCurrentGroup, 3);  //cairo_dock_cut_string (cCurrentGroup, 3);
-		//if (cShortGroupName && strlen(cShortGroupName) > 3)
-		//	cShortGroupName[strlen(cShortGroupName)-3] = '\0';
-		if (index != 0)
+		if (index != 0)  // add a number if several groups have the same name.
 		{
 			gchar *tmp = cShortGroupName;
 			cShortGroupName = g_strdup_printf ("%s%d", cShortGroupName, index+1);
@@ -194,10 +198,9 @@ gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Wind
 		}*/
 	}
 	
-	cd_xkbd_update_icon (cCurrentGroup, cShortGroupName, sCurrentIndicator ? sCurrentIndicator->str : NULL, bRedrawSurface);
+	cd_xkbd_update_icon (cCurrentGroup, cShortGroupName, /**sCurrentIndicator ? sCurrentIndicator->str : */NULL, bRedrawSurface);
 	g_free (cShortGroupName);
-	if (sCurrentIndicator != NULL)
-		g_string_free (sCurrentIndicator, TRUE);
+	/**if (sCurrentIndicator != NULL)
+		g_string_free (sCurrentIndicator, TRUE);*/
 	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
-	//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
