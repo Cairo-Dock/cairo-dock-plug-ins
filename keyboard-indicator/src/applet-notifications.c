@@ -46,7 +46,7 @@ static void _open_keyboard_properties (GtkMenuItem *menu_item, gpointer data)
 	gchar *cResult = cairo_dock_launch_command_sync ("which gnome-control-center");  // Gnome3
 	if (cResult != NULL && *cResult == '/')
 	{
-		cCommand = "gnome-control-center keyboard";
+		cCommand = "gnome-control-center region";
 	}
 	else
 	{

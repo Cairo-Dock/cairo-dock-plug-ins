@@ -56,7 +56,7 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 		myData.pCurrentSurface = cairo_dock_create_surface_from_text_full (cShortGroupName,
 			&myConfig.textDescription,
 			1.,
-			iWidth,
+			0*iWidth,
 			&myData.iCurrentTextWidth, &myData.iCurrentTextHeight);
 		g_print ("KEYBOARD: %dx%d / %dx%d\n", myData.iCurrentTextWidth, myData.iCurrentTextHeight, myIcon->iImageWidth, myIcon->iImageHeight);
 		if (g_bUseOpenGL)
@@ -262,7 +262,7 @@ gboolean cd_xkbd_render_step_cairo (Icon *pIcon, CairoDockModuleInstance *myAppl
 			myData.pCurrentSurface,
 			0,
 			0);
-		cairo_paint_with_alpha (myDrawContext, 1-f);
+		cairo_paint_with_alpha (myDrawContext, f);
 		cairo_restore (myDrawContext);
 	}
 	
