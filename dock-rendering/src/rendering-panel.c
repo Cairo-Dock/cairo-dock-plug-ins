@@ -82,12 +82,12 @@ static void cd_compute_size (CairoDock *pDock)
 	//\_____________ On calcule la position au repos des icones et la taille du dock.
 	double xg = fScreenBorderGap;  // abscisse de l'icone courante, et abscisse du debut du groupe courant.
 	double x = xg;
-	if (iNbGroups == 1 && pDock->icons)  // if the first icon is a separator, place icons to the right.
+	/*if (iNbGroups == 1 && pDock->icons)  // if the first icon is a separator, place icons to the right.
 	{
 		pIcon = pDock->icons->data;
 		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 			x += fGroupGap;
-	}
+	}*/
 	fCurrentGroupWidth = - myIconsParam.iIconGap;
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
@@ -95,6 +95,7 @@ static void cd_compute_size (CairoDock *pDock)
 		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 		{
 			pIcon->fXAtRest = x;
+			//g_print ("*** separator at %d\n", (int)x);
 			if (fCurrentGroupWidth > 0)  // le groupe courant est non vide, sinon c'est juste 2 separateurs cote a cote.
 			{
 				xg += fCurrentGroupWidth + fGroupGap;
@@ -746,6 +747,7 @@ void cd_update_input_shape (CairoDock *pDock)
 		CDPanelData *pData = pDock->pRendererData;
 		g_return_if_fail (pData != NULL);
 		
+		gboolean bValidGroup = FALSE;  // valid = non-empty
 		#if (GTK_MAJOR_VERSION < 3)
 		cairo_t *pCairoContext = gdk_cairo_create (pDock->pShapeBitmap);
 		if  (pCairoContext != NULL)
@@ -760,30 +762,37 @@ void cd_update_input_shape (CairoDock *pDock)
 				pIcon = ic->data;
 				if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 				{
-					if (pDock->container.bIsHorizontal)
+					if (bValidGroup)
 					{
-						cairo_rectangle (pCairoContext,
-							pIcon->fXAtRest + 2 * my_fPanelRadius,  // we let a few pixels to be able to grab the separtator, and to avoid leaving the dock too easily.
-							0,
-							pData->fGroupGap - 4 * my_fPanelRadius,
-							pDock->iMaxDockHeight);  // we use iMaxDockHeight instead of the actual window size, because at this time, the dock's window may not have its definite size.
+						if (pDock->container.bIsHorizontal)
+						{
+							cairo_rectangle (pCairoContext,
+								pIcon->fXAtRest + 2 * my_fPanelRadius,  // we let a few pixels to be able to grab the separtator, and to avoid leaving the dock too easily.
+								0,
+								pData->fGroupGap - 4 * my_fPanelRadius,
+								pDock->iMaxDockHeight);  // we use iMaxDockHeight instead of the actual window size, because at this time, the dock's window may not have its definite size.
+						}
+						else
+						{
+							cairo_rectangle (pCairoContext,
+								0,
+								pIcon->fXAtRest + 2 * my_fPanelRadius,  // we let a few pixels to be able to grab the separtator, and to avoid leaving the dock too easily.
+								pDock->iMaxDockHeight,
+								pData->fGroupGap - 4 * my_fPanelRadius);
+						}
+						cairo_fill (pCairoContext);
+						bValidGroup = FALSE;
 					}
-					else
-					{
-						cairo_rectangle (pCairoContext,
-							0,
-							pIcon->fXAtRest + 2 * my_fPanelRadius,  // we let a few pixels to be able to grab the separtator, and to avoid leaving the dock too easily.
-							pDock->iMaxDockHeight,
-							pData->fGroupGap - 4 * my_fPanelRadius);
-					}
-					cairo_fill (pCairoContext);
+				}
+				else
+				{
+					bValidGroup = TRUE;
 				}
 			}
 			
 			cairo_destroy (pCairoContext);
 		}
 		#else
-		/// TODO: add the rectangles to the region...
 		cairo_rectangle_int_t rect;
 		GList *ic;
 			Icon *pIcon;
@@ -792,21 +801,30 @@ void cd_update_input_shape (CairoDock *pDock)
 				pIcon = ic->data;
 				if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 				{
-					if (pDock->container.bIsHorizontal)
+					if (bValidGroup)
 					{
-						rect.x = pIcon->fXAtRest + 2 * my_fPanelRadius;  // we let a few pixels to be able to grab the separtator, and to avoid leaving the dock too easily.
-						rect.y = 0;
-						rect.width = pData->fGroupGap - 4 * my_fPanelRadius;
-						rect.height = pDock->iMaxDockHeight;  // we use iMaxDockHeight instead of the actual window size, because at this time, the dock's window may not have its definite size.
+						if (pDock->container.bIsHorizontal)
+						{
+							rect.x = pIcon->fXAtRest + 2 * my_fPanelRadius;  // we let a few pixels to be able to grab the separtator, and to avoid leaving the dock too easily.
+							rect.y = 0;
+							rect.width = pData->fGroupGap - 4 * my_fPanelRadius;
+							rect.height = pDock->iMaxDockHeight;  // we use iMaxDockHeight instead of the actual window size, because at this time, the dock's window may not have its definite size.
+							g_print ("***  rect %d; %d\n", (int)rect.x, (int)rect.width);
+						}
+						else
+						{
+							rect.x = 0;
+							rect.y = pIcon->fXAtRest + 2 * my_fPanelRadius;  // we let a few pixels to be able to grab the separtator, and to avoid leaving the dock too easily.
+							rect.width = pDock->iMaxDockHeight;
+							rect.height = pData->fGroupGap - 4 * my_fPanelRadius;
+						}
+						cairo_region_subtract_rectangle (pDock->pShapeBitmap, &rect);
+						bValidGroup = FALSE;
 					}
-					else
-					{
-						rect.x = 0;
-						rect.y = pIcon->fXAtRest + 2 * my_fPanelRadius;  // we let a few pixels to be able to grab the separtator, and to avoid leaving the dock too easily.
-						rect.width = pDock->iMaxDockHeight;
-						rect.height = pData->fGroupGap - 4 * my_fPanelRadius;
-					}
-					cairo_region_subtract_rectangle (pDock->pShapeBitmap, &rect);
+				}
+				else
+				{
+					bValidGroup = TRUE;
 				}
 			}
 		#endif
