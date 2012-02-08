@@ -161,6 +161,7 @@ void cd_indicator_destroy (CDAppletIndicator *pIndicator)
 		g_source_remove (pIndicator->iSidGetMenuOnce);
 	if (pIndicator->iSidCheckIndicator != 0)
 		g_source_remove (pIndicator->iSidCheckIndicator);
+	pIndicator->on_disconnect = NULL;  // since the indicator has been explicitely destroyed, we don't want to call the callback when we'll disconnect from the service.
 	if (pIndicator->service)
 		g_object_unref (pIndicator->service);
 	if (pIndicator->pServiceProxy)
