@@ -390,7 +390,7 @@ CDButtonEnum cd_app_menu_find_button (CairoDockModuleInstance *myApplet)
 		iNumButton = iMouseY / (h/myData.iNbButtons);
 	}
 	
-	if (!myConfig.bDisplayMenu)
+	if (!myConfig.bDisplayControls)
 		iNumButton++;
 
 	if (myData.bReversedButtonsOrder) // 1->1 ; 2->4 ; 3->2 ; 4->3
