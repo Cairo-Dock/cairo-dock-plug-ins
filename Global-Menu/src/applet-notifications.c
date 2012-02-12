@@ -177,6 +177,15 @@ gboolean cd_app_menu_on_name_changed (CairoDockModuleInstance *myApplet, Icon *p
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
+gboolean cd_app_menu_on_new_appli (CairoDockModuleInstance *myApplet, Icon *pIcon)
+{
+	if (pIcon && pIcon->bIsMaximized)
+	{
+		cd_app_menu_set_window_border (pIcon->Xid, ! pIcon->bIsMaximized);
+	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
 /**gboolean cd_app_menu_on_property_changed (CairoDockModuleInstance *myApplet, Window Xid, Atom aProperty, int iState)
 {
 	if (Xid != 0 && Xid == myData.iCurrentWindow)

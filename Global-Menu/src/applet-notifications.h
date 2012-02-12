@@ -48,6 +48,8 @@ gboolean cd_app_menu_on_state_changed (CairoDockModuleInstance *myApplet, Icon *
 
 gboolean cd_app_menu_on_name_changed (CairoDockModuleInstance *myApplet, Icon *pIcon);
 
+gboolean cd_app_menu_on_new_appli (CairoDockModuleInstance *myApplet, Icon *pIcon);
+
 ///gboolean cd_app_menu_on_property_changed (CairoDockModuleInstance *myApplet, Window Xid, Atom aProperty, int iState);
 
 
