@@ -155,7 +155,29 @@ gboolean cd_app_menu_on_active_window_changed (CairoDockModuleInstance *myApplet
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
-gboolean cd_app_menu_on_property_changed (CairoDockModuleInstance *myApplet, Window Xid, Atom aProperty, int iState)
+gboolean cd_app_menu_on_state_changed (CairoDockModuleInstance *myApplet, Icon *pIcon, gboolean bHiddenChanged, gboolean bMaximizedChanged, gboolean bFullScreenChanged)
+{
+	if (pIcon && pIcon->Xid == myData.iCurrentWindow)
+	{
+		if (bMaximizedChanged)
+		{
+			cd_app_menu_set_window_border (pIcon->Xid, ! pIcon->bIsMaximized);
+			cd_app_menu_redraw_buttons ();
+		}
+	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+gboolean cd_app_menu_on_name_changed (CairoDockModuleInstance *myApplet, Icon *pIcon)
+{
+	if (pIcon && pIcon->Xid == myData.iCurrentWindow)
+	{
+		CD_APPLET_SET_NAME_FOR_MY_ICON (pIcon->cName);
+	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+/**gboolean cd_app_menu_on_property_changed (CairoDockModuleInstance *myApplet, Window Xid, Atom aProperty, int iState)
 {
 	if (Xid != 0 && Xid == myData.iCurrentWindow)
 	{
@@ -177,7 +199,8 @@ gboolean cd_app_menu_on_property_changed (CairoDockModuleInstance *myApplet, Win
 			CD_APPLET_SET_NAME_FOR_MY_ICON (icon ? icon->cName : NULL);
 		}  // ignore the change of icon, we just want to use the default application icon.
 	}
-}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}*/
 
 
 //\___________ Other notifications, for animation of the buttons.

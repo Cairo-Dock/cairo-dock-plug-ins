@@ -59,10 +59,18 @@ CD_APPLET_INIT_BEGIN
 		NOTIFICATION_WINDOW_ACTIVATED,
 		(CairoDockNotificationFunc) cd_app_menu_on_active_window_changed,
 		CAIRO_DOCK_RUN_AFTER, myApplet);
-	cairo_dock_register_notification_on_object (&myDesktopMgr,
+	cairo_dock_register_notification_on_object (&myTaskbarMgr,
+		NOTIFICATION_APPLI_STATE_CHANGED,
+		(CairoDockNotificationFunc) cd_app_menu_on_state_changed,
+		CAIRO_DOCK_RUN_AFTER, myApplet);
+	cairo_dock_register_notification_on_object (&myTaskbarMgr,
+		NOTIFICATION_APPLI_NAME_CHANGED,
+		(CairoDockNotificationFunc) cd_app_menu_on_name_changed,
+		CAIRO_DOCK_RUN_AFTER, myApplet);
+	/**cairo_dock_register_notification_on_object (&myDesktopMgr,
 		NOTIFICATION_WINDOW_PROPERTY_CHANGED,
 		(CairoDockNotificationFunc) cd_app_menu_on_property_changed,
-		CAIRO_DOCK_RUN_AFTER, myApplet);
+		CAIRO_DOCK_RUN_AFTER, myApplet);*/
 	
 	cairo_dock_register_notification_on_object (myContainer,
 		NOTIFICATION_MOUSE_MOVED,
@@ -104,9 +112,15 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
 		NOTIFICATION_WINDOW_ACTIVATED,
 		(CairoDockNotificationFunc) cd_app_menu_on_active_window_changed, myApplet);
-	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
+	/**cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
 		NOTIFICATION_WINDOW_PROPERTY_CHANGED,
-		(CairoDockNotificationFunc) cd_app_menu_on_property_changed, myApplet);
+		(CairoDockNotificationFunc) cd_app_menu_on_property_changed, myApplet);*/
+	cairo_dock_remove_notification_func_on_object (&myTaskbarMgr,
+		NOTIFICATION_APPLI_STATE_CHANGED,
+		(CairoDockNotificationFunc) cd_app_menu_on_state_changed, myApplet);
+	cairo_dock_remove_notification_func_on_object (&myTaskbarMgr,
+		NOTIFICATION_APPLI_NAME_CHANGED,
+		(CairoDockNotificationFunc) cd_app_menu_on_name_changed, myApplet);
 	
 	cairo_dock_remove_notification_func_on_object (myContainer,
 		NOTIFICATION_MOUSE_MOVED,
