@@ -37,8 +37,7 @@ gboolean cd_illusion_init_evaporate (Icon *pIcon, CairoDock *pDock, CDIllusionDa
 	double dt = pData->fDeltaT;
 	pEvaporateParticleSystem->dt = dt;
 	pEvaporateParticleSystem->bAddLuminance = TRUE;
-	pEvaporateParticleSystem->bDirectionUp = (pDock->container.bIsHorizontal ? pDock->container.bDirectionUp : ! pDock->container.bDirectionUp);
-	pData->pEvaporateSystem = pEvaporateParticleSystem;
+	pData->pEvaporateSystem = pEvaporateParticleSystem;  // evaporation is always from bottom to top, independantly of the dock's orientation. it feels more natural like this.
 	
 	double a = myConfig.fEvaporateParticleSpeed;
 	static double epsilon = 0.1;

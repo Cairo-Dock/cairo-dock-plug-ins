@@ -88,10 +88,18 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDeskto
 		cairo_stroke (pCairoContext);
 	}
 	
-	if (pIcon->pIconBuffer != NULL)
+	Icon *pDisplayedIcon = pIcon;
+	if (pDisplayedIcon->pIconBuffer == NULL)  // icon not loaded (because not in a dock, because inhibited)
+	{
+		/// TODO: we'll have to load the icons that are not loaded (not inside a dock)...
+		Icon *pInhibitor = cairo_dock_get_inhibitor (pIcon, TRUE);  // TRUE = only in dock.
+		if (pInhibitor != NULL)
+			pDisplayedIcon = pInhibitor;
+	}
+	if (pDisplayedIcon->pIconBuffer != NULL)
 	{
 		int iWidth, iHeight;
-		cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
+		cairo_dock_get_icon_extent (pDisplayedIcon, &iWidth, &iHeight);
 		double fZoomX = (double) w/g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL]*iOneViewportWidth / iWidth;
 		double fZoomY = (double) h/g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL]*iOneViewportHeight / iHeight;
 		double fZoom = MIN (fZoomX, fZoomY);  // on garde le ratio.
@@ -103,7 +111,7 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDeskto
 			fZoom,
 			fZoom);
 		cairo_set_source_surface (pCairoContext,
-			pIcon->pIconBuffer,
+			pDisplayedIcon->pIconBuffer,
 			0.,
 			0.);
 		cairo_paint (pCairoContext);
@@ -388,6 +396,7 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 		{
 			pIcon = ic->data;
 			cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
+			
 			pCairoContext = cairo_create (pIcon->pIconBuffer);
 			cairo_set_line_width (pCairoContext, 1.);
 			cairo_set_source_rgba (pCairoContext, myConfig.RGBWLineColors[0], myConfig.RGBWLineColors[1], myConfig.RGBWLineColors[2], myConfig.RGBWLineColors[3]);
@@ -516,64 +525,28 @@ static void _cd_switcher_list_window_on_viewport (Icon *pIcon, int iNumDesktop, 
 {
 	//g_print (" + %s\n", pIcon->cName);
 	// on recupere la taille de l'icone.
-	int iWidth, iHeight;
-	cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
+	Icon *pDisplayedIcon = pIcon;
+	if (pDisplayedIcon->pIconBuffer == NULL)  // icon not loaded (because not in a dock, because inhibited)
+	{
+		Icon *pInhibitor = cairo_dock_get_inhibitor (pIcon, TRUE);  // TRUE = only in dock.
+		if (pInhibitor != NULL)
+			pDisplayedIcon = pInhibitor;
+	}
 	
 	// on cree une copie de la surface de l'icone a la taille du menu.
-	GdkPixbuf *pixbuf = NULL;
-	if (iWidth > 0 && iHeight > 0 && pIcon->pIconBuffer != NULL)
+	GdkPixbuf *pixbuf = cairo_dock_icon_buffer_to_pixbuf (pDisplayedIcon);
+	if (pixbuf == NULL)
 	{
-		int w = 24, h = w;
-		cairo_surface_t *surface = cairo_image_surface_create (CAIRO_FORMAT_RGB24,
-			w,
-			h);
-		cairo_t *pCairoContext = cairo_create (surface);
-		cairo_scale (pCairoContext, (double)w/iWidth, (double)h/iHeight);
-		cairo_set_source_surface (pCairoContext, pIcon->pIconBuffer, 0., 0.);
-		cairo_paint (pCairoContext);
-		cairo_destroy (pCairoContext);
-		guchar *d, *data = cairo_image_surface_get_data (surface);
-		int r = cairo_image_surface_get_stride (surface);
-		
-		// on la convertit en un pixbuf.
-		pixbuf = gdk_pixbuf_new (GDK_COLORSPACE_RGB,
-			TRUE,
-			8,
-			w,
-			h);
-		guchar *p, *pixels = gdk_pixbuf_get_pixels (pixbuf);
-		int iNbChannels = gdk_pixbuf_get_n_channels (pixbuf);
-		int iRowstride = gdk_pixbuf_get_rowstride (pixbuf);
-		
-		int x, y;
-		int red, green, blue;
-		float fAlphaFactor;
-		for (y = 0; y < h; y ++)
+		const gchar *cIcon = cairo_dock_get_class_icon (pIcon->cClass);
+		gchar *cIconPath = cairo_dock_search_icon_s_path (cIcon);
+		if (cIconPath)
 		{
-			for (x = 0; x < w; x ++)
-			{
-				p = pixels + y * iRowstride + x * iNbChannels;
-				d = data + y * r + x * 4;
-				
-				fAlphaFactor = (float) d[3] / 255;
-				if (fAlphaFactor != 0)
-				{
-					red = d[0] / fAlphaFactor;
-					green = d[1] / fAlphaFactor;
-					blue = d[2] / fAlphaFactor;
-				}
-				else
-				{
-					red = blue = green = 0;
-				}
-				p[0] = blue;
-				p[1] = green;
-				p[2] = red;
-				p[3] = d[3];
-			}
+			int w = 24, h = w;
+			pixbuf = gdk_pixbuf_new_from_file_at_size (cIconPath,
+				w,
+				h,
+				NULL);
 		}
-		
-		cairo_surface_destroy (surface);
 	}
 	
 	// on ajoute une entree au menu avec le pixbuf.

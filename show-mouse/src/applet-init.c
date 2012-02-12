@@ -73,8 +73,8 @@ CD_APPLET_INIT_BEGIN
 	}
 	myData.iContainerType = myConfig.iContainerType;
 	
-	cairo_dock_register_notification_on_object (&myDocksMgr, NOTIFICATION_STOP_DOCK, (CairoDockNotificationFunc) cd_show_mouse_free_data, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification_on_object (&myDeskletsMgr, NOTIFICATION_STOP_DESKLET, (CairoDockNotificationFunc) cd_show_mouse_free_data, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification_on_object (&myDocksMgr, NOTIFICATION_DESTROY, (CairoDockNotificationFunc) cd_show_mouse_free_data, CAIRO_DOCK_RUN_AFTER, NULL);
+	cairo_dock_register_notification_on_object (&myDeskletsMgr, NOTIFICATION_DESTROY, (CairoDockNotificationFunc) cd_show_mouse_free_data, CAIRO_DOCK_RUN_AFTER, NULL);
 CD_APPLET_INIT_END
 
 
@@ -91,8 +91,8 @@ static gboolean _free_desklet_data (CairoDesklet *pDesklet, gpointer data)
 CD_APPLET_STOP_BEGIN
 	_cd_mouse_unregister_from_dock ();
 	_cd_mouse_unregister_from_desklet ();
-	cairo_dock_remove_notification_func_on_object (&myDocksMgr, NOTIFICATION_STOP_DOCK, (CairoDockNotificationFunc) cd_show_mouse_free_data, NULL);
-	cairo_dock_remove_notification_func_on_object (&myDeskletsMgr, NOTIFICATION_STOP_DESKLET, (CairoDockNotificationFunc) cd_show_mouse_free_data, NULL);
+	cairo_dock_remove_notification_func_on_object (&myDocksMgr, NOTIFICATION_DESTROY, (CairoDockNotificationFunc) cd_show_mouse_free_data, NULL);
+	cairo_dock_remove_notification_func_on_object (&myDeskletsMgr, NOTIFICATION_DESTROY, (CairoDockNotificationFunc) cd_show_mouse_free_data, NULL);
 	
 	cairo_dock_foreach_docks ((GHFunc)_free_dock_data, NULL);
 	cairo_dock_foreach_desklet (_free_desklet_data, NULL);

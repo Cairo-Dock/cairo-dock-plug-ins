@@ -65,7 +65,7 @@ CD_APPLET_INIT_BEGIN
 		(CairoDockNotificationFunc) cd_motion_blur_update_dock,
 		CAIRO_DOCK_RUN_AFTER, NULL);
 	cairo_dock_register_notification_on_object (&myDocksMgr,
-		NOTIFICATION_STOP_DOCK,
+		NOTIFICATION_DESTROY,
 		(CairoDockNotificationFunc) cd_motion_free_data,
 		CAIRO_DOCK_RUN_AFTER, NULL);
 CD_APPLET_INIT_END
@@ -94,7 +94,7 @@ CD_APPLET_STOP_BEGIN
 		NOTIFICATION_UPDATE,
 		(CairoDockNotificationFunc) cd_motion_blur_update_dock, NULL);
 	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
-		NOTIFICATION_STOP_DOCK,
+		NOTIFICATION_DESTROY,
 		(CairoDockNotificationFunc) cd_motion_free_data, NULL);
 	
 	cairo_dock_foreach_docks ((GHFunc) _free_data_on_dock, NULL);
