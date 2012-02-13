@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
+"POT-Creation-Date: 2012-02-12 03:52+0000\n"
 "PO-Revision-Date: 2011-09-16 00:29+0000\n"
 "Last-Translator: Fabounet <fabounet03@gmail.com>\n"
 "Language-Team: Slovak <sk@li.org>\n"
-"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-09-25 04:46+0000\n"
-"X-Generator: Launchpad (build 14012)\n"
+"X-Launchpad-Export-Date: 2012-02-13 04:57+0000\n"
+"X-Generator: Launchpad (build 14781)\n"
+"Language: sk\n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -97,7 +98,8 @@ msgstr "Prepáč, teraz som zaneprázdnený."
 #: ../Cairo-Penguin/src/applet-notifications.c:31
 msgid ""
 "I don't have time to play with you, I have to dig and mine all these icons."
-msgstr "Nemám čas sa s tebou hrať. Musím zakopať míny pod všetky tieto ikony."
+msgstr ""
+"Nemám čas sa s tebou hrať. Musím zakopať míny pod všetky tieto ikony."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:32
 msgid "Your dock is so messy! Let me clean it."
@@ -188,14 +190,12 @@ msgid "Clipboard history"
 msgstr "História schránky"
 
 #: ../Clipper/src/applet-init.c:72
-#, fuzzy
 msgid "Pop-up the items menu"
-msgstr "Klávesová skratka pre vyskakovacie okno s položkami menu :"
+msgstr ""
 
 #: ../Clipper/src/applet-notifications.c:33
-#, fuzzy
 msgid "The clipboard history is empty."
-msgstr "História schránky"
+msgstr ""
 
 #: ../Clipper/src/applet-notifications.c:99
 msgid ""
@@ -346,7 +346,8 @@ msgstr "Modul bol pridaný, ale nemohol byť spustený."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Applet '%s' bol úspešne aktualizovaný a automaticky načítaný"
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -490,9 +491,8 @@ msgid "Empty or unreadable folder."
 msgstr "Prázdny, alebo nečítateľný priečinok."
 
 #: ../Folders/src/applet-notifications.c:116
-#, fuzzy
 msgid "Properties:"
-msgstr "Vlastnosti"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:136 ../Folders/data/messages:119
 msgid "Size"
@@ -503,14 +503,12 @@ msgid "bytes"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:150
-#, fuzzy
 msgid "Last Modification"
-msgstr "Žiadna zmena"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:159
-#, fuzzy
 msgid "Mime Type"
-msgstr "Typ"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:173
 msgid "User ID"
@@ -692,14 +690,12 @@ msgid "Applications Menu"
 msgstr "Menu aplikácií"
 
 #: ../GMenu/src/applet-init.c:65
-#, fuzzy
 msgid "Show/hide the Applications menu"
-msgstr "Menu aplikácií"
+msgstr ""
 
 #: ../GMenu/src/applet-init.c:70
-#, fuzzy
 msgid "Show/hide the quick-launch dialog"
-msgstr "Klávesová skratka pre zobrazenie/skrytie dialógu rýchleho spustenia ?"
+msgstr ""
 
 #: ../GMenu/src/applet-menu-callbacks.c:218 ../GMenu/data/messages:123
 msgid "Logout"
@@ -734,9 +730,8 @@ msgid "Enter a command to launch:"
 msgstr "Vložte príkaz pre spustenie :"
 
 #: ../Global-Menu/src/applet-init.c:30
-#, fuzzy
 msgid "Global Menu"
-msgstr "Všeobecné"
+msgstr ""
 
 #: ../Global-Menu/src/applet-init.c:33
 msgid ""
@@ -798,9 +793,8 @@ msgid ""
 msgstr ""
 
 #: ../Messaging-Menu/src/applet-init.c:66
-#, fuzzy
 msgid "Show/hide the Messaging menu"
-msgstr "Klávesová skratka pre zobrazenie/schovanie menu :"
+msgstr ""
 
 #: ../Messaging-Menu/src/applet-notifications.c:31
 msgid ""
@@ -1134,9 +1128,8 @@ msgid "Recent-Events"
 msgstr ""
 
 #: ../Recent-Events/src/applet-init.c:56
-#, fuzzy
 msgid "Show/hide the Recent Events"
-msgstr "Zobraziť nedávne dokumenty ?"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:74
 #, c-format
@@ -1262,9 +1255,8 @@ msgid "Amazon"
 msgstr "Amazon"
 
 #: ../Scooby-Do/src/applet-init.c:73
-#, fuzzy
 msgid "Enable/disable the Finder"
-msgstr "Povoliť/zakázať sieť"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-listing.c:514
 msgid "(F1) Match case"
@@ -1567,9 +1559,8 @@ msgid "Sound Control"
 msgstr "Ovládanie zvuku"
 
 #: ../alsaMixer/src/applet-init.c:119
-#, fuzzy
 msgid "Show/hide the Sound menu"
-msgstr "Klávesová skratka pre zobrazenie/schovanie menu :"
+msgstr ""
 
 #: ../alsaMixer/src/applet-notifications.c:67
 msgid "Adjust channels"
@@ -1701,8 +1692,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1711,8 +1702,8 @@ msgstr ""
 "K dispozícii sú 2 pohľady : <b>číselný</b> a <b>analógový</b>.\n"
 " Analógový pohľad je kompatibilnýs témami Cairo-Clock, a applet môžete "
 "odpojiť a získať dokonalý klon Cairo-Hodín.\n"
-"Zobrazuje <b>kalendár</b> a ľavé kliknutie, vám umožní <b>spravovať úlohy</"
-"b>.\n"
+"Zobrazuje <b>kalendár</b> a ľavé kliknutie, vám umožní <b>spravovať "
+"úlohy</b>.\n"
 "Tiež podporuje alarmy, a umožnuje nastaviť čas a dátum.\n"
 "Ľavé kliknutie zobrazí/skryje kalendar, Stredné kliknutie zastaví "
 "oznamovanie,\n"
@@ -1918,7 +1909,8 @@ msgstr ""
 "Stačí stlačiť CTRL + V k prilepeniu adresy URL kdekoľvek."
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr "Prosím, počkajte kým súčasné nahrávanie skončí pred začatím nového."
 
 #: ../dnd2share/src/applet-dnd2share.c:591
@@ -2248,14 +2240,12 @@ msgid "Log out"
 msgstr "Odhlásenie"
 
 #: ../logout/src/applet-init.c:65
-#, fuzzy
 msgid "Lock the screen"
-msgstr "Uzamknúť obrazovku"
+msgstr ""
 
 #: ../logout/src/applet-init.c:69
-#, fuzzy
 msgid "Show the log-out menu"
-msgstr "Zobraziť dátum :"
+msgstr ""
 
 #: ../logout/src/applet-logout.c:198 ../logout/data/messages:101
 #: ../logout/data/messages:109
@@ -2289,9 +2279,8 @@ msgid "Close your session and allow to open a new one."
 msgstr ""
 
 #: ../logout/src/applet-logout.c:239
-#, fuzzy
 msgid "Switch user"
-msgstr "prepínač"
+msgstr ""
 
 #: ../logout/src/applet-logout.c:258
 msgid "Guest session"
@@ -2315,23 +2304,21 @@ msgid "Choose in how many minutes your PC will stop:"
 msgstr "Vyberte si za koľko minút bude vaše PC vypnuté :"
 
 #: ../logout/src/applet-logout.c:512
-#, fuzzy, c-format
+#, c-format
 msgid "It will automatically shut-down in %ds"
-msgstr "Program na automatické vypnutie"
+msgstr ""
 
 #: ../logout/src/applet-logout.c:513
 msgid "Shut down the computer?"
 msgstr ""
 
 #: ../logout/src/applet-logout.c:573
-#, fuzzy
 msgid "Restart the computer?"
-msgstr "Použiť kompaktný mód?"
+msgstr ""
 
 #: ../logout/src/applet-logout.c:610
-#, fuzzy
 msgid "Close the current session?"
-msgstr "Zavrieť aktuálnu kartu"
+msgstr ""
 
 #: ../logout/src/applet-notifications.c:103
 msgid "Manage users"
@@ -2451,7 +2438,8 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-config.c:392
 msgid "Enter a name for this account. You can give it any name you want."
-msgstr "Prosím, zadajte názov pre tento účet. Môžete vložiť názov aký chcete."
+msgstr ""
+"Prosím, zadajte názov pre tento účet. Môžete vložiť názov aký chcete."
 
 #: ../mail/src/cd-mail-applet-config.c:447
 msgid "Remove Account"
@@ -2590,7 +2578,6 @@ msgid "musicPlayer"
 msgstr "Prehrávač hudby"
 
 #: ../musicPlayer/src/applet-init.c:51
-#, fuzzy
 msgid ""
 "This applet lets you control any music player.\n"
 "First choose the player you want to control.\n"
@@ -2602,15 +2589,6 @@ msgid ""
 " and jpeg image to use as cover.\n"
 "Note: you may have to install or activate the MPRIS plug-in of the player."
 msgstr ""
-"Tento applet vám umožní ovládať akýkoľvek hudobný prehrávač.\n"
-"Ľavé tlačidlo pre Prehrať/Pauza, stredné-kliknutie prehrá ďalšiu pieseň.\n"
-"Posun nahor/nadol prehrá predchádzajúcu/ďalšiu skladbu.\n"
-"Môžete chytiť & pustiť piesne na ikonu a dať ich do fronty (závisí na "
-"Prehrávači),\n"
-" a JPEG použiť ako obal .\n"
-"Poznámka: U XMMS, musíte nainštalovať rozšírenie 'xmms-infopipe'.\n"
-"       Pre Songbird, musíte nainštalovať jeho dbus add-on.\n"
-"       Pre Exaile 0.3, musíte aktivovať jeho MPRIS plug-in"
 
 #: ../musicPlayer/src/applet-notifications.c:83
 msgid ""
@@ -2841,9 +2819,8 @@ msgstr ""
 "zložky."
 
 #: ../quick-browser/src/applet-init.c:64
-#, fuzzy
 msgid "Show/hide the folder menu"
-msgstr "Klávesová skratka pre zobrazenie/schovanie menu :"
+msgstr ""
 
 #: ../quick-browser/src/applet-menu.c:107
 #: ../quick-browser/src/applet-menu.c:116
@@ -2964,11 +2941,11 @@ msgstr "zobraziť myš"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
-"Tento plugin vykresľuje niektoré animácie okolo kurzora, keď je vnútri doku/"
-"deskletu."
+"Tento plugin vykresľuje niektoré animácie okolo kurzora, keď je vnútri "
+"doku/deskletu."
 
 #: ../showDesktop/src/applet-init.c:28
 msgid "showDesktop"
@@ -3228,9 +3205,8 @@ msgid ""
 msgstr ""
 
 #: ../terminal/src/terminal-init.c:59
-#, fuzzy
 msgid "Show/hide the terminal"
-msgstr "Klávesová skratka pre zobrazenie terminálu :"
+msgstr ""
 
 #: ../terminal/src/terminal-menu-functions.c:78
 #: ../terminal/src/terminal-widget.c:420
@@ -5387,7 +5363,8 @@ msgid "Background"
 msgstr "Pozadie"
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr "Môžete mať viac atraktívnych prostredí pomocou dekorácie Deskletov"
 
 #: ../Doncky/data/messages:121 ../RSSreader/data/messages:185
@@ -5503,7 +5480,8 @@ msgstr "Klávesová skratka pre zobrazenie/schovanie menu :"
 
 #: ../GMenu/data/messages:99
 msgid "Shortkey to show/hide the quick-launch dialog:"
-msgstr "Klávesová skratka pre zobrazenie/skrytie dialógu rýchleho spustenia ?"
+msgstr ""
+"Klávesová skratka pre zobrazenie/skrytie dialógu rýchleho spustenia ?"
 
 #: ../GMenu/data/messages:103
 msgid "Command to use for configuring the menu:"
@@ -7031,7 +7009,8 @@ msgid "Space between icons:"
 msgstr "Priestor medzi ikonami :"
 
 #: ../dock-rendering/data/messages:115
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 znamená úplne plochú vlnu, 1 znamená, že vlna je totožná s inými pohľadmi."
 
@@ -7168,7 +7147,8 @@ msgid "Colours"
 msgstr "Farby"
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr "Bude mierne meniť farby, takže možno budete potrebná úprava."
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -7391,7 +7371,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Názov súboru pre obrázok \"má mail\" :"
 
 #: ../mail/data/messages:107
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Ak je začiarknuté, bude zobrazený počet mailov, aj keď nie je žiadny mail."
 
@@ -7476,8 +7457,10 @@ msgid "Blur amount:"
 msgstr "Sila rozmazania :"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
-msgstr "Nechajte prázdne pre zobrazenie názvu aktuálne používaného prehrávača."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
+msgstr ""
+"Nechajte prázdne pre zobrazenie názvu aktuálne používaného prehrávača."
 
 #: ../musicPlayer/data/messages:93
 msgid "Audio Player"
@@ -8408,7 +8391,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Pozícia vodorového vysúvacieho panela v pixeloch"
 
 #: ../weblets/data/messages:107
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "To vám umožní pravé-kliknutie na desklety pre vyskakovacie okno Cairo-Dock "
 "menu."
@@ -8424,7 +8408,8 @@ msgstr "Priehľadné pozadie ?"
 #: ../weblets/data/messages:113
 msgid ""
 "Time before reloading the weblet URI, in seconds. Zero means never reload."
-msgstr "Čas pred obnovením weblet URI, v sekundách. Nula znamená neobnovovať."
+msgstr ""
+"Čas pred obnovením weblet URI, v sekundách. Nula znamená neobnovovať."
 
 #: ../weblets/data/messages:115
 msgid "Time between two page refreshes"
@@ -8494,6 +8479,3 @@ msgstr "Oznámenia o čistote signálu"
 #: ../wifi/data/messages:193
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Prepísať predvolené štítok s názvom bodu pripojenia ?"
-
-#~ msgid "It seems that the Messaging-Menu is not installed on your system"
-#~ msgstr "Zdá sa, že Messaging-Menu nie je nainštalované vo vašom systéme"

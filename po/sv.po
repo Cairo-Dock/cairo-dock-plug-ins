@@ -7,16 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2011-09-16 00:52+0000\n"
-"Last-Translator: Daniel Nylander <yeager@ubuntu.com>\n"
+"POT-Creation-Date: 2012-02-12 03:52+0000\n"
+"PO-Revision-Date: 2011-10-29 20:05+0000\n"
+"Last-Translator: Arve Eriksson <Unknown>\n"
 "Language-Team: Cairo-Dock\n"
-"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-09-25 04:47+0000\n"
-"X-Generator: Launchpad (build 14012)\n"
+"X-Launchpad-Export-Date: 2012-02-13 04:57+0000\n"
+"X-Generator: Launchpad (build 14781)\n"
 "X-Poedit-Country: SWEDEN\n"
+"Language: sv\n"
 "X-Poedit-Language: Swedish\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -25,7 +26,8 @@ msgstr "Animerade ikoner"
 
 #: ../Animated-icons/src/applet-init.c:35
 msgid "This plug-in provides many different animations for your icons."
-msgstr "Detta plugin tillhandahåller många olika animeringar till dina ikoner."
+msgstr ""
+"Detta plugin tillhandahåller många olika animeringar till dina ikoner."
 
 #: ../Animated-icons/src/applet-init.c:80 ../Animated-icons/data/messages:9
 #: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:47
@@ -86,7 +88,7 @@ msgstr ""
 
 #: ../Cairo-Penguin/src/applet-init.c:39
 msgid "Cairo-Penguin"
-msgstr ""
+msgstr "Cairo-Penguin"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:29
 msgid "Hey, I'm here!"
@@ -197,9 +199,8 @@ msgid "Pop-up the items menu"
 msgstr ""
 
 #: ../Clipper/src/applet-notifications.c:33
-#, fuzzy
 msgid "The clipboard history is empty."
-msgstr "Klippbordshistorik"
+msgstr ""
 
 #: ../Clipper/src/applet-notifications.c:99
 msgid ""
@@ -216,25 +217,25 @@ msgstr "Inga urklipp än."
 #: ../Composite-Manager/src/applet-composite-manager.c:421
 #: ../Composite-Manager/src/applet-composite-manager.c:436
 msgid "No compositor is available."
-msgstr ""
+msgstr "Ingen sammansatt grafik tillgänglig."
 
 #: ../Composite-Manager/src/applet-composite-manager.c:444
 #: ../Composite-Manager/src/applet-composite-manager.c:459
 msgid "No fallback is available."
-msgstr ""
+msgstr "Ingen återgångsläge tillgängligt."
 
 #: ../Composite-Manager/src/applet-composite-manager.c:499
 #, c-format
 msgid "You need to install '%s'"
-msgstr ""
+msgstr "Du måste installera '%s'"
 
 #: ../Composite-Manager/src/applet-composite-manager.c:510
 msgid "No configuration tool is available."
-msgstr ""
+msgstr "Inget inställningsverktyg finns tillgängligt."
 
 #: ../Composite-Manager/src/applet-init.c:27
 msgid "Composite-Manager"
-msgstr ""
+msgstr "Composite-Manager"
 
 #: ../Composite-Manager/src/applet-init.c:30
 msgid ""
@@ -248,6 +249,17 @@ msgid ""
 "You can define in the configuration a Window-Manager that will provide the "
 "composite, and another as a fallback."
 msgstr ""
+"Det här programmet låter dig <b>sätta på eller stänga av sammansatt "
+"grafik</b>.\n"
+"Sammansatt grafik gör det möjligt att ha genomskinlighet på skrivbordet, men "
+"det kan göra datorn långsammare,\n"
+"särskilt när du spelar spel. <b>Klicka</b> på ikonen för att växla "
+"sammansättningen PÅ eller AV. Du kan ange en\n"
+"<b>genväg</b> för den här åtgärden. Programmet låter dig också komma åt en "
+"del åtgärder i fönsterhanteraren,\n"
+"från <b>mittenklick och menyn</b>. Du kan ange i konfigurationen en "
+"fönsterhanterare som kommer tillhandahålla\n"
+"sammansatt grafik, och en annan som återgång."
 
 #: ../Composite-Manager/src/applet-init.c:52
 msgid "Toggle the composite ON/OFF"
@@ -255,12 +267,12 @@ msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:43
 msgid "Toggle composite?"
-msgstr ""
+msgstr "Växla sammansatt grafik?"
 
 #: ../Composite-Manager/src/applet-notifications.c:120
 #: ../Composite-Manager/data/messages:131
 msgid "Edit Window-Manager settings"
-msgstr ""
+msgstr "Redigera inställningar för fönsterhanteraren"
 
 #: ../Composite-Manager/src/applet-notifications.c:120
 #: ../Composite-Manager/src/applet-notifications.c:127
@@ -292,12 +304,12 @@ msgstr ""
 #: ../switcher/src/applet-notifications.c:314
 #: ../switcher/src/applet-notifications.c:323
 msgid "middle-click"
-msgstr ""
+msgstr "mittenklick"
 
 #: ../Composite-Manager/src/applet-notifications.c:127
 #: ../Composite-Manager/data/messages:133
 msgid "Reload Window-Manager"
-msgstr ""
+msgstr "Ladda om fönsterhanterare"
 
 #: ../Composite-Manager/src/applet-notifications.c:136
 #: ../showDesktop/src/applet-notifications.c:153
@@ -305,7 +317,7 @@ msgstr ""
 #: ../Composite-Manager/data/messages:135 ../showDesktop/data/messages:105
 #: ../showDesktop/data/messages:119 ../switcher/data/messages:107
 msgid "Show desktop"
-msgstr ""
+msgstr "Visa skrivbordet"
 
 #: ../Composite-Manager/src/applet-notifications.c:145
 #: ../showDesktop/src/applet-notifications.c:165
@@ -314,13 +326,13 @@ msgstr ""
 #: ../Composite-Manager/data/messages:137 ../showDesktop/data/messages:113
 #: ../showDesktop/data/messages:127 ../switcher/data/messages:109
 msgid "Expose all the desktops"
-msgstr ""
+msgstr "Visa alla skrivbord"
 
 #: ../Composite-Manager/src/applet-notifications.c:154
 #: ../switcher/src/applet-notifications.c:323
 #: ../Composite-Manager/data/messages:139 ../switcher/data/messages:111
 msgid "Expose all the windows"
-msgstr ""
+msgstr "Visa alla fönster"
 
 #: ../Composite-Manager/src/applet-notifications.c:163
 #: ../showDesktop/src/applet-notifications.c:177
@@ -328,7 +340,7 @@ msgstr ""
 #: ../Composite-Manager/data/messages:141 ../showDesktop/data/messages:111
 #: ../showDesktop/data/messages:125
 msgid "Show the Widget Layer"
-msgstr ""
+msgstr "Visa komponentlagret"
 
 #: ../Dbus/src/applet-init.c:36
 msgid ""
@@ -350,7 +362,8 @@ msgstr "Modulen har lagts till, men kunde inte startas."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "Appleten '%s' har blivit framgångsrikt uppdaterat och automatiskt omstartat."
 
@@ -394,11 +407,11 @@ msgstr "TB"
 
 #: ../Disks/src/applet-disks.c:171
 msgid "r"
-msgstr ""
+msgstr "r"
 
 #: ../Disks/src/applet-disks.c:171
 msgid "w"
-msgstr ""
+msgstr "w"
 
 #: ../Disks/src/applet-disks.c:175
 msgid "N/A"
@@ -469,7 +482,7 @@ msgstr ""
 
 #: ../Doncky/src/applet-notifications.c:215
 msgid "It doesn't seem to be a valid XML file."
-msgstr ""
+msgstr "Det verkar inte vara en giltig XML-fil."
 
 #: ../Folders/src/applet-init.c:29
 msgid "Folders"
@@ -485,20 +498,27 @@ msgid ""
 " - or just drop a folder into the dock\n"
 "Middle-click on the main icon opens the folder.\n"
 msgstr ""
+"Det här programmet importerar kataloger till Dockan\n"
+"Du kan ha så många instanser av det här programmet som du vill, en för varje "
+"katalog.\n"
+"För att lägga till en katalog i din docka:\n"
+" - aktivera programmet, öppna dess konfigurationspanel, och välj en katalog\n"
+" - eller släpp bara en katalog i dockan\n"
+"Mittenklick på huvudikonen öppnar katalogen.\n"
 
 #: ../Folders/src/applet-init.c:87 ../Folders/src/applet-init.c:150
 #: ../Folders/src/applet-notifications.c:42
 msgid "Open the configuration of the applet to choose a folder to import."
 msgstr ""
+"Öppna programmets konfiguration för att välja en katalog att importera."
 
 #: ../Folders/src/applet-notifications.c:54
 msgid "Empty or unreadable folder."
 msgstr "Tom eller oläsbar mapp"
 
 #: ../Folders/src/applet-notifications.c:116
-#, fuzzy
 msgid "Properties:"
-msgstr "Inställningar"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:136 ../Folders/data/messages:119
 msgid "Size"
@@ -509,14 +529,12 @@ msgid "bytes"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:150
-#, fuzzy
 msgid "Last Modification"
-msgstr "Meddelande"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:159
-#, fuzzy
 msgid "Mime Type"
-msgstr "Typ"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:173
 msgid "User ID"
@@ -600,7 +618,7 @@ msgstr ""
 #: ../Folders/src/applet-notifications.c:255
 #: ../Scooby-Do/src/applet-backend-files.c:390
 msgid "Pick up a directory"
-msgstr ""
+msgstr "Snappa upp en katalog"
 
 #: ../Folders/src/applet-notifications.c:280
 msgid "Enter a file name:"
@@ -653,31 +671,31 @@ msgstr "Skapa en ny mapp"
 
 #: ../Folders/src/applet-notifications.c:421
 msgid "Sort by"
-msgstr ""
+msgstr "Sortera efter"
 
 #: ../Folders/src/applet-notifications.c:422
 msgid "By name"
-msgstr ""
+msgstr "Efter namn"
 
 #: ../Folders/src/applet-notifications.c:423
 msgid "By date"
-msgstr ""
+msgstr "Efter datum"
 
 #: ../Folders/src/applet-notifications.c:424
 msgid "By size"
-msgstr ""
+msgstr "Efter storlek"
 
 #: ../Folders/src/applet-notifications.c:425
 msgid "By type"
-msgstr ""
+msgstr "Efter typ"
 
 #: ../Folders/src/applet-notifications.c:465
 msgid "The folder has been imported."
-msgstr ""
+msgstr "Katalogen har importerats."
 
 #: ../Folders/src/applet-notifications.c:523
 msgid "Do you want to import the content of the folder too?"
-msgstr ""
+msgstr "Vill du importera katalogens innehåll också?"
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -698,22 +716,20 @@ msgid "Applications Menu"
 msgstr "Program-menyn"
 
 #: ../GMenu/src/applet-init.c:65
-#, fuzzy
 msgid "Show/hide the Applications menu"
-msgstr "Program-menyn"
+msgstr ""
 
 #: ../GMenu/src/applet-init.c:70
-#, fuzzy
 msgid "Show/hide the quick-launch dialog"
-msgstr "Tangentkombination för att visa/dölja konfigurationsdialog"
+msgstr ""
 
 #: ../GMenu/src/applet-menu-callbacks.c:218 ../GMenu/data/messages:123
 msgid "Logout"
-msgstr ""
+msgstr "Logga ut"
 
 #: ../GMenu/src/applet-menu-callbacks.c:221 ../GMenu/data/messages:125
 msgid "Shutdown"
-msgstr ""
+msgstr "Stäng av"
 
 #: ../GMenu/src/applet-notifications.c:74
 msgid "Quick launch"
@@ -733,11 +749,11 @@ msgstr "Tidigare använda dokument"
 
 #: ../GMenu/src/applet-recent.c:115
 msgid "Clear the list of the recently used documents?"
-msgstr ""
+msgstr "Rensa listan över senast använda dokument?"
 
 #: ../GMenu/src/applet-run-dialog.c:353 ../Scooby-Do/data/messages:111
 msgid "Enter a command to launch:"
-msgstr ""
+msgstr "Skriv in ett kommando att köra:"
 
 #: ../Global-Menu/src/applet-init.c:30
 msgid "Global Menu"
@@ -766,6 +782,9 @@ msgid ""
 "Can you check its status (installed? running? version?) and report this bug "
 "(if any) to forum.glx-dock.org"
 msgstr ""
+"Något är fel med PulseAudio.\n"
+"Kontrollera dess status (installerad? kör? version?) och rapportera felet "
+"(om så är fallet) på forum.glx-dock.org"
 
 #: ../Impulse/src/applet-init.c:32
 msgid ""
@@ -774,6 +793,10 @@ msgid ""
 "In fact, you will have a graphical equalizer into the dock\n"
 "It will analyse the signal given by PulseAudio."
 msgstr ""
+"Visste du att din docka kan dansa? :-)\n"
+"Om du klickar på den här ikonen kommer dockan göra det!\n"
+"Du kommer till och med se en grafisk equalizer i dockan.\n"
+"Den kommer analysera signalen som kommer från PulseAudio."
 
 #: ../MeMenu/src/applet-init.c:30
 msgid "Me Menu"
@@ -784,10 +807,12 @@ msgid ""
 "A menu that lets you access quickly to your information, your online status, "
 "your friends."
 msgstr ""
+"En meny som låter dig komma snabbt åt din information, din onlinestatus, "
+"dina vänner."
 
 #: ../MeMenu/src/applet-notifications.c:31
 msgid "It seems that the Me-Menu is not installed on your system"
-msgstr ""
+msgstr "Det verkar som om Migmenyn inte är installerad på ditt system"
 
 #: ../Messaging-Menu/src/applet-init.c:30
 msgid "Messaging Menu"
@@ -801,9 +826,8 @@ msgid ""
 msgstr ""
 
 #: ../Messaging-Menu/src/applet-init.c:66
-#, fuzzy
 msgid "Show/hide the Messaging menu"
-msgstr "Meddelandemeny"
+msgstr ""
 
 #: ../Messaging-Menu/src/applet-notifications.c:31
 msgid ""
@@ -986,6 +1010,15 @@ msgid ""
 "    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
 "    or edit the Configuration Panel."
 msgstr ""
+"Det här programmet är en RSS-/Atom-flödesläsare.\n"
+"Du kan instansiera den så många gånger du vill.\n"
+"ANVÄNDNING:\n"
+" - Vänsterklick : Visa de fullständiga flödesraderna i en dialogruta.\n"
+" - Mittenklick : Uppdatera flödet.\n"
+" - Rulla med mushjulet på komponenten : Rulla flödesraderna.\n"
+" - Dra och släpp en giltig URL på ikonen för att använda den,\n"
+"    eller kopiera den och använd \"Klistra in en ny RSS-URL\" i menyn,\n"
+"    eller redigera konfigurationspanelen."
 
 #: ../RSSreader/src/applet-init.c:65 ../RSSreader/src/applet-init.c:125
 #: ../RSSreader/src/applet-notifications.c:56
@@ -994,11 +1027,11 @@ msgstr "Hämtar data..."
 
 #: ../RSSreader/src/applet-notifications.c:69
 msgid "It doesn't seem to be a valid URL."
-msgstr ""
+msgstr "Det verkar inte vara en giltig URL."
 
 #: ../RSSreader/src/applet-notifications.c:124
 msgid "Paste a new RSS Url (drag and drop)"
-msgstr ""
+msgstr "Klistra in en ny RSS-URL (dra och släpp)"
 
 #: ../RSSreader/src/applet-notifications.c:128
 msgid "Open with your web browser"
@@ -1011,11 +1044,11 @@ msgstr "Uppdatera"
 
 #: ../RSSreader/src/applet-rss.c:400
 msgid "Warning: couldn't retrieve data last time we tried."
-msgstr ""
+msgstr "Varning: Kunde inte hämta data vid senaste försöket."
 
 #: ../RSSreader/src/applet-rss.c:436
 msgid "No URL is defined."
-msgstr ""
+msgstr "Ingen URL angavs."
 
 #: ../RSSreader/src/applet-rss.c:437
 msgid "No data (no connection?)"
@@ -1023,7 +1056,7 @@ msgstr "Ingen data (ingen anslutning?)"
 
 #: ../RSSreader/src/applet-rss.c:468 ../RSSreader/src/applet-rss.c:487
 msgid "Invalid data (invalid RSS/Atom feed?)"
-msgstr ""
+msgstr "Ogiltig data (ogiltigt RSS-/Atom-flöde?)"
 
 #: ../RSSreader/src/applet-rss.c:551
 msgid "No data"
@@ -1031,11 +1064,11 @@ msgstr "Ingen data"
 
 #: ../RSSreader/src/applet-rss.c:589
 msgid "No modification"
-msgstr ""
+msgstr "Ingen ändring"
 
 #: ../RSSreader/src/applet-rss.c:614
 msgid "This RSS feed has been modified..."
-msgstr ""
+msgstr "Det här RSS-flödet har ändrats..."
 
 #: ../RSSreader/src/applet-rss.c:775
 msgid ""
@@ -1043,6 +1076,9 @@ msgid ""
 "You can define one by copying the URL in the clipboard,\n"
 " and selecting \"Paste the URL\" in the menu."
 msgstr ""
+"Ingen URL har angivits.\n"
+"Du kan ange en genom att kopiera URL:en till klippbordet,\n"
+" och sedan välja \"Klistra in URL\" i menyn."
 
 #: ../RSSreader/src/applet-rss.c:781
 msgid ""
@@ -1057,71 +1093,71 @@ msgstr ""
 #: ../Recent-Events/src/applet-dialog.c:288
 #: ../stack/src/applet-notifications.c:179
 msgid "Open parent folder"
-msgstr ""
+msgstr "Öppna toppkatalog"
 
 #: ../Recent-Events/src/applet-dialog.c:290
 msgid "Copy the location"
-msgstr ""
+msgstr "Kopiera plats"
 
 #: ../Recent-Events/src/applet-dialog.c:292
 msgid "Delete this event"
-msgstr ""
+msgstr "Radera händelsen"
 
 #: ../Recent-Events/src/applet-dialog.c:365
 msgid "All"
-msgstr ""
+msgstr "Alla"
 
 #: ../Recent-Events/src/applet-dialog.c:366
 msgid "Document"
-msgstr ""
+msgstr "Dokument"
 
 #: ../Recent-Events/src/applet-dialog.c:368
 msgid "Image"
-msgstr ""
+msgstr "Bild"
 
 #: ../Recent-Events/src/applet-dialog.c:369
 msgid "Audio"
-msgstr ""
+msgstr "Ljud"
 
 #: ../Recent-Events/src/applet-dialog.c:370
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #: ../Recent-Events/src/applet-dialog.c:371
 msgid "Web"
-msgstr ""
+msgstr "Webb"
 
 #: ../Recent-Events/src/applet-dialog.c:372
 msgid "Other"
-msgstr ""
+msgstr "Övriga"
 
 #: ../Recent-Events/src/applet-dialog.c:373
 msgid "Top Results"
-msgstr ""
+msgstr "Toppresultat"
 
 #: ../Recent-Events/src/applet-dialog.c:379
 msgid "Look for events"
-msgstr ""
+msgstr "Sök efter händelser"
 
 #: ../Recent-Events/src/applet-dialog.c:430
 msgid "File name"
-msgstr ""
+msgstr "Filnamn"
 
 #: ../Recent-Events/src/applet-dialog.c:437
 msgid "Last access"
-msgstr ""
+msgstr "Senast åtkommen"
 
 #: ../Recent-Events/src/applet-dialog.c:495
 msgid "You need to install the Zeitgeist data engine."
-msgstr ""
+msgstr "Du måste installera datamotorn Zeitgeist."
 
 #: ../Recent-Events/src/applet-dialog.c:501
 msgid "Browse and search in recent events"
-msgstr ""
+msgstr "Bläddra och sök bland de senaste händelserna"
 
 #: ../Recent-Events/src/applet-init.c:28
 msgid "Recent-Events"
-msgstr ""
+msgstr "Senaste-händelser"
 
 #: ../Recent-Events/src/applet-init.c:56
 msgid "Show/hide the Recent Events"
@@ -1130,7 +1166,7 @@ msgstr ""
 #: ../Recent-Events/src/applet-notifications.c:74
 #, c-format
 msgid "%d event(s) deleted"
-msgstr ""
+msgstr "%d händelse(r) raderade"
 
 #: ../Recent-Events/src/applet-notifications.c:112
 #: ../Scooby-Do/src/applet-backend-recent.c:212 ../Scooby-Do/data/messages:105
@@ -1139,11 +1175,11 @@ msgstr "Senaste filer"
 
 #: ../Recent-Events/src/applet-notifications.c:160
 msgid "Delete today's events"
-msgstr ""
+msgstr "Radera dagens händelser"
 
 #: ../Recent-Events/src/applet-notifications.c:162
 msgid "Delete all events"
-msgstr ""
+msgstr "Radera alla händelser"
 
 #: ../Remote-Control/src/applet-init.c:32
 msgid ""
@@ -1170,7 +1206,7 @@ msgstr ""
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
 msgid "The value %s has been copied into the clipboard."
-msgstr ""
+msgstr "Värdet %s har kopierats till klippbordet."
 
 #: ../Scooby-Do/src/applet-backend-files.c:161
 msgid "Open a terminal here"
@@ -1178,7 +1214,7 @@ msgstr "Öppna en terminal här"
 
 #: ../Scooby-Do/src/applet-backend-files.c:169
 msgid "Zip folder"
-msgstr ""
+msgstr "Zippa katalog"
 
 #: ../Scooby-Do/src/applet-backend-files.c:177
 #: ../Scooby-Do/src/applet-backend-files.c:251
@@ -1194,15 +1230,15 @@ msgstr "Kopiera URL"
 #: ../Scooby-Do/src/applet-backend-files.c:227
 #: ../Scooby-Do/src/applet-backend-recent.c:145
 msgid "Open location"
-msgstr ""
+msgstr "Öppna plats"
 
 #: ../Scooby-Do/src/applet-backend-files.c:235
 msgid "Zip file"
-msgstr ""
+msgstr "Zip-fil"
 
 #: ../Scooby-Do/src/applet-backend-files.c:243
 msgid "Mail file"
-msgstr ""
+msgstr "E-postfil"
 
 #: ../Scooby-Do/src/applet-backend-files.c:524
 msgid "Files"
@@ -1244,11 +1280,11 @@ msgstr "Sök på webben"
 
 #: ../Scooby-Do/src/applet-backend-web.c:139
 msgid "Mediadico"
-msgstr ""
+msgstr "Mediadico"
 
 #: ../Scooby-Do/src/applet-backend-web.c:147
 msgid "Amazon"
-msgstr ""
+msgstr "Amazon"
 
 #: ../Scooby-Do/src/applet-init.c:73
 msgid "Enable/disable the Finder"
@@ -1256,7 +1292,7 @@ msgstr ""
 
 #: ../Scooby-Do/src/applet-listing.c:514
 msgid "(F1) Match case"
-msgstr ""
+msgstr "(F1) Matcha skiftläge"
 
 #: ../Scooby-Do/src/applet-listing.c:521
 msgid "(F2) Music"
@@ -1280,7 +1316,7 @@ msgstr "(F6) Html"
 
 #: ../Scooby-Do/src/applet-listing.c:556
 msgid "(F7) Sources"
-msgstr ""
+msgstr "(F7) Källor"
 
 #: ../Scooby-Do/src/applet-listing.c:675 ../Scooby-Do/src/applet-search.c:362
 msgid "No result"
@@ -1302,7 +1338,7 @@ msgstr "Söker ..."
 
 #: ../Scooby-Do/src/applet-session.c:70
 msgid "Enter your search"
-msgstr ""
+msgstr "Skriv in din sökning"
 
 #: ../Status-Notifier/src/applet-init.c:33
 msgid ""
@@ -1311,10 +1347,15 @@ msgid ""
 "If a program doesn't appear inside when it should, it's probably because it "
 "doesn't support this feature yet. Please fill a bug report to the devs."
 msgstr ""
+"En <b>notifieringsyta</b> för din docka.\n"
+"Program kan använda den för att visa deras nuvarande tillstånd.\n"
+"Om ett program inte visas däri när det ska är antagligen för att det inte "
+"stöder den här funktionen än. Skicka en felrapport till de ansvariga "
+"utvecklarna."
 
 #: ../Status-Notifier/src/applet-init.c:38
 msgid "Notification Area"
-msgstr ""
+msgstr "Notifieringsyta"
 
 #: ../System-Monitor/src/applet-cpusage.c:57
 msgid "Uptime"
@@ -1322,11 +1363,11 @@ msgstr "Upptid"
 
 #: ../System-Monitor/src/applet-cpusage.c:62
 msgid "Activity time"
-msgstr ""
+msgstr "Aktivitetstid"
 
 #: ../System-Monitor/src/applet-cpusage.c:145
 msgid "CPU model"
-msgstr ""
+msgstr "CPU-modell"
 
 #: ../System-Monitor/src/applet-cpusage.c:146
 msgid "Frequency"
@@ -1334,7 +1375,7 @@ msgstr "Frekvens"
 
 #: ../System-Monitor/src/applet-cpusage.c:147
 msgid "core(s)"
-msgstr ""
+msgstr "kärna/-or"
 
 #: ../System-Monitor/src/applet-init.c:38
 msgid ""
@@ -1345,6 +1386,13 @@ msgid ""
 "You can instanciate this applet several times to show different values each "
 "time."
 msgstr ""
+"Det här programmet visar dig CPU-belastningen, RAM-användning, "
+"grafikkortstemperatur, osv.\n"
+"Mittenklicka på ikonen för att se lite intressant information.\n"
+"Vänsterklicka på ikonen för att se en lista över de mest resursintensiva "
+"programmen.\n"
+"Du kan instansiera det här programmet många gånger för att visa olika värden "
+"i varje instans."
 
 #: ../System-Monitor/src/applet-notifications.c:40
 #: ../System-Monitor/src/applet-notifications.c:83
@@ -1352,11 +1400,13 @@ msgid ""
 "The acquisition of one or more data has failed.\n"
 "You should remove the data that couldn't be fetched."
 msgstr ""
+"Insamlingen av en eller flera data misslyckades.\n"
+"Du bör ta bort datan som inte kunde hämtas."
 
 #: ../System-Monitor/src/applet-notifications.c:104
 #: ../netspeed/src/applet-notifications.c:98
 msgid "Open the System-Monitor"
-msgstr ""
+msgstr "Öppna systemövervakaren"
 
 #: ../System-Monitor/src/applet-notifications.c:106
 msgid "Show info"
@@ -1364,7 +1414,7 @@ msgstr "Visa information"
 
 #: ../System-Monitor/src/applet-nvidia.c:146
 msgid "GPU model"
-msgstr ""
+msgstr "GPU-modell"
 
 #: ../System-Monitor/src/applet-nvidia.c:147
 msgid "Video Ram"
@@ -1378,16 +1428,16 @@ msgstr "Mb"
 
 #: ../System-Monitor/src/applet-nvidia.c:148
 msgid "Driver Version"
-msgstr ""
+msgstr "Drivrutinsversion"
 
 #: ../System-Monitor/src/applet-nvidia.c:149
 msgid "Core Temperature"
-msgstr ""
+msgstr "Kärnans temperatur"
 
 #: ../System-Monitor/src/applet-nvidia.c:161
 #, c-format
 msgid "Alert! Graphic Card core temperature has reached %d°C"
-msgstr ""
+msgstr "Varning! Grafikkortets kärnas temperatur har nått %d°C"
 
 #: ../System-Monitor/src/applet-rame.c:124
 msgid "Gb"
@@ -1407,7 +1457,7 @@ msgstr "Mellanlagrat"
 
 #: ../System-Monitor/src/applet-rame.c:137
 msgid "Buffers"
-msgstr ""
+msgstr "Buffertar"
 
 #: ../System-Monitor/src/applet-sensors.c:358
 msgid "min"
@@ -1415,34 +1465,34 @@ msgstr "min"
 
 #: ../System-Monitor/src/applet-sensors.c:360
 msgid "max"
-msgstr ""
+msgstr "max"
 
 #: ../System-Monitor/src/applet-sensors.c:363
 #: ../System-Monitor/src/applet-sensors.c:396
 msgid "alarm"
-msgstr ""
+msgstr "alarm"
 
 #: ../System-Monitor/src/applet-sensors.c:394
 msgid "rpm"
-msgstr ""
+msgstr "rpm"
 
 #: ../System-Monitor/src/applet-sensors.c:413
 #, c-format
 msgid "CPU temperature has reached %d°C"
-msgstr ""
+msgstr "CPU-temperatur har nått %d°C"
 
 #: ../System-Monitor/src/applet-sensors.c:427
 #, c-format
 msgid "Fan speed has reached %d rpm"
-msgstr ""
+msgstr "Fläkthastigheten har nått %d rpm"
 
 #: ../Toons/src/applet-init.c:29
 msgid "Toons"
-msgstr ""
+msgstr "Toons"
 
 #: ../Toons/src/applet-init.c:32
 msgid "This applet displays a toon that will look at your mouse."
-msgstr ""
+msgstr "Det här programmet visar en toon som kommer titta på din muspekare."
 
 #: ../Xgamma/src/applet-init.c:44
 msgid ""
@@ -1453,10 +1503,16 @@ msgid ""
 "You can also define a luminosity value that will be applied automatically on "
 "startup."
 msgstr ""
+"Ställ in ljusstyrkan för din skärm direkt från dockan.\n"
+"Rulla upp/ned för att öka/minska ljusstyrkan\n"
+"Vänsterklicka för att öppna en dialogruta för att ställa in ljusstyrkan\n"
+"Mittenklicka för att ställa in ljusstyrka för varje färg.\n"
+"Du kan också ange ett värde på ljusstyrkan som ska tillämpas automatiskt vid "
+"start."
 
 #: ../Xgamma/src/applet-init.c:52
 msgid "Screen Luminosity"
-msgstr ""
+msgstr "Skärmens ljusstyrka"
 
 #: ../Xgamma/src/applet-init.c:64
 msgid "Increase the brightness"
@@ -1468,11 +1524,11 @@ msgstr ""
 
 #: ../Xgamma/src/applet-notifications.c:87
 msgid "Set up gamma correction"
-msgstr ""
+msgstr "Ställ in gammakorrigering"
 
 #: ../Xgamma/src/applet-notifications.c:91
 msgid "Apply current luminosity on startup"
-msgstr ""
+msgstr "Tillämpa aktuell ljusstyrka vid start"
 
 #: ../Xgamma/src/applet-xgamma.c:206 ../Xgamma/src/applet-xgamma.c:280
 msgid "Set up gamma:"
@@ -1480,7 +1536,7 @@ msgstr "Justera gamma:"
 
 #: ../Xgamma/src/applet-xgamma.c:293
 msgid "Luminosity"
-msgstr ""
+msgstr "Ljusstyrka"
 
 #: ../alsaMixer/src/applet-backend-alsamixer.c:46
 #, c-format
@@ -1530,7 +1586,7 @@ msgstr ""
 
 #: ../alsaMixer/src/applet-init.c:43
 msgid "Sound Control"
-msgstr ""
+msgstr "Ljudkontroll"
 
 #: ../alsaMixer/src/applet-init.c:119
 msgid "Show/hide the Sound menu"
@@ -1542,7 +1598,7 @@ msgstr "Justera kanaler"
 
 #: ../alsaMixer/src/applet-notifications.c:67
 msgid "double-click"
-msgstr ""
+msgstr "dubbelklick"
 
 #: ../alsaMixer/src/applet-notifications.c:71
 msgid "Unmute"
@@ -1562,11 +1618,11 @@ msgstr "Ingen titel"
 
 #: ../clock/src/applet-calendar.c:529
 msgid "years"
-msgstr ""
+msgstr "år"
 
 #: ../clock/src/applet-calendar.c:651
 msgid "Calendar and tasks"
-msgstr ""
+msgstr "Kalender och uppgifter"
 
 #: ../clock/src/applet-config.c:36 ../clock/data/messages:169
 msgid "Alarm"
@@ -1574,7 +1630,7 @@ msgstr "Alarm"
 
 #: ../clock/src/applet-config.c:36
 msgid "Time you want to be notified:"
-msgstr ""
+msgstr "Tid då du vill bli förvarnad:"
 
 #: ../clock/src/applet-config.c:36
 msgid "In the form xx:xx. E.g.: 20:35 for 8:35pm"
@@ -1666,8 +1722,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1862,7 +1918,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:591
@@ -2178,9 +2235,8 @@ msgid "Lock the screen"
 msgstr ""
 
 #: ../logout/src/applet-init.c:69
-#, fuzzy
 msgid "Show the log-out menu"
-msgstr "Visa datum:"
+msgstr ""
 
 #: ../logout/src/applet-logout.c:198 ../logout/data/messages:101
 #: ../logout/data/messages:109
@@ -2252,9 +2308,8 @@ msgid "Restart the computer?"
 msgstr ""
 
 #: ../logout/src/applet-logout.c:610
-#, fuzzy
 msgid "Close the current session?"
-msgstr "Stäng flik"
+msgstr ""
 
 #: ../logout/src/applet-notifications.c:103
 msgid "Manage users"
@@ -2728,9 +2783,8 @@ msgid ""
 msgstr ""
 
 #: ../quick-browser/src/applet-init.c:64
-#, fuzzy
 msgid "Show/hide the folder menu"
-msgstr "Öppna mappen"
+msgstr ""
 
 #: ../quick-browser/src/applet-menu.c:107
 #: ../quick-browser/src/applet-menu.c:116
@@ -2841,8 +2895,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -3072,9 +3126,8 @@ msgid ""
 msgstr ""
 
 #: ../terminal/src/terminal-init.c:59
-#, fuzzy
 msgid "Show/hide the terminal"
-msgstr "Visa datum:"
+msgstr ""
 
 #: ../terminal/src/terminal-menu-functions.c:78
 #: ../terminal/src/terminal-widget.c:420
@@ -3793,7 +3846,7 @@ msgstr "Önskad storlek för ikonen"
 #: ../weather/data/messages:15 ../weblets/data/messages:17
 #: ../wifi/data/messages:17
 msgid "Applet's Handbook"
-msgstr ""
+msgstr "Programmets handbok"
 
 #: ../Cairo-Penguin/data/messages:15 ../Clipper/data/messages:93
 #: ../Composite-Manager/data/messages:89 ../Dbus/data/messages:1
@@ -5186,7 +5239,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:121 ../RSSreader/data/messages:185
@@ -6801,7 +6855,8 @@ msgid "Space between icons:"
 msgstr "Avstånd mellan ikoner:"
 
 #: ../dock-rendering/data/messages:115
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 betyder at vågen är helt platt. 1 betyder att vågen är identisk med andra "
 "vyer."
@@ -6935,7 +6990,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -7152,7 +7208,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:107
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:109
@@ -7236,7 +7293,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:93
@@ -8163,7 +8221,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:107
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:109

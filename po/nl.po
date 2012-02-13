@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2011-09-17 13:08+0000\n"
+"POT-Creation-Date: 2012-02-12 03:52+0000\n"
+"PO-Revision-Date: 2012-01-31 20:48+0000\n"
 "Last-Translator: rob <linuxned@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-09-25 04:44+0000\n"
-"X-Generator: Launchpad (build 14012)\n"
+"X-Launchpad-Export-Date: 2012-02-13 04:54+0000\n"
+"X-Generator: Launchpad (build 14781)\n"
+"Language: \n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -191,14 +192,12 @@ msgid "Clipboard history"
 msgstr "Klembordgeschiedenis"
 
 #: ../Clipper/src/applet-init.c:72
-#, fuzzy
 msgid "Pop-up the items menu"
-msgstr "Sneltoets voor het items-menu :"
+msgstr ""
 
 #: ../Clipper/src/applet-notifications.c:33
-#, fuzzy
 msgid "The clipboard history is empty."
-msgstr "Klembordgeschiedenis"
+msgstr ""
 
 #: ../Clipper/src/applet-notifications.c:99
 msgid ""
@@ -258,9 +257,8 @@ msgstr ""
 "een andere als terugval."
 
 #: ../Composite-Manager/src/applet-init.c:52
-#, fuzzy
 msgid "Toggle the composite ON/OFF"
-msgstr "Sneltoets voor IN/UITSCHAKELEN van composite:"
+msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:43
 msgid "Toggle composite?"
@@ -359,7 +357,8 @@ msgstr "De module is wel toegevoegd, maar kon niet gestart worden."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Het applet '%s' is bijgewerkt en is automatisch opnieuw geladen"
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -457,8 +456,8 @@ msgstr ""
 "problemen veroorzaken met de snelheidsweergave die niet omlaag wil gaan.\n"
 "\n"
 "<b>Schijfruimte</b> :  Toon schijfoverdrachtswaarden. tot 10 partities\n"
-"  U moet het koppelpunt instellen van elke gemonitoorde partitie, zoals / "
-"of /home\n"
+"  U moet het koppelpunt instellen van elke gemonitoorde partitie, zoals / of "
+"/home\n"
 "  Beter weergeven in een meter, met 30 of 60 seconden ververssnelheid en "
 "hele korte of geen vertraging tussen overgangen.\n"
 "\n"
@@ -544,9 +543,8 @@ msgid "Empty or unreadable folder."
 msgstr "Lege of onleesbare map."
 
 #: ../Folders/src/applet-notifications.c:116
-#, fuzzy
 msgid "Properties:"
-msgstr "Eigenschappen"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:136 ../Folders/data/messages:119
 msgid "Size"
@@ -557,14 +555,12 @@ msgid "bytes"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:150
-#, fuzzy
 msgid "Last Modification"
-msgstr "Niet aanpassen"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:159
-#, fuzzy
 msgid "Mime Type"
-msgstr "Soort"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:173
 msgid "User ID"
@@ -746,14 +742,12 @@ msgid "Applications Menu"
 msgstr "Toepassingenmenu"
 
 #: ../GMenu/src/applet-init.c:65
-#, fuzzy
 msgid "Show/hide the Applications menu"
-msgstr "Toepassingenmenu"
+msgstr ""
 
 #: ../GMenu/src/applet-init.c:70
-#, fuzzy
 msgid "Show/hide the quick-launch dialog"
-msgstr "Sneltoets om de snelstartdialoog te tonen/verbergen :"
+msgstr ""
 
 #: ../GMenu/src/applet-menu-callbacks.c:218 ../GMenu/data/messages:123
 msgid "Logout"
@@ -788,9 +782,8 @@ msgid "Enter a command to launch:"
 msgstr "Voer een opdracht in om uit te voeren :"
 
 #: ../Global-Menu/src/applet-init.c:30
-#, fuzzy
 msgid "Global Menu"
-msgstr "Algemeen"
+msgstr ""
 
 #: ../Global-Menu/src/applet-init.c:33
 msgid ""
@@ -852,20 +845,15 @@ msgid "Messaging Menu"
 msgstr "Berichtenmenu"
 
 #: ../Messaging-Menu/src/applet-init.c:33
-#, fuzzy
 msgid ""
 "A menu that notices you about new messages from Mail or Chat applications.\n"
 "It handles Evolution, Pidgin, Empathy, etc\n"
 "It requires the Messaging service, which is available on Ubuntu by default."
 msgstr ""
-"Een menu dat u waarschuwt wanneer er nieuwe berichten zijn van e-mail of "
-"chattoepassingen.\n"
-"Het werkt met Evolution, Pidgin, Empathy, etc"
 
 #: ../Messaging-Menu/src/applet-init.c:66
-#, fuzzy
 msgid "Show/hide the Messaging menu"
-msgstr "Berichtenmenu"
+msgstr ""
 
 #: ../Messaging-Menu/src/applet-notifications.c:31
 msgid ""
@@ -1201,9 +1189,8 @@ msgid "Recent-Events"
 msgstr "Recente activiteiten"
 
 #: ../Recent-Events/src/applet-init.c:56
-#, fuzzy
 msgid "Show/hide the Recent Events"
-msgstr "Recente documenten tonen ?"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:74
 #, c-format
@@ -1329,9 +1316,8 @@ msgid "Amazon"
 msgstr "Amazon"
 
 #: ../Scooby-Do/src/applet-init.c:73
-#, fuzzy
 msgid "Enable/disable the Finder"
-msgstr "Netwerk inschakelen/uitschakelen"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-listing.c:514
 msgid "(F1) Match case"
@@ -1478,7 +1464,8 @@ msgstr "Core-temperatuur:"
 #: ../System-Monitor/src/applet-nvidia.c:161
 #, c-format
 msgid "Alert! Graphic Card core temperature has reached %d°C"
-msgstr "Waarschuwing ! Core-temperatuur van grafische kaart heeft %d°C bereikt"
+msgstr ""
+"Waarschuwing ! Core-temperatuur van grafische kaart heeft %d°C bereikt"
 
 #: ../System-Monitor/src/applet-rame.c:124
 msgid "Gb"
@@ -1636,9 +1623,8 @@ msgid "Sound Control"
 msgstr "Geluidsbeheer"
 
 #: ../alsaMixer/src/applet-init.c:119
-#, fuzzy
 msgid "Show/hide the Sound menu"
-msgstr "Sneltoets om menu te tonen/verbergen :"
+msgstr ""
 
 #: ../alsaMixer/src/applet-notifications.c:67
 msgid "Adjust channels"
@@ -1770,8 +1756,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1888,7 +1874,7 @@ msgstr "1uur"
 
 #: ../clock/src/applet-timer.c:87
 msgid "The following task was scheduled at"
-msgstr "De volgende taak is ingesteld op"
+msgstr "De volgende taak is gepland op"
 
 #: ../clock/src/applet-timer.c:90 ../clock/src/applet-timer.c:460
 #: ../clock/src/applet-timer.c:497
@@ -1970,7 +1956,7 @@ msgstr "modern"
 
 #: ../dialog-rendering/src/applet-decorator-tooltip.h:26
 msgid "tooltip"
-msgstr "Tip"
+msgstr "Infotekst"
 
 #: ../dnd2share/src/applet-dnd2share.c:165
 msgid ""
@@ -1987,7 +1973,8 @@ msgstr ""
 "Druk op CTRL+v om de URL ergens in te plakken."
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Wacht a.u.b. met het starten van een nieuwe upload, totdat de huidige upload "
 "beëindigd is."
@@ -2340,14 +2327,12 @@ msgid "Log out"
 msgstr "Uitloggen"
 
 #: ../logout/src/applet-init.c:65
-#, fuzzy
 msgid "Lock the screen"
-msgstr "Beeldscherm vergrendelen"
+msgstr ""
 
 #: ../logout/src/applet-init.c:69
-#, fuzzy
 msgid "Show the log-out menu"
-msgstr "Datum tonen :"
+msgstr ""
 
 #: ../logout/src/applet-logout.c:198 ../logout/data/messages:101
 #: ../logout/data/messages:109
@@ -2381,9 +2366,8 @@ msgid "Close your session and allow to open a new one."
 msgstr "Sluit uw sessie en sta toe dat er een nieuwe geopend wordt."
 
 #: ../logout/src/applet-logout.c:239
-#, fuzzy
 msgid "Switch user"
-msgstr "Wisselaar"
+msgstr ""
 
 #: ../logout/src/applet-logout.c:258
 msgid "Guest session"
@@ -2407,23 +2391,21 @@ msgid "Choose in how many minutes your PC will stop:"
 msgstr "Selecteer aantal minuten waarna uw PC zal afsluiten :"
 
 #: ../logout/src/applet-logout.c:512
-#, fuzzy, c-format
+#, c-format
 msgid "It will automatically shut-down in %ds"
-msgstr "Stel automatisch afsluiten in"
+msgstr ""
 
 #: ../logout/src/applet-logout.c:513
 msgid "Shut down the computer?"
 msgstr ""
 
 #: ../logout/src/applet-logout.c:573
-#, fuzzy
 msgid "Restart the computer?"
-msgstr "Compacte modus gebruiken ?"
+msgstr ""
 
 #: ../logout/src/applet-logout.c:610
-#, fuzzy
 msgid "Close the current session?"
-msgstr "Huidig tabblad sluiten"
+msgstr ""
 
 #: ../logout/src/applet-notifications.c:103
 msgid "Manage users"
@@ -2690,7 +2672,6 @@ msgid "musicPlayer"
 msgstr "Muziekspeler"
 
 #: ../musicPlayer/src/applet-init.c:51
-#, fuzzy
 msgid ""
 "This applet lets you control any music player.\n"
 "First choose the player you want to control.\n"
@@ -2702,16 +2683,6 @@ msgid ""
 " and jpeg image to use as cover.\n"
 "Note: you may have to install or activate the MPRIS plug-in of the player."
 msgstr ""
-"Dit applet laat u alle muziekspelers bedienen.\n"
-"Klik met links om af te spelen/pauzeren, middelklik voor het volgende "
-"nummer.\n"
-"Scrol op/neer om vorige/volgende nummer af te spelen.\n"
-"U kunt ook nummers slepen naar het icoon om ze in de wachtrij te plaatsen "
-"(afhankelijk van speler),\n"
-" en jpeg-afbeelding om als albumhoes te gebruiken.\n"
-"Opmerking : voor XMMS dient u de 'xmms-infopipe' plug-in te installeren.\n"
-"       Voor SongBird, dient u de Dbus plug-in te installeren.\n"
-"       Voor Exaile 0.3, dient u de MPRIS plug-in te activeren"
 
 #: ../musicPlayer/src/applet-notifications.c:83
 msgid ""
@@ -2947,9 +2918,8 @@ msgstr ""
 "doorbladeren."
 
 #: ../quick-browser/src/applet-init.c:64
-#, fuzzy
 msgid "Show/hide the folder menu"
-msgstr "Sneltoets om menu te tonen/verbergen :"
+msgstr ""
 
 #: ../quick-browser/src/applet-menu.c:107
 #: ../quick-browser/src/applet-menu.c:116
@@ -3069,8 +3039,8 @@ msgstr "Toon muis"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Deze plug-in tekent enige animatie rond de muisaanwijzer wanneer het zich in "
 "een dock/desklet bevindt."
@@ -3350,9 +3320,8 @@ msgstr ""
 "Om een tabblad te sluiten : typ 'CTRL+w' of middelklik erop"
 
 #: ../terminal/src/terminal-init.c:59
-#, fuzzy
 msgid "Show/hide the terminal"
-msgstr "Sneltoets om terminal te tonen :"
+msgstr ""
 
 #: ../terminal/src/terminal-menu-functions.c:78
 #: ../terminal/src/terminal-widget.c:420
@@ -5101,7 +5070,8 @@ msgstr "Plakken in klembord ?"
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
-msgstr "Als u klikt op een item, wordt de inhoud zichtbaar met een middelklik"
+msgstr ""
+"Als u klikt op een item, wordt de inhoud zichtbaar met een middelklik"
 
 #: ../Clipper/data/messages:125
 msgid "Paste into Selection?"
@@ -5519,7 +5489,8 @@ msgid "Background"
 msgstr "Achtergrond"
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "U kunt meer mooie achtergronden krijgen als u de decoraties van het Desklet "
 "gebruikt"
@@ -5679,7 +5650,7 @@ msgstr "Uitloggen en/of Uitschakelen tonen : "
 
 #: ../Global-Menu/data/messages:95 ../template/data/messages:95
 msgid "This is a tooltip for this parameter."
-msgstr "Dit is een tip voor deze optie."
+msgstr "Dit is een infotekst voor deze optie."
 
 #: ../Global-Menu/data/messages:97 ../template/data/messages:97
 msgid "This is a boolean parameter. Y/N ?"
@@ -6635,7 +6606,8 @@ msgstr "´Gebroken´ icoon :"
 
 #: ../clock/data/messages:7
 msgid "Leave empty to use the location name if available."
-msgstr "Laat leeg om de naam van de locatie te gebruiken, indien beschikbaar."
+msgstr ""
+"Laat leeg om de naam van de locatie te gebruiken, indien beschikbaar."
 
 #: ../clock/data/messages:99
 msgid "Show the date:"
@@ -6803,11 +6775,11 @@ msgstr "Modern"
 
 #: ../dialog-rendering/data/messages:17
 msgid "Space between lines of the tip :"
-msgstr "Ruimte tussen de lijnen van de tip :"
+msgstr "Ruimte tussen de lijnen van de infotekst :"
 
 #: ../dialog-rendering/data/messages:19
 msgid "Tooltip"
-msgstr "Tip"
+msgstr "Infotekst"
 
 #: ../dialog-rendering/data/messages:27
 msgid "Curly"
@@ -6815,7 +6787,7 @@ msgstr "Gekruld"
 
 #: ../dialog-rendering/data/messages:35
 msgid "Curvature of the tip :"
-msgstr "Kromming van de tip :"
+msgstr "Kromming van de infotekst :"
 
 #: ../dialog-rendering/data/messages:37
 msgid "Curve the sides too?"
@@ -7141,7 +7113,8 @@ msgstr "Kromming :"
 
 #: ../dock-rendering/data/messages:91
 msgid "The parabola will be restricted to a rectangle of this proportion."
-msgstr "De parabool zal gemaakt worden tot een rechthoek van deze proporties."
+msgstr ""
+"De parabool zal gemaakt worden tot een rechthoek van deze proporties."
 
 #: ../dock-rendering/data/messages:93
 msgid "Height/width ratio:"
@@ -7180,7 +7153,8 @@ msgid "Space between icons:"
 msgstr "Ruimte tussen iconen :"
 
 #: ../dock-rendering/data/messages:115
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 betekent dat de golf plat is, 1 betekent dat de golf gelijk is aan andere "
 "weergaves."
@@ -7275,7 +7249,8 @@ msgstr ""
 
 #: ../dustbin/data/messages:97
 msgid "Name of the image to overwrite the theme's full image :"
-msgstr "Naam van een afbeelding om thema´s ´Vol´ afbeelding te overschrijven :"
+msgstr ""
+"Naam van een afbeelding om thema´s ´Vol´ afbeelding te overschrijven :"
 
 #: ../dustbin/data/messages:99
 msgid "Config"
@@ -7321,7 +7296,8 @@ msgid "Colours"
 msgstr "Kleuren"
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr "De kleuren zullen iets afwijken, mogelijk moet u ze aanpassen."
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -7550,7 +7526,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Naam van het bestand voor de \"Nieuwe e-mail\" afbeelding :"
 
 #: ../mail/data/messages:107
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Indien aangevinkt, zal het aantal e-mails getoond worden zelfs als er geen e-"
 "mails zijn."
@@ -7563,7 +7540,8 @@ msgstr "'0' laten zien wanneer er geen e-mail is?"
 #: ../stack/data/messages:99 ../switcher/data/messages:149
 #: ../tomboy/data/messages:121 ../weather/data/messages:125
 msgid "Leave empty to use default sub-dock view."
-msgstr "Laat leeg als u de standaardweergave van de sub-docks wilt gebruiken."
+msgstr ""
+"Laat leeg als u de standaardweergave van de sub-docks wilt gebruiken."
 
 #: ../mail/data/messages:113 ../shortcuts/data/messages:109
 #: ../stack/data/messages:101 ../switcher/data/messages:151
@@ -7636,7 +7614,8 @@ msgid "Blur amount:"
 msgstr "Hoeveelheid vervaging :"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr "Laat leeg om de naam van de momenteel bediende speler te tonen."
 
 #: ../musicPlayer/data/messages:93
@@ -7735,11 +7714,11 @@ msgstr "Actie wanneer muziek verandert :"
 
 #: ../musicPlayer/data/messages:137
 msgid "Show tooltips?"
-msgstr "Info-ballon tonen ?"
+msgstr "Infoteksten tonen?"
 
 #: ../musicPlayer/data/messages:141
 msgid "Time length of tooltips:"
-msgstr "Tijdsduur van info-ballonnen :"
+msgstr "Tijdsduur van infoteksten :"
 
 #: ../musicPlayer/data/messages:143
 msgid "Animation when music changes:"
@@ -8179,7 +8158,8 @@ msgstr "Achtergrond toevoegen aan de afbeelding?"
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
-msgstr "Stel de doorzichtigheid in op 0 als u geen achtergrond wilt gebruiken."
+msgstr ""
+"Stel de doorzichtigheid in op 0 als u geen achtergrond wilt gebruiken."
 
 #: ../slider/data/messages:171
 msgid "Choose a background colour :"
@@ -8576,7 +8556,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Positie van de verticale scrollbalk in pixel"
 
 #: ../weblets/data/messages:107
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Hierdoor kunt u met rechts klikken op het desklet voor het Cairo-Dock menu."
 
@@ -8662,24 +8643,3 @@ msgstr "Ruwe signaalinformatie"
 #: ../wifi/data/messages:193
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
-
-#~ msgid "It seems that the Messaging-Menu is not installed on your system"
-#~ msgstr ""
-#~ "Het lijkt erop dat het berichtenmenu niet geïnstalleerd is op uw systeem"
-
-#~ msgid ""
-#~ "A very simple applet that adds an icon to log out from your session\n"
-#~ "Left click to log out or change the user, middle click to shutdown or "
-#~ "restart\n"
-#~ "  (you can invert the buttons if you prefer to shutdown on left-click)."
-#~ "You can also lock the screen from the menu on right-click,\n"
-#~ "  and program an automatic shutdown at a given time.\n"
-#~ msgstr ""
-#~ "Een simpel applet dat een icoon toevoegt waarmee u uit kunt loggen van uw "
-#~ "sessie\n"
-#~ "Linkerklik om uit te loggen of van gebruiker te wisselen, middelklik om "
-#~ "af te sluiten of herstarten\n"
-#~ "  (U kunt dit omdraaien als u liever met een linkerklik de computer "
-#~ "afsluit). U kunt het scherm in het menu vergrendelen  met een "
-#~ "rechtermuisklik,\n"
-#~ "  en automatisch afsluiten instellen op een bepaalde tijd.\n"

@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
+"POT-Creation-Date: 2012-02-12 03:52+0000\n"
 "PO-Revision-Date: 2011-09-16 00:53+0000\n"
 "Last-Translator: Jan Dolejš <jackdown3csr@gmail.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-09-25 04:44+0000\n"
-"X-Generator: Launchpad (build 14012)\n"
+"X-Launchpad-Export-Date: 2012-02-13 04:54+0000\n"
+"X-Generator: Launchpad (build 14781)\n"
+"Language: cs\n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -186,14 +187,12 @@ msgid "Clipboard history"
 msgstr "Historie schránky"
 
 #: ../Clipper/src/applet-init.c:72
-#, fuzzy
 msgid "Pop-up the items menu"
-msgstr "Klávesová zkratka pro zobrazení menu položek :"
+msgstr ""
 
 #: ../Clipper/src/applet-notifications.c:33
-#, fuzzy
 msgid "The clipboard history is empty."
-msgstr "Historie schránky"
+msgstr ""
 
 #: ../Clipper/src/applet-notifications.c:99
 msgid ""
@@ -344,7 +343,8 @@ msgstr "Modul byl přidán, ale nemůže být spuštěn."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Aplet '%s' byl úspěšně aktualizován a automaticky znovu načten."
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -495,9 +495,8 @@ msgid "Empty or unreadable folder."
 msgstr "Vyprázdnit nečitelný adresář."
 
 #: ../Folders/src/applet-notifications.c:116
-#, fuzzy
 msgid "Properties:"
-msgstr "Vlastnosti"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:136 ../Folders/data/messages:119
 msgid "Size"
@@ -508,9 +507,8 @@ msgid "bytes"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:150
-#, fuzzy
 msgid "Last Modification"
-msgstr "Žádné modifikace"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:159
 msgid "Mime Type"
@@ -696,14 +694,12 @@ msgid "Applications Menu"
 msgstr "Menu Aplikace"
 
 #: ../GMenu/src/applet-init.c:65
-#, fuzzy
 msgid "Show/hide the Applications menu"
-msgstr "Menu Aplikace"
+msgstr ""
 
 #: ../GMenu/src/applet-init.c:70
-#, fuzzy
 msgid "Show/hide the quick-launch dialog"
-msgstr "Klávesová skratka pro zobrazení/schování dialogu rychlého spuštění :"
+msgstr ""
 
 #: ../GMenu/src/applet-menu-callbacks.c:218 ../GMenu/data/messages:123
 msgid "Logout"
@@ -738,9 +734,8 @@ msgid "Enter a command to launch:"
 msgstr "Vložte příkaz, který chcete spustit:"
 
 #: ../Global-Menu/src/applet-init.c:30
-#, fuzzy
 msgid "Global Menu"
-msgstr "Globální"
+msgstr ""
 
 #: ../Global-Menu/src/applet-init.c:33
 msgid ""
@@ -795,20 +790,15 @@ msgid "Messaging Menu"
 msgstr "Nabídka zpráv"
 
 #: ../Messaging-Menu/src/applet-init.c:33
-#, fuzzy
 msgid ""
 "A menu that notices you about new messages from Mail or Chat applications.\n"
 "It handles Evolution, Pidgin, Empathy, etc\n"
 "It requires the Messaging service, which is available on Ubuntu by default."
 msgstr ""
-"Nabídka, která upozorňuje na nové zprávy z mailových, nebo komunikačních "
-"programů.\n"
-"Zvládá Evolution, Pidgin, Empathy, atd."
 
 #: ../Messaging-Menu/src/applet-init.c:66
-#, fuzzy
 msgid "Show/hide the Messaging menu"
-msgstr "Nabídka zpráv"
+msgstr ""
 
 #: ../Messaging-Menu/src/applet-notifications.c:31
 msgid ""
@@ -1141,9 +1131,8 @@ msgid "Recent-Events"
 msgstr ""
 
 #: ../Recent-Events/src/applet-init.c:56
-#, fuzzy
 msgid "Show/hide the Recent Events"
-msgstr "Zobrazit nedávné dokumenty ?"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:74
 #, c-format
@@ -1572,9 +1561,8 @@ msgid "Sound Control"
 msgstr "Ovládání zvuku"
 
 #: ../alsaMixer/src/applet-init.c:119
-#, fuzzy
 msgid "Show/hide the Sound menu"
-msgstr "Klávesová zkratka pro zobrazení/schování menu :"
+msgstr ""
 
 #: ../alsaMixer/src/applet-notifications.c:67
 msgid "Adjust channels"
@@ -1706,8 +1694,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1921,7 +1909,8 @@ msgstr ""
 "jeho URL můžete vložit kamkoliv stisknutím CTRL+v"
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr "Počkejte s dalším uploadem, než skončí ten předchozí."
 
 #: ../dnd2share/src/applet-dnd2share.c:591
@@ -2256,9 +2245,8 @@ msgid "Log out"
 msgstr "Odhlásit se"
 
 #: ../logout/src/applet-init.c:65
-#, fuzzy
 msgid "Lock the screen"
-msgstr "Zamknout obrazovku"
+msgstr ""
 
 #: ../logout/src/applet-init.c:69
 msgid "Show the log-out menu"
@@ -2296,9 +2284,8 @@ msgid "Close your session and allow to open a new one."
 msgstr ""
 
 #: ../logout/src/applet-logout.c:239
-#, fuzzy
 msgid "Switch user"
-msgstr "Přepínač"
+msgstr ""
 
 #: ../logout/src/applet-logout.c:258
 msgid "Guest session"
@@ -2322,9 +2309,9 @@ msgid "Choose in how many minutes your PC will stop:"
 msgstr "Vyberte, za kolik minut se vaše PC zastaví :"
 
 #: ../logout/src/applet-logout.c:512
-#, fuzzy, c-format
+#, c-format
 msgid "It will automatically shut-down in %ds"
-msgstr "Nastavit automatické vypnutí"
+msgstr ""
 
 #: ../logout/src/applet-logout.c:513
 msgid "Shut down the computer?"
@@ -2335,9 +2322,8 @@ msgid "Restart the computer?"
 msgstr ""
 
 #: ../logout/src/applet-logout.c:610
-#, fuzzy
 msgid "Close the current session?"
-msgstr "Zavřít aktuální panel"
+msgstr ""
 
 #: ../logout/src/applet-notifications.c:103
 msgid "Manage users"
@@ -2549,7 +2535,8 @@ msgstr "pohybové rozmazání obrazu"
 
 #: ../motion-blur/src/applet-init.c:31
 msgid "This plugin adds a motion blur effect to docks."
-msgstr "Tento zásuvný modul přidává efekt pohybového rozmazání obrazu do docků"
+msgstr ""
+"Tento zásuvný modul přidává efekt pohybového rozmazání obrazu do docků"
 
 #: ../musicPlayer/src/applet-draw.c:59
 msgid "Unknown artist"
@@ -2596,7 +2583,6 @@ msgid "musicPlayer"
 msgstr "musicPlayer"
 
 #: ../musicPlayer/src/applet-init.c:51
-#, fuzzy
 msgid ""
 "This applet lets you control any music player.\n"
 "First choose the player you want to control.\n"
@@ -2608,15 +2594,6 @@ msgid ""
 " and jpeg image to use as cover.\n"
 "Note: you may have to install or activate the MPRIS plug-in of the player."
 msgstr ""
-"Tento applet vám umožňuje ovládat libovolný hudební přehrávač.\n"
-"Levé tlačítko myši funguje jako Spustit/Pauza, prostředním tlačítkem skočíte "
-"na následující skladbu.\n"
-"Otáčením kolečka myši přeskočíte na  předchozí/následující skladbu.\n"
-"Přetáhnutím skladby na ikonu ji zařadíte do fronty (záleží na přehrávači),\n"
-" přetáhnutím jpeg obrázku vytvoříte nový obal.\n"
-"Poznámka : Pro XMMS musíte nainstalovat zásuvný modul 'xmms-infopipe'.\n"
-"       Pro SongBird musíte nainstalovat jeho doplňek dbus\n"
-"       Pro Exaile 0.3 musíte aktivovat jeho zásuvný modul MPRIS"
 
 #: ../musicPlayer/src/applet-notifications.c:83
 msgid ""
@@ -2846,9 +2823,8 @@ msgstr ""
 "prohlížet různé složky."
 
 #: ../quick-browser/src/applet-init.c:64
-#, fuzzy
 msgid "Show/hide the folder menu"
-msgstr "Klávesová zkratka pro zobrazení/schování menu :"
+msgstr ""
 
 #: ../quick-browser/src/applet-menu.c:107
 #: ../quick-browser/src/applet-menu.c:116
@@ -2959,8 +2935,8 @@ msgstr "ukázat myš"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -3130,7 +3106,8 @@ msgstr "Přesunout současnou plochu na tuto plochu"
 msgid ""
 "This will move all windows from the current desktop to the one you clicked "
 "on."
-msgstr "Toto přesune všechna okna z současné plochy na tu, na kterou kliknete."
+msgstr ""
+"Toto přesune všechna okna z současné plochy na tu, na kterou kliknete."
 
 #: ../switcher/src/applet-notifications.c:300
 msgid "Windows List"
@@ -3192,9 +3169,8 @@ msgid ""
 msgstr ""
 
 #: ../terminal/src/terminal-init.c:59
-#, fuzzy
 msgid "Show/hide the terminal"
-msgstr "Klávesová zkratka pro zobrazení/schování menu :"
+msgstr ""
 
 #: ../terminal/src/terminal-menu-functions.c:78
 #: ../terminal/src/terminal-widget.c:420
@@ -5323,7 +5299,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:121 ../RSSreader/data/messages:185
@@ -5460,8 +5437,8 @@ msgstr ""
 #: ../GMenu/data/messages:111
 msgid "Only show files that are under this folder or its sub-folder:"
 msgstr ""
-"Zobrazovat pouze soubory, které jsou pod touto složkou, nebo její "
-"podsložkou :"
+"Zobrazovat pouze soubory, které jsou pod touto složkou, nebo její podsložkou "
+":"
 
 #: ../GMenu/data/messages:113
 msgid "in days. Set 0 if unsued."
@@ -5469,7 +5446,8 @@ msgstr "ve dnech. Pro vypnutí tohoto filtru nastavte na 0"
 
 #: ../GMenu/data/messages:115
 msgid "Only show files whose last modification date is less than ;"
-msgstr "Zobrazovat pouze soubory, jejichž datum poslední úpravy je méŇe než :"
+msgstr ""
+"Zobrazovat pouze soubory, jejichž datum poslední úpravy je méŇe než :"
 
 #: ../GMenu/data/messages:117
 msgid "Session management buttons"
@@ -6940,7 +6918,8 @@ msgid "Space between icons:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:115
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:119
@@ -7070,7 +7049,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -7287,7 +7267,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:107
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:109
@@ -7371,7 +7352,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:93
@@ -8281,7 +8263,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:107
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:109
@@ -8362,6 +8345,3 @@ msgstr ""
 #: ../wifi/data/messages:193
 msgid "Overwrite the default label with the connection point name?"
 msgstr ""
-
-#~ msgid "It seems that the Messaging-Menu is not installed on your system"
-#~ msgstr "Zdá se, že Messaging-Menu není na vašem systému nainstalováno."

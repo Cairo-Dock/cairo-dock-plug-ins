@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2011-09-16 00:39+0000\n"
+"POT-Creation-Date: 2012-02-12 03:52+0000\n"
+"PO-Revision-Date: 2012-01-25 13:21+0000\n"
 "Last-Translator: Maks Mokriev <mcree@ukr.net>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-09-25 04:47+0000\n"
-"X-Generator: Launchpad (build 14012)\n"
+"X-Launchpad-Export-Date: 2012-02-13 04:57+0000\n"
+"X-Generator: Launchpad (build 14781)\n"
+"Language: uk\n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -191,14 +192,12 @@ msgid "Clipboard history"
 msgstr "Журнал буфера даних"
 
 #: ../Clipper/src/applet-init.c:72
-#, fuzzy
 msgid "Pop-up the items menu"
-msgstr "Комбінація клавіш для виклику меню:"
+msgstr ""
 
 #: ../Clipper/src/applet-notifications.c:33
-#, fuzzy
 msgid "The clipboard history is empty."
-msgstr "Журнал буфера даних"
+msgstr ""
 
 #: ../Clipper/src/applet-notifications.c:99
 msgid ""
@@ -258,9 +257,8 @@ msgstr ""
 "композитність, а інший в якості запасного варіанту."
 
 #: ../Composite-Manager/src/applet-init.c:52
-#, fuzzy
 msgid "Toggle the composite ON/OFF"
-msgstr "Комбінація клавіш для перемикання композитності:"
+msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:43
 msgid "Toggle composite?"
@@ -306,7 +304,7 @@ msgstr "клацання середньою кнопкою"
 #: ../Composite-Manager/src/applet-notifications.c:127
 #: ../Composite-Manager/data/messages:133
 msgid "Reload Window-Manager"
-msgstr ""
+msgstr "Перезапустити Менеджер вікон"
 
 #: ../Composite-Manager/src/applet-notifications.c:136
 #: ../showDesktop/src/applet-notifications.c:153
@@ -359,7 +357,8 @@ msgstr "Модуль був доданий, але не може бути зап
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Аплет '%s' оновлено та автоматично перезавантажено"
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -501,16 +500,16 @@ msgstr ""
 #: ../Folders/src/applet-init.c:87 ../Folders/src/applet-init.c:150
 #: ../Folders/src/applet-notifications.c:42
 msgid "Open the configuration of the applet to choose a folder to import."
-msgstr "Відкрийте налаштування цього аплету, щоб додати каталог для перегляду."
+msgstr ""
+"Відкрийте налаштування цього аплету, щоб додати каталог для перегляду."
 
 #: ../Folders/src/applet-notifications.c:54
 msgid "Empty or unreadable folder."
 msgstr "Порожній або помилковий каталог."
 
 #: ../Folders/src/applet-notifications.c:116
-#, fuzzy
 msgid "Properties:"
-msgstr "Властивості"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:136 ../Folders/data/messages:119
 msgid "Size"
@@ -521,14 +520,12 @@ msgid "bytes"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:150
-#, fuzzy
 msgid "Last Modification"
-msgstr "Без змін"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:159
-#, fuzzy
 msgid "Mime Type"
-msgstr "типом"
+msgstr ""
 
 #: ../Folders/src/applet-notifications.c:173
 msgid "User ID"
@@ -689,7 +686,7 @@ msgstr "Каталог імпортовано"
 
 #: ../Folders/src/applet-notifications.c:523
 msgid "Do you want to import the content of the folder too?"
-msgstr ""
+msgstr "Також імпортувати містиме каталогу?"
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -710,22 +707,20 @@ msgid "Applications Menu"
 msgstr "Меню «Програми»"
 
 #: ../GMenu/src/applet-init.c:65
-#, fuzzy
 msgid "Show/hide the Applications menu"
-msgstr "Меню «Програми»"
+msgstr ""
 
 #: ../GMenu/src/applet-init.c:70
-#, fuzzy
 msgid "Show/hide the quick-launch dialog"
-msgstr "Комбінація клавіш для показу/ховання вікна швидкої інформації:"
+msgstr ""
 
 #: ../GMenu/src/applet-menu-callbacks.c:218 ../GMenu/data/messages:123
 msgid "Logout"
-msgstr ""
+msgstr "Вийти"
 
 #: ../GMenu/src/applet-menu-callbacks.c:221 ../GMenu/data/messages:125
 msgid "Shutdown"
-msgstr ""
+msgstr "Вимкнути"
 
 #: ../GMenu/src/applet-notifications.c:74
 msgid "Quick launch"
@@ -752,9 +747,8 @@ msgid "Enter a command to launch:"
 msgstr "Введіть команду для запуску:"
 
 #: ../Global-Menu/src/applet-init.c:30
-#, fuzzy
 msgid "Global Menu"
-msgstr "Загальні"
+msgstr ""
 
 #: ../Global-Menu/src/applet-init.c:33
 msgid ""
@@ -779,6 +773,9 @@ msgid ""
 "Can you check its status (installed? running? version?) and report this bug "
 "(if any) to forum.glx-dock.org"
 msgstr ""
+"Виникла помилка у PulseAudio.\n"
+"Ви можете перевірити його статус (встановлений? працює? версія?, або інше) і "
+"повідомити про цю помилку на forum.glx-dock.org"
 
 #: ../Impulse/src/applet-init.c:32
 msgid ""
@@ -813,19 +810,15 @@ msgid "Messaging Menu"
 msgstr "Меню Повідомлень"
 
 #: ../Messaging-Menu/src/applet-init.c:33
-#, fuzzy
 msgid ""
 "A menu that notices you about new messages from Mail or Chat applications.\n"
 "It handles Evolution, Pidgin, Empathy, etc\n"
 "It requires the Messaging service, which is available on Ubuntu by default."
 msgstr ""
-"Меню, яке сповіщає вас про нові повідомлення в програмах Пошти та Чату.\n"
-"Воно працює з Evolution, Pidgin, Empathy та іншими."
 
 #: ../Messaging-Menu/src/applet-init.c:66
-#, fuzzy
 msgid "Show/hide the Messaging menu"
-msgstr "Меню Повідомлень"
+msgstr ""
 
 #: ../Messaging-Menu/src/applet-notifications.c:31
 msgid ""
@@ -1161,9 +1154,8 @@ msgid "Recent-Events"
 msgstr "Останні події"
 
 #: ../Recent-Events/src/applet-init.c:56
-#, fuzzy
 msgid "Show/hide the Recent Events"
-msgstr "Показувати нещодавні документи?"
+msgstr ""
 
 #: ../Recent-Events/src/applet-notifications.c:74
 #, c-format
@@ -1289,9 +1281,8 @@ msgid "Amazon"
 msgstr "Amazon"
 
 #: ../Scooby-Do/src/applet-init.c:73
-#, fuzzy
 msgid "Enable/disable the Finder"
-msgstr "Увімкнути/вимкнути мережу"
+msgstr ""
 
 #: ../Scooby-Do/src/applet-listing.c:514
 msgid "(F1) Match case"
@@ -1600,9 +1591,8 @@ msgid "Sound Control"
 msgstr "Звук"
 
 #: ../alsaMixer/src/applet-init.c:119
-#, fuzzy
 msgid "Show/hide the Sound menu"
-msgstr "Комбінація клавіш для показу/ховання меню:"
+msgstr ""
 
 #: ../alsaMixer/src/applet-notifications.c:67
 msgid "Adjust channels"
@@ -1734,8 +1724,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1949,7 +1939,8 @@ msgstr ""
 "Натисніть CTRL+v, щоб вставити його URL куди завгодно."
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Зачекайте на закінчення поточного звантаження перед тим, як почати нове."
 
@@ -2006,7 +1997,8 @@ msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:73
 msgid "Sorry, couldn't find the original file nor a preview of it."
-msgstr "Нажаль, оригінальний файл як і його передперегляд виявити не вдалося."
+msgstr ""
+"Нажаль, оригінальний файл як і його передперегляд виявити не вдалося."
 
 #: ../dnd2share/src/applet-notifications.c:98
 msgid ""
@@ -2079,7 +2071,7 @@ msgstr "Очистити історію"
 
 #: ../dnd2share/src/applet-notifications.c:494
 msgid "Use only a files hosting site"
-msgstr ""
+msgstr "Використовувати тільки файл-хостинг сайт"
 
 #: ../dock-rendering/src/rendering-init.c:34
 msgid "Caroussel"
@@ -2299,14 +2291,12 @@ msgid "Log out"
 msgstr "Вийти"
 
 #: ../logout/src/applet-init.c:65
-#, fuzzy
 msgid "Lock the screen"
-msgstr "Заблокувати екран"
+msgstr ""
 
 #: ../logout/src/applet-init.c:69
-#, fuzzy
 msgid "Show the log-out menu"
-msgstr "Показувати дату:"
+msgstr ""
 
 #: ../logout/src/applet-logout.c:198 ../logout/data/messages:101
 #: ../logout/data/messages:109
@@ -2315,7 +2305,7 @@ msgstr "Вимкнути"
 
 #: ../logout/src/applet-logout.c:204
 msgid "Restart"
-msgstr ""
+msgstr "Перезавантажити"
 
 #: ../logout/src/applet-logout.c:210
 #: ../powermanager/src/powermanager-menu-functions.c:93
@@ -2324,7 +2314,7 @@ msgstr "Режим сну"
 
 #: ../logout/src/applet-logout.c:212
 msgid "Your computer will not consume any energy."
-msgstr ""
+msgstr "Комп’ютер не буде споживати енергію."
 
 #: ../logout/src/applet-logout.c:217
 #: ../powermanager/src/powermanager-menu-functions.c:95
@@ -2333,16 +2323,15 @@ msgstr "Режим очікування"
 
 #: ../logout/src/applet-logout.c:219
 msgid "Your computer will still consume a small amount of energy."
-msgstr ""
+msgstr "Комп’ютер буде споживати невелику кількість енергії."
 
 #: ../logout/src/applet-logout.c:228
 msgid "Close your session and allow to open a new one."
-msgstr ""
+msgstr "Завершити сесію та дозволити створити нову."
 
 #: ../logout/src/applet-logout.c:239
-#, fuzzy
 msgid "Switch user"
-msgstr "перемикач стільниць"
+msgstr ""
 
 #: ../logout/src/applet-logout.c:258
 msgid "Guest session"
@@ -2366,23 +2355,21 @@ msgid "Choose in how many minutes your PC will stop:"
 msgstr "Вкажіть через скільки хвилин зупинити комп'ютер"
 
 #: ../logout/src/applet-logout.c:512
-#, fuzzy, c-format
+#, c-format
 msgid "It will automatically shut-down in %ds"
-msgstr "Автоматичне завершення"
+msgstr ""
 
 #: ../logout/src/applet-logout.c:513
 msgid "Shut down the computer?"
 msgstr ""
 
 #: ../logout/src/applet-logout.c:573
-#, fuzzy
 msgid "Restart the computer?"
-msgstr "Використовувати компактний режим?"
+msgstr ""
 
 #: ../logout/src/applet-logout.c:610
-#, fuzzy
 msgid "Close the current session?"
-msgstr "Закрити поточну форму"
+msgstr ""
 
 #: ../logout/src/applet-notifications.c:103
 msgid "Manage users"
@@ -2579,7 +2566,7 @@ msgstr "Оновити все"
 #: ../mail/src/cd-mail-applet-notifications.c:161
 #, c-format
 msgid "Refresh %s"
-msgstr "Відновити %s"
+msgstr "Оновити %s"
 
 #: ../mail/src/cd-mail-applet-notifications.c:167
 msgid "Mark all emails as read"
@@ -2647,7 +2634,6 @@ msgid "musicPlayer"
 msgstr "Музичний програвач"
 
 #: ../musicPlayer/src/applet-init.c:51
-#, fuzzy
 msgid ""
 "This applet lets you control any music player.\n"
 "First choose the player you want to control.\n"
@@ -2659,15 +2645,6 @@ msgid ""
 " and jpeg image to use as cover.\n"
 "Note: you may have to install or activate the MPRIS plug-in of the player."
 msgstr ""
-"Цей аплет дозволяє управляти будь-яким програвачем.\n"
-"Ліве клацання - Грати/Пауза, середнє - наступна композиція.\n"
-"Прокрутка колеса - зміна композиції.\n"
-"Ви можете перетягувати файли прямо на значок, щоб додавати їх до черги "
-"(залежить від програвача),\n"
-" а також jpeg зображення для обкладинок альбомів.\n"
-"Порада: для XMMS потрібно встановити додаток 'xmms-infopipe'.\n"
-"       для SongBird потрібно встановити доповнення dbus.\n"
-"      для Exaile 0.3 потрібно активувати додаток MPRIS."
 
 #: ../musicPlayer/src/applet-notifications.c:83
 msgid ""
@@ -2681,7 +2658,7 @@ msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:173
 msgid "Choose a music player to control"
-msgstr ""
+msgstr "Виберіть програвач, яким будете керувати"
 
 #: ../musicPlayer/src/applet-notifications.c:260
 msgid "Find opened player"
@@ -2689,7 +2666,7 @@ msgstr "Виявити відкриті програвачі"
 
 #: ../musicPlayer/src/applet-notifications.c:264
 msgid "Choose a player"
-msgstr ""
+msgstr "Виберіть програвач"
 
 #: ../musicPlayer/src/applet-notifications.c:270
 msgid "Previous"
@@ -2792,7 +2769,7 @@ msgstr "Перепровірити інтерфейс"
 
 #: ../powermanager/src/powermanager-draw.c:128
 msgid "Battery charged"
-msgstr ""
+msgstr "Акумулятор заряджено"
 
 #: ../powermanager/src/powermanager-draw.c:150
 msgid "Time before empty"
@@ -2881,7 +2858,7 @@ msgstr "Управління живленням"
 
 #: ../powermanager/src/powermanager-menu-functions.c:86
 msgid "Power statistics"
-msgstr ""
+msgstr "Статистика споживання енергії"
 
 #: ../quick-browser/src/applet-init.c:29
 msgid "Quick Browser"
@@ -2902,9 +2879,8 @@ msgstr ""
 "каталогів."
 
 #: ../quick-browser/src/applet-init.c:64
-#, fuzzy
 msgid "Show/hide the folder menu"
-msgstr "Комбінація клавіш для показу/ховання меню:"
+msgstr ""
 
 #: ../quick-browser/src/applet-menu.c:107
 #: ../quick-browser/src/applet-menu.c:116
@@ -3022,8 +2998,8 @@ msgstr "Показувати курсор"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Цей модуль прикрашає курсор різною анімацією, коли той знаходиться всередині "
 "панелі/десклету."
@@ -3301,9 +3277,8 @@ msgstr ""
 "Щоб закрити вкладку: введіть 'CTRL+w' або зробіть середнє клацання на ній."
 
 #: ../terminal/src/terminal-init.c:59
-#, fuzzy
 msgid "Show/hide the terminal"
-msgstr "Комбінація клавіш для показу терміналу:"
+msgstr ""
 
 #: ../terminal/src/terminal-menu-functions.c:78
 #: ../terminal/src/terminal-widget.c:420
@@ -4295,8 +4270,8 @@ msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
 msgstr ""
-"Залежно від вашого менеджеру вікон, ви можете переміщувати за допомогою ALT"
-"+ліве клацання."
+"Залежно від вашого менеджеру вікон, ви можете переміщувати за допомогою "
+"ALT+ліве клацання."
 
 #: ../Clipper/data/messages:33 ../Composite-Manager/data/messages:29
 #: ../Disks/data/messages:49 ../Doncky/data/messages:31
@@ -4625,7 +4600,8 @@ msgstr "Оформлення"
 #: ../tomboy/data/messages:71 ../weather/data/messages:59
 #: ../weblets/data/messages:61 ../wifi/data/messages:61
 msgid "Choose 'Custom decorations' to define your own decorations below."
-msgstr "Виберіть 'Власне оформлення', щоб налаштувати власне оформлення нижче."
+msgstr ""
+"Виберіть 'Власне оформлення', щоб налаштувати власне оформлення нижче."
 
 #: ../Clipper/data/messages:63 ../Composite-Manager/data/messages:59
 #: ../Disks/data/messages:59 ../Doncky/data/messages:61
@@ -5266,12 +5242,12 @@ msgstr "Графік"
 #: ../Disks/data/messages:101 ../System-Monitor/data/messages:105
 #: ../alsaMixer/data/messages:149 ../netspeed/data/messages:101
 msgid "Rotate applet theme :"
-msgstr ""
+msgstr "Обертання теми аплету:"
 
 #: ../Disks/data/messages:105 ../System-Monitor/data/messages:109
 #: ../alsaMixer/data/messages:153 ../netspeed/data/messages:105
 msgid "With dock orientation"
-msgstr ""
+msgstr "З орієнтацією панелі"
 
 #: ../Disks/data/messages:111 ../Network-Monitor/data/messages:147
 #: ../Network-Monitor/data/messages:191 ../System-Monitor/data/messages:115
@@ -5466,7 +5442,8 @@ msgid "Background"
 msgstr "Тло"
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Ви можете отримати привабливіше тло з використанням Оформлення десклетів"
 
@@ -5617,11 +5594,11 @@ msgstr "Показувати тільки файли, час останньої 
 
 #: ../GMenu/data/messages:117
 msgid "Session management buttons"
-msgstr ""
+msgstr "Кнопки управління сеансом"
 
 #: ../GMenu/data/messages:119
 msgid "Show Logout and/or Shutdown : "
-msgstr ""
+msgstr "Показати Вихід та/або Вимкнення: "
 
 #: ../Global-Menu/data/messages:95 ../template/data/messages:95
 msgid "This is a tooltip for this parameter."
@@ -5641,7 +5618,7 @@ msgstr "Введіть текст:"
 
 #: ../Impulse/data/messages:95
 msgid "Animation of the icons:"
-msgstr ""
+msgstr "Анімація значків:"
 
 #: ../Impulse/data/messages:97
 msgid ""
@@ -5670,11 +5647,11 @@ msgstr "Чутливість анімації:"
 
 #: ../Impulse/data/messages:107 ../Impulse/data/messages:117
 msgid "More"
-msgstr ""
+msgstr "Більше"
 
 #: ../Impulse/data/messages:109 ../Impulse/data/messages:115
 msgid "Less"
-msgstr ""
+msgstr "Менше"
 
 #: ../Impulse/data/messages:111
 msgid "in ms."
@@ -5686,23 +5663,23 @@ msgstr "Час між повторенням анімації:"
 
 #: ../Impulse/data/messages:119
 msgid "Action at Startup"
-msgstr ""
+msgstr "Дія при старті"
 
 #: ../Impulse/data/messages:121
 msgid "Launch automatically at startup?"
-msgstr ""
+msgstr "Запускати автоматично при старті?"
 
 #: ../Impulse/data/messages:123
 msgid "Hide the icon?"
-msgstr ""
+msgstr "Ховати значок?"
 
 #: ../Impulse/data/messages:129
 msgid "Image when the applet is active:"
-msgstr ""
+msgstr "Значок активного аплету:"
 
 #: ../Impulse/data/messages:133
 msgid "Image when the applet is inactive:"
-msgstr ""
+msgstr "Значок не активного аплету:"
 
 #: ../Impulse/data/messages:137 ../musicPlayer/data/messages:191
 #: ../tomboy/data/messages:21
@@ -5711,15 +5688,15 @@ msgstr "Файл зображення для значка 'поломка':"
 
 #: ../Impulse/data/messages:139
 msgid "PulseAudio"
-msgstr ""
+msgstr "PulseAudio"
 
 #: ../Impulse/data/messages:141
 msgid "0 in most cases"
-msgstr ""
+msgstr "0 у більшості випадків"
 
 #: ../Impulse/data/messages:143
 msgid "Index of the source:"
-msgstr ""
+msgstr "Індекс джерела:"
 
 #: ../Messaging-Menu/data/messages:91
 msgid ""
@@ -5742,7 +5719,7 @@ msgstr "Завжди показувати значок, навіть якщо п
 #: ../powermanager/data/messages:17 ../slider/data/messages:15
 #: ../wifi/data/messages:15
 msgid "Background color to add in this case"
-msgstr ""
+msgstr "Колір тла для додавання в цьому випадку"
 
 #: ../Network-Monitor/data/messages:97 ../Network-Monitor/data/messages:169
 #: ../Network-Monitor/data/messages:257 ../System-Monitor/data/messages:139
@@ -6945,7 +6922,8 @@ msgstr "Висота точки сходження:"
 
 #: ../dock-rendering/data/messages:9
 msgid "The lower the value, the flatter the curve will appear."
-msgstr "Чим менше значення, тим більша частина кривої буде виглядати пласкою."
+msgstr ""
+"Чим менше значення, тим більша частина кривої буде виглядати пласкою."
 
 #: ../dock-rendering/data/messages:11
 msgid "Curvature of the curve in percent:"
@@ -7121,7 +7099,8 @@ msgid "Space between icons:"
 msgstr "Відстань між значками:"
 
 #: ../dock-rendering/data/messages:115
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "При значенні 0 хвиля буде повністю пласкою, при значенні 1 хвиля буде "
 "ідентична іншим видам."
@@ -7262,7 +7241,8 @@ msgid "Colours"
 msgstr "Кольори"
 
 #: ../icon-effect/data/messages:87
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr "Він ледве змінює колір, так що ви можете навіть не змінювати його."
 
 #: ../icon-effect/data/messages:89 ../icon-effect/data/messages:201
@@ -7489,7 +7469,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Файл зображення для статусу 'є нові листи':"
 
 #: ../mail/data/messages:107
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Якщо вибрано, то кількість листів буде показуватися навіть, якщо листів не "
 "має."
@@ -7575,7 +7556,8 @@ msgid "Blur amount:"
 msgstr "Якість розмиття:"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 "Залиште порожнім, щоб відображати ім'я програвача, яким зараз управляєте."
 
@@ -7799,7 +7781,7 @@ msgstr "Значок емблеми при заряджанні:"
 
 #: ../powermanager/data/messages:171
 msgid "Hide the icon when not on battery?"
-msgstr ""
+msgstr "Приховати значок, якщо працює не від батареї?"
 
 #: ../powermanager/data/messages:173
 msgid "Notification"
@@ -7975,7 +7957,8 @@ msgstr "Життєвий час часток:"
 #: ../show-mouse/data/messages:33
 msgid ""
 "The higher the value, the more particles will scatter from their source."
-msgstr "Чим більше значення, тим більше часток розсіюватиметься з їх джерела."
+msgstr ""
+"Чим більше значення, тим більше часток розсіюватиметься з їх джерела."
 
 #: ../show-mouse/data/messages:35
 msgid "Scattering:"
@@ -8512,7 +8495,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Позиція вертикальної полоси"
 
 #: ../weblets/data/messages:107
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Це дозволить використовувати праве клацання для виклику меню Cairo-Dock."
 
@@ -8598,22 +8582,3 @@ msgstr "Стужбова інформація про сигнал"
 #: ../wifi/data/messages:193
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Змінити типовий підпис на назву точки доступу?"
-
-#~ msgid "It seems that the Messaging-Menu is not installed on your system"
-#~ msgstr "Здається, Меню Повідомлень не встановлено у вашій системі"
-
-#~ msgid ""
-#~ "A very simple applet that adds an icon to log out from your session\n"
-#~ "Left click to log out or change the user, middle click to shutdown or "
-#~ "restart\n"
-#~ "  (you can invert the buttons if you prefer to shutdown on left-click)."
-#~ "You can also lock the screen from the menu on right-click,\n"
-#~ "  and program an automatic shutdown at a given time.\n"
-#~ msgstr ""
-#~ "Дуже простий аплет, який додає на панель значок виходу з сеансу роботи\n"
-#~ "Ліве клацання дозволяє вийти або змінити користувача, середнє клацання - "
-#~ "для виключення або перезавантаження.\n"
-#~ "  (ви можете змінити порядок використання кнопок миші, якщо ви віддаєте "
-#~ "перевагу виходу через ліву кнопку). Ви можете також замикати екран з "
-#~ "використанням лівої кнопки миші,\n"
-#~ "  а також задавати час для автоматичного виключення комп’ютера.\n"
