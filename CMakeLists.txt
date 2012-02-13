@@ -95,8 +95,8 @@ endif()
 
 # set internationalisation
 set (GETTEXT_PLUGINS "cairo-dock-plugins")
-set (localedir "${CMAKE_INSTALL_LOCALEDIR}")
-set (gaugesdir "${CMAKE_INSTALL_PREFIX}/share/cairo-dock/gauges")
+set (localedir "${prefix}/${CMAKE_INSTALL_LOCALEDIR}")
+set (gaugesdir "${datadir}/cairo-dock/gauges")
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules/")  # additionnal FindPackage files
 
