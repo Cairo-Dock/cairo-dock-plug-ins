@@ -74,10 +74,21 @@ static gboolean cd_app_menu_render_step_opengl (Icon *pIcon, CairoDockModuleInst
 	}
 	
 	// draw current icon
+	const CairoDockImageBuffer *pImage = NULL, *pPrevImage = NULL;
+	
 	Icon *pAppli = cairo_dock_get_icon_with_Xid (myData.iCurrentWindow);
-	GLuint iTexture = (pAppli ? pAppli->iIconTexture : myData.defaultIcon.iTexture);
+	if (pAppli)
+	{
+		pImage = cairo_dock_appli_get_image_buffer (pAppli);
+	}
+	GLuint iTexture = (pImage ? pImage->iTexture : 0);
+	
 	Icon *pPrevIcon = cairo_dock_get_icon_with_Xid (myData.iPreviousWindow);
-	GLuint iPrevTexture = (pPrevIcon ? pPrevIcon->iIconTexture : myData.defaultIcon.iTexture);
+	if (pPrevIcon)
+	{
+		pPrevImage = cairo_dock_appli_get_image_buffer (pPrevIcon);
+	}
+	GLuint iPrevTexture = (pPrevImage ? pPrevImage->iTexture : 0);
 	
 	if (iPrevTexture != 0)
 	{
@@ -178,20 +189,34 @@ static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, CairoDockModuleInsta
 		y = 0;  // on top
 	}
 	
-	Icon *pAppli = cairo_dock_get_icon_with_Xid (myData.iCurrentWindow);
-	cairo_surface_t *pSurface = (pAppli ? pAppli->pIconBuffer : myData.defaultIcon.pSurface);
-	Icon *pPrevIcon = cairo_dock_get_icon_with_Xid (myData.iPreviousWindow);
-	cairo_surface_t *pPrevSurface = (pPrevIcon ? pPrevIcon->pIconBuffer : myData.defaultIcon.pSurface);
+	const CairoDockImageBuffer *pImage = NULL, *pPrevImage = NULL;
 	
-	if (pPrevSurface != NULL)
+	Icon *pPrevIcon = cairo_dock_get_icon_with_Xid (myData.iPreviousWindow);
+	if (pPrevIcon)
 	{
-		cairo_set_source_surface (myDrawContext, pPrevSurface, x, y);
-		cairo_paint_with_alpha (myDrawContext, 1-f);
+		pPrevImage = cairo_dock_appli_get_image_buffer (pPrevIcon);
 	}
-	if (pSurface != NULL)
+	if (pPrevImage && pPrevImage->pSurface)
 	{
-		cairo_set_source_surface (myDrawContext, pSurface, x, y);
+		cairo_save (myDrawContext);
+		cairo_scale (myDrawContext, (double)w / pPrevImage->iWidth, (double)h / pPrevImage->iHeight);
+		cairo_set_source_surface (myDrawContext, pPrevImage->pSurface, x, y);
+		cairo_paint_with_alpha (myDrawContext, 1-f);
+		cairo_restore (myDrawContext);
+	}
+	
+	Icon *pAppli = cairo_dock_get_icon_with_Xid (myData.iCurrentWindow);
+	if (pAppli)
+	{
+		pImage = cairo_dock_appli_get_image_buffer (pAppli);
+	}
+	if (pImage && pImage->pSurface)
+	{
+		cairo_save (myDrawContext);
+		cairo_scale (myDrawContext, (double)w / pImage->iWidth, (double)h / pImage->iHeight);
+		cairo_set_source_surface (myDrawContext, pImage->pSurface, x, y);
 		cairo_paint_with_alpha (myDrawContext, f);
+		cairo_restore (myDrawContext);
 	}
 	
 	// draw window buttons
