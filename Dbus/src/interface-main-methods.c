@@ -1282,12 +1282,12 @@ gboolean cd_dbus_main_set_emblem (dbusMainObject *pDbusCallback, const gchar *cI
 		
 		if (cImage == NULL || *cImage == '\0' || strcmp (cImage, "none") == 0)
 		{
-			cairo_dock_remove_overlay_at_position (pIcon, iPosition);
+			cairo_dock_remove_overlay_at_position (pIcon, iPosition < CAIRO_OVERLAY_NB_POSITIONS ? iPosition : iPosition - CAIRO_OVERLAY_NB_POSITIONS);  // for ease of use, handle both case similarily.
 		}
 		else
 		{
-			if (iPosition < 0)  // [-N, -1] => print the overlay
-				cairo_dock_print_overlay_on_icon_from_image (pIcon, pContainer, cImage, - iPosition - 1);
+			if (iPosition >= CAIRO_OVERLAY_NB_POSITIONS)  // [N; 2N-1] => print the overlay
+				cairo_dock_print_overlay_on_icon_from_image (pIcon, pContainer, cImage, iPosition - CAIRO_OVERLAY_NB_POSITIONS);
 			else  // [0, N-1] => add it
 				cairo_dock_add_overlay_from_image (pIcon, cImage, iPosition);
 		}

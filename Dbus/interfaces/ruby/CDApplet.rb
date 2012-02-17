@@ -44,6 +44,8 @@ class CDApplet
 	EMBLEM_TOP          = 6
 	EMBLEM_RIGHT        = 7
 	EMBLEM_LEFT         = 8
+	EMBLEM_PERSISTENT   = 0
+	EMBLEM_PRINT        = 9
 	
 	MENU_ENTRY        = 0
 	MENU_SUB_MENU     = 1

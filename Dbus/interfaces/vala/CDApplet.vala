@@ -109,6 +109,10 @@ public class CDApplet : GLib.Object
 		EMBLEM_RIGHT,
 		EMBLEM_LEFT
 	}
+	public enum EmblemModifier {
+		EMBLEM_PERSISTENT = 0,
+		EMBLEM_PRINT = 9
+	}
 	public enum MenuItemType {
 		MENU_ENTRY = 0,
 		MENU_SUB_MENU,

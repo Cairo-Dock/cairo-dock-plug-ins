@@ -53,6 +53,9 @@ class CairoDock:
 	EMBLEM_TOP          = 6
 	EMBLEM_RIGHT        = 7
 	EMBLEM_LEFT         = 8
+	# emblem modifier (optionnal, add it to the emblem position)
+	EMBLEM_PERSISTENT   = 0
+	EMBLEM_PRINT        = 9
 	# module category
 	CATEGORY_BEHAVIOR         = 0
 	CATEGORY_THEME            = 1
