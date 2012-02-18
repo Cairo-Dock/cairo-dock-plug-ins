@@ -503,11 +503,11 @@ void cd_musicplayer_set_current_handler (const gchar *cName)
 	cd_musicplayer_apply_status_surface (PLAYER_NONE);  // until we detect any service, consider it's not running.
 	if (myConfig.cDefaultTitle == NULL)
 	{
-		if (myIcon->cName != NULL)
+		/**if (myIcon->cName != NULL)
 		{
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myIcon->cName);
 		}
-		else if (strcmp (myData.pCurrentHandler->name, "Mpris2") != 0)
+		else */if (strcmp (myData.pCurrentHandler->name, "Mpris2") != 0)
 		{
 			CD_APPLET_SET_NAME_FOR_MY_ICON (myData.pCurrentHandler->name);
 		}

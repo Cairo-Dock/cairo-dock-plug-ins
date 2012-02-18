@@ -130,6 +130,8 @@ static void _choice_dialog_action (int iClickedButton, GtkWidget *pInteractiveWi
 	myConfig.cMusicPlayer = g_strdup (cPlayerName);
 	// set the handler with this value.
 	cd_musicplayer_set_current_handler (myConfig.cMusicPlayer);
+	// launch it, if it's already running, it's likely to have no effect
+	cairo_dock_launch_command (myData.pCurrentHandler->launch);
 }
 static void _show_players_list_dialog (void)
 {
