@@ -433,6 +433,7 @@ CD_APPLET_ON_BUILD_MENU_END
 typedef struct {
 	gchar *cReceivedData;
 	double fOrder;
+	gchar *cDockName;
 } CDDropData;
 
 static void _on_answer_import (int iClickedButton, GtkWidget *pInteractiveWidget, CDDropData *data, CairoDialog *pDialog)
@@ -451,6 +452,7 @@ static void _on_answer_import (int iClickedButton, GtkWidget *pInteractiveWidget
 		G_TYPE_STRING, "Configuration", "dir path", cReceivedData,
 		G_TYPE_BOOLEAN, "Configuration", "show files", bImportFiles,
 		G_TYPE_DOUBLE, "Icon", "order", fOrder,
+		G_TYPE_STRING, "Icon", "dock name", data->cDockName,
 		G_TYPE_INVALID);
 	
 	// instanciate the module from this conf file.
@@ -476,6 +478,7 @@ static void _on_answer_import (int iClickedButton, GtkWidget *pInteractiveWidget
 static void _free_dialog_data (CDDropData *data)
 {
 	g_free (data->cReceivedData);
+	g_free (data->cDockName);
 	g_free (data);
 }
 gboolean cd_folders_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *icon, double fOrder, CairoContainer *pContainer)
@@ -520,6 +523,8 @@ gboolean cd_folders_on_drop_data (gpointer data, const gchar *cReceivedData, Ico
 		CDDropData *data = g_new0 (CDDropData, 1);
 		data->cReceivedData = g_strdup (cReceivedData);
 		data->fOrder = fOrder;
+		if (CAIRO_DOCK_IS_DOCK (pContainer))
+			data->cDockName = g_strdup (cairo_dock_search_dock_name (CAIRO_DOCK (pContainer)));
 		cairo_dock_show_dialog_full (D_("Do you want to import the content of the folder too?"),
 			pIcon, pContainer,
 			0,
