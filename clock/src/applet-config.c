@@ -76,31 +76,42 @@ CD_APPLET_GET_CONFIG_BEGIN
 	{
 		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "text color", myConfig.fTextColor, couleur);
 		
-		gchar *cFontDescription = CD_CONFIG_GET_STRING ("Configuration", "font");
-		if (cFontDescription == NULL)
+		gboolean bCustomFont = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "custom font", FALSE);  // false by default
+		if (bCustomFont)
 		{
-			cFontDescription = g_strdup ("Sans");  // sinon fd est NULL. On ne precise pas la taille ici pour pouvoir intercepter ce cas.
-		}
-		PangoFontDescription *fd = pango_font_description_from_string (cFontDescription);
-		
-		myConfig.cFont = g_strdup (pango_font_description_get_family (fd));
-		myConfig.iWeight = pango_font_description_get_weight (fd);
-		myConfig.iStyle = pango_font_description_get_style (fd);
-		if (pango_font_description_get_size (fd) == 0)  // anciens parametres de font.
-		{
-			int iWeight = g_key_file_get_integer (pKeyFile, "Configuration", "weight", NULL);
-			myConfig.iWeight = cairo_dock_get_pango_weight_from_1_9 (iWeight);
-			myConfig.iStyle = PANGO_STYLE_NORMAL;
+			gchar *cFontDescription = CD_CONFIG_GET_STRING ("Configuration", "font");
+			if (cFontDescription == NULL)
+			{
+				cFontDescription = g_strdup ("Sans");  // sinon fd est NULL. On ne precise pas la taille ici pour pouvoir intercepter ce cas.
+			}
+			PangoFontDescription *fd = pango_font_description_from_string (cFontDescription);
 			
-			pango_font_description_set_size (fd, 16 * PANGO_SCALE);
-			pango_font_description_set_weight (fd, myConfig.iWeight);
-			pango_font_description_set_style (fd, myConfig.iStyle);
+			myConfig.cFont = g_strdup (pango_font_description_get_family (fd));
+			myConfig.iWeight = pango_font_description_get_weight (fd);
+			myConfig.iStyle = pango_font_description_get_style (fd);
+			
+			if (pango_font_description_get_size (fd) == 0)  // anciens parametres de font.
+			{
+				int iWeight = g_key_file_get_integer (pKeyFile, "Configuration", "weight", NULL);
+				myConfig.iWeight = cairo_dock_get_pango_weight_from_1_9 (iWeight);
+				myConfig.iStyle = PANGO_STYLE_NORMAL;
+
+				pango_font_description_set_size (fd, 16 * PANGO_SCALE);
+				pango_font_description_set_weight (fd, myConfig.iWeight);
+				pango_font_description_set_style (fd, myConfig.iStyle);
+				g_free (cFontDescription);
+				cFontDescription = pango_font_description_to_string (fd);
+				g_key_file_set_string (pKeyFile, "Configuration", "font", cFontDescription);
+			}
+			pango_font_description_free (fd);
 			g_free (cFontDescription);
-			cFontDescription = pango_font_description_to_string (fd);
-			g_key_file_set_string (pKeyFile, "Configuration", "font", cFontDescription);
 		}
-		pango_font_description_free (fd);
-		g_free (cFontDescription);
+		else  // use the same font as the labels
+		{
+			myConfig.cFont = g_strdup (myIconsParam.iconTextDescription.cFont);
+			myConfig.iWeight = PANGO_WEIGHT_HEAVY;  // force to bold, it's much more readable.
+			myConfig.iStyle = myIconsParam.iconTextDescription.iStyle;
+		}
 		
 		myConfig.cNumericBackgroundImage = CD_CONFIG_GET_STRING ("Configuration", "numeric bg");
 		myConfig.fTextRatio = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "text ratio", 1.);
@@ -456,9 +467,8 @@ void cd_clock_free_timezone_list (void)
 	s_pTimeZoneList = NULL;
 }
 
-void cd_clock_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile)
+void cd_clock_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile)  // warning: myApplet can be NULL if the applet has not been yet started.
 {
-	cd_debug ("%s (%s)", __func__, myIcon->cName);
 	//\____________ On recupere notre widget personnalise (un simple container vide qu'on va remplir avec nos trucs).
 	CairoDockGroupKeyWidget *pGroupKeyWidget = CD_APPLET_GET_CONFIG_PANEL_GROUP_KEY_WIDGET ("Alarm", "add new");
 	g_return_if_fail (pGroupKeyWidget != NULL);
