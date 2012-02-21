@@ -21,8 +21,8 @@ icon=
 #{Set to 0 to use the default applet size}
 icon size = 0;0
 
-#B Always display the icon, even when the dock is hidden?
-always visi = false
+#Y+[No;0;0;With default background;0;0;With custom background;1;1] Always display the icon, even when the dock is hidden?
+always_visi = 0
 
 #C+ Background color to add in this case
 bg color = .8;.8;.8;.5
@@ -150,6 +150,9 @@ date color = 1.0; 0.; 0.9; 1.
 
 #X[Digital View;gtk-italic]
 numeric=
+
+#B+ Use a custom font
+custom font = false
 
 #P+ Font:
 font = Sans 16

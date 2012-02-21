@@ -382,6 +382,7 @@ void cd_drop_indicator_load_hover_indicator (gchar *cImage, int iWidth, int iHei
 			iHeight,
 			CAIRO_DOCK_KEEP_RATIO);
 	}
+	g_print (" %p, %d, %d\n", myData.hoverIndicator.pSurface, myData.hoverIndicator.iTexture, g_bUseOpenGL);
 }
 
 void cd_drop_indicator_free_buffers (void)
