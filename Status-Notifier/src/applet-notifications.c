@@ -251,7 +251,11 @@ gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pCon
 		if (pItem == NULL)
 			CD_APPLET_SET_NAME_FOR_MY_ICON (NULL);
 		else
-			CD_APPLET_SET_NAME_FOR_MY_ICON (pItem->cLabel ? pItem->cLabel : pItem->cTitle ? pItem->cTitle : pItem->cId);
+			CD_APPLET_SET_NAME_FOR_MY_ICON (
+				pItem->cTitle && *pItem->cTitle != '\0' ? pItem->cTitle :
+				pItem->cLabel && *pItem->cLabel != '\0' ? pItem->cLabel :
+				pItem->cId && *pItem->cId != '\0' ? pItem->cId :
+				NULL);
 		
 		if (myDock)
 			CAIRO_DOCK_REDRAW_MY_CONTAINER;

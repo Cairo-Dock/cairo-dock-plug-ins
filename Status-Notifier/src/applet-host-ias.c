@@ -94,7 +94,9 @@ static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_ST
 		data2);
 }
 #else  // Natty
-#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
+#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
+static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING_STRING_STRING (
+#elif (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
 static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING_STRING (
 #else
 static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING (
@@ -107,7 +109,9 @@ static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_ST
 	gpointer marshal_data)
 {
 	//cd_debug ("=== %s ()\n", __func__);
-	#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
+	#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
+	typedef void (*GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING_STRING_STRING) (
+	#elif (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
 	typedef void (*GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING_STRING) (
 	#else
 	typedef void (*GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING) (
@@ -123,9 +127,14 @@ static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_ST
 		gchar      *arg_8,
 		#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
 		gchar      *arg_9,
+		#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
+		gchar      *arg_10,
+		#endif
 		#endif
 		gpointer     data2);
-	#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
+	#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
+	register GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING_STRING_STRING callback;
+	#elif (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
 	register GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING_STRING callback;
 	#else
 	register GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING callback;
@@ -133,7 +142,9 @@ static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_ST
 	register GCClosure *cc = (GCClosure*) closure;
 	register gpointer data1, data2;
 	// return_value est NULL ici, car la callback ne renvoit rien.
-	#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
+	#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
+	g_return_if_fail (n_param_values == 11);
+	#elif (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
 	g_return_if_fail (n_param_values == 10);
 	#else
 	g_return_if_fail (n_param_values == 9);
@@ -149,7 +160,9 @@ static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_ST
 		data1 = g_value_peek_pointer (param_values + 0);
 		data2 = closure->data;
 	}
-	#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
+	#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
+	callback = (GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING_STRING_STRING)
+	#elif (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
 	callback = (GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING_STRING)
 	#else
 	callback = (GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING)
@@ -167,6 +180,9 @@ static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_ST
 		(char*) g_value_get_string (param_values + 8),
 		#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
 		(char*) g_value_get_string (param_values + 9),
+		#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
+		(char*) g_value_get_string (param_values + 10),
+		#endif
 		#endif
 		data2);
 }
@@ -181,6 +197,9 @@ static void on_new_application (DBusGProxy *proxy_watcher, const gchar *cIconNam
 const gchar *cAccessbleDesc,  // WTF is this new param ??
 #if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
 const gchar *cHint,  // <irony> is this a hint to work around a clumsy API ? </irony>
+#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
+const gchar *cTitle,
+#endif
 #endif
 #endif
 CairoDockModuleInstance *myApplet)
@@ -191,6 +210,9 @@ CairoDockModuleInstance *myApplet)
 	cd_debug ("    %s", cAccessbleDesc);
 	#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
 	cd_debug ("    %s", cHint);
+	#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
+	cd_debug ("    %s", cTitle);
+	#endif
 	#endif
 	#endif
 	
@@ -214,7 +236,12 @@ CairoDockModuleInstance *myApplet)
 		cIconName,
 		#endif
 		cIconThemePath,
-		cLabel);
+		#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
+		cTitle && *cTitle != '\0' ? cTitle : cLabel
+		#else
+		cLabel
+		#endif
+		);
 	
 	CD_APPLET_LEAVE ();
 }
@@ -264,6 +291,15 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 			G_TYPE_STRING,  // iconpath
 			G_TYPE_STRING,  // label
 			G_TYPE_STRING,  // labelguide
+			#if (INDICATOR_OLD_NAMES == 0)  // Natty
+			G_TYPE_STRING,  // accessibledesc
+			#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
+			G_TYPE_STRING,  // hint
+			#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
+			G_TYPE_STRING,  // title
+			#endif
+			#endif
+			#endif
 			G_TYPE_INVALID));
 	gboolean bSuccess = dbus_g_proxy_end_call (proxy,
 		call_id,
@@ -300,6 +336,11 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 		const gchar *cIconThemePath = NULL;
 		const gchar *cLabel = NULL;
 		const gchar *cLabelGuide = NULL;
+		// const gchar *cAccessibleDesc = NULL; // natty
+		// const gchar *cHint = NULL; // oneiric
+		#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
+		const gchar *cTitle = NULL;
+		#endif
 		
 		v = g_value_array_get_nth (va, 0);
 		if (v && G_VALUE_HOLDS_STRING (v))
@@ -337,14 +378,28 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 		if (v && G_VALUE_HOLDS_STRING (v))
 			cLabelGuide = g_value_get_string (v);
 		
-		cd_debug ("===  + item {%s ; %d ; %s ; %s ; %s ; %s ; %s}",
+		#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
+		v = g_value_array_get_nth (va, 9);
+		if (v && G_VALUE_HOLDS_STRING (v))
+			cTitle = g_value_get_string (v);
+		#endif
+		
+		cd_debug ("===  + item {%s ; %d ; %s ; %s ; %s ; %s ; %s"
+			#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
+			" ; %s"
+			#endif
+			"}",
 			cIconName,
 			iPosition,
 			cAdress,
 			cObjectPath,
 			cIconThemePath,
 			cLabel,
-			cLabelGuide);
+			cLabelGuide
+			#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
+			,cTitle
+			#endif
+			);
 		
 		pItem = cd_satus_notifier_create_item (cAdress, cObjectPath);
 		if (! pItem)
@@ -352,7 +407,7 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 		if (pItem->iPosition == -1)
 			pItem->iPosition = iPosition;
 		if (pItem->cTitle == NULL && pItem->cLabel == NULL)
-			pItem->cLabel = g_strdup (cLabel && *cLabel != '\0' ? cLabel : pItem->cId);
+			pItem->cLabel = g_strdup (cTitle && *cTitle != '\0' ? cTitle : (cLabel && *cLabel != '\0' ? cLabel : pItem->cId));
 		myData.pItems = g_list_prepend (myData.pItems, pItem);
 	}
 	
@@ -396,7 +451,9 @@ void cd_satus_notifier_get_items_from_ias (void)
 			G_TYPE_NONE, G_TYPE_STRING, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);
 	#else  // Natty
 	dbus_g_object_register_marshaller(
-	#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
+	#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
+	_cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING_STRING_STRING,
+	#elif (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
 	_cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING_STRING,
 	#else
 	_cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING,
@@ -406,6 +463,9 @@ void cd_satus_notifier_get_items_from_ias (void)
 			G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,
 			#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
 			G_TYPE_STRING,
+			#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
+			G_TYPE_STRING,
+			#endif
 			#endif
 			G_TYPE_INVALID);
 	#endif
@@ -425,6 +485,9 @@ void cd_satus_notifier_get_items_from_ias (void)
 		G_TYPE_STRING,  // accessibledesc
 		#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
 		G_TYPE_STRING, // hint => only with indicator-0.4 (Oneiric)
+		#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
+		G_TYPE_STRING, // title => only with indicator-0.4.90 (Precise)
+		#endif
 		#endif
 		#endif
 		G_TYPE_INVALID);
@@ -436,6 +499,7 @@ void cd_satus_notifier_get_items_from_ias (void)
 		G_TYPE_INVALID);
 	dbus_g_proxy_connect_signal(myData.pProxyIndicatorApplicationService, "ApplicationRemoved",
 		G_CALLBACK(on_removed_application), myApplet, NULL);
+	// TODO? ApplicationIconChanged, ApplicationIconThemePathChanged, ApplicationLabelChanged, ApplicationTitleChanged
 }
 
   //////////////////

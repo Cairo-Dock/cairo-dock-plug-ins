@@ -358,7 +358,7 @@ gchar *cd_satus_notifier_search_item_icon_s_path (CDStatusNotifierItem *pItem)
 CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, const gchar *cObjectPath)
 {
 	g_return_val_if_fail  (cService != NULL, NULL);
-	g_print ("=== %s (%s, %s)\n", __func__, cService, cObjectPath);
+	cd_debug ("=== %s (%s, %s)", __func__, cService, cObjectPath);
 	
 	gchar *str = strchr (cService, '/');  // just to be sure.
 	if (str)
@@ -470,7 +470,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	
 	const gchar *cLabel = NULL;
 	v = g_hash_table_lookup (hProps, "XAyatanaLabel");
-	if (v && G_VALUE_HOLDS_BOXED(v))
+	if (v && G_VALUE_HOLDS_STRING(v))
 	{
 		cLabel = g_value_get_string (v);
 	}
@@ -478,7 +478,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	
 	const gchar *cLabelGuide = NULL;
 	v = g_hash_table_lookup (hProps, "XAyatanaLabelGuide");
-	if (v && G_VALUE_HOLDS_BOXED(v))
+	if (v && G_VALUE_HOLDS_STRING(v))
 	{
 		cLabelGuide = g_value_get_string (v);
 	}
@@ -491,7 +491,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		cTitle = g_value_get_string (v);
 	}
-	cd_debug ("===   Title '%s", cTitle);
+	cd_debug ("===   Title '%s'", cTitle);
 	
 	v = g_hash_table_lookup (hProps, "WindowId");
 	guint iWindowId = 0;
