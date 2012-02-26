@@ -59,7 +59,7 @@ CD_APPLET_DEFINE_BEGIN ("gnome integration",
 	}
 	
 	if (pVFSBackend != NULL)
-		cairo_dock_fm_register_vfs_backend_if_none (pVFSBackend);
+		cairo_dock_fm_register_vfs_backend/*_if_none*/ (pVFSBackend);
 	else
 		return FALSE;
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
