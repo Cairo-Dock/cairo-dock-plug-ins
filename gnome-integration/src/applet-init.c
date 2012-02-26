@@ -32,25 +32,34 @@ CD_APPLET_DEFINE_BEGIN ("gnome integration",
 	"It is auto-activated, so you don't need to activate it.\n"
 	"It is designed for the a GNOME version >= 2.22",
 	"Fabounet (Fabrice Rey)")
-	if (g_iDesktopEnv == CAIRO_DOCK_GNOME && (glib_major_version > 2 || glib_minor_version >= 16))
+	
+	CairoDockDesktopEnvBackend *pVFSBackend = NULL;
+	if (! cairo_dock_fm_vfs_backend_is_defined ())  // the Gnome backend will register the GVFS functions, even if it's not a Gnome environment. It will not overwrite the other functions of the backend, and if another backend comes later, it can set its own functions.
 	{
-		cd_debug ("GNOME");
 		if (cairo_dock_gio_vfs_init ())
 		{
 			cd_debug ("GVFS");
-			CairoDockDesktopEnvBackend *pVFSBackend = g_new0 (CairoDockDesktopEnvBackend, 1);
-			
-			cairo_dock_gio_vfs_fill_backend(pVFSBackend);
-			
-			pVFSBackend->logout = env_backend_logout;
-			pVFSBackend->shutdown = env_backend_shutdown;
-			pVFSBackend->reboot = env_backend_shutdown;
-			pVFSBackend->lock_screen = env_backend_lock_screen;
-			pVFSBackend->setup_time = env_backend_setup_time;
-			pVFSBackend->show_system_monitor = env_backend_show_system_monitor;
-			cairo_dock_fm_register_vfs_backend (pVFSBackend);
+			pVFSBackend = g_new0 (CairoDockDesktopEnvBackend, 1);
+			cairo_dock_gio_vfs_fill_backend (pVFSBackend);
 		}
 	}
+	
+	if (g_iDesktopEnv == CAIRO_DOCK_GNOME && (glib_major_version > 2 || glib_minor_version >= 16))
+	{
+		cd_debug ("GNOME");
+		if (pVFSBackend == NULL)
+			pVFSBackend = g_new0 (CairoDockDesktopEnvBackend, 1);
+			
+		pVFSBackend->logout = env_backend_logout;
+		pVFSBackend->shutdown = env_backend_shutdown;
+		pVFSBackend->reboot = env_backend_shutdown;
+		pVFSBackend->lock_screen = env_backend_lock_screen;
+		pVFSBackend->setup_time = env_backend_setup_time;
+		pVFSBackend->show_system_monitor = env_backend_show_system_monitor;
+	}
+	
+	if (pVFSBackend != NULL)
+		cairo_dock_fm_register_vfs_backend_if_none (pVFSBackend);
 	else
 		return FALSE;
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);

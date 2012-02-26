@@ -53,6 +53,7 @@ void env_backend_lock_screen (void)
 void env_backend_setup_time (void)
 {
 	cairo_dock_launch_command ("time-admin");  // it uses PolicyKit => no gksudo.
+	/// TODO: use gnome-control-center ...
 }
 
 void env_backend_show_system_monitor (void)
