@@ -63,6 +63,7 @@ static gboolean _get_menu_once (CDAppletIndicator *pIndicator)
 static void
 connection_changed (IndicatorServiceManager * sm, gboolean connected, CDAppletIndicator *pIndicator)
 {
+	g_print ("%s (%s : %d)\n", __func__, pIndicator->cBusName, connected);
 	CairoDockModuleInstance *myApplet = pIndicator->pApplet;
 	if (connected)
 	{
@@ -71,7 +72,7 @@ connection_changed (IndicatorServiceManager * sm, gboolean connected, CDAppletIn
 			// connect to the service.
 			if (pIndicator->pServiceProxy == NULL)
 			{
-				GError * error = NULL;
+				/**GError * error = NULL;
 				DBusGConnection * sbus = cairo_dock_get_session_connection ();
 				pIndicator->pServiceProxy = dbus_g_proxy_new_for_name_owner(sbus,
 					pIndicator->cBusName,
@@ -82,7 +83,11 @@ connection_changed (IndicatorServiceManager * sm, gboolean connected, CDAppletIn
 				{
 					cd_warning ("'%s' service not found on the bus : %s", pIndicator->cServiceObject, error->message);
 					g_error_free(error);
-				}
+				}*/
+				pIndicator->pServiceProxy = cairo_dock_create_new_session_proxy (
+					pIndicator->cBusName,
+					pIndicator->cServiceObject,
+					pIndicator->cServiceInterface);
 				if (pIndicator->pServiceProxy == NULL)
 					return;
 				
@@ -107,9 +112,14 @@ connection_changed (IndicatorServiceManager * sm, gboolean connected, CDAppletIn
 			if (pIndicator->pMenu)
 			{
 				g_print ("destroy menu...\n");
-				g_object_unref (pIndicator->pMenu);
+				g_object_unref (pIndicator->pMenu);  /// -> "g_object_unref: assertion `G_IS_OBJECT (object)' failed" x2
 				g_print ("done.\n");
 				pIndicator->pMenu = NULL;
+			}
+			if (pIndicator->pServiceProxy != NULL)
+			{
+				g_object_unref (pIndicator->pServiceProxy);  // this removes all the signals connected on the proxy
+				pIndicator->pServiceProxy = NULL;
 			}
 			pIndicator->bConnected = FALSE;
 		}
