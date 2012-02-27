@@ -338,9 +338,7 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 		const gchar *cLabelGuide = NULL;
 		// const gchar *cAccessibleDesc = NULL; // natty
 		// const gchar *cHint = NULL; // oneiric
-		#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
-		const gchar *cTitle = NULL;
-		#endif
+		const gchar *cTitle = NULL;  // precise
 		
 		v = g_value_array_get_nth (va, 0);
 		if (v && G_VALUE_HOLDS_STRING (v))
@@ -384,11 +382,7 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 			cTitle = g_value_get_string (v);
 		#endif
 		
-		cd_debug ("===  + item {%s ; %d ; %s ; %s ; %s ; %s ; %s"
-			#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
-			" ; %s"
-			#endif
-			"}",
+		cd_debug ("===  + item {%s ; %d ; %s ; %s ; %s ; %s ; %s ; %s}",
 			cIconName,
 			iPosition,
 			cAdress,
@@ -396,9 +390,7 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 			cIconThemePath,
 			cLabel,
 			cLabelGuide
-			#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
 			,cTitle
-			#endif
 			);
 		
 		pItem = cd_satus_notifier_create_item (cAdress, cObjectPath);
