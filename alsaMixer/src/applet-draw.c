@@ -46,6 +46,7 @@ static void mixer_apply_transparency_effect (cairo_surface_t *pSurface)
 
 static void mixer_draw_bar (cairo_surface_t *pSurface)
 {
+	g_print ("%s (%p, %d)\n", __func__, pSurface, myData.iCurrentVolume);
 	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR (pSurface, myData.iCurrentVolume * .01);
 }
 

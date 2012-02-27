@@ -247,11 +247,9 @@ CD_APPLET_RELOAD_BEGIN
 		if (myDesklet && myDesklet->container.iHeight <= 64)
 			gtk_widget_hide (myData.pScale);
 		
-		CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
+		if (myConfig.iVolumeEffect == VOLUME_EFFECT_GAUGE)
+			CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
 		
-		if (myData.pControledElement != NULL)
-		{
-			cd_update_icon ();
-		}
+		cd_update_icon ();
 	}
 CD_APPLET_RELOAD_END
