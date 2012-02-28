@@ -236,11 +236,13 @@ CairoDockModuleInstance *myApplet)
 		cIconName,
 		#endif
 		cIconThemePath,
+		#if (INDICATOR_OLD_NAMES == 0)
+		cAccessbleDesc && *cAccessbleDesc != '\0' ? cAccessbleDesc :
 		#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
-		cTitle && *cTitle != '\0' ? cTitle : cLabel
-		#else
-		cLabel
+		cTitle && *cTitle != '\0' ? cTitle :
 		#endif
+		#endif
+		cLabel
 		);
 	
 	CD_APPLET_LEAVE ();
@@ -336,7 +338,7 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 		const gchar *cIconThemePath = NULL;
 		const gchar *cLabel = NULL;
 		const gchar *cLabelGuide = NULL;
-		// const gchar *cAccessibleDesc = NULL; // natty
+		const gchar *cAccessibleDesc = NULL; // natty
 		// const gchar *cHint = NULL; // oneiric
 		const gchar *cTitle = NULL;  // precise
 		
@@ -376,30 +378,40 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 		if (v && G_VALUE_HOLDS_STRING (v))
 			cLabelGuide = g_value_get_string (v);
 		
+		#if (INDICATOR_OLD_NAMES == 0)
+		v = g_value_array_get_nth (va, 7);
+		if (v && G_VALUE_HOLDS_STRING (v))
+			cAccessibleDesc = g_value_get_string (v);
+		
 		#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
 		v = g_value_array_get_nth (va, 9);
 		if (v && G_VALUE_HOLDS_STRING (v))
 			cTitle = g_value_get_string (v);
 		#endif
+		#endif
 		
-		cd_debug ("===  + item {%s ; %d ; %s ; %s ; %s ; %s ; %s ; %s}",
+		cd_debug ("===  + item {%s ; %d ; %s ; %s ; %s ; %s ; %s ; %s ; %s}",
 			cIconName,
 			iPosition,
 			cAdress,
 			cObjectPath,
 			cIconThemePath,
 			cLabel,
-			cLabelGuide
-			,cTitle
-			);
+			cLabelGuide,
+			cAccessibleDesc,
+			cTitle);
 		
 		pItem = cd_satus_notifier_create_item (cAdress, cObjectPath);
 		if (! pItem)
 			continue;
 		if (pItem->iPosition == -1)
 			pItem->iPosition = iPosition;
-		if (pItem->cTitle == NULL && pItem->cLabel == NULL)
-			pItem->cLabel = g_strdup (cTitle && *cTitle != '\0' ? cTitle : (cLabel && *cLabel != '\0' ? cLabel : pItem->cId));
+		if (pItem->cTitle == NULL && pItem->cLabel == NULL && pItem->cAccessibleDesc == NULL)
+			pItem->cLabel = g_strdup (cAccessibleDesc && *cAccessibleDesc != '\0' ? cAccessibleDesc :
+			                          cTitle && *cTitle != '\0' ? cTitle :
+			                          cLabel && *cLabel != '\0' ? cLabel :
+			                          NULL);
+			                          // pItem->cId); // maybe better to not display cId, e.g: nm-applet ; dropbox-xxxx ; etc.
 		myData.pItems = g_list_prepend (myData.pItems, pItem);
 	}
 	

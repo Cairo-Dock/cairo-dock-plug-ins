@@ -84,6 +84,7 @@ typedef struct {
 	gchar *cLabel;
 	gchar *cLabelGuide;
 	gchar *cMenuPath;
+	gchar *cAccessibleDesc;
 	// additionnal props supported by KDE
 	Window iWindowId;
 	gchar *cAttentionMovieName;

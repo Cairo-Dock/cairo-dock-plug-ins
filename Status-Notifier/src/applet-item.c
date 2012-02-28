@@ -145,6 +145,8 @@ static void on_new_item_icon (DBusGProxy *proxy_item, CDStatusNotifierItem *pIte
 	
 	g_free (pItem->cIconName);
 	pItem->cIconName = cairo_dock_dbus_get_property_as_string (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "IconName");
+	g_free (pItem->cAccessibleDesc);
+	pItem->cAccessibleDesc = cairo_dock_dbus_get_property_as_string (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "IconAccessibleDesc");
 	//g_print ("===  new icon : %s\n", pItem->cIconName);
 	
 	if (pItem->iStatus != CD_STATUS_NEEDS_ATTENTION)
@@ -483,6 +485,13 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 		cLabelGuide = g_value_get_string (v);
 	}
 	//g_print ("===   cLabelGuide '%s'\n", cLabelGuide);
+
+	const gchar *cAccessibleDesc = NULL;
+	v = g_hash_table_lookup (hProps, "IconAccessibleDesc");
+	if (v && G_VALUE_HOLDS_STRING(v))
+	{
+		cAccessibleDesc = g_value_get_string (v);
+	} // Updated with ApplicationIconChanged
 	
 	// properties supported by KDE.
 	const gchar *cTitle = NULL;
@@ -541,6 +550,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	pItem->cTitle = g_strdup (cTitle);
 	pItem->cLabel = g_strdup (cLabel);
 	pItem->cLabelGuide = g_strdup (cLabelGuide);
+	pItem->cAccessibleDesc = g_strdup (cAccessibleDesc);
 	pItem->cMenuPath = (cMenuPath ? g_strdup (cMenuPath) : g_strdup (cObjectPath));
 	pItem->iWindowId = iWindowId;
 	pItem->iCategory = _find_category (cCategory);
@@ -630,6 +640,7 @@ void cd_free_item (CDStatusNotifierItem *pItem)
 	g_free (pItem->cAttentionIconName);
 	g_free (pItem->cLabel);
 	g_free (pItem->cLabelGuide);
+	g_free (pItem->cAccessibleDesc);
 	g_free (pItem->cTitle);
 	g_free (pItem->cAttentionMovieName);
 	g_free (pItem->cOverlayIconName);
