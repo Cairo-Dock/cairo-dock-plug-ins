@@ -253,8 +253,8 @@ gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pCon
 		else
 			CD_APPLET_SET_NAME_FOR_MY_ICON (
 				pItem->cAccessibleDesc && *pItem->cAccessibleDesc != '\0' ? pItem->cAccessibleDesc :
-				pItem->cTitle && *pItem->cTitle != '\0' ? pItem->cTitle :
 				pItem->cLabel && *pItem->cLabel != '\0' ? pItem->cLabel :
+				pItem->cTitle && *pItem->cTitle != '\0' ? pItem->cTitle :
 				NULL);
 				// pItem->cId && *pItem->cId != '\0' ? pItem->cId :
 				// maybe better to not display cId, e.g: nm-applet ; dropbox-xxxx ; etc.

@@ -408,8 +408,8 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 			pItem->iPosition = iPosition;
 		if (pItem->cTitle == NULL && pItem->cLabel == NULL && pItem->cAccessibleDesc == NULL)
 			pItem->cLabel = g_strdup (cAccessibleDesc && *cAccessibleDesc != '\0' ? cAccessibleDesc :
-			                          cTitle && *cTitle != '\0' ? cTitle :
 			                          cLabel && *cLabel != '\0' ? cLabel :
+			                          cTitle && *cTitle != '\0' ? cTitle :
 			                          NULL);
 			                          // pItem->cId); // maybe better to not display cId, e.g: nm-applet ; dropbox-xxxx ; etc.
 		myData.pItems = g_list_prepend (myData.pItems, pItem);
