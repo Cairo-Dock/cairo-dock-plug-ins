@@ -90,7 +90,7 @@ typedef struct {
 	gchar *cAttentionMovieName;
 	gchar *cOverlayIconName;
 	CDToolTip *pToolTip;
-	
+	gboolean bItemIsMenu;
 	gint iPosition;  // donnee par l'indicator service
 	guint iSidPopupTooltip;
 	// data

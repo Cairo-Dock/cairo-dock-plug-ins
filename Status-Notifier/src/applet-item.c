@@ -533,6 +533,13 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 		pToolTipTab = g_value_get_boxed (v);
 	}
 	
+	gboolean *bItemIsMenu = FALSE;
+	v = g_hash_table_lookup (hProps, "ItemIsMenu");
+	if (v && G_VALUE_HOLDS_BOOLEAN (v))
+	{
+		bItemIsMenu = g_value_get_boolean (v);
+	}
+	
 	DBusGProxy *pProxyItem = cairo_dock_create_new_session_proxy (
 		cService,
 		cRealObjectPath ? cRealObjectPath : cObjectPath,
@@ -560,6 +567,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	pItem->cAttentionIconName = g_strdup (cAttentionIconName);
 	pItem->cAttentionMovieName = g_strdup (cAttentionMovieName);
 	pItem->cOverlayIconName = g_strdup (cOverlayIconName);
+	pItem->bItemIsMenu = bItemIsMenu;
 	if (pToolTipTab)
 	{
 		pItem->pToolTip = _make_tooltip_from_dbus_struct (pToolTipTab);

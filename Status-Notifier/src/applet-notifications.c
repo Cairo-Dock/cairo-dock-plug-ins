@@ -87,7 +87,7 @@ static inline CDStatusNotifierItem *_get_item (Icon *pClickedIcon, CairoContaine
 static inline gboolean _popup_menu (CDStatusNotifierItem *pItem, Icon *pIcon, CairoContainer *pContainer)
 {
 	gboolean r = FALSE;
-	if (pItem->cMenuPath != NULL)
+	if (pItem->cMenuPath != NULL && strcmp (pItem->cMenuPath, "/NO_DBUSMENU") != 0)
 	{
 		if (pItem->pMenu == NULL)
 			pItem->pMenu = dbusmenu_gtkmenu_new ((gchar *)pItem->cService, (gchar *)pItem->cMenuPath);
@@ -114,7 +114,8 @@ CD_APPLET_ON_CLICK_BEGIN
 	//g_print ("click on item '%s'\n", pItem?pItem->cService:"none");
 	if (pItem != NULL)
 	{
-		if (myConfig.bMenuOnLeftClick)
+		// maybe we should check if we are using KDE's watcher instead of bMenuOnLeftClick?
+		if (myConfig.bMenuOnLeftClick && ! pItem->bItemIsMenu) // some items (like Klipper) doesn't have any DBusMenu, we force the second option.
 		{
 			_popup_menu (pItem, CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER);
 		}
@@ -126,7 +127,7 @@ CD_APPLET_ON_CLICK_BEGIN
 				if (pItem->cId != NULL)
 				{
 					/// TODO: try to get the icon in the taskbar, because launch the command doesn't raise the window if it was already visible (but it does pop up it if it was hidden, usually).
-					cairo_dock_launch_command (pItem->cId);  // lancer une nouvelle fois l'appli montre sa fenetre (enfin, generalement).
+					cairo_dock_launch_command (pItem->cId);  // try to launch the application because generally this click shows its item's window.
 				}
 			}
 		}
