@@ -374,7 +374,6 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 		const gchar *str = strrchr (cObjectPath, '/');
 		if (str)
 		{
-			
 			cRealObjectPath = g_strndup (cObjectPath, str - cObjectPath);
 		}
 	}
@@ -533,7 +532,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 		pToolTipTab = g_value_get_boxed (v);
 	}
 	
-	gboolean *bItemIsMenu = FALSE;
+	gboolean bItemIsMenu = FALSE;  // "when is true the dbusmenu will be shown instead of emitting Activate()"
 	v = g_hash_table_lookup (hProps, "ItemIsMenu");
 	if (v && G_VALUE_HOLDS_BOOLEAN (v))
 	{
@@ -558,7 +557,8 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	pItem->cLabel = g_strdup (cLabel);
 	pItem->cLabelGuide = g_strdup (cLabelGuide);
 	pItem->cAccessibleDesc = g_strdup (cAccessibleDesc);
-	pItem->cMenuPath = (cMenuPath ? g_strdup (cMenuPath) : g_strdup (cObjectPath));
+	///pItem->cMenuPath = (cMenuPath ? g_strdup (cMenuPath) : g_strdup (cObjectPath));
+	pItem->cMenuPath = g_strdup (cMenuPath);  // if NULL, we'll just send the ContextMenu() signal.
 	pItem->iWindowId = iWindowId;
 	pItem->iCategory = _find_category (cCategory);
 	pItem->iStatus = _find_status (cStatus);

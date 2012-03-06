@@ -87,7 +87,7 @@ static inline CDStatusNotifierItem *_get_item (Icon *pClickedIcon, CairoContaine
 static inline gboolean _popup_menu (CDStatusNotifierItem *pItem, Icon *pIcon, CairoContainer *pContainer)
 {
 	gboolean r = FALSE;
-	if (pItem->cMenuPath != NULL && strcmp (pItem->cMenuPath, "/NO_DBUSMENU") != 0)
+	if (pItem->cMenuPath != NULL && *pItem->cMenuPath != '\0' && strcmp (pItem->cMenuPath, "/NO_DBUSMENU") != 0)  // hopefully, if the item doesn't have a dbusmenu, it will not set something different as these 2 choices.
 	{
 		if (pItem->pMenu == NULL)
 			pItem->pMenu = dbusmenu_gtkmenu_new ((gchar *)pItem->cService, (gchar *)pItem->cMenuPath);
@@ -98,15 +98,17 @@ static inline gboolean _popup_menu (CDStatusNotifierItem *pItem, Icon *pIcon, Ca
 		}
 	}
 
-	if (!r)
+	if (!r)  // no menu available, send the corresponding action
 	{
 		r = _emit_click (pItem, pIcon, pContainer, "ContextMenu");
 	}
 
-	if (!r)
+	if (!r)  // no luck, try to fallback on 'activate()'
 	{
 		r = _emit_click (pItem, pIcon, pContainer, "Activate");
 	}
+	
+	return r;
 }
 
 CD_APPLET_ON_CLICK_BEGIN
@@ -114,14 +116,16 @@ CD_APPLET_ON_CLICK_BEGIN
 	//g_print ("click on item '%s'\n", pItem?pItem->cService:"none");
 	if (pItem != NULL)
 	{
-		// maybe we should check if we are using KDE's watcher instead of bMenuOnLeftClick?
-		if (myConfig.bMenuOnLeftClick && ! pItem->bItemIsMenu) // some items (like Klipper) doesn't have any DBusMenu, we force the second option.
+		// Ubuntu-like: show the menu on left click as the sole action (right-click = usual Cairo-Dock menu).
+		if (myConfig.bMenuOnLeftClick || pItem->bItemIsMenu)  // if bItemIsMenu: "The item only support the context menu, the visualization should prefer sending ContextMenu() instead of Activate()"
 		{
 			_popup_menu (pItem, CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER);
 		}
-		else
+		else  // KDE-like: activate the item on left click, and show its menu on right-click.
 		{
-			gboolean r = _emit_click (pItem, CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER, "Activate");
+			gboolean r;
+			r = _emit_click (pItem, CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER, "Activate");
+			
 			if (!r)
 			{
 				if (pItem->cId != NULL)
