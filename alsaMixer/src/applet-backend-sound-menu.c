@@ -23,7 +23,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+#if (SOUND_SERVICE_VERSION < 1)
+#include "dbus-shared-names-old.h"
+#else
 #include "dbus-shared-names.h"
+#endif
 
 #include "common-defs.h"
 #include "volume-widget.h"

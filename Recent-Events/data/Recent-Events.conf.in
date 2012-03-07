@@ -14,7 +14,7 @@ name =
 #v
 sep_display=
 
-#S+ Image filename:
+#S+[Default] Image filename:
 #{Leave empty to use the default one.}
 icon=folder-recent
 

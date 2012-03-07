@@ -25,10 +25,10 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef __DBUS_SHARED_NAMES_H__
 #define __DBUS_SHARED_NAMES_H__
 
-#define INDICATOR_SOUND_DBUS_NAME  "com.canonical.indicator.sound"
-#define INDICATOR_SOUND_MENU_DBUS_OBJECT_PATH "/com/canonical/indicator/sound/menu"
-#define INDICATOR_SOUND_SERVICE_DBUS_OBJECT_PATH "/com/canonical/indicator/sound/service"
-#define INDICATOR_SOUND_DBUS_INTERFACE "com.canonical.indicator.sound"
+#define INDICATOR_SOUND_DBUS_NAME  "com.canonical.indicators.sound"
+#define INDICATOR_SOUND_MENU_DBUS_OBJECT_PATH "/com/canonical/indicators/sound/menu"
+#define INDICATOR_SOUND_SERVICE_DBUS_OBJECT_PATH "/com/canonical/indicators/sound/service"
+#define INDICATOR_SOUND_DBUS_INTERFACE "com.canonical.indicators.sound"
 #define INDICATOR_SOUND_DBUS_VERSION  0
 
 #define INDICATOR_SOUND_SIGNAL_STATE_UPDATE               "SoundStateUpdate"

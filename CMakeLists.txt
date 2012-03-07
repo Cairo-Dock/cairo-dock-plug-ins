@@ -254,6 +254,51 @@ elseif ("${INDICATOR_APPLET_FOUND}" STREQUAL "1" AND NOT (${INDICATOR_MAJOR} GRE
 	message (STATUS "  Indicators: use old Ayatana Dbus names")
 endif()
 
+############# DISTRIBUTION #################
+message (STATUS "> Distribution:")
+# We try to detect if the user is on Ubuntu to know which bus we have to use...
+execute_process(
+	COMMAND lsb_release -i
+	OUTPUT_VARIABLE DISTRO_ID)  # -> "Distributor ID:	Ubuntu"
+if (NOT "${DISTRO_ID}" STREQUAL "") # this tool isn't available on all distributions
+	STRING (REGEX REPLACE "\n" "" DISTRO_ID ${DISTRO_ID})  # retour chariot
+	STRING (REGEX REPLACE ".*: *\t*" "" DISTRO_ID ${DISTRO_ID})
+
+	execute_process(
+		COMMAND lsb_release -r
+		OUTPUT_VARIABLE DISTRO_RELEASE)  # -> "Release:	10.10"
+	STRING (REGEX REPLACE "\n" "" DISTRO_RELEASE ${DISTRO_RELEASE})  # retour chariot
+	STRING (REGEX REPLACE ".*: *\t*" "" DISTRO_RELEASE ${DISTRO_RELEASE})
+else()
+	# on Ubuntu deb builders, lsb_release isn't available but we can have a look to /etc/issue.net
+	get_filename_component(ISSUE_NET "/etc/issue.net" ABSOLUTE)
+	if (EXISTS ${ISSUE_NET}) # to not have an error with cat
+		execute_process(
+			COMMAND cat ${ISSUE_NET}
+			OUTPUT_VARIABLE DISTRO_RELEASE)  # -> Ubuntu 10.10 || Ubuntu natty (development branch)
+		if (NOT "${DISTRO_RELEASE}" STREQUAL "")
+			STRING (REGEX REPLACE "\n" "" DISTRO_RELEASE ${DISTRO_RELEASE})  # retour chariot
+			STRING (REGEX REPLACE " (.+)" "" DISTRO_ID ${DISTRO_RELEASE})
+			if ("${DISTRO_ID}" STREQUAL "Ubuntu")
+				STRING (REGEX REPLACE ".[(]development branch[)]" "" DISTRO_RELEASE ${DISTRO_RELEASE})
+				STRING (REGEX REPLACE ".LTS" "" DISTRO_RELEASE ${DISTRO_RELEASE}) # Ubuntu 10.04.1 LTS
+				STRING (REGEX REPLACE "(.+) " "" DISTRO_RELEASE ${DISTRO_RELEASE})
+				if ("${DISTRO_RELEASE}" STREQUAL "natty")
+					set (DISTRO_RELEASE "11.04")
+				elseif ("${DISTRO_RELEASE}" STREQUAL "oneiric")
+					set (DISTRO_RELEASE "11.10")
+				elseif ("${DISTRO_RELEASE}" STREQUAL "precise")
+					set (DISTRO_RELEASE "12.04")
+				endif()
+			endif()
+		endif()
+	endif()
+endif()
+
+if (NOT "${DISTRO_ID}" STREQUAL "")
+	message (STATUS "  DISTRO_ID: ${DISTRO_ID}, DISTRO_RELEASE: ${DISTRO_RELEASE}")
+endif()
+
 ############# ALSA_MIXER #################
 message (STATUS "> AlsaMixer:")
 set (with_alsa "no")
@@ -273,6 +318,13 @@ if (NOT "${enable-alsa-mixer}" STREQUAL "no")
 		if ("${with_indicator}" STREQUAL "yes" AND "${IDO_FOUND}"
 			AND "${INDICATOR_OLD_NAMES}" STREQUAL "0")
 			set (with_soundmenu "yes")
+			set (SOUND_SERVICE_VERSION 1)
+			if (NOT "${DISTRO_RELEASE}" STREQUAL "")
+				if (NOT ${DISTRO_RELEASE} GREATER "12.03")  # before 12.04, old sound service name
+					set (SOUND_SERVICE_VERSION 0)
+					message (STATUS "Sound service uses the old name.")
+				endif()
+			endif()
 		endif()
 		add_subdirectory ("alsaMixer")
 	endif()
@@ -813,49 +865,6 @@ else()
 	set (with_mail "yes")
 	configure_file (${CMAKE_CURRENT_SOURCE_DIR}/mail/data/mail.conf.in ${CMAKE_CURRENT_BINARY_DIR}/mail/data/mail.conf)
 	add_subdirectory ("mail")
-endif()
-
-############# DISTRIBUTION #################
-message (STATUS "> Distribution:")
-# We try to detect if the user is on Ubuntu to know which bus we have to use...
-execute_process(
-	COMMAND lsb_release -i
-	OUTPUT_VARIABLE DISTRO_ID)  # -> "Distributor ID:	Ubuntu"
-if (NOT "${DISTRO_ID}" STREQUAL "") # this tool isn't available on all distributions
-	STRING (REGEX REPLACE "\n" "" DISTRO_ID ${DISTRO_ID})  # retour chariot
-	STRING (REGEX REPLACE ".*: *\t*" "" DISTRO_ID ${DISTRO_ID})
-
-	execute_process(
-		COMMAND lsb_release -r
-		OUTPUT_VARIABLE DISTRO_RELEASE)  # -> "Release:	10.10"
-	STRING (REGEX REPLACE "\n" "" DISTRO_RELEASE ${DISTRO_RELEASE})  # retour chariot
-	STRING (REGEX REPLACE ".*: *\t*" "" DISTRO_RELEASE ${DISTRO_RELEASE})
-else()
-	# on Ubuntu deb builders, lsb_release isn't available but we can have a look to /etc/issue.net
-	get_filename_component(ISSUE_NET "/etc/issue.net" ABSOLUTE)
-	if (EXISTS ${ISSUE_NET}) # to not have an error with cat
-		execute_process(
-			COMMAND cat ${ISSUE_NET}
-			OUTPUT_VARIABLE DISTRO_RELEASE)  # -> Ubuntu 10.10 || Ubuntu natty (development branch)
-		if (NOT "${DISTRO_RELEASE}" STREQUAL "")
-			STRING (REGEX REPLACE "\n" "" DISTRO_RELEASE ${DISTRO_RELEASE})  # retour chariot
-			STRING (REGEX REPLACE " (.+)" "" DISTRO_ID ${DISTRO_RELEASE})
-			if ("${DISTRO_ID}" STREQUAL "Ubuntu")
-				STRING (REGEX REPLACE ".[(]development branch[)]" "" DISTRO_RELEASE ${DISTRO_RELEASE})
-				STRING (REGEX REPLACE ".LTS" "" DISTRO_RELEASE ${DISTRO_RELEASE}) # Ubuntu 10.04.1 LTS
-				STRING (REGEX REPLACE "(.+) " "" DISTRO_RELEASE ${DISTRO_RELEASE})
-				if ("${DISTRO_RELEASE}" STREQUAL "natty")
-					set (DISTRO_RELEASE "11.04")
-				elseif ("${DISTRO_RELEASE}" STREQUAL "oneiric")
-					set (DISTRO_RELEASE "11.10")
-				endif()
-			endif()
-		endif()
-	endif()
-endif()
-
-if (NOT "${DISTRO_ID}" STREQUAL "")
-	message (STATUS "  DISTRO_ID: ${DISTRO_ID}, DISTRO_RELEASE: ${DISTRO_RELEASE}")
 endif()
 
 ############# GLOBAL-MENU #################

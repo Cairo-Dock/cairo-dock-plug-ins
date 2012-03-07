@@ -1235,7 +1235,7 @@ msgstr ""
 
 #: ../Remote-Control/src/applet-init.c:42
 msgid "Control from keyboard"
-msgstr "Contrôlé depuis le clavier"
+msgstr "Contrôle depuis le clavier"
 
 #: ../Remote-Control/src/applet-init.c:49
 msgid "Enable/disable the keyboard control of the dock"
