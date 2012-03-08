@@ -217,9 +217,9 @@ metadata_widget_init (MetadataWidget *self)
   // player label
   GtkWidget* player_label;
   player_label = gtk_label_new("");
-  gtk_misc_set_alignment(GTK_MISC(player_label), (gfloat)0, (gfloat)0.5);
-  gtk_misc_set_padding (GTK_MISC(player_label), (gfloat)1, (gfloat)0);  
-  gtk_widget_set_size_request (player_label, 200, 24);
+  gtk_misc_set_alignment(GTK_MISC(player_label), (gfloat)0, (gfloat)0);
+  gtk_misc_set_padding (GTK_MISC(player_label), (gfloat)1, (gfloat)4);  
+  gtk_widget_set_size_request (player_label, 150, 24);
   priv->player_label = player_label;
       
   gtk_box_pack_start (GTK_BOX(outer_v_box), priv->player_label, FALSE, FALSE, 0);
@@ -241,7 +241,10 @@ metadata_widget_dispose (GObject *object)
 
   if (priv->icon_buf != NULL){
     gdk_pixbuf_unref(priv->icon_buf);
+    priv->icon_buf = NULL;
   }
+  g_string_free (priv->image_path, TRUE);
+  g_string_free (priv->old_image_path, TRUE);
   G_OBJECT_CLASS (metadata_widget_parent_class)->dispose (object);
 }
 
@@ -410,8 +413,6 @@ metadata_image_expose_gtk_3 (GtkWidget *metadata,
   {
     return FALSE;
   }
-  
-  draw_album_border_gtk_3 (metadata, FALSE, cr);
 
   if(priv->image_path->len > 0){
     if(g_string_equal(priv->image_path, priv->old_image_path) == FALSE ||
@@ -423,6 +424,7 @@ metadata_image_expose_gtk_3 (GtkWidget *metadata,
       if(GDK_IS_PIXBUF(pixbuf) == FALSE){
         gtk_image_clear ( GTK_IMAGE(priv->album_art));          
         gtk_widget_set_size_request(GTK_WIDGET(priv->album_art), 60, 60);
+	  draw_album_border_gtk_3 (metadata, FALSE, cr);
         draw_album_art_placeholder_gtk_3(metadata, cr);
         return FALSE;
       }
@@ -432,7 +434,8 @@ metadata_image_expose_gtk_3 (GtkWidget *metadata,
                                   gdk_pixbuf_get_width(pixbuf),
                                   gdk_pixbuf_get_height(pixbuf));
 
-      g_string_erase (priv->old_image_path, 0, -1);
+      draw_album_border_gtk_3 (metadata, FALSE, cr);
+	g_string_erase (priv->old_image_path, 0, -1);
       g_string_overwrite (priv->old_image_path, 0, priv->image_path->str);
       g_object_unref(pixbuf);
     }
@@ -440,6 +443,7 @@ metadata_image_expose_gtk_3 (GtkWidget *metadata,
   }
   gtk_image_clear (GTK_IMAGE(priv->album_art));  
   gtk_widget_set_size_request(GTK_WIDGET(priv->album_art), 60, 60);
+  draw_album_border_gtk_3 (metadata, FALSE, cr);
   draw_album_art_placeholder_gtk_3(metadata, cr);
   return FALSE;
 }
@@ -907,8 +911,10 @@ metadata_widget_set_icon (MetadataWidget *self)
   gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &width, &height);
   
   GString* banshee_string = g_string_new ( "banshee" );
-  GString* app_panel = g_string_new ( g_utf8_strdown (dbusmenu_menuitem_property_get(priv->twin_item, DBUSMENU_METADATA_MENUITEM_PLAYER_NAME),
-                                                     -1));
+  gchar * tmp = g_utf8_strdown (dbusmenu_menuitem_property_get(priv->twin_item, DBUSMENU_METADATA_MENUITEM_PLAYER_NAME), -1);
+  GString* app_panel = g_string_new (tmp);
+  g_free (tmp);
+  
   GdkPixbuf* icon_buf;
   
   // Banshee Special case!  

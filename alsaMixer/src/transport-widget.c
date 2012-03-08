@@ -269,6 +269,13 @@ transport_widget_dispose (GObject *object)
     }
   }
   #endif
+
+  TransportWidgetPrivate* priv = TRANSPORT_WIDGET_GET_PRIVATE(object);
+  if (priv->command_coordinates != NULL) {
+    g_hash_table_destroy (priv->command_coordinates);
+    priv->command_coordinates = NULL;
+  }
+
   G_OBJECT_CLASS (transport_widget_parent_class)->dispose (object);
 }
 
