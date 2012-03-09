@@ -345,7 +345,7 @@ void cd_musicplayer_register_rhythmbox_handler (void)
 	pHandler->appclass = "rhythmbox";
 	pHandler->launch = "rhythmbox";
 	pHandler->cMprisService = "org.gnome.Rhythmbox";  // they used MPRIS from version 2.90.1~20110908 with org.mpris.MediaPlayer2.rhythmbox, but we don't care as they quickly switched to MPRIS2 in version 2.90.1~20111126
-	pHandler->cMpris2Service = "org.mpris.MediaPlayer2.rhythmbox3"; // 2.90.1~20111126
+	pHandler->cMpris2Service = "org.mpris.MediaPlayer2.rhythmbox"; // after 2.90.1~20111126 (on a previous development version, they used rhythmbox3...)
 	pHandler->path = "/org/gnome/Rhythmbox/Player"; // <= 0.13
 	pHandler->interface = "org.gnome.Rhythmbox.Player";
 	pHandler->path2 = "/org/gnome/Rhythmbox/Shell";
