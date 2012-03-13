@@ -45,6 +45,7 @@ static void power_launch_cmd (GtkMenuItem *menu_item, const gchar *cCommand)
 }
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
+	gboolean bAddSeparator = FALSE;
 	// Power preferences
 	static gboolean bPowerPrefChecked = FALSE;
 	static const gchar *cPowerPrefCmd = NULL;
@@ -68,6 +69,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (cPowerPrefCmd)
 	{
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Set up power management"), MY_APPLET_SHARE_DATA_DIR"/default-charge.svg", power_launch_cmd, CD_APPLET_MY_MENU, (gpointer)cPowerPrefCmd);
+		bAddSeparator = TRUE;
 	}
 	
 	// Power statistics
@@ -84,13 +86,24 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (cPowerStatsCmd)
 	{
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Power statistics"), MY_APPLET_SHARE_DATA_DIR"/default-charge.svg", power_launch_cmd, CD_APPLET_MY_MENU, (gpointer)cPowerStatsCmd);
+		bAddSeparator = TRUE;
 	}
 	
-	CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
+	if (bAddSeparator)
+		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 	
 	// Power actions (Hibernate/Suspend)
+	#ifdef CD_UPOWER_AVAILABLE  // if Upower is available, we should be able to suspend; if not, then it's probably just a problem with consolekit, which should be fixed by the user; so show the items to give the user a hint about the problem.
+	pMenuItem = CD_APPLET_ADD_IN_MENU (D_("Hibernate"), cd_power_hibernate, CD_APPLET_MY_MENU);
+	if (! cd_power_can_hibernate ())
+		gtk_widget_set_sensitive (pMenuItem, FALSE);
+	pMenuItem = CD_APPLET_ADD_IN_MENU (D_("Suspend"), cd_power_suspend, CD_APPLET_MY_MENU);
+	if (! cd_power_can_suspend ())
+		gtk_widget_set_sensitive (pMenuItem, FALSE);
+	#else
 	if (cd_power_can_hibernate ())
 		CD_APPLET_ADD_IN_MENU (D_("Hibernate"), cd_power_hibernate, CD_APPLET_MY_MENU);
 	if (cd_power_can_suspend ())
 		CD_APPLET_ADD_IN_MENU (D_("Suspend"), cd_power_suspend, CD_APPLET_MY_MENU);
+	#endif
 CD_APPLET_ON_BUILD_MENU_END
