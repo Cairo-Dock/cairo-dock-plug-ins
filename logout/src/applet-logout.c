@@ -60,7 +60,7 @@ static void _cd_logout_check_capabilities_async (CDSharedMemory *pSharedMemory)
 	// get capabilities from UPower.
 	#ifdef CD_UPOWER_AVAILABLE
 	UpClient *pUPowerClient = up_client_new ();
-	up_client_get_properties_sync (pUPowerClient, NULL, &error);  // this function always returns false ...
+	up_client_get_properties_sync (pUPowerClient, NULL, &error);  // this function always returns false ... and it crashes the dock (Debian 6) ! :-O
 	if (error)
 	{
 		cd_warning ("UPower error: %s", error->message);
@@ -115,6 +115,7 @@ static void _cd_logout_check_capabilities_async (CDSharedMemory *pSharedMemory)
 			seat,
 			DBUS_INTERFACE_PROPERTIES);
 		pSharedMemory->bHasGuestAccount = cairo_dock_dbus_get_property_as_boolean (pProxy, "org.freedesktop.DisplayManager.Seat", "HasGuestAccount");
+		g_object_unref (pProxy);
 	}
 }
 
