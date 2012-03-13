@@ -26,6 +26,7 @@
 #include "applet-generic.h"
 #include "applet-notifications.h"
 
+static const gchar *s_cMixerCmd = NULL;
 
 CD_APPLET_ON_CLICK_BEGIN
 	cd_show_hide ();
@@ -40,18 +41,9 @@ static void _mixer_show_advanced_mixer (GtkMenuItem *menu_item, gpointer data)
 	{
 		g_spawn_command_line_async (myConfig.cShowAdvancedMixerCommand, &erreur);
 	}
-	else
+	else if (s_cMixerCmd != NULL)
 	{
-		gchar *cResult = cairo_dock_launch_command_sync ("which gnome-volume-control");
-		if (cResult != NULL && *cResult == '/')
-		{
-			g_spawn_command_line_async ("gnome-volume-control -p applications", &erreur); // gnome 2
-		}
-		else  /// TODO: we need to handle the other DE too ...
-		{
-			g_spawn_command_line_async ("gnome-control-center sound", &erreur); // Gnome 3
-		}
-		g_free (cResult);
+		g_spawn_command_line_async (s_cMixerCmd, &erreur);
 	}
 	
 	if (erreur != NULL)
@@ -62,11 +54,33 @@ static void _mixer_show_advanced_mixer (GtkMenuItem *menu_item, gpointer data)
 	CD_APPLET_LEAVE();
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
+	static gboolean bMixerChecked = FALSE;
 	gchar *cLabel;
 	
-	cLabel = g_strdup_printf ("%s (%s)", D_("Adjust channels"), D_("double-click"));
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_PREFERENCES, _mixer_show_advanced_mixer, CD_APPLET_MY_MENU);
-	g_free (cLabel);
+	if (!myConfig.cShowAdvancedMixerCommand && !bMixerChecked)
+	{
+		bMixerChecked = TRUE;
+		gchar *cResult = cairo_dock_launch_command_sync ("which gnome-control-center");  // Gnome3
+		if (cResult != NULL && *cResult == '/')
+		{
+			s_cMixerCmd = "gnome-control-center sound";
+		}
+		else
+		{
+			g_free (cResult);
+			cResult = cairo_dock_launch_command_sync ("which gnome-volume-control");  // Gnome2
+			if (cResult != NULL && *cResult == '/')  /// TODO: other DE...
+				s_cMixerCmd = "gnome-volume-control -p applications";
+		}  /// TODO: handle other DE ...
+		g_free (cResult);
+	}
+	
+	if (myConfig.cShowAdvancedMixerCommand || s_cMixerCmd)
+	{
+		cLabel = g_strdup_printf ("%s (%s)", D_("Adjust channels"), D_("double-click"));
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_PREFERENCES, _mixer_show_advanced_mixer, CD_APPLET_MY_MENU);
+		g_free (cLabel);
+	}
 	
 	cLabel = g_strdup_printf ("%s (%s)", (myData.bIsMute ? D_("Unmute") : D_("Mute")), D_("middle-click"));
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, MY_APPLET_SHARE_DATA_DIR"/emblem-mute.svg", cd_toggle_mute, CD_APPLET_MY_MENU);

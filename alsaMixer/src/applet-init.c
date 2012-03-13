@@ -33,10 +33,9 @@ CD_APPLET_DEFINE_BEGIN ("AlsaMixer",
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("This applet lets you control the sound volume from the dock.\n"
 	"Scroll up/down on the icon to increase/decrease the volume.\n"
-	"Click on icon to show/hide volume control (you can bind a keyboard shortcut for it)\n"
-	"You can also hide the dialog by clicking on it.\n"
+	"Click on icon to show/hide the volume control (you can bind a keyboard shortcut for it)\n"
 	"Middle-click to set or unset to mute, double-click to raise the channels mixer.\n"
-	"This applet works with the Alsa sound driver."),
+	"The applet can either use the Ubuntu Sound-menu or the Alsa driver."),
 	"Fabounet (Fabrice Rey)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_ALLOW_EMPTY_TITLE
