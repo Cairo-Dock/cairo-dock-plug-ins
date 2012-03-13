@@ -173,7 +173,7 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 	}
 	else  // affichage simple de l'heure sur 1 ligne.
 	{
-		double fZoomX = (double) iWidth / ink.width;
+		double fZoomX = (double) (iWidth-1) / ink.width;  // let 1 additional pixel to avoid going out of the icon (which happens with some fonts).
 		double fZoomY = (double) iHeight / ink.height;
 		if (myDock && fZoomY > MAX_RATIO * fZoomX)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
 			fZoomY = MAX_RATIO * fZoomX;
@@ -185,7 +185,7 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 		}
 		
 		cairo_translate (myDrawContext,
-			(iWidth - fZoomX * ink.width)/2,
+			(iWidth - fZoomX * ink.width)/2.,
 			(iHeight - fZoomY * ink.height)/2);  // le texte sera centre.
 		cairo_scale (myDrawContext, fZoomX, fZoomY);
 		cairo_translate (myDrawContext, -ink.x, -ink.y);
