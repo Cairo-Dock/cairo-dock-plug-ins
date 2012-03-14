@@ -192,7 +192,7 @@ static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_ST
  /// Signals ///
 ///////////////
 
-static void on_new_application (DBusGProxy *proxy_watcher, const gchar *cIconName, gint iPosition, const gchar *cAdress, const gchar *cObjectPath, const gchar *cIconThemePath, const gchar *cLabel, const gchar *cLabelGuide,
+static void on_new_application (DBusGProxy *proxy_watcher, const gchar *cIconName, gint iPosition, const gchar *cAddress, const gchar *cObjectPath, const gchar *cIconThemePath, const gchar *cLabel, const gchar *cLabelGuide,
 #if (INDICATOR_OLD_NAMES == 0)  // Natty
 const gchar *cAccessbleDesc,  // WTF is this new param ??
 #if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
@@ -205,7 +205,7 @@ const gchar *cTitle,
 CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
-	cd_debug ("=== %s (%s, %s, %s, %s, %d)", __func__, cAdress, cObjectPath, cIconName, cIconThemePath, iPosition);
+	cd_debug ("=== %s (%s, %s, %s, %s, %d)", __func__, cAddress, cObjectPath, cIconName, cIconThemePath, iPosition);
 	#if (INDICATOR_OLD_NAMES == 0)  // Natty
 	cd_debug ("    %s", cAccessbleDesc);
 	#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
@@ -229,7 +229,7 @@ CairoDockModuleInstance *myApplet)
 		}
 	}
 	
-	cd_satus_notifier_add_new_item_with_default (cAdress, cObjectPath, iPosition,
+	cd_satus_notifier_add_new_item_with_default (cAddress, cObjectPath, iPosition,
 		#if (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)
 		cIconName ? cIconName : cHint,
 		#else
@@ -318,11 +318,11 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 		CD_APPLET_LEAVE ();
 	
 	//\______________________ build each items.
-	cd_debug ("=== got %d aplications", pApplications->len);
+	cd_debug ("=== got %d applications", pApplications->len);
 	guint i, j;
 	GValueArray *va;
 	GValue *v;
-	CDStatusNotifierItem *pItem=NULL;
+	CDStatusNotifierItem *pItem = NULL;
 	//cd_debug ("=== %d apps in the systray", pApplications->len);
 	for (i = 0; i < pApplications->len; i ++)
 	{
@@ -333,7 +333,7 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 		
 		const gchar *cIconName = NULL;
 		gint iPosition = -1;
-		const gchar *cAdress = NULL;
+		const gchar *cAddress = NULL;
 		const gchar *cObjectPath = NULL;
 		const gchar *cIconThemePath = NULL;
 		const gchar *cLabel = NULL;
@@ -352,7 +352,7 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 		
 		v = g_value_array_get_nth (va, 2);
 		if (v && G_VALUE_HOLDS_STRING (v))
-			cAdress = g_value_get_string (v);
+			cAddress = g_value_get_string (v);
 		
 		v = g_value_array_get_nth (va, 3);
 		if (v && G_VALUE_HOLDS (v, DBUS_TYPE_G_OBJECT_PATH))
@@ -393,15 +393,27 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 		cd_debug ("===  + item {%s ; %d ; %s ; %s ; %s ; %s ; %s ; %s ; %s}",
 			cIconName,
 			iPosition,
-			cAdress,
+			cAddress,
 			cObjectPath,
 			cIconThemePath,
 			cLabel,
 			cLabelGuide,
 			cAccessibleDesc,
 			cTitle);
-		
-		pItem = cd_satus_notifier_create_item (cAdress, cObjectPath);
+
+		// position +1 for items placed after this one.
+		GList *it;
+		for (it = myData.pItems; it != NULL; it = it->next)
+		{
+			pItem = it->data;
+			if (strcmp (cAddress, pItem->cService) == 0)
+			{
+				cd_warning ("Duplicated item: %s (%s)", cIconName, cAddress);
+				return;
+			}
+		}
+
+		pItem = cd_satus_notifier_create_item (cAddress, cObjectPath);
 		if (! pItem)
 			continue;
 		if (pItem->iPosition == -1)
