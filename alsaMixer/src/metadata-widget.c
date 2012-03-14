@@ -243,8 +243,8 @@ metadata_widget_dispose (GObject *object)
     gdk_pixbuf_unref(priv->icon_buf);
     priv->icon_buf = NULL;
   }
-  g_string_free (priv->image_path, TRUE);
-  g_string_free (priv->old_image_path, TRUE);
+  /*g_string_free (priv->image_path, TRUE); // TODO: check if it's really needed => "double free or corruption (out)"
+  g_string_free (priv->old_image_path, TRUE);*/
   G_OBJECT_CLASS (metadata_widget_parent_class)->dispose (object);
 }
 

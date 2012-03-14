@@ -109,13 +109,13 @@ connection_changed (IndicatorServiceManager * sm, gboolean connected, CDAppletIn
 		{
 			if (pIndicator->on_disconnect)
 				pIndicator->on_disconnect (myApplet);
-			if (pIndicator->pMenu)
+			/*if (pIndicator->pMenu)
 			{
 				g_print ("destroy menu...\n");
 				g_object_unref (pIndicator->pMenu);  /// -> "g_object_unref: assertion `G_IS_OBJECT (object)' failed" x2
 				g_print ("done.\n");
 				pIndicator->pMenu = NULL;
-			}
+			}*/ // it seems it's no longer needed... => g_object_unref: double free or corruption (out)
 			if (pIndicator->pServiceProxy != NULL)
 			{
 				g_object_unref (pIndicator->pServiceProxy);  // this removes all the signals connected on the proxy
