@@ -76,8 +76,8 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 	
 	strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, cFormat, pTime);
 	pango_layout_set_text (pLayout, s_cDateBuffer, -1);
-	PangoRectangle ink, log;
-	pango_layout_get_pixel_extents (pLayout, &ink, &log);
+	PangoRectangle log;
+	pango_layout_get_pixel_extents (pLayout, NULL, &log);
 	
 	//\______________ On dessine le texte.
 	cairo_save (myDrawContext);
@@ -88,15 +88,15 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 		
 		strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, "%a %d %b", pTime);
 		pango_layout_set_text (pLayout2, s_cDateBuffer, -1);
-		PangoRectangle ink2, log2;
-		pango_layout_get_pixel_extents (pLayout2, &ink2, &log2);
+		PangoRectangle log2;
+		pango_layout_get_pixel_extents (pLayout2, NULL, &log2);
 		
 		double h=0, w=0, fZoomX=0, fZoomY=0;  // parametres d'affichage 2 lignes
 		double h_=0, w_=0, fZoomX_=0, fZoomY_=0;  // parametres d'affichage 1 ligne
 		if (myData.iTextLayout == CD_TEXT_LAYOUT_2_LINES || myData.iTextLayout == CD_TEXT_LAYOUT_AUTO)
 		{
-			h = ink.height + ink2.height + GAPY * iHeight;
-			w = MAX (ink.width, ink2.width);
+			h = log.height + log2.height + GAPY * iHeight;
+			w = MAX (log.width, log2.width);
 			fZoomX = (double) iWidth / w;
 			fZoomY = (double) iHeight / h;
 			if (myDock && fZoomY > MAX_RATIO * fZoomX)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
@@ -110,8 +110,8 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 		}
 		if (myData.iTextLayout == CD_TEXT_LAYOUT_1_LINE || myData.iTextLayout == CD_TEXT_LAYOUT_AUTO)
 		{
-			h_ = MAX (ink.height, ink2.height);
-			w_ = ink.width + ink2.width + GAPX * iWidth;
+			h_ = MAX (log.height, log2.height);
+			w_ = log.width + log2.width + GAPX * iWidth;
 			fZoomX_ = (double) iWidth / w_;
 			fZoomY_ = (double) iHeight / h_;
 			if (myDock && fZoomY_ > MAX_RATIO * fZoomX_)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
@@ -143,52 +143,46 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 		{
 			cairo_translate (myDrawContext, (iWidth - fZoomX_ * w_) / 2, (iHeight - fZoomY_ * h_)/2);  // centre verticalement.
 			cairo_scale (myDrawContext, fZoomX_, fZoomY_);
-			cairo_translate (myDrawContext, -ink2.x, -ink2.y);
+			cairo_translate (myDrawContext, -log2.x, -log2.y);
 			pango_cairo_show_layout (myDrawContext, pLayout2);
 			
 			cairo_restore (myDrawContext);
 			cairo_save (myDrawContext);
 			
-			cairo_translate (myDrawContext, (iWidth + fZoomX_ * w_) / 2 - fZoomX_ * ink.width, (iHeight - fZoomY_ * h_)/2);
+			cairo_translate (myDrawContext, (iWidth + fZoomX_ * w_) / 2 - fZoomX_ * log.width, (iHeight - fZoomY_ * h_)/2);
 			cairo_scale (myDrawContext, fZoomX_, fZoomY_);
-			cairo_translate (myDrawContext, -ink.x, -ink.y);
+			cairo_translate (myDrawContext, -log.x, -log.y);
 			pango_cairo_show_layout (myDrawContext, pLayout);
 		}
 		else  // mode 2 lignes
 		{
-			cairo_translate (myDrawContext, (iWidth - fZoomX * ink.width) / 2, (iHeight - fZoomY * h)/2);  // centre verticalement.
+			cairo_translate (myDrawContext, (iWidth - fZoomX * log.width) / 2, (iHeight - fZoomY * h)/2);  // centre verticalement.
 			cairo_scale (myDrawContext, fZoomX, fZoomY);
-			cairo_translate (myDrawContext, -ink.x, -ink.y);
+			cairo_translate (myDrawContext, -log.x, -log.y);
 			pango_cairo_show_layout (myDrawContext, pLayout);
 			
 			cairo_restore (myDrawContext);
 			cairo_save (myDrawContext);
 			
-			cairo_translate (myDrawContext, (iWidth - fZoomX * ink2.width) / 2, (iHeight + fZoomY * GAPY)/2);
+			cairo_translate (myDrawContext, (iWidth - fZoomX * log2.width) / 2, (iHeight + fZoomY * GAPY)/2);
 			cairo_scale (myDrawContext, fZoomX, fZoomY);
-			cairo_translate (myDrawContext, -ink2.x, -ink2.y);
+			cairo_translate (myDrawContext, -log2.x, -log2.y);
 			pango_cairo_show_layout (myDrawContext, pLayout2);
 		}
 		g_object_unref (pLayout2);
 	}
 	else  // affichage simple de l'heure sur 1 ligne.
 	{
-		double fZoomX = (double) (iWidth-1) / ink.width;  // let 1 additional pixel to avoid going out of the icon (which happens with some fonts).
-		double fZoomY = (double) iHeight / ink.height;
+		double fZoomX = (double) iWidth / log.width;  // let 1 additional pixel to avoid going out of the icon (which happens with some fonts).
+		double fZoomY = (double) iHeight / log.height;
 		if (myDock && fZoomY > MAX_RATIO * fZoomX)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
 			fZoomY = MAX_RATIO * fZoomX;
-		
-		if (myConfig.fTextRatio < 1)
-		{
-			fZoomX *= myConfig.fTextRatio;
-			fZoomY *= myConfig.fTextRatio;
-		}
-		
+
 		cairo_translate (myDrawContext,
-			(iWidth - fZoomX * ink.width)/2.,
-			(iHeight - fZoomY * ink.height)/2);  // le texte sera centre.
+			(iWidth - fZoomX * log.width)/2.,
+			(iHeight - fZoomY * log.height)/2);  // this text will be centred.
 		cairo_scale (myDrawContext, fZoomX, fZoomY);
-		cairo_translate (myDrawContext, -ink.x, -ink.y);
+		cairo_translate (myDrawContext, -log.x, -log.y);
 		pango_cairo_show_layout (myDrawContext, pLayout);
 	}
 	cairo_restore (myDrawContext);
