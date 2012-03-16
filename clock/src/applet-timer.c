@@ -25,7 +25,6 @@
 
 #include "applet-struct.h"
 #include "applet-config.h"
-#include "applet-digital.h" //Digital html like renderer
 #include "applet-calendar.h"
 #include "applet-draw.h"
 #include "applet-timer.h"
