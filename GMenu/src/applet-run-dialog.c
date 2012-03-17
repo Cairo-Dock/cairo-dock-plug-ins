@@ -349,7 +349,7 @@ static void _cd_menu_on_quick_launch (int iClickedButton, GtkWidget *pInteractiv
 }
 CairoDialog *cd_menu_create_quick_launch_dialog (CairoDockModuleInstance *myApplet)
 {
-	gchar *cIconPath = cairo_dock_search_icon_s_path (GTK_STOCK_EXECUTE);
+	gchar *cIconPath = cairo_dock_search_icon_s_path (GTK_STOCK_EXECUTE, myData.iPanelDefaultMenuIconSize);
 	CairoDialog *pDialog = cairo_dock_show_dialog_with_entry (D_("Enter a command to launch:"),
 		myIcon, myContainer,
 		cIconPath ? cIconPath : "same icon",

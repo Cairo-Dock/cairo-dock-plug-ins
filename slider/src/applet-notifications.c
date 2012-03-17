@@ -237,7 +237,8 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Open with"), CD_APPLET_MY_MENU, GTK_STOCK_OPEN);
 			
 			cd_slider_free_apps_list (myApplet);
-			
+
+			gint iDesiredIconSize = cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR); // 24px
 			GList *a;
 			gchar **pAppInfo;
 			gchar *cIconPath;
@@ -253,7 +254,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 				myData.pAppList = g_list_prepend (myData.pAppList, app);
 				
 				if (pAppInfo[2] != NULL)
-					cIconPath = cairo_dock_search_icon_s_path (pAppInfo[2]);
+					cIconPath = cairo_dock_search_icon_s_path (pAppInfo[2], iDesiredIconSize);
 				else
 					cIconPath = NULL;
 				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pAppInfo[0], cIconPath, _cd_slider_launch_with, pSubMenu, app);

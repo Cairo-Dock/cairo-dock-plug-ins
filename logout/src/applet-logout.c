@@ -170,7 +170,7 @@ void cd_logout_display_actions (void)
 
 static gchar *_check_icon (const gchar *cIconStock)
 {
-	gchar *cImagePath = cairo_dock_search_icon_s_path (cIconStock);
+	gchar *cImagePath = cairo_dock_search_icon_s_path (cIconStock, cairo_dock_search_icon_size (GTK_ICON_SIZE_MENU));
 	if (cImagePath != NULL && g_file_test (cImagePath, G_FILE_TEST_EXISTS))
 		return cImagePath;
 	else

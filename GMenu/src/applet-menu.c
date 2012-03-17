@@ -243,7 +243,7 @@ void panel_load_menu_image_deferred (GtkWidget   *image_menu_item,
 {
 	IconToLoad *icon;
 	GtkWidget *image;
-	int        icon_height = PANEL_DEFAULT_MENU_ICON_SIZE;
+	int        icon_height = myData.iPanelDefaultMenuIconSize;
 
 	icon = g_new0 (IconToLoad, 1);
 
@@ -375,14 +375,14 @@ void create_menuitem (GtkWidget          *menu,
 					(GDestroyNotify) gmenu_tree_item_unref);
 
 	panel_load_menu_image_deferred (menuitem,
-					PANEL_DEFAULT_MENU_ICON_SIZE, //panel_menu_icon_get_size (),
+					myData.iPanelDefaultMenuIconSize, //panel_menu_icon_get_size (),
 					///NULL, NULL,
 					alias_directory ? gmenu_tree_directory_get_icon (alias_directory) :
 							  gmenu_tree_entry_get_icon (entry),
 					NULL);
 
 	setup_menuitem (menuitem,
-			PANEL_DEFAULT_MENU_ICON_SIZE, //panel_menu_icon_get_size (),
+			myData.iPanelDefaultMenuIconSize, //panel_menu_icon_get_size (),
 			///NULL,
 			alias_directory ? gmenu_tree_directory_get_name (alias_directory) :
 					  gmenu_tree_entry_get_name (entry));

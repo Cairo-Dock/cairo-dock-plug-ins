@@ -208,7 +208,7 @@ void cd_satus_notifier_reload_compact_mode (void)
 		{
 			if (iPrevSize != myData.iItemSize || pItem->pSurface == NULL)
 			{
-				gchar *cIconPath = cd_satus_notifier_search_item_icon_s_path (pItem);
+				gchar *cIconPath = cd_satus_notifier_search_item_icon_s_path (pItem, myData.iItemSize);
 				if (cIconPath != NULL)
 				{
 					if (pItem->pSurface != NULL)
@@ -294,7 +294,7 @@ void cd_satus_notifier_update_item_image (CDStatusNotifierItem *pItem)
 {
 	if (myConfig.bCompactMode)
 	{
-		gchar *cIconPath = cd_satus_notifier_search_item_icon_s_path (pItem);
+		gchar *cIconPath = cd_satus_notifier_search_item_icon_s_path (pItem, myData.iItemSize);
 		if (cIconPath != NULL)
 		{
 			if (pItem->pSurface != NULL)

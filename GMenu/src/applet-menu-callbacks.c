@@ -183,19 +183,19 @@ GtkWidget *cd_menu_append_one_item_to_menu (const gchar *cLabel, const gchar *gt
 		GtkWidget *image = NULL;
 		if (*gtkStock == '/')
 		{
-			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (gtkStock, 24, 24, NULL);
+			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (gtkStock, myData.iPanelDefaultMenuIconSize, myData.iPanelDefaultMenuIconSize, NULL);
 			image = gtk_image_new_from_pixbuf (pixbuf);
 			g_object_unref (pixbuf);
 		}
 		else
 		{
-			const gchar *cIconPath = cairo_dock_search_icon_s_path (gtkStock);
+			const gchar *cIconPath = cairo_dock_search_icon_s_path (gtkStock, myData.iPanelDefaultMenuIconSize);
 			if (cIconPath == NULL)
 			{
 				cIconPath = g_strconcat (MY_APPLET_SHARE_DATA_DIR"/", gtkStock, NULL);
 				cIconPath = g_strconcat (cIconPath, ".svg", NULL);
 			}
-			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cIconPath, 24, 24, NULL);
+			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cIconPath, myData.iPanelDefaultMenuIconSize, myData.iPanelDefaultMenuIconSize, NULL);
 			image = gtk_image_new_from_pixbuf (pixbuf);
 			g_object_unref (pixbuf);
 		}
@@ -464,7 +464,7 @@ load_icons_handler_again:
 		IconToAdd *icon_to_add;
 		char      *icon_name;
 		GdkPixbuf *pb;
-		int        icon_height = PANEL_DEFAULT_MENU_ICON_SIZE;
+		int        icon_height = myData.iPanelDefaultMenuIconSize;
 
 		gtk_icon_size_lookup (icon->icon_size, NULL, &icon_height);
 
@@ -513,7 +513,7 @@ load_icons_handler_again:
 	else {*/
 		IconToAdd *icon_to_add;
 		GdkPixbuf *pb;
-		int        icon_height = PANEL_DEFAULT_MENU_ICON_SIZE;
+		int        icon_height = myData.iPanelDefaultMenuIconSize;
 
 		gtk_icon_size_lookup (icon->icon_size, NULL, &icon_height);
 

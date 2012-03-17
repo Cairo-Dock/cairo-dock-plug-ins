@@ -330,7 +330,7 @@ static void _on_item_proxy_destroyed (DBusGProxy *proxy_item, CDStatusNotifierIt
 	CD_APPLET_LEAVE ();
 }
 
-gchar *cd_satus_notifier_search_item_icon_s_path (CDStatusNotifierItem *pItem)
+gchar *cd_satus_notifier_search_item_icon_s_path (CDStatusNotifierItem *pItem, gint iSize)
 {
 	g_return_val_if_fail (pItem != NULL, NULL);
 	gchar *cImageName = (pItem->iStatus == CD_STATUS_NEEDS_ATTENTION ? pItem->cAttentionIconName: pItem->cIconName);
@@ -348,7 +348,7 @@ gchar *cd_satus_notifier_search_item_icon_s_path (CDStatusNotifierItem *pItem)
 	
 	if (cIconPath == NULL)
 	{
-		cIconPath = cairo_dock_search_icon_s_path (cImageName);
+		cIconPath = cairo_dock_search_icon_s_path (cImageName, iSize);
 	}
 
 	if (cIconPath == NULL)
@@ -664,7 +664,7 @@ static void _load_item_image (Icon *icon)
 	int iHeight = icon->iImageHeight;
 	
 	CDStatusNotifierItem *pItem = cd_satus_notifier_get_item_from_icon (icon);
-	gchar *cIconPath = cd_satus_notifier_search_item_icon_s_path (pItem);
+	gchar *cIconPath = cd_satus_notifier_search_item_icon_s_path (pItem, MAX (iWidth, iHeight));
 	if (cIconPath != NULL && *cIconPath != '\0')
 		icon->pIconBuffer = cairo_dock_create_surface_from_image_simple (cIconPath,
 			iWidth,

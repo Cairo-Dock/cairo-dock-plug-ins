@@ -106,6 +106,7 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 	double fOrder;
 	int iVolumeID;
 	gboolean bIsDirectory;
+	gint iDesiredIconSize = cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR); // 24px
 	
 	CD_APPLET_ADD_SEPARATOR_IN_MENU (s_pMenu);
 	
@@ -127,7 +128,7 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 			g_free (cPath);
 			s_pEventList = g_list_prepend (s_pEventList, cCommand);
 			
-			cIconPath = cairo_dock_search_icon_s_path (cIconName);
+			cIconPath = cairo_dock_search_icon_s_path (cIconName, iDesiredIconSize);
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (zeitgeist_subject_get_text (subject), cIconPath, _open_file, pSubMenu, cCommand);
 			g_free (cIconPath);
 			g_free (cIconName);

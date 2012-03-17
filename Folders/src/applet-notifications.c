@@ -385,6 +385,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			gchar **pAppInfo;
 			gchar *cIconPath;
 			gpointer *app;
+			gint iDesiredIconSize = cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR); // 24px
 			for (a = pApps; a != NULL; a = a->next)
 			{
 				pAppInfo = a->data;
@@ -398,7 +399,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 				myData.pAppList = g_list_prepend (myData.pAppList, app);
 				
 				if (pAppInfo[2] != NULL)
-					cIconPath = cairo_dock_search_icon_s_path (pAppInfo[2]);
+					cIconPath = cairo_dock_search_icon_s_path (pAppInfo[2], iDesiredIconSize);
 				else
 					cIconPath = NULL;
 				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pAppInfo[0], cIconPath, _cd_folders_launch_with, pSubMenu, app);

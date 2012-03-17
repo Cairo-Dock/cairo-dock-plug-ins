@@ -269,7 +269,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 	v = g_hash_table_lookup (hDialogAttributes, "icon");
 	if (v && G_VALUE_HOLDS_STRING (v))
 	{
-		cImageFilePath = cairo_dock_search_icon_s_path (g_value_get_string (v));
+		cImageFilePath = cairo_dock_search_icon_s_path (g_value_get_string (v), MAX (pIcon->iImageWidth, pIcon->iImageHeight));
 		attr.cImageFilePath = cImageFilePath;
 	}
 	else

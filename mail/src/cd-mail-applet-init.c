@@ -103,7 +103,7 @@ static void _load_theme (CairoDockModuleInstance *myApplet, GError **erreur)
 	//\_______________ On charge le theme si necessaire, avec en priorite les images utilisateur.
 	if (myConfig.cNoMailUserImage != NULL)
 	{
-		gchar *cPath = cairo_dock_search_icon_s_path (myConfig.cNoMailUserImage);
+		gchar *cPath = cairo_dock_search_icon_s_path (myConfig.cNoMailUserImage, MAX (myIcon->iImageWidth, myIcon->iImageHeight));
 		if (! g_file_test (cPath, G_FILE_TEST_EXISTS))
 		{
 			g_free (myConfig.cNoMailUserImage);
@@ -113,7 +113,7 @@ static void _load_theme (CairoDockModuleInstance *myApplet, GError **erreur)
 	}
 	if (myConfig.cHasMailUserImage != NULL)
 	{
-		gchar *cPath = cairo_dock_search_icon_s_path (myConfig.cHasMailUserImage);
+		gchar *cPath = cairo_dock_search_icon_s_path (myConfig.cHasMailUserImage, MAX (myIcon->iImageWidth, myIcon->iImageHeight));
 		if (! g_file_test (cPath, G_FILE_TEST_EXISTS))
 		{
 			g_free (myConfig.cHasMailUserImage);

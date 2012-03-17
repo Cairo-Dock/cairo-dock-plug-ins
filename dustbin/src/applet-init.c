@@ -40,7 +40,7 @@ static void _get_theme (void)
 	// get the user images first, as they overwrite the theme.
 	if (myConfig.cEmptyUserImage != NULL)
 	{
-		gchar *cPath = cairo_dock_search_icon_s_path (myConfig.cEmptyUserImage);
+		gchar *cPath = cairo_dock_search_icon_s_path (myConfig.cEmptyUserImage, CAIRO_DOCK_DEFAULT_ICON_SIZE);
 		if (! g_file_test (cPath, G_FILE_TEST_EXISTS))
 		{
 			g_free (myConfig.cEmptyUserImage);
@@ -50,13 +50,13 @@ static void _get_theme (void)
 	}
 	if (myConfig.cFullUserImage != NULL)
 	{
-		gchar *cPath = cairo_dock_search_icon_s_path (myConfig.cFullUserImage);
+		gchar *cPath = cairo_dock_search_icon_s_path (myConfig.cFullUserImage, CAIRO_DOCK_DEFAULT_ICON_SIZE);
 		if (! g_file_test (cPath, G_FILE_TEST_EXISTS))
 		{
 			g_free (myConfig.cFullUserImage);
 			myConfig.cFullUserImage = NULL;
 		}
-                g_free (cPath);
+		g_free (cPath);
 	}
 	// if a theme is defined, and user images are not defined, use the theme.
 	if (myConfig.cThemePath != NULL)

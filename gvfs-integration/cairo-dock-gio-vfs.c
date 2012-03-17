@@ -92,7 +92,7 @@ static gchar *_cd_get_icon_path (GIcon *pIcon, const gchar *cTargetURI)  // cTar
 		{
 			//g_print (" une icone possible est : %s\n", cFileNames[i]);
 			
-			gchar *path = cairo_dock_search_icon_s_path (cFileNames[i]);
+			gchar *path = cairo_dock_search_icon_s_path (cFileNames[i], CAIRO_DOCK_DEFAULT_ICON_SIZE);
 			if (path)
 			{
 				g_free (path);
@@ -169,7 +169,7 @@ static void _cd_find_mount_from_volume_name (const gchar *cVolumeName, GMount **
 			if (iFileType == G_FILE_TYPE_MOUNTABLE)
 			{
 				const gchar *cFileName = g_file_info_get_name (pFileInfo);
-				cd_message ("  test de  %s...", cFileName);
+				cd_debug ("  test of  %s...", cFileName);
 				const gchar *cTargetURI = g_file_info_get_attribute_string (pFileInfo, G_FILE_ATTRIBUTE_STANDARD_TARGET_URI);
 				
 				GMount *pMount = NULL;
@@ -185,7 +185,7 @@ static void _cd_find_mount_from_volume_name (const gchar *cVolumeName, GMount **
 					cd_message ("    mount : %s", cName);
 					if (cName != NULL && strcmp (cName, cVolumeName) == 0)
 					{
-						cd_message ("TROUVE");
+						cd_debug ("Found");
 						*pFoundMount = pMount;
 						*cURI = g_strconcat ("computer:///", cFileName, NULL);
 						GIcon *pSystemIcon = g_mount_get_icon (pMount);

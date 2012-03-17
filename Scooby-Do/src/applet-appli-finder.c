@@ -174,17 +174,18 @@ static gboolean _load_applis_buffer_idle (gpointer data)
 	int iNbAppliLoaded = 0;
 	Icon *pIcon;
 	gboolean bLoadTexture = (CAIRO_CONTAINER_IS_OPENGL (g_pMainDock));
+	gint iDesiredIconSize = 10; // cairo_dock_search_icon_size (GTK_ICON_SIZE_MENU); // 16px (was 48px but why?) // to data?
 	GList *a;
 	for (a = myData.pCurrentApplicationToLoad; a != NULL && iNbAppliLoaded < 3; a = a->next)  // on en charge 3 d'un coup.
 	{
 		pIcon = a->data;
 		if (pIcon->pIconBuffer == NULL)
 		{
-			pIcon->fWidth = 48.;
-			pIcon->fHeight = 48.;
+			pIcon->fWidth = iDesiredIconSize;
+			pIcon->fHeight = iDesiredIconSize;
 			pIcon->fScale = 1.;
-			gchar *cIconPath = cairo_dock_search_icon_s_path (pIcon->cFileName);
-			pIcon->pIconBuffer = cairo_dock_create_surface_for_icon (cIconPath, 48., 48);
+			gchar *cIconPath = cairo_dock_search_icon_s_path (pIcon->cFileName, iDesiredIconSize);
+			pIcon->pIconBuffer = cairo_dock_create_surface_for_icon (cIconPath, iDesiredIconSize, iDesiredIconSize);
 			g_free (cIconPath);
 			if (bLoadTexture)
 				pIcon->iIconTexture = cairo_dock_create_texture_from_surface (pIcon->pIconBuffer);
@@ -230,14 +231,14 @@ void cd_do_find_matching_applications (void)
 			bMatch = FALSE;
 		else
 		{
-			bMatch = (g_strncasecmp (pIcon->cCommand, myData.sCurrentText->str, myData.sCurrentText->len) == 0);
+			bMatch = (g_ascii_strncasecmp (pIcon->cCommand, myData.sCurrentText->str, myData.sCurrentText->len) == 0);
 			if (!bMatch)
 			{
 				gchar *str = strchr (pIcon->cCommand, '-');  // on se limite au 1er tiret.
 				if (str && *(str-1) != ' ')  // on verifie qu'il n'est pas un tiret d'option
 				{
 					str ++;
-					bMatch = (g_strncasecmp (str, myData.sCurrentText->str, myData.sCurrentText->len) == 0);
+					bMatch = (g_ascii_strncasecmp (str, myData.sCurrentText->str, myData.sCurrentText->len) == 0);
 				}
 			}
 		}

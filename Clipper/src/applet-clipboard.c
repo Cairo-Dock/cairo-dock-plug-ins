@@ -427,13 +427,14 @@ GtkWidget *cd_clipper_build_action_menu (CDClipperAction *pAction)
 	CDClipperCommand *pCommand;
 	gchar *cIconFilePath;
 	GList *pElement;
+	gint iDesiredIconSize = cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR); // 24px by default
 	for (pElement = pAction->pCommands; pElement != NULL; pElement = pElement->next)
 	{
 		pCommand = pElement->data;
 		if (pCommand->cIconFileName != NULL)
 		{
 			cd_debug (" icone %s", pCommand->cIconFileName);
-			cIconFilePath = cairo_dock_search_icon_s_path (pCommand->cIconFileName);
+			cIconFilePath = cairo_dock_search_icon_s_path (pCommand->cIconFileName, iDesiredIconSize);
 		}
 		else
 		{
@@ -442,14 +443,14 @@ GtkWidget *cd_clipper_build_action_menu (CDClipperAction *pAction)
 				tmp ++;
 			gchar *cIconName = g_strndup (pCommand->cFormat, tmp - pCommand->cFormat);
 			cd_debug (" icone %s", cIconName);
-			cIconFilePath = cairo_dock_search_icon_s_path (cIconName);
+			cIconFilePath = cairo_dock_search_icon_s_path (cIconName, iDesiredIconSize);
 			g_free (cIconName);
 		}
 		
 		pMenuItem = gtk_image_menu_item_new_with_mnemonic (pCommand->cDescription);
 		if (cIconFilePath != NULL)
 		{
-			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cIconFilePath, 24, 24, NULL);
+			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cIconFilePath, iDesiredIconSize, iDesiredIconSize, NULL);
 			pImage = gtk_image_new_from_pixbuf (pixbuf);
 			g_free (cIconFilePath);
 			g_object_unref (pixbuf);

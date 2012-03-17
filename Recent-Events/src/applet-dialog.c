@@ -116,7 +116,7 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 			//\_____________ find the icon.
 			if (strncmp (cEventURI, "http", 4) == 0)  // gvfs is deadly slow to get info on distant URI...
 			{
-				cIconName = cairo_dock_search_icon_s_path ("text-html");
+				cIconName = cairo_dock_search_icon_s_path ("text-html", myData.iDesiredIconSize);
 			}
 			else
 			{
@@ -124,8 +124,8 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 			}
 			if (cIconName != NULL)
 			{
-				cIconPath = cairo_dock_search_icon_s_path (cIconName);
-				pixbuf = gdk_pixbuf_new_from_file_at_size (cIconPath, 32, 32, NULL);
+				cIconPath = cairo_dock_search_icon_s_path (cIconName, myData.iDesiredIconSize);
+				pixbuf = gdk_pixbuf_new_from_file_at_size (cIconPath, myData.iDesiredIconSize, myData.iDesiredIconSize, NULL);
 				g_free (cIconPath);
 			}
 			else
@@ -274,7 +274,7 @@ static gboolean _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButt
 					myData.pAppList = g_list_prepend (myData.pAppList, pAppInfo[1]);
 					
 					if (pAppInfo[2] != NULL)
-						cIconPath = cairo_dock_search_icon_s_path (pAppInfo[2]);
+						cIconPath = cairo_dock_search_icon_s_path (pAppInfo[2], cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR));
 					else
 						cIconPath = NULL;
 					CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pAppInfo[0], cIconPath, _cd_launch_with, pSubMenu, pAppInfo[1]);

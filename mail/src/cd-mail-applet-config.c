@@ -105,7 +105,7 @@ static void _get_mail_accounts (GKeyFile *pKeyFile, CairoDockModuleInstance *myA
 		
 		for( j = 0; j < MAIL_NB_STORAGE_TYPES; j++ )
 		{
-			if (g_strcasecmp(storage_tab[j].name, cMailAccountType) == 0)
+			if (g_ascii_strcasecmp (storage_tab[j].name, cMailAccountType) == 0)
 			{
 				break;
 			}
@@ -141,7 +141,7 @@ static void _get_mail_accounts (GKeyFile *pKeyFile, CairoDockModuleInstance *myA
 	if (path != NULL) { \
 		_found_image = cairo_dock_search_image_s_path (path); \
 		if (_found_image == NULL)\
-			_found_image = cairo_dock_search_icon_s_path (path); }\
+			_found_image = cairo_dock_search_icon_s_path (path, MAX (myIcon->iImageWidth, myIcon->iImageHeight)); }\
 	_found_image; })
 CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.

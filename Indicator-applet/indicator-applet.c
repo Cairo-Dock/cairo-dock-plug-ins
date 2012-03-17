@@ -197,7 +197,7 @@ void cd_indicator_set_icon (CDAppletIndicator *pIndicator, const gchar *cStatusI
 	
 	const gchar *cIconName = cStatusIcon;
 	gchar *tmp_icon_name = NULL;
-	gchar *cIconPath = cairo_dock_search_icon_s_path (cIconName);  // on regarde si l'icone sera trouvee.
+	gchar *cIconPath = cairo_dock_search_icon_s_path (cIconName, MAX (myIcon->iImageWidth, myIcon->iImageHeight));  // on regarde si l'icone sera trouvee.
 	gchar *cIconPathFallback = NULL;
 	if (cIconPath == NULL)  // l'icone ne sera pas trouvee, on regarde si ce n'est pas une icone en carton d'Ubuntu.
 	{
@@ -206,7 +206,7 @@ void cd_indicator_set_icon (CDAppletIndicator *pIndicator, const gchar *cStatusI
 		{
 			tmp_icon_name = g_strndup (cIconName, str - cIconName);
 			cIconName = tmp_icon_name;
-			cIconPath = cairo_dock_search_icon_s_path (cIconName);
+			cIconPath = cairo_dock_search_icon_s_path (cIconName, MAX (myIcon->iImageWidth, myIcon->iImageHeight));
 		}
 	}
 	if (cIconPath == NULL)  // l'icone ne sera pas trouvee, on met une icone par defaut.

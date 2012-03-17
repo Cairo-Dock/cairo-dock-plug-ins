@@ -75,6 +75,7 @@ struct _AppletData {
 	guint iSidFakeMenuIdle;
 	guint iSidCreateMenuIdle;
 	guint iSidTreeChangeIdle;
+	gint iPanelDefaultMenuIconSize;
 	
 	GtkRecentManager *pRecentManager;
 	GtkWidget *pRecentMenuItem;

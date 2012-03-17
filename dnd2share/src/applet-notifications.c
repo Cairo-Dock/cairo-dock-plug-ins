@@ -423,6 +423,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		gboolean bIsDirectory;
 		int iVolumeID;
 		double fOrder;
+		gint iDesiredIconSize = cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR); // 24px by default
 		int i;
 		GList *it;
 		for (it = myData.pUpoadedItems; it != NULL; it = it->next)
@@ -437,22 +438,22 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 				if (! g_file_test (cPreview, G_FILE_TEST_EXISTS))
 				{
 					g_free (cPreview);
-					cPreview = cairo_dock_search_icon_s_path ("image-x-generic");;
+					cPreview = cairo_dock_search_icon_s_path ("image-x-generic", iDesiredIconSize);
 				}
 			}
 			else if (pItem->iFileType == CD_TYPE_TEXT)
 			{
-				cPreview = cairo_dock_search_icon_s_path ("text-x-generic");
+				cPreview = cairo_dock_search_icon_s_path ("text-x-generic", iDesiredIconSize);
 			}
 			else if (pItem->iFileType == CD_TYPE_VIDEO)
 			{
-				cPreview = cairo_dock_search_icon_s_path ("video-x-generic");
+				cPreview = cairo_dock_search_icon_s_path ("video-x-generic", iDesiredIconSize);
 			}
 			if (cPreview == NULL)
 			{
 				gchar *cIconName = NULL;
 				cairo_dock_fm_get_file_info (pItem->cLocalPath, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, 0);
-				cPreview = cairo_dock_search_icon_s_path (cIconName);
+				cPreview = cairo_dock_search_icon_s_path (cIconName, iDesiredIconSize);
 				g_free (cIconName);
 				g_free (cName);
 				cName = NULL;

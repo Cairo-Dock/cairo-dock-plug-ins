@@ -212,7 +212,7 @@ void cd_musicplayer_apply_status_surface (MyPlayerStatus iStatus)
 		gchar *cUserIcon = myConfig.cUserImage[iStatus];
 		if (cUserIcon != NULL)  // l'utilisateur a defini une icone perso pour ce statut => on essaye de la charger.
 		{
-			gchar *cUserImagePath = cairo_dock_search_icon_s_path (cUserIcon);
+			gchar *cUserImagePath = cairo_dock_search_icon_s_path (cUserIcon, MAX (myIcon->iImageWidth, myIcon->iImageHeight));
 			myData.pSurfaces[iStatus] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath ? cUserImagePath : cUserIcon);  // si on a trouve une icone, on la prend, sinon on considere le fichier comme une image.
 			g_free (cUserImagePath);
 		}

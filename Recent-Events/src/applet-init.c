@@ -42,7 +42,8 @@ CD_APPLET_INIT_BEGIN
 	}
 	
 	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
-	
+
+	myData.iDesiredIconSize =  cairo_dock_search_icon_size (GTK_ICON_SIZE_DND); // 32px
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;

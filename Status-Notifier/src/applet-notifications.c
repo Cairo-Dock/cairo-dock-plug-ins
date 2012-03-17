@@ -202,7 +202,7 @@ static gboolean _popup_tooltip (Icon *pIcon)
 		gchar *cIconPath = NULL;
 		if (pItemData->pToolTip->cIconName)
 		{
-			cIconPath = cairo_dock_search_icon_s_path (pItemData->pToolTip->cIconName);
+			cIconPath = cairo_dock_search_icon_s_path (pItemData->pToolTip->cIconName, 32); // dialog
 		}
 		
 		cairo_dock_show_temporary_dialog_with_icon (cText, pIcon, CAIRO_CONTAINER (myIcon->pSubDock), 3000, cIconPath ? cIconPath : "same icon");

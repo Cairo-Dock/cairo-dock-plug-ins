@@ -26,7 +26,7 @@
 #include <gmenu-tree.h>
 
 #define PANEL_ICON_FOLDER "folder"
-#define PANEL_DEFAULT_MENU_ICON_SIZE 24
+// #define PANEL_DEFAULT_MENU_ICON_SIZE 24
 
 
 GtkWidget * add_menu_separator (GtkWidget *menu);

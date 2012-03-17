@@ -43,7 +43,7 @@ static inline gboolean _cd_do_icon_match (Icon *pIcon, const gchar *cCommandPref
 			if (str && *(str-1) != ' ')  // on verifie qu'il n'est pas un tiret d'option
 			{
 				str ++;
-				bMatch = (g_strncasecmp (str, cCommandPrefix, length) == 0);
+				bMatch = (g_ascii_strncasecmp (str, cCommandPrefix, length) == 0);
 			}
 			if (!bMatch && pIcon->cName)
 				bMatch = (g_ascii_strncasecmp (cCommandPrefix, pIcon->cName, length) == 0);

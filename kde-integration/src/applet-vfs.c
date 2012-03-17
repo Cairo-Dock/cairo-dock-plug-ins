@@ -79,7 +79,7 @@ static gchar *_cd_get_icon_path (GIcon *pIcon)
 		for (i = 0; cFileNames[i] != NULL && cIconPath == NULL; i ++)
 		{
 			//cd_message (" une icone possible est : %s\n", cFileNames[i]);
-			cIconPath = cairo_dock_search_icon_s_path (cFileNames[i]);
+			cIconPath = cairo_dock_search_icon_s_path (cFileNames[i], CAIRO_DOCK_DEFAULT_ICON_SIZE);
 			//cd_message ("  chemin trouve : %s\n", cIconPath);
 		}
 	}

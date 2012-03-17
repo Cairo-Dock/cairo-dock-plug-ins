@@ -543,13 +543,13 @@ static void _cd_switcher_list_window_on_viewport (Icon *pIcon, int iNumDesktop, 
 	if (pixbuf == NULL)
 	{
 		const gchar *cIcon = cairo_dock_get_class_icon (pIcon->cClass);
-		gchar *cIconPath = cairo_dock_search_icon_s_path (cIcon);
+		gint iDesiredIconSize = cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR); // 24px
+		gchar *cIconPath = cairo_dock_search_icon_s_path (cIcon, iDesiredIconSize);
 		if (cIconPath)
 		{
-			int w = 24, h = w;
 			pixbuf = gdk_pixbuf_new_from_file_at_size (cIconPath,
-				w,
-				h,
+				iDesiredIconSize,
+				iDesiredIconSize,
 				NULL);
 		}
 	}

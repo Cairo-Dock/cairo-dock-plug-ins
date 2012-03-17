@@ -154,7 +154,7 @@ static void _fill_submenu_with_items (CDQuickBrowserItem *pRootItem, int iNbSubI
 		if (cIconName != NULL)
 		{
 			pMenuItem = gtk_image_menu_item_new_with_label (cFileName);
-			gchar *cPath = cairo_dock_search_icon_s_path (cIconName);
+			gchar *cPath = cairo_dock_search_icon_s_path (cIconName, myConfig.iIconSize);
 			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cPath, myConfig.iIconSize, myConfig.iIconSize, NULL);
 			g_free (cPath);
 			GtkWidget *image = gtk_image_new_from_pixbuf (pixbuf);

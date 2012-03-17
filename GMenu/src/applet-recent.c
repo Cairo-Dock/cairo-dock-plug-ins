@@ -55,11 +55,11 @@ void cd_menu_append_recent_to_menu (GtkWidget *top_menu, CairoDockModuleInstance
 		
 		GtkWidget *pMenuItem = gtk_image_menu_item_new_with_label (D_("Recent Documents"));
 
-		const gchar *cIconPath = cairo_dock_search_icon_s_path ("document-open-recent");
+		const gchar *cIconPath = cairo_dock_search_icon_s_path ("document-open-recent", myData.iPanelDefaultMenuIconSize);
 		if (cIconPath == NULL)
 			cIconPath = MY_APPLET_SHARE_DATA_DIR"/icon-recent.png";
 
-		GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cIconPath, 24, 24, NULL);
+		GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cIconPath, myData.iPanelDefaultMenuIconSize, myData.iPanelDefaultMenuIconSize, NULL);
 		GtkWidget *image = gtk_image_new_from_pixbuf (pixbuf);
 		g_object_unref (pixbuf);
 #if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)

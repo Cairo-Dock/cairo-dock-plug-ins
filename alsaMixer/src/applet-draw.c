@@ -149,7 +149,7 @@ void mixer_load_surfaces (void)
 	
 	if (myConfig.cDefaultIcon != NULL)
 	{
-		gchar *cImagePath = cairo_dock_search_icon_s_path (myConfig.cDefaultIcon);
+		gchar *cImagePath = cairo_dock_search_icon_s_path (myConfig.cDefaultIcon, MAX (myIcon->iImageWidth, myIcon->iImageHeight));
 		if (cImagePath == NULL)
 			cImagePath = cairo_dock_search_image_s_path (myConfig.cDefaultIcon);
 		if (cImagePath != NULL)
@@ -175,7 +175,7 @@ static void _load_mute_surface (void)
 {
 	if (myConfig.cMuteIcon != NULL)
 	{
-		gchar *cImagePath = cairo_dock_search_icon_s_path (myConfig.cMuteIcon);
+		gchar *cImagePath = cairo_dock_search_icon_s_path (myConfig.cMuteIcon, MAX (myIcon->iImageWidth, myIcon->iImageHeight));
 		if (cImagePath == NULL)
 			cImagePath = cairo_dock_search_image_s_path (myConfig.cMuteIcon);
 		if (cImagePath != NULL)

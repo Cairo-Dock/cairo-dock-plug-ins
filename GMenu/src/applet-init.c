@@ -55,6 +55,7 @@ CD_APPLET_INIT_BEGIN
 	}
 	myData.pMenu = create_main_menu (myApplet);
 	myData.iShowQuit = myConfig.iShowQuit;
+	myData.iPanelDefaultMenuIconSize = cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR); // 24 by default
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;

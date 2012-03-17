@@ -47,7 +47,7 @@ static void _load_html_icon (Icon *pIcon)
 	int iHeight = pIcon->iImageHeight;
 	if (pIcon->cFileName)  // icone possedant une image, on affiche celle-ci.
 	{
-		gchar *cIconPath = cairo_dock_search_icon_s_path (pIcon->cFileName);
+		gchar *cIconPath = cairo_dock_search_icon_s_path (pIcon->cFileName, MAX (iWidth, iHeight));
 		if (cIconPath != NULL && *cIconPath != '\0')
 		{
 			pIcon->pIconBuffer = cairo_dock_create_surface_from_image_simple (cIconPath,
