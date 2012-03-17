@@ -218,7 +218,7 @@ volume_widget_change_value_cb (GtkRange     *range,
 
   volume_widget_update(mitem, new_value, "change-value");
 
-	/// I think we need to update the icon here.
+	// we need to update the icon here.
 	update_accessible_desc (new_value);
   return FALSE;
 }
