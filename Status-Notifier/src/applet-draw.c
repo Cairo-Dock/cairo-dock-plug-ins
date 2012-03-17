@@ -101,21 +101,24 @@ static void cd_satus_notifier_compute_icon_size (void)
 		myData.iNbLines = myConfig.iNbLines;
 		myData.iItemSize = MAX (1, iHeight / myConfig.iNbLines);
 		myData.iNbColumns = ceil ((float)iNbItems / myConfig.iNbLines);  // nb items by line.
-		w = MAX (w0, myData.iItemSize * myData.iNbColumns);
+		w = MAX (w0, myData.iItemSize * myData.iNbColumns + myIconsParam.iIconGap * (myData.iNbColumns - 1));
 	}
 	else
 	{
 		myData.iNbColumns = myConfig.iNbLines;
 		myData.iItemSize = MAX (1, iHeight / myConfig.iNbLines);
 		myData.iNbLines = ceil ((float)iNbItems / myConfig.iNbLines);  // nb items by line.
-		w = MAX (w0, myData.iItemSize * myData.iNbLines);
+		w = MAX (w0, myData.iItemSize * myData.iNbLines + myIconsParam.iIconGap * (myData.iNbLines - 1));
 	}
 	cd_debug ("=== required width: %d (now: %d)", w, iWidth);
 	
 	// if width has changed, update the icon size.
 	if (w != iWidth)
 	{
-		cairo_dock_resize_applet (myApplet, w, h0);
+		if (myContainer->bIsHorizontal)
+			cairo_dock_resize_applet (myApplet, w, h0);
+		else
+			cairo_dock_resize_applet (myApplet, w0, w);
 	}
 }
 
@@ -143,8 +146,13 @@ static void cd_satus_notifier_draw_compact_icon (void)
 		cairo_paint (myDrawContext);
 		cairo_restore (myDrawContext);
 	}
-	
-	int x_pad = (iWidth - myData.iItemSize * myData.iNbColumns) / 2;  // pad to center the drawing.
+
+	int iIconGap;
+	if (myConfig.bResizeIcon)
+		iIconGap = myIconsParam.iIconGap;
+	else
+		iIconGap = 0;
+	int x_pad = (iWidth - myData.iItemSize * myData.iNbColumns - myIconsParam.iIconGap * (myData.iNbColumns - 1)) / 2;  // pad to center the drawing.
 	int y_pad = (iHeight - myData.iItemSize * myData.iNbLines) / 2;
 	cd_debug ("pad: %d;%d; grid: %dx%d, icon: %dx%d", x_pad, y_pad, myData.iNbLines, myData.iNbColumns, iWidth, iHeight);
 	
@@ -160,7 +168,7 @@ static void cd_satus_notifier_draw_compact_icon (void)
 			cd_debug ("===  draw %s (%d)", pItem->cId, pItem->iPosition);
 			cairo_set_source_surface (myDrawContext,
 				pItem->pSurface,
-				x_pad + j * myData.iItemSize,
+				x_pad + j * (myData.iItemSize + iIconGap),
 				y_pad + i * myData.iItemSize);
 			cairo_paint (myDrawContext);
 			
@@ -256,11 +264,16 @@ CDStatusNotifierItem *cd_satus_notifier_find_item_from_coord (void)
 	}
 	
 	// get index on the grid.
-	int x_pad = (iWidth - myData.iItemSize * myData.iNbColumns) / 2;
+	int iIconGap;
+	if (myConfig.bResizeIcon)
+		iIconGap = myIconsParam.iIconGap;
+	else
+		iIconGap = 0;
+	int x_pad = (iWidth - myData.iItemSize * myData.iNbColumns - iIconGap * (myData.iNbColumns - 1)) / 2;
 	int y_pad = (iHeight - myData.iItemSize * myData.iNbLines) / 2;
 	
 	int line, col;  // line, column
-	col = (iMouseX - x_pad) / myData.iItemSize;
+	col = (iMouseX - x_pad) / (myData.iItemSize + iIconGap);
 	line = (iMouseY - y_pad) / myData.iItemSize;
 	
 	// get item from index.
