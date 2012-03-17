@@ -79,6 +79,7 @@ struct _AppletData {
 	gint iCountDown;
 	guint iSidShutDown;
 	CairoDialog *pConfirmationDialog;
+	gint iDesiredIconSize;
 	} ;
 
 #endif

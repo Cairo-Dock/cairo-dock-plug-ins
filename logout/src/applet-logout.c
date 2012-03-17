@@ -32,6 +32,7 @@
 typedef struct {
 	gchar *cUserName;
 	gchar *cIconFile;
+	gchar *cRealName;
 } CDUser;
 
 static void cd_logout_shut_down (void);
@@ -168,9 +169,9 @@ void cd_logout_display_actions (void)
  /// MENU ///
 ////////////
 
-static gchar *_check_icon (const gchar *cIconStock)
+static gchar *_check_icon (const gchar *cIconStock, gint iIconSize)
 {
-	gchar *cImagePath = cairo_dock_search_icon_s_path (cIconStock, cairo_dock_search_icon_size (GTK_ICON_SIZE_MENU));
+	gchar *cImagePath = cairo_dock_search_icon_s_path (cIconStock, iIconSize);
 	if (cImagePath != NULL && g_file_test (cImagePath, G_FILE_TEST_EXISTS))
 		return cImagePath;
 	else
@@ -195,26 +196,26 @@ static GtkWidget *_build_menu (void)
 	GtkWidget *pMenuItem;
 
 	gchar *cImagePath;
-	cImagePath = _check_icon ("system-shutdown");
+	cImagePath = _check_icon ("system-shutdown", myData.iDesiredIconSize);
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Shut down"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-shutdown.svg", cd_logout_shut_down, pMenu);
 	g_free (cImagePath);
 	if (!myData.bCanStop && ! myConfig.cUserAction2)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
-	cImagePath = _check_icon (GTK_STOCK_REFRESH);
+	cImagePath = _check_icon (GTK_STOCK_REFRESH, myData.iDesiredIconSize);
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Restart"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-restart.svg", cd_logout_restart, pMenu);
 	g_free (cImagePath);
 	if (!myData.bCanRestart)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
-	cImagePath = _check_icon ("sleep");
+	cImagePath = _check_icon ("sleep", myData.iDesiredIconSize);
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Hibernate"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-hibernate.svg", cd_logout_hibernate, pMenu);
 	g_free (cImagePath);
 	gtk_widget_set_tooltip_text (pMenuItem, D_("Your computer will not consume any energy."));
 	if (!myData.bCanHibernate)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
-	cImagePath = _check_icon ("clock");
+	cImagePath = _check_icon ("clock", myData.iDesiredIconSize);
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Suspend"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-suspend.svg", cd_logout_suspend, pMenu);
 	g_free (cImagePath);
 	gtk_widget_set_tooltip_text (pMenuItem, D_("Your computer will still consume a small amount of energy."));
@@ -223,7 +224,7 @@ static GtkWidget *_build_menu (void)
 	
 	if (g_getenv ("SESSION_MANAGER") != NULL)  // needs a session manager for this.
 	{
-		cImagePath = _check_icon ("system-log-out");
+		cImagePath = _check_icon ("system-log-out", myData.iDesiredIconSize);
 		pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Log out"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", cd_logout_close_session, pMenu);
 		g_free (cImagePath);
 		gtk_widget_set_tooltip_text (pMenuItem, D_("Close your session and allow to open a new one."));
@@ -246,14 +247,16 @@ static GtkWidget *_build_menu (void)
 		for (u = myData.pUserList; u != NULL; u = u->next)
 		{
 			pUser = u->data;
-			pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pUser->cUserName, pUser->cIconFile, _switch_to_user, pUsersSubMenu, pUser->cUserName);
-			if (cCurrentUser && strcmp (cCurrentUser, pUser->cUserName) == 0)
+			pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (
+				(pUser->cRealName && *(pUser->cRealName) != '\0') ? pUser->cRealName : pUser->cUserName,
+				pUser->cIconFile, _switch_to_user, pUsersSubMenu, pUser->cUserName);
+			if (! bFoundUser && cCurrentUser && strcmp (cCurrentUser, pUser->cUserName) == 0)
 			{
 				bFoundUser = TRUE;
 				gtk_widget_set_sensitive (pMenuItem, FALSE);
 			}
 		}
-		
+
 		if (myData.bHasGuestAccount && bFoundUser)  // if we didn't find the user yet, it means we are the guest, so don't show this entry.
 		{
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Guest session"), NULL, _switch_to_user, pUsersSubMenu, NULL);  // NULL will mean "guest"
@@ -262,12 +265,12 @@ static GtkWidget *_build_menu (void)
 	
 	CD_APPLET_ADD_SEPARATOR_IN_MENU (pMenu);
 	
-	cImagePath = _check_icon ("system-lock-screen");
+	cImagePath = _check_icon ("system-lock-screen", myData.iDesiredIconSize);
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Lock screen"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/locked.svg", cairo_dock_fm_lock_screen, pMenu);  /// TODO: same question...
 	g_free (cImagePath);
 	if (myData.bCanStop)
 	{
-		cImagePath = _check_icon ("document-open-recent");
+		cImagePath = _check_icon ("document-open-recent", myData.iDesiredIconSize);
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Program an automatic shut-down"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/icon-scheduling.svg", cd_logout_program_shutdown, pMenu);
 		g_free (cImagePath);
 	}
@@ -415,10 +418,17 @@ void cd_logout_check_reboot_required (CairoDockFMEventType iEventType, const gch
 			CD_APPLET_DEMANDS_ATTENTION ("pulse", 20);
 			cairo_dock_show_temporary_dialog_with_icon (myIcon->cName, myIcon, myContainer, 5e3, "same icon");
 
-			gchar *cImagePath = _check_icon (myConfig.cEmblemPath);
+			gint iIconSize = MAX (myIcon->iImageWidth, myIcon->iImageHeight);
+			gchar *cImagePath = _check_icon (myConfig.cEmblemPath,
+				(myConfig.iRebootNeededImage == CD_DISPLAY_EMBLEM ?
+						iIconSize / 2 :
+						iIconSize));
 			if (! cImagePath)
 			{
-				cImagePath = _check_icon (GTK_STOCK_REFRESH);
+				cImagePath = _check_icon (GTK_STOCK_REFRESH,
+					(myConfig.iRebootNeededImage == CD_DISPLAY_EMBLEM ?
+						iIconSize / 2 :
+						iIconSize));
 				if (! cImagePath)
 					cImagePath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/system-restart.svg");
 			}
@@ -492,7 +502,7 @@ static void _exec_action (int iClickedButton, GtkWidget *pInteractiveWidget, voi
 }
 static void _demand_confirmation (const gchar *cMessage, const gchar *cIconStock, const gchar *cIconImage, void (*callback) (void))
 {
-	gchar *cImagePath = _check_icon (cIconStock);
+	gchar *cImagePath = _check_icon (cIconStock, 32); // dialog
 	myData.pConfirmationDialog = cairo_dock_show_dialog_full (cMessage, myIcon, myContainer, 0, cImagePath ? cImagePath : cIconImage, NULL, (CairoDockActionOnAnswerFunc) _exec_action, callback, NULL);
 	g_free (cImagePath);
 }
@@ -698,6 +708,7 @@ static void _free_user (CDUser *pUser)
 {
 	g_free (pUser->cUserName);
 	g_free (pUser->cIconFile);
+	g_free (pUser->cRealName);
 	g_free (pUser);
 }
 
@@ -746,6 +757,7 @@ GList *cd_logout_get_users_list (void)
 		if (pUser->cUserName == NULL) // shouldn't happen
 			continue;
 		pUser->cIconFile = cairo_dock_dbus_get_property_as_string (pProxy, "org.freedesktop.Accounts.User", "IconFile");
+		pUser->cRealName = cairo_dock_dbus_get_property_as_string (pProxy, "org.freedesktop.Accounts.User", "RealName");
 		pUserList = g_list_insert_sorted (pUserList, pUser, (GCompareFunc)_compare_user_name);
 		
 		g_object_unref (pProxy);
