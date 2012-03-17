@@ -37,6 +37,13 @@
 
 const int s_iNbPromptAnimationSteps = 40;
 
+static void cd_do_simulate_click (CairoContainer *pContainer, Icon *pIcon, int iModifierType)
+{
+	g_return_if_fail (pIcon != NULL);
+	myData.bIgnoreClick = TRUE;  // -> ignore the "click" notification, which would close the session and remove the notification while in the loop. the caller of this method should ensure to close the session after.
+	cairo_dock_notify_on_object (pContainer, NOTIFICATION_CLICK_ICON, pIcon, pContainer, iModifierType);
+	myData.bIgnoreClick = FALSE;
+}
 
 static inline int _orient_arrow (CairoContainer *pContainer, int iKeyVal)
 {
@@ -142,8 +149,8 @@ static void _activate_nth_icon (guint iKeyVal, guint iModifierType)  // iKeyVal 
 	if (pNthIcon != NULL)
 	{
 		g_print ("click on %s\n", pNthIcon->cName);
-		///cairo_dock_notify_on_object (&myContainersMgr, NOTIFICATION_CLICK_ICON, pNthIcon, myData.pCurrentDock, iModifierType);
-		cairo_dock_notify_on_object (CAIRO_CONTAINER (myData.pCurrentDock), NOTIFICATION_CLICK_ICON, pNthIcon, myData.pCurrentDock, iModifierType);
+		///cairo_dock_notify_on_object (CAIRO_CONTAINER (myData.pCurrentDock), NOTIFICATION_CLICK_ICON, pNthIcon, myData.pCurrentDock, iModifierType);
+		cd_do_simulate_click (CAIRO_CONTAINER (myData.pCurrentDock), pNthIcon, iModifierType);
 
 		cairo_dock_start_icon_animation (pNthIcon, myData.pCurrentDock);
 		myData.bIgnoreIconState = FALSE;
@@ -241,7 +248,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	{
 		if (myData.pCurrentIcon != NULL)
 		{
-			cd_debug ("on clique sur l'icone '%s' [%d, %d]\n", myData.pCurrentIcon->cName, iModifierType, GDK_SHIFT_MASK);
+			g_print ("on clique sur l'icone '%s' [%d, %d]\n", myData.pCurrentIcon->cName, iModifierType, GDK_SHIFT_MASK);
 			
 			myData.bIgnoreIconState = TRUE;
 			if (iModifierType & GDK_MOD1_MASK)  // ALT
@@ -264,8 +271,8 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			}
 			else
 			{
-				///cairo_dock_notify_on_object (&myContainersMgr, NOTIFICATION_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock, iModifierType);
-				cairo_dock_notify_on_object (CAIRO_CONTAINER (myData.pCurrentDock), NOTIFICATION_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock, iModifierType);
+				///cairo_dock_notify_on_object (CAIRO_CONTAINER (myData.pCurrentDock), NOTIFICATION_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock, iModifierType);
+				cd_do_simulate_click (CAIRO_CONTAINER (myData.pCurrentDock), myData.pCurrentIcon, iModifierType);
 			}
 			cairo_dock_start_icon_animation (myData.pCurrentIcon, myData.pCurrentDock);
 			myData.bIgnoreIconState = FALSE;
@@ -585,7 +592,8 @@ gboolean cd_do_on_click (gpointer pUserData, Icon *icon, CairoContainer *pContai
 {
 	g_return_val_if_fail (!cd_do_session_is_off (), CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	
-	cd_do_close_session ();
+	if (! myData.bIgnoreClick)
+		cd_do_close_session ();
 	
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }

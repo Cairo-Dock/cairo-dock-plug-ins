@@ -48,7 +48,7 @@ struct _AppletData {
 	Icon *pCurrentIcon;
 	CairoDock *pCurrentDock;
 	gboolean bIgnoreIconState;
-	
+	gboolean bIgnoreClick;
 	int iPrevMouseX, iPrevMouseY;
 	int iMouseX, iMouseY;
 	int iMotionCount;
