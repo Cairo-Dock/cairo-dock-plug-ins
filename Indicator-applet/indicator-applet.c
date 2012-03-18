@@ -33,6 +33,12 @@ static void _on_menu_destroyed (CDAppletIndicator *pIndicator, GObject *old_menu
 	if (old_menu_pointer == (GObject*)pIndicator->pMenu)
 		pIndicator->pMenu = NULL;
 }
+static void _on_service_destroyed (CDAppletIndicator *pIndicator, GObject *old_menu_pointer)
+{
+	g_print (" --------- no more service (%p / %p\n", old_menu_pointer, pIndicator->service);
+	if (old_menu_pointer == (GObject*)pIndicator->service)
+		pIndicator->service = NULL;
+}
 
 static void _cd_indicator_make_menu (CDAppletIndicator *pIndicator)
 {
@@ -41,7 +47,7 @@ static void _cd_indicator_make_menu (CDAppletIndicator *pIndicator)
 		pIndicator->pMenu = dbusmenu_gtkmenu_new ((gchar*)pIndicator->cBusName, (gchar*)pIndicator->cMenuObject);  // the cast is unorthodox, but the function definition is clumsy (it should require 2 const gchar*, since it actually duplicates the strings).
 		if (pIndicator->pMenu != NULL)
 		{
-			g_object_ref_sink (G_OBJECT (pIndicator->pMenu));
+			g_object_ref_sink (G_OBJECT (pIndicator->pMenu));  // the object is floating -> take the reference
 			g_object_weak_ref (G_OBJECT (pIndicator->pMenu),
 				(GWeakNotify)_on_menu_destroyed,
 				pIndicator);
@@ -109,13 +115,13 @@ connection_changed (IndicatorServiceManager * sm, gboolean connected, CDAppletIn
 		{
 			if (pIndicator->on_disconnect)
 				pIndicator->on_disconnect (myApplet);
-			/*if (pIndicator->pMenu)
+			if (pIndicator->pMenu)
 			{
 				g_print ("destroy menu...\n");
-				g_object_unref (pIndicator->pMenu);  /// -> "g_object_unref: assertion `G_IS_OBJECT (object)' failed" x2
+				g_object_unref (pIndicator->pMenu);
 				g_print ("done.\n");
 				pIndicator->pMenu = NULL;
-			}*/ // it seems it's no longer needed... => g_object_unref: double free or corruption (out)
+			}
 			if (pIndicator->pServiceProxy != NULL)
 			{
 				g_object_unref (pIndicator->pServiceProxy);  // this removes all the signals connected on the proxy
@@ -154,6 +160,10 @@ CDAppletIndicator *cd_indicator_new (CairoDockModuleInstance *pApplet, const gch
 	pIndicator->cMenuObject = cMenuObject;
 	
 	pIndicator->service = indicator_service_manager_new_version ((gchar*)cBusName, iVersion);
+	g_object_weak_ref (G_OBJECT (pIndicator->service),
+		(GWeakNotify)_on_service_destroyed,
+		pIndicator);  // most probably useless, but let's be parano, since we're using the dreadful "libindicator" :p
+		
 	g_signal_connect (G_OBJECT(pIndicator->service), INDICATOR_SERVICE_MANAGER_SIGNAL_CONNECTION_CHANGE, G_CALLBACK(connection_changed), pIndicator);  // on sera appele une fois la connexion etablie.  // pour le cast, cf plus haut.
 	
 	// indicators don't send the 'connection-change' signal if the connection couldn't be done, so we have to handle this case ourselves.
@@ -171,15 +181,28 @@ void cd_indicator_destroy (CDAppletIndicator *pIndicator)
 		g_source_remove (pIndicator->iSidGetMenuOnce);
 	if (pIndicator->iSidCheckIndicator != 0)
 		g_source_remove (pIndicator->iSidCheckIndicator);
+	pIndicator->bConnected = FALSE;
 	pIndicator->on_disconnect = NULL;  // since the indicator has been explicitely destroyed, we don't want to call the callback when we'll disconnect from the service.
-	if (pIndicator->service)
-		g_object_unref (pIndicator->service);
-	if (pIndicator->pServiceProxy)
-		g_object_unref (pIndicator->pServiceProxy);
-	cd_debug ("destroy indicator menu...");
+	g_print ("destroy indicator menu...\n");
 	if (pIndicator->pMenu)
 		g_object_unref (pIndicator->pMenu);
-	cd_debug ("done.");
+	g_print ("done.\n");
+	if (pIndicator->pServiceProxy)
+	{
+		g_object_unref (pIndicator->pServiceProxy);
+		pIndicator->pServiceProxy = NULL;
+	}
+	g_print ("destroy service...\n");
+	if (pIndicator->service)
+	{
+		//g_object_unref (pIndicator->service);  // this causes a crash in libindicator (beacuse they keep the service as parameter of the callback 'service_proxy_name_changed'). so just be sure to disconnect from this object, and forget it.
+		g_signal_handlers_disconnect_by_func (G_OBJECT(pIndicator->service), G_CALLBACK(connection_changed), pIndicator);
+		g_object_weak_unref (G_OBJECT (pIndicator->service),
+			(GWeakNotify)_on_service_destroyed,
+			pIndicator);
+		pIndicator->service = NULL;
+	}
+	g_print ("done.\n");
 	g_free (pIndicator);
 }
 
