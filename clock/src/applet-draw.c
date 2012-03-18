@@ -143,7 +143,6 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 		{
 			cairo_translate (myDrawContext, (iWidth - fZoomX_ * w_) / 2, (iHeight - fZoomY_ * h_)/2);  // centre verticalement.
 			cairo_scale (myDrawContext, fZoomX_, fZoomY_);
-			cairo_translate (myDrawContext, -log2.x, -log2.y);
 			pango_cairo_show_layout (myDrawContext, pLayout2);
 			
 			cairo_restore (myDrawContext);
@@ -151,14 +150,12 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			
 			cairo_translate (myDrawContext, (iWidth + fZoomX_ * w_) / 2 - fZoomX_ * log.width, (iHeight - fZoomY_ * h_)/2);
 			cairo_scale (myDrawContext, fZoomX_, fZoomY_);
-			cairo_translate (myDrawContext, -log.x, -log.y);
 			pango_cairo_show_layout (myDrawContext, pLayout);
 		}
 		else  // mode 2 lignes
 		{
 			cairo_translate (myDrawContext, (iWidth - fZoomX * log.width) / 2, (iHeight - fZoomY * h)/2);  // centre verticalement.
 			cairo_scale (myDrawContext, fZoomX, fZoomY);
-			cairo_translate (myDrawContext, -log.x, -log.y);
 			pango_cairo_show_layout (myDrawContext, pLayout);
 			
 			cairo_restore (myDrawContext);
@@ -166,7 +163,6 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			
 			cairo_translate (myDrawContext, (iWidth - fZoomX * log2.width) / 2, (iHeight + fZoomY * GAPY)/2);
 			cairo_scale (myDrawContext, fZoomX, fZoomY);
-			cairo_translate (myDrawContext, -log2.x, -log2.y);
 			pango_cairo_show_layout (myDrawContext, pLayout2);
 		}
 		g_object_unref (pLayout2);
@@ -178,11 +174,7 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 		if (myDock && fZoomY > MAX_RATIO * fZoomX)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
 			fZoomY = MAX_RATIO * fZoomX;
 
-		cairo_translate (myDrawContext,
-			(iWidth - fZoomX * log.width)/2.,
-			(iHeight - fZoomY * log.height)/2);  // this text will be centred.
 		cairo_scale (myDrawContext, fZoomX, fZoomY);
-		cairo_translate (myDrawContext, -log.x, -log.y);
 		pango_cairo_show_layout (myDrawContext, pLayout);
 	}
 	cairo_restore (myDrawContext);

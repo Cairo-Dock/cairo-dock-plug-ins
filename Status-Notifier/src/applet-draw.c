@@ -152,7 +152,7 @@ static void cd_satus_notifier_draw_compact_icon (void)
 		iIconGap = myIconsParam.iIconGap;
 	else
 		iIconGap = 0;
-	int x_pad = (iWidth - myData.iItemSize * myData.iNbColumns - myIconsParam.iIconGap * (myData.iNbColumns - 1)) / 2;  // pad to center the drawing.
+	int x_pad = (iWidth - myData.iItemSize * myData.iNbColumns - iIconGap * (myData.iNbColumns - 1)) / 2;  // pad to center the drawing.
 	int y_pad = (iHeight - myData.iItemSize * myData.iNbLines) / 2;
 	cd_debug ("pad: %d;%d; grid: %dx%d, icon: %dx%d", x_pad, y_pad, myData.iNbLines, myData.iNbColumns, iWidth, iHeight);
 	
