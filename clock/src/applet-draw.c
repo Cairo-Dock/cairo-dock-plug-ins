@@ -173,7 +173,7 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 	}
 	else  // affichage simple de l'heure sur 1 ligne.
 	{
-		double fZoomX = (double) iWidth / log.width;  // let 1 additional pixel to avoid going out of the icon (which happens with some fonts).
+		double fZoomX = (double) iWidth / log.width;
 		double fZoomY = (double) iHeight / log.height;
 		if (myDock && fZoomY > MAX_RATIO * fZoomX)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
 			fZoomY = MAX_RATIO * fZoomX;

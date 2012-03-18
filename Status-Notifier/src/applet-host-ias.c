@@ -326,6 +326,7 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 	//cd_debug ("=== %d apps in the systray", pApplications->len);
 	for (i = 0; i < pApplications->len; i ++)
 	{
+		// get the properties of the item
 		cd_debug ("=== %d) %p", i, pApplications->pdata[i]);
 		va = pApplications->pdata[i];
 		if (! va)
@@ -400,19 +401,27 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 			cLabelGuide,
 			cAccessibleDesc,
 			cTitle);
-
-		// position +1 for items placed after this one.
+		
+		if (!cAddress)
+			continue;
+		
+		// ensure we're not duplicating an existing item (this should never happen if the service is ok, but since it doesn't depend on us, let's be careful).
 		GList *it;
 		for (it = myData.pItems; it != NULL; it = it->next)
 		{
 			pItem = it->data;
-			if (strcmp (cAddress, pItem->cService) == 0)
+			if (strcmp (cAddress, pItem->cService) == 0)  // pItem->cService is never NULL
 			{
 				cd_warning ("Duplicated item: %s (%s)", cIconName, cAddress);
 				return;
 			}
+			if (iPosition != -1 && pItem->iPosition == iPosition)
+			{
+				cd_warning ("Possible duplicated item: %s/%s/%d , %s/%s/%d)", cIconName, cAddress, iPosition, pItem->cIconName, pItem->cService, pItem->iPosition);
+			}
 		}
-
+		
+		// make a new item based on these properties.
 		pItem = cd_satus_notifier_create_item (cAddress, cObjectPath);
 		if (! pItem)
 			continue;
@@ -422,8 +431,7 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 			pItem->cLabel = g_strdup (cAccessibleDesc && *cAccessibleDesc != '\0' ? cAccessibleDesc :
 			                          cLabel && *cLabel != '\0' ? cLabel :
 			                          cTitle && *cTitle != '\0' ? cTitle :
-			                          NULL);
-			                          // pItem->cId); // maybe better to not display cId, e.g: nm-applet ; dropbox-xxxx ; etc.
+			                          NULL);  // don't use cId as a fallback, because it often has cryptic names (nm-applet ; dropbox-xxxx). If the appli doesn't provide a title, it's its fault.
 		myData.pItems = g_list_prepend (myData.pItems, pItem);
 	}
 	

@@ -36,13 +36,7 @@ CD_APPLET_ON_BUILD_MENU_END
 CD_APPLET_ON_UPDATE_ICON_BEGIN
 	//\_________________ On chope les coordonnees du curseur par rapport a notre container.
 	int iMouseX, iMouseY;
- 	#if (GTK_MAJOR_VERSION < 3)
-	gdk_window_get_pointer (gldi_container_get_gdk_window (myContainer), &iMouseX, &iMouseY, NULL);
-	#else
-	GdkDeviceManager *pManager = gdk_display_get_device_manager (gtk_widget_get_display (myContainer->pWidget));
-	GdkDevice *pDevice = gdk_device_manager_get_client_pointer (pManager);
-	gdk_window_get_device_position (gldi_container_get_gdk_window (myContainer), pDevice, &iMouseX, &iMouseY, NULL);
-	#endif
+ 	gldi_display_get_pointer (&iMouseX, &iMouseY);
 	
 	//\_________________ On calcule les nouvelles coordonnees.
 	gboolean bNeedsUpdate = FALSE;
