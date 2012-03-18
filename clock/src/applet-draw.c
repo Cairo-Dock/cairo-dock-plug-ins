@@ -99,14 +99,16 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			w = MAX (log.width, log2.width);
 			fZoomX = (double) iWidth / w;
 			fZoomY = (double) iHeight / h;
-			if (myDock && fZoomY > MAX_RATIO * fZoomX)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
-				fZoomY = MAX_RATIO * fZoomX;
+			if (myDock)
+			{
+				if (myContainer->bIsHorizontal && fZoomY > MAX_RATIO * fZoomX)  // we limit the deformation
+					fZoomY = MAX_RATIO * fZoomX;
+				else if (myContainer->bIsHorizontal && fZoomX > MAX_RATIO * fZoomY)
+					fZoomX = MAX_RATIO * fZoomY;
+			}
 			
 			if (myConfig.fTextRatio < 1)
-			{
-				fZoomX *= myConfig.fTextRatio;
 				fZoomY *= myConfig.fTextRatio;
-			}
 		}
 		if (myData.iTextLayout == CD_TEXT_LAYOUT_1_LINE || myData.iTextLayout == CD_TEXT_LAYOUT_AUTO)
 		{
@@ -114,14 +116,17 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			w_ = log.width + log2.width + GAPX * iWidth;
 			fZoomX_ = (double) iWidth / w_;
 			fZoomY_ = (double) iHeight / h_;
-			if (myDock && fZoomY_ > MAX_RATIO * fZoomX_)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
-				fZoomY_ = MAX_RATIO * fZoomX_;
+			if (myDock)
+			{
+				if (myContainer->bIsHorizontal && fZoomY_ > MAX_RATIO * fZoomX_)  // we limit the deformation
+					fZoomY_ = MAX_RATIO * fZoomX_;
+				else if (myContainer->bIsHorizontal && fZoomX_ > MAX_RATIO * fZoomY_)
+					fZoomX_ = MAX_RATIO * fZoomY_;
+			}
 			
 			if (myConfig.fTextRatio < 1)
-			{
-				fZoomX_ *= myConfig.fTextRatio;
 				fZoomY_ *= myConfig.fTextRatio;
-			}
+
 			if (fZoomY_ > fZoomX_)
 			{
 				double fMaxScale = cairo_dock_get_icon_max_scale (myIcon);
@@ -167,13 +172,25 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 		}
 		g_object_unref (pLayout2);
 	}
-	else  // affichage simple de l'heure sur 1 ligne.
+	else  // only the hour with 1 line.
 	{
 		double fZoomX = (double) iWidth / log.width;
 		double fZoomY = (double) iHeight / log.height;
-		if (myDock && fZoomY > MAX_RATIO * fZoomX)  // on ne garde pas le ratio car ca ferait un texte trop petit en hauteur, toutefois on limite un peu la deformation en hauteur.
-			fZoomY = MAX_RATIO * fZoomX;
+		if (myDock)
+		{
+			if (myContainer->bIsHorizontal && fZoomY > MAX_RATIO * fZoomX)  // we limit the deformation
+				fZoomY = MAX_RATIO * fZoomX;
+			else if (myContainer->bIsHorizontal && fZoomX > MAX_RATIO * fZoomY)
+				fZoomX = MAX_RATIO * fZoomY;
+		}
 
+		if (myConfig.fTextRatio < 1)
+		{
+			fZoomY *= myConfig.fTextRatio; // only for the height
+			cairo_translate (myDrawContext,
+				0,
+				(iHeight - fZoomY * log.height)/2);  // this text will be centred.
+		}
 		cairo_scale (myDrawContext, fZoomX, fZoomY);
 		pango_cairo_show_layout (myDrawContext, pLayout);
 	}
