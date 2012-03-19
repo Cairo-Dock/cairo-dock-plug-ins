@@ -202,6 +202,14 @@ static void _cd_slider_run_dir (GtkMenuItem *menu_item, CairoDockModuleInstance 
 	}
 	CD_APPLET_LEAVE();
 }
+static void _cd_slider_refresh_images_list (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	CD_APPLET_ENTER;
+	cd_slider_stop (myApplet);
+	
+	cd_slider_parse_folder (myApplet, FALSE);  // FALSE <=> immediately
+	CD_APPLET_LEAVE();
+}
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	// get the current image selected at the moment of the click.
 	g_free (myData.cSelectedImagePath);
@@ -270,6 +278,9 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	else
 		cLabel = g_strdup (D_("Browse images folder"));
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_DIRECTORY, _cd_slider_run_dir, CD_APPLET_MY_MENU);
+	
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Refresh images list"), GTK_STOCK_REFRESH, _cd_slider_refresh_images_list, CD_APPLET_MY_MENU);
+	
 	g_free (cLabel);
 CD_APPLET_ON_BUILD_MENU_END
 

@@ -58,20 +58,5 @@ CD_APPLET_RESET_CONFIG_END
 
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped.
 CD_APPLET_RESET_DATA_BEGIN
-	cairo_dock_free_task (myData.pMeasureDirectory);
-	cairo_dock_free_task (myData.pMeasureImage);
-	cd_slider_free_images_list (myData.pList);
-	
 	g_free (myData.cDirectory);
-	
-	if (myData.pPrevCairoSurface != NULL)
-		cairo_surface_destroy (myData.pPrevCairoSurface);
-	if (myData.pCairoSurface != NULL)
-		cairo_surface_destroy (myData.pCairoSurface);
-	
-	if (myData.iPrevTexture != 0)
-		_cairo_dock_delete_texture (myData.iPrevTexture);
-	if (myData.iTexture != 0)
-		_cairo_dock_delete_texture (myData.iTexture);
-	
 CD_APPLET_RESET_DATA_END

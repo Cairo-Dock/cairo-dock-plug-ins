@@ -37,7 +37,7 @@
 
 static void _cd_slider_get_exif_props (SliderImage *pImage);
 
-void cd_slider_free_image (SliderImage *pImage) {
+static void cd_slider_free_image (SliderImage *pImage) {
 	if (pImage == NULL)
 		return;
 	g_free (pImage->cPath);
@@ -49,100 +49,9 @@ void cd_slider_free_images_list (GList *pList) {
 	g_list_free (pList);
 }
 
-static int _compare_images_order (SliderImage *image2, SliderImage *image1) {
-	if (image1->cPath == NULL)
-		return -1;
-	if (image2->cPath == NULL)
-		return 1;
-	gchar *cURI_1 = g_ascii_strdown (image1->cPath, -1);
-	gchar *cURI_2 = g_ascii_strdown (image2->cPath, -1);
-	int iOrder = strcmp (cURI_1, cURI_2);
-	g_free (cURI_1);
-	g_free (cURI_2);
-	return iOrder;
-}
-static int _cd_slider_random_compare (gconstpointer a, gconstpointer b, GRand *pRandomGenerator) {
-	return (g_rand_boolean (pRandomGenerator) ? 1 : -1);
-}
-static GList *cd_slider_list_directory (GList *pList, gchar *cDirectory, gboolean bRecursive, gboolean bSortAlpha)
+
+static void cd_slider_read_image (CairoDockModuleInstance *myApplet)
 {
-	cd_debug ("%s (%s)", __func__, cDirectory);
-	GError *erreur = NULL;
-	GDir *dir = g_dir_open (cDirectory, 0, &erreur);
-	if (erreur != NULL) {
-		cd_warning ("Slider : %s", erreur->message);
-		g_error_free (erreur);
-		return pList;
-	}
-	struct stat buf;
-	SliderImage *pImage;
-	SliderImageFormat iFormat;
-	const gchar *cFileName, *extension;
-	GString *sFilePath = g_string_new ("");
-	while ((cFileName = g_dir_read_name (dir)) != NULL) {
-		g_string_printf (sFilePath, "%s/%s", cDirectory, cFileName);
-		if (stat (sFilePath->str, &buf) != -1) {
-			if (S_ISDIR (buf.st_mode) && bRecursive) {
-				pList = cd_slider_list_directory (pList, sFilePath->str, bRecursive, bSortAlpha);
-			}
-			else {
-				extension = strrchr(cFileName,'.');
-				if (extension != NULL) {
-					iFormat = SLIDER_UNKNOWN_FORMAT;  // le but du format serait de definir un seuil de taille pour chaque format a partir duquel l'image devrait etre chargee par un thread.
-					if (g_ascii_strcasecmp(extension, ".png") == 0)
-						iFormat = SLIDER_PNG;
-					else if (g_ascii_strcasecmp(extension, ".jpg") == 0 || g_ascii_strcasecmp(extension, ".jpeg") == 0)
-						iFormat = SLIDER_JPG;
-					else if (g_ascii_strcasecmp(extension, ".svg") == 0)
-						iFormat = SLIDER_SVG;
-					else if (g_ascii_strcasecmp(extension, ".gif") == 0)
-						iFormat = SLIDER_GIF;
-					else if (g_ascii_strcasecmp(extension, ".xpm") == 0)
-						iFormat = SLIDER_XPM;
-					
-					if (iFormat != SLIDER_UNKNOWN_FORMAT) {
-						cd_debug ("Slider - Adding %s to list", cFileName);
-						pImage = g_new0 (SliderImage, 1);
-						pImage->cPath = g_strdup (sFilePath->str);
-						pImage->iSize = buf.st_size;
-						pImage->iFormat = iFormat;
-						// exif orientation is got later.
-						if (bSortAlpha)  // ordre alphabetique.
-							pList = g_list_insert_sorted (pList, pImage, (GCompareFunc) _compare_images_order);
-						else  // on randomise a la fin.
-							pList = g_list_prepend (pList, pImage);
-					}
-					
-				}
-			}
-		}
-	}
-	
-	g_string_free (sFilePath, TRUE);
-	g_dir_close (dir);
-	return pList;
-}
-
-void cd_slider_get_files_from_dir(CairoDockModuleInstance *myApplet) {
-	if (myConfig.cDirectory == NULL) {
-	  ///Et si on scannait le dossier image du home a la place? => bonne idee, mais comment trouver son nom ? il depend de la locale.
-	  ///Il devrai y avoir une var d'environement qui le permet, je vais chercher laquelle, ou sinon c'est dans la config de gnome.
-		cd_warning ("Slider : No directory to scan, halt.");
-		return;
-	}
-	
-	myData.pList = cd_slider_list_directory (NULL, myConfig.cDirectory, myConfig.bSubDirs, ! myConfig.bRandom); //Nouveau scan
-	
-	if (myConfig.bRandom) {
-		//cd_debug ("Slider - Mixing images ...");
-		GRand *pRandomGenerator = g_rand_new ();
-		myData.pList = g_list_sort_with_data (myData.pList, (GCompareDataFunc) _cd_slider_random_compare, pRandomGenerator);
-		g_rand_free (pRandomGenerator);
-	}
-}
-
-
-void cd_slider_read_image (CairoDockModuleInstance *myApplet) {
 	SliderImage *pImage = myData.pElement->data;
 	gchar *cImagePath = pImage->cPath;
 	if (!pImage->bGotExifData && myData.iSidExifIdle == 0)  // no exif data yet and no process currently retrieving them.
@@ -184,7 +93,7 @@ void cd_slider_read_image (CairoDockModuleInstance *myApplet) {
 }
 
 
-gboolean cd_slider_update_transition (CairoDockModuleInstance *myApplet) {
+static gboolean cd_slider_update_transition (CairoDockModuleInstance *myApplet) {
 	CD_APPLET_ENTER;
 	//\_______________ On cree la texture (en-dehors du thread).
 	if (g_bUseOpenGL)
@@ -220,7 +129,8 @@ gboolean cd_slider_update_transition (CairoDockModuleInstance *myApplet) {
 }
 
 
-gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet) {
+gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet)
+{
 	CD_APPLET_ENTER;
 	if (myData.bPause)  // on est en pause.
 	{
@@ -233,9 +143,10 @@ gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet) {
 	else
 		myData.pElement = cairo_dock_get_next_element (myData.pElement, myData.pList);
 	
-	if (myData.pElement == NULL || myData.pElement->data == NULL) {
+	if (myData.pElement == NULL || myData.pElement->data == NULL)
+	{
 		
-		cd_warning ("Slider stopped, list broken");
+		cd_warning ("Slider stopped, empty list");
 		myData.iTimerID = 0;
 		CD_APPLET_LEAVE (FALSE);
 	}
@@ -256,7 +167,8 @@ gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet) {
 	myData.prevSlideArea = myData.slideArea;
 	
 	//\___________________________ On ecrit le nom de la nouvelle image en info.
-	if (myConfig.bImageName && myDesklet) {
+	if (myConfig.bImageName && myDesklet)
+	{
 		gchar *cFileName = g_strdup (pImage->cPath);
 		gchar *strFileWithExtension = strrchr (cFileName, '/');
 		strFileWithExtension++;
@@ -346,8 +258,130 @@ static gboolean _cd_slider_get_exif_props_idle (CairoDockModuleInstance *myApple
 #endif
 }
 
-gboolean cd_slider_start_slide (CairoDockModuleInstance *myApplet)
+
+  //////////////////////
+ /// FOLDER PARSING ///
+//////////////////////
+
+typedef struct {
+	gchar *cDirectory;
+	gboolean bSubDirs;
+	gboolean bRandom;
+	GList *pList;  // the result
+	CairoDockModuleInstance *pApplet;
+	} CDListSharedMemory;
+
+static void _free_shared_memory (CDListSharedMemory *pSharedMemory)
 {
+	g_free (pSharedMemory->cDirectory);
+	cd_slider_free_images_list (pSharedMemory->pList);
+	g_free (pSharedMemory);
+}
+
+
+static int _compare_images_order (SliderImage *image2, SliderImage *image1)
+{
+	if (image1->cPath == NULL)
+		return -1;
+	if (image2->cPath == NULL)
+		return 1;
+	gchar *cURI_1 = g_ascii_strdown (image1->cPath, -1);
+	gchar *cURI_2 = g_ascii_strdown (image2->cPath, -1);
+	int iOrder = strcmp (cURI_1, cURI_2);
+	g_free (cURI_1);
+	g_free (cURI_2);
+	return iOrder;
+}
+static int _cd_slider_random_compare (gconstpointer a, gconstpointer b, GRand *pRandomGenerator)
+{
+	return (g_rand_boolean (pRandomGenerator) ? 1 : -1);
+}
+static GList *_list_directory (GList *pList, gchar *cDirectory, gboolean bRecursive, gboolean bSortAlpha)
+{
+	cd_debug ("%s (%s)", __func__, cDirectory);
+	GError *erreur = NULL;
+	GDir *dir = g_dir_open (cDirectory, 0, &erreur);
+	if (erreur != NULL) {
+		cd_warning ("Slider : %s", erreur->message);
+		g_error_free (erreur);
+		return pList;
+	}
+	struct stat buf;
+	SliderImage *pImage;
+	SliderImageFormat iFormat;
+	const gchar *cFileName, *extension;
+	GString *sFilePath = g_string_new ("");
+	while ((cFileName = g_dir_read_name (dir)) != NULL) {
+		g_string_printf (sFilePath, "%s/%s", cDirectory, cFileName);
+		if (stat (sFilePath->str, &buf) != -1) {
+			if (S_ISDIR (buf.st_mode) && bRecursive) {
+				pList = _list_directory (pList, sFilePath->str, bRecursive, bSortAlpha);
+			}
+			else {
+				extension = strrchr(cFileName,'.');
+				if (extension != NULL) {
+					iFormat = SLIDER_UNKNOWN_FORMAT;  // le but du format serait de definir un seuil de taille pour chaque format a partir duquel l'image devrait etre chargee par un thread.
+					if (g_ascii_strcasecmp(extension, ".png") == 0)
+						iFormat = SLIDER_PNG;
+					else if (g_ascii_strcasecmp(extension, ".jpg") == 0 || g_ascii_strcasecmp(extension, ".jpeg") == 0)
+						iFormat = SLIDER_JPG;
+					else if (g_ascii_strcasecmp(extension, ".svg") == 0)
+						iFormat = SLIDER_SVG;
+					else if (g_ascii_strcasecmp(extension, ".gif") == 0)
+						iFormat = SLIDER_GIF;
+					else if (g_ascii_strcasecmp(extension, ".xpm") == 0)
+						iFormat = SLIDER_XPM;
+					
+					if (iFormat != SLIDER_UNKNOWN_FORMAT) {
+						cd_debug ("Slider - Adding %s to list", cFileName);
+						pImage = g_new0 (SliderImage, 1);
+						pImage->cPath = g_strdup (sFilePath->str);
+						pImage->iSize = buf.st_size;
+						pImage->iFormat = iFormat;
+						// exif orientation is got later.
+						if (bSortAlpha)  // ordre alphabetique.
+							pList = g_list_insert_sorted (pList, pImage, (GCompareFunc) _compare_images_order);
+						else  // on randomise a la fin.
+							pList = g_list_prepend (pList, pImage);
+					}
+					
+				}
+			}
+		}
+	}
+	
+	g_string_free (sFilePath, TRUE);
+	g_dir_close (dir);
+	return pList;
+}
+
+static void cd_slider_get_files_from_dir (CDListSharedMemory *pSharedMemory)
+{
+	if (pSharedMemory->cDirectory == NULL)
+	{
+		cd_warning ("Slider : No directory to scan, halt.");
+		return;
+	}
+	
+	// recursively scan the folder
+	pSharedMemory->pList = _list_directory (NULL, pSharedMemory->cDirectory, pSharedMemory->bSubDirs, ! pSharedMemory->bRandom);
+	
+	// randomize the list if necessary
+	if (pSharedMemory->bRandom)
+	{
+		GRand *pRandomGenerator = g_rand_new ();
+		pSharedMemory->pList = g_list_sort_with_data (pSharedMemory->pList, (GCompareDataFunc) _cd_slider_random_compare, pRandomGenerator);
+		g_rand_free (pRandomGenerator);
+	}
+}
+
+static gboolean cd_slider_start_slide (CDListSharedMemory *pSharedMemory)
+{
+	// grab the result
+	CairoDockModuleInstance *myApplet = pSharedMemory->pApplet;
+	myData.pList = pSharedMemory->pList;
+	
+	// if needed, get the EXIF data now
 	if (myData.iSidExifIdle == 0 && myConfig.bGetExifDataAtOnce)
 	{
 		myData.pExifElement = myData.pList;
@@ -357,6 +391,93 @@ gboolean cd_slider_start_slide (CairoDockModuleInstance *myApplet)
 			NULL);
 	}
 	
+	myData.pMeasureImage = cairo_dock_new_task (0,
+		(CairoDockGetDataAsyncFunc) cd_slider_read_image,
+		(CairoDockUpdateSyncFunc) cd_slider_update_transition,
+		myApplet);  // 0 <=> one shot task.
+	
 	cd_slider_next_slide (myApplet);
 	return FALSE;
 }
+
+
+void cd_slider_parse_folder (CairoDockModuleInstance *myApplet, gboolean bDelay)
+{
+	cairo_dock_discard_task (myData.pMeasureDirectory);
+	
+	// remember the current params.
+	g_free (myData.cDirectory);
+	myData.cDirectory = g_strdup (myConfig.cDirectory);
+	myData.bSubDirs = myConfig.bSubDirs;
+	myData.bRandom = myConfig.bRandom;
+	
+	// create a task.
+	CDListSharedMemory *pSharedMemory = g_new0 (CDListSharedMemory, 1);
+	pSharedMemory->bSubDirs = myConfig.bSubDirs;
+	pSharedMemory->bRandom = myConfig.bRandom;
+	pSharedMemory->cDirectory = g_strdup (myConfig.cDirectory);
+	pSharedMemory->pApplet = myApplet;
+	
+	myData.pMeasureDirectory = cairo_dock_new_task (0,
+		(CairoDockGetDataAsyncFunc) cd_slider_get_files_from_dir,
+		(CairoDockUpdateSyncFunc) cd_slider_start_slide,
+		pSharedMemory);  // 0 <=> one shot task.
+	
+	// launch the parsing.
+	if (bDelay)
+		cairo_dock_launch_task_delayed (myData.pMeasureDirectory, cairo_dock_is_loading () ? 1500. : 0.);  // launch with a delay or just in the next main loop event.
+	else
+		cairo_dock_launch_task (myData.pMeasureDirectory);
+}
+
+void cd_slider_stop (CairoDockModuleInstance *myApplet)
+{
+	//Stop all processes
+	cairo_dock_free_task (myData.pMeasureImage);  // since it needs a cairo context, we can't let it live.
+	myData.pMeasureImage = NULL;
+	cairo_dock_discard_task (myData.pMeasureDirectory);
+	myData.pMeasureDirectory = NULL;
+	if (myData.iSidExifIdle != 0)
+	{
+		g_source_remove(myData.iSidExifIdle);
+		myData.iSidExifIdle = 0;
+	}
+	if (myData.iScrollID != 0)
+	{
+		g_source_remove (myData.iScrollID);
+		myData.iScrollID = 0;
+	}
+	if (myData.iTimerID != 0)
+	{
+		g_source_remove(myData.iTimerID);
+		myData.iTimerID = 0;
+	}
+	
+	// destroy current buffers.
+	if (myData.pCairoSurface)
+	{
+		cairo_surface_destroy (myData.pCairoSurface);
+		myData.pCairoSurface = NULL;
+	}
+	if (myData.pPrevCairoSurface)
+	{
+		cairo_surface_destroy (myData.pPrevCairoSurface);
+		myData.pPrevCairoSurface = NULL;
+	}
+	if (myData.iPrevTexture != 0)
+	{
+		_cairo_dock_delete_texture (myData.iPrevTexture);
+		myData.iPrevTexture = 0;
+	}
+	if (myData.iTexture != 0)
+	{
+		_cairo_dock_delete_texture (myData.iTexture);
+		myData.iTexture = 0;
+	}
+	
+	cd_slider_free_images_list (myData.pList);
+	myData.pList = NULL;
+	myData.pElement = NULL;
+	myData.bPause = FALSE;
+}
+
