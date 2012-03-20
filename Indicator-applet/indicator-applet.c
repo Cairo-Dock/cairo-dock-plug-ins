@@ -149,8 +149,7 @@ CDAppletIndicator *cd_indicator_new (CairoDockModuleInstance *pApplet, const gch
 	if (!s_bIndicatorIconThemeAdded)
 	{
 		s_bIndicatorIconThemeAdded = TRUE;
-		gtk_icon_theme_append_search_path (gtk_icon_theme_get_default(),
-			INDICATOR_ICONS_DIR);
+		cairo_dock_add_path_to_icon_theme (INDICATOR_ICONS_DIR);  /// maybe we should add it back when the icons manager is reloaded ?...
 	}
 	CDAppletIndicator *pIndicator = g_new0 (CDAppletIndicator, 1);
 	pIndicator->pApplet = pApplet;
