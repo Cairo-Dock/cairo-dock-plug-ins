@@ -25,20 +25,14 @@
 #include "applet-struct.h"
 
 
-#define cd_slider_schedule_next_slide(myApplet) do {\
-	if (myData.iTimerID == 0) {\
-		myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) cd_slider_next_slide, (gpointer) myApplet); } } while (0)
+void cd_slider_jump_to_next_slide (CairoDockModuleInstance *myApplet);
+
+void cd_slider_schedule_next_slide (CairoDockModuleInstance *myApplet);
 
 #define cd_slider_next_slide_is_scheduled(myApplet) (myData.iTimerID != 0)
 
 
-void cd_slider_free_images_list (GList *pList);
-
-
-gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet);
-
-
-void cd_slider_parse_folder (CairoDockModuleInstance *myApplet, gboolean bDelay);
+void cd_slider_start (CairoDockModuleInstance *myApplet, gboolean bDelay);
 
 void cd_slider_stop (CairoDockModuleInstance *myApplet);
 

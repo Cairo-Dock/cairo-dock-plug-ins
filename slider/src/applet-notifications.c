@@ -31,11 +31,11 @@
 static inline void _toggle_pause (CairoDockModuleInstance *myApplet)
 {
 	if (!myData.bPause) {
-		myData.bPause = TRUE;  // coupera le timer.
+		myData.bPause = TRUE;  // will stop the slider.
 	}
 	else {
 		myData.bPause = FALSE;
-		cd_slider_next_slide (myApplet); //on relance le diapo
+		cd_slider_jump_to_next_slide (myApplet);  // restart the slider
 	}
 }
 
@@ -91,25 +91,15 @@ static gboolean _cd_slider_scroll_delayed (CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	if (myData.iNbScroll == 0)
+	{
+		myData.iScrollID = 0;
 		CD_APPLET_LEAVE (FALSE);
-	
-	if (myConfig.bUseThread)
-		cairo_dock_stop_task (myData.pMeasureImage);
+	}
 	
 	int i;
 	if (myData.iNbScroll > 0)
 	{
-		if (myData.iTimerID == 0)  // en cours d'animation, on la finit en affichant l'image courante.
-		{
-			cd_slider_draw_default (myApplet);
-			CD_APPLET_REDRAW_MY_ICON;
-		}
-		else
-		{
-			g_source_remove (myData.iTimerID);  //on coupe le timer en cours
-			myData.iTimerID = 0;
-		}
-		for (i = 0; i < myData.iNbScroll-1; i ++)  // le 1er scroll n'implique rien.
+		for (i = 0; i < myData.iNbScroll-1; i ++)  // N-1 because we'll jump to next slide.
 		{
 			if (myData.pElement == NULL)  // debut
 				myData.pElement = myData.pList;
@@ -119,20 +109,18 @@ static gboolean _cd_slider_scroll_delayed (CairoDockModuleInstance *myApplet)
 	}
 	else if (myData.iNbScroll < 0)
 	{
-		if (myData.iTimerID != 0)
+		for (i = 0; i <= -myData.iNbScroll; i ++)  // N+1 because we'll jump to next slide.
 		{
-			g_source_remove(myData.iTimerID); //on coupe le timer en cours
-			myData.iTimerID = 0;
-		}
-		for (i = 0; i <= -myData.iNbScroll; i ++)  // fait une fois de plus.
-		{
-			myData.pElement = cairo_dock_get_previous_element (myData.pElement, myData.pList);
+			if (myData.pElement == NULL)  // debut
+				myData.pElement = myData.pList;
+			else
+				myData.pElement = cairo_dock_get_previous_element (myData.pElement, myData.pList);
 		}
 	}
 	
 	myData.iNbScroll = 0;
 	myData.iScrollID = 0;
-	cd_slider_next_slide (myApplet);
+	cd_slider_jump_to_next_slide (myApplet);
 	CD_APPLET_LEAVE (FALSE);
 }
 CD_APPLET_ON_SCROLL_BEGIN
@@ -207,7 +195,7 @@ static void _cd_slider_refresh_images_list (GtkMenuItem *menu_item, CairoDockMod
 	CD_APPLET_ENTER;
 	cd_slider_stop (myApplet);
 	
-	cd_slider_parse_folder (myApplet, FALSE);  // FALSE <=> immediately
+	cd_slider_start (myApplet, FALSE);  // FALSE <=> immediately
 	CD_APPLET_LEAVE();
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN

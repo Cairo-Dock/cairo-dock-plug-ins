@@ -37,6 +37,11 @@
 
 static void _cd_slider_get_exif_props (SliderImage *pImage);
 
+
+  //////////////
+ /// IMAGES ///
+//////////////
+
 static void cd_slider_free_image (SliderImage *pImage) {
 	if (pImage == NULL)
 		return;
@@ -44,14 +49,15 @@ static void cd_slider_free_image (SliderImage *pImage) {
 	g_free (pImage);
 }
 
-void cd_slider_free_images_list (GList *pList) {
+static void cd_slider_free_images_list (GList *pList) {
 	g_list_foreach (pList, (GFunc) cd_slider_free_image, NULL);
 	g_list_free (pList);
 }
 
 
-static void cd_slider_read_image (CairoDockModuleInstance *myApplet)
+static void _cd_slider_load_image (CairoDockModuleInstance *myApplet)
 {
+	g_return_if_fail (myData.pElement != NULL);
 	SliderImage *pImage = myData.pElement->data;
 	gchar *cImagePath = pImage->cPath;
 	if (!pImage->bGotExifData && myData.iSidExifIdle == 0)  // no exif data yet and no process currently retrieving them.
@@ -92,8 +98,8 @@ static void cd_slider_read_image (CairoDockModuleInstance *myApplet)
 	cd_debug ("  %s loaded", cImagePath);
 }
 
-
-static gboolean cd_slider_update_transition (CairoDockModuleInstance *myApplet) {
+static gboolean _cd_slider_display_image (CairoDockModuleInstance *myApplet)
+{
 	CD_APPLET_ENTER;
 	//\_______________ On cree la texture (en-dehors du thread).
 	if (g_bUseOpenGL)
@@ -128,15 +134,16 @@ static gboolean cd_slider_update_transition (CairoDockModuleInstance *myApplet) 
 	CD_APPLET_LEAVE (FALSE);
 }
 
-
-gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet)
+void cd_slider_jump_to_next_slide (CairoDockModuleInstance *myApplet)
 {
-	CD_APPLET_ENTER;
-	if (myData.bPause)  // on est en pause.
+	//\___________________________ stop any pending action.
+	if (myData.iTimerID != 0)
 	{
+		g_source_remove (myData.iTimerID);
 		myData.iTimerID = 0;
-		CD_APPLET_LEAVE (FALSE);
 	}
+	cairo_dock_stop_task (myData.pMeasureImage);
+	
 	//\___________________________ On recupere la nouvelle image a afficher.
 	if (myData.pElement == NULL)  // debut
 		myData.pElement = myData.pList;
@@ -145,10 +152,8 @@ gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet)
 	
 	if (myData.pElement == NULL || myData.pElement->data == NULL)
 	{
-		
 		cd_warning ("Slider stopped, empty list");
-		myData.iTimerID = 0;
-		CD_APPLET_LEAVE (FALSE);
+		return;
 	}
 	SliderImage *pImage = myData.pElement->data;
 	cd_message ("Slider - load %s", pImage->cPath);
@@ -169,14 +174,18 @@ gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet)
 	//\___________________________ On ecrit le nom de la nouvelle image en info.
 	if (myConfig.bImageName && myDesklet)
 	{
-		gchar *cFileName = g_strdup (pImage->cPath);
-		gchar *strFileWithExtension = strrchr (cFileName, '/');
-		strFileWithExtension++;
-		gchar *strFileWithNoExtension = strrchr (strFileWithExtension, '.');
-		*strFileWithNoExtension = '\0';
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (strFileWithExtension);
+		gchar *cFilePath = g_strdup (pImage->cPath);
+		gchar *cFileName = strrchr (cFilePath, '/');
+		if (cFileName)
+			cFileName ++;
+		else
+			cFileName = cFilePath;
+		gchar *ext = strrchr (cFileName, '.');
+		if (ext)
+			*ext = '\0';
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (cFileName);
 		//cd_debug ("Slider - Image path: %s", pImage->cPath);
-		g_free (cFileName);
+		g_free (cFilePath);
 	}
 	
 	//\___________________________ On charge la nouvelle surface/texture et on lance l'animation de transition.
@@ -188,26 +197,38 @@ gboolean cd_slider_next_slide (CairoDockModuleInstance *myApplet)
 	{
 		cd_debug ("Slider - launch thread");
 		cairo_dock_launch_task (myData.pMeasureImage);
-		myData.iTimerID = 0;
-		CD_APPLET_LEAVE (FALSE);  // on quitte la boucle d'attente car on va effectuer une animation.
 	}
 	else
 	{
-		cd_slider_read_image (myApplet);
-		cd_slider_update_transition (myApplet);
-		
-		if (myConfig.iAnimation == SLIDER_DEFAULT)
-		{
-			CD_APPLET_LEAVE (TRUE);  // pas d'animation => on ne quitte pas la boucle d'attente.
-		}
-		else
-		{
-			myData.iTimerID = 0;
-			CD_APPLET_LEAVE (FALSE);  // on quitte la boucle d'attente car on va effectuer une animation.
-		}
+		_cd_slider_load_image (myApplet);
+		_cd_slider_display_image (myApplet);
 	}
 }
 
+
+static gboolean _next_slide (CairoDockModuleInstance *myApplet)
+{
+	CD_APPLET_ENTER;
+	
+	myData.iTimerID = 0;  // we'll quit this loop anyway, so reset the timer now so that it doesn't disturb us.
+	
+	if (! myData.bPause)  // if paused, don't go to next slide.
+	{
+		cd_slider_jump_to_next_slide (myApplet);
+	}
+	
+	CD_APPLET_LEAVE (FALSE);
+}
+void cd_slider_schedule_next_slide (CairoDockModuleInstance *myApplet)
+{
+	if (myData.iTimerID == 0)
+		myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) _next_slide, (gpointer) myApplet);
+}
+
+
+  /////////////////
+ /// EXIF DATA ///
+/////////////////
 
 static void _cd_slider_get_exif_props (SliderImage *pImage)
 {
@@ -391,17 +412,19 @@ static gboolean cd_slider_start_slide (CDListSharedMemory *pSharedMemory)
 			NULL);
 	}
 	
+	// create the loading task that will be used later
 	myData.pMeasureImage = cairo_dock_new_task (0,
-		(CairoDockGetDataAsyncFunc) cd_slider_read_image,
-		(CairoDockUpdateSyncFunc) cd_slider_update_transition,
+		(CairoDockGetDataAsyncFunc) _cd_slider_load_image,
+		(CairoDockUpdateSyncFunc) _cd_slider_display_image,
 		myApplet);  // 0 <=> one shot task.
 	
-	cd_slider_next_slide (myApplet);
+	// display the first slide.
+	cd_slider_jump_to_next_slide (myApplet);
 	return FALSE;
 }
 
 
-void cd_slider_parse_folder (CairoDockModuleInstance *myApplet, gboolean bDelay)
+void cd_slider_start (CairoDockModuleInstance *myApplet, gboolean bDelay)
 {
 	cairo_dock_discard_task (myData.pMeasureDirectory);
 	
@@ -411,7 +434,7 @@ void cd_slider_parse_folder (CairoDockModuleInstance *myApplet, gboolean bDelay)
 	myData.bSubDirs = myConfig.bSubDirs;
 	myData.bRandom = myConfig.bRandom;
 	
-	// create a task.
+	// create a task to parse the folder.
 	CDListSharedMemory *pSharedMemory = g_new0 (CDListSharedMemory, 1);
 	pSharedMemory->bSubDirs = myConfig.bSubDirs;
 	pSharedMemory->bRandom = myConfig.bRandom;
@@ -478,6 +501,6 @@ void cd_slider_stop (CairoDockModuleInstance *myApplet)
 	cd_slider_free_images_list (myData.pList);
 	myData.pList = NULL;
 	myData.pElement = NULL;
+	myData.pExifElement = NULL;
 	myData.bPause = FALSE;
 }
-

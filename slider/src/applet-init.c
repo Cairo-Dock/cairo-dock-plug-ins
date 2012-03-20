@@ -44,7 +44,7 @@ CD_APPLET_INIT_BEGIN
 	
 	CD_APPLET_GET_MY_ICON_EXTENT (&myData.iSurfaceWidth, &myData.iSurfaceHeight);
 	
-	cd_slider_parse_folder (myApplet, TRUE);  // TRUE <=> with delay
+	cd_slider_start (myApplet, TRUE);  // TRUE <=> with delay
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -68,8 +68,6 @@ CD_APPLET_STOP_END
 
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
-	///CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_EVENT;
-	
 	CD_APPLET_GET_MY_ICON_EXTENT (&myData.iSurfaceWidth, &myData.iSurfaceHeight);  // meme si le container n'a pas change, car un desklet se redimensionne, et l'icone avec.
 	
 	//\_______________ Reload all changed data.
@@ -92,15 +90,22 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			cd_slider_stop (myApplet);
 	
-			cd_slider_parse_folder (myApplet, FALSE);  // FALSE <=> immediately
+			cd_slider_start (myApplet, FALSE);  // FALSE <=> immediately
 		}
-		else
+		else  // jump tp next slide to show the differences (new animation, new frame width, etc)
 		{
-			cd_slider_next_slide (myApplet);
+			cd_slider_jump_to_next_slide (myApplet);
 		}
 	}
-	/**else {
-		cd_slider_next_slide (myApplet); //restart sliding
+	else
+	{
+		if (myData.pList)
+		{
+			if (myData.pElement == NULL)
+				myData.pElement = myData.pList;
+			else
+				myData.pElement = cairo_dock_get_previous_element (myData.pElement, myData.pList);
+			cd_slider_jump_to_next_slide (myApplet);  // a quick'n'dirty but safe way to reload correctly the current image at the new applet's size.
+		}
 	}
-	CD_APPLET_REGISTER_FOR_UPDATE_ICON_EVENT;*/
 CD_APPLET_RELOAD_END
