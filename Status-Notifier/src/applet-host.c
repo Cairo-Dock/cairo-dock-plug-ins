@@ -203,7 +203,8 @@ void cd_satus_notifier_add_theme_path (const gchar * cThemePath)
 	g_hash_table_insert (myData.pThemePaths, g_strdup (cThemePath), GINT_TO_POINTER (ref));  // et on la met a jour dans la table.
 	
 	if (ref == 1)  // premiere fois qu'on voit ce chemin.
-		gtk_icon_theme_append_search_path (gtk_icon_theme_get_default(), cThemePath);  // append car ce sont des icones par defaut.
+		///gtk_icon_theme_append_search_path (gtk_icon_theme_get_default(), cThemePath);  // append car ce sont des icones par defaut.
+		cairo_dock_add_path_to_icon_theme (cThemePath);
 }
 
 void cd_satus_notifier_remove_theme_path (const gchar * cThemePath)
@@ -217,7 +218,8 @@ void cd_satus_notifier_remove_theme_path (const gchar * cThemePath)
 	{
 		g_hash_table_remove (myData.pThemePaths, cThemePath);  // on le supprime de la table.
 		
-		GtkIconTheme *pIconTheme = gtk_icon_theme_get_default();  // et du theme.
+		cairo_dock_remove_path_from_icon_theme (cThemePath);
+		/**GtkIconTheme *pIconTheme = gtk_icon_theme_get_default();  // et du theme.
 		gchar **paths = NULL;
 		gint iNbPaths = 0;
 		gtk_icon_theme_get_search_path (pIconTheme, &paths, &iNbPaths);
@@ -239,7 +241,7 @@ void cd_satus_notifier_remove_theme_path (const gchar * cThemePath)
 			gtk_icon_theme_set_search_path (pIconTheme, (const gchar **)paths, iNbPaths - 1);
 		}
 		
-		g_strfreev (paths);
+		g_strfreev (paths);*/
 	}
 	else  // on decremente la reference.
 	{
