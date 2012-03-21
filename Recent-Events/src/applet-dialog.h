@@ -30,4 +30,7 @@ void cd_trigger_search (void);
 void cd_toggle_dialog (void);
 
 
+void cd_folders_free_apps_list (CairoDockModuleInstance *myApplet);
+
+
 #endif

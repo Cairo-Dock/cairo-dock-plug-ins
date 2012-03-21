@@ -22,6 +22,7 @@
 #include "applet-config.h"
 #include "applet-notifications.h"
 #include "applet-struct.h"
+#include "applet-dialog.h"
 #include "applet-init.h"
 
 
@@ -66,6 +67,14 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
 		NOTIFICATION_BUILD_ICON_MENU, (CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU_FUNC, myApplet);
+	
+	if (myData.iSidTryDialog != 0)
+		g_source_remove (myData.iSidTryDialog);
+	
+	cairo_dock_dialog_unreference (myData.pDialog);  // pModel will be destroyed with the viewport.
+	
+	g_free (myData.cCurrentUri);
+	cd_folders_free_apps_list (myApplet);
 	
 	cd_keybinder_unbind (myData.pKeyBinding);
 CD_APPLET_STOP_END

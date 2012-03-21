@@ -69,6 +69,8 @@ struct _AppletData {
 	CDEventType iCurrentCaterogy;
 	CairoKeyBinding *pKeyBinding;
 	gint iDesiredIconSize;
+	guint iSidTryDialog;
+	gint iNbTries;
 	} ;
 
 

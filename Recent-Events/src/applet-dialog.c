@@ -466,7 +466,24 @@ static void _on_dialog_destroyed (CairoDockModuleInstance *myApplet)
 static gboolean _show_dialog_delayed (gpointer data)
 {
 	cd_toggle_dialog ();
-	return FALSE;
+	if (myData.pDialog != NULL)  // dialog built with success, quit.
+	{
+		myData.iSidTryDialog = 0;
+		return FALSE;
+	}
+	else  // failed, retry up to 3 times.
+	{
+		myData.iNbTries ++;
+		cd_debug (" %d tries", myData.iNbTries);
+		if (myData.iNbTries >= 3)  // definitely no hope -> show a message to the user.
+		{
+			cairo_dock_remove_dialog_if_any (myIcon);
+			cairo_dock_show_temporary_dialog_with_icon (D_("You need to install the Zeitgeist data engine."), myIcon, myContainer, 6000, "same icon");
+			myData.iSidTryDialog = 0;
+			return FALSE;
+		}
+	}
+	return TRUE;
 }
 void cd_toggle_dialog (void)
 {
@@ -482,17 +499,15 @@ void cd_toggle_dialog (void)
 		{
 			cd_debug ("first search");
 			myData.pLog = zeitgeist_log_new ();  // may launch the Zeitgeist daemon if it's not yet running.
-			if (! zeitgeist_log_is_connected (myData.pLog))  // the connection may not be immediate (even if the daemon is already running), in this case come back in 1s.
-			{
-				cd_debug ("come back in 1s...");
-				g_timeout_add_seconds (1, _show_dialog_delayed, NULL);
-				return;
-			}
 		}
-		else if (! zeitgeist_log_is_connected (myData.pLog))
+		if (! zeitgeist_log_is_connected (myData.pLog))
 		{
-			cairo_dock_remove_dialog_if_any (myIcon);
-			cairo_dock_show_temporary_dialog_with_icon (D_("You need to install the Zeitgeist data engine."), myIcon, myContainer, 6000, "same icon");
+			cd_debug ("not yet connected");
+			if (myData.iSidTryDialog == 0)
+			{
+				myData.iNbTries = 0;
+				myData.iSidTryDialog = g_timeout_add_seconds (1, _show_dialog_delayed, NULL);
+			}
 			return;
 		}
 		
