@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2012-03-21 01:40+0100\n"
-"PO-Revision-Date: 2011-09-16 00:46+0000\n"
+"POT-Creation-Date: 2012-03-21 01:03+0000\n"
+"PO-Revision-Date: 2012-03-21 02:56+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-13 04:58+0000\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Launchpad-Export-Date: 2012-03-22 05:04+0000\n"
+"X-Generator: Launchpad (build 14981)\n"
+"Language: \n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
@@ -68,9 +68,8 @@ msgid "Spot"
 msgstr "Spot"
 
 #: ../Application-Menu/src/applet-init.c:30
-#, fuzzy
 msgid "Application Menu"
-msgstr "Applications Menu"
+msgstr ""
 
 #: ../Application-Menu/src/applet-init.c:33
 #: ../Global-Menu/src/applet-init.c:33
@@ -377,7 +376,8 @@ msgstr "The module has been added, but couldn't be launched."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "The applet '%s' has been successfully updated and automatically reloaded"
 
@@ -1342,9 +1342,8 @@ msgid "Enter your search"
 msgstr "Enter your search"
 
 #: ../Sound-Menu/src/applet-init.c:38
-#, fuzzy
 msgid "Sound Menu"
-msgstr "Sound Control"
+msgstr ""
 
 #: ../Sound-Menu/src/applet-init.c:41
 msgid ""
@@ -1596,7 +1595,6 @@ msgid "Set up volume:"
 msgstr "Set up volume:"
 
 #: ../alsaMixer/src/applet-init.c:34
-#, fuzzy
 msgid ""
 "This applet lets you control the sound volume from the dock.\n"
 "Scroll up/down on the icon to increase/decrease the volume.\n"
@@ -1606,13 +1604,6 @@ msgid ""
 "mixer.\n"
 "The applet can either use the Ubuntu Sound-menu or the Alsa driver."
 msgstr ""
-"This applet lets you control the sound volume from the dock.\n"
-"Scroll up/down on the icon to increase/decrease the volume.\n"
-"Click on icon to show/hide volume control (you can bind a keyboard shortcut "
-"for it)\n"
-"You can also hide the dialog by clicking on it.\n"
-"Middle-click to mute/unmute, double-click to raise the channels mixer.\n"
-"This applet works with the Alsa sound driver."
 
 #: ../alsaMixer/src/applet-init.c:42
 msgid "Sound Control"
@@ -1748,8 +1739,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1758,8 +1749,8 @@ msgstr ""
 "2 views are available : <b>numeric</b> and <b>analogue</b>.\n"
 " Analogue view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1964,7 +1955,8 @@ msgstr ""
 "Just press CTRL+v to paste its URL anywhere."
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Please wait for the current upload to finish before starting a new one."
 
@@ -2997,11 +2989,11 @@ msgstr "Show Mouse"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 
 #: ../showDesktop/src/applet-init.c:28
 msgid "showDesktop"
@@ -3064,9 +3056,8 @@ msgid "Browse images folder"
 msgstr "Browse images folder"
 
 #: ../slider/src/applet-notifications.c:270
-#, fuzzy
 msgid "Refresh images list"
-msgstr "Refresh time:"
+msgstr ""
 
 #: ../stack/src/applet-init.c:31
 msgid "stack"
@@ -4950,9 +4941,8 @@ msgid ""
 msgstr ""
 
 #: ../Application-Menu/data/messages:89
-#, fuzzy
 msgid "Behavior"
-msgstr "Behaviour"
+msgstr ""
 
 #: ../Application-Menu/data/messages:91 ../Global-Menu/data/messages:91
 msgid "Steal window menu"
@@ -4967,19 +4957,16 @@ msgid "Steal window menu and border"
 msgstr ""
 
 #: ../Application-Menu/data/messages:97 ../Global-Menu/data/messages:97
-#, fuzzy
 msgid "Shortkey to pop up the menu"
-msgstr "Shortkey to pop-up the items menu:"
+msgstr ""
 
 #: ../Application-Menu/data/messages:99 ../Global-Menu/data/messages:99
-#, fuzzy
 msgid "Pop up the menu at mouse position"
-msgstr "Pop-up menus at mouse position?"
+msgstr ""
 
 #: ../Application-Menu/data/messages:101 ../Global-Menu/data/messages:101
-#, fuzzy
 msgid "Compact mode"
-msgstr "Use the compact mode?"
+msgstr ""
 
 #: ../Application-Menu/data/messages:103 ../Global-Menu/data/messages:111
 msgid "Image for the 'minimize' button"
@@ -4990,14 +4977,12 @@ msgid "Image for the 'maximize' button"
 msgstr ""
 
 #: ../Application-Menu/data/messages:107 ../Global-Menu/data/messages:115
-#, fuzzy
 msgid "Image for the 'restore' button"
-msgstr "Image for the spotlight:"
+msgstr ""
 
 #: ../Application-Menu/data/messages:109 ../Global-Menu/data/messages:117
-#, fuzzy
 msgid "Image for the 'close' button"
-msgstr "Image for the spotlight:"
+msgstr ""
 
 #: ../Application-Menu/data/messages:117 ../Application-Menu/data/messages:207
 #: ../Cairo-Penguin/data/messages:7 ../Clipper/data/messages:7
@@ -5084,9 +5069,8 @@ msgid "On icon"
 msgstr "On icon"
 
 #: ../Application-Menu/data/messages:299 ../Sound-Menu/data/messages:189
-#, fuzzy
 msgid "How to represent the icon:"
-msgstr "How to render the icon :"
+msgstr ""
 
 #: ../Application-Menu/data/messages:301 ../Network-Monitor/data/messages:187
 #: ../Network-Monitor/data/messages:217 ../Sound-Menu/data/messages:191
@@ -5626,8 +5610,10 @@ msgid "Background"
 msgstr "Background"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid "You can have more attractive backgrounds using the Desklet decorations"
-msgstr "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
+msgstr ""
+"You can have more attractive backgrounds using the Desklet decorations"
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
 msgid "Display a simple background?"
@@ -5785,9 +5771,8 @@ msgid "Order of the buttons: "
 msgstr ""
 
 #: ../Global-Menu/data/messages:105
-#, fuzzy
 msgid "Auto"
-msgstr "Automatic"
+msgstr ""
 
 #: ../Global-Menu/data/messages:107
 msgid "Close button at the end"
@@ -5892,9 +5877,8 @@ msgstr "Always display the icon, even when the dock is hidden?"
 #: ../netspeed/data/messages:17 ../powermanager/data/messages:19
 #: ../slider/data/messages:17 ../weather/data/messages:19
 #: ../wifi/data/messages:17
-#, fuzzy
 msgid "With default background"
-msgstr "Draw a background?"
+msgstr ""
 
 #: ../Messaging-Menu/data/messages:19 ../Network-Monitor/data/messages:21
 #: ../Status-Notifier/data/messages:23 ../System-Monitor/data/messages:19
@@ -5904,9 +5888,8 @@ msgstr "Draw a background?"
 #: ../netspeed/data/messages:19 ../powermanager/data/messages:21
 #: ../slider/data/messages:19 ../weather/data/messages:21
 #: ../wifi/data/messages:19
-#, fuzzy
 msgid "With custom background"
-msgstr "Display a simple background?"
+msgstr ""
 
 #: ../Messaging-Menu/data/messages:21 ../Network-Monitor/data/messages:23
 #: ../Status-Notifier/data/messages:25 ../System-Monitor/data/messages:21
@@ -6678,14 +6661,12 @@ msgid "Brightness to apply automatically on startup:"
 msgstr "Brightness to apply automatically on startup:"
 
 #: ../Xgamma/data/messages:101
-#, fuzzy
 msgid "Shortkey to increase the brightness:"
-msgstr "Shortkey to show the terminal:"
+msgstr ""
 
 #: ../Xgamma/data/messages:103
-#, fuzzy
 msgid "Shortkey to decrease the brightness:"
-msgstr "Shortkey to show the terminal:"
+msgstr ""
 
 #: ../alsaMixer/data/messages:7 ../alsaMixer/data/messages:155
 msgid "Leave empty to use the default sound card."
@@ -7292,7 +7273,8 @@ msgid "Space between icons:"
 msgstr "Space between icons:"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 represents a flat wave, 1 means the wave is identical to other views."
 
@@ -7429,8 +7411,10 @@ msgid "Colours"
 msgstr "Colours"
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
-msgstr "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
+msgstr ""
+"This will slightly alter your colours, so you may have to modify them."
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
 msgid "Add luminance?"
@@ -7597,19 +7581,16 @@ msgid "Action"
 msgstr ""
 
 #: ../logout/data/messages:103
-#, fuzzy
 msgid "Shortkey to lock the screen"
-msgstr "Shortkey to show the terminal:"
+msgstr ""
 
 #: ../logout/data/messages:105
-#, fuzzy
 msgid "Shortkey to show the menu"
-msgstr "Shortkey to show/hide the menu:"
+msgstr ""
 
 #: ../logout/data/messages:107
-#, fuzzy
 msgid "Demand confirmation before closing"
-msgstr "Ask for confirmation before deleting a note?"
+msgstr ""
 
 #: ../logout/data/messages:109
 msgid "Commands"
@@ -7674,7 +7655,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Name of the file for the \"has mail\" image :"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "If checked, the number of messages will be shown even if there is no mail."
 
@@ -7759,8 +7741,10 @@ msgid "Blur amount:"
 msgstr "Blur amount:"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
-msgstr "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
+msgstr ""
+"Leave it empty to display the name of the player currently controlled."
 
 #: ../musicPlayer/data/messages:101
 msgid "Audio Player"
@@ -8413,14 +8397,12 @@ msgid "Use the compact mode?"
 msgstr "Use the compact mode?"
 
 #: ../switcher/data/messages:93
-#, fuzzy
 msgid "Desktops layout"
-msgstr "Desktop"
+msgstr ""
 
 #: ../switcher/data/messages:97
-#, fuzzy
 msgid "On a single line"
-msgstr "On 1 line"
+msgstr ""
 
 #: ../switcher/data/messages:99
 msgid "Map wallpaper to icons?"
@@ -8667,7 +8649,8 @@ msgstr "Code for your location:"
 
 #: ../weather/data/messages:107
 msgid "If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
-msgstr "If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
+msgstr ""
+"If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
 
 #: ../weather/data/messages:109
 msgid "Use International System Units?"
@@ -8730,7 +8713,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Position of vertical scrollbar in pixels"
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 
@@ -8815,25 +8799,3 @@ msgstr "Raw Signal Informations"
 #: ../wifi/data/messages:197
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Overwrite the default label with the connection point name?"
-
-#~ msgid "when clicking on an applet"
-#~ msgstr "when clicking on an applet"
-
-#~ msgid "Effects used on applets:"
-#~ msgstr "Effects used on applets:"
-
-#~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(class=Cairo-dock & type=Utility)"
-#~ msgstr ""
-#~ "or CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(class=Cairo-dock & type=Utility)"
-
-#~ msgid "Name of the icon as it will appear in its label in the dock :"
-#~ msgstr "Name of the icon as it will appear in its caption in the dock:"
-
-#~ msgid "Icon name:"
-#~ msgstr "Icon name:"
-
-#~ msgid "Name of the icon as it will appear in its label in cairo-dock :"
-#~ msgstr "Name of the icon as it will appear in its label in cairo-dock :"
