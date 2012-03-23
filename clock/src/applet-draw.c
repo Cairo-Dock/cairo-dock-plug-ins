@@ -108,7 +108,10 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			}
 			
 			if (myConfig.fTextRatio < 1)
+			{
+				fZoomX *= myConfig.fTextRatio;
 				fZoomY *= myConfig.fTextRatio;
+			}
 		}
 		if (myData.iTextLayout == CD_TEXT_LAYOUT_1_LINE || myData.iTextLayout == CD_TEXT_LAYOUT_AUTO)
 		{
@@ -125,8 +128,11 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			}
 			
 			if (myConfig.fTextRatio < 1)
+			{
+				fZoomX_ *= myConfig.fTextRatio;
 				fZoomY_ *= myConfig.fTextRatio;
-
+			}
+			
 			if (fZoomY_ > fZoomX_)
 			{
 				double fMaxScale = cairo_dock_get_icon_max_scale (myIcon);
@@ -146,7 +152,7 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 		
 		if (myData.iTextLayout == CD_TEXT_LAYOUT_1_LINE)  // mode 1 ligne
 		{
-			cairo_translate (myDrawContext, (iWidth - fZoomX_ * w_) / 2, (iHeight - fZoomY_ * h_)/2);  // centre verticalement.
+			cairo_translate (myDrawContext, (iWidth - fZoomX_ * w_) / 2, (iHeight - fZoomY_ * h_)/2);  // text will be centred.
 			cairo_scale (myDrawContext, fZoomX_, fZoomY_);
 			pango_cairo_show_layout (myDrawContext, pLayout2);
 			
@@ -159,7 +165,7 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 		}
 		else  // mode 2 lignes
 		{
-			cairo_translate (myDrawContext, (iWidth - fZoomX * log.width) / 2, (iHeight - fZoomY * h)/2);  // centre verticalement.
+			cairo_translate (myDrawContext, (iWidth - fZoomX * log.width) / 2, (iHeight - fZoomY * h)/2);  // text will be centred.
 			cairo_scale (myDrawContext, fZoomX, fZoomY);
 			pango_cairo_show_layout (myDrawContext, pLayout);
 			
@@ -186,11 +192,12 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 
 		if (myConfig.fTextRatio < 1)
 		{
-			fZoomY *= myConfig.fTextRatio; // only for the height
-			cairo_translate (myDrawContext,
-				0,
-				(iHeight - fZoomY * log.height)/2);  // this text will be centred.
+			fZoomX *= myConfig.fTextRatio;
+			fZoomY *= myConfig.fTextRatio;
 		}
+		cairo_translate (myDrawContext,
+			(iWidth - fZoomX * log.width)/2,
+			(iHeight - fZoomY * log.height)/2);  // text will be centred.
 		cairo_scale (myDrawContext, fZoomX, fZoomY);
 		pango_cairo_show_layout (myDrawContext, pLayout);
 	}
