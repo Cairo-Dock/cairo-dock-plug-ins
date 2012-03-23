@@ -81,6 +81,7 @@ static void _init_disk_usage (Icon *pIcon, CairoDockModuleInstance *myApplet)
 	pIcon->iface.load_image = _load_disk_icon;
 	pIcon->pAppletOwner = myApplet;
 	CDDiskUsage *pDiskUsage = g_new0 (CDDiskUsage, 1);
+	pDiskUsage->iPrevAvail = -1;  // data not yet retrieved (0 bytes is a valid value for non writable disks).
 	CD_APPLET_SET_MY_ICON_DATA (pIcon, pDiskUsage);
 	if (pIcon->cCommand)
 		cd_shortcuts_get_fs_stat (pIcon->cCommand, pDiskUsage);

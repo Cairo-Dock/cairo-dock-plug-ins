@@ -76,7 +76,7 @@ static gboolean _cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myAppl
 			cd_shortcuts_get_fs_stat (pIcon->cCommand, pDiskUsage);
 			
 			// update from data
-			if (pDiskUsage->iTotal != 0 && (pDiskUsage->iPrevAvail == 0 || (double)fabs (pDiskUsage->iPrevAvail - pDiskUsage->iAvail) / pDiskUsage->iTotal > .001))  // .1 % d'ecart ou info encore non renseignee (un disque n'est jamais totalement vide).
+			if (pDiskUsage->iTotal != 0 && (pDiskUsage->iPrevAvail == -1 || (double)fabs (pDiskUsage->iPrevAvail - pDiskUsage->iAvail) / pDiskUsage->iTotal > .001))  // .1 % d'ecart ou info encore non renseignee.
 			{
 				pDiskUsage->iPrevAvail = pDiskUsage->iAvail;
 				switch (myConfig.iDisplayType)
