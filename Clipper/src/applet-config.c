@@ -75,5 +75,6 @@ CD_APPLET_RESET_DATA_BEGIN
 	g_list_foreach (myData.pActions, (GFunc)cd_clipper_free_action, NULL);
 	g_list_free (myData.pActions);
 	
-	gtk_widget_destroy (myData.pActionMenu);
+	if (myData.pActionMenu)
+		gtk_widget_destroy (myData.pActionMenu);
 CD_APPLET_RESET_DATA_END
