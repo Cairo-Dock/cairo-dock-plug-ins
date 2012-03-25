@@ -24,7 +24,6 @@
 #include <math.h>
 
 #include "applet-struct.h"
-//#include "applet-digital.h" //Digital html like renderer
 #include "applet-draw.h"
 
 #define CD_CLOCK_DATE_BUFFER_LENGTH 50
@@ -108,10 +107,7 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			}
 			
 			if (myConfig.fTextRatio < 1)
-			{
-				fZoomX *= myConfig.fTextRatio;
 				fZoomY *= myConfig.fTextRatio;
-			}
 		}
 		if (myData.iTextLayout == CD_TEXT_LAYOUT_1_LINE || myData.iTextLayout == CD_TEXT_LAYOUT_AUTO)
 		{
@@ -128,10 +124,7 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			}
 			
 			if (myConfig.fTextRatio < 1)
-			{
-				fZoomX_ *= myConfig.fTextRatio;
 				fZoomY_ *= myConfig.fTextRatio;
-			}
 			
 			if (fZoomY_ > fZoomX_)
 			{
@@ -191,10 +184,7 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 		}
 
 		if (myConfig.fTextRatio < 1)
-		{
-			fZoomX *= myConfig.fTextRatio;
 			fZoomY *= myConfig.fTextRatio;
-		}
 		cairo_translate (myDrawContext,
 			(iWidth - fZoomX * log.width)/2,
 			(iHeight - fZoomY * log.height)/2);  // text will be centred.
