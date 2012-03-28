@@ -44,7 +44,7 @@ static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonym
 	close(fds);
 	
 	// On lance la commande d'upload.
-	gchar *cCommand = g_strdup_printf ("curl --connect-timeout 5 --retry 2 --limit-rate %dk uppix.net -H Expect: -F myimage=@\"%s\" -F submit=Upload -F formup=1 -o \"%s\"", iLimitRate, cFilePath, cLogFile);
+	gchar *cCommand = g_strdup_printf ("curl -L --connect-timeout 5 --retry 2 --limit-rate %dk uppix.net -H Expect: -F myimage=@\"%s\" -F submit=Upload -F formup=1 -o \"%s\"", iLimitRate, cFilePath, cLogFile);
 	cd_debug ("%s", cCommand);
 	int r = system (cCommand);
 	g_free (cCommand);
