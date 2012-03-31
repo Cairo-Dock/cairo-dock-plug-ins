@@ -48,7 +48,7 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 	//\______________ On defini le texte a dessiner.
 	// layout
 	PangoFontDescription *pDesc = pango_font_description_new ();
-	pango_font_description_set_absolute_size (pDesc, myIcon->fHeight * PANGO_SCALE);
+	pango_font_description_set_absolute_size (pDesc, myIcon->fHeight * 72 / myData.fDpi * PANGO_SCALE); // pixel converted to point, converted to pango dimension.
 	pango_font_description_set_family_static (pDesc, myConfig.cFont);
 	pango_font_description_set_weight (pDesc, myConfig.iWeight);
 	pango_font_description_set_style (pDesc, myConfig.iStyle);
@@ -98,13 +98,8 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			w = MAX (log.width, log2.width);
 			fZoomX = (double) iWidth / w;
 			fZoomY = (double) iHeight / h;
-			if (myDock)
-			{
-				if (myContainer->bIsHorizontal && fZoomY > MAX_RATIO * fZoomX)  // we limit the deformation
-					fZoomY = MAX_RATIO * fZoomX;
-				else if (myContainer->bIsHorizontal && fZoomX > MAX_RATIO * fZoomY)
-					fZoomX = MAX_RATIO * fZoomY;
-			}
+			if (myDock && fZoomY > MAX_RATIO * fZoomX)  // we limit the deformation
+				fZoomY = MAX_RATIO * fZoomX;
 			
 			if (myConfig.fTextRatio < 1)
 				fZoomY *= myConfig.fTextRatio;
@@ -115,13 +110,8 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			w_ = log.width + log2.width + GAPX * iWidth;
 			fZoomX_ = (double) iWidth / w_;
 			fZoomY_ = (double) iHeight / h_;
-			if (myDock)
-			{
-				if (myContainer->bIsHorizontal && fZoomY_ > MAX_RATIO * fZoomX_)  // we limit the deformation
-					fZoomY_ = MAX_RATIO * fZoomX_;
-				else if (myContainer->bIsHorizontal && fZoomX_ > MAX_RATIO * fZoomY_)
-					fZoomX_ = MAX_RATIO * fZoomY_;
-			}
+			if (myDock && fZoomY_ > MAX_RATIO * fZoomX_)  // we limit the deformation
+				fZoomY_ = MAX_RATIO * fZoomX_;
 			
 			if (myConfig.fTextRatio < 1)
 				fZoomY_ *= myConfig.fTextRatio;
@@ -175,16 +165,12 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 	{
 		double fZoomX = (double) iWidth / log.width;
 		double fZoomY = (double) iHeight / log.height;
-		if (myDock)
-		{
-			if (myContainer->bIsHorizontal && fZoomY > MAX_RATIO * fZoomX)  // we limit the deformation
-				fZoomY = MAX_RATIO * fZoomX;
-			else if (myContainer->bIsHorizontal && fZoomX > MAX_RATIO * fZoomY)
-				fZoomX = MAX_RATIO * fZoomY;
-		}
+		if (myDock && fZoomY > MAX_RATIO * fZoomX)  // we limit the deformation
+			fZoomY = MAX_RATIO * fZoomX;
 
 		if (myConfig.fTextRatio < 1)
 			fZoomY *= myConfig.fTextRatio;
+
 		cairo_translate (myDrawContext,
 			(iWidth - fZoomX * log.width)/2,
 			(iHeight - fZoomY * log.height)/2);  // text will be centred.

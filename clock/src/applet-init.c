@@ -72,6 +72,8 @@ CD_APPLET_INIT_BEGIN
 	myData.iLastCheckedMonth = -1;
 	myData.iLastCheckedYear = -1;
 	myData.iTextLayout = myConfig.iPreferedTextLayout;
+
+	myData.fDpi = gdk_screen_get_resolution (gdk_screen_get_default());
 	
 	//\_______________ On enregistre nos notifications.
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
@@ -156,7 +158,9 @@ CD_APPLET_RELOAD_BEGIN
 		cd_clock_set_current_backend (myApplet);
 		if (pOldBackend != myData.pBackend)
 			cd_clock_list_tasks (myApplet);
-		
+
+		myData.fDpi = gdk_screen_get_resolution (gdk_screen_get_default());
+
 		//\_______________ On relance le timer.
 		myData.iLastCheckedMinute = -1;
 		myData.iLastCheckedDay = -1;
