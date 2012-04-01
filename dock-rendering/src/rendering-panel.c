@@ -180,7 +180,7 @@ static void cd_render (cairo_t *pCairoContext, CairoDock *pDock)
 	}
 
 	cairo_save (pCairoContext);
-	double fDeltaXTrapeze = cairo_dock_draw_frame (pCairoContext, fRadius, fLineWidth, fDockWidth, pDock->iDecorationsHeight, fDockOffsetX, fDockOffsetY, sens, 0., pDock->container.bIsHorizontal, myDocksParam.bRoundedBottomCorner);
+	double fDeltaXTrapeze = cairo_dock_draw_frame (pCairoContext, fRadius, fLineWidth, fDockWidth, pDock->iDecorationsHeight, fDockOffsetX, fDockOffsetY, sens, 0., pDock->container.bIsHorizontal, FALSE);  // FALSE <=> ignore 'myDocksParam.bRoundedBottomCorner', as bottom rounded corners looks bad for a panel.
 
 	//\____________________ On dessine les decorations dedans.
 	fDockOffsetY = (pDock->container.bDirectionUp ? pDock->container.iHeight - pDock->iDecorationsHeight - fLineWidth : fLineWidth);
@@ -473,7 +473,7 @@ static void cd_render_opengl (CairoDock *pDock)
 	double fDockMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex);
 	
 	//\_____________ On genere les coordonnees du contour.
-	const CairoDockGLPath *pFramePath = cairo_dock_generate_rectangle_path (fDockWidth, fFrameHeight, fRadius, myDocksParam.bRoundedBottomCorner);
+	const CairoDockGLPath *pFramePath = cairo_dock_generate_rectangle_path (fDockWidth, fFrameHeight, fRadius, FALSE);  // same remark as in cairo rendering
 	
 	//\_____________ On remplit avec le fond.
 	glPushMatrix ();
@@ -848,7 +848,7 @@ static void set_icon_size (Icon *icon, CairoDock *pDock)
 		wi *= my_fPanelRatio;
 		hi *= my_fPanelRatio;
 	}
-	g_print (" ~~~~~~~~~~~~ size: %d => %dx%d\n", pDock->iIconSize, wi, hi);
+	//g_print (" ~~~~~~~~~~~~ size: %d => %dx%d\n", pDock->iIconSize, wi, hi);
 	
 	// set the visible size at rest.
 	if (CAIRO_DOCK_ICON_TYPE_IS_APPLET (icon))  // for applets, consider (fWidth,fHeight) as a requested size, if not 0.
@@ -896,7 +896,7 @@ static void set_icon_size (Icon *icon, CairoDock *pDock)
 		icon->iImageWidth = icon->fHeight;
 		icon->iImageHeight = icon->fWidth;
 	}
-	g_print (" ~~~~~~~~~~~~ => %dx%d\n", icon->iImageWidth, icon->iImageHeight);
+	//g_print (" ~~~~~~~~~~~~ => %dx%d\n", icon->iImageWidth, icon->iImageHeight);
 }
 
 void cd_rendering_register_panel_renderer (const gchar *cRendererName)
