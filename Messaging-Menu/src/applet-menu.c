@@ -22,6 +22,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #include "applet-struct.h"
 #include "applet-menu.h"
@@ -158,12 +159,27 @@ gpointer data)
 	return FALSE;
 }
 
+static gint
+gtk_widget_get_font_size (GtkWidget *widget)
+{
+#if (GTK_MAJOR_VERSION < 3)
+    return RIGHT_LABEL_FONT_SIZE;
+#else
+    const PangoFontDescription *font;
+
+    font = gtk_style_context_get_font (gtk_widget_get_style_context (widget),
+                                       gtk_widget_get_state_flags (widget));
+
+    return pango_font_description_get_size (font) / PANGO_SCALE;
+#endif
+}
+
 /* Custom function to draw rounded rectangle with max radius */
 static void
 custom_cairo_rounded_rectangle (cairo_t *cr,
                                 double x, double y, double w, double h)
 {
-	double radius = MIN (w/2.0, h/2.0);
+	double radius = h / 2.0;
 
 	cairo_move_to (cr, x+radius, y);
 	cairo_arc (cr, x+w-radius, y+radius, radius, M_PI*1.5, M_PI*2);
@@ -184,8 +200,15 @@ gpointer data)
 {
 	double x, y, w, h;
 	PangoLayout * layout;
-	gint font_size = RIGHT_LABEL_FONT_SIZE;
-	
+	gint font_size = gtk_widget_get_font_size (widget);
+
+	#if (INDICATOR_VERSION_5 == 1)
+	gboolean is_lozenge = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (widget), "is-lozenge"));
+	/* let the label handle the drawing if it's not a lozenge */
+	if (!is_lozenge)
+		return FALSE;
+	#endif
+
 	if (!GTK_IS_WIDGET (widget)) return FALSE;
 
 	/* get style + arrow position / dimensions */
@@ -208,18 +231,20 @@ gpointer data)
 	red = color.red;
 	green = color.green;
 	blue = color.blue;
-	w = gtk_widget_get_allocated_width (widget);
-	h = gtk_widget_get_allocated_height (widget);
+	GtkAllocation allocation;
+	gtk_widget_get_allocation (widget, &allocation);
+	w = allocation.width;
+	h = allocation.height;
 	x = y = 0;
 	#endif
 	
 	layout = gtk_label_get_layout (GTK_LABEL(widget));
+	PangoRectangle layout_extents;
+	pango_layout_get_extents (layout, NULL, &layout_extents);
+	pango_extents_to_pixels (&layout_extents, NULL);
 
-	/* This does not work, don't ask me why but font_size is 0.
-	 * I wanted to use a dynamic font size to adjust the padding on left/right edges
-	 * of the rounded rectangle. Andrea Cimitan */
-	/* const PangoFontDescription * font_description = pango_layout_get_font_description (layout);
-	font_size = pango_font_description_get_size (font_description); */
+	if (layout_extents.width == 0)
+		return TRUE;
 
 	/* initialize cairo context */
 	#if (GTK_MAJOR_VERSION < 3)
@@ -237,7 +262,9 @@ gpointer data)
 	                           green,
 	                           blue, 0.5);
 
-	cairo_move_to (ctx, x, y);
+	x += (allocation.width - layout_extents.width) / 2.0;
+	y += (allocation.height - layout_extents.height) / 2.0;
+	cairo_move_to (ctx, floor (x), floor (y));
 	pango_cairo_layout_path (ctx, layout);
 	cairo_fill (ctx);
 
@@ -257,7 +284,7 @@ new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbu
 
 	cd_debug ("%s (\"%s\")", __func__, cName);
 
-#if (INDICATOR_OLD_NAMES == 0)
+#if (INDICATOR_OLD_NAMES == 0 && INDICATOR_VERSION_5 != 1)
 	if (newitem == NULL || !dbusmenu_menuitem_property_get_bool(newitem, DBUSMENU_MENUITEM_PROP_VISIBLE))
 	{
 		cd_debug ("Not visible: %s", cName);
@@ -271,29 +298,36 @@ new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbu
 	gtk_image_menu_item_set_always_show_image(GTK_IMAGE_MENU_ITEM(gmi), TRUE);
 #endif
 
-	/* Set the minimum size, we always want it to take space */
-	gint width, height;
-	gtk_icon_size_lookup(GTK_ICON_SIZE_MENU, &width, &height);
+	gint padding = 4;
+	gtk_widget_style_get(GTK_WIDGET(gmi), "toggle-spacing", &padding, NULL);
 
-	GtkWidget * icon = gtk_image_new_from_icon_name(dbusmenu_menuitem_property_get(newitem, APPLICATION_MENUITEM_PROP_ICON), GTK_ICON_SIZE_MENU);
-	gtk_widget_set_size_request(icon, width
-								+ 5 /* ref triangle is 5x9 pixels */
-								+ 2 /* padding */,
-								height);
+	GtkWidget * hbox = _gtk_hbox_new(padding);
+
+	// Added for Cairo-Dock
+	const gchar *sIconName = dbusmenu_menuitem_property_get (newitem, APPLICATION_MENUITEM_PROP_ICON);
+	#if (GTK_MAJOR_VERSION > 2 && INDICATOR_VERSION_5 == 1) // we add a left margin
+	if (! dbusmenu_menuitem_property_get_bool(newitem, DBUSMENU_MENUITEM_PROP_VISIBLE)
+		&& (sIconName == NULL || *sIconName == '\0'))
+	{
+		gint width, height;
+		gtk_icon_size_lookup(GTK_ICON_SIZE_MENU, &width, &height);
+		gtk_widget_set_size_request(GTK_WIDGET (gmi), -1, height + 4);
+		gtk_widget_set_margin_left (hbox, width + padding);
+	}
+	#endif
+	// end
+
+	GtkWidget * icon = gtk_image_new_from_icon_name(sIconName, GTK_ICON_SIZE_MENU);
 	gtk_misc_set_alignment(GTK_MISC(icon), 1.0 /* right aligned */, 0.5);
-#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
-	gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (gmi), TRUE);
-#endif
-	gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(gmi), icon);
-	gtk_widget_show(icon);
+	gtk_box_pack_start (GTK_BOX (hbox), icon, FALSE, FALSE, 0);
 
 	/* Application name in a label */
 	GtkWidget * label = gtk_label_new(cName);
 	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-	gtk_widget_show(label);
+	gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
 
-	/* Insert the hbox */
-	gtk_container_add(GTK_CONTAINER(gmi), label);
+	gtk_container_add(GTK_CONTAINER(gmi), hbox);
+	gtk_widget_show_all (GTK_WIDGET (gmi));
 
 	/* Attach some of the standard GTK stuff */
 	dbusmenu_gtkclient_newitem_base(DBUSMENU_GTKCLIENT(client), newitem, gmi, parent);
@@ -308,6 +342,8 @@ new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbu
 	"draw",
 	#endif
 	G_CALLBACK (application_triangle_draw_cb), newitem);
+
+	g_free (cName);
 
 	return TRUE;
 }
@@ -351,6 +387,11 @@ indicator_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value, i
 		gtk_label_set_text(GTK_LABEL(mi_data->right), g_variant_get_string(value, NULL));
 #else
 		gtk_label_set_text(GTK_LABEL(mi_data->right), g_value_get_string(value));
+#endif
+#if (INDICATOR_VERSION_5 == 1)
+	} else if (!g_strcmp0(prop, INDICATOR_MENUITEM_PROP_RIGHT_IS_LOZENGE)) {
+		g_object_set_data (G_OBJECT (mi_data->right), "is-lozenge", GINT_TO_POINTER (TRUE));
+		gtk_widget_queue_draw (mi_data->right);
 #endif
 	} else if (!g_strcmp0(prop, INDICATOR_MENUITEM_PROP_ICON)) {
 		/* We don't use the value here, which is probably less efficient, 
@@ -415,10 +456,14 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 	GtkMenuItem * gmi = GTK_MENU_ITEM(gtk_menu_item_new());
 
 	gint padding = 4;
-	gint font_size = RIGHT_LABEL_FONT_SIZE;
+	gint font_size = gtk_widget_get_font_size (GTK_WIDGET (gmi));
+	#if (INDICATOR_OLD_NAMES == 0)
+	gtk_widget_style_get(GTK_WIDGET(gmi), "toggle-spacing", &padding, NULL);
+	#else
 	gtk_widget_style_get(GTK_WIDGET(gmi), "horizontal-padding", &padding, NULL);
+	#endif
 
-	GtkWidget * hbox = _gtk_hbox_new(0);
+	GtkWidget * hbox = _gtk_hbox_new(padding);
 
 	/* Icon, probably someone's face or avatar on an IM */
 	mi_data->icon = gtk_image_new();
@@ -426,7 +471,11 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 	/* Set the minimum size, we always want it to take space */
 	gint width, height;
 	gtk_icon_size_lookup(GTK_ICON_SIZE_MENU, &width, &height);
-	gtk_widget_set_size_request(mi_data->icon, width, height);
+	gtk_widget_set_size_request(GTK_WIDGET (gmi), -1, height + 4);
+
+#if (GTK_MAJOR_VERSION > 2)
+	gtk_widget_set_margin_left (hbox, width + padding);
+#endif
 
 	GdkPixbuf * pixbuf = dbusmenu_menuitem_property_get_image(newitem, INDICATOR_MENUITEM_PROP_ICON);
 	if (pixbuf != NULL) {
@@ -451,7 +500,7 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 		g_object_unref(resized_pixbuf);
 	}
 	gtk_misc_set_alignment(GTK_MISC(mi_data->icon), 0.0, 0.5);
-	gtk_box_pack_start(GTK_BOX(hbox), mi_data->icon, FALSE, FALSE, padding);
+	gtk_box_pack_start(GTK_BOX(hbox), mi_data->icon, FALSE, FALSE, 0);
 
 	if (pixbuf != NULL) {
 		gtk_widget_show(mi_data->icon);
@@ -460,13 +509,19 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 	/* Label, probably a username, chat room or mailbox name */
 	mi_data->label = gtk_label_new(dbusmenu_menuitem_property_get(newitem, INDICATOR_MENUITEM_PROP_LABEL));
 	gtk_misc_set_alignment(GTK_MISC(mi_data->label), 0.0, 0.5);
-	gtk_box_pack_start(GTK_BOX(hbox), mi_data->label, TRUE, TRUE, padding);
+	gtk_box_pack_start(GTK_BOX(hbox), mi_data->label, TRUE, TRUE, 0);
 	gtk_widget_show(mi_data->label);
 
 	/* Usually either the time or the count on the individual
 	   item. */
 	mi_data->right = gtk_label_new(dbusmenu_menuitem_property_get(newitem, INDICATOR_MENUITEM_PROP_RIGHT));
+	#if (INDICATOR_VERSION_5 == 1)
+	g_object_set_data (G_OBJECT (mi_data->right),
+			   "is-lozenge",
+			   GINT_TO_POINTER (dbusmenu_menuitem_property_get_bool (newitem, INDICATOR_MENUITEM_PROP_RIGHT_IS_LOZENGE)));
+	#else
 	gtk_size_group_add_widget(indicator_right_group, mi_data->right);
+	#endif
 	/* install extra decoration overlay */
 	g_signal_connect (G_OBJECT (mi_data->right),
 	#if (GTK_MAJOR_VERSION < 3)
@@ -478,6 +533,11 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 	
 	gtk_misc_set_alignment(GTK_MISC(mi_data->right), 1.0, 0.5);
 	gtk_box_pack_start(GTK_BOX(hbox), mi_data->right, FALSE, FALSE, padding + font_size/2.0);
+	gtk_label_set_width_chars (GTK_LABEL (mi_data->right), 2);
+	#if (INDICATOR_VERSION_5 == 1 && GTK_MAJOR_VERSION > 2)
+	gtk_style_context_add_class (gtk_widget_get_style_context (mi_data->right),
+	                             "accelerator");
+	#endif
 	gtk_widget_show(mi_data->right);
 
 	gtk_container_add(GTK_CONTAINER(gmi), hbox);

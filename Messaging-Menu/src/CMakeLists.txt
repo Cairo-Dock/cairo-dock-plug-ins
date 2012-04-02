@@ -22,6 +22,7 @@ add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_MESSAGING_MENU}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
 add_definitions (-DINDICATOR_OLD_NAMES=${INDICATOR_OLD_NAMES})
+add_definitions (-DINDICATOR_VERSION_5=${INDICATOR_VERSION_5})
 ### uncomment the following line to allow multi-instance applet.
 #add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
 ### uncomment the following line to allow extended OpenGL drawing.
