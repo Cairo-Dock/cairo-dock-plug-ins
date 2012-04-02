@@ -202,7 +202,7 @@ gpointer data)
 	PangoLayout * layout;
 	gint font_size = gtk_widget_get_font_size (widget);
 
-	#if (INDICATOR_VERSION_5 == 1)
+	#if (INDICATOR_MESSAGES_HAS_LOZENGE == 1)
 	gboolean is_lozenge = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (widget), "is-lozenge"));
 	/* let the label handle the drawing if it's not a lozenge */
 	if (!is_lozenge)
@@ -284,7 +284,7 @@ new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbu
 
 	cd_debug ("%s (\"%s\")", __func__, cName);
 
-#if (INDICATOR_OLD_NAMES == 0 && INDICATOR_VERSION_5 != 1)
+#if (INDICATOR_OLD_NAMES == 0 && INDICATOR_MESSAGES_HAS_LOZENGE != 1)
 	if (newitem == NULL || !dbusmenu_menuitem_property_get_bool(newitem, DBUSMENU_MENUITEM_PROP_VISIBLE))
 	{
 		cd_debug ("Not visible: %s", cName);
@@ -305,7 +305,7 @@ new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbu
 
 	// Added for Cairo-Dock
 	const gchar *sIconName = dbusmenu_menuitem_property_get (newitem, APPLICATION_MENUITEM_PROP_ICON);
-	#if (GTK_MAJOR_VERSION > 2 && INDICATOR_VERSION_5 == 1) // we add a left margin
+	#if (GTK_MAJOR_VERSION > 2 && INDICATOR_MESSAGES_HAS_LOZENGE == 1) // we add a left margin
 	if (! dbusmenu_menuitem_property_get_bool(newitem, DBUSMENU_MENUITEM_PROP_VISIBLE)
 		&& (sIconName == NULL || *sIconName == '\0'))
 	{
@@ -388,7 +388,7 @@ indicator_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value, i
 #else
 		gtk_label_set_text(GTK_LABEL(mi_data->right), g_value_get_string(value));
 #endif
-#if (INDICATOR_VERSION_5 == 1)
+#if (INDICATOR_MESSAGES_HAS_LOZENGE == 1)
 	} else if (!g_strcmp0(prop, INDICATOR_MENUITEM_PROP_RIGHT_IS_LOZENGE)) {
 		g_object_set_data (G_OBJECT (mi_data->right), "is-lozenge", GINT_TO_POINTER (TRUE));
 		gtk_widget_queue_draw (mi_data->right);
@@ -515,7 +515,7 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 	/* Usually either the time or the count on the individual
 	   item. */
 	mi_data->right = gtk_label_new(dbusmenu_menuitem_property_get(newitem, INDICATOR_MENUITEM_PROP_RIGHT));
-	#if (INDICATOR_VERSION_5 == 1)
+	#if (INDICATOR_MESSAGES_HAS_LOZENGE == 1)
 	g_object_set_data (G_OBJECT (mi_data->right),
 			   "is-lozenge",
 			   GINT_TO_POINTER (dbusmenu_menuitem_property_get_bool (newitem, INDICATOR_MENUITEM_PROP_RIGHT_IS_LOZENGE)));
@@ -534,7 +534,7 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 	gtk_misc_set_alignment(GTK_MISC(mi_data->right), 1.0, 0.5);
 	gtk_box_pack_start(GTK_BOX(hbox), mi_data->right, FALSE, FALSE, padding + font_size/2.0);
 	gtk_label_set_width_chars (GTK_LABEL (mi_data->right), 2);
-	#if (INDICATOR_VERSION_5 == 1 && GTK_MAJOR_VERSION > 2)
+	#if (INDICATOR_MESSAGES_HAS_LOZENGE == 1 && GTK_MAJOR_VERSION > 2)
 	gtk_style_context_add_class (gtk_widget_get_style_context (mi_data->right),
 	                             "accelerator");
 	#endif

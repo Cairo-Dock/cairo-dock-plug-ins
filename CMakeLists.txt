@@ -210,10 +210,10 @@ if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1")
 	if (${INDICATOR_MAJOR} GREATER 0 OR ${INDICATOR_MINOR} GREATER 4
 	    OR (${INDICATOR_MINOR} EQUAL 4 AND ${INDICATOR_NANO} GREATER 89))
 		set (SOUND_SERVICE_VERSION 1) # Sound-Menu: new DBus path
-		set (INDICATOR_VERSION_5 1)   # Messaging Menu has 'right-is-lozenge'
+		set (INDICATOR_MESSAGES_HAS_LOZENGE 1)   # Messaging Menu has 'right-is-lozenge'
 	else() # older than Precise.
 		set (SOUND_SERVICE_VERSION 0)
-		set (INDICATOR_VERSION_5 0)
+		set (INDICATOR_MESSAGES_HAS_LOZENGE 0)
 	endif()
 
 	if ("${INDICATOR_NEW_VERSION}" STREQUAL "1")  # oneiric and newer

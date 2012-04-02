@@ -17,7 +17,9 @@
 #define INDICATOR_MENUITEM_PROP_LABEL    "indicator-label"
 #define INDICATOR_MENUITEM_PROP_ICON     "indicator-icon"
 #define INDICATOR_MENUITEM_PROP_RIGHT    "right-side-text"
+#if (INDICATOR_MESSAGES_HAS_LOZENGE == 1)
 #define INDICATOR_MENUITEM_PROP_RIGHT_IS_LOZENGE "right-is-lozenge"
+#endif
 
 #define MAX_NUMBER_OF_INDICATORS  7
 
