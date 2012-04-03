@@ -457,11 +457,7 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 
 	gint padding = 4;
 	gint font_size = gtk_widget_get_font_size (GTK_WIDGET (gmi));
-	#if (INDICATOR_OLD_NAMES == 0)
 	gtk_widget_style_get(GTK_WIDGET(gmi), "toggle-spacing", &padding, NULL);
-	#else
-	gtk_widget_style_get(GTK_WIDGET(gmi), "horizontal-padding", &padding, NULL);
-	#endif
 
 	GtkWidget * hbox = _gtk_hbox_new(padding);
 
