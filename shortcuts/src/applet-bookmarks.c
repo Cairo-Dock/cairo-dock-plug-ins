@@ -133,6 +133,8 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 						}
 						if (cRealURI == NULL)
 							cRealURI = g_strdup ("none");
+						if (cIconName == NULL)
+							cIconName = g_strdup ("inode-directory");
 						
 						pNewIcon = cairo_dock_create_dummy_launcher (cName,
 							cIconName,
@@ -393,6 +395,8 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 				}
 				if (cRealURI == NULL)
 					cRealURI = g_strdup ("none");
+				if (cIconName == NULL)
+					cIconName = g_strdup ("inode-directory"); // should be the default icon
 				
 				pNewIcon = pNewIcon = cairo_dock_create_dummy_launcher (cName,
 					cIconName,
