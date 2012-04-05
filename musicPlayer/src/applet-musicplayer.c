@@ -451,8 +451,8 @@ void cd_musicplayer_set_current_handler (const gchar *cName)
 	
 	if (myData.pCurrentHandler != NULL)  // an old handler exist with this name, use it but also look for the associated MPRIS2 service.
 	{
-		myData.cMpris2Service = g_strdup_printf (CD_MPRIS2_SERVICE_BASE".%s",
-			myData.pCurrentHandler->cMpris2Service ? myData.pCurrentHandler->cMpris2Service : cName);
+		myData.cMpris2Service = myData.pCurrentHandler->cMpris2Service ? g_strdup (myData.pCurrentHandler->cMpris2Service) : g_strdup_printf (CD_MPRIS2_SERVICE_BASE".%s", cName);
+		cd_debug ("We check this MPRIS2 service: %s", myData.cMpris2Service);
 		
 		cairo_dock_watch_dbus_name_owner (myData.cMpris2Service, (CairoDockDbusNameOwnerChangedFunc) _on_name_owner_changed, NULL);
 		
