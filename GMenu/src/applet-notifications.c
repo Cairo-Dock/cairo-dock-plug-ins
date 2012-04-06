@@ -25,6 +25,7 @@
 #include "applet-run-dialog.h"
 #include "applet-notifications.h"
 
+static const gchar *s_cEditMenuCmd = NULL; // we need to check with 'which' only one time if alacarte or kmenuedit is available
 
 static void cd_menu_show_menu (void)
 {
@@ -56,26 +57,52 @@ CD_APPLET_ON_CLICK_END
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
 static void _cd_menu_configure_menu (GtkMenuItem *menu_item, gpointer data)
 {
+	CD_APPLET_ENTER;
+	GError *error = NULL;
 	if (myConfig.cConfigureMenuCommand != NULL)
 	{
-		cairo_dock_launch_command (myConfig.cConfigureMenuCommand);
+		g_spawn_command_line_async (myConfig.cConfigureMenuCommand, &error);
 	}
-	else
+	else if (s_cEditMenuCmd != NULL)
 	{
-		if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE)  /// a confirmer pour XFCE ...
-			cairo_dock_launch_command ("alacarte");
-		else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
-			cairo_dock_launch_command ("kmenuedit");
-		else
-			cd_warning ("Sorry, couldn't guess what to do to configure the menu");
+		g_spawn_command_line_async (s_cEditMenuCmd, &error);
 	}
+	
+	if (error != NULL)
+	{
+		cd_warning ("Attention : when trying to execute '%s' : %s",
+			myConfig.cConfigureMenuCommand ? myConfig.cConfigureMenuCommand : s_cEditMenuCmd,
+			error->message);
+		g_error_free (error);
+	}
+	CD_APPLET_LEAVE();
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Quick launch"), D_("middle-click"));
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_EXECUTE, cd_menu_show_hide_quick_launch, CD_APPLET_MY_MENU);
 	g_free (cLabel);
 	CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Configure menu"), GTK_STOCK_PREFERENCES, _cd_menu_configure_menu, CD_APPLET_MY_MENU);
+
+	static gboolean bEditMenuCmdChecked = FALSE;
+	if (!myConfig.cConfigureMenuCommand && !bEditMenuCmdChecked)
+	{
+		bEditMenuCmdChecked = TRUE;
+		gchar *cResult = cairo_dock_launch_command_sync ("which alacarte");  // Gnome (2 + 3(?)) + XFCE(?)
+		if (cResult != NULL && *cResult == '/')
+		{
+			s_cEditMenuCmd = "alacarte";
+		}
+		else
+		{
+			g_free (cResult);
+			cResult = cairo_dock_launch_command_sync ("which kmenuedit");  // KDE
+			if (cResult != NULL && *cResult == '/')
+				s_cEditMenuCmd = "kmenuedit";
+		}  /// TODO: handle other DE ...
+		g_free (cResult);
+	}
+	if (myConfig.cConfigureMenuCommand || s_cEditMenuCmd)
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Configure menu"), GTK_STOCK_PREFERENCES, _cd_menu_configure_menu, CD_APPLET_MY_MENU);
 	
 	CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear recent"), GTK_STOCK_CLEAR, cd_menu_clear_recent, CD_APPLET_MY_MENU);
