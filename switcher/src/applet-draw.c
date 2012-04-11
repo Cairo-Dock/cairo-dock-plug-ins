@@ -555,7 +555,9 @@ static void _cd_switcher_list_window_on_viewport (Icon *pIcon, int iNumDesktop, 
 	}
 	
 	// on ajoute une entree au menu avec le pixbuf.
-	GtkWidget *pMenuItem = gtk_image_menu_item_new_with_label (pIcon->cName);
+	gchar *cLabel = cairo_dock_cut_string (pIcon->cName, 50);
+	GtkWidget *pMenuItem = gtk_image_menu_item_new_with_label (cLabel);
+	g_free (cLabel);
 	if (pixbuf)
 	{
 		GtkWidget *image = gtk_image_new_from_pixbuf (pixbuf);
@@ -616,7 +618,7 @@ void cd_switcher_build_windows_list (GtkWidget *pMenu)
 			g_object_set (pMenuItem, "height-request", 3, NULL);
 			
 			// on ajoute les fenetres du viewport au menu.
-			g_print (" listing des fenetres du bureau (%d;%d;%d) ...\n", iNumDesktop, iNumViewportX, iNumViewportY);
+			cd_debug ("Windows' listing (%d;%d;%d) ...", iNumDesktop, iNumViewportX, iNumViewportY);
 			cd_switcher_foreach_window_on_viewport (iNumDesktop,
 				iNumViewportX,
 				iNumViewportY,
