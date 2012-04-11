@@ -1,3 +1,4 @@
+add_subdirectory(gauges)
 
 ########### install files ###############
 

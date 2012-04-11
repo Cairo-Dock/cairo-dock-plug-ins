@@ -1,0 +1,41 @@
+<gauge>
+	<name>Ubuntu Mono Dark Battery</name>
+	<version>3</version>
+	<author>Ubuntu-Mono designers</author>
+	<indicator>
+		<file key="image">0.svg</file>
+		<file key="image">1.svg</file>
+		<file key="image">2.svg</file>
+		<file key="image">3.svg</file>
+		<file key="image">4.svg</file>
+		<file key="image">5.svg</file>
+		<file type="undef-value">0.svg</file>
+		<text_zone>
+			<x_center>0.0</x_center>
+			<y_center>0.0</y_center>
+			<width>0.6</width>
+			<height>0.25</height>
+			<red>1.</red>
+			<blue>0.0</blue>
+			<green>0.0</green>
+			<alpha>1.0</alpha>
+		</text_zone>
+		<label_zone>
+			<x_center>0.0</x_center>
+			<y_center>-0.38</y_center>
+			<width>0.7</width>
+			<height>0.24</height>
+			<red>0.1</red>
+			<blue>0.1</blue>
+			<green>0.1</green>
+			<alpha>1.0</alpha>
+		</label_zone>
+		<logo_zone>
+			<x_center>0.0</x_center>
+			<y_center>0.38</y_center>
+			<width>0.24</width>
+			<height>0.24</height>
+			<alpha>0.8</alpha>
+		</logo_zone>
+	</indicator>
+</gauge>

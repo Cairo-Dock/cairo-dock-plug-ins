@@ -142,7 +142,7 @@ default icon =
 mute icon = 
 
 #h+[@gaugesdir@;gauges;gauges3;sound] Choose one of the available themes:/
-theme = Turbo-night-fuel
+theme = Sound-Mono
 
 #l+[No;With dock orientation;Yes] Rotate applet theme :
 rotate theme = No
