@@ -28,6 +28,7 @@
 #include "applet-load-icons.h"
 #include "applet-drives.h"
 
+#define CD_SHORTCUT_DEFAULT_DRIVE_ICON_FILENAME "drive-harddisk"
 
 static void _load_disk_icon (Icon *pIcon)
 {
@@ -131,6 +132,8 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 				return ;
 			}
 			pNewIcon->iGroup = CD_DRIVE_GROUP;
+			if (pNewIcon->cFileName == NULL)
+				pNewIcon->cFileName = g_strdup (CD_SHORTCUT_DEFAULT_DRIVE_ICON_FILENAME);
 			_init_disk_usage (pNewIcon, myApplet);
 			
 			//\_______________________ on la place au bon endroit suivant son nom.
@@ -185,6 +188,8 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 				CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pConcernedIcon);
 				
 				cd_shortcuts_set_icon_order_by_name (pNewIcon, pIconsList);
+				if (pNewIcon->cFileName == NULL)
+					pNewIcon->cFileName = g_strdup (CD_SHORTCUT_DEFAULT_DRIVE_ICON_FILENAME);
 				_init_disk_usage (pNewIcon, myApplet);
 				CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pNewIcon);
 				
@@ -315,6 +320,8 @@ GList * cd_shortcuts_list_drives (CDSharedMemory *pSharedMemory)
 	for (ic = pIconList; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
+		if (pIcon->cFileName == NULL)
+			pIcon->cFileName = g_strdup (CD_SHORTCUT_DEFAULT_DRIVE_ICON_FILENAME);
 		_init_disk_usage (pIcon, pSharedMemory->pApplet);
 	}
 	
