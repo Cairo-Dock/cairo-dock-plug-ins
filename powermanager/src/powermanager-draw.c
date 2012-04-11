@@ -33,17 +33,11 @@ void update_icon (void)
 {
 	gboolean bNeedRedraw = FALSE;
 	cd_debug ("%s (on battery: %d -> %d; time:%.1f -> %.1f ; charge:%.1f -> %.1f)", __func__, myData.bPrevOnBattery, myData.bOnBattery, (double)myData.iPrevTime, (double)myData.iTime, (double)myData.iPrevPercentage, (double)myData.iPercentage);
+
+	gboolean bNoInformation = myData.cBatteryStateFilePath == NULL && myData.pUPowerClient == NULL;
 	
-	// no information available, draw a default icon.
-	if (myData.cBatteryStateFilePath == NULL && myData.pUPowerClient == NULL)
-	{
-		CD_APPLET_SET_IMAGE_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/sector.svg");
-		CD_APPLET_REDRAW_MY_ICON;
-		return;
-	}
-	
-	// hide the icon when not on battery
-	if (myConfig.bHideNotOnBattery && ! myData.bOnBattery && myDock)
+	// hide the icon when not on battery or no information available (e.g. with a desktop)
+	if (myConfig.bHideNotOnBattery && myDock && (! myData.bOnBattery || bNoInformation))
 	{
 		if (! myData.bIsHidden)
 		{ // we remove the icon
@@ -59,6 +53,14 @@ void update_icon (void)
 		cairo_dock_insert_icon_in_dock (myIcon, myDock, CAIRO_DOCK_ANIMATE_ICON);
 		///cairo_dock_redraw_container (CAIRO_CONTAINER (myDock)); // dock refresh forced
 		myData.bIsHidden = FALSE;
+	}
+
+	// no information available, draw a default icon.
+	if (bNoInformation)
+	{
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/sector.svg");
+		CD_APPLET_REDRAW_MY_ICON;
+		return;
 	}
 
 	// on prend en compte la nouvelle charge.
