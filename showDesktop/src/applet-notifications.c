@@ -94,10 +94,22 @@ static void _cd_action (CDActionOnClick iAction)
 			_cd_show_hide_desktop (TRUE);  // TRUE <=> show the desklets
 		break ;
 		case CD_SHOW_WIDGET_LAYER :
-			_cd_show_widget_layer ();
+			if (cairo_dock_wm_can_show_widget_layer ())
+				_cd_show_widget_layer ();
+			else
+			{
+				cd_warning ("It seems there is no widget layer, we show/hide the desktop");
+				_cd_show_hide_desktop (FALSE);
+			}
 		break ;
 		case CD_EXPOSE :
-			_cd_expose ();
+			if (cairo_dock_wm_can_present_desktops ())
+				_cd_expose ();
+			else
+			{
+				cd_warning ("It seems we can't present desktops, we show/hide the desktop");
+				_cd_show_hide_desktop (FALSE);
+			}
 		break ;
 		default:
 		break;
