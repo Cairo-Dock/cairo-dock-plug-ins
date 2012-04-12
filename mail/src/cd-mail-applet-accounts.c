@@ -340,7 +340,7 @@ void cd_mail_retrieve_gmail_params (CDMailAccount *mailaccount, GKeyFile *pKeyFi
 
 	gboolean bFlushConfFileNeeded = FALSE;
 
-#if ( __WORDSIZE == 64 )
+#if (1 || __WORDSIZE == 64 )  // RSS authentification seems to have changed, and doesn't work anymore here :-/ so use IMAP by default
 /* in 64bit libetpan crashes with RSS, so use the IMAP feature of GMail
  * instead of RSS. */
 	mailaccount->driver = IMAP_STORAGE;
@@ -361,7 +361,7 @@ void cd_mail_retrieve_gmail_params (CDMailAccount *mailaccount, GKeyFile *pKeyFi
 	mailaccount->folder = NULL;
 	mailaccount->server = NULL;
 	mailaccount->port = 443;
-	mailaccount->connection_type = CONNECTION_TYPE_PLAIN;
+	mailaccount->connection_type = CONNECTION_TYPE_STARTTLS;
 	mailaccount->user = NULL;
 	mailaccount->password = NULL;
 	mailaccount->auth_type = POP3_AUTH_TYPE_PLAIN;
