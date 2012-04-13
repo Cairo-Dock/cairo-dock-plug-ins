@@ -133,7 +133,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 			}
 			pNewIcon->iGroup = CD_DRIVE_GROUP;
 			if (pNewIcon->cFileName == NULL)
-				pNewIcon->cFileName = g_strdup (CD_SHORTCUT_DEFAULT_DRIVE_ICON_FILENAME);
+				pNewIcon->cFileName = cairo_dock_search_icon_s_path (CD_SHORTCUT_DEFAULT_DRIVE_ICON_FILENAME, CAIRO_DOCK_DEFAULT_ICON_SIZE);
 			_init_disk_usage (pNewIcon, myApplet);
 			
 			//\_______________________ on la place au bon endroit suivant son nom.
@@ -189,7 +189,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 				
 				cd_shortcuts_set_icon_order_by_name (pNewIcon, pIconsList);
 				if (pNewIcon->cFileName == NULL)
-					pNewIcon->cFileName = g_strdup (CD_SHORTCUT_DEFAULT_DRIVE_ICON_FILENAME);
+					pNewIcon->cFileName = cairo_dock_search_icon_s_path (CD_SHORTCUT_DEFAULT_DRIVE_ICON_FILENAME, CAIRO_DOCK_DEFAULT_ICON_SIZE);
 				_init_disk_usage (pNewIcon, myApplet);
 				CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pNewIcon);
 				
@@ -321,7 +321,7 @@ GList * cd_shortcuts_list_drives (CDSharedMemory *pSharedMemory)
 	{
 		pIcon = ic->data;
 		if (pIcon->cFileName == NULL)
-			pIcon->cFileName = g_strdup (CD_SHORTCUT_DEFAULT_DRIVE_ICON_FILENAME);
+			pIcon->cFileName = cairo_dock_search_icon_s_path (CD_SHORTCUT_DEFAULT_DRIVE_ICON_FILENAME, CAIRO_DOCK_DEFAULT_ICON_SIZE);
 		_init_disk_usage (pIcon, pSharedMemory->pApplet);
 	}
 	

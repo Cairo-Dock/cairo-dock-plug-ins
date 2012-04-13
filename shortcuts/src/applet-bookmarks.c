@@ -25,6 +25,8 @@
 #include "applet-load-icons.h"
 #include "applet-bookmarks.h"
 
+#define CD_SHORTCUT_DEFAULT_DIRECTORY_ICON_FILENAME "inode-directory"
+
 
 static void _cd_shortcuts_mark_one_bookmark (Icon *icon, gpointer unused, int *pTime)
 {
@@ -134,7 +136,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 						if (cRealURI == NULL)
 							cRealURI = g_strdup ("none");
 						if (cIconName == NULL)
-							cIconName = g_strdup ("inode-directory");
+							cIconName = cairo_dock_search_icon_s_path (CD_SHORTCUT_DEFAULT_DIRECTORY_ICON_FILENAME, CAIRO_DOCK_DEFAULT_ICON_SIZE);
 						
 						pNewIcon = cairo_dock_create_dummy_launcher (cName,
 							cIconName,
@@ -396,9 +398,9 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 				if (cRealURI == NULL)
 					cRealURI = g_strdup ("none");
 				if (cIconName == NULL)
-					cIconName = g_strdup ("inode-directory"); // should be the default icon
+					cIconName = cairo_dock_search_icon_s_path (CD_SHORTCUT_DEFAULT_DIRECTORY_ICON_FILENAME, CAIRO_DOCK_DEFAULT_ICON_SIZE); // should be the default icon
 				
-				pNewIcon = pNewIcon = cairo_dock_create_dummy_launcher (cName,
+				pNewIcon = cairo_dock_create_dummy_launcher (cName,
 					cIconName,
 					cRealURI,
 					NULL,

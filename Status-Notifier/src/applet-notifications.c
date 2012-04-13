@@ -191,7 +191,7 @@ gboolean cd_status_notifier_on_right_click (CairoDockModuleInstance *myApplet, I
 }
 
 
-static gboolean _popup_tooltip (Icon *pIcon)
+/*static gboolean _popup_tooltip (Icon *pIcon)
 {
 	CDStatusNotifierItem *pItemData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pItemData != NULL && pItemData->pToolTip != NULL)
@@ -202,7 +202,7 @@ static gboolean _popup_tooltip (Icon *pIcon)
 		gchar *cIconPath = NULL;
 		if (pItemData->pToolTip->cIconName)
 		{
-			cIconPath = cairo_dock_search_icon_s_path (pItemData->pToolTip->cIconName, 32); // dialog
+			cIconPath = cairo_dock_search_icon_s_path (pItemData->pToolTip->cIconName, cairo_dock_search_icon_size (GTK_ICON_SIZE_DND)); // dialog
 		}
 		
 		cairo_dock_show_temporary_dialog_with_icon (cText, pIcon, CAIRO_CONTAINER (myIcon->pSubDock), 3000, cIconPath ? cIconPath : "same icon");
@@ -211,7 +211,7 @@ static gboolean _popup_tooltip (Icon *pIcon)
 		pItemData->iSidPopupTooltip = 0;
 	}
 	return FALSE;
-}
+}*/
 gboolean cd_status_notifier_on_enter_icon (CairoDockModuleInstance *myApplet, Icon *pIcon, CairoDock *pDock, gboolean *bStartAnimation)
 {
 	if (pDock == myIcon->pSubDock && myIcon->pSubDock != NULL)
