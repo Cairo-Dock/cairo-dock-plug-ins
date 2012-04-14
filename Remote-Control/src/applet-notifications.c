@@ -109,7 +109,7 @@ static void _find_next_dock (CairoDock *pDock, gpointer *data)
 }
 static void _activate_nth_icon (guint iKeyVal, guint iModifierType)  // iKeyVal is already in the correct interval.
 {
-	g_print ("%s (%d)\n", __func__, iKeyVal);
+	cd_debug ("%s (%d)", __func__, iKeyVal);
 	// get the index of the icon: we want "1" to be the first icon, because it's more natural and it follows the keyboard layout. So "0" will actually be the 10th icon.
 	int iIndex;  // from 0
 	if (iKeyVal >= GDK_0 && iKeyVal <= GDK_9)
@@ -126,7 +126,7 @@ static void _activate_nth_icon (guint iKeyVal, guint iModifierType)  // iKeyVal 
 		else
 			iIndex = iKeyVal - GDK_KP_1;
 	}
-	g_print ("click on %d\n", iIndex);
+	cd_debug ("click on %d", iIndex);
 	// retrieve the nth icon in the current dock.
 	int n = 0;
 	Icon *pNthIcon = NULL, *pIcon;
@@ -148,7 +148,7 @@ static void _activate_nth_icon (guint iKeyVal, guint iModifierType)  // iKeyVal 
 	// execute the icon directly.
 	if (pNthIcon != NULL)
 	{
-		g_print ("click on %s\n", pNthIcon->cName);
+		cd_debug ("click on %s", pNthIcon->cName);
 		///cairo_dock_notify_on_object (CAIRO_CONTAINER (myData.pCurrentDock), NOTIFICATION_CLICK_ICON, pNthIcon, myData.pCurrentDock, iModifierType);
 		cd_do_simulate_click (CAIRO_CONTAINER (myData.pCurrentDock), pNthIcon, iModifierType);
 
@@ -226,7 +226,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	{
 		if (myData.sCurrentText->len > 0)
 		{
-			cd_debug ("on efface la derniere lettre de %s (%d)\n", myData.sCurrentText->str, myData.sCurrentText->len);
+			cd_debug ("we remove the last letter of %s (%d)\n", myData.sCurrentText->str, myData.sCurrentText->len);
 			
 			g_string_truncate (myData.sCurrentText, myData.sCurrentText->len-1);
 			
@@ -248,7 +248,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	{
 		if (myData.pCurrentIcon != NULL)
 		{
-			g_print ("on clique sur l'icone '%s' [%d, %d]\n", myData.pCurrentIcon->cName, iModifierType, GDK_SHIFT_MASK);
+			cd_debug ("we click on the icon '%s' [%d, %d]", myData.pCurrentIcon->cName, iModifierType, GDK_SHIFT_MASK);
 			
 			myData.bIgnoreIconState = TRUE;
 			if (iModifierType & GDK_MOD1_MASK)  // ALT

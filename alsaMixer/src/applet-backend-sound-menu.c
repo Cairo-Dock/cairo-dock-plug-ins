@@ -73,7 +73,7 @@ static const gchar *_get_icon_from_state (gint iState)
 static void
 on_sound_state_updated (DBusGProxy * proxy, gint iNewState, CairoDockModuleInstance *myApplet)
 {
-	g_print ("++++ %s (iNewState : %d)\n", __func__, iNewState);
+	cd_debug ("%s (iNewState : %d)", __func__, iNewState);
 	CD_APPLET_ENTER;
 	if (iNewState != myData.iCurrentState)
 	{
@@ -124,7 +124,7 @@ static void _stop (void)
 
 static void cd_sound_on_connect (CairoDockModuleInstance *myApplet)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	// the sound service is up and running, stop the alsa mixer if ever we initialized it before.
 	cd_stop ();
 	
@@ -150,13 +150,13 @@ static void cd_sound_on_connect (CairoDockModuleInstance *myApplet)
 static void cd_sound_on_disconnect (CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
-	g_print ("++++ %s \n", __func__);
+	cd_debug ("%s", __func__);
 	
 	if (myData.ctl.get_volume == _get_volume)  // the backend was set, unset it
 	{
 		memset (&myData.ctl, 0, sizeof (CDSoundCtl));
 		
-		g_print ("clean\n");
+		cd_debug ("clean");
 		myData.volume_widget = NULL;
 		myData.transport_widgets_list = NULL;
 		myData.voip_widget = NULL;
@@ -179,7 +179,7 @@ static void _on_got_sound_state (DBusGProxy *proxy, DBusGProxyCall *call_id, Cai
 		G_TYPE_INT,
 		&iCurrentState,
 		G_TYPE_INVALID);
-	g_print ("-> got sound state: %d\n", iCurrentState);
+	cd_debug ("got sound state: %d", iCurrentState);
 	
 	// update the icon.
 	myData.iCurrentState = iCurrentState;
@@ -207,7 +207,7 @@ static void cd_sound_get_initial_values (CairoDockModuleInstance *myApplet)
 
 void update_accessible_desc (double new_value)
 {
-	g_print ("%s (%p)\n", __func__, myData.volume_widget);
+	cd_debug ("%s (%p)", __func__, myData.volume_widget);
 	if (!myData.volume_widget)
 		return;
 	

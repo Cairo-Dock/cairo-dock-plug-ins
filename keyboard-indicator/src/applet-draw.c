@@ -58,7 +58,7 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 			1.,
 			0*iWidth,
 			&myData.iCurrentTextWidth, &myData.iCurrentTextHeight);
-		g_print ("KEYBOARD: %dx%d / %dx%d\n", myData.iCurrentTextWidth, myData.iCurrentTextHeight, myIcon->iImageWidth, myIcon->iImageHeight);
+		cd_debug ("KEYBOARD: %dx%d / %dx%d", myData.iCurrentTextWidth, myData.iCurrentTextHeight, myIcon->iImageWidth, myIcon->iImageHeight);
 		if (g_bUseOpenGL)
 		{
 			myData.iCurrentTexture = cairo_dock_create_texture_from_surface (myData.pCurrentSurface);
@@ -101,7 +101,7 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 	///CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (!cIndicatorName || *cIndicatorName == '\0' ? NULL : cIndicatorName);
 	if (myConfig.bShowKbdIndicator)
 	{
-		g_print ("XKBD: caps-lock: %d; num-lock: %d\n", myData.iCurrentIndic & 1, myData.iCurrentIndic & 2);
+		cd_debug ("XKBD: caps-lock: %d; num-lock: %d", myData.iCurrentIndic & 1, myData.iCurrentIndic & 2);
 		if (myData.iCurrentIndic & 1)  // caps-lock
 		{
 			if (! (myData.iPreviousIndic & 1))
@@ -132,7 +132,7 @@ gboolean cd_xkbd_render_step_opengl (Icon *pIcon, CairoDockModuleInstance *myApp
 {
 	CD_APPLET_ENTER;
 	double f = CD_APPLET_GET_TRANSITION_FRACTION ();
-	g_print ("%s (%.2f; %.2fx%.2f)\n", __func__, f, myIcon->fWidth, myIcon->fHeight);
+	cd_debug ("%s (%.2f; %.2fx%.2f)", __func__, f, myIcon->fWidth, myIcon->fHeight);
 	
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);

@@ -284,13 +284,13 @@ static void _on_got_desktop_entry (DBusGProxy *proxy, DBusGProxyCall *call_id, g
 	if (bSuccess && G_VALUE_HOLDS_STRING (&v))
 	{
 		const gchar *cDesktopFileName = g_value_get_string (&v);
-		g_print (" got desktop-entry '%s' from the service '%s'\n", cDesktopFileName, myData.pCurrentHandler->cMprisService);
+		cd_debug (" got desktop-entry '%s' from the service '%s'", cDesktopFileName, myData.pCurrentHandler->cMprisService);
 		
 		if (cDesktopFileName != NULL)
 		{
 			if (myConfig.cLastKnownDesktopFile == NULL || strcmp (cDesktopFileName, myConfig.cLastKnownDesktopFile) != 0)  // the property has changed from the previous time.
 			{
-				g_print ("  desktop-entry has changed, update\n");
+				cd_debug ("  desktop-entry has changed, update");
 				// store the desktop filename, since we can't have it until the service is up, the next time the applet is started, which means we wouldn't be able to launch the player.
 				cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
 					G_TYPE_STRING, "Configuration", "desktop-entry", cDesktopFileName,
@@ -306,7 +306,7 @@ static void _on_got_desktop_entry (DBusGProxy *proxy, DBusGProxyCall *call_id, g
 				myData.pCurrentHandler->appclass = cairo_dock_register_class (cDesktopFileName);
 				myData.pCurrentHandler->launch = g_strdup (cairo_dock_get_class_command (myData.pCurrentHandler->appclass));
 				myData.pCurrentHandler->cDisplayedName = g_strdup (cairo_dock_get_class_name (myData.pCurrentHandler->appclass));
-				g_print ("  class is now '%s'\n", myData.pCurrentHandler->appclass);
+				cd_debug ("  class is now '%s'", myData.pCurrentHandler->appclass);
 				
 				if (myData.pCurrentHandler->appclass != NULL)
 				{

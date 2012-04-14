@@ -231,7 +231,7 @@ void cd_switcher_load_default_map_surface (void)
 		myData.iSurfaceWidth = MAX (1, myContainer->iWidth / myData.switcher.iNbViewportTotal);
 		myData.iSurfaceHeight = MAX (1, myContainer->iHeight / myData.switcher.iNbViewportTotal);
 	}
-	g_print ("%s (%dx%d)\n", __func__, myData.iSurfaceWidth, myData.iSurfaceHeight);
+	cd_debug ("%s (%dx%d)", __func__, myData.iSurfaceWidth, myData.iSurfaceHeight);
 	myData.pDefaultMapSurface = cairo_dock_create_surface_from_image_simple (myConfig.cDefaultIcon,
 		myData.iSurfaceWidth,
 		myData.iSurfaceHeight);

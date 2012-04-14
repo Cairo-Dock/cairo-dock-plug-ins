@@ -809,7 +809,7 @@ void cd_update_input_shape (CairoDock *pDock)
 							rect.y = 0;
 							rect.width = pData->fGroupGap - 4 * my_fPanelRadius;
 							rect.height = pDock->iMaxDockHeight;  // we use iMaxDockHeight instead of the actual window size, because at this time, the dock's window may not have its definite size.
-							g_print ("***  rect %d; %d\n", (int)rect.x, (int)rect.width);
+							cd_debug ("rect %d; %d", (int)rect.x, (int)rect.width);
 						}
 						else
 						{

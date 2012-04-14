@@ -50,7 +50,7 @@ static CDCategoryEnum _find_category (const gchar *cCategory)
 
 static CDStatusEnum _find_status (const gchar *cStatus)
 {
-	g_print ("STATUS: %s\n", cStatus);
+	cd_debug ("STATUS: %s", cStatus);
 	if (!cStatus)
 		return CD_STATUS_ACTIVE;
 	if (*cStatus == 'N')

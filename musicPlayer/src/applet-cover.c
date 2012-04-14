@@ -182,7 +182,7 @@ static gboolean _check_cover_file_exists (gpointer data)
 }
 static gboolean _get_cover_again (gpointer data)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	myData.iNbCheckCover ++;
 	if (myData.iNbCheckCover > 1)
 	{
@@ -243,7 +243,7 @@ void cd_musicplayer_set_cover_path (const gchar *cGivenCoverPath)
 	{
 		return;
 	}
-	g_print ("%s (%s -> %s)\n", __func__, myData.cCoverPath, cGivenCoverPath);
+	cd_debug ("%s (%s -> %s)", __func__, myData.cCoverPath, cGivenCoverPath);
 	
 	g_free (myData.cPreviousCoverPath);
 	myData.cPreviousCoverPath = myData.cCoverPath;  // remember the previous cover.
@@ -321,7 +321,7 @@ static void _free_shared_memory (CDSharedMemory *pSharedMemory)
 }
 static void cd_musicplayer_dl_cover (void)
 {
-	g_print ("MP-COVER - %s (%s, %s, %s)\n", __func__, myData.cArtist, myData.cAlbum, myData.cPlayingUri);
+	cd_debug ("MP-COVER - %s (%s, %s, %s)", __func__, myData.cArtist, myData.cAlbum, myData.cPlayingUri);
 	
 	if (myData.pCoverTask != NULL)
 	{

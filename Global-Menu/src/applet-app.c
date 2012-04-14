@@ -141,7 +141,7 @@ static void cd_app_menu_launch_our_registrar (void)
 
 static void _on_registrar_owner_changed (const gchar *cName, gboolean bOwned, gpointer data)
 {
-	g_print ("=== Registrar is on the bus (%d)\n", bOwned);
+	cd_debug ("Registrar is on the bus (%d)", bOwned);
 	CD_APPLET_ENTER;
 	
 	if (bOwned)
@@ -169,7 +169,7 @@ static void _on_registrar_owner_changed (const gchar *cName, gboolean bOwned, gp
 
 static void _on_detect_registrar (gboolean bPresent, gpointer data)
 {
-	g_print ("=== Registrar is present: %d\n", bPresent);
+	cd_debug ("Registrar is present: %d", bPresent);
 	CD_APPLET_ENTER;
 	s_pDetectRegistrarCall = NULL;
 	// if present, set up proxy.
@@ -261,13 +261,13 @@ static void _on_menu_destroyed (CairoDockModuleInstance *myApplet, GObject *old_
 }
 static void _get_menu_async (CDSharedMemory *pSharedMemory)
 {
-	g_print ("%s()\n", __func__);
+	cd_debug ("%s()", __func__);
 	pSharedMemory->pMenu = dbusmenu_gtkmenu_new (pSharedMemory->cService, pSharedMemory->cMenuObject);  /// can this object disappear by itself ? it seems to crash with 2 instances of inkscape, when closing one of them... 
-	g_print ("menu built\n");
+	cd_debug ("menu built");
 }
 static gboolean _fetch_menu (CDSharedMemory *pSharedMemory)
 {
-	g_print ("%s()\n", __func__);
+	cd_debug ("%s()", __func__);
 	CD_APPLET_ENTER;
 	myData.pMenu = pSharedMemory->pMenu;
 	pSharedMemory->pMenu = NULL;
@@ -280,7 +280,7 @@ static gboolean _fetch_menu (CDSharedMemory *pSharedMemory)
 
 static void _on_got_menu (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockModuleInstance *myApplet)
 {
-	g_print ("=== %s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	CD_APPLET_ENTER;
 	s_pGetMenuCall = NULL;
 	
@@ -300,8 +300,8 @@ static void _on_got_menu (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockM
 	}
 	if (bSuccess)
 	{
-		g_print (" -> %s\n", cService);
-		g_print ("    %s\n", cMenuObject);
+		cd_debug (" -> %s", cService);
+		cd_debug ("    %s", cMenuObject);
 		if (cService && *cService != '\0')
 		{
 			/*if (myData.pTask != NULL)
@@ -440,7 +440,7 @@ void cd_app_menu_stop (void)
 
 void cd_app_menu_set_current_window (Window iActiveWindow)
 {
-	g_print ("%s (%ld)\n", __func__, iActiveWindow);
+	cd_debug ("%s (%ld)", __func__, iActiveWindow);
 	if (iActiveWindow != myData.iCurrentWindow)
 	{
 		myData.iPreviousWindow = myData.iCurrentWindow;

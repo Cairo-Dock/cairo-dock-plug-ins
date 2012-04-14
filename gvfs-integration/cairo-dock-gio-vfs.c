@@ -862,7 +862,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 				if (pPreviewIcon != NULL)
 				{
 					icon->cFileName = _cd_get_icon_path (pPreviewIcon, NULL);
-					g_print ("got preview icon '%s'\n", icon->cFileName);
+					// g_print ("got preview icon '%s'\n", icon->cFileName);
 				}
 			}*/
 			#endif

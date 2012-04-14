@@ -147,7 +147,7 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 	//\_________________ on gere le cachage et le montrage du dock precedent et actuel.
 	if (myData.pCurrentDock != NULL && pDock != myData.pCurrentDock)  // on remet au repos le dock precedemment anime.
 	{
-		g_print ("leave this dock\n");
+		cd_debug ("leave this dock");
 		cairo_dock_emit_leave_signal (CAIRO_CONTAINER (myData.pCurrentDock));
 		
 		cd_do_remove_icons_number (myData.pCurrentDock);
@@ -159,7 +159,7 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 	}
 	if (pDock != NULL && pDock != myData.pCurrentDock)  // on montre le nouveau dock
 	{
-		g_print (" dock %p <- %p\n", myData.pCurrentDock, pDock);
+		cd_debug (" dock %p <- %p", myData.pCurrentDock, pDock);
 		if (pDock->iRefCount > 0)
 		{
 			CairoDock *pParentDock = NULL;
@@ -172,7 +172,7 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 		else
 		{
 			/// utile de faire ca si on entre dedans ?...
-			g_print ("enter this dock\n");
+			cd_debug ("enter this dock");
 			if (pDock->bAutoHide)
 				cairo_dock_start_showing (pDock);
 			if (pDock->iVisibility == CAIRO_DOCK_VISI_KEEP_BELOW)
@@ -238,7 +238,7 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 	
 	myData.pCurrentDock = pDock;
 	myData.pCurrentIcon = pIcon;
-	g_print ("myData.pCurrentDock <- %p\n", myData.pCurrentDock);
+	cd_debug ("myData.pCurrentDock <- %p", myData.pCurrentDock);
 }
 
 

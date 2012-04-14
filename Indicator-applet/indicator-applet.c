@@ -29,13 +29,13 @@ static gboolean s_bIndicatorIconThemeAdded = FALSE;
 
 static void _on_menu_destroyed (CDAppletIndicator *pIndicator, GObject *old_menu_pointer)
 {
-	g_print (" --------- no more menu (%p / %p\n", old_menu_pointer, pIndicator->pMenu);
+	cd_debug ("no more menu (%p / %p)", old_menu_pointer, pIndicator->pMenu);
 	if (old_menu_pointer == (GObject*)pIndicator->pMenu)
 		pIndicator->pMenu = NULL;
 }
 static void _on_service_destroyed (CDAppletIndicator *pIndicator, GObject *old_menu_pointer)
 {
-	g_print (" --------- no more service (%p / %p\n", old_menu_pointer, pIndicator->service);
+	cd_debug ("no more service (%p / %p)", old_menu_pointer, pIndicator->service);
 	if (old_menu_pointer == (GObject*)pIndicator->service)
 		pIndicator->service = NULL;
 }
@@ -69,7 +69,7 @@ static gboolean _get_menu_once (CDAppletIndicator *pIndicator)
 static void
 connection_changed (IndicatorServiceManager * sm, gboolean connected, CDAppletIndicator *pIndicator)
 {
-	g_print ("%s (%s : %d)\n", __func__, pIndicator->cBusName, connected);
+	cd_debug ("%s (%s : %d)", __func__, pIndicator->cBusName, connected);
 	CairoDockModuleInstance *myApplet = pIndicator->pApplet;
 	if (connected)
 	{
@@ -117,9 +117,9 @@ connection_changed (IndicatorServiceManager * sm, gboolean connected, CDAppletIn
 				pIndicator->on_disconnect (myApplet);
 			if (pIndicator->pMenu)
 			{
-				g_print ("destroy menu...\n");
+				cd_debug ("destroy menu...");
 				g_object_unref (pIndicator->pMenu);
-				g_print ("done.\n");
+				cd_debug ("done.");
 				pIndicator->pMenu = NULL;
 			}
 			if (pIndicator->pServiceProxy != NULL)
@@ -182,16 +182,16 @@ void cd_indicator_destroy (CDAppletIndicator *pIndicator)
 		g_source_remove (pIndicator->iSidCheckIndicator);
 	pIndicator->bConnected = FALSE;
 	pIndicator->on_disconnect = NULL;  // since the indicator has been explicitely destroyed, we don't want to call the callback when we'll disconnect from the service.
-	g_print ("destroy indicator menu...\n");
+	cd_debug ("destroy indicator menu...");
 	if (pIndicator->pMenu)
 		g_object_unref (pIndicator->pMenu);
-	g_print ("done.\n");
+	cd_debug ("done.");
 	if (pIndicator->pServiceProxy)
 	{
 		g_object_unref (pIndicator->pServiceProxy);
 		pIndicator->pServiceProxy = NULL;
 	}
-	g_print ("destroy service...\n");
+	cd_debug ("destroy service...");
 	if (pIndicator->service)
 	{
 		//g_object_unref (pIndicator->service);  // this causes a crash in libindicator (beacuse they keep the service as parameter of the callback 'service_proxy_name_changed'). so just be sure to disconnect from this object, and forget it.
@@ -201,7 +201,7 @@ void cd_indicator_destroy (CDAppletIndicator *pIndicator)
 			pIndicator);
 		pIndicator->service = NULL;
 	}
-	g_print ("done.\n");
+	cd_debug ("done.");
 	g_free (pIndicator);
 }
 
