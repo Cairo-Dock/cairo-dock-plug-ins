@@ -7,16 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2011-10-29 20:05+0000\n"
-"Last-Translator: Arve Eriksson <Unknown>\n"
+"POT-Creation-Date: 2012-04-12 00:33+0000\n"
+"PO-Revision-Date: 2012-04-12 03:08+0000\n"
+"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Cairo-Dock\n"
-"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-13 04:57+0000\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Launchpad-Export-Date: 2012-04-13 05:34+0000\n"
+"X-Generator: Launchpad (build 15070)\n"
 "X-Poedit-Country: SWEDEN\n"
+"Language: sv\n"
 "X-Poedit-Language: Swedish\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -25,7 +26,8 @@ msgstr "Animerade ikoner"
 
 #: ../Animated-icons/src/applet-init.c:35
 msgid "This plug-in provides many different animations for your icons."
-msgstr "Detta plugin tillhandahåller många olika animeringar till dina ikoner."
+msgstr ""
+"Detta plugin tillhandahåller många olika animeringar till dina ikoner."
 
 #: ../Animated-icons/src/applet-init.c:80 ../Animated-icons/data/messages:9
 #: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:47
@@ -199,9 +201,8 @@ msgid "The clipboard history is empty."
 msgstr ""
 
 #: ../Clipper/src/applet-notifications.c:89
-#, fuzzy
 msgid "Clear clipboard History"
-msgstr "Klippbordshistorik"
+msgstr ""
 
 #: ../Clipper/src/applet-notifications.c:91
 msgid "Paste all copied items"
@@ -254,8 +255,8 @@ msgid ""
 "You can define in the configuration a Window-Manager that will provide the "
 "composite, and another as a fallback."
 msgstr ""
-"Det här programmet låter dig <b>sätta på eller stänga av sammansatt grafik</"
-"b>.\n"
+"Det här programmet låter dig <b>sätta på eller stänga av sammansatt "
+"grafik</b>.\n"
 "Sammansatt grafik gör det möjligt att ha genomskinlighet på skrivbordet, men "
 "det kan göra datorn långsammare,\n"
 "särskilt när du spelar spel. <b>Klicka</b> på ikonen för att växla "
@@ -367,7 +368,8 @@ msgstr "Modulen har lagts till, men kunde inte startas."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "Appleten '%s' har blivit framgångsrikt uppdaterat och automatiskt omstartat."
 
@@ -459,6 +461,40 @@ msgid ""
 " - Find actions : left, middle click, drop and wheel.\n"
 " - Fill menu with actions.\n"
 msgstr ""
+"<b><i>Övervakar diskars hastighet och utrymme</i></b>.\n"
+"\n"
+"Det här programmet visar information om dina diskar. Du kan aktivera båda "
+"alternativen samtidigt, men de gör sig bättre uppdelade på två eller flera "
+"instanser av programmet.\n"
+"Att använda båda i samma instans kan orsaka problem med att "
+"hastighetsindikatorn inte skalar ner.\n"
+"\n"
+"<b>Diskutrymme</b> : Visa disköverföringshastighet. Upp till 10 partitioner\n"
+"  Du måste konfigurera monteringspunkt för varje partition, som / eller "
+"/home\n"
+"  Avläses bättre i ett reglage, med 30 eller 60 sekunders "
+"uppdateringsfrekvens, och ytterst kort eller ingen fördröjning vid "
+"övergång.\n"
+"\n"
+"<b>Diskhastighet</b> : Visa disköverföringshastighet. Upp till 5 diskar\n"
+"  Du måste konfigurera namn för varje övervakad disk med dess enhetsnamn, "
+"som sda eller sdb\n"
+"  Avläses bättre i en graf, med två eller tre sekunders uppdateringsfrekvens "
+"och utan fördröjning mellan övergångar.\n"
+"\n"
+"Andra utgåvan; mycket återstår att göra ;\n"
+" <u>Ledigt utrymme :</u>\n"
+" - Popup med detaljerade informationer.\n"
+" - Redigerbara etiketter ?\n"
+" <u>Hastighet :</u>\n"
+" - Alternativ för Alla diskar.\n"
+" - Popup som visar diskars info för att veta vad som ska läggas till i "
+"listan.\n"
+" - Redigerbara etiketter ?\n"
+" - Hämta riktig blockstorlek för diskar\n"
+" <u>Globalt</u>\n"
+" - Hitta åtgärder : vänster, mittenklick, tappa och hjul.\n"
+" - Fyll menyn med åtgärder.\n"
 
 #: ../Disks/src/applet-notifications.c:69
 #: ../System-Monitor/src/applet-init.c:35
@@ -1733,8 +1769,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1929,7 +1965,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:591
@@ -2905,8 +2942,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -5223,7 +5260,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
@@ -5435,9 +5473,8 @@ msgid "Image for the 'maximize' button"
 msgstr ""
 
 #: ../Global-Menu/data/messages:115
-#, fuzzy
 msgid "Image for the 'restore' button"
-msgstr "Bild för stop:"
+msgstr ""
 
 #: ../Global-Menu/data/messages:117
 msgid "Image for the 'close' button"
@@ -5542,9 +5579,8 @@ msgstr ""
 #: ../netspeed/data/messages:17 ../powermanager/data/messages:19
 #: ../slider/data/messages:17 ../weather/data/messages:19
 #: ../wifi/data/messages:17
-#, fuzzy
 msgid "With default background"
-msgstr "Rita bakgrund?"
+msgstr ""
 
 #: ../Messaging-Menu/data/messages:19 ../Network-Monitor/data/messages:21
 #: ../Status-Notifier/data/messages:23 ../System-Monitor/data/messages:19
@@ -5554,9 +5590,8 @@ msgstr "Rita bakgrund?"
 #: ../netspeed/data/messages:19 ../powermanager/data/messages:21
 #: ../slider/data/messages:19 ../weather/data/messages:21
 #: ../wifi/data/messages:19
-#, fuzzy
 msgid "With custom background"
-msgstr "Rita bakgrund?"
+msgstr ""
 
 #: ../Messaging-Menu/data/messages:21 ../Network-Monitor/data/messages:23
 #: ../Status-Notifier/data/messages:25 ../System-Monitor/data/messages:21
@@ -6940,7 +6975,8 @@ msgid "Space between icons:"
 msgstr "Avstånd mellan ikoner:"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 betyder at vågen är helt platt. 1 betyder att vågen är identisk med andra "
 "vyer."
@@ -7074,7 +7110,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
@@ -7243,9 +7280,8 @@ msgid "Shortkey to lock the screen"
 msgstr ""
 
 #: ../logout/data/messages:105
-#, fuzzy
 msgid "Shortkey to show the menu"
-msgstr "Tangentkombination för att visa/dölja konfigurationsdialog"
+msgstr ""
 
 #: ../logout/data/messages:107
 msgid "Demand confirmation before closing"
@@ -7308,7 +7344,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:117
@@ -7392,7 +7429,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:101
@@ -8037,9 +8075,8 @@ msgid "Use the compact mode?"
 msgstr ""
 
 #: ../switcher/data/messages:93
-#, fuzzy
 msgid "Desktops layout"
-msgstr "Skrivbord"
+msgstr ""
 
 #: ../switcher/data/messages:97
 msgid "On a single line"
@@ -8355,7 +8392,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:107
@@ -8436,24 +8474,3 @@ msgstr ""
 #: ../wifi/data/messages:197
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Visa anslutningsnamnet på etiketten?"
-
-#, fuzzy
-#~ msgid "Application Menu"
-#~ msgstr "Program-menyn"
-
-#, fuzzy
-#~ msgid "Sound Menu"
-#~ msgstr "Ljudkontroll"
-
-#, fuzzy
-#~ msgid "Behavior"
-#~ msgstr "Beteende"
-
-#~ msgid "Name of the icon as it will appear in its label in the dock :"
-#~ msgstr "Ikonens etikett:"
-
-#~ msgid "Icon name:"
-#~ msgstr "Ikonetikett:"
-
-#~ msgid "Name of the icon as it will appear in its label in cairo-dock :"
-#~ msgstr "Ikonens etikett:"

@@ -7,23 +7,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2012-01-31 20:48+0000\n"
+"POT-Creation-Date: 2012-04-12 00:33+0000\n"
+"PO-Revision-Date: 2012-04-14 08:21+0000\n"
 "Last-Translator: rob <linuxned@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-13 04:54+0000\n"
-"X-Generator: Launchpad (build 14781)\n"
+"X-Launchpad-Export-Date: 2012-04-14 14:49+0000\n"
+"X-Generator: Launchpad (build 15070)\n"
+"Language: \n"
 
 #: ../Animated-icons/src/applet-init.c:32
 msgid "Animated icons"
-msgstr "Geanimeerde iconen"
+msgstr "Geanimeerde pictogrammen"
 
 #: ../Animated-icons/src/applet-init.c:35
 msgid "This plug-in provides many different animations for your icons."
-msgstr "Deze plug-in bevat vele verschillende animaties voor uw iconen."
+msgstr ""
+"Deze plug-in bevat vele verschillende animaties voor uw pictogrammen."
 
 #: ../Animated-icons/src/applet-init.c:80 ../Animated-icons/data/messages:9
 #: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:47
@@ -96,8 +98,8 @@ msgstr "Sorry, maar ik ben bezig."
 msgid ""
 "I don't have time to play with you, I have to dig and mine all these icons."
 msgstr ""
-"Ik heb geen tijd om met jou te spelen, ik moet nog al deze iconen uitgraven "
-"en opruimen."
+"Ik heb geen tijd om met jou te spelen, ik moet nog al deze pictogrammen "
+"uitgraven en opruimen."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:32
 msgid "Your dock is so messy! Let me clean it."
@@ -181,8 +183,8 @@ msgstr ""
 "Het ondersteunt klembord- en muisselectie, aangewezen acties en vaste "
 "items.\n"
 "Klik met links voor de klembord- en muisselectiehistorie,\n"
-"Sleep tekst naar het icoon om vaste items aan te maken en middelklik om ze "
-"op te roepen."
+"Sleep tekst naar het pictogram om vaste items aan te maken en middelklik om "
+"ze op te roepen."
 
 #: ../Clipper/src/applet-init.c:39
 msgid "Clipboard history"
@@ -190,20 +192,19 @@ msgstr "Klembordgeschiedenis"
 
 #: ../Clipper/src/applet-init.c:72
 msgid "Pop-up the items menu"
-msgstr ""
+msgstr "Itemsmenu tonen"
 
 #: ../Clipper/src/applet-notifications.c:33
 msgid "The clipboard history is empty."
-msgstr ""
+msgstr "De klembordgeschiedenis is leeg."
 
 #: ../Clipper/src/applet-notifications.c:89
-#, fuzzy
 msgid "Clear clipboard History"
-msgstr "Klembordgeschiedenis"
+msgstr "Klembordgeschiedenis wissen"
 
 #: ../Clipper/src/applet-notifications.c:91
 msgid "Paste all copied items"
-msgstr ""
+msgstr "Alle gekopieerde items plakken"
 
 #: ../Clipper/src/applet-notifications.c:99
 msgid ""
@@ -211,7 +212,7 @@ msgid ""
 "You can add some by drag and dropping some text on the icon."
 msgstr ""
 "Nog geen vaste items.\n"
-"U kunt ze toevoegen door tekst naar het icoon te slepen."
+"U kunt ze toevoegen door tekst naar het pictogram te slepen."
 
 #: ../Clipper/src/applet-notifications.c:143
 msgid "No items yet."
@@ -255,8 +256,8 @@ msgstr ""
 "Met dit applet kunt u composite IN/UITSCHAKELEN</b>.\n"
 "Composite regelt de doorzichtigheid op het bureaublad, maar het kan uw PC "
 "vertragen en vooral tijdens het gamen.\n"
-"<b>Klik</b> op het icoon voor het IN/UITSCHAKELEN van composite. U kunt een "
-"<b>sneltoets</b> instellen voor deze actie.\n"
+"<b>Klik</b> op het pictogram voor het IN/UITSCHAKELEN van composite. U kunt "
+"een <b>sneltoets</b> instellen voor deze actie.\n"
 "Met dit applet heeft u ook toegang tot sommige acties van het vensterbeheer, "
 "van <b>middelklikken en het menu</b>.\n"
 "U kunt in de configuratie de vensterbeheerder voor composite instellen en "
@@ -264,7 +265,7 @@ msgstr ""
 
 #: ../Composite-Manager/src/applet-init.c:52
 msgid "Toggle the composite ON/OFF"
-msgstr ""
+msgstr "Composite IN-/UITSCHAKELEN"
 
 #: ../Composite-Manager/src/applet-notifications.c:43
 msgid "Toggle composite?"
@@ -363,7 +364,8 @@ msgstr "De module is wel toegevoegd, maar kon niet gestart worden."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Het applet '%s' is bijgewerkt en is automatisch opnieuw geladen"
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -461,8 +463,8 @@ msgstr ""
 "problemen veroorzaken met de snelheidsweergave die niet omlaag wil gaan.\n"
 "\n"
 "<b>Schijfruimte</b> :  Toon schijfoverdrachtswaarden. tot 10 partities\n"
-"  U moet het koppelpunt instellen van elke gemonitoorde partitie, zoals / "
-"of /home\n"
+"  U moet het koppelpunt instellen van elke gemonitoorde partitie, zoals / of "
+"/home\n"
 "  Beter weergeven in een meter, met 30 of 60 seconden ververssnelheid en "
 "hele korte of geen vertraging tussen overgangen.\n"
 "\n"
@@ -534,7 +536,7 @@ msgstr ""
 " - activeert u dit applet, opent zijn configuratiepaneel en selecteert een "
 "map\n"
 " - of versleept een map naar het dock\n"
-"Middellkik op het hoofdicoon om de map te openen.\n"
+"Middellkik op het hoofdpictogram om de map te openen.\n"
 
 #: ../Folders/src/applet-init.c:87 ../Folders/src/applet-init.c:150
 #: ../Folders/src/applet-notifications.c:42
@@ -549,7 +551,7 @@ msgstr "Lege of onleesbare map."
 
 #: ../Folders/src/applet-notifications.c:116
 msgid "Properties:"
-msgstr ""
+msgstr "Eigenschappen:"
 
 #: ../Folders/src/applet-notifications.c:136 ../Folders/data/messages:117
 msgid "Size"
@@ -557,31 +559,31 @@ msgstr "Grootte"
 
 #: ../Folders/src/applet-notifications.c:136
 msgid "bytes"
-msgstr ""
+msgstr "bytes"
 
 #: ../Folders/src/applet-notifications.c:150
 msgid "Last Modification"
-msgstr ""
+msgstr "Laatst gewijzigd"
 
 #: ../Folders/src/applet-notifications.c:159
 msgid "Mime Type"
-msgstr ""
+msgstr "Mime-bestandstype"
 
 #: ../Folders/src/applet-notifications.c:173
 msgid "User ID"
-msgstr ""
+msgstr "Gebruikers-ID"
 
 #: ../Folders/src/applet-notifications.c:173
 msgid "Group ID"
-msgstr ""
+msgstr "Groeps-ID"
 
 #: ../Folders/src/applet-notifications.c:183
 msgid "Permissions"
-msgstr ""
+msgstr "Toegangsrechten"
 
 #: ../Folders/src/applet-notifications.c:183
 msgid "Read"
-msgstr ""
+msgstr "Lezen"
 
 #: ../Folders/src/applet-notifications.c:184
 #: ../Folders/src/applet-notifications.c:185
@@ -613,7 +615,7 @@ msgstr "Nee"
 
 #: ../Folders/src/applet-notifications.c:184
 msgid "Write"
-msgstr ""
+msgstr "Schrijven"
 
 #: ../Folders/src/applet-notifications.c:185
 #: ../Scooby-Do/src/applet-backend-command.c:95
@@ -756,11 +758,11 @@ msgstr "Toepassingenmenu"
 
 #: ../GMenu/src/applet-init.c:66
 msgid "Show/hide the Applications menu"
-msgstr ""
+msgstr "Toepassingenmenu tonen/verbergen"
 
 #: ../GMenu/src/applet-init.c:71
 msgid "Show/hide the quick-launch dialog"
-msgstr ""
+msgstr "Snelstartdialoog tonen/verbergen"
 
 #: ../GMenu/src/applet-menu-callbacks.c:218 ../GMenu/data/messages:121
 msgid "Logout"
@@ -796,7 +798,7 @@ msgstr "Voer een opdracht in om uit te voeren :"
 
 #: ../Global-Menu/src/applet-init.c:30
 msgid "Global Menu"
-msgstr ""
+msgstr "Algemeen menu"
 
 #: ../Global-Menu/src/applet-init.c:33
 msgid ""
@@ -806,14 +808,19 @@ msgid ""
 "by default.\n"
 "You can bind a shortkey to this action."
 msgstr ""
+"Dit applet laat u het momenteel actieve venster beheren:\n"
+"  sluiten, minimaliseren, maximaliseren en het toepassingenmenu tonen.  Om "
+"het menu te tonen, is het noodzakelijk dat toepassingen deze optie "
+"ondersteunen, wat in Ubuntu standaard het geval is.\n"
+"U kunt voor deze actie een sneltoets instellen."
 
 #: ../Global-Menu/src/applet-init.c:108 ../Global-Menu/src/applet-init.c:210
 msgid "Show/hide the current application menu"
-msgstr ""
+msgstr "Het huidige toepassingenmenu tonen/verbergen"
 
 #: ../Global-Menu/src/applet-notifications.c:52
 msgid "The application didn't send its menu to us."
-msgstr ""
+msgstr "De toepassing heeft geen menu naar ons gestuurd."
 
 #: ../Impulse/src/applet-impulse.c:170
 msgid ""
@@ -833,7 +840,7 @@ msgid ""
 "It will analyse the signal given by PulseAudio."
 msgstr ""
 "Wist u dat uw dock kan dansen? :)\n"
-"Wanneer u op dit icoon klikt, zal het dock gaan dansen!\n"
+"Wanneer u op dit pictogram klikt, zal het dock gaan dansen!\n"
 "U krijgt dan een grafische equalizer in het dock\n"
 "dat door een signaal van PulseAudio aangestuurd wordt."
 
@@ -863,16 +870,22 @@ msgid ""
 "It handles Evolution, Pidgin, Empathy, etc\n"
 "It requires the Messaging service, which is available on Ubuntu by default."
 msgstr ""
+"Een menu dat u waarschuwt wanneer er nieuwe berichten zijn van e-mail of "
+"chattoepassingen.\n"
+"Het werkt in Evolution, Pidgin, Empathy, etc\n"
+"Het vereist de Berichtendienst, dat standaard beschikbaar is in Ubuntu."
 
 #: ../Messaging-Menu/src/applet-init.c:66
 msgid "Show/hide the Messaging menu"
-msgstr ""
+msgstr "Berichtenmenu tonen/verbergen"
 
 #: ../Messaging-Menu/src/applet-notifications.c:31
 msgid ""
 "The Messaging service did not reply.\n"
 "Please check that it is correctly installed."
 msgstr ""
+"De Berichtendienst gaf geen antwoord.\n"
+"Controleer of het correct geïnstalleerd is."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:69
 msgid "Network connection state changed to inactive."
@@ -998,8 +1011,8 @@ msgstr ""
 "Het kan de download/uploadsnelheden weergeven en de wifi-signaalsterkte.\n"
 "Als u een netwerkbeheerder gebruikt, dan kunt u ook het huidige netwerk "
 "ermee kiezen.\n"
-"Klik met links voor meer info. Scrol op het icoon om te wisselen tussen de "
-"weergave van de verbindingssnelheid of wifi."
+"Klik met links voor meer info. Scrol op het pictogram om te wisselen tussen "
+"de weergave van de verbindingssnelheid of wifi."
 
 #: ../Network-Monitor/src/applet-netspeed.c:200
 #: ../System-Monitor/src/applet-monitor.c:95
@@ -1056,7 +1069,7 @@ msgstr ""
 " - Linkerklik : de complete feed-lijnen tonen in een dialoog.\n"
 " - Middelklik : de feed vernieuwen.\n"
 " - Scrollen op het desklet : laat de feed-lijnen scrollen.\n"
-" - Versleep een geldige url plakken naar het icoon om die te gebruiken,\n"
+" - Versleep een geldige url plakken naar het pictogram om die te gebruiken,\n"
 "    of kopieer de url en gebruik \"Een nieuwe RSS-Url plakken\" in het "
 "menu.\n"
 "    of bewerk het Configuratiepaneel."
@@ -1203,7 +1216,7 @@ msgstr "Recente activiteiten"
 
 #: ../Recent-Events/src/applet-init.c:58
 msgid "Show/hide the Recent Events"
-msgstr ""
+msgstr "Recente activiteiten tonen/verbergen"
 
 #: ../Recent-Events/src/applet-notifications.c:74
 #, c-format
@@ -1236,14 +1249,25 @@ msgid ""
 "middle click, and Ctrl+Enter for left click\n"
 "Escape or the same shortkey will cancel."
 msgstr ""
+"Deze plug-in laat u het dock beheren vanaf uw toetsenbord\n"
+"Druk op de sneltoets (standaard is dit Super + Return), waarna u het "
+"volgende kunt doen:\n"
+" - toets het nummer van het pictogram in dat u wilt activeren - of gebruik "
+"de pijltjestoetsen om te navigeren naar de gewenste docks en sub-docks (Ctrl "
+"+ Page up/down om te wisselen naar een ander hoofd-dock)\n"
+" - of typ de naam in van een starter en druk op de Tab-toets om automatisch "
+"naar de eerstvolgende starter te springen.\n"
+"Druk Enter om op het pictogram te klikken, Shift+Enter voor Shift+klik, "
+"Alt+Enter voor middelklik, en Ctrl+Enter voor linkermuisklik\n"
+"Voor annuleren drukt u op Escape of nog een keer op dezelfde sneltoets."
 
 #: ../Remote-Control/src/applet-init.c:42
 msgid "Control from keyboard"
-msgstr ""
+msgstr "Beheren vanaf het toetsenbord"
 
 #: ../Remote-Control/src/applet-init.c:49
 msgid "Enable/disable the keyboard control of the dock"
-msgstr ""
+msgstr "Dock-beheer vanaf toetsenbord inschakelen/uitschakelen"
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
@@ -1330,7 +1354,7 @@ msgstr "Amazon"
 
 #: ../Scooby-Do/src/applet-init.c:73
 msgid "Enable/disable the Finder"
-msgstr ""
+msgstr "De Finder inschakelen/uitschakelen"
 
 #: ../Scooby-Do/src/applet-listing.c:514
 msgid "(F1) Match case"
@@ -1429,9 +1453,9 @@ msgid ""
 "time."
 msgstr ""
 "Dit applet toont het CPU-, RAM-gebruik, grafische kaart temperatuur, etc.\n"
-"Middelklik op het icoon voor enige nuttige informatie.\n"
-"Klik met links op het icoon voor een lijst met toepassingen met het meeste "
-"gebruik.\n"
+"Middelklik op het pictogram voor enige informatie.\n"
+"Klik met links op het pictogram voor een lijst met toepassingen met het "
+"meeste gebruik.\n"
 "U kunt dit applet meerdere keren openen om elke keer andere waarden te tonen."
 
 #: ../System-Monitor/src/applet-notifications.c:40
@@ -1468,7 +1492,7 @@ msgstr "Mb"
 
 #: ../System-Monitor/src/applet-nvidia.c:148
 msgid "Driver Version"
-msgstr "Driver-versie"
+msgstr "Stuurprogrammaversie"
 
 #: ../System-Monitor/src/applet-nvidia.c:149
 msgid "Core Temperature"
@@ -1477,7 +1501,8 @@ msgstr "Core-temperatuur:"
 #: ../System-Monitor/src/applet-nvidia.c:161
 #, c-format
 msgid "Alert! Graphic Card core temperature has reached %d°C"
-msgstr "Waarschuwing ! Core-temperatuur van grafische kaart heeft %d°C bereikt"
+msgstr ""
+"Waarschuwing ! Core-temperatuur van grafische kaart heeft %d°C bereikt"
 
 #: ../System-Monitor/src/applet-rame.c:124
 msgid "Gb"
@@ -1555,11 +1580,11 @@ msgstr "Schermhelderheid"
 
 #: ../Xgamma/src/applet-init.c:64
 msgid "Increase the brightness"
-msgstr ""
+msgstr "De helderheid verhogen"
 
 #: ../Xgamma/src/applet-init.c:68
 msgid "Decrease the brightness"
-msgstr ""
+msgstr "De helderheid verlagen"
 
 #: ../Xgamma/src/applet-notifications.c:87
 msgid "Set up gamma correction"
@@ -1609,10 +1634,9 @@ msgstr "Volume instellen :"
 
 #: ../alsaMixer/src/applet-draw.c:64
 msgid "Volume"
-msgstr ""
+msgstr "Volume"
 
 #: ../alsaMixer/src/applet-init.c:34
-#, fuzzy
 msgid ""
 "This applet lets you control the sound volume from the dock.\n"
 "Scroll up/down on the icon to increase/decrease the volume.\n"
@@ -1623,12 +1647,12 @@ msgid ""
 "The applet can either use the Ubuntu Sound-menu or the Alsa driver."
 msgstr ""
 "Dit applet laat u het geluidsvolume beheren vanuit het dock.\n"
-"Scrol op/neer op het icoon om het volume te verhogen/verlagen.\n"
-"Klik op het icoon om het volumebeheer te tonen/verbergen (u kunt hier een "
-"sneltoets voor instellen)\n"
-"U kunt de dialoog verbergen door erop te klikken.\n"
+"Scrol op/neer op het pictogram om het volume te verhogen/verlagen.\n"
+"Klik op het pictogram om het volumebeheer te tonen/verbergen (u kunt hier "
+"een sneltoets voor instellen)\n"
 "Middelklik om geluid te dempen of niet, dubbelklik voor de kanalenmixer.\n"
-"Dit applet werkt met de Alsa sound driver."
+"Dit applet kan werken met het Ubuntu-geluidsmenu of met het Alsa-"
+"stuurprogramma."
 
 #: ../alsaMixer/src/applet-init.c:42
 msgid "Sound Control"
@@ -1636,7 +1660,7 @@ msgstr "Geluidsbeheer"
 
 #: ../alsaMixer/src/applet-init.c:118
 msgid "Show/hide the Sound menu"
-msgstr ""
+msgstr "Geluidsmenu tonen/verbergen"
 
 #: ../alsaMixer/src/applet-notifications.c:80
 msgid "Adjust channels"
@@ -1768,8 +1792,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1985,7 +2009,8 @@ msgstr ""
 "Druk op CTRL+v om de URL ergens in te plakken."
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Wacht a.u.b. met het starten van een nieuwe upload, totdat de huidige upload "
 "beëindigd is."
@@ -2011,12 +2036,12 @@ msgid ""
 "You'll need to install 'curl' and 'wget' to upload the data."
 msgstr ""
 "Met dit applet kunt u makkelijk bestanden delen:\n"
-"Sleep een bestand naar het icoon om het te uploaden naar één van de "
+"Sleep een bestand naar het pictogram om het te uploaden naar één van de "
 "beschikbare hosting-websites.\n"
 "U kunt tekst, afbeeldingen, video´s, bestanden en zelfs het huidige klembord "
 "uploaden\n"
-" en u kunt kiezen tussen vele websites, zoals  DropBox, Imageshack, "
-"pastebin, etc\n"
+" u kunt kiezen tussen vele websites, zoals  DropBox, Imageshack, pastebin, "
+"etc\n"
 "De verkregen URL wordt automatisch opgeslagen in het klembord om geplakt te "
 "kunnen worden met CTRL+v.\n"
 "Het kan de geschiedenis van de laatste uploads bijhouden om deze op te halen "
@@ -2060,7 +2085,7 @@ msgid ""
 ".Just drag'n drop a file on the icon to upload it"
 msgstr ""
 "Geen geüpload bestand beschikbaar\n"
-".Sleep een bestand naar het icoon om het te uploaden"
+"Sleep een bestand naar het pictogram om het te uploaden"
 
 #: ../dnd2share/src/applet-notifications.c:114
 msgid ""
@@ -2094,7 +2119,7 @@ msgstr "Bestand"
 
 #: ../dnd2share/src/applet-notifications.c:390
 msgid "Click on the icon to copy the URL into the clipboard."
-msgstr "Klik op het icoon om de URL op te slaan in het klembord."
+msgstr "Klik op het pictogram om de URL op te slaan in het klembord."
 
 #: ../dnd2share/src/applet-notifications.c:402
 msgid "Send the clipboard's content"
@@ -2170,8 +2195,8 @@ msgid ""
 msgstr ""
 "Dit applet beheert de prullenbak\n"
 "U kunt bestanden verwijderen en schijven ontkoppelen door ze te verslepen "
-"naar het icoon.\n"
-"Middelklik op het icoon om de prullenbak te legen.."
+"naar het pictogram.\n"
+"Middelklik op het pictogram om de prullenbak te legen.."
 
 #: ../dustbin/src/applet-notifications.c:32
 msgid "You're about to delete all files in all dustbins. Sure ?"
@@ -2244,11 +2269,11 @@ msgstr "Berekenen"
 
 #: ../icon-effect/src/applet-init.c:34
 msgid "icon effects"
-msgstr "Icooneffecten"
+msgstr "Pictogrameffecten"
 
 #: ../icon-effect/src/applet-init.c:37
 msgid "This plugin adds many special effects to your icons."
-msgstr "Deze plug-in voegt vele speciale effecten toe aan uw iconen."
+msgstr "Deze plug-in voegt vele speciale effecten toe aan uw pictogrammen."
 
 #: ../icon-effect/src/applet-init.c:101 ../icon-effect/data/messages:7
 #: ../icon-effect/data/messages:23 ../icon-effect/data/messages:39
@@ -2294,7 +2319,8 @@ msgstr "Illusie"
 msgid ""
 "This plugin provides animations for appearance & disappearance of icons."
 msgstr ""
-"Deze plug-in bevat animaties voor het verschijnen & verdwijnen van iconen."
+"Deze plug-in bevat animaties voor het verschijnen & verdwijnen van "
+"pictogrammen."
 
 #: ../keyboard-indicator/src/applet-init.c:31
 msgid "keyboard indicator"
@@ -2316,7 +2342,7 @@ msgstr ""
 
 #: ../keyboard-indicator/src/applet-init.c:81
 msgid "Switch keyboard language"
-msgstr ""
+msgstr "Toetsenbordtaal wisselen"
 
 #: ../keyboard-indicator/src/applet-notifications.c:77
 msgid "Keyboard preferences"
@@ -2331,6 +2357,14 @@ msgid ""
 "<b>Click</b> on the icon to pop the menu up.\n"
 "You can bind a <b>shortcut</b> to it, and also to lock the screen."
 msgstr ""
+"Met dit applet kunt u  de huidige sessie beheren. Het biedt de volgende "
+"opties:\n"
+"uitschakelen, herstarten, in slaapstand zetten, in pauzestand zetten, "
+"uitloggen, scherm afgrendelen, naar een andere gebruiker wisselen of "
+"automatisch uitschakelen.\n"
+"Het zal u ook waarschuwen wanneer uw systeem herstart dient te worden.\n"
+"<b>Klik</b> op het pictogram om het menu te tonen.\n"
+"U kunt voor deze actie een <b>sneltoets</b> instellen."
 
 #: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:228
 #: ../logout/data/messages:97
@@ -2339,11 +2373,11 @@ msgstr "Uitloggen"
 
 #: ../logout/src/applet-init.c:67
 msgid "Lock the screen"
-msgstr ""
+msgstr "Het scherm vergrendelen"
 
 #: ../logout/src/applet-init.c:71
 msgid "Show the log-out menu"
-msgstr ""
+msgstr "Het uitlogmenu tonen"
 
 #: ../logout/src/applet-logout.c:200 ../logout/data/messages:99
 msgid "Shut down"
@@ -2379,7 +2413,7 @@ msgstr "Sluit uw sessie en sta toe dat er een nieuwe geopend wordt."
 
 #: ../logout/src/applet-logout.c:241
 msgid "Switch user"
-msgstr ""
+msgstr "Gebruiker wisselen"
 
 #: ../logout/src/applet-logout.c:262
 msgid "Guest session"
@@ -2404,23 +2438,23 @@ msgstr "Selecteer aantal minuten waarna uw PC zal afsluiten :"
 #: ../logout/src/applet-logout.c:523
 #, c-format
 msgid "It will automatically shut-down in %ds"
-msgstr ""
+msgstr "Deze wordt automatisch uitgeschakeld over %ds"
 
 #: ../logout/src/applet-logout.c:524
 msgid "Shut down the computer?"
-msgstr ""
+msgstr "De computer uitschakelen?"
 
 #: ../logout/src/applet-logout.c:584
 msgid "Restart the computer?"
-msgstr ""
+msgstr "De computer herstarten?"
 
 #: ../logout/src/applet-logout.c:621
 msgid "Close the current session?"
-msgstr ""
+msgstr "De huidige sessie sluiten?"
 
 #: ../logout/src/applet-notifications.c:103
 msgid "Manage users"
-msgstr ""
+msgstr "Gebruikersbeheer"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Server address:"
@@ -2694,6 +2728,17 @@ msgid ""
 " and jpeg image to use as cover.\n"
 "Note: you may have to install or activate the MPRIS plug-in of the player."
 msgstr ""
+"Dit applet laat u elke muziekspeler bedienen.\n"
+"Selecteer eerst de speler die u wilt bedienen.\n"
+"<b>klik</b> om de speler te tonen/verbergen of te pauzeren,\n"
+"<b>middelklik</b> om te pauzeren of om naar het volgende nummer te gaan,\n"
+"<b>Scrol op/neer</b> om van nummer te veranderen of om het volume te "
+"beheren.\n"
+"U kunt ook nummers slepen naar het pictogram om ze in de wachtrij te "
+"plaatsen (afhankelijk van de speler),\n"
+" en een jpeg-afbeelding om als albumhoes te gebruiken.\n"
+"Opmerking : mogelijk dient u de MPRIS-plug-in voor de speler te activeren of "
+"installeren."
 
 #: ../musicPlayer/src/applet-notifications.c:83
 msgid ""
@@ -2781,8 +2826,9 @@ msgid ""
 msgstr ""
 "Dit applet laat u de snelheid van uw internetverbinding zien en enige "
 "informatie hierover.\n"
-"Klik met links op icoon om totale hoeveelheid van data-overdracht te zien\n"
-"Middelklik om het netwerk te (de-)activeren (vereist NetworManager)"
+"Klik met links op pictogram om de totale hoeveelheid van data-overdracht te "
+"zien\n"
+"Middelklik om het netwerk te (de-)activeren (vereist Netwerjbeheer)"
 
 #: ../netspeed/src/applet-notifications.c:36
 msgid "Total amount of data"
@@ -2898,8 +2944,8 @@ msgid ""
 msgstr ""
 "Dit applet toont de huidige status van uw <b>laptopaccu/b>: opladen, "
 "resterende tijd, etc\n"
-"<b>Klik</b> op het icoon voor enige bruikbare informatie.\n"
-"<b>Klik met rechts</b> op het icoon om het systeem in de slaapstand te "
+"<b>Klik</b> op het pictogram voor enige informatie.\n"
+"<b>Klik met rechts</b> op het pictogram om het systeem in de slaapstand te "
 "zetten of te pauzeren."
 
 #: ../powermanager/src/powermanager-menu-functions.c:71
@@ -2930,7 +2976,7 @@ msgstr ""
 
 #: ../quick-browser/src/applet-init.c:64
 msgid "Show/hide the folder menu"
-msgstr ""
+msgstr "Mappenmenu tonen/verbergen"
 
 #: ../quick-browser/src/applet-menu.c:107
 #: ../quick-browser/src/applet-menu.c:116
@@ -2981,11 +3027,11 @@ msgstr ""
 "Een applet waarmee u snel toegang heeft tot al uw snelkoppelingen.\n"
 "Het kan schijven, netwerkpunten en Nautilus-bladwijzers beheren (zelfs als u "
 "geen Nautilus heeft).\n"
-"Sleep een map naar het hoofdicoon of het sub-dock om een bladwijzer toe te "
-"voegen.\n"
-"Middelklik op het hoofdicoon om uw persoonlijke map te tonen.\n"
-"Middelklik op een koppelpunticoon om snel te (ont)koppelen.\n"
-"Het applet kan ook nuttige informatie over uw schijven tonen, zoals vrije "
+"Sleep een map naar het hoofdpictogram of het sub-dock om een bladwijzer toe "
+"te voegen.\n"
+"Middelklik op het hoofdpictogram om uw persoonlijke map te tonen.\n"
+"Middelklik op een koppelpuntpictogram om snel te (ont)koppelen.\n"
+"Het applet kan ook enige informatie over uw schijven tonen, zoals vrije "
 "ruimte, type, etc."
 
 #: ../shortcuts/src/applet-notifications.c:44
@@ -3050,8 +3096,8 @@ msgstr "Toon muis"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Deze plug-in tekent enige animatie rond de muisaanwijzer wanneer het zich in "
 "een dock/desklet bevindt."
@@ -3070,7 +3116,7 @@ msgid ""
 "Middle-click to show/hide either the desktop, the desklets, the Widget "
 "Layer, or all the desktops at once."
 msgstr ""
-"Dit applet voegt een icoon toe om uw bureaublad te tonen,\n"
+"Dit applet voegt een pictogram toe om uw bureaublad te tonen,\n"
 " en ook : de desklets, de Widget Layer of alle bureaubladen tegelijkertijd.\n"
 "Het kan ook de schermresolutie wijzigen via het rechtermuisknopmenu.\n"
 "Klik met links om het bureaublad te tonen/verbergen,\n"
@@ -3116,9 +3162,8 @@ msgid "Browse images folder"
 msgstr "Afbeeldingenmap doorbladeren"
 
 #: ../slider/src/applet-notifications.c:270
-#, fuzzy
 msgid "Refresh images list"
-msgstr "Vernieuwingstijd"
+msgstr "Afbeeldingslijst vernieuwen"
 
 #: ../stack/src/applet-init.c:31
 msgid "stack"
@@ -3135,7 +3180,7 @@ msgid ""
 msgstr ""
 "Met dit applet kunt u bestanden stapelen, net zoals bij MacOS X.\n"
 "Om een bestand aan uw stapels toe te voegen, kunt u het verslepen naar het "
-"Stapel-icoon, dat is alles.\n"
+"Stapel-pictogram, dat is alles.\n"
 "U kunt elk bestand of web-URL, zelfs een stuk tekst naar een stapel "
 "verslepen\n"
 "Hierdoor kunt u snel het pad, de url of de tekst openen of kopiëren naar het "
@@ -3149,7 +3194,7 @@ msgid ""
 msgstr ""
 "Geen items in de Stapel.\n"
 "U kunt bestanden, een URL en zelfs een stuk tekst toevoegen door ze te "
-"verslepen naar het Stapel-icoon."
+"verslepen naar het Stapel-pictogram."
 
 #: ../stack/src/applet-notifications.c:78
 msgid "Clear the stack?"
@@ -3232,7 +3277,7 @@ msgstr ""
 " - Snel een bureaublad toevoegen/verwijderen (in het menu),\n"
 " - Bureaublad tonen (middlelklik of in het menu),\n"
 " - Alle vensters op alle bureaubladen tonen (middlelklik of in het menu)\n"
-"Het kent 2 modus : Compact (op 1 icoon) en uitgebreid (met een sub-dock)."
+"Het kent 2 modus : Compact (op 1 pictogram) en uitgebreid (met een sub-dock)."
 
 #: ../switcher/src/applet-notifications.c:217
 #: ../switcher/src/applet-notifications.c:279
@@ -3287,7 +3332,7 @@ msgstr "Mededelingengebied oud"
 
 #: ../systray/src/systray-init.c:65
 msgid "Show/hide the systray"
-msgstr ""
+msgstr "Systeemvak tonen/verbergen"
 
 #: ../systray/src/systray-interface.c:70
 msgid ""
@@ -3337,7 +3382,7 @@ msgstr ""
 
 #: ../terminal/src/terminal-init.c:59
 msgid "Show/hide the terminal"
-msgstr ""
+msgstr "Terminalvenster tonen/verbergen"
 
 #: ../terminal/src/terminal-menu-functions.c:78
 #: ../terminal/src/terminal-widget.c:420
@@ -3400,7 +3445,7 @@ msgstr ""
 "Klik op een notitie om het te openen en op Escape om het te sluiten.\n"
 "Middelklik om een nieuwe notitie te maken.\n"
 "Middelklik om een nieuwe notitie te maken.\\n\n"
-"U kunt zoeken in de notities en hun inhoud tonen op hun iconen."
+"U kunt zoeken in de notities en hun inhoud tonen op hun pictogrammen."
 
 #: ../tomboy/src/tomboy-notifications.c:100
 msgid "Note name : "
@@ -3498,8 +3543,8 @@ msgstr ""
 "De data wordt voorzien door www.weather.com, u kunt uw locatie vinden in het "
 "configuratiepaneel.\n"
 "Het kan losgekoppeld worden om als 3D-desklet gebruikt te worden.\n"
-"Middelklik op het hoofdicoon voor het huidige weer, klik met links op een "
-"sub-icoon voor de weersverwachting.\n"
+"Middelklik op het hoofdpictogram voor het huidige weer, klik met links op "
+"een sub-pictogram voor de weersverwachting.\n"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Jan"
@@ -3667,12 +3712,12 @@ msgstr "Algemeen"
 #: ../Animated-icons/data/messages:3
 msgid "Animations are triggered when hovering an icon only in OpenGL mode."
 msgstr ""
-"Animaties worden gestart wanneer u de muis over een icoon heen beweegt, "
+"Animaties worden gestart wanneer u de muis over een pictogram heen beweegt, "
 "alleen in OpenGL-modus."
 
 #: ../Animated-icons/data/messages:5 ../icon-effect/data/messages:3
 msgid "when hovering over an icon"
-msgstr "Wanneer u de muis over een icoon heen beweegt"
+msgstr "Wanneer u de muis over een pictogram heen beweegt"
 
 #: ../Animated-icons/data/messages:7 ../icon-effect/data/messages:5
 msgid "Effects used:"
@@ -3731,7 +3776,7 @@ msgstr "Tijdsduur van de animatie :"
 #: ../icon-effect/data/messages:111 ../icon-effect/data/messages:133
 #: ../icon-effect/data/messages:155 ../icon-effect/data/messages:175
 msgid "Repeat while icon is pointed to?"
-msgstr "Herhalen wanneer icoon aangewezen wordt ?"
+msgstr "Herhalen wanneer pictogram aangewezen wordt ?"
 
 #: ../Animated-icons/data/messages:71
 msgid "Type of mesh:"
@@ -3892,7 +3937,7 @@ msgstr "Maximale vergroting van het kloppen :"
 
 #: ../Animated-icons/data/messages:155
 msgid "Pulse follows icon shape?"
-msgstr "Moet het kloppen de vorm van het icoon volgen ?"
+msgstr "Moet het kloppen de vorm van het pictogram volgen ?"
 
 #: ../Animated-icons/data/messages:161
 msgid "Bounce duration:"
@@ -3900,7 +3945,7 @@ msgstr "Tijdsduur van het stuiteren :"
 
 #: ../Animated-icons/data/messages:165
 msgid "When bouncing, resize the icon by:"
-msgstr "Tijdens het stuiteren, wijzig afmeting icoon van :"
+msgstr "Tijdens het stuiteren, wijzig afmeting pictogram met :"
 
 #: ../Animated-icons/data/messages:167
 msgid "the lower the value, the more it will flatten."
@@ -3908,7 +3953,7 @@ msgstr "Hoe kleiner, hoe platter."
 
 #: ../Animated-icons/data/messages:169
 msgid "How much the icon will flatten when hitting the ground:"
-msgstr "Hoe plat het icoon wordt tijdens het raken van de grond :"
+msgstr "Hoe plat het pictogram wordt tijdens het raken van de grond :"
 
 #: ../Animated-icons/data/messages:175
 msgid "Blink duration:"
@@ -3955,7 +4000,7 @@ msgstr "Tijdsduur van het knipperen :"
 #: ../weblets/data/messages:1 ../weblets/data/messages:3
 #: ../wifi/data/messages:1 ../wifi/data/messages:3
 msgid "Icon"
-msgstr "Icoon"
+msgstr "Pictogram"
 
 #: ../Cairo-Penguin/data/messages:5 ../Clipper/data/messages:5
 #: ../Composite-Manager/data/messages:5 ../Doncky/data/messages:5
@@ -4000,7 +4045,7 @@ msgstr "Naam van het dock waar het bijhoort:"
 #: ../tomboy/data/messages:7 ../weather/data/messages:9
 #: ../weblets/data/messages:7 ../wifi/data/messages:7
 msgid "Name of the icon as it will appear in its caption in the dock:"
-msgstr "Naam van icoon zoals zichtbaar op het label in het dock :"
+msgstr "Naam van pictogram zoals zichtbaar op het label in het dock :"
 
 #: ../Cairo-Penguin/data/messages:9 ../Clipper/data/messages:13
 #: ../Composite-Manager/data/messages:9 ../Disks/data/messages:9
@@ -4048,7 +4093,7 @@ msgstr "Stel in op 0 om de standaardgrootte van het applet te gebruiken"
 #: ../weather/data/messages:13 ../weblets/data/messages:15
 #: ../wifi/data/messages:11
 msgid "Desired icon size for this applet"
-msgstr "Gewenste icoongrootte voor dit applet"
+msgstr "Gewenste pictogramgrootte voor dit applet"
 
 #: ../Cairo-Penguin/data/messages:13 ../Clipper/data/messages:17
 #: ../Composite-Manager/data/messages:13 ../Disks/data/messages:13
@@ -5052,7 +5097,8 @@ msgstr "Plakken in klembord ?"
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
-msgstr "Als u klikt op een item, wordt de inhoud zichtbaar met een middelklik"
+msgstr ""
+"Als u klikt op een item, wordt de inhoud zichtbaar met een middelklik"
 
 #: ../Clipper/data/messages:123
 msgid "Paste into Selection?"
@@ -5217,19 +5263,21 @@ msgstr "Mogen externe toepassingen starters toevoegen aan de docks ?"
 
 #: ../Dbus/data/messages:17
 msgid "Let external applications modify the labels of icons?"
-msgstr "Mogen externe toepassingen de labels van de iconen bewerken ?"
+msgstr "Mogen externe toepassingen de labels van de pictogrammen bewerken ?"
 
 #: ../Dbus/data/messages:19
 msgid "Let extern applications modify the quick-infos on icons?"
-msgstr "Mogen externe toepassingen de snel-info van de iconen bewerken ?"
+msgstr ""
+"Mogen externe toepassingen de snel-info van de pictogrammen bewerken ?"
 
 #: ../Dbus/data/messages:21
 msgid "Let extern applications modify the icons' image?"
-msgstr "Mogen externe toepassingen de afbeelding van de iconen bewerken ?"
+msgstr ""
+"Mogen externe toepassingen de afbeelding van de pictogrammen bewerken ?"
 
 #: ../Dbus/data/messages:23
 msgid "Let extern applications animate icons?"
-msgstr "Mogen externe toepassingen de iconen animeren ?"
+msgstr "Mogen externe toepassingen de pictogrammen animeren ?"
 
 #: ../Disks/data/messages:5
 msgid "Name of the container it belongs to:"
@@ -5370,7 +5418,7 @@ msgstr "Waarden tonen"
 #: ../System-Monitor/data/messages:165 ../alsaMixer/data/messages:117
 #: ../clock/data/messages:107 ../netspeed/data/messages:161
 msgid "On icon"
-msgstr "Op icoon"
+msgstr "Op pictogram"
 
 #: ../Disks/data/messages:141 ../Network-Monitor/data/messages:121
 #: ../System-Monitor/data/messages:167 ../alsaMixer/data/messages:115
@@ -5472,7 +5520,8 @@ msgid "Background"
 msgstr "Achtergrond"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "U kunt meer mooie achtergronden krijgen als u de decoraties van het Desklet "
 "gebruikt"
@@ -5527,7 +5576,7 @@ msgstr "Laat leeg om de naam van de map te gebruiken."
 
 #: ../Folders/data/messages:11
 msgid "How to render the icon :"
-msgstr "Hoe icoon weer te geven :"
+msgstr "Hoe pictogram weer te geven :"
 
 #: ../Folders/data/messages:13
 msgid "Use an image"
@@ -5584,7 +5633,7 @@ msgstr "Verborgen bestanden tonen ?"
 
 #: ../GMenu/data/messages:93 ../quick-browser/data/messages:109
 msgid "Display icons in the menu?"
-msgstr "Iconen tonen in het menu ?"
+msgstr "Pictogrammen tonen in het menu ?"
 
 #: ../GMenu/data/messages:95 ../Messaging-Menu/data/messages:101
 #: ../quick-browser/data/messages:119
@@ -5638,80 +5687,79 @@ msgid ""
 " The applet can steal the menu from the windows, in which case it will "
 "display a button to pop up the menu of the current window."
 msgstr ""
+"Dit applet kan de bovenste vensterrand stelen van gemaximaliseerde vensters, "
+"waardoor de vensterbeheerknoppen getoond zullen worden.\n"
+" Het applet kan het menu stelen van de vensters, waardoor er een knop "
+"getoond zal worden waarmee het menu van het huidige venster getoond kan "
+"worden."
 
 #: ../Global-Menu/data/messages:91
 msgid "Steal window menu"
-msgstr ""
+msgstr "Venstermenu stelen"
 
 #: ../Global-Menu/data/messages:93
 msgid "Steal window decoration"
-msgstr ""
+msgstr "Vensterdecoratie stelen"
 
 #: ../Global-Menu/data/messages:95
 msgid "Steal window menu and border"
-msgstr ""
+msgstr "Venstermenu en vensterrand stelen"
 
 #: ../Global-Menu/data/messages:97
-#, fuzzy
 msgid "Shortkey to pop up the menu"
-msgstr "Sneltoets voor het items-menu :"
+msgstr "Sneltoets om het menu te tonen"
 
 #: ../Global-Menu/data/messages:99
-#, fuzzy
 msgid "Pop up the menu at mouse position"
-msgstr "Pop-upmenu´s op muispositie ?"
+msgstr "Menu tonen bij muispositie"
 
 #: ../Global-Menu/data/messages:101
-#, fuzzy
 msgid "Compact mode"
-msgstr "Compact"
+msgstr "Compacte weergave"
 
 #: ../Global-Menu/data/messages:103
 msgid "Order of the buttons: "
-msgstr ""
+msgstr "Volgorde van de knoppen: "
 
 #: ../Global-Menu/data/messages:105
-#, fuzzy
 msgid "Auto"
 msgstr "Automatisch"
 
 #: ../Global-Menu/data/messages:107
 msgid "Close button at the end"
-msgstr ""
+msgstr "Knop sluiten bij het einde"
 
 #: ../Global-Menu/data/messages:109
 msgid "Close button at first"
-msgstr ""
+msgstr "Knop sluiten bij het begin"
 
 #: ../Global-Menu/data/messages:111
 msgid "Image for the 'minimize' button"
-msgstr ""
+msgstr "Afbeelding voor de knop 'Minimaliseren'"
 
 #: ../Global-Menu/data/messages:113
 msgid "Image for the 'maximize' button"
-msgstr ""
+msgstr "Afbeelding voor de knop 'Maximaliseren'"
 
 #: ../Global-Menu/data/messages:115
-#, fuzzy
 msgid "Image for the 'restore' button"
-msgstr "Afbeelding voor het spotlicht :"
+msgstr "Afbeelding voor de knop 'Herstellen'"
 
 #: ../Global-Menu/data/messages:117
-#, fuzzy
 msgid "Image for the 'close' button"
-msgstr "Afbeelding voor het spotlicht :"
+msgstr "Afbeelding voor de knop 'Sluiten'"
 
 #: ../Impulse/data/messages:93
 msgid "Animation of the icons:"
-msgstr "Animatie van de iconen:"
+msgstr "Animatie van de pictogrammen:"
 
 #: ../Impulse/data/messages:95
 msgid ""
 "Do we have to stop the animation on a icon which doesn't have to be animated "
 "each refresh?"
 msgstr ""
-"Moeten we de animatie op een icoon stoppen, zodat de animatie niet elke keer "
-"herhaald hoeft te worden na het vernieuwen?"
+"Moeten we de animatie op een pictogram stoppen, zodat de animatie niet elke "
+"keer herhaald wordt bij het vernieuwen?"
 
 #: ../Impulse/data/messages:97
 msgid "Stop animations sooner?"
@@ -5758,7 +5806,7 @@ msgstr "Automatisch starten bij het opstarten?"
 
 #: ../Impulse/data/messages:121
 msgid "Hide the icon?"
-msgstr "Icoon verbergen?"
+msgstr "Pictogram verbergen?"
 
 #: ../Impulse/data/messages:127
 msgid "Image when the applet is active:"
@@ -5771,7 +5819,7 @@ msgstr "Afbeelding wanneer het applet inactief is:"
 #: ../Impulse/data/messages:135 ../musicPlayer/data/messages:205
 #: ../tomboy/data/messages:21
 msgid "'Broken' icon image name:"
-msgstr "Naam van afbeelding voor het 'Gebroken' icoon :"
+msgstr "Naam van afbeelding voor het pictogram 'Gebroken' :"
 
 #: ../Impulse/data/messages:137
 msgid "PulseAudio"
@@ -5794,7 +5842,7 @@ msgstr "Index van de bron:"
 #: ../slider/data/messages:13 ../weather/data/messages:15
 #: ../wifi/data/messages:13
 msgid "Always display the icon, even when the dock is hidden?"
-msgstr "Icoon altijd tonen, ook als het dock verborgen is?"
+msgstr "Pictogram altijd tonen, ook als het dock verborgen is?"
 
 #: ../Messaging-Menu/data/messages:17 ../Network-Monitor/data/messages:19
 #: ../Status-Notifier/data/messages:21 ../System-Monitor/data/messages:17
@@ -5804,9 +5852,8 @@ msgstr "Icoon altijd tonen, ook als het dock verborgen is?"
 #: ../netspeed/data/messages:17 ../powermanager/data/messages:19
 #: ../slider/data/messages:17 ../weather/data/messages:19
 #: ../wifi/data/messages:17
-#, fuzzy
 msgid "With default background"
-msgstr "Achtergrond tekenen ?"
+msgstr "Met standaardachtergrond"
 
 #: ../Messaging-Menu/data/messages:19 ../Network-Monitor/data/messages:21
 #: ../Status-Notifier/data/messages:23 ../System-Monitor/data/messages:19
@@ -5816,9 +5863,8 @@ msgstr "Achtergrond tekenen ?"
 #: ../netspeed/data/messages:19 ../powermanager/data/messages:21
 #: ../slider/data/messages:19 ../weather/data/messages:21
 #: ../wifi/data/messages:19
-#, fuzzy
 msgid "With custom background"
-msgstr "Een simpele achtergrond weergeven ?"
+msgstr "Met aangepaste achtergrond"
 
 #: ../Messaging-Menu/data/messages:21 ../Network-Monitor/data/messages:23
 #: ../Status-Notifier/data/messages:25 ../System-Monitor/data/messages:21
@@ -5835,7 +5881,8 @@ msgstr "Achtergrondkleur om in dit geval toe te voegen"
 msgid ""
 "Animation of the icon when one of the application demands your attention :"
 msgstr ""
-"Animatie van het icoon wanneer één van de toepassingen uw aandacht vragen :"
+"Animatie van het pictogram wanneer één van de toepassingen uw aandacht "
+"vragen :"
 
 #: ../Network-Monitor/data/messages:7
 msgid "Leave empty to use the connection name."
@@ -5851,11 +5898,11 @@ msgstr "Opties"
 #: ../Network-Monitor/data/messages:103
 msgid "You can quickly switch to the other mode by scrolling on the icon."
 msgstr ""
-"U kunt snel wisselen naar een andere modus door op het icoon te scrollen."
+"U kunt snel wisselen naar een andere modus door op het pictogram te scrollen."
 
 #: ../Network-Monitor/data/messages:105
 msgid "Info displayed by the icon:"
-msgstr "Getoonde info op het icoon :"
+msgstr "Getoonde info op het pictogram:"
 
 #: ../Network-Monitor/data/messages:107
 msgid "Wifi signal"
@@ -5892,7 +5939,7 @@ msgstr "Vloeiendheid van de overgangsanimatie tussen 2 waarden :"
 
 #: ../Network-Monitor/data/messages:127
 msgid "Animation of the icon when connecting:"
-msgstr "Animatie van het icoon bij het verbinden :"
+msgstr "Animatie van het pictogram bij het verbinden :"
 
 #: ../Network-Monitor/data/messages:129
 msgid ""
@@ -5941,11 +5988,11 @@ msgstr "Selecteer de stijl van de weergave :"
 #: ../powermanager/data/messages:107 ../powermanager/data/messages:137
 #: ../wifi/data/messages:105 ../wifi/data/messages:135
 msgid "Icons"
-msgstr "Iconen"
+msgstr "Pictogrammen"
 
 #: ../Network-Monitor/data/messages:219 ../wifi/data/messages:137
 msgid "Effect to apply on the icon according to strength :"
-msgstr "Effect om toe te passen op icoon, afhankelijk van sterkte :"
+msgstr "Effect om toe te passen op pictogram, afhankelijk van sterkte :"
 
 #: ../Network-Monitor/data/messages:223 ../alsaMixer/data/messages:123
 #: ../powermanager/data/messages:151 ../wifi/data/messages:141
@@ -5977,39 +6024,39 @@ msgstr "Balk tekenen"
 #: ../wifi/data/messages:159 ../wifi/data/messages:163
 #: ../wifi/data/messages:167
 msgid "Leave empty to use the default icon."
-msgstr "Laat leeg om standaardicoon te gebruiken."
+msgstr "Laat leeg om standaardpictogram te gebruiken."
 
 #: ../Network-Monitor/data/messages:231
 msgid "Name of the image for the 'No signal' icon :"
-msgstr "Naam van een afbeelding voor het 'Geen signaal' icoon :"
+msgstr "Naam van de afbeelding voor het pictogram 'Geen signaal' :"
 
 #: ../Network-Monitor/data/messages:235
 msgid "Name of the image for the 'Very low' icon :"
-msgstr "Naam van een afbeelding voor het 'Zeer laag' icoon :"
+msgstr "Naam van de afbeelding voor het pictogram 'Zeer laag' :"
 
 #: ../Network-Monitor/data/messages:239
 msgid "Name of the image for the 'Low' icon :"
-msgstr "Naam van een afbeelding voor het 'Laag' icoon :"
+msgstr "Naam van de afbeelding voor het pictogram 'Laag' :"
 
 #: ../Network-Monitor/data/messages:243
 msgid "Name of the image for the 'Middle' icon :"
-msgstr "Naam van een afbeelding voor het 'Gemiddeld' icoon :"
+msgstr "Naam van de afbeelding voor het pictogram 'Gemiddeld' :"
 
 #: ../Network-Monitor/data/messages:247
 msgid "Name of an image for the 'Good' icon :"
-msgstr "Naam van een afbeelding voor het 'Goed' icoon :"
+msgstr "Naam van de afbeelding voor het pictogram 'Goed' :"
 
 #: ../Network-Monitor/data/messages:251
 msgid "Name of the image for the 'Excellent' icon :"
-msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
+msgstr "Naam van de afbeelding voor het pictogram 'Zeer goed'  :"
 
 #: ../Network-Monitor/data/messages:255
 msgid "Name of the image for the 'Not connected' icon :"
-msgstr "Naam van een afbeelding voor het 'Niet verbonden' icoon :"
+msgstr "Naam van de afbeelding voor het pictogram 'Niet verbonden' :"
 
 #: ../Network-Monitor/data/messages:259
 msgid "Name of the image for the 'Wired connection' icon :"
-msgstr "Naam van een afbeelding voor het 'Verbinding met draad' icoon :"
+msgstr "Naam van de afbeelding voor het pictogram 'Verbinding met draad' :"
 
 #: ../Network-Monitor/data/messages:263
 msgid "in seconds. if you don't have Network-Manager."
@@ -6049,7 +6096,7 @@ msgstr "Melding geven bij feed-updates:"
 
 #: ../RSSreader/data/messages:115 ../powermanager/data/messages:205
 msgid "Icon animation"
-msgstr "Icoonanimatie"
+msgstr "Pictogramanimatie"
 
 #: ../RSSreader/data/messages:117 ../powermanager/data/messages:207
 msgid "Dialog bubble"
@@ -6057,7 +6104,7 @@ msgstr "Dialoogballon"
 
 #: ../RSSreader/data/messages:119 ../powermanager/data/messages:209
 msgid "Icon animation + Dialog bubble"
-msgstr "Icoonanimatie + dialoogballon"
+msgstr "Pictogramanimatie + dialoogballon"
 
 #: ../RSSreader/data/messages:121 ../powermanager/data/messages:211
 msgid "Let empty to use the default notification animation."
@@ -6065,7 +6112,7 @@ msgstr "Laat leeg om standaardmeldingsanimatie te gebruiken."
 
 #: ../RSSreader/data/messages:123 ../powermanager/data/messages:213
 msgid "Animation of the icon:"
-msgstr "Icoonanimatie:"
+msgstr "Pictogramanimatie:"
 
 #: ../RSSreader/data/messages:125 ../powermanager/data/messages:215
 msgid ""
@@ -6140,7 +6187,7 @@ msgstr "Logo"
 
 #: ../RSSreader/data/messages:167
 msgid "The default logo is the applet's icon"
-msgstr "Het standaardlogo is het icoon van het applet."
+msgstr "Het standaardlogo is het pictogram van het applet."
 
 #: ../RSSreader/data/messages:169
 msgid "Display the logo?"
@@ -6177,11 +6224,11 @@ msgstr "Sneltoets om applet te openen:"
 
 #: ../Remote-Control/data/messages:5
 msgid "Dock to control initially"
-msgstr ""
+msgstr "Dock om op de eerste plaats te beheren"
 
 #: ../Remote-Control/data/messages:7 ../Scooby-Do/data/messages:23
 msgid "Animation of the current icon :"
-msgstr "Animatie van het huidige icoon :"
+msgstr "Animatie van het huidige pictogram :"
 
 #: ../Remote-Control/data/messages:11 ../Scooby-Do/data/messages:21
 msgid "Duration of the stop animation :"
@@ -6390,7 +6437,7 @@ msgstr "Bestandsnaam afbeelding :"
 
 #: ../Status-Notifier/data/messages:105
 msgid "Hide inactive items"
-msgstr ""
+msgstr "Inactieve items verbergen"
 
 #: ../Status-Notifier/data/messages:107
 msgid "How to display items:"
@@ -6406,7 +6453,7 @@ msgstr "Sub-dock"
 
 #: ../Status-Notifier/data/messages:113
 msgid "Allow the icon to automatically resize itself?"
-msgstr "Icoon toestaan om eigen grootte automatisch aan te passen?"
+msgstr "Pictogram toestaan om eigen grootte automatisch aan te passen?"
 
 #: ../Status-Notifier/data/messages:115
 msgid "Number of lines to pack items in:"
@@ -6493,13 +6540,13 @@ msgid ""
 "It will prevent the system monitor's icon to show in the taskbar. The "
 "applet's icon will then behave as a launcher, an application, and an applet."
 msgstr ""
-"Dit voorkomt dat het icoon van de systeemmonitor zichtbaar is in de "
-"taakbalk. Het icoon van het applet zal zich dan gedragen als een starter, "
-"een toepassing en applet."
+"Dit voorkomt dat het pictogram van de systeemmonitor zichtbaar zal zijn in "
+"de taakbalk. Het pictogram van het applet zal zich dan gedragen als een "
+"starter, een toepassing en applet."
 
 #: ../System-Monitor/data/messages:193
 msgid "Steal the system monitor's icon from the taskbar?"
-msgstr "Icoon systeemmonitor uit taakbalk stelen ?"
+msgstr "Pictogram systeemmonitor uit taakbalk stelen ?"
 
 #: ../System-Monitor/data/messages:197
 msgid "Class of the system monitor program:"
@@ -6514,8 +6561,8 @@ msgid ""
 "When you left-click on the icon, you will get the list of the N most CPU/RAM-"
 "intensive programs."
 msgstr ""
-"Wanneer u met links klikt op het icoon, dan krijgt u een lijst met "
-"toepassingen met het meeste CPU/RAM-gebruik."
+"Wanneer u met links klikt op het pictogram, dan krijgt u een lijst te zien "
+"met toepassingen met het meeste CPU/RAM-gebruik."
 
 #: ../System-Monitor/data/messages:203
 msgid "Number of programs to display in the top list:"
@@ -6612,14 +6659,12 @@ msgid "Brightness to apply automatically on startup:"
 msgstr "Helderheid om automatisch mee op te starten :"
 
 #: ../Xgamma/data/messages:101
-#, fuzzy
 msgid "Shortkey to increase the brightness:"
-msgstr "Sneltoets om terminal te tonen :"
+msgstr "Sneltoets om de helderheid te vergroten:"
 
 #: ../Xgamma/data/messages:103
-#, fuzzy
 msgid "Shortkey to decrease the brightness:"
-msgstr "Sneltoets om terminal te tonen :"
+msgstr "Sneltoets om de helderheid te verkleinen:"
 
 #: ../alsaMixer/data/messages:7 ../alsaMixer/data/messages:155
 msgid "Leave empty to use the default sound card."
@@ -6639,19 +6684,19 @@ msgstr "Weergave volume :"
 
 #: ../alsaMixer/data/messages:119
 msgid "Effect to apply to the icon when adjusting volume:"
-msgstr "Effect om toe te passen op icoon bij volumewijziging:"
+msgstr "Effect om toe te passen op het pictogram bij volumewijziging:"
 
 #: ../alsaMixer/data/messages:133
 msgid "Default icon:"
-msgstr "´Standaard´ icoon :"
+msgstr "Pictogram ´Standaard´:"
 
 #: ../alsaMixer/data/messages:137
 msgid "Mute icon:"
-msgstr "´Dempen´ icoon :"
+msgstr "Pictogram ´Dempen´:"
 
 #: ../alsaMixer/data/messages:151
 msgid "Broken icon:"
-msgstr "´Gebroken´ icoon :"
+msgstr "Pictogram ´Gebroken´:"
 
 #: ../alsaMixer/data/messages:153
 msgid "Alsa"
@@ -6689,7 +6734,8 @@ msgstr "Specifieke uit te voeren opdracht, om geluidsmixer te tonen :"
 
 #: ../clock/data/messages:7
 msgid "Leave empty to use the location name if available."
-msgstr "Laat leeg om de naam van de locatie te gebruiken, indien beschikbaar."
+msgstr ""
+"Laat leeg om de naam van de locatie te gebruiken, indien beschikbaar."
 
 #: ../clock/data/messages:103
 msgid "Show the date:"
@@ -6786,7 +6832,7 @@ msgstr "Numerieke weergave"
 
 #: ../clock/data/messages:151
 msgid "Use a custom font"
-msgstr ""
+msgstr "Aangepast lettertype gebruiken"
 
 #: ../clock/data/messages:153 ../keyboard-indicator/data/messages:111
 msgid "Font:"
@@ -6905,11 +6951,11 @@ msgstr "Dan zullen de afbeeldingsinstellingen genegeerd worden."
 
 #: ../dnd2share/data/messages:105
 msgid "If so, display the last image on the icon?"
-msgstr "Indien ja, wilt u de laatste afbeelding op het icoon tonen ?"
+msgstr "Indien ja, wilt u de laatste afbeelding op het pictogram tonen ?"
 
 #: ../dnd2share/data/messages:107
 msgid "Animation of the icon during upload :"
-msgstr "Animatie van icoon tijdens opladen :"
+msgstr "Animatie van pictogram tijdens opladen :"
 
 #: ../dnd2share/data/messages:109
 msgid "Use the following service to make the URL smaller:"
@@ -7075,23 +7121,24 @@ msgstr "Hoogte van de kromming."
 
 #: ../dock-rendering/data/messages:19
 msgid "Physically separate groups of icons"
-msgstr ""
+msgstr "Pictogramgroepen fysiek scheiden"
 
 #: ../dock-rendering/data/messages:21
 msgid "At 1, the icons will have the same size as in other views."
-msgstr "Bij 1, hebben de iconen dezelfde grootte als in andere weergaves."
+msgstr ""
+"Bij 1, hebben de pictogrammen dezelfde grootte als in andere weergaves."
 
 #: ../dock-rendering/data/messages:23
 msgid "Ratio to apply on icons' size :"
-msgstr "Verhouding om toe te passen voor de icoongrootte :"
+msgstr "Verhouding om toe te passen voor de pictogramgrootte :"
 
 #: ../dock-rendering/data/messages:25
 msgid "smaller icons"
-msgstr "kleinere iconen"
+msgstr "kleinere pictogrammen"
 
 #: ../dock-rendering/data/messages:27
 msgid "normal icons"
-msgstr "normale iconen"
+msgstr "normale pictogrammen"
 
 #: ../dock-rendering/data/messages:31
 msgid "Grid"
@@ -7123,7 +7170,7 @@ msgstr "Volledig scherm"
 
 #: ../dock-rendering/data/messages:45
 msgid "Zoom when mouse hovers an icon:"
-msgstr "Vergroten wanneer u de muis over een icoon heen beweegt:"
+msgstr "Vergroten wanneer u de muis over een pictogram heen beweegt:"
 
 #: ../dock-rendering/data/messages:51
 msgid "Sinusoidal wave radius:"
@@ -7135,7 +7182,7 @@ msgstr "Liever een lineaire golf gebruiken als een op- en neergaande ?"
 
 #: ../dock-rendering/data/messages:55
 msgid "Display text for all icons?"
-msgstr "Tekst tonen voor alle iconen ?"
+msgstr "Tekst tonen voor alle pictogrammen ?"
 
 #: ../dock-rendering/data/messages:57 ../slider/data/messages:171
 msgid "Frame"
@@ -7203,7 +7250,8 @@ msgstr "Kromming :"
 
 #: ../dock-rendering/data/messages:93
 msgid "The parabola will be restricted to a rectangle of this proportion."
-msgstr "De parabool zal gemaakt worden tot een rechthoek van deze proporties."
+msgstr ""
+"De parabool zal gemaakt worden tot een rechthoek van deze proporties."
 
 #: ../dock-rendering/data/messages:95
 msgid "Height/width ratio:"
@@ -7223,7 +7271,7 @@ msgstr "Krommen naar de buitenkant ?"
 
 #: ../dock-rendering/data/messages:105
 msgid "Space between icons and their captions:"
-msgstr "Ruimte tussen iconen en hun labels :"
+msgstr "Ruimte tussen pictogrammen en hun labels :"
 
 #: ../dock-rendering/data/messages:107
 msgid ""
@@ -7239,17 +7287,18 @@ msgstr "Labels tekenen tijdens ontvouwen ?"
 
 #: ../dock-rendering/data/messages:115
 msgid "Space between icons:"
-msgstr "Ruimte tussen iconen :"
+msgstr "Ruimte tussen pictogrammen :"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 betekent dat de golf plat is, 1 betekent dat de golf gelijk is aan andere "
 "weergaves."
 
 #: ../dock-rendering/data/messages:121
 msgid "Number of icons on the first row:"
-msgstr "Aantal iconen op de eerste rij :"
+msgstr "Aantal pictogrammen op de eerste rij :"
 
 #: ../dock-rendering/data/messages:123
 msgid ""
@@ -7295,19 +7344,19 @@ msgstr ""
 
 #: ../drop-indicator/data/messages:7
 msgid "Image for the drag & drop animation:"
-msgstr "Afbeelding voor sleepanimatie :"
+msgstr "Afbeelding voor de sleepanimatie :"
 
 #: ../drop-indicator/data/messages:9
 msgid ""
 "An emblem that will be displayed when you try to drop something on an icon. "
 "Leave empty to use the default one."
 msgstr ""
-"Een embleem dat getoond wordt wanneer u probeert om iets naar een icoon te "
-"slepen. Laat leeg als u de standaardwaarde wilt gebruiken."
+"Een embleem dat getoond wordt wanneer u probeert om iets naar een pictogram "
+"te slepen. Laat leeg als u de standaardwaarde wilt gebruiken."
 
 #: ../drop-indicator/data/messages:11
 msgid "Image when hovering an icon :"
-msgstr "Afbeelding wanneer u de muis over een icoon heen beweegt :"
+msgstr "Afbeelding wanneer u de muis over een pictogram heen beweegt :"
 
 #: ../drop-indicator/data/messages:13
 msgid "Animation"
@@ -7337,7 +7386,8 @@ msgstr ""
 
 #: ../dustbin/data/messages:95
 msgid "Name of the image to overwrite the theme's full image :"
-msgstr "Naam van een afbeelding om thema´s ´Vol´ afbeelding te overschrijven :"
+msgstr ""
+"Naam van een afbeelding om thema´s ´Vol´ afbeelding te overschrijven :"
 
 #: ../dustbin/data/messages:97
 msgid "Config"
@@ -7383,7 +7433,8 @@ msgid "Colours"
 msgstr "Kleuren"
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr "De kleuren zullen iets afwijken, mogelijk moet u ze aanpassen."
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
@@ -7429,7 +7480,7 @@ msgstr "Aantal deeltjes per bron :"
 
 #: ../icon-effect/data/messages:193
 msgid "In percentage of the icon's size."
-msgstr "In percentage van de grootte van het icoon."
+msgstr "In percentage van de grootte van het pictogram."
 
 #: ../icon-effect/data/messages:195
 msgid "Radius of the explosion:"
@@ -7494,7 +7545,7 @@ msgstr "Explosiebereik :"
 
 #: ../illusion/data/messages:65
 msgid "Break the icon into cubes?"
-msgstr "Het icoon breken in kubussen ?"
+msgstr "Het pictogram breken in kubussen ?"
 
 #: ../illusion/data/messages:77
 msgid "in round per second."
@@ -7502,7 +7553,7 @@ msgstr "In rondjes per seconde."
 
 #: ../illusion/data/messages:81
 msgid "The greater, the faster the icon will collapse to the center."
-msgstr "Hoe groter, hoe sneller het icoon zal inklappen naar het midden."
+msgstr "Hoe groter, hoe sneller het pictogram zal inklappen naar het midden."
 
 #: ../illusion/data/messages:83
 msgid "Attraction of the Black Hole:"
@@ -7535,8 +7586,8 @@ msgstr "Tekstkleur"
 msgid ""
 "the smaller is the text in the icon. 1 means the text fills all the icon."
 msgstr ""
-"hoe kleiner de tekst in het icoon is. Bij 1 zal de tekst het gehele icoon "
-"vullen."
+"hoe kleiner de tekst in het pictogram is. Bij 1 zal de tekst het gehele "
+"pictogram vullen."
 
 #: ../keyboard-indicator/data/messages:119
 msgid "Relative size of the text :"
@@ -7551,19 +7602,16 @@ msgid "Action"
 msgstr "Actie"
 
 #: ../logout/data/messages:103
-#, fuzzy
 msgid "Shortkey to lock the screen"
-msgstr "Sneltoets om terminal te tonen :"
+msgstr "Sneltoets om het scherm te vergrendelen"
 
 #: ../logout/data/messages:105
-#, fuzzy
 msgid "Shortkey to show the menu"
-msgstr "Sneltoets om menu te tonen/verbergen :"
+msgstr "Sneltoets om het menu te tonen"
 
 #: ../logout/data/messages:107
-#, fuzzy
 msgid "Demand confirmation before closing"
-msgstr "Bevestiging vragen voor het verwijderen van een notitie ?"
+msgstr "Bevestiging vragen voor het sluiten"
 
 #: ../logout/data/messages:109
 msgid "Commands"
@@ -7596,17 +7644,19 @@ msgstr "Personaliseren"
 #: ../logout/data/messages:123
 msgid "Icon image name to use when the system has to be rebooted:"
 msgstr ""
-"Afbeeldingsnaam icoon om te gebruiken wanneer het systeem herstart moet "
+"Afbeeldingsnaam pictogram om te gebruiken wanneer het systeem herstart moet "
 "worden:"
 
 #: ../logout/data/messages:125
 msgid ""
 "Display this image as an emblem or replace applet's icon with this image?"
 msgstr ""
+"Deze afbeelding weergeven als een embleem, of pictogram van applet vervangen "
+"door deze afbeelding?"
 
 #: ../logout/data/messages:127
 msgid "Emblem"
-msgstr ""
+msgstr "Embleem"
 
 #: ../mail/data/messages:99
 msgid ""
@@ -7631,7 +7681,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Naam van het bestand voor de \"Nieuwe e-mail\" afbeelding :"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Indien aangevinkt, zal het aantal e-mails getoond worden zelfs als er geen e-"
 "mails zijn."
@@ -7644,7 +7695,8 @@ msgstr "'0' laten zien wanneer er geen e-mail is?"
 #: ../stack/data/messages:97 ../switcher/data/messages:155
 #: ../tomboy/data/messages:119 ../weather/data/messages:133
 msgid "Leave empty to use default sub-dock view."
-msgstr "Laat leeg als u de standaardweergave van de sub-docks wilt gebruiken."
+msgstr ""
+"Laat leeg als u de standaardweergave van de sub-docks wilt gebruiken."
 
 #: ../mail/data/messages:121 ../shortcuts/data/messages:107
 #: ../stack/data/messages:99 ../switcher/data/messages:157
@@ -7717,7 +7769,8 @@ msgid "Blur amount:"
 msgstr "Hoeveelheid vervaging :"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr "Laat leeg om de naam van de momenteel bediende speler te tonen."
 
 #: ../musicPlayer/data/messages:101
@@ -7789,13 +7842,13 @@ msgid ""
 "This will prevent the player icon appearing in the taskbar. The applet's "
 "icon will then behave as a launcher, an application and an applet."
 msgstr ""
-"Dit voorkomt dat het icoon van de speler zichtbaar is in de taakbalk. Het "
-"icoon van het applet zal zich dan gedragen als een starter, een toepassing "
-"en applet."
+"Dit voorkomt dat het pictogram van de speler zichtbaar zal zijn in de "
+"taakbalk. Het pictogram van het applet zal zich dan gedragen als een "
+"starter, een toepassing en applet."
 
 #: ../musicPlayer/data/messages:135
 msgid "Steal the player's icon from the taskbar?"
-msgstr "Icoon van speler stelen uit taakbalk ?"
+msgstr "Pictogram van speler stelen uit taakbalk ?"
 
 #: ../musicPlayer/data/messages:137
 msgid "Actions on click and middle-click :"
@@ -7812,15 +7865,15 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:143
 msgid "Actions on scroll up/down:"
-msgstr ""
+msgstr "Acties voor op-/neerscrollen:"
 
 #: ../musicPlayer/data/messages:145
 msgid "Next/previous song"
-msgstr ""
+msgstr "Volgende/vorige nummer"
 
 #: ../musicPlayer/data/messages:147
 msgid "Control the volume"
-msgstr ""
+msgstr "Het volume beheren"
 
 #: ../musicPlayer/data/messages:149
 msgid "Action on music change"
@@ -7841,7 +7894,7 @@ msgstr "Animatie wanneer muziek verandert :"
 #: ../musicPlayer/data/messages:161 ../powermanager/data/messages:163
 #: ../wifi/data/messages:187
 msgid "Information to display on the icon :"
-msgstr "Informatie om te tonen op het icoon :"
+msgstr "Informatie om te tonen op het pictogram :"
 
 #: ../musicPlayer/data/messages:163 ../powermanager/data/messages:149
 #: ../powermanager/data/messages:165
@@ -7886,19 +7939,19 @@ msgstr "Lijst met beschikbare 3D-thema´s voor albumhoezen :"
 
 #: ../musicPlayer/data/messages:189 ../tomboy/data/messages:13
 msgid "'Default' icon image name:"
-msgstr "Naam van afbeelding voor het 'Standaard' icoon :"
+msgstr "Naam van de afbeelding voor het pictogram 'Standaard' :"
 
 #: ../musicPlayer/data/messages:193
 msgid "Name of the image for the 'play' icon :"
-msgstr "Naam van een afbeelding voor het 'Afspelen' icoon :"
+msgstr "Naam van de afbeelding voor het pictogram 'Afspelen' :"
 
 #: ../musicPlayer/data/messages:197
 msgid "Name of the image for the 'stop' icon :"
-msgstr "Naam van een afbeelding voor het 'Stoppen' icoon :"
+msgstr "Naam van de afbeelding voor het pictogram 'Stoppen' :"
 
 #: ../musicPlayer/data/messages:201
 msgid "Name of the image for the 'pause' icon :"
-msgstr "Naam van een afbeelding voor het 'Pauzeren' icoon :"
+msgstr "Naam van de afbeelding voor het pictogram 'Pauzeren' :"
 
 #: ../netspeed/data/messages:145
 msgid "By default this will be 'eth0'."
@@ -7922,15 +7975,16 @@ msgstr "Laat leeg om de huidige statusinformatie te tonen."
 
 #: ../powermanager/data/messages:141
 msgid "'On-battery' icon filename:"
-msgstr "Bestandsnaam icoon wanneer op accu :"
+msgstr "Bestandsnaam pictogram wanneer op accustroom :"
 
 #: ../powermanager/data/messages:145
 msgid "Icon's filename when on charge :"
-msgstr "Bestandsnaam icoon wanneer op netstroom :"
+msgstr "Bestandsnaam pictogram wanneer op netstroom :"
 
 #: ../powermanager/data/messages:147
 msgid "Effect to apply on the icon according to the charge :"
-msgstr "Effect om toe te passen op het icoon afhankelijk van de acculading :"
+msgstr ""
+"Effect om toe te passen op het pictogram afhankelijk van de acculading :"
 
 #: ../powermanager/data/messages:155
 msgid "Draw bar"
@@ -7946,11 +8000,11 @@ msgstr "Tijdsduur"
 
 #: ../powermanager/data/messages:173
 msgid "Emblem icon's filename when on charge:"
-msgstr "Bestandsnaam embleemicoon wanneer op netstroom:"
+msgstr "Bestandsnaam embleempictogram wanneer op netstroom:"
 
 #: ../powermanager/data/messages:175
 msgid "Hide the icon when not on battery?"
-msgstr "Icoon verbergen wanneer op netstroom?"
+msgstr "Pictogram verbergen wanneer op netstroom?"
 
 #: ../powermanager/data/messages:177
 msgid "Notification"
@@ -8020,11 +8074,11 @@ msgstr "Menu"
 
 #: ../quick-browser/data/messages:107
 msgid "It can be CPU intense to load a lot of icons."
-msgstr "De belasting kan groot zijn bij het laden van veel iconen."
+msgstr "De CPU-belasting kan groot zijn bij het laden van veel pictogrammen."
 
 #: ../quick-browser/data/messages:111
 msgid "Icon size :"
-msgstr "Icoongrootte :"
+msgstr "Pictogramgrootte :"
 
 #: ../quick-browser/data/messages:113
 msgid "small"
@@ -8186,7 +8240,7 @@ msgid ""
 "only with OpenGL."
 msgstr ""
 "Dit voorkomt dat het dock bevriest bij het laden van de afbeeldingen, maar "
-"dit werkt niet met cairo."
+"dit werkt alleen met OpenGL."
 
 #: ../slider/data/messages:111
 msgid "Use another thread to load images?"
@@ -8272,7 +8326,8 @@ msgstr "Achtergrond toevoegen aan de afbeelding?"
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
-msgstr "Stel de doorzichtigheid in op 0 als u geen achtergrond wilt gebruiken."
+msgstr ""
+"Stel de doorzichtigheid in op 0 als u geen achtergrond wilt gebruiken."
 
 #: ../slider/data/messages:175
 msgid "Choose a background colour :"
@@ -8296,7 +8351,7 @@ msgstr "Wanneer de afbeelding te klein is, dan wordt de afbeelding vergroot."
 
 #: ../slider/data/messages:185
 msgid "Force the image to fill the icon/desklet?"
-msgstr "Afbeelding forceren om icoon/desklet te vullen ?"
+msgstr "Afbeelding forceren om pictogram/desklet te vullen ?"
 
 #: ../stack/data/messages:7
 msgid "Leave empty to use a default name"
@@ -8326,7 +8381,7 @@ msgstr "Opties"
 
 #: ../stack/data/messages:117
 msgid "Separate the items by type (file/web page/text)"
-msgstr ""
+msgstr "De items scheiden op type (bestand/website/tekst)"
 
 #: ../stack/data/messages:119
 msgid ""
@@ -8365,26 +8420,24 @@ msgid ""
 "All desktops will be drawn on the main icon. Otherwise a sub-dock will "
 "contain all desktops."
 msgstr ""
-"Alle bureaubladen zullen op het hoofdicoon getekend worden. Anders zal een "
-"sub-dock alle bureaubladen bevatten."
+"Alle bureaubladen zullen op het hoofdpictogram getekend worden. Anders zal "
+"een sub-dock alle bureaubladen bevatten."
 
 #: ../switcher/data/messages:91
 msgid "Use the compact mode?"
 msgstr "Compacte modus gebruiken ?"
 
 #: ../switcher/data/messages:93
-#, fuzzy
 msgid "Desktops layout"
-msgstr "Bureaublad"
+msgstr "Bureaubladindeling"
 
 #: ../switcher/data/messages:97
-#, fuzzy
 msgid "On a single line"
-msgstr "Op 1 regel"
+msgstr "Op een enkele regel"
 
 #: ../switcher/data/messages:99
 msgid "Map wallpaper to icons?"
-msgstr "Bureaubladachtergrond afbeelden op icoon ?"
+msgstr "Bureaubladachtergrond afbeelden op pictogrammen ?"
 
 #: ../switcher/data/messages:101
 msgid "Preserve the ratio of the screen ?"
@@ -8392,11 +8445,11 @@ msgstr "Schermverhouding behouden ?"
 
 #: ../switcher/data/messages:103
 msgid "Show desktop number on icons?"
-msgstr "Bureaubladnummer tonen op de iconen ?"
+msgstr "Bureaubladnummer tonen op de pictogrammen ?"
 
 #: ../switcher/data/messages:105
 msgid "Draw windows on icons?"
-msgstr "Vensters op icoon tekenen ?"
+msgstr "Vensters op pictogrammen tekenen ?"
 
 #: ../switcher/data/messages:107
 msgid "Draw hidden windows?"
@@ -8462,8 +8515,8 @@ msgstr "Andere vullen"
 #: ../switcher/data/messages:153
 msgid "Icon to use in expanded mode if wallpaper is not mapped:"
 msgstr ""
-"Icoon voor uitgebreide modus, als u bureaubladachtergrond niet afbeeldt op "
-"icoon :"
+"Pictogram voor uitgebreide modus, indien bureaubladachtergrond niet wordt "
+"afbeeld op pictogram:"
 
 #: ../switcher/data/messages:159
 msgid "In expanded mode, render the desklet in 3D?"
@@ -8475,7 +8528,7 @@ msgstr "Sneltoets om naar het systeemvak te wisselen in de dock-modus :"
 
 #: ../systray/data/messages:87
 msgid "Icons packing :"
-msgstr "Icoonnaam :"
+msgstr "Pictogramnaam :"
 
 #: ../systray/data/messages:89
 msgid "horizontal"
@@ -8543,7 +8596,7 @@ msgstr "Sneltoets om terminal te tonen :"
 
 #: ../tomboy/data/messages:17
 msgid "'Close' icon image name:"
-msgstr "Naam van een afbeelding voor het 'Afsluiten' icoon :"
+msgstr "Naam van de afbeelding voor het pictogram 'Afsluiten' :"
 
 #: ../tomboy/data/messages:107
 msgid "Image file for the notes:"
@@ -8551,7 +8604,7 @@ msgstr "Afbeeldingsbestand voor de notities:"
 
 #: ../tomboy/data/messages:109
 msgid "Draw note's content on their icon?"
-msgstr "Inhoud notitie tekenen op hun icoon ?"
+msgstr "Inhoud notitie tekenen op hun pictogram ?"
 
 #: ../tomboy/data/messages:111
 msgid "Text colour of the content :"
@@ -8651,7 +8704,8 @@ msgstr "Info"
 #: ../weather/data/messages:121
 msgid "Display current conditions on the icon instead of the default one?"
 msgstr ""
-"Huidig weer tonen op het gekozen icoon in plaats van op het standaardicoon ?"
+"Huidig weer tonen op het gekozen pictogram in plaats van op het "
+"standaardpictogram ?"
 
 #: ../weather/data/messages:123
 msgid "Number of days to forecast:"
@@ -8694,7 +8748,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Positie van de verticale scrollbalk in pixel"
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Hierdoor kunt u met rechts klikken op het desklet voor het Cairo-Dock menu."
 
@@ -8727,27 +8782,27 @@ msgstr "Aangegeven bladwijzers om in applet's menu te verschijnen :"
 
 #: ../wifi/data/messages:149
 msgid "'No signal' icon filename:"
-msgstr "Naam van een afbeelding voor het 'Geen signaal' icoon :"
+msgstr "Naam van de afbeelding voor het pictogram 'Geen signaal' :"
 
 #: ../wifi/data/messages:153
 msgid "'Very low' icon filename:"
-msgstr "Naam van een afbeelding voor het 'Zeer laag' icoon :"
+msgstr "Naam van de afbeelding voor het pictogram 'Zeer laag' :"
 
 #: ../wifi/data/messages:157
 msgid "'Low' icon filename:"
-msgstr "Naam van een afbeelding voor het 'Laag' icoon :"
+msgstr "Naam van de afbeelding voor het pictogram 'Laag' :"
 
 #: ../wifi/data/messages:161
 msgid "'Average' icon filename:"
-msgstr "Naam van een afbeelding voor het 'Gemiddeld' icoon :"
+msgstr "Naam van de afbeelding voor het pictogram 'Gemiddeld' :"
 
 #: ../wifi/data/messages:165
 msgid "'Good' icon filename:"
-msgstr "Naam van een afbeelding voor het 'Goed' icoon :"
+msgstr "Naam van de afbeelding voor het pictogram 'Goed' :"
 
 #: ../wifi/data/messages:169
 msgid "'Excellent' icon filename:"
-msgstr "Naam van een afbeelding voor het 'Zeer goed' icoon :"
+msgstr "Naam van de afbeelding voor het pictogram 'Zeer goed' :"
 
 #: ../wifi/data/messages:175
 msgid "Delay between signal checks :"
@@ -8780,41 +8835,3 @@ msgstr "Ruwe signaalinformatie"
 #: ../wifi/data/messages:197
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"
-
-#, fuzzy
-#~ msgid "Application Menu"
-#~ msgstr "Toepassingenmenu"
-
-#, fuzzy
-#~ msgid "Sound Menu"
-#~ msgstr "Geluidsbeheer"
-
-#, fuzzy
-#~ msgid "Behavior"
-#~ msgstr "Gedrag"
-
-#, fuzzy
-#~ msgid "How to represent the icon:"
-#~ msgstr "Hoe icoon weer te geven :"
-
-#~ msgid "when clicking on an applet"
-#~ msgstr "Wanneer u klikt op een applet"
-
-#~ msgid "Effects used on applets:"
-#~ msgstr "Gebruikte effecten voor applets :"
-
-#~ msgid ""
-#~ "for CompizFusion's \"widget layer\", set behaviour in Compiz to: "
-#~ "(class=Cairo-dock & type=Utility)"
-#~ msgstr ""
-#~ "voor CompizFusion's \"widget layer\", stel gedrag in Compiz in op: "
-#~ "(class=Cairo-dock & type=Utility)"
-
-#~ msgid "Name of the icon as it will appear in its label in the dock :"
-#~ msgstr "Naam van icoon zoals zichtbaar op het label in het dock :"
-
-#~ msgid "Icon name:"
-#~ msgstr "Icoonnaam :"
-
-#~ msgid "Name of the icon as it will appear in its label in cairo-dock :"
-#~ msgstr "Naam van icoon zoals zichtbaar op het label in het dock :"
