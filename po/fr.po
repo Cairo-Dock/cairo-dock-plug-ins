@@ -1231,7 +1231,7 @@ msgstr "Évènements récents"
 
 #: ../Recent-Events/src/applet-init.c:58
 msgid "Show/hide the Recent Events"
-msgstr "Afficher/cacher les événements récents"
+msgstr "Afficher/cacher les évènements récents"
 
 #: ../Recent-Events/src/applet-notifications.c:74
 #, c-format
@@ -1820,7 +1820,7 @@ msgid ""
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
 msgstr ""
-"Cet applet affiche le temps, la date et un calendrier.\n"
+"Cette applet affiche l'heure, la date et un calendrier.\n"
 "2 vues sont possibles : <b>numérique</b> et <b>analogique</b>.\n"
 " La vue analogique est compatible avec les thèmes Cairo-Clock et vous pouvez "
 "détacher l'applet pour être un clone parfait de Cairo-Clock.\n"
@@ -1828,7 +1828,7 @@ msgstr ""
 "<b>traiter des taches</b>.\n"
 "Il accepte aussi les alarmes et vous autorises à définir l'heure et la "
 "date.\n"
-"Clic-gauche pour montrer/cacher le calendrier, Clic-Milieu pour arrêter une "
+"Clic-gauche pour montrer/cacher le calendrier, Clic du milieu pour arrêter une "
 "notification,\n"
 "Double-clic sur un jour pour éditer les taches pour ce jour."
 
@@ -2802,7 +2802,7 @@ msgstr "Lecture / pause"
 
 #: ../musicPlayer/src/applet-notifications.c:278
 msgid "left-click"
-msgstr "clic gauche"
+msgstr "Clic gauche"
 
 #: ../musicPlayer/src/applet-notifications.c:284
 msgid "Next"
@@ -2810,7 +2810,7 @@ msgstr "Suivant"
 
 #: ../musicPlayer/src/applet-notifications.c:284
 msgid "scroll-down"
-msgstr "défilé vers le bas"
+msgstr "Défiler vers le bas"
 
 #: ../musicPlayer/src/applet-notifications.c:289
 msgid "Stop"
@@ -3050,14 +3050,14 @@ msgid ""
 "The applet can also display valuable information about your disks, like free "
 "space, type, etc."
 msgstr ""
-"Un applet qui vous donne un accés rapide vers tout vos raccourcis.\n"
+"Une applet qui vous donne un accés rapide vers tous vos raccourcis.\n"
 "Il peut traiter les disques, des points réseaux et les marque-pages Nautilus "
 "(même si vous n'avez pas Nautilus).\n"
 "Glissez déposez un dossier sur l'icône principale ou le sous-dock pour "
 "ajouter un marque-page.\n"
-"Faîtes un clic-milieu sur l'icône principale pour afficher votre dossier "
+"Faîtes un clic du milieu sur l'icône principale pour afficher votre dossier "
 "personnel.\n"
-"Faîtes un clic-milieu sur un icône de point de montage pour le (dé)monter "
+"Faîtes un clic du milieu sur un icône de point de montage pour le (dé)monter "
 "rapidement.\n"
 "L'applet peut aussi afficher des informations intéressantes à propos de vos "
 "disques, comme l'espace disponible, le type, etc."
