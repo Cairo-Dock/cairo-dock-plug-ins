@@ -98,11 +98,14 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			w = MAX (log.width, log2.width);
 			fZoomX = (double) iWidth / w;
 			fZoomY = (double) iHeight / h;
-			if (myDock && fZoomY > MAX_RATIO * fZoomX)  // we limit the deformation
+			/**if (myDock && fZoomY > MAX_RATIO * fZoomX)  // we limit the deformation
 				fZoomY = MAX_RATIO * fZoomX;
 			
 			if (myConfig.fTextRatio < 1)
-				fZoomY *= myConfig.fTextRatio;
+				fZoomY *= myConfig.fTextRatio;*/
+			// keep the ratio of the text
+			fZoomX = MIN (fZoomX, fZoomY) * myConfig.fTextRatio;
+			fZoomY = fZoomX;
 		}
 		if (myData.iTextLayout == CD_TEXT_LAYOUT_1_LINE || myData.iTextLayout == CD_TEXT_LAYOUT_AUTO)
 		{
@@ -110,7 +113,7 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			w_ = log.width + log2.width + GAPX * iWidth;
 			fZoomX_ = (double) iWidth / w_;
 			fZoomY_ = (double) iHeight / h_;
-			if (myDock && fZoomY_ > MAX_RATIO * fZoomX_)  // we limit the deformation
+			/**if (myDock && fZoomY_ > MAX_RATIO * fZoomX_)  // we limit the deformation
 				fZoomY_ = MAX_RATIO * fZoomX_;
 			
 			if (myConfig.fTextRatio < 1)
@@ -120,7 +123,10 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			{
 				double fMaxScale = cairo_dock_get_icon_max_scale (myIcon);
 				fZoomY_ = MAX (fZoomX_, 16. * fMaxScale / h_);  // en mode horizontal, on n'a pas besoin que le texte remplisse toute la hauteur de l'icone. 16 pixels de haut sont suffisant pour etre lisible.
-			}
+			}*/
+			// keep the ratio of the text
+			fZoomX_ = MIN (fZoomX_, fZoomY_) * myConfig.fTextRatio;
+			fZoomY_ = fZoomX_;
 		}
 		
 		if (myData.iTextLayout == CD_TEXT_LAYOUT_AUTO)  // si l'orientation n'est pas encore definie, on la definit de facon a ne pas changer (si on est tres proche de la limite, la taille du texte pourrait changer suffisamment pour nous faire passer d'une orientation a l'autre.
@@ -165,12 +171,15 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 	{
 		double fZoomX = (double) iWidth / log.width;
 		double fZoomY = (double) iHeight / log.height;
-		if (myDock && fZoomY > MAX_RATIO * fZoomX)  // we limit the deformation
+		/**if (myDock && fZoomY > MAX_RATIO * fZoomX)  // we limit the deformation
 			fZoomY = MAX_RATIO * fZoomX;
-
+		
 		if (myConfig.fTextRatio < 1)
-			fZoomY *= myConfig.fTextRatio;
-
+			fZoomY *= myConfig.fTextRatio;*/
+		// keep the ratio of the text
+		fZoomX = MIN (fZoomX, fZoomY) * myConfig.fTextRatio;
+		fZoomY = fZoomX;
+		
 		cairo_translate (myDrawContext,
 			(iWidth - fZoomX * log.width)/2,
 			(iHeight - fZoomY * log.height)/2);  // text will be centred.
