@@ -107,8 +107,8 @@ fg alpha = 1
 #F[Folder;gtk-directory]
 frame_fold =
 
-#D Folder to browse :
-dir path = ~
+#D[home] Folder to browse :
+dir path = 
 
 #v
 sep_opt =
