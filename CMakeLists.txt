@@ -260,9 +260,11 @@ if ("${force_old_indicator_names}" STREQUAL "yes")
 		#~ set (INDICATOR_OLD_NAMES 1)
 		#~ message (STATUS "  Indicators: use old Ayatana Dbus names")
 	#~ endif()
-elseif ("${INDICATOR_APPLET_FOUND}" STREQUAL "1" AND NOT (${INDICATOR_MAJOR} GREATER 0 OR ${INDICATOR_MINOR} GREATER 3 OR (${INDICATOR_MINOR} EQUAL 3 AND ${INDICATOR_NANO} GREATER 20)))
-	set (INDICATOR_OLD_NAMES 1)  # maverick or older
-	message (STATUS "  Indicators: use old Ayatana Dbus names")
+elseif ("${INDICATOR_APPLET_FOUND}" STREQUAL "1")
+	if (NOT (${INDICATOR_MAJOR} GREATER 0 OR ${INDICATOR_MINOR} GREATER 3 OR (${INDICATOR_MINOR} EQUAL 3 AND ${INDICATOR_NANO} GREATER 20)))
+		set (INDICATOR_OLD_NAMES 1)  # maverick or older
+		message (STATUS "  Indicators: use old Ayatana Dbus names")
+	endif()
 endif()
 
 ############# DISTRIBUTION #################
