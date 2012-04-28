@@ -265,7 +265,6 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				cairo_dock_stop_icon_animation (myData.pCurrentIcon);  // car on va perdre le focus.
 				myData.bIgnoreIconState = FALSE;
 				
-				myData.pCurrentDock->bMenuVisible = TRUE;
 				GtkWidget *menu = cairo_dock_build_menu (myData.pCurrentIcon, CAIRO_CONTAINER (myData.pCurrentDock));
 				cairo_dock_popup_menu_on_icon (menu, myData.pCurrentIcon, CAIRO_CONTAINER (myData.pCurrentDock));
 			}

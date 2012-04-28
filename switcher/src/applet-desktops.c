@@ -30,6 +30,8 @@ void cd_switcher_get_current_desktop (void)
 	cairo_dock_get_current_desktop_and_viewport (&myData.switcher.iCurrentDesktop, &myData.switcher.iCurrentViewportX, &myData.switcher.iCurrentViewportY);
 	
 	myData.switcher.iNbViewportTotal = g_desktopGeometry.iNbDesktops * g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY;
+	if (myData.switcher.iNbViewportTotal == 0) // obviously, having 0 desktop cannot be true, so we force to 1 to avoid any "division by 0" later.
+		myData.switcher.iNbViewportTotal = 1;
 	
 	cd_switcher_compute_desktop_coordinates (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY, &myData.switcher.iCurrentLine, &myData.switcher.iCurrentColumn);
 	
