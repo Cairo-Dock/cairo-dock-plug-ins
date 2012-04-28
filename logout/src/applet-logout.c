@@ -716,6 +716,51 @@ static int _compare_user_name (CDUser *pUser1, CDUser *pUser2)
 {
 	return strcmp (pUser1->cUserName, pUser2->cUserName);
 }
+static GList* _get_users_list_fallback (void)
+{
+	// read from /etc/passwd
+	gchar *cContent=NULL;
+	gsize length = 0;
+	g_file_get_contents ("/etc/passwd",
+		&cContent,
+		&length,
+		NULL);
+	g_return_val_if_fail (cContent != NULL, NULL);
+	
+	// parse eash user
+	gchar **cUsers = g_strsplit (cContent, "\n", 0);
+	GList *pUserList = NULL;
+	gchar **cUserProps;
+	CDUser *pUser;
+	char *str;
+	int uid, gid;
+	int i;
+	for (i = 0; cUsers[i] != NULL; i ++)
+	{
+		cUserProps = g_strsplit (cUsers[i], ":", 0);
+		// add the user if it fits
+		if (cUserProps && cUserProps[0] && cUserProps[1] && cUserProps[2] && cUserProps[3]
+		&& atoi (cUserProps[2]) >= 1000  // heuristic: first user has an udi of 1000, and other users an uid >= 1000
+		&& strcmp (cUserProps[0], "nobody") != 0)  // remove the 'nobody' user (uid=65534)
+		{
+			pUser = g_new0 (CDUser, 1);
+			pUser->cUserName = g_strdup (cUserProps[0]);
+			pUser->cIconFile = NULL;
+			pUser->cRealName = g_strdup (cUserProps[4]);
+			if (pUser->cRealName)
+			{
+				str = strchr (pUser->cRealName, ',');
+				if (str)  // remove the comments, separated by ','
+					*str = '\0';
+			}
+			pUserList = g_list_insert_sorted (pUserList, pUser, (GCompareFunc)_compare_user_name);
+		}
+	}
+	
+	free (cContent);
+	g_strfreev (cUsers);
+	return pUserList;
+}
 GList *cd_logout_get_users_list (void)
 {
 	// get the list of users
@@ -733,12 +778,12 @@ GList *cd_logout_get_users_list (void)
 	
 	if (error)
 	{
-		cd_warning ("Accounts error: %s", error->message);
+		cd_warning ("Couldn't get info on the bus from org.freedesktop.Accounts (%s)\n-> Using a fallback method.", error->message);
 		g_error_free (error);
-		return NULL;
+		return _get_users_list_fallback ();
 	}
 	if (users == NULL)
-		return NULL;
+		return _get_users_list_fallback ();
 	
 	// foreach user, get its properties (name & icon).
 	CDUser *pUser;
