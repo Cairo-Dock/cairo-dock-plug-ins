@@ -31,7 +31,8 @@ static char s_cDateBuffer[CD_CLOCK_DATE_BUFFER_LENGTH+1];
 
 #define GAPX .12
 #define GAPY .02
-#define MAX_RATIO 2.
+///#define MAX_RATIO 2.
+#define MIN_TEXT_HEIGHT 12.  // the text should be at least 12 pixels height, or it would be hard to read for a lot of people.
 
 void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime)
 {
@@ -103,9 +104,11 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			
 			if (myConfig.fTextRatio < 1)
 				fZoomY *= myConfig.fTextRatio;*/
-			// keep the ratio of the text
+			// keep the ratio of the text, until 12px height.
 			fZoomX = MIN (fZoomX, fZoomY) * myConfig.fTextRatio;
 			fZoomY = fZoomX;
+			if (fZoomY * h < MIN_TEXT_HEIGHT)
+				fZoomY = MIN_TEXT_HEIGHT / h;
 		}
 		if (myData.iTextLayout == CD_TEXT_LAYOUT_1_LINE || myData.iTextLayout == CD_TEXT_LAYOUT_AUTO)
 		{
@@ -124,9 +127,11 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 				double fMaxScale = cairo_dock_get_icon_max_scale (myIcon);
 				fZoomY_ = MAX (fZoomX_, 16. * fMaxScale / h_);  // en mode horizontal, on n'a pas besoin que le texte remplisse toute la hauteur de l'icone. 16 pixels de haut sont suffisant pour etre lisible.
 			}*/
-			// keep the ratio of the text
+			// keep the ratio of the text, until 12px height.
 			fZoomX_ = MIN (fZoomX_, fZoomY_) * myConfig.fTextRatio;
 			fZoomY_ = fZoomX_;
+			if (fZoomY_ * h_ < MIN_TEXT_HEIGHT)
+				fZoomY_ = MIN_TEXT_HEIGHT / h_;
 		}
 		
 		if (myData.iTextLayout == CD_TEXT_LAYOUT_AUTO)  // si l'orientation n'est pas encore definie, on la definit de facon a ne pas changer (si on est tres proche de la limite, la taille du texte pourrait changer suffisamment pour nous faire passer d'une orientation a l'autre.
@@ -176,9 +181,11 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 		
 		if (myConfig.fTextRatio < 1)
 			fZoomY *= myConfig.fTextRatio;*/
-		// keep the ratio of the text
+		// keep the ratio of the text, until 12px height.
 		fZoomX = MIN (fZoomX, fZoomY) * myConfig.fTextRatio;
 		fZoomY = fZoomX;
+		if (fZoomY * log.height < MIN_TEXT_HEIGHT)
+			fZoomY = MIN_TEXT_HEIGHT / log.height;
 		
 		cairo_translate (myDrawContext,
 			(iWidth - fZoomX * log.width)/2,
