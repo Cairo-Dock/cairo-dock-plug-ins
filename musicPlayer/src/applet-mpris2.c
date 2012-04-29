@@ -200,22 +200,31 @@ static double cd_mpris2_get_volume (void)
 	return cairo_dock_dbus_get_property_as_double (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "Volume");
 }
 
+static gboolean _is_a_new_track (const gchar *cTrackID)
+{
+	if (cairo_dock_strings_differ (myData.cTrackID, cTrackID))  // track has changed.
+	{
+		g_free (myData.cTrackID);
+		myData.cTrackID = g_strdup (cTrackID);
+		return TRUE;
+	}
+	return FALSE;
+}
+
 static gboolean _extract_metadata (GHashTable *pMetadata)
 {
 	gboolean bTrackHasChanged = FALSE;
 	GValue *v;
-	const gchar *str;
+	const gchar *str = NULL;
 	
-	v = g_hash_table_lookup (pMetadata, "mpris:trackid");  // a string that uniquely identifies the track within the scope of the playlist
-	if (v != NULL && G_VALUE_HOLDS_STRING (v))
+	v = g_hash_table_lookup (pMetadata, "mpris:trackid");  // a string or a dbus object path that uniquely identifies the track within the scope of the playlist
+	if (v != NULL)
 	{
-		const gchar *cTrackID = g_value_get_string (v);
-		if (cairo_dock_strings_differ (myData.cTrackID, cTrackID))  // track has changed.
-		{
-			g_free (myData.cTrackID);
-			myData.cTrackID = g_strdup (cTrackID);
-			bTrackHasChanged = TRUE;
-		}
+		if (G_VALUE_HOLDS (v, DBUS_TYPE_G_OBJECT_PATH)) // now this attribute should be of D-Bus type "o"
+			str = (gchar*) g_value_get_boxed (v);
+		else if (G_VALUE_HOLDS_STRING (v)) // but can be a string... e.g. with Rhythmbox
+			str = g_value_get_string (v);
+		bTrackHasChanged = _is_a_new_track (str);
 	}
 
 	v = g_hash_table_lookup (pMetadata, "mpris:length");  // length of the track, in microseconds (signed 64-bit integer)
