@@ -561,10 +561,7 @@ static void _cd_switcher_list_window_on_viewport (Icon *pIcon, int iNumDesktop, 
 	if (pixbuf)
 	{
 		GtkWidget *image = gtk_image_new_from_pixbuf (pixbuf);
-#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
-		gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (pMenuItem), TRUE);
-#endif
-		gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
+		_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
 		g_object_unref (pixbuf);
 	}
 	gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);

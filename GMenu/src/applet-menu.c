@@ -275,11 +275,7 @@ void panel_load_menu_image_deferred (GtkWidget   *image_menu_item,
  
 	if (myConfig.bHasIcons)
 	{
-#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
-		gtk_image_menu_item_set_always_show_image (
-			GTK_IMAGE_MENU_ITEM (image_menu_item), TRUE);
-#endif
-		gtk_image_menu_item_set_image (
+		_gtk_image_menu_item_set_image (
 			GTK_IMAGE_MENU_ITEM (image_menu_item), image);
 	}
 
@@ -521,11 +517,7 @@ void setup_menuitem (GtkWidget   *menuitem,
 		gtk_widget_show (image);
 		if (myConfig.bHasIcons)
 		{
-#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
-			gtk_image_menu_item_set_always_show_image (
-				GTK_IMAGE_MENU_ITEM (menuitem), TRUE);
-#endif
-			gtk_image_menu_item_set_image (
+			_gtk_image_menu_item_set_image (
 				GTK_IMAGE_MENU_ITEM (menuitem), image);
 		}
 	} else if (icon_size != GTK_ICON_SIZE_INVALID)

@@ -106,10 +106,7 @@ static void _init_fill_menu_from_dir (CDQuickBrowserItem *pItem)
 	{
 		pMenuItem = gtk_image_menu_item_new_with_label (D_("Open this folder"));
 		GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU);
-#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
-		gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (pMenuItem), TRUE);
-#endif
-		gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
+		_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
 	}
 	else
 	{
