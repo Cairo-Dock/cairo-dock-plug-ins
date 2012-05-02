@@ -114,7 +114,7 @@ frame_ctrl =
 #k Shortkey to show/hide the sound control dialog:
 shortkey = <Control>F3
 
-#i[1;20] Variation for 1 mouse scroll, in %:
+#i[2;20] Variation for 1 mouse scroll, in %:
 scroll variation = 5
 
 #b Hide the scale when mouse leaves the desklet?
@@ -145,7 +145,7 @@ mute icon =
 theme = Sound-Mono
 
 #l+[No;With dock orientation;Yes] Rotate applet theme :
-rotate theme = No
+rotate theme = 0
 
 #v
 sep_disp =
