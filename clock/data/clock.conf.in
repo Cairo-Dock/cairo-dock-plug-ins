@@ -158,7 +158,14 @@ custom font = false
 font = Sans 16
 
 #C+ Text colour:
-text color = 0.0; 0.0; 0.5; 1.
+text color = 0.85; 0.85; 0.85; 1.
+
+#i+[0;10] Outline thickness:
+#{Set to 0 to not have it}
+outline width = 0
+
+#C+ Outline colour:
+outline color = 0.85; 0.85; 0.85; 1.
 
 #l+[Automatic;On 1 line;On 2 lines] Layout of the text:
 text layout = 0

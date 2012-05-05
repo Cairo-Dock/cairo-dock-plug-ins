@@ -147,6 +147,8 @@ struct _AppletConfig {
 	gboolean b24Mode;
 	CDClockTextLayout iPreferedTextLayout;
 	double fTextColor[4];
+	double fOutlineColor[4];
+	gint iOutlineWidth;
 	double fDateColor[4];
 	gchar *cThemePath;
 	gchar *cNumericBackgroundImage;

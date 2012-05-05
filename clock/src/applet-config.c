@@ -75,6 +75,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	else
 	{
 		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "text color", myConfig.fTextColor, couleur);
+		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "outline color", myConfig.fOutlineColor, couleur);
+		myConfig.iOutlineWidth = CD_CONFIG_GET_INTEGER ("Configuration", "outline width");
 		
 		gboolean bCustomFont = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "custom font", FALSE);  // false by default
 		if (bCustomFont)

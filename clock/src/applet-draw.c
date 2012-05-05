@@ -34,6 +34,20 @@ static char s_cDateBuffer[CD_CLOCK_DATE_BUFFER_LENGTH+1];
 ///#define MAX_RATIO 2.
 #define MIN_TEXT_HEIGHT 12.  // the text should be at least 12 pixels height, or it would be hard to read for a lot of people.
 
+static void _outlined_pango_cairo (CairoDockModuleInstance *myApplet, PangoLayout *pLayout)
+{
+	cairo_save (myDrawContext);
+	cairo_set_source_rgba (myDrawContext,
+		myConfig.fOutlineColor[0],
+		myConfig.fOutlineColor[1],
+		myConfig.fOutlineColor[2],
+		myConfig.fOutlineColor[3]);
+	cairo_set_line_width (myDrawContext, myConfig.iOutlineWidth);
+	pango_cairo_layout_path (myDrawContext, pLayout);
+	cairo_stroke (myDrawContext);
+	cairo_restore (myDrawContext);
+}
+
 void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime)
 {
 	g_return_if_fail (myDrawContext != NULL);
@@ -144,10 +158,12 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 				myData.iTextLayout = CD_TEXT_LAYOUT_1_LINE;
 		}
 		
-		if (myData.iTextLayout == CD_TEXT_LAYOUT_1_LINE)  // mode 1 ligne
+		if (myData.iTextLayout == CD_TEXT_LAYOUT_1_LINE)  // mode 1 line
 		{
 			cairo_translate (myDrawContext, (iWidth - fZoomX_ * w_) / 2, (iHeight - fZoomY_ * h_)/2);  // text will be centred.
 			cairo_scale (myDrawContext, fZoomX_, fZoomY_);
+			if (myConfig.iOutlineWidth)
+				_outlined_pango_cairo (myApplet, pLayout2);
 			pango_cairo_show_layout (myDrawContext, pLayout2);
 			
 			cairo_restore (myDrawContext);
@@ -155,12 +171,16 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			
 			cairo_translate (myDrawContext, (iWidth + fZoomX_ * w_) / 2 - fZoomX_ * log.width, (iHeight - fZoomY_ * h_)/2);
 			cairo_scale (myDrawContext, fZoomX_, fZoomY_);
+			if (myConfig.iOutlineWidth)
+				_outlined_pango_cairo (myApplet, pLayout);
 			pango_cairo_show_layout (myDrawContext, pLayout);
 		}
-		else  // mode 2 lignes
+		else  // mode 2 lines
 		{
 			cairo_translate (myDrawContext, (iWidth - fZoomX * log.width) / 2, (iHeight - fZoomY * h)/2);  // text will be centred.
 			cairo_scale (myDrawContext, fZoomX, fZoomY);
+			if (myConfig.iOutlineWidth)
+				_outlined_pango_cairo (myApplet, pLayout);
 			pango_cairo_show_layout (myDrawContext, pLayout);
 			
 			cairo_restore (myDrawContext);
@@ -168,6 +188,8 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			
 			cairo_translate (myDrawContext, (iWidth - fZoomX * log2.width) / 2, (iHeight + fZoomY * GAPY)/2);
 			cairo_scale (myDrawContext, fZoomX, fZoomY);
+			if (myConfig.iOutlineWidth)
+				_outlined_pango_cairo (myApplet, pLayout2);
 			pango_cairo_show_layout (myDrawContext, pLayout2);
 		}
 		g_object_unref (pLayout2);
@@ -191,6 +213,8 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 			(iWidth - fZoomX * log.width)/2,
 			(iHeight - fZoomY * log.height)/2);  // text will be centred.
 		cairo_scale (myDrawContext, fZoomX, fZoomY);
+		if (myConfig.iOutlineWidth)
+			_outlined_pango_cairo (myApplet, pLayout);
 		pango_cairo_show_layout (myDrawContext, pLayout);
 	}
 	cairo_restore (myDrawContext);
