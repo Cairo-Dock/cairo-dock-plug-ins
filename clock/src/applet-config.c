@@ -66,16 +66,17 @@ CD_APPLET_GET_CONFIG_BEGIN
 		myConfig.bOldStyle = (iStyle == 0);
 	}
 	
-	double couleur[4] = {0., 0., 0.5, 1.};
 	if (myConfig.bOldStyle)
 	{
+		double colour[4] = {0., 0., 0., 1.};
 		myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "glassy");
-		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "date color", myConfig.fDateColor, couleur);
+		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "date color", myConfig.fDateColor, colour);
 	}
 	else
 	{
-		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "text color", myConfig.fTextColor, couleur);
-		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "outline color", myConfig.fOutlineColor, couleur);
+		double colour[4] = {0.85, 0.85, 0.85, 1.};
+		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "text color", myConfig.fTextColor, colour);
+		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "outline color", myConfig.fOutlineColor, colour);
 		myConfig.iOutlineWidth = CD_CONFIG_GET_INTEGER ("Configuration", "outline width");
 		
 		gboolean bCustomFont = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "custom font", FALSE);  // false by default

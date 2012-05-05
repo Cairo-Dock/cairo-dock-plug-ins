@@ -92,6 +92,11 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 	pango_layout_set_text (pLayout, s_cDateBuffer, -1);
 	PangoRectangle log;
 	pango_layout_get_pixel_extents (pLayout, NULL, &log);
+	if (myConfig.iOutlineWidth)
+	{
+		log.width += myConfig.iOutlineWidth / 2;
+		log.height += myConfig.iOutlineWidth / 2;
+	}
 	
 	//\______________ On dessine le texte.
 	cairo_save (myDrawContext);
@@ -104,6 +109,11 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 		pango_layout_set_text (pLayout2, s_cDateBuffer, -1);
 		PangoRectangle log2;
 		pango_layout_get_pixel_extents (pLayout2, NULL, &log2);
+		if (myConfig.iOutlineWidth)
+		{
+			log2.width += myConfig.iOutlineWidth / 2;
+			log2.height += myConfig.iOutlineWidth / 2;
+		}
 		
 		double h=0, w=0, fZoomX=0, fZoomY=0;  // parametres d'affichage 2 lignes
 		double h_=0, w_=0, fZoomX_=0, fZoomY_=0;  // parametres d'affichage 1 ligne
