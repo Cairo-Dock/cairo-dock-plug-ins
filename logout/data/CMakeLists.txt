@@ -11,6 +11,7 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/logout.conf
 	system-restart.svg
 	system-shutdown.svg
 	system-suspend.svg
+	preview.jpg
 	DESTINATION ${logoutdatadir})
 
 install(FILES logout.sh
