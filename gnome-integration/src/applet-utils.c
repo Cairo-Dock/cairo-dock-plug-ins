@@ -52,8 +52,29 @@ void env_backend_lock_screen (void)
 
 void env_backend_setup_time (void)
 {
-	cairo_dock_launch_command ("time-admin");  // it uses PolicyKit => no gksudo.
-	/// TODO: use gnome-control-center ...
+	static gboolean bChecked = FALSE;
+	static const gchar *cCmd = NULL;
+	if (!bChecked)
+	{
+		bChecked = TRUE;
+		gchar *cResult = cairo_dock_launch_command_sync ("which gnome-control-center");  // Gnome3
+		if (cResult != NULL && *cResult == '/')
+		{
+			cCmd = "gnome-control-center datetime";
+		}
+		else
+		{
+			g_free (cResult);
+			cResult = cairo_dock_launch_command_sync ("which time-admin");  // Gnome2
+			if (cResult != NULL && *cResult == '/')
+				cCmd = "time-admin";  // it uses PolicyKit => no gksudo.
+		}
+		g_free (cResult);
+	}
+	if (cCmd)
+		cairo_dock_launch_command (cCmd);
+	else
+		cd_warning ("couldn't guess what program to use to setup the time and date.");
 }
 
 void env_backend_show_system_monitor (void)
