@@ -25,7 +25,7 @@ import dbus
 import re
 
 USER_CONFIG_DIR = os.path.abspath("~/.config")
-
+BUS_NAME = "org.cairodock.CairoDock"
 
 ##################
 ### Main class ###
@@ -89,10 +89,15 @@ class CairoDock:
 		""" Initialize the interface.
 		It defines the following:
 		 - cDataDir: main dir
-		 - cCurrentThemeDir: current theme dir
-		 - cConfFile : path to the global config file
+		 - cCurrentThemeDir: path to the current theme folder
+		 - cConfFile: path to the global config file
+		 - cLaunchersDir: path to the launchers folder
+		 - cPluginsDir: path to the plug-ins folders
+		 - iface: the interface to control the dock
 		 """
-		self.dock = None
+		
+		## initialize the class properties
+		self.iface = None
 		self.cAppName = app_name
 		self.cDataDir = USER_CONFIG_DIR + '/' + app_name
 		self.cCurrentThemeDir = self.cDataDir + '/current_theme'
@@ -100,21 +105,35 @@ class CairoDock:
 		self.cPluginsDir = self.cCurrentThemeDir + '/plug-ins'
 		self.cConfFile = self.cCurrentThemeDir + '/' + app_name + '.conf'
 		
-		self._connect()
-	
-	def _connect(self):
-		# get gldi on the bus.
-		bus = dbus.SessionBus()
-		
 		name1 = self.cAppName.replace('-','')  # -> cairodock
 		name2 = re.sub('-[a-z]', lambda x: x.group(0).upper(), self.cAppName)
 		name2 = re.sub('^[a-z]', lambda x: x.group(0).upper(), name2)  # -> CairoDock
 		name2 = name2.replace('-','')  # -> CairoDock
-		cBusPath = '/org/'+name1+'/'+name2
+		self.cObjectPath = '/org/'+name1+'/'+name2
+		
+		## connect to the dock
+		self.bus = dbus.SessionBus()
+		self._connect()
+		
+		## watch for de/re-connections
+		self.bus.watch_name_owner(BUS_NAME, self.on_name_owner_changed)
+	
+	def on_name_owner_changed(self,connection_name):
+		print "new owner:",connection_name
+		if len(connection_name) == 0:
+			self.iface = None
+			print "-> no more connection to "+self.cAppName
+		elif self.iface == None:
+			self._connect()
+	
+	def _connect(self):
+		# get gldi on the bus.
+		print "connect..."
 		try:
-			dbus_object = bus.get_object("org.cairodock.CairoDock", cBusPath)
+			dbus_object = self.bus.get_object(BUS_NAME, self.cObjectPath)
 		except:
-			print ">>> object '"+cBusPath+"' can't be found on the bus, exit.\nMake sure that Cairo-Dock is running"
+			print ">>> object '"+self.cObjectPath+"' can't be found on the bus, exit.\nMake sure that Cairo-Dock is running."
 			return
 		self.iface = dbus.Interface(dbus_object, "org.cairodock.CairoDock")  # this object represents gldi.
-		
+		print "-> connected to "+self.cAppName
+	
