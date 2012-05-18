@@ -28,9 +28,13 @@ add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
 
 include_directories (
+	${DBUSMENU_INCLUDE_DIRS}
+	${DBUSMENU_GTK_INCLUDE_DIRS}
 	${PACKAGE_INCLUDE_DIRS})
 
 link_directories (
+	${DBUSMENU_LIBRARY_DIRS}
+	${DBUSMENU_GTK_LIBRARY_DIRS}
 	${PACKAGE_LIBRARY_DIRS})
 
 target_link_libraries (${PACKAGE_DBUS}

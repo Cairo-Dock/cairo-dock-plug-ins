@@ -33,6 +33,7 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 #include "cairo-dock.h"
 #include "interface-main-methods.h"
 
+
 #define nullify_argument(string) do {\
 	if (string != NULL && (*string == '\0' || strcmp (string, "any") == 0 || strcmp (string, "none") == 0))\
 		string = NULL; } while (0)
@@ -1380,6 +1381,155 @@ gboolean cd_dbus_main_show_dialog (dbusMainObject *pDbusCallback, const gchar *m
 	
 	if (ic == NULL)  // empty list, or didn't find a valid icon.
 		cairo_dock_show_general_message (message, 1000 * iDuration);
+	
+	g_list_free (pList);
+	return TRUE;
+}
+
+
+static void _on_menu_destroyed (GtkWidget *menu, CDIconData *pData)
+{
+	//g_print ("\n+++ %s ()\n\n", __func__);
+	if (pData != NULL && pData->menu_items_list != NULL)
+	{
+		GList *mi;
+		for (mi = pData->menu_items_list; mi != NULL; mi = mi->next)
+		{
+			DbusmenuMenuitem *pDbusMenuItem = mi->data;
+			GtkMenuItem *pMenuItem = dbusmenu_gtkclient_menuitem_get (pData->client, pDbusMenuItem);
+			if (gtk_widget_get_parent (GTK_WIDGET (pMenuItem)) != NULL)  // it might not be in the menu if it has been added after the menu was built.
+				gtk_container_remove (GTK_CONTAINER (menu), GTK_WIDGET (pMenuItem));
+		}
+	}
+}
+static gboolean cd_dbus_main_emit_on_build_menu (gpointer data, Icon *pClickedIcon, CairoContainer *pClickedContainer, GtkWidget *pMenu)
+{
+	if (pClickedIcon == NULL)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	CDIconData *pData = CD_APPLET_GET_MY_ICON_DATA (pClickedIcon);
+	if (pData != NULL && pData->menu_items_list != NULL)
+	{
+		GList *mi;
+		for (mi = pData->menu_items_list; mi != NULL; mi = mi->next)
+		{
+			DbusmenuMenuitem *pDbusMenuItem = mi->data;
+			GtkMenuItem *pMenuItem = dbusmenu_gtkclient_menuitem_get (pData->client, pDbusMenuItem);
+			gtk_menu_shell_append (GTK_MENU_SHELL(pMenu), GTK_WIDGET (pMenuItem));
+			gtk_widget_show (GTK_WIDGET (pMenuItem));
+		}
+		
+		// when the menu is destroyed, the menu-items are destroyed too (even if we set a reference on them, their content will be unvalidated); so we must remove them from the menu before that happens.
+		g_signal_connect (G_OBJECT (pMenu),
+			"destroy",
+			G_CALLBACK (_on_menu_destroyed),
+			pData);
+	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+
+
+static void root_child_added (DbusmenuMenuitem * root, DbusmenuMenuitem * child, guint position, CDIconData *pData)
+{
+	g_print ("%s (%d)\n", __func__, position);
+	pData->menu_items_list = g_list_insert (pData->menu_items_list, child, position);  // simply add it to the list, the associated menu-item will appear in the menu the next time the user right-clicks (we don't bother to refresh the menu in real-time).
+}
+
+static void root_child_moved (DbusmenuMenuitem * root, DbusmenuMenuitem * child, guint newposition, guint oldposition, CDIconData *pData)
+{
+	g_print ("%s (%d -> %d)\n", __func__, oldposition, newposition);
+	GList *mi = g_list_nth (pData->menu_items_list, oldposition);
+	pData->menu_items_list = g_list_remove_link (pData->menu_items_list, mi);
+	pData->menu_items_list = g_list_insert (pData->menu_items_list, child, newposition);  // same remark
+}
+
+static void root_child_delete (DbusmenuMenuitem * root, DbusmenuMenuitem * child, CDIconData *pData)
+{
+	g_print ("%s ()\n", __func__);
+	pData->menu_items_list = g_list_remove (pData->menu_items_list, child);  // same remark
+}
+
+static void root_changed (DbusmenuGtkClient * client, DbusmenuMenuitem * newroot, CDIconData *pData)
+{
+	g_print ("%s (%p\n", __func__, newroot);
+	if (newroot == NULL)
+	{
+		return;
+	}
+	
+	// get the current childs
+	GList * child = NULL;
+	for (child = dbusmenu_menuitem_get_children(newroot); child != NULL; child = g_list_next(child))
+	{
+		pData->menu_items_list = g_list_append (pData->menu_items_list, child->data);
+	}
+	
+	// watch for any new/updated/removed child
+	g_signal_connect(G_OBJECT(newroot), DBUSMENU_MENUITEM_SIGNAL_CHILD_ADDED, G_CALLBACK(root_child_added), pData);
+	g_signal_connect(G_OBJECT(newroot), DBUSMENU_MENUITEM_SIGNAL_CHILD_MOVED, G_CALLBACK(root_child_moved), pData);
+	g_signal_connect(G_OBJECT(newroot), DBUSMENU_MENUITEM_SIGNAL_CHILD_REMOVED, G_CALLBACK(root_child_delete), pData);
+}
+
+gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBusName, const gchar *cMenuPath, gchar *cIconQuery, GError **error)
+{
+	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
+	if (pList == NULL)
+		return FALSE;
+	
+	static gboolean s_bInit = FALSE;
+	if (! s_bInit)  // register for right-click events once.
+	{
+		s_bInit = TRUE;
+		cairo_dock_register_notification_on_object (&myContainersMgr,
+			NOTIFICATION_BUILD_ICON_MENU,
+			(CairoDockNotificationFunc) cd_dbus_main_emit_on_build_menu,
+			CAIRO_DOCK_RUN_FIRST,
+			NULL);
+	}
+	
+	Icon *pIcon;
+	CairoContainer *pContainer;
+	GList *ic;
+	for (ic = pList; ic != NULL; ic = ic->next)
+	{
+		pIcon = ic->data;
+		CDIconData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
+		if (pData == NULL)
+		{
+			pData = g_new0 (CDIconData, 1);
+			CD_APPLET_SET_MY_ICON_DATA (pIcon, pData);
+		}
+		
+		if (! cairo_dock_strings_differ (pData->cMenuPath, cMenuPath)
+		&& ! cairo_dock_strings_differ (pData->cBusName, cBusName))
+			continue;  // same menu -> nothing to do
+		
+		// remove any previous menu
+		if (pData->cBusName)
+		{
+			g_print ("menu %s (%s) is removed\n", pData->cBusName, pData->cMenuPath);
+			g_free (pData->cBusName);
+			g_free (pData->cMenuPath);
+			
+			g_list_free (pData->menu_items_list);
+			pData->menu_items_list = NULL;
+			
+			g_object_unref (pData->client);
+			pData->client = NULL;
+		}
+		
+		// remember the current menu
+		pData->cBusName = g_strdup (cBusName);
+		pData->cMenuPath = g_strdup (cMenuPath);
+		
+		// if a menu is set, build the client and wait for the root child to appear on our side of the bus.
+		if (cBusName && cMenuPath && *cMenuPath != '\0')
+		{
+			g_print ("new menu %s (%s)\n", cBusName, cMenuPath);
+			pData->client = dbusmenu_gtkclient_new(pData->cBusName, pData->cMenuPath);
+			g_signal_connect(G_OBJECT(pData->client), DBUSMENU_GTKCLIENT_SIGNAL_ROOT_CHANGED, G_CALLBACK(root_changed), pData);
+		}
+	}
 	
 	g_list_free (pList);
 	return TRUE;

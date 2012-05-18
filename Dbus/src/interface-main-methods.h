@@ -69,9 +69,6 @@ gboolean cd_dbus_main_demands_attention (dbusMainObject *pDbusCallback, gboolean
 
 gboolean cd_dbus_main_show_dialog (dbusMainObject *dbusMainObject, const gchar *message, gint iDuration, gchar *cIconQuery, GError **error);
 
-
-gboolean cd_dbus_main_load_launcher_from_file (dbusMainObject *dbusMainObject, const gchar *cDesktopFile, GError **error);
-
-gboolean cd_dbus_main_create_launcher_from_scratch (dbusMainObject *dbusMainObject, const gchar *cIconFile, const gchar *cLabel, const gchar *cCommand, const gchar *cParentDockName, GError **error);
+gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBusName, const gchar *cMenuPath, gchar *cIconQuery, GError **error);
 
 #endif
