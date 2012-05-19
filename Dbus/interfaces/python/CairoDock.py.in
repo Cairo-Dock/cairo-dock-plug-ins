@@ -23,6 +23,7 @@
 import os.path
 import dbus
 import re
+from dbus.mainloop.glib import DBusGMainLoop
 
 USER_CONFIG_DIR = os.path.abspath("~/.config")
 BUS_NAME = "org.cairodock.CairoDock"
@@ -96,6 +97,8 @@ class CairoDock:
 		 - iface: the interface to control the dock
 		 """
 		
+		DBusGMainLoop(set_as_default=True)  # set a main loop for the 'watch_name_owner' signal.
+		
 		## initialize the class properties
 		self.iface = None
 		self.cAppName = app_name
@@ -115,14 +118,15 @@ class CairoDock:
 		self.bus = dbus.SessionBus()
 		self._connect()
 		
-		## watch for de/re-connections
+		## if the watch for de/re-connections
 		self.bus.watch_name_owner(BUS_NAME, self.on_name_owner_changed)
 	
 	def on_name_owner_changed(self,connection_name):
 		print "new owner:",connection_name
 		if len(connection_name) == 0:
-			self.iface = None
-			print "-> no more connection to "+self.cAppName
+			if self.iface != None:
+				self.iface = None
+				print "-> no more connection to "+self.cAppName
 		elif self.iface == None:
 			self._connect()
 	
