@@ -26,7 +26,9 @@ add_definitions (-DMY_APPLET_VERSION="${VERSION_DBUS}")
 add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_DBUS}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
-add_definitions (-DDBUSMENU_GTK3_NEW=1)
+if (DBUSMENU_GTK3_NEW)
+	add_definitions (-DDBUSMENU_GTK3_NEW=1)
+endif()
 
 include_directories (
 	${DBUSMENU_INCLUDE_DIRS}
