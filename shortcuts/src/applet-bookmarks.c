@@ -223,6 +223,7 @@ void cd_shortcuts_remove_one_bookmark (const gchar *cURI)
 		gchar **cBookmarksList = g_strsplit (cContent, "\n", -1);
 		g_free (cContent);
 		gchar *cOneBookmark, *str;
+		gboolean bFound = FALSE;
 		int i = 0;
 		for (i = 0; cBookmarksList[i] != NULL; i ++)
 		{
@@ -233,13 +234,21 @@ void cd_shortcuts_remove_one_bookmark (const gchar *cURI)
 			str = strchr (cOneBookmark, ' ');
 			if ((str && strncmp (cOneBookmark, cURI, str - cOneBookmark) == 0) || (!str && strcmp (cOneBookmark, cURI) == 0))
 			{
-				cBookmarksList[i] = g_strdup ("");
+				// remove this element from the array
+				int j;
+				for (j = i; cBookmarksList[j] != NULL; j ++)
+				{
+					cBookmarksList[j] = cBookmarksList[j+1];
+				}
+				// free the removed element.
 				g_free (cOneBookmark);
+				// quit the loop
+				bFound = TRUE;
 				break;
 			}
 		}
 		
-		if (cBookmarksList[i] == NULL)
+		if (! bFound)
 		{
 			cd_warning ("bookmark '%s' not found", cURI);
 		}
@@ -321,10 +330,22 @@ void cd_shortcuts_add_one_bookmark (const gchar *cURI)
 	cd_message ("%s (%s)", __func__, cURI);
 	
 	gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
+	
+	// see if we need to add a new line before the new URI.
+	gchar *cContent = NULL;
+	gsize length = 0;
+	g_file_get_contents (cBookmarkFilePath,
+		&cContent,
+		&length,
+		NULL);
+	gboolean bAddNewLine = (cContent && length > 0 && cContent[length-1] != '\n');
+	g_free (cContent);
+	
+	// append the new URI to the file.
 	FILE *f = fopen (cBookmarkFilePath, "a");
 	if (f != NULL)
 	{
-		gchar *cNewLine = g_strconcat ("\n", cURI, NULL);
+		gchar *cNewLine = g_strdup_printf ("%s%s\n", bAddNewLine ? "\n" : "", cURI);
 		fputs(cNewLine, f);
 		g_free (cNewLine);
 		fclose (f);
