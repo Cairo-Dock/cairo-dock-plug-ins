@@ -346,6 +346,25 @@ static void _on_name_owner_changed (const gchar *cName, gboolean bOwned, gpointe
 				// set the MPRIS2 handler as the current one
 				myData.pCurrentHandler = cd_musicplayer_get_handler_by_name ("Mpris2");  // no need to watch it, it was already done (that's why we are here !)
 				
+				// fill its properties
+				if (myConfig.cLastKnownDesktopFile != NULL)
+				{
+					myData.pCurrentHandler->appclass = cairo_dock_register_class (myConfig.cLastKnownDesktopFile);
+					myData.pCurrentHandler->launch = g_strdup (cairo_dock_get_class_command (myData.pCurrentHandler->appclass));
+					myData.pCurrentHandler->cDisplayedName = g_strdup (cairo_dock_get_class_name (myData.pCurrentHandler->appclass));
+					cd_debug ("fill from %s -> %s, %s, %s\n", myConfig.cLastKnownDesktopFile, myData.pCurrentHandler->appclass, myData.pCurrentHandler->launch, myData.pCurrentHandler->cDisplayedName);
+				}
+				else  // can happen when transitionning from an old version of the applet where we didn't use the "Desktop Entry" property yet -> use some heuristic as a fallback.
+				{
+					myData.pCurrentHandler->appclass = cairo_dock_register_class (cName);
+					myData.pCurrentHandler->launch = g_strdup (cairo_dock_get_class_command (myData.pCurrentHandler->appclass));
+					myData.pCurrentHandler->cDisplayedName = g_strdup (cairo_dock_get_class_name (myData.pCurrentHandler->appclass));
+					if (myData.pCurrentHandler->launch == NULL)  // we really need a command to launch it on click, so insist a little
+					{
+						myData.pCurrentHandler->launch = g_strdup (cName);
+					}
+				}
+				
 				g_free ((gchar*)myData.pCurrentHandler->cMprisService);
 				myData.pCurrentHandler->cMprisService = g_strdup (cName);
 			}
@@ -378,7 +397,7 @@ static void _on_name_owner_changed (const gchar *cName, gboolean bOwned, gpointe
 	}
 	else  // else stop the handler.
 	{
-		cd_debug ("stop the handler");
+		cd_debug ("stop the handler {%s, %s}", myData.pCurrentHandler->name, myData.pCurrentHandler->launch);
 		cd_musicplayer_stop_current_handler (FALSE);  // FALSE = keep watching it.
 		cd_musicplayer_apply_status_surface (PLAYER_NONE);
 		if (myConfig.cDefaultTitle != NULL)
@@ -395,6 +414,7 @@ static void _on_name_owner_changed (const gchar *cName, gboolean bOwned, gpointe
 			{
 				CD_APPLET_SET_NAME_FOR_MY_ICON (myData.pCurrentHandler->name);
 			}
+		cd_debug ("stopped {%s, %s}", myData.pCurrentHandler->name, myData.pCurrentHandler->launch);
 		}
 	}
 	CD_APPLET_LEAVE ();
@@ -469,6 +489,7 @@ void cd_musicplayer_set_current_handler (const gchar *cName)
 			myData.pCurrentHandler->appclass = cairo_dock_register_class (myConfig.cLastKnownDesktopFile);
 			myData.pCurrentHandler->launch = g_strdup (cairo_dock_get_class_command (myData.pCurrentHandler->appclass));
 			myData.pCurrentHandler->cDisplayedName = g_strdup (cairo_dock_get_class_name (myData.pCurrentHandler->appclass));
+			cd_debug ("fill from %s -> %s, %s, %s\n", myConfig.cLastKnownDesktopFile, myData.pCurrentHandler->appclass, myData.pCurrentHandler->launch, myData.pCurrentHandler->cDisplayedName);
 		}
 		else  // can happen when transitionning from an old version of the applet where we didn't use the "Desktop Entry" property yet -> use some heuristic as a fallback.
 		{
