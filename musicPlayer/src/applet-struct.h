@@ -60,6 +60,11 @@ typedef void (*MusicPlayerStopFunc) (void);  // libere les ressources specifique
 typedef void (*MusicPlayerStartFunc) (void);  // initialise le backend (connexion des signaux, etc)
 typedef void (*MusicPlayerControlerFunc) (MyPlayerControl pControl, const gchar *cFile);  // controle du lecteur (play/pause/next/etc)
 typedef void (*MusicPlayerGetCoverFunc) (void);  // pour les lecteurs buggues, recupere la couverture. Renseigner ce champ fera que si le lecteur n'a pas renvoye de couverture au changement de chanson, on retentera 2 secondes plus tard avec cette fonction.
+typedef gboolean (*MusicPlayerGetLoopStatusFunc) (void);
+typedef gboolean (*MusicPlayerGetShuffleStatusFunc) (void);
+typedef gboolean (*MusicPlayerRaiseFunc) (void);  // show window from systray
+typedef gboolean (*MusicPlayerQuitFunc) (void);  // quit when within the systray
+
 
 struct _MusicPlayerHandler {
 	const gchar *name;  // nom du backend.
@@ -68,6 +73,10 @@ struct _MusicPlayerHandler {
 	MusicPlayerStartFunc		start;
 	MusicPlayerControlerFunc	control;
 	MusicPlayerGetCoverFunc		get_cover;  // actually deprecated, since now most players will send a signal when the 'cover' param is changed.
+	MusicPlayerGetLoopStatusFunc get_loop_status;
+	MusicPlayerGetShuffleStatusFunc get_shuffle_status;
+	MusicPlayerRaiseFunc raise;
+	MusicPlayerQuitFunc quit;
 	const gchar *cMprisService;  // old Dbus service name (may not even follow the MPRIS protocole)
 	const gchar *path;  // Player object
 	const gchar *interface;
