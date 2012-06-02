@@ -313,12 +313,6 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);  // on n'a jamais zero action, donc on met toujours un separateur.
 		
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Information"), GTK_STOCK_INFO, _cd_musicplayer_info, CD_APPLET_MY_MENU);
-
-		if (myIcon->Xid == 0)  // player in the systray.
-		{
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Show"), GTK_STOCK_FIND, _cd_musicplayer_show_from_systray, CD_APPLET_MY_MENU);
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Quit"), GTK_STOCK_CLOSE, _cd_musicplayer_quit, CD_APPLET_MY_MENU);  // GTK_STOCK_QUIT looks too much like the "quit" of the dock.
-		}
 		
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 		
@@ -340,8 +334,15 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			gtk_menu_shell_append  (GTK_MENU_SHELL (CD_APPLET_MY_MENU), pMenuItem);
 			g_signal_connect (G_OBJECT (pMenuItem), "toggled", G_CALLBACK (_cd_musicplayer_repeat), NULL);
 		}
+		
 		if (myData.pCurrentHandler->iPlayerControls & PLAYER_RATE)
 			CD_APPLET_ADD_IN_MENU (D_("Rate this song"), _cd_musicplayer_rate, CD_APPLET_MY_MENU);
+		
+		if (myIcon->Xid == 0)  // player in the systray.
+		{
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Show"), GTK_STOCK_FIND, _cd_musicplayer_show_from_systray, CD_APPLET_MY_MENU);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Quit"), GTK_STOCK_CLOSE, _cd_musicplayer_quit, CD_APPLET_MY_MENU);  // GTK_STOCK_QUIT looks too much like the "quit" of the dock.
+		}
 	}
 CD_APPLET_ON_BUILD_MENU_END
 

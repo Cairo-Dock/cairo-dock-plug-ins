@@ -133,7 +133,7 @@ static gboolean _raise (void)
 	if (! s_bGotCanRaise)
 	{
 		s_bCanRaise = cairo_dock_dbus_get_property_as_boolean (myData.dbus_proxy_shell, "org.mpris.MediaPlayer2", "CanRaise");
-		g_print ("s_bCanRaise : %d\n", s_bCanRaise);
+		cd_debug ("s_bCanRaise : %d", s_bCanRaise);
 		s_bGotCanRaise = TRUE;
 	}
 	
@@ -153,7 +153,7 @@ static gboolean _quit (void)
 	if (! s_bGotCanQuit)
 	{
 		s_bCanQuit = cairo_dock_dbus_get_property_as_boolean (myData.dbus_proxy_shell, "org.mpris.MediaPlayer2", "CanQuit");
-		g_print ("s_bCanQuit : %d\n", s_bCanQuit);
+		cd_debug ("s_bCanQuit : %d", s_bCanQuit);
 		s_bGotCanQuit = TRUE;
 	}
 	
@@ -531,6 +531,15 @@ static void cd_mpris2_stop (void)
 			s_pGetStatusCall = NULL;
 		}
 	}
+	MusicPlayerHandler *pHandler = cd_musicplayer_get_handler_by_name ("Mpris2");
+	g_free ((gchar*)pHandler->launch);
+	pHandler->launch = NULL;
+	g_free ((gchar*)pHandler->appclass);
+	pHandler->appclass = NULL;
+	g_free ((gchar*)pHandler->cDisplayedName);
+	pHandler->cDisplayedName = NULL;
+	g_free ((gchar*)pHandler->cMprisService);
+	pHandler->cMprisService = NULL;
 }
 
 
