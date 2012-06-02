@@ -107,6 +107,7 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 	int iVolumeID;
 	gboolean bIsDirectory;
 	gint iDesiredIconSize = cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR); // 24px
+	GHashTable *pHashTable = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, NULL);  // used to prevent doubles
 	
 	CD_APPLET_ADD_SEPARATOR_IN_MENU (s_pMenu);
 	
@@ -119,6 +120,8 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 		{
 			subject = zeitgeist_event_get_subject (event, i);
 			cEventURI = zeitgeist_subject_get_uri (subject);
+			if (g_hash_table_lookup_extended  (pHashTable, cEventURI, NULL, NULL))
+				continue;
 			cd_debug (" + %s", cEventURI);
 			
 			cairo_dock_fm_get_file_info (cEventURI, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, 0);
@@ -137,8 +140,12 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 			cName = NULL;
 			g_free (cURI);
 			cURI = NULL;
+			
+			g_hash_table_insert (pHashTable, (gchar*)cEventURI, NULL);  // cEventURI stays valid in this function.
 		}
 	}
+	g_hash_table_destroy (pHashTable);
+	
 	if (pSubMenu)
 	{
 		gtk_widget_show_all (pSubMenu);  // sinon des fois il n'apparait pas au 1er survol de son entree.
