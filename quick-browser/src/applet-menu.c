@@ -115,12 +115,32 @@ static void _init_fill_menu_from_dir (CDQuickBrowserItem *pItem)
 	gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);
 	g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK(_on_activate_item), pOpenDirItem);
 }
+
+static void _drag_data_get (GtkWidget *pWidget, GdkDragContext *pDragContext,
+	GtkSelectionData *pSelectionData, guint iInfo, guint iTime, CDQuickBrowserItem *pItem)
+{
+	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL;
+	gboolean bIsDirectory;
+	int iVolumeID;
+	double fOrder;
+	cairo_dock_fm_get_file_info (pItem->cPath, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, 0);
+
+	if (cURI != NULL)
+		gtk_selection_data_set (pSelectionData, gtk_selection_data_get_target (pSelectionData), 8, cURI, strlen (cURI));
+
+	g_free (cName);
+	g_free (cURI);
+	g_free (cIconName);
+}
+
 static void _fill_submenu_with_items (CDQuickBrowserItem *pRootItem, int iNbSubItemsAtOnce)
 {
 	CairoDockModuleInstance *myApplet = pRootItem->pApplet;
 	GtkWidget *pMenu = pRootItem->pSubMenu;
 	GList *pFirstItem = pRootItem->pCurrentItem;
-	
+
+	static GtkTargetEntry s_pMenuItemTargets[] = { {(gchar*) "text/uri-list", 0, 0} }; // for drag and drop support
+
 	CDQuickBrowserItem *pItem;
 	gchar *cFileName;
 	GtkWidget *pMenuItem;
@@ -145,6 +165,7 @@ static void _fill_submenu_with_items (CDQuickBrowserItem *pRootItem, int iNbSubI
 			g_free (cURI);
 			cURI = NULL;
 		}
+
 		cFileName = strrchr (pItem->cPath, '/');
 		if (cFileName)
 			cFileName ++;
@@ -156,10 +177,7 @@ static void _fill_submenu_with_items (CDQuickBrowserItem *pRootItem, int iNbSubI
 			g_free (cPath);
 			GtkWidget *image = gtk_image_new_from_pixbuf (pixbuf);
 			g_object_unref (pixbuf);
-#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
-			gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (pMenuItem), TRUE);
-#endif
-			gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
+			_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
 			g_free (cIconName);
 			cIconName = NULL;
 		}
@@ -167,7 +185,7 @@ static void _fill_submenu_with_items (CDQuickBrowserItem *pRootItem, int iNbSubI
 		{
 			pMenuItem = gtk_menu_item_new_with_label (cFileName);
 		}
-		
+
 		//\______________ On l'insere dans le menu.
 		gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);
 		g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK(_on_activate_item), pItem);
@@ -175,6 +193,19 @@ static void _fill_submenu_with_items (CDQuickBrowserItem *pRootItem, int iNbSubI
 		if (pItem->pSubMenu != NULL)
 		{
 			gtk_menu_item_set_submenu (GTK_MENU_ITEM (pMenuItem), pItem->pSubMenu);
+		}
+		else
+		{
+			//\______________ Add drag and drop support for files only
+			gtk_drag_source_set (pMenuItem, GDK_BUTTON1_MASK | GDK_BUTTON2_MASK,
+				s_pMenuItemTargets, 1, GDK_ACTION_COPY);
+
+			// add an icon: the current pixbuf
+			gtk_drag_source_set_icon_pixbuf (pMenuItem,
+				gtk_image_get_pixbuf (GTK_IMAGE (gtk_image_menu_item_get_image (GTK_IMAGE_MENU_ITEM (pMenuItem))))); // or use cPath?
+
+			// we can't use cURI (not easy to free it if we don't use it)
+			g_signal_connect (pMenuItem, "drag_data_get", G_CALLBACK (_drag_data_get), pItem);
 		}
 	}
 	pRootItem->pCurrentItem = l;
