@@ -48,7 +48,7 @@ static void upload (const gchar *cText, gchar *cDropboxDir, gboolean bAnonymous,
 		"api_paste_private", bAnonymous ? "1" : "0", // unlisted or public
 		"api_paste_name", bAnonymous ? "" : g_getenv ("USER"),
 		"api_paste_expire_date", EXPIRE,
-		"api_paste_format", FORMAT, // auto?
+		"api_paste_format", FORMAT, // use the mimetype for the format?
 		"api_dev_key", DEV_KEY,
 		"api_paste_code", cText,
 		NULL);

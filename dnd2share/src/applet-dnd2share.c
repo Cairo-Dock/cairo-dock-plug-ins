@@ -388,10 +388,10 @@ void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 	// If we drop a text file, we have an URI but we want to post the content to a website
 	if (pSharedMemory->iCurrentFileType == CD_TYPE_TEXT && bIsPath)
 	{
-		cd_debug ("Type = Text and it's a file: %s", cFilePath);
+		cd_debug ("Type is text and it's a file: %s", cFilePath);
 		gchar *cContents;
 		gsize iLength;
-		g_file_get_contents (cFilePath, &cContents, &iLength, NULL); // what about errors?
+		g_file_get_contents (cFilePath, &cContents, &iLength, NULL); // what about errors? (we just know that the file exists)
 		pSharedMemory->cCurrentFilePath = cContents;
 	}
 	else

@@ -183,7 +183,7 @@ static void _on_drop_data (const gchar *cMyData)
 					iFileType = CD_TYPE_IMAGE;
 				else if (strncmp (cMimeType, "video", 5) == 0)
 					iFileType = CD_TYPE_VIDEO;
-				if (strncmp (cMimeType, "text", 4) == 0)
+				else if (strncmp (cMimeType, "text", 4) == 0)
 					iFileType = CD_TYPE_TEXT;
 			}
 			g_free (cMimeType);
