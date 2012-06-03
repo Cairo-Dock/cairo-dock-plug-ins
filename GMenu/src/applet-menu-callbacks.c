@@ -37,45 +37,14 @@ void handle_gmenu_tree_changed (GMenuTree *tree,
 {
 	cd_message ("%s ()", __func__);
 	
+	// easy way: rebuild the whole menu.
 	if (myData.pMenu != NULL)
 	{
 		gtk_widget_destroy (myData.pMenu);
 		myData.pMenu = NULL;
 	}
 	
-	if (myData.pMenu == NULL)
-	{
-		myData.pMenu = create_main_menu (NULL);
-	}
-	return ;
-	
-	guint idle_id;
-	
-	GList *children = gtk_container_get_children (GTK_CONTAINER (menu));
-	g_list_foreach (children, (GFunc)gtk_widget_destroy, NULL);
-	g_list_free (children);
-	///while (GTK_MENU_SHELL (menu)->children)
-	///	gtk_widget_destroy (GTK_MENU_SHELL (menu)->children->data);
-
-	g_object_set_data_full (G_OBJECT (menu),
-				"panel-menu-tree-directory",
-				NULL, NULL);
-
-	g_object_set_data (G_OBJECT (menu),
-			   "panel-menu-needs-loading",
-			   GUINT_TO_POINTER (TRUE));
-
-	idle_id = g_idle_add_full (G_PRIORITY_LOW,
-				   submenu_to_display_in_idle,
-				   menu,
-				   NULL);
-	if (myData.iSidTreeChangeIdle != 0)
-		g_source_remove (myData.iSidTreeChangeIdle);
-	myData.iSidTreeChangeIdle = idle_id;
-	g_object_set_data_full (G_OBJECT (menu),
-				"panel-menu-idle-id",
-				GUINT_TO_POINTER (idle_id),
-				remove_submenu_to_display_idle);
+	myData.pMenu = create_main_menu (myApplet);
 }
 
 void remove_gmenu_tree_monitor (GtkWidget *menu,
@@ -85,16 +54,6 @@ void remove_gmenu_tree_monitor (GtkWidget *menu,
 	gmenu_tree_remove_monitor (tree,
 				  (GMenuTreeChangedFunc) handle_gmenu_tree_changed,
 				  menu);
-}
-
-
-gboolean menu_dummy_button_press_event (GtkWidget      *menuitem,
-			       GdkEventButton *event)
-{
-	if (event->button == 3)
-		return TRUE;
-
-	return FALSE;
 }
 
 
@@ -129,7 +88,7 @@ void submenu_to_display (GtkWidget *menu)
 
 	if (!g_object_get_data (G_OBJECT (menu), "panel-menu-needs-loading"))
 	{
-		cd_debug ("needs no loading\n");
+		cd_debug ("needs no loading");
 		return;
 	}
 
@@ -150,7 +109,7 @@ void submenu_to_display (GtkWidget *menu)
 		tree = g_object_get_data (G_OBJECT (menu), "panel-menu-tree");
 		if (!tree)
 		{
-			cd_warning ("no tree found in datas");
+			cd_warning ("no tree found in data");
 			return;
 		}
 		directory = gmenu_tree_get_directory_from_path (tree,
@@ -223,10 +182,6 @@ void cd_menu_append_poweroff_to_menu (GtkWidget *menu, CairoDockModuleInstance *
 void panel_desktop_menu_item_append_menu (GtkWidget *menu, gpointer data)
 {
 	CairoDockModuleInstance *myApplet = (CairoDockModuleInstance *) data;
- 
- 	//panel_menu_items_append_from_desktop (menu, "yelp.desktop", NULL);
- 	//panel_menu_items_append_from_desktop (menu, "gnome-about.desktop", NULL);
- 
 	if (myConfig.iShowQuit != CD_GMENU_SHOW_QUIT_NONE)
 		cd_menu_append_poweroff_to_menu (menu, myApplet);
 }
@@ -237,24 +192,9 @@ void main_menu_append (GtkWidget *main_menu,
 	//g_print ("%s ()\n", __func__);	
 	CairoDockModuleInstance *myApplet;
 	GtkWidget   *item;
-	gboolean     add_separator;
-	GList       *children;
-	GList       *last;
 
 	myApplet = (CairoDockModuleInstance *) data;
 
-	add_separator = FALSE;
-	children = gtk_container_get_children (GTK_CONTAINER (main_menu));
-	last = g_list_last (children);
-	if (last != NULL) {
-		///add_separator = !GTK_IS_SEPARATOR (GTK_WIDGET (last->data));
-	}
-	g_list_free (children);
-
-	if (add_separator)
-		add_menu_separator (main_menu);
-	
-	
 	GtkWidget *desktop_menu;
 
 	desktop_menu = create_applications_menu ("settings.menu", NULL, main_menu);
@@ -273,73 +213,8 @@ void main_menu_append (GtkWidget *main_menu,
 	{
 		cd_menu_append_recent_to_menu (main_menu, myApplet);
 	}
-
-
-	/*item = panel_place_menu_item_new (TRUE);
-	panel_place_menu_item_set_panel (item, panel);
-	gtk_menu_shell_append (GTK_MENU_SHELL (main_menu), item);
-	gtk_widget_show (item);
-
-	item = panel_desktop_menu_item_new (TRUE, FALSE);
-	panel_desktop_menu_item_set_panel (item, panel);
-	gtk_menu_shell_append (GTK_MENU_SHELL (main_menu), item);
-	gtk_widget_show (item);
-
-	panel_menu_items_append_lock_logout (main_menu);*/
 }
 
-/*gboolean show_item_menu (GtkWidget      *item,
-		GdkEventButton *bevent)
-{
-	CairoDockModuleInstance *myApplet;
-	GtkWidget   *menu;
-
-	if (panel_lockdown_get_locked_down ())
-		return FALSE;
-
-	panel_widget = menu_get_panel (item);
-
-	menu = g_object_get_data (G_OBJECT (item), "panel-item-context-menu");
-
-	if (!menu)
-		menu = create_item_context_menu (item, panel_widget);
-
-	if (!menu)
-		return FALSE;
-
-	gtk_menu_set_screen (GTK_MENU (menu),
-			     gtk_window_get_screen (GTK_WINDOW (panel_widget->toplevel)));
-
-	gtk_menu_popup (GTK_MENU (menu),
-			NULL, NULL, NULL, NULL,
-			bevent->button,
-			bevent->time);
-
-	return TRUE;
-}
-gboolean panel_menu_key_press_handler (GtkWidget   *widget,
-			      GdkEventKey *event)
-{
-	gboolean retval = FALSE;
-
-	if ((event->keyval == GDK_Menu) ||
-	    (event->keyval == GDK_F10 &&
-	    (event->state & gtk_accelerator_get_default_mod_mask ()) == GDK_SHIFT_MASK)) {
-		GtkMenuShell *menu_shell = GTK_MENU_SHELL (widget);
-
-		if (menu_shell->active_menu_item &&
-		    GTK_MENU_ITEM (menu_shell->active_menu_item)->submenu == NULL) {
-			GdkEventButton bevent;
-
-			bevent.button = 3;
-			bevent.time = GDK_CURRENT_TIME;
-			retval = show_item_menu (menu_shell->active_menu_item,
-// 						 &bevent);
-		}
-		
-	}
-	return retval;
-}*/
 
 static void menu_item_style_set (GtkImage *image,
 		     gpointer  data)
@@ -611,76 +486,6 @@ void activate_app_def (GtkWidget      *menuitem,
 }
 
 
-
-void  drag_begin_menu_cb (GtkWidget *widget, GdkDragContext     *context)
-{
-	/* FIXME: workaround for a possible gtk+ bug
-	 *    See bugs #92085(gtk+) and #91184(panel) for details.
-	 *    Maybe it's not needed with GtkTooltip?
-	 */
-	g_object_set (widget, "has-tooltip", FALSE, NULL);
-}
-
-/* This is a _horrible_ hack to have this here. This needs to be added to the
- * GTK+ menuing code in some manner.
- */
-void  drag_end_menu_cb (GtkWidget *widget, GdkDragContext     *context)
-{
-  /**GtkWidget *xgrab_shell;
-  GtkWidget *parent;
-
-  // Find the last viewable ancestor, and make an X grab on it
-  parent = widget->parent;
-  xgrab_shell = NULL;
-
-  // FIXME: workaround for a possible gtk+ bug
-  //    See bugs #92085(gtk+) and #91184(panel) for details.
-  g_object_set (widget, "has-tooltip", TRUE, NULL);
-
-  while (parent)
-    {
-      gboolean viewable = TRUE;
-      GtkWidget *tmp = parent;
-      
-      while (tmp)
-	{
-	  if (!GTK_WIDGET_MAPPED (tmp))
-	    {
-	      viewable = FALSE;
-	      break;
-	    }
-	  tmp = tmp->parent;
-	}
-      
-      if (viewable)
-	xgrab_shell = parent;
-      
-      parent = GTK_MENU_SHELL (parent)->parent_menu_shell;
-    }
-  
-  if (xgrab_shell && !GTK_MENU(xgrab_shell)->torn_off)
-    {
-      GdkCursor *cursor = gdk_cursor_new (GDK_ARROW);
-
-      if ((gdk_pointer_grab (xgrab_shell->window, TRUE,
-			     GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK |
-			     GDK_ENTER_NOTIFY_MASK | GDK_LEAVE_NOTIFY_MASK |
-			     GDK_POINTER_MOTION_MASK,
-			     NULL, cursor, GDK_CURRENT_TIME) == 0))
-	{
-	  if (gdk_keyboard_grab (xgrab_shell->window, TRUE,
-				 GDK_CURRENT_TIME) == 0)
-	    GTK_MENU_SHELL (xgrab_shell)->have_xgrab = TRUE;
-	  else
-	    {
-	      gdk_pointer_ungrab (GDK_CURRENT_TIME);
-	    }
-	}
-
-      gdk_cursor_unref (cursor);
-    }*/
-}
-
 void  drag_data_get_menu_cb (GtkWidget        *widget,
 		       GdkDragContext   *context,
 		       GtkSelectionData *selection_data,
@@ -702,12 +507,3 @@ void  drag_data_get_menu_cb (GtkWidget        *widget,
 				strlen (uri_list));
 	g_free (uri_list);
 }
-
-/*gboolean menuitem_button_press_event (GtkWidget      *menuitem,
-			     GdkEventButton *event)
-{
-	if (event->button == 3)
-		return show_item_menu (menuitem, event);
-	
-	return FALSE;
-}*/

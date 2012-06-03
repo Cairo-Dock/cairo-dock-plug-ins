@@ -64,16 +64,10 @@ GtkWidget * create_fake_menu (GMenuTreeDirectory *directory)
 				   submenu_to_display_in_idle,
 				   menu,
 				   NULL);
-	if (myData.iSidFakeMenuIdle != 0)
-		g_source_remove (myData.iSidFakeMenuIdle);
-	myData.iSidFakeMenuIdle = idle_id;
 	g_object_set_data_full (G_OBJECT (menu),
 				"panel-menu-idle-id",
 				GUINT_TO_POINTER (idle_id),
 				remove_submenu_to_display_idle);
-
-	g_signal_connect (menu, "button_press_event",
-			  G_CALLBACK (menu_dummy_button_press_event), NULL);
 
 	return menu;
 }
@@ -252,7 +246,8 @@ void panel_load_menu_image_deferred (GtkWidget   *image_menu_item,
 	image = gtk_image_new ();
 	///image->requisition.width  = icon_height;
 	///image->requisition.height = icon_height;
-
+	gtk_widget_set_size_request (image, icon_height, icon_height);
+	
 	/* this takes over the floating ref */
 	icon->pixmap = g_object_ref (G_OBJECT (image));
 	g_object_ref_sink (G_OBJECT (image));
@@ -419,12 +414,12 @@ void create_menuitem (GtkWidget          *menu,
 			}
 		}
 
-		g_signal_connect (G_OBJECT (menuitem), "drag_begin",
-				  G_CALLBACK (drag_begin_menu_cb), NULL);
+		///g_signal_connect (G_OBJECT (menuitem), "drag_begin",
+		///		  G_CALLBACK (drag_begin_menu_cb), NULL);
 		g_signal_connect (menuitem, "drag_data_get",
 				  G_CALLBACK (drag_data_get_menu_cb), entry);
-		g_signal_connect (menuitem, "drag_end",
-				  G_CALLBACK (drag_end_menu_cb), NULL);
+		///g_signal_connect (menuitem, "drag_end",
+		///		  G_CALLBACK (drag_end_menu_cb), NULL);
 	}
 
 	gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
@@ -592,7 +587,7 @@ void icon_theme_changed (GtkIconTheme *icon_theme,
 	reload_image_menu_items ();
 }
 
-GtkWidget * panel_create_menu (void)
+static inline GtkWidget * panel_create_menu (void)
 {
 	GtkWidget       *retval;
 	static gboolean  registered_icon_theme_changer = FALSE;
@@ -606,14 +601,6 @@ GtkWidget * panel_create_menu (void)
 	
 	retval = gtk_menu_new ();
 	
-	/*panel_gconf_notify_add_while_alive ("/desktop/gnome/interface/menus_have_icons",
-					    (GConfClientNotifyFunc) menus_have_icons_changed,
-					    G_OBJECT (retval));*/
-
-	/*g_signal_connect (retval, "key_press_event",
-			  G_CALLBACK (panel_menu_key_press_handler),
-			  NULL);*/
-
 	return retval;
 }
 GtkWidget * create_empty_menu (void)
@@ -621,13 +608,6 @@ GtkWidget * create_empty_menu (void)
 	GtkWidget *retval;
 
 	retval = panel_create_menu ();
-
-	//g_signal_connect (retval, "show", G_CALLBACK (setup_menu_panel), NULL);
-
-	/* intercept all right button clicks makes sure they don't
-	   go to the object itself */
-	g_signal_connect (retval, "button_press_event",
-			  G_CALLBACK (menu_dummy_button_press_event), NULL);
 
 	return retval;
 }
@@ -664,7 +644,8 @@ GtkWidget * create_applications_menu (const char *menu_file,
 	g_object_set_data (G_OBJECT (menu),
 			   "panel-menu-needs-loading",
 			   GUINT_TO_POINTER (TRUE));
-
+	
+	// load the menu in idle, and force the loading if it's shown before.
 	g_signal_connect (menu, "show",
 			  G_CALLBACK (submenu_to_display), NULL);
 
@@ -672,16 +653,10 @@ GtkWidget * create_applications_menu (const char *menu_file,
 				   submenu_to_display_in_idle,
 				   menu,
 				   NULL);
-	if (myData.iSidCreateMenuIdle != 0)
-		g_source_remove (myData.iSidCreateMenuIdle);
-	myData.iSidCreateMenuIdle = idle_id;
 	g_object_set_data_full (G_OBJECT (menu),
 				"panel-menu-idle-id",
 				GUINT_TO_POINTER (idle_id),
 				remove_submenu_to_display_idle);
-
-	g_signal_connect (menu, "button_press_event",
-			  G_CALLBACK (menu_dummy_button_press_event), NULL);
 
 	gmenu_tree_add_monitor (tree,
 			       (GMenuTreeChangedFunc) handle_gmenu_tree_changed,

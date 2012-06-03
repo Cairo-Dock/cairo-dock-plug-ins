@@ -68,19 +68,17 @@ struct _AppletConfig {
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
+	// menu
 	GtkWidget *pMenu;
-	CairoDialog *pQuickLaunchDialog;
 	gboolean bIconsLoaded;
 	CDGMenuShowQuit iShowQuit;
-	guint iSidFakeMenuIdle;
-	guint iSidCreateMenuIdle;
-	guint iSidTreeChangeIdle;
 	gint iPanelDefaultMenuIconSize;
-	
+	// recent files sub-menu
 	GtkRecentManager *pRecentManager;
 	GtkWidget *pRecentMenuItem;
 	GtkRecentFilter *pRecentFilter;
-	
+	// quick-launcher
+	CairoDialog *pQuickLaunchDialog;
 	GHashTable *dir_hash;
 	GList *possible_executables;
 	GList *completion_items;
