@@ -119,18 +119,11 @@ static void _init_fill_menu_from_dir (CDQuickBrowserItem *pItem)
 static void _drag_data_get (GtkWidget *pWidget, GdkDragContext *pDragContext,
 	GtkSelectionData *pSelectionData, guint iInfo, guint iTime, CDQuickBrowserItem *pItem)
 {
-	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL;
-	gboolean bIsDirectory;
-	int iVolumeID;
-	double fOrder;
-	cairo_dock_fm_get_file_info (pItem->cPath, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, 0);
-
+	gchar *cURI = g_filename_to_uri (pItem->cPath, NULL, NULL);
+	
 	if (cURI != NULL)
 		gtk_selection_data_set (pSelectionData, gtk_selection_data_get_target (pSelectionData), 8, cURI, strlen (cURI));
-
-	g_free (cName);
 	g_free (cURI);
-	g_free (cIconName);
 }
 
 static void _fill_submenu_with_items (CDQuickBrowserItem *pRootItem, int iNbSubItemsAtOnce)
