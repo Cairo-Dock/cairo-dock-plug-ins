@@ -344,13 +344,21 @@ void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 	
 	// launch the task.
 	CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
+	gboolean bIsPath = FALSE; // we can receive text or a text file
 	if (strncmp (cFilePath, "file://", 7) == 0)
+	{
+		cd_debug ("FilePath: %s", cFilePath);
 		cFilePath += 7;
+		bIsPath = TRUE;
+	}
+	else if (iFileType == CD_TYPE_TEXT && *cFilePath == '/' && g_file_test (cFilePath, G_FILE_TEST_EXISTS))
+		bIsPath = TRUE;
+
 	gchar *cTmpFile = NULL;
 	if (myConfig.bUseOnlyFileType)
 	{
 		// for a piece of text, write it in a temporary file and upload this one.
-		if (iFileType == CD_TYPE_TEXT)
+		if (iFileType == CD_TYPE_TEXT && ! bIsPath)
 		{
 			// make a filename based on the upload date.
 			cTmpFile = g_new0 (gchar, CD_BUFFER_LENGTH+1);
@@ -376,7 +384,19 @@ void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 	{
 		pSharedMemory->iCurrentFileType = iFileType;
 	}
-	pSharedMemory->cCurrentFilePath = g_strdup (cFilePath);
+
+	// If we drop a text file, we have an URI but we want to post the content to a website
+	if (pSharedMemory->iCurrentFileType == CD_TYPE_TEXT && bIsPath)
+	{
+		cd_debug ("Type = Text and it's a file: %s", cFilePath);
+		gchar *cContents;
+		gsize iLength;
+		g_file_get_contents (cFilePath, &cContents, &iLength, NULL); // what about errors?
+		pSharedMemory->cCurrentFilePath = cContents;
+	}
+	else
+		pSharedMemory->cCurrentFilePath = g_strdup (cFilePath);
+
 	g_free (cTmpFile);
 	
 	pSharedMemory->iTinyURLService = myConfig.iTinyURLService;
