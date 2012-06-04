@@ -116,14 +116,22 @@ static void _init_fill_menu_from_dir (CDQuickBrowserItem *pItem)
 	g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK(_on_activate_item), pOpenDirItem);
 }
 
+static void _drag_begin (GtkWidget *pMenuItem, GdkDragContext *pContext, gpointer pData)
+{
+	// add an icon: the current pixbuf
+	gtk_drag_source_set_icon_pixbuf (pMenuItem,
+		gtk_image_get_pixbuf (GTK_IMAGE (gtk_image_menu_item_get_image (GTK_IMAGE_MENU_ITEM (pMenuItem))))); // or use cPath?
+}
+
 static void _drag_data_get (GtkWidget *pWidget, GdkDragContext *pDragContext,
 	GtkSelectionData *pSelectionData, guint iInfo, guint iTime, CDQuickBrowserItem *pItem)
 {
 	gchar *cURI = g_filename_to_uri (pItem->cPath, NULL, NULL);
-	
 	if (cURI != NULL)
-		gtk_selection_data_set (pSelectionData, gtk_selection_data_get_target (pSelectionData), 8, cURI, strlen (cURI));
-	g_free (cURI);
+	{
+		gtk_selection_data_set (pSelectionData, gtk_selection_data_get_target (pSelectionData), 8, (guchar *) cURI, strlen (cURI));
+		g_free (cURI);
+	}
 }
 
 static void _fill_submenu_with_items (CDQuickBrowserItem *pRootItem, int iNbSubItemsAtOnce)
@@ -191,13 +199,16 @@ static void _fill_submenu_with_items (CDQuickBrowserItem *pRootItem, int iNbSubI
 		{
 			//\______________ Add drag and drop support for files only
 			gtk_drag_source_set (pMenuItem, GDK_BUTTON1_MASK | GDK_BUTTON2_MASK,
-				s_pMenuItemTargets, 1, GDK_ACTION_COPY);
+				NULL, 1,  GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK | GDK_ACTION_ASK);
 
-			// add an icon: the current pixbuf
-			gtk_drag_source_set_icon_pixbuf (pMenuItem,
-				gtk_image_get_pixbuf (GTK_IMAGE (gtk_image_menu_item_get_image (GTK_IMAGE_MENU_ITEM (pMenuItem))))); // or use cPath?
+			// Added a target list (e.g. needed for firefox to directly drop file in a webpage with DND support)
+			GtkTargetList *pTargetList = gtk_target_list_new (s_pMenuItemTargets, 1);
+			gtk_target_list_add_text_targets (pTargetList, 0);
+			gtk_drag_source_set_target_list (pMenuItem, pTargetList);
+			gtk_target_list_unref (pTargetList);
 
-			// we can't use cURI (not easy to free it if we don't use it)
+			if (GTK_IS_IMAGE_MENU_ITEM (pMenuItem)) // a few icon doesn't have image...
+				g_signal_connect (pMenuItem, "drag_begin", G_CALLBACK (_drag_begin), NULL);
 			g_signal_connect (pMenuItem, "drag_data_get", G_CALLBACK (_drag_data_get), pItem);
 		}
 	}
