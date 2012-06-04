@@ -27,11 +27,26 @@
 #include "applet-notifications.h"
 
 static const gchar *s_cMixerCmd = NULL;
+static gboolean bMixerChecked = FALSE;
 
 CD_APPLET_ON_CLICK_BEGIN
 	cd_show_hide ();
 CD_APPLET_ON_CLICK_END
 
+static void _check_mixer_cmd (void)
+{
+	gchar *cResult = cairo_dock_launch_command_sync ("which gnome-control-center");  // Gnome3
+	if (cResult != NULL && *cResult == '/')
+		s_cMixerCmd = "gnome-control-center sound";
+	else
+	{
+		g_free (cResult);
+		cResult = cairo_dock_launch_command_sync ("which gnome-volume-control");  // Gnome2
+		if (cResult != NULL && *cResult == '/')  /// TODO: other DE...
+			s_cMixerCmd = "gnome-volume-control -p applications";
+	}  /// TODO: handle other DE ...
+	g_free (cResult);
+}
 
 static void _mixer_show_advanced_mixer (GtkMenuItem *menu_item, gpointer data)
 {
@@ -54,25 +69,12 @@ static void _mixer_show_advanced_mixer (GtkMenuItem *menu_item, gpointer data)
 	CD_APPLET_LEAVE();
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	static gboolean bMixerChecked = FALSE;
 	gchar *cLabel;
 	
 	if (!myConfig.cShowAdvancedMixerCommand && !bMixerChecked)
 	{
 		bMixerChecked = TRUE;
-		gchar *cResult = cairo_dock_launch_command_sync ("which gnome-control-center");  // Gnome3
-		if (cResult != NULL && *cResult == '/')
-		{
-			s_cMixerCmd = "gnome-control-center sound";
-		}
-		else
-		{
-			g_free (cResult);
-			cResult = cairo_dock_launch_command_sync ("which gnome-volume-control");  // Gnome2
-			if (cResult != NULL && *cResult == '/')  /// TODO: other DE...
-				s_cMixerCmd = "gnome-volume-control -p applications";
-		}  /// TODO: handle other DE ...
-		g_free (cResult);
+		_check_mixer_cmd ();
 	}
 	
 	if (myConfig.cShowAdvancedMixerCommand || s_cMixerCmd)
@@ -94,6 +96,11 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 
 
 CD_APPLET_ON_DOUBLE_CLICK_BEGIN
+	if (!myConfig.cShowAdvancedMixerCommand && !bMixerChecked)
+	{
+		bMixerChecked = TRUE;
+		_check_mixer_cmd (); // looking for s_cMixerCmd
+	}
 	_mixer_show_advanced_mixer (NULL, NULL);
 CD_APPLET_ON_DOUBLE_CLICK_END
 
