@@ -27,10 +27,51 @@
 #include "applet-notifications.h"
 
 
+/// REMOVE ME WHEN IT'S POSSIBLE! :)
+static void _remove_double_separators (GtkWidget *pWidget)
+{
+	if (pWidget == NULL)
+		return;
+
+	gboolean bPrevIsSeparator = TRUE; // to remove the first entry if it's a separator
+	GList *ic;
+	GtkWidget *pCurrentWidget;
+	GtkWidget *pSubMenu;
+	GtkContainer *pContainer = GTK_CONTAINER (pWidget);
+	for (ic = gtk_container_get_children (pContainer); ic != NULL; ic = ic->next)
+	{
+		pCurrentWidget = ic->data;
+		if (GTK_IS_SEPARATOR_MENU_ITEM (pCurrentWidget))
+		{
+			if (bPrevIsSeparator)
+				gtk_widget_destroy (pCurrentWidget); // or ? gtk_container_remove (pContainer, pCurrentWidget);
+			bPrevIsSeparator = TRUE;
+		}
+		else if (GTK_IS_MENU_ITEM (pCurrentWidget))
+		{
+			pSubMenu = gtk_menu_item_get_submenu (GTK_MENU_ITEM (pCurrentWidget));
+			if (pSubMenu != NULL)
+			{
+				bPrevIsSeparator = TRUE;
+				_remove_double_separators (pSubMenu);
+			}
+			else
+				bPrevIsSeparator = FALSE;
+		}
+		else
+			bPrevIsSeparator = FALSE;
+	}
+	g_list_free (ic);
+}
+
 static void _show_menu (gboolean bOnMouse)
 {
+	if (! myConfig.bDisplayMenu)
+		return;
+
 	if (myData.pMenu != NULL)
 	{
+		_remove_double_separators (GTK_WIDGET (myData.pMenu));
 		if (bOnMouse)
 		{
 			gtk_widget_show_all (GTK_WIDGET (myData.pMenu));
