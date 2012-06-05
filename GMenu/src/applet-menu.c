@@ -261,12 +261,14 @@ void panel_load_menu_image_deferred (GtkWidget   *image_menu_item,
 	icon->fallback_image = g_strdup (fallback_image_filename);
 	icon->icon_size      = icon_size;
 
-	gtk_widget_show (image);
-
 	/**g_object_set_data_full (G_OBJECT (image_menu_item),
 				"Panel:Image",
 				g_object_ref (image),
 				(GDestroyNotify) g_object_unref);*/
+
+	g_signal_connect_data (image, "map",
+			       G_CALLBACK (image_menu_shown), icon,
+			       (GClosureNotify) icon_to_load_free, 0);
  
 	if (myConfig.bHasIcons)
 	{
@@ -274,9 +276,7 @@ void panel_load_menu_image_deferred (GtkWidget   *image_menu_item,
 			GTK_IMAGE_MENU_ITEM (image_menu_item), image);
 	}
 
-	g_signal_connect_data (image, "map",
-			       G_CALLBACK (image_menu_shown), icon,
-			       (GClosureNotify) icon_to_load_free, 0);
+	gtk_widget_show (image);
 
 	g_signal_connect (image, "destroy",
 			  G_CALLBACK (image_menu_destroy), NULL);
