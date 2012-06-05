@@ -39,7 +39,9 @@
 #define RIGHT_LABEL_FONT_SIZE 12
 #define RIGHT_LABEL_RADIUS 20
 
+#if (INDICATOR_MESSAGES_HAS_LOZENGE != 1)
 static GtkSizeGroup * indicator_right_group = NULL;  /// TODO: check if it needs to be freed...
+#endif
 
   //////////////////////
  // APPLICATION ITEM //
@@ -281,12 +283,18 @@ static gboolean
 new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, DbusmenuClient * client)
 {
 	gchar *cName = g_strdup (dbusmenu_menuitem_property_get(newitem, APPLICATION_MENUITEM_PROP_NAME));
+	const gchar *sIconName = dbusmenu_menuitem_property_get (newitem, APPLICATION_MENUITEM_PROP_ICON);
 
 	cd_debug ("%s (\"%s\")", __func__, cName);
 
-#if (INDICATOR_OLD_NAMES == 0 && INDICATOR_MESSAGES_HAS_LOZENGE != 1)
-	if (newitem == NULL || !dbusmenu_menuitem_property_get_bool(newitem, DBUSMENU_MENUITEM_PROP_VISIBLE))
+#if (INDICATOR_OLD_NAMES == 0)
+	if (newitem == NULL || !dbusmenu_menuitem_property_get_bool(newitem, DBUSMENU_MENUITEM_PROP_VISIBLE)
+		#if (GTK_MAJOR_VERSION > 2 && INDICATOR_MESSAGES_HAS_LOZENGE == 1)
+		&& sIconName != NULL && *sIconName != '\0' // these menu 
+		#endif
+		)
 	{
+		dbusmenu_menuitem_child_delete (parent, newitem);
 		cd_debug ("Not visible: %s", cName);
 		g_free (cName);
 		return TRUE;
@@ -301,7 +309,6 @@ new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbu
 	GtkWidget * hbox = _gtk_hbox_new(padding);
 
 	// Added for Cairo-Dock
-	const gchar *sIconName = dbusmenu_menuitem_property_get (newitem, APPLICATION_MENUITEM_PROP_ICON);
 	#if (GTK_MAJOR_VERSION > 2 && INDICATOR_MESSAGES_HAS_LOZENGE == 1) // we add a left margin
 	if (! dbusmenu_menuitem_property_get_bool(newitem, DBUSMENU_MENUITEM_PROP_VISIBLE)
 		&& (sIconName == NULL || *sIconName == '\0'))
@@ -550,7 +557,9 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 
 void cd_messaging_add_menu_handler (DbusmenuGtkClient * client)
 {
+	#if (INDICATOR_MESSAGES_HAS_LOZENGE != 1)
 	indicator_right_group = gtk_size_group_new(GTK_SIZE_GROUP_HORIZONTAL);
+	#endif
 	
 	dbusmenu_client_add_type_handler(DBUSMENU_CLIENT(client), INDICATOR_MENUITEM_TYPE, (DbusmenuClientTypeHandler) new_indicator_item);
 	dbusmenu_client_add_type_handler(DBUSMENU_CLIENT(client), APPLICATION_MENUITEM_TYPE, (DbusmenuClientTypeHandler) new_application_item);
