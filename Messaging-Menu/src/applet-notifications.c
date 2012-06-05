@@ -24,11 +24,15 @@
 #include "applet-menu.h"
 #include "applet-notifications.h"
 
+#define FORCE_REMOVE_DOUBLE_SEPARATORS
+
 /*
  * An horrible hack to remove double separators in the menu.
  * I don't know why we have this bug... hope we'll remove it soon!
  */
+
 /// REMOVE ME WHEN IT'S POSSIBLE! :)
+#ifdef FORCE_REMOVE_DOUBLE_SEPARATORS
 static void _remove_double_separators (GtkContainer *pContainer)
 {
 	if (pContainer == NULL)
@@ -51,10 +55,13 @@ static void _remove_double_separators (GtkContainer *pContainer)
 	}
 	g_list_free (ic);
 }
+#endif
 
 static inline void _show_menu (void)
 {
+	#ifdef FORCE_REMOVE_DOUBLE_SEPARATORS
 	_remove_double_separators (GTK_CONTAINER (myData.pIndicator->pMenu));
+	#endif
 
 	if (! cd_indicator_show_menu (myData.pIndicator))
 		cairo_dock_show_temporary_dialog_with_icon (D_("The Messaging service did not reply.\nPlease check that it is correctly installed."), myIcon, myContainer, 4000., "same icon");

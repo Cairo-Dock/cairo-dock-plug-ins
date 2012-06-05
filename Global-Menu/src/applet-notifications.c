@@ -26,7 +26,9 @@
 #include "applet-app.h"
 #include "applet-notifications.h"
 
+#define FORCE_REMOVE_DOUBLE_SEPARATORS
 
+#ifdef FORCE_REMOVE_DOUBLE_SEPARATORS
 /// REMOVE ME WHEN IT'S POSSIBLE! :)
 static void _remove_double_separators (GtkWidget *pWidget)
 {
@@ -63,6 +65,7 @@ static void _remove_double_separators (GtkWidget *pWidget)
 	}
 	g_list_free (ic);
 }
+#endif
 
 static void _show_menu (gboolean bOnMouse)
 {
@@ -71,7 +74,9 @@ static void _show_menu (gboolean bOnMouse)
 
 	if (myData.pMenu != NULL)
 	{
+		#ifdef FORCE_REMOVE_DOUBLE_SEPARATORS
 		_remove_double_separators (GTK_WIDGET (myData.pMenu));
+		#endif
 		if (bOnMouse)
 		{
 			gtk_widget_show_all (GTK_WIDGET (myData.pMenu));

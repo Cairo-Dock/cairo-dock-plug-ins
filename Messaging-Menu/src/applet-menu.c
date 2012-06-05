@@ -35,6 +35,8 @@
 #include <libdbusmenu-gtk3/menu.h>
 #endif
 
+#define FORCE_REMOVE_DOUBLE_ENTRIES
+
 #define M_PI G_PI
 #define RIGHT_LABEL_FONT_SIZE 12
 #define RIGHT_LABEL_RADIUS 20
@@ -287,6 +289,7 @@ new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbu
 
 	cd_debug ("%s (\"%s\")", __func__, cName);
 
+#ifdef FORCE_REMOVE_DOUBLE_ENTRIES
 #if (INDICATOR_OLD_NAMES == 0)
 	if (newitem == NULL || !dbusmenu_menuitem_property_get_bool(newitem, DBUSMENU_MENUITEM_PROP_VISIBLE)
 		#if (GTK_MAJOR_VERSION > 2 && INDICATOR_MESSAGES_HAS_LOZENGE == 1)
@@ -299,6 +302,7 @@ new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbu
 		g_free (cName);
 		return TRUE;
 	}
+#endif
 #endif
 
 	GtkMenuItem * gmi = GTK_MENU_ITEM(gtk_image_menu_item_new());
