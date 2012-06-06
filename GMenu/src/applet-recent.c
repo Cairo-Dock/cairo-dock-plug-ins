@@ -77,9 +77,6 @@ void cd_menu_append_recent_to_menu (GtkWidget *top_menu, CairoDockModuleInstance
 	}
 	
 	//\_____________ les signaux
-	g_signal_connect (G_OBJECT (recent_menu), "button_press_event",
-		  G_CALLBACK (menu_dummy_button_press_event), NULL);  // utile ?
-	
 	g_signal_connect (GTK_RECENT_CHOOSER (recent_menu),
 		"item-activated",
 		G_CALLBACK (recent_documents_activate_cb),
