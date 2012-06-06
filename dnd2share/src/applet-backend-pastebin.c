@@ -28,9 +28,11 @@
 #include "applet-dnd2share.h"
 #include "applet-backend-pastebin.h"
 
-#define URL "http://pastebin.com/api_public.php"
+#define URL "http://pastebin.com/api/api_post.php"
 #define FORMAT "text"
 #define EXPIRE "1M"
+#define DEV_KEY "4dacb211338b25bfad20bc6d4358e555"
+#define OPTION "paste"
 
 #define NB_URLS 1
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
@@ -39,10 +41,16 @@ static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 static void upload (const gchar *cText, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
 {
 	GError *erreur = NULL;
+	// http://pastebin.com/api
 	gchar *cResult = cairo_dock_get_url_data_with_post (URL, FALSE, &erreur,
-		"paste_code", cText,
-		"paste_expire_date", EXPIRE,
-		"paste_format", FORMAT,
+		"api_option", OPTION,
+		"api_user_key", "", // guest
+		"api_paste_private", bAnonymous ? "1" : "0", // unlisted or public
+		"api_paste_name", bAnonymous ? "" : g_getenv ("USER"),
+		"api_paste_expire_date", EXPIRE,
+		"api_paste_format", FORMAT, // auto?
+		"api_dev_key", DEV_KEY,
+		"api_paste_code", cText,
 		NULL);
 	if (erreur)
 	{
