@@ -39,7 +39,7 @@ if ("${with_soundmenu}" STREQUAL "yes")
 	add_definitions (-DSOUND_SERVICE_SUPPORT="1")
 	add_definitions (-DSOUND_SERVICE_VERSION=${SOUND_SERVICE_VERSION})
 endif()
-if (DBUSMENU_GTK3_NEW)
+if (${DBUSMENU_GTK3_NEW})
 	add_definitions (-DDBUSMENU_GTK3_NEW=1)
 endif()
 
