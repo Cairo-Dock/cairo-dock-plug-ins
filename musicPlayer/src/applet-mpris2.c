@@ -34,6 +34,8 @@ static DBusGProxyCall *s_pGetSongInfosCall = NULL;
 static DBusGProxyCall *s_pGetStatusCall = NULL;
 
 static void cd_mpris2_getSongInfos_async (void);
+static gboolean cd_mpris2_is_loop (void);
+static gboolean cd_mpris2_is_shuffle (void);
 
 /*
 Interface MediaPlayer2
@@ -97,6 +99,74 @@ Loop_Status Enum s
   /////////////////////////////////
  // Les Fonctions propres a MP. //
 /////////////////////////////////
+static gboolean s_bIsLoop = FALSE;
+static gboolean s_bGotLoopStatus = FALSE;
+static gboolean s_bIsShuffle = FALSE;
+static gboolean s_bGotShuffleStatus = FALSE;
+static gboolean s_bCanRaise = FALSE;
+static gboolean s_bGotCanRaise = FALSE;
+static gboolean s_bCanQuit = FALSE;
+static gboolean s_bGotCanQuit = FALSE;
+
+static gboolean get_loop_status (void)
+{
+	if (! s_bGotLoopStatus)
+	{
+		s_bIsLoop = cd_mpris2_is_loop ();
+		s_bGotLoopStatus = TRUE;
+	}
+	return s_bIsLoop;
+}
+
+static gboolean get_shuffle_status (void)
+{
+	if (! s_bGotShuffleStatus)
+	{
+		s_bIsShuffle = cd_mpris2_is_shuffle ();
+		s_bGotShuffleStatus = TRUE;
+	}
+	return s_bIsShuffle;
+}
+
+static gboolean _raise (void)
+{
+	if (! s_bGotCanRaise)
+	{
+		s_bCanRaise = cairo_dock_dbus_get_property_as_boolean (myData.dbus_proxy_shell, "org.mpris.MediaPlayer2", "CanRaise");
+		cd_debug ("s_bCanRaise : %d", s_bCanRaise);
+		s_bGotCanRaise = TRUE;
+	}
+	
+	if (s_bCanRaise)
+	{
+		cairo_dock_dbus_call (myData.dbus_proxy_shell, "Raise");
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
+}
+
+static gboolean _quit (void)
+{
+	if (! s_bGotCanQuit)
+	{
+		s_bCanQuit = cairo_dock_dbus_get_property_as_boolean (myData.dbus_proxy_shell, "org.mpris.MediaPlayer2", "CanQuit");
+		cd_debug ("s_bCanQuit : %d", s_bCanQuit);
+		s_bGotCanQuit = TRUE;
+	}
+	
+	if (s_bCanQuit)
+	{
+		cairo_dock_dbus_call (myData.dbus_proxy_shell, "Quit");
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
+}
 
 static MyPlayerStatus _extract_status (const gchar *cStatus)
 {
@@ -182,6 +252,10 @@ static void cd_mpris2_get_time_elapsed (void)
 	else if (G_VALUE_HOLDS_UINT64 (&v))
 	{
 		myData.iCurrentTime =  g_value_get_uint64 (&v) / 1e6;
+	}
+	else if (G_VALUE_HOLDS_STRING (&v))  // this is bad ! (gmusicbrowser v1.1.7)
+	{
+		myData.iCurrentTime = atoi (g_value_get_string (&v)) / 1e6;
 	}
 	else
 	{
@@ -409,6 +483,23 @@ static void on_properties_changed (DBusGProxy *player_proxy, const gchar *cInter
 				cd_musicplayer_update_icon ();
 			}
 		}
+		
+		v = g_hash_table_lookup (pChangedProps, "LoopStatus");
+		if (v != NULL && G_VALUE_HOLDS_STRING (v))  // loop status has changed
+		{
+			const gchar *cStatus = g_value_get_string (v);  // "Playlist", "None"
+			s_bIsLoop = (cStatus && strcmp (cStatus, "Playlist") == 0);
+			cd_debug ("LoopStatus: %s, %d", cStatus, s_bIsLoop);
+			s_bGotLoopStatus = TRUE;
+		}
+		
+		v = g_hash_table_lookup (pChangedProps, "Shuffle");
+		if (v != NULL && G_VALUE_HOLDS_BOOLEAN (v))  // Shuffle status has changed
+		{
+			s_bIsShuffle = g_value_get_boolean (v);
+			cd_debug ("Shuffle: %d", s_bIsShuffle);
+			s_bGotShuffleStatus = TRUE;
+		}
 	}
 	/*else if (strcmp (cInterface, "org.mpris.MediaPlayer2.TrackList") == 0)
 	{
@@ -440,6 +531,15 @@ static void cd_mpris2_stop (void)
 			s_pGetStatusCall = NULL;
 		}
 	}
+	MusicPlayerHandler *pHandler = cd_musicplayer_get_handler_by_name ("Mpris2");
+	g_free ((gchar*)pHandler->launch);
+	pHandler->launch = NULL;
+	g_free ((gchar*)pHandler->appclass);
+	pHandler->appclass = NULL;
+	g_free ((gchar*)pHandler->cDisplayedName);
+	pHandler->cDisplayedName = NULL;
+	g_free ((gchar*)pHandler->cMprisService);
+	pHandler->cMprisService = NULL;
 }
 
 
@@ -630,6 +730,8 @@ static void cd_mpris2_start (void)
 	// get the current state.
 	myData.iTrackListLength = 0;
 	myData.iTrackListIndex = 0;
+	s_bGotLoopStatus = FALSE;
+	s_bGotShuffleStatus = FALSE;
 	cd_mpris2_getPlaying_async ();  // will get song infos after playing status.
 }
 
@@ -642,6 +744,10 @@ void cd_musicplayer_register_mpris2_handler (void)
 	pHandler->stop = cd_mpris2_stop;
 	pHandler->start = cd_mpris2_start;
 	pHandler->control = cd_mpris2_control;
+	pHandler->get_loop_status = get_loop_status;
+	pHandler->get_shuffle_status = get_shuffle_status;
+	pHandler->raise = _raise;
+	pHandler->quit = _quit;
 	pHandler->bSeparateAcquisition = FALSE;
 	pHandler->iLevel = PLAYER_GOOD;
 	

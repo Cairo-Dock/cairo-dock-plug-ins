@@ -93,6 +93,12 @@ if (NOT "${CMAKE_INSTALL_PREFIX}" STREQUAL "${prefix}"
 	#set (libdir "${CMAKE_INSTALL_PREFIX}/${libname}/cairo-dock")
 endif()
 
+if (NOT "${force-icon-in-menus}" STREQUAL "no")  # we believe that not showing icons in the menus by default is a terrible idea; unfortunately, it's not easily undoable for an end-user; so until this is fixed by a big player (Gnome, Ubuntu or other), we'll force the display, unless "-Dforce-icon-in-menus=yes" is provided in the cmake command.
+	add_definitions (-DCAIRO_DOCK_FORCE_ICON_IN_MENUS=1)
+else()
+	add_definitions (-DCAIRO_DOCK_FORCE_ICON_IN_MENUS=0)
+endif()
+
 # set internationalisation
 set (GETTEXT_PLUGINS "cairo-dock-plugins")
 set (localedir "${prefix}/${CMAKE_INSTALL_LOCALEDIR}")

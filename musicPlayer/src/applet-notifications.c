@@ -43,8 +43,25 @@ static void _cd_musicplayer_stop (GtkMenuItem *menu_item, gpointer *data) {
 static void _cd_musicplayer_next (GtkMenuItem *menu_item, gpointer *data) {
 	myData.pCurrentHandler->control (PLAYER_NEXT, NULL);
 }
-static void _cd_musicplayer_show_from_systray (GtkMenuItem *menu_item, gpointer *data) {
-	cairo_dock_launch_command (myData.pCurrentHandler->launch);
+static void _cd_musicplayer_show_from_systray (GtkMenuItem *menu_item, gpointer *data)
+{
+	gboolean bRaised = FALSE;
+	if (myData.pCurrentHandler->raise)
+		bRaised = myData.pCurrentHandler->raise ();
+	if (! bRaised)
+		cairo_dock_launch_command (myData.pCurrentHandler->launch);
+}
+static void _cd_musicplayer_quit (GtkMenuItem *menu_item, gpointer *data)
+{
+	gboolean bQuit = FALSE;
+	if (myData.pCurrentHandler->quit)
+		bQuit = myData.pCurrentHandler->quit ();
+	if (! bQuit)
+	{
+		gchar *cmd = g_strdup_printf ("killall %s", myData.pCurrentHandler->launch);
+		cairo_dock_launch_command (cmd);
+		g_free (cmd);
+	}
 }
 static void _cd_musicplayer_jumpbox (GtkMenuItem *menu_item, gpointer *data) {
 	myData.pCurrentHandler->control (PLAYER_JUMPBOX, NULL);
@@ -241,11 +258,16 @@ CD_APPLET_ON_CLICK_BEGIN
 					else
 						cairo_dock_show_xwindow (myIcon->Xid);
 				}
-				else if (myData.pCurrentHandler->launch != NULL)
-                              	  cairo_dock_launch_command (myData.pCurrentHandler->launch);
+				else
+				{
+					_cd_musicplayer_show_from_systray (NULL, NULL);
+				}
 			}
-			else if (myData.pCurrentHandler->launch != NULL)
+			else /*if (myData.pCurrentHandler->launch != NULL)*/
+			{
+				cd_message ("launching '%s'...\n", myData.pCurrentHandler->launch);
 				cairo_dock_launch_command (myData.pCurrentHandler->launch);
+			}
 		}
 	}
 	else
@@ -291,20 +313,36 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);  // on n'a jamais zero action, donc on met toujours un separateur.
 		
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Information"), GTK_STOCK_INFO, _cd_musicplayer_info, CD_APPLET_MY_MENU);
-
-		if (myIcon->Xid == 0)  // lecteur dans le systray.
-			CD_APPLET_ADD_IN_MENU (D_("Show the Window"), _cd_musicplayer_show_from_systray, CD_APPLET_MY_MENU);
 		
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 		
 		if (myData.pCurrentHandler->iPlayerControls & PLAYER_JUMPBOX)
 			CD_APPLET_ADD_IN_MENU (D_("Show JumpBox"), _cd_musicplayer_jumpbox, CD_APPLET_MY_MENU);
 		if (myData.pCurrentHandler->iPlayerControls & PLAYER_SHUFFLE)
-			CD_APPLET_ADD_IN_MENU (D_("Toggle Shuffle"), _cd_musicplayer_shuffle, CD_APPLET_MY_MENU);
+		{
+			pMenuItem = gtk_check_menu_item_new_with_label (D_("Shuffle"));
+			gboolean bIsShuffle = (myData.pCurrentHandler->get_shuffle_status ? myData.pCurrentHandler->get_shuffle_status() : FALSE);
+			gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (pMenuItem), bIsShuffle);
+			gtk_menu_shell_append  (GTK_MENU_SHELL (CD_APPLET_MY_MENU), pMenuItem);
+			g_signal_connect (G_OBJECT (pMenuItem), "toggled", G_CALLBACK (_cd_musicplayer_shuffle), NULL);
+		}
 		if (myData.pCurrentHandler->iPlayerControls & PLAYER_REPEAT)
-			CD_APPLET_ADD_IN_MENU (D_("Toggle Repeat"), _cd_musicplayer_repeat, CD_APPLET_MY_MENU);
+		{
+			pMenuItem = gtk_check_menu_item_new_with_label (D_("Repeat"));
+			gboolean bIsLoop = (myData.pCurrentHandler->get_loop_status ? myData.pCurrentHandler->get_loop_status() : FALSE);
+			gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (pMenuItem), bIsLoop);
+			gtk_menu_shell_append  (GTK_MENU_SHELL (CD_APPLET_MY_MENU), pMenuItem);
+			g_signal_connect (G_OBJECT (pMenuItem), "toggled", G_CALLBACK (_cd_musicplayer_repeat), NULL);
+		}
+		
 		if (myData.pCurrentHandler->iPlayerControls & PLAYER_RATE)
 			CD_APPLET_ADD_IN_MENU (D_("Rate this song"), _cd_musicplayer_rate, CD_APPLET_MY_MENU);
+		
+		if (myIcon->Xid == 0)  // player in the systray.
+		{
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Show"), GTK_STOCK_FIND, _cd_musicplayer_show_from_systray, CD_APPLET_MY_MENU);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Quit"), GTK_STOCK_CLOSE, _cd_musicplayer_quit, CD_APPLET_MY_MENU);  // GTK_STOCK_QUIT looks too much like the "quit" of the dock.
+		}
 	}
 CD_APPLET_ON_BUILD_MENU_END
 
