@@ -11,7 +11,7 @@ SET (cd-Dbus_LIB_SRCS
 	interface-applet-signals.c 	interface-applet-signals.h
 	dbus-applet-spec.h
 	dbus-sub-applet-spec.h
-	dbus-main-spec.h
+	dbus-main-spec.h	dbus-main-spec-old.h
 	applet-struct.h
 )
 
@@ -26,8 +26,12 @@ add_definitions (-DMY_APPLET_VERSION="${VERSION_DBUS}")
 add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_DBUS}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
-if (DBUSMENU_GTK3_NEW)
-	add_definitions (-DDBUSMENU_GTK3_NEW=1)
+if (${DBUSMENU_GTK_FOUND})
+	message (STATUS " * With DBusMenu support")
+	add_definitions (-DDBUSMENU_GTK_FOUND=1)
+	if (${DBUSMENU_GTK3_NEW})
+		add_definitions (-DDBUSMENU_GTK3_NEW=1)
+	endif()
 endif()
 
 include_directories (

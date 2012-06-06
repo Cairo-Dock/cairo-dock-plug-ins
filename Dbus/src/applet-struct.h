@@ -101,6 +101,7 @@ typedef enum {
 } CDSignalEnum;
 
 
+#ifdef DBUSMENU_GTK_FOUND
 #if (GTK_MAJOR_VERSION < 3) || defined (DBUSMENU_GTK3_NEW)
 #include <libdbusmenu-gtk/menuitem.h>
 #include <libdbusmenu-gtk/client.h>
@@ -115,6 +116,7 @@ typedef struct _CDIconData {
 	DbusmenuGtkClient *client;
 	GList *menu_items_list;
 } CDIconData;
+#endif
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {

@@ -23,7 +23,12 @@
 #include <dbus/dbus-glib-bindings.h>
 
 #include "interface-main-methods.h"
+
+#ifdef DBUSMENU_GTK_FOUND
 #include "dbus-main-spec.h"
+#else
+#include "dbus-main-spec-old.h"
+#endif
 #include "applet-marshallers.h"
 
 void cd_dbus_marshal_VOID__INT_STRING (GClosure *closure,

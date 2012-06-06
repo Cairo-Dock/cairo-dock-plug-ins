@@ -1387,6 +1387,7 @@ gboolean cd_dbus_main_show_dialog (dbusMainObject *pDbusCallback, const gchar *m
 }
 
 
+#ifdef DBUSMENU_GTK_FOUND
 static void _on_menu_destroyed (GtkWidget *menu, CDIconData *pData)
 {
 	//g_print ("\n+++ %s ()\n\n", __func__);
@@ -1534,3 +1535,4 @@ gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBus
 	g_list_free (pList);
 	return TRUE;
 }
+#endif

@@ -69,6 +69,8 @@ gboolean cd_dbus_main_demands_attention (dbusMainObject *pDbusCallback, gboolean
 
 gboolean cd_dbus_main_show_dialog (dbusMainObject *dbusMainObject, const gchar *message, gint iDuration, gchar *cIconQuery, GError **error);
 
+#ifdef DBUSMENU_GTK_FOUND
 gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBusName, const gchar *cMenuPath, gchar *cIconQuery, GError **error);
+#endif
 
 #endif
