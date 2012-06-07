@@ -1157,6 +1157,8 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 	g_hash_table_destroy (pGroups);
 	gtk_widget_show_all (myData.pModuleMainMenu);
 	
+	gtk_menu_reposition (GTK_MENU (myData.pModuleMainMenu));
+	
 	return TRUE;
 }
 
