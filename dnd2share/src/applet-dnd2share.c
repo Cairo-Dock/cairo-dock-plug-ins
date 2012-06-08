@@ -389,9 +389,20 @@ void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 	if (pSharedMemory->iCurrentFileType == CD_TYPE_TEXT && bIsPath)
 	{
 		cd_debug ("Type is text and it's a file: %s", cFilePath);
-		gchar *cContents;
+		gchar *cContents = NULL;
 		gsize iLength;
-		g_file_get_contents (cFilePath, &cContents, &iLength, NULL); // what about errors? (we just know that the file exists)
+		g_file_get_contents (cFilePath, &cContents, &iLength, NULL);
+		if (cContents == NULL)  // file was not readable, abort.
+		{
+			cd_warning ("file not readable !");
+			cairo_dock_remove_dialog_if_any (myIcon);
+			cairo_dock_show_temporary_dialog_with_icon (D_("This file is not readable."),
+				myIcon,
+				myContainer,
+				myConfig.dTimeDialogs,
+				MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+			return ;
+		}
 		pSharedMemory->cCurrentFilePath = cContents;
 	}
 	else
