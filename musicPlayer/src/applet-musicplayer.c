@@ -53,13 +53,16 @@ not owned => stop handler
 
 static inline void _fill_handler_properties (const gchar *cDesktopFileName)
 {
+	g_free ((gchar*)myData.pCurrentHandler->launch);
 	myData.pCurrentHandler->appclass = cairo_dock_register_class (cDesktopFileName);
+	g_free ((gchar*)myData.pCurrentHandler->appclass);
 	myData.pCurrentHandler->launch = g_strdup (cairo_dock_get_class_command (myData.pCurrentHandler->appclass));
-	myData.pCurrentHandler->cDisplayedName = g_strdup (cairo_dock_get_class_name (myData.pCurrentHandler->appclass));
 	if (myData.pCurrentHandler->launch == NULL)  // we really need a command to launch it on click, so insist a little
 	{
 		myData.pCurrentHandler->launch = g_strdup (cDesktopFileName);
 	}
+	g_free ((gchar*)myData.pCurrentHandler->cDisplayedName);
+	myData.pCurrentHandler->cDisplayedName = g_strdup (cairo_dock_get_class_name (myData.pCurrentHandler->appclass));
 }
 
 MusicPlayerHandler *cd_musicplayer_get_handler_by_name (const gchar *cName)
@@ -310,10 +313,6 @@ static void _on_got_desktop_entry (DBusGProxy *proxy, DBusGProxyCall *call_id, g
 				myConfig.cLastKnownDesktopFile = g_strdup (cDesktopFileName);
 				
 				// register the desktop file, and get the common properties of this class.
-				g_free ((gchar*)myData.pCurrentHandler->launch);
-				g_free ((gchar*)myData.pCurrentHandler->appclass);
-				g_free ((gchar*)myData.pCurrentHandler->cDisplayedName);
-				
 				_fill_handler_properties (cDesktopFileName);
 				
 				if (myData.pCurrentHandler->appclass != NULL)

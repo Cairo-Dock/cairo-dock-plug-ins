@@ -531,15 +531,6 @@ static void cd_mpris2_stop (void)
 			s_pGetStatusCall = NULL;
 		}
 	}
-	MusicPlayerHandler *pHandler = cd_musicplayer_get_handler_by_name ("Mpris2");
-	g_free ((gchar*)pHandler->launch);
-	pHandler->launch = NULL;
-	g_free ((gchar*)pHandler->appclass);
-	pHandler->appclass = NULL;
-	g_free ((gchar*)pHandler->cDisplayedName);
-	pHandler->cDisplayedName = NULL;
-	g_free ((gchar*)pHandler->cMprisService);
-	pHandler->cMprisService = NULL;
 }
 
 
