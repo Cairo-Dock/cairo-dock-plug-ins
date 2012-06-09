@@ -153,6 +153,17 @@ CD_APPLET_STOP_BEGIN
 	// stop the current handler.
 	cd_musicplayer_stop_current_handler (TRUE);
 	
+	MusicPlayerHandler *pHandler = cd_musicplayer_get_handler_by_name ("Mpris2");  // Mpris2 handler has dynamic fields, free them.
+	g_free ((gchar*)pHandler->launch);
+	pHandler->launch = NULL;
+	g_free ((gchar*)pHandler->appclass);
+	pHandler->appclass = NULL;
+	g_free ((gchar*)pHandler->cDisplayedName);
+	pHandler->cDisplayedName = NULL;
+	g_free ((gchar*)pHandler->cMprisService);
+	pHandler->cMprisService = NULL;
+	
+	
 	// On stoppe les boucles de recup de la pochette.
 	if (myData.iSidCheckCover != 0)
 		g_source_remove (myData.iSidCheckCover);
