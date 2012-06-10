@@ -259,7 +259,8 @@ static void cd_mpris2_get_time_elapsed (void)
 	}
 	else
 	{
-		cd_warning ("wrong type for the 'Position' property, please report this bug to the %s team", myData.pCurrentHandler->appclass);
+		if (G_IS_VALUE(&v)) //  when changing song, we don't receive this value => no need to display a warning message each time
+			cd_warning ("wrong type for the 'Position' property, please report this bug to the %s team", myData.pCurrentHandler->appclass);
 		myData.iCurrentTime = -1;
 	}
 }
