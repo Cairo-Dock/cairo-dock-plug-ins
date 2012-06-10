@@ -32,7 +32,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_RENAME_GROUP ("GUI", "Configuration");
 	myConfig.shortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "shortkey", "<Ctrl>F2");
 	myConfig.iIconPacking = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "icon packing", 0);
-	//myConfig.iIconSize = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "icon size", 24);
 CD_APPLET_GET_CONFIG_END
 
 

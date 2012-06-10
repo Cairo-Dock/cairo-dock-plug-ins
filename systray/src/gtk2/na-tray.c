@@ -29,7 +29,7 @@
 
 #include "na-tray.h"
 
-#define ICON_SPACING 1
+#define ICON_SPACING 3
 #define MIN_BOX_SIZE 24
 
 #if (GTK_MAJOR_VERSION <= 2 && GTK_MINOR_VERSION < 20)
