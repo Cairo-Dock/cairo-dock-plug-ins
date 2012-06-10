@@ -53,9 +53,9 @@ not owned => stop handler
 
 static inline void _fill_handler_properties (const gchar *cDesktopFileName)
 {
-	g_free ((gchar*)myData.pCurrentHandler->launch);
-	myData.pCurrentHandler->appclass = cairo_dock_register_class (cDesktopFileName);
 	g_free ((gchar*)myData.pCurrentHandler->appclass);
+	myData.pCurrentHandler->appclass = cairo_dock_register_class (cDesktopFileName);
+	g_free ((gchar*)myData.pCurrentHandler->launch);
 	myData.pCurrentHandler->launch = g_strdup (cairo_dock_get_class_command (myData.pCurrentHandler->appclass));
 	if (myData.pCurrentHandler->launch == NULL)  // we really need a command to launch it on click, so insist a little
 	{
