@@ -49,6 +49,8 @@ void cd_systray_build_systray (void)
 	
 	myData.tray = na_tray_new_for_screen (gtk_widget_get_screen (GTK_WIDGET (myContainer->pWidget)),
 		myConfig.iIconPacking == 0 ? GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL);
+	na_tray_set_icon_size (myData.tray, 24);
+	na_tray_set_padding (myData.tray, 3);
 	
 	if (myDock)
 	{

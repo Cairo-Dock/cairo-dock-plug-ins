@@ -221,6 +221,22 @@ na_tray_child_init (NaTrayChild *child)
 {
 }
 
+
+static void
+na_tray_child_get_preferred_width (GtkWidget* self,
+                                     gint* minimum_width,
+                                     gint* natural_width)
+{
+	*minimum_width = *natural_width = 24;
+}
+static void
+na_tray_child_get_preferred_height (GtkWidget* self,
+                                     gint* minimum_height,
+                                     gint* natural_height)
+{
+	*minimum_height = *natural_height = 24;
+}
+
 static void
 na_tray_child_class_init (NaTrayChildClass *klass)
 {
@@ -235,6 +251,9 @@ na_tray_child_class_init (NaTrayChildClass *klass)
   widget_class->realize = na_tray_child_realize;
   widget_class->size_allocate = na_tray_child_size_allocate;
   widget_class->draw = na_tray_child_draw;
+  // we force the size of the icons, because some programs (like xchat) don't respect the _NET_SYSTEM_TRAY_ICON_SIZE property.
+  widget_class->get_preferred_width = na_tray_child_get_preferred_width;
+  widget_class->get_preferred_height = na_tray_child_get_preferred_height;
 }
 
 GtkWidget *

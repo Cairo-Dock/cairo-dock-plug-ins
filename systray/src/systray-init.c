@@ -112,6 +112,9 @@ CD_APPLET_RELOAD_BEGIN
 				}
 				g_object_unref (G_OBJECT (myData.tray));  // le 'steal' a ajoute une reference, et l'insertion dans le container aussi.
 			}
+			
+			if (myDock)
+				CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		}
 		
 		cd_keybinder_rebind (myData.cKeyBinding, myConfig.shortcut, NULL);
