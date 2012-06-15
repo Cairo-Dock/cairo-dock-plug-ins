@@ -123,11 +123,25 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 			if (g_hash_table_lookup_extended  (pHashTable, cEventURI, NULL, NULL))
 				continue;
 			cd_debug (" + %s", cEventURI);
+
+			
+			gchar *cPath = g_filename_from_uri (cEventURI, NULL, NULL);
+
+			// check it's a file and if yes, if it exists
+			if (strncmp (cEventURI, "file://", 7) == 0 && ! g_file_test (cPath, G_FILE_TEST_EXISTS))
+			{
+				/*
+				 * If it doesn't exist, we don't add it in the menu
+				 * (we can set the widget as insensitive but why?
+				 *  If we add it, it's just an useless entry)
+				 */
+				g_free (cPath);
+				continue;
+			}
 			
 			cairo_dock_fm_get_file_info (cEventURI, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, 0);
 			
-			gchar *cPath = g_filename_from_uri (cEventURI, NULL, NULL);  // some programs dont support URI, so we feed them with path.
-			cCommand = g_strdup_printf ("%s \"%s\"", pIcon->cCommand, cPath);
+			cCommand = g_strdup_printf ("%s \"%s\"", pIcon->cCommand, cPath); // some programs don't support URI, so we feed them with path.
 			g_free (cPath);
 			s_pEventList = g_list_prepend (s_pEventList, cCommand);
 			
