@@ -426,7 +426,7 @@ endif()
 message (STATUS " * Ruby:")
 # find_package(Ruby) found libs of ruby-dev but we only need a directory where we can install ruby libs.
 find_program (RUBY_EXECUTABLE ruby)
-EXECUTE_PROCESS(COMMAND ${RUBY_EXECUTABLE} -r rbconfig -e "print Config::CONFIG['rubylibdir']"
+EXECUTE_PROCESS(COMMAND ${RUBY_EXECUTABLE} -r rbconfig -e "print RbConfig::CONFIG['rubylibdir']"
 	OUTPUT_VARIABLE RUBY_LIB_DIR)
 message (STATUS "   Ruby library dir: ${RUBY_LIB_DIR}")
 if ("${RUBY_LIB_DIR}" STREQUAL "" OR "${RUBY_LIB_DIR}" STREQUAL "nil")
@@ -435,7 +435,8 @@ if ("${RUBY_LIB_DIR}" STREQUAL "" OR "${RUBY_LIB_DIR}" STREQUAL "nil")
 	set (PROGRAMS_MISSING "${PROGRAMS_MISSING} ruby")
 	set (with_ruby "no")
 else()
-	string (REGEX REPLACE "lib/ruby/[0-9].[0-9]" "" RUBY_LIB_DIR_INSTALL "${RUBY_LIB_DIR}")
+	# /usr/lib/ruby/1.8 or /usr/lib/ruby/1.9.1
+	string (REGEX REPLACE "lib/ruby/[0-9].[0-9]?.+" "" RUBY_LIB_DIR_INSTALL "${RUBY_LIB_DIR}")
 	string (REGEX REPLACE "${RUBY_LIB_DIR_INSTALL}" "" RUBY_LIB_DIR_INSTALL "${RUBY_LIB_DIR}")
 	set (RUBY_LIB_DIR "${CMAKE_INSTALL_PREFIX}/${RUBY_LIB_DIR_INSTALL}")
 	message (STATUS "   will be installed in: ${RUBY_LIB_DIR}")
