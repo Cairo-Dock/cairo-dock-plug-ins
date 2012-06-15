@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
 "POT-Creation-Date: 2012-04-12 00:33+0000\n"
-"PO-Revision-Date: 2012-04-12 03:37+0000\n"
-"Last-Translator: Fabounet <fabounet03@gmail.com>\n"
+"PO-Revision-Date: 2012-04-25 06:30+0000\n"
+"Last-Translator: milboy <Unknown>\n"
 "Language-Team: Slovak <sk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-13 05:34+0000\n"
-"X-Generator: Launchpad (build 15070)\n"
+"X-Launchpad-Export-Date: 2012-04-26 04:55+0000\n"
+"X-Generator: Launchpad (build 15149)\n"
 "Language: sk\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -30,24 +30,24 @@ msgstr "Tento zásuvný modul ponúka množstvo rôzných animácií pre vaše i
 #: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:47
 #: ../Animated-icons/data/messages:157
 msgid "Bounce"
-msgstr "Odrážať"
+msgstr "Odrážanie"
 
 #: ../Animated-icons/src/applet-init.c:81 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:49
 msgid "Rotate"
-msgstr "Otočiť"
+msgstr "Otáčanie"
 
 #: ../Animated-icons/src/applet-init.c:82 ../Animated-icons/data/messages:13
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:51
 #: ../Animated-icons/data/messages:171
 msgid "Blink"
-msgstr "Blikať"
+msgstr "Blikanie"
 
 #: ../Animated-icons/src/applet-init.c:83 ../Animated-icons/data/messages:15
 #: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:53
 #: ../Animated-icons/data/messages:145
 msgid "Pulse"
-msgstr "Pulz"
+msgstr "Pulzovanie"
 
 #: ../Animated-icons/src/applet-init.c:84 ../Animated-icons/data/messages:17
 #: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:55
@@ -189,19 +189,19 @@ msgstr "História schránky"
 
 #: ../Clipper/src/applet-init.c:72
 msgid "Pop-up the items menu"
-msgstr ""
+msgstr "Vyskakovacie položky ponuky"
 
 #: ../Clipper/src/applet-notifications.c:33
 msgid "The clipboard history is empty."
-msgstr ""
+msgstr "Schránka histórie je prázdna."
 
 #: ../Clipper/src/applet-notifications.c:89
 msgid "Clear clipboard History"
-msgstr ""
+msgstr "Vyčistiť schránku histórie"
 
 #: ../Clipper/src/applet-notifications.c:91
 msgid "Paste all copied items"
-msgstr ""
+msgstr "Vložiť všetky skopírované položky"
 
 #: ../Clipper/src/applet-notifications.c:99
 msgid ""
@@ -218,7 +218,7 @@ msgstr "Zatiaľ žiadne položky."
 #: ../Composite-Manager/src/applet-composite-manager.c:421
 #: ../Composite-Manager/src/applet-composite-manager.c:436
 msgid "No compositor is available."
-msgstr ""
+msgstr "Nie je dostupná kompozícia."
 
 #: ../Composite-Manager/src/applet-composite-manager.c:444
 #: ../Composite-Manager/src/applet-composite-manager.c:459
@@ -228,15 +228,15 @@ msgstr ""
 #: ../Composite-Manager/src/applet-composite-manager.c:499
 #, c-format
 msgid "You need to install '%s'"
-msgstr ""
+msgstr "Je potrebné nainštalovať '%s'"
 
 #: ../Composite-Manager/src/applet-composite-manager.c:510
 msgid "No configuration tool is available."
-msgstr ""
+msgstr "Konfiguračný nástroj nie je k dispozícii."
 
 #: ../Composite-Manager/src/applet-init.c:27
 msgid "Composite-Manager"
-msgstr ""
+msgstr "Kompozitný správca"
 
 #: ../Composite-Manager/src/applet-init.c:30
 msgid ""
@@ -253,16 +253,16 @@ msgstr ""
 
 #: ../Composite-Manager/src/applet-init.c:52
 msgid "Toggle the composite ON/OFF"
-msgstr ""
+msgstr "Prepínač kompozície ZAP/VYP"
 
 #: ../Composite-Manager/src/applet-notifications.c:43
 msgid "Toggle composite?"
-msgstr ""
+msgstr "Prepnúť kompozíciu?"
 
 #: ../Composite-Manager/src/applet-notifications.c:120
 #: ../Composite-Manager/data/messages:129
 msgid "Edit Window-Manager settings"
-msgstr ""
+msgstr "Upraviť nastavenia správcu okien"
 
 #: ../Composite-Manager/src/applet-notifications.c:120
 #: ../Composite-Manager/src/applet-notifications.c:127
@@ -299,7 +299,7 @@ msgstr "kliknutie stredným tlačítkom"
 #: ../Composite-Manager/src/applet-notifications.c:127
 #: ../Composite-Manager/data/messages:131
 msgid "Reload Window-Manager"
-msgstr ""
+msgstr "Obnoviť správcu okien"
 
 #: ../Composite-Manager/src/applet-notifications.c:136
 #: ../showDesktop/src/applet-notifications.c:165
@@ -316,13 +316,13 @@ msgstr "Zobraziť plochu"
 #: ../Composite-Manager/data/messages:135 ../showDesktop/data/messages:111
 #: ../showDesktop/data/messages:125 ../switcher/data/messages:115
 msgid "Expose all the desktops"
-msgstr ""
+msgstr "Vystaviť všetky plochy"
 
 #: ../Composite-Manager/src/applet-notifications.c:154
 #: ../switcher/src/applet-notifications.c:323
 #: ../Composite-Manager/data/messages:137 ../switcher/data/messages:117
 msgid "Expose all the windows"
-msgstr ""
+msgstr "Vystaviť všetky okná"
 
 #: ../Composite-Manager/src/applet-notifications.c:163
 #: ../showDesktop/src/applet-notifications.c:189
@@ -470,7 +470,7 @@ msgstr ""
 
 #: ../Doncky/src/applet-notifications.c:215
 msgid "It doesn't seem to be a valid XML file."
-msgstr ""
+msgstr "Zdá sa, že toto nie je správny XML súbor."
 
 #: ../Folders/src/applet-init.c:29
 msgid "Folders"
@@ -491,6 +491,7 @@ msgstr ""
 #: ../Folders/src/applet-notifications.c:42
 msgid "Open the configuration of the applet to choose a folder to import."
 msgstr ""
+"Otvorte konfiguráciu apletu a vyberte zložku, ktorú chcete importovať."
 
 #: ../Folders/src/applet-notifications.c:54
 msgid "Empty or unreadable folder."
@@ -498,7 +499,7 @@ msgstr "Prázdny, alebo nečítateľný priečinok."
 
 #: ../Folders/src/applet-notifications.c:116
 msgid "Properties:"
-msgstr ""
+msgstr "Vlastnosti:"
 
 #: ../Folders/src/applet-notifications.c:136 ../Folders/data/messages:117
 msgid "Size"
@@ -506,31 +507,31 @@ msgstr "Veľkosť"
 
 #: ../Folders/src/applet-notifications.c:136
 msgid "bytes"
-msgstr ""
+msgstr "bajty"
 
 #: ../Folders/src/applet-notifications.c:150
 msgid "Last Modification"
-msgstr ""
+msgstr "Posledná úprava"
 
 #: ../Folders/src/applet-notifications.c:159
 msgid "Mime Type"
-msgstr ""
+msgstr "Mime typ"
 
 #: ../Folders/src/applet-notifications.c:173
 msgid "User ID"
-msgstr ""
+msgstr "ID používateľa"
 
 #: ../Folders/src/applet-notifications.c:173
 msgid "Group ID"
-msgstr ""
+msgstr "ID skupiny"
 
 #: ../Folders/src/applet-notifications.c:183
 msgid "Permissions"
-msgstr ""
+msgstr "Oprávnenia"
 
 #: ../Folders/src/applet-notifications.c:183
 msgid "Read"
-msgstr ""
+msgstr "Čítanie"
 
 #: ../Folders/src/applet-notifications.c:184
 #: ../Folders/src/applet-notifications.c:185
@@ -538,7 +539,7 @@ msgstr ""
 #: ../System-Monitor/data/messages:115 ../alsaMixer/data/messages:147
 #: ../netspeed/data/messages:115 ../slider/data/messages:169
 msgid "Yes"
-msgstr ""
+msgstr "Áno"
 
 #: ../Folders/src/applet-notifications.c:184
 #: ../Folders/src/applet-notifications.c:185
@@ -562,7 +563,7 @@ msgstr "Nie"
 
 #: ../Folders/src/applet-notifications.c:184
 msgid "Write"
-msgstr ""
+msgstr "Zápis"
 
 #: ../Folders/src/applet-notifications.c:185
 #: ../Scooby-Do/src/applet-backend-command.c:95
@@ -659,31 +660,31 @@ msgstr "Vytvoriť nový priečinok"
 
 #: ../Folders/src/applet-notifications.c:422
 msgid "Sort by"
-msgstr ""
+msgstr "Zoradiť podľa"
 
 #: ../Folders/src/applet-notifications.c:423
 msgid "By name"
-msgstr ""
+msgstr "podľa názvu"
 
 #: ../Folders/src/applet-notifications.c:424
 msgid "By date"
-msgstr ""
+msgstr "podľa dátumu"
 
 #: ../Folders/src/applet-notifications.c:425
 msgid "By size"
-msgstr ""
+msgstr "podľa veľkosti"
 
 #: ../Folders/src/applet-notifications.c:426
 msgid "By type"
-msgstr ""
+msgstr "podaľa typu"
 
 #: ../Folders/src/applet-notifications.c:468
 msgid "The folder has been imported."
-msgstr ""
+msgstr "Priečinok bol importovaný"
 
 #: ../Folders/src/applet-notifications.c:529
 msgid "Do you want to import the content of the folder too?"
-msgstr ""
+msgstr "Chcete importovať aj obsah zložky?"
 
 #: ../GMenu/src/applet-init.c:33
 msgid ""
@@ -705,19 +706,19 @@ msgstr "Menu aplikácií"
 
 #: ../GMenu/src/applet-init.c:66
 msgid "Show/hide the Applications menu"
-msgstr ""
+msgstr "Zobraziť/Skryť Ponuku aplikácií"
 
 #: ../GMenu/src/applet-init.c:71
 msgid "Show/hide the quick-launch dialog"
-msgstr ""
+msgstr "Zobraziť/Skryť ponuku rýchle spustenie"
 
 #: ../GMenu/src/applet-menu-callbacks.c:218 ../GMenu/data/messages:121
 msgid "Logout"
-msgstr ""
+msgstr "Odhlásiť sa"
 
 #: ../GMenu/src/applet-menu-callbacks.c:221 ../GMenu/data/messages:123
 msgid "Shutdown"
-msgstr ""
+msgstr "Vypnúť"
 
 #: ../GMenu/src/applet-notifications.c:81
 msgid "Quick launch"
@@ -745,7 +746,7 @@ msgstr "Vložte príkaz pre spustenie :"
 
 #: ../Global-Menu/src/applet-init.c:30
 msgid "Global Menu"
-msgstr ""
+msgstr "Úplná ponuka"
 
 #: ../Global-Menu/src/applet-init.c:33
 msgid ""
@@ -758,7 +759,7 @@ msgstr ""
 
 #: ../Global-Menu/src/applet-init.c:108 ../Global-Menu/src/applet-init.c:210
 msgid "Show/hide the current application menu"
-msgstr ""
+msgstr "Zobraziť/skryť aktuálnu ponuku aplikácií"
 
 #: ../Global-Menu/src/applet-notifications.c:52
 msgid "The application didn't send its menu to us."
@@ -770,6 +771,9 @@ msgid ""
 "Can you check its status (installed? running? version?) and report this bug "
 "(if any) to forum.glx-dock.org"
 msgstr ""
+"Niečo nie je v poriadku s PulseAudio.\n"
+"Chcete pozrieť v akom je stave (nainštalované? spustené? verzia?) a poslať "
+"správu o chybe (ak je) na forum.glx-dock.org"
 
 #: ../Impulse/src/applet-init.c:32
 msgid ""
@@ -797,7 +801,7 @@ msgstr "Zdá sa, že Me-Menu nie je nainštalované vo vašom systéme"
 
 #: ../Messaging-Menu/src/applet-init.c:30
 msgid "Messaging Menu"
-msgstr ""
+msgstr "Ponuka správ"
 
 #: ../Messaging-Menu/src/applet-init.c:33
 msgid ""
@@ -808,13 +812,15 @@ msgstr ""
 
 #: ../Messaging-Menu/src/applet-init.c:66
 msgid "Show/hide the Messaging menu"
-msgstr ""
+msgstr "Zobraziť/Skryť ponuku správ"
 
 #: ../Messaging-Menu/src/applet-notifications.c:31
 msgid ""
 "The Messaging service did not reply.\n"
 "Please check that it is correctly installed."
 msgstr ""
+"Služba Správy neodpovedá.\n"
+"Skontrolujte prosím, či je správne nainštalovaná."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:69
 msgid "Network connection state changed to inactive."
@@ -1075,59 +1081,59 @@ msgstr ""
 #: ../Recent-Events/src/applet-dialog.c:288
 #: ../stack/src/applet-notifications.c:179
 msgid "Open parent folder"
-msgstr ""
+msgstr "Otvoriť nadradený priečinok"
 
 #: ../Recent-Events/src/applet-dialog.c:290
 msgid "Copy the location"
-msgstr ""
+msgstr "Kopírovať umiestnenie"
 
 #: ../Recent-Events/src/applet-dialog.c:292
 msgid "Delete this event"
-msgstr ""
+msgstr "odstrániť túto udalosť"
 
 #: ../Recent-Events/src/applet-dialog.c:365
 msgid "All"
-msgstr ""
+msgstr "Všetko"
 
 #: ../Recent-Events/src/applet-dialog.c:366
 msgid "Document"
-msgstr ""
+msgstr "Dokument"
 
 #: ../Recent-Events/src/applet-dialog.c:368 ../logout/data/messages:129
 msgid "Image"
-msgstr ""
+msgstr "Obrázok"
 
 #: ../Recent-Events/src/applet-dialog.c:369
 msgid "Audio"
-msgstr ""
+msgstr "Zvuk"
 
 #: ../Recent-Events/src/applet-dialog.c:370
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #: ../Recent-Events/src/applet-dialog.c:371
 msgid "Web"
-msgstr ""
+msgstr "Web"
 
 #: ../Recent-Events/src/applet-dialog.c:372
 msgid "Other"
-msgstr ""
+msgstr "Iné"
 
 #: ../Recent-Events/src/applet-dialog.c:373
 msgid "Top Results"
-msgstr ""
+msgstr "Najlepšie výsledky"
 
 #: ../Recent-Events/src/applet-dialog.c:379
 msgid "Look for events"
-msgstr ""
+msgstr "Pozrieť sa na udalosti"
 
 #: ../Recent-Events/src/applet-dialog.c:430
 msgid "File name"
-msgstr ""
+msgstr "Názov súboru"
 
 #: ../Recent-Events/src/applet-dialog.c:437
 msgid "Last access"
-msgstr ""
+msgstr "Posledný prístup"
 
 #: ../Recent-Events/src/applet-dialog.c:481
 msgid "You need to install the Zeitgeist data engine."
@@ -1135,20 +1141,20 @@ msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:516
 msgid "Browse and search in recent events"
-msgstr ""
+msgstr "Prehliadať a nájsť nedávne udalosti"
 
 #: ../Recent-Events/src/applet-init.c:29
 msgid "Recent-Events"
-msgstr ""
+msgstr "Nedávne udalosti"
 
 #: ../Recent-Events/src/applet-init.c:58
 msgid "Show/hide the Recent Events"
-msgstr ""
+msgstr "Zobraziť/Skryť nedávne udalosti"
 
 #: ../Recent-Events/src/applet-notifications.c:74
 #, c-format
 msgid "%d event(s) deleted"
-msgstr ""
+msgstr "%d udalosť(i) odstránená"
 
 #: ../Recent-Events/src/applet-notifications.c:113
 #: ../Scooby-Do/src/applet-backend-recent.c:212 ../Scooby-Do/data/messages:105
@@ -1157,11 +1163,11 @@ msgstr "Nedávne súbory"
 
 #: ../Recent-Events/src/applet-notifications.c:161
 msgid "Delete today's events"
-msgstr ""
+msgstr "Odstrániť dnešné udalosti"
 
 #: ../Recent-Events/src/applet-notifications.c:163
 msgid "Delete all events"
-msgstr ""
+msgstr "Odstrániť všetky udalosti"
 
 #: ../Remote-Control/src/applet-init.c:32
 msgid ""
@@ -1179,11 +1185,11 @@ msgstr ""
 
 #: ../Remote-Control/src/applet-init.c:42
 msgid "Control from keyboard"
-msgstr ""
+msgstr "Ovládanie klávesnicou"
 
 #: ../Remote-Control/src/applet-init.c:49
 msgid "Enable/disable the keyboard control of the dock"
-msgstr ""
+msgstr "Povoliť/Zakázať ovládanie panela klávesnicou"
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
@@ -1270,7 +1276,7 @@ msgstr "Amazon"
 
 #: ../Scooby-Do/src/applet-init.c:73
 msgid "Enable/disable the Finder"
-msgstr ""
+msgstr "Povoliť/Zakázať hľadáčik"
 
 #: ../Scooby-Do/src/applet-listing.c:514
 msgid "(F1) Match case"
@@ -1332,7 +1338,7 @@ msgstr ""
 
 #: ../Status-Notifier/src/applet-init.c:38
 msgid "Notification Area"
-msgstr ""
+msgstr "Oblasť upozornení"
 
 #: ../System-Monitor/src/applet-cpusage.c:57
 msgid "Uptime"
@@ -1382,7 +1388,7 @@ msgstr ""
 #: ../System-Monitor/src/applet-notifications.c:104
 #: ../netspeed/src/applet-notifications.c:98
 msgid "Open the System-Monitor"
-msgstr ""
+msgstr "Otvoriť sledovanie systému"
 
 #: ../System-Monitor/src/applet-notifications.c:106
 msgid "Show info"
@@ -1437,7 +1443,7 @@ msgstr "Buffery"
 
 #: ../System-Monitor/src/applet-sensors.c:358
 msgid "min"
-msgstr ""
+msgstr "min"
 
 #: ../System-Monitor/src/applet-sensors.c:360
 msgid "max"
@@ -1488,19 +1494,19 @@ msgstr ""
 
 #: ../Xgamma/src/applet-init.c:52
 msgid "Screen Luminosity"
-msgstr ""
+msgstr "Jas obrazovky"
 
 #: ../Xgamma/src/applet-init.c:64
 msgid "Increase the brightness"
-msgstr ""
+msgstr "Zvýšiť jas"
 
 #: ../Xgamma/src/applet-init.c:68
 msgid "Decrease the brightness"
-msgstr ""
+msgstr "Znížiť jas"
 
 #: ../Xgamma/src/applet-notifications.c:87
 msgid "Set up gamma correction"
-msgstr ""
+msgstr "Nastaviť gamma korekciu"
 
 #: ../Xgamma/src/applet-notifications.c:91
 msgid "Apply current luminosity on startup"
@@ -1512,7 +1518,7 @@ msgstr "Nastaviť gamma :"
 
 #: ../Xgamma/src/applet-xgamma.c:293
 msgid "Luminosity"
-msgstr ""
+msgstr "Svietivosť"
 
 #: ../alsaMixer/src/applet-backend-alsamixer.c:46
 #, c-format
@@ -1546,7 +1552,7 @@ msgstr "Nastaviť hlasitosť :"
 
 #: ../alsaMixer/src/applet-draw.c:64
 msgid "Volume"
-msgstr ""
+msgstr "Hlasitosť"
 
 #: ../alsaMixer/src/applet-init.c:34
 msgid ""
@@ -1565,7 +1571,7 @@ msgstr "Ovládanie zvuku"
 
 #: ../alsaMixer/src/applet-init.c:118
 msgid "Show/hide the Sound menu"
-msgstr ""
+msgstr "Zobraziť/Skryť ponuku zvuk"
 
 #: ../alsaMixer/src/applet-notifications.c:80
 msgid "Adjust channels"
@@ -2223,11 +2229,11 @@ msgstr ""
 
 #: ../keyboard-indicator/src/applet-init.c:81
 msgid "Switch keyboard language"
-msgstr ""
+msgstr "Prepnúť klávesnicu na iný jazyk"
 
 #: ../keyboard-indicator/src/applet-notifications.c:77
 msgid "Keyboard preferences"
-msgstr ""
+msgstr "Predvoľby klávesnice"
 
 #: ../logout/src/applet-init.c:31
 msgid ""
@@ -2246,11 +2252,11 @@ msgstr "Odhlásenie"
 
 #: ../logout/src/applet-init.c:67
 msgid "Lock the screen"
-msgstr ""
+msgstr "Uzamknúť obrazovku"
 
 #: ../logout/src/applet-init.c:71
 msgid "Show the log-out menu"
-msgstr ""
+msgstr "Zobraziť ponuku Odhlásiť"
 
 #: ../logout/src/applet-logout.c:200 ../logout/data/messages:99
 msgid "Shut down"
@@ -2258,7 +2264,7 @@ msgstr "Vypnutie"
 
 #: ../logout/src/applet-logout.c:206
 msgid "Restart"
-msgstr ""
+msgstr "Reštartovať"
 
 #: ../logout/src/applet-logout.c:212
 #: ../powermanager/src/powermanager-menu-functions.c:97
@@ -2268,7 +2274,7 @@ msgstr "Dlhodobý spánok"
 
 #: ../logout/src/applet-logout.c:214
 msgid "Your computer will not consume any energy."
-msgstr ""
+msgstr "Počítač nebude spotrebovávať žiadnu energiu."
 
 #: ../logout/src/applet-logout.c:219
 #: ../powermanager/src/powermanager-menu-functions.c:100
@@ -2278,19 +2284,19 @@ msgstr "Úsporný režim"
 
 #: ../logout/src/applet-logout.c:221
 msgid "Your computer will still consume a small amount of energy."
-msgstr ""
+msgstr "Váš počítač stále konzumuje malé množstvo energie."
 
 #: ../logout/src/applet-logout.c:230
 msgid "Close your session and allow to open a new one."
-msgstr ""
+msgstr "Zatvorte reláciu a umožnite otvorenie novej."
 
 #: ../logout/src/applet-logout.c:241
 msgid "Switch user"
-msgstr ""
+msgstr "Prepnúť používateľa"
 
 #: ../logout/src/applet-logout.c:262
 msgid "Guest session"
-msgstr ""
+msgstr "Relácia pre hosťa"
 
 #: ../logout/src/applet-logout.c:269 ../logout/data/messages:101
 msgid "Lock screen"
@@ -2311,23 +2317,23 @@ msgstr "Vyberte si za koľko minút bude vaše PC vypnuté :"
 #: ../logout/src/applet-logout.c:523
 #, c-format
 msgid "It will automatically shut-down in %ds"
-msgstr ""
+msgstr "Automatické vypnutie o %ds"
 
 #: ../logout/src/applet-logout.c:524
 msgid "Shut down the computer?"
-msgstr ""
+msgstr "Vypnúť počítač?"
 
 #: ../logout/src/applet-logout.c:584
 msgid "Restart the computer?"
-msgstr ""
+msgstr "Reštartovať počítač?"
 
 #: ../logout/src/applet-logout.c:621
 msgid "Close the current session?"
-msgstr ""
+msgstr "Ukončiť aktuálne sedenie?"
 
 #: ../logout/src/applet-notifications.c:103
 msgid "Manage users"
-msgstr ""
+msgstr "Spravovať používateľov"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Server address:"
@@ -2336,7 +2342,7 @@ msgstr "Adresa servera:"
 #: ../mail/src/cd-mail-applet-accounts.c:39
 #: ../mail/src/cd-mail-applet-accounts.c:44
 msgid "myLogin"
-msgstr ""
+msgstr "Moje prihlásenie"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "myHost"
@@ -2371,6 +2377,8 @@ msgid ""
 "Enter 0 to use the default port. Default ports are 143 for IMAP4 and 993 for "
 "IMAP4 over SSL."
 msgstr ""
+"Vložte 0 pre použitie predvoleného portu. Predvolené porty sú 143 pre IMAP4 "
+"a 993 pre IMAP4 cez SSL."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Use a secure connection (SSL)"
@@ -2413,13 +2421,15 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Remove this account"
-msgstr ""
+msgstr "Odstrániť tento účet"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid ""
 "Don't forget to enable IMAP (or POP) service from settings of your mail "
 "account."
 msgstr ""
+"Nezabudnite povoliť službu IMAP (alebo POP) v nastaveniach vášho poštového "
+"účtu."
 
 #: ../mail/src/cd-mail-applet-config.c:230
 msgid "Please choose an account type."
@@ -2503,6 +2513,8 @@ msgid ""
 "No mail application is defined,\n"
 "you can define it in the configuration panel of this module"
 msgstr ""
+"Nie je definovana poštová aplikácia.\n"
+"Môžete ju definovať v konfiguračnom paneli tohto modulu."
 
 #: ../mail/src/cd-mail-applet-notifications.c:147
 msgid "Refresh a mail account"
@@ -2515,7 +2527,7 @@ msgstr "Obnoviť všetko"
 #: ../mail/src/cd-mail-applet-notifications.c:161
 #, c-format
 msgid "Refresh %s"
-msgstr ""
+msgstr "Obnoviť %s"
 
 #: ../mail/src/cd-mail-applet-notifications.c:167
 msgid "Mark all emails as read"
@@ -2568,7 +2580,7 @@ msgstr "Skladba číslo"
 
 #: ../musicPlayer/src/applet-draw.c:160
 msgid "Song n°"
-msgstr ""
+msgstr "Skladba n°"
 
 #: ../musicPlayer/src/applet-draw.c:176
 msgid "Current song"
@@ -2607,7 +2619,7 @@ msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:175
 msgid "Choose a music player to control"
-msgstr ""
+msgstr "Vyberte prehrávač zvuku, ktorý chcete ovládať"
 
 #: ../musicPlayer/src/applet-notifications.c:262
 msgid "Find opened player"
@@ -2615,7 +2627,7 @@ msgstr "Nájdi otvorený prehrávač"
 
 #: ../musicPlayer/src/applet-notifications.c:266
 msgid "Choose a player"
-msgstr ""
+msgstr "Vyberte prehrávač"
 
 #: ../musicPlayer/src/applet-notifications.c:272
 msgid "Previous"
@@ -2623,7 +2635,7 @@ msgstr "Predchádzajúci"
 
 #: ../musicPlayer/src/applet-notifications.c:272
 msgid "scroll-up"
-msgstr ""
+msgstr "posunúť hore"
 
 #: ../musicPlayer/src/applet-notifications.c:278
 msgid "Play/Pause"
@@ -2639,7 +2651,7 @@ msgstr "Ďalej"
 
 #: ../musicPlayer/src/applet-notifications.c:284
 msgid "scroll-down"
-msgstr ""
+msgstr "posunúť dole"
 
 #: ../musicPlayer/src/applet-notifications.c:289
 msgid "Stop"
@@ -2718,44 +2730,44 @@ msgstr "Skontrolovanie rozhrania"
 
 #: ../powermanager/src/powermanager-draw.c:130
 msgid "Battery charged"
-msgstr ""
+msgstr "Batéria nabitá"
 
 #: ../powermanager/src/powermanager-draw.c:152
 msgid "Time before empty"
-msgstr ""
+msgstr "Čas do vybitia"
 
 #: ../powermanager/src/powermanager-draw.c:152
 msgid "Time before full"
-msgstr ""
+msgstr "Čas zostávajúci do úplného nabitia"
 
 #: ../powermanager/src/powermanager-draw.c:209
 msgid "Laptop on Battery."
-msgstr ""
+msgstr "Batéria prenosného počítača."
 
 #: ../powermanager/src/powermanager-draw.c:210
 #: ../powermanager/src/powermanager-draw.c:219
 msgid "Battery charged at:"
-msgstr ""
+msgstr "Batéria nabitá na:"
 
 #: ../powermanager/src/powermanager-draw.c:211
 msgid "Estimated time before empty:"
-msgstr ""
+msgstr "Zostávajúci čas do vybitia:"
 
 #: ../powermanager/src/powermanager-draw.c:218
 msgid "Laptop on Charge."
-msgstr ""
+msgstr "Prenosný počítač sa nabíja."
 
 #: ../powermanager/src/powermanager-draw.c:220
 msgid "Estimated time before full:"
-msgstr ""
+msgstr "Zostávajúci čas do úplného nabitia:"
 
 #: ../powermanager/src/powermanager-draw.c:227
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #: ../powermanager/src/powermanager-draw.c:235
 msgid "Maximum capacity"
-msgstr ""
+msgstr "Maximálna kapacita"
 
 #: ../powermanager/src/powermanager-draw.c:240
 msgid "No battery found."
@@ -2803,7 +2815,7 @@ msgstr "Nastaviť správu napájania"
 
 #: ../powermanager/src/powermanager-menu-functions.c:88
 msgid "Power statistics"
-msgstr ""
+msgstr "Štatistika napájania"
 
 #: ../quick-browser/src/applet-init.c:29
 msgid "Quick Browser"
@@ -2825,7 +2837,7 @@ msgstr ""
 
 #: ../quick-browser/src/applet-init.c:64
 msgid "Show/hide the folder menu"
-msgstr ""
+msgstr "Zobraziť/Skryť ponuku priečinka"
 
 #: ../quick-browser/src/applet-menu.c:107
 #: ../quick-browser/src/applet-menu.c:116
@@ -2902,11 +2914,11 @@ msgstr "Prepáčte, tento applet nie je dostupný pre KDE."
 
 #: ../shortcuts/src/applet-notifications.c:90
 msgid "No disks or bookmarks were found."
-msgstr ""
+msgstr "Neboli nájdené žiadne disky alebo záložky."
 
 #: ../shortcuts/src/applet-notifications.c:193
 msgid "Enter a name for this bookmark:"
-msgstr ""
+msgstr "Vložte názov pre túto záložku:"
 
 #: ../shortcuts/src/applet-notifications.c:249
 msgid "Open Home directory"
@@ -3014,7 +3026,7 @@ msgstr "Prechádzať priečinok s obrázkami"
 
 #: ../slider/src/applet-notifications.c:270
 msgid "Refresh images list"
-msgstr ""
+msgstr "Obnoviť zoznam obrázkov"
 
 #: ../stack/src/applet-init.c:31
 msgid "stack"
@@ -3086,11 +3098,11 @@ msgstr "Odstrániť túto položku"
 
 #: ../stack/src/applet-notifications.c:257
 msgid "The file has been added to the stack."
-msgstr ""
+msgstr "Súbor bol pridaný do zásobníka."
 
 #: ../stack/src/applet-notifications.c:258
 msgid "The URL has been added to the stack."
-msgstr ""
+msgstr "URL bola pridaná do zásobníka."
 
 #: ../switcher/src/applet-draw.c:597 ../switcher/src/applet-draw.c:604
 #: ../switcher/src/applet-load-icons.c:53
@@ -3173,11 +3185,11 @@ msgstr ""
 
 #: ../systray/src/systray-init.c:41
 msgid "Notification Area Old"
-msgstr ""
+msgstr "Stará oblasť upozornení"
 
 #: ../systray/src/systray-init.c:65
 msgid "Show/hide the systray"
-msgstr ""
+msgstr "Zobraziť/Skryť systray"
 
 #: ../systray/src/systray-interface.c:70
 msgid ""
@@ -3215,7 +3227,7 @@ msgstr ""
 
 #: ../terminal/src/terminal-init.c:59
 msgid "Show/hide the terminal"
-msgstr ""
+msgstr "Zobraziť/Skryť terminál"
 
 #: ../terminal/src/terminal-menu-functions.c:78
 #: ../terminal/src/terminal-widget.c:420
@@ -3341,7 +3353,7 @@ msgstr ""
 
 #: ../weather/src/applet-config.c:126
 msgid "Couldn't get the location code (is connection alive?)"
-msgstr ""
+msgstr "Nedá sa získať kód umiestnenia (máte funkčné pripojenie?)"
 
 #: ../weather/src/applet-config.c:134
 msgid "I couldn't find this location"
@@ -3349,7 +3361,7 @@ msgstr "Nemôžem nájsť umiestnenie"
 
 #: ../weather/src/applet-config.c:185
 msgid "Searching the location code..."
-msgstr ""
+msgstr "Vyhľadávam kód umiestnenia..."
 
 #: ../weather/src/applet-config.c:211
 msgid ""
@@ -3432,7 +3444,7 @@ msgstr "Získavam údaje, prosím, počkajte chvíľu."
 
 #: ../weather/src/applet-notifications.c:97
 msgid "Show current conditions (middle-click)"
-msgstr ""
+msgstr "Zobraziť aktuálne počasie (stredné kliknutie)"
 
 #: ../weather/src/applet-notifications.c:102
 msgid "Open weather.com (double-click)"
@@ -3501,7 +3513,7 @@ msgstr "Tlak"
 
 #: ../weblets/src/applet-init.c:28
 msgid "weblets"
-msgstr ""
+msgstr "weblety"
 
 #: ../weblets/src/applet-init.c:31
 msgid ""
@@ -4996,11 +5008,11 @@ msgstr "Štýl"
 
 #: ../Composite-Manager/data/messages:93
 msgid "Image when composite is active:"
-msgstr ""
+msgstr "Obrázok pri aktivovanej kompozícii:"
 
 #: ../Composite-Manager/data/messages:97
 msgid "Image when composite is inactive:"
-msgstr ""
+msgstr "Obrázok pri neaktivovanej kompozícii:"
 
 #: ../Composite-Manager/data/messages:99 ../Global-Menu/data/messages:89
 #: ../RSSreader/data/messages:105 ../Status-Notifier/data/messages:117
@@ -5015,30 +5027,32 @@ msgid ""
 "Let empty to use the default one. Alternatively, you can set any command you "
 "want."
 msgstr ""
+"Nechajte prázdne ak chcete použiť predvolené. Prípadne si môžete nastaviť "
+"ľubovoľný príkaz."
 
 #: ../Composite-Manager/data/messages:103
 msgid "Composite window-manager:"
-msgstr ""
+msgstr "Kompozitný správca okien:"
 
 #: ../Composite-Manager/data/messages:105
 #: ../Composite-Manager/data/messages:117
 msgid "Compiz"
-msgstr ""
+msgstr "Compiz"
 
 #: ../Composite-Manager/data/messages:107
 #: ../Composite-Manager/data/messages:119
 msgid "KWin"
-msgstr ""
+msgstr "KWin"
 
 #: ../Composite-Manager/data/messages:109
 #: ../Composite-Manager/data/messages:121
 msgid "Xfwm"
-msgstr ""
+msgstr "Xfwm"
 
 #: ../Composite-Manager/data/messages:111
 #: ../Composite-Manager/data/messages:123
 msgid "Metacity"
-msgstr ""
+msgstr "Metacity"
 
 #: ../Composite-Manager/data/messages:115
 msgid "Fallback window-manager:"
@@ -5046,7 +5060,7 @@ msgstr ""
 
 #: ../Composite-Manager/data/messages:125
 msgid "Ask before switching:"
-msgstr ""
+msgstr "Spýtať sa pred prepnutím:"
 
 #: ../Composite-Manager/data/messages:127 ../logout/data/messages:95
 #: ../showDesktop/data/messages:115 ../slider/data/messages:123
@@ -5056,7 +5070,7 @@ msgstr "Akcia na stredné kliknutie :"
 
 #: ../Composite-Manager/data/messages:141
 msgid "Shortkey to toggle the composite ON/OFF:"
-msgstr ""
+msgstr "Klávesová skratka na prepnutie kompozície ZAP/VYP:"
 
 #: ../Dbus/data/messages:3
 msgid "Let external applications pop up dialogs in the dock?"
@@ -5263,27 +5277,27 @@ msgstr ""
 
 #: ../Disks/data/messages:149
 msgid "Fluidity of the transition between 2 values"
-msgstr ""
+msgstr ": Rýchlosť"
 
 #: ../Disks/data/messages:151
 msgid "Partitions monitored : Size"
-msgstr ""
+msgstr "Monitorovaná časť disku : Veľkosť"
 
 #: ../Disks/data/messages:153
 msgid "E.g. sda1, sdb5..."
-msgstr ""
+msgstr "napr. sda1, sdb5..."
 
 #: ../Disks/data/messages:155
 msgid "Disks monitored : Speed"
-msgstr ""
+msgstr "Monitorovanie disku : Rýchlosť"
 
 #: ../Disks/data/messages:157
 msgid "E.g. sda, sdb... Up to 5 values allowed"
-msgstr ""
+msgstr "Napr. sda, sdb... Povolená hodnota 5"
 
 #: ../Disks/data/messages:159
 msgid "Preferences"
-msgstr ""
+msgstr "Vlastnosti"
 
 #: ../Disks/data/messages:161 ../Network-Monitor/data/messages:133
 #: ../netspeed/data/messages:165
@@ -5292,7 +5306,7 @@ msgstr "Nechať prázdne a použiť predvolené."
 
 #: ../Disks/data/messages:163
 msgid "System monitor command"
-msgstr ""
+msgstr "Príkaz sledovanie systému"
 
 #: ../Doncky/data/messages:93
 msgid "Specify the xml file to be used :"
@@ -5325,7 +5339,7 @@ msgstr "Okraj použitý vľavo, vpravo a navrchu deskletu"
 
 #: ../Doncky/data/messages:109
 msgid "Margin all around the desklet:"
-msgstr ""
+msgstr "Rozpätie celého deskletu:"
 
 #: ../Doncky/data/messages:111
 msgid "Use this to increase the space between the lines"
@@ -5333,7 +5347,7 @@ msgstr "Použite toto pre zväčšenie medzery medzi riadkami"
 
 #: ../Doncky/data/messages:113
 msgid "Space between lines:"
-msgstr ""
+msgstr "Priestor medzi linkami:"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
 msgid "Background"
@@ -5390,7 +5404,7 @@ msgstr "Farba ohraničenia :"
 
 #: ../Folders/data/messages:7
 msgid "Let empty to use the name of the folder."
-msgstr ""
+msgstr "Ponechajte prázdne ak chcete použiť názov priečinka."
 
 #: ../Folders/data/messages:11
 msgid "How to render the icon :"
@@ -5424,7 +5438,7 @@ msgstr ""
 
 #: ../Folders/data/messages:109
 msgid "Show folder's content?"
-msgstr ""
+msgstr "Zobraziť obsah priečinka?"
 
 #: ../Folders/data/messages:111
 msgid "Sort files by :"
@@ -5493,11 +5507,11 @@ msgstr "Zobrazovat iba súbory, ktorých dátum poslednej úpravy je menej ako :
 
 #: ../GMenu/data/messages:115
 msgid "Session management buttons"
-msgstr ""
+msgstr "Tlačítka pre ovládanie sedenia"
 
 #: ../GMenu/data/messages:117
 msgid "Show Logout and/or Shutdown : "
-msgstr ""
+msgstr "Zobraziť tlačítko Odhlásiť a/alebo Vypnúť : "
 
 #: ../Global-Menu/data/messages:87
 msgid ""
@@ -5521,51 +5535,51 @@ msgstr ""
 
 #: ../Global-Menu/data/messages:97
 msgid "Shortkey to pop up the menu"
-msgstr ""
+msgstr "Klávesová skratka na vyskovacie okno ponuky"
 
 #: ../Global-Menu/data/messages:99
 msgid "Pop up the menu at mouse position"
-msgstr ""
+msgstr "Vyskakovacia ponuka na ukazovateli myši"
 
 #: ../Global-Menu/data/messages:101
 msgid "Compact mode"
-msgstr ""
+msgstr "Kompaktný mód"
 
 #: ../Global-Menu/data/messages:103
 msgid "Order of the buttons: "
-msgstr ""
+msgstr "Poradie tlačítok: "
 
 #: ../Global-Menu/data/messages:105
 msgid "Auto"
-msgstr ""
+msgstr "Automaticky"
 
 #: ../Global-Menu/data/messages:107
 msgid "Close button at the end"
-msgstr ""
+msgstr "Vyberte posledné tlačítko"
 
 #: ../Global-Menu/data/messages:109
 msgid "Close button at first"
-msgstr ""
+msgstr "Vyberte prvé tlačítko"
 
 #: ../Global-Menu/data/messages:111
 msgid "Image for the 'minimize' button"
-msgstr ""
+msgstr "Obrázok pre tlačítko \"minimalizovanie\""
 
 #: ../Global-Menu/data/messages:113
 msgid "Image for the 'maximize' button"
-msgstr ""
+msgstr "Obrázok pre tlačítko \"maximalizovanie\""
 
 #: ../Global-Menu/data/messages:115
 msgid "Image for the 'restore' button"
-msgstr ""
+msgstr "Obrázok pre tlačítko \"obnoviť\""
 
 #: ../Global-Menu/data/messages:117
 msgid "Image for the 'close' button"
-msgstr ""
+msgstr "Obrázok pre tlačítko \"zavrieť\""
 
 #: ../Impulse/data/messages:93
 msgid "Animation of the icons:"
-msgstr ""
+msgstr "Animácia ikôn:"
 
 #: ../Impulse/data/messages:95
 msgid ""
@@ -5575,7 +5589,7 @@ msgstr ""
 
 #: ../Impulse/data/messages:97
 msgid "Stop animations sooner?"
-msgstr ""
+msgstr "Zastaviť najskôr animácie?"
 
 #: ../Impulse/data/messages:99 ../alsaMixer/data/messages:101
 msgid "Control"
@@ -5584,19 +5598,19 @@ msgstr "Ovládanie"
 #: ../Impulse/data/messages:101
 msgid ""
 "It's the sensitivity in order to know if the animation is played or not."
-msgstr ""
+msgstr "Je to citlivosť, aby aby zistilo či sa animácia prehrá, alebo nie."
 
 #: ../Impulse/data/messages:103
 msgid "Sensitivity of the animation:"
-msgstr ""
+msgstr "Citlivosť animácie:"
 
 #: ../Impulse/data/messages:105 ../Impulse/data/messages:115
 msgid "More"
-msgstr ""
+msgstr "Viac"
 
 #: ../Impulse/data/messages:107 ../Impulse/data/messages:113
 msgid "Less"
-msgstr ""
+msgstr "Menej"
 
 #: ../Impulse/data/messages:109
 msgid "in ms."
@@ -5604,27 +5618,27 @@ msgstr "v ms."
 
 #: ../Impulse/data/messages:111
 msgid "Time between two animations:"
-msgstr ""
+msgstr "Čas medzi dvomi animáciami:"
 
 #: ../Impulse/data/messages:117
 msgid "Action at Startup"
-msgstr ""
+msgstr "Akcia pri spustení"
 
 #: ../Impulse/data/messages:119
 msgid "Launch automatically at startup?"
-msgstr ""
+msgstr "Spustiť automaticky pri spustení?"
 
 #: ../Impulse/data/messages:121
 msgid "Hide the icon?"
-msgstr ""
+msgstr "Skryť ikonu?"
 
 #: ../Impulse/data/messages:127
 msgid "Image when the applet is active:"
-msgstr ""
+msgstr "Obrázok pri aktívnom aplete:"
 
 #: ../Impulse/data/messages:131
 msgid "Image when the applet is inactive:"
-msgstr ""
+msgstr "Obrázok pri neaktívnom aplete:"
 
 #: ../Impulse/data/messages:135 ../musicPlayer/data/messages:205
 #: ../tomboy/data/messages:21
@@ -5633,15 +5647,15 @@ msgstr "Názov obrázku pre ikonu 'poškodená' :"
 
 #: ../Impulse/data/messages:137
 msgid "PulseAudio"
-msgstr ""
+msgstr "PulseAudio"
 
 #: ../Impulse/data/messages:139
 msgid "0 in most cases"
-msgstr ""
+msgstr "0 vo väčšine prípadov"
 
 #: ../Impulse/data/messages:141
 msgid "Index of the source:"
-msgstr ""
+msgstr "Zoznam zdrojov:"
 
 #: ../Messaging-Menu/data/messages:13 ../Network-Monitor/data/messages:15
 #: ../Status-Notifier/data/messages:17 ../System-Monitor/data/messages:13
@@ -5663,7 +5677,7 @@ msgstr "Vždy zobrazovať ikonu, aj keď je panel skrytý?"
 #: ../slider/data/messages:17 ../weather/data/messages:19
 #: ../wifi/data/messages:17
 msgid "With default background"
-msgstr ""
+msgstr "S predvoleným pozadím"
 
 #: ../Messaging-Menu/data/messages:19 ../Network-Monitor/data/messages:21
 #: ../Status-Notifier/data/messages:23 ../System-Monitor/data/messages:19
@@ -5674,7 +5688,7 @@ msgstr ""
 #: ../slider/data/messages:19 ../weather/data/messages:21
 #: ../wifi/data/messages:19
 msgid "With custom background"
-msgstr ""
+msgstr "S vlastným pozadím"
 
 #: ../Messaging-Menu/data/messages:21 ../Network-Monitor/data/messages:23
 #: ../Status-Notifier/data/messages:25 ../System-Monitor/data/messages:21
@@ -5685,7 +5699,7 @@ msgstr ""
 #: ../slider/data/messages:21 ../weather/data/messages:23
 #: ../wifi/data/messages:21
 msgid "Background color to add in this case"
-msgstr ""
+msgstr "Farba pozadia pridaná v tomto prípade"
 
 #: ../Messaging-Menu/data/messages:99
 msgid ""
@@ -6018,15 +6032,15 @@ msgstr "veľký"
 
 #: ../Recent-Events/data/messages:93
 msgid "Shortkey to show/hide the search dialog"
-msgstr ""
+msgstr "Klávesová skratka na zobrazenie/skrytie vyhľadávania"
 
 #: ../Recent-Events/data/messages:95
 msgid "Max number of results to show"
-msgstr ""
+msgstr "Maximálny počet zobrazených výsledkov"
 
 #: ../Remote-Control/data/messages:3
 msgid "Shortkey to trigger the applet:"
-msgstr ""
+msgstr "Klávesová skratka na spustenie apletu:"
 
 #: ../Remote-Control/data/messages:5
 msgid "Dock to control initially"
@@ -6243,15 +6257,15 @@ msgstr "Názov súboru obrázku :"
 
 #: ../Status-Notifier/data/messages:105
 msgid "Hide inactive items"
-msgstr ""
+msgstr "Skryť neaktívne položky"
 
 #: ../Status-Notifier/data/messages:107
 msgid "How to display items:"
-msgstr ""
+msgstr "Ako zobraziť položky:"
 
 #: ../Status-Notifier/data/messages:109
 msgid "Compact"
-msgstr ""
+msgstr "Kompaktný"
 
 #: ../Status-Notifier/data/messages:111
 msgid "Sub-dock"
@@ -6259,7 +6273,7 @@ msgstr ""
 
 #: ../Status-Notifier/data/messages:113
 msgid "Allow the icon to automatically resize itself?"
-msgstr ""
+msgstr "Umožniť automatickú zmenu veľkosti ikony?"
 
 #: ../Status-Notifier/data/messages:115
 msgid "Number of lines to pack items in:"
@@ -6299,11 +6313,11 @@ msgstr "Zobraziť teplotu grafickej karty ?"
 
 #: ../System-Monitor/data/messages:155
 msgid "Show CPU temperature?"
-msgstr ""
+msgstr "Zobraziť teplotu procesora?"
 
 #: ../System-Monitor/data/messages:157
 msgid "Show fan speed?"
-msgstr ""
+msgstr "Zobraziť rýchlosť ventilátora?"
 
 #: ../System-Monitor/data/messages:159
 msgid "Show free memory instead of used memory?"
@@ -6323,11 +6337,11 @@ msgstr "Je pohyb plynulý ?"
 
 #: ../System-Monitor/data/messages:177
 msgid "Alerts"
-msgstr ""
+msgstr "Upozornenia"
 
 #: ../System-Monitor/data/messages:179
 msgid "Show alerts?"
-msgstr ""
+msgstr "Zobraziť upozornenia?"
 
 #: ../System-Monitor/data/messages:181
 msgid "Play a sound when displaying warning?"
@@ -6339,7 +6353,7 @@ msgstr "Cesta k zvuku :"
 
 #: ../System-Monitor/data/messages:185
 msgid "System-Monitor"
-msgstr ""
+msgstr "Sledovanie systému"
 
 #: ../System-Monitor/data/messages:191
 msgid ""
@@ -6447,7 +6461,7 @@ msgstr "Vysoká obnovovacia frekvencia ?"
 
 #: ../Xgamma/data/messages:7
 msgid "Leave empty to display the current luminosity."
-msgstr ""
+msgstr "Ponechajte prázdne pre zobrazenie s aktuálnym jasom."
 
 #: ../Xgamma/data/messages:95 ../alsaMixer/data/messages:105
 msgid "Variation for 1 mouse scroll, in %:"
@@ -6463,11 +6477,11 @@ msgstr "Svetelnosť sa automaticky použije pri štarte:"
 
 #: ../Xgamma/data/messages:101
 msgid "Shortkey to increase the brightness:"
-msgstr ""
+msgstr "Klávesová skratka pre zvýšenie jasu:"
 
 #: ../Xgamma/data/messages:103
 msgid "Shortkey to decrease the brightness:"
-msgstr ""
+msgstr "Klávesová skratka pre zníženie jasu:"
 
 #: ../alsaMixer/data/messages:7 ../alsaMixer/data/messages:155
 msgid "Leave empty to use the default sound card."
@@ -6633,7 +6647,7 @@ msgstr "Číselný pohľad"
 
 #: ../clock/data/messages:151
 msgid "Use a custom font"
-msgstr ""
+msgstr "Použiť vlastné písmo"
 
 #: ../clock/data/messages:153 ../keyboard-indicator/data/messages:111
 msgid "Font:"
@@ -6641,19 +6655,19 @@ msgstr "Písmo :"
 
 #: ../clock/data/messages:157
 msgid "Layout of the text:"
-msgstr ""
+msgstr "Rozloženie textu:"
 
 #: ../clock/data/messages:159 ../switcher/data/messages:95
 msgid "Automatic"
-msgstr ""
+msgstr "Automaticky"
 
 #: ../clock/data/messages:161
 msgid "On 1 line"
-msgstr ""
+msgstr "Na 1 riadok"
 
 #: ../clock/data/messages:163
 msgid "On 2 lines"
-msgstr ""
+msgstr "Na 2 riadok"
 
 #: ../clock/data/messages:165
 msgid "Ratio to apply on text :"
@@ -6762,15 +6776,15 @@ msgstr ""
 
 #: ../dnd2share/data/messages:113
 msgid "Tiny-URL"
-msgstr ""
+msgstr "Tiny-URL"
 
 #: ../dnd2share/data/messages:115
 msgid "Shorter-Link"
-msgstr ""
+msgstr "Skrátený odkaz"
 
 #: ../dnd2share/data/messages:117
 msgid "Use the tiny URL by default?"
-msgstr ""
+msgstr "Použiť tiny URL ako predvolenú?"
 
 #: ../dnd2share/data/messages:119
 msgid "in KB/s - 0 means unlimited"
@@ -6799,19 +6813,19 @@ msgstr "Vlastná"
 
 #: ../dnd2share/data/messages:131
 msgid "Pastebin.com"
-msgstr ""
+msgstr "Pastebin.com"
 
 #: ../dnd2share/data/messages:133
 msgid "Paste-ubuntu.com"
-msgstr ""
+msgstr "Paste-ubuntu.com"
 
 #: ../dnd2share/data/messages:135
 msgid "Pastebin.mozilla.org"
-msgstr ""
+msgstr "Pastebin.mozilla.org"
 
 #: ../dnd2share/data/messages:137
 msgid "Codepad.org"
-msgstr ""
+msgstr "Codepad.org"
 
 #: ../dnd2share/data/messages:139
 msgid "Preferred site for images hosting :"
@@ -6851,7 +6865,7 @@ msgstr "DropBox"
 
 #: ../dnd2share/data/messages:163
 msgid "UbuntuOne"
-msgstr ""
+msgstr "UbuntuOne"
 
 #: ../dnd2share/data/messages:165 ../dnd2share/data/messages:169
 #: ../dnd2share/data/messages:173 ../dnd2share/data/messages:177
@@ -6862,19 +6876,19 @@ msgstr ""
 
 #: ../dnd2share/data/messages:167
 msgid "Custom script for text upload :"
-msgstr ""
+msgstr "Vlastný skript pre odoslanie textu:"
 
 #: ../dnd2share/data/messages:171
 msgid "Custom script for image upload :"
-msgstr ""
+msgstr "Vlastný skript pre odoslanie obrázku:"
 
 #: ../dnd2share/data/messages:175
 msgid "Custom script for video upload :"
-msgstr ""
+msgstr "Vlastný skript pre odoslanie videa:"
 
 #: ../dnd2share/data/messages:179
 msgid "Custom script for file upload :"
-msgstr ""
+msgstr "Vlastný skript pre odoslanie súboru:"
 
 #: ../dnd2share/data/messages:181
 msgid "Leave empty to upload files into '~/Dropbox/Public'."
@@ -6918,7 +6932,7 @@ msgstr "Amplitúda krivky."
 
 #: ../dock-rendering/data/messages:19
 msgid "Physically separate groups of icons"
-msgstr ""
+msgstr "Fyzicky oddelené skupiny ikôn"
 
 #: ../dock-rendering/data/messages:21
 msgid "At 1, the icons will have the same size as in other views."
@@ -6930,11 +6944,11 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:25
 msgid "smaller icons"
-msgstr ""
+msgstr "menšie ikony"
 
 #: ../dock-rendering/data/messages:27
 msgid "normal icons"
-msgstr ""
+msgstr "normálne ikony"
 
 #: ../dock-rendering/data/messages:31
 msgid "Grid"
@@ -6954,15 +6968,15 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:39
 msgid "Maximum size of the dock:"
-msgstr ""
+msgstr "Maximálna veľkosť panela:"
 
 #: ../dock-rendering/data/messages:41
 msgid "Small"
-msgstr ""
+msgstr "Malý"
 
 #: ../dock-rendering/data/messages:43
 msgid "Full screen"
-msgstr ""
+msgstr "Na celú obrazovku"
 
 #: ../dock-rendering/data/messages:45
 msgid "Zoom when mouse hovers an icon:"
@@ -7022,15 +7036,15 @@ msgstr "Výška šípky :"
 
 #: ../dock-rendering/data/messages:79
 msgid "Scroll bar"
-msgstr ""
+msgstr "Posuvník"
 
 #: ../dock-rendering/data/messages:81
 msgid "Color of the scroll bar's outline:"
-msgstr ""
+msgstr "Farba obrysu posuvníka:"
 
 #: ../dock-rendering/data/messages:83
 msgid "Color of the scroll bar's inside:"
-msgstr ""
+msgstr "Farba vo vnútri posuvníka:"
 
 #: ../dock-rendering/data/messages:85
 msgid "Color of the scroll grip:"
@@ -7189,7 +7203,7 @@ msgstr "Zobraziť nasledujúcu rýchlu informáciu :"
 
 #: ../dustbin/data/messages:103
 msgid "Number of files"
-msgstr ""
+msgstr "Počet súborov"
 
 #: ../dustbin/data/messages:105
 msgid "Total number of files"
@@ -7387,23 +7401,23 @@ msgstr "menší"
 
 #: ../logout/data/messages:93
 msgid "Action"
-msgstr ""
+msgstr "Operácia"
 
 #: ../logout/data/messages:103
 msgid "Shortkey to lock the screen"
-msgstr ""
+msgstr "Klávesová skratka na uzamknutie obrazovky"
 
 #: ../logout/data/messages:105
 msgid "Shortkey to show the menu"
-msgstr ""
+msgstr "Klávessová skratka pre zobrazenie ponuky"
 
 #: ../logout/data/messages:107
 msgid "Demand confirmation before closing"
-msgstr ""
+msgstr "Vyžiadať potvrdenie pred ukončením"
 
 #: ../logout/data/messages:109
 msgid "Commands"
-msgstr ""
+msgstr "Príkazy"
 
 #: ../logout/data/messages:113
 msgid "User-defined command to execute for logout:"
@@ -7430,16 +7444,17 @@ msgstr "Personalizácia"
 
 #: ../logout/data/messages:123
 msgid "Icon image name to use when the system has to be rebooted:"
-msgstr ""
+msgstr "Názov obrázku ikony použitej pri reštarte systému:"
 
 #: ../logout/data/messages:125
 msgid ""
 "Display this image as an emblem or replace applet's icon with this image?"
 msgstr ""
+"Zobraziť tento obrázok ako znak, alebo nahradiť ikonu apletu týmto obrázkom?"
 
 #: ../logout/data/messages:127
 msgid "Emblem"
-msgstr ""
+msgstr "Znak"
 
 #: ../mail/data/messages:99
 msgid ""
@@ -7486,11 +7501,11 @@ msgstr "Názov zobrazenia používaných pre sub-dock :"
 
 #: ../mail/data/messages:123
 msgid "Action on new mail"
-msgstr ""
+msgstr "Akcia pri novej pošte"
 
 #: ../mail/data/messages:125
 msgid "Play sound when a new e-mail is received?"
-msgstr ""
+msgstr "Prehrať zvuk pri obdržaní novej správy?"
 
 #: ../mail/data/messages:129
 msgid "Name of the file for the \"new mail\" sound :"
@@ -7514,7 +7529,7 @@ msgstr "Čas dĺžky dialógu :"
 
 #: ../mail/data/messages:141
 msgid "Animation when new message arrives:"
-msgstr ""
+msgstr "Animácia pri novej správe:"
 
 #: ../mail/data/messages:145
 msgid "Mail application"
@@ -7522,7 +7537,7 @@ msgstr "Poštová aplikácia"
 
 #: ../mail/data/messages:147
 msgid "for instance \"thunderbird\" or \"firefox mail.google.com\""
-msgstr ""
+msgstr "napr \"Thunderbird\" alebo \"firefox mail.google.com\""
 
 #: ../mail/data/messages:149
 msgid "Preferred mail application to launch on left-click :"
@@ -7530,7 +7545,7 @@ msgstr "Preferovanú mailovú aplikáciu spustíte na ľavým-kliknutím :"
 
 #: ../mail/data/messages:151
 msgid "Add a mail account (you've to launch the applet)"
-msgstr ""
+msgstr "Pridať poštový účet (môžete si spustiť applet)"
 
 #: ../mail/data/messages:153
 msgid "The new account will be created with the specified type and name."
@@ -7588,7 +7603,7 @@ msgstr "Exaile 0.3"
 
 #: ../musicPlayer/data/messages:117
 msgid "GMusicBrowser"
-msgstr ""
+msgstr "GMusicBrowser"
 
 #: ../musicPlayer/data/messages:119
 msgid "Guayadeque"
@@ -7650,11 +7665,11 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:145
 msgid "Next/previous song"
-msgstr ""
+msgstr "Daľšia/Predchádzajúca skladba"
 
 #: ../musicPlayer/data/messages:147
 msgid "Control the volume"
-msgstr ""
+msgstr "Ovládanie hlasitosti"
 
 #: ../musicPlayer/data/messages:149
 msgid "Action on music change"
@@ -7752,7 +7767,7 @@ msgstr "Zobrazenie hodnotenia :"
 
 #: ../powermanager/data/messages:7
 msgid "Leave empty to display the current status information."
-msgstr ""
+msgstr "Ponechajte prázdne pre zobrazenie informácie o aktuálnom stave."
 
 #: ../powermanager/data/messages:141
 msgid "'On-battery' icon filename:"
@@ -7776,7 +7791,7 @@ msgstr "nabíjanie"
 
 #: ../powermanager/data/messages:169
 msgid "Timelength"
-msgstr ""
+msgstr "časová dĺžka"
 
 #: ../powermanager/data/messages:173
 msgid "Emblem icon's filename when on charge:"
@@ -7784,7 +7799,7 @@ msgstr ""
 
 #: ../powermanager/data/messages:175
 msgid "Hide the icon when not on battery?"
-msgstr ""
+msgstr "Skryť ikonu, ak nie je používaná batéria?"
 
 #: ../powermanager/data/messages:177
 msgid "Notification"
@@ -8027,7 +8042,7 @@ msgstr "Použiť iné vlákno na načítanie obrázkov ?"
 
 #: ../slider/data/messages:113
 msgid "Read all images properties on startup?"
-msgstr ""
+msgstr "Načítať všetky vlastnosti obrázkov pri spustení?"
 
 #: ../slider/data/messages:119 ../slider/data/messages:125
 msgid "play/pause"
@@ -8039,7 +8054,7 @@ msgstr "otvoriť obrázok"
 
 #: ../slider/data/messages:129
 msgid "open parent folder"
-msgstr ""
+msgstr "Otvoriť nadradený priečinok"
 
 #: ../slider/data/messages:133
 msgid "Sliding delay:"
@@ -8099,7 +8114,7 @@ msgstr "pomaly"
 
 #: ../slider/data/messages:165
 msgid "Add a background to the image?"
-msgstr ""
+msgstr "Pridať pozadie do obrázku?"
 
 #: ../slider/data/messages:173
 msgid ""
@@ -8113,7 +8128,7 @@ msgstr "Vyberte farbu pozadia :"
 
 #: ../slider/data/messages:177
 msgid "Frame width:"
-msgstr ""
+msgstr "Šírka rámčeka:"
 
 #: ../slider/data/messages:179
 msgid "Gives better image rendering."
@@ -8157,7 +8172,7 @@ msgstr "Nastavenia"
 
 #: ../stack/data/messages:117
 msgid "Separate the items by type (file/web page/text)"
-msgstr ""
+msgstr "Oddeliť položky podľa typu (súbory/webové stránky/text)"
 
 #: ../stack/data/messages:119
 msgid ""
@@ -8209,7 +8224,7 @@ msgstr ""
 
 #: ../switcher/data/messages:97
 msgid "On a single line"
-msgstr ""
+msgstr "Na jednom riadku"
 
 #: ../switcher/data/messages:99
 msgid "Map wallpaper to icons?"

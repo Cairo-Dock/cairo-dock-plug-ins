@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
 "POT-Creation-Date: 2012-04-12 00:33+0000\n"
-"PO-Revision-Date: 2012-04-12 03:37+0000\n"
-"Last-Translator: Mattia Tavernini <maathias@interfree.it>\n"
+"PO-Revision-Date: 2012-06-05 21:20+0000\n"
+"Last-Translator: Wonderfulheart <Unknown>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-13 05:33+0000\n"
-"X-Generator: Launchpad (build 15070)\n"
+"X-Launchpad-Export-Date: 2012-06-06 04:54+0000\n"
+"X-Generator: Launchpad (build 15353)\n"
 "Language: it\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -191,19 +191,19 @@ msgstr "Cronologia degli appunti"
 
 #: ../Clipper/src/applet-init.c:72
 msgid "Pop-up the items menu"
-msgstr ""
+msgstr "Voci del menu a comparsa"
 
 #: ../Clipper/src/applet-notifications.c:33
 msgid "The clipboard history is empty."
-msgstr ""
+msgstr "Lo storico della clipboard è vuoto."
 
 #: ../Clipper/src/applet-notifications.c:89
 msgid "Clear clipboard History"
-msgstr ""
+msgstr "Cancella lo storico della clipboard"
 
 #: ../Clipper/src/applet-notifications.c:91
 msgid "Paste all copied items"
-msgstr ""
+msgstr "Incolla tutti gli elementi copiati"
 
 #: ../Clipper/src/applet-notifications.c:99
 msgid ""
@@ -225,7 +225,7 @@ msgstr "Nessun compositor è disponibile."
 #: ../Composite-Manager/src/applet-composite-manager.c:444
 #: ../Composite-Manager/src/applet-composite-manager.c:459
 msgid "No fallback is available."
-msgstr "Nesun fallback è disponibile."
+msgstr "Non è disponibile nessun fallback."
 
 #: ../Composite-Manager/src/applet-composite-manager.c:499
 #, c-format
@@ -265,7 +265,7 @@ msgstr ""
 
 #: ../Composite-Manager/src/applet-init.c:52
 msgid "Toggle the composite ON/OFF"
-msgstr ""
+msgstr "Commuta la composizione ON/OFF"
 
 #: ../Composite-Manager/src/applet-notifications.c:43
 msgid "Toggle composite?"
@@ -549,7 +549,7 @@ msgstr "Cartella vuota o illeggibile."
 
 #: ../Folders/src/applet-notifications.c:116
 msgid "Properties:"
-msgstr ""
+msgstr "Proprietà:"
 
 #: ../Folders/src/applet-notifications.c:136 ../Folders/data/messages:117
 msgid "Size"
@@ -557,31 +557,31 @@ msgstr "Dimensione"
 
 #: ../Folders/src/applet-notifications.c:136
 msgid "bytes"
-msgstr ""
+msgstr "byte"
 
 #: ../Folders/src/applet-notifications.c:150
 msgid "Last Modification"
-msgstr ""
+msgstr "Ultima Modifica"
 
 #: ../Folders/src/applet-notifications.c:159
 msgid "Mime Type"
-msgstr ""
+msgstr "Tipo Mime"
 
 #: ../Folders/src/applet-notifications.c:173
 msgid "User ID"
-msgstr ""
+msgstr "Identificativo dell'Utente"
 
 #: ../Folders/src/applet-notifications.c:173
 msgid "Group ID"
-msgstr ""
+msgstr "Identificativo del Gruppo"
 
 #: ../Folders/src/applet-notifications.c:183
 msgid "Permissions"
-msgstr ""
+msgstr "Permessi"
 
 #: ../Folders/src/applet-notifications.c:183
 msgid "Read"
-msgstr ""
+msgstr "Lettura"
 
 #: ../Folders/src/applet-notifications.c:184
 #: ../Folders/src/applet-notifications.c:185
@@ -613,7 +613,7 @@ msgstr "No"
 
 #: ../Folders/src/applet-notifications.c:184
 msgid "Write"
-msgstr ""
+msgstr "Scrittura"
 
 #: ../Folders/src/applet-notifications.c:185
 #: ../Scooby-Do/src/applet-backend-command.c:95
@@ -744,11 +744,13 @@ msgid ""
 "a shortkey for it, like ALT+F2)\n"
 "You can also set up a shortkey to pop up the menu (like ALT+F1)"
 msgstr ""
-"Visualizza il Menu applicazioni classico ed i File usati recentemente.\n"
-"E' compatibile con ogni XDG menu (Gnome, XFCE, KDE, ...)\n"
-"Clic centrale apre una finestra di dialogo per lanciare ogni comando (puoi "
-"settare scorciatoie da tastiera per farlo, come ALT+F2)\n"
-"Puoi anche settare una scorciatoia per aprire il menù (come LT+F1)"
+"Visualizza il menu delle Applicazioni classico ed i file Recentemente "
+"utilizzati.\n"
+"E' compatibile con ogni menu XDG (Gnome, XFCE, KDE, ...)\n"
+"Clic centrale per aprire una finestra di dialogo per lanciare velocemente "
+"ogni comando (puoi impostare delle scorciatoie da tastiera per farlo, come "
+"ALT+F2)\n"
+"Puoi anche impostare una scorciatoia per aprire il menu (come ALT+F1)"
 
 #: ../GMenu/src/applet-init.c:39
 msgid "Applications Menu"
@@ -756,11 +758,11 @@ msgstr "Menu Applicazioni"
 
 #: ../GMenu/src/applet-init.c:66
 msgid "Show/hide the Applications menu"
-msgstr ""
+msgstr "Mostra/Nascondi il menu delle Applicazioni"
 
 #: ../GMenu/src/applet-init.c:71
 msgid "Show/hide the quick-launch dialog"
-msgstr ""
+msgstr "Mostra/Nascondi il dialogo avvio rapido"
 
 #: ../GMenu/src/applet-menu-callbacks.c:218 ../GMenu/data/messages:121
 msgid "Logout"
@@ -796,7 +798,7 @@ msgstr "Inserisci un comando da lanciare:"
 
 #: ../Global-Menu/src/applet-init.c:30
 msgid "Global Menu"
-msgstr ""
+msgstr "Menu Globale"
 
 #: ../Global-Menu/src/applet-init.c:33
 msgid ""
@@ -806,14 +808,19 @@ msgid ""
 "by default.\n"
 "You can bind a shortkey to this action."
 msgstr ""
+"Questa applet ti permette di controllare la finestra correntemente attiva:\n"
+"  chiudi, minimizza, massimizza e visualizza il menu applicazioni. Per "
+"visualizzare il menu, le applicazioni debbono supportare questa "
+"caratteristica. Essa è predefinita su Ubuntu.\n"
+"Puoi impostare una scorciatoia per questa azione."
 
 #: ../Global-Menu/src/applet-init.c:108 ../Global-Menu/src/applet-init.c:210
 msgid "Show/hide the current application menu"
-msgstr ""
+msgstr "Mostra/Nasconde il menu dell'applicazione corrente"
 
 #: ../Global-Menu/src/applet-notifications.c:52
 msgid "The application didn't send its menu to us."
-msgstr ""
+msgstr "L'applicazione non ci mostrerà il suo menu."
 
 #: ../Impulse/src/applet-impulse.c:170
 msgid ""
@@ -863,16 +870,23 @@ msgid ""
 "It handles Evolution, Pidgin, Empathy, etc\n"
 "It requires the Messaging service, which is available on Ubuntu by default."
 msgstr ""
+"Un menu che ti informa dei nuovi messaggi dalle applicazioni di Posta o "
+"Chat.\n"
+"Gestisce Evolution, Pidgin, Empathy, ecc\n"
+"Richiede il servizio di Messaggistica il quale è disponibile su Ubuntu in "
+"modo predefinito."
 
 #: ../Messaging-Menu/src/applet-init.c:66
 msgid "Show/hide the Messaging menu"
-msgstr ""
+msgstr "Mostra/Nascondi il menu di Messaggistica"
 
 #: ../Messaging-Menu/src/applet-notifications.c:31
 msgid ""
 "The Messaging service did not reply.\n"
 "Please check that it is correctly installed."
 msgstr ""
+"Il servizio di Messaggistica non ha risposto.\n"
+"Per favore controlla che sia correttamente installato."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:69
 msgid "Network connection state changed to inactive."
@@ -1037,7 +1051,7 @@ msgstr "Attiva wireless"
 
 #: ../RSSreader/src/applet-init.c:31
 msgid "RSSreader"
-msgstr "lettore RSS"
+msgstr "Lettore RSS"
 
 #: ../RSSreader/src/applet-init.c:34
 msgid ""
@@ -1203,7 +1217,7 @@ msgstr "Eventi Recenti"
 
 #: ../Recent-Events/src/applet-init.c:58
 msgid "Show/hide the Recent Events"
-msgstr ""
+msgstr "Mostra/Nascondi gli Eventi Recenti"
 
 #: ../Recent-Events/src/applet-notifications.c:74
 #, c-format
@@ -1236,14 +1250,25 @@ msgid ""
 "middle click, and Ctrl+Enter for left click\n"
 "Escape or the same shortkey will cancel."
 msgstr ""
+"Queto plugin ti permette di contrallare la dock dalla tastiera\n"
+"Premi la scorciatoia (predefinita Super + Return), quindi uno fra:\n"
+" - premi il numero dell'icona che vuoi attivare - o usa i tasti freccia per "
+"spostarti nelle dock e nelle sub-dock (Ctrl + Pagina su/giù per passare ad "
+"un'altra dock principale)\n"
+" - o scrivi il nome di un lanciatore e premi Tab per saltare automaticamente "
+"al successivo lanciatore\n"
+"Premi Invio per cliccare sull'icona, Shift+Invio in luogo di Shift+clic, "
+"Alt+Invio in luogo del clic centrale del mouse e Ctrl+Invio in luogo del "
+"clic sinistro\n"
+"Escape o la corrispondente scorciatoia per annullare."
 
 #: ../Remote-Control/src/applet-init.c:42
 msgid "Control from keyboard"
-msgstr ""
+msgstr "Controllo da tastiera"
 
 #: ../Remote-Control/src/applet-init.c:49
 msgid "Enable/disable the keyboard control of the dock"
-msgstr ""
+msgstr "Abilita/Disabilita il controllo da tastiera della dock"
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
@@ -1330,7 +1355,7 @@ msgstr "Amazon"
 
 #: ../Scooby-Do/src/applet-init.c:73
 msgid "Enable/disable the Finder"
-msgstr ""
+msgstr "Abilita/Disabilita la Ricerca"
 
 #: ../Scooby-Do/src/applet-listing.c:514
 msgid "(F1) Match case"
@@ -1559,11 +1584,11 @@ msgstr "Luminosità Schermo"
 
 #: ../Xgamma/src/applet-init.c:64
 msgid "Increase the brightness"
-msgstr ""
+msgstr "Aumenta la luminosità"
 
 #: ../Xgamma/src/applet-init.c:68
 msgid "Decrease the brightness"
-msgstr ""
+msgstr "Diminuisce la luminosità"
 
 #: ../Xgamma/src/applet-notifications.c:87
 msgid "Set up gamma correction"
@@ -1613,7 +1638,7 @@ msgstr "Regola il volume:"
 
 #: ../alsaMixer/src/applet-draw.c:64
 msgid "Volume"
-msgstr ""
+msgstr "Volume"
 
 #: ../alsaMixer/src/applet-init.c:34
 msgid ""
@@ -1625,6 +1650,13 @@ msgid ""
 "mixer.\n"
 "The applet can either use the Ubuntu Sound-menu or the Alsa driver."
 msgstr ""
+"Questa applet ti permette di controllare il volume dei suoni dalla dock.\n"
+"Scorri su/giù sull'icona per alzare/abbassare il volume.\n"
+"Clicca sull'icona per mostrare/nascondere il controllo del volume (puoi "
+"impostare una scorciatoia da tastiera per esso)\n"
+"Clic centrale del mouse per attivare o togliere il suono, doppio clic per "
+"far apparire i canali del mixer.\n"
+"L'applet può usare uno fra il menu del Suono di Ubuntu o il driver Alsa."
 
 #: ../alsaMixer/src/applet-init.c:42
 msgid "Sound Control"
@@ -1632,7 +1664,7 @@ msgstr "Controllo Audio"
 
 #: ../alsaMixer/src/applet-init.c:118
 msgid "Show/hide the Sound menu"
-msgstr ""
+msgstr "Mostra/Nascondi il menu del Suono"
 
 #: ../alsaMixer/src/applet-notifications.c:80
 msgid "Adjust channels"
@@ -2310,7 +2342,7 @@ msgstr ""
 
 #: ../keyboard-indicator/src/applet-init.c:81
 msgid "Switch keyboard language"
-msgstr ""
+msgstr "Cambia la lingua della tastiera"
 
 #: ../keyboard-indicator/src/applet-notifications.c:77
 msgid "Keyboard preferences"
@@ -2325,6 +2357,13 @@ msgid ""
 "<b>Click</b> on the icon to pop the menu up.\n"
 "You can bind a <b>shortcut</b> to it, and also to lock the screen."
 msgstr ""
+"Questa applet ti permette di gestire la sessione corrente. Puoi:\n"
+"spegnere, riavviare, ibernare, sospendere, fare il log out, bloccare lo "
+"schermo, cambiare utente o programmare uno spegnimento automatico.\n"
+"Ti informerà anche se il tuo Sistema necessita di essere riavviato.\n"
+"<b>Clic</b> sull'icona per far comparire il menu.\n"
+"Puoi impostare una <b>scorciatoia</b> per essa, anche per bloccare lo "
+"schermo."
 
 #: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:228
 #: ../logout/data/messages:97
@@ -2333,11 +2372,11 @@ msgstr "Termina la sessione"
 
 #: ../logout/src/applet-init.c:67
 msgid "Lock the screen"
-msgstr ""
+msgstr "Blocca lo schermo"
 
 #: ../logout/src/applet-init.c:71
 msgid "Show the log-out menu"
-msgstr ""
+msgstr "Mostra il menu di log-out"
 
 #: ../logout/src/applet-logout.c:200 ../logout/data/messages:99
 msgid "Shut down"
@@ -2373,7 +2412,7 @@ msgstr "Chiude la tua sessione e ti permette di avviarne una nuova."
 
 #: ../logout/src/applet-logout.c:241
 msgid "Switch user"
-msgstr ""
+msgstr "Cambia utente"
 
 #: ../logout/src/applet-logout.c:262
 msgid "Guest session"
@@ -2398,23 +2437,23 @@ msgstr "Scegli in quanti minuti il tuo PC si spegnerà:"
 #: ../logout/src/applet-logout.c:523
 #, c-format
 msgid "It will automatically shut-down in %ds"
-msgstr ""
+msgstr "Sarà spento automaticamente in %ds"
 
 #: ../logout/src/applet-logout.c:524
 msgid "Shut down the computer?"
-msgstr ""
+msgstr "Spegnere il computer?"
 
 #: ../logout/src/applet-logout.c:584
 msgid "Restart the computer?"
-msgstr ""
+msgstr "Riavviare il computer?"
 
 #: ../logout/src/applet-logout.c:621
 msgid "Close the current session?"
-msgstr ""
+msgstr "Chiudere la sessione corrente?"
 
 #: ../logout/src/applet-notifications.c:103
 msgid "Manage users"
-msgstr ""
+msgstr "Gestisci gli utenti"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Server address:"
@@ -2690,6 +2729,16 @@ msgid ""
 " and jpeg image to use as cover.\n"
 "Note: you may have to install or activate the MPRIS plug-in of the player."
 msgstr ""
+"Questa applet ti permette di controllare alcuni lettori musicali.\n"
+"Scegli dapprima il lettore che vuoi controllare.\n"
+"<b>clic</b> per mostrare/nascondere il lettore o per la pausa,\n"
+"<b>clic centrale del mouse</b> per la pausa o per andare al brano "
+"successivo,\n"
+"<b>Scorri su/giù</b> per cambiare brano o controllare il volume.\n"
+"Puoi trascinare il brano sull'icona per accodarlo alla lista d'esecuzione "
+"(dipende dal Lettore musicale)\n"
+" e puoi usare un'immagine jpeg come copertina.\n"
+"Nota: potresti installare o attivare il plugin MPRIS del lettore."
 
 #: ../musicPlayer/src/applet-notifications.c:83
 msgid ""
@@ -2927,7 +2976,7 @@ msgstr ""
 
 #: ../quick-browser/src/applet-init.c:64
 msgid "Show/hide the folder menu"
-msgstr ""
+msgstr "Mostra/Nascondi il menu della cartella"
 
 #: ../quick-browser/src/applet-menu.c:107
 #: ../quick-browser/src/applet-menu.c:116
@@ -2962,7 +3011,7 @@ msgstr "%s adesso è smontato"
 
 #: ../shortcuts/src/applet-init.c:32
 msgid "shortcuts"
-msgstr "scorciatoie"
+msgstr "Scorciatoie"
 
 #: ../shortcuts/src/applet-init.c:35
 msgid ""
@@ -3116,7 +3165,7 @@ msgstr "Naviga nella cartella Immagini"
 
 #: ../slider/src/applet-notifications.c:270
 msgid "Refresh images list"
-msgstr ""
+msgstr "Aggiorna l'elenco delle immagini"
 
 #: ../stack/src/applet-init.c:31
 msgid "stack"
@@ -3284,7 +3333,7 @@ msgstr "Area di Notifica Obsoleta"
 
 #: ../systray/src/systray-init.c:65
 msgid "Show/hide the systray"
-msgstr ""
+msgstr "Mostra/Nascondi l'area di notifica"
 
 #: ../systray/src/systray-interface.c:70
 msgid ""
@@ -3334,7 +3383,7 @@ msgstr ""
 
 #: ../terminal/src/terminal-init.c:59
 msgid "Show/hide the terminal"
-msgstr ""
+msgstr "Mostra/Nascondi il terminale"
 
 #: ../terminal/src/terminal-menu-functions.c:78
 #: ../terminal/src/terminal-widget.c:420
@@ -5651,62 +5700,66 @@ msgid ""
 " The applet can steal the menu from the windows, in which case it will "
 "display a button to pop up the menu of the current window."
 msgstr ""
+"L'applet può togliere il bordo superiore delle finestre massimizzate, in tal "
+"caso essa visualizzerà i pulsanti di controllo della finestra.\n"
+" L'applet può togliere il menu dalle finestre, in tal caso essa visualizzerà "
+"un pulsante per la comparsa del menu della finestra corrente."
 
 #: ../Global-Menu/data/messages:91
 msgid "Steal window menu"
-msgstr ""
+msgstr "Togliere il menu della finestra"
 
 #: ../Global-Menu/data/messages:93
 msgid "Steal window decoration"
-msgstr ""
+msgstr "Togliere la decorazione della finestra"
 
 #: ../Global-Menu/data/messages:95
 msgid "Steal window menu and border"
-msgstr ""
+msgstr "Togliere il bordo e il menu della finestra"
 
 #: ../Global-Menu/data/messages:97
 msgid "Shortkey to pop up the menu"
-msgstr ""
+msgstr "Scorciatoia per il menu a comparsa"
 
 #: ../Global-Menu/data/messages:99
 msgid "Pop up the menu at mouse position"
-msgstr ""
+msgstr "Comparsa del menu nella posizione del mouse"
 
 #: ../Global-Menu/data/messages:101
 msgid "Compact mode"
-msgstr ""
+msgstr "Modalità compatta"
 
 #: ../Global-Menu/data/messages:103
 msgid "Order of the buttons: "
-msgstr ""
+msgstr "Ordine dei pulsanti: "
 
 #: ../Global-Menu/data/messages:105
 msgid "Auto"
-msgstr ""
+msgstr "Automatico"
 
 #: ../Global-Menu/data/messages:107
 msgid "Close button at the end"
-msgstr ""
+msgstr "Chiudi il pulsante al termine"
 
 #: ../Global-Menu/data/messages:109
 msgid "Close button at first"
-msgstr ""
+msgstr "Chiudi il pulsante all'inizio"
 
 #: ../Global-Menu/data/messages:111
 msgid "Image for the 'minimize' button"
-msgstr ""
+msgstr "Immagine per il pulsante 'minimizza'"
 
 #: ../Global-Menu/data/messages:113
 msgid "Image for the 'maximize' button"
-msgstr ""
+msgstr "Immagine per il pulsante 'massimizza'"
 
 #: ../Global-Menu/data/messages:115
 msgid "Image for the 'restore' button"
-msgstr ""
+msgstr "Immagine per il pulsante 'ripristina'"
 
 #: ../Global-Menu/data/messages:117
 msgid "Image for the 'close' button"
-msgstr ""
+msgstr "Immagine per il pulsante 'chiudi'"
 
 #: ../Impulse/data/messages:93
 msgid "Animation of the icons:"
@@ -5811,7 +5864,7 @@ msgstr "Mostra sempre l'icona, anche quando la dock è nascosta?"
 #: ../slider/data/messages:17 ../weather/data/messages:19
 #: ../wifi/data/messages:17
 msgid "With default background"
-msgstr ""
+msgstr "Con sfondo predefinito"
 
 #: ../Messaging-Menu/data/messages:19 ../Network-Monitor/data/messages:21
 #: ../Status-Notifier/data/messages:23 ../System-Monitor/data/messages:19
@@ -5822,7 +5875,7 @@ msgstr ""
 #: ../slider/data/messages:19 ../weather/data/messages:21
 #: ../wifi/data/messages:19
 msgid "With custom background"
-msgstr ""
+msgstr "Con sfondo personalizzato"
 
 #: ../Messaging-Menu/data/messages:21 ../Network-Monitor/data/messages:23
 #: ../Status-Notifier/data/messages:25 ../System-Monitor/data/messages:21
@@ -6182,7 +6235,7 @@ msgstr "Scorciatoia per avviare l'applet:"
 
 #: ../Remote-Control/data/messages:5
 msgid "Dock to control initially"
-msgstr ""
+msgstr "Dock al controllo iniziale"
 
 #: ../Remote-Control/data/messages:7 ../Scooby-Do/data/messages:23
 msgid "Animation of the current icon :"
@@ -6396,7 +6449,7 @@ msgstr "Percorso dell'immagine:"
 
 #: ../Status-Notifier/data/messages:105
 msgid "Hide inactive items"
-msgstr ""
+msgstr "Nascondi gli elementi inattivi"
 
 #: ../Status-Notifier/data/messages:107
 msgid "How to display items:"
@@ -6617,11 +6670,11 @@ msgstr "Luminosità da applicare automaticamente all'avvio:"
 
 #: ../Xgamma/data/messages:101
 msgid "Shortkey to increase the brightness:"
-msgstr ""
+msgstr "Scorciatoia per aumentare la luminosità:"
 
 #: ../Xgamma/data/messages:103
 msgid "Shortkey to decrease the brightness:"
-msgstr ""
+msgstr "Scorciatoia per diminuire la luminosità:"
 
 #: ../alsaMixer/data/messages:7 ../alsaMixer/data/messages:155
 msgid "Leave empty to use the default sound card."
@@ -6791,7 +6844,7 @@ msgstr "Vista Numerica"
 
 #: ../clock/data/messages:151
 msgid "Use a custom font"
-msgstr ""
+msgstr "Usa un carattere personalizzato"
 
 #: ../clock/data/messages:153 ../keyboard-indicator/data/messages:111
 msgid "Font:"
@@ -7079,7 +7132,7 @@ msgstr "Ampiezza della curva."
 
 #: ../dock-rendering/data/messages:19
 msgid "Physically separate groups of icons"
-msgstr ""
+msgstr "Separa fisicamente i gruppi delle icone"
 
 #: ../dock-rendering/data/messages:21
 msgid "At 1, the icons will have the same size as in other views."
@@ -7560,15 +7613,15 @@ msgstr "Azione"
 
 #: ../logout/data/messages:103
 msgid "Shortkey to lock the screen"
-msgstr ""
+msgstr "Scorciatoia per bloccare lo schermo"
 
 #: ../logout/data/messages:105
 msgid "Shortkey to show the menu"
-msgstr ""
+msgstr "Scorciatoia per mostrare il menu"
 
 #: ../logout/data/messages:107
 msgid "Demand confirmation before closing"
-msgstr ""
+msgstr "Chiedi la conferma prima di chiudere"
 
 #: ../logout/data/messages:109
 msgid "Commands"
@@ -7607,10 +7660,12 @@ msgstr ""
 msgid ""
 "Display this image as an emblem or replace applet's icon with this image?"
 msgstr ""
+"Visualizzare questa immagine come un emblema o sostituire l'icona "
+"dell'applet con questa immagine?"
 
 #: ../logout/data/messages:127
 msgid "Emblem"
-msgstr ""
+msgstr "Emblema"
 
 #: ../mail/data/messages:99
 msgid ""
@@ -7817,15 +7872,15 @@ msgstr "Mostra/nascondi riproduttore al clic, Play/Pausa al clic centrale"
 
 #: ../musicPlayer/data/messages:143
 msgid "Actions on scroll up/down:"
-msgstr ""
+msgstr "Azioni allo scorrimento su/giù:"
 
 #: ../musicPlayer/data/messages:145
 msgid "Next/previous song"
-msgstr ""
+msgstr "Brano successivo/precedente"
 
 #: ../musicPlayer/data/messages:147
 msgid "Control the volume"
-msgstr ""
+msgstr "Controllo del volume"
 
 #: ../musicPlayer/data/messages:149
 msgid "Action on music change"
@@ -8330,7 +8385,7 @@ msgstr "Opzioni"
 
 #: ../stack/data/messages:117
 msgid "Separate the items by type (file/web page/text)"
-msgstr ""
+msgstr "Separa gli elementi per tipo (file/pagina web/testo)"
 
 #: ../stack/data/messages:119
 msgid ""
@@ -8378,11 +8433,11 @@ msgstr "Usare la modalità compatta?"
 
 #: ../switcher/data/messages:93
 msgid "Desktops layout"
-msgstr ""
+msgstr "Disposizione delle Scrivanie"
 
 #: ../switcher/data/messages:97
 msgid "On a single line"
-msgstr ""
+msgstr "Su una riga singola"
 
 #: ../switcher/data/messages:99
 msgid "Map wallpaper to icons?"
