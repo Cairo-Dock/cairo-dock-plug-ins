@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
 "POT-Creation-Date: 2012-04-12 00:33+0000\n"
-"PO-Revision-Date: 2012-04-12 03:37+0000\n"
-"Last-Translator: Mario Blättermann <mario.blaettermann@gmail.com>\n"
+"PO-Revision-Date: 2012-05-02 06:06+0000\n"
+"Last-Translator: claudia89 <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-13 05:32+0000\n"
-"X-Generator: Launchpad (build 15070)\n"
+"X-Launchpad-Export-Date: 2012-05-03 05:31+0000\n"
+"X-Generator: Launchpad (build 15185)\n"
 "Language: de\n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -2369,7 +2369,7 @@ msgstr ""
 #: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:228
 #: ../logout/data/messages:97
 msgid "Log out"
-msgstr "Ausloggen"
+msgstr "Abmelden"
 
 #: ../logout/src/applet-init.c:67
 msgid "Lock the screen"

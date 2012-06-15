@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
 "POT-Creation-Date: 2012-04-12 00:33+0000\n"
-"PO-Revision-Date: 2012-04-14 08:21+0000\n"
+"PO-Revision-Date: 2012-06-03 20:29+0000\n"
 "Last-Translator: rob <linuxned@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-14 14:49+0000\n"
-"X-Generator: Launchpad (build 15070)\n"
+"X-Launchpad-Export-Date: 2012-06-04 04:42+0000\n"
+"X-Generator: Launchpad (build 15353)\n"
 "Language: \n"
 
 #: ../Animated-icons/src/applet-init.c:32
@@ -531,7 +531,7 @@ msgid ""
 "Middle-click on the main icon opens the folder.\n"
 msgstr ""
 "Dit applet importeert mappen in het dock\n"
-"U kunt dit applet zo vaak openen als u wilt,, elk met een aparte map.\n"
+"U kunt dit applet zo vaak openen als u wilt, elk met een aparte map.\n"
 "Om een map toe te voegen aan uw dock:\n"
 " - activeert u dit applet, opent zijn configuratiepaneel en selecteert een "
 "map\n"
@@ -766,7 +766,7 @@ msgstr "Snelstartdialoog tonen/verbergen"
 
 #: ../GMenu/src/applet-menu-callbacks.c:218 ../GMenu/data/messages:121
 msgid "Logout"
-msgstr "Uitloggen"
+msgstr "Afmelden"
 
 #: ../GMenu/src/applet-menu-callbacks.c:221 ../GMenu/data/messages:123
 msgid "Shutdown"
@@ -2360,7 +2360,7 @@ msgstr ""
 "Met dit applet kunt u  de huidige sessie beheren. Het biedt de volgende "
 "opties:\n"
 "uitschakelen, herstarten, in slaapstand zetten, in pauzestand zetten, "
-"uitloggen, scherm afgrendelen, naar een andere gebruiker wisselen of "
+"afmelden, scherm afgrendelen, naar een andere gebruiker wisselen of "
 "automatisch uitschakelen.\n"
 "Het zal u ook waarschuwen wanneer uw systeem herstart dient te worden.\n"
 "<b>Klik</b> op het pictogram om het menu te tonen.\n"
@@ -2369,7 +2369,7 @@ msgstr ""
 #: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:228
 #: ../logout/data/messages:97
 msgid "Log out"
-msgstr "Uitloggen"
+msgstr "Afmelden"
 
 #: ../logout/src/applet-init.c:67
 msgid "Lock the screen"
@@ -2409,7 +2409,7 @@ msgstr "Uw computer zal nog een klein beetje stroom gebruiken."
 
 #: ../logout/src/applet-logout.c:230
 msgid "Close your session and allow to open a new one."
-msgstr "Sluit uw sessie en sta toe dat er een nieuwe geopend wordt."
+msgstr "Sluit uw sessie en open een nieuwe."
 
 #: ../logout/src/applet-logout.c:241
 msgid "Switch user"
@@ -2433,7 +2433,7 @@ msgstr "Uw computer zal afsluiten na 1 minuut."
 
 #: ../logout/src/applet-logout.c:349
 msgid "Choose in how many minutes your PC will stop:"
-msgstr "Selecteer aantal minuten waarna uw PC zal afsluiten :"
+msgstr "Stel aantal minuten in waarna uw PC afgesloten zal worden:"
 
 #: ../logout/src/applet-logout.c:523
 #, c-format
@@ -2463,7 +2463,7 @@ msgstr "Serveradres:"
 #: ../mail/src/cd-mail-applet-accounts.c:39
 #: ../mail/src/cd-mail-applet-accounts.c:44
 msgid "myLogin"
-msgstr "mijnLogin"
+msgstr "Aanmelden"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "myHost"
@@ -5169,11 +5169,11 @@ msgstr "Stijl"
 
 #: ../Composite-Manager/data/messages:93
 msgid "Image when composite is active:"
-msgstr "Afbeelding wanneer composite actief is:"
+msgstr "Afbeelding wanneer composite ingeschakeld is:"
 
 #: ../Composite-Manager/data/messages:97
 msgid "Image when composite is inactive:"
-msgstr "Afbeelding wanneer composite inactief is:"
+msgstr "Afbeelding wanneer composite uitgeschakeld is:"
 
 #: ../Composite-Manager/data/messages:99 ../Global-Menu/data/messages:89
 #: ../RSSreader/data/messages:105 ../Status-Notifier/data/messages:117
@@ -5678,7 +5678,7 @@ msgstr "Sessiebeheerknoppen"
 
 #: ../GMenu/data/messages:117
 msgid "Show Logout and/or Shutdown : "
-msgstr "Uitloggen en/of Uitschakelen tonen : "
+msgstr "Afmelden en/of Uitschakelen tonen : "
 
 #: ../Global-Menu/data/messages:87
 msgid ""
@@ -7619,7 +7619,7 @@ msgstr "Opdrachten"
 
 #: ../logout/data/messages:113
 msgid "User-defined command to execute for logout:"
-msgstr "Door gebruiker bepaalde opdracht om uit te loggen :"
+msgstr "Door gebruiker bepaalde opdracht voor afmelden :"
 
 #: ../logout/data/messages:115
 msgid ""
@@ -7627,14 +7627,14 @@ msgid ""
 "default command, which depends on your distribution. In some cases the "
 "command to shutdown is the same as the one to log out."
 msgstr ""
-"Dit zal beschikbaar zijn bij middelklik. Laat dit leeg om de "
-"standaardopdracht uit te voeren, die sterk afhangt van uw distributie. Soms "
-"is de opdracht om uit te loggen hetzelfde als die om de computer af te "
-"sluiten."
+"Dit zal beschikbaar zijn bij het middelklikken. Laat dit leeg om de "
+"standaardopdracht uit te voeren, die afhankelijk is van uw distributie. Soms "
+"is de opdracht voor het afmelden hetzelfde als die om de computer uit te "
+"schakelen."
 
 #: ../logout/data/messages:117
 msgid "User-defined command to execute for shutdown:"
-msgstr "Door gebruiker bepaalde opdracht om de computer af te sluiten :"
+msgstr "Door gebruiker bepaalde opdracht om de computer uit te schakelen :"
 
 #: ../logout/data/messages:119 ../musicPlayer/data/messages:185
 #: ../tomboy/data/messages:9
