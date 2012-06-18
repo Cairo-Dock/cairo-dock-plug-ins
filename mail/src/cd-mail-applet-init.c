@@ -216,6 +216,7 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_MANAGE_APPLICATION (myConfig.cMailClass ? myConfig.cMailClass : myConfig.cMailApplication);*/
 	
 	//\_______________ On initialise tous les comptes et on lance un timer pour chacun.
+	myData.iPrevNbUnreadMails = G_MAXUINT;
 	cd_mail_init_accounts(myApplet);
 	
 	//\_______________ On s'abonne aux notifications.

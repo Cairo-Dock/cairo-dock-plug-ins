@@ -19,8 +19,6 @@
 
 #include <string.h>
 #include <math.h>
-#include <cairo-dock.h>
-#include <libetpan/libetpan.h>
 
 #include "cd-mail-applet-struct.h"
 #include "cd-mail-applet-accounts.h"
@@ -73,7 +71,10 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 	{
 		cd_debug ("mail : %d/%d/%d\n", result_messages, result_recent, result_unseen);
 		pMailAccount->iPrevNbUnseenMails = pMailAccount->iNbUnseenMails;
-		if( pMailAccount->iNbUnseenMails != (guint)result_unseen )  // nombre de messages non lus a change, on va supposer que cela provient soit de leur lecture, soit de leur arrivee, en excluant le cas ou arrivee = lecture, qui laisserait inchange le nombre de mails non lus.
+		CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
+		if (! myConfig.bShowMessageContent) // only if we want to show the message content...
+			pMailAccount->iNbUnseenMails = (guint)result_unseen;
+		else if ( pMailAccount->iNbUnseenMails != (guint)result_unseen )  // nombre de messages non lus a change, on va supposer que cela provient soit de leur lecture, soit de leur arrivee, en excluant le cas ou arrivee = lecture, qui laisserait inchange le nombre de mails non lus.
 		{
 			pMailAccount->iNbUnseenMails = (guint)result_unseen;
 			
@@ -142,6 +143,7 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 						if( (pFlags->fl_flags & MAIL_FLAG_NEW) == 0 &&
 							(pFlags->fl_flags & MAIL_FLAG_SEEN) != 0 )  // old unseen message.
 						{
+							cd_debug ("Not Fetching message number %d... (flag)", i);
 							continue;
 						}
 					}
@@ -320,10 +322,12 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 		}
 	}
 	cairo_destroy (pIconContext);
-	
-	//\_______________________ On met a jour l'icone principale.
-	if (pUpdatedMailAccount->iPrevNbUnseenMails != pUpdatedMailAccount->iNbUnseenMails &&
-	    !pUpdatedMailAccount->bError)  // des mails en plus ou en moins.
+
+	//\_______________________ We update the main icon
+	if ((pUpdatedMailAccount->iPrevNbUnseenMails != pUpdatedMailAccount->iNbUnseenMails// more or less mail(s)
+	    && !pUpdatedMailAccount->bError)
+	    || myData.iPrevNbUnreadMails == G_MAXUINT) // init => iPrevNbUnreadMails = G_MAXUINT
+	//  || strncmp (myIcon->cQuickInfo, "...", 3) == 0) // we can also check the cQuickInfo
 	{
 		myData.iPrevNbUnreadMails = myData.iNbUnreadMails;
 		myData.iNbUnreadMails += pUpdatedMailAccount->iNbUnseenMails - pUpdatedMailAccount->iPrevNbUnseenMails;

@@ -36,12 +36,12 @@
 	pMailAccount->icon = pIcon;
 
 // Translation Hack:
-const char *strings_to_translate[20] = {N_("Server address:"), N_("myLogin"), N_("myHost"), N_("Username:"), N_("Password:"), N_("The password will be crypted."), N_("Port:"), N_("Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and 995 for POP3S."), N_("Enter 0 to use the default port. Default ports are 143 for IMAP4 and 993 for IMAP4 over SSL."), N_("Use a secure connection (SSL)"), N_("Refresh time:"), N_("In minutes."), N_("Specific mail application"), N_("Leave empty to use the default mail application."), N_("Directory on server:"), N_("Path of mbox file:"), N_("Path to Mail directory:"), N_("Address of feed:"), N_("Remove this account"), N_("Don't forget to enable IMAP (or POP) service from settings of your mail account.")};
+const char *strings_to_translate[20] = {N_("Server address:"), N_("myHost"), N_("Username:"), N_("Password:"), N_("The password will be crypted."), N_("Port:"), N_("Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and 995 for POP3S."), N_("Enter 0 to use the default port. Default ports are 143 for IMAP4 and 993 for IMAP4 over SSL."), N_("Use a secure connection (SSL)"), N_("Refresh time:"), N_("In minutes."), N_("Specific mail application"), N_("Leave empty to use the default mail application."), N_("Directory on server:"), N_("Path of mbox file:"), N_("Path to Mail directory:"), N_("Address of feed:"), N_("Remove this account"), N_("Don't forget to enable IMAP (or POP) service from settings of your mail account.")};
 
 // Default parameters (to not copy these parameters each time)
 void _add_default_create_params( GKeyFile *pKeyFile, const gchar *pMailAccountName )
 {
-	g_key_file_set_string (pKeyFile, pMailAccountName, "username", N_("myLogin"));
+	g_key_file_set_string (pKeyFile, pMailAccountName, "username", pMailAccountName); // most of the time, the name of the account is the username
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "username", "s0 Username:\n{Don't forget to enable IMAP (or POP) service from settings of your mail account.}", NULL);
 
 	g_key_file_set_string (pKeyFile, pMailAccountName, "password", "");
@@ -663,6 +663,7 @@ void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
 	CDMailAccount *pMailAccount;
 	GList *pIconList = NULL;
 	Icon *pIcon;
+	CairoContainer *pContainer;
 	int iNbIcons = 0;
 	int r;
 	gboolean bIsGettingMail = FALSE;
@@ -722,17 +723,19 @@ void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
 		if (myData.pMailAccounts->len == 1)  // 1 seul compte
 		{
 			pIcon = myIcon;
+			pContainer = myContainer;
 		}
 		else
 		{
 			_add_icon (pMailAccount);
+			pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 		}
 		iNbIcons ++;
 		
 		//  if all is OK, then set a timeout for this mail account
 		if (r == MAIL_NO_ERROR)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("...");
+			cairo_dock_set_quick_info (pIcon, pContainer, "..."); // on the current icon
 			pMailAccount->pAccountMailTimer = cairo_dock_new_task (pMailAccount->timeout * 60,
 				(CairoDockGetDataAsyncFunc) cd_mail_get_folder_data,
 				(CairoDockUpdateSyncFunc) cd_mail_update_account_status,
@@ -760,7 +763,7 @@ void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
 	
 	//\_______________ On dessine l'icone principale initialement.
 	CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cNoMailUserImage);
-	if (bIsGettingMail)
+	if (bIsGettingMail && myData.iPrevNbUnreadMails == G_MAXUINT) // only at the init...
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("...");
 }
 

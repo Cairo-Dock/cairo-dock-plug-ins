@@ -305,7 +305,7 @@ GtkWidget *cd_mail_messages_container_new(CDMailAccount *pMailAccount)
 }
 
 CD_APPLET_ON_SCROLL_BEGIN
-	if (myData.pMailAccounts == NULL)
+	if (myData.pMailAccounts == NULL || !myConfig.bShowMessageContent)
 		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 
 	CDMailAccount *pMailAccount = NULL;
@@ -333,7 +333,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 		cd_warning ("mail : couldn't connect to '%s'", pMailAccount->name);
 		pMailAccount->bError = TRUE;
 	}
-	
+	else
 	{
 		if( myData.pMessagesDialog == NULL )
 		{
@@ -347,6 +347,8 @@ CD_APPLET_ON_SCROLL_BEGIN
 					cd_mail_messages_container_new(pMailAccount),
 					NULL, NULL, NULL);
 			}
+			else
+				cd_debug ("Not Displaying messages, pUnseenMessageList empty");
 		}
 		else
 		{

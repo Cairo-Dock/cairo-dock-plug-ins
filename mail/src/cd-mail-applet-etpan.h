@@ -21,7 +21,6 @@
 #ifndef __APPLET_ETPAN__
 #define  __APPLET_ETPAN__
 
-#include <cairo-dock.h>
 #include "cd-mail-applet-struct.h"
 
 
