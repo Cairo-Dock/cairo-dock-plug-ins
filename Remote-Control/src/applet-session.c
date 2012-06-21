@@ -47,7 +47,7 @@ void cd_do_numberize_icons (CairoDock *pDock)
 				number[0] = '1' + n;  // the first icon will take the "1" number.
 			
 			pSurface = cairo_dock_create_surface_from_text (number, &myIconsParam.quickInfoTextDescription, &iWidth, &iHeight);
-			cairo_dock_add_overlay_from_surface (pIcon, pSurface, iWidth, iHeight, CAIRO_OVERLAY_UPPER_RIGHT);  // we could remember the existing overlay to replace it later ...
+			cairo_dock_add_overlay_from_surface (pIcon, pSurface, iWidth, iHeight, CAIRO_OVERLAY_UPPER_RIGHT, myApplet);  // we could remember the existing overlay to replace it later ...
 			n ++;
 		}
 	}
@@ -55,16 +55,14 @@ void cd_do_numberize_icons (CairoDock *pDock)
 
 void cd_do_remove_icons_number (CairoDock *pDock)
 {
-	int n = 0;
 	Icon *pIcon;
 	GList *ic;
-	for (ic = pDock->icons; ic != NULL && n < 10; ic = ic->next)
+	for (ic = pDock->icons; ic != NULL; ic = ic->next)  // scan all the icons, in case a new icon has appeared amongst the first 10 icons during this session.
 	{
 		pIcon = ic->data;
 		if (! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 		{
-			cairo_dock_remove_overlay_at_position (pIcon, CAIRO_OVERLAY_UPPER_RIGHT);
-			n ++;
+			cairo_dock_remove_overlay_at_position (pIcon, CAIRO_OVERLAY_UPPER_RIGHT, myApplet);
 		}
 	}
 }

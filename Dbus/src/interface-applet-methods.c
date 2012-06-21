@@ -129,20 +129,17 @@ static gboolean _applet_set_emblem (dbusApplet *pDbusApplet, const gchar *cImage
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
-	g_return_val_if_fail (pIcon->pIconBuffer != NULL, FALSE);
-	
 	if (cImage == NULL || *cImage == '\0' || strcmp (cImage, "none") == 0)
 	{
-		cairo_dock_remove_overlay_at_position (pIcon, iPosition);
+		cairo_dock_remove_overlay_at_position (pIcon, iPosition < CAIRO_OVERLAY_NB_POSITIONS ? iPosition : iPosition - CAIRO_OVERLAY_NB_POSITIONS, myApplet);  // for ease of use, handle both case similarily.
 	}
 	else
 	{
-		cairo_dock_add_overlay_from_image (pIcon, cImage, iPosition);
+		if (iPosition >= CAIRO_OVERLAY_NB_POSITIONS)  // [N; 2N-1] => print the overlay
+			cairo_dock_print_overlay_on_icon_from_image (pIcon, pContainer, cImage, iPosition - CAIRO_OVERLAY_NB_POSITIONS);
+		else  // [0, N-1] => add it
+			cairo_dock_add_overlay_from_image (pIcon, cImage, iPosition, myApplet);  // use 'myApplet' to identify the overlays set by the Dbus plug-in (since the plug-in can't be deactivated, 'myApplet' is constant).
 	}
-	/**CairoEmblem *pEmblem = cairo_dock_make_emblem (cImage, pIcon);
-	pEmblem->iPosition = iPosition;
-	cairo_dock_draw_emblem_on_icon (pEmblem, pIcon, pContainer);
-	cairo_dock_free_emblem (pEmblem);*/
 	
 	cairo_dock_redraw_icon (pIcon, pContainer);
 	return TRUE;
