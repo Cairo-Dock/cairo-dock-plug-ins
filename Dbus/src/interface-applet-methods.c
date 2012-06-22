@@ -1024,10 +1024,10 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 	{
 		pItem = g_ptr_array_index (pItems, i);
 		
-		// on recupere ses proprietes.
+		// get its properties.
 		const gchar *cLabel = NULL, *cIcon = NULL, *cToolTip = NULL;
 		int iType = 0, iMenuID = -1, id = i, iGroupID = 0;
-		gboolean bState = FALSE;
+		gboolean bState = FALSE, bSensitive = TRUE;
 		gpointer data;
 		
 		v = g_hash_table_lookup (pItem, "type");
@@ -1056,7 +1056,7 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 		else  // si on ne definit pas le groupe, c'est donc le groupe en cours qui est utilise, ou un nouveau groupe si encore aucun n'est en cours.
 			iGroupID = id;  // utilise seulement si le groupe est nouvellement cree, pour l'enregistrer.
 		
-		// on cree l'item suivant son type.
+		// create the item according to its type.
 		switch (iType)
 		{
 			case 0 :  // normal entry
@@ -1096,7 +1096,12 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 				continue;
 		}
 		
-		// on lui rajoute son icone et son tooltip.
+		// set sensitivity
+		v = g_hash_table_lookup (pItem, "sensitive");
+		if (v && G_VALUE_HOLDS_BOOLEAN (v))
+			gtk_widget_set_sensitive (pMenuItem, g_value_get_boolean (v));
+		
+		// set an icon
 		if (iType == 0 || iType == 1)
 		{
 			v = g_hash_table_lookup (pItem, "icon");
@@ -1127,6 +1132,7 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 			}
 		}
 		
+		// set the tooltip
 		v = g_hash_table_lookup (pItem, "tooltip");
 		if (v && G_VALUE_HOLDS_STRING (v))
 		{
@@ -1134,7 +1140,7 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 			gtk_widget_set_tooltip_text (pMenuItem, cToolTip);
 		}
 		
-		// on l'insere dans son menu.
+		// insert in its menu.
 		v = g_hash_table_lookup (pItem, "menu");
 		if (v && G_VALUE_HOLDS_INT (v))
 			iMenuID = g_value_get_int (v);
