@@ -122,22 +122,22 @@ class CairoDock:
 		self.bus.watch_name_owner(BUS_NAME, self.on_name_owner_changed)
 	
 	def on_name_owner_changed(self,connection_name):
-		print "new owner:",connection_name
+		print("new owner:",connection_name)
 		if len(connection_name) == 0:
 			if self.iface != None:
 				self.iface = None
-				print "-> no more connection to "+self.cAppName
+				print("-> no more connection to "+self.cAppName)
 		elif self.iface == None:
 			self._connect()
 	
 	def _connect(self):
 		# get gldi on the bus.
-		print "connect..."
+		print("connect...")
 		try:
 			dbus_object = self.bus.get_object(BUS_NAME, self.cObjectPath)
 		except:
-			print ">>> object '"+self.cObjectPath+"' can't be found on the bus, exit.\nMake sure that Cairo-Dock is running."
+			print(">>> object '"+self.cObjectPath+"' can't be found on the bus, exit.\nMake sure that Cairo-Dock is running.")
 			return
 		self.iface = dbus.Interface(dbus_object, "org.cairodock.CairoDock")  # this object represents gldi.
-		print "-> connected to "+self.cAppName
+		print("-> connected to "+self.cAppName)
 	

@@ -18,6 +18,7 @@
 # Developped as a part of Cairo-Dock, but usable as a stand-alone systray daemon.
 # The code follows the same logic as the KDE watcher, to ensure a complete compatibility.
 
+from __future__ import print_function
 import sys
 import glib
 import gobject
@@ -36,10 +37,10 @@ class SNWatcher(dbus.service.Object):
 		try: 
 			self.bus = dbus.SessionBus()
 			bus_name = dbus.service.BusName (self.bus_name_str, self.bus)
-			# print "registered a watcher:",bus_name
+			print("[Cairo-Dock] Status-Notifier: registered a watcher:",bus_name)
 			dbus.service.Object.__init__(self, bus_name, self.bus_obj_str)
-		except Exception, exception:
-			print 'Could not open dbus. Uncaught exception.'
+		except dbus.DBusException:
+			print('Could not open dbus. Uncaught exception.')
 			return
 		
 		bus_object = self.bus.get_object(dbus.BUS_DAEMON_NAME, dbus.BUS_DAEMON_PATH)
@@ -50,16 +51,16 @@ class SNWatcher(dbus.service.Object):
 		self.loop.run()
 	
 	def on_name_owner_changed(self, service, prev_owner, new_owner):
-		# print "name_owner_changed: %s; %s; %s" % (service, prev_owner, new_owner)
+		# print("name_owner_changed: %s; %s; %s" % (service, prev_owner, new_owner))
 		if (new_owner == '' and not service.startswith(':')):  # a service has disappear from the bus, check if it was an item or a host.
 			# search amongst the items.
 			match = service+'/'
-			# print "  search for ",match
+			# print("  search for ",match)
 			to_be_removed=[]
 			for it in self.items_list:
-				# print "  check for ",it
+				# print("  check for ",it)
 				if (it.startswith(match)):  # it[0:len(match)] == match
-					# print "    match!"
+					# print("    match!")
 					to_be_removed.append(it)
 			for it in to_be_removed:
 				self.items_list.remove (it)
@@ -81,7 +82,7 @@ class SNWatcher(dbus.service.Object):
 		if (self.hosts_list.count (service) == 0):  # if not already listed
 			self.hosts_list.append (service)
 			self.StatusNotifierHostRegistered()
-		# print 'hosts:',self.hosts_list
+		# print('hosts:',self.hosts_list)
 		sys.stdout.flush()
 	
 	@dbus.service.method(dbus_interface = bus_iface_str, in_signature = 's', out_signature = None, sender_keyword='sender')
@@ -106,7 +107,7 @@ class SNWatcher(dbus.service.Object):
 	def Get(self, interface, property):
 		if interface == 'org.kde.StatusNotifierWatcher':
 			if property == 'RegisteredStatusNotifierItems':
-				# print "items: ",self.items_list
+				# print("items: ",self.items_list)
 				if (len (self.items_list) != 0):
 					return self.items_list
 				else:  # too bad! dbus-python can't encode the GValue if 'items_list' is None or [].
@@ -120,22 +121,22 @@ class SNWatcher(dbus.service.Object):
 	
 	@dbus.service.signal(dbus_interface=bus_name_str, signature='s')
 	def StatusNotifierItemRegistered(self, service):
-		# print "%s registered" % (service)
+		# print("%s registered" % (service))
 		sys.stdout.flush()
 	
 	@dbus.service.signal(dbus_interface=bus_name_str, signature='s')
 	def StatusNotifierItemUnregistered(self, service):
-		# print "%s unregistered" % (service)
+		# print("%s unregistered" % (service))
 		sys.stdout.flush()
 	
 	@dbus.service.signal(dbus_interface=bus_name_str, signature=None)
 	def StatusNotifierHostRegistered(self):
-		# print "a host has been registered"
+		# print("a host has been registered")
 		sys.stdout.flush()
 	
 	@dbus.service.signal(dbus_interface=bus_name_str, signature=None)
 	def StatusNotifierHostUnregistered(self):
-		# print "a host has been unregistered"
+		# print("a host has been unregistered")
 		sys.stdout.flush()
 	
 	

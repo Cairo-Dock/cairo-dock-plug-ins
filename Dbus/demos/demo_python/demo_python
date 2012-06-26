@@ -36,6 +36,7 @@
 ####################
 import random
 from CDApplet import CDApplet
+from __future__ import print_function
 
 ####################
 ### Applet class ###
@@ -58,16 +59,16 @@ class Applet(CDApplet):
 	##### applet definition #####
 	
 	def get_config(self,keyfile):
-		print "*** get config"
+		print("*** get config")
 		self.config['cTheme'] 		= keyfile.get('Configuration', 'theme')
 		self.config['iMaxValue'] 	= keyfile.getint('Configuration', 'max value')
 		self.config['yesno'] 		= keyfile.getboolean('Configuration', 'yesno')
 	
 	def end(self):
-		print "*** end of demo_python"
+		print("*** end of demo_python")
 	
 	def begin(self):
-		print "*** begin"
+		print("*** begin")
 		self.icon.ShowDialog("I'm connected to Cairo-Dock !", 4)  # show a dialog with this message for 4 seconds.
 		self.icon.AddDataRenderer("gauge", 1, self.config['cTheme'])  # set a gauge with the theme read in config to display the value of the counter.
 		self.set_counter(0)  # set the initial value of our counter.
@@ -79,7 +80,7 @@ class Applet(CDApplet):
 		self.icon.BindShortkey(["<Control>F9"])  # bind to ctrl+F9
 	
 	def reload(self):
-		print "*** reload"
+		print("*** reload")
 		self.icon.AddDataRenderer("gauge", 1, self.config['cTheme'])
 		self.icon.RenderValues([float(self.count)/self.config['iMaxValue']])
 		self.sub_icons.RemoveSubIcon("any")
@@ -88,11 +89,11 @@ class Applet(CDApplet):
 	##### callbacks #####
 	
 	def on_click(self,iState):
-		print "*** click"
+		print("*** click")
 		self.set_counter(random.randint(0,self.config['iMaxValue']))
 	
 	def on_middle_click(self):
-		print "*** middle click"
+		print("*** middle click")
 		dialog_attributes = {
 			"icon" : "stock_properties",
 			"message" : "Set the value you want",
@@ -105,7 +106,7 @@ class Applet(CDApplet):
 		self.icon.PopupDialog(dialog_attributes, widget_attributes)
 	
 	def on_build_menu(self):
-		print "*** build menu"
+		print("*** build menu")
 		items = [ {
 				"label": "set min value",
 				"icon" : "gtk-zoom-out",
@@ -122,7 +123,7 @@ class Applet(CDApplet):
 		self.icon.AddMenuItems(items)
 		
 	def on_menu_select(self,iNumEntry):
-		print "*** choice",iNumEntry,"has been selected !"
+		print("*** choice",iNumEntry,"has been selected !")
 		if iNumEntry == 1:
 			self.set_counter(0)
 		elif iNumEntry == 2:
@@ -131,7 +132,7 @@ class Applet(CDApplet):
 			self.set_counter(self.config['iMaxValue'])
 	
 	def on_scroll(self,bScrollUp):
-		print "*** scroll !"
+		print("*** scroll !")
 		if bScrollUp:
 			count = min(self.config['iMaxValue'], self.count+1)
 		else:
@@ -139,15 +140,15 @@ class Applet(CDApplet):
 		self.set_counter(count)
 	
 	def on_drop_data(self,cReceivedData):
-		print "*** received",cReceivedData
+		print("*** received",cReceivedData)
 		self.icon.SetLabel(cReceivedData)
 	
 	def on_answer_dialog(self,button, answer):
-		print "*** answer dialog :",button, answer
+		print("*** answer dialog :",button, answer)
 		self.set_counter(int (answer))
 	
 	def on_shortkey(self,key):
-		print "*** shortkey :",key
+		print("*** shortkey :",key)
 	
 	
 ############

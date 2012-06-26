@@ -21,14 +21,18 @@
 ####################
 ### dependancies ###
 ####################
+from __future__ import print_function
 import sys
 import os.path
-import ConfigParser
 import gobject
 import glib
 import gettext
 import dbus
 from dbus.mainloop.glib import DBusGMainLoop
+try:
+	import ConfigParser # python 2
+except:
+	import configparser # python 3
 
 gobject.threads_init()				          # Enabling threading
 dbus.mainloop.glib.threads_init()
@@ -119,7 +123,7 @@ class CDApplet:
 		try:
 			applet_object = bus.get_object("org.cairodock.CairoDock", self.cBusPath)
 		except:
-			print ">>> object '"+self.cBusPath+"' can't be found on the bus, exit.\nMake sure that Cairo-Dock is running"
+			print(">>> object '"+self.cBusPath+"' can't be found on the bus, exit.\nMake sure that Cairo-Dock is running")
 			sys.exit(2)
 		self.icon = dbus.Interface(applet_object, "org.cairodock.CairoDock.applet")  # this object represents our icon inside the dock or a desklet.
 		sub_icons_object = bus.get_object("org.cairodock.CairoDock", self.cBusPath+"/sub_icons")
@@ -148,7 +152,7 @@ class CDApplet:
 		if not self._bEnded:  # _bEnded can be true if the applet runs its own main loop, in which case we stay stuck in the 'begin' function until the end of the applet; in this case, we don't want to run a main loop again!
 			self.loop = gobject.MainLoop()
 			self.loop.run()
-		print ">>> applet '"+self.cAppletName+"' terminated."
+		print(">>> applet '"+self.cAppletName+"' terminated.")
 		sys.exit(0)
 	
 	##################################
@@ -274,7 +278,10 @@ class CDApplet:
 		pass
 	
 	def _get_config(self):
-		keyfile = ConfigParser.RawConfigParser()
+		try:
+			keyfile = ConfigParser.RawConfigParser() # python 2
+		except:
+			keyfile = configparser.RawConfigParser() # python 3
 		keyfile.read(self.cConfFile)
 		self.get_config(keyfile)
 	
