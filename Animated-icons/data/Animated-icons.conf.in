@@ -3,17 +3,16 @@
 #[gtk-preferences]
 [Global]
 
-#F-[when hovering over an icon]
-#{Animations are triggered when hovering an icon only in OpenGL mode.}
+#F-&[when hovering over an icon]
 frame_hov =
 
-#V+[Bounce;Rotate;Blink;Pulse;Wobbly;Wave;Spot] Effects used:
+#V+&[Bounce;Rotate;Blink;Pulse;Wobbly;Wave;Spot;Busy] Effects used:
 hover effects = 1
 
 #F-[when clicking on an launcher]
 frame_lau =
 
-#V+[Bounce;Rotate;Blink;Pulse;Wobbly;Wave;Spot] Effects used on launcher:
+#V+[Bounce;Rotate;Blink;Pulse;Wobbly;Wave;Spot;Busy] Effects used on launcher:
 click launchers = 0
 
 #i+[1;5] Number of times the animation will play:
@@ -22,7 +21,7 @@ nb rounds launchers = 1
 #F-[when clicking on an application]
 frame_appli =
 
-#V+[Bounce;Rotate;Blink;Pulse;Wobbly;Wave;Spot] Effects used on applications:
+#V+[Bounce;Rotate;Blink;Pulse;Wobbly;Wave;Spot;Busy] Effects used on applications:
 click applis = 0
 
 #i+[1;5] Number of times the animation will play:
@@ -62,11 +61,10 @@ continue = true
 #F-[Spot;gtk-dialog-info]
 frame_spot =
 
-#S+ Image for the spotlight:
-#{Leave empty to use the default one.}
+#S+[Default] Image for the spotlight:
 spot image =
 
-#S+ Image for the front spotlight:
+#S+Default] Image for the front spotlight:
 #{Leave empty to use the default one.}
 spot front image =
 
@@ -183,3 +181,18 @@ duration = 800
 
 #b+ Repeat while icon is pointed to?
 continue = false
+
+
+#[@animated_iconsdatadir@/busy.png]
+[Busy]
+
+#I+[100;2000] Busy duration:
+#{In ms.}
+duration = 800
+
+#b+ Repeat while icon is pointed to?
+continue = false
+
+#S+[Default] Image :
+#{The image must contain all the frames of the animation, side by side, from left to right.}
+image =

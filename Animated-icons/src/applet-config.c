@@ -50,21 +50,21 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iNbRoundsOnClick[CAIRO_DOCK_APPLI] = CD_CONFIG_GET_INTEGER ("Global", "nb rounds applis");
 	
 	myConfig.iRotationDuration = CD_CONFIG_GET_INTEGER ("Rotation", "duration");
-	myConfig.bContinueRotation = CD_CONFIG_GET_BOOLEAN ("Rotation", "continue");
+	myConfig.bContinue[CD_ANIMATIONS_ROTATE] = CD_CONFIG_GET_BOOLEAN ("Rotation", "continue");
 	myConfig.iMeshType = CD_CONFIG_GET_INTEGER ("Rotation", "mesh");
 	gdouble pMeshColor[4];
 	CD_CONFIG_GET_COLOR ("Rotation", "color", pMeshColor);
 	for (i=0; i<4; i++)
 		myConfig.pMeshColor[i] = pMeshColor[i];
 	
-	//myConfig.bContinueWobbly = CD_CONFIG_GET_BOOLEAN ("Wobbly", "continue");
+	myConfig.bContinue[CD_ANIMATIONS_WOBBLY] = FALSE;
 	myConfig.iInitialStrecth = CD_CONFIG_GET_INTEGER ("Wobbly", "stretch");
 	myConfig.fSpringConstant = CD_CONFIG_GET_DOUBLE ("Wobbly", "spring cst");
 	myConfig.fFriction = CD_CONFIG_GET_DOUBLE ("Wobbly", "friction");
 	myConfig.iNbGridNodes = CD_CONFIG_GET_INTEGER ("Wobbly", "grid nodes");
 	
 	myConfig.iSpotDuration = CD_CONFIG_GET_INTEGER ("Spot", "duration");
-	myConfig.bContinueSpot = CD_CONFIG_GET_BOOLEAN ("Spot", "continue");
+	myConfig.bContinue[CD_ANIMATIONS_SPOT] = CD_CONFIG_GET_BOOLEAN ("Spot", "continue");
 	myConfig.cSpotImage = CD_CONFIG_GET_STRING ("Spot", "spot image");
 	myConfig.cSpotFrontImage = CD_CONFIG_GET_STRING ("Spot", "spot front image");
 	gdouble pColor[4];
@@ -87,22 +87,26 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.fRaysParticleSpeed = CD_CONFIG_GET_DOUBLE ("Spot", "part speed");
 	
 	myConfig.iWaveDuration = CD_CONFIG_GET_INTEGER ("Wave", "duration");
-	myConfig.bContinueWave = CD_CONFIG_GET_BOOLEAN ("Wave", "continue");
+	myConfig.bContinue[CD_ANIMATIONS_WAVE] = CD_CONFIG_GET_BOOLEAN ("Wave", "continue");
 	myConfig.fWaveWidth = CD_CONFIG_GET_DOUBLE ("Wave", "width");
 	myConfig.fWaveAmplitude = CD_CONFIG_GET_DOUBLE ("Wave", "amplitude");
 	
 	myConfig.iPulseDuration = CD_CONFIG_GET_INTEGER ("Pulse", "duration");
-	myConfig.bContinuePulse = CD_CONFIG_GET_BOOLEAN ("Pulse", "continue");
+	myConfig.bContinue[CD_ANIMATIONS_PULSE] = CD_CONFIG_GET_BOOLEAN ("Pulse", "continue");
 	myConfig.fPulseZoom = CD_CONFIG_GET_DOUBLE ("Pulse", "zoom");
 	myConfig.bPulseSameShape = CD_CONFIG_GET_BOOLEAN ("Pulse", "same shape");
 	
 	myConfig.iBounceDuration = CD_CONFIG_GET_INTEGER ("Bounce", "duration");
-	myConfig.bContinueBounce = CD_CONFIG_GET_BOOLEAN ("Bounce", "continue");
+	myConfig.bContinue[CD_ANIMATIONS_BOUNCE] = CD_CONFIG_GET_BOOLEAN ("Bounce", "continue");
 	myConfig.fBounceResize = CD_CONFIG_GET_DOUBLE ("Bounce", "resize");
 	myConfig.fBounceFlatten = CD_CONFIG_GET_DOUBLE ("Bounce", "flatten");
 	
 	myConfig.iBlinkDuration = CD_CONFIG_GET_INTEGER ("Blink", "duration");
-	myConfig.bContinueBlink = CD_CONFIG_GET_BOOLEAN ("Blink", "continue");
+	myConfig.bContinue[CD_ANIMATIONS_BLINK] = CD_CONFIG_GET_BOOLEAN ("Blink", "continue");
+	
+	myConfig.iBusyDuration = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Busy", "duration", 800);
+	myConfig.bContinue[CD_ANIMATIONS_BUSY] = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Busy", "continue", TRUE);
+	myConfig.cBusyImage = CD_CONFIG_GET_STRING ("Busy", "image");
 	
 CD_APPLET_GET_CONFIG_END
 
@@ -111,6 +115,7 @@ CD_APPLET_GET_CONFIG_END
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cSpotImage);
 	g_free (myConfig.cSpotFrontImage);
+	g_free (myConfig.cBusyImage);
 CD_APPLET_RESET_CONFIG_END
 
 

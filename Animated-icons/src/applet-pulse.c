@@ -22,10 +22,11 @@
 #include <math.h>
 
 #include "applet-struct.h"
+#include "applet-notifications.h"
 #include "applet-pulse.h"
 
 
-void cd_animations_init_pulse (CDAnimationData *pData, double dt)
+static void init (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL)
 {
 	if (myConfig.iPulseDuration == 0)
 		return ;
@@ -34,7 +35,7 @@ void cd_animations_init_pulse (CDAnimationData *pData, double dt)
 }
 
 
-gboolean cd_animations_update_pulse (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, gboolean bUseOpenGL)
+static gboolean update (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL, gboolean bRepeat)
 {
 	pData->fPulseAlpha -= pData->fPulseSpeed;
 	if (pData->fPulseAlpha < 0)
@@ -54,44 +55,62 @@ gboolean cd_animations_update_pulse (Icon *pIcon, CairoDock *pDock, CDAnimationD
 	else
 		cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
 	
-	return pData->fPulseAlpha != 0;
+	gboolean bContinue = (pData->fPulseAlpha != 0);
+	if (! bContinue && bRepeat)
+		init (pIcon, pDock, pData, dt, bUseOpenGL);
+	return bContinue;
 }
 
 
-void cd_animations_draw_pulse_icon (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData)
+static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext)
 {
-	if (pData->fPulseAlpha == 0 || pData->fPulseAlpha == 1 || pIcon->iIconTexture == 0)
+	if (pData->fPulseAlpha == 0 || pData->fPulseAlpha == 1)
 		return ;
-	
-	glPushMatrix ();
-	double fScaleFactor = (1 - myConfig.fPulseZoom) * pData->fPulseAlpha + myConfig.fPulseZoom;
-	cairo_dock_set_icon_scale (pIcon, CAIRO_CONTAINER (pDock), fScaleFactor);
-	_cairo_dock_enable_texture ();
-	_cairo_dock_set_blend_over ();
-	_cairo_dock_set_alpha (pData->fPulseAlpha * pIcon->fAlpha);
-	_cairo_dock_apply_texture (pIcon->iIconTexture);
-	_cairo_dock_disable_texture ();
-	glPopMatrix ();
+	if (pData->bHasBeenPulsed)
+		return ;
+	if (pCairoContext)
+	{
+		cairo_save (pCairoContext);
+		double fScaleFactor = (1 - myConfig.fPulseZoom) * pData->fPulseAlpha + myConfig.fPulseZoom;
+		if (pDock->container.bIsHorizontal)
+			cairo_translate (pCairoContext, pIcon->fWidth * pIcon->fScale * (1 - fScaleFactor) / 2, pIcon->fHeight * pIcon->fScale * (1 - fScaleFactor) / 2);
+		else
+			cairo_translate (pCairoContext, pIcon->fHeight * pIcon->fScale * (1 - fScaleFactor) / 2, pIcon->fWidth * pIcon->fScale * (1 - fScaleFactor) / 2);
+		
+		cairo_dock_set_icon_scale_on_context (pCairoContext, pIcon, pDock->container.bIsHorizontal, 1., pDock->container.bDirectionUp);
+		cairo_scale (pCairoContext, fScaleFactor, fScaleFactor);
+		
+		cairo_set_source_surface (pCairoContext, pIcon->pIconBuffer, 0.0, 0.0);
+		cairo_paint_with_alpha (pCairoContext, pData->fPulseAlpha * pIcon->fAlpha);
+		cairo_restore (pCairoContext);
+	}
+	else
+	{
+		glPushMatrix ();
+		double fScaleFactor = (1 - myConfig.fPulseZoom) * pData->fPulseAlpha + myConfig.fPulseZoom;
+		cairo_dock_set_icon_scale (pIcon, CAIRO_CONTAINER (pDock), fScaleFactor);
+		_cairo_dock_enable_texture ();
+		_cairo_dock_set_blend_alpha ();
+		_cairo_dock_set_alpha (pData->fPulseAlpha * pIcon->fAlpha);
+		_cairo_dock_apply_texture (pIcon->iIconTexture);
+		_cairo_dock_disable_texture ();
+		glPopMatrix ();
+	}
 	///pIcon->fAlpha = 1. - .5 * pData->fPulseAlpha;
 }
 
-void cd_animations_draw_pulse_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext)
+
+void cd_animations_register_pulse (void)
 {
-	if (pData->fPulseAlpha == 0 || pData->fPulseAlpha == 1 || pIcon->pIconBuffer == NULL)
-		return ;
-	cairo_save (pCairoContext);
-	double fScaleFactor = (1 - myConfig.fPulseZoom) * pData->fPulseAlpha + myConfig.fPulseZoom;
-	if (pDock->container.bIsHorizontal)
-		cairo_translate (pCairoContext, pIcon->fWidth * pIcon->fScale * (1 - fScaleFactor) / 2, pIcon->fHeight * pIcon->fScale * (1 - fScaleFactor) / 2);
-	else
-		cairo_translate (pCairoContext, pIcon->fHeight * pIcon->fScale * (1 - fScaleFactor) / 2, pIcon->fWidth * pIcon->fScale * (1 - fScaleFactor) / 2);
-	
-	cairo_dock_set_icon_scale_on_context (pCairoContext, pIcon, pDock->container.bIsHorizontal, 1., pDock->container.bDirectionUp);
-	cairo_scale (pCairoContext, fScaleFactor, fScaleFactor);
-	
-	cairo_set_source_surface (pCairoContext, pIcon->pIconBuffer, 0.0, 0.0);
-	cairo_paint_with_alpha (pCairoContext, pData->fPulseAlpha * pIcon->fAlpha);
-	cairo_restore (pCairoContext);
-	
-	///pIcon->fAlpha = 1. - .3 * pData->fPulseAlpha;
+	CDAnimation *pAnimation = &myData.pAnimations[CD_ANIMATIONS_PULSE];
+	pAnimation->cName = "pulse";
+	pAnimation->cDisplayedName = D_("Pulse");
+	pAnimation->id = CD_ANIMATIONS_PULSE;
+	pAnimation->bDrawIcon = FALSE;
+	pAnimation->bDrawReflect = FALSE;
+	pAnimation->init = init;
+	pAnimation->update = update;
+	pAnimation->render = render;
+	pAnimation->post_render = NULL;
+	cd_animations_register_animation (pAnimation);
 }

@@ -22,10 +22,11 @@
 #include <math.h>
 
 #include "applet-struct.h"
+#include "applet-notifications.h"
 #include "applet-bounce.h"
 
 
-void cd_animations_init_bounce (CairoDock *pDock, CDAnimationData *pData, double dt)
+static void init (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL)
 {
 	int m = (1 - myConfig.fBounceFlatten) / .1;
 	pData->iBounceCount = myConfig.iBounceDuration / dt - 1 + m;
@@ -33,11 +34,10 @@ void cd_animations_init_bounce (CairoDock *pDock, CDAnimationData *pData, double
 		pData->fResizeFactor = 1.;
 	if (pData->fFlattenFactor == 0)
 		pData->fFlattenFactor = 1.;
-	pData->bIsBouncing = TRUE;
 }
 
 
-gboolean cd_animations_update_bounce (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL, gboolean bWillContinue)
+static gboolean update (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL, gboolean bRepeat)
 {
 	int m = (1 - myConfig.fBounceFlatten) / .1;  // pas de 0.1
 	int n = myConfig.iBounceDuration / dt + m;  // nbre d'iteration pour 1 aplatissement+montree+descente.
@@ -49,7 +49,7 @@ gboolean cd_animations_update_bounce (Icon *pIcon, CairoDock *pDock, CDAnimation
 	double fPrevDeltaY = pIcon->fDeltaYReflection;
 	if (k > 0)
 	{
-		if (pData->iBounceCount == 1 && ! bWillContinue)
+		if (pData->iBounceCount == 1 && ! bRepeat)
 			pData->fResizeFactor = 1.;
 		else if (pData->fResizeFactor > myConfig.fBounceResize)
 		{
@@ -57,7 +57,7 @@ gboolean cd_animations_update_bounce (Icon *pIcon, CairoDock *pDock, CDAnimation
 		}
 		
 		double fPossibleDeltaY = MIN (50, (pDock->container.bDirectionUp ? pIcon->fDrawY : pDock->container.iHeight - (pIcon->fDrawY + pIcon->fHeight * pIcon->fScale)) + (1-pData->fResizeFactor)*pIcon->fHeight*pIcon->fScale);  // on borne a 50 pixels pour les rendus qui ont des fenetres grandes..
-		if (pData->iBounceCount == 1 && ! bWillContinue)
+		if (pData->iBounceCount == 1 && ! bRepeat)
 		{
 			pData->fElevation = 0.;
 			pIcon->fDeltaYReflection = 0.;
@@ -118,69 +118,74 @@ gboolean cd_animations_update_bounce (Icon *pIcon, CairoDock *pDock, CDAnimation
 	else
 		cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
 	
-	return (pData->iBounceCount > 0);
+	gboolean bContinue = (pData->iBounceCount > 0);
+	if (! bContinue && bRepeat)
+		init (pIcon, pDock, pData, dt, bUseOpenGL);
+	
+	return bContinue;
 }
 
-
-void cd_animations_draw_bounce_icon (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, int sens)
+static inline _translate (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext, int sens)
 {
-	if (sens == 1)
-		pIcon->fHeightFactor *= pData->fFlattenFactor;
-	else
-		pIcon->fHeightFactor /= pData->fFlattenFactor;
-	
-	if (sens == 1)
+	if (pCairoContext)
 	{
-		pIcon->fHeightFactor *= pData->fResizeFactor;
-		pIcon->fWidthFactor *= pData->fResizeFactor;
+		if (pDock->container.bIsHorizontal)
+			cairo_translate (pCairoContext,
+				pIcon->fWidth * pIcon->fScale * (1 - pIcon->fWidthFactor) / 2 * sens,
+				(pDock->container.bDirectionUp ? 1 : 0) * pIcon->fHeight * pIcon->fScale * (1 - pIcon->fHeightFactor) / 2 * sens);
+		else
+			cairo_translate (pCairoContext,
+				(pDock->container.bDirectionUp ? 1 : 0) * pIcon->fHeight * pIcon->fScale * (1 - pIcon->fHeightFactor) / 2 * sens,
+				pIcon->fWidth * pIcon->fScale * (1 - pIcon->fWidthFactor) / 2 * sens);
+
+		if (pDock->container.bIsHorizontal)
+			cairo_translate (pCairoContext,
+				0.,
+				- (pDock->container.bDirectionUp ? 1 : -1) * pData->fElevation * sens);
+		else
+			cairo_translate (pCairoContext,
+				- (pDock->container.bDirectionUp ? 1 : -1) * pData->fElevation * sens,
+				0.);
 	}
 	else
 	{
-		pIcon->fHeightFactor /= pData->fResizeFactor;
-		pIcon->fWidthFactor /= pData->fResizeFactor;
+		if (pDock->container.bIsHorizontal)
+			glTranslatef (0., (pDock->container.bDirectionUp ? 1 : -1) * pData->fElevation * sens, 0.);
+		else
+			glTranslatef ((pDock->container.bDirectionUp ? -1 : 1) * pData->fElevation * sens, 0., 0.);
 	}
-	
-	if (pDock->container.bIsHorizontal)
-		glTranslatef (0., (pDock->container.bDirectionUp ? 1 : -1) * pData->fElevation * sens, 0.);
-	else
-		glTranslatef ((pDock->container.bDirectionUp ? -1 : 1) * pData->fElevation * sens, 0., 0.);
 }
 
-
-void cd_animations_draw_bounce_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext, int sens)
+static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext)
 {
-	if (sens == 1)
-		pIcon->fHeightFactor *= pData->fFlattenFactor;
-	else
-		pIcon->fHeightFactor /= pData->fFlattenFactor;
+	pIcon->fHeightFactor *= pData->fFlattenFactor;
+	pIcon->fHeightFactor *= pData->fResizeFactor;
+	pIcon->fWidthFactor *= pData->fResizeFactor;
 	
-	if (sens == 1)
-	{
-		pIcon->fHeightFactor *= pData->fResizeFactor;
-		pIcon->fWidthFactor *= pData->fResizeFactor;
-	}
-	else
-	{
-		pIcon->fHeightFactor /= pData->fResizeFactor;
-		pIcon->fWidthFactor /= pData->fResizeFactor;
-	}
-	
-	if (pDock->container.bIsHorizontal)
-		cairo_translate (pCairoContext,
-			pIcon->fWidth * pIcon->fScale * (1 - pIcon->fWidthFactor) / 2 * sens,
-			(pDock->container.bDirectionUp ? 1 : 0) * pIcon->fHeight * pIcon->fScale * (1 - pIcon->fHeightFactor) / 2 * sens);
-	else
-		cairo_translate (pCairoContext,
-			(pDock->container.bDirectionUp ? 1 : 0) * pIcon->fHeight * pIcon->fScale * (1 - pIcon->fHeightFactor) / 2 * sens,
-			pIcon->fWidth * pIcon->fScale * (1 - pIcon->fWidthFactor) / 2 * sens);
-	
-	if (pDock->container.bIsHorizontal)
-		cairo_translate (pCairoContext,
-			0.,
-			- (pDock->container.bDirectionUp ? 1 : -1) * pData->fElevation * sens);
-	else
-		cairo_translate (pCairoContext,
-			- (pDock->container.bDirectionUp ? 1 : -1) * pData->fElevation * sens,
-			0.);
+	_translate (pIcon, pDock, pData, pCairoContext, 1);
 }
 
+static void post_render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext)
+{
+	pIcon->fHeightFactor /= pData->fFlattenFactor;
+	pIcon->fHeightFactor /= pData->fResizeFactor;
+	pIcon->fWidthFactor /= pData->fResizeFactor;
+	
+	_translate (pIcon, pDock, pData, pCairoContext, -1);
+}
+
+
+void cd_animations_register_bounce (void)
+{
+	CDAnimation *pAnimation = &myData.pAnimations[CD_ANIMATIONS_BOUNCE];
+	pAnimation->cName = "bounce";
+	pAnimation->cDisplayedName = D_("Bounce");
+	pAnimation->id = CD_ANIMATIONS_BOUNCE;
+	pAnimation->bDrawIcon = FALSE;
+	pAnimation->bDrawReflect = FALSE;
+	pAnimation->init = init;
+	pAnimation->update = update;
+	pAnimation->render = render;
+	pAnimation->post_render = post_render;
+	cd_animations_register_animation (pAnimation);
+}

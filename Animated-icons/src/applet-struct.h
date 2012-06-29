@@ -39,6 +39,7 @@ typedef enum {
 	CD_ANIMATIONS_NB_STRECTH
 	} CDAnimationsStretchType;
 
+// enumerations of the animations, which also corresponds to the list order in the conf file.
 typedef enum {
 	CD_ANIMATIONS_BOUNCE=0,
 	CD_ANIMATIONS_ROTATE,
@@ -47,6 +48,7 @@ typedef enum {
 	CD_ANIMATIONS_WOBBLY,
 	CD_ANIMATIONS_WAVE,
 	CD_ANIMATIONS_SPOT,
+	CD_ANIMATIONS_BUSY,
 	CD_ANIMATIONS_NB_EFFECTS
 	} CDAnimationsEffects;
 
@@ -94,21 +96,17 @@ struct _AppletConfig {
 	gint iBlinkDuration;
 	gboolean bContinueBlink;
 	
+	gint iBusyDuration;
+	gboolean bContinueBusy;
+	gchar *cBusyImage;
+	
 	CDAnimationsEffects iEffectsOnMouseOver[CD_ANIMATIONS_NB_EFFECTS];
 	CDAnimationsEffects iEffectsOnClick[CAIRO_DOCK_NB_GROUPS][CD_ANIMATIONS_NB_EFFECTS];
 	gint iNbRoundsOnClick[CAIRO_DOCK_NB_GROUPS];
+	
+	gboolean bContinue[CD_ANIMATIONS_NB_EFFECTS];
 	} ;
 
-//\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
-struct _AppletData {
-	GLuint iChromeTexture;
-	GLuint iCallList[CD_ANIMATIONS_NB_MESH];
-	GLuint iSpotTexture;
-	GLuint iHaloTexture;
-	GLuint iSpotFrontTexture;
-	GLuint iRaysTexture;
-	gint iAnimationID[CD_ANIMATIONS_NB_EFFECTS];
-	} ;
 
 typedef struct _CDAnimationGridNode {
 	gdouble x, y;
@@ -160,9 +158,50 @@ typedef struct _CDAnimationData {
 	gint iBlinkCount;
 	gdouble fBlinkAlpha;
 	
+	CairoDockImageBuffer *pBusyImage;
+	
 	gboolean bIsUnfolding;
 	
 	gint iReflectShadeCount;
+	gboolean bHasBeenPulsed;
+	
+	GList *pUsedAnimations;  // animations currently running on the icon, ordered by their rendering order.
 	} CDAnimationData;
+
+// generic Animation interface
+typedef struct _CDAnimation {
+	// interface
+	void (*init) (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL);
+	gboolean (*update) (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL, gboolean bRepeat);  // returns TRUE if the round is still playing, FALSE if it has finished.
+	void (*render) (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext);  // pCairoContext is NULL in OpenGL
+	void (*post_render) (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext);  // pCairoContext is NULL in OpenGL
+	// properties
+	const gchar *cName;
+	const gchar *cDisplayedName;
+	gboolean bDrawIcon;  // whether the animation draws the icon itself (or just alter the drawing context).
+	gboolean bDrawReflect;  // TRUE if the animation can draw the reflect itself.
+	CDAnimationsEffects id;  // ID of the animation, the same as in the conf file.
+	// internal
+	guint iRenderingOrder;  // order in which it will be called during the rendering.
+	guint iRegisteredId;  // registration ID in the core
+	} CDAnimation;
+
+typedef struct _CDCurrentAnimation {
+	CDAnimation *pAnimation;
+	gboolean bIsPlaying;  // TRUE if currently playing, FALSE if it has already finished.
+	} CDCurrentAnimation;
+
+//\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
+struct _AppletData {
+	GLuint iChromeTexture;
+	GLuint iCallList[CD_ANIMATIONS_NB_MESH];
+	GLuint iSpotTexture;
+	GLuint iHaloTexture;
+	GLuint iSpotFrontTexture;
+	GLuint iRaysTexture;
+	///gint iAnimationID[CD_ANIMATIONS_NB_EFFECTS];
+	CairoDockImageBuffer *pBusyImage;
+	CDAnimation pAnimations[CD_ANIMATIONS_NB_EFFECTS];  // same order as in the conf file.
+	} ;
 
 #endif

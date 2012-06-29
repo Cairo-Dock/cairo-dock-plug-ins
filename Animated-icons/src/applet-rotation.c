@@ -23,12 +23,14 @@
 
 #include "applet-struct.h"
 #include "applet-mesh-factory.h"
+#include "applet-notifications.h"
 #include "applet-rotation.h"
 
 static float fCapsuleObjectPlaneS[4] = { 0.59f*2, 0., 0., 0. }; // pour un plaquages propre des textures
 static float fCapsuleObjectPlaneT[4] = { 0., 0.59f*2, 0., 0. };  // le 2 c'est le 'c'.
 
-void cd_animations_init_rotation (CDAnimationData *pData, double dt, gboolean bUseOpenGL)
+
+static void init (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL)
 {
 	pData->fRotationSpeed = 360. / myConfig.iRotationDuration * dt;
 	if (pData->fRotationAngle == 0)
@@ -49,7 +51,7 @@ void cd_animations_init_rotation (CDAnimationData *pData, double dt, gboolean bU
 }
 
 
-void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean bInvisibleBackground)
+static void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean bInvisibleBackground)
 {
 	glEnable(GL_DEPTH_TEST);
 	glEnable (GL_BLEND);
@@ -102,8 +104,7 @@ void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean bInvis
 	glDisable (GL_BLEND);
 }
 
-
-void cd_animation_render_cube (Icon *pIcon, CairoDock *pDock, gboolean bInvisibleBackground)
+static void cd_animation_render_cube (Icon *pIcon, CairoDock *pDock, gboolean bInvisibleBackground)
 {
 	glEnable(GL_DEPTH_TEST);
 	glEnable (GL_BLEND);
@@ -149,8 +150,7 @@ void cd_animation_render_cube (Icon *pIcon, CairoDock *pDock, gboolean bInvisibl
 	glDisable (GL_BLEND);
 }
 
-
-void cd_animation_render_square (Icon *pIcon, CairoDock *pDock, gboolean bInvisibleBackground)
+static void cd_animation_render_square (Icon *pIcon, CairoDock *pDock, gboolean bInvisibleBackground)
 {
 	glEnable (GL_BLEND);
 	/*if (bInvisibleBackground)
@@ -193,7 +193,6 @@ void cd_animation_render_square (Icon *pIcon, CairoDock *pDock, gboolean bInvisi
 	glDisable (GL_BLEND);
 }
 
-
 static void _draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double fScaleFactor)
 {
 	gboolean bInvisibleBackground = TRUE;
@@ -218,99 +217,104 @@ static void _draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimationData 
 	}
 	glPopMatrix ();
 }
-void cd_animations_draw_rotating_icon (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData)
+
+static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext)
 {
-	double fAlpha = pIcon->fAlpha;
-	if (pData->fPulseAlpha != 0 && myConfig.bPulseSameShape)
+	if (pCairoContext)
 	{
-		_cairo_dock_set_alpha (pIcon->fAlpha * (1. - .5 * pData->fPulseAlpha));
-		///pIcon->fAlpha *= 1. - .5 * pData->fPulseAlpha;
-	}
-	else
-		glColor4f(myConfig.pMeshColor[0], myConfig.pMeshColor[1], myConfig.pMeshColor[2], pIcon->fAlpha);  // ici on peut donner une teinte aux reflets chrome.
-	if (myConfig.pMeshColor[3] == 1)
-		glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-	else
-		//glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		_cairo_dock_set_blend_alpha ();
-	_draw_rotating_icon (pIcon, pDock, pData, 1.);
-	
-	if (pData->fPulseAlpha != 0 && myConfig.bPulseSameShape)
-	{
-		_cairo_dock_set_alpha (pData->fPulseAlpha);
-		double fScaleFactor = (1 - myConfig.fPulseZoom) * pData->fPulseAlpha + myConfig.fPulseZoom;
-		glTranslatef (0., 0., -fScaleFactor * pIcon->fHeight * pIcon->fScale/2);
-		_cairo_dock_set_blend_alpha ();
-		_draw_rotating_icon (pIcon, pDock, pData, fScaleFactor);
-		glTranslatef (0., 0., fScaleFactor * pIcon->fHeight * pIcon->fScale/2);
-	}
-	
-	if (pDock->container.bUseReflect)
-	{
-		glPushMatrix ();
-		_cairo_dock_set_alpha (myIconsParam.fAlbedo * sqrt (myIconsParam.fAlbedo) * pIcon->fAlpha);  // transparence du reflet, arrange pour essayer de cacher l'absence de degrade :p
-		double fOffsetY = pIcon->fHeight * pIcon->fScale + (0 + pIcon->fDeltaYReflection) * pDock->container.fRatio;
+		double fWidthFactor = pData->fRotateWidthFactor;
+		pIcon->fWidthFactor *= fWidthFactor;
+		cairo_save (pCairoContext);
+		
 		if (pDock->container.bIsHorizontal)
-		{
-			if (pDock->container.bDirectionUp)
-			{
-				fOffsetY = pIcon->fHeight * pIcon->fScale + pIcon->fDeltaYReflection;
-				glTranslatef (0., - fOffsetY, 0.);
-				//glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, - pIcon->fHeight * pIcon->fScale, 1.);  // taille du reflet et on se retourne.
-			}
-			else
-			{
-				glTranslatef (0., fOffsetY, 0.);
-				//glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio, 1.);
-			}
-			glScalef (1., -1., 1.);
-		}
+			cairo_translate (pCairoContext,
+				pIcon->fWidth * pIcon->fScale * (1 - fWidthFactor) / 2,
+				1.);
 		else
+			cairo_translate (pCairoContext,
+				1.,
+				pIcon->fWidth * pIcon->fScale * (1 - fWidthFactor) / 2);
+		
+		cairo_dock_draw_icon_cairo (pIcon, pDock, pCairoContext);
+		
+		cairo_restore (pCairoContext);
+		
+		pIcon->fWidthFactor /= fWidthFactor;
+	}
+	else
+	{
+		double fAlpha = pIcon->fAlpha;
+		/**if (pData->fPulseAlpha != 0 && myConfig.bPulseSameShape)
 		{
-			if (pDock->container.bDirectionUp)
-			{
-				glTranslatef (fOffsetY, 0., 0.);
-				//glScalef (- pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
-			}
-			else
-			{
-				glTranslatef (- fOffsetY, 0., 0.);
-				//glScalef (pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
-			}
-			glScalef (-1., 1., 1.);
+			_cairo_dock_set_alpha (pIcon->fAlpha * (1. - .5 * pData->fPulseAlpha));
+			///pIcon->fAlpha *= 1. - .5 * pData->fPulseAlpha;
+		}
+		else*/
+			glColor4f(myConfig.pMeshColor[0], myConfig.pMeshColor[1], myConfig.pMeshColor[2], pIcon->fAlpha);  // ici on peut donner une teinte aux reflets chrome.
+		if (myConfig.pMeshColor[3] == 1)
+			glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+		else
+			//glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			_cairo_dock_set_blend_alpha ();
+		_draw_rotating_icon (pIcon, pDock, pData, 1.);
+		
+		if (pData->fPulseAlpha != 0 && myConfig.bPulseSameShape)
+		{
+			_cairo_dock_set_alpha (pData->fPulseAlpha);
+			double fScaleFactor = (1 - myConfig.fPulseZoom) * pData->fPulseAlpha + myConfig.fPulseZoom;
+			glTranslatef (0., 0., -fScaleFactor * pIcon->fHeight * pIcon->fScale/2);
+			_cairo_dock_set_blend_alpha ();
+			_draw_rotating_icon (pIcon, pDock, pData, fScaleFactor);
+			glTranslatef (0., 0., fScaleFactor * pIcon->fHeight * pIcon->fScale/2);
 		}
 		
-		_cairo_dock_set_blend_alpha ();
-		_draw_rotating_icon (pIcon, pDock, pData, 1.);
-		glPopMatrix ();
+		if (pDock->container.bUseReflect)
+		{
+			glPushMatrix ();
+			_cairo_dock_set_alpha (myIconsParam.fAlbedo * sqrt (myIconsParam.fAlbedo) * pIcon->fAlpha);  // transparence du reflet, arrange pour essayer de cacher l'absence de degrade :p
+			double fOffsetY = pIcon->fHeight * pIcon->fScale + (0 + pIcon->fDeltaYReflection) * pDock->container.fRatio;
+			if (pDock->container.bIsHorizontal)
+			{
+				if (pDock->container.bDirectionUp)
+				{
+					fOffsetY = pIcon->fHeight * pIcon->fScale + pIcon->fDeltaYReflection;
+					glTranslatef (0., - fOffsetY, 0.);
+					//glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, - pIcon->fHeight * pIcon->fScale, 1.);  // taille du reflet et on se retourne.
+				}
+				else
+				{
+					glTranslatef (0., fOffsetY, 0.);
+					//glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio, 1.);
+				}
+				glScalef (1., -1., 1.);
+			}
+			else
+			{
+				if (pDock->container.bDirectionUp)
+				{
+					glTranslatef (fOffsetY, 0., 0.);
+					//glScalef (- pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
+				}
+				else
+				{
+					glTranslatef (- fOffsetY, 0., 0.);
+					//glScalef (pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
+				}
+				glScalef (-1., 1., 1.);
+			}
+			
+			_cairo_dock_set_blend_alpha ();
+			_draw_rotating_icon (pIcon, pDock, pData, 1.);
+			glPopMatrix ();
+		}
+		pIcon->fAlpha = fAlpha;
+		pData->bHasBeenPulsed = myConfig.bPulseSameShape;
 	}
-	pIcon->fAlpha = fAlpha;
 }
 
-void cd_animations_draw_rotating_cairo (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext)
-{
-	double fWidthFactor = pData->fRotateWidthFactor;
-	pIcon->fWidthFactor *= fWidthFactor;
-	cairo_save (pCairoContext);
-	
-	if (pDock->container.bIsHorizontal)
-		cairo_translate (pCairoContext,
-			pIcon->fWidth * pIcon->fScale * (1 - fWidthFactor) / 2,
-			1.);
-	else
-		cairo_translate (pCairoContext,
-			1.,
-			pIcon->fWidth * pIcon->fScale * (1 - fWidthFactor) / 2);
-	
-	cairo_dock_draw_icon_cairo (pIcon, pDock, pCairoContext);
-	
-	cairo_restore (pCairoContext);
-	
-	pIcon->fWidthFactor /= fWidthFactor;
-}
 
 double alpha_brake = 30.;
-gboolean cd_animations_update_rotating (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, gboolean bUseOpenGL, gboolean bWillContinue)
+static gboolean update (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL, gboolean bRepeat)
 {
 	pData->fAdjustFactor = 0.;
 	if (pData->fRotationAngle < alpha_brake)
@@ -325,7 +329,7 @@ gboolean cd_animations_update_rotating (Icon *pIcon, CairoDock *pDock, CDAnimati
 		pData->bRotationBeginning = FALSE;
 	if (pData->fRotationAngle > 360 - alpha_brake)
 	{
-		if (! bWillContinue)
+		if (! bRepeat)
 		{
 			pData->fRotationBrake = MAX (.2, (360. - pData->fRotationAngle) / (alpha_brake));
 			pData->fAdjustFactor = (pData->fRotationAngle - (360 - alpha_brake)) / (alpha_brake);
@@ -359,5 +363,29 @@ gboolean cd_animations_update_rotating (Icon *pIcon, CairoDock *pDock, CDAnimati
 			//pIcon->fWidth /= (1 + .2 * 1);
 	}
 	
-	return (pData->fRotationAngle < 360);
+	gboolean bContinue = (pData->fRotationAngle < 360);
+	if (! bContinue)
+	{
+		if (bRepeat)
+			pData->fRotationAngle -= 360;
+		else
+			pData->fRotationAngle = 0.;
+	}
+	return bContinue;
+}
+
+
+void cd_animations_register_rotation (void)
+{
+	CDAnimation *pAnimation = &myData.pAnimations[CD_ANIMATIONS_ROTATE];
+	pAnimation->cName = "rotate";
+	pAnimation->cDisplayedName = D_("Rotate");
+	pAnimation->id = CD_ANIMATIONS_ROTATE;
+	pAnimation->bDrawIcon = TRUE;
+	pAnimation->bDrawReflect = FALSE;
+	pAnimation->init = init;
+	pAnimation->update = update;
+	pAnimation->render = render;
+	pAnimation->post_render = NULL;
+	cd_animations_register_animation (pAnimation);
 }

@@ -17,10 +17,8 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef __APPLET_NOTIFICATIONS__
 #define __APPLET_NOTIFICATIONS__
-
 
 #include <cairo-dock.h>
 
@@ -41,5 +39,7 @@ gboolean cd_animations_unfold_subdock (gpointer pUserData, Icon *pIcon);
 
 gboolean cd_animations_free_data (gpointer pUserData, Icon *pIcon);
 
+
+void cd_animations_register_animation (CDAnimation *pAnimation);
 
 #endif

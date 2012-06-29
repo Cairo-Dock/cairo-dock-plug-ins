@@ -22,6 +22,7 @@
 #include <math.h>
 
 #include "applet-struct.h"
+#include "applet-notifications.h"
 #include "applet-wave.h"
 
 static inline void _init_wave (GLfloat *pVertices, GLfloat *pCoords)
@@ -51,17 +52,16 @@ static inline void _init_wave (GLfloat *pVertices, GLfloat *pCoords)
 	pCoords[7] = 0.;
 }
 
-void cd_animations_init_wave (CDAnimationData *pData)
+static void init (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL)
 {
 	_init_wave (pData->pVertices, pData->pCoords);
 	
 	pData->iNumActiveNodes = 4;
 	pData->fWavePosition = - myConfig.fWaveWidth / 2 + .01;  // on rajoute epsilon pour commencer avec 2 points.
-	pData->bIsWaving = TRUE;
 }
 
 
-gboolean cd_animations_update_wave (CairoDock *pDock, CDAnimationData *pData, double dt)
+static gboolean update (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL, gboolean bRepeat)
 {
 	GLfloat *pVertices = pData->pVertices;
 	GLfloat *pCoords = pData->pCoords;
@@ -151,10 +151,15 @@ gboolean cd_animations_update_wave (CairoDock *pDock, CDAnimationData *pData, do
 	pData->fWavePosition += dt / myConfig.iWaveDuration;
 	
 	cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
-	return (pData->fWavePosition - w/2 < 1);
+	
+	gboolean bContinue = (pData->fWavePosition - w/2 < 1);
+	if (! bContinue && bRepeat)
+		pData->fWavePosition = - myConfig.fWaveWidth / 2;
+	return bContinue;
 }
 
-void cd_animations_draw_wave_icon (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData)
+
+static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext)
 {
 	glPushMatrix ();
 	cairo_dock_set_icon_scale (pIcon, CAIRO_CONTAINER (pDock), 1.);
@@ -280,4 +285,20 @@ void cd_animations_draw_wave_icon (Icon *pIcon, CairoDock *pDock, CDAnimationDat
 	glDisableClientState (GL_VERTEX_ARRAY);
 	glDisable (GL_TEXTURE_2D);
 	glDisable (GL_BLEND);
+}
+
+
+void cd_animations_register_wave (void)
+{
+	CDAnimation *pAnimation = &myData.pAnimations[CD_ANIMATIONS_WAVE];
+	pAnimation->cName = "wave";
+	pAnimation->cDisplayedName = D_("Wave");
+	pAnimation->id = CD_ANIMATIONS_WAVE;
+	pAnimation->bDrawIcon = TRUE;
+	pAnimation->bDrawReflect = FALSE;
+	pAnimation->init = init;
+	pAnimation->update = update;
+	pAnimation->render = render;
+	pAnimation->post_render = NULL;
+	cd_animations_register_animation (pAnimation);
 }

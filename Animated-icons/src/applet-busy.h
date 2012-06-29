@@ -17,13 +17,13 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __APPLET_BLINK__
-#define  __APPLET_BLINK__
+#ifndef __APPLET_BUSY__
+#define  __APPLET_BUSY__
 
 #include <cairo-dock.h>
 
 
-void cd_animations_register_blink (void);
+void cd_animations_register_busy (void);
 
 
 #endif

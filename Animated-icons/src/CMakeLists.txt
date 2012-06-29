@@ -14,6 +14,7 @@ SET(cd-Animated-icons_LIB_SRCS
 	applet-pulse.c 			applet-pulse.h
 	applet-bounce.c 		applet-bounce.h
 	applet-blink.c 			applet-blink.h
+	applet-busy.c 			applet-busy.h
 	applet-unfold.c 		applet-unfold.h
 	applet-struct.h
 	chrome-tex.h

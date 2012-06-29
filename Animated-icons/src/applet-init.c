@@ -22,7 +22,14 @@
 #include "chrome-tex.h"
 
 #include "applet-config.h"
+#include "applet-blink.h"
+#include "applet-bounce.h"
+#include "applet-busy.h"
+#include "applet-pulse.h"
 #include "applet-rotation.h"
+#include "applet-spot.h"
+#include "applet-wave.h"
+#include "applet-wobbly.h"
 #include "applet-mesh-factory.h"
 #include "applet-notifications.h"
 #include "applet-struct.h"
@@ -77,13 +84,15 @@ CD_APPLET_INIT_BEGIN
 		(CairoDockNotificationFunc) cd_animations_unfold_subdock,
 		CAIRO_DOCK_RUN_AFTER, NULL);
 	
-	myData.iAnimationID[CD_ANIMATIONS_BOUNCE] = cairo_dock_register_animation ("bounce", D_("Bounce"), FALSE);
-	myData.iAnimationID[CD_ANIMATIONS_ROTATE] = cairo_dock_register_animation ("rotate", D_("Rotate"), FALSE);
-	myData.iAnimationID[CD_ANIMATIONS_BLINK] = cairo_dock_register_animation ("blink", D_("Blink"), FALSE);
-	myData.iAnimationID[CD_ANIMATIONS_PULSE] = cairo_dock_register_animation ("pulse", D_("Pulse"), FALSE);
-	myData.iAnimationID[CD_ANIMATIONS_WOBBLY] = cairo_dock_register_animation ("wobbly", D_("Wobbly"), FALSE);
-	myData.iAnimationID[CD_ANIMATIONS_WAVE] = cairo_dock_register_animation ("wave", D_("Wave"), FALSE);
-	myData.iAnimationID[CD_ANIMATIONS_SPOT] = cairo_dock_register_animation ("spot", D_("Spot"), FALSE);
+	// register each animation, in their rendering order.
+	cd_animations_register_bounce ();  // alter context
+	cd_animations_register_spot ();  // alter context
+	cd_animations_register_blink ();  // alter context
+	cd_animations_register_rotation ();  // draw icon
+	cd_animations_register_wave ();  // draw icon
+	cd_animations_register_wobbly ();  // draw icon
+	cd_animations_register_pulse ();  // draw above icon
+	cd_animations_register_busy ();  // draw above icon
 CD_APPLET_INIT_END
 
 static void _free_data_on_icon (Icon *pIcon, CairoDock *pDock, gpointer data)
@@ -117,19 +126,27 @@ CD_APPLET_STOP_BEGIN
 		NOTIFICATION_UNFOLD_SUBDOCK,
 		(CairoDockNotificationFunc) cd_animations_unfold_subdock, NULL);
 	
-	cairo_dock_unregister_animation ("bounce");
-	cairo_dock_unregister_animation ("rotate");
-	cairo_dock_unregister_animation ("blink");
-	cairo_dock_unregister_animation ("pulse");
-	cairo_dock_unregister_animation ("wobbly");
-	cairo_dock_unregister_animation ("wave");
-	cairo_dock_unregister_animation ("spot");
+	CDAnimation *pAnimation;
+	int i;
+	for (i = 0; i < CD_ANIMATIONS_NB_EFFECTS; i ++)
+	{
+		pAnimation = &myData.pAnimations[i];
+		cairo_dock_unregister_animation (pAnimation->cName);
+	}
 	
 	cairo_dock_foreach_icons ((CairoDockForeachIconFunc) _free_data_on_icon, NULL);
 CD_APPLET_STOP_END
-   
-   
+
+
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
+static void _update_busy_image_on_icon (Icon *pIcon, CairoDock *pDock, gpointer data)
+{
+	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
+	if (pData != NULL && pData->pBusyImage)
+	{
+		memcpy (pData->pBusyImage, myData.pBusyImage, sizeof (CairoDockImageBuffer));
+	}
+}
 CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED && g_bUseOpenGL)
@@ -196,6 +213,19 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			glDeleteTextures (1, &myData.iSpotTexture);
 			myData.iSpotTexture = 0;
+		}
+	}
+	if (CD_APPLET_MY_CONFIG_CHANGED)
+	{
+		// recreate myData.pBusyImage, and update icons having the 'busy' animation running.
+		if (myData.pBusyImage != NULL)
+		{
+			cairo_dock_free_image_buffer (myData.pBusyImage);
+			myData.pBusyImage = myData.pBusyImage = cairo_dock_create_image_buffer (myConfig.cBusyImage ? myConfig.cBusyImage : MY_APPLET_SHARE_DATA_DIR"/busy.svg",
+				0, 0,
+				CAIRO_DOCK_ANIMATED_IMAGE);
+			
+			cairo_dock_foreach_icons ((CairoDockForeachIconFunc) _update_busy_image_on_icon, NULL);  // since the image is loaded as a shared ressources for all icons, we have to update them if they were using it.
 		}
 	}
 CD_APPLET_RELOAD_END

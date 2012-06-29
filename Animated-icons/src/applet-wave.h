@@ -25,10 +25,7 @@
 #include <cairo-dock.h>
 
 
-void cd_animations_init_wave (CDAnimationData *pData);
+void cd_animations_register_wave (void);
 
-gboolean cd_animations_update_wave (CairoDock *pDock, CDAnimationData *pData, double dt);
-
-void cd_animations_draw_wave_icon (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData);
 
 #endif

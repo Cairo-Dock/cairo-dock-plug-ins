@@ -22,17 +22,19 @@
 #include <math.h>
 
 #include "applet-struct.h"
+#include "applet-notifications.h"
 #include "applet-bounce.h"
 
 
-void cd_animations_init_blink (CDAnimationData *pData, double dt)
+static void init (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL)
 {
+	//g_print ("INIT blink\n");
 	pData->iBlinkCount = myConfig.iBlinkDuration / dt - 1;
-	pData->bIsBlinking = TRUE;
 }
 
-gboolean cd_animations_update_blink (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL)
+static gboolean update (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL, gboolean bRepeat)
 {
+	//g_print ("UPDATE blink\n");
 	int c = pData->iBlinkCount;
 	int n = (int) floor (myConfig.iBlinkDuration / dt) / 2;  // nbre d'iteration pour une inversion d'alpha.
 	if ( (c/n) & 1)
@@ -47,14 +49,38 @@ gboolean cd_animations_update_blink (Icon *pIcon, CairoDock *pDock, CDAnimationD
 	
 	cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
 	
-	return (pData->iBlinkCount > 0);
+	gboolean bContinue = (pData->iBlinkCount > 0);
+	if (! bContinue && bRepeat)
+		init (pIcon, pDock, pData, dt, bUseOpenGL);
+	
+	//g_print (" -> %d\n", bContinue);
+	return bContinue;
+}
+
+static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext)
+{
+	//g_print ("RENDER blink\n");
+	pIcon->fAlpha *= pData->fBlinkAlpha;
+}
+
+static void post_render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext)
+{
+	//g_print ("POST RENDER blink\n");
+	pIcon->fAlpha /= pData->fBlinkAlpha;
 }
 
 
-void cd_animations_draw_blink_icon (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, int sens)
+void cd_animations_register_blink (void)
 {
-	if (sens == 1)
-		pIcon->fAlpha *= pData->fBlinkAlpha;
-	else
-		pIcon->fAlpha /= pData->fBlinkAlpha;
+	CDAnimation *pAnimation = &myData.pAnimations[CD_ANIMATIONS_BLINK];
+	pAnimation->cName = "blink";
+	pAnimation->cDisplayedName = D_("Blink");
+	pAnimation->id = CD_ANIMATIONS_BLINK;
+	pAnimation->bDrawIcon = FALSE;
+	pAnimation->bDrawReflect = FALSE;
+	pAnimation->init = init;
+	pAnimation->update = update;
+	pAnimation->render = render;
+	pAnimation->post_render = post_render;
+	cd_animations_register_animation (pAnimation);
 }
