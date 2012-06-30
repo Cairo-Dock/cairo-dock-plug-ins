@@ -109,6 +109,7 @@ CD_APPLET_INIT_BEGIN
 			myData.Xgamma.blue = myConfig.fInitialGamma;
 			myData.Xgamma.green = myConfig.fInitialGamma;
 			xgamma_set_gamma (&myData.Xgamma);
+			
 		}
 	}
 	
@@ -118,7 +119,7 @@ CD_APPLET_INIT_BEGIN
 	}
 	else
 	{
-		if (myConfig.cDefaultTitle == NULL)
+		if (myConfig.cDefaultTitle == NULL && myIcon->cName == NULL)  // if the label has already been set by the initial luminosity setting, don't replace it (the gamma on the X server side is not yet equal to the value we just set before).
 		{
 			double fGamma = xgamma_get_gamma (&myData.Xgamma);
 			cd_gamma_display_gamma_on_label (fGamma);
