@@ -183,7 +183,7 @@ duration = 800
 continue = false
 
 
-#[@animated_iconsdatadir@/busy.png]
+#[@animated_iconsdatadir@/icon-busy.png]
 [Busy]
 
 #I+[100;2000] Busy duration:
@@ -196,3 +196,6 @@ continue = false
 #S+[Default] Image :
 #{The image must contain all the frames of the animation, side by side, from left to right.}
 image =
+
+#e+[.3;1] Image size
+size = .5

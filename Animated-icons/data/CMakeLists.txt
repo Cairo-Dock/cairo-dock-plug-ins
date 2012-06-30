@@ -10,5 +10,6 @@ install(FILES  ${CMAKE_CURRENT_BINARY_DIR}/Animated-icons.conf
 	halo.png
 	ray.png
 	icon-wave.png
+	icon-busy.png
 	busy.svg
 	DESTINATION ${animated_iconsdatadir})

@@ -107,6 +107,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iBusyDuration = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Busy", "duration", 800);
 	myConfig.bContinue[CD_ANIMATIONS_BUSY] = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Busy", "continue", TRUE);
 	myConfig.cBusyImage = CD_CONFIG_GET_STRING ("Busy", "image");
+	myConfig.fBusySize = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Busy", "size", .5);  // relatively to the size of the icon
 	
 CD_APPLET_GET_CONFIG_END
 

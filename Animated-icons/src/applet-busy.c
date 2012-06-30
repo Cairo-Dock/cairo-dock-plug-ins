@@ -21,7 +21,6 @@
 #include "applet-notifications.h"
 #include "applet-busy.h"
 
-
 static void init (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL)
 {
 	// load the busy animation image once, to avoid loading it for each icon.
@@ -60,8 +59,8 @@ static void post_render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, 
 		cairo_translate (pCairoContext,
 			pIcon->fWidth * pIcon->fScale / 2,
 			pIcon->fHeight * pIcon->fScale / 2);
-		double z = MIN (pIcon->fScale * pIcon->fWidth / (pData->pBusyImage->iWidth / pData->pBusyImage->iNbFrames), pIcon->fScale * pIcon->fHeight / pData->pBusyImage->iHeight);
-		cairo_scale (pCairoContext, z/2, z/2);
+		double z = MIN (pIcon->fScale * pIcon->fWidth / (pData->pBusyImage->iWidth / pData->pBusyImage->iNbFrames), pIcon->fScale * pIcon->fHeight / pData->pBusyImage->iHeight) * myConfig.fBusySize;
+		cairo_scale (pCairoContext, z, z);
 
 		cairo_translate (pCairoContext,
 			-pData->pBusyImage->iWidth/pData->pBusyImage->iNbFrames/2,
@@ -79,8 +78,8 @@ static void post_render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, 
 		else
 			_cairo_dock_set_blend_alpha ();
 
-		double z = MIN (pIcon->fScale * pIcon->fWidth / (pData->pBusyImage->iWidth / pData->pBusyImage->iNbFrames), pIcon->fScale * pIcon->fHeight / pData->pBusyImage->iHeight);
-		glScalef (z/2, z/2, 1.);
+		double z = MIN (pIcon->fScale * pIcon->fWidth / (pData->pBusyImage->iWidth / pData->pBusyImage->iNbFrames), pIcon->fScale * pIcon->fHeight / pData->pBusyImage->iHeight) * myConfig.fBusySize;
+		glScalef (z, z, 1.);
 
 		cairo_dock_apply_image_buffer_texture (pData->pBusyImage);
 

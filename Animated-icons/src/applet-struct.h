@@ -99,6 +99,7 @@ struct _AppletConfig {
 	gint iBusyDuration;
 	gboolean bContinueBusy;
 	gchar *cBusyImage;
+	gdouble fBusySize;
 	
 	CDAnimationsEffects iEffectsOnMouseOver[CD_ANIMATIONS_NB_EFFECTS];
 	CDAnimationsEffects iEffectsOnClick[CAIRO_DOCK_NB_GROUPS][CD_ANIMATIONS_NB_EFFECTS];

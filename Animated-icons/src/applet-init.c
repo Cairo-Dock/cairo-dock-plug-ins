@@ -221,7 +221,7 @@ CD_APPLET_RELOAD_BEGIN
 		if (myData.pBusyImage != NULL)
 		{
 			cairo_dock_free_image_buffer (myData.pBusyImage);
-			myData.pBusyImage = myData.pBusyImage = cairo_dock_create_image_buffer (myConfig.cBusyImage ? myConfig.cBusyImage : MY_APPLET_SHARE_DATA_DIR"/busy.svg",
+			myData.pBusyImage = cairo_dock_create_image_buffer (myConfig.cBusyImage ? myConfig.cBusyImage : MY_APPLET_SHARE_DATA_DIR"/busy.svg",
 				0, 0,
 				CAIRO_DOCK_ANIMATED_IMAGE);
 			
