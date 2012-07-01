@@ -117,6 +117,12 @@ gboolean cd_weather_update_from_data (CDSharedMemory *pSharedMemory)
 	g_return_val_if_fail (myIcon != NULL, FALSE);  // paranoia
 	CD_APPLET_ENTER;
 	
+	if (myData.bBusy)
+	{
+		myData.bBusy = FALSE;
+		cairo_dock_request_icon_animation (myIcon, myContainer, NULL, 0);
+	}
+	
 	//\_______________________ in case an error occured, keep the current data, and just redraw the main icon.
 	if (pSharedMemory->bErrorInThread)
 	{

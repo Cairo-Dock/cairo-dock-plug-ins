@@ -295,6 +295,7 @@ static void _cd_weather_parse_data (CDSharedMemory *pSharedMemory, const gchar *
 
 static void cd_weather_get_distant_data (CDSharedMemory *pSharedMemory)
 {
+	sleep (10);
 	//\____________________ On recupere les conditions courantes sur le serveur.
 	pSharedMemory->bErrorInThread = FALSE;
 	GError *erreur = NULL;

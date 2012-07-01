@@ -68,6 +68,9 @@ static inline void _reload (CairoDockModuleInstance *myApplet)
 	{
 		cairo_dock_stop_task (myData.pTask);  // not blocking since the task is not running.
 		
+		myData.bBusy = TRUE;
+		cairo_dock_request_icon_animation (myIcon, myContainer, "busy", 999);
+		cairo_dock_mark_icon_as_clicked (myIcon);  // prevent hovering the icon to overwrite the animation with another one.
 		cairo_dock_launch_task (myData.pTask);
 	}
 }

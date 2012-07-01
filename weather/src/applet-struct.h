@@ -115,6 +115,7 @@ struct _AppletData {
 	gboolean bSetName;
 	gint iClickedDay;
 	CairoDockTask *pGetLocationTask;
+	gboolean bBusy;
 	} ;
 
 
