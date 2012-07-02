@@ -7,65 +7,71 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2012-04-12 00:33+0000\n"
 "PO-Revision-Date: 2012-06-14 19:57+0000\n"
 "Last-Translator: ma$terok <Unknown>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-06-15 04:45+0000\n"
 "X-Generator: Launchpad (build 15414)\n"
-"Language: uk\n"
 
-#: ../Animated-icons/src/applet-init.c:32
-msgid "Animated icons"
-msgstr "Анімовані значки"
-
-#: ../Animated-icons/src/applet-init.c:35
-msgid "This plug-in provides many different animations for your icons."
-msgstr "Цей модуль надає багато різноманітних ефектів для значків."
-
-#: ../Animated-icons/src/applet-init.c:80 ../Animated-icons/data/messages:9
-#: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:47
-#: ../Animated-icons/data/messages:157
-msgid "Bounce"
-msgstr "Підстрибування"
-
-#: ../Animated-icons/src/applet-init.c:81 ../Animated-icons/data/messages:11
-#: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:49
-msgid "Rotate"
-msgstr "Обертання"
-
-#: ../Animated-icons/src/applet-init.c:82 ../Animated-icons/data/messages:13
-#: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:51
-#: ../Animated-icons/data/messages:171
+#: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
+#: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
+#: ../Animated-icons/data/messages:173
 msgid "Blink"
 msgstr "Блимання"
 
-#: ../Animated-icons/src/applet-init.c:83 ../Animated-icons/data/messages:15
-#: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:53
-#: ../Animated-icons/data/messages:145
+#: ../Animated-icons/src/applet-bounce.c:182 ../Animated-icons/data/messages:7
+#: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:49
+#: ../Animated-icons/data/messages:159
+msgid "Bounce"
+msgstr "Підстрибування"
+
+#: ../Animated-icons/src/applet-busy.c:95 ../Animated-icons/data/messages:21
+#: ../Animated-icons/data/messages:41 ../Animated-icons/data/messages:63
+#: ../Animated-icons/data/messages:181
+msgid "Busy"
+msgstr ""
+
+#: ../Animated-icons/src/applet-init.c:39
+msgid "Animated icons"
+msgstr "Анімовані значки"
+
+#: ../Animated-icons/src/applet-init.c:42
+msgid "This plug-in provides many different animations for your icons."
+msgstr "Цей модуль надає багато різноманітних ефектів для значків."
+
+#: ../Animated-icons/src/applet-pulse.c:107 ../Animated-icons/data/messages:13
+#: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:55
+#: ../Animated-icons/data/messages:147
 msgid "Pulse"
 msgstr "Пульсація"
 
-#: ../Animated-icons/src/applet-init.c:84 ../Animated-icons/data/messages:17
-#: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:55
-#: ../Animated-icons/data/messages:117
-msgid "Wobbly"
-msgstr "Жилейність"
+#: ../Animated-icons/src/applet-rotation.c:382
+#: ../Animated-icons/data/messages:9 ../Animated-icons/data/messages:29
+#: ../Animated-icons/data/messages:51
+msgid "Rotate"
+msgstr "Обертання"
 
-#: ../Animated-icons/src/applet-init.c:85 ../Animated-icons/data/messages:19
-#: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:57
-#: ../Animated-icons/data/messages:133
+#: ../Animated-icons/src/applet-spot.c:263 ../Animated-icons/data/messages:19
+#: ../Animated-icons/data/messages:39 ../Animated-icons/data/messages:61
+#: ../Animated-icons/data/messages:85 ../Animated-icons/data/messages:93
+msgid "Spot"
+msgstr "Прожектор"
+
+#: ../Animated-icons/src/applet-wave.c:295 ../Animated-icons/data/messages:17
+#: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:59
+#: ../Animated-icons/data/messages:135
 msgid "Wave"
 msgstr "Хвиля"
 
-#: ../Animated-icons/src/applet-init.c:86 ../Animated-icons/data/messages:21
-#: ../Animated-icons/data/messages:39 ../Animated-icons/data/messages:59
-#: ../Animated-icons/data/messages:81 ../Animated-icons/data/messages:89
-msgid "Spot"
-msgstr "Прожектор"
+#: ../Animated-icons/src/applet-wobbly.c:556
+#: ../Animated-icons/data/messages:15 ../Animated-icons/data/messages:35
+#: ../Animated-icons/data/messages:57 ../Animated-icons/data/messages:119
+msgid "Wobbly"
+msgstr "Жилейність"
 
 #: ../Cairo-Penguin/src/applet-init.c:33
 msgid ""
@@ -286,10 +292,10 @@ msgstr "Налаштувати віконний менеджер"
 #: ../RSSreader/src/applet-notifications.c:129
 #: ../System-Monitor/src/applet-notifications.c:106
 #: ../Xgamma/src/applet-notifications.c:87
-#: ../alsaMixer/src/applet-notifications.c:85
+#: ../alsaMixer/src/applet-notifications.c:87
 #: ../dustbin/src/applet-notifications.c:136
 #: ../mail/src/cd-mail-applet-notifications.c:154
-#: ../musicPlayer/src/applet-notifications.c:278
+#: ../musicPlayer/src/applet-notifications.c:300
 #: ../netspeed/src/applet-notifications.c:94
 #: ../quick-browser/src/applet-notifications.c:41
 #: ../shortcuts/src/applet-notifications.c:249
@@ -316,7 +322,7 @@ msgstr "Перезапустити Менеджер вікон"
 #: ../showDesktop/src/applet-notifications.c:165
 #: ../showDesktop/src/applet-notifications.c:167
 #: ../Composite-Manager/data/messages:133 ../showDesktop/data/messages:103
-#: ../showDesktop/data/messages:117 ../switcher/data/messages:113
+#: ../showDesktop/data/messages:117 ../switcher/data/messages:139
 msgid "Show desktop"
 msgstr "Показати стільницю"
 
@@ -325,13 +331,13 @@ msgstr "Показати стільницю"
 #: ../showDesktop/src/applet-notifications.c:179
 #: ../switcher/src/applet-notifications.c:314
 #: ../Composite-Manager/data/messages:135 ../showDesktop/data/messages:111
-#: ../showDesktop/data/messages:125 ../switcher/data/messages:115
+#: ../showDesktop/data/messages:125 ../switcher/data/messages:141
 msgid "Expose all the desktops"
 msgstr "Показати всі стільниці"
 
 #: ../Composite-Manager/src/applet-notifications.c:154
 #: ../switcher/src/applet-notifications.c:323
-#: ../Composite-Manager/data/messages:137 ../switcher/data/messages:117
+#: ../Composite-Manager/data/messages:137 ../switcher/data/messages:143
 msgid "Expose all the windows"
 msgstr "Показати всі вікна"
 
@@ -363,8 +369,7 @@ msgstr "Модуль був доданий, але не може бути зап
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid ""
-"The applet '%s' has been succefully updated and automatically reloaded"
+msgid "The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Аплет '%s' оновлено та автоматично перезавантажено"
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -540,8 +545,7 @@ msgstr ""
 #: ../Folders/src/applet-init.c:87 ../Folders/src/applet-init.c:150
 #: ../Folders/src/applet-notifications.c:42
 msgid "Open the configuration of the applet to choose a folder to import."
-msgstr ""
-"Відкрийте налаштування цього аплету, щоб додати каталог для перегляду."
+msgstr "Відкрийте налаштування цього аплету, щоб додати каталог для перегляду."
 
 #: ../Folders/src/applet-notifications.c:54
 msgid "Empty or unreadable folder."
@@ -762,11 +766,11 @@ msgstr "Показати/Приховати меню програм"
 msgid "Show/hide the quick-launch dialog"
 msgstr "Показати/Приховати вікно швидкого запуску"
 
-#: ../GMenu/src/applet-menu-callbacks.c:218 ../GMenu/data/messages:121
+#: ../GMenu/src/applet-menu-callbacks.c:174 ../GMenu/data/messages:121
 msgid "Logout"
 msgstr "Завершити сеанс"
 
-#: ../GMenu/src/applet-menu-callbacks.c:221 ../GMenu/data/messages:123
+#: ../GMenu/src/applet-menu-callbacks.c:177 ../GMenu/data/messages:123
 msgid "Shutdown"
 msgstr "Вимкнути"
 
@@ -786,7 +790,7 @@ msgstr "Очистити"
 msgid "Recent Documents"
 msgstr "Нещодавні документи"
 
-#: ../GMenu/src/applet-recent.c:115
+#: ../GMenu/src/applet-recent.c:109
 msgid "Clear the list of the recently used documents?"
 msgstr "Очистити список недавніх документів?"
 
@@ -815,7 +819,7 @@ msgstr ""
 msgid "Show/hide the current application menu"
 msgstr "Показати/Приховати поточне меню програми"
 
-#: ../Global-Menu/src/applet-notifications.c:52
+#: ../Global-Menu/src/applet-notifications.c:98
 msgid "The application didn't send its menu to us."
 msgstr "Програма не відправляла нам своє меню."
 
@@ -875,7 +879,7 @@ msgstr ""
 msgid "Show/hide the Messaging menu"
 msgstr "Показати/Приховати меню повідомлень"
 
-#: ../Messaging-Menu/src/applet-notifications.c:31
+#: ../Messaging-Menu/src/applet-notifications.c:67
 msgid ""
 "The Messaging service did not reply.\n"
 "Please check that it is correctly installed."
@@ -1219,16 +1223,16 @@ msgstr "Показати/Приховати останні події"
 msgid "%d event(s) deleted"
 msgstr "%d подію(й) видалено"
 
-#: ../Recent-Events/src/applet-notifications.c:113
+#: ../Recent-Events/src/applet-notifications.c:114
 #: ../Scooby-Do/src/applet-backend-recent.c:212 ../Scooby-Do/data/messages:105
 msgid "Recent files"
 msgstr "Нещодавні файли"
 
-#: ../Recent-Events/src/applet-notifications.c:161
+#: ../Recent-Events/src/applet-notifications.c:182
 msgid "Delete today's events"
 msgstr "Видалити сьогоднішні події"
 
-#: ../Recent-Events/src/applet-notifications.c:163
+#: ../Recent-Events/src/applet-notifications.c:184
 msgid "Delete all events"
 msgstr "Видалити всі події"
 
@@ -1314,7 +1318,7 @@ msgid "Open in new window"
 msgstr "Відкрити у новому вікні"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:433
-#: ../dnd2share/src/applet-notifications.c:483
+#: ../dnd2share/src/applet-notifications.c:485
 msgid "Open file"
 msgstr "Відкрити файл"
 
@@ -1599,37 +1603,37 @@ msgstr "Налаштування гами"
 msgid "Luminosity"
 msgstr "Яскравість"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:46
+#: ../alsaMixer/src/applet-backend-alsamixer.c:45
 #, c-format
 msgid "I couldn't open card '%s'"
 msgstr "Не вдалося відкрити карту '%s'"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:51
+#: ../alsaMixer/src/applet-backend-alsamixer.c:50
 #, c-format
 msgid "Card '%s' opened but I couldn't get any info"
 msgstr "Карта '%s' відкрита, але не вдалося отримати будь-яку інформацію"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:59
+#: ../alsaMixer/src/applet-backend-alsamixer.c:58
 msgid "I couldn't open the mixer"
 msgstr "Не вдалося відкрити мікшер"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:66
+#: ../alsaMixer/src/applet-backend-alsamixer.c:65
 msgid "I couldn't attach the mixer to the card"
 msgstr "Не вдалося приєднати мікшер до карти"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:73
+#: ../alsaMixer/src/applet-backend-alsamixer.c:72
 msgid "I couldn't register options"
 msgstr "Не вдалося зареєструвати опцію"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:80
+#: ../alsaMixer/src/applet-backend-alsamixer.c:79
 msgid "I couldn't load the mixer"
 msgstr "Не вдалося завантажити мікшер"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:261
+#: ../alsaMixer/src/applet-backend-alsamixer.c:260
 msgid "Set up volume:"
 msgstr "Регулювання гучності:"
 
-#: ../alsaMixer/src/applet-draw.c:64
+#: ../alsaMixer/src/applet-draw.c:63
 msgid "Volume"
 msgstr "Гучність"
 
@@ -1659,27 +1663,27 @@ msgstr "Звук"
 msgid "Show/hide the Sound menu"
 msgstr "Показати/Приховати меню звуку"
 
-#: ../alsaMixer/src/applet-notifications.c:80
+#: ../alsaMixer/src/applet-notifications.c:82
 msgid "Adjust channels"
 msgstr "Налаштування каналів"
 
-#: ../alsaMixer/src/applet-notifications.c:80
+#: ../alsaMixer/src/applet-notifications.c:82
 msgid "double-click"
 msgstr "подвійне клацання"
 
-#: ../alsaMixer/src/applet-notifications.c:85
+#: ../alsaMixer/src/applet-notifications.c:87
 msgid "Unmute"
 msgstr "Увімкнути звук"
 
-#: ../alsaMixer/src/applet-notifications.c:85
+#: ../alsaMixer/src/applet-notifications.c:87
 msgid "Mute"
 msgstr "Вимкнути звук"
 
 #: ../clock/src/applet-calendar.c:193 ../clock/src/applet-calendar.c:274
 #: ../clock/src/applet-calendar.c:528 ../clock/src/applet-calendar.c:533
 #: ../clock/src/applet-task-editor.c:119 ../clock/src/applet-timer.c:87
-#: ../clock/src/applet-timer.c:175 ../clock/src/applet-timer.c:457
-#: ../clock/src/applet-timer.c:474 ../clock/src/applet-timer.c:494
+#: ../clock/src/applet-timer.c:175 ../clock/src/applet-timer.c:455
+#: ../clock/src/applet-timer.c:472 ../clock/src/applet-timer.c:492
 msgid "No title"
 msgstr "Немає заголовку"
 
@@ -1691,7 +1695,7 @@ msgstr "років"
 msgid "Calendar and tasks"
 msgstr "Календар та завдання"
 
-#: ../clock/src/applet-config.c:36 ../clock/data/messages:175
+#: ../clock/src/applet-config.c:36 ../clock/data/messages:181
 msgid "Alarm"
 msgstr "Нагадування"
 
@@ -1775,7 +1779,7 @@ msgstr "Команда для запуску:"
 msgid "E.g.:"
 msgstr "Наприклад:"
 
-#: ../clock/src/applet-config.c:505 ../weather/src/applet-config.c:207
+#: ../clock/src/applet-config.c:508 ../weather/src/applet-config.c:207
 msgid "Search for your location :"
 msgstr "Пошук місцязнаходження:"
 
@@ -1789,8 +1793,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
-"tasks</b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
+"b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1879,7 +1883,7 @@ msgid "Title"
 msgstr "Назва"
 
 #: ../clock/src/applet-task-editor.c:405
-#: ../dnd2share/src/applet-notifications.c:387 ../Doncky/data/messages:97
+#: ../dnd2share/src/applet-notifications.c:389 ../Doncky/data/messages:97
 #: ../RSSreader/data/messages:151
 msgid "Text"
 msgstr "Текст"
@@ -1908,8 +1912,8 @@ msgstr "1г"
 msgid "The following task was scheduled at"
 msgstr "Наступна подія запланована на"
 
-#: ../clock/src/applet-timer.c:89 ../clock/src/applet-timer.c:459
-#: ../clock/src/applet-timer.c:496
+#: ../clock/src/applet-timer.c:89 ../clock/src/applet-timer.c:457
+#: ../clock/src/applet-timer.c:494
 msgid "Repeat this message every:"
 msgstr "Повторювати подію кожні:"
 
@@ -1917,19 +1921,19 @@ msgstr "Повторювати подію кожні:"
 msgid "The following task has felt due:"
 msgstr "Наступне завдання в очікуванні:"
 
-#: ../clock/src/applet-timer.c:456
+#: ../clock/src/applet-timer.c:454
 msgid "It's time for the following task:"
 msgstr "Підійшов час для таких подій:"
 
-#: ../clock/src/applet-timer.c:473
+#: ../clock/src/applet-timer.c:471
 msgid "This task will begin in 15 minutes:"
 msgstr "Ця подія почнеться через 15 хвилин:"
 
-#: ../clock/src/applet-timer.c:493
+#: ../clock/src/applet-timer.c:491
 msgid "Today is the following anniversary:"
 msgstr "Сьогодні такі свята:"
 
-#: ../clock/src/applet-timer.c:493
+#: ../clock/src/applet-timer.c:491
 msgid "Tomorrow is the following anniversary:"
 msgstr "Завтра наступає річниця:"
 
@@ -2004,12 +2008,15 @@ msgstr ""
 "Натисніть CTRL+v, щоб вставити його URL куди завгодно."
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid ""
-"Please wait for the current upload to finish before starting a new one."
+msgid "Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Зачекайте на закінчення поточного звантаження перед тим, як почати нове."
 
-#: ../dnd2share/src/applet-dnd2share.c:591
+#: ../dnd2share/src/applet-dnd2share.c:399
+msgid "This file is not readable."
+msgstr ""
+
+#: ../dnd2share/src/applet-dnd2share.c:622
 msgid "Tiny URL"
 msgstr "Tiny URL"
 
@@ -2106,35 +2113,35 @@ msgstr ""
 "Поточне посилання було збережене у виборі.\n"
 "Використовуйте середнє клацання для вставки."
 
-#: ../dnd2share/src/applet-notifications.c:387
+#: ../dnd2share/src/applet-notifications.c:389
 msgid "File"
 msgstr "Файл"
 
-#: ../dnd2share/src/applet-notifications.c:390
+#: ../dnd2share/src/applet-notifications.c:392
 msgid "Click on the icon to copy the URL into the clipboard."
 msgstr "Клацніть на значку, щоб скопіювати посилання до буферу обміну."
 
-#: ../dnd2share/src/applet-notifications.c:402
+#: ../dnd2share/src/applet-notifications.c:404
 msgid "Send the clipboard's content"
 msgstr "Надіслати містиме буферу обміну"
 
-#: ../dnd2share/src/applet-notifications.c:405
+#: ../dnd2share/src/applet-notifications.c:407
 msgid "History"
 msgstr "Історія"
 
-#: ../dnd2share/src/applet-notifications.c:485
+#: ../dnd2share/src/applet-notifications.c:487
 msgid "Get text"
 msgstr "Отримати текст"
 
-#: ../dnd2share/src/applet-notifications.c:487
+#: ../dnd2share/src/applet-notifications.c:489
 msgid "Remove from history"
 msgstr "Видалити з історії"
 
-#: ../dnd2share/src/applet-notifications.c:490
+#: ../dnd2share/src/applet-notifications.c:492
 msgid "Clear History"
 msgstr "Очистити історію"
 
-#: ../dnd2share/src/applet-notifications.c:495
+#: ../dnd2share/src/applet-notifications.c:497
 msgid "Use only a files hosting site"
 msgstr "Використовувати тільки файл-хостинг сайт"
 
@@ -2355,8 +2362,8 @@ msgstr ""
 "автоматичне завершення роботи\n"
 "і повідомляти вам, якщо ваша система потребує перезавантаження.\n"
 "<b>Клікніть</b> по значку, щоб викликати спливаюче меню.\n"
-"Ви можете прив'язати до нього і до блокування екрану <b>комбінації "
-"клавіш</b>."
+"Ви можете прив'язати до нього і до блокування екрану <b>комбінації клавіш</"
+"b>."
 
 #: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:228
 #: ../logout/data/messages:97
@@ -2419,28 +2426,28 @@ msgstr "Заблокувати екран"
 msgid "Program an automatic shut-down"
 msgstr "Автоматичне завершення"
 
-#: ../logout/src/applet-logout.c:325
+#: ../logout/src/applet-logout.c:342
 msgid "Your computer will shut-down in 1 minute."
 msgstr "Ваш комп'ютер виключиться через 1 хвилину."
 
-#: ../logout/src/applet-logout.c:349
+#: ../logout/src/applet-logout.c:366
 msgid "Choose in how many minutes your PC will stop:"
 msgstr "Вкажіть через скільки хвилин зупинити комп'ютер"
 
-#: ../logout/src/applet-logout.c:523
+#: ../logout/src/applet-logout.c:540
 #, c-format
 msgid "It will automatically shut-down in %ds"
 msgstr "Він автоматично відключиться через %dс"
 
-#: ../logout/src/applet-logout.c:524
+#: ../logout/src/applet-logout.c:541
 msgid "Shut down the computer?"
 msgstr "Вимкнути компютер?"
 
-#: ../logout/src/applet-logout.c:584
+#: ../logout/src/applet-logout.c:601
 msgid "Restart the computer?"
 msgstr "Перезавантажити компютер?"
 
-#: ../logout/src/applet-logout.c:621
+#: ../logout/src/applet-logout.c:638
 msgid "Close the current session?"
 msgstr "Завершити поточну сесію?"
 
@@ -2451,11 +2458,6 @@ msgstr "Керування користувачами"
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Server address:"
 msgstr "Адреса сервера:"
-
-#: ../mail/src/cd-mail-applet-accounts.c:39
-#: ../mail/src/cd-mail-applet-accounts.c:44
-msgid "myLogin"
-msgstr "мійЛогін"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "myHost"
@@ -2572,24 +2574,24 @@ msgstr "Введіть ім'я для цього акаунта. Можете в
 msgid "Remove Account"
 msgstr "Видалити акаунт"
 
-#: ../mail/src/cd-mail-applet-etpan.c:236 ../wifi/src/applet-draw.c:186
+#: ../mail/src/cd-mail-applet-etpan.c:238 ../wifi/src/applet-draw.c:186
 msgid "unknown"
 msgstr "невідомо"
 
-#: ../mail/src/cd-mail-applet-etpan.c:236
+#: ../mail/src/cd-mail-applet-etpan.c:238
 msgid "no subject"
 msgstr "без теми"
 
-#: ../mail/src/cd-mail-applet-etpan.c:404
+#: ../mail/src/cd-mail-applet-etpan.c:408
 msgid "No unread mail in your mailboxes"
 msgstr "Немає непрочитаних листів"
 
-#: ../mail/src/cd-mail-applet-etpan.c:426
+#: ../mail/src/cd-mail-applet-etpan.c:430
 #, c-format
 msgid "You have %d new mails:"
 msgstr "У вас %d нових листів"
 
-#: ../mail/src/cd-mail-applet-etpan.c:428
+#: ../mail/src/cd-mail-applet-etpan.c:432
 msgid "You have a new mail:"
 msgstr "Є нові листи"
 
@@ -2719,7 +2721,7 @@ msgid ""
 "Note: you may have to install or activate the MPRIS plug-in of the player."
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:83
+#: ../musicPlayer/src/applet-notifications.c:100
 msgid ""
 "Sorry, I couldn't detect any player.\n"
 "If it is running, it is maybe because its version is too old and does not "
@@ -2729,69 +2731,76 @@ msgstr ""
 "Якщо його запущено, то можливо має застарілу версію та не надає такого "
 "сервісу."
 
-#: ../musicPlayer/src/applet-notifications.c:175
+#: ../musicPlayer/src/applet-notifications.c:192
 msgid "Choose a music player to control"
 msgstr "Виберіть програвач, яким будете керувати"
 
-#: ../musicPlayer/src/applet-notifications.c:262
+#: ../musicPlayer/src/applet-notifications.c:284
 msgid "Find opened player"
 msgstr "Виявити відкриті програвачі"
 
-#: ../musicPlayer/src/applet-notifications.c:266
+#: ../musicPlayer/src/applet-notifications.c:288
 msgid "Choose a player"
 msgstr "Виберіть програвач"
 
-#: ../musicPlayer/src/applet-notifications.c:272
+#: ../musicPlayer/src/applet-notifications.c:294
 msgid "Previous"
 msgstr "Попередня"
 
-#: ../musicPlayer/src/applet-notifications.c:272
+#: ../musicPlayer/src/applet-notifications.c:294
 msgid "scroll-up"
 msgstr "прокрутити вверх"
 
-#: ../musicPlayer/src/applet-notifications.c:278
+#: ../musicPlayer/src/applet-notifications.c:300
 msgid "Play/Pause"
 msgstr "Відтворення/пауза"
 
-#: ../musicPlayer/src/applet-notifications.c:278
+#: ../musicPlayer/src/applet-notifications.c:300
 msgid "left-click"
 msgstr "клацання лівою кнопкою"
 
-#: ../musicPlayer/src/applet-notifications.c:284
+#: ../musicPlayer/src/applet-notifications.c:306
 msgid "Next"
 msgstr "Далі"
 
-#: ../musicPlayer/src/applet-notifications.c:284
+#: ../musicPlayer/src/applet-notifications.c:306
 msgid "scroll-down"
 msgstr "прокрутити вниз"
 
-#: ../musicPlayer/src/applet-notifications.c:289
+#: ../musicPlayer/src/applet-notifications.c:311
 msgid "Stop"
 msgstr "Зупинити"
 
-#: ../musicPlayer/src/applet-notifications.c:293
+#: ../musicPlayer/src/applet-notifications.c:315
 msgid "Information"
 msgstr "Інформація"
 
-#: ../musicPlayer/src/applet-notifications.c:296
-msgid "Show the Window"
-msgstr "Показати вікно"
-
-#: ../musicPlayer/src/applet-notifications.c:301
+#: ../musicPlayer/src/applet-notifications.c:320
 msgid "Show JumpBox"
 msgstr "Показати вікно переходу"
 
-#: ../musicPlayer/src/applet-notifications.c:303
-msgid "Toggle Shuffle"
+#: ../musicPlayer/src/applet-notifications.c:323
+#, fuzzy
+msgid "Shuffle"
 msgstr "Перемикнути перемішування"
 
-#: ../musicPlayer/src/applet-notifications.c:305
-msgid "Toggle Repeat"
-msgstr "Перемикнути повторення"
+#: ../musicPlayer/src/applet-notifications.c:331
+#, fuzzy
+msgid "Repeat"
+msgstr "Повторювати:"
 
-#: ../musicPlayer/src/applet-notifications.c:307
+#: ../musicPlayer/src/applet-notifications.c:339
 msgid "Rate this song"
 msgstr "Оцінити композицію"
+
+#: ../musicPlayer/src/applet-notifications.c:343
+#, fuzzy
+msgid "Show"
+msgstr "Показати дані"
+
+#: ../musicPlayer/src/applet-notifications.c:344
+msgid "Quit"
+msgstr ""
 
 #: ../netspeed/src/applet-init.c:29
 msgid "netspeed"
@@ -2956,7 +2965,7 @@ msgid "Show/hide the folder menu"
 msgstr ""
 
 #: ../quick-browser/src/applet-menu.c:107
-#: ../quick-browser/src/applet-menu.c:116
+#: ../quick-browser/src/applet-menu.c:113
 msgid "Open this folder"
 msgstr "Відкрити цей каталог"
 
@@ -2964,8 +2973,8 @@ msgstr "Відкрити цей каталог"
 msgid "Open folder"
 msgstr "Відкрити теку"
 
-#: ../shortcuts/src/applet-bookmarks.c:131
-#: ../shortcuts/src/applet-bookmarks.c:393
+#: ../shortcuts/src/applet-bookmarks.c:133
+#: ../shortcuts/src/applet-bookmarks.c:416
 #: ../shortcuts/src/applet-drives.c:283
 msgid "Unmounted"
 msgstr "Відмонтовано"
@@ -3071,8 +3080,8 @@ msgstr "Показувати курсор"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a "
-"dock/desklet."
+"This plugin draws some animations around the cursor when it's inside a dock/"
+"desklet."
 msgstr ""
 "Цей модуль прикрашає курсор різною анімацією, коли той знаходиться всередині "
 "панелі/десклету."
@@ -3215,13 +3224,13 @@ msgstr "Файл додано в набір"
 msgid "The URL has been added to the stack."
 msgstr "URL додано в набір"
 
-#: ../switcher/src/applet-draw.c:597 ../switcher/src/applet-draw.c:604
+#: ../switcher/src/applet-draw.c:605 ../switcher/src/applet-draw.c:612
 #: ../switcher/src/applet-load-icons.c:53
 #: ../switcher/src/applet-notifications.c:415
 msgid "Current"
 msgstr "Поточний"
 
-#: ../switcher/src/applet-draw.c:604 ../switcher/src/applet-draw.c:606
+#: ../switcher/src/applet-draw.c:612 ../switcher/src/applet-draw.c:614
 #: ../switcher/src/applet-load-icons.c:59
 #: ../switcher/src/applet-notifications.c:216
 #: ../switcher/src/applet-notifications.c:228
@@ -3307,7 +3316,7 @@ msgstr "Стара область повідомлень"
 msgid "Show/hide the systray"
 msgstr ""
 
-#: ../systray/src/systray-interface.c:70
+#: ../systray/src/systray-interface.c:72
 msgid ""
 "Another systray is already running (probably on your panel)\n"
 "Since there can only be one systray at once, you should remove it to avoid "
@@ -3358,7 +3367,7 @@ msgid "Show/hide the terminal"
 msgstr "Показати/Приховати термінал"
 
 #: ../terminal/src/terminal-menu-functions.c:78
-#: ../terminal/src/terminal-widget.c:420
+#: ../terminal/src/terminal-widget.c:414
 msgid "New Tab"
 msgstr "Нова вкладка"
 
@@ -3387,19 +3396,19 @@ msgstr "Виберіть колір"
 msgid "You can recall the Terminal desklet by typing %s"
 msgstr "Ви можете викликати десклет Терміналу, набравши %s"
 
-#: ../terminal/src/terminal-widget.c:407
+#: ../terminal/src/terminal-widget.c:404
 msgid "Paste"
 msgstr "Вставити"
 
-#: ../terminal/src/terminal-widget.c:429
+#: ../terminal/src/terminal-widget.c:420
 msgid "Rename this Tab"
 msgstr "Перейменувати цю вкладку"
 
-#: ../terminal/src/terminal-widget.c:438
+#: ../terminal/src/terminal-widget.c:426
 msgid "Change this Tab's colour"
 msgstr "Змінити колір цієї вкладки"
 
-#: ../terminal/src/terminal-widget.c:447
+#: ../terminal/src/terminal-widget.c:432
 msgid "Close this Tab"
 msgstr "Закрити цю вкладку"
 
@@ -3571,19 +3580,19 @@ msgstr "Груд"
 msgid "Data are being retrieved, please wait a moment."
 msgstr "Запит інформації, зачекайте."
 
-#: ../weather/src/applet-notifications.c:97
+#: ../weather/src/applet-notifications.c:100
 msgid "Show current conditions (middle-click)"
 msgstr "Показати чинний стан (клацання середньою кнопкою)"
 
-#: ../weather/src/applet-notifications.c:102
+#: ../weather/src/applet-notifications.c:105
 msgid "Open weather.com (double-click)"
 msgstr "Відкрити weather.com (подвійне клацання)"
 
-#: ../weather/src/applet-notifications.c:104
+#: ../weather/src/applet-notifications.c:107
 msgid "Reload now"
 msgstr "Оновити зараз"
 
-#: ../weather/src/applet-notifications.c:137
+#: ../weather/src/applet-notifications.c:140
 msgid ""
 "No data available\n"
 " is your connection alive?"
@@ -3591,40 +3600,40 @@ msgstr ""
 "Не можу отримати дані\n"
 "Чи включено Інтернет?"
 
-#: ../weather/src/applet-notifications.c:157
-#: ../weather/src/applet-notifications.c:195
+#: ../weather/src/applet-notifications.c:160
+#: ../weather/src/applet-notifications.c:198
 msgid "Temperature"
 msgstr "Температура"
 
-#: ../weather/src/applet-notifications.c:158
+#: ../weather/src/applet-notifications.c:161
 msgid "Precipitation probability"
 msgstr "Ймовірність опадів"
 
-#: ../weather/src/applet-notifications.c:159
-#: ../weather/src/applet-notifications.c:196
+#: ../weather/src/applet-notifications.c:162
+#: ../weather/src/applet-notifications.c:199
 msgid "Wind"
 msgstr "Вітер"
 
-#: ../weather/src/applet-notifications.c:160
-#: ../weather/src/applet-notifications.c:197
+#: ../weather/src/applet-notifications.c:163
+#: ../weather/src/applet-notifications.c:200
 msgid "Humidity"
 msgstr "Вологість"
 
-#: ../weather/src/applet-notifications.c:161
-#: ../weather/src/applet-notifications.c:198
+#: ../weather/src/applet-notifications.c:164
+#: ../weather/src/applet-notifications.c:201
 msgid "Sunrise"
 msgstr "Схід сонця"
 
-#: ../weather/src/applet-notifications.c:161
-#: ../weather/src/applet-notifications.c:198
+#: ../weather/src/applet-notifications.c:164
+#: ../weather/src/applet-notifications.c:201
 msgid "Sunset"
 msgstr "Захід сонця"
 
-#: ../weather/src/applet-notifications.c:171
+#: ../weather/src/applet-notifications.c:174
 msgid "Data are being fetched, please re-try in a few seconds."
 msgstr "Дані поновлюються, спробуйте оновити через кілька секунд."
 
-#: ../weather/src/applet-notifications.c:181
+#: ../weather/src/applet-notifications.c:184
 msgid ""
 "No data available\n"
 "Retrying now..."
@@ -3632,11 +3641,11 @@ msgstr ""
 "Немає доступних даних\n"
 "Оновлення..."
 
-#: ../weather/src/applet-notifications.c:195
+#: ../weather/src/applet-notifications.c:198
 msgid "Feels like"
 msgstr "Комфорт"
 
-#: ../weather/src/applet-notifications.c:197
+#: ../weather/src/applet-notifications.c:200
 msgid "Pressure"
 msgstr "Тиск"
 
@@ -3683,16 +3692,11 @@ msgstr ""
 msgid "Global"
 msgstr "Загальні"
 
-#: ../Animated-icons/data/messages:3
-msgid "Animations are triggered when hovering an icon only in OpenGL mode."
-msgstr ""
-"В режимі OpenGL, анімація буде виконуватися тільки при наведенні на значок."
-
-#: ../Animated-icons/data/messages:5 ../icon-effect/data/messages:3
+#: ../Animated-icons/data/messages:3 ../icon-effect/data/messages:3
 msgid "when hovering over an icon"
 msgstr "При наведенні на значок"
 
-#: ../Animated-icons/data/messages:7 ../icon-effect/data/messages:5
+#: ../Animated-icons/data/messages:5 ../icon-effect/data/messages:5
 msgid "Effects used:"
 msgstr "Використовуючи ефект:"
 
@@ -3704,35 +3708,36 @@ msgstr "При клацанні на значку запуску"
 msgid "Effects used on launcher:"
 msgstr "Застосовувати ефекти на значку запуску:"
 
-#: ../Animated-icons/data/messages:41 ../Animated-icons/data/messages:61
+#: ../Animated-icons/data/messages:43 ../Animated-icons/data/messages:65
 msgid "Number of times the animation will play:"
 msgstr "Скільки разів програвати анімацію:"
 
-#: ../Animated-icons/data/messages:43 ../icon-effect/data/messages:35
+#: ../Animated-icons/data/messages:45 ../icon-effect/data/messages:35
 msgid "when clicking on an application"
 msgstr "При клацанні на програмі"
 
-#: ../Animated-icons/data/messages:45 ../icon-effect/data/messages:37
+#: ../Animated-icons/data/messages:47 ../icon-effect/data/messages:37
 msgid "Effects used on applications:"
 msgstr "Застосовувати ефекти на програмі:"
 
-#: ../Animated-icons/data/messages:63
+#: ../Animated-icons/data/messages:67
 msgid "Rotation"
 msgstr "Обертання"
 
-#: ../Animated-icons/data/messages:65 ../Animated-icons/data/messages:83
-#: ../Animated-icons/data/messages:135 ../Animated-icons/data/messages:147
-#: ../Animated-icons/data/messages:159 ../Animated-icons/data/messages:173
-#: ../Remote-Control/data/messages:9 ../Scooby-Do/data/messages:15
-#: ../Scooby-Do/data/messages:19 ../Toons/data/messages:105
-#: ../icon-effect/data/messages:85 ../icon-effect/data/messages:107
-#: ../icon-effect/data/messages:129 ../icon-effect/data/messages:151
-#: ../icon-effect/data/messages:171 ../show-mouse/data/messages:19
+#: ../Animated-icons/data/messages:69 ../Animated-icons/data/messages:87
+#: ../Animated-icons/data/messages:137 ../Animated-icons/data/messages:149
+#: ../Animated-icons/data/messages:161 ../Animated-icons/data/messages:175
+#: ../Animated-icons/data/messages:183 ../Remote-Control/data/messages:9
+#: ../Scooby-Do/data/messages:15 ../Scooby-Do/data/messages:19
+#: ../Toons/data/messages:105 ../icon-effect/data/messages:85
+#: ../icon-effect/data/messages:107 ../icon-effect/data/messages:129
+#: ../icon-effect/data/messages:151 ../icon-effect/data/messages:171
+#: ../show-mouse/data/messages:19
 msgid "In ms."
 msgstr "В мсек."
 
-#: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:85
-#: ../Animated-icons/data/messages:137 ../icon-effect/data/messages:59
+#: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:89
+#: ../Animated-icons/data/messages:139 ../icon-effect/data/messages:59
 #: ../icon-effect/data/messages:87 ../icon-effect/data/messages:109
 #: ../icon-effect/data/messages:131 ../icon-effect/data/messages:153
 #: ../icon-effect/data/messages:173 ../illusion/data/messages:33
@@ -3742,20 +3747,21 @@ msgstr "В мсек."
 msgid "Duration of the animation:"
 msgstr "Час анімації:"
 
-#: ../Animated-icons/data/messages:69 ../Animated-icons/data/messages:87
-#: ../Animated-icons/data/messages:139 ../Animated-icons/data/messages:151
-#: ../Animated-icons/data/messages:163 ../Animated-icons/data/messages:177
-#: ../icon-effect/data/messages:61 ../icon-effect/data/messages:89
-#: ../icon-effect/data/messages:111 ../icon-effect/data/messages:133
-#: ../icon-effect/data/messages:155 ../icon-effect/data/messages:175
+#: ../Animated-icons/data/messages:73 ../Animated-icons/data/messages:91
+#: ../Animated-icons/data/messages:141 ../Animated-icons/data/messages:153
+#: ../Animated-icons/data/messages:165 ../Animated-icons/data/messages:179
+#: ../Animated-icons/data/messages:187 ../icon-effect/data/messages:61
+#: ../icon-effect/data/messages:89 ../icon-effect/data/messages:111
+#: ../icon-effect/data/messages:133 ../icon-effect/data/messages:155
+#: ../icon-effect/data/messages:175
 msgid "Repeat while icon is pointed to?"
 msgstr "Повторювати поки наведено на значку?"
 
-#: ../Animated-icons/data/messages:71
+#: ../Animated-icons/data/messages:75
 msgid "Type of mesh:"
 msgstr "Тип сітки:"
 
-#: ../Animated-icons/data/messages:73 ../Clipper/data/messages:45
+#: ../Animated-icons/data/messages:77 ../Clipper/data/messages:45
 #: ../Composite-Manager/data/messages:41 ../Disks/data/messages:27
 #: ../Doncky/data/messages:43 ../Folders/data/messages:57
 #: ../GMenu/data/messages:45 ../Global-Menu/data/messages:39
@@ -3779,158 +3785,178 @@ msgstr "Тип сітки:"
 msgid "Normal"
 msgstr "Звичайна"
 
-#: ../Animated-icons/data/messages:75
+#: ../Animated-icons/data/messages:79
 msgid "Cube"
 msgstr "Куб"
 
-#: ../Animated-icons/data/messages:77
+#: ../Animated-icons/data/messages:81
 msgid "Capsule"
 msgstr "Капсула"
 
-#: ../Animated-icons/data/messages:79
+#: ../Animated-icons/data/messages:83
 msgid "Colour of the sheen:"
 msgstr "Колір сяяння"
 
-#: ../Animated-icons/data/messages:91 ../Animated-icons/data/messages:95
-#: ../Clipper/data/messages:9 ../Composite-Manager/data/messages:91
-#: ../Composite-Manager/data/messages:95 ../Doncky/data/messages:9
-#: ../Doncky/data/messages:91 ../Folders/data/messages:21
-#: ../GMenu/data/messages:9 ../GMenu/data/messages:99
-#: ../Impulse/data/messages:7 ../Impulse/data/messages:125
-#: ../Impulse/data/messages:129 ../Impulse/data/messages:133
-#: ../RSSreader/data/messages:11 ../RSSreader/data/messages:129
-#: ../Recent-Events/data/messages:9 ../System-Monitor/data/messages:187
-#: ../System-Monitor/data/messages:195 ../Xgamma/data/messages:11
-#: ../alsaMixer/data/messages:131 ../alsaMixer/data/messages:135
-#: ../alsaMixer/data/messages:149 ../dnd2share/data/messages:9
-#: ../logout/data/messages:9 ../quick-browser/data/messages:11
-#: ../shortcuts/data/messages:9 ../showDesktop/data/messages:9
-#: ../stack/data/messages:11 ../switcher/data/messages:9
-#: ../switcher/data/messages:151 ../systray/data/messages:9
-#: ../template/data/messages:9 ../terminal/data/messages:9
-#: ../weblets/data/messages:9
-msgid "Leave empty to use the default one."
-msgstr "Залиште порожнім, щоб використовувати типове."
-
-#: ../Animated-icons/data/messages:93
+#: ../Animated-icons/data/messages:95
 msgid "Image for the spotlight:"
 msgstr "Колір прожектору:"
 
-#: ../Animated-icons/data/messages:97
+#: ../Animated-icons/data/messages:97 ../Clipper/data/messages:9
+#: ../Composite-Manager/data/messages:91 ../Composite-Manager/data/messages:95
+#: ../Doncky/data/messages:9 ../Doncky/data/messages:91
+#: ../Folders/data/messages:21 ../GMenu/data/messages:9
+#: ../GMenu/data/messages:99 ../Impulse/data/messages:7
+#: ../Impulse/data/messages:125 ../Impulse/data/messages:129
+#: ../Impulse/data/messages:133 ../RSSreader/data/messages:11
+#: ../RSSreader/data/messages:129 ../Recent-Events/data/messages:9
+#: ../System-Monitor/data/messages:187 ../System-Monitor/data/messages:195
+#: ../Xgamma/data/messages:11 ../alsaMixer/data/messages:131
+#: ../alsaMixer/data/messages:135 ../alsaMixer/data/messages:149
+#: ../dnd2share/data/messages:9 ../logout/data/messages:9
+#: ../quick-browser/data/messages:11 ../shortcuts/data/messages:9
+#: ../showDesktop/data/messages:9 ../stack/data/messages:11
+#: ../switcher/data/messages:9 ../switcher/data/messages:111
+#: ../systray/data/messages:9 ../template/data/messages:9
+#: ../terminal/data/messages:9 ../weblets/data/messages:9
+msgid "Leave empty to use the default one."
+msgstr "Залиште порожнім, щоб використовувати типове."
+
+#: ../Animated-icons/data/messages:99
 msgid "Image for the front spotlight:"
 msgstr "Попередній колір прожектору:"
 
-#: ../Animated-icons/data/messages:99
+#: ../Animated-icons/data/messages:101
 msgid "Spot colour:"
 msgstr "Колір плями:"
 
-#: ../Animated-icons/data/messages:101
+#: ../Animated-icons/data/messages:103
 msgid "Halo colour:"
 msgstr "Колір ореолу:"
 
-#: ../Animated-icons/data/messages:103
+#: ../Animated-icons/data/messages:105
 msgid "Rays"
 msgstr "Промені"
 
-#: ../Animated-icons/data/messages:105 ../icon-effect/data/messages:65
+#: ../Animated-icons/data/messages:107 ../icon-effect/data/messages:65
 #: ../icon-effect/data/messages:93 ../icon-effect/data/messages:115
 #: ../icon-effect/data/messages:137 ../icon-effect/data/messages:159
 #: ../illusion/data/messages:37 ../show-mouse/data/messages:27
 msgid "1st color of gradation :"
 msgstr "Початковий колір градації"
 
-#: ../Animated-icons/data/messages:107 ../icon-effect/data/messages:67
+#: ../Animated-icons/data/messages:109 ../icon-effect/data/messages:67
 #: ../icon-effect/data/messages:95 ../icon-effect/data/messages:117
 #: ../icon-effect/data/messages:139 ../icon-effect/data/messages:161
 #: ../illusion/data/messages:39 ../show-mouse/data/messages:29
 msgid "2nd color of gradation :"
 msgstr "Кінцевий колір градації"
 
-#: ../Animated-icons/data/messages:109 ../icon-effect/data/messages:69
+#: ../Animated-icons/data/messages:111 ../icon-effect/data/messages:69
 #: ../icon-effect/data/messages:97 ../icon-effect/data/messages:181
 #: ../illusion/data/messages:41 ../show-mouse/data/messages:31
 msgid "Random colours?"
 msgstr "Випадкові кольори?"
 
-#: ../Animated-icons/data/messages:111
+#: ../Animated-icons/data/messages:113
 msgid "Number of rays:"
 msgstr "Кількість променів:"
 
-#: ../Animated-icons/data/messages:113
+#: ../Animated-icons/data/messages:115
 msgid "Ray size:"
 msgstr "Розмір променів:"
 
-#: ../Animated-icons/data/messages:115
+#: ../Animated-icons/data/messages:117
 msgid "Ray speed:"
 msgstr "Швидкість променів:"
 
-#: ../Animated-icons/data/messages:119
+#: ../Animated-icons/data/messages:121
 msgid "Initial stretch:"
 msgstr "Початкове розтягнення:"
 
-#: ../Animated-icons/data/messages:121
+#: ../Animated-icons/data/messages:123
 msgid "Horizontal stretch"
 msgstr "Горизонтальне розтягнення"
 
-#: ../Animated-icons/data/messages:123
+#: ../Animated-icons/data/messages:125
 msgid "Vertical stretch"
 msgstr "Вертикальне розтягнення"
 
-#: ../Animated-icons/data/messages:125
+#: ../Animated-icons/data/messages:127
 msgid "Corner stretch"
 msgstr "Кутове розтягнення"
 
-#: ../Animated-icons/data/messages:127
+#: ../Animated-icons/data/messages:129
 msgid "Spring constant:"
 msgstr "Величина пружини:"
 
-#: ../Animated-icons/data/messages:129
+#: ../Animated-icons/data/messages:131
 msgid "Friction:"
 msgstr "Тертя:"
 
-#: ../Animated-icons/data/messages:131
+#: ../Animated-icons/data/messages:133
 msgid "Number of points on the grid in each direction:"
 msgstr "Кількість точок на решітці в одному напрямку:"
 
-#: ../Animated-icons/data/messages:141
+#: ../Animated-icons/data/messages:143
 msgid "Wave width:"
 msgstr "Ширина хвилі:"
 
-#: ../Animated-icons/data/messages:143
+#: ../Animated-icons/data/messages:145
 msgid "Wave amplitude:"
 msgstr "Амплітуда хвилі:"
 
-#: ../Animated-icons/data/messages:149
+#: ../Animated-icons/data/messages:151
 msgid "Pulse duration:"
 msgstr "Термін пульсації:"
 
-#: ../Animated-icons/data/messages:153
+#: ../Animated-icons/data/messages:155
 msgid "Pulse max zoom:"
 msgstr "Максимальне наближення пульсації:"
 
-#: ../Animated-icons/data/messages:155
+#: ../Animated-icons/data/messages:157
 msgid "Pulse follows icon shape?"
 msgstr "Чи повинен пульс залежати від форми значка?"
 
-#: ../Animated-icons/data/messages:161
+#: ../Animated-icons/data/messages:163
 msgid "Bounce duration:"
 msgstr "Термін підстрибування:"
 
-#: ../Animated-icons/data/messages:165
+#: ../Animated-icons/data/messages:167
 msgid "When bouncing, resize the icon by:"
 msgstr "Під час підстрибування змінювати розмір значка:"
 
-#: ../Animated-icons/data/messages:167
+#: ../Animated-icons/data/messages:169
 msgid "the lower the value, the more it will flatten."
 msgstr "чим менше, тим він плоскіше."
 
-#: ../Animated-icons/data/messages:169
+#: ../Animated-icons/data/messages:171
 msgid "How much the icon will flatten when hitting the ground:"
 msgstr "Наскільки пласким повинен ставати значок при дотику площини:"
 
-#: ../Animated-icons/data/messages:175
+#: ../Animated-icons/data/messages:177
 msgid "Blink duration:"
 msgstr "Термін миготіння:"
+
+#: ../Animated-icons/data/messages:185
+#, fuzzy
+msgid "Busy duration:"
+msgstr "Термін пульсації:"
+
+#: ../Animated-icons/data/messages:189
+msgid ""
+"The image must contain all the frames of the animation, side by side, from "
+"left to right."
+msgstr ""
+
+#: ../Animated-icons/data/messages:191
+#, fuzzy
+msgid "Image :"
+msgstr "Зображення"
+
+#: ../Animated-icons/data/messages:193
+#, fuzzy
+msgid "Image size"
+msgstr "Зображення"
 
 #: ../Cairo-Penguin/data/messages:1 ../Cairo-Penguin/data/messages:3
 #: ../Clipper/data/messages:1 ../Clipper/data/messages:3
@@ -3965,13 +3991,13 @@ msgstr "Термін миготіння:"
 #: ../slider/data/messages:1 ../slider/data/messages:3
 #: ../stack/data/messages:1 ../stack/data/messages:3
 #: ../switcher/data/messages:1 ../switcher/data/messages:3
-#: ../systray/data/messages:1 ../systray/data/messages:3
-#: ../template/data/messages:1 ../template/data/messages:3
-#: ../terminal/data/messages:1 ../terminal/data/messages:3
-#: ../tomboy/data/messages:1 ../tomboy/data/messages:3
-#: ../weather/data/messages:1 ../weather/data/messages:3
-#: ../weblets/data/messages:1 ../weblets/data/messages:3
-#: ../wifi/data/messages:1 ../wifi/data/messages:3
+#: ../switcher/data/messages:127 ../systray/data/messages:1
+#: ../systray/data/messages:3 ../template/data/messages:1
+#: ../template/data/messages:3 ../terminal/data/messages:1
+#: ../terminal/data/messages:3 ../tomboy/data/messages:1
+#: ../tomboy/data/messages:3 ../weather/data/messages:1
+#: ../weather/data/messages:3 ../weblets/data/messages:1
+#: ../weblets/data/messages:3 ../wifi/data/messages:1 ../wifi/data/messages:3
 msgid "Icon"
 msgstr "Значок"
 
@@ -4340,8 +4366,8 @@ msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
 msgstr ""
-"Залежно від вашого менеджеру вікон, ви можете переміщувати за допомогою "
-"ALT+ліве клацання."
+"Залежно від вашого менеджеру вікон, ви можете переміщувати за допомогою ALT"
+"+ліве клацання."
 
 #: ../Clipper/data/messages:33 ../Composite-Manager/data/messages:29
 #: ../Disks/data/messages:47 ../Doncky/data/messages:31
@@ -4643,8 +4669,7 @@ msgstr "Оформлення"
 #: ../tomboy/data/messages:69 ../weather/data/messages:67
 #: ../weblets/data/messages:59 ../wifi/data/messages:65
 msgid "Choose 'Custom decorations' to define your own decorations below."
-msgstr ""
-"Виберіть 'Власне оформлення', щоб налаштувати власне оформлення нижче."
+msgstr "Виберіть 'Власне оформлення', щоб налаштувати власне оформлення нижче."
 
 #: ../Clipper/data/messages:61 ../Composite-Manager/data/messages:57
 #: ../Disks/data/messages:57 ../Doncky/data/messages:59
@@ -4704,7 +4729,7 @@ msgstr ""
 #: ../Recent-Events/data/messages:65 ../Status-Notifier/data/messages:75
 #: ../System-Monitor/data/messages:71 ../Toons/data/messages:71
 #: ../Xgamma/data/messages:67 ../alsaMixer/data/messages:73
-#: ../clock/data/messages:73 ../clock/data/messages:167
+#: ../clock/data/messages:73 ../clock/data/messages:173
 #: ../dnd2share/data/messages:61 ../dustbin/data/messages:61
 #: ../keyboard-indicator/data/messages:71
 #: ../keyboard-indicator/data/messages:125 ../logout/data/messages:65
@@ -5196,7 +5221,7 @@ msgstr "Запитати перед перемиканням:"
 
 #: ../Composite-Manager/data/messages:127 ../logout/data/messages:95
 #: ../showDesktop/data/messages:115 ../slider/data/messages:123
-#: ../switcher/data/messages:109
+#: ../switcher/data/messages:135
 msgid "Action on middle-click:"
 msgstr "Дія на середнє клацання:"
 
@@ -5487,8 +5512,7 @@ msgid "Background"
 msgstr "Тло"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid ""
-"You can have more attractive backgrounds using the Desklet decorations"
+msgid "You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Ви можете отримати привабливіше тло з використанням Оформлення десклетів"
 
@@ -6793,44 +6817,58 @@ msgid "Font:"
 msgstr "Шрифт:"
 
 #: ../clock/data/messages:157
+msgid "Set to 0 to not have it"
+msgstr ""
+
+#: ../clock/data/messages:159
+#, fuzzy
+msgid "Outline thickness:"
+msgstr "Товщина границі:"
+
+#: ../clock/data/messages:161
+#, fuzzy
+msgid "Outline colour:"
+msgstr "Колір лінії:"
+
+#: ../clock/data/messages:163
 msgid "Layout of the text:"
 msgstr "Компонування тексту:"
 
-#: ../clock/data/messages:159 ../switcher/data/messages:95
+#: ../clock/data/messages:165 ../switcher/data/messages:97
 msgid "Automatic"
 msgstr "Автоматично"
 
-#: ../clock/data/messages:161
+#: ../clock/data/messages:167
 msgid "On 1 line"
 msgstr "В 1 рядок"
 
-#: ../clock/data/messages:163
+#: ../clock/data/messages:169
 msgid "On 2 lines"
 msgstr "В 2 рядки"
 
-#: ../clock/data/messages:165
+#: ../clock/data/messages:171
 msgid "Ratio to apply on text :"
 msgstr "Пропорція тексту:"
 
-#: ../clock/data/messages:169
+#: ../clock/data/messages:175
 msgid "Configure time and date"
 msgstr "Налаштувати дату та час"
 
-#: ../clock/data/messages:171 ../logout/data/messages:111
+#: ../clock/data/messages:177 ../logout/data/messages:111
 msgid "Leave empty to execute the default command."
 msgstr "Залиште порожнім, щоб використовувати стандартну."
 
-#: ../clock/data/messages:173
+#: ../clock/data/messages:179
 msgid "Specific command to run:"
 msgstr "Специфічна команда запуску:"
 
-#: ../clock/data/messages:177
+#: ../clock/data/messages:183
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
 msgstr ""
 "Нове нагадування буде додано до кінця / останнє нагадування буде видалено."
 
-#: ../clock/data/messages:179
+#: ../clock/data/messages:185
 msgid "Add or remove an alarm:"
 msgstr "Додати або видалити нагадування:"
 
@@ -7062,8 +7100,7 @@ msgstr "Висота точки сходження:"
 
 #: ../dock-rendering/data/messages:9
 msgid "The lower the value, the flatter the curve will appear."
-msgstr ""
-"Чим менше значення, тим більша частина кривої буде виглядати пласкою."
+msgstr "Чим менше значення, тим більша частина кривої буде виглядати пласкою."
 
 #: ../dock-rendering/data/messages:11
 msgid "Curvature of the curve in percent:"
@@ -7243,8 +7280,7 @@ msgid "Space between icons:"
 msgstr "Відстань між значками:"
 
 #: ../dock-rendering/data/messages:117
-msgid ""
-"0 represents a flat wave, 1 means the wave is identical to other views."
+msgid "0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "При значенні 0 хвиля буде повністю пласкою, при значенні 1 хвиля буде "
 "ідентична іншим видам."
@@ -7385,8 +7421,7 @@ msgid "Colours"
 msgstr "Кольори"
 
 #: ../icon-effect/data/messages:71
-msgid ""
-"This will slightly alter your colours, so you may have to modify them."
+msgid "This will slightly alter your colours, so you may have to modify them."
 msgstr "Він ледве змінює колір, так що ви можете навіть не змінювати його."
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
@@ -7629,8 +7664,7 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Файл зображення для статусу 'є нові листи':"
 
 #: ../mail/data/messages:115
-msgid ""
-"If checked, the number of mails will be shown even if there is no mail."
+msgid "If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Якщо вибрано, то кількість листів буде показуватися навіть, якщо листів не "
 "має."
@@ -7640,13 +7674,13 @@ msgid "Show '0' if there is no mail?"
 msgstr "Показувати «0», якщо немає пошти?"
 
 #: ../mail/data/messages:119 ../shortcuts/data/messages:105
-#: ../stack/data/messages:97 ../switcher/data/messages:155
+#: ../stack/data/messages:97 ../switcher/data/messages:121
 #: ../tomboy/data/messages:119 ../weather/data/messages:133
 msgid "Leave empty to use default sub-dock view."
 msgstr "Залиште порожнім, щоб використовувати стандартний вид суб-панелі."
 
 #: ../mail/data/messages:121 ../shortcuts/data/messages:107
-#: ../stack/data/messages:99 ../switcher/data/messages:157
+#: ../stack/data/messages:99 ../switcher/data/messages:123
 #: ../tomboy/data/messages:121 ../weather/data/messages:135
 msgid "Sub-dock view name:"
 msgstr "Ім'я теми для суб-панелі:"
@@ -7716,8 +7750,7 @@ msgid "Blur amount:"
 msgstr "Якість розмиття:"
 
 #: ../musicPlayer/data/messages:7
-msgid ""
-"Leave it empty to display the name of the player currently controlled."
+msgid "Leave it empty to display the name of the player currently controlled."
 msgstr ""
 "Залиште порожнім, щоб відображати ім'я програвача, яким зараз управляєте."
 
@@ -8125,8 +8158,7 @@ msgstr "Життєвий час часток:"
 #: ../show-mouse/data/messages:33
 msgid ""
 "The higher the value, the more particles will scatter from their source."
-msgstr ""
-"Чим більше значення, тим більше часток розсіюватиметься з їх джерела."
+msgstr "Чим більше значення, тим більше часток розсіюватиметься з їх джерела."
 
 #: ../show-mouse/data/messages:35
 msgid "Scattering:"
@@ -8360,111 +8392,152 @@ msgid "Manual order"
 msgstr "вручну"
 
 #: ../switcher/data/messages:89
-msgid ""
-"All desktops will be drawn on the main icon. Otherwise a sub-dock will "
-"contain all desktops."
-msgstr ""
-"Всі стільниці будуть зображені на головному значку. Інакше вони будуть "
-"переміщені до суб-панелі."
+#, fuzzy
+msgid "How to display all desktops?"
+msgstr "Як показувати елементи:"
 
 #: ../switcher/data/messages:91
-msgid "Use the compact mode?"
-msgstr "Використовувати компактний режим?"
+msgid "A sub-dock with all desktops"
+msgstr ""
 
 #: ../switcher/data/messages:93
+msgid "All desktops drawn on the main icon"
+msgstr ""
+
+#: ../switcher/data/messages:95
 msgid "Desktops layout"
 msgstr ""
 
-#: ../switcher/data/messages:97
+#: ../switcher/data/messages:99
 msgid "On a single line"
 msgstr ""
 
-#: ../switcher/data/messages:99
-msgid "Map wallpaper to icons?"
-msgstr "Розташовувати шпалери на значку?"
-
 #: ../switcher/data/messages:101
-msgid "Preserve the ratio of the screen ?"
+#, fuzzy
+msgid "Preserve the ratio of the screen?"
 msgstr "Зберегти розширення екрану?"
 
 #: ../switcher/data/messages:103
-msgid "Show desktop number on icons?"
-msgstr "Показувати номер стільниці на значку?"
+#, fuzzy
+msgid "How to draw the icon?"
+msgstr "Як малювати значок:"
 
 #: ../switcher/data/messages:105
-msgid "Draw windows on icons?"
-msgstr "Відображати вікна на значку?"
+#, fuzzy
+msgid "Map wallpaper to icons"
+msgstr "Розташовувати шпалери на значку?"
 
 #: ../switcher/data/messages:107
-msgid "Draw hidden windows?"
-msgstr "Відображати сховані вікна також?"
+msgid "Use an image for each desktop"
+msgstr ""
 
-#: ../switcher/data/messages:111
-msgid "Show windows' list"
-msgstr "Показувати список вікон"
+#: ../switcher/data/messages:109
+msgid "Use a colour for each desktop"
+msgstr ""
 
-#: ../switcher/data/messages:119
-msgid "Workspace names :"
-msgstr "Назви стільниць:"
-
-#: ../switcher/data/messages:121
-msgid "Display options"
-msgstr "Параметри відображення"
-
-#: ../switcher/data/messages:123
-msgid "Size of the inside lines :"
-msgstr "Розмір внутрішніх ліній:"
-
-#: ../switcher/data/messages:125 ../switcher/data/messages:131
-#: ../switcher/data/messages:135 ../switcher/data/messages:139
-msgid "r, g, b, a"
-msgstr "ч, з, с, а"
-
-#: ../switcher/data/messages:127
-msgid "Internal line colour:"
-msgstr "Колір внутрішніх ліній:"
-
-#: ../switcher/data/messages:129
-msgid "External line size:"
-msgstr "Розмір зовнішніх ліній:"
-
-#: ../switcher/data/messages:133
-msgid "External line colour:"
-msgstr "Колір зовнішніх ліній:"
-
-#: ../switcher/data/messages:137
-msgid "Window line colour:"
-msgstr "Колір лінії вікон:"
-
-#: ../switcher/data/messages:141
-msgid "Current desktop colour:"
-msgstr "Колір поточної стільниці:"
-
-#: ../switcher/data/messages:143
-msgid "How to draw the current desktop:"
-msgstr "Як відображати поточну стільницю:"
-
-#: ../switcher/data/messages:145
-msgid "draw a frame"
-msgstr "рамка"
-
-#: ../switcher/data/messages:147
-msgid "fill"
-msgstr "заповнити"
-
-#: ../switcher/data/messages:149
-msgid "fill others"
-msgstr "заповнити інші"
-
-#: ../switcher/data/messages:153
+#: ../switcher/data/messages:113
 msgid "Icon to use in expanded mode if wallpaper is not mapped:"
 msgstr ""
 "Значок, який використовується в розширеному режимі, якщо шпалери не "
 "використовуються:"
 
-#: ../switcher/data/messages:159
+#: ../switcher/data/messages:115 ../switcher/data/messages:151
+#: ../switcher/data/messages:157 ../switcher/data/messages:161
+#: ../switcher/data/messages:165 ../switcher/data/messages:181
+msgid "r, g, b, a"
+msgstr "ч, з, с, а"
+
+#: ../switcher/data/messages:117 ../terminal/data/messages:105
+msgid "Background colour:"
+msgstr "Колір тла:"
+
+#: ../switcher/data/messages:119
+#, fuzzy
+msgid "Sub-Dock"
+msgstr "Суб-панель"
+
+#: ../switcher/data/messages:125
 msgid "In expanded mode, render the desklet in 3D?"
 msgstr "В розширеному режимі, відображати десклет в 3D?"
+
+#: ../switcher/data/messages:129
+msgid "Draw windows on icons?"
+msgstr "Відображати вікна на значку?"
+
+#: ../switcher/data/messages:131
+msgid "Draw hidden windows?"
+msgstr "Відображати сховані вікна також?"
+
+#: ../switcher/data/messages:133
+#, fuzzy
+msgid "Draw icons of windows?"
+msgstr "Відображати сховані вікна також?"
+
+#: ../switcher/data/messages:137
+msgid "Show windows' list"
+msgstr "Показувати список вікон"
+
+#: ../switcher/data/messages:145
+msgid "Workspace names :"
+msgstr "Назви стільниць:"
+
+#: ../switcher/data/messages:147
+msgid "Display options"
+msgstr "Параметри відображення"
+
+#: ../switcher/data/messages:149
+msgid "Size of the inside lines :"
+msgstr "Розмір внутрішніх ліній:"
+
+#: ../switcher/data/messages:153
+msgid "Internal line colour:"
+msgstr "Колір внутрішніх ліній:"
+
+#: ../switcher/data/messages:155
+msgid "External line size:"
+msgstr "Розмір зовнішніх ліній:"
+
+#: ../switcher/data/messages:159
+msgid "External line colour:"
+msgstr "Колір зовнішніх ліній:"
+
+#: ../switcher/data/messages:163
+msgid "Window line colour:"
+msgstr "Колір лінії вікон:"
+
+#: ../switcher/data/messages:167
+msgid "Current desktop colour:"
+msgstr "Колір поточної стільниці:"
+
+#: ../switcher/data/messages:169
+msgid "How to draw the current desktop:"
+msgstr "Як відображати поточну стільницю:"
+
+#: ../switcher/data/messages:171
+msgid "draw a frame"
+msgstr "рамка"
+
+#: ../switcher/data/messages:173
+msgid "fill"
+msgstr "заповнити"
+
+#: ../switcher/data/messages:175
+msgid "fill others"
+msgstr "заповнити інші"
+
+#: ../switcher/data/messages:177
+msgid "All windows can be filled with one colour"
+msgstr ""
+
+#: ../switcher/data/messages:179
+#, fuzzy
+msgid "Fill all windows?"
+msgstr "Показати всі вікна"
+
+#: ../switcher/data/messages:183
+#, fuzzy
+msgid "Colour of these windows:"
+msgstr "Колір сяяння"
 
 #: ../systray/data/messages:85
 msgid "Shortkey to toggle the systray in dock mode:"
@@ -8517,10 +8590,6 @@ msgstr "щільність"
 #: ../terminal/data/messages:103
 msgid "Foreground colour:"
 msgstr "Колір переднього плану:"
-
-#: ../terminal/data/messages:105
-msgid "Background colour:"
-msgstr "Колір тла:"
 
 #: ../terminal/data/messages:109
 msgid ""
@@ -8690,8 +8759,7 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Позиція вертикальної полоси"
 
 #: ../weblets/data/messages:105
-msgid ""
-"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Це дозволить використовувати праве клацання для виклику меню Cairo-Dock."
 
@@ -8777,3 +8845,30 @@ msgstr "Стужбова інформація про сигнал"
 #: ../wifi/data/messages:197
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Змінити типовий підпис на назву точки доступу?"
+
+#~ msgid "myLogin"
+#~ msgstr "мійЛогін"
+
+#~ msgid "Show the Window"
+#~ msgstr "Показати вікно"
+
+#~ msgid "Toggle Repeat"
+#~ msgstr "Перемикнути повторення"
+
+#~ msgid "Animations are triggered when hovering an icon only in OpenGL mode."
+#~ msgstr ""
+#~ "В режимі OpenGL, анімація буде виконуватися тільки при наведенні на "
+#~ "значок."
+
+#~ msgid ""
+#~ "All desktops will be drawn on the main icon. Otherwise a sub-dock will "
+#~ "contain all desktops."
+#~ msgstr ""
+#~ "Всі стільниці будуть зображені на головному значку. Інакше вони будуть "
+#~ "переміщені до суб-панелі."
+
+#~ msgid "Use the compact mode?"
+#~ msgstr "Використовувати компактний режим?"
+
+#~ msgid "Show desktop number on icons?"
+#~ msgstr "Показувати номер стільниці на значку?"

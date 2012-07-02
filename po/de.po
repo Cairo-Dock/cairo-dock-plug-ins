@@ -8,67 +8,73 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2012-04-12 00:33+0000\n"
 "PO-Revision-Date: 2012-05-02 06:06+0000\n"
 "Last-Translator: claudia89 <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-05-03 05:31+0000\n"
 "X-Generator: Launchpad (build 15185)\n"
-"Language: de\n"
 
-#: ../Animated-icons/src/applet-init.c:32
+#: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
+#: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
+#: ../Animated-icons/data/messages:173
+msgid "Blink"
+msgstr "Blinken"
+
+#: ../Animated-icons/src/applet-bounce.c:182 ../Animated-icons/data/messages:7
+#: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:49
+#: ../Animated-icons/data/messages:159
+msgid "Bounce"
+msgstr "Springen"
+
+#: ../Animated-icons/src/applet-busy.c:95 ../Animated-icons/data/messages:21
+#: ../Animated-icons/data/messages:41 ../Animated-icons/data/messages:63
+#: ../Animated-icons/data/messages:181
+msgid "Busy"
+msgstr ""
+
+#: ../Animated-icons/src/applet-init.c:39
 msgid "Animated icons"
 msgstr "Animierte Symbole"
 
-#: ../Animated-icons/src/applet-init.c:35
+#: ../Animated-icons/src/applet-init.c:42
 msgid "This plug-in provides many different animations for your icons."
 msgstr ""
 "Dieses Plugin stellt viele unterschiedliche Animationen für Ihre Symbole zur "
 "Verfügung."
 
-#: ../Animated-icons/src/applet-init.c:80 ../Animated-icons/data/messages:9
-#: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:47
-#: ../Animated-icons/data/messages:157
-msgid "Bounce"
-msgstr "Springen"
-
-#: ../Animated-icons/src/applet-init.c:81 ../Animated-icons/data/messages:11
-#: ../Animated-icons/data/messages:29 ../Animated-icons/data/messages:49
-msgid "Rotate"
-msgstr "Rotieren"
-
-#: ../Animated-icons/src/applet-init.c:82 ../Animated-icons/data/messages:13
-#: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:51
-#: ../Animated-icons/data/messages:171
-msgid "Blink"
-msgstr "Blinken"
-
-#: ../Animated-icons/src/applet-init.c:83 ../Animated-icons/data/messages:15
-#: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:53
-#: ../Animated-icons/data/messages:145
+#: ../Animated-icons/src/applet-pulse.c:107 ../Animated-icons/data/messages:13
+#: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:55
+#: ../Animated-icons/data/messages:147
 msgid "Pulse"
 msgstr "Pulsieren"
 
-#: ../Animated-icons/src/applet-init.c:84 ../Animated-icons/data/messages:17
-#: ../Animated-icons/data/messages:35 ../Animated-icons/data/messages:55
-#: ../Animated-icons/data/messages:117
-msgid "Wobbly"
-msgstr "Wackelig"
+#: ../Animated-icons/src/applet-rotation.c:382
+#: ../Animated-icons/data/messages:9 ../Animated-icons/data/messages:29
+#: ../Animated-icons/data/messages:51
+msgid "Rotate"
+msgstr "Rotieren"
 
-#: ../Animated-icons/src/applet-init.c:85 ../Animated-icons/data/messages:19
-#: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:57
-#: ../Animated-icons/data/messages:133
+#: ../Animated-icons/src/applet-spot.c:263 ../Animated-icons/data/messages:19
+#: ../Animated-icons/data/messages:39 ../Animated-icons/data/messages:61
+#: ../Animated-icons/data/messages:85 ../Animated-icons/data/messages:93
+msgid "Spot"
+msgstr "Punkt"
+
+#: ../Animated-icons/src/applet-wave.c:295 ../Animated-icons/data/messages:17
+#: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:59
+#: ../Animated-icons/data/messages:135
 msgid "Wave"
 msgstr "Welle"
 
-#: ../Animated-icons/src/applet-init.c:86 ../Animated-icons/data/messages:21
-#: ../Animated-icons/data/messages:39 ../Animated-icons/data/messages:59
-#: ../Animated-icons/data/messages:81 ../Animated-icons/data/messages:89
-msgid "Spot"
-msgstr "Punkt"
+#: ../Animated-icons/src/applet-wobbly.c:556
+#: ../Animated-icons/data/messages:15 ../Animated-icons/data/messages:35
+#: ../Animated-icons/data/messages:57 ../Animated-icons/data/messages:119
+msgid "Wobbly"
+msgstr "Wackelig"
 
 #: ../Cairo-Penguin/src/applet-init.c:33
 msgid ""
@@ -292,10 +298,10 @@ msgstr "Fenstermanager-Einstellungen editieren"
 #: ../RSSreader/src/applet-notifications.c:129
 #: ../System-Monitor/src/applet-notifications.c:106
 #: ../Xgamma/src/applet-notifications.c:87
-#: ../alsaMixer/src/applet-notifications.c:85
+#: ../alsaMixer/src/applet-notifications.c:87
 #: ../dustbin/src/applet-notifications.c:136
 #: ../mail/src/cd-mail-applet-notifications.c:154
-#: ../musicPlayer/src/applet-notifications.c:278
+#: ../musicPlayer/src/applet-notifications.c:300
 #: ../netspeed/src/applet-notifications.c:94
 #: ../quick-browser/src/applet-notifications.c:41
 #: ../shortcuts/src/applet-notifications.c:249
@@ -322,7 +328,7 @@ msgstr "Fenstermanager neu laden"
 #: ../showDesktop/src/applet-notifications.c:165
 #: ../showDesktop/src/applet-notifications.c:167
 #: ../Composite-Manager/data/messages:133 ../showDesktop/data/messages:103
-#: ../showDesktop/data/messages:117 ../switcher/data/messages:113
+#: ../showDesktop/data/messages:117 ../switcher/data/messages:139
 msgid "Show desktop"
 msgstr "Zeige Desktop"
 
@@ -331,13 +337,13 @@ msgstr "Zeige Desktop"
 #: ../showDesktop/src/applet-notifications.c:179
 #: ../switcher/src/applet-notifications.c:314
 #: ../Composite-Manager/data/messages:135 ../showDesktop/data/messages:111
-#: ../showDesktop/data/messages:125 ../switcher/data/messages:115
+#: ../showDesktop/data/messages:125 ../switcher/data/messages:141
 msgid "Expose all the desktops"
 msgstr "Alle Arbeitsflächen zeigen"
 
 #: ../Composite-Manager/src/applet-notifications.c:154
 #: ../switcher/src/applet-notifications.c:323
-#: ../Composite-Manager/data/messages:137 ../switcher/data/messages:117
+#: ../Composite-Manager/data/messages:137 ../switcher/data/messages:143
 msgid "Expose all the windows"
 msgstr "Alle Fenster zeigen"
 
@@ -369,8 +375,7 @@ msgstr "Das Modul wurde hinzugefügt, konnte aber nicht gestartet werden."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid ""
-"The applet '%s' has been succefully updated and automatically reloaded"
+msgid "The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "Das Applet '%s' wurde erfolgreich aktualisiert und automatisch neu geladen."
 
@@ -762,8 +767,8 @@ msgstr ""
 "Kompatibel zu jedem XDG-konformen Menü (Gnome, XFCE, KDE, ...)\n"
 "Mittelklick zum Öffnen eines Schnellstart-Dialogs (Sie können ein "
 "Tastenkürzel für es festlegen, wie ALT+F2)\n"
-"Sie können auch ein Kürzel für das Aufklappen des Menüs festlegen (wie "
-"ALT+F1)."
+"Sie können auch ein Kürzel für das Aufklappen des Menüs festlegen (wie ALT"
+"+F1)."
 
 #: ../GMenu/src/applet-init.c:39
 msgid "Applications Menu"
@@ -777,11 +782,11 @@ msgstr "Das Anwendungsmenü anzeigen oder verbergen"
 msgid "Show/hide the quick-launch dialog"
 msgstr "Den Schnellstartdialog anzeigen oder verbergen"
 
-#: ../GMenu/src/applet-menu-callbacks.c:218 ../GMenu/data/messages:121
+#: ../GMenu/src/applet-menu-callbacks.c:174 ../GMenu/data/messages:121
 msgid "Logout"
 msgstr "Ausloggen"
 
-#: ../GMenu/src/applet-menu-callbacks.c:221 ../GMenu/data/messages:123
+#: ../GMenu/src/applet-menu-callbacks.c:177 ../GMenu/data/messages:123
 msgid "Shutdown"
 msgstr "Herunterfahren"
 
@@ -801,7 +806,7 @@ msgstr "Liste der zuletzt geöffneten Dokumente löschen"
 msgid "Recent Documents"
 msgstr "Letzte Dokumente"
 
-#: ../GMenu/src/applet-recent.c:115
+#: ../GMenu/src/applet-recent.c:109
 msgid "Clear the list of the recently used documents?"
 msgstr "Liste der zuletzt geöffneten Dokumente säubern ?"
 
@@ -831,7 +836,7 @@ msgstr ""
 msgid "Show/hide the current application menu"
 msgstr "Das aktuelle Anwendungsmenü anzeigen oder verbergen"
 
-#: ../Global-Menu/src/applet-notifications.c:52
+#: ../Global-Menu/src/applet-notifications.c:98
 msgid "The application didn't send its menu to us."
 msgstr "Die Anwendung stellt kein Menü zur Verfügung."
 
@@ -892,7 +897,7 @@ msgstr ""
 msgid "Show/hide the Messaging menu"
 msgstr "Das Benachrichtigungsmenü anzeigen oder verbergen"
 
-#: ../Messaging-Menu/src/applet-notifications.c:31
+#: ../Messaging-Menu/src/applet-notifications.c:67
 msgid ""
 "The Messaging service did not reply.\n"
 "Please check that it is correctly installed."
@@ -1239,16 +1244,16 @@ msgstr "Letzte Ereignisse anzeigen oder verbergen"
 msgid "%d event(s) deleted"
 msgstr "%d Ereignis(se) gelöscht"
 
-#: ../Recent-Events/src/applet-notifications.c:113
+#: ../Recent-Events/src/applet-notifications.c:114
 #: ../Scooby-Do/src/applet-backend-recent.c:212 ../Scooby-Do/data/messages:105
 msgid "Recent files"
 msgstr "Jüngste Dateien"
 
-#: ../Recent-Events/src/applet-notifications.c:161
+#: ../Recent-Events/src/applet-notifications.c:182
 msgid "Delete today's events"
 msgstr "Heutige Ereignisse löschen"
 
-#: ../Recent-Events/src/applet-notifications.c:163
+#: ../Recent-Events/src/applet-notifications.c:184
 msgid "Delete all events"
 msgstr "Alle Ereignisse löschen"
 
@@ -1324,7 +1329,7 @@ msgid "Open in new window"
 msgstr "In neuem Fenster öffnen"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:433
-#: ../dnd2share/src/applet-notifications.c:483
+#: ../dnd2share/src/applet-notifications.c:485
 msgid "Open file"
 msgstr "Öffne Datei"
 
@@ -1609,37 +1614,37 @@ msgstr "Einstellen des Gamma-Werts :"
 msgid "Luminosity"
 msgstr "Leuchtkraft"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:46
+#: ../alsaMixer/src/applet-backend-alsamixer.c:45
 #, c-format
 msgid "I couldn't open card '%s'"
 msgstr "Ich konnte die Karte '%s' nicht öffnen"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:51
+#: ../alsaMixer/src/applet-backend-alsamixer.c:50
 #, c-format
 msgid "Card '%s' opened but I couldn't get any info"
 msgstr "Karte '%s' geöffnet, aber ich konnte keinerlei Info's erhalten"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:59
+#: ../alsaMixer/src/applet-backend-alsamixer.c:58
 msgid "I couldn't open the mixer"
 msgstr "Ich konnte den Mixer nicht öffnen"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:66
+#: ../alsaMixer/src/applet-backend-alsamixer.c:65
 msgid "I couldn't attach the mixer to the card"
 msgstr "Ich konnte den Mixer nicht an der Karte anbringen"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:73
+#: ../alsaMixer/src/applet-backend-alsamixer.c:72
 msgid "I couldn't register options"
 msgstr "Ich konnte keine Optionen registrieren"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:80
+#: ../alsaMixer/src/applet-backend-alsamixer.c:79
 msgid "I couldn't load the mixer"
 msgstr "Ich konnte den Mixer nicht laden."
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:261
+#: ../alsaMixer/src/applet-backend-alsamixer.c:260
 msgid "Set up volume:"
 msgstr "Lautstärke einstellen :"
 
-#: ../alsaMixer/src/applet-draw.c:64
+#: ../alsaMixer/src/applet-draw.c:63
 msgid "Volume"
 msgstr "Lautstärke"
 
@@ -1662,27 +1667,27 @@ msgstr "Klangeinstellung"
 msgid "Show/hide the Sound menu"
 msgstr "Das Klangmenü anzeigen oder verbergen"
 
-#: ../alsaMixer/src/applet-notifications.c:80
+#: ../alsaMixer/src/applet-notifications.c:82
 msgid "Adjust channels"
 msgstr "Kanäle einstellen"
 
-#: ../alsaMixer/src/applet-notifications.c:80
+#: ../alsaMixer/src/applet-notifications.c:82
 msgid "double-click"
 msgstr "Doppelklick"
 
-#: ../alsaMixer/src/applet-notifications.c:85
+#: ../alsaMixer/src/applet-notifications.c:87
 msgid "Unmute"
 msgstr "Stummschalten aufheben"
 
-#: ../alsaMixer/src/applet-notifications.c:85
+#: ../alsaMixer/src/applet-notifications.c:87
 msgid "Mute"
 msgstr "Stumm schalten"
 
 #: ../clock/src/applet-calendar.c:193 ../clock/src/applet-calendar.c:274
 #: ../clock/src/applet-calendar.c:528 ../clock/src/applet-calendar.c:533
 #: ../clock/src/applet-task-editor.c:119 ../clock/src/applet-timer.c:87
-#: ../clock/src/applet-timer.c:175 ../clock/src/applet-timer.c:457
-#: ../clock/src/applet-timer.c:474 ../clock/src/applet-timer.c:494
+#: ../clock/src/applet-timer.c:175 ../clock/src/applet-timer.c:455
+#: ../clock/src/applet-timer.c:472 ../clock/src/applet-timer.c:492
 msgid "No title"
 msgstr "Kein Titel"
 
@@ -1694,7 +1699,7 @@ msgstr "Jahre"
 msgid "Calendar and tasks"
 msgstr "Kalender und Aufgaben"
 
-#: ../clock/src/applet-config.c:36 ../clock/data/messages:175
+#: ../clock/src/applet-config.c:36 ../clock/data/messages:181
 msgid "Alarm"
 msgstr "Alarm"
 
@@ -1778,7 +1783,7 @@ msgstr "Kommando zum Start :"
 msgid "E.g.:"
 msgstr "z.B.:"
 
-#: ../clock/src/applet-config.c:505 ../weather/src/applet-config.c:207
+#: ../clock/src/applet-config.c:508 ../weather/src/applet-config.c:207
 msgid "Search for your location :"
 msgstr "Suche nach ihrem Standort :"
 
@@ -1792,8 +1797,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
-"tasks</b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
+"b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1884,7 +1889,7 @@ msgid "Title"
 msgstr "Titel"
 
 #: ../clock/src/applet-task-editor.c:405
-#: ../dnd2share/src/applet-notifications.c:387 ../Doncky/data/messages:97
+#: ../dnd2share/src/applet-notifications.c:389 ../Doncky/data/messages:97
 #: ../RSSreader/data/messages:151
 msgid "Text"
 msgstr "Text"
@@ -1913,8 +1918,8 @@ msgstr "1h"
 msgid "The following task was scheduled at"
 msgstr "Die folgende Aufgabe wurde geplant am :"
 
-#: ../clock/src/applet-timer.c:89 ../clock/src/applet-timer.c:459
-#: ../clock/src/applet-timer.c:496
+#: ../clock/src/applet-timer.c:89 ../clock/src/applet-timer.c:457
+#: ../clock/src/applet-timer.c:494
 msgid "Repeat this message every:"
 msgstr "Wiederhole diese Nachricht alle :"
 
@@ -1922,19 +1927,19 @@ msgstr "Wiederhole diese Nachricht alle :"
 msgid "The following task has felt due:"
 msgstr "Die folgende Aufgabe war fällig am :"
 
-#: ../clock/src/applet-timer.c:456
+#: ../clock/src/applet-timer.c:454
 msgid "It's time for the following task:"
 msgstr "Es ist Zeit für die folgende Aufgabe :"
 
-#: ../clock/src/applet-timer.c:473
+#: ../clock/src/applet-timer.c:471
 msgid "This task will begin in 15 minutes:"
 msgstr "Diese Aufgabe wird in 15 Minuten beginnen:"
 
-#: ../clock/src/applet-timer.c:493
+#: ../clock/src/applet-timer.c:491
 msgid "Today is the following anniversary:"
 msgstr "Heute ist folgender Jahrestag :"
 
-#: ../clock/src/applet-timer.c:493
+#: ../clock/src/applet-timer.c:491
 msgid "Tomorrow is the following anniversary:"
 msgstr "Morgen ist folgender Jahrestag :"
 
@@ -2011,13 +2016,16 @@ msgstr ""
 "Drücken Sie Strg+V, um die URL irgendwo anders einzufügen."
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid ""
-"Please wait for the current upload to finish before starting a new one."
+msgid "Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Bitte beginnen Sie erst mit einem neuen Upload, wenn der Aktuelle beendet "
 "ist."
 
-#: ../dnd2share/src/applet-dnd2share.c:591
+#: ../dnd2share/src/applet-dnd2share.c:399
+msgid "This file is not readable."
+msgstr ""
+
+#: ../dnd2share/src/applet-dnd2share.c:622
 msgid "Tiny URL"
 msgstr "Verkürzte URL"
 
@@ -2037,16 +2045,16 @@ msgid ""
 "copy it into the mouse selection.\n"
 "You'll need to install 'curl' and 'wget' to upload the data."
 msgstr ""
-"Diese Applet gestattet es ihnen, ihre Dateien leicht mit anderen zu teilen "
-":\n"
+"Diese Applet gestattet es ihnen, ihre Dateien leicht mit anderen zu "
+"teilen :\n"
 "Ziehen Sie eine Datei auf das Symbol, um es zu einer der verfügbaren "
 "Hostingseiten hochzuladen.\n"
 "Sie können Texte, Bilder, Videos, Dateien und sogar die momentane "
 "Zwischenablage hochladen,\n"
 " und Sie können zwischen vielen Seiten wie DropBox, ImageShack, PasteBin "
 "usw. wählen.\n"
-"Die daraus resultierende URL wird automatisch gespeichert und kann über "
-"CTRL+V direkt woanders hineinkopiert werden.\n"
+"Die daraus resultierende URL wird automatisch gespeichert und kann über CTRL"
+"+V direkt woanders hineinkopiert werden.\n"
 "Es kann einen Verlauf ihrer letzten Uploads anfertigen, damit Sie sie "
 "zurückholen können, ohne sich auf den Seiten registrieren zu müssen.\n"
 "Linksklick zum Kopieren der letzten URL in die Zwischenablage, Mittelklick "
@@ -2117,36 +2125,36 @@ msgstr ""
 "Die derzeitige URL wurde in der Auswahl gespeichert.\n"
 "Einfach mittelklicken, um die URL sonst noch irgendwo einzufügen."
 
-#: ../dnd2share/src/applet-notifications.c:387
+#: ../dnd2share/src/applet-notifications.c:389
 msgid "File"
 msgstr "Datei"
 
-#: ../dnd2share/src/applet-notifications.c:390
+#: ../dnd2share/src/applet-notifications.c:392
 msgid "Click on the icon to copy the URL into the clipboard."
 msgstr ""
 "Klicken Sie auf das Symbol, um die URL in der Zwischenablage zu speichern."
 
-#: ../dnd2share/src/applet-notifications.c:402
+#: ../dnd2share/src/applet-notifications.c:404
 msgid "Send the clipboard's content"
 msgstr "Sende den Inhalt der Zwischenablage"
 
-#: ../dnd2share/src/applet-notifications.c:405
+#: ../dnd2share/src/applet-notifications.c:407
 msgid "History"
 msgstr "Verlauf"
 
-#: ../dnd2share/src/applet-notifications.c:485
+#: ../dnd2share/src/applet-notifications.c:487
 msgid "Get text"
 msgstr "Hole Text"
 
-#: ../dnd2share/src/applet-notifications.c:487
+#: ../dnd2share/src/applet-notifications.c:489
 msgid "Remove from history"
 msgstr "Aus dem Verlauf entfernen"
 
-#: ../dnd2share/src/applet-notifications.c:490
+#: ../dnd2share/src/applet-notifications.c:492
 msgid "Clear History"
 msgstr "Verlauf leeren"
 
-#: ../dnd2share/src/applet-notifications.c:495
+#: ../dnd2share/src/applet-notifications.c:497
 msgid "Use only a files hosting site"
 msgstr "Nur Filehosting-Seiten benutzen"
 
@@ -2429,29 +2437,29 @@ msgstr "Bildschirm sperren"
 msgid "Program an automatic shut-down"
 msgstr "Programmieren Sie ein automatisches Herunterfahren"
 
-#: ../logout/src/applet-logout.c:325
+#: ../logout/src/applet-logout.c:342
 msgid "Your computer will shut-down in 1 minute."
 msgstr "Ihr Computer wird in einer Minute herunterfahren."
 
-#: ../logout/src/applet-logout.c:349
+#: ../logout/src/applet-logout.c:366
 msgid "Choose in how many minutes your PC will stop:"
 msgstr ""
 "Wählen Sie aus, in wieviel Minuten Ihr Computer heruntergefahren wird :"
 
-#: ../logout/src/applet-logout.c:523
+#: ../logout/src/applet-logout.c:540
 #, c-format
 msgid "It will automatically shut-down in %ds"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:524
+#: ../logout/src/applet-logout.c:541
 msgid "Shut down the computer?"
 msgstr "Den Rechner herunterfahren?"
 
-#: ../logout/src/applet-logout.c:584
+#: ../logout/src/applet-logout.c:601
 msgid "Restart the computer?"
 msgstr "Den Rechner neu starten?"
 
-#: ../logout/src/applet-logout.c:621
+#: ../logout/src/applet-logout.c:638
 msgid "Close the current session?"
 msgstr "Die aktuelle Sitzung schließen?"
 
@@ -2462,11 +2470,6 @@ msgstr "Benutzer verwalten"
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Server address:"
 msgstr "Serveradresse :"
-
-#: ../mail/src/cd-mail-applet-accounts.c:39
-#: ../mail/src/cd-mail-applet-accounts.c:44
-msgid "myLogin"
-msgstr "meinLogin"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "myHost"
@@ -2585,24 +2588,24 @@ msgstr ""
 msgid "Remove Account"
 msgstr "Konto entfernen"
 
-#: ../mail/src/cd-mail-applet-etpan.c:236 ../wifi/src/applet-draw.c:186
+#: ../mail/src/cd-mail-applet-etpan.c:238 ../wifi/src/applet-draw.c:186
 msgid "unknown"
 msgstr "Unbekannt"
 
-#: ../mail/src/cd-mail-applet-etpan.c:236
+#: ../mail/src/cd-mail-applet-etpan.c:238
 msgid "no subject"
 msgstr "Kein Betreff"
 
-#: ../mail/src/cd-mail-applet-etpan.c:404
+#: ../mail/src/cd-mail-applet-etpan.c:408
 msgid "No unread mail in your mailboxes"
 msgstr "Keine ungelesene Mail in Ihren Postfächern"
 
-#: ../mail/src/cd-mail-applet-etpan.c:426
+#: ../mail/src/cd-mail-applet-etpan.c:430
 #, c-format
 msgid "You have %d new mails:"
 msgstr "Sie haben %d neue Mails :"
 
-#: ../mail/src/cd-mail-applet-etpan.c:428
+#: ../mail/src/cd-mail-applet-etpan.c:432
 msgid "You have a new mail:"
 msgstr "Sie haben eine neue Mail :"
 
@@ -2734,7 +2737,7 @@ msgid ""
 "Note: you may have to install or activate the MPRIS plug-in of the player."
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:83
+#: ../musicPlayer/src/applet-notifications.c:100
 msgid ""
 "Sorry, I couldn't detect any player.\n"
 "If it is running, it is maybe because its version is too old and does not "
@@ -2744,69 +2747,76 @@ msgstr ""
 "Sollte der Player laufen, kann es sein, dass seine Version zu alt ist und er "
 "solche Dienste nicht unterstützt."
 
-#: ../musicPlayer/src/applet-notifications.c:175
+#: ../musicPlayer/src/applet-notifications.c:192
 msgid "Choose a music player to control"
 msgstr "Ein Musikabspieler zum Steuern auswählen"
 
-#: ../musicPlayer/src/applet-notifications.c:262
+#: ../musicPlayer/src/applet-notifications.c:284
 msgid "Find opened player"
 msgstr "Finde geöffneten Player"
 
-#: ../musicPlayer/src/applet-notifications.c:266
+#: ../musicPlayer/src/applet-notifications.c:288
 msgid "Choose a player"
 msgstr "Einen Abspieler auswählen"
 
-#: ../musicPlayer/src/applet-notifications.c:272
+#: ../musicPlayer/src/applet-notifications.c:294
 msgid "Previous"
 msgstr "Vorheriges"
 
-#: ../musicPlayer/src/applet-notifications.c:272
+#: ../musicPlayer/src/applet-notifications.c:294
 msgid "scroll-up"
 msgstr "Hinaufscrollen"
 
-#: ../musicPlayer/src/applet-notifications.c:278
+#: ../musicPlayer/src/applet-notifications.c:300
 msgid "Play/Pause"
 msgstr "Wiedergabe / Pause"
 
-#: ../musicPlayer/src/applet-notifications.c:278
+#: ../musicPlayer/src/applet-notifications.c:300
 msgid "left-click"
 msgstr "Linksklick"
 
-#: ../musicPlayer/src/applet-notifications.c:284
+#: ../musicPlayer/src/applet-notifications.c:306
 msgid "Next"
 msgstr "Nächster"
 
-#: ../musicPlayer/src/applet-notifications.c:284
+#: ../musicPlayer/src/applet-notifications.c:306
 msgid "scroll-down"
 msgstr "Hinunterscrollen"
 
-#: ../musicPlayer/src/applet-notifications.c:289
+#: ../musicPlayer/src/applet-notifications.c:311
 msgid "Stop"
 msgstr "Stopp"
 
-#: ../musicPlayer/src/applet-notifications.c:293
+#: ../musicPlayer/src/applet-notifications.c:315
 msgid "Information"
 msgstr "Information"
 
-#: ../musicPlayer/src/applet-notifications.c:296
-msgid "Show the Window"
-msgstr "Das Fenster anzeigen"
-
-#: ../musicPlayer/src/applet-notifications.c:301
+#: ../musicPlayer/src/applet-notifications.c:320
 msgid "Show JumpBox"
 msgstr "Zeige JumpBox"
 
-#: ../musicPlayer/src/applet-notifications.c:303
-msgid "Toggle Shuffle"
+#: ../musicPlayer/src/applet-notifications.c:323
+#, fuzzy
+msgid "Shuffle"
 msgstr "Zufallswiedergabe an / aus"
 
-#: ../musicPlayer/src/applet-notifications.c:305
-msgid "Toggle Repeat"
-msgstr "Wiederholen an / aus"
+#: ../musicPlayer/src/applet-notifications.c:331
+#, fuzzy
+msgid "Repeat"
+msgstr "Wiederhole alle :"
 
-#: ../musicPlayer/src/applet-notifications.c:307
+#: ../musicPlayer/src/applet-notifications.c:339
 msgid "Rate this song"
 msgstr "Bewerte dieses Lied"
+
+#: ../musicPlayer/src/applet-notifications.c:343
+#, fuzzy
+msgid "Show"
+msgstr "Zeige Info"
+
+#: ../musicPlayer/src/applet-notifications.c:344
+msgid "Quit"
+msgstr ""
 
 #: ../netspeed/src/applet-init.c:29
 msgid "netspeed"
@@ -2976,7 +2986,7 @@ msgid "Show/hide the folder menu"
 msgstr "Das Ordnermenü anzeigen oder verbergen"
 
 #: ../quick-browser/src/applet-menu.c:107
-#: ../quick-browser/src/applet-menu.c:116
+#: ../quick-browser/src/applet-menu.c:113
 msgid "Open this folder"
 msgstr "Öffne dieses Verzeichnis"
 
@@ -2984,8 +2994,8 @@ msgstr "Öffne dieses Verzeichnis"
 msgid "Open folder"
 msgstr "Verzeichnis öffnen"
 
-#: ../shortcuts/src/applet-bookmarks.c:131
-#: ../shortcuts/src/applet-bookmarks.c:393
+#: ../shortcuts/src/applet-bookmarks.c:133
+#: ../shortcuts/src/applet-bookmarks.c:416
 #: ../shortcuts/src/applet-drives.c:283
 msgid "Unmounted"
 msgstr "Ausgehängt"
@@ -3046,8 +3056,7 @@ msgstr "Aushängen von %s fehlgeschlagen"
 
 #: ../shortcuts/src/applet-notifications.c:88
 msgid "Sorry, this applet is not yet available for KDE."
-msgstr ""
-"Entschuldigung, dieses Applet ist leider noch nicht für KDE verfügbar."
+msgstr "Entschuldigung, dieses Applet ist leider noch nicht für KDE verfügbar."
 
 #: ../shortcuts/src/applet-notifications.c:90
 msgid "No disks or bookmarks were found."
@@ -3095,11 +3104,11 @@ msgstr "zeige Maus"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a "
-"dock/desklet."
+"This plugin draws some animations around the cursor when it's inside a dock/"
+"desklet."
 msgstr ""
-"Dieses Plugin zeichnet Animationen um den Cursor, wenn er sich in einem Dock "
-"/ Desklet befindet."
+"Dieses Plugin zeichnet Animationen um den Cursor, wenn er sich in einem "
+"Dock / Desklet befindet."
 
 #: ../showDesktop/src/applet-init.c:28
 msgid "showDesktop"
@@ -3245,13 +3254,13 @@ msgstr "Die Datei wurde dem Stapel hinzugefügt."
 msgid "The URL has been added to the stack."
 msgstr "Die URL wurde dem Stapel hinzugefügt."
 
-#: ../switcher/src/applet-draw.c:597 ../switcher/src/applet-draw.c:604
+#: ../switcher/src/applet-draw.c:605 ../switcher/src/applet-draw.c:612
 #: ../switcher/src/applet-load-icons.c:53
 #: ../switcher/src/applet-notifications.c:415
 msgid "Current"
 msgstr "Aktuell"
 
-#: ../switcher/src/applet-draw.c:604 ../switcher/src/applet-draw.c:606
+#: ../switcher/src/applet-draw.c:612 ../switcher/src/applet-draw.c:614
 #: ../switcher/src/applet-load-icons.c:59
 #: ../switcher/src/applet-notifications.c:216
 #: ../switcher/src/applet-notifications.c:228
@@ -3339,7 +3348,7 @@ msgstr "Benachrichtigungsfeld alt"
 msgid "Show/hide the systray"
 msgstr "Das Benachrichtigungsfeld anzeigen oder verbergen"
 
-#: ../systray/src/systray-interface.c:70
+#: ../systray/src/systray-interface.c:72
 msgid ""
 "Another systray is already running (probably on your panel)\n"
 "Since there can only be one systray at once, you should remove it to avoid "
@@ -3392,7 +3401,7 @@ msgid "Show/hide the terminal"
 msgstr "Das Terminal anzeigen oder verbergen"
 
 #: ../terminal/src/terminal-menu-functions.c:78
-#: ../terminal/src/terminal-widget.c:420
+#: ../terminal/src/terminal-widget.c:414
 msgid "New Tab"
 msgstr "Neuer Tab"
 
@@ -3419,22 +3428,21 @@ msgstr "Wählen Sie eine Farbe"
 #: ../terminal/src/terminal-widget.c:358
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
-msgstr ""
-"Sie können das Konsole-Desklet wieder aufrufen, indem Sie  %s eingeben"
+msgstr "Sie können das Konsole-Desklet wieder aufrufen, indem Sie  %s eingeben"
 
-#: ../terminal/src/terminal-widget.c:407
+#: ../terminal/src/terminal-widget.c:404
 msgid "Paste"
 msgstr "Einfügen"
 
-#: ../terminal/src/terminal-widget.c:429
+#: ../terminal/src/terminal-widget.c:420
 msgid "Rename this Tab"
 msgstr "Diesen Tab umbenennen"
 
-#: ../terminal/src/terminal-widget.c:438
+#: ../terminal/src/terminal-widget.c:426
 msgid "Change this Tab's colour"
 msgstr "Die Farbe dieses Tabs ändern"
 
-#: ../terminal/src/terminal-widget.c:447
+#: ../terminal/src/terminal-widget.c:432
 msgid "Close this Tab"
 msgstr "Schließe diesen Tab"
 
@@ -3608,19 +3616,19 @@ msgstr "Dez"
 msgid "Data are being retrieved, please wait a moment."
 msgstr "Daten werden empfangen, bitte warten Sie einen Moment."
 
-#: ../weather/src/applet-notifications.c:97
+#: ../weather/src/applet-notifications.c:100
 msgid "Show current conditions (middle-click)"
 msgstr "Zeige aktuelle Bedingungen (Mittelklick)"
 
-#: ../weather/src/applet-notifications.c:102
+#: ../weather/src/applet-notifications.c:105
 msgid "Open weather.com (double-click)"
 msgstr "Öffne weather.com (Mittelklick)"
 
-#: ../weather/src/applet-notifications.c:104
+#: ../weather/src/applet-notifications.c:107
 msgid "Reload now"
 msgstr "Jetzt aktualisieren"
 
-#: ../weather/src/applet-notifications.c:137
+#: ../weather/src/applet-notifications.c:140
 msgid ""
 "No data available\n"
 " is your connection alive?"
@@ -3628,42 +3636,42 @@ msgstr ""
 "Keine Daten verfügbar\n"
 " ist die Verbindung aktiv ?"
 
-#: ../weather/src/applet-notifications.c:157
-#: ../weather/src/applet-notifications.c:195
+#: ../weather/src/applet-notifications.c:160
+#: ../weather/src/applet-notifications.c:198
 msgid "Temperature"
 msgstr "Temperatur"
 
-#: ../weather/src/applet-notifications.c:158
+#: ../weather/src/applet-notifications.c:161
 msgid "Precipitation probability"
 msgstr "Niederschlagswahrscheinlichkeit"
 
-#: ../weather/src/applet-notifications.c:159
-#: ../weather/src/applet-notifications.c:196
+#: ../weather/src/applet-notifications.c:162
+#: ../weather/src/applet-notifications.c:199
 msgid "Wind"
 msgstr "Wind"
 
-#: ../weather/src/applet-notifications.c:160
-#: ../weather/src/applet-notifications.c:197
+#: ../weather/src/applet-notifications.c:163
+#: ../weather/src/applet-notifications.c:200
 msgid "Humidity"
 msgstr "Luftfeuchtigkeit"
 
-#: ../weather/src/applet-notifications.c:161
-#: ../weather/src/applet-notifications.c:198
+#: ../weather/src/applet-notifications.c:164
+#: ../weather/src/applet-notifications.c:201
 msgid "Sunrise"
 msgstr "Sonnenaufgang"
 
-#: ../weather/src/applet-notifications.c:161
-#: ../weather/src/applet-notifications.c:198
+#: ../weather/src/applet-notifications.c:164
+#: ../weather/src/applet-notifications.c:201
 msgid "Sunset"
 msgstr "Sonnenuntergang"
 
-#: ../weather/src/applet-notifications.c:171
+#: ../weather/src/applet-notifications.c:174
 msgid "Data are being fetched, please re-try in a few seconds."
 msgstr ""
 "Daten werden abgerufen, bitte versuchen Sie es in ein paar Sekunden noch "
 "einmal."
 
-#: ../weather/src/applet-notifications.c:181
+#: ../weather/src/applet-notifications.c:184
 msgid ""
 "No data available\n"
 "Retrying now..."
@@ -3671,11 +3679,11 @@ msgstr ""
 "Keine Daten verfügbar\n"
 "Versuche es erneut ..."
 
-#: ../weather/src/applet-notifications.c:195
+#: ../weather/src/applet-notifications.c:198
 msgid "Feels like"
 msgstr "Fühlt sich an wie"
 
-#: ../weather/src/applet-notifications.c:197
+#: ../weather/src/applet-notifications.c:200
 msgid "Pressure"
 msgstr "Luftdruck"
 
@@ -3724,17 +3732,11 @@ msgstr ""
 msgid "Global"
 msgstr "Global"
 
-#: ../Animated-icons/data/messages:3
-msgid "Animations are triggered when hovering an icon only in OpenGL mode."
-msgstr ""
-"Animationen werden nur im OpenGL-Modus beim drüberfahren über ein Symbol "
-"ausgelöst."
-
-#: ../Animated-icons/data/messages:5 ../icon-effect/data/messages:3
+#: ../Animated-icons/data/messages:3 ../icon-effect/data/messages:3
 msgid "when hovering over an icon"
 msgstr "Beim drüberfahren eines Symbols mit dem Mauszeiger"
 
-#: ../Animated-icons/data/messages:7 ../icon-effect/data/messages:5
+#: ../Animated-icons/data/messages:5 ../icon-effect/data/messages:5
 msgid "Effects used:"
 msgstr "Verwendete Effekte :"
 
@@ -3746,35 +3748,36 @@ msgstr "beim Klick auf einen Starter"
 msgid "Effects used on launcher:"
 msgstr "Benutzte Effekte auf Starter :"
 
-#: ../Animated-icons/data/messages:41 ../Animated-icons/data/messages:61
+#: ../Animated-icons/data/messages:43 ../Animated-icons/data/messages:65
 msgid "Number of times the animation will play:"
 msgstr "Anzahl der Durchläufe der Animation :"
 
-#: ../Animated-icons/data/messages:43 ../icon-effect/data/messages:35
+#: ../Animated-icons/data/messages:45 ../icon-effect/data/messages:35
 msgid "when clicking on an application"
 msgstr "Wenn Sie auf eine Applikation klicken"
 
-#: ../Animated-icons/data/messages:45 ../icon-effect/data/messages:37
+#: ../Animated-icons/data/messages:47 ../icon-effect/data/messages:37
 msgid "Effects used on applications:"
 msgstr "Benutzte Effekte auf Applikationen :"
 
-#: ../Animated-icons/data/messages:63
+#: ../Animated-icons/data/messages:67
 msgid "Rotation"
 msgstr "Rotation"
 
-#: ../Animated-icons/data/messages:65 ../Animated-icons/data/messages:83
-#: ../Animated-icons/data/messages:135 ../Animated-icons/data/messages:147
-#: ../Animated-icons/data/messages:159 ../Animated-icons/data/messages:173
-#: ../Remote-Control/data/messages:9 ../Scooby-Do/data/messages:15
-#: ../Scooby-Do/data/messages:19 ../Toons/data/messages:105
-#: ../icon-effect/data/messages:85 ../icon-effect/data/messages:107
-#: ../icon-effect/data/messages:129 ../icon-effect/data/messages:151
-#: ../icon-effect/data/messages:171 ../show-mouse/data/messages:19
+#: ../Animated-icons/data/messages:69 ../Animated-icons/data/messages:87
+#: ../Animated-icons/data/messages:137 ../Animated-icons/data/messages:149
+#: ../Animated-icons/data/messages:161 ../Animated-icons/data/messages:175
+#: ../Animated-icons/data/messages:183 ../Remote-Control/data/messages:9
+#: ../Scooby-Do/data/messages:15 ../Scooby-Do/data/messages:19
+#: ../Toons/data/messages:105 ../icon-effect/data/messages:85
+#: ../icon-effect/data/messages:107 ../icon-effect/data/messages:129
+#: ../icon-effect/data/messages:151 ../icon-effect/data/messages:171
+#: ../show-mouse/data/messages:19
 msgid "In ms."
 msgstr "In ms."
 
-#: ../Animated-icons/data/messages:67 ../Animated-icons/data/messages:85
-#: ../Animated-icons/data/messages:137 ../icon-effect/data/messages:59
+#: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:89
+#: ../Animated-icons/data/messages:139 ../icon-effect/data/messages:59
 #: ../icon-effect/data/messages:87 ../icon-effect/data/messages:109
 #: ../icon-effect/data/messages:131 ../icon-effect/data/messages:153
 #: ../icon-effect/data/messages:173 ../illusion/data/messages:33
@@ -3784,20 +3787,21 @@ msgstr "In ms."
 msgid "Duration of the animation:"
 msgstr "Dauer der Animation :"
 
-#: ../Animated-icons/data/messages:69 ../Animated-icons/data/messages:87
-#: ../Animated-icons/data/messages:139 ../Animated-icons/data/messages:151
-#: ../Animated-icons/data/messages:163 ../Animated-icons/data/messages:177
-#: ../icon-effect/data/messages:61 ../icon-effect/data/messages:89
-#: ../icon-effect/data/messages:111 ../icon-effect/data/messages:133
-#: ../icon-effect/data/messages:155 ../icon-effect/data/messages:175
+#: ../Animated-icons/data/messages:73 ../Animated-icons/data/messages:91
+#: ../Animated-icons/data/messages:141 ../Animated-icons/data/messages:153
+#: ../Animated-icons/data/messages:165 ../Animated-icons/data/messages:179
+#: ../Animated-icons/data/messages:187 ../icon-effect/data/messages:61
+#: ../icon-effect/data/messages:89 ../icon-effect/data/messages:111
+#: ../icon-effect/data/messages:133 ../icon-effect/data/messages:155
+#: ../icon-effect/data/messages:175
 msgid "Repeat while icon is pointed to?"
 msgstr "Wiederholen, während der Zeiger darauf zeigt ?"
 
-#: ../Animated-icons/data/messages:71
+#: ../Animated-icons/data/messages:75
 msgid "Type of mesh:"
 msgstr "Mesh-Typ:"
 
-#: ../Animated-icons/data/messages:73 ../Clipper/data/messages:45
+#: ../Animated-icons/data/messages:77 ../Clipper/data/messages:45
 #: ../Composite-Manager/data/messages:41 ../Disks/data/messages:27
 #: ../Doncky/data/messages:43 ../Folders/data/messages:57
 #: ../GMenu/data/messages:45 ../Global-Menu/data/messages:39
@@ -3821,158 +3825,178 @@ msgstr "Mesh-Typ:"
 msgid "Normal"
 msgstr "Normal"
 
-#: ../Animated-icons/data/messages:75
+#: ../Animated-icons/data/messages:79
 msgid "Cube"
 msgstr "Würfel"
 
-#: ../Animated-icons/data/messages:77
+#: ../Animated-icons/data/messages:81
 msgid "Capsule"
 msgstr "Kapsel"
 
-#: ../Animated-icons/data/messages:79
+#: ../Animated-icons/data/messages:83
 msgid "Colour of the sheen:"
 msgstr "Glanzfarbe:"
 
-#: ../Animated-icons/data/messages:91 ../Animated-icons/data/messages:95
-#: ../Clipper/data/messages:9 ../Composite-Manager/data/messages:91
-#: ../Composite-Manager/data/messages:95 ../Doncky/data/messages:9
-#: ../Doncky/data/messages:91 ../Folders/data/messages:21
-#: ../GMenu/data/messages:9 ../GMenu/data/messages:99
-#: ../Impulse/data/messages:7 ../Impulse/data/messages:125
-#: ../Impulse/data/messages:129 ../Impulse/data/messages:133
-#: ../RSSreader/data/messages:11 ../RSSreader/data/messages:129
-#: ../Recent-Events/data/messages:9 ../System-Monitor/data/messages:187
-#: ../System-Monitor/data/messages:195 ../Xgamma/data/messages:11
-#: ../alsaMixer/data/messages:131 ../alsaMixer/data/messages:135
-#: ../alsaMixer/data/messages:149 ../dnd2share/data/messages:9
-#: ../logout/data/messages:9 ../quick-browser/data/messages:11
-#: ../shortcuts/data/messages:9 ../showDesktop/data/messages:9
-#: ../stack/data/messages:11 ../switcher/data/messages:9
-#: ../switcher/data/messages:151 ../systray/data/messages:9
-#: ../template/data/messages:9 ../terminal/data/messages:9
-#: ../weblets/data/messages:9
-msgid "Leave empty to use the default one."
-msgstr "Leer lassen, um den Voreingestellten zu verwenden."
-
-#: ../Animated-icons/data/messages:93
+#: ../Animated-icons/data/messages:95
 msgid "Image for the spotlight:"
 msgstr "Bild für das Rampenlicht :"
 
-#: ../Animated-icons/data/messages:97
+#: ../Animated-icons/data/messages:97 ../Clipper/data/messages:9
+#: ../Composite-Manager/data/messages:91 ../Composite-Manager/data/messages:95
+#: ../Doncky/data/messages:9 ../Doncky/data/messages:91
+#: ../Folders/data/messages:21 ../GMenu/data/messages:9
+#: ../GMenu/data/messages:99 ../Impulse/data/messages:7
+#: ../Impulse/data/messages:125 ../Impulse/data/messages:129
+#: ../Impulse/data/messages:133 ../RSSreader/data/messages:11
+#: ../RSSreader/data/messages:129 ../Recent-Events/data/messages:9
+#: ../System-Monitor/data/messages:187 ../System-Monitor/data/messages:195
+#: ../Xgamma/data/messages:11 ../alsaMixer/data/messages:131
+#: ../alsaMixer/data/messages:135 ../alsaMixer/data/messages:149
+#: ../dnd2share/data/messages:9 ../logout/data/messages:9
+#: ../quick-browser/data/messages:11 ../shortcuts/data/messages:9
+#: ../showDesktop/data/messages:9 ../stack/data/messages:11
+#: ../switcher/data/messages:9 ../switcher/data/messages:111
+#: ../systray/data/messages:9 ../template/data/messages:9
+#: ../terminal/data/messages:9 ../weblets/data/messages:9
+msgid "Leave empty to use the default one."
+msgstr "Leer lassen, um den Voreingestellten zu verwenden."
+
+#: ../Animated-icons/data/messages:99
 msgid "Image for the front spotlight:"
 msgstr "Bild für das vordere Rampenlicht :"
 
-#: ../Animated-icons/data/messages:99
+#: ../Animated-icons/data/messages:101
 msgid "Spot colour:"
 msgstr "Spot-Lichtfarbe :"
 
-#: ../Animated-icons/data/messages:101
+#: ../Animated-icons/data/messages:103
 msgid "Halo colour:"
 msgstr "Lichtstrahl-Farbe :"
 
-#: ../Animated-icons/data/messages:103
+#: ../Animated-icons/data/messages:105
 msgid "Rays"
 msgstr "Strahlen"
 
-#: ../Animated-icons/data/messages:105 ../icon-effect/data/messages:65
+#: ../Animated-icons/data/messages:107 ../icon-effect/data/messages:65
 #: ../icon-effect/data/messages:93 ../icon-effect/data/messages:115
 #: ../icon-effect/data/messages:137 ../icon-effect/data/messages:159
 #: ../illusion/data/messages:37 ../show-mouse/data/messages:27
 msgid "1st color of gradation :"
 msgstr "Erste Farbe des Farbverlaufs :"
 
-#: ../Animated-icons/data/messages:107 ../icon-effect/data/messages:67
+#: ../Animated-icons/data/messages:109 ../icon-effect/data/messages:67
 #: ../icon-effect/data/messages:95 ../icon-effect/data/messages:117
 #: ../icon-effect/data/messages:139 ../icon-effect/data/messages:161
 #: ../illusion/data/messages:39 ../show-mouse/data/messages:29
 msgid "2nd color of gradation :"
 msgstr "Zweite Frabe des Farbverlaufs :"
 
-#: ../Animated-icons/data/messages:109 ../icon-effect/data/messages:69
+#: ../Animated-icons/data/messages:111 ../icon-effect/data/messages:69
 #: ../icon-effect/data/messages:97 ../icon-effect/data/messages:181
 #: ../illusion/data/messages:41 ../show-mouse/data/messages:31
 msgid "Random colours?"
 msgstr "Zufällige Farben ?"
 
-#: ../Animated-icons/data/messages:111
+#: ../Animated-icons/data/messages:113
 msgid "Number of rays:"
 msgstr "Anzahl der Strahlen :"
 
-#: ../Animated-icons/data/messages:113
+#: ../Animated-icons/data/messages:115
 msgid "Ray size:"
 msgstr "Strahlengröße :"
 
-#: ../Animated-icons/data/messages:115
+#: ../Animated-icons/data/messages:117
 msgid "Ray speed:"
 msgstr "Strahlgeschwindigkeit :"
 
-#: ../Animated-icons/data/messages:119
+#: ../Animated-icons/data/messages:121
 msgid "Initial stretch:"
 msgstr "Anfängliche Dehnung :"
 
-#: ../Animated-icons/data/messages:121
+#: ../Animated-icons/data/messages:123
 msgid "Horizontal stretch"
 msgstr "Horizontale Dehnung :"
 
-#: ../Animated-icons/data/messages:123
+#: ../Animated-icons/data/messages:125
 msgid "Vertical stretch"
 msgstr "Vertikale Dehnung :"
 
-#: ../Animated-icons/data/messages:125
+#: ../Animated-icons/data/messages:127
 msgid "Corner stretch"
 msgstr "Ausdehnung des Eckpunkts :"
 
-#: ../Animated-icons/data/messages:127
+#: ../Animated-icons/data/messages:129
 msgid "Spring constant:"
 msgstr "Elastizitätskonstante :"
 
-#: ../Animated-icons/data/messages:129
+#: ../Animated-icons/data/messages:131
 msgid "Friction:"
 msgstr "Reibung :"
 
-#: ../Animated-icons/data/messages:131
+#: ../Animated-icons/data/messages:133
 msgid "Number of points on the grid in each direction:"
 msgstr "Anzahl der Punkte auf dem Raster in jeder Richtung :"
 
-#: ../Animated-icons/data/messages:141
+#: ../Animated-icons/data/messages:143
 msgid "Wave width:"
 msgstr "Wellenbreite :"
 
-#: ../Animated-icons/data/messages:143
+#: ../Animated-icons/data/messages:145
 msgid "Wave amplitude:"
 msgstr "Wellenamplitude :"
 
-#: ../Animated-icons/data/messages:149
+#: ../Animated-icons/data/messages:151
 msgid "Pulse duration:"
 msgstr "Schwingungsdauer :"
 
-#: ../Animated-icons/data/messages:153
+#: ../Animated-icons/data/messages:155
 msgid "Pulse max zoom:"
 msgstr "Maximale Vergrößerung der Schwingung :"
 
-#: ../Animated-icons/data/messages:155
+#: ../Animated-icons/data/messages:157
 msgid "Pulse follows icon shape?"
 msgstr "Schwingung folgt der Symbolform ?"
 
-#: ../Animated-icons/data/messages:161
+#: ../Animated-icons/data/messages:163
 msgid "Bounce duration:"
 msgstr "Sprungdauer :"
 
-#: ../Animated-icons/data/messages:165
+#: ../Animated-icons/data/messages:167
 msgid "When bouncing, resize the icon by:"
 msgstr "Beim Springen das Symbol verkleinern um :"
 
-#: ../Animated-icons/data/messages:167
+#: ../Animated-icons/data/messages:169
 msgid "the lower the value, the more it will flatten."
 msgstr "Je niedriger der Wert, umso flacher wird es."
 
-#: ../Animated-icons/data/messages:169
+#: ../Animated-icons/data/messages:171
 msgid "How much the icon will flatten when hitting the ground:"
 msgstr "Abplattung das Symbols bei Bodenkontakt :"
 
-#: ../Animated-icons/data/messages:175
+#: ../Animated-icons/data/messages:177
 msgid "Blink duration:"
 msgstr "Blinkdauer :"
+
+#: ../Animated-icons/data/messages:185
+#, fuzzy
+msgid "Busy duration:"
+msgstr "Schwingungsdauer :"
+
+#: ../Animated-icons/data/messages:189
+msgid ""
+"The image must contain all the frames of the animation, side by side, from "
+"left to right."
+msgstr ""
+
+#: ../Animated-icons/data/messages:191
+#, fuzzy
+msgid "Image :"
+msgstr "Bild"
+
+#: ../Animated-icons/data/messages:193
+#, fuzzy
+msgid "Image size"
+msgstr "Bilder"
 
 #: ../Cairo-Penguin/data/messages:1 ../Cairo-Penguin/data/messages:3
 #: ../Clipper/data/messages:1 ../Clipper/data/messages:3
@@ -4007,13 +4031,13 @@ msgstr "Blinkdauer :"
 #: ../slider/data/messages:1 ../slider/data/messages:3
 #: ../stack/data/messages:1 ../stack/data/messages:3
 #: ../switcher/data/messages:1 ../switcher/data/messages:3
-#: ../systray/data/messages:1 ../systray/data/messages:3
-#: ../template/data/messages:1 ../template/data/messages:3
-#: ../terminal/data/messages:1 ../terminal/data/messages:3
-#: ../tomboy/data/messages:1 ../tomboy/data/messages:3
-#: ../weather/data/messages:1 ../weather/data/messages:3
-#: ../weblets/data/messages:1 ../weblets/data/messages:3
-#: ../wifi/data/messages:1 ../wifi/data/messages:3
+#: ../switcher/data/messages:127 ../systray/data/messages:1
+#: ../systray/data/messages:3 ../template/data/messages:1
+#: ../template/data/messages:3 ../terminal/data/messages:1
+#: ../terminal/data/messages:3 ../tomboy/data/messages:1
+#: ../tomboy/data/messages:3 ../weather/data/messages:1
+#: ../weather/data/messages:3 ../weblets/data/messages:1
+#: ../weblets/data/messages:3 ../wifi/data/messages:1 ../wifi/data/messages:3
 msgid "Icon"
 msgstr "Symbol"
 
@@ -4338,8 +4362,8 @@ msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
 msgstr ""
-"Abhängig von ihrem Fenstermanager können Sie die Größe mithilfe von "
-"ALT+Mittelklick oder ALT+Linksklick verändern."
+"Abhängig von ihrem Fenstermanager können Sie die Größe mithilfe von ALT"
+"+Mittelklick oder ALT+Linksklick verändern."
 
 #: ../Clipper/data/messages:29 ../Composite-Manager/data/messages:25
 #: ../Disks/data/messages:23 ../Doncky/data/messages:27
@@ -4747,7 +4771,7 @@ msgstr ""
 #: ../Recent-Events/data/messages:65 ../Status-Notifier/data/messages:75
 #: ../System-Monitor/data/messages:71 ../Toons/data/messages:71
 #: ../Xgamma/data/messages:67 ../alsaMixer/data/messages:73
-#: ../clock/data/messages:73 ../clock/data/messages:167
+#: ../clock/data/messages:73 ../clock/data/messages:173
 #: ../dnd2share/data/messages:61 ../dustbin/data/messages:61
 #: ../keyboard-indicator/data/messages:71
 #: ../keyboard-indicator/data/messages:125 ../logout/data/messages:65
@@ -5249,7 +5273,7 @@ msgstr "Vor dem Umschalten fragen :"
 
 #: ../Composite-Manager/data/messages:127 ../logout/data/messages:95
 #: ../showDesktop/data/messages:115 ../slider/data/messages:123
-#: ../switcher/data/messages:109
+#: ../switcher/data/messages:135
 msgid "Action on middle-click:"
 msgstr "Aktion bei Mittelklick :"
 
@@ -5279,8 +5303,7 @@ msgstr "Neuladen von Applets durch externe Anwendungen zulassen ?"
 
 #: ../Dbus/data/messages:13
 msgid "Let external applications show/hide docks?"
-msgstr ""
-"Anzeigen / verstecken der Docks durch externe Applikationen zulassen ?"
+msgstr "Anzeigen / verstecken der Docks durch externe Applikationen zulassen ?"
 
 #: ../Dbus/data/messages:15
 msgid "Let extern applications add launchers to the docks?"
@@ -5300,8 +5323,7 @@ msgstr ""
 
 #: ../Dbus/data/messages:21
 msgid "Let extern applications modify the icons' image?"
-msgstr ""
-"Modifikation von Symbolbildern durch externe Applikationen zulassen ?"
+msgstr "Modifikation von Symbolbildern durch externe Applikationen zulassen ?"
 
 #: ../Dbus/data/messages:23
 msgid "Let extern applications animate icons?"
@@ -5547,8 +5569,7 @@ msgid "Background"
 msgstr "Hintergrund"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid ""
-"You can have more attractive backgrounds using the Desklet decorations"
+msgid "You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Sie können viel attraktivere Hintergründe verwenden, wenn Sie die Desklet-"
 "Dekorationen benutzen."
@@ -5690,8 +5711,8 @@ msgstr "Leer lassen, falls kein Filter gebraucht wird."
 #: ../GMenu/data/messages:109
 msgid "Only show files that are under this folder or its sub-folder:"
 msgstr ""
-"Nur Dateien anzeigen, die unter diesem Ordner oder seinem Unterordner liegen "
-":"
+"Nur Dateien anzeigen, die unter diesem Ordner oder seinem Unterordner "
+"liegen :"
 
 #: ../GMenu/data/messages:111
 msgid "in days. Set 0 if unsued."
@@ -5699,8 +5720,7 @@ msgstr "in Tagen. \"0\" wenn ungenutzt."
 
 #: ../GMenu/data/messages:113
 msgid "Only show files whose last modification date is less than ;"
-msgstr ""
-"Zeige nur Dateien an, dessen letztes Modifikationsdatum weniger als ;"
+msgstr "Zeige nur Dateien an, dessen letztes Modifikationsdatum weniger als ;"
 
 #: ../GMenu/data/messages:115
 msgid "Session management buttons"
@@ -6445,8 +6465,7 @@ msgstr "Ein paar Web-Suchmaschinen vorschlagen ?"
 
 #: ../Scooby-Do/data/messages:109
 msgid "It can launch commands and even do some calculations."
-msgstr ""
-"Es kann Kommandos starten und sogar ein paar Berechnungen durchführen."
+msgstr "Es kann Kommandos starten und sogar ein paar Berechnungen durchführen."
 
 #: ../Scooby-Do/data/messages:113
 msgid "Help"
@@ -6804,8 +6823,7 @@ msgstr ""
 
 #: ../clock/data/messages:121
 msgid "Display seconds with smooth animation for a duration of:"
-msgstr ""
-"Zeigt Sekunden in einer flüssigen Animation für eine Zeitspanne von :"
+msgstr "Zeigt Sekunden in einer flüssigen Animation für eine Zeitspanne von :"
 
 #: ../clock/data/messages:123
 msgid "E.g. :Europe/Paris, :Japan, etc. Leave empty for local time."
@@ -6872,44 +6890,58 @@ msgid "Font:"
 msgstr "Schriftart :"
 
 #: ../clock/data/messages:157
+msgid "Set to 0 to not have it"
+msgstr ""
+
+#: ../clock/data/messages:159
+#, fuzzy
+msgid "Outline thickness:"
+msgstr "Dicke der Umrandung :"
+
+#: ../clock/data/messages:161
+#, fuzzy
+msgid "Outline colour:"
+msgstr "Linienfarbe :"
+
+#: ../clock/data/messages:163
 msgid "Layout of the text:"
 msgstr "Layout des Texts :"
 
-#: ../clock/data/messages:159 ../switcher/data/messages:95
+#: ../clock/data/messages:165 ../switcher/data/messages:97
 msgid "Automatic"
 msgstr "Automatisch"
 
-#: ../clock/data/messages:161
+#: ../clock/data/messages:167
 msgid "On 1 line"
 msgstr "Auf einer Linie"
 
-#: ../clock/data/messages:163
+#: ../clock/data/messages:169
 msgid "On 2 lines"
 msgstr "Auf zwei Linien"
 
-#: ../clock/data/messages:165
+#: ../clock/data/messages:171
 msgid "Ratio to apply on text :"
 msgstr "Anteil an Text :"
 
-#: ../clock/data/messages:169
+#: ../clock/data/messages:175
 msgid "Configure time and date"
 msgstr "Zeit und Datum konfigurieren"
 
-#: ../clock/data/messages:171 ../logout/data/messages:111
+#: ../clock/data/messages:177 ../logout/data/messages:111
 msgid "Leave empty to execute the default command."
 msgstr "Leer lassen, um das voreingestellte Kommando auszuführen."
 
-#: ../clock/data/messages:173
+#: ../clock/data/messages:179
 msgid "Specific command to run:"
 msgstr "Spezielles Kommando zum Ausführen :"
 
-#: ../clock/data/messages:177
+#: ../clock/data/messages:183
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
 msgstr ""
 "Der neue Alarm wird am Ende hinzugefügt / der letzt Alarm wird entfernt."
 
-#: ../clock/data/messages:179
+#: ../clock/data/messages:185
 msgid "Add or remove an alarm:"
 msgstr "Einen Alarm hinzufügen oder entfernen :"
 
@@ -7133,8 +7165,7 @@ msgstr "Geneigte Fläche"
 
 #: ../dock-rendering/data/messages:3
 msgid "The lower the value, the lower the point of view on the plane."
-msgstr ""
-"Je kleiner der Wert, desto kleiner der Ansichtswinkel auf die Fläche."
+msgstr "Je kleiner der Wert, desto kleiner der Ansichtswinkel auf die Fläche."
 
 #: ../dock-rendering/data/messages:5
 msgid "Height of the vanishing point:"
@@ -7323,8 +7354,7 @@ msgid "Space between icons:"
 msgstr "Leerraum zwischen Symbolen :"
 
 #: ../dock-rendering/data/messages:117
-msgid ""
-"0 represents a flat wave, 1 means the wave is identical to other views."
+msgid "0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 repräsentiert eine flache Welle, 1 bedeutet, die Welle ist identisch mit "
 "anderen Wellen."
@@ -7466,8 +7496,7 @@ msgid "Colours"
 msgstr "Farben"
 
 #: ../icon-effect/data/messages:71
-msgid ""
-"This will slightly alter your colours, so you may have to modify them."
+msgid "This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 "Dies wird ihre Farben leicht verändern, deshalb müssen Sie sie "
 "möglicherweise modifizieren."
@@ -7717,8 +7746,7 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Name der Datei für das \"Habe Mail\"-Bild :"
 
 #: ../mail/data/messages:115
-msgid ""
-"If checked, the number of mails will be shown even if there is no mail."
+msgid "If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Wenn abgehakt, wird die Anzahl der Mails selbst dann gezeigt, wenn keine "
 "Mail vorhanden ist."
@@ -7728,14 +7756,14 @@ msgid "Show '0' if there is no mail?"
 msgstr "Eine 0 zeigen, wenn keine Mail vorhanden ist ?"
 
 #: ../mail/data/messages:119 ../shortcuts/data/messages:105
-#: ../stack/data/messages:97 ../switcher/data/messages:155
+#: ../stack/data/messages:97 ../switcher/data/messages:121
 #: ../tomboy/data/messages:119 ../weather/data/messages:133
 msgid "Leave empty to use default sub-dock view."
 msgstr ""
 "Leer lassen, um die voreingestellte Ansicht des Unterdocks zu benutzen."
 
 #: ../mail/data/messages:121 ../shortcuts/data/messages:107
-#: ../stack/data/messages:99 ../switcher/data/messages:157
+#: ../stack/data/messages:99 ../switcher/data/messages:123
 #: ../tomboy/data/messages:121 ../weather/data/messages:135
 msgid "Sub-dock view name:"
 msgstr "Unterdock-Ansichtsname :"
@@ -7805,8 +7833,7 @@ msgid "Blur amount:"
 msgstr "Unschärfestärke :"
 
 #: ../musicPlayer/data/messages:7
-msgid ""
-"Leave it empty to display the name of the player currently controlled."
+msgid "Leave it empty to display the name of the player currently controlled."
 msgstr ""
 "Leer lassen, um den Namen des augenblicklich gesteuerten Abspielers "
 "anzuzeigen."
@@ -8459,111 +8486,152 @@ msgid "Manual order"
 msgstr "Manuelle Ordnung"
 
 #: ../switcher/data/messages:89
-msgid ""
-"All desktops will be drawn on the main icon. Otherwise a sub-dock will "
-"contain all desktops."
-msgstr ""
-"Alle Arbeitsflächen werden auf dem Hauptsymbol gezeichnet. Sonst wird ein "
-"Unterdock alle Arbeitsflächen enthalten."
+#, fuzzy
+msgid "How to display all desktops?"
+msgstr "Wie sollen Objekte dargestellt werden :"
 
 #: ../switcher/data/messages:91
-msgid "Use the compact mode?"
-msgstr "Den Kompaktmodus verwenden ?"
+msgid "A sub-dock with all desktops"
+msgstr ""
 
 #: ../switcher/data/messages:93
+msgid "All desktops drawn on the main icon"
+msgstr ""
+
+#: ../switcher/data/messages:95
 msgid "Desktops layout"
 msgstr ""
 
-#: ../switcher/data/messages:97
+#: ../switcher/data/messages:99
 msgid "On a single line"
 msgstr "In einer Zeile"
 
-#: ../switcher/data/messages:99
-msgid "Map wallpaper to icons?"
-msgstr "Hintergrundbilder auf Symbole mappen ?"
-
 #: ../switcher/data/messages:101
-msgid "Preserve the ratio of the screen ?"
+#, fuzzy
+msgid "Preserve the ratio of the screen?"
 msgstr "Das Bildschirm-Seitenverhältnis beibehalten ?"
 
 #: ../switcher/data/messages:103
-msgid "Show desktop number on icons?"
-msgstr "Die Arbeitsflächennummer auf Symbolen zeigen ?"
+#, fuzzy
+msgid "How to draw the icon?"
+msgstr "Wie das Symbol gezeichnet werden soll :"
 
 #: ../switcher/data/messages:105
-msgid "Draw windows on icons?"
-msgstr "Fenster auf Symbole zeichnen ?"
+#, fuzzy
+msgid "Map wallpaper to icons"
+msgstr "Hintergrundbilder auf Symbole mappen ?"
 
 #: ../switcher/data/messages:107
-msgid "Draw hidden windows?"
-msgstr "Versteckte Fenster zeichnen ?"
+msgid "Use an image for each desktop"
+msgstr ""
 
-#: ../switcher/data/messages:111
-msgid "Show windows' list"
-msgstr "Zeige Fensterliste"
+#: ../switcher/data/messages:109
+msgid "Use a colour for each desktop"
+msgstr ""
 
-#: ../switcher/data/messages:119
-msgid "Workspace names :"
-msgstr "Arbeitsflächennamen :"
-
-#: ../switcher/data/messages:121
-msgid "Display options"
-msgstr "Anzeigeoptionen"
-
-#: ../switcher/data/messages:123
-msgid "Size of the inside lines :"
-msgstr "Größe der Innenlinien :"
-
-#: ../switcher/data/messages:125 ../switcher/data/messages:131
-#: ../switcher/data/messages:135 ../switcher/data/messages:139
-msgid "r, g, b, a"
-msgstr "r, g, b, a"
-
-#: ../switcher/data/messages:127
-msgid "Internal line colour:"
-msgstr "Innenlinienfarbe :"
-
-#: ../switcher/data/messages:129
-msgid "External line size:"
-msgstr "Außenliniengröße :"
-
-#: ../switcher/data/messages:133
-msgid "External line colour:"
-msgstr "Außenlinienfarbe :"
-
-#: ../switcher/data/messages:137
-msgid "Window line colour:"
-msgstr "Fensterlinienfarbe :"
-
-#: ../switcher/data/messages:141
-msgid "Current desktop colour:"
-msgstr "Augenblickliche Arbeitsflächenfarbe :"
-
-#: ../switcher/data/messages:143
-msgid "How to draw the current desktop:"
-msgstr "Wie die augenblickliche Arbeitsfläche gezeichnet werden soll :"
-
-#: ../switcher/data/messages:145
-msgid "draw a frame"
-msgstr "Einen Rahmen zeichnen"
-
-#: ../switcher/data/messages:147
-msgid "fill"
-msgstr "Füllen"
-
-#: ../switcher/data/messages:149
-msgid "fill others"
-msgstr "Andere füllen"
-
-#: ../switcher/data/messages:153
+#: ../switcher/data/messages:113
 msgid "Icon to use in expanded mode if wallpaper is not mapped:"
 msgstr ""
 "Symbol, dass für den gestreckten Modus verwendet werden soll, wenn das "
 "Hintergrundbild nicht gemappt ist :"
 
-#: ../switcher/data/messages:159
+#: ../switcher/data/messages:115 ../switcher/data/messages:151
+#: ../switcher/data/messages:157 ../switcher/data/messages:161
+#: ../switcher/data/messages:165 ../switcher/data/messages:181
+msgid "r, g, b, a"
+msgstr "r, g, b, a"
+
+#: ../switcher/data/messages:117 ../terminal/data/messages:105
+msgid "Background colour:"
+msgstr "Hintergrundfarbe :"
+
+#: ../switcher/data/messages:119
+#, fuzzy
+msgid "Sub-Dock"
+msgstr "Unterdock"
+
+#: ../switcher/data/messages:125
 msgid "In expanded mode, render the desklet in 3D?"
 msgstr "Das Desklet im gestreckten Modus in 3D rendern ?"
+
+#: ../switcher/data/messages:129
+msgid "Draw windows on icons?"
+msgstr "Fenster auf Symbole zeichnen ?"
+
+#: ../switcher/data/messages:131
+msgid "Draw hidden windows?"
+msgstr "Versteckte Fenster zeichnen ?"
+
+#: ../switcher/data/messages:133
+#, fuzzy
+msgid "Draw icons of windows?"
+msgstr "Versteckte Fenster zeichnen ?"
+
+#: ../switcher/data/messages:137
+msgid "Show windows' list"
+msgstr "Zeige Fensterliste"
+
+#: ../switcher/data/messages:145
+msgid "Workspace names :"
+msgstr "Arbeitsflächennamen :"
+
+#: ../switcher/data/messages:147
+msgid "Display options"
+msgstr "Anzeigeoptionen"
+
+#: ../switcher/data/messages:149
+msgid "Size of the inside lines :"
+msgstr "Größe der Innenlinien :"
+
+#: ../switcher/data/messages:153
+msgid "Internal line colour:"
+msgstr "Innenlinienfarbe :"
+
+#: ../switcher/data/messages:155
+msgid "External line size:"
+msgstr "Außenliniengröße :"
+
+#: ../switcher/data/messages:159
+msgid "External line colour:"
+msgstr "Außenlinienfarbe :"
+
+#: ../switcher/data/messages:163
+msgid "Window line colour:"
+msgstr "Fensterlinienfarbe :"
+
+#: ../switcher/data/messages:167
+msgid "Current desktop colour:"
+msgstr "Augenblickliche Arbeitsflächenfarbe :"
+
+#: ../switcher/data/messages:169
+msgid "How to draw the current desktop:"
+msgstr "Wie die augenblickliche Arbeitsfläche gezeichnet werden soll :"
+
+#: ../switcher/data/messages:171
+msgid "draw a frame"
+msgstr "Einen Rahmen zeichnen"
+
+#: ../switcher/data/messages:173
+msgid "fill"
+msgstr "Füllen"
+
+#: ../switcher/data/messages:175
+msgid "fill others"
+msgstr "Andere füllen"
+
+#: ../switcher/data/messages:177
+msgid "All windows can be filled with one colour"
+msgstr ""
+
+#: ../switcher/data/messages:179
+#, fuzzy
+msgid "Fill all windows?"
+msgstr "Alle Fenster zeigen"
+
+#: ../switcher/data/messages:183
+#, fuzzy
+msgid "Colour of these windows:"
+msgstr "Glanzfarbe:"
 
 #: ../systray/data/messages:85
 msgid "Shortkey to toggle the systray in dock mode:"
@@ -8616,10 +8684,6 @@ msgstr "undurchsichtig"
 #: ../terminal/data/messages:103
 msgid "Foreground colour:"
 msgstr "Vordergrundfarbe :"
-
-#: ../terminal/data/messages:105
-msgid "Background colour:"
-msgstr "Hintergrundfarbe :"
 
 #: ../terminal/data/messages:109
 msgid ""
@@ -8794,8 +8858,7 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Position der senkrechten Scrollleiste"
 
 #: ../weblets/data/messages:105
-msgid ""
-"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Dies läßt Sie bei einem Rechtsklick auf das Desklet das Cairo-Dock-Menü "
 "aufklappen."
@@ -8825,8 +8888,7 @@ msgstr "Jede gültige URL sollte funktionieren."
 
 #: ../weblets/data/messages:117
 msgid "Predefined bookmarks to show in applet menu:"
-msgstr ""
-"Vordefinierte Lesezeichen, die im Applet-Menü gezeigt werden sollen :"
+msgstr "Vordefinierte Lesezeichen, die im Applet-Menü gezeigt werden sollen :"
 
 #: ../wifi/data/messages:149
 msgid "'No signal' icon filename:"
@@ -8866,8 +8928,7 @@ msgstr ""
 
 #: ../wifi/data/messages:183
 msgid "Alternative command line to launch Wireless Configuration :"
-msgstr ""
-"Alternative Kommandozeile, um die drahtlose Konfiguration zu starten :"
+msgstr "Alternative Kommandozeile, um die drahtlose Konfiguration zu starten :"
 
 #: ../wifi/data/messages:191
 msgid "Signal Strength"
@@ -8884,3 +8945,30 @@ msgstr "RAW-Signalinformationen"
 #: ../wifi/data/messages:197
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben ?"
+
+#~ msgid "myLogin"
+#~ msgstr "meinLogin"
+
+#~ msgid "Show the Window"
+#~ msgstr "Das Fenster anzeigen"
+
+#~ msgid "Toggle Repeat"
+#~ msgstr "Wiederholen an / aus"
+
+#~ msgid "Animations are triggered when hovering an icon only in OpenGL mode."
+#~ msgstr ""
+#~ "Animationen werden nur im OpenGL-Modus beim drüberfahren über ein Symbol "
+#~ "ausgelöst."
+
+#~ msgid ""
+#~ "All desktops will be drawn on the main icon. Otherwise a sub-dock will "
+#~ "contain all desktops."
+#~ msgstr ""
+#~ "Alle Arbeitsflächen werden auf dem Hauptsymbol gezeichnet. Sonst wird ein "
+#~ "Unterdock alle Arbeitsflächen enthalten."
+
+#~ msgid "Use the compact mode?"
+#~ msgstr "Den Kompaktmodus verwenden ?"
+
+#~ msgid "Show desktop number on icons?"
+#~ msgstr "Die Arbeitsflächennummer auf Symbolen zeigen ?"
