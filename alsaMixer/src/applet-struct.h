@@ -37,10 +37,12 @@
  */
 #ifdef _STRUCT_TIMEVAL
 #define _POSIX_C_SOURCE
+#ifndef _STRUCT_TIMESPEC
 struct timespec {
 	time_t		tv_sec;		/* seconds */
 	long		tv_nsec;	/* nanoseconds */
 };
+#endif
 #endif
 #include <alsa/asoundlib.h>
 

@@ -64,7 +64,7 @@ frame_spot =
 #S+[Default] Image for the spotlight:
 spot image =
 
-#S+Default] Image for the front spotlight:
+#S+[Default] Image for the front spotlight:
 #{Leave empty to use the default one.}
 spot front image =
 
