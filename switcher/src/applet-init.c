@@ -224,7 +224,7 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else if (myData.iSidUpdateIdle == 0)  // if only our size has changed, re-load the images.
 	{
-		if (myConfig.bMapWallpaper)  // on recharge le wallpaper a la taille de l'applet.
+		if (myConfig.iIconDrawing == SWICTHER_MAP_WALLPAPER)  // on recharge le wallpaper a la taille de l'applet.
 		{
 			cd_switcher_load_desktop_bg_map_surface ();
 		}

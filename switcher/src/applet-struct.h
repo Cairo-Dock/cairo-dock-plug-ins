@@ -34,6 +34,13 @@ typedef enum {
 	} SwitcherDrawCurrentDesktopMode;
 
 typedef enum {
+	SWICTHER_MAP_WALLPAPER,
+	SWICTHER_MAP_IMAGE,
+	SWICTHER_MAP_COLOUR,
+	SWICTHER_NB_DRAWING
+	} SwitcherIconDrawing;
+
+typedef enum {
 	SWICTHER_WINDOWS_LIST=0,
 	SWICTHER_SHOW_DESKTOP,
 	SWICTHER_EXPOSE_DESKTOPS,
@@ -50,8 +57,10 @@ typedef enum {
 struct _AppletConfig {
 	gboolean bCompactView;
 	SwitcherDesktopsLayout iDesktopsLayout;
-	gboolean bMapWallpaper;
+	SwitcherIconDrawing iIconDrawing;
 	gboolean bDrawWindows;
+	gboolean bDrawIcons;
+	gboolean bFillAllWindows;
 	gboolean bDisplayNumDesk;
 	gchar *cDefaultIcon;
 	gboolean bDesklet3D;
@@ -61,6 +70,8 @@ struct _AppletConfig {
 	gdouble RGBLineColors[4];
 	gdouble RGBWLineColors[4];
 	gdouble RGBIndColors[4];
+	gdouble RGBWFillColors[4];
+	gdouble RGBBgColors[4];
 	gint iInLineSize;
 	gint iLineSize;
 	gboolean bPreserveScreenRatio;

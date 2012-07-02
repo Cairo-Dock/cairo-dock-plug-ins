@@ -3224,13 +3224,13 @@ msgstr "Файл додано в набір"
 msgid "The URL has been added to the stack."
 msgstr "URL додано в набір"
 
-#: ../switcher/src/applet-draw.c:605 ../switcher/src/applet-draw.c:612
+#: ../switcher/src/applet-draw.c:604 ../switcher/src/applet-draw.c:611
 #: ../switcher/src/applet-load-icons.c:53
 #: ../switcher/src/applet-notifications.c:415
 msgid "Current"
 msgstr "Поточний"
 
-#: ../switcher/src/applet-draw.c:612 ../switcher/src/applet-draw.c:614
+#: ../switcher/src/applet-draw.c:611 ../switcher/src/applet-draw.c:613
 #: ../switcher/src/applet-load-icons.c:59
 #: ../switcher/src/applet-notifications.c:216
 #: ../switcher/src/applet-notifications.c:228
@@ -8502,8 +8502,9 @@ msgid "External line colour:"
 msgstr "Колір зовнішніх ліній:"
 
 #: ../switcher/data/messages:163
-msgid "Window line colour:"
-msgstr "Колір лінії вікон:"
+#, fuzzy
+msgid "Active window colour:"
+msgstr "Колір поточної стільниці:"
 
 #: ../switcher/data/messages:167
 msgid "Current desktop colour:"
@@ -8845,6 +8846,9 @@ msgstr "Стужбова інформація про сигнал"
 #: ../wifi/data/messages:197
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Змінити типовий підпис на назву точки доступу?"
+
+#~ msgid "Window line colour:"
+#~ msgstr "Колір лінії вікон:"
 
 #~ msgid "myLogin"
 #~ msgstr "мійЛогін"

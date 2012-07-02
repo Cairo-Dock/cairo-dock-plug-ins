@@ -3159,13 +3159,13 @@ msgstr "ファイルがスタックに追加されました。"
 msgid "The URL has been added to the stack."
 msgstr "URLがスタックに追加されました。"
 
-#: ../switcher/src/applet-draw.c:605 ../switcher/src/applet-draw.c:612
+#: ../switcher/src/applet-draw.c:604 ../switcher/src/applet-draw.c:611
 #: ../switcher/src/applet-load-icons.c:53
 #: ../switcher/src/applet-notifications.c:415
 msgid "Current"
 msgstr "現在"
 
-#: ../switcher/src/applet-draw.c:612 ../switcher/src/applet-draw.c:614
+#: ../switcher/src/applet-draw.c:611 ../switcher/src/applet-draw.c:613
 #: ../switcher/src/applet-load-icons.c:59
 #: ../switcher/src/applet-notifications.c:216
 #: ../switcher/src/applet-notifications.c:228
@@ -8423,8 +8423,9 @@ msgid "External line colour:"
 msgstr "外側の線の色 :"
 
 #: ../switcher/data/messages:163
-msgid "Window line colour:"
-msgstr "ウィンドウの線の色 :"
+#, fuzzy
+msgid "Active window colour:"
+msgstr "現在のデスクトップの色 :"
 
 #: ../switcher/data/messages:167
 msgid "Current desktop colour:"
@@ -8766,6 +8767,9 @@ msgstr "信号の生情報"
 #: ../wifi/data/messages:197
 msgid "Overwrite the default label with the connection point name?"
 msgstr "デフォルトのラベルを接続ポイント名によって上書き？"
+
+#~ msgid "Window line colour:"
+#~ msgstr "ウィンドウの線の色 :"
 
 #~ msgid "Show the Window"
 #~ msgstr "ウィンドウを表示"

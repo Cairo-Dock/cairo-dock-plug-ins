@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2012-07-02 13:27+0200\n"
+"POT-Creation-Date: 2012-07-02 14:31+0200\n"
 "PO-Revision-Date: 2012-04-12 03:19+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
@@ -3115,13 +3115,13 @@ msgstr ""
 msgid "The URL has been added to the stack."
 msgstr ""
 
-#: ../switcher/src/applet-draw.c:605 ../switcher/src/applet-draw.c:612
+#: ../switcher/src/applet-draw.c:604 ../switcher/src/applet-draw.c:611
 #: ../switcher/src/applet-load-icons.c:53
 #: ../switcher/src/applet-notifications.c:415
 msgid "Current"
 msgstr "Current"
 
-#: ../switcher/src/applet-draw.c:612 ../switcher/src/applet-draw.c:614
+#: ../switcher/src/applet-draw.c:611 ../switcher/src/applet-draw.c:613
 #: ../switcher/src/applet-load-icons.c:59
 #: ../switcher/src/applet-notifications.c:216
 #: ../switcher/src/applet-notifications.c:228
@@ -8352,8 +8352,9 @@ msgid "External line colour:"
 msgstr "External line colour:"
 
 #: ../switcher/data/messages:163
-msgid "Window line colour:"
-msgstr "Window line colour:"
+#, fuzzy
+msgid "Active window colour:"
+msgstr "Current desktop colour:"
 
 #: ../switcher/data/messages:167
 msgid "Current desktop colour:"
@@ -8692,6 +8693,9 @@ msgstr "Raw Signal Informations"
 #: ../wifi/data/messages:197
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Overwrite the default label with the connection point name?"
+
+#~ msgid "Window line colour:"
+#~ msgstr "Window line colour:"
 
 #~ msgid "myLogin"
 #~ msgstr "myLogin"

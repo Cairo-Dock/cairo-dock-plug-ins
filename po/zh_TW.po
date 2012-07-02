@@ -3081,13 +3081,13 @@ msgstr ""
 msgid "The URL has been added to the stack."
 msgstr ""
 
-#: ../switcher/src/applet-draw.c:605 ../switcher/src/applet-draw.c:612
+#: ../switcher/src/applet-draw.c:604 ../switcher/src/applet-draw.c:611
 #: ../switcher/src/applet-load-icons.c:53
 #: ../switcher/src/applet-notifications.c:415
 msgid "Current"
 msgstr "目前"
 
-#: ../switcher/src/applet-draw.c:612 ../switcher/src/applet-draw.c:614
+#: ../switcher/src/applet-draw.c:611 ../switcher/src/applet-draw.c:613
 #: ../switcher/src/applet-load-icons.c:59
 #: ../switcher/src/applet-notifications.c:216
 #: ../switcher/src/applet-notifications.c:228
@@ -8261,8 +8261,9 @@ msgid "External line colour:"
 msgstr "外框線的顏色："
 
 #: ../switcher/data/messages:163
-msgid "Window line colour:"
-msgstr "視窗線的顏色："
+#, fuzzy
+msgid "Active window colour:"
+msgstr "目前桌面的顏色"
 
 #: ../switcher/data/messages:167
 msgid "Current desktop colour:"
@@ -8596,6 +8597,9 @@ msgstr "原始訊號資訊"
 #: ../wifi/data/messages:197
 msgid "Overwrite the default label with the connection point name?"
 msgstr "覆蓋預設的標籤與連接點的名稱？"
+
+#~ msgid "Window line colour:"
+#~ msgstr "視窗線的顏色："
 
 #~ msgid "myLogin"
 #~ msgstr "myLogin"

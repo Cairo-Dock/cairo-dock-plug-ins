@@ -3254,13 +3254,13 @@ msgstr "Die Datei wurde dem Stapel hinzugefügt."
 msgid "The URL has been added to the stack."
 msgstr "Die URL wurde dem Stapel hinzugefügt."
 
-#: ../switcher/src/applet-draw.c:605 ../switcher/src/applet-draw.c:612
+#: ../switcher/src/applet-draw.c:604 ../switcher/src/applet-draw.c:611
 #: ../switcher/src/applet-load-icons.c:53
 #: ../switcher/src/applet-notifications.c:415
 msgid "Current"
 msgstr "Aktuell"
 
-#: ../switcher/src/applet-draw.c:612 ../switcher/src/applet-draw.c:614
+#: ../switcher/src/applet-draw.c:611 ../switcher/src/applet-draw.c:613
 #: ../switcher/src/applet-load-icons.c:59
 #: ../switcher/src/applet-notifications.c:216
 #: ../switcher/src/applet-notifications.c:228
@@ -8596,8 +8596,9 @@ msgid "External line colour:"
 msgstr "Außenlinienfarbe :"
 
 #: ../switcher/data/messages:163
-msgid "Window line colour:"
-msgstr "Fensterlinienfarbe :"
+#, fuzzy
+msgid "Active window colour:"
+msgstr "Augenblickliche Arbeitsflächenfarbe :"
 
 #: ../switcher/data/messages:167
 msgid "Current desktop colour:"
@@ -8945,6 +8946,9 @@ msgstr "RAW-Signalinformationen"
 #: ../wifi/data/messages:197
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Standardbezeichnung mit dem Verbindungspunktnamen überschreiben ?"
+
+#~ msgid "Window line colour:"
+#~ msgstr "Fensterlinienfarbe :"
 
 #~ msgid "myLogin"
 #~ msgstr "meinLogin"

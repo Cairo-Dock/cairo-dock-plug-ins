@@ -71,14 +71,20 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDeskto
 	
 	// on dessine ses traits.
 	cairo_save (pCairoContext);
-	
-	cairo_set_source_rgba (pCairoContext, myConfig.RGBWLineColors[0], myConfig.RGBWLineColors[1], myConfig.RGBWLineColors[2], myConfig.RGBWLineColors[3]);
+
+	Window iActiveWindow = cairo_dock_get_current_active_window ();
+
+	if (myConfig.bFillAllWindows && pIcon->Xid != iActiveWindow)
+		cairo_set_source_rgba (pCairoContext, myConfig.RGBWFillColors[0], myConfig.RGBWFillColors[1], myConfig.RGBWFillColors[2], myConfig.RGBWFillColors[3]);
+	else
+		cairo_set_source_rgba (pCairoContext, myConfig.RGBWLineColors[0], myConfig.RGBWLineColors[1], myConfig.RGBWLineColors[2], myConfig.RGBWLineColors[3]);
 	cairo_rectangle (pCairoContext,
 		(1.*x/g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL] - iNumViewportX)*iOneViewportWidth,
 		(1.*y/g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL] - iNumViewportY)*iOneViewportHeight,
 		1.*w/g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL]*iOneViewportWidth,
 		1.*h/g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL]*iOneViewportHeight);
-	if (pIcon->Xid == cairo_dock_get_current_active_window ())
+
+	if (myConfig.bFillAllWindows || pIcon->Xid == iActiveWindow)
 	{
 		//g_print (" %s est la fenetre active\n", pIcon->cName);
 		cairo_fill (pCairoContext);
@@ -98,27 +104,31 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDeskto
 			pDisplayedIcon = pInhibitor;
 	}
 	if (pDisplayedIcon->pIconBuffer != NULL)*/
-	const CairoDockImageBuffer *pImage = cairo_dock_appli_get_image_buffer (pIcon);
-	if (pImage && pImage->pSurface)
+
+	if (myConfig.bDrawIcons)
 	{
-		///int iWidth, iHeight;
-		///cairo_dock_get_icon_extent (pDisplayedIcon, &iWidth, &iHeight);
-		double fZoomX = (double) w/g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL]*iOneViewportWidth / pImage->iWidth;
-		double fZoomY = (double) h/g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL]*iOneViewportHeight / pImage->iHeight;
-		double fZoom = MIN (fZoomX, fZoomY);  // on garde le ratio.
-		
-		cairo_translate (pCairoContext,
-			(1.*x/g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL] - iNumViewportX)*iOneViewportWidth + (fZoomX - fZoom) * pImage->iWidth/2,
-			(1.*y/g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL] - iNumViewportY)*iOneViewportHeight + (fZoomY - fZoom) * pImage->iHeight/2);
-		cairo_scale (pCairoContext,
-			fZoom,
-			fZoom);
-		cairo_set_source_surface (pCairoContext,
-			///pDisplayedIcon->pIconBuffer,
-			pImage->pSurface,
-			0.,
-			0.);
-		cairo_paint (pCairoContext);
+		const CairoDockImageBuffer *pImage = cairo_dock_appli_get_image_buffer (pIcon);
+		if (pImage && pImage->pSurface)
+		{
+			///int iWidth, iHeight;
+			///cairo_dock_get_icon_extent (pDisplayedIcon, &iWidth, &iHeight);
+			double fZoomX = (double) w/g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL]*iOneViewportWidth / pImage->iWidth;
+			double fZoomY = (double) h/g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL]*iOneViewportHeight / pImage->iHeight;
+			double fZoom = MIN (fZoomX, fZoomY);  // on garde le ratio.
+			
+			cairo_translate (pCairoContext,
+				(1.*x/g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL] - iNumViewportX)*iOneViewportWidth + (fZoomX - fZoom) * pImage->iWidth/2,
+				(1.*y/g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL] - iNumViewportY)*iOneViewportHeight + (fZoomY - fZoom) * pImage->iHeight/2);
+			cairo_scale (pCairoContext,
+				fZoom,
+				fZoom);
+			cairo_set_source_surface (pCairoContext,
+				///pDisplayedIcon->pIconBuffer,
+				pImage->pSurface,
+				0.,
+				0.);
+			cairo_paint (pCairoContext);
+		}
 	}
 	
 	cairo_restore (pCairoContext);
@@ -178,7 +188,7 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	
 	cairo_surface_t *pSurface = NULL;
 	double fZoomX, fZoomY;
-	if (myConfig.bMapWallpaper)
+	if (myConfig.iIconDrawing == SWICTHER_MAP_WALLPAPER)
 	{
 		pSurface = myData.pDesktopBgMapSurface;
 	}
@@ -351,7 +361,7 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 
 		cairo_surface_t *pSurface = NULL;
 		double fZoomX, fZoomY;
-		if (myConfig.bMapWallpaper)
+		if (myConfig.iIconDrawing == SWICTHER_MAP_WALLPAPER)
 		{
 			cairo_dock_erase_cairo_context (myDrawContext);
 

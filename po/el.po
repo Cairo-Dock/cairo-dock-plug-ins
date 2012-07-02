@@ -3179,13 +3179,13 @@ msgstr "Το αρχείο προστέθηκε στη στοίβα."
 msgid "The URL has been added to the stack."
 msgstr "Το URL προστέθηκε στη στοίβα."
 
-#: ../switcher/src/applet-draw.c:605 ../switcher/src/applet-draw.c:612
+#: ../switcher/src/applet-draw.c:604 ../switcher/src/applet-draw.c:611
 #: ../switcher/src/applet-load-icons.c:53
 #: ../switcher/src/applet-notifications.c:415
 msgid "Current"
 msgstr "Τρέχον"
 
-#: ../switcher/src/applet-draw.c:612 ../switcher/src/applet-draw.c:614
+#: ../switcher/src/applet-draw.c:611 ../switcher/src/applet-draw.c:613
 #: ../switcher/src/applet-load-icons.c:59
 #: ../switcher/src/applet-notifications.c:216
 #: ../switcher/src/applet-notifications.c:228
@@ -8504,8 +8504,9 @@ msgid "External line colour:"
 msgstr "Χρώμα εξωτερικής γραμμής:"
 
 #: ../switcher/data/messages:163
-msgid "Window line colour:"
-msgstr "Χρώμα γραμμής παραθύρου:"
+#, fuzzy
+msgid "Active window colour:"
+msgstr "Χρώμα τρέχουσας επιφάνειας:"
 
 #: ../switcher/data/messages:167
 msgid "Current desktop colour:"
@@ -8851,6 +8852,9 @@ msgstr "Πληροφορίες αμιγούς σήματος"
 msgid "Overwrite the default label with the connection point name?"
 msgstr ""
 "Αντικατάσταση της προεπιλεγμένης ετικέτας με το όνομα του σημείου σύνδεσης;"
+
+#~ msgid "Window line colour:"
+#~ msgstr "Χρώμα γραμμής παραθύρου:"
 
 #~ msgid "myLogin"
 #~ msgstr "myLogin"

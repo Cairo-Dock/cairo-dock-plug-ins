@@ -44,7 +44,7 @@ static GList * _load_icons (void)
 	for (i = 0; i < myData.switcher.iNbViewportTotal; i ++)
 	{
 		pIcon = cairo_dock_create_dummy_launcher (NULL,
-			(myConfig.bMapWallpaper ? NULL : (myConfig.cDefaultIcon != NULL ? g_strdup (myConfig.cDefaultIcon) : g_strdup (MY_APPLET_SHARE_DATA_DIR"/default.svg"))),
+			(myConfig.iIconDrawing == SWICTHER_MAP_WALLPAPER ? NULL : (myConfig.cDefaultIcon != NULL ? g_strdup (myConfig.cDefaultIcon) : g_strdup (MY_APPLET_SHARE_DATA_DIR"/default.svg"))),
 			NULL,
 			g_strdup_printf ("%d",i+1),
 			i);
@@ -62,7 +62,7 @@ static GList * _load_icons (void)
 		}
 		pIcon->cParentDockName = g_strdup (myIcon->cName);
 		
-		if (myConfig.bMapWallpaper)
+		if (myConfig.iIconDrawing == SWICTHER_MAP_WALLPAPER)
 		{
 			pIcon->iface.load_image = _load_desktop_icon;
 		}
@@ -83,7 +83,7 @@ void cd_switcher_load_icons (void)
 	cairo_surface_destroy (myData.pDefaultMapSurface);
 	myData.pDefaultMapSurface = NULL;
 	
-	if (myConfig.bMapWallpaper)
+	if (myConfig.iIconDrawing == SWICTHER_MAP_WALLPAPER)
 	{
 		cd_switcher_load_desktop_bg_map_surface ();
 	}
@@ -135,7 +135,7 @@ void cd_switcher_load_icons (void)
 	int _iWidth, _iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&_iWidth, &_iHeight);
 	
-	if (myConfig.bMapWallpaper)
+	if (myConfig.iIconDrawing == SWICTHER_MAP_WALLPAPER)
 	{
 		cd_switcher_draw_main_icon();
 		pSurface = myData.pDesktopBgMapSurface;
@@ -232,7 +232,22 @@ void cd_switcher_load_default_map_surface (void)
 		myData.iSurfaceHeight = MAX (1, myContainer->iHeight / myData.switcher.iNbViewportTotal);
 	}
 	cd_debug ("%s (%dx%d)", __func__, myData.iSurfaceWidth, myData.iSurfaceHeight);
-	myData.pDefaultMapSurface = cairo_dock_create_surface_from_image_simple (myConfig.cDefaultIcon,
-		myData.iSurfaceWidth,
-		myData.iSurfaceHeight);
+	if (myConfig.iIconDrawing == SWICTHER_MAP_COLOUR)
+	{
+		// create a surface and paint the Bg color
+		myData.pDefaultMapSurface = cairo_dock_create_blank_surface (
+				myData.iSurfaceWidth, myData.iSurfaceHeight);
+		cairo_t *pImageContext = cairo_create (myData.pDefaultMapSurface);
+		cairo_set_source_rgba (pImageContext,
+			myConfig.RGBBgColors[0],
+			myConfig.RGBBgColors[1],
+			myConfig.RGBBgColors[2],
+			myConfig.RGBBgColors[3]);
+		cairo_paint (pImageContext);
+		cairo_destroy (pImageContext);
+	}
+	else
+		myData.pDefaultMapSurface = cairo_dock_create_surface_from_image_simple (myConfig.cDefaultIcon,
+			myData.iSurfaceWidth,
+			myData.iSurfaceHeight);
 }
