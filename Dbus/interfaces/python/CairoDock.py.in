@@ -25,7 +25,7 @@ import dbus
 import re
 from dbus.mainloop.glib import DBusGMainLoop
 
-USER_CONFIG_DIR = os.path.abspath("~/.config")
+USER_CONFIG_DIR = os.path.expanduser("~/.config")
 BUS_NAME = "org.cairodock.CairoDock"
 
 ##################
