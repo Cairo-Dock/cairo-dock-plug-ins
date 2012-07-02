@@ -21,7 +21,6 @@
 #include <math.h>
 #include <string.h>
 #include <glib/gi18n.h>
-#include <alsa/asoundlib.h>
 
 #include "applet-struct.h"
 #include "applet-draw.h"
