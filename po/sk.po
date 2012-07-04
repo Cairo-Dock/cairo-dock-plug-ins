@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
+"POT-Creation-Date: 2012-07-02 12:57+0000\n"
 "PO-Revision-Date: 2012-04-25 06:30+0000\n"
-"Last-Translator: milboy <Unknown>\n"
+"Last-Translator: Milan Slovák <Unknown>\n"
 "Language-Team: Slovak <sk@li.org>\n"
-"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-26 04:55+0000\n"
-"X-Generator: Launchpad (build 15149)\n"
+"X-Launchpad-Export-Date: 2012-07-03 05:46+0000\n"
+"X-Generator: Launchpad (build 15531)\n"
+"Language: sk\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -102,7 +103,8 @@ msgstr "Prepáč, teraz som zaneprázdnený."
 #: ../Cairo-Penguin/src/applet-notifications.c:31
 msgid ""
 "I don't have time to play with you, I have to dig and mine all these icons."
-msgstr "Nemám čas sa s tebou hrať. Musím zakopať míny pod všetky tieto ikony."
+msgstr ""
+"Nemám čas sa s tebou hrať. Musím zakopať míny pod všetky tieto ikony."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:32
 msgid "Your dock is so messy! Let me clean it."
@@ -357,7 +359,8 @@ msgstr "Modul bol pridaný, ale nemohol byť spustený."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Applet '%s' bol úspešne aktualizovaný a automaticky načítaný"
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -494,7 +497,8 @@ msgstr ""
 #: ../Folders/src/applet-init.c:87 ../Folders/src/applet-init.c:150
 #: ../Folders/src/applet-notifications.c:42
 msgid "Open the configuration of the applet to choose a folder to import."
-msgstr "Otvorte konfiguráciu apletu a vyberte zložku, ktorú chcete importovať."
+msgstr ""
+"Otvorte konfiguráciu apletu a vyberte zložku, ktorú chcete importovať."
 
 #: ../Folders/src/applet-notifications.c:54
 msgid "Empty or unreadable folder."
@@ -1706,8 +1710,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1716,8 +1720,8 @@ msgstr ""
 "K dispozícii sú 2 pohľady : <b>číselný</b> a <b>analógový</b>.\n"
 " Analógový pohľad je kompatibilnýs témami Cairo-Clock, a applet môžete "
 "odpojiť a získať dokonalý klon Cairo-Hodín.\n"
-"Zobrazuje <b>kalendár</b> a ľavé kliknutie, vám umožní <b>spravovať úlohy</"
-"b>.\n"
+"Zobrazuje <b>kalendár</b> a ľavé kliknutie, vám umožní <b>spravovať "
+"úlohy</b>.\n"
 "Tiež podporuje alarmy, a umožnuje nastaviť čas a dátum.\n"
 "Ľavé kliknutie zobrazí/skryje kalendar, Stredné kliknutie zastaví "
 "oznamovanie,\n"
@@ -1923,7 +1927,8 @@ msgstr ""
 "Stačí stlačiť CTRL + V k prilepeniu adresy URL kdekoľvek."
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr "Prosím, počkajte kým súčasné nahrávanie skončí pred začatím nového."
 
 #: ../dnd2share/src/applet-dnd2share.c:399
@@ -2454,7 +2459,8 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-config.c:392
 msgid "Enter a name for this account. You can give it any name you want."
-msgstr "Prosím, zadajte názov pre tento účet. Môžete vložiť názov aký chcete."
+msgstr ""
+"Prosím, zadajte názov pre tento účet. Môžete vložiť názov aký chcete."
 
 #: ../mail/src/cd-mail-applet-config.c:447
 msgid "Remove Account"
@@ -2666,23 +2672,20 @@ msgid "Show JumpBox"
 msgstr "Zobraziť JumpBox"
 
 #: ../musicPlayer/src/applet-notifications.c:323
-#, fuzzy
 msgid "Shuffle"
-msgstr "Prepnúť Náhodné"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:331
-#, fuzzy
 msgid "Repeat"
-msgstr "Opakovať každý:"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:339
 msgid "Rate this song"
 msgstr "Hodnotiť túto skladbu"
 
 #: ../musicPlayer/src/applet-notifications.c:343
-#, fuzzy
 msgid "Show"
-msgstr "Zobraziť info"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:344
 msgid "Quit"
@@ -2965,11 +2968,11 @@ msgstr "zobraziť myš"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
-"Tento plugin vykresľuje niektoré animácie okolo kurzora, keď je vnútri doku/"
-"deskletu."
+"Tento plugin vykresľuje niektoré animácie okolo kurzora, keď je vnútri "
+"doku/deskletu."
 
 #: ../showDesktop/src/applet-init.c:28
 msgid "showDesktop"
@@ -3806,9 +3809,8 @@ msgid "Blink duration:"
 msgstr "Doba trvania blikania :"
 
 #: ../Animated-icons/data/messages:185
-#, fuzzy
 msgid "Busy duration:"
-msgstr "Doba trvania pulzu :"
+msgstr ""
 
 #: ../Animated-icons/data/messages:189
 msgid ""
@@ -3817,14 +3819,12 @@ msgid ""
 msgstr ""
 
 #: ../Animated-icons/data/messages:191
-#, fuzzy
 msgid "Image :"
-msgstr "Obrázok"
+msgstr ""
 
 #: ../Animated-icons/data/messages:193
-#, fuzzy
 msgid "Image size"
-msgstr "Obrázky"
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:1 ../Cairo-Penguin/data/messages:3
 #: ../Clipper/data/messages:1 ../Clipper/data/messages:3
@@ -5379,7 +5379,8 @@ msgid "Background"
 msgstr "Pozadie"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr "Môžete mať viac atraktívnych prostredí pomocou dekorácie Deskletov"
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
@@ -5496,7 +5497,8 @@ msgstr "Klávesová skratka pre zobrazenie/schovanie menu :"
 
 #: ../GMenu/data/messages:97
 msgid "Shortkey to show/hide the quick-launch dialog:"
-msgstr "Klávesová skratka pre zobrazenie/skrytie dialógu rýchleho spustenia ?"
+msgstr ""
+"Klávesová skratka pre zobrazenie/skrytie dialógu rýchleho spustenia ?"
 
 #: ../GMenu/data/messages:101
 msgid "Command to use for configuring the menu:"
@@ -6681,14 +6683,12 @@ msgid "Set to 0 to not have it"
 msgstr ""
 
 #: ../clock/data/messages:159
-#, fuzzy
 msgid "Outline thickness:"
-msgstr "Hrúbka okraja"
+msgstr ""
 
 #: ../clock/data/messages:161
-#, fuzzy
 msgid "Outline colour:"
-msgstr "Farba linky :"
+msgstr ""
 
 #: ../clock/data/messages:163
 msgid "Layout of the text:"
@@ -7136,7 +7136,8 @@ msgid "Space between icons:"
 msgstr "Priestor medzi ikonami :"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 znamená úplne plochú vlnu, 1 znamená, že vlna je totožná s inými pohľadmi."
 
@@ -7273,7 +7274,8 @@ msgid "Colours"
 msgstr "Farby"
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr "Bude mierne meniť farby, takže možno budete potrebná úprava."
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
@@ -7513,7 +7515,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Názov súboru pre obrázok \"má mail\" :"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Ak je začiarknuté, bude zobrazený počet mailov, aj keď nie je žiadny mail."
 
@@ -7598,8 +7601,10 @@ msgid "Blur amount:"
 msgstr "Sila rozmazania :"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
-msgstr "Nechajte prázdne pre zobrazenie názvu aktuálne používaného prehrávača."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
+msgstr ""
+"Nechajte prázdne pre zobrazenie názvu aktuálne používaného prehrávača."
 
 #: ../musicPlayer/data/messages:101
 msgid "Audio Player"
@@ -8239,9 +8244,8 @@ msgid "Manual order"
 msgstr "Manuálne zoradenie"
 
 #: ../switcher/data/messages:89
-#, fuzzy
 msgid "How to display all desktops?"
-msgstr "Ako zobraziť položky:"
+msgstr ""
 
 #: ../switcher/data/messages:91
 msgid "A sub-dock with all desktops"
@@ -8260,19 +8264,16 @@ msgid "On a single line"
 msgstr "Na jednom riadku"
 
 #: ../switcher/data/messages:101
-#, fuzzy
 msgid "Preserve the ratio of the screen?"
-msgstr "Klávesová skratka na uzamknutie obrazovky"
+msgstr ""
 
 #: ../switcher/data/messages:103
-#, fuzzy
 msgid "How to draw the icon?"
-msgstr "Ako vykresliť ikonu :"
+msgstr ""
 
 #: ../switcher/data/messages:105
-#, fuzzy
 msgid "Map wallpaper to icons"
-msgstr "Mapa tapety na ikone ?"
+msgstr ""
 
 #: ../switcher/data/messages:107
 msgid "Use an image for each desktop"
@@ -8297,9 +8298,8 @@ msgid "Background colour:"
 msgstr "Farba pozadia :"
 
 #: ../switcher/data/messages:119
-#, fuzzy
 msgid "Sub-Dock"
-msgstr "panel"
+msgstr ""
 
 #: ../switcher/data/messages:125
 msgid "In expanded mode, render the desklet in 3D?"
@@ -8314,9 +8314,8 @@ msgid "Draw hidden windows?"
 msgstr "Vykresliť aj skryté okná ?"
 
 #: ../switcher/data/messages:133
-#, fuzzy
 msgid "Draw icons of windows?"
-msgstr "Vykresliť aj skryté okná ?"
+msgstr ""
 
 #: ../switcher/data/messages:137
 msgid "Show windows' list"
@@ -8347,9 +8346,8 @@ msgid "External line colour:"
 msgstr "Farba externého okraja  :"
 
 #: ../switcher/data/messages:163
-#, fuzzy
 msgid "Active window colour:"
-msgstr "Farba súčasnej plochy :"
+msgstr ""
 
 #: ../switcher/data/messages:167
 msgid "Current desktop colour:"
@@ -8376,14 +8374,12 @@ msgid "All windows can be filled with one colour"
 msgstr ""
 
 #: ../switcher/data/messages:179
-#, fuzzy
 msgid "Fill all windows?"
-msgstr "Vystaviť všetky okná"
+msgstr ""
 
 #: ../switcher/data/messages:183
-#, fuzzy
 msgid "Colour of these windows:"
-msgstr "Farba lesku :"
+msgstr ""
 
 #: ../systray/data/messages:85
 msgid "Shortkey to toggle the systray in dock mode:"
@@ -8603,7 +8599,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Pozícia vodorového vysúvacieho panela v pixeloch"
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "To vám umožní pravé-kliknutie na desklety pre vyskakovacie okno Cairo-Dock "
 "menu."
@@ -8619,7 +8616,8 @@ msgstr "Priehľadné pozadie ?"
 #: ../weblets/data/messages:111
 msgid ""
 "Time before reloading the weblet URI, in seconds. Zero means never reload."
-msgstr "Čas pred obnovením weblet URI, v sekundách. Nula znamená neobnovovať."
+msgstr ""
+"Čas pred obnovením weblet URI, v sekundách. Nula znamená neobnovovať."
 
 #: ../weblets/data/messages:113
 msgid "Time between two page refreshes"
@@ -8689,32 +8687,3 @@ msgstr "Oznámenia o čistote signálu"
 #: ../wifi/data/messages:197
 msgid "Overwrite the default label with the connection point name?"
 msgstr "Prepísať predvolené štítok s názvom bodu pripojenia ?"
-
-#~ msgid "Window line colour:"
-#~ msgstr "Farba okraja okien :"
-
-#~ msgid "myLogin"
-#~ msgstr "Moje prihlásenie"
-
-#~ msgid "Show the Window"
-#~ msgstr "Zobraziť okno"
-
-#~ msgid "Toggle Repeat"
-#~ msgstr "Prepnúť opakovanie"
-
-#~ msgid "Animations are triggered when hovering an icon only in OpenGL mode."
-#~ msgstr ""
-#~ "Animácie sú vyvolané, iba v režime OpenGL keď sa  vznášate na ikone."
-
-#~ msgid ""
-#~ "All desktops will be drawn on the main icon. Otherwise a sub-dock will "
-#~ "contain all desktops."
-#~ msgstr ""
-#~ "Všetky plochy sa zobrazia na hlavnej ikone. Inak bude subdock obsahovať "
-#~ "všetky plochy."
-
-#~ msgid "Use the compact mode?"
-#~ msgstr "Použiť kompaktný mód?"
-
-#~ msgid "Show desktop number on icons?"
-#~ msgstr "Použiť číslo plochy na ikonách ?"

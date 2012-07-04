@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
+"POT-Creation-Date: 2012-07-02 12:57+0000\n"
 "PO-Revision-Date: 2012-04-12 02:59+0000\n"
 "Last-Translator: Michael Kotsarinis <mk73628@gmail.com>\n"
 "Language-Team: Greek <el@li.org>\n"
-"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-13 05:32+0000\n"
-"X-Generator: Launchpad (build 15070)\n"
+"X-Launchpad-Export-Date: 2012-07-03 05:45+0000\n"
+"X-Generator: Launchpad (build 15531)\n"
+"Language: el\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -365,7 +366,8 @@ msgstr "Το άρθρωμα προστέθηκε αλλά δεν ήταν δυν
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "Η μικροεφαρμογή '%s' έχει επιτυχώς ενημερωθεί και έχει επαναφορτωθεί "
 "αυτόματα."
@@ -723,8 +725,8 @@ msgstr ""
 "Είναι συμβατή με οποιοδήποτε μενού προδιαγραφών XDG (Gnome, XFCE, KDE, …)\n"
 "Με μεσαίο κλικ ανοίγει ένα παράθυρο διαλόγου για δώσετε γρήγορα οποιαδήποτε "
 "εντολή (μπορείτε να ορίσετε συντόμευση γι' αυτό, όπως το ALT+F2)\n"
-"Μπορείτε επίσης να ορίσετε συντόμευση για να αναδύεται το μενού (όπως το ALT"
-"+F1)"
+"Μπορείτε επίσης να ορίσετε συντόμευση για να αναδύεται το μενού (όπως το "
+"ALT+F1)"
 
 #: ../GMenu/src/applet-init.c:39
 msgid "Applications Menu"
@@ -1447,8 +1449,8 @@ msgstr "Θερμοκρασία πυρήνα"
 #, c-format
 msgid "Alert! Graphic Card core temperature has reached %d°C"
 msgstr ""
-"Συναγερμός! Η θερμοκρασία του πυρήνα της κάρτας γραφικών έχει φτάσει τους %d"
-"°C"
+"Συναγερμός! Η θερμοκρασία του πυρήνα της κάρτας γραφικών έχει φτάσει τους "
+"%d°C"
 
 #: ../System-Monitor/src/applet-rame.c:124
 msgid "Gb"
@@ -1736,8 +1738,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1955,7 +1957,8 @@ msgstr ""
 "Απλώς πατήστε CTRL+v για να επικολλήσετε το URL του οπουδήποτε."
 
 #: ../dnd2share/src/applet-dnd2share.c:331
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Παρακαλώ περιμένετε για το τρέχον ανέβασμα να τελειώσει πριν ξεκινήσετε "
 "καινούριο."
@@ -2728,23 +2731,20 @@ msgid "Show JumpBox"
 msgstr "Εμφάνιση JumpBox"
 
 #: ../musicPlayer/src/applet-notifications.c:323
-#, fuzzy
 msgid "Shuffle"
-msgstr "Εναλλαγή τυχαίας αναπαραγωγής"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:331
-#, fuzzy
 msgid "Repeat"
-msgstr "Επανάληψη κάθε:"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:339
 msgid "Rate this song"
 msgstr "Αξιολογήστε αυτό το τραγούδι"
 
 #: ../musicPlayer/src/applet-notifications.c:343
-#, fuzzy
 msgid "Show"
-msgstr "Εμφάνιση πληροφοριών"
+msgstr ""
 
 #: ../musicPlayer/src/applet-notifications.c:344
 msgid "Quit"
@@ -3029,8 +3029,8 @@ msgstr "εμφάνιση ποντικιού"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Αυτό το πρόσθετο σχεδιάζει μερικά κινούμενα εφέ γύρω από το δρομέα όταν "
 "βρίσκεται μέσα σε ένα dock/desklet."
@@ -3589,7 +3589,8 @@ msgstr "Δύση"
 
 #: ../weather/src/applet-notifications.c:174
 msgid "Data are being fetched, please re-try in a few seconds."
-msgstr "Δεδομένα ανακτούνται, παρακαλώ προσπαθήστε ξανά σε λίγα δευτερόλεπτα."
+msgstr ""
+"Δεδομένα ανακτούνται, παρακαλώ προσπαθήστε ξανά σε λίγα δευτερόλεπτα."
 
 #: ../weather/src/applet-notifications.c:184
 msgid ""
@@ -3898,9 +3899,8 @@ msgid "Blink duration:"
 msgstr "Διάρκεια αναβοσβησίματος:"
 
 #: ../Animated-icons/data/messages:185
-#, fuzzy
 msgid "Busy duration:"
-msgstr "Διάρκεια παλμού:"
+msgstr ""
 
 #: ../Animated-icons/data/messages:189
 msgid ""
@@ -3909,14 +3909,12 @@ msgid ""
 msgstr ""
 
 #: ../Animated-icons/data/messages:191
-#, fuzzy
 msgid "Image :"
-msgstr "Εικόνα"
+msgstr ""
 
 #: ../Animated-icons/data/messages:193
-#, fuzzy
 msgid "Image size"
-msgstr "Εικόνες"
+msgstr ""
 
 #: ../Cairo-Penguin/data/messages:1 ../Cairo-Penguin/data/messages:3
 #: ../Clipper/data/messages:1 ../Clipper/data/messages:3
@@ -5121,8 +5119,8 @@ msgid ""
 "left-click.. Negative values are counted from the right/bottom of the screen"
 msgstr ""
 "Ανάλογα με τον διαχειριστή παραθύρων, μπορεί να είναι δυνατόν να το "
-"μετακινήσετε με ALT + αριστερό κλικ. Αρνητικές τιμές μετρώνται από τα δεξιά/"
-"κάτω της οθόνης"
+"μετακινήσετε με ALT + αριστερό κλικ. Αρνητικές τιμές μετρώνται από τα "
+"δεξιά/κάτω της οθόνης"
 
 #: ../Composite-Manager/data/messages:89 ../Impulse/data/messages:123
 #: ../clock/data/messages:133
@@ -5490,7 +5488,8 @@ msgid "Background"
 msgstr "Παρασκήνιο"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Μπορείτε να έχετε πιο ελκυστικά παρασκήνια χρησιμοποιώντας τους διάκοσμους "
 "των Desklet"
@@ -5846,8 +5845,8 @@ msgstr ""
 msgid ""
 "Animation of the icon when one of the application demands your attention :"
 msgstr ""
-"Εφέ κίνησης στο εικονίδιο όταν μία από τις εφαρμογές απαιτεί την προσοχή "
-"σας :"
+"Εφέ κίνησης στο εικονίδιο όταν μία από τις εφαρμογές απαιτεί την προσοχή σας "
+":"
 
 #: ../Network-Monitor/data/messages:7
 msgid "Leave empty to use the connection name."
@@ -6706,7 +6705,8 @@ msgstr "Συγκεκριμένη εντολή για την εκτέλεση π�
 
 #: ../clock/data/messages:7
 msgid "Leave empty to use the location name if available."
-msgstr "Αφήστε κενό για χρήση του ονόματος της τοποθεσίας αν είναι διαθέσιμο."
+msgstr ""
+"Αφήστε κενό για χρήση του ονόματος της τοποθεσίας αν είναι διαθέσιμο."
 
 #: ../clock/data/messages:103
 msgid "Show the date:"
@@ -6812,14 +6812,12 @@ msgid "Set to 0 to not have it"
 msgstr ""
 
 #: ../clock/data/messages:159
-#, fuzzy
 msgid "Outline thickness:"
-msgstr "Πάχος περιγράμματος:"
+msgstr ""
 
 #: ../clock/data/messages:161
-#, fuzzy
 msgid "Outline colour:"
-msgstr "Χρώμα γραμμής:"
+msgstr ""
 
 #: ../clock/data/messages:163
 msgid "Layout of the text:"
@@ -6970,7 +6968,8 @@ msgstr "Ιστότοποι"
 
 #: ../dnd2share/data/messages:125
 msgid "Use files hosting site for any kind of files?"
-msgstr "Χρήση του ιστότοπου φιλοξενίας αρχείων για οποιοδήποτε είδος αρχείων;"
+msgstr ""
+"Χρήση του ιστότοπου φιλοξενίας αρχείων για οποιοδήποτε είδος αρχείων;"
 
 #: ../dnd2share/data/messages:127
 msgid "Preferred site for texts hosting :"
@@ -7108,7 +7107,8 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:21
 msgid "At 1, the icons will have the same size as in other views."
-msgstr "Στο 1, τα εικονίδια θα έχουν το ίδιο μέγεθος όπως στις άλλες προβολές."
+msgstr ""
+"Στο 1, τα εικονίδια θα έχουν το ίδιο μέγεθος όπως στις άλλες προβολές."
 
 #: ../dock-rendering/data/messages:23
 msgid "Ratio to apply on icons' size :"
@@ -7273,7 +7273,8 @@ msgid "Space between icons:"
 msgstr "Διάστημα μεταξύ των εικονιδίων:"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "Το 0 αντιπροσωπεύει ένα επίπεδο κύμα, το 1 σημαίνει ότι το κύμα είναι ίδιο "
 "με τις άλλες προβολές."
@@ -7413,7 +7414,8 @@ msgid "Colours"
 msgstr "Χρώματα"
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 "Αυτό θα αλλάξει ελαφρά τα χρώματά σας, έτσι μπορεί να χρειασθεί να τα "
 "τροποποιήσετε."
@@ -7645,8 +7647,8 @@ msgid ""
 "accounts you want."
 msgstr ""
 "Αν έχετε πρόβλημα με τη μικροεφαρμογή, αποεπιλέξτε αυτή την επιλογή κατά τη "
-"λειτουργία συντήρησης, μετά αφού επανεκκινηθεί το dock, αφαιρέστε/"
-"τροποποιήστε τους λογαριασμούς αλληλογραφίας που επιθυμείτε."
+"λειτουργία συντήρησης, μετά αφού επανεκκινηθεί το dock, "
+"αφαιρέστε/τροποποιήστε τους λογαριασμούς αλληλογραφίας που επιθυμείτε."
 
 #: ../mail/data/messages:101
 msgid "Check mail account on startup?"
@@ -7661,7 +7663,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Όνομα του αρχείου για την εικόνα «υπάρχουν μηνύματα» :"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Αν επιλεγεί, θα εμφανίζεται ο αριθμός μηνυμάτων ακόμα και αν δεν υπάρχουν "
 "μηνύματα."
@@ -7724,7 +7727,8 @@ msgstr "για παράδειγμα \"thunderbird\" ή \"firefox mail.google.com
 
 #: ../mail/data/messages:149
 msgid "Preferred mail application to launch on left-click :"
-msgstr "Προτιμώμενη εφαρμογή αλληλογραφίας που θα εκκινείται με αριστερό κλικ:"
+msgstr ""
+"Προτιμώμενη εφαρμογή αλληλογραφίας που θα εκκινείται με αριστερό κλικ:"
 
 #: ../mail/data/messages:151
 msgid "Add a mail account (you've to launch the applet)"
@@ -7733,7 +7737,8 @@ msgstr ""
 
 #: ../mail/data/messages:153
 msgid "The new account will be created with the specified type and name."
-msgstr "Ο νέος λογαριασμός θα δημιουργηθεί με την καθορισμένη μορφή και όνομα."
+msgstr ""
+"Ο νέος λογαριασμός θα δημιουργηθεί με την καθορισμένη μορφή και όνομα."
 
 #: ../mail/data/messages:155
 msgid "Add an account with specified type and name:"
@@ -7748,7 +7753,8 @@ msgid "Blur amount:"
 msgstr "Ποσότητα θολώματος;"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 "Αφήστε κενό για να εμφανίζεται το όνομα του παίκτη που ελέγχετε κάθε στιγμή."
 
@@ -8394,9 +8400,8 @@ msgid "Manual order"
 msgstr "Χειροκίνητη ταξινόμηση"
 
 #: ../switcher/data/messages:89
-#, fuzzy
 msgid "How to display all desktops?"
-msgstr "Πως να εμφανίζονται τα αντικείμενα:"
+msgstr ""
 
 #: ../switcher/data/messages:91
 msgid "A sub-dock with all desktops"
@@ -8415,19 +8420,16 @@ msgid "On a single line"
 msgstr ""
 
 #: ../switcher/data/messages:101
-#, fuzzy
 msgid "Preserve the ratio of the screen?"
-msgstr "Διατήρηση αναλογίας οθόνης;"
+msgstr ""
 
 #: ../switcher/data/messages:103
-#, fuzzy
 msgid "How to draw the icon?"
-msgstr "Πως θα αποδοθεί το εικονίδιο :"
+msgstr ""
 
 #: ../switcher/data/messages:105
-#, fuzzy
 msgid "Map wallpaper to icons"
-msgstr "Χαρτογράφηση παρασκηνίου στα εικονίδια;"
+msgstr ""
 
 #: ../switcher/data/messages:107
 msgid "Use an image for each desktop"
@@ -8454,9 +8456,8 @@ msgid "Background colour:"
 msgstr "Χρώμα παρασκηνίου:"
 
 #: ../switcher/data/messages:119
-#, fuzzy
 msgid "Sub-Dock"
-msgstr "Υπο-dock"
+msgstr ""
 
 #: ../switcher/data/messages:125
 msgid "In expanded mode, render the desklet in 3D?"
@@ -8471,9 +8472,8 @@ msgid "Draw hidden windows?"
 msgstr "Σχεδίαση κρυφών παραθύρων;"
 
 #: ../switcher/data/messages:133
-#, fuzzy
 msgid "Draw icons of windows?"
-msgstr "Σχεδίαση κρυφών παραθύρων;"
+msgstr ""
 
 #: ../switcher/data/messages:137
 msgid "Show windows' list"
@@ -8504,9 +8504,8 @@ msgid "External line colour:"
 msgstr "Χρώμα εξωτερικής γραμμής:"
 
 #: ../switcher/data/messages:163
-#, fuzzy
 msgid "Active window colour:"
-msgstr "Χρώμα τρέχουσας επιφάνειας:"
+msgstr ""
 
 #: ../switcher/data/messages:167
 msgid "Current desktop colour:"
@@ -8533,14 +8532,12 @@ msgid "All windows can be filled with one colour"
 msgstr ""
 
 #: ../switcher/data/messages:179
-#, fuzzy
 msgid "Fill all windows?"
-msgstr "Εμφάνιση όλων των παραθύρων"
+msgstr ""
 
 #: ../switcher/data/messages:183
-#, fuzzy
 msgid "Colour of these windows:"
-msgstr "Χρώμα ανταύγειας:"
+msgstr ""
 
 #: ../systray/data/messages:85
 msgid "Shortkey to toggle the systray in dock mode:"
@@ -8662,8 +8659,8 @@ msgid ""
 msgstr ""
 "Γράψτε τη μορφή ημερομηνίας που χρησιμοποιείτε συνήθως στις σημειώσεις σας. "
 "Το συντακτικό είναι αυτό του 'strftime' : %d για την ημέρα, %m για το μήνα, "
-"%y για το έτος (2 ψηφία), κλπ. Αφήστε το κενό για χρήση της προεπιλογής (%d/"
-"%m/%y)."
+"%y για το έτος (2 ψηφία), κλπ. Αφήστε το κενό για χρήση της προεπιλογής "
+"(%d/%m/%y)."
 
 #: ../tomboy/data/messages:139
 msgid "Date format to search for :"
@@ -8691,7 +8688,8 @@ msgstr "Αφήστε κενό για χρήση του ονόματος της �
 
 #: ../weather/data/messages:103
 msgid "Enter the name of your location in the text entry and press Enter."
-msgstr "Εισάγετε το όνομα της τοποθεσίας στο πεδίο κειμένου και πατήστε Enter."
+msgstr ""
+"Εισάγετε το όνομα της τοποθεσίας στο πεδίο κειμένου και πατήστε Enter."
 
 #: ../weather/data/messages:105
 msgid "Code for your location:"
@@ -8762,7 +8760,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Θέση της γραμμής κάθετης κύλισης"
 
 #: ../weblets/data/messages:105
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Αυτό σας επιτρέπει να κάνετε δεξί κλικ στο desklet για να αναδυθεί το μενού "
 "του Cairo-Dock."
@@ -8852,33 +8851,3 @@ msgstr "Πληροφορίες αμιγούς σήματος"
 msgid "Overwrite the default label with the connection point name?"
 msgstr ""
 "Αντικατάσταση της προεπιλεγμένης ετικέτας με το όνομα του σημείου σύνδεσης;"
-
-#~ msgid "Window line colour:"
-#~ msgstr "Χρώμα γραμμής παραθύρου:"
-
-#~ msgid "myLogin"
-#~ msgstr "myLogin"
-
-#~ msgid "Show the Window"
-#~ msgstr "Εμφάνιση παραθύρου"
-
-#~ msgid "Toggle Repeat"
-#~ msgstr "Εναλλαγή επανάληψης"
-
-#~ msgid "Animations are triggered when hovering an icon only in OpenGL mode."
-#~ msgstr ""
-#~ "Τα εφέ κίνησης ενεργοποιούνται όταν περνάμε πάνω από ένα εικονίδιο μόνο "
-#~ "σε κατάσταση λειτουργίας OpenGL."
-
-#~ msgid ""
-#~ "All desktops will be drawn on the main icon. Otherwise a sub-dock will "
-#~ "contain all desktops."
-#~ msgstr ""
-#~ "'Όλες οι επιφάνειες εργασίας θα σχεδιαστούν στο κεντρικό εικονίδιο. "
-#~ "Αλλιώς ένα subdock θα περιέχει όλες τις επιφάνειες εργασίας."
-
-#~ msgid "Use the compact mode?"
-#~ msgstr "Χρήση συμπτυγμένης κατάστασης;"
-
-#~ msgid "Show desktop number on icons?"
-#~ msgstr "Εμφάνιση αριθμού επιφάνειας εργασίας στα εικονίδια;"
