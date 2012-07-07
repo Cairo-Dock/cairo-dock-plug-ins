@@ -109,6 +109,13 @@ struct _AppletConfig {
 	} ;
 
 
+typedef struct _CDAnimationData CDAnimationData;
+
+typedef struct _CDAnimation CDAnimation;
+
+typedef struct _CDCurrentAnimation CDCurrentAnimation;
+
+
 typedef struct _CDAnimationGridNode {
 	gdouble x, y;
 	gdouble vx, vy;
@@ -118,7 +125,7 @@ typedef struct _CDAnimationGridNode {
 
 #define CD_WAVE_NB_POINTS 9
 
-typedef struct _CDAnimationData {
+struct _CDAnimationData {
 	gdouble fRotationSpeed;
 	gdouble fRotationAngle;
 	gdouble fRotationBrake;
@@ -132,13 +139,11 @@ typedef struct _CDAnimationData {
 	CairoParticleSystem *pRaysSystem;
 	gboolean bGrowingSpot;
 	
-	gboolean bIsWobblying;
 	CDAnimationGridNode gridNodes[4][4];
 	GLfloat pCtrlPts[4][4][3];
 	gint iWobblyCount;
 	gdouble fWobblyWidthFactor, fWobblyHeightFactor;
 	
-	gboolean bIsWaving;
 	gdouble fWavePosition;
 	gint iNumActiveNodes;
 	GLfloat pVertices[4*(CD_WAVE_NB_POINTS+2)];
@@ -149,13 +154,11 @@ typedef struct _CDAnimationData {
 	
 	gint iNumRound;
 	
-	gboolean bIsBouncing;
 	gint iBounceCount;
 	gdouble fElevation;
 	gdouble fFlattenFactor;
 	gdouble fResizeFactor;
 	
-	gboolean bIsBlinking;
 	gint iBlinkCount;
 	gdouble fBlinkAlpha;
 	
@@ -167,10 +170,11 @@ typedef struct _CDAnimationData {
 	gboolean bHasBeenPulsed;
 	
 	GList *pUsedAnimations;  // animations currently running on the icon, ordered by their rendering order.
-	} CDAnimationData;
+	};
+
 
 // generic Animation interface
-typedef struct _CDAnimation {
+struct _CDAnimation {
 	// interface
 	void (*init) (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL);
 	gboolean (*update) (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL, gboolean bRepeat);  // returns TRUE if the round is still playing, FALSE if it has finished.
@@ -185,12 +189,14 @@ typedef struct _CDAnimation {
 	// internal
 	guint iRenderingOrder;  // order in which it will be called during the rendering.
 	guint iRegisteredId;  // registration ID in the core
-	} CDAnimation;
+	};
 
-typedef struct _CDCurrentAnimation {
+
+struct _CDCurrentAnimation {
 	CDAnimation *pAnimation;
 	gboolean bIsPlaying;  // TRUE if currently playing, FALSE if it has already finished.
-	} CDCurrentAnimation;
+	};
+
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
@@ -200,7 +206,6 @@ struct _AppletData {
 	GLuint iHaloTexture;
 	GLuint iSpotFrontTexture;
 	GLuint iRaysTexture;
-	///gint iAnimationID[CD_ANIMATIONS_NB_EFFECTS];
 	CairoDockImageBuffer *pBusyImage;
 	CDAnimation pAnimations[CD_ANIMATIONS_NB_EFFECTS];  // same order as in the conf file.
 	} ;

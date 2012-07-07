@@ -125,7 +125,7 @@ static gboolean update (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, d
 	return bContinue;
 }
 
-static inline _translate (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext, int sens)
+static inline void _translate (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext, int sens)
 {
 	if (pCairoContext)
 	{

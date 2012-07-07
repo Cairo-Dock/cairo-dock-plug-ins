@@ -48,6 +48,10 @@ static void init (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double 
 		pData->fAdjustFactor = 1.;
 		pData->bRotationBeginning = TRUE;
 	}
+	else
+	{
+		pData->fRotationBrake = 1.;
+	}
 }
 
 
