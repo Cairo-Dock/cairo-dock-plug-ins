@@ -21,7 +21,6 @@
 */
 
 #include <stdlib.h>
-#include <string.h>
 
 #if (SOUND_SERVICE_VERSION < 1)
 #include "dbus-shared-names-old.h"
@@ -29,12 +28,12 @@
 #include "dbus-shared-names.h"
 #endif
 
+#include "applet-struct.h"
 #include "common-defs.h"
 #include "volume-widget.h"
 #include "mute-widget.h"
 #include "applet-menu.h"
 #include "applet-backend-alsamixer.h"  // cd_mixer_init_alsa (fallback alsa backend)
-#include "applet-struct.h"
 #include "applet-generic.h"
 #include "applet-draw.h"
 #include "applet-backend-sound-menu.h"

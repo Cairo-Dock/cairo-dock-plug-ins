@@ -17,11 +17,8 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-#include <string.h>
-#include <cairo-dock.h>
-
 #include "applet-struct.h"
+
 #include "applet-backend-alsamixer.h"  // mixer_get_elements_list
 #include "applet-notifications.h"
 #include "applet-config.h"

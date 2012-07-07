@@ -21,30 +21,15 @@
 #ifndef __CD_APPLET_STRUCT__
 #define  __CD_APPLET_STRUCT__
 
+#include <alsa/asoundlib.h>
+#define _STRUCT_TIMEVAL
 #include <cairo-dock.h>
+
 #ifdef SOUND_SERVICE_SUPPORT
 #include "indicator-applet.h"
 #include "mute-widget.h"
 #endif
 
-/*
- * <sys/time.h> is already included in cairo-dock-image-buffer.h
- * and it contains 'struct timeval' but not 'struct timespec'.
- * Alsa needs both structures:
- *  - '_POSIX_C_SOURCE' is used to not define these structures in alsa/global.h
- *  - 'struct timespec' is added here
- * Then we can include alsa headers' files.
- */
-#ifdef _STRUCT_TIMEVAL
-#define _POSIX_C_SOURCE
-#ifndef _STRUCT_TIMESPEC
-struct timespec {
-	time_t		tv_sec;		/* seconds */
-	long		tv_nsec;	/* nanoseconds */
-};
-#endif
-#endif
-#include <alsa/asoundlib.h>
 
 typedef enum {
 	VOLUME_NO_DISPLAY = 0,

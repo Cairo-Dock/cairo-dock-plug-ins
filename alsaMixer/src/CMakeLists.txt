@@ -35,6 +35,7 @@ add_definitions (-DMY_APPLET_VERSION="${VERSION_ALSA_MIXER}")
 add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_ALSA_MIXER}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
+
 if ("${with_soundmenu}" STREQUAL "yes")
 	add_definitions (-DSOUND_SERVICE_SUPPORT="1")
 	add_definitions (-DSOUND_SERVICE_VERSION=${SOUND_SERVICE_VERSION})

@@ -18,11 +18,10 @@
 */
 
 
-#include "stdlib.h"
+#include "applet-struct.h"
 
 #include "applet-config.h"
 #include "applet-notifications.h"
-#include "applet-struct.h"
 #include "applet-draw.h"
 #include "applet-generic.h"
 #include "applet-init.h"

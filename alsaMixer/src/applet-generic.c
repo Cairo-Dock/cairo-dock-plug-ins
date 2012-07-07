@@ -21,7 +21,6 @@
 */
 
 #include <stdlib.h>
-#include <string.h>
 
 #include "applet-struct.h"
 #include "applet-backend-alsamixer.h"
