@@ -1156,33 +1156,33 @@ static void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock 
 		
 //////////////////////////////////////////////////////////////////////////////////////// On affiche le texte !
 		gdouble zoom;
-		if(icon->pTextBuffer != NULL && (my_diapo_simple_display_all_labels || icon->bPointed))
+		if (icon->label.pSurface != NULL && (my_diapo_simple_display_all_labels || icon->bPointed))
 		{
 			double fAlpha = (pDock->fFoldingFactor > .5 ? (1 - pDock->fFoldingFactor) / .5 : 1.);
 			cairo_save (pCairoContext);
 			
-			double fOffsetX = -icon->iTextWidth/2 + icon->fWidthFactor * icon->fWidth * icon->fScale / 2;
+			double fOffsetX = -icon->label.iWidth/2 + icon->fWidthFactor * icon->fWidth * icon->fScale / 2;
 			if (fOffsetX < 0)
 				fOffsetX = 0;
-			else if (0 + fOffsetX + icon->iTextWidth > pDock->container.iWidth)
-				fOffsetX = pDock->container.iWidth - icon->iTextWidth - 0;
+			else if (0 + fOffsetX + icon->label.iWidth > pDock->container.iWidth)
+				fOffsetX = pDock->container.iWidth - icon->label.iWidth - 0;
 			
-			if (icon->iTextWidth > icon->fWidth + my_diapo_simple_iconGapX && ! icon->bPointed)
+			if (icon->label.iWidth > icon->fWidth + my_diapo_simple_iconGapX && ! icon->bPointed)
 			{
 				if (pDock->container.bIsHorizontal)
 				{
 					cairo_translate (pCairoContext,
 						floor (icon->fDrawX - my_diapo_simple_iconGapX/2),
-						floor (icon->fDrawY - icon->iTextHeight));
+						floor (icon->fDrawY - icon->label.iHeight));
 				}
 				else
 				{
 					cairo_translate (pCairoContext,
 						floor (icon->fDrawY - my_diapo_simple_iconGapX/2),
-						floor (icon->fDrawX - icon->iTextHeight));
+						floor (icon->fDrawX - icon->label.iHeight));
 				}
 				cairo_set_source_surface (pCairoContext,
-					icon->pTextBuffer,
+					icon->label.pSurface,
 					fOffsetX,
 					0.);
 				
@@ -1216,31 +1216,33 @@ static void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock 
 			{
 				if (pDock->container.bIsHorizontal)
 				{
-					fOffsetX = icon->fDrawX + (icon->fWidth * icon->fScale - icon->iTextWidth) / 2;
+					fOffsetX = icon->fDrawX + (icon->fWidth * icon->fScale - icon->label.iWidth) / 2;
 					if (fOffsetX < 0)
 						fOffsetX = 0;
-					else if (fOffsetX + icon->iTextWidth > pDock->container.iWidth)
-						fOffsetX = pDock->container.iWidth - icon->iTextWidth;
+					else if (fOffsetX + icon->label.iWidth > pDock->container.iWidth)
+						fOffsetX = pDock->container.iWidth - icon->label.iWidth;
 					cairo_translate (pCairoContext,
 						floor (fOffsetX),
-						floor (icon->fDrawY - icon->iTextHeight));
+						floor (icon->fDrawY - icon->label.iHeight));
 				}
 				else
 				{
-					fOffsetX = icon->fDrawY + (icon->fWidth * icon->fScale - icon->iTextWidth) / 2;
+					fOffsetX = icon->fDrawY + (icon->fWidth * icon->fScale - icon->label.iWidth) / 2;
 					if (fOffsetX < 0)
 						fOffsetX = 0;
-					else if (fOffsetX + icon->iTextWidth > pDock->container.iHeight)
-						fOffsetX = pDock->container.iHeight - icon->iTextWidth;
+					else if (fOffsetX + icon->label.iWidth > pDock->container.iHeight)
+						fOffsetX = pDock->container.iHeight - icon->label.iWidth;
 					cairo_translate (pCairoContext,
 						floor (fOffsetX),
-						floor (icon->fDrawX - icon->iTextHeight));
+						floor (icon->fDrawX - icon->label.iHeight));
 				}
-				cairo_set_source_surface (pCairoContext,
+				/**cairo_set_source_surface (pCairoContext,
 					icon->pTextBuffer,
 					0.,
 					0.);
-				cairo_paint_with_alpha (pCairoContext, fAlpha);
+				cairo_paint_with_alpha (pCairoContext, fAlpha);*/
+				cairo_dock_apply_image_buffer_surface_with_offset (&icon->label, pCairoContext,
+					0, 0, fAlpha);
 			}
 			cairo_restore (pCairoContext);
 		}
@@ -1633,14 +1635,14 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 		
 		cairo_dock_render_one_icon_opengl (icon, pDock, 1., FALSE);
 		
-		if (icon->iLabelTexture != 0 && (my_diapo_simple_display_all_labels || icon->bPointed))
+		if (icon->label.iTexture != 0 && (my_diapo_simple_display_all_labels || icon->bPointed))
 		{
 			glPushMatrix ();
 			glLoadIdentity ();
 			
 			double fAlpha = (pDock->fFoldingFactor > .5 ? (1 - pDock->fFoldingFactor) / .5 : 1.);  // apparition du texte de 1 a 0.5
 			
-			double dx, dy = .5 * (icon->iTextHeight & 1);  // on decale la texture pour la coller sur la grille des coordonnees entieres.
+			double dx, dy = .5 * (icon->label.iHeight & 1);  // on decale la texture pour la coller sur la grille des coordonnees entieres.
 			double u0 = 0., u1 = 1.;
 			double fOffsetX = 0.;
 			if (pDock->container.bIsHorizontal)
@@ -1648,26 +1650,26 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 				if (icon->bPointed)
 				{
 					_cairo_dock_set_alpha (fAlpha);
-					if (icon->fDrawX + icon->fWidth/2 + icon->iTextWidth/2 > pDock->container.iWidth)
-						fOffsetX = pDock->container.iWidth - (icon->fDrawX + icon->fWidth/2 + icon->iTextWidth/2);
-					if (icon->fDrawX + icon->fWidth/2 - icon->iTextWidth/2 < 0)
-						fOffsetX = icon->iTextWidth/2 - (icon->fDrawX + icon->fWidth/2);
+					if (icon->fDrawX + icon->fWidth/2 + icon->label.iWidth/2 > pDock->container.iWidth)
+						fOffsetX = pDock->container.iWidth - (icon->fDrawX + icon->fWidth/2 + icon->label.iWidth/2);
+					if (icon->fDrawX + icon->fWidth/2 - icon->label.iWidth/2 < 0)
+						fOffsetX = icon->label.iWidth/2 - (icon->fDrawX + icon->fWidth/2);
 				}
 				else
 				{
 					_cairo_dock_set_alpha (fAlpha);
 					///_cairo_dock_set_alpha (fAlpha * icon->fScale / my_diapo_simple_fScaleMax);
 					double text_width = floor ((icon->fWidth + my_diapo_simple_iconGapX) / 2) * 2;  // make it even, so that we don't get blur when we draw with the gradation.
-					if (icon->iTextWidth > text_width)
+					if (icon->label.iWidth > text_width)
 					{
 						fOffsetX = 0.;
-						u1 = text_width / icon->iTextWidth;
+						u1 = text_width / icon->label.iWidth;
 					}
 				}
-				dx = .5 * (((int)round (icon->iTextWidth * (u1 - u0))) & 1);
+				dx = .5 * (((int)round (icon->label.iWidth * (u1 - u0))) & 1);
 				
 				glTranslatef (ceil (icon->fDrawX + icon->fScale * icon->fWidth/2 + fOffsetX) + dx,
-					ceil (pDock->container.iHeight - icon->fDrawY + icon->iTextHeight / 2) + dy,
+					ceil (pDock->container.iHeight - icon->fDrawY + icon->label.iHeight / 2) + dy,
 					0.);
 			}
 			else
@@ -1675,32 +1677,32 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 				if (icon->bPointed)
 				{
 					_cairo_dock_set_alpha (fAlpha);
-					if (icon->fDrawY + icon->fHeight/2 + icon->iTextWidth/2 > pDock->container.iHeight)
-						fOffsetX = pDock->container.iHeight - (icon->fDrawY + icon->fHeight/2 + icon->iTextWidth/2);
-					if (icon->fDrawY + icon->fHeight/2 - icon->iTextWidth/2 < 0)
-						fOffsetX = icon->iTextWidth/2 - (icon->fDrawY + icon->fHeight/2);
+					if (icon->fDrawY + icon->fHeight/2 + icon->label.iWidth/2 > pDock->container.iHeight)
+						fOffsetX = pDock->container.iHeight - (icon->fDrawY + icon->fHeight/2 + icon->label.iWidth/2);
+					if (icon->fDrawY + icon->fHeight/2 - icon->label.iWidth/2 < 0)
+						fOffsetX = icon->label.iWidth/2 - (icon->fDrawY + icon->fHeight/2);
 				}
 				else
 				{
 					_cairo_dock_set_alpha (fAlpha);
 					double text_width = (int)floor (icon->fWidth + 2 * myIconsParam.iLabelSize) / 2 * 2;  // see above.
-					if (icon->iTextWidth > text_width)
+					if (icon->label.iWidth > text_width)
 					{
 						fOffsetX = 0.;
-						u1 = text_width / icon->iTextWidth;
+						u1 = text_width / icon->label.iWidth;
 					}
 				}
-				dx = .5 * (((int)round (icon->iTextWidth * (u1 - u0))) & 1);
+				dx = .5 * (((int)round (icon->label.iWidth * (u1 - u0))) & 1);
 				
 				glTranslatef (ceil (icon->fDrawY + icon->fScale * icon->fHeight/2 + fOffsetX / 2) + dx,
-					ceil (pDock->container.iWidth - icon->fDrawX + icon->iTextHeight / 2) + dy,
+					ceil (pDock->container.iWidth - icon->fDrawX + icon->label.iHeight / 2) + dy,
 					0.);
 			}
 			_cairo_dock_enable_texture ();
 			_cairo_dock_set_blend_alpha ();
-			glBindTexture (GL_TEXTURE_2D, icon->iLabelTexture);
+			glBindTexture (GL_TEXTURE_2D, icon->label.iTexture);
 			
-			double w = round (icon->iTextWidth * (u1 - u0)), h = icon->iTextHeight;
+			double w = round (icon->label.iWidth * (u1 - u0)), h = icon->label.iHeight;
 			if (u1 < .99)  // draw with an alpha gradation on the last part.
 			{
 				glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);

@@ -298,35 +298,45 @@ gboolean on_update_desklet (CairoDockModuleInstance *myApplet, CairoContainer *p
 gboolean on_render_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, cairo_t *pCairoContext)
 {
 	CD_APPLET_ENTER;
-	int x, y;  // centre du texte.
+	int x, y;  // text center (middle of the icon).
 	x = myIcon->fDrawX + myIcon->fWidth * myIcon->fScale / 2;
 	y = myIcon->fDrawY + myIcon->fHeight * myIcon->fScale / 2;
-	if (x - myIcon->iTextWidth/2 < 0)
+	if (x - myIcon->label.iWidth/2 < 0)
 	{
-		x -= myIcon->iTextWidth/2;
+		x -= myIcon->label.iWidth/2;
 	}
 	if (pCairoContext != NULL)
 	{
-		if (myIcon->pTextBuffer == NULL)
-			CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
-		cairo_save (pCairoContext);
-		cairo_translate (pCairoContext, x, y);
-		cairo_set_source_surface (pCairoContext, myIcon->pTextBuffer, - myIcon->iTextWidth/2, - myIcon->iTextHeight/2);
-		cairo_paint_with_alpha (pCairoContext, myData.fDesktopNameAlpha);
-		cairo_restore (pCairoContext);
+		if (myIcon->label.pSurface != NULL)
+		{
+			/**cairo_save (pCairoContext);
+			cairo_translate (pCairoContext, x, y);
+			cairo_set_source_surface (pCairoContext, myIcon->pTextBuffer, - myIcon->iTextWidth/2, - myIcon->iTextHeight/2);
+			cairo_paint_with_alpha (pCairoContext, myData.fDesktopNameAlpha);
+			cairo_restore (pCairoContext);*/
+			cairo_dock_apply_image_buffer_surface_with_offset (&myIcon->label, pCairoContext,
+				- myIcon->label.iWidth/2, - myIcon->label.iHeight/2, myData.fDesktopNameAlpha);
+		}
 	}
 	else
 	{
-		if (myIcon->iLabelTexture == 0)
-			CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
-		glPushMatrix ();
-		if (myDesklet)
-			glTranslatef (-myDesklet->container.iWidth/2, -myDesklet->container.iHeight/2, -myDesklet->container.iHeight*(sqrt(3)/2));
-		glTranslatef (x - ((myIcon->iTextWidth & 1) ? 0.5 : 0.),
-			y - ((myIcon->iTextHeight & 1) ? 0.5 : 0.),
-			0);
-		cairo_dock_draw_texture_with_alpha (myIcon->iLabelTexture, myIcon->iTextWidth, myIcon->iTextHeight, myData.fDesktopNameAlpha);
-		glPopMatrix ();
+		if (myIcon->label.iTexture != 0)
+		{
+			glPushMatrix ();
+			glTranslatef (-myContainer->iWidth/2, -myContainer->iHeight/2, -myContainer->iHeight*(sqrt(3)/2));
+			/**glTranslatef (x - ((myIcon->iTextWidth & 1) ? 0.5 : 0.),
+				y - ((myIcon->iTextHeight & 1) ? 0.5 : 0.),
+				0);
+			cairo_dock_draw_texture_with_alpha (myIcon->iLabelTexture, myIcon->iTextWidth, myIcon->iTextHeight, myData.fDesktopNameAlpha);*/
+			_cairo_dock_enable_texture ();
+			_cairo_dock_set_blend_alpha ();
+			_cairo_dock_set_alpha (myData.fDesktopNameAlpha);
+			cairo_dock_apply_image_buffer_texture_with_offset (&myIcon->label,
+				x - ((myIcon->label.iWidth & 1) ? 0.5 : 0.),
+				y - ((myIcon->label.iHeight & 1) ? 0.5 : 0.));
+			_cairo_dock_disable_texture ();
+			glPopMatrix ();
+		}
 	}
 	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 }

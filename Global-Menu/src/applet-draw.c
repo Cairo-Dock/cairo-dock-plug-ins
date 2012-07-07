@@ -273,33 +273,37 @@ void cd_app_menu_load_button_images (void)
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 	g_return_if_fail (iHeight != 0);
 	
-	int w, h;
+	cairo_dock_unload_image_buffer (&myData.minimizeButton);
+	cairo_dock_unload_image_buffer (&myData.maximizeButton);
+	cairo_dock_unload_image_buffer (&myData.restoreButton);
+	cairo_dock_unload_image_buffer (&myData.closeButton);
+	
 	if (myConfig.bDisplayControls)
 	{
+		int w, h;
 		w = MIN (iWidth, iHeight);
 		h = w;
+		
+		cairo_dock_load_image_buffer (&myData.minimizeButton,
+			myConfig.cMinimizeImage,
+			w, h, CAIRO_DOCK_ANIMATED_IMAGE);
+		cairo_dock_image_buffer_set_timelength (&myData.minimizeButton, 1.);  // 1s
+
+		cairo_dock_load_image_buffer (&myData.maximizeButton,
+			myConfig.cMaximizeImage,
+			w, h, CAIRO_DOCK_ANIMATED_IMAGE);
+		cairo_dock_image_buffer_set_timelength (&myData.maximizeButton, 1.);  // 1s
+
+		cairo_dock_load_image_buffer (&myData.restoreButton,
+			myConfig.cRestoreImage,
+			w, h, CAIRO_DOCK_ANIMATED_IMAGE);
+		cairo_dock_image_buffer_set_timelength (&myData.restoreButton, 1.);  // 1s
+
+		cairo_dock_load_image_buffer (&myData.closeButton,
+			myConfig.cCloseImage,
+			w, h, CAIRO_DOCK_ANIMATED_IMAGE);
+		cairo_dock_image_buffer_set_timelength (&myData.closeButton, 1.);  // 1s
 	}
-	else
-	{
-		w = iWidth;
-		h = iHeight;
-	}
-	cairo_dock_unload_image_buffer (&myData.minimizeButton);
-	cairo_dock_load_image_buffer (&myData.minimizeButton,
-		myConfig.cMinimizeImage,
-		w, h, CAIRO_DOCK_ANIMATED_IMAGE);
-	cairo_dock_unload_image_buffer (&myData.maximizeButton);
-	cairo_dock_load_image_buffer (&myData.maximizeButton,
-		myConfig.cMaximizeImage,
-		w, h, CAIRO_DOCK_ANIMATED_IMAGE);
-	cairo_dock_unload_image_buffer (&myData.restoreButton);
-	cairo_dock_load_image_buffer (&myData.restoreButton,
-		myConfig.cRestoreImage,
-		w, h, CAIRO_DOCK_ANIMATED_IMAGE);
-	cairo_dock_unload_image_buffer (&myData.closeButton);
-	cairo_dock_load_image_buffer (&myData.closeButton,
-		myConfig.cCloseImage,
-		w, h, CAIRO_DOCK_ANIMATED_IMAGE);
 }
 
 

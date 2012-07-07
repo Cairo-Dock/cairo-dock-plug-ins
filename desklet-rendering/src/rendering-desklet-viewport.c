@@ -438,7 +438,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 			
 			cairo_restore (pCairoContext);
 			
-			if (pIcon->pTextBuffer != NULL)
+			if (pIcon->label.pSurface != NULL)
 			{
 				cairo_save (pCairoContext);
 				cairo_translate (pCairoContext, pIcon->fDrawX, pIcon->fDrawY);
@@ -447,20 +447,20 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 				if (pIcon->bPointed)
 				{
 					fAlpha = 1.;
-					if (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->iTextWidth/2 > pDesklet->container.iWidth)
-						fOffsetX = pDesklet->container.iWidth - (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->iTextWidth/2);
-					if (pIcon->fDrawX + pIcon->fWidth/2 - pIcon->iTextWidth/2 < 0)
-						fOffsetX = pIcon->iTextWidth/2 - (pIcon->fDrawX + pIcon->fWidth/2);
+					if (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->label.iWidth/2 > pDesklet->container.iWidth)
+						fOffsetX = pDesklet->container.iWidth - (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->label.iWidth/2);
+					if (pIcon->fDrawX + pIcon->fWidth/2 - pIcon->label.iWidth/2 < 0)
+						fOffsetX = pIcon->label.iWidth/2 - (pIcon->fDrawX + pIcon->fWidth/2);
 					cairo_set_source_surface (pCairoContext,
-						pIcon->pTextBuffer,
-						fOffsetX + pIcon->fWidth/2 - pIcon->iTextWidth/2,
+						pIcon->label.pSurface,
+						fOffsetX + pIcon->fWidth/2 - pIcon->label.iWidth/2,
 						-myIconsParam.iLabelSize);
 					cairo_paint_with_alpha (pCairoContext, fAlpha);
 				}
 				else
 				{
 					fAlpha = .6;
-					if (pIcon->iTextWidth > pIcon->fWidth + 2 * myIconsParam.iLabelSize)
+					if (pIcon->label.iWidth > pIcon->fWidth + 2 * myIconsParam.iLabelSize)
 					{
 						fOffsetX = - myIconsParam.iLabelSize;
 						cairo_pattern_t *pGradationPattern = cairo_pattern_create_linear (fOffsetX,
@@ -487,7 +487,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 							0.,
 							0.);
 						cairo_set_source_surface (pCairoContext,
-							pIcon->pTextBuffer,
+							pIcon->label.pSurface,
 							fOffsetX,
 							-myIconsParam.iLabelSize);
 						cairo_mask (pCairoContext, pGradationPattern);
@@ -495,9 +495,9 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 					}
 					else
 					{
-						fOffsetX = pIcon->fWidth/2 - pIcon->iTextWidth/2;
+						fOffsetX = pIcon->fWidth/2 - pIcon->label.iWidth/2;
 						cairo_set_source_surface (pCairoContext,
-							pIcon->pTextBuffer,
+							pIcon->label.pSurface,
 							fOffsetX,
 							-myIconsParam.iLabelSize);
 						cairo_paint_with_alpha (pCairoContext, fAlpha);
@@ -616,55 +616,57 @@ static void render_opengl (CairoDesklet *pDesklet)
 				pDesklet->container.iHeight - pIcon->fDrawY - pIcon->fHeight/2,
 				0.);
 			//g_print (" %d) %d;%d %dx%d\n", pIcon->iIconTexture, (int)(pIcon->fDrawX + pIcon->fWidth/2), (int)(pDesklet->container.iHeight - pIcon->fDrawY - pIcon->fHeight/2), (int)(pIcon->fWidth/2), (int)(pIcon->fHeight/2));
+			_cairo_dock_enable_texture ();  // cairo_dock_draw_icon_overlays_opengl() disable textures
 			_cairo_dock_apply_texture_at_size (pIcon->iIconTexture, pIcon->fWidth, pIcon->fHeight);
 			
 			/// generer une notification ...
-			if (pIcon->iLabelTexture != 0)
+			if (pIcon->label.iTexture != 0)
 			{
 				glPushMatrix ();
 				
-				double dx = .5 * (pIcon->iTextWidth & 1);  // on decale la texture pour la coller sur la grille des coordonnees entieres.
-				double dy = .5 * (pIcon->iTextHeight & 1);
+				double dx = .5 * (pIcon->label.iWidth & 1);  // on decale la texture pour la coller sur la grille des coordonnees entieres.
+				double dy = .5 * (pIcon->label.iHeight & 1);
 				double u0 = 0., u1 = 1.;
 				double fOffsetX = 0.;
 				if (pIcon->bPointed)
 				{
 					_cairo_dock_set_alpha (1.);
-					if (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->iTextWidth/2 > pDesklet->container.iWidth)
-						fOffsetX = pDesklet->container.iWidth - (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->iTextWidth/2);
-					if (pIcon->fDrawX + pIcon->fWidth/2 - pIcon->iTextWidth/2 < 0)
-						fOffsetX = pIcon->iTextWidth/2 - (pIcon->fDrawX + pIcon->fWidth/2);
+					if (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->label.iWidth/2 > pDesklet->container.iWidth)
+						fOffsetX = pDesklet->container.iWidth - (pIcon->fDrawX + pIcon->fWidth/2 + pIcon->label.iWidth/2);
+					if (pIcon->fDrawX + pIcon->fWidth/2 - pIcon->label.iWidth/2 < 0)
+						fOffsetX = pIcon->label.iWidth/2 - (pIcon->fDrawX + pIcon->fWidth/2);
 				}
 				else
 				{
 					_cairo_dock_set_alpha (.6);
-					if (pIcon->iTextWidth > pIcon->fWidth + 2 * myIconsParam.iLabelSize)
+					if (pIcon->label.iWidth > pIcon->fWidth + 2 * myIconsParam.iLabelSize)
 					{
 						fOffsetX = 0.;
-						u1 = (double) (pIcon->fWidth + 2 * myIconsParam.iLabelSize) / pIcon->iTextWidth;
+						u1 = (double) (pIcon->fWidth + 2 * myIconsParam.iLabelSize) / pIcon->label.iWidth;
 					}
 				}
 				
-				glTranslatef (ceil (fOffsetX) + dx, ceil (pIcon->fHeight/2 + pIcon->iTextHeight / 2) + dy, 0.);
+				glTranslatef (ceil (fOffsetX) + dx, ceil (pIcon->fHeight/2 + pIcon->label.iHeight / 2) + dy, 0.);
 				
-				glBindTexture (GL_TEXTURE_2D, pIcon->iLabelTexture);
+				glBindTexture (GL_TEXTURE_2D, pIcon->label.iTexture);
 				_cairo_dock_apply_current_texture_portion_at_size_with_offset (u0, 0.,
 					u1 - u0, 1.,
-					pIcon->iTextWidth * (u1 - u0), pIcon->iTextHeight,
+					pIcon->label.iWidth * (u1 - u0), pIcon->label.iHeight,
 					0., 0.);
 				_cairo_dock_set_alpha (1.);
 				
 				glPopMatrix ();
 			}
 			
-			if (pIcon->iQuickInfoTexture != 0)
+			/**if (pIcon->iQuickInfoTexture != 0)
 			{
 				glTranslatef (0., (- pIcon->fHeight + pIcon->iQuickInfoHeight)/2, 0.);
 				
 				_cairo_dock_apply_texture_at_size (pIcon->iQuickInfoTexture,
 					pIcon->iQuickInfoWidth,
 					pIcon->iQuickInfoHeight);
-			}
+			}*/
+			cairo_dock_draw_icon_overlays_opengl (pIcon, pDesklet->container.fRatio);
 			
 			glPopMatrix ();
 		}

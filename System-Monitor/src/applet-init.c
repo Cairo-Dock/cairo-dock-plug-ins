@@ -67,7 +67,12 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
 		pRenderAttr->cModelName = "gauge";
 		pRenderAttr->iRotateTheme = myConfig.iRotateTheme;
-		attr.cThemePath = myConfig.cGThemePath;  
+		attr.cThemePath = myConfig.cGThemePath;
+		/**CairoProgressBarAttribute attr;  // les attributs de la barre.
+		memset (&attr, 0, sizeof (CairoProgressBarAttribute));
+		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+		pRenderAttr->cModelName = "progressbar";
+		pRenderAttr->iRotateTheme = myConfig.iRotateTheme;*/
 	}
 	else if (myConfig.iDisplayType == CD_SYSMONITOR_GRAPH)
 	{

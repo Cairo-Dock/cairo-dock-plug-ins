@@ -90,7 +90,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 			0.);
 		cairo_paint (pCairoContext);
 	}
-	if (pIcon->pQuickInfoBuffer != NULL)
+	/**if (pIcon->pQuickInfoBuffer != NULL)
 	{
 		cairo_translate (pCairoContext,
 			(- pIcon->iQuickInfoWidth + pIcon->fWidth) / 2 * pIcon->fScale,
@@ -101,7 +101,8 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 			0.,
 			0.);
 		cairo_paint (pCairoContext);
-	}
+	}*/
+	cairo_dock_draw_icon_overlays_cairo (pIcon, pDesklet->container.fRatio, pCairoContext);
 }
 
 static void render_opengl (CairoDesklet *pDesklet)
@@ -115,7 +116,7 @@ static void render_opengl (CairoDesklet *pDesklet)
 		pIcon->fAlpha = 1.;
 		cairo_dock_draw_icon_texture (pIcon, CAIRO_CONTAINER (pDesklet));
 	}
-	if (pIcon->iQuickInfoTexture != 0)
+	/**if (pIcon->iQuickInfoTexture != 0)
 	{
 		glTranslatef (0.,
 			(- pIcon->fHeight + pIcon->iQuickInfoHeight)/2,
@@ -123,7 +124,8 @@ static void render_opengl (CairoDesklet *pDesklet)
 		cairo_dock_draw_texture (pIcon->iQuickInfoTexture,
 			pIcon->iQuickInfoWidth,
 			pIcon->iQuickInfoHeight);
-	}
+	}*/
+	cairo_dock_draw_icon_overlays_opengl (pIcon, pDesklet->container.fRatio);
 }
 
 static void free_data (CairoDesklet *pDesklet)

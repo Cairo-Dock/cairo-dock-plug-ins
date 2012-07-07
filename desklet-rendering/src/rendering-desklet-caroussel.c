@@ -38,18 +38,18 @@ static void _render_one_icon_and_quickinfo_opengl (Icon *pIcon, CairoContainer *
 			glColor4f(1., 1., 1., 1.);
 		glPopMatrix ();
 	}
-	if (pIcon->iLabelTexture != 0 && !bIsReflect)
+	if (pIcon->label.iTexture != 0 && !bIsReflect)
 	{
 		glPushMatrix ();
 			glTranslatef (0.,
-				(pIcon->fHeight + pIcon->iTextHeight)/2,
+				(pIcon->fHeight + pIcon->label.iHeight)/2,
 				0.);
-			cairo_dock_draw_texture (pIcon->iLabelTexture,
-				pIcon->iTextWidth,
-				pIcon->iTextHeight);
+			cairo_dock_draw_texture (pIcon->label.iTexture,
+				pIcon->label.iWidth,
+				pIcon->label.iHeight);
 		glPopMatrix ();
 	}
-	if (pIcon->iQuickInfoTexture != 0 && !bIsReflect)
+	/**if (pIcon->iQuickInfoTexture != 0 && !bIsReflect)
 	{
 		glPushMatrix ();
 			glTranslatef (0.,
@@ -59,6 +59,10 @@ static void _render_one_icon_and_quickinfo_opengl (Icon *pIcon, CairoContainer *
 				pIcon->iQuickInfoWidth,
 				pIcon->iQuickInfoHeight);
 		glPopMatrix ();
+	}*/
+	if (!bIsReflect)
+	{
+		cairo_dock_draw_icon_overlays_opengl (pIcon, pContainer->fRatio);
 	}
 }
 

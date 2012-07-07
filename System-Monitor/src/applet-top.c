@@ -416,7 +416,7 @@ void cd_sysmonitor_start_top_dialog (CairoDockModuleInstance *myApplet)
 	attr.pInteractiveWidget = pInteractiveWidget;
 	attr.pActionFunc = (CairoDockActionOnAnswerFunc) _on_change_order;
 	attr.pUserData = myApplet;
-        attr.pFreeDataFunc = (GFreeFunc) _on_dialog_destroyed;
+	attr.pFreeDataFunc = (GFreeFunc) _on_dialog_destroyed;
 	const gchar *cButtons[] = {MY_APPLET_SHARE_DATA_DIR"/button-cpu.svg", MY_APPLET_SHARE_DATA_DIR"/button-ram.svg", "cancel", NULL};
 	attr.cButtonsImage = cButtons;
 	myData.pTopDialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);

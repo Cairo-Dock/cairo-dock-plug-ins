@@ -281,7 +281,7 @@ static void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 		//cd_debug ("  fXAtRest : %.2f; [%.2f;%.2f]", icon->fXAtRest, icon->fXMin, icon->fXMax);
 		icon->fXMax = icon->fXAtRest + 1e4;
 		icon->fXMin = icon->fXAtRest - 1e4;
-		pDock->iMaxLabelWidth = MAX (pDock->iMaxLabelWidth, icon->iTextWidth);
+		pDock->iMaxLabelWidth = MAX (pDock->iMaxLabelWidth, icon->label.iWidth);
 	}
 	//cd_debug ("> iMaxLabelWidth : %d+%d", pDock->iMaxLabelWidth, my_iParaboleTextGap);
 	pDock->iMaxLabelWidth += my_iParaboleTextGap;
@@ -349,6 +349,7 @@ static void cd_rendering_render_parabole (cairo_t *pCairoContext, CairoDock *pDo
 		return;
 	
 	double fDockMagnitude = 1;  // pour le rendu des icones, on utilise la magnitude max.
+	double fAlpha = (1 - pDock->fFoldingFactor) * (1 - pDock->fFoldingFactor);
 	gboolean bHorizontal = pDock->container.bIsHorizontal;
 	Icon *icon;
 	GList *ic = pFirstDrawnElement;
@@ -360,7 +361,7 @@ static void cd_rendering_render_parabole (cairo_t *pCairoContext, CairoDock *pDo
 		cairo_dock_render_one_icon (icon, pDock, pCairoContext, fDockMagnitude, FALSE);
 		cairo_restore (pCairoContext);
 		
-		if (icon->pTextBuffer != NULL && (my_bDrawTextWhileUnfolding || pDock->fFoldingFactor == 0))
+		if (icon->label.pSurface != NULL && (my_bDrawTextWhileUnfolding || pDock->fFoldingFactor == 0))
 		{
 			cairo_save (pCairoContext);
 			if (bHorizontal)
@@ -371,39 +372,59 @@ static void cd_rendering_render_parabole (cairo_t *pCairoContext, CairoDock *pDo
 			if (pDock->fAlign == 1)
 			{
 				if (bHorizontal)
-					cairo_set_source_surface (pCairoContext,
+				{
+					/**cairo_set_source_surface (pCairoContext,
 						icon->pTextBuffer,
 						icon->fWidth * icon->fScale + my_iParaboleTextGap,
-						(icon->fHeight * icon->fScale - icon->iTextHeight)/2);
+						(icon->fHeight * icon->fScale - icon->label.iHeight)/2);*/
+					cairo_dock_apply_image_buffer_surface_with_offset (&icon->label, pCairoContext,
+						icon->fWidth * icon->fScale + my_iParaboleTextGap,
+						(icon->fHeight * icon->fScale - icon->label.iHeight)/2,
+						fAlpha);
+				}
 				else
 				{
 					cairo_rotate (pCairoContext, G_PI/2);
-					cairo_set_source_surface (pCairoContext,
+					/**cairo_set_source_surface (pCairoContext,
 						icon->pTextBuffer,
 						icon->fWidth * icon->fScale + my_iParaboleTextGap,
-						(-icon->fHeight * icon->fScale - icon->iTextHeight)/2);
+						(-icon->fHeight * icon->fScale - icon->label.iHeight)/2);*/
+					cairo_dock_apply_image_buffer_surface_with_offset (&icon->label, pCairoContext,
+						icon->fWidth * icon->fScale + my_iParaboleTextGap,
+						(-icon->fHeight * icon->fScale - icon->label.iHeight)/2,
+						fAlpha);
 				}
 			}
 			else
 			{
 				if (bHorizontal)
-					cairo_set_source_surface (pCairoContext,
+				{
+					/**cairo_set_source_surface (pCairoContext,
 						icon->pTextBuffer,
-						- (icon->iTextWidth + my_iParaboleTextGap),
-						(icon->fHeight * icon->fScale - icon->iTextHeight)/2);
+						- (icon->label.iWidth + my_iParaboleTextGap),
+						(icon->fHeight * icon->fScale - icon->label.iHeight)/2);*/
+					cairo_dock_apply_image_buffer_surface_with_offset (&icon->label, pCairoContext,
+						- (icon->label.iWidth + my_iParaboleTextGap),
+						(icon->fHeight * icon->fScale - icon->label.iHeight)/2,
+						fAlpha);
+				}
 				else
 				{
 					cairo_rotate (pCairoContext, G_PI/2);
-					cairo_set_source_surface (pCairoContext,
+					/**cairo_set_source_surface (pCairoContext,
 						icon->pTextBuffer,
-						- (icon->iTextWidth + my_iParaboleTextGap),
-						(-icon->fHeight * icon->fScale - icon->iTextHeight)/2);
+						- (icon->label.iWidth + my_iParaboleTextGap),
+						(-icon->fHeight * icon->fScale - icon->label.iHeight)/2);*/
+					cairo_dock_apply_image_buffer_surface_with_offset (&icon->label, pCairoContext,
+						- (icon->label.iWidth + my_iParaboleTextGap),
+						(-icon->fHeight * icon->fScale - icon->label.iHeight)/2,
+						fAlpha);
 				}
 			}
-			if (pDock->fFoldingFactor != 0)
+			/**if (pDock->fFoldingFactor != 0)
 				cairo_paint_with_alpha (pCairoContext, (1 - pDock->fFoldingFactor) * (1 - pDock->fFoldingFactor));
 			else
-				cairo_paint (pCairoContext);
+				cairo_paint (pCairoContext);*/
 			
 			cairo_restore (pCairoContext);
 		}
@@ -694,6 +715,7 @@ static void cd_rendering_render_parabole_opengl (CairoDock *pDock)
 	
 	glPushMatrix ();
 	double fDockMagnitude = 1;  // pour le rendu des icones, on utilise la magnitude max.
+	double fAlpha = (1 - pDock->fFoldingFactor) * (1 - pDock->fFoldingFactor);
 	gboolean bHorizontal = pDock->container.bIsHorizontal;
 	Icon *icon;
 	GList *ic = pFirstDrawnElement;
@@ -703,7 +725,7 @@ static void cd_rendering_render_parabole_opengl (CairoDock *pDock)
 		
 		cairo_dock_render_one_icon_opengl (icon, pDock, fDockMagnitude, FALSE);
 		
-		if (icon->iLabelTexture != 0)  // en opengl on dessine les etiquettes meme pendant le depliage.
+		if (icon->label.iTexture != 0)  // en opengl on dessine les etiquettes meme pendant le depliage.
 		{
 			glPushMatrix ();
 			cairo_dock_translate_on_icon_opengl (icon, CAIRO_CONTAINER (pDock), 1.);
@@ -715,20 +737,20 @@ static void cd_rendering_render_parabole_opengl (CairoDock *pDock)
 			_cairo_dock_enable_texture ();
 			///_cairo_dock_set_blend_over ();
 			_cairo_dock_set_blend_alpha ();
-			_cairo_dock_set_alpha ((1 - pDock->fFoldingFactor) * (1 - pDock->fFoldingFactor));
+			_cairo_dock_set_alpha (fAlpha);
 			
 			if (pDock->fAlign == 1)
 			{
 				if (bHorizontal)
 				{
-					glTranslatef (icon->fWidth * icon->fScale/2 + my_iParaboleTextGap + icon->iTextWidth/2,
+					glTranslatef (icon->fWidth * icon->fScale/2 + my_iParaboleTextGap + icon->label.iWidth/2,
 						0.,
 						0.);
 				}
 				else
 				{
 					glRotatef (-90., 0., 0., 1.);
-					glTranslatef (icon->fWidth * icon->fScale/2 + my_iParaboleTextGap + icon->iTextWidth/2,
+					glTranslatef (icon->fWidth * icon->fScale/2 + my_iParaboleTextGap + icon->label.iWidth/2,
 						0.,
 						0.);
 				}
@@ -737,21 +759,22 @@ static void cd_rendering_render_parabole_opengl (CairoDock *pDock)
 			{
 				if (bHorizontal)
 				{
-					glTranslatef (- (icon->fWidth * icon->fScale/2 + my_iParaboleTextGap + icon->iTextWidth/2),
+					glTranslatef (- (icon->fWidth * icon->fScale/2 + my_iParaboleTextGap + icon->label.iWidth/2),
 						0.,
 						0.);
 				}
 				else
 				{
 					glRotatef (-90., 0., 0., 1.);
-					glTranslatef (- (icon->fWidth * icon->fScale/2 + my_iParaboleTextGap + icon->iTextWidth/2),
+					glTranslatef (- (icon->fWidth * icon->fScale/2 + my_iParaboleTextGap + icon->label.iWidth/2),
 						0.,
 						0.);
 				}
 			}
-			cairo_dock_apply_texture_at_size (icon->iLabelTexture,
-				icon->iTextWidth,
-				icon->iTextHeight);
+			/**cairo_dock_apply_texture_at_size (icon->iLabelTexture,
+				icon->label.iWidth,
+				icon->label.iHeight);*/
+			cairo_dock_apply_image_buffer_texture (&icon->label);
 			
 			_cairo_dock_disable_texture ();
 			glPopMatrix ();

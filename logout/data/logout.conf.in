@@ -110,13 +110,11 @@ middle-click = 2
 #v
 sep_act =
 
-
 #k Shortkey to lock the screen
 shortkey = <Super>L
 
 #k Shortkey to show the menu
 shortkey2 = <Control>F12
-
 
 #v
 sep_act2 =
@@ -124,7 +122,16 @@ sep_act2 =
 #b Demand confirmation before closing
 confirm action = true
 
-#F[Commands;gtk-preferences]
+#X[Customisation;gtk-dialog-info]
+frame_perso =
+#S+[Default] Icon image name to use when the system has to be rebooted:
+#{Leave empty to use the default icon.}
+emblem =
+
+#l[Emblem;Image] Display this image as an emblem or replace applet's icon with this image?
+replace image = 0
+
+#X[Commands;gtk-preferences]
 frame_comm=
 
 #s User-defined command to execute for logout:
@@ -135,14 +142,5 @@ user action =
 #{This will be available when middle-clicking. Leave empty to execute the default command, which depends on your distribution. In some cases the command to shutdown is the same as the one to log out.}
 user action2 =
 
+
 shutdown time = 0
-
-
-#X[Customisation;gtk-dialog-info]
-frame_perso =
-#S+[Default] Icon image name to use when the system has to be rebooted:
-#{Leave empty to use the default icon.}
-emblem =
-
-#l[Emblem;Image] Display this image as an emblem or replace applet's icon with this image?
-replace image = 0
