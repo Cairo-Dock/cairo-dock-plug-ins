@@ -791,10 +791,9 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 		memset (&attr, 0, sizeof (CairoGaugeAttribute));
 		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
 		pRenderAttr->cModelName = "gauge";
-		///attr.cThemePath = cairo_dock_get_gauge_theme_path (cTheme, CAIRO_DOCK_ANY_THEME);
 		attr.cThemePath = cairo_dock_get_data_renderer_theme_path ("gauge", cTheme, CAIRO_DOCK_ANY_PACKAGE);
 	}
-	else if (strcmp (cType, "gauge") == 0)
+	else if (strcmp (cType, "graph") == 0)
 	{
 		CairoGraphAttribute attr;  // les attributs du graphe.
 		memset (&attr, 0, sizeof (CairoGraphAttribute));
@@ -834,24 +833,30 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 		attr.fBackGroundColor[0] = 1;
 		attr.fBackGroundColor[0] = .4;
 	}
-	else if (strcmp (cType, "bar") == 0)
+	else if (strcmp (cType, "progressbar") == 0)
 	{
-		/// A FAIRE...
+		CairoProgressBarAttribute attr;
+		memset (&attr, 0, sizeof (CairoProgressBarAttribute));
+		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+		pRenderAttr->cModelName = "progressbar";
 	}
 	
-	if (pRenderAttr == NULL)
-		return FALSE;
-	
-	pRenderAttr->iLatencyTime = 500;  // 1/2s
-	pRenderAttr->iNbValues = iNbValues;
-	//pRenderAttr->bUpdateMinMax = TRUE;
-	//pRenderAttr->bWriteValues = TRUE;
-	g_return_val_if_fail (pIcon->pIconBuffer != NULL, FALSE);
-	if (pIcon->pDataRenderer == NULL)
-		cairo_dock_add_new_data_renderer_on_icon (pIcon, pContainer, pRenderAttr);
+	if (pRenderAttr == NULL || iNbValues <= 0)
+	{
+		cairo_dock_remove_data_renderer_on_icon (pIcon);
+	}
 	else
-		cairo_dock_reload_data_renderer_on_icon (pIcon, pContainer, pRenderAttr);
-	
+	{
+		pRenderAttr->iLatencyTime = 500;  // 1/2s
+		pRenderAttr->iNbValues = iNbValues;
+		//pRenderAttr->bUpdateMinMax = TRUE;
+		//pRenderAttr->bWriteValues = TRUE;
+		g_return_val_if_fail (pIcon->pIconBuffer != NULL, FALSE);
+		if (pIcon->pDataRenderer == NULL)
+			cairo_dock_add_new_data_renderer_on_icon (pIcon, pContainer, pRenderAttr);
+		else
+			cairo_dock_reload_data_renderer_on_icon (pIcon, pContainer, pRenderAttr);
+	}
 	return TRUE;
 }
 

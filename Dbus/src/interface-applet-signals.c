@@ -776,7 +776,7 @@ gboolean cd_dbus_emit_on_reload_module (CairoDockModuleInstance *pModuleInstance
 	}
 	
 	Icon *pIcon = pModuleInstance->pIcon;
-	if (pIcon && pIcon->cFileName == NULL && pIcon->pIconBuffer && pIcon->pDataRenderer == NULL)
+	if (pIcon && pIcon->cFileName == NULL && pIcon->pIconBuffer && (pIcon->pDataRenderer == NULL || pIcon->pDataRenderer->bUseOverlay))
 	{
 		cairo_t *pDrawContext = cairo_create (pIcon->pIconBuffer);
 		cairo_dock_set_image_on_icon (pDrawContext, pVisitCard->cIconFilePath, pIcon, pModuleInstance->pContainer);
