@@ -40,46 +40,42 @@ CD_APPLET_DEFINITION (N_("PowerManager"),
 
 static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
 {
-	CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs du data-renderer global.
+	if (myConfig.iDisplayType == CD_POWERMANAGER_ICONS)
+		return;
+
+	CairoDataRendererAttribute *pRenderAttr = NULL;  // attributes for the global data-renderer.
+	CairoGaugeAttribute aGaugeAttr;  // gauge attributes.
+	CairoGraphAttribute aGraphAttr;  // graph attributes.
 	if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE)
 	{
-		CairoGaugeAttribute attr;  // les attributs de la jauge.
-		memset (&attr, 0, sizeof (CairoGaugeAttribute));
-		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+		memset (&aGaugeAttr, 0, sizeof (CairoGaugeAttribute));
+		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&aGaugeAttr);
 		pRenderAttr->cModelName = "gauge";
-		attr.cThemePath = myConfig.cGThemePath;
+		aGaugeAttr.cThemePath = myConfig.cGThemePath;
 	}
 	else if (myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)
 	{
-		CairoGraphAttribute attr;  // les attributs du graphe.
-		memset (&attr, 0, sizeof (CairoGraphAttribute));
-		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+		memset (&aGraphAttr, 0, sizeof (CairoGraphAttribute));
+		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&aGraphAttr);
 		pRenderAttr->cModelName = "graph";
 		pRenderAttr->iMemorySize = (myIcon->fWidth > 1 ? myIcon->fWidth : 32);  // fWidth peut etre <= 1 en mode desklet au chargement.
-		attr.iType = myConfig.iGraphType;
-		attr.iRadius = 10;
-		attr.fHighColor = myConfig.fHigholor;
-		attr.fLowColor = myConfig.fLowColor;
-		memcpy (attr.fBackGroundColor, myConfig.fBgColor, 4*sizeof (double));
+		aGraphAttr.iType = myConfig.iGraphType;
+		aGraphAttr.iRadius = 10;
+		aGraphAttr.fHighColor = myConfig.fHigholor;
+		aGraphAttr.fLowColor = myConfig.fLowColor;
+		memcpy (aGraphAttr.fBackGroundColor, myConfig.fBgColor, 4*sizeof (double));
 	}
-	else if (myConfig.iDisplayType == CD_POWERMANAGER_ICONS)
+
+	if (myConfig.quickInfoType != 0)
 	{
-		
+		pRenderAttr->bWriteValues = TRUE;
+		pRenderAttr->format_value = (CairoDataRendererFormatValueFunc)cd_powermanager_format_value;
+		pRenderAttr->pFormatData = myApplet;
 	}
-	if (pRenderAttr != NULL)
-	{
-		if (myConfig.quickInfoType != 0)
-		{
-			pRenderAttr->bWriteValues = TRUE;
-			pRenderAttr->format_value = (CairoDataRendererFormatValueFunc)cd_powermanager_format_value;
-			pRenderAttr->pFormatData = myApplet;
-		}
-		
-		if (! bReload)
-			CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
-		else
-			CD_APPLET_RELOAD_MY_DATA_RENDERER (pRenderAttr);
-	}
+	if (! bReload)
+		CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
+	else
+		CD_APPLET_RELOAD_MY_DATA_RENDERER (pRenderAttr);
 }
 
 

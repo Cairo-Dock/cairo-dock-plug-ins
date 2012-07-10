@@ -58,33 +58,31 @@ static gboolean _unthreaded_task (CairoDockModuleInstance *myApplet)
 		i ++; }
 static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
 {
-	CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs generiques du data-renderer.
+	if (myConfig.iDisplayType == CD_SYSMONITOR_BAR)
+		return; /// TODO
+
+	CairoDataRendererAttribute *pRenderAttr = NULL;  // attributes for the global data-renderer.
+	CairoGaugeAttribute aGaugeAttr;  // gauge attributes.
+	CairoGraphAttribute aGraphAttr;  // graph attributes.
 	int iNbValues = myConfig.bShowCpu + myConfig.bShowRam + myConfig.bShowSwap + myConfig.bShowNvidia + myConfig.bShowCpuTemp + myConfig.bShowFanSpeed;
 	if (myConfig.iDisplayType == CD_SYSMONITOR_GAUGE)
 	{
-		CairoGaugeAttribute attr;  // les attributs de la jauge.
-		memset (&attr, 0, sizeof (CairoGaugeAttribute));
-		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+		memset (&aGaugeAttr, 0, sizeof (CairoGaugeAttribute));
+		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&aGaugeAttr);
 		pRenderAttr->cModelName = "gauge";
 		pRenderAttr->iRotateTheme = myConfig.iRotateTheme;
-		attr.cThemePath = myConfig.cGThemePath;
-		/**CairoProgressBarAttribute attr;  // les attributs de la barre.
-		memset (&attr, 0, sizeof (CairoProgressBarAttribute));
-		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
-		pRenderAttr->cModelName = "progressbar";
-		pRenderAttr->iRotateTheme = myConfig.iRotateTheme;*/
+		aGaugeAttr.cThemePath = myConfig.cGThemePath;
 	}
 	else if (myConfig.iDisplayType == CD_SYSMONITOR_GRAPH)
 	{
-		CairoGraphAttribute attr;  // les attributs du graphe.
-		memset (&attr, 0, sizeof (CairoGraphAttribute));
-		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+		memset (&aGraphAttr, 0, sizeof (CairoGraphAttribute));
+		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&aGraphAttr);
 		pRenderAttr->cModelName = "graph";
 		int w, h;
 		CD_APPLET_GET_MY_ICON_EXTENT (&w, &h);
 		pRenderAttr->iMemorySize = (w > 1 ? w : 32);  // fWidth peut etre <= 1 en mode desklet au chargement.
-		attr.iType = myConfig.iGraphType;
-		attr.bMixGraphs = myConfig.bMixGraph;
+		aGraphAttr.iType = myConfig.iGraphType;
+		aGraphAttr.bMixGraphs = myConfig.bMixGraph;
 		double fHighColor[CD_SYSMONITOR_NB_MAX_VALUES*3];
 		double fLowColor[CD_SYSMONITOR_NB_MAX_VALUES*3];
 		int i;
@@ -93,46 +91,38 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 			memcpy (&fHighColor[3*i], myConfig.fHigholor, 3*sizeof (double));
 			memcpy (&fLowColor[3*i], myConfig.fLowColor, 3*sizeof (double));
 		}
-		attr.fHighColor = fHighColor;
-		attr.fLowColor = fLowColor;
-		memcpy (attr.fBackGroundColor, myConfig.fBgColor, 4*sizeof (double));
+		aGraphAttr.fHighColor = fHighColor;
+		aGraphAttr.fLowColor = fLowColor;
+		memcpy (aGraphAttr.fBackGroundColor, myConfig.fBgColor, 4*sizeof (double));
 	}
-	else if (myConfig.iDisplayType == CD_SYSMONITOR_BAR)
+
+	pRenderAttr->iLatencyTime = myConfig.iCheckInterval * 1000 * myConfig.fSmoothFactor;
+	pRenderAttr->iNbValues = iNbValues;
+	if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
 	{
-		/// A FAIRE...
+		pRenderAttr->bWriteValues = TRUE;
+		pRenderAttr->format_value = (CairoDataRendererFormatValueFunc)cd_sysmonitor_format_value;
+		pRenderAttr->pFormatData = myApplet;
 	}
-	if (pRenderAttr != NULL)  // attributs generiques.
-	{
-		pRenderAttr->iLatencyTime = myConfig.iCheckInterval * 1000 * myConfig.fSmoothFactor;
-		pRenderAttr->iNbValues = iNbValues;
-		if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
-		{
-			pRenderAttr->bWriteValues = TRUE;
-			pRenderAttr->format_value = (CairoDataRendererFormatValueFunc)cd_sysmonitor_format_value;
-			pRenderAttr->pFormatData = myApplet;
-		}
-		//const gchar *c[] = {"/usr/share/icons/gnome/scalable/actions/gtk-about.svg", "/usr/share/icons/gnome/scalable/actions/gtk-help.svg", "", "", "", ""};
-		//pRenderAttr->cEmblems = c;
-		const gchar *labels[6] = {NULL, NULL, NULL, NULL, NULL, NULL};
-		int i = 0;
-		if (myConfig.bShowCpu)
-			labels[i++] = "CPU";
-		if (myConfig.bShowRam)
-			labels[i++] = "RAM";
-		if (myConfig.bShowSwap)
-			labels[i++] = "SWAP";
-		if (myConfig.bShowNvidia)
-			labels[i++] = "GPU";
-		if (myConfig.bShowCpuTemp)
-			labels[i++] = "TEMP";
-		if (myConfig.bShowFanSpeed)
-			labels[i++] = "FAN";
-		pRenderAttr->cLabels = (gchar **)labels;
-		if (! bReload)
-			CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
-		else
-			CD_APPLET_RELOAD_MY_DATA_RENDERER (pRenderAttr);
-	}
+	const gchar *labels[6] = {NULL, NULL, NULL, NULL, NULL, NULL};
+	int i = 0;
+	if (myConfig.bShowCpu)
+		labels[i++] = "CPU";
+	if (myConfig.bShowRam)
+		labels[i++] = "RAM";
+	if (myConfig.bShowSwap)
+		labels[i++] = "SWAP";
+	if (myConfig.bShowNvidia)
+		labels[i++] = "GPU";
+	if (myConfig.bShowCpuTemp)
+		labels[i++] = "TEMP";
+	if (myConfig.bShowFanSpeed)
+		labels[i++] = "FAN";
+	pRenderAttr->cLabels = (gchar **)labels;
+	if (! bReload)
+		CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
+	else
+		CD_APPLET_RELOAD_MY_DATA_RENDERER (pRenderAttr);
 }
 
 CD_APPLET_INIT_BEGIN

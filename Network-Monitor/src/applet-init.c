@@ -44,32 +44,32 @@ CD_APPLET_DEFINE_END
 
 static CairoDataRendererAttribute *make_data_renderer_attribute (Icon *myIcon, CDRenderer *pRendererParams)
 {
-	CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs du data-renderer global.
+	if (pRendererParams->iRenderType == CD_EFFECT_ICON)
+		return NULL; /// TODO
+
+	CairoDataRendererAttribute *pRenderAttr = NULL;  // attributes for the global data-renderer.
+	CairoGaugeAttribute aGaugeAttr;  // gauge attributes.
+	CairoGraphAttribute aGraphAttr;  // graph attributes.
 	if (pRendererParams->iRenderType == CD_EFFECT_GAUGE)
 	{
-		CairoGaugeAttribute attr;  // les attributs de la jauge.
-		memset (&attr, 0, sizeof (CairoGaugeAttribute));
-		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+		memset (&aGaugeAttr, 0, sizeof (CairoGaugeAttribute));
+		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&aGaugeAttr);
 		pRenderAttr->cModelName = "gauge";
-		attr.cThemePath = pRendererParams->cGThemePath;
+		aGaugeAttr.cThemePath = pRendererParams->cGThemePath;
 	}
 	else if (pRendererParams->iRenderType == CD_EFFECT_GRAPH)
 	{
-		CairoGraphAttribute attr;  // les attributs du graphe.
-		memset (&attr, 0, sizeof (CairoGraphAttribute));
-		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+		memset (&aGraphAttr, 0, sizeof (CairoGraphAttribute));
+		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&aGraphAttr);
 		pRenderAttr->cModelName = "graph";
 		pRenderAttr->iMemorySize = (myIcon->fWidth > 1 ? myIcon->fWidth : 32);  // fWidht peut etre <= 1 en mode desklet au chargement.
-		attr.iType = pRendererParams->iGraphType;
-		attr.iRadius = 10;
-		attr.fHighColor = pRendererParams->fHigholor;
-		attr.fLowColor = pRendererParams->fLowColor;
-		memcpy (attr.fBackGroundColor, pRendererParams->fBgColor, 4*sizeof (double));
+		aGraphAttr.iType = pRendererParams->iGraphType;
+		aGraphAttr.iRadius = 10;
+		aGraphAttr.fHighColor = pRendererParams->fHigholor;
+		aGraphAttr.fLowColor = pRendererParams->fLowColor;
+		memcpy (aGraphAttr.fBackGroundColor, pRendererParams->fBgColor, 4*sizeof (double));
 	}
-	else if (pRendererParams->iRenderType == CD_EFFECT_ICON)
-	{
-		/// A FAIRE...
-	}
+
 	return pRenderAttr;
 }
 
@@ -159,7 +159,18 @@ CD_APPLET_INIT_END
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
-	
+
+	// TO CHECK... other objects?
+	if (myData.dbus_proxy_ActiveAccessPoint)
+	{
+		dbus_g_proxy_disconnect_signal(myData.dbus_proxy_ActiveAccessPoint, "PropertiesChanged",
+			NULL, NULL);
+		g_object_unref (myData.dbus_proxy_ActiveAccessPoint);
+	}
+	if (myData.dbus_proxy_ActiveAccessPoint_prop)
+	{
+		g_object_unref (myData.dbus_proxy_ActiveAccessPoint_prop);
+	}
 	//\_______________ On se desabonne de nos notifications.
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;

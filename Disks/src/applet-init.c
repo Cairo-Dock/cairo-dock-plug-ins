@@ -60,26 +60,26 @@ CD_APPLET_DEFINITION (N_("Disks"),
 
 static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
 {
-	CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs generiques du data-renderer.
+	CairoDataRendererAttribute *pRenderAttr = NULL;  // attributes for the global data-renderer.
+	CairoGaugeAttribute aGaugeAttr;  // gauge attributes.
+	CairoGraphAttribute aGraphAttr;  // graph attributes.
 	if (myConfig.iDisplayType == CD_DISKS_GAUGE)
 	{
-		CairoGaugeAttribute attr;  // les attributs de la jauge.
-		memset (&attr, 0, sizeof (CairoGaugeAttribute));
-		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+		memset (&aGaugeAttr, 0, sizeof (CairoGaugeAttribute));
+		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&aGaugeAttr);
 		pRenderAttr->cModelName = "gauge";
 		pRenderAttr->iRotateTheme = myConfig.iRotateTheme;
-		attr.cThemePath = myConfig.cGThemePath;
+		aGaugeAttr.cThemePath = myConfig.cGThemePath;
 	}
 	else if (myConfig.iDisplayType == CD_DISKS_GRAPH)
 	{
-		CairoGraphAttribute attr;  // les attributs du graphe.
-		memset (&attr, 0, sizeof (CairoGraphAttribute));
-		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+		memset (&aGraphAttr, 0, sizeof (CairoGraphAttribute));
+		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&aGraphAttr);
 		pRenderAttr->cModelName = "graph";
 		pRenderAttr->iMemorySize = (myIcon->fWidth > 1 ? myIcon->fWidth : 32);  // fWidth peut etre <= 1 en mode desklet au chargement.
-		attr.iType = myConfig.iGraphType;
-		attr.iRadius = 10;
-		attr.bMixGraphs = myConfig.bMixGraph;
+		aGraphAttr.iType = myConfig.iGraphType;
+		aGraphAttr.iRadius = 10;
+		aGraphAttr.bMixGraphs = myConfig.bMixGraph;
 		double fHighColor[CD_DISKS_NB_MAX_VALUES*3];
 		double fLowColor[CD_DISKS_NB_MAX_VALUES*3];
 		gsize i;
@@ -90,64 +90,61 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 			memcpy (&fHighColor[3*i+3], myConfig.fHigholor, 3*sizeof (double));
 			memcpy (&fLowColor[3*i+3], myConfig.fLowColor, 3*sizeof (double));
 		}
-		attr.fHighColor = fHighColor;
-		attr.fLowColor = fLowColor;
-		memcpy (attr.fBackGroundColor, myConfig.fBgColor, 4*sizeof (double));
+		aGraphAttr.fHighColor = fHighColor;
+		aGraphAttr.fLowColor = fLowColor;
+		memcpy (aGraphAttr.fBackGroundColor, myConfig.fBgColor, 4*sizeof (double));
 	}
 
-	if (pRenderAttr != NULL)  // attributs generiques.
+	const gchar *labels[CD_DISKS_NB_MAX_VALUES] = {};
+	
+	if (myConfig.iNumberParts > 0)
 	{
-		const gchar *labels[CD_DISKS_NB_MAX_VALUES] = {};
-		
-		if (myConfig.iNumberParts > 0)
+		gsize i;
+		for (i = 0; i < myConfig.iNumberParts; i++)
 		{
-			gsize i;
-			for (i = 0; i < myConfig.iNumberParts; i++)
-			{
-        /// Ca non plus je suppose :)
-				double *pSize;
-				pSize = g_new0 (double, 1);
-				myData.lParts = g_list_append (myData.lParts, pSize);
-				labels[i] = myConfig.cParts[i];
-			}
+		/// Ca non plus je suppose :)
+			double *pSize;
+			pSize = g_new0 (double, 1);
+			myData.lParts = g_list_append (myData.lParts, pSize);
+			labels[i] = myConfig.cParts[i];
 		}
-
-		if (myData.iNumberDisks > 0)
-		{
-			gsize i;
-			for (i = 0; i < myData.iNumberDisks; i++)
-			{
-				/// Ne pas faire ca ici !...
-				CDDiskSpeedData *pSpeed;
-				pSpeed = g_new0 (CDDiskSpeedData, 1);
-				myData.lDisks = g_list_append (myData.lDisks, pSpeed);
-				pSpeed->cName = g_strdup (myConfig.cDisks[i]);
-				//~ pSpeed->uID = i;
-				labels[2 * i] = pSpeed->cName;
-			}
-		}
-
-		pRenderAttr->cLabels = (gchar **)labels;
-		pRenderAttr->iLatencyTime = myConfig.iCheckInterval * 1000 * myConfig.fSmoothFactor;
-		pRenderAttr->iNbValues = myConfig.iNumberParts + 2 * myData.iNumberDisks;
-		
-		/// Problem here : should be FALSE for size and TRUE for speed.
-		/// This version force FALSE when size is monitored, so applets using both monitors
-		/// could have some display problems on speed display.
-		pRenderAttr->bUpdateMinMax = !(myConfig.iNumberParts > 0);
-
-		if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
-		{
-			pRenderAttr->bWriteValues = TRUE;
-			pRenderAttr->format_value = (CairoDataRendererFormatValueFunc)cd_disks_format_value_on_icon;
-			pRenderAttr->pFormatData = myApplet;
-		}
-
-		if (! bReload)
-			CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
-		else
-			CD_APPLET_RELOAD_MY_DATA_RENDERER (pRenderAttr);
 	}
+
+	if (myData.iNumberDisks > 0)
+	{
+		gsize i;
+		for (i = 0; i < myData.iNumberDisks; i++)
+		{
+			/// Ne pas faire ca ici !...
+			CDDiskSpeedData *pSpeed;
+			pSpeed = g_new0 (CDDiskSpeedData, 1);
+			myData.lDisks = g_list_append (myData.lDisks, pSpeed);
+			pSpeed->cName = g_strdup (myConfig.cDisks[i]);
+			//~ pSpeed->uID = i;
+			labels[2 * i] = pSpeed->cName;
+		}
+	}
+
+	pRenderAttr->cLabels = (gchar **)labels;
+	pRenderAttr->iLatencyTime = myConfig.iCheckInterval * 1000 * myConfig.fSmoothFactor;
+	pRenderAttr->iNbValues = myConfig.iNumberParts + 2 * myData.iNumberDisks;
+	
+	/// Problem here : should be FALSE for size and TRUE for speed.
+	/// This version force FALSE when size is monitored, so applets using both monitors
+	/// could have some display problems on speed display.
+	pRenderAttr->bUpdateMinMax = !(myConfig.iNumberParts > 0);
+
+	if (myConfig.iInfoDisplay == CAIRO_DOCK_INFO_ON_ICON)
+	{
+		pRenderAttr->bWriteValues = TRUE;
+		pRenderAttr->format_value = (CairoDataRendererFormatValueFunc)cd_disks_format_value_on_icon;
+		pRenderAttr->pFormatData = myApplet;
+	}
+
+	if (! bReload)
+		CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
+	else
+		CD_APPLET_RELOAD_MY_DATA_RENDERER (pRenderAttr);
 }
 
 CD_APPLET_INIT_BEGIN

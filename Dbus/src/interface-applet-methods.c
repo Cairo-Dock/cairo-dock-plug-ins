@@ -784,36 +784,36 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 	CairoContainer *pContainer = pInstance->pContainer;
 	g_return_val_if_fail (pContainer != NULL, FALSE);
 	
-	CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs du data-renderer global.
+	CairoDataRendererAttribute *pRenderAttr = NULL;  // attributes for the global data-renderer.
+	CairoGaugeAttribute aGaugeAttr;  // gauge attributes.
+	CairoGraphAttribute aGraphAttr;  // graph attributes.
+	CairoGraphAttribute aProgressBarAttr;  // progressbar attributes.
 	if (strcmp (cType, "gauge") == 0)
 	{
-		CairoGaugeAttribute attr;  // les attributs de la jauge.
-		memset (&attr, 0, sizeof (CairoGaugeAttribute));
-		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
-		pRenderAttr->cModelName = "gauge";
-		attr.cThemePath = cairo_dock_get_data_renderer_theme_path ("gauge", cTheme, CAIRO_DOCK_ANY_PACKAGE);
+		memset (&aGaugeAttr, 0, sizeof (CairoGaugeAttribute));
+		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&aGaugeAttr);
+		aGaugeAttr.cThemePath = cairo_dock_get_data_renderer_theme_path (cType, cTheme, CAIRO_DOCK_ANY_PACKAGE);
 	}
 	else if (strcmp (cType, "graph") == 0)
 	{
-		CairoGraphAttribute attr;  // les attributs du graphe.
-		memset (&attr, 0, sizeof (CairoGraphAttribute));
-		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
-		pRenderAttr->cModelName = "graph";
+		CairoGraphAttribute aGraphAttr;  // les attributs du graphe.
+		memset (&aGraphAttr, 0, sizeof (CairoGraphAttribute));
+		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&aGraphAttr);
 		int w, h;
 		cairo_dock_get_icon_extent (pIcon, &w, &h);
 		pRenderAttr->iMemorySize = (w > 1 ? w : 32);
 		// Line;Plain;Bar;Circle;Plain Circle
 		if (cTheme == NULL || strcmp (cTheme, "Line") == 0)
-			attr.iType = CAIRO_DOCK_GRAPH_LINE;
+			aGraphAttr.iType = CAIRO_DOCK_GRAPH_LINE;
 		else if (strcmp (cTheme, "Plain") == 0)
-			attr.iType = CAIRO_DOCK_GRAPH_PLAIN;
+			aGraphAttr.iType = CAIRO_DOCK_GRAPH_PLAIN;
 		else if (strcmp (cTheme, "Bar") == 0)
-			attr.iType = CAIRO_DOCK_GRAPH_BAR;
+			aGraphAttr.iType = CAIRO_DOCK_GRAPH_BAR;
 		else if (strcmp (cTheme, "Circle") == 0)
-			attr.iType = CAIRO_DOCK_GRAPH_CIRCLE;
+			aGraphAttr.iType = CAIRO_DOCK_GRAPH_CIRCLE;
 		else if (strcmp (cTheme, "Plain Circle") == 0)
-			attr.iType = CAIRO_DOCK_GRAPH_CIRCLE_PLAIN;
-		attr.bMixGraphs = FALSE;
+			aGraphAttr.iType = CAIRO_DOCK_GRAPH_CIRCLE_PLAIN;
+		aGraphAttr.bMixGraphs = FALSE;
 		double *fHighColor = g_new (double, iNbValues*3);
 		double *fLowColor = g_new (double, iNbValues*3);
 		int i;
@@ -826,37 +826,37 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 			fLowColor[3*i+1] = 1;
 			fLowColor[3*i+2] = 1;
 		}
-		attr.fHighColor = fHighColor;
-		attr.fLowColor = fLowColor;
-		attr.fBackGroundColor[0] = 0;
-		attr.fBackGroundColor[0] = 0;
-		attr.fBackGroundColor[0] = 1;
-		attr.fBackGroundColor[0] = .4;
+		aGraphAttr.fHighColor = fHighColor;
+		aGraphAttr.fLowColor = fLowColor;
+		aGraphAttr.fBackGroundColor[0] = 0;
+		aGraphAttr.fBackGroundColor[0] = 0;
+		aGraphAttr.fBackGroundColor[0] = 1;
+		aGraphAttr.fBackGroundColor[0] = .4;
 	}
 	else if (strcmp (cType, "progressbar") == 0)
 	{
-		CairoProgressBarAttribute attr;
-		memset (&attr, 0, sizeof (CairoProgressBarAttribute));
-		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
-		pRenderAttr->cModelName = "progressbar";
+		CairoProgressBarAttribute aProgressBarAttr;
+		memset (&aProgressBarAttr, 0, sizeof (CairoProgressBarAttribute));
+		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&aProgressBarAttr);
 	}
 	
 	if (pRenderAttr == NULL || iNbValues <= 0)
 	{
 		cairo_dock_remove_data_renderer_on_icon (pIcon);
+		return TRUE;
 	}
+	
+	pRenderAttr->cModelName = cType;
+	pRenderAttr->iLatencyTime = 500;  // 1/2s
+	pRenderAttr->iNbValues = iNbValues;
+	//pRenderAttr->bUpdateMinMax = TRUE;
+	//pRenderAttr->bWriteValues = TRUE;
+	g_return_val_if_fail (pIcon->pIconBuffer != NULL, FALSE);
+	if (pIcon->pDataRenderer == NULL)
+		cairo_dock_add_new_data_renderer_on_icon (pIcon, pContainer, pRenderAttr);
 	else
-	{
-		pRenderAttr->iLatencyTime = 500;  // 1/2s
-		pRenderAttr->iNbValues = iNbValues;
-		//pRenderAttr->bUpdateMinMax = TRUE;
-		//pRenderAttr->bWriteValues = TRUE;
-		g_return_val_if_fail (pIcon->pIconBuffer != NULL, FALSE);
-		if (pIcon->pDataRenderer == NULL)
-			cairo_dock_add_new_data_renderer_on_icon (pIcon, pContainer, pRenderAttr);
-		else
-			cairo_dock_reload_data_renderer_on_icon (pIcon, pContainer, pRenderAttr);
-	}
+		cairo_dock_reload_data_renderer_on_icon (pIcon, pContainer, pRenderAttr);
+
 	return TRUE;
 }
 

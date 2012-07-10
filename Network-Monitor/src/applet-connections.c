@@ -616,7 +616,8 @@ void cd_NetworkMonitor_get_access_point_properties (void)
 	GHashTable *hProperties = cairo_dock_dbus_get_all_properties (myData.dbus_proxy_ActiveAccessPoint_prop, "org.freedesktop.NetworkManager.AccessPoint");
 	g_return_if_fail (hProperties != NULL);
 	
-	myData.iQuality = WIFI_QUALITY_NO_SIGNAL;cd_NetworkMonitor_fetch_access_point_properties (hProperties);
+	myData.iQuality = WIFI_QUALITY_NO_SIGNAL;
+	cd_NetworkMonitor_fetch_access_point_properties (hProperties);
 	
 	g_hash_table_unref (hProperties);
 }
