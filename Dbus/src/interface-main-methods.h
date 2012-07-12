@@ -73,4 +73,7 @@ gboolean cd_dbus_main_show_dialog (dbusMainObject *dbusMainObject, const gchar *
 gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBusName, const gchar *cMenuPath, gchar *cIconQuery, GError **error);
 #endif
 
+gboolean cd_dbus_main_set_progress (dbusMainObject *dbusMainObject, double fPercent, gchar *cIconQuery, GError **error);
+
+
 #endif

@@ -1536,3 +1536,29 @@ gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBus
 	return TRUE;
 }
 #endif
+
+
+gboolean cd_dbus_main_set_progress (dbusMainObject *dbusMainObject, double fPercent, gchar *cIconQuery, GError **error)
+{
+	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
+	if (pList == NULL)
+		return FALSE;
+	
+	Icon *pIcon;
+	CairoContainer *pContainer;
+	GList *ic;
+	for (ic = pList; ic != NULL; ic = ic->next)
+	{
+		pIcon = ic->data;
+		
+		if (cairo_dock_get_icon_data_renderer (pIcon) == NULL)
+		{
+			CairoProgressBarAttribute attr;
+			memset (&attr, 0, sizeof (CairoProgressBarAttribute));
+			CairoDataRendererAttribute *pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+			pRenderAttr->cModelName = "progressbar";
+			cairo_dock_add_new_data_renderer_on_icon (pIcon, pIcon->pContainer, pRenderAttr);
+		}
+		cairo_dock_render_new_data_on_icon (pIcon, pIcon->pContainer, NULL, &fPercent);
+	}
+}
