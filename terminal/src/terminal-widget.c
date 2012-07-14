@@ -108,21 +108,26 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 	}
 }
 
-
+#if GTK_CHECK_VERSION (3, 4, 0)
+static gchar *_get_label_and_color (const gchar *cLabel, GdkRGBA *pColor, gboolean *bColorSet)
+#else
 static gchar *_get_label_and_color (const gchar *cLabel, GdkColor *pColor, gboolean *bColorSet)
+#endif
 {
 	gchar *cUsefulLabel;
 	gchar *str = strchr (cLabel, '>');
-	//g_print ("%s (%s)\n", __func__, cLabel);
 	if (cLabel != NULL && strncmp (cLabel, "<span color='", 13) == 0 && str != NULL)  // approximatif mais devrait suffire.
 	{
 		const gchar *col = cLabel+13;
 		gchar *col_end = strchr (col+1, '\'');
 		if (col_end)
 		{
-			gchar *cColor = g_strndup (col, col_end - col);
-			//g_print ("cColor : %s\n", cColor);
+			gchar *cColor = g_strndup (col, strlen (col) - strlen (col_end));
+			#if GTK_CHECK_VERSION (3, 4, 0)
+			*bColorSet = gdk_rgba_parse (pColor, cColor);
+			#else
 			*bColorSet = gdk_color_parse (cColor, pColor);
+			#endif
 			g_free (cColor);
 		}
 		cUsefulLabel = g_strdup (str+1);
@@ -153,7 +158,11 @@ void terminal_rename_tab (GtkWidget *vterm)
 	{
 		GtkLabel *pLabel = pTabWidgetList->data;
 		const gchar *cCurrentName = gtk_label_get_label (pLabel);
+		#if GTK_CHECK_VERSION (3, 4, 0)
+		GdkRGBA color;
+		#else
 		GdkColor color;
+		#endif
 		gboolean bColorSet = FALSE;
 		gchar *cUsefulLabel = _get_label_and_color (cCurrentName, &color, &bColorSet);
 		
@@ -164,7 +173,11 @@ void terminal_rename_tab (GtkWidget *vterm)
 		{
 			if (bColorSet)
 			{
+				#if GTK_CHECK_VERSION (3, 4, 0)
+				gchar *cColor = gdk_rgba_to_string (&color);
+				#else
 				gchar *cColor = gdk_color_to_string (&color);
+				#endif
 				gchar *cNewColoredName = g_strdup_printf ("<span color='%s'>%s</span>", cColor, cNewName);
 				gtk_label_set_markup (pLabel, cNewColoredName);
 				g_free (cNewColoredName);
@@ -180,12 +193,30 @@ void terminal_rename_tab (GtkWidget *vterm)
 	}
 }
 
+#if GTK_CHECK_VERSION (3, 4, 0) // now we have a GtkColorChooserDialog which impliments GtkColorChooser
+static void _set_color (GtkDialog *pColorSelection, gint iAnswer, GtkLabel *pLabel)
+{
+	if (iAnswer != GTK_RESPONSE_OK)
+		return gtk_widget_destroy (GTK_WIDGET (pColorSelection));
+
+	GdkRGBA color;
+	gtk_color_chooser_get_rgba (GTK_COLOR_CHOOSER (pColorSelection), &color);
+	gtk_widget_destroy (GTK_WIDGET (pColorSelection)); // we can close the dialog.
+
+	/* 'gdk_rgba_to_string' returns a string like that: 'rgb(r, g, b)'
+	 * but it's not supported by span's color specification...
+	 */
+	gchar *cColor = g_strdup_printf ("#%X%X%X",
+		(guint) (color.red * 65535),
+		(guint) (color.green * 65535),
+		(guint) (color.blue * 65535));
+#else
 static void _set_color (GtkColorSelection *pColorSelection, GtkLabel *pLabel)
 {
 	GdkColor color;
 	gtk_color_selection_get_current_color (pColorSelection, &color);
-	
 	gchar *cColor = gdk_color_to_string (&color);
+#endif
 	
 	const gchar *cCurrentLabel = gtk_label_get_text (pLabel);  // recupere le texte sans les balises pango.
 	//gchar *cUsefulLabel = _get_label_and_color (cCurrentLabel, NULL, NULL);
@@ -212,27 +243,41 @@ void terminal_change_color_tab (GtkWidget *vterm)
 	{
 		GtkLabel *pLabel = pTabWidgetList->data;
 		
+		#if GTK_CHECK_VERSION (3, 4, 0)
+		GtkWidget *pColorDialog = gtk_color_chooser_dialog_new (D_("Select a color"), NULL);
+		#else
 		GtkWidget *pColorDialog = gtk_color_selection_dialog_new (D_("Select a color"));
 		GtkWidget *colorsel = gtk_color_selection_dialog_get_color_selection ((GtkColorSelectionDialog *) pColorDialog);
-		
+		#endif
+
 		const gchar *cCurrentLabel = gtk_label_get_text (pLabel);
+		#if GTK_CHECK_VERSION (3, 4, 0)
+		GdkRGBA color;
+		#else
 		GdkColor color;
+		#endif
 		gboolean bColorSet = FALSE;
 		gchar *cUsefulLabel = _get_label_and_color (cCurrentLabel, &color, &bColorSet);
 		if (bColorSet)
 		{
-			
+			#if GTK_CHECK_VERSION (3, 4, 0)
+			gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (pColorDialog), &color);
+			#else
 			gtk_color_selection_set_current_color (GTK_COLOR_SELECTION (colorsel), &color);
+			#endif
 		}
-		
+
+		#if GTK_CHECK_VERSION (3, 4, 0)
+		gtk_color_chooser_set_use_alpha (GTK_COLOR_CHOOSER (pColorDialog), FALSE);
+		g_signal_connect (pColorDialog, "response", G_CALLBACK (_set_color), pLabel);
+		#else
 		gtk_color_selection_set_has_opacity_control (GTK_COLOR_SELECTION (colorsel), FALSE);
 		g_signal_connect (colorsel, "color-changed", G_CALLBACK (_set_color), pLabel);
+		#endif
 		#if (GTK_MAJOR_VERSION < 3)
 		gtk_widget_hide (((GtkColorSelectionDialog *) pColorDialog)->cancel_button);
 		gtk_widget_hide (((GtkColorSelectionDialog *) pColorDialog)->help_button);
 		g_signal_connect_swapped (((GtkColorSelectionDialog *) pColorDialog)->ok_button, "clicked", G_CALLBACK (gtk_widget_destroy), pColorDialog);
-		#else
-		/// TODO: alternative for GTK3?...
 		#endif
 		
 		gtk_window_present (GTK_WINDOW (pColorDialog));
