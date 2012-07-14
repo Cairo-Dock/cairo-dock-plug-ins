@@ -364,7 +364,7 @@ void cd_clock_clear_theme (CairoDockModuleInstance *myApplet, gboolean bClearAll
 		{
 			if (myData.pSvgHandles[i] != NULL)
 			{
-				rsvg_handle_free (myData.pSvgHandles[i]);
+				g_object_unref (myData.pSvgHandles[i]);
 				myData.pSvgHandles[i] = NULL;
 			}
 		}

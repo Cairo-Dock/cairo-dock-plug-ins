@@ -904,11 +904,20 @@ gboolean vfs_backend_eject_drive (const gchar *cURI)
 	GDrive *pDrive = _cd_find_drive_from_name (cDriveName);
 	if (pDrive != NULL)
 	{
+		#if GLIB_CHECK_VERSION (2, 22, 0)
+		g_drive_eject_with_operation (pDrive,
+			G_MOUNT_UNMOUNT_NONE,
+			NULL,
+			NULL,
+			NULL,
+			NULL);
+		#else
 		g_drive_eject (pDrive,
 			G_MOUNT_UNMOUNT_NONE,
 			NULL,
 			NULL,
 			NULL);
+		#endif
 	}
 	//g_object_unref (pDrive);
 	//g_free (cDriveName);
@@ -930,9 +939,17 @@ static void _vfs_backend_mount_callback (gpointer pObject, GAsyncResult *res, gp
 		bSuccess = (g_file_mount_mountable_finish (G_FILE (pObject), res, &erreur) != NULL);
 		//bSuccess = (g_volume_mount_finish (G_VOLUME (pObject), res, &erreur));
 	else if (GPOINTER_TO_INT (data[1]) == 0)
+		#if GLIB_CHECK_VERSION (2, 22, 0)
+		bSuccess = g_mount_unmount_with_operation_finish (G_MOUNT (pObject), res, &erreur);
+		#else
 		bSuccess = g_mount_unmount_finish (G_MOUNT (pObject), res, &erreur);
+		#endif
 	else
+		#if GLIB_CHECK_VERSION (2, 22, 0)
+		bSuccess = g_mount_eject_with_operation_finish (G_MOUNT (pObject), res, &erreur);
+		#else
 		bSuccess = g_mount_eject_finish (G_MOUNT (pObject), res, &erreur);
+		#endif
 	if (erreur != NULL)
 	{
 		cd_warning ("gnome-integration : %s", erreur->message);
@@ -1000,18 +1017,36 @@ void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCall
 	data[2] = g_mount_get_name (pMount);
 	data[3] = g_strdup (cURI);
 	data[4] = user_data;
-	if (bCanEject)
+		if (bCanEject)
+		#if GLIB_CHECK_VERSION (2, 22, 0)
+		g_mount_eject_with_operation (pMount,
+			G_MOUNT_UNMOUNT_NONE,
+			NULL,
+			NULL,
+			(GAsyncReadyCallback) _vfs_backend_mount_callback,
+			data);
+		#else
 		g_mount_eject (pMount,
 			G_MOUNT_UNMOUNT_NONE,
 			NULL,
 			(GAsyncReadyCallback) _vfs_backend_mount_callback,
 			data);
+		#endif
 	else
-		g_mount_unmount (pMount,
-			G_MOUNT_UNMOUNT_NONE ,
+		#if GLIB_CHECK_VERSION (2, 22, 0)
+		g_mount_unmount_with_operation (pMount,
+			G_MOUNT_UNMOUNT_NONE,
+			NULL,
 			NULL,
 			(GAsyncReadyCallback) _vfs_backend_mount_callback,
 			data);
+		#else
+		g_mount_unmount (pMount,
+			G_MOUNT_UNMOUNT_NONE,
+			NULL,
+			(GAsyncReadyCallback) _vfs_backend_mount_callback,
+			data);
+		#endif
 }
 
 
