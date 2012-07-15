@@ -39,12 +39,6 @@ typedef enum {
 	POWER_MANAGER_NB_QUICK_INFO_TYPE
   } MyAppletQuickInfoType;
 
-typedef enum {
-	POWER_MANAGER_EFFECT_NONE = 0,
-	POWER_MANAGER_EFFECT_ZOOM,
-	POWER_MANAGER_EFFECT_TRANSPARENCY,
-	POWER_MANAGER_EFFECT_BAR,
-	} MyAppletEffect;
 
 typedef enum {
 	POWER_MANAGER_CHARGE_CRITICAL = 0,
@@ -72,7 +66,7 @@ struct _AppletConfig {
 	gboolean lowBatteryWitness;
 	gboolean criticalBatteryWitness;
 	gint lowBatteryValue;
-	const gchar *cGThemePath;
+	gchar *cGThemePath;
 	gchar *cSoundPath[POWER_MANAGER_NB_CHARGE_LEVEL];
 	
 	gdouble fLastDischargeMeanRate;
@@ -82,7 +76,6 @@ struct _AppletConfig {
 	gchar *cUserChargeIconName;
 	gchar *cEmblemIconName;
 	gboolean bHideNotOnBattery;
-	MyAppletEffect iEffect;
 } ;
 
 
@@ -97,7 +90,9 @@ typedef struct {
 	} CDSharedMemory;
 
 struct _AppletData {
-	CairoDockTask *pTask;
+	CairoDockTask *pTask;  // async task to find the available backend (launched on startup)
+	
+	// UPower
 	#ifdef CD_UPOWER_AVAILABLE
 	UpClient *pUPowerClient;
 	UpDevice *pBatteryDevice;
@@ -105,10 +100,15 @@ struct _AppletData {
 	gpointer pUPowerClient;  // will stay NULL.
 	gpointer pBatteryDevice;  // will stay NULL.
 	#endif
-	gchar *cBatteryStateFilePath;
-	gboolean bProcAcpiFound;
-	gboolean bSysClassFound;
+	gint iSignalID;  // SID for the "battery properties changed" signal of the UPower battery device
 	
+	// ACPI
+	gchar *cBatteryStateFilePath;  // path to the ACPI file
+	gboolean bProcAcpiFound;  // TRUE if in /proc/acpi (old format)
+	gboolean bSysClassFound;  // TRUE if in /sys/class (new format)
+	gint checkLoop;  // SID of the check loop is no UPower
+	
+	// Properties
 	gchar *cTechnology;
 	gchar *cVendor;
 	gchar *cModel;
@@ -123,10 +123,7 @@ struct _AppletData {
 	gboolean bPrevOnBattery;
 	gboolean bIsHidden;
 	
-	cairo_surface_t *pSurfaceBattery;
-	cairo_surface_t *pSurfaceCharge;
 	gint iCapacity;
-	gint checkLoop;
 	
 	gdouble fChargeMeanRate;
 	gint iNbChargeMeasures;
@@ -138,9 +135,7 @@ struct _AppletData {
 	gint iStatTime;
 	gint iStatTimeCount;
 	
-	///CairoEmblem *pEmblem;
-
-	gint iSignalID;
+	gint iOnBatteryImage;  // -1 = no image yet, 0 = charging, 1 = on battery
 	} ;
 
 

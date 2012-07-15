@@ -38,57 +38,14 @@ CD_APPLET_DEFINITION (N_("PowerManager"),
 	"Necropotame (Adrien Pilleboue) and Fabounet")
 
 
-static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
-{
-	if (myConfig.iDisplayType == CD_POWERMANAGER_ICONS)
-		return;
-
-	CairoDataRendererAttribute *pRenderAttr = NULL;  // attributes for the global data-renderer.
-	CairoGaugeAttribute aGaugeAttr;  // gauge attributes.
-	CairoGraphAttribute aGraphAttr;  // graph attributes.
-	if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE)
-	{
-		memset (&aGaugeAttr, 0, sizeof (CairoGaugeAttribute));
-		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&aGaugeAttr);
-		pRenderAttr->cModelName = "gauge";
-		aGaugeAttr.cThemePath = myConfig.cGThemePath;
-	}
-	else if (myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)
-	{
-		memset (&aGraphAttr, 0, sizeof (CairoGraphAttribute));
-		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&aGraphAttr);
-		pRenderAttr->cModelName = "graph";
-		pRenderAttr->iMemorySize = (myIcon->fWidth > 1 ? myIcon->fWidth : 32);  // fWidth peut etre <= 1 en mode desklet au chargement.
-		aGraphAttr.iType = myConfig.iGraphType;
-		aGraphAttr.iRadius = 10;
-		aGraphAttr.fHighColor = myConfig.fHigholor;
-		aGraphAttr.fLowColor = myConfig.fLowColor;
-		memcpy (aGraphAttr.fBackGroundColor, myConfig.fBgColor, 4*sizeof (double));
-	}
-
-	if (myConfig.quickInfoType != 0)
-	{
-		pRenderAttr->bWriteValues = TRUE;
-		pRenderAttr->format_value = (CairoDataRendererFormatValueFunc)cd_powermanager_format_value;
-		pRenderAttr->pFormatData = myApplet;
-	}
-	if (! bReload)
-		CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
-	else
-		CD_APPLET_RELOAD_MY_DATA_RENDERER (pRenderAttr);
-}
-
-
 CD_APPLET_INIT_BEGIN
 	if (myDesklet)
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 	}
-
-	myData.bIsHidden = FALSE;
-
-	_set_data_renderer (myApplet, FALSE);
+	
+	///_set_data_renderer (myApplet);
 	
 	cd_powermanager_start ();
 	
@@ -103,6 +60,7 @@ CD_APPLET_STOP_BEGIN
 	
 	cairo_dock_discard_task (myData.pTask);
 	
+	// stop UPower monitoring
 	if (myData.pUPowerClient != NULL)
 	{
 		g_object_unref (myData.pUPowerClient);
@@ -115,6 +73,7 @@ CD_APPLET_STOP_BEGIN
 		g_object_unref (myData.pBatteryDevice);  // remove the ref we took on the device. it may or not destroy the object, that's why we disconnected manually the signal above.
 	}
 	
+	// stop ACPI check loop
 	if (myData.checkLoop != 0)
 	{
 		g_source_remove (myData.checkLoop);
@@ -133,34 +92,43 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 		}
 		
-		_set_data_renderer (myApplet, TRUE);
+		// handle options that may have changed
+		///_set_data_renderer (myApplet);
 		
 		cd_powermanager_change_loop_frequency (myConfig.iCheckInterval);
+		
+		if (myDock)
+		{
+			if (myConfig.bHideNotOnBattery && ! myData.bOnBattery)
+			{ // hide the icon when not on battery and if needed
+				cairo_dock_detach_icon_from_dock (myIcon, myDock);
+				myData.bIsHidden = TRUE;
+			}
+			else if (myData.bIsHidden)
+			{
+				cairo_dock_insert_icon_in_dock (myIcon, myDock, CAIRO_DOCK_ANIMATE_ICON);
+				///cairo_dock_redraw_container (CAIRO_CONTAINER (myDock));
+				myData.bIsHidden = FALSE;
+			}
+		}
+		
+		// force the update of the icon
+		myData.bPrevOnBattery = ! myData.bOnBattery;
+		myData.iPrevPercentage = -1;
+		myData.iPrevTime = -1;
+		CD_APPLET_REMOVE_MY_DATA_RENDERER;
+		update_icon();
 	}
 	else
 	{
-		CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
 		if (myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)
 			CD_APPLET_SET_MY_DATA_RENDERER_HISTORY_TO_MAX;
-	}
-
-	if (myDock)
-	{
-		if (myConfig.bHideNotOnBattery && ! myData.bOnBattery)
-		{ // hide the icon when not on battery and if needed
-			cairo_dock_detach_icon_from_dock (myIcon, myDock);
-			myData.bIsHidden = TRUE;
-		}
-		else if (myData.bIsHidden)
-		{
-			cairo_dock_insert_icon_in_dock (myIcon, myDock, CAIRO_DOCK_ANIMATE_ICON);
-			///cairo_dock_redraw_container (CAIRO_CONTAINER (myDock));
-			myData.bIsHidden = FALSE;
-		}
+		if (myData.bBatteryPresent && ! myData.bOnBattery)
+			CD_APPLET_ADD_OVERLAY_ON_MY_ICON (myConfig.cEmblemIconName ? myConfig.cEmblemIconName : MY_APPLET_SHARE_DATA_DIR"/charge.svg", CAIRO_OVERLAY_MIDDLE);
 	}
 	
 	//\_______________ On redessine notre icone.
-	if (myData.cBatteryStateFilePath || myData.pUPowerClient != NULL)
+	/**if (myData.cBatteryStateFilePath || myData.pUPowerClient != NULL)
 	{
 		if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE || myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)  // On recharge la jauge.
 		{
@@ -179,8 +147,7 @@ CD_APPLET_RELOAD_BEGIN
 		myData.iPrevPercentage = -1;
 		myData.iPrevTime = -1;
 		update_icon();
-
 	}
 	else  // sinon on signale par l'icone appropriee qu'aucune donnee n'est  accessible.
-		CD_APPLET_SET_IMAGE_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/sector.svg");
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/sector.svg");*/
 CD_APPLET_RELOAD_END

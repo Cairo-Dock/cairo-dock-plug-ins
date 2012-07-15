@@ -29,15 +29,63 @@ on battery -> gauge + %, no emblem, alert
 on sector -> gauge + %, on-sector emblem, alert
 */
 
+static void _set_data_renderer (CairoDockModuleInstance *myApplet)
+{
+	CairoDataRendererAttribute *pRenderAttr = NULL;  // generic attributes of the data-renderer.
+	switch (myConfig.iDisplayType)
+	{
+		case CD_POWERMANAGER_GAUGE:
+		{
+			CairoGaugeAttribute *pGaugeAttr = g_new0 (CairoGaugeAttribute, 1);
+			pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (pGaugeAttr);
+			pRenderAttr->cModelName = "gauge";
+			pGaugeAttr->cThemePath = myConfig.cGThemePath;
+		}
+		break;
+		case CD_POWERMANAGER_GRAPH:
+		{
+			CairoGraphAttribute *pGraphAttr = g_new0 (CairoGraphAttribute, 1);
+			pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (pGraphAttr);
+			pRenderAttr->cModelName = "graph";
+			pRenderAttr->iMemorySize = (myIcon->fWidth > 1 ? myIcon->fWidth : 32);  // fWidth peut etre <= 1 en mode desklet au chargement.
+			pGraphAttr->iType = myConfig.iGraphType;
+			pGraphAttr->iRadius = 10;
+			pGraphAttr->fHighColor = myConfig.fHigholor;
+			pGraphAttr->fLowColor = myConfig.fLowColor;
+			memcpy (pGraphAttr->fBackGroundColor, myConfig.fBgColor, 4*sizeof (double));
+		}
+		break;
+		case CD_POWERMANAGER_ICONS:
+		{
+			myData.iOnBatteryImage = -1;  // we'll set the image when we know the current state.
+			CairoProgressBarAttribute *pBarAttr = g_new0 (CairoProgressBarAttribute, 1);
+			pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (pBarAttr);
+			pRenderAttr->cModelName = "progressbar";
+		}
+		break;
+		
+		default:
+		return;
+	}
+	
+	if (myConfig.quickInfoType != 0)
+	{
+		pRenderAttr->bWriteValues = TRUE;
+		pRenderAttr->format_value = (CairoDataRendererFormatValueFunc)cd_powermanager_format_value;
+		pRenderAttr->pFormatData = myApplet;
+	}
+	
+	CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
+	g_free (pRenderAttr);
+}
+
+
 void update_icon (void)
 {
-	gboolean bNeedRedraw = FALSE;
 	cd_debug ("%s (on battery: %d -> %d; time:%.1f -> %.1f ; charge:%.1f -> %.1f)", __func__, myData.bPrevOnBattery, myData.bOnBattery, (double)myData.iPrevTime, (double)myData.iTime, (double)myData.iPrevPercentage, (double)myData.iPercentage);
-
-	gboolean bNoInformation = myData.cBatteryStateFilePath == NULL && myData.pUPowerClient == NULL;
 	
 	// hide the icon when not on battery or no information available (e.g. with a desktop)
-	if (myConfig.bHideNotOnBattery && myDock && (! myData.bOnBattery || bNoInformation))
+	if (myConfig.bHideNotOnBattery && myDock && (! myData.bOnBattery))
 	{
 		if (! myData.bIsHidden)
 		{ // we remove the icon
@@ -55,113 +103,122 @@ void update_icon (void)
 		myData.bIsHidden = FALSE;
 	}
 
-	// no information available, draw a default icon.
-	if (bNoInformation)
+	// no information available or no battery, draw a default icon.
+	if (! myData.bBatteryPresent)
 	{
+		CD_APPLET_REMOVE_MY_DATA_RENDERER;
 		CD_APPLET_SET_IMAGE_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/sector.svg");
 		CD_APPLET_REDRAW_MY_ICON;
 		return;
 	}
-
-	// on prend en compte la nouvelle charge.
-	if (myData.bPrevOnBattery != myData.bOnBattery || myData.iPrevPercentage != myData.iPercentage || myData.iTime != myData.iPrevTime)
+	
+	if (cairo_dock_get_icon_data_renderer (myIcon) == NULL)
+		_set_data_renderer (myApplet);
+	
+	
+	gboolean bChanged = (myData.bPrevOnBattery != myData.bOnBattery || myData.iPrevPercentage != myData.iPercentage || myData.iTime != myData.iPrevTime);
+	
+	if (bChanged || myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)  // graphs need to be updated each time, even if there is no change.
 	{
-		// on redessine l'icone.
-		if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE || myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)
+		// update the icon representation
+		if (myConfig.iDisplayType == CD_POWERMANAGER_ICONS)  // set the icon if needed
 		{
-			double fPercent;
-			if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE && ! myData.bBatteryPresent)
-				fPercent = CAIRO_DATA_RENDERER_UNDEF_VALUE;
-			else
-				fPercent = (double) myData.iPercentage / 100.;
-			CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&fPercent);
-			bNeedRedraw = FALSE;
-		}
-		else if (myConfig.iDisplayType == CD_POWERMANAGER_ICONS)
-		{
-			cd_powermanager_draw_icon_with_effect (myData.bOnBattery);
-			bNeedRedraw = FALSE;
-		}
-		
-		// add or remove the charge overlay if the 'on_battery' status has changed.
-		if (myData.bPrevOnBattery != myData.bOnBattery)
-		{
-			if (! myData.bOnBattery)
+			if (myData.iOnBatteryImage != myData.bOnBattery)
 			{
-				CD_APPLET_ADD_OVERLAY_ON_MY_ICON (myConfig.cEmblemIconName ? myConfig.cEmblemIconName : MY_APPLET_SHARE_DATA_DIR"/charge.svg", CAIRO_OVERLAY_MIDDLE);
-			}
-			else
-			{
-				CD_APPLET_REMOVE_OVERLAY_ON_MY_ICON (CAIRO_OVERLAY_MIDDLE);
+				if (myData.bOnBattery)
+					CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserBatteryIconName, "default-battery.svg");
+				else
+					CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cUserChargeIconName, "default-charge.svg");
+				myData.iOnBatteryImage = myData.bOnBattery;
 			}
 		}
-		
-		// on declenche les alarmes.
-		if (myData.bOnBattery)
-		{
-			// Alert when battery charge goes under a configured value in %
-			if (myData.iPrevPercentage > myConfig.lowBatteryValue && myData.iPercentage <= myConfig.lowBatteryValue)
-			{
-				cd_powermanager_alert(POWER_MANAGER_CHARGE_LOW);
-				if (myConfig.cSoundPath[POWER_MANAGER_CHARGE_LOW] != NULL)
-					cairo_dock_play_sound (myConfig.cSoundPath[POWER_MANAGER_CHARGE_LOW]);
-			}
-			// Alert when battery charge is under 4%
-			if (myData.iPrevPercentage > 4 && myData.iPercentage <= 4)
-			{
-				cd_powermanager_alert (POWER_MANAGER_CHARGE_CRITICAL);
-				if (myConfig.cSoundPath[POWER_MANAGER_CHARGE_CRITICAL] != NULL)
-					cairo_dock_play_sound (myConfig.cSoundPath[POWER_MANAGER_CHARGE_CRITICAL]);
-			}
-		}
+		// render the value
+		double fPercent;
+		if (! myData.bBatteryPresent)
+			fPercent = CAIRO_DATA_RENDERER_UNDEF_VALUE;
 		else
-		{
-			// Alert when battery is charged
-			if(myData.iPrevPercentage > 0 && myData.iPrevPercentage < 100 && myData.iPercentage == 100)  // the first condition is to prevent the dialog on startup.
-				cd_powermanager_alert (POWER_MANAGER_CHARGE_FULL);
-		}
+			fPercent = (double) myData.iPercentage / 100.;
+		CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&fPercent);
 		
-		// update the icon's label.
-		if (myConfig.defaultTitle == NULL || *myConfig.defaultTitle == '\0')
+		if (bChanged)
 		{
-			if (! myData.bOnBattery && myData.iPercentage > 99.9)
+			// add or remove the charge overlay if the 'on_battery' status has changed.
+			if (myData.bPrevOnBattery != myData.bOnBattery)
 			{
-				CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s (%d%%)",
-					D_("Battery charged"),
-					(int)myData.iPercentage);
-			}
-			else
-			{
-				gchar cFormatBuffer[21];
-				int iBufferLength = 20;
-				if (myData.iTime != 0)
+				if (! myData.bOnBattery)
 				{
-					int time = myData.iTime;
-					int hours = time / 3600;
-					int minutes = (time % 3600) / 60;
-					if (hours != 0)
-						snprintf (cFormatBuffer, iBufferLength, "%dh%02d", hours, abs (minutes));
-					else
-						snprintf (cFormatBuffer, iBufferLength, "%dmn", minutes);
+					CD_APPLET_ADD_OVERLAY_ON_MY_ICON (myConfig.cEmblemIconName ? myConfig.cEmblemIconName : MY_APPLET_SHARE_DATA_DIR"/charge.svg", CAIRO_OVERLAY_MIDDLE);
 				}
 				else
 				{
-					strncpy (cFormatBuffer, "-:--", iBufferLength);
+					CD_APPLET_REMOVE_OVERLAY_ON_MY_ICON (CAIRO_OVERLAY_MIDDLE);
 				}
-				CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s: %s (%d%%)",
-					myData.bOnBattery ? D_("Time before empty") : D_("Time before full"),
-					cFormatBuffer,
-					(int)myData.iPercentage);
 			}
+			
+			// trigger alarms.
+			if (myData.bOnBattery)
+			{
+				// Alert when battery charge goes under a configured value in %
+				if (myData.iPrevPercentage > myConfig.lowBatteryValue && myData.iPercentage <= myConfig.lowBatteryValue)
+				{
+					cd_powermanager_alert(POWER_MANAGER_CHARGE_LOW);
+					if (myConfig.cSoundPath[POWER_MANAGER_CHARGE_LOW] != NULL)
+						cairo_dock_play_sound (myConfig.cSoundPath[POWER_MANAGER_CHARGE_LOW]);
+				}
+				// Alert when battery charge is under 4%
+				if (myData.iPrevPercentage > 4 && myData.iPercentage <= 4)
+				{
+					cd_powermanager_alert (POWER_MANAGER_CHARGE_CRITICAL);
+					if (myConfig.cSoundPath[POWER_MANAGER_CHARGE_CRITICAL] != NULL)
+						cairo_dock_play_sound (myConfig.cSoundPath[POWER_MANAGER_CHARGE_CRITICAL]);
+				}
+			}
+			else
+			{
+				// Alert when battery is charged
+				if(myData.iPrevPercentage > 0 && myData.iPrevPercentage < 100 && myData.iPercentage == 100)  // the first condition is to prevent the dialog on startup.
+					cd_powermanager_alert (POWER_MANAGER_CHARGE_FULL);
+			}
+			
+			// update the icon's label.
+			if (myConfig.defaultTitle == NULL || *myConfig.defaultTitle == '\0')
+			{
+				if (! myData.bOnBattery && myData.iPercentage > 99.9)
+				{
+					CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s (%d%%)",
+						D_("Battery charged"),
+						(int)myData.iPercentage);
+				}
+				else
+				{
+					gchar cFormatBuffer[21];
+					int iBufferLength = 20;
+					if (myData.iTime != 0)
+					{
+						int time = myData.iTime;
+						int hours = time / 3600;
+						int minutes = (time % 3600) / 60;
+						if (hours != 0)
+							snprintf (cFormatBuffer, iBufferLength, "%dh%02d", hours, abs (minutes));
+						else
+							snprintf (cFormatBuffer, iBufferLength, "%dmn", minutes);
+					}
+					else
+					{
+						strncpy (cFormatBuffer, "-:--", iBufferLength);
+					}
+					CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s: %s (%d%%)",
+						myData.bOnBattery ? D_("Time before empty") : D_("Time before full"),
+						cFormatBuffer,
+						(int)myData.iPercentage);
+				}
+			}
+			
+			myData.bPrevOnBattery = myData.bOnBattery;
+			myData.iPrevPercentage = myData.iPercentage;
+			myData.iPrevTime = myData.iTime;
 		}
-		
-		myData.bPrevOnBattery = myData.bOnBattery;
-		myData.iPrevPercentage = myData.iPercentage;
-		myData.iPrevTime = myData.iTime;
 	}
-	
-	if (bNeedRedraw)
-		CD_APPLET_REDRAW_MY_ICON;
 }
 
 gchar *get_hours_minutes (int iTimeInSeconds)
@@ -226,10 +283,6 @@ void cd_powermanager_bubble (void)
 		{
 			g_string_append_printf (sInfo, "\n%s: %s %s", D_("Model"), myData.cVendor ? myData.cVendor : "", myData.cModel ? myData.cModel : "");
 		}
-		/*if (0&&myData.cTechnology != NULL) // if (0 && (...)) ??? :)
-		{
-			g_string_append_printf (sInfo, "\n%s: %s", D_("Technology"), myData.cTechnology);
-		}*/
 		if (myData.fMaxAvailableCapacity != 0)
 		{
 			g_string_append_printf (sInfo, "\n%s: %d%%", D_("Maximum capacity"), (int)myData.fMaxAvailableCapacity);
@@ -287,61 +340,6 @@ gboolean cd_powermanager_alert (MyAppletCharge alert)
 	g_free (hms);
 	g_string_free (sInfo, TRUE);
 	return FALSE;
-}
-
-
-void cd_powermanager_draw_icon_with_effect (gboolean bOnBattery)
-{
-	if (bOnBattery && myData.pSurfaceBattery == NULL)
-	{
-		gchar *cImagePath;
-		if (myConfig.cUserBatteryIconName == NULL)
-			cImagePath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/default-battery.svg");
-		else
-			cImagePath = cairo_dock_generate_file_path (myConfig.cUserBatteryIconName);
-		
-		myData.pSurfaceBattery = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
-		g_free (cImagePath);
-	}
-	else if (! bOnBattery && myData.pSurfaceCharge == NULL)
-	{
-		gchar *cImagePath;
-		if (myConfig.cUserChargeIconName == NULL)
-			cImagePath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/default-charge.svg");
-		else
-			cImagePath = cairo_dock_generate_file_path (myConfig.cUserChargeIconName);
-		
-		myData.pSurfaceCharge = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
-		g_free (cImagePath);
-	}
-	
-	cairo_surface_t *pSurface = (bOnBattery ? myData.pSurfaceBattery : myData.pSurfaceCharge);
-	
-	switch (myConfig.iEffect)
-	{
-		case POWER_MANAGER_EFFECT_NONE :
-			CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
-		break;
-		case POWER_MANAGER_EFFECT_ZOOM :
-			cairo_save (myDrawContext);
-			double fScale = .3 + .7 * myData.iPercentage / 100.;
-			CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ZOOM (pSurface, fScale);
-			cairo_restore (myDrawContext);
-		break;
-		case POWER_MANAGER_EFFECT_TRANSPARENCY :
-			cairo_save (myDrawContext);
-			double fAlpha = .3 + .7 * myData.iPercentage / 100.;
-			CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ALPHA (pSurface, fAlpha);
-			cairo_restore (myDrawContext);
-		break;
-		case POWER_MANAGER_EFFECT_BAR :
-			cairo_save (myDrawContext);
-			CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR (pSurface, myData.iPercentage * .01);
-			cairo_restore (myDrawContext);
-		break;
-		default :
-		break;
-	}
 }
 
 

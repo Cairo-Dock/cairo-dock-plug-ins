@@ -107,18 +107,18 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#l+[Gauge;Graph;Icons] Choose the style of the display: 
+#l+[Gauge;Graph;Icon with progress bar] Display style
 renderer = 0
 
 
-#X[Gauge;gtk-dialog-info]
+#X[Gauge;@shared_filesdatadir@/images/icon-gauge.png]
 frame_gauge=
 
-#h+[@gaugesdir@;gauges;gauges3;battery] Choose one of the available themes:/
+#h+[@gaugesdir@;gauges;gauges3;battery] Gauge theme/
 theme = Battery
 
 
-#X[Graph;gtk-dialog-info]
+#X[Graph;@shared_filesdatadir@/images/icon-graph.png]
 frame_graph=
 
 #l+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
@@ -136,35 +136,30 @@ low color = 1;1;0
 bg color = .5;.5;1.;.4
 
 
-#X[Icons;gtk-dialog-info]
+#X[Icons;@powermanagerdatadir@/icon.png]
 frame_icons=
 
-#S+ 'On-battery' icon filename:
-#{Leave empty to use the default icon.}
+#S+[Default] 'On-battery' icon filename:
 battery icon = 
-#S+ Icon's filename when on charge :
-#{Leave empty to use the default icon.}
+#S+[Default] Icon's filename when on charge :
 charge icon = 
-#l+[Nothing;Zoom;Transparency;Draw bar] Effect to apply on the icon according to the charge :
-effect=0
 
 
 #F[Parameters;gtk-preferences]
 frame_param =
 
-#i[20;180] Refresh time:
-#{in seconds.}
-check interval = 30
-
 #l+[Nothing;charge;Timelength] Information to display on the icon :
 quick-info_type=2
 
 #S+[Default] Emblem icon's filename when on charge:
-#{Leave empty to use the default icon.}
 emblem icon =
 
 #b Hide the icon when not on battery?
 hide not on battery = false
+
+#i[20;180] Refresh time:
+#{in seconds.}
+check interval = 30
 
 discharge rate = 0
 charge rate = 0

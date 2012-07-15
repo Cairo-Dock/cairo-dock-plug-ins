@@ -59,7 +59,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "high color", myConfig.fHigholor);
 	CD_CONFIG_GET_COLOR ("Configuration", "bg color", myConfig.fBgColor);
 	
-	myConfig.iEffect = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "effect", 0);
 	myConfig.cUserBatteryIconName = CD_CONFIG_GET_STRING ("Configuration", "battery icon");
 	myConfig.cUserChargeIconName = CD_CONFIG_GET_STRING ("Configuration", "charge icon");
 	myConfig.cEmblemIconName = CD_CONFIG_GET_STRING ("Configuration", "emblem icon");
@@ -68,7 +67,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	GString *sKeyName = g_string_new ("");
 	int i;
-	for (i = 0; i < POWER_MANAGER_NB_CHARGE_LEVEL; i ++) {
+	for (i = 0; i < POWER_MANAGER_NB_CHARGE_LEVEL; i ++)
+	{
 		g_string_printf (sKeyName, "sound_%d", i);
 		myConfig.cSoundPath[i] = CD_CONFIG_GET_STRING ("Configuration", sKeyName->str);
 	}
@@ -86,9 +86,11 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cUserChargeIconName);
 	g_free (myConfig.cNotificationAnimation);
 	g_free (myConfig.cEmblemIconName);
+	g_free (myConfig.cGThemePath);
 	
 	int i;
-	for (i = 0; i < POWER_MANAGER_NB_CHARGE_LEVEL; i ++) {
+	for (i = 0; i < POWER_MANAGER_NB_CHARGE_LEVEL; i ++)
+	{
 		g_free (myConfig.cSoundPath[i]);
 	}
 	
@@ -99,15 +101,10 @@ CD_APPLET_RESET_DATA_BEGIN
 
 	CD_APPLET_REMOVE_MY_DATA_RENDERER;
 	
-	cairo_surface_destroy (myData.pSurfaceBattery);
-	cairo_surface_destroy (myData.pSurfaceCharge);
-	
 	g_free (myData.cBatteryStateFilePath);
 
-	// g_free (myData.cTechnology); // can't be freed
+	g_free (myData.cTechnology);
 	g_free (myData.cVendor);
 	g_free (myData.cModel);
-	
-	///cairo_dock_free_emblem (myData.pEmblem);
 	
 CD_APPLET_RESET_DATA_END

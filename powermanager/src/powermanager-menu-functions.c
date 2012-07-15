@@ -31,7 +31,6 @@ CD_APPLET_ON_CLICK_BEGIN
 	cd_powermanager_bubble ();
 CD_APPLET_ON_CLICK_END
 
-/// a mettre dans les plug-ins d'integration.
 static void power_launch_cmd (GtkMenuItem *menu_item, const gchar *cCommand)
 {
 	GError *erreur = NULL;
@@ -61,7 +60,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		{
 			g_free (cResult);
 			cResult = cairo_dock_launch_command_sync ("which gnome-power-preferences");  // Gnome2
-			if (cResult != NULL && *cResult == '/')  /// TODO: other DE...
+			if (cResult != NULL && *cResult == '/')
 				cPowerPrefCmd = "gnome-power-preferences";
 		}  /// TODO: handle other DE ...
 		g_free (cResult);

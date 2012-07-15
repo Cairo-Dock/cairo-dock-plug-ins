@@ -223,7 +223,7 @@ static gboolean _update_stats_loop (void)
 
 void cd_powermanager_change_loop_frequency (gint iSeconds)
 {
-	if (myData.checkLoop != 0)  // la frequence peut avoir change.
+	if (myData.checkLoop != 0)
 	{
 		g_source_remove (myData.checkLoop);
 		myData.checkLoop = g_timeout_add_seconds (iSeconds, (GSourceFunc) _update_stats_loop, (gpointer) NULL);
