@@ -17,7 +17,6 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #include <string.h>
 #include <cairo-dock.h>
 
@@ -31,31 +30,31 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iCheckInterval = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "delay", 10);
 	myConfig.fSmoothFactor = CD_CONFIG_GET_DOUBLE ("Configuration", "smooth");
 	
-	GString *sKeyName = g_string_new ("");
-	int i;
-	for (i = 0; i < WIFI_NB_QUALITY; i ++) {
-		g_string_printf (sKeyName, "icon_%d", i);
-		myConfig.cUserImage[i] = CD_CONFIG_GET_STRING ("Configuration", sKeyName->str);
-	}
-	g_string_free (sKeyName, TRUE);
 	myConfig.cUserCommand = CD_CONFIG_GET_STRING ("Configuration", "command");
 	
-	myConfig.quickInfoType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "signal_type", 1);
+	myConfig.quickInfoType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "signal_type", WIFI_INFO_SIGNAL_STRENGTH_LEVEL);
 	
-	myConfig.iEffect = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "effect", 0);
 	myConfig.iDisplayType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "renderer", 0);
 	
 	myConfig.cGThemePath = CD_CONFIG_GET_GAUGE_THEME ("Configuration", "theme");
-	
-	//myConfig.fAlpha = CD_CONFIG_GET_DOUBLE ("Configuration", "watermark alpha");
-	//if (myConfig.fAlpha != 0)
-	//	myConfig.cWatermarkImagePath = CD_CONFIG_GET_FILE_PATH ("Configuration", "watermark image", MY_APPLET_ICON_FILE);
-	myConfig.bESSID	= CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "essid", TRUE);
 	
 	myConfig.iGraphType = CD_CONFIG_GET_INTEGER ("Configuration", "graphic type");
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "low color", myConfig.fLowColor);
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "high color", myConfig.fHigholor);
 	CD_CONFIG_GET_COLOR ("Configuration", "bg color", myConfig.fBgColor);
+	
+	if (! g_key_file_has_key (CD_APPLET_MY_KEY_FILE, "Configuration", "default_icon", NULL))  // new option -> get the previous "excellent" user icon
+	{
+		myConfig.cDefaultIcon = CD_CONFIG_GET_STRING ("Configuration", "icon_5");
+		g_key_file_set_string (CD_APPLET_MY_KEY_FILE, "Configuration", "default_icon", myConfig.cDefaultIcon?myConfig.cDefaultIcon:"");
+		myConfig.cNoSignalIcon = CD_CONFIG_GET_STRING ("Configuration", "icon_0");
+		g_key_file_set_string (CD_APPLET_MY_KEY_FILE, "Configuration", "no_signal_icon", myConfig.cDefaultIcon?myConfig.cDefaultIcon:"");
+	}
+	else
+	{
+		myConfig.cDefaultIcon = CD_CONFIG_GET_STRING ("Configuration", "default_icon");
+		myConfig.cNoSignalIcon = CD_CONFIG_GET_STRING ("Configuration", "no_signal_icon");
+	}
 CD_APPLET_GET_CONFIG_END
 
 
@@ -64,10 +63,6 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.defaultTitle);
 	g_free (myConfig.cUserCommand);
 	
-	int i;
-	for (i = 0; i < WIFI_NB_QUALITY; i ++)
-		g_free (myConfig.cUserImage[i]);
-	
 CD_APPLET_RESET_CONFIG_END
 
 
@@ -75,10 +70,6 @@ CD_APPLET_RESET_DATA_BEGIN
 	cairo_dock_free_task (myData.pTask);
 	
 	CD_APPLET_REMOVE_MY_DATA_RENDERER;
-	
-	int i;
-	for (i = 0; i < WIFI_NB_QUALITY; i ++)
-		cairo_surface_destroy (myData.pSurfaces[i]);
 	
 	g_free (myData.cESSID);
 	g_free (myData.cInterface);

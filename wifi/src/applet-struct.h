@@ -58,14 +58,12 @@ typedef enum _CDWifiDisplayType {
 
 struct _AppletConfig {
 	gchar *defaultTitle;
-	gchar *cUserImage[WIFI_NB_QUALITY];
+	gchar *cDefaultIcon;
+	gchar *cNoSignalIcon;
 	gchar *cGThemePath;
 	gchar *cUserCommand;
-	gchar *cWatermarkImagePath;
-	gdouble fAlpha;
 	
 	CDWifiInfoType quickInfoType;
-	CDWifiEffect iEffect;
 	CDWifiDisplayType iDisplayType;
 	
 	gint iCheckInterval;
@@ -75,8 +73,6 @@ struct _AppletConfig {
 	gdouble fHigholor[3];
 	gdouble fBgColor[4];
 	gdouble fSmoothFactor;
-	
-	gboolean bESSID;
 };
 
 struct _AppletData {
@@ -91,7 +87,6 @@ struct _AppletData {
 	// end of shared memory
 	gboolean bWirelessExt;
 	CairoDockTask *pTask;
-	cairo_surface_t *pSurfaces[WIFI_NB_QUALITY];
 };
 
 

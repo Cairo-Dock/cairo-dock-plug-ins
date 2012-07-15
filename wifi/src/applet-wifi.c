@@ -30,6 +30,32 @@
 #include "applet-draw.h"
 #include "applet-wifi.h"
 
+gchar *cairo_dock_launch_command_sync_stderr (const gchar *cCommand)
+{
+	gchar *standard_error=NULL;
+	gint exit_status=0;
+	GError *erreur = NULL;
+	gboolean r = g_spawn_command_line_sync (cCommand,
+		NULL,
+		&standard_error,
+		&exit_status,
+		&erreur);
+	if (erreur != NULL)
+	{
+		cd_warning (erreur->message);
+		g_error_free (erreur);
+		g_free (standard_error);
+		return NULL;
+	}
+	if (standard_error != NULL && *standard_error == '\0')
+	{
+		g_free (standard_error);
+		return NULL;
+	}
+	if (standard_error[strlen (standard_error) - 1] == '\n')
+		standard_error[strlen (standard_error) - 1] ='\0';
+	return standard_error;
+}
 
 #define _pick_string(cValueName, cValue) \
 	str = g_strstr_len (cOneInfopipe, -1, cValueName);\
@@ -74,12 +100,15 @@ void cd_wifi_get_data (gpointer data)
 	g_free (myData.cAccessPoint);
 	myData.cAccessPoint = NULL;
 	
-	/*myData.iPercent = g_random_int_range (0, 100);
+	/* for tests:
+	myData.iPercent = g_random_int_range (0, 100);
 	myData.iQuality = 5 * myData.iPercent/100;
 	myData.cInterface = g_strdup ("toto");
 	return;*/
 	
-	gchar *cResult = cairo_dock_launch_command_sync (MY_APPLET_SHARE_DATA_DIR"/wifi");
+	///gchar *cResult = cairo_dock_launch_command_sync (MY_APPLET_SHARE_DATA_DIR"/wifi");
+	gchar *cResult = cairo_dock_launch_command_sync_stderr ("iwconfig");  // iwconfig prints on stderr...
+	g_print ("cResult: %s\n", cResult);
 	if (cResult == NULL || *cResult == '\0')  // erreur a l'execution d'iwconfig (probleme de droit d'execution ou iwconfig pas installe) ou aucune interface wifi presente
 	{ 
 		g_free (cResult);

@@ -33,46 +33,25 @@ CD_APPLET_ON_CLICK_BEGIN
 CD_APPLET_ON_CLICK_END
 
 
-static void _wifi_recheck_wireless_extension (GtkMenuItem *menu_item, gpointer data) {
+static void _wifi_recheck_wireless_extension (GtkMenuItem *menu_item, gpointer data)
+{
 	cairo_dock_stop_task (myData.pTask);
 	cairo_dock_launch_task (myData.pTask);
 }
-static void _cd_wifi_show_config (GtkMenuItem *menu_item, gpointer data) {  /// a mettre dans les plug-ins d'integration.
-	if (myConfig.cUserCommand != NULL) {
+
+static void _cd_wifi_show_config (GtkMenuItem *menu_item, gpointer data)
+{
+	if (myConfig.cUserCommand != NULL)
+	{
 		cairo_dock_launch_command (myConfig.cUserCommand);
 		return;
 	}
 	
-	const gchar *cCommand = NULL;
-	/**if (g_iDesktopEnv == CAIRO_DOCK_GNOME || g_iDesktopEnv == CAIRO_DOCK_XFCE) {
-		int iMajor, iMinor, iMicro;
-		cairo_dock_get_gnome_version (&iMajor, &iMinor, &iMicro);
-		if (iMajor == 2 && iMinor < 22) {
-			cCommand = "gksu network-admin";
-		}
-		else {
-		  if (iMajor == 2 && iMinor > 22)
-		    cCommand = "nm-connection-editor";
-		  else {
-			  cCommand = "network-admin";
-			}
-		}
-	}
-	else if (g_iDesktopEnv == CAIRO_DOCK_KDE) { //Ajouter les lignes de KDE
-		//cCommand = 
-	}*/
-	cCommand = "nm-connection-editor";  // network-admin n'est plus present depuis Intrepid, et nm-connection-editor marche aussi sous KDE.
-	
+	const gchar *cCommand = "nm-connection-editor";  // network-admin n'est plus present depuis Intrepid, et nm-connection-editor marche aussi sous KDE.
 	cairo_dock_launch_command (cCommand);
 }
-CD_APPLET_ON_BUILD_MENU_BEGIN
-	if (! myData.bWirelessExt)
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Check for Wireless Extension"), GTK_STOCK_REFRESH, _wifi_recheck_wireless_extension, CD_APPLET_MY_MENU);
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Network Administration"), GTK_STOCK_PREFERENCES, _cd_wifi_show_config, CD_APPLET_MY_MENU);
-CD_APPLET_ON_BUILD_MENU_END
 
-
-static void toggle_wlan(void)
+static void toggle_wlan (void)
 {
 	DBusGProxy *dbus_proxy_nm = cairo_dock_create_new_system_proxy (
 			"org.freedesktop.NetworkManager",
@@ -101,8 +80,19 @@ static void toggle_wlan(void)
 	
 	g_object_unref (dbus_proxy_nm);
 }
+CD_APPLET_ON_BUILD_MENU_BEGIN
+	if (! myData.bWirelessExt)
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Check for Wireless Extension"), GTK_STOCK_REFRESH, _wifi_recheck_wireless_extension, CD_APPLET_MY_MENU);
+	else
+	{
+		gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Toggle wifi ON/OFF"), D_("middle-click"));
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, (myData.iQuality == WIFI_QUALITY_NO_SIGNAL ? GTK_STOCK_MEDIA_PLAY : GTK_STOCK_MEDIA_PAUSE), toggle_wlan, CD_APPLET_MY_MENU);
+		g_free (cLabel);
+	}
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Network Administration"), GTK_STOCK_PREFERENCES, _cd_wifi_show_config, CD_APPLET_MY_MENU);
+CD_APPLET_ON_BUILD_MENU_END
+
+
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	toggle_wlan ();
-	//cairo_dock_launch_task (myData.pTask);
-	//cairo_dock_remove_dialog_if_any (myIcon);
 CD_APPLET_ON_MIDDLE_CLICK_END

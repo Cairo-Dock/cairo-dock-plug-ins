@@ -27,49 +27,66 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINITION (N_("wifi"),
-	2, 0, 7,
+CD_APPLET_DEFINE_BEGIN ("wifi",
+	3, 0, 2,
 	CAIRO_DOCK_CATEGORY_APPLET_INTERNET,
 	N_("This applet shows you the signal strength of the first active wifi connection\n"
 	"Left-click to pop-up some info,"
 	"Middle-click to re-check immediately."),
-	"ChAnGFu (Rémy Robertson)");
+	"ChAnGFu (Rémy Robertson)")
+	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	CD_APPLET_ALLOW_EMPTY_TITLE
+	CD_APPLET_REDEFINE_TITLE (N_("Wifi"))
+CD_APPLET_DEFINE_END
 
 
 static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
 {
-	if (myConfig.iDisplayType == CD_WIFI_BAR)
-		return; /// TODO
-
-	CairoDataRendererAttribute *pRenderAttr = NULL;  // attributes for the global data-renderer.
-	CairoGaugeAttribute aGaugeAttr;  // gauge attributes.
-	CairoGraphAttribute aGraphAttr;  // graph attributes.
-	if (myConfig.iDisplayType == CD_WIFI_GAUGE)
+	CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs du data-renderer global.
+	switch (myConfig.iDisplayType)
 	{
-		memset (&aGaugeAttr, 0, sizeof (CairoGaugeAttribute));
-		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&aGaugeAttr);
-		pRenderAttr->cModelName = "gauge";
-		aGaugeAttr.cThemePath = myConfig.cGThemePath;
+		case CD_WIFI_GAUGE:
+		{
+			CairoGaugeAttribute attr;  // les attributs de la jauge.
+			memset (&attr, 0, sizeof (CairoGaugeAttribute));
+			pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+			pRenderAttr->cModelName = "gauge";
+			attr.cThemePath = myConfig.cGThemePath;
+		}
+		break;
+		case CD_WIFI_GRAPH:
+		{
+			CairoGraphAttribute attr;  // les attributs du graphe.
+			memset (&attr, 0, sizeof (CairoGraphAttribute));
+			pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+			pRenderAttr->cModelName = "graph";
+			int w, h;
+			CD_APPLET_GET_MY_ICON_EXTENT (&w, &h);
+			pRenderAttr->iMemorySize = (w > 1 ? w : 32);  // fWidth peut etre <= 1 en mode desklet au chargement.  // fWidht peut etre <= 1 en mode desklet au chargement.
+			attr.iType = myConfig.iGraphType;
+			attr.fHighColor = myConfig.fHigholor;
+			attr.fLowColor = myConfig.fLowColor;
+			memcpy (attr.fBackGroundColor, myConfig.fBgColor, 4*sizeof (double));
+		}
+		break;
+		case CD_WIFI_BAR:
+		{
+			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cDefaultIcon, "default.svg");
+			
+			CairoProgressBarAttribute attr;
+			memset (&attr, 0, sizeof (CairoProgressBarAttribute));
+			pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+			pRenderAttr->cModelName = "progressbar";
+		}
+		break;
+		default:
+		break;
 	}
-	else if (myConfig.iDisplayType == CD_WIFI_GRAPH)
+	if (pRenderAttr != NULL)
 	{
-		memset (&aGraphAttr, 0, sizeof (CairoGraphAttribute));
-		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&aGraphAttr);
-		pRenderAttr->cModelName = "graph";
-		int w, h;
-		CD_APPLET_GET_MY_ICON_EXTENT (&w, &h);
-		pRenderAttr->iMemorySize = (w > 1 ? w : 32);  // fWidth peut etre <= 1 en mode desklet au chargement.  // fWidht peut etre <= 1 en mode desklet au chargement.
-		aGraphAttr.iType = myConfig.iGraphType;
-		aGraphAttr.fHighColor = myConfig.fHigholor;
-		aGraphAttr.fLowColor = myConfig.fLowColor;
-		memcpy (aGraphAttr.fBackGroundColor, myConfig.fBgColor, 4*sizeof (double));
-	}
-	pRenderAttr->iLatencyTime = myConfig.iCheckInterval * 1000 * myConfig.fSmoothFactor;
-	//pRenderAttr->bWriteValues = TRUE;
-	if (! bReload)
+		pRenderAttr->iLatencyTime = myConfig.iCheckInterval * 1000 * myConfig.fSmoothFactor;
 		CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
-	else
-		CD_APPLET_RELOAD_MY_DATA_RENDERER (pRenderAttr);
+	}
 }
 
 CD_APPLET_INIT_BEGIN
@@ -108,15 +125,6 @@ CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
-	//\_______________ On recharge les donnees qui ont pu changer.
-	int i; // reset surfaces utilisateurs.
-	for (i = 0; i < WIFI_NB_QUALITY; i ++) {
-		if (myData.pSurfaces[i] != NULL) {
-			cairo_surface_destroy (myData.pSurfaces[i]);
-			myData.pSurfaces[i] = NULL;
-		}
-	}
-	
 	//\_______________ On relance avec la nouvelle config ou on redessine.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
@@ -137,11 +145,11 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else  // on redessine juste l'icone.
 	{
-		CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
+		///CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
 		if (myConfig.iDisplayType == CD_WIFI_GRAPH)
 			CD_APPLET_SET_MY_DATA_RENDERER_HISTORY_TO_MAX;
 		
-		myData.iQuality = -2;  // force le redessin.
+		/**myData.iQuality = -2;  // force le redessin.
 		if (! cairo_dock_task_is_running (myData.pTask))
 		{
 			if (myData.bWirelessExt)
@@ -152,6 +160,6 @@ CD_APPLET_RELOAD_BEGIN
 			{
 				cd_wifi_draw_no_wireless_extension ();
 			}
-		}
+		}*/
 	}
 CD_APPLET_RELOAD_END
