@@ -126,11 +126,15 @@ static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
 	{
 		// fetch the values we got on the device, and keep them up-to-date (we don't need the device itself).
 		_fetch_current_values (pSharedMemory->pBatteryDevice);
+
+		UpDeviceTechnology iTechnology;
 		
-		g_object_get (pSharedMemory->pBatteryDevice, "technology", &myData.cTechnology, NULL);
+		g_object_get (pSharedMemory->pBatteryDevice, "technology", &iTechnology, NULL);
 		g_object_get (pSharedMemory->pBatteryDevice, "vendor", &myData.cVendor, NULL);
 		g_object_get (pSharedMemory->pBatteryDevice, "model", &myData.cModel, NULL);
 		g_object_get (pSharedMemory->pBatteryDevice, "capacity", &myData.fMaxAvailableCapacity, NULL);
+
+		myData.cTechnology = g_strdup (up_device_technology_to_string (iTechnology));
 		
 		// keep our client and device.
 		myData.pUPowerClient = pSharedMemory->pUPowerClient;
