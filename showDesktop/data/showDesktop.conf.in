@@ -14,12 +14,10 @@ name =
 #v
 sep_display=
 
-#S+ Image filename:
-#{Leave empty to use the default one.}
+#S+[Default] Image filename:
 icon=user-desktop
 
-#S+ Image when the applet is active :
-#{Leave empty to use the same image.}
+#S+[Same image] Image when the applet is active :
 icon visible = 
 
 #j+[0;128] Desired icon size for this applet

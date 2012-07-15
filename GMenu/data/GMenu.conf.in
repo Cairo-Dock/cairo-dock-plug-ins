@@ -15,7 +15,6 @@ name =
 sep_display=
 
 #S+[Default] Image filename:
-#{Leave empty to use the default one.}
 icon=start-here
 
 #j+[0;128] Desired icon size for this applet
@@ -111,8 +110,7 @@ menu shortkey = <Control>F1
 #k Shortkey to show/hide the quick-launch dialog:
 quick launch shortkey = <Control>F2
 
-#s Command to use for configuring the menu:
-#{Leave empty to use the default one.}
+#s[Default] Command to use for configuring the menu:
 config menu =
 
 #F[Recent documents]

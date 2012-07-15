@@ -11,7 +11,7 @@ include ("${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules/GNUInstallDirs.cmake")
 ########### project ###############
 
 project ("cairo-dock-plugins")
-set (VERSION "3.0.99.alpha1")
+set (VERSION "3.0.99.alpha2")
 
 add_definitions (-std=c99 -Wextra -Wwrite-strings -Wuninitialized -Werror-implicit-function-declaration -Wstrict-prototypes) # removed for stable versions: -Wstrict-prototypes #-Wunreachable-code -Wno-unused-parameter -Wall
 if (NOT ${CMAKE_BUILD_TYPE})
@@ -132,6 +132,10 @@ pkg_check_modules (GLIB glib-2.0)
 	STRING (REGEX REPLACE "\\.[0-9]*" "" GLIB_MINOR "${GLIB_MINOR}") # 2.28 => 28
 	STRING (REGEX REPLACE ".*\\." "" GLIB_NANO "${GLIB_VERSION}") # 2.28.3 => 3
 	STRING (REGEX REPLACE "-.*" "" GLIB_NANO "${GLIB_NANO}")
+
+############# SHARED-FILES #################
+set (shared_filesdatadir "${pluginsdatadir}/shared-files")
+add_subdirectory (shared-files)
 
 ############# INDICATOR-APPLET #################
 message (STATUS "> Indicator-Applet:")
@@ -329,7 +333,7 @@ if (NOT "${enable-alsa-mixer}" STREQUAL "no")
 		set (MODULES_MISSING "${MODULES_MISSING} alsa")
 	else()
 		set (GETTEXT_ALSA_MIXER ${GETTEXT_PLUGINS})
-		set (VERSION_ALSA_MIXER "2.0.1")
+		set (VERSION_ALSA_MIXER "2.1.0")
 		set (PACKAGE_ALSA_MIXER "cd-AlsaMixer")
 		set (with_alsa "yes")
 		set (alsa_mixerdatadir "${pluginsdatadir}/AlsaMixer")
@@ -1028,10 +1032,6 @@ if ("${enable-scooby-do}" STREQUAL "yes")
 	add_subdirectory (Scooby-Do)
 endif()
 
-############# SHARED-FILES #################
-set (shared_filesdatadir "${pluginsdatadir}/shared-files")
-add_subdirectory (shared-files)
-
 ############# SHORTCUTS #################
 message (STATUS "> Shortcuts:")
 set (GETTEXT_SHORTCUTS ${GETTEXT_PLUGINS})
@@ -1231,7 +1231,7 @@ endif()
 ############# WIFI #################
 message (STATUS "> WiFi:")
 set (GETTEXT_WIFI ${GETTEXT_PLUGINS})
-set (VERSION_WIFI "1.2.11")
+set (VERSION_WIFI "1.3.0")
 set (PACKAGE_WIFI "cd-wifi")
 set (wifidatadir "${pluginsdatadir}/wifi")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/wifi/data/wifi.conf.in ${CMAKE_CURRENT_BINARY_DIR}/wifi/data/wifi.conf)

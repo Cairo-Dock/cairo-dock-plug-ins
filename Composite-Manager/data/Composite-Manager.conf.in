@@ -104,11 +104,9 @@ fg alpha = 1
 frame_style =
 
 #S+[Default] Image when composite is active:
-#{Leave empty to use the default one.}
 icon on = 
 
 #S+[Default] Image when composite is inactive:
-#{Leave empty to use the default one.}
 icon off = 
 
 

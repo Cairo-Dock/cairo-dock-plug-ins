@@ -15,7 +15,6 @@ name =
 sep_display=
 
 #S+[Default] Image filename:
-#{Leave empty to use the default one.}
 icon = 
 
 #j+[0;600] Desired icon size for this applet
@@ -98,8 +97,7 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#S+ Specify the xml file to be used :
-#{Leave empty to use the default one.
+#S+[Default] Specify the xml file to be used :
 xml_filepath =
 
 #[gtk-dialog-info]

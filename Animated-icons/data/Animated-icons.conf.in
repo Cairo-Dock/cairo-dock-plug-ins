@@ -65,7 +65,6 @@ frame_spot =
 spot image =
 
 #S+[Default] Image for the front spotlight:
-#{Leave empty to use the default one.}
 spot front image =
 
 #c Spot colour:

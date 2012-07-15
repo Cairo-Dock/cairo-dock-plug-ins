@@ -15,7 +15,6 @@ name =
 sep_display=
 
 #S+[Default] Image filename:
-#{Leave empty to use the default one.}
 icon = 
 
 #j+[0;400] Desired icon size for this applet
@@ -114,7 +113,6 @@ preserve ratio = true
 icon drawing = 0
 
 #S+[Default] Icon to use in expanded mode if wallpaper is not mapped:
-#{Leave empty to use the default one.}
 default icon =
 
 #C+ Background colour:

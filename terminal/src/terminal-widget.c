@@ -122,7 +122,7 @@ static gchar *_get_label_and_color (const gchar *cLabel, GdkColor *pColor, gbool
 		gchar *col_end = strchr (col+1, '\'');
 		if (col_end)
 		{
-			gchar *cColor = g_strndup (col, strlen (col) - strlen (col_end));
+			gchar *cColor = g_strndup (col, col_end - col);
 			#if GTK_CHECK_VERSION (3, 4, 0)
 			*bColorSet = gdk_rgba_parse (pColor, cColor);
 			#else

@@ -19,7 +19,6 @@ sep_display=
 view type = 3
 
 #S+[Default] Image filename:
-#{Leave empty to use the default one.}
 image file=folder
 
 icon =

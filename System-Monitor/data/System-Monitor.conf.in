@@ -106,20 +106,21 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#l+[Gauge;Graph] Choose the style of the display: 
+#l+[Gauge;Graph] Display style
 renderer = 0
 
 
-#X[Gauge;gtk-dialog-info]
+#X[Gauge;@shared_filesdatadir@/images/icon-gauge.png]
 frame_gauge=
 
-#h+[@gaugesdir@;gauges;gauges3;system] Choose one of the available themes:/
+#h+[@gaugesdir@;gauges;gauges3;system] Gauge theme/
 theme = Turbo-night-fuel
 
 #l+[No;With dock orientation;Yes] Rotate applet theme :
 rotate theme = No
 
-#X[Graph;gtk-dialog-info]
+
+#X[Graph;@shared_filesdatadir@/images/icon-graph.png]
 frame_graph=
 
 #l+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
@@ -165,6 +166,9 @@ show fan = false
 #b Show free memory instead of used memory?
 show free = false
 
+#v
+sep_param =
+
 #l[No;On icon;On label] Display values :
 info display = 1
 
@@ -175,6 +179,7 @@ delay = 2
 #e[0;1] How smooth is the movement?
 #{You need OpenGL for this option. Set it to 0 means not used, 1 means the movement is continue.}
 smooth = 1
+
 
 #F[Alerts;gtk-dialog-warning]
 frame_warn=
@@ -188,11 +193,11 @@ asound=true
 #u Path to sound file:
 sound path = /usr/share/sounds/error.wav
 
+
 #F[System-Monitor;gtk-execute]
 frame_sysmon=
 
 #s[Default] User command to display a system monitor:
-#{Leave empty to use the default one.}
 sys monitor =
 
 #b Steal the system monitor's icon from the taskbar?
@@ -200,7 +205,6 @@ sys monitor =
 inhibate appli = true
 
 #s[Default] Class of the system monitor program:
-#{Leave empty to use the default one.}
 sys monitor class =
 
 

@@ -100,6 +100,7 @@ fg desklet =
 #e+[0;1] Foreground tansparency:
 fg alpha = 1
 
+
 #[gtk-preferences]
 [Configuration]
 
@@ -107,7 +108,7 @@ fg alpha = 1
 renderer = 0
 
 
-#X[Gauge;gtk-dialog-info]
+#X[Gauge;@shared_filesdatadir@/images/icon-gauge.png]
 frame_gauge=
 
 #h+[@gaugesdir@;gauges;gauges3] Choose one of the available themes:/
@@ -117,7 +118,7 @@ theme = Turbo-night-fuel
 rotate theme = No
 
 
-#X[Graph;gtk-dialog-info]
+#X[Graph;@shared_filesdatadir@/images/icon-graph.png]
 frame_graph=
 
 #l+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :

@@ -16,7 +16,6 @@ name =
 sep_display=
 
 #S+[Default] Image filename:
-#{Leave empty to use the default one.}
 icon=folder-pictures
 
 #j+[0;128] Desired icon size for this applet

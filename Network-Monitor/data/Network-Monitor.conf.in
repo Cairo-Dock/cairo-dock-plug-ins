@@ -68,8 +68,6 @@ accessibility=0
 sticky=true
 
 
-
-
 #F[Decorations;gtk-orientation-portrait]
 frame_deco=
 
@@ -146,13 +144,13 @@ netspeed command =
 #l+[Gauge;Graph] Choose the style of the display: 
 renderer = 0
 
-#X[Gauge;gtk-dialog-info]
+#X[Gauge;@shared_filesdatadir@/images/icon-gauge.png]
 frame_gauge=
 
 #h+[@gaugesdir@;gauges;gauges3;wifi] Choose one of the available themes:/
 theme = turbo-night-fuel
 
-#X[Graph;gtk-dialog-info]
+#X[Graph;@shared_filesdatadir@/images/icon-graph.png]
 frame_graph=
 
 #l+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
