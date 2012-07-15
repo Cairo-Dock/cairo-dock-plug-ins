@@ -56,7 +56,7 @@ static gboolean _unthreaded_task (CairoDockModuleInstance *myApplet)
 		memcpy (&fHighColor[3*i], myConfig.fHigholor, 3*sizeof (double));\
 		memcpy (&fLowColor[3*i], myConfig.fLowColor, 3*sizeof (double));\
 		i ++; }
-static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
+static void _set_data_renderer (CairoDockModuleInstance *myApplet)
 {
 	if (myConfig.iDisplayType == CD_SYSMONITOR_BAR)
 		return; /// TODO
@@ -119,10 +119,7 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 	if (myConfig.bShowFanSpeed)
 		labels[i++] = "FAN";
 	pRenderAttr->cLabels = (gchar **)labels;
-	if (! bReload)
-		CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
-	else
-		CD_APPLET_RELOAD_MY_DATA_RENDERER (pRenderAttr);
+	CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
 }
 
 CD_APPLET_INIT_BEGIN
@@ -132,7 +129,7 @@ CD_APPLET_INIT_BEGIN
 	}
 	
 	// Initialisation du rendu.
-	_set_data_renderer (myApplet, FALSE);
+	_set_data_renderer (myApplet);
 	
 	// Initialisation de la tache periodique de mesure.
 	myData.pClock = g_timer_new ();
@@ -184,7 +181,7 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 		}
 		
-		_set_data_renderer (myApplet, TRUE);
+		_set_data_renderer (myApplet);
 		
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 		if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_ON_LABEL)
@@ -208,11 +205,11 @@ CD_APPLET_RELOAD_BEGIN
 		CD_APPLET_MANAGE_APPLICATION (myConfig.cSystemMonitorClass);
 	}
 	else {  // on redessine juste l'icone.
-		CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
+		///CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
 		if (myConfig.iDisplayType == CD_SYSMONITOR_GRAPH)
 			CD_APPLET_SET_MY_DATA_RENDERER_HISTORY_TO_MAX;
 		
-		CairoDockLabelDescription *pOldLabelDescription = myConfig.pTopTextDescription;
+		/**CairoDockLabelDescription *pOldLabelDescription = myConfig.pTopTextDescription;
 		myConfig.pTopTextDescription = cairo_dock_duplicate_label_description (&myDialogsParam.dialogTextDescription);
 		memcpy (myConfig.pTopTextDescription->fColorStart, pOldLabelDescription->fColorStart, 3*sizeof (double));
 		memcpy (myConfig.pTopTextDescription->fColorStop, pOldLabelDescription->fColorStop, 3*sizeof (double));
@@ -226,6 +223,6 @@ CD_APPLET_RELOAD_BEGIN
 			myData.fPrevSwapPercent = 0;
 			myData.fPrevGpuTempPercent = 0;
 			cd_sysmonitor_update_from_data (myApplet);
-		}
+		}*/
 	}
 CD_APPLET_RELOAD_END

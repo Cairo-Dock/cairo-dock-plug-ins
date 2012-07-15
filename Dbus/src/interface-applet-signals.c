@@ -786,19 +786,14 @@ gboolean cd_dbus_emit_on_reload_module (CairoDockModuleInstance *pModuleInstance
 	
 	if (pKeyFile == NULL)
 	{
-		if (pIcon && pIcon->pDataRenderer != NULL)
+		CairoDataRenderer *pDataRenderer = cairo_dock_get_icon_data_renderer (pIcon);
+		if (pDataRenderer != NULL)
 		{
-			cairo_dock_reload_data_renderer_on_icon (pIcon, pModuleInstance->pContainer, NULL);
-			
-			CairoDataRenderer *pRenderer = pIcon->pDataRenderer;
-			CairoDataToRenderer *pData = cairo_data_renderer_get_data (pRenderer);
-			//g_print ("actuellement %d valeurs dans l'historique\n", pData->iMemorySize);
+			CairoDataToRenderer *pData = cairo_data_renderer_get_data (pDataRenderer);
 			if (pData->iMemorySize > 2)
 				cairo_dock_resize_data_renderer_history (pIcon, pIcon->fWidth);
 			
-			cairo_t *pDrawContext = cairo_create (pIcon->pIconBuffer);
-			cairo_dock_refresh_data_renderer (pIcon, pModuleInstance->pContainer, pDrawContext);
-			cairo_destroy (pDrawContext);
+			cairo_dock_reload_data_renderer_on_icon (pIcon, pModuleInstance->pContainer, NULL);  // reload at new size and refresh
 		}
 	}
 	

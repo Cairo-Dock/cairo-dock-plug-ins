@@ -852,10 +852,7 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 	//pRenderAttr->bUpdateMinMax = TRUE;
 	//pRenderAttr->bWriteValues = TRUE;
 	g_return_val_if_fail (pIcon->pIconBuffer != NULL, FALSE);
-	if (pIcon->pDataRenderer == NULL)
-		cairo_dock_add_new_data_renderer_on_icon (pIcon, pContainer, pRenderAttr);
-	else
-		cairo_dock_reload_data_renderer_on_icon (pIcon, pContainer, pRenderAttr);
+	cairo_dock_add_new_data_renderer_on_icon (pIcon, pContainer, pRenderAttr);
 
 	return TRUE;
 }

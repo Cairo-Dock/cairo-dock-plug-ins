@@ -73,7 +73,7 @@ static CairoDataRendererAttribute *make_data_renderer_attribute (Icon *myIcon, C
 	return pRenderAttr;
 }
 
-static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
+static void _set_data_renderer (CairoDockModuleInstance *myApplet)
 {
 	CairoDataRendererAttribute *pRenderAttr = make_data_renderer_attribute (myIcon, (myConfig.bModeWifi ? &myConfig.wifiRenderer : &myConfig.netSpeedRenderer));  // les attributs du data-renderer global.
 	
@@ -81,10 +81,7 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 	{
 		pRenderAttr->iLatencyTime = (myConfig.bModeWifi ? myConfig.iWifiCheckInterval : myConfig.iNetspeedCheckInterval) * 1000 * myConfig.fSmoothFactor;
 		//pRenderAttr->bWriteValues = TRUE;
-		if (! bReload)
-			CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
-		else
-			CD_APPLET_RELOAD_MY_DATA_RENDERER (pRenderAttr);
+		CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
 	}
 }
 
@@ -97,7 +94,7 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 	}
 	// Initialisation du rendu.
-	_set_data_renderer (myApplet, FALSE);
+	_set_data_renderer (myApplet);
 	myData.iPreviousQuality = -1;  // force le dessin.
 	
 	//\___________ Avant toute chose on se connecte a NM sur le bus (signaux Wifi actif et reseau actif)
@@ -202,7 +199,7 @@ CD_APPLET_RELOAD_BEGIN
 		cd_netmonitor_free_netspeed_task (myApplet);
 		cd_netmonitor_free_wifi_task (myApplet);
 		
-		_set_data_renderer (myApplet, TRUE);
+		_set_data_renderer (myApplet);
 		
 		myData.iPreviousQuality = -1;  // force le redessin.
 		myData.iPercent = WIFI_QUALITY_NO_SIGNAL;
@@ -223,11 +220,9 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	else  // on redessine juste l'icone.
 	{
-		CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);  // on le recharge aux nouvelles dimensions de l'icone.
+		//CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);  // on le recharge aux nouvelles dimensions de l'icone.
 		CDRenderType iRenderType = (myConfig.bModeWifi ? myConfig.wifiRenderer.iRenderType : myConfig.netSpeedRenderer.iRenderType);
 		if (iRenderType == CD_EFFECT_GRAPH)  // si c'est un graphe, la taille de l'historique depend de la largeur de l'icone, donc on le prend en compte.
 			CD_APPLET_SET_MY_DATA_RENDERER_HISTORY_TO_MAX;
-		
-		CD_APPLET_REFRESH_MY_DATA_RENDERER;  // on rafraichit le dessin.
 	}
 CD_APPLET_RELOAD_END

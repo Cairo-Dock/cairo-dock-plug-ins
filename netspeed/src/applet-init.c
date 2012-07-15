@@ -84,10 +84,7 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 	}
 	const gchar *labels[2] = {"DOWN", "UP"};
 	pRenderAttr->cLabels = (gchar **)labels;
-	if (! bReload)
-		CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
-	else
-		CD_APPLET_RELOAD_MY_DATA_RENDERER (pRenderAttr);
+	CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
 }
 
 CD_APPLET_INIT_BEGIN
@@ -148,11 +145,11 @@ CD_APPLET_RELOAD_BEGIN
 		cairo_dock_relaunch_task_immediately (myData.pPeriodicTask, myConfig.iCheckInterval);
 	}
 	else {  // on redessine juste l'icone.
-		CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
+		//CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
 		if (myConfig.iDisplayType == CD_NETSPEED_GRAPH)
 			CD_APPLET_SET_MY_DATA_RENDERER_HISTORY_TO_MAX;
 		
-		if (! cairo_dock_task_is_running (myData.pPeriodicTask))
-			cd_netspeed_update_from_data (myApplet);
+		/**if (! cairo_dock_task_is_running (myData.pPeriodicTask))
+			cd_netspeed_update_from_data (myApplet);*/
 	}
 CD_APPLET_RELOAD_END

@@ -58,7 +58,7 @@ CD_APPLET_DEFINITION (N_("Disks"),
 	"SQP");
 
 
-static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
+static void _set_data_renderer (CairoDockModuleInstance *myApplet)
 {
 	CairoDataRendererAttribute *pRenderAttr = NULL;  // attributes for the global data-renderer.
 	CairoGaugeAttribute aGaugeAttr;  // gauge attributes.
@@ -141,10 +141,7 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 		pRenderAttr->pFormatData = myApplet;
 	}
 
-	if (! bReload)
-		CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
-	else
-		CD_APPLET_RELOAD_MY_DATA_RENDERER (pRenderAttr);
+	CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
 }
 
 CD_APPLET_INIT_BEGIN
@@ -155,7 +152,7 @@ CD_APPLET_INIT_BEGIN
 	
 	// Initialisation du rendu.
 	myData.iNumberDisks = myConfig.iNumberDisks;
-	_set_data_renderer (myApplet, FALSE);
+	_set_data_renderer (myApplet);
 	
 	// Initialisation de la tache periodique de mesure.
 	myData.pClock = g_timer_new ();
@@ -192,7 +189,7 @@ CD_APPLET_RELOAD_BEGIN
 		cd_disks_reset_parts_list (myApplet);
 		cd_disks_reset_disks_list (myApplet);
 		
-		_set_data_renderer (myApplet, TRUE);
+		_set_data_renderer (myApplet);
 		
 		if (myConfig.iInfoDisplay != CAIRO_DOCK_INFO_ON_ICON)
 		{
@@ -209,11 +206,11 @@ CD_APPLET_RELOAD_BEGIN
 		cairo_dock_relaunch_task_immediately (myData.pPeriodicTask, myConfig.iCheckInterval);
 	}
 	else {  // on redessine juste l'icone.
-		CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
+		//CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
 		if (myConfig.iDisplayType == CD_DISKS_GRAPH)
 			CD_APPLET_SET_MY_DATA_RENDERER_HISTORY_TO_MAX;
 		
-		if (! cairo_dock_task_is_running (myData.pPeriodicTask))
-			cd_disks_update_from_data (myApplet);
+		/**if (! cairo_dock_task_is_running (myData.pPeriodicTask))
+			cd_disks_update_from_data (myApplet);*/
 	}
 CD_APPLET_RELOAD_END
