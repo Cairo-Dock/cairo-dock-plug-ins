@@ -17,7 +17,6 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #include "applet-struct.h"
 
 #include "applet-config.h"
@@ -63,6 +62,40 @@ gboolean _cd_mixer_on_leave (GtkWidget* pWidget,
 	}
 }
 
+static void _set_data_renderer (void)
+{
+	switch (myConfig.iVolumeEffect)
+	{
+		case VOLUME_EFFECT_GAUGE:
+		{
+			CairoDataRendererAttribute *pRenderAttr;  // les attributs du data-renderer global.
+			CairoGaugeAttribute attr;  // les attributs de la jauge.
+			memset (&attr, 0, sizeof (CairoGaugeAttribute));
+			pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+			pRenderAttr->cModelName = "gauge";
+			pRenderAttr->iRotateTheme = myConfig.iRotateTheme;
+			attr.cThemePath = myConfig.cGThemePath;
+			
+			CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
+		}
+		break;
+		case VOLUME_EFFECT_BAR:
+		{
+			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cDefaultIcon, "default.svg");
+			
+			CairoDataRendererAttribute *pRenderAttr;  // les attributs du data-renderer global.
+			CairoProgressBarAttribute attr;
+			memset (&attr, 0, sizeof (CairoProgressBarAttribute));
+			pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+			pRenderAttr->cModelName = "progressbar";
+			pRenderAttr->iRotateTheme = myConfig.iRotateTheme;
+
+			CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
+		}
+		break;
+	}
+}
+
 CD_APPLET_INIT_BEGIN
 	// set a desklet renderer
 	if (myDesklet)
@@ -86,23 +119,9 @@ CD_APPLET_INIT_BEGIN
 	}
 	
 	// data renderer
-	if (myConfig.iVolumeEffect == VOLUME_EFFECT_GAUGE)
-	{
-		CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs du data-renderer global.
-		CairoGaugeAttribute attr;  // les attributs de la jauge.
-		memset (&attr, 0, sizeof (CairoGaugeAttribute));
-		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
-		pRenderAttr->cModelName = "gauge";
-		pRenderAttr->iRotateTheme = myConfig.iRotateTheme;
-		attr.cThemePath = myConfig.cGThemePath;
-		
-		CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
-	}
-	else
-	{
-		mixer_load_surfaces ();
-	}
+	_set_data_renderer ();
 	
+	// start the sound controler
 	cd_start ();
 	
 	// mouse events
@@ -131,16 +150,12 @@ CD_APPLET_STOP_BEGIN
 	// keyboard events
 	cd_keybinder_unbind (myData.cKeyBinding);
 	
-	// stop the current controller.
+	// stop the current controler.
 	cd_stop ();
 CD_APPLET_STOP_END
 
 
 CD_APPLET_RELOAD_BEGIN
-	//\_______________ On recharge les donnees qui ont pu changer.
-	if (myConfig.iVolumeEffect != VOLUME_EFFECT_GAUGE)
-		mixer_load_surfaces ();
-	
 	//\_______________ On recharge le mixer si necessaire.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
@@ -155,23 +170,9 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL);
 		
 		// reload the data renderer
-		if (myConfig.iVolumeEffect == VOLUME_EFFECT_GAUGE)
-		{
-			CairoDataRendererAttribute *pRenderAttr = NULL;  // les attributs du data-renderer global.
-			CairoGaugeAttribute attr;  // les attributs de la jauge.
-			memset (&attr, 0, sizeof (CairoGaugeAttribute));
-			pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
-			pRenderAttr->cModelName = "gauge";
-			pRenderAttr->iRotateTheme = myConfig.iRotateTheme;
-			attr.cThemePath = myConfig.cGThemePath;
-			
-			if (cairo_dock_get_icon_data_renderer (myIcon))
-				CD_APPLET_RELOAD_MY_DATA_RENDERER (pRenderAttr);
-			else
-				CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
-		}
+		_set_data_renderer ();
 		
-		// reload the controller
+		// reload the controler
 		cd_reload ();
 		
 		// shortkey
@@ -245,9 +246,9 @@ CD_APPLET_RELOAD_BEGIN
 		if (myDesklet && myDesklet->container.iHeight <= 64)
 			gtk_widget_hide (myData.pScale);
 		
-		if (myConfig.iVolumeEffect == VOLUME_EFFECT_GAUGE)
+		/**if (myConfig.iVolumeEffect != VOLUME_EFFECT_NONE)
 			CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
 		
-		cd_update_icon ();
+		cd_update_icon ();*/
 	}
 CD_APPLET_RELOAD_END

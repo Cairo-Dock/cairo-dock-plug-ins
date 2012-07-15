@@ -9,9 +9,9 @@ frame_maininfo=
 #d Name of the dock it belongs to:
 dock name = 
 
-#s[Default] Name of the icon as it will appear in its caption in the dock:
-#{Leave empty to use the default sound card.}
+#s[Sound card name] Name of the icon as it will appear in its caption in the dock:
 name = 
+
 #v
 sep_display=
 
@@ -70,8 +70,6 @@ accessibility=0
 sticky=true
 
 
-
-
 #F[Decorations;gtk-orientation-portrait]
 frame_deco=
 
@@ -108,6 +106,37 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
+#F[Display;gtk-dialog-info]
+frame_disp =
+
+#l[No;On label;On icon] Display volume :
+display volume = 1
+
+#v
+sep_disp_vol =
+
+#Y+[Icon;1;2;Icon with progress bar;1;2;Gauge;3;2] Display style
+display icon = 1
+
+#S+[Default] Default icon:
+default icon = 
+
+#S+[Default] Mute icon:
+mute icon = 
+
+#h+[@gaugesdir@;gauges;gauges3;sound] Gauge theme/
+theme = Sound-Mono
+
+#l+[No;With dock orientation;Yes] Rotate applet theme :
+rotate theme = 0
+
+#v
+sep_disp =
+
+#S+[Default] Broken icon:
+broken icon = 
+
+
 #F[Control;gtk-execute]
 frame_ctrl =
 
@@ -121,45 +150,10 @@ scroll variation = 5
 hide on leave = true
 
 
-#F[Display;gtk-dialog-info]
-frame_disp =
-
-#l[No;On label;On icon] Display volume :
-display volume = 1
-
-#v
-sep_disp_vol =
-
-#Y+[None;0;0;Zoom;1;2;Transparency;1;2;Draw Bar;1;2;Gauge;3;2] Effect to apply to the icon when adjusting volume:
-effect = 3
-
-#S+[Default] Default icon:
-#{Leave empty to use the default one.}
-default icon = 
-
-#S+[Default] Mute icon:
-#{Leave empty to use the default one.}
-mute icon = 
-
-#h+[@gaugesdir@;gauges;gauges3;sound] Choose one of the available themes:/
-theme = Sound-Mono
-
-#l+[No;With dock orientation;Yes] Rotate applet theme :
-rotate theme = 0
-
-#v
-sep_disp =
-
-#S+[Default] Broken icon:
-#{Leave empty to use the default one.}
-broken icon = 
-
-
 #X[Alsa]
 frame_alsa =
 
-#s Sound card:
-#{Leave empty to use the default sound card.}
+#s[Default] Sound card:
 card id = 
 
 #L[] Select channel:
@@ -168,7 +162,5 @@ mixer element = Master
 #{On some cards, a channel only controls 1 side (right or left). You will then need to specify a second channel here, to control both sides. Most of the time, you should just leave this empty.}
 mixer element 2 = 
 
-#s Specific command to run to show an advanced sound mixer:
-#{Leave empty to use the default command.}
+#s[default] Specific command to run to show an advanced sound mixer:
 show mixer = 
-

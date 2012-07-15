@@ -55,7 +55,16 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.iVolumeDisplay = CD_CONFIG_GET_INTEGER ("Configuration", "display volume");
 	
-	myConfig.iVolumeEffect = CD_CONFIG_GET_INTEGER ("Configuration", "effect");
+	myConfig.iVolumeEffect = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "display icon", -1);
+	if (myConfig.iVolumeEffect >= VOLUME_NB_EFFECTS)  // new option (iVolumeEffect is an unsigned int)
+	{
+		myConfig.iVolumeEffect = CD_CONFIG_GET_INTEGER ("Configuration", "effect");
+		if (myConfig.iVolumeEffect == 1 || myConfig.iVolumeEffect == 2)  // old "zoom" and "transparency" effects
+			myConfig.iVolumeEffect = VOLUME_EFFECT_BAR;
+		else if (myConfig.iVolumeEffect >= 3)  // other options are offseted by 2
+			myConfig.iVolumeEffect -= 2;
+		g_key_file_set_integer (CD_APPLET_MY_KEY_FILE, "Configuration", "display icon", myConfig.iVolumeEffect);
+	}
 	
 	if (myConfig.iVolumeEffect == VOLUME_EFFECT_GAUGE)
 	{
@@ -88,9 +97,6 @@ CD_APPLET_RESET_DATA_BEGIN
 		gtk_widget_destroy (myData.pScale);
 		myData.pScale = NULL;
 	}
-	cairo_surface_destroy (myData.pSurface);
-	if (myData.pMuteSurface)
-		cairo_surface_destroy (myData.pMuteSurface);
 	cairo_dock_dialog_unreference (myData.pDialog);
 CD_APPLET_RESET_DATA_END
 

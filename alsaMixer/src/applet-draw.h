@@ -26,7 +26,4 @@
 void cd_update_icon (void);
 
 
-void mixer_load_surfaces (void);
-
-
 #endif
