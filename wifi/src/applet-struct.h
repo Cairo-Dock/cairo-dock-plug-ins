@@ -41,13 +41,6 @@ typedef enum {
 	WIFI_NB_QUALITY
 } CDWifiQuality;
 
-typedef enum {
-	WIFI_EFFECT_NONE = 0,
-	WIFI_EFFECT_ZOOM,
-	WIFI_EFFECT_TRANSPARENCY,
-	WIFI_EFFECT_BAR,
-} CDWifiEffect;
-
 
 typedef enum _CDWifiDisplayType {
 	CD_WIFI_GAUGE=0,
