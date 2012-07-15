@@ -42,13 +42,15 @@ CD_APPLET_DEFINITION (N_("shortcuts"),
 
 
 CD_APPLET_INIT_BEGIN
+	//\_______________ get a slot for our private data (for disk usage)
 	if (! cairo_dock_reserve_data_slot (myApplet))
 		return;
 	
-	if (myDock)
-		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
+	//\_______________ // set the default icon if none is specified in conf.
+	if (myDock)  // in desklet, we use the "Slide" view, so we don't display the main icon.
+		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 	
-	//\_______________ On charge les icones dans un sous-dock.
+	//\_______________ get and load all the icons in a sub-dock.
 	cd_shortcuts_start (myApplet);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
@@ -78,12 +80,14 @@ CD_APPLET_RELOAD_BEGIN
 	//\_______________ On recharge les donnees qui ont pu changer.
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		//\_______________ On charge les icones dans un sous-dock.
+		//\_______________ reset all data (including sub-dock).
 		cd_shortcuts_reset_all_datas (myApplet);  // stoppe toutes les mesures et remet myData a 0.
 		
-		if (myDock)
-			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
+		//\_______________ // set the default icon if none is specified in conf.
+		if (myDock)  // in desklet, we use the "Slide" view, so we don't display the main icon.
+			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 		
+		//\_______________ get and load all the icons in a sub-dock.
 		cd_shortcuts_start (myApplet);
 	}
 CD_APPLET_RELOAD_END

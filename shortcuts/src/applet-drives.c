@@ -30,7 +30,7 @@
 
 #define CD_SHORTCUT_DEFAULT_DRIVE_ICON_FILENAME "drive-harddisk"
 
-static void _load_disk_icon (Icon *pIcon)
+/**static void _load_disk_icon (Icon *pIcon)
 {
 	CairoDockModuleInstance *myApplet = pIcon->pAppletOwner;
 	int iWidth = pIcon->iImageWidth;
@@ -75,17 +75,41 @@ static void _load_disk_icon (Icon *pIcon)
 		}
 		g_free (cIconPath);
 	}
+}*/
+
+void cd_shortcuts_add_progress_bar (Icon *pIcon, CairoDockModuleInstance *myApplet)
+{
+	g_print ("%s (%s)\n", __func__, pIcon->cName);
+	// set a progress bar to display the disk space
+	CairoProgressBarAttribute attr;
+	memset (&attr, 0, sizeof (CairoProgressBarAttribute));
+	CairoDataRendererAttribute *pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
+	pRenderAttr->cModelName = "progressbar";
+	gdouble green_red[6] = {0, 1, 0, 1, 0, 0}, red_green[6] = {1, 0, 0, 0, 1, 0};
+	attr.fColorGradation = (myConfig.iDisplayType == CD_SHOW_USED_SPACE || myConfig.iDisplayType == CD_SHOW_USED_SPACE_PERCENT ? green_red : red_green);
+	cairo_dock_add_new_data_renderer_on_icon (pIcon, pIcon->pContainer, pRenderAttr);
 }
+
 
 static void _init_disk_usage (Icon *pIcon, CairoDockModuleInstance *myApplet)
 {
-	pIcon->iface.load_image = _load_disk_icon;
-	pIcon->pAppletOwner = myApplet;
-	CDDiskUsage *pDiskUsage = g_new0 (CDDiskUsage, 1);
-	pDiskUsage->iPrevAvail = -1;  // data not yet retrieved (0 bytes is a valid value for non writable disks).
-	CD_APPLET_SET_MY_ICON_DATA (pIcon, pDiskUsage);
+	///pIcon->iface.load_image = _load_disk_icon;
+	///pIcon->pAppletOwner = myApplet;
+	
+	// ensure the applet has a valid icon, in case the VFS didn't give us one.
+	if (pIcon->cFileName == NULL)
+		pIcon->cFileName = cairo_dock_search_icon_s_path (CD_SHORTCUT_DEFAULT_DRIVE_ICON_FILENAME, CAIRO_DOCK_DEFAULT_ICON_SIZE);
+		
 	if (pIcon->cCommand)
+	{
+		// set our private data for disk usage
+		CDDiskUsage *pDiskUsage = g_new0 (CDDiskUsage, 1);
+		pDiskUsage->iPrevAvail = -1;  // data not yet retrieved (0 bytes is a valid value for non writable disks).
+		CD_APPLET_SET_MY_ICON_DATA (pIcon, pDiskUsage);
+		
+		// get the current disk usage
 		cd_shortcuts_get_fs_stat (pIcon->cCommand, pDiskUsage);
+	}
 }
 
 static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar *cBaseURI, GList *pIconsList, CairoContainer *pContainer, CairoDockModuleInstance *myApplet)
@@ -132,9 +156,6 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 				return ;
 			}
 			pNewIcon->iGroup = CD_DRIVE_GROUP;
-			if (pNewIcon->cFileName == NULL)
-				pNewIcon->cFileName = cairo_dock_search_icon_s_path (CD_SHORTCUT_DEFAULT_DRIVE_ICON_FILENAME, CAIRO_DOCK_DEFAULT_ICON_SIZE);
-			_init_disk_usage (pNewIcon, myApplet);
 			
 			//\_______________________ on la place au bon endroit suivant son nom.
 			cd_shortcuts_set_icon_order_by_name (pNewIcon, pIconsList);
@@ -142,6 +163,9 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 			
 			//\_______________________ on l'insere dans la liste.
 			CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pNewIcon);
+			_init_disk_usage (pNewIcon, myApplet);
+			if (pNewIcon->cCommand)
+				cd_shortcuts_add_progress_bar (pNewIcon, myApplet);
 			
 			//\_______________________ on affiche un message.
 			gboolean bIsMounted = FALSE;
@@ -188,10 +212,9 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 				CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pConcernedIcon);
 				
 				cd_shortcuts_set_icon_order_by_name (pNewIcon, pIconsList);
-				if (pNewIcon->cFileName == NULL)
-					pNewIcon->cFileName = cairo_dock_search_icon_s_path (CD_SHORTCUT_DEFAULT_DRIVE_ICON_FILENAME, CAIRO_DOCK_DEFAULT_ICON_SIZE);
-				_init_disk_usage (pNewIcon, myApplet);
 				CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pNewIcon);
+				if (pNewIcon->cCommand)
+					cd_shortcuts_add_progress_bar (pNewIcon, myApplet);
 				
 				pConcernedIcon = pNewIcon;  // pConcernedIcon a ete detruite, on pointe sur la nouvelle pour pouvoir afficher un dialogue juste apres.
 			}
@@ -320,8 +343,6 @@ GList * cd_shortcuts_list_drives (CDSharedMemory *pSharedMemory)
 	for (ic = pIconList; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (pIcon->cFileName == NULL)
-			pIcon->cFileName = cairo_dock_search_icon_s_path (CD_SHORTCUT_DEFAULT_DRIVE_ICON_FILENAME, CAIRO_DOCK_DEFAULT_ICON_SIZE);
 		_init_disk_usage (pIcon, pSharedMemory->pApplet);
 	}
 	

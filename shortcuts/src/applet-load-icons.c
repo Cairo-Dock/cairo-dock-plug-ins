@@ -279,6 +279,15 @@ static gboolean cd_shortcuts_build_shortcuts_from_data (CDSharedMemory *pSharedM
 	}
 	CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, cDeskletRendererName, NULL);
 	
+	Icon *pIcon;
+	GList *ic;
+	for (ic = pIconList; ic != NULL; ic = ic->next)
+	{
+		pIcon = ic->data;
+		if (CD_APPLET_GET_MY_ICON_DATA (pIcon) != NULL)  // drive
+			cd_shortcuts_add_progress_bar (pIcon, myApplet);
+	}
+	
 	//\_______________________ On lance la tache de mesure des disques.
 	cd_shortcuts_launch_disk_periodic_task (myApplet);
 	

@@ -17,12 +17,14 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef __APPLET_DRIVES__
 #define  __APPLET_DRIVES__
 
-
 #include <cairo-dock.h>
+
+
+void cd_shortcuts_add_progress_bar (Icon *pIcon, CairoDockModuleInstance *myApplet);
+
 
 void cd_shortcuts_on_drive_event (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet);
 
