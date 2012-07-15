@@ -9,7 +9,7 @@ frame_maininfo=
 #d Name of the dock it belongs to:
 dock name = 
 
-#s[Default] Name of the icon as it will appear in its caption in the dock:
+#s[Connection name] Name of the icon as it will appear in its caption in the dock:
 name = 
 #v
 sep_display=
@@ -32,6 +32,7 @@ order=
 frame_hand=
 #A
 handbook=wifi
+
 
 #[gtk-convert]
 [Desklet]
@@ -67,8 +68,6 @@ accessibility=0
 sticky=true
 
 
-
-
 #F[Decorations;gtk-orientation-portrait]
 frame_deco=
 
@@ -102,22 +101,22 @@ fg desklet =
 #e+[0;1] Foreground tansparency:
 fg alpha = 1
 
+
 #[gtk-preferences]
 [Configuration]
 
-
-#l+[Gauge;Graph;Icons] Choose the style of the display: 
+#Y+[Gauge;1;1;Graph;2;1;Icon with progress bar;3;1] Display style
 renderer = 0
 
 
-#X[Gauge;gtk-dialog-info]
+#X[Gauge;@shared_filesdatadir@/images/icon-gauge.png]
 frame_gauge=
 
-#h+[@gaugesdir@;gauges;gauges3;wifi] Choose one of the available themes:/
-theme = Turbo-night-fuel
+#h+[@gaugesdir@;gauges;gauges3;wifi] Gauge theme/
+theme = Wifi_default
 
 
-#X[Graph;gtk-dialog-info]
+#X[Graph;@shared_filesdatadir@/images/icon-graph.png]
 frame_graph=
 
 #l+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
@@ -135,31 +134,21 @@ low color = 1;1;0
 bg color = .5;.5;1.;.4
 
 
-
-#X[Icons;gtk-dialog-info]
+#X[Icon;@wifidatadir@/icon.png]
 frame_icons =
 
-#l+[None;Zoom;Transparency;Draw Bar] Effect to apply on the icon according to strength :
-effect=0
+#S+[Default] Default icon:
+default_icon =
 
-#S+ 'No signal' icon filename:
-#{Leave empty to use the default icon.}
-icon_0 = 
-#S+ 'Very low' icon filename:
-#{Leave empty to use the default icon.}
-icon_1 = 
-#S+ 'Low' icon filename:
-#{Leave empty to use the default icon.}
-icon_2 = 
-#S+ 'Average' icon filename:
-#{Leave empty to use the default icon.}
-icon_3 = 
-#S+ 'Good' icon filename:
-#{Leave empty to use the default icon.}
-icon_4 = 
-#S+ 'Excellent' icon filename:
-#{Leave empty to use the default icon.}
-icon_5 = 
+#S+[Default] "No signal" icon
+no_signal_icon =
+
+
+#F+[Info;gtk-info]
+frame_disp=
+
+#l[None;Signal Strength;Signal Strength in percent;Raw Signal Informations] Information to display on the icon :
+signal_type=2
 
 
 #F[Parameters;gtk-preferences]
@@ -176,13 +165,3 @@ smooth = .33
 #s Alternative command line to launch Wireless Configuration :
 #{Allow you to overwrite applet's default command line and launch your wireless configuration interface.}
 command = 
-
-
-#F+[Info;gtk-info]
-frame_disp=
-
-#l[None;Signal Strength;Signal Strength in percent;Raw Signal Informations] Information to display on the icon :
-signal_type=2
-
-#b Overwrite the default label with the connection point name?
-essid = true

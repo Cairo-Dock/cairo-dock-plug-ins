@@ -1,0 +1,13 @@
+<gauge>
+	<name>Wifi: Default</name>
+	<version>3</version>
+	<author>Cairo-Dock team</author>
+	<indicator type="images">
+		<file>link-1.svg</file>
+		<file>link-2.svg</file>
+		<file>link-3.svg</file>
+		<file>link-4.svg</file>
+		<file>link-5.svg</file>
+		<file type="undef-value">link-0.svg</file>
+	</indicator>
+</gauge>
