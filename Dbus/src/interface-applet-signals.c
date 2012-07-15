@@ -793,7 +793,7 @@ gboolean cd_dbus_emit_on_reload_module (CairoDockModuleInstance *pModuleInstance
 			if (pData->iMemorySize > 2)
 				cairo_dock_resize_data_renderer_history (pIcon, pIcon->fWidth);
 			
-			cairo_dock_reload_data_renderer_on_icon (pIcon, pModuleInstance->pContainer, NULL);  // reload at new size and refresh
+			cairo_dock_reload_data_renderer_on_icon (pIcon, pModuleInstance->pContainer);  // reload at new size and refresh
 		}
 	}
 	

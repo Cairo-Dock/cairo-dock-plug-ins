@@ -6,6 +6,6 @@ install(FILES
 	expose-windows.svg
 	show-desktop.svg
 	widget-layer.svg
-	icon-gauge.png
-	icon-graph.png
+	#icon-gauge.png
+	#icon-graph.png
 	DESTINATION ${shared_filesdatadir}/images)
