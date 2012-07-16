@@ -31,9 +31,12 @@ void cd_logout_set_timer (void);
 void cd_logout_program_shutdown (void);
 
 
-void cd_logout_check_reboot_required (CairoDockFMEventType iEventType, const gchar *cURI, gpointer data);
+void cd_logout_check_reboot_logout_required (CairoDockFMEventType iEventType, const gchar *cURI, CDActionsNeededEnum iAction);
 
 void cd_logout_check_reboot_required_init (void);
 
+void cd_logout_check_logout_required_init (void);
+
+const gchar *cd_logout_get_session_migration_filename (void);
 
 #endif

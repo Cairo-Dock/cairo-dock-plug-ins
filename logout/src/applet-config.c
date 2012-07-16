@@ -34,6 +34,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iShutdownTime = CD_CONFIG_GET_INTEGER ("Configuration", "shutdown time");
 	myConfig.cEmblemPath = CD_CONFIG_GET_STRING ("Configuration", "emblem");
 	myConfig.cDefaultLabel = CD_CONFIG_GET_STRING ("Icon", "name");
+	myConfig.cDefaultIcon = CD_CONFIG_GET_STRING ("Icon", "icon");
 	myConfig.iRebootNeededImage = CD_CONFIG_GET_INTEGER ("Configuration", "replace image");
 CD_APPLET_GET_CONFIG_END
 
@@ -42,6 +43,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cUserAction);
 	g_free (myConfig.cUserAction2);
 	g_free (myConfig.cDefaultLabel);
+	g_free (myConfig.cDefaultIcon);
 	g_free (myConfig.cEmblemPath);
 	g_free (myConfig.cShortkey);
 	g_free (myConfig.cShortkey2);
@@ -49,5 +51,5 @@ CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
-	
+	g_free (myData.cSessionMigrationFileName);
 CD_APPLET_RESET_DATA_END
