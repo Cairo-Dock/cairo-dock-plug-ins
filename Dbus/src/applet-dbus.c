@@ -487,7 +487,7 @@ void cd_dbus_launch_service (void)
 		gchar *cUserAppletsFolder = g_strdup_printf ("%s/"CD_DBUS_APPLETS_FOLDER, g_cCairoDockDataDir);
 		if (! g_file_test (cUserAppletsFolder, G_FILE_TEST_EXISTS))
 		{
-			if (g_mkdir (cUserAppletsFolder, 7*8*8+7*8+5) != 0)  // create an empty folder; since there is no date file, the "locale" package will be seen as "to be updated" by the package manager, and will therefore download it.
+			if (g_mkdir (cUserAppletsFolder, 7*8*8+7*8+5) != 0)  // create an empty folder; since there is no date file, the "locale" package will be seen as "to be updated" by the package manager, which will therefore download it.
 				cd_warning ("couldn't create '%s'; third-party applets can't be added", cUserAppletsFolder);
 		}
 		g_free (cUserAppletsFolder);
@@ -513,6 +513,9 @@ void cd_dbus_launch_service (void)
 			NULL);  // table
 		g_free (cUserPackagesDir);
 	}
+	
+	//\____________ Start the bridge to Unity Launcher API.
+	cairo_dock_launch_command (CD_PLUGINS_DIR"/cairo-dock-unity-bridge");  // launch it asap, because if another Unity claims the bus before us, the messages will be emited on the bus, and we might miss them.
 }
 
 

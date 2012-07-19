@@ -1177,7 +1177,7 @@ gboolean cd_dbus_main_set_quick_info (dbusMainObject *pDbusCallback, const gchar
 	
 	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
 	if (pList == NULL)
-		return FALSE;
+		return TRUE;
 	
 	nullify_argument (cQuickInfo);
 	
@@ -1206,7 +1206,7 @@ gboolean cd_dbus_main_set_label (dbusMainObject *pDbusCallback, const gchar *cLa
 	
 	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
 	if (pList == NULL)
-		return FALSE;
+		return TRUE;
 	
 	nullify_argument (cLabel);
 	
@@ -1234,7 +1234,7 @@ gboolean cd_dbus_main_set_icon (dbusMainObject *pDbusCallback, const gchar *cIma
 	
 	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
 	if (pList == NULL)
-		return FALSE;
+		return TRUE;
 	
 	Icon *pIcon;
 	CairoContainer *pContainer;
@@ -1266,7 +1266,7 @@ gboolean cd_dbus_main_set_emblem (dbusMainObject *pDbusCallback, const gchar *cI
 	
 	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
 	if (pList == NULL)
-		return FALSE;
+		return TRUE;
 	
 	Icon *pIcon;
 	CairoContainer *pContainer;
@@ -1307,7 +1307,7 @@ gboolean cd_dbus_main_animate (dbusMainObject *pDbusCallback, const gchar *cAnim
 	
 	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
 	if (pList == NULL)
-		return FALSE;
+		return TRUE;
 	
 	Icon *pIcon;
 	CairoContainer *pContainer;
@@ -1332,7 +1332,7 @@ gboolean cd_dbus_main_demands_attention (dbusMainObject *pDbusCallback, gboolean
 	
 	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
 	if (pList == NULL)
-		return FALSE;
+		return TRUE;
 	
 	Icon *pIcon;
 	CairoContainer *pContainer;
@@ -1475,8 +1475,9 @@ gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBus
 {
 	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
 	if (pList == NULL)
-		return FALSE;
+		return TRUE;
 	
+	g_print ("%s (%s , %s)\n", __func__, cBusName, cMenuPath);
 	static gboolean s_bInit = FALSE;
 	if (! s_bInit)  // register for right-click events once.
 	{
@@ -1487,6 +1488,11 @@ gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBus
 			CAIRO_DOCK_RUN_FIRST,
 			NULL);
 	}
+	
+	if (cBusName && *cBusName == '\0')  // nullify empty object and path
+		cBusName = NULL;
+	if (cMenuPath && *cMenuPath == '\0')
+		cMenuPath = NULL;
 	
 	Icon *pIcon;
 	CairoContainer *pContainer;
@@ -1542,7 +1548,7 @@ gboolean cd_dbus_main_set_progress (dbusMainObject *dbusMainObject, double fPerc
 {
 	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
 	if (pList == NULL)
-		return FALSE;
+		return TRUE;
 	
 	Icon *pIcon;
 	CairoContainer *pContainer;
@@ -1559,6 +1565,11 @@ gboolean cd_dbus_main_set_progress (dbusMainObject *dbusMainObject, double fPerc
 			pRenderAttr->cModelName = "progressbar";
 			cairo_dock_add_new_data_renderer_on_icon (pIcon, pIcon->pContainer, pRenderAttr);
 		}
+		
+		if (fPercent < 0)
+			fPercent = CAIRO_DATA_RENDERER_UNDEF_VALUE;
 		cairo_dock_render_new_data_on_icon (pIcon, pIcon->pContainer, NULL, &fPercent);
 	}
+	g_list_free (pList);
+	return TRUE;
 }
