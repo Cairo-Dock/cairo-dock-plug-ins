@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!@PYTHON_EXECUTABLE@
 #
 # This is a part of the Cairo-Dock plug-ins.
 # Copyright : (C) 2012 by Fabrice Rey
@@ -16,6 +16,7 @@
 # http://www.gnu.org/licenses/licenses.html#GPL
 #
 
+from __future__ import print_function
 import sys
 import glib
 import gobject
@@ -57,9 +58,9 @@ class Launcher:
 			bus.watch_name_owner(self.dbus_name, self.on_name_owner_changed)
 	
 	def on_name_owner_changed(self,connection_name):
-		print "launcher bus name changed:",connection_name
+		print("launcher bus name changed:",connection_name)
 		if len(connection_name) == 0:  # no more distant app -> reset the launcher and its icon.
-			print "-> the launcher "+self.dbus_name+" is no more connected to its app."
+			print("-> the launcher "+self.dbus_name+" is no more connected to its app.")
 			if self.has_count and self.count_visible:
 				self.dock.iface.SetQuickInfo('', self.id)
 				self.has_count = False
@@ -81,14 +82,14 @@ class Launcher:
 			self.dbus_name = None
 			
 	def set_count(self, x):
-		print 'set_count (%d)'%x
+		print('set_count (%d)'%x)
 		self.count = x
 		self.has_count = True
 		if self.count_visible:
 			self.dock.iface.SetQuickInfo(str(self.count), self.id)
 	
 	def set_count_visible(self, x):
-		print 'set_count_visible (%d)'%x
+		print('set_count_visible (%d)'%x)
 		self.count_visible = x
 		if self.has_count:
 			if x:
@@ -97,13 +98,13 @@ class Launcher:
 				self.dock.iface.SetQuickInfo('', self.id)
 	
 	def set_progress(self, x):
-		print 'set_progress (%.2f)'%x
+		print('set_progress (%.2f)'%x)
 		self.progress = x
 		self.has_progress = True
 		self.dock.iface.SetProgress (x, self.id)
 	
 	def set_progress_visible(self, x):
-		print 'set_progress_visible (%d)'%x
+		print('set_progress_visible (%d)'%x)
 		self.progress_visible = x
 		if not x:
 			self.dock.iface.SetProgress (-1, self.id)
@@ -111,24 +112,24 @@ class Launcher:
 			self.dock.iface.SetProgress (self.progress, self.id)
 	
 	def set_urgent(self, x):
-		print 'set_urgent (%d)'%x
+		print('set_urgent (%d)'%x)
 		self.urgent = x
 		self.dock.iface.DemandsAttention(x, 'default', self.id)
 	
 	def set_menu(self, menu_path):
-		print 'set_menu (%s)'%menu_path
+		print('set_menu (%s)'%menu_path)
 		self.menu_path = menu_path
 		self.dock.iface.SetMenu(self.dbus_name, menu_path, self.id)
 	
 	def set_emblem(self, x):
-		print 'set_emblem (%s)'%x
+		print('set_emblem (%s)'%x)
 		self.emblem = x
 		self.has_emblem = True
 		if self.emblem_visible:
 			self.dock.iface.SetEmblem(self.emblem, CairoDock.EMBLEM_TOP_RIGHT, self.id)
 	
 	def set_emblem_visible(self, x):
-		print 'set_emblem_visible (%d)'%x
+		print('set_emblem_visible (%d)'%x)
 		self.emblem_visible = x
 		if self.has_emblem:
 			if x:
@@ -146,12 +147,12 @@ class ULWatcher:
 		DBusGMainLoop(set_as_default=True)
 		try: 
 			self.bus = dbus.SessionBus()
-		except Exception, exception:
-			print 'Could not open dbus. Uncaught exception.'
+		except Exception as exception:
+			print('Could not open dbus. Uncaught exception.')
 			return
 		     
 		bus_name = dbus.service.BusName (self.bus_name_str, self.bus)
-		print "registered as Unity:",bus_name
+		print("registered as Unity:",bus_name)
 		
 		self.bus.add_signal_receiver (self.on_launcher_entry_signal, dbus_interface=self.bus_iface_str, member_keyword='member', sender_keyword='sender')
 		
@@ -161,9 +162,9 @@ class ULWatcher:
 		self.loop.run()
 	
 	def on_launcher_entry_signal(self, val1=None, val2=None, member=None, sender=None):  # application://evolution.desktop, dictionnary (sv)
-		print '>>> signal',member,' has been received (',val1,val2,')'
+		print('>>> signal',member,' has been received (',val1,val2,')')
 		if (member == 'Update'):
-			print '  update',val1,'with',val2
+			print('  update',val1,'with',val2)
 			
 			launcher = None
 			if val1 in self.launchers:
@@ -175,48 +176,48 @@ class ULWatcher:
 			
 			if 'count' in val2:
 				count = val2['count']
-				print ' set count to',count
+				print(' set count to',count)
 				launcher.set_count (count)
 			
 			if 'progress' in val2:
 				progress = val2['progress']
-				print ' set progress to',progress
+				print(' set progress to',progress)
 				launcher.set_progress (progress)
 			
 			if 'emblem' in val2:
 				emblem = val2['emblem']
-				print ' set emblem to',emblem
+				print(' set emblem to',emblem)
 				launcher.set_emblem (emblem)
 			
 			if 'urgent' in val2:
 				urgent = val2['urgent']
-				print ' set urgent to',urgent
+				print(' set urgent to',urgent)
 				launcher.set_urgent (urgent)
 			
 			if 'quicklist' in val2:
 				menu_path = val2['quicklist']
-				print ' set quicklist to',menu_path
+				print(' set quicklist to',menu_path)
 				launcher.set_menu (menu_path)
 			
 			if 'count-visible' in val2:
 				count_visible = val2['count-visible']
-				print ' set count-visible to',count_visible
+				print(' set count-visible to',count_visible)
 				launcher.set_count_visible (count_visible)
 			
 			if 'progress-visible' in val2:
 				progress_visible = val2['progress-visible']
-				print ' set progress-visible to',progress_visible
+				print(' set progress-visible to',progress_visible)
 				launcher.set_progress_visible (progress_visible)
 			
 			if 'emblem-visible' in val2:
 				emblem_visible = val2['emblem-visible']
-				print ' set emblem-visible to',emblem_visible
+				print(' set emblem-visible to',emblem_visible)
 				launcher.set_emblem_visible (emblem_visible)
 			
 		elif (member == 'Query'):
-			print '  query',val2,'for',val1
+			print('  query',val2,'for',val1)
 		else:
-			print 'unknown signal'
+			print('unknown signal')
 		
 if __name__ == '__main__':
 	ULWatcher()

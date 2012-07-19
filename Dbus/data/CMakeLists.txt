@@ -1,3 +1,4 @@
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cairo-dock-unity-bridge.py.in ${CMAKE_CURRENT_BINARY_DIR}/cairo-dock-unity-bridge.py)
 
 ########### install files ###############
 
