@@ -1541,6 +1541,12 @@ gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBus
 	g_list_free (pList);
 	return TRUE;
 }
+#else
+gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBusName, const gchar *cMenuPath, gchar *cIconQuery, GError **error)
+{
+	g_set_error (error, 1, 1, "Cairo-Dock has not been compiled with DbusMenu support, so The 'SetMenu' method won't work.", NULL);
+	return FALSE;
+}
 #endif
 
 

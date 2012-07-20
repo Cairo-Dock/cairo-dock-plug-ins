@@ -81,13 +81,11 @@
 			<arg name="iDuration" type="i" direction="in"/>
 			<arg name="cIconQuery" type="s" direction="in"/>
 		</method>
-		<!-- NEED DBUSMENU_GTK: BEGIN -->
 		<method name="SetMenu">
 			<arg name="cBusName" type="s" direction="in"/>
 			<arg name="cMenuPath" type="s" direction="in"/>
 			<arg name="cIconQuery" type="s" direction="in"/>
 		</method>
-		<!-- NEED DBUSMENU_GTK: END -->
 		<method name="SetProgress">
 			<arg name="fPercent" type="d" direction="in"/>
 			<arg name="cIconQuery" type="s" direction="in"/>

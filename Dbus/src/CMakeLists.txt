@@ -11,7 +11,7 @@ SET (cd-Dbus_LIB_SRCS
 	interface-applet-signals.c 	interface-applet-signals.h
 	dbus-applet-spec.h
 	dbus-sub-applet-spec.h
-	dbus-main-spec.h	dbus-main-spec-old.h
+	dbus-main-spec.h
 	applet-struct.h
 )
 

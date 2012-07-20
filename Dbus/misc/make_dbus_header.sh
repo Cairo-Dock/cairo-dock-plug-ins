@@ -5,11 +5,6 @@
 
 dbus-binding-tool --mode=glib-server --prefix=cd_dbus_main ./src/dbus_introspectable.xml > ./src/dbus-main-spec.h
 
-## without SetMenu which needs DbusMenuGtk
-sed '/NEED DBUSMENU_GTK: BEGIN/,/NEED DBUSMENU_GTK: END/d' src/dbus_introspectable.xml > src/dbus_introspectable_old.xml
-dbus-binding-tool --mode=glib-server --prefix=cd_dbus_main ./src/dbus_introspectable_old.xml > ./src/dbus-main-spec-old.h
-rm -f src/dbus_introspectable_old.xml
-
 dbus-binding-tool --mode=glib-server --prefix=cd_dbus_applet ./src/dbus_applet_introspectable.xml > ./src/dbus-applet-spec.h
 
 dbus-binding-tool --mode=glib-server --prefix=cd_dbus_sub_applet ./src/dbus_sub_applet_introspectable.xml > ./src/dbus-sub-applet-spec.h
