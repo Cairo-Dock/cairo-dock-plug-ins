@@ -49,6 +49,7 @@ static GList *cd_logout_get_users_list (void);
 
 static void _display_menu (void);
 
+#define CD_LOGOUT_MESSAGE_SEPARATOR " | "
 
   ////////////////////
  /// CAPABILITIES ///
@@ -418,11 +419,30 @@ static gchar * _get_reboot_message (void)
 /* static const gchar * _get_logout_message (void) {}*/
 #define _get_logout_message() _("Your session needs to be restarted in order to update new configuration files.")
 
+// yes, it's not a good idea to reboot the computer before the end of the update ;)
+#define CD_LOGOUT_UPDATE_MESSAGE _("Please do that at the end of the update.")
+
 static void _notify_action_required (void)
 {
 	CD_APPLET_DEMANDS_ATTENTION ("pulse", 20);
 	cairo_dock_remove_dialog_if_any (myIcon);
-	cairo_dock_show_temporary_dialog_with_icon (myIcon->cName, myIcon, myContainer, 15e3, "same icon");
+
+	gchar *cName;
+	if (myData.bLogoutNeeded && myData.bRebootNeeded)
+	{
+		gchar *cTmpName = g_strdup (myIcon->cName); // Icon's name contains the message for the reboot and then for the logout
+		gchar *cTmpPtr = g_strrstr (cTmpName, CD_LOGOUT_MESSAGE_SEPARATOR);
+		if (cTmpPtr)
+			*cTmpPtr = '\0';
+		cName = g_strdup_printf ("%s\n%s", cTmpName, CD_LOGOUT_UPDATE_MESSAGE);
+		g_free (cTmpName);
+	}
+	else
+		cName = g_strdup_printf ("%s\n%s", myIcon->cName, CD_LOGOUT_UPDATE_MESSAGE);
+
+	cairo_dock_show_temporary_dialog_with_icon (cName, myIcon, myContainer, 15e3, "same icon");
+
+	g_free (cName);
 
 	gint iIconSize = MAX (myIcon->iImageWidth, myIcon->iImageHeight);
 	gchar *cImagePath = _check_icon (myConfig.cEmblemPath,
@@ -449,6 +469,7 @@ static void _notify_action_required (void)
 static void _stop_notify_action_required (void)
 {
 	 // should not happen... mainly for the tests.
+	cairo_dock_remove_dialog_if_any (myIcon);
 	if (myConfig.iRebootNeededImage == CD_DISPLAY_EMBLEM)
 		CD_APPLET_PRINT_OVERLAY_ON_MY_ICON (NULL, CAIRO_OVERLAY_UPPER_RIGHT);
 	else
@@ -457,40 +478,39 @@ static void _stop_notify_action_required (void)
 }
 
 // complete the string with the right message
-static GString * _get_message (GString *sMessage, CDActionsNeededEnum iAction)
+static GString * _get_message (CDActionsNeededEnum iAction)
 {
+	GString *sMessage = g_string_new ("");
 	if (iAction == CD_REBOOT_NEEDED || myData.bRebootNeeded) // reboot is now needed or reboot is still needed
 	{
 		myData.bRebootNeeded = TRUE;
 		gchar *cRebootMessage = _get_reboot_message ();
 		if (cRebootMessage && *cRebootMessage != '\0')
-			g_string_append_printf (sMessage, "\n%s", cRebootMessage);
+			g_string_printf (sMessage, "%s", cRebootMessage);
 		g_free (cRebootMessage);
 	}
 
 	if (iAction == CD_LOGOUT_NEEDED || myData.bLogoutNeeded)
 	{
 		myData.bLogoutNeeded = TRUE;
-		g_string_append_printf (sMessage, "\n%s", _get_logout_message ());
+		g_string_append_printf (sMessage, "%s%s",
+			sMessage->len == 0 ? "" : CD_LOGOUT_MESSAGE_SEPARATOR,
+			_get_logout_message ());
 	}
 
-	// yes, it's not a good idea to reboot the computer before the end of the update ;)
-	if (myData.bRebootNeeded || myData.bLogoutNeeded)
-		g_string_append_printf (sMessage, "\n%s", _("Please do that at the end of the update."));
 	return sMessage;
 }
 
 void cd_logout_check_reboot_logout_required (CairoDockFMEventType iEventType, const gchar *cURI, CDActionsNeededEnum iAction)
 {
 	// maybe check if logout or reboot message is already available  => merge both messages
-	GString *sMessage = g_string_new ("");
-	g_string_printf (sMessage, "%s", _get_default_message ());
+	GString *sMessage = NULL;
 
 	switch (iEventType)
 	{
 		case CAIRO_DOCK_FILE_MODIFIED: // new message
 		case CAIRO_DOCK_FILE_CREATED:  // reboot/logout required
-			_get_message (sMessage, iAction);
+			sMessage = _get_message (iAction);
 		break;
 		
 		case CAIRO_DOCK_FILE_DELETED:  // reboot/logout no more required (shouldn't happen)
@@ -498,14 +518,17 @@ void cd_logout_check_reboot_logout_required (CairoDockFMEventType iEventType, co
 				myData.bRebootNeeded = FALSE;
 			else if (iAction == CD_LOGOUT_NEEDED)
 				myData.bLogoutNeeded = FALSE;
-			_get_message (sMessage, CD_REMOVE_MESSAGE);
+			sMessage = _get_message (CD_REMOVE_MESSAGE);
 			if (! myData.bRebootNeeded && ! myData.bLogoutNeeded)
 				_stop_notify_action_required (); // default icon
 		break;
 		default:
 		break;
 	}
-	CD_APPLET_SET_NAME_FOR_MY_ICON (sMessage->str);
+	if (sMessage && sMessage->len > 0)
+		CD_APPLET_SET_NAME_FOR_MY_ICON (sMessage->str);
+	else
+		CD_APPLET_SET_NAME_FOR_MY_ICON (_get_default_message ());
 	if (iEventType == CAIRO_DOCK_FILE_CREATED)
 		_notify_action_required ();
 

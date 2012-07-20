@@ -264,9 +264,9 @@ gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pCon
 					g_ascii_toupper (pItem->cTitle[0]), // we force the first char to upper
 					pItem->cTitle+1);
 			if (pItem->cLabel && *pItem->cLabel != '\0')
-				g_string_append_printf (sTitle, "%s%s", sTitle->len == 0 ? "" : "\n", pItem->cLabel);
+				g_string_append_printf (sTitle, "%s%s", sTitle->len == 0 ? "" : " | ", pItem->cLabel);
 			if (pItem->cAccessibleDesc && *pItem->cAccessibleDesc != '\0')
-				g_string_append_printf (sTitle, "%s%s", sTitle->len == 0 ? "" : "\n", pItem->cAccessibleDesc);
+				g_string_append_printf (sTitle, "%s%s", sTitle->len == 0 ? "" : " | ", pItem->cAccessibleDesc);
 			// maybe better to not display cId, e.g: nm-applet ; dropbox-xxxx ; etc.
 			
 			CD_APPLET_SET_NAME_FOR_MY_ICON (sTitle->str);
