@@ -80,8 +80,13 @@ CD_APPLET_INIT_BEGIN
 	// maybe not very clean to directly use 'CD_REBOOT_NEEDED' but it's just to not use two new variables for this tiny enum ;)
 	cd_logout_check_reboot_required_init ();
 
-	cairo_dock_fm_add_monitor_full (cd_logout_get_session_migration_filename (), FALSE, NULL, (CairoDockFMMonitorCallback) cd_logout_check_reboot_logout_required, (gpointer) CD_LOGOUT_NEEDED);
-	cd_logout_check_logout_required_init ();
+	/* We are waiting for the decision of 'session-migration' devs
+	 * if we can warn the user (if it's really useful...) or not
+	 * if the session has to be restarted and which file has to be monitored...
+	 * => Temporally disable it.
+	 */
+	// cairo_dock_fm_add_monitor_full (cd_logout_get_session_migration_filename (), FALSE, NULL, (CairoDockFMMonitorCallback) cd_logout_check_reboot_logout_required, (gpointer) CD_LOGOUT_NEEDED);
+	// cd_logout_check_logout_required_init ();
 CD_APPLET_INIT_END
 
 
@@ -117,7 +122,7 @@ CD_APPLET_RELOAD_BEGIN
 
 		// the icon can be changed.
 		cd_logout_check_reboot_required_init ();
-		cd_logout_check_logout_required_init ();
+		// cd_logout_check_logout_required_init ();
 		
 		cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
 		cd_keybinder_rebind (myData.pKeyBinding2, myConfig.cShortkey2, NULL);
