@@ -21,6 +21,7 @@ import sys
 import glib
 import gobject
 import re
+from os import popen
 import dbus, dbus.service
 from dbus.mainloop.glib import DBusGMainLoop
 from CairoDock import CairoDock
@@ -145,12 +146,13 @@ class ULWatcher:
 	
 	def __init__(self):
 		DBusGMainLoop(set_as_default=True)
+		
 		try: 
 			self.bus = dbus.SessionBus()
 		except Exception as exception:
 			print('Could not open dbus. Uncaught exception.')
 			return
-		     
+		
 		bus_name = dbus.service.BusName (self.bus_name_str, self.bus)
 		print("registered as Unity:",bus_name)
 		
@@ -220,4 +222,10 @@ class ULWatcher:
 			print('unknown signal')
 		
 if __name__ == '__main__':
+	# check that we don't run twice (ex.: from a 2nd cairo-dock instance)
+	# we could detect it from the bus, but then we couldn't detect the following case: Unity launcher + Cairo-Dock
+	if popen("ps -ef | grep "+sys.argv[0][2:]+" | grep python | grep -v grep").read().rstrip() != "":
+		print('Cairo-Dock - Unity bridge is already running')
+		sys.exit(1)
+	
 	ULWatcher()
