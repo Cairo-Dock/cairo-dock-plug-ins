@@ -8405,7 +8405,7 @@ msgstr "Laissez vide pour utiliser un nom par défaut"
 
 #: ../stack/data/messages:105
 msgid "They are items created by dropping a text into the Stack."
-msgstr "Il y a des objets créés en déposant du texte sur la pile."
+msgstr "Ce sont les objets créés en déposant du texte sur la pile."
 
 #: ../stack/data/messages:107
 msgid "Image for 'text' items:"
@@ -8413,7 +8413,7 @@ msgstr "Image pour les objets 'textes' :"
 
 #: ../stack/data/messages:109
 msgid "These are items created by dropping a URL into the Stack."
-msgstr "Il y a des objets créés en déposant une URL sur la pile."
+msgstr "Ce sont les objets créés en déposant une URL sur la pile."
 
 #: ../stack/data/messages:111
 msgid "Image for 'URL' items:"
