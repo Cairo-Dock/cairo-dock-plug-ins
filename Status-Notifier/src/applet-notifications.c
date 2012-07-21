@@ -268,9 +268,8 @@ gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pCon
 				g_string_append_printf (sTitle, "%s%s", sTitle->len == 0 ? "" : " | ", pItem->cLabel);
 			if (pItem->cAccessibleDesc && *pItem->cAccessibleDesc != '\0')
 				g_string_append_printf (sTitle, "%s%s", sTitle->len == 0 ? "" : " | ", pItem->cAccessibleDesc);
-			// maybe better to not display cId, e.g: nm-applet ; dropbox-xxxx ; etc.
 			if (sTitle->len == 0)  // don't display an empty label
-				CD_APPLET_SET_NAME_FOR_MY_ICON (pItem->cId);  // let's display the ID if we really have nothing, just to avoid having a gap (no label), inconsistency (only on some items), and an item that you can't guess until you click on it. This is a workaround for applications that don't provide a label yet, which should hopefully become rare !
+				CD_APPLET_SET_NAME_FOR_MY_ICON (pItem->cId);  // let's display the ID if we really have nothing, just to avoid having a gap (no label), inconsistency (only on some items), and an item that you can't guess until you click on it. This is a workaround for applications that don't provide a label yet, which should hopefully become rare ! since the ID is sometimes ugly (e.g: nm-applet ; dropbox-xxxx ; etc.), don't use it if any other string is non empty.
 			else
 				CD_APPLET_SET_NAME_FOR_MY_ICON (sTitle->str);
 			g_string_free (sTitle, TRUE);
