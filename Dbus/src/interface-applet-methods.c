@@ -295,7 +295,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 	gboolean bUseMarkup = FALSE;
 	v = g_hash_table_lookup (hDialogAttributes, "use-markup");
 	if (v && G_VALUE_HOLDS_BOOLEAN (v))
-		bUseMarkup = g_value_get_boolean (v);
+		attr.bUseMarkup = g_value_get_boolean (v);
 	
 	attr.pUserData = pDbusApplet;
 	attr.pFreeDataFunc = (GFreeFunc)_on_dialog_destroyed;
@@ -554,13 +554,9 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 	else
 		g_object_set_data (G_OBJECT (pInteractiveWidget), "cd-widget", pOneWidget);
 	
-	if (bUseMarkup)
-		myDialogsParam.dialogTextDescription.bUseMarkup = TRUE;
 	pDbusApplet->pDialog = cairo_dock_build_dialog (&attr, pIcon, pContainer);
 	if (pOneWidget)
 		gtk_widget_grab_focus (pOneWidget);
-	if (bUseMarkup)
-		myDialogsParam.dialogTextDescription.bUseMarkup = FALSE;
 	
 	g_free (cImageFilePath);
 	if (cButtonsImage)
