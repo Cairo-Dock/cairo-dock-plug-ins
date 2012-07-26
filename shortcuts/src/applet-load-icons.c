@@ -277,8 +277,10 @@ static gboolean cd_shortcuts_build_shortcuts_from_data (CDSharedMemory *pSharedM
 			cDeskletRendererName = "Tree";
 		break ;
 	}
-	CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, cDeskletRendererName, NULL);
+	CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, cDeskletRendererName, NULL);  // takes ownership of 'pIconList'
 	
+	//\_______________________ add a progress bar on disk volumes (must be done after inserting the icons into a container)
+	pIconList = CD_APPLET_MY_ICONS_LIST;
 	Icon *pIcon;
 	GList *ic;
 	for (ic = pIconList; ic != NULL; ic = ic->next)
