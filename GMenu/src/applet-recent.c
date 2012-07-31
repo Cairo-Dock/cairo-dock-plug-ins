@@ -70,7 +70,7 @@ void cd_menu_append_recent_to_menu (GtkWidget *top_menu, CairoDockModuleInstance
 	
 	//\_____________ On construit le menu des fichiers recents.
 	GtkWidget *recent_menu = gtk_recent_chooser_menu_new_for_manager (myData.pRecentManager);
-	gtk_recent_chooser_set_show_icons (GTK_RECENT_CHOOSER (recent_menu), myConfig.bHasIcons);
+	gtk_recent_chooser_set_show_icons (GTK_RECENT_CHOOSER (recent_menu), TRUE);
 	if (myData.pRecentFilter != NULL)
 	{
 		gtk_recent_chooser_add_filter (GTK_RECENT_CHOOSER (recent_menu), myData.pRecentFilter);

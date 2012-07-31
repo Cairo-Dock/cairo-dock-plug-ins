@@ -101,9 +101,6 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#b Display icons in the menu?
-has icons=true
-
 #k Shortkey to show/hide the menu:
 menu shortkey = <Control>F1
 

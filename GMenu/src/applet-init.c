@@ -103,7 +103,6 @@ CD_APPLET_RELOAD_BEGIN
 		// on reset ce qu'il faut.
 		cd_menu_reset_recent (myApplet);  // le fitre peut avoir change.
 		if (myData.pMenu != NULL &&
-			(myConfig.bHasIcons != myData.bIconsLoaded) ||
 			(myConfig.bShowRecent && myData.pRecentMenuItem == NULL) ||
 			(myConfig.iShowQuit != myData.iShowQuit))
 		{

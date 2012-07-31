@@ -270,11 +270,8 @@ void panel_load_menu_image_deferred (GtkWidget   *image_menu_item,
 			       G_CALLBACK (image_menu_shown), icon,
 			       (GClosureNotify) icon_to_load_free, 0);
  
-	if (myConfig.bHasIcons)
-	{
-		_gtk_image_menu_item_set_image (
-			GTK_IMAGE_MENU_ITEM (image_menu_item), image);
-	}
+	_gtk_image_menu_item_set_image (
+		GTK_IMAGE_MENU_ITEM (image_menu_item), image);
 
 	gtk_widget_show (image);
 
@@ -510,11 +507,8 @@ void setup_menuitem (GtkWidget   *menuitem,
 					g_object_ref (image),
 					(GDestroyNotify) g_object_unref);
 		gtk_widget_show (image);
-		if (myConfig.bHasIcons)
-		{
-			_gtk_image_menu_item_set_image (
-				GTK_IMAGE_MENU_ITEM (menuitem), image);
-		}
+		_gtk_image_menu_item_set_image (
+			GTK_IMAGE_MENU_ITEM (menuitem), image);
 	} else if (icon_size != GTK_ICON_SIZE_INVALID)
 		g_signal_connect (menuitem, "size_request",
 				  G_CALLBACK (image_menuitem_size_request),
@@ -717,8 +711,6 @@ GtkWidget * create_main_menu (CairoDockModuleInstance *myApplet)
 	g_object_set_data (G_OBJECT (main_menu),
 		"panel-menu-append-callback-data",
 		myApplet);
-	
-	myData.bIconsLoaded = myConfig.bHasIcons;
 	
 	return main_menu;
 }

@@ -56,7 +56,6 @@ typedef enum _CDGMenuShowQuit {
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
-	gboolean bHasIcons;
 	gboolean bShowRecent;
 	gchar *cMenuShortkey;
 	gchar *cQuickLaunchShortkey;
@@ -70,7 +69,6 @@ struct _AppletConfig {
 struct _AppletData {
 	// menu
 	GtkWidget *pMenu;
-	gboolean bIconsLoaded;
 	CDGMenuShowQuit iShowQuit;
 	gint iPanelDefaultMenuIconSize;
 	// recent files sub-menu
