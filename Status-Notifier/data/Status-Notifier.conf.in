@@ -30,10 +30,8 @@ bg color = .8;.8;.8;.5
 
 order=
 
-#F[Applet's Handbook]
-frame_hand=
 #A
-handbook=Status Notifier
+handbook=Status-Notifier
 
 
 #[gtk-convert]

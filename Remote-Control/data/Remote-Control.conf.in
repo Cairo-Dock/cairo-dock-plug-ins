@@ -1,5 +1,12 @@
 #@VERSION_REMOTE_CONTROL@
 
+#[gtk-help]
+[Help]
+
+#A
+handbook=Remote-Control
+
+
 #[gtk-preferences]
 [Configuration]
 

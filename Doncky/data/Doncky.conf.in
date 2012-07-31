@@ -23,6 +23,9 @@ icon size = 0;0
 
 order=
 
+#A
+handbook=Doncky
+
 #[gtk-convert]
 [Desklet]
 
