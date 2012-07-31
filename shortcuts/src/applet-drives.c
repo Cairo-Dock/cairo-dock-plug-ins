@@ -83,10 +83,20 @@ void cd_shortcuts_add_progress_bar (Icon *pIcon, CairoDockModuleInstance *myAppl
 	// set a progress bar to display the disk space
 	CairoProgressBarAttribute attr;
 	memset (&attr, 0, sizeof (CairoProgressBarAttribute));
+	/*
+	 * It's maybe a bit useless to modify the start and the end color of this bar
+	 * We can use global parameters but if we modify these parameters, these
+	 * progress bar will be updated before the next reload of this applet
+	 */
+	/*gdouble fInvertedColor[6];
+	if (myConfig.iDisplayType == CD_SHOW_USED_SPACE || myConfig.iDisplayType == CD_SHOW_USED_SPACE_PERCENT)
+	{
+		memcpy (fInvertedColor, myIndicatorsParam.fBarColorStop, 3*sizeof (gdouble));
+		memcpy (&fInvertedColor[3], myIndicatorsParam.fBarColorStart, 3*sizeof (gdouble));
+		attr.fColorGradation = fInvertedColor;
+	}*/
 	CairoDataRendererAttribute *pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
 	pRenderAttr->cModelName = "progressbar";
-	gdouble green_red[6] = {0, 1, 0, 1, 0, 0}, red_green[6] = {1, 0, 0, 0, 1, 0};
-	attr.fColorGradation = (myConfig.iDisplayType == CD_SHOW_USED_SPACE || myConfig.iDisplayType == CD_SHOW_USED_SPACE_PERCENT ? green_red : red_green);
 	cairo_dock_add_new_data_renderer_on_icon (pIcon, pIcon->pContainer, pRenderAttr);
 }
 
