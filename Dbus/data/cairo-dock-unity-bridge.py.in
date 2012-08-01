@@ -224,7 +224,7 @@ class ULWatcher:
 if __name__ == '__main__':
 	# check that we don't run twice (ex.: from a 2nd cairo-dock instance)
 	# we could detect it from the bus, but then we couldn't detect the following case: Unity launcher + Cairo-Dock
-	if popen("ps -ef | grep "+sys.argv[0][2:]+" | grep python | grep -v grep").read().rstrip() != "":
+	if popen("ps euf | grep "+sys.argv[0][2:]+" | grep python | grep -v grep").read().rstrip() != "":
 		print('Cairo-Dock - Unity bridge is already running')
 		sys.exit(1)
 	
