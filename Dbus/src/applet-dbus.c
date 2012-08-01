@@ -43,11 +43,7 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 #include <dbus/dbus-glib-bindings.h>
 
 #include "interface-main-methods.h"
-#ifdef DBUSMENU_GTK_FOUND
 #include "dbus-main-spec.h"
-#else
-#include "dbus-main-spec-old.h"
-#endif
 #include "interface-applet-object.h"
 #include "interface-applet-signals.h"
 #include "applet-dbus.h"
