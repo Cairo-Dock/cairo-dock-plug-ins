@@ -62,10 +62,10 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bRel
 		aGraphAttr.bMixGraphs = myConfig.bMixGraph;
 		double fHighColor[CD_NETSPEED_NB_MAX_VALUES*3];
 		double fLowColor[CD_NETSPEED_NB_MAX_VALUES*3];
-		int i = 1; /*0;
+		int i = 0;
 		memcpy (&fHighColor[3*i], myConfig.fHigholor, 3*sizeof (double));
 		memcpy (&fLowColor[3*i], myConfig.fLowColor, 3*sizeof (double));
-		i ++;*/
+		i ++;
 		memcpy (&fHighColor[3*i], myConfig.fHigholor, 3*sizeof (double));
 		memcpy (&fLowColor[3*i], myConfig.fLowColor, 3*sizeof (double));
 		aGraphAttr.fHighColor = fHighColor;
