@@ -56,13 +56,13 @@ typedef enum _CDGMenuShowQuit {
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
-	gboolean bShowRecent;
 	gchar *cMenuShortkey;
 	gchar *cQuickLaunchShortkey;
 	gchar *cConfigureMenuCommand;
-	gchar *cRecentRootDirFilter;
-	gint iRecentAge;
+	gboolean bShowRecent;
+	gint iNbRecentItems;
 	CDGMenuShowQuit iShowQuit;
+	gchar *cRecentRootDirFilter;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
@@ -75,6 +75,7 @@ struct _AppletData {
 	GtkRecentManager *pRecentManager;
 	GtkWidget *pRecentMenuItem;
 	GtkRecentFilter *pRecentFilter;
+	gint iNbRecentItems;
 	// quick-launcher
 	CairoDialog *pQuickLaunchDialog;
 	GHashTable *dir_hash;

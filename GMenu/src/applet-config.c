@@ -31,14 +31,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cMenuShortkey = CD_CONFIG_GET_STRING ("Configuration", "menu shortkey");
 	myConfig.cQuickLaunchShortkey = CD_CONFIG_GET_STRING ("Configuration", "quick launch shortkey");
 	myConfig.cConfigureMenuCommand = CD_CONFIG_GET_STRING ("Configuration", "config menu");
-	myConfig.cRecentRootDirFilter = CD_CONFIG_GET_STRING ("Configuration", "recent root dir");
-	if (myConfig.cRecentRootDirFilter != NULL && *myConfig.cRecentRootDirFilter == '/')
-	{
-		gchar *tmp = myConfig.cRecentRootDirFilter;
-		myConfig.cRecentRootDirFilter = g_strconcat ("file://", myConfig.cRecentRootDirFilter, NULL);
-		g_free (tmp);
-	}
-	myConfig.iRecentAge = CD_CONFIG_GET_INTEGER ("Configuration", "recent age");
+	myConfig.iNbRecentItems = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb recent", 10);
 	myConfig.iShowQuit = CD_CONFIG_GET_INTEGER ("Configuration", "show quit");
 CD_APPLET_GET_CONFIG_END
 
@@ -48,7 +41,6 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cConfigureMenuCommand);
 	g_free (myConfig.cMenuShortkey);
 	g_free (myConfig.cQuickLaunchShortkey);
-	g_free (myConfig.cRecentRootDirFilter);
 CD_APPLET_RESET_CONFIG_END
 
 

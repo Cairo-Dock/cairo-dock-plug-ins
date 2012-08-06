@@ -70,7 +70,14 @@ void cd_menu_append_recent_to_menu (GtkWidget *top_menu, CairoDockModuleInstance
 	
 	//\_____________ On construit le menu des fichiers recents.
 	GtkWidget *recent_menu = gtk_recent_chooser_menu_new_for_manager (myData.pRecentManager);
+	
 	gtk_recent_chooser_set_show_icons (GTK_RECENT_CHOOSER (recent_menu), TRUE);
+	gtk_recent_chooser_set_local_only (GTK_RECENT_CHOOSER (recent_menu), FALSE);
+	gtk_recent_chooser_set_show_tips (GTK_RECENT_CHOOSER (recent_menu), TRUE);
+	gtk_recent_chooser_set_sort_type (GTK_RECENT_CHOOSER (recent_menu), GTK_RECENT_SORT_MRU);  // most recently used
+	gtk_recent_chooser_set_limit (GTK_RECENT_CHOOSER (recent_menu), myConfig.iNbRecentItems);
+	myData.iNbRecentItems = myConfig.iNbRecentItems;
+	
 	if (myData.pRecentFilter != NULL)
 	{
 		gtk_recent_chooser_add_filter (GTK_RECENT_CHOOSER (recent_menu), myData.pRecentFilter);
@@ -85,14 +92,6 @@ void cd_menu_append_recent_to_menu (GtkWidget *top_menu, CairoDockModuleInstance
 	g_signal_connect_object (myData.pRecentManager, "changed",
 		G_CALLBACK (panel_recent_manager_changed_cb),
 		 myData.pRecentMenuItem, 0);
-	
-	//\_____________ On le personnalise un peu.
-	gtk_recent_chooser_set_local_only (GTK_RECENT_CHOOSER (recent_menu),
-		 FALSE);
-	gtk_recent_chooser_set_show_tips (GTK_RECENT_CHOOSER (recent_menu),
-		TRUE);
-	gtk_recent_chooser_set_sort_type (GTK_RECENT_CHOOSER (recent_menu),
-		GTK_RECENT_SORT_MRU);  // most recently used
 	
 	//\_____________ On l'insere dans notre entree.
 	gtk_menu_item_set_submenu (GTK_MENU_ITEM (myData.pRecentMenuItem), recent_menu);
@@ -133,8 +132,6 @@ void cd_menu_init_recent (CairoDockModuleInstance *myApplet)
 			(GtkRecentFilterFunc) _recent_uri_filter,
 			myApplet,
 			NULL);
-		if (myConfig.iRecentAge != 0)
-			gtk_recent_filter_add_age (myData.pRecentFilter, myConfig.iRecentAge);
 	}
 }
 

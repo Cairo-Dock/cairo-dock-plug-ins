@@ -103,10 +103,9 @@ CD_APPLET_RELOAD_BEGIN
 		// on reset ce qu'il faut.
 		cd_menu_reset_recent (myApplet);  // le fitre peut avoir change.
 		if (myData.pMenu != NULL &&
-			(myConfig.bShowRecent && myData.pRecentMenuItem == NULL) ||
 			(myConfig.iShowQuit != myData.iShowQuit))
 		{
-			gtk_widget_destroy (myData.pMenu);  // detruit le sous-menu des recent items ?
+			gtk_widget_destroy (myData.pMenu);  // will destroy the 'recent items' sub-menu
 			myData.pMenu = NULL;
 			myData.pRecentMenuItem = NULL;
 			myData.iShowQuit = myConfig.iShowQuit;
@@ -132,12 +131,19 @@ CD_APPLET_RELOAD_BEGIN
 				cd_menu_init_recent (myApplet);
 				if (myData.pRecentMenuItem != NULL)  // ils existent deja.
 				{
+					GtkWidget *pRecentMenu = gtk_menu_item_get_submenu (GTK_MENU_ITEM (myData.pRecentMenuItem));
 					if (myData.pRecentFilter != NULL)
 						gtk_recent_chooser_add_filter (GTK_RECENT_CHOOSER (myData.pRecentMenuItem), myData.pRecentFilter);
+					
+					if (myData.iNbRecentItems != myConfig.iNbRecentItems)
+					{
+						gtk_widget_destroy (pRecentMenu);
+						cd_menu_append_recent_to_menu (myData.pMenu, myApplet);
+					}
 				}
 				else  // il faut les construire.
 				{
-					// rien a faire, dans ce cas on a detruit le menu, car il faut placer les recent items a l'interieur.
+					cd_menu_append_recent_to_menu (myData.pMenu, myApplet);
 				}
 			}
 		}
