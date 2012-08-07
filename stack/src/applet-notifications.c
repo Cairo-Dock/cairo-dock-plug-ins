@@ -35,7 +35,11 @@ static inline void _launch_item (Icon *pIcon, CairoDockModuleInstance *myApplet)
 	else
 	{
 		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog_with_icon (pIcon->cCommand, pIcon, (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer), 2000, "same icon");
+		cairo_dock_show_temporary_dialog_with_icon (pIcon->cCommand,
+			pIcon,
+			(myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer),
+			0,
+			"same icon");
 		
 		cairo_dock_stop_icon_animation (pIcon);
 	}
