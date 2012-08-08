@@ -30,52 +30,6 @@
 
 #define CD_SHORTCUT_DEFAULT_DRIVE_ICON_FILENAME "drive-harddisk"
 
-/**static void _load_disk_icon (Icon *pIcon)
-{
-	CairoDockModuleInstance *myApplet = pIcon->pAppletOwner;
-	int iWidth = pIcon->iImageWidth;
-	int iHeight = pIcon->iImageHeight;
-	if (pIcon->cFileName)  // icone possedant une image, on affiche celle-ci.
-	{
-		gchar *cIconPath = cairo_dock_search_icon_s_path (pIcon->cFileName, MAX (iWidth, iHeight));
-		if (cIconPath != NULL && *cIconPath != '\0')
-		{
-			pIcon->pIconBuffer = cairo_dock_create_surface_from_image_simple (cIconPath,
-				iWidth,
-				iHeight);
-			if (pIcon->pIconBuffer != NULL && myConfig.bDrawBar)
-			{
-				CDDiskUsage *pDiskUsage = CD_APPLET_GET_MY_ICON_DATA (pIcon);
-				if (pDiskUsage != NULL && pDiskUsage->iTotal != 0)
-				{
-					double fValue;
-					switch (myConfig.iDisplayType)
-					{
-						case CD_SHOW_FREE_SPACE :
-							fValue = (double) pDiskUsage->iAvail / pDiskUsage->iTotal;
-						break ;
-						case CD_SHOW_USED_SPACE :
-							fValue = (double) - pDiskUsage->iUsed / pDiskUsage->iTotal;  // <0 => du vert au rouge.
-						break ;
-						case CD_SHOW_FREE_SPACE_PERCENT :
-							fValue = (double) pDiskUsage->iAvail / pDiskUsage->iTotal;
-						break ;
-						case CD_SHOW_USED_SPACE_PERCENT :
-							fValue = (double) - pDiskUsage->iUsed / pDiskUsage->iTotal;  // <0 => du vert au rouge.
-						break ;
-						default:
-							fValue = 0.;
-						break;
-					}
-					cairo_t *pCairoContext = cairo_create (pIcon->pIconBuffer);
-					cairo_dock_draw_bar_on_icon (pCairoContext, fValue, pIcon);
-					cairo_destroy (pCairoContext);
-				}
-			}
-		}
-		g_free (cIconPath);
-	}
-}*/
 
 void cd_shortcuts_add_progress_bar (Icon *pIcon, CairoDockModuleInstance *myApplet)
 {
@@ -83,18 +37,12 @@ void cd_shortcuts_add_progress_bar (Icon *pIcon, CairoDockModuleInstance *myAppl
 	// set a progress bar to display the disk space
 	CairoProgressBarAttribute attr;
 	memset (&attr, 0, sizeof (CairoProgressBarAttribute));
-	/*
-	 * It's maybe a bit useless to modify the start and the end color of this bar
-	 * We can use global parameters but if we modify these parameters, these
-	 * progress bar will be updated before the next reload of this applet
-	 */
-	/*gdouble fInvertedColor[6];
 	if (myConfig.iDisplayType == CD_SHOW_USED_SPACE || myConfig.iDisplayType == CD_SHOW_USED_SPACE_PERCENT)
 	{
 		memcpy (fInvertedColor, myIndicatorsParam.fBarColorStop, 3*sizeof (gdouble));
 		memcpy (&fInvertedColor[3], myIndicatorsParam.fBarColorStart, 3*sizeof (gdouble));
-		attr.fColorGradation = fInvertedColor;
-	}*/
+		attr.bInverted = TRUE;
+	}
 	CairoDataRendererAttribute *pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
 	pRenderAttr->cModelName = "progressbar";
 	cairo_dock_add_new_data_renderer_on_icon (pIcon, pIcon->pContainer, pRenderAttr);
@@ -103,9 +51,6 @@ void cd_shortcuts_add_progress_bar (Icon *pIcon, CairoDockModuleInstance *myAppl
 
 static void _init_disk_usage (Icon *pIcon, CairoDockModuleInstance *myApplet)
 {
-	///pIcon->iface.load_image = _load_disk_icon;
-	///pIcon->pAppletOwner = myApplet;
-	
 	// ensure the applet has a valid icon, in case the VFS didn't give us one.
 	if (pIcon->cFileName == NULL)
 		pIcon->cFileName = cairo_dock_search_icon_s_path (CD_SHORTCUT_DEFAULT_DRIVE_ICON_FILENAME, CAIRO_DOCK_DEFAULT_ICON_SIZE);
@@ -177,7 +122,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 			if (pNewIcon->cCommand)
 			{
 				cd_shortcuts_add_progress_bar (pNewIcon, myApplet);
-				cairo_dock_relaunch_task_immediately (myData.pDiskTask, -1);
+				cd_shortcuts_display_disk_usage (pNewIcon, myApplet);
 			}
 			
 			//\_______________________ on affiche un message.
@@ -230,7 +175,6 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 				if (pNewIcon->cCommand)
 				{
 					cd_shortcuts_add_progress_bar (pNewIcon, myApplet);
-					cairo_dock_relaunch_task_immediately (myData.pDiskTask, -1);
 				}
 				
 				pConcernedIcon = pNewIcon;  // pConcernedIcon a ete detruite, on pointe sur la nouvelle pour pouvoir afficher un dialogue juste apres.
@@ -240,6 +184,8 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 				cairo_dock_free_icon (pNewIcon);
 				pNewIcon = NULL;
 			}
+			
+			cd_shortcuts_display_disk_usage (pConcernedIcon, myApplet);
 			
 			//\_______________________ on affiche un message.
 			cairo_dock_remove_dialog_if_any (pConcernedIcon);  // on empeche la multiplication des dialogues de (de)montage.

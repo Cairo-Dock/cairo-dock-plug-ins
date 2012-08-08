@@ -52,6 +52,50 @@ void cd_shortcuts_get_fs_stat (const gchar *cDiskURI, CDDiskUsage *pDiskUsage)
 	}
 }
 
+static void _display_disk_usage (Icon *pIcon, CairoContainer *pContainer, CDDiskUsage *pDiskUsage, CairoDockModuleInstance *myApplet)
+{
+	double fValue;
+	if (pDiskUsage->iTotal != 0 && (pDiskUsage->iPrevAvail == -1 || (double)fabs (pDiskUsage->iPrevAvail - pDiskUsage->iAvail) / pDiskUsage->iTotal > .001))  // .1 % d'ecart ou info encore non renseignee.
+	{
+		pDiskUsage->iPrevAvail = pDiskUsage->iAvail;
+		switch (myConfig.iDisplayType)
+		{
+			case CD_SHOW_FREE_SPACE :
+				fValue = (double) pDiskUsage->iAvail / pDiskUsage->iTotal;
+				cairo_dock_set_size_as_quick_info (pIcon, pContainer, pDiskUsage->iAvail);
+			break ;
+			case CD_SHOW_USED_SPACE :
+				fValue = (double) pDiskUsage->iUsed / pDiskUsage->iTotal;
+				cairo_dock_set_size_as_quick_info (pIcon, pContainer, pDiskUsage->iUsed);
+			break ;
+			case CD_SHOW_FREE_SPACE_PERCENT :
+				fValue = (double) pDiskUsage->iAvail / pDiskUsage->iTotal;
+				cairo_dock_set_quick_info_printf (pIcon, pContainer, "%.1f%%", 100.*fValue);
+			break ;
+			case CD_SHOW_USED_SPACE_PERCENT :
+				fValue = (double) pDiskUsage->iUsed / pDiskUsage->iTotal;
+				cairo_dock_set_quick_info_printf (pIcon, pContainer, "%.1f%%", 100.*fValue);
+			break ;
+			default:
+				fValue = CAIRO_DATA_RENDERER_UNDEF_VALUE;
+			break;
+		}
+		
+		if (myConfig.bDrawBar)
+			cairo_dock_render_new_data_on_icon (pIcon, pContainer, myDrawContext, &fValue);
+		else  // just trigger the redraw for the quick-info
+			cairo_dock_redraw_icon (pIcon, pContainer);
+	}
+}
+
+void cd_shortcuts_display_disk_usage (Icon *pIcon, CairoDockModuleInstance *myApplet)
+{
+	CairoContainer *pContainer = pIcon->pContainer;
+	g_return_if_fail (pContainer != NULL);
+	CDDiskUsage *pDiskUsage = CD_APPLET_GET_MY_ICON_DATA (pIcon);
+	g_return_if_fail (pDiskUsage != NULL);
+	_display_disk_usage (pIcon, pContainer, pDiskUsage, myApplet);
+}
 
 static gboolean _cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myApplet)
 {
@@ -59,7 +103,6 @@ static gboolean _cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myAppl
 	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	CDDiskUsage *pDiskUsage;
 	Icon *pIcon;
-	double fValue;
 	GList *ic;
 	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
 	for (ic = pIconsList; ic != NULL; ic = ic->next)
@@ -73,53 +116,11 @@ static gboolean _cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myAppl
 			pDiskUsage = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 			if (pDiskUsage == NULL)
 				continue;
+			
 			cd_shortcuts_get_fs_stat (pIcon->cCommand, pDiskUsage);
 			
-			// update from data
-			if (pDiskUsage->iTotal != 0 && (pDiskUsage->iPrevAvail == -1 || (double)fabs (pDiskUsage->iPrevAvail - pDiskUsage->iAvail) / pDiskUsage->iTotal > .001))  // .1 % d'ecart ou info encore non renseignee.
-			{
-				pDiskUsage->iPrevAvail = pDiskUsage->iAvail;
-				switch (myConfig.iDisplayType)
-				{
-					case CD_SHOW_FREE_SPACE :
-						fValue = (double) pDiskUsage->iAvail / pDiskUsage->iTotal;
-						cairo_dock_set_size_as_quick_info (pIcon, pContainer, pDiskUsage->iAvail);
-					break ;
-					case CD_SHOW_USED_SPACE :
-						fValue = (double) pDiskUsage->iUsed / pDiskUsage->iTotal;
-						cairo_dock_set_size_as_quick_info (pIcon, pContainer, pDiskUsage->iUsed);
-					break ;
-					case CD_SHOW_FREE_SPACE_PERCENT :
-						fValue = (double) pDiskUsage->iAvail / pDiskUsage->iTotal;
-						cairo_dock_set_quick_info_printf (pIcon, pContainer, "%.1f%%", 100.*fValue);
-					break ;
-					case CD_SHOW_USED_SPACE_PERCENT :
-						fValue = (double) pDiskUsage->iUsed / pDiskUsage->iTotal;
-						cairo_dock_set_quick_info_printf (pIcon, pContainer, "%.1f%%", 100.*fValue);
-					break ;
-					default:
-						fValue = 0.;
-					break;
-				}
-				
-				/**if (myConfig.bDrawBar && pIcon->pIconBuffer != NULL)
-				{
-					int iWidth, iHeight;
-					cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
-					cairo_surface_t *pSurface = cairo_dock_create_surface_for_icon (pIcon->cFileName, iWidth, iHeight);
-					cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
-					
-					cairo_dock_set_icon_surface_with_bar (pIconContext, pSurface, fValue, pIcon);
-					
-					cairo_destroy (pIconContext);
-					cairo_surface_destroy (pSurface);
-				}
-				cairo_dock_redraw_icon (pIcon, pContainer);*/
-				if (myConfig.bDrawBar)
-					cairo_dock_render_new_data_on_icon (pIcon, pContainer, myDrawContext, &fValue);
-				else  // just trigger the redraw for the quick-info
-					cairo_dock_redraw_icon (pIcon, pContainer);
-			}
+			// draw
+			_display_disk_usage (pIcon, pContainer, pDiskUsage, myApplet);
 		}
 	}
 	
