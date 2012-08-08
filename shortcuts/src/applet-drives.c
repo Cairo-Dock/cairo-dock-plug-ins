@@ -39,8 +39,6 @@ void cd_shortcuts_add_progress_bar (Icon *pIcon, CairoDockModuleInstance *myAppl
 	memset (&attr, 0, sizeof (CairoProgressBarAttribute));
 	if (myConfig.iDisplayType == CD_SHOW_USED_SPACE || myConfig.iDisplayType == CD_SHOW_USED_SPACE_PERCENT)
 	{
-		memcpy (fInvertedColor, myIndicatorsParam.fBarColorStop, 3*sizeof (gdouble));
-		memcpy (&fInvertedColor[3], myIndicatorsParam.fBarColorStart, 3*sizeof (gdouble));
 		attr.bInverted = TRUE;
 	}
 	CairoDataRendererAttribute *pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&attr);
