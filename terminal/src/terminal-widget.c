@@ -702,6 +702,7 @@ void terminal_new_tab(void)
 	gtk_widget_show_all (pHBox);
 	gtk_widget_show(vterm);
 	int num_new_tab = gtk_notebook_append_page(GTK_NOTEBOOK(myData.tab), vterm, pHBox);
+	gtk_notebook_set_tab_reorderable (GTK_NOTEBOOK(myData.tab), vterm, TRUE);
 	
 	cd_message ("num_new_tab : %d", num_new_tab);
 	gtk_notebook_set_current_page (GTK_NOTEBOOK (myData.tab), num_new_tab);
