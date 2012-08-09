@@ -93,7 +93,7 @@ static void _cd_weather_location_choosed (GtkMenuItem *pMenuItem, gchar *cLocati
 	
 	//\____________________ On met a jour le panneau de conf.
 	CairoDockModuleInstance *myApplet = g_object_get_data (G_OBJECT (pMenuItem), "cd-applet");
-	GtkWidget *pCodeEntry = CD_APPLET_GET_CONFIG_PANEL_WIDGET ("Configuration", "location code");
+	GtkWidget *pCodeEntry = myData.pCodeEntry;
 	if (pCodeEntry)
 		gtk_entry_set_text (GTK_ENTRY (pCodeEntry), cLocationCode);
 	cd_weather_free_location_list ();
@@ -103,7 +103,7 @@ static void _on_got_location_data (const gchar *cLocationData, CairoDockModuleIn
 	GError *erreur = NULL;
 	cd_weather_free_location_list ();
 	
-	GtkWidget *pCodeEntry = CD_APPLET_GET_CONFIG_PANEL_WIDGET ("Configuration", "location code");
+	GtkWidget *pCodeEntry = myData.pCodeEntry;
 	if (!pCodeEntry)
 	{
 		cd_debug ("request took too long, discard results");
@@ -193,14 +193,21 @@ static void _cd_weather_search_for_location (GtkEntry *pEntry, CairoDockModuleIn
 	myData.pGetLocationTask = cairo_dock_get_url_data_async (cURL, (GFunc) _on_got_location_data, myApplet);
 	g_free (cURL);
 }
-void cd_weather_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile)
+static void _on_destroyed_code_entry (GtkWidget *pEntry, CairoDockModuleInstance *myApplet)
+{
+	myData.pCodeEntry = NULL;
+}
+void cd_weather_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile, GSList *pWidgetList)
 {
 	if (!myApplet)  // if called when the applet is not started
 		return;
 	cd_debug ("%s (%s)\n", __func__, myIcon->cName);
 	//\____________ On recupere le widget.
-	GtkWidget *pCodeEntry = CD_APPLET_GET_CONFIG_PANEL_WIDGET ("Configuration", "location code");
+	CairoDockGroupKeyWidget *pGroupKeyWidget = cairo_dock_gui_find_group_key_widget_in_list (pWidgetList, "Configuration", "location code");
+	GtkWidget *pCodeEntry = cairo_dock_gui_get_first_widget (pGroupKeyWidget);
+	myData.pCodeEntry = pCodeEntry;
 	g_return_if_fail (pCodeEntry != NULL);
+	g_signal_connect (myData.pCodeEntry, "delete", G_CALLBACK (_on_destroyed_code_entry), myApplet);  /// TODO: remove it on stop, to handle the case our applet is deactivated while the config window is opened.
 	
 	GtkWidget *pWidgetBox = gtk_widget_get_parent (pCodeEntry);
 	

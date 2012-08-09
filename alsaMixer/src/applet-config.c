@@ -101,19 +101,21 @@ CD_APPLET_RESET_DATA_BEGIN
 CD_APPLET_RESET_DATA_END
 
 
-void cd_mixer_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile)
+void cd_mixer_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile, GSList *pWidgetList)
 {
 	cd_debug ("%s (%s)\n", __func__, myIcon->cName);
 	//\____________ On construit la liste des canaux a controler.
 	GList *pList = mixer_get_elements_list ();
 	
 	//\____________ On recupere la combo.
-	GtkWidget *pCombo = CD_APPLET_GET_CONFIG_PANEL_WIDGET ("Configuration", "mixer element");
+	CairoDockGroupKeyWidget *pGroupKeyWidget = cairo_dock_gui_find_group_key_widget_in_list (pWidgetList, "Configuration", "mixer element");
+	
+	GtkWidget *pCombo = cairo_dock_gui_get_first_widget (pGroupKeyWidget);
 	g_return_if_fail (pCombo != NULL);
 	cairo_dock_fill_combo_with_list (pCombo, pList, myConfig.cMixerElementName);
 	
 	//\____________ Idem pour la 2eme, avec une entree vide au debut.
-	pCombo = CD_APPLET_GET_CONFIG_PANEL_WIDGET ("Configuration", "mixer element 2");
+	pCombo = cairo_dock_gui_find_group_key_widget_in_list (pWidgetList, "Configuration", "mixer element 2");
 	g_return_if_fail (pCombo != NULL);
 	pList = g_list_prepend (pList, (gpointer)"");  // on peut caster ici car tous les elements sont des const pour nous.
 	cairo_dock_fill_combo_with_list (pCombo, pList, myConfig.cMixerElementName2);

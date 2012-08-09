@@ -27,7 +27,7 @@
 CD_APPLET_CONFIG_H
 
 
-void cd_mixer_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile);
+void cd_mixer_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile, GSList *pWidgetList);
 
 
 #endif

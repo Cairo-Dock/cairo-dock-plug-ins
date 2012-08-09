@@ -203,6 +203,8 @@ struct _AppletData {
 	CDClockTask *pNextAnniversary;
 	gboolean bTaskCheckedOnce;
 	GList *pMissedTasks;
+	
+	GtkWidget *pLocationEntry;
 	} ;
 
 #endif

@@ -116,6 +116,7 @@ struct _AppletData {
 	gint iClickedDay;
 	CairoDockTask *pGetLocationTask;
 	gboolean bBusy;
+	GtkWidget *pCodeEntry;
 	} ;
 
 

@@ -347,11 +347,11 @@ static void _cd_mail_remove_account (GtkButton *pButton, CairoDockModuleInstance
 	g_strfreev (pGroupList);
 }
 
-void cd_mail_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile)
+void cd_mail_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile, GSList *pWidgetList)
 {
 	cd_debug ("");
 	//\____________ On recupere notre widget personnalise (un simple container vide qu'on va remplir avec nos trucs).
-	CairoDockGroupKeyWidget *pGroupKeyWidget = CD_APPLET_GET_CONFIG_PANEL_GROUP_KEY_WIDGET ("Configuration", "add account");
+	CairoDockGroupKeyWidget *pGroupKeyWidget = cairo_dock_gui_find_group_key_widget_in_list (pWidgetList, "Configuration", "add account");
 	g_return_if_fail (pGroupKeyWidget != NULL);
 
 	GtkWidget *pCustomWidgetBox = _gtk_hbox_new (3);
@@ -436,7 +436,7 @@ void cd_mail_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pK
 		}
 		
 		//\____________ On recupere notre widget personnalise (un simple container vide qu'on va remplir avec nos trucs).
-		CairoDockGroupKeyWidget *pGroupKeyWidget = CD_APPLET_GET_CONFIG_PANEL_GROUP_KEY_WIDGET (cMailAccountName, "remove account");
+		CairoDockGroupKeyWidget *pGroupKeyWidget = cairo_dock_gui_find_group_key_widget_in_list (pWidgetList, cMailAccountName, "remove account");
 		if( pGroupKeyWidget == NULL )
 		{
 			cd_warning ("mail : oups, there is a problem in the conf file");
@@ -460,7 +460,7 @@ void cd_mail_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pK
 }
 
 
-void cd_mail_save_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile)
+void cd_mail_save_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile, GSList *pWidgetList)
 {
 	cd_debug ("%s (%s)\n", __func__, myIcon->cName);
 	// ca c'est si on avait des valeurs a recuperer dans nos widgets personnalises, et a stocker dans le pKeyFile. mais ici ils sont simple, et donc tous pris en charge par le dock.

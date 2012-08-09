@@ -118,11 +118,12 @@ CD_APPLET_RESET_DATA_BEGIN
 CD_APPLET_RESET_DATA_END
 
 
-void cd_netmonitor_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile)
+void cd_netmonitor_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile, GSList *pWidgetList)
 {
 	cd_debug ("%s\n", __func__);
 	//\____________ On recupere la combo.
-	GtkWidget *pCombo = CD_APPLET_GET_CONFIG_PANEL_WIDGET ("Configuration", "interface");
+	CairoDockGroupKeyWidget *pGroupKeyWidget = cairo_dock_gui_find_group_key_widget_in_list (pWidgetList, "Configuration", "interface");
+	GtkWidget *pCombo = cairo_dock_gui_get_first_widget (pGroupKeyWidget);
 	g_return_if_fail (pCombo != NULL);
 	
 	//\____________ On construit la liste interfaces disponibles.

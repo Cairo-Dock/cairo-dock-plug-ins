@@ -30,7 +30,7 @@ void cd_weather_free_location_list (void);
 
 void cd_weather_reset_all_datas (CairoDockModuleInstance *myApplet);
 
-void cd_weather_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile);
+void cd_weather_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile, GSList *pWidgetList);
 
 
 #endif
