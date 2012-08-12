@@ -31,7 +31,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cMenuShortkey = CD_CONFIG_GET_STRING ("Configuration", "menu shortkey");
 	myConfig.cQuickLaunchShortkey = CD_CONFIG_GET_STRING ("Configuration", "quick launch shortkey");
 	myConfig.cConfigureMenuCommand = CD_CONFIG_GET_STRING ("Configuration", "config menu");
-	myConfig.iNbRecentItems = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb recent", 10);
+	myConfig.iNbRecentItems = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb recent", 20);
 	myConfig.iShowQuit = CD_CONFIG_GET_INTEGER ("Configuration", "show quit");
 CD_APPLET_GET_CONFIG_END
 

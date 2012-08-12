@@ -111,7 +111,7 @@ sep_opt=
 show recent = true
 
 #i[5;50] Number of items to display
-nb recent = 10
+nb recent = 20
 
 #s[Default] Command to use for configuring the menu:
 config menu =
