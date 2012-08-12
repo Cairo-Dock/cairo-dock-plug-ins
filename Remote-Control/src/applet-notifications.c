@@ -154,7 +154,8 @@ static void _activate_nth_icon (guint iKeyVal, guint iModifierType)  // iKeyVal 
 
 		cairo_dock_start_icon_animation (pNthIcon, myData.pCurrentDock);
 		myData.bIgnoreIconState = FALSE;
-		myData.pCurrentIcon = NULL;  // sinon on va interrompre l'animation en fermant la session.
+		if (pNthIcon == myData.pCurrentIcon)
+			myData.pCurrentIcon = NULL;  // sinon on va interrompre l'animation en fermant la session.
 
 		cd_do_close_session ();
 	}
