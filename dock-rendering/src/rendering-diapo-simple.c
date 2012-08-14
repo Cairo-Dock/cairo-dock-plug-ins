@@ -337,7 +337,7 @@ static guint _cd_rendering_diapo_simple_guess_grid (GList *pIconList, guint *nRo
 			}
 
 			if (my_diapo_simple_wide_grid && ncols >= nl
-			|| ! my_diapo_simple_wide_grid && ncols <= nl)
+			|| ! my_diapo_simple_wide_grid && ncols <= nl)  // this layout is ok, let's take it if it's better than the current one.
 			{
 				delta_lc = abs (ncols - nl);
 				iSurface = ncols * nl;
@@ -349,6 +349,11 @@ static guint _cd_rendering_diapo_simple_guess_grid (GList *pIconList, guint *nRo
 					nx = ncols;
 					ny = nl;
 				}
+			}
+			else if (nx == 0)  // no result yet, take this one as a default result, but keep its weight low
+			{
+				nx = ncols;
+				ny = nl;
 			}
 		}
 		*nRowX = nx;
