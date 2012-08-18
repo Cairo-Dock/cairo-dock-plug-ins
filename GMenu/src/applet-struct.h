@@ -71,6 +71,8 @@ struct _AppletData {
 	GtkWidget *pMenu;
 	CDGMenuShowQuit iShowQuit;
 	gint iPanelDefaultMenuIconSize;
+	GSList *image_menu_items;
+	GHashTable *loaded_icons;
 	// recent files sub-menu
 	GtkRecentManager *pRecentManager;
 	GtkWidget *pRecentMenuItem;

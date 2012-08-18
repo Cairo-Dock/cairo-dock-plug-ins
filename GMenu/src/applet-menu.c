@@ -25,9 +25,6 @@
 #include "applet-util.h"
 #include "applet-menu.h"
 
-static GSList *image_menu_items = NULL;
-static GHashTable *loaded_icons = NULL;
-
 
 GtkWidget * add_menu_separator (GtkWidget *menu)
 {
@@ -74,15 +71,15 @@ GtkWidget * create_fake_menu (GMenuTreeDirectory *directory)
 
 void image_menu_destroy (GtkWidget *image, gpointer data)
 {
-	image_menu_items = g_slist_remove (image_menu_items, image);
+	myData.image_menu_items = g_slist_remove (myData.image_menu_items, image);
 }
 
 
-static void reload_image_menu_items (void)
+void reload_image_menu_items (void)
 {
 	GSList *l;
 
-	for (l = image_menu_items; l; l = l->next) {
+	for (l = myData.image_menu_items; l; l = l->next) {
 		GtkWidget *image = l->data;
 		gboolean   is_mapped;
       
@@ -105,8 +102,8 @@ remove_pixmap_from_loaded (gpointer data, GObject *where_the_object_was)
 {
 	char *key = data;
 
-	if (loaded_icons != NULL)
-		g_hash_table_remove (loaded_icons, key);
+	if (myData.loaded_icons != NULL)
+		g_hash_table_remove (myData.loaded_icons, key);
 
 	g_free (key);
 }
@@ -140,8 +137,8 @@ GdkPixbuf * panel_make_menu_icon (GtkIconTheme *icon_theme,
 
 	key = g_strdup_printf ("%d:%s", size, file);
 
-	if (loaded_icons != NULL &&
-	    (pb = g_hash_table_lookup (loaded_icons, key)) != NULL) {
+	if (myData.loaded_icons != NULL &&
+	    (pb = g_hash_table_lookup (myData.loaded_icons, key)) != NULL) {
 		if (pb != NULL)
 			g_object_ref (G_OBJECT (pb));
 	}
@@ -205,12 +202,12 @@ GdkPixbuf * panel_make_menu_icon (GtkIconTheme *icon_theme,
 	}
 
 	if (loaded) {
-		if (loaded_icons == NULL)
-			loaded_icons = g_hash_table_new_full
+		if (myData.loaded_icons == NULL)
+			myData.loaded_icons = g_hash_table_new_full
 				(g_str_hash, g_str_equal,
 				 (GDestroyNotify) g_free,
 				 (GDestroyNotify) g_object_unref);
-		g_hash_table_replace (loaded_icons,
+		g_hash_table_replace (myData.loaded_icons,
 				      g_strdup (key),
 				      g_object_ref (G_OBJECT (pb)));
 		g_object_weak_ref (G_OBJECT (pb),
@@ -278,7 +275,7 @@ void panel_load_menu_image_deferred (GtkWidget   *image_menu_item,
 	g_signal_connect (image, "destroy",
 			  G_CALLBACK (image_menu_destroy), NULL);
 
-	image_menu_items = g_slist_prepend (image_menu_items, image);
+	myData.image_menu_items = g_slist_prepend (myData.image_menu_items, image);
 }
 GtkWidget * create_submenu_entry (GtkWidget          *menu,
 		      GMenuTreeDirectory *directory)
@@ -575,7 +572,7 @@ GtkWidget * populate_menu_from_directory (GtkWidget          *menu,
 
 
 
-void icon_theme_changed (GtkIconTheme *icon_theme,
+/**void icon_theme_changed (GtkIconTheme *icon_theme,
 		    gpointer      data)
 {
 	reload_image_menu_items ();
@@ -596,13 +593,14 @@ static inline GtkWidget * panel_create_menu (void)
 	retval = gtk_menu_new ();
 	
 	return retval;
-}
+}*/
 GtkWidget * create_empty_menu (void)
 {
 	GtkWidget *retval;
 
-	retval = panel_create_menu ();
-
+	///retval = panel_create_menu ();
+	retval = gtk_menu_new ();
+	
 	return retval;
 }
 

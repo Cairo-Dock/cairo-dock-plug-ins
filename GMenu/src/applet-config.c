@@ -49,6 +49,18 @@ CD_APPLET_RESET_DATA_BEGIN
 	if (myData.pMenu)
 		gtk_widget_destroy (myData.pMenu);  // detruit aussi pRecentMenuItem.
 	
+	if (myData.loaded_icons != NULL)
+	{
+		g_hash_table_destroy (myData.loaded_icons);  // wll unref objects inside.
+		myData.loaded_icons = NULL;  // set to NULL for the callback
+	}
+	
+	if (myData.image_menu_items != NULL)
+	{
+		g_slist_free (myData.image_menu_items);  // objects inside will be destroyed with the menu.
+		myData.image_menu_items = NULL;
+	}
+	
 	if (myData.dir_hash)
 		g_hash_table_destroy (myData.dir_hash);
 	

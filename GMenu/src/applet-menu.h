@@ -49,6 +49,7 @@ GtkWidget * populate_menu_from_directory (GtkWidget          *menu,
 
 void image_menu_destroy (GtkWidget *image, gpointer data);
 
+void reload_image_menu_items (void);
 
 GtkWidget * create_empty_menu (void);
 

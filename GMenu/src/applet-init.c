@@ -83,6 +83,7 @@ CD_APPLET_STOP_BEGIN
 	// keyboard events
 	cd_keybinder_unbind (myData.cKeyBinding);
 	cd_keybinder_unbind (myData.cKeyBindingQuickLaunch);
+	
 CD_APPLET_STOP_END
 
 
@@ -147,5 +148,9 @@ CD_APPLET_RELOAD_BEGIN
 				}
 			}
 		}
+	}
+	else if (myData.pMenu) // handle a change in the icon theme
+	{
+		reload_image_menu_items ();
 	}
 CD_APPLET_RELOAD_END
