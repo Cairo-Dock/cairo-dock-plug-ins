@@ -36,6 +36,7 @@ typedef void (* CDOnGetEventsFunc) (ZeitgeistResultSet *pEvents, gpointer data);
 typedef void (* CDOnDeleteEventsFunc) (int iNbEvents, gpointer data);
 typedef enum {
 	CD_EVENT_ALL,
+	CD_EVENT_APPLICATION,
 	CD_EVENT_DOCUMENT,
 	///CD_EVENT_FOLDER,  // marche pas avec zeitgeist, et puis n'est pas super utile.
 	CD_EVENT_IMAGE,

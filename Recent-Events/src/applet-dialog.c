@@ -118,6 +118,12 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 			{
 				cIconName = cairo_dock_search_icon_s_path ("text-html", myData.iDesiredIconSize);
 			}
+			else if (strncmp (cEventURI, "application://", 14) == 0)  // application URL
+			{
+				gchar *cClass = cairo_dock_register_class (cEventURI+14);
+				cIconName = g_strdup (cairo_dock_get_class_icon (cClass));
+				g_free (cClass);
+			}
 			else
 			{
 				cairo_dock_fm_get_file_info (cEventURI, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_DATE);
@@ -246,9 +252,20 @@ static gboolean _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButt
 			CD_MODEL_ID, &id, -1);
 		
 		//launch or build the menu.
+		gboolean bIsAppli = (strncmp (cUri, "application://", 14) == 0);
 		if (pButton->button == 1)  // double-click
 		{
-			cairo_dock_fm_launch_uri (cUri);
+			if (bIsAppli)  // an appli -> run it
+			{
+				gchar *tmp = strrchr (cUri, '.');  // remove the '.desktop'
+				if (tmp)
+					*tmp = '\0';
+				cairo_dock_launch_command (cUri+14);
+			}
+			else  // a file -> open it
+			{
+				cairo_dock_fm_launch_uri (cUri);
+			}
 			g_free (cUri);
 		}
 		else  // right-click
@@ -257,37 +274,40 @@ static gboolean _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButt
 			g_free (myData.cCurrentUri);
 			myData.cCurrentUri = cUri;
 			
-			GList *pApps = cairo_dock_fm_list_apps_for_file (cUri);
-			if (pApps != NULL)
+			if (!bIsAppli)
 			{
-				GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Open with"), pMenu, GTK_STOCK_OPEN);
-				
-				cd_folders_free_apps_list (myApplet);
-				
-				GList *a;
-				gchar **pAppInfo;
-				gchar *cIconPath;
-				gpointer *app;
-				for (a = pApps; a != NULL; a = a->next)
+				GList *pApps = cairo_dock_fm_list_apps_for_file (cUri);
+				if (pApps != NULL)
 				{
-					pAppInfo = a->data;
-					myData.pAppList = g_list_prepend (myData.pAppList, pAppInfo[1]);
+					GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Open with"), pMenu, GTK_STOCK_OPEN);
 					
-					if (pAppInfo[2] != NULL)
-						cIconPath = cairo_dock_search_icon_s_path (pAppInfo[2], cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR));
-					else
-						cIconPath = NULL;
-					CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pAppInfo[0], cIconPath, _cd_launch_with, pSubMenu, pAppInfo[1]);
-					g_free (cIconPath);
-					g_free (pAppInfo[0]);
-					g_free (pAppInfo[2]);
-					g_free (pAppInfo);
+					cd_folders_free_apps_list (myApplet);
+					
+					GList *a;
+					gchar **pAppInfo;
+					gchar *cIconPath;
+					gpointer *app;
+					for (a = pApps; a != NULL; a = a->next)
+					{
+						pAppInfo = a->data;
+						myData.pAppList = g_list_prepend (myData.pAppList, pAppInfo[1]);
+						
+						if (pAppInfo[2] != NULL)
+							cIconPath = cairo_dock_search_icon_s_path (pAppInfo[2], cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR));
+						else
+							cIconPath = NULL;
+						CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pAppInfo[0], cIconPath, _cd_launch_with, pSubMenu, pAppInfo[1]);
+						g_free (cIconPath);
+						g_free (pAppInfo[0]);
+						g_free (pAppInfo[2]);
+						g_free (pAppInfo);
+					}
+					g_list_free (pApps);
 				}
-				g_list_free (pApps);
+				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open parent folder"), GTK_STOCK_DIRECTORY, _cd_open_parent, pMenu, NULL);
+				
+				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Copy the location"), GTK_STOCK_COPY, _cd_copy_location, pMenu, NULL);
 			}
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open parent folder"), GTK_STOCK_DIRECTORY, _cd_open_parent, pMenu, NULL);
-			
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Copy the location"), GTK_STOCK_COPY, _cd_copy_location, pMenu, NULL);
 			
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Delete this event"), GTK_STOCK_REMOVE, _cd_delete_event, pMenu, GUINT_TO_POINTER (id));
 			
@@ -304,7 +324,8 @@ static gboolean _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButt
 	return FALSE;
 }
 
-static gboolean _cairo_dock_select_one_item_in_tree (GtkTreeSelection * selection, GtkTreeModel * model, GtkTreePath * path, gboolean path_currently_selected, gpointer *data)
+/// not sure what's the point of this callback ... I suppress it for the moment (21/08/2012).
+/**static gboolean _cairo_dock_select_one_item_in_tree (GtkTreeSelection * selection, GtkTreeModel * model, GtkTreePath * path, gboolean path_currently_selected, gpointer *data)
 {
 	if (path_currently_selected)
 		return TRUE;
@@ -313,7 +334,7 @@ static gboolean _cairo_dock_select_one_item_in_tree (GtkTreeSelection * selectio
 		return FALSE;
 	
 	return TRUE;
-}
+}*/
 
 #define DATE_BUFFER_LENGTH 50
 static void _render_date (GtkTreeViewColumn *tree_column, GtkCellRenderer *cell, GtkTreeModel *model,GtkTreeIter *iter, gpointer data)
@@ -363,6 +384,7 @@ static GtkWidget *cd_build_events_widget (void)
 	
 	int i = 0;
 	GtkToolItem *group = _add_category_button (pToolBar, D_("All"), "stock_search", i++, NULL);
+	_add_category_button (pToolBar, D_("Applications"), "exec", i++, group);
 	_add_category_button (pToolBar, D_("Document"), "document", i++, group);
 	///_add_category_button (pToolBar, D_("Folder"), "folder", i++, group);
 	_add_category_button (pToolBar, D_("Image"), "image", i++, group);
@@ -401,7 +423,6 @@ static GtkWidget *cd_build_events_widget (void)
 		GDK_TYPE_PIXBUF,  /* CD_MODEL_ICON */
 		G_TYPE_INT64,  /* CD_MODEL_DATE */
 		G_TYPE_UINT);  /* CD_MODEL_ID */
-	///gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (pModel), CD_MODEL_NAME, GTK_SORT_ASCENDING);
 	myData.pModel = pModel;
 	
 	// tree-view
@@ -411,10 +432,10 @@ static GtkWidget *cd_build_events_widget (void)
 	gtk_tree_view_set_headers_clickable (GTK_TREE_VIEW (pOneWidget), TRUE);
 	GtkTreeSelection *selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (pOneWidget));
 	gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
-	gtk_tree_selection_set_select_function (selection,
+	/**gtk_tree_selection_set_select_function (selection,
 		(GtkTreeSelectionFunc) _cairo_dock_select_one_item_in_tree,
 		NULL,
-		NULL);
+		NULL);*/
 	g_signal_connect (G_OBJECT (pOneWidget), "button-release-event", G_CALLBACK (_on_click_module_tree_view), NULL);  // pour le menu du clic droit
 	g_signal_connect (G_OBJECT (pOneWidget), "button-press-event", G_CALLBACK (_on_click_module_tree_view), NULL);  // pour le menu du clic droit
 	

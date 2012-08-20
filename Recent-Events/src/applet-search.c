@@ -48,6 +48,20 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			subj,  // a list of subjects
 			NULL);  // terminated with NULL
 		
+		subj = zeitgeist_subject_new_full ("application://*",  // ex.: application://firefox.desktop
+			"",  // interpretation
+			"",  // manifestation (ZEITGEIST_NFO_FILE_DATA_OBJECT/ZEITGEIST_NFO_REMOTE_DATA_OBJECT)
+			"",  // mimetype
+			"",  // origin
+			"",  // text
+			"");  // storage
+		myData.pEvents[CD_EVENT_APPLICATION] = zeitgeist_event_new_full (
+			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (ZEITGEIST_ZG_EVENT_INTERPRETATION)
+			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
+			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
+			subj,  // a list of subjects
+			NULL);  // terminated with NULL
+		
 		subj = zeitgeist_subject_new_full ("file://*",  // uri, application://* for apps
 			ZEITGEIST_NFO_DOCUMENT,  // interpretation
 			ZEITGEIST_NFO_FILE_DATA_OBJECT,  // manifestation
