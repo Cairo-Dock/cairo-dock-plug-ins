@@ -49,8 +49,8 @@ char * panel_find_icon (GtkIconTheme  *icon_theme,
 		 const char    *icon_name,
 		 gint           size);
 
-#ifdef HAVE_GIO
+/**#ifdef HAVE_GIO
 GdkPixbuf * panel_util_gdk_pixbuf_load_from_stream (GInputStream  *stream);
-#endif
+#endif*/
 
 #endif

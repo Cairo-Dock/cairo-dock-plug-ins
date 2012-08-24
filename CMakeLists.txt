@@ -640,6 +640,7 @@ if (NOT "${enable-gmenu}" STREQUAL "no")
 		message (WARNING "This module is required to compile GMenu applet: ${GMENU_MODULE}")
 		set (MODULES_MISSING "${MODULES_MISSING} ${GMENU_MODULE}")
 	else()
+		pkg_check_modules ("LIBGIO" "gio-2.0")
 		set (GETTEXT_GMENU ${GETTEXT_PLUGINS})
 		set (VERSION_GMENU "1.1.10")
 		set (PACKAGE_GMENU "cd-GMenu")
@@ -652,7 +653,6 @@ endif()
 
 ############# GVFS-INTEGRATION #################
 message (STATUS "> GVFS-Integration:")
-pkg_check_modules ("LIBGIO" "gio-2.0")
 add_subdirectory (gvfs-integration)
 
 ############# GNOME-INTEGRATION #################

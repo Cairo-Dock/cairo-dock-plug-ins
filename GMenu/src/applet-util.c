@@ -19,11 +19,15 @@
 
 #include <string.h>
 #include <cairo-dock.h>
+#ifdef HAVE_GIO
+#include <gio/gio.h>
+#include <gio/gdesktopappinfo.h>
+#endif
 
 #include "applet-struct.h"
 #include "applet-util.h"
 
-
+/**
 #ifdef HAVE_GIO
 char * panel_util_get_icon_name_from_g_icon (GIcon *gicon)
 {
@@ -83,8 +87,16 @@ GdkPixbuf * panel_util_get_pixbuf_from_g_loadable_icon (GIcon *gicon,
 
 	return pixbuf;
 }
-#endif
+#endif*/
 
+#ifdef HAVE_GIO
+static void _launch_from_file (const gchar *cDesktopFilePath)
+{
+	GDesktopAppInfo *ai = g_desktop_app_info_new_from_filename (cDesktopFilePath);
+	g_app_info_launch (G_APP_INFO (ai), NULL, NULL, NULL);
+	g_object_unref (ai);
+}
+#else
 #define CD_EXPAND_FIELD_CODES //comment this line to switch off the arguments parsing.
 static gchar * cd_expand_field_codes(const gchar* cCommand, GKeyFile* keyfile)  // Thanks to Tristan Moody for this patch !
 {
@@ -252,7 +264,9 @@ static void _launch_from_file (const gchar *cDesktopFilePath)
 	g_free (cCommandExpanded);
 	g_free (cWorkingDirectory);
 } 
-static void _launch_from_basename (const gchar *cDesktopFileName)
+#endif
+
+/**static void _launch_from_basename (const gchar *cDesktopFileName)
 {
 	gchar *cName = g_strdup (cDesktopFileName);
 	gchar *str = strrchr (cName, '.');
@@ -277,7 +291,7 @@ panel_launch_desktop_file (const char  *desktop_file,
 		//ditem = gnome_desktop_item_new_from_basename (desktop_file, 0, error);
 		_launch_from_basename (desktop_file);
 
-	/*if (ditem != NULL) {
+	if (ditem != NULL) {
 		panel_ditem_launch (ditem, NULL, screen, error);
 		gnome_desktop_item_unref (ditem);
 	} else if (fallback_exec != NULL) {
@@ -291,24 +305,25 @@ panel_launch_desktop_file (const char  *desktop_file,
 		gdk_spawn_on_screen (screen, NULL, argv, NULL,
 				     G_SPAWN_SEARCH_PATH,
 				     NULL, NULL, NULL, error);
-	}*/
-}
+	}
+}*/
 void panel_menu_item_activate_desktop_file (GtkWidget  *menuitem,
 				       const char *path)
 {
-	GError *error;
+	_launch_from_file (path);
+	/**GError *error;
 
 	error = NULL;
 	panel_launch_desktop_file (path, NULL,
-				   NULL/*menuitem_to_screen (menuitem)*/, &error);
+				   menuitem_to_screen (menuitem), &error);
 	if (error) {
-		/*panel_error_dialog (NULL, menuitem_to_screen (menuitem),
+		panel_error_dialog (NULL, menuitem_to_screen (menuitem),
 				    "cannot_launch_entry", TRUE,
 				    _("Could not launch menu item"),
-				    error->message);*/
+				    error->message);
 		cd_warning (error->message);
 		g_error_free (error);
-	}
+	}*/
 }
 
 char * panel_util_icon_remove_extension (const char *icon)
@@ -440,9 +455,9 @@ char * panel_find_icon (GtkIconTheme  *icon_theme,
 
 	return retval;
 }
-
+/**
 #ifdef HAVE_GIO
-/* TODO: kill this when we can depend on GTK+ 2.14 */
+// TODO: kill this when we can depend on GTK+ 2.14
 GdkPixbuf * panel_util_gdk_pixbuf_load_from_stream (GInputStream  *stream)
 {
 #define LOAD_BUFFER_SIZE 65536
@@ -492,3 +507,4 @@ GdkPixbuf * panel_util_gdk_pixbuf_load_from_stream (GInputStream  *stream)
 	return pixbuf;
 }
 #endif
+*/

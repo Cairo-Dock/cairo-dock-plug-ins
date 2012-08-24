@@ -134,7 +134,7 @@ void submenu_to_display (GtkWidget *menu)
 
 
 // == cairo_dock_add_in_menu_with_stock_and_data   with icon size 24
-GtkWidget *cd_menu_append_one_item_to_menu (const gchar *cLabel, const gchar *gtkStock, GFunc pFunction, GtkWidget *pMenu, gpointer pData)
+static GtkWidget *cd_menu_append_one_item_to_menu (const gchar *cLabel, const gchar *gtkStock, GFunc pFunction, GtkWidget *pMenu, gpointer pData)
 {
 	GtkWidget *pMenuItem = gtk_image_menu_item_new_with_label (cLabel);
 	if (gtkStock)

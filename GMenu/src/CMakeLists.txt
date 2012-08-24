@@ -32,18 +32,25 @@ add_definitions (-DMY_APPLET_VERSION="${VERSION_GMENU}")
 add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_GMENU}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
+add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
+if (${LIBGIO_FOUND})
+	add_definitions (-DHAVE_GIO=1)
+endif()
 
 include_directories (
 	${PACKAGE_INCLUDE_DIRS}
-	${GMENU_PACKAGE_INCLUDE_DIRS})
+	${GMENU_PACKAGE_INCLUDE_DIRS}
+	${LIBGIO_PACKAGE_INCLUDE_DIRS})
 
 link_directories (
 	${PACKAGE_LIBRARY_DIRS}
-	${GMENU_PACKAGE_LIBRARY_DIRS})
+	${GMENU_PACKAGE_LIBRARY_DIRS}
+	${LIBGIO_PACKAGE_LIBRARY_DIRS})
 
 target_link_libraries (${PACKAGE_GMENU}
 	${PACKAGE_LIBRARIES}
-	${GMENU_PACKAGE_LIBRARIES})
+	${GMENU_PACKAGE_LIBRARIES}
+	${LIBGIO_PACKAGE_LIBRARIES})
 
 ########### install files ###############
 
