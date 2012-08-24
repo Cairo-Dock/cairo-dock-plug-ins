@@ -216,15 +216,15 @@ if __name__ == '__main__':
 	# check that we don't run twice (ex.: from a 2nd cairo-dock instance)
 	# we could detect it from the bus, but then we couldn't detect the following case: Unity launcher + Cairo-Dock
 	# we want: ps ux | grep " + filename + " | grep python | grep -v " + pid_str)
-	ps_str = popen("ps wwux").read().splitlines() # only users' processes with all lines
+	ps_str = popen("ps -u $USER -wwo pid,cmd").read().splitlines() # only users' processes with all lines
 	filename = sys.argv[0] # /usr/lib/cairo-dock/cairo-dock-unity-bridge
 	pid_str = str (getpid()) # we check if previous processes are running, we exclude this process
 	for line in ps_str:
 		line_split = line.split()
-		line_cmd = ' '.join(line_split[10:])
-		line_pid = line_split[1]
+		line_cmd = ' '.join(line_split[1:])
+		line_pid = line_split[0]
 		if "python" in line_cmd and filename in line_cmd and not pid_str in line_pid:
-			print('Cairo-Dock - Unity bridge is already running')
+			print('Cairo-Dock - Unity bridge is already running (' + line_pid + ')')
 			sys.exit(1)
 	
 	ULWatcher()
