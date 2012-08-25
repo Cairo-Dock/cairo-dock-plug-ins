@@ -7,7 +7,7 @@ loop = GObject.MainLoop()
 
 # Pretend to be evolution for the sake of the example
 
-launcher = Unity.LauncherEntry.get_for_desktop_id ("thunderbird.desktop")
+launcher = Unity.LauncherEntry.get_for_desktop_id ("firefox.desktop")
 
 # Show a count of 123 on the icon
 

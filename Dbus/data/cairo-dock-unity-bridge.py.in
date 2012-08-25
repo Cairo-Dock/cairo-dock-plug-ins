@@ -61,7 +61,7 @@ class Launcher:
 	def on_name_owner_changed(self,connection_name):
 		print("Unity-Bridge: launcher bus name changed:",connection_name)
 		if len(connection_name) == 0:  # no more distant app -> reset the launcher and its icon.
-			print("Unity-Bridge: -> the launcher "+self.dbus_name+" is no more connected to its app.")
+			print("Unity-Bridge: -> the launcher "+ str (self.dbus_name) +" is no longer connected to its app.")
 			if self.has_count and self.count_visible:
 				self.dock.iface.SetQuickInfo('', self.id)
 				self.has_count = False
