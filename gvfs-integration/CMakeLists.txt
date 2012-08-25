@@ -18,4 +18,8 @@ include_directories(
 	${PACKAGE_INCLUDE_DIRS}
 	${LIBGIO_INCLUDE_DIRS})
 
+target_link_libraries (gvfs-integration
+	${PACKAGE_LIBRARIES}
+	${LIBGIO_LIBRARIES})
+
 ########### install files ###############

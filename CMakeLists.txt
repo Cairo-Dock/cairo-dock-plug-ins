@@ -137,6 +137,12 @@ pkg_check_modules (GLIB glib-2.0)
 set (shared_filesdatadir "${pluginsdatadir}/shared-files")
 add_subdirectory (shared-files)
 
+############# STATIC LIBRARIES ################
+############# GVFS-INTEGRATION ################
+message (STATUS "> GVFS-Integration:")
+pkg_check_modules ("LIBGIO" "gio-2.0")
+add_subdirectory (gvfs-integration) 
+
 ############# INDICATOR-APPLET #################
 message (STATUS "> Indicator-Applet:")
 # Note: the names of dbusmenu-glib, dbusmenu-gtk and indicator have changed...
@@ -322,6 +328,7 @@ if (NOT "${DISTRO_ID}" STREQUAL "")
 	message (STATUS "  DISTRO_ID: ${DISTRO_ID}, DISTRO_RELEASE: ${DISTRO_RELEASE}")
 endif()
 
+############# SHARED LIBRARIES ###########
 ############# ALSA_MIXER #################
 message (STATUS "> AlsaMixer:")
 set (with_alsa "no")
@@ -640,7 +647,6 @@ if (NOT "${enable-gmenu}" STREQUAL "no")
 		message (WARNING "This module is required to compile GMenu applet: ${GMENU_MODULE}")
 		set (MODULES_MISSING "${MODULES_MISSING} ${GMENU_MODULE}")
 	else()
-		pkg_check_modules ("LIBGIO" "gio-2.0")
 		set (GETTEXT_GMENU ${GETTEXT_PLUGINS})
 		set (VERSION_GMENU "1.1.10")
 		set (PACKAGE_GMENU "cd-GMenu")
@@ -650,10 +656,6 @@ if (NOT "${enable-gmenu}" STREQUAL "no")
 		add_subdirectory ("GMenu")
 	endif()
 endif()
-
-############# GVFS-INTEGRATION #################
-message (STATUS "> GVFS-Integration:")
-add_subdirectory (gvfs-integration)
 
 ############# GNOME-INTEGRATION #################
 message (STATUS "> Gnome-Integration:")
