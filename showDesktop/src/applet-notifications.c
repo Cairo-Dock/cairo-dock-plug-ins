@@ -198,49 +198,54 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	
 	// Main Menu
 	#ifdef HAVE_XRANDR
-	GtkWidget *pResSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Change screen resolution"), CD_APPLET_MY_MENU, GTK_STOCK_FULLSCREEN);
-	
-	Display                 *dpy;
-	Window                  root;
-	int                     num_sizes;
-	XRRScreenSize           *xrrs;
-	XRRScreenConfiguration  *conf;
-	short                   original_rate;
-	Rotation                original_rotation;
-	SizeID                  original_size_id;
-	
-	dpy = gdk_x11_get_default_xdisplay ();
-	root = RootWindow(dpy, 0);
-	
-	conf = XRRGetScreenInfo(dpy, root);  // config  courante.
-	if (conf != NULL)
+	if (cairo_dock_xrandr_is_available ())
 	{
-		original_rate = XRRConfigCurrentRate(conf);
-		original_size_id = XRRConfigCurrentConfiguration(conf, &original_rotation);
+		GtkWidget *pResSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Change screen resolution"), CD_APPLET_MY_MENU, GTK_STOCK_FULLSCREEN);
 		
-		// resolutions possibles.
-		int num_sizes = 0;
-		XRRScreenSize *xrrs = XRRSizes(dpy, 0, &num_sizes);
-		// add to the menu
-		GString *pResString = g_string_new ("");
-		int i;
-		for (i = 0; i < num_sizes; i ++)
+		Display                 *dpy;
+		Window                  root;
+		int                     num_sizes;
+		XRRScreenSize           *xrrs;
+		XRRScreenConfiguration  *conf;
+		short                   original_rate;
+		Rotation                original_rotation;
+		SizeID                  original_size_id;
+		
+		dpy = gdk_x11_get_default_xdisplay ();
+		root = RootWindow(dpy, 0);
+		
+		conf = XRRGetScreenInfo(dpy, root);  // config  courante.
+		if (conf != NULL)
 		{
-			g_string_printf (pResString, "%dx%d", xrrs[i].width, xrrs[i].height);
-			if (i == original_size_id)
-				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pResString->str, GTK_STOCK_APPLY, _on_select_resolution, pResSubMenu, GINT_TO_POINTER (i));
-			else
-				CD_APPLET_ADD_IN_MENU_WITH_DATA (pResString->str, _on_select_resolution, pResSubMenu, GINT_TO_POINTER (i));
-			/*short   *rates;
-			int     num_rates;
-			rates = XRRRates(dpy, 0, i, &num_rates);
-			for(int j = 0; j < num_rates; j ++) {
-				possible_frequencies[i][j] = rates[j];
-				printf("%4i ", rates[j]); }*/
+			original_rate = XRRConfigCurrentRate(conf);
+			original_size_id = XRRConfigCurrentConfiguration(conf, &original_rotation);
+			
+			// resolutions possibles.
+			int num_sizes = 0;
+			XRRScreenSize *xrrs = XRRSizes(dpy, 0, &num_sizes);
+			// add to the menu
+			GString *pResString = g_string_new ("");
+			int i;
+			for (i = 0; i < num_sizes; i ++)
+			{
+				g_string_printf (pResString, "%dx%d", xrrs[i].width, xrrs[i].height);
+				if (i == original_size_id)
+					CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pResString->str, GTK_STOCK_APPLY, _on_select_resolution, pResSubMenu, GINT_TO_POINTER (i));
+				else
+					CD_APPLET_ADD_IN_MENU_WITH_DATA (pResString->str, _on_select_resolution, pResSubMenu, GINT_TO_POINTER (i));
+				/*short   *rates;
+				int     num_rates;
+				rates = XRRRates(dpy, 0, i, &num_rates);
+				for(int j = 0; j < num_rates; j ++) {
+					possible_frequencies[i][j] = rates[j];
+					printf("%4i ", rates[j]); }*/
+			}
+			g_string_free (pResString, TRUE);
+			XRRFreeScreenConfigInfo (conf);
 		}
-		g_string_free (pResString, TRUE);
-		XRRFreeScreenConfigInfo (conf);
 	}
+	else
+		cd_warning ("Xrandr extension not available.");
 	#endif
 CD_APPLET_ON_BUILD_MENU_END
 
