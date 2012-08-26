@@ -135,6 +135,7 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 				 * (we can set the widget as insensitive but why?
 				 *  If we add it, it's just an useless entry)
 				 */
+				g_hash_table_insert (pHashTable, (gchar*)cEventURI, NULL); // we add it to prevent useless g_file_test
 				g_free (cPath);
 				continue;
 			}

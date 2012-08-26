@@ -20,9 +20,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <glib/gi18n.h>
-#include<X11/Xlib.h>
+#include <X11/Xlib.h>
 #ifdef HAVE_XRANDR
-#include<X11/extensions/Xrandr.h>
+#include <X11/extensions/Xrandr.h>
 #endif
 #include <gdk/gdkx.h>
 

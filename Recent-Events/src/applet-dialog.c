@@ -108,6 +108,14 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 				continue;
 			//g_print ("  %s:\n    %s, %s\n", cEventURI, zeitgeist_subject_get_interpretation (subject), zeitgeist_subject_get_manifestation (subject));
 			
+			//\_____________ prevent removed files
+			cPath = g_filename_from_uri (cEventURI, NULL, NULL);  // NULL for anything else than file://*
+			if (strncmp (cEventURI, "file://", 7) == 0 && ! g_file_test (cPath, G_FILE_TEST_EXISTS))
+			{
+				g_hash_table_insert (pHashTable, (gchar*)cEventURI, NULL); // we add it to prevent useless g_file_test
+				g_free (cPath);
+				continue;
+			}
 			//\_____________ get the text to display.
 			const gchar *cText = zeitgeist_subject_get_text (subject);
 			if (cText == NULL)  // skip empty texts (they are most of the times web page that redirect to another page, which is probably in the next event anyway).
@@ -122,6 +130,7 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 			{
 				gchar *cClass = cairo_dock_register_class (cEventURI+14);
 				cIconName = g_strdup (cairo_dock_get_class_icon (cClass));
+				cText = cairo_dock_get_class_name (cClass); // get the translated name
 				g_free (cClass);
 			}
 			else
@@ -138,8 +147,6 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 				pixbuf = NULL;
 			
 			//\_____________ build the path to display.
-			cPath = g_filename_from_uri (cEventURI, NULL, NULL);  // NULL for anything else than file://*
-			
 			const gchar *cDisplayedPath = (cPath ? cPath : cEventURI);
 			
 			gchar *cEscapedPath = NULL;
