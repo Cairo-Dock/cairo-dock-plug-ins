@@ -118,10 +118,8 @@ message (STATUS "Check dependencies...")
 message (STATUS "=====================")
 message ("")
 
-pkg_check_modules ("PACKAGE" REQUIRED "cairo" "librsvg-2.0" "dbus-1" "dbus-glib-1" "libxml-2.0")
-#pkg_check_modules ("PACKAGE" REQUIRED "ig")
-pkg_check_modules ("GLDI" REQUIRED "gldi")  # we don't want to link with gldi, so we check it separately.
-set (PACKAGE_INCLUDE_DIRS "${GLDI_INCLUDE_DIRS}")
+pkg_check_modules ("PACKAGE" REQUIRED "gldi")  # we have to link to all libs used by gldi
+STRING (REGEX REPLACE "gldi;" "" PACKAGE_LIBRARIES "${PACKAGE_LIBRARIES}")  # but we don't want to link to gldi
 
 add_definitions (-DGTK_DISABLE_DEPRECATED="1")
 
@@ -138,6 +136,8 @@ set (shared_filesdatadir "${pluginsdatadir}/shared-files")
 add_subdirectory (shared-files)
 
 ############# STATIC LIBRARIES ################
+message (STATUS "> Static Libraries:")
+
 ############# GVFS-INTEGRATION ################
 message (STATUS "> GVFS-Integration:")
 pkg_check_modules ("LIBGIO" "gio-2.0")
@@ -329,6 +329,8 @@ if (NOT "${DISTRO_ID}" STREQUAL "")
 endif()
 
 ############# SHARED LIBRARIES ###########
+message (STATUS "> Shared Libraries:")
+
 ############# ALSA_MIXER #################
 message (STATUS "> AlsaMixer:")
 set (with_alsa "no")
