@@ -198,7 +198,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	
 	// Main Menu
 	#ifdef HAVE_XRANDR
-	if (cairo_dock_xrandr_is_available ())
+	if (cairo_dock_check_xrandr (1, 1))
 	{
 		GtkWidget *pResSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Change screen resolution"), CD_APPLET_MY_MENU, GTK_STOCK_FULLSCREEN);
 		
