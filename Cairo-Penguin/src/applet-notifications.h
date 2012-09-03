@@ -26,6 +26,7 @@
 
 CD_APPLET_ON_CLICK_H
 
+gboolean on_build_container_menu (CairoDockModuleInstance *myApplet, Icon *icon, CairoContainer *pContainer, GtkWidget *menu, gboolean *bDiscardMenu);
 CD_APPLET_ON_BUILD_MENU_H
 
 CD_APPLET_ON_MIDDLE_CLICK_H

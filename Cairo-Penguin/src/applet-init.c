@@ -58,6 +58,11 @@ CD_APPLET_INIT_BEGIN
 		CAIRO_DOCK_RUN_FIRST,
 		myApplet);
 	cairo_dock_register_notification_on_object (myContainer,
+		NOTIFICATION_BUILD_CONTAINER_MENU,
+		(CairoDockNotificationFunc) on_build_container_menu,
+		CAIRO_DOCK_RUN_FIRST,
+		myApplet);
+	cairo_dock_register_notification_on_object (myContainer,
 		NOTIFICATION_BUILD_ICON_MENU,
 		(CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU_FUNC,
 		CAIRO_DOCK_RUN_FIRST,

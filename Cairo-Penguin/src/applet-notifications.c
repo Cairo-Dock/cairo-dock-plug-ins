@@ -101,7 +101,7 @@ static void _wake_up (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
 	penguin_start_animating (myApplet);
 }
-CD_APPLET_ON_BUILD_MENU_PROTO
+gboolean on_build_container_menu (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer, GtkWidget *pAppletMenu, gboolean *bDiscardMenu)
 {
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if(pAnimation == NULL)
@@ -109,21 +109,40 @@ CD_APPLET_ON_BUILD_MENU_PROTO
 	
 	if ((myConfig.bFree && pClickedContainer == myContainer && myDock->container.iMouseX >  (myDock->container.iWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX && myDock->container.iMouseX < (myDock->container.iWidth - myDock->fFlatDockWidth) / 2 +  myData.iCurrentPositionX + pAnimation->iFrameWidth && myDock->container.iMouseY > myContainer->iHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight && myDock->container.iMouseY < myContainer->iHeight - myData.iCurrentPositionY) || (! myConfig.bFree && pClickedIcon == myIcon))
 	{
-		GtkWidget *pMenuItem, *image;
-		
-		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
-		
-		if (penguin_is_resting (pAnimation))
+		if (pClickedIcon != myIcon)
 		{
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Wake up"), MY_APPLET_SHARE_DATA_DIR"/icon.png", _wake_up, CD_APPLET_MY_MENU);
+			cairo_dock_notify_on_object (myContainer, NOTIFICATION_BUILD_CONTAINER_MENU, myIcon, myContainer, pAppletMenu, bDiscardMenu);
+			cairo_dock_notify_on_object (myContainer, NOTIFICATION_BUILD_ICON_MENU, myIcon, myContainer, pAppletMenu);
+			return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 		}
-		else
+	}
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+}
+CD_APPLET_ON_BUILD_MENU_BEGIN
+	PenguinAnimation *pAnimation = penguin_get_current_animation ();
+	if(pAnimation == NULL)
+		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	
+	if ((myConfig.bFree && pClickedContainer == myContainer && myDock->container.iMouseX >  (myDock->container.iWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX && myDock->container.iMouseX < (myDock->container.iWidth - myDock->fFlatDockWidth) / 2 +  myData.iCurrentPositionX + pAnimation->iFrameWidth && myDock->container.iMouseY > myContainer->iHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight && myDock->container.iMouseY < myContainer->iHeight - myData.iCurrentPositionY) || (! myConfig.bFree && pClickedIcon == myIcon))
+	{
+		if (pClickedIcon != myIcon)
 		{
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Keep quiet"), MY_APPLET_SHARE_DATA_DIR"/icon.png",_keep_quiet, CD_APPLET_MY_MENU);
+			return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 		}
-		
-		CD_APPLET_ADD_IN_MENU(D_("Start XPenguins"), _start_xpenguins, CD_APPLET_MY_MENU);
-		CD_APPLET_ADD_IN_MENU(D_("Stop XPenguins"), _stop_xpenguins, CD_APPLET_MY_MENU);
+	}
+	CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
+	
+	if (penguin_is_resting (pAnimation))
+	{
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Wake up"), MY_APPLET_SHARE_DATA_DIR"/icon.png", _wake_up, CD_APPLET_MY_MENU);
+	}
+	else
+	{
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Keep quiet"), MY_APPLET_SHARE_DATA_DIR"/icon.png",_keep_quiet, CD_APPLET_MY_MENU);
+	}
+	
+	CD_APPLET_ADD_IN_MENU(D_("Start XPenguins"), _start_xpenguins, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU(D_("Stop XPenguins"), _stop_xpenguins, CD_APPLET_MY_MENU);
 CD_APPLET_ON_BUILD_MENU_END
 
 
