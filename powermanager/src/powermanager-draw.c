@@ -49,7 +49,6 @@ static void _set_data_renderer (CairoDockModuleInstance *myApplet)
 			pRenderAttr->cModelName = "graph";
 			pRenderAttr->iMemorySize = (myIcon->fWidth > 1 ? myIcon->fWidth : 32);  // fWidth peut etre <= 1 en mode desklet au chargement.
 			pGraphAttr->iType = myConfig.iGraphType;
-			pGraphAttr->iRadius = 10;
 			pGraphAttr->fHighColor = myConfig.fHigholor;
 			pGraphAttr->fLowColor = myConfig.fLowColor;
 			memcpy (pGraphAttr->fBackGroundColor, myConfig.fBgColor, 4*sizeof (double));

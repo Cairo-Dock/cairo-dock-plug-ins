@@ -64,7 +64,6 @@ static CairoDataRendererAttribute *make_data_renderer_attribute (Icon *myIcon, C
 		pRenderAttr->cModelName = "graph";
 		pRenderAttr->iMemorySize = (myIcon->fWidth > 1 ? myIcon->fWidth : 32);  // fWidht peut etre <= 1 en mode desklet au chargement.
 		aGraphAttr.iType = pRendererParams->iGraphType;
-		aGraphAttr.iRadius = 10;
 		aGraphAttr.fHighColor = pRendererParams->fHigholor;
 		aGraphAttr.fLowColor = pRendererParams->fLowColor;
 		memcpy (aGraphAttr.fBackGroundColor, pRendererParams->fBgColor, 4*sizeof (double));
