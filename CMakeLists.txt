@@ -241,6 +241,12 @@ if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1")
 			execute_process(
 				COMMAND pkg-config --variable=iconsdir indicator3-0.4
 				OUTPUT_VARIABLE INDICATORICONSDIR)
+			execute_process(
+				COMMAND pkg-config --variable=indicatordir indicator3-0.4
+				OUTPUT_VARIABLE INDICATORDIR)
+			STRING (REGEX REPLACE "\n" "" INDICATORDIR ${INDICATORDIR})
+			set (with_indicator3 "yes")
+			message (STATUS "  Indicators: with Indicator3 support")
 		endif()
 	else()
 		if ("${gtkversion}" STREQUAL "2")
@@ -254,6 +260,9 @@ if ("${INDICATOR_APPLET_FOUND}" STREQUAL "1")
 		endif()
 	endif()
 	STRING (REGEX REPLACE "\n" "" INDICATORICONSDIR ${INDICATORICONSDIR})  # la commande rajoute un retour chariot ...
+	if ("${with_indicator3}" STREQUAL "yes")
+		add_subdirectory (Indicator-applet3)
+	endif()
 	add_subdirectory (Indicator-applet)
 	set (with_indicator "yes")
 endif()
@@ -920,6 +929,11 @@ endif()
 set (with_messaging_menu "no")
 if ("${with_indicator}" STREQUAL "yes") 
 	message (STATUS "> Messaging-Menu:")
+	if ("${IDO_FOUND}" AND "${with_indicator3}" STREQUAL "yes"
+		AND ${INDICATOR_MAJOR} GREATER 12
+		OR (${INDICATOR_MAJOR} EQUAL 12 AND ${INDICATOR_MINOR} GREATER 9))
+		set (INDICATOR_MESSAGES_12_10 1)  # Messaging Menu has been rewritten in Quantal
+	endif()
 	set (GETTEXT_MESSAGING_MENU ${GETTEXT_PLUGINS})
 	set (VERSION_MESSAGING_MENU "1.0.5")
 	set (PACKAGE_MESSAGING_MENU "cd-Messaging-Menu")
