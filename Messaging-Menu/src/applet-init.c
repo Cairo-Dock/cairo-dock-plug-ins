@@ -21,8 +21,12 @@
 
 #include "applet-config.h"
 #include "applet-notifications.h"
+#ifndef INDICATOR_MESSAGES_12_10
 #include "applet-messaging.h"
 #include "applet-menu.h"
+#else
+#include "applet-indicator3.h"
+#endif
 #include "applet-struct.h"
 #include "applet-init.h"
 
@@ -33,11 +37,10 @@ CD_APPLET_DEFINE_BEGIN (N_("Messaging Menu"),
 	N_("A menu that notices you about new messages from Mail or Chat applications.\n"
 	"It handles Evolution, Pidgin, Empathy, etc\n"
 	"It requires the Messaging service, which is available on Ubuntu by default."),
-	"Fabounet")
+	"Fabounet & Matthieu Baerts")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_ALLOW_EMPTY_TITLE
 CD_APPLET_DEFINE_END
-
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
@@ -45,7 +48,8 @@ CD_APPLET_INIT_BEGIN
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 	}
-	
+
+	#ifndef INDICATOR_MESSAGES_12_10
 	myData.pIndicator = cd_indicator_new (myApplet,
 		INDICATOR_MESSAGES_DBUS_NAME,
 		INDICATOR_MESSAGES_DBUS_SERVICE_OBJECT,
@@ -56,6 +60,14 @@ CD_APPLET_INIT_BEGIN
 	myData.pIndicator->on_disconnect 		= cd_messaging_on_disconnect;
 	myData.pIndicator->get_initial_values 	= cd_messaging_get_initial_values;
 	myData.pIndicator->add_menu_handler 	= cd_messaging_add_menu_handler;
+	#else
+	myData.pIndicator = cd_indicator3_load ("libmessaging.so",
+		cd_messaging_entry_added,
+		cd_messaging_entry_removed,
+		cd_messaging_accessible_desc_update,
+		NULL, // menu show
+		myApplet);
+	#endif
 	
 	// mouse events
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
@@ -77,14 +89,30 @@ CD_APPLET_STOP_BEGIN
 	
 	// keyboard events
 	cd_keybinder_unbind (myData.pKeyBinding);
-	
+
+	#ifndef INDICATOR_MESSAGES_12_10
 	cd_indicator_destroy (myData.pIndicator);
+	#else
+	// It seems we doesn't need to free the indicator (object and event)
+	cd_messaging_destroy (myData.pIndicator, myData.pEntry, myApplet); // remove the connection to signals (menu)
+	cd_indicator3_unload (myData.pIndicator, // remove the connection to signals (indicator)
+		cd_messaging_entry_added,
+		cd_messaging_entry_removed,
+		cd_messaging_accessible_desc_update,
+		NULL,
+		myApplet);
+	#endif
 CD_APPLET_STOP_END
 
 
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
+	#ifndef INDICATOR_MESSAGES_12_10
 	cd_indicator_reload_icon (myData.pIndicator);  // we reload the icon (if we didn't have an icon, now we have a path). It will not consider a change of icon theme, so we return the original icon.
+	#else
+	// check if the name has changed and reload the icon
+	cd_messaging_reload (myData.pIndicator, myData.pEntry, myApplet);
+	#endif
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{

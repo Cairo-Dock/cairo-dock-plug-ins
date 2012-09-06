@@ -5,10 +5,15 @@ SET(MODULE_SRCS
 	applet-struct.h
 	applet-init.c 				applet-init.h
 	applet-config.c 			applet-config.h
-	applet-messaging.c 			applet-messaging.h
-	applet-menu.c 				applet-menu.h
 	applet-notifications.c 		applet-notifications.h
 )
+
+# 12.10
+if (${INDICATOR_MESSAGES_12_10})
+	list (APPEND MODULE_SRCS applet-indicator3.c)
+else ()
+	list (APPEND MODULE_SRCS applet-messaging.c applet-menu.c)
+endif()
 
 add_library(${PACKAGE_MESSAGING_MENU} SHARED ${MODULE_SRCS})
 
@@ -31,26 +36,32 @@ if (${DBUSMENU_GTK3_NEW})
 	add_definitions (-DDBUSMENU_GTK3_NEW=1)
 endif()
 
+if (${INDICATOR_MESSAGES_12_10})
+	message (STATUS "   With Indicator-Applet3")
+	add_definitions (-DINDICATOR_MESSAGES_12_10=1)
+	set (EXTRAS_INCLUDE_DIRS ${IDO_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/Indicator-applet3)
+	set (EXTRAS_LIBRARY_DIRS ${IDO_LIBRARY_DIRS} ${CMAKE_SOURCE_DIR}/Indicator-applet3)
+	set (EXTRAS_LIBRARIES ${IDO_LIBRARIES} indicator-applet3)
+else()
+	set (EXTRAS_INCLUDE_DIRS ${DBUSMENU_INCLUDE_DIRS} ${DBUSMENU_GTK_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/Indicator-applet)
+	set (EXTRAS_LIBRARY_DIRS ${DBUSMENU_LIBRARY_DIRS} ${DBUSMENU_GTK_LIBRARY_DIRS} ${CMAKE_SOURCE_DIR}/Indicator-applet)
+	set (EXTRAS_LIBRARIES ${DBUSMENU_LIBRARIES} ${DBUSMENU_GTK_LIBRARIES} indicator-applet)
+endif()
+
 include_directories (
 	${PACKAGE_INCLUDE_DIRS}
-	${DBUSMENU_INCLUDE_DIRS}
-	${DBUSMENU_GTK_INCLUDE_DIRS}
 	${INDICATOR_APPLET_INCLUDE_DIRS}
-	${CMAKE_SOURCE_DIR}/Indicator-applet)
+	${EXTRAS_INCLUDE_DIRS})
 
 link_directories (
 	${PACKAGE_LIBRARY_DIRS}
-	${DBUSMENU_LIBRARY_DIRS}
-	${DBUSMENU_GTK_LIBRARY_DIRS}
 	${INDICATOR_APPLET_LIBRARY_DIRS}
-	${CMAKE_SOURCE_DIR}/Indicator-applet)
+	${EXTRAS_LIBRARY_DIRS})
 
 target_link_libraries (${PACKAGE_MESSAGING_MENU}
 	${PACKAGE_LIBRARIES}
-	${DBUSMENU_LIBRARIES}
-	${DBUSMENU_GTK_LIBRARIES}
 	${INDICATOR_APPLET_LIBRARIES}
-	indicator-applet)
+	${EXTRAS_LIBRARIES})
 ########### install files ###############
 
 install(TARGETS ${PACKAGE_MESSAGING_MENU} DESTINATION ${pluginsdir})

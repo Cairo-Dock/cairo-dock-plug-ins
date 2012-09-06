@@ -22,7 +22,13 @@
 #define  __CD_APPLET_STRUCT__
 
 #include <cairo-dock.h>
+
+#ifndef INDICATOR_MESSAGES_12_10
 #include "indicator-applet.h"
+#define FORCE_REMOVE_DOUBLE_SEPARATORS
+#else
+#include "indicator-applet3.h"
+#endif
 
 // let's include the Dbus name shere, so that we don't duplicate the logic.
 // we could put it directly in the .h, but having several .h will be easier to cope with further changes.
@@ -36,11 +42,17 @@
 struct _AppletConfig {
 	gchar *cAnimationName;
 	gchar *cShortkey;
+	gchar *defaultTitle;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
+	#ifndef INDICATOR_MESSAGES_12_10
 	CDAppletIndicator *pIndicator;
+	#else
+	IndicatorObject *pIndicator;
+	IndicatorObjectEntry *pEntry;
+	#endif
 	CairoKeyBinding *pKeyBinding;
 	} ;
 
