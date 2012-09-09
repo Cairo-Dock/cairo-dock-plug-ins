@@ -355,7 +355,7 @@ static Icon *_cd_stack_create_new_item (CairoDockModuleInstance *myApplet, const
 		}
 		else
 		{
-			gchar *cFileName = (*cContent == '/' ? g_strdup (cContent) : g_filename_from_uri (cContent, NULL, NULL));  // virer l'extension ?
+			gchar *cFileName = (*cContent == '/' ? g_strdup (cContent) : g_uri_unescape_string (cContent, NULL));
 			cName = g_path_get_basename (cFileName);
 			g_free (cFileName);
 		}
