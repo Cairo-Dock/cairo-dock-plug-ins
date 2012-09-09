@@ -232,10 +232,28 @@ static void _cd_shortcuts_show_disk_info (GtkMenuItem *menu_item, gpointer *data
 	g_free (cInfo);
 	CD_APPLET_LEAVE ();
 }
+
 static void _open_home_dir (GtkMenuItem *menu_item, gpointer data)
 {
 	cairo_dock_fm_launch_uri (g_getenv ("HOME"));
 }
+
+static gboolean s_bNCSChecked = FALSE;
+static gboolean s_bNCSAvailable = FALSE;
+
+static void _check_ncs (void)
+{
+	gchar *cResult = cairo_dock_launch_command_sync ("which nautilus-connect-server");
+	if (cResult != NULL && *cResult == '/')
+		s_bNCSAvailable = TRUE;
+	g_free (cResult);
+}
+
+static void _open_ncs (GtkMenuItem *menu_item, gpointer data)
+{
+	cairo_dock_launch_command ("nautilus-connect-server");
+}
+
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	static gpointer *data = NULL;
 	if (data == NULL)
@@ -249,6 +267,10 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Open Home directory"), D_("middle-click"));
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_OPEN, _open_home_dir, CD_APPLET_MY_MENU);
 		g_free (cLabel);
+		if (! s_bNCSChecked)
+			_check_ncs ();
+		if (s_bNCSAvailable)
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Connect to Server..."), GTK_STOCK_OPEN, _open_ncs, CD_APPLET_MY_MENU);
 	}
 	else if (CD_APPLET_CLICKED_ICON != NULL)  // clic sur un item.
 	{

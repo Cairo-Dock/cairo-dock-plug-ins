@@ -37,7 +37,7 @@ CD_APPLET_DEFINE_BEGIN (N_("Messaging Menu"),
 	N_("A menu that notices you about new messages from Mail or Chat applications.\n"
 	"It handles Evolution, Pidgin, Empathy, etc\n"
 	"It requires the Messaging service, which is available on Ubuntu by default."),
-	"Fabounet & Matthieu Baerts")
+	"Fabounet &amp; Matthieu Baerts")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_ALLOW_EMPTY_TITLE
 CD_APPLET_DEFINE_END
