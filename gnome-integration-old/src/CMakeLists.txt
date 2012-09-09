@@ -18,7 +18,7 @@ add_definitions (-DMY_APPLET_PREVIEW_FILE="none")
 add_definitions (-DMY_APPLET_CONF_FILE="none")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="gnome-integration-old")
 add_definitions (-DMY_APPLET_VERSION="${VERSION_GNOME_INTEGRATION_OLD}")
-add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="cd_gnome-integration-old")
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_GNOME_INTEGRATION_OLD}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
 
