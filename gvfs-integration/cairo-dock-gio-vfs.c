@@ -777,7 +777,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 			GIcon *pFileIcon = g_file_info_get_icon (pFileInfo);
 			if (pFileIcon == NULL)
 			{
-				cd_message ("AUCUNE ICONE");
+				cd_message ("No ICON");
 				continue;
 			}
 			const gchar *cFileName = g_file_info_get_name (pFileInfo);
@@ -793,7 +793,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 			if (iFileType == G_FILE_TYPE_MOUNTABLE)
 			{
 				const gchar *cTargetURI = g_file_info_get_attribute_string (pFileInfo, G_FILE_ATTRIBUTE_STANDARD_TARGET_URI);
-				cd_message ("  c'est un point de montage correspondant a %s", cTargetURI);
+				cd_message ("It's a mount point: %s (%s)", cTargetURI, cFileName);
 				
 				GMount *pMount = NULL;
 				if (cTargetURI != NULL)
@@ -820,8 +820,8 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 				}
 				else
 				{
-					cName = strcmp (cFileName, "/") == 0 ? g_strdup (D_("File System")) : g_strdup (cFileName);
-					gchar *str = strrchr (cName, '.');  // on vire l'extension ".volume" ou ".drive".
+					cName = g_strdup (cFileName);
+					gchar *str = strrchr (cName, '.');  // we remove the extension ".volume" or ".drive".
 					if (str != NULL)
 					{
 						*str = '\0';
