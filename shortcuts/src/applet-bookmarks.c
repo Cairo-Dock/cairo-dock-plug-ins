@@ -44,7 +44,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 	
 	if (iEventType == CAIRO_DOCK_FILE_CREATED || iEventType == CAIRO_DOCK_FILE_MODIFIED)  // le fichier des bookmarks a ete modifie.
 	{
-		cd_message ("  un signet en plus ou en moins");
+		cd_message ("The bookmarks list has changed");
 		
 		//\____________________ On lit le fichier des signets.
 		gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
@@ -120,7 +120,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 					cIconName = NULL;
 					if (cairo_dock_fm_get_file_info (cOneBookmark, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_NAME))
 					{
-						cd_message (" + 1 signet : %s", cOneBookmark);
+						cd_message (" + 1 bookmark : %s", cOneBookmark);
 						if (cUserName != NULL)
 						{
 							g_free (cName);
@@ -162,7 +162,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 			}
 			g_free (cBookmarksList);
 			
-			//\____________________ On supprime les vieux signets.
+			//\____________________ We remove the old bookmarks.
 			pIconsList = CD_APPLET_MY_ICONS_LIST;
 			gboolean bRemove = TRUE;
 			Icon *icon;
@@ -175,9 +175,10 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 					icon = ic->data;
 					if (icon->iGroup == CD_BOOKMARK_GROUP)
 					{
-						if (icon->iLastCheckTime != iTime)
+						if (icon->iLastCheckTime != iTime
+							&& g_strcmp0 (icon->cName, D_("Home Folder")) != 0)
 						{
-							//g_print ("this bookmark is too old (%s)\n", icon->cName);
+							cd_debug ("this bookmark is too old (%s)", icon->cName);
 							CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (icon);
 							bRemove = TRUE;
 							break;
@@ -353,31 +354,72 @@ void cd_shortcuts_add_one_bookmark (const gchar *cURI)
 	g_free (cBookmarkFilePath);
 }
 
+Icon * _cd_shortcuts_get_icon (gchar *cFileName, const gchar *cUserName, double fCurrentOrder)
+{
+	cd_debug ("New icon: %s, %s, %f", cFileName, cUserName, fCurrentOrder);
+	gchar *cName, *cRealURI, *cIconName;
+	gboolean bIsDirectory;
+	gint iVolumeID;
+	gdouble fOrder;
+	if (! cairo_dock_fm_get_file_info (cFileName, &cName, &cRealURI, &cIconName,
+		&bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_NAME))
+		return NULL;
+	if (cUserName != NULL)
+	{
+		g_free (cName);
+		cName = g_strdup (cUserName);
+	}
+	else if (cName == NULL)  // a bookmark on a unmounted system
+	{
+		gchar *cGuessedName = g_path_get_basename (cFileName);
+		cairo_dock_remove_html_spaces (cGuessedName); // or: g_uri_unescape_string
+		cName = g_strdup_printf ("%s\n[%s]", cGuessedName, D_("Unmounted"));
+		g_free (cGuessedName);
+	}
+	if (cRealURI == NULL)
+		cRealURI = g_strdup ("none");
+	if (cIconName == NULL)
+		cIconName = cairo_dock_search_icon_s_path (
+			CD_SHORTCUT_DEFAULT_DIRECTORY_ICON_FILENAME,
+			CAIRO_DOCK_DEFAULT_ICON_SIZE); // should be the default icon
+
+	Icon *pNewIcon = cairo_dock_create_dummy_launcher (cName,
+		cIconName,
+		cRealURI,
+		NULL,
+		fCurrentOrder);
+	pNewIcon->iGroup = CD_BOOKMARK_GROUP;
+	pNewIcon->cBaseURI = cFileName;
+	pNewIcon->iVolumeID = iVolumeID;
+	return pNewIcon;
+}
 
 GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 {
+	GList *pBookmarkIconList = NULL;
+	Icon *pNewIcon;
+	double fCurrentOrder = 0.;
+
+	// Home
+	gchar *cHome = g_strdup_printf ("file://%s", g_getenv ("HOME"));
+	pNewIcon = _cd_shortcuts_get_icon (cHome, D_("Home Folder"), fCurrentOrder++);
+	pBookmarkIconList = g_list_append (pBookmarkIconList, pNewIcon);
+
 	gchar *cContent = NULL;
-	gsize length=0;
+	gsize length = 0;
 	GError *erreur = NULL;
 	g_file_get_contents  (cBookmarkFilePath, &cContent, &length, &erreur);
 	if (erreur != NULL)
 	{
 		cd_warning ("Attention : %s\n  no bookmark will be available", erreur->message);
 		g_error_free (erreur);
-		return NULL;
 	}
 	else
 	{
-		GList *pBookmarkIconList = NULL;
 		gchar **cBookmarksList = g_strsplit (cContent, "\n", -1);
 		g_free (cContent);
 		
-		gchar *cOneBookmark;
-		Icon *pNewIcon;
-		gchar *cName, *cRealURI, *cIconName, *cUserName;
-		gboolean bIsDirectory;
-		int iVolumeID;
-		double fOrder, fCurrentOrder = 0;
+		gchar *cOneBookmark, *cUserName;
 		int i = 0;
 		for (i = 0; cBookmarksList[i] != NULL; i ++)
 		{
@@ -398,38 +440,12 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 					*str = '\0';
 				}
 			}
-			cName = NULL;
-			cRealURI = NULL;
-			cIconName = NULL;
-			if (*cOneBookmark != '\0' && *cOneBookmark != '#' && cairo_dock_fm_get_file_info (cOneBookmark, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_NAME))
+			if (*cOneBookmark != '\0' && *cOneBookmark != '#')
 			{
 				cd_message (" + 1 bookmark : %s", cOneBookmark);
-				if (cUserName != NULL)
-				{
-					g_free (cName);
-					cName = g_strdup (cUserName);
-				}
-				else if (cName == NULL)  // cas d'un bookmark situe sur un volume non monte.
-				{
-					gchar *cGuessedName = g_path_get_basename (cOneBookmark);
-					cairo_dock_remove_html_spaces (cGuessedName);
-					cName = g_strdup_printf ("%s\n[%s]", cGuessedName, D_("Unmounted"));
-					g_free (cGuessedName);
-				}
-				if (cRealURI == NULL)
-					cRealURI = g_strdup ("none");
-				if (cIconName == NULL)
-					cIconName = cairo_dock_search_icon_s_path (CD_SHORTCUT_DEFAULT_DIRECTORY_ICON_FILENAME, CAIRO_DOCK_DEFAULT_ICON_SIZE); // should be the default icon
-				
-				pNewIcon = cairo_dock_create_dummy_launcher (cName,
-					cIconName,
-					cRealURI,
-					NULL,
-					fCurrentOrder ++);
-				pNewIcon->iGroup = CD_BOOKMARK_GROUP;
-				pNewIcon->cBaseURI = cOneBookmark;
-				pNewIcon->iVolumeID = iVolumeID;
-				pBookmarkIconList = g_list_append (pBookmarkIconList, pNewIcon);
+				pNewIcon = _cd_shortcuts_get_icon (cOneBookmark, cUserName, fCurrentOrder++);
+				if (pNewIcon)
+					pBookmarkIconList = g_list_append (pBookmarkIconList, pNewIcon);
 			}
 			else
 			{
@@ -437,6 +453,6 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 			}
 		}
 		g_free (cBookmarksList);
-		return pBookmarkIconList;
 	}
+	return pBookmarkIconList;
 }
