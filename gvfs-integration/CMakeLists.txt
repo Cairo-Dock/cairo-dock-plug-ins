@@ -9,6 +9,7 @@ if (${LIBGIO_FOUND})
 endif()
 
 add_library(gvfs-integration STATIC ${impl_SRCS})
+add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_PLUGINS}")
 
 link_directories(
 	${PACKAGE_LIBRARY_DIRS}

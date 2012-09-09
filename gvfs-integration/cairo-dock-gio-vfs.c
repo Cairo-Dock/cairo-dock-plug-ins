@@ -40,7 +40,8 @@ static void _gio_vfs_free_monitor_data (gpointer *data)
 	if (data != NULL)
 	{
 		GFileMonitor *pHandle = data[2];
-		g_file_monitor_cancel (pHandle);  // le GFileMonitor est-il libere lors du g_file_monitor_cancel () ?
+		g_file_monitor_cancel (pHandle);
+		g_object_unref (pHandle);
 		g_free (data);
 	}
 }
@@ -190,6 +191,7 @@ static void _cd_find_mount_from_volume_name (const gchar *cVolumeName, GMount **
 						*cURI = g_strconcat ("computer:///", cFileName, NULL);
 						GIcon *pSystemIcon = g_mount_get_icon (pMount);
 						*cIconName = _cd_get_icon_path (pSystemIcon, NULL);
+						g_object_unref (pSystemIcon);
 						g_free (cName);
 						break ;
 					}
@@ -249,6 +251,7 @@ static gchar *_cd_find_volume_name_from_drive_name (const gchar *cName)
 	
 	gchar *cVolumeName = NULL;
 	GList *pAssociatedVolumes = g_drive_get_volumes (pDrive);
+	g_object_unref (pDrive);
 	if (pAssociatedVolumes == NULL)
 		return NULL;
 	
@@ -268,13 +271,16 @@ static gchar *_cd_find_volume_name_from_drive_name (const gchar *cName)
 	}
 	cd_debug ("%dth volume -> cVolumeName : %s\n", iNumVolume, cVolumeName);
 	
-	cd_debug ("Pour info, la liste des volumes disponibles sur ce disque est :");
+	/* cd_debug ("List of unavailable volumes on this disc:");
 	GList *av;
+	gchar *cLog;
 	for (av = pAssociatedVolumes; av != NULL; av = av->next)
 	{
 		pVolume = av->data;
-		cd_debug ("  - %s", g_volume_get_name  (pVolume));
-	}
+		cLog = g_volume_get_name (pVolume);
+		cd_debug ("  - %s", cLog);
+		g_free (cLog);
+	}*/
 	
 	g_list_foreach (pAssociatedVolumes, (GFunc)g_object_unref, NULL);
 	g_list_free (pAssociatedVolumes);
@@ -288,7 +294,7 @@ static gboolean _cd_find_can_eject_from_drive_name (const gchar *cName)
 	g_return_val_if_fail (pDrive != NULL, FALSE);
 	
 	gboolean bCanEject = g_drive_can_eject (pDrive);
-	//g_object_unref (pDrive);
+	g_object_unref (pDrive);
 	return bCanEject;
 }
 
@@ -458,7 +464,7 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 					{
 						if (strcmp (cMountName, "root") == 0)  // on remplace 'root' par un nom plus parlant, sinon on prendra le nom du lien.
 						{
-							*cName = g_strdup ("/");
+							*cName = g_strdup (D_("File System"));
 						}
 					}
 					else if (strcmp (str+1, "drive") == 0)  // on cherche un nom plus parlant si possible.
@@ -581,7 +587,7 @@ static Icon *_cd_get_icon_for_volume (GVolume *pVolume, GMount *pMount)
 		pIcon = g_volume_get_icon (pVolume);
 		cFileName = _cd_get_icon_path (pIcon, NULL);
 		
-		cCommand = g_strdup (cName);
+		cCommand = cName;
 		
 		g_object_unref (pIcon);
 	}
@@ -598,6 +604,7 @@ static Icon *_cd_get_icon_for_volume (GVolume *pVolume, GMount *pMount)
 	return pNewIcon;
 }
 
+/* no longer used...
 static GList *cairo_dock_gio_vfs_list_volumes (void)
 {
 	GVolumeMonitor *pVolumeMonitor = g_volume_monitor_get ();
@@ -610,10 +617,10 @@ static GList *cairo_dock_gio_vfs_list_volumes (void)
 	GList *dl, *av;
 	GDrive *pDrive;
 	GVolume *pVolume;
+	gchar *cLog;
 	for (dl = pDrivesList; dl != NULL; dl = dl->next)
 	{
 		pDrive = dl->data;
-		cd_message ("drive '%s'", g_drive_get_name  (pDrive));
 		
 		pAssociatedVolumes = g_drive_get_volumes (pDrive);
 		if (pAssociatedVolumes != NULL)
@@ -621,11 +628,10 @@ static GList *cairo_dock_gio_vfs_list_volumes (void)
 			for (av = pAssociatedVolumes; av != NULL; av = av->next)
 			{
 				pVolume = av->data;
-				cd_message (" + volume '%s'", g_volume_get_name  (pVolume));
 				pNewIcon = _cd_get_icon_for_volume (pVolume, NULL);
 				if (pNewIcon != NULL)
 					pIconsList = g_list_prepend (pIconsList, pNewIcon);
-				//g_object_unref (pVolume);
+				g_object_unref (pVolume);
 			}
 			g_list_free (pAssociatedVolumes);
 		}
@@ -636,11 +642,13 @@ static GList *cairo_dock_gio_vfs_list_volumes (void)
 			{
 				g_drive_get_icon (pDrive);
 				g_drive_get_name (pDrive);
-			}*/
+			}*
 		}
 		//g_object_unref (pDrive);
 	}
 	g_list_free (pDrivesList);
+
+	gchar *cLog;
 
 	//\___________________ On chope les volumes qui ne sont pas associes a un disque.
 	GList *pVolumesList = g_volume_monitor_get_volumes (pVolumeMonitor);
@@ -648,21 +656,25 @@ static GList *cairo_dock_gio_vfs_list_volumes (void)
 	for (v = pVolumesList; v != NULL; v = v->next)
 	{
 		pVolume = v->data;
-		cd_message ("volume '%s'", g_volume_get_name  (pVolume));
+		cLog = g_volume_get_name (pVolume);
+		cd_message ("volume '%s'", cLog);
 		pDrive = g_volume_get_drive (pVolume);
 		if (pDrive != NULL)  // on l'a deja liste dans la 1ere boucle.
 		{
-			cd_message ("  drive '%s' est deja liste", g_drive_get_name (pDrive));
-			//g_object_unref (pDrive);
+			g_free (cLog);
+			cLog = g_drive_get_name (pDrive);
+			cd_message ("  drive '%s' est deja liste", cLog);
+			g_object_unref (pDrive);
 		}
 		else
 		{
-			cd_message (" + volume '%s'\n", g_volume_get_name  (pVolume));
+			cd_message (" + volume '%s'\n", cLog);
 			if (pNewIcon != NULL)
 				pNewIcon = _cd_get_icon_for_volume (pVolume, NULL);
 			pIconsList = g_list_prepend (pIconsList, pNewIcon);
 		}
-		//g_object_unref (pVolume);
+		g_free (cLog);
+		g_object_unref (pVolume);
 	}
 	g_list_free (pVolumesList);
 
@@ -673,26 +685,30 @@ static GList *cairo_dock_gio_vfs_list_volumes (void)
 	for (m = pMountsList; m != NULL; m = m->next)
 	{
 		pMount = m->data;
-		cd_message ("mount '%s'", g_mount_get_name (pMount));
+		cLog = g_mount_get_name (pMount);
+		cd_message ("mount '%s'", cLog);
+		g_free (cLog);
 		pVolume = g_mount_get_volume (pMount);
 		if (pVolume != NULL)  // on l'a deja liste precedemment.
 		{
-			cd_message ("volume '%s' est deja liste", g_volume_get_name  (pVolume));
-			//g_object_unref (pVolume);
+			cLog = g_volume_get_name (pVolume);
+			cd_message ("volume '%s' est deja liste", cLog);
+			g_free (cLog);
+			g_object_unref (pVolume);
 		}
 		else
 		{
-			cd_message ("+ volume '%s'", g_volume_get_name  (pVolume));
+			cd_message ("volume 'NULL'");
 			if (pNewIcon != NULL)
 				pNewIcon = _cd_get_icon_for_volume (NULL, pMount);
 			pIconsList = g_list_prepend (pIconsList, pNewIcon);
 		}
-		//g_object_unref (pMount);
+		g_object_unref (pMount);
 	}
 	g_list_free (pMountsList);
 	
 	return pIconsList;
-}
+}*/
 
 static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsGroup, gboolean bListHiddenFiles, int iNbMaxFiles, gchar **cValidUri)
 {
@@ -700,15 +716,8 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 	cd_message ("%s (%s)", __func__, cBaseURI);
 	
 	gchar *cURI;
-	gboolean bAddHome = FALSE;
 	if (strcmp (cBaseURI, CAIRO_DOCK_FM_VFS_ROOT) == 0)
-	{
 		cURI = g_strdup ("computer://");
-		bAddHome = TRUE;
-		///*cValidUri = cURI;
-		///return cairo_dock_gio_vfs_list_volumes ();
-		//cairo_dock_gio_vfs_list_volumes ();
-	}
 	else if (strcmp (cBaseURI, CAIRO_DOCK_FM_NETWORK) == 0)
 		cURI = g_strdup ("network://");
 	else
@@ -792,25 +801,26 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 					icon->cCommand = g_strdup (cTargetURI);
 					GFile *file = g_file_new_for_uri (cTargetURI);
 					pMount = g_file_find_enclosing_mount (file, NULL, NULL);
-					//g_object_unref (file);
+					g_object_unref (file);
 				}
 				if (pMount != NULL)
 				{
 					cName = g_mount_get_name (pMount);
-					cd_message ("un GMount existe (%s)", cName);
+					cd_message ("GMount exists (%s)", cName);
+					g_object_unref (pMount);
 					
-					GVolume *volume = g_mount_get_volume (pMount);
+					/* GVolume *volume = g_mount_get_volume (pMount);
 					if (volume)
 						cd_message ("  volume associe : %s", g_volume_get_name (volume));
 					GDrive *drive = g_mount_get_drive (pMount);
 					if (drive)
-						cd_message ("  disque associe : %s", g_drive_get_name (drive));
+						cd_message ("  disque associe : %s", g_drive_get_name (drive));*/
 					
 					///pFileIcon = g_mount_get_icon (pMount);
 				}
 				else
 				{
-					cName = g_strdup (cFileName);
+					cName = strcmp (cFileName, "/") == 0 ? g_strdup (D_("File System")) : g_strdup (cFileName);
 					gchar *str = strrchr (cName, '.');  // on vire l'extension ".volume" ou ".drive".
 					if (str != NULL)
 					{
@@ -820,7 +830,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 							if (strcmp (cName, "root") == 0)
 							{
 								g_free (cName);
-								cName = g_strdup ("/");
+								cName = g_strdup (D_("File System"));
 							}
 						}
 						else if (strcmp (str+1, "drive") == 0)  // on cherche un nom plus parlant si possible.
@@ -841,7 +851,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 					}
 				}
 				icon->iVolumeID = 1;
-				cd_message ("le nom de ce volume est : %s", cName);
+				cd_message ("The name of this volume is: %s", cName);
 			}
 			else
 			{
@@ -853,7 +863,6 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 			if (icon->cCommand == NULL)
 				icon->cCommand = g_strdup (icon->cBaseURI);
 			icon->cName = cName;
-			icon->cFileName = NULL;
 			icon->cFileName = g_strdup (g_file_info_get_attribute_byte_string (pFileInfo, G_FILE_ATTRIBUTE_THUMBNAIL_PATH));
 			#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
 			/**if (icon->cFileName == NULL)
@@ -915,30 +924,6 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 	
 	g_object_unref (pFileEnum);
 	g_object_unref (pFile);
-	
-	if (bAddHome && pIconList != NULL)
-	{
-		Icon *pRootIcon = cairo_dock_get_icon_with_name (pIconList, "/");
-		if (pRootIcon == NULL)
-		{
-			pRootIcon = cairo_dock_get_first_icon (pIconList);
-			cd_debug ("domage ! (%s:%s)\n", pRootIcon->cCommand, pRootIcon->cName);
-		}
-		
-		icon = cairo_dock_create_dummy_launcher (g_strdup ("home"),
-			g_strdup (pRootIcon->cFileName),
-			g_strdup (g_getenv ("HOME")),
-			NULL,
-			iOrder++);
-		icon->iTrueType = CAIRO_DOCK_ICON_TYPE_FILE;
-		icon->iGroup = iNewIconsGroup;
-		icon->cBaseURI = g_strdup_printf ("file://%s", g_getenv ("HOME"));
-		icon->iVolumeID = 0;
-		
-		pIconList = g_list_insert_sorted (pIconList,
-			icon,
-			(GCompareFunc) cairo_dock_compare_icons_order);
-	}
 	
 	if (iSortType == CAIRO_DOCK_FM_SORT_BY_NAME)
 		pIconList = cairo_dock_sort_icons_by_name (pIconList);
@@ -1211,8 +1196,8 @@ static gboolean cairo_dock_gio_vfs_eject_drive (const gchar *cURI)
 			NULL);
 		#endif
 	}
-	//g_object_unref (pDrive);
-	//g_free (cDriveName);
+	g_object_unref (pDrive);
+	g_free (cDriveName);
 	return TRUE;
 }
 
@@ -1413,7 +1398,7 @@ static void cairo_dock_gio_vfs_add_monitor (const gchar *cURI, gboolean bDirecto
 			G_FILE_MONITOR_WATCH_MOUNTS,
 			NULL,
 			&erreur);
-	//g_object_unref (pFile);
+	g_object_unref (pFile);
 	if (erreur != NULL)
 	{
 		cd_warning ("gvfs-integration : couldn't add monitor on '%s' (%d) [%s]", cURI, bDirectory, erreur->message);
