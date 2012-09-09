@@ -247,6 +247,7 @@ static void _check_ncs (void)
 	if (cResult != NULL && *cResult == '/')
 		s_bNCSAvailable = TRUE;
 	g_free (cResult);
+	s_bNCSChecked = TRUE;
 }
 
 static void _open_ncs (GtkMenuItem *menu_item, gpointer data)
