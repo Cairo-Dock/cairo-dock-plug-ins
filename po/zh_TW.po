@@ -148,25 +148,25 @@ msgstr ""
 msgid "For Aiur!"
 msgstr "為了艾爾！"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:118
+#: ../Cairo-Penguin/src/applet-notifications.c:137
 msgid "Wake up"
 msgstr "起床"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:122
+#: ../Cairo-Penguin/src/applet-notifications.c:141
 msgid "Keep quiet"
 msgstr "保持安靜"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:125
+#: ../Cairo-Penguin/src/applet-notifications.c:144
 #: ../Scooby-Do/data/messages:99
 msgid "Start XPenguins"
 msgstr "啟動 XPenguins"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:126
+#: ../Cairo-Penguin/src/applet-notifications.c:145
 msgid "Stop XPenguins"
 msgstr "停止 XPenguins"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:148
-#: ../Cairo-Penguin/src/applet-notifications.c:150
+#: ../Cairo-Penguin/src/applet-notifications.c:167
+#: ../Cairo-Penguin/src/applet-notifications.c:169
 msgid "Zzzzz"
 msgstr "Zzzzz"
 
@@ -263,7 +263,7 @@ msgid "Toggle composite?"
 msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:120
-#: ../Composite-Manager/data/messages:125
+#: ../Composite-Manager/data/messages:123
 msgid "Edit Window-Manager settings"
 msgstr ""
 
@@ -284,14 +284,14 @@ msgstr ""
 #: ../musicPlayer/src/applet-notifications.c:300
 #: ../netspeed/src/applet-notifications.c:94
 #: ../quick-browser/src/applet-notifications.c:41
-#: ../shortcuts/src/applet-notifications.c:249
-#: ../shortcuts/src/applet-notifications.c:269
+#: ../shortcuts/src/applet-notifications.c:268
+#: ../shortcuts/src/applet-notifications.c:292
 #: ../showDesktop/src/applet-notifications.c:165
 #: ../showDesktop/src/applet-notifications.c:177
 #: ../showDesktop/src/applet-notifications.c:189
 #: ../slider/src/applet-notifications.c:223
 #: ../slider/src/applet-notifications.c:265
-#: ../stack/src/applet-notifications.c:181
+#: ../stack/src/applet-notifications.c:185
 #: ../switcher/src/applet-notifications.c:300
 #: ../switcher/src/applet-notifications.c:305
 #: ../switcher/src/applet-notifications.c:314
@@ -301,15 +301,15 @@ msgid "middle-click"
 msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:127
-#: ../Composite-Manager/data/messages:127
+#: ../Composite-Manager/data/messages:125
 msgid "Reload Window-Manager"
 msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:136
 #: ../showDesktop/src/applet-notifications.c:165
 #: ../showDesktop/src/applet-notifications.c:167
-#: ../Composite-Manager/data/messages:129 ../showDesktop/data/messages:99
-#: ../showDesktop/data/messages:113 ../switcher/data/messages:135
+#: ../Composite-Manager/data/messages:127 ../showDesktop/data/messages:97
+#: ../showDesktop/data/messages:111 ../switcher/data/messages:133
 msgid "Show desktop"
 msgstr "顯示桌面"
 
@@ -317,22 +317,22 @@ msgstr "顯示桌面"
 #: ../showDesktop/src/applet-notifications.c:177
 #: ../showDesktop/src/applet-notifications.c:179
 #: ../switcher/src/applet-notifications.c:314
-#: ../Composite-Manager/data/messages:131 ../showDesktop/data/messages:107
-#: ../showDesktop/data/messages:121 ../switcher/data/messages:137
+#: ../Composite-Manager/data/messages:129 ../showDesktop/data/messages:105
+#: ../showDesktop/data/messages:119 ../switcher/data/messages:135
 msgid "Expose all the desktops"
 msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:154
 #: ../switcher/src/applet-notifications.c:323
-#: ../Composite-Manager/data/messages:133 ../switcher/data/messages:139
+#: ../Composite-Manager/data/messages:131 ../switcher/data/messages:137
 msgid "Expose all the windows"
 msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:163
 #: ../showDesktop/src/applet-notifications.c:189
 #: ../showDesktop/src/applet-notifications.c:191
-#: ../Composite-Manager/data/messages:135 ../showDesktop/data/messages:105
-#: ../showDesktop/data/messages:119
+#: ../Composite-Manager/data/messages:133 ../showDesktop/data/messages:103
+#: ../showDesktop/data/messages:117
 msgid "Show the Widget Layer"
 msgstr ""
 
@@ -509,7 +509,7 @@ msgstr "空的或是無法讀取的資料夾。"
 msgid "Properties:"
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:136 ../Folders/data/messages:115
+#: ../Folders/src/applet-notifications.c:136 ../Folders/data/messages:113
 msgid "Size"
 msgstr "大小"
 
@@ -543,28 +543,28 @@ msgstr ""
 
 #: ../Folders/src/applet-notifications.c:184
 #: ../Folders/src/applet-notifications.c:185
-#: ../Folders/src/applet-notifications.c:186 ../Disks/data/messages:105
-#: ../System-Monitor/data/messages:115 ../alsaMixer/data/messages:129
-#: ../netspeed/data/messages:115 ../slider/data/messages:169
+#: ../Folders/src/applet-notifications.c:186 ../Disks/data/messages:103
+#: ../System-Monitor/data/messages:113 ../alsaMixer/data/messages:127
+#: ../netspeed/data/messages:113 ../slider/data/messages:167
 msgid "Yes"
 msgstr ""
 
 #: ../Folders/src/applet-notifications.c:184
 #: ../Folders/src/applet-notifications.c:185
-#: ../Folders/src/applet-notifications.c:186 ../Disks/data/messages:101
-#: ../Disks/data/messages:137 ../Messaging-Menu/data/messages:15
-#: ../Network-Monitor/data/messages:17 ../Network-Monitor/data/messages:117
-#: ../RSSreader/data/messages:111 ../Status-Notifier/data/messages:19
-#: ../System-Monitor/data/messages:15 ../System-Monitor/data/messages:111
-#: ../System-Monitor/data/messages:163 ../Toons/data/messages:15
-#: ../alsaMixer/data/messages:15 ../alsaMixer/data/messages:103
-#: ../alsaMixer/data/messages:125 ../clock/data/messages:17
-#: ../clock/data/messages:105 ../keyboard-indicator/data/messages:15
+#: ../Folders/src/applet-notifications.c:186 ../Disks/data/messages:99
+#: ../Disks/data/messages:135 ../Messaging-Menu/data/messages:15
+#: ../Network-Monitor/data/messages:17 ../Network-Monitor/data/messages:115
+#: ../RSSreader/data/messages:109 ../Status-Notifier/data/messages:19
+#: ../System-Monitor/data/messages:15 ../System-Monitor/data/messages:109
+#: ../System-Monitor/data/messages:161 ../Toons/data/messages:15
+#: ../alsaMixer/data/messages:15 ../alsaMixer/data/messages:101
+#: ../alsaMixer/data/messages:123 ../clock/data/messages:17
+#: ../clock/data/messages:103 ../keyboard-indicator/data/messages:15
 #: ../mail/data/messages:15 ../musicPlayer/data/messages:17
-#: ../netspeed/data/messages:15 ../netspeed/data/messages:111
-#: ../netspeed/data/messages:159 ../powermanager/data/messages:17
-#: ../shortcuts/data/messages:117 ../slider/data/messages:15
-#: ../slider/data/messages:167 ../weather/data/messages:17
+#: ../netspeed/data/messages:15 ../netspeed/data/messages:109
+#: ../netspeed/data/messages:157 ../powermanager/data/messages:17
+#: ../shortcuts/data/messages:115 ../slider/data/messages:15
+#: ../slider/data/messages:165 ../weather/data/messages:17
 #: ../wifi/data/messages:15
 msgid "No"
 msgstr "不要"
@@ -649,7 +649,7 @@ msgid "Move this file"
 msgstr "移動此檔案"
 
 #: ../Folders/src/applet-notifications.c:380
-#: ../Recent-Events/src/applet-dialog.c:263
+#: ../Recent-Events/src/applet-dialog.c:289
 #: ../slider/src/applet-notifications.c:233
 msgid "Open with"
 msgstr "以此開啟"
@@ -720,11 +720,11 @@ msgstr ""
 msgid "Show/hide the quick-launch dialog"
 msgstr ""
 
-#: ../GMenu/src/applet-menu-callbacks.c:174 ../GMenu/data/messages:117
+#: ../GMenu/src/applet-menu-callbacks.c:174 ../GMenu/data/messages:103
 msgid "Logout"
 msgstr ""
 
-#: ../GMenu/src/applet-menu-callbacks.c:177 ../GMenu/data/messages:119
+#: ../GMenu/src/applet-menu-callbacks.c:177 ../GMenu/data/messages:105
 msgid "Shutdown"
 msgstr ""
 
@@ -744,7 +744,7 @@ msgstr "清除最近的紀錄"
 msgid "Recent Documents"
 msgstr "最近使用文件"
 
-#: ../GMenu/src/applet-recent.c:109
+#: ../GMenu/src/applet-recent.c:108
 msgid "Clear the list of the recently used documents?"
 msgstr "清除最近使用過的文件清單嗎？"
 
@@ -802,22 +802,22 @@ msgstr "讓您快速存取您資訊的選單，比如您的線上狀態、您的
 msgid "It seems that the Me-Menu is not installed on your system"
 msgstr "看起來「Me 選單」尚未安裝於您的系統上"
 
-#: ../Messaging-Menu/src/applet-init.c:30
+#: ../Messaging-Menu/src/applet-init.c:34
 msgid "Messaging Menu"
 msgstr "訊息選單"
 
-#: ../Messaging-Menu/src/applet-init.c:33
+#: ../Messaging-Menu/src/applet-init.c:37
 msgid ""
 "A menu that notices you about new messages from Mail or Chat applications.\n"
 "It handles Evolution, Pidgin, Empathy, etc\n"
 "It requires the Messaging service, which is available on Ubuntu by default."
 msgstr ""
 
-#: ../Messaging-Menu/src/applet-init.c:66
+#: ../Messaging-Menu/src/applet-init.c:78
 msgid "Show/hide the Messaging menu"
 msgstr ""
 
-#: ../Messaging-Menu/src/applet-notifications.c:67
+#: ../Messaging-Menu/src/applet-notifications.c:76
 msgid ""
 "The Messaging service did not reply.\n"
 "Please check that it is correctly installed."
@@ -848,10 +848,10 @@ msgid "A cable has been unplugged"
 msgstr "電纜已拔除"
 
 #: ../Network-Monitor/src/applet-draw.c:30
-#: ../powermanager/src/powermanager-draw.c:231 ../wifi/src/applet-draw.c:30
-#: ../Clipper/data/messages:97 ../GMenu/data/messages:115
-#: ../Network-Monitor/data/messages:221 ../dnd2share/data/messages:109
-#: ../dustbin/data/messages:101 ../wifi/data/messages:145
+#: ../powermanager/src/powermanager-draw.c:230 ../wifi/src/applet-draw.c:30
+#: ../Clipper/data/messages:95 ../GMenu/data/messages:101
+#: ../Network-Monitor/data/messages:219 ../dnd2share/data/messages:107
+#: ../dustbin/data/messages:99 ../wifi/data/messages:143
 msgid "None"
 msgstr "無"
 
@@ -916,8 +916,8 @@ msgstr "網路 ID"
 #: ../Network-Monitor/src/applet-draw.c:148
 #: ../musicPlayer/src/applet-draw.c:152 ../musicPlayer/src/applet-draw.c:154
 #: ../musicPlayer/src/applet-draw.c:156
-#: ../powermanager/src/powermanager-draw.c:260
-#: ../powermanager/src/powermanager-draw.c:315
+#: ../powermanager/src/powermanager-draw.c:259
+#: ../powermanager/src/powermanager-draw.c:314
 msgid "Unknown"
 msgstr "未知"
 
@@ -1077,68 +1077,73 @@ msgstr ""
 "您已設定有效的 RSS 饋流嗎？\n"
 "您的連線還正常嗎？"
 
-#: ../Recent-Events/src/applet-dialog.c:288
-#: ../stack/src/applet-notifications.c:179
+#: ../Recent-Events/src/applet-dialog.c:314
+#: ../stack/src/applet-notifications.c:183
 msgid "Open parent folder"
 msgstr "打開父資料夾"
 
-#: ../Recent-Events/src/applet-dialog.c:290
+#: ../Recent-Events/src/applet-dialog.c:316
 msgid "Copy the location"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:292
+#: ../Recent-Events/src/applet-dialog.c:319
 msgid "Delete this event"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:365
+#: ../Recent-Events/src/applet-dialog.c:393
 msgid "All"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:366
+#: ../Recent-Events/src/applet-dialog.c:394
+#, fuzzy
+msgid "Applications"
+msgstr "應用程式選單"
+
+#: ../Recent-Events/src/applet-dialog.c:395
 msgid "Document"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:368 ../logout/data/messages:117
+#: ../Recent-Events/src/applet-dialog.c:397 ../logout/data/messages:115
 msgid "Image"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:369
+#: ../Recent-Events/src/applet-dialog.c:398
 msgid "Audio"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:370
+#: ../Recent-Events/src/applet-dialog.c:399
 msgid "Video"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:371
+#: ../Recent-Events/src/applet-dialog.c:400
 msgid "Web"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:372
+#: ../Recent-Events/src/applet-dialog.c:401
 msgid "Other"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:373
+#: ../Recent-Events/src/applet-dialog.c:402
 msgid "Top Results"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:379
+#: ../Recent-Events/src/applet-dialog.c:408
 msgid "Look for events"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:430
+#: ../Recent-Events/src/applet-dialog.c:458
 msgid "File name"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:437
+#: ../Recent-Events/src/applet-dialog.c:465
 msgid "Last access"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:481
+#: ../Recent-Events/src/applet-dialog.c:509
 msgid "You need to install the Zeitgeist data engine."
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:516
+#: ../Recent-Events/src/applet-dialog.c:544
 msgid "Browse and search in recent events"
 msgstr ""
 
@@ -1160,11 +1165,11 @@ msgstr ""
 msgid "Recent files"
 msgstr "最近開啟的檔案"
 
-#: ../Recent-Events/src/applet-notifications.c:182
+#: ../Recent-Events/src/applet-notifications.c:183
 msgid "Delete today's events"
 msgstr ""
 
-#: ../Recent-Events/src/applet-notifications.c:184
+#: ../Recent-Events/src/applet-notifications.c:185
 msgid "Delete all events"
 msgstr ""
 
@@ -1587,9 +1592,9 @@ msgstr "靜音"
 
 #: ../clock/src/applet-calendar.c:193 ../clock/src/applet-calendar.c:274
 #: ../clock/src/applet-calendar.c:528 ../clock/src/applet-calendar.c:533
-#: ../clock/src/applet-task-editor.c:119 ../clock/src/applet-timer.c:87
-#: ../clock/src/applet-timer.c:175 ../clock/src/applet-timer.c:455
-#: ../clock/src/applet-timer.c:472 ../clock/src/applet-timer.c:492
+#: ../clock/src/applet-task-editor.c:119 ../clock/src/applet-timer.c:98
+#: ../clock/src/applet-timer.c:186 ../clock/src/applet-timer.c:466
+#: ../clock/src/applet-timer.c:480 ../clock/src/applet-timer.c:514
 msgid "No title"
 msgstr "無標題"
 
@@ -1601,7 +1606,7 @@ msgstr "年"
 msgid "Calendar and tasks"
 msgstr "日曆與工作事項"
 
-#: ../clock/src/applet-config.c:36 ../clock/data/messages:181
+#: ../clock/src/applet-config.c:36 ../clock/data/messages:179
 msgid "Alarm"
 msgstr "鬧鐘"
 
@@ -1685,7 +1690,7 @@ msgstr "要啟動的指令："
 msgid "E.g.:"
 msgstr "例："
 
-#: ../clock/src/applet-config.c:508 ../weather/src/applet-config.c:207
+#: ../clock/src/applet-config.c:512 ../weather/src/applet-config.c:214
 msgid "Search for your location :"
 msgstr "搜尋您的位置："
 
@@ -1725,7 +1730,7 @@ msgstr ""
 "\n"
 "您可以藉由點擊面板程式來開啟日曆，接著雙擊某一日來加入工作事項。"
 
-#: ../clock/src/applet-notifications.c:77
+#: ../clock/src/applet-notifications.c:82
 msgid ""
 "No task is sheduled for the next 7 days.\n"
 "\n"
@@ -1736,15 +1741,15 @@ msgstr ""
 "\n"
 "您可以藉由點擊面板程式來開啟日曆，接著雙擊某一日來加入工作事項。"
 
-#: ../clock/src/applet-notifications.c:89
+#: ../clock/src/applet-notifications.c:99
 msgid "Show today's tasks"
 msgstr "顯示今日工作事項"
 
-#: ../clock/src/applet-notifications.c:90
+#: ../clock/src/applet-notifications.c:100
 msgid "Show this week's tasks"
 msgstr "顯示本週工作事項"
 
-#: ../clock/src/applet-notifications.c:95
+#: ../clock/src/applet-notifications.c:105
 msgid "Set up time and date"
 msgstr "設置時間與日期"
 
@@ -1781,13 +1786,13 @@ msgid "Right-click to add a new task."
 msgstr "點擊右鍵以加入新的工作事項。"
 
 #: ../clock/src/applet-task-editor.c:398 ../musicPlayer/src/applet-draw.c:153
-#: ../RSSreader/data/messages:131
+#: ../RSSreader/data/messages:129
 msgid "Title"
 msgstr "標題"
 
 #: ../clock/src/applet-task-editor.c:405
 #: ../dnd2share/src/applet-notifications.c:389 ../Doncky/data/messages:93
-#: ../RSSreader/data/messages:147
+#: ../RSSreader/data/messages:145
 msgid "Text"
 msgstr "文字"
 
@@ -1811,32 +1816,32 @@ msgstr "1分鐘"
 msgid "1h"
 msgstr "1小時"
 
-#: ../clock/src/applet-timer.c:86
+#: ../clock/src/applet-timer.c:97
 msgid "The following task was scheduled at"
 msgstr "以下的工作事項排定於"
 
-#: ../clock/src/applet-timer.c:89 ../clock/src/applet-timer.c:457
-#: ../clock/src/applet-timer.c:494
+#: ../clock/src/applet-timer.c:100 ../clock/src/applet-timer.c:468
+#: ../clock/src/applet-timer.c:516
 msgid "Repeat this message every:"
 msgstr "多久重復一次此訊息："
 
-#: ../clock/src/applet-timer.c:173
+#: ../clock/src/applet-timer.c:184
 msgid "The following task has felt due:"
 msgstr ""
 
-#: ../clock/src/applet-timer.c:454
+#: ../clock/src/applet-timer.c:465
 msgid "It's time for the following task:"
 msgstr "該是做以下工作事項的時間："
 
-#: ../clock/src/applet-timer.c:471
+#: ../clock/src/applet-timer.c:479
 msgid "This task will begin in 15 minutes:"
 msgstr "此工作事項將於 15 分鐘內開始："
 
-#: ../clock/src/applet-timer.c:491
+#: ../clock/src/applet-timer.c:513
 msgid "Today is the following anniversary:"
 msgstr "今日是以下所示的紀念日："
 
-#: ../clock/src/applet-timer.c:491
+#: ../clock/src/applet-timer.c:513
 msgid "Tomorrow is the following anniversary:"
 msgstr "明天是下列所示的紀念日："
 
@@ -1869,7 +1874,7 @@ msgid "futuristic"
 msgstr "未來主義"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:105
-#: ../slider/data/messages:137
+#: ../slider/data/messages:135
 msgid "none"
 msgstr "無"
 
@@ -2051,8 +2056,8 @@ msgid "Rainbow"
 msgstr "彩虹"
 
 #: ../dock-rendering/src/rendering-init.c:39
-#: ../dock-rendering/data/messages:29 ../shortcuts/data/messages:109
-#: ../stack/data/messages:101
+#: ../dock-rendering/data/messages:29 ../shortcuts/data/messages:107
+#: ../stack/data/messages:99
 msgid "Slide"
 msgstr "投影片"
 
@@ -2241,8 +2246,8 @@ msgid ""
 "You can bind a <b>shortcut</b> to it, and also to lock the screen."
 msgstr ""
 
-#: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:228
-#: ../logout/data/messages:95
+#: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:229
+#: ../logout/data/messages:93
 msgid "Log out"
 msgstr ""
 
@@ -2254,86 +2259,86 @@ msgstr ""
 msgid "Show the log-out menu"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:200 ../logout/data/messages:97
+#: ../logout/src/applet-logout.c:201 ../logout/data/messages:95
 msgid "Shut down"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:206
+#: ../logout/src/applet-logout.c:207
 msgid "Restart"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:212
+#: ../logout/src/applet-logout.c:213
 #: ../powermanager/src/powermanager-menu-functions.c:96
 #: ../powermanager/src/powermanager-menu-functions.c:104
 msgid "Hibernate"
 msgstr "休眠"
 
-#: ../logout/src/applet-logout.c:214
+#: ../logout/src/applet-logout.c:215
 msgid "Your computer will not consume any energy."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:219
+#: ../logout/src/applet-logout.c:220
 #: ../powermanager/src/powermanager-menu-functions.c:99
 #: ../powermanager/src/powermanager-menu-functions.c:106
 msgid "Suspend"
 msgstr "暫停"
 
-#: ../logout/src/applet-logout.c:221
+#: ../logout/src/applet-logout.c:222
 msgid "Your computer will still consume a small amount of energy."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:230
+#: ../logout/src/applet-logout.c:231
 msgid "Close your session and allow to open a new one."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:241
+#: ../logout/src/applet-logout.c:242
 msgid "Switch user"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:262
+#: ../logout/src/applet-logout.c:263
 msgid "Guest session"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:269 ../logout/data/messages:99
+#: ../logout/src/applet-logout.c:270 ../logout/data/messages:97
 msgid "Lock screen"
 msgstr "鎖定螢幕"
 
-#: ../logout/src/applet-logout.c:274
+#: ../logout/src/applet-logout.c:275
 msgid "Program an automatic shut-down"
 msgstr "計劃的自動關機"
 
-#: ../logout/src/applet-logout.c:342
+#: ../logout/src/applet-logout.c:343
 msgid "Your computer will shut-down in 1 minute."
 msgstr "您的電腦將在1分鐘內關機。"
 
-#: ../logout/src/applet-logout.c:366
+#: ../logout/src/applet-logout.c:367
 msgid "Choose in how many minutes your PC will stop:"
 msgstr "選擇多少分鐘後電腦就會停止："
 
-#: ../logout/src/applet-logout.c:419
+#: ../logout/src/applet-logout.c:420
 msgid ""
 "Your session needs to be restarted in order to update new configuration "
 "files."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:479
+#: ../logout/src/applet-logout.c:423
 msgid "Please do that at the end of the update."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:613
+#: ../logout/src/applet-logout.c:636
 #, c-format
 msgid "It will automatically shut-down in %ds"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:614
+#: ../logout/src/applet-logout.c:637
 msgid "Shut down the computer?"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:674
+#: ../logout/src/applet-logout.c:697
 msgid "Restart the computer?"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:711
+#: ../logout/src/applet-logout.c:734
 msgid "Close the current session?"
 msgstr ""
 
@@ -2382,14 +2387,14 @@ msgstr ""
 msgid "Use a secure connection (SSL)"
 msgstr "使用安全連線 (SSL)"
 
-#: ../mail/src/cd-mail-applet-accounts.c:39 ../RSSreader/data/messages:107
-#: ../netspeed/data/messages:151 ../powermanager/data/messages:159
-#: ../weather/data/messages:117
+#: ../mail/src/cd-mail-applet-accounts.c:39 ../RSSreader/data/messages:105
+#: ../netspeed/data/messages:149 ../powermanager/data/messages:157
+#: ../weather/data/messages:115
 msgid "Refresh time:"
 msgstr "重新整理時間："
 
-#: ../mail/src/cd-mail-applet-accounts.c:39 ../RSSreader/data/messages:105
-#: ../weather/data/messages:115
+#: ../mail/src/cd-mail-applet-accounts.c:39 ../RSSreader/data/messages:103
+#: ../weather/data/messages:113
 msgid "In minutes."
 msgstr "以分鐘。"
 
@@ -2723,58 +2728,58 @@ msgstr ""
 msgid "Re-check interface"
 msgstr "重新檢查界面卡"
 
-#: ../powermanager/src/powermanager-draw.c:189
+#: ../powermanager/src/powermanager-draw.c:188
 msgid "Battery charged"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:211
+#: ../powermanager/src/powermanager-draw.c:210
 msgid "Time before empty"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:211
+#: ../powermanager/src/powermanager-draw.c:210
 msgid "Time before full"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:266
+#: ../powermanager/src/powermanager-draw.c:265
 msgid "Laptop on Battery."
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:267
-#: ../powermanager/src/powermanager-draw.c:276
+#: ../powermanager/src/powermanager-draw.c:266
+#: ../powermanager/src/powermanager-draw.c:275
 msgid "Battery charged at:"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:268
+#: ../powermanager/src/powermanager-draw.c:267
 msgid "Estimated time before empty:"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:275
+#: ../powermanager/src/powermanager-draw.c:274
 msgid "Laptop on Charge."
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:277
+#: ../powermanager/src/powermanager-draw.c:276
 msgid "Estimated time before full:"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:284
+#: ../powermanager/src/powermanager-draw.c:283
 #, fuzzy
 msgid "Model:"
 msgstr "現代"
 
-#: ../powermanager/src/powermanager-draw.c:290
+#: ../powermanager/src/powermanager-draw.c:289
 msgid "Technology:"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:294
+#: ../powermanager/src/powermanager-draw.c:293
 #, fuzzy
 msgid "Maximum capacity:"
 msgstr "最大上傳速率："
 
-#: ../powermanager/src/powermanager-draw.c:299
+#: ../powermanager/src/powermanager-draw.c:298
 msgid "No battery found."
 msgstr "沒有找到電池 。"
 
-#: ../powermanager/src/powermanager-draw.c:321
+#: ../powermanager/src/powermanager-draw.c:320
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -2782,15 +2787,15 @@ msgstr ""
 "電源管理員。\n"
 "電池電量似乎是低的"
 
-#: ../powermanager/src/powermanager-draw.c:321
+#: ../powermanager/src/powermanager-draw.c:320
 msgid "Estimated time with charge:"
 msgstr "估計充電的時間："
 
-#: ../powermanager/src/powermanager-draw.c:321
+#: ../powermanager/src/powermanager-draw.c:320
 msgid "Please put your laptop on charge."
 msgstr "請把您的筆記型電腦充電。"
 
-#: ../powermanager/src/powermanager-draw.c:335
+#: ../powermanager/src/powermanager-draw.c:334
 msgid ""
 "PowerManager.\n"
 "Your battery is now charged"
@@ -2849,23 +2854,29 @@ msgid "Open folder"
 msgstr "開啟資料夾"
 
 #: ../shortcuts/src/applet-bookmarks.c:133
-#: ../shortcuts/src/applet-bookmarks.c:416
-#: ../shortcuts/src/applet-drives.c:306
+#: ../shortcuts/src/applet-bookmarks.c:376
+#: ../shortcuts/src/applet-drives.c:267
 msgid "Unmounted"
 msgstr "已卸載"
 
-#: ../shortcuts/src/applet-drives.c:175 ../shortcuts/src/applet-drives.c:233
+#: ../shortcuts/src/applet-bookmarks.c:179
+#: ../shortcuts/src/applet-bookmarks.c:405
+#, fuzzy
+msgid "Home Folder"
+msgstr "資料夾"
+
+#: ../shortcuts/src/applet-drives.c:131 ../shortcuts/src/applet-drives.c:194
 #, c-format
 msgid "%s is now mounted"
 msgstr "%s 現在已掛載"
 
-#: ../shortcuts/src/applet-drives.c:175
+#: ../shortcuts/src/applet-drives.c:131
 #: ../shortcuts/src/applet-load-icons.c:137
 #, c-format
 msgid "%s has been connected"
 msgstr "%s 現在已連接"
 
-#: ../shortcuts/src/applet-drives.c:233
+#: ../shortcuts/src/applet-drives.c:194
 #, c-format
 msgid "%s is now unmounted"
 msgstr "%s 現在已卸載"
@@ -2916,35 +2927,40 @@ msgstr "找不到磁碟或書籤。"
 msgid "Enter a name for this bookmark:"
 msgstr "請輸入此書籤的名稱："
 
-#: ../shortcuts/src/applet-notifications.c:249
+#: ../shortcuts/src/applet-notifications.c:268
 msgid "Open Home directory"
 msgstr ""
 
-#: ../shortcuts/src/applet-notifications.c:257
+#: ../shortcuts/src/applet-notifications.c:274
+#, fuzzy
+msgid "Connect to Server..."
+msgstr "正在連接..."
+
+#: ../shortcuts/src/applet-notifications.c:280
 msgid "Rename this bookmark"
 msgstr "重新命名此書籤"
 
-#: ../shortcuts/src/applet-notifications.c:258
+#: ../shortcuts/src/applet-notifications.c:281
 msgid "Remove this bookmark"
 msgstr "移除這個書籤"
 
-#: ../shortcuts/src/applet-notifications.c:264
+#: ../shortcuts/src/applet-notifications.c:287
 msgid "Eject"
 msgstr "彈出"
 
-#: ../shortcuts/src/applet-notifications.c:269
+#: ../shortcuts/src/applet-notifications.c:292
 msgid "Unmount"
 msgstr ""
 
-#: ../shortcuts/src/applet-notifications.c:269
+#: ../shortcuts/src/applet-notifications.c:292
 msgid "Mount"
 msgstr ""
 
-#: ../shortcuts/src/applet-notifications.c:273
+#: ../shortcuts/src/applet-notifications.c:296
 msgid "Get disk info"
 msgstr "取得硬碟資訊"
 
-#: ../shortcuts/src/applet-notifications.c:299
+#: ../shortcuts/src/applet-notifications.c:322
 msgid "Only folders can be bookmarked."
 msgstr "只有資料夾可以加入書籤。"
 
@@ -2981,7 +2997,7 @@ msgstr ""
 "中鍵點擊可以 顯示/隱藏 不管是桌面、桌面面板程式、桌面面板程式層、還是全部的桌"
 "面。"
 
-#: ../showDesktop/src/applet-notifications.c:201
+#: ../showDesktop/src/applet-notifications.c:203
 msgid "Change screen resolution"
 msgstr "更改螢幕解析度"
 
@@ -3040,7 +3056,7 @@ msgstr ""
 "您可以放入任何的檔案，或者是網路位置，甚至是文字的一部份。\n"
 "您可以快速的拷貝 路徑/網路位置/文字 到剪貼簿，或者打開它。"
 
-#: ../stack/src/applet-notifications.c:50
+#: ../stack/src/applet-notifications.c:54
 msgid ""
 "No items in the stack.\n"
 "You can add files, URL, and even a piece of text by dragging them onto the "
@@ -3049,49 +3065,49 @@ msgstr ""
 "在堆疊區裏面沒有物件。\n"
 "您可以增加檔案、URL網址、以及任何的文字片段，用 拖-放 到圖示的方式建立。"
 
-#: ../stack/src/applet-notifications.c:78
+#: ../stack/src/applet-notifications.c:82
 msgid "Clear the stack?"
 msgstr "清除堆疊嗎？"
 
-#: ../stack/src/applet-notifications.c:99
+#: ../stack/src/applet-notifications.c:103
 msgid "Set new name for this item:"
 msgstr "為這個項目設置新的名字："
 
-#: ../stack/src/applet-notifications.c:169
+#: ../stack/src/applet-notifications.c:173
 msgid "Paste (drag'n'drop)"
 msgstr "貼上(拖-放)"
 
-#: ../stack/src/applet-notifications.c:171
+#: ../stack/src/applet-notifications.c:175
 msgid "Clear the stack"
 msgstr "清除堆疊"
 
-#: ../stack/src/applet-notifications.c:176
+#: ../stack/src/applet-notifications.c:180
 msgid "Open (click)"
 msgstr "開啟(點擊)"
 
-#: ../stack/src/applet-notifications.c:181
+#: ../stack/src/applet-notifications.c:185
 #: ../terminal/src/terminal-callbacks.c:82
 #: ../terminal/src/terminal-widget.c:443
 msgid "Copy"
 msgstr "複製"
 
-#: ../stack/src/applet-notifications.c:184
+#: ../stack/src/applet-notifications.c:188
 msgid "Cut"
 msgstr "剪下"
 
-#: ../stack/src/applet-notifications.c:187
+#: ../stack/src/applet-notifications.c:191
 msgid "Rename this item"
 msgstr "重命名此項目"
 
-#: ../stack/src/applet-notifications.c:188
+#: ../stack/src/applet-notifications.c:192
 msgid "Remove this item"
 msgstr "移除此項目"
 
-#: ../stack/src/applet-notifications.c:257
+#: ../stack/src/applet-notifications.c:261
 msgid "The file has been added to the stack."
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:258
+#: ../stack/src/applet-notifications.c:262
 msgid "The URL has been added to the stack."
 msgstr ""
 
@@ -3234,7 +3250,7 @@ msgstr "對目前的分頁更名"
 msgid "Close current Tab"
 msgstr "關閉目前的分頁"
 
-#: ../terminal/src/terminal-widget.c:56 ../terminal/data/messages:105
+#: ../terminal/src/terminal-widget.c:56 ../terminal/data/messages:103
 msgid "Terminal"
 msgstr "終端機"
 
@@ -3355,7 +3371,7 @@ msgstr "我沒有辦法找到這個位置"
 msgid "Searching the location code..."
 msgstr ""
 
-#: ../weather/src/applet-config.c:211
+#: ../weather/src/applet-config.c:218
 msgid ""
 "Enter the name of your location and press Enter to choose amongst results."
 msgstr "輸入您的位置名稱，並且按下 Enter 來選擇其中一個。"
@@ -3532,7 +3548,7 @@ msgstr ""
 "這個面板程式可以顯示出第一個活動的 wifi 連接信號強度\n"
 "左鍵點擊彈出信息交談視窗，中鍵點擊立即重新檢查。"
 
-#: ../wifi/src/applet-init.c:39 ../Network-Monitor/data/messages:179
+#: ../wifi/src/applet-init.c:39 ../Network-Monitor/data/messages:177
 msgid "Wifi"
 msgstr "Wifi"
 
@@ -3580,9 +3596,9 @@ msgstr "旋轉"
 #: ../Animated-icons/data/messages:69 ../Animated-icons/data/messages:87
 #: ../Animated-icons/data/messages:135 ../Animated-icons/data/messages:147
 #: ../Animated-icons/data/messages:159 ../Animated-icons/data/messages:173
-#: ../Animated-icons/data/messages:181 ../Remote-Control/data/messages:9
+#: ../Animated-icons/data/messages:181 ../Remote-Control/data/messages:11
 #: ../Scooby-Do/data/messages:15 ../Scooby-Do/data/messages:19
-#: ../Toons/data/messages:105 ../icon-effect/data/messages:85
+#: ../Toons/data/messages:103 ../icon-effect/data/messages:85
 #: ../icon-effect/data/messages:107 ../icon-effect/data/messages:129
 #: ../icon-effect/data/messages:151 ../icon-effect/data/messages:171
 #: ../show-mouse/data/messages:19
@@ -3596,7 +3612,7 @@ msgstr "以毫秒(ms)為單位"
 #: ../icon-effect/data/messages:173 ../illusion/data/messages:33
 #: ../illusion/data/messages:55 ../illusion/data/messages:59
 #: ../illusion/data/messages:69 ../illusion/data/messages:75
-#: ../mail/data/messages:143
+#: ../mail/data/messages:141
 msgid "Duration of the animation:"
 msgstr "動畫長短："
 
@@ -3614,27 +3630,27 @@ msgstr "指到圖示上同時不停的重複顯示？"
 msgid "Type of mesh:"
 msgstr "圖示變化的樣式："
 
-#: ../Animated-icons/data/messages:77 ../Clipper/data/messages:43
-#: ../Composite-Manager/data/messages:41 ../Disks/data/messages:27
-#: ../Doncky/data/messages:41 ../Folders/data/messages:55
-#: ../GMenu/data/messages:43 ../Global-Menu/data/messages:39
-#: ../Impulse/data/messages:39 ../MeMenu/data/messages:39
-#: ../Messaging-Menu/data/messages:51 ../Network-Monitor/data/messages:53
-#: ../RSSreader/data/messages:45 ../Recent-Events/data/messages:43
-#: ../Status-Notifier/data/messages:55 ../System-Monitor/data/messages:51
-#: ../Toons/data/messages:51 ../Xgamma/data/messages:45
-#: ../alsaMixer/data/messages:51 ../clock/data/messages:53
-#: ../dnd2share/data/messages:39 ../dustbin/data/messages:41
-#: ../keyboard-indicator/data/messages:51 ../logout/data/messages:43
-#: ../mail/data/messages:51 ../musicPlayer/data/messages:53
-#: ../netspeed/data/messages:51 ../powermanager/data/messages:53
-#: ../quick-browser/data/messages:45 ../shortcuts/data/messages:43
-#: ../showDesktop/data/messages:45 ../slider/data/messages:51
-#: ../stack/data/messages:45 ../switcher/data/messages:37
-#: ../systray/data/messages:35 ../template/data/messages:43
-#: ../terminal/data/messages:43 ../tomboy/data/messages:55
-#: ../weather/data/messages:53 ../weblets/data/messages:43
-#: ../wifi/data/messages:51
+#: ../Animated-icons/data/messages:77 ../Clipper/data/messages:41
+#: ../Composite-Manager/data/messages:39 ../Disks/data/messages:25
+#: ../Doncky/data/messages:41 ../Folders/data/messages:53
+#: ../GMenu/data/messages:41 ../Global-Menu/data/messages:37
+#: ../Impulse/data/messages:37 ../MeMenu/data/messages:37
+#: ../Messaging-Menu/data/messages:49 ../Network-Monitor/data/messages:51
+#: ../RSSreader/data/messages:43 ../Recent-Events/data/messages:41
+#: ../Status-Notifier/data/messages:53 ../System-Monitor/data/messages:49
+#: ../Toons/data/messages:49 ../Xgamma/data/messages:43
+#: ../alsaMixer/data/messages:49 ../clock/data/messages:51
+#: ../dnd2share/data/messages:37 ../dustbin/data/messages:39
+#: ../keyboard-indicator/data/messages:49 ../logout/data/messages:41
+#: ../mail/data/messages:49 ../musicPlayer/data/messages:51
+#: ../netspeed/data/messages:49 ../powermanager/data/messages:51
+#: ../quick-browser/data/messages:43 ../shortcuts/data/messages:41
+#: ../showDesktop/data/messages:43 ../slider/data/messages:49
+#: ../stack/data/messages:43 ../switcher/data/messages:35
+#: ../systray/data/messages:33 ../template/data/messages:41
+#: ../terminal/data/messages:41 ../tomboy/data/messages:53
+#: ../weather/data/messages:51 ../weblets/data/messages:41
+#: ../wifi/data/messages:49
 msgid "Normal"
 msgstr "一般"
 
@@ -3806,7 +3822,7 @@ msgstr ""
 #: ../System-Monitor/data/messages:3 ../Toons/data/messages:1
 #: ../Toons/data/messages:3 ../Xgamma/data/messages:1
 #: ../Xgamma/data/messages:3 ../alsaMixer/data/messages:1
-#: ../alsaMixer/data/messages:3 ../alsaMixer/data/messages:111
+#: ../alsaMixer/data/messages:3 ../alsaMixer/data/messages:109
 #: ../clock/data/messages:1 ../clock/data/messages:3
 #: ../dnd2share/data/messages:1 ../dnd2share/data/messages:3
 #: ../dustbin/data/messages:1 ../dustbin/data/messages:3
@@ -3821,14 +3837,14 @@ msgstr ""
 #: ../showDesktop/data/messages:3 ../slider/data/messages:1
 #: ../slider/data/messages:3 ../stack/data/messages:1 ../stack/data/messages:3
 #: ../switcher/data/messages:1 ../switcher/data/messages:3
-#: ../switcher/data/messages:123 ../systray/data/messages:1
+#: ../switcher/data/messages:121 ../systray/data/messages:1
 #: ../systray/data/messages:3 ../template/data/messages:1
 #: ../template/data/messages:3 ../terminal/data/messages:1
 #: ../terminal/data/messages:3 ../tomboy/data/messages:1
 #: ../tomboy/data/messages:3 ../weather/data/messages:1
 #: ../weather/data/messages:3 ../weblets/data/messages:1
 #: ../weblets/data/messages:3 ../wifi/data/messages:1 ../wifi/data/messages:3
-#: ../wifi/data/messages:135
+#: ../wifi/data/messages:133
 msgid "Icon"
 msgstr "圖示"
 
@@ -3925,94 +3941,70 @@ msgstr "設定為 0 使用預設的大小。"
 msgid "Desired icon size for this applet"
 msgstr "此面板程式的圖示大小"
 
-#: ../Cairo-Penguin/data/messages:13 ../Clipper/data/messages:15
-#: ../Composite-Manager/data/messages:13 ../Disks/data/messages:13
-#: ../Folders/data/messages:27 ../GMenu/data/messages:15
-#: ../Global-Menu/data/messages:11 ../Impulse/data/messages:11
-#: ../MeMenu/data/messages:11 ../Messaging-Menu/data/messages:23
-#: ../Network-Monitor/data/messages:25 ../RSSreader/data/messages:17
-#: ../Recent-Events/data/messages:15 ../Scooby-Do/data/messages:115
-#: ../Status-Notifier/data/messages:27 ../System-Monitor/data/messages:23
-#: ../Toons/data/messages:23 ../Xgamma/data/messages:17
-#: ../alsaMixer/data/messages:23 ../clock/data/messages:25
-#: ../dnd2share/data/messages:15 ../dustbin/data/messages:13
-#: ../keyboard-indicator/data/messages:23 ../logout/data/messages:15
-#: ../mail/data/messages:23 ../musicPlayer/data/messages:25
-#: ../netspeed/data/messages:23 ../powermanager/data/messages:25
-#: ../quick-browser/data/messages:17 ../shortcuts/data/messages:15
-#: ../showDesktop/data/messages:17 ../slider/data/messages:23
-#: ../stack/data/messages:17 ../switcher/data/messages:15
-#: ../systray/data/messages:15 ../template/data/messages:15
-#: ../terminal/data/messages:15 ../tomboy/data/messages:27
-#: ../weather/data/messages:25 ../weblets/data/messages:15
-#: ../wifi/data/messages:23
-msgid "Applet's Handbook"
-msgstr "此面板程式的簡易說明"
-
-#: ../Cairo-Penguin/data/messages:15 ../Clipper/data/messages:89
-#: ../Composite-Manager/data/messages:87 ../Dbus/data/messages:1
-#: ../Disks/data/messages:87 ../Doncky/data/messages:87
-#: ../Folders/data/messages:101 ../GMenu/data/messages:89
-#: ../Global-Menu/data/messages:85 ../Impulse/data/messages:85
-#: ../MeMenu/data/messages:85 ../Messaging-Menu/data/messages:97
-#: ../Network-Monitor/data/messages:99 ../RSSreader/data/messages:91
-#: ../Recent-Events/data/messages:89 ../Remote-Control/data/messages:1
-#: ../Scooby-Do/data/messages:1 ../Status-Notifier/data/messages:101
-#: ../System-Monitor/data/messages:97 ../Toons/data/messages:97
-#: ../Xgamma/data/messages:91 ../alsaMixer/data/messages:97
-#: ../clock/data/messages:99 ../dnd2share/data/messages:85
-#: ../dustbin/data/messages:87 ../keyboard-indicator/data/messages:97
-#: ../logout/data/messages:89 ../mail/data/messages:97
-#: ../motion-blur/data/messages:1 ../musicPlayer/data/messages:99
-#: ../netspeed/data/messages:97 ../powermanager/data/messages:99
-#: ../quick-browser/data/messages:91 ../shortcuts/data/messages:89
-#: ../show-mouse/data/messages:1 ../showDesktop/data/messages:91
-#: ../slider/data/messages:97 ../stack/data/messages:91
-#: ../switcher/data/messages:83 ../switcher/data/messages:85
-#: ../systray/data/messages:81 ../template/data/messages:89
-#: ../terminal/data/messages:89 ../tomboy/data/messages:101
-#: ../weather/data/messages:99 ../weather/data/messages:101
-#: ../weblets/data/messages:89 ../wifi/data/messages:97
+#: ../Cairo-Penguin/data/messages:13 ../Clipper/data/messages:87
+#: ../Composite-Manager/data/messages:85 ../Dbus/data/messages:1
+#: ../Disks/data/messages:85 ../Doncky/data/messages:87
+#: ../Folders/data/messages:99 ../GMenu/data/messages:87
+#: ../Global-Menu/data/messages:83 ../Impulse/data/messages:83
+#: ../MeMenu/data/messages:83 ../Messaging-Menu/data/messages:95
+#: ../Network-Monitor/data/messages:97 ../RSSreader/data/messages:89
+#: ../Recent-Events/data/messages:87 ../Remote-Control/data/messages:3
+#: ../Scooby-Do/data/messages:1 ../Status-Notifier/data/messages:99
+#: ../System-Monitor/data/messages:95 ../Toons/data/messages:95
+#: ../Xgamma/data/messages:89 ../alsaMixer/data/messages:95
+#: ../clock/data/messages:97 ../dnd2share/data/messages:83
+#: ../dustbin/data/messages:85 ../keyboard-indicator/data/messages:95
+#: ../logout/data/messages:87 ../mail/data/messages:95
+#: ../motion-blur/data/messages:1 ../musicPlayer/data/messages:97
+#: ../netspeed/data/messages:95 ../powermanager/data/messages:97
+#: ../quick-browser/data/messages:89 ../shortcuts/data/messages:87
+#: ../show-mouse/data/messages:1 ../showDesktop/data/messages:89
+#: ../slider/data/messages:95 ../stack/data/messages:89
+#: ../switcher/data/messages:81 ../switcher/data/messages:83
+#: ../systray/data/messages:79 ../template/data/messages:87
+#: ../terminal/data/messages:87 ../tomboy/data/messages:99
+#: ../weather/data/messages:97 ../weather/data/messages:99
+#: ../weblets/data/messages:87 ../wifi/data/messages:95
 msgid "Configuration"
 msgstr "設置"
 
-#: ../Cairo-Penguin/data/messages:17 ../Disks/data/messages:97
-#: ../Network-Monitor/data/messages:147 ../Network-Monitor/data/messages:191
-#: ../Toons/data/messages:99 ../dustbin/data/messages:91
-#: ../mail/data/messages:105 ../netspeed/data/messages:107
-#: ../weather/data/messages:131
+#: ../Cairo-Penguin/data/messages:15 ../Disks/data/messages:95
+#: ../Network-Monitor/data/messages:145 ../Network-Monitor/data/messages:189
+#: ../Toons/data/messages:97 ../dustbin/data/messages:89
+#: ../mail/data/messages:103 ../netspeed/data/messages:105
+#: ../weather/data/messages:129
 msgid "Choose one of the available themes:"
 msgstr "選擇一個已經存在的主題："
 
-#: ../Cairo-Penguin/data/messages:19 ../Clipper/data/messages:137
-#: ../Disks/data/messages:143 ../Network-Monitor/data/messages:175
-#: ../System-Monitor/data/messages:169 ../System-Monitor/data/messages:211
-#: ../Toons/data/messages:101 ../dnd2share/data/messages:91
-#: ../mail/data/messages:137 ../musicPlayer/data/messages:153
-#: ../netspeed/data/messages:149 ../powermanager/data/messages:157
-#: ../shortcuts/data/messages:127 ../slider/data/messages:131
-#: ../tomboy/data/messages:115 ../wifi/data/messages:155
+#: ../Cairo-Penguin/data/messages:17 ../Clipper/data/messages:135
+#: ../Disks/data/messages:141 ../Network-Monitor/data/messages:173
+#: ../System-Monitor/data/messages:167 ../System-Monitor/data/messages:209
+#: ../Toons/data/messages:99 ../dnd2share/data/messages:89
+#: ../mail/data/messages:135 ../musicPlayer/data/messages:151
+#: ../netspeed/data/messages:147 ../powermanager/data/messages:155
+#: ../shortcuts/data/messages:125 ../slider/data/messages:129
+#: ../tomboy/data/messages:113 ../wifi/data/messages:153
 msgid "in seconds."
 msgstr "以秒為單位"
 
-#: ../Cairo-Penguin/data/messages:21
+#: ../Cairo-Penguin/data/messages:19
 msgid "Delay between animation changes :"
 msgstr "動畫更換動作的間隔時間："
 
-#: ../Cairo-Penguin/data/messages:23
+#: ../Cairo-Penguin/data/messages:21
 msgid "Penguin transparency:"
 msgstr "企鵝的透明度："
 
-#: ../Cairo-Penguin/data/messages:25
+#: ../Cairo-Penguin/data/messages:23
 msgid "Let the penguin wander everywhere in the dock?"
 msgstr "讓企鵝自由自在的在 Dock 上到處跑？"
 
-#: ../Cairo-Penguin/data/messages:27 ../dock-rendering/data/messages:13
+#: ../Cairo-Penguin/data/messages:25 ../dock-rendering/data/messages:13
 #: ../dock-rendering/data/messages:103 ../show-mouse/data/messages:23
 msgid "in pixels."
 msgstr "以像素為單位。"
 
-#: ../Cairo-Penguin/data/messages:29
+#: ../Cairo-Penguin/data/messages:27
 msgid "Ground offset:"
 msgstr "地面的偏移量："
 
@@ -4028,8 +4020,32 @@ msgstr "地面的偏移量："
 msgid "Image filename:"
 msgstr "圖檔的名稱："
 
+#: ../Clipper/data/messages:15 ../Composite-Manager/data/messages:13
+#: ../Disks/data/messages:13 ../Doncky/data/messages:15
+#: ../Folders/data/messages:27 ../GMenu/data/messages:15
+#: ../Global-Menu/data/messages:11 ../Impulse/data/messages:11
+#: ../MeMenu/data/messages:11 ../Messaging-Menu/data/messages:23
+#: ../Network-Monitor/data/messages:25 ../RSSreader/data/messages:17
+#: ../Recent-Events/data/messages:15 ../Status-Notifier/data/messages:27
+#: ../System-Monitor/data/messages:23 ../Toons/data/messages:23
+#: ../Xgamma/data/messages:17 ../alsaMixer/data/messages:23
+#: ../clock/data/messages:25 ../dnd2share/data/messages:15
+#: ../dustbin/data/messages:13 ../keyboard-indicator/data/messages:23
+#: ../logout/data/messages:15 ../mail/data/messages:23
+#: ../musicPlayer/data/messages:25 ../netspeed/data/messages:23
+#: ../powermanager/data/messages:25 ../quick-browser/data/messages:17
+#: ../shortcuts/data/messages:15 ../show-mouse/data/messages:13
+#: ../showDesktop/data/messages:17 ../slider/data/messages:23
+#: ../stack/data/messages:17 ../switcher/data/messages:15
+#: ../systray/data/messages:15 ../template/data/messages:15
+#: ../terminal/data/messages:15 ../tomboy/data/messages:27
+#: ../weather/data/messages:25 ../weblets/data/messages:15
+#: ../wifi/data/messages:23
+msgid "Desklet"
+msgstr "桌面小工具"
+
 #: ../Clipper/data/messages:17 ../Composite-Manager/data/messages:15
-#: ../Disks/data/messages:15 ../Doncky/data/messages:15
+#: ../Disks/data/messages:37 ../Doncky/data/messages:17
 #: ../Folders/data/messages:29 ../GMenu/data/messages:17
 #: ../Global-Menu/data/messages:13 ../Impulse/data/messages:13
 #: ../MeMenu/data/messages:13 ../Messaging-Menu/data/messages:25
@@ -4042,18 +4058,17 @@ msgstr "圖檔的名稱："
 #: ../logout/data/messages:17 ../mail/data/messages:25
 #: ../musicPlayer/data/messages:27 ../netspeed/data/messages:25
 #: ../powermanager/data/messages:27 ../quick-browser/data/messages:19
-#: ../shortcuts/data/messages:17 ../show-mouse/data/messages:13
-#: ../showDesktop/data/messages:19 ../slider/data/messages:25
-#: ../stack/data/messages:19 ../switcher/data/messages:17
-#: ../systray/data/messages:17 ../template/data/messages:17
-#: ../terminal/data/messages:17 ../tomboy/data/messages:29
-#: ../weather/data/messages:27 ../weblets/data/messages:17
-#: ../wifi/data/messages:25
-msgid "Desklet"
-msgstr "桌面小工具"
+#: ../shortcuts/data/messages:17 ../showDesktop/data/messages:19
+#: ../slider/data/messages:25 ../stack/data/messages:19
+#: ../switcher/data/messages:17 ../systray/data/messages:17
+#: ../template/data/messages:17 ../terminal/data/messages:17
+#: ../tomboy/data/messages:29 ../weather/data/messages:27
+#: ../weblets/data/messages:17 ../wifi/data/messages:25
+msgid "Position"
+msgstr "位置"
 
 #: ../Clipper/data/messages:19 ../Composite-Manager/data/messages:17
-#: ../Disks/data/messages:39 ../Doncky/data/messages:17
+#: ../Disks/data/messages:39 ../Doncky/data/messages:19
 #: ../Folders/data/messages:31 ../GMenu/data/messages:19
 #: ../Global-Menu/data/messages:15 ../Impulse/data/messages:15
 #: ../MeMenu/data/messages:15 ../Messaging-Menu/data/messages:27
@@ -4072,11 +4087,15 @@ msgstr "桌面小工具"
 #: ../template/data/messages:19 ../terminal/data/messages:19
 #: ../tomboy/data/messages:31 ../weather/data/messages:29
 #: ../weblets/data/messages:19 ../wifi/data/messages:27
-msgid "Position"
-msgstr "位置"
+msgid ""
+"If locked, the desklet cannot be moved by simply dragging it with the left "
+"mouse button. It can still be moved with ALT + left-click."
+msgstr ""
+"假如鎖定了，桌面小工具就不能夠簡單的用拖動的方式移動。然而您還是可以用 ALT + "
+"左鍵拖動 的方式來移動。"
 
 #: ../Clipper/data/messages:21 ../Composite-Manager/data/messages:19
-#: ../Disks/data/messages:41 ../Doncky/data/messages:19
+#: ../Disks/data/messages:41 ../Doncky/data/messages:21
 #: ../Folders/data/messages:33 ../GMenu/data/messages:21
 #: ../Global-Menu/data/messages:17 ../Impulse/data/messages:17
 #: ../MeMenu/data/messages:17 ../Messaging-Menu/data/messages:29
@@ -4095,15 +4114,11 @@ msgstr "位置"
 #: ../template/data/messages:21 ../terminal/data/messages:21
 #: ../tomboy/data/messages:33 ../weather/data/messages:31
 #: ../weblets/data/messages:21 ../wifi/data/messages:29
-msgid ""
-"If locked, the desklet cannot be moved by simply dragging it with the left "
-"mouse button. It can still be moved with ALT + left-click."
-msgstr ""
-"假如鎖定了，桌面小工具就不能夠簡單的用拖動的方式移動。然而您還是可以用 ALT + "
-"左鍵拖動 的方式來移動。"
+msgid "Lock position?"
+msgstr "鎖定位置？"
 
 #: ../Clipper/data/messages:23 ../Composite-Manager/data/messages:21
-#: ../Disks/data/messages:43 ../Doncky/data/messages:21
+#: ../Disks/data/messages:19 ../Doncky/data/messages:23
 #: ../Folders/data/messages:35 ../GMenu/data/messages:23
 #: ../Global-Menu/data/messages:19 ../Impulse/data/messages:19
 #: ../MeMenu/data/messages:19 ../Messaging-Menu/data/messages:31
@@ -4118,15 +4133,19 @@ msgstr ""
 #: ../powermanager/data/messages:33 ../quick-browser/data/messages:25
 #: ../shortcuts/data/messages:23 ../showDesktop/data/messages:25
 #: ../slider/data/messages:31 ../stack/data/messages:25
-#: ../switcher/data/messages:23 ../systray/data/messages:23
-#: ../template/data/messages:23 ../terminal/data/messages:23
-#: ../tomboy/data/messages:35 ../weather/data/messages:33
-#: ../weblets/data/messages:23 ../wifi/data/messages:31
-msgid "Lock position?"
-msgstr "鎖定位置？"
+#: ../switcher/data/messages:23 ../template/data/messages:23
+#: ../terminal/data/messages:23 ../tomboy/data/messages:35
+#: ../weather/data/messages:33 ../weblets/data/messages:23
+#: ../wifi/data/messages:31
+msgid ""
+"Depending on your WindowManager, you may be able to resize this with ALT + "
+"middle-click or ALT + left-click."
+msgstr ""
+"以您的視窗管理員設定為主，您也可以改變尺寸例如以 ALT + 滑鼠中鍵點擊 或者是 "
+"ALT + 左鍵點擊。"
 
 #: ../Clipper/data/messages:25 ../Composite-Manager/data/messages:23
-#: ../Disks/data/messages:21 ../Doncky/data/messages:23
+#: ../Disks/data/messages:21 ../Doncky/data/messages:25
 #: ../Folders/data/messages:37 ../GMenu/data/messages:25
 #: ../Global-Menu/data/messages:21 ../Impulse/data/messages:21
 #: ../MeMenu/data/messages:21 ../Messaging-Menu/data/messages:33
@@ -4145,57 +4164,53 @@ msgstr "鎖定位置？"
 #: ../terminal/data/messages:25 ../tomboy/data/messages:37
 #: ../weather/data/messages:35 ../weblets/data/messages:25
 #: ../wifi/data/messages:33
-msgid ""
-"Depending on your WindowManager, you may be able to resize this with ALT + "
-"middle-click or ALT + left-click."
-msgstr ""
-"以您的視窗管理員設定為主，您也可以改變尺寸例如以 ALT + 滑鼠中鍵點擊 或者是 "
-"ALT + 左鍵點擊。"
-
-#: ../Clipper/data/messages:27 ../Composite-Manager/data/messages:25
-#: ../Disks/data/messages:23 ../Doncky/data/messages:25
-#: ../Folders/data/messages:39 ../GMenu/data/messages:27
-#: ../Global-Menu/data/messages:23 ../Impulse/data/messages:23
-#: ../MeMenu/data/messages:23 ../Messaging-Menu/data/messages:35
-#: ../Network-Monitor/data/messages:37 ../RSSreader/data/messages:29
-#: ../Recent-Events/data/messages:27 ../Status-Notifier/data/messages:39
-#: ../System-Monitor/data/messages:35 ../Toons/data/messages:35
-#: ../Xgamma/data/messages:29 ../alsaMixer/data/messages:35
-#: ../clock/data/messages:37 ../dnd2share/data/messages:27
-#: ../dustbin/data/messages:25 ../keyboard-indicator/data/messages:35
-#: ../logout/data/messages:27 ../mail/data/messages:35
-#: ../musicPlayer/data/messages:37 ../netspeed/data/messages:35
-#: ../powermanager/data/messages:37 ../quick-browser/data/messages:29
-#: ../shortcuts/data/messages:27 ../showDesktop/data/messages:29
-#: ../slider/data/messages:35 ../stack/data/messages:29
-#: ../switcher/data/messages:27 ../template/data/messages:27
-#: ../terminal/data/messages:27 ../tomboy/data/messages:39
-#: ../weather/data/messages:37 ../weblets/data/messages:27
-#: ../wifi/data/messages:35
 msgid "Desklet dimensions (width x height):"
 msgstr "桌面小工具的尺寸(寬 x 高)："
 
-#: ../Clipper/data/messages:29 ../Disks/data/messages:45
-#: ../Doncky/data/messages:27 ../Folders/data/messages:41
-#: ../GMenu/data/messages:29 ../MeMenu/data/messages:25
-#: ../Messaging-Menu/data/messages:37 ../Network-Monitor/data/messages:39
-#: ../RSSreader/data/messages:31 ../System-Monitor/data/messages:37
-#: ../Toons/data/messages:37 ../Xgamma/data/messages:31
-#: ../dnd2share/data/messages:29 ../keyboard-indicator/data/messages:37
-#: ../logout/data/messages:29 ../mail/data/messages:37
-#: ../musicPlayer/data/messages:39 ../powermanager/data/messages:39
-#: ../quick-browser/data/messages:31 ../shortcuts/data/messages:29
-#: ../showDesktop/data/messages:31 ../slider/data/messages:37
-#: ../stack/data/messages:31 ../terminal/data/messages:29
-#: ../weather/data/messages:39 ../weblets/data/messages:29
-#: ../wifi/data/messages:37
+#: ../Clipper/data/messages:27 ../Disks/data/messages:43
+#: ../Doncky/data/messages:27 ../Folders/data/messages:39
+#: ../GMenu/data/messages:27 ../MeMenu/data/messages:23
+#: ../Messaging-Menu/data/messages:35 ../Network-Monitor/data/messages:37
+#: ../RSSreader/data/messages:29 ../System-Monitor/data/messages:35
+#: ../Toons/data/messages:35 ../Xgamma/data/messages:29
+#: ../dnd2share/data/messages:27 ../keyboard-indicator/data/messages:35
+#: ../logout/data/messages:27 ../mail/data/messages:35
+#: ../musicPlayer/data/messages:37 ../powermanager/data/messages:37
+#: ../quick-browser/data/messages:29 ../shortcuts/data/messages:27
+#: ../showDesktop/data/messages:29 ../slider/data/messages:35
+#: ../stack/data/messages:29 ../terminal/data/messages:27
+#: ../weather/data/messages:37 ../weblets/data/messages:27
+#: ../wifi/data/messages:35
 msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
 msgstr "以您的視窗管理員設定為主，您也可以移動它，按下 ALT + 左鍵移動。"
 
+#: ../Clipper/data/messages:29 ../Composite-Manager/data/messages:27
+#: ../Disks/data/messages:45 ../Doncky/data/messages:29
+#: ../Folders/data/messages:41 ../GMenu/data/messages:29
+#: ../Global-Menu/data/messages:25 ../Impulse/data/messages:25
+#: ../MeMenu/data/messages:25 ../Messaging-Menu/data/messages:37
+#: ../Network-Monitor/data/messages:39 ../RSSreader/data/messages:31
+#: ../Recent-Events/data/messages:29 ../Status-Notifier/data/messages:41
+#: ../System-Monitor/data/messages:37 ../Toons/data/messages:37
+#: ../Xgamma/data/messages:31 ../alsaMixer/data/messages:37
+#: ../clock/data/messages:39 ../dnd2share/data/messages:29
+#: ../dustbin/data/messages:27 ../keyboard-indicator/data/messages:37
+#: ../logout/data/messages:29 ../mail/data/messages:37
+#: ../musicPlayer/data/messages:39 ../netspeed/data/messages:37
+#: ../powermanager/data/messages:39 ../quick-browser/data/messages:31
+#: ../shortcuts/data/messages:29 ../showDesktop/data/messages:31
+#: ../slider/data/messages:37 ../stack/data/messages:31
+#: ../switcher/data/messages:27 ../systray/data/messages:25
+#: ../template/data/messages:29 ../terminal/data/messages:29
+#: ../tomboy/data/messages:41 ../weather/data/messages:39
+#: ../weblets/data/messages:29 ../wifi/data/messages:37
+msgid "Desklet position (x, y):"
+msgstr "桌面小工具的位置( X軸 ; Y軸 )："
+
 #: ../Clipper/data/messages:31 ../Composite-Manager/data/messages:29
-#: ../Disks/data/messages:47 ../Doncky/data/messages:29
+#: ../Disks/data/messages:47 ../Doncky/data/messages:31
 #: ../Folders/data/messages:43 ../GMenu/data/messages:31
 #: ../Global-Menu/data/messages:27 ../Impulse/data/messages:27
 #: ../MeMenu/data/messages:27 ../Messaging-Menu/data/messages:39
@@ -4203,22 +4218,24 @@ msgstr "以您的視窗管理員設定為主，您也可以移動它，按下 AL
 #: ../Recent-Events/data/messages:31 ../Status-Notifier/data/messages:43
 #: ../System-Monitor/data/messages:39 ../Toons/data/messages:39
 #: ../Xgamma/data/messages:33 ../alsaMixer/data/messages:39
-#: ../clock/data/messages:41 ../dnd2share/data/messages:31
-#: ../dustbin/data/messages:29 ../keyboard-indicator/data/messages:39
-#: ../logout/data/messages:31 ../mail/data/messages:39
-#: ../musicPlayer/data/messages:41 ../netspeed/data/messages:39
-#: ../powermanager/data/messages:41 ../quick-browser/data/messages:33
-#: ../shortcuts/data/messages:31 ../showDesktop/data/messages:33
-#: ../slider/data/messages:39 ../stack/data/messages:33
-#: ../switcher/data/messages:29 ../systray/data/messages:27
-#: ../template/data/messages:31 ../terminal/data/messages:31
-#: ../tomboy/data/messages:43 ../weather/data/messages:41
-#: ../weblets/data/messages:31 ../wifi/data/messages:39
-msgid "Desklet position (x, y):"
-msgstr "桌面小工具的位置( X軸 ; Y軸 )："
+#: ../clock/data/messages:41 ../dustbin/data/messages:29
+#: ../keyboard-indicator/data/messages:39 ../logout/data/messages:31
+#: ../mail/data/messages:39 ../musicPlayer/data/messages:41
+#: ../netspeed/data/messages:39 ../powermanager/data/messages:41
+#: ../quick-browser/data/messages:33 ../shortcuts/data/messages:31
+#: ../showDesktop/data/messages:33 ../slider/data/messages:39
+#: ../stack/data/messages:33 ../template/data/messages:31
+#: ../terminal/data/messages:31 ../tomboy/data/messages:43
+#: ../weather/data/messages:41 ../weblets/data/messages:31
+#: ../wifi/data/messages:39
+msgid ""
+"You can quickly rotate the desklet with the mouse, by dragging the little "
+"buttons on its left and top sides."
+msgstr ""
+"在桌面面板程式左上方的小按鈕，您可以用滑鼠拖動它來快速的旋轉桌面面板程式。"
 
 #: ../Clipper/data/messages:33 ../Composite-Manager/data/messages:31
-#: ../Disks/data/messages:49 ../Doncky/data/messages:31
+#: ../Disks/data/messages:49 ../Doncky/data/messages:33
 #: ../Folders/data/messages:45 ../GMenu/data/messages:33
 #: ../Global-Menu/data/messages:29 ../Impulse/data/messages:29
 #: ../MeMenu/data/messages:29 ../Messaging-Menu/data/messages:41
@@ -4236,40 +4253,39 @@ msgstr "桌面小工具的位置( X軸 ; Y軸 )："
 #: ../terminal/data/messages:33 ../tomboy/data/messages:45
 #: ../weather/data/messages:43 ../weblets/data/messages:33
 #: ../wifi/data/messages:41
-msgid ""
-"You can quickly rotate the desklet with the mouse, by dragging the little "
-"buttons on its left and top sides."
-msgstr ""
-"在桌面面板程式左上方的小按鈕，您可以用滑鼠拖動它來快速的旋轉桌面面板程式。"
+msgid "Rotation:"
+msgstr "旋轉："
 
 #: ../Clipper/data/messages:35 ../Composite-Manager/data/messages:33
-#: ../Disks/data/messages:51 ../Doncky/data/messages:33
-#: ../Folders/data/messages:47 ../GMenu/data/messages:35
-#: ../Global-Menu/data/messages:31 ../Impulse/data/messages:31
-#: ../MeMenu/data/messages:31 ../Messaging-Menu/data/messages:43
-#: ../Network-Monitor/data/messages:45 ../RSSreader/data/messages:37
-#: ../Recent-Events/data/messages:35 ../Status-Notifier/data/messages:47
-#: ../System-Monitor/data/messages:43 ../Toons/data/messages:43
-#: ../Xgamma/data/messages:37 ../alsaMixer/data/messages:43
-#: ../clock/data/messages:45 ../dustbin/data/messages:33
+#: ../Doncky/data/messages:35 ../Folders/data/messages:47
+#: ../GMenu/data/messages:35 ../Global-Menu/data/messages:31
+#: ../Impulse/data/messages:31 ../MeMenu/data/messages:31
+#: ../Messaging-Menu/data/messages:43 ../Network-Monitor/data/messages:45
+#: ../RSSreader/data/messages:37 ../Recent-Events/data/messages:35
+#: ../Status-Notifier/data/messages:47 ../System-Monitor/data/messages:43
+#: ../Toons/data/messages:43 ../Xgamma/data/messages:37
+#: ../alsaMixer/data/messages:43 ../clock/data/messages:45
+#: ../dnd2share/data/messages:31 ../dustbin/data/messages:33
 #: ../keyboard-indicator/data/messages:43 ../logout/data/messages:35
 #: ../mail/data/messages:43 ../musicPlayer/data/messages:45
 #: ../netspeed/data/messages:43 ../powermanager/data/messages:45
 #: ../quick-browser/data/messages:37 ../shortcuts/data/messages:35
 #: ../showDesktop/data/messages:37 ../slider/data/messages:43
-#: ../stack/data/messages:37 ../template/data/messages:35
+#: ../stack/data/messages:37 ../switcher/data/messages:29
+#: ../systray/data/messages:27 ../template/data/messages:35
 #: ../terminal/data/messages:35 ../tomboy/data/messages:47
 #: ../weather/data/messages:45 ../weblets/data/messages:35
 #: ../wifi/data/messages:43
-msgid "Rotation:"
-msgstr "旋轉："
+msgid "Visibility"
+msgstr "可見度"
 
 #: ../Clipper/data/messages:37 ../Composite-Manager/data/messages:35
-#: ../Doncky/data/messages:35 ../Folders/data/messages:49
-#: ../GMenu/data/messages:37 ../Global-Menu/data/messages:33
-#: ../Impulse/data/messages:33 ../MeMenu/data/messages:33
-#: ../Messaging-Menu/data/messages:45 ../Network-Monitor/data/messages:47
-#: ../RSSreader/data/messages:39 ../Recent-Events/data/messages:37
+#: ../Disks/data/messages:17 ../Doncky/data/messages:37
+#: ../Folders/data/messages:49 ../GMenu/data/messages:37
+#: ../Global-Menu/data/messages:33 ../Impulse/data/messages:33
+#: ../MeMenu/data/messages:33 ../Messaging-Menu/data/messages:45
+#: ../Network-Monitor/data/messages:47 ../RSSreader/data/messages:39
+#: ../Recent-Events/data/messages:37 ../Scooby-Do/data/messages:25
 #: ../Status-Notifier/data/messages:49 ../System-Monitor/data/messages:45
 #: ../Toons/data/messages:45 ../Xgamma/data/messages:39
 #: ../alsaMixer/data/messages:45 ../clock/data/messages:47
@@ -4284,58 +4300,57 @@ msgstr "旋轉："
 #: ../terminal/data/messages:37 ../tomboy/data/messages:49
 #: ../weather/data/messages:47 ../weblets/data/messages:37
 #: ../wifi/data/messages:45
-msgid "Visibility"
-msgstr "可見度"
+msgid "Is detached from the dock"
+msgstr "與 Dock 分離開來"
 
 #: ../Clipper/data/messages:39 ../Composite-Manager/data/messages:37
-#: ../Disks/data/messages:19 ../Doncky/data/messages:37
+#: ../Disks/data/messages:23 ../Doncky/data/messages:39
 #: ../Folders/data/messages:51 ../GMenu/data/messages:39
 #: ../Global-Menu/data/messages:35 ../Impulse/data/messages:35
 #: ../MeMenu/data/messages:35 ../Messaging-Menu/data/messages:47
 #: ../Network-Monitor/data/messages:49 ../RSSreader/data/messages:41
-#: ../Recent-Events/data/messages:39 ../Scooby-Do/data/messages:25
-#: ../Status-Notifier/data/messages:51 ../System-Monitor/data/messages:47
-#: ../Toons/data/messages:47 ../Xgamma/data/messages:41
-#: ../alsaMixer/data/messages:47 ../clock/data/messages:49
-#: ../dnd2share/data/messages:35 ../dustbin/data/messages:37
-#: ../keyboard-indicator/data/messages:47 ../logout/data/messages:39
-#: ../mail/data/messages:47 ../musicPlayer/data/messages:49
-#: ../netspeed/data/messages:47 ../powermanager/data/messages:49
-#: ../quick-browser/data/messages:41 ../shortcuts/data/messages:39
-#: ../showDesktop/data/messages:41 ../slider/data/messages:47
-#: ../stack/data/messages:41 ../switcher/data/messages:33
-#: ../systray/data/messages:31 ../template/data/messages:39
-#: ../terminal/data/messages:39 ../tomboy/data/messages:51
-#: ../weather/data/messages:49 ../weblets/data/messages:39
-#: ../wifi/data/messages:47
-msgid "Is detached from the dock"
-msgstr "與 Dock 分離開來"
-
-#: ../Clipper/data/messages:41 ../Composite-Manager/data/messages:39
-#: ../Disks/data/messages:25 ../Doncky/data/messages:39
-#: ../Folders/data/messages:53 ../GMenu/data/messages:41
-#: ../Global-Menu/data/messages:37 ../Impulse/data/messages:37
-#: ../MeMenu/data/messages:37 ../Messaging-Menu/data/messages:49
-#: ../Network-Monitor/data/messages:51 ../RSSreader/data/messages:43
-#: ../Recent-Events/data/messages:41 ../Status-Notifier/data/messages:53
-#: ../System-Monitor/data/messages:49 ../Toons/data/messages:49
-#: ../Xgamma/data/messages:43 ../alsaMixer/data/messages:49
-#: ../clock/data/messages:51 ../dnd2share/data/messages:37
-#: ../dustbin/data/messages:39 ../keyboard-indicator/data/messages:49
-#: ../logout/data/messages:41 ../mail/data/messages:49
-#: ../musicPlayer/data/messages:51 ../netspeed/data/messages:49
-#: ../powermanager/data/messages:51 ../quick-browser/data/messages:43
-#: ../shortcuts/data/messages:41 ../showDesktop/data/messages:43
-#: ../slider/data/messages:49 ../stack/data/messages:43
-#: ../switcher/data/messages:35 ../systray/data/messages:33
-#: ../template/data/messages:41 ../terminal/data/messages:41
-#: ../tomboy/data/messages:53 ../weather/data/messages:51
-#: ../weblets/data/messages:41 ../wifi/data/messages:49
+#: ../Recent-Events/data/messages:39 ../Status-Notifier/data/messages:51
+#: ../System-Monitor/data/messages:47 ../Toons/data/messages:47
+#: ../Xgamma/data/messages:41 ../alsaMixer/data/messages:47
+#: ../clock/data/messages:49 ../dnd2share/data/messages:35
+#: ../dustbin/data/messages:37 ../keyboard-indicator/data/messages:47
+#: ../logout/data/messages:39 ../mail/data/messages:47
+#: ../musicPlayer/data/messages:49 ../netspeed/data/messages:47
+#: ../powermanager/data/messages:49 ../quick-browser/data/messages:41
+#: ../shortcuts/data/messages:39 ../showDesktop/data/messages:41
+#: ../slider/data/messages:47 ../stack/data/messages:41
+#: ../switcher/data/messages:33 ../systray/data/messages:31
+#: ../template/data/messages:39 ../terminal/data/messages:39
+#: ../tomboy/data/messages:51 ../weather/data/messages:49
+#: ../weblets/data/messages:39 ../wifi/data/messages:47
 msgid "Visibility:"
 msgstr "能見度："
 
+#: ../Clipper/data/messages:43 ../Composite-Manager/data/messages:41
+#: ../Disks/data/messages:27 ../Doncky/data/messages:43
+#: ../Folders/data/messages:55 ../GMenu/data/messages:43
+#: ../Global-Menu/data/messages:39 ../Impulse/data/messages:39
+#: ../MeMenu/data/messages:39 ../Messaging-Menu/data/messages:51
+#: ../Network-Monitor/data/messages:53 ../RSSreader/data/messages:45
+#: ../Recent-Events/data/messages:43 ../Status-Notifier/data/messages:55
+#: ../System-Monitor/data/messages:51 ../Toons/data/messages:51
+#: ../Xgamma/data/messages:45 ../alsaMixer/data/messages:51
+#: ../clock/data/messages:53 ../dnd2share/data/messages:39
+#: ../dustbin/data/messages:41 ../keyboard-indicator/data/messages:51
+#: ../logout/data/messages:43 ../mail/data/messages:51
+#: ../musicPlayer/data/messages:53 ../netspeed/data/messages:51
+#: ../powermanager/data/messages:53 ../quick-browser/data/messages:45
+#: ../shortcuts/data/messages:43 ../showDesktop/data/messages:45
+#: ../slider/data/messages:51 ../stack/data/messages:45
+#: ../switcher/data/messages:37 ../systray/data/messages:35
+#: ../template/data/messages:43 ../terminal/data/messages:43
+#: ../tomboy/data/messages:55 ../weather/data/messages:53
+#: ../weblets/data/messages:43 ../wifi/data/messages:51
+msgid "Keep above"
+msgstr "保持在上"
+
 #: ../Clipper/data/messages:45 ../Composite-Manager/data/messages:43
-#: ../Disks/data/messages:29 ../Doncky/data/messages:43
+#: ../Disks/data/messages:29 ../Doncky/data/messages:45
 #: ../Folders/data/messages:57 ../GMenu/data/messages:45
 #: ../Global-Menu/data/messages:41 ../Impulse/data/messages:41
 #: ../MeMenu/data/messages:41 ../Messaging-Menu/data/messages:53
@@ -4354,11 +4369,11 @@ msgstr "能見度："
 #: ../template/data/messages:45 ../terminal/data/messages:45
 #: ../tomboy/data/messages:57 ../weather/data/messages:55
 #: ../weblets/data/messages:45 ../wifi/data/messages:53
-msgid "Keep above"
-msgstr "保持在上"
+msgid "Keep below"
+msgstr "保持在下"
 
 #: ../Clipper/data/messages:47 ../Composite-Manager/data/messages:45
-#: ../Disks/data/messages:31 ../Doncky/data/messages:45
+#: ../Disks/data/messages:31 ../Doncky/data/messages:47
 #: ../Folders/data/messages:59 ../GMenu/data/messages:47
 #: ../Global-Menu/data/messages:43 ../Impulse/data/messages:43
 #: ../MeMenu/data/messages:43 ../Messaging-Menu/data/messages:55
@@ -4377,11 +4392,11 @@ msgstr "保持在上"
 #: ../template/data/messages:47 ../terminal/data/messages:47
 #: ../tomboy/data/messages:59 ../weather/data/messages:57
 #: ../weblets/data/messages:47 ../wifi/data/messages:55
-msgid "Keep below"
-msgstr "保持在下"
+msgid "Keep on widget layer"
+msgstr "保持在 Widget 層"
 
 #: ../Clipper/data/messages:49 ../Composite-Manager/data/messages:47
-#: ../Disks/data/messages:33 ../Doncky/data/messages:47
+#: ../Disks/data/messages:33 ../Doncky/data/messages:49
 #: ../Folders/data/messages:61 ../GMenu/data/messages:49
 #: ../Global-Menu/data/messages:45 ../Impulse/data/messages:45
 #: ../MeMenu/data/messages:45 ../Messaging-Menu/data/messages:57
@@ -4400,11 +4415,11 @@ msgstr "保持在下"
 #: ../template/data/messages:49 ../terminal/data/messages:49
 #: ../tomboy/data/messages:61 ../weather/data/messages:59
 #: ../weblets/data/messages:49 ../wifi/data/messages:57
-msgid "Keep on widget layer"
-msgstr "保持在 Widget 層"
+msgid "Reserve space"
+msgstr "保留空間"
 
 #: ../Clipper/data/messages:51 ../Composite-Manager/data/messages:49
-#: ../Disks/data/messages:35 ../Doncky/data/messages:49
+#: ../Disks/data/messages:35 ../Doncky/data/messages:51
 #: ../Folders/data/messages:63 ../GMenu/data/messages:51
 #: ../Global-Menu/data/messages:47 ../Impulse/data/messages:47
 #: ../MeMenu/data/messages:47 ../Messaging-Menu/data/messages:59
@@ -4423,11 +4438,11 @@ msgstr "保持在 Widget 層"
 #: ../template/data/messages:51 ../terminal/data/messages:51
 #: ../tomboy/data/messages:63 ../weather/data/messages:61
 #: ../weblets/data/messages:51 ../wifi/data/messages:59
-msgid "Reserve space"
-msgstr "保留空間"
+msgid "Should be visible on all desktops?"
+msgstr "全部的桌面都可以看得到嗎？"
 
 #: ../Clipper/data/messages:53 ../Composite-Manager/data/messages:51
-#: ../Disks/data/messages:37 ../Doncky/data/messages:51
+#: ../Disks/data/messages:51 ../Doncky/data/messages:53
 #: ../Folders/data/messages:65 ../GMenu/data/messages:53
 #: ../Global-Menu/data/messages:49 ../Impulse/data/messages:49
 #: ../MeMenu/data/messages:49 ../Messaging-Menu/data/messages:61
@@ -4446,11 +4461,11 @@ msgstr "保留空間"
 #: ../template/data/messages:53 ../terminal/data/messages:53
 #: ../tomboy/data/messages:65 ../weather/data/messages:63
 #: ../weblets/data/messages:53 ../wifi/data/messages:61
-msgid "Should be visible on all desktops?"
-msgstr "全部的桌面都可以看得到嗎？"
+msgid "Decorations"
+msgstr "裝飾"
 
 #: ../Clipper/data/messages:55 ../Composite-Manager/data/messages:53
-#: ../Disks/data/messages:53 ../Doncky/data/messages:53
+#: ../Disks/data/messages:53 ../Doncky/data/messages:55
 #: ../Folders/data/messages:67 ../GMenu/data/messages:55
 #: ../Global-Menu/data/messages:51 ../Impulse/data/messages:51
 #: ../MeMenu/data/messages:51 ../Messaging-Menu/data/messages:63
@@ -4469,11 +4484,11 @@ msgstr "全部的桌面都可以看得到嗎？"
 #: ../template/data/messages:55 ../terminal/data/messages:55
 #: ../tomboy/data/messages:67 ../weather/data/messages:65
 #: ../weblets/data/messages:55 ../wifi/data/messages:63
-msgid "Decorations"
-msgstr "裝飾"
+msgid "Choose 'Custom decorations' to define your own decorations below."
+msgstr "在下方選擇 \"自定義裝飾\" 來定義您想要的裝飾。"
 
 #: ../Clipper/data/messages:57 ../Composite-Manager/data/messages:55
-#: ../Disks/data/messages:55 ../Doncky/data/messages:55
+#: ../Disks/data/messages:55 ../Doncky/data/messages:57
 #: ../Folders/data/messages:69 ../GMenu/data/messages:57
 #: ../Global-Menu/data/messages:53 ../Impulse/data/messages:53
 #: ../MeMenu/data/messages:53 ../Messaging-Menu/data/messages:65
@@ -4492,11 +4507,11 @@ msgstr "裝飾"
 #: ../template/data/messages:57 ../terminal/data/messages:57
 #: ../tomboy/data/messages:69 ../weather/data/messages:67
 #: ../weblets/data/messages:57 ../wifi/data/messages:65
-msgid "Choose 'Custom decorations' to define your own decorations below."
-msgstr "在下方選擇 \"自定義裝飾\" 來定義您想要的裝飾。"
+msgid "Choose a decoration theme for this desklet:"
+msgstr "選擇桌面小工具的裝飾主題："
 
 #: ../Clipper/data/messages:59 ../Composite-Manager/data/messages:57
-#: ../Disks/data/messages:57 ../Doncky/data/messages:57
+#: ../Disks/data/messages:57 ../Doncky/data/messages:59
 #: ../Folders/data/messages:71 ../GMenu/data/messages:59
 #: ../Global-Menu/data/messages:55 ../Impulse/data/messages:55
 #: ../MeMenu/data/messages:55 ../Messaging-Menu/data/messages:67
@@ -4515,11 +4530,12 @@ msgstr "在下方選擇 \"自定義裝飾\" 來定義您想要的裝飾。"
 #: ../template/data/messages:59 ../terminal/data/messages:59
 #: ../tomboy/data/messages:71 ../weather/data/messages:69
 #: ../weblets/data/messages:59 ../wifi/data/messages:67
-msgid "Choose a decoration theme for this desklet:"
-msgstr "選擇桌面小工具的裝飾主題："
+msgid ""
+"Image to be displayed below drawings, e.g. a frame. Leave empty for no image."
+msgstr "這是顯示在桌面面板程式下方的圖形，就像是相框一樣。不使用請空白。"
 
 #: ../Clipper/data/messages:61 ../Composite-Manager/data/messages:59
-#: ../Disks/data/messages:59 ../Doncky/data/messages:59
+#: ../Disks/data/messages:59 ../Doncky/data/messages:61
 #: ../Folders/data/messages:73 ../GMenu/data/messages:61
 #: ../Global-Menu/data/messages:57 ../Impulse/data/messages:57
 #: ../MeMenu/data/messages:57 ../Messaging-Menu/data/messages:69
@@ -4527,23 +4543,24 @@ msgstr "選擇桌面小工具的裝飾主題："
 #: ../Recent-Events/data/messages:61 ../Status-Notifier/data/messages:73
 #: ../System-Monitor/data/messages:69 ../Toons/data/messages:69
 #: ../Xgamma/data/messages:63 ../alsaMixer/data/messages:69
-#: ../clock/data/messages:71 ../dnd2share/data/messages:57
-#: ../dustbin/data/messages:59 ../keyboard-indicator/data/messages:69
-#: ../logout/data/messages:61 ../mail/data/messages:69
-#: ../musicPlayer/data/messages:71 ../netspeed/data/messages:69
-#: ../powermanager/data/messages:71 ../quick-browser/data/messages:63
-#: ../shortcuts/data/messages:61 ../showDesktop/data/messages:63
-#: ../slider/data/messages:69 ../stack/data/messages:63
-#: ../switcher/data/messages:55 ../systray/data/messages:53
-#: ../template/data/messages:61 ../terminal/data/messages:61
-#: ../tomboy/data/messages:73 ../weather/data/messages:71
-#: ../weblets/data/messages:61 ../wifi/data/messages:69
-msgid ""
-"Image to be displayed below drawings, e.g. a frame. Leave empty for no image."
-msgstr "這是顯示在桌面面板程式下方的圖形，就像是相框一樣。不使用請空白。"
+#: ../clock/data/messages:71 ../clock/data/messages:171
+#: ../dnd2share/data/messages:57 ../dustbin/data/messages:59
+#: ../keyboard-indicator/data/messages:69
+#: ../keyboard-indicator/data/messages:123 ../logout/data/messages:61
+#: ../mail/data/messages:69 ../musicPlayer/data/messages:71
+#: ../netspeed/data/messages:69 ../powermanager/data/messages:71
+#: ../quick-browser/data/messages:63 ../shortcuts/data/messages:61
+#: ../showDesktop/data/messages:63 ../slider/data/messages:69
+#: ../stack/data/messages:63 ../switcher/data/messages:55
+#: ../systray/data/messages:53 ../template/data/messages:61
+#: ../terminal/data/messages:61 ../tomboy/data/messages:73
+#: ../weather/data/messages:71 ../weblets/data/messages:61
+#: ../wifi/data/messages:69
+msgid "Background image:"
+msgstr "背景影像："
 
 #: ../Clipper/data/messages:63 ../Composite-Manager/data/messages:61
-#: ../Disks/data/messages:61 ../Doncky/data/messages:61
+#: ../Disks/data/messages:61 ../Doncky/data/messages:63
 #: ../Folders/data/messages:75 ../GMenu/data/messages:63
 #: ../Global-Menu/data/messages:59 ../Impulse/data/messages:59
 #: ../MeMenu/data/messages:59 ../Messaging-Menu/data/messages:71
@@ -4551,24 +4568,22 @@ msgstr "這是顯示在桌面面板程式下方的圖形，就像是相框一樣
 #: ../Recent-Events/data/messages:63 ../Status-Notifier/data/messages:75
 #: ../System-Monitor/data/messages:71 ../Toons/data/messages:71
 #: ../Xgamma/data/messages:65 ../alsaMixer/data/messages:71
-#: ../clock/data/messages:73 ../clock/data/messages:173
-#: ../dnd2share/data/messages:59 ../dustbin/data/messages:61
-#: ../keyboard-indicator/data/messages:71
-#: ../keyboard-indicator/data/messages:125 ../logout/data/messages:63
-#: ../mail/data/messages:71 ../musicPlayer/data/messages:73
-#: ../netspeed/data/messages:71 ../powermanager/data/messages:73
-#: ../quick-browser/data/messages:65 ../shortcuts/data/messages:63
-#: ../showDesktop/data/messages:65 ../slider/data/messages:71
-#: ../stack/data/messages:65 ../switcher/data/messages:57
-#: ../systray/data/messages:55 ../template/data/messages:63
-#: ../terminal/data/messages:63 ../tomboy/data/messages:75
-#: ../weather/data/messages:73 ../weblets/data/messages:63
-#: ../wifi/data/messages:71
-msgid "Background image:"
-msgstr "背景影像："
+#: ../clock/data/messages:73 ../dnd2share/data/messages:59
+#: ../dustbin/data/messages:61 ../keyboard-indicator/data/messages:71
+#: ../logout/data/messages:63 ../mail/data/messages:71
+#: ../musicPlayer/data/messages:73 ../netspeed/data/messages:71
+#: ../powermanager/data/messages:73 ../quick-browser/data/messages:65
+#: ../shortcuts/data/messages:63 ../showDesktop/data/messages:65
+#: ../slider/data/messages:71 ../stack/data/messages:65
+#: ../switcher/data/messages:57 ../systray/data/messages:55
+#: ../template/data/messages:63 ../terminal/data/messages:63
+#: ../tomboy/data/messages:75 ../weather/data/messages:73
+#: ../weblets/data/messages:63 ../wifi/data/messages:71
+msgid "Background transparency:"
+msgstr "背景透明度："
 
 #: ../Clipper/data/messages:65 ../Composite-Manager/data/messages:63
-#: ../Disks/data/messages:63 ../Doncky/data/messages:63
+#: ../Disks/data/messages:69 ../Doncky/data/messages:65
 #: ../Folders/data/messages:77 ../GMenu/data/messages:65
 #: ../Global-Menu/data/messages:61 ../Impulse/data/messages:61
 #: ../MeMenu/data/messages:61 ../Messaging-Menu/data/messages:73
@@ -4587,11 +4602,11 @@ msgstr "背景影像："
 #: ../template/data/messages:65 ../terminal/data/messages:65
 #: ../tomboy/data/messages:77 ../weather/data/messages:75
 #: ../weblets/data/messages:65 ../wifi/data/messages:73
-msgid "Background transparency:"
-msgstr "背景透明度："
+msgid "in pixels. Use this to adjust the left position of drawings."
+msgstr "以像素為單位，可以調整位於左邊時的位置。"
 
 #: ../Clipper/data/messages:67 ../Composite-Manager/data/messages:65
-#: ../Disks/data/messages:71 ../Doncky/data/messages:65
+#: ../Disks/data/messages:71 ../Doncky/data/messages:67
 #: ../Folders/data/messages:79 ../GMenu/data/messages:67
 #: ../Global-Menu/data/messages:63 ../Impulse/data/messages:63
 #: ../MeMenu/data/messages:63 ../Messaging-Menu/data/messages:75
@@ -4610,11 +4625,11 @@ msgstr "背景透明度："
 #: ../template/data/messages:67 ../terminal/data/messages:67
 #: ../tomboy/data/messages:79 ../weather/data/messages:77
 #: ../weblets/data/messages:67 ../wifi/data/messages:75
-msgid "in pixels. Use this to adjust the left position of drawings."
-msgstr "以像素為單位，可以調整位於左邊時的位置。"
+msgid "Left offset:"
+msgstr "左邊的位移量："
 
 #: ../Clipper/data/messages:69 ../Composite-Manager/data/messages:67
-#: ../Disks/data/messages:73 ../Doncky/data/messages:67
+#: ../Disks/data/messages:73 ../Doncky/data/messages:69
 #: ../Folders/data/messages:81 ../GMenu/data/messages:69
 #: ../Global-Menu/data/messages:65 ../Impulse/data/messages:65
 #: ../MeMenu/data/messages:65 ../Messaging-Menu/data/messages:77
@@ -4633,11 +4648,11 @@ msgstr "以像素為單位，可以調整位於左邊時的位置。"
 #: ../template/data/messages:69 ../terminal/data/messages:69
 #: ../tomboy/data/messages:81 ../weather/data/messages:79
 #: ../weblets/data/messages:69 ../wifi/data/messages:77
-msgid "Left offset:"
-msgstr "左邊的位移量："
+msgid "in pixels. Use this to adjust the top position of drawings."
+msgstr "以像素為單位，可以調整位於頂部時的位置。"
 
 #: ../Clipper/data/messages:71 ../Composite-Manager/data/messages:69
-#: ../Disks/data/messages:75 ../Doncky/data/messages:69
+#: ../Disks/data/messages:75 ../Doncky/data/messages:71
 #: ../Folders/data/messages:83 ../GMenu/data/messages:71
 #: ../Global-Menu/data/messages:67 ../Impulse/data/messages:67
 #: ../MeMenu/data/messages:67 ../Messaging-Menu/data/messages:79
@@ -4656,11 +4671,11 @@ msgstr "左邊的位移量："
 #: ../template/data/messages:71 ../terminal/data/messages:71
 #: ../tomboy/data/messages:83 ../weather/data/messages:81
 #: ../weblets/data/messages:71 ../wifi/data/messages:79
-msgid "in pixels. Use this to adjust the top position of drawings."
-msgstr "以像素為單位，可以調整位於頂部時的位置。"
+msgid "Top offset:"
+msgstr "頂部位移量："
 
 #: ../Clipper/data/messages:73 ../Composite-Manager/data/messages:71
-#: ../Disks/data/messages:77 ../Doncky/data/messages:71
+#: ../Disks/data/messages:77 ../Doncky/data/messages:73
 #: ../Folders/data/messages:85 ../GMenu/data/messages:73
 #: ../Global-Menu/data/messages:69 ../Impulse/data/messages:69
 #: ../MeMenu/data/messages:69 ../Messaging-Menu/data/messages:81
@@ -4679,11 +4694,11 @@ msgstr "以像素為單位，可以調整位於頂部時的位置。"
 #: ../template/data/messages:73 ../terminal/data/messages:73
 #: ../tomboy/data/messages:85 ../weather/data/messages:83
 #: ../weblets/data/messages:73 ../wifi/data/messages:81
-msgid "Top offset:"
-msgstr "頂部位移量："
+msgid "in pixels. Use this to adjust the right position of drawings."
+msgstr "以像素為單位，可以調整位於右邊時的位置。"
 
 #: ../Clipper/data/messages:75 ../Composite-Manager/data/messages:73
-#: ../Disks/data/messages:79 ../Doncky/data/messages:73
+#: ../Disks/data/messages:79 ../Doncky/data/messages:75
 #: ../Folders/data/messages:87 ../GMenu/data/messages:75
 #: ../Global-Menu/data/messages:71 ../Impulse/data/messages:71
 #: ../MeMenu/data/messages:71 ../Messaging-Menu/data/messages:83
@@ -4702,11 +4717,11 @@ msgstr "頂部位移量："
 #: ../template/data/messages:75 ../terminal/data/messages:75
 #: ../tomboy/data/messages:87 ../weather/data/messages:85
 #: ../weblets/data/messages:75 ../wifi/data/messages:83
-msgid "in pixels. Use this to adjust the right position of drawings."
-msgstr "以像素為單位，可以調整位於右邊時的位置。"
+msgid "Right offset:"
+msgstr "右邊偏移量："
 
 #: ../Clipper/data/messages:77 ../Composite-Manager/data/messages:75
-#: ../Disks/data/messages:81 ../Doncky/data/messages:75
+#: ../Disks/data/messages:81 ../Doncky/data/messages:77
 #: ../Folders/data/messages:89 ../GMenu/data/messages:77
 #: ../Global-Menu/data/messages:73 ../Impulse/data/messages:73
 #: ../MeMenu/data/messages:73 ../Messaging-Menu/data/messages:85
@@ -4725,11 +4740,11 @@ msgstr "以像素為單位，可以調整位於右邊時的位置。"
 #: ../template/data/messages:77 ../terminal/data/messages:77
 #: ../tomboy/data/messages:89 ../weather/data/messages:87
 #: ../weblets/data/messages:77 ../wifi/data/messages:85
-msgid "Right offset:"
-msgstr "右邊偏移量："
+msgid "in pixels. Use this to adjust the bottom position of drawings."
+msgstr "以像素為單位，可以調整位於底部時的位置。"
 
 #: ../Clipper/data/messages:79 ../Composite-Manager/data/messages:77
-#: ../Disks/data/messages:83 ../Doncky/data/messages:77
+#: ../Disks/data/messages:83 ../Doncky/data/messages:79
 #: ../Folders/data/messages:91 ../GMenu/data/messages:79
 #: ../Global-Menu/data/messages:75 ../Impulse/data/messages:75
 #: ../MeMenu/data/messages:75 ../Messaging-Menu/data/messages:87
@@ -4748,11 +4763,11 @@ msgstr "右邊偏移量："
 #: ../template/data/messages:79 ../terminal/data/messages:79
 #: ../tomboy/data/messages:91 ../weather/data/messages:89
 #: ../weblets/data/messages:79 ../wifi/data/messages:87
-msgid "in pixels. Use this to adjust the bottom position of drawings."
-msgstr "以像素為單位，可以調整位於底部時的位置。"
+msgid "Bottom offset:"
+msgstr "底部偏移量："
 
 #: ../Clipper/data/messages:81 ../Composite-Manager/data/messages:79
-#: ../Disks/data/messages:85 ../Doncky/data/messages:79
+#: ../Disks/data/messages:63 ../Doncky/data/messages:81
 #: ../Folders/data/messages:93 ../GMenu/data/messages:81
 #: ../Global-Menu/data/messages:77 ../Impulse/data/messages:77
 #: ../MeMenu/data/messages:77 ../Messaging-Menu/data/messages:89
@@ -4771,11 +4786,13 @@ msgstr "以像素為單位，可以調整位於底部時的位置。"
 #: ../template/data/messages:81 ../terminal/data/messages:81
 #: ../tomboy/data/messages:93 ../weather/data/messages:91
 #: ../weblets/data/messages:81 ../wifi/data/messages:89
-msgid "Bottom offset:"
-msgstr "底部偏移量："
+msgid ""
+"Image to be displayed above the drawings, e.g. a reflection. Leave empty for "
+"no image."
+msgstr "這是顯示在桌面面板程式之上的圖形，就像是反射一樣。不使用請空白。"
 
 #: ../Clipper/data/messages:83 ../Composite-Manager/data/messages:81
-#: ../Disks/data/messages:65 ../Doncky/data/messages:81
+#: ../Disks/data/messages:65 ../Doncky/data/messages:83
 #: ../Folders/data/messages:95 ../GMenu/data/messages:83
 #: ../Global-Menu/data/messages:79 ../Impulse/data/messages:79
 #: ../MeMenu/data/messages:79 ../Messaging-Menu/data/messages:91
@@ -4794,13 +4811,11 @@ msgstr "底部偏移量："
 #: ../template/data/messages:83 ../terminal/data/messages:83
 #: ../tomboy/data/messages:95 ../weather/data/messages:93
 #: ../weblets/data/messages:83 ../wifi/data/messages:91
-msgid ""
-"Image to be displayed above the drawings, e.g. a reflection. Leave empty for "
-"no image."
-msgstr "這是顯示在桌面面板程式之上的圖形，就像是反射一樣。不使用請空白。"
+msgid "Foreground image:"
+msgstr "前景圖片："
 
 #: ../Clipper/data/messages:85 ../Composite-Manager/data/messages:83
-#: ../Disks/data/messages:67 ../Doncky/data/messages:83
+#: ../Disks/data/messages:67 ../Doncky/data/messages:85
 #: ../Folders/data/messages:97 ../GMenu/data/messages:85
 #: ../Global-Menu/data/messages:81 ../Impulse/data/messages:81
 #: ../MeMenu/data/messages:81 ../Messaging-Menu/data/messages:93
@@ -4819,68 +4834,45 @@ msgstr "這是顯示在桌面面板程式之上的圖形，就像是反射一樣
 #: ../template/data/messages:85 ../terminal/data/messages:85
 #: ../tomboy/data/messages:97 ../weather/data/messages:95
 #: ../weblets/data/messages:85 ../wifi/data/messages:93
-msgid "Foreground image:"
-msgstr "前景圖片："
-
-#: ../Clipper/data/messages:87 ../Composite-Manager/data/messages:85
-#: ../Disks/data/messages:69 ../Doncky/data/messages:85
-#: ../Folders/data/messages:99 ../GMenu/data/messages:87
-#: ../Global-Menu/data/messages:83 ../Impulse/data/messages:83
-#: ../MeMenu/data/messages:83 ../Messaging-Menu/data/messages:95
-#: ../Network-Monitor/data/messages:97 ../RSSreader/data/messages:89
-#: ../Recent-Events/data/messages:87 ../Status-Notifier/data/messages:99
-#: ../System-Monitor/data/messages:95 ../Toons/data/messages:95
-#: ../Xgamma/data/messages:89 ../alsaMixer/data/messages:95
-#: ../clock/data/messages:97 ../dnd2share/data/messages:83
-#: ../dustbin/data/messages:85 ../keyboard-indicator/data/messages:95
-#: ../logout/data/messages:87 ../mail/data/messages:95
-#: ../musicPlayer/data/messages:97 ../netspeed/data/messages:95
-#: ../powermanager/data/messages:97 ../quick-browser/data/messages:89
-#: ../shortcuts/data/messages:87 ../showDesktop/data/messages:89
-#: ../slider/data/messages:95 ../stack/data/messages:89
-#: ../switcher/data/messages:81 ../systray/data/messages:79
-#: ../template/data/messages:87 ../terminal/data/messages:87
-#: ../tomboy/data/messages:99 ../weather/data/messages:97
-#: ../weblets/data/messages:87 ../wifi/data/messages:95
 msgid "Foreground tansparency:"
 msgstr "前景透明度："
 
-#: ../Clipper/data/messages:91
+#: ../Clipper/data/messages:89
 msgid "Items"
 msgstr "項目"
 
-#: ../Clipper/data/messages:93
+#: ../Clipper/data/messages:91
 msgid ""
 "Clipboard items are those you get with CTRL+c. Selection items are those you "
 "get by selecting some text with the mouse."
 msgstr "剪貼簿的項目是指那些您用滑鼠標記的文字，並且用 CTRL + c 拷貝的。"
 
-#: ../Clipper/data/messages:95
+#: ../Clipper/data/messages:93
 msgid "Which items should be remembered?"
 msgstr "哪些項目應該要記憶起來？"
 
-#: ../Clipper/data/messages:99
+#: ../Clipper/data/messages:97
 msgid "Clipboard"
 msgstr "剪貼簿"
 
-#: ../Clipper/data/messages:101
+#: ../Clipper/data/messages:99
 msgid "Selection"
 msgstr "選擇"
 
-#: ../Clipper/data/messages:103 ../GMenu/data/messages:121
+#: ../Clipper/data/messages:101 ../GMenu/data/messages:107
 #: ../show-mouse/data/messages:15
 msgid "Both"
 msgstr "兩者"
 
-#: ../Clipper/data/messages:105
+#: ../Clipper/data/messages:103
 msgid "Number of items:"
 msgstr "項目的數量："
 
-#: ../Clipper/data/messages:107
+#: ../Clipper/data/messages:105
 msgid "Remember items between 2 sessions ?"
 msgstr "記住兩個作業階段之間的物件？"
 
-#: ../Clipper/data/messages:109
+#: ../Clipper/data/messages:107
 msgid ""
 "It is especially useful if you often select text with the mouse and don't "
 "want to loose your clipboard items due to too many items in the selection."
@@ -4888,81 +4880,81 @@ msgstr ""
 "如果您不想失去您剪貼簿裏面的項目，並且你經常用滑鼠大量的選擇文字，那這會很有"
 "用，"
 
-#: ../Clipper/data/messages:111
+#: ../Clipper/data/messages:109
 msgid "Separate clipboard and selection?"
 msgstr "獨立的剪貼簿和選擇？"
 
-#: ../Clipper/data/messages:113
+#: ../Clipper/data/messages:111
 msgid "If so, number of selection items:"
 msgstr "假如是，選擇項目的數量："
 
-#: ../Clipper/data/messages:115
+#: ../Clipper/data/messages:113
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr "當您點擊一個項目，其內容將可以用 CTRL + v 來貼出。"
 
-#: ../Clipper/data/messages:117
+#: ../Clipper/data/messages:115
 msgid "Paste into Clipboard?"
 msgstr "貼到剪貼簿？"
 
-#: ../Clipper/data/messages:119
+#: ../Clipper/data/messages:117
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
 msgstr "當您點擊一個項目，其內容將可以用 滑鼠中鍵 來貼出。"
 
-#: ../Clipper/data/messages:121
+#: ../Clipper/data/messages:119
 msgid "Paste into Selection?"
 msgstr "貼到選擇？"
 
-#: ../Clipper/data/messages:123 ../keyboard-indicator/data/messages:99
+#: ../Clipper/data/messages:121 ../keyboard-indicator/data/messages:97
 msgid "Shortkey to pop-up the items menu:"
 msgstr "彈跳出項目選單的快速鍵："
 
-#: ../Clipper/data/messages:125
+#: ../Clipper/data/messages:123
 msgid "Pop-up menus at mouse position?"
 msgstr "以滑鼠指標的位置來彈跳初選單？"
 
-#: ../Clipper/data/messages:127
+#: ../Clipper/data/messages:125
 msgid "Actions"
 msgstr "動作"
 
-#: ../Clipper/data/messages:129
+#: ../Clipper/data/messages:127
 msgid ""
 "If some actions are associated with an item, they will be proposed when the "
 "item is created."
 msgstr "如果一些動作與一個項目有關聯時，在建立一個項目的時候會向您提出。"
 
-#: ../Clipper/data/messages:131
+#: ../Clipper/data/messages:129
 msgid "Enable actions?"
 msgstr "啟用動作？"
 
-#: ../Clipper/data/messages:133
+#: ../Clipper/data/messages:131
 msgid "Display actions when selecting an item in the history."
 msgstr "在選擇一個歷史紀錄當中的項目時顯現的動作 。"
 
-#: ../Clipper/data/messages:135
+#: ../Clipper/data/messages:133
 msgid "Replay actions?"
 msgstr "重複動作？"
 
-#: ../Clipper/data/messages:139
+#: ../Clipper/data/messages:137
 msgid "Duration of the action menu:"
 msgstr "動作選單的時間長短："
 
-#: ../Clipper/data/messages:141
+#: ../Clipper/data/messages:139
 msgid "Persistent items"
 msgstr "永久項目"
 
-#: ../Clipper/data/messages:143
+#: ../Clipper/data/messages:141
 msgid "A list of persistent items which can be accessed with middle-click:"
 msgstr "持久性的項目列表，可以用中鍵點擊存取："
 
-#: ../Composite-Manager/data/messages:27 ../Global-Menu/data/messages:25
-#: ../Impulse/data/messages:25 ../Recent-Events/data/messages:29
-#: ../Status-Notifier/data/messages:41 ../alsaMixer/data/messages:37
-#: ../clock/data/messages:39 ../dustbin/data/messages:27
-#: ../netspeed/data/messages:37 ../systray/data/messages:25
-#: ../template/data/messages:29 ../tomboy/data/messages:41
+#: ../Composite-Manager/data/messages:25 ../Global-Menu/data/messages:23
+#: ../Impulse/data/messages:23 ../Recent-Events/data/messages:27
+#: ../Status-Notifier/data/messages:39 ../alsaMixer/data/messages:35
+#: ../clock/data/messages:37 ../dustbin/data/messages:25
+#: ../netspeed/data/messages:35 ../systray/data/messages:23
+#: ../template/data/messages:27 ../tomboy/data/messages:39
 msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click.. Negative values are counted from the right/bottom of the screen"
@@ -4970,72 +4962,72 @@ msgstr ""
 "放置在您的視窗管理員當中，您也可以利用 ALT+滑鼠左鍵 來移動它， 負值的計算是從"
 "螢幕的右下方開始。"
 
-#: ../Composite-Manager/data/messages:89 ../Impulse/data/messages:119
-#: ../clock/data/messages:133
+#: ../Composite-Manager/data/messages:87 ../Impulse/data/messages:117
+#: ../clock/data/messages:131
 msgid "Style"
 msgstr "樣式"
 
-#: ../Composite-Manager/data/messages:91
+#: ../Composite-Manager/data/messages:89
 msgid "Image when composite is active:"
 msgstr ""
 
-#: ../Composite-Manager/data/messages:93
+#: ../Composite-Manager/data/messages:91
 msgid "Image when composite is inactive:"
 msgstr ""
 
-#: ../Composite-Manager/data/messages:95 ../Global-Menu/data/messages:89
-#: ../RSSreader/data/messages:103 ../Status-Notifier/data/messages:117
-#: ../clock/data/messages:101 ../dnd2share/data/messages:95
-#: ../showDesktop/data/messages:93 ../slider/data/messages:115
+#: ../Composite-Manager/data/messages:93 ../Global-Menu/data/messages:87
+#: ../RSSreader/data/messages:101 ../Status-Notifier/data/messages:115
+#: ../clock/data/messages:99 ../dnd2share/data/messages:93
+#: ../showDesktop/data/messages:91 ../slider/data/messages:113
 msgid "Behaviour"
 msgstr "動作方式"
 
-#: ../Composite-Manager/data/messages:97
-#: ../Composite-Manager/data/messages:109
+#: ../Composite-Manager/data/messages:95
+#: ../Composite-Manager/data/messages:107
 msgid ""
 "Let empty to use the default one. Alternatively, you can set any command you "
 "want."
 msgstr ""
 
-#: ../Composite-Manager/data/messages:99
+#: ../Composite-Manager/data/messages:97
 msgid "Composite window-manager:"
+msgstr ""
+
+#: ../Composite-Manager/data/messages:99
+#: ../Composite-Manager/data/messages:111
+msgid "Compiz"
 msgstr ""
 
 #: ../Composite-Manager/data/messages:101
 #: ../Composite-Manager/data/messages:113
-msgid "Compiz"
+msgid "KWin"
 msgstr ""
 
 #: ../Composite-Manager/data/messages:103
 #: ../Composite-Manager/data/messages:115
-msgid "KWin"
+msgid "Xfwm"
 msgstr ""
 
 #: ../Composite-Manager/data/messages:105
 #: ../Composite-Manager/data/messages:117
-msgid "Xfwm"
-msgstr ""
-
-#: ../Composite-Manager/data/messages:107
-#: ../Composite-Manager/data/messages:119
 msgid "Metacity"
 msgstr ""
 
-#: ../Composite-Manager/data/messages:111
+#: ../Composite-Manager/data/messages:109
 msgid "Fallback window-manager:"
 msgstr ""
 
-#: ../Composite-Manager/data/messages:121
+#: ../Composite-Manager/data/messages:119
 msgid "Ask before switching:"
 msgstr ""
 
-#: ../Composite-Manager/data/messages:123 ../logout/data/messages:93
-#: ../showDesktop/data/messages:111 ../slider/data/messages:123
-#: ../switcher/data/messages:131
+#: ../Composite-Manager/data/messages:121 ../logout/data/messages:91
+#: ../showDesktop/data/messages:109 ../slider/data/messages:121
+#: ../switcher/data/messages:129
 msgid "Action on middle-click:"
 msgstr "中鍵點擊動作："
 
-#: ../Composite-Manager/data/messages:137
+#: ../Composite-Manager/data/messages:135
 msgid "Shortkey to toggle the composite ON/OFF:"
 msgstr ""
 
@@ -5087,188 +5079,188 @@ msgstr "讓外部的應用程式可以用動畫圖示？"
 msgid "Name of the container it belongs to:"
 msgstr ""
 
-#: ../Disks/data/messages:17
+#: ../Disks/data/messages:15
 msgid "Desklet mode"
 msgstr ""
 
-#: ../Disks/data/messages:89 ../Network-Monitor/data/messages:139
-#: ../netspeed/data/messages:99
+#: ../Disks/data/messages:87 ../Network-Monitor/data/messages:137
+#: ../netspeed/data/messages:97
 msgid "Choose the style of the display: "
 msgstr "選擇顯示的風格： "
 
-#: ../Disks/data/messages:91 ../Disks/data/messages:95
-#: ../Network-Monitor/data/messages:141 ../Network-Monitor/data/messages:145
-#: ../Network-Monitor/data/messages:183 ../Network-Monitor/data/messages:189
-#: ../System-Monitor/data/messages:101 ../System-Monitor/data/messages:105
-#: ../alsaMixer/data/messages:115 ../netspeed/data/messages:101
-#: ../netspeed/data/messages:105 ../powermanager/data/messages:103
-#: ../powermanager/data/messages:109 ../wifi/data/messages:101
-#: ../wifi/data/messages:107
+#: ../Disks/data/messages:89 ../Disks/data/messages:93
+#: ../Network-Monitor/data/messages:139 ../Network-Monitor/data/messages:143
+#: ../Network-Monitor/data/messages:181 ../Network-Monitor/data/messages:187
+#: ../System-Monitor/data/messages:99 ../System-Monitor/data/messages:103
+#: ../alsaMixer/data/messages:113 ../netspeed/data/messages:99
+#: ../netspeed/data/messages:103 ../powermanager/data/messages:101
+#: ../powermanager/data/messages:107 ../wifi/data/messages:99
+#: ../wifi/data/messages:105
 msgid "Gauge"
 msgstr "計量表"
 
-#: ../Disks/data/messages:93 ../Disks/data/messages:107
-#: ../Network-Monitor/data/messages:143 ../Network-Monitor/data/messages:149
-#: ../Network-Monitor/data/messages:185 ../Network-Monitor/data/messages:193
-#: ../System-Monitor/data/messages:103 ../System-Monitor/data/messages:117
-#: ../netspeed/data/messages:103 ../netspeed/data/messages:117
-#: ../powermanager/data/messages:105 ../powermanager/data/messages:113
-#: ../wifi/data/messages:103 ../wifi/data/messages:111
+#: ../Disks/data/messages:91 ../Disks/data/messages:105
+#: ../Network-Monitor/data/messages:141 ../Network-Monitor/data/messages:147
+#: ../Network-Monitor/data/messages:183 ../Network-Monitor/data/messages:191
+#: ../System-Monitor/data/messages:101 ../System-Monitor/data/messages:115
+#: ../netspeed/data/messages:101 ../netspeed/data/messages:115
+#: ../powermanager/data/messages:103 ../powermanager/data/messages:111
+#: ../wifi/data/messages:101 ../wifi/data/messages:109
 msgid "Graph"
 msgstr "圖表"
 
-#: ../Disks/data/messages:99 ../System-Monitor/data/messages:109
-#: ../alsaMixer/data/messages:123 ../netspeed/data/messages:109
+#: ../Disks/data/messages:97 ../System-Monitor/data/messages:107
+#: ../alsaMixer/data/messages:121 ../netspeed/data/messages:107
 msgid "Rotate applet theme :"
 msgstr ""
 
-#: ../Disks/data/messages:103 ../System-Monitor/data/messages:113
-#: ../alsaMixer/data/messages:127 ../netspeed/data/messages:113
+#: ../Disks/data/messages:101 ../System-Monitor/data/messages:111
+#: ../alsaMixer/data/messages:125 ../netspeed/data/messages:111
 msgid "With dock orientation"
 msgstr ""
+
+#: ../Disks/data/messages:107 ../Network-Monitor/data/messages:149
+#: ../Network-Monitor/data/messages:193 ../System-Monitor/data/messages:117
+#: ../netspeed/data/messages:117 ../powermanager/data/messages:113
+#: ../wifi/data/messages:111
+msgid "Type of graphic :"
+msgstr "圖表的樣式："
 
 #: ../Disks/data/messages:109 ../Network-Monitor/data/messages:151
 #: ../Network-Monitor/data/messages:195 ../System-Monitor/data/messages:119
 #: ../netspeed/data/messages:119 ../powermanager/data/messages:115
 #: ../wifi/data/messages:113
-msgid "Type of graphic :"
-msgstr "圖表的樣式："
+msgid "Line"
+msgstr "線型"
 
 #: ../Disks/data/messages:111 ../Network-Monitor/data/messages:153
 #: ../Network-Monitor/data/messages:197 ../System-Monitor/data/messages:121
 #: ../netspeed/data/messages:121 ../powermanager/data/messages:117
 #: ../wifi/data/messages:115
-msgid "Line"
-msgstr "線型"
+msgid "Plain"
+msgstr "谷型"
 
 #: ../Disks/data/messages:113 ../Network-Monitor/data/messages:155
 #: ../Network-Monitor/data/messages:199 ../System-Monitor/data/messages:123
 #: ../netspeed/data/messages:123 ../powermanager/data/messages:119
 #: ../wifi/data/messages:117
-msgid "Plain"
-msgstr "谷型"
+msgid "Bar"
+msgstr "條型"
 
 #: ../Disks/data/messages:115 ../Network-Monitor/data/messages:157
 #: ../Network-Monitor/data/messages:201 ../System-Monitor/data/messages:125
 #: ../netspeed/data/messages:125 ../powermanager/data/messages:121
 #: ../wifi/data/messages:119
-msgid "Bar"
-msgstr "條型"
+msgid "Circle"
+msgstr "圓形"
 
 #: ../Disks/data/messages:117 ../Network-Monitor/data/messages:159
 #: ../Network-Monitor/data/messages:203 ../System-Monitor/data/messages:127
 #: ../netspeed/data/messages:127 ../powermanager/data/messages:123
 #: ../wifi/data/messages:121
-msgid "Circle"
-msgstr "圓形"
-
-#: ../Disks/data/messages:119 ../Network-Monitor/data/messages:161
-#: ../Network-Monitor/data/messages:205 ../System-Monitor/data/messages:129
-#: ../netspeed/data/messages:129 ../powermanager/data/messages:125
-#: ../wifi/data/messages:123
 msgid "Plain Circle"
 msgstr "圓谷型"
 
-#: ../Disks/data/messages:121 ../netspeed/data/messages:131
+#: ../Disks/data/messages:119 ../netspeed/data/messages:129
 msgid "It's the colour of the graphic for high rate values."
 msgstr "這是高比率值的圖形色彩。"
 
-#: ../Disks/data/messages:123 ../Network-Monitor/data/messages:165
-#: ../Network-Monitor/data/messages:209 ../System-Monitor/data/messages:133
-#: ../netspeed/data/messages:133 ../powermanager/data/messages:129
-#: ../wifi/data/messages:127
+#: ../Disks/data/messages:121 ../Network-Monitor/data/messages:163
+#: ../Network-Monitor/data/messages:207 ../System-Monitor/data/messages:131
+#: ../netspeed/data/messages:131 ../powermanager/data/messages:127
+#: ../wifi/data/messages:125
 msgid "High value's colour :"
 msgstr "高數值時的顏色："
 
-#: ../Disks/data/messages:125 ../netspeed/data/messages:135
+#: ../Disks/data/messages:123 ../netspeed/data/messages:133
 msgid "Graph colour for low rate vaues:"
 msgstr "低比率的圖形色彩："
+
+#: ../Disks/data/messages:125 ../Network-Monitor/data/messages:167
+#: ../Network-Monitor/data/messages:211 ../System-Monitor/data/messages:135
+#: ../netspeed/data/messages:135 ../powermanager/data/messages:131
+#: ../wifi/data/messages:129
+msgid "Low value's colour :"
+msgstr "低數值時的顏色："
 
 #: ../Disks/data/messages:127 ../Network-Monitor/data/messages:169
 #: ../Network-Monitor/data/messages:213 ../System-Monitor/data/messages:137
 #: ../netspeed/data/messages:137 ../powermanager/data/messages:133
 #: ../wifi/data/messages:131
-msgid "Low value's colour :"
-msgstr "低數值時的顏色："
-
-#: ../Disks/data/messages:129 ../Network-Monitor/data/messages:171
-#: ../Network-Monitor/data/messages:215 ../System-Monitor/data/messages:139
-#: ../netspeed/data/messages:139 ../powermanager/data/messages:135
-#: ../wifi/data/messages:133
 msgid "Background colour of the graphic :"
 msgstr "圖表背景顏色："
 
-#: ../Disks/data/messages:131 ../System-Monitor/data/messages:141
-#: ../netspeed/data/messages:141
+#: ../Disks/data/messages:129 ../System-Monitor/data/messages:139
+#: ../netspeed/data/messages:139
 msgid "Show all values on same graph?"
 msgstr "在相同的圖表上顯示全部的數值？"
 
-#: ../Disks/data/messages:133 ../Impulse/data/messages:87
-#: ../Status-Notifier/data/messages:103 ../alsaMixer/data/messages:99
-#: ../keyboard-indicator/data/messages:109 ../mail/data/messages:103
-#: ../musicPlayer/data/messages:159 ../shortcuts/data/messages:91
-#: ../shortcuts/data/messages:101 ../slider/data/messages:163
-#: ../stack/data/messages:93 ../tomboy/data/messages:103
-#: ../weather/data/messages:129
+#: ../Disks/data/messages:131 ../Impulse/data/messages:85
+#: ../Status-Notifier/data/messages:101 ../alsaMixer/data/messages:97
+#: ../keyboard-indicator/data/messages:107 ../mail/data/messages:101
+#: ../musicPlayer/data/messages:157 ../shortcuts/data/messages:89
+#: ../shortcuts/data/messages:99 ../slider/data/messages:161
+#: ../stack/data/messages:91 ../tomboy/data/messages:101
+#: ../weather/data/messages:127
 msgid "Display"
 msgstr "顯示"
 
-#: ../Disks/data/messages:135
+#: ../Disks/data/messages:133
 msgid "Display values"
 msgstr ""
 
-#: ../Disks/data/messages:139 ../Network-Monitor/data/messages:119
-#: ../System-Monitor/data/messages:165 ../alsaMixer/data/messages:107
-#: ../clock/data/messages:107 ../netspeed/data/messages:161
+#: ../Disks/data/messages:137 ../Network-Monitor/data/messages:117
+#: ../System-Monitor/data/messages:163 ../alsaMixer/data/messages:105
+#: ../clock/data/messages:105 ../netspeed/data/messages:159
 msgid "On icon"
 msgstr "在圖示"
 
-#: ../Disks/data/messages:141 ../Network-Monitor/data/messages:121
-#: ../System-Monitor/data/messages:167 ../alsaMixer/data/messages:105
-#: ../clock/data/messages:109 ../netspeed/data/messages:163
+#: ../Disks/data/messages:139 ../Network-Monitor/data/messages:119
+#: ../System-Monitor/data/messages:165 ../alsaMixer/data/messages:103
+#: ../clock/data/messages:107 ../netspeed/data/messages:161
 msgid "On label"
 msgstr "在標籤"
 
-#: ../Disks/data/messages:145
+#: ../Disks/data/messages:143
 msgid "Refresh time"
 msgstr ""
 
-#: ../Disks/data/messages:147 ../netspeed/data/messages:153
+#: ../Disks/data/messages:145 ../netspeed/data/messages:151
 msgid ""
 "You need OpenGL for this option. Set it to 0 to disable it, 1 means the "
 "transition is continue."
 msgstr "這個選項您需要 OpenGL。設定它為 0 關閉它，1 表示持續顯示。"
 
-#: ../Disks/data/messages:149
+#: ../Disks/data/messages:147
 msgid "Fluidity of the transition between 2 values"
 msgstr ""
 
-#: ../Disks/data/messages:151
+#: ../Disks/data/messages:149
 msgid "Partitions monitored : Size"
 msgstr ""
 
-#: ../Disks/data/messages:153
+#: ../Disks/data/messages:151
 msgid "E.g. sda1, sdb5..."
 msgstr ""
 
-#: ../Disks/data/messages:155
+#: ../Disks/data/messages:153
 msgid "Disks monitored : Speed"
 msgstr ""
 
-#: ../Disks/data/messages:157
+#: ../Disks/data/messages:155
 msgid "E.g. sda, sdb... Up to 5 values allowed"
 msgstr ""
 
-#: ../Disks/data/messages:159
+#: ../Disks/data/messages:157
 msgid "Preferences"
 msgstr ""
 
-#: ../Disks/data/messages:161 ../Network-Monitor/data/messages:133
-#: ../netspeed/data/messages:165
+#: ../Disks/data/messages:159 ../Network-Monitor/data/messages:131
+#: ../netspeed/data/messages:163
 msgid "Leave empty to use the default."
 msgstr "讓它空白來使用預設值。"
 
-#: ../Disks/data/messages:163
+#: ../Disks/data/messages:161
 msgid "System monitor command"
 msgstr ""
 
@@ -5276,7 +5268,7 @@ msgstr ""
 msgid "Specify the xml file to be used :"
 msgstr "指定要使用的XML文件："
 
-#: ../Doncky/data/messages:91 ../RSSreader/data/messages:129
+#: ../Doncky/data/messages:91 ../RSSreader/data/messages:127
 msgid "Appearance"
 msgstr "界面外觀"
 
@@ -5312,55 +5304,55 @@ msgstr "使用這個來增加兩行之間的空間"
 msgid "Space between lines:"
 msgstr "兩條線中間的空間："
 
-#: ../Doncky/data/messages:111 ../RSSreader/data/messages:175
+#: ../Doncky/data/messages:111 ../RSSreader/data/messages:173
 msgid "Background"
 msgstr "背景"
 
-#: ../Doncky/data/messages:113 ../RSSreader/data/messages:177
+#: ../Doncky/data/messages:113 ../RSSreader/data/messages:175
 msgid "You can have more attractive backgrounds using the Desklet decorations"
 msgstr "您可以讓桌面面板程式使用更多好看的背景"
 
-#: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
+#: ../Doncky/data/messages:115 ../RSSreader/data/messages:177
 msgid "Display a simple background?"
 msgstr "顯示一個簡易的背景圖？"
 
-#: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
+#: ../Doncky/data/messages:117 ../RSSreader/data/messages:179
 msgid "first colour of the gradation"
 msgstr "漸層色彩的開始顏色"
 
-#: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
+#: ../Doncky/data/messages:119 ../RSSreader/data/messages:181
 msgid "Background first colour :"
 msgstr "背景顏色的開始顏色："
 
-#: ../Doncky/data/messages:121 ../RSSreader/data/messages:185
+#: ../Doncky/data/messages:121 ../RSSreader/data/messages:183
 msgid "second colour of the gradation"
 msgstr "漸層色彩的結束顏色"
 
-#: ../Doncky/data/messages:123 ../RSSreader/data/messages:187
+#: ../Doncky/data/messages:123 ../RSSreader/data/messages:185
 msgid "Background second colour:"
 msgstr "背景顏色的結束顏色："
 
-#: ../Doncky/data/messages:125 ../RSSreader/data/messages:189
+#: ../Doncky/data/messages:125 ../RSSreader/data/messages:187
 msgid "Set the radius corner to 0 for no radius"
 msgstr "角落半徑設定為 0 時顯示為直角"
 
-#: ../Doncky/data/messages:127 ../RSSreader/data/messages:191
+#: ../Doncky/data/messages:127 ../RSSreader/data/messages:189
 msgid "Background radius corner:"
 msgstr "背景的角落半徑："
 
-#: ../Doncky/data/messages:129 ../RSSreader/data/messages:193
+#: ../Doncky/data/messages:129 ../RSSreader/data/messages:191
 msgid "Set the thickness to 0 for no border"
 msgstr "邊框厚度設定為 0 時為無邊框"
 
-#: ../Doncky/data/messages:131 ../RSSreader/data/messages:195
+#: ../Doncky/data/messages:131 ../RSSreader/data/messages:193
 msgid "Border thickness:"
 msgstr "邊框的厚度"
 
-#: ../Doncky/data/messages:133 ../RSSreader/data/messages:197
+#: ../Doncky/data/messages:133 ../RSSreader/data/messages:195
 msgid "Border colour"
 msgstr "邊框顏色"
 
-#: ../Doncky/data/messages:135 ../RSSreader/data/messages:199
+#: ../Doncky/data/messages:135 ../RSSreader/data/messages:197
 msgid "Border colour :"
 msgstr "邊框顏色："
 
@@ -5388,91 +5380,68 @@ msgstr "將子 Dock 的內容繪製為堆疊"
 msgid "Draw sub-dock's content inside a box"
 msgstr "將子 Dock 的內容繪製於盒子內"
 
-#: ../Folders/data/messages:103
+#: ../Folders/data/messages:101
 msgid "Folder's path:"
 msgstr "資料夾的路徑："
 
-#: ../Folders/data/messages:105
+#: ../Folders/data/messages:103
 msgid ""
 "Allow to show the files of the folder in a sub-dock. If disabled, the applet "
 "behaves as a mere launcher."
 msgstr ""
 
-#: ../Folders/data/messages:107
+#: ../Folders/data/messages:105
 msgid "Show folder's content?"
 msgstr ""
 
-#: ../Folders/data/messages:109
+#: ../Folders/data/messages:107
 msgid "Sort files by :"
 msgstr "排序檔案依："
 
-#: ../Folders/data/messages:111 ../stack/data/messages:127
+#: ../Folders/data/messages:109 ../stack/data/messages:125
 msgid "Name"
 msgstr "名稱"
 
-#: ../Folders/data/messages:113 ../stack/data/messages:129
+#: ../Folders/data/messages:111 ../stack/data/messages:127
 msgid "Date"
 msgstr "日期"
 
-#: ../Folders/data/messages:117
+#: ../Folders/data/messages:115
 msgid "Sort folders before files?"
 msgstr "要將資料夾排在檔案之前嗎？"
 
-#: ../Folders/data/messages:119 ../Scooby-Do/data/messages:101
-#: ../quick-browser/data/messages:101
+#: ../Folders/data/messages:117 ../Scooby-Do/data/messages:101
+#: ../quick-browser/data/messages:99
 msgid "Show hidden files?"
 msgstr "顯示隱藏檔案？"
 
-#: ../GMenu/data/messages:91 ../quick-browser/data/messages:107
-msgid "Display icons in the menu?"
-msgstr "在選單上面顯示圖示？"
-
-#: ../GMenu/data/messages:93 ../Messaging-Menu/data/messages:101
-#: ../quick-browser/data/messages:117
+#: ../GMenu/data/messages:89 ../Messaging-Menu/data/messages:99
+#: ../quick-browser/data/messages:115
 msgid "Shortkey to show/hide the menu:"
 msgstr "選單的 顯示/隱藏 快速鍵："
 
-#: ../GMenu/data/messages:95
+#: ../GMenu/data/messages:91
 msgid "Shortkey to show/hide the quick-launch dialog:"
 msgstr "顯示/隱藏 快速執行對話框的快速鍵："
+
+#: ../GMenu/data/messages:93
+msgid "Show recent documents?"
+msgstr "顯示最近使用的文件"
+
+#: ../GMenu/data/messages:95
+#, fuzzy
+msgid "Number of items to display"
+msgstr "每次顯示多少列："
 
 #: ../GMenu/data/messages:97
 msgid "Command to use for configuring the menu:"
 msgstr "設置選單的指令："
 
 #: ../GMenu/data/messages:99
-msgid "Recent documents"
-msgstr "最近使用的文件"
-
-#: ../GMenu/data/messages:101
-msgid "Show recent documents?"
-msgstr "顯示最近使用的文件"
-
-#: ../GMenu/data/messages:103
-msgid "Leave blank if filter is not needed."
-msgstr "不使用此篩選器請空白。"
-
-#: ../GMenu/data/messages:105
-msgid "Only show files that are under this folder or its sub-folder:"
-msgstr "只顯示資料夾或其子資料夾之下的檔案："
-
-#: ../GMenu/data/messages:107
-msgid "in days. Set 0 if unsued."
-msgstr "以日為單位。設定為 0 時不使用這個篩選器。"
-
-#: ../GMenu/data/messages:109
-msgid "Only show files whose last modification date is less than ;"
-msgstr "只顯示檔案的最後修改日期小於；"
-
-#: ../GMenu/data/messages:111
-msgid "Session management buttons"
-msgstr ""
-
-#: ../GMenu/data/messages:113
 msgid "Show Logout and/or Shutdown : "
 msgstr ""
 
-#: ../Global-Menu/data/messages:87
+#: ../Global-Menu/data/messages:85
 msgid ""
 "The applet can steal the top border of maximized windows, in which case it "
 "will display the window control buttons.\n"
@@ -5480,139 +5449,139 @@ msgid ""
 "display a button to pop up the menu of the current window."
 msgstr ""
 
-#: ../Global-Menu/data/messages:91
+#: ../Global-Menu/data/messages:89
 msgid "Steal window menu"
 msgstr ""
 
-#: ../Global-Menu/data/messages:93
+#: ../Global-Menu/data/messages:91
 msgid "Steal window decoration"
 msgstr ""
 
-#: ../Global-Menu/data/messages:95
+#: ../Global-Menu/data/messages:93
 msgid "Steal window menu and border"
 msgstr ""
 
-#: ../Global-Menu/data/messages:97
+#: ../Global-Menu/data/messages:95
 msgid "Shortkey to pop up the menu"
 msgstr ""
 
-#: ../Global-Menu/data/messages:99
+#: ../Global-Menu/data/messages:97
 msgid "Pop up the menu at mouse position"
 msgstr ""
 
-#: ../Global-Menu/data/messages:101
+#: ../Global-Menu/data/messages:99
 msgid "Compact mode"
 msgstr ""
 
-#: ../Global-Menu/data/messages:103
+#: ../Global-Menu/data/messages:101
 msgid "Order of the buttons: "
 msgstr ""
 
-#: ../Global-Menu/data/messages:105
+#: ../Global-Menu/data/messages:103
 msgid "Auto"
 msgstr ""
 
-#: ../Global-Menu/data/messages:107
+#: ../Global-Menu/data/messages:105
 msgid "Close button at the end"
 msgstr ""
 
-#: ../Global-Menu/data/messages:109
+#: ../Global-Menu/data/messages:107
 msgid "Close button at first"
 msgstr ""
 
-#: ../Global-Menu/data/messages:111
+#: ../Global-Menu/data/messages:109
 msgid "Image for the 'minimize' button"
 msgstr ""
 
-#: ../Global-Menu/data/messages:113
+#: ../Global-Menu/data/messages:111
 msgid "Image for the 'maximize' button"
 msgstr ""
 
-#: ../Global-Menu/data/messages:115
+#: ../Global-Menu/data/messages:113
 msgid "Image for the 'restore' button"
 msgstr ""
 
-#: ../Global-Menu/data/messages:117
+#: ../Global-Menu/data/messages:115
 msgid "Image for the 'close' button"
 msgstr ""
 
-#: ../Impulse/data/messages:89
+#: ../Impulse/data/messages:87
 msgid "Animation of the icons:"
 msgstr ""
 
-#: ../Impulse/data/messages:91
+#: ../Impulse/data/messages:89
 msgid ""
 "Do we have to stop the animation on a icon which doesn't have to be animated "
 "each refresh?"
 msgstr ""
 
-#: ../Impulse/data/messages:93
+#: ../Impulse/data/messages:91
 msgid "Stop animations sooner?"
 msgstr ""
 
-#: ../Impulse/data/messages:95 ../alsaMixer/data/messages:133
+#: ../Impulse/data/messages:93 ../alsaMixer/data/messages:131
 msgid "Control"
 msgstr "控制"
 
-#: ../Impulse/data/messages:97
+#: ../Impulse/data/messages:95
 msgid ""
 "It's the sensitivity in order to know if the animation is played or not."
 msgstr ""
 
-#: ../Impulse/data/messages:99
+#: ../Impulse/data/messages:97
 msgid "Sensitivity of the animation:"
 msgstr ""
 
-#: ../Impulse/data/messages:101 ../Impulse/data/messages:111
+#: ../Impulse/data/messages:99 ../Impulse/data/messages:109
 msgid "More"
 msgstr ""
 
-#: ../Impulse/data/messages:103 ../Impulse/data/messages:109
+#: ../Impulse/data/messages:101 ../Impulse/data/messages:107
 msgid "Less"
 msgstr ""
 
-#: ../Impulse/data/messages:105
+#: ../Impulse/data/messages:103
 msgid "in ms."
 msgstr "以毫秒(ms)為單位"
 
-#: ../Impulse/data/messages:107
+#: ../Impulse/data/messages:105
 msgid "Time between two animations:"
 msgstr ""
 
-#: ../Impulse/data/messages:113
+#: ../Impulse/data/messages:111
 msgid "Action at Startup"
 msgstr ""
 
-#: ../Impulse/data/messages:115
+#: ../Impulse/data/messages:113
 msgid "Launch automatically at startup?"
 msgstr ""
 
-#: ../Impulse/data/messages:117
+#: ../Impulse/data/messages:115
 msgid "Hide the icon?"
 msgstr ""
 
-#: ../Impulse/data/messages:121
+#: ../Impulse/data/messages:119
 msgid "Image when the applet is active:"
 msgstr ""
 
-#: ../Impulse/data/messages:123
+#: ../Impulse/data/messages:121
 msgid "Image when the applet is inactive:"
 msgstr ""
 
-#: ../Impulse/data/messages:125 ../musicPlayer/data/messages:205
+#: ../Impulse/data/messages:123 ../musicPlayer/data/messages:203
 #: ../tomboy/data/messages:21
 msgid "'Broken' icon image name:"
 msgstr "「毀損」圖示的檔案名稱："
 
-#: ../Impulse/data/messages:127
+#: ../Impulse/data/messages:125
 msgid "PulseAudio"
 msgstr ""
 
-#: ../Impulse/data/messages:129
+#: ../Impulse/data/messages:127
 msgid "0 in most cases"
 msgstr ""
 
-#: ../Impulse/data/messages:131
+#: ../Impulse/data/messages:129
 msgid "Index of the source:"
 msgstr ""
 
@@ -5660,7 +5629,7 @@ msgstr ""
 msgid "Background color to add in this case"
 msgstr ""
 
-#: ../Messaging-Menu/data/messages:99
+#: ../Messaging-Menu/data/messages:97
 msgid ""
 "Animation of the icon when one of the application demands your attention :"
 msgstr "當一個應用程式要求您注意時圖示的動畫："
@@ -5669,164 +5638,164 @@ msgstr "當一個應用程式要求您注意時圖示的動畫："
 msgid "Leave empty to use the connection name."
 msgstr "讓它空白來使用連線作業自己的名稱。"
 
-#: ../Network-Monitor/data/messages:101 ../Network-Monitor/data/messages:173
-#: ../Network-Monitor/data/messages:261 ../System-Monitor/data/messages:143
-#: ../netspeed/data/messages:143 ../powermanager/data/messages:143
-#: ../tomboy/data/messages:123 ../wifi/data/messages:153
+#: ../Network-Monitor/data/messages:99 ../Network-Monitor/data/messages:171
+#: ../Network-Monitor/data/messages:259 ../System-Monitor/data/messages:141
+#: ../netspeed/data/messages:141 ../powermanager/data/messages:141
+#: ../tomboy/data/messages:121 ../wifi/data/messages:151
 msgid "Parameters"
 msgstr "參數"
 
-#: ../Network-Monitor/data/messages:103
+#: ../Network-Monitor/data/messages:101
 msgid "You can quickly switch to the other mode by scrolling on the icon."
 msgstr "您可以用滑鼠滾輪來快速的切換到其他模式。"
 
-#: ../Network-Monitor/data/messages:105
+#: ../Network-Monitor/data/messages:103
 msgid "Info displayed by the icon:"
 msgstr "在圖示上面顯示資訊："
 
-#: ../Network-Monitor/data/messages:107
+#: ../Network-Monitor/data/messages:105
 msgid "Wifi signal"
 msgstr "Wifi 訊號"
 
-#: ../Network-Monitor/data/messages:109
+#: ../Network-Monitor/data/messages:107
 msgid "Connexion speed"
 msgstr "連線速度"
 
-#: ../Network-Monitor/data/messages:111
+#: ../Network-Monitor/data/messages:109
 msgid "By default the first active interface is used."
 msgstr "預設值為第一個使用中的網路卡。"
 
-#: ../Network-Monitor/data/messages:113
+#: ../Network-Monitor/data/messages:111
 msgid "Connection interface to monitor:"
 msgstr "要監視的可連線界面卡："
 
-#: ../Network-Monitor/data/messages:115
+#: ../Network-Monitor/data/messages:113
 msgid "Display numeric values:"
 msgstr "顯示數字值："
 
-#: ../Network-Monitor/data/messages:123 ../System-Monitor/data/messages:173
-#: ../wifi/data/messages:159
+#: ../Network-Monitor/data/messages:121 ../System-Monitor/data/messages:171
+#: ../wifi/data/messages:157
 msgid ""
 "You need OpenGL for this option. Set it to 0 means not used, 1 means the "
 "movement is continue."
 msgstr ""
 "您需要有OpenGL才能使用這個選項。設定為 0 時不使用，1 是指繼續動作下去。"
 
-#: ../Network-Monitor/data/messages:125
+#: ../Network-Monitor/data/messages:123
 msgid "Fluidity of the transition animation between 2 values:"
 msgstr "流量的動畫範圍(在設定的兩個數值之間)："
 
-#: ../Network-Monitor/data/messages:127
+#: ../Network-Monitor/data/messages:125
 msgid "Animation of the icon when connecting:"
 msgstr "當網路連線時圖示的動畫："
 
-#: ../Network-Monitor/data/messages:129
+#: ../Network-Monitor/data/messages:127
 msgid ""
 "Allow you to overwrite applet's default command line and launch your "
 "preferred wireless configuration interface."
 msgstr "允許您覆蓋面板程式的預設命令，並啟動您首選的無線配置界面。"
 
-#: ../Network-Monitor/data/messages:131
+#: ../Network-Monitor/data/messages:129
 msgid "User command to show Wireless Configuration:"
 msgstr "顯示無線網路設定的使用者自定義指令："
 
-#: ../Network-Monitor/data/messages:135 ../System-Monitor/data/messages:187
-#: ../netspeed/data/messages:167
+#: ../Network-Monitor/data/messages:133 ../System-Monitor/data/messages:185
+#: ../netspeed/data/messages:165
 msgid "User command to display a system monitor:"
 msgstr "顯示系統監控的使用者自訂指令："
 
-#: ../Network-Monitor/data/messages:137
+#: ../Network-Monitor/data/messages:135
 msgid "Net Speed"
 msgstr "網路速度"
 
-#: ../Network-Monitor/data/messages:163 ../Network-Monitor/data/messages:207
-#: ../wifi/data/messages:125
+#: ../Network-Monitor/data/messages:161 ../Network-Monitor/data/messages:205
+#: ../wifi/data/messages:123
 msgid "It's the colour of the graphic for high quality signal."
 msgstr "當高負載時圖表訊號的顏色。"
 
-#: ../Network-Monitor/data/messages:167 ../Network-Monitor/data/messages:211
-#: ../wifi/data/messages:129
+#: ../Network-Monitor/data/messages:165 ../Network-Monitor/data/messages:209
+#: ../wifi/data/messages:127
 msgid "It's the colour of the graphic for low quality signal."
 msgstr "當低負載時圖表訊號的顏色。"
 
-#: ../Network-Monitor/data/messages:177
+#: ../Network-Monitor/data/messages:175
 msgid "Delays between net speed checks:"
 msgstr "檢查網路速度的時間："
 
-#: ../Network-Monitor/data/messages:181
+#: ../Network-Monitor/data/messages:179
 msgid "Choose the style of the display:"
 msgstr "選擇顯示的風格："
 
-#: ../Network-Monitor/data/messages:187 ../Network-Monitor/data/messages:217
-#: ../powermanager/data/messages:137
+#: ../Network-Monitor/data/messages:185 ../Network-Monitor/data/messages:215
+#: ../powermanager/data/messages:135
 msgid "Icons"
 msgstr "圖示"
 
-#: ../Network-Monitor/data/messages:219
+#: ../Network-Monitor/data/messages:217
 msgid "Effect to apply on the icon according to strength :"
 msgstr "根據訊號強度改變圖示顯示效果："
 
-#: ../Network-Monitor/data/messages:223
+#: ../Network-Monitor/data/messages:221
 msgid "Zoom"
 msgstr "縮放"
 
-#: ../Network-Monitor/data/messages:225
+#: ../Network-Monitor/data/messages:223
 msgid "Transparency"
 msgstr "透明度"
 
-#: ../Network-Monitor/data/messages:227
+#: ../Network-Monitor/data/messages:225
 msgid "Draw Bar"
 msgstr "拉桿"
 
-#: ../Network-Monitor/data/messages:229 ../Network-Monitor/data/messages:233
-#: ../Network-Monitor/data/messages:237 ../Network-Monitor/data/messages:241
-#: ../Network-Monitor/data/messages:245 ../Network-Monitor/data/messages:249
-#: ../Network-Monitor/data/messages:253 ../Network-Monitor/data/messages:257
-#: ../logout/data/messages:109 ../musicPlayer/data/messages:187
-#: ../musicPlayer/data/messages:191 ../musicPlayer/data/messages:195
-#: ../musicPlayer/data/messages:199 ../musicPlayer/data/messages:203
+#: ../Network-Monitor/data/messages:227 ../Network-Monitor/data/messages:231
+#: ../Network-Monitor/data/messages:235 ../Network-Monitor/data/messages:239
+#: ../Network-Monitor/data/messages:243 ../Network-Monitor/data/messages:247
+#: ../Network-Monitor/data/messages:251 ../Network-Monitor/data/messages:255
+#: ../logout/data/messages:107 ../musicPlayer/data/messages:185
+#: ../musicPlayer/data/messages:189 ../musicPlayer/data/messages:193
+#: ../musicPlayer/data/messages:197 ../musicPlayer/data/messages:201
 #: ../tomboy/data/messages:11 ../tomboy/data/messages:15
-#: ../tomboy/data/messages:19 ../tomboy/data/messages:105
+#: ../tomboy/data/messages:19 ../tomboy/data/messages:103
 msgid "Leave empty to use the default icon."
 msgstr "空白將會使用預設的圖示。"
 
-#: ../Network-Monitor/data/messages:231
+#: ../Network-Monitor/data/messages:229
 msgid "Name of the image for the 'No signal' icon :"
 msgstr "「沒訊號」圖示的影像名稱："
 
-#: ../Network-Monitor/data/messages:235
+#: ../Network-Monitor/data/messages:233
 msgid "Name of the image for the 'Very low' icon :"
 msgstr "「非常低」圖示的影像名稱："
 
-#: ../Network-Monitor/data/messages:239
+#: ../Network-Monitor/data/messages:237
 msgid "Name of the image for the 'Low' icon :"
 msgstr "「低落」圖示的影像名稱："
 
-#: ../Network-Monitor/data/messages:243
+#: ../Network-Monitor/data/messages:241
 msgid "Name of the image for the 'Middle' icon :"
 msgstr "「中」圖示的影像名稱："
 
-#: ../Network-Monitor/data/messages:247
+#: ../Network-Monitor/data/messages:245
 msgid "Name of an image for the 'Good' icon :"
 msgstr "「很好」圖示的影像名稱："
 
-#: ../Network-Monitor/data/messages:251
+#: ../Network-Monitor/data/messages:249
 msgid "Name of the image for the 'Excellent' icon :"
 msgstr "「好極了」圖示的影像名稱："
 
-#: ../Network-Monitor/data/messages:255
+#: ../Network-Monitor/data/messages:253
 msgid "Name of the image for the 'Not connected' icon :"
 msgstr "「未連線」圖示的影像名稱："
 
-#: ../Network-Monitor/data/messages:259
+#: ../Network-Monitor/data/messages:257
 msgid "Name of the image for the 'Wired connection' icon :"
 msgstr "「有線連線」圖示的影像名稱："
 
-#: ../Network-Monitor/data/messages:263
+#: ../Network-Monitor/data/messages:261
 msgid "in seconds. if you don't have Network-Manager."
 msgstr "以秒表示。(假如您沒 Network-Manager 才需要設定。)"
 
-#: ../Network-Monitor/data/messages:265
+#: ../Network-Monitor/data/messages:263
 msgid "Delays between wifi signal checks:"
 msgstr "檢查 wifi 訊號的時間："
 
@@ -5834,165 +5803,169 @@ msgstr "檢查 wifi 訊號的時間："
 msgid "Leave empty to use the title of the RSS feed."
 msgstr "讓它空白來使用 RSS 提要的標題。"
 
-#: ../RSSreader/data/messages:93
+#: ../RSSreader/data/messages:91
 msgid "RSS Feed"
 msgstr "RSS提要"
 
-#: ../RSSreader/data/messages:95
+#: ../RSSreader/data/messages:93
 msgid "Enter a valid atom/rss feed"
 msgstr "輸入一個有效的 atom / RSS 提要"
 
-#: ../RSSreader/data/messages:97
+#: ../RSSreader/data/messages:95
 msgid "URL:"
 msgstr "網址："
 
-#: ../RSSreader/data/messages:99
+#: ../RSSreader/data/messages:97
 msgid "RSS login (optional):"
 msgstr "RSS 登錄 (選用)："
 
-#: ../RSSreader/data/messages:101
+#: ../RSSreader/data/messages:99
 msgid "RSS password (optional):"
 msgstr "RSS 密碼 (選用)："
 
-#: ../RSSreader/data/messages:109
+#: ../RSSreader/data/messages:107
 msgid "Notify about feed updates:"
 msgstr "關於通知內容更新："
 
-#: ../RSSreader/data/messages:113 ../powermanager/data/messages:189
+#: ../RSSreader/data/messages:111 ../powermanager/data/messages:187
 msgid "Icon animation"
 msgstr "圖示動畫"
 
-#: ../RSSreader/data/messages:115 ../powermanager/data/messages:191
+#: ../RSSreader/data/messages:113 ../powermanager/data/messages:189
 msgid "Dialog bubble"
 msgstr "彈出式視窗"
 
-#: ../RSSreader/data/messages:117 ../powermanager/data/messages:193
+#: ../RSSreader/data/messages:115 ../powermanager/data/messages:191
 msgid "Icon animation + Dialog bubble"
 msgstr "圖示動畫 + 彈出式視窗"
 
-#: ../RSSreader/data/messages:119 ../powermanager/data/messages:195
+#: ../RSSreader/data/messages:117 ../powermanager/data/messages:193
 msgid "Let empty to use the default notification animation."
 msgstr "使用預設的通知動畫時請讓它空白。"
 
-#: ../RSSreader/data/messages:121 ../powermanager/data/messages:197
+#: ../RSSreader/data/messages:119 ../powermanager/data/messages:195
 msgid "Animation of the icon:"
 msgstr "圖示的動畫："
 
-#: ../RSSreader/data/messages:123 ../powermanager/data/messages:199
+#: ../RSSreader/data/messages:121 ../powermanager/data/messages:197
 msgid ""
 "In seconds. Set to 0 for infinite time (need to click on dialog to close it)."
 msgstr "以秒表示。設定為 0 時為無限大(需要點擊交談視窗來關閉它)。"
 
-#: ../RSSreader/data/messages:125 ../powermanager/data/messages:201
+#: ../RSSreader/data/messages:123 ../powermanager/data/messages:199
 msgid "Duration of the notification:"
 msgstr "通知的時間長短："
 
-#: ../RSSreader/data/messages:127
+#: ../RSSreader/data/messages:125
 msgid "Open the feed with the following program:"
 msgstr "以下列的程式來開啟提要："
 
-#: ../RSSreader/data/messages:133
+#: ../RSSreader/data/messages:131
 msgid "Font to be used for the title"
 msgstr "用於標題的字體"
 
-#: ../RSSreader/data/messages:135
+#: ../RSSreader/data/messages:133
 msgid "Title font:"
 msgstr "標題字體"
 
-#: ../RSSreader/data/messages:137
+#: ../RSSreader/data/messages:135
 msgid "Colour to be used for the title"
 msgstr "標題上的顏色"
 
-#: ../RSSreader/data/messages:139
+#: ../RSSreader/data/messages:137
 msgid "Title colour:"
 msgstr "標題顏色："
 
-#: ../RSSreader/data/messages:141
+#: ../RSSreader/data/messages:139
 msgid "Alignment of the title:"
 msgstr "標題對齊方式："
 
-#: ../RSSreader/data/messages:143
+#: ../RSSreader/data/messages:141
 msgid "left"
 msgstr "左邊"
 
-#: ../RSSreader/data/messages:145
+#: ../RSSreader/data/messages:143
 msgid "right"
 msgstr "右邊"
 
-#: ../RSSreader/data/messages:149
+#: ../RSSreader/data/messages:147
 msgid "Font to be used for the feed lines"
 msgstr "顯示提要列用的字型"
 
-#: ../RSSreader/data/messages:151
+#: ../RSSreader/data/messages:149
 msgid "Feed lines font:"
 msgstr "提要列的文字字型："
 
-#: ../RSSreader/data/messages:153
+#: ../RSSreader/data/messages:151
 msgid "Colour to be used for the feed lines"
 msgstr "提要列上的顏色"
 
-#: ../RSSreader/data/messages:155
+#: ../RSSreader/data/messages:153
 msgid "Feed lines colour:"
 msgstr "提要列的顏色："
 
-#: ../RSSreader/data/messages:157
+#: ../RSSreader/data/messages:155
 msgid "Left margin for the feed lines:"
 msgstr "提要列靠左："
 
-#: ../RSSreader/data/messages:159
+#: ../RSSreader/data/messages:157
 msgid "Space between 2 feed lines:"
 msgstr "兩列提要之間的距離："
 
-#: ../RSSreader/data/messages:161
+#: ../RSSreader/data/messages:159
 msgid "Logo"
 msgstr "標誌"
 
-#: ../RSSreader/data/messages:163
+#: ../RSSreader/data/messages:161
 msgid "The default logo is the applet's icon"
 msgstr "預設的標誌是面板程式的圖示"
 
-#: ../RSSreader/data/messages:165
+#: ../RSSreader/data/messages:163
 msgid "Display the logo?"
 msgstr "顯示標誌?"
 
-#: ../RSSreader/data/messages:167
+#: ../RSSreader/data/messages:165
 msgid "Adjust to increase/decrease the logo's size"
 msgstr "可以 放大/縮小 標誌的大小"
 
-#: ../RSSreader/data/messages:169
+#: ../RSSreader/data/messages:167
 msgid "Logo size:"
 msgstr "標誌大小："
 
-#: ../RSSreader/data/messages:171 ../dock-rendering/data/messages:47
-#: ../keyboard-indicator/data/messages:123
+#: ../RSSreader/data/messages:169 ../dock-rendering/data/messages:47
+#: ../keyboard-indicator/data/messages:121
 msgid "normal"
 msgstr "正常"
 
-#: ../RSSreader/data/messages:173 ../dock-rendering/data/messages:49
+#: ../RSSreader/data/messages:171 ../dock-rendering/data/messages:49
 msgid "big"
 msgstr "大"
 
-#: ../Recent-Events/data/messages:91
+#: ../Recent-Events/data/messages:89
 msgid "Shortkey to show/hide the search dialog"
 msgstr ""
 
-#: ../Recent-Events/data/messages:93
+#: ../Recent-Events/data/messages:91
 msgid "Max number of results to show"
 msgstr ""
 
-#: ../Remote-Control/data/messages:3
+#: ../Remote-Control/data/messages:1 ../Scooby-Do/data/messages:113
+msgid "Help"
+msgstr "求助"
+
+#: ../Remote-Control/data/messages:5
 msgid "Shortkey to trigger the applet:"
 msgstr "啟動面板程式的快速鍵："
 
-#: ../Remote-Control/data/messages:5
+#: ../Remote-Control/data/messages:7
 msgid "Dock to control initially"
 msgstr ""
 
-#: ../Remote-Control/data/messages:7 ../Scooby-Do/data/messages:23
+#: ../Remote-Control/data/messages:9 ../Scooby-Do/data/messages:23
 msgid "Animation of the current icon :"
 msgstr "目前圖示的動畫："
 
-#: ../Remote-Control/data/messages:11 ../Scooby-Do/data/messages:21
+#: ../Remote-Control/data/messages:13 ../Scooby-Do/data/messages:21
 msgid "Duration of the stop animation :"
 msgstr "停止動畫的時間長短："
 
@@ -6049,11 +6022,11 @@ msgstr "從 1 到 9 之間，越大愈重。"
 msgid "Text size:"
 msgstr "文字重量："
 
-#: ../Scooby-Do/data/messages:37 ../keyboard-indicator/data/messages:115
+#: ../Scooby-Do/data/messages:37 ../keyboard-indicator/data/messages:113
 msgid "Outline text?"
 msgstr "文字要有外框嗎？"
 
-#: ../Scooby-Do/data/messages:39 ../clock/data/messages:155
+#: ../Scooby-Do/data/messages:39 ../clock/data/messages:153
 msgid "Text colour:"
 msgstr "文字色彩："
 
@@ -6181,12 +6154,8 @@ msgstr "建議的網路搜尋引擎？"
 msgid "It can launch commands and even do some calculations."
 msgstr "它可以執行指令，甚至做一些計算。"
 
-#: ../Scooby-Do/data/messages:113
-msgid "Help"
-msgstr "求助"
-
-#: ../Status-Notifier/data/messages:9 ../mail/data/messages:107
-#: ../mail/data/messages:111 ../mail/data/messages:127
+#: ../Status-Notifier/data/messages:9 ../mail/data/messages:105
+#: ../mail/data/messages:109 ../mail/data/messages:125
 msgid "Let empty to use the default one."
 msgstr "空白來使用預設的那個設定。"
 
@@ -6194,215 +6163,215 @@ msgstr "空白來使用預設的那個設定。"
 msgid "Image's filename :"
 msgstr "圖檔的名稱："
 
-#: ../Status-Notifier/data/messages:105
+#: ../Status-Notifier/data/messages:103
 msgid "Hide inactive items"
 msgstr ""
 
-#: ../Status-Notifier/data/messages:107
+#: ../Status-Notifier/data/messages:105
 msgid "How to display items:"
 msgstr ""
 
-#: ../Status-Notifier/data/messages:109
+#: ../Status-Notifier/data/messages:107
 msgid "Compact"
 msgstr ""
 
-#: ../Status-Notifier/data/messages:111
+#: ../Status-Notifier/data/messages:109
 msgid "Sub-dock"
 msgstr ""
 
-#: ../Status-Notifier/data/messages:113
+#: ../Status-Notifier/data/messages:111
 msgid "Allow the icon to automatically resize itself?"
 msgstr ""
 
-#: ../Status-Notifier/data/messages:115
+#: ../Status-Notifier/data/messages:113
 msgid "Number of lines to pack items in:"
 msgstr ""
 
-#: ../Status-Notifier/data/messages:119
+#: ../Status-Notifier/data/messages:117
 msgid "Left click pops up the items' menu"
 msgstr ""
 
-#: ../System-Monitor/data/messages:99 ../alsaMixer/data/messages:109
-#: ../powermanager/data/messages:101 ../wifi/data/messages:99
+#: ../System-Monitor/data/messages:97 ../alsaMixer/data/messages:107
+#: ../powermanager/data/messages:99 ../wifi/data/messages:97
 #, fuzzy
 msgid "Display style"
 msgstr "顯示"
 
-#: ../System-Monitor/data/messages:107 ../alsaMixer/data/messages:121
-#: ../powermanager/data/messages:111 ../wifi/data/messages:109
+#: ../System-Monitor/data/messages:105 ../alsaMixer/data/messages:119
+#: ../powermanager/data/messages:109 ../wifi/data/messages:107
 #, fuzzy
 msgid "Gauge theme"
 msgstr "計量表"
 
-#: ../System-Monitor/data/messages:131 ../powermanager/data/messages:127
+#: ../System-Monitor/data/messages:129 ../powermanager/data/messages:125
 msgid "It's the colour of the graphic for high values."
 msgstr "這是圖形在高數值時的顏色。"
 
-#: ../System-Monitor/data/messages:135 ../powermanager/data/messages:131
+#: ../System-Monitor/data/messages:133 ../powermanager/data/messages:129
 msgid "It's the colour of the graphic for low values."
 msgstr "這是圖形在低數值時的顏色。"
 
-#: ../System-Monitor/data/messages:145
+#: ../System-Monitor/data/messages:143
 msgid "Show CPU usage?"
 msgstr "顯示 CPU 使用率？"
 
-#: ../System-Monitor/data/messages:147
+#: ../System-Monitor/data/messages:145
 msgid "Show RAM usage ?"
 msgstr "顯示 RAM 使用率？"
 
-#: ../System-Monitor/data/messages:149
+#: ../System-Monitor/data/messages:147
 msgid "Show SWAP too?"
 msgstr "也顯示 SWAP 嗎？"
 
-#: ../System-Monitor/data/messages:151
+#: ../System-Monitor/data/messages:149
 msgid "You need an nVidia card and the 'nvidia-settings' tool."
 msgstr "您需要有 nVidia 顯示卡與 'nvidia-settings' 工具。"
 
-#: ../System-Monitor/data/messages:153
+#: ../System-Monitor/data/messages:151
 msgid "Show graphic card's temperature?"
 msgstr "顯示卡溫度？"
 
-#: ../System-Monitor/data/messages:155
+#: ../System-Monitor/data/messages:153
 msgid "Show CPU temperature?"
 msgstr ""
 
-#: ../System-Monitor/data/messages:157
+#: ../System-Monitor/data/messages:155
 msgid "Show fan speed?"
 msgstr ""
 
-#: ../System-Monitor/data/messages:159
+#: ../System-Monitor/data/messages:157
 msgid "Show free memory instead of used memory?"
 msgstr "以閒置記憶體來替代已經使用的記憶體？"
 
-#: ../System-Monitor/data/messages:161
+#: ../System-Monitor/data/messages:159
 msgid "Display values :"
 msgstr "顯示值："
 
-#: ../System-Monitor/data/messages:171
+#: ../System-Monitor/data/messages:169
 msgid "Delay between refreshes:"
 msgstr "刷新的間隔時間："
 
-#: ../System-Monitor/data/messages:175 ../wifi/data/messages:161
+#: ../System-Monitor/data/messages:173 ../wifi/data/messages:159
 msgid "How smooth is the movement?"
 msgstr "動作的平滑度？"
 
-#: ../System-Monitor/data/messages:177
+#: ../System-Monitor/data/messages:175
 msgid "Alerts"
 msgstr ""
 
-#: ../System-Monitor/data/messages:179
+#: ../System-Monitor/data/messages:177
 msgid "Show alerts?"
 msgstr ""
 
-#: ../System-Monitor/data/messages:181
+#: ../System-Monitor/data/messages:179
 msgid "Play a sound when displaying warning?"
 msgstr "警告的同時也使用聲音警告？"
 
-#: ../System-Monitor/data/messages:183
+#: ../System-Monitor/data/messages:181
 msgid "Path to sound file:"
 msgstr "警告聲音檔案的路徑："
 
-#: ../System-Monitor/data/messages:185
+#: ../System-Monitor/data/messages:183
 msgid "System-Monitor"
 msgstr ""
 
-#: ../System-Monitor/data/messages:189
+#: ../System-Monitor/data/messages:187
 msgid ""
 "It will prevent the system monitor's icon to show in the taskbar. The "
 "applet's icon will then behave as a launcher, an application, and an applet."
 msgstr ""
 "它會阻止系統監視器的圖示出現在工具列上，此面板程式的圖示會像是快速啟動一樣。"
 
-#: ../System-Monitor/data/messages:191
+#: ../System-Monitor/data/messages:189
 msgid "Steal the system monitor's icon from the taskbar?"
 msgstr "在工具列上面顯示系統監視器自己的圖示？"
 
-#: ../System-Monitor/data/messages:193
+#: ../System-Monitor/data/messages:191
 msgid "Class of the system monitor program:"
 msgstr "系統的監控程式的類型："
 
-#: ../System-Monitor/data/messages:195
+#: ../System-Monitor/data/messages:193
 msgid "Top List"
 msgstr "最高的清單："
 
-#: ../System-Monitor/data/messages:197
+#: ../System-Monitor/data/messages:195
 msgid ""
 "When you left-click on the icon, you will get the list of the N most CPU/RAM-"
 "intensive programs."
 msgstr ""
 "當您在圖示上面按下滑鼠左鍵時，您將會看到已執行的應用程式 CPU / RAM 使用率。"
 
-#: ../System-Monitor/data/messages:199
+#: ../System-Monitor/data/messages:197
 msgid "Number of programs to display in the top list:"
 msgstr "顯示最高負載的程式數量清單："
 
-#: ../System-Monitor/data/messages:201
+#: ../System-Monitor/data/messages:199
 msgid "The first colour of the gradient used to display the top list."
 msgstr "這是高負載列表的上半部漸層起始顏色。"
 
-#: ../System-Monitor/data/messages:203
+#: ../System-Monitor/data/messages:201
 msgid "Top list start colour:"
 msgstr "高負載列表漸層起始顏色："
 
-#: ../System-Monitor/data/messages:205
+#: ../System-Monitor/data/messages:203
 msgid "The second colour of the gradient used to display the top list."
 msgstr "這是高負載列表的下半部漸層終止顏色。"
 
-#: ../System-Monitor/data/messages:207
+#: ../System-Monitor/data/messages:205
 msgid "Top list stop colour:"
 msgstr "高負載列表漸層終止顏色："
 
-#: ../System-Monitor/data/messages:209
+#: ../System-Monitor/data/messages:207
 msgid "Show top memory usage in %?"
 msgstr "顯示最高記憶體使用(以 % 表示)？"
 
-#: ../System-Monitor/data/messages:213
+#: ../System-Monitor/data/messages:211
 msgid "Delay between top list refreshes:"
 msgstr "刷新高負載列表的間隔時間："
 
-#: ../System-Monitor/data/messages:215
+#: ../System-Monitor/data/messages:213
 msgid "Graphic Card temperature"
 msgstr "顯示卡溫度"
 
-#: ../System-Monitor/data/messages:217 ../System-Monitor/data/messages:221
+#: ../System-Monitor/data/messages:215 ../System-Monitor/data/messages:219
 msgid ""
 "in Celsius. The temperature will be displayed between this value and the "
 "upper limit."
 msgstr "以攝氏度表示。將會顯示在您設定的這個數值到上限之間的溫度。"
 
-#: ../System-Monitor/data/messages:219
+#: ../System-Monitor/data/messages:217
 msgid "Lower limit of graphic card temperature:"
 msgstr "最低顯卡核心溫度："
 
-#: ../System-Monitor/data/messages:223
+#: ../System-Monitor/data/messages:221
 msgid "Upper limit of graphic card temperature:"
 msgstr "最高顯卡核心溫度："
 
-#: ../System-Monitor/data/messages:225
+#: ../System-Monitor/data/messages:223
 msgid "in celcius."
 msgstr "以攝氏度為單位。"
 
-#: ../System-Monitor/data/messages:227
+#: ../System-Monitor/data/messages:225
 msgid "Notification limit of graphic card temperature:"
 msgstr "顯示卡極限溫度通知："
 
-#: ../Toons/data/messages:103
+#: ../Toons/data/messages:101
 msgid "Mean delay between winks:"
 msgstr "眨眼之間的平均延遲時間："
 
-#: ../Toons/data/messages:107
+#: ../Toons/data/messages:105
 msgid "Wink duration:"
 msgstr "眨眼時間："
 
-#: ../Toons/data/messages:109
+#: ../Toons/data/messages:107
 msgid "Keep ratio?"
 msgstr "保持比例？"
 
-#: ../Toons/data/messages:111
+#: ../Toons/data/messages:109
 msgid "A high refresh frequency will use more CPU."
 msgstr "高刷新頻率將使用更多的 CPU 運算資源。"
 
-#: ../Toons/data/messages:113
+#: ../Toons/data/messages:111
 msgid "High refresh frequency?"
 msgstr "高刷新頻率？"
 
@@ -6410,68 +6379,68 @@ msgstr "高刷新頻率？"
 msgid "Leave empty to display the current luminosity."
 msgstr ""
 
-#: ../Xgamma/data/messages:93 ../alsaMixer/data/messages:137
+#: ../Xgamma/data/messages:91 ../alsaMixer/data/messages:135
 msgid "Variation for 1 mouse scroll, in %:"
 msgstr "鼠標滾動1格變化量，以 ％ 表示："
 
-#: ../Xgamma/data/messages:95
+#: ../Xgamma/data/messages:93
 msgid "Use 0 for none."
 msgstr "設定 0 不使用它。"
 
-#: ../Xgamma/data/messages:97
+#: ../Xgamma/data/messages:95
 msgid "Brightness to apply automatically on startup:"
 msgstr "在系統啟動時自動調整亮度："
 
-#: ../Xgamma/data/messages:99
+#: ../Xgamma/data/messages:97
 msgid "Shortkey to increase the brightness:"
 msgstr ""
 
-#: ../Xgamma/data/messages:101
+#: ../Xgamma/data/messages:99
 msgid "Shortkey to decrease the brightness:"
 msgstr ""
 
-#: ../alsaMixer/data/messages:101
+#: ../alsaMixer/data/messages:99
 msgid "Display volume :"
 msgstr "顯示音量："
 
-#: ../alsaMixer/data/messages:113 ../powermanager/data/messages:107
-#: ../wifi/data/messages:105
+#: ../alsaMixer/data/messages:111 ../powermanager/data/messages:105
+#: ../wifi/data/messages:103
 msgid "Icon with progress bar"
 msgstr ""
 
-#: ../alsaMixer/data/messages:117 ../wifi/data/messages:137
+#: ../alsaMixer/data/messages:115 ../wifi/data/messages:135
 msgid "Default icon:"
 msgstr "預設圖示："
 
-#: ../alsaMixer/data/messages:119
+#: ../alsaMixer/data/messages:117
 msgid "Mute icon:"
 msgstr "靜音圖示："
 
-#: ../alsaMixer/data/messages:131
+#: ../alsaMixer/data/messages:129
 msgid "Broken icon:"
 msgstr "毀損圖示："
 
-#: ../alsaMixer/data/messages:135
+#: ../alsaMixer/data/messages:133
 msgid "Shortkey to show/hide the sound control dialog:"
 msgstr "顯示/隱藏聲音控制對話框的快速鍵："
 
-#: ../alsaMixer/data/messages:139
+#: ../alsaMixer/data/messages:137
 msgid "Hide the scale when mouse leaves the desklet?"
 msgstr "當滑鼠游標離開桌面小工具時隱藏聲音調整器？"
 
-#: ../alsaMixer/data/messages:141
+#: ../alsaMixer/data/messages:139
 msgid "Alsa"
 msgstr "Alsa"
 
-#: ../alsaMixer/data/messages:143
+#: ../alsaMixer/data/messages:141
 msgid "Sound card:"
 msgstr "要控制的音效卡："
 
-#: ../alsaMixer/data/messages:145
+#: ../alsaMixer/data/messages:143
 msgid "Select channel:"
 msgstr "要控制哪個通道："
 
-#: ../alsaMixer/data/messages:147
+#: ../alsaMixer/data/messages:145
 msgid ""
 "On some cards, a channel only controls 1 side (right or left). You will then "
 "need to specify a second channel here, to control both sides. Most of the "
@@ -6480,11 +6449,11 @@ msgstr ""
 "有一些卡，一個通道只能夠控制一邊(左邊或者右邊)。您需要在這裡指定第二個通道來"
 "控制兩個聲道。大多數的狀況下您只需要讓他空白。"
 
-#: ../alsaMixer/data/messages:149
+#: ../alsaMixer/data/messages:147
 msgid "Choose a second channel to control (optional):"
 msgstr "選擇第二個控制通道："
 
-#: ../alsaMixer/data/messages:151
+#: ../alsaMixer/data/messages:149
 msgid "Specific command to run to show an advanced sound mixer:"
 msgstr "設定顯示進階聲音控制混音器的指令："
 
@@ -6492,28 +6461,28 @@ msgstr "設定顯示進階聲音控制混音器的指令："
 msgid "Leave empty to use the location name if available."
 msgstr "假如地區的名稱有設定，讓它空白來使用它。"
 
-#: ../clock/data/messages:103
+#: ../clock/data/messages:101
 msgid "Show the date:"
 msgstr "顯示日期："
 
-#: ../clock/data/messages:111
+#: ../clock/data/messages:109
 msgid "for digital format only."
 msgstr "只有顯示數字。"
 
-#: ../clock/data/messages:113
+#: ../clock/data/messages:111
 msgid "Display the time in a 24h format?"
 msgstr "以 24 小時格式來顯示時間？"
 
-#: ../clock/data/messages:115
+#: ../clock/data/messages:113
 msgid ""
 "if not, then the applet will update the time once a minute, saving CPU power."
 msgstr "如果不要，這面板程式將會一分鐘更新時間一次，來節省CPU使用率。"
 
-#: ../clock/data/messages:117
+#: ../clock/data/messages:115
 msgid "Show seconds?"
 msgstr "顯示秒？"
 
-#: ../clock/data/messages:119
+#: ../clock/data/messages:117
 msgid ""
 "In ms. Set 0 for non-smooth animation, set 1000 to have a continuous "
 "animation. Requires OpenGL."
@@ -6521,122 +6490,122 @@ msgstr ""
 "以毫秒(ms)為單位。設定為 0 時不要平順動畫，設定 1000 為連續動畫。需要OpenGL支"
 "援。"
 
-#: ../clock/data/messages:121
+#: ../clock/data/messages:119
 msgid "Display seconds with smooth animation for a duration of:"
 msgstr "用來顯示秒，平順動畫的持續時間："
 
-#: ../clock/data/messages:123
+#: ../clock/data/messages:121
 msgid "E.g. :Europe/Paris, :Japan, etc. Leave empty for local time."
 msgstr "例如：歐洲/巴黎，:日本，等等。讓他空白來取得電腦系統時間。"
 
-#: ../clock/data/messages:125
+#: ../clock/data/messages:123
 msgid "Timezone:"
 msgstr "時區："
 
-#: ../clock/data/messages:127
+#: ../clock/data/messages:125
 msgid "Use the tasks from the following task-manager:"
 msgstr "使用計劃行程管理當中的計劃行程："
 
-#: ../clock/data/messages:129
+#: ../clock/data/messages:127
 msgid "Default"
 msgstr "預設值"
 
-#: ../clock/data/messages:131
+#: ../clock/data/messages:129
 msgid "iCal"
 msgstr "iCal"
 
-#: ../clock/data/messages:135
+#: ../clock/data/messages:133
 msgid ""
 "The analogue view is based on CairoClock; otherwise it will be displayed in "
 "digital format."
 msgstr "類比檢視基於 CairoClock；否則它會以數位格式顯示。"
 
-#: ../clock/data/messages:137
+#: ../clock/data/messages:135
 msgid "Select the view :"
 msgstr "選擇風貌："
 
-#: ../clock/data/messages:139
+#: ../clock/data/messages:137
 msgid "Analogue"
 msgstr "類比式"
 
-#: ../clock/data/messages:141
+#: ../clock/data/messages:139
 msgid "Digital"
 msgstr "數位式"
 
-#: ../clock/data/messages:143
+#: ../clock/data/messages:141
 msgid "Analogue View"
 msgstr "類比式檢視"
 
-#: ../clock/data/messages:145
+#: ../clock/data/messages:143
 msgid "List of available themes for analogue display:"
 msgstr "列出可用的類比顯示主題："
 
-#: ../clock/data/messages:147
+#: ../clock/data/messages:145
 msgid "Date text colour:"
 msgstr "日期的文字顏色："
 
-#: ../clock/data/messages:149
+#: ../clock/data/messages:147
 msgid "Digital View"
 msgstr "數位式檢視"
 
-#: ../clock/data/messages:151
+#: ../clock/data/messages:149
 msgid "Use a custom font"
 msgstr ""
 
-#: ../clock/data/messages:153 ../keyboard-indicator/data/messages:111
+#: ../clock/data/messages:151 ../keyboard-indicator/data/messages:109
 msgid "Font:"
 msgstr "字型："
 
-#: ../clock/data/messages:157
+#: ../clock/data/messages:155
 msgid "Set to 0 to not have it"
 msgstr ""
 
-#: ../clock/data/messages:159
+#: ../clock/data/messages:157
 msgid "Outline thickness:"
 msgstr ""
 
-#: ../clock/data/messages:161
+#: ../clock/data/messages:159
 msgid "Outline colour:"
 msgstr ""
 
-#: ../clock/data/messages:163
+#: ../clock/data/messages:161
 msgid "Layout of the text:"
 msgstr "文字的佈局："
 
-#: ../clock/data/messages:165 ../switcher/data/messages:95
+#: ../clock/data/messages:163 ../switcher/data/messages:93
 msgid "Automatic"
 msgstr "自動"
 
-#: ../clock/data/messages:167
+#: ../clock/data/messages:165
 msgid "On 1 line"
 msgstr "1線"
 
-#: ../clock/data/messages:169
+#: ../clock/data/messages:167
 msgid "On 2 lines"
 msgstr "2線"
 
-#: ../clock/data/messages:171
+#: ../clock/data/messages:169
 msgid "Ratio to apply on text :"
 msgstr "文字的顯示大小比例："
 
-#: ../clock/data/messages:175
+#: ../clock/data/messages:173
 msgid "Configure time and date"
 msgstr "設定時間與日期"
 
-#: ../clock/data/messages:177 ../logout/data/messages:121
+#: ../clock/data/messages:175 ../logout/data/messages:119
 msgid "Leave empty to execute the default command."
 msgstr "執行預設的指令時，請讓它空白。"
 
-#: ../clock/data/messages:179
+#: ../clock/data/messages:177
 msgid "Specific command to run:"
 msgstr "特別的執行指令："
 
-#: ../clock/data/messages:183
+#: ../clock/data/messages:181
 msgid ""
 "The new alarm will be added to the end / the last alarm will be removed."
 msgstr "一個新的鬧鐘將會加入到最後，而最後一個鬧鐘將會被刪除。"
 
-#: ../clock/data/messages:185
+#: ../clock/data/messages:183
 msgid "Add or remove an alarm:"
 msgstr "增加或者移除一個鬧鐘："
 
@@ -6684,171 +6653,171 @@ msgstr "提示的曲率："
 msgid "Curve the sides too?"
 msgstr "也要讓邊緣彎曲嗎？"
 
-#: ../dnd2share/data/messages:87
+#: ../dnd2share/data/messages:85
 msgid "Info-bubbles"
 msgstr "資訊的彈出式視窗"
 
-#: ../dnd2share/data/messages:89
+#: ../dnd2share/data/messages:87
 msgid "Enable info-bubbles?"
 msgstr "啟用資訊快速顯示彈出式視窗？"
 
-#: ../dnd2share/data/messages:93
+#: ../dnd2share/data/messages:91
 msgid "Duration of the info-bubbles :"
 msgstr "資訊彈出式視窗的顯示時間："
 
-#: ../dnd2share/data/messages:97
+#: ../dnd2share/data/messages:95
 msgid "Number of items to keep in the history :"
 msgstr "歷史紀錄裏面的物件數量："
 
-#: ../dnd2share/data/messages:99
+#: ../dnd2share/data/messages:97
 msgid "Keep a copy of each uploaded image?"
 msgstr "給每一份上傳的影像檔保留一份備份嗎？"
 
-#: ../dnd2share/data/messages:101
+#: ../dnd2share/data/messages:99
 msgid "This will override the image setting."
 msgstr "這將會覆蓋掉圖檔的設定。"
 
-#: ../dnd2share/data/messages:103
+#: ../dnd2share/data/messages:101
 msgid "If so, display the last image on the icon?"
 msgstr "假如是，在圖示上顯示最後一個影像嗎？"
 
-#: ../dnd2share/data/messages:105
+#: ../dnd2share/data/messages:103
 msgid "Animation of the icon during upload :"
 msgstr "在圖示上面展現上載的動畫："
 
-#: ../dnd2share/data/messages:107
+#: ../dnd2share/data/messages:105
 msgid "Use the following service to make the URL smaller:"
 msgstr "使用下列服務以建立短網址："
 
-#: ../dnd2share/data/messages:111
+#: ../dnd2share/data/messages:109
 msgid "Tiny-URL"
 msgstr "Tiny-URL"
 
-#: ../dnd2share/data/messages:113
+#: ../dnd2share/data/messages:111
 msgid "Shorter-Link"
 msgstr "Shorter-Link"
 
-#: ../dnd2share/data/messages:115
+#: ../dnd2share/data/messages:113
 msgid "Use the tiny URL by default?"
 msgstr "預設要使用短網址嗎？"
 
-#: ../dnd2share/data/messages:117
+#: ../dnd2share/data/messages:115
 msgid "in KB/s - 0 means unlimited"
 msgstr "以 KB/s 表示，0 則為沒有限制"
 
-#: ../dnd2share/data/messages:119
+#: ../dnd2share/data/messages:117
 msgid "Maximum upload rate:"
 msgstr "最大上傳速率："
 
-#: ../dnd2share/data/messages:121
+#: ../dnd2share/data/messages:119
 msgid "Sites"
 msgstr "網站"
 
-#: ../dnd2share/data/messages:123
+#: ../dnd2share/data/messages:121
 msgid "Use files hosting site for any kind of files?"
 msgstr ""
 
-#: ../dnd2share/data/messages:125
+#: ../dnd2share/data/messages:123
 msgid "Preferred site for texts hosting :"
 msgstr "喜好的主要文件網站："
 
-#: ../dnd2share/data/messages:127 ../dnd2share/data/messages:139
-#: ../dnd2share/data/messages:149 ../dnd2share/data/messages:155
+#: ../dnd2share/data/messages:125 ../dnd2share/data/messages:137
+#: ../dnd2share/data/messages:147 ../dnd2share/data/messages:153
 msgid "Custom"
 msgstr "自定義"
 
-#: ../dnd2share/data/messages:129
+#: ../dnd2share/data/messages:127
 msgid "Pastebin.com"
 msgstr ""
 
-#: ../dnd2share/data/messages:131
+#: ../dnd2share/data/messages:129
 msgid "Paste-ubuntu.com"
 msgstr ""
 
-#: ../dnd2share/data/messages:133
+#: ../dnd2share/data/messages:131
 msgid "Pastebin.mozilla.org"
 msgstr ""
 
-#: ../dnd2share/data/messages:135
+#: ../dnd2share/data/messages:133
 msgid "Codepad.org"
 msgstr ""
 
-#: ../dnd2share/data/messages:137
+#: ../dnd2share/data/messages:135
 msgid "Preferred site for images hosting :"
 msgstr "喜好的主要圖檔網站："
 
-#: ../dnd2share/data/messages:141
+#: ../dnd2share/data/messages:139
 msgid "Uppix.net"
 msgstr "Uppix.net"
 
-#: ../dnd2share/data/messages:143
+#: ../dnd2share/data/messages:141
 msgid "Imagebin.ca"
 msgstr "Imagebin.ca"
 
-#: ../dnd2share/data/messages:145
+#: ../dnd2share/data/messages:143
 msgid "ImageShack.us"
 msgstr "ImageShack.us"
 
-#: ../dnd2share/data/messages:147
+#: ../dnd2share/data/messages:145
 msgid "Preferred site for videos hosting :"
 msgstr "喜好的主要影片網站："
 
-#: ../dnd2share/data/messages:151
+#: ../dnd2share/data/messages:149
 msgid "VideoBin.org"
 msgstr "VideoBin.org"
 
-#: ../dnd2share/data/messages:153
+#: ../dnd2share/data/messages:151
 msgid "Preferred site for files hosting :"
 msgstr "喜好的主要檔案網站："
 
-#: ../dnd2share/data/messages:157
+#: ../dnd2share/data/messages:155
 msgid "dl.free.fr"
 msgstr "dl.free.fr"
 
-#: ../dnd2share/data/messages:159
+#: ../dnd2share/data/messages:157
 msgid "DropBox"
 msgstr "DropBox"
 
-#: ../dnd2share/data/messages:161
+#: ../dnd2share/data/messages:159
 msgid "UbuntuOne"
 msgstr ""
 
-#: ../dnd2share/data/messages:163 ../dnd2share/data/messages:167
-#: ../dnd2share/data/messages:171 ../dnd2share/data/messages:175
+#: ../dnd2share/data/messages:161 ../dnd2share/data/messages:165
+#: ../dnd2share/data/messages:169 ../dnd2share/data/messages:173
 msgid ""
 "The script takes the file path as a parameter, and write the resulting URL "
 "on the standard output."
 msgstr "該指令稿將檔案路徑作為參數，並在標準輸出寫入處理後的網址。"
 
-#: ../dnd2share/data/messages:165
+#: ../dnd2share/data/messages:163
 msgid "Custom script for text upload :"
 msgstr "自訂文字上傳的指令稿："
 
-#: ../dnd2share/data/messages:169
+#: ../dnd2share/data/messages:167
 msgid "Custom script for image upload :"
 msgstr "自訂影像上傳的指令稿："
 
-#: ../dnd2share/data/messages:173
+#: ../dnd2share/data/messages:171
 msgid "Custom script for video upload :"
 msgstr "自訂影片上傳的指令稿："
 
-#: ../dnd2share/data/messages:177
+#: ../dnd2share/data/messages:175
 msgid "Custom script for file upload :"
 msgstr "自訂檔案上傳的指令稿："
 
-#: ../dnd2share/data/messages:179
+#: ../dnd2share/data/messages:177
 msgid "Leave empty to upload files into '~/Dropbox/Public'."
 msgstr "讓他空白讓上傳的檔案放置在 ~/Dropbox/Public 。"
 
-#: ../dnd2share/data/messages:181
+#: ../dnd2share/data/messages:179
 msgid "Path of the DropBox folder :"
 msgstr "DropBox 資料夾的路徑："
 
-#: ../dnd2share/data/messages:183
+#: ../dnd2share/data/messages:181
 msgid "Otherwise, your user name will be used when possible."
 msgstr "否則，如果可能的話我們會使用您的使用者名稱。"
 
-#: ../dnd2share/data/messages:185
+#: ../dnd2share/data/messages:183
 msgid "Post text as Anonymous ?"
 msgstr "以無名氏發文？"
 
@@ -6940,7 +6909,7 @@ msgstr "使用線性波而不是正弦波？"
 msgid "Display text for all icons?"
 msgstr "讓全部的圖示都顯示文字？"
 
-#: ../dock-rendering/data/messages:57 ../slider/data/messages:171
+#: ../dock-rendering/data/messages:57 ../slider/data/messages:169
 msgid "Frame"
 msgstr "框架"
 
@@ -7123,39 +7092,39 @@ msgstr "每秒轉幾圈。"
 msgid "Rotation speed :"
 msgstr "轉速："
 
-#: ../dustbin/data/messages:89
+#: ../dustbin/data/messages:87
 msgid "Theme"
 msgstr "主題"
 
-#: ../dustbin/data/messages:93
+#: ../dustbin/data/messages:91
 msgid "Name of the image to overwrite the theme's empty image :"
 msgstr "取代主題裏面回收桶「空」的圖像檔案名稱："
 
-#: ../dustbin/data/messages:95
+#: ../dustbin/data/messages:93
 msgid "Name of the image to overwrite the theme's full image :"
 msgstr "取代主題裏面回收桶「滿」的圖像檔案名稱："
 
-#: ../dustbin/data/messages:97
+#: ../dustbin/data/messages:95
 msgid "Config"
 msgstr "設定"
 
-#: ../dustbin/data/messages:99
+#: ../dustbin/data/messages:97
 msgid "Display the following quick info :"
 msgstr "以下面的方式顯示快速資訊："
 
-#: ../dustbin/data/messages:103
+#: ../dustbin/data/messages:101
 msgid "Number of files"
 msgstr "檔案數目"
 
-#: ../dustbin/data/messages:105
+#: ../dustbin/data/messages:103
 msgid "Total number of files"
 msgstr "全部檔案的數量"
 
-#: ../dustbin/data/messages:107
+#: ../dustbin/data/messages:105
 msgid "Total weight"
 msgstr "全部的重量"
 
-#: ../dustbin/data/messages:109
+#: ../dustbin/data/messages:107
 msgid "Ask confirmation before emptying Dustbin?"
 msgstr "清空回收桶前詢問確認？"
 
@@ -7174,7 +7143,7 @@ msgstr "以毫秒表示。設定 0 時不使用這種效果。"
 #: ../icon-effect/data/messages:63 ../icon-effect/data/messages:91
 #: ../icon-effect/data/messages:113 ../icon-effect/data/messages:135
 #: ../icon-effect/data/messages:157 ../icon-effect/data/messages:177
-#: ../illusion/data/messages:35 ../terminal/data/messages:91
+#: ../illusion/data/messages:35 ../terminal/data/messages:89
 msgid "Colours"
 msgstr "顏色"
 
@@ -7304,84 +7273,84 @@ msgstr "更大，那麼圖示就會更快速的往中心崩潰坍塌。"
 msgid "Attraction of the Black Hole:"
 msgstr "黑洞的引力："
 
-#: ../keyboard-indicator/data/messages:101
+#: ../keyboard-indicator/data/messages:99
 msgid "caps lock, num lock, etc."
 msgstr "大寫字元鎖定、數字鍵鎖定等等..."
 
-#: ../keyboard-indicator/data/messages:103
+#: ../keyboard-indicator/data/messages:101
 msgid "Display keyboard locks as quick-info?"
 msgstr "快速顯示鍵盤鎖定狀況？"
 
-#: ../keyboard-indicator/data/messages:105
+#: ../keyboard-indicator/data/messages:103
 msgid ""
 "in ms. Set to 0 if you don't want an animation when the keyboard layout "
 "changes."
 msgstr "以微秒(ms)表示。設定為 0 時表示您不要在改變鍵盤配置時顯示動畫。"
 
-#: ../keyboard-indicator/data/messages:107
+#: ../keyboard-indicator/data/messages:105
 msgid "Duration of the transition animation:"
 msgstr "變化動畫的時間長度："
 
-#: ../keyboard-indicator/data/messages:113
+#: ../keyboard-indicator/data/messages:111
 msgid "Text colour"
 msgstr "文字顏色"
 
-#: ../keyboard-indicator/data/messages:117
+#: ../keyboard-indicator/data/messages:115
 msgid ""
 "the smaller is the text in the icon. 1 means the text fills all the icon."
 msgstr "小一點表示文字在圖示裏面，1 表示文字將會填滿整個圖示。"
 
-#: ../keyboard-indicator/data/messages:119
+#: ../keyboard-indicator/data/messages:117
 msgid "Relative size of the text :"
 msgstr "文字的相對大小："
 
-#: ../keyboard-indicator/data/messages:121
+#: ../keyboard-indicator/data/messages:119
 msgid "smaller"
 msgstr "較小"
 
-#: ../logout/data/messages:91
+#: ../logout/data/messages:89
 msgid "Action"
 msgstr ""
 
-#: ../logout/data/messages:101
+#: ../logout/data/messages:99
 msgid "Shortkey to lock the screen"
 msgstr ""
 
-#: ../logout/data/messages:103
+#: ../logout/data/messages:101
 msgid "Shortkey to show the menu"
 msgstr ""
 
-#: ../logout/data/messages:105
+#: ../logout/data/messages:103
 msgid "Demand confirmation before closing"
 msgstr ""
 
-#: ../logout/data/messages:107 ../musicPlayer/data/messages:185
+#: ../logout/data/messages:105 ../musicPlayer/data/messages:183
 #: ../tomboy/data/messages:9
 msgid "Customisation"
 msgstr "自訂"
 
-#: ../logout/data/messages:111
+#: ../logout/data/messages:109
 msgid "Icon image name to use when the system has to be rebooted:"
 msgstr ""
 
-#: ../logout/data/messages:113
+#: ../logout/data/messages:111
 msgid ""
 "Display this image as an emblem or replace applet's icon with this image?"
 msgstr ""
 
-#: ../logout/data/messages:115
+#: ../logout/data/messages:113
 msgid "Emblem"
 msgstr ""
 
-#: ../logout/data/messages:119
+#: ../logout/data/messages:117
 msgid "Commands"
 msgstr ""
 
-#: ../logout/data/messages:123
+#: ../logout/data/messages:121
 msgid "User-defined command to execute for logout:"
 msgstr "鍵盤配置的使用者自定義命令："
 
-#: ../logout/data/messages:125
+#: ../logout/data/messages:123
 msgid ""
 "This will be available when middle-clicking. Leave empty to execute the "
 "default command, which depends on your distribution. In some cases the "
@@ -7390,11 +7359,11 @@ msgstr ""
 "這將會以按下滑鼠中鍵來啟動，讓它空白來執行預設的指令。然而這還是取決於您的"
 "linux發行版，因為在一些案例當中，他們的關機指令與登出指令是相同的。"
 
-#: ../logout/data/messages:127
+#: ../logout/data/messages:125
 msgid "User-defined command to execute for shutdown:"
 msgstr "使用者自定義的關機指令："
 
-#: ../mail/data/messages:99
+#: ../mail/data/messages:97
 msgid ""
 "If you have any problem with the applet, uncheck this option during the "
 "maintenance mode, then after the dock has relaunched, remove/modify the mail "
@@ -7403,91 +7372,91 @@ msgstr ""
 "假如您面板程式有任何的問題，在維護模式當中取消點選這個選項，當重新啟動Dock之"
 "後，即可 移除/修改 您要使用的信件帳號。"
 
-#: ../mail/data/messages:101
+#: ../mail/data/messages:99
 msgid "Check mail account on startup?"
 msgstr "在啟動時檢查信件帳號？"
 
-#: ../mail/data/messages:109
+#: ../mail/data/messages:107
 msgid "Name of the file for the \"no mail\" image :"
 msgstr "「沒有信件」的圖像檔案名稱："
 
-#: ../mail/data/messages:113
+#: ../mail/data/messages:111
 msgid "Name of the file for the \"has mail\" image :"
 msgstr "「您有信件」的圖像檔案名稱："
 
-#: ../mail/data/messages:115
+#: ../mail/data/messages:113
 msgid "If checked, the number of mails will be shown even if there is no mail."
 msgstr "如果勾選這個選項，即使沒有任何郵件，也會顯示這個數字的郵件。"
 
-#: ../mail/data/messages:117
+#: ../mail/data/messages:115
 msgid "Show '0' if there is no mail?"
 msgstr "如果沒有郵件要顯示「0」嗎？"
+
+#: ../mail/data/messages:117 ../shortcuts/data/messages:101
+#: ../stack/data/messages:93 ../switcher/data/messages:115
+#: ../tomboy/data/messages:117 ../weather/data/messages:131
+msgid "Leave empty to use default sub-dock view."
+msgstr "讓他空白來使用預設的子 Dock 檢視。"
 
 #: ../mail/data/messages:119 ../shortcuts/data/messages:103
 #: ../stack/data/messages:95 ../switcher/data/messages:117
 #: ../tomboy/data/messages:119 ../weather/data/messages:133
-msgid "Leave empty to use default sub-dock view."
-msgstr "讓他空白來使用預設的子 Dock 檢視。"
-
-#: ../mail/data/messages:121 ../shortcuts/data/messages:105
-#: ../stack/data/messages:97 ../switcher/data/messages:119
-#: ../tomboy/data/messages:121 ../weather/data/messages:135
 msgid "Sub-dock view name:"
 msgstr "子 Dock 的檢視名稱："
 
-#: ../mail/data/messages:123
+#: ../mail/data/messages:121
 msgid "Action on new mail"
 msgstr ""
 
-#: ../mail/data/messages:125
+#: ../mail/data/messages:123
 msgid "Play sound when a new e-mail is received?"
 msgstr "當有新的信件接收到時，是否要播放出聲音提示？"
 
-#: ../mail/data/messages:129
+#: ../mail/data/messages:127
 msgid "Name of the file for the \"new mail\" sound :"
 msgstr "「新的信件」的提示聲音檔案名稱："
 
-#: ../mail/data/messages:131
+#: ../mail/data/messages:129
 msgid "Show new messages' content?"
 msgstr "顯示新信件的內容？"
 
-#: ../mail/data/messages:133
+#: ../mail/data/messages:131
 msgid "Maximum number of mails that will be previewed."
 msgstr "預覽信件的最大值"
 
-#: ../mail/data/messages:135
+#: ../mail/data/messages:133
 msgid "Maximum of new messages shown?"
 msgstr "可以顯示最多的信件為？"
 
-#: ../mail/data/messages:139 ../tomboy/data/messages:117
+#: ../mail/data/messages:137 ../tomboy/data/messages:115
 msgid "Duration of the dialog:"
 msgstr "對話窗顯示時間："
 
-#: ../mail/data/messages:141
+#: ../mail/data/messages:139
 msgid "Animation when new message arrives:"
 msgstr ""
 
-#: ../mail/data/messages:145
+#: ../mail/data/messages:143
 msgid "Mail application"
 msgstr "信件的應用程式"
 
-#: ../mail/data/messages:147
+#: ../mail/data/messages:145
 msgid "for instance \"thunderbird\" or \"firefox mail.google.com\""
 msgstr ""
 
-#: ../mail/data/messages:149
+#: ../mail/data/messages:147
 msgid "Preferred mail application to launch on left-click :"
 msgstr "左鍵點擊之後執行的信件應用程式為："
 
-#: ../mail/data/messages:151
+#: ../mail/data/messages:149
 msgid "Add a mail account (you've to launch the applet)"
 msgstr "加入郵件帳號 (您必須啟動該面板程式)"
 
-#: ../mail/data/messages:153
+#: ../mail/data/messages:151
 msgid "The new account will be created with the specified type and name."
 msgstr "新的帳戶將被建立，並且有您指定的類型和名稱。"
 
-#: ../mail/data/messages:155
+#: ../mail/data/messages:153
 msgid "Add an account with specified type and name:"
 msgstr "增加一個帳戶指定類型和名稱："
 
@@ -7503,71 +7472,71 @@ msgstr "模糊量級："
 msgid "Leave it empty to display the name of the player currently controlled."
 msgstr "讓它空白，可以顯示目前控制的播放器名稱。"
 
-#: ../musicPlayer/data/messages:101
+#: ../musicPlayer/data/messages:99
 msgid "Audio Player"
 msgstr "音樂播放器"
 
-#: ../musicPlayer/data/messages:103
+#: ../musicPlayer/data/messages:101
 msgid "Player to control:"
 msgstr "播放器控制："
 
-#: ../musicPlayer/data/messages:105
+#: ../musicPlayer/data/messages:103
 msgid "Amarok 2"
 msgstr "Amarok 2"
 
-#: ../musicPlayer/data/messages:107
+#: ../musicPlayer/data/messages:105
 msgid "Audacious"
 msgstr "Audacious"
 
-#: ../musicPlayer/data/messages:109
+#: ../musicPlayer/data/messages:107
 msgid "Banshee"
 msgstr "Banshee"
 
-#: ../musicPlayer/data/messages:111
+#: ../musicPlayer/data/messages:109
 msgid "Clementine"
 msgstr "Clementine"
 
-#: ../musicPlayer/data/messages:113
+#: ../musicPlayer/data/messages:111
 msgid "Exaile"
 msgstr "Exaile"
 
-#: ../musicPlayer/data/messages:115
+#: ../musicPlayer/data/messages:113
 msgid "Exaile 0.3"
 msgstr "Exaile 0.3"
 
-#: ../musicPlayer/data/messages:117
+#: ../musicPlayer/data/messages:115
 msgid "GMusicBrowser"
 msgstr "GMusic瀏覽器"
 
-#: ../musicPlayer/data/messages:119
+#: ../musicPlayer/data/messages:117
 msgid "Guayadeque"
 msgstr "Guayadeque"
 
-#: ../musicPlayer/data/messages:121
+#: ../musicPlayer/data/messages:119
 msgid "Listen"
 msgstr "Listen"
 
-#: ../musicPlayer/data/messages:123
+#: ../musicPlayer/data/messages:121
 msgid "Qmmp"
 msgstr "Qmmp"
 
-#: ../musicPlayer/data/messages:125
+#: ../musicPlayer/data/messages:123
 msgid "QuodLibet"
 msgstr "QuodLibet"
 
-#: ../musicPlayer/data/messages:127
+#: ../musicPlayer/data/messages:125
 msgid "Rhythmbox"
 msgstr "Rhythmbox"
 
-#: ../musicPlayer/data/messages:129
+#: ../musicPlayer/data/messages:127
 msgid "Songbird"
 msgstr "Songbird"
 
-#: ../musicPlayer/data/messages:131
+#: ../musicPlayer/data/messages:129
 msgid "XMMS 2"
 msgstr "XMMS 2"
 
-#: ../musicPlayer/data/messages:133
+#: ../musicPlayer/data/messages:131
 msgid ""
 "This will prevent the player icon appearing in the taskbar. The applet's "
 "icon will then behave as a launcher, an application and an applet."
@@ -7575,124 +7544,124 @@ msgstr ""
 "這將阻止播放器圖示出現在工作列上。面板程式的圖示就會像是一個快速啟動、已啟動"
 "的應用程式和面板程式一樣。"
 
-#: ../musicPlayer/data/messages:135
+#: ../musicPlayer/data/messages:133
 msgid "Steal the player's icon from the taskbar?"
 msgstr "在工具列上面顯示播放器自己的圖示？"
 
-#: ../musicPlayer/data/messages:137
+#: ../musicPlayer/data/messages:135
 msgid "Actions on click and middle-click :"
 msgstr "左鍵點擊與中鍵點擊的動作設定："
 
-#: ../musicPlayer/data/messages:139
+#: ../musicPlayer/data/messages:137
 msgid "Play/Pause on click, Next on middle-click"
 msgstr "左鍵點擊為「播放/暫停」，中鍵點擊為「下一首歌」。"
 
-#: ../musicPlayer/data/messages:141
+#: ../musicPlayer/data/messages:139
 msgid "Show/Hide player on click, Play/Pause on middle-click"
 msgstr "左鍵點擊為「顯示/隱藏」播放器，中鍵點擊為「播放/暫停」。"
 
-#: ../musicPlayer/data/messages:143
+#: ../musicPlayer/data/messages:141
 msgid "Actions on scroll up/down:"
 msgstr ""
 
-#: ../musicPlayer/data/messages:145
+#: ../musicPlayer/data/messages:143
 msgid "Next/previous song"
 msgstr ""
 
-#: ../musicPlayer/data/messages:147
+#: ../musicPlayer/data/messages:145
 msgid "Control the volume"
 msgstr ""
 
-#: ../musicPlayer/data/messages:149
+#: ../musicPlayer/data/messages:147
 msgid "Action on music change"
 msgstr "變更音樂的動作"
 
-#: ../musicPlayer/data/messages:151
+#: ../musicPlayer/data/messages:149
 msgid "Show tooltips?"
 msgstr "顯示提示工具？"
 
-#: ../musicPlayer/data/messages:155
+#: ../musicPlayer/data/messages:153
 msgid "Time length of tooltips:"
 msgstr "提示工具的顯示時間長度："
 
-#: ../musicPlayer/data/messages:157
+#: ../musicPlayer/data/messages:155
 msgid "Animation when music changes:"
 msgstr "當變更音樂時的動畫："
 
-#: ../musicPlayer/data/messages:161 ../powermanager/data/messages:145
-#: ../wifi/data/messages:143
+#: ../musicPlayer/data/messages:159 ../powermanager/data/messages:143
+#: ../wifi/data/messages:141
 msgid "Information to display on the icon :"
 msgstr "在圖示上面顯示資訊："
 
-#: ../musicPlayer/data/messages:163 ../powermanager/data/messages:147
+#: ../musicPlayer/data/messages:161 ../powermanager/data/messages:145
 msgid "Nothing"
 msgstr "無"
 
-#: ../musicPlayer/data/messages:165
+#: ../musicPlayer/data/messages:163
 msgid "Time Elapsed"
 msgstr "經過時間"
 
-#: ../musicPlayer/data/messages:167
+#: ../musicPlayer/data/messages:165
 msgid "Time Remaining"
 msgstr "剩餘時間"
 
-#: ../musicPlayer/data/messages:169
+#: ../musicPlayer/data/messages:167
 msgid "Track number"
 msgstr "曲目編號"
 
-#: ../musicPlayer/data/messages:171
+#: ../musicPlayer/data/messages:169
 msgid "Display album's cover?"
 msgstr "顯示專輯的封面？"
 
-#: ../musicPlayer/data/messages:173
+#: ../musicPlayer/data/messages:171
 msgid "You need to be connected to the Internet."
 msgstr "您需要連接至網際網路。"
 
-#: ../musicPlayer/data/messages:175
+#: ../musicPlayer/data/messages:173
 msgid "Allow Cairo-Dock to download missing covers?"
 msgstr "同意 Cairo-Dock 下載缺少的封面？"
 
-#: ../musicPlayer/data/messages:177 ../musicPlayer/data/messages:181
+#: ../musicPlayer/data/messages:175 ../musicPlayer/data/messages:179
 msgid "requires OpenGL."
 msgstr "需求 OpenGL。"
 
-#: ../musicPlayer/data/messages:179
+#: ../musicPlayer/data/messages:177
 msgid "Use 3D themes?"
 msgstr "使用 3D 主題？"
 
-#: ../musicPlayer/data/messages:183
+#: ../musicPlayer/data/messages:181
 msgid "List of available 3D themes for covers :"
 msgstr "封面可用的 3D 主題清單："
 
-#: ../musicPlayer/data/messages:189 ../tomboy/data/messages:13
+#: ../musicPlayer/data/messages:187 ../tomboy/data/messages:13
 msgid "'Default' icon image name:"
 msgstr "「預設」圖示的檔案名稱："
 
-#: ../musicPlayer/data/messages:193
+#: ../musicPlayer/data/messages:191
 msgid "Name of the image for the 'play' icon :"
 msgstr "「播放」圖示的圖像檔案名稱："
 
-#: ../musicPlayer/data/messages:197
+#: ../musicPlayer/data/messages:195
 msgid "Name of the image for the 'stop' icon :"
 msgstr "「停止」圖示的圖像檔案名稱："
 
-#: ../musicPlayer/data/messages:201
+#: ../musicPlayer/data/messages:199
 msgid "Name of the image for the 'pause' icon :"
 msgstr "「暫停」圖示的圖像檔案名稱："
 
-#: ../netspeed/data/messages:145
+#: ../netspeed/data/messages:143
 msgid "By default this will be 'eth0'."
 msgstr "預設值將會是 eth0 。"
 
-#: ../netspeed/data/messages:147
+#: ../netspeed/data/messages:145
 msgid "interface:"
 msgstr "界面卡"
 
-#: ../netspeed/data/messages:155
+#: ../netspeed/data/messages:153
 msgid "Fluidity of the transition between 2 values :"
 msgstr "流動顯示，介於兩個數字之間："
 
-#: ../netspeed/data/messages:157
+#: ../netspeed/data/messages:155
 msgid "Display rate values :"
 msgstr "顯示速率值："
 
@@ -7700,69 +7669,69 @@ msgstr "顯示速率值："
 msgid "Leave empty to display the current status information."
 msgstr ""
 
-#: ../powermanager/data/messages:139
+#: ../powermanager/data/messages:137
 msgid "'On-battery' icon filename:"
 msgstr "「電池」圖示檔案名稱："
 
-#: ../powermanager/data/messages:141
+#: ../powermanager/data/messages:139
 msgid "Icon's filename when on charge :"
 msgstr "「充電中」的圖示檔案名稱："
 
-#: ../powermanager/data/messages:149
+#: ../powermanager/data/messages:147
 msgid "charge"
 msgstr "充電"
 
-#: ../powermanager/data/messages:151
+#: ../powermanager/data/messages:149
 msgid "Timelength"
 msgstr ""
 
-#: ../powermanager/data/messages:153
+#: ../powermanager/data/messages:151
 msgid "Emblem icon's filename when on charge:"
 msgstr ""
 
-#: ../powermanager/data/messages:155
+#: ../powermanager/data/messages:153
 msgid "Hide the icon when not on battery?"
 msgstr ""
 
-#: ../powermanager/data/messages:161
+#: ../powermanager/data/messages:159
 msgid "Notification"
 msgstr "通知"
 
-#: ../powermanager/data/messages:163
+#: ../powermanager/data/messages:161
 msgid "Notification when battery charged ?"
 msgstr "電池充電時通知？"
 
-#: ../powermanager/data/messages:165 ../powermanager/data/messages:175
-#: ../powermanager/data/messages:183
+#: ../powermanager/data/messages:163 ../powermanager/data/messages:173
+#: ../powermanager/data/messages:181
 msgid "Leave it empty for no sound"
 msgstr "如果要無聲，請讓它空白。"
 
-#: ../powermanager/data/messages:167 ../powermanager/data/messages:177
-#: ../powermanager/data/messages:185
+#: ../powermanager/data/messages:165 ../powermanager/data/messages:175
+#: ../powermanager/data/messages:183
 msgid "Play a sound:"
 msgstr "播放音效："
 
-#: ../powermanager/data/messages:169
+#: ../powermanager/data/messages:167
 msgid "Notification when low battery ?"
 msgstr "低電量時通知？"
 
-#: ../powermanager/data/messages:171
+#: ../powermanager/data/messages:169
 msgid "in percent."
 msgstr "以百分比。"
 
-#: ../powermanager/data/messages:173
+#: ../powermanager/data/messages:171
 msgid "Battery level:"
 msgstr "電池量："
 
-#: ../powermanager/data/messages:179
+#: ../powermanager/data/messages:177
 msgid "When battery level is under 4%"
 msgstr "當電池量低於 4%"
 
-#: ../powermanager/data/messages:181
+#: ../powermanager/data/messages:179
 msgid "Notification when battery charge is critical ?"
 msgstr "當電池充電的臨界點到時通知？"
 
-#: ../powermanager/data/messages:187
+#: ../powermanager/data/messages:185
 msgid "Notification type:"
 msgstr "通知類型："
 
@@ -7770,47 +7739,51 @@ msgstr "通知類型："
 msgid "Leave empty to use the folder's name."
 msgstr "要使用資料夾原本的名稱時，請讓它空白。"
 
-#: ../quick-browser/data/messages:93 ../slider/data/messages:99
+#: ../quick-browser/data/messages:91 ../slider/data/messages:97
 msgid "Folder"
 msgstr "資料夾"
 
-#: ../quick-browser/data/messages:95
+#: ../quick-browser/data/messages:93
 msgid "Folder to browse :"
 msgstr "要瀏覽的資料夾："
 
-#: ../quick-browser/data/messages:97
+#: ../quick-browser/data/messages:95
 msgid "List folders first?"
 msgstr "先列出資料夾？"
 
-#: ../quick-browser/data/messages:99
+#: ../quick-browser/data/messages:97
 msgid "Ignore case?"
 msgstr "忽略情況？"
 
-#: ../quick-browser/data/messages:103
+#: ../quick-browser/data/messages:101
 msgid "Menu"
 msgstr "選單"
 
-#: ../quick-browser/data/messages:105
+#: ../quick-browser/data/messages:103
 msgid "It can be CPU intense to load a lot of icons."
 msgstr "載入大量圖示時，CPU 使用率可能飆高。"
 
-#: ../quick-browser/data/messages:109
+#: ../quick-browser/data/messages:105
+msgid "Display icons in the menu?"
+msgstr "在選單上面顯示圖示？"
+
+#: ../quick-browser/data/messages:107
 msgid "Icon size :"
 msgstr "圖示大小："
 
-#: ../quick-browser/data/messages:111
+#: ../quick-browser/data/messages:109
 msgid "small"
 msgstr "小"
 
-#: ../quick-browser/data/messages:113
+#: ../quick-browser/data/messages:111
 msgid "medium"
 msgstr "中"
 
-#: ../quick-browser/data/messages:115
+#: ../quick-browser/data/messages:113
 msgid "large"
 msgstr "大"
 
-#: ../quick-browser/data/messages:119
+#: ../quick-browser/data/messages:117
 msgid ""
 "Number of items loaded at once. Setting a high value speeds up loading a "
 "little but will hang the application for longer."
@@ -7818,63 +7791,63 @@ msgstr ""
 "讀取項目的數量。較高的數值可以加快一點讀取的速度，但是有可能會造成應用程式長"
 "時間停止回應。"
 
-#: ../quick-browser/data/messages:121
+#: ../quick-browser/data/messages:119
 msgid "Build menu gradually:"
 msgstr "逐步建立選單："
 
-#: ../shortcuts/data/messages:93
+#: ../shortcuts/data/messages:91
 msgid "List drives and volumes?"
 msgstr "列出裝置與容量？"
 
-#: ../shortcuts/data/messages:95
+#: ../shortcuts/data/messages:93
 msgid "List networks?"
 msgstr "列出網路？"
 
-#: ../shortcuts/data/messages:97
+#: ../shortcuts/data/messages:95
 msgid "GTK bookmarks, that are used by Nautilus for exemple."
 msgstr "GTK 書籤，例如他是使用在 Nautilus 裏面。"
 
-#: ../shortcuts/data/messages:99
+#: ../shortcuts/data/messages:97
 msgid "List bookmarks?"
 msgstr "列出書籤？"
 
-#: ../shortcuts/data/messages:107 ../stack/data/messages:99
+#: ../shortcuts/data/messages:105 ../stack/data/messages:97
 msgid "Type of view for the desklet mode :"
 msgstr "桌面小工具檢視模式的類型："
 
-#: ../shortcuts/data/messages:111 ../stack/data/messages:103
+#: ../shortcuts/data/messages:109 ../stack/data/messages:101
 msgid "Tree"
 msgstr "樹狀"
 
-#: ../shortcuts/data/messages:113
+#: ../shortcuts/data/messages:111
 msgid "Disk usage"
 msgstr "磁碟使用率"
 
-#: ../shortcuts/data/messages:115
+#: ../shortcuts/data/messages:113
 msgid "Show disk usage :"
 msgstr "顯示磁碟使用率："
 
-#: ../shortcuts/data/messages:119
+#: ../shortcuts/data/messages:117
 msgid "Free space"
 msgstr "剩餘空間"
 
-#: ../shortcuts/data/messages:121
+#: ../shortcuts/data/messages:119
 msgid "Used space"
 msgstr "已使用空間"
 
-#: ../shortcuts/data/messages:123
+#: ../shortcuts/data/messages:121
 msgid "Free space (in percent)"
 msgstr "剩餘空間百分比"
 
-#: ../shortcuts/data/messages:125
+#: ../shortcuts/data/messages:123
 msgid "Used space (in percent)"
 msgstr "已使用空間百分比"
 
-#: ../shortcuts/data/messages:129
+#: ../shortcuts/data/messages:127
 msgid "Delay between disk usage refresh :"
 msgstr "重新整理磁碟使用率的間隔時間："
 
-#: ../shortcuts/data/messages:131
+#: ../shortcuts/data/messages:129
 msgid "Display disk usage with a bar?"
 msgstr "在同一欄中顯示磁碟使用量？"
 
@@ -7907,7 +7880,7 @@ msgstr "散射："
 msgid "Image when the applet is active :"
 msgstr "當面板程式啟動時的圖像："
 
-#: ../showDesktop/data/messages:95 ../showDesktop/data/messages:109
+#: ../showDesktop/data/messages:93 ../showDesktop/data/messages:107
 msgid ""
 "You need to activate the Dbus plug-in in Compiz for the last 2 actions. "
 "Showing desktop and desklets can fail on some Window Manager (like Metacity)."
@@ -7915,151 +7888,151 @@ msgstr ""
 "您需要啟用 Compiz 的 Dbus 插件，但是下列兩個功能在一些視窗管理程式當中 (例如 "
 "Metacity) 可能會失效。「顯示桌面」與「桌面面板程式」這兩個功能。"
 
-#: ../showDesktop/data/messages:97 ../slider/data/messages:117
+#: ../showDesktop/data/messages:95 ../slider/data/messages:115
 msgid "Action on left-click:"
 msgstr "左鍵點擊動作："
 
-#: ../showDesktop/data/messages:101 ../showDesktop/data/messages:115
+#: ../showDesktop/data/messages:99 ../showDesktop/data/messages:113
 msgid "Show the desklets"
 msgstr "顯示桌面小工具"
 
-#: ../showDesktop/data/messages:103 ../showDesktop/data/messages:117
+#: ../showDesktop/data/messages:101 ../showDesktop/data/messages:115
 msgid "Show desktop and desklets"
 msgstr "顯示桌面與桌面小工具"
 
-#: ../showDesktop/data/messages:123
+#: ../showDesktop/data/messages:121
 msgid "Shortkey for the middle-click action:"
 msgstr "中鍵點擊動作的熱鍵："
 
-#: ../slider/data/messages:101
+#: ../slider/data/messages:99
 msgid "Folder for the images:"
 msgstr "資料夾的圖片："
 
-#: ../slider/data/messages:103
+#: ../slider/data/messages:101
 msgid "Scan sub direcotries?"
 msgstr "掃瞄子目錄？"
 
-#: ../slider/data/messages:105
+#: ../slider/data/messages:103
 msgid "Randomly browse files?"
 msgstr "隨機瀏覽檔案？"
 
-#: ../slider/data/messages:107
+#: ../slider/data/messages:105
 msgid "Display image name as quickinfo?"
 msgstr "顯示圖片名稱的簡略訊息？"
 
-#: ../slider/data/messages:109
+#: ../slider/data/messages:107
 msgid ""
 "This will prevent the dock from freezing during image loading, but works "
 "only with OpenGL."
 msgstr "避免 Dock 在載入影像時僵住，只有 OpenGL 模式下才能運作。"
 
-#: ../slider/data/messages:111
+#: ../slider/data/messages:109
 msgid "Use another thread to load images?"
 msgstr "使用另一個線程來載入影像？"
 
-#: ../slider/data/messages:113
+#: ../slider/data/messages:111
 msgid "Read all images properties on startup?"
 msgstr ""
 
-#: ../slider/data/messages:119 ../slider/data/messages:125
+#: ../slider/data/messages:117 ../slider/data/messages:123
 msgid "play/pause"
 msgstr "播放/暫停"
 
-#: ../slider/data/messages:121 ../slider/data/messages:127
+#: ../slider/data/messages:119 ../slider/data/messages:125
 msgid "open image"
 msgstr "開啟影像"
 
-#: ../slider/data/messages:129
+#: ../slider/data/messages:127
 msgid "open parent folder"
 msgstr ""
 
-#: ../slider/data/messages:133
+#: ../slider/data/messages:131
 msgid "Sliding delay:"
 msgstr "放映時延遲時間："
 
-#: ../slider/data/messages:135
+#: ../slider/data/messages:133
 msgid "Effect while changing image:"
 msgstr "變換影像時的特效："
 
-#: ../slider/data/messages:139
+#: ../slider/data/messages:137
 msgid "fade"
 msgstr "漸退"
 
-#: ../slider/data/messages:141
+#: ../slider/data/messages:139
 msgid "blank fade"
 msgstr "空白漸退"
 
-#: ../slider/data/messages:143
+#: ../slider/data/messages:141
 msgid "fade in/out"
 msgstr "淡入、淡出"
 
-#: ../slider/data/messages:145
+#: ../slider/data/messages:143
 msgid "side kick"
 msgstr "踢開"
 
-#: ../slider/data/messages:147
+#: ../slider/data/messages:145
 msgid "slideshow"
 msgstr "幻燈片放映"
 
-#: ../slider/data/messages:149
+#: ../slider/data/messages:147
 msgid "grow up"
 msgstr "長大"
 
-#: ../slider/data/messages:151
+#: ../slider/data/messages:149
 msgid "shrink"
 msgstr "縮小"
 
-#: ../slider/data/messages:153
+#: ../slider/data/messages:151
 msgid "cube"
 msgstr "立方體"
 
-#: ../slider/data/messages:155
+#: ../slider/data/messages:153
 msgid "random"
 msgstr "隨機"
 
-#: ../slider/data/messages:157
+#: ../slider/data/messages:155
 msgid "Number of steps for transitions:"
 msgstr "轉換時的步驟數量："
 
-#: ../slider/data/messages:159
+#: ../slider/data/messages:157
 msgid "fast"
 msgstr "快速"
 
-#: ../slider/data/messages:161
+#: ../slider/data/messages:159
 msgid "slow"
 msgstr "慢速"
 
-#: ../slider/data/messages:165
+#: ../slider/data/messages:163
 msgid "Add a background to the image?"
 msgstr ""
 
-#: ../slider/data/messages:173
+#: ../slider/data/messages:171
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
 msgstr "如果您不希望有背景。請將透明通道設置為 0。"
 
-#: ../slider/data/messages:175
+#: ../slider/data/messages:173
 msgid "Choose a background colour :"
 msgstr "選擇背景色："
 
-#: ../slider/data/messages:177
+#: ../slider/data/messages:175
 msgid "Frame width:"
 msgstr ""
 
-#: ../slider/data/messages:179
+#: ../slider/data/messages:177
 msgid "Gives better image rendering."
 msgstr "給予更好的影像繪製方式。"
 
-#: ../slider/data/messages:181
+#: ../slider/data/messages:179
 msgid "Keep width/height ratio?"
 msgstr "保留 寬/高 比？"
 
-#: ../slider/data/messages:183
+#: ../slider/data/messages:181
 msgid "If the image is too small, it will be stretched."
 msgstr "若影像太小，它會被延展。"
 
-#: ../slider/data/messages:185
+#: ../slider/data/messages:183
 msgid "Force the image to fill the icon/desklet?"
 msgstr "強制圖像填滿 圖示/桌面小工具？"
 
@@ -8067,251 +8040,251 @@ msgstr "強制圖像填滿 圖示/桌面小工具？"
 msgid "Leave empty to use a default name"
 msgstr "留白使用預設名稱"
 
-#: ../stack/data/messages:105
+#: ../stack/data/messages:103
 msgid "They are items created by dropping a text into the Stack."
 msgstr "當您 拖-放 文字進入堆疊之後會建立項目。"
 
-#: ../stack/data/messages:107
+#: ../stack/data/messages:105
 msgid "Image for 'text' items:"
 msgstr "「文字」項目的影像："
 
-#: ../stack/data/messages:109
+#: ../stack/data/messages:107
 msgid "These are items created by dropping a URL into the Stack."
 msgstr "當您 拖-放 網址(URL) 進入堆疊(Stack)之後，會建立一個項目。"
 
-#: ../stack/data/messages:111
+#: ../stack/data/messages:109
 msgid "Image for 'URL' items:"
 msgstr "「網址」項目的影像："
 
-#: ../stack/data/messages:113
+#: ../stack/data/messages:111
 msgid "Options"
 msgstr "選項"
 
-#: ../stack/data/messages:115
+#: ../stack/data/messages:113
 msgid "Separate the items by type (file/web page/text)"
 msgstr ""
 
-#: ../stack/data/messages:117
+#: ../stack/data/messages:115
 msgid ""
 "These options allow you to prevent some files from displaying in stacks "
 "based on their type (video, image, etc.)"
 msgstr "此選項允許您禁止某些檔案顯示在 stacks, 可依它們的類型 (影片,圖片...等)"
 
-#: ../stack/data/messages:119
+#: ../stack/data/messages:117
 msgid "Filter files on MIME type?"
 msgstr "依 MIME 類型來過濾檔案？"
 
-#: ../stack/data/messages:121
+#: ../stack/data/messages:119
 msgid "E.g. image, text, video, audio, application..."
 msgstr "例如：影像、文字、視訊、音訊、應用程式..."
 
-#: ../stack/data/messages:123
+#: ../stack/data/messages:121
 msgid "Here you can specify a list of MIME types to ignore:"
 msgstr "你可在此指定要忽略的 MIME 類型清單："
 
-#: ../stack/data/messages:125
+#: ../stack/data/messages:123
 msgid "Sort items by:"
 msgstr "排序項目依："
 
-#: ../stack/data/messages:131
+#: ../stack/data/messages:129
 msgid "Type"
 msgstr "類型"
 
-#: ../stack/data/messages:133
+#: ../stack/data/messages:131
 msgid "Manual order"
 msgstr "手動排序"
 
-#: ../switcher/data/messages:87
+#: ../switcher/data/messages:85
 msgid "How to display all desktops?"
 msgstr ""
 
-#: ../switcher/data/messages:89
+#: ../switcher/data/messages:87
 msgid "A sub-dock with all desktops"
 msgstr ""
 
-#: ../switcher/data/messages:91
+#: ../switcher/data/messages:89
 msgid "All desktops drawn on the main icon"
 msgstr ""
 
-#: ../switcher/data/messages:93
+#: ../switcher/data/messages:91
 msgid "Desktops layout"
 msgstr ""
 
-#: ../switcher/data/messages:97
+#: ../switcher/data/messages:95
 msgid "On a single line"
 msgstr ""
 
-#: ../switcher/data/messages:99
+#: ../switcher/data/messages:97
 msgid "Preserve the ratio of the screen?"
 msgstr ""
 
-#: ../switcher/data/messages:101
+#: ../switcher/data/messages:99
 msgid "How to draw the icon?"
 msgstr ""
 
-#: ../switcher/data/messages:103
+#: ../switcher/data/messages:101
 msgid "Map wallpaper to icons"
 msgstr ""
 
-#: ../switcher/data/messages:105
+#: ../switcher/data/messages:103
 msgid "Use an image for each desktop"
 msgstr ""
 
-#: ../switcher/data/messages:107
+#: ../switcher/data/messages:105
 msgid "Use a colour for each desktop"
 msgstr ""
 
-#: ../switcher/data/messages:109
+#: ../switcher/data/messages:107
 msgid "Icon to use in expanded mode if wallpaper is not mapped:"
 msgstr "假如你沒規劃桌布,圖示會使用擴展模式"
 
-#: ../switcher/data/messages:111 ../switcher/data/messages:147
-#: ../switcher/data/messages:153 ../switcher/data/messages:157
-#: ../switcher/data/messages:161 ../switcher/data/messages:177
+#: ../switcher/data/messages:109 ../switcher/data/messages:145
+#: ../switcher/data/messages:151 ../switcher/data/messages:155
+#: ../switcher/data/messages:159 ../switcher/data/messages:175
 msgid "r, g, b, a"
 msgstr "r, g, b, a"
 
-#: ../switcher/data/messages:113 ../terminal/data/messages:103
+#: ../switcher/data/messages:111 ../terminal/data/messages:101
 msgid "Background colour:"
 msgstr "背景色："
 
-#: ../switcher/data/messages:115
+#: ../switcher/data/messages:113
 msgid "Sub-Dock"
 msgstr ""
 
-#: ../switcher/data/messages:121
+#: ../switcher/data/messages:119
 msgid "In expanded mode, render the desklet in 3D?"
 msgstr "在擴展模式中，以3D模式來展現桌面小工具嗎？"
 
-#: ../switcher/data/messages:125
+#: ../switcher/data/messages:123
 msgid "Draw windows on icons?"
 msgstr "在圖示上顯示視窗？"
 
-#: ../switcher/data/messages:127
+#: ../switcher/data/messages:125
 msgid "Draw hidden windows?"
 msgstr "也要顯示隱藏視窗嗎？"
 
-#: ../switcher/data/messages:129
+#: ../switcher/data/messages:127
 msgid "Draw icons of windows?"
 msgstr ""
 
-#: ../switcher/data/messages:133
+#: ../switcher/data/messages:131
 msgid "Show windows' list"
 msgstr "顯示視窗列表"
 
-#: ../switcher/data/messages:141
+#: ../switcher/data/messages:139
 msgid "Workspace names :"
 msgstr "工作區名稱"
 
-#: ../switcher/data/messages:143
+#: ../switcher/data/messages:141
 msgid "Display options"
 msgstr "顯示選項"
 
-#: ../switcher/data/messages:145
+#: ../switcher/data/messages:143
 msgid "Size of the inside lines :"
 msgstr "內側線條的尺寸："
 
-#: ../switcher/data/messages:149
+#: ../switcher/data/messages:147
 msgid "Internal line colour:"
 msgstr "內框線的顏色："
 
-#: ../switcher/data/messages:151
+#: ../switcher/data/messages:149
 msgid "External line size:"
 msgstr "外框線的大小："
 
-#: ../switcher/data/messages:155
+#: ../switcher/data/messages:153
 msgid "External line colour:"
 msgstr "外框線的顏色："
 
-#: ../switcher/data/messages:159
+#: ../switcher/data/messages:157
 msgid "Active window colour:"
 msgstr ""
 
-#: ../switcher/data/messages:163
+#: ../switcher/data/messages:161
 msgid "Current desktop colour:"
 msgstr "目前桌面的顏色"
 
-#: ../switcher/data/messages:165
+#: ../switcher/data/messages:163
 msgid "How to draw the current desktop:"
 msgstr "如何展現當前的桌面："
 
-#: ../switcher/data/messages:167
+#: ../switcher/data/messages:165
 msgid "draw a frame"
 msgstr "展現一個框架"
 
-#: ../switcher/data/messages:169
+#: ../switcher/data/messages:167
 msgid "fill"
 msgstr "填滿"
 
-#: ../switcher/data/messages:171
+#: ../switcher/data/messages:169
 msgid "fill others"
 msgstr "填滿其它的"
 
-#: ../switcher/data/messages:173
+#: ../switcher/data/messages:171
 msgid "All windows can be filled with one colour"
 msgstr ""
 
-#: ../switcher/data/messages:175
+#: ../switcher/data/messages:173
 msgid "Fill all windows?"
 msgstr ""
 
-#: ../switcher/data/messages:179
+#: ../switcher/data/messages:177
 msgid "Colour of these windows:"
 msgstr ""
 
-#: ../systray/data/messages:83
+#: ../systray/data/messages:81
 msgid "Shortkey to toggle the systray in dock mode:"
 msgstr "在 Dock 模式下切換系統匣的快捷鍵："
 
-#: ../systray/data/messages:85
+#: ../systray/data/messages:83
 msgid "Icons packing :"
 msgstr "圖示包裝："
 
-#: ../systray/data/messages:87
+#: ../systray/data/messages:85
 msgid "horizontal"
 msgstr "水平"
 
-#: ../systray/data/messages:89
+#: ../systray/data/messages:87
 msgid "vertical"
 msgstr "垂直"
 
-#: ../template/data/messages:91
+#: ../template/data/messages:89
 msgid "This is a tooltip for this parameter."
 msgstr "這是此參數的工具提示。"
 
-#: ../template/data/messages:93
+#: ../template/data/messages:91
 msgid "This is a boolean parameter. Y/N ?"
 msgstr "這是布林參數。是或否 (Y/N)？"
 
-#: ../template/data/messages:95
+#: ../template/data/messages:93
 msgid "This integer can go from 0 to 10 :"
 msgstr "這個整數可以從 0 到 10："
 
-#: ../template/data/messages:97
+#: ../template/data/messages:95
 msgid "Enter some text here :"
 msgstr "在這裡輸入一些文字："
 
-#: ../terminal/data/messages:93
+#: ../terminal/data/messages:91
 msgid "needs to restart the applet."
 msgstr "需重新啟動該面板程式。"
 
-#: ../terminal/data/messages:95
+#: ../terminal/data/messages:93
 msgid "Terminal transparency:"
 msgstr "終端機視窗的透明度："
 
-#: ../terminal/data/messages:97
+#: ../terminal/data/messages:95
 msgid "transparent"
 msgstr "透明"
 
-#: ../terminal/data/messages:99
+#: ../terminal/data/messages:97
 msgid "opaque"
 msgstr "不透明"
 
-#: ../terminal/data/messages:101
+#: ../terminal/data/messages:99
 msgid "Foreground colour:"
 msgstr "前景色："
 
-#: ../terminal/data/messages:107
+#: ../terminal/data/messages:105
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
@@ -8319,11 +8292,11 @@ msgstr ""
 "當終端機在對話窗內。當終端機在一個桌面小工具中，您可以如往常一樣重新調整桌面"
 "小工具的大小。"
 
-#: ../terminal/data/messages:109
+#: ../terminal/data/messages:107
 msgid "Size of the terminal (line x columns):"
 msgstr "終端機大小 (列 x 行)："
 
-#: ../terminal/data/messages:111
+#: ../terminal/data/messages:109
 msgid "Shortkey to show the terminal:"
 msgstr "顯示終端機的快捷鍵："
 
@@ -8331,47 +8304,47 @@ msgstr "顯示終端機的快捷鍵："
 msgid "'Close' icon image name:"
 msgstr "「關閉」圖示的影像名稱："
 
-#: ../tomboy/data/messages:107
+#: ../tomboy/data/messages:105
 msgid "Image file for the notes:"
 msgstr "該筆記的影像檔："
 
-#: ../tomboy/data/messages:109
+#: ../tomboy/data/messages:107
 msgid "Draw note's content on their icon?"
 msgstr "要在它們的圖示上繪製筆記的內容嗎？"
 
-#: ../tomboy/data/messages:111
+#: ../tomboy/data/messages:109
 msgid "Text colour of the content :"
 msgstr "內文的文字顏色"
 
-#: ../tomboy/data/messages:113
+#: ../tomboy/data/messages:111
 msgid "Display note's content with a dialog?"
 msgstr "要用對話窗顯示筆記內容嗎？"
 
-#: ../tomboy/data/messages:125
+#: ../tomboy/data/messages:123
 msgid "Choose the note-taking application to control :"
 msgstr "選擇要控制的筆記書寫應用程式："
 
-#: ../tomboy/data/messages:127
+#: ../tomboy/data/messages:125
 msgid "Gnote"
 msgstr "Gnote"
 
-#: ../tomboy/data/messages:129
+#: ../tomboy/data/messages:127
 msgid "Tomboy"
 msgstr "Tomboy"
 
-#: ../tomboy/data/messages:131
+#: ../tomboy/data/messages:129
 msgid "Ask for confirmation before deleting a note?"
 msgstr "刪除筆記前要確認嗎？"
 
-#: ../tomboy/data/messages:133
+#: ../tomboy/data/messages:131
 msgid "Otherwise you will be asked to name it."
 msgstr "否則您會被要求為它命名。"
 
-#: ../tomboy/data/messages:135
+#: ../tomboy/data/messages:133
 msgid "Automatically name a new note?"
 msgstr "要自動命名新的筆記嗎？"
 
-#: ../tomboy/data/messages:137
+#: ../tomboy/data/messages:135
 msgid ""
 "Write the date format you usually use in your notes. The syntax is the one "
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
@@ -8380,11 +8353,11 @@ msgstr ""
 "設定您在筆記本上習慣使用的日期格式。語法如下： %d 表日, %m 表月, %y 表年 (2 "
 "位數)。另外，空白會使用預設的格式 (%d/%m/%y)。"
 
-#: ../tomboy/data/messages:139
+#: ../tomboy/data/messages:137
 msgid "Date format to search for :"
 msgstr "要搜尋的日期格式："
 
-#: ../tomboy/data/messages:141
+#: ../tomboy/data/messages:139
 msgid ""
 "Depending on your tomboy's version, the note deletion may not be "
 "automatically notified to us. Only check this box if you notice some error "
@@ -8395,7 +8368,7 @@ msgstr ""
 "入時有一些錯誤信息如「No marshaller for signature of signal \"NoteDeleted\"」"
 "的時候才勾選此方框。"
 
-#: ../tomboy/data/messages:143
+#: ../tomboy/data/messages:141
 msgid "Emulate the 'NoteDeleted' signal?"
 msgstr "模擬「NoteDeleted」(筆記已刪除) 訊號？"
 
@@ -8403,138 +8376,156 @@ msgstr "模擬「NoteDeleted」(筆記已刪除) 訊號？"
 msgid "Leave empty to use the name of the city."
 msgstr "留下空白以使用城市的名稱。"
 
-#: ../weather/data/messages:103
+#: ../weather/data/messages:101
 msgid "Enter the name of your location in the text entry and press Enter."
 msgstr "請在文字輸入的地方輸入您所在位置的名稱，並按下 Enter。"
 
-#: ../weather/data/messages:105
+#: ../weather/data/messages:103
 msgid "Code for your location:"
 msgstr "輸入您所在位置的代碼："
 
-#: ../weather/data/messages:107
+#: ../weather/data/messages:105
 msgid "If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
 msgstr "如果是這樣，溫度會以攝氏顯示，否則會使用華氏。"
 
-#: ../weather/data/messages:109
+#: ../weather/data/messages:107
 msgid "Use International System Units?"
 msgstr "使用國際系統單位？"
 
-#: ../weather/data/messages:111
+#: ../weather/data/messages:109
 msgid "in seconds. Set 0 to have never-ending dialogs."
 msgstr "以秒表示，設定為 0 時表示對話窗永不消失。"
 
-#: ../weather/data/messages:113
+#: ../weather/data/messages:111
 msgid "Dialog duration:"
 msgstr "對話窗顯示時間："
 
-#: ../weather/data/messages:119 ../wifi/data/messages:141
+#: ../weather/data/messages:117 ../wifi/data/messages:139
 msgid "Info"
 msgstr "資訊"
 
-#: ../weather/data/messages:121
+#: ../weather/data/messages:119
 msgid "Display current conditions on the icon instead of the default one?"
 msgstr "顯示目前圖示的情況，而不是預設的嗎？"
 
-#: ../weather/data/messages:123
+#: ../weather/data/messages:121
 msgid "Number of days to forecast:"
 msgstr "預測幾天後："
 
-#: ../weather/data/messages:125
+#: ../weather/data/messages:123
 msgid "Display nights?"
 msgstr "也要顯示夜間？"
 
-#: ../weather/data/messages:127
+#: ../weather/data/messages:125
 msgid "Display temperature as quick info?"
 msgstr "要將溫度當作快速資訊顯示嗎？"
 
-#: ../weather/data/messages:137
+#: ../weather/data/messages:135
 msgid "Render desklet in 3D?"
 msgstr "桌面小工具要以 3D 顯示嗎？"
 
-#: ../weblets/data/messages:91
+#: ../weblets/data/messages:89
 msgid "URI to load in weblet"
 msgstr "在 weblet 中要載入的網址"
 
-#: ../weblets/data/messages:93
+#: ../weblets/data/messages:91
 msgid "Show scrollbars?"
 msgstr "要顯示捲軸嗎？"
 
-#: ../weblets/data/messages:95
+#: ../weblets/data/messages:93
 msgid "Horizontal scroll of the browser in pixels"
 msgstr "瀏覽器水平捲軸的像素"
 
-#: ../weblets/data/messages:97
+#: ../weblets/data/messages:95
 msgid "Position of horizontal scrollbar"
 msgstr "水平捲軸的位置"
 
-#: ../weblets/data/messages:99
+#: ../weblets/data/messages:97
 msgid "Vertical scroll of the browser in pixels"
 msgstr "瀏覽器垂直捲軸的像素"
 
-#: ../weblets/data/messages:101
+#: ../weblets/data/messages:99
 msgid "Position of vertical scrollbar in pixel"
 msgstr "垂直捲軸的所在位置像素"
 
-#: ../weblets/data/messages:103
+#: ../weblets/data/messages:101
 msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr "這允許您用滑鼠點擊桌面小工具(desklet)彈出 Cairo-Dock 選單。"
 
-#: ../weblets/data/messages:105
+#: ../weblets/data/messages:103
 msgid "Right margin width, in pixels:"
 msgstr "右邊距寬度，以像素表示："
 
-#: ../weblets/data/messages:107
+#: ../weblets/data/messages:105
 msgid "Transparent background?"
 msgstr "背景要透明嗎？"
 
-#: ../weblets/data/messages:109
+#: ../weblets/data/messages:107
 msgid ""
 "Time before reloading the weblet URI, in seconds. Zero means never reload."
 msgstr "在重新載入 weblet 網址前的時間，以秒表示。0 代表永不重新載入。"
 
-#: ../weblets/data/messages:111
+#: ../weblets/data/messages:109
 msgid "Time between two page refreshes"
 msgstr "兩個頁面間重新整理的時間"
 
-#: ../weblets/data/messages:113
+#: ../weblets/data/messages:111
 msgid "Any valid URI should work."
 msgstr "任何有效的網址應該都能運作。"
 
-#: ../weblets/data/messages:115
+#: ../weblets/data/messages:113
 msgid "Predefined bookmarks to show in applet menu:"
 msgstr "在面板程式選單中要顯示的預定義書籤："
 
-#: ../wifi/data/messages:139
+#: ../wifi/data/messages:137
 #, fuzzy
 msgid "\"No signal\" icon"
 msgstr "「無訊號」圖示的檔案名稱："
 
-#: ../wifi/data/messages:147
+#: ../wifi/data/messages:145
 msgid "Signal Strength"
 msgstr "訊號強度"
 
-#: ../wifi/data/messages:149
+#: ../wifi/data/messages:147
 msgid "Signal Strength in percent"
 msgstr "訊號強度(百分比)"
 
-#: ../wifi/data/messages:151
+#: ../wifi/data/messages:149
 msgid "Raw Signal Informations"
 msgstr "原始訊號資訊"
 
-#: ../wifi/data/messages:157
+#: ../wifi/data/messages:155
 msgid "Delay between signal checks :"
 msgstr "訊號檢查的間隔時間："
 
-#: ../wifi/data/messages:163
+#: ../wifi/data/messages:161
 msgid ""
 "Allow you to overwrite applet's default command line and launch your "
 "wireless configuration interface."
 msgstr ""
 "允許您忽略面板程式的預設指令列，以您自己設定的指令來啟動您的無線配置界面。"
 
-#: ../wifi/data/messages:165
+#: ../wifi/data/messages:163
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "啟動無線配置的替代指令列："
+
+#~ msgid "Applet's Handbook"
+#~ msgstr "此面板程式的簡易說明"
+
+#~ msgid "Recent documents"
+#~ msgstr "最近使用的文件"
+
+#~ msgid "Leave blank if filter is not needed."
+#~ msgstr "不使用此篩選器請空白。"
+
+#~ msgid "Only show files that are under this folder or its sub-folder:"
+#~ msgstr "只顯示資料夾或其子資料夾之下的檔案："
+
+#~ msgid "in days. Set 0 if unsued."
+#~ msgstr "以日為單位。設定為 0 時不使用這個篩選器。"
+
+#~ msgid "Only show files whose last modification date is less than ;"
+#~ msgstr "只顯示檔案的最後修改日期小於；"
 
 #~ msgid "wifi"
 #~ msgstr "wifi"
