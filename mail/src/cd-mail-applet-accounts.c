@@ -67,8 +67,7 @@ void _retrieve_user_password (CDMailAccount *mailaccount, GKeyFile *pKeyFile, co
 		gchar *encryptedPassword = CD_CONFIG_GET_STRING (mailbox_name, "password");
 		cairo_dock_decrypt_string( encryptedPassword,  &(mailaccount->password) );
 
-		if( encryptedPassword )
-			g_free(encryptedPassword);
+		g_free (encryptedPassword);
 	}
 }
 
@@ -97,14 +96,7 @@ void cd_mail_retrieve_pop3_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
 
 	mailaccount->driver = POP3_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
-	mailaccount->folder = NULL;
-	mailaccount->server = NULL;
-	mailaccount->port = 0;
-	mailaccount->connection_type = CONNECTION_TYPE_PLAIN;
-	mailaccount->user = NULL;
-	mailaccount->password = NULL;
 	mailaccount->auth_type = POP3_AUTH_TYPE_TRY_APOP;
-	mailaccount->path = NULL;
 	
 	if (g_key_file_has_key (pKeyFile, mailbox_name, "host", NULL))
 	{
@@ -113,7 +105,10 @@ void cd_mail_retrieve_pop3_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
 
 	_retrieve_user_password( mailaccount, pKeyFile, mailbox_name );
 
-	mailaccount->connection_type = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT (mailbox_name, "use secure connection", FALSE)?CONNECTION_TYPE_TLS:CONNECTION_TYPE_PLAIN;
+	mailaccount->connection_type = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT (
+		mailbox_name, "use secure connection", FALSE)
+		? CONNECTION_TYPE_TLS
+		: CONNECTION_TYPE_PLAIN;
 	mailaccount->port = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (mailbox_name, "port", 0);
 }
 
@@ -146,14 +141,7 @@ void cd_mail_retrieve_imap_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
 
 	mailaccount->driver = IMAP_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
-	mailaccount->folder = NULL;
-	mailaccount->server = NULL;
-	mailaccount->port = 0;
-	mailaccount->connection_type = CONNECTION_TYPE_PLAIN;
-	mailaccount->user = NULL;
-	mailaccount->password = NULL;
 	mailaccount->auth_type = IMAP_AUTH_TYPE_PLAIN;
-	mailaccount->path = g_strdup("/");
 	
 	if (g_key_file_has_key (pKeyFile, mailbox_name, "host", NULL))
 	{
@@ -164,14 +152,17 @@ void cd_mail_retrieve_imap_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
 
 	mailaccount->port = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (mailbox_name, "port", 0);
 
-	mailaccount->connection_type = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT (mailbox_name, "use secure connection", FALSE)?CONNECTION_TYPE_TLS:CONNECTION_TYPE_PLAIN;
+	mailaccount->connection_type = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT (
+		mailbox_name, "use secure connection", FALSE)
+		? CONNECTION_TYPE_TLS
+		: CONNECTION_TYPE_PLAIN;
 
 	/* CONNECTION_TYPE_TLS ? CONNECTION_TYPE_STARTTLS ? */
 
 	if (g_key_file_has_key (pKeyFile, mailbox_name, "server_directory", NULL))
-	{
 		mailaccount->path = CD_CONFIG_GET_STRING (mailbox_name, "server_directory");
-	}
+	else
+		mailaccount->path = g_strdup("/");
 }
 
 void cd_mail_create_mbox_params( GKeyFile *pKeyFile, const gchar *pMailAccountName )
@@ -198,17 +189,12 @@ void cd_mail_retrieve_mbox_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
 
 	mailaccount->driver = MBOX_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
-	mailaccount->folder = NULL;
-	mailaccount->server = NULL;
-	mailaccount->port = 0;
 	mailaccount->connection_type = CONNECTION_TYPE_PLAIN;
-	mailaccount->user = NULL;
-	mailaccount->password = NULL;
 	mailaccount->auth_type = POP3_AUTH_TYPE_PLAIN;
 
 	if (g_key_file_has_key (pKeyFile, mailbox_name, "filename", NULL))
 		mailaccount->path = CD_CONFIG_GET_STRING_WITH_DEFAULT (mailbox_name, "filename", "/");
-	if (mailaccount->path == NULL)
+	else
 		mailaccount->path = g_strdup("/");
 
 	//{"filename", "ctime", "size", "interval", NULL, NULL}
@@ -233,12 +219,7 @@ void cd_mail_retrieve_mh_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile,
 
 	mailaccount->driver = MH_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
-	mailaccount->folder = NULL;
-	mailaccount->server = NULL;
-	mailaccount->port = 0;
 	mailaccount->connection_type = CONNECTION_TYPE_PLAIN;
-	mailaccount->user = NULL;
-	mailaccount->password = NULL;
 	mailaccount->auth_type = POP3_AUTH_TYPE_PLAIN;
 	mailaccount->path = g_strdup("/");
 }
@@ -267,19 +248,13 @@ void cd_mail_retrieve_maildir_params (CDMailAccount *mailaccount, GKeyFile *pKey
 
 	mailaccount->driver = MAILDIR_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
-	mailaccount->folder = NULL;
-	mailaccount->server = NULL;
-	mailaccount->port = 0;
 	mailaccount->connection_type = CONNECTION_TYPE_PLAIN;
-	mailaccount->user = NULL;
-	mailaccount->password = NULL;
 	mailaccount->auth_type = POP3_AUTH_TYPE_PLAIN;
-	mailaccount->path = g_strdup("/");
 
 	if (g_key_file_has_key (pKeyFile, mailbox_name, "path", NULL))
-	{
 		mailaccount->path = CD_CONFIG_GET_STRING (mailbox_name, "path");
-	}
+	else
+		mailaccount->path = g_strdup("/");
 	//{"path", "mtime", "interval", NULL, NULL, NULL, NULL}
 }
 
@@ -308,14 +283,9 @@ void cd_mail_retrieve_feed_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
 
 	mailaccount->driver = FEED_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
-	mailaccount->folder = NULL;
-	mailaccount->server = NULL;
 	mailaccount->port = 443;
 	mailaccount->connection_type = CONNECTION_TYPE_PLAIN;
-	mailaccount->user = NULL;
-	mailaccount->password = NULL;
 	mailaccount->auth_type = POP3_AUTH_TYPE_PLAIN;
-	mailaccount->path = NULL;
 	
 	if (g_key_file_has_key (pKeyFile, mailbox_name, "path", NULL))
 	{
@@ -345,12 +315,9 @@ void cd_mail_retrieve_gmail_params (CDMailAccount *mailaccount, GKeyFile *pKeyFi
  * instead of RSS. */
 	mailaccount->driver = IMAP_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
-	mailaccount->folder = NULL;
 	mailaccount->server = g_strdup("imap.gmail.com");
 	mailaccount->port = 993;
 	mailaccount->connection_type = CONNECTION_TYPE_TLS;
-	mailaccount->user = NULL;
-	mailaccount->password = NULL;
 	mailaccount->auth_type = IMAP_AUTH_TYPE_PLAIN;
 	mailaccount->path = g_strdup("Inbox");
 	
@@ -358,14 +325,9 @@ void cd_mail_retrieve_gmail_params (CDMailAccount *mailaccount, GKeyFile *pKeyFi
 #else
 	mailaccount->driver = FEED_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
-	mailaccount->folder = NULL;
-	mailaccount->server = NULL;
 	mailaccount->port = 443;
 	mailaccount->connection_type = CONNECTION_TYPE_STARTTLS;
-	mailaccount->user = NULL;
-	mailaccount->password = NULL;
 	mailaccount->auth_type = POP3_AUTH_TYPE_PLAIN;
-	mailaccount->path = NULL;
 	
 	if (g_key_file_has_key (pKeyFile, mailbox_name, "username", NULL))
 	{
@@ -426,12 +388,9 @@ void cd_mail_retrieve_yahoo_params (CDMailAccount *mailaccount, GKeyFile *pKeyFi
 
 	mailaccount->driver = IMAP_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
-	mailaccount->folder = NULL;
 	mailaccount->server = g_strdup("imap.mail.yahoo.com");
 	mailaccount->port = 993;
 	mailaccount->connection_type = CONNECTION_TYPE_TLS;
-	mailaccount->user = NULL;
-	mailaccount->password = NULL;
 	mailaccount->auth_type = IMAP_AUTH_TYPE_PLAIN;
 	mailaccount->path = g_strdup("Inbox");
 	
@@ -455,14 +414,10 @@ void cd_mail_retrieve_hotmail_params (CDMailAccount *mailaccount, GKeyFile *pKey
 
 	mailaccount->driver = POP3_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
-	mailaccount->folder = NULL;
 	mailaccount->server = g_strdup("pop3.live.com");
 	mailaccount->port = 995;
 	mailaccount->connection_type = CONNECTION_TYPE_TLS;
-	mailaccount->user = NULL;
-	mailaccount->password = NULL;
 	mailaccount->auth_type = POP3_AUTH_TYPE_TRY_APOP;
-	mailaccount->path = NULL;
 
 	_retrieve_user_password( mailaccount, pKeyFile, mailbox_name );
 }
@@ -484,12 +439,9 @@ void cd_mail_retrieve_free_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
 
 	mailaccount->driver = IMAP_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
-	mailaccount->folder = NULL;
 	mailaccount->server = g_strdup("imap.free.fr");
 	mailaccount->port = 143;
 	mailaccount->connection_type = CONNECTION_TYPE_PLAIN;
-	mailaccount->user = NULL;
-	mailaccount->password = NULL;
 	mailaccount->auth_type = IMAP_AUTH_TYPE_PLAIN;
 	mailaccount->path = g_strdup("Inbox");
 	
@@ -513,12 +465,9 @@ void cd_mail_retrieve_neuf_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
 
 	mailaccount->driver = IMAP_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
-	mailaccount->folder = NULL;
 	mailaccount->server = g_strdup("imap.neuf.fr");
 	mailaccount->port = 143;
 	mailaccount->connection_type = CONNECTION_TYPE_PLAIN;
-	mailaccount->user = NULL;
-	mailaccount->password = NULL;
 	mailaccount->auth_type = IMAP_AUTH_TYPE_PLAIN;
 	mailaccount->path = g_strdup("Inbox");
 	
@@ -542,12 +491,9 @@ void cd_mail_retrieve_sfr_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile
 
 	mailaccount->driver = IMAP_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
-	mailaccount->folder = NULL;
 	mailaccount->server = g_strdup("imap.sfr.fr");
 	mailaccount->port = 143;
 	mailaccount->connection_type = CONNECTION_TYPE_PLAIN;
-	mailaccount->user = NULL;
-	mailaccount->password = NULL;
 	mailaccount->auth_type = IMAP_AUTH_TYPE_PLAIN;
 	mailaccount->path = g_strdup("Inbox");
 	
@@ -571,12 +517,9 @@ void cd_mail_retrieve_orange_params (CDMailAccount *mailaccount, GKeyFile *pKeyF
 
 	mailaccount->driver = IMAP_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
-	mailaccount->folder = NULL;
 	mailaccount->server = g_strdup("imap.orange.fr");
 	mailaccount->port = 143;
 	mailaccount->connection_type = CONNECTION_TYPE_PLAIN;
-	mailaccount->user = NULL;
-	mailaccount->password = NULL;
 	mailaccount->auth_type = IMAP_AUTH_TYPE_PLAIN;
 	mailaccount->path = g_strdup("Inbox");
 	
@@ -600,12 +543,9 @@ void cd_mail_retrieve_uclouvain_params (CDMailAccount *mailaccount, GKeyFile *pK
 
 	mailaccount->driver = IMAP_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
-	mailaccount->folder = NULL;
 	mailaccount->server = g_strdup("mail.sipr.ucl.ac.be");
 	mailaccount->port = 993;
 	mailaccount->connection_type = CONNECTION_TYPE_TLS;
-	mailaccount->user = NULL;
-	mailaccount->password = NULL;
 	mailaccount->auth_type = IMAP_AUTH_TYPE_PLAIN;
 	mailaccount->path = g_strdup("Inbox");
 	
@@ -629,14 +569,10 @@ void cd_mail_retrieve_skynet_params (CDMailAccount *mailaccount, GKeyFile *pKeyF
 
 	mailaccount->driver = POP3_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
-	mailaccount->folder = NULL;
 	mailaccount->server = g_strdup("pop.skynet.be");
 	mailaccount->port = 110;
 	mailaccount->connection_type = CONNECTION_TYPE_PLAIN;
-	mailaccount->user = NULL;
-	mailaccount->password = NULL;
 	mailaccount->auth_type = POP3_AUTH_TYPE_TRY_APOP;
-	mailaccount->path = NULL;
 
 	_retrieve_user_password( mailaccount, pKeyFile, mailbox_name );
 }
