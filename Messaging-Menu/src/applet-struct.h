@@ -26,10 +26,6 @@
 #ifndef INDICATOR_MESSAGES_12_10
 #include "indicator-applet.h"
 #define FORCE_REMOVE_DOUBLE_SEPARATORS
-#else
-#include "indicator-applet3.h"
-#endif
-
 // let's include the Dbus name shere, so that we don't duplicate the logic.
 // we could put it directly in the .h, but having several .h will be easier to cope with further changes.
 #if (INDICATOR_OLD_NAMES == 0)
@@ -38,11 +34,19 @@
 #include "dbus-data-old.h"
 #endif
 
+#else
+
+#include "indicator-applet3.h"
+#endif
+
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
 	gchar *cAnimationName;
 	gchar *cShortkey;
 	gchar *defaultTitle;
+	#ifdef INDICATOR_MESSAGES_12_10
+	gchar *cIndicatorName;
+	#endif
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.

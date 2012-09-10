@@ -29,6 +29,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.defaultTitle = CD_CONFIG_GET_STRING ("Icon", "name");
 	myConfig.cAnimationName = CD_CONFIG_GET_STRING ("Configuration", "animation");
 	myConfig.cShortkey = CD_CONFIG_GET_STRING ("Configuration", "shortkey");
+	#ifdef INDICATOR_MESSAGES_12_10
+	myConfig.cIndicatorName = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "indicator", "libmessaging.so");
+	#endif
 CD_APPLET_GET_CONFIG_END
 
 
@@ -37,6 +40,9 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cShortkey);
 	g_free (myConfig.cAnimationName);
 	g_free (myConfig.defaultTitle);
+	#ifdef INDICATOR_MESSAGES_12_10
+	g_free (myConfig.cIndicatorName);
+	#endif
 CD_APPLET_RESET_CONFIG_END
 
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped, in the very end.

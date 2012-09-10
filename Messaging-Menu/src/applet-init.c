@@ -61,7 +61,7 @@ CD_APPLET_INIT_BEGIN
 	myData.pIndicator->get_initial_values 	= cd_messaging_get_initial_values;
 	myData.pIndicator->add_menu_handler 	= cd_messaging_add_menu_handler;
 	#else
-	myData.pIndicator = cd_indicator3_load ("libmessaging.so",
+	myData.pIndicator = cd_indicator3_load (myConfig.cIndicatorName,
 		cd_messaging_entry_added,
 		cd_messaging_entry_removed,
 		cd_messaging_accessible_desc_update,
