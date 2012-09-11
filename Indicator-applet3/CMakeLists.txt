@@ -1,6 +1,7 @@
 
 SET(impl_SRCS
 	indicator-applet3.c			indicator-applet3.h
+	indicator-applet3-utils.c	indicator-applet3-utils.h
 )
 
 add_library(indicator-applet3 STATIC ${impl_SRCS})
