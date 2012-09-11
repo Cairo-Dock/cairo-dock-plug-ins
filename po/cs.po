@@ -984,6 +984,22 @@ msgstr "Deaktivovat wifi"
 msgid "Activate wifi"
 msgstr "Aktivovat wifi"
 
+#: ../Printers-Menu/src/applet-init.c:30
+msgid "Printers-Menu"
+msgstr ""
+
+#: ../Printers-Menu/src/applet-init.c:33
+msgid ""
+"This applet is designed to let you view and control active print jobs.\n"
+"Its icon will only be visible if at least one print job is active."
+msgstr ""
+
+#: ../Printers-Menu/src/applet-notifications.c:34
+msgid ""
+"The PrintersMenu service did not reply.\n"
+"Please check that 'libprintersmenu.so' is correctly installed."
+msgstr ""
+
 #: ../RSSreader/src/applet-init.c:31
 msgid "RSSreader"
 msgstr "RSS čtečka"
@@ -3606,21 +3622,21 @@ msgstr "Typ záběru :"
 #: ../GMenu/data/messages:41 ../Global-Menu/data/messages:37
 #: ../Impulse/data/messages:37 ../MeMenu/data/messages:37
 #: ../Messaging-Menu/data/messages:49 ../Network-Monitor/data/messages:51
-#: ../RSSreader/data/messages:43 ../Recent-Events/data/messages:41
-#: ../Status-Notifier/data/messages:53 ../System-Monitor/data/messages:49
-#: ../Toons/data/messages:49 ../Xgamma/data/messages:43
-#: ../alsaMixer/data/messages:49 ../clock/data/messages:51
-#: ../dnd2share/data/messages:37 ../dustbin/data/messages:39
-#: ../keyboard-indicator/data/messages:49 ../logout/data/messages:41
-#: ../mail/data/messages:49 ../musicPlayer/data/messages:51
-#: ../netspeed/data/messages:49 ../powermanager/data/messages:51
-#: ../quick-browser/data/messages:43 ../shortcuts/data/messages:41
-#: ../showDesktop/data/messages:43 ../slider/data/messages:49
-#: ../stack/data/messages:43 ../switcher/data/messages:35
-#: ../systray/data/messages:33 ../template/data/messages:41
-#: ../terminal/data/messages:41 ../tomboy/data/messages:53
-#: ../weather/data/messages:51 ../weblets/data/messages:41
-#: ../wifi/data/messages:49
+#: ../Printers-Menu/data/messages:41 ../RSSreader/data/messages:43
+#: ../Recent-Events/data/messages:41 ../Status-Notifier/data/messages:53
+#: ../System-Monitor/data/messages:49 ../Toons/data/messages:49
+#: ../Xgamma/data/messages:43 ../alsaMixer/data/messages:49
+#: ../clock/data/messages:51 ../dnd2share/data/messages:37
+#: ../dustbin/data/messages:39 ../keyboard-indicator/data/messages:49
+#: ../logout/data/messages:41 ../mail/data/messages:49
+#: ../musicPlayer/data/messages:51 ../netspeed/data/messages:49
+#: ../powermanager/data/messages:51 ../quick-browser/data/messages:43
+#: ../shortcuts/data/messages:41 ../showDesktop/data/messages:43
+#: ../slider/data/messages:49 ../stack/data/messages:43
+#: ../switcher/data/messages:35 ../systray/data/messages:33
+#: ../template/data/messages:41 ../terminal/data/messages:41
+#: ../tomboy/data/messages:53 ../weather/data/messages:51
+#: ../weblets/data/messages:41 ../wifi/data/messages:49
 msgid "Normal"
 msgstr "Normální"
 
@@ -3785,7 +3801,8 @@ msgstr ""
 #: ../Impulse/data/messages:3 ../MeMenu/data/messages:1
 #: ../MeMenu/data/messages:3 ../Messaging-Menu/data/messages:1
 #: ../Messaging-Menu/data/messages:3 ../Network-Monitor/data/messages:1
-#: ../Network-Monitor/data/messages:3 ../RSSreader/data/messages:1
+#: ../Network-Monitor/data/messages:3 ../Printers-Menu/data/messages:1
+#: ../Printers-Menu/data/messages:3 ../RSSreader/data/messages:1
 #: ../RSSreader/data/messages:3 ../Recent-Events/data/messages:1
 #: ../Recent-Events/data/messages:3 ../Status-Notifier/data/messages:1
 #: ../Status-Notifier/data/messages:3 ../System-Monitor/data/messages:1
@@ -3823,21 +3840,22 @@ msgstr "Ikona"
 #: ../Folders/data/messages:5 ../GMenu/data/messages:5
 #: ../Global-Menu/data/messages:5 ../Impulse/data/messages:5
 #: ../MeMenu/data/messages:5 ../Messaging-Menu/data/messages:5
-#: ../Network-Monitor/data/messages:5 ../RSSreader/data/messages:5
-#: ../Recent-Events/data/messages:5 ../Status-Notifier/data/messages:5
-#: ../System-Monitor/data/messages:5 ../Toons/data/messages:5
-#: ../Xgamma/data/messages:5 ../alsaMixer/data/messages:5
-#: ../clock/data/messages:5 ../dnd2share/data/messages:5
-#: ../dustbin/data/messages:5 ../keyboard-indicator/data/messages:5
-#: ../logout/data/messages:5 ../mail/data/messages:5
-#: ../musicPlayer/data/messages:5 ../netspeed/data/messages:5
-#: ../powermanager/data/messages:5 ../quick-browser/data/messages:5
-#: ../shortcuts/data/messages:5 ../showDesktop/data/messages:5
-#: ../slider/data/messages:5 ../stack/data/messages:5
-#: ../switcher/data/messages:5 ../systray/data/messages:5
-#: ../template/data/messages:5 ../terminal/data/messages:5
-#: ../tomboy/data/messages:5 ../weather/data/messages:5
-#: ../weblets/data/messages:5 ../wifi/data/messages:5
+#: ../Network-Monitor/data/messages:5 ../Printers-Menu/data/messages:5
+#: ../RSSreader/data/messages:5 ../Recent-Events/data/messages:5
+#: ../Status-Notifier/data/messages:5 ../System-Monitor/data/messages:5
+#: ../Toons/data/messages:5 ../Xgamma/data/messages:5
+#: ../alsaMixer/data/messages:5 ../clock/data/messages:5
+#: ../dnd2share/data/messages:5 ../dustbin/data/messages:5
+#: ../keyboard-indicator/data/messages:5 ../logout/data/messages:5
+#: ../mail/data/messages:5 ../musicPlayer/data/messages:5
+#: ../netspeed/data/messages:5 ../powermanager/data/messages:5
+#: ../quick-browser/data/messages:5 ../shortcuts/data/messages:5
+#: ../showDesktop/data/messages:5 ../slider/data/messages:5
+#: ../stack/data/messages:5 ../switcher/data/messages:5
+#: ../systray/data/messages:5 ../template/data/messages:5
+#: ../terminal/data/messages:5 ../tomboy/data/messages:5
+#: ../weather/data/messages:5 ../weblets/data/messages:5
+#: ../wifi/data/messages:5
 msgid "Name of the dock it belongs to:"
 msgstr "Jméno doku, ke kterému to patří:"
 
@@ -3845,21 +3863,22 @@ msgstr "Jméno doku, ke kterému to patří:"
 #: ../Composite-Manager/data/messages:7 ../Disks/data/messages:7
 #: ../Doncky/data/messages:7 ../Folders/data/messages:9
 #: ../GMenu/data/messages:7 ../Messaging-Menu/data/messages:7
-#: ../Network-Monitor/data/messages:9 ../RSSreader/data/messages:9
-#: ../Recent-Events/data/messages:7 ../Status-Notifier/data/messages:7
-#: ../System-Monitor/data/messages:7 ../Toons/data/messages:7
-#: ../Xgamma/data/messages:9 ../alsaMixer/data/messages:7
-#: ../clock/data/messages:9 ../dnd2share/data/messages:7
-#: ../dustbin/data/messages:7 ../keyboard-indicator/data/messages:7
-#: ../logout/data/messages:7 ../mail/data/messages:7
-#: ../musicPlayer/data/messages:9 ../netspeed/data/messages:7
-#: ../powermanager/data/messages:9 ../quick-browser/data/messages:9
-#: ../shortcuts/data/messages:7 ../showDesktop/data/messages:7
-#: ../slider/data/messages:7 ../stack/data/messages:9
-#: ../switcher/data/messages:7 ../systray/data/messages:7
-#: ../template/data/messages:7 ../terminal/data/messages:7
-#: ../tomboy/data/messages:7 ../weather/data/messages:9
-#: ../weblets/data/messages:7 ../wifi/data/messages:7
+#: ../Network-Monitor/data/messages:9 ../Printers-Menu/data/messages:7
+#: ../RSSreader/data/messages:9 ../Recent-Events/data/messages:7
+#: ../Status-Notifier/data/messages:7 ../System-Monitor/data/messages:7
+#: ../Toons/data/messages:7 ../Xgamma/data/messages:9
+#: ../alsaMixer/data/messages:7 ../clock/data/messages:9
+#: ../dnd2share/data/messages:7 ../dustbin/data/messages:7
+#: ../keyboard-indicator/data/messages:7 ../logout/data/messages:7
+#: ../mail/data/messages:7 ../musicPlayer/data/messages:9
+#: ../netspeed/data/messages:7 ../powermanager/data/messages:9
+#: ../quick-browser/data/messages:9 ../shortcuts/data/messages:7
+#: ../showDesktop/data/messages:7 ../slider/data/messages:7
+#: ../stack/data/messages:9 ../switcher/data/messages:7
+#: ../systray/data/messages:7 ../template/data/messages:7
+#: ../terminal/data/messages:7 ../tomboy/data/messages:7
+#: ../weather/data/messages:9 ../weblets/data/messages:7
+#: ../wifi/data/messages:7
 msgid "Name of the icon as it will appear in its caption in the dock:"
 msgstr "Název ikony, která se objeví ve štítku v docku :"
 
@@ -3869,21 +3888,21 @@ msgstr "Název ikony, která se objeví ve štítku v docku :"
 #: ../GMenu/data/messages:11 ../Global-Menu/data/messages:7
 #: ../Impulse/data/messages:7 ../MeMenu/data/messages:7
 #: ../Messaging-Menu/data/messages:9 ../Network-Monitor/data/messages:11
-#: ../RSSreader/data/messages:13 ../Recent-Events/data/messages:11
-#: ../Status-Notifier/data/messages:13 ../System-Monitor/data/messages:9
-#: ../Toons/data/messages:9 ../Xgamma/data/messages:13
-#: ../alsaMixer/data/messages:9 ../clock/data/messages:11
-#: ../dnd2share/data/messages:11 ../dustbin/data/messages:9
-#: ../keyboard-indicator/data/messages:9 ../logout/data/messages:11
-#: ../mail/data/messages:9 ../musicPlayer/data/messages:11
-#: ../netspeed/data/messages:9 ../powermanager/data/messages:11
-#: ../quick-browser/data/messages:13 ../shortcuts/data/messages:11
-#: ../showDesktop/data/messages:13 ../slider/data/messages:9
-#: ../stack/data/messages:13 ../switcher/data/messages:11
-#: ../systray/data/messages:11 ../template/data/messages:11
-#: ../terminal/data/messages:11 ../tomboy/data/messages:23
-#: ../weather/data/messages:11 ../weblets/data/messages:11
-#: ../wifi/data/messages:9
+#: ../Printers-Menu/data/messages:11 ../RSSreader/data/messages:13
+#: ../Recent-Events/data/messages:11 ../Status-Notifier/data/messages:13
+#: ../System-Monitor/data/messages:9 ../Toons/data/messages:9
+#: ../Xgamma/data/messages:13 ../alsaMixer/data/messages:9
+#: ../clock/data/messages:11 ../dnd2share/data/messages:11
+#: ../dustbin/data/messages:9 ../keyboard-indicator/data/messages:9
+#: ../logout/data/messages:11 ../mail/data/messages:9
+#: ../musicPlayer/data/messages:11 ../netspeed/data/messages:9
+#: ../powermanager/data/messages:11 ../quick-browser/data/messages:13
+#: ../shortcuts/data/messages:11 ../showDesktop/data/messages:13
+#: ../slider/data/messages:9 ../stack/data/messages:13
+#: ../switcher/data/messages:11 ../systray/data/messages:11
+#: ../template/data/messages:11 ../terminal/data/messages:11
+#: ../tomboy/data/messages:23 ../weather/data/messages:11
+#: ../weblets/data/messages:11 ../wifi/data/messages:9
 msgid "Set to 0 to use the default applet size"
 msgstr "Pro použití základní velikosti appletu nastavte na 0"
 
@@ -3893,21 +3912,21 @@ msgstr "Pro použití základní velikosti appletu nastavte na 0"
 #: ../GMenu/data/messages:13 ../Global-Menu/data/messages:9
 #: ../Impulse/data/messages:9 ../MeMenu/data/messages:9
 #: ../Messaging-Menu/data/messages:11 ../Network-Monitor/data/messages:13
-#: ../RSSreader/data/messages:15 ../Recent-Events/data/messages:13
-#: ../Status-Notifier/data/messages:15 ../System-Monitor/data/messages:11
-#: ../Toons/data/messages:11 ../Xgamma/data/messages:15
-#: ../alsaMixer/data/messages:11 ../clock/data/messages:13
-#: ../dnd2share/data/messages:13 ../dustbin/data/messages:11
-#: ../keyboard-indicator/data/messages:11 ../logout/data/messages:13
-#: ../mail/data/messages:11 ../musicPlayer/data/messages:13
-#: ../netspeed/data/messages:11 ../powermanager/data/messages:13
-#: ../quick-browser/data/messages:15 ../shortcuts/data/messages:13
-#: ../showDesktop/data/messages:15 ../slider/data/messages:11
-#: ../stack/data/messages:15 ../switcher/data/messages:13
-#: ../systray/data/messages:13 ../template/data/messages:13
-#: ../terminal/data/messages:13 ../tomboy/data/messages:25
-#: ../weather/data/messages:13 ../weblets/data/messages:13
-#: ../wifi/data/messages:11
+#: ../Printers-Menu/data/messages:13 ../RSSreader/data/messages:15
+#: ../Recent-Events/data/messages:13 ../Status-Notifier/data/messages:15
+#: ../System-Monitor/data/messages:11 ../Toons/data/messages:11
+#: ../Xgamma/data/messages:15 ../alsaMixer/data/messages:11
+#: ../clock/data/messages:13 ../dnd2share/data/messages:13
+#: ../dustbin/data/messages:11 ../keyboard-indicator/data/messages:11
+#: ../logout/data/messages:13 ../mail/data/messages:11
+#: ../musicPlayer/data/messages:13 ../netspeed/data/messages:11
+#: ../powermanager/data/messages:13 ../quick-browser/data/messages:15
+#: ../shortcuts/data/messages:13 ../showDesktop/data/messages:15
+#: ../slider/data/messages:11 ../stack/data/messages:15
+#: ../switcher/data/messages:13 ../systray/data/messages:13
+#: ../template/data/messages:13 ../terminal/data/messages:13
+#: ../tomboy/data/messages:25 ../weather/data/messages:13
+#: ../weblets/data/messages:13 ../wifi/data/messages:11
 msgid "Desired icon size for this applet"
 msgstr "Požadovaná velikost ikony pro tento applet"
 
@@ -3917,24 +3936,25 @@ msgstr "Požadovaná velikost ikony pro tento applet"
 #: ../Folders/data/messages:99 ../GMenu/data/messages:87
 #: ../Global-Menu/data/messages:83 ../Impulse/data/messages:83
 #: ../MeMenu/data/messages:83 ../Messaging-Menu/data/messages:95
-#: ../Network-Monitor/data/messages:97 ../RSSreader/data/messages:89
-#: ../Recent-Events/data/messages:87 ../Remote-Control/data/messages:3
-#: ../Scooby-Do/data/messages:1 ../Status-Notifier/data/messages:99
-#: ../System-Monitor/data/messages:95 ../Toons/data/messages:95
-#: ../Xgamma/data/messages:89 ../alsaMixer/data/messages:95
-#: ../clock/data/messages:97 ../dnd2share/data/messages:83
-#: ../dustbin/data/messages:85 ../keyboard-indicator/data/messages:95
-#: ../logout/data/messages:87 ../mail/data/messages:95
-#: ../motion-blur/data/messages:1 ../musicPlayer/data/messages:97
-#: ../netspeed/data/messages:95 ../powermanager/data/messages:97
-#: ../quick-browser/data/messages:89 ../shortcuts/data/messages:87
-#: ../show-mouse/data/messages:1 ../showDesktop/data/messages:89
-#: ../slider/data/messages:95 ../stack/data/messages:89
-#: ../switcher/data/messages:81 ../switcher/data/messages:83
-#: ../systray/data/messages:79 ../template/data/messages:87
-#: ../terminal/data/messages:87 ../tomboy/data/messages:99
-#: ../weather/data/messages:97 ../weather/data/messages:99
-#: ../weblets/data/messages:87 ../wifi/data/messages:95
+#: ../Network-Monitor/data/messages:97 ../Printers-Menu/data/messages:87
+#: ../RSSreader/data/messages:89 ../Recent-Events/data/messages:87
+#: ../Remote-Control/data/messages:3 ../Scooby-Do/data/messages:1
+#: ../Status-Notifier/data/messages:99 ../System-Monitor/data/messages:95
+#: ../Toons/data/messages:95 ../Xgamma/data/messages:89
+#: ../alsaMixer/data/messages:95 ../clock/data/messages:97
+#: ../dnd2share/data/messages:83 ../dustbin/data/messages:85
+#: ../keyboard-indicator/data/messages:95 ../logout/data/messages:87
+#: ../mail/data/messages:95 ../motion-blur/data/messages:1
+#: ../musicPlayer/data/messages:97 ../netspeed/data/messages:95
+#: ../powermanager/data/messages:97 ../quick-browser/data/messages:89
+#: ../shortcuts/data/messages:87 ../show-mouse/data/messages:1
+#: ../showDesktop/data/messages:89 ../slider/data/messages:95
+#: ../stack/data/messages:89 ../switcher/data/messages:81
+#: ../switcher/data/messages:83 ../systray/data/messages:79
+#: ../template/data/messages:87 ../terminal/data/messages:87
+#: ../tomboy/data/messages:99 ../weather/data/messages:97
+#: ../weather/data/messages:99 ../weblets/data/messages:87
+#: ../wifi/data/messages:95
 msgid "Configuration"
 msgstr "Konfigurace"
 
@@ -3980,13 +4000,14 @@ msgstr "Základní odsazení :"
 
 #: ../Clipper/data/messages:9 ../Doncky/data/messages:9
 #: ../Folders/data/messages:21 ../GMenu/data/messages:9
-#: ../RSSreader/data/messages:11 ../Recent-Events/data/messages:9
-#: ../Xgamma/data/messages:11 ../dnd2share/data/messages:9
-#: ../logout/data/messages:9 ../quick-browser/data/messages:11
-#: ../shortcuts/data/messages:9 ../showDesktop/data/messages:9
-#: ../stack/data/messages:11 ../switcher/data/messages:9
-#: ../systray/data/messages:9 ../template/data/messages:9
-#: ../terminal/data/messages:9 ../weblets/data/messages:9
+#: ../Printers-Menu/data/messages:9 ../RSSreader/data/messages:11
+#: ../Recent-Events/data/messages:9 ../Xgamma/data/messages:11
+#: ../dnd2share/data/messages:9 ../logout/data/messages:9
+#: ../quick-browser/data/messages:11 ../shortcuts/data/messages:9
+#: ../showDesktop/data/messages:9 ../stack/data/messages:11
+#: ../switcher/data/messages:9 ../systray/data/messages:9
+#: ../template/data/messages:9 ../terminal/data/messages:9
+#: ../weblets/data/messages:9
 msgid "Image filename:"
 msgstr "Název souboru obrázku :"
 
@@ -3995,22 +4016,22 @@ msgstr "Název souboru obrázku :"
 #: ../Folders/data/messages:27 ../GMenu/data/messages:15
 #: ../Global-Menu/data/messages:11 ../Impulse/data/messages:11
 #: ../MeMenu/data/messages:11 ../Messaging-Menu/data/messages:23
-#: ../Network-Monitor/data/messages:25 ../RSSreader/data/messages:17
-#: ../Recent-Events/data/messages:15 ../Status-Notifier/data/messages:27
-#: ../System-Monitor/data/messages:23 ../Toons/data/messages:23
-#: ../Xgamma/data/messages:17 ../alsaMixer/data/messages:23
-#: ../clock/data/messages:25 ../dnd2share/data/messages:15
-#: ../dustbin/data/messages:13 ../keyboard-indicator/data/messages:23
-#: ../logout/data/messages:15 ../mail/data/messages:23
-#: ../musicPlayer/data/messages:25 ../netspeed/data/messages:23
-#: ../powermanager/data/messages:25 ../quick-browser/data/messages:17
-#: ../shortcuts/data/messages:15 ../show-mouse/data/messages:13
-#: ../showDesktop/data/messages:17 ../slider/data/messages:23
-#: ../stack/data/messages:17 ../switcher/data/messages:15
-#: ../systray/data/messages:15 ../template/data/messages:15
-#: ../terminal/data/messages:15 ../tomboy/data/messages:27
-#: ../weather/data/messages:25 ../weblets/data/messages:15
-#: ../wifi/data/messages:23
+#: ../Network-Monitor/data/messages:25 ../Printers-Menu/data/messages:15
+#: ../RSSreader/data/messages:17 ../Recent-Events/data/messages:15
+#: ../Status-Notifier/data/messages:27 ../System-Monitor/data/messages:23
+#: ../Toons/data/messages:23 ../Xgamma/data/messages:17
+#: ../alsaMixer/data/messages:23 ../clock/data/messages:25
+#: ../dnd2share/data/messages:15 ../dustbin/data/messages:13
+#: ../keyboard-indicator/data/messages:23 ../logout/data/messages:15
+#: ../mail/data/messages:23 ../musicPlayer/data/messages:25
+#: ../netspeed/data/messages:23 ../powermanager/data/messages:25
+#: ../quick-browser/data/messages:17 ../shortcuts/data/messages:15
+#: ../show-mouse/data/messages:13 ../showDesktop/data/messages:17
+#: ../slider/data/messages:23 ../stack/data/messages:17
+#: ../switcher/data/messages:15 ../systray/data/messages:15
+#: ../template/data/messages:15 ../terminal/data/messages:15
+#: ../tomboy/data/messages:27 ../weather/data/messages:25
+#: ../weblets/data/messages:15 ../wifi/data/messages:23
 msgid "Desklet"
 msgstr "Desklet"
 
@@ -4019,21 +4040,22 @@ msgstr "Desklet"
 #: ../Folders/data/messages:29 ../GMenu/data/messages:17
 #: ../Global-Menu/data/messages:13 ../Impulse/data/messages:13
 #: ../MeMenu/data/messages:13 ../Messaging-Menu/data/messages:25
-#: ../Network-Monitor/data/messages:27 ../RSSreader/data/messages:19
-#: ../Recent-Events/data/messages:17 ../Status-Notifier/data/messages:29
-#: ../System-Monitor/data/messages:25 ../Toons/data/messages:25
-#: ../Xgamma/data/messages:19 ../alsaMixer/data/messages:25
-#: ../clock/data/messages:27 ../dnd2share/data/messages:17
-#: ../dustbin/data/messages:15 ../keyboard-indicator/data/messages:25
-#: ../logout/data/messages:17 ../mail/data/messages:25
-#: ../musicPlayer/data/messages:27 ../netspeed/data/messages:25
-#: ../powermanager/data/messages:27 ../quick-browser/data/messages:19
-#: ../shortcuts/data/messages:17 ../showDesktop/data/messages:19
-#: ../slider/data/messages:25 ../stack/data/messages:19
-#: ../switcher/data/messages:17 ../systray/data/messages:17
-#: ../template/data/messages:17 ../terminal/data/messages:17
-#: ../tomboy/data/messages:29 ../weather/data/messages:27
-#: ../weblets/data/messages:17 ../wifi/data/messages:25
+#: ../Network-Monitor/data/messages:27 ../Printers-Menu/data/messages:17
+#: ../RSSreader/data/messages:19 ../Recent-Events/data/messages:17
+#: ../Status-Notifier/data/messages:29 ../System-Monitor/data/messages:25
+#: ../Toons/data/messages:25 ../Xgamma/data/messages:19
+#: ../alsaMixer/data/messages:25 ../clock/data/messages:27
+#: ../dnd2share/data/messages:17 ../dustbin/data/messages:15
+#: ../keyboard-indicator/data/messages:25 ../logout/data/messages:17
+#: ../mail/data/messages:25 ../musicPlayer/data/messages:27
+#: ../netspeed/data/messages:25 ../powermanager/data/messages:27
+#: ../quick-browser/data/messages:19 ../shortcuts/data/messages:17
+#: ../showDesktop/data/messages:19 ../slider/data/messages:25
+#: ../stack/data/messages:19 ../switcher/data/messages:17
+#: ../systray/data/messages:17 ../template/data/messages:17
+#: ../terminal/data/messages:17 ../tomboy/data/messages:29
+#: ../weather/data/messages:27 ../weblets/data/messages:17
+#: ../wifi/data/messages:25
 msgid "Position"
 msgstr ""
 
@@ -4042,21 +4064,22 @@ msgstr ""
 #: ../Folders/data/messages:31 ../GMenu/data/messages:19
 #: ../Global-Menu/data/messages:15 ../Impulse/data/messages:15
 #: ../MeMenu/data/messages:15 ../Messaging-Menu/data/messages:27
-#: ../Network-Monitor/data/messages:29 ../RSSreader/data/messages:21
-#: ../Recent-Events/data/messages:19 ../Status-Notifier/data/messages:31
-#: ../System-Monitor/data/messages:27 ../Toons/data/messages:27
-#: ../Xgamma/data/messages:21 ../alsaMixer/data/messages:27
-#: ../clock/data/messages:29 ../dnd2share/data/messages:19
-#: ../dustbin/data/messages:17 ../keyboard-indicator/data/messages:27
-#: ../logout/data/messages:19 ../mail/data/messages:27
-#: ../musicPlayer/data/messages:29 ../netspeed/data/messages:27
-#: ../powermanager/data/messages:29 ../quick-browser/data/messages:21
-#: ../shortcuts/data/messages:19 ../showDesktop/data/messages:21
-#: ../slider/data/messages:27 ../stack/data/messages:21
-#: ../switcher/data/messages:19 ../systray/data/messages:19
-#: ../template/data/messages:19 ../terminal/data/messages:19
-#: ../tomboy/data/messages:31 ../weather/data/messages:29
-#: ../weblets/data/messages:19 ../wifi/data/messages:27
+#: ../Network-Monitor/data/messages:29 ../Printers-Menu/data/messages:19
+#: ../RSSreader/data/messages:21 ../Recent-Events/data/messages:19
+#: ../Status-Notifier/data/messages:31 ../System-Monitor/data/messages:27
+#: ../Toons/data/messages:27 ../Xgamma/data/messages:21
+#: ../alsaMixer/data/messages:27 ../clock/data/messages:29
+#: ../dnd2share/data/messages:19 ../dustbin/data/messages:17
+#: ../keyboard-indicator/data/messages:27 ../logout/data/messages:19
+#: ../mail/data/messages:27 ../musicPlayer/data/messages:29
+#: ../netspeed/data/messages:27 ../powermanager/data/messages:29
+#: ../quick-browser/data/messages:21 ../shortcuts/data/messages:19
+#: ../showDesktop/data/messages:21 ../slider/data/messages:27
+#: ../stack/data/messages:21 ../switcher/data/messages:19
+#: ../systray/data/messages:19 ../template/data/messages:19
+#: ../terminal/data/messages:19 ../tomboy/data/messages:31
+#: ../weather/data/messages:29 ../weblets/data/messages:19
+#: ../wifi/data/messages:27
 msgid ""
 "If locked, the desklet cannot be moved by simply dragging it with the left "
 "mouse button. It can still be moved with ALT + left-click."
@@ -4070,21 +4093,22 @@ msgstr ""
 #: ../Folders/data/messages:33 ../GMenu/data/messages:21
 #: ../Global-Menu/data/messages:17 ../Impulse/data/messages:17
 #: ../MeMenu/data/messages:17 ../Messaging-Menu/data/messages:29
-#: ../Network-Monitor/data/messages:31 ../RSSreader/data/messages:23
-#: ../Recent-Events/data/messages:21 ../Status-Notifier/data/messages:33
-#: ../System-Monitor/data/messages:29 ../Toons/data/messages:29
-#: ../Xgamma/data/messages:23 ../alsaMixer/data/messages:29
-#: ../clock/data/messages:31 ../dnd2share/data/messages:21
-#: ../dustbin/data/messages:19 ../keyboard-indicator/data/messages:29
-#: ../logout/data/messages:21 ../mail/data/messages:29
-#: ../musicPlayer/data/messages:31 ../netspeed/data/messages:29
-#: ../powermanager/data/messages:31 ../quick-browser/data/messages:23
-#: ../shortcuts/data/messages:21 ../showDesktop/data/messages:23
-#: ../slider/data/messages:29 ../stack/data/messages:23
-#: ../switcher/data/messages:21 ../systray/data/messages:21
-#: ../template/data/messages:21 ../terminal/data/messages:21
-#: ../tomboy/data/messages:33 ../weather/data/messages:31
-#: ../weblets/data/messages:21 ../wifi/data/messages:29
+#: ../Network-Monitor/data/messages:31 ../Printers-Menu/data/messages:21
+#: ../RSSreader/data/messages:23 ../Recent-Events/data/messages:21
+#: ../Status-Notifier/data/messages:33 ../System-Monitor/data/messages:29
+#: ../Toons/data/messages:29 ../Xgamma/data/messages:23
+#: ../alsaMixer/data/messages:29 ../clock/data/messages:31
+#: ../dnd2share/data/messages:21 ../dustbin/data/messages:19
+#: ../keyboard-indicator/data/messages:29 ../logout/data/messages:21
+#: ../mail/data/messages:29 ../musicPlayer/data/messages:31
+#: ../netspeed/data/messages:29 ../powermanager/data/messages:31
+#: ../quick-browser/data/messages:23 ../shortcuts/data/messages:21
+#: ../showDesktop/data/messages:23 ../slider/data/messages:29
+#: ../stack/data/messages:23 ../switcher/data/messages:21
+#: ../systray/data/messages:21 ../template/data/messages:21
+#: ../terminal/data/messages:21 ../tomboy/data/messages:33
+#: ../weather/data/messages:31 ../weblets/data/messages:21
+#: ../wifi/data/messages:29
 msgid "Lock position?"
 msgstr "Zamknout pozici ?"
 
@@ -4093,21 +4117,21 @@ msgstr "Zamknout pozici ?"
 #: ../Folders/data/messages:35 ../GMenu/data/messages:23
 #: ../Global-Menu/data/messages:19 ../Impulse/data/messages:19
 #: ../MeMenu/data/messages:19 ../Messaging-Menu/data/messages:31
-#: ../Network-Monitor/data/messages:33 ../RSSreader/data/messages:25
-#: ../Recent-Events/data/messages:23 ../Status-Notifier/data/messages:35
-#: ../System-Monitor/data/messages:31 ../Toons/data/messages:31
-#: ../Xgamma/data/messages:25 ../alsaMixer/data/messages:31
-#: ../clock/data/messages:33 ../dnd2share/data/messages:23
-#: ../dustbin/data/messages:21 ../keyboard-indicator/data/messages:31
-#: ../logout/data/messages:23 ../mail/data/messages:31
-#: ../musicPlayer/data/messages:33 ../netspeed/data/messages:31
-#: ../powermanager/data/messages:33 ../quick-browser/data/messages:25
-#: ../shortcuts/data/messages:23 ../showDesktop/data/messages:25
-#: ../slider/data/messages:31 ../stack/data/messages:25
-#: ../switcher/data/messages:23 ../template/data/messages:23
-#: ../terminal/data/messages:23 ../tomboy/data/messages:35
-#: ../weather/data/messages:33 ../weblets/data/messages:23
-#: ../wifi/data/messages:31
+#: ../Network-Monitor/data/messages:33 ../Printers-Menu/data/messages:23
+#: ../RSSreader/data/messages:25 ../Recent-Events/data/messages:23
+#: ../Status-Notifier/data/messages:35 ../System-Monitor/data/messages:31
+#: ../Toons/data/messages:31 ../Xgamma/data/messages:25
+#: ../alsaMixer/data/messages:31 ../clock/data/messages:33
+#: ../dnd2share/data/messages:23 ../dustbin/data/messages:21
+#: ../keyboard-indicator/data/messages:31 ../logout/data/messages:23
+#: ../mail/data/messages:31 ../musicPlayer/data/messages:33
+#: ../netspeed/data/messages:31 ../powermanager/data/messages:33
+#: ../quick-browser/data/messages:25 ../shortcuts/data/messages:23
+#: ../showDesktop/data/messages:25 ../slider/data/messages:31
+#: ../stack/data/messages:25 ../switcher/data/messages:23
+#: ../template/data/messages:23 ../terminal/data/messages:23
+#: ../tomboy/data/messages:35 ../weather/data/messages:33
+#: ../weblets/data/messages:23 ../wifi/data/messages:31
 msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
@@ -4118,21 +4142,21 @@ msgstr ""
 #: ../Folders/data/messages:37 ../GMenu/data/messages:25
 #: ../Global-Menu/data/messages:21 ../Impulse/data/messages:21
 #: ../MeMenu/data/messages:21 ../Messaging-Menu/data/messages:33
-#: ../Network-Monitor/data/messages:35 ../RSSreader/data/messages:27
-#: ../Recent-Events/data/messages:25 ../Status-Notifier/data/messages:37
-#: ../System-Monitor/data/messages:33 ../Toons/data/messages:33
-#: ../Xgamma/data/messages:27 ../alsaMixer/data/messages:33
-#: ../clock/data/messages:35 ../dnd2share/data/messages:25
-#: ../dustbin/data/messages:23 ../keyboard-indicator/data/messages:33
-#: ../logout/data/messages:25 ../mail/data/messages:33
-#: ../musicPlayer/data/messages:35 ../netspeed/data/messages:33
-#: ../powermanager/data/messages:35 ../quick-browser/data/messages:27
-#: ../shortcuts/data/messages:25 ../showDesktop/data/messages:27
-#: ../slider/data/messages:33 ../stack/data/messages:27
-#: ../switcher/data/messages:25 ../template/data/messages:25
-#: ../terminal/data/messages:25 ../tomboy/data/messages:37
-#: ../weather/data/messages:35 ../weblets/data/messages:25
-#: ../wifi/data/messages:33
+#: ../Network-Monitor/data/messages:35 ../Printers-Menu/data/messages:25
+#: ../RSSreader/data/messages:27 ../Recent-Events/data/messages:25
+#: ../Status-Notifier/data/messages:37 ../System-Monitor/data/messages:33
+#: ../Toons/data/messages:33 ../Xgamma/data/messages:27
+#: ../alsaMixer/data/messages:33 ../clock/data/messages:35
+#: ../dnd2share/data/messages:25 ../dustbin/data/messages:23
+#: ../keyboard-indicator/data/messages:33 ../logout/data/messages:25
+#: ../mail/data/messages:33 ../musicPlayer/data/messages:35
+#: ../netspeed/data/messages:33 ../powermanager/data/messages:35
+#: ../quick-browser/data/messages:27 ../shortcuts/data/messages:25
+#: ../showDesktop/data/messages:27 ../slider/data/messages:33
+#: ../stack/data/messages:27 ../switcher/data/messages:25
+#: ../template/data/messages:25 ../terminal/data/messages:25
+#: ../tomboy/data/messages:37 ../weather/data/messages:35
+#: ../weblets/data/messages:25 ../wifi/data/messages:33
 msgid "Desklet dimensions (width x height):"
 msgstr "Rozměry deskletu (šířka x výška)"
 
@@ -4160,21 +4184,22 @@ msgstr ""
 #: ../Folders/data/messages:41 ../GMenu/data/messages:29
 #: ../Global-Menu/data/messages:25 ../Impulse/data/messages:25
 #: ../MeMenu/data/messages:25 ../Messaging-Menu/data/messages:37
-#: ../Network-Monitor/data/messages:39 ../RSSreader/data/messages:31
-#: ../Recent-Events/data/messages:29 ../Status-Notifier/data/messages:41
-#: ../System-Monitor/data/messages:37 ../Toons/data/messages:37
-#: ../Xgamma/data/messages:31 ../alsaMixer/data/messages:37
-#: ../clock/data/messages:39 ../dnd2share/data/messages:29
-#: ../dustbin/data/messages:27 ../keyboard-indicator/data/messages:37
-#: ../logout/data/messages:29 ../mail/data/messages:37
-#: ../musicPlayer/data/messages:39 ../netspeed/data/messages:37
-#: ../powermanager/data/messages:39 ../quick-browser/data/messages:31
-#: ../shortcuts/data/messages:29 ../showDesktop/data/messages:31
-#: ../slider/data/messages:37 ../stack/data/messages:31
-#: ../switcher/data/messages:27 ../systray/data/messages:25
-#: ../template/data/messages:29 ../terminal/data/messages:29
-#: ../tomboy/data/messages:41 ../weather/data/messages:39
-#: ../weblets/data/messages:29 ../wifi/data/messages:37
+#: ../Network-Monitor/data/messages:39 ../Printers-Menu/data/messages:29
+#: ../RSSreader/data/messages:31 ../Recent-Events/data/messages:29
+#: ../Status-Notifier/data/messages:41 ../System-Monitor/data/messages:37
+#: ../Toons/data/messages:37 ../Xgamma/data/messages:31
+#: ../alsaMixer/data/messages:37 ../clock/data/messages:39
+#: ../dnd2share/data/messages:29 ../dustbin/data/messages:27
+#: ../keyboard-indicator/data/messages:37 ../logout/data/messages:29
+#: ../mail/data/messages:37 ../musicPlayer/data/messages:39
+#: ../netspeed/data/messages:37 ../powermanager/data/messages:39
+#: ../quick-browser/data/messages:31 ../shortcuts/data/messages:29
+#: ../showDesktop/data/messages:31 ../slider/data/messages:37
+#: ../stack/data/messages:31 ../switcher/data/messages:27
+#: ../systray/data/messages:25 ../template/data/messages:29
+#: ../terminal/data/messages:29 ../tomboy/data/messages:41
+#: ../weather/data/messages:39 ../weblets/data/messages:29
+#: ../wifi/data/messages:37
 msgid "Desklet position (x, y):"
 msgstr "Pozice deskletu (x ; y) :"
 
@@ -4183,20 +4208,20 @@ msgstr "Pozice deskletu (x ; y) :"
 #: ../Folders/data/messages:43 ../GMenu/data/messages:31
 #: ../Global-Menu/data/messages:27 ../Impulse/data/messages:27
 #: ../MeMenu/data/messages:27 ../Messaging-Menu/data/messages:39
-#: ../Network-Monitor/data/messages:41 ../RSSreader/data/messages:33
-#: ../Recent-Events/data/messages:31 ../Status-Notifier/data/messages:43
-#: ../System-Monitor/data/messages:39 ../Toons/data/messages:39
-#: ../Xgamma/data/messages:33 ../alsaMixer/data/messages:39
-#: ../clock/data/messages:41 ../dustbin/data/messages:29
-#: ../keyboard-indicator/data/messages:39 ../logout/data/messages:31
-#: ../mail/data/messages:39 ../musicPlayer/data/messages:41
-#: ../netspeed/data/messages:39 ../powermanager/data/messages:41
-#: ../quick-browser/data/messages:33 ../shortcuts/data/messages:31
-#: ../showDesktop/data/messages:33 ../slider/data/messages:39
-#: ../stack/data/messages:33 ../template/data/messages:31
-#: ../terminal/data/messages:31 ../tomboy/data/messages:43
-#: ../weather/data/messages:41 ../weblets/data/messages:31
-#: ../wifi/data/messages:39
+#: ../Network-Monitor/data/messages:41 ../Printers-Menu/data/messages:31
+#: ../RSSreader/data/messages:33 ../Recent-Events/data/messages:31
+#: ../Status-Notifier/data/messages:43 ../System-Monitor/data/messages:39
+#: ../Toons/data/messages:39 ../Xgamma/data/messages:33
+#: ../alsaMixer/data/messages:39 ../clock/data/messages:41
+#: ../dustbin/data/messages:29 ../keyboard-indicator/data/messages:39
+#: ../logout/data/messages:31 ../mail/data/messages:39
+#: ../musicPlayer/data/messages:41 ../netspeed/data/messages:39
+#: ../powermanager/data/messages:41 ../quick-browser/data/messages:33
+#: ../shortcuts/data/messages:31 ../showDesktop/data/messages:33
+#: ../slider/data/messages:39 ../stack/data/messages:33
+#: ../template/data/messages:31 ../terminal/data/messages:31
+#: ../tomboy/data/messages:43 ../weather/data/messages:41
+#: ../weblets/data/messages:31 ../wifi/data/messages:39
 msgid ""
 "You can quickly rotate the desklet with the mouse, by dragging the little "
 "buttons on its left and top sides."
@@ -4207,20 +4232,20 @@ msgstr ""
 #: ../Folders/data/messages:45 ../GMenu/data/messages:33
 #: ../Global-Menu/data/messages:29 ../Impulse/data/messages:29
 #: ../MeMenu/data/messages:29 ../Messaging-Menu/data/messages:41
-#: ../Network-Monitor/data/messages:43 ../RSSreader/data/messages:35
-#: ../Recent-Events/data/messages:33 ../Status-Notifier/data/messages:45
-#: ../System-Monitor/data/messages:41 ../Toons/data/messages:41
-#: ../Xgamma/data/messages:35 ../alsaMixer/data/messages:41
-#: ../clock/data/messages:43 ../dustbin/data/messages:31
-#: ../keyboard-indicator/data/messages:41 ../logout/data/messages:33
-#: ../mail/data/messages:41 ../musicPlayer/data/messages:43
-#: ../netspeed/data/messages:41 ../powermanager/data/messages:43
-#: ../quick-browser/data/messages:35 ../shortcuts/data/messages:33
-#: ../showDesktop/data/messages:35 ../slider/data/messages:41
-#: ../stack/data/messages:35 ../template/data/messages:33
-#: ../terminal/data/messages:33 ../tomboy/data/messages:45
-#: ../weather/data/messages:43 ../weblets/data/messages:33
-#: ../wifi/data/messages:41
+#: ../Network-Monitor/data/messages:43 ../Printers-Menu/data/messages:33
+#: ../RSSreader/data/messages:35 ../Recent-Events/data/messages:33
+#: ../Status-Notifier/data/messages:45 ../System-Monitor/data/messages:41
+#: ../Toons/data/messages:41 ../Xgamma/data/messages:35
+#: ../alsaMixer/data/messages:41 ../clock/data/messages:43
+#: ../dustbin/data/messages:31 ../keyboard-indicator/data/messages:41
+#: ../logout/data/messages:33 ../mail/data/messages:41
+#: ../musicPlayer/data/messages:43 ../netspeed/data/messages:41
+#: ../powermanager/data/messages:43 ../quick-browser/data/messages:35
+#: ../shortcuts/data/messages:33 ../showDesktop/data/messages:35
+#: ../slider/data/messages:41 ../stack/data/messages:35
+#: ../template/data/messages:33 ../terminal/data/messages:33
+#: ../tomboy/data/messages:45 ../weather/data/messages:43
+#: ../weblets/data/messages:33 ../wifi/data/messages:41
 msgid "Rotation:"
 msgstr "Rotace :"
 
@@ -4229,21 +4254,21 @@ msgstr "Rotace :"
 #: ../GMenu/data/messages:35 ../Global-Menu/data/messages:31
 #: ../Impulse/data/messages:31 ../MeMenu/data/messages:31
 #: ../Messaging-Menu/data/messages:43 ../Network-Monitor/data/messages:45
-#: ../RSSreader/data/messages:37 ../Recent-Events/data/messages:35
-#: ../Status-Notifier/data/messages:47 ../System-Monitor/data/messages:43
-#: ../Toons/data/messages:43 ../Xgamma/data/messages:37
-#: ../alsaMixer/data/messages:43 ../clock/data/messages:45
-#: ../dnd2share/data/messages:31 ../dustbin/data/messages:33
-#: ../keyboard-indicator/data/messages:43 ../logout/data/messages:35
-#: ../mail/data/messages:43 ../musicPlayer/data/messages:45
-#: ../netspeed/data/messages:43 ../powermanager/data/messages:45
-#: ../quick-browser/data/messages:37 ../shortcuts/data/messages:35
-#: ../showDesktop/data/messages:37 ../slider/data/messages:43
-#: ../stack/data/messages:37 ../switcher/data/messages:29
-#: ../systray/data/messages:27 ../template/data/messages:35
-#: ../terminal/data/messages:35 ../tomboy/data/messages:47
-#: ../weather/data/messages:45 ../weblets/data/messages:35
-#: ../wifi/data/messages:43
+#: ../Printers-Menu/data/messages:35 ../RSSreader/data/messages:37
+#: ../Recent-Events/data/messages:35 ../Status-Notifier/data/messages:47
+#: ../System-Monitor/data/messages:43 ../Toons/data/messages:43
+#: ../Xgamma/data/messages:37 ../alsaMixer/data/messages:43
+#: ../clock/data/messages:45 ../dnd2share/data/messages:31
+#: ../dustbin/data/messages:33 ../keyboard-indicator/data/messages:43
+#: ../logout/data/messages:35 ../mail/data/messages:43
+#: ../musicPlayer/data/messages:45 ../netspeed/data/messages:43
+#: ../powermanager/data/messages:45 ../quick-browser/data/messages:37
+#: ../shortcuts/data/messages:35 ../showDesktop/data/messages:37
+#: ../slider/data/messages:43 ../stack/data/messages:37
+#: ../switcher/data/messages:29 ../systray/data/messages:27
+#: ../template/data/messages:35 ../terminal/data/messages:35
+#: ../tomboy/data/messages:47 ../weather/data/messages:45
+#: ../weblets/data/messages:35 ../wifi/data/messages:43
 msgid "Visibility"
 msgstr ""
 
@@ -4252,22 +4277,22 @@ msgstr ""
 #: ../Folders/data/messages:49 ../GMenu/data/messages:37
 #: ../Global-Menu/data/messages:33 ../Impulse/data/messages:33
 #: ../MeMenu/data/messages:33 ../Messaging-Menu/data/messages:45
-#: ../Network-Monitor/data/messages:47 ../RSSreader/data/messages:39
-#: ../Recent-Events/data/messages:37 ../Scooby-Do/data/messages:25
-#: ../Status-Notifier/data/messages:49 ../System-Monitor/data/messages:45
-#: ../Toons/data/messages:45 ../Xgamma/data/messages:39
-#: ../alsaMixer/data/messages:45 ../clock/data/messages:47
-#: ../dnd2share/data/messages:33 ../dustbin/data/messages:35
-#: ../keyboard-indicator/data/messages:45 ../logout/data/messages:37
-#: ../mail/data/messages:45 ../musicPlayer/data/messages:47
-#: ../netspeed/data/messages:45 ../powermanager/data/messages:47
-#: ../quick-browser/data/messages:39 ../shortcuts/data/messages:37
-#: ../showDesktop/data/messages:39 ../slider/data/messages:45
-#: ../stack/data/messages:39 ../switcher/data/messages:31
-#: ../systray/data/messages:29 ../template/data/messages:37
-#: ../terminal/data/messages:37 ../tomboy/data/messages:49
-#: ../weather/data/messages:47 ../weblets/data/messages:37
-#: ../wifi/data/messages:45
+#: ../Network-Monitor/data/messages:47 ../Printers-Menu/data/messages:37
+#: ../RSSreader/data/messages:39 ../Recent-Events/data/messages:37
+#: ../Scooby-Do/data/messages:25 ../Status-Notifier/data/messages:49
+#: ../System-Monitor/data/messages:45 ../Toons/data/messages:45
+#: ../Xgamma/data/messages:39 ../alsaMixer/data/messages:45
+#: ../clock/data/messages:47 ../dnd2share/data/messages:33
+#: ../dustbin/data/messages:35 ../keyboard-indicator/data/messages:45
+#: ../logout/data/messages:37 ../mail/data/messages:45
+#: ../musicPlayer/data/messages:47 ../netspeed/data/messages:45
+#: ../powermanager/data/messages:47 ../quick-browser/data/messages:39
+#: ../shortcuts/data/messages:37 ../showDesktop/data/messages:39
+#: ../slider/data/messages:45 ../stack/data/messages:39
+#: ../switcher/data/messages:31 ../systray/data/messages:29
+#: ../template/data/messages:37 ../terminal/data/messages:37
+#: ../tomboy/data/messages:49 ../weather/data/messages:47
+#: ../weblets/data/messages:37 ../wifi/data/messages:45
 msgid "Is detached from the dock"
 msgstr "Je vzhledem k docku samostatný ?"
 
@@ -4276,21 +4301,22 @@ msgstr "Je vzhledem k docku samostatný ?"
 #: ../Folders/data/messages:51 ../GMenu/data/messages:39
 #: ../Global-Menu/data/messages:35 ../Impulse/data/messages:35
 #: ../MeMenu/data/messages:35 ../Messaging-Menu/data/messages:47
-#: ../Network-Monitor/data/messages:49 ../RSSreader/data/messages:41
-#: ../Recent-Events/data/messages:39 ../Status-Notifier/data/messages:51
-#: ../System-Monitor/data/messages:47 ../Toons/data/messages:47
-#: ../Xgamma/data/messages:41 ../alsaMixer/data/messages:47
-#: ../clock/data/messages:49 ../dnd2share/data/messages:35
-#: ../dustbin/data/messages:37 ../keyboard-indicator/data/messages:47
-#: ../logout/data/messages:39 ../mail/data/messages:47
-#: ../musicPlayer/data/messages:49 ../netspeed/data/messages:47
-#: ../powermanager/data/messages:49 ../quick-browser/data/messages:41
-#: ../shortcuts/data/messages:39 ../showDesktop/data/messages:41
-#: ../slider/data/messages:47 ../stack/data/messages:41
-#: ../switcher/data/messages:33 ../systray/data/messages:31
-#: ../template/data/messages:39 ../terminal/data/messages:39
-#: ../tomboy/data/messages:51 ../weather/data/messages:49
-#: ../weblets/data/messages:39 ../wifi/data/messages:47
+#: ../Network-Monitor/data/messages:49 ../Printers-Menu/data/messages:39
+#: ../RSSreader/data/messages:41 ../Recent-Events/data/messages:39
+#: ../Status-Notifier/data/messages:51 ../System-Monitor/data/messages:47
+#: ../Toons/data/messages:47 ../Xgamma/data/messages:41
+#: ../alsaMixer/data/messages:47 ../clock/data/messages:49
+#: ../dnd2share/data/messages:35 ../dustbin/data/messages:37
+#: ../keyboard-indicator/data/messages:47 ../logout/data/messages:39
+#: ../mail/data/messages:47 ../musicPlayer/data/messages:49
+#: ../netspeed/data/messages:47 ../powermanager/data/messages:49
+#: ../quick-browser/data/messages:41 ../shortcuts/data/messages:39
+#: ../showDesktop/data/messages:41 ../slider/data/messages:47
+#: ../stack/data/messages:41 ../switcher/data/messages:33
+#: ../systray/data/messages:31 ../template/data/messages:39
+#: ../terminal/data/messages:39 ../tomboy/data/messages:51
+#: ../weather/data/messages:49 ../weblets/data/messages:39
+#: ../wifi/data/messages:47
 msgid "Visibility:"
 msgstr ""
 
@@ -4299,21 +4325,22 @@ msgstr ""
 #: ../Folders/data/messages:55 ../GMenu/data/messages:43
 #: ../Global-Menu/data/messages:39 ../Impulse/data/messages:39
 #: ../MeMenu/data/messages:39 ../Messaging-Menu/data/messages:51
-#: ../Network-Monitor/data/messages:53 ../RSSreader/data/messages:45
-#: ../Recent-Events/data/messages:43 ../Status-Notifier/data/messages:55
-#: ../System-Monitor/data/messages:51 ../Toons/data/messages:51
-#: ../Xgamma/data/messages:45 ../alsaMixer/data/messages:51
-#: ../clock/data/messages:53 ../dnd2share/data/messages:39
-#: ../dustbin/data/messages:41 ../keyboard-indicator/data/messages:51
-#: ../logout/data/messages:43 ../mail/data/messages:51
-#: ../musicPlayer/data/messages:53 ../netspeed/data/messages:51
-#: ../powermanager/data/messages:53 ../quick-browser/data/messages:45
-#: ../shortcuts/data/messages:43 ../showDesktop/data/messages:45
-#: ../slider/data/messages:51 ../stack/data/messages:45
-#: ../switcher/data/messages:37 ../systray/data/messages:35
-#: ../template/data/messages:43 ../terminal/data/messages:43
-#: ../tomboy/data/messages:55 ../weather/data/messages:53
-#: ../weblets/data/messages:43 ../wifi/data/messages:51
+#: ../Network-Monitor/data/messages:53 ../Printers-Menu/data/messages:43
+#: ../RSSreader/data/messages:45 ../Recent-Events/data/messages:43
+#: ../Status-Notifier/data/messages:55 ../System-Monitor/data/messages:51
+#: ../Toons/data/messages:51 ../Xgamma/data/messages:45
+#: ../alsaMixer/data/messages:51 ../clock/data/messages:53
+#: ../dnd2share/data/messages:39 ../dustbin/data/messages:41
+#: ../keyboard-indicator/data/messages:51 ../logout/data/messages:43
+#: ../mail/data/messages:51 ../musicPlayer/data/messages:53
+#: ../netspeed/data/messages:51 ../powermanager/data/messages:53
+#: ../quick-browser/data/messages:45 ../shortcuts/data/messages:43
+#: ../showDesktop/data/messages:45 ../slider/data/messages:51
+#: ../stack/data/messages:45 ../switcher/data/messages:37
+#: ../systray/data/messages:35 ../template/data/messages:43
+#: ../terminal/data/messages:43 ../tomboy/data/messages:55
+#: ../weather/data/messages:53 ../weblets/data/messages:43
+#: ../wifi/data/messages:51
 msgid "Keep above"
 msgstr "Udržovat v popředí"
 
@@ -4322,21 +4349,22 @@ msgstr "Udržovat v popředí"
 #: ../Folders/data/messages:57 ../GMenu/data/messages:45
 #: ../Global-Menu/data/messages:41 ../Impulse/data/messages:41
 #: ../MeMenu/data/messages:41 ../Messaging-Menu/data/messages:53
-#: ../Network-Monitor/data/messages:55 ../RSSreader/data/messages:47
-#: ../Recent-Events/data/messages:45 ../Status-Notifier/data/messages:57
-#: ../System-Monitor/data/messages:53 ../Toons/data/messages:53
-#: ../Xgamma/data/messages:47 ../alsaMixer/data/messages:53
-#: ../clock/data/messages:55 ../dnd2share/data/messages:41
-#: ../dustbin/data/messages:43 ../keyboard-indicator/data/messages:53
-#: ../logout/data/messages:45 ../mail/data/messages:53
-#: ../musicPlayer/data/messages:55 ../netspeed/data/messages:53
-#: ../powermanager/data/messages:55 ../quick-browser/data/messages:47
-#: ../shortcuts/data/messages:45 ../showDesktop/data/messages:47
-#: ../slider/data/messages:53 ../stack/data/messages:47
-#: ../switcher/data/messages:39 ../systray/data/messages:37
-#: ../template/data/messages:45 ../terminal/data/messages:45
-#: ../tomboy/data/messages:57 ../weather/data/messages:55
-#: ../weblets/data/messages:45 ../wifi/data/messages:53
+#: ../Network-Monitor/data/messages:55 ../Printers-Menu/data/messages:45
+#: ../RSSreader/data/messages:47 ../Recent-Events/data/messages:45
+#: ../Status-Notifier/data/messages:57 ../System-Monitor/data/messages:53
+#: ../Toons/data/messages:53 ../Xgamma/data/messages:47
+#: ../alsaMixer/data/messages:53 ../clock/data/messages:55
+#: ../dnd2share/data/messages:41 ../dustbin/data/messages:43
+#: ../keyboard-indicator/data/messages:53 ../logout/data/messages:45
+#: ../mail/data/messages:53 ../musicPlayer/data/messages:55
+#: ../netspeed/data/messages:53 ../powermanager/data/messages:55
+#: ../quick-browser/data/messages:47 ../shortcuts/data/messages:45
+#: ../showDesktop/data/messages:47 ../slider/data/messages:53
+#: ../stack/data/messages:47 ../switcher/data/messages:39
+#: ../systray/data/messages:37 ../template/data/messages:45
+#: ../terminal/data/messages:45 ../tomboy/data/messages:57
+#: ../weather/data/messages:55 ../weblets/data/messages:45
+#: ../wifi/data/messages:53
 msgid "Keep below"
 msgstr "Udržovat v pozadí"
 
@@ -4345,21 +4373,22 @@ msgstr "Udržovat v pozadí"
 #: ../Folders/data/messages:59 ../GMenu/data/messages:47
 #: ../Global-Menu/data/messages:43 ../Impulse/data/messages:43
 #: ../MeMenu/data/messages:43 ../Messaging-Menu/data/messages:55
-#: ../Network-Monitor/data/messages:57 ../RSSreader/data/messages:49
-#: ../Recent-Events/data/messages:47 ../Status-Notifier/data/messages:59
-#: ../System-Monitor/data/messages:55 ../Toons/data/messages:55
-#: ../Xgamma/data/messages:49 ../alsaMixer/data/messages:55
-#: ../clock/data/messages:57 ../dnd2share/data/messages:43
-#: ../dustbin/data/messages:45 ../keyboard-indicator/data/messages:55
-#: ../logout/data/messages:47 ../mail/data/messages:55
-#: ../musicPlayer/data/messages:57 ../netspeed/data/messages:55
-#: ../powermanager/data/messages:57 ../quick-browser/data/messages:49
-#: ../shortcuts/data/messages:47 ../showDesktop/data/messages:49
-#: ../slider/data/messages:55 ../stack/data/messages:49
-#: ../switcher/data/messages:41 ../systray/data/messages:39
-#: ../template/data/messages:47 ../terminal/data/messages:47
-#: ../tomboy/data/messages:59 ../weather/data/messages:57
-#: ../weblets/data/messages:47 ../wifi/data/messages:55
+#: ../Network-Monitor/data/messages:57 ../Printers-Menu/data/messages:47
+#: ../RSSreader/data/messages:49 ../Recent-Events/data/messages:47
+#: ../Status-Notifier/data/messages:59 ../System-Monitor/data/messages:55
+#: ../Toons/data/messages:55 ../Xgamma/data/messages:49
+#: ../alsaMixer/data/messages:55 ../clock/data/messages:57
+#: ../dnd2share/data/messages:43 ../dustbin/data/messages:45
+#: ../keyboard-indicator/data/messages:55 ../logout/data/messages:47
+#: ../mail/data/messages:55 ../musicPlayer/data/messages:57
+#: ../netspeed/data/messages:55 ../powermanager/data/messages:57
+#: ../quick-browser/data/messages:49 ../shortcuts/data/messages:47
+#: ../showDesktop/data/messages:49 ../slider/data/messages:55
+#: ../stack/data/messages:49 ../switcher/data/messages:41
+#: ../systray/data/messages:39 ../template/data/messages:47
+#: ../terminal/data/messages:47 ../tomboy/data/messages:59
+#: ../weather/data/messages:57 ../weblets/data/messages:47
+#: ../wifi/data/messages:55
 msgid "Keep on widget layer"
 msgstr "Na Grafické Vrstvě"
 
@@ -4368,21 +4397,22 @@ msgstr "Na Grafické Vrstvě"
 #: ../Folders/data/messages:61 ../GMenu/data/messages:49
 #: ../Global-Menu/data/messages:45 ../Impulse/data/messages:45
 #: ../MeMenu/data/messages:45 ../Messaging-Menu/data/messages:57
-#: ../Network-Monitor/data/messages:59 ../RSSreader/data/messages:51
-#: ../Recent-Events/data/messages:49 ../Status-Notifier/data/messages:61
-#: ../System-Monitor/data/messages:57 ../Toons/data/messages:57
-#: ../Xgamma/data/messages:51 ../alsaMixer/data/messages:57
-#: ../clock/data/messages:59 ../dnd2share/data/messages:45
-#: ../dustbin/data/messages:47 ../keyboard-indicator/data/messages:57
-#: ../logout/data/messages:49 ../mail/data/messages:57
-#: ../musicPlayer/data/messages:59 ../netspeed/data/messages:57
-#: ../powermanager/data/messages:59 ../quick-browser/data/messages:51
-#: ../shortcuts/data/messages:49 ../showDesktop/data/messages:51
-#: ../slider/data/messages:57 ../stack/data/messages:51
-#: ../switcher/data/messages:43 ../systray/data/messages:41
-#: ../template/data/messages:49 ../terminal/data/messages:49
-#: ../tomboy/data/messages:61 ../weather/data/messages:59
-#: ../weblets/data/messages:49 ../wifi/data/messages:57
+#: ../Network-Monitor/data/messages:59 ../Printers-Menu/data/messages:49
+#: ../RSSreader/data/messages:51 ../Recent-Events/data/messages:49
+#: ../Status-Notifier/data/messages:61 ../System-Monitor/data/messages:57
+#: ../Toons/data/messages:57 ../Xgamma/data/messages:51
+#: ../alsaMixer/data/messages:57 ../clock/data/messages:59
+#: ../dnd2share/data/messages:45 ../dustbin/data/messages:47
+#: ../keyboard-indicator/data/messages:57 ../logout/data/messages:49
+#: ../mail/data/messages:57 ../musicPlayer/data/messages:59
+#: ../netspeed/data/messages:57 ../powermanager/data/messages:59
+#: ../quick-browser/data/messages:51 ../shortcuts/data/messages:49
+#: ../showDesktop/data/messages:51 ../slider/data/messages:57
+#: ../stack/data/messages:51 ../switcher/data/messages:43
+#: ../systray/data/messages:41 ../template/data/messages:49
+#: ../terminal/data/messages:49 ../tomboy/data/messages:61
+#: ../weather/data/messages:59 ../weblets/data/messages:49
+#: ../wifi/data/messages:57
 msgid "Reserve space"
 msgstr "Vyhrazené místo"
 
@@ -4391,21 +4421,22 @@ msgstr "Vyhrazené místo"
 #: ../Folders/data/messages:63 ../GMenu/data/messages:51
 #: ../Global-Menu/data/messages:47 ../Impulse/data/messages:47
 #: ../MeMenu/data/messages:47 ../Messaging-Menu/data/messages:59
-#: ../Network-Monitor/data/messages:61 ../RSSreader/data/messages:53
-#: ../Recent-Events/data/messages:51 ../Status-Notifier/data/messages:63
-#: ../System-Monitor/data/messages:59 ../Toons/data/messages:59
-#: ../Xgamma/data/messages:53 ../alsaMixer/data/messages:59
-#: ../clock/data/messages:61 ../dnd2share/data/messages:47
-#: ../dustbin/data/messages:49 ../keyboard-indicator/data/messages:59
-#: ../logout/data/messages:51 ../mail/data/messages:59
-#: ../musicPlayer/data/messages:61 ../netspeed/data/messages:59
-#: ../powermanager/data/messages:61 ../quick-browser/data/messages:53
-#: ../shortcuts/data/messages:51 ../showDesktop/data/messages:53
-#: ../slider/data/messages:59 ../stack/data/messages:53
-#: ../switcher/data/messages:45 ../systray/data/messages:43
-#: ../template/data/messages:51 ../terminal/data/messages:51
-#: ../tomboy/data/messages:63 ../weather/data/messages:61
-#: ../weblets/data/messages:51 ../wifi/data/messages:59
+#: ../Network-Monitor/data/messages:61 ../Printers-Menu/data/messages:51
+#: ../RSSreader/data/messages:53 ../Recent-Events/data/messages:51
+#: ../Status-Notifier/data/messages:63 ../System-Monitor/data/messages:59
+#: ../Toons/data/messages:59 ../Xgamma/data/messages:53
+#: ../alsaMixer/data/messages:59 ../clock/data/messages:61
+#: ../dnd2share/data/messages:47 ../dustbin/data/messages:49
+#: ../keyboard-indicator/data/messages:59 ../logout/data/messages:51
+#: ../mail/data/messages:59 ../musicPlayer/data/messages:61
+#: ../netspeed/data/messages:59 ../powermanager/data/messages:61
+#: ../quick-browser/data/messages:53 ../shortcuts/data/messages:51
+#: ../showDesktop/data/messages:53 ../slider/data/messages:59
+#: ../stack/data/messages:53 ../switcher/data/messages:45
+#: ../systray/data/messages:43 ../template/data/messages:51
+#: ../terminal/data/messages:51 ../tomboy/data/messages:63
+#: ../weather/data/messages:61 ../weblets/data/messages:51
+#: ../wifi/data/messages:59
 msgid "Should be visible on all desktops?"
 msgstr "Má být neviditelný na všech plochách ?"
 
@@ -4414,21 +4445,22 @@ msgstr "Má být neviditelný na všech plochách ?"
 #: ../Folders/data/messages:65 ../GMenu/data/messages:53
 #: ../Global-Menu/data/messages:49 ../Impulse/data/messages:49
 #: ../MeMenu/data/messages:49 ../Messaging-Menu/data/messages:61
-#: ../Network-Monitor/data/messages:63 ../RSSreader/data/messages:55
-#: ../Recent-Events/data/messages:53 ../Status-Notifier/data/messages:65
-#: ../System-Monitor/data/messages:61 ../Toons/data/messages:61
-#: ../Xgamma/data/messages:55 ../alsaMixer/data/messages:61
-#: ../clock/data/messages:63 ../dnd2share/data/messages:49
-#: ../dustbin/data/messages:51 ../keyboard-indicator/data/messages:61
-#: ../logout/data/messages:53 ../mail/data/messages:61
-#: ../musicPlayer/data/messages:63 ../netspeed/data/messages:61
-#: ../powermanager/data/messages:63 ../quick-browser/data/messages:55
-#: ../shortcuts/data/messages:53 ../showDesktop/data/messages:55
-#: ../slider/data/messages:61 ../stack/data/messages:55
-#: ../switcher/data/messages:47 ../systray/data/messages:45
-#: ../template/data/messages:53 ../terminal/data/messages:53
-#: ../tomboy/data/messages:65 ../weather/data/messages:63
-#: ../weblets/data/messages:53 ../wifi/data/messages:61
+#: ../Network-Monitor/data/messages:63 ../Printers-Menu/data/messages:53
+#: ../RSSreader/data/messages:55 ../Recent-Events/data/messages:53
+#: ../Status-Notifier/data/messages:65 ../System-Monitor/data/messages:61
+#: ../Toons/data/messages:61 ../Xgamma/data/messages:55
+#: ../alsaMixer/data/messages:61 ../clock/data/messages:63
+#: ../dnd2share/data/messages:49 ../dustbin/data/messages:51
+#: ../keyboard-indicator/data/messages:61 ../logout/data/messages:53
+#: ../mail/data/messages:61 ../musicPlayer/data/messages:63
+#: ../netspeed/data/messages:61 ../powermanager/data/messages:63
+#: ../quick-browser/data/messages:55 ../shortcuts/data/messages:53
+#: ../showDesktop/data/messages:55 ../slider/data/messages:61
+#: ../stack/data/messages:55 ../switcher/data/messages:47
+#: ../systray/data/messages:45 ../template/data/messages:53
+#: ../terminal/data/messages:53 ../tomboy/data/messages:65
+#: ../weather/data/messages:63 ../weblets/data/messages:53
+#: ../wifi/data/messages:61
 msgid "Decorations"
 msgstr "Dekorace"
 
@@ -4437,21 +4469,22 @@ msgstr "Dekorace"
 #: ../Folders/data/messages:67 ../GMenu/data/messages:55
 #: ../Global-Menu/data/messages:51 ../Impulse/data/messages:51
 #: ../MeMenu/data/messages:51 ../Messaging-Menu/data/messages:63
-#: ../Network-Monitor/data/messages:65 ../RSSreader/data/messages:57
-#: ../Recent-Events/data/messages:55 ../Status-Notifier/data/messages:67
-#: ../System-Monitor/data/messages:63 ../Toons/data/messages:63
-#: ../Xgamma/data/messages:57 ../alsaMixer/data/messages:63
-#: ../clock/data/messages:65 ../dnd2share/data/messages:51
-#: ../dustbin/data/messages:53 ../keyboard-indicator/data/messages:63
-#: ../logout/data/messages:55 ../mail/data/messages:63
-#: ../musicPlayer/data/messages:65 ../netspeed/data/messages:63
-#: ../powermanager/data/messages:65 ../quick-browser/data/messages:57
-#: ../shortcuts/data/messages:55 ../showDesktop/data/messages:57
-#: ../slider/data/messages:63 ../stack/data/messages:57
-#: ../switcher/data/messages:49 ../systray/data/messages:47
-#: ../template/data/messages:55 ../terminal/data/messages:55
-#: ../tomboy/data/messages:67 ../weather/data/messages:65
-#: ../weblets/data/messages:55 ../wifi/data/messages:63
+#: ../Network-Monitor/data/messages:65 ../Printers-Menu/data/messages:55
+#: ../RSSreader/data/messages:57 ../Recent-Events/data/messages:55
+#: ../Status-Notifier/data/messages:67 ../System-Monitor/data/messages:63
+#: ../Toons/data/messages:63 ../Xgamma/data/messages:57
+#: ../alsaMixer/data/messages:63 ../clock/data/messages:65
+#: ../dnd2share/data/messages:51 ../dustbin/data/messages:53
+#: ../keyboard-indicator/data/messages:63 ../logout/data/messages:55
+#: ../mail/data/messages:63 ../musicPlayer/data/messages:65
+#: ../netspeed/data/messages:63 ../powermanager/data/messages:65
+#: ../quick-browser/data/messages:57 ../shortcuts/data/messages:55
+#: ../showDesktop/data/messages:57 ../slider/data/messages:63
+#: ../stack/data/messages:57 ../switcher/data/messages:49
+#: ../systray/data/messages:47 ../template/data/messages:55
+#: ../terminal/data/messages:55 ../tomboy/data/messages:67
+#: ../weather/data/messages:65 ../weblets/data/messages:55
+#: ../wifi/data/messages:63
 msgid "Choose 'Custom decorations' to define your own decorations below."
 msgstr ""
 
@@ -4460,21 +4493,22 @@ msgstr ""
 #: ../Folders/data/messages:69 ../GMenu/data/messages:57
 #: ../Global-Menu/data/messages:53 ../Impulse/data/messages:53
 #: ../MeMenu/data/messages:53 ../Messaging-Menu/data/messages:65
-#: ../Network-Monitor/data/messages:67 ../RSSreader/data/messages:59
-#: ../Recent-Events/data/messages:57 ../Status-Notifier/data/messages:69
-#: ../System-Monitor/data/messages:65 ../Toons/data/messages:65
-#: ../Xgamma/data/messages:59 ../alsaMixer/data/messages:65
-#: ../clock/data/messages:67 ../dnd2share/data/messages:53
-#: ../dustbin/data/messages:55 ../keyboard-indicator/data/messages:65
-#: ../logout/data/messages:57 ../mail/data/messages:65
-#: ../musicPlayer/data/messages:67 ../netspeed/data/messages:65
-#: ../powermanager/data/messages:67 ../quick-browser/data/messages:59
-#: ../shortcuts/data/messages:57 ../showDesktop/data/messages:59
-#: ../slider/data/messages:65 ../stack/data/messages:59
-#: ../switcher/data/messages:51 ../systray/data/messages:49
-#: ../template/data/messages:57 ../terminal/data/messages:57
-#: ../tomboy/data/messages:69 ../weather/data/messages:67
-#: ../weblets/data/messages:57 ../wifi/data/messages:65
+#: ../Network-Monitor/data/messages:67 ../Printers-Menu/data/messages:57
+#: ../RSSreader/data/messages:59 ../Recent-Events/data/messages:57
+#: ../Status-Notifier/data/messages:69 ../System-Monitor/data/messages:65
+#: ../Toons/data/messages:65 ../Xgamma/data/messages:59
+#: ../alsaMixer/data/messages:65 ../clock/data/messages:67
+#: ../dnd2share/data/messages:53 ../dustbin/data/messages:55
+#: ../keyboard-indicator/data/messages:65 ../logout/data/messages:57
+#: ../mail/data/messages:65 ../musicPlayer/data/messages:67
+#: ../netspeed/data/messages:65 ../powermanager/data/messages:67
+#: ../quick-browser/data/messages:59 ../shortcuts/data/messages:57
+#: ../showDesktop/data/messages:59 ../slider/data/messages:65
+#: ../stack/data/messages:59 ../switcher/data/messages:51
+#: ../systray/data/messages:49 ../template/data/messages:57
+#: ../terminal/data/messages:57 ../tomboy/data/messages:69
+#: ../weather/data/messages:67 ../weblets/data/messages:57
+#: ../wifi/data/messages:65
 msgid "Choose a decoration theme for this desklet:"
 msgstr "Vyberte dekorační motiv pro tento desklet :"
 
@@ -4483,21 +4517,22 @@ msgstr "Vyberte dekorační motiv pro tento desklet :"
 #: ../Folders/data/messages:71 ../GMenu/data/messages:59
 #: ../Global-Menu/data/messages:55 ../Impulse/data/messages:55
 #: ../MeMenu/data/messages:55 ../Messaging-Menu/data/messages:67
-#: ../Network-Monitor/data/messages:69 ../RSSreader/data/messages:61
-#: ../Recent-Events/data/messages:59 ../Status-Notifier/data/messages:71
-#: ../System-Monitor/data/messages:67 ../Toons/data/messages:67
-#: ../Xgamma/data/messages:61 ../alsaMixer/data/messages:67
-#: ../clock/data/messages:69 ../dnd2share/data/messages:55
-#: ../dustbin/data/messages:57 ../keyboard-indicator/data/messages:67
-#: ../logout/data/messages:59 ../mail/data/messages:67
-#: ../musicPlayer/data/messages:69 ../netspeed/data/messages:67
-#: ../powermanager/data/messages:69 ../quick-browser/data/messages:61
-#: ../shortcuts/data/messages:59 ../showDesktop/data/messages:61
-#: ../slider/data/messages:67 ../stack/data/messages:61
-#: ../switcher/data/messages:53 ../systray/data/messages:51
-#: ../template/data/messages:59 ../terminal/data/messages:59
-#: ../tomboy/data/messages:71 ../weather/data/messages:69
-#: ../weblets/data/messages:59 ../wifi/data/messages:67
+#: ../Network-Monitor/data/messages:69 ../Printers-Menu/data/messages:59
+#: ../RSSreader/data/messages:61 ../Recent-Events/data/messages:59
+#: ../Status-Notifier/data/messages:71 ../System-Monitor/data/messages:67
+#: ../Toons/data/messages:67 ../Xgamma/data/messages:61
+#: ../alsaMixer/data/messages:67 ../clock/data/messages:69
+#: ../dnd2share/data/messages:55 ../dustbin/data/messages:57
+#: ../keyboard-indicator/data/messages:67 ../logout/data/messages:59
+#: ../mail/data/messages:67 ../musicPlayer/data/messages:69
+#: ../netspeed/data/messages:67 ../powermanager/data/messages:69
+#: ../quick-browser/data/messages:61 ../shortcuts/data/messages:59
+#: ../showDesktop/data/messages:61 ../slider/data/messages:67
+#: ../stack/data/messages:61 ../switcher/data/messages:53
+#: ../systray/data/messages:51 ../template/data/messages:59
+#: ../terminal/data/messages:59 ../tomboy/data/messages:71
+#: ../weather/data/messages:69 ../weblets/data/messages:59
+#: ../wifi/data/messages:67
 msgid ""
 "Image to be displayed below drawings, e.g. a frame. Leave empty for no image."
 msgstr ""
@@ -4509,13 +4544,13 @@ msgstr ""
 #: ../Folders/data/messages:73 ../GMenu/data/messages:61
 #: ../Global-Menu/data/messages:57 ../Impulse/data/messages:57
 #: ../MeMenu/data/messages:57 ../Messaging-Menu/data/messages:69
-#: ../Network-Monitor/data/messages:71 ../RSSreader/data/messages:63
-#: ../Recent-Events/data/messages:61 ../Status-Notifier/data/messages:73
-#: ../System-Monitor/data/messages:69 ../Toons/data/messages:69
-#: ../Xgamma/data/messages:63 ../alsaMixer/data/messages:69
-#: ../clock/data/messages:71 ../clock/data/messages:171
-#: ../dnd2share/data/messages:57 ../dustbin/data/messages:59
-#: ../keyboard-indicator/data/messages:69
+#: ../Network-Monitor/data/messages:71 ../Printers-Menu/data/messages:61
+#: ../RSSreader/data/messages:63 ../Recent-Events/data/messages:61
+#: ../Status-Notifier/data/messages:73 ../System-Monitor/data/messages:69
+#: ../Toons/data/messages:69 ../Xgamma/data/messages:63
+#: ../alsaMixer/data/messages:69 ../clock/data/messages:71
+#: ../clock/data/messages:171 ../dnd2share/data/messages:57
+#: ../dustbin/data/messages:59 ../keyboard-indicator/data/messages:69
 #: ../keyboard-indicator/data/messages:123 ../logout/data/messages:61
 #: ../mail/data/messages:69 ../musicPlayer/data/messages:71
 #: ../netspeed/data/messages:69 ../powermanager/data/messages:71
@@ -4534,21 +4569,22 @@ msgstr "Obrázek pozadí :"
 #: ../Folders/data/messages:75 ../GMenu/data/messages:63
 #: ../Global-Menu/data/messages:59 ../Impulse/data/messages:59
 #: ../MeMenu/data/messages:59 ../Messaging-Menu/data/messages:71
-#: ../Network-Monitor/data/messages:73 ../RSSreader/data/messages:65
-#: ../Recent-Events/data/messages:63 ../Status-Notifier/data/messages:75
-#: ../System-Monitor/data/messages:71 ../Toons/data/messages:71
-#: ../Xgamma/data/messages:65 ../alsaMixer/data/messages:71
-#: ../clock/data/messages:73 ../dnd2share/data/messages:59
-#: ../dustbin/data/messages:61 ../keyboard-indicator/data/messages:71
-#: ../logout/data/messages:63 ../mail/data/messages:71
-#: ../musicPlayer/data/messages:73 ../netspeed/data/messages:71
-#: ../powermanager/data/messages:73 ../quick-browser/data/messages:65
-#: ../shortcuts/data/messages:63 ../showDesktop/data/messages:65
-#: ../slider/data/messages:71 ../stack/data/messages:65
-#: ../switcher/data/messages:57 ../systray/data/messages:55
-#: ../template/data/messages:63 ../terminal/data/messages:63
-#: ../tomboy/data/messages:75 ../weather/data/messages:73
-#: ../weblets/data/messages:63 ../wifi/data/messages:71
+#: ../Network-Monitor/data/messages:73 ../Printers-Menu/data/messages:63
+#: ../RSSreader/data/messages:65 ../Recent-Events/data/messages:63
+#: ../Status-Notifier/data/messages:75 ../System-Monitor/data/messages:71
+#: ../Toons/data/messages:71 ../Xgamma/data/messages:65
+#: ../alsaMixer/data/messages:71 ../clock/data/messages:73
+#: ../dnd2share/data/messages:59 ../dustbin/data/messages:61
+#: ../keyboard-indicator/data/messages:71 ../logout/data/messages:63
+#: ../mail/data/messages:71 ../musicPlayer/data/messages:73
+#: ../netspeed/data/messages:71 ../powermanager/data/messages:73
+#: ../quick-browser/data/messages:65 ../shortcuts/data/messages:63
+#: ../showDesktop/data/messages:65 ../slider/data/messages:71
+#: ../stack/data/messages:65 ../switcher/data/messages:57
+#: ../systray/data/messages:55 ../template/data/messages:63
+#: ../terminal/data/messages:63 ../tomboy/data/messages:75
+#: ../weather/data/messages:73 ../weblets/data/messages:63
+#: ../wifi/data/messages:71
 msgid "Background transparency:"
 msgstr "Průhlednost pozadí :"
 
@@ -4557,21 +4593,22 @@ msgstr "Průhlednost pozadí :"
 #: ../Folders/data/messages:77 ../GMenu/data/messages:65
 #: ../Global-Menu/data/messages:61 ../Impulse/data/messages:61
 #: ../MeMenu/data/messages:61 ../Messaging-Menu/data/messages:73
-#: ../Network-Monitor/data/messages:75 ../RSSreader/data/messages:67
-#: ../Recent-Events/data/messages:65 ../Status-Notifier/data/messages:77
-#: ../System-Monitor/data/messages:73 ../Toons/data/messages:73
-#: ../Xgamma/data/messages:67 ../alsaMixer/data/messages:73
-#: ../clock/data/messages:75 ../dnd2share/data/messages:61
-#: ../dustbin/data/messages:63 ../keyboard-indicator/data/messages:73
-#: ../logout/data/messages:65 ../mail/data/messages:73
-#: ../musicPlayer/data/messages:75 ../netspeed/data/messages:73
-#: ../powermanager/data/messages:75 ../quick-browser/data/messages:67
-#: ../shortcuts/data/messages:65 ../showDesktop/data/messages:67
-#: ../slider/data/messages:73 ../stack/data/messages:67
-#: ../switcher/data/messages:59 ../systray/data/messages:57
-#: ../template/data/messages:65 ../terminal/data/messages:65
-#: ../tomboy/data/messages:77 ../weather/data/messages:75
-#: ../weblets/data/messages:65 ../wifi/data/messages:73
+#: ../Network-Monitor/data/messages:75 ../Printers-Menu/data/messages:65
+#: ../RSSreader/data/messages:67 ../Recent-Events/data/messages:65
+#: ../Status-Notifier/data/messages:77 ../System-Monitor/data/messages:73
+#: ../Toons/data/messages:73 ../Xgamma/data/messages:67
+#: ../alsaMixer/data/messages:73 ../clock/data/messages:75
+#: ../dnd2share/data/messages:61 ../dustbin/data/messages:63
+#: ../keyboard-indicator/data/messages:73 ../logout/data/messages:65
+#: ../mail/data/messages:73 ../musicPlayer/data/messages:75
+#: ../netspeed/data/messages:73 ../powermanager/data/messages:75
+#: ../quick-browser/data/messages:67 ../shortcuts/data/messages:65
+#: ../showDesktop/data/messages:67 ../slider/data/messages:73
+#: ../stack/data/messages:67 ../switcher/data/messages:59
+#: ../systray/data/messages:57 ../template/data/messages:65
+#: ../terminal/data/messages:65 ../tomboy/data/messages:77
+#: ../weather/data/messages:75 ../weblets/data/messages:65
+#: ../wifi/data/messages:73
 msgid "in pixels. Use this to adjust the left position of drawings."
 msgstr "v pixelech. Použijte pro upravení levé pozice kreseb."
 
@@ -4580,21 +4617,22 @@ msgstr "v pixelech. Použijte pro upravení levé pozice kreseb."
 #: ../Folders/data/messages:79 ../GMenu/data/messages:67
 #: ../Global-Menu/data/messages:63 ../Impulse/data/messages:63
 #: ../MeMenu/data/messages:63 ../Messaging-Menu/data/messages:75
-#: ../Network-Monitor/data/messages:77 ../RSSreader/data/messages:69
-#: ../Recent-Events/data/messages:67 ../Status-Notifier/data/messages:79
-#: ../System-Monitor/data/messages:75 ../Toons/data/messages:75
-#: ../Xgamma/data/messages:69 ../alsaMixer/data/messages:75
-#: ../clock/data/messages:77 ../dnd2share/data/messages:63
-#: ../dustbin/data/messages:65 ../keyboard-indicator/data/messages:75
-#: ../logout/data/messages:67 ../mail/data/messages:75
-#: ../musicPlayer/data/messages:77 ../netspeed/data/messages:75
-#: ../powermanager/data/messages:77 ../quick-browser/data/messages:69
-#: ../shortcuts/data/messages:67 ../showDesktop/data/messages:69
-#: ../slider/data/messages:75 ../stack/data/messages:69
-#: ../switcher/data/messages:61 ../systray/data/messages:59
-#: ../template/data/messages:67 ../terminal/data/messages:67
-#: ../tomboy/data/messages:79 ../weather/data/messages:77
-#: ../weblets/data/messages:67 ../wifi/data/messages:75
+#: ../Network-Monitor/data/messages:77 ../Printers-Menu/data/messages:67
+#: ../RSSreader/data/messages:69 ../Recent-Events/data/messages:67
+#: ../Status-Notifier/data/messages:79 ../System-Monitor/data/messages:75
+#: ../Toons/data/messages:75 ../Xgamma/data/messages:69
+#: ../alsaMixer/data/messages:75 ../clock/data/messages:77
+#: ../dnd2share/data/messages:63 ../dustbin/data/messages:65
+#: ../keyboard-indicator/data/messages:75 ../logout/data/messages:67
+#: ../mail/data/messages:75 ../musicPlayer/data/messages:77
+#: ../netspeed/data/messages:75 ../powermanager/data/messages:77
+#: ../quick-browser/data/messages:69 ../shortcuts/data/messages:67
+#: ../showDesktop/data/messages:69 ../slider/data/messages:75
+#: ../stack/data/messages:69 ../switcher/data/messages:61
+#: ../systray/data/messages:59 ../template/data/messages:67
+#: ../terminal/data/messages:67 ../tomboy/data/messages:79
+#: ../weather/data/messages:77 ../weblets/data/messages:67
+#: ../wifi/data/messages:75
 msgid "Left offset:"
 msgstr "Odsazení z leva :"
 
@@ -4603,21 +4641,22 @@ msgstr "Odsazení z leva :"
 #: ../Folders/data/messages:81 ../GMenu/data/messages:69
 #: ../Global-Menu/data/messages:65 ../Impulse/data/messages:65
 #: ../MeMenu/data/messages:65 ../Messaging-Menu/data/messages:77
-#: ../Network-Monitor/data/messages:79 ../RSSreader/data/messages:71
-#: ../Recent-Events/data/messages:69 ../Status-Notifier/data/messages:81
-#: ../System-Monitor/data/messages:77 ../Toons/data/messages:77
-#: ../Xgamma/data/messages:71 ../alsaMixer/data/messages:77
-#: ../clock/data/messages:79 ../dnd2share/data/messages:65
-#: ../dustbin/data/messages:67 ../keyboard-indicator/data/messages:77
-#: ../logout/data/messages:69 ../mail/data/messages:77
-#: ../musicPlayer/data/messages:79 ../netspeed/data/messages:77
-#: ../powermanager/data/messages:79 ../quick-browser/data/messages:71
-#: ../shortcuts/data/messages:69 ../showDesktop/data/messages:71
-#: ../slider/data/messages:77 ../stack/data/messages:71
-#: ../switcher/data/messages:63 ../systray/data/messages:61
-#: ../template/data/messages:69 ../terminal/data/messages:69
-#: ../tomboy/data/messages:81 ../weather/data/messages:79
-#: ../weblets/data/messages:69 ../wifi/data/messages:77
+#: ../Network-Monitor/data/messages:79 ../Printers-Menu/data/messages:69
+#: ../RSSreader/data/messages:71 ../Recent-Events/data/messages:69
+#: ../Status-Notifier/data/messages:81 ../System-Monitor/data/messages:77
+#: ../Toons/data/messages:77 ../Xgamma/data/messages:71
+#: ../alsaMixer/data/messages:77 ../clock/data/messages:79
+#: ../dnd2share/data/messages:65 ../dustbin/data/messages:67
+#: ../keyboard-indicator/data/messages:77 ../logout/data/messages:69
+#: ../mail/data/messages:77 ../musicPlayer/data/messages:79
+#: ../netspeed/data/messages:77 ../powermanager/data/messages:79
+#: ../quick-browser/data/messages:71 ../shortcuts/data/messages:69
+#: ../showDesktop/data/messages:71 ../slider/data/messages:77
+#: ../stack/data/messages:71 ../switcher/data/messages:63
+#: ../systray/data/messages:61 ../template/data/messages:69
+#: ../terminal/data/messages:69 ../tomboy/data/messages:81
+#: ../weather/data/messages:79 ../weblets/data/messages:69
+#: ../wifi/data/messages:77
 msgid "in pixels. Use this to adjust the top position of drawings."
 msgstr "v pixelech. Použijte pro upravení horní pozice kreseb."
 
@@ -4626,21 +4665,22 @@ msgstr "v pixelech. Použijte pro upravení horní pozice kreseb."
 #: ../Folders/data/messages:83 ../GMenu/data/messages:71
 #: ../Global-Menu/data/messages:67 ../Impulse/data/messages:67
 #: ../MeMenu/data/messages:67 ../Messaging-Menu/data/messages:79
-#: ../Network-Monitor/data/messages:81 ../RSSreader/data/messages:73
-#: ../Recent-Events/data/messages:71 ../Status-Notifier/data/messages:83
-#: ../System-Monitor/data/messages:79 ../Toons/data/messages:79
-#: ../Xgamma/data/messages:73 ../alsaMixer/data/messages:79
-#: ../clock/data/messages:81 ../dnd2share/data/messages:67
-#: ../dustbin/data/messages:69 ../keyboard-indicator/data/messages:79
-#: ../logout/data/messages:71 ../mail/data/messages:79
-#: ../musicPlayer/data/messages:81 ../netspeed/data/messages:79
-#: ../powermanager/data/messages:81 ../quick-browser/data/messages:73
-#: ../shortcuts/data/messages:71 ../showDesktop/data/messages:73
-#: ../slider/data/messages:79 ../stack/data/messages:73
-#: ../switcher/data/messages:65 ../systray/data/messages:63
-#: ../template/data/messages:71 ../terminal/data/messages:71
-#: ../tomboy/data/messages:83 ../weather/data/messages:81
-#: ../weblets/data/messages:71 ../wifi/data/messages:79
+#: ../Network-Monitor/data/messages:81 ../Printers-Menu/data/messages:71
+#: ../RSSreader/data/messages:73 ../Recent-Events/data/messages:71
+#: ../Status-Notifier/data/messages:83 ../System-Monitor/data/messages:79
+#: ../Toons/data/messages:79 ../Xgamma/data/messages:73
+#: ../alsaMixer/data/messages:79 ../clock/data/messages:81
+#: ../dnd2share/data/messages:67 ../dustbin/data/messages:69
+#: ../keyboard-indicator/data/messages:79 ../logout/data/messages:71
+#: ../mail/data/messages:79 ../musicPlayer/data/messages:81
+#: ../netspeed/data/messages:79 ../powermanager/data/messages:81
+#: ../quick-browser/data/messages:73 ../shortcuts/data/messages:71
+#: ../showDesktop/data/messages:73 ../slider/data/messages:79
+#: ../stack/data/messages:73 ../switcher/data/messages:65
+#: ../systray/data/messages:63 ../template/data/messages:71
+#: ../terminal/data/messages:71 ../tomboy/data/messages:83
+#: ../weather/data/messages:81 ../weblets/data/messages:71
+#: ../wifi/data/messages:79
 msgid "Top offset:"
 msgstr "Odsazení zezhora :"
 
@@ -4649,21 +4689,22 @@ msgstr "Odsazení zezhora :"
 #: ../Folders/data/messages:85 ../GMenu/data/messages:73
 #: ../Global-Menu/data/messages:69 ../Impulse/data/messages:69
 #: ../MeMenu/data/messages:69 ../Messaging-Menu/data/messages:81
-#: ../Network-Monitor/data/messages:83 ../RSSreader/data/messages:75
-#: ../Recent-Events/data/messages:73 ../Status-Notifier/data/messages:85
-#: ../System-Monitor/data/messages:81 ../Toons/data/messages:81
-#: ../Xgamma/data/messages:75 ../alsaMixer/data/messages:81
-#: ../clock/data/messages:83 ../dnd2share/data/messages:69
-#: ../dustbin/data/messages:71 ../keyboard-indicator/data/messages:81
-#: ../logout/data/messages:73 ../mail/data/messages:81
-#: ../musicPlayer/data/messages:83 ../netspeed/data/messages:81
-#: ../powermanager/data/messages:83 ../quick-browser/data/messages:75
-#: ../shortcuts/data/messages:73 ../showDesktop/data/messages:75
-#: ../slider/data/messages:81 ../stack/data/messages:75
-#: ../switcher/data/messages:67 ../systray/data/messages:65
-#: ../template/data/messages:73 ../terminal/data/messages:73
-#: ../tomboy/data/messages:85 ../weather/data/messages:83
-#: ../weblets/data/messages:73 ../wifi/data/messages:81
+#: ../Network-Monitor/data/messages:83 ../Printers-Menu/data/messages:73
+#: ../RSSreader/data/messages:75 ../Recent-Events/data/messages:73
+#: ../Status-Notifier/data/messages:85 ../System-Monitor/data/messages:81
+#: ../Toons/data/messages:81 ../Xgamma/data/messages:75
+#: ../alsaMixer/data/messages:81 ../clock/data/messages:83
+#: ../dnd2share/data/messages:69 ../dustbin/data/messages:71
+#: ../keyboard-indicator/data/messages:81 ../logout/data/messages:73
+#: ../mail/data/messages:81 ../musicPlayer/data/messages:83
+#: ../netspeed/data/messages:81 ../powermanager/data/messages:83
+#: ../quick-browser/data/messages:75 ../shortcuts/data/messages:73
+#: ../showDesktop/data/messages:75 ../slider/data/messages:81
+#: ../stack/data/messages:75 ../switcher/data/messages:67
+#: ../systray/data/messages:65 ../template/data/messages:73
+#: ../terminal/data/messages:73 ../tomboy/data/messages:85
+#: ../weather/data/messages:83 ../weblets/data/messages:73
+#: ../wifi/data/messages:81
 msgid "in pixels. Use this to adjust the right position of drawings."
 msgstr "v pixelech. Použijte pro upravení pravé pozice kreseb."
 
@@ -4672,21 +4713,22 @@ msgstr "v pixelech. Použijte pro upravení pravé pozice kreseb."
 #: ../Folders/data/messages:87 ../GMenu/data/messages:75
 #: ../Global-Menu/data/messages:71 ../Impulse/data/messages:71
 #: ../MeMenu/data/messages:71 ../Messaging-Menu/data/messages:83
-#: ../Network-Monitor/data/messages:85 ../RSSreader/data/messages:77
-#: ../Recent-Events/data/messages:75 ../Status-Notifier/data/messages:87
-#: ../System-Monitor/data/messages:83 ../Toons/data/messages:83
-#: ../Xgamma/data/messages:77 ../alsaMixer/data/messages:83
-#: ../clock/data/messages:85 ../dnd2share/data/messages:71
-#: ../dustbin/data/messages:73 ../keyboard-indicator/data/messages:83
-#: ../logout/data/messages:75 ../mail/data/messages:83
-#: ../musicPlayer/data/messages:85 ../netspeed/data/messages:83
-#: ../powermanager/data/messages:85 ../quick-browser/data/messages:77
-#: ../shortcuts/data/messages:75 ../showDesktop/data/messages:77
-#: ../slider/data/messages:83 ../stack/data/messages:77
-#: ../switcher/data/messages:69 ../systray/data/messages:67
-#: ../template/data/messages:75 ../terminal/data/messages:75
-#: ../tomboy/data/messages:87 ../weather/data/messages:85
-#: ../weblets/data/messages:75 ../wifi/data/messages:83
+#: ../Network-Monitor/data/messages:85 ../Printers-Menu/data/messages:75
+#: ../RSSreader/data/messages:77 ../Recent-Events/data/messages:75
+#: ../Status-Notifier/data/messages:87 ../System-Monitor/data/messages:83
+#: ../Toons/data/messages:83 ../Xgamma/data/messages:77
+#: ../alsaMixer/data/messages:83 ../clock/data/messages:85
+#: ../dnd2share/data/messages:71 ../dustbin/data/messages:73
+#: ../keyboard-indicator/data/messages:83 ../logout/data/messages:75
+#: ../mail/data/messages:83 ../musicPlayer/data/messages:85
+#: ../netspeed/data/messages:83 ../powermanager/data/messages:85
+#: ../quick-browser/data/messages:77 ../shortcuts/data/messages:75
+#: ../showDesktop/data/messages:77 ../slider/data/messages:83
+#: ../stack/data/messages:77 ../switcher/data/messages:69
+#: ../systray/data/messages:67 ../template/data/messages:75
+#: ../terminal/data/messages:75 ../tomboy/data/messages:87
+#: ../weather/data/messages:85 ../weblets/data/messages:75
+#: ../wifi/data/messages:83
 msgid "Right offset:"
 msgstr "Odsazení z prava :"
 
@@ -4695,21 +4737,22 @@ msgstr "Odsazení z prava :"
 #: ../Folders/data/messages:89 ../GMenu/data/messages:77
 #: ../Global-Menu/data/messages:73 ../Impulse/data/messages:73
 #: ../MeMenu/data/messages:73 ../Messaging-Menu/data/messages:85
-#: ../Network-Monitor/data/messages:87 ../RSSreader/data/messages:79
-#: ../Recent-Events/data/messages:77 ../Status-Notifier/data/messages:89
-#: ../System-Monitor/data/messages:85 ../Toons/data/messages:85
-#: ../Xgamma/data/messages:79 ../alsaMixer/data/messages:85
-#: ../clock/data/messages:87 ../dnd2share/data/messages:73
-#: ../dustbin/data/messages:75 ../keyboard-indicator/data/messages:85
-#: ../logout/data/messages:77 ../mail/data/messages:85
-#: ../musicPlayer/data/messages:87 ../netspeed/data/messages:85
-#: ../powermanager/data/messages:87 ../quick-browser/data/messages:79
-#: ../shortcuts/data/messages:77 ../showDesktop/data/messages:79
-#: ../slider/data/messages:85 ../stack/data/messages:79
-#: ../switcher/data/messages:71 ../systray/data/messages:69
-#: ../template/data/messages:77 ../terminal/data/messages:77
-#: ../tomboy/data/messages:89 ../weather/data/messages:87
-#: ../weblets/data/messages:77 ../wifi/data/messages:85
+#: ../Network-Monitor/data/messages:87 ../Printers-Menu/data/messages:77
+#: ../RSSreader/data/messages:79 ../Recent-Events/data/messages:77
+#: ../Status-Notifier/data/messages:89 ../System-Monitor/data/messages:85
+#: ../Toons/data/messages:85 ../Xgamma/data/messages:79
+#: ../alsaMixer/data/messages:85 ../clock/data/messages:87
+#: ../dnd2share/data/messages:73 ../dustbin/data/messages:75
+#: ../keyboard-indicator/data/messages:85 ../logout/data/messages:77
+#: ../mail/data/messages:85 ../musicPlayer/data/messages:87
+#: ../netspeed/data/messages:85 ../powermanager/data/messages:87
+#: ../quick-browser/data/messages:79 ../shortcuts/data/messages:77
+#: ../showDesktop/data/messages:79 ../slider/data/messages:85
+#: ../stack/data/messages:79 ../switcher/data/messages:71
+#: ../systray/data/messages:69 ../template/data/messages:77
+#: ../terminal/data/messages:77 ../tomboy/data/messages:89
+#: ../weather/data/messages:87 ../weblets/data/messages:77
+#: ../wifi/data/messages:85
 msgid "in pixels. Use this to adjust the bottom position of drawings."
 msgstr "v pixelech. Použijte pro upravení spodní pozice kreseb."
 
@@ -4718,21 +4761,22 @@ msgstr "v pixelech. Použijte pro upravení spodní pozice kreseb."
 #: ../Folders/data/messages:91 ../GMenu/data/messages:79
 #: ../Global-Menu/data/messages:75 ../Impulse/data/messages:75
 #: ../MeMenu/data/messages:75 ../Messaging-Menu/data/messages:87
-#: ../Network-Monitor/data/messages:89 ../RSSreader/data/messages:81
-#: ../Recent-Events/data/messages:79 ../Status-Notifier/data/messages:91
-#: ../System-Monitor/data/messages:87 ../Toons/data/messages:87
-#: ../Xgamma/data/messages:81 ../alsaMixer/data/messages:87
-#: ../clock/data/messages:89 ../dnd2share/data/messages:75
-#: ../dustbin/data/messages:77 ../keyboard-indicator/data/messages:87
-#: ../logout/data/messages:79 ../mail/data/messages:87
-#: ../musicPlayer/data/messages:89 ../netspeed/data/messages:87
-#: ../powermanager/data/messages:89 ../quick-browser/data/messages:81
-#: ../shortcuts/data/messages:79 ../showDesktop/data/messages:81
-#: ../slider/data/messages:87 ../stack/data/messages:81
-#: ../switcher/data/messages:73 ../systray/data/messages:71
-#: ../template/data/messages:79 ../terminal/data/messages:79
-#: ../tomboy/data/messages:91 ../weather/data/messages:89
-#: ../weblets/data/messages:79 ../wifi/data/messages:87
+#: ../Network-Monitor/data/messages:89 ../Printers-Menu/data/messages:79
+#: ../RSSreader/data/messages:81 ../Recent-Events/data/messages:79
+#: ../Status-Notifier/data/messages:91 ../System-Monitor/data/messages:87
+#: ../Toons/data/messages:87 ../Xgamma/data/messages:81
+#: ../alsaMixer/data/messages:87 ../clock/data/messages:89
+#: ../dnd2share/data/messages:75 ../dustbin/data/messages:77
+#: ../keyboard-indicator/data/messages:87 ../logout/data/messages:79
+#: ../mail/data/messages:87 ../musicPlayer/data/messages:89
+#: ../netspeed/data/messages:87 ../powermanager/data/messages:89
+#: ../quick-browser/data/messages:81 ../shortcuts/data/messages:79
+#: ../showDesktop/data/messages:81 ../slider/data/messages:87
+#: ../stack/data/messages:81 ../switcher/data/messages:73
+#: ../systray/data/messages:71 ../template/data/messages:79
+#: ../terminal/data/messages:79 ../tomboy/data/messages:91
+#: ../weather/data/messages:89 ../weblets/data/messages:79
+#: ../wifi/data/messages:87
 msgid "Bottom offset:"
 msgstr "Odsazení zespoda :"
 
@@ -4741,21 +4785,22 @@ msgstr "Odsazení zespoda :"
 #: ../Folders/data/messages:93 ../GMenu/data/messages:81
 #: ../Global-Menu/data/messages:77 ../Impulse/data/messages:77
 #: ../MeMenu/data/messages:77 ../Messaging-Menu/data/messages:89
-#: ../Network-Monitor/data/messages:91 ../RSSreader/data/messages:83
-#: ../Recent-Events/data/messages:81 ../Status-Notifier/data/messages:93
-#: ../System-Monitor/data/messages:89 ../Toons/data/messages:89
-#: ../Xgamma/data/messages:83 ../alsaMixer/data/messages:89
-#: ../clock/data/messages:91 ../dnd2share/data/messages:77
-#: ../dustbin/data/messages:79 ../keyboard-indicator/data/messages:89
-#: ../logout/data/messages:81 ../mail/data/messages:89
-#: ../musicPlayer/data/messages:91 ../netspeed/data/messages:89
-#: ../powermanager/data/messages:91 ../quick-browser/data/messages:83
-#: ../shortcuts/data/messages:81 ../showDesktop/data/messages:83
-#: ../slider/data/messages:89 ../stack/data/messages:83
-#: ../switcher/data/messages:75 ../systray/data/messages:73
-#: ../template/data/messages:81 ../terminal/data/messages:81
-#: ../tomboy/data/messages:93 ../weather/data/messages:91
-#: ../weblets/data/messages:81 ../wifi/data/messages:89
+#: ../Network-Monitor/data/messages:91 ../Printers-Menu/data/messages:81
+#: ../RSSreader/data/messages:83 ../Recent-Events/data/messages:81
+#: ../Status-Notifier/data/messages:93 ../System-Monitor/data/messages:89
+#: ../Toons/data/messages:89 ../Xgamma/data/messages:83
+#: ../alsaMixer/data/messages:89 ../clock/data/messages:91
+#: ../dnd2share/data/messages:77 ../dustbin/data/messages:79
+#: ../keyboard-indicator/data/messages:89 ../logout/data/messages:81
+#: ../mail/data/messages:89 ../musicPlayer/data/messages:91
+#: ../netspeed/data/messages:89 ../powermanager/data/messages:91
+#: ../quick-browser/data/messages:83 ../shortcuts/data/messages:81
+#: ../showDesktop/data/messages:83 ../slider/data/messages:89
+#: ../stack/data/messages:83 ../switcher/data/messages:75
+#: ../systray/data/messages:73 ../template/data/messages:81
+#: ../terminal/data/messages:81 ../tomboy/data/messages:93
+#: ../weather/data/messages:91 ../weblets/data/messages:81
+#: ../wifi/data/messages:89
 msgid ""
 "Image to be displayed above the drawings, e.g. a reflection. Leave empty for "
 "no image."
@@ -4768,21 +4813,22 @@ msgstr ""
 #: ../Folders/data/messages:95 ../GMenu/data/messages:83
 #: ../Global-Menu/data/messages:79 ../Impulse/data/messages:79
 #: ../MeMenu/data/messages:79 ../Messaging-Menu/data/messages:91
-#: ../Network-Monitor/data/messages:93 ../RSSreader/data/messages:85
-#: ../Recent-Events/data/messages:83 ../Status-Notifier/data/messages:95
-#: ../System-Monitor/data/messages:91 ../Toons/data/messages:91
-#: ../Xgamma/data/messages:85 ../alsaMixer/data/messages:91
-#: ../clock/data/messages:93 ../dnd2share/data/messages:79
-#: ../dustbin/data/messages:81 ../keyboard-indicator/data/messages:91
-#: ../logout/data/messages:83 ../mail/data/messages:91
-#: ../musicPlayer/data/messages:93 ../netspeed/data/messages:91
-#: ../powermanager/data/messages:93 ../quick-browser/data/messages:85
-#: ../shortcuts/data/messages:83 ../showDesktop/data/messages:85
-#: ../slider/data/messages:91 ../stack/data/messages:85
-#: ../switcher/data/messages:77 ../systray/data/messages:75
-#: ../template/data/messages:83 ../terminal/data/messages:83
-#: ../tomboy/data/messages:95 ../weather/data/messages:93
-#: ../weblets/data/messages:83 ../wifi/data/messages:91
+#: ../Network-Monitor/data/messages:93 ../Printers-Menu/data/messages:83
+#: ../RSSreader/data/messages:85 ../Recent-Events/data/messages:83
+#: ../Status-Notifier/data/messages:95 ../System-Monitor/data/messages:91
+#: ../Toons/data/messages:91 ../Xgamma/data/messages:85
+#: ../alsaMixer/data/messages:91 ../clock/data/messages:93
+#: ../dnd2share/data/messages:79 ../dustbin/data/messages:81
+#: ../keyboard-indicator/data/messages:91 ../logout/data/messages:83
+#: ../mail/data/messages:91 ../musicPlayer/data/messages:93
+#: ../netspeed/data/messages:91 ../powermanager/data/messages:93
+#: ../quick-browser/data/messages:85 ../shortcuts/data/messages:83
+#: ../showDesktop/data/messages:85 ../slider/data/messages:91
+#: ../stack/data/messages:85 ../switcher/data/messages:77
+#: ../systray/data/messages:75 ../template/data/messages:83
+#: ../terminal/data/messages:83 ../tomboy/data/messages:95
+#: ../weather/data/messages:93 ../weblets/data/messages:83
+#: ../wifi/data/messages:91
 msgid "Foreground image:"
 msgstr "Obrázek popředí :"
 
@@ -4791,21 +4837,22 @@ msgstr "Obrázek popředí :"
 #: ../Folders/data/messages:97 ../GMenu/data/messages:85
 #: ../Global-Menu/data/messages:81 ../Impulse/data/messages:81
 #: ../MeMenu/data/messages:81 ../Messaging-Menu/data/messages:93
-#: ../Network-Monitor/data/messages:95 ../RSSreader/data/messages:87
-#: ../Recent-Events/data/messages:85 ../Status-Notifier/data/messages:97
-#: ../System-Monitor/data/messages:93 ../Toons/data/messages:93
-#: ../Xgamma/data/messages:87 ../alsaMixer/data/messages:93
-#: ../clock/data/messages:95 ../dnd2share/data/messages:81
-#: ../dustbin/data/messages:83 ../keyboard-indicator/data/messages:93
-#: ../logout/data/messages:85 ../mail/data/messages:93
-#: ../musicPlayer/data/messages:95 ../netspeed/data/messages:93
-#: ../powermanager/data/messages:95 ../quick-browser/data/messages:87
-#: ../shortcuts/data/messages:85 ../showDesktop/data/messages:87
-#: ../slider/data/messages:93 ../stack/data/messages:87
-#: ../switcher/data/messages:79 ../systray/data/messages:77
-#: ../template/data/messages:85 ../terminal/data/messages:85
-#: ../tomboy/data/messages:97 ../weather/data/messages:95
-#: ../weblets/data/messages:85 ../wifi/data/messages:93
+#: ../Network-Monitor/data/messages:95 ../Printers-Menu/data/messages:85
+#: ../RSSreader/data/messages:87 ../Recent-Events/data/messages:85
+#: ../Status-Notifier/data/messages:97 ../System-Monitor/data/messages:93
+#: ../Toons/data/messages:93 ../Xgamma/data/messages:87
+#: ../alsaMixer/data/messages:93 ../clock/data/messages:95
+#: ../dnd2share/data/messages:81 ../dustbin/data/messages:83
+#: ../keyboard-indicator/data/messages:93 ../logout/data/messages:85
+#: ../mail/data/messages:93 ../musicPlayer/data/messages:95
+#: ../netspeed/data/messages:93 ../powermanager/data/messages:95
+#: ../quick-browser/data/messages:87 ../shortcuts/data/messages:85
+#: ../showDesktop/data/messages:87 ../slider/data/messages:93
+#: ../stack/data/messages:87 ../switcher/data/messages:79
+#: ../systray/data/messages:77 ../template/data/messages:85
+#: ../terminal/data/messages:85 ../tomboy/data/messages:97
+#: ../weather/data/messages:95 ../weblets/data/messages:85
+#: ../wifi/data/messages:93
 msgid "Foreground tansparency:"
 msgstr "Průhlednost popředí :"
 
@@ -4928,11 +4975,12 @@ msgid "A list of persistent items which can be accessed with middle-click:"
 msgstr ""
 
 #: ../Composite-Manager/data/messages:25 ../Global-Menu/data/messages:23
-#: ../Impulse/data/messages:23 ../Recent-Events/data/messages:27
-#: ../Status-Notifier/data/messages:39 ../alsaMixer/data/messages:35
-#: ../clock/data/messages:37 ../dustbin/data/messages:25
-#: ../netspeed/data/messages:35 ../systray/data/messages:23
-#: ../template/data/messages:27 ../tomboy/data/messages:39
+#: ../Impulse/data/messages:23 ../Printers-Menu/data/messages:27
+#: ../Recent-Events/data/messages:27 ../Status-Notifier/data/messages:39
+#: ../alsaMixer/data/messages:35 ../clock/data/messages:37
+#: ../dustbin/data/messages:25 ../netspeed/data/messages:35
+#: ../systray/data/messages:23 ../template/data/messages:27
+#: ../tomboy/data/messages:39
 msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click.. Negative values are counted from the right/bottom of the screen"
