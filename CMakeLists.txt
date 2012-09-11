@@ -932,7 +932,7 @@ endif()
 set (with_messaging_menu "no")
 if ("${with_indicator}" STREQUAL "yes") 
 	message (STATUS "> Messaging-Menu:")
-	if ("${IDO_FOUND}" AND "${with_indicator3}" STREQUAL "yes"
+	if ("${with_indicator3}" STREQUAL "yes"
 		AND ${INDICATOR_MAJOR} GREATER 12
 		OR (${INDICATOR_MAJOR} EQUAL 12 AND ${INDICATOR_MINOR} GREATER 9))
 		set (INDICATOR_MESSAGES_12_10 1)  # Messaging Menu has been rewritten in Quantal
@@ -994,6 +994,21 @@ set (PACKAGE_POWERMANAGER "cd-powermanager")
 set (powermanagerdatadir "${pluginsdatadir}/powermanager")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/powermanager/data/powermanager.conf.in ${CMAKE_CURRENT_BINARY_DIR}/powermanager/data/powermanager.conf)
 add_subdirectory (powermanager)
+
+############# PRINTERS_MENU #################
+set (with_printers_menu "no")
+if ("${with_indicator3}" STREQUAL "yes"
+		AND (${INDICATOR_MAJOR} GREATER 5
+		OR (${INDICATOR_MAJOR} EQUAL 4 AND ${INDICATOR_MINOR} GREATER 90)))
+	message (STATUS "> Printers-Menu:")
+	set (GETTEXT_PRINTERS_MENU ${GETTEXT_PLUGINS})
+	set (VERSION_PRINTERS_MENU "0.0.1")
+	set (PACKAGE_PRINTERS_MENU "cd-Printers-Menu")
+	set (with_printers_menu "yes")
+	set (printers_menudatadir "${pluginsdatadir}/Printers-Menu")
+	configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Printers-Menu/data/Printers-Menu.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Printers-Menu/data/Printers-Menu.conf)
+	add_subdirectory (Printers-Menu)
+endif()
 
 ############# QUICK BROWSER #################
 message (STATUS "> Quick Browser:")
@@ -1323,6 +1338,7 @@ if (NOT "${INDICATOR_NEW_VERSION}" STREQUAL "1" OR "${enable-memenu}" STREQUAL "
 message (STATUS " - with Me-Menu applet applet:     ${with_me_menu}")
 endif()
 message (STATUS " - with Messaging-Menu applet:     ${with_messaging_menu}")
+message (STATUS " - with Printers-Menu applet:      ${with_printers_menu}")
 message (STATUS " - with Recent-Events applet:      ${with_recent_events}")
 message (STATUS " - with Status-Notifier applet:    ${with_status_notifier}")
 message (STATUS " - with Terminal applet:           ${with_terminal}")
