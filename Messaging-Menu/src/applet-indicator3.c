@@ -19,6 +19,7 @@
 
 #include "applet-struct.h"
 #include "applet-indicator3.h"
+#include "indicator-applet3-utils.h"
 
 void _check_demanding_attention (const gchar *cName, const gchar *cAnimationName)
 {
@@ -28,45 +29,19 @@ void _check_demanding_attention (const gchar *cName, const gchar *cAnimationName
 		CD_APPLET_STOP_DEMANDING_ATTENTION;
 }
 
-const gchar * _get_image_name (GtkImage *pImage, const gchar *cAnimationName)
-{
-	const gchar *cName;
-	gtk_image_get_icon_name (pImage, &cName, NULL);
-	cd_debug ("Get icon name: %s", cName);
-	_check_demanding_attention (cName, cAnimationName);
-	return cName;
-}
-
-static void _set_new_image_gicon (GtkImage *pImage, gchar *cAnimationName)
-{
-	GIcon *pIcon;
-	gtk_image_get_gicon (pImage, &pIcon, NULL);
-	g_return_if_fail (pIcon != NULL);
-
-	gchar *cName = g_icon_to_string (pIcon);
-	cd_debug ("Get GIcon: %s", cName);
-	CD_APPLET_SET_IMAGE_ON_MY_ICON (cName);
-
-	_check_demanding_attention (cName, cAnimationName);
-
-	g_free (cName);
-}
-
 static void _icon_updated (GObject *pObject, GParamSpec *pParam G_GNUC_UNUSED, CairoDockModuleInstance *myApplet)
 {
 	g_return_if_fail (GTK_IS_IMAGE (pObject));
 	GtkImage *pImage = GTK_IMAGE (pObject);
 
-	GtkImageType iType = gtk_image_get_storage_type (pImage);
-	cd_debug ("Icon updated: type %d", iType);
-	switch (iType)
+	gchar *cName = NULL;
+	if (! cd_indicator3_update_image (pImage, &cName, myApplet, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE))
+		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
+
+	if (cName)
 	{
-		case GTK_IMAGE_ICON_NAME:
-			CD_APPLET_SET_IMAGE_ON_MY_ICON (_get_image_name (pImage, myConfig.cAnimationName));
-		break;
-		case GTK_IMAGE_GICON:
-			_set_new_image_gicon (pImage, myConfig.cAnimationName);
-		break;
+		_check_demanding_attention (cName, myConfig.cAnimationName);
+		g_free (cName);
 	}
 }
 
