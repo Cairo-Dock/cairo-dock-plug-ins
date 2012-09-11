@@ -35,7 +35,7 @@ CD_APPLET_ON_SCROLL_H
 CD_APPLET_ON_DOUBLE_CLICK_H
 
 
-CD_APPLET_ON_BUILD_MENU_H
+// CD_APPLET_ON_BUILD_MENU_H
 
 void cd_app_menu_on_keybinding_pull (const gchar *keystring, CairoDockModuleInstance *myApplet);
 

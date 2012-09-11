@@ -29,7 +29,7 @@ CD_APPLET_ON_CLICK_H
 
 CD_APPLET_ON_MIDDLE_CLICK_H
 
-CD_APPLET_ON_BUILD_MENU_H
+// CD_APPLET_ON_BUILD_MENU_H
 
 gboolean cd_status_notifier_on_right_click (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer, GtkWidget *pAppletMenu, gboolean *bDiscardMenu);
 

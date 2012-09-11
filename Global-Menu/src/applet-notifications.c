@@ -163,10 +163,11 @@ CD_APPLET_ON_DOUBLE_CLICK_BEGIN
 CD_APPLET_ON_DOUBLE_CLICK_END
 
 
+/*
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	// nothing to do here, since the icon is considered as an appli, the dock will fill it for free !
 CD_APPLET_ON_BUILD_MENU_END
-
+*/
 
 void cd_app_menu_on_keybinding_pull (const gchar *keystring, CairoDockModuleInstance *myApplet)
 {

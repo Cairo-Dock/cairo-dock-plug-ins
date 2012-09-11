@@ -47,7 +47,7 @@ CD_APPLET_INIT_BEGIN
 	myData.iDesiredIconSize =  cairo_dock_search_icon_size (GTK_ICON_SIZE_DND); // 32px
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
-	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
+	// CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	cairo_dock_register_notification_on_object (&myContainersMgr,
 		NOTIFICATION_BUILD_ICON_MENU,
 		(CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU_FUNC,
@@ -64,7 +64,7 @@ CD_APPLET_INIT_END
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
-	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
+	// CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
 		NOTIFICATION_BUILD_ICON_MENU, (CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU_FUNC, myApplet);
 	

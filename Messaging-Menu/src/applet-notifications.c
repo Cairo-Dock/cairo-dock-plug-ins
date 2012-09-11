@@ -81,7 +81,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	_show_menu ();
 CD_APPLET_ON_CLICK_END
 
-
+/*
 //\___________ Same as ON_CLICK, but with middle-click.
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	
@@ -100,7 +100,7 @@ CD_APPLET_ON_SCROLL_END
 CD_APPLET_ON_BUILD_MENU_BEGIN
 
 CD_APPLET_ON_BUILD_MENU_END
-
+*/
 
 void cd_messaging_on_keybinding_pull (const gchar *keystring, CairoDockModuleInstance *myApplet)
 {

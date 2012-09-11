@@ -32,7 +32,7 @@ CD_APPLET_ON_CLICK_BEGIN
 CD_APPLET_ON_CLICK_END
 
 
-
+/*
 //\___________ Same as ON_CLICK, but with scroll. Moreover, CD_APPLET_SCROLL_UP tels you is the user scrolled up, CD_APPLET_SCROLL_DOWN the opposite.
 CD_APPLET_ON_SCROLL_BEGIN
 	
@@ -44,3 +44,4 @@ CD_APPLET_ON_SCROLL_END
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	
 CD_APPLET_ON_BUILD_MENU_END
+*/

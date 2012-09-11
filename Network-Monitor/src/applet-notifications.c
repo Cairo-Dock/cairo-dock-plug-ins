@@ -92,11 +92,11 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	}
 CD_APPLET_ON_BUILD_MENU_END
 
-
+/*
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	/// trouver une action utile ...
 CD_APPLET_ON_MIDDLE_CLICK_END
-
+*/
 
 CD_APPLET_ON_SCROLL_BEGIN
 	//\____________ On change le mode.
