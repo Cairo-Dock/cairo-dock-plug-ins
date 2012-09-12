@@ -8,7 +8,7 @@ SET(cd-rendering_LIB_SRCS
 	rendering-parabole.c 		rendering-parabole.h
 	rendering-3D-plane.c 		rendering-3D-plane.h
 	rendering-rainbow.c 		rendering-rainbow.h
-	rendering-diapo-simple.c 	rendering-diapo-simple.h
+	rendering-slide.c 	rendering-slide.h
 	rendering-curve.c 		rendering-curve.h
 	rendering-panel.c 		rendering-panel.h
 	rendering-commons.c		rendering-commons.h
@@ -63,8 +63,8 @@ install(TARGETS ${PACKAGE_RENDERING} DESTINATION ${pluginsdir})
 #	rendering-3D-plane.h
 #	rendering-rainbow.c
 #	rendering-rainbow.h
-#	rendering-diapo-simple.c
-#	rendering-diapo-simple.h
+#	rendering-slide.c
+#	rendering-slide.h
 #	rendering-curve.c
 #	rendering-curve.h
 #	rendering-commons.c

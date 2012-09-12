@@ -25,7 +25,7 @@
 #include "rendering-3D-plane.h"
 #include "rendering-rainbow.h"
 //#include "rendering-diapo.h"
-#include "rendering-diapo-simple.h"
+#include "rendering-slide.h"
 #include "rendering-curve.h"
 #include "rendering-panel.h"
 #include "rendering-commons.h"

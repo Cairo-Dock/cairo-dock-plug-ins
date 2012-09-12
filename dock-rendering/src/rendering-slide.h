@@ -18,8 +18,8 @@
 */
 
 
-#ifndef __RENDERING_DIAPO_SIMPLE_VIEW__
-#define  __RENDERING_DIAPO_SIMPLE_VIEW__
+#ifndef __RENDERING_SLIDE_VIEW__
+#define  __RENDERING_SLIDE_VIEW__
 
 #include "cairo-dock.h"
 

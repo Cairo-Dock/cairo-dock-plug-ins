@@ -26,7 +26,7 @@
 
 #include <cairo.h>
 
-#include "rendering-diapo-simple.h"
+#include "rendering-slide.h"
 
 extern gdouble  my_diapo_simple_max_size;
 extern gint     my_diapo_simple_iconGapX;
@@ -1788,7 +1788,8 @@ void cd_rendering_set_subdock_position_slide (Icon *pPointedIcon, CairoDock *pDo
 	g_return_if_fail (pData != NULL);
 	
 	///int iX = pPointedIcon->fXAtRest - (pDock->fFlatDockWidth - pDock->iMaxDockWidth) / 2 + pPointedIcon->fWidth / 2 + (pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2);
-	int iX = pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2 + (pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2);
+	//int iX = pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2 + (pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2);
+	int iX = pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2;
 	if (pSubDock->container.bIsHorizontal == pDock->container.bIsHorizontal)
 	{
 		pSubDock->fAlign = 0.5;
@@ -1834,8 +1835,8 @@ void cd_rendering_register_diapo_simple_renderer (const gchar *cRendererName)
 	pRenderer->free_data 			= cd_rendering_free_slide_data;
 	pRenderer->set_subdock_position = cd_rendering_set_subdock_position_slide;
 	// parametres
-	pRenderer->cReadmeFilePath 		= g_strdup (MY_APPLET_SHARE_DATA_DIR"/readme-diapo-simple-view");
-	pRenderer->cPreviewFilePath 	= g_strdup (MY_APPLET_SHARE_DATA_DIR"/preview-diapo-simple.jpg");
+	pRenderer->cReadmeFilePath 		= g_strdup (MY_APPLET_SHARE_DATA_DIR"/readme-slide-view");
+	pRenderer->cPreviewFilePath 	= g_strdup (MY_APPLET_SHARE_DATA_DIR"/preview-slide.jpg");
 	pRenderer->bUseReflect 			= FALSE;  // pas de reflections
 	pRenderer->cDisplayedName 		= D_(cRendererName);
 	
