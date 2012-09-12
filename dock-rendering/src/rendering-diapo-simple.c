@@ -1342,7 +1342,7 @@ static CairoDockGLPath *cd_generate_arrow_path (double fFrameWidth, double fTota
 	return pPath;
 }
 
-static const GLfloat *cd_generate_color_tab (double fAlpha, GLfloat *pMiddleBottomColor)
+static const GLfloat *cd_generate_color_tab (double fAlpha, GLfloat *pBottomLeftColorTab, GLfloat *pBottomRightColorTab)
 {
 	static GLfloat *pColorTab = NULL;
 	int iNbPoins1Round = 90/DELTA_ROUND_DEGREE;
@@ -1381,10 +1381,20 @@ static const GLfloat *cd_generate_color_tab (double fAlpha, GLfloat *pMiddleBott
 		pTopRightColor = my_diapo_simple_color_frame_start;
 	}
 	
-	pMiddleBottomColor[0] = (pBottomRightColor[0] + pBottomLeftColor[0])/2;
+	/*pMiddleBottomColor[0] = (pBottomRightColor[0] + pBottomLeftColor[0])/2;
 	pMiddleBottomColor[1] = (pBottomRightColor[1] + pBottomLeftColor[1])/2;
 	pMiddleBottomColor[2] = (pBottomRightColor[2] + pBottomLeftColor[2])/2;
-	pMiddleBottomColor[3] = (pBottomRightColor[3] + pBottomLeftColor[3])/2;
+	pMiddleBottomColor[3] = (pBottomRightColor[3] + pBottomLeftColor[3])/2;*/
+	
+	pBottomLeftColorTab[0] = pBottomLeftColor[0];
+	pBottomLeftColorTab[1] = pBottomLeftColor[1];
+	pBottomLeftColorTab[2] = pBottomLeftColor[2];
+	pBottomLeftColorTab[3] = pBottomLeftColor[3];
+	
+	pBottomRightColorTab[0] = pBottomRightColor[0];
+	pBottomRightColorTab[1] = pBottomRightColor[1];
+	pBottomRightColorTab[2] = pBottomRightColor[2];
+	pBottomRightColorTab[3] = pBottomRightColor[3];
 	
 	int i=0, j;
 	_copy_color (pColorTab, i, fAlpha, pBottomRightColor);
@@ -1475,8 +1485,8 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 	if (my_diapo_simple_draw_background)
 	{
 		// le cadre sans la pointe.
-		GLfloat pBottomMiddleColor[4];
-		const GLfloat *pColorTab = cd_generate_color_tab (fAlpha, pBottomMiddleColor);
+		GLfloat pBottomLeftColor[4], pBottomRightColor[4];
+		const GLfloat *pColorTab = cd_generate_color_tab (fAlpha, pBottomLeftColor, pBottomRightColor);
 		glEnableClientState (GL_COLOR_ARRAY);
 		glColorPointer (4, GL_FLOAT, 0, pColorTab);
 		cairo_dock_fill_gl_path (pFramePath, 0);
@@ -1484,7 +1494,14 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 		
 		// la pointe.
 		CairoDockGLPath *pArrowPath = cd_generate_arrow_path (fFrameWidth, fFrameHeight, pData);
-		glColor4f (pBottomMiddleColor[0], pBottomMiddleColor[1], pBottomMiddleColor[2], pBottomMiddleColor[3] * fAlpha);
+		double f = .5 + (double)pData->iArrowShift / fFrameWidth;
+		GLfloat pArrowColor[4];
+		pArrowColor[0] = pBottomRightColor[0] * f + pBottomLeftColor[0] * (1-f);
+		pArrowColor[1] = pBottomRightColor[1] * f + pBottomLeftColor[1] * (1-f);
+		pArrowColor[2] = pBottomRightColor[2] * f + pBottomLeftColor[2] * (1-f);
+		pArrowColor[3] = pBottomRightColor[3] * f + pBottomLeftColor[3] * (1-f);
+		
+		glColor4f (pArrowColor[0], pArrowColor[1], pArrowColor[2], pArrowColor[3] * fAlpha);
 		cairo_dock_fill_gl_path (pArrowPath, 0);
 	}
 	
