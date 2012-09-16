@@ -43,7 +43,7 @@ static gboolean _set_new_image_pixbuf (GtkImage *pImage)
 	GdkPixbuf *pPixbuf = gtk_image_get_pixbuf (pImage);
 	g_return_val_if_fail (pPixbuf != NULL, FALSE);
 
-	cd_debug ("Icon Pixbuf: %p ===\n", pPixbuf);
+	cd_debug ("Icon Pixbuf: %p\n", pPixbuf);
 	gdouble fWidth, fHeight;
 	cairo_surface_t *pSurface = cairo_dock_create_surface_from_pixbuf (pPixbuf,
 		1.,
@@ -58,6 +58,23 @@ static gboolean _set_new_image_pixbuf (GtkImage *pImage)
 	return TRUE;
 }
 
+const gchar *_get_image_stock (GtkImage *pImage)
+{
+	gchar *cName;
+	gtk_image_get_stock (pImage, &cName, NULL);
+	cd_debug ("Get stock: %s", cName);
+	return cName;
+}
+
+static gboolean _set_image_on_icon (const gchar *cName, CairoDockModuleInstance *myApplet, const gchar *cDefaultFile)
+{
+	if (! cName)
+		return FALSE;
+	cairo_dock_set_image_on_icon_with_default (myDrawContext,
+		cName, myIcon, myContainer, cDefaultFile);
+	return TRUE;
+}
+
 gboolean cd_indicator3_update_image (GtkImage *pImage, gchar **cName, CairoDockModuleInstance *myApplet, const gchar *cDefaultFile)
 {
 	GtkImageType iType = gtk_image_get_storage_type (pImage);
@@ -66,22 +83,18 @@ gboolean cd_indicator3_update_image (GtkImage *pImage, gchar **cName, CairoDockM
 	{
 		case GTK_IMAGE_ICON_NAME:
 			*cName = g_strdup (_get_name_from_icon_name (pImage));
-			if (*cName)
-				cairo_dock_set_image_on_icon_with_default (myDrawContext,
-					*cName, myIcon, myContainer, cDefaultFile);
-			else
-				return FALSE;
+			return _set_image_on_icon (*cName, myApplet, cDefaultFile);
 		break;
 		case GTK_IMAGE_GICON:
 			*cName = _get_name_from_gicon (pImage);
-			if (*cName)
-				cairo_dock_set_image_on_icon_with_default (myDrawContext,
-					*cName, myIcon, myContainer, cDefaultFile);
-			else
-				return FALSE;
+			return _set_image_on_icon (*cName, myApplet, cDefaultFile);
 		break;
 		case GTK_IMAGE_PIXBUF:
 			return _set_new_image_pixbuf (pImage);
+		break;
+		case GTK_IMAGE_STOCK:
+			*cName = g_strdup (_get_image_stock (pImage));
+			return _set_image_on_icon (*cName, myApplet, cDefaultFile);
 		break;
 		case GTK_IMAGE_EMPTY:
 			cd_debug ("No image...");
@@ -95,4 +108,37 @@ gboolean cd_indicator3_update_image (GtkImage *pImage, gchar **cName, CairoDockM
 		break;
 	}
 	return TRUE;
+}
+
+void cd_indicator3_notify_image (GtkImage *pImage, GCallback pCallBack, gpointer data)
+{
+	GtkImageType iType = gtk_image_get_storage_type (pImage);
+	cd_debug ("Icon notify: type %d", iType);
+	switch (iType)
+	{
+		case GTK_IMAGE_ICON_NAME:
+			g_signal_connect (G_OBJECT (pImage), "notify::icon-name", pCallBack, data);
+		break;
+		case GTK_IMAGE_GICON:
+			g_signal_connect (G_OBJECT (pImage), "notify::gicon", pCallBack, data);
+		break;
+		case GTK_IMAGE_PIXBUF:
+			g_signal_connect (G_OBJECT (pImage), "notify::pixbuf", pCallBack, data);
+		break;
+		case GTK_IMAGE_STOCK:
+			g_signal_connect (G_OBJECT (pImage), "notify::stock", pCallBack, data);
+		break;
+		case GTK_IMAGE_EMPTY:
+			cd_debug ("No image (type is empty)... Connect to all signals");
+			g_signal_connect (G_OBJECT (pImage), "notify::icon-name", pCallBack, data);
+			g_signal_connect (G_OBJECT (pImage), "notify::gicon", pCallBack, data);
+			g_signal_connect (G_OBJECT (pImage), "notify::pixbuf", pCallBack, data);
+			g_signal_connect (G_OBJECT (pImage), "notify::stock", pCallBack, data);
+		break;
+		case GTK_IMAGE_ANIMATION:
+		case GTK_IMAGE_ICON_SET:
+		default:
+			cd_warning ("This icon type (%d) is not (yet) supported", iType);
+		break;
+	}
 }

@@ -24,9 +24,19 @@
 #include <cairo-dock.h>
 #include <libindicator/indicator-object.h>
 
+/**
+ * Use the image of a GtkImage to draw a Cairo-Dock Icon
+ *  and give the name of the image if it's possible.
+ */
 gboolean cd_indicator3_update_image (GtkImage *pImage,
 	gchar **cName,
 	CairoDockModuleInstance *myApplet,
 	const gchar *cDefaultFile);
+
+/**
+ * Connect to the right signal in order to be notified when the image of
+ * a GtkImage has been updated
+ */
+void cd_indicator3_notify_image (GtkImage *pImage, GCallback pCallBack, gpointer data);
 
 #endif /* __CD_INDICATOR_APPLET3_UTILS__ */
