@@ -67,11 +67,10 @@ void cd_messaging_entry_added (IndicatorObject *pIndicator, IndicatorObjectEntry
 	myData.pEntry = pEntry;
 
 	// get the icon and the label
-	_icon_updated (G_OBJECT (pEntry->image), NULL, myApplet);
-	// we have a GtkImage but we just need its name: connect to the signal.
-	// It seems we can have a gicon or a icon-name.
-	g_signal_connect (G_OBJECT (pEntry->image),"notify::gicon", G_CALLBACK (_icon_updated), myApplet);
-	g_signal_connect (G_OBJECT (pEntry->image),"notify::icon-name", G_CALLBACK (_icon_updated), myApplet);
+
+	// signals
+	cd_indicator3_notify_image (pEntry->image, G_CALLBACK (_icon_updated), myApplet);
+
 	cd_messaging_accessible_desc_update (pIndicator, pEntry, data);
 }
 

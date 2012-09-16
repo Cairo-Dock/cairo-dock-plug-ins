@@ -94,9 +94,9 @@ void cd_printers_entry_added (IndicatorObject *pIndicator, IndicatorObjectEntry 
 		cd_printers_accessible_desc_update (pIndicator, pEntry, data);
 	}
 
-	cd_debug ("Icon updated: type %d", gtk_image_get_storage_type (pImage));
+	// signals
+	cd_indicator3_notify_image (pImage, G_CALLBACK (_icon_updated), myApplet);
 
-	g_signal_connect (G_OBJECT (pImage), "notify::pixbuf", G_CALLBACK (_icon_updated), myApplet);
 	g_signal_connect (G_OBJECT (pImage), "show", G_CALLBACK (_show), myApplet);
 	g_signal_connect (G_OBJECT (pImage), "hide", G_CALLBACK (_hide), myApplet);
 }
