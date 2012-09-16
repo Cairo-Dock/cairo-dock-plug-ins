@@ -997,9 +997,9 @@ add_subdirectory (powermanager)
 
 ############# PRINTERS_MENU #################
 set (with_printers_menu "no")
-if ("${with_indicator3}" STREQUAL "yes"
-		AND (${INDICATOR_MAJOR} GREATER 5
-		OR (${INDICATOR_MAJOR} EQUAL 4 AND ${INDICATOR_MINOR} GREATER 90)))
+if ("${with_indicator3}" STREQUAL "yes") # then ${INDICATOR_*} are defined
+if (${INDICATOR_MAJOR} GREATER 5
+		OR (${INDICATOR_MAJOR} EQUAL 4 AND ${INDICATOR_MINOR} GREATER 90))
 	message (STATUS "> Printers-Menu:")
 	set (GETTEXT_PRINTERS_MENU ${GETTEXT_PLUGINS})
 	set (VERSION_PRINTERS_MENU "0.0.1")
@@ -1008,6 +1008,7 @@ if ("${with_indicator3}" STREQUAL "yes"
 	set (printers_menudatadir "${pluginsdatadir}/Printers-Menu")
 	configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Printers-Menu/data/Printers-Menu.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Printers-Menu/data/Printers-Menu.conf)
 	add_subdirectory (Printers-Menu)
+endif()
 endif()
 
 ############# QUICK BROWSER #################
