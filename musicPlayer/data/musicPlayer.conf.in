@@ -9,7 +9,7 @@ frame_maininfo=
 #d Name of the dock it belongs to:
 dock name =
 
-#s[player name] Name of the icon as it will appear in its caption in the dock:
+#s[Player name] Name of the icon as it will appear in its caption in the dock:
 #{Leave it empty to display the name of the player currently controlled.}
 name =
 

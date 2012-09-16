@@ -128,6 +128,7 @@ renderer =
 3D desklet = true
 
 #F[Icon]
+frame_icon =
 
 #b Show desktop number on icons?
 display numero desktop = true

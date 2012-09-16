@@ -9,7 +9,7 @@ frame_maininfo=
 #d Name of the dock it belongs to:
 dock name = 
 
-#s[current status] Name of the icon as it will appear in its caption in the dock:
+#s[Current status] Name of the icon as it will appear in its caption in the dock:
 #{Leave empty to display the current status information.}
 name = 
 #v

@@ -9,7 +9,7 @@ frame_maininfo=
 #d Name of the dock it belongs to:
 dock name = 
 
-#s[connection name] Name of the icon as it will appear in its caption in the dock:
+#s[Connection name] Name of the icon as it will appear in its caption in the dock:
 #{Leave empty to use the connection name.}
 name = 
 #v

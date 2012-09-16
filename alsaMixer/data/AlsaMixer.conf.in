@@ -160,5 +160,5 @@ mixer element = Master
 #{On some cards, a channel only controls 1 side (right or left). You will then need to specify a second channel here, to control both sides. Most of the time, you should just leave this empty.}
 mixer element 2 = 
 
-#s[default] Specific command to run to show an advanced sound mixer:
+#s[Default] Specific command to run to show an advanced sound mixer:
 show mixer = 
