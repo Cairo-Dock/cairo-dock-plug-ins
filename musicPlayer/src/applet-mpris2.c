@@ -330,8 +330,8 @@ static gboolean _extract_metadata (GHashTable *pMetadata)
 			myData.cAlbum = g_strdup (str);
 	}
 	cd_message ("  cAlbum <- %s", myData.cAlbum);
-	
-	g_free (myData.cTitle);
+
+	gchar *cOldTitle = myData.cTitle;
 	myData.cTitle = NULL;
 	v = (GValue *) g_hash_table_lookup(pMetadata, "xesam:title");
 	if (v != NULL && G_VALUE_HOLDS_STRING(v))
@@ -341,6 +341,13 @@ static gboolean _extract_metadata (GHashTable *pMetadata)
 			myData.cTitle = g_strdup (str);
 	}
 	cd_message ("  cTitle <- %s", myData.cTitle);
+
+	/* some players doesn't support (well) the trackid. Even if this is not our
+	 * problem, it can be interesting to also check if the title has changed.
+	 */
+	if (! bTrackHasChanged && cairo_dock_strings_differ (myData.cTitle, cOldTitle))
+		bTrackHasChanged = TRUE;
+	g_free (cOldTitle);
 	
 	g_free (myData.cPlayingUri);
 	myData.cPlayingUri = NULL;
