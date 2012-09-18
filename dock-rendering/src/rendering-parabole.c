@@ -512,7 +512,7 @@ static double cd_rendering_project_cursor_on_curve_y (double x0, double y0, doub
 	while (y_sup - y_inf > 1);
 	return (y_inf + y_sup) / 2;
 }
-static double cd_rendering_project_cursor_on_curve (double x0, double y0, double lambda, double alpha, double *fXOnCurve, double *fYOnCurve)
+static void cd_rendering_project_cursor_on_curve (double x0, double y0, double lambda, double alpha, double *fXOnCurve, double *fYOnCurve)
 {
 	double xM, yM;
 	if (my_fParaboleRatio > 1)

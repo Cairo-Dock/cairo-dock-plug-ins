@@ -96,6 +96,8 @@ static gboolean _display_result (CDSharedMemory *pSharedMemory)
 	}
 	cairo_dock_discard_task (myData.pInfoTask);
 	myData.pInfoTask = NULL;
+
+	return FALSE;
 }
 static void _cd_dustbin_show_info (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {

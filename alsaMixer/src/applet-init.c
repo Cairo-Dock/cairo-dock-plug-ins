@@ -50,7 +50,7 @@ static gboolean _cd_mixer_on_enter (GtkWidget* pWidget,
 	{
 		gtk_widget_show (myData.pScale);
 	}
-	return FALSE;
+	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 }
 gboolean _cd_mixer_on_leave (GtkWidget* pWidget,
 	GdkEventCrossing* pEvent,
@@ -61,7 +61,7 @@ gboolean _cd_mixer_on_leave (GtkWidget* pWidget,
 		if (! myDesklet->container.bInside)
 			gtk_widget_hide (myData.pScale);
 	}
-	return FALSE;
+	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 }
 
 static void _set_data_renderer (void)
