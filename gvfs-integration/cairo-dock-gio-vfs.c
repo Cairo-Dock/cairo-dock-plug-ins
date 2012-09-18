@@ -70,6 +70,7 @@ gboolean cairo_dock_gio_vfs_init (void)
 	return (vfs != NULL && g_vfs_is_active (vfs));  // utile ?
 }
 
+/* no longer used...
 static void cairo_dock_gio_vfs_stop (void)
 {
 	if (s_hMonitorHandleTable != NULL)
@@ -78,7 +79,7 @@ static void cairo_dock_gio_vfs_stop (void)
 		s_hMonitorHandleTable = NULL;
 	}
 }
-
+*/
 
 static gchar *_cd_get_icon_path (GIcon *pIcon, const gchar *cTargetURI)  // cTargetURI est l'URI que represente l'icone, pour les cas ou l'icone est contenue dans le repertoire lui-meme (CD ou DVD de jeux notamment)
 {
@@ -150,8 +151,6 @@ static void _cd_find_mount_from_volume_name (const gchar *cVolumeName, GMount **
 		return ;
 	}
 	
-	GList *pIconList = NULL;
-	Icon *icon;
 	GFileInfo *pFileInfo;
 	do
 	{
@@ -556,6 +555,7 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 	g_object_unref (pFile);
 }
 
+/* no longer used...
 static Icon *_cd_get_icon_for_volume (GVolume *pVolume, GMount *pMount)
 {
 	GIcon *pIcon;
@@ -603,7 +603,7 @@ static Icon *_cd_get_icon_for_volume (GVolume *pVolume, GMount *pMount)
 	cd_message (" => %s", pNewIcon->cCommand);
 	return pNewIcon;
 }
-
+*/
 /* no longer used...
 static GList *cairo_dock_gio_vfs_list_volumes (void)
 {
@@ -638,7 +638,7 @@ static GList *cairo_dock_gio_vfs_list_volumes (void)
 		else  // le disque n'a aucun volume montable
 		{
 			cd_message ("  le disque n'a aucun volume montable");
-			/*if (g_drive_is_media_removable (pDrive) && ! g_drive_is_media_check_automatic (pDrive))
+			*if (g_drive_is_media_removable (pDrive) && ! g_drive_is_media_check_automatic (pDrive))
 			{
 				g_drive_get_icon (pDrive);
 				g_drive_get_name (pDrive);
@@ -978,8 +978,8 @@ static gsize cairo_dock_gio_vfs_measure_directory (const gchar *cBaseURI, gint i
 		const gchar *cFileName = g_file_info_get_name (pFileInfo);
 		
 		g_string_printf (sFilePath, "%s/%s", cURI, cFileName);
-		GFile *file = g_file_new_for_uri (sFilePath->str);
-		const gchar *cTargetURI = g_file_get_uri (file);
+		//GFile *file = g_file_new_for_uri (sFilePath->str);
+		//const gchar *cTargetURI = g_file_get_uri (file);
 		//g_print ("+ %s [%s]\n", cFileName, cTargetURI);
 		GFileType iFileType = g_file_info_get_file_type (pFileInfo);
 		
@@ -1051,7 +1051,7 @@ static void cairo_dock_gio_vfs_launch_uri (const gchar *cURI)
 	gboolean bSuccess = g_app_info_launch_default_for_uri (cURI,
 		NULL,
 		&erreur);
-	if (erreur != NULL)  // error can happen (for instance, opening 'trash:/' on XFCE with a previous installation of nautilus) => try with another method.
+	if (erreur != NULL || ! bSuccess)  // error can happen (for instance, opening 'trash:/' on XFCE with a previous installation of nautilus) => try with another method.
 	{
 		cd_debug ("gvfs-integration : couldn't launch '%s' [%s]", cURI, erreur->message);
 		g_error_free (erreur);
@@ -1075,7 +1075,6 @@ static void cairo_dock_gio_vfs_launch_uri (const gchar *cURI)
 			// get all the apps that can launch it.
 			const gchar *cMimeType = g_file_info_get_content_type (pFileInfo);
 			GList *pAppsList = g_app_info_get_all_for_type (cMimeType);
-			gchar *cCommand;
 			GAppInfo *pAppInfo;
 			const char *cExec;
 			GList *a;
@@ -1714,8 +1713,7 @@ static void cairo_dock_gio_vfs_empty_trash (void)
 	}
 	
 	GString *sFileUri = g_string_new ("");
-	GFileInfo *pFileInfo;
-	GFile *file;
+	GFileInfo *pFileInfo;;
 	do
 	{
 		pFileInfo = g_file_enumerator_next_file (pFileEnum, NULL, &erreur);
@@ -1830,7 +1828,6 @@ static GList *cairo_dock_gio_vfs_list_apps_for_file (const gchar *cBaseURI)
 	GList *pList = NULL;
 	gchar **pData;
 	GAppInfo *pAppInfo;
-	const char *cName, *cDisplayedName, *cExec;
 	GIcon *pIcon;
 	for (a = pAppsList; a != NULL; a = a->next)
 	{

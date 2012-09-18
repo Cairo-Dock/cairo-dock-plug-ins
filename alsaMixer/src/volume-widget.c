@@ -123,7 +123,7 @@ static void
 volume_widget_finalize (GObject *object)
 {
 	/// we need to unref what we ref'ed
-	VolumeWidget *self = VOLUME_WIDGET (object);
+	// VolumeWidget *self = VOLUME_WIDGET (object);
 	VolumeWidgetPrivate * priv = VOLUME_WIDGET_GET_PRIVATE(object);
 	g_object_unref (priv->twin_item);
 	g_object_unref (priv->ido_volume_slider);
@@ -252,7 +252,7 @@ volume_widget_value_changed_cb (GtkRange *range, gpointer user_data)
 void 
 volume_widget_update(VolumeWidget* self, gdouble update, const gchar* label)
 {
-  gchar* source = NULL;
+  const gchar* source = NULL;
   source = label;
   if (label == NULL){
     source = "v widget update";

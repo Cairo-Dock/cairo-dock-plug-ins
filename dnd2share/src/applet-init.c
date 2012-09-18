@@ -71,7 +71,7 @@ CD_APPLET_INIT_BEGIN
 		if (g_mkdir (myData.cWorkingDirPath, 7*8*8+7*8+5) != 0)
 		{
 			cd_warning ("couldn't create directory '%s' !\nNo history will be available.", myData.cWorkingDirPath);
-			myConfig.iNbItems == 0;
+			myConfig.iNbItems = 0;
 		}
 	}
 	

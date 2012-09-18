@@ -190,6 +190,8 @@ void _on_text_received (GtkClipboard *pClipBoard, const gchar *text, gpointer us
 				gchar *cCommand = g_strdup_printf ("cp '%s' '%s'", cDefaultConfFilePath, cConfFilePath);
 				cd_message (cCommand);
 				int r = system (cCommand);
+				if (r < 0)
+					cd_warning ("Not able to launch this command: %s", cCommand);
 				g_free (cCommand);
 				g_free (cDefaultConfFilePath);
 			}
@@ -251,7 +253,7 @@ GList *cd_clipper_load_actions (const gchar *cConfFilePath)
 	
 	gboolean bEnabled;
 	GList *pActionsList = NULL;
-	gchar *cGroupName, *cExpression;
+	gchar *cExpression;
 	GString *sActionGroupName = g_string_new ("");
 	GString *sCommandGroupName = g_string_new ("");
 	CDClipperAction *pAction;
@@ -413,6 +415,8 @@ static void _cd_clipper_launch_action (GtkMenuItem *pMenuItem, CDClipperCommand 
 	gchar *cBGCommand = g_strconcat (cCommand, " &", NULL);
 	cd_message (cBGCommand);
 	int r = system (cBGCommand);
+	if (r < 0)
+		cd_warning ("Not able to launch this command: %s", cBGCommand);
 	g_free (cBGCommand);
 	g_free (cCommand);
 	CD_APPLET_LEAVE();
@@ -537,11 +541,12 @@ static void _cd_clipper_activate_item (GtkMenuItem *pMenuItem, CDClipperItem *pI
 	}
 	CD_APPLET_LEAVE();
 }
+/* Not used
 static void _cd_clipper_add_item_in_menu (CDClipperItem *pItem, GtkWidget *pMenu)
 {
-	GtkWidget *pMenuItem;
 	CD_APPLET_ADD_IN_MENU_WITH_DATA ((pItem->cDisplayedText != NULL ? pItem->cDisplayedText : pItem->cText), _cd_clipper_activate_item, pMenu, pItem);
 }
+*/
 GtkWidget *cd_clipper_build_items_menu (void)
 {
 	GtkWidget *pMenu = gtk_menu_new ();
@@ -566,7 +571,6 @@ GtkWidget *cd_clipper_build_persistent_items_menu (void)
 	GtkWidget *pMenu = gtk_menu_new ();
 	
 	gchar *cText;
-	GtkWidget *pMenuItem;
 	int i;
 	for (i = 0; myConfig.pPersistentItems[i] != NULL; i ++)
 	{

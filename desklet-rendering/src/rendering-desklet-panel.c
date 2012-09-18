@@ -127,7 +127,7 @@ static void free_data (CairoDesklet *pDesklet)
 	pDesklet->pRendererData = NULL;
 }
 
-
+/* Not used
 static void set_icon_size (CairoDesklet *pDesklet, Icon *pIcon)
 {
 	CDPanelParameters *pPanel = (CDPanelParameters *) pDesklet->pRendererData;
@@ -145,6 +145,7 @@ static void set_icon_size (CairoDesklet *pDesklet, Icon *pIcon)
 		pIcon->fHeight = pPanel->iIconSize;
 	}
 }
+*/
 
 static void calculate_icons (CairoDesklet *pDesklet)
 {
@@ -449,8 +450,8 @@ static void render_opengl (CairoDesklet *pDesklet)
 	// draw frame
 	double fRadius = pPanel->iRadius;
 	double fLineWidth = pPanel->iLineWidth;
-	double fOffsetX = fRadius + fLineWidth/2;
-	double fOffsetY = fLineWidth/2;
+	//double fOffsetX = fRadius + fLineWidth/2;
+	//double fOffsetY = fLineWidth/2;
 	double fFrameWidth = pDesklet->container.iWidth - 2 * fRadius - fLineWidth;
 	double fFrameHeight = pDesklet->container.iHeight - 2 * fRadius - fLineWidth;
 	double w = fFrameWidth / 2;

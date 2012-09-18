@@ -37,6 +37,7 @@ static CDSimpleParameters *configure (CairoDesklet *pDesklet, gpointer *pConfig)
 	return pSimple;
 }
 
+/* Not used
 static void set_icon_size (CairoDesklet *pDesklet, Icon *pIcon)
 {
 	CDSimpleParameters *pSimple = (CDSimpleParameters *) pDesklet->pRendererData;
@@ -49,6 +50,7 @@ static void set_icon_size (CairoDesklet *pDesklet, Icon *pIcon)
 		pIcon->fHeight = MAX (1, pDesklet->container.iHeight - pSimple->iTopMargin - pSimple->iBottomMargin);
 	}
 }
+*/
 
 static void calculate_icons (CairoDesklet *pDesklet)
 {

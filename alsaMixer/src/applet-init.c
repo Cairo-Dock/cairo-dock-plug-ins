@@ -50,6 +50,7 @@ static gboolean _cd_mixer_on_enter (GtkWidget* pWidget,
 	{
 		gtk_widget_show (myData.pScale);
 	}
+	return FALSE;
 }
 gboolean _cd_mixer_on_leave (GtkWidget* pWidget,
 	GdkEventCrossing* pEvent,
@@ -60,6 +61,7 @@ gboolean _cd_mixer_on_leave (GtkWidget* pWidget,
 		if (! myDesklet->container.bInside)
 			gtk_widget_hide (myData.pScale);
 	}
+	return FALSE;
 }
 
 static void _set_data_renderer (void)
@@ -92,6 +94,9 @@ static void _set_data_renderer (void)
 
 			CD_APPLET_ADD_DATA_RENDERER_ON_MY_ICON (pRenderAttr);
 		}
+		break;
+		case VOLUME_EFFECT_NONE:
+		case VOLUME_NB_EFFECTS:
 		break;
 	}
 }

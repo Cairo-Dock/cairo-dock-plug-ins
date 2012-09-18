@@ -236,6 +236,8 @@ void cd_disks_get_data (CairoDockModuleInstance *myApplet)
 		{
 			pSize = g_list_nth_data (myData.lParts, i);
 			status = statvfs(myConfig.cParts[i], &buffer);
+			if (status < 0)
+				cd_warning ("Not able to use statvfs");
 			*pSize = 1. - (double) buffer.f_bfree / (double) buffer.f_blocks;
 		}
 	}
@@ -259,8 +261,8 @@ void cd_disks_get_data (CairoDockModuleInstance *myApplet)
 			gsize i;
 			CDDiskSpeedData* pSpeed;
 			long long unsigned uReadBlocks, uWriteBlocks;
-			gboolean bFound;
-			for (;;)
+			// for (;;)
+			while (TRUE)
 			{
 				if (!fgets(buff,BUFFSIZE-1,fd))
 				{
@@ -276,8 +278,7 @@ void cd_disks_get_data (CairoDockModuleInstance *myApplet)
 					&uReadBlocks,
 					&uWriteBlocks 
 					);
-	
-				bFound = FALSE;
+
 				if (strlen (disk_name) == 3)
 					for (i = 0; i < myData.iNumberDisks; i++)
 					{
@@ -297,7 +298,6 @@ void cd_disks_get_data (CairoDockModuleInstance *myApplet)
 							 //~ cd_warning("%s %u %u", pSpeed->cName, pSpeed->uReadSpeed, pSpeed->uWriteSpeed);
 							
 							pSpeed->bAcquisitionOK = TRUE;
-							bFound = TRUE;
 							break;
 						}
 					}

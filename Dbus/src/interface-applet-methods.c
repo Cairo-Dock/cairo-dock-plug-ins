@@ -102,6 +102,7 @@ static gboolean _applet_set_icon (dbusApplet *pDbusApplet, const gchar *cImage, 
 	return TRUE;
 }
 
+/* Not used
 static gboolean _applet_set_icon_with_default (dbusApplet *pDbusApplet, const gchar **cImages, const gchar *cIconID, GError **error)
 {
 	Icon *pIcon;
@@ -121,7 +122,7 @@ static gboolean _applet_set_icon_with_default (dbusApplet *pDbusApplet, const gc
 	cairo_dock_redraw_icon (pIcon, pContainer);
 	return TRUE;
 }
-
+*/
 static gboolean _applet_set_emblem (dbusApplet *pDbusApplet, const gchar *cImage, gint iPosition, const gchar *cIconID, GError **error)
 {
 	Icon *pIcon;
@@ -292,7 +293,6 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 	if (v && G_VALUE_HOLDS_BOOLEAN (v))
 		attr.bForceAbove = g_value_get_boolean (v);
 	
-	gboolean bUseMarkup = FALSE;
 	v = g_hash_table_lookup (hDialogAttributes, "use-markup");
 	if (v && G_VALUE_HOLDS_BOOLEAN (v))
 		attr.bUseMarkup = g_value_get_boolean (v);
@@ -792,7 +792,6 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 	}
 	else if (strcmp (cType, "graph") == 0)
 	{
-		CairoGraphAttribute aGraphAttr;  // les attributs du graphe.
 		memset (&aGraphAttr, 0, sizeof (CairoGraphAttribute));
 		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&aGraphAttr);
 		int w, h;
@@ -831,7 +830,6 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 	}
 	else if (strcmp (cType, "progressbar") == 0)
 	{
-		CairoProgressBarAttribute aProgressBarAttr;
 		memset (&aProgressBarAttr, 0, sizeof (CairoProgressBarAttribute));
 		pRenderAttr = CAIRO_DATA_RENDERER_ATTRIBUTE (&aProgressBarAttr);
 	}
@@ -1025,7 +1023,7 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 		// get its properties.
 		const gchar *cLabel = NULL, *cIcon = NULL, *cToolTip = NULL;
 		int iType = 0, iMenuID = -1, id = i, iGroupID = 0;
-		gboolean bState = FALSE, bSensitive = TRUE;
+		gboolean bState = FALSE;
 		gpointer data;
 		
 		v = g_hash_table_lookup (pItem, "type");
@@ -1194,7 +1192,7 @@ gboolean cd_dbus_applet_bind_shortkey (dbusApplet *pDbusApplet, const gchar **cS
 	}
 	else  // just rebind, we consider that the applet wants to rebind the same shortkeys.
 	{
-		for (i = 0, kb = pDbusApplet->pShortkeyList; cShortkeys[i] != NULL, kb != NULL; i ++, kb = kb->next)
+		for (i = 0, kb = pDbusApplet->pShortkeyList; cShortkeys[i] != NULL && kb != NULL; i ++, kb = kb->next)
 		{
 			cShortkey = cShortkeys[i];
 			pKeyBinding = kb->data;

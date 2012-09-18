@@ -26,7 +26,7 @@
 
 #define penguin_get_current_animation() (myData.iCurrentAnimation >= 0 ? &myData.pAnimations[myData.iCurrentAnimation] : NULL);
 
-#define penguin_is_resting(pAnimation) ((pAnimation) == NULL || (pAnimation)->iNbFrames <= 1 && (pAnimation)->iSpeed == 0)
+#define penguin_is_resting(pAnimation) (pAnimation == NULL || ((pAnimation)->iNbFrames <= 1 && (pAnimation)->iSpeed == 0))
 
 #define penguin_remove_notfications() do {\
 	cairo_dock_remove_notification_func_on_object (myIcon, NOTIFICATION_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, myApplet);\

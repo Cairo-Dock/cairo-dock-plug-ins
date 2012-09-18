@@ -124,7 +124,7 @@ GLuint cairo_dock_load_capsule_calllist (void)
 	// Ici c'est pour faire le cylindre qui relie les demi spheres
 	glEnable(GL_TEXTURE_2D);
 	glColor4f(1.0f, 1.0f, 1.0f, 1.0f); // Couleur a fond 
-	GLfloat fMaterial[4] = {1., 1., 1., 1.};
+	//GLfloat fMaterial[4] = {1., 1., 1., 1.};
 	//glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, fMaterial);  // on definit Les proprietes materielles de l'objet.
 	cd_debug ("iChromeTexture : %d\n", myData.iChromeTexture);
 	
@@ -195,7 +195,7 @@ GLuint cairo_dock_load_capsule_calllist (void)
 GLuint cairo_dock_load_ring_calllist (void)
 {
 	GLuint iCallList = glGenLists (1);
-	int        deg, deg2, iter, nb_iter=20;
+	int        deg, deg2, nb_iter=20;
 	float        amp, rayon, c=2.;
 	
 	rayon        = 1.0f/c;
@@ -204,8 +204,8 @@ GLuint cairo_dock_load_ring_calllist (void)
 	
 	glNewList(iCallList, GL_COMPILE); // Go pour la compilation de la display list
 	glPolygonMode (GL_FRONT, GL_FILL);
-	double a = .4/c;  // applatissement;
-	double b = 1./nb_iter;
+	//double a = .4/c;  // applatissement;
+	//double b = 1./nb_iter;
 	double xab, yab, zab, xac, yac, zac, nx, ny, nz, n;
 	
 	glColor4f (.4, .5, .8, .7);
@@ -332,6 +332,8 @@ GLuint cd_animations_load_mesh (CDAnimationsMeshType iMeshType)
 		case CD_CAPSULE_MESH :
 			iCallList = cairo_dock_load_capsule_calllist ();
 		break ;
+		case CD_ANIMATIONS_NB_MESH :
+		break;
 	}
 	return iCallList;
 }

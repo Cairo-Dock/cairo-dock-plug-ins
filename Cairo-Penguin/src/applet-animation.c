@@ -458,8 +458,6 @@ void penguin_set_new_animation (CairoDockModuleInstance *myApplet, int iNewAnima
 	//cd_message ("%s (%d)", __func__, iNewAnimation);
 	PenguinAnimation *pPreviousAnimation = penguin_get_current_animation ();
 	int iPreviousWidth = (pPreviousAnimation != NULL ? pPreviousAnimation->iFrameWidth : 0);
-	int iPreviousHeight = (pPreviousAnimation != NULL ? pPreviousAnimation->iFrameHeight : 0);
-	int iPreviousDirection = (pPreviousAnimation != NULL ? pPreviousAnimation->iDirection : 0);
 	
 	myData.iCurrentAnimation = iNewAnimation;
 	myData.iCurrentFrame = 0;

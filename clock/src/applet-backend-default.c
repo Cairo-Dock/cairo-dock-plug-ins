@@ -78,7 +78,7 @@ static GList *get_tasks (CairoDockModuleInstance *myApplet)
 		y = g_key_file_get_integer (pKeyFile, cTaskID, "year", NULL);
 		m = g_key_file_get_integer (pKeyFile, cTaskID, "month", NULL);
 		freq = g_key_file_get_integer (pKeyFile, cTaskID, "freq", NULL);
-		if (freq == CD_TASK_DONT_REPEAT && (iYear < y -1 || iYear == y - 1 && iMonth < m))
+		if (freq == CD_TASK_DONT_REPEAT && (iYear < y - 1 || (iYear == y - 1 && iMonth < m)))
 		{
 			g_key_file_remove_group (pKeyFile, cTaskID, NULL);
 			bUpdateFile = TRUE;

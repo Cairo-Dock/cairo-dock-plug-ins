@@ -165,6 +165,8 @@ static void _on_drop_data (const gchar *cMyData)
 			
 			gchar *cCommandCopyFileWithComma = g_strdup_printf ("cp '%s' '%s'", cFilePath, myData.cTmpFilePath); // copie du fichier dans tmp.
 			int r = system (cCommandCopyFileWithComma);
+			if (r < 0)
+				cd_warning ("Not able to launch this command: %s", cCommandCopyFileWithComma);
 			g_free (cCommandCopyFileWithComma);
 			g_free (cFilePath);
 			cFilePath = g_strdup (myData.cTmpFilePath);  // on utilise le fichier tmp, il sera efface a la fin de l'upload.
@@ -421,7 +423,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CDUploadedItem *pItem;
 		GtkWidget *pItemSubMenu;
 		gchar *str;
-		gchar *cName = NULL, *cURI = NULL, *cIconName = NULL;
+		gchar *cName = NULL, *cURI = NULL;
 		gboolean bIsDirectory;
 		int iVolumeID;
 		double fOrder;

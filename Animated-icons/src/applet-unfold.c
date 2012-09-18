@@ -190,7 +190,6 @@ void cd_animations_draw_unfolding_icon (Icon *pIcon, CairoDock *pDock, CDAnimati
 	glMatrixMode (GL_MODELVIEW);
 	_cairo_dock_set_alpha (sqrt (MAX (0., 1. - f)));  // on reduit un peu la transparence en opengl.
 	int i;
-	double dx = 0., dy = 0.;
 	Icon *icon;
 	GList *ic;
 	for (ic = pIcon->pSubDock->icons, i = 0; ic != NULL && i < 3; ic = ic->next, i++)

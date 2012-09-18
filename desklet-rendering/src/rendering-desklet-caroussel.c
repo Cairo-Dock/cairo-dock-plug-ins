@@ -211,6 +211,7 @@ static void free_data (CairoDesklet *pDesklet)
 	pDesklet->pRendererData = NULL;
 }
 
+/* Not used
 static void set_icon_size (CairoDesklet *pDesklet, Icon *pIcon)
 {
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
@@ -245,7 +246,7 @@ static void set_icon_size (CairoDesklet *pDesklet, Icon *pIcon)
 		}
 	}
 }
-
+*/
 static void calculate_icons (CairoDesklet *pDesklet)
 {
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
@@ -354,7 +355,6 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 		
 		//\____________________ On trace le cadre.
 		double fLineWidth = myDocksParam.iDockLineWidth;
-		double fMargin = 0;
 		
 		double fDockWidth = pDesklet->container.iWidth - fExtraWidth;
 		int sens=1;
@@ -526,7 +526,7 @@ static void render_opengl (CairoDesklet *pDesklet)
 	double a = pCaroussel->a, b = pCaroussel->b;
 
 	Icon *pIcon;
-	GList *ic, *ic2;
+	GList *ic;
 
 	if (pCaroussel->b3D)
 	{

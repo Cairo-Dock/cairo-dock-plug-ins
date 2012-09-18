@@ -44,7 +44,7 @@ void cd_decorator_draw_decorations_curly (cairo_t *pCairoContext, CairoDialog *p
 {
 	double fLineWidth = myConfig.iCurlyLineWidth;
 	double fRadius = myConfig.iCurlyRadius;
-	double fBottomRadius = 2 * fRadius;
+	// double fBottomRadius = 2 * fRadius;
 	double fTipHeight = pDialog->iMinBottomGap + 0*pDialog->iBottomMargin + fLineWidth/2;
 	double dh = MIN (MAX (1, myConfig.fCurlyCurvature * fTipHeight), .4 * pDialog->container.iWidth);
 	

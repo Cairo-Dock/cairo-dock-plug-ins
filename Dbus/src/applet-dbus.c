@@ -369,7 +369,6 @@ void cd_dbus_clean_up_processes (gboolean bAll)
 {
 	static gchar cFilePathBuffer[23+1];  // /proc/12345/cmdline + 4octets de marge.
 	static gchar cContent[512+1];
-	gboolean bIsRunning = FALSE;
 	
 	GError *erreur = NULL;
 	GDir *dir = g_dir_open ("/proc", 0, &erreur);
@@ -381,7 +380,6 @@ void cd_dbus_clean_up_processes (gboolean bAll)
 	}
 	
 	int iPid, iPPid;
-	gchar *str, *sp;
 	const gchar *cPid;
 	while ((cPid = g_dir_read_name (dir)) != NULL)
 	{

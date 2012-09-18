@@ -45,11 +45,12 @@ CD_APPLET_ON_CLICK_BEGIN
 	//~ }
 CD_APPLET_ON_CLICK_END
 
-
+/* Not used
 static void _disks_recheck (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet) {
 	cairo_dock_stop_task (myData.pPeriodicTask);
 	cairo_dock_launch_task (myData.pPeriodicTask);
 }
+*/
 static void _show_monitor_system (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
 	if (myConfig.cSystemMonitorCommand != NULL)
@@ -59,6 +60,8 @@ static void _show_monitor_system (GtkMenuItem *menu_item, CairoDockModuleInstanc
 	else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
 	{
 		int r = system ("kde-system-monitor &");
+		if (r < 0)
+			cd_warning ("Not able to launch this command: kde-system-monitor &");
 	}
 	else
 	{

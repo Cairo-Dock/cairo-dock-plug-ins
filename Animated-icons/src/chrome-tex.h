@@ -19,9 +19,6 @@
 
 /*  GIMP header image file format (RGB): /home/fab/CD/branches/plug-ins/Animated-icons/src/chrome-tex.h  */
 
-static unsigned int width = 48;
-static unsigned int height = 48;
-
 /*  Call this macro repeatedly.  After each use, the pixel data can be extracted  */
 
 #define HEADER_PIXEL(data,pixel) {\
@@ -30,6 +27,7 @@ static unsigned int height = 48;
   pixel[2] = ((((data[2] - 33) & 0x3) << 6) | ((data[3] - 33))); \
   data += 4; \
 }
+/*
 static const char *header_data =
 	"2U>(56&245V.5&\"12U>(2E:'3%B)3EJ+3EJ+256&256&3EJ+3%B)2E:'4U^04U^0"
 	"2%2%2U>(35F*2E:'4%R-3%B)3EJ+1%\"!2U>(1E*#1U.$3EJ+4EZ/45V.3EJ+256&"
@@ -73,8 +71,8 @@ static const char *header_data =
 	"/DI[/TM\\45V.;WNL>86V=H*S>(2U=H*S<W^P=8&R8FZ?5F*32E:'2%2%:W>H@X^`"
 	"AI+#<7VN4U^04%R-9'\"A8FZ?0T]`3%B)>86V9W.D;'BI<7VN<'RM<7VN9W.D5F*3"
 	"3%B)0T]`0DY_0T]`0T]`04U^4U^04EZ/:'2EA)#!G:G:GZO<FZ?8F:76F*35C9G*"
-	"0$Q]1U.$:W>H<7VN3UN,3UN,9'\"A:'2E8V^@35F*/DI[/TM\\0$Q]6F:7=H*SAY/$"
-	"@X^`;WNL45V.7&B9=(\"Q8&R=0$Q]7FJ;@(R]:'2E7VN<;'BI;7FJ9G*C9W.D86V>"
+*///	"0$Q]1U.$:W>H<7VN3UN,3UN,9'\"A:'2E8V^@35F*/DI[/TM\\0$Q]6F:7=H*SAY/$"
+/*	"@X^`;WNL45V.7&B9=(\"Q8&R=0$Q]7FJ;@(R]:'2E7VN<;'BI;7FJ9G*C9W.D86V>"
 	"5F*31%\"!15&\"1%\"!04U^256&76F:5&\"1>X>XEZ/4IK+CH:W>GJK;G*C9F*35GJK;"
 	"4U^0<7VN;7FJ7&B9;GJK256&4EZ/7&B976F:5F*32%2%/4EZ2E:'<'RMAI+#CIK+"
 	"@HZ_9W.D1E*#6F:7<'RM6F:70$Q]8&R=>86V:'2E4U^04EZ/5&\"16F:776F:8&R="
@@ -176,3 +174,4 @@ static const char *header_data =
 	"2E:'1%\"!45V.AI+#E:'2F*35F:76EJ+3D9W.D9W.DI[/E*#1F:76C9G*@(R]BY?("
 	"5V.4=H*S:76F;'BI:W>H5V.45V.466665F*34EZ/>(2U7VN<@(R]4EZ/5F*39G*C"
 	"";
+*/

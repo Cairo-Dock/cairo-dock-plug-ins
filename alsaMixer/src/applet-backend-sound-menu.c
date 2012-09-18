@@ -136,8 +136,6 @@ static void cd_sound_on_connect (CairoDockModuleInstance *myApplet)
 	myData.ctl.reload = cd_update_icon;
 	
 	// connect to the service signals.
-	DBusGProxy * pServiceProxy = myData.pIndicator->pServiceProxy;
-	
 	dbus_g_proxy_add_signal(myData.pIndicator->pServiceProxy, INDICATOR_SOUND_SIGNAL_STATE_UPDATE, G_TYPE_INT, G_TYPE_INVALID);
 	dbus_g_proxy_connect_signal(myData.pIndicator->pServiceProxy,
 		INDICATOR_SOUND_SIGNAL_STATE_UPDATE,
@@ -181,21 +179,22 @@ static void _on_got_sound_state (DBusGProxy *proxy, DBusGProxyCall *call_id, Cai
 	cd_debug ("got sound state: %d", iCurrentState);
 	
 	// update the icon.
-	myData.iCurrentState = iCurrentState;
-	myData.bIsMute = (iCurrentState == MUTED
-	|| iCurrentState == UNAVAILABLE
-	|| iCurrentState == BLOCKED);
-	myData.iCurrentVolume = _get_volume ();
-	
-	cd_update_icon ();
+	if (bSuccess)
+	{
+		myData.iCurrentState = iCurrentState;
+		myData.bIsMute = (iCurrentState == MUTED
+		|| iCurrentState == UNAVAILABLE
+		|| iCurrentState == BLOCKED);
+		myData.iCurrentVolume = _get_volume ();
+		
+		cd_update_icon ();
+	}
 	CD_APPLET_LEAVE();
 }
 static void cd_sound_get_initial_values (CairoDockModuleInstance *myApplet)
 {
 	// query the service to display initial values.
-	DBusGProxy * pServiceProxy = myData.pIndicator->pServiceProxy;
-
-	DBusGProxyCall *pCall = dbus_g_proxy_begin_call (myData.pIndicator->pServiceProxy, "GetSoundState",
+	dbus_g_proxy_begin_call (myData.pIndicator->pServiceProxy, "GetSoundState",
 		(DBusGProxyCallNotify)_on_got_sound_state,
 		myApplet,
 		(GDestroyNotify) NULL,

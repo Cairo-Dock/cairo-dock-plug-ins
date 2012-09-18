@@ -28,7 +28,7 @@
 #define l0 .33
 
 static GLfloat pTexPts[2][2][2] = {{{0.0, 0.0}, {1.0, 0.0}}, {{0.0, 1.0}, {1.0, 1.0}}};
-static GLfloat pColorPts[2][2][4] = {{{1., 1., 1., 1.}, {1., 1., 1., 1.}}, {{1., 1., 1., 0.}, {1., 1., 1., 0.}}};
+// static GLfloat pColorPts[2][2][4] = {{{1., 1., 1., 1.}, {1., 1., 1., 1.}}, {{1., 1., 1., 0.}, {1., 1., 1., 0.}}};
 GLfloat colorPoints[4][4][4] =
 {
 	{
@@ -83,7 +83,8 @@ static void init (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double 
 						pData->gridNodes[i][j].x = x * cx * cy/sqrt(2);
 						pData->gridNodes[i][j].y = y * cy * cx/sqrt(2);
 					break ;
-					
+					case CD_ANIMATIONS_NB_STRECTH :
+					break ;
 				}
 				
 				pData->gridNodes[i][j].vx = 0.;
@@ -179,10 +180,7 @@ static inline gboolean _calculate_forces (CDAnimationGridNode *pNode, int step, 
 
 gboolean cd_animations_update_wobbly2 (CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bWillContinue)
 {
-	const int n = 20;
-	double k = myConfig.fSpringConstant;
-	double f = myConfig.fFriction;
-	CDAnimationGridNode *pNode, *pNode2;
+	CDAnimationGridNode *pNode;
 	gboolean bContinue = FALSE;
 	
 	int i,j;
@@ -450,8 +448,7 @@ static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo
 		if (pDock->container.bUseReflect)
 		{
 			glPushMatrix ();
-			double x0, y0, x1, y1;
-			double fReflectRatio = pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio / pIcon->fHeight / pIcon->fScale;
+			// double fReflectRatio = pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio / pIcon->fHeight / pIcon->fScale;
 			///double fOffsetY = pIcon->fHeight * pIcon->fScale/2 + (pDock->iIconSize * myIconsParam.fReflectHeightRatio/2 + pIcon->fDeltaYReflection) * pDock->container.fRatio;
 			double fOffsetY = pIcon->fHeight * pIcon->fScale + pIcon->fDeltaYReflection;
 			if (pDock->container.bIsHorizontal)
@@ -461,19 +458,11 @@ static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo
 					//fOffsetY = pIcon->fHeight * pIcon->fScale + pIcon->fDeltaYReflection;
 					glTranslatef (0., - fOffsetY, 0.);
 					glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, - pIcon->fHeight * pIcon->fScale, 1.);  // taille du reflet et on se retourne.
-					x0 = 0.;
-					y0 = 1. - fReflectRatio;
-					x1 = 1.;
-					y1 = 1.;
 				}
 				else
 				{
 					glTranslatef (0., fOffsetY, 0.);
 					glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, - pIcon->fHeight * pIcon->fScale, 1.);
-					x0 = 0.;
-					y0 = fReflectRatio;
-					x1 = 1.;
-					y1 = 0.;
 				}
 			}
 			else
@@ -483,20 +472,12 @@ static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo
 					//fOffsetY = pIcon->fHeight * pIcon->fScale + pIcon->fDeltaYReflection;
 					glTranslatef (fOffsetY, 0., 0.);
 					glScalef (- pIcon->fHeight * pIcon->fScale, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
-					x0 = 1. - fReflectRatio;
-					y0 = 0.;
-					x1 = 1.;
-					y1 = 1.;
 				}
 				else
 				{
 					//fOffsetY = pIcon->fHeight * pIcon->fScale + pIcon->fDeltaYReflection;
 					glTranslatef (- fOffsetY, 0., 0.);
 					glScalef (- pIcon->fHeight * pIcon->fScale, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
-					x0 = fReflectRatio;
-					y0 = 0.;
-					x1 = 0.;
-					y1 = 1.;
 				}
 			}
 			

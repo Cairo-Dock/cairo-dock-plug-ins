@@ -37,7 +37,6 @@ CDTextParameters *rendering_configure_text (CairoDialog *pDialog, gpointer *pCon
 	}
 	
 	int iTextWidth, iTextHeight;
-	double fTextXOffset, fTextYOffset;
 	if (cInitialText != NULL)
 	{
 		pText->pTextSurface = cairo_dock_create_surface_from_text (cInitialText,
@@ -92,7 +91,6 @@ void rendering_update_text (CairoDialog *pDialog, gpointer *pNewData)
 	gchar *cNewText = (gchar *) pNewData;
 	
 	int iTextWidth, iTextHeight;
-	double fTextXOffset, fTextYOffset;
 	cairo_surface_destroy (pText->pTextSurface);
 	pText->pTextSurface = NULL;
 	

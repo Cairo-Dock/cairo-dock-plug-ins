@@ -190,8 +190,7 @@ static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo
 	if (pDock->container.bUseReflect)
 	{
 		glPushMatrix ();
-		double x0, y0, x1, y1;
-		double fReflectRatio = pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio / pIcon->fHeight / pIcon->fScale;
+		// double fReflectRatio = pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio / pIcon->fHeight / pIcon->fScale;
 		double fOffsetY = pIcon->fHeight * pIcon->fScale/2 + (pDock->iIconSize * myIconsParam.fReflectHeightRatio/2 + pIcon->fDeltaYReflection) * pDock->container.fRatio;
 		if (pDock->container.bIsHorizontal)
 		{
@@ -200,19 +199,11 @@ static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo
 				fOffsetY = pIcon->fHeight * pIcon->fScale + pIcon->fDeltaYReflection;
 				glTranslatef (0., - fOffsetY, 0.);
 				glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, - pIcon->fHeight * pIcon->fScale, 1.);  // taille du reflet et on se retourne.
-				x0 = 0.;
-				y0 = 1. - fReflectRatio;
-				x1 = 1.;
-				y1 = 1.;
 			}
 			else
 			{
 				glTranslatef (0., fOffsetY, 0.);
 				glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio, 1.);
-				x0 = 0.;
-				y0 = fReflectRatio;
-				x1 = 1.;
-				y1 = 0.;
 			}
 		}
 		else
@@ -221,19 +212,11 @@ static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo
 			{
 				glTranslatef (fOffsetY, 0., 0.);
 				glScalef (- pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
-				x0 = 1. - fReflectRatio;
-				y0 = 0.;
-				x1 = 1.;
-				y1 = 1.;
 			}
 			else
 			{
 				glTranslatef (- fOffsetY, 0., 0.);
 				glScalef (pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio, pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, 1.);
-				x0 = fReflectRatio;
-				y0 = 0.;
-				x1 = 0.;
-				y1 = 1.;
 			}
 		}
 		

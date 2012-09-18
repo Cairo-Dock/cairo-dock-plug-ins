@@ -246,6 +246,8 @@ static gboolean _cd_dnd2share_update_from_result (CDSharedMemory *pSharedMemory)
 				{
 					gchar *cCommand = g_strdup_printf ("cp '%s' '%s/%s'", cFilePath, myData.cWorkingDirPath, cItemName);
 					int r = system (cCommand);
+					if (r < 0)
+						cd_warning ("Not able to launch this command: %s", cCommand);
 					g_free (cCommand);
 				}
 			}
@@ -439,6 +441,8 @@ void cd_dnd2share_clear_working_directory (void)
 	g_return_if_fail (myData.cWorkingDirPath != NULL && *myData.cWorkingDirPath == '/');
 	gchar *cCommand = g_strdup_printf ("rm -rf '%s'/*", myData.cWorkingDirPath);
 	int r = system (cCommand);
+	if (r < 0)
+		cd_warning ("Not able to launch this command: %s", cCommand);
 	g_free (cCommand);
 	
 	gchar *cConfFilePath = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, "history.conf");
@@ -457,6 +461,8 @@ void cd_dnd2share_clear_copies_in_working_directory (void)
 	g_return_if_fail (myData.cWorkingDirPath != NULL && *myData.cWorkingDirPath == '/');
 	gchar *cCommand = g_strdup_printf ("find '%s' -mindepth 1 ! -name *.conf -exec rm -f '{}' \\;", myData.cWorkingDirPath);
 	int r = system (cCommand);
+	if (r < 0)
+		cd_warning ("Not able to launch this command: %s", cCommand);
 	g_free (cCommand);
 }
 

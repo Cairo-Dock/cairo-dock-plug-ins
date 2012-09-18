@@ -129,7 +129,6 @@ static snd_mixer_elem_t *_mixer_get_element_by_name (const gchar *cName)
 	
 	if (cName != NULL)
 	{
-		int i = 0;
 		snd_mixer_elem_t *elem;
 		for (elem = snd_mixer_first_elem(myData.mixer_handle); elem; elem = snd_mixer_elem_next(elem))
 		{

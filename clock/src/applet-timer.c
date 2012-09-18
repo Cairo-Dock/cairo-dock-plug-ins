@@ -426,7 +426,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 			attr.pUserData = myApplet;
 			attr.pFreeDataFunc = NULL;
 			attr.iTimeLength = 0;
-			CairoDialog *pDialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);
+			cairo_dock_build_dialog (&attr, myIcon, myContainer);
 			g_free (cMessage);
 		}
 		

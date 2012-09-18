@@ -599,7 +599,7 @@ static void _set_container_props (CairoContainer *pContainer, GHashTable *h)
 	}
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_INT);
-	g_value_set_int (v, pContainer->iWindowPositionX);
+	g_value_set_int (v, x);
 	g_hash_table_insert (h, g_strdup ("x"), v);
 	
 	v = g_new0 (GValue, 1);
@@ -1041,6 +1041,7 @@ gboolean cd_dbus_main_add_temporary_icon (dbusMainObject *pDbusCallback, GHashTa
 	return TRUE;
 }
 
+/* Not used
 static void _find_launcher_in_dock (Icon *pIcon, CairoDock *pDock, gpointer *data)
 {
 	gchar *cDesktopFile = data[0];
@@ -1051,6 +1052,7 @@ static void _find_launcher_in_dock (Icon *pIcon, CairoDock *pDock, gpointer *dat
 		*pFoundIcon = pIcon;
 	}
 }
+* 
 static Icon *cd_dbus_find_launcher (const gchar *cDesktopFile)
 {
 	Icon *pIcon = NULL;
@@ -1060,7 +1062,7 @@ static Icon *cd_dbus_find_launcher (const gchar *cDesktopFile)
 	cairo_dock_foreach_icons_in_docks ((CairoDockForeachIconFunc) _find_launcher_in_dock, data);
 	return pIcon;
 }
-
+*/
 gboolean cd_dbus_main_reload_icon (dbusMainObject *pDbusCallback, gchar *cIconQuery, GError **error)
 {
 	if (! myConfig.bEnableTweakingLauncher)
@@ -1104,6 +1106,7 @@ gboolean cd_dbus_main_reload_icon (dbusMainObject *pDbusCallback, gchar *cIconQu
 static gboolean _on_icon_deleted (GList *ic, Icon *pIcon)
 {
 	ic->data = NULL;
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 gboolean cd_dbus_main_remove_icon (dbusMainObject *pDbusCallback, gchar *cIconQuery, GError **error)
 {
@@ -1495,7 +1498,6 @@ gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBus
 		cMenuPath = NULL;
 	
 	Icon *pIcon;
-	CairoContainer *pContainer;
 	GList *ic;
 	for (ic = pList; ic != NULL; ic = ic->next)
 	{
@@ -1557,7 +1559,6 @@ gboolean cd_dbus_main_set_progress (dbusMainObject *dbusMainObject, double fPerc
 		return TRUE;
 	
 	Icon *pIcon;
-	CairoContainer *pContainer;
 	GList *ic;
 	for (ic = pList; ic != NULL; ic = ic->next)
 	{

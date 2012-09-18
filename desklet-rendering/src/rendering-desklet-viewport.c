@@ -26,7 +26,7 @@
 static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet);
 
 
-static inline void _get_gridXY_from_index (guint nRowsX, guint index, guint* gridX, guint* gridY)
+static inline void _get_gridXY_from_index (gint nRowsX, gint index, gint* gridX, gint* gridY)
 {
 	*gridX = index % nRowsX;
 	*gridY = index / nRowsX;
@@ -94,8 +94,8 @@ static void _compute_icons_position (CairoDesklet *pDesklet, CDViewportParameter
 		fScrollOffset;
 	
 	Icon* icon;
-	GList* ic, *pointed_ic=NULL;
-	int i, x, y;
+	GList* ic;
+	gint i, x, y;
 	for (ic = pDesklet->icons, i = 0; ic != NULL; ic = ic->next, i++)
 	{
 		icon = ic->data;
@@ -215,7 +215,7 @@ static gboolean _cd_slide_on_mouse_moved (gpointer data, CairoDesklet *pDesklet,
 		double y_arrow_top = 2., y_arrow_bottom = pDesklet->container.iHeight - 2.;  // on laisse 2 pixels de marge.
 		double fFrameHeight = pDesklet->container.iHeight;  // hauteur du cadre.
 		double fGripHeight = fFrameHeight / (fFrameHeight + pData->iDeltaHeight) * (y_arrow_bottom - y_arrow_top - 2*(pData->fArrowHeight + pData->fScrollbarArrowGap));
-		double ygrip = (double) pData->iScrollOffset / pData->iDeltaHeight * (y_arrow_bottom - y_arrow_top - 2*(pData->fArrowHeight + pData->fScrollbarArrowGap) - fGripHeight);
+		// double ygrip = (double) pData->iScrollOffset / pData->iDeltaHeight * (y_arrow_bottom - y_arrow_top - 2*(pData->fArrowHeight + pData->fScrollbarArrowGap) - fGripHeight);
 		
 		int delta = pDesklet->container.iMouseY - pData->iClickY;
 		_set_scroll (pDesklet, (pData->iClickOffset + (double)delta / (y_arrow_bottom - y_arrow_top - 2*(pData->fArrowHeight + pData->fScrollbarArrowGap) - fGripHeight) * pData->iDeltaHeight));
@@ -285,7 +285,7 @@ static void free_data (CairoDesklet *pDesklet)
 	pDesklet->pRendererData = NULL;
 }
 
-
+/* Not used
 static void set_icon_size (CairoDesklet *pDesklet, Icon *pIcon)
 {
 	CDViewportParameters *pViewport = (CDViewportParameters *) pDesklet->pRendererData;
@@ -303,7 +303,7 @@ static void set_icon_size (CairoDesklet *pDesklet, Icon *pIcon)
 		pIcon->fHeight = pViewport->iIconSize;
 	}
 }
-
+*/
 
 static void calculate_icons (CairoDesklet *pDesklet)
 {

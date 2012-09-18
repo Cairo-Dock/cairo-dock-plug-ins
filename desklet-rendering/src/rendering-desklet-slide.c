@@ -113,7 +113,7 @@ static void free_data (CairoDesklet *pDesklet)
 	pDesklet->pRendererData = NULL;
 }
 
-
+/* Not used
 static void set_icon_size (CairoDesklet *pDesklet, Icon *pIcon)
 {
 	CDSlideParameters *pSlide = (CDSlideParameters *) pDesklet->pRendererData;
@@ -131,6 +131,7 @@ static void set_icon_size (CairoDesklet *pDesklet, Icon *pIcon)
 		pIcon->fHeight = pSlide->iIconSize;
 	}
 }
+*/
 
 static void calculate_icons (CairoDesklet *pDesklet)
 {

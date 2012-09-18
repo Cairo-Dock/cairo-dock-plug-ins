@@ -111,7 +111,6 @@ static void _cd_clock_add_new_task (GtkMenuItem *pMenuItem, CairoDockModuleInsta
 {
 	//g_print ("%s ()\n", __func__);
 	CDClockTask *pTask = g_new0 (CDClockTask, 1);
-	int iDay, iMonth, iYear;
 	
 	pTask->iDay = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (myData.pTaskWindow), "day"));
 	pTask->iMonth = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (myData.pTaskWindow), "month"));

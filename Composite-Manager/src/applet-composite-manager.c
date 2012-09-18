@@ -58,6 +58,8 @@ static void _set_metacity_composite (gboolean bActive)
 		r = system ("gconftool-2 -s '/apps/metacity/general/compositing_manager' --type bool true");
 	else
 		r = system ("gconftool-2 -s '/apps/metacity/general/compositing_manager' --type bool false");
+	if (r < 0)
+		cd_warning ("Not able to launch this command: gconftool-2");
 }
 static void _set_xfwm_composite (gboolean bActive)
 {
@@ -66,6 +68,8 @@ static void _set_xfwm_composite (gboolean bActive)
 		r = system ("xfconf-query -c xfwm4 -p '/general/use_compositing' -t 'bool' -s 'true'");
 	else
 		r = system ("xfconf-query -c xfwm4 -p '/general/use_compositing' -t 'bool' -s 'false'");
+	if (r < 0)
+		cd_warning ("Not able to launch this command: xfconf-query");
 }
 static void _set_kwin_composite (gboolean bActive)
 {
@@ -74,6 +78,8 @@ static void _set_kwin_composite (gboolean bActive)
 		r = system ("if test \"`qdbus org.kde.kwin /KWin compositingActive`\" = \"false\";then qdbus org.kde.kwin /KWin toggleCompositing; fi");  // not active, so activating
 	else
 		r = system ("if test \"`qdbus org.kde.kwin /KWin compositingActive`\" = \"true\"; then qdbus org.kde.kwin /KWin toggleCompositing; fi");  // active, so deactivating
+	if (r < 0)
+		cd_warning ("Not able to launch this command: qdbus");
 }
 static void _define_known_wms (void)
 {
@@ -271,6 +277,9 @@ static CDWM *_get_prefered_wmfb (CDWMIndex iCurrentWm)
 			index[0] = CD_KWIN;
 			index[1] = CD_METACITY;
 			index[2] = CD_XFWM;
+		break;
+		case CAIRO_DOCK_UNKNOWN_ENV:
+		case CAIRO_DOCK_NB_DESKTOPS:
 		break;
 	}
 	int i;

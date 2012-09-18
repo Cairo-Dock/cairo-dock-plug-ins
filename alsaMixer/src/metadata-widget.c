@@ -240,7 +240,7 @@ metadata_widget_dispose (GObject *object)
   MetadataWidgetPrivate * priv = METADATA_WIDGET_GET_PRIVATE(METADATA_WIDGET(object)); 
 
   if (priv->icon_buf != NULL){
-    gdk_pixbuf_unref(priv->icon_buf);
+    g_object_unref (priv->icon_buf);
     priv->icon_buf = NULL;
   }
   g_string_free (priv->image_path, TRUE);
@@ -354,11 +354,10 @@ draw_album_border_gtk_3(GtkWidget *metadata, gboolean selected, cairo_t *cr)
 static void
 draw_album_art_placeholder_gtk_3(GtkWidget *metadata, cairo_t *cr)
 {       
-  int x, y, width, height;
+  int x, y, width;
   x = 0;
   y = 0;
   width = gtk_widget_get_allocated_width (metadata);
-  height = gtk_widget_get_allocated_height (metadata);
 
   PangoLayout *layout;
   PangoFontDescription *desc;
@@ -460,13 +459,12 @@ g_return_val_if_fail(IS_METADATA_WIDGET(user_data), FALSE);
   MetadataWidget* meta = METADATA_WIDGET(user_data);
   MetadataWidgetPrivate * priv = METADATA_WIDGET_GET_PRIVATE(meta);  
 
-  int x, y, width, height, arrow_width, arrow_height;
+  int x, y, height, arrow_width, arrow_height;
 
   arrow_width = 5; 
   arrow_height = 9;
   x = 0;
   y = 0;
-  width = gtk_widget_get_allocated_width (widget);
   height = gtk_widget_get_allocated_height (widget);
   
   gint offset = (height - gdk_pixbuf_get_height (priv->icon_buf)) / 2;
@@ -903,7 +901,7 @@ metadata_widget_set_icon (MetadataWidget *self)
   MetadataWidgetPrivate * priv = METADATA_WIDGET_GET_PRIVATE(self); 
 
   if (priv->icon_buf != NULL){
-    gdk_pixbuf_unref(priv->icon_buf);
+    g_object_unref (priv->icon_buf);
     priv->icon_buf = NULL;    
   }
   
