@@ -1106,7 +1106,7 @@ gboolean cd_dbus_main_reload_icon (dbusMainObject *pDbusCallback, gchar *cIconQu
 static gboolean _on_icon_deleted (GList *ic, Icon *pIcon)
 {
 	ic->data = NULL;
-	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 gboolean cd_dbus_main_remove_icon (dbusMainObject *pDbusCallback, gchar *cIconQuery, GError **error)
 {
