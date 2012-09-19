@@ -34,7 +34,6 @@ struct _AppletConfig {
 struct _AppletData {
 	IndicatorObject *pIndicator;
 	IndicatorObjectEntry *pEntry;
-	gboolean bIsHidden;
 	} ;
 
 

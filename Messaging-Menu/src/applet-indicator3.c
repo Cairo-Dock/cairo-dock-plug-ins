@@ -29,7 +29,7 @@ void _check_demanding_attention (const gchar *cName, const gchar *cAnimationName
 		CD_APPLET_STOP_DEMANDING_ATTENTION;
 }
 
-static void _icon_updated (GObject *pObject, GParamSpec *pParam G_GNUC_UNUSED, CairoDockModuleInstance *myApplet)
+static void _icon_updated (GObject *pObject, G_GNUC_UNUSED GParamSpec *pParam, CairoDockModuleInstance *myApplet)
 {
 	g_return_if_fail (GTK_IS_IMAGE (pObject));
 	GtkImage *pImage = GTK_IMAGE (pObject);
@@ -45,17 +45,9 @@ static void _icon_updated (GObject *pObject, GParamSpec *pParam G_GNUC_UNUSED, C
 	}
 }
 
-void cd_messaging_accessible_desc_update (IndicatorObject *pIndicator G_GNUC_UNUSED, IndicatorObjectEntry *pEntry, gpointer data)
+void cd_messaging_accessible_desc_update (G_GNUC_UNUSED IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data)
 {
-	const gchar *cDesc = cd_indicator3_get_accessible_desc (pEntry);
-	cd_debug ("Get Accessible description: %s", cDesc);
-	CairoDockModuleInstance *myApplet = data;
-	if (cDesc != NULL && *cDesc != '\0')
-		CD_APPLET_SET_NAME_FOR_MY_ICON (cDesc);
-	else if (myConfig.defaultTitle != NULL && *myConfig.defaultTitle != '\0')
-		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
-	else
-		CD_APPLET_SET_NAME_FOR_MY_ICON (myApplet->pModule->pVisitCard->cTitle);
+	cd_indicator3_accessible_desc_update (pEntry, myConfig.defaultTitle, data);
 }
 
 void cd_messaging_entry_added (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data)
@@ -65,12 +57,16 @@ void cd_messaging_entry_added (IndicatorObject *pIndicator, IndicatorObjectEntry
 	g_return_if_fail (myData.pEntry == NULL); // should not happen... only one entry
 
 	myData.pEntry = pEntry;
+	GtkImage *pImage = cd_indicator3_get_image (pEntry);
 
 	// get the icon and the label
 
 	// signals
-	cd_indicator3_notify_image (pEntry->image, G_CALLBACK (_icon_updated), myApplet);
+	cd_indicator3_notify_image (pImage, G_CALLBACK (_icon_updated), myApplet);
+	cd_indicator3_notify_visibility (pImage, G_CALLBACK (_icon_updated), myApplet);
 
+
+	cd_indicator3_check_visibility (pImage, myApplet);
 	cd_messaging_accessible_desc_update (pIndicator, pEntry, data);
 }
 
@@ -80,7 +76,10 @@ void cd_messaging_entry_removed (IndicatorObject *pIndicator, IndicatorObjectEnt
 	cd_debug ("Entry Removed");
 	CairoDockModuleInstance *myApplet = data;
 	if (pEntry && pEntry->image)
+	{
 		g_signal_handlers_disconnect_by_func (G_OBJECT (pEntry->image), G_CALLBACK (_icon_updated), myApplet);
+		cd_indicator3_disconnect_visibility (pEntry->image, myApplet);
+	}
 
 	myData.pEntry = NULL;
 }
@@ -88,7 +87,6 @@ void cd_messaging_entry_removed (IndicatorObject *pIndicator, IndicatorObjectEnt
 void cd_messaging_destroy (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data)
 {
 	cd_debug ("Destroy");
-	CairoDockModuleInstance *myApplet = data;
 	cd_messaging_entry_removed (pIndicator, pEntry, data);
 }
 

@@ -21,7 +21,7 @@
 #include "applet-indicator3.h"
 #include "indicator-applet3-utils.h"
 
-static void _icon_updated (GObject *pObject, GParamSpec *pParam G_GNUC_UNUSED, CairoDockModuleInstance *myApplet)
+static void _icon_updated (GObject *pObject, G_GNUC_UNUSED GParamSpec *pParam, CairoDockModuleInstance *myApplet)
 {
 	g_return_if_fail (GTK_IS_IMAGE (pObject));
 	GtkImage *pImage = GTK_IMAGE (pObject);
@@ -32,46 +32,9 @@ static void _icon_updated (GObject *pObject, GParamSpec *pParam G_GNUC_UNUSED, C
 	g_free (cName);
 }
 
-static void _show (GtkWidget *pWidget G_GNUC_UNUSED, gpointer data)
+void cd_printers_accessible_desc_update (G_GNUC_UNUSED IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data)
 {
-	CairoDockModuleInstance *myApplet = data;
-
-	if (myDock && myData.bIsHidden)
-	{
-		cd_debug ("Re-insert the icon");
-		cairo_dock_insert_icon_in_dock (myIcon, myDock, ! CAIRO_DOCK_ANIMATE_ICON);
-		///cairo_dock_redraw_container (CAIRO_CONTAINER (myDock)); // dock refresh forced
-		myData.bIsHidden = FALSE;
-	}
-	else
-		cd_debug ("It's not possible to re-insert the icon: Hidden = %d (%o)", myData.bIsHidden, myDock);
-}
-
-static void _hide (GtkWidget *pWidget G_GNUC_UNUSED, gpointer data)
-{
-	CairoDockModuleInstance *myApplet = data;
-
-	if (myDock && ! myData.bIsHidden)
-	{
-		cd_debug ("Detach the icon");
-		cairo_dock_detach_icon_from_dock (myIcon, myDock);
-		myData.bIsHidden = TRUE;
-	}
-	else
-		cd_debug ("It's not possible to detach the icon: Hidden = %d (%o)", myData.bIsHidden, myDock);
-}
-
-void cd_printers_accessible_desc_update (IndicatorObject *pIndicator G_GNUC_UNUSED, IndicatorObjectEntry *pEntry, gpointer data)
-{
-	const gchar *cDesc = cd_indicator3_get_accessible_desc (pEntry);
-	cd_debug ("Get Accessible description: %s", cDesc);
-	CairoDockModuleInstance *myApplet = data;
-	if (cDesc != NULL && *cDesc != '\0')
-		CD_APPLET_SET_NAME_FOR_MY_ICON (cDesc);
-	else if (myConfig.defaultTitle != NULL && *myConfig.defaultTitle != '\0')
-		CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.defaultTitle);
-	else
-		CD_APPLET_SET_NAME_FOR_MY_ICON (myApplet->pModule->pVisitCard->cTitle);
+	cd_indicator3_accessible_desc_update (pEntry, myConfig.defaultTitle, data);
 }
 
 void cd_printers_entry_added (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data)
@@ -85,20 +48,12 @@ void cd_printers_entry_added (IndicatorObject *pIndicator, IndicatorObjectEntry 
 
 	g_return_if_fail (pImage != NULL);
 
-	if (! gtk_widget_get_visible (GTK_WIDGET (pImage)))
-		_hide (NULL, myApplet);
-	else
-	{
-		_show (NULL, myApplet);
-		_icon_updated (G_OBJECT (pImage), NULL, myApplet);
-		cd_printers_accessible_desc_update (pIndicator, pEntry, data);
-	}
-
 	// signals
 	cd_indicator3_notify_image (pImage, G_CALLBACK (_icon_updated), myApplet);
+	cd_indicator3_notify_visibility (pImage, G_CALLBACK (_icon_updated), myApplet);
 
-	g_signal_connect (G_OBJECT (pImage), "show", G_CALLBACK (_show), myApplet);
-	g_signal_connect (G_OBJECT (pImage), "hide", G_CALLBACK (_hide), myApplet);
+	cd_indicator3_check_visibility (pImage, myApplet);
+	cd_printers_accessible_desc_update (pIndicator, pEntry, data);
 }
 
 void cd_printers_entry_removed (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data)
@@ -109,11 +64,8 @@ void cd_printers_entry_removed (IndicatorObject *pIndicator, IndicatorObjectEntr
 	if (pEntry && pEntry->image)
 	{
 		g_signal_handlers_disconnect_by_func (G_OBJECT (pEntry->image), G_CALLBACK (_icon_updated), myApplet);
-		g_signal_handlers_disconnect_by_func (G_OBJECT (pEntry->image), G_CALLBACK (_show), myApplet);
-		g_signal_handlers_disconnect_by_func (G_OBJECT (pEntry->image), G_CALLBACK (_hide), myApplet);
+		cd_indicator3_disconnect_visibility (pEntry->image, myApplet);
 	}
-
-	_hide (NULL, myApplet);
 
 	myData.pEntry = NULL;
 }
@@ -121,7 +73,6 @@ void cd_printers_entry_removed (IndicatorObject *pIndicator, IndicatorObjectEntr
 void cd_printers_destroy (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data)
 {
 	cd_debug ("Destroy");
-	CairoDockModuleInstance *myApplet = data;
 	cd_printers_entry_removed (pIndicator, pEntry, data);
 }
 
