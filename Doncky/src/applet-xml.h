@@ -63,7 +63,7 @@ void cd_doncky_free_item (TextZone *pTextZone);
 
 void cd_doncky_free_item_list (CairoDockModuleInstance *myApplet);
 
-gchar *_Get_FilePath (CairoDockModuleInstance *myApplet, const gchar *cString);
+gchar *_Get_FilePath (CairoDockModuleInstance *myApplet, const gchar *cXmlString);
 
 gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet);
 

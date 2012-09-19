@@ -68,6 +68,7 @@ void cd_sysmonitor_get_nvidia_info (CairoDockModuleInstance *myApplet)
 		if (cResult == NULL || *cResult == '\n')
 		{
 			myData.cGPUName = g_strdup ("none");
+			g_free (cResult);
 			return ;
 		}
 		

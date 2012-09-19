@@ -26,11 +26,6 @@
 #include "applet-struct.h"
 
 
-
-static void cd_doncky_get_fs_stat (const gchar *cDiskURI, CDDiskUsage *pDiskUsage);
-
-static void cd_doncky_get_fs_info (const gchar *cDiskURI, GString *sInfo, const int iType);
-
 gchar *cd_doncky_get_disk_info (const gchar *cDiskURI, const int iType);
 
 

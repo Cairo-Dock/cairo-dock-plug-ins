@@ -59,9 +59,6 @@ static void cd_doncky_get_fs_info (const gchar *cDiskURI, GString *sInfo, const 
 	const gchar *cMountPath = (strncmp (cDiskURI, "file://", 7) == 0 ? cDiskURI + 7 : cDiskURI);
 	struct mntent *me;
 	FILE *mtab = setmntent ("/etc/mtab", "r");
-	char *search_path;
-	int match;
-	char *slash;
 
 	if (mtab == NULL)
 	{
@@ -69,7 +66,6 @@ static void cd_doncky_get_fs_info (const gchar *cDiskURI, GString *sInfo, const 
 		return ;
 	}
 	
-	gchar *cFsInfo = NULL;
 	while ((me = getmntent (mtab)) != NULL)
 	{
 		if (me->mnt_dir && strcmp (me->mnt_dir, cMountPath) == 0)
@@ -133,12 +129,15 @@ gchar *cd_doncky_get_disk_info (const gchar *cDiskURI, const int iType)
 			break ;
 			case 5 : // fs_type			
 				cd_doncky_get_fs_info (cDiskURI, sInfo, 0);				
-				cReturn = sInfo->str;
+				cReturn = g_strdup (sInfo->str);
 			break ;
 			case 6 : // fs_device
-				cd_doncky_get_fs_info (cDiskURI, sInfo, 1);			
-				cReturn = sInfo->str; // On obtient un résultat du type /dev/sda1
-				ltrim(cReturn, "/dev/" ); // On supprime de /dev/
+				cd_doncky_get_fs_info (cDiskURI, sInfo, 1);
+				if (g_str_has_prefix (sInfo->str, "/dev/"))
+					cReturn = g_strdup (sInfo->str+5); // On obtient un résultat du type /dev/sda1
+				else
+					cReturn = g_strdup (sInfo->str);
+				//ltrim(cReturn, "/dev/" ); // On supprime de /dev/
 			break ;				
 		}
 	}
@@ -146,7 +145,7 @@ gchar *cd_doncky_get_disk_info (const gchar *cDiskURI, const int iType)
 	{
 		cReturn = g_strdup_printf ("-");
 	}	
-	g_string_free (sInfo, FALSE);
+	g_string_free (sInfo, TRUE);
 	return cReturn;
 }
 

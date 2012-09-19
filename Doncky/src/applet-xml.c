@@ -37,7 +37,14 @@ void cd_doncky_free_item (TextZone *pTextZone)
 	g_free (pTextZone->cFont);
 	g_free (pTextZone->cText);
 	g_free (pTextZone->cCommand);
-	g_free (pTextZone);	
+	g_free (pTextZone->cResult);
+	g_free (pTextZone->cAlignWidth);
+	g_free (pTextZone->cAlignHeight);
+	g_free (pTextZone->cImgPath);
+	g_free (pTextZone->cMountPoint);
+	if (pTextZone->pImgSurface)
+		cairo_surface_destroy (pTextZone->pImgSurface);
+	g_free (pTextZone);
 }
 
 
@@ -57,37 +64,33 @@ void cd_doncky_free_item_list (CairoDockModuleInstance *myApplet)
 	myData.pTextZoneList = NULL;
 }
 
-gchar *_Get_FilePath (CairoDockModuleInstance *myApplet, const gchar *cString)
+gchar *_Get_FilePath (CairoDockModuleInstance *myApplet, const gchar *cXmlString)
 {
+	gchar *cString = (gchar *) cXmlString;
 	gchar *cReturn;
-	if (strncmp (cString, "/", 1) == 0 || strncmp (cString, "~/", 2) == 0)
-	{
-		cReturn = g_strdup_printf("%s",g_str_replace (cString, "~", g_strdup_printf("/home/%s", g_getenv("USER"))));
-	}
+	if (*cString == '~')
+		cReturn = g_strdup_printf ("%s%s", getenv("HOME"), cString+1);
+	else if (*cString == '/')
+		cReturn = g_strdup (cString);
 	else
 	{
-		gchar *cTempotxt;
-		cTempotxt = g_strdup_printf("%s", cString);
-		cTempotxt = g_str_position (cTempotxt, 1, ' ');
-		if (g_str_has_suffix (cTempotxt, ".sh") \
-		|| g_str_has_suffix (cTempotxt, ".py") \
-		|| g_str_has_suffix (cTempotxt, ".png") \
-		|| g_str_has_suffix (cTempotxt, ".PNG") \
-		|| g_str_has_suffix (cTempotxt, ".jpg") \
-		|| g_str_has_suffix (cTempotxt, ".JPG") \
-		|| g_str_has_suffix (cTempotxt, ".jpeg") \
-		|| g_str_has_suffix (cTempotxt, ".JPEG") \
-		|| g_str_has_suffix (cTempotxt, ".svg") \
-		|| g_str_has_suffix (cTempotxt, ".SVG"))
+		if (g_str_has_suffix (cString, ".sh")
+			|| g_str_has_suffix (cString, ".py")
+			|| g_str_has_suffix (cString, ".png")
+			|| g_str_has_suffix (cString, ".PNG")
+			|| g_str_has_suffix (cString, ".jpg")
+			|| g_str_has_suffix (cString, ".JPG")
+			|| g_str_has_suffix (cString, ".jpeg")
+			|| g_str_has_suffix (cString, ".JPEG")
+			|| g_str_has_suffix (cString, ".svg")
+			|| g_str_has_suffix (cString, ".SVG"))
 		{
 			cReturn = g_strdup_printf("%s%s", myData.cThemeFolder, cString);
 		}
 		else
-			cReturn = g_strdup_printf("%s", cString);
-		g_free (cTempotxt);
+			cReturn = g_strdup (cString);
 	}
 	return cReturn;
-	g_free (cReturn);
 }
 
 
@@ -105,14 +108,12 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 	
 	g_return_val_if_fail (pXmlFile != NULL && pXmlMainNode != NULL, FALSE);
 	
-	
-	xmlAttrPtr ap;
-	xmlChar *cAttribute, *cNodeContent, *cTextNodeContent;
+	xmlChar *cNodeContent;
 	TextZone *pTextZone = NULL;
 		
 	xmlNodePtr pXmlNode;
 	
-	myData.cPrevFont = g_strdup_printf("%s", myConfig.cDefaultFont);
+	myData.cPrevFont = g_strdup (myConfig.cDefaultFont);
 	myData.cPrevAlignWidth = g_strdup_printf("left");
 	myData.cPrevAlignHeight = g_strdup_printf("middle");
 	myData.fPrevTextColor[0] = myConfig.fDefaultTextColor[0];
@@ -121,29 +122,27 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 	myData.fPrevTextColor[3] = myConfig.fDefaultTextColor[3];
 	
 	// Récupération de myData.cThemeFolder et myData.cXmlFileName:
-	gchar *cTmpFileName = g_strdup_printf("%s", myConfig.cXmlFilePath);
-	g_strreverse (cTmpFileName);
-	cTmpFileName = g_str_position (cTmpFileName, 1, '/');
-	myData.cThemeFolder = g_strdup_printf("%s", myConfig.cXmlFilePath);
-	g_strreverse (myData.cThemeFolder);
-	ltrim(myData.cThemeFolder,cTmpFileName);
-	g_strreverse (myData.cThemeFolder);
-	myData.cXmlFileName = g_strdup_printf("%s", g_strreverse (cTmpFileName));
-	g_free (cTmpFileName);
+	myData.cThemeFolder = g_path_get_dirname (myConfig.cXmlFilePath);
+	myData.cXmlFileName = g_path_get_basename (myConfig.cXmlFilePath);
 
 	int i;
 	for (pXmlNode = pXmlMainNode->children, i = 0; pXmlNode != NULL; pXmlNode = pXmlNode->next, i ++)
 	{
-		if (xmlStrcmp (pXmlNode->name, (const xmlChar *) "font") == 0)
+		gchar *cContent = (gchar *)xmlNodeGetContent (pXmlNode);
+		if (xmlStrcmp (pXmlNode->name, BAD_CAST "font") == 0)
 		{
-			myData.cPrevFont = xmlNodeGetContent (pXmlNode);			
+			g_free (myData.cPrevFont);
+			myData.cPrevFont = (gchar *)xmlNodeGetContent (pXmlNode);
 			if (strcmp (myData.cPrevFont, "default") == 0)
-				myData.cPrevFont = g_strdup_printf("%s", myConfig.cDefaultFont);
+			{
+				g_free (myData.cPrevFont);
+				myData.cPrevFont = g_strdup (myConfig.cDefaultFont);
+			}
 		}
 		
-		if (xmlStrcmp (pXmlNode->name, (const xmlChar *) "color") == 0)
+		else if (xmlStrcmp (pXmlNode->name, BAD_CAST "color") == 0)
 		{
-			if (strcmp (xmlNodeGetContent (pXmlNode), "default") == 0)
+			if (strcmp (cContent, "default") == 0)
 			{
 				myData.fPrevTextColor[0] = myConfig.fDefaultTextColor[0];
 				myData.fPrevTextColor[1] = myConfig.fDefaultTextColor[1];
@@ -152,53 +151,46 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 			}
 			else
 			{
-				// On récupère le 1er champ -> red
-				myData.fPrevTextColor[0] = atof(g_str_position (xmlNodeGetContent (pXmlNode), 1, ';')) / 255;
-				// On récupère le 2ème champ -> = green
-				myData.fPrevTextColor[1] = atof(g_str_position (xmlNodeGetContent (pXmlNode), 2, ';')) / 255;
-				// On récupère le 3ème champ -> = blue
-				myData.fPrevTextColor[2] = atof(g_str_position (xmlNodeGetContent (pXmlNode), 3, ';')) / 255;
-				// On récupère le dernier champ -> alpha
-				myData.fPrevTextColor[3] = atof(g_str_position (xmlNodeGetContent (pXmlNode), 4, ';')) / 255;
+				cd_doncky_get_color_from_xml (cContent, myData.fPrevTextColor);
 			}
 		}
 		
-		if (xmlStrcmp (pXmlNode->name, (const xmlChar *) "alignW") == 0)
+		else if (xmlStrcmp (pXmlNode->name, BAD_CAST "alignW") == 0)
 		{
-			myData.cPrevAlignWidth = xmlNodeGetContent (pXmlNode);
+			g_free (myData.cPrevAlignWidth);
+			myData.cPrevAlignWidth = (gchar *) xmlNodeGetContent (pXmlNode);
 			if (strcmp (myData.cPrevAlignWidth, "left") == -1 && strcmp (myData.cPrevAlignWidth, "center") == -1 && strcmp (myData.cPrevAlignWidth, "right") == -1)
 				myData.cPrevAlignWidth = g_strdup_printf("right");
 		}
-		if (xmlStrcmp (pXmlNode->name, (const xmlChar *) "alignH") == 0)
+		else if (xmlStrcmp (pXmlNode->name, BAD_CAST "alignH") == 0)
 		{
-			myData.cPrevAlignHeight = xmlNodeGetContent (pXmlNode);
+			g_free (myData.cPrevAlignHeight);
+			myData.cPrevAlignHeight = (gchar *) xmlNodeGetContent (pXmlNode);
 			if (strcmp (myData.cPrevAlignHeight, "top") == -1 && strcmp (myData.cPrevAlignHeight, "middle") == -1 && strcmp (myData.cPrevAlignHeight, "low") == -1)
 				myData.cPrevAlignWidth = g_strdup_printf("middle");
 		}
 		
-		if (xmlStrcmp (pXmlNode->name, (const xmlChar *) "br") == 0 || xmlStrcmp (pXmlNode->name, (const xmlChar *) "nbr") == 0)
+		else if (xmlStrcmp (pXmlNode->name, BAD_CAST "br") == 0 || xmlStrcmp (pXmlNode->name, BAD_CAST "nbr") == 0)
 		{			
 			pTextZone = g_new0 (TextZone, 1);
 			myData.pTextZoneList = g_list_append (myData.pTextZoneList, pTextZone);
 			
-			pTextZone->cText = g_strdup_printf("");
-			pTextZone->cFont = g_strdup_printf("%s", myData.cPrevFont);
+			pTextZone->cFont = g_strdup (myData.cPrevFont);
 			pTextZone->fTextColor[0] = myData.fPrevTextColor[0];
 			pTextZone->fTextColor[1] = myData.fPrevTextColor[1];
 			pTextZone->fTextColor[2] = myData.fPrevTextColor[2];
 			pTextZone->fTextColor[3] = myData.fPrevTextColor[3];
-			pTextZone->cAlignWidth = g_strdup_printf("%s", myData.cPrevAlignWidth);
-			pTextZone->cAlignHeight = g_strdup_printf("%s", myData.cPrevAlignHeight);
+			pTextZone->cAlignWidth = g_strdup (myData.cPrevAlignWidth);
+			pTextZone->cAlignHeight = g_strdup (myData.cPrevAlignHeight);
 			pTextZone->iRefresh = 0;
 			pTextZone->cMountPoint = g_strdup_printf ("/");
-			pTextZone->cCommand = NULL;																
 			pTextZone->cCommand = NULL;
 			pTextZone->bRefresh = FALSE;
 			pTextZone->bBar = FALSE;
 			
-			pTextZone->iSpaceBetweenLines = g_strtod (xmlNodeGetContent (pXmlNode), NULL);
+			pTextZone->iSpaceBetweenLines = g_strtod (cContent, NULL);
 			
-			if (xmlStrcmp (pXmlNode->name, (const xmlChar *) "br") == 0)
+			if (xmlStrcmp (pXmlNode->name, BAD_CAST "br") == 0)
 			{
 				pTextZone->bEndOfLine = TRUE;
 				pTextZone->bNextNewLine = TRUE;
@@ -210,46 +202,43 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 			}
 		}
 		
-		if (xmlStrcmp (pXmlNode->name, (const xmlChar *) "override") == 0)
+		else if (xmlStrcmp (pXmlNode->name, BAD_CAST "override") == 0)
 		{
 			pTextZone = g_new0 (TextZone, 1);
 			myData.pTextZoneList = g_list_append (myData.pTextZoneList, pTextZone);
 			
-			pTextZone->cText = g_strdup_printf("");
-			pTextZone->cFont = g_strdup_printf("%s", myData.cPrevFont);
+			pTextZone->cFont = g_strdup (myData.cPrevFont);
 			pTextZone->fTextColor[0] = myData.fPrevTextColor[0];
 			pTextZone->fTextColor[1] = myData.fPrevTextColor[1];
 			pTextZone->fTextColor[2] = myData.fPrevTextColor[2];
 			pTextZone->fTextColor[3] = myData.fPrevTextColor[3];
-			pTextZone->cAlignWidth = g_strdup_printf("%s", myData.cPrevAlignWidth);
-			pTextZone->cAlignHeight = g_strdup_printf("%s", myData.cPrevAlignHeight);
+			pTextZone->cAlignWidth = g_strdup (myData.cPrevAlignWidth);
+			pTextZone->cAlignHeight = g_strdup (myData.cPrevAlignHeight);
 			pTextZone->iRefresh = 0;
 			pTextZone->cMountPoint = g_strdup_printf ("/");
-			pTextZone->cCommand = NULL;																
+			pTextZone->cCommand = NULL;
 			pTextZone->cCommand = NULL;
 			pTextZone->bRefresh = FALSE;
 			pTextZone->bBar = FALSE;
 			
 			// On récupère le 1er champ -> = overrideH
-			pTextZone->iOverrideH = atoi(g_str_position (xmlNodeGetContent (pXmlNode), 1, ';'));			
-			// On récupère le 2eme champ -> = overrideW
-			pTextZone->iOverrideW = atoi(g_str_position (xmlNodeGetContent (pXmlNode), 2, ';'));
+			sscanf (cContent, "%d;%d", &(pTextZone->iOverrideH), &(pTextZone->iOverrideW));
 		}
 		
 		
-		if (xmlStrcmp (pXmlNode->name, (const xmlChar *) "txt") == 0)
+		else if (xmlStrcmp (pXmlNode->name, BAD_CAST "txt") == 0)
 		{
 			pTextZone = g_new0 (TextZone, 1);
 			myData.pTextZoneList = g_list_append (myData.pTextZoneList, pTextZone); 	
 			
-			pTextZone->cText = xmlNodeGetContent (pXmlNode);
-			pTextZone->cFont = g_strdup_printf("%s", myData.cPrevFont);
+			pTextZone->cText = (gchar *)xmlNodeGetContent (pXmlNode);
+			pTextZone->cFont = g_strdup (myData.cPrevFont);
 			pTextZone->fTextColor[0] = myData.fPrevTextColor[0];
 			pTextZone->fTextColor[1] = myData.fPrevTextColor[1];
 			pTextZone->fTextColor[2] = myData.fPrevTextColor[2];
 			pTextZone->fTextColor[3] = myData.fPrevTextColor[3];
-			pTextZone->cAlignWidth = g_strdup_printf("%s", myData.cPrevAlignWidth);
-			pTextZone->cAlignHeight = g_strdup_printf("%s", myData.cPrevAlignHeight);
+			pTextZone->cAlignWidth = g_strdup (myData.cPrevAlignWidth);
+			pTextZone->cAlignHeight = g_strdup (myData.cPrevAlignHeight);
 			pTextZone->iSpaceBetweenLines = 0;
 			pTextZone->bEndOfLine = FALSE;
 			pTextZone->bNextNewLine = FALSE;
@@ -261,169 +250,158 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 			pTextZone->bBar = FALSE;
 		}
 		
-		if (xmlStrcmp (pXmlNode->name, (const xmlChar *) "stroke") == 0)
+		else if (xmlStrcmp (pXmlNode->name, BAD_CAST "stroke") == 0)
 		{
 			pTextZone = g_new0 (TextZone, 1);
 			myData.pTextZoneList = g_list_append (myData.pTextZoneList, pTextZone);
 			
-			pTextZone->cFont = g_strdup_printf("%s", myData.cPrevFont);
+			pTextZone->cFont = g_strdup (myData.cPrevFont);
 			pTextZone->fTextColor[0] = myData.fPrevTextColor[0];
 			pTextZone->fTextColor[1] = myData.fPrevTextColor[1];
 			pTextZone->fTextColor[2] = myData.fPrevTextColor[2];
 			pTextZone->fTextColor[3] = myData.fPrevTextColor[3];
 			
-			pTextZone->iHeight = atoi(xmlNodeGetContent (pXmlNode));
+			pTextZone->iHeight = atoi(cContent);
 			
 			myData.cPrevAlignWidth = g_strdup_printf("left");  // Sur toute la ligne -> On aligne forcément à gauche
-			pTextZone->cAlignWidth = g_strdup_printf("%s", myData.cPrevAlignWidth);
-			pTextZone->cAlignHeight = g_strdup_printf("%s", myData.cPrevAlignHeight);
+			pTextZone->cAlignWidth = g_strdup (myData.cPrevAlignWidth);
+			pTextZone->cAlignHeight = g_strdup (myData.cPrevAlignHeight);
 			pTextZone->bBar = TRUE;			
 			pTextZone->cText = g_strdup_printf("100"); // Une ligne est une barre avec une valeur toujours à 100 ;)
 			pTextZone->bRefresh = FALSE;
 				
 		}
 		
-		if (xmlStrcmp (pXmlNode->name, (const xmlChar *) "lstroke") == 0)
+		else if (xmlStrcmp (pXmlNode->name, BAD_CAST "lstroke") == 0)
 		{
 			pTextZone = g_new0 (TextZone, 1);
 			myData.pTextZoneList = g_list_append (myData.pTextZoneList, pTextZone);
 			
-			pTextZone->cFont = g_strdup_printf("%s", myData.cPrevFont);
+			pTextZone->cFont = g_strdup (myData.cPrevFont);
 			pTextZone->fTextColor[0] = myData.fPrevTextColor[0];
 			pTextZone->fTextColor[1] = myData.fPrevTextColor[1];
 			pTextZone->fTextColor[2] = myData.fPrevTextColor[2];
 			pTextZone->fTextColor[3] = myData.fPrevTextColor[3];
+
+			sscanf (cContent, "%d;%d", &(pTextZone->iWidth), &(pTextZone->iHeight));
 			
-			// On récupère le 1er champ -> = Largeur
-			pTextZone->iWidth = atoi(g_str_position (xmlNodeGetContent (pXmlNode), 1, ';'));
-			// On récupère le 2ème champ -> = Hauteur
-			pTextZone->iHeight = atoi(g_str_position (xmlNodeGetContent (pXmlNode), 2, ';'));
-			
-			pTextZone->cAlignWidth = g_strdup_printf("%s", myData.cPrevAlignWidth);
-			pTextZone->cAlignHeight = g_strdup_printf("%s", myData.cPrevAlignHeight);
+			pTextZone->cAlignWidth = g_strdup (myData.cPrevAlignWidth);
+			pTextZone->cAlignHeight = g_strdup (myData.cPrevAlignHeight);
 			pTextZone->bLimitedBar = TRUE;			
 			pTextZone->cText = g_strdup_printf("100"); // Une ligne est une barre avec une valeur toujours à 100 ;)
 			pTextZone->bRefresh = FALSE;
 		}
 		
 		
-		if (xmlStrcmp (pXmlNode->name, (const xmlChar *) "cmd") == 0)
+		else if (xmlStrcmp (pXmlNode->name, BAD_CAST "cmd") == 0)
 		{
 			pTextZone = g_new0 (TextZone, 1);
 			myData.pTextZoneList = g_list_append (myData.pTextZoneList, pTextZone);
 			
-			pTextZone->cFont = g_strdup_printf("%s", myData.cPrevFont);
+			pTextZone->cFont = g_strdup (myData.cPrevFont);
 			pTextZone->fTextColor[0] = myData.fPrevTextColor[0];
 			pTextZone->fTextColor[1] = myData.fPrevTextColor[1];
 			pTextZone->fTextColor[2] = myData.fPrevTextColor[2];
 			pTextZone->fTextColor[3] = myData.fPrevTextColor[3];
-			pTextZone->cAlignWidth = g_strdup_printf("%s", myData.cPrevAlignWidth);
-			pTextZone->cAlignHeight = g_strdup_printf("%s", myData.cPrevAlignHeight);
+			pTextZone->cAlignWidth = g_strdup (myData.cPrevAlignWidth);
+			pTextZone->cAlignHeight = g_strdup (myData.cPrevAlignHeight);
 			
 			pTextZone->bBar = FALSE;
 			
-			pTextZone->cText = g_strdup_printf("Please wait..."); // On initialise le 1er texte à afficher à " "
+			pTextZone->cText = g_strdup (D_("Please wait...")); // On initialise le 1er texte à afficher à " "
 			pTextZone->cMountPoint = g_strdup_printf ("/");
 					
-			xmlNodePtr pXmlSubNode;			
+			xmlNodePtr pXmlSubNode;
 			for (pXmlSubNode = pXmlNode->children; pXmlSubNode != NULL; pXmlSubNode = pXmlSubNode->next)
-			{				
+			{
 				cNodeContent = xmlNodeGetContent (pXmlSubNode);
 				
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "bash") == 0)
+				if (xmlStrcmp (pXmlSubNode->name, BAD_CAST "bash") == 0)
 				{
-					pTextZone->cCommand = _Get_FilePath (myApplet, xmlNodeGetContent (pXmlSubNode));
+					pTextZone->cCommand = _Get_FilePath (myApplet, (gchar *) cNodeContent);
 					pTextZone->bIsBash = TRUE;
 					pTextZone->bIsInternal = FALSE;
+					pTextZone->bRefresh = TRUE;
+					pTextZone->iRefresh = 0;
 				}
 				
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "echo") == 0)
+				else if (xmlStrcmp (pXmlSubNode->name, BAD_CAST "echo") == 0)
 				{
 					// On insère sh -c 'echo " AVANT la commande et "' APRES
-					gchar *cXmlCommand;
-					cXmlCommand = xmlNodeGetContent (pXmlSubNode);
-					
-					GString *sTemp =  g_string_new  ("");
-					g_string_printf (sTemp, "sh -c 'echo \"%s\"'", cXmlCommand);
-					pTextZone->cCommand = g_strdup_printf("%s",g_str_replace (sTemp->str, "~", g_strdup_printf("/home/%s", getenv("USER"))));
-					
-					g_string_free (sTemp, TRUE);
-					g_free (cXmlCommand);
+					if (*cNodeContent == '~')
+						pTextZone->cCommand = g_strdup_printf ("sh -c 'echo \"%s%s\"'", getenv("HOME"), cNodeContent+1);
+					else
+						pTextZone->cCommand = g_strdup_printf ("sh -c 'echo \"%s\"'", cNodeContent);
 					pTextZone->bIsBash = TRUE;
 					pTextZone->bIsInternal = FALSE;
+					pTextZone->bRefresh = TRUE;
+					pTextZone->iRefresh = 0;
 				}
 				
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "internal") == 0)
+				else if (xmlStrcmp (pXmlSubNode->name, BAD_CAST "internal") == 0)
 				{
-					pTextZone->cCommand = g_strdup_printf("%s",g_str_replace (xmlNodeGetContent (pXmlSubNode), "~", g_strdup_printf("/home/%s", getenv("USER"))));
+					pTextZone->cCommand = g_strdup ((gchar *)cNodeContent);
 					pTextZone->bIsInternal = TRUE;
 					pTextZone->bIsBash = FALSE;
+					pTextZone->bRefresh = TRUE;
+					pTextZone->iRefresh = 0;
 				}
 				
 				
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "mount_point") == 0)
-					pTextZone->cMountPoint = xmlNodeGetContent (pXmlSubNode);
+				else if (xmlStrcmp (pXmlSubNode->name, BAD_CAST "mount_point") == 0)
+					pTextZone->cMountPoint = g_strdup ((gchar *)cNodeContent);
 				
 				
-				if ((xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "lbar") == 0) || (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "bar") == 0))
+				else if ((xmlStrcmp (pXmlSubNode->name, BAD_CAST "lbar") == 0) || (xmlStrcmp (pXmlSubNode->name, BAD_CAST "bar") == 0))
 				{
+					// memperc;10
 					// Récupération du 1er champ (commun aux Bars et aux LimitedBars:
-					pTextZone->cCommand = g_strdup_printf("%s",g_str_replace (g_str_position (xmlNodeGetContent (pXmlSubNode), 1, ';'), "~", g_strdup_printf("/home/%s", getenv("USER"))));
+					pTextZone->cCommand = g_strdup ((gchar *)cNodeContent);
+					gchar *str = strchr (pTextZone->cCommand, ';');
+					*str = '\0';
+					str ++;
 					pTextZone->bIsInternal = TRUE;
 					pTextZone->bIsBash = FALSE;
-					
-					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "lbar") == 0)
+					cd_debug ("##### %s => %s", pTextZone->cCommand, str);
+					if (xmlStrcmp (pXmlSubNode->name, BAD_CAST "lbar") == 0)
 					{
 						pTextZone->bLimitedBar = TRUE;
-						// On récupère le 2ème champ -> = Largeur
-						pTextZone->iWidth = atoi(g_str_position (xmlNodeGetContent (pXmlSubNode), 2, ';'));
-						// On récupère le 3ème champ -> = Hauteur
-						pTextZone->iHeight = atoi(g_str_position (xmlNodeGetContent (pXmlSubNode), 3, ';'));
+						sscanf (str, "%d;%d", &(pTextZone->iWidth), &(pTextZone->iHeight));
 					}
 					else
 					{
 						pTextZone->bBar = TRUE;
 						// Récupération du 2eme champ pour les barres -> = Hauteur:
-						pTextZone->iHeight = atoi(g_str_position (xmlNodeGetContent (pXmlSubNode), 2, ';'));
+						pTextZone->iHeight = atoi(str);
 						// Les Bars sont sur toute la ligne -> On aligne forcément à gauche
 						myData.cPrevAlignWidth = g_strdup_printf("left");
-						pTextZone->cAlignWidth = g_strdup_printf("%s", myData.cPrevAlignWidth);
-						pTextZone->cAlignHeight = g_strdup_printf("%s", myData.cPrevAlignHeight);
-					}			
-				}
-				
-				
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "refresh") == 0)
-				{
-					pTextZone->iRefresh = g_strtod (cNodeContent, NULL);
-					pTextZone->bRefresh = TRUE;				
-				}
-				else
-				{
-					if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "bash") == 0 || xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "echo") == 0 || xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "internal") == 0)
-					{
-						pTextZone->bRefresh = TRUE;
-						pTextZone->iRefresh = 0;
+						pTextZone->cAlignWidth = g_strdup (myData.cPrevAlignWidth);
+						pTextZone->cAlignHeight = g_strdup (myData.cPrevAlignHeight);
 					}
+				}
+				else if (xmlStrcmp (pXmlSubNode->name, BAD_CAST "refresh") == 0)
+				{
+					pTextZone->iRefresh = g_strtod ((gchar *) cNodeContent, NULL);
+					pTextZone->bRefresh = TRUE;
 				}
 				xmlFree (cNodeContent);
 			}
 		}
 		
 		
-		if (xmlStrcmp (pXmlNode->name, (const xmlChar *) "img") == 0)
+		else if (xmlStrcmp (pXmlNode->name, BAD_CAST "img") == 0)
 		{
 			pTextZone = g_new0 (TextZone, 1);
 			myData.pTextZoneList = g_list_append (myData.pTextZoneList, pTextZone);
 			
 			
-			pTextZone->cFont = g_strdup_printf("%s", myData.cPrevFont);
+			pTextZone->cFont = g_strdup (myData.cPrevFont);
 			pTextZone->fTextColor[0] = myData.fPrevTextColor[0];
 			pTextZone->fTextColor[1] = myData.fPrevTextColor[1];
 			pTextZone->fTextColor[2] = myData.fPrevTextColor[2];
 			pTextZone->fTextColor[3] = myData.fPrevTextColor[3];
-			pTextZone->cAlignWidth = g_strdup_printf("%s", myData.cPrevAlignWidth);
-			pTextZone->cAlignHeight = g_strdup_printf("%s", myData.cPrevAlignHeight);
+			pTextZone->cAlignWidth = g_strdup (myData.cPrevAlignWidth);
+			pTextZone->cAlignHeight = g_strdup (myData.cPrevAlignHeight);
 			
 			pTextZone->bBar = FALSE;
 			
@@ -432,26 +410,27 @@ gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
 			{				
 				cNodeContent = xmlNodeGetContent (pXmlSubNode);
 				
-				if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "file") == 0)
+				if (xmlStrcmp (pXmlSubNode->name, BAD_CAST "file") == 0)
 				{
-					pTextZone->cImgPath = _Get_FilePath (myApplet, xmlNodeGetContent (pXmlSubNode));
+					pTextZone->cImgPath = _Get_FilePath (myApplet, (gchar *)cNodeContent);
 					pTextZone->bImgDraw=FALSE;
 				}
-				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "size") == 0)
+				else if (xmlStrcmp (pXmlSubNode->name, BAD_CAST "size") == 0)
 				{
-					pTextZone->iImgSize = g_strtod (cNodeContent, NULL);
+					pTextZone->iImgSize = g_strtod ((gchar *)cNodeContent, NULL);
 				}
-				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "sizeW") == 0)
+				else if (xmlStrcmp (pXmlSubNode->name, BAD_CAST "sizeW") == 0)
 				{
-					pTextZone->iWidth= g_strtod (cNodeContent, NULL);
+					pTextZone->iWidth= g_strtod ((gchar *)cNodeContent, NULL);
 				}				
-				else if (xmlStrcmp (pXmlSubNode->name, (const xmlChar *) "sizeH") == 0)
+				else if (xmlStrcmp (pXmlSubNode->name, BAD_CAST "sizeH") == 0)
 				{
-					pTextZone->iHeight = g_strtod (cNodeContent, NULL);
+					pTextZone->iHeight = g_strtod ((gchar *)cNodeContent, NULL);
 				}
 				xmlFree (cNodeContent);
 			}
-		}		
+		}
+		g_free (cContent);
 	}
 	
 	cairo_dock_close_xml_file (pXmlFile);

@@ -24,10 +24,12 @@
 #include <cairo-dock.h>
 #include "applet-struct.h"
 
-gchar* ltrim( gchar* str, const gchar* t );
-gchar* rtrim( gchar* str, const gchar* t );
-gchar *g_str_replace (const gchar *cString, const gchar *cWord, const gchar *cReplace);
-gchar *g_str_position (const gchar *cString, const int iPosition, const char cSeparator);
+void ltrim( gchar* str, const gchar* t );
+void rtrim( gchar* str, const gchar* t );
+gchar *g_str_replace (gchar *cString, const gchar cWord, const gchar cReplace);
+void cd_doncky_get_color_from_xml (gchar *cNodeContent, double *fColor);
+void cd_doncky_export_color_to_conf (double *fColor, const gchar *cGroupName, const gchar *cParam, CairoDockModuleInstance *myApplet);
+// gchar *g_str_position (const gchar *cString, const int iPosition, const char cSeparator);
 double _Ko_to_Mo (CairoDockModuleInstance *myApplet , double fValueInKo);
 double _Ko_to_Go (CairoDockModuleInstance *myApplet , double fValueInKo);
 
