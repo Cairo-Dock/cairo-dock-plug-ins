@@ -217,7 +217,7 @@ static gboolean _cd_slide_on_mouse_moved (gpointer data, CairoDock *pDock, gbool
 		}
 		double fFrameHeight = pDock->iMaxDockHeight- (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);  // hauteur du cadre avec les rayons et sans la pointe.
 		double fGripHeight = fFrameHeight / (fFrameHeight + pData->iDeltaHeight) * (y_arrow_top - y_arrow_bottom - 2*(fArrowHeight+fScrollbarArrowGap));
-		double ygrip = (double) pData->iScrollOffset / pData->iDeltaHeight * (y_arrow_top - y_arrow_bottom - 2*(fArrowHeight+fScrollbarArrowGap) - fGripHeight);
+		//double ygrip = (double) pData->iScrollOffset / pData->iDeltaHeight * (y_arrow_top - y_arrow_bottom - 2*(fArrowHeight+fScrollbarArrowGap) - fGripHeight);
 		
 		int delta = pDock->container.iMouseY - pData->iClickY;
 		_set_scroll (pDock, (pData->iClickOffset + (double)delta / (y_arrow_top - y_arrow_bottom - 2*(fArrowHeight+fScrollbarArrowGap) - fGripHeight) * pData->iDeltaHeight));
@@ -336,8 +336,8 @@ static guint _cd_rendering_diapo_simple_guess_grid (GList *pIconList, guint *nRo
 				nl --;
 			}
 
-			if (my_diapo_simple_wide_grid && ncols >= nl
-			|| ! my_diapo_simple_wide_grid && ncols <= nl)  // this layout is ok, let's take it if it's better than the current one.
+			if ((my_diapo_simple_wide_grid && ncols >= nl)
+				|| (!my_diapo_simple_wide_grid && ncols <= nl))  // this layout is ok, let's take it if it's better than the current one.
 			{
 				delta_lc = abs (ncols - nl);
 				iSurface = ncols * nl;
@@ -527,7 +527,7 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 	gboolean bIsHorizontal = pDock->container.bIsHorizontal;
 	
 	// On calcule la position de base pour toutes les icones
-	int iOneLineHeight = pDock->iMaxIconHeight * pDock->container.fRatio + my_diapo_simple_iconGapY;
+	// int iOneLineHeight = pDock->iMaxIconHeight * pDock->container.fRatio + my_diapo_simple_iconGapY;
 	int iOffsetY;
 	if (pDock->container.bDirectionUp)
 		iOffsetY = .5 * pDock->iMaxIconHeight * pDock->container.fRatio * (my_diapo_simple_fScaleMax - 1) +  // les icones de la 1ere ligne zooment
@@ -999,8 +999,6 @@ static void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock 
 	
 	double fAlpha = (pDock->fFoldingFactor < .3 ? (.3 - pDock->fFoldingFactor) / .3 : 0.);  // apparition du cadre de 0.3 a 0
 	
-	double fDeltaIconX = 0.;
-	
 	if (my_diapo_simple_draw_background)
 	{
 		//\____________________ On trace le cadre.
@@ -1160,7 +1158,6 @@ static void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock 
 		cairo_restore (pCairoContext);
 		
 //////////////////////////////////////////////////////////////////////////////////////// On affiche le texte !
-		gdouble zoom;
 		if (icon->label.pSurface != NULL && (my_diapo_simple_display_all_labels || icon->bPointed))
 		{
 			double fAlpha = (pDock->fFoldingFactor > .5 ? (1 - pDock->fFoldingFactor) / .5 : 1.);
@@ -1320,7 +1317,6 @@ static CairoDockGLPath *cd_generate_arrow_path (double fFrameWidth, double fTota
 	static CairoDockGLPath *pPath = NULL;
 	int iArrowShift = pData->iArrowShift;
 	int iDeltaIconX = pData->iDeltaIconX;
-	double w = fFrameWidth / 2;
 	double aw = my_diapo_simple_arrowWidth/2;
 	double ah = my_diapo_simple_arrowHeight;
 	/**double xa = my_diapo_simple_arrowShift * (w - aw);  // abscisse de l'extremite de la pointe.
@@ -1459,9 +1455,6 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 	//\____________________ On initialise le cadre.
 	CDSlideData *pData = pDock->pRendererData;
 	g_return_if_fail (pData != NULL);
-	
-	int iNbVertex;
-	GLfloat *pColorTab, *pVertexTab;
 	
 	double fRadius = my_diapo_simple_radius;
 	double fFrameWidth  = pDock->iMaxDockWidth - 2*X_BORDER_SPACE;  // longueur du trait horizontal.

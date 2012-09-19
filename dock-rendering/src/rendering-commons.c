@@ -124,7 +124,6 @@ void cd_rendering_load_flat_separator (CairoContainer *pContainer)
 
 double cd_rendering_interpol (double x, double *fXValues, double *fYValues)
 {
-	double y;
 	int i, i_inf=0, i_sup=RENDERING_INTERPOLATION_NB_PTS-1;
 	do
 	{
@@ -153,7 +152,6 @@ void cd_rendering_draw_flat_separator_opengl (Icon *icon, CairoDock *pDock)
 	double fBigWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi);
 	double fLittleWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi - fHeight);
 	
-	double fDeltaXLeft = fHeight * fLeftInclination;
 	double fDeltaXRight = fHeight * fRightInclination;
 	//g_print ("fBigWidth : %.2f ; fLittleWidth : %.2f\n", fBigWidth, fLittleWidth);
 	
@@ -232,7 +230,6 @@ void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, 
 		fBigWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi);
 		fLittleWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi - fHeight);
 	}
-	double fDeltaXLeft = fHeight * fLeftInclination;
 	double fDeltaXRight = fHeight * fRightInclination;
 	
 	double fDockOffsetX, fDockOffsetY;

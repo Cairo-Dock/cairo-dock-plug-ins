@@ -115,7 +115,6 @@ static void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDoc
 		
 		GList *pFirstDrawnElement = pDock->icons;
 		GList *ic = pFirstDrawnElement;
-		Icon *pFirstIcon = pFirstDrawnElement->data;
 		double fCurrentRadius=0;
 		Icon *icon;
 		do
@@ -202,8 +201,6 @@ static void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDoc
 
 	double fDockMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex)/** * pDock->fMagnitudeMax*/;
 	Icon *icon;
-	int iWidth = pDock->container.iWidth;
-	gboolean bIsHorizontal = pDock->container.bIsHorizontal;
 	GList *ic = pFirstDrawnElement;
 	do
 	{
@@ -313,7 +310,7 @@ static int cd_rendering_calculate_wave_on_each_lines (int x_abs, int iMaxIconHei
 	else if (x_abs > fFlatDockWidth && iWidth > 0)
 		x_abs = fFlatDockWidth+1;
 	
-	float x_cumulated = 0, fXMiddle, fDeltaExtremum;
+	float x_cumulated = 0, fXMiddle;
 	double fPhase, fX, fScale = 0.0;
 	int iNumRow, iPointedRow=-1;
 	for (iNumRow = 0; iNumRow < iNbRows; iNumRow ++)
@@ -390,8 +387,6 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	int iNbIcons = g_list_length (pDock->icons);
 	int iMinRadius = MIN (my_iRainbowNbIconsMin, iNbIcons) * iMaxIconWidth * fMaxScale / fCone;
 	double fRatio = pDock->container.fRatio;
-	double w = pDock->container.iWidth;
-	double h = pDock->container.iHeight;
 	double fRadius, fTheta;
 	cd_debug (" mouse : (%d ; %d)\n", pDock->container.iMouseX, pDock->container.iMouseY);
 	cd_rendering_get_polar_coords (pDock, &fRadius, &fTheta);
@@ -413,12 +408,11 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	cd_rendering_calculate_wave_on_each_lines (x_abs, pDock->iMaxIconHeight, fMagnitude, fFlatDockWidth, fFlatDockWidth, 0*pDock->fAlign, pDock->fFoldingFactor, fRatio, iNbRows, pScales);
 	
 	//\____________________ On en deduit les position/etirements/alpha des icones.
-	Icon* icon, *prev_icon;
+	Icon* icon;
 	GList* ic;
 	
 	GList *pFirstDrawnElement = pDock->icons;
 	ic = pFirstDrawnElement;
-	Icon *pFirstIcon = pFirstDrawnElement->data;
 	
 	int iNbRow = -1, iNbIconsOnRow = 0, iNbInsertedIcons = 0;
 	double fCurrentRadius=0, fNormalRadius=0, fCurrentTheta, fThetaStart=0, fDeltaTheta=0, fCurrentScale=1;
@@ -480,8 +474,6 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 		icon->fWidthFactor = 1.;
 		icon->fHeightFactor = 1.;
 		
-		prev_icon = icon;
-		
 		iNbInsertedIcons ++;
 		
 		ic = cairo_dock_get_next_element (ic, pDock->icons);
@@ -491,7 +483,7 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	//g_print ("fRadius : %.2f ; limite : %.2f\n", fRadius, fCurrentRadius + pDock->iMaxIconHeight * fCurrentScale);
 	if (! pDock->container.bInside ||
 		fRadius > fCurrentRadius + pDock->iMaxIconHeight * fCurrentScale + myIconsParam.iLabelSize - (pDock->fFoldingFactor > 0 ? 20 : 0) ||
-		(fTheta < - G_PI/2 + my_fRainbowConeOffset || fTheta > G_PI/2 - my_fRainbowConeOffset) && fRadius > iMinRadius + .5 * pDock->iMaxIconHeight * fMaxScale)
+		((fTheta < - G_PI/2 + my_fRainbowConeOffset || fTheta > G_PI/2 - my_fRainbowConeOffset) && fRadius > iMinRadius + .5 * pDock->iMaxIconHeight * fMaxScale))
 	{
 		cd_debug ("<<< on sort du demi-disque >>>\n");
 		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
@@ -602,7 +594,6 @@ static void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 		
 		GList *pFirstDrawnElement = pDock->icons;
 		GList *ic = pFirstDrawnElement;
-		Icon *pFirstIcon = pFirstDrawnElement->data;
 		double fCurrentRadius=0;
 		Icon *icon;
 		do
@@ -700,8 +691,6 @@ static void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 
 	double fDockMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex)/** * pDock->fMagnitudeMax*/;
 	Icon *icon;
-	int iWidth = pDock->container.iWidth;
-	gboolean bIsHorizontal = pDock->container.bIsHorizontal;
 	GList *ic = pFirstDrawnElement;
 	do
 	{

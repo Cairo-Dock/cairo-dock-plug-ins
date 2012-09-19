@@ -286,7 +286,7 @@ static void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 	//cd_debug ("> iMaxLabelWidth : %d+%d", pDock->iMaxLabelWidth, my_iParaboleTextGap);
 	pDock->iMaxLabelWidth += my_iParaboleTextGap;
 	
-	double alpha = my_fParaboleCurvature, lambda;
+	//double alpha = my_fParaboleCurvature;
 	double h=0, w=0, h_, w_;
 	if (my_fParaboleRatio > 1)
 	{
@@ -295,7 +295,7 @@ static void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 		{
 			h = h_;
 			w = h / my_fParaboleRatio;
-			lambda = h / pow (w, alpha);
+			//lambda = h / pow (w, alpha);
 			//cd_debug ("-> %.2fx%.2f , %.2f", w, h, lambda);
 			
 			h_ = cd_rendering_interpol (iMaxDockWidth, s_pReferenceParaboleS, s_pReferenceParaboleY);
@@ -305,7 +305,7 @@ static void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 		
 		h = h_;
 		w = w_;
-		lambda = h / pow (w, alpha);
+		//lambda = h / pow (w, alpha);
 		//cd_debug ("=> %.2fx%.2f , %.2f", w, h, lambda);
 	}
 	
@@ -442,7 +442,7 @@ static double cd_rendering_project_cursor_on_curve_x (double x0, double y0, doub
 		return 0;
 	double xM, yM;  // M se balade sur la courbe.
 	double x_inf = 0, x_max = fCurveInv (y0, lambda, alpha), x_sup = x_max;  // bornes de l'intervalle de xM.
-	double nx, ny=1;  // vecteur normal a la courbe.
+	double nx;  // vecteur normal a la courbe.
 	double k;  // parametre de la droite normale a la courbe.
 	double y_;
 	do
@@ -485,7 +485,7 @@ static double cd_rendering_project_cursor_on_curve_y (double x0, double y0, doub
 		y_sup = y0;
 		y_inf = (x0 > 0 ? fCurve (x0, lambda, alpha) : 0);
 	}
-	double nx, ny=1;  // verteur normal a la courbe.
+	double nx;  // verteur normal a la courbe.
 	double k;  // parametre de la droite normale a la courbe.
 	double y_;
 	//cd_debug ("  yM € [%.2f ; %.2f]", y_inf, y_sup);
@@ -607,10 +607,9 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	
 	
 	//\____________________ On en deduit les position/etirements/alpha des icones.
-	Icon* icon, *prev_icon;
+	Icon* icon;
 	GList* ic;
-	double ds, s=0;
-	double x = 0, y = 0, theta = 0;
+	double s = 0;
 	double x_ = 0, y_ = 0, theta_ = G_PI/2 - atan (fCurve_(0, lambda, alpha));
 	if (pDock->fAlign == 1)
 		theta_ = -theta_;
@@ -619,8 +618,8 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 	GList *pFirstDrawnElement = pDock->icons;
 	ic = pFirstDrawnElement;
 	Icon *pFirstIcon = pFirstDrawnElement->data;
-	double fOrientationMax = G_PI/2 - atan (my_fParaboleRatio * my_fParaboleCurvature);
-	double fTopMargin = pDock->iMaxLabelWidth * sin (fOrientationMax);
+	// double fOrientationMax = G_PI/2 - atan (my_fParaboleRatio * my_fParaboleCurvature);
+	// double fTopMargin = pDock->iMaxLabelWidth * sin (fOrientationMax);
 	gboolean bHorizontal = pDock->container.bIsHorizontal;
 	do
 	{
@@ -628,7 +627,6 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 		
 		if (ic != pFirstDrawnElement)  // on ancre la 1ere icone a l'origine.
 		{
-			ds = icon->fX - prev_icon->fX;
 			s = icon->fX - pFirstIcon->fX;
 			//g_print (" %s : %.2f + %.2f (x %.2f)\n", icon->cName, s, ds, icon->fScale);
 			y_ = cd_rendering_interpol (s, s_pReferenceParaboleS, s_pReferenceParaboleY);
@@ -657,11 +655,7 @@ Icon *cd_rendering_calculate_icons_parabole (CairoDock *pDock)
 		icon->fWidthFactor = 1.;
 		icon->fHeightFactor = 1.;
 		
-		x = x_;
-		y = y_;
 		//g_print (" %s : (%.2f ; %.2f)\n", icon->cName, x, y);
-		theta = theta_;
-		prev_icon = icon;
 		
 		ic = cairo_dock_get_next_element (ic, pDock->icons);
 	} while (ic != pFirstDrawnElement);

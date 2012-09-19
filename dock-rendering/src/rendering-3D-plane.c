@@ -38,7 +38,6 @@ extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 
 #define _define_parameters(hi, h0, H, l, r, gamma, h, w, dw)\
 	double hi = /**myIconsParam.fReflectSize*/pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio + myDocksParam.iFrameMargin;\
-	double h0max = (1 + myIconsParam.fAmplitude) * pDock->iMaxIconHeight * pDock->container.fRatio + MAX ((pDock->container.bIsHorizontal || !myIconsParam.bTextAlwaysHorizontal ? myIconsParam.iLabelSize : 0), myDocksParam.iFrameMargin + myDocksParam.iDockLineWidth);\
 	double h0 = pDock->iMaxIconHeight/** * pDock->container.fRatio*/;\
 	double H = iVanishingPointY;\
 	double l = myDocksParam.iDockLineWidth;\
@@ -52,6 +51,7 @@ static void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	//pDock->iMaxDockHeight = (int) ((1 + myIconsParam.fAmplitude) * pDock->iMaxIconHeight + myIconsParam.fReflectSize * pDock->container.fRatio) + myIconsParam.iLabelSize + myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin;
 	
 	_define_parameters (hi, h0, H, l, r, gamma, h, w, dw);
+	double h0max = (1 + myIconsParam.fAmplitude) * pDock->iMaxIconHeight * pDock->container.fRatio + MAX ((pDock->container.bIsHorizontal || !myIconsParam.bTextAlwaysHorizontal ? myIconsParam.iLabelSize : 0), myDocksParam.iFrameMargin + myDocksParam.iDockLineWidth);
 	pDock->iMaxDockHeight = (int) (hi + h0max + l);
 	
 	// 1ere estimation.
@@ -102,8 +102,8 @@ static void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	double fRatio = (pDock->iRefCount == 0 && pDock->iVisibility == CAIRO_DOCK_VISI_RESERVE ? 1. : pDock->container.fRatio);  // prevent the dock from resizing itself and all the maximized windows each time an icon is removed/inserted.
 	pDock->iMinDockHeight = myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + /**myIconsParam.fReflectSize*/pDock->iIconSize * myIconsParam.fReflectHeightRatio * fRatio + pDock->iMaxIconHeight * fRatio;
 	
-	double gamma_min = pDock->fFlatDockWidth / 2 / H;
-	double dw_min = h * gamma_min + r + (l+(r==0)*2)*sqrt(1+gamma_min*gamma_min);
+	//double gamma_min = pDock->fFlatDockWidth / 2 / H;
+	//double dw_min = h * gamma_min + r + (l+(r==0)*2)*sqrt(1+gamma_min*gamma_min);
 	//cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclination, myDocksParam.iDockRadius, myDocksParam.iDockLineWidth);
 	
 	// on charge les separateurs plat.
@@ -205,9 +205,9 @@ static void cd_rendering_draw_3D_separator_edge (Icon *icon, cairo_t *pCairoCont
 	double fLeftInclination = (icon->fDrawX - pDock->container.iWidth / 2) / iVanishingPointY;
 	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / iVanishingPointY;
 	
-	double fHeight, fBigWidth, fLittleWidth;
+	double fHeight, fLittleWidth;
 	fHeight = (bBackGround ? pDock->iDecorationsHeight - hi - 0.5*myDocksParam.iDockLineWidth : hi + 1.5*myDocksParam.iDockLineWidth);
-	fBigWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY : iVanishingPointY + fHeight);
+	//fBigWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY : iVanishingPointY + fHeight);
 	fLittleWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY - fHeight : iVanishingPointY);
 	
 	double fDeltaXLeft = fHeight * fLeftInclination;
@@ -432,24 +432,25 @@ static gboolean _cd_separator_is_impacted (Icon *icon, CairoDock *pDock, double 
 	double fLeftInclination = fabs (icon->fDrawX - pDock->container.iWidth / 2) / iVanishingPointY;
 	double fRightInclination = fabs (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / iVanishingPointY;
 	
-	double fHeight, fBigWidth, fLittleWidth;
+	double fHeight;
 	if (bIncludeEdges)
 	{
 		fHeight = (bBackGround ? pDock->iDecorationsHeight - hi : hi) + (bIncludeEdges ? myDocksParam.iDockLineWidth : 0);
-		fBigWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY : iVanishingPointY + fHeight);
-		fLittleWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY - fHeight : iVanishingPointY);
+		//fBigWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY : iVanishingPointY + fHeight);
+		//fLittleWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY - fHeight : iVanishingPointY);
 	}
 	else
 	{
 		fHeight = pDock->iDecorationsHeight;
-		fBigWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + fHeight);
-		fLittleWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY - fHeight);
+		//fBigWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + fHeight);
+		//fLittleWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY - fHeight);
 	}
-	double fDeltaXLeft = fHeight * fLeftInclination;
-	double fDeltaXRight = fHeight * fRightInclination;
-	double fDeltaX = MAX (fDeltaXLeft, fDeltaXRight);
+	//double fDeltaXLeft = fHeight * fLeftInclination;
+	//double fDeltaXRight = fHeight * fRightInclination;
+	//double fDeltaX = MAX (fDeltaXLeft, fDeltaXRight);
 	//g_print ("fBigWidth : %.2f ; fLittleWidth : %.2f\n", fBigWidth, fLittleWidth);
-	
+
+	/*
 	int sens;
 	double fDockOffsetX, fDockOffsetY;
 	if (pDock->container.bDirectionUp)
@@ -473,6 +474,7 @@ static gboolean _cd_separator_is_impacted (Icon *icon, CairoDock *pDock, double 
 			fDockOffsetX = icon->fDrawX - (bBackGround ? fHeight * fLeftInclination : 0);
 		else
 			fDockOffsetX = icon->fDrawX - (fHeight - hi) * fLeftInclination;
+	*/
 	double fXLeft, fXRight;
 	if (icon->fDrawX + icon->fWidth * icon->fScale / 2 > pDock->container.iWidth / 2)  // on est a droite.
 	{
@@ -525,7 +527,6 @@ static void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, Cair
 	//g_print ("%s ((%d;%d) x (%d;%d) / (%dx%d))\n", __func__, pArea->x, pArea->y, pArea->width, pArea->height, pDock->container.iWidth, pDock->container.iHeight);
 	double fLineWidth = myDocksParam.iDockLineWidth;
 	double fMargin = myDocksParam.iFrameMargin;
-	int iWidth = pDock->container.iWidth;
 	int iHeight = pDock->container.iHeight;
 	
 	//\____________________ On dessine les decorations du fond sur la portion de fenetre.

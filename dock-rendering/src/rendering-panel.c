@@ -321,7 +321,6 @@ static void cd_render_optimized (cairo_t *pCairoContext, CairoDock *pDock, GdkRe
 	//g_print ("%s ((%d;%d) x (%d;%d) / (%dx%d))\n", __func__, pArea->x, pArea->y, pArea->width, pArea->height, pDock->container.iWidth, pDock->container.iHeight);
 	double fLineWidth = myDocksParam.iDockLineWidth;
 	double fMargin = myDocksParam.iFrameMargin;
-	int iWidth = pDock->container.iWidth;
 	int iHeight = pDock->container.iHeight;
 
 	//\____________________ On dessine les decorations du fond sur la portion de fenetre.
@@ -404,7 +403,6 @@ static void cd_render_optimized (cairo_t *pCairoContext, CairoDock *pDock, GdkRe
 	{
 		double fXMin = (pDock->container.bIsHorizontal ? pArea->x : pArea->y), fXMax = (pDock->container.bIsHorizontal ? pArea->x + pArea->width : pArea->y + pArea->height);
 		double fDockMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex);
-		double fRatio = pDock->container.fRatio;
 		double fXLeft, fXRight;
 		
 		//g_print ("redraw [%d -> %d]\n", (int) fXMin, (int) fXMax);
