@@ -18,6 +18,7 @@
 */
 
 #include "indicator-applet3-utils.h"
+#include "indicator-applet3.h"
 
 static const gchar * _get_name_from_icon_name (GtkImage *pImage)
 {
@@ -112,28 +113,30 @@ gboolean cd_indicator3_update_image (GtkImage *pImage, gchar **cName, CairoDockM
 
 void cd_indicator3_notify_image (GtkImage *pImage, GCallback pCallBack, gpointer data)
 {
+	gboolean bResult = FALSE;
 	GtkImageType iType = gtk_image_get_storage_type (pImage);
 	cd_debug ("Icon notify: type %d", iType);
 	switch (iType)
 	{
 		case GTK_IMAGE_ICON_NAME:
 			g_signal_connect (G_OBJECT (pImage), "notify::icon-name", pCallBack, data);
+			g_signal_emit_by_name (G_OBJECT (pImage), "notify::icon-name", NULL, &bResult);
 		break;
 		case GTK_IMAGE_GICON:
 			g_signal_connect (G_OBJECT (pImage), "notify::gicon", pCallBack, data);
+			g_signal_emit_by_name (G_OBJECT (pImage), "notify::gicon", NULL, &bResult);
 		break;
 		case GTK_IMAGE_PIXBUF:
 			g_signal_connect (G_OBJECT (pImage), "notify::pixbuf", pCallBack, data);
+			g_signal_emit_by_name (G_OBJECT (pImage), "notify::pixbuf", NULL, &bResult);
 		break;
 		case GTK_IMAGE_STOCK:
 			g_signal_connect (G_OBJECT (pImage), "notify::stock", pCallBack, data);
+			g_signal_emit_by_name (G_OBJECT (pImage), "notify::stock", NULL, &bResult);
 		break;
 		case GTK_IMAGE_EMPTY:
-			cd_debug ("No image (type is empty)... Connect to all signals");
-			g_signal_connect (G_OBJECT (pImage), "notify::icon-name", pCallBack, data);
-			g_signal_connect (G_OBJECT (pImage), "notify::gicon", pCallBack, data);
-			g_signal_connect (G_OBJECT (pImage), "notify::pixbuf", pCallBack, data);
-			g_signal_connect (G_OBJECT (pImage), "notify::stock", pCallBack, data);
+			cd_debug ("No image (type is empty)...");
+			// we will be notified later
 		break;
 		case GTK_IMAGE_ANIMATION:
 		case GTK_IMAGE_ICON_SET:
@@ -141,4 +144,71 @@ void cd_indicator3_notify_image (GtkImage *pImage, GCallback pCallBack, gpointer
 			cd_warning ("This icon type (%d) is not (yet) supported", iType);
 		break;
 	}
+}
+
+void cd_indicator3_accessible_desc_update (IndicatorObjectEntry *pEntry, const gchar *defaultTitle, gpointer data)
+{
+	const gchar *cDesc = cd_indicator3_get_accessible_desc (pEntry);
+	cd_debug ("Get Accessible description: %s", cDesc);
+	CairoDockModuleInstance *myApplet = data;
+	if (cDesc != NULL && *cDesc != '\0')
+		CD_APPLET_SET_NAME_FOR_MY_ICON (cDesc);
+	else if (defaultTitle != NULL && *defaultTitle != '\0')
+		CD_APPLET_SET_NAME_FOR_MY_ICON (defaultTitle);
+	else
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myApplet->pModule->pVisitCard->cTitle);
+}
+
+
+static void _show (G_GNUC_UNUSED GtkWidget *pWidget, gpointer data)
+{
+	CairoDockModuleInstance *myApplet = data;
+
+	if (myDock)
+	{
+		cd_debug ("Re-insert the icon");
+		cairo_dock_insert_icon_in_dock (myIcon, myDock, ! CAIRO_DOCK_ANIMATE_ICON);
+		///cairo_dock_redraw_container (CAIRO_CONTAINER (myDock)); // dock refresh forced
+	}
+	else
+		cd_debug ("It's not possible to re-insert the icon (%p)", myApplet);
+}
+
+static void _hide (G_GNUC_UNUSED GtkWidget *pWidget, gpointer data)
+{
+	CairoDockModuleInstance *myApplet = data;
+
+	if (myDock)
+	{
+		cd_debug ("Detach the icon");
+		cairo_dock_detach_icon_from_dock (myIcon, myDock);
+	}
+	else
+		cd_debug ("It's not possible to detach the icon (%p)", myApplet);
+}
+
+void cd_indicator3_notify_visibility (GtkImage *pImage, GCallback pCallBack, gpointer data)
+{
+	CairoDockModuleInstance *myApplet = data;
+
+	g_signal_connect (G_OBJECT (pImage), "show", G_CALLBACK (_show), myApplet);
+	g_signal_connect (G_OBJECT (pImage), "hide", G_CALLBACK (_hide), myApplet);
+}
+
+void cd_indicator3_check_visibility (GtkImage *pImage, CairoDockModuleInstance *myApplet)
+{
+	if (! gtk_widget_get_visible (GTK_WIDGET (pImage)))
+		_hide (NULL, myApplet);
+	else
+		_show (NULL, myApplet);
+		// _image_update (G_OBJECT (pImage), NULL, myApplet);
+		// cd_printers_accessible_desc_update (pIndicator, pEntry, data);
+}
+
+void cd_indicator3_disconnect_visibility (GtkImage *pImage, CairoDockModuleInstance *myApplet)
+{
+	g_signal_handlers_disconnect_by_func (G_OBJECT (pImage), G_CALLBACK (_show), myApplet);
+	g_signal_handlers_disconnect_by_func (G_OBJECT (pImage), G_CALLBACK (_hide), myApplet);
+
+	_hide (NULL, myApplet);
 }

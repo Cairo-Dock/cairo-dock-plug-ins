@@ -39,4 +39,24 @@ gboolean cd_indicator3_update_image (GtkImage *pImage,
  */
 void cd_indicator3_notify_image (GtkImage *pImage, GCallback pCallBack, gpointer data);
 
+/**
+ * Update the title of the icon with the description, defaultTitle or the name of the applet
+ */
+void cd_indicator3_accessible_desc_update (IndicatorObjectEntry *pEntry, const gchar *defaultTitle, gpointer data);
+
+/**
+ * Connect to the show/hide signal in order to show or hide the icon.
+ */
+void cd_indicator3_notify_visibility (GtkImage *pImage, GCallback pCallBack, gpointer data);
+
+/**
+ * Disconnect to the show/hide signal
+ */
+void cd_indicator3_disconnect_visibility (GtkImage *pImage, CairoDockModuleInstance *myApplet);
+
+/**
+ * Check the visibility of a widget and then show/hide the icon
+ */
+void cd_indicator3_check_visibility (GtkImage *pImage, CairoDockModuleInstance *myApplet);
+
 #endif /* __CD_INDICATOR_APPLET3_UTILS__ */
