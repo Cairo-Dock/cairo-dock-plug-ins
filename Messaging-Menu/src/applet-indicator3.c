@@ -23,7 +23,7 @@
 
 void _check_demanding_attention (const gchar *cName, const gchar *cAnimationName)
 {
-	if (g_str_has_prefix (cName, "indicator-messages-new"))
+	if (g_str_has_suffix (cName, "-new"))
 		CD_APPLET_DEMANDS_ATTENTION (cAnimationName, 60);
 	else
 		CD_APPLET_STOP_DEMANDING_ATTENTION;
