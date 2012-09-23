@@ -236,6 +236,6 @@ CD_APPLET_RESET_DATA_BEGIN
 		glDeleteTextures (1, &my_iFlatSeparatorTexture);
 		my_iFlatSeparatorTexture = 0;
 	}
-	my_iDrawSeparator3D = 0;
+	my_iDrawSeparator3D = CAIRO_DOCK_NORMAL_SEPARATOR;
 CD_APPLET_RESET_DATA_END
 
