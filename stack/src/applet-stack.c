@@ -130,7 +130,7 @@ static void _get_html_page (CDHtmlLink *pHtmlLink)
 			pHtmlLink->cTitle = g_strndup (str, str2 - str);
 			// remove carriage returns.
 			gchar *str = pHtmlLink->cTitle;
-			while (str = strchr (str, '\n'))
+			while ((str = strchr (str, '\n')))
 			{
 				*str = ' ';  // replace the carriage returns with a space.
 				str ++;  // begining of the new line.
@@ -355,7 +355,7 @@ static Icon *_cd_stack_create_new_item (CairoDockModuleInstance *myApplet, const
 		}
 		else
 		{
-			gchar *cFileName = (*cContent == '/' ? g_strdup (cContent) : g_uri_unescape_string (cContent, NULL));
+			gchar *cFileName = (*cContent == '/' ? g_strdup (cContent) : g_uri_unescape_string (cContent, NULL));  // compared to g_filename_from_uri, g_uri_unescape_string will just unescape the string, without trying to check the URI; this way, something like trash://xyz will work (the "trash:/" is kept, which doesn't disturb g_path_get_basename)
 			cName = g_path_get_basename (cFileName);
 			g_free (cFileName);
 		}

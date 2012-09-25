@@ -108,11 +108,11 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 				continue;
 			//g_print ("  %s:\n    %s, %s\n", cEventURI, zeitgeist_subject_get_interpretation (subject), zeitgeist_subject_get_manifestation (subject));
 			
-			//\_____________ prevent removed files
+			//\_____________ ignore files that have been deleted
 			cPath = g_filename_from_uri (cEventURI, NULL, NULL);  // NULL for anything else than file://*
 			if (strncmp (cEventURI, "file://", 7) == 0 && ! g_file_test (cPath, G_FILE_TEST_EXISTS))
 			{
-				g_hash_table_insert (pHashTable, (gchar*)cEventURI, NULL); // we add it to prevent useless g_file_test
+				g_hash_table_insert (pHashTable, (gchar*)cEventURI, NULL);  // since we've checked it, insert it, even if we don't display it.
 				g_free (cPath);
 				continue;
 			}
@@ -130,7 +130,7 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 			{
 				gchar *cClass = cairo_dock_register_class (cEventURI+14);
 				cIconName = g_strdup (cairo_dock_get_class_icon (cClass));
-				cText = cairo_dock_get_class_name (cClass); // get the translated name
+				cText = cairo_dock_get_class_name (cClass);  // use the translated name
 				g_free (cClass);
 			}
 			else

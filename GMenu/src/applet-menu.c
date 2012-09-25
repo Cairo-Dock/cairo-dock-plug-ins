@@ -686,7 +686,7 @@ GtkWidget * create_main_menu (CairoDockModuleInstance *myApplet)
 		GDir *dir = g_dir_open (XDG_MENUS_PATH, 0, NULL);
 		if (dir)
 		{
-			while (cFileName = g_dir_read_name (dir))
+			while ((cFileName = g_dir_read_name (dir)))
 			{
 				if (g_str_has_suffix (cFileName, "-applications.menu"))
 				{

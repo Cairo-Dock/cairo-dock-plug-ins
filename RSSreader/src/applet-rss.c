@@ -478,7 +478,7 @@ static gboolean _update_from_feeds (CDSharedMemory *pSharedMemory)
 	}
 	
 	xmlNodePtr rss = xmlDocGetRootElement (doc);
-	if (rss == NULL || (xmlStrcmp (rss->name, (const xmlChar *) "rss") != 0 && xmlStrcmp (rss->name, (const xmlChar *) "feed") != 0) && xmlStrcmp (rss->name, (const xmlChar *) "RDF") != 0)
+	if (rss == NULL || (xmlStrcmp (rss->name, (const xmlChar *) "rss") != 0 && xmlStrcmp (rss->name, (const xmlChar *) "feed") != 0 && xmlStrcmp (rss->name, (const xmlChar *) "RDF") != 0))
 	{
 		cd_warning ("RSSresader : got invalid XML data");
 		///xmlCleanupParser ();

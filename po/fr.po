@@ -8173,7 +8173,7 @@ msgstr "Charge"
 
 #: ../powermanager/data/messages:151
 msgid "Timelength"
-msgstr "Longueur du temps."
+msgstr "Durée"
 
 #: ../powermanager/data/messages:153
 msgid "Emblem icon's filename when on charge:"

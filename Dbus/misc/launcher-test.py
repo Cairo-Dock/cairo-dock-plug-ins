@@ -5,7 +5,7 @@ from gi.repository import Unity, Gio, GObject, Dbusmenu
 
 loop = GObject.MainLoop()
 
-# Pretend to be evolution for the sake of the example
+# Pretend to be Firefox for the sake of the example
 
 launcher = Unity.LauncherEntry.get_for_desktop_id ("firefox.desktop")
 

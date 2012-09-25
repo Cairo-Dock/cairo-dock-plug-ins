@@ -349,11 +349,14 @@ gchar *cd_satus_notifier_search_item_icon_s_path (CDStatusNotifierItem *pItem, g
 	if (cIconPath == NULL)
 	{
 		cIconPath = cairo_dock_search_icon_s_path (cImageName, iSize);
+		if (cIconPath == NULL)  // in case we have a buggy app, try some heuristic
+		{
+			cIconPath = cairo_dock_search_icon_s_path (pItem->cId, iSize);
+			if (cIconPath == NULL)
+				cIconPath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+		}
 	}
-
-	if (cIconPath == NULL)
-		cIconPath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
-
+	
 	return cIconPath;
 }
 

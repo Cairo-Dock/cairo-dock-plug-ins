@@ -105,19 +105,19 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		if (myConfig.iContainerType != myData.iContainerType)
 		{
-			if ((myConfig.iContainerType & CD_SHOW_MOUSE_ON_DOCK) & ! (myData.iContainerType & CD_SHOW_MOUSE_ON_DOCK))
+			if ((myConfig.iContainerType & CD_SHOW_MOUSE_ON_DOCK) && ! (myData.iContainerType & CD_SHOW_MOUSE_ON_DOCK))
 			{
 				_cd_mouse_register_on_dock ();
 			}
-			if (! (myConfig.iContainerType & CD_SHOW_MOUSE_ON_DOCK) & (myData.iContainerType & CD_SHOW_MOUSE_ON_DOCK))
+			if (! (myConfig.iContainerType & CD_SHOW_MOUSE_ON_DOCK) && (myData.iContainerType & CD_SHOW_MOUSE_ON_DOCK))
 			{
 				_cd_mouse_unregister_from_dock ();
 			}
-			if ((myConfig.iContainerType & CD_SHOW_MOUSE_ON_DESKLET) & ! (myData.iContainerType & CD_SHOW_MOUSE_ON_DESKLET))
+			if ((myConfig.iContainerType & CD_SHOW_MOUSE_ON_DESKLET) && ! (myData.iContainerType & CD_SHOW_MOUSE_ON_DESKLET))
 			{
 				_cd_mouse_register_on_desklet ();
 			}
-			if (! (myConfig.iContainerType & CD_SHOW_MOUSE_ON_DESKLET) & (myData.iContainerType & CD_SHOW_MOUSE_ON_DESKLET))
+			if (! (myConfig.iContainerType & CD_SHOW_MOUSE_ON_DESKLET) && (myData.iContainerType & CD_SHOW_MOUSE_ON_DESKLET))
 			{
 				_cd_mouse_unregister_from_desklet ();
 			}

@@ -39,9 +39,10 @@ static GtkRecentManager *s_pRecentMgr = NULL;
 static gboolean init (void)
 {
 	s_pRecentMgr = gtk_recent_manager_get_default ();
+	return TRUE;
 }
 
-static gboolean stop (void)
+static void stop (void)
 {
 	s_pRecentMgr = NULL;  // pas de "unref" a faire.
 }

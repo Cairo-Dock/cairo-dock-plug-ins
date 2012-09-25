@@ -41,9 +41,14 @@ locked = false
 size = 96;96
 
 #i[-2048;2048] Desklet position (x, y):
+#{Depending on your WindowManager, you may be able to move this with ALT + left-click.}
 x position=10
 #i[-2048;2048] ...
 y position=10
+
+#I[-180;180] Rotation:
+#{You can quickly rotate the desklet with the mouse, by dragging the little buttons on its left and top sides.}
+rotation = 0
 
 #X[Visibility]
 frame_visi =
@@ -54,8 +59,6 @@ initially detached=false
 accessibility=0
 #b Should be visible on all desktops?
 sticky=true
-
-
 
 
 #F[Decorations;gtk-orientation-portrait]

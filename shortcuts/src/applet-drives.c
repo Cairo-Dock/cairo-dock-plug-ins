@@ -33,7 +33,6 @@
 
 void cd_shortcuts_add_progress_bar (Icon *pIcon, CairoDockModuleInstance *myApplet)
 {
-	g_print ("%s (%s)\n", __func__, pIcon->cName);
 	// set a progress bar to display the disk space
 	CairoProgressBarAttribute attr;
 	memset (&attr, 0, sizeof (CairoProgressBarAttribute));

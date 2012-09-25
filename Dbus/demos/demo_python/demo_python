@@ -34,9 +34,9 @@
 ####################
 ### dependancies ###
 ####################
+from __future__ import print_function  # must be on the first line
 import random
 from CDApplet import CDApplet
-from __future__ import print_function
 
 ####################
 ### Applet class ###

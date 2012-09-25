@@ -316,6 +316,7 @@ gboolean cd_do_update_listing_notification (gpointer pUserData, CDListing *pList
 		
 	}
 	cairo_dock_redraw_container (CAIRO_CONTAINER (pListing));
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pListing, cairo_t *pCairoContext)
@@ -558,6 +559,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 	
 	pango_font_description_free (pDesc);
 	g_object_unref (pLayout);
+	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
 
