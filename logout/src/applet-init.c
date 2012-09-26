@@ -98,8 +98,9 @@ CD_APPLET_STOP_BEGIN
 	
 	cd_keybinder_unbind (myData.pKeyBinding);
 	cd_keybinder_unbind (myData.pKeyBinding2);
-	
-	CD_APPLET_MANAGE_APPLICATION (NULL);  // on relache le controle de l'icone de la fenetre.
+
+	gchar *cNull = NULL;
+	CD_APPLET_MANAGE_APPLICATION (cNull);  // on relache le controle de l'icone de la fenetre.
 	
 	cairo_dock_discard_task (myData.pTask);
 	

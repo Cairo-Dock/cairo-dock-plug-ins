@@ -42,7 +42,6 @@ static gboolean init (Icon *pIcon, CairoDock *pDock, double dt, CDIconEffectData
 	pParticleSystem->bAddLuminance = TRUE;
 	
 	static double a = .4;
-	static double epsilon = 0.1;
 	double r = myConfig.iStarParticleSize;
 	double fBlend;
 	CairoParticle *p;

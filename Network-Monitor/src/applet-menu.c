@@ -86,7 +86,7 @@ static GList *cd_NetworkMonitor_get_connections_for_access_point (const gchar *c
 		if (v && G_VALUE_HOLDS_BOXED (v))
 		{
 			GByteArray *a = g_value_get_boxed (v);
-			cAPSsid = g_strndup (a->data, a->len);
+			cAPSsid = g_strndup ((gchar *) a->data, a->len);
 			cd_debug (" ssid : %s\n", cSsid);
 		}
 		if (cSsid == NULL || (cAPSsid != NULL && strcmp (cAPSsid, cSsid) != 0))  // le SSID est necessaire.
@@ -115,6 +115,7 @@ static GList *cd_NetworkMonitor_get_connections_for_access_point (const gchar *c
 	return pConnList;
 }
 
+/* Not used
 static GList *cd_NetworkMonitor_get_connections_for_wired_device (const gchar *cDevice, const gchar *cHwAddress, GPtrArray *paConnections)
 {
 	GList *pConnList = NULL;
@@ -130,7 +131,7 @@ static GList *cd_NetworkMonitor_get_connections_for_wired_device (const gchar *c
 	
 	return pConnList;
 }
-
+*/
 
 static void _on_select_access_point (GtkMenuItem *menu_item, CDMenuItemData *pItemData)
 {
@@ -281,7 +282,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 	gchar *cDevice;
 	DBusGProxy *dbus_proxy_Device_prop;
 	guint iDeviceType;
-	DBusGProxy *dbus_proxy_WirelessDevice, *dbus_proxy_WiredDevice;
+	DBusGProxy *dbus_proxy_WirelessDevice;
 	DBusGProxy *dbus_proxy_AccessPoint_prop;
 	gchar *cAccessPointPath;
 	GHashTable *hProperties;
@@ -289,9 +290,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 	gint iPercent;
 	gchar *cSsid = NULL;
 	const gchar *cHwAddress;
-	int iMode, iWirelessCapabilities;
 	CDMenuItemData *pItemData;
-	GtkWidget *pHBox;
 	uint i, j;
 	for (i = 0; i < paDevices->len; i++)
 	{
@@ -320,12 +319,11 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 			// On recupere ses proprietes.
 			hProperties = cairo_dock_dbus_get_all_properties (dbus_proxy_Device_prop, "org.freedesktop.NetworkManager.Device.Wireless");
 			
-			const gchar *cAccessPointHwAdress = NULL;
-			v = (GValue *)g_hash_table_lookup (hProperties, "HwAddress");
+			/*v = (GValue *)g_hash_table_lookup (hProperties, "HwAddress");
 			if (v && G_VALUE_HOLDS_STRING (v))
 			{
 				cAccessPointHwAdress = g_value_get_string (v);
-			}
+			}*/
 			
 			int iMode = 0;
 			v = (GValue *)g_hash_table_lookup (hProperties, "Mode");
@@ -399,7 +397,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 				if (v != NULL && G_VALUE_HOLDS_BOXED (v))
 				{
 					GByteArray *a = g_value_get_boxed (v);
-					cSsid = g_strndup (a->data, a->len);
+					cSsid = g_strndup ((gchar *) a->data, a->len);
 				}
 				
 				// on empeche les doublons.

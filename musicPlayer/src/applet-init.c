@@ -171,7 +171,8 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_free_task (myData.pCoverTask);
 	
 	// on libere la classe.
-	CD_APPLET_MANAGE_APPLICATION (NULL);
+	gchar *cNull = NULL;
+	CD_APPLET_MANAGE_APPLICATION (cNull);
 CD_APPLET_STOP_END
 
 
@@ -246,7 +247,8 @@ CD_APPLET_RELOAD_BEGIN
 		// on stoppe l'ancien backend et on relance le nouveau.
 		cd_musicplayer_stop_current_handler (TRUE);  // libere tout ce qu'occupe notre ancien handler.
 
-		CD_APPLET_MANAGE_APPLICATION (NULL);
+		gchar *cNull = NULL;
+		CD_APPLET_MANAGE_APPLICATION (cNull);
 		
 		cd_musicplayer_set_current_handler (myConfig.cMusicPlayer);
 	}

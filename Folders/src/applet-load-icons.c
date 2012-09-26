@@ -122,7 +122,7 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 			cd_debug (" %s will be removed", pConcernedIcon->cName);
 			
 			// on l'enleve du container.
-			gboolean bInContainer = CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pConcernedIcon);  // detruit l'icone.
+			CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pConcernedIcon);  // detruit l'icone.
 		}
 		break ;
 		
@@ -211,13 +211,15 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 				cd_debug ("  order changed : %.2f -> %.2f", fCurrentOrder, pConcernedIcon->fOrder);
 				
 				// on la detache.
-				gboolean bInContainer = CD_APPLET_DETACH_ICON_FROM_MY_ICONS_LIST (pConcernedIcon);
+				CD_APPLET_DETACH_ICON_FROM_MY_ICONS_LIST (pConcernedIcon);
 				pIconsList = CD_APPLET_MY_ICONS_LIST;
 				
 				CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pConcernedIcon);
 			}
 			cairo_dock_free_icon (pNewIcon);
 		}
+		break ;
+		case CAIRO_DOCK_NB_EVENT_ON_FILES :
 		break ;
 	}
 	g_free (cURI);

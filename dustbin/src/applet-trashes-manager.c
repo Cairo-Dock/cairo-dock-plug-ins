@@ -89,7 +89,6 @@ static void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gch
 {
 	g_return_if_fail (cURI != NULL);
 	//g_print ("%s (%s, %d)\n", __func__, cURI, myData.iMeasure);
-	gchar *cQuickInfo = NULL;
 	switch (iEventType)
 	{
 		case CAIRO_DOCK_FILE_DELETED :

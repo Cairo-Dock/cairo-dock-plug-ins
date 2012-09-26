@@ -47,7 +47,6 @@ static gboolean init (Icon *pIcon, CairoDock *pDock, double dt, CDIconEffectData
 	if (myConfig.bRotateEffects && ! pDock->container.bDirectionUp && pDock->container.bIsHorizontal)
 		pParticleSystem->bDirectionUp = FALSE;
 	
-	static double epsilon = 0.1;
 	double r = myConfig.iStormParticleSize;
 	double vmax = 1. / myConfig.iStormDuration * 2;
 	double fBlend;
@@ -89,7 +88,6 @@ static gboolean init (Icon *pIcon, CairoDock *pDock, double dt, CDIconEffectData
 static gboolean _update_storm_system (CairoParticleSystem *pParticleSystem, CairoDockRewindParticleFunc pRewindParticle)
 {
 	gboolean bAllParticlesEnded = TRUE;
-	double x;
 	CairoParticle *p;
 	int i;
 	for (i = 0; i < pParticleSystem->iNbParticles; i ++)

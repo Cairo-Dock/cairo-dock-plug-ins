@@ -64,8 +64,6 @@ static inline int _get_time_from_string (const gchar *cTime)  // mm:ss
 }
 static void cd_exaile_getSongInfos(void)
 {
-	gint uValue;	
-	
 	gchar *cQuery = cairo_dock_dbus_get_string (myData.dbus_proxy_player, "query");
 	cd_debug ("MP : query : %s\n", cQuery);  // status: playing self: Jiken artist: Yoshihisa Hirano, Hideki Taniuchi album: Death Note Original Soundtrack length: 2:49 position: %4 [0:07]
 	if (cQuery == NULL)

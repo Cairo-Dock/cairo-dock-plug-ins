@@ -191,7 +191,6 @@ void main_menu_append (GtkWidget *main_menu,
 {
 	//g_print ("%s ()\n", __func__);	
 	CairoDockModuleInstance *myApplet;
-	GtkWidget   *item;
 
 	myApplet = (CairoDockModuleInstance *) data;
 

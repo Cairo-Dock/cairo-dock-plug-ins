@@ -91,6 +91,8 @@ gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThe
 		g_return_val_if_fail (cThemePath && *cThemePath == '/', FALSE);
 		gchar *cCommand = g_strdup_printf ("rm -rf '%s'", cThemePath);
 		int r = system (cCommand);
+		if (r < 0)
+			cd_warning ("Not able to launch this command: %s", cCommand);
 		g_free (cCommand);
 		
 		// on recupere le theme distant.

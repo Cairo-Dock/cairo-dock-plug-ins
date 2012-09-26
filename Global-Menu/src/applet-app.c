@@ -234,6 +234,8 @@ void cd_app_disconnect_from_registrar (void)
 	if (myData.bOwnRegistrar)
 	{
 		int r = system ("pkill appmenu-registr");  // 15 chars limit; 'pkill -f' doesn't work :-/ this is not very clean, we should get the PID when we spawn it, and use it.
+		if (r < 0)
+			cd_warning ("Not able to launch this command: pkill");
 		myData.bOwnRegistrar = FALSE;
 	}
 }

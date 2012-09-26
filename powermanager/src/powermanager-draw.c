@@ -350,7 +350,7 @@ gboolean cd_powermanager_alert (MyAppletCharge alert)
 
 void cd_powermanager_format_value (CairoDataRenderer *pRenderer, int iNumValue, gchar *cFormatBuffer, int iBufferLength, CairoDockModuleInstance *myApplet)
 {
-	double fValue = cairo_data_renderer_get_normalized_current_value_with_latency (pRenderer, iNumValue);
+	// double fValue = cairo_data_renderer_get_normalized_current_value_with_latency (pRenderer, iNumValue);
 	if(myConfig.quickInfoType == POWER_MANAGER_TIME)
 	{
 		if (myData.iTime != 0)

@@ -42,7 +42,6 @@ static const long s_fft_max[] = { 12317168L, 7693595L, 5863615L, 4082974L, 58360
 #endif
 
 static uint32_t source_index = 0;
-static int context_ready = 0;
 static int16_t buffer[ CHUNK / 2 ], snapshot[ CHUNK / 2 ];
 static size_t buffer_index = 0;
 

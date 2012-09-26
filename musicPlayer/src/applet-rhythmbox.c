@@ -61,7 +61,6 @@ static void cd_rhythmbox_getSongInfos (gboolean bGetAll)
 {
 	GHashTable *data_list = NULL;
 	GValue *value;
-	const gchar *data;
 		
 	if(dbus_g_proxy_call (myData.dbus_proxy_shell, "getSongProperties", NULL,
 		G_TYPE_STRING, myData.cPlayingUri,
@@ -319,7 +318,7 @@ static void cd_rhythmbox_start (void)
 		G_TYPE_VALUE,
 		G_TYPE_VALUE,
 		G_TYPE_INVALID);
-	/*dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "playingSongPropertyChanged",
+	dbus_g_proxy_connect_signal(myData.dbus_proxy_player, "playingSongPropertyChanged",
 		G_CALLBACK(onSongPropertyChanged), NULL, NULL);*/
 	
 	// get the current state.

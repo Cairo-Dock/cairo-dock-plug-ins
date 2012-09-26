@@ -72,8 +72,6 @@ static inline void _launch_one_firework (CDFirework *pFirework, CairoDock *pDock
 		//memcpy (fColor, myConfig.pFireworkColor, 3 * sizeof (gdouble));
 	}
 	
-	double angle, v_disp, a_disp;
-	int n = 10;
 	CairoParticleSystem *pParticleSystem = pFirework->pParticleSystem;
 	CairoParticle *p;
 	int j;
@@ -125,7 +123,7 @@ static gboolean init (Icon *pIcon, CairoDock *pDock, double dt, CDIconEffectData
 	pData->iNbFireworks = myConfig.iNbFireworks;
 	
 	CDFirework *pFirework;
-	int i, j;
+	int i;
 	for (i = 0; i < pData->iNbFireworks; i ++)
 	{
 		pFirework = &pData->pFireworks[i];

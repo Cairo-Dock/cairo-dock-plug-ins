@@ -90,7 +90,7 @@ gboolean cd_NetworkMonitor_get_device (void)
 	
 	//\_____________ On choisit celui defini en conf, ou un par defaut (wifi de preference).
 	cd_debug ("%d devices\n", paDevices->len);
-	DBusGProxy *dbus_proxy_Device, *dbus_proxy_Device_prop;
+	DBusGProxy *dbus_proxy_Device_prop;
 	gchar *cDevice;
 	uint i;
 	for (i = 0; i < paDevices->len; i++)
@@ -254,13 +254,9 @@ gboolean cd_NetworkMonitor_get_active_connection_info (void)
 	
 	DBusGProxy *dbus_proxy_ActiveConnection_prop = NULL;
 	DBusGProxy *dbus_proxy_Device_prop = NULL;
-	DBusGProxy *dbus_proxy_ActiveAccessPoint_prop = NULL;
-	GError *erreur = NULL;
 	
 	uint j,k;
-	GValue value = G_VALUE_INIT;
 	GPtrArray *paActiveConnections = NULL;
-	GPtrArray *paDevices = NULL;
 	gchar *cActiveConnection, *cDevice, *cAccessPointPath, *cConnection;
 	const gchar *cServiceName;
 	

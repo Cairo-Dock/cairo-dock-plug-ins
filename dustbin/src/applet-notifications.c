@@ -101,9 +101,6 @@ static gboolean _display_result (CDSharedMemory *pSharedMemory)
 }
 static void _cd_dustbin_show_info (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
-	gsize iSize, iNbFiles;
-	gint iCancel = 0;
-	
 	if (myData.pInfoDialog != NULL)
 	{
 		cairo_dock_dialog_unreference (myData.pInfoDialog);

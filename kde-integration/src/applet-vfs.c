@@ -53,7 +53,7 @@ gboolean init_vfs_backend (void)
 		g_free,
 		(GDestroyNotify) _vfs_backend_free_monitor_data);
 	
-	GVfs *vfs = g_vfs_get_default ();
+	g_vfs_get_default ();
 	//return (vfs != NULL && g_vfs_is_active (vfs));
 	return TRUE;
 }
@@ -92,7 +92,7 @@ static gchar *_cd_get_icon_path (GIcon *pIcon)
 	return cIconPath;
 }
 
-
+/*
 static void _cd_find_mount_from_volume_name (const gchar *cVolumeName, GMount **pFoundMount, gchar **cURI, gchar **cIconName)
 {
 	g_return_if_fail (cVolumeName != NULL);
@@ -117,8 +117,6 @@ static void _cd_find_mount_from_volume_name (const gchar *cVolumeName, GMount **
 		return ;
 	}
 	
-	GList *pIconList = NULL;
-	Icon *icon;
 	GFileInfo *pFileInfo;
 	do
 	{
@@ -168,7 +166,7 @@ static void _cd_find_mount_from_volume_name (const gchar *cVolumeName, GMount **
 	} while (TRUE);
 	//g_object_unref (pFileEnum);
 }
-
+*/
 static GDrive *_cd_find_drive_from_name (const gchar *cName)
 {
 	g_return_val_if_fail (cName != NULL, NULL);

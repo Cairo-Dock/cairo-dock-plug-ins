@@ -228,7 +228,7 @@ static void _on_got_playing_status (DBusGProxy *proxy, DBusGProxyCall *call_id, 
 	int iStatus = -1;
 	GValueArray *status = NULL;
 	GError *erreur = NULL;
-	gboolean bSuccess = dbus_g_proxy_end_call (proxy,
+	dbus_g_proxy_end_call (proxy,
 		call_id,
 		&erreur,
 		MP_DBUS_TYPE_PLAYER_STATUS_MPRIS, &status,
@@ -324,7 +324,7 @@ void cd_mpris_get_time_elapsed (void)  // used by Audacious too.
 static void _on_get_current_track (DBusGProxy *proxy, DBusGProxyCall *call_id, gpointer data)
 {
 	s_pGetCurrentTrackCall = NULL;
-	gboolean bSuccess = dbus_g_proxy_end_call (proxy,
+	dbus_g_proxy_end_call (proxy,
 		call_id,
 		NULL,
 		G_TYPE_INT,
@@ -478,7 +478,7 @@ static void _on_got_song_infos (DBusGProxy *proxy, DBusGProxyCall *call_id, Cair
 	
 	GHashTable *data_list = NULL;
 	GError *erreur = NULL;
-	gboolean bSuccess = dbus_g_proxy_end_call (proxy,
+	dbus_g_proxy_end_call (proxy,
 		call_id,
 		&erreur,
 		MP_DBUS_TYPE_SONG_METADATA, &data_list,

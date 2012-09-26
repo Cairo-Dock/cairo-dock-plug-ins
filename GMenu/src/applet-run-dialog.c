@@ -236,12 +236,11 @@ static gboolean _entry_event (GtkEditable *entry,
 	GdkEventKey *event,
 	CairoDockModuleInstance *myApplet)
 {
-	GtkTreeSelection *selection;
 	char             *prefix;
 	char             *nospace_prefix;
 	char             *nprefix;
 	char             *temp;
-	guint               pos, tmp;
+	gint               pos, tmp;
 
 	if (event->type != GDK_KEY_PRESS)
 		return FALSE;

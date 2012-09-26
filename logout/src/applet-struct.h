@@ -41,7 +41,7 @@ typedef enum {
 
 typedef enum {
 	CD_REBOOT_NEEDED,
-	CD_LOGOUT_NEEDED,
+	//CD_LOGOUT_NEEDED,
 	CD_REMOVE_MESSAGE,
 	CD_NB_ACTIONS_NEEDED
 	} CDActionsNeededEnum;
@@ -72,7 +72,7 @@ typedef struct {
 struct _AppletData {
 	guint iSidTimer;
 	gboolean bRebootNeeded;
-	gboolean bLogoutNeeded;
+	//gboolean bLogoutNeeded;
 	gchar *cSessionMigrationFileName;
 	// manual capabilities.
 	CairoDockTask *pTask;

@@ -192,7 +192,7 @@ static void _cd_folders_show_file_properties (GtkMenuItem *pMenuItem, gpointer *
 		
 		gtk_widget_show_all (gtk_dialog_get_content_area (GTK_DIALOG(pDialog)));
 		gtk_window_set_position (GTK_WINDOW (pDialog), GTK_WIN_POS_CENTER_ALWAYS);
-		int answer = gtk_dialog_run (GTK_DIALOG (pDialog));
+		gtk_dialog_run (GTK_DIALOG (pDialog));
 		gtk_widget_destroy (pDialog);
 
 		g_string_free (sInfo, TRUE);

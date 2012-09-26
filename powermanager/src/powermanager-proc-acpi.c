@@ -49,7 +49,7 @@ static gboolean _find_battery_in_dir (const gchar *cBatteryPath)
 	
 	// parse the folder and search the battery files.
 	GString *sBatteryInfoFilePath = g_string_new ("");
-	gchar *cContent = NULL, *cPresentLine;
+	gchar *cContent = NULL;
 	gsize length=0;
 	const gchar *cBatteryName;
 	gboolean bBatteryFound = FALSE;
@@ -130,7 +130,6 @@ gboolean cd_get_stats_from_proc_acpi (void)
 	}
 	g_return_val_if_fail (cContent != NULL, FALSE);
 	
-	int k;
 	gchar *cCurLine = cContent, *cCurVal = cContent;
 	
 	//\_______________ check the battery presence.
@@ -182,7 +181,7 @@ gboolean cd_get_stats_from_proc_acpi (void)
 	
 	//\_______________ get the current charge and rate (this one can be 0 if not available).
 	jump_to_value
-	double fPresentRate = atoi (cCurVal);  // 15000 mW OU 1400 mA
+	// double fPresentRate = atoi (cCurVal);  // 15000 mW OU 1400 mA
 	
 	/*cCurVal ++;
 	while (*cCurVal != ' ')

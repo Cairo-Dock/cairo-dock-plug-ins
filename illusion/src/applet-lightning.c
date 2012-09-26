@@ -144,7 +144,6 @@ void cd_illusion_draw_lightning_icon (Icon *pIcon, CairoDock *pDock, CDIllusionD
 	//glBindTexture (GL_TEXTURE_1D, myData.iLightningTexture);
 	
 	CDIllusionLightning *l;
-	GLfloat *pVertexTab;
 	int i;
 	for (i = 0; i < pData->iNbSources; i ++)
 	{

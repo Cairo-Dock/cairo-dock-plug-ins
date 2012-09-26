@@ -329,7 +329,6 @@ GList *cd_netmonitor_get_available_interfaces (GList *pWirelessInterfaces)
 	int iNumLine = 1;
 	gchar *tmp = cContent, *str;
 	gchar *cInterface;
-	long long int iReceivedBytes, iTransmittedBytes;
 	do
 	{
 		if (iNumLine > 3 && *tmp != '\0')  // les 2 premieres lignes sont les noms des champs, la 3eme est la loopback.

@@ -95,7 +95,6 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 			struct mailimf_single_fields *pSingleFields;
 			struct mailimf_from *pFrom;
 			struct mailimf_subject *pSubject;
-			struct mailimf_message_id *pUid;
 			struct mailimf_mailbox *pFromMailBox;
 			char *cRawBodyText, *cBodyText, *cFrom, *cSubject, *cMessage/**, *cUid*/;
 			size_t length;
@@ -348,12 +347,10 @@ void cd_mail_mark_all_mails_as_read(CDMailAccount *pMailAccount)
 	/* Ensure the connection is alive */
 	mailfolder_connect(pMailAccount->folder);
 	GList *l, *l_Uid;
-	gchar *cMessage;
 	gchar *cMessageUid;
 	mailmessage *pMessage;
 	for (i = 1, l = pMailAccount->pUnseenMessageList, l_Uid = pMailAccount->pUnseenMessageUid; l != NULL && l_Uid != NULL; l = l->next, l_Uid = l_Uid->next, i++)
 	{
-		cMessage = l->data;
 		cMessageUid = l_Uid->data;
 		pMessage = NULL;
 		
@@ -393,7 +390,6 @@ void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gboolean bSignal
 	g_return_if_fail (myDrawContext != NULL);
 	cd_debug ("%s ()", __func__);
 	
-	gchar *cNewImage = NULL;
 	if (myData.iNbUnreadMails <= 0)  // plus de mail.
 	{
 		//Chargement de l'image "pas de mail"

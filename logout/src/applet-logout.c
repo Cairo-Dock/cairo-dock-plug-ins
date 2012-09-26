@@ -42,7 +42,7 @@ static void cd_logout_hibernate (void);
 static void cd_logout_close_session (void);
 static void cd_logout_switch_to_user (const gchar *cUser);
 static void cd_logout_switch_to_guest (void);
-static gboolean cd_logout_switch_to_greeter (void);
+//static gboolean cd_logout_switch_to_greeter (void);
 
 static void _free_user (CDUser *pUser);
 static GList *cd_logout_get_users_list (void);
@@ -428,7 +428,7 @@ static void _notify_action_required (void)
 	cairo_dock_remove_dialog_if_any (myIcon);
 
 	gchar *cName;
-	if (myData.bLogoutNeeded && myData.bRebootNeeded)
+	if (/*myData.bLogoutNeeded && */myData.bRebootNeeded)
 	{
 		gchar *cTmpName = g_strdup (myIcon->cName); // Icon's name contains the message for the reboot and then for the logout
 		gchar *cTmpPtr = g_strrstr (cTmpName, CD_LOGOUT_MESSAGE_SEPARATOR);
@@ -489,14 +489,14 @@ static GString * _get_message (CDActionsNeededEnum iAction)
 			g_string_printf (sMessage, "%s", cRebootMessage);
 		g_free (cRebootMessage);
 	}
-
+/*
 	if (iAction == CD_LOGOUT_NEEDED || myData.bLogoutNeeded)
 	{
 		myData.bLogoutNeeded = TRUE;
 		g_string_append_printf (sMessage, "%s%s",
 			sMessage->len == 0 ? "" : CD_LOGOUT_MESSAGE_SEPARATOR,
 			_get_logout_message ());
-	}
+	}*/
 
 	return sMessage;
 }
@@ -516,10 +516,10 @@ void cd_logout_check_reboot_logout_required (CairoDockFMEventType iEventType, co
 		case CAIRO_DOCK_FILE_DELETED:  // reboot/logout no more required (shouldn't happen)
 			if (iAction == CD_REBOOT_NEEDED)
 				myData.bRebootNeeded = FALSE;
-			else if (iAction == CD_LOGOUT_NEEDED)
-				myData.bLogoutNeeded = FALSE;
+			/*else if (iAction == CD_LOGOUT_NEEDED)
+				myData.bLogoutNeeded = FALSE;*/
 			sMessage = _get_message (CD_REMOVE_MESSAGE);
-			if (! myData.bRebootNeeded && ! myData.bLogoutNeeded)
+			if (! myData.bRebootNeeded/* && ! myData.bLogoutNeeded*/)
 				_stop_notify_action_required (); // default icon
 		break;
 		default:
@@ -542,7 +542,7 @@ void cd_logout_check_reboot_required_init (void)
 		cd_logout_check_reboot_logout_required (CAIRO_DOCK_FILE_CREATED, CD_REBOOT_NEEDED_FILE, CD_REBOOT_NEEDED);
 	}
 }
-
+/*
 const gchar *cd_logout_get_session_migration_filename (void)
 {
 	if (! myData.cSessionMigrationFileName)
@@ -563,7 +563,7 @@ void cd_logout_check_logout_required_init (void)
 	{
 		cd_logout_check_reboot_logout_required (CAIRO_DOCK_FILE_CREATED, cFileName, CD_LOGOUT_NEEDED);
 	}
-}
+}*/
 
 
   ///////////////
@@ -786,7 +786,7 @@ static void cd_logout_switch_to_guest (void)
 		g_object_unref (pProxy);
 	}
 }
-
+/*
 static gboolean cd_logout_switch_to_greeter (void)  // not really sure how to use it.
 {
 	const gchar *seat = g_getenv ("XDG_SEAT_PATH");
@@ -811,7 +811,7 @@ static gboolean cd_logout_switch_to_greeter (void)  // not really sure how to us
 	g_object_unref (pProxy);
 	return TRUE;
 }
-
+*/
 
   //////////////////
  /// USERS LIST ///
@@ -846,7 +846,6 @@ static GList* _get_users_list_fallback (void)
 	gchar **cUserProps;
 	CDUser *pUser;
 	char *str;
-	int uid, gid;
 	int i;
 	for (i = 0; cUsers[i] != NULL; i ++)
 	{

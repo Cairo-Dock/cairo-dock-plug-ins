@@ -281,7 +281,6 @@ static void _on_got_desktop_entry (DBusGProxy *proxy, DBusGProxyCall *call_id, g
 	CD_APPLET_ENTER;
 	myData.pGetPropsCall = NULL;
 	
-	GKeyFile* pKeyFile = NULL;
 	GValue v = G_VALUE_INIT;
 	GError *error = NULL;
 	gboolean bSuccess = dbus_g_proxy_end_call (proxy,

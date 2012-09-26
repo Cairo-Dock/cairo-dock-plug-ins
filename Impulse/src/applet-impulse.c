@@ -29,7 +29,7 @@
 
 extern CairoDockHidingEffect *g_pHidingBackend;  // cairo_dock_is_hidden
 
-////////////////// IMPULSE \\\\\\\\\\\\\\\\\\\\
+////////////////// IMPULSE //////////////////
 
 void _im_start (void)
 {
@@ -49,7 +49,7 @@ void cd_impulse_im_setSourceIndex (gint iSourceIndex)
 	im_setSourceIndex (iSourceIndex);
 }
 
-////////////////// USEFUL FUNCTIONS \\\\\\\\\\\\\\\\\\\\
+////////////////// USEFUL FUNCTIONS //////////////////
 
 static void _get_icons_list_without_separators (CDSharedMemory *pSharedMemory)
 {
@@ -178,7 +178,7 @@ static gboolean _impulse_check_pulse_status (void)
 	return FALSE;
 }
 
-////////////////// NOTIFICATIONS \\\\\\\\\\\\\\\\\\\\
+////////////////// NOTIFICATIONS //////////////////
 
 /*void cd_impulse_start_animations (void)
 {
@@ -214,7 +214,7 @@ void _register_notifications (void)
 		CAIRO_DOCK_RUN_FIRST, NULL);
 }
 
-////////////////// GENERAL FUNCTIONS \\\\\\\\\\\\\\\\\\\\
+////////////////// GENERAL FUNCTIONS //////////////////
 
 void cd_impulse_stop_animations (void)
 {
@@ -291,7 +291,7 @@ void cd_impulse_draw_current_state (void)
 		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconImpulseOFF, "impulse-stopped.svg");
 }
 
-////////////////// DELAY \\\\\\\\\\\\\\\\\\\\
+////////////////// DELAY //////////////////
 
 static gboolean _impulse_restart_delayed (void)
 {

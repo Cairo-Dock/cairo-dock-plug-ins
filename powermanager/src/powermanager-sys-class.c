@@ -57,7 +57,7 @@ static gboolean _find_battery_in_dir (const gchar *cBatteryPath)
 	
 	// parse the folder and search the battery files.
 	GString *sBatteryInfoFilePath = g_string_new ("");
-	gchar *cContent = NULL, *cPresentLine;
+	gchar *cContent = NULL;
 	gsize length=0;
 	const gchar *cBatteryName;
 	gboolean bBatteryFound = FALSE;
@@ -113,8 +113,6 @@ gboolean cd_get_stats_from_sys_class (void)
 		return FALSE;
 	}
 	g_return_val_if_fail (cContent != NULL, FALSE);
-	
-	int k;
 	
 	//\_______________ check 'on battery' state.
 	gchar *str = strstr (cContent, "STATUS");

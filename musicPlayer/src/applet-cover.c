@@ -180,6 +180,7 @@ static gboolean _check_cover_file_exists (gpointer data)
 	}
 	return TRUE;
 }
+/* Not used
 static gboolean _get_cover_again (gpointer data)
 {
 	cd_debug ("%s ()", __func__);
@@ -210,6 +211,7 @@ static gboolean _get_cover_again (gpointer data)
 	myData.pCurrentHandler->get_cover ();  // will call 'cd_musicplayer_set_cover_path()' if it got a cover.
 	return TRUE;
 }
+*/
 /* 3 cases:
 - a file is given and exists -> wait until its size is constant
 - a file is given but doesn't exist yet -> wait until it exists, then until its size is constant

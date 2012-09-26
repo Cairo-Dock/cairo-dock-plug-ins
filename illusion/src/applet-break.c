@@ -130,9 +130,8 @@ void cd_illusion_update_break (Icon *pIcon, CairoDock *pDock, CDIllusionData *pD
 	double t_ = (pData->fTime / myConfig.iBreakDuration);  // t/T
 	pData->dh = t_ * t_;  // dh = 1/2 * g * t^2, avec g = 2/T^2 (hauteur comptee unitairement).
 	
-	double yinf;
 	CDIllusionBreak *pPart;
-	int i, j;
+	int i;
 	for (i = 0; i < pData->iNbBreakParts; i ++)
 	{
 		pPart = &pData->pBreakPart[i];

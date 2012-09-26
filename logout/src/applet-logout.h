@@ -35,8 +35,8 @@ void cd_logout_check_reboot_logout_required (CairoDockFMEventType iEventType, co
 
 void cd_logout_check_reboot_required_init (void);
 
-void cd_logout_check_logout_required_init (void);
+/*void cd_logout_check_logout_required_init (void);
 
-const gchar *cd_logout_get_session_migration_filename (void);
+const gchar *cd_logout_get_session_migration_filename (void);*/
 
 #endif

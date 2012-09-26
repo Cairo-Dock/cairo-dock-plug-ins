@@ -293,7 +293,7 @@ void cd_mail_retrieve_feed_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
 	}
 }
 
-	//  Some servers are pre-configured  =>  \\
+	//  Some servers are pre-configured
 
 void cd_mail_create_gmail_params( GKeyFile *pKeyFile, const gchar *pMailAccountName )
 {
@@ -307,8 +307,6 @@ void cd_mail_retrieve_gmail_params (CDMailAccount *mailaccount, GKeyFile *pKeyFi
 {	// FEED ou IMAP
 	if( !mailaccount || !pKeyFile || !mailbox_name )
 		return;
-
-	gboolean bFlushConfFileNeeded = FALSE;
 
 #if (1 || __WORDSIZE == 64 )  // RSS authentification seems to have changed, and doesn't work anymore here :-/ so use IMAP by default
 /* in 64bit libetpan crashes with RSS, so use the IMAP feature of GMail
@@ -384,8 +382,6 @@ void cd_mail_retrieve_yahoo_params (CDMailAccount *mailaccount, GKeyFile *pKeyFi
 	if( !mailaccount || !pKeyFile || !mailbox_name )
 		return;
 
-	gboolean bFlushConfFileNeeded = FALSE;
-
 	mailaccount->driver = IMAP_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
 	mailaccount->server = g_strdup("imap.mail.yahoo.com");
@@ -410,8 +406,6 @@ void cd_mail_retrieve_hotmail_params (CDMailAccount *mailaccount, GKeyFile *pKey
 	if( !mailaccount || !pKeyFile || !mailbox_name )
 		return;
 
-	gboolean bFlushConfFileNeeded = FALSE;
-
 	mailaccount->driver = POP3_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
 	mailaccount->server = g_strdup("pop3.live.com");
@@ -434,8 +428,6 @@ void cd_mail_retrieve_free_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
 {	// IMAP
 	if( !mailaccount || !pKeyFile || !mailbox_name )
 		return;
-
-	gboolean bFlushConfFileNeeded = FALSE;
 
 	mailaccount->driver = IMAP_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
@@ -461,8 +453,6 @@ void cd_mail_retrieve_neuf_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
 	if( !mailaccount || !pKeyFile || !mailbox_name )
 		return;
 
-	gboolean bFlushConfFileNeeded = FALSE;
-
 	mailaccount->driver = IMAP_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
 	mailaccount->server = g_strdup("imap.neuf.fr");
@@ -486,8 +476,6 @@ void cd_mail_retrieve_sfr_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile
 {	// IMAP
 	if( !mailaccount || !pKeyFile || !mailbox_name )
 		return;
-
-	gboolean bFlushConfFileNeeded = FALSE;
 
 	mailaccount->driver = IMAP_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
@@ -513,8 +501,6 @@ void cd_mail_retrieve_orange_params (CDMailAccount *mailaccount, GKeyFile *pKeyF
 	if( !mailaccount || !pKeyFile || !mailbox_name )
 		return;
 
-	gboolean bFlushConfFileNeeded = FALSE;
-
 	mailaccount->driver = IMAP_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
 	mailaccount->server = g_strdup("imap.orange.fr");
@@ -539,8 +525,6 @@ void cd_mail_retrieve_uclouvain_params (CDMailAccount *mailaccount, GKeyFile *pK
 	if( !mailaccount || !pKeyFile || !mailbox_name )
 		return;
 
-	gboolean bFlushConfFileNeeded = FALSE;
-
 	mailaccount->driver = IMAP_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);
 	mailaccount->server = g_strdup("mail.sipr.ucl.ac.be");
@@ -564,8 +548,6 @@ void cd_mail_retrieve_skynet_params (CDMailAccount *mailaccount, GKeyFile *pKeyF
 {	// POP3
 	if( !mailaccount || !pKeyFile || !mailbox_name )
 		return;
-
-	gboolean bFlushConfFileNeeded = FALSE;
 
 	mailaccount->driver = POP3_STORAGE;
 	mailaccount->storage = mailstorage_new(NULL);

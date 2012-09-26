@@ -199,7 +199,6 @@ static inline void _extract_metadata (GHashTable *data_list)
 static void cd_audacious_getSongInfos (void)
 {
 	GHashTable *data_list = NULL;
-	const gchar *data;
 		
 	if(dbus_g_proxy_call (myData.dbus_proxy_player, "GetMetadata", NULL,
 		G_TYPE_INVALID,

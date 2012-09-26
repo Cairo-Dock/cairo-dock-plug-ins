@@ -47,7 +47,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	if (! g_key_file_has_key (CD_APPLET_MY_KEY_FILE, "Configuration", "renderer", NULL))  // old version.
 	{
 		myConfig.iDisplayType = (g_key_file_get_boolean (CD_APPLET_MY_KEY_FILE, "Configuration", "use gauge", NULL) ? CD_POWERMANAGER_GAUGE : CD_POWERMANAGER_ICONS);
-		int dummy = CD_CONFIG_GET_INTEGER ("Configuration", "renderer");
+		// int dummy = CD_CONFIG_GET_INTEGER ("Configuration", "renderer");
 	}
 	else
 		myConfig.iDisplayType = CD_CONFIG_GET_INTEGER ("Configuration", "renderer");

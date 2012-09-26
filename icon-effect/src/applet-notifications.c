@@ -250,7 +250,6 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 			pEffect->free (pData);
 	}
 	
-	double fMaxScale = 1. + myIconsParam.fAmplitude * pDock->fMagnitudeMax;
 	GdkRectangle area;
 	if (pDock->container.bIsHorizontal)
 	{

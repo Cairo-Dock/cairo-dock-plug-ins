@@ -27,7 +27,7 @@
 
 
 static const gchar *s_cIconName[CONNECTION_NB_QUALITY] = {"link-0.svg", "link-1.svg", "link-2.svg", "link-3.svg", "link-4.svg", "link-5.svg", "network-not-connected.png", "network-wired.png"};
-static const gchar *s_cLevelQualityName[CONNECTION_NB_QUALITY] = {N_("None"), N_("Very Low"), N_("Low"), N_("Middle"), N_("Good"), N_("Excellent"), N_("Not connected"), N_("Wired connection")};
+// static const gchar *s_cLevelQualityName[CONNECTION_NB_QUALITY] = {N_("None"), N_("Very Low"), N_("Low"), N_("Middle"), N_("Good"), N_("Excellent"), N_("Not connected"), N_("Wired connection")}; // not used
 
 void cd_NetworkMonitor_draw_no_wireless_extension (void)
 {

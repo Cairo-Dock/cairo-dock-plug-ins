@@ -189,7 +189,6 @@ static inline void _extract_metadata (GHashTable *data_list)
 static void cd_banshee_getSongInfos (void)
 {
 	GHashTable *data_list = NULL;
-	GValue *value;
 	
 	if (dbus_g_proxy_call (myData.dbus_proxy_player, "GetCurrentTrack", NULL, G_TYPE_INVALID,
 		MP_DBUS_TYPE_SONG_METADATA,
@@ -369,8 +368,6 @@ static void onChangePlaying(DBusGProxy *player_proxy, const gchar *cCurrentStatu
  */
 static void cd_banshee_control (MyPlayerControl pControl, const char *file)
 {
-	gchar *cCommand = NULL;
-	
 	switch (pControl)
 	{
 		case PLAYER_PREVIOUS :

@@ -190,7 +190,7 @@ static void _on_got_playing_status (DBusGProxy *proxy, DBusGProxyCall *call_id, 
 	gchar *cStatus = NULL;
 	GValue v = G_VALUE_INIT;
 	GError *erreur = NULL;
-	gboolean bSuccess = dbus_g_proxy_end_call (proxy,
+	dbus_g_proxy_end_call (proxy,
 		call_id,
 		&erreur,
 		G_TYPE_VALUE, &v,
@@ -393,7 +393,7 @@ static void _on_got_song_infos (DBusGProxy *proxy, DBusGProxyCall *call_id, Cair
 	GHashTable *pMetadata = NULL;
 	GValue v = G_VALUE_INIT;
 	GError *erreur = NULL;
-	gboolean bSuccess = dbus_g_proxy_end_call (proxy,
+	dbus_g_proxy_end_call (proxy,
 		call_id,
 		&erreur,
 		G_TYPE_VALUE, &v,

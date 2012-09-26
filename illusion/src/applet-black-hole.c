@@ -91,7 +91,7 @@ gboolean cd_illusion_init_black_hole (Icon *pIcon, CairoDock *pDock, CDIllusionD
 	pData->pBlackHoleVertices = g_new0 (GLfloat, 8 * (SPIRAL_NB_PTS - 1) * (SPIRAL_NB_PTS - 1));
 	
 	int i, j, n=0;
-	double u, v, x, y, r;
+	double u, v, x, y;
 	CDIllusionBlackHole *pPoint;
 	for (j = 0; j < SPIRAL_NB_PTS; j ++)  // bas -> haut.
 	{
@@ -129,8 +129,8 @@ void cd_illusion_update_black_hole (Icon *pIcon, CairoDock *pDock, CDIllusionDat
 	cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
 }
 
-static float fCapsuleObjectPlaneS[4] = { 0.5f, 0., 0., 0. }; // pour un plaquages propre des textures
-static float fCapsuleObjectPlaneT[4] = { 0., 0.5f, 0., 0. };  // le 2 c'est le 'c'.
+//static float fCapsuleObjectPlaneS[4] = { 0.5f, 0., 0., 0. }; // pour un plaquages propre des textures
+//static float fCapsuleObjectPlaneT[4] = { 0., 0.5f, 0., 0. };  // le 2 c'est le 'c'.
 void cd_illusion_draw_black_hole_icon (Icon *pIcon, CairoDock *pDock, CDIllusionData *pData)
 {
 	_cairo_dock_enable_texture ();
