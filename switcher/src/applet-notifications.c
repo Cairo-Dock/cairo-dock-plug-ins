@@ -499,6 +499,8 @@ gboolean on_update_desklet (CairoDockModuleInstance *myApplet, CairoContainer *p
 
 gboolean on_render_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, cairo_t *pCairoContext)
 {
+	if (myContainer != pContainer)
+		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	CD_APPLET_ENTER;
 	int x, y;  // text center (middle of the icon).
 	x = myIcon->fDrawX + myIcon->fWidth * myIcon->fScale / 2;

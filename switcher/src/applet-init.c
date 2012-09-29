@@ -76,10 +76,10 @@ CD_APPLET_INIT_BEGIN
 			CAIRO_DOCK_RUN_AFTER, myApplet);
 		if (myDesklet)  // in this mode we draw the name of the pointed desktop
 		{
-			cairo_dock_register_notification_on_object (myContainer,
+			cairo_dock_register_notification_on_object (&myDeskletsMgr,
 				NOTIFICATION_RENDER,
 				(CairoDockNotificationFunc) on_render_desklet,
-				CAIRO_DOCK_RUN_AFTER, myApplet);
+				CAIRO_DOCK_RUN_AFTER, myApplet);  // we register on the parent manager to be drawn after the desklet, until the notifications order is reversed.
 			cairo_dock_register_notification_on_object (myContainer,
 				NOTIFICATION_UPDATE,
 				(CairoDockNotificationFunc) on_update_desklet,
@@ -131,7 +131,7 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func_on_object (myContainer,
 		NOTIFICATION_MOUSE_MOVED,
 		(CairoDockNotificationFunc) on_mouse_moved, myApplet);
-	cairo_dock_remove_notification_func_on_object (myContainer,
+	cairo_dock_remove_notification_func_on_object (&myDeskletsMgr,
 		NOTIFICATION_RENDER,
 		(CairoDockNotificationFunc) on_render_desklet, myApplet);
 	cairo_dock_remove_notification_func_on_object (myContainer,
@@ -176,7 +176,7 @@ CD_APPLET_RELOAD_BEGIN
 		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
 			NOTIFICATION_MOUSE_MOVED,
 			(CairoDockNotificationFunc) on_mouse_moved, myApplet);
-		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+		cairo_dock_remove_notification_func_on_object (&myDeskletsMgr,
 			NOTIFICATION_RENDER,
 			(CairoDockNotificationFunc) on_render_desklet, myApplet);
 		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
@@ -194,7 +194,7 @@ CD_APPLET_RELOAD_BEGIN
 				CAIRO_DOCK_RUN_AFTER, myApplet);
 			if (myDesklet)
 			{
-				cairo_dock_register_notification_on_object (myContainer,
+				cairo_dock_register_notification_on_object (&myDeskletsMgr,
 					NOTIFICATION_RENDER,
 					(CairoDockNotificationFunc) on_render_desklet,
 					CAIRO_DOCK_RUN_AFTER, myApplet);
