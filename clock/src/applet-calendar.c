@@ -544,12 +544,6 @@ static gchar * _on_display_task_detail (GtkCalendar *calendar, guint iYear, guin
 	return cDetail;
 }
 
-static void _on_day_selected (GtkCalendar *pCalendar, CairoDockModuleInstance *myApplet)
-{
-	//g_print ("%s ()\n", __func__);
-	
-}
-
 static void _on_day_selected_double_click (GtkCalendar *pCalendar, CairoDockModuleInstance *myApplet)
 {
 	guint iDay, iMonth, iYear;
@@ -560,23 +554,70 @@ static void _on_day_selected_double_click (GtkCalendar *pCalendar, CairoDockModu
 	cd_clock_build_task_editor (iDay, iMonth, iYear, myApplet);
 }
 
-static void _on_month_changed (GtkCalendar *pCalendar, CairoDockModuleInstance *myApplet)
+static void _on_date_changed (GtkCalendar *pCalendar, CairoDockModuleInstance *myApplet)
 {
 	gtk_calendar_clear_marks (pCalendar);
 	_mark_days (pCalendar, myApplet);
 }
 
-static void _on_year_changed (GtkCalendar *pCalendar, CairoDockModuleInstance *myApplet)
+static void _on_add_task (GtkWidget *pMenuItem, CairoDockModuleInstance *myApplet)
 {
-	gtk_calendar_clear_marks (pCalendar);
-	_mark_days (pCalendar, myApplet);
+	guint iDay, iMonth, iYear;
+	gtk_calendar_get_date (GTK_CALENDAR (myData.pCalendarDialog->pInteractiveWidget),
+		&iYear,
+		&iMonth,
+		&iDay);
+	
+	CDClockTask *pTask = g_new0 (CDClockTask, 1);
+	pTask->iDay = iDay;
+	pTask->iMonth = iMonth;
+	pTask->iYear = iYear;
+	pTask->cTitle = g_strdup (D_("No title"));
+	pTask->iHour = 12;
+	gboolean bCreated = myData.pBackend->create_task (pTask, myApplet);
+	if (bCreated)
+	{
+		cd_clock_add_task_to_list (pTask, myApplet);
+		
+		cd_clock_update_calendar_marks (myApplet);
+	}
+	
+	cd_clock_build_task_editor (iDay, iMonth, iYear, myApplet);
 }
-
-static gboolean on_button_press_calendar (GtkWidget *widget,
+static void _on_edit_tasks (GtkWidget *pMenuItem, CairoDockModuleInstance *myApplet)
+{
+	guint iDay, iMonth, iYear;
+	gtk_calendar_get_date (GTK_CALENDAR (myData.pCalendarDialog->pInteractiveWidget),
+		&iYear,
+		&iMonth,
+		&iDay);
+	cd_clock_build_task_editor (iDay, iMonth, iYear, myApplet);
+}
+static gboolean on_button_released_calendar (GtkWidget *widget,
 	GdkEventButton *pButton,
 	CairoDockModuleInstance *myApplet)
 {
-	myData.iButtonPressTime = pButton->time;
+	if (pButton->button == 3)  // right-click
+	{
+		GtkWidget *pMenu = gtk_menu_new ();
+		
+		// add a task
+		cairo_dock_add_in_menu_with_stock_and_data (D_("Add a new task"), GTK_STOCK_ADD, G_CALLBACK (_on_add_task), pMenu, myApplet);
+		
+		// edit tasks
+		gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Edit tasks"), D_("double-click"));
+		cairo_dock_add_in_menu_with_stock_and_data (cLabel, GTK_STOCK_EDIT, G_CALLBACK (_on_edit_tasks), pMenu, myApplet);
+		g_free (cLabel);
+		
+		gtk_widget_show_all (GTK_WIDGET (pMenu));
+		gtk_menu_popup (GTK_MENU (pMenu),
+			NULL,
+			NULL,
+			NULL,
+			NULL,  // data
+			1,
+			gtk_get_current_event_time ());
+	}
 	return FALSE;
 }
 
@@ -588,15 +629,16 @@ static GtkWidget *cd_clock_build_calendar (CairoDockModuleInstance *myApplet)
 	
 	_mark_days (GTK_CALENDAR (pCalendar), myApplet);
 	
-	g_signal_connect (G_OBJECT (pCalendar), "day-selected" , G_CALLBACK (_on_day_selected), myApplet);
-	g_signal_connect (G_OBJECT (pCalendar), "day-selected-double-click" , G_CALLBACK (_on_day_selected_double_click), myApplet);
-	g_signal_connect (G_OBJECT (pCalendar), "prev-month" , G_CALLBACK (_on_month_changed), myApplet);
-	g_signal_connect (G_OBJECT (pCalendar), "next-month" , G_CALLBACK (_on_month_changed), myApplet);
-	g_signal_connect (G_OBJECT (pCalendar), "prev-year" , G_CALLBACK (_on_year_changed), myApplet);
-	g_signal_connect (G_OBJECT (pCalendar), "next-year" , G_CALLBACK (_on_year_changed), myApplet);
+	// reload the marks when the month/year changes
+	g_signal_connect (G_OBJECT (pCalendar), "prev-month" , G_CALLBACK (_on_date_changed), myApplet);
+	g_signal_connect (G_OBJECT (pCalendar), "next-month" , G_CALLBACK (_on_date_changed), myApplet);
+	g_signal_connect (G_OBJECT (pCalendar), "prev-year" , G_CALLBACK (_on_date_changed), myApplet);
+	g_signal_connect (G_OBJECT (pCalendar), "next-year" , G_CALLBACK (_on_date_changed), myApplet);
+	// edit tasks on double-click or right-click
+	g_signal_connect (G_OBJECT (pCalendar), "day-selected-double-click" , G_CALLBACK (_on_day_selected_double_click), myApplet);  // it's not a good idea to show the task-editor on left-click, because we can receve the 'click' event when clicking on the month/year buttons, and the 'day-selected' event when we change the month/year.
 	g_signal_connect (G_OBJECT (pCalendar),
-		"button-press-event",
-		G_CALLBACK (on_button_press_calendar),
+		"button-release-event",
+		G_CALLBACK (on_button_released_calendar),
 		myApplet);
 	
 #if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION > 14)
@@ -614,18 +656,7 @@ void cd_clock_hide_dialogs (CairoDockModuleInstance *myApplet)
 	myData.pCalendarDialog = NULL;
 }
 
-/**static gboolean on_button_press_dialog (GtkWidget *widget,
-	GdkEventButton *pButton,
-	CairoDockModuleInstance *myApplet)
-{
-	CD_APPLET_ENTER;
-	if (pButton->time > myData.iButtonPressTime)
-	{
-		cairo_dock_dialog_unreference (myData.pCalendarDialog);
-		myData.pCalendarDialog = NULL;
-	}
-	CD_APPLET_LEAVE (FALSE);
-}*/
+
 static void _on_dialog_destroyed (CairoDockModuleInstance *myApplet)
 {
 	myData.pCalendarDialog = NULL;
@@ -656,9 +687,5 @@ void cd_clock_show_hide_calendar (CairoDockModuleInstance *myApplet)
 			NULL,
 			myApplet,
 			(GFreeFunc)_on_dialog_destroyed);
-		/**g_signal_connect (G_OBJECT (myData.pCalendarDialog->container.pWidget),
-			"button-press-event",
-			G_CALLBACK (on_button_press_dialog),
-			myApplet);*/
 	}
 }

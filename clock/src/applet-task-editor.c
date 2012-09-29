@@ -42,7 +42,7 @@ typedef enum _CDClockTaskColumns
 } CDClockTaskColumns;
 
 
-static gboolean on_delete_task_window (GtkWidget *pWidget, GdkEvent *event, CairoDockModuleInstance *myApplet)
+static gboolean on_delete_task_window (GtkWidget *pWidget, CairoDockModuleInstance *myApplet)
 {
 	//g_print ("%s ()\n", __func__);
 	/// get day
@@ -366,6 +366,17 @@ static void _cd_clock_render_time (GtkTreeViewColumn *tree_column, GtkCellRender
 	g_free (cTime);
 }
 
+gboolean _on_key_press (G_GNUC_UNUSED GtkWidget *pWidget,
+	GdkEventKey *pKey,
+	CairoDockModuleInstance *myApplet)
+{
+	if (pKey->type == GDK_KEY_PRESS && pKey->keyval == GDK_KEY_Escape)
+	{
+		gtk_widget_destroy (myData.pTaskWindow);
+		return TRUE;
+	}
+	return FALSE;
+}
 
 void cd_clock_build_task_editor (guint iDay, guint iMonth, guint iYear, CairoDockModuleInstance *myApplet)
 {
@@ -377,6 +388,11 @@ void cd_clock_build_task_editor (guint iDay, guint iMonth, guint iYear, CairoDoc
 	{
 		myData.pTaskWindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 		gtk_window_set_modal (GTK_WINDOW (myData.pTaskWindow), TRUE);  // set as modal, since the dialog it comes from (the one containing the calendar) is modal (as any interactive dialog).
+		
+		g_signal_connect (G_OBJECT (myData.pTaskWindow),
+			"key-press-event",
+			G_CALLBACK (_on_key_press),
+			myApplet);
 		
 		//\______________ On construit le treeview.
 		GtkWidget *pTreeView = gtk_tree_view_new ();
@@ -447,7 +463,7 @@ void cd_clock_build_task_editor (guint iDay, guint iMonth, guint iYear, CairoDoc
 		gtk_container_add (GTK_CONTAINER (myData.pTaskWindow), pScrolledWindow);
 		//gtk_box_pack_start (GTK_BOX (pVBox), pScrolledWindow, FALSE, FALSE, 0);
 		
-		g_signal_connect (myData.pTaskWindow, "delete-event", G_CALLBACK (on_delete_task_window), myApplet);
+		g_signal_connect (myData.pTaskWindow, "destroy", G_CALLBACK (on_delete_task_window), myApplet);
 		gtk_window_set_keep_above (GTK_WINDOW (myData.pTaskWindow), TRUE);
 		///gtk_window_set_modal (GTK_WINDOW (myData.pTaskWindow), TRUE);
 		gtk_window_resize (GTK_WINDOW (myData.pTaskWindow), 640, 300);
