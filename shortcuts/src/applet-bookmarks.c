@@ -27,11 +27,12 @@
 
 #define CD_SHORTCUT_DEFAULT_DIRECTORY_ICON_FILENAME "inode-directory"
 
-
+/*
 static void _cd_shortcuts_mark_one_bookmark (Icon *icon, gpointer unused, int *pTime)
 {
 	icon->iLastCheckTime = *pTime;
 }
+*/
 void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
 {
 	static int iTime = 0;
@@ -68,7 +69,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 			gchar *cName, *cRealURI, *cIconName, *cUserName;
 			gboolean bIsDirectory;
 			int iVolumeID;
-			double fOrder, fCurrentOrder = 0;
+			double fOrder;
 			int i;
 			for (i = 0; cBookmarksList[i] != NULL; i ++)
 			{
@@ -173,7 +174,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 				for (ic = pIconsList; ic != NULL; ic = ic->next)
 				{
 					icon = ic->data;
-					if (icon->iGroup == CD_BOOKMARK_GROUP)
+					if (icon->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)
 					{
 						if (icon->iLastCheckTime != iTime
 							&& g_strcmp0 (icon->cName, D_("Home Folder")) != 0)

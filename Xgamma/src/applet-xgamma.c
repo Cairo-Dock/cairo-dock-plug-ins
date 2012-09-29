@@ -24,6 +24,26 @@
 #include "applet-struct.h"
 #include "applet-xgamma.h"
 
+static gboolean s_bUseXf86VidMode = FALSE;
+
+static gboolean _xf86vidmode_supported (void)
+{
+	static gboolean s_bXf86VidModeChecked = FALSE;
+	if (s_bXf86VidModeChecked)
+		return s_bUseXf86VidMode;
+
+	int event_base, error_base;
+	Display *dpy = cairo_dock_get_Xdisplay ();
+	if (! XF86VidModeQueryExtension (dpy, &event_base, &error_base))  // on regarde si le serveur X supporte l'extension.
+	{
+		cd_warning ("XF86VidMode extension not available.");
+		s_bUseXf86VidMode = FALSE;
+	}
+	else
+		s_bUseXf86VidMode = TRUE;
+	s_bXf86VidModeChecked = TRUE;
+	return s_bUseXf86VidMode;
+}
 
 static inline double _gamma_to_percent (double fGamma)
 {
@@ -62,15 +82,18 @@ void xgamma_add_gamma (XF86VidModeGamma *pGamma, gint iNbSteps)
 double xgamma_get_gamma (XF86VidModeGamma *pGamma)
 {
 	g_return_val_if_fail (pGamma != NULL, 1);
-	Display *dpy = gdk_x11_get_default_xdisplay ();
+	Display *dpy = cairo_dock_get_Xdisplay ();
 	
-	g_return_val_if_fail (XF86VidModeGetGamma != NULL, 1.);
+	g_return_val_if_fail (_xf86vidmode_supported (), 1.);
 	if (!XF86VidModeGetGamma (dpy, DefaultScreen (dpy), pGamma))
 	{
 		cd_warning ("Xgamma : unable to query gamma correction");
 		return 1.;
 	}
-	return (pGamma->red + pGamma->blue + pGamma->green) / 3;
+	double fGamma = (pGamma->red + pGamma->blue + pGamma->green) / 3;
+	cd_debug ("Gamma: %f, %f, %f, %f",
+		pGamma->red, pGamma->blue, pGamma->green, fGamma);
+	return fGamma;
 }
 
 
@@ -79,7 +102,7 @@ void xgamma_set_gamma (XF86VidModeGamma *pGamma)
 	g_return_if_fail (pGamma != NULL);
 	Display *dpy = cairo_dock_get_Xdisplay ();
 	
-	g_return_if_fail (XF86VidModeSetGamma != NULL);
+	g_return_if_fail (_xf86vidmode_supported ());
 	if (!XF86VidModeSetGamma(dpy, DefaultScreen (dpy), pGamma))
 	{
 		cd_warning ("Xgamma : unable to set gamma correction");
@@ -145,10 +168,33 @@ static void on_scale_value_changed (GtkRange *range, gpointer data)
 	}
 	xgamma_set_gamma (&myData.Xgamma);
 }
-static GtkWidget *_xgamma_add_channel_widget (GtkWidget *pInteractiveWidget, const gchar *cLabel, int iChannelNumber, guint *iSignalID, double fChannelGamma)
+static GtkWidget *_xgamma_add_channel_widget (GtkWidget *pInteractiveWidget, const gchar *cLabel, const gchar *cColor, int iChannelNumber, guint *iSignalID, double fChannelGamma)
 {
-	GtkWidget *pLabel = gtk_label_new (cLabel);
-	gtk_table_attach_defaults (GTK_TABLE (pInteractiveWidget), pLabel, 0, 1, iChannelNumber, iChannelNumber+1);
+	GtkWidget *pLabel = gtk_label_new (NULL);
+	if (cColor)
+	{
+		gchar *cText = g_strdup_printf ("<span color=\"%s\">%s</span>", cColor, cLabel);
+		gtk_label_set_markup (GTK_LABEL (pLabel), cText);
+		g_free (cText);
+	}
+	else
+		gtk_label_set_text (GTK_LABEL (pLabel), cLabel);
+
+	#if GTK_CHECK_VERSION (3, 4, 0)
+	gtk_grid_attach (GTK_GRID (pInteractiveWidget),
+		pLabel,
+		1,
+		iChannelNumber+1,
+		1,
+		1);
+	#else
+	gtk_table_attach_defaults (GTK_TABLE (pInteractiveWidget),
+		pLabel,
+		0,
+		1,
+		iChannelNumber,
+		iChannelNumber+1);
+	#endif
 
 	#if (GTK_MAJOR_VERSION < 3)
 	GtkWidget *pHScale = gtk_hscale_new_with_range (GAMMA_MIN, GAMMA_MAX, .02);
@@ -163,21 +209,39 @@ static GtkWidget *_xgamma_add_channel_widget (GtkWidget *pInteractiveWidget, con
 		"value-changed",
 		G_CALLBACK (on_scale_value_changed),
 		GINT_TO_POINTER (iChannelNumber));
-	gtk_table_attach_defaults (GTK_TABLE (pInteractiveWidget), pHScale, 1, 2, iChannelNumber, iChannelNumber+1);
+	#if GTK_CHECK_VERSION (3, 4, 0)
+	gtk_grid_attach (GTK_GRID (pInteractiveWidget),
+		pHScale,
+		2,
+		iChannelNumber+1,
+		1,
+		1);
+	#else
+	gtk_table_attach_defaults (GTK_TABLE (pInteractiveWidget),
+		pHScale,
+		1,
+		2,
+		iChannelNumber,
+		iChannelNumber+1);
+	#endif
 	
 	return pHScale;
 }
 void xgamma_create_scales_widget (double fGamma, XF86VidModeGamma *pGamma)
 {
+	#if GTK_CHECK_VERSION (3, 4, 0)
+	myData.pWidget = gtk_grid_new ();
+	#else
 	myData.pWidget = gtk_table_new (4, 2, FALSE);
+	#endif
 	
-	myData.pGlobalScale = _xgamma_add_channel_widget (myData.pWidget, "Gamma :", 0, &myData.iGloalScaleSignalID, fGamma);
+	myData.pGlobalScale = _xgamma_add_channel_widget (myData.pWidget, D_("Gamma :"), NULL, 0, &myData.iGloalScaleSignalID, fGamma);
 	
-	myData.pRedScale = _xgamma_add_channel_widget (myData.pWidget, "Red :", 1, &myData.iRedScaleSignalID, pGamma->red);
+	myData.pRedScale = _xgamma_add_channel_widget (myData.pWidget, D_("Red :"), "red", 1, &myData.iRedScaleSignalID, pGamma->red);
 	
-	myData.pGreenScale = _xgamma_add_channel_widget (myData.pWidget, "Green :", 2, &myData.iGreenScaleSignalID, pGamma->green);
+	myData.pGreenScale = _xgamma_add_channel_widget (myData.pWidget, D_("Green :"), "green", 2, &myData.iGreenScaleSignalID, pGamma->green);
 	
-	myData.pBlueScale = _xgamma_add_channel_widget (myData.pWidget, "Blue :", 3, &myData.iBlueScaleSignalID, pGamma->blue);
+	myData.pBlueScale = _xgamma_add_channel_widget (myData.pWidget, D_("Blue :"), "blue", 3, &myData.iBlueScaleSignalID, pGamma->blue);
 	
 	gtk_widget_show_all (myData.pWidget);
 }
@@ -215,7 +279,7 @@ CairoDialog *xgamma_build_dialog (void)
 void xgamma_build_and_show_widget (void)
 {
 	double fGamma = xgamma_get_gamma (&myData.Xgamma);
-	g_return_if_fail (fGamma > 0);
+	g_return_if_fail (fGamma >= 0);
 	
 	xgamma_create_scales_widget (fGamma, &myData.Xgamma);
 	
@@ -257,7 +321,7 @@ static void _xgamma_apply_value_simple (int iClickedButton, GtkWidget *pWidget, 
 CairoDialog *xgamma_build_dialog_simple (void)
 {
 	double fGamma = xgamma_get_gamma (&myData.Xgamma);
-	g_return_val_if_fail (fGamma > 0, NULL);
+	g_return_val_if_fail (fGamma >= 0, NULL);
 	double fGammaPercent = _gamma_to_percent (fGamma);
 	myData.XoldGamma = myData.Xgamma;
 	

@@ -29,7 +29,6 @@
 static void _on_volume_mounted (gboolean bMounting, gboolean bSuccess, const gchar *cName, const gchar *cURI, CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
-	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
 	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
 	
@@ -53,7 +52,6 @@ static void _on_volume_mounted (gboolean bMounting, gboolean bSuccess, const gch
 static void _open_on_mount (gboolean bMounting, gboolean bSuccess, const gchar *cName, const gchar *cURI, CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
-	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
 	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
 	
@@ -93,7 +91,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	}
 	else if (CD_APPLET_CLICKED_ICON != NULL)  // clic sur une des icones de la liste.
 	{
-		if (CD_APPLET_CLICKED_ICON->iGroup == CD_DRIVE_GROUP && CD_APPLET_CLICKED_ICON->iVolumeID)  // clic sur un point de montage.
+		if (CD_APPLET_CLICKED_ICON->iGroup == (CairoDockIconGroup) CD_DRIVE_GROUP && CD_APPLET_CLICKED_ICON->iVolumeID)  // clic sur un point de montage.
 		{
 			gboolean bIsMounted = FALSE;
 			gchar *cActivationURI = cairo_dock_fm_is_mounted (CD_APPLET_CLICKED_ICON->cBaseURI, &bIsMounted);
@@ -107,10 +105,8 @@ CD_APPLET_ON_CLICK_BEGIN
 				cairo_dock_fm_mount_full (CD_APPLET_CLICKED_ICON->cBaseURI, CD_APPLET_CLICKED_ICON->iVolumeID, (CairoDockFMMountCallback) _open_on_mount, myApplet);
 			}
 		}
-		else if (CD_APPLET_CLICKED_ICON->iGroup == CD_BOOKMARK_GROUP)  // clic sur un signet, il peut etre place sur un volume non monte.
+		else if (CD_APPLET_CLICKED_ICON->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)  // clic sur un signet, il peut etre place sur un volume non monte.
 		{
-			GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
-			CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 			
 			/// chercher un volume contenant le signet
 			
@@ -173,7 +169,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	{
 		cairo_dock_fm_launch_uri (g_getenv ("HOME"));
 	}
-	else if (CD_APPLET_CLICKED_ICON != NULL && (CD_APPLET_CLICKED_ICON->iGroup == CD_DRIVE_GROUP || CD_APPLET_CLICKED_ICON->iVolumeID > 0))  // clic sur une icone du sous-dock ou du desklet, et de type 'point de montage'.
+	else if (CD_APPLET_CLICKED_ICON != NULL && (CD_APPLET_CLICKED_ICON->iGroup == (CairoDockIconGroup) CD_DRIVE_GROUP || CD_APPLET_CLICKED_ICON->iVolumeID > 0))  // clic sur une icone du sous-dock ou du desklet, et de type 'point de montage'.
 	{
 		_mount_unmount (CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER, myApplet);
 	}
@@ -205,7 +201,7 @@ static void _cd_shortcuts_eject (GtkMenuItem *menu_item, gpointer *data)
 	CairoDockModuleInstance *myApplet = data[0];
 	CD_APPLET_ENTER;
 	Icon *pIcon = data[1];
-	CairoContainer *pContainer = data[2];
+	// CairoContainer *pContainer = data[2];
 	
 	cairo_dock_fm_eject_drive (pIcon->cBaseURI);
 	CD_APPLET_LEAVE ();
@@ -275,13 +271,13 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	}
 	else if (CD_APPLET_CLICKED_ICON != NULL)  // clic sur un item.
 	{
-		if (CD_APPLET_CLICKED_ICON->iGroup == CD_BOOKMARK_GROUP)  // clic sur un signet.
+		if (CD_APPLET_CLICKED_ICON->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)  // clic sur un signet.
 		{
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this bookmark"),  GTK_STOCK_SAVE_AS, _cd_shortcuts_rename_bookmark, CD_APPLET_MY_MENU, data);
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove this bookmark"), GTK_STOCK_REMOVE, _cd_shortcuts_remove_bookmark, CD_APPLET_MY_MENU, CD_APPLET_CLICKED_ICON->cBaseURI);
 			CD_APPLET_LEAVE (CAIRO_DOCK_INTERCEPT_NOTIFICATION);
 		}
-		else if (CD_APPLET_CLICKED_ICON->iGroup == CD_DRIVE_GROUP && CD_APPLET_CLICKED_ICON->cBaseURI != NULL)  // clic sur un volume.
+		else if (CD_APPLET_CLICKED_ICON->iGroup == (CairoDockIconGroup) CD_DRIVE_GROUP && CD_APPLET_CLICKED_ICON->cBaseURI != NULL)  // clic sur un volume.
 		{
 			if (cairo_dock_fm_can_eject (CD_APPLET_CLICKED_ICON->cBaseURI))
 				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Eject"), GTK_STOCK_DISCONNECT, _cd_shortcuts_eject, CD_APPLET_MY_MENU, data);

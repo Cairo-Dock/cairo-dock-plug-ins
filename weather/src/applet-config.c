@@ -145,10 +145,9 @@ static void _on_got_location_data (const gchar *cLocationData, CairoDockModuleIn
 		GString *sOneLocation = g_string_new ("");
 		GtkWidget *pMenuItem;
 		gchar *cLocationName, *cLocationCode;
-		GList *list, *data;
+		GList *list;
 		for (list = s_pLocationsList; list != NULL; list = list->next)
 		{
-			data = list;
 			cLocationCode = list->data;
 			list = list->next;
 			cLocationName = list->data;
@@ -217,7 +216,7 @@ void cd_weather_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile*
 	GtkWidget *pLocationEntry = gtk_entry_new ();
 	gtk_widget_set_tooltip_text (pLocationEntry, D_("Enter the name of your location and press Enter to choose amongst results."));
 	if (myData.wdata.cLocation != NULL)
-		gtk_entry_set_text (GTK_ENTRY (pLocationEntry), myData.wdata.cLocation);
+		gtk_entry_set_text (GTK_ENTRY (pLocationEntry), (gchar *)myData.wdata.cLocation);
 	gtk_box_pack_start (GTK_BOX (pWidgetBox), pLocationEntry, FALSE, FALSE, 0);
 	g_signal_connect (pLocationEntry, "activate", G_CALLBACK (_cd_weather_search_for_location), myApplet);
 }

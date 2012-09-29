@@ -22,8 +22,6 @@
 #include "applet-struct.h"
 #include "applet-menu.h"
 
-static GList *s_pItemList = NULL;
-
 static void _on_activate_item (GtkWidget *pMenuItem, CDQuickBrowserItem *pItem);
 
 static int _sort_item (CDQuickBrowserItem *pItem1, CDQuickBrowserItem *pItem2)
@@ -134,12 +132,11 @@ static void _fill_submenu_with_items (CDQuickBrowserItem *pRootItem, int iNbSubI
 	GtkWidget *pMenu = pRootItem->pSubMenu;
 	GList *pFirstItem = pRootItem->pCurrentItem;
 
-	static GtkTargetEntry s_pMenuItemTargets[] = { {(gchar*) "text/uri-list", 0, 0} }; // for drag and drop support
+	// static GtkTargetEntry s_pMenuItemTargets[] = { {(gchar*) "text/uri-list", 0, 0} }; // for drag and drop support
 
 	CDQuickBrowserItem *pItem;
 	gchar *cFileName;
 	GtkWidget *pMenuItem;
-	gboolean bSetImage;
 	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL;
 	gboolean bIsDirectory;
 	int iVolumeID;
@@ -151,7 +148,6 @@ static void _fill_submenu_with_items (CDQuickBrowserItem *pRootItem, int iNbSubI
 		pItem = l->data;
 		
 		//\______________ On cree l'entree avec son icone si necessaire.
-		bSetImage = FALSE;
 		if (myConfig.bHasIcons)
 		{
 			cairo_dock_fm_get_file_info (pItem->cPath, &cName, &cURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, 0);

@@ -46,7 +46,7 @@ void cd_sysmonitor_get_uptime (gchar **cUpTime, gchar **cActivityTime)
 	
 	double fUpTime = 0, fIdleTime = 0;
 	int r = fscanf (fd, "%lf %lf\n", &fUpTime, &fIdleTime);
-	if (r < -1)
+	if (r == EOF)
 		cd_warning ("Failed to use fscanf");
 	fclose (fd);
 	

@@ -91,7 +91,6 @@ static void _browse_dir (const gchar *cDirPath)
 	Icon *pIcon;
 	GKeyFile* pKeyFile;
 	const gchar *cFileName;
-	GList *pLocalItemList = NULL;
 	do
 	{
 		cFileName = g_dir_read_name (dir);
@@ -220,7 +219,6 @@ void cd_do_find_matching_applications (void)
 	
 	//\_______________ On teste chaque appli qu'on rajoute a la liste si elle correspond.
 	myData.pMatchingIcons = NULL;
-	gboolean bFound = FALSE;
 	gboolean bMatch;
 	Icon *pIcon;
 	GList *a;

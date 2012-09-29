@@ -82,6 +82,8 @@ void cd_stack_clear_stack (CairoDockModuleInstance *myApplet)
 	gchar *cCommand = g_strdup_printf("rm -rf \"%s\"/*", myConfig.cStackDir);
 	cd_debug("Stack: will use '%s'", cCommand);
 	int r = system (cCommand);
+	if (r < 0)
+		cd_warning ("Not able to launch this command: %s", cCommand);
 	g_free(cCommand);
 	
 	CD_APPLET_DELETE_MY_ICONS_LIST;
@@ -106,7 +108,7 @@ void cd_stack_remove_item (CairoDockModuleInstance *myApplet, Icon *pIcon)
 
 static void _get_html_page (CDHtmlLink *pHtmlLink)
 {
-	CairoDockModuleInstance *myApplet = pHtmlLink->pApplet;
+	// CairoDockModuleInstance *myApplet = pHtmlLink->pApplet;
 	// get the HTML page content
 	gchar *cPageContent = cairo_dock_get_url_data (pHtmlLink->cURL, NULL);
 	if (cPageContent == NULL)

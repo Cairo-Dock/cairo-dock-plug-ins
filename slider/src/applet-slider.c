@@ -295,10 +295,9 @@ typedef struct {
 static void _free_shared_memory (CDListSharedMemory *pSharedMemory)
 {
 	g_free (pSharedMemory->cDirectory);
-	cd_slider_free_images_list (pSharedMemory->pList);
+	// cd_slider_free_images_list (pSharedMemory->pList); // should be the same as myData.pList
 	g_free (pSharedMemory);
 }
-
 
 static int _compare_images_order (SliderImage *image2, SliderImage *image1)
 {
@@ -441,10 +440,11 @@ void cd_slider_start (CairoDockModuleInstance *myApplet, gboolean bDelay)
 	pSharedMemory->cDirectory = g_strdup (myConfig.cDirectory);
 	pSharedMemory->pApplet = myApplet;
 	
-	myData.pMeasureDirectory = cairo_dock_new_task (0,
+	myData.pMeasureDirectory = cairo_dock_new_task_full (0,
 		(CairoDockGetDataAsyncFunc) cd_slider_get_files_from_dir,
 		(CairoDockUpdateSyncFunc) cd_slider_start_slide,
-		pSharedMemory);  // 0 <=> one shot task.
+		(GFreeFunc) _free_shared_memory,
+		pSharedMemory); // 0 <=> one shot task.
 	
 	// launch the parsing.
 	if (bDelay)

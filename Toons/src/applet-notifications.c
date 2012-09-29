@@ -42,7 +42,7 @@ CD_APPLET_ON_UPDATE_ICON_BEGIN
 	gboolean bNeedsUpdate = FALSE;
 	double fScale = myIcon->fScale / cairo_dock_get_icon_max_scale (myIcon) * myContainer->fRatio;
 	int dx, dy;
-	double tana, cosa, sina, x, y;
+	double tana, cosa, sina;
 	int i;
 	for (i = 0; i < 2; i ++)
 	{

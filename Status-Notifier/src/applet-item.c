@@ -107,14 +107,14 @@ static CDToolTip *_make_tooltip_from_dbus_struct (GValueArray *pToolTipTab)
 	}
 	return pToolTip;
 }
-
+/* Not used
 static void _show_item_tooltip (Icon *pIcon, CDStatusNotifierItem *pItem)
 {
 	gchar *cText = g_strdup_printf ("<b>%s</b>\n%s", pItem->pToolTip->cTitle, pItem->pToolTip->cMessage);
 	cairo_dock_show_temporary_dialog_with_icon (cText, pIcon, CAIRO_CONTAINER (myIcon->pSubDock), 4000, pItem->pToolTip->cIconName);
 	g_free (cText);
 }
-
+*/
 /*static void _show_item_status (Icon *pIcon, CDStatusNotifierItem *pItem)
 {
 	switch (pItem->iStatus)

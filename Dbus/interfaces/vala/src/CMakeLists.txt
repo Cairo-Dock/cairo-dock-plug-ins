@@ -7,7 +7,7 @@ endif()
 
 # now, compile it as any normal C lib.
 add_library (${CDAPPLET} SHARED ${VALA_SRC_DIR}/${CDAPPLET}.c)
-add_definitions (-fPIC)
+add_definitions (-fPIC -Wno-all)
 
 pkg_check_modules ("CDAPPLET_DEPS" "gobject-2.0" "gio-2.0")
 

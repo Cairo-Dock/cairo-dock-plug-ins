@@ -204,10 +204,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		
 		Display                 *dpy;
 		Window                  root;
-		int                     num_sizes;
-		XRRScreenSize           *xrrs;
 		XRRScreenConfiguration  *conf;
-		short                   original_rate;
 		Rotation                original_rotation;
 		SizeID                  original_size_id;
 		
@@ -217,7 +214,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		conf = XRRGetScreenInfo(dpy, root);  // config  courante.
 		if (conf != NULL)
 		{
-			original_rate = XRRConfigCurrentRate(conf);
+			//original_rate = XRRConfigCurrentRate(conf);
 			original_size_id = XRRConfigCurrentConfiguration(conf, &original_rotation);
 			
 			// resolutions possibles.
@@ -324,11 +321,7 @@ static void _download_to_desktop (GtkMenuItem *menu_item, CairoDockModuleInstanc
 	gchar *cDesktopDir = _get_desktop_path ();
 	if (cDesktopDir != NULL)
 	{
-		
-		CairoDockTask *pTask = cairo_dock_download_file_async (myData.cPendingFile, NULL, (GFunc)_dl_finished, myApplet);
-		
-		
-		
+		cairo_dock_download_file_async (myData.cPendingFile, NULL, (GFunc)_dl_finished, myApplet);
 		g_free (cDesktopDir);
 	}
 }

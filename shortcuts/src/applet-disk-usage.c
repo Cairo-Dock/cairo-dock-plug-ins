@@ -108,7 +108,7 @@ static gboolean _cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myAppl
 	for (ic = pIconsList; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (pIcon->iGroup != CD_DRIVE_GROUP)  // les disques sont en 1er
+		if (pIcon->iGroup != (CairoDockIconGroup) CD_DRIVE_GROUP)  // les disques sont en 1er
 			break;
 		if (pIcon->cCommand != NULL)
 		{
@@ -159,9 +159,6 @@ static void _cd_shortcuts_get_fs_info (const gchar *cDiskURI, GString *sInfo)
 	const gchar *cMountPath = (strncmp (cDiskURI, "file://", 7) == 0 ? cDiskURI + 7 : cDiskURI);
 	struct mntent *me;
 	FILE *mtab = setmntent ("/etc/mtab", "r");
-	char *search_path;
-	int match;
-	char *slash;
 
 	if (mtab == NULL)
 	{
@@ -169,7 +166,6 @@ static void _cd_shortcuts_get_fs_info (const gchar *cDiskURI, GString *sInfo)
 		return ;
 	}
 	
-	gchar *cFsInfo = NULL;
 	while ((me = getmntent (mtab)) != NULL)
 	{
 		if (me->mnt_dir && strcmp (me->mnt_dir, cMountPath) == 0)

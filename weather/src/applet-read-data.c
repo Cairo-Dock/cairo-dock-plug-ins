@@ -60,7 +60,7 @@ static xmlDocPtr _cd_weather_open_xml_buffer (const gchar *cData, xmlNodePtr *ro
 	}
 	
 	xmlNodePtr noeud = xmlDocGetRootElement (doc);
-	if (noeud == NULL || xmlStrcmp (noeud->name, (const xmlChar *) cRootNodeName) != 0)
+	if (noeud == NULL || xmlStrcmp (noeud->name, BAD_CAST cRootNodeName) != 0)
 	{
 		g_set_error (erreur, 1, 2, "xml data is not well formed (weather.com may have changed its data format)");
 		return doc;
@@ -68,6 +68,7 @@ static xmlDocPtr _cd_weather_open_xml_buffer (const gchar *cData, xmlNodePtr *ro
 	*root_node = noeud;
 	return doc;
 }
+/* Not used
 static xmlDocPtr _cd_weather_open_xml_file (const gchar *cDataFilePath, xmlNodePtr *root_node, const gchar *cRootNodeName, GError **erreur)
 {
 	gsize length = 0;
@@ -80,6 +81,7 @@ static xmlDocPtr _cd_weather_open_xml_file (const gchar *cDataFilePath, xmlNodeP
 	g_free (cContent);
 	return doc;
 }
+*/
 static void _cd_weather_close_xml_file (xmlDocPtr doc)
 {
 	if (doc != NULL)
@@ -103,10 +105,10 @@ GList *cd_weather_parse_location_data (const gchar *cData, GError **erreur)
 	xmlNodePtr param;
 	for (param = noeud->xmlChildrenNode; param != NULL; param = param->next)
 	{
-		if (xmlStrcmp (param->name, (const xmlChar *) "loc") == 0)
+		if (xmlStrcmp (param->name, BAD_CAST "loc") == 0)
 		{
 			cLocationsList = g_list_prepend (cLocationsList, xmlNodeGetContent (param));
-			cLocationsList = g_list_prepend (cLocationsList,  xmlGetProp (param, (xmlChar *) "id"));
+			cLocationsList = g_list_prepend (cLocationsList,  xmlGetProp (param, BAD_CAST "id"));
 		}
 	}
 	_cd_weather_close_xml_file (doc);
@@ -127,160 +129,158 @@ static void _cd_weather_parse_data (CDSharedMemory *pSharedMemory, const gchar *
 	}
 	
 	xmlNodePtr param, fils, petitfils, arrpetitfils, arrarrpetitfils;
-	gchar *nom, *visible, *name, *defaultsource = NULL, *source, *where;
-	xmlChar *contenu;
 	int i, j;
 	gchar *index_str, *cDayName, *cDate, *str;
 	for (param = noeud->xmlChildrenNode; param != NULL; param = param->next)
 	{
-		if (bParseHeader && xmlStrcmp (param->name, (const xmlChar *) "head") == 0)
+		if (bParseHeader && xmlStrcmp (param->name, BAD_CAST "head") == 0)
 		{
 			for (fils = param->children; fils != NULL; fils = fils->next)
 			{
-				if (xmlStrcmp (fils->name, (const xmlChar *) "ut") == 0)
+				if (xmlStrcmp (fils->name, BAD_CAST "ut") == 0)
 				{
-					gchar *degree = xmlNodeGetContent (fils);
-					if (degree == NULL || strncmp (degree, "째", strlen ("째")) != 0)  // prepend � if not present.
+					xmlChar *degree = xmlNodeGetContent (fils);
+					if (degree == NULL || strncmp ((gchar *)degree, "째", strlen ("째")) != 0)  // prepend � if not present.
 					{
-						pSharedMemory->wdata.units.cTemp = g_strconcat ("째", degree, NULL);
+						pSharedMemory->wdata.units.cTemp = BAD_CAST g_strconcat ("째", (gchar *)degree, NULL);
 						g_free (degree);
 					}
 					else
 						pSharedMemory->wdata.units.cTemp = degree;
 				}
-				else if (xmlStrcmp (fils->name, (const xmlChar *) "ud") == 0)
+				else if (xmlStrcmp (fils->name, BAD_CAST "ud") == 0)
 					pSharedMemory->wdata.units.cDistance = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, (const xmlChar *) "us") == 0)
+				else if (xmlStrcmp (fils->name, BAD_CAST "us") == 0)
 					pSharedMemory->wdata.units.cSpeed = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, (const xmlChar *) "up") == 0)
+				else if (xmlStrcmp (fils->name, BAD_CAST "up") == 0)
 					pSharedMemory->wdata.units.cPressure = xmlNodeGetContent (fils);
-				//else if (xmlStrcmp (fils->name, (const xmlChar *) "ur") == 0)  // ?
+				//else if (xmlStrcmp (fils->name, BAD_CAST "ur") == 0)  // ?
 				//	pSharedMemory->wdata.units.cR = xmlNodeGetContent (fils);
 			}
 		}
-		else if (bParseHeader && xmlStrcmp (param->name, (const xmlChar *) "loc") == 0)
+		else if (bParseHeader && xmlStrcmp (param->name, BAD_CAST "loc") == 0)
 		{
 			for (fils = param->children; fils != NULL; fils = fils->next)
 			{
-				if (xmlStrcmp (fils->name, (const xmlChar *) "dnam") == 0)
+				if (xmlStrcmp (fils->name, BAD_CAST "dnam") == 0)
 					pSharedMemory->wdata.cLocation = xmlNodeGetContent (fils);
-				/**else if (xmlStrcmp (fils->name, (const xmlChar *) "lat") == 0)
+				/**else if (xmlStrcmp (fils->name, BAD_CAST "lat") == 0)
 					pSharedMemory->cLat = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, (const xmlChar *) "lon") == 0)
+				else if (xmlStrcmp (fils->name, BAD_CAST "lon") == 0)
 					pSharedMemory->cLon = xmlNodeGetContent (fils);*/
-				else if (xmlStrcmp (fils->name, (const xmlChar *) "sunr") == 0)
+				else if (xmlStrcmp (fils->name, BAD_CAST "sunr") == 0)
 					pSharedMemory->wdata.currentConditions.cSunRise = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, (const xmlChar *) "suns") == 0)
+				else if (xmlStrcmp (fils->name, BAD_CAST "suns") == 0)
 					pSharedMemory->wdata.currentConditions.cSunSet = xmlNodeGetContent (fils);
 			}
 		}
-		else if (xmlStrcmp (param->name, (const xmlChar *) "cc") == 0)
+		else if (xmlStrcmp (param->name, BAD_CAST "cc") == 0)
 		{
 			for (fils = param->children; fils != NULL; fils = fils->next)
 			{
-				if (xmlStrcmp (fils->name, (const xmlChar *) "lsup") == 0)
+				if (xmlStrcmp (fils->name, BAD_CAST "lsup") == 0)
 					pSharedMemory->wdata.currentConditions.cDataAcquisitionDate = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, (const xmlChar *) "obst") == 0)
+				else if (xmlStrcmp (fils->name, BAD_CAST "obst") == 0)
 					pSharedMemory->wdata.currentConditions.cObservatory = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, (const xmlChar *) "tmp") == 0)
+				else if (xmlStrcmp (fils->name, BAD_CAST "tmp") == 0)
 					pSharedMemory->wdata.currentConditions.cTemp = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, (const xmlChar *) "flik") == 0)
+				else if (xmlStrcmp (fils->name, BAD_CAST "flik") == 0)
 					pSharedMemory->wdata.currentConditions.cFeltTemp = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, (const xmlChar *) "t") == 0)
+				else if (xmlStrcmp (fils->name, BAD_CAST "t") == 0)
 					pSharedMemory->wdata.currentConditions.cWeatherDescription = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, (const xmlChar *) "icon") == 0)
+				else if (xmlStrcmp (fils->name, BAD_CAST "icon") == 0)
 					pSharedMemory->wdata.currentConditions.cIconNumber = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, (const xmlChar *) "wind") == 0)
+				else if (xmlStrcmp (fils->name, BAD_CAST "wind") == 0)
 				{
 					for (petitfils = fils->children; petitfils != NULL; petitfils = petitfils->next)
 					{
-						if (xmlStrcmp (petitfils->name, (const xmlChar *) "s") == 0)
+						if (xmlStrcmp (petitfils->name, BAD_CAST "s") == 0)
 							pSharedMemory->wdata.currentConditions.cWindSpeed = xmlNodeGetContent (petitfils);
-						else if (xmlStrcmp (petitfils->name, (const xmlChar *) "t") == 0)
+						else if (xmlStrcmp (petitfils->name, BAD_CAST "t") == 0)
 							pSharedMemory->wdata.currentConditions.cWindDirection = xmlNodeGetContent (petitfils);
 					}
 				}
-				else if (xmlStrcmp (fils->name, (const xmlChar *) "bar") == 0)
+				else if (xmlStrcmp (fils->name, BAD_CAST "bar") == 0)
 				{
 					for (petitfils = fils->children; petitfils != NULL; petitfils = petitfils->next)
 					{
-						if (xmlStrcmp (petitfils->name, (const xmlChar *) "r") == 0)
+						if (xmlStrcmp (petitfils->name, BAD_CAST "r") == 0)
 							pSharedMemory->wdata.currentConditions.cPressure = xmlNodeGetContent (petitfils);
 					}
 				}
-				else if (xmlStrcmp (fils->name, (const xmlChar *) "hmid") == 0)
+				else if (xmlStrcmp (fils->name, BAD_CAST "hmid") == 0)
 					pSharedMemory->wdata.currentConditions.cHumidity = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, (const xmlChar *) "moon") == 0)
+				else if (xmlStrcmp (fils->name, BAD_CAST "moon") == 0)
 				{
 					for (petitfils = fils->children; petitfils != NULL; petitfils = petitfils->next)
 					{
-						if (xmlStrcmp (petitfils->name, (const xmlChar *) "icon") == 0)
+						if (xmlStrcmp (petitfils->name, BAD_CAST "icon") == 0)
 							pSharedMemory->wdata.currentConditions.cMoonIconNumber = xmlNodeGetContent (petitfils);
 					}
 				}
 			}
 		}
-		else if (xmlStrcmp (param->name, (const xmlChar *) "dayf") == 0)
+		else if (xmlStrcmp (param->name, BAD_CAST "dayf") == 0)
 		{
 			for (fils = param->children; fils != NULL; fils = fils->next)
 			{
-				if (xmlStrcmp (fils->name, (const xmlChar *) "lsup") == 0)
+				if (xmlStrcmp (fils->name, BAD_CAST "lsup") == 0)
 					pSharedMemory->wdata.currentConditions.cDataAcquisitionDate = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, (const xmlChar *) "day") == 0)
+				else if (xmlStrcmp (fils->name, BAD_CAST "day") == 0)
 				{
-					index_str = (gchar *) xmlGetProp (fils, (xmlChar *) "d");
+					index_str = (gchar *) xmlGetProp (fils, BAD_CAST "d");
 					if (index_str == NULL)
 						continue;
 					i = atoi (index_str);
 					g_free (index_str);
-					cDayName = (gchar *) xmlGetProp (fils, (xmlChar *) "t");
-					pSharedMemory->wdata.days[i].cName = g_strdup (D_(cDayName));
+					cDayName = (gchar *) xmlGetProp (fils, BAD_CAST "t");
+					pSharedMemory->wdata.days[i].cName = BAD_CAST g_strdup (D_(cDayName));
 					g_free (cDayName);
-					cDate = (gchar *) xmlGetProp (fils, (xmlChar *) "dt");
+					cDate = (gchar *) xmlGetProp (fils, BAD_CAST "dt");
 					str = strchr (cDate, ' ');
 					if (str != NULL)
 					{
 						*str = '\0';
-						pSharedMemory->wdata.days[i].cDate = g_strconcat (D_(cDate), " ", str+1, NULL);
+						pSharedMemory->wdata.days[i].cDate = BAD_CAST g_strconcat (D_(cDate), " ", str+1, NULL);
 						g_free (cDate);
 					}
 					else
-						pSharedMemory->wdata.days[i].cDate = cDate;
+						pSharedMemory->wdata.days[i].cDate = BAD_CAST cDate;
 					for (petitfils = fils->children; petitfils != NULL; petitfils = petitfils->next)
 					{
-						if (xmlStrcmp (petitfils->name, (const xmlChar *) "hi") == 0)
+						if (xmlStrcmp (petitfils->name, BAD_CAST "hi") == 0)
 							pSharedMemory->wdata.days[i].cTempMax = xmlNodeGetContent (petitfils);
-						else if (xmlStrcmp (petitfils->name, (const xmlChar *) "low") == 0)
+						else if (xmlStrcmp (petitfils->name, BAD_CAST "low") == 0)
 							pSharedMemory->wdata.days[i].cTempMin = xmlNodeGetContent (petitfils);
-						else if (xmlStrcmp (petitfils->name, (const xmlChar *) "sunr") == 0)
+						else if (xmlStrcmp (petitfils->name, BAD_CAST "sunr") == 0)
 							pSharedMemory->wdata.days[i].cSunRise = xmlNodeGetContent (petitfils);
-						else if (xmlStrcmp (petitfils->name, (const xmlChar *) "suns") == 0)
+						else if (xmlStrcmp (petitfils->name, BAD_CAST "suns") == 0)
 							pSharedMemory->wdata.days[i].cSunSet = xmlNodeGetContent (petitfils);
-						else if (xmlStrcmp (petitfils->name, (const xmlChar *) "part") == 0)
+						else if (xmlStrcmp (petitfils->name, BAD_CAST "part") == 0)
 						{
-							index_str = (gchar *) xmlGetProp (petitfils, (xmlChar *) "p");
+							index_str = (gchar *) xmlGetProp (petitfils, BAD_CAST "p");
 							if (index_str == NULL)
 								continue;
 							j = (*index_str == 'd' ? 0 : 1);  // jour : 0 / nuit : 1.
 							for (arrpetitfils = petitfils->children; arrpetitfils != NULL; arrpetitfils = arrpetitfils->next)
 							{
-								if (xmlStrcmp (arrpetitfils->name, (const xmlChar *) "icon") == 0)
+								if (xmlStrcmp (arrpetitfils->name, BAD_CAST "icon") == 0)
 									pSharedMemory->wdata.days[i].part[j].cIconNumber = xmlNodeGetContent (arrpetitfils);
-								else if (xmlStrcmp (arrpetitfils->name, (const xmlChar *) "t") == 0)
+								else if (xmlStrcmp (arrpetitfils->name, BAD_CAST "t") == 0)
 									pSharedMemory->wdata.days[i].part[j].cWeatherDescription = xmlNodeGetContent (arrpetitfils);
-								else if (xmlStrcmp (arrpetitfils->name, (const xmlChar *) "wind") == 0)
+								else if (xmlStrcmp (arrpetitfils->name, BAD_CAST "wind") == 0)
 								{
 									for (arrarrpetitfils = arrpetitfils->children; arrarrpetitfils != NULL; arrarrpetitfils = arrarrpetitfils->next)
 									{
-										if (xmlStrcmp (arrarrpetitfils->name, (const xmlChar *) "s") == 0)
+										if (xmlStrcmp (arrarrpetitfils->name, BAD_CAST "s") == 0)
 											pSharedMemory->wdata.days[i].part[j].cWindSpeed = xmlNodeGetContent (arrarrpetitfils);
-										else if (xmlStrcmp (arrarrpetitfils->name, (const xmlChar *) "t") == 0)
+										else if (xmlStrcmp (arrarrpetitfils->name, BAD_CAST "t") == 0)
 											pSharedMemory->wdata.days[i].part[j].cWindDirection = xmlNodeGetContent (arrarrpetitfils);
 									}
 								}
-								else if (xmlStrcmp (arrpetitfils->name, (const xmlChar *) "hmid") == 0)
+								else if (xmlStrcmp (arrpetitfils->name, BAD_CAST "hmid") == 0)
 									pSharedMemory->wdata.days[i].part[j].cHumidity = xmlNodeGetContent (arrpetitfils);
-								else if (xmlStrcmp (arrpetitfils->name, (const xmlChar *) "ppcp") == 0)
+								else if (xmlStrcmp (arrpetitfils->name, BAD_CAST "ppcp") == 0)
 									pSharedMemory->wdata.days[i].part[j].cPrecipitationProba = xmlNodeGetContent (arrpetitfils);
 							}
 						}
@@ -298,7 +298,6 @@ static void cd_weather_get_distant_data (CDSharedMemory *pSharedMemory)
 	//\____________________ On recupere les conditions courantes sur le serveur.
 	pSharedMemory->bErrorInThread = FALSE;
 	GError *erreur = NULL;
-	gchar *cCommand;
 	gchar *cCCData = NULL;
 	if (pSharedMemory->bCurrentConditions)
 	{

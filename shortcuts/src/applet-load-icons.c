@@ -105,7 +105,7 @@ static void _cd_shortcuts_on_network_event (CairoDockFMEventType iEventType, con
 			CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pConcernedIcon);
 		}
 		break ;
-		
+
 		case CAIRO_DOCK_FILE_CREATED :  // un reseau a ete connecte.
 		{
 			//\_______________________ on verifie qu'elle n'existe pas deja.
@@ -140,7 +140,8 @@ static void _cd_shortcuts_on_network_event (CairoDockFMEventType iEventType, con
 				NULL,  // son icone n'est pas encore chargee
 				pNewIcon->cName);
 		}
-		
+		break ;
+
 		case CAIRO_DOCK_FILE_MODIFIED :  // un point de montage a ete (de)monte
 		{
 			//\_______________________ on cherche l'icone concernee.
@@ -180,6 +181,10 @@ static void _cd_shortcuts_on_network_event (CairoDockFMEventType iEventType, con
 				cairo_dock_free_icon (pNewIcon);
 			}
 		}
+		break ;
+
+		case CAIRO_DOCK_NB_EVENT_ON_FILES :
+		break ;
 	}
 	CD_APPLET_LEAVE();
 }

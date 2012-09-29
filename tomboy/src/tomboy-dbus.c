@@ -81,6 +81,7 @@ static gchar *getNoteContent (const gchar *note_name)
 	return cNoteContent;
 }
 
+/* Not used
 static gchar **getNoteTags (const gchar *note_name)
 {
 	gchar **cTags = NULL;
@@ -91,7 +92,7 @@ static gchar **getNoteTags (const gchar *note_name)
 		G_TYPE_INVALID);
 	return cTags;
 }
-
+*/
 
 static void _load_note_image (Icon *pIcon)
 {
@@ -485,7 +486,7 @@ GList *cd_tomboy_find_notes_with_tag (gchar *cTag)
 	if (cNoteNames == NULL)
 		return NULL;
 	
-	GList *pList = (myDock ? (myIcon->pSubDock ? myIcon->pSubDock->icons : NULL) : myDesklet->icons);
+	// GList *pList = (myDock ? (myIcon->pSubDock ? myIcon->pSubDock->icons : NULL) : myDesklet->icons);
 	GList *pMatchList = NULL;
 	Icon *pIcon;
 	int i=0;

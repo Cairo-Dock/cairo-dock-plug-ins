@@ -157,7 +157,6 @@ void cd_do_select_previous_next_matching_icon (gboolean bNext)
 		// on arme l'animation de decalage.
 		myData.iMatchingGlideCount = 10;  // on rembobine l'animation.
 		myData.iPreviousMatchingOffset = myData.iCurrentMatchingOffset;  // on part du point courant.
-		CairoDock *pParentDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
 		int iWidth, iHeight;
 		cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
 		if (iHeight != 0)

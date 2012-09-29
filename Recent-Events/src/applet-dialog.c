@@ -148,28 +148,9 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 			
 			//\_____________ build the path to display.
 			const gchar *cDisplayedPath = (cPath ? cPath : cEventURI);
-			
-			gchar *cEscapedPath = NULL;
-			if (strchr (cDisplayedPath, '&'))  // need to escape the '&' because gtk-tooltips use markups by default.
-			{
-				cEscapedPath = g_new0 (gchar, 5*strlen(cDisplayedPath));
-				const gchar *str = cDisplayedPath;
-				gchar *str2 = cEscapedPath;
-				while (*str != '\0')
-				{
-					if (*str == '&')
-					{
-						strcpy (str2, "&amp;");
-						str2 += 5;
-					}
-					else
-					{
-						*str2 = *str;
-						*str2 ++;
-					}
-					str ++;
-				}
-			}
+
+			// need to escape the '&' (and ', etc.) because gtk-tooltips use markups by default.
+			gchar *cEscapedPath = g_markup_escape_text (cDisplayedPath, -1);
 			
 			//\_____________ store in the model.
 			memset (&iter, 0, sizeof (GtkTreeIter));
@@ -177,7 +158,7 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 			gtk_list_store_set (GTK_LIST_STORE (pModel), &iter,
 				CD_MODEL_NAME, cText,
 				CD_MODEL_URI, cEventURI,
-				CD_MODEL_PATH, cEscapedPath?cEscapedPath:cDisplayedPath,
+				CD_MODEL_PATH, cEscapedPath,
 				CD_MODEL_ICON, pixbuf,
 				CD_MODEL_DATE, iTimeStamp,
 				CD_MODEL_ID, id, -1);
@@ -293,7 +274,6 @@ static gboolean _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButt
 					GList *a;
 					gchar **pAppInfo;
 					gchar *cIconPath;
-					gpointer *app;
 					for (a = pApps; a != NULL; a = a->next)
 					{
 						pAppInfo = a->data;

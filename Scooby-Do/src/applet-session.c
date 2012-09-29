@@ -122,7 +122,7 @@ void cd_do_close_session (void)
 	if (myData.iPreviouslyActiveWindow != 0)
 	{
 		/// ne le faire que si on a encore le focus, sinon c'est que l'utilisateur a change lui-meme de fenetre...
-		Window iActiveWindow = cairo_dock_get_active_xwindow ();
+		//Window iActiveWindow = cairo_dock_get_active_xwindow ();
 		
 		//cairo_dock_show_xwindow (myData.iPreviouslyActiveWindow);
 		myData.iPreviouslyActiveWindow = 0;
@@ -217,7 +217,6 @@ void cd_do_free_char_list (GList *pCharList)
 void cd_do_load_pending_caracters (void)
 {
 	cairo_surface_t *pSurface;
-	GLuint iTexture;
 	gboolean bLoadTexture = (CAIRO_CONTAINER_IS_OPENGL (g_pMainDock));
 	gchar c[2] = {'\0', '\0'};
 	CDChar *pChar;

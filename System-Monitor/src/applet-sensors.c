@@ -104,7 +104,7 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 	int chip_nr;
 	
 	chip_nr = 0;
-	double fCpuTempPercent, fCpuTempPercentMax = 0;
+	double fCpuTempPercentMax = 0;
 	myData.iFanSpeed = 0;
 	myData.iCPUTemp = 0;
 	myData.bCpuTempAlarm = FALSE;

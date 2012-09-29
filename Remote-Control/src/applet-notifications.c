@@ -240,7 +240,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	{
 		if (myData.sCurrentText->len > 0)
 		{
-			gboolean bPrevious = iModifierType & GDK_SHIFT_MASK;
+			//gboolean bPrevious = iModifierType & GDK_SHIFT_MASK;
 			// on cherche l'icone suivante.
 			cd_do_search_current_icon (TRUE);  // pCurrentIcon peut etre NULL si elle s'est faite detruire pendant la recherche, auquel cas on cherchera juste normalement.
 		}
@@ -546,9 +546,9 @@ static void _render_opengl (CairoContainer *pContainer)
 		fFrameWidth = MIN (myData.pArrowImage->iWidth, pContainer->iWidth);
 		fFrameHeight = MIN (myData.pArrowImage->iHeight, pContainer->iHeight);
 		
-		double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du prompt.
+		/*double fDockOffsetX, fDockOffsetY;  // Offset du coin haut gauche du prompt.
 		fDockOffsetX = (pContainer->iWidth - fFrameWidth) / 2;
-		fDockOffsetY = (pContainer->iHeight - fFrameHeight) / 2;
+		fDockOffsetY = (pContainer->iHeight - fFrameHeight) / 2;*/
 		
 		fAlpha *= _alpha_prompt (myData.iPromptAnimationCount, s_iNbPromptAnimationSteps);
 		

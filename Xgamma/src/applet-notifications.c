@@ -38,7 +38,7 @@ CD_APPLET_ON_CLICK_END
 static void _cd_xgamma_set_up_gamma_correction (void)
 {
 	double fGamma = xgamma_get_gamma (&myData.Xgamma);
-	if (fGamma > 0)
+	if (fGamma >= 0)
 	{
 		//\___________________ On construit notre widget si c'est la 1ere fois.
 		if (myData.pWidget == NULL)

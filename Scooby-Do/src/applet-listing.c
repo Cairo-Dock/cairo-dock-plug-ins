@@ -741,7 +741,7 @@ static inline void _update_scroll (int iNewPosition, int delta)
 	else if (iNewPosition <= myConfig.iNbLinesInListing/2)
 		myData.pListing->fAimedOffset = 0.;
 	else
-		myData.pListing->fAimedOffset = myData.pListing->fAimedOffset = (myData.pListing->iNbVisibleEntries - myConfig.iNbLinesInListing) * (myDialogsParam.dialogTextDescription.iSize + 2);
+		myData.pListing->fAimedOffset = (myData.pListing->iNbVisibleEntries - myConfig.iNbLinesInListing) * (myDialogsParam.dialogTextDescription.iSize + 2);
 	myData.pListing->iScrollAnimationCount = NB_STEPS_FOR_SCROLL;
 }
 static inline void _launch_new_entry_animation (void)

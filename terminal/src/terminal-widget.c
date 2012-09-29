@@ -152,8 +152,6 @@ void terminal_rename_tab (GtkWidget *vterm)
 	}
 	GtkWidget *pTabLabelWidget = gtk_notebook_get_tab_label (GTK_NOTEBOOK(myData.tab), vterm);
 	GList *pTabWidgetList = gtk_container_get_children (GTK_CONTAINER (pTabLabelWidget));
-	GtkLabel *pLabel;
-	const gchar *cCurrentName;
 	if (pTabWidgetList != NULL && pTabWidgetList->data != NULL)
 	{
 		GtkLabel *pLabel = pTabWidgetList->data;
@@ -237,8 +235,6 @@ void terminal_change_color_tab (GtkWidget *vterm)
 	}
 	GtkWidget *pTabLabelWidget = gtk_notebook_get_tab_label (GTK_NOTEBOOK(myData.tab), vterm);
 	GList *pTabWidgetList = gtk_container_get_children (GTK_CONTAINER (pTabLabelWidget));
-	GtkLabel *pLabel;
-	const gchar *cCurrentName = NULL;
 	if (pTabWidgetList != NULL && pTabWidgetList->data != NULL)
 	{
 		GtkLabel *pLabel = pTabWidgetList->data;
@@ -258,6 +254,7 @@ void terminal_change_color_tab (GtkWidget *vterm)
 		#endif
 		gboolean bColorSet = FALSE;
 		gchar *cUsefulLabel = _get_label_and_color (cCurrentLabel, &color, &bColorSet);
+		g_free (cUsefulLabel);
 		if (bColorSet)
 		{
 			#if GTK_CHECK_VERSION (3, 4, 0)
@@ -574,8 +571,6 @@ static gchar * _terminal_get_tab_name (int iNumPage)
 	GtkWidget *vterm = gtk_notebook_get_nth_page (GTK_NOTEBOOK(myData.tab), iNumPage);
 	GtkWidget *pTabLabelWidget = gtk_notebook_get_tab_label (GTK_NOTEBOOK(myData.tab), vterm);
 	GList *pTabWidgetList = gtk_container_get_children (GTK_CONTAINER (pTabLabelWidget));
-	GtkLabel *pLabel;
-	const gchar *cCurrentName;
 	if (pTabWidgetList != NULL && pTabWidgetList->data != NULL)
 	{
 		GtkLabel *pLabel = pTabWidgetList->data;
@@ -757,7 +752,7 @@ static GtkWidget * _terminal_find_clicked_tab_child (int x, int y)  // x,y relat
 	//g_print ("iMaxTabHeight : %d\n", iMaxTabHeight);
 	
 	int i, iNbPages = gtk_notebook_get_n_pages (GTK_NOTEBOOK (myData.tab));
-	gint src_x, src_y, dest_x, dest_y;
+	gint dest_x, dest_y;
 	for (i = 0; i < iNbPages; ++i)
 	{
 		pPageChild = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), i);

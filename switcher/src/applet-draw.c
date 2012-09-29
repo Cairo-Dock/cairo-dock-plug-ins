@@ -403,7 +403,6 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 		int iNumDesktop=0, iNumViewportX=0, iNumViewportY=0;
 		cairo_t *pCairoContext;
 		Icon *pIcon;
-		CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 		GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
 		GList *ic;
 		for (ic = pIconsList; ic != NULL; ic = ic->next)
@@ -545,8 +544,8 @@ static void _cd_switcher_list_window_on_viewport (Icon *pIcon, int iNumDesktop, 
 		Icon *pInhibitor = cairo_dock_get_inhibitor (pIcon, TRUE);  // TRUE = only in dock.
 		if (pInhibitor != NULL)
 			pDisplayedIcon = pInhibitor;
-	}*/
-	const CairoDockImageBuffer *pImage = cairo_dock_appli_get_image_buffer (pIcon);
+	}
+	const CairoDockImageBuffer *pImage = cairo_dock_appli_get_image_buffer (pIcon);*/
 	
 	// on cree une copie de la surface de l'icone a la taille du menu.
 	GdkPixbuf *pixbuf = cairo_dock_icon_buffer_to_pixbuf (pIcon/**pDisplayedIcon*/);

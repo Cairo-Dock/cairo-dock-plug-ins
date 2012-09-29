@@ -185,14 +185,14 @@ static GList * _parse_rss_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemL
 	for (item = node->children; item != NULL; item = item->next)
 	{
 		cd_debug ("  + item: %s", item->name);
-		if (xmlStrcmp (item->name, (const xmlChar *) "item") == 0)  // c'est un nouvel item.
+		if (xmlStrcmp (item->name, BAD_CAST "item") == 0)  // c'est un nouvel item.
 		{
 			CDRssItem *pNewItem = g_new0 (CDRssItem, 1);
 			pItemList = g_list_prepend (pItemList, pNewItem);
 			
 			pItemList = _parse_rss_item (item, pNewItem, pItemList);
 		}
-		else if (xmlStrcmp (item->name, (const xmlChar *) "title") == 0)  // c'est le titre.
+		else if (xmlStrcmp (item->name, BAD_CAST "title") == 0)  // c'est le titre.
 		{
 			if (pItem->cTitle == NULL)  // cas du titre du flux force a une valeur par l'utilisateur.
 			{
@@ -200,7 +200,7 @@ static GList * _parse_rss_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemL
 				if (content != NULL)
 				{
 					// remove leading and trailing carriage returns.
-					gchar *str = content;
+					gchar *str = (gchar *) content;
 					while (*str == '\n') str ++;
 					int n = strlen(str);
 					while (str[n-1] == '\n') str[--n] = '\0';
@@ -212,10 +212,10 @@ static GList * _parse_rss_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemL
 			}
 			//g_print ("   + titre : '%s'\n", pItem->cTitle);
 		}
-		else if (xmlStrcmp (item->name, (const xmlChar *) "description") == 0)  // c'est la description.
+		else if (xmlStrcmp (item->name, BAD_CAST "description") == 0)  // c'est la description.
 		{
 			content = xmlNodeGetContent (item);
-			pItem->cDescription = g_strdup (content);
+			pItem->cDescription = g_strdup ((gchar *)content);
 			xmlFree (content);
 			
 			// on elimine les balises integrees a la description.
@@ -248,17 +248,17 @@ static GList * _parse_rss_item (xmlNodePtr node, CDRssItem *pItem, GList *pItemL
 			while (balise);
 			cd_debug ("   + description : '%s'", pItem->cDescription);
 		}
-		else if (xmlStrcmp (item->name, (const xmlChar *) "link") == 0)  // c'est le lien.
+		else if (xmlStrcmp (item->name, BAD_CAST "link") == 0)  // c'est le lien.
 		{
 			content = xmlNodeGetContent (item);
-			pItem->cLink = g_strdup (content);
+			pItem->cLink = g_strdup ((gchar *)content);
 			xmlFree (content);
 			cd_debug ("   + link : '%s'", pItem->cLink);
 		}
-		else if (xmlStrcmp (item->name, (const xmlChar *) "pubDate") == 0 || xmlStrcmp (item->name, (const xmlChar *) "date") == 0)  // c'est la date (pubDate pour RSS, data pour RDF).
+		else if (xmlStrcmp (item->name, BAD_CAST "pubDate") == 0 || xmlStrcmp (item->name, BAD_CAST "date") == 0)  // c'est la date (pubDate pour RSS, data pour RDF).
 		{
 			content = xmlNodeGetContent (item);
-			pItem->cDate = g_strdup (content);
+			pItem->cDate = g_strdup ((gchar *)content);
 			xmlFree (content);
 		}
 		// pour recuperer l'image, on dirait qu'on a plusieurs cas, entre autre :
@@ -275,14 +275,14 @@ static GList * _parse_atom_item (xmlNodePtr node, CDRssItem *pItem, GList *pItem
 	xmlNodePtr item, author;
 	for (item = node->children; item != NULL; item = item->next)
 	{
-		if (xmlStrcmp (item->name, (const xmlChar *) "entry") == 0)  // c'est un nouvel item.
+		if (xmlStrcmp (item->name, BAD_CAST "entry") == 0)  // c'est un nouvel item.
 		{
 			CDRssItem *pNewItem = g_new0 (CDRssItem, 1);
 			pItemList = g_list_prepend (pItemList, pNewItem);
 			
 			pItemList = _parse_atom_item (item, pNewItem, pItemList, cBaseUrl);
 		}
-		else if (xmlStrcmp (item->name, (const xmlChar *) "title") == 0)  // c'est le titre.
+		else if (xmlStrcmp (item->name, BAD_CAST "title") == 0)  // c'est le titre.
 		{
 			if (pItem->cTitle == NULL)  // cas du titre du flux force a une valeur par l'utilisateur.
 			{
@@ -290,7 +290,7 @@ static GList * _parse_atom_item (xmlNodePtr node, CDRssItem *pItem, GList *pItem
 				if (content != NULL)
 				{
 					// remove leading and trailing carriage returns.
-					gchar *str = content;
+					gchar *str = (gchar *)content;
 					while (*str == '\n') str ++;
 					int n = strlen(str);
 					while (str[n-1] == '\n') str[--n] = '\0';
@@ -302,19 +302,19 @@ static GList * _parse_atom_item (xmlNodePtr node, CDRssItem *pItem, GList *pItem
 			}
 			cd_debug ("+ title : '%s'", pItem->cTitle);
 		}
-		else if (xmlStrcmp (item->name, (const xmlChar *) "content") == 0)  // c'est la description.
+		else if (xmlStrcmp (item->name, BAD_CAST "content") == 0)  // c'est la description.
 		{
-			xmlAttrPtr attr = xmlHasProp (item, "type");
+			xmlAttrPtr attr = xmlHasProp (item, BAD_CAST "type");
 			if (attr && attr->children)
 			{
 				cd_debug ("   description type : %s", attr->children->content);
-				if (strncmp (attr->children->content, "text", 4) != 0)
+				if (strncmp ((gchar *)attr->children->content, "text", 4) != 0)
 				{
 					continue;
 				}
 			}
 			content = xmlNodeGetContent (item);
-			pItem->cDescription = g_strdup (content);
+			pItem->cDescription = g_strdup ((gchar *)content);
 			xmlFree (content);
 			
 			// on elimine les balises integrees a la description.
@@ -336,48 +336,48 @@ static GList * _parse_atom_item (xmlNodePtr node, CDRssItem *pItem, GList *pItem
 			while (balise2);
 			cd_debug ("+ description : '%s'", pItem->cDescription);
 		}
-		else if (xmlStrcmp (item->name, (const xmlChar *) "link") == 0)  // c'est le lien.
+		else if (xmlStrcmp (item->name, BAD_CAST "link") == 0)  // c'est le lien.
 		{
-			xmlAttrPtr attr = xmlHasProp (item, "type");  // type="text/html" rel="alternate"
+			xmlAttrPtr attr = xmlHasProp (item, BAD_CAST "type");  // type="text/html" rel="alternate"
 			if (attr && attr->children)
 			{
 				cd_debug ("   link type : %s", attr->children->content);
-				if (strncmp (attr->children->content, "text", 4) != 0)
+				if (strncmp ((gchar *)attr->children->content, "text", 4) != 0)
 				{
 					continue;
 				}
 			}
-			attr = xmlHasProp (item, "href");
+			attr = xmlHasProp (item, BAD_CAST "href");
 			if (attr && attr->children)
 			{
 				content = xmlNodeGetContent (attr->children);
-				if (strncmp (content, "http://", 7) == 0)
+				if (strncmp ((gchar *)content, "http://", 7) == 0)
 				{
-					pItem->cLink = g_strdup (content);
+					pItem->cLink = g_strdup ((gchar *)content);
 				}
 				else if (cBaseUrl != NULL)
 				{
-					pItem->cLink = g_strdup_printf ("%s%s", cBaseUrl, content);
+					pItem->cLink = g_strdup_printf ("%s%s", cBaseUrl, (gchar *)content);
 				}
 				xmlFree (content);
 				cd_debug ("+ link : '%s'", pItem->cLink);
 			}
 		}
-		else if (xmlStrcmp (item->name, (const xmlChar *) "updated") == 0)  // c'est la date.
+		else if (xmlStrcmp (item->name, BAD_CAST "updated") == 0)  // c'est la date.
 		{
 			content = xmlNodeGetContent (item);
-			pItem->cDate = g_strdup (content);
+			pItem->cDate = g_strdup ((gchar *)content);
 			xmlFree (content);
 			cd_debug ("+ date : '%s'", pItem->cDate);
 		}
-		else if (xmlStrcmp (item->name, (const xmlChar *) "author") == 0)  // c'est l'auteur.
+		else if (xmlStrcmp (item->name, BAD_CAST "author") == 0)  // c'est l'auteur.
 		{
 			for (author = item->children; author != NULL; author = author->next)
 			{
-				if (xmlStrcmp (author->name, (const xmlChar *) "name") == 0)  // c'est le nom de l'auteur.
+				if (xmlStrcmp (author->name, BAD_CAST "name") == 0)  // c'est le nom de l'auteur.
 				{
 					content = xmlNodeGetContent (author);
-					pItem->cAuthor = g_strdup (content);
+					pItem->cAuthor = g_strdup ((gchar *)content);
 					xmlFree (content);
 					cd_debug ("+ author : '%s'", pItem->cAuthor);
 				}
@@ -478,7 +478,7 @@ static gboolean _update_from_feeds (CDSharedMemory *pSharedMemory)
 	}
 	
 	xmlNodePtr rss = xmlDocGetRootElement (doc);
-	if (rss == NULL || (xmlStrcmp (rss->name, (const xmlChar *) "rss") != 0 && xmlStrcmp (rss->name, (const xmlChar *) "feed") != 0 && xmlStrcmp (rss->name, (const xmlChar *) "RDF") != 0))
+	if (rss == NULL || (xmlStrcmp (rss->name, BAD_CAST "rss") != 0 && xmlStrcmp (rss->name, BAD_CAST "feed") != 0 && xmlStrcmp (rss->name, BAD_CAST "RDF") != 0))
 	{
 		cd_warning ("RSSresader : got invalid XML data");
 		///xmlCleanupParser ();
@@ -503,25 +503,25 @@ static gboolean _update_from_feeds (CDSharedMemory *pSharedMemory)
 	if (myConfig.cUserTitle != NULL)
 		pItem->cTitle = g_strdup (myConfig.cUserTitle);  // ne sera pas ecrase par les donnees du flux.
 	
-	if (xmlStrcmp (rss->name, (const xmlChar *) "rss") == 0)  // RSS
+	if (xmlStrcmp (rss->name, BAD_CAST "rss") == 0)  // RSS
 	{
-		xmlAttrPtr attr = xmlHasProp (rss, "version");
+		xmlAttrPtr attr = xmlHasProp (rss, BAD_CAST "version");
 		if (attr && attr->children)
 		{
 			cd_debug ("RSS version : %s", attr->children->content);
 		}
 		
-		xmlNodePtr channel, item;
+		xmlNodePtr channel;
 		for (channel = rss->children; channel != NULL; channel = channel->next)
 		{
-			if (xmlStrcmp (channel->name, (const xmlChar *) "channel") == 0)
+			if (xmlStrcmp (channel->name, BAD_CAST "channel") == 0)
 			{
 				pNewItemList = _parse_rss_item (channel, pItem, pNewItemList);  // on parse le channel comme un item, ce qui fait que le titre du flux est considere comme un simple item.
 				break;  // un seul channel.
 			}
 		}
 	}
-	else if (xmlStrcmp (rss->name, (const xmlChar *) "RDF") == 0)  // RDF
+	else if (xmlStrcmp (rss->name, BAD_CAST "RDF") == 0)  // RDF
 	{
 		pNewItemList = _parse_rss_item (rss, pItem, pNewItemList);  // on parse le premier groupe "channel" comme un item, ce qui fait que le titre du flux est considere comme un simple item.
 	}

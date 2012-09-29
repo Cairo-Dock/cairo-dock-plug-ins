@@ -210,6 +210,8 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 			}
 		}
 		break ;
+		case CAIRO_DOCK_NB_EVENT_ON_FILES :
+		break ;
 	}
 	g_free (cURI);
 }
@@ -246,12 +248,12 @@ void cd_shortcuts_on_drive_event (CairoDockFMEventType iEventType, const gchar *
 		for (ic = pIconsList; ic != NULL; ic = ic->next)
 		{
 			icon = ic->data;
-			if (icon->iGroup == CD_BOOKMARK_GROUP)
+			if (icon->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)
 			{
 				if (strncmp (cTargetURI, icon->cBaseURI, strlen (cTargetURI)) == 0)
 				{
 					//g_print ("le signet '%s' est situe sur un point de montage ayant change (%s)\n", icon->cBaseURI, cTargetURI);
-					gchar *cName = NULL, *cRealURI = NULL, *cIconName = NULL, *cUserName = NULL;
+					gchar *cName = NULL, *cRealURI = NULL, *cIconName = NULL;
 					int iVolumeID = 0;
 					gboolean bIsDirectory = FALSE;
 					double fOrder;

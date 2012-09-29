@@ -303,7 +303,7 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 			#endif
 			#endif
 			G_TYPE_INVALID));
-	gboolean bSuccess = dbus_g_proxy_end_call (proxy,
+	dbus_g_proxy_end_call (proxy,
 		call_id,
 		&erreur,
 		g_type_ptrarray, &pApplications,
@@ -319,7 +319,7 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 	
 	//\______________________ build each items.
 	cd_debug ("=== got %d applications", pApplications->len);
-	guint i, j;
+	guint i;
 	GValueArray *va;
 	GValue *v;
 	CDStatusNotifierItem *pItem = NULL;

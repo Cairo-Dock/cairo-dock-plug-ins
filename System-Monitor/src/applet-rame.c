@@ -64,7 +64,6 @@ void cd_sysmonitor_get_ram_data (CairoDockModuleInstance *myApplet)
 	}
 	else
 	{
-		int iNumLine = 1;
 		gchar *str = cContent;
 		
 		get_value (myData.ramTotal)  // MemTotal

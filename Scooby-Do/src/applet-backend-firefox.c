@@ -50,7 +50,6 @@ static void _cd_do_launch_url (CDEntry *pEntry);
 static void _cd_do_copy_url (CDEntry *pEntry);
 
 static gchar *s_cBookmarksFile = NULL;
-static gchar *s_cBookmarksContent = NULL;
 static CDBookmarkItem *s_pRootItem = NULL;
 
   //////////
@@ -190,7 +189,7 @@ static GList *_parse_folder (gchar *cContent, gchar **cNewPosition)
 		}
 		else  // balise ininteressante, on la saute.
 		{
-			str2 = str2 = strchr (str, '>');  // fin de la balise.
+			str2 = strchr (str, '>');  // fin de la balise.
 			ptr = str2 + 1;
 		}
 	} while (1);

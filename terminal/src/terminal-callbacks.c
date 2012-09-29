@@ -138,7 +138,7 @@ void on_terminal_drag_data_received (GtkWidget *pWidget, GdkDragContext *dc, gin
 
 	g_free (cReceivedData);
 	cReceivedData = NULL;
-	const gchar *cText = gtk_selection_data_get_text (selection_data);;
+	gchar *cText = (gchar *)gtk_selection_data_get_text (selection_data);
 	g_return_if_fail (cText != NULL);
 
 	int length = strlen (cReceivedData);
@@ -152,6 +152,7 @@ void on_terminal_drag_data_received (GtkWidget *pWidget, GdkDragContext *dc, gin
 	{
 		GError *erreur = NULL;
 		cReceivedData = g_filename_from_uri (cText, NULL, &erreur);
+		g_free (cText);
 		if (erreur != NULL)
 		{
 			cd_message ("Terminal : %s\n", erreur->message);

@@ -28,7 +28,7 @@ const char *cMonthsWeeks[19] = { N_("Monday") , N_("Tuesday") , N_("Wednesday") 
 #define _add_icon(i, j)\
 	if (myData.wdata.days[i].cName != NULL)\
 	{\
-		pIcon = cairo_dock_create_dummy_launcher (g_strdup (myData.wdata.days[i].cName),\
+		pIcon = cairo_dock_create_dummy_launcher (g_strdup ((gchar *)myData.wdata.days[i].cName),\
 			g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.wdata.days[i].part[j].cIconNumber),\
 			NULL,\
 			(myConfig.bDisplayTemperature ? g_strdup_printf ("%s/%s", _display (myData.wdata.days[i].cTempMin), _display (myData.wdata.days[i].cTempMax)) : NULL),\

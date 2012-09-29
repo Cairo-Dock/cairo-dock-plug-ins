@@ -43,7 +43,7 @@ static inline gboolean _cd_do_icon_match (Icon *pIcon, const gchar *cCommandPref
 			if (str && *(str-1) != ' ')  // on verifie qu'il n'est pas un tiret d'option
 			{
 				str ++;
-				bMatch = (g_strncasecmp (str, cCommandPrefix, length) == 0);
+				bMatch = (g_ascii_strncasecmp (str, cCommandPrefix, length) == 0);
 			}
 			if (!bMatch && pIcon->cName)
 				bMatch = (g_ascii_strncasecmp (cCommandPrefix, pIcon->cName, length) == 0);
@@ -93,7 +93,7 @@ Icon *cd_do_search_icon_by_command (const gchar *cCommandPrefix, Icon *pAfterIco
 	//\_________________ on cherche en premier dans le dock courant, car il est deja visible.
 	int length = strlen (cCommandPrefix);
 	Icon *pIcon, *pFirstIcon = NULL;
-	CairoDock *pParentDock, *pFirstParentDock = NULL;
+	CairoDock *pFirstParentDock = NULL;
 	GList *ic;
 	for (ic = myData.pCurrentDock->icons; ic != NULL; ic = ic->next)
 	{

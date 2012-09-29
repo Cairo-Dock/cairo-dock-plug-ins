@@ -47,7 +47,6 @@ gboolean cd_xeyes_load_theme (CairoDockModuleInstance *myApplet)
 	gint iXeyelid, iYeyelid;
 	gint iEyelidWidth, iEyelidHeight;
 	gint iXbg, iYbg;
-	gint iToonWidth, iToonHeight;
 	gint iBgWidth, iBgHeight;
 	gchar *cBgImage, *cPupilImage, *cEyelidImage, *cToonImage;
 	

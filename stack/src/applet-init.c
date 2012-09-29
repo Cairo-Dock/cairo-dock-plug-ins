@@ -71,6 +71,8 @@ CD_APPLET_STOP_BEGIN
 		gchar *cCommand = g_strdup_printf ("rm -rf \"%s\"", myConfig.cStackDir);
 		cd_debug ("Stack : %s", myConfig.cStackDir);
 		int r = system (cCommand);
+		if (r < 0)
+			cd_warning ("Not able to launch this command: %s", cCommand);
 		g_free (cCommand);
 	}
 	

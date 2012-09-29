@@ -172,7 +172,7 @@ CD_APPLET_ON_BUILD_MENU_PROTO
 {
 	cd_debug ("%s (%s...)", __func__, CD_APPLET_CLICKED_ICON && CD_APPLET_CLICKED_ICON->pMimeTypes ?CD_APPLET_CLICKED_ICON->pMimeTypes[0] : "");
 	CD_APPLET_ENTER;
-	GtkWidget *pMenuItem, *image;
+	GtkWidget *pMenuItem;
 	
 	if (CD_APPLET_CLICKED_ICON != NULL)
 	{

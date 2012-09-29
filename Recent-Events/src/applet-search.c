@@ -76,8 +76,8 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			subj,  // a list of subjects
 			NULL);  // terminated with NULL
 		
-		/**subj = zeitgeist_subject_new_full ("file://*",  // uri, application://* for apps
-			ZEITGEIST_NFO_FOLDER,  // interpretation
+		///subj = zeitgeist_subject_new_full ("file://*",  // uri, application://* for apps
+		/**	ZEITGEIST_NFO_FOLDER,  // interpretation
 			ZEITGEIST_NFO_FILE_DATA_OBJECT,  // manifestation
 			"",  // mimetype
 			"",  // origin
@@ -159,8 +159,8 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
 			subj,  // a list of subjects
 			NULL);  // terminated with NULL
-		/**subj = zeitgeist_subject_new_full ("",  // uri, application://* for apps
-			"!"ZEITGEIST_NFO_FOLDER,  // interpretation
+		///subj = zeitgeist_subject_new_full ("",  // uri, application://* for apps
+		/**	"!"ZEITGEIST_NFO_FOLDER,  // interpretation
 			"",  // manifestation
 			"",  // mimetype
 			"",  // origin
@@ -288,7 +288,6 @@ void cd_find_recent_events (CDEventType iEventType, int iSortType, CDOnGetEvents
 	s_data[1] = data;
 	
 	ZeitgeistEvent *ev;
-	ZeitgeistSubject *subj;
 	ev = _get_event_template_for_category (iEventType);
 	
 	GPtrArray* zg_templates = g_ptr_array_sized_new (1);
@@ -365,7 +364,7 @@ static void on_delete_events (ZeitgeistLog *log, GAsyncResult *res, gpointer *us
 	int iNbEvents = GPOINTER_TO_INT (user_data[2]);
 	
 	GError *error = NULL;
-	gboolean bSuccess = zeitgeist_log_delete_events_finish (log, res, &error);
+	zeitgeist_log_delete_events_finish (log, res, &error);
 	if (error)
 	{
 		cd_warning ("Error deleting log: %s", error->message);
@@ -406,7 +405,7 @@ static void on_delete_whole_log (ZeitgeistLog *log, GAsyncResult *res, gpointer 
 	gpointer data = user_data[1];
 	
 	GError *error = NULL;
-	gboolean bSuccess = zeitgeist_log_delete_log_finish (log, res, &error);
+	zeitgeist_log_delete_log_finish (log, res, &error);
 	if (error)
 	{
 		cd_warning ("Error deleting log: %s", error->message);

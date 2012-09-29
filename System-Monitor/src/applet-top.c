@@ -115,8 +115,7 @@ static void _cd_sysmonitor_get_process_data (CDTopSharedMemory *pSharedMemory, d
 	gchar *tmp;
 	CDProcess *pProcess;
 	int iNewCpuTime;
-	unsigned long long iVmSize, iVmRSS, iTotalMemory;  // Quantite de memoire totale utilisee / (Virtual Memory Resident Stack Size) Taille de la pile en memoire.
-	int i, j;
+	unsigned long long iVmRSS, iTotalMemory;  // Quantite de memoire totale utilisee / (Virtual Memory Resident Stack Size) Taille de la pile en memoire.
 	while ((cPid = g_dir_read_name (dir)) != NULL)
 	{
 		if (! g_ascii_isdigit (*cPid))
@@ -182,7 +181,7 @@ static void _cd_sysmonitor_get_process_data (CDTopSharedMemory *pSharedMemory, d
 		jump_to_next_value (tmp);
 		jump_to_next_value (tmp);
 		jump_to_next_value (tmp);
-		iVmSize = atoll (tmp);
+		// iVmSize = atoll (tmp);
 		jump_to_next_value (tmp);
 		iVmRSS = atoll (tmp);
 		iTotalMemory = iVmRSS * pSharedMemory->iMemPageSize;
