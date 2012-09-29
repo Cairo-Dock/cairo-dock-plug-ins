@@ -61,13 +61,13 @@ msgstr "Otáčanie"
 msgid "Spot"
 msgstr "Bodový"
 
-#: ../Animated-icons/src/applet-wave.c:295 ../Animated-icons/data/messages:17
+#: ../Animated-icons/src/applet-wave.c:278 ../Animated-icons/data/messages:17
 #: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:59
 #: ../Animated-icons/data/messages:133
 msgid "Wave"
 msgstr "Vlnenie"
 
-#: ../Animated-icons/src/applet-wobbly.c:556
+#: ../Animated-icons/src/applet-wobbly.c:537
 #: ../Animated-icons/data/messages:15 ../Animated-icons/data/messages:35
 #: ../Animated-icons/data/messages:57 ../Animated-icons/data/messages:117
 msgid "Wobbly"
@@ -220,22 +220,22 @@ msgstr ""
 msgid "No items yet."
 msgstr "Zatiaľ žiadne položky."
 
-#: ../Composite-Manager/src/applet-composite-manager.c:421
-#: ../Composite-Manager/src/applet-composite-manager.c:436
+#: ../Composite-Manager/src/applet-composite-manager.c:430
+#: ../Composite-Manager/src/applet-composite-manager.c:445
 msgid "No compositor is available."
 msgstr "Nie je dostupná kompozícia."
 
-#: ../Composite-Manager/src/applet-composite-manager.c:444
-#: ../Composite-Manager/src/applet-composite-manager.c:459
+#: ../Composite-Manager/src/applet-composite-manager.c:453
+#: ../Composite-Manager/src/applet-composite-manager.c:468
 msgid "No fallback is available."
 msgstr ""
 
-#: ../Composite-Manager/src/applet-composite-manager.c:499
+#: ../Composite-Manager/src/applet-composite-manager.c:508
 #, c-format
 msgid "You need to install '%s'"
 msgstr "Je potrebné nainštalovať '%s'"
 
-#: ../Composite-Manager/src/applet-composite-manager.c:510
+#: ../Composite-Manager/src/applet-composite-manager.c:519
 msgid "No configuration tool is available."
 msgstr "Konfiguračný nástroj nie je k dispozícii."
 
@@ -281,13 +281,13 @@ msgstr "Upraviť nastavenia správcu okien"
 #: ../System-Monitor/src/applet-notifications.c:106
 #: ../Xgamma/src/applet-notifications.c:87
 #: ../alsaMixer/src/applet-notifications.c:84
-#: ../dustbin/src/applet-notifications.c:136
+#: ../dustbin/src/applet-notifications.c:135
 #: ../mail/src/cd-mail-applet-notifications.c:154
 #: ../musicPlayer/src/applet-notifications.c:300
 #: ../netspeed/src/applet-notifications.c:94
 #: ../quick-browser/src/applet-notifications.c:41
-#: ../shortcuts/src/applet-notifications.c:268
-#: ../shortcuts/src/applet-notifications.c:292
+#: ../shortcuts/src/applet-notifications.c:264
+#: ../shortcuts/src/applet-notifications.c:288
 #: ../showDesktop/src/applet-notifications.c:165
 #: ../showDesktop/src/applet-notifications.c:177
 #: ../showDesktop/src/applet-notifications.c:189
@@ -311,7 +311,7 @@ msgstr "Obnoviť správcu okien"
 #: ../showDesktop/src/applet-notifications.c:165
 #: ../showDesktop/src/applet-notifications.c:167
 #: ../Composite-Manager/data/messages:129 ../showDesktop/data/messages:99
-#: ../showDesktop/data/messages:113 ../switcher/data/messages:137
+#: ../showDesktop/data/messages:113 ../switcher/data/messages:143
 msgid "Show desktop"
 msgstr "Zobraziť plochu"
 
@@ -320,13 +320,13 @@ msgstr "Zobraziť plochu"
 #: ../showDesktop/src/applet-notifications.c:179
 #: ../switcher/src/applet-notifications.c:314
 #: ../Composite-Manager/data/messages:131 ../showDesktop/data/messages:107
-#: ../showDesktop/data/messages:121 ../switcher/data/messages:139
+#: ../showDesktop/data/messages:121 ../switcher/data/messages:145
 msgid "Expose all the desktops"
 msgstr "Vystaviť všetky plochy"
 
 #: ../Composite-Manager/src/applet-notifications.c:154
 #: ../switcher/src/applet-notifications.c:323
-#: ../Composite-Manager/data/messages:133 ../switcher/data/messages:141
+#: ../Composite-Manager/data/messages:133 ../switcher/data/messages:147
 msgid "Expose all the windows"
 msgstr "Vystaviť všetky okná"
 
@@ -449,13 +449,13 @@ msgid ""
 " - Fill menu with actions.\n"
 msgstr ""
 
-#: ../Disks/src/applet-notifications.c:69
+#: ../Disks/src/applet-notifications.c:72
 #: ../System-Monitor/src/applet-init.c:35
 msgid "System Monitor"
 msgstr "Sledovanie systému"
 
-#: ../Doncky/src/applet-cpusage.c:65 ../System-Monitor/src/applet-cpusage.c:58
-#: ../System-Monitor/src/applet-cpusage.c:63
+#: ../Doncky/src/applet-cpusage.c:67 ../System-Monitor/src/applet-cpusage.c:60
+#: ../System-Monitor/src/applet-cpusage.c:65
 msgid "day(s)"
 msgstr "deň(dní)"
 
@@ -473,9 +473,13 @@ msgstr ""
 "  - ABY PRACOVAL MUSÍ BYŤ ODPOJENÝ OD DOKU!\n"
 "  - Stredným kliknutím znovu načítate hodnoty"
 
-#: ../Doncky/src/applet-notifications.c:215
+#: ../Doncky/src/applet-notifications.c:214
 msgid "It doesn't seem to be a valid XML file."
 msgstr "Zdá sa, že toto nie je správny XML súbor."
+
+#: ../Doncky/src/applet-xml.c:311
+msgid "Please wait..."
+msgstr ""
 
 #: ../Folders/src/applet-init.c:29
 msgid "Folders"
@@ -645,7 +649,7 @@ msgid "Move this file"
 msgstr "Premiestniť tento súbor"
 
 #: ../Folders/src/applet-notifications.c:380
-#: ../Recent-Events/src/applet-dialog.c:289
+#: ../Recent-Events/src/applet-dialog.c:270
 #: ../slider/src/applet-notifications.c:233
 msgid "Open with"
 msgstr "Otvoriť s"
@@ -744,7 +748,7 @@ msgstr "Nedávne dokumenty"
 msgid "Clear the list of the recently used documents?"
 msgstr "Vyčistiť zoznam nedávno použitých dokumentov ?"
 
-#: ../GMenu/src/applet-run-dialog.c:353 ../Scooby-Do/data/messages:111
+#: ../GMenu/src/applet-run-dialog.c:352 ../Scooby-Do/data/messages:111
 msgid "Enter a command to launch:"
 msgstr "Vložte príkaz pre spustenie :"
 
@@ -850,42 +854,6 @@ msgstr "Kábel bol pripojený"
 msgid "A cable has been unplugged"
 msgstr "Kábel bol odpojený"
 
-#: ../Network-Monitor/src/applet-draw.c:30
-#: ../powermanager/src/powermanager-draw.c:230 ../wifi/src/applet-draw.c:30
-#: ../Clipper/data/messages:97 ../GMenu/data/messages:105
-#: ../Network-Monitor/data/messages:221 ../dnd2share/data/messages:109
-#: ../dustbin/data/messages:101 ../wifi/data/messages:145
-msgid "None"
-msgstr "Žiadny"
-
-#: ../Network-Monitor/src/applet-draw.c:30 ../wifi/src/applet-draw.c:30
-msgid "Very Low"
-msgstr "veľmi nízky"
-
-#: ../Network-Monitor/src/applet-draw.c:30 ../wifi/src/applet-draw.c:30
-msgid "Low"
-msgstr "Nízky"
-
-#: ../Network-Monitor/src/applet-draw.c:30 ../wifi/src/applet-draw.c:30
-msgid "Middle"
-msgstr "Uprostred"
-
-#: ../Network-Monitor/src/applet-draw.c:30 ../wifi/src/applet-draw.c:30
-msgid "Good"
-msgstr "Dobré"
-
-#: ../Network-Monitor/src/applet-draw.c:30 ../wifi/src/applet-draw.c:30
-msgid "Excellent"
-msgstr "Vynikajúce"
-
-#: ../Network-Monitor/src/applet-draw.c:30
-msgid "Not connected"
-msgstr "Nepripojené"
-
-#: ../Network-Monitor/src/applet-draw.c:30
-msgid "Wired connection"
-msgstr "Pripojenie káblom"
-
 #: ../Network-Monitor/src/applet-draw.c:126 ../wifi/src/applet-draw.c:130
 msgid ""
 "Checking connection...\n"
@@ -954,7 +922,7 @@ msgstr ""
 
 #: ../Network-Monitor/src/applet-netspeed.c:200
 #: ../System-Monitor/src/applet-monitor.c:95
-#: ../System-Monitor/src/applet-top.c:428
+#: ../System-Monitor/src/applet-top.c:427
 #: ../netspeed/src/applet-netspeed.c:200
 msgid "Loading"
 msgstr "Načítanie"
@@ -1100,73 +1068,73 @@ msgstr ""
 "Nastavili ste správny RSS zdroj ?\n"
 "Je vaše pripojenie aktívne ?"
 
-#: ../Recent-Events/src/applet-dialog.c:314
+#: ../Recent-Events/src/applet-dialog.c:294
 #: ../stack/src/applet-notifications.c:183
 msgid "Open parent folder"
 msgstr "Otvoriť nadradený priečinok"
 
-#: ../Recent-Events/src/applet-dialog.c:316
+#: ../Recent-Events/src/applet-dialog.c:296
 msgid "Copy the location"
 msgstr "Kopírovať umiestnenie"
 
-#: ../Recent-Events/src/applet-dialog.c:319
+#: ../Recent-Events/src/applet-dialog.c:299
 msgid "Delete this event"
 msgstr "odstrániť túto udalosť"
 
-#: ../Recent-Events/src/applet-dialog.c:393
+#: ../Recent-Events/src/applet-dialog.c:373
 msgid "All"
 msgstr "Všetko"
 
-#: ../Recent-Events/src/applet-dialog.c:394
+#: ../Recent-Events/src/applet-dialog.c:374
 #, fuzzy
 msgid "Applications"
 msgstr "Menu aplikácií"
 
-#: ../Recent-Events/src/applet-dialog.c:395
+#: ../Recent-Events/src/applet-dialog.c:375
 msgid "Document"
 msgstr "Dokument"
 
-#: ../Recent-Events/src/applet-dialog.c:397 ../logout/data/messages:117
+#: ../Recent-Events/src/applet-dialog.c:377 ../logout/data/messages:117
 msgid "Image"
 msgstr "Obrázok"
 
-#: ../Recent-Events/src/applet-dialog.c:398
+#: ../Recent-Events/src/applet-dialog.c:378
 msgid "Audio"
 msgstr "Zvuk"
 
-#: ../Recent-Events/src/applet-dialog.c:399
+#: ../Recent-Events/src/applet-dialog.c:379
 msgid "Video"
 msgstr "Video"
 
-#: ../Recent-Events/src/applet-dialog.c:400
+#: ../Recent-Events/src/applet-dialog.c:380
 msgid "Web"
 msgstr "Web"
 
-#: ../Recent-Events/src/applet-dialog.c:401
+#: ../Recent-Events/src/applet-dialog.c:381
 msgid "Other"
 msgstr "Iné"
 
-#: ../Recent-Events/src/applet-dialog.c:402
+#: ../Recent-Events/src/applet-dialog.c:382
 msgid "Top Results"
 msgstr "Najlepšie výsledky"
 
-#: ../Recent-Events/src/applet-dialog.c:408
+#: ../Recent-Events/src/applet-dialog.c:388
 msgid "Look for events"
 msgstr "Pozrieť sa na udalosti"
 
-#: ../Recent-Events/src/applet-dialog.c:458
+#: ../Recent-Events/src/applet-dialog.c:438
 msgid "File name"
 msgstr "Názov súboru"
 
-#: ../Recent-Events/src/applet-dialog.c:465
+#: ../Recent-Events/src/applet-dialog.c:445
 msgid "Last access"
 msgstr "Posledný prístup"
 
-#: ../Recent-Events/src/applet-dialog.c:509
+#: ../Recent-Events/src/applet-dialog.c:489
 msgid "You need to install the Zeitgeist data engine."
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:544
+#: ../Recent-Events/src/applet-dialog.c:524
 msgid "Browse and search in recent events"
 msgstr "Prehliadať a nájsť nedávne udalosti"
 
@@ -1184,7 +1152,7 @@ msgid "%d event(s) deleted"
 msgstr "%d udalosť(i) odstránená"
 
 #: ../Recent-Events/src/applet-notifications.c:114
-#: ../Scooby-Do/src/applet-backend-recent.c:212 ../Scooby-Do/data/messages:105
+#: ../Scooby-Do/src/applet-backend-recent.c:213 ../Scooby-Do/data/messages:105
 msgid "Recent files"
 msgstr "Nedávne súbory"
 
@@ -1238,12 +1206,12 @@ msgstr "Presunúť do"
 
 #: ../Scooby-Do/src/applet-backend-files.c:185
 #: ../Scooby-Do/src/applet-backend-files.c:259
-#: ../Scooby-Do/src/applet-backend-firefox.c:374
+#: ../Scooby-Do/src/applet-backend-firefox.c:373
 msgid "Copy URL"
 msgstr "Kopírovať URL"
 
 #: ../Scooby-Do/src/applet-backend-files.c:227
-#: ../Scooby-Do/src/applet-backend-recent.c:145
+#: ../Scooby-Do/src/applet-backend-recent.c:146
 msgid "Open location"
 msgstr "Otvoriť umiestnenie"
 
@@ -1259,20 +1227,20 @@ msgstr "E-mail súbor"
 msgid "Files"
 msgstr "Súbory"
 
-#: ../Scooby-Do/src/applet-backend-firefox.c:358
+#: ../Scooby-Do/src/applet-backend-firefox.c:357
 msgid "Open"
 msgstr "Otvoriť"
 
-#: ../Scooby-Do/src/applet-backend-firefox.c:366
+#: ../Scooby-Do/src/applet-backend-firefox.c:365
 msgid "Open in new window"
 msgstr "Otvoriť v novom okne"
 
-#: ../Scooby-Do/src/applet-backend-firefox.c:433
-#: ../dnd2share/src/applet-notifications.c:485
+#: ../Scooby-Do/src/applet-backend-firefox.c:432
+#: ../dnd2share/src/applet-notifications.c:487
 msgid "Open file"
 msgstr "Otvoriť súbor"
 
-#: ../Scooby-Do/src/applet-backend-firefox.c:496
+#: ../Scooby-Do/src/applet-backend-firefox.c:495
 #: ../Scooby-Do/data/messages:103
 msgid "Firefox bookmarks"
 msgstr "Záložky Firefox"
@@ -1305,44 +1273,44 @@ msgstr "Amazon"
 msgid "Enable/disable the Finder"
 msgstr "Povoliť/Zakázať hľadáčik"
 
-#: ../Scooby-Do/src/applet-listing.c:514
+#: ../Scooby-Do/src/applet-listing.c:515
 msgid "(F1) Match case"
 msgstr "(F1) Rozlišovať veľkosť"
 
-#: ../Scooby-Do/src/applet-listing.c:521
+#: ../Scooby-Do/src/applet-listing.c:522
 msgid "(F2) Music"
 msgstr "(F2) Hudba"
 
-#: ../Scooby-Do/src/applet-listing.c:528
+#: ../Scooby-Do/src/applet-listing.c:529
 msgid "(F3) Image"
 msgstr "(F3) Obrázky"
 
-#: ../Scooby-Do/src/applet-listing.c:535
+#: ../Scooby-Do/src/applet-listing.c:536
 msgid "(F4) Video"
 msgstr "(F4) Video"
 
-#: ../Scooby-Do/src/applet-listing.c:542
+#: ../Scooby-Do/src/applet-listing.c:543
 msgid "(F5) Text"
 msgstr "(F5) Text"
 
-#: ../Scooby-Do/src/applet-listing.c:549
+#: ../Scooby-Do/src/applet-listing.c:550
 msgid "(F6) Html"
 msgstr "(F6) Html"
 
-#: ../Scooby-Do/src/applet-listing.c:556
+#: ../Scooby-Do/src/applet-listing.c:557
 msgid "(F7) Sources"
 msgstr "(F6) Zdroje"
 
-#: ../Scooby-Do/src/applet-listing.c:675 ../Scooby-Do/src/applet-search.c:362
+#: ../Scooby-Do/src/applet-listing.c:677 ../Scooby-Do/src/applet-search.c:362
 msgid "No result"
 msgstr "Žiaden výsledok"
 
-#: ../Scooby-Do/src/applet-listing.c:679 ../Scooby-Do/src/applet-search.c:358
+#: ../Scooby-Do/src/applet-listing.c:681 ../Scooby-Do/src/applet-search.c:358
 #: ../tomboy/src/tomboy-draw.c:156 ../tomboy/src/tomboy-draw.c:169
 msgid "results"
 msgstr "výsledky"
 
-#: ../Scooby-Do/src/applet-listing.c:679 ../Scooby-Do/src/applet-search.c:358
+#: ../Scooby-Do/src/applet-listing.c:681 ../Scooby-Do/src/applet-search.c:358
 #: ../tomboy/src/tomboy-draw.c:156 ../tomboy/src/tomboy-draw.c:169
 msgid "result"
 msgstr "výsledok"
@@ -1367,23 +1335,23 @@ msgstr ""
 msgid "Notification Area"
 msgstr "Oblasť upozornení"
 
-#: ../System-Monitor/src/applet-cpusage.c:57
+#: ../System-Monitor/src/applet-cpusage.c:59
 msgid "Uptime"
 msgstr "Uplynulý čas"
 
-#: ../System-Monitor/src/applet-cpusage.c:62
+#: ../System-Monitor/src/applet-cpusage.c:64
 msgid "Activity time"
 msgstr "Aktívny čas"
 
-#: ../System-Monitor/src/applet-cpusage.c:145
+#: ../System-Monitor/src/applet-cpusage.c:147
 msgid "CPU model"
 msgstr "Model procesora"
 
-#: ../System-Monitor/src/applet-cpusage.c:146
+#: ../System-Monitor/src/applet-cpusage.c:148
 msgid "Frequency"
 msgstr "Frekvencia"
 
-#: ../System-Monitor/src/applet-cpusage.c:147
+#: ../System-Monitor/src/applet-cpusage.c:149
 msgid "core(s)"
 msgstr "jadro(á)"
 
@@ -1430,8 +1398,8 @@ msgid "Video Ram"
 msgstr "Video Ram"
 
 #: ../System-Monitor/src/applet-nvidia.c:147
-#: ../System-Monitor/src/applet-rame.c:124
-#: ../System-Monitor/src/applet-top.c:297
+#: ../System-Monitor/src/applet-rame.c:123
+#: ../System-Monitor/src/applet-top.c:296
 msgid "Mb"
 msgstr "Mb"
 
@@ -1448,23 +1416,23 @@ msgstr "Teplora jadra"
 msgid "Alert! Graphic Card core temperature has reached %d°C"
 msgstr "Výstraha ! Teplota jadra grafickej karty dosiahla %d°C"
 
-#: ../System-Monitor/src/applet-rame.c:124
+#: ../System-Monitor/src/applet-rame.c:123
 msgid "Gb"
 msgstr "Gb"
 
-#: ../System-Monitor/src/applet-rame.c:134
+#: ../System-Monitor/src/applet-rame.c:133
 msgid "Memory"
 msgstr "Pamäť"
 
-#: ../System-Monitor/src/applet-rame.c:135
+#: ../System-Monitor/src/applet-rame.c:134
 msgid "Available"
 msgstr "K dispozícii"
 
-#: ../System-Monitor/src/applet-rame.c:136
+#: ../System-Monitor/src/applet-rame.c:135
 msgid "Cached"
 msgstr "Vo vyrovnávacej pamäti"
 
-#: ../System-Monitor/src/applet-rame.c:137
+#: ../System-Monitor/src/applet-rame.c:136
 msgid "Buffers"
 msgstr "Buffery"
 
@@ -1539,11 +1507,27 @@ msgstr "Nastaviť gamma korekciu"
 msgid "Apply current luminosity on startup"
 msgstr "Použiť aktuálnu svietivosť pri štarte"
 
-#: ../Xgamma/src/applet-xgamma.c:206 ../Xgamma/src/applet-xgamma.c:280
+#: ../Xgamma/src/applet-xgamma.c:238
+msgid "Gamma :"
+msgstr ""
+
+#: ../Xgamma/src/applet-xgamma.c:240
+msgid "Red :"
+msgstr ""
+
+#: ../Xgamma/src/applet-xgamma.c:242
+msgid "Green :"
+msgstr ""
+
+#: ../Xgamma/src/applet-xgamma.c:244
+msgid "Blue :"
+msgstr ""
+
+#: ../Xgamma/src/applet-xgamma.c:270 ../Xgamma/src/applet-xgamma.c:344
 msgid "Set up gamma:"
 msgstr "Nastaviť gamma :"
 
-#: ../Xgamma/src/applet-xgamma.c:293
+#: ../Xgamma/src/applet-xgamma.c:357
 msgid "Luminosity"
 msgstr "Svietivosť"
 
@@ -1573,7 +1557,7 @@ msgstr "Nemohol som sa zaregistrovať voľby"
 msgid "I couldn't load the mixer"
 msgstr "Nemohol som spustiť zmiešavač"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:260
+#: ../alsaMixer/src/applet-backend-alsamixer.c:259
 msgid "Set up volume:"
 msgstr "Nastaviť hlasitosť :"
 
@@ -1596,7 +1580,7 @@ msgstr ""
 msgid "Sound Control"
 msgstr "Ovládanie zvuku"
 
-#: ../alsaMixer/src/applet-init.c:136
+#: ../alsaMixer/src/applet-init.c:141
 msgid "Show/hide the Sound menu"
 msgstr "Zobraziť/Skryť ponuku zvuk"
 
@@ -1618,7 +1602,7 @@ msgstr "Vypnúť zvuk"
 
 #: ../clock/src/applet-calendar.c:193 ../clock/src/applet-calendar.c:274
 #: ../clock/src/applet-calendar.c:528 ../clock/src/applet-calendar.c:533
-#: ../clock/src/applet-task-editor.c:119 ../clock/src/applet-timer.c:98
+#: ../clock/src/applet-task-editor.c:118 ../clock/src/applet-timer.c:98
 #: ../clock/src/applet-timer.c:186 ../clock/src/applet-timer.c:466
 #: ../clock/src/applet-timer.c:480 ../clock/src/applet-timer.c:514
 msgid "No title"
@@ -1716,7 +1700,7 @@ msgstr "Príkaz na spustenie:"
 msgid "E.g.:"
 msgstr "Napr.:"
 
-#: ../clock/src/applet-config.c:512 ../weather/src/applet-config.c:214
+#: ../clock/src/applet-config.c:512 ../weather/src/applet-config.c:213
 msgid "Search for your location :"
 msgstr "Hľadanie pre vaše umiestnenie :"
 
@@ -1783,58 +1767,58 @@ msgstr "Zobraziť úlohy pre tento týždeň"
 msgid "Set up time and date"
 msgstr "Nastaviť čas a dátum"
 
-#: ../clock/src/applet-task-editor.c:156
+#: ../clock/src/applet-task-editor.c:155
 msgid "Add a new task"
 msgstr "Pridať novú úlohu"
 
-#: ../clock/src/applet-task-editor.c:177
+#: ../clock/src/applet-task-editor.c:176
 msgid "Delete this task"
 msgstr "Odstrániť túto úlohu"
 
-#: ../clock/src/applet-task-editor.c:215
+#: ../clock/src/applet-task-editor.c:214
 msgid "Don't repeat"
 msgstr "Neopakovať"
 
-#: ../clock/src/applet-task-editor.c:221
+#: ../clock/src/applet-task-editor.c:220
 msgid "Each month"
 msgstr "Každý mesiac"
 
-#: ../clock/src/applet-task-editor.c:227
+#: ../clock/src/applet-task-editor.c:226
 msgid "Each year"
 msgstr "Každý rok"
 
-#: ../clock/src/applet-task-editor.c:350
+#: ../clock/src/applet-task-editor.c:349
 msgid "each month"
 msgstr "každý mesiac"
 
-#: ../clock/src/applet-task-editor.c:353
+#: ../clock/src/applet-task-editor.c:352
 msgid "each year"
 msgstr "každý rok"
 
-#: ../clock/src/applet-task-editor.c:392
+#: ../clock/src/applet-task-editor.c:391
 msgid "Right-click to add a new task."
 msgstr "Pravým kliknutím pridáte novú úlohu."
 
-#: ../clock/src/applet-task-editor.c:398 ../musicPlayer/src/applet-draw.c:153
+#: ../clock/src/applet-task-editor.c:397 ../musicPlayer/src/applet-draw.c:153
 #: ../RSSreader/data/messages:133
 msgid "Title"
 msgstr "Názov"
 
-#: ../clock/src/applet-task-editor.c:405
-#: ../dnd2share/src/applet-notifications.c:389 ../Doncky/data/messages:95
+#: ../clock/src/applet-task-editor.c:404
+#: ../dnd2share/src/applet-notifications.c:391 ../Doncky/data/messages:95
 #: ../RSSreader/data/messages:149
 msgid "Text"
 msgstr "Text"
 
-#: ../clock/src/applet-task-editor.c:412
+#: ../clock/src/applet-task-editor.c:411
 msgid "Time"
 msgstr "Čas"
 
-#: ../clock/src/applet-task-editor.c:426
+#: ../clock/src/applet-task-editor.c:425
 msgid "Freq."
 msgstr "Frek."
 
-#: ../clock/src/applet-task-editor.c:433
+#: ../clock/src/applet-task-editor.c:432
 msgid "Tags"
 msgstr "Štítky"
 
@@ -1938,7 +1922,7 @@ msgid ""
 msgstr ""
 "Nedá sa nahrať súbor, skontrolujte či je vaše internetové pripojenie aktívne."
 
-#: ../dnd2share/src/applet-dnd2share.c:280
+#: ../dnd2share/src/applet-dnd2share.c:282
 msgid ""
 "File has been uploaded.\n"
 "Just press CTRL+v to paste its URL anywhere."
@@ -1946,15 +1930,15 @@ msgstr ""
 "Súbor bol nahraný.\n"
 "Stačí stlačiť CTRL + V k prilepeniu adresy URL kdekoľvek."
 
-#: ../dnd2share/src/applet-dnd2share.c:331
+#: ../dnd2share/src/applet-dnd2share.c:333
 msgid "Please wait for the current upload to finish before starting a new one."
 msgstr "Prosím, počkajte kým súčasné nahrávanie skončí pred začatím nového."
 
-#: ../dnd2share/src/applet-dnd2share.c:399
+#: ../dnd2share/src/applet-dnd2share.c:401
 msgid "This file is not readable."
 msgstr ""
 
-#: ../dnd2share/src/applet-dnd2share.c:622
+#: ../dnd2share/src/applet-dnd2share.c:628
 msgid "Tiny URL"
 msgstr "Tiny URL"
 
@@ -2037,35 +2021,35 @@ msgstr ""
 "Aktuálna URL bola uložená do výberu.\n"
 "Stredným-kliknutím ju vložíte kamkoľvek."
 
-#: ../dnd2share/src/applet-notifications.c:389
+#: ../dnd2share/src/applet-notifications.c:391
 msgid "File"
 msgstr "Súbor"
 
-#: ../dnd2share/src/applet-notifications.c:392
+#: ../dnd2share/src/applet-notifications.c:394
 msgid "Click on the icon to copy the URL into the clipboard."
 msgstr "Kliknutím na ikonu skopírujete URL do schránky."
 
-#: ../dnd2share/src/applet-notifications.c:404
+#: ../dnd2share/src/applet-notifications.c:406
 msgid "Send the clipboard's content"
 msgstr "Poslať obsah schránky"
 
-#: ../dnd2share/src/applet-notifications.c:407
+#: ../dnd2share/src/applet-notifications.c:409
 msgid "History"
 msgstr "História"
 
-#: ../dnd2share/src/applet-notifications.c:487
+#: ../dnd2share/src/applet-notifications.c:489
 msgid "Get text"
 msgstr "Získať text"
 
-#: ../dnd2share/src/applet-notifications.c:489
+#: ../dnd2share/src/applet-notifications.c:491
 msgid "Remove from history"
 msgstr "Odstrániť z histórie"
 
-#: ../dnd2share/src/applet-notifications.c:492
+#: ../dnd2share/src/applet-notifications.c:494
 msgid "Clear History"
 msgstr "Vyčistiť históriu"
 
-#: ../dnd2share/src/applet-notifications.c:497
+#: ../dnd2share/src/applet-notifications.c:499
 msgid "Use only a files hosting site"
 msgstr ""
 
@@ -2142,34 +2126,34 @@ msgstr ""
 msgid "Ko"
 msgstr ""
 
-#: ../dustbin/src/applet-notifications.c:115
+#: ../dustbin/src/applet-notifications.c:114
 msgid "Counting total size and files number..."
 msgstr "Spočítanie celkovej veľkosti a počet súborov..."
 
-#: ../dustbin/src/applet-notifications.c:135
+#: ../dustbin/src/applet-notifications.c:134
 msgid "Show Trash (click)"
 msgstr "Zobraziť kôš (kliknutie)"
 
-#: ../dustbin/src/applet-notifications.c:136
+#: ../dustbin/src/applet-notifications.c:135
 msgid "Empty Trash"
 msgstr "Vyprázdniť kôš"
 
-#: ../dustbin/src/applet-notifications.c:140
+#: ../dustbin/src/applet-notifications.c:139
 msgid "Display dustbins information"
 msgstr "Zobraziť informácie o košoch"
 
-#: ../dustbin/src/applet-notifications.c:150
+#: ../dustbin/src/applet-notifications.c:149
 #, c-format
 msgid "%s successfully unmounted"
 msgstr "%s je teraz odpojený"
 
-#: ../dustbin/src/applet-notifications.c:154
+#: ../dustbin/src/applet-notifications.c:153
 #, c-format
 msgid "failed to unmount %s"
 msgstr "zlyhalo pripojenie %s"
 
-#: ../dustbin/src/applet-notifications.c:178
-#: ../shortcuts/src/applet-notifications.c:167
+#: ../dustbin/src/applet-notifications.c:177
+#: ../shortcuts/src/applet-notifications.c:163
 msgid "Unmouting this volume ..."
 msgstr "Odpojiť túto jednotku..."
 
@@ -2181,8 +2165,8 @@ msgstr " kôš(e)"
 msgid " file(s)"
 msgstr " súbor(y)"
 
-#: ../dustbin/src/applet-trashes-manager.c:114
-#: ../dustbin/src/applet-trashes-manager.c:153
+#: ../dustbin/src/applet-trashes-manager.c:113
+#: ../dustbin/src/applet-trashes-manager.c:152
 msgid "calculating"
 msgstr "prebieha výpočet"
 
@@ -2494,24 +2478,24 @@ msgstr "Prosím, zadajte názov pre tento účet. Môžete vložiť názov aký 
 msgid "Remove Account"
 msgstr "Odstrániť účet"
 
-#: ../mail/src/cd-mail-applet-etpan.c:238 ../wifi/src/applet-draw.c:145
+#: ../mail/src/cd-mail-applet-etpan.c:237 ../wifi/src/applet-draw.c:145
 msgid "unknown"
 msgstr "neznámy"
 
-#: ../mail/src/cd-mail-applet-etpan.c:238
+#: ../mail/src/cd-mail-applet-etpan.c:237
 msgid "no subject"
 msgstr "bez predmetu"
 
-#: ../mail/src/cd-mail-applet-etpan.c:408
+#: ../mail/src/cd-mail-applet-etpan.c:404
 msgid "No unread mail in your mailboxes"
 msgstr "Žiadna neprečítaná správa vo vašej schránke"
 
-#: ../mail/src/cd-mail-applet-etpan.c:430
+#: ../mail/src/cd-mail-applet-etpan.c:426
 #, c-format
 msgid "You have %d new mails:"
 msgstr "Máte %d nových mailov :"
 
-#: ../mail/src/cd-mail-applet-etpan.c:432
+#: ../mail/src/cd-mail-applet-etpan.c:428
 msgid "You have a new mail:"
 msgstr "Máte nový e-mail :"
 
@@ -2778,6 +2762,13 @@ msgstr "Čas do vybitia"
 msgid "Time before full"
 msgstr "Čas zostávajúci do úplného nabitia"
 
+#: ../powermanager/src/powermanager-draw.c:230 ../wifi/src/applet-draw.c:30
+#: ../Clipper/data/messages:97 ../GMenu/data/messages:105
+#: ../Network-Monitor/data/messages:221 ../dnd2share/data/messages:109
+#: ../dustbin/data/messages:101 ../wifi/data/messages:145
+msgid "None"
+msgstr "Žiadny"
+
 #: ../powermanager/src/powermanager-draw.c:265
 msgid "Laptop on Battery."
 msgstr "Batéria prenosného počítača."
@@ -2883,8 +2874,8 @@ msgstr ""
 msgid "Show/hide the folder menu"
 msgstr "Zobraziť/Skryť ponuku priečinka"
 
-#: ../quick-browser/src/applet-menu.c:107
-#: ../quick-browser/src/applet-menu.c:113
+#: ../quick-browser/src/applet-menu.c:105
+#: ../quick-browser/src/applet-menu.c:111
 msgid "Open this folder"
 msgstr "Otvoriť tento priečinok"
 
@@ -2892,30 +2883,30 @@ msgstr "Otvoriť tento priečinok"
 msgid "Open folder"
 msgstr "Otvoriť priečinok"
 
-#: ../shortcuts/src/applet-bookmarks.c:133
-#: ../shortcuts/src/applet-bookmarks.c:376
-#: ../shortcuts/src/applet-drives.c:267
+#: ../shortcuts/src/applet-bookmarks.c:134
+#: ../shortcuts/src/applet-bookmarks.c:377
+#: ../shortcuts/src/applet-drives.c:268
 msgid "Unmounted"
 msgstr "Odpojené"
 
-#: ../shortcuts/src/applet-bookmarks.c:179
-#: ../shortcuts/src/applet-bookmarks.c:405
+#: ../shortcuts/src/applet-bookmarks.c:180
+#: ../shortcuts/src/applet-bookmarks.c:406
 #, fuzzy
 msgid "Home Folder"
 msgstr "Priečinok"
 
-#: ../shortcuts/src/applet-drives.c:131 ../shortcuts/src/applet-drives.c:194
+#: ../shortcuts/src/applet-drives.c:130 ../shortcuts/src/applet-drives.c:193
 #, c-format
 msgid "%s is now mounted"
 msgstr "%s je teraz pripojený"
 
-#: ../shortcuts/src/applet-drives.c:131
+#: ../shortcuts/src/applet-drives.c:130
 #: ../shortcuts/src/applet-load-icons.c:137
 #, c-format
 msgid "%s has been connected"
 msgstr "%s je pripojený"
 
-#: ../shortcuts/src/applet-drives.c:194
+#: ../shortcuts/src/applet-drives.c:193
 #, c-format
 msgid "%s is now unmounted"
 msgstr "%s je teraz odpojený"
@@ -2946,64 +2937,64 @@ msgstr ""
 "Applet môže tiež zobrazovať hodnotné informácie o vašich diskoch, ako je "
 "voľné miesto, typ, atď"
 
-#: ../shortcuts/src/applet-notifications.c:44
-#: ../shortcuts/src/applet-notifications.c:72
+#: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:70
 #, c-format
 msgid "failed to mount %s"
 msgstr "Zlyhalo pripojenie %s"
 
-#: ../shortcuts/src/applet-notifications.c:44
-#: ../shortcuts/src/applet-notifications.c:72
+#: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:70
 #, c-format
 msgid "Failed to unmount %s"
 msgstr "Zlyhalo odpojenie %s"
 
-#: ../shortcuts/src/applet-notifications.c:88
+#: ../shortcuts/src/applet-notifications.c:86
 msgid "Sorry, this applet is not yet available for KDE."
 msgstr "Prepáčte, tento applet nie je dostupný pre KDE."
 
-#: ../shortcuts/src/applet-notifications.c:90
+#: ../shortcuts/src/applet-notifications.c:88
 msgid "No disks or bookmarks were found."
 msgstr "Neboli nájdené žiadne disky alebo záložky."
 
-#: ../shortcuts/src/applet-notifications.c:193
+#: ../shortcuts/src/applet-notifications.c:189
 msgid "Enter a name for this bookmark:"
 msgstr "Vložte názov pre túto záložku:"
 
-#: ../shortcuts/src/applet-notifications.c:268
+#: ../shortcuts/src/applet-notifications.c:264
 msgid "Open Home directory"
 msgstr "Otvoriť domovský priečinok"
 
-#: ../shortcuts/src/applet-notifications.c:274
+#: ../shortcuts/src/applet-notifications.c:270
 #, fuzzy
 msgid "Connect to Server..."
 msgstr "Pripájanie..."
 
-#: ../shortcuts/src/applet-notifications.c:280
+#: ../shortcuts/src/applet-notifications.c:276
 msgid "Rename this bookmark"
 msgstr "Premenovať túto záložku"
 
-#: ../shortcuts/src/applet-notifications.c:281
+#: ../shortcuts/src/applet-notifications.c:277
 msgid "Remove this bookmark"
 msgstr "Odstrániť túto záložku"
 
-#: ../shortcuts/src/applet-notifications.c:287
+#: ../shortcuts/src/applet-notifications.c:283
 msgid "Eject"
 msgstr "Vysunúť"
 
-#: ../shortcuts/src/applet-notifications.c:292
+#: ../shortcuts/src/applet-notifications.c:288
 msgid "Unmount"
 msgstr "Odpojiť"
 
-#: ../shortcuts/src/applet-notifications.c:292
+#: ../shortcuts/src/applet-notifications.c:288
 msgid "Mount"
 msgstr "Pripojiť"
 
-#: ../shortcuts/src/applet-notifications.c:296
+#: ../shortcuts/src/applet-notifications.c:292
 msgid "Get disk info"
 msgstr "Získať info o disku"
 
-#: ../shortcuts/src/applet-notifications.c:322
+#: ../shortcuts/src/applet-notifications.c:318
 msgid "Only folders can be bookmarked."
 msgstr "Iba priečinky môžu byť záložkou."
 
@@ -3135,7 +3126,7 @@ msgstr "Otvoriť (klik)"
 
 #: ../stack/src/applet-notifications.c:185
 #: ../terminal/src/terminal-callbacks.c:82
-#: ../terminal/src/terminal-widget.c:443
+#: ../terminal/src/terminal-widget.c:440
 msgid "Copy"
 msgstr "Kopírovať"
 
@@ -3159,13 +3150,13 @@ msgstr "Súbor bol pridaný do zásobníka."
 msgid "The URL has been added to the stack."
 msgstr "URL bola pridaná do zásobníka."
 
-#: ../switcher/src/applet-draw.c:604 ../switcher/src/applet-draw.c:611
+#: ../switcher/src/applet-draw.c:603 ../switcher/src/applet-draw.c:610
 #: ../switcher/src/applet-load-icons.c:53
 #: ../switcher/src/applet-notifications.c:415
 msgid "Current"
 msgstr "Aktuálny"
 
-#: ../switcher/src/applet-draw.c:611 ../switcher/src/applet-draw.c:613
+#: ../switcher/src/applet-draw.c:610 ../switcher/src/applet-draw.c:612
 #: ../switcher/src/applet-load-icons.c:59
 #: ../switcher/src/applet-notifications.c:216
 #: ../switcher/src/applet-notifications.c:228
@@ -3285,7 +3276,7 @@ msgid "Show/hide the terminal"
 msgstr "Zobraziť/Skryť terminál"
 
 #: ../terminal/src/terminal-menu-functions.c:78
-#: ../terminal/src/terminal-widget.c:459
+#: ../terminal/src/terminal-widget.c:456
 msgid "New Tab"
 msgstr "Nová karta"
 
@@ -3301,32 +3292,32 @@ msgstr "Zavrieť aktuálnu kartu"
 msgid "Terminal"
 msgstr "Terminál"
 
-#: ../terminal/src/terminal-widget.c:169
+#: ../terminal/src/terminal-widget.c:167
 msgid "Set title for this tab:"
 msgstr "Nastaviť názov pre túto kartu :"
 
-#: ../terminal/src/terminal-widget.c:247 ../terminal/src/terminal-widget.c:249
+#: ../terminal/src/terminal-widget.c:243 ../terminal/src/terminal-widget.c:245
 msgid "Select a color"
 msgstr "Vyberte farbu"
 
-#: ../terminal/src/terminal-widget.c:403
+#: ../terminal/src/terminal-widget.c:400
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
 msgstr "Môžete vrátiť späť v Termináli napísaním %s"
 
-#: ../terminal/src/terminal-widget.c:449
+#: ../terminal/src/terminal-widget.c:446
 msgid "Paste"
 msgstr "Vložiť"
 
-#: ../terminal/src/terminal-widget.c:465
+#: ../terminal/src/terminal-widget.c:462
 msgid "Rename this Tab"
 msgstr "Premenovať"
 
-#: ../terminal/src/terminal-widget.c:471
+#: ../terminal/src/terminal-widget.c:468
 msgid "Change this Tab's colour"
 msgstr "Zmeniť farbu kariet"
 
-#: ../terminal/src/terminal-widget.c:477
+#: ../terminal/src/terminal-widget.c:474
 msgid "Close this Tab"
 msgstr "Zatvoriť túto kartu"
 
@@ -3414,11 +3405,11 @@ msgstr "Nedá sa získať kód umiestnenia (máte funkčné pripojenie?)"
 msgid "I couldn't find this location"
 msgstr "Nemôžem nájsť umiestnenie"
 
-#: ../weather/src/applet-config.c:185
+#: ../weather/src/applet-config.c:184
 msgid "Searching the location code..."
 msgstr "Vyhľadávam kód umiestnenia..."
 
-#: ../weather/src/applet-config.c:218
+#: ../weather/src/applet-config.c:217
 msgid ""
 "Enter the name of your location and press Enter to choose amongst results."
 msgstr ""
@@ -3586,6 +3577,26 @@ msgstr ""
 msgid "Weblets"
 msgstr "Weblety"
 
+#: ../wifi/src/applet-draw.c:30
+msgid "Very Low"
+msgstr "veľmi nízky"
+
+#: ../wifi/src/applet-draw.c:30
+msgid "Low"
+msgstr "Nízky"
+
+#: ../wifi/src/applet-draw.c:30
+msgid "Middle"
+msgstr "Uprostred"
+
+#: ../wifi/src/applet-draw.c:30
+msgid "Good"
+msgstr "Dobré"
+
+#: ../wifi/src/applet-draw.c:30
+msgid "Excellent"
+msgstr "Vynikajúce"
+
 #: ../wifi/src/applet-draw.c:138
 msgid "WiFi disabled."
 msgstr "Wifi zakázaná."
@@ -3608,7 +3619,7 @@ msgstr "Wifi"
 msgid "Toggle wifi ON/OFF"
 msgstr "Prepínač kompozície ZAP/VYP"
 
-#: ../gvfs-integration/cairo-dock-gio-vfs.c:467
+#: ../gvfs-integration/cairo-dock-gio-vfs.c:466
 #: ../gvfs-integration/cairo-dock-gio-vfs.c:833
 #, fuzzy
 msgid "File System"
@@ -3705,7 +3716,7 @@ msgstr "Typ sľučky :"
 #: ../powermanager/data/messages:53 ../quick-browser/data/messages:45
 #: ../shortcuts/data/messages:43 ../showDesktop/data/messages:45
 #: ../slider/data/messages:51 ../stack/data/messages:45
-#: ../switcher/data/messages:37 ../systray/data/messages:35
+#: ../switcher/data/messages:43 ../systray/data/messages:35
 #: ../template/data/messages:43 ../terminal/data/messages:43
 #: ../tomboy/data/messages:55 ../weather/data/messages:53
 #: ../weblets/data/messages:43 ../wifi/data/messages:51
@@ -3896,7 +3907,7 @@ msgstr ""
 #: ../showDesktop/data/messages:3 ../slider/data/messages:1
 #: ../slider/data/messages:3 ../stack/data/messages:1 ../stack/data/messages:3
 #: ../switcher/data/messages:1 ../switcher/data/messages:3
-#: ../switcher/data/messages:123 ../systray/data/messages:1
+#: ../switcher/data/messages:129 ../systray/data/messages:1
 #: ../systray/data/messages:3 ../template/data/messages:1
 #: ../template/data/messages:3 ../terminal/data/messages:1
 #: ../terminal/data/messages:3 ../tomboy/data/messages:1
@@ -4043,8 +4054,8 @@ msgstr "Požadovaná veľkosť ikony pre tento applet"
 #: ../powermanager/data/messages:99 ../quick-browser/data/messages:91
 #: ../shortcuts/data/messages:89 ../show-mouse/data/messages:1
 #: ../showDesktop/data/messages:91 ../slider/data/messages:97
-#: ../stack/data/messages:91 ../switcher/data/messages:83
-#: ../switcher/data/messages:85 ../systray/data/messages:81
+#: ../stack/data/messages:91 ../switcher/data/messages:89
+#: ../switcher/data/messages:91 ../systray/data/messages:81
 #: ../template/data/messages:89 ../terminal/data/messages:89
 #: ../tomboy/data/messages:101 ../weather/data/messages:99
 #: ../weather/data/messages:101 ../weblets/data/messages:89
@@ -4266,9 +4277,9 @@ msgstr "Rozmery deskletov (šírka x výška) :"
 #: ../musicPlayer/data/messages:39 ../powermanager/data/messages:39
 #: ../quick-browser/data/messages:31 ../shortcuts/data/messages:29
 #: ../showDesktop/data/messages:31 ../slider/data/messages:37
-#: ../stack/data/messages:31 ../terminal/data/messages:29
-#: ../weather/data/messages:39 ../weblets/data/messages:29
-#: ../wifi/data/messages:37
+#: ../stack/data/messages:31 ../switcher/data/messages:29
+#: ../terminal/data/messages:29 ../weather/data/messages:39
+#: ../weblets/data/messages:29 ../wifi/data/messages:37
 msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
@@ -4292,7 +4303,7 @@ msgstr ""
 #: ../netspeed/data/messages:39 ../powermanager/data/messages:41
 #: ../quick-browser/data/messages:33 ../shortcuts/data/messages:31
 #: ../showDesktop/data/messages:33 ../slider/data/messages:39
-#: ../stack/data/messages:33 ../switcher/data/messages:29
+#: ../stack/data/messages:33 ../switcher/data/messages:31
 #: ../systray/data/messages:27 ../template/data/messages:31
 #: ../terminal/data/messages:31 ../tomboy/data/messages:43
 #: ../weather/data/messages:41 ../weblets/data/messages:31
@@ -4316,9 +4327,10 @@ msgstr "Pozícia deskletu (x ; y) :"
 #: ../powermanager/data/messages:43 ../quick-browser/data/messages:35
 #: ../shortcuts/data/messages:33 ../showDesktop/data/messages:35
 #: ../slider/data/messages:41 ../stack/data/messages:35
-#: ../template/data/messages:33 ../terminal/data/messages:33
-#: ../tomboy/data/messages:45 ../weather/data/messages:43
-#: ../weblets/data/messages:33 ../wifi/data/messages:41
+#: ../switcher/data/messages:33 ../template/data/messages:33
+#: ../terminal/data/messages:33 ../tomboy/data/messages:45
+#: ../weather/data/messages:43 ../weblets/data/messages:33
+#: ../wifi/data/messages:41
 msgid ""
 "You can quickly rotate the desklet with the mouse, by dragging the little "
 "buttons on its left and top sides."
@@ -4342,9 +4354,10 @@ msgstr ""
 #: ../powermanager/data/messages:45 ../quick-browser/data/messages:37
 #: ../shortcuts/data/messages:35 ../showDesktop/data/messages:37
 #: ../slider/data/messages:43 ../stack/data/messages:37
-#: ../template/data/messages:35 ../terminal/data/messages:35
-#: ../tomboy/data/messages:47 ../weather/data/messages:45
-#: ../weblets/data/messages:35 ../wifi/data/messages:43
+#: ../switcher/data/messages:35 ../template/data/messages:35
+#: ../terminal/data/messages:35 ../tomboy/data/messages:47
+#: ../weather/data/messages:45 ../weblets/data/messages:35
+#: ../wifi/data/messages:43
 msgid "Rotation:"
 msgstr "Otáčanie :"
 
@@ -4364,7 +4377,7 @@ msgstr "Otáčanie :"
 #: ../powermanager/data/messages:47 ../quick-browser/data/messages:39
 #: ../shortcuts/data/messages:37 ../showDesktop/data/messages:39
 #: ../slider/data/messages:45 ../stack/data/messages:39
-#: ../switcher/data/messages:31 ../systray/data/messages:29
+#: ../switcher/data/messages:37 ../systray/data/messages:29
 #: ../template/data/messages:37 ../terminal/data/messages:37
 #: ../tomboy/data/messages:49 ../weather/data/messages:47
 #: ../weblets/data/messages:37 ../wifi/data/messages:45
@@ -4388,7 +4401,7 @@ msgstr "Viditeľnosť"
 #: ../powermanager/data/messages:49 ../quick-browser/data/messages:41
 #: ../shortcuts/data/messages:39 ../showDesktop/data/messages:41
 #: ../slider/data/messages:47 ../stack/data/messages:41
-#: ../switcher/data/messages:33 ../systray/data/messages:31
+#: ../switcher/data/messages:39 ../systray/data/messages:31
 #: ../template/data/messages:39 ../terminal/data/messages:39
 #: ../tomboy/data/messages:51 ../weather/data/messages:49
 #: ../weblets/data/messages:39 ../wifi/data/messages:47
@@ -4411,7 +4424,7 @@ msgstr "Je oddelený od docku ?"
 #: ../netspeed/data/messages:49 ../powermanager/data/messages:51
 #: ../quick-browser/data/messages:43 ../shortcuts/data/messages:41
 #: ../showDesktop/data/messages:43 ../slider/data/messages:49
-#: ../stack/data/messages:43 ../switcher/data/messages:35
+#: ../stack/data/messages:43 ../switcher/data/messages:41
 #: ../systray/data/messages:33 ../template/data/messages:41
 #: ../terminal/data/messages:41 ../tomboy/data/messages:53
 #: ../weather/data/messages:51 ../weblets/data/messages:41
@@ -4435,7 +4448,7 @@ msgstr "Viditeľnosť :"
 #: ../netspeed/data/messages:53 ../powermanager/data/messages:55
 #: ../quick-browser/data/messages:47 ../shortcuts/data/messages:45
 #: ../showDesktop/data/messages:47 ../slider/data/messages:53
-#: ../stack/data/messages:47 ../switcher/data/messages:39
+#: ../stack/data/messages:47 ../switcher/data/messages:45
 #: ../systray/data/messages:37 ../template/data/messages:45
 #: ../terminal/data/messages:45 ../tomboy/data/messages:57
 #: ../weather/data/messages:55 ../weblets/data/messages:45
@@ -4459,7 +4472,7 @@ msgstr "Ponechať v popredí"
 #: ../netspeed/data/messages:55 ../powermanager/data/messages:57
 #: ../quick-browser/data/messages:49 ../shortcuts/data/messages:47
 #: ../showDesktop/data/messages:49 ../slider/data/messages:55
-#: ../stack/data/messages:49 ../switcher/data/messages:41
+#: ../stack/data/messages:49 ../switcher/data/messages:47
 #: ../systray/data/messages:39 ../template/data/messages:47
 #: ../terminal/data/messages:47 ../tomboy/data/messages:59
 #: ../weather/data/messages:57 ../weblets/data/messages:47
@@ -4483,7 +4496,7 @@ msgstr "Ponechať na pozadí"
 #: ../netspeed/data/messages:57 ../powermanager/data/messages:59
 #: ../quick-browser/data/messages:51 ../shortcuts/data/messages:49
 #: ../showDesktop/data/messages:51 ../slider/data/messages:57
-#: ../stack/data/messages:51 ../switcher/data/messages:43
+#: ../stack/data/messages:51 ../switcher/data/messages:49
 #: ../systray/data/messages:41 ../template/data/messages:49
 #: ../terminal/data/messages:49 ../tomboy/data/messages:61
 #: ../weather/data/messages:59 ../weblets/data/messages:49
@@ -4507,7 +4520,7 @@ msgstr "Ponechať na vrstve widgetu"
 #: ../netspeed/data/messages:59 ../powermanager/data/messages:61
 #: ../quick-browser/data/messages:53 ../shortcuts/data/messages:51
 #: ../showDesktop/data/messages:53 ../slider/data/messages:59
-#: ../stack/data/messages:53 ../switcher/data/messages:45
+#: ../stack/data/messages:53 ../switcher/data/messages:51
 #: ../systray/data/messages:43 ../template/data/messages:51
 #: ../terminal/data/messages:51 ../tomboy/data/messages:63
 #: ../weather/data/messages:61 ../weblets/data/messages:51
@@ -4531,7 +4544,7 @@ msgstr "Vyhradiť miesto"
 #: ../netspeed/data/messages:61 ../powermanager/data/messages:63
 #: ../quick-browser/data/messages:55 ../shortcuts/data/messages:53
 #: ../showDesktop/data/messages:55 ../slider/data/messages:61
-#: ../stack/data/messages:55 ../switcher/data/messages:47
+#: ../stack/data/messages:55 ../switcher/data/messages:53
 #: ../systray/data/messages:45 ../template/data/messages:53
 #: ../terminal/data/messages:53 ../tomboy/data/messages:65
 #: ../weather/data/messages:63 ../weblets/data/messages:53
@@ -4555,7 +4568,7 @@ msgstr "Má byť viditeľný na všetkých plochách ?"
 #: ../netspeed/data/messages:63 ../powermanager/data/messages:65
 #: ../quick-browser/data/messages:57 ../shortcuts/data/messages:55
 #: ../showDesktop/data/messages:57 ../slider/data/messages:63
-#: ../stack/data/messages:57 ../switcher/data/messages:49
+#: ../stack/data/messages:57 ../switcher/data/messages:55
 #: ../systray/data/messages:47 ../template/data/messages:55
 #: ../terminal/data/messages:55 ../tomboy/data/messages:67
 #: ../weather/data/messages:65 ../weblets/data/messages:55
@@ -4579,7 +4592,7 @@ msgstr "Dekorácie"
 #: ../netspeed/data/messages:65 ../powermanager/data/messages:67
 #: ../quick-browser/data/messages:59 ../shortcuts/data/messages:57
 #: ../showDesktop/data/messages:59 ../slider/data/messages:65
-#: ../stack/data/messages:59 ../switcher/data/messages:51
+#: ../stack/data/messages:59 ../switcher/data/messages:57
 #: ../systray/data/messages:49 ../template/data/messages:57
 #: ../terminal/data/messages:57 ../tomboy/data/messages:69
 #: ../weather/data/messages:67 ../weblets/data/messages:57
@@ -4604,7 +4617,7 @@ msgstr ""
 #: ../netspeed/data/messages:67 ../powermanager/data/messages:69
 #: ../quick-browser/data/messages:61 ../shortcuts/data/messages:59
 #: ../showDesktop/data/messages:61 ../slider/data/messages:67
-#: ../stack/data/messages:61 ../switcher/data/messages:53
+#: ../stack/data/messages:61 ../switcher/data/messages:59
 #: ../systray/data/messages:51 ../template/data/messages:59
 #: ../terminal/data/messages:59 ../tomboy/data/messages:71
 #: ../weather/data/messages:69 ../weblets/data/messages:59
@@ -4628,7 +4641,7 @@ msgstr "Vyberte ozdobu témy pre tento desklet :"
 #: ../netspeed/data/messages:69 ../powermanager/data/messages:71
 #: ../quick-browser/data/messages:63 ../shortcuts/data/messages:61
 #: ../showDesktop/data/messages:63 ../slider/data/messages:69
-#: ../stack/data/messages:63 ../switcher/data/messages:55
+#: ../stack/data/messages:63 ../switcher/data/messages:61
 #: ../systray/data/messages:53 ../template/data/messages:61
 #: ../terminal/data/messages:61 ../tomboy/data/messages:73
 #: ../weather/data/messages:71 ../weblets/data/messages:61
@@ -4656,7 +4669,7 @@ msgstr ""
 #: ../netspeed/data/messages:71 ../powermanager/data/messages:73
 #: ../quick-browser/data/messages:65 ../shortcuts/data/messages:63
 #: ../showDesktop/data/messages:65 ../slider/data/messages:71
-#: ../stack/data/messages:65 ../switcher/data/messages:57
+#: ../stack/data/messages:65 ../switcher/data/messages:63
 #: ../systray/data/messages:55 ../template/data/messages:63
 #: ../terminal/data/messages:63 ../tomboy/data/messages:75
 #: ../weather/data/messages:73 ../weblets/data/messages:63
@@ -4680,7 +4693,7 @@ msgstr "Obrázok pozadia:"
 #: ../netspeed/data/messages:73 ../powermanager/data/messages:75
 #: ../quick-browser/data/messages:67 ../shortcuts/data/messages:65
 #: ../showDesktop/data/messages:67 ../slider/data/messages:73
-#: ../stack/data/messages:67 ../switcher/data/messages:59
+#: ../stack/data/messages:67 ../switcher/data/messages:65
 #: ../systray/data/messages:57 ../template/data/messages:65
 #: ../terminal/data/messages:65 ../tomboy/data/messages:77
 #: ../weather/data/messages:75 ../weblets/data/messages:65
@@ -4704,7 +4717,7 @@ msgstr "Priehľadnosť pozadia :"
 #: ../netspeed/data/messages:75 ../powermanager/data/messages:77
 #: ../quick-browser/data/messages:69 ../shortcuts/data/messages:67
 #: ../showDesktop/data/messages:69 ../slider/data/messages:75
-#: ../stack/data/messages:69 ../switcher/data/messages:61
+#: ../stack/data/messages:69 ../switcher/data/messages:67
 #: ../systray/data/messages:59 ../template/data/messages:67
 #: ../terminal/data/messages:67 ../tomboy/data/messages:79
 #: ../weather/data/messages:77 ../weblets/data/messages:67
@@ -4728,7 +4741,7 @@ msgstr "v pixeloch. Použite pre nastavenie ľavej polohy vykreslenia."
 #: ../netspeed/data/messages:77 ../powermanager/data/messages:79
 #: ../quick-browser/data/messages:71 ../shortcuts/data/messages:69
 #: ../showDesktop/data/messages:71 ../slider/data/messages:77
-#: ../stack/data/messages:71 ../switcher/data/messages:63
+#: ../stack/data/messages:71 ../switcher/data/messages:69
 #: ../systray/data/messages:61 ../template/data/messages:69
 #: ../terminal/data/messages:69 ../tomboy/data/messages:81
 #: ../weather/data/messages:79 ../weblets/data/messages:69
@@ -4752,7 +4765,7 @@ msgstr "Odsadenie zľava :"
 #: ../netspeed/data/messages:79 ../powermanager/data/messages:81
 #: ../quick-browser/data/messages:73 ../shortcuts/data/messages:71
 #: ../showDesktop/data/messages:73 ../slider/data/messages:79
-#: ../stack/data/messages:73 ../switcher/data/messages:65
+#: ../stack/data/messages:73 ../switcher/data/messages:71
 #: ../systray/data/messages:63 ../template/data/messages:71
 #: ../terminal/data/messages:71 ../tomboy/data/messages:83
 #: ../weather/data/messages:81 ../weblets/data/messages:71
@@ -4776,7 +4789,7 @@ msgstr "v pixeloch. Použite pre nastavenie hornej polohy vykreslenia."
 #: ../netspeed/data/messages:81 ../powermanager/data/messages:83
 #: ../quick-browser/data/messages:75 ../shortcuts/data/messages:73
 #: ../showDesktop/data/messages:75 ../slider/data/messages:81
-#: ../stack/data/messages:75 ../switcher/data/messages:67
+#: ../stack/data/messages:75 ../switcher/data/messages:73
 #: ../systray/data/messages:65 ../template/data/messages:73
 #: ../terminal/data/messages:73 ../tomboy/data/messages:85
 #: ../weather/data/messages:83 ../weblets/data/messages:73
@@ -4800,7 +4813,7 @@ msgstr "Odsadenie zhora :"
 #: ../netspeed/data/messages:83 ../powermanager/data/messages:85
 #: ../quick-browser/data/messages:77 ../shortcuts/data/messages:75
 #: ../showDesktop/data/messages:77 ../slider/data/messages:83
-#: ../stack/data/messages:77 ../switcher/data/messages:69
+#: ../stack/data/messages:77 ../switcher/data/messages:75
 #: ../systray/data/messages:67 ../template/data/messages:75
 #: ../terminal/data/messages:75 ../tomboy/data/messages:87
 #: ../weather/data/messages:85 ../weblets/data/messages:75
@@ -4824,7 +4837,7 @@ msgstr "v pixeloch. Použite pre nastavenie pravej polohy vykreslenia."
 #: ../netspeed/data/messages:85 ../powermanager/data/messages:87
 #: ../quick-browser/data/messages:79 ../shortcuts/data/messages:77
 #: ../showDesktop/data/messages:79 ../slider/data/messages:85
-#: ../stack/data/messages:79 ../switcher/data/messages:71
+#: ../stack/data/messages:79 ../switcher/data/messages:77
 #: ../systray/data/messages:69 ../template/data/messages:77
 #: ../terminal/data/messages:77 ../tomboy/data/messages:89
 #: ../weather/data/messages:87 ../weblets/data/messages:77
@@ -4848,7 +4861,7 @@ msgstr "Odsadenie vpravo :"
 #: ../netspeed/data/messages:87 ../powermanager/data/messages:89
 #: ../quick-browser/data/messages:81 ../shortcuts/data/messages:79
 #: ../showDesktop/data/messages:81 ../slider/data/messages:87
-#: ../stack/data/messages:81 ../switcher/data/messages:73
+#: ../stack/data/messages:81 ../switcher/data/messages:79
 #: ../systray/data/messages:71 ../template/data/messages:79
 #: ../terminal/data/messages:79 ../tomboy/data/messages:91
 #: ../weather/data/messages:89 ../weblets/data/messages:79
@@ -4872,7 +4885,7 @@ msgstr "v pixeloch. Použite pre nastavenie dolnej polohy vykreslenia."
 #: ../netspeed/data/messages:89 ../powermanager/data/messages:91
 #: ../quick-browser/data/messages:83 ../shortcuts/data/messages:81
 #: ../showDesktop/data/messages:83 ../slider/data/messages:89
-#: ../stack/data/messages:83 ../switcher/data/messages:75
+#: ../stack/data/messages:83 ../switcher/data/messages:81
 #: ../systray/data/messages:73 ../template/data/messages:81
 #: ../terminal/data/messages:81 ../tomboy/data/messages:93
 #: ../weather/data/messages:91 ../weblets/data/messages:81
@@ -4896,7 +4909,7 @@ msgstr "Odsadenie zdola"
 #: ../netspeed/data/messages:91 ../powermanager/data/messages:93
 #: ../quick-browser/data/messages:85 ../shortcuts/data/messages:83
 #: ../showDesktop/data/messages:85 ../slider/data/messages:91
-#: ../stack/data/messages:85 ../switcher/data/messages:77
+#: ../stack/data/messages:85 ../switcher/data/messages:83
 #: ../systray/data/messages:75 ../template/data/messages:83
 #: ../terminal/data/messages:83 ../tomboy/data/messages:95
 #: ../weather/data/messages:93 ../weblets/data/messages:83
@@ -4924,7 +4937,7 @@ msgstr ""
 #: ../netspeed/data/messages:93 ../powermanager/data/messages:95
 #: ../quick-browser/data/messages:87 ../shortcuts/data/messages:85
 #: ../showDesktop/data/messages:87 ../slider/data/messages:93
-#: ../stack/data/messages:87 ../switcher/data/messages:79
+#: ../stack/data/messages:87 ../switcher/data/messages:85
 #: ../systray/data/messages:77 ../template/data/messages:85
 #: ../terminal/data/messages:85 ../tomboy/data/messages:97
 #: ../weather/data/messages:95 ../weblets/data/messages:85
@@ -4948,7 +4961,7 @@ msgstr "Obrázok popredia :"
 #: ../netspeed/data/messages:95 ../powermanager/data/messages:97
 #: ../quick-browser/data/messages:89 ../shortcuts/data/messages:87
 #: ../showDesktop/data/messages:89 ../slider/data/messages:95
-#: ../stack/data/messages:89 ../switcher/data/messages:81
+#: ../stack/data/messages:89 ../switcher/data/messages:87
 #: ../systray/data/messages:79 ../template/data/messages:87
 #: ../terminal/data/messages:87 ../tomboy/data/messages:99
 #: ../weather/data/messages:97 ../weblets/data/messages:87
@@ -5153,7 +5166,7 @@ msgstr "Spýtať sa pred prepnutím:"
 
 #: ../Composite-Manager/data/messages:123 ../logout/data/messages:93
 #: ../showDesktop/data/messages:111 ../slider/data/messages:123
-#: ../switcher/data/messages:133
+#: ../switcher/data/messages:139
 msgid "Action on middle-click:"
 msgstr "Akcia na stredné kliknutie :"
 
@@ -6738,7 +6751,7 @@ msgstr ""
 msgid "Layout of the text:"
 msgstr "Rozloženie textu:"
 
-#: ../clock/data/messages:165 ../switcher/data/messages:95
+#: ../clock/data/messages:165 ../switcher/data/messages:101
 msgid "Automatic"
 msgstr "Automaticky"
 
@@ -7623,13 +7636,13 @@ msgid "Show '0' if there is no mail?"
 msgstr ""
 
 #: ../mail/data/messages:119 ../shortcuts/data/messages:103
-#: ../stack/data/messages:95 ../switcher/data/messages:117
+#: ../stack/data/messages:95 ../switcher/data/messages:123
 #: ../tomboy/data/messages:119 ../weather/data/messages:133
 msgid "Leave empty to use default sub-dock view."
 msgstr "Ponechajte prázdne pre použitie predvoleného vzhľadu sub-doku"
 
 #: ../mail/data/messages:121 ../shortcuts/data/messages:105
-#: ../stack/data/messages:97 ../switcher/data/messages:119
+#: ../stack/data/messages:97 ../switcher/data/messages:125
 #: ../tomboy/data/messages:121 ../weather/data/messages:135
 msgid "Sub-dock view name:"
 msgstr "Názov zobrazenia používaných pre sub-dock :"
@@ -8340,146 +8353,146 @@ msgstr "Typ"
 msgid "Manual order"
 msgstr "Manuálne zoradenie"
 
-#: ../switcher/data/messages:87
+#: ../switcher/data/messages:93
 msgid "How to display all desktops?"
 msgstr ""
 
-#: ../switcher/data/messages:89
+#: ../switcher/data/messages:95
 msgid "A sub-dock with all desktops"
 msgstr ""
 
-#: ../switcher/data/messages:91
+#: ../switcher/data/messages:97
 msgid "All desktops drawn on the main icon"
 msgstr ""
 
-#: ../switcher/data/messages:93
+#: ../switcher/data/messages:99
 msgid "Desktops layout"
 msgstr ""
 
-#: ../switcher/data/messages:97
+#: ../switcher/data/messages:103
 msgid "On a single line"
 msgstr "Na jednom riadku"
 
-#: ../switcher/data/messages:99
+#: ../switcher/data/messages:105
 msgid "Preserve the ratio of the screen?"
 msgstr ""
 
-#: ../switcher/data/messages:101
+#: ../switcher/data/messages:107
 msgid "How to draw the icon?"
 msgstr ""
 
-#: ../switcher/data/messages:103
+#: ../switcher/data/messages:109
 msgid "Map wallpaper to icons"
 msgstr ""
 
-#: ../switcher/data/messages:105
+#: ../switcher/data/messages:111
 msgid "Use an image for each desktop"
 msgstr ""
 
-#: ../switcher/data/messages:107
+#: ../switcher/data/messages:113
 msgid "Use a colour for each desktop"
 msgstr ""
 
-#: ../switcher/data/messages:109
+#: ../switcher/data/messages:115
 msgid "Icon to use in expanded mode if wallpaper is not mapped:"
 msgstr "Ikona na použitie v rozšírenom režime, ak nemáte mapu tapety :"
 
-#: ../switcher/data/messages:111 ../switcher/data/messages:149
-#: ../switcher/data/messages:155 ../switcher/data/messages:159
-#: ../switcher/data/messages:163 ../switcher/data/messages:179
+#: ../switcher/data/messages:117 ../switcher/data/messages:155
+#: ../switcher/data/messages:161 ../switcher/data/messages:165
+#: ../switcher/data/messages:169 ../switcher/data/messages:185
 msgid "r, g, b, a"
 msgstr "r, g, b, a"
 
-#: ../switcher/data/messages:113 ../terminal/data/messages:103
+#: ../switcher/data/messages:119 ../terminal/data/messages:103
 msgid "Background colour:"
 msgstr "Farba pozadia :"
 
-#: ../switcher/data/messages:115
+#: ../switcher/data/messages:121
 msgid "Sub-Dock"
 msgstr ""
 
-#: ../switcher/data/messages:121
+#: ../switcher/data/messages:127
 msgid "In expanded mode, render the desklet in 3D?"
 msgstr "V rozšírenom režime vykresliť desklety v 3D?"
 
-#: ../switcher/data/messages:125
+#: ../switcher/data/messages:131
 #, fuzzy
 msgid "Show desktop number on icons?"
 msgstr "Zobraziť najvyššie použitie pamäte v % ?"
 
-#: ../switcher/data/messages:127
+#: ../switcher/data/messages:133
 msgid "Draw windows on icons?"
 msgstr "Vykresliť okná na ikone ?"
 
-#: ../switcher/data/messages:129
+#: ../switcher/data/messages:135
 msgid "Draw hidden windows?"
 msgstr "Vykresliť aj skryté okná ?"
 
-#: ../switcher/data/messages:131
+#: ../switcher/data/messages:137
 msgid "Draw icons of windows?"
 msgstr ""
 
-#: ../switcher/data/messages:135
+#: ../switcher/data/messages:141
 msgid "Show windows' list"
 msgstr "Zobraziť zoznam okien"
 
-#: ../switcher/data/messages:143
+#: ../switcher/data/messages:149
 msgid "Workspace names :"
 msgstr "Názvy pracovných plôch :"
 
-#: ../switcher/data/messages:145
+#: ../switcher/data/messages:151
 msgid "Display options"
 msgstr "Zobraziť nastavenia"
 
-#: ../switcher/data/messages:147
+#: ../switcher/data/messages:153
 msgid "Size of the inside lines :"
 msgstr "Veľkosť vo vnútri riadkov:"
 
-#: ../switcher/data/messages:151
+#: ../switcher/data/messages:157
 msgid "Internal line colour:"
 msgstr "Farba vnútri riadkov :"
 
-#: ../switcher/data/messages:153
+#: ../switcher/data/messages:159
 msgid "External line size:"
 msgstr "Veľkosť externého okraja  :"
 
-#: ../switcher/data/messages:157
+#: ../switcher/data/messages:163
 msgid "External line colour:"
 msgstr "Farba externého okraja  :"
 
-#: ../switcher/data/messages:161
+#: ../switcher/data/messages:167
 msgid "Active window colour:"
 msgstr ""
 
-#: ../switcher/data/messages:165
+#: ../switcher/data/messages:171
 msgid "Current desktop colour:"
 msgstr "Farba súčasnej plochy :"
 
-#: ../switcher/data/messages:167
+#: ../switcher/data/messages:173
 msgid "How to draw the current desktop:"
 msgstr "Ako vykresliť aktuálnu plochu :"
 
-#: ../switcher/data/messages:169
+#: ../switcher/data/messages:175
 msgid "draw a frame"
 msgstr "vykresliť rám"
 
-#: ../switcher/data/messages:171
+#: ../switcher/data/messages:177
 msgid "fill"
 msgstr "výplň"
 
-#: ../switcher/data/messages:173
+#: ../switcher/data/messages:179
 msgid "fill others"
 msgstr "vyplniť všetko"
 
-#: ../switcher/data/messages:175
+#: ../switcher/data/messages:181
 msgid "All windows can be filled with one colour"
 msgstr ""
 
-#: ../switcher/data/messages:177
+#: ../switcher/data/messages:183
 msgid "Fill all windows?"
 msgstr ""
 
-#: ../switcher/data/messages:181
+#: ../switcher/data/messages:187
 msgid "Colour of these windows:"
 msgstr ""
 
@@ -8769,6 +8782,12 @@ msgstr ""
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr ""
 "Alternatívny príkaz pre spustenie Konfigurácie bezdrôtového pripojenia :"
+
+#~ msgid "Not connected"
+#~ msgstr "Nepripojené"
+
+#~ msgid "Wired connection"
+#~ msgstr "Pripojenie káblom"
 
 #~ msgid "Applet's Handbook"
 #~ msgstr "Príručka appletov"
