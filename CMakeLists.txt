@@ -998,11 +998,12 @@ add_subdirectory (powermanager)
 ############# PRINTERS_MENU #################
 set (with_printers_menu "no")
 if ("${with_indicator3}" STREQUAL "yes") # then ${INDICATOR_*} are defined
-if (${INDICATOR_MAJOR} GREATER 5
-		OR (${INDICATOR_MAJOR} EQUAL 4 AND ${INDICATOR_MINOR} GREATER 90))
+if (${INDICATOR_MAJOR} GREATER 0 # >= 1.0.0 (now 12.10.1)
+		OR ${INDICATOR_MINOR} GREATER 4 # >= 0.5.0
+		OR (${INDICATOR_MINOR} EQUAL 4 AND ${INDICATOR_NANO} GREATER 89)) # min 0.4.90
 	message (STATUS "> Printers-Menu:")
 	set (GETTEXT_PRINTERS_MENU ${GETTEXT_PLUGINS})
-	set (VERSION_PRINTERS_MENU "0.0.1")
+	set (VERSION_PRINTERS_MENU "1.0.0")
 	set (PACKAGE_PRINTERS_MENU "cd-Printers-Menu")
 	set (with_printers_menu "yes")
 	set (printers_menudatadir "${pluginsdatadir}/Printers-Menu")
