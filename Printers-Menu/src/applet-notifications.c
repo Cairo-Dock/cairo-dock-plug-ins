@@ -31,6 +31,6 @@ CD_APPLET_ON_CLICK_BEGIN
 	if (pMenu)
 		cairo_dock_popup_menu_on_icon (GTK_WIDGET (pMenu), myIcon, myContainer);
 	else
-		cairo_dock_show_temporary_dialog_with_icon (D_("The PrintersMenu service did not reply.\nPlease check that 'libprintersmenu.so' is correctly installed."), myIcon, myContainer, 4000., "same icon");
+		cairo_dock_show_temporary_dialog_with_icon (D_("The PrintersMenu service did not reply.\nPlease check that 'libprintersmenu.so' is correctly installed."), myIcon, myContainer, 8000., "same icon");
 	
 CD_APPLET_ON_CLICK_END

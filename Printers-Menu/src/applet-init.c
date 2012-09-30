@@ -50,6 +50,9 @@ CD_APPLET_INIT_BEGIN
 		cd_printers_accessible_desc_update,
 		NULL, // menu show
 		myApplet);
+
+	if (! myData.pIndicator)
+		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	// CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -77,8 +80,6 @@ CD_APPLET_STOP_END
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
 	
-	cd_printers_reload (myData.pIndicator, myData.pEntry, myApplet);
-
 	if (myDesklet && CD_APPLET_MY_CONTAINER_TYPE_CHANGED)  // we are now in a desklet, set a renderer.
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
@@ -87,8 +88,6 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		// CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
-		
-		/// To be continued ...
-		
+		cd_printers_reload (myData.pIndicator, myData.pEntry, myApplet);
 	}
 CD_APPLET_RELOAD_END
