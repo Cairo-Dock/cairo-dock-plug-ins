@@ -86,25 +86,30 @@ void cd_indicator3_unload (IndicatorObject *pIndicator, CairoDockIndicator3Func 
 
 const gchar * cd_indicator3_get_label (IndicatorObjectEntry *pEntry)
 {
+	g_return_val_if_fail (pEntry != NULL, NULL);
 	return gtk_label_get_text (pEntry->label);
 }
 
 GtkImage * cd_indicator3_get_image (IndicatorObjectEntry *pEntry)
 {
+	g_return_val_if_fail (pEntry != NULL, NULL);
 	return pEntry->image;
 }
 
 GtkMenu * cd_indicator3_get_menu (IndicatorObjectEntry *pEntry)
 {
+	g_return_val_if_fail (pEntry != NULL, NULL);
 	return pEntry->menu;
 }
 
 const gchar * cd_indicator3_get_accessible_desc (IndicatorObjectEntry *pEntry)
 {
+	g_return_val_if_fail (pEntry != NULL, NULL);
 	return pEntry->accessible_desc;
 }
 
 const gchar * cd_indicator3_get_name_hint (IndicatorObjectEntry *pEntry)
 {
+	g_return_val_if_fail (pEntry != NULL, NULL);
 	return pEntry->name_hint;
 }
