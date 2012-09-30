@@ -1163,6 +1163,22 @@ set (switcherdatadir "${pluginsdatadir}/switcher")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/switcher/data/switcher.conf.in ${CMAKE_CURRENT_BINARY_DIR}/switcher/data/switcher.conf)
 add_subdirectory (switcher)
 
+############# SYNC_MENU #################
+set (with_printers_menu "no")
+if ("${with_indicator3}" STREQUAL "yes") # then ${INDICATOR_*} are defined
+if (${INDICATOR_MAJOR} GREATER 12 # > 12.0.0
+		OR (${INDICATOR_MAJOR} EQUAL 12 AND ${INDICATOR_MINOR} GREATER 9))  # >= 12.10.0 (now 12.10.1)
+	message (STATUS "> Sync-Menu:")
+	set (GETTEXT_SYNC_MENU ${GETTEXT_PLUGINS})
+	set (VERSION_SYNC_MENU "0.0.1")
+	set (PACKAGE_SYNC_MENU "cd-Sync-Menu")
+	set (with_sync_menu "yes")
+	set (sync_menudatadir "${pluginsdatadir}/Sync-Menu")
+	configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Sync-Menu/data/Sync-Menu.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Sync-Menu/data/Sync-Menu.conf)
+	add_subdirectory (Sync-Menu)
+endif()
+endif()
+
 ############# SYSTEM MONITOR #################
 message (STATUS "> System Monitor:")
 set (with_sensors "yes")
@@ -1343,6 +1359,7 @@ message (STATUS " - with Messaging-Menu applet:     ${with_messaging_menu}")
 message (STATUS " - with Printers-Menu applet:      ${with_printers_menu}")
 message (STATUS " - with Recent-Events applet:      ${with_recent_events}")
 message (STATUS " - with Status-Notifier applet:    ${with_status_notifier}")
+message (STATUS " - with Sync-Menu applet:          ${with_sync_menu}")
 message (STATUS " - with Terminal applet:           ${with_terminal}")
 message (STATUS " - with Weblets applet:            ${with_weblets}")
 message (STATUS " - with Xgamma applet:             ${with_xgamma}")
