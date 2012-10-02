@@ -108,15 +108,17 @@ static gboolean _cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myAppl
 	for (ic = pIconsList; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (pIcon->iGroup != (CairoDockIconGroup) CD_DRIVE_GROUP)  // les disques sont en 1er
-			break;
-		if (pIcon->cCommand != NULL)
+		if (pIcon->cCommand != NULL)  // skip separators
 		{
 			// get data
 			pDiskUsage = CD_APPLET_GET_MY_ICON_DATA (pIcon);
-			if (pDiskUsage == NULL)
-				continue;
-			
+			if (pDiskUsage == NULL)  // not a drive (eg, network or bookmark)
+			{
+				if (pIcon->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)  // drives are listed first, and Home is always the first bookmark (and the only one to have disk data), so if we got a bookmark with no disk data, we can quit the loop.
+					break;
+				else
+					continue;
+			}
 			cd_shortcuts_get_fs_stat (pIcon->cCommand, pDiskUsage);
 			
 			// draw

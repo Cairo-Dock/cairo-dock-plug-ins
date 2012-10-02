@@ -219,7 +219,7 @@ static inline GList * _load_icons (CDSharedMemory *pSharedMemory)
 			fclose (f);
 		}
 		
-		GList *pIconList2 = cd_shortcuts_list_bookmarks (cBookmarkFilePath);
+		GList *pIconList2 = cd_shortcuts_list_bookmarks (cBookmarkFilePath, pSharedMemory->pApplet);
 		
 		pIconList = g_list_concat (pIconList, pIconList2);
 		

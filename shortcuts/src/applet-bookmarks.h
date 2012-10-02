@@ -34,7 +34,7 @@ void cd_shortcuts_rename_one_bookmark (const gchar *cURI, const gchar *cName);
 void cd_shortcuts_add_one_bookmark (const gchar *cURI);
 
 
-GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath);
+GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath, CairoDockModuleInstance *myApplet);
 
 
 #endif

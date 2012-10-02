@@ -23,6 +23,7 @@
 
 #include "applet-struct.h"
 #include "applet-load-icons.h"
+#include "applet-drives.h"
 #include "applet-bookmarks.h"
 
 #define CD_SHORTCUT_DEFAULT_DIRECTORY_ICON_FILENAME "inode-directory"
@@ -395,7 +396,7 @@ Icon * _cd_shortcuts_get_icon (gchar *cFileName, const gchar *cUserName, double 
 	return pNewIcon;
 }
 
-GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
+GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath, CairoDockModuleInstance *myApplet)
 {
 	GList *pBookmarkIconList = NULL;
 	Icon *pNewIcon;
@@ -404,6 +405,7 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath)
 	// Home
 	gchar *cHome = g_strdup_printf ("file://%s", g_getenv ("HOME"));
 	pNewIcon = _cd_shortcuts_get_icon (cHome, D_("Home Folder"), fCurrentOrder++);
+	_init_disk_usage (pNewIcon, myApplet);
 	pBookmarkIconList = g_list_append (pBookmarkIconList, pNewIcon);
 
 	gchar *cContent = NULL;

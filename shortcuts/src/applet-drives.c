@@ -46,7 +46,7 @@ void cd_shortcuts_add_progress_bar (Icon *pIcon, CairoDockModuleInstance *myAppl
 }
 
 
-static void _init_disk_usage (Icon *pIcon, CairoDockModuleInstance *myApplet)
+void _init_disk_usage (Icon *pIcon, CairoDockModuleInstance *myApplet)
 {
 	// ensure the applet has a valid icon, in case the VFS didn't give us one.
 	if (pIcon->cFileName == NULL)
@@ -296,6 +296,7 @@ GList * cd_shortcuts_list_drives (CDSharedMemory *pSharedMemory)
 	{
 		cd_warning ("couldn't detect any drives");  // on decide de poursuivre malgre tout, pour les signets.
 	}
+	/// TODO: if ! bListBookmarks, then we should add the Home in the drives list, to have the disk space information...
 	
 	pSharedMemory->cDisksURI = cFullURI;
 	
