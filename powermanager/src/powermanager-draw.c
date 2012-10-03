@@ -249,7 +249,7 @@ static void _cd_powermanager_dialog (const gchar *cInfo, int iDuration)
 void cd_powermanager_bubble (void)
 {
 	GString *sInfo = g_string_new ("");
-	if (myData.cBatteryStateFilePath != NULL || myData.pUPowerClient != NULL)
+	if (myData.cBatteryStateFilePath != NULL || myData.pBatteryDeviceList != NULL)
 	{
 		// time and charge.
 		gchar *hms = NULL;

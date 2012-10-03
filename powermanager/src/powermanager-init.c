@@ -61,17 +61,7 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_discard_task (myData.pTask);
 	
 	// stop UPower monitoring
-	if (myData.pUPowerClient != NULL)
-	{
-		g_object_unref (myData.pUPowerClient);
-	}
-	
-	if (myData.pBatteryDevice != NULL)
-	{
-		if (myData.iSignalID != 0)
-			g_source_remove (myData.iSignalID);
-		g_object_unref (myData.pBatteryDevice);  // remove the ref we took on the device. it may or not destroy the object, that's why we disconnected manually the signal above.
-	}
+	cd_upower_stop ();
 	
 	// stop ACPI check loop
 	if (myData.checkLoop != 0)
@@ -128,7 +118,7 @@ CD_APPLET_RELOAD_BEGIN
 	}
 	
 	//\_______________ On redessine notre icone.
-	/**if (myData.cBatteryStateFilePath || myData.pUPowerClient != NULL)
+	/**if (myData.cBatteryStateFilePath || myData.pBatteryDeviceList != NULL)
 	{
 		if (myConfig.iDisplayType == CD_POWERMANAGER_GAUGE || myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)  // On recharge la jauge.
 		{

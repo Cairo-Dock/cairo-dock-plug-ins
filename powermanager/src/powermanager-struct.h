@@ -79,15 +79,12 @@ struct _AppletConfig {
 } ;
 
 
+#ifdef CD_UPOWER_AVAILABLE
 typedef struct {
-	#ifdef CD_UPOWER_AVAILABLE
 	UpClient *pUPowerClient;
-	UpDevice *pBatteryDevice;
-	#else
-	gpointer pUPowerClient;  // will stay NULL.
-	gpointer pBatteryDevice;  // will stay NULL.
-	#endif
+	GList *pBatteryDeviceList;
 	} CDSharedMemory;
+#endif
 
 struct _AppletData {
 	CairoDockTask *pTask;  // async task to find the available backend (launched on startup)
@@ -95,12 +92,11 @@ struct _AppletData {
 	// UPower
 	#ifdef CD_UPOWER_AVAILABLE
 	UpClient *pUPowerClient;
-	UpDevice *pBatteryDevice;
-	#else
-	gpointer pUPowerClient;  // will stay NULL.
-	gpointer pBatteryDevice;  // will stay NULL.
+	GList *pBatteryDeviceList;
+	GList *pSignalIDList;  // SID for the "battery properties changed" signal of the UPower battery device
+	gint iSignalIDAdded;
+	gint iSignalIDRemoved;
 	#endif
-	gint iSignalID;  // SID for the "battery properties changed" signal of the UPower battery device
 	
 	// ACPI
 	gchar *cBatteryStateFilePath;  // path to the ACPI file
