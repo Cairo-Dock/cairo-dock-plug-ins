@@ -79,15 +79,13 @@ static void _fetch_current_values (GList *pBatteryDeviceList)
 	myData.iPercentage = 0;  // since we are not on battery, this will not trigger any alert.
 	if (! pBatteryDeviceList)
 		return;
-
-	myData.bOnBattery = FALSE;
-	myData.bBatteryPresent = FALSE;
+	
 	UpDevice *pDevice;
 	gboolean is_present;
 	gdouble fPercentageGlobal = 0.;
 	GList *pItem;
 	myData.iTime = 0;
-	int iLength = 0;
+	int iNbBatteries = 0;
 	for (pItem = pBatteryDeviceList; pItem != NULL; pItem = g_list_next (pItem))
 	{
 		pDevice = pItem->data;
@@ -98,7 +96,7 @@ static void _fetch_current_values (GList *pBatteryDeviceList)
 		{
 			UpDeviceState iState;
 			g_object_get (G_OBJECT (pDevice), "state", &iState, NULL);
-			myData.bOnBattery |= (iState == UP_DEVICE_STATE_DISCHARGING || iState == UP_DEVICE_STATE_PENDING_DISCHARGE);
+			myData.bOnBattery |= (iState == UP_DEVICE_STATE_DISCHARGING || iState == UP_DEVICE_STATE_PENDING_DISCHARGE);  // we assume that all batteries are either charging or discharging, not a mix of both, so that we won't add a 'time-to-empty' with a 'time-to-full'; this avoid us making a first pass on the list to determine 'myData.bOnBattery' and then a 2nd pass to compute the time.
 			
 			gdouble percentage;
 			g_object_get (G_OBJECT (pDevice), "percentage", &percentage, NULL);
@@ -108,12 +106,12 @@ static void _fetch_current_values (GList *pBatteryDeviceList)
 			g_object_get (G_OBJECT (pDevice), myData.bOnBattery ? "time-to-empty" : "time-to-full", &time, NULL);
 			myData.iTime += time;
 
-			cd_debug ("New data (%d: %p): OnBattery %d ; percentage %f ; time %lu", iLength, pDevice, myData.bOnBattery, percentage, time);
-			iLength++;
+			cd_debug ("New data (%d: %p): OnBattery %d ; percentage %f ; time %lu", iNbBatteries, pDevice, myData.bOnBattery, percentage, time);
+			iNbBatteries ++;
 		}
 	}
-	if (iLength > 0)
-		myData.iPercentage = round (fPercentageGlobal / iLength);
+	if (iNbBatteries > 0)
+		myData.iPercentage = round (fPercentageGlobal / iNbBatteries);
 	if (myData.iTime == 0 && myData.iPercentage < 100)  // the UPower daemon doesn't give us a time, let's compute it ourselves.
 		myData.iTime = cd_estimate_time ();
 }
@@ -122,13 +120,16 @@ static void _on_device_list_changed (UpClient *pClient, UpDevice *pDevice, gpoin
 {
 	cd_debug ("Device list changed");
 	g_free (myData.cTechnology);
+	myData.cTechnology = NULL;
 	g_free (myData.cVendor);
+	myData.cVendor = NULL;
 	g_free (myData.cModel);
+	myData.cModel = NULL;
 	cd_upower_stop ();
 	cd_powermanager_start (); // yeah, it's not the best solution but we have to check the list and re-compute all properties (properties needs to be placed in a structure for each battery)
 }
 
-static void _on_device_changed (UpDevice *pDevice, gpointer data)
+static void _on_device_changed (UpDevice *pDevice, G_GNUC_UNUSED gpointer data)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("battery properties changed");
@@ -151,9 +152,10 @@ static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
 	}
 	else  // UPower is available, fetch the values we got from it.
 	{
+		// fetch the current values we got on the devices
 		_fetch_current_values (pSharedMemory->pBatteryDeviceList);
-
-		// fetch the values we got on the device, and keep them up-to-date (we don't need the device itself).
+		
+		// fetch static values of the devices, and watch for any change
 		UpDevice *pDevice;
 		GList *pItem;
 		gint iSignalID;
@@ -163,6 +165,7 @@ static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
 		gdouble fMaxAvailableCapacity = 0., fTmp;
 		UpDeviceTechnology iTechnology;
 		gboolean bFirst = TRUE;
+		gint iNbBatteries = 0;
 		for (pItem = pSharedMemory->pBatteryDeviceList ; pItem != NULL ; pItem = g_list_next (pItem))
 		{
 			pDevice = pItem->data;
@@ -197,15 +200,17 @@ static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
 			myData.pSignalIDList = g_list_append (myData.pSignalIDList, GINT_TO_POINTER (iSignalID));
 
 			bFirst = FALSE;
+			iNbBatteries ++;
 		}
-		myData.iSignalIDAdded = g_signal_connect (pSharedMemory->pUPowerClient, "device-added", G_CALLBACK (_on_device_list_changed), NULL);
-		myData.iSignalIDRemoved = g_signal_connect (pSharedMemory->pUPowerClient, "device-removed", G_CALLBACK (_on_device_list_changed), NULL);
-		myData.fMaxAvailableCapacity = fMaxAvailableCapacity / g_list_length (pSharedMemory->pBatteryDeviceList);
+		if (iNbBatteries != 0)
+			myData.fMaxAvailableCapacity = fMaxAvailableCapacity / iNbBatteries;
 		myData.cTechnology = g_string_free (sTechnology, FALSE);
 		myData.cVendor = g_string_free (sVendor, FALSE);
 		myData.cModel = g_string_free (sModel, FALSE);
-
-		// keep our client and device.
+		myData.iSignalIDAdded = g_signal_connect (pSharedMemory->pUPowerClient, "device-added", G_CALLBACK (_on_device_list_changed), NULL);
+		myData.iSignalIDRemoved = g_signal_connect (pSharedMemory->pUPowerClient, "device-removed", G_CALLBACK (_on_device_list_changed), NULL);
+		
+		// keep our client and devices.
 		myData.pUPowerClient = pSharedMemory->pUPowerClient;
 		pSharedMemory->pUPowerClient = NULL;
 		myData.pBatteryDeviceList = pSharedMemory->pBatteryDeviceList;
@@ -252,24 +257,33 @@ void cd_upower_stop (void)
 	if (myData.pUPowerClient != NULL)
 	{
 		g_object_unref (myData.pUPowerClient);
+		myData.pUPowerClient = NULL;
 	}
 	
 	if (myData.pSignalIDList)
 	{
 		g_list_foreach (myData.pSignalIDList, (GFunc) g_source_remove, NULL);
 		g_list_free (myData.pSignalIDList);
+		myData.pSignalIDList = NULL;
 	}
 
 	if (myData.pBatteryDeviceList)
 	{
 		g_list_foreach (myData.pBatteryDeviceList, (GFunc) g_object_unref, NULL); // remove the ref we took on the device. it may or not destroy the object, that's why we disconnected manually the signal above.
 		g_list_free (myData.pBatteryDeviceList);
+		myData.pBatteryDeviceList = NULL;
 	}
 
 	if (myData.iSignalIDAdded != 0)
+	{
 		g_source_remove (myData.iSignalIDAdded);
+		myData.iSignalIDAdded = 0;
+	}
 	if (myData.iSignalIDRemoved != 0)
+	{
 		g_source_remove (myData.iSignalIDRemoved);
+		myData.iSignalIDRemoved = 0;
+	}
 }
 
 gboolean cd_power_hibernate (void)
