@@ -92,11 +92,11 @@ struct _AppletData {
 	// UPower
 	#ifdef CD_UPOWER_AVAILABLE
 	UpClient *pUPowerClient;
-	GList *pBatteryDeviceList;
 	GList *pSignalIDList;  // SID for the "battery properties changed" signal of the UPower battery device
 	gint iSignalIDAdded;
 	gint iSignalIDRemoved;
 	#endif
+	GList *pBatteryDeviceList;
 	
 	// ACPI
 	gchar *cBatteryStateFilePath;  // path to the ACPI file
