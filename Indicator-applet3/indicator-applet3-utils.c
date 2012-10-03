@@ -34,8 +34,30 @@ static gchar * _get_name_from_gicon (GtkImage *pImage)
 	gtk_image_get_gicon (pImage, &pIcon, NULL);
 	g_return_val_if_fail (pIcon != NULL, NULL);
 
-	gchar *cName = g_icon_to_string (pIcon);
-	cd_debug ("Get GIcon: %s", cName);
+	gchar *cName = NULL;
+	if (G_IS_THEMED_ICON (pIcon))
+	{
+		const gchar * const *cFileNames = g_themed_icon_get_names (G_THEMED_ICON (pIcon));
+		for (int i = 0; cFileNames[i] != NULL && cName == NULL; i++)
+		{
+			gchar *path = cairo_dock_search_icon_s_path (cFileNames[i], CAIRO_DOCK_DEFAULT_ICON_SIZE);
+			if (path)
+			{
+				g_free (path);
+				cName = g_strdup (cFileNames[i]);
+			}
+		}
+		cd_debug ("GIcon: it's a GThemedIcon, found: %s", cName);
+	}
+	else if (G_IS_FILE_ICON (pIcon))
+	{
+		GFile *pFile = g_file_icon_get_file (G_FILE_ICON (pIcon));
+		cName = g_file_get_basename (pFile);
+		cd_debug ("GIcon: it's a GFileIcon, found: %s", cName);
+	}
+	else
+		return g_icon_to_string (pIcon);
+
 	return cName;
 }
 
