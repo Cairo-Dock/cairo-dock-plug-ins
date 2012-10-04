@@ -366,15 +366,12 @@ static void _cd_clock_render_time (GtkTreeViewColumn *tree_column, GtkCellRender
 	g_free (cTime);
 }
 
-#ifndef GDK_KEY_Escape
-#define GDK_KEY_Escape GDK_Escape
-#endif
 
 gboolean _on_key_press (G_GNUC_UNUSED GtkWidget *pWidget,
 	GdkEventKey *pKey,
 	CairoDockModuleInstance *myApplet)
 {
-	if (pKey->type == GDK_KEY_PRESS && pKey->keyval == GDK_KEY_Escape)
+	if (pKey->type == GDK_KEY_PRESS && pKey->keyval == GLDI_KEY(Escape))
 	{
 		gtk_widget_destroy (myData.pTaskWindow);
 		return TRUE;
