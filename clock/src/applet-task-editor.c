@@ -366,6 +366,10 @@ static void _cd_clock_render_time (GtkTreeViewColumn *tree_column, GtkCellRender
 	g_free (cTime);
 }
 
+#ifndef GDK_KEY_Escape
+#define GDK_KEY_Escape GDK_Escape
+#endif
+
 gboolean _on_key_press (G_GNUC_UNUSED GtkWidget *pWidget,
 	GdkEventKey *pKey,
 	CairoDockModuleInstance *myApplet)
