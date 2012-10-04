@@ -161,7 +161,7 @@ void cd_mail_retrieve_imap_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
 
 	if (g_key_file_has_key (pKeyFile, mailbox_name, "server_directory", NULL))
 		mailaccount->path = CD_CONFIG_GET_STRING (mailbox_name, "server_directory");
-	else
+	if (mailaccount->path == NULL)
 		mailaccount->path = g_strdup("/");
 }
 
@@ -194,7 +194,7 @@ void cd_mail_retrieve_mbox_params (CDMailAccount *mailaccount, GKeyFile *pKeyFil
 
 	if (g_key_file_has_key (pKeyFile, mailbox_name, "filename", NULL))
 		mailaccount->path = CD_CONFIG_GET_STRING_WITH_DEFAULT (mailbox_name, "filename", "/");
-	else
+	if (mailaccount->path == NULL)
 		mailaccount->path = g_strdup("/");
 
 	//{"filename", "ctime", "size", "interval", NULL, NULL}
@@ -253,7 +253,7 @@ void cd_mail_retrieve_maildir_params (CDMailAccount *mailaccount, GKeyFile *pKey
 
 	if (g_key_file_has_key (pKeyFile, mailbox_name, "path", NULL))
 		mailaccount->path = CD_CONFIG_GET_STRING (mailbox_name, "path");
-	else
+	if (mailaccount->path == NULL)
 		mailaccount->path = g_strdup("/");
 	//{"path", "mtime", "interval", NULL, NULL, NULL, NULL}
 }
