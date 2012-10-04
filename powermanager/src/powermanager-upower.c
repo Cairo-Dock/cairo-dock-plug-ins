@@ -84,7 +84,6 @@ static void _fetch_current_values (GList *pBatteryDeviceList)
 	gboolean is_present;
 	gdouble fPercentageGlobal = 0.;
 	GList *pItem;
-	myData.iTime = 0;
 	int iNbBatteries = 0;
 	for (pItem = pBatteryDeviceList; pItem != NULL; pItem = g_list_next (pItem))
 	{
