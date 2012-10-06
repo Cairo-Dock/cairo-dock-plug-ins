@@ -24,6 +24,7 @@
 
 static void cd_musicplayer_dl_cover (void);
 
+static const gchar *cCoverNames[] = {"cover.jpg", "Cover.jpg", "cover.jpeg", "album.jpg", "albumart.jpg", "folder.jpg", "album.jpeg", "albumart.jpeg", "folder.jpeg", NULL};
 
 static gchar *_find_cover_in_common_dirs (void)
 {
@@ -36,48 +37,26 @@ static gchar *_find_cover_in_common_dirs (void)
 		g_free (cSongPath);
 		
 		cCoverPath = g_strdup_printf ("%s/%s - %s.jpg", cSongDir, myData.cArtist, myData.cAlbum);
-		cd_debug ("MP -   test de %s", cCoverPath);
-		if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))
+
+		int i = 0;
+		while (cCoverNames[i] != NULL)
 		{
-			g_free (cCoverPath);
-			cCoverPath = g_strdup_printf ("%s/cover.jpg", cSongDir);
-			cd_debug ("MP -   test de %s", cCoverPath);
-			if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))
+			if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS)) // we check the previous path
 			{
 				g_free (cCoverPath);
-				cCoverPath = g_strdup_printf ("%s/Cover.jpg", cSongDir);
-				cd_debug ("MP -   test de %s", cCoverPath);
-				if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))
-				{
-					g_free (cCoverPath);
-					cCoverPath = g_strdup_printf ("%s/cover.jpeg", cSongDir);
-					cd_debug ("MP -   test de %s", cCoverPath);
-					if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))
-					{
-						g_free (cCoverPath);
-						cCoverPath = g_strdup_printf ("%s/album.jpg", cSongDir);
-						cd_debug ("MP -   test de %s", cCoverPath);
-						if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))
-						{
-							g_free (cCoverPath);
-							cCoverPath = g_strdup_printf ("%s/albumart.jpg", cSongDir);
-							cd_debug ("MP -   test de %s", cCoverPath);
-							if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))
-							{
-								g_free (cCoverPath);
-								cCoverPath = g_strdup_printf ("%s/folder.jpg", cSongDir);
-								cd_debug ("MP -   test de %s", cCoverPath);
-								if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))
-								{
-									g_free (cCoverPath);
-									cCoverPath = NULL;
-								}
-							}
-						}
-					}
-				}
+				cCoverPath = g_strdup_printf ("%s/%s", cSongDir, cCoverNames[i]);
 			}
+			else
+				break;
+			i++;
+		} 
+		if (cCoverNames[i] == NULL && ! g_file_test (cCoverPath, G_FILE_TEST_EXISTS)) // last test
+		{
+			g_free (cCoverPath);
+			cCoverPath = NULL;
 		}
+		cd_debug ("MP - CoverPath: %s", cCoverPath);
+
 		g_free (cSongDir);
 	}
 	
