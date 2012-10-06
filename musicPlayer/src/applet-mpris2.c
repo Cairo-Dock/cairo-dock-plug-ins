@@ -277,6 +277,7 @@ static double cd_mpris2_get_volume (void)
 
 static gboolean _is_a_new_track (const gchar *cTrackID)
 {
+	cd_message ("  TrackId <- %s (was: %s)", cTrackID, myData.cTrackID);
 	if (cairo_dock_strings_differ (myData.cTrackID, cTrackID))  // track has changed.
 	{
 		g_free (myData.cTrackID);
@@ -309,7 +310,7 @@ static gboolean _extract_metadata (GHashTable *pMetadata)
 		cd_debug ("Length: %d", myData.iSongLength);
 	}
 
-	g_free (myData.cArtist);
+	gchar *cOldArtist = myData.cArtist;
 	myData.cArtist = NULL;
 	v = (GValue *) g_hash_table_lookup(pMetadata, "xesam:artist");
 	if (v != NULL && G_VALUE_HOLDS(v, G_TYPE_STRV))
@@ -319,6 +320,11 @@ static gboolean _extract_metadata (GHashTable *pMetadata)
 			myData.cArtist = g_strjoinv (NULL, artists);
 	}
 	cd_message ("  cArtist <- %s", myData.cArtist);
+	
+	// maybe the user has renamed the tags of the current song...
+	if (! bTrackHasChanged && cairo_dock_strings_differ (myData.cArtist, cOldArtist))
+		bTrackHasChanged = TRUE;
+	g_free (cOldArtist);
 	
 	g_free (myData.cAlbum);
 	myData.cAlbum = NULL;
