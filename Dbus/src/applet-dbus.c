@@ -274,7 +274,7 @@ static void _get_package_path (gchar *cModuleName)
 		cUserPackagesDir,
 		cDistantPackagesDir,
 		CAIRO_DOCK_UPDATED_PACKAGE);
-	cd_debug ("*** update of the applet '%s' -> got '%s'\n", cModuleName, cPath);
+	cd_debug ("*** update of the applet '%s' -> got '%s'", cModuleName, cPath);
 	g_free (cPath);
 	g_free (cUserPackagesDir);
 	//g_free (cDistantPackagesDir);

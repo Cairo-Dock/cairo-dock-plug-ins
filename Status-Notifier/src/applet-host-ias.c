@@ -55,7 +55,7 @@ static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_ST
 	gpointer invocation_hint G_GNUC_UNUSED,
 	gpointer marshal_data)
 {
-	//cd_debug ("=== %s ()\n", __func__);
+	//cd_debug ("=== %s ()", __func__);
 	typedef void (*GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING) (
 		gpointer     data1,
 		gchar      *arg_1,
@@ -108,7 +108,7 @@ static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_ST
 	gpointer invocation_hint G_GNUC_UNUSED,
 	gpointer marshal_data)
 {
-	//cd_debug ("=== %s ()\n", __func__);
+	//cd_debug ("=== %s ()", __func__);
 	#if (INDICATOR_APPLICATIONADDED_HAS_TITLE == 1)
 	typedef void (*GMarshalFunc_VOID__STRING_INT_STRING_STRING_STRING_STRING_STRING_STRING_STRING_STRING) (
 	#elif (INDICATOR_APPLICATIONADDED_HAS_HINT == 1)

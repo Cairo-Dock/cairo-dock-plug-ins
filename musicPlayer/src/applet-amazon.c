@@ -131,7 +131,7 @@ Steps to Sign the Example Request
 
 static gchar *_hmac_crypt (const guchar *text, const gchar* key, GChecksumType iType)
 {
-	cd_debug ("%s (%s)\n", __func__, text);
+	cd_debug ("%s (%s)", __func__, text);
 	unsigned char k_ipad[65];    // inner padding - key XORd with ipad
 	unsigned char k_opad[65];    // outer padding - key XORd with opad
 	
@@ -144,7 +144,7 @@ static gchar *_hmac_crypt (const guchar *text, const gchar* key, GChecksumType i
 		key = tmp_key;
 		key_len = strlen (key);  // 16
 	}
-	cd_debug ("  key_len:%d bytes\n", key_len);
+	cd_debug ("  key_len:%d bytes", key_len);
 
 	/* the HMAC_MD5 transform looks like:
 	*
@@ -203,7 +203,7 @@ static gchar *_hmac_crypt (const guchar *text, const gchar* key, GChecksumType i
 static gchar *_url_encode (const gchar * str)
 {
 	g_return_val_if_fail (str != NULL, NULL);
-	cd_debug ("%s (%s)\n", __func__, str);
+	cd_debug ("%s (%s)", __func__, str);
 	const gchar * s = str;
 	gchar * t = NULL;
 	gchar * ret;
@@ -220,7 +220,7 @@ static gchar *_url_encode (const gchar * str)
 	}while(*++s); // avance d'un cran dans la chaine. Si on est pas à la fin, on continue...
 	s = str;
 	/// la ligne suivane peut planter ...
-	cd_debug ("allocation of %d bytes...\n", lenght + 1);
+	cd_debug ("allocation of %d bytes...", lenght + 1);
 	t = g_new (gchar, 4*(lenght + 1)); // Allocation à la bonne taille
 	ret = t;
 	//encodage
@@ -242,15 +242,15 @@ static gchar *_compute_request_and_signature (const gchar *cKeyWords, gchar **cS
 	localtime_r (&t, &currentTime);
 	gchar cTimeStamp[50+1];
 	strftime (cTimeStamp, 50, "%FT%T%z", &currentTime);
-	//cd_debug ("timestamp : %s\n", cTimeStamp);
+	//cd_debug ("timestamp : %s", cTimeStamp);
 	
 	gchar *keywords = _url_encode(cKeyWords);
-	cd_debug ("keywords : '%s'\n", keywords);
+	cd_debug ("keywords : '%s'", keywords);
 	gchar *time = _url_encode (cTimeStamp);
 	gchar *cRequest = g_strdup_printf (REQUEST, LICENCE_KEY, keywords, time);
 	g_free (keywords);  // plante avec (Renan Luce, On N'Est Pas À Une Bêtise Près)
 	g_free (time);
-	cd_debug ("cRequest : '%s'\n", cRequest);
+	cd_debug ("cRequest : '%s'", cRequest);
 	//gchar *cRequest = g_strdup_printf (REQUEST, (cArtist), LICENCE_KEY, (cKeyWords), _url_encode (cTimeStamp));
 	
 	guchar *cBuffer = (guchar *) g_strconcat (HEADER, cRequest, NULL);
@@ -288,20 +288,20 @@ static gchar *_make_keywords (const gchar *artist, const gchar *album, const gch
 			*str = '\0';
 		g_strdelimit (cKeyWords, "-_~", ' ');
 	}
-	cd_debug ("cKeyWords : '%s'\n", cKeyWords);
+	cd_debug ("cKeyWords : '%s'", cKeyWords);
 	return cKeyWords;
 }
 
 static gchar *_build_url (const gchar *cArtist, const gchar *cAlbum, const gchar *cUri)
 {
-	cd_debug ("%s (%s; %s; %s)\n", __func__, cArtist,cAlbum, cUri);
+	cd_debug ("%s (%s; %s; %s)", __func__, cArtist,cAlbum, cUri);
 	gchar *cKeyWords = _make_keywords (cArtist, cAlbum, cUri);
 	
 	gchar *cSignature = NULL;
 	gchar *cRequest = _compute_request_and_signature (cKeyWords, &cSignature);
 	
 	gchar *cUrl = g_strdup_printf ("%s?%s&Signature=%s", BASE_URL, cRequest, _url_encode (cSignature));
-	cd_debug ("==> URL : %s\n", cUrl);
+	cd_debug ("==> URL : %s", cUrl);
 	
 	g_free (cKeyWords);
 	g_free (cSignature);

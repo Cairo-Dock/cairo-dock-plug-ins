@@ -581,7 +581,7 @@ static void cd_mpris2_control (MyPlayerControl pControl, const char* song)
 		
 		case PLAYER_SHUFFLE :
 			bToggleValue = cd_mpris2_is_shuffle ();
-			cd_debug ("SetRandom <- %d\n", !bToggleValue);
+			cd_debug ("SetRandom <- %d", !bToggleValue);
 			g_value_init (&s_pValue, G_TYPE_BOOLEAN);
 			g_value_set_boolean (&s_pValue, !bToggleValue);
 			cairo_dock_dbus_set_property (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "Shuffle", &s_pValue);
@@ -590,7 +590,7 @@ static void cd_mpris2_control (MyPlayerControl pControl, const char* song)
 		
 		case PLAYER_REPEAT :
 			bToggleValue = cd_mpris2_is_loop ();
-			cd_debug ("SetLoop <- %d\n", !bToggleValue);
+			cd_debug ("SetLoop <- %d", !bToggleValue);
 			g_value_init (&s_pValue, G_TYPE_STRING);
 			g_value_set_static_string (&s_pValue, bToggleValue ? "None" : "Playlist");
 			cairo_dock_dbus_set_property (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "LoopStatus", &s_pValue);
@@ -599,7 +599,7 @@ static void cd_mpris2_control (MyPlayerControl pControl, const char* song)
 		
 		case PLAYER_ENQUEUE :
 		{
-			cd_debug ("enqueue %s\n", song);
+			cd_debug ("enqueue %s", song);
 			GError *erreur = NULL;
 			DBusGProxy *proxy = cairo_dock_create_new_session_proxy ("org.mpris.MediaPlayer2",
 				"/org/mpris/MediaPlayer2",
@@ -631,7 +631,7 @@ static void cd_mpris2_control (MyPlayerControl pControl, const char* song)
 				fVolume += .05;
 			else
 				fVolume -= .05;
-			cd_debug ("volume <- %f\n", fVolume);
+			cd_debug ("volume <- %f", fVolume);
 			g_value_init (&s_pValue, G_TYPE_DOUBLE);
 			g_value_set_double (&s_pValue, fVolume);
 			cairo_dock_dbus_set_property (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "Volume", &s_pValue);

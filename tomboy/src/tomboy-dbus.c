@@ -183,7 +183,7 @@ static void onNoteSaved (DBusGProxy *proxy, const gchar *note_uri, gpointer data
 			{
 				int iWidth, iHeight;
 				cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
-				cd_debug ("on cree la surface a la taille %dx%d\n", iWidth, iHeight);
+				cd_debug ("on cree la surface a la taille %dx%d", iWidth, iHeight);
 				myData.pSurfaceNote = cairo_dock_create_surface_from_image_simple (myConfig.cNoteIcon != NULL ? myConfig.cNoteIcon : MY_APPLET_SHARE_DATA_DIR"/note.svg",
 					iWidth,
 					iHeight);
@@ -513,7 +513,7 @@ static gboolean _cd_tomboy_note_has_contents (gchar *cNoteName, gchar **cContent
 		int i = 0;
 		while (cContents[i] != NULL)
 		{
-			cd_debug (" %s : %s\n", cNoteName, cContents[i]);
+			cd_debug (" %s : %s", cNoteName, cContents[i]);
 			if (g_strstr_len (cNoteContent, strlen (cNoteContent), cContents[i]) != NULL)
 			{
 				g_free (cNoteContent);
@@ -563,7 +563,7 @@ GList *cd_tomboy_find_note_for_this_week (void)
 	static struct tm epoch_tm;
 	time_t epoch = (time_t) time (NULL);
 	localtime_r (&epoch, &epoch_tm);
-	cd_debug ("epoch_tm.tm_wday : %d\n", epoch_tm.tm_wday);
+	cd_debug ("epoch_tm.tm_wday : %d", epoch_tm.tm_wday);
 	int i, iNbDays = (8 - epoch_tm.tm_wday) % 7;  // samedi <=> 6, dimanche <=> 0.
 	
 	gchar **cDays = g_new0 (gchar *, iNbDays + 1);

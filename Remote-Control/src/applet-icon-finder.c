@@ -247,7 +247,7 @@ void cd_do_search_current_icon (gboolean bLoopSearch)
 	//\_________________ on cherche un lanceur correspondant.
 	CairoDock *pDock;
 	Icon *pIcon = cd_do_search_icon_by_command (myData.sCurrentText->str, (bLoopSearch ? myData.pCurrentIcon : NULL), &pDock);
-	cd_debug ("found icon : %s\n", pIcon ? pIcon->cName : "none");
+	cd_debug ("found icon : %s", pIcon ? pIcon->cName : "none");
 	
 	//\_________________ on gere le changement d'icone/dock.
 	cd_do_change_current_icon (pIcon, pDock);

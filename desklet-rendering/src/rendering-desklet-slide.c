@@ -140,7 +140,7 @@ static void calculate_icons (CairoDesklet *pDesklet)
 		return ;
 	
 	_compute_icons_grid (pDesklet, pSlide);
-	cd_debug ("pSlide->iIconSize : %d\n", pSlide->iIconSize);
+	cd_debug ("pSlide->iIconSize : %d", pSlide->iIconSize);
 	
 	Icon *pIcon = pDesklet->pIcon;
 	if (pIcon != NULL)  // on ne veut pas charger cette icone.

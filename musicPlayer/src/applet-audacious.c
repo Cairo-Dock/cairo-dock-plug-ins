@@ -237,7 +237,7 @@ static void cd_audacious_getSongInfos (void)
 static void onChangeSong(DBusGProxy *player_proxy, GHashTable *metadata, gpointer data)
 {
 	CD_APPLET_ENTER;
-	cd_debug ("MP : %s ()\n", __func__);
+	cd_debug ("MP : %s ()", __func__);
 	
 	if (metadata != NULL)
 	{
@@ -334,7 +334,7 @@ static void cd_audacious_control (MyPlayerControl pControl, const char* song)
 		break;
 		
 		case PLAYER_ENQUEUE :
-			cd_debug ("enqueue %s\n", song);
+			cd_debug ("enqueue %s", song);
 			dbus_g_proxy_call_no_reply (myData.dbus_proxy_shell, "AddTrack",
 				G_TYPE_INVALID,
 				G_TYPE_STRING, song,

@@ -227,7 +227,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	{
 		if (myData.sCurrentText->len > 0)
 		{
-			cd_debug ("we remove the last letter of %s (%d)\n", myData.sCurrentText->str, myData.sCurrentText->len);
+			cd_debug ("we remove the last letter of %s (%d)", myData.sCurrentText->str, myData.sCurrentText->len);
 			
 			g_string_truncate (myData.sCurrentText, myData.sCurrentText->len-1);
 			
@@ -287,7 +287,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		{
 			if (myData.pCurrentIcon != NULL && myData.pCurrentIcon->pSubDock != NULL)
 			{
-				cd_debug ("on monte dans le sous-dock %s\n", myData.pCurrentIcon->cName);
+				cd_debug ("on monte dans le sous-dock %s", myData.pCurrentIcon->cName);
 				Icon *pIcon = cairo_dock_get_first_icon (myData.pCurrentIcon->pSubDock->icons);
 				cd_do_change_current_icon (pIcon, myData.pCurrentIcon->pSubDock);
 			}
@@ -300,7 +300,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				Icon *pPointingIcon = cairo_dock_search_icon_pointing_on_dock (myData.pCurrentDock, &pParentDock);
 				if (pPointingIcon != NULL)
 				{
-					cd_debug ("on redescend dans le dock parent via %s\n", pPointingIcon->cName);
+					cd_debug ("on redescend dans le dock parent via %s", pPointingIcon->cName);
 					cd_do_change_current_icon (pPointingIcon, pParentDock);
 				}
 			}
@@ -317,7 +317,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 					pPrevIcon = cairo_dock_get_last_icon (myData.pCurrentDock->icons);
 				}
 				
-				cd_debug ("on se deplace a gauche sur %s\n", pPrevIcon ? pPrevIcon->cName : "none");
+				cd_debug ("on se deplace a gauche sur %s", pPrevIcon ? pPrevIcon->cName : "none");
 				cd_do_change_current_icon (pPrevIcon, myData.pCurrentDock);
 			}
 		}
@@ -333,7 +333,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 					pNextIcon = cairo_dock_get_first_icon (myData.pCurrentDock->icons);
 				}
 				
-				cd_debug ("on se deplace a gauche sur %s\n", pNextIcon ? pNextIcon->cName : "none");
+				cd_debug ("on se deplace a gauche sur %s", pNextIcon ? pNextIcon->cName : "none");
 				cd_do_change_current_icon (pNextIcon, myData.pCurrentDock);
 			}
 		}
@@ -362,7 +362,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		}
 		
 		Icon *pIcon = (iKeyVal == GDK_Page_Up || iKeyVal == GDK_Home ? cairo_dock_get_first_icon (myData.pCurrentDock->icons) : cairo_dock_get_last_icon (myData.pCurrentDock->icons));
-		cd_debug ("on se deplace a l'extremite sur %s\n", pIcon ? pIcon->cName : "none");
+		cd_debug ("on se deplace a l'extremite sur %s", pIcon ? pIcon->cName : "none");
 		cd_do_change_current_icon (pIcon, myData.pCurrentDock);
 	}
 	else if ( ((iKeyVal >= GDK_0 && iKeyVal <= GDK_9) || (iKeyVal >= GDK_KP_0 && iKeyVal <= GDK_KP_9))
@@ -372,7 +372,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	}
 	else if (string)  /// utiliser l'unichar ...
 	{
-		cd_debug ("string:'%s'\n", string);
+		cd_debug ("string:'%s'", string);
 		g_string_append_c (myData.sCurrentText, *string);
 		
 		cd_do_search_current_icon (FALSE);

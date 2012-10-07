@@ -40,7 +40,7 @@ static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonym
 		cCommand = g_strdup_printf ("cp \"%s\" \"%s\"", cFilePath, cDropboxDir);
 	else
 		cCommand= g_strdup_printf ("cp \"%s\" ~/Dropbox/Public", cFilePath);
-	cd_debug ("commande dropbox1 : %s\n", cCommand);
+	cd_debug ("commande dropbox1 : %s", cCommand);
 	int r = system (cCommand);
 	if (r < 0)
 		cd_warning ("Not able to launch this command: %s", cCommand);

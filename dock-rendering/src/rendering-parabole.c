@@ -87,7 +87,7 @@ static void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, Cair
 			Icon *icon = pSubDock->icons->data;
 			iX += (pPointedIcon->fWidth * pPointedIcon->fScale - icon->fWidth) / 2;
 		}
-		//cd_debug ("recalage : %.2f (%d)\n", -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2, pSubDock->iMaxLabelWidth);
+		//cd_debug ("recalage : %.2f (%d)", -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2, pSubDock->iMaxLabelWidth);
 		pSubDock->fAlign = 0;
 		pSubDock->iGapY = (pDock->iGapY + pDock->iActiveHeight);
 		pSubDock->iGapX = iX + pDock->container.iWindowPositionX - (pDock->container.bIsHorizontal ? pDock->iScreenOffsetX : pDock->iScreenOffsetY) - pSubDock->iMaxLabelWidth;
@@ -106,7 +106,7 @@ static void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, Cair
 		pSubDock->iGapX =  pDock->container.iWindowPositionX - (pDock->container.bIsHorizontal ? pDock->iScreenOffsetX : pDock->iScreenOffsetY) + iX - g_desktopGeometry.iScreenWidth[pDock->container.bIsHorizontal] + pSubDock->iMaxLabelWidth;
 		
 	}
-	//cd_debug ("pSubDock->iGapY : %d\n", pSubDock->iGapY);
+	//cd_debug ("pSubDock->iGapY : %d", pSubDock->iGapY);
 }
 
 
@@ -243,17 +243,17 @@ double cd_rendering_interpol_curvilign_abscisse (double x, double y, double lamb
 {
 	double w = g_desktopGeometry.iScreenHeight[CAIRO_DOCK_HORIZONTAL] / my_fParaboleRatio;  // aie, au changement de resolution ...
 	double lambda_reference = my_fParaboleRatio * pow (w, 1 - alpha);
-	//cd_debug ("%s (%.2f / %.2f)\n", __func__, lambda, lambda_reference);
+	//cd_debug ("%s (%.2f / %.2f)", __func__, lambda, lambda_reference);
 	if (my_fParaboleRatio < 1)
 	{
 		double coef = pow (lambda / lambda_reference, 1. / (alpha - 1));
-		//cd_debug (" xcoef : %.2f\n", coef);
+		//cd_debug (" xcoef : %.2f", coef);
 		return cd_rendering_interpol (x * coef, s_pReferenceParaboleX, s_pReferenceParaboleS) / coef;
 	}
 	else
 	{
 		double coef = pow (lambda / lambda_reference, - 1. / alpha);
-		//cd_debug (" ycoef : %.2f\n", coef);
+		//cd_debug (" ycoef : %.2f", coef);
 		return cd_rendering_interpol (y * coef, s_pReferenceParaboleY, s_pReferenceParaboleS) / coef;
 	}
 }
@@ -437,7 +437,7 @@ static void cd_rendering_render_parabole (cairo_t *pCairoContext, CairoDock *pDo
 
 static double cd_rendering_project_cursor_on_curve_x (double x0, double y0, double lambda, double alpha)
 {
-	//cd_debug ("%s (%.2f;%.2f)\n", __func__, x0, y0);
+	//cd_debug ("%s (%.2f;%.2f)", __func__, x0, y0);
 	if (y0 < 0)
 		return 0;
 	double xM, yM;  // M se balade sur la courbe.

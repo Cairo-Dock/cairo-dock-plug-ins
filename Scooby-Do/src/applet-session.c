@@ -321,7 +321,7 @@ void cd_do_delete_invalid_caracters (void)
 	
 	// on tronque la chaine de la meme maniere.
 	g_string_truncate (myData.sCurrentText, myData.iNbValidCaracters);
-	cd_debug (" -> '%s' (%d)\n", myData.sCurrentText->str, myData.iNbValidCaracters);
+	cd_debug (" -> '%s' (%d)", myData.sCurrentText->str, myData.iNbValidCaracters);
 	
 	// on remet a jour la hauteur du texte.
 	myData.iTextHeight = 0;

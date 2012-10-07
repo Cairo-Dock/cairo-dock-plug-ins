@@ -419,7 +419,7 @@ void cd_opengl_reset_opengl_datas (CairoDockModuleInstance *myApplet)
 
 void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight)
 {
-	//cd_debug ("%s (%d)\n", __func__, myData.iCoverTransition);
+	//cd_debug ("%s (%d)", __func__, myData.iCoverTransition);
 	_cairo_dock_enable_texture ();
 	_cairo_dock_set_blend_source ();
 	
@@ -514,12 +514,12 @@ void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight
 			if (myData.iPlayingStatus == PLAYER_PLAYING)
 			{
 				_draw_osd (myData.TextureOsdPause, myData.osdPausecoordX, myData.osdPausecoordY, myData.osdPausesizeX, myData.osdPausesizeY);
-				//cd_debug ("%.1f;%.1f ; %.1f;%.1f ;%.1f;%.1f ;%.1f;%.1f\n", u1, v1, u2, v2,u3,v3,u4,v4);
+				//cd_debug ("%.1f;%.1f ; %.1f;%.1f ;%.1f;%.1f ;%.1f;%.1f", u1, v1, u2, v2,u3,v3,u4,v4);
 			}
 			else
 			{
 				_draw_osd (myData.TextureOsdPlay, myData.osdPlaycoordX, myData.osdPlaycoordY, myData.osdPlaysizeX, myData.osdPlaysizeY);
-				//cd_debug ("%.1f;%.1f ; %.1f;%.1f ;%.1f;%.1f ;%.1f;%.1f\n", u1, v1, u2, v2,u3,v3,u4,v4);
+				//cd_debug ("%.1f;%.1f ; %.1f;%.1f ;%.1f;%.1f ;%.1f;%.1f", u1, v1, u2, v2,u3,v3,u4,v4);
 			}
 		}
 		else if (myData.mouseOnButton2)

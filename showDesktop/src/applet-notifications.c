@@ -360,7 +360,7 @@ gboolean on_show_desktop (CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	myData.bDesktopVisible = cairo_dock_desktop_is_visible ();
-	cd_debug ("bDesktopVisible <- %d\n", myData.bDesktopVisible);
+	cd_debug ("bDesktopVisible <- %d", myData.bDesktopVisible);
 	
 	if (myConfig.cVisibleImage)
 	{

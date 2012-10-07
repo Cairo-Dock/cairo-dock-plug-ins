@@ -265,7 +265,7 @@ CD_APPLET_ON_CLICK_BEGIN
 			}
 			else /*if (myData.pCurrentHandler->launch != NULL)*/
 			{
-				cd_message ("launching '%s'...\n", myData.pCurrentHandler->launch);
+				cd_message ("launching '%s'...", myData.pCurrentHandler->launch);
 				cairo_dock_launch_command (myData.pCurrentHandler->launch);
 			}
 		}

@@ -88,7 +88,7 @@ static gchar *_cd_get_icon_path (GIcon *pIcon, const gchar *cTargetURI)  // cTar
 	if (G_IS_THEMED_ICON (pIcon))
 	{
 		const gchar * const *cFileNames = g_themed_icon_get_names (G_THEMED_ICON (pIcon));
-		//cd_message ("icones possibles : %s\n", g_strjoinv (":", (gchar **) cFileNames));
+		//cd_message ("icones possibles : %s", g_strjoinv (":", (gchar **) cFileNames));
 		int i;
 		for (i = 0; cFileNames[i] != NULL && cIconPath == NULL; i ++)
 		{
@@ -268,7 +268,7 @@ static gchar *_cd_find_volume_name_from_drive_name (const gchar *cName)
 	{
 		cVolumeName = g_volume_get_name (pVolume);
 	}
-	cd_debug ("%dth volume -> cVolumeName : %s\n", iNumVolume, cVolumeName);
+	cd_debug ("%dth volume -> cVolumeName : %s", iNumVolume, cVolumeName);
 	
 	/* cd_debug ("List of unavailable volumes on this disc:");
 	GList *av;
@@ -668,7 +668,7 @@ static GList *cairo_dock_gio_vfs_list_volumes (void)
 		}
 		else
 		{
-			cd_message (" + volume '%s'\n", cLog);
+			cd_message (" + volume '%s'", cLog);
 			if (pNewIcon != NULL)
 				pNewIcon = _cd_get_icon_for_volume (pVolume, NULL);
 			pIconsList = g_list_prepend (pIconsList, pNewIcon);
@@ -1279,7 +1279,7 @@ static void cairo_dock_gio_vfs_unmount (const gchar *cURI, int iVolumeID, CairoD
 	
 	gboolean bCanEject = g_mount_can_eject (pMount);
 	gboolean bCanUnmount = g_mount_can_unmount (pMount);
-	cd_message ("eject:%d / unmount:%d\n", bCanEject, bCanUnmount);
+	cd_message ("eject:%d / unmount:%d", bCanEject, bCanUnmount);
 	if (! bCanEject && ! bCanUnmount)
 	{
 		cd_warning ("can't unmount this volume (%s)", cURI);

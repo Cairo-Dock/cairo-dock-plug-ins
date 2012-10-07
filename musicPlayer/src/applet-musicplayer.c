@@ -88,7 +88,7 @@ static void _cd_musicplayer_get_data_async (gpointer data) {
 static gboolean _cd_musicplayer_update_from_data (gpointer data)
 {
 	g_return_val_if_fail (myData.pCurrentHandler->iLevel != PLAYER_EXCELLENT, FALSE);
-	//cd_debug ("MP - %s (%d : %d -> %d)\n", __func__, myData.iPlayingStatus, myData.iPreviousCurrentTime, myData.iCurrentTime);
+	//cd_debug ("MP - %s (%d : %d -> %d)", __func__, myData.iPlayingStatus, myData.iPreviousCurrentTime, myData.iCurrentTime);
 	CD_APPLET_ENTER;
 	gboolean bNeedRedraw = FALSE;
 	
@@ -124,7 +124,7 @@ static gboolean _cd_musicplayer_update_from_data (gpointer data)
 	{
 		if (myData.iPlayingStatus != myData.pPreviousPlayingStatus)  // state has changed.
 		{
-			cd_debug ("MP : PlayingStatus : %d -> %d\n", myData.pPreviousPlayingStatus, myData.iPlayingStatus);
+			cd_debug ("MP : PlayingStatus : %d -> %d", myData.pPreviousPlayingStatus, myData.iPlayingStatus);
 			myData.pPreviousPlayingStatus = myData.iPlayingStatus;
 			
 			cd_musicplayer_update_icon ();

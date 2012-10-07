@@ -285,7 +285,7 @@ void cd_mpris_set_volume (int iVolume)
  */
 void cd_mpris_getPlaying (void)  // sync version, used by Audacious.
 {
-	cd_debug ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	int iStatus = _mpris_get_status (0);
 	_set_playing_status_mpris (iStatus);
 }
@@ -294,7 +294,7 @@ void cd_mpris_getPlaying (void)  // sync version, used by Audacious.
  */
 static gboolean cd_mpris_is_loop (void)
 {
-	cd_debug ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	int iStatus = _mpris_get_status (3);  // Fourth integer: 0 = Stop playing once the last element has been played, 1 = Never give up playing.
 	g_return_val_if_fail (iStatus != -1, FALSE);
 	return iStatus;
@@ -304,7 +304,7 @@ static gboolean cd_mpris_is_loop (void)
  */
 static gboolean cd_mpris_is_shuffle (void)
 {
-	cd_debug ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	int iStatus = _mpris_get_status (1);  // Second interger: 0 = Playing linearly , 1 = Playing randomly.
 	g_return_val_if_fail (iStatus != -1, FALSE);
 	return iStatus;
@@ -540,7 +540,7 @@ static void cd_mpris_getSongInfos_async (void)
 static void onChangeSong_mpris(DBusGProxy *player_proxy, GHashTable *metadata, gpointer data)
 {
 	CD_APPLET_ENTER;
-	cd_debug ("MP : %s ()\n", __func__);
+	cd_debug ("MP : %s ()", __func__);
 	
 	if (metadata != NULL)
 	{
@@ -573,7 +573,7 @@ static void onChangeSong_mpris(DBusGProxy *player_proxy, GHashTable *metadata, g
 void onChangePlaying_mpris (DBusGProxy *player_proxy, GValueArray *status, gpointer data)  // used by Audacious too.
 {
 	CD_APPLET_ENTER;
-	//cd_debug ("MP : %s (%x)\n", __func__, status);
+	//cd_debug ("MP : %s (%x)", __func__, status);
 	myData.iGetTimeFailed = 0;
 	int iStatus = _extract_status_mpris (status, 0);
 	_set_playing_status_mpris (iStatus);
@@ -681,7 +681,7 @@ static void cd_mpris_control (MyPlayerControl pControl, const char* song)
 		
 		case PLAYER_SHUFFLE :
 			bToggleValue = cd_mpris_is_shuffle ();
-			cd_debug ("SetRandom <- %d\n", !bToggleValue);
+			cd_debug ("SetRandom <- %d", !bToggleValue);
 			dbus_g_proxy_call_no_reply (myData.dbus_proxy_shell, "SetRandom",
 				G_TYPE_INVALID,
 				G_TYPE_BOOLEAN, !bToggleValue,
@@ -690,7 +690,7 @@ static void cd_mpris_control (MyPlayerControl pControl, const char* song)
 		
 		case PLAYER_REPEAT :
 			bToggleValue = cd_mpris_is_loop ();
-			cd_debug ("SetLoop <- %d\n", !bToggleValue);
+			cd_debug ("SetLoop <- %d", !bToggleValue);
 			dbus_g_proxy_call_no_reply (myData.dbus_proxy_shell, "SetLoop",
 				G_TYPE_INVALID,
 				G_TYPE_BOOLEAN, !bToggleValue,
@@ -698,7 +698,7 @@ static void cd_mpris_control (MyPlayerControl pControl, const char* song)
 		break;
 		
 		case PLAYER_ENQUEUE :
-			cd_debug ("enqueue %s\n", song);
+			cd_debug ("enqueue %s", song);
 			dbus_g_proxy_call_no_reply (myData.dbus_proxy_shell, "AddTrack",
 				G_TYPE_INVALID,
 				G_TYPE_STRING, song,

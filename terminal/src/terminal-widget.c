@@ -77,7 +77,7 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 				}
 				bHasFocus |= (gldi_container_get_Xid (myContainer) == cairo_dock_get_current_active_window ());
 			}
-			cd_debug ("%s (%d)\n", __func__, bHasFocus);
+			cd_debug ("%s (%d)", __func__, bHasFocus);
 			
 			if (bHasFocus)
 			{
@@ -482,7 +482,7 @@ static GtkWidget *_terminal_build_menu_tab (GtkWidget *vterm)
 
 static gboolean applet_on_terminal_press_cb(GtkWidget *vterm, GdkEventButton *event, gpointer user_data)
 {
-	cd_debug ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	if (event->button == 3)
 	{
 		GtkWidget *menu = _terminal_build_menu_tab (vterm);
@@ -780,7 +780,7 @@ static gboolean on_button_press_tab (GtkWidget* pWidget,
 	GdkEventButton* pButton,
 	gpointer data)
 {
-	cd_debug ("%s (%d;%d)\n", __func__, (int)pButton->x, (int)pButton->y);
+	cd_debug ("%s (%d;%d)", __func__, (int)pButton->x, (int)pButton->y);
 	GtkWidget *vterm = _terminal_find_clicked_tab_child (pButton->x, pButton->y);
 	if (pButton->type == GDK_2BUTTON_PRESS)
 	{

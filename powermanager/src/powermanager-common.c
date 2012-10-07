@@ -105,7 +105,7 @@ static void cd_store_current_rate (double fPresentRate)
 	{
 		myData.fDischargeMeanRate = (myData.fDischargeMeanRate * myData.iNbDischargeMeasures + fPresentRate) / (myData.iNbDischargeMeasures + 1);
 		myData.iNbDischargeMeasures ++;
-		cd_debug ("fDischargeMeanRate : %.3f (%d)\n", myData.fDischargeMeanRate, myData.iNbDischargeMeasures);
+		cd_debug ("fDischargeMeanRate : %.3f (%d)", myData.fDischargeMeanRate, myData.iNbDischargeMeasures);
 
 		if (myConfig.fLastDischargeMeanRate == 0 || (double) fabs (myConfig.fLastDischargeMeanRate - myData.fDischargeMeanRate) / myConfig.fLastDischargeMeanRate > .01)  // l'ecart avec la valeur stockee en conf est devenue grande, on met a jour cette derniere.
 		{
@@ -168,7 +168,7 @@ int cd_estimate_time (void)
 	}
 	else if (myData.bOnBattery || myData.iPercentage < 99.9)  // if we are on sector and fully charged, the rate is of course 0.
 	{
-		cd_debug ("no rate, using last know values : %.2f ; %.2f\n", myConfig.fLastDischargeMeanRate, myConfig.fLastChargeMeanRate);
+		cd_debug ("no rate, using last know values : %.2f ; %.2f", myConfig.fLastDischargeMeanRate, myConfig.fLastChargeMeanRate);
 		fPresentRate = (myData.bOnBattery ? myConfig.fLastDischargeMeanRate : myConfig.fLastChargeMeanRate);
 	}
 	

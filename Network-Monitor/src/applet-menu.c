@@ -37,7 +37,7 @@ static GList *cd_NetworkMonitor_get_connections_for_access_point (const gchar *c
 	for (i = 0; i < paConnections->len; i++)
 	{
 		cConnection = (gchar *)g_ptr_array_index(paConnections, i);
-		cd_debug (" Connection path : %s\n", cConnection);
+		cd_debug (" Connection path : %s", cConnection);
 		
 		pSettings = g_ptr_array_index (paSettings, i);
 		
@@ -50,7 +50,7 @@ static GList *cd_NetworkMonitor_get_connections_for_access_point (const gchar *c
 		if (v && G_VALUE_HOLDS_STRING (v))
 		{
 			cType = g_value_get_string (v);
-			cd_debug (" type : %s\n", cType);
+			cd_debug (" type : %s", cType);
 		}
 		if (cType == NULL || strcmp (cType, "802-11-wireless") != 0)  // on veut du wifi.
 			continue;
@@ -60,7 +60,7 @@ static GList *cd_NetworkMonitor_get_connections_for_access_point (const gchar *c
 		if (v && G_VALUE_HOLDS_STRING (v))
 		{
 			cID = g_value_get_string (v);
-			cd_debug (" id : %s\n", cID);
+			cd_debug (" id : %s", cID);
 		}
 		
 		pSubSettings = g_hash_table_lookup (pSettings, "802-11-wireless");
@@ -71,7 +71,7 @@ static GList *cd_NetworkMonitor_get_connections_for_access_point (const gchar *c
 		if (v && G_VALUE_HOLDS_STRING (v))
 		{
 			cMode = g_value_get_string (v);
-			cd_debug (" mode : %s\n", cMode);
+			cd_debug (" mode : %s", cMode);
 		}
 		if (iMode && cMode)
 		{
@@ -87,7 +87,7 @@ static GList *cd_NetworkMonitor_get_connections_for_access_point (const gchar *c
 		{
 			GByteArray *a = g_value_get_boxed (v);
 			cAPSsid = g_strndup ((gchar *) a->data, a->len);
-			cd_debug (" ssid : %s\n", cSsid);
+			cd_debug (" ssid : %s", cSsid);
 		}
 		if (cSsid == NULL || (cAPSsid != NULL && strcmp (cAPSsid, cSsid) != 0))  // le SSID est necessaire.
 			continue;
@@ -97,7 +97,7 @@ static GList *cd_NetworkMonitor_get_connections_for_access_point (const gchar *c
 		if (v && G_VALUE_HOLDS_STRING (v))
 		{
 			cMacAddress = g_value_get_string (v);
-			cd_debug (" mac address : %s\n", cMacAddress);
+			cd_debug (" mac address : %s", cMacAddress);
 		}
 		if (cHwAddress != NULL && cMacAddress != NULL && strcmp (cMacAddress, cHwAddress) != 0)
 			continue;
@@ -125,7 +125,7 @@ static GList *cd_NetworkMonitor_get_connections_for_wired_device (const gchar *c
 	for (i = 0; i < paConnections->len; i++)
 	{
 		cConnection = (gchar *)g_ptr_array_index(paConnections, i);
-		cd_debug (" Connection path : %s\n", cConnection);
+		cd_debug (" Connection path : %s", cConnection);
 		
 	}
 	
@@ -193,7 +193,7 @@ static void _on_select_access_point (GtkMenuItem *menu_item, CDMenuItemData *pIt
 	}
 	else
 	{
-		cd_debug ("on a choisit (%s; %s; %s)\n", pItemData->cAccessPoint, pItemData->cDevice, pItemData->cConnection);
+		cd_debug ("on a choisit (%s; %s; %s)", pItemData->cAccessPoint, pItemData->cDevice, pItemData->cConnection);
 		
 		//ActivateConnection ( s: service_name, o: connection, o: device, o: specific_object )o
 		GError *erreur = NULL;
@@ -215,7 +215,7 @@ static void _on_select_access_point (GtkMenuItem *menu_item, CDMenuItemData *pIt
 			g_error_free (erreur);
 			return ;
 		}
-		cd_debug (" => new active connection path : %s\n", cNewActiveConnectionPath);
+		cd_debug (" => new active connection path : %s", cNewActiveConnectionPath);
 	}
 }
 
@@ -227,7 +227,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 		"/org/freedesktop/NetworkManagerSettings",
 		"org.freedesktop.NetworkManagerSettings");
 	GPtrArray *paConnections = cairo_dock_dbus_get_array (dbus_proxy_Settings, "ListConnections");
-	cd_debug ("%d connection(s)\n", paConnections ? paConnections->len : 0);
+	cd_debug ("%d connection(s)", paConnections ? paConnections->len : 0);
 	g_object_unref (dbus_proxy_Settings);
 	
 	GPtrArray *paSettings = NULL;
@@ -243,7 +243,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 		for (i = 0; i < paConnections->len; i++)
 		{
 			cConnection = (gchar *)g_ptr_array_index(paConnections, i);
-			cd_debug (" Connection path : %s\n", cConnection);
+			cd_debug (" Connection path : %s", cConnection);
 			
 			dbus_proxy_ConnectionSettings = cairo_dock_create_new_system_proxy (
 				"org.freedesktop.NetworkManagerUserSettings",
@@ -270,7 +270,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 	//\_____________ On recupere la liste des devices.
 	GPtrArray *paDevices = cairo_dock_dbus_get_array (myData.dbus_proxy_NM, "GetDevices");
 	g_return_val_if_fail (paDevices != NULL, FALSE);
-	cd_debug ("%d device(s)\n", paDevices->len);
+	cd_debug ("%d device(s)", paDevices->len);
 	
 	GtkWidget *pMenu = gtk_menu_new ();
 	
@@ -302,11 +302,11 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 			"org.freedesktop.DBus.Properties");
 		if (!DBUS_IS_G_PROXY (dbus_proxy_Device_prop))
 			continue;
-		cd_debug (" device %s\n", cDevice);
+		cd_debug (" device %s", cDevice);
 		
 		// on regarde son type.
 		iDeviceType = cairo_dock_dbus_get_property_as_uint (dbus_proxy_Device_prop, "org.freedesktop.NetworkManager.Device", "DeviceType");  // 1 : ethernet, 2 : wifi
-		cd_debug (" device type : %d\n", iDeviceType);
+		cd_debug (" device type : %d", iDeviceType);
 		if (iDeviceType != 1 && iDeviceType != 2)  // ne nous insteresse pas.
 		{
 			cd_debug (" useless device type\n");
@@ -438,7 +438,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 					iWirelessCapabilities = g_value_get_uint (v);
 				}
 				
-				cd_debug ("%d) %s : %s (%s, %d%%)\n", j, cSsid, cAccessPointPath, cHwAddress, iPercent);
+				cd_debug ("%d) %s : %s (%s, %d%%)", j, cSsid, cAccessPointPath, cHwAddress, iPercent);
 				
 				const gchar *cImage = NULL;
 				if (iPercent > 80)
@@ -461,7 +461,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 				// on cherche une connection qui convienne.
 				GList *pConnList = cd_NetworkMonitor_get_connections_for_access_point (cAccessPointPath, cDevice, cSsid, cHwAddress, iMode, iWirelessCapabilities, paConnections, paSettings);
 				
-				cd_debug ("%d connexion(s) satisfont a ce point d'acces\n", g_list_length (pConnList));
+				cd_debug ("%d connexion(s) satisfont a ce point d'acces", g_list_length (pConnList));
 				
 				if (pConnList == NULL || pConnList->next == NULL)
 				{

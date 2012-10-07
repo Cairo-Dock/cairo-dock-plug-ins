@@ -29,7 +29,7 @@ recent_documents_activate_cb (GtkRecentChooser *chooser,
 {
 	GtkRecentInfo *recent_info = gtk_recent_chooser_get_current_item (chooser);
 	const char *uri = gtk_recent_info_get_uri (recent_info);
-	cd_debug ("%s (%s) : %s\n", __func__, uri, gtk_recent_info_get_display_name(recent_info));
+	cd_debug ("%s (%s) : %s", __func__, uri, gtk_recent_info_get_display_name(recent_info));
 	cairo_dock_fm_launch_uri (uri);
 	gtk_recent_info_unref (recent_info);
 }

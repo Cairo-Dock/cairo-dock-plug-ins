@@ -739,26 +739,26 @@ gboolean cd_dbus_applet_demands_attention (dbusApplet *pDbusApplet, gboolean bSt
 
 gboolean cd_dbus_applet_show_dialog (dbusApplet *pDbusApplet, const gchar *message, gint iDuration, GError **error)
 {
-	cd_debug ("%s (%s)\n", __func__, message);
+	cd_debug ("%s (%s)", __func__, message);
 	return _applet_show_dialog (pDbusApplet, message, iDuration, NULL, error);
 }
 
 // deprecated
 gboolean cd_dbus_applet_ask_question (dbusApplet *pDbusApplet, const gchar *message, GError **error)
 {
-	cd_debug ("%s (%s)\n", __func__, message);
+	cd_debug ("%s (%s)", __func__, message);
 	return _applet_ask_question (pDbusApplet, message, NULL, error);
 }
 
 gboolean cd_dbus_applet_ask_value (dbusApplet *pDbusApplet, const gchar *message, gdouble fInitialValue, gdouble fMaxValue, GError **error)
 {
-	cd_debug ("%s (%s)\n", __func__, message);
+	cd_debug ("%s (%s)", __func__, message);
 	return _applet_ask_value (pDbusApplet, message, fInitialValue, fMaxValue, NULL, error);
 }
 
 gboolean cd_dbus_applet_ask_text (dbusApplet *pDbusApplet, const gchar *message, const gchar *cInitialText, GError **error)
 {
-	cd_debug ("%s (%s)\n", __func__, message);
+	cd_debug ("%s (%s)", __func__, message);
 	return _applet_ask_text (pDbusApplet, message, cInitialText, NULL, error);
 }
 // end of deprecated

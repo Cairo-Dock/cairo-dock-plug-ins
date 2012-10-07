@@ -74,20 +74,20 @@ static gchar *_cd_get_icon_path (GIcon *pIcon)
 	if (G_IS_THEMED_ICON (pIcon))
 	{
 		const gchar * const *cFileNames = g_themed_icon_get_names (G_THEMED_ICON (pIcon));
-		//cd_message ("icones possibles : %s\n", g_strjoinv (":", (gchar **) cFileNames));
+		//cd_message ("icones possibles : %s", g_strjoinv (":", (gchar **) cFileNames));
 		int i;
 		for (i = 0; cFileNames[i] != NULL && cIconPath == NULL; i ++)
 		{
-			//cd_message (" une icone possible est : %s\n", cFileNames[i]);
+			//cd_message (" une icone possible est : %s", cFileNames[i]);
 			cIconPath = cairo_dock_search_icon_s_path (cFileNames[i], CAIRO_DOCK_DEFAULT_ICON_SIZE);
-			//cd_message ("  chemin trouve : %s\n", cIconPath);
+			//cd_message ("  chemin trouve : %s", cIconPath);
 		}
 	}
 	else if (G_IS_FILE_ICON (pIcon))
 	{
 		GFile *pFile = g_file_icon_get_file (G_FILE_ICON (pIcon));
 		cIconPath = g_file_get_basename (pFile);
-		//cd_message (" file_icon => %s\n", cIconPath);
+		//cd_message (" file_icon => %s", cIconPath);
 	}
 	return cIconPath;
 }
@@ -411,7 +411,7 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 	cd_message ("cIconName : %s", *cIconName);
 	
 	//*iVolumeID = g_file_info_get_attribute_uint32 (pFileInfo, G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE);
-	//cd_message ("ID : %d\n", *iVolumeID);
+	//cd_message ("ID : %d", *iVolumeID);
 	//g_object_unref (pFileInfo);
 }
 
@@ -518,7 +518,7 @@ GList *vfs_backend_list_volumes (void)
 		}
 		else
 		{
-			cd_message (" + volume '%s'\n", g_volume_get_name  (pVolume));
+			cd_message (" + volume '%s'", g_volume_get_name  (pVolume));
 			pNewIcon = _cd_get_icon_for_volume (pVolume, NULL);
 			pIconsList = g_list_prepend (pIconsList, pNewIcon);
 		}
@@ -759,7 +759,7 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 		if (pRootIcon == NULL)
 		{
 			pRootIcon = cairo_dock_get_first_icon (pIconList);
-			cd_debug ("domage ! (%s:%s)\n", pRootIcon->cCommand, pRootIcon->cName);
+			cd_debug ("domage ! (%s:%s)", pRootIcon->cCommand, pRootIcon->cName);
 		}
 		icon = cairo_dock_create_dummy_launcher (g_strdup ("home"),
 			g_strdup (pRootIcon->cFileName),
@@ -1002,7 +1002,7 @@ void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCall
 	
 	gboolean bCanEject = g_mount_can_eject (pMount);
 	gboolean bCanUnmount = g_mount_can_unmount (pMount);
-	cd_message ("eject:%d / unmount:%d\n", bCanEject, bCanUnmount);
+	cd_message ("eject:%d / unmount:%d", bCanEject, bCanUnmount);
 	if (! bCanEject && ! bCanUnmount)
 	{
 		cd_warning ("can't unmount this volume (%s)", cURI);

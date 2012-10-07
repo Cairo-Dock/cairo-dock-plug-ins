@@ -141,7 +141,7 @@ void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cU
 				GString *sURI = g_string_new (cSplit[0]);
 				for (i = 1; cSplit[i] != NULL; i ++)
 				{
-					cd_message ("%d) %s\n", i, cSplit[i]);
+					cd_message ("%d) %s", i, cSplit[i]);
 					g_string_append_printf (sURI, "%%2520%s", cSplit[i]);
 				}
 				cFullURI = sURI->str;

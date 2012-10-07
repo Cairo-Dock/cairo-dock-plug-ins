@@ -154,7 +154,7 @@ static void calculate_icons (CairoDesklet *pDesklet)
 		return ;
 	
 	_compute_icons_grid (pDesklet, pPanel);
-	cd_debug ("pPanel->iIconSize : %d\n", pPanel->iIconSize);
+	cd_debug ("pPanel->iIconSize : %d", pPanel->iIconSize);
 	
 	Icon *pIcon = pDesklet->pIcon;
 	if (pIcon != NULL)

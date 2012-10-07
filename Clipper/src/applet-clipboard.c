@@ -46,7 +46,7 @@ GList *cd_clipper_get_last_item (CDClipperItemType iItemType)
 		pItem = pElement->data;
 		if (pItem->iType == iItemType && (pElement->next == NULL || ((CDClipperItem *)pElement->next->data)->iType != iItemType))
 		{
-			cd_debug ("%s est le dernier de son type (%d)\n", pItem->cText, iItemType);
+			cd_debug ("%s est le dernier de son type (%d)", pItem->cText, iItemType);
 			break ;
 		}
 	}
@@ -202,7 +202,7 @@ void _on_text_received (GtkClipboard *pClipBoard, const gchar *text, gpointer us
 		for (pElement = myData.pActions; pElement != NULL; pElement = pElement->next)
 		{
 			pAction = pElement->data;
-			cd_debug ("  %s\n", pAction->cDescription);
+			cd_debug ("  %s", pAction->cDescription);
 			if (g_regex_match (pAction->pRegex, text, 0, NULL))
 				break ;
 		}

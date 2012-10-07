@@ -180,7 +180,7 @@ static void _on_drop_data (const gchar *cMyData)
 		{
 			if (cMimeType != NULL)
 			{
-				cd_debug ("cMimeType : %s (%s)\n", cMimeType, cMyData);
+				cd_debug ("cMimeType : %s (%s)", cMimeType, cMyData);
 				if (strncmp (cMimeType, "image", 5) == 0)
 					iFileType = CD_TYPE_IMAGE;
 				else if (strncmp (cMimeType, "video", 5) == 0)

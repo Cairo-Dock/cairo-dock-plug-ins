@@ -532,7 +532,7 @@ ThunarVfsVolume *thunar_find_volume_from_path (ThunarVfsPath *pThunarPath)
 			pThunarVolume = thunar_vfs_volume_manager_get_volume_by_info(pThunarVolumeManager, pThunarVfsInfo);
 			g_object_unref(pThunarVolumeManager);
 			thunar_vfs_info_unref(pThunarVfsInfo);
-			cd_debug ("2eme methode -> volume : %x\n", pThunarVolume);
+			cd_debug ("2eme methode -> volume : %x", pThunarVolume);
 	
 			// Skip the volumes that are not there or that are not removable 
 			if (pThunarVolume == NULL || !thunar_vfs_volume_is_present (pThunarVolume) || !thunar_vfs_volume_is_removable (pThunarVolume))

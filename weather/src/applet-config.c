@@ -200,7 +200,7 @@ void cd_weather_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile*
 {
 	if (!myApplet)  // if called when the applet is not started
 		return;
-	cd_debug ("%s (%s)\n", __func__, myIcon->cName);
+	cd_debug ("%s (%s)", __func__, myIcon->cName);
 	//\____________ On recupere le widget.
 	CairoDockGroupKeyWidget *pGroupKeyWidget = cairo_dock_gui_find_group_key_widget_in_list (pWidgetList, "Configuration", "location code");
 	GtkWidget *pCodeEntry = cairo_dock_gui_get_first_widget (pGroupKeyWidget);

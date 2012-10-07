@@ -173,7 +173,7 @@ static inline void _extract_metadata (GHashTable *data_list)
 	value = (GValue *) g_hash_table_lookup(data_list, "artwork-id");
 	if (value != NULL && G_VALUE_HOLDS_STRING(value))
 		cString = g_value_get_string(value);
-	cd_debug ("MP : got cover path from Banshee : '%s'\n", cString);
+	cd_debug ("MP : got cover path from Banshee : '%s'", cString);
 	gchar *cCoverPath = (cString ? g_strdup_printf ("%s/.cache/album-art/%s.jpg", g_getenv ("HOME"), cString) : NULL);
 	if (cString && ! g_file_test (cCoverPath, G_FILE_TEST_EXISTS)) // path has changed :-/
 	{
@@ -216,7 +216,7 @@ static void cd_banshee_getSongInfos (void)
 
 static void cd_banshee_getCoverPath (void)
 {
-	cd_debug ("MP - %s ()\n", __func__);
+	cd_debug ("MP - %s ()", __func__);
 	GHashTable *data_list = NULL;
 	GValue *value;
 	GError *erreur = NULL;
@@ -237,7 +237,7 @@ static void cd_banshee_getCoverPath (void)
 		value = (GValue *) g_hash_table_lookup(data_list, "artwork-id");
 		if (value != NULL && G_VALUE_HOLDS_STRING(value))
 			cString = g_value_get_string(value);
-		cd_debug ("MP -  => got cover path from Banshee : '%s'\n", cString);
+		cd_debug ("MP -  => got cover path from Banshee : '%s'", cString);
 		gchar *cCoverPath = g_strdup_printf ("%s/.cache/album-art/300/%s.jpg", g_getenv ("HOME"), cString);
 		if (! g_file_test  (cCoverPath, G_FILE_TEST_EXISTS))
 		{
@@ -264,7 +264,7 @@ static void cd_banshee_getCoverPath (void)
 static void onChangeSong(DBusGProxy *player_proxy, const gchar *cEvent, const gchar *cMessage, double fBufferingPercent, gpointer data)
 {
 	CD_APPLET_ENTER;
-	cd_debug ("MP : %s (%s, %s, %.2f)\n", __func__, cEvent, cMessage, fBufferingPercent);
+	cd_debug ("MP : %s (%s, %s, %.2f)", __func__, cEvent, cMessage, fBufferingPercent);
 	if (cMessage != NULL)
 	{
 		if (strcmp (cMessage, "startofstream") == 0)  // new song
@@ -312,7 +312,7 @@ static void g_cclosure_marshal_VOID__STRING_STRING_DOUBLE (GClosure *closure,
 	gpointer invocation_hint,
 	gpointer marshal_data)
 {
-	cd_debug ("MP - %s ()\n", __func__);
+	cd_debug ("MP - %s ()", __func__);
 	const GValue *value;
 	const gchar *cEvent = NULL;
 	const gchar *cMessage = NULL;
@@ -339,7 +339,7 @@ static void g_cclosure_marshal_VOID__STRING_STRING_DOUBLE (GClosure *closure,
 static void onChangePlaying(DBusGProxy *player_proxy, const gchar *cCurrentStatus, gpointer data)
 {
 	CD_APPLET_ENTER;
-	cd_debug ("MP : %s (%s)\n", __func__, cCurrentStatus);
+	cd_debug ("MP : %s (%s)", __func__, cCurrentStatus);
 	gboolean bStateChanged = _extract_playing_status (cCurrentStatus);
 	if (! bStateChanged)
 		CD_APPLET_LEAVE ();
@@ -391,7 +391,7 @@ static void cd_banshee_control (MyPlayerControl pControl, const char *file)
 		case PLAYER_SHUFFLE :
 		{
 			gboolean bShuffle = cairo_dock_dbus_get_integer (myData.dbus_proxy_shell, "GetShuffleMode");
-			cd_debug ("MP - bShuffle : %d\n", bShuffle);
+			cd_debug ("MP - bShuffle : %d", bShuffle);
 			dbus_g_proxy_call_no_reply (myData.dbus_proxy_shell, "SetShuffleMode", 
 				G_TYPE_INT, ! bShuffle,
 				G_TYPE_INVALID,
@@ -402,7 +402,7 @@ static void cd_banshee_control (MyPlayerControl pControl, const char *file)
 		case PLAYER_REPEAT :
 		{
 			int iRepeat = cairo_dock_dbus_get_integer (myData.dbus_proxy_shell, "GetRepeatMode");
-			cd_debug ("MP - iRepeat : %d\n", iRepeat);
+			cd_debug ("MP - iRepeat : %d", iRepeat);
 			dbus_g_proxy_call_no_reply (myData.dbus_proxy_shell, "SetRepeatMode", 
 				G_TYPE_INT, (iRepeat+1)%3,
 				G_TYPE_INVALID,

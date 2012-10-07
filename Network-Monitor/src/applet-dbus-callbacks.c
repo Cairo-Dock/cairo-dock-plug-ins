@@ -41,7 +41,7 @@
 //     The overall state of the NetworkManager daemon.
 void onChangeNMProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpointer data)
 {
-	cd_debug ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	GValue *value;
 	
 	// on regarde quelles proprietes ont change.
@@ -56,7 +56,7 @@ void onChangeNMProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpoin
 	value = g_hash_table_lookup (properties, "State");  // NM_STATE_UNKNOWN = 0, NM_STATE_ASLEEP = 1, NM_STATE_CONNECTING = 2, NM_STATE_CONNECTED = 3, NM_STATE_DISCONNECTED = 4
 	if (value && G_VALUE_HOLDS_UINT (value))
 	{
-		cd_debug (" -> changement de l'etat de NM : %d\n", g_value_get_uint (value));
+		cd_debug (" -> changement de l'etat de NM : %d", g_value_get_uint (value));
 		cairo_dock_remove_dialog_if_any (myIcon);
 		cairo_dock_stop_icon_animation (myIcon);
 		switch (g_value_get_uint (value))
@@ -111,7 +111,7 @@ void onChangeNMProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpoin
 
 void onChangeWirelessDeviceProperties (DBusGProxy *dbus_proxy, GHashTable *hProperties, gpointer data)
 {
-	cd_debug ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	GValue *value;
 	
 	value = g_hash_table_lookup (hProperties, "ActiveAccessPoint");
@@ -121,7 +121,7 @@ void onChangeWirelessDeviceProperties (DBusGProxy *dbus_proxy, GHashTable *hProp
 		myData.cAccessPoint = NULL;
 		
 		gchar *cAccessPointPath = g_value_get_boxed (value);
-		cd_debug ("Network-Monitor : New active point : %s\n", cAccessPointPath);
+		cd_debug ("Network-Monitor : New active point : %s", cAccessPointPath);
 		
 		if (cAccessPointPath && strncmp (cAccessPointPath, "/org/freedesktop/NetworkManager/AccessPoint/", 44) == 0)
 		{
@@ -140,7 +140,7 @@ void onChangeWirelessDeviceProperties (DBusGProxy *dbus_proxy, GHashTable *hProp
 
 void onChangeWiredDeviceProperties (DBusGProxy *dbus_proxy, GHashTable *hProperties, gpointer data)
 {
-	cd_debug ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	GValue *v;
 	v = g_hash_table_lookup (hProperties, "Carrier");
 	if (G_VALUE_HOLDS_BOOLEAN (v))
@@ -156,7 +156,7 @@ void onChangeAccessPointProperties (DBusGProxy *dbus_proxy, GHashTable *hPropert
 {
 	g_return_if_fail (myApplet != NULL && myApplet->pData != NULL); // called at the end?
 
-	cd_debug ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	cd_NetworkMonitor_fetch_access_point_properties (hProperties);
 	
 	cd_NetworkMonitor_draw_icon ();
@@ -165,7 +165,7 @@ void onChangeAccessPointProperties (DBusGProxy *dbus_proxy, GHashTable *hPropert
 
 void onChangeActiveConnectionProperties (DBusGProxy *dbus_proxy, GHashTable *hProperties, gpointer data)
 {
-	cd_debug ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	GValue *v;
 	v = g_hash_table_lookup (hProperties, "Connection");
 	if (G_VALUE_HOLDS (v, DBUS_TYPE_G_OBJECT_PATH))
@@ -187,7 +187,7 @@ void onChangeActiveConnectionProperties (DBusGProxy *dbus_proxy, GHashTable *hPr
 
 void onNewConnection (DBusGProxy *dbus_proxy, const GValue *pNewConnectionPath, gpointer data)
 {
-	cd_debug ("%s (%s)\n", __func__, g_value_get_boxed (pNewConnectionPath));
+	cd_debug ("%s (%s)", __func__, g_value_get_boxed (pNewConnectionPath));
 	
 	
 }

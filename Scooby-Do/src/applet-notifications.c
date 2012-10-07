@@ -162,7 +162,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	
 	const gchar *cKeyName = gdk_keyval_name (iKeyVal);
 	guint32 iUnicodeChar = gdk_keyval_to_unicode (iKeyVal);
-	cd_debug ("+ cKeyName : %s (%c, %s)\n", cKeyName, iUnicodeChar, string);
+	cd_debug ("+ cKeyName : %s (%c, %s)", cKeyName, iUnicodeChar, string);
 	
 	if (iKeyVal == GDK_Escape)  // on clot la session.
 	{
@@ -180,7 +180,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	{
 		if (myData.iNbValidCaracters > 0)
 		{
-			cd_debug ("on efface la derniere lettre de %s %d/%d\n", myData.sCurrentText->str, myData.iNbValidCaracters, myData.sCurrentText->len);
+			cd_debug ("on efface la derniere lettre de %s %d/%d", myData.sCurrentText->str, myData.iNbValidCaracters, myData.sCurrentText->len);
 			if (myData.iNbValidCaracters == myData.sCurrentText->len)  // pas de completion en cours => on efface la derniere lettre tapee.
 				myData.iNbValidCaracters --;
 			
@@ -235,7 +235,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	}
 	else if (iKeyVal == GDK_Return)
 	{
-		cd_debug ("Enter (%s)\n", myData.cSearchText);
+		cd_debug ("Enter (%s)", myData.cSearchText);
 		if (myData.pMatchingIcons != NULL)  // on a une appli a lancer.
 		{
 			Icon *pIcon = (myData.pCurrentMatchingElement ? myData.pCurrentMatchingElement->data : myData.pMatchingIcons->data);
@@ -244,7 +244,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		else if (myData.pListing && myData.pListing->pCurrentEntry)  // pas d'appli mais une entree => on l'execute.
 		{
 			CDEntry *pEntry = myData.pListing->pCurrentEntry->data;
-			cd_debug ("on valide l'entree '%s ; %s'\n", pEntry->cName, pEntry->cPath);
+			cd_debug ("on valide l'entree '%s ; %s'", pEntry->cName, pEntry->cPath);
 			if (pEntry->execute)
 				pEntry->execute (pEntry);
 			else
@@ -252,7 +252,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		}
 		else if (myData.iNbValidCaracters > 0)  // pas d'entree mais du texte => on l'execute tel quel.
 		{
-			cd_debug ("on execute '%s'\n", myData.sCurrentText->str);
+			cd_debug ("on execute '%s'", myData.sCurrentText->str);
 			cairo_dock_launch_command (myData.sCurrentText->str);
 		}
 		
@@ -306,7 +306,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 	}
 	else if (string)  /// utiliser l'unichar ...
 	{
-		cd_debug ("string:'%s'\n", string);
+		cd_debug ("string:'%s'", string);
 		guint iNbNewChar = 0;
 		if ((iModifierType & GDK_CONTROL_MASK) && iUnicodeChar == 'v')  // CTRL+v
 		{
@@ -315,7 +315,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			gchar *cText = gtk_clipboard_wait_for_text (pClipBoard);  // la main loop s'execute pendant ce temps.
 			if (cText != NULL)
 			{
-				cd_debug ("clipboard : '%s'\n", cText);
+				cd_debug ("clipboard : '%s'", cText);
 				iNbNewChar = strlen (cText);  /// penser a l'UTF-8 ...
 				gchar *str = strchr (cText, '\r');
 				if (str)

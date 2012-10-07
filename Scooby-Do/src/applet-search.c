@@ -55,7 +55,7 @@ static void _launch_async_search (CDBackend *pBackend)
 		pBackend->iLocateFilter,
 		FALSE,
 		&pBackend->iNbSearchResults);
-	cd_debug (" -> %d resultats asynchrones en plus\n", pBackend->iNbSearchResults);
+	cd_debug (" -> %d resultats asynchrones en plus", pBackend->iNbSearchResults);
 	if (pBackend->pSearchResults != NULL)
 	{
 		CDEntry *pMainEntry = pBackend->pSearchResults->data;
@@ -66,7 +66,7 @@ static void _launch_async_search (CDBackend *pBackend)
 
 static gboolean _update_entries (CDBackend *pBackend)
 {
-	cd_debug ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	pBackend->bFoundNothing = FALSE;
 	pBackend->bTooManyResults = FALSE;
 	
@@ -150,7 +150,7 @@ static gboolean _update_entries (CDBackend *pBackend)
 }
 void cd_do_launch_backend (CDBackend *pBackend)
 {
-	cd_debug ("%s (%s)\n", __func__, pBackend->cName);
+	cd_debug ("%s (%s)", __func__, pBackend->cName);
 	// On initialise le backend si c'est son 1er appel.
 	if (pBackend->iState == 0)
 	{
@@ -209,7 +209,7 @@ void cd_do_launch_backend (CDBackend *pBackend)
 			myData.iCurrentFilter,
 			FALSE,
 			&iNbEntries);
-		cd_debug (" -> %d resultats en plus\n", iNbEntries);
+		cd_debug (" -> %d resultats en plus", iNbEntries);
 		if (pEntries != NULL)
 		{
 			CDEntry *pMainEntry = pEntries->data;
@@ -228,7 +228,7 @@ void cd_do_launch_backend (CDBackend *pBackend)
 
 void cd_do_launch_all_backends (void)
 {
-	cd_debug ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	cd_do_show_listing ();
 	g_list_foreach (myData.pBackends, (GFunc) cd_do_launch_backend, NULL);
 }
@@ -281,7 +281,7 @@ void cd_do_free_all_backends (void)
 
 void cd_do_append_entries_to_listing (GList *pEntries, gint iNbEntries)
 {
-	cd_debug ("%s (%d)\n", __func__, iNbEntries);
+	cd_debug ("%s (%d)", __func__, iNbEntries);
 	if (myData.pListing == NULL)
 		return ;
 	cd_do_show_listing ();
@@ -293,13 +293,13 @@ void cd_do_append_entries_to_listing (GList *pEntries, gint iNbEntries)
 	myData.pListing->iNbVisibleEntries += iNbEntries;
 	
 	cd_do_fill_listing_entries (myData.pListing);
-	cd_debug (" => %d elements (%d/%d)\n", g_list_length (myData.pListing->pEntries), myData.pListing->iNbEntries, myData.pListing->iNbVisibleEntries);
+	cd_debug (" => %d elements (%d/%d)", g_list_length (myData.pListing->pEntries), myData.pListing->iNbEntries, myData.pListing->iNbVisibleEntries);
 }
 
 
 void cd_do_remove_entries_from_listing (CDBackend *pBackend)
 {
-	cd_debug ("%s (%s, %d)\n", __func__, pBackend->cName, pBackend->iNbLastShownResults);
+	cd_debug ("%s (%s, %d)", __func__, pBackend->cName, pBackend->iNbLastShownResults);
 	g_return_if_fail (myData.pListing != NULL);
 	if (pBackend->pLastShownResults == NULL)
 		return ;
@@ -332,7 +332,7 @@ void cd_do_remove_entries_from_listing (CDBackend *pBackend)
 	}
 	myData.pListing->iNbEntries -= i;
 	myData.pListing->iNbVisibleEntries -= j;
-	cd_debug ("iNbEntries <- %d/%d\n", myData.pListing->iNbEntries, myData.pListing->iNbVisibleEntries);
+	cd_debug ("iNbEntries <- %d/%d", myData.pListing->iNbEntries, myData.pListing->iNbVisibleEntries);
 	
 	pRightLink = e;
 	if (pRightLink != NULL)
@@ -345,7 +345,7 @@ void cd_do_remove_entries_from_listing (CDBackend *pBackend)
 	}
 	if (pBackend->pLastShownResults == myData.pListing->pEntries)
 		myData.pListing->pEntries = pRightLink;
-	cd_debug (" => %d elements\n", g_list_length (myData.pListing->pEntries));
+	cd_debug (" => %d elements", g_list_length (myData.pListing->pEntries));
 	
 	pBackend->pLastShownResults = NULL;
 	pBackend->iNbLastShownResults = 0;
@@ -374,7 +374,7 @@ void cd_do_remove_entries_from_listing (CDBackend *pBackend)
 
 int cd_do_filter_entries (GList *pEntries, gint iNbEntries)
 {
-	cd_debug ("%s (%d)\n", __func__, iNbEntries);
+	cd_debug ("%s (%d)", __func__, iNbEntries);
 	CDEntry *pEntry;
 	int i, j = 0;
 	GList *e;
@@ -456,7 +456,7 @@ int cd_do_filter_entries (GList *pEntries, gint iNbEntries)
 
 void cd_do_activate_filter_option (int iNumOption)
 {
-	cd_debug ("%s (%d)\n", __func__, iNumOption);
+	cd_debug ("%s (%d)", __func__, iNumOption);
 	int iMaskOption = (1 << iNumOption);
 	if (myData.iCurrentFilter & iMaskOption)  // on enleve l'option => ca fait (beaucoup) plus de resultats.
 	{
@@ -471,7 +471,7 @@ void cd_do_activate_filter_option (int iNumOption)
 			return ;
 		}
 	}
-	cd_debug ("myData.iCurrentFilter  <- %d\n", myData.iCurrentFilter);
+	cd_debug ("myData.iCurrentFilter  <- %d", myData.iCurrentFilter);
 	
 	// on cherche les nouveaux resultats correpondants.
 	cd_do_launch_all_backends ();  // relance le locate seulement si necessaire.
@@ -488,7 +488,7 @@ GList* cd_do_list_main_sub_entry (CDEntry *pEntry, int *iNbSubEntries)
 
 void cd_do_show_current_sub_listing (void)
 {
-	cd_debug ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	if (myData.pListing->pCurrentEntry == NULL)
 		return ;
 	if (myData.pListingHistory == NULL)  // on sauvegarde le texte de la recherche principale.
@@ -537,7 +537,7 @@ void cd_do_show_current_sub_listing (void)
 
 void cd_do_show_previous_listing (void)
 {
-	cd_debug ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	if (myData.pListingHistory == NULL)  // on n'est pas dans un sous-listing.
 		return ;
 	
@@ -581,7 +581,7 @@ void cd_do_show_previous_listing (void)
 
 void cd_do_filter_current_listing (void)
 {
-	cd_debug ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	if (myData.pListing == NULL || myData.pListing->pEntries == NULL)
 		return ;
 	

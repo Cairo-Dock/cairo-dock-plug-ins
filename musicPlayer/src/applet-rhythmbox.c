@@ -105,7 +105,7 @@ static void cd_rhythmbox_getSongInfos (gboolean bGetAll)
 		if (value != NULL && G_VALUE_HOLDS_STRING(value))  // RB nous donne une adresse, eventuellement distante.
 			cString = g_value_get_string(value);
 		cd_musicplayer_set_cover_path (cString);
-		cd_debug ("MP :  cCoverPath <- %s\n", myData.cCoverPath);
+		cd_debug ("MP :  cCoverPath <- %s", myData.cCoverPath);
 		
 		g_hash_table_destroy (data_list);
 	}

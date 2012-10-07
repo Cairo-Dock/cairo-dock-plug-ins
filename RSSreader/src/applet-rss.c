@@ -41,11 +41,11 @@ void cd_rssreader_cut_line (gchar *cLine, PangoLayout *pLayout, int iMaxWidth)
 		if (amp[1] == '#' && g_ascii_isdigit (amp[2]) && g_ascii_isdigit (amp[3]) && g_ascii_isdigit (amp[4]) && amp[5] == ';')  // &#039;
 		{
 			int i = atoi (amp+2) - 32;
-			cd_debug ("%d\n", i);
+			cd_debug ("%d", i);
 			
 			if (i >= 0 && i < 256 - 32)
 			{
-				cd_debug ("%d -> %s\n", i, cExtendedAscii[i]);
+				cd_debug ("%d -> %s", i, cExtendedAscii[i]);
 				strcpy (amp, cExtendedAscii[i]);
 				strcpy (amp+strlen (cExtendedAscii[i]), amp+6);
 			}
@@ -390,7 +390,7 @@ static GList * _parse_atom_item (xmlNodePtr node, CDRssItem *pItem, GList *pItem
 
 static void _insert_error_message (CairoDockModuleInstance *myApplet, const gchar *cErrorMessage)
 {
-	cd_debug ("%s (%s, %d)\n", __func__, cErrorMessage, myData.bError);
+	cd_debug ("%s (%s, %d)", __func__, cErrorMessage, myData.bError);
 	CDRssItem *pItem;
 	if (myData.pItemList != NULL)  // on garde la liste courante, mais on insere un message.
 	{

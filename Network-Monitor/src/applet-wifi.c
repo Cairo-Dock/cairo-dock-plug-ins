@@ -219,7 +219,7 @@ gboolean cd_wifi_update_from_data (gpointer data)
 	
 	if (myData.wifi.cInterface != NULL)
 	{
-		cd_debug ("wifi sur %s\n", myData.wifi.cInterface);
+		cd_debug ("wifi sur %s", myData.wifi.cInterface);
 		myData.wifi.bWirelessExt = TRUE;
 		cd_wifi_draw_icon ();
 		cairo_dock_set_normal_task_frequency (myData.wifi.pTask);

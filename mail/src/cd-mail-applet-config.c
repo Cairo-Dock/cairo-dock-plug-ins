@@ -93,7 +93,7 @@ static void _get_mail_accounts (GKeyFile *pKeyFile, CairoDockModuleInstance *myA
 	for (i = 3; i < length; i ++)  // Icon, Desklet, Configuration + mail groups
 	{
 		cMailAccountName = pGroupList[i];
-		cd_debug ("+ on recupere le compte '%s'\n", cMailAccountName);
+		cd_debug ("+ on recupere le compte '%s'", cMailAccountName);
 		
 		// Get the type of the account.
 		if (! g_key_file_has_key (pKeyFile, cMailAccountName, "type", NULL))
@@ -115,7 +115,7 @@ static void _get_mail_accounts (GKeyFile *pKeyFile, CairoDockModuleInstance *myA
 		// in case the account type is unknown, just ignore.
 		if( j >= MAIL_NB_STORAGE_TYPES )
 			continue;
-		cd_debug ("  mail type : %d\n", j);
+		cd_debug ("  mail type : %d", j);
 		
 		// create a new mail account.
 		pMailAccount = g_new0 (CDMailAccount, 1);
@@ -428,7 +428,7 @@ void cd_mail_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pK
 		//pMailAccount = g_ptr_array_index (myData.pMailAccounts, i);  // i-3
 		//cMailAccountName = pMailAccount->name;
 		cMailAccountName = pGroupList[i];
-		cd_debug ("- on ajoute le bouton remove au compte '%s'\n", cMailAccountName);
+		cd_debug ("- on ajoute le bouton remove au compte '%s'", cMailAccountName);
 		if (! g_key_file_has_group (pKeyFile, cMailAccountName))
 		{
 			cd_warning ("mail : no group for mail account '%s'", cMailAccountName);
@@ -462,6 +462,6 @@ void cd_mail_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pK
 
 void cd_mail_save_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile, GSList *pWidgetList)
 {
-	cd_debug ("%s (%s)\n", __func__, myIcon->cName);
+	cd_debug ("%s (%s)", __func__, myIcon->cName);
 	// ca c'est si on avait des valeurs a recuperer dans nos widgets personnalises, et a stocker dans le pKeyFile. mais ici ils sont simple, et donc tous pris en charge par le dock.
 }

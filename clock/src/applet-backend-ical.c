@@ -78,7 +78,7 @@ static void backend_ical_init(CairoDockModuleInstance *myApplet)
 			icalerrorenum error = icalfileset_add_component(_pBackendData->piCalSet, _pBackendData->piCalCalendar);
 			if( error != ICAL_NO_ERROR )
 			{
-				cd_debug(" --> %s\n", icalerror_strerror(error));
+				cd_debug(" --> %s", icalerror_strerror(error));
 			}
 		}
 	}
@@ -162,7 +162,7 @@ static GList *get_tasks (CairoDockModuleInstance *myApplet)
 		
 		cTaskID = g_strdup(icalcomponent_get_uid(piCalComponent));
 		pTask = g_new0 (CDClockTask, 1);
-		cd_debug ("+ task %s\n", cTaskID);
+		cd_debug ("+ task %s", cTaskID);
 
 		struct icaltimetype liCalStartDate = icalcomponent_get_dtstart(piCalComponent);
 		// struct icaldurationtype liCalDuration = icalcomponent_get_duration(piCalComponent); //ignored until Clock manages tasks duration

@@ -66,7 +66,7 @@ static gboolean _set_new_image_pixbuf (GtkImage *pImage)
 	GdkPixbuf *pPixbuf = gtk_image_get_pixbuf (pImage);
 	g_return_val_if_fail (pPixbuf != NULL, FALSE);
 
-	cd_debug ("Icon Pixbuf: %p\n", pPixbuf);
+	cd_debug ("Icon Pixbuf: %p", pPixbuf);
 	gdouble fWidth, fHeight;
 	cairo_surface_t *pSurface = cairo_dock_create_surface_from_pixbuf (pPixbuf,
 		1.,

@@ -77,13 +77,13 @@ void cd_do_search_matching_icons (void)
 {
 	if (myData.sCurrentText->len == 0)
 		return;
-	cd_debug ("%s (%s)\n", __func__, myData.sCurrentText->str);
+	cd_debug ("%s (%s)", __func__, myData.sCurrentText->str);
 	gchar *str = strchr (myData.sCurrentText->str, ' ');  // on ne compte pas les arguments d'une eventuelle commande deja tapee.
 	guint length = myData.sCurrentText->len;
 	if (str != NULL)
 	{
 		g_string_set_size (myData.sCurrentText, str - myData.sCurrentText->str + 1);
-		cd_debug (" on ne cherchera que '%s' (len=%d)\n", myData.sCurrentText->str, myData.sCurrentText->len);
+		cd_debug (" on ne cherchera que '%s' (len=%d)", myData.sCurrentText->str, myData.sCurrentText->len);
 	}
 		
 	if (myData.pMatchingIcons == NULL)

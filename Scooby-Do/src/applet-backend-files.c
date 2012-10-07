@@ -140,7 +140,7 @@ static gboolean init (void)
 #define NB_ACTIONS_ON_FOLDER 4
 static GList *_list_folder (const gchar *cPath, gboolean bNoHiddenFile, int *iNbEntries)
 {
-	cd_debug ("%s (%s)\n", __func__, cPath);
+	cd_debug ("%s (%s)", __func__, cPath);
 	// on ouvre le repertoire.
 	GError *erreur = NULL;
 	GDir *dir = g_dir_open (cPath, 0, &erreur);
@@ -218,7 +218,7 @@ static GList *_list_folder (const gchar *cPath, gboolean bNoHiddenFile, int *iNb
 #define NB_ACTIONS_ON_FILE 5
 static GList *_list_actions_on_file (const gchar *cPath, int *iNbEntries)
 {
-	cd_debug ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	GList *pEntries = NULL;
 	CDEntry *pEntry;
 	
@@ -268,7 +268,7 @@ static GList *_list_actions_on_file (const gchar *cPath, int *iNbEntries)
 
 static GList *_cd_do_list_file_sub_entries (CDEntry *pEntry, int *iNbEntries)
 {
-	cd_debug ("%s (%s)\n", __func__, pEntry->cPath);
+	cd_debug ("%s (%s)", __func__, pEntry->cPath);
 	if (pEntry->cPath == NULL)  // on est deja en bout de chaine.
 		return NULL;
 	if (g_file_test (pEntry->cPath, G_FILE_TEST_IS_DIR))  // on liste les fichiers du repertoire et les actions sur le repertoire.
@@ -328,13 +328,13 @@ static gboolean _cd_do_fill_file_entry (CDEntry *pEntry)
 
 static void _cd_do_launch_file (CDEntry *pEntry)
 {
-	cd_debug ("%s (%s)\n", __func__, pEntry->cPath);
+	cd_debug ("%s (%s)", __func__, pEntry->cPath);
 	cairo_dock_fm_launch_uri (pEntry->cPath);
 }
 
 static void _cd_do_show_file_location (CDEntry *pEntry)
 {
-	cd_debug ("%s (%s)\n", __func__, pEntry->cPath);
+	cd_debug ("%s (%s)", __func__, pEntry->cPath);
 	gchar *cPathUp = g_path_get_dirname (pEntry->cPath);
 	g_return_if_fail (cPathUp != NULL);
 	cairo_dock_fm_launch_uri (cPathUp);
@@ -343,7 +343,7 @@ static void _cd_do_show_file_location (CDEntry *pEntry)
 
 static void _cd_do_open_terminal_here (CDEntry *pEntry)
 {
-	cd_debug ("%s (%s)\n", __func__, pEntry->cPath);
+	cd_debug ("%s (%s)", __func__, pEntry->cPath);
 	gchar *cCommand = NULL;
 	if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
 		cCommand = g_strdup_printf ("gnome-terminal --working-directory=\"%s\"", pEntry->cPath);
@@ -359,7 +359,7 @@ static void _cd_do_open_terminal_here (CDEntry *pEntry)
 
 static void _cd_do_zip_folder (CDEntry *pEntry)
 {
-	cd_debug ("%s (%s)\n", __func__, pEntry->cPath);
+	cd_debug ("%s (%s)", __func__, pEntry->cPath);
 	gchar *cCommand = g_strdup_printf ("tar cfz '%s.tar.gz' '%s'", pEntry->cPath, pEntry->cPath);
 	cairo_dock_launch_command (cCommand);
 	g_free (cCommand);
@@ -367,7 +367,7 @@ static void _cd_do_zip_folder (CDEntry *pEntry)
 
 static void _cd_do_zip_file (CDEntry *pEntry)
 {
-	cd_debug ("%s (%s)\n", __func__, pEntry->cPath);
+	cd_debug ("%s (%s)", __func__, pEntry->cPath);
 	gchar *cCommand = g_strdup_printf ("zip '%s.zip' '%s'", pEntry->cPath, pEntry->cPath);
 	cairo_dock_launch_command (cCommand);
 	g_free (cCommand);
@@ -375,7 +375,7 @@ static void _cd_do_zip_file (CDEntry *pEntry)
 
 static void _cd_do_mail_file (CDEntry *pEntry)
 {
-	cd_debug ("%s (%s)\n", __func__, pEntry->cPath);
+	cd_debug ("%s (%s)", __func__, pEntry->cPath);
 	gchar *cURI = g_filename_to_uri (pEntry->cPath, NULL, NULL);
 	gchar *cCommand = g_strdup_printf ("thunderbird -compose \"attachment=%s\"", cURI);  /// prendre aussi en compte les autres clients mail, et utiliser celui par defaut...
 	cairo_dock_launch_command (cCommand);
@@ -385,7 +385,7 @@ static void _cd_do_mail_file (CDEntry *pEntry)
 
 static void _cd_do_move_file (CDEntry *pEntry)
 {
-	cd_debug ("%s (%s)\n", __func__, pEntry->cPath);
+	cd_debug ("%s (%s)", __func__, pEntry->cPath);
 	GtkWidget* pFileChooserDialog = gtk_file_chooser_dialog_new (
 		D_("Pick up a directory"),
 		GTK_WINDOW (g_pMainDock->container.pWidget),
@@ -418,7 +418,7 @@ static void _cd_do_move_file (CDEntry *pEntry)
 
 static void _cd_do_copy_url (CDEntry *pEntry)
 {
-	cd_debug ("%s (%s)\n", __func__, pEntry->cPath);
+	cd_debug ("%s (%s)", __func__, pEntry->cPath);
 	GtkClipboard *pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
 	gtk_clipboard_set_text (pClipBoard, pEntry->cPath, -1);
 }
@@ -471,7 +471,7 @@ static gchar *_locate_files (const char *text, int iFilter, gint iLimit)
 		}
 	}
 	
-	cd_debug (">>> %s\n", sCommand->str);
+	cd_debug (">>> %s", sCommand->str);
 	gchar *cResult = cairo_dock_launch_command_sync (sCommand->str);
 	if (cResult == NULL || *cResult == '\0')
 	{
@@ -500,13 +500,13 @@ static GList * _build_entries (gchar *cResult, int *iNbEntries)
 	}
 	g_free (pMatchingFiles);  // ses elements sont dans les entrees.
 	
-	cd_debug ("%d entries built\n", i);
+	cd_debug ("%d entries built", i);
 	*iNbEntries = i;
 	return pEntries;
 }
 static GList* search (const gchar *cText, int iFilter, gboolean bSearchAll, int *iNbEntries)
 {
-	cd_debug ("%s (%s)\n", __func__, cText);
+	cd_debug ("%s (%s)", __func__, cText);
 	gchar *cResult = _locate_files (cText, iFilter, (bSearchAll ? 50 : 3));
 	
 	if (cResult == NULL)

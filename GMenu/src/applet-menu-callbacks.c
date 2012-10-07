@@ -99,7 +99,7 @@ void submenu_to_display (GtkWidget *menu)
 	if (!directory) {
 		menu_path = g_object_get_data (G_OBJECT (menu),
 					       "panel-menu-tree-path");
-		cd_debug ("n'est pas un directory, menu_path : %s\n", menu_path);
+		cd_debug ("n'est pas un directory, menu_path : %s", menu_path);
 		if (!menu_path)
 		{
 			cd_warning ("menu_path is empty");

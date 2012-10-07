@@ -97,7 +97,7 @@ void cd_clock_load_theme (CairoDockModuleInstance *myApplet)
 		}
 		myData.iNeedleRealWidth = myData.needleDimension.width/2 + myData.iNeedleOffsetX;
 		myData.iNeedleOffsetY = .5 * myData.iNeedleRealHeight;
-		cd_debug ("clock needle : H=%d; dx=%d\n", myData.iNeedleRealHeight, myData.iNeedleOffsetX);
+		cd_debug ("clock needle : H=%d; dx=%d", myData.iNeedleRealHeight, myData.iNeedleOffsetX);
 		
 		g_string_free (sElementPath, TRUE);
 	}

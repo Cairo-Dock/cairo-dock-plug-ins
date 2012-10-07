@@ -74,7 +74,7 @@ static void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	double b = H + hi + h0 - W / 2;
 	double c = - W / 2;
 	double g = (-b + sqrt (b * b - 4 * a * c)) / 2  / a;
-	cd_debug ("gamma : %f (=) %f\n", gamma, g);*/
+	cd_debug ("gamma : %f (=) %f", gamma, g);*/
 	
 	double Ws = cairo_dock_get_max_authorized_dock_width (pDock);
 	if (cairo_dock_is_extended_dock (pDock) && w + 2 * dw < Ws)  // alors on etend.

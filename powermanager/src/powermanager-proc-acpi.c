@@ -82,7 +82,7 @@ static gboolean _find_battery_in_dir (const gchar *cBatteryPath)
 						myData.iCapacity = atoi (str3);
 					}
 					
-					cd_debug ("Capacity : %d mWsh\n", myData.iCapacity);
+					cd_debug ("Capacity : %d mWsh", myData.iCapacity);
 					myData.cBatteryStateFilePath = g_strdup_printf ("%s/%s/state", cBatteryPath, cBatteryName);
 					bBatteryFound = TRUE;
 				}

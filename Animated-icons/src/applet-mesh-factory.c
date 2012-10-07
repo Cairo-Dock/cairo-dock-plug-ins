@@ -126,7 +126,7 @@ GLuint cairo_dock_load_capsule_calllist (void)
 	glColor4f(1.0f, 1.0f, 1.0f, 1.0f); // Couleur a fond 
 	//GLfloat fMaterial[4] = {1., 1., 1., 1.};
 	//glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, fMaterial);  // on definit Les proprietes materielles de l'objet.
-	cd_debug ("iChromeTexture : %d\n", myData.iChromeTexture);
+	cd_debug ("iChromeTexture : %d", myData.iChromeTexture);
 	
 	/*glBindTexture(GL_TEXTURE_2D, myData.iChromeTexture);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_EXT); // Ici c'est pour le type de combinaison de texturing en cas de multi

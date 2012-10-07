@@ -69,7 +69,7 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 	//if( MAIL_NO_ERROR == mailsession_unseen_number(pMailAccount->folder->fld_session, pMailAccount->name, &result_unseen) )
 	if( MAIL_NO_ERROR == mailfolder_status(pMailAccount->folder, &result_messages, &result_recent, &result_unseen) )
 	{
-		cd_debug ("mail : %d/%d/%d\n", result_messages, result_recent, result_unseen);
+		cd_debug ("mail : %d/%d/%d", result_messages, result_recent, result_unseen);
 		pMailAccount->iPrevNbUnseenMails = pMailAccount->iNbUnseenMails;
 		CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
 		if (! myConfig.bShowMessageContent) // only if we want to show the message content...
@@ -81,7 +81,7 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 			// On recupere les messages non lus.
 			//if (myConfig.bShowMessageContent && pMailAccount->bInitialized)  // && pMailAccount->iNbUnseenMails > pMailAccount->iPrevNbUnseenMails
 			CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
-			cd_debug ("getting %d message body...\n", pMailAccount->iNbUnseenMails);
+			cd_debug ("getting %d message body...", pMailAccount->iNbUnseenMails);
 			g_list_foreach (pMailAccount->pUnseenMessageList, (GFunc) g_free, NULL);
 			g_list_free (pMailAccount->pUnseenMessageList);
 			g_list_foreach (pMailAccount->pUnseenMessageUid, (GFunc) g_free, NULL);
@@ -231,7 +231,7 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 					{
 						cUid = pUid->mid_value;
 					}
-					cd_debug ("    cUid : %s\n", cUid);*/
+					cd_debug ("    cUid : %s", cUid);*/
 					
 					// finally, append the message to display to the list of unseen messages.
 					cMessage = g_strdup_printf ("From : %s\nSubject : %s\n%s", cFrom ? cFrom : D_("unknown"), cSubject ? cSubject : D_("no subject"), cBodyText ? cBodyText : "");
