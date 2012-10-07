@@ -1435,13 +1435,13 @@ static gboolean cd_dbus_main_emit_on_build_menu (gpointer data, Icon *pClickedIc
 
 static void root_child_added (DbusmenuMenuitem * root, DbusmenuMenuitem * child, guint position, CDIconData *pData)
 {
-	g_print ("%s (%d)\n", __func__, position);
+	cd_debug ("%s (%d)", __func__, position);
 	pData->menu_items_list = g_list_insert (pData->menu_items_list, child, position);  // simply add it to the list, the associated menu-item will appear in the menu the next time the user right-clicks (we don't bother to refresh the menu in real-time).
 }
 
 static void root_child_moved (DbusmenuMenuitem * root, DbusmenuMenuitem * child, guint newposition, guint oldposition, CDIconData *pData)
 {
-	g_print ("%s (%d -> %d)\n", __func__, oldposition, newposition);
+	cd_debug ("%s (%d -> %d)", __func__, oldposition, newposition);
 	GList *mi = g_list_nth (pData->menu_items_list, oldposition);
 	pData->menu_items_list = g_list_remove_link (pData->menu_items_list, mi);
 	pData->menu_items_list = g_list_insert (pData->menu_items_list, child, newposition);  // same remark
@@ -1449,13 +1449,13 @@ static void root_child_moved (DbusmenuMenuitem * root, DbusmenuMenuitem * child,
 
 static void root_child_delete (DbusmenuMenuitem * root, DbusmenuMenuitem * child, CDIconData *pData)
 {
-	g_print ("%s ()\n", __func__);
+	cd_debug ("%s ()", __func__);
 	pData->menu_items_list = g_list_remove (pData->menu_items_list, child);  // same remark
 }
 
 static void root_changed (DbusmenuGtkClient * client, DbusmenuMenuitem * newroot, CDIconData *pData)
 {
-	g_print ("%s (%p\n", __func__, newroot);
+	cd_debug ("%s (%p", __func__, newroot);
 	if (newroot == NULL)
 	{
 		return;
@@ -1480,7 +1480,7 @@ gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBus
 	if (pList == NULL)
 		return TRUE;
 	
-	g_print ("%s (%s , %s)\n", __func__, cBusName, cMenuPath);
+	cd_debug ("%s (%s , %s)", __func__, cBusName, cMenuPath);
 	static gboolean s_bInit = FALSE;
 	if (! s_bInit)  // register for right-click events once.
 	{
@@ -1516,7 +1516,7 @@ gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBus
 		// remove any previous menu
 		if (pData->cBusName)
 		{
-			g_print ("menu %s (%s) is removed\n", pData->cBusName, pData->cMenuPath);
+			cd_debug ("menu %s (%s) is removed", pData->cBusName, pData->cMenuPath);
 			g_free (pData->cBusName);
 			g_free (pData->cMenuPath);
 			
@@ -1534,7 +1534,7 @@ gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBus
 		// if a menu is set, build the client and wait for the root child to appear on our side of the bus.
 		if (cBusName && cMenuPath && *cMenuPath != '\0')
 		{
-			g_print ("new menu %s (%s)\n", cBusName, cMenuPath);
+			cd_debug ("new menu %s (%s)", cBusName, cMenuPath);
 			pData->client = dbusmenu_gtkclient_new(pData->cBusName, pData->cMenuPath);
 			g_signal_connect(G_OBJECT(pData->client), DBUSMENU_GTKCLIENT_SIGNAL_ROOT_CHANGED, G_CALLBACK(root_changed), pData);
 		}

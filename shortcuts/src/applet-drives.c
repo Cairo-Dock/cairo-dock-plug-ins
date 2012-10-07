@@ -111,7 +111,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 			
 			//\_______________________ on la place au bon endroit suivant son nom.
 			cd_shortcuts_set_icon_order_by_name (pNewIcon, pIconsList);
-			g_print (" new drive : %s, %s\n", pNewIcon->cName, pNewIcon->cCommand);
+			cd_debug (" new drive : %s, %s", pNewIcon->cName, pNewIcon->cCommand);
 			
 			//\_______________________ on l'insere dans la liste.
 			CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pNewIcon);
@@ -148,7 +148,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 				cd_warning ("  an unknown mount point was modified");
 				return ;
 			}
-			g_print (" %s is modified (%s)\n", pConcernedIcon->cName, pConcernedIcon->cCommand);
+			cd_debug (" %s is modified (%s)", pConcernedIcon->cName, pConcernedIcon->cCommand);
 			
 			//\_______________________ on recupere les infos actuelles.
 			Icon *pNewIcon = cairo_dock_fm_create_icon_from_URI (cURI, pContainer, CAIRO_DOCK_FM_SORT_BY_NAME);
