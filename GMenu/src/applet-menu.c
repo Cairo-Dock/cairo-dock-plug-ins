@@ -72,6 +72,12 @@ GtkWidget * create_fake_menu (GMenuTreeDirectory *directory)
 void image_menu_destroy (GtkWidget *image, gpointer data)
 {
 	myData.image_menu_items = g_slist_remove (myData.image_menu_items, image);
+	if (myConfig.bLoadIconsAtStartup)
+	{
+		int sid = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (image), "cd-preload-icon"));
+		if (sid != 0)
+			g_source_remove (sid);
+	}
 }
 
 
@@ -230,11 +236,11 @@ static gboolean _image_menu_shown_in_idle (gpointer *data)
 {
 	GtkWidget *image = data[0];
 	IconToLoad *icon = data[1];
-	if (myApplet && &myData) // still actif?
-		image_menu_shown (image, icon);
-
+	image_menu_shown (image, icon);
+	
 	g_free (data);
-
+	g_object_set_data (G_OBJECT (image), "cd-preload-icon", NULL);
+	
 	return FALSE;
 }
 
@@ -286,7 +292,8 @@ void panel_load_menu_image_deferred (GtkWidget   *image_menu_item,
 		gpointer *data = g_new0 (gpointer, 2);
 		data[0] = image;
 		data[1] = icon;
-		g_timeout_add_seconds (5, (GSourceFunc) _image_menu_shown_in_idle, data);
+		gint sid = g_timeout_add_seconds (5, (GSourceFunc) _image_menu_shown_in_idle, data);
+		g_object_set_data (G_OBJECT (image), "cd-preload-icon", GINT_TO_POINTER (sid));
 	}
  
 	_gtk_image_menu_item_set_image (

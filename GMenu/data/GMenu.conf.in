@@ -120,6 +120,5 @@ config menu =
 #l+[None;Logout;Shutdown;Both] Show Logout and/or Shutdown : 
 show quit = 0
 
-#b Load icons at startup?
-#{Load all icons 5 seconds after having launched this applet in order to not have any lag when opening the menu.}
+#b Preload icons at startup
 startup load = false
