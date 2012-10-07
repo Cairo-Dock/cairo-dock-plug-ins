@@ -472,7 +472,7 @@ void image_menu_shown (GtkWidget *image, gpointer data)
 		icons_to_load = g_list_append (icons_to_load, new_icon);
 	}
 	if (load_icons_id == 0)
-		load_icons_id = g_idle_add (load_icons_handler, NULL);
+		load_icons_id = g_idle_add_full (G_PRIORITY_LOW, load_icons_handler, NULL, NULL);
 }
 
 void activate_app_def (GtkWidget      *menuitem,

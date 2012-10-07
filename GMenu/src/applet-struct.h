@@ -60,6 +60,7 @@ struct _AppletConfig {
 	gchar *cQuickLaunchShortkey;
 	gchar *cConfigureMenuCommand;
 	gboolean bShowRecent;
+	gboolean bLoadIconsAtStartup;
 	gint iNbRecentItems;
 	CDGMenuShowQuit iShowQuit;
 	gchar *cRecentRootDirFilter;

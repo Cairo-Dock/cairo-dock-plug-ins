@@ -225,6 +225,19 @@ GdkPixbuf * panel_make_menu_icon (GtkIconTheme *icon_theme,
 	return pb;
 }
 
+
+static gboolean _image_menu_shown_in_idle (gpointer *data)
+{
+	GtkWidget *image = data[0];
+	IconToLoad *icon = data[1];
+	if (myApplet && &myData) // still actif?
+		image_menu_shown (image, icon);
+
+	g_free (data);
+
+	return FALSE;
+}
+
 void panel_load_menu_image_deferred (GtkWidget   *image_menu_item,
 				GtkIconSize  icon_size,
 				///const char  *stock_id,
@@ -266,6 +279,15 @@ void panel_load_menu_image_deferred (GtkWidget   *image_menu_item,
 	g_signal_connect_data (image, "map",
 			       G_CALLBACK (image_menu_shown), icon,
 			       (GClosureNotify) icon_to_load_free, 0);
+
+	// pre-load all icons
+	if (myConfig.bLoadIconsAtStartup)
+	{
+		gpointer *data = g_new0 (gpointer, 2);
+		data[0] = image;
+		data[1] = icon;
+		g_timeout_add_seconds (5, (GSourceFunc) _image_menu_shown_in_idle, data);
+	}
  
 	_gtk_image_menu_item_set_image (
 		GTK_IMAGE_MENU_ITEM (image_menu_item), image);
