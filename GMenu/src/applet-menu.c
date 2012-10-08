@@ -236,7 +236,11 @@ static gboolean _image_menu_shown_in_idle (gpointer *data)
 {
 	GtkWidget *image = data[0];
 	IconToLoad *icon = data[1];
-	image_menu_shown (image, icon);
+	/* if the applet is disabled, it's not interesting to continue...
+	 * (and all g_timeout are not stopped if the applet is disabled)
+	 */
+	if (myApplet && &myData)
+		image_menu_shown (image, icon);
 	
 	g_free (data);
 	g_object_set_data (G_OBJECT (image), "cd-preload-icon", NULL);
