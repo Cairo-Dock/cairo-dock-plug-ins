@@ -28,12 +28,6 @@
 
 #define CD_SHORTCUT_DEFAULT_DIRECTORY_ICON_FILENAME "inode-directory"
 
-/*
-static void _cd_shortcuts_mark_one_bookmark (Icon *icon, gpointer unused, int *pTime)
-{
-	icon->iLastCheckTime = *pTime;
-}
-*/
 void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
 {
 	static int iTime = 0;
@@ -41,6 +35,15 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 	CD_APPLET_ENTER;
 	//g_print ("%s (%d)\n", __func__, iEventType);
 	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
+	Icon *icon;
+	GList *ic;
+	for (ic = pIconsList; ic != NULL; ic = ic->next)  // optimization: skip the disks and networks, and point on the first bookmark.
+	{
+		icon = ic->data;
+		if (icon->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)
+			break;
+	}
+	pIconsList = ic;  // Note that since the first bookmark is always the Home Folder, 'pIconsList' will never change when inserting/removing a bookmark.
 	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
 	
@@ -65,6 +68,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 			g_free (cContent);
 			
 			//\____________________ On parcourt le contenu.
+			double fCurrentOrder = 1.;  // bookmarks are listed in the order of the file; we need to reorder each icon in case a bookmark has changed its place, or if a new one appeared (the first one is always the Home Folder).
 			gchar *cOneBookmark;
 			Icon *pNewIcon;
 			gchar *cName, *cRealURI, *cIconName, *cUserName;
@@ -111,7 +115,10 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 						pExistingIcon = NULL;
 					}
 					else
+					{
 						pExistingIcon->iLastCheckTime = iTime;
+						pExistingIcon->fOrder = fCurrentOrder ++;
+					}
 				}
 				if (pExistingIcon == NULL)
 				{
@@ -144,14 +151,11 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 							cIconName,
 							cRealURI,
 							NULL,
-							0);
+							fCurrentOrder++);
 						pNewIcon->iGroup = CD_BOOKMARK_GROUP;
 						pNewIcon->cBaseURI = cOneBookmark;
 						pNewIcon->iVolumeID = iVolumeID;
 						pNewIcon->iLastCheckTime = iTime;
-						
-						pIconsList = CD_APPLET_MY_ICONS_LIST;
-						cd_shortcuts_set_icon_order_by_name (pNewIcon, pIconsList);
 						
 						CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pNewIcon);
 					}
@@ -164,42 +168,24 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 			}
 			g_free (cBookmarksList);
 			
-			//\____________________ We remove the old bookmarks.
-			pIconsList = CD_APPLET_MY_ICONS_LIST;
-			gboolean bRemove = TRUE;
-			Icon *icon;
-			GList *ic;
-			while (bRemove)
+			//\____________________ remove the old bookmarks.
+			///pIconsList = CD_APPLET_MY_ICONS_LIST;
+			GList *next_ic;
+			for (ic = pIconsList; ic != NULL; ic = next_ic)
 			{
-				bRemove = FALSE;
-				for (ic = pIconsList; ic != NULL; ic = ic->next)
+				next_ic = ic->next;
+				icon = ic->data;
+				if (icon->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)
 				{
-					icon = ic->data;
-					if (icon->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)
+					if (icon->iLastCheckTime < iTime)
 					{
-						if (icon->iLastCheckTime != iTime
-							&& g_strcmp0 (icon->cName, D_("Home Folder")) != 0)
-						{
-							cd_debug ("this bookmark is too old (%s)", icon->cName);
-							CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (icon);
-							bRemove = TRUE;
-							break;
-						}
+						cd_debug ("this bookmark is too old (%s)", icon->cName);
+						CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (icon);
 					}
 				}
 			}
 			
-			//\____________________ On ajoute ou supprime un separateur.
-			/**if (myDock)
-			{
-				Icon *pFirstBookmarkIcon = cairo_dock_get_first_icon_of_type (myIcon->pSubDock->icons, 10);
-				if (pFirstBookmarkIcon == NULL && pSeparatorIcon != NULL)
-				{
-					cd_message ("on enleve l'ancien separateur");
-					cairo_dock_detach_icon_from_dock (pSeparatorIcon, myIcon->pSubDock, myConfig.bUseSeparator);
-					cairo_dock_free_icon (pSeparatorIcon);
-				}
-			}*/
+			cairo_dock_sort_icons_by_order (pIconsList);  // again, since 'Home Folder' is always the first bookmark, the head of the list won't change even if there are only bookmarks (so we don't need to re-assigne it to the container).
 		}
 		g_free (cBookmarkFilePath);
 	}
@@ -405,6 +391,7 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath, CairoDockModuleIns
 	// Home
 	gchar *cHome = g_strdup_printf ("file://%s", g_getenv ("HOME"));
 	pNewIcon = _cd_shortcuts_get_icon (cHome, D_("Home Folder"), fCurrentOrder++);
+	pNewIcon->iLastCheckTime = 1e9;  // so that this bookmark will never be considered old, and therefore removed.
 	_init_disk_usage (pNewIcon, myApplet);
 	pBookmarkIconList = g_list_append (pBookmarkIconList, pNewIcon);
 
