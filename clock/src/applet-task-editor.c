@@ -22,6 +22,8 @@
 #define __USE_POSIX
 #include <signal.h>
 
+#include <gdk/gdkkeysyms.h> // needed for 'GDK_Escape'
+
 #include "applet-struct.h"
 #include "applet-calendar.h"
 #include "applet-task-editor.h"
