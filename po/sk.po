@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2012-04-25 06:30+0000\n"
-"Last-Translator: Milan Slovák <Unknown>\n"
+"POT-Creation-Date: 2012-09-30 15:12+0000\n"
+"PO-Revision-Date: 2012-09-30 17:27+0000\n"
+"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Slovak <sk@li.org>\n"
-"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-03 05:46+0000\n"
-"X-Generator: Launchpad (build 15531)\n"
+"X-Launchpad-Export-Date: 2012-10-01 04:55+0000\n"
+"X-Generator: Launchpad (build 16049)\n"
+"Language: sk\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -102,7 +103,8 @@ msgstr "Prepáč, teraz som zaneprázdnený."
 #: ../Cairo-Penguin/src/applet-notifications.c:31
 msgid ""
 "I don't have time to play with you, I have to dig and mine all these icons."
-msgstr "Nemám čas sa s tebou hrať. Musím zakopať míny pod všetky tieto ikony."
+msgstr ""
+"Nemám čas sa s tebou hrať. Musím zakopať míny pod všetky tieto ikony."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:32
 msgid "Your dock is so messy! Let me clean it."
@@ -358,7 +360,8 @@ msgstr "Modul bol pridaný, ale nemohol byť spustený."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Applet '%s' bol úspešne aktualizovaný a automaticky načítaný"
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -499,7 +502,8 @@ msgstr ""
 #: ../Folders/src/applet-init.c:87 ../Folders/src/applet-init.c:150
 #: ../Folders/src/applet-notifications.c:42
 msgid "Open the configuration of the applet to choose a folder to import."
-msgstr "Otvorte konfiguráciu apletu a vyberte zložku, ktorú chcete importovať."
+msgstr ""
+"Otvorte konfiguráciu apletu a vyberte zložku, ktorú chcete importovať."
 
 #: ../Folders/src/applet-notifications.c:54
 msgid "Empty or unreadable folder."
@@ -964,13 +968,10 @@ msgid ""
 msgstr ""
 
 #: ../Printers-Menu/src/applet-notifications.c:34
-#, fuzzy
 msgid ""
 "The PrintersMenu service did not reply.\n"
 "Please check that 'libprintersmenu.so' is correctly installed."
 msgstr ""
-"Služba Správy neodpovedá.\n"
-"Skontrolujte prosím, či je správne nainštalovaná."
 
 #: ../RSSreader/src/applet-init.c:31
 msgid "RSSreader"
@@ -1086,9 +1087,8 @@ msgid "All"
 msgstr "Všetko"
 
 #: ../Recent-Events/src/applet-dialog.c:374
-#, fuzzy
 msgid "Applications"
-msgstr "Menu aplikácií"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:375
 msgid "Document"
@@ -1336,9 +1336,8 @@ msgid "Notification Area"
 msgstr "Oblasť upozornení"
 
 #: ../Sync-Menu/src/applet-init.c:30
-#, fuzzy
 msgid "Sync-Menu"
-msgstr "Menu"
+msgstr ""
 
 #: ../Sync-Menu/src/applet-init.c:33
 msgid ""
@@ -1350,14 +1349,11 @@ msgid ""
 msgstr ""
 
 #: ../Sync-Menu/src/applet-notifications.c:34
-#, fuzzy
 msgid ""
 "The Sync Indicator service did not reply.\n"
 "Please check that 'libsyncindicator.so' (indicator-sync) is correctly "
 "installed."
 msgstr ""
-"Služba Správy neodpovedá.\n"
-"Skontrolujte prosím, či je správne nainštalovaná."
 
 #: ../System-Monitor/src/applet-cpusage.c:59
 msgid "Uptime"
@@ -1748,8 +1744,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1758,8 +1754,8 @@ msgstr ""
 "K dispozícii sú 2 pohľady : <b>číselný</b> a <b>analógový</b>.\n"
 " Analógový pohľad je kompatibilnýs témami Cairo-Clock, a applet môžete "
 "odpojiť a získať dokonalý klon Cairo-Hodín.\n"
-"Zobrazuje <b>kalendár</b> a ľavé kliknutie, vám umožní <b>spravovať úlohy</"
-"b>.\n"
+"Zobrazuje <b>kalendár</b> a ľavé kliknutie, vám umožní <b>spravovať "
+"úlohy</b>.\n"
 "Tiež podporuje alarmy, a umožnuje nastaviť čas a dátum.\n"
 "Ľavé kliknutie zobrazí/skryje kalendar, Stredné kliknutie zastaví "
 "oznamovanie,\n"
@@ -1961,7 +1957,8 @@ msgstr ""
 "Stačí stlačiť CTRL + V k prilepeniu adresy URL kdekoľvek."
 
 #: ../dnd2share/src/applet-dnd2share.c:333
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr "Prosím, počkajte kým súčasné nahrávanie skončí pred začatím nového."
 
 #: ../dnd2share/src/applet-dnd2share.c:401
@@ -2502,7 +2499,8 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-config.c:392
 msgid "Enter a name for this account. You can give it any name you want."
-msgstr "Prosím, zadajte názov pre tento účet. Môžete vložiť názov aký chcete."
+msgstr ""
+"Prosím, zadajte názov pre tento účet. Môžete vložiť názov aký chcete."
 
 #: ../mail/src/cd-mail-applet-config.c:447
 msgid "Remove Account"
@@ -2821,18 +2819,16 @@ msgid "Estimated time before full:"
 msgstr "Zostávajúci čas do úplného nabitia:"
 
 #: ../powermanager/src/powermanager-draw.c:283
-#, fuzzy
 msgid "Model:"
-msgstr "Model"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:289
 msgid "Technology:"
 msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:293
-#, fuzzy
 msgid "Maximum capacity:"
-msgstr "Maximálna kapacita"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:298
 msgid "No battery found."
@@ -2921,9 +2917,8 @@ msgstr "Odpojené"
 
 #: ../shortcuts/src/applet-bookmarks.c:180
 #: ../shortcuts/src/applet-bookmarks.c:406
-#, fuzzy
 msgid "Home Folder"
-msgstr "Priečinok"
+msgstr ""
 
 #: ../shortcuts/src/applet-drives.c:130 ../shortcuts/src/applet-drives.c:193
 #, c-format
@@ -2996,9 +2991,8 @@ msgid "Open Home directory"
 msgstr "Otvoriť domovský priečinok"
 
 #: ../shortcuts/src/applet-notifications.c:270
-#, fuzzy
 msgid "Connect to Server..."
-msgstr "Pripájanie..."
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:276
 msgid "Rename this bookmark"
@@ -3034,11 +3028,11 @@ msgstr "zobraziť myš"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
-"Tento plugin vykresľuje niektoré animácie okolo kurzora, keď je vnútri doku/"
-"deskletu."
+"Tento plugin vykresľuje niektoré animácie okolo kurzora, keď je vnútri "
+"doku/deskletu."
 
 #: ../showDesktop/src/applet-init.c:28
 msgid "showDesktop"
@@ -3645,15 +3639,13 @@ msgid "Wifi"
 msgstr "Wifi"
 
 #: ../wifi/src/applet-notifications.c:88
-#, fuzzy
 msgid "Toggle wifi ON/OFF"
-msgstr "Prepínač kompozície ZAP/VYP"
+msgstr ""
 
 #: ../gvfs-integration/cairo-dock-gio-vfs.c:466
 #: ../gvfs-integration/cairo-dock-gio-vfs.c:833
-#, fuzzy
 msgid "File System"
-msgstr "Súbory"
+msgstr ""
 
 #: ../Animated-icons/data/messages:1 ../icon-effect/data/messages:1
 #: ../illusion/data/messages:1
@@ -5495,7 +5487,8 @@ msgid "Background"
 msgstr "Pozadie"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr "Môžete mať viac atraktívnych prostredí pomocou dekorácie Deskletov"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
@@ -5547,9 +5540,8 @@ msgid "Let empty to use the name of the folder."
 msgstr "Ponechajte prázdne ak chcete použiť názov priečinka."
 
 #: ../Folders/data/messages:11 ../quick-browser/data/messages:11
-#, fuzzy
 msgid "Folder name"
-msgstr "Názov súboru"
+msgstr ""
 
 #: ../Folders/data/messages:13
 msgid "How to render the icon :"
@@ -5613,16 +5605,16 @@ msgstr "Klávesová skratka pre zobrazenie/schovanie menu :"
 
 #: ../GMenu/data/messages:93
 msgid "Shortkey to show/hide the quick-launch dialog:"
-msgstr "Klávesová skratka pre zobrazenie/skrytie dialógu rýchleho spustenia ?"
+msgstr ""
+"Klávesová skratka pre zobrazenie/skrytie dialógu rýchleho spustenia ?"
 
 #: ../GMenu/data/messages:95
 msgid "Show recent documents?"
 msgstr "Zobraziť nedávne dokumenty ?"
 
 #: ../GMenu/data/messages:97
-#, fuzzy
 msgid "Number of items to display"
-msgstr "Počet zobrazených riadkov :"
+msgstr ""
 
 #: ../GMenu/data/messages:99
 msgid "Command to use for configuring the menu:"
@@ -5830,9 +5822,8 @@ msgid "Leave empty to use the connection name."
 msgstr "Nechajte prázdne pre názov pripojenia."
 
 #: ../Network-Monitor/data/messages:11 ../wifi/data/messages:9
-#, fuzzy
 msgid "Connection name"
-msgstr "Rýchlosť pripojenia"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:101 ../Network-Monitor/data/messages:173
 #: ../Network-Monitor/data/messages:261 ../System-Monitor/data/messages:143
@@ -6396,15 +6387,13 @@ msgstr ""
 
 #: ../System-Monitor/data/messages:99 ../alsaMixer/data/messages:109
 #: ../powermanager/data/messages:101 ../wifi/data/messages:99
-#, fuzzy
 msgid "Display style"
-msgstr "Zobraziť hodnoty"
+msgstr ""
 
 #: ../System-Monitor/data/messages:107 ../alsaMixer/data/messages:121
 #: ../powermanager/data/messages:111 ../wifi/data/messages:109
-#, fuzzy
 msgid "Gauge theme"
-msgstr "Manometer"
+msgstr ""
 
 #: ../System-Monitor/data/messages:131 ../powermanager/data/messages:127
 msgid "It's the colour of the graphic for high values."
@@ -6587,9 +6576,8 @@ msgid "Leave empty to display the current luminosity."
 msgstr "Ponechajte prázdne pre zobrazenie s aktuálnym jasom."
 
 #: ../Xgamma/data/messages:11
-#, fuzzy
 msgid "Current luminosity"
-msgstr "Jas obrazovky"
+msgstr ""
 
 #: ../Xgamma/data/messages:93 ../alsaMixer/data/messages:137
 msgid "Variation for 1 mouse scroll, in %:"
@@ -6612,9 +6600,8 @@ msgid "Shortkey to decrease the brightness:"
 msgstr "Klávesová skratka pre zníženie jasu:"
 
 #: ../alsaMixer/data/messages:9
-#, fuzzy
 msgid "Sound card name"
-msgstr "Ovládanie zvukovej karty :"
+msgstr ""
 
 #: ../alsaMixer/data/messages:101
 msgid "Display volume :"
@@ -7233,7 +7220,8 @@ msgid "Space between icons:"
 msgstr "Priestor medzi ikonami :"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 znamená úplne plochú vlnu, 1 znamená, že vlna je totožná s inými pohľadmi."
 
@@ -7427,7 +7415,8 @@ msgid "Colours"
 msgstr "Farby"
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr "Bude mierne meniť farby, takže možno budete potrebná úprava."
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
@@ -7667,7 +7656,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Názov súboru pre obrázok \"má mail\" :"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Ak je začiarknuté, bude zobrazený počet mailov, aj keď nie je žiadny mail."
 
@@ -7752,13 +7742,14 @@ msgid "Blur amount:"
 msgstr "Sila rozmazania :"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
-msgstr "Nechajte prázdne pre zobrazenie názvu aktuálne používaného prehrávača."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
+msgstr ""
+"Nechajte prázdne pre zobrazenie názvu aktuálne používaného prehrávača."
 
 #: ../musicPlayer/data/messages:11
-#, fuzzy
 msgid "Player name"
-msgstr "Názov súboru"
+msgstr ""
 
 #: ../musicPlayer/data/messages:101
 msgid "Audio Player"
@@ -7960,9 +7951,8 @@ msgid "Leave empty to display the current status information."
 msgstr "Ponechajte prázdne pre zobrazenie informácie o aktuálnom stave."
 
 #: ../powermanager/data/messages:11
-#, fuzzy
 msgid "Current status"
-msgstr "Aktuálna skladba"
+msgstr ""
 
 #: ../powermanager/data/messages:139
 msgid "'On-battery' icon filename:"
@@ -8456,9 +8446,8 @@ msgid "In expanded mode, render the desklet in 3D?"
 msgstr "V rozšírenom režime vykresliť desklety v 3D?"
 
 #: ../switcher/data/messages:131
-#, fuzzy
 msgid "Show desktop number on icons?"
-msgstr "Zobraziť najvyššie použitie pamäte v % ?"
+msgstr ""
 
 #: ../switcher/data/messages:133
 msgid "Draw windows on icons?"
@@ -8682,9 +8671,8 @@ msgid "Leave empty to use the name of the city."
 msgstr "Ponechajte prázdne pre použitie názvu mesta."
 
 #: ../weather/data/messages:11
-#, fuzzy
 msgid "City name"
-msgstr "podľa názvu"
+msgstr ""
 
 #: ../weather/data/messages:103
 msgid "Enter the name of your location in the text entry and press Enter."
@@ -8759,7 +8747,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Pozícia vodorového vysúvacieho panela v pixeloch"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "To vám umožní pravé-kliknutie na desklety pre vyskakovacie okno Cairo-Dock "
 "menu."
@@ -8775,7 +8764,8 @@ msgstr "Priehľadné pozadie ?"
 #: ../weblets/data/messages:109
 msgid ""
 "Time before reloading the weblet URI, in seconds. Zero means never reload."
-msgstr "Čas pred obnovením weblet URI, v sekundách. Nula znamená neobnovovať."
+msgstr ""
+"Čas pred obnovením weblet URI, v sekundách. Nula znamená neobnovovať."
 
 #: ../weblets/data/messages:111
 msgid "Time between two page refreshes"
@@ -8790,9 +8780,8 @@ msgid "Predefined bookmarks to show in applet menu:"
 msgstr "Prednastavené záložky zobrazené v zozname appletov :"
 
 #: ../wifi/data/messages:139
-#, fuzzy
 msgid "\"No signal\" icon"
-msgstr "Názov obrázky pre ikonu 'žiaden signál' :"
+msgstr ""
 
 #: ../wifi/data/messages:147
 msgid "Signal Strength"
@@ -8822,72 +8811,3 @@ msgstr ""
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr ""
 "Alternatívny príkaz pre spustenie Konfigurácie bezdrôtového pripojenia :"
-
-#~ msgid "Not connected"
-#~ msgstr "Nepripojené"
-
-#~ msgid "Wired connection"
-#~ msgstr "Pripojenie káblom"
-
-#~ msgid "Applet's Handbook"
-#~ msgstr "Príručka appletov"
-
-#~ msgid "Recent documents"
-#~ msgstr "Nedávne dokumenty"
-
-#~ msgid "Leave blank if filter is not needed."
-#~ msgstr "Nechať prázdne nepoužívať tento filter."
-
-#~ msgid "Only show files that are under this folder or its sub-folder:"
-#~ msgstr ""
-#~ "Zobraziť iba súbory,  ktoré sú v rámci tohoto priečinka alebo jeho pod-"
-#~ "priečinka :"
-
-#~ msgid "in days. Set 0 if unsued."
-#~ msgstr "v dňoch. Nastaviť 0 pre vypnutie tohto filtra."
-
-#~ msgid "Only show files whose last modification date is less than ;"
-#~ msgstr ""
-#~ "Zobrazovat iba súbory, ktorých dátum poslednej úpravy je menej ako :"
-
-#~ msgid "Session management buttons"
-#~ msgstr "Tlačítka pre ovládanie sedenia"
-
-#~ msgid "wifi"
-#~ msgstr "wifi"
-
-#~ msgid "Leave empty to use the default one."
-#~ msgstr "Nechať prázdne a použiť predvolené."
-
-#~ msgid "Leave empty to use the default sound card."
-#~ msgstr "Nechať prázdne chcete použiť predvolenú zvukovú kartu."
-
-#~ msgid "Effect to apply to the icon when adjusting volume:"
-#~ msgstr "Effet aplikovať na ikonu v závislosti na hlasitosti :"
-
-#~ msgid "Leave empty to use the default command."
-#~ msgstr "Nechajte prázdne pre predvolený príkaz."
-
-#~ msgid "Effect to apply on the icon according to the charge :"
-#~ msgstr "Uplatňovať vplyv na ikonu podľa nabitia :"
-
-#~ msgid "Leave empty to use the same image."
-#~ msgstr "Ponechajte prázdne pre použitie rovnakého obrázku."
-
-#~ msgid "'Very low' icon filename:"
-#~ msgstr "Názov obrázky pre ikonu 'veľmi slabé' :"
-
-#~ msgid "'Low' icon filename:"
-#~ msgstr "Názov obrázky pre ikonu 'slabé' :"
-
-#~ msgid "'Average' icon filename:"
-#~ msgstr "Názov obrázky pre ikonu 'stredné' :"
-
-#~ msgid "'Good' icon filename:"
-#~ msgstr "Názov obrázky pre ikonu 'dobrý' :"
-
-#~ msgid "'Excellent' icon filename:"
-#~ msgstr "Názov obrázky pre ikonu 'vynikajúci' :"
-
-#~ msgid "Overwrite the default label with the connection point name?"
-#~ msgstr "Prepísať predvolené štítok s názvom bodu pripojenia ?"

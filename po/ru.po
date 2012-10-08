@@ -7,15 +7,34 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2012-06-20 08:51+0000\n"
-"Last-Translator: ma$terok <Unknown>\n"
+"POT-Creation-Date: 2012-09-30 15:12+0000\n"
+"PO-Revision-Date: 2012-09-30 17:31+0000\n"
+"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-03 05:46+0000\n"
-"X-Generator: Launchpad (build 15531)\n"
+"X-Launchpad-Export-Date: 2012-10-01 04:55+0000\n"
+"X-Generator: Launchpad (build 16049)\n"
+"Language: \n"
+
+#: ../Cairo-Penguin/src/applet-init.c:33
+msgid ""
+"Add a lively Penguin in your dock !\n"
+"Left click to change the animation,\n"
+"Middle-click to disturb him ^_^\n"
+"Tux images are taken from Pingus, some other characters are available or can "
+"be added easily."
+msgstr ""
+"Добавьте симпатичного пингвинчика к себе на панель!\n"
+"Левым щелчком менять анимацию,\n"
+"Средним -  побеспокоить его ^_^\n"
+"Изображения Тукса взяты из Pingus, есть и другие персонажи, а также можно с "
+"лёгкостью подключить своих."
+
+#: ../Cairo-Penguin/src/applet-init.c:39
+msgid "Cairo-Penguin"
+msgstr "Cairo-Пингвин"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -72,24 +91,6 @@ msgstr "Волна"
 #: ../Animated-icons/data/messages:57 ../Animated-icons/data/messages:117
 msgid "Wobbly"
 msgstr "Желе"
-
-#: ../Cairo-Penguin/src/applet-init.c:33
-msgid ""
-"Add a lively Penguin in your dock !\n"
-"Left click to change the animation,\n"
-"Middle-click to disturb him ^_^\n"
-"Tux images are taken from Pingus, some other characters are available or can "
-"be added easily."
-msgstr ""
-"Добавьте симпатичного пингвинчика к себе на панель!\n"
-"Левым щелчком менять анимацию,\n"
-"Средним -  побеспокоить его ^_^\n"
-"Изображения Тукса взяты из Pingus, есть и другие персонажи, а также можно с "
-"лёгкостью подключить своих."
-
-#: ../Cairo-Penguin/src/applet-init.c:39
-msgid "Cairo-Penguin"
-msgstr "Cairo-Пингвин"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:29
 msgid "Hey, I'm here!"
@@ -371,7 +372,8 @@ msgstr "Модуль был добавлен, но запустить его н�
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Апплет '%s' успешно обновлён и автоматически перезагружен"
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -1105,9 +1107,8 @@ msgid "All"
 msgstr "Все"
 
 #: ../Recent-Events/src/applet-dialog.c:374
-#, fuzzy
 msgid "Applications"
-msgstr "Меню приложений"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:375
 msgid "Document"
@@ -1360,9 +1361,8 @@ msgid "Notification Area"
 msgstr "Область уведомлений"
 
 #: ../Sync-Menu/src/applet-init.c:30
-#, fuzzy
 msgid "Sync-Menu"
-msgstr "Меню"
+msgstr ""
 
 #: ../Sync-Menu/src/applet-init.c:33
 msgid ""
@@ -1771,8 +1771,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1983,7 +1983,8 @@ msgstr ""
 "Нажмите CTRL+v, чтобы вставить его URL куда угодно."
 
 #: ../dnd2share/src/applet-dnd2share.c:333
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr "Дождитесь завершения текущей закачки прежде чем начать новую."
 
 #: ../dnd2share/src/applet-dnd2share.c:401
@@ -2490,7 +2491,8 @@ msgstr "Укажите почтовое приложение"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Leave empty to use the default mail application."
-msgstr "Оставьте пустым, чтобы использовать почтовое приложение по умолчанию."
+msgstr ""
+"Оставьте пустым, чтобы использовать почтовое приложение по умолчанию."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Directory on server:"
@@ -2861,18 +2863,16 @@ msgid "Estimated time before full:"
 msgstr "Примерно осталось до полного заряда:"
 
 #: ../powermanager/src/powermanager-draw.c:283
-#, fuzzy
 msgid "Model:"
-msgstr "Модель"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:289
 msgid "Technology:"
 msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:293
-#, fuzzy
 msgid "Maximum capacity:"
-msgstr "Максимальная ёмкость"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:298
 msgid "No battery found."
@@ -2913,8 +2913,8 @@ msgid ""
 "<b>Click</b> on the icon to have useful inforamtion,\n"
 "<b>Right-click</b> on the icon to hibernate or suspend the system."
 msgstr ""
-"Этот апплет отображает состояние <b>батареи</b>: заряд. оставшееся время и т."
-"д.\n"
+"Этот апплет отображает состояние <b>батареи</b>: заряд. оставшееся время и "
+"т.д.\n"
 "<b>Щелчок</b> на значке для подробной информации,\n"
 "<b>Правый щелчок</b>, для перехода в спящий режим."
 
@@ -2965,9 +2965,8 @@ msgstr "Отсоединено"
 
 #: ../shortcuts/src/applet-bookmarks.c:180
 #: ../shortcuts/src/applet-bookmarks.c:406
-#, fuzzy
 msgid "Home Folder"
-msgstr "Каталог"
+msgstr ""
 
 #: ../shortcuts/src/applet-drives.c:130 ../shortcuts/src/applet-drives.c:193
 #, c-format
@@ -3006,8 +3005,8 @@ msgstr ""
 "Перетащите каталог на главный значок или суб-панель, чтобы добавить ярлык.\n"
 "Средний щелчок на главном значке, чтобы показать ваш домашний каталог.\n"
 "Средний щелчок на присоединённом томе, чтобы быстро его (от)соединить.\n"
-"Апплет показывает важную информацию о ваших дисках: свободное место, тип и т."
-"д."
+"Апплет показывает важную информацию о ваших дисках: свободное место, тип и "
+"т.д."
 
 #: ../shortcuts/src/applet-notifications.c:43
 #: ../shortcuts/src/applet-notifications.c:70
@@ -3038,9 +3037,8 @@ msgid "Open Home directory"
 msgstr "Открыть домашний каталог"
 
 #: ../shortcuts/src/applet-notifications.c:270
-#, fuzzy
 msgid "Connect to Server..."
-msgstr "Соединение..."
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:276
 msgid "Rename this bookmark"
@@ -3076,8 +3074,8 @@ msgstr "Анимировать курсор"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Этот плагин украшает курсор различной анимацией, когда тот находится внутри "
 "панели/десклета."
@@ -3712,9 +3710,8 @@ msgstr ""
 
 #: ../gvfs-integration/cairo-dock-gio-vfs.c:466
 #: ../gvfs-integration/cairo-dock-gio-vfs.c:833
-#, fuzzy
 msgid "File System"
-msgstr "Файлы"
+msgstr ""
 
 #: ../Animated-icons/data/messages:1 ../icon-effect/data/messages:1
 #: ../illusion/data/messages:1
@@ -5557,7 +5554,8 @@ msgid "Background"
 msgstr "Задний фон"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Вы можете получить более привлекательный задний фон при использовании "
 "Оформления декслетов"
@@ -5611,9 +5609,8 @@ msgid "Let empty to use the name of the folder."
 msgstr "Оставьте пустым, тобы использовать имя папки."
 
 #: ../Folders/data/messages:11 ../quick-browser/data/messages:11
-#, fuzzy
 msgid "Folder name"
-msgstr "Имя файла"
+msgstr ""
 
 #: ../Folders/data/messages:13
 msgid "How to render the icon :"
@@ -5686,9 +5683,8 @@ msgid "Show recent documents?"
 msgstr "Показывать недавние документы?"
 
 #: ../GMenu/data/messages:97
-#, fuzzy
 msgid "Number of items to display"
-msgstr "Количество отображаемых строк:"
+msgstr ""
 
 #: ../GMenu/data/messages:99
 msgid "Command to use for configuring the menu:"
@@ -5898,9 +5894,8 @@ msgid "Leave empty to use the connection name."
 msgstr "Оставьте пустым, чтобы использовать имя соединения."
 
 #: ../Network-Monitor/data/messages:11 ../wifi/data/messages:9
-#, fuzzy
 msgid "Connection name"
-msgstr "Скорость соединения"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:101 ../Network-Monitor/data/messages:173
 #: ../Network-Monitor/data/messages:261 ../System-Monitor/data/messages:143
@@ -6467,15 +6462,13 @@ msgstr "Левый щелчок открывает меню"
 
 #: ../System-Monitor/data/messages:99 ../alsaMixer/data/messages:109
 #: ../powermanager/data/messages:101 ../wifi/data/messages:99
-#, fuzzy
 msgid "Display style"
-msgstr "Показать значения"
+msgstr ""
 
 #: ../System-Monitor/data/messages:107 ../alsaMixer/data/messages:121
 #: ../powermanager/data/messages:111 ../wifi/data/messages:109
-#, fuzzy
 msgid "Gauge theme"
-msgstr "Датчик"
+msgstr ""
 
 #: ../System-Monitor/data/messages:131 ../powermanager/data/messages:127
 msgid "It's the colour of the graphic for high values."
@@ -6658,9 +6651,8 @@ msgid "Leave empty to display the current luminosity."
 msgstr "Оставьте пустым, чтобы показать текущий контраст."
 
 #: ../Xgamma/data/messages:11
-#, fuzzy
 msgid "Current luminosity"
-msgstr "Яркость экрана"
+msgstr ""
 
 #: ../Xgamma/data/messages:93 ../alsaMixer/data/messages:137
 msgid "Variation for 1 mouse scroll, in %:"
@@ -6683,9 +6675,8 @@ msgid "Shortkey to decrease the brightness:"
 msgstr ""
 
 #: ../alsaMixer/data/messages:9
-#, fuzzy
 msgid "Sound card name"
-msgstr "Звуковая карта для управления"
+msgstr ""
 
 #: ../alsaMixer/data/messages:101
 msgid "Display volume :"
@@ -7110,7 +7101,8 @@ msgstr "Путь загрзки в DropBox:"
 
 #: ../dnd2share/data/messages:183
 msgid "Otherwise, your user name will be used when possible."
-msgstr "В противном случае, имя пользователя используется когда это возможно."
+msgstr ""
+"В противном случае, имя пользователя используется когда это возможно."
 
 #: ../dnd2share/data/messages:185
 msgid "Post text as Anonymous ?"
@@ -7130,7 +7122,8 @@ msgstr "Высота точки схождения:"
 
 #: ../dock-rendering/data/messages:9
 msgid "The lower the value, the flatter the curve will appear."
-msgstr "Чем меньше значение, тем большая часть кривой будет выглядеть плоской."
+msgstr ""
+"Чем меньше значение, тем большая часть кривой будет выглядеть плоской."
 
 #: ../dock-rendering/data/messages:11
 msgid "Curvature of the curve in percent:"
@@ -7146,7 +7139,8 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:21
 msgid "At 1, the icons will have the same size as in other views."
-msgstr "При значении 1, значки будут такого же размера, как и остальные виды."
+msgstr ""
+"При значении 1, значки будут такого же размера, как и остальные виды."
 
 #: ../dock-rendering/data/messages:23
 msgid "Ratio to apply on icons' size :"
@@ -7310,7 +7304,8 @@ msgid "Space between icons:"
 msgstr "Расстояние между значками:"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "При значении 0 волна будет полностью плоской, при значении 1 волна будет "
 "идентична другим видам."
@@ -7507,7 +7502,8 @@ msgid "Colours"
 msgstr "Цвета"
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr "Он едва изменяет цвета, так что вы можете даже не изменять его."
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
@@ -7734,8 +7730,8 @@ msgid ""
 "accounts you want."
 msgstr ""
 "Если вы испытываете какие-либо проблемы с этим апплетом, уберите эту опцию "
-"во время режима обслуживания, затем позвольте панели загрузиться и измените/"
-"удалите нужный аккаунт."
+"во время режима обслуживания, затем позвольте панели загрузиться и "
+"измените/удалите нужный аккаунт."
 
 #: ../mail/data/messages:101
 msgid "Check mail account on startup?"
@@ -7750,7 +7746,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Файл изображения для статуса 'есть почта':"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Если отмечено, то будет выведено количество почтовых сообщений, даже если "
 "новых сообщений нет."
@@ -7836,15 +7833,15 @@ msgid "Blur amount:"
 msgstr "Качество размытия:"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 "Оставьте пустым, чтобы отображать имя проигрывателя, которым вы сейчас "
 "управляете."
 
 #: ../musicPlayer/data/messages:11
-#, fuzzy
 msgid "Player name"
-msgstr "Имя файла"
+msgstr ""
 
 #: ../musicPlayer/data/messages:101
 msgid "Audio Player"
@@ -8045,9 +8042,8 @@ msgid "Leave empty to display the current status information."
 msgstr "Оставьте пустым, чтобы показать информацию о текущем статусе."
 
 #: ../powermanager/data/messages:11
-#, fuzzy
 msgid "Current status"
-msgstr "Текущая композиция"
+msgstr ""
 
 #: ../powermanager/data/messages:139
 msgid "'On-battery' icon filename:"
@@ -8251,7 +8247,8 @@ msgstr "Время жизни частиц:"
 #: ../show-mouse/data/messages:33
 msgid ""
 "The higher the value, the more particles will scatter from their source."
-msgstr "Чем выше значение, тем больше частиц будут разбросаны из их источника."
+msgstr ""
+"Чем выше значение, тем больше частиц будут разбросаны из их источника."
 
 #: ../show-mouse/data/messages:35
 msgid "Scattering:"
@@ -8522,7 +8519,8 @@ msgstr ""
 
 #: ../switcher/data/messages:115
 msgid "Icon to use in expanded mode if wallpaper is not mapped:"
-msgstr "Значок, используемый в расширенном режиме, если обои не используются:"
+msgstr ""
+"Значок, используемый в расширенном режиме, если обои не используются:"
 
 #: ../switcher/data/messages:117 ../switcher/data/messages:155
 #: ../switcher/data/messages:161 ../switcher/data/messages:165
@@ -8543,9 +8541,8 @@ msgid "In expanded mode, render the desklet in 3D?"
 msgstr "Отрисовывать десклет в 3D в расширенном режиме?"
 
 #: ../switcher/data/messages:131
-#, fuzzy
 msgid "Show desktop number on icons?"
-msgstr "Показывать использование памяти в % ?"
+msgstr ""
 
 #: ../switcher/data/messages:133
 msgid "Draw windows on icons?"
@@ -8769,9 +8766,8 @@ msgid "Leave empty to use the name of the city."
 msgstr "Оставьте пустым, чтобы использовать название города."
 
 #: ../weather/data/messages:11
-#, fuzzy
 msgid "City name"
-msgstr "По имени"
+msgstr ""
 
 #: ../weather/data/messages:103
 msgid "Enter the name of your location in the text entry and press Enter."
@@ -8848,7 +8844,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Позиция вертикальной полосы"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr "Это позволит использовать правый щелчок для вызова меню Cairo-Dock."
 
 #: ../weblets/data/messages:105
@@ -8879,9 +8876,8 @@ msgid "Predefined bookmarks to show in applet menu:"
 msgstr "Предопределённые закладки в меню апплета:"
 
 #: ../wifi/data/messages:139
-#, fuzzy
 msgid "\"No signal\" icon"
-msgstr "Файл изображения для значка 'нет сигнала':"
+msgstr ""
 
 #: ../wifi/data/messages:147
 msgid "Signal Strength"
@@ -8910,70 +8906,3 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Альтернативная команда запуска Настройки Беспроводного Соединения:"
-
-#~ msgid "Not connected"
-#~ msgstr "Нет соединения"
-
-#~ msgid "Wired connection"
-#~ msgstr "Проводное подключение"
-
-#~ msgid "Applet's Handbook"
-#~ msgstr "Руководство по апплетам"
-
-#~ msgid "Recent documents"
-#~ msgstr "Недавние документы"
-
-#~ msgid "Leave blank if filter is not needed."
-#~ msgstr "Оставьте пустым, чтобы не использовать фильтр."
-
-#~ msgid "Only show files that are under this folder or its sub-folder:"
-#~ msgstr "Показывать только файлы внутри этого каталога и его подкаталогов:"
-
-#~ msgid "in days. Set 0 if unsued."
-#~ msgstr "в днях. Установите 0, чтобы не использовать фильтр."
-
-#~ msgid "Only show files whose last modification date is less than ;"
-#~ msgstr ""
-#~ "Показывать только файлы, время последних изменений которых меньше чем:"
-
-#~ msgid "wifi"
-#~ msgstr "wifi"
-
-#~ msgid "Leave empty to use the default one."
-#~ msgstr "Оставьте пустым, чтобы использовать стандартное."
-
-#~ msgid "Leave empty to use the default sound card."
-#~ msgstr "Оставьте пустым, чтобы использовать по умолчанию."
-
-#~ msgid "Effect to apply to the icon when adjusting volume:"
-#~ msgstr "Применять эффект в зависимость от громкости:"
-
-#~ msgid "Leave empty to use the default command."
-#~ msgstr "Оставьте пустым, чтобы использовать команду по умолчанию."
-
-#~ msgid "Effect to apply on the icon according to the charge :"
-#~ msgstr "Какой эффект применять на значке при зарядке:"
-
-#~ msgid "Draw bar"
-#~ msgstr "Рисовать столбцы"
-
-#~ msgid "Leave empty to use the same image."
-#~ msgstr "Оставьте пустым, чтобы использовать тоже изображение."
-
-#~ msgid "'Very low' icon filename:"
-#~ msgstr "Файл изображения для значка 'очень слабый':"
-
-#~ msgid "'Low' icon filename:"
-#~ msgstr "Файл изображения для значка 'слабый':"
-
-#~ msgid "'Average' icon filename:"
-#~ msgstr "Файл изображения для значка 'средний':"
-
-#~ msgid "'Good' icon filename:"
-#~ msgstr "Файл изображения для значка 'хороший':"
-
-#~ msgid "'Excellent' icon filename:"
-#~ msgstr "Файл изображения для значка 'отличный':"
-
-#~ msgid "Overwrite the default label with the connection point name?"
-#~ msgstr "Заменить стандартную подпись, на имя точки доступа?"

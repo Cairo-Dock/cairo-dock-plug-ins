@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2012-04-12 03:12+0000\n"
+"POT-Creation-Date: 2012-09-30 15:12+0000\n"
+"PO-Revision-Date: 2012-09-30 17:31+0000\n"
 "Last-Translator: Fabounet <fabounet03@gmail.com>\n"
 "Language-Team: Estonian <et@li.org>\n"
-"Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-03 05:44+0000\n"
-"X-Generator: Launchpad (build 15531)\n"
+"X-Launchpad-Export-Date: 2012-10-01 04:53+0000\n"
+"X-Generator: Launchpad (build 16049)\n"
+"Language: et\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -348,7 +349,8 @@ msgstr "Moodul lisati, kuid seda ei saa käivitada."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Vidin '%s' uuendati edukalt ja laaditi automaatselt uuesti"
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -1069,9 +1071,8 @@ msgid "All"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:374
-#, fuzzy
 msgid "Applications"
-msgstr "Rakenduste menüü"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:375
 msgid "Document"
@@ -1319,9 +1320,8 @@ msgid "Notification Area"
 msgstr ""
 
 #: ../Sync-Menu/src/applet-init.c:30
-#, fuzzy
 msgid "Sync-Menu"
-msgstr "Menüü"
+msgstr ""
 
 #: ../Sync-Menu/src/applet-init.c:33
 msgid ""
@@ -1722,8 +1722,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1930,8 +1930,10 @@ msgstr ""
 "URL-i kopeerimiseks vajutage CTRL+V."
 
 #: ../dnd2share/src/applet-dnd2share.c:333
-msgid "Please wait for the current upload to finish before starting a new one."
-msgstr "Palun oodake praeguse üleslaadimise lõpetamist enne kui alustate uut."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
+msgstr ""
+"Palun oodake praeguse üleslaadimise lõpetamist enne kui alustate uut."
 
 #: ../dnd2share/src/applet-dnd2share.c:401
 msgid "This file is not readable."
@@ -2751,9 +2753,8 @@ msgid "Estimated time before full:"
 msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:283
-#, fuzzy
 msgid "Model:"
-msgstr "Moodne"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:289
 msgid "Technology:"
@@ -2841,9 +2842,8 @@ msgstr "Haakimata"
 
 #: ../shortcuts/src/applet-bookmarks.c:180
 #: ../shortcuts/src/applet-bookmarks.c:406
-#, fuzzy
 msgid "Home Folder"
-msgstr "Kaust"
+msgstr ""
 
 #: ../shortcuts/src/applet-drives.c:130 ../shortcuts/src/applet-drives.c:193
 #, c-format
@@ -2906,9 +2906,8 @@ msgid "Open Home directory"
 msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:270
-#, fuzzy
 msgid "Connect to Server..."
-msgstr "Ühendumine..."
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:276
 msgid "Rename this bookmark"
@@ -2944,8 +2943,8 @@ msgstr "näita hiirt"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -3509,9 +3508,8 @@ msgstr ""
 
 #: ../gvfs-integration/cairo-dock-gio-vfs.c:466
 #: ../gvfs-integration/cairo-dock-gio-vfs.c:833
-#, fuzzy
 msgid "File System"
-msgstr "Failid"
+msgstr ""
 
 #: ../Animated-icons/data/messages:1 ../icon-effect/data/messages:1
 #: ../illusion/data/messages:1
@@ -5323,7 +5321,8 @@ msgid "Background"
 msgstr "Tagapõhi"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
@@ -5375,9 +5374,8 @@ msgid "Let empty to use the name of the folder."
 msgstr ""
 
 #: ../Folders/data/messages:11 ../quick-browser/data/messages:11
-#, fuzzy
 msgid "Folder name"
-msgstr "Kaust"
+msgstr ""
 
 #: ../Folders/data/messages:13
 msgid "How to render the icon :"
@@ -5448,9 +5446,8 @@ msgid "Show recent documents?"
 msgstr "Näita viimaseid dokumente?"
 
 #: ../GMenu/data/messages:97
-#, fuzzy
 msgid "Number of items to display"
-msgstr "Ilmaennustuse pikkus päevades:"
+msgstr ""
 
 #: ../GMenu/data/messages:99
 msgid "Command to use for configuring the menu:"
@@ -5658,9 +5655,8 @@ msgid "Leave empty to use the connection name."
 msgstr ""
 
 #: ../Network-Monitor/data/messages:11 ../wifi/data/messages:9
-#, fuzzy
 msgid "Connection name"
-msgstr "Ühenduse kiirus"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:101 ../Network-Monitor/data/messages:173
 #: ../Network-Monitor/data/messages:261 ../System-Monitor/data/messages:143
@@ -6215,15 +6211,13 @@ msgstr ""
 
 #: ../System-Monitor/data/messages:99 ../alsaMixer/data/messages:109
 #: ../powermanager/data/messages:101 ../wifi/data/messages:99
-#, fuzzy
 msgid "Display style"
-msgstr "Kuva"
+msgstr ""
 
 #: ../System-Monitor/data/messages:107 ../alsaMixer/data/messages:121
 #: ../powermanager/data/messages:111 ../wifi/data/messages:109
-#, fuzzy
 msgid "Gauge theme"
-msgstr "Mõõdupuu"
+msgstr ""
 
 #: ../System-Monitor/data/messages:131 ../powermanager/data/messages:127
 msgid "It's the colour of the graphic for high values."
@@ -6400,9 +6394,8 @@ msgid "Leave empty to display the current luminosity."
 msgstr ""
 
 #: ../Xgamma/data/messages:11
-#, fuzzy
 msgid "Current luminosity"
-msgstr "Esitatv laul"
+msgstr ""
 
 #: ../Xgamma/data/messages:93 ../alsaMixer/data/messages:137
 msgid "Variation for 1 mouse scroll, in %:"
@@ -6425,9 +6418,8 @@ msgid "Shortkey to decrease the brightness:"
 msgstr ""
 
 #: ../alsaMixer/data/messages:9
-#, fuzzy
 msgid "Sound card name"
-msgstr "Helikaart:"
+msgstr ""
 
 #: ../alsaMixer/data/messages:101
 msgid "Display volume :"
@@ -7034,7 +7026,8 @@ msgid "Space between icons:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:121
@@ -7221,7 +7214,8 @@ msgid "Colours"
 msgstr "Värvid"
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
@@ -7454,7 +7448,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:117
@@ -7538,13 +7533,13 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:11
-#, fuzzy
 msgid "Player name"
-msgstr "Kasutajanimi:"
+msgstr ""
 
 #: ../musicPlayer/data/messages:101
 msgid "Audio Player"
@@ -7742,9 +7737,8 @@ msgid "Leave empty to display the current status information."
 msgstr ""
 
 #: ../powermanager/data/messages:11
-#, fuzzy
 msgid "Current status"
-msgstr "Esitatv laul"
+msgstr ""
 
 #: ../powermanager/data/messages:139
 msgid "'On-battery' icon filename:"
@@ -8523,8 +8517,10 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
-msgstr "See lubab sul paremklikkata vidinal Cairo-dokki menüü esilekuvamiseks."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgstr ""
+"See lubab sul paremklikkata vidinal Cairo-dokki menüü esilekuvamiseks."
 
 #: ../weblets/data/messages:105
 msgid "Right margin width, in pixels:"
@@ -8552,9 +8548,8 @@ msgid "Predefined bookmarks to show in applet menu:"
 msgstr ""
 
 #: ../wifi/data/messages:139
-#, fuzzy
 msgid "\"No signal\" icon"
-msgstr "'Pole signaali' ikooni failinimi:"
+msgstr ""
 
 #: ../wifi/data/messages:147
 msgid "Signal Strength"
@@ -8581,30 +8576,3 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr ""
-
-#~ msgid "Not connected"
-#~ msgstr "Pole ühendatud"
-
-#~ msgid "Wired connection"
-#~ msgstr "Traadiga ühendus"
-
-#~ msgid "Recent documents"
-#~ msgstr "Viimatised dokumendid"
-
-#~ msgid "wifi"
-#~ msgstr "wifi"
-
-#~ msgid "'Very low' icon filename:"
-#~ msgstr "'Väga madal' ikooni failinimi:"
-
-#~ msgid "'Low' icon filename:"
-#~ msgstr "'Madal' ikooni failinimi:"
-
-#~ msgid "'Average' icon filename:"
-#~ msgstr "'Keskmine' ikooni failinimi:"
-
-#~ msgid "'Good' icon filename:"
-#~ msgstr "'Hea' ikooni failinimi:"
-
-#~ msgid "'Excellent' icon filename:"
-#~ msgstr "'Suurepärane' ikooni failinimi:"

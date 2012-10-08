@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2012-04-12 03:04+0000\n"
+"POT-Creation-Date: 2012-09-30 15:12+0000\n"
+"PO-Revision-Date: 2012-09-30 17:26+0000\n"
 "Last-Translator: Jan Dolejš <jackdown3csr@gmail.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-03 05:44+0000\n"
-"X-Generator: Launchpad (build 15531)\n"
+"X-Launchpad-Export-Date: 2012-10-01 04:53+0000\n"
+"X-Generator: Launchpad (build 16049)\n"
+"Language: cs\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -356,7 +357,8 @@ msgstr "Modul byl přidán, ale nemůže být spuštěn."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Aplet '%s' byl úspěšně aktualizován a automaticky znovu načten."
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -1082,9 +1084,8 @@ msgid "All"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:374
-#, fuzzy
 msgid "Applications"
-msgstr "Menu Aplikace"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:375
 msgid "Document"
@@ -1740,8 +1741,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1951,7 +1952,8 @@ msgstr ""
 "jeho URL můžete vložit kamkoliv stisknutím CTRL+v"
 
 #: ../dnd2share/src/applet-dnd2share.c:333
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr "Počkejte s dalším uploadem, než skončí ten předchozí."
 
 #: ../dnd2share/src/applet-dnd2share.c:401
@@ -2585,7 +2587,8 @@ msgstr "pohybové rozmazání obrazu"
 
 #: ../motion-blur/src/applet-init.c:31
 msgid "This plugin adds a motion blur effect to docks."
-msgstr "Tento zásuvný modul přidává efekt pohybového rozmazání obrazu do docků"
+msgstr ""
+"Tento zásuvný modul přidává efekt pohybového rozmazání obrazu do docků"
 
 #: ../musicPlayer/src/applet-draw.c:59
 msgid "Unknown artist"
@@ -2809,9 +2812,8 @@ msgid "Estimated time before full:"
 msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:283
-#, fuzzy
 msgid "Model:"
-msgstr "moderníT"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:289
 msgid "Technology:"
@@ -2908,9 +2910,8 @@ msgstr "Odpojené"
 
 #: ../shortcuts/src/applet-bookmarks.c:180
 #: ../shortcuts/src/applet-bookmarks.c:406
-#, fuzzy
 msgid "Home Folder"
-msgstr "Adresáře"
+msgstr ""
 
 #: ../shortcuts/src/applet-drives.c:130 ../shortcuts/src/applet-drives.c:193
 #, c-format
@@ -2973,9 +2974,8 @@ msgid "Open Home directory"
 msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:270
-#, fuzzy
 msgid "Connect to Server..."
-msgstr "Připojování…"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:276
 msgid "Rename this bookmark"
@@ -3011,8 +3011,8 @@ msgstr "ukázat myš"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -3186,7 +3186,8 @@ msgstr "Přesunout současnou plochu na tuto plochu"
 msgid ""
 "This will move all windows from the current desktop to the one you clicked "
 "on."
-msgstr "Toto přesune všechna okna z současné plochy na tu, na kterou kliknete."
+msgstr ""
+"Toto přesune všechna okna z současné plochy na tu, na kterou kliknete."
 
 #: ../switcher/src/applet-notifications.c:300
 msgid "Windows List"
@@ -3581,9 +3582,8 @@ msgstr ""
 
 #: ../gvfs-integration/cairo-dock-gio-vfs.c:466
 #: ../gvfs-integration/cairo-dock-gio-vfs.c:833
-#, fuzzy
 msgid "File System"
-msgstr "Soubory"
+msgstr ""
 
 #: ../Animated-icons/data/messages:1 ../icon-effect/data/messages:1
 #: ../illusion/data/messages:1
@@ -5410,7 +5410,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
@@ -5462,9 +5463,8 @@ msgid "Let empty to use the name of the folder."
 msgstr ""
 
 #: ../Folders/data/messages:11 ../quick-browser/data/messages:11
-#, fuzzy
 msgid "Folder name"
-msgstr "Adresáře"
+msgstr ""
 
 #: ../Folders/data/messages:13
 msgid "How to render the icon :"
@@ -5535,9 +5535,8 @@ msgid "Show recent documents?"
 msgstr "Zobrazit nedávné dokumenty ?"
 
 #: ../GMenu/data/messages:97
-#, fuzzy
 msgid "Number of items to display"
-msgstr "Počet položek :"
+msgstr ""
 
 #: ../GMenu/data/messages:99
 msgid "Command to use for configuring the menu:"
@@ -5745,9 +5744,8 @@ msgid "Leave empty to use the connection name."
 msgstr "Nechte prázdné pro použití jména připojení."
 
 #: ../Network-Monitor/data/messages:11 ../wifi/data/messages:9
-#, fuzzy
 msgid "Connection name"
-msgstr "Připojování…"
+msgstr ""
 
 #: ../Network-Monitor/data/messages:101 ../Network-Monitor/data/messages:173
 #: ../Network-Monitor/data/messages:261 ../System-Monitor/data/messages:143
@@ -6307,9 +6305,8 @@ msgstr ""
 
 #: ../System-Monitor/data/messages:107 ../alsaMixer/data/messages:121
 #: ../powermanager/data/messages:111 ../wifi/data/messages:109
-#, fuzzy
 msgid "Gauge theme"
-msgstr "Rozchod"
+msgstr ""
 
 #: ../System-Monitor/data/messages:131 ../powermanager/data/messages:127
 msgid "It's the colour of the graphic for high values."
@@ -6486,9 +6483,8 @@ msgid "Leave empty to display the current luminosity."
 msgstr ""
 
 #: ../Xgamma/data/messages:11
-#, fuzzy
 msgid "Current luminosity"
-msgstr "Světlost obrazovky"
+msgstr ""
 
 #: ../Xgamma/data/messages:93 ../alsaMixer/data/messages:137
 msgid "Variation for 1 mouse scroll, in %:"
@@ -7119,7 +7115,8 @@ msgid "Space between icons:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:121
@@ -7306,7 +7303,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
@@ -7539,7 +7537,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:117
@@ -7623,13 +7622,13 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:11
-#, fuzzy
 msgid "Player name"
-msgstr "Uživatelské jméno:"
+msgstr ""
 
 #: ../musicPlayer/data/messages:101
 msgid "Audio Player"
@@ -7827,9 +7826,8 @@ msgid "Leave empty to display the current status information."
 msgstr ""
 
 #: ../powermanager/data/messages:11
-#, fuzzy
 msgid "Current status"
-msgstr "Aktuální skladba"
+msgstr ""
 
 #: ../powermanager/data/messages:139
 msgid "'On-battery' icon filename:"
@@ -8608,7 +8606,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:105
@@ -8665,27 +8664,3 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr ""
-
-#~ msgid "Not connected"
-#~ msgstr "Nepřipojeno"
-
-#~ msgid "Wired connection"
-#~ msgstr "Drátové připojení"
-
-#~ msgid "Recent documents"
-#~ msgstr "Nedávné dokumenty"
-
-#~ msgid "Only show files that are under this folder or its sub-folder:"
-#~ msgstr ""
-#~ "Zobrazovat pouze soubory, které jsou pod touto složkou, nebo její "
-#~ "podsložkou :"
-
-#~ msgid "in days. Set 0 if unsued."
-#~ msgstr "ve dnech. Pro vypnutí tohoto filtru nastavte na 0"
-
-#~ msgid "Only show files whose last modification date is less than ;"
-#~ msgstr ""
-#~ "Zobrazovat pouze soubory, jejichž datum poslední úpravy je méŇe než :"
-
-#~ msgid "Leave empty to use the default one."
-#~ msgstr "Nechat prázdné použít implicitní."

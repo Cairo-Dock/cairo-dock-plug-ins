@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2012-07-03 18:10+0000\n"
+"POT-Creation-Date: 2012-09-30 15:12+0000\n"
+"PO-Revision-Date: 2012-10-04 18:22+0000\n"
 "Last-Translator: rob <linuxned@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-04 04:42+0000\n"
-"X-Generator: Launchpad (build 15544)\n"
+"X-Launchpad-Export-Date: 2012-10-05 04:48+0000\n"
+"X-Generator: Launchpad (build 16061)\n"
+"Language: \n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -41,7 +42,8 @@ msgstr "Geanimeerde pictogrammen"
 
 #: ../Animated-icons/src/applet-init.c:42
 msgid "This plug-in provides many different animations for your icons."
-msgstr "Deze plug-in bevat vele verschillende animaties voor uw pictogrammen."
+msgstr ""
+"Deze plug-in bevat vele verschillende animaties voor uw pictogrammen."
 
 #: ../Animated-icons/src/applet-pulse.c:107 ../Animated-icons/data/messages:13
 #: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:55
@@ -370,7 +372,8 @@ msgstr "De module is wel toegevoegd, maar kon niet gestart worden."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Het applet '%s' is bijgewerkt en is automatisch opnieuw geladen"
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -468,8 +471,8 @@ msgstr ""
 "problemen veroorzaken met de snelheidsweergave die niet omlaag wil gaan.\n"
 "\n"
 "<b>Schijfruimte</b> :  Toon schijfoverdrachtswaarden. tot 10 partities\n"
-"  U moet het koppelpunt instellen van elke gemonitoorde partitie, zoals / "
-"of /home\n"
+"  U moet het koppelpunt instellen van elke gemonitoorde partitie, zoals / of "
+"/home\n"
 "  Beter weergeven in een meter, met 30 of 60 seconden ververssnelheid en "
 "hele korte of geen vertraging tussen overgangen.\n"
 "\n"
@@ -523,7 +526,7 @@ msgstr "Dit lijkt geen geldig XML-bestand."
 
 #: ../Doncky/src/applet-xml.c:311
 msgid "Please wait..."
-msgstr ""
+msgstr "Een moment geduld a.u.b…"
 
 #: ../Folders/src/applet-init.c:29
 msgid "Folders"
@@ -1021,22 +1024,24 @@ msgstr "Wifi activeren"
 
 #: ../Printers-Menu/src/applet-init.c:30
 msgid "Printers-Menu"
-msgstr ""
+msgstr "Afdrukmenu"
 
 #: ../Printers-Menu/src/applet-init.c:33
 msgid ""
 "This applet is designed to let you view and control active print jobs.\n"
 "Its icon will only be visible if at least one print job is active."
 msgstr ""
+"Dit applet is bedoeld om actieve afdruktaken te bekijken en beheren.\n"
+"Het pictogram zal alleen zichtbaar zijn, als er minimaal één afdruktaak "
+"actief is."
 
 #: ../Printers-Menu/src/applet-notifications.c:34
-#, fuzzy
 msgid ""
 "The PrintersMenu service did not reply.\n"
 "Please check that 'libprintersmenu.so' is correctly installed."
 msgstr ""
-"De Berichtendienst gaf geen antwoord.\n"
-"Controleer of het correct geïnstalleerd is."
+"De afdrukmenu-dienst gaf geen antwoord.\n"
+"Controleer of 'libprintersmenu.so' correct geïnstalleerd is."
 
 #: ../RSSreader/src/applet-init.c:31
 msgid "RSSreader"
@@ -1154,9 +1159,8 @@ msgid "All"
 msgstr "Alles"
 
 #: ../Recent-Events/src/applet-dialog.c:374
-#, fuzzy
 msgid "Applications"
-msgstr "Toepassingenmenu"
+msgstr "Toepassingen"
 
 #: ../Recent-Events/src/applet-dialog.c:375
 msgid "Document"
@@ -1253,8 +1257,8 @@ msgstr ""
 "+ Page up/down om te wisselen naar een ander hoofd-dock)\n"
 " - of typ de naam in van een starter en druk op de Tab-toets om automatisch "
 "naar de eerstvolgende starter te springen.\n"
-"Druk Enter om op het pictogram te klikken, Shift+Enter voor Shift+klik, Alt"
-"+Enter voor middelklik, en Ctrl+Enter voor linkermuisklik\n"
+"Druk Enter om op het pictogram te klikken, Shift+Enter voor Shift+klik, "
+"Alt+Enter voor middelklik, en Ctrl+Enter voor linkermuisklik\n"
 "Voor annuleren drukt u op Escape of nog een keer op dezelfde sneltoets."
 
 #: ../Remote-Control/src/applet-init.c:42
@@ -1420,9 +1424,8 @@ msgid "Notification Area"
 msgstr "Mededelingengebied"
 
 #: ../Sync-Menu/src/applet-init.c:30
-#, fuzzy
 msgid "Sync-Menu"
-msgstr "Menu"
+msgstr "Sync-menu"
 
 #: ../Sync-Menu/src/applet-init.c:33
 msgid ""
@@ -1432,16 +1435,20 @@ msgid ""
 "Its menu provides a condensed and collected view of all of these providers "
 "for quick view."
 msgstr ""
+"Dit applet verzamelt statusinformatiegegevens van processen\n"
+" die te maken hebben met enige vorm van synchronisatie  met servers:\n"
+"  zoals Ubuntu One, Dropbox, en andere.\n"
+"Het menu bevat een kort en bondig overzicht van al deze aanbieders."
 
 #: ../Sync-Menu/src/applet-notifications.c:34
-#, fuzzy
 msgid ""
 "The Sync Indicator service did not reply.\n"
 "Please check that 'libsyncindicator.so' (indicator-sync) is correctly "
 "installed."
 msgstr ""
-"De Berichtendienst gaf geen antwoord.\n"
-"Controleer of het correct geïnstalleerd is."
+"De Sync-indicatordienst gaf geen antwoord.\n"
+"Controleer a.u.b. of 'libsyncindicator.so' (indicator-sync) correct is "
+"geïnstalleerd."
 
 #: ../System-Monitor/src/applet-cpusage.c:59
 msgid "Uptime"
@@ -1521,7 +1528,8 @@ msgstr "Core-temperatuur:"
 #: ../System-Monitor/src/applet-nvidia.c:161
 #, c-format
 msgid "Alert! Graphic Card core temperature has reached %d°C"
-msgstr "Waarschuwing ! Core-temperatuur van grafische kaart heeft %d°C bereikt"
+msgstr ""
+"Waarschuwing ! Core-temperatuur van grafische kaart heeft %d°C bereikt"
 
 #: ../System-Monitor/src/applet-rame.c:123
 msgid "Gb"
@@ -1615,19 +1623,19 @@ msgstr "Huidige helderheid instellen voor bij het opstarten."
 
 #: ../Xgamma/src/applet-xgamma.c:238
 msgid "Gamma :"
-msgstr ""
+msgstr "Gamma :"
 
 #: ../Xgamma/src/applet-xgamma.c:240
 msgid "Red :"
-msgstr ""
+msgstr "Rood :"
 
 #: ../Xgamma/src/applet-xgamma.c:242
 msgid "Green :"
-msgstr ""
+msgstr "Groen :"
 
 #: ../Xgamma/src/applet-xgamma.c:244
 msgid "Blue :"
-msgstr ""
+msgstr "Blauw :"
 
 #: ../Xgamma/src/applet-xgamma.c:270 ../Xgamma/src/applet-xgamma.c:344
 msgid "Set up gamma:"
@@ -1733,7 +1741,7 @@ msgstr "Nieuwe taak toevoegen"
 
 #: ../clock/src/applet-calendar.c:608
 msgid "Edit tasks"
-msgstr ""
+msgstr "Taken bewerken"
 
 #: ../clock/src/applet-calendar.c:682
 msgid "Calendar and tasks"
@@ -1837,8 +1845,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2050,7 +2058,8 @@ msgstr ""
 "Druk op CTRL+v om de URL ergens in te plakken."
 
 #: ../dnd2share/src/applet-dnd2share.c:333
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Wacht a.u.b. met het starten van een nieuwe upload, totdat de huidige upload "
 "beëindigd is."
@@ -2191,7 +2200,7 @@ msgstr "Alleen een hosting-website voor bestanden gebruiken"
 
 #: ../dock-rendering/src/rendering-init.c:34
 msgid "Caroussel"
-msgstr "Caroussel"
+msgstr "Carrousel"
 
 #: ../dock-rendering/src/rendering-init.c:35
 msgid "3D plane"
@@ -2211,7 +2220,7 @@ msgstr "Regenboog"
 #: ../dock-rendering/data/messages:29 ../shortcuts/data/messages:109
 #: ../stack/data/messages:101
 msgid "Slide"
-msgstr "Diavoorstelling"
+msgstr "Glijden"
 
 #: ../dock-rendering/src/rendering-init.c:40 ../dock-rendering/data/messages:7
 msgid "Curve"
@@ -2484,10 +2493,12 @@ msgid ""
 "Your session needs to be restarted in order to update new configuration "
 "files."
 msgstr ""
+"Uw sessie dient herstart te worden om de configuratiebestanden bij te kunnen "
+"werken."
 
 #: ../logout/src/applet-logout.c:423
 msgid "Please do that at the end of the update."
-msgstr ""
+msgstr "Doe dit a.u.b. aan het einde van de update."
 
 #: ../logout/src/applet-logout.c:636
 #, c-format
@@ -2848,7 +2859,7 @@ msgstr "JumpBox tonen"
 
 #: ../musicPlayer/src/applet-notifications.c:323
 msgid "Shuffle"
-msgstr ""
+msgstr "Willekeurig"
 
 #: ../musicPlayer/src/applet-notifications.c:331
 msgid "Repeat"
@@ -2956,18 +2967,16 @@ msgid "Estimated time before full:"
 msgstr "Geschatte oplaadtijd:"
 
 #: ../powermanager/src/powermanager-draw.c:283
-#, fuzzy
 msgid "Model:"
-msgstr "Model"
+msgstr "Model:"
 
 #: ../powermanager/src/powermanager-draw.c:289
 msgid "Technology:"
-msgstr ""
+msgstr "Technologie:"
 
 #: ../powermanager/src/powermanager-draw.c:293
-#, fuzzy
 msgid "Maximum capacity:"
-msgstr "Maximum capaciteit"
+msgstr "Maximum capaciteit:"
 
 #: ../powermanager/src/powermanager-draw.c:298
 msgid "No battery found."
@@ -3061,9 +3070,8 @@ msgstr "Ontkoppeld"
 
 #: ../shortcuts/src/applet-bookmarks.c:180
 #: ../shortcuts/src/applet-bookmarks.c:406
-#, fuzzy
 msgid "Home Folder"
-msgstr "Map"
+msgstr "Persoonlijke map"
 
 #: ../shortcuts/src/applet-drives.c:130 ../shortcuts/src/applet-drives.c:193
 #, c-format
@@ -3135,9 +3143,8 @@ msgid "Open Home directory"
 msgstr "Persoonlijke map openen"
 
 #: ../shortcuts/src/applet-notifications.c:270
-#, fuzzy
 msgid "Connect to Server..."
-msgstr "Verbinden..."
+msgstr "Verbinden met server…"
 
 #: ../shortcuts/src/applet-notifications.c:276
 msgid "Rename this bookmark"
@@ -3173,8 +3180,8 @@ msgstr "Toon muis"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Deze plug-in tekent enige animatie rond de muisaanwijzer wanneer het zich in "
 "een dock/desklet bevindt."
@@ -3802,15 +3809,13 @@ msgid "Wifi"
 msgstr "Wifi"
 
 #: ../wifi/src/applet-notifications.c:88
-#, fuzzy
 msgid "Toggle wifi ON/OFF"
-msgstr "Composite IN-/UITSCHAKELEN"
+msgstr "Wifi IN/UITSCHAKELEN"
 
 #: ../gvfs-integration/cairo-dock-gio-vfs.c:466
 #: ../gvfs-integration/cairo-dock-gio-vfs.c:833
-#, fuzzy
 msgid "File System"
-msgstr "Bestanden"
+msgstr "Bestandssysteem"
 
 #: ../Animated-icons/data/messages:1 ../icon-effect/data/messages:1
 #: ../illusion/data/messages:1
@@ -5239,7 +5244,8 @@ msgstr "Plakken in klembord ?"
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
-msgstr "Als u klikt op een item, wordt de inhoud zichtbaar met een middelklik"
+msgstr ""
+"Als u klikt op een item, wordt de inhoud zichtbaar met een middelklik"
 
 #: ../Clipper/data/messages:121
 msgid "Paste into Selection?"
@@ -5409,7 +5415,8 @@ msgstr "Mogen externe toepassingen de labels van de pictogrammen bewerken ?"
 
 #: ../Dbus/data/messages:19
 msgid "Let extern applications modify the quick-infos on icons?"
-msgstr "Mogen externe toepassingen de snel-info van de pictogrammen bewerken ?"
+msgstr ""
+"Mogen externe toepassingen de snel-info van de pictogrammen bewerken ?"
 
 #: ../Dbus/data/messages:21
 msgid "Let extern applications modify the icons' image?"
@@ -5660,7 +5667,8 @@ msgid "Background"
 msgstr "Achtergrond"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "U kunt meer mooie achtergronden krijgen als u de decoraties van het Desklet "
 "gebruikt"
@@ -5714,9 +5722,8 @@ msgid "Let empty to use the name of the folder."
 msgstr "Laat leeg om de naam van de map te gebruiken."
 
 #: ../Folders/data/messages:11 ../quick-browser/data/messages:11
-#, fuzzy
 msgid "Folder name"
-msgstr "Bestandsnaam"
+msgstr "Naam map"
 
 #: ../Folders/data/messages:13
 msgid "How to render the icon :"
@@ -5789,9 +5796,8 @@ msgid "Show recent documents?"
 msgstr "Recente documenten tonen ?"
 
 #: ../GMenu/data/messages:97
-#, fuzzy
 msgid "Number of items to display"
-msgstr "Aantal te tonen lijnen :"
+msgstr "Aantal items om te tonen"
 
 #: ../GMenu/data/messages:99
 msgid "Command to use for configuring the menu:"
@@ -6010,9 +6016,8 @@ msgid "Leave empty to use the connection name."
 msgstr "Laat leeg om de verbindingsnaam te gebruiken."
 
 #: ../Network-Monitor/data/messages:11 ../wifi/data/messages:9
-#, fuzzy
 msgid "Connection name"
-msgstr "Verbindingssnelheid"
+msgstr "Naam verbinding"
 
 #: ../Network-Monitor/data/messages:101 ../Network-Monitor/data/messages:173
 #: ../Network-Monitor/data/messages:261 ../System-Monitor/data/messages:143
@@ -6578,15 +6583,13 @@ msgstr "Met een linkerklik opent u het itemsmenu"
 
 #: ../System-Monitor/data/messages:99 ../alsaMixer/data/messages:109
 #: ../powermanager/data/messages:101 ../wifi/data/messages:99
-#, fuzzy
 msgid "Display style"
-msgstr "Waarden tonen"
+msgstr "Weegavestijl"
 
 #: ../System-Monitor/data/messages:107 ../alsaMixer/data/messages:121
 #: ../powermanager/data/messages:111 ../wifi/data/messages:109
-#, fuzzy
 msgid "Gauge theme"
-msgstr "Meter"
+msgstr "Meter-thema"
 
 #: ../System-Monitor/data/messages:131 ../powermanager/data/messages:127
 msgid "It's the colour of the graphic for high values."
@@ -6772,9 +6775,8 @@ msgid "Leave empty to display the current luminosity."
 msgstr "Laat leeg om de huidige helderheid te tonen."
 
 #: ../Xgamma/data/messages:11
-#, fuzzy
 msgid "Current luminosity"
-msgstr "Schermhelderheid"
+msgstr "Huidige helderheid"
 
 #: ../Xgamma/data/messages:93 ../alsaMixer/data/messages:137
 msgid "Variation for 1 mouse scroll, in %:"
@@ -6797,9 +6799,8 @@ msgid "Shortkey to decrease the brightness:"
 msgstr "Sneltoets om de helderheid te verkleinen:"
 
 #: ../alsaMixer/data/messages:9
-#, fuzzy
 msgid "Sound card name"
-msgstr "Geluidskaart om te beheren :"
+msgstr "Naam geluidskaart"
 
 #: ../alsaMixer/data/messages:101
 msgid "Display volume :"
@@ -6808,7 +6809,7 @@ msgstr "Weergave volume :"
 #: ../alsaMixer/data/messages:113 ../powermanager/data/messages:107
 #: ../wifi/data/messages:105
 msgid "Icon with progress bar"
-msgstr ""
+msgstr "Pictogram met voortgangsbalk"
 
 #: ../alsaMixer/data/messages:117 ../wifi/data/messages:137
 msgid "Default icon:"
@@ -6862,7 +6863,8 @@ msgstr "Specifieke uit te voeren opdracht, om geluidsmixer te tonen :"
 
 #: ../clock/data/messages:7
 msgid "Leave empty to use the location name if available."
-msgstr "Laat leeg om de naam van de locatie te gebruiken, indien beschikbaar."
+msgstr ""
+"Laat leeg om de naam van de locatie te gebruiken, indien beschikbaar."
 
 #: ../clock/data/messages:103
 msgid "Show the date:"
@@ -7385,7 +7387,8 @@ msgstr "Kromming :"
 
 #: ../dock-rendering/data/messages:93
 msgid "The parabola will be restricted to a rectangle of this proportion."
-msgstr "De parabool zal gemaakt worden tot een rechthoek van deze proporties."
+msgstr ""
+"De parabool zal gemaakt worden tot een rechthoek van deze proporties."
 
 #: ../dock-rendering/data/messages:95
 msgid "Height/width ratio:"
@@ -7424,7 +7427,8 @@ msgid "Space between icons:"
 msgstr "Ruimte tussen pictogrammen :"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 betekent dat de golf plat is, 1 betekent dat de golf gelijk is aan andere "
 "weergaves."
@@ -7466,12 +7470,18 @@ msgid ""
 "You can choose to display separators as a line\n"
 " or a physical hole on the plane."
 msgstr ""
+"<b>De 3D-vlakweergave</b>\n"
+"Dit is de weergave die het meest lijkt op het MacOSX-dock.\n"
+"U kunt scheidingen weergeven als een lijn\n"
+" of als een fysieke scheiding in het vlak."
 
 #: ../dock-rendering/data/messages:136
 msgid ""
 "<b>A 3D caroussel view</b>\n"
 "Icons scroll with mouse position."
 msgstr ""
+"<b>Een 3D Carrousel-weergave</b>\n"
+"Pictogrammen scrollen met de muispositie."
 
 #: ../dock-rendering/data/messages:138
 msgid ""
@@ -7480,12 +7490,18 @@ msgid ""
 "You can choose to display separators as a line\n"
 " or a physical hole on the plane."
 msgstr ""
+"<b>De Kromming-weergave</b>\n"
+"Hiermee kunt u uw dock een kromming geven !\n"
+"U kunt scheidingen weergeven als een lijn\n"
+" of als een fysieke scheiding in het vlak."
 
 #: ../dock-rendering/data/messages:140
 msgid ""
 "<b>Slide view</b>\n"
 "A brand new view, especially designed for big subdocks."
 msgstr ""
+"<b>Glijden-weergave</b>\n"
+"Een gloednieuwe weergave speciaal ontwikkeld voor grote sub-docks."
 
 #: ../dock-rendering/data/messages:142
 msgid ""
@@ -7494,6 +7510,11 @@ msgid ""
 "Icons are not zoomed on mouse over.\n"
 "Separators are rendered as spaces between the different groups of icons."
 msgstr ""
+"<b>Paneel-weergave</b>\n"
+"Hierdoor wordt het dock weergegeven als een Gnome-paneel of KDE-paneel.\n"
+"Pictogrammen worden niet vergroot wanneer uw muis eroverheen gaat.\n"
+"Scheidingen worden weergegeven als ruimtes tussen de verschillende groepen "
+"pictogrammen."
 
 #: ../dock-rendering/data/messages:144
 msgid ""
@@ -7501,6 +7522,9 @@ msgid ""
 "Perfect for medium sub-docks with 3 to 10 icons.\n"
 "Labels are also clickable."
 msgstr ""
+"<b>De Parabool-weergave</b>\n"
+"Perfect voor middelgrote sub-docks met 3 tot 10 pictogrammen.\n"
+"Labels zijn ook klikbaar."
 
 #: ../dock-rendering/data/messages:146
 msgid ""
@@ -7508,6 +7532,9 @@ msgid ""
 "An original view, designed for sub-docks with few icons.\n"
 "Icons' labels can be displayed horizontally or not."
 msgstr ""
+"<b>Regenboog-weergave</b>\n"
+"Een originele weergave bedoeld voor sub-docks met weinig pictogrammen.\n"
+"De pictogramlabels kunnen ook horizontaal weergegeven worden."
 
 #: ../dock-rendering/data/messages:148
 msgid ""
@@ -7515,6 +7542,9 @@ msgid ""
 "This view is specially adapted to large sub-docks.\n"
 "You can choose to display all icons' labels."
 msgstr ""
+"<b>Glijden-weergave</b>\n"
+"Deze weergave is speciaal ontwikkeld voor grote sub-docks.\n"
+"U kunt alle pictogramlabels weergeven."
 
 #: ../drop-indicator/data/messages:1
 msgid "Drag and drop indicator"
@@ -7576,7 +7606,8 @@ msgstr ""
 
 #: ../dustbin/data/messages:95
 msgid "Name of the image to overwrite the theme's full image :"
-msgstr "Naam van een afbeelding om thema´s ´Vol´ afbeelding te overschrijven :"
+msgstr ""
+"Naam van een afbeelding om thema´s ´Vol´ afbeelding te overschrijven :"
 
 #: ../dustbin/data/messages:97
 msgid "Config"
@@ -7622,7 +7653,8 @@ msgid "Colours"
 msgstr "Kleuren"
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr "De kleuren zullen iets afwijken, mogelijk moet u ze aanpassen."
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
@@ -7869,7 +7901,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Naam van het bestand voor de \"Nieuwe e-mail\" afbeelding :"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Indien aangevinkt, zal het aantal e-mails getoond worden zelfs als er geen e-"
 "mails zijn."
@@ -7882,7 +7915,8 @@ msgstr "'0' laten zien wanneer er geen e-mail is?"
 #: ../stack/data/messages:95 ../switcher/data/messages:123
 #: ../tomboy/data/messages:119 ../weather/data/messages:133
 msgid "Leave empty to use default sub-dock view."
-msgstr "Laat leeg als u de standaardweergave van de sub-docks wilt gebruiken."
+msgstr ""
+"Laat leeg als u de standaardweergave van de sub-docks wilt gebruiken."
 
 #: ../mail/data/messages:121 ../shortcuts/data/messages:105
 #: ../stack/data/messages:97 ../switcher/data/messages:125
@@ -7955,13 +7989,13 @@ msgid "Blur amount:"
 msgstr "Hoeveelheid vervaging :"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr "Laat leeg om de naam van de momenteel bediende speler te tonen."
 
 #: ../musicPlayer/data/messages:11
-#, fuzzy
 msgid "Player name"
-msgstr "Bestandsnaam"
+msgstr "Naam speler"
 
 #: ../musicPlayer/data/messages:101
 msgid "Audio Player"
@@ -8163,9 +8197,8 @@ msgid "Leave empty to display the current status information."
 msgstr "Laat leeg om de huidige statusinformatie te tonen."
 
 #: ../powermanager/data/messages:11
-#, fuzzy
 msgid "Current status"
-msgstr "Huidig nummer"
+msgstr "Huidige status"
 
 #: ../powermanager/data/messages:139
 msgid "'On-battery' icon filename:"
@@ -8197,7 +8230,7 @@ msgstr "Melding"
 
 #: ../powermanager/data/messages:163
 msgid "Notification when battery charged ?"
-msgstr "Melding wanneer accu opgeladen is ?"
+msgstr "Melding geven wanneer accu opgeladen is ?"
 
 #: ../powermanager/data/messages:165 ../powermanager/data/messages:175
 #: ../powermanager/data/messages:183
@@ -8211,7 +8244,7 @@ msgstr "Gebruik een geluid :"
 
 #: ../powermanager/data/messages:169
 msgid "Notification when low battery ?"
-msgstr "Melding wanneer acculading laag is ?"
+msgstr "Melding geven wanneer acculading laag is ?"
 
 #: ../powermanager/data/messages:171
 msgid "in percent."
@@ -8227,7 +8260,7 @@ msgstr "Wanneer acculading onder 4% is"
 
 #: ../powermanager/data/messages:181
 msgid "Notification when battery charge is critical ?"
-msgstr "Melding wanneer accu bijna leeg is ?"
+msgstr "Melding gevenwanneer accu bijna leeg is ?"
 
 #: ../powermanager/data/messages:187
 msgid "Notification type:"
@@ -8473,7 +8506,7 @@ msgstr "Schop"
 
 #: ../slider/data/messages:147
 msgid "slideshow"
-msgstr "Diaporama"
+msgstr "Diavoorstelling"
 
 #: ../slider/data/messages:149
 msgid "grow up"
@@ -8511,7 +8544,8 @@ msgstr "Achtergrond toevoegen aan de afbeelding?"
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
-msgstr "Stel de doorzichtigheid in op 0 als u geen achtergrond wilt gebruiken."
+msgstr ""
+"Stel de doorzichtigheid in op 0 als u geen achtergrond wilt gebruiken."
 
 #: ../slider/data/messages:175
 msgid "Choose a background colour :"
@@ -8664,9 +8698,8 @@ msgid "In expanded mode, render the desklet in 3D?"
 msgstr "In uitgebreide modus, het desklet in 3D weergeven ?"
 
 #: ../switcher/data/messages:131
-#, fuzzy
 msgid "Show desktop number on icons?"
-msgstr "Hoogste geheugengebruik tonen in % ?"
+msgstr "Bureaubladnummer tonen op de pictogrammen?"
 
 #: ../switcher/data/messages:133
 msgid "Draw windows on icons?"
@@ -8891,9 +8924,8 @@ msgid "Leave empty to use the name of the city."
 msgstr "Laat leeg om de naam van de stad te gebruiken."
 
 #: ../weather/data/messages:11
-#, fuzzy
 msgid "City name"
-msgstr "Naam"
+msgstr "Naam stad"
 
 #: ../weather/data/messages:103
 msgid "Enter the name of your location in the text entry and press Enter."
@@ -8971,7 +9003,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Positie van de verticale scrollbalk in pixel"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Hierdoor kunt u met rechts klikken op het desklet voor het Cairo-Dock menu."
 
@@ -9003,9 +9036,8 @@ msgid "Predefined bookmarks to show in applet menu:"
 msgstr "Aangegeven bladwijzers om in applet's menu te verschijnen :"
 
 #: ../wifi/data/messages:139
-#, fuzzy
 msgid "\"No signal\" icon"
-msgstr "Naam van de afbeelding voor het pictogram 'Geen signaal' :"
+msgstr "Pictogram \"Geen signaal\""
 
 #: ../wifi/data/messages:147
 msgid "Signal Strength"
@@ -9034,74 +9066,3 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Alternatieve opdracht om ´Draadloos configuratie´ te openen :"
-
-#~ msgid "Not connected"
-#~ msgstr "Niet verbonden"
-
-#~ msgid "Wired connection"
-#~ msgstr "Verbinding met draad"
-
-#~ msgid "Applet's Handbook"
-#~ msgstr "Applet's handleiding"
-
-#~ msgid "Recent documents"
-#~ msgstr "Recente documenten"
-
-#~ msgid "Leave blank if filter is not needed."
-#~ msgstr "Laat leeg om dit filter niet te gebruiken."
-
-#~ msgid "Only show files that are under this folder or its sub-folder:"
-#~ msgstr "Toon alleen bestanden in deze map of sub-mappen :"
-
-#~ msgid "in days. Set 0 if unsued."
-#~ msgstr "In dagen Stel in op 0 om het filter niet te gebruiken."
-
-#~ msgid "Only show files whose last modification date is less than ;"
-#~ msgstr ""
-#~ "Toon alleen bestanden waarvan de laatste wijzigingsdatum ligt voor ;"
-
-#~ msgid "Session management buttons"
-#~ msgstr "Sessiebeheerknoppen"
-
-#~ msgid "wifi"
-#~ msgstr "Wifi"
-
-#~ msgid "Leave empty to use the default one."
-#~ msgstr "Laat leeg om standaardwaarde te gebruiken."
-
-#~ msgid "Leave empty to use the default sound card."
-#~ msgstr "Laat leeg om de standaardgeluidskaart te gebruiken."
-
-#~ msgid "Effect to apply to the icon when adjusting volume:"
-#~ msgstr "Effect om toe te passen op het pictogram bij volumewijziging:"
-
-#~ msgid "Leave empty to use the default command."
-#~ msgstr "Laat leeg om standaardopdracht te gebruiken."
-
-#~ msgid "Effect to apply on the icon according to the charge :"
-#~ msgstr ""
-#~ "Effect om toe te passen op het pictogram afhankelijk van de acculading :"
-
-#~ msgid "Draw bar"
-#~ msgstr "Balk tekenen"
-
-#~ msgid "Leave empty to use the same image."
-#~ msgstr "Laat leeg om dezelfde afbeelding te gerbuiken."
-
-#~ msgid "'Very low' icon filename:"
-#~ msgstr "Naam van de afbeelding voor het pictogram 'Zeer laag' :"
-
-#~ msgid "'Low' icon filename:"
-#~ msgstr "Naam van de afbeelding voor het pictogram 'Laag' :"
-
-#~ msgid "'Average' icon filename:"
-#~ msgstr "Naam van de afbeelding voor het pictogram 'Gemiddeld' :"
-
-#~ msgid "'Good' icon filename:"
-#~ msgstr "Naam van de afbeelding voor het pictogram 'Goed' :"
-
-#~ msgid "'Excellent' icon filename:"
-#~ msgstr "Naam van de afbeelding voor het pictogram 'Zeer goed' :"
-
-#~ msgid "Overwrite the default label with the connection point name?"
-#~ msgstr "Standaardlabel overschrijven met naam van het toegangspunt ?"

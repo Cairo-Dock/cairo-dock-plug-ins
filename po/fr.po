@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2012-07-03 09:39+0000\n"
+"POT-Creation-Date: 2012-09-30 15:12+0000\n"
+"PO-Revision-Date: 2012-10-06 00:22+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-04 04:42+0000\n"
-"X-Generator: Launchpad (build 15544)\n"
+"X-Launchpad-Export-Date: 2012-10-07 04:43+0000\n"
+"X-Generator: Launchpad (build 16061)\n"
+"Language: \n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -267,8 +268,8 @@ msgstr ""
 "Un <b>clic gauche</b> sur l'icône permet d'activer/désactiver le composite. "
 "Vous pouvez définir un <b>raccourci clavier</b> pour cette action.\n"
 "Cette applet vous donne également accès à certaines fonctionnalités de votre "
-"gestionnaire de fenêtre grâce à un <b>clic du milieu et le menu de l'icône</"
-"b>.\n"
+"gestionnaire de fenêtre grâce à un <b>clic du milieu et le menu de "
+"l'icône</b>.\n"
 "Vous pouvez définir dans la configuration de l'applet, le gestionnaire de "
 "fenêtre qui fourni le composite et choisir l'alternative à celui-ci."
 
@@ -374,7 +375,8 @@ msgstr "Le module a été ajouté, mais n'a pas pu être exécuté"
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "L'applet '%s' a été mise a jour et rechargée avec succès."
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -531,7 +533,7 @@ msgstr "Cela ne semble pas être un fichier XML valide"
 
 #: ../Doncky/src/applet-xml.c:311
 msgid "Please wait..."
-msgstr ""
+msgstr "Veuillez patienter…"
 
 #: ../Folders/src/applet-init.c:29
 msgid "Folders"
@@ -878,7 +880,8 @@ msgstr ""
 
 #: ../MeMenu/src/applet-notifications.c:31
 msgid "It seems that the Me-Menu is not installed on your system"
-msgstr "Il semblerait que \"Me-Menu\" ne soit pas installé sur votre système."
+msgstr ""
+"Il semblerait que \"Me-Menu\" ne soit pas installé sur votre système."
 
 #: ../Messaging-Menu/src/applet-init.c:34
 msgid "Messaging Menu"
@@ -1034,22 +1037,25 @@ msgstr "Activer le wifi"
 
 #: ../Printers-Menu/src/applet-init.c:30
 msgid "Printers-Menu"
-msgstr ""
+msgstr "Menu d'Impression"
 
 #: ../Printers-Menu/src/applet-init.c:33
 msgid ""
 "This applet is designed to let you view and control active print jobs.\n"
 "Its icon will only be visible if at least one print job is active."
 msgstr ""
+"Cette applet a pour but de voir et contrôler les tâches d'impression "
+"actives.\n"
+"Son icône sera uniquement visible si au-moins une tâche d'impression est "
+"active."
 
 #: ../Printers-Menu/src/applet-notifications.c:34
-#, fuzzy
 msgid ""
 "The PrintersMenu service did not reply.\n"
 "Please check that 'libprintersmenu.so' is correctly installed."
 msgstr ""
-"Le service \"Messaging\" ne répond pas.\n"
-"Merci de vérifier qu'il est correctement installé."
+"Le service 'PrintersMenu' n'a pas répondu.\n"
+"Merci de vérifier que 'libprintersmenu.so' est correctement installé."
 
 #: ../RSSreader/src/applet-init.c:31
 msgid "RSSreader"
@@ -1169,9 +1175,8 @@ msgid "All"
 msgstr "Tous"
 
 #: ../Recent-Events/src/applet-dialog.c:374
-#, fuzzy
 msgid "Applications"
-msgstr "Menu d'Applications"
+msgstr "Programmes"
 
 #: ../Recent-Events/src/applet-dialog.c:375
 msgid "Document"
@@ -1437,9 +1442,8 @@ msgid "Notification Area"
 msgstr "Zone de notifications"
 
 #: ../Sync-Menu/src/applet-init.c:30
-#, fuzzy
 msgid "Sync-Menu"
-msgstr "Menu"
+msgstr "Menu de Synchronisation"
 
 #: ../Sync-Menu/src/applet-init.c:33
 msgid ""
@@ -1449,16 +1453,23 @@ msgid ""
 "Its menu provides a condensed and collected view of all of these providers "
 "for quick view."
 msgstr ""
+"Cette applet collecte les informations sur les états de différents "
+"processus,\n"
+" ce qui comprend certaines formes de synchronisation avec des serveurs tels "
+"que :\n"
+"  Ubuntu One, Dropbox et d'autres.\n"
+"Son menu fourni un aperçu rapide sur l'état de ces différents services\n"
+" avec la possibilité d'interagir avec."
 
 #: ../Sync-Menu/src/applet-notifications.c:34
-#, fuzzy
 msgid ""
 "The Sync Indicator service did not reply.\n"
 "Please check that 'libsyncindicator.so' (indicator-sync) is correctly "
 "installed."
 msgstr ""
-"Le service \"Messaging\" ne répond pas.\n"
-"Merci de vérifier qu'il est correctement installé."
+"L'indicateur 'Sync Indicator' n'a pas répondu.\n"
+"Merci de vérifier que 'libsyncindicator.so' (indicator-sync) est "
+"correctement installé."
 
 #: ../System-Monitor/src/applet-cpusage.c:59
 msgid "Uptime"
@@ -1540,7 +1551,8 @@ msgstr "Température du coeur"
 #: ../System-Monitor/src/applet-nvidia.c:161
 #, c-format
 msgid "Alert! Graphic Card core temperature has reached %d°C"
-msgstr "Alerte ! La temmérature du coeur de la carte graphique a atteint %d°C"
+msgstr ""
+"Alerte ! La temmérature du coeur de la carte graphique a atteint %d°C"
 
 #: ../System-Monitor/src/applet-rame.c:123
 msgid "Gb"
@@ -1635,19 +1647,19 @@ msgstr "Appliquer la luminosité actuelle au démarrage"
 
 #: ../Xgamma/src/applet-xgamma.c:238
 msgid "Gamma :"
-msgstr ""
+msgstr "Gamma :"
 
 #: ../Xgamma/src/applet-xgamma.c:240
 msgid "Red :"
-msgstr ""
+msgstr "Rouge :"
 
 #: ../Xgamma/src/applet-xgamma.c:242
 msgid "Green :"
-msgstr ""
+msgstr "Vert :"
 
 #: ../Xgamma/src/applet-xgamma.c:244
 msgid "Blue :"
-msgstr ""
+msgstr "Bleu :"
 
 #: ../Xgamma/src/applet-xgamma.c:270 ../Xgamma/src/applet-xgamma.c:344
 msgid "Set up gamma:"
@@ -1702,8 +1714,8 @@ msgid ""
 "The applet can either use the Ubuntu Sound-menu or the Alsa driver."
 msgstr ""
 "Cette applet vous permet de contrôler le volume du son depuis le dock.\n"
-"Faites un coup de molette vers le haut/bas sur l'icône pour augmenter/"
-"diminuer le volume.\n"
+"Faites un coup de molette vers le haut/bas sur l'icône pour "
+"augmenter/diminuer le volume.\n"
 "Cliquez sur l'icône pour afficher/cacher le contrôle du volume (vous pouvez "
 "spécifier un raccourci clavier pour cela)\n"
 "Le clic du milieu est utilisé pour activer/désactiver le son et le double-"
@@ -1755,7 +1767,7 @@ msgstr "Ajouter une nouvelle tâche"
 
 #: ../clock/src/applet-calendar.c:608
 msgid "Edit tasks"
-msgstr ""
+msgstr "Éditer les tâches"
 
 #: ../clock/src/applet-calendar.c:682
 msgid "Calendar and tasks"
@@ -1859,8 +1871,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2074,7 +2086,8 @@ msgstr ""
 "Tapez juste CTRL+v pour coller l'URL n'importe où."
 
 #: ../dnd2share/src/applet-dnd2share.c:333
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Veuillez attendre que le chargement en cours soit terminé avant d'en "
 "commencer un nouveau."
@@ -2404,8 +2417,8 @@ msgstr ""
 "Cette applet vous permet de contrôler l'agencement de votre clavier.\n"
 "\tElle peut aussi afficher le statut de NUM et CAPS lock\n"
 "\tClic gauche pour basculer vers l'agencement suivant,\n"
-"\tMolette vers le haut/bas pour sélectionner l'agencement précédent/"
-"suivant,\n"
+"\tMolette vers le haut/bas pour sélectionner l'agencement "
+"précédent/suivant,\n"
 "\tClic droit pour donner un accès à la liste des agencements disponibles."
 
 #: ../keyboard-indicator/src/applet-init.c:81
@@ -2509,10 +2522,12 @@ msgid ""
 "Your session needs to be restarted in order to update new configuration "
 "files."
 msgstr ""
+"Votre session a besoin d'être redémarrée afin de mettre à jour de nouveaux "
+"fichiers de configuration."
 
 #: ../logout/src/applet-logout.c:423
 msgid "Please do that at the end of the update."
-msgstr ""
+msgstr "Merci de faire ceci à la fin des mises à jour."
 
 #: ../logout/src/applet-logout.c:636
 #, c-format
@@ -2981,18 +2996,16 @@ msgid "Estimated time before full:"
 msgstr "Temps estimé pour charger la batterie :"
 
 #: ../powermanager/src/powermanager-draw.c:283
-#, fuzzy
 msgid "Model:"
-msgstr "Modèle"
+msgstr "Modèle :"
 
 #: ../powermanager/src/powermanager-draw.c:289
 msgid "Technology:"
-msgstr ""
+msgstr "Technologie :"
 
 #: ../powermanager/src/powermanager-draw.c:293
-#, fuzzy
 msgid "Maximum capacity:"
-msgstr "Capacité maximale"
+msgstr "Capacité maximum :"
 
 #: ../powermanager/src/powermanager-draw.c:298
 msgid "No battery found."
@@ -3087,9 +3100,8 @@ msgstr "Non monté"
 
 #: ../shortcuts/src/applet-bookmarks.c:180
 #: ../shortcuts/src/applet-bookmarks.c:406
-#, fuzzy
 msgid "Home Folder"
-msgstr "Répertoire"
+msgstr "Dossier personnel"
 
 #: ../shortcuts/src/applet-drives.c:130 ../shortcuts/src/applet-drives.c:193
 #, c-format
@@ -3164,9 +3176,8 @@ msgid "Open Home directory"
 msgstr "Ouvrir le Dossier Personnel"
 
 #: ../shortcuts/src/applet-notifications.c:270
-#, fuzzy
 msgid "Connect to Server..."
-msgstr "Connexion..."
+msgstr "Se connecter à un serveur…"
 
 #: ../shortcuts/src/applet-notifications.c:276
 msgid "Rename this bookmark"
@@ -3202,8 +3213,8 @@ msgstr "Montrer la souris"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Ce plug-in dessine une animation autour du curseur quand il se trouve à "
 "l'intérieur d'un dock/desklet."
@@ -3844,15 +3855,13 @@ msgid "Wifi"
 msgstr "Wifi"
 
 #: ../wifi/src/applet-notifications.c:88
-#, fuzzy
 msgid "Toggle wifi ON/OFF"
-msgstr "Modifier l'état du composite On/Off"
+msgstr "Activer/Désactiver le WiFi"
 
 #: ../gvfs-integration/cairo-dock-gio-vfs.c:466
 #: ../gvfs-integration/cairo-dock-gio-vfs.c:833
-#, fuzzy
 msgid "File System"
-msgstr "Fichiers"
+msgstr "Système de fichiers"
 
 #: ../Animated-icons/data/messages:1 ../icon-effect/data/messages:1
 #: ../illusion/data/messages:1
@@ -4966,7 +4975,8 @@ msgstr "Transparence du fond :"
 #: ../tomboy/data/messages:79 ../weather/data/messages:77
 #: ../weblets/data/messages:67 ../wifi/data/messages:75
 msgid "in pixels. Use this to adjust the left position of drawings."
-msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
+msgstr ""
+"en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
 #: ../Clipper/data/messages:69 ../Composite-Manager/data/messages:67
 #: ../Disks/data/messages:73 ../Doncky/data/messages:69
@@ -5062,7 +5072,8 @@ msgstr "Décalage en haut :"
 #: ../tomboy/data/messages:87 ../weather/data/messages:85
 #: ../weblets/data/messages:75 ../wifi/data/messages:83
 msgid "in pixels. Use this to adjust the right position of drawings."
-msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
+msgstr ""
+"en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
 #: ../Clipper/data/messages:77 ../Composite-Manager/data/messages:75
 #: ../Disks/data/messages:81 ../Doncky/data/messages:77
@@ -5271,8 +5282,8 @@ msgstr "Si oui, nombre de sélection d'objets :"
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr ""
-"Lorsque vous cliquez sur un objet, son contenu deviendra accessible avec CTRL"
-"+v"
+"Lorsque vous cliquez sur un objet, son contenu deviendra accessible avec "
+"CTRL+v"
 
 #: ../Clipper/data/messages:117
 msgid "Paste into Clipboard?"
@@ -5465,7 +5476,8 @@ msgstr ""
 
 #: ../Dbus/data/messages:21
 msgid "Let extern applications modify the icons' image?"
-msgstr "Autoriser les applications externes à modifier les images des icônes ?"
+msgstr ""
+"Autoriser les applications externes à modifier les images des icônes ?"
 
 #: ../Dbus/data/messages:23
 msgid "Let extern applications animate icons?"
@@ -5707,7 +5719,8 @@ msgid "Background"
 msgstr "Fond :"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Vous pouvez avoir plus d'arrières plan attractifs en utilisant les "
 "décorations des Desklets"
@@ -5761,9 +5774,8 @@ msgid "Let empty to use the name of the folder."
 msgstr "Laissez vide afin d'utiliser le nom du dossier."
 
 #: ../Folders/data/messages:11 ../quick-browser/data/messages:11
-#, fuzzy
 msgid "Folder name"
-msgstr "Nom du fichier"
+msgstr "Nom du dossier"
 
 #: ../Folders/data/messages:13
 msgid "How to render the icon :"
@@ -5836,9 +5848,8 @@ msgid "Show recent documents?"
 msgstr "Montrer les documents récents ?"
 
 #: ../GMenu/data/messages:97
-#, fuzzy
 msgid "Number of items to display"
-msgstr "Nombre de lignes à afficher :"
+msgstr "Nombre d'éléments à afficher"
 
 #: ../GMenu/data/messages:99
 msgid "Command to use for configuring the menu:"
@@ -6053,9 +6064,8 @@ msgid "Leave empty to use the connection name."
 msgstr "Laissez vide pour utiliser le nom de la connexion."
 
 #: ../Network-Monitor/data/messages:11 ../wifi/data/messages:9
-#, fuzzy
 msgid "Connection name"
-msgstr "Vitesse de connexion"
+msgstr "Nom de la connexion"
 
 #: ../Network-Monitor/data/messages:101 ../Network-Monitor/data/messages:173
 #: ../Network-Monitor/data/messages:261 ../System-Monitor/data/messages:143
@@ -6582,7 +6592,8 @@ msgstr "Proposer des moteurs de recherche du web?"
 
 #: ../Scooby-Do/data/messages:109
 msgid "It can launch commands and even do some calculations."
-msgstr "Il est possible d'exécuter des commandes et même des faire des calculs"
+msgstr ""
+"Il est possible d'exécuter des commandes et même des faire des calculs"
 
 #: ../Status-Notifier/data/messages:11 ../mail/data/messages:107
 #: ../mail/data/messages:111 ../mail/data/messages:127
@@ -6623,15 +6634,13 @@ msgstr "Clic gauche pour montrer le menu d'un élément"
 
 #: ../System-Monitor/data/messages:99 ../alsaMixer/data/messages:109
 #: ../powermanager/data/messages:101 ../wifi/data/messages:99
-#, fuzzy
 msgid "Display style"
-msgstr "Afficher les valeurs"
+msgstr "Style d'affichage"
 
 #: ../System-Monitor/data/messages:107 ../alsaMixer/data/messages:121
 #: ../powermanager/data/messages:111 ../wifi/data/messages:109
-#, fuzzy
 msgid "Gauge theme"
-msgstr "Jauge"
+msgstr "Thème de la jauge"
 
 #: ../System-Monitor/data/messages:131 ../powermanager/data/messages:127
 msgid "It's the colour of the graphic for high values."
@@ -6816,9 +6825,8 @@ msgid "Leave empty to display the current luminosity."
 msgstr "Laisser vide pour afficher la luminosité actuelle."
 
 #: ../Xgamma/data/messages:11
-#, fuzzy
 msgid "Current luminosity"
-msgstr "Luminosité de l'Écran"
+msgstr "Luminosité actuelle"
 
 #: ../Xgamma/data/messages:93 ../alsaMixer/data/messages:137
 msgid "Variation for 1 mouse scroll, in %:"
@@ -6841,9 +6849,8 @@ msgid "Shortkey to decrease the brightness:"
 msgstr "Raccourci clavier pour diminuer la luminosité :"
 
 #: ../alsaMixer/data/messages:9
-#, fuzzy
 msgid "Sound card name"
-msgstr "Carte son à contrôler :"
+msgstr "Nom de la carte son"
 
 #: ../alsaMixer/data/messages:101
 msgid "Display volume :"
@@ -6852,7 +6859,7 @@ msgstr "Afficher le volume :"
 #: ../alsaMixer/data/messages:113 ../powermanager/data/messages:107
 #: ../wifi/data/messages:105
 msgid "Icon with progress bar"
-msgstr ""
+msgstr "Icône avec une barre de progression"
 
 #: ../alsaMixer/data/messages:117 ../wifi/data/messages:137
 msgid "Default icon:"
@@ -7260,8 +7267,8 @@ msgstr "Script personnel pour l'upload des fichiers :"
 #: ../dnd2share/data/messages:179
 msgid "Leave empty to upload files into '~/Dropbox/Public'."
 msgstr ""
-"Laissez vide pour uploader les fichiers dans le répertoire '~/Dropbox/"
-"Public'."
+"Laissez vide pour uploader les fichiers dans le répertoire "
+"'~/Dropbox/Public'."
 
 #: ../dnd2share/data/messages:181
 msgid "Path of the DropBox folder :"
@@ -7470,7 +7477,8 @@ msgid "Space between icons:"
 msgstr "Espacement entre les icônes :"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 signifie que la vague est totalement plate, 1 que la vague est identique "
 "aux autres vues."
@@ -7512,12 +7520,18 @@ msgid ""
 "You can choose to display separators as a line\n"
 " or a physical hole on the plane."
 msgstr ""
+"<b>Une vue en plan 3D</b>\n"
+"Ceci est la vue la plus proche du dock MacOSX.\n"
+"Vous pouvez choisir d'afficher les séparateurs comme\n"
+" une ligne ou une séparation physique dans le plan."
 
 #: ../dock-rendering/data/messages:136
 msgid ""
 "<b>A 3D caroussel view</b>\n"
 "Icons scroll with mouse position."
 msgstr ""
+"<b>Une vue 3D en carrousel</b>\n"
+"Les icônes se déplacent en fonction de la position de la souris."
 
 #: ../dock-rendering/data/messages:138
 msgid ""
@@ -7526,12 +7540,18 @@ msgid ""
 "You can choose to display separators as a line\n"
 " or a physical hole on the plane."
 msgstr ""
+"<b>Une vue courbée</b>\n"
+"Cela vous permet de courber votre dock !\n"
+"Vous pouvez choisir d'afficher les séparateurs comme\n"
+" une ligne ou une séparation physique dans le plan."
 
 #: ../dock-rendering/data/messages:140
 msgid ""
 "<b>Slide view</b>\n"
 "A brand new view, especially designed for big subdocks."
 msgstr ""
+"<b>Une vue en diapositive</b>\n"
+"Une vue spécialement conçue pour les grands sous-docks."
 
 #: ../dock-rendering/data/messages:142
 msgid ""
@@ -7540,6 +7560,11 @@ msgid ""
 "Icons are not zoomed on mouse over.\n"
 "Separators are rendered as spaces between the different groups of icons."
 msgstr ""
+"<b>Une vue en tableau de bord</b>\n"
+"Cette vue affichera le dock comme un gnome-panel ou kde-panel.\n"
+"Les icônes ne sont pas zoomée lorsque le pointeur de la souris est devant.\n"
+"Les séparateurs sont affichés comme des espaces entre les différents groupe "
+"d'icônes."
 
 #: ../dock-rendering/data/messages:144
 msgid ""
@@ -7547,6 +7572,9 @@ msgid ""
 "Perfect for medium sub-docks with 3 to 10 icons.\n"
 "Labels are also clickable."
 msgstr ""
+"<b>Une vue parabolique</b>\n"
+"Parfaite pour des sous-docks moyen avec 3 à 10 icônes.\n"
+"Les étiquettes sont également cliquable."
 
 #: ../dock-rendering/data/messages:146
 msgid ""
@@ -7554,6 +7582,9 @@ msgid ""
 "An original view, designed for sub-docks with few icons.\n"
 "Icons' labels can be displayed horizontally or not."
 msgstr ""
+"<b>Une vue en arc-en-ciel</b>\n"
+"Une vue originale, conçue pour les sous-dock avec quelques icônes.\n"
+"Les étiquettes des icônes peuvent être affichées horizontalement ou non."
 
 #: ../dock-rendering/data/messages:148
 msgid ""
@@ -7561,6 +7592,9 @@ msgid ""
 "This view is specially adapted to large sub-docks.\n"
 "You can choose to display all icons' labels."
 msgstr ""
+"<b>Une vue en diapositive</b>\n"
+"Cette vue est spécialement conçue pour les grands sous-docks.\n"
+"Vous pouvez choisir en option d'afficher toutes les étiquettes des icônes."
 
 #: ../drop-indicator/data/messages:1
 msgid "Drag and drop indicator"
@@ -7668,7 +7702,8 @@ msgid "Colours"
 msgstr "Couleurs"
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 "Les couleurs vont être légèrement altérées, donc, vous pourriez avoir à les "
 "changer."
@@ -7916,8 +7951,10 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Nom d'une image pour les nouveaux e-mails :"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
-msgstr "Si coché, le nombre de courriel sera affiché me si il n'y en a aucun."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
+msgstr ""
+"Si coché, le nombre de courriel sera affiché me si il n'y en a aucun."
 
 #: ../mail/data/messages:117
 msgid "Show '0' if there is no mail?"
@@ -7982,7 +8019,8 @@ msgstr "Application mail préférée à exécuter au clic gauche"
 
 #: ../mail/data/messages:151
 msgid "Add a mail account (you've to launch the applet)"
-msgstr "Ajouter un compte e-mail (vous devez activer l'applet pour continuer)"
+msgstr ""
+"Ajouter un compte e-mail (vous devez activer l'applet pour continuer)"
 
 #: ../mail/data/messages:153
 msgid "The new account will be created with the specified type and name."
@@ -8001,13 +8039,13 @@ msgid "Blur amount:"
 msgstr "Quantité de flou :"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr "Laissez vide pour afficher le nom du lecteur courant."
 
 #: ../musicPlayer/data/messages:11
-#, fuzzy
 msgid "Player name"
-msgstr "Nom du fichier"
+msgstr "Nom du lecteur"
 
 #: ../musicPlayer/data/messages:101
 msgid "Audio Player"
@@ -8208,9 +8246,8 @@ msgid "Leave empty to display the current status information."
 msgstr "Laisser vide pour afficher les informations actuelles de status"
 
 #: ../powermanager/data/messages:11
-#, fuzzy
 msgid "Current status"
-msgstr "Chanson actuelle"
+msgstr "État actuel"
 
 #: ../powermanager/data/messages:139
 msgid "'On-battery' icon filename:"
@@ -8707,9 +8744,8 @@ msgid "In expanded mode, render the desklet in 3D?"
 msgstr "En mode étendu, afficher le desklet en 3D ?"
 
 #: ../switcher/data/messages:131
-#, fuzzy
 msgid "Show desktop number on icons?"
-msgstr "Afficher l'usage mémoire du top en % ?"
+msgstr "Monter le numéro du bureau sur l'/les icône(s) ?"
 
 #: ../switcher/data/messages:133
 msgid "Draw windows on icons?"
@@ -8907,8 +8943,8 @@ msgid ""
 msgstr ""
 "Ecrire le format de date que vous utilisez couramment dans vos notes. La "
 "syntaxe est l'une de 'strftime' : %d pour le jour, %m pour le mois, %y pour "
-"l'année (2 chiffres), etc. Laissez vide pour utilisez celui par défaut (%d/"
-"%m/%y)."
+"l'année (2 chiffres), etc. Laissez vide pour utilisez celui par défaut "
+"(%d/%m/%y)."
 
 #: ../tomboy/data/messages:139
 msgid "Date format to search for :"
@@ -8935,9 +8971,8 @@ msgid "Leave empty to use the name of the city."
 msgstr "Laissez vide pour utiliser le nom de la ville."
 
 #: ../weather/data/messages:11
-#, fuzzy
 msgid "City name"
-msgstr "Par nom"
+msgstr "Nom de la ville"
 
 #: ../weather/data/messages:103
 msgid "Enter the name of your location in the text entry and press Enter."
@@ -9014,7 +9049,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Position de la barre de défilement verticale"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Cela vous permet de cliquer gauche sur le desklet pour afficher le pop-up du "
 "menu de Cairo-Dock"
@@ -9047,9 +9083,8 @@ msgid "Predefined bookmarks to show in applet menu:"
 msgstr "Signets prédéfinis à afficher dans le menu de l'applet"
 
 #: ../wifi/data/messages:139
-#, fuzzy
 msgid "\"No signal\" icon"
-msgstr "Nom de l'image 'Aucun Signal' :"
+msgstr "Icône pour le statut \"Aucun Signal\""
 
 #: ../wifi/data/messages:147
 msgid "Signal Strength"
@@ -9077,76 +9112,3 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Ouvrir la configuration du Wifi avec :"
-
-#~ msgid "Not connected"
-#~ msgstr "Déconnecté"
-
-#~ msgid "Wired connection"
-#~ msgstr "Connexion filaire"
-
-#~ msgid "Applet's Handbook"
-#~ msgstr "Manuel de l'applet"
-
-#~ msgid "Recent documents"
-#~ msgstr "Documents récents"
-
-#~ msgid "Leave blank if filter is not needed."
-#~ msgstr "Laisser vide pour ne pas utiliser ce filtre."
-
-#~ msgid "Only show files that are under this folder or its sub-folder:"
-#~ msgstr ""
-#~ "Afficher uniquement les fichiers en dessous de ce dossier ou des ses sous-"
-#~ "dossiers :"
-
-#~ msgid "in days. Set 0 if unsued."
-#~ msgstr "En jour. Mettez 0 pour ne pas utiliser ce filtre."
-
-#~ msgid "Only show files whose last modification date is less than ;"
-#~ msgstr ""
-#~ "Afficher uniquement les fichiers dont la dernière date de modification "
-#~ "est inférieur à :"
-
-#~ msgid "Session management buttons"
-#~ msgstr "Gestion des boutons de session"
-
-#~ msgid "wifi"
-#~ msgstr "Wifi"
-
-#~ msgid "Leave empty to use the default one."
-#~ msgstr "Laissez vide pour utiliser celle par défaut."
-
-#~ msgid "Leave empty to use the default sound card."
-#~ msgstr "Laisser vide pour utiliser la carte son par défaut."
-
-#~ msgid "Effect to apply to the icon when adjusting volume:"
-#~ msgstr "Effet à appliquer à l'icône en fonction du volume :"
-
-#~ msgid "Leave empty to use the default command."
-#~ msgstr "Laissez vide pour utiliser la commande par défaut."
-
-#~ msgid "Effect to apply on the icon according to the charge :"
-#~ msgstr "Effet à appliquer à l'icône en fonction de la charge :"
-
-#~ msgid "Draw bar"
-#~ msgstr "Barre de graphique"
-
-#~ msgid "Leave empty to use the same image."
-#~ msgstr "Laissez vide pour utiliser la meme image."
-
-#~ msgid "'Very low' icon filename:"
-#~ msgstr "Nom de l'image 'Très Faible' :"
-
-#~ msgid "'Low' icon filename:"
-#~ msgstr "Nom de l'image 'Faible' :"
-
-#~ msgid "'Average' icon filename:"
-#~ msgstr "Nom de l'image 'Moyen' :"
-
-#~ msgid "'Good' icon filename:"
-#~ msgstr "Nom de l'image pour l'icone 'Bon' :"
-
-#~ msgid "'Excellent' icon filename:"
-#~ msgstr "Nom de l'image 'Excellent' :"
-
-#~ msgid "Overwrite the default label with the connection point name?"
-#~ msgstr "Écraser l'étiquette par défaut avec le nom du point d'accès ?"
