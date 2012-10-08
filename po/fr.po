@@ -1250,7 +1250,7 @@ msgstr "Effacer les évènements du jour"
 
 #: ../Recent-Events/src/applet-notifications.c:185
 msgid "Delete all events"
-msgstr "Effacer tout les évènements"
+msgstr "Effacer tous les évènements"
 
 #: ../Remote-Control/src/applet-init.c:32
 msgid ""
@@ -9076,7 +9076,7 @@ msgstr "Temps entre deux actualisations de la page"
 
 #: ../weblets/data/messages:113
 msgid "Any valid URI should work."
-msgstr "Tout les URI valides devrait fonctionner."
+msgstr "Toute URI valide devrait fonctionner."
 
 #: ../weblets/data/messages:115
 msgid "Predefined bookmarks to show in applet menu:"

@@ -37,26 +37,22 @@ static gchar *_find_cover_in_common_dirs (void)
 		g_free (cSongPath);
 		
 		cCoverPath = g_strdup_printf ("%s/%s - %s.jpg", cSongDir, myData.cArtist, myData.cAlbum);
-
-		int i = 0;
-		while (cCoverNames[i] != NULL)
+		if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))  // the default path doesn't exist, loop on the common names
 		{
-			if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS)) // we check the previous path
+			int i;
+			for (i = 0; cCoverNames[i] != NULL; i ++)
 			{
-				g_free (cCoverPath);
 				cCoverPath = g_strdup_printf ("%s/%s", cSongDir, cCoverNames[i]);
+				if (! g_file_test (cCoverPath, G_FILE_TEST_EXISTS))
+				{
+					g_free (cCoverPath);
+					cCoverPath = NULL;
+				}
+				else
+					break;
 			}
-			else
-				break;
-			i++;
-		} 
-		if (cCoverNames[i] == NULL && ! g_file_test (cCoverPath, G_FILE_TEST_EXISTS)) // last test
-		{
-			g_free (cCoverPath);
-			cCoverPath = NULL;
 		}
 		cd_debug ("MP - CoverPath: %s", cCoverPath);
-
 		g_free (cSongDir);
 	}
 	

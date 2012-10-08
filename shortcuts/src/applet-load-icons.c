@@ -172,6 +172,7 @@ static void _cd_shortcuts_on_network_event (CairoDockFMEventType iEventType, con
 				//g_print (" '%s' -> '%s'\n'%s' -> '%s'\n", pConcernedIcon->cName, pNewIcon->cName, pConcernedIcon->cFileName, pNewIcon->cFileName);
 				
 				CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pConcernedIcon);
+				pIconsList = CD_APPLET_MY_ICONS_LIST;
 				
 				cd_shortcuts_set_icon_order_by_name (pNewIcon, pIconsList);
 				CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pNewIcon);

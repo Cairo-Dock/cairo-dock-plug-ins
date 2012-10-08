@@ -587,7 +587,7 @@ static Icon *_cd_get_icon_for_volume (GVolume *pVolume, GMount *pMount)
 		pIcon = g_volume_get_icon (pVolume);
 		cFileName = _cd_get_icon_path (pIcon, NULL);
 		
-		cCommand = cName;
+		cCommand = g_strdup (cName);
 		
 		g_object_unref (pIcon);
 	}
