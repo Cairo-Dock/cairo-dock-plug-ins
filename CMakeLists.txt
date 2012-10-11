@@ -1164,7 +1164,7 @@ configure_file (${CMAKE_CURRENT_SOURCE_DIR}/switcher/data/switcher.conf.in ${CMA
 add_subdirectory (switcher)
 
 ############# SYNC_MENU #################
-set (with_printers_menu "no")
+set (with_sync_menu "no")
 if ("${with_indicator3}" STREQUAL "yes") # then ${INDICATOR_*} are defined
 if (${INDICATOR_MAJOR} GREATER 12 # > 12.0.0
 		OR (${INDICATOR_MAJOR} EQUAL 12 AND ${INDICATOR_MINOR} GREATER 9))  # >= 12.10.0 (now 12.10.1)
