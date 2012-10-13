@@ -32,22 +32,50 @@ static struct snd_mixer_selem_regopt mixer_options;
 static gboolean mixer_is_mute (void);
 static int mixer_get_mean_volume (void);
 
+static gchar *_mixer_get_card_id_from_name (const gchar *cName)
+{
+	if (cName == NULL)
+		return g_strdup ("default");
+	
+	int iCardID = -1;
+	char *cName2;
+	while (snd_card_next (&iCardID) == 0 && iCardID != -1)
+	{
+		snd_card_get_name (iCardID, &cName2);
+		g_print ("+ card %d: %s\n", iCardID, cName2);
+		if (! cName2)
+			continue;
+		if (strcmp (cName2, cName) == 0)
+		{
+			free (cName2);
+			return g_strdup_printf ("hw:%d", iCardID);
+		}
+		free (cName2);
+	}
+	return g_strdup ("default");
+}
 
-void mixer_init (gchar *cCardID)  // this function is taken from AlsaMixer.
+static void mixer_init (const gchar *cCardName)  // this function is taken from AlsaMixer.
 {
 	snd_ctl_card_info_t *hw_info = NULL;  // ne pas liberer.
 	snd_ctl_t *ctl_handle = NULL;
 	int err;
 	snd_ctl_card_info_alloca (&hw_info);
 	
+	// get the card ID
+	gchar *cCardID = _mixer_get_card_id_from_name (cCardName);
+	
+	// get the card info
 	if ((err = snd_ctl_open (&ctl_handle, cCardID, 0)) < 0)
 	{
 		myData.cErrorMessage = g_strdup_printf (D_("I couldn't open card '%s'"), cCardID);
+		g_free (cCardID);
 		return ;
 	}
 	if ((err = snd_ctl_card_info (ctl_handle, hw_info)) < 0)
 	{
 		myData.cErrorMessage = g_strdup_printf (D_("Card '%s' opened but I couldn't get any info"), cCardID);
+		g_free (cCardID);
 		return ;
 	}
 	snd_ctl_close (ctl_handle);
@@ -56,12 +84,14 @@ void mixer_init (gchar *cCardID)  // this function is taken from AlsaMixer.
 	if ((err = snd_mixer_open (&myData.mixer_handle, 0)) < 0)
 	{
 		myData.cErrorMessage = g_strdup (D_("I couldn't open the mixer"));
+		g_free (cCardID);
 		return ;
 	}
 	if (mixer_level == 0 && (err = snd_mixer_attach (myData.mixer_handle, cCardID)) < 0)
 	{
 		snd_mixer_free (myData.mixer_handle);
 		myData.mixer_handle = NULL;
+		g_free (cCardID);
 		myData.cErrorMessage = g_strdup (D_("I couldn't attach the mixer to the card"));
 		return ;
 	}
@@ -69,6 +99,7 @@ void mixer_init (gchar *cCardID)  // this function is taken from AlsaMixer.
 	{
 		snd_mixer_free (myData.mixer_handle);
 		myData.mixer_handle = NULL;
+		g_free (cCardID);
 		myData.cErrorMessage = g_strdup (D_("I couldn't register options"));
 		return ;
 	}
@@ -76,6 +107,7 @@ void mixer_init (gchar *cCardID)  // this function is taken from AlsaMixer.
 	{
 		snd_mixer_free (myData.mixer_handle);
 		myData.mixer_handle = NULL;
+		g_free (cCardID);
 		myData.cErrorMessage = g_strdup (D_("I couldn't load the mixer"));
 		return ;
 	}
@@ -83,6 +115,7 @@ void mixer_init (gchar *cCardID)  // this function is taken from AlsaMixer.
 	myData.mixer_card_name = g_strdup (snd_ctl_card_info_get_name(hw_info));
 	myData.mixer_device_name = g_strdup (snd_ctl_card_info_get_mixername(hw_info));
 	cd_debug ("myData.mixer_card_name : %s ; myData.mixer_device_name : %s", myData.mixer_card_name, myData.mixer_device_name);
+	g_free (cCardID);
 }
 
 void mixer_stop (void)
@@ -105,6 +138,21 @@ void mixer_stop (void)
 }
 
 
+GList *mixer_get_cards_list (void)
+{
+	int iCardID;
+	char *cName;
+	GList *pList = NULL;
+	
+	pList = g_list_append (pList, (gpointer) g_strdup(""));
+	for (iCardID = 0; snd_card_get_name (iCardID, &cName) >= 0; iCardID ++)
+	{
+		pList = g_list_append (pList, (gpointer) cName);
+	}
+	return pList;
+}
+
+
 GList *mixer_get_elements_list (void)
 {
 	snd_mixer_elem_t *elem;
@@ -120,6 +168,7 @@ GList *mixer_get_elements_list (void)
 	}
 	return pList;
 }
+
 
 
 static snd_mixer_elem_t *_mixer_get_element_by_name (const gchar *cName)

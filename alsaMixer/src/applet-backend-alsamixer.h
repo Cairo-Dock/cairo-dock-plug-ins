@@ -24,6 +24,8 @@
 #include <gtk/gtk.h>
 
 
+GList *mixer_get_cards_list (void);
+
 GList *mixer_get_elements_list (void);
 
 

@@ -151,7 +151,7 @@ hide on leave = true
 #X[Alsa]
 frame_alsa =
 
-#s[Default] Sound card:
+#L[] Sound card:
 card id = 
 
 #L[] Select channel:
