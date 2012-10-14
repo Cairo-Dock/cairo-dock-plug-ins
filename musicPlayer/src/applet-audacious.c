@@ -336,7 +336,6 @@ static void cd_audacious_control (MyPlayerControl pControl, const char* song)
 		case PLAYER_ENQUEUE :
 			cd_debug ("enqueue %s", song);
 			dbus_g_proxy_call_no_reply (myData.dbus_proxy_shell, "AddTrack",
-				G_TYPE_INVALID,
 				G_TYPE_STRING, song,
 				G_TYPE_BOOLEAN, FALSE,
 				G_TYPE_INVALID);
