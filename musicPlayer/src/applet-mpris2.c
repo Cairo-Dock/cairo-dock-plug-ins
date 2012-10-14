@@ -617,7 +617,6 @@ static void cd_mpris2_control (MyPlayerControl pControl, const char* song)
 				g_error_free (erreur);
 				erreur = NULL;
 				dbus_g_proxy_call_no_reply (proxy, "OpenUri",
-					G_TYPE_INVALID,
 					G_TYPE_STRING, song,
 					G_TYPE_INVALID);
 			}

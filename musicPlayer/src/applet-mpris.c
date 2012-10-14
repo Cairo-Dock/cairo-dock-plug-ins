@@ -683,7 +683,6 @@ static void cd_mpris_control (MyPlayerControl pControl, const char* song)
 			bToggleValue = cd_mpris_is_shuffle ();
 			cd_debug ("SetRandom <- %d", !bToggleValue);
 			dbus_g_proxy_call_no_reply (myData.dbus_proxy_shell, "SetRandom",
-				G_TYPE_INVALID,
 				G_TYPE_BOOLEAN, !bToggleValue,
 				G_TYPE_INVALID);
 		break;
@@ -692,7 +691,6 @@ static void cd_mpris_control (MyPlayerControl pControl, const char* song)
 			bToggleValue = cd_mpris_is_loop ();
 			cd_debug ("SetLoop <- %d", !bToggleValue);
 			dbus_g_proxy_call_no_reply (myData.dbus_proxy_shell, "SetLoop",
-				G_TYPE_INVALID,
 				G_TYPE_BOOLEAN, !bToggleValue,
 				G_TYPE_INVALID);
 		break;
@@ -700,7 +698,6 @@ static void cd_mpris_control (MyPlayerControl pControl, const char* song)
 		case PLAYER_ENQUEUE :
 			cd_debug ("enqueue %s", song);
 			dbus_g_proxy_call_no_reply (myData.dbus_proxy_shell, "AddTrack",
-				G_TYPE_INVALID,
 				G_TYPE_STRING, song,
 				G_TYPE_BOOLEAN, FALSE,
 				G_TYPE_INVALID);
