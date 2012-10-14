@@ -385,7 +385,7 @@ static Icon *_cd_stack_create_new_item (GldiModuleInstance *myApplet, const gcha
 		{
 			g_key_file_free (pKeyFile);
 			g_free (cURI);
-			cd_warning ("stack : '%s' is not a valid adress", cContent);
+			cd_warning ("stack : '%s' is not a valid address", cContent);
 			return NULL;
 		}
 		g_key_file_set_string (pKeyFile, "Desktop Entry", "Content", cURI);
