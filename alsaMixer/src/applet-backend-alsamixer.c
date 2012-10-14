@@ -248,6 +248,13 @@ static int mixer_get_mean_volume (void)
 	return (100. * (iMeanVolume - myData.iVolumeMin) / (myData.iVolumeMax - myData.iVolumeMin));
 }
 
+static void _set_mute (gboolean bMute)
+{
+	snd_mixer_selem_set_playback_switch_all (myData.pControledElement, !bMute);
+	if (myData.pControledElement2 != NULL)
+		snd_mixer_selem_set_playback_switch_all (myData.pControledElement2, !bMute);
+	myData.bIsMute = bMute;
+}
 static void mixer_set_volume (int iNewVolume)
 {
 	g_return_if_fail (myData.pControledElement != NULL);
@@ -257,6 +264,10 @@ static void mixer_set_volume (int iNewVolume)
 	if (myData.pControledElement2 != NULL)
 		snd_mixer_selem_set_playback_volume_all (myData.pControledElement2, iVolume);
 	myData.iCurrentVolume = iNewVolume;
+	if (myData.bIsMute)
+	{
+		_set_mute (FALSE);
+	}
 	cd_update_icon ();  // on ne recoit pas d'evenements pour nos actions.
 }
 
@@ -280,10 +291,7 @@ static void mixer_switch_mute (void)
 {
 	g_return_if_fail (myData.pControledElement != NULL);
 	gboolean bIsMute = mixer_is_mute ();
-	snd_mixer_selem_set_playback_switch_all (myData.pControledElement, bIsMute);
-	if (myData.pControledElement2 != NULL)
-		snd_mixer_selem_set_playback_switch_all (myData.pControledElement2, bIsMute);
-	myData.bIsMute = ! bIsMute;
+	_set_mute (! bIsMute);
 	cd_update_icon ();  // on ne recoit pas d'evenements pour nos actions.
 }
 
