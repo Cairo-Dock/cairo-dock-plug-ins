@@ -52,10 +52,10 @@ gboolean cairo_dock_gio_vfs_init (void)
 	if( !cairo_dock_dbus_is_enabled() ||
 	    !cairo_dock_dbus_detect_application (G_VFS_DBUS_DAEMON_NAME) )
 	{
-		cd_warning("VFS Deamon NOT found on DBus !");
+		cd_warning("VFS Daemon NOT found on DBus !");
 	  return FALSE;
 	}
-	cd_message("VFS Deamon found on DBus.");
+	cd_message("VFS Daemon found on DBus.");
 	
 	
 	if (s_hMonitorHandleTable != NULL)
