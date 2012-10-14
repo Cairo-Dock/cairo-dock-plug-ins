@@ -738,7 +738,7 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 }
 
 
-void cd_update_input_shape (CairoDock *pDock)
+static void cd_update_input_shape (CairoDock *pDock)
 {
 	if (pDock->pShapeBitmap != NULL)
 	{
@@ -897,6 +897,18 @@ static void set_icon_size (Icon *icon, CairoDock *pDock)
 	//g_print (" ~~~~~~~~~~~~ => %dx%d\n", icon->iImageWidth, icon->iImageHeight);
 }
 
+static void cd_rendering_free_panel_data (CairoDock *pDock)
+{
+	g_print ("%s (%x, %d)\n", __func__, pDock, pDock->iRefCount);
+	CDPanelData *pData = pDock->pRendererData;
+	if (pData != NULL)
+	{
+		g_free (pData);
+		pDock->pRendererData = NULL;
+	}
+}
+
+
 void cd_rendering_register_panel_renderer (const gchar *cRendererName)
 {
 	CairoDockRenderer *pRenderer = g_new0 (CairoDockRenderer, 1);
@@ -909,6 +921,7 @@ void cd_rendering_register_panel_renderer (const gchar *cRendererName)
 	pRenderer->set_subdock_position = cairo_dock_set_subdock_position_linear;
 	pRenderer->update_input_shape = cd_update_input_shape;
 	pRenderer->set_icon_size = set_icon_size;
+	pRenderer->free_data = cd_rendering_free_slide_data;
 	// parametres
 	pRenderer->bUseReflect = FALSE;
 	pRenderer->cDisplayedName = D_ (cRendererName);
