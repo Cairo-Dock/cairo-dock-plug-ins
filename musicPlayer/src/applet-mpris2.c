@@ -246,17 +246,13 @@ static void cd_mpris2_get_time_elapsed (void)
 	GValue v = G_VALUE_INIT;
 	cairo_dock_dbus_get_property_in_value (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "Position", &v);
 	if (G_VALUE_HOLDS_INT64 (&v))
-	{
 		myData.iCurrentTime =  g_value_get_int64 (&v) / 1e6;
-	}
 	else if (G_VALUE_HOLDS_UINT64 (&v))
-	{
 		myData.iCurrentTime =  g_value_get_uint64 (&v) / 1e6;
-	}
+	else if (G_VALUE_HOLDS_INT (&v))
+		myData.iCurrentTime =  g_value_get_int (&v) / 1e6;
 	else if (G_VALUE_HOLDS_STRING (&v))  // this is bad ! (gmusicbrowser v1.1.7)
-	{
 		myData.iCurrentTime = atoi (g_value_get_string (&v)) / 1e6;
-	}
 	else
 	{
 		if (G_IS_VALUE(&v)) //  when changing song, we don't receive this value => no need to display a warning message each time
@@ -304,9 +300,14 @@ static gboolean _extract_metadata (GHashTable *pMetadata)
 	}
 
 	v = g_hash_table_lookup (pMetadata, "mpris:length");  // length of the track, in microseconds (signed 64-bit integer)
-	if (v != NULL && G_VALUE_HOLDS_INT64 (v))
+	if (v != NULL)
 	{
-		myData.iSongLength = g_value_get_int64 (v) / 1000000;
+		if (G_VALUE_HOLDS_INT64 (v)) // should be a int64
+			myData.iSongLength = g_value_get_int64 (v) / 1000000;
+		else if (G_VALUE_HOLDS_INT (v)) // but some players doesn't respect that... maybe a limitation?
+			myData.iSongLength = g_value_get_int (v) / 1000000;
+		else
+			cd_warning ("Length has a wrong type");
 		cd_debug ("Length: %d", myData.iSongLength);
 	}
 
