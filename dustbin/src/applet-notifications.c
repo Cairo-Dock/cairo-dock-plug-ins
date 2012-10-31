@@ -24,16 +24,28 @@
 #include "applet-trashes-manager.h"
 #include "applet-notifications.h"
 
+static void _on_answer_delete_trash (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer data, CairoDialog *pDialog)
+{
+	CD_APPLET_ENTER;
+	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
+	{
+		cairo_dock_fm_empty_trash ();
+	}
+	CD_APPLET_LEAVE ();
+}
 static void _cd_dustbin_delete_trash (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
-	int iAnswer = GTK_RESPONSE_YES;
 	if (myConfig.bAskBeforeDelete)
 	{
-		iAnswer = cairo_dock_ask_question_and_wait (D_("You're about to delete all files in all dustbins. Sure ?"), myIcon, myContainer);
+		cairo_dock_show_dialog_with_question (D_("You're about to delete all files in all dustbins. Sure ?"),
+			myIcon, myContainer,
+			"same icon",
+			(CairoDockActionOnAnswerFunc) _on_answer_delete_trash, NULL, (GFreeFunc)NULL);
 	}
-	
-	if (iAnswer == GTK_RESPONSE_YES)
+	else
+	{
 		cairo_dock_fm_empty_trash ();
+	}
 }
 
 static void _cd_dustbin_show_trash (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)

@@ -200,6 +200,20 @@ static void _cd_folders_show_file_properties (GtkMenuItem *pMenuItem, gpointer *
 	}
 }
 
+static void _on_answer_delete_file (int iClickedButton, GtkWidget *pInteractiveWidget, Icon *icon, CairoDialog *pDialog)
+{
+	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
+	{
+		gboolean bSuccess = cairo_dock_fm_delete_file (icon->cBaseURI, FALSE);
+		if (! bSuccess)
+		{
+			cd_warning ("couldn't delete this file.\nCheck that you have writing rights on this file.\n");
+			gchar *cMessage = g_strdup_printf (D_("Warning: could not delete this file.\nPlease check file permissions."));
+			cairo_dock_show_temporary_dialog_with_default_icon (cMessage, icon, icon->pContainer, 4000);
+			g_free (cMessage);
+		}
+	}
+}
 static void _cd_folders_delete_file (GtkMenuItem *pMenuItem, gpointer *data)
 {
 	Icon *icon = data[0];
@@ -210,38 +224,37 @@ static void _cd_folders_delete_file (GtkMenuItem *pMenuItem, gpointer *data)
 	g_return_if_fail (cPath != NULL);
 	gchar *question = g_strdup_printf (D_("You're about deleting this file\n  (%s)\nfrom your hard-disk. Sure ?"), cPath);
 	g_free (cPath);
-	int answer = cairo_dock_ask_question_and_wait (question, icon, pContainer);
-	g_free (question);
-	if (answer == GTK_RESPONSE_YES)
+	cairo_dock_show_dialog_with_question (question,
+		icon, pContainer,
+		"same icon",
+		(CairoDockActionOnAnswerFunc) _on_answer_delete_file, icon, (GFreeFunc)NULL);  // if the icon is deleted during the question, the dialog will disappear with it, and we won't be called back.
+}
+
+static void _on_answer_rename_file (int iClickedButton, GtkWidget *pInteractiveWidget, Icon *icon, CairoDialog *pDialog)
+{
+	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
 	{
-		gboolean bSuccess = cairo_dock_fm_delete_file (icon->cBaseURI, FALSE);
-		if (! bSuccess)
+		const gchar *cNewName = gtk_entry_get_text (GTK_ENTRY (pInteractiveWidget));
+		if (cNewName != NULL && *cNewName != '\0')
 		{
-			cd_warning ("couldn't delete this file.\nCheck that you have writing rights on this file.\n");
-			gchar *cMessage = g_strdup_printf (D_("Warning: could not delete this file.\nPlease check file permissions."));
-			cairo_dock_show_temporary_dialog_with_default_icon (cMessage, icon, pContainer, 4000);
-			g_free (cMessage);
+			gboolean bSuccess = cairo_dock_fm_rename_file (icon->cBaseURI, cNewName);
+			if (! bSuccess)
+			{
+				cd_warning ("couldn't rename this file.\nCheck that you have writing rights, and that the new name does not already exist.");
+				cairo_dock_show_temporary_dialog_with_icon_printf (D_("Warning: could not rename %s.\nCheck file permissions \nand that the new name does not already exist."), icon, icon->pContainer, 5000, NULL, icon->cBaseURI);
+			}
 		}
 	}
 }
-
 static void _cd_folders_rename_file (GtkMenuItem *pMenuItem, gpointer *data)
 {
 	Icon *icon = data[0];
-	CairoContainer *pContainer = data[1];
 	cd_message ("%s (%s)", __func__, icon->cName);
-	
-	gchar *cNewName = cairo_dock_show_demand_and_wait (D_("Rename to:"), icon, pContainer, icon->cName);
-	if (cNewName != NULL && *cNewName != '\0')
-	{
-		gboolean bSuccess = cairo_dock_fm_rename_file (icon->cBaseURI, cNewName);
-		if (! bSuccess)
-		{
-			cd_warning ("couldn't rename this file.\nCheck that you have writing rights, and that the new name does not already exist.");
-			cairo_dock_show_temporary_dialog_with_icon_printf (D_("Warning: could not rename %s.\nCheck file permissions \nand that the new name does not already exist."), icon, pContainer, 5000, NULL, icon->cBaseURI);
-		}
-	}
-	g_free (cNewName);
+	cairo_dock_show_dialog_with_entry (D_("Rename to:"),
+		icon, icon->pContainer,
+		"same icon",
+		icon->cName,
+		(CairoDockActionOnAnswerFunc)_on_answer_rename_file, icon, (GFreeFunc)NULL);
 }
 
 static void _cd_folders_move_file (GtkMenuItem *pMenuItem, gpointer *data)
@@ -275,19 +288,35 @@ static void _cd_folders_move_file (GtkMenuItem *pMenuItem, gpointer *data)
 	gtk_widget_destroy (pFileChooserDialog);
 }
 
-static inline void _create_new_file (CairoDockModuleInstance *myApplet, gboolean bFolder)
+static void _on_answer_create_file (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer *data, CairoDialog *pDialog)
 {
-	gchar *cNewName = cairo_dock_show_demand_and_wait (D_("Enter a file name:"), myIcon, myContainer, NULL);
-	if (cNewName != NULL && *cNewName != '\0')
+	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
 	{
-		gchar *cURI = g_strdup_printf ("%s/%s", myConfig.cDirPath, cNewName);
-		gboolean bSuccess = cairo_dock_fm_create_file (cURI, bFolder);
-		if (! bSuccess)
+		gboolean bFolder = GPOINTER_TO_INT (data[0]);
+		CairoDockModuleInstance *myApplet = data[1];
+		const gchar *cNewName = gtk_entry_get_text (GTK_ENTRY (pInteractiveWidget));
+		if (cNewName != NULL && *cNewName != '\0')
 		{
-			cd_warning ("couldn't create this file.\nCheck that you have writing rights, and that the new name does not already exist.");
-			cairo_dock_show_temporary_dialog_with_icon_printf (D_("Warning: could not create %s.\nCheck file permissions \nand that the new name does not already exist."), myIcon, myContainer, 5000, NULL, cNewName);
+			gchar *cURI = g_strdup_printf ("%s/%s", myConfig.cDirPath, cNewName);
+			gboolean bSuccess = cairo_dock_fm_create_file (cURI, bFolder);
+			if (! bSuccess)
+			{
+				cd_warning ("couldn't create this file.\nCheck that you have writing rights, and that the new name does not already exist.");
+				cairo_dock_show_temporary_dialog_with_icon_printf (D_("Warning: could not create %s.\nCheck file permissions \nand that the new name does not already exist."), myIcon, myContainer, 5000, NULL, cNewName);
+			}
 		}
 	}
+}
+static inline void _create_new_file (CairoDockModuleInstance *myApplet, gboolean bFolder)
+{
+	gpointer *data = g_new (gpointer, 2);
+	data[0] = GINT_TO_POINTER (bFolder);
+	data[1] = myApplet;
+	cairo_dock_show_dialog_with_entry (D_("Enter a file name:"),
+		myIcon, myContainer,
+		"same icon",
+		NULL,
+		(CairoDockActionOnAnswerFunc)_on_answer_create_file, data, (GFreeFunc)g_free);
 }
 static void _cd_folders_new_file (GtkMenuItem *pMenuItem, CairoDockModuleInstance *myApplet)
 {

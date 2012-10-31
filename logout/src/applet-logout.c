@@ -362,26 +362,36 @@ void cd_logout_set_timer (void)
 	}
 }
 
+static void _on_program_shutdown (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer data, CairoDialog *pDialog)
+{
+	CD_APPLET_ENTER;
+	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
+	{
+		int iDeltaT = 60 * gtk_range_get_value (GTK_RANGE (pInteractiveWidget));
+		if (iDeltaT > 0)  // set the new time
+		{
+			//g_print ("iShutdownTime <- %ld + %d\n", t_cur, iDeltaT);
+			time_t t_cur = (time_t) time (NULL);
+			myConfig.iShutdownTime = (int) (t_cur + iDeltaT);
+		}
+		else if (iDeltaT == 0)  // cancel any previous shutdown 
+		{
+			myConfig.iShutdownTime = 0;
+		}
+		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
+			G_TYPE_INT, "Configuration", "shutdown time", myConfig.iShutdownTime,
+			G_TYPE_INVALID);
+		cd_logout_set_timer ();
+	}
+	CD_APPLET_LEAVE ();
+}
 void cd_logout_program_shutdown (void)
 {
-	int iDeltaT = (int) (cairo_dock_show_value_and_wait (D_("Choose in how many minutes your PC will stop:"), myIcon, myContainer, 30, 150) * 60);
-	if (iDeltaT == -1)  // cancel
-		CD_APPLET_LEAVE ();
-	
-	time_t t_cur = (time_t) time (NULL);
-	if (iDeltaT > 0)
-	{
-		//g_print ("iShutdownTime <- %ld + %d\n", t_cur, iDeltaT);
-		myConfig.iShutdownTime = (int) (t_cur + iDeltaT);
-	}
-	else if (iDeltaT == 0)  // on annule l'eventuel precedent.
-	{
-		myConfig.iShutdownTime = 0;
-	}
-	cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
-		G_TYPE_INT, "Configuration", "shutdown time", myConfig.iShutdownTime,
-		G_TYPE_INVALID);
-	cd_logout_set_timer ();
+	cairo_dock_show_dialog_with_value (D_("Choose in how many minutes your PC will stop:"),
+		myIcon, myContainer,
+		"same icon",
+		30, 150,
+		(CairoDockActionOnAnswerFunc) _on_program_shutdown, NULL, (GFreeFunc)NULL);
 }
 
 

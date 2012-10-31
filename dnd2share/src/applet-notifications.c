@@ -27,16 +27,23 @@
 #include "applet-dnd2share.h"
 #include "applet-notifications.h"
 
-static void _clear_history (GtkMenuItem *menu_item, gpointer data)
+static void _on_answer_clear_history (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer data, CairoDialog *pDialog)
 {
 	CD_APPLET_ENTER;
-	int iAnswer = cairo_dock_ask_question_and_wait (D_("Clear the list of the recently uploaded files?"), myIcon, myContainer);
-	if (iAnswer == GTK_RESPONSE_YES)
+	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
 	{
 		cd_dnd2share_clear_working_directory ();
 		cd_dnd2share_clear_history ();
 	}
 	CD_APPLET_LEAVE ();
+}
+
+static void _clear_history (GtkMenuItem *menu_item, gpointer data)
+{
+	cairo_dock_show_dialog_with_question (D_("Clear the list of the recently uploaded files?"),
+		myIcon, myContainer,
+		"same icon",
+		(CairoDockActionOnAnswerFunc) _on_answer_clear_history, NULL, (GFreeFunc)NULL);
 }
 
 static void _show_local_file (GtkMenuItem *menu_item, CDUploadedItem *pItem)

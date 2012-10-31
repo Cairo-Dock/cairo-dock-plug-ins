@@ -180,20 +180,37 @@ static void _cd_shortcuts_remove_bookmark (GtkMenuItem *menu_item, const gchar *
 {
 	cd_shortcuts_remove_one_bookmark (cURI);
 }
+
+static void _on_got_bookmark_name (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer *data, CairoDialog *pDialog)
+{
+	CairoDockModuleInstance *myApplet = data[0];
+	Icon *pIcon = data[1];
+	CD_APPLET_ENTER;
+	
+	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
+	{
+		const gchar *cNewName = gtk_entry_get_text (GTK_ENTRY (pInteractiveWidget));
+		if (cNewName != NULL)
+		{
+			cd_shortcuts_rename_one_bookmark (pIcon->cCommand, cNewName);
+		}
+	}
+	CD_APPLET_LEAVE ();
+}
 static void _cd_shortcuts_rename_bookmark (GtkMenuItem *menu_item, gpointer *data)
 {
 	CairoDockModuleInstance *myApplet = data[0];
 	Icon *pIcon = data[1];
 	CairoContainer *pContainer = data[2];
 	CD_APPLET_ENTER;
-	gchar *cNewName = cairo_dock_show_demand_and_wait (D_("Enter a name for this bookmark:"),
-		pIcon, pContainer,
-		pIcon->cName);
-	if (cNewName != NULL)
-	{
-		cd_shortcuts_rename_one_bookmark (pIcon->cCommand, cNewName);
-		g_free (cNewName);
-	}
+	
+	gpointer *ddata = g_new (gpointer, 2);
+	ddata[0] = myApplet;
+	ddata[1] = pIcon;
+	cairo_dock_show_dialog_with_entry (D_("Enter a name for this bookmark:"),
+		pIcon, pContainer, "same icon",
+		pIcon->cName,
+		(CairoDockActionOnAnswerFunc)_on_got_bookmark_name, ddata, (GFreeFunc)g_free);  // if the icon gets deleted, the dialog will disappear with it.
 	CD_APPLET_LEAVE ();
 }
 static void _cd_shortcuts_eject (GtkMenuItem *menu_item, gpointer *data)

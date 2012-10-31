@@ -76,14 +76,26 @@ static void _on_text_received (GtkClipboard *clipboard, const gchar *text, Cairo
 	cd_stack_create_and_load_item (myApplet, text);
 	CD_APPLET_LEAVE ();
 }
+
+static void _on_clear_stack (int iClickedButton, GtkWidget *pInteractiveWidget, CairoDockModuleInstance *myApplet, CairoDialog *pDialog)
+{
+	CD_APPLET_ENTER;
+	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
+	{
+		cd_stack_clear_stack (myApplet);
+	}
+	CD_APPLET_LEAVE ();
+}
 static void _cd_stack_clear_stack (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
-	int iAnswer = cairo_dock_ask_question_and_wait (D_("Clear the stack?"), myIcon,  myContainer);
-	if (iAnswer == GTK_RESPONSE_YES)
-		cd_stack_clear_stack (myApplet);
+	cairo_dock_show_dialog_with_question (D_("Clear the stack?"),
+		myIcon,  myContainer,
+		"same icon",
+		(CairoDockActionOnAnswerFunc)_on_clear_stack, myApplet, (GFreeFunc)NULL);
 	CD_APPLET_LEAVE ();
 }
+
 static void _cd_stack_remove_item (GtkMenuItem *menu_item, gpointer *data)
 {
 	CairoDockModuleInstance *myApplet = data[0];
@@ -93,6 +105,27 @@ static void _cd_stack_remove_item (GtkMenuItem *menu_item, gpointer *data)
 	cd_stack_remove_item (myApplet, pIcon);
 	CD_APPLET_LEAVE ();
 }
+
+static void _on_got_item_name (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer *data, CairoDialog *pDialog)
+{
+	CairoDockModuleInstance *myApplet = data[0];
+	Icon *pIcon = data[1];
+	CD_APPLET_ENTER;
+	
+	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
+	{
+		const gchar *cNewName = gtk_entry_get_text (GTK_ENTRY (pInteractiveWidget));
+		if (cNewName != NULL)
+		{
+			gchar *cDesktopFilePath = g_strdup_printf ("%s/%s", myConfig.cStackDir, pIcon->cDesktopFileName);
+			cd_stack_set_item_name (cDesktopFilePath, cNewName);
+			g_free (cDesktopFilePath);
+			
+			cairo_dock_set_icon_name (cNewName, pIcon, pIcon->pContainer);
+		}
+	}
+	CD_APPLET_LEAVE ();
+}
 static void _cd_stack_rename_item (GtkMenuItem *menu_item, gpointer *data)
 {
 	CairoDockModuleInstance *myApplet = data[0];
@@ -100,17 +133,13 @@ static void _cd_stack_rename_item (GtkMenuItem *menu_item, gpointer *data)
 	Icon *pIcon = data[1];
 	
 	CairoContainer *pContainer = (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer);
-	gchar *cNewName = cairo_dock_show_demand_and_wait (D_("Set new name for this item:"), pIcon, pContainer, pIcon->cName);
-	if (cNewName == NULL)
-		CD_APPLET_LEAVE ();
-		//return ;
-	
-	gchar *cDesktopFilePath = g_strdup_printf ("%s/%s", myConfig.cStackDir, pIcon->cDesktopFileName);
-	cd_stack_set_item_name (cDesktopFilePath, cNewName);
-	g_free (cDesktopFilePath);
-	
-	cairo_dock_set_icon_name (cNewName, pIcon, pContainer);
-	g_free (cNewName);
+	gpointer *ddata = g_new (gpointer, 2);
+	ddata[0] = myApplet;
+	ddata[1] = pIcon;
+	cairo_dock_show_dialog_with_entry (D_("Set new name for this item:"),
+		pIcon, pContainer, "same icon",
+		pIcon->cName,
+		(CairoDockActionOnAnswerFunc)_on_got_item_name, ddata, (GFreeFunc)g_free);  // if the icon gets deleted, the dialog will disappear with it.
 	CD_APPLET_LEAVE ();
 }
 static void _cd_stack_copy_content (GtkMenuItem *menu_item, gpointer *data)

@@ -82,88 +82,137 @@ CD_APPLET_ON_CLICK_BEGIN
 CD_APPLET_ON_CLICK_END
 
 
+static void _add_note_and_show (const gchar *note_title)
+{
+	gchar *note_name = addNote(note_title);
+	cd_debug (" %s -> %s", note_title, note_name);
+	showNote(note_name);
+	g_free (note_name);
+}
+static void _on_got_name (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer data, CairoDialog *pDialog)
+{
+	CD_APPLET_ENTER;
+	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
+	{
+		const gchar *note_title = gtk_entry_get_text (GTK_ENTRY (pInteractiveWidget));
+		if (note_title != NULL)
+			_add_note_and_show (note_title);
+	}
+	CD_APPLET_LEAVE ();
+}
 static void _cd_tomboy_create_new_note (void)
 {
-	gchar *note_title;
 	if (myConfig.bAutoNaming)
 	{
-		cd_debug ("on nomme automatiquement cette note");
-		note_title = g_new0 (gchar, 50+1);
+		gchar *note_title = g_new0 (gchar, 50+1);
 		time_t epoch = (time_t) time (NULL);
 		struct tm currentTime;
 		localtime_r (&epoch, &currentTime);
 		strftime (note_title, 50, "%a-%d-%b_%r", &currentTime);
+		
+		_add_note_and_show (note_title);
+		g_free (note_title);
 	}
 	else
 	{
-		cd_debug ("on demande le nom de la nouvelle note ...");
-		note_title = cairo_dock_show_demand_and_wait (D_("Note name : "),
-			myIcon,
-			myContainer,
-			NULL);
-		cd_debug ("on a recu '%s'", note_title);
+		cairo_dock_show_dialog_with_entry (D_("Note name : "),
+			myIcon, myContainer,
+			"same icon",
+			NULL,
+			(CairoDockActionOnAnswerFunc)_on_got_name,
+			NULL, (GFreeFunc)NULL);
 	}
-	cd_message ("%s (%s)", __func__, note_title);
-	gchar *note_name = addNote(note_title);
-	cd_debug (" note_name <- %s", note_name);
-	showNote(note_name);
-	g_free (note_name);
-	g_free (note_title);
 }
 static void _cd_tomboy_add_note (GtkMenuItem *menu_item, gpointer data)
 {
 	_cd_tomboy_create_new_note ();
 }
+
+static void _on_answer_delete (int iClickedButton, GtkWidget *pInteractiveWidget, const gchar *cCommand, CairoDialog *pDialog)
+{
+	CD_APPLET_ENTER;
+	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
+	{
+		deleteNote (cCommand);
+	}
+	CD_APPLET_LEAVE ();
+}
 static void _cd_tomboy_delete_note (GtkMenuItem *menu_item, Icon *pIcon)
 {
-	if (pIcon == NULL)
-		return ;
+	g_return_if_fail (pIcon != NULL);
 	if (myConfig.bAskBeforeDelete)
 	{
 		gchar *cQuestion = g_strdup_printf ("%s (%s)", D_("Delete this note?"), pIcon->cName);
-		int iAnswer = cairo_dock_ask_question_and_wait (cQuestion, pIcon, myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer);
+		cairo_dock_show_dialog_with_question (cQuestion,
+			pIcon, myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer,
+			"same icon",
+			(CairoDockActionOnAnswerFunc) _on_answer_delete,
+			g_strdup (pIcon->cCommand), (GFreeFunc)g_free);
 		g_free (cQuestion);
-		if (iAnswer != GTK_RESPONSE_YES)
-			return ;
 	}
-	deleteNote (pIcon->cCommand);
+	else
+	{
+		deleteNote (pIcon->cCommand);
+	}
 }
+
 static void _cd_tomboy_reload_notes (GtkMenuItem *menu_item, gpointer data)
 {
 	free_all_notes ();
 	getAllNotes_async ();
 }
+
+static void _on_active_search (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer data, CairoDialog *pDialog)
+{
+	CD_APPLET_ENTER;
+	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
+	{
+		const gchar *cContent = gtk_entry_get_text (GTK_ENTRY (pInteractiveWidget));
+		if (cContent != NULL)
+		{
+			cd_tomboy_reset_icon_marks (FALSE);
+			const gchar *cContents[2] = {cContent, NULL};
+			GList *pList = cd_tomboy_find_notes_with_contents (cContents);
+			cd_tomboy_show_results (pList);
+			g_list_free (pList);
+		}
+	}
+	CD_APPLET_LEAVE ();
+}
 static void _cd_tomboy_search_for_content (GtkMenuItem *menu_item, gpointer data)
 {
-	gchar *cContent = cairo_dock_show_demand_and_wait (D_("Search for:"),
-		myIcon,
-		myContainer,
-		NULL);
-	if (cContent != NULL)
+	cairo_dock_show_dialog_with_entry (D_("Search for:"),
+		myIcon,	myContainer,
+		"same icon",
+		NULL,
+		(CairoDockActionOnAnswerFunc) _on_active_search, NULL, (GFreeFunc) NULL);
+}
+
+static void _on_active_search_tag (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer data, CairoDialog *pDialog)
+{
+	CD_APPLET_ENTER;
+	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
 	{
-		cd_tomboy_reset_icon_marks (FALSE);
-		gchar *cContents[2] = {cContent, NULL};
-		GList *pList = cd_tomboy_find_notes_with_contents (cContents);
-		g_free (cContent);
-		cd_tomboy_show_results (pList);
-		g_list_free (pList);
+		const gchar *cContent = gtk_entry_get_text (GTK_ENTRY (pInteractiveWidget));
+		if (cContent != NULL)
+		{
+			cd_tomboy_reset_icon_marks (FALSE);
+			GList *pList = cd_tomboy_find_notes_with_tag (cContent);
+			cd_tomboy_show_results (pList);
+			g_list_free (pList);
+		}
 	}
+	CD_APPLET_LEAVE ();
 }
 static void _cd_tomboy_search_for_tag (GtkMenuItem *menu_item, gpointer data)
 {
-	gchar *cTag = cairo_dock_show_demand_and_wait (D_("Search for tag:"),
-		myIcon,
-		myContainer,
-		NULL);
-	if (cTag != NULL)
-	{
-		cd_tomboy_reset_icon_marks (FALSE);
-		GList *pList = cd_tomboy_find_notes_with_tag (cTag);
-		g_free (cTag);
-		cd_tomboy_show_results (pList);
-		g_list_free (pList);
-	}
+	cairo_dock_show_dialog_with_entry (D_("Search for tag:"),
+		myIcon,	myContainer,
+		"same icon",
+		NULL,
+		(CairoDockActionOnAnswerFunc) _on_active_search_tag, NULL, (GFreeFunc) NULL);
 }
+
 static void _cd_tomboy_search_for_today (GtkMenuItem *menu_item, gpointer data)
 {
 	cd_tomboy_reset_icon_marks (FALSE);
@@ -171,6 +220,7 @@ static void _cd_tomboy_search_for_today (GtkMenuItem *menu_item, gpointer data)
 	cd_tomboy_show_results (pList);
 	g_list_free (pList);
 }
+
 static void _cd_tomboy_search_for_this_week (GtkMenuItem *menu_item, gpointer data)
 {
 	cd_tomboy_reset_icon_marks (FALSE);
@@ -178,6 +228,7 @@ static void _cd_tomboy_search_for_this_week (GtkMenuItem *menu_item, gpointer da
 	cd_tomboy_show_results (pList);
 	g_list_free (pList);
 }
+
 static void _cd_tomboy_search_for_next_week (GtkMenuItem *menu_item, gpointer data)
 {
 	cd_tomboy_reset_icon_marks (FALSE);
@@ -185,14 +236,18 @@ static void _cd_tomboy_search_for_next_week (GtkMenuItem *menu_item, gpointer da
 	cd_tomboy_show_results (pList);
 	g_list_free (pList);
 }
+
 static void _cd_tomboy_reset_marks (GtkMenuItem *menu_item, gpointer data)
 {
 	cd_tomboy_reset_icon_marks (TRUE);
 }
+
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	gboolean bClickOnNotes = (pClickedIcon !=  myIcon);
 	
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Add a note"), GTK_STOCK_ADD, _cd_tomboy_add_note, CD_APPLET_MY_MENU);
+	gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Add a note"), D_("middle-click"));
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_ADD, _cd_tomboy_add_note, CD_APPLET_MY_MENU);
+	g_free (cLabel);
 	
 	if (bClickOnNotes && pClickedIcon != NULL)
 	{
@@ -201,28 +256,25 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Reload notes"), GTK_STOCK_REFRESH, _cd_tomboy_reload_notes, CD_APPLET_MY_MENU);
 	
-	if (bClickOnNotes)  // on ne le fait pas pour un clic sur myIcon, car le sous-dock gene le dialogue.
+	CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
+	
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK  (D_("Search"), GTK_STOCK_FIND, _cd_tomboy_search_for_content, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU(D_("Search for tag"), _cd_tomboy_search_for_tag, CD_APPLET_MY_MENU);
+	
+	CD_APPLET_ADD_IN_MENU(D_("Search for today's note"), _cd_tomboy_search_for_today, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU(D_("Search for this week's note"), _cd_tomboy_search_for_this_week, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU(D_("Search for next week's note"), _cd_tomboy_search_for_next_week, CD_APPLET_MY_MENU);
+	
+	GList *pList = (myDock ? (myIcon->pSubDock ? myIcon->pSubDock->icons : NULL) : myDesklet->icons);
+	Icon *icon;
+	GList *ic;
+	for (ic = pList; ic != NULL; ic = ic->next)
 	{
-		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
-		
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK  (D_("Search"), GTK_STOCK_FIND, _cd_tomboy_search_for_content, CD_APPLET_MY_MENU);
-		CD_APPLET_ADD_IN_MENU(D_("Search for tag"), _cd_tomboy_search_for_tag, CD_APPLET_MY_MENU);
-		
-		CD_APPLET_ADD_IN_MENU(D_("Search for today's note"), _cd_tomboy_search_for_today, CD_APPLET_MY_MENU);
-		CD_APPLET_ADD_IN_MENU(D_("Search for this week's note"), _cd_tomboy_search_for_this_week, CD_APPLET_MY_MENU);
-		CD_APPLET_ADD_IN_MENU(D_("Search for next week's note"), _cd_tomboy_search_for_next_week, CD_APPLET_MY_MENU);
-		
-		GList *pList = (myDock ? (myIcon->pSubDock ? myIcon->pSubDock->icons : NULL) : myDesklet->icons);
-		Icon *icon;
-		GList *ic;
-		for (ic = pList; ic != NULL; ic = ic->next)
+		icon = ic->data;
+		if (icon->bHasIndicator)
 		{
-			icon = ic->data;
-			if (icon->bHasIndicator)
-			{
-				CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Reset marks"), GTK_STOCK_CLEAR, _cd_tomboy_reset_marks, CD_APPLET_MY_MENU);
-				break ;
-			}
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Reset marks"), GTK_STOCK_CLEAR, _cd_tomboy_reset_marks, CD_APPLET_MY_MENU);
+			break ;
 		}
 	}
 	

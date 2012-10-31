@@ -116,22 +116,18 @@ gboolean _new_xml_to_conf (CairoDockModuleInstance *myApplet, gchar *cReceivedDa
 			}
 			else
 			{
-				cd_debug ("DONCKY-debug : the folder '%s' exists -> Asking what to do ...", cThemePath);
-				int iAnswer = GTK_RESPONSE_YES;
-				iAnswer = cairo_dock_ask_question_and_wait ("A theme with the same name already exists in ~/.config/cairo-dock/doncky. Do you want to overwrite it ?", myIcon, myContainer);
-				if (iAnswer == GTK_RESPONSE_YES)
+				cd_debug ("DONCKY-debug : the folder '%s' exists -> give it a new name ...", cThemePath);
+				gchar *cNewPath=NULL;
+				int i=2;
+				do
 				{
-					gchar *cCommand = g_strdup_printf ("cd \"%s\" && rm *.*", cThemePath);
-					//~ cairo_dock_launch_command (cCommand);
-					cairo_dock_launch_command_sync (cCommand);
-					g_free (cCommand);
-					bContinue = TRUE;
+					cNewPath = g_strdup_printf ("%s-%d", cThemePath, i);
+					i ++;
 				}
-				else
-				{
-					bContinue = FALSE;
-				}					
-				
+				while (g_file_test (cNewPath, G_FILE_TEST_EXISTS));
+				g_free (cThemePath);
+				cThemePath = cNewPath;
+				bContinue = TRUE;
 			}
 			
 			if (bContinue)

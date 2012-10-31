@@ -34,14 +34,14 @@ void dbus_detect_tomboy_async (void);
 void getAllNotes_async (void);
 void free_all_notes (void);
 
-gchar *addNote(gchar *note_name);
-void deleteNote(gchar *note_title);
-void showNote(gchar *note_id);
+gchar *addNote (const gchar *note_name);
+void deleteNote (const gchar *note_title);
+void showNote (const gchar *note_id);
 
 
-GList *cd_tomboy_find_notes_with_tag (gchar *cTag);
+GList *cd_tomboy_find_notes_with_tag (const gchar *cTag);
 
-GList *cd_tomboy_find_notes_with_contents (gchar **cContents);
+GList *cd_tomboy_find_notes_with_contents (const gchar **cContents);
 
 GList *cd_tomboy_find_note_for_today (void);
 GList *cd_tomboy_find_note_for_this_week (void);

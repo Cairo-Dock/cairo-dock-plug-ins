@@ -433,7 +433,7 @@ void free_all_notes (void)
  /// ACTIONS ///
 ///////////////
 
-gchar *addNote(gchar *note_title)
+gchar *addNote (const gchar *note_title)
 {
 	cd_debug("tomboy : Nouvelle note : %s",note_title);
 	gchar *note_name = NULL;
@@ -445,7 +445,7 @@ gchar *addNote(gchar *note_title)
 	return note_name;
 }
 
-void deleteNote(gchar *note_title)
+void deleteNote (const gchar *note_title)
 {
 	cd_debug("tomboy : Suppression note : %s",note_title);
 	gboolean bDelete = TRUE;
@@ -456,7 +456,7 @@ void deleteNote(gchar *note_title)
 		G_TYPE_INVALID);
 }
 
-void showNote(gchar *note_name)
+void showNote (const gchar *note_name)
 {
 	cd_debug("tomboy : Afficher une note : %s",note_name);
 	dbus_g_proxy_call (dbus_proxy_tomboy, "DisplayNote", NULL,
@@ -470,7 +470,7 @@ void showNote(gchar *note_name)
  /// FIND ///
 ////////////
 
-static gchar **_cd_tomboy_get_note_names_with_tag (gchar *cTag)
+static gchar **_cd_tomboy_get_note_names_with_tag (const gchar *cTag)
 {
 	gchar **cNoteNames = NULL;
 	dbus_g_proxy_call (dbus_proxy_tomboy, "GetAllNotesWithTag", NULL,
@@ -480,7 +480,7 @@ static gchar **_cd_tomboy_get_note_names_with_tag (gchar *cTag)
 		G_TYPE_INVALID);
 	return cNoteNames;
 }
-GList *cd_tomboy_find_notes_with_tag (gchar *cTag)
+GList *cd_tomboy_find_notes_with_tag (const gchar *cTag)
 {
 	gchar **cNoteNames = _cd_tomboy_get_note_names_with_tag (cTag);
 	if (cNoteNames == NULL)
@@ -501,7 +501,7 @@ GList *cd_tomboy_find_notes_with_tag (gchar *cTag)
 }
 
 
-static gboolean _cd_tomboy_note_has_contents (gchar *cNoteName, gchar **cContents)
+static gboolean _cd_tomboy_note_has_contents (const gchar *cNoteName, const gchar **cContents)
 {
 	gchar *cNoteContent = NULL;
 	if (dbus_g_proxy_call (dbus_proxy_tomboy, "GetNoteContents", NULL,
@@ -525,7 +525,7 @@ static gboolean _cd_tomboy_note_has_contents (gchar *cNoteName, gchar **cContent
 	g_free (cNoteContent);
 	return FALSE;
 }
-GList *cd_tomboy_find_notes_with_contents (gchar **cContents)
+GList *cd_tomboy_find_notes_with_contents (const gchar **cContents)
 {
 	g_return_val_if_fail (cContents != NULL, NULL);
 	GList *pList = CD_APPLET_MY_ICONS_LIST;
@@ -553,7 +553,7 @@ GList *cd_tomboy_find_note_for_today (void)
 	localtime_r (&epoch, &epoch_tm);
 	strftime (s_cDateBuffer, CD_TOMBOY_DATE_BUFFER_LENGTH, myConfig.cDateFormat, &epoch_tm);
 	
-	gchar *cContents[2] = {s_cDateBuffer, NULL};
+	const gchar *cContents[2] = {s_cDateBuffer, NULL};
 	return cd_tomboy_find_notes_with_contents (cContents);
 }
 
@@ -575,8 +575,8 @@ GList *cd_tomboy_find_note_for_this_week (void)
 		cDays[i] = g_strdup (s_cDateBuffer);
 	}
 	
-	GList *pList = cd_tomboy_find_notes_with_contents (cDays);
-	g_free (cDays);
+	GList *pList = cd_tomboy_find_notes_with_contents ((const gchar **)cDays);
+	g_strfreev (cDays);
 	return pList;
 }
 
@@ -597,7 +597,7 @@ GList *cd_tomboy_find_note_for_next_week (void)
 		cDays[i] = g_strdup (s_cDateBuffer);
 	}
 	
-	GList *pList = cd_tomboy_find_notes_with_contents (cDays);
-	g_free (cDays);
+	GList *pList = cd_tomboy_find_notes_with_contents ((const gchar **)cDays);
+	g_strfreev (cDays);
 	return pList;
 }

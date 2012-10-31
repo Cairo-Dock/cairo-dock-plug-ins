@@ -209,44 +209,57 @@ static void _cd_switcher_move_to_desktop (GtkMenuItem *menu_item, gpointer data)
 	cd_switcher_compute_viewports_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
 	cd_switcher_move_current_desktop_to (iNumDesktop, iNumViewportX, iNumViewportY);
 }
-static void _cd_switcher_rename_desktop (GtkMenuItem *menu_item, gpointer data)
+
+static void _on_got_workspace_name (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer data, CairoDialog *pDialog)
+{
+	CD_APPLET_ENTER;
+	
+	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
+	{
+		const gchar *cNewName = gtk_entry_get_text (GTK_ENTRY (pInteractiveWidget));
+		if (cNewName != NULL)
+		{
+			int iIndex = GPOINTER_TO_INT (data);
+			// on augmente la taille du tableau si necessaire.
+			if (iIndex >= myConfig.iNbNames)
+			{
+				myConfig.cDesktopNames = g_realloc (myConfig.cDesktopNames, (iIndex + 2) * sizeof (gchar*));  // NULL-terminated.
+				int i;
+				for (i = myConfig.iNbNames; i < iIndex; i ++)  // on met des noms par defaut aux nouveaux, sauf a celui choisi.
+					myConfig.cDesktopNames[i] = g_strdup_printf ("%s %d", D_("Desktop"), i+1);
+				myConfig.cDesktopNames[iIndex] = NULL;
+				myConfig.cDesktopNames[iIndex+1] = NULL;  // NULL-terminated.
+				myConfig.iNbNames = iIndex + 1;
+			}
+			
+			g_free (myConfig.cDesktopNames[iIndex]);
+			myConfig.cDesktopNames[iIndex] = g_strdup (cNewName);  // donc ne pas liberer 'cNewName'.
+			
+			// on sauvegarde le nom dans le fichier de conf.
+			GString *sNames = g_string_new ("");
+			int i;
+			for (i = 0; i < myConfig.iNbNames; i ++)
+			{
+				g_string_append_printf (sNames, "%s;", myConfig.cDesktopNames[i]);
+			}
+			sNames->str[sNames->len-1] = '\0';
+			cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
+				G_TYPE_STRING, "Configuration", "desktop names", sNames->str,
+				G_TYPE_INVALID);
+			g_string_free (sNames, TRUE);
+		}
+	}
+	CD_APPLET_LEAVE ();
+}static void _cd_switcher_rename_desktop (GtkMenuItem *menu_item, gpointer data)
 {
 	// on demande le nouveau nom.
 	int iIndex = GPOINTER_TO_INT (data);
 	gchar *cName = (iIndex < myConfig.iNbNames ? g_strdup (myConfig.cDesktopNames[iIndex]) : g_strdup_printf ("%s %d", D_("Desktop"), iIndex+1));
-	gchar *cNewName = cairo_dock_show_demand_and_wait (D_("Rename this workspace"), myIcon, myContainer, cName);
+	cairo_dock_show_dialog_with_entry (D_("Rename this workspace"),
+		myIcon, myContainer, "same icon",
+		cName,
+		(CairoDockActionOnAnswerFunc)_on_got_workspace_name, data, (GFreeFunc)NULL);
 	g_free (cName);
-	
-	if (cNewName != NULL)
-	{
-		// on augmente la taille du tableau si necessaire.
-		if (iIndex >= myConfig.iNbNames)
-		{
-			myConfig.cDesktopNames = g_realloc (myConfig.cDesktopNames, (iIndex + 2) * sizeof (gchar*));  // NULL-terminated.
-			int i;
-			for (i = myConfig.iNbNames; i < iIndex; i ++)  // on met des noms par defaut aux nouveaux, sauf a celui choisi.
-				myConfig.cDesktopNames[i] = g_strdup_printf ("%s %d", D_("Desktop"), i+1);
-			myConfig.cDesktopNames[iIndex] = NULL;
-			myConfig.cDesktopNames[iIndex+1] = NULL;  // NULL-terminated.
-			myConfig.iNbNames = iIndex + 1;
-		}
-		
-		g_free (myConfig.cDesktopNames[iIndex]);
-		myConfig.cDesktopNames[iIndex] = cNewName;  // donc ne pas liberer 'cNewName'.
-		
-		// on sauvegarde le nom dans le fichier de conf.
-		GString *sNames = g_string_new ("");
-		int i;
-		for (i = 0; i < myConfig.iNbNames; i ++)
-		{
-			g_string_append_printf (sNames, "%s;", myConfig.cDesktopNames[i]);
-		}
-		sNames->str[sNames->len-1] = '\0';
-		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
-			G_TYPE_STRING, "Configuration", "desktop names", sNames->str,
-			G_TYPE_INVALID);
-		g_string_free (sNames, TRUE);
-	}
 }
 static void _cd_switcher_show_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
 {

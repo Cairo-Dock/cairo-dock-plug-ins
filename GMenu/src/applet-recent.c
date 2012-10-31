@@ -103,13 +103,21 @@ void cd_menu_append_recent_to_menu (GtkWidget *top_menu, CairoDockModuleInstance
 
 
 
-void cd_menu_clear_recent (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _on_answer_clear_recent (int iClickedButton, GtkWidget *pInteractiveWidget, CairoDockModuleInstance *myApplet, CairoDialog *pDialog)
 {
-	int iAnswer = cairo_dock_ask_question_and_wait (D_("Clear the list of the recently used documents?"), myIcon, myContainer);
-	if (iAnswer == GTK_RESPONSE_YES)
+	CD_APPLET_ENTER;
+	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
 	{
 		gtk_recent_manager_purge_items (myData.pRecentManager, NULL);
 	}
+	CD_APPLET_LEAVE ();
+}
+void cd_menu_clear_recent (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+{
+	cairo_dock_show_dialog_with_question (D_("Clear the list of the recently used documents?"),
+		myIcon, myContainer,
+		"same icon",
+		(CairoDockActionOnAnswerFunc) _on_answer_clear_recent, myApplet, (GFreeFunc)NULL);
 }
 
 

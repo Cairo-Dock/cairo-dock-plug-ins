@@ -21,6 +21,7 @@
 #include <glib/gi18n.h>
 
 #include "tomboy-struct.h"
+#include "tomboy-dbus.h"
 #include "tomboy-draw.h"
 
 
@@ -126,6 +127,37 @@ static gboolean _cd_tomboy_reset_quick_info (gpointer data)
 	myData.iSidResetQuickInfo = 0;
 	return FALSE;
 }
+static void _on_select_note (GtkWidget *pMenuItem, const gchar *cCommand)
+{
+	g_print ("%s (%s)\n", __func__, cCommand);
+	showNote (cCommand);
+}
+static void _on_select_all_notes (GtkWidget *pMenuItem, GList *pNotes)
+{
+	gchar *cCommand;
+	GList *n;
+	for (n = pNotes; n != NULL; n = n->next)
+	{
+		cCommand = n->data;
+		showNote (cCommand);
+	}
+}
+static void _on_menu_deactivated (GtkWidget *pMenu, gpointer data)
+{
+	g_signal_handlers_disconnect_matched
+		(pMenu,
+		G_SIGNAL_MATCH_FUNC | G_SIGNAL_MATCH_DATA,
+		0,
+		0,
+		NULL,
+		_on_menu_deactivated,
+		data);  // must disconnect before destroying, or this will be called again.
+	gtk_widget_destroy (pMenu);  // destroy the menu, since deactivating it doesn't destroy it.
+}
+static void _on_menu_destroyed (GtkWidget *pMenu, GList *pNotes)
+{
+	g_list_foreach (pNotes, (GFunc)g_free, NULL);
+}
 void cd_tomboy_show_results (GList *pIconsList)
 {
 	//\_______________ On marque les icones du resultat.
@@ -144,11 +176,36 @@ void cd_tomboy_show_results (GList *pIconsList)
 	//\_______________ On les montre.
 	if (myDock)
 	{
-		cairo_dock_show_subdock (myIcon, myDock);
+		///cairo_dock_show_subdock (myIcon, myDock);
 		cairo_dock_redraw_container (CAIRO_CONTAINER (myIcon->pSubDock));
 	}
 	else
 		cairo_dock_redraw_container (myContainer);
+	
+	if (pIconsList)
+	{
+		GList *pNotes = NULL;
+		gchar *cCommand;
+		GtkWidget *pMenu = gtk_menu_new ();
+		for (ic = pIconsList; ic != NULL; ic = ic->next)
+		{
+			icon = ic->data;
+			cCommand = g_strdup (icon->cCommand);
+			pNotes = g_list_prepend (pNotes, cCommand);
+			cairo_dock_add_in_menu_with_stock_and_data (icon->cName, NULL, G_CALLBACK (_on_select_note), pMenu, cCommand);
+		}
+		
+		cairo_dock_add_in_menu_with_stock_and_data (D_("Open all"), NULL, G_CALLBACK (_on_select_all_notes), pMenu, pNotes);
+		cairo_dock_popup_menu_on_icon (pMenu, myIcon, myContainer);
+		g_signal_connect (G_OBJECT (pMenu),
+			"destroy",
+			G_CALLBACK (_on_menu_destroyed),
+			pNotes);
+		g_signal_connect (G_OBJECT (pMenu),
+			"deactivate",
+			G_CALLBACK (_on_menu_deactivated),
+			NULL);
+	}
 	
 	//\_______________ On affiche le resultat.
 	if (myDock)
@@ -158,7 +215,7 @@ void cd_tomboy_show_results (GList *pIconsList)
 			g_source_remove (myData.iSidResetQuickInfo);
 		myData.iSidResetQuickInfo = g_timeout_add_seconds (5, _cd_tomboy_reset_quick_info, NULL);
 	}
-	else
+	/**else
 	{
 		cairo_dock_show_temporary_dialog_with_icon_printf ("%d %s",
 			pIconsList ? pIconsList->data : myDesklet->icons->data,
@@ -167,7 +224,7 @@ void cd_tomboy_show_results (GList *pIconsList)
 			"same icon",
 			iNbResults,
 			iNbResults > 1 ? D_("results") : D_("result"));
-	}
+	}*/
 }
 
 void cd_tomboy_reset_icon_marks (gboolean bForceRedraw)

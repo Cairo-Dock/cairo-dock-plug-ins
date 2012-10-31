@@ -1995,7 +1995,7 @@ msgstr "Répéter ce message chaque :"
 
 #: ../clock/src/applet-timer.c:184
 msgid "The following task has felt due:"
-msgstr "La tâche suivante est terminée en raison :"
+msgstr "La tâche suivante est arrivée à échéance :"
 
 #: ../clock/src/applet-timer.c:465
 msgid "It's time for the following task:"
@@ -2007,7 +2007,7 @@ msgstr "Cette tâche va commencer dans 15 minutes :"
 
 #: ../clock/src/applet-timer.c:513
 msgid "Today is the following anniversary:"
-msgstr "Aujourd'hui, nous souhaitons un bon anniversaire à :"
+msgstr "Aujourd'hui est le jour anniversaire de :"
 
 #: ../clock/src/applet-timer.c:513
 msgid "Tomorrow is the following anniversary:"

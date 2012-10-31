@@ -142,6 +142,46 @@ static gchar *_get_label_and_color (const gchar *cLabel, GdkColor *pColor, gbool
 	return cUsefulLabel;
 }
 
+static void _on_got_tab_name (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer *data, CairoDialog *pDialog)
+{
+	CD_APPLET_ENTER;
+	
+	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
+	{
+		const gchar *cNewName = gtk_entry_get_text (GTK_ENTRY (pInteractiveWidget));
+		if (cNewName != NULL)
+		{
+			GtkLabel *pLabel = data[0];
+			#if GTK_CHECK_VERSION (3, 4, 0)
+			GdkRGBA *pColor = data[1];
+			#else
+			GdkColor *pColor = data[1];
+			#endif
+			if (pColor)
+			{
+				#if GTK_CHECK_VERSION (3, 4, 0)
+				gchar *cColor = gdk_rgba_to_string (pColor);
+				#else
+				gchar *cColor = gdk_color_to_string (pColor);
+				#endif
+				gchar *cNewColoredName = g_strdup_printf ("<span color='%s'>%s</span>", cColor, cNewName);
+				gtk_label_set_markup (pLabel, cNewColoredName);
+				g_free (cNewColoredName);
+				g_free (cColor);
+			}
+			else
+			{
+				gtk_label_set_text (pLabel, cNewName);
+			}
+		}
+	}
+	CD_APPLET_LEAVE ();
+}
+static void _free_rename_data (gpointer *data)
+{
+	g_free (data[1]);
+	g_free (data);
+}
 void terminal_rename_tab (GtkWidget *vterm)
 {
 	cd_message ("");
@@ -157,36 +197,26 @@ void terminal_rename_tab (GtkWidget *vterm)
 		GtkLabel *pLabel = pTabWidgetList->data;
 		const gchar *cCurrentName = gtk_label_get_label (pLabel);
 		#if GTK_CHECK_VERSION (3, 4, 0)
-		GdkRGBA color;
+		GdkRGBA *pColor = g_new0 (GdkRGBA, 1);
 		#else
-		GdkColor color;
+		GdkColor *pColor = g_new0 (GdkColor, 1);
 		#endif
 		gboolean bColorSet = FALSE;
-		gchar *cUsefulLabel = _get_label_and_color (cCurrentName, &color, &bColorSet);
-		
-		gchar *cNewName = cairo_dock_show_demand_and_wait (D_("Set title for this tab:"), NULL, (myDock ? CAIRO_CONTAINER (myData.dialog) : CAIRO_CONTAINER (myDesklet)), cUsefulLabel);
-		g_free (cUsefulLabel);
-		
-		if (cNewName != NULL)
+		gchar *cUsefulLabel = _get_label_and_color (cCurrentName, pColor, &bColorSet);
+		if (!bColorSet)
 		{
-			if (bColorSet)
-			{
-				#if GTK_CHECK_VERSION (3, 4, 0)
-				gchar *cColor = gdk_rgba_to_string (&color);
-				#else
-				gchar *cColor = gdk_color_to_string (&color);
-				#endif
-				gchar *cNewColoredName = g_strdup_printf ("<span color='%s'>%s</span>", cColor, cNewName);
-				gtk_label_set_markup (pLabel, cNewColoredName);
-				g_free (cNewColoredName);
-				g_free (cColor);
-			}
-			else
-			{
-				gtk_label_set_text (pLabel, cNewName);
-			}
-			g_free (cNewName);
+			g_free (pColor);
+			pColor = NULL;
 		}
+		
+		gpointer *data = g_new (gpointer, 2);
+		data[0] = pLabel;
+		data[1] = pColor;
+		cairo_dock_show_dialog_with_entry (D_("Set title for this tab:"),
+			myIcon, myContainer, "same icon",  /// NULL, (myDock ? CAIRO_CONTAINER (myData.dialog) : CAIRO_CONTAINER (myDesklet))
+			cUsefulLabel,
+			(CairoDockActionOnAnswerFunc)_on_got_tab_name, data, (GFreeFunc)_free_rename_data);
+		g_free (cUsefulLabel);
 		g_list_free (pTabWidgetList);
 	}
 }
