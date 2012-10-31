@@ -614,7 +614,7 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	{
 		pItem->pToolTip = _make_tooltip_from_dbus_struct (pToolTipTab);
 	}
-	if (pItem->cIconThemePath)  // on le rajoute au theme d'icones par defaut; comme le launcher-manager va deja chercher dedans pour charger l'icone, on n'a rien d'autre a faire.
+	if (pItem->cIconThemePath && *pItem->cIconThemePath != '\0')  // on le rajoute au theme d'icones par defaut; comme le launcher-manager va deja chercher dedans pour charger l'icone, on n'a rien d'autre a faire.
 	{
 		cd_satus_notifier_add_theme_path (pItem->cIconThemePath);
 	}
