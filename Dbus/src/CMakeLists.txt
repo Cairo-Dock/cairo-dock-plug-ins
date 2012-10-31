@@ -28,7 +28,8 @@ add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
 add_definitions (-DCD_PLUGINS_DIR="${pluginsdir}")
 
-if (${DBUSMENU_GTK_FOUND} AND ${DBUSMENU_FOUND})
+if (${DBUSMENU_GTK_FOUND}) # without AND in order to remove warning if one is not found
+if (${DBUSMENU_FOUND})
 	message (STATUS " * With DBusMenu support")
 	add_definitions (-DDBUSMENU_GTK_FOUND=1)
 	if (${DBUSMENU_GTK3_NEW})
@@ -58,6 +59,7 @@ else()
 
 	target_link_libraries (${PACKAGE_DBUS}
 		${PACKAGE_LIBRARIES})
+endif()
 endif()
 
 ########### install files ###############
