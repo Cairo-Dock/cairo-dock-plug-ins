@@ -122,7 +122,9 @@ void mixer_stop (void)
 {
 	if (myData.mixer_handle != NULL)
 	{
-		snd_mixer_detach (myData.mixer_handle, myConfig.card_id);
+		gchar *cCardID = _mixer_get_card_id_from_name (myConfig.card_id);
+		snd_mixer_detach (myData.mixer_handle, cCardID);
+		g_free (cCardID);
 		snd_mixer_close (myData.mixer_handle);
 		myData.mixer_handle = NULL;
 		myData.pControledElement = NULL;
