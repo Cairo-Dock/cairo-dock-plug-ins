@@ -42,6 +42,7 @@ void handle_gmenu_tree_changed (GMenuTree *tree,
 	{
 		gtk_widget_destroy (myData.pMenu);
 		myData.pMenu = NULL;
+		myData.pRecentMenuItem = NULL;
 	}
 	
 	myData.pMenu = create_main_menu (myApplet);
