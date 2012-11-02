@@ -25,7 +25,7 @@
 #include <cairo-dock.h>
 
 
-void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName, const gchar *cIndicatorName, gboolean bRedrawSurface);
+void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName, gboolean bRedrawSurface);
 
 
 gboolean cd_xkbd_render_step_opengl (Icon *pIcon, CairoDockModuleInstance *myApplet);

@@ -25,8 +25,7 @@
 #include "applet-draw.h"
 
 
-/// TODO: remove 'cIndicatorName' if the overlays are a good replacement...
-void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName, const gchar *cIndicatorName, gboolean bRedrawSurface)
+void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName, gboolean bRedrawSurface)
 {
 	//g_print ("%s (%s;%s;%d)\n", __func__, cGroupName, cShortGroupName, bRedrawSurface);
 	
@@ -98,7 +97,6 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 	}
 	
 	//\__________________ lock indicators
-	///CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (!cIndicatorName || *cIndicatorName == '\0' ? NULL : cIndicatorName);
 	if (myConfig.bShowKbdIndicator)
 	{
 		cd_debug ("XKBD: caps-lock: %d; num-lock: %d", myData.iCurrentIndic & 1, myData.iCurrentIndic & 2);
