@@ -24,6 +24,7 @@
 #ifdef CD_UPOWER_AVAILABLE
 #include <upower.h>
 #endif
+#include <dbus/dbus-glib.h>  // dbus_g_thread_init
 
 #include "applet-struct.h"
 #include "applet-logout.h"
@@ -58,7 +59,8 @@ static void _display_menu (void);
 static void _cd_logout_check_capabilities_async (CDSharedMemory *pSharedMemory)
 {
 	GError *error = NULL;
-	
+
+	dbus_g_thread_init ();
 	// get capabilities from UPower.
 	#ifdef CD_UPOWER_AVAILABLE
 	UpClient *pUPowerClient = up_client_new ();

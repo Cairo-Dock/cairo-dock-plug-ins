@@ -210,7 +210,5 @@ gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Wind
 	
 	cd_xkbd_update_icon (cCurrentGroup, cShortGroupName, bRedrawSurface);
 	g_free (cShortGroupName);
-	/**if (sCurrentIndicator != NULL)
-		g_string_free (sCurrentIndicator, TRUE);*/
 	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 }
