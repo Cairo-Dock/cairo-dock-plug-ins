@@ -30,6 +30,8 @@ struct _AppletConfig {
 	CairoDockLabelDescription textDescription;
 	gint iTransitionDuration;
 	gchar *cShortkey;
+	gchar *cEmblemNumLock;
+	gchar *cEmblemCapsLock;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
@@ -44,6 +46,8 @@ struct _AppletData {
 	gint iCurrentGroup;
 	guint iCurrentIndic, iPreviousIndic;
 	CairoKeyBinding *pKeyBinding;
+	gchar *cEmblemNumLock;
+	gchar *cEmblemCapsLock;
 	} ;
 
 

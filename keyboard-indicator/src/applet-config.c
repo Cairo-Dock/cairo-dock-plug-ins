@@ -28,6 +28,8 @@
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cShortkey = CD_CONFIG_GET_STRING ("Configuration", "shortkey");
 	myConfig.bShowKbdIndicator = CD_CONFIG_GET_BOOLEAN ("Configuration", "show indic");
+	myConfig.cEmblemNumLock = CD_CONFIG_GET_STRING ("Configuration", "emblem numlock");
+	myConfig.cEmblemCapsLock = CD_CONFIG_GET_STRING ("Configuration", "emblem capslock");
 	myConfig.iTransitionDuration = CD_CONFIG_GET_INTEGER ("Configuration", "transition");
 	myConfig.fTextRatio = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "text ratio", 1.);
 	CD_CONFIG_GET_COLOR_RVB("Configuration", "text color", myConfig.textDescription.fColorStart);
@@ -67,6 +69,8 @@ CD_APPLET_GET_CONFIG_END
 //\_________________ Here you have to free all ressources allocated for myConfig. This one will be reseted to 0 at the end of this function. This function is called right before you get the applet's config, and when your applet is stopped, in the end.
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cBackgroundImage);
+	g_free (myConfig.cEmblemCapsLock);
+	g_free (myConfig.cEmblemNumLock);
 	g_free (myConfig.textDescription.cFont);
 	g_free (myConfig.cShortkey);
 CD_APPLET_RESET_CONFIG_END
@@ -83,4 +87,6 @@ CD_APPLET_RESET_DATA_BEGIN
 		cairo_surface_destroy (myData.pCurrentSurface);
 	if (myData.iCurrentTexture != 0)
 		_cairo_dock_delete_texture (myData.iCurrentTexture);
+	g_free (myData.cEmblemCapsLock);
+	g_free (myData.cEmblemNumLock);
 CD_APPLET_RESET_DATA_END

@@ -53,7 +53,7 @@ CairoDialog *cd_terminal_build_dialog (void)
 {
 	CairoDialogAttribute attr;
 	memset (&attr, 0, sizeof (CairoDialogAttribute));
-	attr.cText = D_ ("Terminal");
+	attr.cText = D_("Terminal");
 	attr.pInteractiveWidget = myData.tab;
 	attr.bHideOnClick = TRUE;  // keep the dialog alive on click (hide it).
 	return cairo_dock_build_dialog (&attr, myIcon, myContainer);

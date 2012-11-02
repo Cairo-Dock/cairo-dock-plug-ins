@@ -120,7 +120,18 @@ CD_APPLET_RELOAD_BEGIN
 		_load_bg_image ();
 		
 		myData.iCurrentGroup = -1;  // pour forcer le redessin.
-		if (!myConfig.bShowKbdIndicator)  // no more indicators
+
+		// emblems
+		gboolean bCustomEmblems = (myConfig.cEmblemCapsLock || myConfig.cEmblemNumLock); // has emblem
+		if (myData.cEmblemCapsLock || myData.cEmblemNumLock)
+		{	// maybe we need to search for new icons
+			g_free (myData.cEmblemCapsLock);
+			g_free (myData.cEmblemNumLock);
+			myData.cEmblemCapsLock = NULL;
+			myData.cEmblemNumLock = NULL;
+			bCustomEmblems = TRUE; // had emblem
+		}
+		if (!myConfig.bShowKbdIndicator || bCustomEmblems)  // no more indicators or emblems need to be reloaded
 		{
 			CD_APPLET_REMOVE_OVERLAY_ON_MY_ICON (CAIRO_OVERLAY_UPPER_RIGHT);
 			CD_APPLET_REMOVE_OVERLAY_ON_MY_ICON (CAIRO_OVERLAY_UPPER_LEFT);
