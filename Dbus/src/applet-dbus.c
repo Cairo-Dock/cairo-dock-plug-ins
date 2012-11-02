@@ -138,7 +138,7 @@ static gboolean _cd_dbus_register_new_module (const gchar *cModuleName, const gc
 		pVisitCard->cAuthor = g_strdup (cAuthor);
 		pVisitCard->iCategory = iCategory;
 		if (cIconName != NULL)
-			pVisitCard->cIconFilePath = cairo_dock_search_icon_s_path (cIconName, CAIRO_DOCK_DEFAULT_ICON_SIZE);
+			pVisitCard->cIconFilePath = g_strdup (cIconName);  // take the filename as it is, the path will be searched when needed only.
 		if (pVisitCard->cIconFilePath == NULL)
 			pVisitCard->cIconFilePath = (cShareDataDir ? g_strdup_printf ("%s/icon", cShareDataDir) : NULL);
 		pVisitCard->iSizeOfConfig = 4;  // au cas ou ...
