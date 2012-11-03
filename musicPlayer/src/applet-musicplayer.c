@@ -51,10 +51,13 @@ owned =>
 not owned => stop handler
 */
 
-static inline void _fill_handler_properties (const gchar *cDesktopFileName)
+static inline void _fill_handler_properties (const gchar *cDesktopFileName, gchar *cAppClass)
 {
 	g_free ((gchar*)myData.pCurrentHandler->appclass);
-	myData.pCurrentHandler->appclass = cairo_dock_register_class (cDesktopFileName);
+	if (cAppClass == NULL) // cAppClass: this parameter is optional
+		myData.pCurrentHandler->appclass = cairo_dock_register_class (cDesktopFileName);
+	else
+		myData.pCurrentHandler->appclass = cAppClass;
 	g_free ((gchar*)myData.pCurrentHandler->launch);
 	myData.pCurrentHandler->launch = g_strdup (cairo_dock_get_class_command (myData.pCurrentHandler->appclass));
 	if (myData.pCurrentHandler->launch == NULL)  // we really need a command to launch it on click, so insist a little
@@ -297,30 +300,36 @@ static void _on_got_desktop_entry (DBusGProxy *proxy, DBusGProxyCall *call_id, g
 	if (bSuccess && G_VALUE_HOLDS_STRING (&v))
 	{
 		const gchar *cDesktopFileName = g_value_get_string (&v);
-		cd_debug (" got desktop-entry '%s' from the service '%s'", cDesktopFileName, myData.pCurrentHandler->cMprisService);
+		cd_debug (" got desktop-entry '%s' (was '%s') from the service '%s'", cDesktopFileName, myConfig.cLastKnownDesktopFile, myData.pCurrentHandler->cMprisService);
 		
 		if (cDesktopFileName != NULL)
 		{
 			if (myConfig.cLastKnownDesktopFile == NULL || strcmp (cDesktopFileName, myConfig.cLastKnownDesktopFile) != 0)  // the property has changed from the previous time.
 			{
-				cd_debug ("  desktop-entry has changed, update");
-				// store the desktop filename, since we can't have it until the service is up, the next time the applet is started, which means we wouldn't be able to launch the player.
-				cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
-					G_TYPE_STRING, "Configuration", "desktop-entry", cDesktopFileName,
-					G_TYPE_INVALID);
-				g_free (myConfig.cLastKnownDesktopFile);
-				myConfig.cLastKnownDesktopFile = g_strdup (cDesktopFileName);
-				
-				// register the desktop file, and get the common properties of this class.
-				_fill_handler_properties (cDesktopFileName);
-				
-				if (myData.pCurrentHandler->appclass != NULL)
+				gchar *cAppClass = cairo_dock_register_class (cDesktopFileName); // no need to be freed here
+				cd_debug ("  desktop-entry has changed, update => Class: %s", cAppClass);
+				if (cAppClass != NULL) // maybe the application has given a wrong cAppClass... Amarok? :)
 				{
-					cairo_dock_set_data_from_class (myData.pCurrentHandler->appclass, myIcon);
+					// store the desktop filename, since we can't have it until the service is up, the next time the applet is started, which means we wouldn't be able to launch the player.
+					cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
+						G_TYPE_STRING, "Configuration", "desktop-entry", cDesktopFileName,
+						G_TYPE_INVALID);
+					g_free (myConfig.cLastKnownDesktopFile);
+					myConfig.cLastKnownDesktopFile = g_strdup (cDesktopFileName);
+					
+					// register the desktop file, and get the common properties of this class.
+					_fill_handler_properties (cDesktopFileName, cAppClass);
+					
+					if (myData.pCurrentHandler->appclass != NULL)
+					{
+						cairo_dock_set_data_from_class (myData.pCurrentHandler->appclass, myIcon);
+					}
+					
+					if (myConfig.bStealTaskBarIcon)
+						CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandler->appclass);
 				}
-				
-				if (myConfig.bStealTaskBarIcon)
-					CD_APPLET_MANAGE_APPLICATION (myData.pCurrentHandler->appclass);
+				else
+					cd_warning ("Wrong .desktop file name: %s", cDesktopFileName);
 			}
 		}
 		g_value_unset (&v);
@@ -480,7 +489,11 @@ void cd_musicplayer_set_current_handler (const gchar *cName)
 		myData.pCurrentHandler = cd_musicplayer_get_handler_by_name ("Mpris2");
 		
 		// fill its properties
-		_fill_handler_properties (myConfig.cLastKnownDesktopFile ? myConfig.cLastKnownDesktopFile : cName);  // myConfig.cLastKnownDesktopFile is NULL when transitionning from an old version of the applet where we didn't use the "Desktop Entry" property yet -> use some heuristic as a fallback.
+		/* myConfig.cLastKnownDesktopFile is NULL when transitionning from an
+		 * old version of the applet where we didn't use the "Desktop Entry"
+		 * property yet -> use some heuristic as a fallback.
+		 */
+		_fill_handler_properties (myConfig.cLastKnownDesktopFile ? myConfig.cLastKnownDesktopFile : cName, NULL);  
 		
 		myData.pCurrentHandler->cMprisService = g_strdup_printf (CD_MPRIS2_SERVICE_BASE".%s", cName);
 		myData.cMpris2Service = NULL;
