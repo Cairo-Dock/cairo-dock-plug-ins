@@ -695,13 +695,23 @@ GtkWidget * create_applications_menu (const char *menu_file,
 }
 
 #define XDG_MENUS_PATH "/etc/xdg/menus"
+// maybe we should use: $XDG_CONFIG_DIRS => /etc/xdg/xdg-cairo-dock:/etc/xdg
+// http://developer.gnome.org/menu-spec/
 GtkWidget * create_main_menu (CairoDockModuleInstance *myApplet)
 {
 	GtkWidget *main_menu;
 	
 	// workaround pour KDE, qui ne loupe pas une occasion de se distinguer.
 	const gchar *cMenuFileName = NULL;
-	if (g_file_test (XDG_MENUS_PATH"/applications.menu", G_FILE_TEST_EXISTS))  // first check 
+	const gchar *cMenuPrefix = g_getenv ("XDG_MENU_PREFIX"); // e.g. on xfce, it contains "xfce-", nothing on gnome
+	gchar *cMenuFileNameWithPrefix = g_strdup_printf (XDG_MENUS_PATH"/%sapplications.menu", cMenuPrefix ? cMenuPrefix : "");
+	if (g_file_test (cMenuFileNameWithPrefix, G_FILE_TEST_EXISTS))  // first check, should be the good one
+	{
+		g_free (cMenuFileNameWithPrefix);
+		cMenuFileNameWithPrefix = g_strdup_printf ("%sapplications.menu", cMenuPrefix ? cMenuPrefix : "");
+		cMenuFileName = cMenuFileNameWithPrefix;
+	}
+	else if (g_file_test (XDG_MENUS_PATH"/applications.menu", G_FILE_TEST_EXISTS))
 		cMenuFileName = "applications.menu";
 	else if (g_file_test (XDG_MENUS_PATH"/gnome-applications.menu", G_FILE_TEST_EXISTS))
 		cMenuFileName = "gnome-applications.menu";
@@ -742,6 +752,8 @@ GtkWidget * create_main_menu (CairoDockModuleInstance *myApplet)
 	g_object_set_data (G_OBJECT (main_menu),
 		"panel-menu-append-callback-data",
 		myApplet);
-	
+
+	g_free (cMenuFileNameWithPrefix);
+
 	return main_menu;
 }
