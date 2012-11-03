@@ -7,16 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2012-09-30 15:12+0000\n"
 "PO-Revision-Date: 2012-09-30 17:28+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-10-01 04:54+0000\n"
 "X-Generator: Launchpad (build 16049)\n"
-"Language: it\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -42,8 +41,7 @@ msgstr "Icone animate"
 
 #: ../Animated-icons/src/applet-init.c:42
 msgid "This plug-in provides many different animations for your icons."
-msgstr ""
-"Questo plugin fornisce una vasta gamma di animazioni per le tue icone."
+msgstr "Questo plugin fornisce una vasta gamma di animazioni per le tue icone."
 
 #: ../Animated-icons/src/applet-pulse.c:107 ../Animated-icons/data/messages:13
 #: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:55
@@ -259,8 +257,8 @@ msgid ""
 "You can define in the configuration a Window-Manager that will provide the "
 "composite, and another as a fallback."
 msgstr ""
-"Quest'applet ti permette di <b>gestire accendendo/spegnendo il "
-"composite</b>.\n"
+"Quest'applet ti permette di <b>gestire accendendo/spegnendo il composite</"
+"b>.\n"
 "Il composite è ciò che permette la trasparenza del desktop, ma potrebbe "
 "rallentare il tuo PC, specialmente durante i giochi.\n"
 "<b>Clicca</b> sull'icona per accendere/spegnere il composite. Puoi impostare "
@@ -289,29 +287,30 @@ msgstr "Modifica le impostazioni del Gestore-Finestre"
 #: ../Composite-Manager/src/applet-notifications.c:145
 #: ../Composite-Manager/src/applet-notifications.c:154
 #: ../Composite-Manager/src/applet-notifications.c:163
-#: ../Folders/src/applet-notifications.c:365
-#: ../GMenu/src/applet-notifications.c:81
+#: ../Folders/src/applet-notifications.c:394
+#: ../GMenu/src/applet-notifications.c:90
 #: ../RSSreader/src/applet-notifications.c:129
 #: ../System-Monitor/src/applet-notifications.c:106
 #: ../Xgamma/src/applet-notifications.c:87
 #: ../alsaMixer/src/applet-notifications.c:84
-#: ../dustbin/src/applet-notifications.c:135
+#: ../dustbin/src/applet-notifications.c:147
 #: ../mail/src/cd-mail-applet-notifications.c:154
 #: ../musicPlayer/src/applet-notifications.c:300
 #: ../netspeed/src/applet-notifications.c:94
 #: ../quick-browser/src/applet-notifications.c:41
-#: ../shortcuts/src/applet-notifications.c:264
-#: ../shortcuts/src/applet-notifications.c:288
+#: ../shortcuts/src/applet-notifications.c:296
+#: ../shortcuts/src/applet-notifications.c:329
 #: ../showDesktop/src/applet-notifications.c:165
 #: ../showDesktop/src/applet-notifications.c:177
 #: ../showDesktop/src/applet-notifications.c:189
 #: ../slider/src/applet-notifications.c:223
 #: ../slider/src/applet-notifications.c:265
-#: ../stack/src/applet-notifications.c:185
-#: ../switcher/src/applet-notifications.c:300
-#: ../switcher/src/applet-notifications.c:305
-#: ../switcher/src/applet-notifications.c:314
-#: ../switcher/src/applet-notifications.c:323
+#: ../stack/src/applet-notifications.c:214
+#: ../switcher/src/applet-notifications.c:313
+#: ../switcher/src/applet-notifications.c:318
+#: ../switcher/src/applet-notifications.c:327
+#: ../switcher/src/applet-notifications.c:336
+#: ../tomboy/src/tomboy-notifications.c:248
 #: ../wifi/src/applet-notifications.c:88
 msgid "middle-click"
 msgstr "clic centrale"
@@ -332,14 +331,14 @@ msgstr "Mostra scrivania"
 #: ../Composite-Manager/src/applet-notifications.c:145
 #: ../showDesktop/src/applet-notifications.c:177
 #: ../showDesktop/src/applet-notifications.c:179
-#: ../switcher/src/applet-notifications.c:314
+#: ../switcher/src/applet-notifications.c:327
 #: ../Composite-Manager/data/messages:131 ../showDesktop/data/messages:107
 #: ../showDesktop/data/messages:121 ../switcher/data/messages:145
 msgid "Expose all the desktops"
 msgstr "Mostra tutti i desktop"
 
 #: ../Composite-Manager/src/applet-notifications.c:154
-#: ../switcher/src/applet-notifications.c:323
+#: ../switcher/src/applet-notifications.c:336
 #: ../Composite-Manager/data/messages:133 ../switcher/data/messages:147
 msgid "Expose all the windows"
 msgstr "Mostra tutte le finestre"
@@ -372,8 +371,7 @@ msgstr "Il modulo è stato aggiunto, ma non può essere lanciato."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid ""
-"The applet '%s' has been succefully updated and automatically reloaded"
+msgid "The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "L'applet '%s' è stata aggiornata con successo e automaticamente ricaricata"
 
@@ -475,8 +473,8 @@ msgstr ""
 "\n"
 "<b>Velocità disco</b>: mostra la velocità di trasferimento dei dischi. Fino "
 "a 10 partizioni.\n"
-"  Devi configurare il punto di mount di ogni partizione da controllare, come "
-"/ o /home\n"
+"  Devi configurare il punto di mount di ogni partizione da controllare, "
+"come / o /home\n"
 "  Si visualizza meglio in un indicatore, con 30/60 come tasso di "
 "aggiornamento ed un breve, se non nullo, ritardo.\n"
 "\n"
@@ -518,7 +516,7 @@ msgstr ""
 "  - DEVE ESSERE STACCATA DALLA DOCK PER FUNZIONARE!\n"
 "  - Clic centrale per ricaricare i valori"
 
-#: ../Doncky/src/applet-notifications.c:214
+#: ../Doncky/src/applet-notifications.c:210
 msgid "It doesn't seem to be a valid XML file."
 msgstr "Non sembra essere un valido file XML"
 
@@ -633,6 +631,14 @@ msgid "Execute"
 msgstr "Esegui"
 
 #: ../Folders/src/applet-notifications.c:211
+msgid ""
+"Warning: could not delete this file.\n"
+"Please check file permissions."
+msgstr ""
+"Attenzione: impossibile eliminare questo file.\n"
+"Verifica i permessi del file."
+
+#: ../Folders/src/applet-notifications.c:225
 #, c-format
 msgid ""
 "You're about deleting this file\n"
@@ -643,19 +649,7 @@ msgstr ""
 "  (%s)\n"
 "dal tuo hard disk. Sicuro?"
 
-#: ../Folders/src/applet-notifications.c:221
-msgid ""
-"Warning: could not delete this file.\n"
-"Please check file permissions."
-msgstr ""
-"Attenzione: impossibile eliminare questo file.\n"
-"Verifica i permessi del file."
-
-#: ../Folders/src/applet-notifications.c:234
-msgid "Rename to:"
-msgstr "Rinomina in:"
-
-#: ../Folders/src/applet-notifications.c:241
+#: ../Folders/src/applet-notifications.c:244
 #, c-format
 msgid ""
 "Warning: could not rename %s.\n"
@@ -666,16 +660,16 @@ msgstr ""
 "Verifica i permessi del file \n"
 "e che il nome scelto non esista già."
 
-#: ../Folders/src/applet-notifications.c:255
+#: ../Folders/src/applet-notifications.c:253
+msgid "Rename to:"
+msgstr "Rinomina in:"
+
+#: ../Folders/src/applet-notifications.c:268
 #: ../Scooby-Do/src/applet-backend-files.c:390
 msgid "Pick up a directory"
 msgstr "Scegli una directory"
 
-#: ../Folders/src/applet-notifications.c:280
-msgid "Enter a file name:"
-msgstr "Inserisci un nome di file:"
-
-#: ../Folders/src/applet-notifications.c:288
+#: ../Folders/src/applet-notifications.c:305
 #, c-format
 msgid ""
 "Warning: could not create %s.\n"
@@ -686,69 +680,73 @@ msgstr ""
 "Controlla i permessi del file \n"
 "e che il nome scelto non esista già."
 
-#: ../Folders/src/applet-notifications.c:365
+#: ../Folders/src/applet-notifications.c:315
+msgid "Enter a file name:"
+msgstr "Inserisci un nome di file:"
+
+#: ../Folders/src/applet-notifications.c:394
 msgid "Open the folder"
 msgstr "Apri cartella"
 
-#: ../Folders/src/applet-notifications.c:372
+#: ../Folders/src/applet-notifications.c:401
 msgid "Rename this file"
 msgstr "Rinomina questo file"
 
-#: ../Folders/src/applet-notifications.c:373
+#: ../Folders/src/applet-notifications.c:402
 msgid "Delete this file"
 msgstr "Elimina questo file"
 
-#: ../Folders/src/applet-notifications.c:374
+#: ../Folders/src/applet-notifications.c:403
 msgid "Move this file"
 msgstr "Muovi questo file"
 
-#: ../Folders/src/applet-notifications.c:380
+#: ../Folders/src/applet-notifications.c:409
 #: ../Recent-Events/src/applet-dialog.c:270
 #: ../slider/src/applet-notifications.c:233
 msgid "Open with"
 msgstr "Apri con"
 
-#: ../Folders/src/applet-notifications.c:413
+#: ../Folders/src/applet-notifications.c:442
 msgid "Properties"
 msgstr "Proprietà"
 
-#: ../Folders/src/applet-notifications.c:416
+#: ../Folders/src/applet-notifications.c:445
 msgid "Create a new file"
 msgstr "Crea un nuovo file"
 
-#: ../Folders/src/applet-notifications.c:417
+#: ../Folders/src/applet-notifications.c:446
 msgid "Create a new folder"
 msgstr "Crea una nuova cartella"
 
-#: ../Folders/src/applet-notifications.c:422
+#: ../Folders/src/applet-notifications.c:451
 msgid "Sort by"
 msgstr "Ordina per"
 
-#: ../Folders/src/applet-notifications.c:423
+#: ../Folders/src/applet-notifications.c:452
 msgid "By name"
 msgstr "Per nome"
 
-#: ../Folders/src/applet-notifications.c:424
+#: ../Folders/src/applet-notifications.c:453
 msgid "By date"
 msgstr "Per data"
 
-#: ../Folders/src/applet-notifications.c:425
+#: ../Folders/src/applet-notifications.c:454
 msgid "By size"
 msgstr "Per dimensione"
 
-#: ../Folders/src/applet-notifications.c:426
+#: ../Folders/src/applet-notifications.c:455
 msgid "By type"
 msgstr "Per tipo"
 
-#: ../Folders/src/applet-notifications.c:468
+#: ../Folders/src/applet-notifications.c:497
 msgid "The folder has been imported."
 msgstr "La cartella è stata importata."
 
-#: ../Folders/src/applet-notifications.c:529
+#: ../Folders/src/applet-notifications.c:558
 msgid "Do you want to import the content of the folder too?"
 msgstr "Vuoi importare anche il contenuto della cartella?"
 
-#: ../GMenu/src/applet-init.c:33
+#: ../GMenu/src/applet-init.c:35
 msgid ""
 "Displays the common Applications menu and the Recently used files.\n"
 "It is compatible with any XDG compliant menu (Gnome, XFCE, KDE, ...)\n"
@@ -764,35 +762,35 @@ msgstr ""
 "ALT+F2)\n"
 "Puoi anche impostare una scorciatoia per aprire il menu (come ALT+F1)"
 
-#: ../GMenu/src/applet-init.c:39
+#: ../GMenu/src/applet-init.c:41
 msgid "Applications Menu"
 msgstr "Menu Applicazioni"
 
-#: ../GMenu/src/applet-init.c:66
+#: ../GMenu/src/applet-init.c:108
 msgid "Show/hide the Applications menu"
 msgstr "Mostra/Nascondi il menu delle Applicazioni"
 
-#: ../GMenu/src/applet-init.c:71
+#: ../GMenu/src/applet-init.c:113
 msgid "Show/hide the quick-launch dialog"
 msgstr "Mostra/Nascondi il dialogo avvio rapido"
 
-#: ../GMenu/src/applet-menu-callbacks.c:174 ../GMenu/data/messages:107
+#: ../GMenu/src/applet-menu-callbacks.c:175 ../GMenu/data/messages:107
 msgid "Logout"
 msgstr "Chiudi sessione"
 
-#: ../GMenu/src/applet-menu-callbacks.c:177 ../GMenu/data/messages:109
+#: ../GMenu/src/applet-menu-callbacks.c:178 ../GMenu/data/messages:109
 msgid "Shutdown"
 msgstr "Arresta"
 
-#: ../GMenu/src/applet-notifications.c:81
+#: ../GMenu/src/applet-notifications.c:90
 msgid "Quick launch"
 msgstr "Avvio rapido"
 
-#: ../GMenu/src/applet-notifications.c:105
+#: ../GMenu/src/applet-notifications.c:107
 msgid "Configure menu"
 msgstr "Menu di configurazione"
 
-#: ../GMenu/src/applet-notifications.c:108
+#: ../GMenu/src/applet-notifications.c:110
 msgid "Clear recent"
 msgstr "Cancella i dati recenti"
 
@@ -800,7 +798,7 @@ msgstr "Cancella i dati recenti"
 msgid "Recent Documents"
 msgstr "Documenti recenti"
 
-#: ../GMenu/src/applet-recent.c:108
+#: ../GMenu/src/applet-recent.c:117
 msgid "Clear the list of the recently used documents?"
 msgstr "Cancella la lista dei documenti usati di recente?"
 
@@ -1085,7 +1083,7 @@ msgid "Open with your web browser"
 msgstr "Apri col tuo browser web"
 
 #: ../RSSreader/src/applet-notifications.c:129
-#: ../switcher/src/applet-notifications.c:332
+#: ../switcher/src/applet-notifications.c:345
 msgid "Refresh"
 msgstr "Aggiorna"
 
@@ -1139,7 +1137,7 @@ msgstr ""
 "È ancora attiva la tua connessione?"
 
 #: ../Recent-Events/src/applet-dialog.c:294
-#: ../stack/src/applet-notifications.c:183
+#: ../stack/src/applet-notifications.c:212
 msgid "Open parent folder"
 msgstr "Apri cartella superiore"
 
@@ -1253,9 +1251,9 @@ msgstr ""
 "un'altra dock principale)\n"
 " - o scrivi il nome di un lanciatore e premi Tab per saltare automaticamente "
 "al successivo lanciatore\n"
-"Premi Invio per cliccare sull'icona, Shift+Invio in luogo di Shift+clic, "
-"Alt+Invio in luogo del clic centrale del mouse e Ctrl+Invio in luogo del "
-"clic sinistro\n"
+"Premi Invio per cliccare sull'icona, Shift+Invio in luogo di Shift+clic, Alt"
+"+Invio in luogo del clic centrale del mouse e Ctrl+Invio in luogo del clic "
+"sinistro\n"
 "Escape o la corrispondente scorciatoia per annullare."
 
 #: ../Remote-Control/src/applet-init.c:42
@@ -1316,7 +1314,7 @@ msgid "Open in new window"
 msgstr "Apri in una nuova finestra"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:432
-#: ../dnd2share/src/applet-notifications.c:487
+#: ../dnd2share/src/applet-notifications.c:494
 msgid "Open file"
 msgstr "Apri file"
 
@@ -1386,12 +1384,12 @@ msgid "No result"
 msgstr "Nessun risultato"
 
 #: ../Scooby-Do/src/applet-listing.c:681 ../Scooby-Do/src/applet-search.c:358
-#: ../tomboy/src/tomboy-draw.c:156 ../tomboy/src/tomboy-draw.c:169
+#: ../tomboy/src/tomboy-draw.c:213
 msgid "results"
 msgstr "risultati"
 
 #: ../Scooby-Do/src/applet-listing.c:681 ../Scooby-Do/src/applet-search.c:358
-#: ../tomboy/src/tomboy-draw.c:156 ../tomboy/src/tomboy-draw.c:169
+#: ../tomboy/src/tomboy-draw.c:213
 msgid "result"
 msgstr "risultato"
 
@@ -1638,33 +1636,33 @@ msgstr "Regolare il valore gamma:"
 msgid "Luminosity"
 msgstr "Luminosità"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:45
+#: ../alsaMixer/src/applet-backend-alsamixer.c:71
 #, c-format
 msgid "I couldn't open card '%s'"
 msgstr "Non posso aprire la scheda '%s'"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:50
+#: ../alsaMixer/src/applet-backend-alsamixer.c:77
 #, c-format
 msgid "Card '%s' opened but I couldn't get any info"
 msgstr "Scheda '%s' aperta, ma non ho trovato info."
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:58
+#: ../alsaMixer/src/applet-backend-alsamixer.c:86
 msgid "I couldn't open the mixer"
 msgstr "Non posso aprire il mixer."
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:65
+#: ../alsaMixer/src/applet-backend-alsamixer.c:95
 msgid "I couldn't attach the mixer to the card"
 msgstr "Impossibile collegare il mixer alla scheda"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:72
+#: ../alsaMixer/src/applet-backend-alsamixer.c:103
 msgid "I couldn't register options"
 msgstr "Impossibile registrare le opzioni"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:79
+#: ../alsaMixer/src/applet-backend-alsamixer.c:111
 msgid "I couldn't load the mixer"
 msgstr "Impossibile caricare il mixer"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:259
+#: ../alsaMixer/src/applet-backend-alsamixer.c:318
 msgid "Set up volume:"
 msgstr "Regola il volume:"
 
@@ -1717,7 +1715,7 @@ msgstr "Escludi audio"
 
 #: ../clock/src/applet-calendar.c:193 ../clock/src/applet-calendar.c:274
 #: ../clock/src/applet-calendar.c:528 ../clock/src/applet-calendar.c:533
-#: ../clock/src/applet-calendar.c:575 ../clock/src/applet-task-editor.c:118
+#: ../clock/src/applet-calendar.c:575 ../clock/src/applet-task-editor.c:120
 #: ../clock/src/applet-timer.c:98 ../clock/src/applet-timer.c:186
 #: ../clock/src/applet-timer.c:466 ../clock/src/applet-timer.c:480
 #: ../clock/src/applet-timer.c:514
@@ -1728,7 +1726,7 @@ msgstr "Nessun titolo"
 msgid "years"
 msgstr "anni"
 
-#: ../clock/src/applet-calendar.c:605 ../clock/src/applet-task-editor.c:155
+#: ../clock/src/applet-calendar.c:605 ../clock/src/applet-task-editor.c:157
 msgid "Add a new task"
 msgstr "Aggiungi una nuova attività"
 
@@ -1838,8 +1836,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
-"tasks</b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
+"b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1891,54 +1889,54 @@ msgstr "Mostra le attività della settimana"
 msgid "Set up time and date"
 msgstr "Regola data e ora"
 
-#: ../clock/src/applet-task-editor.c:176
+#: ../clock/src/applet-task-editor.c:178
 msgid "Delete this task"
 msgstr "Rimuovi questa attività"
 
-#: ../clock/src/applet-task-editor.c:214
+#: ../clock/src/applet-task-editor.c:216
 msgid "Don't repeat"
 msgstr "Non ripetere"
 
-#: ../clock/src/applet-task-editor.c:220
+#: ../clock/src/applet-task-editor.c:222
 msgid "Each month"
 msgstr "Ogni mese"
 
-#: ../clock/src/applet-task-editor.c:226
+#: ../clock/src/applet-task-editor.c:228
 msgid "Each year"
 msgstr "Ogni anno"
 
-#: ../clock/src/applet-task-editor.c:349
+#: ../clock/src/applet-task-editor.c:351
 msgid "each month"
 msgstr "ogni mese"
 
-#: ../clock/src/applet-task-editor.c:352
+#: ../clock/src/applet-task-editor.c:354
 msgid "each year"
 msgstr "ogni anno"
 
-#: ../clock/src/applet-task-editor.c:407
+#: ../clock/src/applet-task-editor.c:410
 msgid "Right-click to add a new task."
 msgstr "Clic destro per aggiungere una nuova attività."
 
-#: ../clock/src/applet-task-editor.c:413 ../musicPlayer/src/applet-draw.c:153
+#: ../clock/src/applet-task-editor.c:416 ../musicPlayer/src/applet-draw.c:153
 #: ../RSSreader/data/messages:133
 msgid "Title"
 msgstr "Titolo"
 
-#: ../clock/src/applet-task-editor.c:420
-#: ../dnd2share/src/applet-notifications.c:391 ../Doncky/data/messages:95
+#: ../clock/src/applet-task-editor.c:423
+#: ../dnd2share/src/applet-notifications.c:398 ../Doncky/data/messages:95
 #: ../RSSreader/data/messages:149
 msgid "Text"
 msgstr "Testo"
 
-#: ../clock/src/applet-task-editor.c:427
+#: ../clock/src/applet-task-editor.c:430
 msgid "Time"
 msgstr "Ora"
 
-#: ../clock/src/applet-task-editor.c:441
+#: ../clock/src/applet-task-editor.c:444
 msgid "Freq."
 msgstr "Frequenza"
 
-#: ../clock/src/applet-task-editor.c:448
+#: ../clock/src/applet-task-editor.c:451
 msgid "Tags"
 msgstr "Etichette"
 
@@ -2052,8 +2050,7 @@ msgstr ""
 "Basta premere Ctrl+v per incollare il suo URL ovunque."
 
 #: ../dnd2share/src/applet-dnd2share.c:333
-msgid ""
-"Please wait for the current upload to finish before starting a new one."
+msgid "Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Ti prego d'aspettare che l'attuale caricamento sia finito prima di "
 "cominciarne uno nuovo."
@@ -2100,11 +2097,11 @@ msgstr ""
 msgid "Drop to share"
 msgstr "Trascina per condividere"
 
-#: ../dnd2share/src/applet-notifications.c:33
+#: ../dnd2share/src/applet-notifications.c:43
 msgid "Clear the list of the recently uploaded files?"
 msgstr "Pulisci la lista dei file recentemente caricati?"
 
-#: ../dnd2share/src/applet-notifications.c:51
+#: ../dnd2share/src/applet-notifications.c:58
 msgid ""
 "The text has been pasted in the clipboard.\n"
 "You can retrieve it with CTRL+v."
@@ -2112,11 +2109,11 @@ msgstr ""
 "Il testo è stato incollato nella clipboard.\n"
 "Puoi recuperarlo con Ctrl+v."
 
-#: ../dnd2share/src/applet-notifications.c:73
+#: ../dnd2share/src/applet-notifications.c:80
 msgid "Sorry, couldn't find the original file nor a preview of it."
 msgstr "Spiacente, non trovo il file originale o una sua anteprima."
 
-#: ../dnd2share/src/applet-notifications.c:98
+#: ../dnd2share/src/applet-notifications.c:105
 msgid ""
 "The URL has been stored in the clipboard.\n"
 "Just use 'CTRL+v' to paste it anywhere."
@@ -2124,7 +2121,7 @@ msgstr ""
 "L'URL è stato magazzinato nella clipboard.\n"
 "Basta usare 'Ctrl+v' per incollarlo ovunque."
 
-#: ../dnd2share/src/applet-notifications.c:113
+#: ../dnd2share/src/applet-notifications.c:120
 msgid ""
 "No uploaded file available\n"
 ".Just drag'n drop a file on the icon to upload it"
@@ -2132,7 +2129,7 @@ msgstr ""
 "Nessun file caricato rintracciabile\n"
 "Basta trascinare un file sul'icona per caricarlo."
 
-#: ../dnd2share/src/applet-notifications.c:114
+#: ../dnd2share/src/applet-notifications.c:121
 msgid ""
 "No uploaded file available.\n"
 "Consider activating the history if you want the applet to remember previous "
@@ -2142,7 +2139,7 @@ msgstr ""
 "Considera di attivare la cronologia se vuoi che l'applet ricordi i "
 "precedenti upload."
 
-#: ../dnd2share/src/applet-notifications.c:131
+#: ../dnd2share/src/applet-notifications.c:138
 msgid ""
 "The current URL has been stored in the clipboard.\n"
 "Just use 'CTRL+v' to paste it anywhere."
@@ -2150,7 +2147,7 @@ msgstr ""
 "L'attuale URL è stato magazzinato nella clipboard.\n"
 "Basta utilizzare 'Ctrl+v' per incollarlo ovunque."
 
-#: ../dnd2share/src/applet-notifications.c:132
+#: ../dnd2share/src/applet-notifications.c:139
 msgid ""
 "The current URL has been stored into the selection.\n"
 "Just middle-click to paste it anywhere."
@@ -2158,35 +2155,35 @@ msgstr ""
 "L'attuale URL è stato immagazzinato nella selezione.\n"
 "Basta un clic centrale per incollarlo ovunque."
 
-#: ../dnd2share/src/applet-notifications.c:391
+#: ../dnd2share/src/applet-notifications.c:398
 msgid "File"
 msgstr "File"
 
-#: ../dnd2share/src/applet-notifications.c:394
+#: ../dnd2share/src/applet-notifications.c:401
 msgid "Click on the icon to copy the URL into the clipboard."
 msgstr "Clicca sull'icona per copiare l'URL nella clipboard."
 
-#: ../dnd2share/src/applet-notifications.c:406
+#: ../dnd2share/src/applet-notifications.c:413
 msgid "Send the clipboard's content"
 msgstr "Spedisci il contenuto della clipboard"
 
-#: ../dnd2share/src/applet-notifications.c:409
+#: ../dnd2share/src/applet-notifications.c:416
 msgid "History"
 msgstr "Cronologia"
 
-#: ../dnd2share/src/applet-notifications.c:489
+#: ../dnd2share/src/applet-notifications.c:496
 msgid "Get text"
 msgstr "Ottieni testo"
 
-#: ../dnd2share/src/applet-notifications.c:491
+#: ../dnd2share/src/applet-notifications.c:498
 msgid "Remove from history"
 msgstr "Rimuovi dalla cronologia"
 
-#: ../dnd2share/src/applet-notifications.c:494
+#: ../dnd2share/src/applet-notifications.c:501
 msgid "Clear History"
 msgstr "Azzera cronologia"
 
-#: ../dnd2share/src/applet-notifications.c:499
+#: ../dnd2share/src/applet-notifications.c:506
 msgid "Use only a files hosting site"
 msgstr "Usa esclusivamente un sito di file hosting"
 
@@ -2242,57 +2239,57 @@ msgstr ""
 "Puoi eliminare file e smontare dischi trascinandoli sulla sua icona.\n"
 "Clic centrale sull'icona per svuotare il cestino."
 
-#: ../dustbin/src/applet-notifications.c:32
+#: ../dustbin/src/applet-notifications.c:40
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr "Tutti i file saranno cancellati dai cestini. Sicuro ?"
 
-#: ../dustbin/src/applet-notifications.c:91
+#: ../dustbin/src/applet-notifications.c:103
 msgid "The trash contains"
 msgstr "Il cestino contiene"
 
-#: ../dustbin/src/applet-notifications.c:93
+#: ../dustbin/src/applet-notifications.c:105
 msgid "files"
 msgstr "file"
 
-#: ../dustbin/src/applet-notifications.c:93
+#: ../dustbin/src/applet-notifications.c:105
 msgid "elements"
 msgstr "elementi"
 
-#: ../dustbin/src/applet-notifications.c:95
+#: ../dustbin/src/applet-notifications.c:107
 msgid "Mo"
 msgstr "Mb"
 
-#: ../dustbin/src/applet-notifications.c:95
+#: ../dustbin/src/applet-notifications.c:107
 msgid "Ko"
 msgstr "Kb"
 
-#: ../dustbin/src/applet-notifications.c:114
+#: ../dustbin/src/applet-notifications.c:126
 msgid "Counting total size and files number..."
 msgstr "Conteggio delle dimensioni totali e del numero di file..."
 
-#: ../dustbin/src/applet-notifications.c:134
+#: ../dustbin/src/applet-notifications.c:146
 msgid "Show Trash (click)"
 msgstr "Mostra Cestino (clic)"
 
-#: ../dustbin/src/applet-notifications.c:135
+#: ../dustbin/src/applet-notifications.c:147
 msgid "Empty Trash"
 msgstr "Svuota il Cestino"
 
-#: ../dustbin/src/applet-notifications.c:139
+#: ../dustbin/src/applet-notifications.c:151
 msgid "Display dustbins information"
 msgstr "Mostra le informazioni dei cestini"
 
-#: ../dustbin/src/applet-notifications.c:149
+#: ../dustbin/src/applet-notifications.c:161
 #, c-format
 msgid "%s successfully unmounted"
 msgstr "%s adesso è smontato"
 
-#: ../dustbin/src/applet-notifications.c:153
+#: ../dustbin/src/applet-notifications.c:165
 #, c-format
 msgid "failed to unmount %s"
 msgstr "impossibile smontare %s"
 
-#: ../dustbin/src/applet-notifications.c:177
+#: ../dustbin/src/applet-notifications.c:189
 #: ../shortcuts/src/applet-notifications.c:163
 msgid "Unmouting this volume ..."
 msgstr "Smonta questo volume..."
@@ -2472,34 +2469,34 @@ msgstr "Programma lo spegnimento in automatico"
 msgid "Your computer will shut-down in 1 minute."
 msgstr "Il tuo computer si spegnerà tra 1 minuto."
 
-#: ../logout/src/applet-logout.c:367
+#: ../logout/src/applet-logout.c:390
 msgid "Choose in how many minutes your PC will stop:"
 msgstr "Scegli in quanti minuti il tuo PC si spegnerà:"
 
-#: ../logout/src/applet-logout.c:420
+#: ../logout/src/applet-logout.c:430
 msgid ""
 "Your session needs to be restarted in order to update new configuration "
 "files."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:423
+#: ../logout/src/applet-logout.c:433
 msgid "Please do that at the end of the update."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:636
+#: ../logout/src/applet-logout.c:646
 #, c-format
 msgid "It will automatically shut-down in %ds"
 msgstr "Sarà spento automaticamente in %ds"
 
-#: ../logout/src/applet-logout.c:637
+#: ../logout/src/applet-logout.c:647
 msgid "Shut down the computer?"
 msgstr "Spegnere il computer?"
 
-#: ../logout/src/applet-logout.c:697
+#: ../logout/src/applet-logout.c:707
 msgid "Restart the computer?"
 msgstr "Riavviare il computer?"
 
-#: ../logout/src/applet-logout.c:734
+#: ../logout/src/applet-logout.c:744
 msgid "Close the current session?"
 msgstr "Chiudere la sessione corrente?"
 
@@ -2568,8 +2565,7 @@ msgstr "Specifica l'applicazione per la posta"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Leave empty to use the default mail application."
-msgstr ""
-"Lasciare vuoto per utilizzare l'applicazione per la posta predefinita."
+msgstr "Lasciare vuoto per utilizzare l'applicazione per la posta predefinita."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Directory on server:"
@@ -3049,14 +3045,13 @@ msgstr "Apri questa cartella"
 msgid "Open folder"
 msgstr "Apri cartella"
 
-#: ../shortcuts/src/applet-bookmarks.c:134
-#: ../shortcuts/src/applet-bookmarks.c:377
+#: ../shortcuts/src/applet-bookmarks.c:142
+#: ../shortcuts/src/applet-bookmarks.c:364
 #: ../shortcuts/src/applet-drives.c:268
 msgid "Unmounted"
 msgstr "Smontato"
 
-#: ../shortcuts/src/applet-bookmarks.c:180
-#: ../shortcuts/src/applet-bookmarks.c:406
+#: ../shortcuts/src/applet-bookmarks.c:393
 msgid "Home Folder"
 msgstr ""
 
@@ -3121,43 +3116,57 @@ msgstr "Ci dispiace, ma quest'applet non è ancora disponibile per KDE."
 msgid "No disks or bookmarks were found."
 msgstr "Non sono stati trovati né dischi né segnalibri."
 
-#: ../shortcuts/src/applet-notifications.c:189
+#: ../shortcuts/src/applet-notifications.c:210
 msgid "Enter a name for this bookmark:"
 msgstr "Inserisci un nome per questo segnalibro:"
 
-#: ../shortcuts/src/applet-notifications.c:264
+#: ../shortcuts/src/applet-notifications.c:296
 msgid "Open Home directory"
 msgstr "Apri cartella Home"
 
-#: ../shortcuts/src/applet-notifications.c:270
+#: ../shortcuts/src/applet-notifications.c:304
 msgid "Connect to Server..."
 msgstr ""
 
-#: ../shortcuts/src/applet-notifications.c:276
+#: ../shortcuts/src/applet-notifications.c:307
+msgid "Browse Network"
+msgstr ""
+
+#: ../shortcuts/src/applet-notifications.c:309
+#, fuzzy
+msgid "Browse recent files"
+msgstr "File recenti"
+
+#: ../shortcuts/src/applet-notifications.c:311
+#, fuzzy
+msgid "Open Trash"
+msgstr "Svuota il Cestino"
+
+#: ../shortcuts/src/applet-notifications.c:317
 msgid "Rename this bookmark"
 msgstr "Rinomina questo segnalibro"
 
-#: ../shortcuts/src/applet-notifications.c:277
+#: ../shortcuts/src/applet-notifications.c:318
 msgid "Remove this bookmark"
 msgstr "Rimuovi questo segnalibro"
 
-#: ../shortcuts/src/applet-notifications.c:283
+#: ../shortcuts/src/applet-notifications.c:324
 msgid "Eject"
 msgstr "Espelli"
 
-#: ../shortcuts/src/applet-notifications.c:288
+#: ../shortcuts/src/applet-notifications.c:329
 msgid "Unmount"
 msgstr "Smonta"
 
-#: ../shortcuts/src/applet-notifications.c:288
+#: ../shortcuts/src/applet-notifications.c:329
 msgid "Mount"
 msgstr "Monta"
 
-#: ../shortcuts/src/applet-notifications.c:292
+#: ../shortcuts/src/applet-notifications.c:333
 msgid "Get disk info"
 msgstr "Ottieni info sul disco"
 
-#: ../shortcuts/src/applet-notifications.c:318
+#: ../shortcuts/src/applet-notifications.c:359
 msgid "Only folders can be bookmarked."
 msgstr "Soltanto le cartelle possono diventare segnalibri."
 
@@ -3167,8 +3176,8 @@ msgstr "mostra mouse"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a "
-"dock/desklet."
+"This plugin draws some animations around the cursor when it's inside a dock/"
+"desklet."
 msgstr ""
 "Questo plugin traccia delle animazioni attorno al cursore quando questo è "
 "dentro la dock/desklet."
@@ -3267,64 +3276,64 @@ msgstr ""
 "Nessun oggetto nel recipiente.\n"
 "Puoi aggiungere file, URL o parti di testo trascinandoli sull'icona."
 
-#: ../stack/src/applet-notifications.c:82
+#: ../stack/src/applet-notifications.c:92
 msgid "Clear the stack?"
 msgstr "Pulisci il recipiente?"
 
-#: ../stack/src/applet-notifications.c:103
+#: ../stack/src/applet-notifications.c:139
 msgid "Set new name for this item:"
 msgstr "Inserisci un nuovo nome per questo oggetto:"
 
-#: ../stack/src/applet-notifications.c:173
+#: ../stack/src/applet-notifications.c:202
 msgid "Paste (drag'n'drop)"
 msgstr "Incolla (copia-incolla)"
 
-#: ../stack/src/applet-notifications.c:175
+#: ../stack/src/applet-notifications.c:204
 msgid "Clear the stack"
 msgstr "Pulisci il recipiente"
 
-#: ../stack/src/applet-notifications.c:180
+#: ../stack/src/applet-notifications.c:209
 msgid "Open (click)"
 msgstr "Apri (click)"
 
-#: ../stack/src/applet-notifications.c:185
+#: ../stack/src/applet-notifications.c:214
 #: ../terminal/src/terminal-callbacks.c:82
-#: ../terminal/src/terminal-widget.c:440
+#: ../terminal/src/terminal-widget.c:470
 msgid "Copy"
 msgstr "Copia"
 
-#: ../stack/src/applet-notifications.c:188
+#: ../stack/src/applet-notifications.c:217
 msgid "Cut"
 msgstr "Taglia"
 
-#: ../stack/src/applet-notifications.c:191
+#: ../stack/src/applet-notifications.c:220
 msgid "Rename this item"
 msgstr "Rinomina questo oggetto"
 
-#: ../stack/src/applet-notifications.c:192
+#: ../stack/src/applet-notifications.c:221
 msgid "Remove this item"
 msgstr "Rimuovi questo oggetto"
 
-#: ../stack/src/applet-notifications.c:261
+#: ../stack/src/applet-notifications.c:290
 msgid "The file has been added to the stack."
 msgstr "Il file è stato aggiunto al recipiente."
 
-#: ../stack/src/applet-notifications.c:262
+#: ../stack/src/applet-notifications.c:291
 msgid "The URL has been added to the stack."
 msgstr "L'URL è stato aggiunto al recipiente."
 
 #: ../switcher/src/applet-draw.c:603 ../switcher/src/applet-draw.c:610
 #: ../switcher/src/applet-load-icons.c:53
-#: ../switcher/src/applet-notifications.c:415
+#: ../switcher/src/applet-notifications.c:428
 msgid "Current"
 msgstr "Attuale"
 
 #: ../switcher/src/applet-draw.c:610 ../switcher/src/applet-draw.c:612
 #: ../switcher/src/applet-load-icons.c:59
-#: ../switcher/src/applet-notifications.c:216
-#: ../switcher/src/applet-notifications.c:228
-#: ../switcher/src/applet-notifications.c:407
-#: ../switcher/src/applet-notifications.c:467
+#: ../switcher/src/applet-notifications.c:229
+#: ../switcher/src/applet-notifications.c:257
+#: ../switcher/src/applet-notifications.c:420
+#: ../switcher/src/applet-notifications.c:480
 msgid "Desktop"
 msgstr "Scrivania"
 
@@ -3351,24 +3360,24 @@ msgstr ""
 "nel menu)\n"
 "Ha due tipologie: compatta (in 1 icona) ed espansa (con una sub-dock)."
 
-#: ../switcher/src/applet-notifications.c:217
-#: ../switcher/src/applet-notifications.c:279
+#: ../switcher/src/applet-notifications.c:258
+#: ../switcher/src/applet-notifications.c:292
 msgid "Rename this workspace"
 msgstr "Rinomina questo spazio di lavoro"
 
-#: ../switcher/src/applet-notifications.c:266
+#: ../switcher/src/applet-notifications.c:279
 msgid "Add a workspace"
 msgstr "Aggiungi una scrivania"
 
-#: ../switcher/src/applet-notifications.c:270
+#: ../switcher/src/applet-notifications.c:283
 msgid "Remove last workspace"
 msgstr "Rimuovi l'ultima scrivania"
 
-#: ../switcher/src/applet-notifications.c:286
+#: ../switcher/src/applet-notifications.c:299
 msgid "Move current workspace to this workspace"
 msgstr "Sposta l'attuale scrivania in questa"
 
-#: ../switcher/src/applet-notifications.c:291
+#: ../switcher/src/applet-notifications.c:304
 msgid ""
 "This will move all windows from the current desktop to the one you clicked "
 "on."
@@ -3376,11 +3385,11 @@ msgstr ""
 "Questo sposterà tutte le finestre dall'attuale scrivania a quella cliccata "
 "da te."
 
-#: ../switcher/src/applet-notifications.c:300
+#: ../switcher/src/applet-notifications.c:313
 msgid "Windows List"
 msgstr "Lista delle finestre"
 
-#: ../switcher/src/applet-notifications.c:305
+#: ../switcher/src/applet-notifications.c:318
 msgid "Show the desktop"
 msgstr "Mostra la scrivania"
 
@@ -3457,7 +3466,7 @@ msgid "Show/hide the terminal"
 msgstr "Mostra/Nascondi il terminale"
 
 #: ../terminal/src/terminal-menu-functions.c:78
-#: ../terminal/src/terminal-widget.c:456
+#: ../terminal/src/terminal-widget.c:486
 msgid "New Tab"
 msgstr "Nuova Scheda"
 
@@ -3473,34 +3482,39 @@ msgstr "Chiudi la Scheda attuale"
 msgid "Terminal"
 msgstr "Terminale"
 
-#: ../terminal/src/terminal-widget.c:167
+#: ../terminal/src/terminal-widget.c:215
 msgid "Set title for this tab:"
 msgstr "Imposta il titolo di questa Scheda:"
 
-#: ../terminal/src/terminal-widget.c:243 ../terminal/src/terminal-widget.c:245
+#: ../terminal/src/terminal-widget.c:273 ../terminal/src/terminal-widget.c:275
 msgid "Select a color"
 msgstr "Seleziona un colore"
 
-#: ../terminal/src/terminal-widget.c:400
+#: ../terminal/src/terminal-widget.c:430
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
 msgstr "Puoi richiamare la desklet Terminale digitando %s"
 
-#: ../terminal/src/terminal-widget.c:446
+#: ../terminal/src/terminal-widget.c:476
 msgid "Paste"
 msgstr "Incolla"
 
-#: ../terminal/src/terminal-widget.c:462
+#: ../terminal/src/terminal-widget.c:492
 msgid "Rename this Tab"
 msgstr "Rinomina questa Scheda"
 
-#: ../terminal/src/terminal-widget.c:468
+#: ../terminal/src/terminal-widget.c:498
 msgid "Change this Tab's colour"
 msgstr "Cambia il colore di questa Scheda"
 
-#: ../terminal/src/terminal-widget.c:474
+#: ../terminal/src/terminal-widget.c:504
 msgid "Close this Tab"
 msgstr "Chiudi questa Scheda"
+
+#: ../tomboy/src/tomboy-draw.c:198
+#, fuzzy
+msgid "Open all"
+msgstr "Apri file"
 
 #: ../tomboy/src/tomboy-init.c:30
 msgid "Note-Taking"
@@ -3518,55 +3532,55 @@ msgstr ""
 "Clic centrale per creare istantaneamente una nuova nota.\n"
 "Puoi cercare dentro le note e mostrare il loro contenuto nell'icona."
 
-#: ../tomboy/src/tomboy-notifications.c:100
+#: ../tomboy/src/tomboy-notifications.c:118
 msgid "Note name : "
 msgstr "Nome della nota: "
 
-#: ../tomboy/src/tomboy-notifications.c:123
+#: ../tomboy/src/tomboy-notifications.c:145
 msgid "Delete this note?"
 msgstr "Cancella questa nota?"
 
-#: ../tomboy/src/tomboy-notifications.c:138
+#: ../tomboy/src/tomboy-notifications.c:184
 msgid "Search for:"
 msgstr "Cerca per:"
 
-#: ../tomboy/src/tomboy-notifications.c:154
+#: ../tomboy/src/tomboy-notifications.c:209
 msgid "Search for tag:"
 msgstr "cerca per parole chiave:"
 
-#: ../tomboy/src/tomboy-notifications.c:195
+#: ../tomboy/src/tomboy-notifications.c:248
 msgid "Add a note"
 msgstr "Aggiungi una nota"
 
-#: ../tomboy/src/tomboy-notifications.c:199
+#: ../tomboy/src/tomboy-notifications.c:254
 msgid "Delete this note"
 msgstr "Cancella questa nota"
 
-#: ../tomboy/src/tomboy-notifications.c:202
+#: ../tomboy/src/tomboy-notifications.c:257
 msgid "Reload notes"
 msgstr "Ricarica le note"
 
-#: ../tomboy/src/tomboy-notifications.c:208
+#: ../tomboy/src/tomboy-notifications.c:261
 msgid "Search"
 msgstr "Cerca"
 
-#: ../tomboy/src/tomboy-notifications.c:209
+#: ../tomboy/src/tomboy-notifications.c:262
 msgid "Search for tag"
 msgstr "Ricerca delle etichette"
 
-#: ../tomboy/src/tomboy-notifications.c:211
+#: ../tomboy/src/tomboy-notifications.c:264
 msgid "Search for today's note"
 msgstr "Cerca note odierne"
 
-#: ../tomboy/src/tomboy-notifications.c:212
+#: ../tomboy/src/tomboy-notifications.c:265
 msgid "Search for this week's note"
 msgstr "Cerca note della settimana"
 
-#: ../tomboy/src/tomboy-notifications.c:213
+#: ../tomboy/src/tomboy-notifications.c:266
 msgid "Search for next week's note"
 msgstr "Cerca note della prossima settimana"
 
-#: ../tomboy/src/tomboy-notifications.c:223
+#: ../tomboy/src/tomboy-notifications.c:276
 msgid "Reset marks"
 msgstr "Azzerare i segni"
 
@@ -4160,17 +4174,16 @@ msgstr "Nome dell'icona come apparirà sull'etichetta nella dock:"
 #: ../Status-Notifier/data/messages:9 ../Sync-Menu/data/messages:9
 #: ../System-Monitor/data/messages:9 ../System-Monitor/data/messages:189
 #: ../System-Monitor/data/messages:197 ../Toons/data/messages:9
-#: ../alsaMixer/data/messages:145 ../alsaMixer/data/messages:155
-#: ../clock/data/messages:11 ../clock/data/messages:129
-#: ../dnd2share/data/messages:9 ../dustbin/data/messages:9
-#: ../keyboard-indicator/data/messages:9 ../logout/data/messages:9
-#: ../mail/data/messages:9 ../netspeed/data/messages:9
-#: ../shortcuts/data/messages:9 ../showDesktop/data/messages:9
-#: ../slider/data/messages:9 ../stack/data/messages:11
-#: ../switcher/data/messages:9 ../systray/data/messages:9
-#: ../template/data/messages:9 ../terminal/data/messages:9
-#: ../tomboy/data/messages:9 ../tomboy/data/messages:141
-#: ../weblets/data/messages:9
+#: ../alsaMixer/data/messages:153 ../clock/data/messages:11
+#: ../clock/data/messages:129 ../dnd2share/data/messages:9
+#: ../dustbin/data/messages:9 ../keyboard-indicator/data/messages:9
+#: ../logout/data/messages:9 ../mail/data/messages:9
+#: ../netspeed/data/messages:9 ../shortcuts/data/messages:9
+#: ../showDesktop/data/messages:9 ../slider/data/messages:9
+#: ../stack/data/messages:11 ../switcher/data/messages:9
+#: ../systray/data/messages:9 ../template/data/messages:9
+#: ../terminal/data/messages:9 ../tomboy/data/messages:9
+#: ../tomboy/data/messages:141 ../weblets/data/messages:9
 msgid "Default"
 msgstr "Predefinito"
 
@@ -4431,8 +4444,8 @@ msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
 msgstr ""
-"In base al Gestore delle Finestre utilizzato puoi ridimensionarla con "
-"Alt+clic centrale o Alt+clic sinistro, ad esempio."
+"In base al Gestore delle Finestre utilizzato puoi ridimensionarla con Alt"
+"+clic centrale o Alt+clic sinistro, ad esempio."
 
 #: ../Clipper/data/messages:27 ../Composite-Manager/data/messages:25
 #: ../Disks/data/messages:23 ../Doncky/data/messages:27
@@ -4860,7 +4873,7 @@ msgstr ""
 #: ../clock/data/messages:73 ../clock/data/messages:173
 #: ../dnd2share/data/messages:59 ../dustbin/data/messages:61
 #: ../keyboard-indicator/data/messages:71
-#: ../keyboard-indicator/data/messages:125 ../logout/data/messages:63
+#: ../keyboard-indicator/data/messages:133 ../logout/data/messages:63
 #: ../mail/data/messages:71 ../musicPlayer/data/messages:73
 #: ../netspeed/data/messages:71 ../powermanager/data/messages:73
 #: ../quick-browser/data/messages:65 ../shortcuts/data/messages:63
@@ -5250,7 +5263,7 @@ msgstr ""
 msgid "Paste into Selection?"
 msgstr "Incollarlo nella Selezione?"
 
-#: ../Clipper/data/messages:123 ../keyboard-indicator/data/messages:99
+#: ../Clipper/data/messages:123
 msgid "Shortkey to pop-up the items menu:"
 msgstr "Scorcatoie di tastiera per rendere a comparsa gli oggetti del menu:"
 
@@ -5415,8 +5428,7 @@ msgstr "Le applicazioni esterne possono modificare le etichette delle icone?"
 
 #: ../Dbus/data/messages:19
 msgid "Let extern applications modify the quick-infos on icons?"
-msgstr ""
-"Le applicazioni esterne possono modificare le info veloci delle icone?"
+msgstr "Le applicazioni esterne possono modificare le info veloci delle icone?"
 
 #: ../Dbus/data/messages:21
 msgid "Let extern applications modify the icons' image?"
@@ -5548,7 +5560,7 @@ msgstr "Mostra entrambi i valori nello stesso grafico?"
 
 #: ../Disks/data/messages:133 ../Impulse/data/messages:85
 #: ../Status-Notifier/data/messages:103 ../alsaMixer/data/messages:99
-#: ../keyboard-indicator/data/messages:109 ../mail/data/messages:103
+#: ../keyboard-indicator/data/messages:117 ../mail/data/messages:103
 #: ../musicPlayer/data/messages:159 ../shortcuts/data/messages:91
 #: ../shortcuts/data/messages:101 ../slider/data/messages:163
 #: ../stack/data/messages:93 ../tomboy/data/messages:103
@@ -5627,8 +5639,7 @@ msgstr "Aspetto"
 
 #: ../Doncky/data/messages:97
 msgid "Font to be used by default if none is specify in the .xml"
-msgstr ""
-"Carattere predefinito da utilizzare se non è specificato nel file .xml"
+msgstr "Carattere predefinito da utilizzare se non è specificato nel file .xml"
 
 #: ../Doncky/data/messages:99
 msgid "Default Font:"
@@ -5664,8 +5675,7 @@ msgid "Background"
 msgstr "Sfondo"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid ""
-"You can have more attractive backgrounds using the Desklet decorations"
+msgid "You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Puoi avere sfondi maggiormente attraenti utilizzando le decorazioni della "
 "Desklet"
@@ -5803,6 +5813,11 @@ msgstr "Comando da utilizzare per configurare il menu:"
 #: ../GMenu/data/messages:103
 msgid "Show Logout and/or Shutdown : "
 msgstr "Mostra Chiudi sessione e/o Arresta: "
+
+#: ../GMenu/data/messages:113
+#, fuzzy
+msgid "Preload icons at startup"
+msgstr "Azione all'Avvio"
 
 #: ../Global-Menu/data/messages:85
 msgid ""
@@ -6023,8 +6038,7 @@ msgstr "Parametri"
 
 #: ../Network-Monitor/data/messages:103
 msgid "You can quickly switch to the other mode by scrolling on the icon."
-msgstr ""
-"Puoi passare velocemente all'altra modalità tramite scroll sull'icona."
+msgstr "Puoi passare velocemente all'altra modalità tramite scroll sull'icona."
 
 #: ../Network-Monitor/data/messages:105
 msgid "Info displayed by the icon:"
@@ -6131,11 +6145,13 @@ msgstr "Disegnare una barra"
 #: ../Network-Monitor/data/messages:237 ../Network-Monitor/data/messages:241
 #: ../Network-Monitor/data/messages:245 ../Network-Monitor/data/messages:249
 #: ../Network-Monitor/data/messages:253 ../Network-Monitor/data/messages:257
-#: ../logout/data/messages:109 ../musicPlayer/data/messages:187
-#: ../musicPlayer/data/messages:191 ../musicPlayer/data/messages:195
-#: ../musicPlayer/data/messages:199 ../musicPlayer/data/messages:203
-#: ../tomboy/data/messages:13 ../tomboy/data/messages:17
-#: ../tomboy/data/messages:21 ../tomboy/data/messages:105
+#: ../keyboard-indicator/data/messages:105
+#: ../keyboard-indicator/data/messages:109 ../logout/data/messages:109
+#: ../musicPlayer/data/messages:187 ../musicPlayer/data/messages:191
+#: ../musicPlayer/data/messages:195 ../musicPlayer/data/messages:199
+#: ../musicPlayer/data/messages:203 ../tomboy/data/messages:13
+#: ../tomboy/data/messages:17 ../tomboy/data/messages:21
+#: ../tomboy/data/messages:105
 msgid "Leave empty to use the default icon."
 msgstr "Lasciare vuoto per utilizzare l'icona predefinita."
 
@@ -6315,7 +6331,7 @@ msgid "Logo size:"
 msgstr "Dimensione del logo:"
 
 #: ../RSSreader/data/messages:173 ../dock-rendering/data/messages:47
-#: ../keyboard-indicator/data/messages:123
+#: ../keyboard-indicator/data/messages:131
 msgid "normal"
 msgstr "normale"
 
@@ -6408,7 +6424,7 @@ msgstr "tra 1 e 9, più è grande, più è spesso."
 msgid "Text size:"
 msgstr "Dimensione del testo:"
 
-#: ../Scooby-Do/data/messages:37 ../keyboard-indicator/data/messages:115
+#: ../Scooby-Do/data/messages:37 ../keyboard-indicator/data/messages:123
 msgid "Outline text?"
 msgstr "Testo con contorno?"
 
@@ -6702,8 +6718,7 @@ msgstr "Primo colore della 'top list':"
 
 #: ../System-Monitor/data/messages:209
 msgid "The second colour of the gradient used to display the top list."
-msgstr ""
-"È il secondo colore della gradazione usata per scrivere la 'top list'."
+msgstr "È il secondo colore della gradazione usata per scrivere la 'top list'."
 
 #: ../System-Monitor/data/messages:211
 msgid "Top list stop colour:"
@@ -6835,11 +6850,11 @@ msgstr "Alsa"
 msgid "Sound card:"
 msgstr "Scheda audio:"
 
-#: ../alsaMixer/data/messages:147
+#: ../alsaMixer/data/messages:145
 msgid "Select channel:"
 msgstr "Scegli il canale:"
 
-#: ../alsaMixer/data/messages:149
+#: ../alsaMixer/data/messages:147
 msgid ""
 "On some cards, a channel only controls 1 side (right or left). You will then "
 "need to specify a second channel here, to control both sides. Most of the "
@@ -6849,18 +6864,17 @@ msgstr ""
 "Qui si deve pertanto specificare un secondo canale per controllare entrambi "
 "i lati. La maggior parte dei casi si risolve lasciando vuoto il campo."
 
-#: ../alsaMixer/data/messages:151
+#: ../alsaMixer/data/messages:149
 msgid "Choose a second channel to control (optional):"
 msgstr "Scegli un secondo canale da controllare (opzionale):"
 
-#: ../alsaMixer/data/messages:153
+#: ../alsaMixer/data/messages:151
 msgid "Specific command to run to show an advanced sound mixer:"
 msgstr "Comando specifico per avviare un mixer sonoro avanzato:"
 
 #: ../clock/data/messages:7
 msgid "Leave empty to use the location name if available."
-msgstr ""
-"Lasciare vuoto per utilizzare il nome della località, se disponibile."
+msgstr "Lasciare vuoto per utilizzare il nome della località, se disponibile."
 
 #: ../clock/data/messages:103
 msgid "Show the date:"
@@ -6955,7 +6969,7 @@ msgstr "Vista Numerica"
 msgid "Use a custom font"
 msgstr "Usa un carattere personalizzato"
 
-#: ../clock/data/messages:153 ../keyboard-indicator/data/messages:111
+#: ../clock/data/messages:153 ../keyboard-indicator/data/messages:119
 msgid "Font:"
 msgstr "Carattere:"
 
@@ -7420,8 +7434,7 @@ msgid "Space between icons:"
 msgstr "Spazio tra le icone:"
 
 #: ../dock-rendering/data/messages:117
-msgid ""
-"0 represents a flat wave, 1 means the wave is identical to other views."
+msgid "0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 significa che l'onda è totalmente piatta, 1 che l'onda è identica alle "
 "altre viste."
@@ -7619,8 +7632,7 @@ msgid "Colours"
 msgstr "Colori"
 
 #: ../icon-effect/data/messages:71
-msgid ""
-"This will slightly alter your colours, so you may have to modify them."
+msgid "This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 "Questo altererà leggermente i colori, perciò potresti volerli modificare."
 
@@ -7746,6 +7758,10 @@ msgstr "Più è alto, più velocemente l'icona collasserà al centro."
 msgid "Attraction of the Black Hole:"
 msgstr "Attrazione del Buco Nero:"
 
+#: ../keyboard-indicator/data/messages:99
+msgid "General"
+msgstr ""
+
 #: ../keyboard-indicator/data/messages:101
 msgid "caps lock, num lock, etc."
 msgstr "caps lock, num lock, etc."
@@ -7754,7 +7770,15 @@ msgstr "caps lock, num lock, etc."
 msgid "Display keyboard locks as quick-info?"
 msgstr "Mostra i blocchi della tastiera come info veloci?"
 
-#: ../keyboard-indicator/data/messages:105
+#: ../keyboard-indicator/data/messages:107
+msgid "Icon image name for NumLock status:"
+msgstr ""
+
+#: ../keyboard-indicator/data/messages:111
+msgid "Icon image name for CapsLock status:"
+msgstr ""
+
+#: ../keyboard-indicator/data/messages:113
 msgid ""
 "in ms. Set to 0 if you don't want an animation when the keyboard layout "
 "changes."
@@ -7762,26 +7786,26 @@ msgstr ""
 "In ms. Imposta a 0 se non vuoi animazioni quando cambia il layout della "
 "tastiera."
 
-#: ../keyboard-indicator/data/messages:107
+#: ../keyboard-indicator/data/messages:115
 msgid "Duration of the transition animation:"
 msgstr "Durata della transizione dell'animazione:"
 
-#: ../keyboard-indicator/data/messages:113
+#: ../keyboard-indicator/data/messages:121
 msgid "Text colour"
 msgstr "Colore del testo"
 
-#: ../keyboard-indicator/data/messages:117
+#: ../keyboard-indicator/data/messages:125
 msgid ""
 "the smaller is the text in the icon. 1 means the text fills all the icon."
 msgstr ""
 "quanto il testo sarà piccolo nell'icona. 1 significa che il testo riempie "
 "l'intera icona."
 
-#: ../keyboard-indicator/data/messages:119
+#: ../keyboard-indicator/data/messages:127
 msgid "Relative size of the text :"
 msgstr "Dimensione relativa del testo:"
 
-#: ../keyboard-indicator/data/messages:121
+#: ../keyboard-indicator/data/messages:129
 msgid "smaller"
 msgstr "più piccolo"
 
@@ -7868,8 +7892,7 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Percorso dell'immagine per \"mail presente\":"
 
 #: ../mail/data/messages:115
-msgid ""
-"If checked, the number of mails will be shown even if there is no mail."
+msgid "If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Se selezionato, il numero delle mail viene mostrato anche se non ci sono "
 "mail."
@@ -7955,8 +7978,7 @@ msgid "Blur amount:"
 msgstr "Quantità di sfocatura:"
 
 #: ../musicPlayer/data/messages:7
-msgid ""
-"Leave it empty to display the name of the player currently controlled."
+msgid "Leave it empty to display the name of the player currently controlled."
 msgstr ""
 "Lasciare vuoto per mostrare il nome del riproduttore attualmente controllato."
 
@@ -8900,8 +8922,7 @@ msgstr "Codice della località:"
 
 #: ../weather/data/messages:107
 msgid "If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
-msgstr ""
-"Se così, i gradi saranno mostrati in Celsius, altrimenti in Fahreneit."
+msgstr "Se così, i gradi saranno mostrati in Celsius, altrimenti in Fahreneit."
 
 #: ../weather/data/messages:109
 msgid "Use International System Units?"
@@ -8965,8 +8986,7 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Posizione dello scroll verticale"
 
 #: ../weblets/data/messages:103
-msgid ""
-"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Questo ti permette di visualizzare come notifica a comparsa il menu di Cairo-"
 "Dock con il clic destro."
@@ -9028,5 +9048,4 @@ msgstr ""
 
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
-msgstr ""
-"Linea di comando alternativa per lanciare la Configurazione Wireless:"
+msgstr "Linea di comando alternativa per lanciare la Configurazione Wireless:"

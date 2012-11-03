@@ -7,16 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2012-09-30 15:12+0000\n"
 "PO-Revision-Date: 2012-09-30 17:24+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-10-01 04:56+0000\n"
 "X-Generator: Launchpad (build 16049)\n"
-"Language: \n"
 "X-Poedit-Bookmarks: 1393,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
@@ -274,29 +273,30 @@ msgstr ""
 #: ../Composite-Manager/src/applet-notifications.c:145
 #: ../Composite-Manager/src/applet-notifications.c:154
 #: ../Composite-Manager/src/applet-notifications.c:163
-#: ../Folders/src/applet-notifications.c:365
-#: ../GMenu/src/applet-notifications.c:81
+#: ../Folders/src/applet-notifications.c:394
+#: ../GMenu/src/applet-notifications.c:90
 #: ../RSSreader/src/applet-notifications.c:129
 #: ../System-Monitor/src/applet-notifications.c:106
 #: ../Xgamma/src/applet-notifications.c:87
 #: ../alsaMixer/src/applet-notifications.c:84
-#: ../dustbin/src/applet-notifications.c:135
+#: ../dustbin/src/applet-notifications.c:147
 #: ../mail/src/cd-mail-applet-notifications.c:154
 #: ../musicPlayer/src/applet-notifications.c:300
 #: ../netspeed/src/applet-notifications.c:94
 #: ../quick-browser/src/applet-notifications.c:41
-#: ../shortcuts/src/applet-notifications.c:264
-#: ../shortcuts/src/applet-notifications.c:288
+#: ../shortcuts/src/applet-notifications.c:296
+#: ../shortcuts/src/applet-notifications.c:329
 #: ../showDesktop/src/applet-notifications.c:165
 #: ../showDesktop/src/applet-notifications.c:177
 #: ../showDesktop/src/applet-notifications.c:189
 #: ../slider/src/applet-notifications.c:223
 #: ../slider/src/applet-notifications.c:265
-#: ../stack/src/applet-notifications.c:185
-#: ../switcher/src/applet-notifications.c:300
-#: ../switcher/src/applet-notifications.c:305
-#: ../switcher/src/applet-notifications.c:314
-#: ../switcher/src/applet-notifications.c:323
+#: ../stack/src/applet-notifications.c:214
+#: ../switcher/src/applet-notifications.c:313
+#: ../switcher/src/applet-notifications.c:318
+#: ../switcher/src/applet-notifications.c:327
+#: ../switcher/src/applet-notifications.c:336
+#: ../tomboy/src/tomboy-notifications.c:248
 #: ../wifi/src/applet-notifications.c:88
 msgid "middle-click"
 msgstr ""
@@ -317,14 +317,14 @@ msgstr "顯示桌面"
 #: ../Composite-Manager/src/applet-notifications.c:145
 #: ../showDesktop/src/applet-notifications.c:177
 #: ../showDesktop/src/applet-notifications.c:179
-#: ../switcher/src/applet-notifications.c:314
+#: ../switcher/src/applet-notifications.c:327
 #: ../Composite-Manager/data/messages:131 ../showDesktop/data/messages:107
 #: ../showDesktop/data/messages:121 ../switcher/data/messages:145
 msgid "Expose all the desktops"
 msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:154
-#: ../switcher/src/applet-notifications.c:323
+#: ../switcher/src/applet-notifications.c:336
 #: ../Composite-Manager/data/messages:133 ../switcher/data/messages:147
 msgid "Expose all the windows"
 msgstr ""
@@ -357,8 +357,7 @@ msgstr "此模組已加入，但是無法啟動。"
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid ""
-"The applet '%s' has been succefully updated and automatically reloaded"
+msgid "The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "面板程式 %s 更新成功，並且已自動重新載入"
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -473,7 +472,7 @@ msgstr ""
 "  - 必須要與 Dock 分開才能正常運作！\n"
 "  - 中鍵點擊可以重新載入數值"
 
-#: ../Doncky/src/applet-notifications.c:214
+#: ../Doncky/src/applet-notifications.c:210
 msgid "It doesn't seem to be a valid XML file."
 msgstr ""
 
@@ -585,6 +584,14 @@ msgid "Execute"
 msgstr "執行"
 
 #: ../Folders/src/applet-notifications.c:211
+msgid ""
+"Warning: could not delete this file.\n"
+"Please check file permissions."
+msgstr ""
+"警告：無法刪除此檔案。\n"
+"請確認您的檔案許可權限。"
+
+#: ../Folders/src/applet-notifications.c:225
 #, c-format
 msgid ""
 "You're about deleting this file\n"
@@ -595,19 +602,7 @@ msgstr ""
 "  (%s)\n"
 "此檔案。確定嗎？"
 
-#: ../Folders/src/applet-notifications.c:221
-msgid ""
-"Warning: could not delete this file.\n"
-"Please check file permissions."
-msgstr ""
-"警告：無法刪除此檔案。\n"
-"請確認您的檔案許可權限。"
-
-#: ../Folders/src/applet-notifications.c:234
-msgid "Rename to:"
-msgstr "重新命名為："
-
-#: ../Folders/src/applet-notifications.c:241
+#: ../Folders/src/applet-notifications.c:244
 #, c-format
 msgid ""
 "Warning: could not rename %s.\n"
@@ -618,16 +613,16 @@ msgstr ""
 "請檢查檔案許可權 \n"
 "以及新名稱是否尚未使用過。"
 
-#: ../Folders/src/applet-notifications.c:255
+#: ../Folders/src/applet-notifications.c:253
+msgid "Rename to:"
+msgstr "重新命名為："
+
+#: ../Folders/src/applet-notifications.c:268
 #: ../Scooby-Do/src/applet-backend-files.c:390
 msgid "Pick up a directory"
 msgstr "挑選目錄"
 
-#: ../Folders/src/applet-notifications.c:280
-msgid "Enter a file name:"
-msgstr "輸入檔案名稱："
-
-#: ../Folders/src/applet-notifications.c:288
+#: ../Folders/src/applet-notifications.c:305
 #, c-format
 msgid ""
 "Warning: could not create %s.\n"
@@ -638,69 +633,73 @@ msgstr ""
 "請檢查檔案許可權 \n"
 "以及新名稱是否尚未使用過。"
 
-#: ../Folders/src/applet-notifications.c:365
+#: ../Folders/src/applet-notifications.c:315
+msgid "Enter a file name:"
+msgstr "輸入檔案名稱："
+
+#: ../Folders/src/applet-notifications.c:394
 msgid "Open the folder"
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:372
+#: ../Folders/src/applet-notifications.c:401
 msgid "Rename this file"
 msgstr "重新命名此檔案"
 
-#: ../Folders/src/applet-notifications.c:373
+#: ../Folders/src/applet-notifications.c:402
 msgid "Delete this file"
 msgstr "刪除此檔案"
 
-#: ../Folders/src/applet-notifications.c:374
+#: ../Folders/src/applet-notifications.c:403
 msgid "Move this file"
 msgstr "移動此檔案"
 
-#: ../Folders/src/applet-notifications.c:380
+#: ../Folders/src/applet-notifications.c:409
 #: ../Recent-Events/src/applet-dialog.c:270
 #: ../slider/src/applet-notifications.c:233
 msgid "Open with"
 msgstr "以此開啟"
 
-#: ../Folders/src/applet-notifications.c:413
+#: ../Folders/src/applet-notifications.c:442
 msgid "Properties"
 msgstr "屬性"
 
-#: ../Folders/src/applet-notifications.c:416
+#: ../Folders/src/applet-notifications.c:445
 msgid "Create a new file"
 msgstr "建立新檔案"
 
-#: ../Folders/src/applet-notifications.c:417
+#: ../Folders/src/applet-notifications.c:446
 msgid "Create a new folder"
 msgstr "建立新的資料夾"
 
-#: ../Folders/src/applet-notifications.c:422
+#: ../Folders/src/applet-notifications.c:451
 msgid "Sort by"
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:423
+#: ../Folders/src/applet-notifications.c:452
 msgid "By name"
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:424
+#: ../Folders/src/applet-notifications.c:453
 msgid "By date"
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:425
+#: ../Folders/src/applet-notifications.c:454
 msgid "By size"
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:426
+#: ../Folders/src/applet-notifications.c:455
 msgid "By type"
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:468
+#: ../Folders/src/applet-notifications.c:497
 msgid "The folder has been imported."
 msgstr ""
 
-#: ../Folders/src/applet-notifications.c:529
+#: ../Folders/src/applet-notifications.c:558
 msgid "Do you want to import the content of the folder too?"
 msgstr ""
 
-#: ../GMenu/src/applet-init.c:33
+#: ../GMenu/src/applet-init.c:35
 msgid ""
 "Displays the common Applications menu and the Recently used files.\n"
 "It is compatible with any XDG compliant menu (Gnome, XFCE, KDE, ...)\n"
@@ -710,38 +709,39 @@ msgid ""
 msgstr ""
 "顯示常用的「應用程式」選單與「最近使用的檔案」。\n"
 "它與任何遵守 XDG 的選單相容 (Gnome、XFCE、XDE...)\n"
-"使用中鍵點擊以開啟對話窗來快速啟動任何指令 (您可以為它設置快捷鍵，像是 ALT+F2)\n"
+"使用中鍵點擊以開啟對話窗來快速啟動任何指令 (您可以為它設置快捷鍵，像是 ALT"
+"+F2)\n"
 "您也可以設置快捷鍵以彈出該選單 (像是 ALT+F1)"
 
-#: ../GMenu/src/applet-init.c:39
+#: ../GMenu/src/applet-init.c:41
 msgid "Applications Menu"
 msgstr "應用程式選單"
 
-#: ../GMenu/src/applet-init.c:66
+#: ../GMenu/src/applet-init.c:108
 msgid "Show/hide the Applications menu"
 msgstr ""
 
-#: ../GMenu/src/applet-init.c:71
+#: ../GMenu/src/applet-init.c:113
 msgid "Show/hide the quick-launch dialog"
 msgstr ""
 
-#: ../GMenu/src/applet-menu-callbacks.c:174 ../GMenu/data/messages:107
+#: ../GMenu/src/applet-menu-callbacks.c:175 ../GMenu/data/messages:107
 msgid "Logout"
 msgstr ""
 
-#: ../GMenu/src/applet-menu-callbacks.c:177 ../GMenu/data/messages:109
+#: ../GMenu/src/applet-menu-callbacks.c:178 ../GMenu/data/messages:109
 msgid "Shutdown"
 msgstr ""
 
-#: ../GMenu/src/applet-notifications.c:81
+#: ../GMenu/src/applet-notifications.c:90
 msgid "Quick launch"
 msgstr "快速啟動"
 
-#: ../GMenu/src/applet-notifications.c:105
+#: ../GMenu/src/applet-notifications.c:107
 msgid "Configure menu"
 msgstr "配置選單"
 
-#: ../GMenu/src/applet-notifications.c:108
+#: ../GMenu/src/applet-notifications.c:110
 msgid "Clear recent"
 msgstr "清除最近的紀錄"
 
@@ -749,7 +749,7 @@ msgstr "清除最近的紀錄"
 msgid "Recent Documents"
 msgstr "最近使用文件"
 
-#: ../GMenu/src/applet-recent.c:108
+#: ../GMenu/src/applet-recent.c:117
 msgid "Clear the list of the recently used documents?"
 msgstr "清除最近使用過的文件清單嗎？"
 
@@ -914,7 +914,8 @@ msgstr ""
 "此面板程式讓您可以監視您的網路連線。\n"
 "它能顯示下載/上傳速度，以及 wifi 訊號品質。\n"
 "若您的 network-manager 正在執行，該面板程式能讓您選擇目前的 wifi 網路。\n"
-"左鍵點擊可以彈出一些資訊。於圖示上滾動滑鼠滾輪可以在顯示網路速度與顯示 wifi 之間切換。"
+"左鍵點擊可以彈出一些資訊。於圖示上滾動滑鼠滾輪可以在顯示網路速度與顯示 wifi "
+"之間切換。"
 
 #: ../Network-Monitor/src/applet-netspeed.c:200
 #: ../System-Monitor/src/applet-monitor.c:95
@@ -1009,7 +1010,7 @@ msgid "Open with your web browser"
 msgstr "以您的網路瀏覽器開啟"
 
 #: ../RSSreader/src/applet-notifications.c:129
-#: ../switcher/src/applet-notifications.c:332
+#: ../switcher/src/applet-notifications.c:345
 msgid "Refresh"
 msgstr "重新整理"
 
@@ -1062,7 +1063,7 @@ msgstr ""
 "您的連線還正常嗎？"
 
 #: ../Recent-Events/src/applet-dialog.c:294
-#: ../stack/src/applet-notifications.c:183
+#: ../stack/src/applet-notifications.c:212
 msgid "Open parent folder"
 msgstr "打開父資料夾"
 
@@ -1228,7 +1229,7 @@ msgid "Open in new window"
 msgstr "於新視窗開啟"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:432
-#: ../dnd2share/src/applet-notifications.c:487
+#: ../dnd2share/src/applet-notifications.c:494
 msgid "Open file"
 msgstr "開啟檔案"
 
@@ -1298,12 +1299,12 @@ msgid "No result"
 msgstr "沒有結果"
 
 #: ../Scooby-Do/src/applet-listing.c:681 ../Scooby-Do/src/applet-search.c:358
-#: ../tomboy/src/tomboy-draw.c:156 ../tomboy/src/tomboy-draw.c:169
+#: ../tomboy/src/tomboy-draw.c:213
 msgid "results"
 msgstr "結果"
 
 #: ../Scooby-Do/src/applet-listing.c:681 ../Scooby-Do/src/applet-search.c:358
-#: ../tomboy/src/tomboy-draw.c:156 ../tomboy/src/tomboy-draw.c:169
+#: ../tomboy/src/tomboy-draw.c:213
 msgid "result"
 msgstr "結果"
 
@@ -1540,33 +1541,33 @@ msgstr "設定 gamma 值："
 msgid "Luminosity"
 msgstr ""
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:45
+#: ../alsaMixer/src/applet-backend-alsamixer.c:71
 #, c-format
 msgid "I couldn't open card '%s'"
 msgstr "我無法開啟音效卡 '%s'"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:50
+#: ../alsaMixer/src/applet-backend-alsamixer.c:77
 #, c-format
 msgid "Card '%s' opened but I couldn't get any info"
 msgstr "音效卡 '%s' 已開啟，但我無法取得任何資訊"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:58
+#: ../alsaMixer/src/applet-backend-alsamixer.c:86
 msgid "I couldn't open the mixer"
 msgstr "我無法開啟混音器"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:65
+#: ../alsaMixer/src/applet-backend-alsamixer.c:95
 msgid "I couldn't attach the mixer to the card"
 msgstr "我無法連結混音器與音效卡"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:72
+#: ../alsaMixer/src/applet-backend-alsamixer.c:103
 msgid "I couldn't register options"
 msgstr "我無法註冊選項"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:79
+#: ../alsaMixer/src/applet-backend-alsamixer.c:111
 msgid "I couldn't load the mixer"
 msgstr "我無法載入混音器"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:259
+#: ../alsaMixer/src/applet-backend-alsamixer.c:318
 msgid "Set up volume:"
 msgstr "設置音量："
 
@@ -1612,7 +1613,7 @@ msgstr "靜音"
 
 #: ../clock/src/applet-calendar.c:193 ../clock/src/applet-calendar.c:274
 #: ../clock/src/applet-calendar.c:528 ../clock/src/applet-calendar.c:533
-#: ../clock/src/applet-calendar.c:575 ../clock/src/applet-task-editor.c:118
+#: ../clock/src/applet-calendar.c:575 ../clock/src/applet-task-editor.c:120
 #: ../clock/src/applet-timer.c:98 ../clock/src/applet-timer.c:186
 #: ../clock/src/applet-timer.c:466 ../clock/src/applet-timer.c:480
 #: ../clock/src/applet-timer.c:514
@@ -1623,7 +1624,7 @@ msgstr "無標題"
 msgid "years"
 msgstr "年"
 
-#: ../clock/src/applet-calendar.c:605 ../clock/src/applet-task-editor.c:155
+#: ../clock/src/applet-calendar.c:605 ../clock/src/applet-task-editor.c:157
 msgid "Add a new task"
 msgstr "加入新的工作事項"
 
@@ -1733,15 +1734,16 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
-"tasks</b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
+"b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
 msgstr ""
 "此面板程式顯示時間、日期與日曆。\n"
 "2 種檢視模式可用：<b>數位式</b>與<b>類比式</b>。\n"
-" 類比式檢視與 Cairo-Clock 的主題相容，並且您可以完美地獨立分離該 Cairo-Clock 面板程式。\n"
+" 類比式檢視與 Cairo-Clock 的主題相容，並且您可以完美地獨立分離該 Cairo-Clock "
+"面板程式。\n"
 "以左鍵點擊時，它會顯示一份<b>日曆</b>，可以讓您<b>管理工作事項</b>。\n"
 "它也支援鬧鐘功能，還能讓您設置時間與日期。\n"
 "點擊左鍵以顯示或隱藏該日曆，點集中鍵以停止通知功能。\n"
@@ -1781,54 +1783,54 @@ msgstr "顯示本週工作事項"
 msgid "Set up time and date"
 msgstr "設置時間與日期"
 
-#: ../clock/src/applet-task-editor.c:176
+#: ../clock/src/applet-task-editor.c:178
 msgid "Delete this task"
 msgstr "刪除此工作事項"
 
-#: ../clock/src/applet-task-editor.c:214
+#: ../clock/src/applet-task-editor.c:216
 msgid "Don't repeat"
 msgstr "不要重復"
 
-#: ../clock/src/applet-task-editor.c:220
+#: ../clock/src/applet-task-editor.c:222
 msgid "Each month"
 msgstr "每月"
 
-#: ../clock/src/applet-task-editor.c:226
+#: ../clock/src/applet-task-editor.c:228
 msgid "Each year"
 msgstr "每年"
 
-#: ../clock/src/applet-task-editor.c:349
+#: ../clock/src/applet-task-editor.c:351
 msgid "each month"
 msgstr "每一月"
 
-#: ../clock/src/applet-task-editor.c:352
+#: ../clock/src/applet-task-editor.c:354
 msgid "each year"
 msgstr "每一年"
 
-#: ../clock/src/applet-task-editor.c:407
+#: ../clock/src/applet-task-editor.c:410
 msgid "Right-click to add a new task."
 msgstr "點擊右鍵以加入新的工作事項。"
 
-#: ../clock/src/applet-task-editor.c:413 ../musicPlayer/src/applet-draw.c:153
+#: ../clock/src/applet-task-editor.c:416 ../musicPlayer/src/applet-draw.c:153
 #: ../RSSreader/data/messages:133
 msgid "Title"
 msgstr "標題"
 
-#: ../clock/src/applet-task-editor.c:420
-#: ../dnd2share/src/applet-notifications.c:391 ../Doncky/data/messages:95
+#: ../clock/src/applet-task-editor.c:423
+#: ../dnd2share/src/applet-notifications.c:398 ../Doncky/data/messages:95
 #: ../RSSreader/data/messages:149
 msgid "Text"
 msgstr "文字"
 
-#: ../clock/src/applet-task-editor.c:427
+#: ../clock/src/applet-task-editor.c:430
 msgid "Time"
 msgstr "時間"
 
-#: ../clock/src/applet-task-editor.c:441
+#: ../clock/src/applet-task-editor.c:444
 msgid "Freq."
 msgstr "頻率"
 
-#: ../clock/src/applet-task-editor.c:448
+#: ../clock/src/applet-task-editor.c:451
 msgid "Tags"
 msgstr "標籤"
 
@@ -1940,8 +1942,7 @@ msgstr ""
 "只要按下 CTRL+V 就能到處貼上其網址。"
 
 #: ../dnd2share/src/applet-dnd2share.c:333
-msgid ""
-"Please wait for the current upload to finish before starting a new one."
+msgid "Please wait for the current upload to finish before starting a new one."
 msgstr "在開始新的上傳之前，請等候目前的上傳結束。"
 
 #: ../dnd2share/src/applet-dnd2share.c:401
@@ -1973,11 +1974,11 @@ msgstr ""
 msgid "Drop to share"
 msgstr "放至分享"
 
-#: ../dnd2share/src/applet-notifications.c:33
+#: ../dnd2share/src/applet-notifications.c:43
 msgid "Clear the list of the recently uploaded files?"
 msgstr "清除最近上傳檔案的清單？"
 
-#: ../dnd2share/src/applet-notifications.c:51
+#: ../dnd2share/src/applet-notifications.c:58
 msgid ""
 "The text has been pasted in the clipboard.\n"
 "You can retrieve it with CTRL+v."
@@ -1985,11 +1986,11 @@ msgstr ""
 "該文字已被粘貼在剪貼簿。\n"
 "您可以用 CTRL + v 取回。"
 
-#: ../dnd2share/src/applet-notifications.c:73
+#: ../dnd2share/src/applet-notifications.c:80
 msgid "Sorry, couldn't find the original file nor a preview of it."
 msgstr "對不起，找不到原始文件或是它的預覽。"
 
-#: ../dnd2share/src/applet-notifications.c:98
+#: ../dnd2share/src/applet-notifications.c:105
 msgid ""
 "The URL has been stored in the clipboard.\n"
 "Just use 'CTRL+v' to paste it anywhere."
@@ -1997,7 +1998,7 @@ msgstr ""
 "該網址已被儲存到剪貼簿。\n"
 "只要使用 Ctrl + v 將其貼在任何地方。"
 
-#: ../dnd2share/src/applet-notifications.c:113
+#: ../dnd2share/src/applet-notifications.c:120
 msgid ""
 "No uploaded file available\n"
 ".Just drag'n drop a file on the icon to upload it"
@@ -2005,7 +2006,7 @@ msgstr ""
 "沒有可用的上傳檔案\n"
 ".只要 拖-放 檔案到圖示上面就可以開始上傳。"
 
-#: ../dnd2share/src/applet-notifications.c:114
+#: ../dnd2share/src/applet-notifications.c:121
 msgid ""
 "No uploaded file available.\n"
 "Consider activating the history if you want the applet to remember previous "
@@ -2014,7 +2015,7 @@ msgstr ""
 "沒有可用的上傳檔案\n"
 ".如果您想讓面板程式記得以前的上傳。請考慮啟用歷史紀錄(剪貼簿)。"
 
-#: ../dnd2share/src/applet-notifications.c:131
+#: ../dnd2share/src/applet-notifications.c:138
 msgid ""
 "The current URL has been stored in the clipboard.\n"
 "Just use 'CTRL+v' to paste it anywhere."
@@ -2022,7 +2023,7 @@ msgstr ""
 "目前已儲存網址到剪貼簿。\n"
 "只要使用 'CTRL+v' 將其貼在任何地方。"
 
-#: ../dnd2share/src/applet-notifications.c:132
+#: ../dnd2share/src/applet-notifications.c:139
 msgid ""
 "The current URL has been stored into the selection.\n"
 "Just middle-click to paste it anywhere."
@@ -2030,35 +2031,35 @@ msgstr ""
 "目前的網址已被存儲到選擇。\n"
 "只要使用 'CTRL+v' 將其貼在任何地方。"
 
-#: ../dnd2share/src/applet-notifications.c:391
+#: ../dnd2share/src/applet-notifications.c:398
 msgid "File"
 msgstr "檔案"
 
-#: ../dnd2share/src/applet-notifications.c:394
+#: ../dnd2share/src/applet-notifications.c:401
 msgid "Click on the icon to copy the URL into the clipboard."
 msgstr "點擊圖示複製網址到剪貼簿。"
 
-#: ../dnd2share/src/applet-notifications.c:406
+#: ../dnd2share/src/applet-notifications.c:413
 msgid "Send the clipboard's content"
 msgstr "傳送剪貼簿的內容"
 
-#: ../dnd2share/src/applet-notifications.c:409
+#: ../dnd2share/src/applet-notifications.c:416
 msgid "History"
 msgstr "歷史紀錄"
 
-#: ../dnd2share/src/applet-notifications.c:489
+#: ../dnd2share/src/applet-notifications.c:496
 msgid "Get text"
 msgstr "取得文字"
 
-#: ../dnd2share/src/applet-notifications.c:491
+#: ../dnd2share/src/applet-notifications.c:498
 msgid "Remove from history"
 msgstr "從歷史紀錄中刪除"
 
-#: ../dnd2share/src/applet-notifications.c:494
+#: ../dnd2share/src/applet-notifications.c:501
 msgid "Clear History"
 msgstr "清除歷史紀錄"
 
-#: ../dnd2share/src/applet-notifications.c:499
+#: ../dnd2share/src/applet-notifications.c:506
 msgid "Use only a files hosting site"
 msgstr ""
 
@@ -2114,57 +2115,57 @@ msgstr ""
 "您可以將檔案或磁碟拖曳至該圖示以丟棄它們或卸載它們。\n"
 "對該圖示點擊滑鼠中鍵會清空該回收筒。"
 
-#: ../dustbin/src/applet-notifications.c:32
+#: ../dustbin/src/applet-notifications.c:40
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr "您即將刪除回收桶中的所有檔案。確定嗎？"
 
-#: ../dustbin/src/applet-notifications.c:91
+#: ../dustbin/src/applet-notifications.c:103
 msgid "The trash contains"
 msgstr "回收統包含"
 
-#: ../dustbin/src/applet-notifications.c:93
+#: ../dustbin/src/applet-notifications.c:105
 msgid "files"
 msgstr "檔案"
 
-#: ../dustbin/src/applet-notifications.c:93
+#: ../dustbin/src/applet-notifications.c:105
 msgid "elements"
 msgstr "元素"
 
-#: ../dustbin/src/applet-notifications.c:95
+#: ../dustbin/src/applet-notifications.c:107
 msgid "Mo"
 msgstr "Mo"
 
-#: ../dustbin/src/applet-notifications.c:95
+#: ../dustbin/src/applet-notifications.c:107
 msgid "Ko"
 msgstr "Ko"
 
-#: ../dustbin/src/applet-notifications.c:114
+#: ../dustbin/src/applet-notifications.c:126
 msgid "Counting total size and files number..."
 msgstr "計算全部的容量和文件的數量 ..."
 
-#: ../dustbin/src/applet-notifications.c:134
+#: ../dustbin/src/applet-notifications.c:146
 msgid "Show Trash (click)"
 msgstr "顯示回收筒 (滑鼠點擊)"
 
-#: ../dustbin/src/applet-notifications.c:135
+#: ../dustbin/src/applet-notifications.c:147
 msgid "Empty Trash"
 msgstr "刪除垃圾"
 
-#: ../dustbin/src/applet-notifications.c:139
+#: ../dustbin/src/applet-notifications.c:151
 msgid "Display dustbins information"
 msgstr "顯示回收桶資訊"
 
-#: ../dustbin/src/applet-notifications.c:149
+#: ../dustbin/src/applet-notifications.c:161
 #, c-format
 msgid "%s successfully unmounted"
 msgstr "%s 現在已卸載"
 
-#: ../dustbin/src/applet-notifications.c:153
+#: ../dustbin/src/applet-notifications.c:165
 #, c-format
 msgid "failed to unmount %s"
 msgstr "卸載 %s 失敗"
 
-#: ../dustbin/src/applet-notifications.c:177
+#: ../dustbin/src/applet-notifications.c:189
 #: ../shortcuts/src/applet-notifications.c:163
 msgid "Unmouting this volume ..."
 msgstr "正在卸除此儲存區..."
@@ -2336,34 +2337,34 @@ msgstr "計劃的自動關機"
 msgid "Your computer will shut-down in 1 minute."
 msgstr "您的電腦將在1分鐘內關機。"
 
-#: ../logout/src/applet-logout.c:367
+#: ../logout/src/applet-logout.c:390
 msgid "Choose in how many minutes your PC will stop:"
 msgstr "選擇多少分鐘後電腦就會停止："
 
-#: ../logout/src/applet-logout.c:420
+#: ../logout/src/applet-logout.c:430
 msgid ""
 "Your session needs to be restarted in order to update new configuration "
 "files."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:423
+#: ../logout/src/applet-logout.c:433
 msgid "Please do that at the end of the update."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:636
+#: ../logout/src/applet-logout.c:646
 #, c-format
 msgid "It will automatically shut-down in %ds"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:637
+#: ../logout/src/applet-logout.c:647
 msgid "Shut down the computer?"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:697
+#: ../logout/src/applet-logout.c:707
 msgid "Restart the computer?"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:734
+#: ../logout/src/applet-logout.c:744
 msgid "Close the current session?"
 msgstr ""
 
@@ -2399,7 +2400,8 @@ msgstr "連接埠："
 msgid ""
 "Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and "
 "995 for POP3S."
-msgstr "請輸入 0 以使用預設連接埠。POP3 與 APOP 的預設連接埠為 100，POP3S 為 995。"
+msgstr ""
+"請輸入 0 以使用預設連接埠。POP3 與 APOP 的預設連接埠為 100，POP3S 為 995。"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid ""
@@ -2882,14 +2884,13 @@ msgstr "打開這個資料夾"
 msgid "Open folder"
 msgstr "開啟資料夾"
 
-#: ../shortcuts/src/applet-bookmarks.c:134
-#: ../shortcuts/src/applet-bookmarks.c:377
+#: ../shortcuts/src/applet-bookmarks.c:142
+#: ../shortcuts/src/applet-bookmarks.c:364
 #: ../shortcuts/src/applet-drives.c:268
 msgid "Unmounted"
 msgstr "已卸載"
 
-#: ../shortcuts/src/applet-bookmarks.c:180
-#: ../shortcuts/src/applet-bookmarks.c:406
+#: ../shortcuts/src/applet-bookmarks.c:393
 msgid "Home Folder"
 msgstr ""
 
@@ -2951,43 +2952,57 @@ msgstr "很抱歉，此面板程式尚未提供給 KDE。"
 msgid "No disks or bookmarks were found."
 msgstr "找不到磁碟或書籤。"
 
-#: ../shortcuts/src/applet-notifications.c:189
+#: ../shortcuts/src/applet-notifications.c:210
 msgid "Enter a name for this bookmark:"
 msgstr "請輸入此書籤的名稱："
 
-#: ../shortcuts/src/applet-notifications.c:264
+#: ../shortcuts/src/applet-notifications.c:296
 msgid "Open Home directory"
 msgstr ""
 
-#: ../shortcuts/src/applet-notifications.c:270
+#: ../shortcuts/src/applet-notifications.c:304
 msgid "Connect to Server..."
 msgstr ""
 
-#: ../shortcuts/src/applet-notifications.c:276
+#: ../shortcuts/src/applet-notifications.c:307
+msgid "Browse Network"
+msgstr ""
+
+#: ../shortcuts/src/applet-notifications.c:309
+#, fuzzy
+msgid "Browse recent files"
+msgstr "最近開啟的檔案"
+
+#: ../shortcuts/src/applet-notifications.c:311
+#, fuzzy
+msgid "Open Trash"
+msgstr "刪除垃圾"
+
+#: ../shortcuts/src/applet-notifications.c:317
 msgid "Rename this bookmark"
 msgstr "重新命名此書籤"
 
-#: ../shortcuts/src/applet-notifications.c:277
+#: ../shortcuts/src/applet-notifications.c:318
 msgid "Remove this bookmark"
 msgstr "移除這個書籤"
 
-#: ../shortcuts/src/applet-notifications.c:283
+#: ../shortcuts/src/applet-notifications.c:324
 msgid "Eject"
 msgstr "彈出"
 
-#: ../shortcuts/src/applet-notifications.c:288
+#: ../shortcuts/src/applet-notifications.c:329
 msgid "Unmount"
 msgstr ""
 
-#: ../shortcuts/src/applet-notifications.c:288
+#: ../shortcuts/src/applet-notifications.c:329
 msgid "Mount"
 msgstr ""
 
-#: ../shortcuts/src/applet-notifications.c:292
+#: ../shortcuts/src/applet-notifications.c:333
 msgid "Get disk info"
 msgstr "取得硬碟資訊"
 
-#: ../shortcuts/src/applet-notifications.c:318
+#: ../shortcuts/src/applet-notifications.c:359
 msgid "Only folders can be bookmarked."
 msgstr "只有資料夾可以加入書籤。"
 
@@ -2997,9 +3012,11 @@ msgstr "顯示滑鼠"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a "
-"dock/desklet."
-msgstr "這個增效模組可以讓您的滑鼠游標在進入 Dock 的時候展現出動畫環繞在滑鼠游標旁邊。"
+"This plugin draws some animations around the cursor when it's inside a dock/"
+"desklet."
+msgstr ""
+"這個增效模組可以讓您的滑鼠游標在進入 Dock 的時候展現出動畫環繞在滑鼠游標旁"
+"邊。"
 
 #: ../showDesktop/src/applet-init.c:28
 msgid "showDesktop"
@@ -3019,7 +3036,8 @@ msgstr ""
 " 還有：桌面小工具、Widget 層、或者一次顯示全部的桌面。\n"
 "他還可以使用右鍵點擊選單來快速切換螢幕解析度。\n"
 "左鍵點擊來 顯示/隱藏 桌面。\n"
-"中鍵點擊可以 顯示/隱藏 不管是桌面、桌面面板程式、桌面面板程式層、還是全部的桌面。"
+"中鍵點擊可以 顯示/隱藏 不管是桌面、桌面面板程式、桌面面板程式層、還是全部的桌"
+"面。"
 
 #: ../showDesktop/src/applet-notifications.c:203
 msgid "Change screen resolution"
@@ -3075,7 +3093,8 @@ msgid ""
 "You can quickly copy the path/url/text to the clipboard, or open it."
 msgstr ""
 "這個面板程式可以讓您建立檔案的堆疊，就像是 MacOS X 上的堆疊面板程式。\n"
-"要增加檔案到您的堆疊當中，您只要 拖-放 它到堆疊面板程式的圖示當中，這樣子就完成了。\n"
+"要增加檔案到您的堆疊當中，您只要 拖-放 它到堆疊面板程式的圖示當中，這樣子就完"
+"成了。\n"
 "您可以放入任何的檔案，或者是網路位置，甚至是文字的一部份。\n"
 "您可以快速的拷貝 路徑/網路位置/文字 到剪貼簿，或者打開它。"
 
@@ -3088,64 +3107,64 @@ msgstr ""
 "在堆疊區裏面沒有物件。\n"
 "您可以增加檔案、URL網址、以及任何的文字片段，用 拖-放 到圖示的方式建立。"
 
-#: ../stack/src/applet-notifications.c:82
+#: ../stack/src/applet-notifications.c:92
 msgid "Clear the stack?"
 msgstr "清除堆疊嗎？"
 
-#: ../stack/src/applet-notifications.c:103
+#: ../stack/src/applet-notifications.c:139
 msgid "Set new name for this item:"
 msgstr "為這個項目設置新的名字："
 
-#: ../stack/src/applet-notifications.c:173
+#: ../stack/src/applet-notifications.c:202
 msgid "Paste (drag'n'drop)"
 msgstr "貼上(拖-放)"
 
-#: ../stack/src/applet-notifications.c:175
+#: ../stack/src/applet-notifications.c:204
 msgid "Clear the stack"
 msgstr "清除堆疊"
 
-#: ../stack/src/applet-notifications.c:180
+#: ../stack/src/applet-notifications.c:209
 msgid "Open (click)"
 msgstr "開啟(點擊)"
 
-#: ../stack/src/applet-notifications.c:185
+#: ../stack/src/applet-notifications.c:214
 #: ../terminal/src/terminal-callbacks.c:82
-#: ../terminal/src/terminal-widget.c:440
+#: ../terminal/src/terminal-widget.c:470
 msgid "Copy"
 msgstr "複製"
 
-#: ../stack/src/applet-notifications.c:188
+#: ../stack/src/applet-notifications.c:217
 msgid "Cut"
 msgstr "剪下"
 
-#: ../stack/src/applet-notifications.c:191
+#: ../stack/src/applet-notifications.c:220
 msgid "Rename this item"
 msgstr "重命名此項目"
 
-#: ../stack/src/applet-notifications.c:192
+#: ../stack/src/applet-notifications.c:221
 msgid "Remove this item"
 msgstr "移除此項目"
 
-#: ../stack/src/applet-notifications.c:261
+#: ../stack/src/applet-notifications.c:290
 msgid "The file has been added to the stack."
 msgstr ""
 
-#: ../stack/src/applet-notifications.c:262
+#: ../stack/src/applet-notifications.c:291
 msgid "The URL has been added to the stack."
 msgstr ""
 
 #: ../switcher/src/applet-draw.c:603 ../switcher/src/applet-draw.c:610
 #: ../switcher/src/applet-load-icons.c:53
-#: ../switcher/src/applet-notifications.c:415
+#: ../switcher/src/applet-notifications.c:428
 msgid "Current"
 msgstr "目前"
 
 #: ../switcher/src/applet-draw.c:610 ../switcher/src/applet-draw.c:612
 #: ../switcher/src/applet-load-icons.c:59
-#: ../switcher/src/applet-notifications.c:216
-#: ../switcher/src/applet-notifications.c:228
-#: ../switcher/src/applet-notifications.c:407
-#: ../switcher/src/applet-notifications.c:467
+#: ../switcher/src/applet-notifications.c:229
+#: ../switcher/src/applet-notifications.c:257
+#: ../switcher/src/applet-notifications.c:420
+#: ../switcher/src/applet-notifications.c:480
 msgid "Desktop"
 msgstr "桌面"
 
@@ -3171,34 +3190,34 @@ msgstr ""
 " - 顯示在每個工作區的全部視窗(中鍵點擊或者是選單當中)\n"
 "它有兩種模式：壓縮的(一個圖示)與延伸的(有子Dock)。"
 
-#: ../switcher/src/applet-notifications.c:217
-#: ../switcher/src/applet-notifications.c:279
+#: ../switcher/src/applet-notifications.c:258
+#: ../switcher/src/applet-notifications.c:292
 msgid "Rename this workspace"
 msgstr "對這個工作區更名"
 
-#: ../switcher/src/applet-notifications.c:266
+#: ../switcher/src/applet-notifications.c:279
 msgid "Add a workspace"
 msgstr "增加一個桌面"
 
-#: ../switcher/src/applet-notifications.c:270
+#: ../switcher/src/applet-notifications.c:283
 msgid "Remove last workspace"
 msgstr "移除最後一個桌面"
 
-#: ../switcher/src/applet-notifications.c:286
+#: ../switcher/src/applet-notifications.c:299
 msgid "Move current workspace to this workspace"
 msgstr "移動目前的桌面到這個桌面"
 
-#: ../switcher/src/applet-notifications.c:291
+#: ../switcher/src/applet-notifications.c:304
 msgid ""
 "This will move all windows from the current desktop to the one you clicked "
 "on."
 msgstr "這將會從目前的桌面移動全部的視窗到你點擊的那個上。"
 
-#: ../switcher/src/applet-notifications.c:300
+#: ../switcher/src/applet-notifications.c:313
 msgid "Windows List"
 msgstr "視窗清單"
 
-#: ../switcher/src/applet-notifications.c:305
+#: ../switcher/src/applet-notifications.c:318
 msgid "Show the desktop"
 msgstr "顯示桌面"
 
@@ -3226,7 +3245,8 @@ msgid ""
 "any conflict."
 msgstr ""
 "另外一個系統匣正在執行中(有可能正在您的面板當中)\n"
-"因為系統匣在同一個時間內只能允許一個被執行，因此您也許需要關掉其中一個來避免衝突。"
+"因為系統匣在同一個時間內只能允許一個被執行，因此您也許需要關掉其中一個來避免"
+"衝突。"
 
 #: ../template/src/applet-init.c:28
 msgid "CD_APPLET_NAME"
@@ -3260,7 +3280,7 @@ msgid "Show/hide the terminal"
 msgstr ""
 
 #: ../terminal/src/terminal-menu-functions.c:78
-#: ../terminal/src/terminal-widget.c:456
+#: ../terminal/src/terminal-widget.c:486
 msgid "New Tab"
 msgstr "新分頁"
 
@@ -3276,34 +3296,39 @@ msgstr "關閉目前的分頁"
 msgid "Terminal"
 msgstr "終端機"
 
-#: ../terminal/src/terminal-widget.c:167
+#: ../terminal/src/terminal-widget.c:215
 msgid "Set title for this tab:"
 msgstr "設定這個分頁的標籤"
 
-#: ../terminal/src/terminal-widget.c:243 ../terminal/src/terminal-widget.c:245
+#: ../terminal/src/terminal-widget.c:273 ../terminal/src/terminal-widget.c:275
 msgid "Select a color"
 msgstr "請選取顏色"
 
-#: ../terminal/src/terminal-widget.c:400
+#: ../terminal/src/terminal-widget.c:430
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
 msgstr "您可以按下 %s 來喚回終端機桌面小工具"
 
-#: ../terminal/src/terminal-widget.c:446
+#: ../terminal/src/terminal-widget.c:476
 msgid "Paste"
 msgstr "貼上"
 
-#: ../terminal/src/terminal-widget.c:462
+#: ../terminal/src/terminal-widget.c:492
 msgid "Rename this Tab"
 msgstr "更改這個分頁的名稱"
 
-#: ../terminal/src/terminal-widget.c:468
+#: ../terminal/src/terminal-widget.c:498
 msgid "Change this Tab's colour"
 msgstr "改變這個分頁的顏色"
 
-#: ../terminal/src/terminal-widget.c:474
+#: ../terminal/src/terminal-widget.c:504
 msgid "Close this Tab"
 msgstr "關閉這個分頁"
+
+#: ../tomboy/src/tomboy-draw.c:198
+#, fuzzy
+msgid "Open all"
+msgstr "開啟檔案"
 
 #: ../tomboy/src/tomboy-init.c:30
 msgid "Note-Taking"
@@ -3321,55 +3346,55 @@ msgstr ""
 "中鍵點擊則是馬上建立一個新的筆記。\n"
 "您可以在圖示上面搜尋已經寫好的筆記或顯示內容。"
 
-#: ../tomboy/src/tomboy-notifications.c:100
+#: ../tomboy/src/tomboy-notifications.c:118
 msgid "Note name : "
 msgstr "筆記頁的名稱： "
 
-#: ../tomboy/src/tomboy-notifications.c:123
+#: ../tomboy/src/tomboy-notifications.c:145
 msgid "Delete this note?"
 msgstr "刪除這頁筆記？"
 
-#: ../tomboy/src/tomboy-notifications.c:138
+#: ../tomboy/src/tomboy-notifications.c:184
 msgid "Search for:"
 msgstr "搜尋："
 
-#: ../tomboy/src/tomboy-notifications.c:154
+#: ../tomboy/src/tomboy-notifications.c:209
 msgid "Search for tag:"
 msgstr "搜尋標籤："
 
-#: ../tomboy/src/tomboy-notifications.c:195
+#: ../tomboy/src/tomboy-notifications.c:248
 msgid "Add a note"
 msgstr "增加一頁筆記"
 
-#: ../tomboy/src/tomboy-notifications.c:199
+#: ../tomboy/src/tomboy-notifications.c:254
 msgid "Delete this note"
 msgstr "刪除這頁筆記"
 
-#: ../tomboy/src/tomboy-notifications.c:202
+#: ../tomboy/src/tomboy-notifications.c:257
 msgid "Reload notes"
 msgstr "重新載入筆記"
 
-#: ../tomboy/src/tomboy-notifications.c:208
+#: ../tomboy/src/tomboy-notifications.c:261
 msgid "Search"
 msgstr "搜尋"
 
-#: ../tomboy/src/tomboy-notifications.c:209
+#: ../tomboy/src/tomboy-notifications.c:262
 msgid "Search for tag"
 msgstr "搜尋標籤"
 
-#: ../tomboy/src/tomboy-notifications.c:211
+#: ../tomboy/src/tomboy-notifications.c:264
 msgid "Search for today's note"
 msgstr "搜尋今天的筆記"
 
-#: ../tomboy/src/tomboy-notifications.c:212
+#: ../tomboy/src/tomboy-notifications.c:265
 msgid "Search for this week's note"
 msgstr "搜尋本周的筆記"
 
-#: ../tomboy/src/tomboy-notifications.c:213
+#: ../tomboy/src/tomboy-notifications.c:266
 msgid "Search for next week's note"
 msgstr "搜尋下個星期的筆記"
 
-#: ../tomboy/src/tomboy-notifications.c:223
+#: ../tomboy/src/tomboy-notifications.c:276
 msgid "Reset marks"
 msgstr "清除標記"
 
@@ -3414,7 +3439,8 @@ msgstr ""
 "這個面板程式可以在您的 Dock 上面顯示天氣。\n"
 "資料來自 www.weather.com ，您可以在設置面板當中找到您目前所在的位置。\n"
 "它可以完整的分離變成桌面上漂亮 3D 小工具。\n"
-"在煮圖示上面中鍵點擊可以顯示現在的環境資訊，在子圖示上點擊左鍵可以看到天氣預報。\n"
+"在煮圖示上面中鍵點擊可以顯示現在的環境資訊，在子圖示上點擊左鍵可以看到天氣預"
+"報。\n"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Jan"
@@ -3953,17 +3979,16 @@ msgstr "圖示的名稱，它將出現在 Dock 的圖示名稱上面顯示此名
 #: ../Status-Notifier/data/messages:9 ../Sync-Menu/data/messages:9
 #: ../System-Monitor/data/messages:9 ../System-Monitor/data/messages:189
 #: ../System-Monitor/data/messages:197 ../Toons/data/messages:9
-#: ../alsaMixer/data/messages:145 ../alsaMixer/data/messages:155
-#: ../clock/data/messages:11 ../clock/data/messages:129
-#: ../dnd2share/data/messages:9 ../dustbin/data/messages:9
-#: ../keyboard-indicator/data/messages:9 ../logout/data/messages:9
-#: ../mail/data/messages:9 ../netspeed/data/messages:9
-#: ../shortcuts/data/messages:9 ../showDesktop/data/messages:9
-#: ../slider/data/messages:9 ../stack/data/messages:11
-#: ../switcher/data/messages:9 ../systray/data/messages:9
-#: ../template/data/messages:9 ../terminal/data/messages:9
-#: ../tomboy/data/messages:9 ../tomboy/data/messages:141
-#: ../weblets/data/messages:9
+#: ../alsaMixer/data/messages:153 ../clock/data/messages:11
+#: ../clock/data/messages:129 ../dnd2share/data/messages:9
+#: ../dustbin/data/messages:9 ../keyboard-indicator/data/messages:9
+#: ../logout/data/messages:9 ../mail/data/messages:9
+#: ../netspeed/data/messages:9 ../shortcuts/data/messages:9
+#: ../showDesktop/data/messages:9 ../slider/data/messages:9
+#: ../stack/data/messages:11 ../switcher/data/messages:9
+#: ../systray/data/messages:9 ../template/data/messages:9
+#: ../terminal/data/messages:9 ../tomboy/data/messages:9
+#: ../tomboy/data/messages:141 ../weblets/data/messages:9
 msgid "Default"
 msgstr "預設值"
 
@@ -4170,7 +4195,9 @@ msgstr "位置"
 msgid ""
 "If locked, the desklet cannot be moved by simply dragging it with the left "
 "mouse button. It can still be moved with ALT + left-click."
-msgstr "假如鎖定了，桌面小工具就不能夠簡單的用拖動的方式移動。然而您還是可以用 ALT + 左鍵拖動 的方式來移動。"
+msgstr ""
+"假如鎖定了，桌面小工具就不能夠簡單的用拖動的方式移動。然而您還是可以用 ALT + "
+"左鍵拖動 的方式來移動。"
 
 #: ../Clipper/data/messages:23 ../Composite-Manager/data/messages:21
 #: ../Disks/data/messages:43 ../Doncky/data/messages:23
@@ -4220,7 +4247,9 @@ msgstr "鎖定位置？"
 msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
-msgstr "以您的視窗管理員設定為主，您也可以改變尺寸例如以 ALT + 滑鼠中鍵點擊 或者是 ALT + 左鍵點擊。"
+msgstr ""
+"以您的視窗管理員設定為主，您也可以改變尺寸例如以 ALT + 滑鼠中鍵點擊 或者是 "
+"ALT + 左鍵點擊。"
 
 #: ../Clipper/data/messages:27 ../Composite-Manager/data/messages:25
 #: ../Disks/data/messages:23 ../Doncky/data/messages:27
@@ -4312,7 +4341,8 @@ msgstr "桌面小工具的位置( X軸 ; Y軸 )："
 msgid ""
 "You can quickly rotate the desklet with the mouse, by dragging the little "
 "buttons on its left and top sides."
-msgstr "在桌面面板程式左上方的小按鈕，您可以用滑鼠拖動它來快速的旋轉桌面面板程式。"
+msgstr ""
+"在桌面面板程式左上方的小按鈕，您可以用滑鼠拖動它來快速的旋轉桌面面板程式。"
 
 #: ../Clipper/data/messages:35 ../Composite-Manager/data/messages:33
 #: ../Disks/data/messages:51 ../Doncky/data/messages:35
@@ -4640,7 +4670,7 @@ msgstr "這是顯示在桌面面板程式下方的圖形，就像是相框一樣
 #: ../clock/data/messages:73 ../clock/data/messages:173
 #: ../dnd2share/data/messages:59 ../dustbin/data/messages:61
 #: ../keyboard-indicator/data/messages:71
-#: ../keyboard-indicator/data/messages:125 ../logout/data/messages:63
+#: ../keyboard-indicator/data/messages:133 ../logout/data/messages:63
 #: ../mail/data/messages:71 ../musicPlayer/data/messages:73
 #: ../netspeed/data/messages:71 ../powermanager/data/messages:73
 #: ../quick-browser/data/messages:65 ../shortcuts/data/messages:63
@@ -4982,7 +5012,9 @@ msgstr "記住兩個作業階段之間的物件？"
 msgid ""
 "It is especially useful if you often select text with the mouse and don't "
 "want to loose your clipboard items due to too many items in the selection."
-msgstr "如果您不想失去您剪貼簿裏面的項目，並且你經常用滑鼠大量的選擇文字，那這會很有用，"
+msgstr ""
+"如果您不想失去您剪貼簿裏面的項目，並且你經常用滑鼠大量的選擇文字，那這會很有"
+"用，"
 
 #: ../Clipper/data/messages:111
 msgid "Separate clipboard and selection?"
@@ -5011,7 +5043,7 @@ msgstr "當您點擊一個項目，其內容將可以用 滑鼠中鍵 來貼出�
 msgid "Paste into Selection?"
 msgstr "貼到選擇？"
 
-#: ../Clipper/data/messages:123 ../keyboard-indicator/data/messages:99
+#: ../Clipper/data/messages:123
 msgid "Shortkey to pop-up the items menu:"
 msgstr "彈跳出項目選單的快速鍵："
 
@@ -5063,7 +5095,9 @@ msgstr "持久性的項目列表，可以用中鍵點擊存取："
 msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click.. Negative values are counted from the right/bottom of the screen"
-msgstr "放置在您的視窗管理員當中，您也可以利用 ALT+滑鼠左鍵 來移動它， 負值的計算是從螢幕的右下方開始。"
+msgstr ""
+"放置在您的視窗管理員當中，您也可以利用 ALT+滑鼠左鍵 來移動它， 負值的計算是從"
+"螢幕的右下方開始。"
 
 #: ../Composite-Manager/data/messages:89 ../Impulse/data/messages:117
 #: ../clock/data/messages:133
@@ -5300,7 +5334,7 @@ msgstr "在相同的圖表上顯示全部的數值？"
 
 #: ../Disks/data/messages:133 ../Impulse/data/messages:85
 #: ../Status-Notifier/data/messages:103 ../alsaMixer/data/messages:99
-#: ../keyboard-indicator/data/messages:109 ../mail/data/messages:103
+#: ../keyboard-indicator/data/messages:117 ../mail/data/messages:103
 #: ../musicPlayer/data/messages:159 ../shortcuts/data/messages:91
 #: ../shortcuts/data/messages:101 ../slider/data/messages:163
 #: ../stack/data/messages:93 ../tomboy/data/messages:103
@@ -5412,8 +5446,7 @@ msgid "Background"
 msgstr "背景"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid ""
-"You can have more attractive backgrounds using the Desklet decorations"
+msgid "You can have more attractive backgrounds using the Desklet decorations"
 msgstr "您可以讓桌面面板程式使用更多好看的背景"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
@@ -5546,6 +5579,10 @@ msgstr "設置選單的指令："
 
 #: ../GMenu/data/messages:103
 msgid "Show Logout and/or Shutdown : "
+msgstr ""
+
+#: ../GMenu/data/messages:113
+msgid "Preload icons at startup"
 msgstr ""
 
 #: ../Global-Menu/data/messages:85
@@ -5789,7 +5826,8 @@ msgstr "顯示數字值："
 msgid ""
 "You need OpenGL for this option. Set it to 0 means not used, 1 means the "
 "movement is continue."
-msgstr "您需要有OpenGL才能使用這個選項。設定為 0 時不使用，1 是指繼續動作下去。"
+msgstr ""
+"您需要有OpenGL才能使用這個選項。設定為 0 時不使用，1 是指繼續動作下去。"
 
 #: ../Network-Monitor/data/messages:125
 msgid "Fluidity of the transition animation between 2 values:"
@@ -5861,11 +5899,13 @@ msgstr "拉桿"
 #: ../Network-Monitor/data/messages:237 ../Network-Monitor/data/messages:241
 #: ../Network-Monitor/data/messages:245 ../Network-Monitor/data/messages:249
 #: ../Network-Monitor/data/messages:253 ../Network-Monitor/data/messages:257
-#: ../logout/data/messages:109 ../musicPlayer/data/messages:187
-#: ../musicPlayer/data/messages:191 ../musicPlayer/data/messages:195
-#: ../musicPlayer/data/messages:199 ../musicPlayer/data/messages:203
-#: ../tomboy/data/messages:13 ../tomboy/data/messages:17
-#: ../tomboy/data/messages:21 ../tomboy/data/messages:105
+#: ../keyboard-indicator/data/messages:105
+#: ../keyboard-indicator/data/messages:109 ../logout/data/messages:109
+#: ../musicPlayer/data/messages:187 ../musicPlayer/data/messages:191
+#: ../musicPlayer/data/messages:195 ../musicPlayer/data/messages:199
+#: ../musicPlayer/data/messages:203 ../tomboy/data/messages:13
+#: ../tomboy/data/messages:17 ../tomboy/data/messages:21
+#: ../tomboy/data/messages:105
 msgid "Leave empty to use the default icon."
 msgstr "空白將會使用預設的圖示。"
 
@@ -6043,7 +6083,7 @@ msgid "Logo size:"
 msgstr "標誌大小："
 
 #: ../RSSreader/data/messages:173 ../dock-rendering/data/messages:47
-#: ../keyboard-indicator/data/messages:123
+#: ../keyboard-indicator/data/messages:131
 msgid "normal"
 msgstr "正常"
 
@@ -6097,7 +6137,8 @@ msgstr "搜尋結果的最大數量："
 msgid ""
 "Number of lines of the listing. If there are more results, the listing will "
 "scroll when you go up or down with the arrows."
-msgstr "列出結果的數量。假如有很多的結果，那麼列出的結果可以透過您按 上/下 鍵來捲動。"
+msgstr ""
+"列出結果的數量。假如有很多的結果，那麼列出的結果可以透過您按 上/下 鍵來捲動。"
 
 #: ../Scooby-Do/data/messages:11
 msgid "Number of lines to display :"
@@ -6131,7 +6172,7 @@ msgstr "從 1 到 9 之間，越大愈重。"
 msgid "Text size:"
 msgstr "文字重量："
 
-#: ../Scooby-Do/data/messages:37 ../keyboard-indicator/data/messages:115
+#: ../Scooby-Do/data/messages:37 ../keyboard-indicator/data/messages:123
 msgid "Outline text?"
 msgstr "文字要有外框嗎？"
 
@@ -6386,7 +6427,8 @@ msgstr ""
 msgid ""
 "It will prevent the system monitor's icon to show in the taskbar. The "
 "applet's icon will then behave as a launcher, an application, and an applet."
-msgstr "它會阻止系統監視器的圖示出現在工具列上，此面板程式的圖示會像是快速啟動一樣。"
+msgstr ""
+"它會阻止系統監視器的圖示出現在工具列上，此面板程式的圖示會像是快速啟動一樣。"
 
 #: ../System-Monitor/data/messages:193
 msgid "Steal the system monitor's icon from the taskbar?"
@@ -6404,7 +6446,8 @@ msgstr "最高的清單："
 msgid ""
 "When you left-click on the icon, you will get the list of the N most CPU/RAM-"
 "intensive programs."
-msgstr "當您在圖示上面按下滑鼠左鍵時，您將會看到已執行的應用程式 CPU / RAM 使用率。"
+msgstr ""
+"當您在圖示上面按下滑鼠左鍵時，您將會看到已執行的應用程式 CPU / RAM 使用率。"
 
 #: ../System-Monitor/data/messages:203
 msgid "Number of programs to display in the top list:"
@@ -6549,22 +6592,24 @@ msgstr "Alsa"
 msgid "Sound card:"
 msgstr "要控制的音效卡："
 
-#: ../alsaMixer/data/messages:147
+#: ../alsaMixer/data/messages:145
 msgid "Select channel:"
 msgstr "要控制哪個通道："
 
-#: ../alsaMixer/data/messages:149
+#: ../alsaMixer/data/messages:147
 msgid ""
 "On some cards, a channel only controls 1 side (right or left). You will then "
 "need to specify a second channel here, to control both sides. Most of the "
 "time, you should just leave this empty."
-msgstr "有一些卡，一個通道只能夠控制一邊(左邊或者右邊)。您需要在這裡指定第二個通道來控制兩個聲道。大多數的狀況下您只需要讓他空白。"
+msgstr ""
+"有一些卡，一個通道只能夠控制一邊(左邊或者右邊)。您需要在這裡指定第二個通道來"
+"控制兩個聲道。大多數的狀況下您只需要讓他空白。"
 
-#: ../alsaMixer/data/messages:151
+#: ../alsaMixer/data/messages:149
 msgid "Choose a second channel to control (optional):"
 msgstr "選擇第二個控制通道："
 
-#: ../alsaMixer/data/messages:153
+#: ../alsaMixer/data/messages:151
 msgid "Specific command to run to show an advanced sound mixer:"
 msgstr "設定顯示進階聲音控制混音器的指令："
 
@@ -6597,7 +6642,9 @@ msgstr "顯示秒？"
 msgid ""
 "In ms. Set 0 for non-smooth animation, set 1000 to have a continuous "
 "animation. Requires OpenGL."
-msgstr "以毫秒(ms)為單位。設定為 0 時不要平順動畫，設定 1000 為連續動畫。需要OpenGL支援。"
+msgstr ""
+"以毫秒(ms)為單位。設定為 0 時不要平順動畫，設定 1000 為連續動畫。需要OpenGL支"
+"援。"
 
 #: ../clock/data/messages:121
 msgid "Display seconds with smooth animation for a duration of:"
@@ -6657,7 +6704,7 @@ msgstr "數位式檢視"
 msgid "Use a custom font"
 msgstr ""
 
-#: ../clock/data/messages:153 ../keyboard-indicator/data/messages:111
+#: ../clock/data/messages:153 ../keyboard-indicator/data/messages:119
 msgid "Font:"
 msgstr "字型："
 
@@ -7106,7 +7153,9 @@ msgstr "圖示之間的空間和它們的標題："
 msgid ""
 "This may recquire more CPU during the unfolding animation, except if you "
 "launch Cairo-Dock with OpenGL."
-msgstr "這也許需要更多的CPU資源來展現這個動畫，除非您使用的是 Cairo-Dock 支援 OpenGL 的版本。"
+msgstr ""
+"這也許需要更多的CPU資源來展現這個動畫，除非您使用的是 Cairo-Dock 支援 OpenGL "
+"的版本。"
 
 #: ../dock-rendering/data/messages:109
 msgid "Draw captions while unfolding?"
@@ -7117,8 +7166,7 @@ msgid "Space between icons:"
 msgstr "兩個圖示中間的距離："
 
 #: ../dock-rendering/data/messages:117
-msgid ""
-"0 represents a flat wave, 1 means the wave is identical to other views."
+msgid "0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr "0 表示一個平面波，1 指波與其他的風貌相同。"
 
 #: ../dock-rendering/data/messages:121
@@ -7216,7 +7264,9 @@ msgstr "圖形檔"
 msgid ""
 "Typically an arrow, this will be displayed when you try to drop a new "
 "launcher into the dock. Leave this empty to use the default."
-msgstr "典型的箭頭，當您試著要 拖-放 一個新的快速啟動進入 Dock 時會顯示出來。要使用預設的圖形請讓它空白。"
+msgstr ""
+"典型的箭頭，當您試著要 拖-放 一個新的快速啟動進入 Dock 時會顯示出來。要使用預"
+"設的圖形請讓它空白。"
 
 #: ../drop-indicator/data/messages:7
 msgid "Image for the drag & drop animation:"
@@ -7226,7 +7276,9 @@ msgstr "拖-放 動畫的圖形："
 msgid ""
 "An emblem that will be displayed when you try to drop something on an icon. "
 "Leave empty to use the default one."
-msgstr "當您試著要 拖-放 任何東西到圖示上面時會顯示出這個符號圖形。要使用預設的圖形請讓它空白。"
+msgstr ""
+"當您試著要 拖-放 任何東西到圖示上面時會顯示出這個符號圖形。要使用預設的圖形請"
+"讓它空白。"
 
 #: ../drop-indicator/data/messages:11
 msgid "Image when hovering an icon :"
@@ -7305,8 +7357,7 @@ msgid "Colours"
 msgstr "顏色"
 
 #: ../icon-effect/data/messages:71
-msgid ""
-"This will slightly alter your colours, so you may have to modify them."
+msgid "This will slightly alter your colours, so you may have to modify them."
 msgstr "這會略微改變您的顏色，所以你可能需要修改它們。"
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
@@ -7431,6 +7482,10 @@ msgstr "更大，那麼圖示就會更快速的往中心崩潰坍塌。"
 msgid "Attraction of the Black Hole:"
 msgstr "黑洞的引力："
 
+#: ../keyboard-indicator/data/messages:99
+msgid "General"
+msgstr ""
+
 #: ../keyboard-indicator/data/messages:101
 msgid "caps lock, num lock, etc."
 msgstr "大寫字元鎖定、數字鍵鎖定等等..."
@@ -7439,30 +7494,38 @@ msgstr "大寫字元鎖定、數字鍵鎖定等等..."
 msgid "Display keyboard locks as quick-info?"
 msgstr "快速顯示鍵盤鎖定狀況？"
 
-#: ../keyboard-indicator/data/messages:105
+#: ../keyboard-indicator/data/messages:107
+msgid "Icon image name for NumLock status:"
+msgstr ""
+
+#: ../keyboard-indicator/data/messages:111
+msgid "Icon image name for CapsLock status:"
+msgstr ""
+
+#: ../keyboard-indicator/data/messages:113
 msgid ""
 "in ms. Set to 0 if you don't want an animation when the keyboard layout "
 "changes."
 msgstr "以微秒(ms)表示。設定為 0 時表示您不要在改變鍵盤配置時顯示動畫。"
 
-#: ../keyboard-indicator/data/messages:107
+#: ../keyboard-indicator/data/messages:115
 msgid "Duration of the transition animation:"
 msgstr "變化動畫的時間長度："
 
-#: ../keyboard-indicator/data/messages:113
+#: ../keyboard-indicator/data/messages:121
 msgid "Text colour"
 msgstr "文字顏色"
 
-#: ../keyboard-indicator/data/messages:117
+#: ../keyboard-indicator/data/messages:125
 msgid ""
 "the smaller is the text in the icon. 1 means the text fills all the icon."
 msgstr "小一點表示文字在圖示裏面，1 表示文字將會填滿整個圖示。"
 
-#: ../keyboard-indicator/data/messages:119
+#: ../keyboard-indicator/data/messages:127
 msgid "Relative size of the text :"
 msgstr "文字的相對大小："
 
-#: ../keyboard-indicator/data/messages:121
+#: ../keyboard-indicator/data/messages:129
 msgid "smaller"
 msgstr "較小"
 
@@ -7514,7 +7577,8 @@ msgid ""
 "default command, which depends on your distribution. In some cases the "
 "command to shutdown is the same as the one to log out."
 msgstr ""
-"這將會以按下滑鼠中鍵來啟動，讓它空白來執行預設的指令。然而這還是取決於您的linux發行版，因為在一些案例當中，他們的關機指令與登出指令是相同的。"
+"這將會以按下滑鼠中鍵來啟動，讓它空白來執行預設的指令。然而這還是取決於您的"
+"linux發行版，因為在一些案例當中，他們的關機指令與登出指令是相同的。"
 
 #: ../logout/data/messages:127
 msgid "User-defined command to execute for shutdown:"
@@ -7525,7 +7589,9 @@ msgid ""
 "If you have any problem with the applet, uncheck this option during the "
 "maintenance mode, then after the dock has relaunched, remove/modify the mail "
 "accounts you want."
-msgstr "假如您面板程式有任何的問題，在維護模式當中取消點選這個選項，當重新啟動Dock之後，即可 移除/修改 您要使用的信件帳號。"
+msgstr ""
+"假如您面板程式有任何的問題，在維護模式當中取消點選這個選項，當重新啟動Dock之"
+"後，即可 移除/修改 您要使用的信件帳號。"
 
 #: ../mail/data/messages:101
 msgid "Check mail account on startup?"
@@ -7540,8 +7606,7 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "「您有信件」的圖像檔案名稱："
 
 #: ../mail/data/messages:115
-msgid ""
-"If checked, the number of mails will be shown even if there is no mail."
+msgid "If checked, the number of mails will be shown even if there is no mail."
 msgstr "如果勾選這個選項，即使沒有任何郵件，也會顯示這個數字的郵件。"
 
 #: ../mail/data/messages:117
@@ -7625,8 +7690,7 @@ msgid "Blur amount:"
 msgstr "模糊量級："
 
 #: ../musicPlayer/data/messages:7
-msgid ""
-"Leave it empty to display the name of the player currently controlled."
+msgid "Leave it empty to display the name of the player currently controlled."
 msgstr "讓它空白，可以顯示目前控制的播放器名稱。"
 
 #: ../musicPlayer/data/messages:11
@@ -7701,7 +7765,9 @@ msgstr "XMMS 2"
 msgid ""
 "This will prevent the player icon appearing in the taskbar. The applet's "
 "icon will then behave as a launcher, an application and an applet."
-msgstr "這將阻止播放器圖示出現在工作列上。面板程式的圖示就會像是一個快速啟動、已啟動的應用程式和面板程式一樣。"
+msgstr ""
+"這將阻止播放器圖示出現在工作列上。面板程式的圖示就會像是一個快速啟動、已啟動"
+"的應用程式和面板程式一樣。"
 
 #: ../musicPlayer/data/messages:135
 msgid "Steal the player's icon from the taskbar?"
@@ -7950,7 +8016,9 @@ msgstr "大"
 msgid ""
 "Number of items loaded at once. Setting a high value speeds up loading a "
 "little but will hang the application for longer."
-msgstr "讀取項目的數量。較高的數值可以加快一點讀取的速度，但是有可能會造成應用程式長時間停止回應。"
+msgstr ""
+"讀取項目的數量。較高的數值可以加快一點讀取的速度，但是有可能會造成應用程式長"
+"時間停止回應。"
 
 #: ../quick-browser/data/messages:121
 msgid "Build menu gradually:"
@@ -8046,8 +8114,8 @@ msgid ""
 "You need to activate the Dbus plug-in in Compiz for the last 2 actions. "
 "Showing desktop and desklets can fail on some Window Manager (like Metacity)."
 msgstr ""
-"您需要啟用 Compiz 的 Dbus 插件，但是下列兩個功能在一些視窗管理程式當中 (例如 Metacity) "
-"可能會失效。「顯示桌面」與「桌面面板程式」這兩個功能。"
+"您需要啟用 Compiz 的 Dbus 插件，但是下列兩個功能在一些視窗管理程式當中 (例如 "
+"Metacity) 可能會失效。「顯示桌面」與「桌面面板程式」這兩個功能。"
 
 #: ../showDesktop/data/messages:97 ../slider/data/messages:117
 msgid "Action on left-click:"
@@ -8453,7 +8521,9 @@ msgstr "前景色："
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
-msgstr "當終端機在對話窗內。當終端機在一個桌面小工具中，您可以如往常一樣重新調整桌面小工具的大小。"
+msgstr ""
+"當終端機在對話窗內。當終端機在一個桌面小工具中，您可以如往常一樣重新調整桌面"
+"小工具的大小。"
 
 #: ../terminal/data/messages:109
 msgid "Size of the terminal (line x columns):"
@@ -8513,7 +8583,8 @@ msgid ""
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
 "digits), etc. Leave it blank to use the default one (%d/%m/%y)."
 msgstr ""
-"設定您在筆記本上習慣使用的日期格式。語法如下： %d 表日, %m 表月, %y 表年 (2 位數)。另外，空白會使用預設的格式 (%d/%m/%y)。"
+"設定您在筆記本上習慣使用的日期格式。語法如下： %d 表日, %m 表月, %y 表年 (2 "
+"位數)。另外，空白會使用預設的格式 (%d/%m/%y)。"
 
 #: ../tomboy/data/messages:139
 msgid "Date format to search for :"
@@ -8526,8 +8597,9 @@ msgid ""
 "message like <<No marshaller for signature of signal 'NoteDeleted'>> in the "
 "terminal."
 msgstr ""
-"根據您的 Tomboy 版本，筆記刪除時可能不會自動通知我們。只有當您發現在終端機載入時有一些錯誤信息如「No marshaller for "
-"signature of signal \"NoteDeleted\"」的時候才勾選此方框。"
+"根據您的 Tomboy 版本，筆記刪除時可能不會自動通知我們。只有當您發現在終端機載"
+"入時有一些錯誤信息如「No marshaller for signature of signal \"NoteDeleted\"」"
+"的時候才勾選此方框。"
 
 #: ../tomboy/data/messages:145
 msgid "Emulate the 'NoteDeleted' signal?"
@@ -8614,8 +8686,7 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "垂直捲軸的所在位置像素"
 
 #: ../weblets/data/messages:103
-msgid ""
-"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr "這允許您用滑鼠點擊桌面小工具(desklet)彈出 Cairo-Dock 選單。"
 
 #: ../weblets/data/messages:105
@@ -8667,7 +8738,8 @@ msgstr "訊號檢查的間隔時間："
 msgid ""
 "Allow you to overwrite applet's default command line and launch your "
 "wireless configuration interface."
-msgstr "允許您忽略面板程式的預設指令列，以您自己設定的指令來啟動您的無線配置界面。"
+msgstr ""
+"允許您忽略面板程式的預設指令列，以您自己設定的指令來啟動您的無線配置界面。"
 
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"

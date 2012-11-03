@@ -7,16 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2012-09-30 15:12+0000\n"
 "PO-Revision-Date: 2012-09-30 17:28+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-10-01 04:55+0000\n"
 "X-Generator: Launchpad (build 16049)\n"
-"Language: uk\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -288,29 +287,30 @@ msgstr "Налаштувати віконний менеджер"
 #: ../Composite-Manager/src/applet-notifications.c:145
 #: ../Composite-Manager/src/applet-notifications.c:154
 #: ../Composite-Manager/src/applet-notifications.c:163
-#: ../Folders/src/applet-notifications.c:365
-#: ../GMenu/src/applet-notifications.c:81
+#: ../Folders/src/applet-notifications.c:394
+#: ../GMenu/src/applet-notifications.c:90
 #: ../RSSreader/src/applet-notifications.c:129
 #: ../System-Monitor/src/applet-notifications.c:106
 #: ../Xgamma/src/applet-notifications.c:87
 #: ../alsaMixer/src/applet-notifications.c:84
-#: ../dustbin/src/applet-notifications.c:135
+#: ../dustbin/src/applet-notifications.c:147
 #: ../mail/src/cd-mail-applet-notifications.c:154
 #: ../musicPlayer/src/applet-notifications.c:300
 #: ../netspeed/src/applet-notifications.c:94
 #: ../quick-browser/src/applet-notifications.c:41
-#: ../shortcuts/src/applet-notifications.c:264
-#: ../shortcuts/src/applet-notifications.c:288
+#: ../shortcuts/src/applet-notifications.c:296
+#: ../shortcuts/src/applet-notifications.c:329
 #: ../showDesktop/src/applet-notifications.c:165
 #: ../showDesktop/src/applet-notifications.c:177
 #: ../showDesktop/src/applet-notifications.c:189
 #: ../slider/src/applet-notifications.c:223
 #: ../slider/src/applet-notifications.c:265
-#: ../stack/src/applet-notifications.c:185
-#: ../switcher/src/applet-notifications.c:300
-#: ../switcher/src/applet-notifications.c:305
-#: ../switcher/src/applet-notifications.c:314
-#: ../switcher/src/applet-notifications.c:323
+#: ../stack/src/applet-notifications.c:214
+#: ../switcher/src/applet-notifications.c:313
+#: ../switcher/src/applet-notifications.c:318
+#: ../switcher/src/applet-notifications.c:327
+#: ../switcher/src/applet-notifications.c:336
+#: ../tomboy/src/tomboy-notifications.c:248
 #: ../wifi/src/applet-notifications.c:88
 msgid "middle-click"
 msgstr "клацання середньою кнопкою"
@@ -331,14 +331,14 @@ msgstr "Показати стільницю"
 #: ../Composite-Manager/src/applet-notifications.c:145
 #: ../showDesktop/src/applet-notifications.c:177
 #: ../showDesktop/src/applet-notifications.c:179
-#: ../switcher/src/applet-notifications.c:314
+#: ../switcher/src/applet-notifications.c:327
 #: ../Composite-Manager/data/messages:131 ../showDesktop/data/messages:107
 #: ../showDesktop/data/messages:121 ../switcher/data/messages:145
 msgid "Expose all the desktops"
 msgstr "Показати всі стільниці"
 
 #: ../Composite-Manager/src/applet-notifications.c:154
-#: ../switcher/src/applet-notifications.c:323
+#: ../switcher/src/applet-notifications.c:336
 #: ../Composite-Manager/data/messages:133 ../switcher/data/messages:147
 msgid "Expose all the windows"
 msgstr "Показати всі вікна"
@@ -371,8 +371,7 @@ msgstr "Модуль був доданий, але не може бути зап
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid ""
-"The applet '%s' has been succefully updated and automatically reloaded"
+msgid "The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Аплет '%s' оновлено та автоматично перезавантажено"
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -520,7 +519,7 @@ msgstr ""
 "  - ДЛЯ РОБОТИ ПОВИНЕН БУТИ ВІДОКРЕМЛЕНИМ ВІД ПАНЕЛІ!\n"
 "  - Середнє клацання оновлює значення"
 
-#: ../Doncky/src/applet-notifications.c:214
+#: ../Doncky/src/applet-notifications.c:210
 msgid "It doesn't seem to be a valid XML file."
 msgstr "Здається, це неправильний файл XML"
 
@@ -633,6 +632,14 @@ msgid "Execute"
 msgstr "Виконання"
 
 #: ../Folders/src/applet-notifications.c:211
+msgid ""
+"Warning: could not delete this file.\n"
+"Please check file permissions."
+msgstr ""
+"Увага: не вдалося видалити цей файл.\n"
+"Переконайтеся, що ви маєте права на запис."
+
+#: ../Folders/src/applet-notifications.c:225
 #, c-format
 msgid ""
 "You're about deleting this file\n"
@@ -643,19 +650,7 @@ msgstr ""
 "  (%s)\n"
 "з жорсткого диску. Ви впевнені?"
 
-#: ../Folders/src/applet-notifications.c:221
-msgid ""
-"Warning: could not delete this file.\n"
-"Please check file permissions."
-msgstr ""
-"Увага: не вдалося видалити цей файл.\n"
-"Переконайтеся, що ви маєте права на запис."
-
-#: ../Folders/src/applet-notifications.c:234
-msgid "Rename to:"
-msgstr "Перейменувати в:"
-
-#: ../Folders/src/applet-notifications.c:241
+#: ../Folders/src/applet-notifications.c:244
 #, c-format
 msgid ""
 "Warning: could not rename %s.\n"
@@ -666,16 +661,16 @@ msgstr ""
 "Впевніться, що ви маєте права на запис,\n"
 " та нового імені вже не має на панелі."
 
-#: ../Folders/src/applet-notifications.c:255
+#: ../Folders/src/applet-notifications.c:253
+msgid "Rename to:"
+msgstr "Перейменувати в:"
+
+#: ../Folders/src/applet-notifications.c:268
 #: ../Scooby-Do/src/applet-backend-files.c:390
 msgid "Pick up a directory"
 msgstr "Вкажіть каталог"
 
-#: ../Folders/src/applet-notifications.c:280
-msgid "Enter a file name:"
-msgstr "Введіть назву файла:"
-
-#: ../Folders/src/applet-notifications.c:288
+#: ../Folders/src/applet-notifications.c:305
 #, c-format
 msgid ""
 "Warning: could not create %s.\n"
@@ -686,69 +681,73 @@ msgstr ""
 "Перевірте права доступу до файла \n"
 "та чи не використовується вже нова назва."
 
-#: ../Folders/src/applet-notifications.c:365
+#: ../Folders/src/applet-notifications.c:315
+msgid "Enter a file name:"
+msgstr "Введіть назву файла:"
+
+#: ../Folders/src/applet-notifications.c:394
 msgid "Open the folder"
 msgstr "Відкрити теку"
 
-#: ../Folders/src/applet-notifications.c:372
+#: ../Folders/src/applet-notifications.c:401
 msgid "Rename this file"
 msgstr "Перейменувати цей файл"
 
-#: ../Folders/src/applet-notifications.c:373
+#: ../Folders/src/applet-notifications.c:402
 msgid "Delete this file"
 msgstr "Видалити цей файл"
 
-#: ../Folders/src/applet-notifications.c:374
+#: ../Folders/src/applet-notifications.c:403
 msgid "Move this file"
 msgstr "Перемістити цей файл"
 
-#: ../Folders/src/applet-notifications.c:380
+#: ../Folders/src/applet-notifications.c:409
 #: ../Recent-Events/src/applet-dialog.c:270
 #: ../slider/src/applet-notifications.c:233
 msgid "Open with"
 msgstr "Відкрити за допомогою"
 
-#: ../Folders/src/applet-notifications.c:413
+#: ../Folders/src/applet-notifications.c:442
 msgid "Properties"
 msgstr "Властивості"
 
-#: ../Folders/src/applet-notifications.c:416
+#: ../Folders/src/applet-notifications.c:445
 msgid "Create a new file"
 msgstr "Створити новий файл"
 
-#: ../Folders/src/applet-notifications.c:417
+#: ../Folders/src/applet-notifications.c:446
 msgid "Create a new folder"
 msgstr "Створити нову теку"
 
-#: ../Folders/src/applet-notifications.c:422
+#: ../Folders/src/applet-notifications.c:451
 msgid "Sort by"
 msgstr "Сортувати за"
 
-#: ../Folders/src/applet-notifications.c:423
+#: ../Folders/src/applet-notifications.c:452
 msgid "By name"
 msgstr "За назвою"
 
-#: ../Folders/src/applet-notifications.c:424
+#: ../Folders/src/applet-notifications.c:453
 msgid "By date"
 msgstr "За датою"
 
-#: ../Folders/src/applet-notifications.c:425
+#: ../Folders/src/applet-notifications.c:454
 msgid "By size"
 msgstr "За розміром"
 
-#: ../Folders/src/applet-notifications.c:426
+#: ../Folders/src/applet-notifications.c:455
 msgid "By type"
 msgstr "За типом"
 
-#: ../Folders/src/applet-notifications.c:468
+#: ../Folders/src/applet-notifications.c:497
 msgid "The folder has been imported."
 msgstr "Каталог імпортовано"
 
-#: ../Folders/src/applet-notifications.c:529
+#: ../Folders/src/applet-notifications.c:558
 msgid "Do you want to import the content of the folder too?"
 msgstr "Також імпортувати вміст каталогу?"
 
-#: ../GMenu/src/applet-init.c:33
+#: ../GMenu/src/applet-init.c:35
 msgid ""
 "Displays the common Applications menu and the Recently used files.\n"
 "It is compatible with any XDG compliant menu (Gnome, XFCE, KDE, ...)\n"
@@ -762,35 +761,35 @@ msgstr ""
 "(можна призначити комбінацію, як ALT+F2)\n"
 "Крім того, ви можете встановити комбінацію для показу меню (як ALT+F1)"
 
-#: ../GMenu/src/applet-init.c:39
+#: ../GMenu/src/applet-init.c:41
 msgid "Applications Menu"
 msgstr "Меню «Програми»"
 
-#: ../GMenu/src/applet-init.c:66
+#: ../GMenu/src/applet-init.c:108
 msgid "Show/hide the Applications menu"
 msgstr "Показати/Приховати меню програм"
 
-#: ../GMenu/src/applet-init.c:71
+#: ../GMenu/src/applet-init.c:113
 msgid "Show/hide the quick-launch dialog"
 msgstr "Показати/Приховати вікно швидкого запуску"
 
-#: ../GMenu/src/applet-menu-callbacks.c:174 ../GMenu/data/messages:107
+#: ../GMenu/src/applet-menu-callbacks.c:175 ../GMenu/data/messages:107
 msgid "Logout"
 msgstr "Вихід"
 
-#: ../GMenu/src/applet-menu-callbacks.c:177 ../GMenu/data/messages:109
+#: ../GMenu/src/applet-menu-callbacks.c:178 ../GMenu/data/messages:109
 msgid "Shutdown"
 msgstr "Вимкнути"
 
-#: ../GMenu/src/applet-notifications.c:81
+#: ../GMenu/src/applet-notifications.c:90
 msgid "Quick launch"
 msgstr "Швидкий запуск"
 
-#: ../GMenu/src/applet-notifications.c:105
+#: ../GMenu/src/applet-notifications.c:107
 msgid "Configure menu"
 msgstr "Налаштувати меню"
 
-#: ../GMenu/src/applet-notifications.c:108
+#: ../GMenu/src/applet-notifications.c:110
 msgid "Clear recent"
 msgstr "Очистити"
 
@@ -798,7 +797,7 @@ msgstr "Очистити"
 msgid "Recent Documents"
 msgstr "Нещодавні документи"
 
-#: ../GMenu/src/applet-recent.c:108
+#: ../GMenu/src/applet-recent.c:117
 msgid "Clear the list of the recently used documents?"
 msgstr "Очистити список недавніх документів?"
 
@@ -1084,7 +1083,7 @@ msgid "Open with your web browser"
 msgstr "Відкрити у веб-браузері"
 
 #: ../RSSreader/src/applet-notifications.c:129
-#: ../switcher/src/applet-notifications.c:332
+#: ../switcher/src/applet-notifications.c:345
 msgid "Refresh"
 msgstr "Оновити"
 
@@ -1138,7 +1137,7 @@ msgstr ""
 "Чи під'єднано Інтернет?"
 
 #: ../Recent-Events/src/applet-dialog.c:294
-#: ../stack/src/applet-notifications.c:183
+#: ../stack/src/applet-notifications.c:212
 msgid "Open parent folder"
 msgstr "Відкрити батьківську теку"
 
@@ -1314,7 +1313,7 @@ msgid "Open in new window"
 msgstr "Відкрити у новому вікні"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:432
-#: ../dnd2share/src/applet-notifications.c:487
+#: ../dnd2share/src/applet-notifications.c:494
 msgid "Open file"
 msgstr "Відкрити файл"
 
@@ -1384,12 +1383,12 @@ msgid "No result"
 msgstr "Жодного результату"
 
 #: ../Scooby-Do/src/applet-listing.c:681 ../Scooby-Do/src/applet-search.c:358
-#: ../tomboy/src/tomboy-draw.c:156 ../tomboy/src/tomboy-draw.c:169
+#: ../tomboy/src/tomboy-draw.c:213
 msgid "results"
 msgstr "результати"
 
 #: ../Scooby-Do/src/applet-listing.c:681 ../Scooby-Do/src/applet-search.c:358
-#: ../tomboy/src/tomboy-draw.c:156 ../tomboy/src/tomboy-draw.c:169
+#: ../tomboy/src/tomboy-draw.c:213
 msgid "result"
 msgstr "результат"
 
@@ -1635,33 +1634,33 @@ msgstr "Налаштування гами"
 msgid "Luminosity"
 msgstr "Яскравість"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:45
+#: ../alsaMixer/src/applet-backend-alsamixer.c:71
 #, c-format
 msgid "I couldn't open card '%s'"
 msgstr "Не вдалося відкрити карту '%s'"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:50
+#: ../alsaMixer/src/applet-backend-alsamixer.c:77
 #, c-format
 msgid "Card '%s' opened but I couldn't get any info"
 msgstr "Карта '%s' відкрита, але не вдалося отримати будь-яку інформацію"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:58
+#: ../alsaMixer/src/applet-backend-alsamixer.c:86
 msgid "I couldn't open the mixer"
 msgstr "Не вдалося відкрити мікшер"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:65
+#: ../alsaMixer/src/applet-backend-alsamixer.c:95
 msgid "I couldn't attach the mixer to the card"
 msgstr "Не вдалося приєднати мікшер до карти"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:72
+#: ../alsaMixer/src/applet-backend-alsamixer.c:103
 msgid "I couldn't register options"
 msgstr "Не вдалося зареєструвати опцію"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:79
+#: ../alsaMixer/src/applet-backend-alsamixer.c:111
 msgid "I couldn't load the mixer"
 msgstr "Не вдалося завантажити мікшер"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:259
+#: ../alsaMixer/src/applet-backend-alsamixer.c:318
 msgid "Set up volume:"
 msgstr "Регулювання гучності:"
 
@@ -1714,7 +1713,7 @@ msgstr "Вимкнути звук"
 
 #: ../clock/src/applet-calendar.c:193 ../clock/src/applet-calendar.c:274
 #: ../clock/src/applet-calendar.c:528 ../clock/src/applet-calendar.c:533
-#: ../clock/src/applet-calendar.c:575 ../clock/src/applet-task-editor.c:118
+#: ../clock/src/applet-calendar.c:575 ../clock/src/applet-task-editor.c:120
 #: ../clock/src/applet-timer.c:98 ../clock/src/applet-timer.c:186
 #: ../clock/src/applet-timer.c:466 ../clock/src/applet-timer.c:480
 #: ../clock/src/applet-timer.c:514
@@ -1725,7 +1724,7 @@ msgstr "Немає заголовку"
 msgid "years"
 msgstr "років"
 
-#: ../clock/src/applet-calendar.c:605 ../clock/src/applet-task-editor.c:155
+#: ../clock/src/applet-calendar.c:605 ../clock/src/applet-task-editor.c:157
 msgid "Add a new task"
 msgstr "Додати нову подію"
 
@@ -1835,8 +1834,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
-"tasks</b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
+"b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1887,54 +1886,54 @@ msgstr "Показати події цього тижня"
 msgid "Set up time and date"
 msgstr "Встановити дату і час"
 
-#: ../clock/src/applet-task-editor.c:176
+#: ../clock/src/applet-task-editor.c:178
 msgid "Delete this task"
 msgstr "Видалити цю подію"
 
-#: ../clock/src/applet-task-editor.c:214
+#: ../clock/src/applet-task-editor.c:216
 msgid "Don't repeat"
 msgstr "Не повторювати"
 
-#: ../clock/src/applet-task-editor.c:220
+#: ../clock/src/applet-task-editor.c:222
 msgid "Each month"
 msgstr "Кожного місяця"
 
-#: ../clock/src/applet-task-editor.c:226
+#: ../clock/src/applet-task-editor.c:228
 msgid "Each year"
 msgstr "Кожного року"
 
-#: ../clock/src/applet-task-editor.c:349
+#: ../clock/src/applet-task-editor.c:351
 msgid "each month"
 msgstr "кожного місяця"
 
-#: ../clock/src/applet-task-editor.c:352
+#: ../clock/src/applet-task-editor.c:354
 msgid "each year"
 msgstr "кожного року"
 
-#: ../clock/src/applet-task-editor.c:407
+#: ../clock/src/applet-task-editor.c:410
 msgid "Right-click to add a new task."
 msgstr "Праве клацання для додавання події."
 
-#: ../clock/src/applet-task-editor.c:413 ../musicPlayer/src/applet-draw.c:153
+#: ../clock/src/applet-task-editor.c:416 ../musicPlayer/src/applet-draw.c:153
 #: ../RSSreader/data/messages:133
 msgid "Title"
 msgstr "Назва"
 
-#: ../clock/src/applet-task-editor.c:420
-#: ../dnd2share/src/applet-notifications.c:391 ../Doncky/data/messages:95
+#: ../clock/src/applet-task-editor.c:423
+#: ../dnd2share/src/applet-notifications.c:398 ../Doncky/data/messages:95
 #: ../RSSreader/data/messages:149
 msgid "Text"
 msgstr "Текст"
 
-#: ../clock/src/applet-task-editor.c:427
+#: ../clock/src/applet-task-editor.c:430
 msgid "Time"
 msgstr "Час"
 
-#: ../clock/src/applet-task-editor.c:441
+#: ../clock/src/applet-task-editor.c:444
 msgid "Freq."
 msgstr "Частота"
 
-#: ../clock/src/applet-task-editor.c:448
+#: ../clock/src/applet-task-editor.c:451
 msgid "Tags"
 msgstr "Теги"
 
@@ -2046,8 +2045,7 @@ msgstr ""
 "Натисніть CTRL+v, щоб вставити його URL куди завгодно."
 
 #: ../dnd2share/src/applet-dnd2share.c:333
-msgid ""
-"Please wait for the current upload to finish before starting a new one."
+msgid "Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Зачекайте на закінчення поточного звантаження перед тим, як почати нове."
 
@@ -2094,11 +2092,11 @@ msgstr ""
 msgid "Drop to share"
 msgstr "Файлообмінник"
 
-#: ../dnd2share/src/applet-notifications.c:33
+#: ../dnd2share/src/applet-notifications.c:43
 msgid "Clear the list of the recently uploaded files?"
 msgstr "Очистити список недавно завантажених файлів?"
 
-#: ../dnd2share/src/applet-notifications.c:51
+#: ../dnd2share/src/applet-notifications.c:58
 msgid ""
 "The text has been pasted in the clipboard.\n"
 "You can retrieve it with CTRL+v."
@@ -2106,12 +2104,12 @@ msgstr ""
 "Текст скопійовано до буферу обміну.\n"
 "Використовуйте CTRL+v для вставки."
 
-#: ../dnd2share/src/applet-notifications.c:73
+#: ../dnd2share/src/applet-notifications.c:80
 msgid "Sorry, couldn't find the original file nor a preview of it."
 msgstr ""
 "На жаль, оригінальний файл як і його попередній перегляд виявити не вдалося."
 
-#: ../dnd2share/src/applet-notifications.c:98
+#: ../dnd2share/src/applet-notifications.c:105
 msgid ""
 "The URL has been stored in the clipboard.\n"
 "Just use 'CTRL+v' to paste it anywhere."
@@ -2119,7 +2117,7 @@ msgstr ""
 "Посилання було збережене до буферу обміну.\n"
 "Використовуйте CTRL+v для вставки."
 
-#: ../dnd2share/src/applet-notifications.c:113
+#: ../dnd2share/src/applet-notifications.c:120
 msgid ""
 "No uploaded file available\n"
 ".Just drag'n drop a file on the icon to upload it"
@@ -2127,7 +2125,7 @@ msgstr ""
 "Недоступний файл для завантаження.\n"
 "Перетягніть його на значок, щоб завантажити."
 
-#: ../dnd2share/src/applet-notifications.c:114
+#: ../dnd2share/src/applet-notifications.c:121
 msgid ""
 "No uploaded file available.\n"
 "Consider activating the history if you want the applet to remember previous "
@@ -2136,7 +2134,7 @@ msgstr ""
 "Недоступний файл для завантаження.\n"
 "Активуйте історію завантажених файлів, щоб додаток міг зберігати її."
 
-#: ../dnd2share/src/applet-notifications.c:131
+#: ../dnd2share/src/applet-notifications.c:138
 msgid ""
 "The current URL has been stored in the clipboard.\n"
 "Just use 'CTRL+v' to paste it anywhere."
@@ -2144,7 +2142,7 @@ msgstr ""
 "Поточне посилання було збережене до буферу обміну.\n"
 "Використовуйте CTRL+v, щоб вставити її де-небудь."
 
-#: ../dnd2share/src/applet-notifications.c:132
+#: ../dnd2share/src/applet-notifications.c:139
 msgid ""
 "The current URL has been stored into the selection.\n"
 "Just middle-click to paste it anywhere."
@@ -2152,35 +2150,35 @@ msgstr ""
 "Поточне посилання було збережене у виборі.\n"
 "Використовуйте середнє клацання для вставки."
 
-#: ../dnd2share/src/applet-notifications.c:391
+#: ../dnd2share/src/applet-notifications.c:398
 msgid "File"
 msgstr "Файл"
 
-#: ../dnd2share/src/applet-notifications.c:394
+#: ../dnd2share/src/applet-notifications.c:401
 msgid "Click on the icon to copy the URL into the clipboard."
 msgstr "Клацніть на значку, щоб скопіювати посилання до буферу обміну."
 
-#: ../dnd2share/src/applet-notifications.c:406
+#: ../dnd2share/src/applet-notifications.c:413
 msgid "Send the clipboard's content"
 msgstr "Надіслати містиме буферу обміну"
 
-#: ../dnd2share/src/applet-notifications.c:409
+#: ../dnd2share/src/applet-notifications.c:416
 msgid "History"
 msgstr "Історія"
 
-#: ../dnd2share/src/applet-notifications.c:489
+#: ../dnd2share/src/applet-notifications.c:496
 msgid "Get text"
 msgstr "Отримати текст"
 
-#: ../dnd2share/src/applet-notifications.c:491
+#: ../dnd2share/src/applet-notifications.c:498
 msgid "Remove from history"
 msgstr "Видалити з історії"
 
-#: ../dnd2share/src/applet-notifications.c:494
+#: ../dnd2share/src/applet-notifications.c:501
 msgid "Clear History"
 msgstr "Очистити історію"
 
-#: ../dnd2share/src/applet-notifications.c:499
+#: ../dnd2share/src/applet-notifications.c:506
 msgid "Use only a files hosting site"
 msgstr "Використовувати тільки файл-хостинг сайт"
 
@@ -2237,59 +2235,59 @@ msgstr ""
 "значок.\n"
 "Клацання середньою кнопкою миші на значку спорожняє смітник."
 
-#: ../dustbin/src/applet-notifications.c:32
+#: ../dustbin/src/applet-notifications.c:40
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr ""
 "Ви збираєтеся видалити всі файли зі всіх частин (тек), що в смітнику . "
 "Впевнені?"
 
-#: ../dustbin/src/applet-notifications.c:91
+#: ../dustbin/src/applet-notifications.c:103
 msgid "The trash contains"
 msgstr "Смітник містить"
 
-#: ../dustbin/src/applet-notifications.c:93
+#: ../dustbin/src/applet-notifications.c:105
 msgid "files"
 msgstr "файлів"
 
-#: ../dustbin/src/applet-notifications.c:93
+#: ../dustbin/src/applet-notifications.c:105
 msgid "elements"
 msgstr "елементи"
 
-#: ../dustbin/src/applet-notifications.c:95
+#: ../dustbin/src/applet-notifications.c:107
 msgid "Mo"
 msgstr "Пн"
 
-#: ../dustbin/src/applet-notifications.c:95
+#: ../dustbin/src/applet-notifications.c:107
 msgid "Ko"
 msgstr "Кбайт"
 
-#: ../dustbin/src/applet-notifications.c:114
+#: ../dustbin/src/applet-notifications.c:126
 msgid "Counting total size and files number..."
 msgstr "Підрахунок загального розміру та кількості файлів..."
 
-#: ../dustbin/src/applet-notifications.c:134
+#: ../dustbin/src/applet-notifications.c:146
 msgid "Show Trash (click)"
 msgstr "Показати смітник (лівий клік)"
 
-#: ../dustbin/src/applet-notifications.c:135
+#: ../dustbin/src/applet-notifications.c:147
 msgid "Empty Trash"
 msgstr "Спорожнити смітник"
 
-#: ../dustbin/src/applet-notifications.c:139
+#: ../dustbin/src/applet-notifications.c:151
 msgid "Display dustbins information"
 msgstr "Показати інформацію смітника"
 
-#: ../dustbin/src/applet-notifications.c:149
+#: ../dustbin/src/applet-notifications.c:161
 #, c-format
 msgid "%s successfully unmounted"
 msgstr "%s від'єднаний"
 
-#: ../dustbin/src/applet-notifications.c:153
+#: ../dustbin/src/applet-notifications.c:165
 #, c-format
 msgid "failed to unmount %s"
 msgstr "не вдалося від'єднати %s"
 
-#: ../dustbin/src/applet-notifications.c:177
+#: ../dustbin/src/applet-notifications.c:189
 #: ../shortcuts/src/applet-notifications.c:163
 msgid "Unmouting this volume ..."
 msgstr "Від’єднується том..."
@@ -2401,8 +2399,8 @@ msgstr ""
 "автоматичне завершення роботи\n"
 "і повідомляти вам, якщо ваша система потребує перезавантаження.\n"
 "<b>Клікніть</b> по значку, щоб викликати спливаюче меню.\n"
-"Ви можете прив'язати до нього і до блокування екрану <b>комбінації "
-"клавіш</b>."
+"Ви можете прив'язати до нього і до блокування екрану <b>комбінації клавіш</"
+"b>."
 
 #: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:229
 #: ../logout/data/messages:95
@@ -2469,34 +2467,34 @@ msgstr "Автоматичне завершення"
 msgid "Your computer will shut-down in 1 minute."
 msgstr "Ваш комп'ютер виключиться через 1 хвилину."
 
-#: ../logout/src/applet-logout.c:367
+#: ../logout/src/applet-logout.c:390
 msgid "Choose in how many minutes your PC will stop:"
 msgstr "Вкажіть через скільки хвилин зупинити комп'ютер"
 
-#: ../logout/src/applet-logout.c:420
+#: ../logout/src/applet-logout.c:430
 msgid ""
 "Your session needs to be restarted in order to update new configuration "
 "files."
 msgstr "Щоб оновити файли конфігурації, необхідно перезапустити сесію."
 
-#: ../logout/src/applet-logout.c:423
+#: ../logout/src/applet-logout.c:433
 msgid "Please do that at the end of the update."
 msgstr "Зробіть це в кінці оновлення."
 
-#: ../logout/src/applet-logout.c:636
+#: ../logout/src/applet-logout.c:646
 #, c-format
 msgid "It will automatically shut-down in %ds"
 msgstr "Він автоматично відключиться через %dс"
 
-#: ../logout/src/applet-logout.c:637
+#: ../logout/src/applet-logout.c:647
 msgid "Shut down the computer?"
 msgstr "Вимкнути компютер?"
 
-#: ../logout/src/applet-logout.c:697
+#: ../logout/src/applet-logout.c:707
 msgid "Restart the computer?"
 msgstr "Перезавантажити компютер?"
 
-#: ../logout/src/applet-logout.c:734
+#: ../logout/src/applet-logout.c:744
 msgid "Close the current session?"
 msgstr "Завершити поточну сесію?"
 
@@ -3040,14 +3038,13 @@ msgstr "Відкрити цю теку"
 msgid "Open folder"
 msgstr "Відкрити теку"
 
-#: ../shortcuts/src/applet-bookmarks.c:134
-#: ../shortcuts/src/applet-bookmarks.c:377
+#: ../shortcuts/src/applet-bookmarks.c:142
+#: ../shortcuts/src/applet-bookmarks.c:364
 #: ../shortcuts/src/applet-drives.c:268
 msgid "Unmounted"
 msgstr "Відмонтовано"
 
-#: ../shortcuts/src/applet-bookmarks.c:180
-#: ../shortcuts/src/applet-bookmarks.c:406
+#: ../shortcuts/src/applet-bookmarks.c:393
 msgid "Home Folder"
 msgstr "Домашня тека"
 
@@ -3110,43 +3107,57 @@ msgstr "Цей додаток поки що недоступний для KDE."
 msgid "No disks or bookmarks were found."
 msgstr "Не вдалося визначити диски або закладки."
 
-#: ../shortcuts/src/applet-notifications.c:189
+#: ../shortcuts/src/applet-notifications.c:210
 msgid "Enter a name for this bookmark:"
 msgstr "Вкажіть ім’я для цієї закладки:"
 
-#: ../shortcuts/src/applet-notifications.c:264
+#: ../shortcuts/src/applet-notifications.c:296
 msgid "Open Home directory"
 msgstr "Відкрити домашню теку"
 
-#: ../shortcuts/src/applet-notifications.c:270
+#: ../shortcuts/src/applet-notifications.c:304
 msgid "Connect to Server..."
 msgstr "З'єднання з сервером…"
 
-#: ../shortcuts/src/applet-notifications.c:276
+#: ../shortcuts/src/applet-notifications.c:307
+msgid "Browse Network"
+msgstr ""
+
+#: ../shortcuts/src/applet-notifications.c:309
+#, fuzzy
+msgid "Browse recent files"
+msgstr "Нещодавні файли"
+
+#: ../shortcuts/src/applet-notifications.c:311
+#, fuzzy
+msgid "Open Trash"
+msgstr "Спорожнити смітник"
+
+#: ../shortcuts/src/applet-notifications.c:317
 msgid "Rename this bookmark"
 msgstr "Перейменувати закладку"
 
-#: ../shortcuts/src/applet-notifications.c:277
+#: ../shortcuts/src/applet-notifications.c:318
 msgid "Remove this bookmark"
 msgstr "Видалити цю закладку"
 
-#: ../shortcuts/src/applet-notifications.c:283
+#: ../shortcuts/src/applet-notifications.c:324
 msgid "Eject"
 msgstr "Витягти"
 
-#: ../shortcuts/src/applet-notifications.c:288
+#: ../shortcuts/src/applet-notifications.c:329
 msgid "Unmount"
 msgstr "Демонтувати"
 
-#: ../shortcuts/src/applet-notifications.c:288
+#: ../shortcuts/src/applet-notifications.c:329
 msgid "Mount"
 msgstr "Змонтувати"
 
-#: ../shortcuts/src/applet-notifications.c:292
+#: ../shortcuts/src/applet-notifications.c:333
 msgid "Get disk info"
 msgstr "Отримати інформацію про диск"
 
-#: ../shortcuts/src/applet-notifications.c:318
+#: ../shortcuts/src/applet-notifications.c:359
 msgid "Only folders can be bookmarked."
 msgstr "В закладки можна додавати лише теки."
 
@@ -3156,8 +3167,8 @@ msgstr "Прикрасити курсор"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a "
-"dock/desklet."
+"This plugin draws some animations around the cursor when it's inside a dock/"
+"desklet."
 msgstr ""
 "Цей модуль прикрашає курсор різною анімацією, коли той знаходиться всередині "
 "панелі/десклету."
@@ -3254,64 +3265,64 @@ msgstr ""
 "Немає елементів у стеку.\n"
 "Ви можете додати файли, URL і навіть текст, просто перетягнувшиїх на значок."
 
-#: ../stack/src/applet-notifications.c:82
+#: ../stack/src/applet-notifications.c:92
 msgid "Clear the stack?"
 msgstr "Очистити стек?"
 
-#: ../stack/src/applet-notifications.c:103
+#: ../stack/src/applet-notifications.c:139
 msgid "Set new name for this item:"
 msgstr "Задати нове ім'я для елементу:"
 
-#: ../stack/src/applet-notifications.c:173
+#: ../stack/src/applet-notifications.c:202
 msgid "Paste (drag'n'drop)"
 msgstr "Вставити (перетягнути)"
 
-#: ../stack/src/applet-notifications.c:175
+#: ../stack/src/applet-notifications.c:204
 msgid "Clear the stack"
 msgstr "Очистити стек"
 
-#: ../stack/src/applet-notifications.c:180
+#: ../stack/src/applet-notifications.c:209
 msgid "Open (click)"
 msgstr "Відкрити (клацання)"
 
-#: ../stack/src/applet-notifications.c:185
+#: ../stack/src/applet-notifications.c:214
 #: ../terminal/src/terminal-callbacks.c:82
-#: ../terminal/src/terminal-widget.c:440
+#: ../terminal/src/terminal-widget.c:470
 msgid "Copy"
 msgstr "Копіювати"
 
-#: ../stack/src/applet-notifications.c:188
+#: ../stack/src/applet-notifications.c:217
 msgid "Cut"
 msgstr "Вирізати"
 
-#: ../stack/src/applet-notifications.c:191
+#: ../stack/src/applet-notifications.c:220
 msgid "Rename this item"
 msgstr "Перейменувати цей елемент"
 
-#: ../stack/src/applet-notifications.c:192
+#: ../stack/src/applet-notifications.c:221
 msgid "Remove this item"
 msgstr "Вилучити цей елемент"
 
-#: ../stack/src/applet-notifications.c:261
+#: ../stack/src/applet-notifications.c:290
 msgid "The file has been added to the stack."
 msgstr "Файл додано в стек"
 
-#: ../stack/src/applet-notifications.c:262
+#: ../stack/src/applet-notifications.c:291
 msgid "The URL has been added to the stack."
 msgstr "URL додано в стек"
 
 #: ../switcher/src/applet-draw.c:603 ../switcher/src/applet-draw.c:610
 #: ../switcher/src/applet-load-icons.c:53
-#: ../switcher/src/applet-notifications.c:415
+#: ../switcher/src/applet-notifications.c:428
 msgid "Current"
 msgstr "Поточний"
 
 #: ../switcher/src/applet-draw.c:610 ../switcher/src/applet-draw.c:612
 #: ../switcher/src/applet-load-icons.c:59
-#: ../switcher/src/applet-notifications.c:216
-#: ../switcher/src/applet-notifications.c:228
-#: ../switcher/src/applet-notifications.c:407
-#: ../switcher/src/applet-notifications.c:467
+#: ../switcher/src/applet-notifications.c:229
+#: ../switcher/src/applet-notifications.c:257
+#: ../switcher/src/applet-notifications.c:420
+#: ../switcher/src/applet-notifications.c:480
 msgid "Desktop"
 msgstr "Стільниця"
 
@@ -3339,35 +3350,35 @@ msgstr ""
 "Існує 2 режими: компактний (на одному значку) та розширений (з використанням "
 "суб-панелі)."
 
-#: ../switcher/src/applet-notifications.c:217
-#: ../switcher/src/applet-notifications.c:279
+#: ../switcher/src/applet-notifications.c:258
+#: ../switcher/src/applet-notifications.c:292
 msgid "Rename this workspace"
 msgstr "Перейменувати стільницю"
 
-#: ../switcher/src/applet-notifications.c:266
+#: ../switcher/src/applet-notifications.c:279
 msgid "Add a workspace"
 msgstr "Додати стільницю"
 
-#: ../switcher/src/applet-notifications.c:270
+#: ../switcher/src/applet-notifications.c:283
 msgid "Remove last workspace"
 msgstr "Видалити останню стільницю"
 
-#: ../switcher/src/applet-notifications.c:286
+#: ../switcher/src/applet-notifications.c:299
 msgid "Move current workspace to this workspace"
 msgstr "Перемістіть поточну стільницю на цю стільницю"
 
-#: ../switcher/src/applet-notifications.c:291
+#: ../switcher/src/applet-notifications.c:304
 msgid ""
 "This will move all windows from the current desktop to the one you clicked "
 "on."
 msgstr ""
 "Це перемістить всі вікна з поточної стільниці на ту, по якій ви клацнули."
 
-#: ../switcher/src/applet-notifications.c:300
+#: ../switcher/src/applet-notifications.c:313
 msgid "Windows List"
 msgstr "Список вікон"
 
-#: ../switcher/src/applet-notifications.c:305
+#: ../switcher/src/applet-notifications.c:318
 msgid "Show the desktop"
 msgstr "Показати стільницю"
 
@@ -3443,7 +3454,7 @@ msgid "Show/hide the terminal"
 msgstr "Показати/Приховати термінал"
 
 #: ../terminal/src/terminal-menu-functions.c:78
-#: ../terminal/src/terminal-widget.c:456
+#: ../terminal/src/terminal-widget.c:486
 msgid "New Tab"
 msgstr "Нова вкладка"
 
@@ -3459,34 +3470,39 @@ msgstr "Закрити поточну вкладку"
 msgid "Terminal"
 msgstr "Термінал"
 
-#: ../terminal/src/terminal-widget.c:167
+#: ../terminal/src/terminal-widget.c:215
 msgid "Set title for this tab:"
 msgstr "Задати заголовок для цієї вкладки"
 
-#: ../terminal/src/terminal-widget.c:243 ../terminal/src/terminal-widget.c:245
+#: ../terminal/src/terminal-widget.c:273 ../terminal/src/terminal-widget.c:275
 msgid "Select a color"
 msgstr "Виберіть колір"
 
-#: ../terminal/src/terminal-widget.c:400
+#: ../terminal/src/terminal-widget.c:430
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
 msgstr "Ви можете викликати десклет Терміналу, набравши %s"
 
-#: ../terminal/src/terminal-widget.c:446
+#: ../terminal/src/terminal-widget.c:476
 msgid "Paste"
 msgstr "Вставити"
 
-#: ../terminal/src/terminal-widget.c:462
+#: ../terminal/src/terminal-widget.c:492
 msgid "Rename this Tab"
 msgstr "Перейменувати цю вкладку"
 
-#: ../terminal/src/terminal-widget.c:468
+#: ../terminal/src/terminal-widget.c:498
 msgid "Change this Tab's colour"
 msgstr "Змінити колір цієї вкладки"
 
-#: ../terminal/src/terminal-widget.c:474
+#: ../terminal/src/terminal-widget.c:504
 msgid "Close this Tab"
 msgstr "Закрити цю вкладку"
+
+#: ../tomboy/src/tomboy-draw.c:198
+#, fuzzy
+msgid "Open all"
+msgstr "Відкрити файл"
 
 #: ../tomboy/src/tomboy-init.c:30
 msgid "Note-Taking"
@@ -3504,55 +3520,55 @@ msgstr ""
 "Середнє клацання, щоб відразу створити нову нотатку.\n"
 "Ви можете шукати всередині нотаток та відображати вміст на їх іконках."
 
-#: ../tomboy/src/tomboy-notifications.c:100
+#: ../tomboy/src/tomboy-notifications.c:118
 msgid "Note name : "
 msgstr "Ім’я нотатки: "
 
-#: ../tomboy/src/tomboy-notifications.c:123
+#: ../tomboy/src/tomboy-notifications.c:145
 msgid "Delete this note?"
 msgstr "Видалити цю нотатку?"
 
-#: ../tomboy/src/tomboy-notifications.c:138
+#: ../tomboy/src/tomboy-notifications.c:184
 msgid "Search for:"
 msgstr "Шукати:"
 
-#: ../tomboy/src/tomboy-notifications.c:154
+#: ../tomboy/src/tomboy-notifications.c:209
 msgid "Search for tag:"
 msgstr "Шукати тег:"
 
-#: ../tomboy/src/tomboy-notifications.c:195
+#: ../tomboy/src/tomboy-notifications.c:248
 msgid "Add a note"
 msgstr "Додати нотатку"
 
-#: ../tomboy/src/tomboy-notifications.c:199
+#: ../tomboy/src/tomboy-notifications.c:254
 msgid "Delete this note"
 msgstr "Видалити цю нотатку"
 
-#: ../tomboy/src/tomboy-notifications.c:202
+#: ../tomboy/src/tomboy-notifications.c:257
 msgid "Reload notes"
 msgstr "Оновити нотатки"
 
-#: ../tomboy/src/tomboy-notifications.c:208
+#: ../tomboy/src/tomboy-notifications.c:261
 msgid "Search"
 msgstr "Пошук"
 
-#: ../tomboy/src/tomboy-notifications.c:209
+#: ../tomboy/src/tomboy-notifications.c:262
 msgid "Search for tag"
 msgstr "Знайти тег"
 
-#: ../tomboy/src/tomboy-notifications.c:211
+#: ../tomboy/src/tomboy-notifications.c:264
 msgid "Search for today's note"
 msgstr "Знайти сьогоднішні нотатки"
 
-#: ../tomboy/src/tomboy-notifications.c:212
+#: ../tomboy/src/tomboy-notifications.c:265
 msgid "Search for this week's note"
 msgstr "Знайти тижневі нотатки"
 
-#: ../tomboy/src/tomboy-notifications.c:213
+#: ../tomboy/src/tomboy-notifications.c:266
 msgid "Search for next week's note"
 msgstr "Знайти нотатки для наступного тижня"
 
-#: ../tomboy/src/tomboy-notifications.c:223
+#: ../tomboy/src/tomboy-notifications.c:276
 msgid "Reset marks"
 msgstr "Видалити нотатки"
 
@@ -4143,17 +4159,16 @@ msgstr "Ім'я значка, як воно буде відображено в �
 #: ../Status-Notifier/data/messages:9 ../Sync-Menu/data/messages:9
 #: ../System-Monitor/data/messages:9 ../System-Monitor/data/messages:189
 #: ../System-Monitor/data/messages:197 ../Toons/data/messages:9
-#: ../alsaMixer/data/messages:145 ../alsaMixer/data/messages:155
-#: ../clock/data/messages:11 ../clock/data/messages:129
-#: ../dnd2share/data/messages:9 ../dustbin/data/messages:9
-#: ../keyboard-indicator/data/messages:9 ../logout/data/messages:9
-#: ../mail/data/messages:9 ../netspeed/data/messages:9
-#: ../shortcuts/data/messages:9 ../showDesktop/data/messages:9
-#: ../slider/data/messages:9 ../stack/data/messages:11
-#: ../switcher/data/messages:9 ../systray/data/messages:9
-#: ../template/data/messages:9 ../terminal/data/messages:9
-#: ../tomboy/data/messages:9 ../tomboy/data/messages:141
-#: ../weblets/data/messages:9
+#: ../alsaMixer/data/messages:153 ../clock/data/messages:11
+#: ../clock/data/messages:129 ../dnd2share/data/messages:9
+#: ../dustbin/data/messages:9 ../keyboard-indicator/data/messages:9
+#: ../logout/data/messages:9 ../mail/data/messages:9
+#: ../netspeed/data/messages:9 ../shortcuts/data/messages:9
+#: ../showDesktop/data/messages:9 ../slider/data/messages:9
+#: ../stack/data/messages:11 ../switcher/data/messages:9
+#: ../systray/data/messages:9 ../template/data/messages:9
+#: ../terminal/data/messages:9 ../tomboy/data/messages:9
+#: ../tomboy/data/messages:141 ../weblets/data/messages:9
 msgid "Default"
 msgstr "Типовий"
 
@@ -4459,8 +4474,8 @@ msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
 msgstr ""
-"Залежно від вашого менеджеру вікон, ви можете переміщувати за допомогою "
-"ALT+ліве клацання."
+"Залежно від вашого менеджеру вікон, ви можете переміщувати за допомогою ALT"
+"+ліве клацання."
 
 #: ../Clipper/data/messages:31 ../Composite-Manager/data/messages:29
 #: ../Disks/data/messages:47 ../Doncky/data/messages:31
@@ -4775,8 +4790,7 @@ msgstr "Оформлення"
 #: ../tomboy/data/messages:69 ../weather/data/messages:67
 #: ../weblets/data/messages:57 ../wifi/data/messages:65
 msgid "Choose 'Custom decorations' to define your own decorations below."
-msgstr ""
-"Виберіть 'Власне оформлення', щоб налаштувати власне оформлення нижче."
+msgstr "Виберіть 'Власне оформлення', щоб налаштувати власне оформлення нижче."
 
 #: ../Clipper/data/messages:59 ../Composite-Manager/data/messages:57
 #: ../Disks/data/messages:57 ../Doncky/data/messages:59
@@ -4842,7 +4856,7 @@ msgstr ""
 #: ../clock/data/messages:73 ../clock/data/messages:173
 #: ../dnd2share/data/messages:59 ../dustbin/data/messages:61
 #: ../keyboard-indicator/data/messages:71
-#: ../keyboard-indicator/data/messages:125 ../logout/data/messages:63
+#: ../keyboard-indicator/data/messages:133 ../logout/data/messages:63
 #: ../mail/data/messages:71 ../musicPlayer/data/messages:73
 #: ../netspeed/data/messages:71 ../powermanager/data/messages:73
 #: ../quick-browser/data/messages:65 ../shortcuts/data/messages:63
@@ -5222,7 +5236,7 @@ msgstr ""
 msgid "Paste into Selection?"
 msgstr "Вставляти у виділення?"
 
-#: ../Clipper/data/messages:123 ../keyboard-indicator/data/messages:99
+#: ../Clipper/data/messages:123
 msgid "Shortkey to pop-up the items menu:"
 msgstr "Комбінація клавіш для виклику меню елементів:"
 
@@ -5518,7 +5532,7 @@ msgstr "Показувати всі значення на одному граф�
 
 #: ../Disks/data/messages:133 ../Impulse/data/messages:85
 #: ../Status-Notifier/data/messages:103 ../alsaMixer/data/messages:99
-#: ../keyboard-indicator/data/messages:109 ../mail/data/messages:103
+#: ../keyboard-indicator/data/messages:117 ../mail/data/messages:103
 #: ../musicPlayer/data/messages:159 ../shortcuts/data/messages:91
 #: ../shortcuts/data/messages:101 ../slider/data/messages:163
 #: ../stack/data/messages:93 ../tomboy/data/messages:103
@@ -5634,8 +5648,7 @@ msgid "Background"
 msgstr "Тло"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid ""
-"You can have more attractive backgrounds using the Desklet decorations"
+msgid "You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Ви можете отримати привабливіше тло використовуючи Оформлення десклетів"
 
@@ -5772,6 +5785,11 @@ msgstr "Команда для налаштування меню:"
 #: ../GMenu/data/messages:103
 msgid "Show Logout and/or Shutdown : "
 msgstr "Показати Вихід та/або Вимкнення: "
+
+#: ../GMenu/data/messages:113
+#, fuzzy
+msgid "Preload icons at startup"
+msgstr "Дія при старті"
 
 #: ../Global-Menu/data/messages:85
 msgid ""
@@ -6098,11 +6116,13 @@ msgstr "Малювати лінії"
 #: ../Network-Monitor/data/messages:237 ../Network-Monitor/data/messages:241
 #: ../Network-Monitor/data/messages:245 ../Network-Monitor/data/messages:249
 #: ../Network-Monitor/data/messages:253 ../Network-Monitor/data/messages:257
-#: ../logout/data/messages:109 ../musicPlayer/data/messages:187
-#: ../musicPlayer/data/messages:191 ../musicPlayer/data/messages:195
-#: ../musicPlayer/data/messages:199 ../musicPlayer/data/messages:203
-#: ../tomboy/data/messages:13 ../tomboy/data/messages:17
-#: ../tomboy/data/messages:21 ../tomboy/data/messages:105
+#: ../keyboard-indicator/data/messages:105
+#: ../keyboard-indicator/data/messages:109 ../logout/data/messages:109
+#: ../musicPlayer/data/messages:187 ../musicPlayer/data/messages:191
+#: ../musicPlayer/data/messages:195 ../musicPlayer/data/messages:199
+#: ../musicPlayer/data/messages:203 ../tomboy/data/messages:13
+#: ../tomboy/data/messages:17 ../tomboy/data/messages:21
+#: ../tomboy/data/messages:105
 msgid "Leave empty to use the default icon."
 msgstr "Залишіть порожнім, щоб використовувати типовий."
 
@@ -6281,7 +6301,7 @@ msgid "Logo size:"
 msgstr "Розмір логотипу:"
 
 #: ../RSSreader/data/messages:173 ../dock-rendering/data/messages:47
-#: ../keyboard-indicator/data/messages:123
+#: ../keyboard-indicator/data/messages:131
 msgid "normal"
 msgstr "звичайний"
 
@@ -6373,7 +6393,7 @@ msgstr "Між 1 та 9, чим більше тим товстіше."
 msgid "Text size:"
 msgstr "Ширина тексту:"
 
-#: ../Scooby-Do/data/messages:37 ../keyboard-indicator/data/messages:115
+#: ../Scooby-Do/data/messages:37 ../keyboard-indicator/data/messages:123
 msgid "Outline text?"
 msgstr "Обмалювати текст?"
 
@@ -6797,11 +6817,11 @@ msgstr "Alsa"
 msgid "Sound card:"
 msgstr "Звукова карта для керування:"
 
-#: ../alsaMixer/data/messages:147
+#: ../alsaMixer/data/messages:145
 msgid "Select channel:"
 msgstr "Виберіть канал для керування:"
 
-#: ../alsaMixer/data/messages:149
+#: ../alsaMixer/data/messages:147
 msgid ""
 "On some cards, a channel only controls 1 side (right or left). You will then "
 "need to specify a second channel here, to control both sides. Most of the "
@@ -6811,11 +6831,11 @@ msgstr ""
 "або ліву). Тому вкажіть тут інший канал, щоб керувати обома сторонами. В "
 "більшості випадків просто залиште поле пустим."
 
-#: ../alsaMixer/data/messages:151
+#: ../alsaMixer/data/messages:149
 msgid "Choose a second channel to control (optional):"
 msgstr "За бажанням, можете вибрати інший канал для керування:"
 
-#: ../alsaMixer/data/messages:153
+#: ../alsaMixer/data/messages:151
 msgid "Specific command to run to show an advanced sound mixer:"
 msgstr "Вкажіть команду запуску розширеного звукового мікшеру:"
 
@@ -6916,7 +6936,7 @@ msgstr "Цифровий вигляд:"
 msgid "Use a custom font"
 msgstr "Використовувати власний шрифт"
 
-#: ../clock/data/messages:153 ../keyboard-indicator/data/messages:111
+#: ../clock/data/messages:153 ../keyboard-indicator/data/messages:119
 msgid "Font:"
 msgstr "Шрифт:"
 
@@ -7202,8 +7222,7 @@ msgstr "Висота точки сходження:"
 
 #: ../dock-rendering/data/messages:9
 msgid "The lower the value, the flatter the curve will appear."
-msgstr ""
-"Чим менше значення, тим більша частина кривої буде виглядати пласкою."
+msgstr "Чим менше значення, тим більша частина кривої буде виглядати пласкою."
 
 #: ../dock-rendering/data/messages:11
 msgid "Curvature of the curve in percent:"
@@ -7383,8 +7402,7 @@ msgid "Space between icons:"
 msgstr "Відстань між іконками:"
 
 #: ../dock-rendering/data/messages:117
-msgid ""
-"0 represents a flat wave, 1 means the wave is identical to other views."
+msgid "0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "При значенні 0 хвиля буде повністю пласкою, при значенні 1 хвиля буде "
 "ідентична іншим видам."
@@ -7606,8 +7624,7 @@ msgid "Colours"
 msgstr "Кольори"
 
 #: ../icon-effect/data/messages:71
-msgid ""
-"This will slightly alter your colours, so you may have to modify them."
+msgid "This will slightly alter your colours, so you may have to modify them."
 msgstr "Він ледве змінює колір, так що ви можете навіть не змінювати його."
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
@@ -7732,6 +7749,10 @@ msgstr "Чим вище значення, тим швидше значок бу�
 msgid "Attraction of the Black Hole:"
 msgstr "Сила всмоктування:"
 
+#: ../keyboard-indicator/data/messages:99
+msgid "General"
+msgstr ""
+
 #: ../keyboard-indicator/data/messages:101
 msgid "caps lock, num lock, etc."
 msgstr "caps lock, num lock, тощо"
@@ -7740,7 +7761,15 @@ msgstr "caps lock, num lock, тощо"
 msgid "Display keyboard locks as quick-info?"
 msgstr "Відображати стан клавіатурних режимів у швидкій інформації?"
 
-#: ../keyboard-indicator/data/messages:105
+#: ../keyboard-indicator/data/messages:107
+msgid "Icon image name for NumLock status:"
+msgstr ""
+
+#: ../keyboard-indicator/data/messages:111
+msgid "Icon image name for CapsLock status:"
+msgstr ""
+
+#: ../keyboard-indicator/data/messages:113
 msgid ""
 "in ms. Set to 0 if you don't want an animation when the keyboard layout "
 "changes."
@@ -7748,26 +7777,26 @@ msgstr ""
 "в мсек. Встановіть 0, щоб не використовувати анімацію під час зміни "
 "розкладки клавіатури."
 
-#: ../keyboard-indicator/data/messages:107
+#: ../keyboard-indicator/data/messages:115
 msgid "Duration of the transition animation:"
 msgstr "Час анімації переходу:"
 
-#: ../keyboard-indicator/data/messages:113
+#: ../keyboard-indicator/data/messages:121
 msgid "Text colour"
 msgstr "Колір тексту"
 
-#: ../keyboard-indicator/data/messages:117
+#: ../keyboard-indicator/data/messages:125
 msgid ""
 "the smaller is the text in the icon. 1 means the text fills all the icon."
 msgstr ""
 "Чим менше значення, тим менше розмір тексту на значку. При значенні 1, текст "
 "заповнить значок повністю."
 
-#: ../keyboard-indicator/data/messages:119
+#: ../keyboard-indicator/data/messages:127
 msgid "Relative size of the text :"
 msgstr "Відносний розмір тексту:"
 
-#: ../keyboard-indicator/data/messages:121
+#: ../keyboard-indicator/data/messages:129
 msgid "smaller"
 msgstr "менше"
 
@@ -7852,8 +7881,7 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Файл зображення для статусу 'є нові листи':"
 
 #: ../mail/data/messages:115
-msgid ""
-"If checked, the number of mails will be shown even if there is no mail."
+msgid "If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Якщо вибрано, то кількість листів буде показуватися навіть, якщо листів не "
 "має."
@@ -7939,10 +7967,8 @@ msgid "Blur amount:"
 msgstr "Якість розмиття:"
 
 #: ../musicPlayer/data/messages:7
-msgid ""
-"Leave it empty to display the name of the player currently controlled."
-msgstr ""
-"Залиште порожнім, щоб відображати ім'я програвача, яким зараз керуєте."
+msgid "Leave it empty to display the name of the player currently controlled."
+msgstr "Залиште порожнім, щоб відображати ім'я програвача, яким зараз керуєте."
 
 #: ../musicPlayer/data/messages:11
 msgid "Player name"
@@ -8351,8 +8377,7 @@ msgstr "Тривалість життя частинок:"
 #: ../show-mouse/data/messages:33
 msgid ""
 "The higher the value, the more particles will scatter from their source."
-msgstr ""
-"Чим більше значення, тим більше часток розсіюватиметься з їх джерела."
+msgstr "Чим більше значення, тим більше часток розсіюватиметься з їх джерела."
 
 #: ../show-mouse/data/messages:35
 msgid "Scattering:"
@@ -8949,8 +8974,7 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Позиція вертикальної смуги"
 
 #: ../weblets/data/messages:103
-msgid ""
-"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Це дозволить використовувати праве клацання для виклику меню Cairo-Dock."
 

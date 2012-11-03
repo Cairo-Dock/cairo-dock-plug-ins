@@ -7,16 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2012-09-30 15:12+0000\n"
 "PO-Revision-Date: 2012-09-30 17:33+0000\n"
 "Last-Translator: Péter Trombitás <trombipeti@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-10-01 04:54+0000\n"
 "X-Generator: Launchpad (build 16049)\n"
-"Language: hu\n"
 "X-Language: hu_HU\n"
 "X-Source-Language: en\n"
 
@@ -291,29 +290,30 @@ msgstr "Az Ablakkezelő beállításainak módosítása"
 #: ../Composite-Manager/src/applet-notifications.c:145
 #: ../Composite-Manager/src/applet-notifications.c:154
 #: ../Composite-Manager/src/applet-notifications.c:163
-#: ../Folders/src/applet-notifications.c:365
-#: ../GMenu/src/applet-notifications.c:81
+#: ../Folders/src/applet-notifications.c:394
+#: ../GMenu/src/applet-notifications.c:90
 #: ../RSSreader/src/applet-notifications.c:129
 #: ../System-Monitor/src/applet-notifications.c:106
 #: ../Xgamma/src/applet-notifications.c:87
 #: ../alsaMixer/src/applet-notifications.c:84
-#: ../dustbin/src/applet-notifications.c:135
+#: ../dustbin/src/applet-notifications.c:147
 #: ../mail/src/cd-mail-applet-notifications.c:154
 #: ../musicPlayer/src/applet-notifications.c:300
 #: ../netspeed/src/applet-notifications.c:94
 #: ../quick-browser/src/applet-notifications.c:41
-#: ../shortcuts/src/applet-notifications.c:264
-#: ../shortcuts/src/applet-notifications.c:288
+#: ../shortcuts/src/applet-notifications.c:296
+#: ../shortcuts/src/applet-notifications.c:329
 #: ../showDesktop/src/applet-notifications.c:165
 #: ../showDesktop/src/applet-notifications.c:177
 #: ../showDesktop/src/applet-notifications.c:189
 #: ../slider/src/applet-notifications.c:223
 #: ../slider/src/applet-notifications.c:265
-#: ../stack/src/applet-notifications.c:185
-#: ../switcher/src/applet-notifications.c:300
-#: ../switcher/src/applet-notifications.c:305
-#: ../switcher/src/applet-notifications.c:314
-#: ../switcher/src/applet-notifications.c:323
+#: ../stack/src/applet-notifications.c:214
+#: ../switcher/src/applet-notifications.c:313
+#: ../switcher/src/applet-notifications.c:318
+#: ../switcher/src/applet-notifications.c:327
+#: ../switcher/src/applet-notifications.c:336
+#: ../tomboy/src/tomboy-notifications.c:248
 #: ../wifi/src/applet-notifications.c:88
 msgid "middle-click"
 msgstr "középső egérgomb"
@@ -334,14 +334,14 @@ msgstr "Asztal megjelenítése"
 #: ../Composite-Manager/src/applet-notifications.c:145
 #: ../showDesktop/src/applet-notifications.c:177
 #: ../showDesktop/src/applet-notifications.c:179
-#: ../switcher/src/applet-notifications.c:314
+#: ../switcher/src/applet-notifications.c:327
 #: ../Composite-Manager/data/messages:131 ../showDesktop/data/messages:107
 #: ../showDesktop/data/messages:121 ../switcher/data/messages:145
 msgid "Expose all the desktops"
 msgstr "Összes asztal mutatása"
 
 #: ../Composite-Manager/src/applet-notifications.c:154
-#: ../switcher/src/applet-notifications.c:323
+#: ../switcher/src/applet-notifications.c:336
 #: ../Composite-Manager/data/messages:133 ../switcher/data/messages:147
 msgid "Expose all the windows"
 msgstr "Összes ablak mutatása"
@@ -374,8 +374,7 @@ msgstr "A modul bár hozzá lett adva, nem indítható."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid ""
-"The applet '%s' has been succefully updated and automatically reloaded"
+msgid "The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "A(z) '%s' kisalkalmazás frissítése sikeres volt, és automatikusan "
 "újratöltődött"
@@ -488,7 +487,7 @@ msgid ""
 "  - Middle-clic to reload values"
 msgstr ""
 
-#: ../Doncky/src/applet-notifications.c:214
+#: ../Doncky/src/applet-notifications.c:210
 msgid "It doesn't seem to be a valid XML file."
 msgstr "Ez nem tűnik érvényes XML fájlnak."
 
@@ -604,6 +603,14 @@ msgid "Execute"
 msgstr "Végrehajtás"
 
 #: ../Folders/src/applet-notifications.c:211
+msgid ""
+"Warning: could not delete this file.\n"
+"Please check file permissions."
+msgstr ""
+"Figyelem: nem lehet törölni a fájlt.\n"
+"Ellenőrizze a fájl jogosultságait."
+
+#: ../Folders/src/applet-notifications.c:225
 #, c-format
 msgid ""
 "You're about deleting this file\n"
@@ -614,19 +621,7 @@ msgstr ""
 "  (%s)\n"
 "Biztosan letörli a merevlemezről?"
 
-#: ../Folders/src/applet-notifications.c:221
-msgid ""
-"Warning: could not delete this file.\n"
-"Please check file permissions."
-msgstr ""
-"Figyelem: nem lehet törölni a fájlt.\n"
-"Ellenőrizze a fájl jogosultságait."
-
-#: ../Folders/src/applet-notifications.c:234
-msgid "Rename to:"
-msgstr "Átnevezés erre:"
-
-#: ../Folders/src/applet-notifications.c:241
+#: ../Folders/src/applet-notifications.c:244
 #, c-format
 msgid ""
 "Warning: could not rename %s.\n"
@@ -637,16 +632,16 @@ msgstr ""
 "Ellenőrizze a jogosultságokat \n"
 "és hogy a megadott fájlnév nem létezik-e már."
 
-#: ../Folders/src/applet-notifications.c:255
+#: ../Folders/src/applet-notifications.c:253
+msgid "Rename to:"
+msgstr "Átnevezés erre:"
+
+#: ../Folders/src/applet-notifications.c:268
 #: ../Scooby-Do/src/applet-backend-files.c:390
 msgid "Pick up a directory"
 msgstr "Könyvtár felvétele"
 
-#: ../Folders/src/applet-notifications.c:280
-msgid "Enter a file name:"
-msgstr "Írjon be egy fájlnevet:"
-
-#: ../Folders/src/applet-notifications.c:288
+#: ../Folders/src/applet-notifications.c:305
 #, c-format
 msgid ""
 "Warning: could not create %s.\n"
@@ -657,69 +652,73 @@ msgstr ""
 "Ellenőrizze a jogosultságokat \n"
 "és hogy a megadott fájlnév nem létezik-e már."
 
-#: ../Folders/src/applet-notifications.c:365
+#: ../Folders/src/applet-notifications.c:315
+msgid "Enter a file name:"
+msgstr "Írjon be egy fájlnevet:"
+
+#: ../Folders/src/applet-notifications.c:394
 msgid "Open the folder"
 msgstr "Mappa megnyitása"
 
-#: ../Folders/src/applet-notifications.c:372
+#: ../Folders/src/applet-notifications.c:401
 msgid "Rename this file"
 msgstr "Fájl átnevezése"
 
-#: ../Folders/src/applet-notifications.c:373
+#: ../Folders/src/applet-notifications.c:402
 msgid "Delete this file"
 msgstr "Fájl törlése"
 
-#: ../Folders/src/applet-notifications.c:374
+#: ../Folders/src/applet-notifications.c:403
 msgid "Move this file"
 msgstr "Fájl áthelyezése"
 
-#: ../Folders/src/applet-notifications.c:380
+#: ../Folders/src/applet-notifications.c:409
 #: ../Recent-Events/src/applet-dialog.c:270
 #: ../slider/src/applet-notifications.c:233
 msgid "Open with"
 msgstr "Megnyitás ezzel"
 
-#: ../Folders/src/applet-notifications.c:413
+#: ../Folders/src/applet-notifications.c:442
 msgid "Properties"
 msgstr "Jellemzők"
 
-#: ../Folders/src/applet-notifications.c:416
+#: ../Folders/src/applet-notifications.c:445
 msgid "Create a new file"
 msgstr "Új fájl létrehozása"
 
-#: ../Folders/src/applet-notifications.c:417
+#: ../Folders/src/applet-notifications.c:446
 msgid "Create a new folder"
 msgstr "Új mappa létrehozása"
 
-#: ../Folders/src/applet-notifications.c:422
+#: ../Folders/src/applet-notifications.c:451
 msgid "Sort by"
 msgstr "Rendezés"
 
-#: ../Folders/src/applet-notifications.c:423
+#: ../Folders/src/applet-notifications.c:452
 msgid "By name"
 msgstr "Név szerint"
 
-#: ../Folders/src/applet-notifications.c:424
+#: ../Folders/src/applet-notifications.c:453
 msgid "By date"
 msgstr "Dátum szerint"
 
-#: ../Folders/src/applet-notifications.c:425
+#: ../Folders/src/applet-notifications.c:454
 msgid "By size"
 msgstr "Méret szerint"
 
-#: ../Folders/src/applet-notifications.c:426
+#: ../Folders/src/applet-notifications.c:455
 msgid "By type"
 msgstr "Típus szerint"
 
-#: ../Folders/src/applet-notifications.c:468
+#: ../Folders/src/applet-notifications.c:497
 msgid "The folder has been imported."
 msgstr "A mappa sikeresen importálva."
 
-#: ../Folders/src/applet-notifications.c:529
+#: ../Folders/src/applet-notifications.c:558
 msgid "Do you want to import the content of the folder too?"
 msgstr "Szeretné a mappa tartalmát is importálni?"
 
-#: ../GMenu/src/applet-init.c:33
+#: ../GMenu/src/applet-init.c:35
 msgid ""
 "Displays the common Applications menu and the Recently used files.\n"
 "It is compatible with any XDG compliant menu (Gnome, XFCE, KDE, ...)\n"
@@ -734,35 +733,35 @@ msgstr ""
 "egy billentyű-kombinációt is, például ALT+F2)\n"
 "Beállíthat gyorsbillentyűt a menü megnyitására is (például ALT+F1)"
 
-#: ../GMenu/src/applet-init.c:39
+#: ../GMenu/src/applet-init.c:41
 msgid "Applications Menu"
 msgstr "Alkalmazások menü"
 
-#: ../GMenu/src/applet-init.c:66
+#: ../GMenu/src/applet-init.c:108
 msgid "Show/hide the Applications menu"
 msgstr ""
 
-#: ../GMenu/src/applet-init.c:71
+#: ../GMenu/src/applet-init.c:113
 msgid "Show/hide the quick-launch dialog"
 msgstr ""
 
-#: ../GMenu/src/applet-menu-callbacks.c:174 ../GMenu/data/messages:107
+#: ../GMenu/src/applet-menu-callbacks.c:175 ../GMenu/data/messages:107
 msgid "Logout"
 msgstr "Kijelentkezés"
 
-#: ../GMenu/src/applet-menu-callbacks.c:177 ../GMenu/data/messages:109
+#: ../GMenu/src/applet-menu-callbacks.c:178 ../GMenu/data/messages:109
 msgid "Shutdown"
 msgstr "Leállítás"
 
-#: ../GMenu/src/applet-notifications.c:81
+#: ../GMenu/src/applet-notifications.c:90
 msgid "Quick launch"
 msgstr "Gyorsindítás"
 
-#: ../GMenu/src/applet-notifications.c:105
+#: ../GMenu/src/applet-notifications.c:107
 msgid "Configure menu"
 msgstr "Menüszerkesztő"
 
-#: ../GMenu/src/applet-notifications.c:108
+#: ../GMenu/src/applet-notifications.c:110
 msgid "Clear recent"
 msgstr "Legutóbbi dokumentumok törlése..."
 
@@ -770,7 +769,7 @@ msgstr "Legutóbbi dokumentumok törlése..."
 msgid "Recent Documents"
 msgstr "Legutóbbi dokumentumok"
 
-#: ../GMenu/src/applet-recent.c:108
+#: ../GMenu/src/applet-recent.c:117
 msgid "Clear the list of the recently used documents?"
 msgstr "Törli a legutóbbi dokumentumok listáját?"
 
@@ -1042,7 +1041,7 @@ msgid "Open with your web browser"
 msgstr "Megnyitás webböngészővel"
 
 #: ../RSSreader/src/applet-notifications.c:129
-#: ../switcher/src/applet-notifications.c:332
+#: ../switcher/src/applet-notifications.c:345
 msgid "Refresh"
 msgstr "Frissítés"
 
@@ -1097,7 +1096,7 @@ msgstr ""
 "Van internetkapcsolata?"
 
 #: ../Recent-Events/src/applet-dialog.c:294
-#: ../stack/src/applet-notifications.c:183
+#: ../stack/src/applet-notifications.c:212
 msgid "Open parent folder"
 msgstr "Tartalmazó mappa megnyitása"
 
@@ -1263,7 +1262,7 @@ msgid "Open in new window"
 msgstr "Megnyitás új ablakban"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:432
-#: ../dnd2share/src/applet-notifications.c:487
+#: ../dnd2share/src/applet-notifications.c:494
 msgid "Open file"
 msgstr "Fájl megnyitása"
 
@@ -1333,12 +1332,12 @@ msgid "No result"
 msgstr "Nincs találat"
 
 #: ../Scooby-Do/src/applet-listing.c:681 ../Scooby-Do/src/applet-search.c:358
-#: ../tomboy/src/tomboy-draw.c:156 ../tomboy/src/tomboy-draw.c:169
+#: ../tomboy/src/tomboy-draw.c:213
 msgid "results"
 msgstr "találatok"
 
 #: ../Scooby-Do/src/applet-listing.c:681 ../Scooby-Do/src/applet-search.c:358
-#: ../tomboy/src/tomboy-draw.c:156 ../tomboy/src/tomboy-draw.c:169
+#: ../tomboy/src/tomboy-draw.c:213
 msgid "result"
 msgstr "találat"
 
@@ -1523,8 +1522,7 @@ msgstr "Szemek"
 
 #: ../Toons/src/applet-init.c:32
 msgid "This applet displays a toon that will look at your mouse."
-msgstr ""
-"Ez a kisalkalmazás megjelenít egy rajzfigurát, ami az egerét figyeli."
+msgstr "Ez a kisalkalmazás megjelenít egy rajzfigurát, ami az egerét figyeli."
 
 #: ../Xgamma/src/applet-init.c:44
 msgid ""
@@ -1585,34 +1583,34 @@ msgstr "Gamma beállítása:"
 msgid "Luminosity"
 msgstr "Fényerő"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:45
+#: ../alsaMixer/src/applet-backend-alsamixer.c:71
 #, c-format
 msgid "I couldn't open card '%s'"
 msgstr "Nem sikerült megnyitni a(z) '%s' kártyát"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:50
+#: ../alsaMixer/src/applet-backend-alsamixer.c:77
 #, c-format
 msgid "Card '%s' opened but I couldn't get any info"
 msgstr ""
 "A(z) '%s' kártya meg van nyitva, de nem férek hozzá semmilyen információhoz"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:58
+#: ../alsaMixer/src/applet-backend-alsamixer.c:86
 msgid "I couldn't open the mixer"
 msgstr "Nem sikerült megnyitni a keverőt"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:65
+#: ../alsaMixer/src/applet-backend-alsamixer.c:95
 msgid "I couldn't attach the mixer to the card"
 msgstr "Nem sikerült csatolni a keverőt a hangkártyához"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:72
+#: ../alsaMixer/src/applet-backend-alsamixer.c:103
 msgid "I couldn't register options"
 msgstr "Nem sikerült regisztrálni a beállításokat"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:79
+#: ../alsaMixer/src/applet-backend-alsamixer.c:111
 msgid "I couldn't load the mixer"
 msgstr "Nem sikerült betölteni a keverőt"
 
-#: ../alsaMixer/src/applet-backend-alsamixer.c:259
+#: ../alsaMixer/src/applet-backend-alsamixer.c:318
 msgid "Set up volume:"
 msgstr "Hangerőbeállítás:"
 
@@ -1658,7 +1656,7 @@ msgstr "Némítás"
 
 #: ../clock/src/applet-calendar.c:193 ../clock/src/applet-calendar.c:274
 #: ../clock/src/applet-calendar.c:528 ../clock/src/applet-calendar.c:533
-#: ../clock/src/applet-calendar.c:575 ../clock/src/applet-task-editor.c:118
+#: ../clock/src/applet-calendar.c:575 ../clock/src/applet-task-editor.c:120
 #: ../clock/src/applet-timer.c:98 ../clock/src/applet-timer.c:186
 #: ../clock/src/applet-timer.c:466 ../clock/src/applet-timer.c:480
 #: ../clock/src/applet-timer.c:514
@@ -1669,7 +1667,7 @@ msgstr "Cím nélkül"
 msgid "years"
 msgstr "évek"
 
-#: ../clock/src/applet-calendar.c:605 ../clock/src/applet-task-editor.c:155
+#: ../clock/src/applet-calendar.c:605 ../clock/src/applet-task-editor.c:157
 msgid "Add a new task"
 msgstr "Új feladat hozzáadása"
 
@@ -1779,8 +1777,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
-"tasks</b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
+"b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1832,54 +1830,54 @@ msgstr "E heti feladatok mutatása"
 msgid "Set up time and date"
 msgstr "Idő és dátum beállítása"
 
-#: ../clock/src/applet-task-editor.c:176
+#: ../clock/src/applet-task-editor.c:178
 msgid "Delete this task"
 msgstr "Feladat törlése"
 
-#: ../clock/src/applet-task-editor.c:214
+#: ../clock/src/applet-task-editor.c:216
 msgid "Don't repeat"
 msgstr "Ne ismételje"
 
-#: ../clock/src/applet-task-editor.c:220
+#: ../clock/src/applet-task-editor.c:222
 msgid "Each month"
 msgstr "Minden hónapban"
 
-#: ../clock/src/applet-task-editor.c:226
+#: ../clock/src/applet-task-editor.c:228
 msgid "Each year"
 msgstr "Minden évben"
 
-#: ../clock/src/applet-task-editor.c:349
+#: ../clock/src/applet-task-editor.c:351
 msgid "each month"
 msgstr "minden hónapban"
 
-#: ../clock/src/applet-task-editor.c:352
+#: ../clock/src/applet-task-editor.c:354
 msgid "each year"
 msgstr "minden évben"
 
-#: ../clock/src/applet-task-editor.c:407
+#: ../clock/src/applet-task-editor.c:410
 msgid "Right-click to add a new task."
 msgstr "Kattintson jobb egérgombbal új feladat hozzáadásához."
 
-#: ../clock/src/applet-task-editor.c:413 ../musicPlayer/src/applet-draw.c:153
+#: ../clock/src/applet-task-editor.c:416 ../musicPlayer/src/applet-draw.c:153
 #: ../RSSreader/data/messages:133
 msgid "Title"
 msgstr "Cím"
 
-#: ../clock/src/applet-task-editor.c:420
-#: ../dnd2share/src/applet-notifications.c:391 ../Doncky/data/messages:95
+#: ../clock/src/applet-task-editor.c:423
+#: ../dnd2share/src/applet-notifications.c:398 ../Doncky/data/messages:95
 #: ../RSSreader/data/messages:149
 msgid "Text"
 msgstr "Szöveg"
 
-#: ../clock/src/applet-task-editor.c:427
+#: ../clock/src/applet-task-editor.c:430
 msgid "Time"
 msgstr "Idő"
 
-#: ../clock/src/applet-task-editor.c:441
+#: ../clock/src/applet-task-editor.c:444
 msgid "Freq."
 msgstr "Frekv."
 
-#: ../clock/src/applet-task-editor.c:448
+#: ../clock/src/applet-task-editor.c:451
 msgid "Tags"
 msgstr "Címkék"
 
@@ -1991,8 +1989,7 @@ msgstr ""
 "A CTRL+v megnyomásával illesztheti be az URL-címét."
 
 #: ../dnd2share/src/applet-dnd2share.c:333
-msgid ""
-"Please wait for the current upload to finish before starting a new one."
+msgid "Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Kérem várjon, amíg a jelenlegi feltöltés befejeződik, mielőtt újat indít."
 
@@ -2025,11 +2022,11 @@ msgstr ""
 msgid "Drop to share"
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:33
+#: ../dnd2share/src/applet-notifications.c:43
 msgid "Clear the list of the recently uploaded files?"
 msgstr "Törli a legutóbb feltöltött fájlok listáját?"
 
-#: ../dnd2share/src/applet-notifications.c:51
+#: ../dnd2share/src/applet-notifications.c:58
 msgid ""
 "The text has been pasted in the clipboard.\n"
 "You can retrieve it with CTRL+v."
@@ -2037,11 +2034,11 @@ msgstr ""
 "A szöveg a vágólapra került.\n"
 "A CTRL+v megnyomásával érheti el."
 
-#: ../dnd2share/src/applet-notifications.c:73
+#: ../dnd2share/src/applet-notifications.c:80
 msgid "Sorry, couldn't find the original file nor a preview of it."
 msgstr "Sajnálom, nem található sem az eredeti fájl, sem az előnézete."
 
-#: ../dnd2share/src/applet-notifications.c:98
+#: ../dnd2share/src/applet-notifications.c:105
 msgid ""
 "The URL has been stored in the clipboard.\n"
 "Just use 'CTRL+v' to paste it anywhere."
@@ -2049,7 +2046,7 @@ msgstr ""
 "Az URL-cím a vágólapra került.\n"
 "A 'CTRL+v' megnyomásával illesztheti be."
 
-#: ../dnd2share/src/applet-notifications.c:113
+#: ../dnd2share/src/applet-notifications.c:120
 msgid ""
 "No uploaded file available\n"
 ".Just drag'n drop a file on the icon to upload it"
@@ -2057,7 +2054,7 @@ msgstr ""
 "Nincs elérhető feltöltött fájl.\n"
 "Fájl feltöltéséhez húzza azt egyszerűen az ikonra."
 
-#: ../dnd2share/src/applet-notifications.c:114
+#: ../dnd2share/src/applet-notifications.c:121
 msgid ""
 "No uploaded file available.\n"
 "Consider activating the history if you want the applet to remember previous "
@@ -2067,7 +2064,7 @@ msgstr ""
 "Kapcsolja be az előzményeket, ha azt akarja, hogy a kisalkalmazás emlékezzen "
 "a korábbi feltöltésekre."
 
-#: ../dnd2share/src/applet-notifications.c:131
+#: ../dnd2share/src/applet-notifications.c:138
 msgid ""
 "The current URL has been stored in the clipboard.\n"
 "Just use 'CTRL+v' to paste it anywhere."
@@ -2075,7 +2072,7 @@ msgstr ""
 "A jelenlegi URL-cím tárolásra került a vágólapon.\n"
 "Használja a 'CTRL+V' billentyű-kombinációt a beillesztéshez."
 
-#: ../dnd2share/src/applet-notifications.c:132
+#: ../dnd2share/src/applet-notifications.c:139
 msgid ""
 "The current URL has been stored into the selection.\n"
 "Just middle-click to paste it anywhere."
@@ -2083,35 +2080,35 @@ msgstr ""
 "A jelenlegi URL-cím tárolásra került a a kijelölésben.\n"
 "Középső egérgombbal kattintva illesztheti be."
 
-#: ../dnd2share/src/applet-notifications.c:391
+#: ../dnd2share/src/applet-notifications.c:398
 msgid "File"
 msgstr "Fájl"
 
-#: ../dnd2share/src/applet-notifications.c:394
+#: ../dnd2share/src/applet-notifications.c:401
 msgid "Click on the icon to copy the URL into the clipboard."
 msgstr "Kattintson az ikonra az URL-cím vágólapra másolásához."
 
-#: ../dnd2share/src/applet-notifications.c:406
+#: ../dnd2share/src/applet-notifications.c:413
 msgid "Send the clipboard's content"
 msgstr "Vágólap tartalmának kijelölése"
 
-#: ../dnd2share/src/applet-notifications.c:409
+#: ../dnd2share/src/applet-notifications.c:416
 msgid "History"
 msgstr "Előzmények"
 
-#: ../dnd2share/src/applet-notifications.c:489
+#: ../dnd2share/src/applet-notifications.c:496
 msgid "Get text"
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:491
+#: ../dnd2share/src/applet-notifications.c:498
 msgid "Remove from history"
 msgstr "Eltávolítás az előzményekből"
 
-#: ../dnd2share/src/applet-notifications.c:494
+#: ../dnd2share/src/applet-notifications.c:501
 msgid "Clear History"
 msgstr "Előzmények törlése"
 
-#: ../dnd2share/src/applet-notifications.c:499
+#: ../dnd2share/src/applet-notifications.c:506
 msgid "Use only a files hosting site"
 msgstr ""
 
@@ -2168,57 +2165,57 @@ msgstr ""
 "ikonra.\n"
 "Ha középső egérgombbal kattint az ikonra, kiürítheti a kukát."
 
-#: ../dustbin/src/applet-notifications.c:32
+#: ../dustbin/src/applet-notifications.c:40
 msgid "You're about to delete all files in all dustbins. Sure ?"
 msgstr "Biztosan töröl minden fájl a lomtárból?"
 
-#: ../dustbin/src/applet-notifications.c:91
+#: ../dustbin/src/applet-notifications.c:103
 msgid "The trash contains"
 msgstr "A kuka tartalma"
 
-#: ../dustbin/src/applet-notifications.c:93
+#: ../dustbin/src/applet-notifications.c:105
 msgid "files"
 msgstr "fájlok"
 
-#: ../dustbin/src/applet-notifications.c:93
+#: ../dustbin/src/applet-notifications.c:105
 msgid "elements"
 msgstr "elemek"
 
-#: ../dustbin/src/applet-notifications.c:95
+#: ../dustbin/src/applet-notifications.c:107
 msgid "Mo"
 msgstr "Mo"
 
-#: ../dustbin/src/applet-notifications.c:95
+#: ../dustbin/src/applet-notifications.c:107
 msgid "Ko"
 msgstr "Ko"
 
-#: ../dustbin/src/applet-notifications.c:114
+#: ../dustbin/src/applet-notifications.c:126
 msgid "Counting total size and files number..."
 msgstr "Teljes méret és fájlok számának kiszámítása..."
 
-#: ../dustbin/src/applet-notifications.c:134
+#: ../dustbin/src/applet-notifications.c:146
 msgid "Show Trash (click)"
 msgstr "Kuka megjelenítése (bal kattintás)"
 
-#: ../dustbin/src/applet-notifications.c:135
+#: ../dustbin/src/applet-notifications.c:147
 msgid "Empty Trash"
 msgstr "Kuka ürítése"
 
-#: ../dustbin/src/applet-notifications.c:139
+#: ../dustbin/src/applet-notifications.c:151
 msgid "Display dustbins information"
 msgstr "Kukainformációk megjelenítése"
 
-#: ../dustbin/src/applet-notifications.c:149
+#: ../dustbin/src/applet-notifications.c:161
 #, c-format
 msgid "%s successfully unmounted"
 msgstr "%s leválasztva."
 
-#: ../dustbin/src/applet-notifications.c:153
+#: ../dustbin/src/applet-notifications.c:165
 #, c-format
 msgid "failed to unmount %s"
 msgstr "%s leválasztása sikertelen"
 
-#: ../dustbin/src/applet-notifications.c:177
+#: ../dustbin/src/applet-notifications.c:189
 #: ../shortcuts/src/applet-notifications.c:163
 msgid "Unmouting this volume ..."
 msgstr "Meghajtó lecsatolása..."
@@ -2391,34 +2388,34 @@ msgstr "Automatikus leállítás beállítása"
 msgid "Your computer will shut-down in 1 minute."
 msgstr "A számítógép 1 perc múlva leáll."
 
-#: ../logout/src/applet-logout.c:367
+#: ../logout/src/applet-logout.c:390
 msgid "Choose in how many minutes your PC will stop:"
 msgstr "Adja meg, hány perc múlva álljon le számítógépe:"
 
-#: ../logout/src/applet-logout.c:420
+#: ../logout/src/applet-logout.c:430
 msgid ""
 "Your session needs to be restarted in order to update new configuration "
 "files."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:423
+#: ../logout/src/applet-logout.c:433
 msgid "Please do that at the end of the update."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:636
+#: ../logout/src/applet-logout.c:646
 #, c-format
 msgid "It will automatically shut-down in %ds"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:637
+#: ../logout/src/applet-logout.c:647
 msgid "Shut down the computer?"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:697
+#: ../logout/src/applet-logout.c:707
 msgid "Restart the computer?"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:734
+#: ../logout/src/applet-logout.c:744
 msgid "Close the current session?"
 msgstr ""
 
@@ -2955,14 +2952,13 @@ msgstr "Könyvtár megnyitása"
 msgid "Open folder"
 msgstr "Könyvtár megnyitása"
 
-#: ../shortcuts/src/applet-bookmarks.c:134
-#: ../shortcuts/src/applet-bookmarks.c:377
+#: ../shortcuts/src/applet-bookmarks.c:142
+#: ../shortcuts/src/applet-bookmarks.c:364
 #: ../shortcuts/src/applet-drives.c:268
 msgid "Unmounted"
 msgstr "Lecsatolva"
 
-#: ../shortcuts/src/applet-bookmarks.c:180
-#: ../shortcuts/src/applet-bookmarks.c:406
+#: ../shortcuts/src/applet-bookmarks.c:393
 msgid "Home Folder"
 msgstr ""
 
@@ -3028,43 +3024,57 @@ msgstr "Sajnáljuk, de ez a kisalkalmazás még nem elérhető KDE-re."
 msgid "No disks or bookmarks were found."
 msgstr "Nem találhatók lemezek, se könyvjelzők."
 
-#: ../shortcuts/src/applet-notifications.c:189
+#: ../shortcuts/src/applet-notifications.c:210
 msgid "Enter a name for this bookmark:"
 msgstr "Írja be a könyvjelző nevét:"
 
-#: ../shortcuts/src/applet-notifications.c:264
+#: ../shortcuts/src/applet-notifications.c:296
 msgid "Open Home directory"
 msgstr "Saját mappa megnyitása"
 
-#: ../shortcuts/src/applet-notifications.c:270
+#: ../shortcuts/src/applet-notifications.c:304
 msgid "Connect to Server..."
 msgstr ""
 
-#: ../shortcuts/src/applet-notifications.c:276
+#: ../shortcuts/src/applet-notifications.c:307
+msgid "Browse Network"
+msgstr ""
+
+#: ../shortcuts/src/applet-notifications.c:309
+#, fuzzy
+msgid "Browse recent files"
+msgstr "Legutóbbi fájlok"
+
+#: ../shortcuts/src/applet-notifications.c:311
+#, fuzzy
+msgid "Open Trash"
+msgstr "Kuka ürítése"
+
+#: ../shortcuts/src/applet-notifications.c:317
 msgid "Rename this bookmark"
 msgstr "Könyvjelző átnevezése"
 
-#: ../shortcuts/src/applet-notifications.c:277
+#: ../shortcuts/src/applet-notifications.c:318
 msgid "Remove this bookmark"
 msgstr "Könyvjelző eltávolítása"
 
-#: ../shortcuts/src/applet-notifications.c:283
+#: ../shortcuts/src/applet-notifications.c:324
 msgid "Eject"
 msgstr "Kiadás"
 
-#: ../shortcuts/src/applet-notifications.c:288
+#: ../shortcuts/src/applet-notifications.c:329
 msgid "Unmount"
 msgstr "Leválasztás"
 
-#: ../shortcuts/src/applet-notifications.c:288
+#: ../shortcuts/src/applet-notifications.c:329
 msgid "Mount"
 msgstr "Csatolás"
 
-#: ../shortcuts/src/applet-notifications.c:292
+#: ../shortcuts/src/applet-notifications.c:333
 msgid "Get disk info"
 msgstr "Lemezinformációk beszerzése"
 
-#: ../shortcuts/src/applet-notifications.c:318
+#: ../shortcuts/src/applet-notifications.c:359
 msgid "Only folders can be bookmarked."
 msgstr "Csak a mappákat adhat hozzá könyvjelzőként."
 
@@ -3074,8 +3084,8 @@ msgstr "Egér mutatása"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a "
-"dock/desklet."
+"This plugin draws some animations around the cursor when it's inside a dock/"
+"desklet."
 msgstr ""
 "Ez a bővítmény animációt jelenít meg az egér körül, ha az a dokk/desklet "
 "területén van."
@@ -3178,64 +3188,64 @@ msgstr ""
 "Hozzáadhat fájlokat, URL-t vagy akár néhány sornyi szöveget is, ha az ikonra "
 "ejti azt."
 
-#: ../stack/src/applet-notifications.c:82
+#: ../stack/src/applet-notifications.c:92
 msgid "Clear the stack?"
 msgstr "Törli a csomagot?"
 
-#: ../stack/src/applet-notifications.c:103
+#: ../stack/src/applet-notifications.c:139
 msgid "Set new name for this item:"
 msgstr "Elem új nevének megadása:"
 
-#: ../stack/src/applet-notifications.c:173
+#: ../stack/src/applet-notifications.c:202
 msgid "Paste (drag'n'drop)"
 msgstr "Beillesztés (\"fogd és vidd\")"
 
-#: ../stack/src/applet-notifications.c:175
+#: ../stack/src/applet-notifications.c:204
 msgid "Clear the stack"
 msgstr "Csomag törlése"
 
-#: ../stack/src/applet-notifications.c:180
+#: ../stack/src/applet-notifications.c:209
 msgid "Open (click)"
 msgstr "Megnyitás (kattintson)"
 
-#: ../stack/src/applet-notifications.c:185
+#: ../stack/src/applet-notifications.c:214
 #: ../terminal/src/terminal-callbacks.c:82
-#: ../terminal/src/terminal-widget.c:440
+#: ../terminal/src/terminal-widget.c:470
 msgid "Copy"
 msgstr "Másolás"
 
-#: ../stack/src/applet-notifications.c:188
+#: ../stack/src/applet-notifications.c:217
 msgid "Cut"
 msgstr "Kivágás"
 
-#: ../stack/src/applet-notifications.c:191
+#: ../stack/src/applet-notifications.c:220
 msgid "Rename this item"
 msgstr "Elem átnevezése"
 
-#: ../stack/src/applet-notifications.c:192
+#: ../stack/src/applet-notifications.c:221
 msgid "Remove this item"
 msgstr "Elem eltávolítása"
 
-#: ../stack/src/applet-notifications.c:261
+#: ../stack/src/applet-notifications.c:290
 msgid "The file has been added to the stack."
 msgstr "A fájl hozzá lett adva a csomaghoz."
 
-#: ../stack/src/applet-notifications.c:262
+#: ../stack/src/applet-notifications.c:291
 msgid "The URL has been added to the stack."
 msgstr "Az Url hozzá lett adva a csomaghoz."
 
 #: ../switcher/src/applet-draw.c:603 ../switcher/src/applet-draw.c:610
 #: ../switcher/src/applet-load-icons.c:53
-#: ../switcher/src/applet-notifications.c:415
+#: ../switcher/src/applet-notifications.c:428
 msgid "Current"
 msgstr "Jelenlegi"
 
 #: ../switcher/src/applet-draw.c:610 ../switcher/src/applet-draw.c:612
 #: ../switcher/src/applet-load-icons.c:59
-#: ../switcher/src/applet-notifications.c:216
-#: ../switcher/src/applet-notifications.c:228
-#: ../switcher/src/applet-notifications.c:407
-#: ../switcher/src/applet-notifications.c:467
+#: ../switcher/src/applet-notifications.c:229
+#: ../switcher/src/applet-notifications.c:257
+#: ../switcher/src/applet-notifications.c:420
+#: ../switcher/src/applet-notifications.c:480
 msgid "Desktop"
 msgstr "Asztal"
 
@@ -3254,24 +3264,24 @@ msgid ""
 "It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock)."
 msgstr ""
 
-#: ../switcher/src/applet-notifications.c:217
-#: ../switcher/src/applet-notifications.c:279
+#: ../switcher/src/applet-notifications.c:258
+#: ../switcher/src/applet-notifications.c:292
 msgid "Rename this workspace"
 msgstr "Munkaterület átnevezése"
 
-#: ../switcher/src/applet-notifications.c:266
+#: ../switcher/src/applet-notifications.c:279
 msgid "Add a workspace"
 msgstr "Munkaterület hozzáadása"
 
-#: ../switcher/src/applet-notifications.c:270
+#: ../switcher/src/applet-notifications.c:283
 msgid "Remove last workspace"
 msgstr "Legutóbbi munkaterület törlése"
 
-#: ../switcher/src/applet-notifications.c:286
+#: ../switcher/src/applet-notifications.c:299
 msgid "Move current workspace to this workspace"
 msgstr "Jelenlegi munkaterület mozgatása erre a munkaterületre"
 
-#: ../switcher/src/applet-notifications.c:291
+#: ../switcher/src/applet-notifications.c:304
 msgid ""
 "This will move all windows from the current desktop to the one you clicked "
 "on."
@@ -3279,11 +3289,11 @@ msgstr ""
 "Ez a jelenlegi munkaterület összes ablakát áthelyezi a kiválasztott "
 "munkaterületre."
 
-#: ../switcher/src/applet-notifications.c:300
+#: ../switcher/src/applet-notifications.c:313
 msgid "Windows List"
 msgstr "Ablaklista"
 
-#: ../switcher/src/applet-notifications.c:305
+#: ../switcher/src/applet-notifications.c:318
 msgid "Show the desktop"
 msgstr "Asztal megjelenítése"
 
@@ -3296,8 +3306,8 @@ msgid ""
 "somewhere, above other windows."
 msgstr ""
 "Rendszertálca hozzáadása a dokkhoz.\n"
-"Kattintson bal egérgombbal a tálca párbeszédablakának "
-"megjelenítéséhez/elrejtéséhez (gyorsbillentyűt is állíthat be rá.)\n"
+"Kattintson bal egérgombbal a tálca párbeszédablakának megjelenítéséhez/"
+"elrejtéséhez (gyorsbillentyűt is állíthat be rá.)\n"
 "De a legjobb mód a használatára az, ha leválasztja a dokkról, és máshova "
 "helyezi, a többi ablak fölé."
 
@@ -3361,7 +3371,7 @@ msgid "Show/hide the terminal"
 msgstr ""
 
 #: ../terminal/src/terminal-menu-functions.c:78
-#: ../terminal/src/terminal-widget.c:456
+#: ../terminal/src/terminal-widget.c:486
 msgid "New Tab"
 msgstr "Új lap"
 
@@ -3377,34 +3387,39 @@ msgstr "Aktuális lap bezárása"
 msgid "Terminal"
 msgstr "Terminál"
 
-#: ../terminal/src/terminal-widget.c:167
+#: ../terminal/src/terminal-widget.c:215
 msgid "Set title for this tab:"
 msgstr "Adja meg a lap címét:"
 
-#: ../terminal/src/terminal-widget.c:243 ../terminal/src/terminal-widget.c:245
+#: ../terminal/src/terminal-widget.c:273 ../terminal/src/terminal-widget.c:275
 msgid "Select a color"
 msgstr "Válasszon egy színt"
 
-#: ../terminal/src/terminal-widget.c:400
+#: ../terminal/src/terminal-widget.c:430
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
 msgstr "Visszahívhatja a terminál-deskletet a(z) %s begépelésével"
 
-#: ../terminal/src/terminal-widget.c:446
+#: ../terminal/src/terminal-widget.c:476
 msgid "Paste"
 msgstr "Beillesztés"
 
-#: ../terminal/src/terminal-widget.c:462
+#: ../terminal/src/terminal-widget.c:492
 msgid "Rename this Tab"
 msgstr "Lap átnevezése"
 
-#: ../terminal/src/terminal-widget.c:468
+#: ../terminal/src/terminal-widget.c:498
 msgid "Change this Tab's colour"
 msgstr "Lap színének megváltoztatása"
 
-#: ../terminal/src/terminal-widget.c:474
+#: ../terminal/src/terminal-widget.c:504
 msgid "Close this Tab"
 msgstr "Lap bezárása"
+
+#: ../tomboy/src/tomboy-draw.c:198
+#, fuzzy
+msgid "Open all"
+msgstr "Fájl megnyitása"
 
 #: ../tomboy/src/tomboy-init.c:30
 msgid "Note-Taking"
@@ -3422,55 +3437,55 @@ msgstr ""
 "Kattintson középső egérgombbal új jegyzet azonnali létrehozásához.\n"
 "Kereshet jegyzetein belül és megjelenítheti tartalmukat az ikonokon."
 
-#: ../tomboy/src/tomboy-notifications.c:100
+#: ../tomboy/src/tomboy-notifications.c:118
 msgid "Note name : "
 msgstr "Jegyzet neve: "
 
-#: ../tomboy/src/tomboy-notifications.c:123
+#: ../tomboy/src/tomboy-notifications.c:145
 msgid "Delete this note?"
 msgstr "Törli ezt a jegyzetet?"
 
-#: ../tomboy/src/tomboy-notifications.c:138
+#: ../tomboy/src/tomboy-notifications.c:184
 msgid "Search for:"
 msgstr "Keresés erre:"
 
-#: ../tomboy/src/tomboy-notifications.c:154
+#: ../tomboy/src/tomboy-notifications.c:209
 msgid "Search for tag:"
 msgstr "Keresés címkére:"
 
-#: ../tomboy/src/tomboy-notifications.c:195
+#: ../tomboy/src/tomboy-notifications.c:248
 msgid "Add a note"
 msgstr "Jegyzet hozzáadása"
 
-#: ../tomboy/src/tomboy-notifications.c:199
+#: ../tomboy/src/tomboy-notifications.c:254
 msgid "Delete this note"
 msgstr "Jegyzet törlése"
 
-#: ../tomboy/src/tomboy-notifications.c:202
+#: ../tomboy/src/tomboy-notifications.c:257
 msgid "Reload notes"
 msgstr "Jegyzetek újratöltése"
 
-#: ../tomboy/src/tomboy-notifications.c:208
+#: ../tomboy/src/tomboy-notifications.c:261
 msgid "Search"
 msgstr "Keresés"
 
-#: ../tomboy/src/tomboy-notifications.c:209
+#: ../tomboy/src/tomboy-notifications.c:262
 msgid "Search for tag"
 msgstr "Címke keresése"
 
-#: ../tomboy/src/tomboy-notifications.c:211
+#: ../tomboy/src/tomboy-notifications.c:264
 msgid "Search for today's note"
 msgstr "Keresés a mai jegyzetekre"
 
-#: ../tomboy/src/tomboy-notifications.c:212
+#: ../tomboy/src/tomboy-notifications.c:265
 msgid "Search for this week's note"
 msgstr "Keresés a heti jegyzetekre"
 
-#: ../tomboy/src/tomboy-notifications.c:213
+#: ../tomboy/src/tomboy-notifications.c:266
 msgid "Search for next week's note"
 msgstr "Keresés a jövő heti jegyzetekre"
 
-#: ../tomboy/src/tomboy-notifications.c:223
+#: ../tomboy/src/tomboy-notifications.c:276
 msgid "Reset marks"
 msgstr ""
 
@@ -4055,17 +4070,16 @@ msgstr "Ikon neve (ez jelenik meg a feliratban a dokkon):"
 #: ../Status-Notifier/data/messages:9 ../Sync-Menu/data/messages:9
 #: ../System-Monitor/data/messages:9 ../System-Monitor/data/messages:189
 #: ../System-Monitor/data/messages:197 ../Toons/data/messages:9
-#: ../alsaMixer/data/messages:145 ../alsaMixer/data/messages:155
-#: ../clock/data/messages:11 ../clock/data/messages:129
-#: ../dnd2share/data/messages:9 ../dustbin/data/messages:9
-#: ../keyboard-indicator/data/messages:9 ../logout/data/messages:9
-#: ../mail/data/messages:9 ../netspeed/data/messages:9
-#: ../shortcuts/data/messages:9 ../showDesktop/data/messages:9
-#: ../slider/data/messages:9 ../stack/data/messages:11
-#: ../switcher/data/messages:9 ../systray/data/messages:9
-#: ../template/data/messages:9 ../terminal/data/messages:9
-#: ../tomboy/data/messages:9 ../tomboy/data/messages:141
-#: ../weblets/data/messages:9
+#: ../alsaMixer/data/messages:153 ../clock/data/messages:11
+#: ../clock/data/messages:129 ../dnd2share/data/messages:9
+#: ../dustbin/data/messages:9 ../keyboard-indicator/data/messages:9
+#: ../logout/data/messages:9 ../mail/data/messages:9
+#: ../netspeed/data/messages:9 ../shortcuts/data/messages:9
+#: ../showDesktop/data/messages:9 ../slider/data/messages:9
+#: ../stack/data/messages:11 ../switcher/data/messages:9
+#: ../systray/data/messages:9 ../template/data/messages:9
+#: ../terminal/data/messages:9 ../tomboy/data/messages:9
+#: ../tomboy/data/messages:141 ../weblets/data/messages:9
 msgid "Default"
 msgstr ""
 
@@ -4273,8 +4287,8 @@ msgid ""
 "If locked, the desklet cannot be moved by simply dragging it with the left "
 "mouse button. It can still be moved with ALT + left-click."
 msgstr ""
-"Ha zárolva van, a deskletet nem lehet a bal egérgombbal áthelyezni. Az "
-"ALT+bal egérgomb kombinációt kell használni."
+"Ha zárolva van, a deskletet nem lehet a bal egérgombbal áthelyezni. Az ALT"
+"+bal egérgomb kombinációt kell használni."
 
 #: ../Clipper/data/messages:23 ../Composite-Manager/data/messages:21
 #: ../Disks/data/messages:43 ../Doncky/data/messages:23
@@ -4750,7 +4764,7 @@ msgstr ""
 #: ../clock/data/messages:73 ../clock/data/messages:173
 #: ../dnd2share/data/messages:59 ../dustbin/data/messages:61
 #: ../keyboard-indicator/data/messages:71
-#: ../keyboard-indicator/data/messages:125 ../logout/data/messages:63
+#: ../keyboard-indicator/data/messages:133 ../logout/data/messages:63
 #: ../mail/data/messages:71 ../musicPlayer/data/messages:73
 #: ../netspeed/data/messages:71 ../powermanager/data/messages:73
 #: ../quick-browser/data/messages:65 ../shortcuts/data/messages:63
@@ -5132,7 +5146,7 @@ msgstr "Ha egy elemre kattint, tartalmát a középső egérgombbal érheti el"
 msgid "Paste into Selection?"
 msgstr "A kijelölésekhez másolja?"
 
-#: ../Clipper/data/messages:123 ../keyboard-indicator/data/messages:99
+#: ../Clipper/data/messages:123
 msgid "Shortkey to pop-up the items menu:"
 msgstr "Billentyűkombináció az elemek felugró menüjének megjelenítéséhez:"
 
@@ -5281,8 +5295,7 @@ msgstr ""
 
 #: ../Dbus/data/messages:11
 msgid "Let external applications reload applets?"
-msgstr ""
-"Engedélyezi, hogy külső alkalmazások újratöltsék a kisalkalmazásokat?"
+msgstr "Engedélyezi, hogy külső alkalmazások újratöltsék a kisalkalmazásokat?"
 
 #: ../Dbus/data/messages:13
 msgid "Let external applications show/hide docks?"
@@ -5432,7 +5445,7 @@ msgstr ""
 
 #: ../Disks/data/messages:133 ../Impulse/data/messages:85
 #: ../Status-Notifier/data/messages:103 ../alsaMixer/data/messages:99
-#: ../keyboard-indicator/data/messages:109 ../mail/data/messages:103
+#: ../keyboard-indicator/data/messages:117 ../mail/data/messages:103
 #: ../musicPlayer/data/messages:159 ../shortcuts/data/messages:91
 #: ../shortcuts/data/messages:101 ../slider/data/messages:163
 #: ../stack/data/messages:93 ../tomboy/data/messages:103
@@ -5544,8 +5557,7 @@ msgid "Background"
 msgstr "Háttér"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid ""
-"You can have more attractive backgrounds using the Desklet decorations"
+msgid "You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
@@ -5678,6 +5690,10 @@ msgstr ""
 
 #: ../GMenu/data/messages:103
 msgid "Show Logout and/or Shutdown : "
+msgstr ""
+
+#: ../GMenu/data/messages:113
+msgid "Preload icons at startup"
 msgstr ""
 
 #: ../Global-Menu/data/messages:85
@@ -5993,11 +6009,13 @@ msgstr ""
 #: ../Network-Monitor/data/messages:237 ../Network-Monitor/data/messages:241
 #: ../Network-Monitor/data/messages:245 ../Network-Monitor/data/messages:249
 #: ../Network-Monitor/data/messages:253 ../Network-Monitor/data/messages:257
-#: ../logout/data/messages:109 ../musicPlayer/data/messages:187
-#: ../musicPlayer/data/messages:191 ../musicPlayer/data/messages:195
-#: ../musicPlayer/data/messages:199 ../musicPlayer/data/messages:203
-#: ../tomboy/data/messages:13 ../tomboy/data/messages:17
-#: ../tomboy/data/messages:21 ../tomboy/data/messages:105
+#: ../keyboard-indicator/data/messages:105
+#: ../keyboard-indicator/data/messages:109 ../logout/data/messages:109
+#: ../musicPlayer/data/messages:187 ../musicPlayer/data/messages:191
+#: ../musicPlayer/data/messages:195 ../musicPlayer/data/messages:199
+#: ../musicPlayer/data/messages:203 ../tomboy/data/messages:13
+#: ../tomboy/data/messages:17 ../tomboy/data/messages:21
+#: ../tomboy/data/messages:105
 msgid "Leave empty to use the default icon."
 msgstr ""
 
@@ -6175,7 +6193,7 @@ msgid "Logo size:"
 msgstr "Logó mérete:"
 
 #: ../RSSreader/data/messages:173 ../dock-rendering/data/messages:47
-#: ../keyboard-indicator/data/messages:123
+#: ../keyboard-indicator/data/messages:131
 msgid "normal"
 msgstr "közepes"
 
@@ -6263,7 +6281,7 @@ msgstr ""
 msgid "Text size:"
 msgstr ""
 
-#: ../Scooby-Do/data/messages:37 ../keyboard-indicator/data/messages:115
+#: ../Scooby-Do/data/messages:37 ../keyboard-indicator/data/messages:123
 msgid "Outline text?"
 msgstr ""
 
@@ -6681,22 +6699,22 @@ msgstr ""
 msgid "Sound card:"
 msgstr ""
 
-#: ../alsaMixer/data/messages:147
+#: ../alsaMixer/data/messages:145
 msgid "Select channel:"
 msgstr ""
 
-#: ../alsaMixer/data/messages:149
+#: ../alsaMixer/data/messages:147
 msgid ""
 "On some cards, a channel only controls 1 side (right or left). You will then "
 "need to specify a second channel here, to control both sides. Most of the "
 "time, you should just leave this empty."
 msgstr ""
 
-#: ../alsaMixer/data/messages:151
+#: ../alsaMixer/data/messages:149
 msgid "Choose a second channel to control (optional):"
 msgstr ""
 
-#: ../alsaMixer/data/messages:153
+#: ../alsaMixer/data/messages:151
 msgid "Specific command to run to show an advanced sound mixer:"
 msgstr ""
 
@@ -6789,7 +6807,7 @@ msgstr ""
 msgid "Use a custom font"
 msgstr ""
 
-#: ../clock/data/messages:153 ../keyboard-indicator/data/messages:111
+#: ../clock/data/messages:153 ../keyboard-indicator/data/messages:119
 msgid "Font:"
 msgstr ""
 
@@ -7249,8 +7267,7 @@ msgid "Space between icons:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:117
-msgid ""
-"0 represents a flat wave, 1 means the wave is identical to other views."
+msgid "0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:121
@@ -7437,8 +7454,7 @@ msgid "Colours"
 msgstr "Színek"
 
 #: ../icon-effect/data/messages:71
-msgid ""
-"This will slightly alter your colours, so you may have to modify them."
+msgid "This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
@@ -7563,6 +7579,10 @@ msgstr ""
 msgid "Attraction of the Black Hole:"
 msgstr ""
 
+#: ../keyboard-indicator/data/messages:99
+msgid "General"
+msgstr ""
+
 #: ../keyboard-indicator/data/messages:101
 msgid "caps lock, num lock, etc."
 msgstr ""
@@ -7571,30 +7591,38 @@ msgstr ""
 msgid "Display keyboard locks as quick-info?"
 msgstr ""
 
-#: ../keyboard-indicator/data/messages:105
+#: ../keyboard-indicator/data/messages:107
+msgid "Icon image name for NumLock status:"
+msgstr ""
+
+#: ../keyboard-indicator/data/messages:111
+msgid "Icon image name for CapsLock status:"
+msgstr ""
+
+#: ../keyboard-indicator/data/messages:113
 msgid ""
 "in ms. Set to 0 if you don't want an animation when the keyboard layout "
 "changes."
 msgstr ""
 
-#: ../keyboard-indicator/data/messages:107
+#: ../keyboard-indicator/data/messages:115
 msgid "Duration of the transition animation:"
 msgstr ""
 
-#: ../keyboard-indicator/data/messages:113
+#: ../keyboard-indicator/data/messages:121
 msgid "Text colour"
 msgstr ""
 
-#: ../keyboard-indicator/data/messages:117
+#: ../keyboard-indicator/data/messages:125
 msgid ""
 "the smaller is the text in the icon. 1 means the text fills all the icon."
 msgstr ""
 
-#: ../keyboard-indicator/data/messages:119
+#: ../keyboard-indicator/data/messages:127
 msgid "Relative size of the text :"
 msgstr ""
 
-#: ../keyboard-indicator/data/messages:121
+#: ../keyboard-indicator/data/messages:129
 msgid "smaller"
 msgstr ""
 
@@ -7671,8 +7699,7 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:115
-msgid ""
-"If checked, the number of mails will be shown even if there is no mail."
+msgid "If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:117
@@ -7756,8 +7783,7 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid ""
-"Leave it empty to display the name of the player currently controlled."
+msgid "Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:11
@@ -8740,8 +8766,7 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:103
-msgid ""
-"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:105
