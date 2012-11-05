@@ -7,17 +7,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
+"POT-Creation-Date: 2012-11-03 02:13+0000\n"
 "PO-Revision-Date: 2012-09-30 17:36+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitoschido@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-10-01 04:55+0000\n"
-"X-Generator: Launchpad (build 16049)\n"
+"X-Launchpad-Export-Date: 2012-11-04 05:05+0000\n"
+"X-Generator: Launchpad (build 16218)\n"
+"Language: es\n"
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-SourceCharset: utf-8\n"
+
+#: ../Animated-icons/src/applet-rotation.c:386
+#: ../Animated-icons/data/messages:9 ../Animated-icons/data/messages:29
+#: ../Animated-icons/data/messages:51
+msgid "Rotate"
+msgstr "Girar"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -50,12 +57,6 @@ msgstr "Este complemento proporciona diferentes animaciones para los iconos."
 #: ../Animated-icons/data/messages:145
 msgid "Pulse"
 msgstr "Pulsar"
-
-#: ../Animated-icons/src/applet-rotation.c:386
-#: ../Animated-icons/data/messages:9 ../Animated-icons/data/messages:29
-#: ../Animated-icons/data/messages:51
-msgid "Rotate"
-msgstr "Girar"
 
 #: ../Animated-icons/src/applet-spot.c:263 ../Animated-icons/data/messages:19
 #: ../Animated-icons/data/messages:39 ../Animated-icons/data/messages:61
@@ -366,7 +367,8 @@ msgstr "El modulo ha sido añadido, pero no se pudo ser lanzado"
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "La mini-aplicación '%s' ha sido actualizada con éxito y automaticamente "
 "relanzada."
@@ -729,8 +731,8 @@ msgstr ""
 "Es compatible con cualquier menú XDG (Gnome, XFCE, KDE...)\n"
 "Clic central para abrir un diálogo para iniciar rápidamente cualquier "
 "comando (Puede establecer un atajo de teclado para ello, como ALT+F2)\n"
-"También puede establecer un atajo de teclado para aparecer el menú (como ALT"
-"+F1)"
+"También puede establecer un atajo de teclado para aparecer el menú (como "
+"ALT+F1)"
 
 #: ../GMenu/src/applet-init.c:41
 msgid "Applications Menu"
@@ -1766,8 +1768,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1980,7 +1982,8 @@ msgstr ""
 "Tan solo presione CTRL+V para pegar su URL en cualquier lugar."
 
 #: ../dnd2share/src/applet-dnd2share.c:333
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr "Espere a que termine la subida de datos antes de empezar otra nueva."
 
 #: ../dnd2share/src/applet-dnd2share.c:401
@@ -3049,14 +3052,12 @@ msgid "Browse Network"
 msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:309
-#, fuzzy
 msgid "Browse recent files"
-msgstr "Archivos recientes"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:311
-#, fuzzy
 msgid "Open Trash"
-msgstr "Vaciar la papelera"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:317
 msgid "Rename this bookmark"
@@ -3092,8 +3093,8 @@ msgstr "Mostrar el ratón"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Este plugin dibuja alguna animación alrededor del cursor cuando está dentro "
 "de un dock o desklet."
@@ -3436,9 +3437,8 @@ msgid "Close this Tab"
 msgstr "Cerrar esta pestaña"
 
 #: ../tomboy/src/tomboy-draw.c:198
-#, fuzzy
 msgid "Open all"
-msgstr "Abrir archivo"
+msgstr ""
 
 #: ../tomboy/src/tomboy-init.c:30
 msgid "Note-Taking"
@@ -4757,7 +4757,8 @@ msgstr ""
 #: ../tomboy/data/messages:71 ../weather/data/messages:69
 #: ../weblets/data/messages:59 ../wifi/data/messages:67
 msgid "Choose a decoration theme for this desklet:"
-msgstr "Seleccione un tema de decoración para este complemento del escritorio:"
+msgstr ""
+"Seleccione un tema de decoración para este complemento del escritorio:"
 
 #: ../Clipper/data/messages:61 ../Composite-Manager/data/messages:59
 #: ../Disks/data/messages:59 ../Doncky/data/messages:61
@@ -4907,7 +4908,8 @@ msgstr "Desplazamiento izquierdo:"
 #: ../tomboy/data/messages:83 ../weather/data/messages:81
 #: ../weblets/data/messages:71 ../wifi/data/messages:79
 msgid "in pixels. Use this to adjust the top position of drawings."
-msgstr "en Píxeles. Use esto para ajustar la posición superior de los dibujos."
+msgstr ""
+"en Píxeles. Use esto para ajustar la posición superior de los dibujos."
 
 #: ../Clipper/data/messages:73 ../Composite-Manager/data/messages:71
 #: ../Disks/data/messages:77 ../Doncky/data/messages:73
@@ -4955,7 +4957,8 @@ msgstr "Desplazamiento superior:"
 #: ../tomboy/data/messages:87 ../weather/data/messages:85
 #: ../weblets/data/messages:75 ../wifi/data/messages:83
 msgid "in pixels. Use this to adjust the right position of drawings."
-msgstr "en Píxeles. Use esto para ajustar la posición derecha de los dibujos."
+msgstr ""
+"en Píxeles. Use esto para ajustar la posición derecha de los dibujos."
 
 #: ../Clipper/data/messages:77 ../Composite-Manager/data/messages:75
 #: ../Disks/data/messages:81 ../Doncky/data/messages:77
@@ -5003,7 +5006,8 @@ msgstr "Desplazamiento derecho:"
 #: ../tomboy/data/messages:91 ../weather/data/messages:89
 #: ../weblets/data/messages:79 ../wifi/data/messages:87
 msgid "in pixels. Use this to adjust the bottom position of drawings."
-msgstr "en Píxeles. Use esto para ajustar la posición inferior de los dibujos."
+msgstr ""
+"en Píxeles. Use esto para ajustar la posición inferior de los dibujos."
 
 #: ../Clipper/data/messages:81 ../Composite-Manager/data/messages:79
 #: ../Disks/data/messages:85 ../Doncky/data/messages:81
@@ -5163,7 +5167,8 @@ msgstr "De ser así, número de elementos seleccionados:"
 #: ../Clipper/data/messages:115
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
-msgstr "Cuando pulse sobre un elemento, su contenido será accesible con CTRL+v"
+msgstr ""
+"Cuando pulse sobre un elemento, su contenido será accesible con CTRL+v"
 
 #: ../Clipper/data/messages:117
 msgid "Paste into Clipboard?"
@@ -5207,7 +5212,8 @@ msgstr "¿Activar acciones?"
 
 #: ../Clipper/data/messages:133
 msgid "Display actions when selecting an item in the history."
-msgstr "Visualizar acciones cuando se seleccione un elemento en el histórico."
+msgstr ""
+"Visualizar acciones cuando se seleccione un elemento en el histórico."
 
 #: ../Clipper/data/messages:135
 msgid "Replay actions?"
@@ -5340,7 +5346,8 @@ msgstr "¿Permitir que aplicaciones externas muestren/escondan las barras?"
 
 #: ../Dbus/data/messages:15
 msgid "Let extern applications add launchers to the docks?"
-msgstr "¿Permitir que aplicaciones externas agreguen lanzadores en las barras?"
+msgstr ""
+"¿Permitir que aplicaciones externas agreguen lanzadores en las barras?"
 
 #: ../Dbus/data/messages:17
 msgid "Let external applications modify the labels of icons?"
@@ -5603,7 +5610,8 @@ msgid "Background"
 msgstr "Fondo"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Puede tener fondos más atractivos usando las decoraciones de los "
 "complementos del escritorio"
@@ -5746,9 +5754,8 @@ msgid "Show Logout and/or Shutdown : "
 msgstr ""
 
 #: ../GMenu/data/messages:113
-#, fuzzy
 msgid "Preload icons at startup"
-msgstr "Acción al inicio"
+msgstr ""
 
 #: ../Global-Menu/data/messages:85
 msgid ""
@@ -6549,7 +6556,8 @@ msgstr "¿Mostrar SWAP también?"
 
 #: ../System-Monitor/data/messages:151
 msgid "You need an nVidia card and the 'nvidia-settings' tool."
-msgstr "Se requiere de una tarjeta nVidia y la herramienta «nvidia-settings»."
+msgstr ""
+"Se requiere de una tarjeta nVidia y la herramienta «nvidia-settings»."
 
 #: ../System-Monitor/data/messages:153
 msgid "Show graphic card's temperature?"
@@ -6634,7 +6642,8 @@ msgstr "Número de programas a mostrar en la lista de «top»:"
 
 #: ../System-Monitor/data/messages:205
 msgid "The first colour of the gradient used to display the top list."
-msgstr "El primer color del degradado usado para visualizar la lista de «top»."
+msgstr ""
+"El primer color del degradado usado para visualizar la lista de «top»."
 
 #: ../System-Monitor/data/messages:207
 msgid "Top list start colour:"
@@ -7364,7 +7373,8 @@ msgid "Space between icons:"
 msgstr "Espacio entre iconos:"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "Cero representa una onda plana, uno indica que la onda es idéntica a las "
 "otras vistas."
@@ -7564,7 +7574,8 @@ msgid "Colours"
 msgstr "Colores"
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 "Esto podría alterar ligeramente sus colores, por lo que tal vez tenga que "
 "ajustarlos."
@@ -7822,7 +7833,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Nombre del archivo para la imagen de \"tiene correo\":"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Si está seleccionado, el número de mensajes se mostrará, incluso si no hay "
 "correo."
@@ -7910,7 +7922,8 @@ msgid "Blur amount:"
 msgstr "Cantidad de difuminado:"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 "Deje vacío para visualizar el nombre del reproductor que está siendo "
 "actualmente controlado."
@@ -8700,7 +8713,8 @@ msgstr ""
 
 #: ../systray/data/messages:83
 msgid "Shortkey to toggle the systray in dock mode:"
-msgstr "Atajo del teclado para conmutar la barra del sistema en modo lanzador:"
+msgstr ""
+"Atajo del teclado para conmutar la barra del sistema en modo lanzador:"
 
 #: ../systray/data/messages:85
 msgid "Icons packing :"
@@ -8926,7 +8940,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Posición de la barra de desplazamiento vertical en pixeles"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Esto le permite pulsar con el botón derecho del ratón sobre el complemento "
 "del escritorio para acceder al menú de Cairo-Dock."
@@ -8988,4 +9003,5 @@ msgstr ""
 
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
-msgstr "Línea de órdenes alternativa para lanzar la configuración inalámbrica:"
+msgstr ""
+"Línea de órdenes alternativa para lanzar la configuración inalámbrica:"

@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2012-08-25 16:05+0000\n"
-"Last-Translator: Ohadcn <Unknown>\n"
+"POT-Creation-Date: 2012-11-03 02:13+0000\n"
+"PO-Revision-Date: 2012-11-03 04:39+0000\n"
+"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
-"Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-10-01 04:54+0000\n"
-"X-Generator: Launchpad (build 16049)\n"
+"X-Launchpad-Export-Date: 2012-11-04 05:04+0000\n"
+"X-Generator: Launchpad (build 16218)\n"
+"Language: he\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -320,7 +321,7 @@ msgstr "טען מחדש את מנהל החלונות"
 #: ../Composite-Manager/data/messages:129 ../showDesktop/data/messages:99
 #: ../showDesktop/data/messages:113 ../switcher/data/messages:143
 msgid "Show desktop"
-msgstr "הצג את שולחן העבודה"
+msgstr "הצגת שולחן העבודה"
 
 #: ../Composite-Manager/src/applet-notifications.c:145
 #: ../showDesktop/src/applet-notifications.c:177
@@ -329,13 +330,13 @@ msgstr "הצג את שולחן העבודה"
 #: ../Composite-Manager/data/messages:131 ../showDesktop/data/messages:107
 #: ../showDesktop/data/messages:121 ../switcher/data/messages:145
 msgid "Expose all the desktops"
-msgstr "גלה את כל שולחנות העבודה"
+msgstr "גילוי כל שולחנות העבודה"
 
 #: ../Composite-Manager/src/applet-notifications.c:154
 #: ../switcher/src/applet-notifications.c:336
 #: ../Composite-Manager/data/messages:133 ../switcher/data/messages:147
 msgid "Expose all the windows"
-msgstr "גלה את כל החלונות"
+msgstr "גילוי כל החלונות"
 
 #: ../Composite-Manager/src/applet-notifications.c:163
 #: ../showDesktop/src/applet-notifications.c:189
@@ -343,7 +344,7 @@ msgstr "גלה את כל החלונות"
 #: ../Composite-Manager/data/messages:135 ../showDesktop/data/messages:105
 #: ../showDesktop/data/messages:119
 msgid "Show the Widget Layer"
-msgstr "הצג את רמת הוידג'טים"
+msgstr "הצגת רמת הוידג'טים"
 
 #: ../Dbus/src/applet-init.c:36
 msgid ""
@@ -356,16 +357,17 @@ msgstr ""
 #: ../Dbus/src/interface-applet-signals.c:422
 #: ../Dbus/src/interface-applet-signals.c:453
 msgid "Sorry, this module couldn't be added."
-msgstr "מצטערים, לא ניתן להוסיף את הרכיב הזה."
+msgstr "לא ניתן להוסיף את הרכיב הזה, עמך הסליחה."
 
 #: ../Dbus/src/interface-applet-signals.c:457
 #: ../Dbus/src/interface-applet-signals.c:463
 msgid "The module has been added, but couldn't be launched."
-msgstr "הרכיב הוסף אך לא ניתן להפעיל אותו."
+msgstr "הרכיב נוסף אך לא ניתן להפעיל אותו."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "היישומון '%s' עודכן ונטען בהצלחה."
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -379,13 +381,13 @@ msgstr "היישומון '%s' הותקן והופעל בהצלחה"
 #: ../Network-Monitor/src/applet-netspeed.c:50
 #: ../netspeed/src/applet-netspeed.c:42 ../netspeed/src/applet-netspeed.c:50
 msgid "B"
-msgstr "B"
+msgstr "ב׳"
 
 #: ../Disks/src/applet-disks.c:61 ../Folders/src/applet-notifications.c:140
 #: ../Network-Monitor/src/applet-netspeed.c:58
 #: ../netspeed/src/applet-netspeed.c:58
 msgid "KB"
-msgstr "KB"
+msgstr "ק״ב"
 
 #: ../Disks/src/applet-disks.c:69 ../Folders/src/applet-notifications.c:138
 #: ../Network-Monitor/src/applet-netspeed.c:66
@@ -393,25 +395,25 @@ msgstr "KB"
 #: ../netspeed/src/applet-notifications.c:37
 #: ../netspeed/src/applet-notifications.c:38
 msgid "MB"
-msgstr "MB"
+msgstr "מ״ב"
 
 #: ../Disks/src/applet-disks.c:77 ../Network-Monitor/src/applet-netspeed.c:74
 #: ../netspeed/src/applet-netspeed.c:74
 msgid "GB"
-msgstr "GB"
+msgstr "ג״ב"
 
 #: ../Disks/src/applet-disks.c:85 ../Network-Monitor/src/applet-netspeed.c:82
 #: ../netspeed/src/applet-netspeed.c:82
 msgid "TB"
-msgstr "TB"
+msgstr "ט״ב"
 
 #: ../Disks/src/applet-disks.c:171
 msgid "r"
-msgstr "r"
+msgstr "ק"
 
 #: ../Disks/src/applet-disks.c:171
 msgid "w"
-msgstr "w"
+msgstr "כ"
 
 #: ../Disks/src/applet-disks.c:175
 msgid "N/A"
@@ -459,7 +461,7 @@ msgstr ""
 #: ../Disks/src/applet-notifications.c:72
 #: ../System-Monitor/src/applet-init.c:35
 msgid "System Monitor"
-msgstr "מוניטור המערכת"
+msgstr "צג המערכת"
 
 #: ../Doncky/src/applet-cpusage.c:67 ../System-Monitor/src/applet-cpusage.c:60
 #: ../System-Monitor/src/applet-cpusage.c:65
@@ -485,7 +487,7 @@ msgstr "קובץ xml לא תקין"
 
 #: ../Doncky/src/applet-xml.c:311
 msgid "Please wait..."
-msgstr ""
+msgstr "נא להמתין..."
 
 #: ../Folders/src/applet-init.c:29
 msgid "Folders"
@@ -505,47 +507,47 @@ msgstr ""
 #: ../Folders/src/applet-init.c:87 ../Folders/src/applet-init.c:150
 #: ../Folders/src/applet-notifications.c:42
 msgid "Open the configuration of the applet to choose a folder to import."
-msgstr ""
+msgstr "לפתוח את הגדרות היישומון בכדי לבחור תיקייה לייבוא."
 
 #: ../Folders/src/applet-notifications.c:54
 msgid "Empty or unreadable folder."
-msgstr ""
+msgstr "התיקייה ריקה או שאי אפשר לקרוא ממנה"
 
 #: ../Folders/src/applet-notifications.c:116
 msgid "Properties:"
-msgstr ""
+msgstr "מאפיינים:"
 
 #: ../Folders/src/applet-notifications.c:136 ../Folders/data/messages:115
 msgid "Size"
-msgstr ""
+msgstr "גודל"
 
 #: ../Folders/src/applet-notifications.c:136
 msgid "bytes"
-msgstr ""
+msgstr "בתים"
 
 #: ../Folders/src/applet-notifications.c:150
 msgid "Last Modification"
-msgstr ""
+msgstr "מעוד השינוי האחרון"
 
 #: ../Folders/src/applet-notifications.c:159
 msgid "Mime Type"
-msgstr ""
+msgstr "סוג ה־Mime"
 
 #: ../Folders/src/applet-notifications.c:173
 msgid "User ID"
-msgstr ""
+msgstr "מזהה משתמש"
 
 #: ../Folders/src/applet-notifications.c:173
 msgid "Group ID"
-msgstr ""
+msgstr "מזהה קבוצה"
 
 #: ../Folders/src/applet-notifications.c:183
 msgid "Permissions"
-msgstr ""
+msgstr "הרשאות"
 
 #: ../Folders/src/applet-notifications.c:183
 msgid "Read"
-msgstr ""
+msgstr "קריאה"
 
 #: ../Folders/src/applet-notifications.c:184
 #: ../Folders/src/applet-notifications.c:185
@@ -553,7 +555,7 @@ msgstr ""
 #: ../System-Monitor/data/messages:115 ../alsaMixer/data/messages:129
 #: ../netspeed/data/messages:115 ../slider/data/messages:169
 msgid "Yes"
-msgstr ""
+msgstr "כן"
 
 #: ../Folders/src/applet-notifications.c:184
 #: ../Folders/src/applet-notifications.c:185
@@ -573,22 +575,24 @@ msgstr ""
 #: ../slider/data/messages:167 ../weather/data/messages:19
 #: ../wifi/data/messages:17
 msgid "No"
-msgstr ""
+msgstr "לא"
 
 #: ../Folders/src/applet-notifications.c:184
 msgid "Write"
-msgstr ""
+msgstr "כתיבה"
 
 #: ../Folders/src/applet-notifications.c:185
 #: ../Scooby-Do/src/applet-backend-command.c:95
 msgid "Execute"
-msgstr ""
+msgstr "הפעלה"
 
 #: ../Folders/src/applet-notifications.c:211
 msgid ""
 "Warning: could not delete this file.\n"
 "Please check file permissions."
 msgstr ""
+"אזהרה: לא ניתן למחוק את הקובץ.\n"
+"נא לבדוק את ההרשאות שלו."
 
 #: ../Folders/src/applet-notifications.c:225
 #, c-format
@@ -597,6 +601,9 @@ msgid ""
 "  (%s)\n"
 "from your hard-disk. Sure ?"
 msgstr ""
+"ביקשת למחוק את הקובץ\n"
+"  (%s)\n"
+"מהדיסק שלך, להמשיך?"
 
 #: ../Folders/src/applet-notifications.c:244
 #, c-format
@@ -605,15 +612,18 @@ msgid ""
 "Check file permissions \n"
 "and that the new name does not already exist."
 msgstr ""
+"אזהרה:לא ניתן לשנות את השם של  %s.\n"
+"נא לוודא שיש לך הרשאות לשנות אותו\n"
+"ושאין כבר קובץ באותו שם בתיקייה."
 
 #: ../Folders/src/applet-notifications.c:253
 msgid "Rename to:"
-msgstr ""
+msgstr "שם חדש:"
 
 #: ../Folders/src/applet-notifications.c:268
 #: ../Scooby-Do/src/applet-backend-files.c:390
 msgid "Pick up a directory"
-msgstr ""
+msgstr "בחר תיקייה"
 
 #: ../Folders/src/applet-notifications.c:305
 #, c-format
@@ -622,14 +632,17 @@ msgid ""
 "Check file permissions \n"
 "and that the new name does not already exist."
 msgstr ""
+"אזהרה:לא ניתן ליצור את הקובץ %s.\n"
+"נא לבדוק הרשאות על הקובץ\n"
+"ושקובץ בשם זה לא קיים כבר."
 
 #: ../Folders/src/applet-notifications.c:315
 msgid "Enter a file name:"
-msgstr ""
+msgstr "הכנס/י שם לקובץ:"
 
 #: ../Folders/src/applet-notifications.c:394
 msgid "Open the folder"
-msgstr ""
+msgstr "פתיחת תיקייה"
 
 #: ../Folders/src/applet-notifications.c:401
 msgid "Rename this file"
@@ -637,7 +650,7 @@ msgstr ""
 
 #: ../Folders/src/applet-notifications.c:402
 msgid "Delete this file"
-msgstr ""
+msgstr "מחיקת קובץ זה"
 
 #: ../Folders/src/applet-notifications.c:403
 msgid "Move this file"
@@ -647,43 +660,43 @@ msgstr ""
 #: ../Recent-Events/src/applet-dialog.c:270
 #: ../slider/src/applet-notifications.c:233
 msgid "Open with"
-msgstr ""
+msgstr "פתיחה באמצעות"
 
 #: ../Folders/src/applet-notifications.c:442
 msgid "Properties"
-msgstr ""
+msgstr "מאפיינים"
 
 #: ../Folders/src/applet-notifications.c:445
 msgid "Create a new file"
-msgstr ""
+msgstr "יצירת קובץ חדש"
 
 #: ../Folders/src/applet-notifications.c:446
 msgid "Create a new folder"
-msgstr ""
+msgstr "יצירת תיקייה חדשה"
 
 #: ../Folders/src/applet-notifications.c:451
 msgid "Sort by"
-msgstr ""
+msgstr "מיון לפי"
 
 #: ../Folders/src/applet-notifications.c:452
 msgid "By name"
-msgstr ""
+msgstr "לפי שם"
 
 #: ../Folders/src/applet-notifications.c:453
 msgid "By date"
-msgstr ""
+msgstr "לפי תאריך"
 
 #: ../Folders/src/applet-notifications.c:454
 msgid "By size"
-msgstr ""
+msgstr "לפי גודל"
 
 #: ../Folders/src/applet-notifications.c:455
 msgid "By type"
-msgstr ""
+msgstr "לפי סוג"
 
 #: ../Folders/src/applet-notifications.c:497
 msgid "The folder has been imported."
-msgstr ""
+msgstr "התיקייה יובאה"
 
 #: ../Folders/src/applet-notifications.c:558
 msgid "Do you want to import the content of the folder too?"
@@ -705,7 +718,7 @@ msgstr ""
 
 #: ../GMenu/src/applet-init.c:41
 msgid "Applications Menu"
-msgstr ""
+msgstr "תפריט יישומים"
 
 #: ../GMenu/src/applet-init.c:108
 msgid "Show/hide the Applications menu"
@@ -717,11 +730,11 @@ msgstr ""
 
 #: ../GMenu/src/applet-menu-callbacks.c:175 ../GMenu/data/messages:107
 msgid "Logout"
-msgstr ""
+msgstr "יציאה"
 
 #: ../GMenu/src/applet-menu-callbacks.c:178 ../GMenu/data/messages:109
 msgid "Shutdown"
-msgstr ""
+msgstr "כיבוי"
 
 #: ../GMenu/src/applet-notifications.c:90
 msgid "Quick launch"
@@ -824,7 +837,7 @@ msgstr ""
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:75
 msgid "Connecting..."
-msgstr ""
+msgstr "מתחבר..."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:82
 msgid "Network connection is established."
@@ -933,7 +946,7 @@ msgstr ""
 
 #: ../Network-Monitor/src/applet-notifications.c:90
 msgid "Activate wifi"
-msgstr ""
+msgstr "הפעל wifi"
 
 #: ../Printers-Menu/src/applet-init.c:30
 msgid "Printers-Menu"
@@ -971,11 +984,11 @@ msgstr ""
 #: ../RSSreader/src/applet-init.c:65 ../RSSreader/src/applet-init.c:125
 #: ../RSSreader/src/applet-notifications.c:56
 msgid "Retrieving data..."
-msgstr ""
+msgstr "המידע מתקבל..."
 
 #: ../RSSreader/src/applet-notifications.c:69
 msgid "It doesn't seem to be a valid URL."
-msgstr ""
+msgstr "הכתובת שהכנסת אינה תקינה!"
 
 #: ../RSSreader/src/applet-notifications.c:124
 msgid "Paste a new RSS Url (drag and drop)"
@@ -983,12 +996,12 @@ msgstr ""
 
 #: ../RSSreader/src/applet-notifications.c:128
 msgid "Open with your web browser"
-msgstr ""
+msgstr "פתח באמצעות הדפדפן שלך"
 
 #: ../RSSreader/src/applet-notifications.c:129
 #: ../switcher/src/applet-notifications.c:345
 msgid "Refresh"
-msgstr ""
+msgstr "רענן"
 
 #: ../RSSreader/src/applet-rss.c:400
 msgid "Warning: couldn't retrieve data last time we tried."
@@ -1008,15 +1021,15 @@ msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:551
 msgid "No data"
-msgstr ""
+msgstr "אין מידע"
 
 #: ../RSSreader/src/applet-rss.c:589
 msgid "No modification"
-msgstr ""
+msgstr "לא בוצעו שינויים"
 
 #: ../RSSreader/src/applet-rss.c:614
 msgid "This RSS feed has been modified..."
-msgstr ""
+msgstr "ההזנה שונתה..."
 
 #: ../RSSreader/src/applet-rss.c:775
 msgid ""
@@ -1035,39 +1048,39 @@ msgstr ""
 #: ../Recent-Events/src/applet-dialog.c:294
 #: ../stack/src/applet-notifications.c:212
 msgid "Open parent folder"
-msgstr ""
+msgstr "פתח תיקיית אב"
 
 #: ../Recent-Events/src/applet-dialog.c:296
 msgid "Copy the location"
-msgstr ""
+msgstr "העתק מיקום"
 
 #: ../Recent-Events/src/applet-dialog.c:299
 msgid "Delete this event"
-msgstr ""
+msgstr "מחק אירוע"
 
 #: ../Recent-Events/src/applet-dialog.c:373
 msgid "All"
-msgstr ""
+msgstr "הכל"
 
 #: ../Recent-Events/src/applet-dialog.c:374
 msgid "Applications"
-msgstr ""
+msgstr "יישומים"
 
 #: ../Recent-Events/src/applet-dialog.c:375
 msgid "Document"
-msgstr ""
+msgstr "מסמך"
 
 #: ../Recent-Events/src/applet-dialog.c:377 ../logout/data/messages:117
 msgid "Image"
-msgstr ""
+msgstr "תמונה"
 
 #: ../Recent-Events/src/applet-dialog.c:378
 msgid "Audio"
-msgstr ""
+msgstr "שמע"
 
 #: ../Recent-Events/src/applet-dialog.c:379
 msgid "Video"
-msgstr ""
+msgstr "וידאו"
 
 #: ../Recent-Events/src/applet-dialog.c:380
 msgid "Web"
@@ -1117,7 +1130,7 @@ msgstr ""
 #: ../Recent-Events/src/applet-notifications.c:114
 #: ../Scooby-Do/src/applet-backend-recent.c:213 ../Scooby-Do/data/messages:105
 msgid "Recent files"
-msgstr ""
+msgstr "קבצים אחרונים"
 
 #: ../Recent-Events/src/applet-notifications.c:183
 msgid "Delete today's events"
@@ -1156,22 +1169,22 @@ msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-files.c:161
 msgid "Open a terminal here"
-msgstr ""
+msgstr "פתיחת מסוף מכאן"
 
 #: ../Scooby-Do/src/applet-backend-files.c:169
 msgid "Zip folder"
-msgstr ""
+msgstr "כווץ תיקייה"
 
 #: ../Scooby-Do/src/applet-backend-files.c:177
 #: ../Scooby-Do/src/applet-backend-files.c:251
 msgid "Move to"
-msgstr ""
+msgstr "העבר אל"
 
 #: ../Scooby-Do/src/applet-backend-files.c:185
 #: ../Scooby-Do/src/applet-backend-files.c:259
 #: ../Scooby-Do/src/applet-backend-firefox.c:373
 msgid "Copy URL"
-msgstr ""
+msgstr "העתקת הכתובת"
 
 #: ../Scooby-Do/src/applet-backend-files.c:227
 #: ../Scooby-Do/src/applet-backend-recent.c:146
@@ -1188,20 +1201,20 @@ msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-files.c:524
 msgid "Files"
-msgstr ""
+msgstr "קבצים"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:357
 msgid "Open"
-msgstr ""
+msgstr "פתיחה"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:365
 msgid "Open in new window"
-msgstr ""
+msgstr "פתיחה בחלון חדש"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:432
 #: ../dnd2share/src/applet-notifications.c:494
 msgid "Open file"
-msgstr ""
+msgstr "פתיחת קובץ"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:495
 #: ../Scooby-Do/data/messages:103
@@ -1210,19 +1223,19 @@ msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-web.c:99
 msgid "Wikipedia"
-msgstr ""
+msgstr "ויקיפדיה"
 
 #: ../Scooby-Do/src/applet-backend-web.c:107
 msgid "Yahoo!"
-msgstr ""
+msgstr "יאהו!"
 
 #: ../Scooby-Do/src/applet-backend-web.c:115
 msgid "Google"
-msgstr ""
+msgstr "גוגל"
 
 #: ../Scooby-Do/src/applet-backend-web.c:125
 msgid "Search on the web"
-msgstr ""
+msgstr "חפש באינטרנט"
 
 #: ../Scooby-Do/src/applet-backend-web.c:139
 msgid "Mediadico"
@@ -1230,7 +1243,7 @@ msgstr ""
 
 #: ../Scooby-Do/src/applet-backend-web.c:147
 msgid "Amazon"
-msgstr ""
+msgstr "אמזון"
 
 #: ../Scooby-Do/src/applet-init.c:73
 msgid "Enable/disable the Finder"
@@ -1266,21 +1279,21 @@ msgstr ""
 
 #: ../Scooby-Do/src/applet-listing.c:677 ../Scooby-Do/src/applet-search.c:362
 msgid "No result"
-msgstr ""
+msgstr "אין תוצאות"
 
 #: ../Scooby-Do/src/applet-listing.c:681 ../Scooby-Do/src/applet-search.c:358
 #: ../tomboy/src/tomboy-draw.c:213
 msgid "results"
-msgstr ""
+msgstr "תוצאות"
 
 #: ../Scooby-Do/src/applet-listing.c:681 ../Scooby-Do/src/applet-search.c:358
 #: ../tomboy/src/tomboy-draw.c:213
 msgid "result"
-msgstr ""
+msgstr "תוצאה"
 
 #: ../Scooby-Do/src/applet-search.c:132
 msgid "Searching ..."
-msgstr ""
+msgstr "מתבצע חיפוש ..."
 
 #: ../Scooby-Do/src/applet-session.c:70
 msgid "Enter your search"
@@ -1296,7 +1309,7 @@ msgstr ""
 
 #: ../Status-Notifier/src/applet-init.c:38
 msgid "Notification Area"
-msgstr ""
+msgstr "אזור הדיווחים"
 
 #: ../Sync-Menu/src/applet-init.c:30
 msgid "Sync-Menu"
@@ -1320,7 +1333,7 @@ msgstr ""
 
 #: ../System-Monitor/src/applet-cpusage.c:59
 msgid "Uptime"
-msgstr ""
+msgstr "זמן פעילות"
 
 #: ../System-Monitor/src/applet-cpusage.c:64
 msgid "Activity time"
@@ -1332,7 +1345,7 @@ msgstr ""
 
 #: ../System-Monitor/src/applet-cpusage.c:148
 msgid "Frequency"
-msgstr ""
+msgstr "תדירות"
 
 #: ../System-Monitor/src/applet-cpusage.c:149
 msgid "core(s)"
@@ -1362,7 +1375,7 @@ msgstr ""
 
 #: ../System-Monitor/src/applet-notifications.c:106
 msgid "Show info"
-msgstr ""
+msgstr "הצג מידע"
 
 #: ../System-Monitor/src/applet-nvidia.c:146
 msgid "GPU model"
@@ -1376,7 +1389,7 @@ msgstr ""
 #: ../System-Monitor/src/applet-rame.c:123
 #: ../System-Monitor/src/applet-top.c:296
 msgid "Mb"
-msgstr ""
+msgstr "Mb"
 
 #: ../System-Monitor/src/applet-nvidia.c:148
 msgid "Driver Version"
@@ -1393,15 +1406,15 @@ msgstr ""
 
 #: ../System-Monitor/src/applet-rame.c:123
 msgid "Gb"
-msgstr ""
+msgstr "Gb"
 
 #: ../System-Monitor/src/applet-rame.c:133
 msgid "Memory"
-msgstr ""
+msgstr "זיכרון"
 
 #: ../System-Monitor/src/applet-rame.c:134
 msgid "Available"
-msgstr ""
+msgstr "זמין"
 
 #: ../System-Monitor/src/applet-rame.c:135
 msgid "Cached"
@@ -1413,11 +1426,11 @@ msgstr ""
 
 #: ../System-Monitor/src/applet-sensors.c:358
 msgid "min"
-msgstr ""
+msgstr "דק'"
 
 #: ../System-Monitor/src/applet-sensors.c:360
 msgid "max"
-msgstr ""
+msgstr "מקס"
 
 #: ../System-Monitor/src/applet-sensors.c:363
 #: ../System-Monitor/src/applet-sensors.c:396
@@ -1426,7 +1439,7 @@ msgstr ""
 
 #: ../System-Monitor/src/applet-sensors.c:394
 msgid "rpm"
-msgstr ""
+msgstr "סל\"ד"
 
 #: ../System-Monitor/src/applet-sensors.c:413
 #, c-format
@@ -1498,7 +1511,7 @@ msgstr ""
 
 #: ../Xgamma/src/applet-xgamma.c:357
 msgid "Luminosity"
-msgstr ""
+msgstr "עצמת הארה"
 
 #: ../alsaMixer/src/applet-backend-alsamixer.c:71
 #, c-format
@@ -1532,7 +1545,7 @@ msgstr ""
 
 #: ../alsaMixer/src/applet-draw.c:37
 msgid "Volume"
-msgstr ""
+msgstr "עוצמת קול"
 
 #: ../alsaMixer/src/applet-init.c:32
 msgid ""
@@ -1547,7 +1560,7 @@ msgstr ""
 
 #: ../alsaMixer/src/applet-init.c:40
 msgid "Sound Control"
-msgstr ""
+msgstr "בקרת שמע"
 
 #: ../alsaMixer/src/applet-init.c:141
 msgid "Show/hide the Sound menu"
@@ -1560,15 +1573,15 @@ msgstr ""
 #: ../alsaMixer/src/applet-notifications.c:79
 #: ../clock/src/applet-calendar.c:608
 msgid "double-click"
-msgstr ""
+msgstr "לחיצה כפולה"
 
 #: ../alsaMixer/src/applet-notifications.c:84
 msgid "Unmute"
-msgstr ""
+msgstr "ביטול ההשתקה"
 
 #: ../alsaMixer/src/applet-notifications.c:84
 msgid "Mute"
-msgstr ""
+msgstr "השתקה"
 
 #: ../clock/src/applet-calendar.c:193 ../clock/src/applet-calendar.c:274
 #: ../clock/src/applet-calendar.c:528 ../clock/src/applet-calendar.c:533
@@ -1577,11 +1590,11 @@ msgstr ""
 #: ../clock/src/applet-timer.c:466 ../clock/src/applet-timer.c:480
 #: ../clock/src/applet-timer.c:514
 msgid "No title"
-msgstr ""
+msgstr "ללא כותרת"
 
 #: ../clock/src/applet-calendar.c:529
 msgid "years"
-msgstr ""
+msgstr "שנים"
 
 #: ../clock/src/applet-calendar.c:605 ../clock/src/applet-task-editor.c:157
 msgid "Add a new task"
@@ -1597,7 +1610,7 @@ msgstr ""
 
 #: ../clock/src/applet-config.c:36 ../clock/data/messages:181
 msgid "Alarm"
-msgstr ""
+msgstr "התראה"
 
 #: ../clock/src/applet-config.c:36
 msgid "Time you want to be notified:"
@@ -1609,39 +1622,39 @@ msgstr ""
 
 #: ../clock/src/applet-config.c:36
 msgid "Never"
-msgstr ""
+msgstr "לעולם לא"
 
 #: ../clock/src/applet-config.c:36
 msgid "Day"
-msgstr ""
+msgstr "יום"
 
 #: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Monday"
-msgstr ""
+msgstr "יום שני"
 
 #: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Tuesday"
-msgstr ""
+msgstr "יום שלישי"
 
 #: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Wednesday"
-msgstr ""
+msgstr "יום רביעי"
 
 #: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Thursday"
-msgstr ""
+msgstr "יום חמישי"
 
 #: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Friday"
-msgstr ""
+msgstr "יום שישי"
 
 #: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Saturday"
-msgstr ""
+msgstr "יום שבת"
 
 #: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Sunday"
-msgstr ""
+msgstr "יום ראשון"
 
 #: ../clock/src/applet-config.c:36
 msgid "Week Day"
@@ -1653,11 +1666,11 @@ msgstr ""
 
 #: ../clock/src/applet-config.c:36
 msgid "Month"
-msgstr ""
+msgstr "חודש"
 
 #: ../clock/src/applet-config.c:36
 msgid "Repeat every:"
-msgstr ""
+msgstr "חזור בכל:"
 
 #: ../clock/src/applet-config.c:36
 msgid "If every month, which day of the month?"
@@ -1669,7 +1682,7 @@ msgstr ""
 
 #: ../clock/src/applet-config.c:36
 msgid "Tea Time!"
-msgstr ""
+msgstr "שעת התה!"
 
 #: ../clock/src/applet-config.c:36
 msgid "Command to launch:"
@@ -1677,7 +1690,7 @@ msgstr ""
 
 #: ../clock/src/applet-config.c:36
 msgid "E.g.:"
-msgstr ""
+msgstr "למשל:"
 
 #: ../clock/src/applet-config.c:512 ../weather/src/applet-config.c:213
 msgid "Search for your location :"
@@ -1685,7 +1698,7 @@ msgstr ""
 
 #: ../clock/src/applet-init.c:35
 msgid "clock"
-msgstr ""
+msgstr "שעון"
 
 #: ../clock/src/applet-init.c:38
 msgid ""
@@ -1693,8 +1706,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1734,23 +1747,23 @@ msgstr ""
 
 #: ../clock/src/applet-task-editor.c:216
 msgid "Don't repeat"
-msgstr ""
+msgstr "ללא חזרות"
 
 #: ../clock/src/applet-task-editor.c:222
 msgid "Each month"
-msgstr ""
+msgstr "בכל חודש"
 
 #: ../clock/src/applet-task-editor.c:228
 msgid "Each year"
-msgstr ""
+msgstr "בכל שנה"
 
 #: ../clock/src/applet-task-editor.c:351
 msgid "each month"
-msgstr ""
+msgstr "בכל חודש"
 
 #: ../clock/src/applet-task-editor.c:354
 msgid "each year"
-msgstr ""
+msgstr "בכל שנה"
 
 #: ../clock/src/applet-task-editor.c:410
 msgid "Right-click to add a new task."
@@ -1759,17 +1772,17 @@ msgstr ""
 #: ../clock/src/applet-task-editor.c:416 ../musicPlayer/src/applet-draw.c:153
 #: ../RSSreader/data/messages:133
 msgid "Title"
-msgstr ""
+msgstr "כותרת"
 
 #: ../clock/src/applet-task-editor.c:423
 #: ../dnd2share/src/applet-notifications.c:398 ../Doncky/data/messages:95
 #: ../RSSreader/data/messages:149
 msgid "Text"
-msgstr ""
+msgstr "טקסט"
 
 #: ../clock/src/applet-task-editor.c:430
 msgid "Time"
-msgstr ""
+msgstr "זמן"
 
 #: ../clock/src/applet-task-editor.c:444
 msgid "Freq."
@@ -1777,7 +1790,7 @@ msgstr ""
 
 #: ../clock/src/applet-task-editor.c:451
 msgid "Tags"
-msgstr ""
+msgstr "תגיות"
 
 #: ../clock/src/applet-timer.c:58
 msgid "1mn"
@@ -1838,7 +1851,7 @@ msgstr ""
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:89
 msgid "clear"
-msgstr ""
+msgstr "בהיר"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:97
 msgid "futuristic"
@@ -1847,11 +1860,11 @@ msgstr ""
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:105
 #: ../slider/data/messages:137
 msgid "none"
-msgstr ""
+msgstr "ללא"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:113
 msgid "board"
-msgstr ""
+msgstr "לוח"
 
 #: ../dialog-rendering/src/applet-decorator-3Dplane.h:26
 msgid "3Dplane"
@@ -1885,7 +1898,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:333
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:401
@@ -1894,7 +1908,7 @@ msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:628
 msgid "Tiny URL"
-msgstr ""
+msgstr "כתובת מקוצרת"
 
 #: ../dnd2share/src/applet-init.c:45
 msgid ""
@@ -1964,7 +1978,7 @@ msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:398
 msgid "File"
-msgstr ""
+msgstr "קובץ"
 
 #: ../dnd2share/src/applet-notifications.c:401
 msgid "Click on the icon to copy the URL into the clipboard."
@@ -1976,7 +1990,7 @@ msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:416
 msgid "History"
-msgstr ""
+msgstr "היסטוריה"
 
 #: ../dnd2share/src/applet-notifications.c:496
 msgid "Get text"
@@ -1988,7 +2002,7 @@ msgstr ""
 
 #: ../dnd2share/src/applet-notifications.c:501
 msgid "Clear History"
-msgstr ""
+msgstr "מחיקת היסטוריה"
 
 #: ../dnd2share/src/applet-notifications.c:506
 msgid "Use only a files hosting site"
@@ -2010,22 +2024,22 @@ msgstr ""
 #: ../dock-rendering/src/rendering-init.c:37
 #: ../dock-rendering/data/messages:111
 msgid "Rainbow"
-msgstr ""
+msgstr "קשת"
 
 #: ../dock-rendering/src/rendering-init.c:39
 #: ../dock-rendering/data/messages:29 ../shortcuts/data/messages:109
 #: ../stack/data/messages:101
 msgid "Slide"
-msgstr ""
+msgstr "גלישה"
 
 #: ../dock-rendering/src/rendering-init.c:40 ../dock-rendering/data/messages:7
 msgid "Curve"
-msgstr ""
+msgstr "עקומה"
 
 #: ../dock-rendering/src/rendering-init.c:41
 #: ../dock-rendering/data/messages:17
 msgid "Panel"
-msgstr ""
+msgstr "לוח"
 
 #: ../drop-indicator/src/applet-init.c:28
 msgid "drop indicator"
@@ -2053,7 +2067,7 @@ msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:105
 msgid "files"
-msgstr ""
+msgstr "קבצים"
 
 #: ../dustbin/src/applet-notifications.c:105
 msgid "elements"
@@ -2077,7 +2091,7 @@ msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:147
 msgid "Empty Trash"
-msgstr ""
+msgstr "ריקון האשפה"
 
 #: ../dustbin/src/applet-notifications.c:151
 msgid "Display dustbins information"
@@ -2129,31 +2143,31 @@ msgstr ""
 #: ../icon-effect/data/messages:25 ../icon-effect/data/messages:41
 #: ../icon-effect/data/messages:83
 msgid "Stars"
-msgstr ""
+msgstr "כוכבים"
 
 #: ../icon-effect/src/applet-init.c:107 ../icon-effect/data/messages:11
 #: ../icon-effect/data/messages:27 ../icon-effect/data/messages:43
 #: ../icon-effect/data/messages:127
 msgid "Rain"
-msgstr ""
+msgstr "גשם"
 
 #: ../icon-effect/src/applet-init.c:110 ../icon-effect/data/messages:13
 #: ../icon-effect/data/messages:29 ../icon-effect/data/messages:45
 #: ../icon-effect/data/messages:105
 msgid "Snow"
-msgstr ""
+msgstr "שלג"
 
 #: ../icon-effect/src/applet-init.c:113 ../icon-effect/data/messages:15
 #: ../icon-effect/data/messages:31 ../icon-effect/data/messages:47
 #: ../icon-effect/data/messages:149
 msgid "Storm"
-msgstr ""
+msgstr "סערה"
 
 #: ../icon-effect/src/applet-init.c:116 ../icon-effect/data/messages:17
 #: ../icon-effect/data/messages:33 ../icon-effect/data/messages:49
 #: ../icon-effect/data/messages:169
 msgid "Firework"
-msgstr ""
+msgstr "זיקוקים"
 
 #: ../illusion/src/applet-init.c:30
 msgid "illusion"
@@ -2198,11 +2212,11 @@ msgstr ""
 #: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:229
 #: ../logout/data/messages:95
 msgid "Log out"
-msgstr ""
+msgstr "יציאה"
 
 #: ../logout/src/applet-init.c:67
 msgid "Lock the screen"
-msgstr ""
+msgstr "נעילת המסך"
 
 #: ../logout/src/applet-init.c:71
 msgid "Show the log-out menu"
@@ -2210,17 +2224,17 @@ msgstr ""
 
 #: ../logout/src/applet-logout.c:201 ../logout/data/messages:97
 msgid "Shut down"
-msgstr ""
+msgstr "כיבוי"
 
 #: ../logout/src/applet-logout.c:207
 msgid "Restart"
-msgstr ""
+msgstr "הפעלה מחדש"
 
 #: ../logout/src/applet-logout.c:213
 #: ../powermanager/src/powermanager-menu-functions.c:96
 #: ../powermanager/src/powermanager-menu-functions.c:104
 msgid "Hibernate"
-msgstr ""
+msgstr "מצב שינה"
 
 #: ../logout/src/applet-logout.c:215
 msgid "Your computer will not consume any energy."
@@ -2230,7 +2244,7 @@ msgstr ""
 #: ../powermanager/src/powermanager-menu-functions.c:99
 #: ../powermanager/src/powermanager-menu-functions.c:106
 msgid "Suspend"
-msgstr ""
+msgstr "השהיה"
 
 #: ../logout/src/applet-logout.c:222
 msgid "Your computer will still consume a small amount of energy."
@@ -2242,15 +2256,15 @@ msgstr ""
 
 #: ../logout/src/applet-logout.c:242
 msgid "Switch user"
-msgstr ""
+msgstr "החלפת משתמש"
 
 #: ../logout/src/applet-logout.c:263
 msgid "Guest session"
-msgstr ""
+msgstr "הפעלת אורח"
 
 #: ../logout/src/applet-logout.c:270 ../logout/data/messages:99
 msgid "Lock screen"
-msgstr ""
+msgstr "נעילת המסך"
 
 #: ../logout/src/applet-logout.c:275
 msgid "Program an automatic shut-down"
@@ -2293,11 +2307,11 @@ msgstr ""
 
 #: ../logout/src/applet-notifications.c:103
 msgid "Manage users"
-msgstr ""
+msgstr "ניהול משתמשים"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Server address:"
-msgstr ""
+msgstr "כתובת השרת:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "myHost"
@@ -2305,19 +2319,19 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Username:"
-msgstr ""
+msgstr "שם משתמש:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Password:"
-msgstr ""
+msgstr "סיסמה:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "The password will be crypted."
-msgstr ""
+msgstr "הסיסמה תוצפן."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Port:"
-msgstr ""
+msgstr "יציאה:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid ""
@@ -2339,12 +2353,12 @@ msgstr ""
 #: ../netspeed/data/messages:151 ../powermanager/data/messages:159
 #: ../weather/data/messages:117
 msgid "Refresh time:"
-msgstr ""
+msgstr "קצב ריענון:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39 ../RSSreader/data/messages:105
 #: ../weather/data/messages:115
 msgid "In minutes."
-msgstr ""
+msgstr "בדקות:"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Specific mail application"
@@ -2404,15 +2418,15 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-config.c:447
 msgid "Remove Account"
-msgstr ""
+msgstr "הסרת חשבון"
 
 #: ../mail/src/cd-mail-applet-etpan.c:237 ../wifi/src/applet-draw.c:145
 msgid "unknown"
-msgstr ""
+msgstr "לא ידוע"
 
 #: ../mail/src/cd-mail-applet-etpan.c:237
 msgid "no subject"
-msgstr ""
+msgstr "ללא נושא"
 
 #: ../mail/src/cd-mail-applet-etpan.c:404
 msgid "No unread mail in your mailboxes"
@@ -2429,7 +2443,7 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-init.c:33
 msgid "mail"
-msgstr ""
+msgstr "דוא״ל"
 
 #: ../mail/src/cd-mail-applet-init.c:36
 msgid ""
@@ -2901,8 +2915,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -5276,7 +5290,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
@@ -6988,7 +7003,8 @@ msgid "Space between icons:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:121
@@ -7175,7 +7191,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
@@ -7420,7 +7437,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:117
@@ -7504,7 +7522,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:11
@@ -8487,7 +8506,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:105

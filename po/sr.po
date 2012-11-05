@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
+"POT-Creation-Date: 2012-11-03 02:13+0000\n"
 "PO-Revision-Date: 2012-09-30 17:27+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Serbian <sr@li.org>\n"
-"Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-10-01 04:55+0000\n"
-"X-Generator: Launchpad (build 16049)\n"
+"X-Launchpad-Export-Date: 2012-11-04 05:05+0000\n"
+"X-Generator: Launchpad (build 16218)\n"
+"Language: sr\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -342,7 +343,8 @@ msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -1661,8 +1663,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1853,7 +1855,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:333
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:401
@@ -2322,7 +2325,8 @@ msgstr "Određeni program za e-poštu"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Leave empty to use the default mail application."
-msgstr "Ostavite nepopunjeno da bi koristili podrazumevani program za e-poštu"
+msgstr ""
+"Ostavite nepopunjeno da bi koristili podrazumevani program za e-poštu"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Directory on server:"
@@ -2832,14 +2836,12 @@ msgid "Browse Network"
 msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:309
-#, fuzzy
 msgid "Browse recent files"
-msgstr "Nedavni fajlovi"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:311
-#, fuzzy
 msgid "Open Trash"
-msgstr "Otvori uz pomoć"
+msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:317
 msgid "Rename this bookmark"
@@ -2875,8 +2877,8 @@ msgstr "prikaži miša"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -3162,9 +3164,8 @@ msgid "Close this Tab"
 msgstr "Zatvori ovaj jezičak"
 
 #: ../tomboy/src/tomboy-draw.c:198
-#, fuzzy
 msgid "Open all"
-msgstr "Otvori fajl"
+msgstr ""
 
 #: ../tomboy/src/tomboy-init.c:30
 msgid "Note-Taking"
@@ -5257,7 +5258,8 @@ msgid "Background"
 msgstr "Pozadina"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
@@ -6968,7 +6970,8 @@ msgid "Space between icons:"
 msgstr "Razmak između ikona:"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:121
@@ -7157,7 +7160,8 @@ msgid "Colours"
 msgstr "Boje"
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
@@ -7402,7 +7406,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:117
@@ -7486,7 +7491,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:11
@@ -8469,7 +8475,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:105
