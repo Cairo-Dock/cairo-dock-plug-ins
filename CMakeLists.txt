@@ -353,6 +353,7 @@ message (STATUS "> Shared Libraries:")
 ############# ALSA_MIXER #################
 message (STATUS "> AlsaMixer:")
 set (with_alsa "no")
+set (with_soundmenu "no")
 if (NOT "${enable-alsa-mixer}" STREQUAL "no")
 	pkg_check_modules (ALSA_MIXER_PACKAGE alsa)
 	if ("${ALSA_MIXER_PACKAGE_FOUND}" STREQUAL "")
