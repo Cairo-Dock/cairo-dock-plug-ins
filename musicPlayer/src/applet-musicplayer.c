@@ -54,16 +54,11 @@ not owned => stop handler
 static inline void _fill_handler_properties (const gchar *cDesktopFileName, gchar *cAppClass)
 {
 	g_free ((gchar*)myData.pCurrentHandler->appclass);
-	if (cAppClass == NULL) // cAppClass: this parameter is optional
-		myData.pCurrentHandler->appclass = cairo_dock_register_class (cDesktopFileName);
-	else
-		myData.pCurrentHandler->appclass = cAppClass;
+	myData.pCurrentHandler->appclass = cAppClass;
 	g_free ((gchar*)myData.pCurrentHandler->launch);
 	myData.pCurrentHandler->launch = g_strdup (cairo_dock_get_class_command (myData.pCurrentHandler->appclass));
 	if (myData.pCurrentHandler->launch == NULL)  // we really need a command to launch it on click, so insist a little
-	{
 		myData.pCurrentHandler->launch = g_strdup (cDesktopFileName);
-	}
 	g_free ((gchar*)myData.pCurrentHandler->cDisplayedName);
 	myData.pCurrentHandler->cDisplayedName = g_strdup (cairo_dock_get_class_name (myData.pCurrentHandler->appclass));
 }
@@ -384,9 +379,8 @@ static void _on_name_owner_changed (const gchar *cName, gboolean bOwned, gpointe
 				gchar *cAppClass = NULL, *cDesktopFileName = NULL;
 				_get_right_class_and_desktop_file (cName, &cDesktopFileName, &cAppClass);
 				if (cAppClass) // better to not use any class than a wrong class
-				{
 					_fill_handler_properties (cDesktopFileName, cAppClass);
-				}
+
 				g_free ((gchar*)myData.pCurrentHandler->cMprisService);
 				myData.pCurrentHandler->cMprisService = g_strdup (cName);
 			}
@@ -508,7 +502,7 @@ void cd_musicplayer_set_current_handler (const gchar *cName)
 		gchar *cAppClass = NULL, *cDesktopFileName = NULL;
 		_get_right_class_and_desktop_file (cName, &cDesktopFileName, &cAppClass);
 		if (cAppClass) // better to not use any class than a wrong class
-			_fill_handler_properties (cDesktopFileName, NULL);
+			_fill_handler_properties (cDesktopFileName, cAppClass);
 		
 		myData.pCurrentHandler->cMprisService = g_strdup_printf (CD_MPRIS2_SERVICE_BASE".%s", cName);
 		myData.cMpris2Service = NULL;
