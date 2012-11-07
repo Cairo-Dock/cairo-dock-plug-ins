@@ -1275,6 +1275,10 @@ void vfs_backend_empty_trash (void)
 
 gchar *vfs_backend_get_trash_path (const gchar *cNearURI, gchar **cFileInfoPath)
 {
+	if (cNearURI == NULL)
+		return g_strdup ("trash://"); // it seems it's supported: we can monitor trash://
+	// but it's possible that we are not able to open this URI with GVFS on KDE :-/ => need feedback
+
 	gchar *cPath = NULL;
 	/*GFile *pFile = g_file_new_for_uri ("trash://");
 	gchar *cPath = g_file_get_path (pFile);
