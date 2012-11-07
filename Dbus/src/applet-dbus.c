@@ -139,7 +139,7 @@ static gboolean _cd_dbus_register_new_module (const gchar *cModuleName, const gc
 		pVisitCard->iCategory = iCategory;
 		if (cIconName != NULL)
 			pVisitCard->cIconFilePath = g_strdup (cIconName);  // take the filename as it is, the path will be searched when needed only.
-		if (pVisitCard->cIconFilePath == NULL)
+		else
 			pVisitCard->cIconFilePath = (cShareDataDir ? g_strdup_printf ("%s/icon", cShareDataDir) : NULL);
 		pVisitCard->iSizeOfConfig = 4;  // au cas ou ...
 		pVisitCard->iSizeOfData = 4;  // au cas ou ...
