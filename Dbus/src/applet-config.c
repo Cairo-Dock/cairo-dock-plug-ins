@@ -39,4 +39,5 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bEnableSetLabel 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable set label");
 	myConfig.bEnableSetIcon 		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable set icon");
 	myConfig.bEnableAnimateIcon		= CD_CONFIG_GET_BOOLEAN ("Configuration", "enable animate icon");
+	myConfig.bLaunchLauncherAPIDaemon = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "launcher api daemon", TRUE);
 CD_APPLET_GET_CONFIG_END

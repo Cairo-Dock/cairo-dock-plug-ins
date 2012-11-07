@@ -509,8 +509,12 @@ void cd_dbus_launch_service (void)
 	}
 	
 	//\____________ Start the bridge to Unity Launcher API.
+	/* launch it asap, because if another Unity claims the bus before us,
+	 * the messages will be emitted on the bus, and we might miss them.
+	 */
 	#ifdef DBUSMENU_GTK_FOUND // need SetMenu => DBusMenu
-	cairo_dock_launch_command (CD_PLUGINS_DIR"/cairo-dock-unity-bridge");  // launch it asap, because if another Unity claims the bus before us, the messages will be emited on the bus, and we might miss them.
+	if (myConfig.bLaunchLauncherAPIDaemon)
+		cairo_dock_launch_command (CD_PLUGINS_DIR"/cairo-dock-launcher-API-daemon");
 	#endif
 }
 

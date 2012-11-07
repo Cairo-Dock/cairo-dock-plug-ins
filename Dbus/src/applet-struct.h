@@ -41,6 +41,7 @@ struct _AppletConfig {
 	gboolean bEnablePopUp;
 	gboolean bEnableAnimateIcon;
 	gboolean bEnableNewModule;
+	gboolean bLaunchLauncherAPIDaemon;
 	} ;
 
 

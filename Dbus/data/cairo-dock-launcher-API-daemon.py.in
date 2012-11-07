@@ -59,9 +59,9 @@ class Launcher:
 			bus.watch_name_owner(self.dbus_name, self.on_name_owner_changed)
 	
 	def on_name_owner_changed(self,connection_name):
-		print("Unity-Bridge: launcher bus name changed:",connection_name)
+		print("Launcher-API-Daemon: launcher bus name changed:",connection_name)
 		if len(connection_name) == 0:  # no more distant app -> reset the launcher and its icon.
-			print("Unity-Bridge: -> the launcher "+ str (self.dbus_name) +" is no longer connected to its app.")
+			print("Launcher-API-Daemon: -> the launcher "+ str (self.dbus_name) +" is no longer connected to its app.")
 			if self.has_count and self.count_visible:
 				self.dock.iface.SetQuickInfo('', self.id)
 				self.has_count = False
@@ -83,14 +83,14 @@ class Launcher:
 			self.dbus_name = None
 			
 	def set_count(self, x):
-		print('Unity-Bridge: set_count (%d)'%x)
+		print('Launcher-API-Daemon: set_count (%d)'%x)
 		self.count = x
 		self.has_count = True
 		if self.count_visible:
 			self.dock.iface.SetQuickInfo(str(self.count), self.id)
 	
 	def set_count_visible(self, x):
-		print('Unity-Bridge: set_count_visible (%d)'%x)
+		print('Launcher-API-Daemon: set_count_visible (%d)'%x)
 		self.count_visible = x
 		if self.has_count:
 			if x:
@@ -99,13 +99,13 @@ class Launcher:
 				self.dock.iface.SetQuickInfo('', self.id)
 	
 	def set_progress(self, x):
-		print('Unity-Bridge: set_progress (%.2f)'%x)
+		print('Launcher-API-Daemon: set_progress (%.2f)'%x)
 		self.progress = x
 		self.has_progress = True
 		self.dock.iface.SetProgress (x, self.id)
 	
 	def set_progress_visible(self, x):
-		print('Unity-Bridge: set_progress_visible (%d)'%x)
+		print('Launcher-API-Daemon: set_progress_visible (%d)'%x)
 		self.progress_visible = x
 		if not x:
 			self.dock.iface.SetProgress (-1, self.id)
@@ -113,24 +113,24 @@ class Launcher:
 			self.dock.iface.SetProgress (self.progress, self.id)
 	
 	def set_urgent(self, x):
-		print('Unity-Bridge: set_urgent (%d)'%x)
+		print('Launcher-API-Daemon: set_urgent (%d)'%x)
 		self.urgent = x
 		self.dock.iface.DemandsAttention(x, 'default', self.id)
 	
 	def set_menu(self, menu_path):
-		print('Unity-Bridge: set_menu (%s)'%menu_path)
+		print('Launcher-API-Daemon: set_menu (%s)'%menu_path)
 		self.menu_path = menu_path
 		self.dock.iface.SetMenu(self.dbus_name, menu_path, self.id)
 	
 	def set_emblem(self, x):
-		print('Unity-Bridge: set_emblem (%s)'%x)
+		print('Launcher-API-Daemon: set_emblem (%s)'%x)
 		self.emblem = x
 		self.has_emblem = True
 		if self.emblem_visible:
 			self.dock.iface.SetEmblem(self.emblem, CairoDock.EMBLEM_TOP_RIGHT, self.id)
 	
 	def set_emblem_visible(self, x):
-		print('Unity-Bridge: set_emblem_visible (%d)'%x)
+		print('Launcher-API-Daemon: set_emblem_visible (%d)'%x)
 		self.emblem_visible = x
 		if self.has_emblem:
 			if x:
@@ -150,11 +150,11 @@ class ULWatcher:
 		try: 
 			self.bus = dbus.SessionBus()
 		except Exception as exception:
-			print('Unity-Bridge: Could not open dbus. Uncaught exception.')
+			print('Launcher-API-Daemon: Could not open dbus. Uncaught exception.')
 			return
 		
 		bus_name = dbus.service.BusName (self.bus_name_str, self.bus)
-		print("Unity-Bridge: registered as Unity:",bus_name)
+		print("Launcher-API-Daemon: registered as Unity:",bus_name)
 		
 		self.bus.add_signal_receiver (self.on_launcher_entry_signal, dbus_interface=self.bus_iface_str, member_keyword='member', sender_keyword='sender')
 		
@@ -165,7 +165,7 @@ class ULWatcher:
 	
 	def on_launcher_entry_signal(self, val1=None, val2=None, member=None, sender=None):  # application://evolution.desktop, dictionnary (sv)
 		if (member == 'Update'):
-			print('Unity-Bridge: Update',val1)
+			print('Launcher-API-Daemon: Update',val1)
 			
 			launcher = None
 			if val1 in self.launchers:
@@ -208,23 +208,23 @@ class ULWatcher:
 				launcher.set_emblem_visible (emblem_visible)
 			
 		elif (member == 'Query'):
-			print('Unity-Bridge:   query',val2,'for',val1)
+			print('Launcher-API-Daemon:   query',val2,'for',val1)
 		else:
-			print('Unity-Bridge: unknown signal')
+			print('Launcher-API-Daemon: unknown signal')
 		
 if __name__ == '__main__':
 	# check that we don't run twice (ex.: from a 2nd cairo-dock instance)
 	# we could detect it from the bus, but then we couldn't detect the following case: Unity launcher + Cairo-Dock
 	# we want: ps ux | grep " + filename + " | grep python | grep -v " + pid_str)
 	ps_str = popen("ps -u $USER -wwo pid,cmd").read().splitlines() # only users' processes with all lines
-	filename = sys.argv[0] # /usr/lib/cairo-dock/cairo-dock-unity-bridge
+	filename = sys.argv[0] # /usr/lib/cairo-dock/cairo-dock-launcher-API-daemon
 	pid_str = str (getpid()) # we check if previous processes are running, we exclude this process
 	for line in ps_str:
 		line_split = line.split()
 		line_cmd = ' '.join(line_split[1:])
 		line_pid = line_split[0]
 		if "python" in line_cmd and filename in line_cmd and not pid_str in line_pid:
-			print('Cairo-Dock - Unity bridge is already running (' + line_pid + ')')
+			print('Cairo-Dock - Launcher API Daemon is already running (' + line_pid + ')')
 			sys.exit(1)
 	
 	ULWatcher()
