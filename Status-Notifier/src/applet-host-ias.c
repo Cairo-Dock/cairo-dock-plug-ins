@@ -188,6 +188,80 @@ static void _cd_cclosure_marshal_VOID__STRING_INT_STRING_STRING_STRING_STRING_ST
 }
 #endif
 
+static void _cd_cclosure_marshal_VOID__INT_STRING_STRING (GClosure *closure,
+	GValue *return_value G_GNUC_UNUSED,
+	guint n_param_values,
+	const GValue *param_values,
+	gpointer invocation_hint G_GNUC_UNUSED,
+	gpointer marshal_data)
+{
+	//cd_debug ("=== %s ()", __func__);
+	typedef void (*GMarshalFunc_VOID__INT_STRING_STRING) (
+		gpointer     data1,
+		gint         arg_1,
+		gchar       *arg_2,
+		gchar       *arg_3,
+		gpointer     data2);
+	register GMarshalFunc_VOID__INT_STRING_STRING callback;
+	register GCClosure *cc = (GCClosure*) closure;
+	register gpointer data1, data2;
+	g_return_if_fail (n_param_values == 4);  // return_value est NULL ici, car la callback ne renvoit rien.
+
+	if (G_CCLOSURE_SWAP_DATA (closure))
+	{
+		data1 = closure->data;
+		data2 = g_value_peek_pointer (param_values + 0);
+	}
+	else
+	{
+		data1 = g_value_peek_pointer (param_values + 0);
+		data2 = closure->data;
+	}
+	callback = (GMarshalFunc_VOID__INT_STRING_STRING) (marshal_data ? marshal_data : cc->callback);
+
+	callback (data1,
+		g_value_get_int (param_values + 1),
+		(char*) g_value_get_string (param_values + 2),
+		(char*) g_value_get_string (param_values + 3),
+		data2);
+}
+
+static void _cd_cclosure_marshal_VOID__INT_STRING (GClosure *closure,
+	GValue *return_value G_GNUC_UNUSED,
+	guint n_param_values,
+	const GValue *param_values,
+	gpointer invocation_hint G_GNUC_UNUSED,
+	gpointer marshal_data)
+{
+	//cd_debug ("=== %s ()", __func__);
+	typedef void (*GMarshalFunc_VOID__INT_STRING) (
+		gpointer     data1,
+		gint         arg_1,
+		gchar       *arg_2,
+		gpointer     data2);
+	register GMarshalFunc_VOID__INT_STRING callback;
+	register GCClosure *cc = (GCClosure*) closure;
+	register gpointer data1, data2;
+	g_return_if_fail (n_param_values == 3);  // return_value est NULL ici, car la callback ne renvoit rien.
+
+	if (G_CCLOSURE_SWAP_DATA (closure))
+	{
+		data1 = closure->data;
+		data2 = g_value_peek_pointer (param_values + 0);
+	}
+	else
+	{
+		data1 = g_value_peek_pointer (param_values + 0);
+		data2 = closure->data;
+	}
+	callback = (GMarshalFunc_VOID__INT_STRING) (marshal_data ? marshal_data : cc->callback);
+
+	callback (data1,
+		g_value_get_int (param_values + 1),
+		(char*) g_value_get_string (param_values + 2),
+		data2);
+}
+
   ///////////////
  /// Signals ///
 ///////////////
@@ -271,6 +345,82 @@ static void on_removed_application (DBusGProxy *proxy_watcher, gint iPosition, C
 	CD_APPLET_LEAVE ();
 }
 
+static void on_application_icon_changed (DBusGProxy *proxy_watcher, gint iPosition, const gchar *cIconName, const gchar *cIconDesc, CairoDockModuleInstance *myApplet)
+{
+	CD_APPLET_ENTER;
+	cd_debug ("=== %s (%d, %s, %s)", __func__, iPosition, cIconName, cIconDesc);
+	
+	CDStatusNotifierItem *pItem = cd_satus_notifier_find_item_from_position (iPosition);
+	g_return_if_fail (pItem != NULL);
+	
+	if (g_strcmp0 (pItem->cIconName, cIconName) == 0)  // discard useless updates (skype...)
+		return;
+	g_free (pItem->cIconName);
+	pItem->cIconName = g_strdup (cIconName);
+	g_free (pItem->cAccessibleDesc);
+	pItem->cAccessibleDesc = g_strdup (cIconDesc);
+	
+	if (pItem->iStatus != CD_STATUS_NEEDS_ATTENTION)
+	{
+		cd_satus_notifier_update_item_image (pItem);
+	}
+	
+	CD_APPLET_LEAVE ();
+}
+
+static void on_application_icon_theme_path_changed (DBusGProxy *proxy_watcher, gint iPosition, const gchar *cIconThemePath, CairoDockModuleInstance *myApplet)
+{
+	CD_APPLET_ENTER;
+	cd_debug ("=== %s (%d, %s)", __func__, iPosition, cIconThemePath);
+	
+	CDStatusNotifierItem *pItem = cd_satus_notifier_find_item_from_position (iPosition);
+	g_return_if_fail (pItem != NULL);
+	
+	g_free (pItem->cIconThemePath);
+	pItem->cIconThemePath = g_strdup (cIconThemePath);
+	
+	cd_satus_notifier_add_theme_path (cIconThemePath);
+	
+	if (pItem->cIconName != NULL)
+	{
+		cd_satus_notifier_update_item_image (pItem);
+	}
+	
+	CD_APPLET_LEAVE ();
+}
+
+static void on_application_label_changed (DBusGProxy *proxy_watcher, gint iPosition, const gchar *cLabel, const gchar *cLabelGuide, CairoDockModuleInstance *myApplet)
+{
+	CD_APPLET_ENTER;
+	cd_debug ("=== %s (%d, %s, %s)", __func__, iPosition, cLabel, cLabelGuide);
+	
+	CDStatusNotifierItem *pItem = cd_satus_notifier_find_item_from_position (iPosition);
+	g_return_if_fail (pItem != NULL);
+	
+	g_free (pItem->cLabel);
+	pItem->cLabel = g_strdup (cLabel);
+	g_free (pItem->cLabelGuide);
+	pItem->cLabelGuide = g_strdup (cLabelGuide);
+	
+	CD_APPLET_LEAVE ();
+}
+
+static void on_application_title_changed (DBusGProxy *proxy_watcher, gint iPosition, const gchar *cTitle, CairoDockModuleInstance *myApplet)
+{
+	CD_APPLET_ENTER;
+	cd_debug ("=== %s (%d, %s)", __func__, iPosition, cTitle);
+	
+	CDStatusNotifierItem *pItem = cd_satus_notifier_find_item_from_position (iPosition);
+	g_return_if_fail (pItem != NULL);
+	
+	if (cTitle != NULL)
+	{
+		g_free (pItem->cTitle);
+		pItem->cTitle = g_strdup (cTitle);
+	}
+	
+	CD_APPLET_LEAVE ();
+}
 
   /////////////////
  /// Get Items ///
@@ -523,7 +673,42 @@ void cd_satus_notifier_get_items_from_ias (void)
 		G_TYPE_INVALID);
 	dbus_g_proxy_connect_signal(myData.pProxyIndicatorApplicationService, "ApplicationRemoved",
 		G_CALLBACK(on_removed_application), myApplet, NULL);
-	// TODO? ApplicationIconChanged, ApplicationIconThemePathChanged, ApplicationLabelChanged, ApplicationTitleChanged
+	
+	// we add the following signals because some program don't support the StatusNotifier API (skype, once again...) but only the IAS one.
+	dbus_g_object_register_marshaller(_cd_cclosure_marshal_VOID__INT_STRING_STRING,
+			G_TYPE_NONE, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);
+	dbus_g_proxy_add_signal(myData.pProxyIndicatorApplicationService, "ApplicationIconChanged",
+		G_TYPE_INT,  // position
+		G_TYPE_STRING,  // icon name
+		G_TYPE_STRING,  // icon desc (?)
+		G_TYPE_INVALID);
+	dbus_g_proxy_connect_signal(myData.pProxyIndicatorApplicationService, "ApplicationIconChanged",
+		G_CALLBACK(on_application_icon_changed), myApplet, NULL);
+	
+	dbus_g_object_register_marshaller(_cd_cclosure_marshal_VOID__INT_STRING,
+			G_TYPE_NONE, G_TYPE_INT, G_TYPE_STRING, G_TYPE_INVALID);
+	dbus_g_proxy_add_signal(myData.pProxyIndicatorApplicationService, "ApplicationIconThemePathChanged",
+		G_TYPE_INT,  // position
+		G_TYPE_STRING,  // icon name
+		G_TYPE_STRING,  // icon desc (Note: I'm quite sure they will eventually remove it ...)
+		G_TYPE_INVALID);
+	dbus_g_proxy_connect_signal(myData.pProxyIndicatorApplicationService, "ApplicationIconThemePathChanged",
+		G_CALLBACK(on_application_icon_theme_path_changed), myApplet, NULL);
+	
+	dbus_g_proxy_add_signal(myData.pProxyIndicatorApplicationService, "ApplicationLabelChanged",
+		G_TYPE_INT,  // position
+		G_TYPE_STRING,  // label
+		G_TYPE_STRING,  // guide
+		G_TYPE_INVALID);
+	dbus_g_proxy_connect_signal(myData.pProxyIndicatorApplicationService, "ApplicationLabelChanged",
+		G_CALLBACK(on_application_label_changed), myApplet, NULL);
+	
+	dbus_g_proxy_add_signal(myData.pProxyIndicatorApplicationService, "ApplicationTitleChanged",
+		G_TYPE_INT,  // position
+		G_TYPE_STRING,  // title
+		G_TYPE_INVALID);
+	dbus_g_proxy_connect_signal(myData.pProxyIndicatorApplicationService, "ApplicationTitleChanged",
+		G_CALLBACK(on_application_title_changed), myApplet, NULL);
 }
 
   //////////////////
