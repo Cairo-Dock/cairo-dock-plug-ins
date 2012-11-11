@@ -99,8 +99,9 @@ typedef struct {
 	gboolean bInvalid;  // item deja en cours de destruction
 	DbusmenuGtkMenu *pMenu;
 	cairo_surface_t *pSurface;
+	guint iSidUpdateIcon;
 	// menu redraw
-	gulong fHandlerId;
+	gboolean bMenuIsBuilt;
 } CDStatusNotifierItem;
 
 

@@ -224,7 +224,6 @@ static void on_new_item_label (DBusGProxy *proxy_item, const gchar *cLabel, cons
 	g_free (pItem->cLabelGuide);
 	pItem->cLabelGuide = g_strdup (cLabelGuide);
 	
-	
 	CD_APPLET_LEAVE ();
 }
 
@@ -330,10 +329,21 @@ static void _on_item_proxy_destroyed (DBusGProxy *proxy_item, CDStatusNotifierIt
 	CD_APPLET_LEAVE ();
 }
 
+static gboolean _update_icon_delayed (CDStatusNotifierItem *pItem)
+{
+	cd_debug ("");
+	if (pItem->cIconName != NULL)
+	{
+		cd_satus_notifier_update_item_image (pItem);
+	}
+	pItem->iSidUpdateIcon = 0;
+	return FALSE;
+}
 gchar *cd_satus_notifier_search_item_icon_s_path (CDStatusNotifierItem *pItem, gint iSize)
 {
 	g_return_val_if_fail (pItem != NULL, NULL);
 	gchar *cImageName = (pItem->iStatus == CD_STATUS_NEEDS_ATTENTION ? pItem->cAttentionIconName: pItem->cIconName);
+	g_print ("  %s\n", cImageName);
 	
 	gchar *cIconPath = NULL;
 	if (pItem->cIconThemePath != NULL)  // workaround pour des applis telles que dropbox qui trouvent malin de specifier des icones avec des noms hyper generiques (idle.png).
@@ -352,9 +362,21 @@ gchar *cd_satus_notifier_search_item_icon_s_path (CDStatusNotifierItem *pItem, g
 		if (cIconPath == NULL)  // in case we have a buggy app, try some heuristic
 		{
 			cIconPath = cairo_dock_search_icon_s_path (pItem->cId, iSize);
-			if (cIconPath == NULL)
+			if (cIconPath == NULL && pItem->pSurface == NULL)  // only use the fallback icon if the item is still empty (to not have an invisible item).
+			{
 				cIconPath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+			}
+			
+			// skype strikes again ! on startup, it indicates its icon theme path (a temporary folder in /tmp); BUT it copies the icons after, so for a few seconds, the icons it tells us don't exist.
+			// so we trigger an update in a few seconds.
+			if (pItem->iSidUpdateIcon == 0)
+				pItem->iSidUpdateIcon = g_timeout_add_seconds (7, (GSourceFunc)_update_icon_delayed, pItem);
 		}
+	}
+	else if (pItem->iSidUpdateIcon != 0)  // we found an icon, discard any pending update.
+	{
+		g_source_remove (pItem->iSidUpdateIcon);
+		pItem->iSidUpdateIcon = 0;
 	}
 	
 	return cIconPath;
@@ -691,6 +713,8 @@ void cd_free_item (CDStatusNotifierItem *pItem)
 	pItem->bInvalid = TRUE;
 	if (pItem->iSidPopupTooltip != 0)
 		g_source_remove (pItem->iSidPopupTooltip);
+	if (pItem->iSidUpdateIcon != 0)
+		g_source_remove (pItem->iSidUpdateIcon);
 	if (pItem->cIconThemePath)
 		cd_satus_notifier_remove_theme_path (pItem->cIconThemePath);
 	g_object_unref (pItem->pProxy);
