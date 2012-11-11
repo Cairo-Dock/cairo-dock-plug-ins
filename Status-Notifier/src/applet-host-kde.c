@@ -117,7 +117,7 @@ static void _on_get_applications_from_watcher (DBusGProxy *proxy, DBusGProxyCall
 		CDStatusNotifierItem *pItem;
 		for (i = 0; pApplications[i] != NULL; i ++)
 		{
-			g_print (" + '%s'\n", pApplications[i]);  // service + path
+			cd_message (" + '%s'", pApplications[i]);  // service + path
 			if (*pApplications[i] == '\0')
 				continue;
 			
@@ -136,7 +136,7 @@ static void _on_get_applications_from_watcher (DBusGProxy *proxy, DBusGProxyCall
 			g_free (cService);
 			if (! pItem)
 				continue;
-			cd_debug ("===  => + %s", pItem->cTitle);
+			cd_debug ("===  => + %s", pItem->cTitle?pItem->cTitle:pItem->cLabel);
 			myData.pItems = g_list_prepend (myData.pItems, pItem);
 		}
 		

@@ -141,13 +141,13 @@ static void _show_item_tooltip (Icon *pIcon, CDStatusNotifierItem *pItem)
 static void on_new_item_icon (DBusGProxy *proxy_item, CDStatusNotifierItem *pItem)
 {
 	CD_APPLET_ENTER;
-	//g_print ("=== %s ()\n", __func__);
+	cd_debug ("=== %s ()", __func__);
 	
 	g_free (pItem->cIconName);
 	pItem->cIconName = cairo_dock_dbus_get_property_as_string (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "IconName");
 	g_free (pItem->cAccessibleDesc);
 	pItem->cAccessibleDesc = cairo_dock_dbus_get_property_as_string (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "IconAccessibleDesc");
-	//g_print ("===  new icon : %s\n", pItem->cIconName);
+	cd_debug ("===  new icon : %s", pItem->cIconName);
 	
 	if (pItem->iStatus != CD_STATUS_NEEDS_ATTENTION)
 	{
@@ -159,11 +159,11 @@ static void on_new_item_icon (DBusGProxy *proxy_item, CDStatusNotifierItem *pIte
 static void on_new_item_attention_icon (DBusGProxy *proxy_item, CDStatusNotifierItem *pItem)
 {
 	CD_APPLET_ENTER;
-	//g_print ("=== %s ()\n", __func__);
+	cd_debug ("=== %s ()", __func__);
 	
 	g_free (pItem->cAttentionIconName);
 	pItem->cAttentionIconName = cairo_dock_dbus_get_property_as_string (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "AttentionIconName");
-	//g_print ("===  new attention icon : %s\n", pItem->cAttentionIconName);
+	cd_debug ("===  new attention icon : %s", pItem->cAttentionIconName);
 	
 	if (pItem->iStatus == CD_STATUS_NEEDS_ATTENTION)
 	{
@@ -403,6 +403,15 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 {
 	g_return_val_if_fail  (cService != NULL, NULL);
 	cd_debug ("=== %s (%s, %s)", __func__, cService, cObjectPath);
+	
+	// avoid creating an item that already exists. This can happen in the following case (skype):
+	// watcher starts -> dock registers to it   -> dock asks the items - - - - - - - - - - - - - - - - - -> dock receives the items -> skype item is already here !
+	//                -> skype creates its item -> 'new-item' is emitted -> dock receives the signal -> creates the item
+	if (cd_satus_notifier_find_item_from_service (cService) != NULL)
+	{
+		cd_debug ("The service %s / %s is already listed, skip it", cService, cObjectPath);
+		return NULL;
+	}
 	
 	gchar *str = strchr (cService, '/');  // just to be sure.
 	if (str)
