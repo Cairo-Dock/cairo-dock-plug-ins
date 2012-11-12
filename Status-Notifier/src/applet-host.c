@@ -219,29 +219,6 @@ void cd_satus_notifier_remove_theme_path (const gchar * cThemePath)
 		g_hash_table_remove (myData.pThemePaths, cThemePath);  // on le supprime de la table.
 		
 		cairo_dock_remove_path_from_icon_theme (cThemePath);
-		/**GtkIconTheme *pIconTheme = gtk_icon_theme_get_default();  // et du theme.
-		gchar **paths = NULL;
-		gint iNbPaths = 0;
-		gtk_icon_theme_get_search_path (pIconTheme, &paths, &iNbPaths);
-	
-		int i;
-		for (i = 0; i < iNbPaths; i++)  // on cherche sa position dans le tableau.
-		{
-			if (strcmp (paths[i], cThemePath))
-				break;
-		}
-		if (i < iNbPaths)  // trouve
-		{
-			g_free (paths[i]);
-			for (i = i+1; i < iNbPaths; i++)  // on decale tous les suivants vers l'arriere.
-			{
-				paths[i-1] = paths[i];
-			}
-			paths[i-1] = NULL;
-			gtk_icon_theme_set_search_path (pIconTheme, (const gchar **)paths, iNbPaths - 1);
-		}
-		
-		g_strfreev (paths);*/
 	}
 	else  // on decremente la reference.
 	{

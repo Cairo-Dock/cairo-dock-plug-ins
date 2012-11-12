@@ -376,16 +376,20 @@ static void on_application_icon_theme_path_changed (DBusGProxy *proxy_watcher, g
 	CDStatusNotifierItem *pItem = cd_satus_notifier_find_item_from_position (iPosition);
 	g_return_if_fail (pItem != NULL);
 	
-	g_free (pItem->cIconThemePath);
-	pItem->cIconThemePath = g_strdup (cIconThemePath);
-	
-	cd_satus_notifier_add_theme_path (cIconThemePath);
-	
-	if (pItem->cIconName != NULL)
+	if (g_strcmp0 (cIconThemePath, pItem->cIconThemePath) != 0)
 	{
-		cd_satus_notifier_update_item_image (pItem);
+		if (pItem->cIconThemePath != NULL)  // if the item previously provided a theme, remove it first.
+			cd_satus_notifier_remove_theme_path (pItem->cIconThemePath);
+		g_free (pItem->cIconThemePath);
+		pItem->cIconThemePath = g_strdup (cIconThemePath);
+		
+		cd_satus_notifier_add_theme_path (cIconThemePath);  // and add the new one.
+		
+		if (pItem->cIconName != NULL)
+		{
+			cd_satus_notifier_update_item_image (pItem);
+		}
 	}
-	
 	CD_APPLET_LEAVE ();
 }
 

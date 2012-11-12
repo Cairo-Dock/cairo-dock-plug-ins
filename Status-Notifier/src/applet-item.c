@@ -233,10 +233,15 @@ static void on_new_item_theme_path (DBusGProxy *proxy_item, const gchar *cNewThe
 	CD_APPLET_ENTER;
 	//g_print ("=== %s (%s)\n", __func__, cNewThemePath);
 	
-	g_free (pItem->cIconThemePath);
-	pItem->cIconThemePath = g_strdup (cNewThemePath);
-	
-	cd_satus_notifier_update_item_image (pItem);
+	if (g_strcmp0 (cNewThemePath, pItem->cIconThemePath) != 0)
+	{
+		if (pItem->cIconThemePath != NULL)  // if the item previously provided a theme, remove it first.
+			cd_satus_notifier_remove_theme_path (pItem->cIconThemePath);
+		g_free (pItem->cIconThemePath);
+		pItem->cIconThemePath = g_strdup (cNewThemePath);
+		
+		cd_satus_notifier_update_item_image (pItem);
+	}
 	
 	CD_APPLET_LEAVE ();
 }
