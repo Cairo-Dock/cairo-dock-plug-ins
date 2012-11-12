@@ -25,6 +25,7 @@
 #include "applet-struct.h"
 #include "applet-host.h"
 #include "applet-draw.h"
+#include "applet-notifications.h"
 #include "applet-item.h"
 
 #define CD_STATUS_NOTIFIER_ITEM_IFACE "org.kde.StatusNotifierItem"
@@ -716,6 +717,8 @@ void cd_free_item (CDStatusNotifierItem *pItem)
 		g_source_remove (pItem->iSidUpdateIcon);
 	if (pItem->cIconThemePath)
 		cd_satus_notifier_remove_theme_path (pItem->cIconThemePath);
+	if (pItem->iWidth != 0) 
+		g_signal_handlers_disconnect_by_func (pItem->pMenu, on_draw_menu_reposition, pItem);
 	g_object_unref (pItem->pProxy);
 	g_object_unref (pItem->pProxyProps);
 	g_free (pItem->cService);

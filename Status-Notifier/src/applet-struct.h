@@ -101,7 +101,7 @@ typedef struct {
 	cairo_surface_t *pSurface;
 	guint iSidUpdateIcon;
 	// menu redraw
-	gboolean bMenuIsBuilt;
+	int iWidth;
 } CDStatusNotifierItem;
 
 

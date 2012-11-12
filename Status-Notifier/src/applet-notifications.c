@@ -84,13 +84,19 @@ static inline CDStatusNotifierItem *_get_item (Icon *pClickedIcon, CairoContaine
 }
 
 
-static void _reposition_menu (GtkWidget *pWidget, CDStatusNotifierItem *pItem)
+gboolean on_draw_menu_reposition (GtkWidget *pWidget, G_GNUC_UNUSED gpointer useless, gpointer data)
 {
-	g_return_if_fail (pItem != NULL);
-	
-	gtk_menu_reposition (GTK_MENU (pWidget));
-	
-	g_signal_handlers_disconnect_by_func (pItem->pMenu, _reposition_menu, pItem);  // this is done once. this should be enough, except maybe if the menu items are changed a lot later.
+	CDStatusNotifierItem *pItem = data;
+	g_return_val_if_fail (pItem != NULL, FALSE);
+
+	int iWidth = gtk_widget_get_allocated_width (pWidget);
+	if (pItem->iWidth != iWidth)
+	{
+		pItem->iWidth = iWidth;
+		gtk_menu_reposition (GTK_MENU (pWidget));
+	}
+
+	return FALSE; // FALSE to propagate the event further.
 }
 
 static inline gboolean _popup_menu (CDStatusNotifierItem *pItem, Icon *pIcon, CairoContainer *pContainer)
@@ -104,13 +110,24 @@ static inline gboolean _popup_menu (CDStatusNotifierItem *pItem, Icon *pIcon, Ca
 		{
 			cairo_dock_popup_menu_on_icon (GTK_WIDGET (pItem->pMenu), pIcon, pContainer);
 			r = TRUE;
-			if (! pItem->bMenuIsBuilt)  // GTK doesn't do its job :-/ the first time, the menu can be out of the screen -> we reposition it.
+			/* Position of the menu: GTK doesn't do its job :-/
+			 * e.g. with Dropbox: the menu is out of the screen every time
+			 * something has changed in this menu (it displays 'connecting',
+			 * free space available, etc.) -> we need to reposition it.
+			 * (maybe it's due to a delay because Python and DBus are slower...)
+			 * Note that with other signals (realize, map, etc.), we receive
+			 * the notification before the resizing...
+			 */
+			if (pItem->iWidth == 0)
 			{
 				g_signal_connect (G_OBJECT (pItem->pMenu),
-					"realize",
-					G_CALLBACK (_reposition_menu),
+					#if (GTK_MAJOR_VERSION < 3)
+					"expose-event",
+					#else
+					"draw",
+					#endif
+					G_CALLBACK (on_draw_menu_reposition),
 					pItem);
-				pItem->bMenuIsBuilt = TRUE;
 			}
 		}
 	}
