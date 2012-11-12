@@ -343,7 +343,6 @@ gchar *cd_satus_notifier_search_item_icon_s_path (CDStatusNotifierItem *pItem, g
 {
 	g_return_val_if_fail (pItem != NULL, NULL);
 	gchar *cImageName = (pItem->iStatus == CD_STATUS_NEEDS_ATTENTION ? pItem->cAttentionIconName: pItem->cIconName);
-	g_print ("  %s\n", cImageName);
 	
 	gchar *cIconPath = NULL;
 	if (pItem->cIconThemePath != NULL)  // workaround pour des applis telles que dropbox qui trouvent malin de specifier des icones avec des noms hyper generiques (idle.png).

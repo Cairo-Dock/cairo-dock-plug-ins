@@ -198,7 +198,6 @@ void cd_satus_notifier_launch_our_watcher (void)
 void cd_satus_notifier_add_theme_path (const gchar * cThemePath)
 {
 	g_return_if_fail (cThemePath != NULL && *cThemePath != '\0');
-	g_print ("%s (%s)\n", __func__, cThemePath);
 	int ref = GPOINTER_TO_INT (g_hash_table_lookup (myData.pThemePaths, cThemePath));  // 0 si le theme n'est pas dans la table.
 	ref ++;  // on incremente la reference.
 	g_hash_table_insert (myData.pThemePaths, g_strdup (cThemePath), GINT_TO_POINTER (ref));  // et on la met a jour dans la table.

@@ -305,7 +305,6 @@ CDStatusNotifierItem *cd_satus_notifier_find_item_from_coord (void)
 
 void cd_satus_notifier_update_item_image (CDStatusNotifierItem *pItem)
 {
-	g_print ("%s (%s)\n", __func__, pItem->cIconName);
 	if (myConfig.bCompactMode)
 	{
 		gchar *cIconPath = cd_satus_notifier_search_item_icon_s_path (pItem, myData.iItemSize);
