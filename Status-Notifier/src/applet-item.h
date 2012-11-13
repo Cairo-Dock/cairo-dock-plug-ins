@@ -40,4 +40,7 @@ Icon *cd_satus_notifier_get_icon_from_item (CDStatusNotifierItem *pItem);
 #define _item_is_visible(item) ((item)->iStatus != CD_STATUS_PASSIVE || ! myConfig.bHideInactive)
 
 
+void cd_satus_notifier_build_item_dbusmenu (CDStatusNotifierItem *pItem);
+
+
 #endif

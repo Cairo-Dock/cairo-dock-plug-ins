@@ -655,8 +655,8 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 		cd_satus_notifier_add_theme_path (pItem->cIconThemePath);
 	}
 	
-	if (pItem->cMenuPath != NULL)
-		pItem->pMenu = dbusmenu_gtkmenu_new ((gchar *)pItem->cService, (gchar *)pItem->cMenuPath);
+	// build the dbusmenu right now, so that the menu is complete when the user first click on the item (otherwise, the menu is not placed correctly).
+	cd_satus_notifier_build_item_dbusmenu (pItem);
 	
 	//\_________________ track any changes in the item.
 	// signals supported by both.
@@ -722,8 +722,8 @@ void cd_free_item (CDStatusNotifierItem *pItem)
 		g_source_remove (pItem->iSidUpdateIcon);
 	if (pItem->cIconThemePath)
 		cd_satus_notifier_remove_theme_path (pItem->cIconThemePath);
-	if (pItem->iWidth != 0) 
-		g_signal_handlers_disconnect_by_func (pItem->pMenu, on_draw_menu_reposition, pItem);
+	if (pItem->pMenu != NULL)
+		g_object_unref (pItem->pMenu);  // will remove the 'reposition' callback too.
 	g_object_unref (pItem->pProxy);
 	g_object_unref (pItem->pProxyProps);
 	g_free (pItem->cService);
@@ -796,4 +796,39 @@ Icon *cd_satus_notifier_get_icon_from_item (CDStatusNotifierItem *pItem)
 		}
 	}
 	return NULL;
+}
+
+
+static gboolean on_configure_menu_reposition (GtkWidget *pWidget, GdkEventConfigure* pEvent, CDStatusNotifierItem *pItem)
+{
+	g_return_val_if_fail (pItem != NULL, FALSE);
+	
+	if (pItem->iMenuWidth != pEvent->width)  // if the width has changed, reposition the menu to be sure it won't out of the screen.
+	{
+		pItem->iMenuWidth = pEvent->width;
+		gtk_menu_reposition (GTK_MENU (pWidget));
+	}
+	
+	return FALSE; // FALSE to propagate the event further.
+}
+void cd_satus_notifier_build_item_dbusmenu (CDStatusNotifierItem *pItem)
+{
+	if (pItem->pMenu == NULL)  // menu not yet built
+	{
+		if (pItem->cMenuPath != NULL && *pItem->cMenuPath != '\0' && strcmp (pItem->cMenuPath, "/NO_DBUSMENU") != 0)  // hopefully, if the item doesn't provide a dbusmenu, it will not set something different as these 2 choices  (ex.: Klipper).
+		{
+			pItem->pMenu = dbusmenu_gtkmenu_new ((gchar *)pItem->cService, (gchar *)pItem->cMenuPath);
+			/* Position of the menu: GTK doesn't do its job :-/
+			 * e.g. with Dropbox: the menu is out of the screen every time
+			 * something has changed in this menu (it displays 'connecting',
+			 * free space available, etc.) -> we need to reposition it.
+			 * (maybe it's due to a delay because Python and DBus are slower...)
+			 * We watch the 'configure' event, that is triggered each time the menu is resized (or moved, but we only care size updates).
+			 */
+			g_signal_connect (G_OBJECT (pItem->pMenu),
+				"configure-event",
+				G_CALLBACK (on_configure_menu_reposition),
+				pItem);
+		}
+	}
 }

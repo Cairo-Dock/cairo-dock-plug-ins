@@ -89,8 +89,13 @@ void cd_satus_notifier_add_new_item_with_default (const gchar *cService, const g
 	if (pItem->cLabel == NULL)
 		pItem->cLabel = g_strdup (cLabel);
 	
-	if (pItem->cMenuPath == NULL)
+	if (pItem->cMenuPath == NULL)  /// this is questionnable ... if the item doesn't provide a menu, this could be that it really doesn't use a dbusmenu (but rather relies on the ContextMenu).
+	{
+		cd_debug ("No menu defined for '%s', using '%s' as the menu path", cService, cObjectPath);
 		pItem->cMenuPath = g_strdup (cObjectPath);
+	}
+	// build the dbusmenu right now, so that the menu is complete when the user first click on the item (otherwise, the menu is not placed correctly).
+	cd_satus_notifier_build_item_dbusmenu (pItem);
 	
 	pItem->iPosition = iPosition;
 	if (pItem->cLabel == NULL && pItem->cTitle == NULL)

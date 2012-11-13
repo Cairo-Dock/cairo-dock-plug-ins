@@ -84,52 +84,15 @@ static inline CDStatusNotifierItem *_get_item (Icon *pClickedIcon, CairoContaine
 }
 
 
-gboolean on_draw_menu_reposition (GtkWidget *pWidget, G_GNUC_UNUSED gpointer useless, gpointer data)
-{
-	CDStatusNotifierItem *pItem = data;
-	g_return_val_if_fail (pItem != NULL, FALSE);
-
-	int iWidth = gtk_widget_get_allocated_width (pWidget);
-	if (pItem->iWidth != iWidth)
-	{
-		pItem->iWidth = iWidth;
-		gtk_menu_reposition (GTK_MENU (pWidget));
-	}
-
-	return FALSE; // FALSE to propagate the event further.
-}
-
-static inline gboolean _popup_menu (CDStatusNotifierItem *pItem, Icon *pIcon, CairoContainer *pContainer)
+static gboolean _popup_menu (CDStatusNotifierItem *pItem, Icon *pIcon, CairoContainer *pContainer)
 {
 	gboolean r = FALSE;
-	if (pItem->cMenuPath != NULL && *pItem->cMenuPath != '\0' && strcmp (pItem->cMenuPath, "/NO_DBUSMENU") != 0)  // hopefully, if the item doesn't have a dbusmenu, it will not set something different as these 2 choices.
+	
+	cd_satus_notifier_build_item_dbusmenu (pItem);
+	if (pItem->pMenu != NULL)
 	{
-		if (pItem->pMenu == NULL)
-			pItem->pMenu = dbusmenu_gtkmenu_new ((gchar *)pItem->cService, (gchar *)pItem->cMenuPath);
-		if (pItem->pMenu != NULL)
-		{
-			cairo_dock_popup_menu_on_icon (GTK_WIDGET (pItem->pMenu), pIcon, pContainer);
-			r = TRUE;
-			/* Position of the menu: GTK doesn't do its job :-/
-			 * e.g. with Dropbox: the menu is out of the screen every time
-			 * something has changed in this menu (it displays 'connecting',
-			 * free space available, etc.) -> we need to reposition it.
-			 * (maybe it's due to a delay because Python and DBus are slower...)
-			 * Note that with other signals (realize, map, etc.), we receive
-			 * the notification before the resizing...
-			 */
-			if (pItem->iWidth == 0)
-			{
-				g_signal_connect (G_OBJECT (pItem->pMenu),
-					#if (GTK_MAJOR_VERSION < 3)
-					"expose-event",
-					#else
-					"draw",
-					#endif
-					G_CALLBACK (on_draw_menu_reposition),
-					pItem);
-			}
-		}
+		cairo_dock_popup_menu_on_icon (GTK_WIDGET (pItem->pMenu), pIcon, pContainer);
+		r = TRUE;
 	}
 
 	if (!r)  // no menu available, send the corresponding action
