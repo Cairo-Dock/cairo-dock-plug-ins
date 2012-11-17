@@ -775,13 +775,13 @@ void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
 			cairo_dock_show_temporary_dialog_with_icon (D_("No URL is defined\nYou can define one by copying the URL in the clipboard,\n and selecting \"Paste the URL\" in the menu."),
 				myIcon,
 				myContainer,
-				myConfig.iNotificationDuration,
+				1000*myConfig.iNotificationDuration,
 				myDock ? "same icon" : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 		else
 			cairo_dock_show_temporary_dialog_with_icon (D_("No data\nDid you set a valid RSS feed?\nIs your connection alive?"),
 				myIcon,
 				myContainer,
-				myConfig.iNotificationDuration,
+				1000*myConfig.iNotificationDuration,
 				myDock ? "same icon" : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 	}
 }
