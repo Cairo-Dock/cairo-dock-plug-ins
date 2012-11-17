@@ -720,6 +720,8 @@ void cd_free_item (CDStatusNotifierItem *pItem)
 		g_source_remove (pItem->iSidPopupTooltip);
 	if (pItem->iSidUpdateIcon != 0)
 		g_source_remove (pItem->iSidUpdateIcon);
+	if (pItem->iSidRepositionMenu != 0)
+		g_source_remove (pItem->iSidRepositionMenu);
 	if (pItem->cIconThemePath)
 		cd_satus_notifier_remove_theme_path (pItem->cIconThemePath);
 	if (pItem->pMenu != NULL)
@@ -798,7 +800,13 @@ Icon *cd_satus_notifier_get_icon_from_item (CDStatusNotifierItem *pItem)
 	return NULL;
 }
 
-
+static gboolean _reposition_menu_idle (CDStatusNotifierItem *pItem)
+{
+	g_return_val_if_fail (pItem != NULL, FALSE);
+	gtk_menu_reposition (GTK_MENU (pItem->pMenu));
+	pItem->iSidRepositionMenu = 0;
+	return FALSE;
+}
 static gboolean on_configure_menu_reposition (GtkWidget *pWidget, GdkEventConfigure* pEvent, CDStatusNotifierItem *pItem)
 {
 	g_return_val_if_fail (pItem != NULL, FALSE);
@@ -806,7 +814,8 @@ static gboolean on_configure_menu_reposition (GtkWidget *pWidget, GdkEventConfig
 	if (pItem->iMenuWidth != pEvent->width)  // if the width has changed, reposition the menu to be sure it won't out of the screen.
 	{
 		pItem->iMenuWidth = pEvent->width;
-		gtk_menu_reposition (GTK_MENU (pWidget));
+		if (pItem->iSidRepositionMenu == 0)
+			pItem->iSidRepositionMenu = g_idle_add ((GSourceFunc) (_reposition_menu_idle), pItem);  // trigger the repositionning of the menu (don't do it immediately, because we receive this event before the menu is actually displayed) - Note: if it's not enough, we can use a g_timeout_add (200)).
 	}
 	
 	return FALSE; // FALSE to propagate the event further.
