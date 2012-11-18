@@ -102,7 +102,6 @@ typedef struct {
 	guint iSidUpdateIcon;
 	// menu redraw
 	int iMenuWidth;
-	guint iSidRepositionMenu;
 } CDStatusNotifierItem;
 
 

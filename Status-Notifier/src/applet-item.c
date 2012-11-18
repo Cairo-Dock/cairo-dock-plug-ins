@@ -720,12 +720,10 @@ void cd_free_item (CDStatusNotifierItem *pItem)
 		g_source_remove (pItem->iSidPopupTooltip);
 	if (pItem->iSidUpdateIcon != 0)
 		g_source_remove (pItem->iSidUpdateIcon);
-	if (pItem->iSidRepositionMenu != 0)
-		g_source_remove (pItem->iSidRepositionMenu);
 	if (pItem->cIconThemePath)
 		cd_satus_notifier_remove_theme_path (pItem->cIconThemePath);
 	if (pItem->pMenu != NULL)
-		g_object_unref (pItem->pMenu);  // will remove the 'reposition' callback too.
+		g_signal_handlers_disconnect_by_func (pItem->pMenu, _on_draw_menu_reposition, pItem);  // will remove the 'reposition' callback too.
 	g_object_unref (pItem->pProxy);
 	g_object_unref (pItem->pProxyProps);
 	g_free (pItem->cService);
@@ -800,22 +798,17 @@ Icon *cd_satus_notifier_get_icon_from_item (CDStatusNotifierItem *pItem)
 	return NULL;
 }
 
-static gboolean _reposition_menu_idle (CDStatusNotifierItem *pItem)
+
+static gboolean _on_draw_menu_reposition (GtkWidget *pWidget, G_GNUC_UNUSED gpointer useless, CDStatusNotifierItem *pItem)
 {
 	g_return_val_if_fail (pItem != NULL, FALSE);
-	gtk_menu_reposition (GTK_MENU (pItem->pMenu));
-	pItem->iSidRepositionMenu = 0;
-	return FALSE;
-}
-static gboolean on_configure_menu_reposition (GtkWidget *pWidget, GdkEventConfigure* pEvent, CDStatusNotifierItem *pItem)
-{
-	g_return_val_if_fail (pItem != NULL, FALSE);
-	
-	if (pItem->iMenuWidth != pEvent->width)  // if the width has changed, reposition the menu to be sure it won't out of the screen.
+
+	int iMenuWidth = gtk_widget_get_allocated_width (pWidget);
+
+	if (pItem->iMenuWidth != iMenuWidth)  // if the width has changed, reposition the menu to be sure it won't out of the screen.
 	{
-		pItem->iMenuWidth = pEvent->width;
-		if (pItem->iSidRepositionMenu == 0)
-			pItem->iSidRepositionMenu = g_idle_add ((GSourceFunc) (_reposition_menu_idle), pItem);  // trigger the repositionning of the menu (don't do it immediately, because we receive this event before the menu is actually displayed) - Note: if it's not enough, we can use a g_timeout_add (200)).
+		pItem->iMenuWidth = iMenuWidth;
+		gtk_menu_reposition (GTK_MENU (pWidget));
 	}
 	
 	return FALSE; // FALSE to propagate the event further.
@@ -832,11 +825,18 @@ void cd_satus_notifier_build_item_dbusmenu (CDStatusNotifierItem *pItem)
 			 * something has changed in this menu (it displays 'connecting',
 			 * free space available, etc.) -> we need to reposition it.
 			 * (maybe it's due to a delay because Python and DBus are slower...)
-			 * We watch the 'configure' event, that is triggered each time the menu is resized (or moved, but we only care size updates).
+			 * We can't watch the 'configure' event (which should be triggered
+			 * each time the menu is resized) because it seems this notification
+			 * is not send...
+			 * This is why we need to watch the 'draw' event...
 			 */
 			g_signal_connect (G_OBJECT (pItem->pMenu),
-				"configure-event",
-				G_CALLBACK (on_configure_menu_reposition),
+				#if (GTK_MAJOR_VERSION < 3)
+				"expose-event",
+				#else
+				"draw",
+				#endif
+				G_CALLBACK (_on_draw_menu_reposition),
 				pItem);
 		}
 	}
