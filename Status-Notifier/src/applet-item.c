@@ -711,6 +711,8 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	return pItem;
 }
 
+static gboolean _on_draw_menu_reposition (GtkWidget *pWidget, G_GNUC_UNUSED gpointer useless, CDStatusNotifierItem *pItem);
+
 void cd_free_item (CDStatusNotifierItem *pItem)
 {
 	if (pItem == NULL)
