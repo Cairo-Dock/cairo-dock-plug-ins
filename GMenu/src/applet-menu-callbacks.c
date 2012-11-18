@@ -195,39 +195,16 @@ static gchar * _get_settings_menu_name (void)
 		cXdgMenuPath = g_strdup_printf ("%s/menus", cXdgPath[i]);
 		if (! g_file_test (cXdgMenuPath, G_FILE_TEST_IS_DIR)) // cXdgPath can contain an invalid dir
 			continue;
-
-		if (cMenuPrefix != NULL)
+		gchar *cMenuFilePathWithPrefix = g_strdup_printf ("%s/%ssettings.menu",
+			cXdgMenuPath, cMenuPrefix ? cMenuPrefix : "");
+		if (g_file_test (cMenuFilePathWithPrefix, G_FILE_TEST_EXISTS))
 		{
-			const gchar *cFileName = NULL;
-			GDir *dir = g_dir_open (cXdgMenuPath, 0, NULL);
-			if (dir)
-			{
-				gchar *cMenuSettingsPrefix = g_strdup_printf ("%ssettings", cMenuPrefix); // xfce-settings
-				while ((cFileName = g_dir_read_name (dir)))
-				{
-					
-					if (g_str_has_prefix (cFileName, cMenuSettingsPrefix) // [xfce-settings]-manager[.menu]
-						&& g_str_has_suffix (cFileName, ".menu"))
-					{
-						cMenuFileName = g_strdup (cFileName);
-						break;
-					}
-				}
-				g_dir_close (dir);
-				g_free (cMenuSettingsPrefix);
-				if (cMenuFileName != NULL)
-					break;
-			}
+			g_free (cMenuFilePathWithPrefix);
+			cMenuFileName = g_strdup_printf ("%s/%ssettings.menu", cXdgMenuPath,
+				cMenuPrefix ? cMenuPrefix : "");
+			break;
 		}
-		else
-		{
-			gchar *cMenuFilePathWithPrefix = g_strdup_printf ("%s/settings.menu", cXdgMenuPath);
-			if (g_file_test (cMenuFilePathWithPrefix, G_FILE_TEST_EXISTS))
-			{
-				cMenuFileName = g_strdup ("settings.menu");
-				break;
-			}
-		}
+		g_free (cMenuFilePathWithPrefix);
 	}
 	cd_debug ("Settings Menu: Found %s in %s (%s)", cMenuFileName, cXdgPath[i], cXdgMenuPath);
 	g_strfreev (cXdgPath);
