@@ -25,6 +25,7 @@
 #include "applet-menu.h"
 #include "applet-util.h"
 #include "applet-recent.h"
+#include "applet-init.h"
 #include "applet-menu-callbacks.h"
 
 static guint load_icons_id = 0;
@@ -43,6 +44,8 @@ void handle_gmenu_tree_changed (GMenuTree *tree,
 		gtk_widget_destroy (myData.pMenu);
 		myData.pMenu = NULL;
 		myData.pRecentMenuItem = NULL;
+
+		cd_gmenu_preload_icon ();
 	}
 	
 	myData.pMenu = create_main_menu (myApplet);
@@ -179,6 +182,62 @@ void cd_menu_append_poweroff_to_menu (GtkWidget *menu, CairoDockModuleInstance *
 }
 
 
+static gchar * _get_settings_menu_name (void)
+{
+	gchar *cMenuFileName = NULL, *cXdgMenuPath = NULL;
+	const gchar *cMenuPrefix = g_getenv ("XDG_MENU_PREFIX"); // e.g. on xfce, it contains "xfce-", nothing on gnome
+	gchar **cXdgPath = cd_gmenu_get_xdg_menu_dirs ();
+
+	int i;
+	for (i = 0; cXdgPath[i] != NULL; i++)
+	{
+		g_free (cXdgMenuPath);
+		cXdgMenuPath = g_strdup_printf ("%s/menus", cXdgPath[i]);
+		if (! g_file_test (cXdgMenuPath, G_FILE_TEST_IS_DIR)) // cXdgPath can contain an invalid dir
+			continue;
+
+		if (cMenuPrefix != NULL)
+		{
+			const gchar *cFileName = NULL;
+			GDir *dir = g_dir_open (cXdgMenuPath, 0, NULL);
+			if (dir)
+			{
+				gchar *cMenuSettingsPrefix = g_strdup_printf ("%ssettings", cMenuPrefix); // xfce-settings
+				while ((cFileName = g_dir_read_name (dir)))
+				{
+					
+					if (g_str_has_prefix (cFileName, cMenuSettingsPrefix) // [xfce-settings]-manager[.menu]
+						&& g_str_has_suffix (cFileName, ".menu"))
+					{
+						cMenuFileName = g_strdup (cFileName);
+						break;
+					}
+				}
+				g_dir_close (dir);
+				g_free (cMenuSettingsPrefix);
+				if (cMenuFileName != NULL)
+					break;
+			}
+		}
+		else
+		{
+			gchar *cMenuFilePathWithPrefix = g_strdup_printf ("%s/settings.menu", cXdgMenuPath);
+			if (g_file_test (cMenuFilePathWithPrefix, G_FILE_TEST_EXISTS))
+			{
+				cMenuFileName = g_strdup ("settings.menu");
+				break;
+			}
+		}
+	}
+	cd_debug ("Settings Menu: Found %s in %s (%s)", cMenuFileName, cXdgPath[i], cXdgMenuPath);
+	g_strfreev (cXdgPath);
+	g_free (cXdgMenuPath);
+
+	if (cMenuFileName == NULL)
+		cMenuFileName = g_strdup ("settings.menu");
+
+	return cMenuFileName;
+}
 
 void panel_desktop_menu_item_append_menu (GtkWidget *menu, gpointer data)
 {
@@ -197,7 +256,11 @@ void main_menu_append (GtkWidget *main_menu,
 
 	GtkWidget *desktop_menu;
 
-	desktop_menu = create_applications_menu ("settings.menu", NULL, main_menu);
+	gchar *cSettingsMenuName = _get_settings_menu_name ();
+
+	desktop_menu = create_applications_menu (cSettingsMenuName, NULL, main_menu);
+	g_free (cSettingsMenuName);
+
 	g_object_set_data_full (G_OBJECT (desktop_menu),
 			"panel-menu-tree-directory",
 			NULL, NULL);
@@ -473,7 +536,15 @@ void image_menu_shown (GtkWidget *image, gpointer data)
 		icons_to_load = g_list_append (icons_to_load, new_icon);
 	}
 	if (load_icons_id == 0)
-		load_icons_id = g_idle_add_full (G_PRIORITY_LOW, load_icons_handler, NULL, NULL);
+	{
+		if (myConfig.bLoadIconsAtStartup && myData.bLoaded && myData.pTask)
+		{  // bLoaded when the thread is started and pTask is null at the end of the thread
+			load_icons_id = 1;
+			while ((load_icons_id = load_icons_handler (NULL)) && myApplet); // load it in the thread
+		}
+		else // load it in the mainloop with a low priority
+			load_icons_id = g_idle_add_full (G_PRIORITY_LOW, load_icons_handler, NULL, NULL);
+	}
 }
 
 void activate_app_def (GtkWidget      *menuitem,

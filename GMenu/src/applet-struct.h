@@ -74,6 +74,11 @@ struct _AppletData {
 	gint iPanelDefaultMenuIconSize;
 	GSList *image_menu_items;
 	GHashTable *loaded_icons;
+	// preload
+	GList *pPreloadedImagesList;
+	// guint iSidPreloaded;
+	CairoDockTask *pTask;
+	gboolean bLoaded;
 	// recent files sub-menu
 	GtkRecentManager *pRecentManager;
 	GtkWidget *pRecentMenuItem;

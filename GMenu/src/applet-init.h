@@ -24,6 +24,7 @@
 
 #include <cairo-dock.h>
 
+void cd_gmenu_preload_icon (void);
 
 CD_APPLET_H
 

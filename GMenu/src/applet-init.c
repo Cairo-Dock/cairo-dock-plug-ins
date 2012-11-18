@@ -26,6 +26,8 @@
 #include "applet-recent.h"
 #include "applet-init.h"
 
+#include "applet-menu-callbacks.h" // image_menu_shown
+
 
 CD_APPLET_DEFINE_BEGIN ("GMenu",
 	2, 0, 0,
@@ -39,6 +41,50 @@ CD_APPLET_DEFINE_BEGIN ("GMenu",
 	CD_APPLET_REDEFINE_TITLE (N_("Applications Menu"))
 CD_APPLET_DEFINE_END
 
+static gboolean _cd_gmenu_end_update (CairoDockModuleInstance *myApplet)
+{
+	cd_debug ("Task is going to be discarded");
+	g_list_free (myData.pPreloadedImagesList);
+	myData.pPreloadedImagesList = NULL;
+	cairo_dock_discard_task (myData.pTask);
+	myData.pTask = NULL;
+	return FALSE;
+}
+
+static void _cd_gmenu_load_images (CairoDockModuleInstance *myApplet)
+{
+	myData.bLoaded = TRUE;
+	cd_debug ("Task launched (%d images have to be pre-loaded)", g_list_length (myData.pPreloadedImagesList));
+	gpointer *pData;
+	GtkWidget *pImage;
+	IconToLoad *pIcon;
+	GList *ic;
+	for (ic = myData.pPreloadedImagesList; ic != NULL; ic = ic->next)
+	{
+		pData = ic->data;
+		pImage = pData[0];
+		pIcon = pData[1];
+		if (pImage) // if the image has not been removed
+			image_menu_shown (pImage, pIcon);
+		
+		g_free (pData);
+	}
+	cd_debug ("Images pre-loaded");
+}
+
+
+void cd_gmenu_preload_icon (void)
+{
+	if (myConfig.bLoadIconsAtStartup && myData.pTask == NULL)
+	{
+		myData.pTask = cairo_dock_new_task (0,
+			(CairoDockGetDataAsyncFunc) _cd_gmenu_load_images,
+			(CairoDockUpdateSyncFunc) _cd_gmenu_end_update,
+			myApplet);  // 0 <=> one shot task.
+		cairo_dock_launch_task_delayed (myData.pTask, 5000);
+		// myData.iSidPreloaded = g_timeout_add_seconds (5, (GSourceFunc) _cd_gmenu_new_task_load_images, NULL);
+	}
+}
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
@@ -53,9 +99,11 @@ CD_APPLET_INIT_BEGIN
 	{
 		cd_menu_init_recent (myApplet);
 	}
+	myData.iPanelDefaultMenuIconSize = cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR); // 24 by default
 	myData.pMenu = create_main_menu (myApplet);
 	myData.iShowQuit = myConfig.iShowQuit;
-	myData.iPanelDefaultMenuIconSize = cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR); // 24 by default
+
+	cd_gmenu_preload_icon ();
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -79,7 +127,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
-	
+
 	// keyboard events
 	cd_keybinder_unbind (myData.cKeyBinding);
 	cd_keybinder_unbind (myData.cKeyBindingQuickLaunch);

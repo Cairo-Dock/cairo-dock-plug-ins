@@ -69,14 +69,13 @@ GtkWidget * create_fake_menu (GMenuTreeDirectory *directory)
 	return menu;
 }
 
-void image_menu_destroy (GtkWidget *image, gpointer data)
+void image_menu_destroy (GtkWidget *image, gpointer *data)
 {
 	myData.image_menu_items = g_slist_remove (myData.image_menu_items, image);
-	if (myConfig.bLoadIconsAtStartup)
-	{
-		int sid = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (image), "cd-preload-icon"));
-		if (sid != 0)
-			g_source_remove (sid);
+	if (myConfig.bLoadIconsAtStartup && ! myData.bLoaded && myData.pPreloadedImagesList && data)
+	{ // we want to preload icon, the task has not been launched, the list is not empty and we receive data
+		myData.pPreloadedImagesList = g_list_remove (myData.pPreloadedImagesList, data);
+		g_free (data);
 	}
 }
 
@@ -231,23 +230,6 @@ GdkPixbuf * panel_make_menu_icon (GtkIconTheme *icon_theme,
 	return pb;
 }
 
-
-static gboolean _image_menu_shown_in_idle (gpointer *data)
-{
-	GtkWidget *image = data[0];
-	IconToLoad *icon = data[1];
-	/* if the applet is disabled, it's not interesting to continue...
-	 * (and all g_timeout are not stopped if the applet is disabled)
-	 */
-	if (myApplet && &myData)
-		image_menu_shown (image, icon);
-	
-	g_free (data);
-	g_object_set_data (G_OBJECT (image), "cd-preload-icon", NULL);
-	
-	return FALSE;
-}
-
 void panel_load_menu_image_deferred (GtkWidget   *image_menu_item,
 				GtkIconSize  icon_size,
 				///const char  *stock_id,
@@ -291,13 +273,13 @@ void panel_load_menu_image_deferred (GtkWidget   *image_menu_item,
 			       (GClosureNotify) icon_to_load_free, 0);
 
 	// pre-load all icons
-	if (myConfig.bLoadIconsAtStartup)
+	gpointer *data = NULL;
+	if (myConfig.bLoadIconsAtStartup && ! myData.bLoaded)
 	{
-		gpointer *data = g_new0 (gpointer, 2);
+		data = g_new0 (gpointer, 2);
 		data[0] = image;
 		data[1] = icon;
-		gint sid = g_timeout_add_seconds (5, (GSourceFunc) _image_menu_shown_in_idle, data);
-		g_object_set_data (G_OBJECT (image), "cd-preload-icon", GINT_TO_POINTER (sid));
+		myData.pPreloadedImagesList = g_list_append (myData.pPreloadedImagesList, data);
 	}
  
 	_gtk_image_menu_item_set_image (
@@ -306,7 +288,7 @@ void panel_load_menu_image_deferred (GtkWidget   *image_menu_item,
 	gtk_widget_show (image);
 
 	g_signal_connect (image, "destroy",
-			  G_CALLBACK (image_menu_destroy), NULL);
+			  G_CALLBACK (image_menu_destroy), data);
 
 	myData.image_menu_items = g_slist_prepend (myData.image_menu_items, image);
 }
@@ -694,55 +676,85 @@ GtkWidget * create_applications_menu (const char *menu_file,
 	return menu;
 }
 
-#define XDG_MENUS_PATH "/etc/xdg/menus"
-// maybe we should use: $XDG_CONFIG_DIRS => /etc/xdg/xdg-cairo-dock:/etc/xdg
+// $XDG_CONFIG_DIRS => /etc/xdg/xdg-cairo-dock:/etc/xdg
 // http://developer.gnome.org/menu-spec/
+gchar ** cd_gmenu_get_xdg_menu_dirs (void)
+{
+	const gchar *cMenuPrefix = g_getenv ("XDG_CONFIG_DIRS");
+	if (! cMenuPrefix || *cMenuPrefix == '\0')
+		cMenuPrefix = "/etc/xdg/menus";
+
+	return g_strsplit (cMenuPrefix, ":", 0);
+}
+
+// check if the file exists and if yes, *cMenuName is created
+gboolean _check_file_exists (const gchar *cDir, const gchar *cPrefix, gchar **cMenuName)
+{
+	gchar *cMenuFilePathWithPrefix = g_strdup_printf ("%s/menus/%sapplications.menu", cDir, cPrefix);
+
+	gboolean bFileExists = g_file_test (cMenuFilePathWithPrefix, G_FILE_TEST_EXISTS);
+	if (bFileExists)
+		*cMenuName = g_strdup_printf ("%sapplications.menu", cPrefix);
+
+	cd_debug ("Check: %s: %d", cMenuFilePathWithPrefix, bFileExists);
+	g_free (cMenuFilePathWithPrefix);
+	return bFileExists;
+}
+
+static const gchar *cPrefixNames[] = {"", "gnome-", "kde-", "kde4-", "xfce-", "lxde-", NULL};
+
 GtkWidget * create_main_menu (CairoDockModuleInstance *myApplet)
 {
 	GtkWidget *main_menu;
-	
-	// workaround pour KDE, qui ne loupe pas une occasion de se distinguer.
-	const gchar *cMenuFileName = NULL;
+
+	gchar *cMenuFileName = NULL, *cXdgMenuPath = NULL;
 	const gchar *cMenuPrefix = g_getenv ("XDG_MENU_PREFIX"); // e.g. on xfce, it contains "xfce-", nothing on gnome
-	gchar *cMenuFileNameWithPrefix = g_strdup_printf (XDG_MENUS_PATH"/%sapplications.menu", cMenuPrefix ? cMenuPrefix : "");
-	if (g_file_test (cMenuFileNameWithPrefix, G_FILE_TEST_EXISTS))  // first check, should be the good one
+	gchar **cXdgPath = cd_gmenu_get_xdg_menu_dirs ();
+
+	int i;
+	for (i = 0; cXdgPath[i] != NULL; i++)
 	{
-		g_free (cMenuFileNameWithPrefix);
-		cMenuFileNameWithPrefix = g_strdup_printf ("%sapplications.menu", cMenuPrefix ? cMenuPrefix : "");
-		cMenuFileName = cMenuFileNameWithPrefix;
-	}
-	else if (g_file_test (XDG_MENUS_PATH"/applications.menu", G_FILE_TEST_EXISTS))
-		cMenuFileName = "applications.menu";
-	else if (g_file_test (XDG_MENUS_PATH"/gnome-applications.menu", G_FILE_TEST_EXISTS))
-		cMenuFileName = "gnome-applications.menu";
-	else if (g_file_test (XDG_MENUS_PATH"/kde-applications.menu", G_FILE_TEST_EXISTS))
-		cMenuFileName = "kde-applications.menu";
-	else if (g_file_test (XDG_MENUS_PATH"/kde4-applications.menu", G_FILE_TEST_EXISTS))
-		cMenuFileName = "kde4-applications.menu";
-	else if (g_file_test (XDG_MENUS_PATH"/xfce-applications.menu", G_FILE_TEST_EXISTS))
-		cMenuFileName = "xfce-applications.menu";
-	else if (g_file_test (XDG_MENUS_PATH"/lxde-applications.menu", G_FILE_TEST_EXISTS))
-		cMenuFileName = "lxde-applications.menu";
-	else  // let's check any *-applications.menu
-	{
-		const gchar *cFileName;
-		GDir *dir = g_dir_open (XDG_MENUS_PATH, 0, NULL);
-		if (dir)
+		g_free (cXdgMenuPath);
+		cXdgMenuPath = g_strdup_printf ("%s/menus", cXdgPath[i]);
+		if (! g_file_test (cXdgMenuPath, G_FILE_TEST_IS_DIR)) // cXdgPath can contain an invalid dir
+			continue;
+
+		// this test should be the good one: with or without the prefix
+		if (_check_file_exists (cXdgPath[i], cMenuPrefix ? cMenuPrefix : "", &cMenuFileName));
+			break;
+
+		// let's check with common prefixes
+		for (int iPrefix = 0; cPrefixNames[iPrefix] != NULL; iPrefix++)
 		{
-			while ((cFileName = g_dir_read_name (dir)))
+			if (_check_file_exists (cXdgPath[i], cPrefixNames[iPrefix], &cMenuFileName));
+				break;
+		}
+
+		if (cMenuFileName == NULL) // let's check any *-applications.menu
+		{
+			const gchar *cFileName;
+			GDir *dir = g_dir_open (cXdgPath[i], 0, NULL);
+			if (dir)
 			{
-				if (g_str_has_suffix (cFileName, "-applications.menu"))
+				while ((cFileName = g_dir_read_name (dir)))
 				{
-					cMenuFileName = cFileName;
-					break;
+					if (g_str_has_suffix (cFileName, "-applications.menu"))
+					{
+						cMenuFileName = g_strdup (cFileName);
+						break;
+					}
 				}
+				g_dir_close (dir);
+				if (cMenuFileName != NULL)
+					break;
 			}
-			g_dir_close (dir);
 		}
 	}
-	
-	if (cMenuFileName == NULL)
-		cMenuFileName = "applications.menu";
+
+	cd_debug ("Menu: Found %s in %s (%s)", cMenuFileName, cXdgPath[i], cXdgMenuPath);
+
+	if (cMenuFileName == NULL) // arf
+		cMenuFileName = g_strdup ("applications.menu");
 	
 	main_menu = create_applications_menu (cMenuFileName, NULL, NULL);
 	
@@ -753,7 +765,9 @@ GtkWidget * create_main_menu (CairoDockModuleInstance *myApplet)
 		"panel-menu-append-callback-data",
 		myApplet);
 
-	g_free (cMenuFileNameWithPrefix);
+	g_strfreev (cXdgPath);
+	g_free (cMenuFileName);
+	g_free (cXdgMenuPath);
 
 	return main_menu;
 }

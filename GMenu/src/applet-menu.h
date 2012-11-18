@@ -47,7 +47,7 @@ void setup_menuitem (GtkWidget   *menuitem,
 GtkWidget * populate_menu_from_directory (GtkWidget          *menu,
 			      GMenuTreeDirectory *directory);
 
-void image_menu_destroy (GtkWidget *image, gpointer data);
+void image_menu_destroy (GtkWidget *image, gpointer *data);
 
 void reload_image_menu_items (void);
 
@@ -55,6 +55,8 @@ GtkWidget * create_empty_menu (void);
 
 GtkWidget * create_applications_menu (const char *menu_file,
 			  const char *menu_path, GtkWidget *parent_menu);
+
+gchar ** cd_gmenu_get_xdg_menu_dirs (void);
 
 GtkWidget * create_main_menu (CairoDockModuleInstance *myApplet);
 
