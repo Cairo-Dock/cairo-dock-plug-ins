@@ -44,11 +44,16 @@ if ("${VALAC_FOUND}" STREQUAL "TRUE")
 	if ("${VALA_VERSION_MINOR_MODULO}" STREQUAL "1") # unstable versions have an odd-number
 		math (EXPR VALA_VERSION_MINOR "${VALA_VERSION_MINOR} + 1")
 	endif()
-	get_filename_component(VALA_VAPI_PATH "${VALA_SHARE_PATH}/vala-${VALA_VERSION_MAJOR}.${VALA_VERSION_MINOR}/vapi" ABSOLUTE)
-	if (NOT EXISTS ${VALA_VAPI_PATH})
+	get_filename_component(VALA_VAPI_PATH "${VALA_SHARE_PATH}/vala/vapi" ABSOLUTE) # we are not an official component of vala, install files in vala/vapi if it's available
+	if (EXISTS ${VALA_VAPI_PATH})
 		set(VALA_VAPI_PATH "vala/vapi")
 	else()
-		set(VALA_VAPI_PATH "vala-${VALA_VERSION_MAJOR}.${VALA_VERSION_MINOR}/vapi")
+		get_filename_component(VALA_VAPI_PATH "${VALA_SHARE_PATH}/vala-${VALA_VERSION_MAJOR}.${VALA_VERSION_MINOR}/vapi" ABSOLUTE) # or in the dir of the version
+		if (NOT EXISTS ${VALA_VAPI_PATH})
+			set(VALA_VAPI_PATH "vala/vapi") # no dir? ok, the default path is vala/vapi
+		else()
+			set(VALA_VAPI_PATH "vala-${VALA_VERSION_MAJOR}.${VALA_VERSION_MINOR}/vapi")
+		endif()
 	endif()
 	configure_file(${CMAKE_CURRENT_SOURCE_DIR}/ValaVapiPath.txt.in ${VALA_DIR}/src/ValaVapiPath.txt)
 endif()
