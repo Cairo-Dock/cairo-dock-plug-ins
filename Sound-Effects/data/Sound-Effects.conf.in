@@ -10,7 +10,7 @@ on_click = true
 #{A .wav file encoded in PCM.}
 on_click_sound =
 
-#B Play a sound on click ?
+#B Play a sound on middle click ?
 on_middle_click = true
 
 #S[Default] Sound file
