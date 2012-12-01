@@ -49,6 +49,31 @@ CD_APPLET_DEFINE_BEGIN (N_("clock"),
 	pInterface->save_custom_widget = cd_clock_save_custom_widget;
 CD_APPLET_DEFINE_END
 
+static gboolean _cd_check_new_minute (CairoDockModuleInstance *myApplet)
+{
+	myData.iSidUpdateClock = g_timeout_add_seconds (60,
+		(GSourceFunc) cd_clock_update_with_time,
+		(gpointer) myApplet); // this new g_timeout should start approximately at 00" (between 00" and 01" ; better than between [00-60])
+	cd_clock_update_with_time (myApplet); // update the time right now and not after 60sec
+	return FALSE;
+}
+
+static void _cd_launch_timer (CairoDockModuleInstance *myApplet)
+{
+	cd_clock_update_with_time (myApplet); // should update myData.currentTime
+
+	if (! myConfig.bShowSeconds)  // can be interesting to show the correct minute... Start the new timer with a delay
+	{
+		guint iWaitSeconds = 60 - myData.currentTime.tm_sec;
+		cd_debug ("Waiting for a new minute during %d sec", iWaitSeconds);
+
+		myData.iSidUpdateClock = g_timeout_add_seconds (iWaitSeconds,
+			(GSourceFunc) _cd_check_new_minute,
+			(gpointer) myApplet);
+	}
+	else
+		myData.iSidUpdateClock = g_timeout_add_seconds (1, (GSourceFunc) cd_clock_update_with_time, (gpointer) myApplet);
+}
 
 CD_APPLET_INIT_BEGIN
 	if (myDesklet)
@@ -96,9 +121,7 @@ CD_APPLET_INIT_BEGIN
 	cd_clock_list_tasks (myApplet);
 	
 	//\_______________ On lance le timer.
-	if (! myConfig.bShowSeconds)  // pour ne pas attendre 1 mn avant d'avoir le dessin.
-		cd_clock_update_with_time (myApplet);
-	myData.iSidUpdateClock = g_timeout_add_seconds ((myConfig.bShowSeconds ? 1: 60), (GSourceFunc) cd_clock_update_with_time, (gpointer) myApplet);
+	_cd_launch_timer (myApplet);
 CD_APPLET_INIT_END
 
 
@@ -166,8 +189,7 @@ CD_APPLET_RELOAD_BEGIN
 		myData.iLastCheckedDay = -1;
 		myData.iLastCheckedMonth = -1;
 		myData.iLastCheckedYear = -1;
-		cd_clock_update_with_time (myApplet);
-		myData.iSidUpdateClock = g_timeout_add_seconds ((myConfig.bShowSeconds ? 1: 60), (GSourceFunc) cd_clock_update_with_time, (gpointer) myApplet);
+		_cd_launch_timer (myApplet);
 	}
 	else
 	{
