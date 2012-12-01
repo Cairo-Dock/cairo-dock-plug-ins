@@ -84,6 +84,14 @@ static inline CDStatusNotifierItem *_get_item (Icon *pClickedIcon, CairoContaine
 }
 
 
+static gboolean _on_draw_menu_reposition (GtkWidget *pWidget, G_GNUC_UNUSED gpointer useless, CDStatusNotifierItem *pItem)
+{
+	if (pItem)
+		gtk_menu_reposition (GTK_MENU (pWidget));
+
+	return FALSE; // FALSE to propagate the event further.
+}
+
 static inline gboolean _popup_menu (CDStatusNotifierItem *pItem, Icon *pIcon, CairoContainer *pContainer)
 {
 	gboolean r = FALSE;
@@ -95,6 +103,25 @@ static inline gboolean _popup_menu (CDStatusNotifierItem *pItem, Icon *pIcon, Ca
 		{
 			cairo_dock_popup_menu_on_icon (GTK_WIDGET (pItem->pMenu), pIcon, pContainer);
 			r = TRUE;
+			if (pItem->fHandlerId == 0)
+				pItem->fHandlerId = g_signal_connect (G_OBJECT (pItem->pMenu),
+					#if (GTK_MAJOR_VERSION < 3)
+					"expose-event",
+					#else
+					"draw",
+					#endif
+					G_CALLBACK (_on_draw_menu_reposition),
+					pItem);
+			else if (pItem->fHandlerId != 1)
+			{
+				/* no need to continue to reposition the menu after the first
+				 * popup (except if the menu is totally redrawn...)
+				 * And the 'draw' signal is sent so often (e.g. when we select
+				 * a new entry in the menu)
+				 */
+				g_signal_handler_disconnect (pItem->pMenu, pItem->fHandlerId);
+				pItem->fHandlerId = 1;
+			}
 		}
 	}
 
