@@ -33,7 +33,7 @@
 #define CD_STATUS_NOTIFIER_HOST_ADDR "org.kde.StatusNotifierHost"
 
 
-static CDStatusNotifierItem * _cd_satus_notifier_find_item_from_service (const gchar *cService)
+CDStatusNotifierItem * cd_satus_notifier_find_item_from_service (const gchar *cService)
 {
 	g_return_val_if_fail (cService != NULL, NULL);
 	CDStatusNotifierItem *pItem;
@@ -47,7 +47,7 @@ static CDStatusNotifierItem * _cd_satus_notifier_find_item_from_service (const g
 	return NULL;
 }
 
-static CDStatusNotifierItem * _cd_satus_notifier_find_item_from_position (int iPosition)
+CDStatusNotifierItem * cd_satus_notifier_find_item_from_position (int iPosition)
 {
 	CDStatusNotifierItem *pItem;
 	GList *it;
@@ -67,7 +67,7 @@ static CDStatusNotifierItem * _cd_satus_notifier_find_item_from_position (int iP
 
 void cd_satus_notifier_add_new_item_with_default (const gchar *cService, const gchar *cObjectPath, int iPosition, const gchar *cIconName, const gchar *cIconThemePath, const gchar *cLabel)
 {
-	CDStatusNotifierItem *pItem = _cd_satus_notifier_find_item_from_service (cService);
+	CDStatusNotifierItem *pItem = cd_satus_notifier_find_item_from_service (cService);
 	g_return_if_fail (pItem == NULL);  // on evite d'ajouter 2 fois le meme service.
 	
 	pItem = cd_satus_notifier_create_item (cService, cObjectPath);
@@ -89,8 +89,13 @@ void cd_satus_notifier_add_new_item_with_default (const gchar *cService, const g
 	if (pItem->cLabel == NULL)
 		pItem->cLabel = g_strdup (cLabel);
 	
-	if (pItem->cMenuPath == NULL)
+	if (pItem->cMenuPath == NULL)  /// this is questionnable ... if the item doesn't provide a menu, this could be that it really doesn't use a dbusmenu (but rather relies on the ContextMenu).
+	{
+		cd_debug ("No menu defined for '%s', using '%s' as the menu path", cService, cObjectPath);
 		pItem->cMenuPath = g_strdup (cObjectPath);
+	}
+	// build the dbusmenu right now, so that the menu is complete when the user first click on the item (otherwise, the menu is not placed correctly).
+	cd_satus_notifier_build_item_dbusmenu (pItem);
 	
 	pItem->iPosition = iPosition;
 	if (pItem->cLabel == NULL && pItem->cTitle == NULL)
@@ -113,7 +118,7 @@ void cd_satus_notifier_add_new_item_with_default (const gchar *cService, const g
 
 void cd_satus_notifier_remove_item (const gchar *cService, int iPosition)
 {
-	CDStatusNotifierItem *pItem = (cService ? _cd_satus_notifier_find_item_from_service (cService) : _cd_satus_notifier_find_item_from_position (iPosition));
+	CDStatusNotifierItem *pItem = (cService ? cd_satus_notifier_find_item_from_service (cService) : cd_satus_notifier_find_item_from_position (iPosition));
 	g_return_if_fail (pItem != NULL);
 	
 	myData.pItems = g_list_remove (myData.pItems, pItem);
@@ -219,29 +224,6 @@ void cd_satus_notifier_remove_theme_path (const gchar * cThemePath)
 		g_hash_table_remove (myData.pThemePaths, cThemePath);  // on le supprime de la table.
 		
 		cairo_dock_remove_path_from_icon_theme (cThemePath);
-		/**GtkIconTheme *pIconTheme = gtk_icon_theme_get_default();  // et du theme.
-		gchar **paths = NULL;
-		gint iNbPaths = 0;
-		gtk_icon_theme_get_search_path (pIconTheme, &paths, &iNbPaths);
-	
-		int i;
-		for (i = 0; i < iNbPaths; i++)  // on cherche sa position dans le tableau.
-		{
-			if (strcmp (paths[i], cThemePath))
-				break;
-		}
-		if (i < iNbPaths)  // trouve
-		{
-			g_free (paths[i]);
-			for (i = i+1; i < iNbPaths; i++)  // on decale tous les suivants vers l'arriere.
-			{
-				paths[i-1] = paths[i];
-			}
-			paths[i-1] = NULL;
-			gtk_icon_theme_set_search_path (pIconTheme, (const gchar **)paths, iNbPaths - 1);
-		}
-		
-		g_strfreev (paths);*/
 	}
 	else  // on decremente la reference.
 	{

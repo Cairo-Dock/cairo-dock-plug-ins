@@ -25,6 +25,7 @@
 #include "applet-struct.h"
 #include "applet-host.h"
 #include "applet-draw.h"
+#include "applet-notifications.h"
 #include "applet-item.h"
 
 #define CD_STATUS_NOTIFIER_ITEM_IFACE "org.kde.StatusNotifierItem"
@@ -141,13 +142,13 @@ static void _show_item_tooltip (Icon *pIcon, CDStatusNotifierItem *pItem)
 static void on_new_item_icon (DBusGProxy *proxy_item, CDStatusNotifierItem *pItem)
 {
 	CD_APPLET_ENTER;
-	//g_print ("=== %s ()\n", __func__);
+	cd_debug ("=== %s ()", __func__);
 	
 	g_free (pItem->cIconName);
 	pItem->cIconName = cairo_dock_dbus_get_property_as_string (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "IconName");
 	g_free (pItem->cAccessibleDesc);
 	pItem->cAccessibleDesc = cairo_dock_dbus_get_property_as_string (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "IconAccessibleDesc");
-	//g_print ("===  new icon : %s\n", pItem->cIconName);
+	cd_debug ("===  new icon : %s", pItem->cIconName);
 	
 	if (pItem->iStatus != CD_STATUS_NEEDS_ATTENTION)
 	{
@@ -159,11 +160,11 @@ static void on_new_item_icon (DBusGProxy *proxy_item, CDStatusNotifierItem *pIte
 static void on_new_item_attention_icon (DBusGProxy *proxy_item, CDStatusNotifierItem *pItem)
 {
 	CD_APPLET_ENTER;
-	//g_print ("=== %s ()\n", __func__);
+	cd_debug ("=== %s ()", __func__);
 	
 	g_free (pItem->cAttentionIconName);
 	pItem->cAttentionIconName = cairo_dock_dbus_get_property_as_string (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "AttentionIconName");
-	//g_print ("===  new attention icon : %s\n", pItem->cAttentionIconName);
+	cd_debug ("===  new attention icon : %s", pItem->cAttentionIconName);
 	
 	if (pItem->iStatus == CD_STATUS_NEEDS_ATTENTION)
 	{
@@ -224,7 +225,6 @@ static void on_new_item_label (DBusGProxy *proxy_item, const gchar *cLabel, cons
 	g_free (pItem->cLabelGuide);
 	pItem->cLabelGuide = g_strdup (cLabelGuide);
 	
-	
 	CD_APPLET_LEAVE ();
 }
 
@@ -233,10 +233,15 @@ static void on_new_item_theme_path (DBusGProxy *proxy_item, const gchar *cNewThe
 	CD_APPLET_ENTER;
 	//g_print ("=== %s (%s)\n", __func__, cNewThemePath);
 	
-	g_free (pItem->cIconThemePath);
-	pItem->cIconThemePath = g_strdup (cNewThemePath);
-	
-	cd_satus_notifier_update_item_image (pItem);
+	if (g_strcmp0 (cNewThemePath, pItem->cIconThemePath) != 0)
+	{
+		if (pItem->cIconThemePath != NULL)  // if the item previously provided a theme, remove it first.
+			cd_satus_notifier_remove_theme_path (pItem->cIconThemePath);
+		g_free (pItem->cIconThemePath);
+		pItem->cIconThemePath = g_strdup (cNewThemePath);
+		
+		cd_satus_notifier_update_item_image (pItem);
+	}
 	
 	CD_APPLET_LEAVE ();
 }
@@ -330,6 +335,16 @@ static void _on_item_proxy_destroyed (DBusGProxy *proxy_item, CDStatusNotifierIt
 	CD_APPLET_LEAVE ();
 }
 
+static gboolean _update_icon_delayed (CDStatusNotifierItem *pItem)
+{
+	cd_debug ("");
+	if (pItem->cIconName != NULL)
+	{
+		cd_satus_notifier_update_item_image (pItem);
+	}
+	pItem->iSidUpdateIcon = 0;
+	return FALSE;
+}
 gchar *cd_satus_notifier_search_item_icon_s_path (CDStatusNotifierItem *pItem, gint iSize)
 {
 	g_return_val_if_fail (pItem != NULL, NULL);
@@ -352,9 +367,21 @@ gchar *cd_satus_notifier_search_item_icon_s_path (CDStatusNotifierItem *pItem, g
 		if (cIconPath == NULL)  // in case we have a buggy app, try some heuristic
 		{
 			cIconPath = cairo_dock_search_icon_s_path (pItem->cId, iSize);
-			if (cIconPath == NULL)
+			if (cIconPath == NULL && pItem->pSurface == NULL)  // only use the fallback icon if the item is still empty (to not have an invisible item).
+			{
 				cIconPath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+			}
+			
+			// skype strikes again ! on startup, it indicates its icon theme path (a temporary folder in /tmp); BUT it copies the icons after, so for a few seconds, the icons it tells us don't exist.
+			// so we trigger an update in a few seconds.
+			if (pItem->iSidUpdateIcon == 0)
+				pItem->iSidUpdateIcon = g_timeout_add_seconds (7, (GSourceFunc)_update_icon_delayed, pItem);
 		}
+	}
+	else if (pItem->iSidUpdateIcon != 0)  // we found an icon, discard any pending update.
+	{
+		g_source_remove (pItem->iSidUpdateIcon);
+		pItem->iSidUpdateIcon = 0;
 	}
 	
 	return cIconPath;
@@ -403,6 +430,15 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 {
 	g_return_val_if_fail  (cService != NULL, NULL);
 	cd_debug ("=== %s (%s, %s)", __func__, cService, cObjectPath);
+	
+	// avoid creating an item that already exists. This can happen in the following case (skype):
+	// watcher starts -> dock registers to it   -> dock asks the items - - - - - - - - - - - - - - - - - -> dock receives the items -> skype item is already here !
+	//                -> skype creates its item -> 'new-item' is emitted -> dock receives the signal -> creates the item
+	if (cd_satus_notifier_find_item_from_service (cService) != NULL)
+	{
+		cd_debug ("The service %s / %s is already listed, skip it", cService, cObjectPath);
+		return NULL;
+	}
 	
 	gchar *str = strchr (cService, '/');  // just to be sure.
 	if (str)
@@ -619,8 +655,8 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 		cd_satus_notifier_add_theme_path (pItem->cIconThemePath);
 	}
 	
-	if (pItem->cMenuPath != NULL)
-		pItem->pMenu = dbusmenu_gtkmenu_new ((gchar *)pItem->cService, (gchar *)pItem->cMenuPath);
+	// build the dbusmenu right now, so that the menu is complete when the user first click on the item (otherwise, the menu is not placed correctly).
+	cd_satus_notifier_build_item_dbusmenu (pItem);
 	
 	//\_________________ track any changes in the item.
 	// signals supported by both.
@@ -675,6 +711,8 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 	return pItem;
 }
 
+static gboolean _on_draw_menu_reposition (GtkWidget *pWidget, G_GNUC_UNUSED gpointer useless, CDStatusNotifierItem *pItem);
+
 void cd_free_item (CDStatusNotifierItem *pItem)
 {
 	if (pItem == NULL)
@@ -682,8 +720,12 @@ void cd_free_item (CDStatusNotifierItem *pItem)
 	pItem->bInvalid = TRUE;
 	if (pItem->iSidPopupTooltip != 0)
 		g_source_remove (pItem->iSidPopupTooltip);
+	if (pItem->iSidUpdateIcon != 0)
+		g_source_remove (pItem->iSidUpdateIcon);
 	if (pItem->cIconThemePath)
 		cd_satus_notifier_remove_theme_path (pItem->cIconThemePath);
+	if (pItem->pMenu != NULL)
+		g_signal_handlers_disconnect_by_func (pItem->pMenu, _on_draw_menu_reposition, pItem);  // will remove the 'reposition' callback too.
 	g_object_unref (pItem->pProxy);
 	g_object_unref (pItem->pProxyProps);
 	g_free (pItem->cService);
@@ -756,4 +798,48 @@ Icon *cd_satus_notifier_get_icon_from_item (CDStatusNotifierItem *pItem)
 		}
 	}
 	return NULL;
+}
+
+
+static gboolean _on_draw_menu_reposition (GtkWidget *pWidget, G_GNUC_UNUSED gpointer useless, CDStatusNotifierItem *pItem)
+{
+	g_return_val_if_fail (pItem != NULL, FALSE);
+
+	int iMenuWidth = gtk_widget_get_allocated_width (pWidget);
+
+	if (pItem->iMenuWidth != iMenuWidth)  // if the width has changed, reposition the menu to be sure it won't out of the screen.
+	{
+		pItem->iMenuWidth = iMenuWidth;
+		gtk_menu_reposition (GTK_MENU (pWidget));
+	}
+	
+	return FALSE; // FALSE to propagate the event further.
+}
+void cd_satus_notifier_build_item_dbusmenu (CDStatusNotifierItem *pItem)
+{
+	if (pItem->pMenu == NULL)  // menu not yet built
+	{
+		if (pItem->cMenuPath != NULL && *pItem->cMenuPath != '\0' && strcmp (pItem->cMenuPath, "/NO_DBUSMENU") != 0)  // hopefully, if the item doesn't provide a dbusmenu, it will not set something different as these 2 choices  (ex.: Klipper).
+		{
+			pItem->pMenu = dbusmenu_gtkmenu_new ((gchar *)pItem->cService, (gchar *)pItem->cMenuPath);
+			/* Position of the menu: GTK doesn't do its job :-/
+			 * e.g. with Dropbox: the menu is out of the screen every time
+			 * something has changed in this menu (it displays 'connecting',
+			 * free space available, etc.) -> we need to reposition it.
+			 * (maybe it's due to a delay because Python and DBus are slower...)
+			 * We can't watch the 'configure' event (which should be triggered
+			 * each time the menu is resized) because it seems this notification
+			 * is not send...
+			 * This is why we need to watch the 'draw' event...
+			 */
+			g_signal_connect (G_OBJECT (pItem->pMenu),
+				#if (GTK_MAJOR_VERSION < 3)
+				"expose-event",
+				#else
+				"draw",
+				#endif
+				G_CALLBACK (_on_draw_menu_reposition),
+				pItem);
+		}
+	}
 }

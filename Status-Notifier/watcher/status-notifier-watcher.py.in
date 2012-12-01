@@ -32,6 +32,10 @@ class SNWatcher(dbus.service.Object):
 	items_list = []  # array of service+path
 	hosts_list = []  # array of services
 	
+	def _emit_host_registered (self):
+		self.StatusNotifierHostRegistered()
+		return False
+	
 	def __init__(self):
 		DBusGMainLoop(set_as_default=True)
 		try: 
@@ -74,6 +78,8 @@ class SNWatcher(dbus.service.Object):
 			for it in to_be_removed:
 				self.hosts_list.remove (it)
 				self.StatusNotifierHostUnregistered()
+		elif (service == 'com.Skype.API'):  # this stupid proprietary software only creates its item when the host appears !
+			glib.timeout_add_seconds(2, self._emit_host_registered)
 		
 	### methods ###
 	
@@ -112,7 +118,9 @@ class SNWatcher(dbus.service.Object):
 					return self.items_list
 				else:  # too bad! dbus-python can't encode the GValue if 'items_list' is None or [].
 					return ['']  # so we return a empty string; hopefuly the host will skip this invalid value.
-			elif property == 'HasStatusNotifierHostRegistered':
+			elif property == 'IsStatusNotifierHostRegistered':
+				return (len (self.hosts_list) != 0)
+			elif property == 'HasStatusNotifierHostRegistered':  # deprecated
 				return (len (self.hosts_list) != 0)
 			elif property == 'ProtocolVersion':
 				return 0

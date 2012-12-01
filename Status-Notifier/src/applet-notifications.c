@@ -84,45 +84,15 @@ static inline CDStatusNotifierItem *_get_item (Icon *pClickedIcon, CairoContaine
 }
 
 
-static gboolean _on_draw_menu_reposition (GtkWidget *pWidget, G_GNUC_UNUSED gpointer useless, CDStatusNotifierItem *pItem)
-{
-	if (pItem)
-		gtk_menu_reposition (GTK_MENU (pWidget));
-
-	return FALSE; // FALSE to propagate the event further.
-}
-
-static inline gboolean _popup_menu (CDStatusNotifierItem *pItem, Icon *pIcon, CairoContainer *pContainer)
+static gboolean _popup_menu (CDStatusNotifierItem *pItem, Icon *pIcon, CairoContainer *pContainer)
 {
 	gboolean r = FALSE;
-	if (pItem->cMenuPath != NULL && *pItem->cMenuPath != '\0' && strcmp (pItem->cMenuPath, "/NO_DBUSMENU") != 0)  // hopefully, if the item doesn't have a dbusmenu, it will not set something different as these 2 choices.
+	
+	cd_satus_notifier_build_item_dbusmenu (pItem);
+	if (pItem->pMenu != NULL)
 	{
-		if (pItem->pMenu == NULL)
-			pItem->pMenu = dbusmenu_gtkmenu_new ((gchar *)pItem->cService, (gchar *)pItem->cMenuPath);
-		if (pItem->pMenu != NULL)
-		{
-			cairo_dock_popup_menu_on_icon (GTK_WIDGET (pItem->pMenu), pIcon, pContainer);
-			r = TRUE;
-			if (pItem->fHandlerId == 0)
-				pItem->fHandlerId = g_signal_connect (G_OBJECT (pItem->pMenu),
-					#if (GTK_MAJOR_VERSION < 3)
-					"expose-event",
-					#else
-					"draw",
-					#endif
-					G_CALLBACK (_on_draw_menu_reposition),
-					pItem);
-			else if (pItem->fHandlerId != 1)
-			{
-				/* no need to continue to reposition the menu after the first
-				 * popup (except if the menu is totally redrawn...)
-				 * And the 'draw' signal is sent so often (e.g. when we select
-				 * a new entry in the menu)
-				 */
-				g_signal_handler_disconnect (pItem->pMenu, pItem->fHandlerId);
-				pItem->fHandlerId = 1;
-			}
-		}
+		cairo_dock_popup_menu_on_icon (GTK_WIDGET (pItem->pMenu), pIcon, pContainer);
+		r = TRUE;
 	}
 
 	if (!r)  // no menu available, send the corresponding action

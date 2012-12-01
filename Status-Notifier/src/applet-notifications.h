@@ -36,6 +36,8 @@ gboolean cd_status_notifier_on_right_click (CairoDockModuleInstance *myApplet, I
 gboolean cd_status_notifier_on_enter_icon (CairoDockModuleInstance *myApplet, Icon *pIcon, CairoDock *pDock, gboolean *bStartAnimation);
 
 
+gboolean on_draw_menu_reposition (GtkWidget *pWidget, G_GNUC_UNUSED gpointer useless, gpointer data);
+
 gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation);
 
 gboolean on_update_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bContinueAnimation);
