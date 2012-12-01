@@ -54,18 +54,32 @@ not owned => stop handler
 static inline void _fill_handler_properties (const gchar *cDesktopFileName, gchar *cAppClass)
 {
 	g_free ((gchar*)myData.pCurrentHandler->appclass);
-	if (cAppClass == NULL) // cAppClass: this parameter is optional
-		myData.pCurrentHandler->appclass = cairo_dock_register_class (cDesktopFileName);
-	else
-		myData.pCurrentHandler->appclass = cAppClass;
+	myData.pCurrentHandler->appclass = cAppClass;
 	g_free ((gchar*)myData.pCurrentHandler->launch);
 	myData.pCurrentHandler->launch = g_strdup (cairo_dock_get_class_command (myData.pCurrentHandler->appclass));
 	if (myData.pCurrentHandler->launch == NULL)  // we really need a command to launch it on click, so insist a little
-	{
 		myData.pCurrentHandler->launch = g_strdup (cDesktopFileName);
-	}
 	g_free ((gchar*)myData.pCurrentHandler->cDisplayedName);
 	myData.pCurrentHandler->cDisplayedName = g_strdup (cairo_dock_get_class_name (myData.pCurrentHandler->appclass));
+}
+
+static inline void _get_right_class_and_desktop_file (const gchar *cName, gchar **cDesktopFileName, gchar **cAppClass)
+{
+	if (myConfig.cLastKnownDesktopFile)
+	{
+		*cDesktopFileName = myConfig.cLastKnownDesktopFile;
+		*cAppClass = cairo_dock_register_class (*cDesktopFileName); // no need to be freed here
+	}
+	if (*cAppClass == NULL && cName) // myConfig.cLastKnownDesktopFile is NULL when transitionning from an old version of the applet where we didn't use the "Desktop Entry" property yet -> use some heuristic as a fallback.
+	{
+		*cAppClass = cairo_dock_register_class (cName); // no need to be freed here
+		if (*cAppClass == NULL &&
+			(*cDesktopFileName = strrchr (cName, '.')) != NULL) // if cName = org.mpris.MediaPlayer2.amarok => amarok
+			*cAppClass = cairo_dock_register_class (*cDesktopFileName+1); // no need to be freed here
+		else
+			*cDesktopFileName = (gchar *)cName;
+	}
+	cd_debug ("%s (%s - %s) => (%s - %s)", __func__, myConfig.cLastKnownDesktopFile, cName, *cDesktopFileName, *cAppClass);
 }
 
 MusicPlayerHandler *cd_musicplayer_get_handler_by_name (const gchar *cName)
@@ -362,14 +376,11 @@ static void _on_name_owner_changed (const gchar *cName, gboolean bOwned, gpointe
 				myData.pCurrentHandler = cd_musicplayer_get_handler_by_name ("Mpris2");  // no need to watch it, it was already done (that's why we are here !)
 				
 				// fill its properties
-				myData.pCurrentHandler->appclass = cairo_dock_register_class (myConfig.cLastKnownDesktopFile ? myConfig.cLastKnownDesktopFile : cName);  // myConfig.cLastKnownDesktopFile is NULL when transitionning from an old version of the applet where we didn't use the "Desktop Entry" property yet -> use some heuristic as a fallback.
-				myData.pCurrentHandler->launch = g_strdup (cairo_dock_get_class_command (myData.pCurrentHandler->appclass));
-				myData.pCurrentHandler->cDisplayedName = g_strdup (cairo_dock_get_class_name (myData.pCurrentHandler->appclass));
-				if (myData.pCurrentHandler->launch == NULL)  // we really need a command to launch it on click, so insist a little
-				{
-					myData.pCurrentHandler->launch = g_strdup (cName);
-				}
-				
+				gchar *cAppClass = NULL, *cDesktopFileName = NULL;
+				_get_right_class_and_desktop_file (cName, &cDesktopFileName, &cAppClass);
+				if (cAppClass) // better to not use any class than a wrong class
+					_fill_handler_properties (cDesktopFileName, cAppClass);
+
 				g_free ((gchar*)myData.pCurrentHandler->cMprisService);
 				myData.pCurrentHandler->cMprisService = g_strdup (cName);
 			}
@@ -488,12 +499,10 @@ void cd_musicplayer_set_current_handler (const gchar *cName)
 		// get the MPRIS2 handler
 		myData.pCurrentHandler = cd_musicplayer_get_handler_by_name ("Mpris2");
 		
-		// fill its properties
-		/* myConfig.cLastKnownDesktopFile is NULL when transitionning from an
-		 * old version of the applet where we didn't use the "Desktop Entry"
-		 * property yet -> use some heuristic as a fallback.
-		 */
-		_fill_handler_properties (myConfig.cLastKnownDesktopFile ? myConfig.cLastKnownDesktopFile : cName, NULL);  
+		gchar *cAppClass = NULL, *cDesktopFileName = NULL;
+		_get_right_class_and_desktop_file (cName, &cDesktopFileName, &cAppClass);
+		if (cAppClass) // better to not use any class than a wrong class
+			_fill_handler_properties (cDesktopFileName, cAppClass);
 		
 		myData.pCurrentHandler->cMprisService = g_strdup_printf (CD_MPRIS2_SERVICE_BASE".%s", cName);
 		myData.cMpris2Service = NULL;
