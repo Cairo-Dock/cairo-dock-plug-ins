@@ -77,6 +77,15 @@ static void _cd_menu_configure_menu (GtkMenuItem *menu_item, gpointer data)
 	}
 	CD_APPLET_LEAVE();
 }
+
+static gboolean _cd_check_edit_menu_cmd (const gchar *cWhich)
+{
+	gchar *cResult = cairo_dock_launch_command_sync (cWhich);  // Gnome (2 + 3(?)) + XFCE(?)
+	gboolean bResult = (cResult != NULL && *cResult == '/');
+	g_free (cResult);
+	return bResult;
+}
+
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Quick launch"), D_("middle-click"));
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_EXECUTE, cd_menu_show_hide_quick_launch, CD_APPLET_MY_MENU);
@@ -87,19 +96,12 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (!myConfig.cConfigureMenuCommand && !bEditMenuCmdChecked)
 	{
 		bEditMenuCmdChecked = TRUE;
-		gchar *cResult = cairo_dock_launch_command_sync ("which alacarte");  // Gnome (2 + 3(?)) + XFCE(?)
-		if (cResult != NULL && *cResult == '/')
-		{
+		if (_cd_check_edit_menu_cmd ("which alacarte"))
 			s_cEditMenuCmd = "alacarte";
-		}
-		else
-		{
-			g_free (cResult);
-			cResult = cairo_dock_launch_command_sync ("which kmenuedit");  // KDE
-			if (cResult != NULL && *cResult == '/')
-				s_cEditMenuCmd = "kmenuedit";
-		}  /// TODO: handle other DE ...
-		g_free (cResult);
+		else if (_cd_check_edit_menu_cmd ("which kmenuedit"))
+			s_cEditMenuCmd = "kmenuedit";
+		else if (_cd_check_edit_menu_cmd ("which menulibre"))
+			s_cEditMenuCmd = "menulibre";
 	}
 	if (myConfig.cConfigureMenuCommand || s_cEditMenuCmd)
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Configure menu"), GTK_STOCK_PREFERENCES, _cd_menu_configure_menu, CD_APPLET_MY_MENU);
