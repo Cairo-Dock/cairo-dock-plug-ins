@@ -725,7 +725,7 @@ void cd_free_item (CDStatusNotifierItem *pItem)
 	if (pItem->cIconThemePath)
 		cd_satus_notifier_remove_theme_path (pItem->cIconThemePath);
 	if (pItem->pMenu != NULL)
-		g_signal_handlers_disconnect_by_func (pItem->pMenu, _on_draw_menu_reposition, pItem);  // will remove the 'reposition' callback too.
+		g_object_unref (pItem->pMenu);  // will remove the 'reposition' callback too.
 	g_object_unref (pItem->pProxy);
 	g_object_unref (pItem->pProxyProps);
 	g_free (pItem->cService);
@@ -822,6 +822,8 @@ void cd_satus_notifier_build_item_dbusmenu (CDStatusNotifierItem *pItem)
 		if (pItem->cMenuPath != NULL && *pItem->cMenuPath != '\0' && strcmp (pItem->cMenuPath, "/NO_DBUSMENU") != 0)  // hopefully, if the item doesn't provide a dbusmenu, it will not set something different as these 2 choices  (ex.: Klipper).
 		{
 			pItem->pMenu = dbusmenu_gtkmenu_new ((gchar *)pItem->cService, (gchar *)pItem->cMenuPath);
+			if (g_object_is_floating (pItem->pMenu))  // claim ownership on the menu.
+				g_object_ref_sink (pItem->pMenu);
 			/* Position of the menu: GTK doesn't do its job :-/
 			 * e.g. with Dropbox: the menu is out of the screen every time
 			 * something has changed in this menu (it displays 'connecting',
