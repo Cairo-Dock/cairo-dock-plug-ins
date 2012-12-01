@@ -721,6 +721,7 @@ void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
 				cLine = g_strdup (pItem->cDescription);
 				cd_rssreader_cut_line (cLine, pLayout, w);
 				pLinkButton = gtk_label_new (cLine);
+				gtk_label_set_selectable (GTK_LABEL (pLinkButton), TRUE);
 				g_free (cLine);
 				
 				pAlign = gtk_alignment_new (0., 0.5, 0., 0.);
