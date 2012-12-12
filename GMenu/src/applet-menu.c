@@ -720,13 +720,13 @@ GtkWidget * create_main_menu (CairoDockModuleInstance *myApplet)
 			continue;
 
 		// this test should be the good one: with or without the prefix
-		if (_check_file_exists (cXdgPath[i], cMenuPrefix ? cMenuPrefix : "", &cMenuFileName));
+		if (_check_file_exists (cXdgPath[i], cMenuPrefix ? cMenuPrefix : "", &cMenuFileName))
 			break;
 
 		// let's check with common prefixes
 		for (int iPrefix = 0; cPrefixNames[iPrefix] != NULL; iPrefix++)
 		{
-			if (_check_file_exists (cXdgPath[i], cPrefixNames[iPrefix], &cMenuFileName));
+			if (_check_file_exists (cXdgPath[i], cPrefixNames[iPrefix], &cMenuFileName))
 				break;
 		}
 
