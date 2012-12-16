@@ -50,13 +50,13 @@ cd ../..
 
 echo "" >> CMakeLists.txt
 echo "############# $UpperName #################" >> CMakeLists.txt
-echo "set (with_${LowerName} \"no\")" >> CMakeLists.txt
-echo "if (\"\${enable-${LowerName}}\" STREQUAL \"yes\")" >> CMakeLists.txt
+echo "set (with_${LowerName} FALSE)" >> CMakeLists.txt
+echo "if (enable-${LowerName})" >> CMakeLists.txt
 echo "	message (STATUS \"> $AppletName:\")" >> CMakeLists.txt
 echo "	set (GETTEXT_$UpperName \${GETTEXT_PLUGINS})" >> CMakeLists.txt
 echo "	set (VERSION_$UpperName \"0.0.1\")" >> CMakeLists.txt
 echo "	set (PACKAGE_$UpperName \"cd-$AppletName\")" >> CMakeLists.txt
-echo "	set (with_${LowerName} \"yes\")" >> CMakeLists.txt
+echo "	set (with_${LowerName} TRUE)" >> CMakeLists.txt
 echo "	set (""${LowerName}""datadir \"\${pluginsdatadir}/$AppletName\")" >> CMakeLists.txt
 echo "	configure_file (\${CMAKE_CURRENT_SOURCE_DIR}/$AppletName/data/$AppletName.conf.in \${CMAKE_CURRENT_BINARY_DIR}/$AppletName/data/$AppletName.conf)" >> CMakeLists.txt
 echo "	add_subdirectory ($AppletName)" >> CMakeLists.txt

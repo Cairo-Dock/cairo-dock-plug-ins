@@ -13,7 +13,7 @@ SET (cd-System-Monitor_LIB_SRCS
 	applet-struct.h
 )
 
-if ("${SENSORS_FOUND}" STREQUAL "TRUE")
+if (SENSORS_FOUND)
 	SET (cd-System-Monitor_SENSORS_SRCS
 		applet-sensors.c 		applet-sensors.h)
 endif()
@@ -31,7 +31,7 @@ add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
 
-if ("${SENSORS_FOUND}" STREQUAL "TRUE")
+if (SENSORS_FOUND)
 	add_definitions (-DHAVE_SENSORS="1")
 endif()
 

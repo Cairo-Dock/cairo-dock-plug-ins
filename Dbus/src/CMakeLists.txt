@@ -28,10 +28,10 @@ add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
 add_definitions (-DCD_PLUGINS_DIR="${pluginsdir}")
 
-if ("${DBUSMENU_FOUND}" STREQUAL "1" AND "${DBUSMENU_GTK_FOUND}" STREQUAL "1")
+if (DBUSMENU_FOUND AND DBUSMENU_GTK_FOUND)
 	message (STATUS " * With DBusMenu support")
 	add_definitions (-DDBUSMENU_GTK_FOUND=1)
-	if (${DBUSMENU_GTK3_NEW})
+	if (DBUSMENU_GTK3_NEW)
 		add_definitions (-DDBUSMENU_GTK3_NEW=1)
 	endif()
 

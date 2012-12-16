@@ -12,7 +12,7 @@ set (cd-AlsaMixer_LIB_SRCS
 	applet-struct.h)
 
 # Sound service backend (optionnal)
-if ("${with_soundmenu}" STREQUAL "yes")
+if (with_soundmenu)
 	set (cd-AlsaMixer_LIB_SRCS
 		${cd-AlsaMixer_LIB_SRCS}
 		applet-backend-sound-menu.c applet-backend-sound-menu.h
@@ -36,7 +36,7 @@ add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_ALSA_MIXER}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 
-if ("${with_soundmenu}" STREQUAL "yes")
+if (with_soundmenu)
 	add_definitions (-DSOUND_SERVICE_SUPPORT="1")
 	add_definitions (-DSOUND_SERVICE_VERSION=${SOUND_SERVICE_VERSION})
 endif()
@@ -45,7 +45,7 @@ if (${DBUSMENU_GTK3_NEW})
 endif()
 
 
-if ("${with_soundmenu}" STREQUAL "yes")
+if (with_soundmenu)
 	include_directories (
 		${PACKAGE_INCLUDE_DIRS}
 		${ALSA_MIXER_PACKAGE_INCLUDE_DIRS}
