@@ -26,6 +26,7 @@
 typedef enum {
 	CD_NOTES_GNOTES=0,
 	CD_NOTES_TOMBOY,
+	CD_NOTES_DEFAULT,
 	CD_NOTES_NB_BACKENDS
 	} CDTomboyBackendEnum;
 
@@ -47,17 +48,37 @@ struct _AppletConfig {
 	gint iDialogDuration;
 	} ;
 
+typedef struct {
+	gchar *cID;
+	gchar *cTitle;
+	gchar *cTags;
+	gchar *cContent;
+	guint iCreationDate;
+	guint iLastChangeDate;
+} CDNote;
+	
+typedef struct {
+	void (*start) (void);
+	void (*stop) (void);
+	void (*show_note) (const gchar *cNoteID);
+	void (*delete_note) (const gchar *cNoteID);
+	gchar * (*get_note_content) (const gchar *cNoteID);
+	gchar * (*create_note) (const gchar *cTitle);
+	void (*run_manager) (void);
+} CDNotesBackend;
+	
 struct _AppletData {
 	cairo_surface_t *pSurfaceNote;
 	gint iNoteWidth, iNoteHeight;
-	gboolean dbus_enable;
 	gboolean bIsRunning;
-	gint iIconState;  // 0:vide 1:opened 2:closed 3:broken.
+	gint iIconState;  // 0:running 1:closed/broken.
 	GHashTable *hNoteTable;
 	guint iSidResetQuickInfo;
 	guint iSidPopupDialog;
 	DBusGProxyCall *pDetectTomboyCall;
 	DBusGProxyCall *pGetNotesCall;
+	CairoDockTask *pTask;
+	CDNotesBackend backend;
 	} ;
 
 #endif

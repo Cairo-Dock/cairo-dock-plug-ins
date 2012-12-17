@@ -21,7 +21,7 @@
 #include <glib/gi18n.h>
 
 #include "tomboy-struct.h"
-#include "tomboy-dbus.h"
+#include "applet-notes.h"
 #include "tomboy-draw.h"
 
 
@@ -47,30 +47,21 @@ void cd_tomboy_update_icon (void)
 {
 	if (myDesklet)
 		return ;
-	if(myData.bIsRunning)
+	if (myData.bIsRunning)
+	{
+		if (myData.iIconState != 0)
+		{
+			myData.iIconState = 0;
+			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconDefault, "icon.svg");
+		}
+		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", g_hash_table_size (myData.hNoteTable));
+	}
+	else
 	{
 		if (myData.iIconState != 1)
 		{
 			myData.iIconState = 1;
-			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconDefault, "default.svg");
-		}
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", g_hash_table_size (myData.hNoteTable));
-	}
-	else if (myData.dbus_enable)
-	{
-		if (myData.iIconState != 2)
-		{
-			myData.iIconState = 2;
-			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconClose, "close.svg");
-		}
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
-	}
-	else
-	{
-		if (myData.iIconState != 3)
-		{
-			myData.iIconState = 3;
-			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconBroken, "broken.svg");
+			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconBroken, "close.svg");
 		}
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 	}
@@ -130,7 +121,7 @@ static gboolean _cd_tomboy_reset_quick_info (gpointer data)
 static void _on_select_note (GtkWidget *pMenuItem, const gchar *cCommand)
 {
 	g_print ("%s (%s)\n", __func__, cCommand);
-	showNote (cCommand);
+	cd_notes_show_note (cCommand);
 }
 static void _on_select_all_notes (GtkWidget *pMenuItem, GList *pNotes)
 {
@@ -139,7 +130,7 @@ static void _on_select_all_notes (GtkWidget *pMenuItem, GList *pNotes)
 	for (n = pNotes; n != NULL; n = n->next)
 	{
 		cCommand = n->data;
-		showNote (cCommand);
+		cd_notes_show_note (cCommand);
 	}
 }
 static void _on_menu_deactivated (GtkWidget *pMenu, gpointer data)

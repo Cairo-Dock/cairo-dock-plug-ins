@@ -17,26 +17,10 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __TOMBOY_DBUS__
-#define  __TOMBOY_DBUS__
+#ifndef __APPLET_NOTES__
+#define  __APPLET_NOTES__
 
-#include <dbus/dbus-glib.h>
 #include "tomboy-struct.h"
-
-
-gboolean dbus_connect_to_bus (void);
-void dbus_disconnect_from_bus (void);
-
-void dbus_detect_tomboy (void);
-void dbus_detect_tomboy_async (void);
-
-
-void getAllNotes_async (void);
-void free_all_notes (void);
-
-gchar *addNote (const gchar *note_name);
-void deleteNote (const gchar *note_title);
-void showNote (const gchar *note_id);
 
 
 GList *cd_tomboy_find_notes_with_tag (const gchar *cTag);
@@ -46,5 +30,30 @@ GList *cd_tomboy_find_notes_with_contents (const gchar **cContents);
 GList *cd_tomboy_find_note_for_today (void);
 GList *cd_tomboy_find_note_for_this_week (void);
 GList *cd_tomboy_find_note_for_next_week (void);
+
+
+void cd_notes_show_note (const gchar *cNoteID);
+
+void cd_notes_delete_note (const gchar *cNoteID);
+
+gchar *cd_notes_create_note (const gchar *cTitle);
+
+void cd_notes_run_manager (void);
+
+void cd_notes_start (void);
+
+void cd_notes_stop (void);
+
+
+void cd_notes_store_load_notes (GList *pNotes);
+
+void cd_notes_store_add_note (CDNote *pNote);
+
+void cd_notes_store_remove_note (const gchar *cNoteID);
+
+void cd_notes_store_update_note (CDNote *pUpdatedNote);
+
+void cd_notes_free_note (CDNote *pNote);
+
 
 #endif

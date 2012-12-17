@@ -22,49 +22,18 @@
 #include <time.h>
 #include <signal.h>
 
-#include "tomboy-dbus.h"
+#include "applet-notes.h"
 #include "tomboy-draw.h"
 #include "tomboy-struct.h"
 #include "tomboy-notifications.h"
 
 
-static void _launch_tomboy (void)
-{
-	cd_debug ("");
-	dbus_detect_tomboy();
-	if (! myData.bIsRunning)
-	{
-		const gchar *cName = "";
-		switch (myConfig.iAppControlled)
-		{
-			case CD_NOTES_TOMBOY:
-			default:
-				cName = "Tomboy";
-			break;
-			case CD_NOTES_GNOTES:
-				cName = "Gnote";
-			break;
-		}
-		cairo_dock_show_temporary_dialog_with_icon_printf ("Launching %s...",
-			myIcon, myContainer,
-			2000,
-			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
-			cName);
-		cairo_dock_launch_command ("tomboy &");
-		dbus_detect_tomboy_async ();
-	}
-	else
-	{
-		free_all_notes ();
-		getAllNotes_async ();
-	}
-}
 
 CD_APPLET_ON_CLICK_BEGIN
 	if (pClickedIcon != NULL && pClickedIcon != myIcon)
 	{
 		cd_message("tomboy : %s",pClickedIcon->cCommand);
-		showNote (pClickedIcon->cCommand);
+		cd_notes_show_note (pClickedIcon->cCommand);
 		
 		if (myData.iSidPopupDialog != 0)
 		{
@@ -75,7 +44,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	}
 	else if (pClickedIcon == myIcon && ! myData.bIsRunning)  // possible si on l'a quitte apres le demarrage de l'applet.
 	{
-		_launch_tomboy ();
+		cd_notes_run_manager ();
 	}
 	else
 		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
@@ -84,10 +53,10 @@ CD_APPLET_ON_CLICK_END
 
 static void _add_note_and_show (const gchar *note_title)
 {
-	gchar *note_name = addNote(note_title);
-	cd_debug (" %s -> %s", note_title, note_name);
-	showNote(note_name);
-	g_free (note_name);
+	gchar *cNoteId = cd_notes_create_note (note_title);
+	cd_debug (" %s -> %s", note_title, cNoteId);
+	cd_notes_show_note (cNoteId);
+	g_free (cNoteId);
 }
 static void _on_got_name (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer data, CairoDialog *pDialog)
 {
@@ -133,7 +102,7 @@ static void _on_answer_delete (int iClickedButton, GtkWidget *pInteractiveWidget
 	CD_APPLET_ENTER;
 	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
 	{
-		deleteNote (cCommand);
+		cd_notes_delete_note (cCommand);
 	}
 	CD_APPLET_LEAVE ();
 }
@@ -152,14 +121,15 @@ static void _cd_tomboy_delete_note (GtkMenuItem *menu_item, Icon *pIcon)
 	}
 	else
 	{
-		deleteNote (pIcon->cCommand);
+		cd_notes_delete_note (pIcon->cCommand);
 	}
 }
 
 static void _cd_tomboy_reload_notes (GtkMenuItem *menu_item, gpointer data)
 {
-	free_all_notes ();
-	getAllNotes_async ();
+	cd_notes_stop ();
+	
+	cd_notes_start ();
 }
 
 static void _on_active_search (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer data, CairoDialog *pDialog)
@@ -286,7 +256,7 @@ CD_APPLET_ON_BUILD_MENU_END
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	if (pClickedIcon == myIcon && ! myData.bIsRunning)  // possible si on l'a quitte apres le demarrage de l'applet.
 	{
-		_launch_tomboy ();
+		cd_notes_run_manager ();
 	}
 	else
 	{

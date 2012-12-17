@@ -20,7 +20,6 @@
 #include <string.h>
 
 #include "tomboy-struct.h"
-#include "tomboy-dbus.h"
 #include "tomboy-config.h"
 
 
@@ -61,7 +60,6 @@ CD_APPLET_RESET_CONFIG_END
 CD_APPLET_RESET_DATA_BEGIN
 	cairo_surface_destroy (myData.pSurfaceNote);
 	
-	free_all_notes ();  // detruit aussi la liste des icones.
 	g_hash_table_destroy (myData.hNoteTable);
 	
 CD_APPLET_RESET_DATA_END

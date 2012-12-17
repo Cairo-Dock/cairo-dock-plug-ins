@@ -19,9 +19,11 @@
 
 #include <stdlib.h>
 
+#include "applet-notes.h"
+#include "applet-backend-tomboy.h"
+#include "applet-backend-default.h"
 #include "tomboy-draw.h"
 #include "tomboy-config.h"
-#include "tomboy-dbus.h"
 #include "tomboy-notifications.h"
 #include "tomboy-struct.h"
 #include "tomboy-init.h"
@@ -42,15 +44,7 @@ CD_APPLET_INIT_BEGIN
 		NULL,  // l'URI est partage avec l'icone.
 		(GDestroyNotify) NULL);  // on detruit les icones nous-memes.
 	
-	myData.dbus_enable = dbus_connect_to_bus ();
-	if (myData.dbus_enable)
-	{
-		dbus_detect_tomboy_async ();  // -> getAllNotes_async -> _load_notes
-	}
-	else if (myDock)  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
-	{
-		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconBroken, "broken.svg");
-	}
+	cd_notes_start ();
 	
 	//Enregistrement des notifications
 	cairo_dock_register_notification_on_object (&myContainersMgr,
@@ -76,7 +70,7 @@ CD_APPLET_STOP_BEGIN
 	if (myData.iSidPopupDialog != 0)
 		g_source_remove (myData.iSidPopupDialog);
 	
-	dbus_disconnect_from_bus ();
+	cd_notes_stop ();
 CD_APPLET_STOP_END
 
 
@@ -86,34 +80,19 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		myData.iIconState = 0;
 		
-		if (myData.dbus_enable)
+		if (myData.iSidResetQuickInfo != 0)
 		{
-			//\___________ On arrete tout.
-			if (myData.iSidResetQuickInfo != 0)
-			{
-				g_source_remove (myData.iSidResetQuickInfo);
-				myData.iSidResetQuickInfo = 0;
-			}
-			if (myData.iSidPopupDialog != 0)
-			{
-				g_source_remove (myData.iSidPopupDialog);
-				myData.iSidPopupDialog = 0;
-			}
-			
-			//\___________ On se reconnecte (pour si on change de note-taking).
-			dbus_disconnect_from_bus ();  // arrete aussi les appels asynchrones.
-			dbus_connect_to_bus ();
-			
-			//\___________ On recharge les notes (l'icone peut avoir change).
-			free_all_notes ();  // detruit aussi la liste des icones.
-			if (myData.dbus_enable)
-			{
-				dbus_detect_tomboy_async ();  // -> getAllNotes_async -> _load_notes
-			}
-			else if (myDock)  // sinon on signale par l'icone appropriee que le bus n'est pas accessible.
-			{
-				CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cIconBroken, "broken.svg");
-			}
+			g_source_remove (myData.iSidResetQuickInfo);
+			myData.iSidResetQuickInfo = 0;
 		}
+		if (myData.iSidPopupDialog != 0)
+		{
+			g_source_remove (myData.iSidPopupDialog);
+			myData.iSidPopupDialog = 0;
+		}
+		
+		cd_notes_stop ();
+		
+		cd_notes_start ();
 	}
 CD_APPLET_RELOAD_END

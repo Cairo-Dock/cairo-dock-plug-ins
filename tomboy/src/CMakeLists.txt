@@ -2,14 +2,18 @@
 ########### sources ###############
 
 SET(cd-tomboy_LIB_SRCS
+	applet-notes.c
+	applet-notes.h
+	applet-backend-tomboy.c
+	applet-backend-tomboy.h
+	applet-backend-default.c
+	applet-backend-default.h
 	tomboy-init.c
 	tomboy-init.h
 	tomboy-draw.c
 	tomboy-draw.h
 	tomboy-config.c
 	tomboy-config.h
-	tomboy-dbus.c
-	tomboy-dbus.h
 	tomboy-notifications.c
 	tomboy-notifications.h
 	tomboy-struct.h
@@ -25,7 +29,7 @@ add_definitions (-DMY_APPLET_USER_DATA_DIR="tomboy")
 add_definitions (-DMY_APPLET_VERSION="${VERSION_TOMBOY}")
 add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_TOMBOY}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
-add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
+add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
 
 include_directories (
 	${PACKAGE_INCLUDE_DIRS})

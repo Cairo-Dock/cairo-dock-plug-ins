@@ -138,7 +138,7 @@ renderer =
 #F[Parameters;gtk-dialog-info]
 frame_param =
 
-#l[Gnote;Tomboy] Choose the note-taking application to control :
+#l[Gnote;Tomboy;Default] Choose the note-taking application to control :
 app controlled = 1
 
 #b Ask for confirmation before deleting a note?
