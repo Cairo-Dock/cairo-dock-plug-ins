@@ -61,11 +61,9 @@ static void calculate_icons (CairoDesklet *pDesklet)
 	
 	Icon *pIcon = pDesklet->pIcon;
 	g_return_if_fail (pIcon != NULL);
-	
 	pIcon->fWidth = MAX (1, pDesklet->container.iWidth - pSimple->iLeftMargin - pSimple->iRightMargin);
 	pIcon->fHeight = MAX (1, pDesklet->container.iHeight - pSimple->iTopMargin - pSimple->iBottomMargin);
-	pIcon->iImageWidth = pIcon->fWidth;
-	pIcon->iImageHeight = pIcon->fHeight;
+	cairo_dock_icon_set_allocated_size (pIcon, pIcon->fWidth, pIcon->fHeight);
 	pIcon->fDrawX = pSimple->iLeftMargin;
 	pIcon->fDrawY = pSimple->iTopMargin;
 	pIcon->fWidthFactor = 1.;
@@ -84,26 +82,8 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 	
 	cairo_translate (pCairoContext, pIcon->fDrawX, pIcon->fDrawY);
 	
-	if (pIcon->pIconBuffer != NULL)
-	{
-		cairo_set_source_surface (pCairoContext,
-			pIcon->pIconBuffer,
-			0.,
-			0.);
-		cairo_paint (pCairoContext);
-	}
-	/**if (pIcon->pQuickInfoBuffer != NULL)
-	{
-		cairo_translate (pCairoContext,
-			(- pIcon->iQuickInfoWidth + pIcon->fWidth) / 2 * pIcon->fScale,
-			(pIcon->fHeight - pIcon->iQuickInfoHeight) * pIcon->fScale);
-		
-		cairo_set_source_surface (pCairoContext,
-			pIcon->pQuickInfoBuffer,
-			0.,
-			0.);
-		cairo_paint (pCairoContext);
-	}*/
+	cairo_dock_apply_image_buffer_surface (&pIcon->image, pCairoContext);
+	
 	cairo_dock_draw_icon_overlays_cairo (pIcon, pDesklet->container.fRatio, pCairoContext);
 }
 
@@ -113,20 +93,11 @@ static void render_opengl (CairoDesklet *pDesklet)
 	if (pIcon == NULL)  // peut arriver avant de lier l'icone au desklet.
 		return ;
 	
-	if (pIcon->iIconTexture != 0)
+	if (pIcon->image.iTexture != 0)
 	{
 		pIcon->fAlpha = 1.;
 		cairo_dock_draw_icon_texture (pIcon, CAIRO_CONTAINER (pDesklet));
 	}
-	/**if (pIcon->iQuickInfoTexture != 0)
-	{
-		glTranslatef (0.,
-			(- pIcon->fHeight + pIcon->iQuickInfoHeight)/2,
-			0.);
-		cairo_dock_draw_texture (pIcon->iQuickInfoTexture,
-			pIcon->iQuickInfoWidth,
-			pIcon->iQuickInfoHeight);
-	}*/
 	cairo_dock_draw_icon_overlays_opengl (pIcon, pDesklet->container.fRatio);
 }
 

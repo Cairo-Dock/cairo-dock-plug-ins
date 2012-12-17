@@ -41,7 +41,7 @@ static inline int _cd_do_get_matching_icons_width (int *iNbIcons)
 	for (ic = myData.pMatchingIcons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (pIcon->pIconBuffer == NULL && pIcon->iIconTexture == 0)  // icone pas encore chargee.
+		if (pIcon->image.pSurface == NULL && pIcon->image.iTexture == 0)  // icone pas encore chargee.
 			continue;
 		cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
 		if (iHeight != 0)
@@ -65,7 +65,7 @@ static inline int _cd_do_get_icon_x (GList *pElement)
 	for (ic = myData.pMatchingIcons; ic != NULL && ic != pElement; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (pIcon->pIconBuffer == NULL && pIcon->iIconTexture == 0)  // icone pas encore chargee.
+		if (pIcon->image.pSurface == NULL && pIcon->image.iTexture == 0)  // icone pas encore chargee.
 			continue;
 		cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
 		if (iHeight != 0)
@@ -152,7 +152,7 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 			for (ic = myData.pMatchingIcons; ic != NULL; ic = ic->next)
 			{
 				pIcon = ic->data;
-				if (pIcon->pIconBuffer == NULL)  // icone pas encore chargee.
+				if (pIcon->image.pSurface == NULL)  // icone pas encore chargee.
 					continue;
 				cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
 				fZoom = fIconScale * pMainDock->container.iHeight/2 / iHeight * (myData.pCurrentMatchingElement == ic ? 1. : 1.);
@@ -180,7 +180,7 @@ void cd_do_render_cairo (CairoDock *pMainDock, cairo_t *pCairoContext)
 				cairo_scale (pCairoContext,
 					fZoom,
 					fZoom);
-				cairo_set_source_surface (pCairoContext, pIcon->pIconBuffer, 0., 0.);
+				cairo_set_source_surface (pCairoContext, pIcon->image.pSurface, 0., 0.);
 				cairo_paint_with_alpha (pCairoContext, (myData.pCurrentMatchingElement == ic ? 1. : .5));
 				
 				if (myData.pCurrentMatchingElement == ic)
@@ -328,7 +328,7 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			for (ic = myData.pMatchingIcons; ic != NULL; ic = ic->next)
 			{
 				pIcon = ic->data;
-				if (pIcon->iIconTexture == 0)  // icone pas encore chargee.
+				if (pIcon->image.iTexture == 0)  // icone pas encore chargee.
 					continue;
 				cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
 				fZoom = (double) pMainDock->container.iHeight/2 / iHeight * (myData.pCurrentMatchingElement == ic ? 1. : 1.);
@@ -353,7 +353,7 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 							pMainDock->container.iHeight - iHeight * fZoom/2),
 						x + (iNbIcons & 1 ? 0. : iWidth * fZoom/2 * fIconScale),
 						0.);
-				_cairo_dock_apply_texture_at_size_with_alpha (pIcon->iIconTexture,
+				_cairo_dock_apply_texture_at_size_with_alpha (pIcon->image.iTexture,
 					iWidth * fZoom * fIconScale,
 					pMainDock->container.iHeight/2 * fIconScale,
 					(myData.pCurrentMatchingElement == ic ? 1. : .5));

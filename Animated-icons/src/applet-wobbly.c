@@ -430,7 +430,7 @@ static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo
 		glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 		
 		glEnable(GL_TEXTURE_2D); // Je veux de la texture
-		glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
+		glBindTexture(GL_TEXTURE_2D, pIcon->image.iTexture);
 		
 		glEnable(GL_MAP2_VERTEX_3);  // active l'evaluateur 2D des sommets 3D
 		glEnable(GL_MAP2_TEXTURE_COORD_2);
@@ -482,7 +482,7 @@ static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo
 			}
 			
 			///glActiveTextureARB(GL_TEXTURE0_ARB); // Go pour le multitexturing 1ere passe
-			glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
+			glBindTexture(GL_TEXTURE_2D, pIcon->image.iTexture);
 			glColor4f(1.0f, 1.0f, 1.0f, myIconsParam.fAlbedo * pIcon->fAlpha / 2);  // transparence du reflet.
 			glBlendFuncSeparate (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA,
 				GL_ONE, GL_ONE_MINUS_SRC_ALPHA);

@@ -57,7 +57,7 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 			1.,
 			0*iWidth,
 			&myData.iCurrentTextWidth, &myData.iCurrentTextHeight);
-		cd_debug ("KEYBOARD: %dx%d / %dx%d", myData.iCurrentTextWidth, myData.iCurrentTextHeight, myIcon->iImageWidth, myIcon->iImageHeight);
+		cd_debug ("KEYBOARD: %dx%d / %dx%d", myData.iCurrentTextWidth, myData.iCurrentTextHeight, myIcon->image.iWidth, myIcon->image.iHeight);
 		if (g_bUseOpenGL)
 		{
 			myData.iCurrentTexture = cairo_dock_create_texture_from_surface (myData.pCurrentSurface);
@@ -106,7 +106,7 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 			{
 				if (myConfig.cEmblemCapsLock && (myData.cEmblemCapsLock ||
 					(myData.cEmblemCapsLock = cairo_dock_search_icon_s_path (myConfig.cEmblemCapsLock, // search for an icon only the first time
-						MAX (myIcon->iImageWidth/2, myIcon->iImageHeight/2)))))
+						MAX (myIcon->image.iWidth/2, myIcon->image.iHeight/2)))))
 					CD_APPLET_ADD_OVERLAY_ON_MY_ICON (myData.cEmblemCapsLock, CAIRO_OVERLAY_UPPER_RIGHT);
 				else
 					CD_APPLET_ADD_OVERLAY_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/caps-lock.png", CAIRO_OVERLAY_UPPER_RIGHT);
@@ -124,7 +124,7 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 			{
 				if (myConfig.cEmblemNumLock &&(myData.cEmblemNumLock ||
 					(myData.cEmblemNumLock = cairo_dock_search_icon_s_path (myConfig.cEmblemNumLock,
-						MAX (myIcon->iImageWidth/2, myIcon->iImageHeight/2)))))
+						MAX (myIcon->image.iWidth/2, myIcon->image.iHeight/2)))))
 					CD_APPLET_ADD_OVERLAY_ON_MY_ICON (myData.cEmblemNumLock, CAIRO_OVERLAY_UPPER_LEFT);
 				else
 					CD_APPLET_ADD_OVERLAY_ON_MY_ICON (MY_APPLET_SHARE_DATA_DIR"/num-lock.png", CAIRO_OVERLAY_UPPER_LEFT);

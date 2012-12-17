@@ -454,7 +454,7 @@ static void _notify_action_required (void)
 
 	g_free (cName);
 
-	gint iIconSize = MAX (myIcon->iImageWidth, myIcon->iImageHeight);
+	gint iIconSize = MAX (myIcon->image.iWidth, myIcon->image.iHeight);
 	gchar *cImagePath = _check_icon (myConfig.cEmblemPath,
 		(myConfig.iRebootNeededImage == CD_DISPLAY_EMBLEM ?
 				iIconSize / 2 :

@@ -43,24 +43,21 @@ static gboolean _isin (gchar **cString, gchar *cCompar) {
 static void _load_html_icon (Icon *pIcon)
 {
 	CairoDockModuleInstance *myApplet = pIcon->pAppletOwner;
-	int iWidth = pIcon->iImageWidth;
-	int iHeight = pIcon->iImageHeight;
+	int iWidth = cairo_dock_icon_get_allocated_width (pIcon);
+	int iHeight = cairo_dock_icon_get_allocated_height (pIcon);
 	if (pIcon->cFileName)  // icone possedant une image, on affiche celle-ci.
 	{
 		gchar *cIconPath = cairo_dock_search_icon_s_path (pIcon->cFileName, MAX (iWidth, iHeight));
 		if (cIconPath != NULL && *cIconPath != '\0')
 		{
-			pIcon->pIconBuffer = cairo_dock_create_surface_from_image_simple (cIconPath,
+			cairo_surface_t *pSurface = cairo_dock_create_surface_from_image_simple (cIconPath,
 				iWidth,
 				iHeight);
+			cairo_dock_load_image_buffer_from_surface (&pIcon->image, pSurface, iWidth, iHeight);
 			
-			if (pIcon->pIconBuffer != NULL && pIcon->cWorkingDirectory != NULL)
+			if (pIcon->image.pSurface != NULL && pIcon->cWorkingDirectory != NULL)
 			{
-				if (g_bUseOpenGL)
-					pIcon->iIconTexture  = cairo_dock_create_texture_from_surface (pIcon->pIconBuffer);  // we need to load the texture now, since we'll draw the emblem on it.
-				
 				CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
-				
 				cairo_dock_print_overlay_on_icon_from_image (pIcon, pContainer, pIcon->cWorkingDirectory, CAIRO_OVERLAY_LOWER_RIGHT);
 			}
 		}

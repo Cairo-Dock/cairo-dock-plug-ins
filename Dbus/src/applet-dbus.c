@@ -324,7 +324,7 @@ static gboolean _apply_package_update (gchar *cModuleName)
 		pUpdateTask = t->data;
 		if (pUpdateTask->pSharedMemory && strcmp (pUpdateTask->pSharedMemory, cModuleName) == 0)
 		{
-			myData.pUpdateTasksList = g_list_remove_link (myData.pUpdateTasksList, t);  /// g_list_delete_link ?...
+			myData.pUpdateTasksList = g_list_delete_link (myData.pUpdateTasksList, t);
 			cairo_dock_discard_task (pUpdateTask);
 			break;
 		}

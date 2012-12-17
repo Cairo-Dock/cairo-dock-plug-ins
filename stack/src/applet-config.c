@@ -17,8 +17,6 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <string.h>
-
 #include "applet-struct.h"
 #include "applet-config.h"
 
@@ -40,7 +38,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cTextIcon = CD_CONFIG_GET_FILE_PATH ("Configuration", "text icon", NULL);
 	if (myConfig.cTextIcon == NULL)
 	{
-		myConfig.cTextIcon = cairo_dock_search_icon_s_path ("text-x-generic", MAX (myIcon->iImageWidth, myIcon->iImageHeight));
+		myConfig.cTextIcon = cairo_dock_search_icon_s_path ("text-x-generic", MAX (myIcon->image.iWidth, myIcon->image.iHeight));
 		if (myConfig.cTextIcon == NULL)
 			myConfig.cTextIcon = g_strdup (MY_APPLET_SHARE_DATA_DIR"/"CD_STACK_DEFAULT_TEXT_ICON);
 	}
@@ -48,7 +46,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cUrlIcon = CD_CONFIG_GET_FILE_PATH ("Configuration", "url icon", NULL);
 	if (myConfig.cUrlIcon == NULL)
 	{
-		myConfig.cUrlIcon = cairo_dock_search_icon_s_path ("text-html", MAX (myIcon->iImageWidth, myIcon->iImageHeight));
+		myConfig.cUrlIcon = cairo_dock_search_icon_s_path ("text-html", MAX (myIcon->image.iWidth, myIcon->image.iHeight));
 		if (myConfig.cUrlIcon == NULL)
 			myConfig.cUrlIcon = g_strdup (MY_APPLET_SHARE_DATA_DIR"/"CD_STACK_DEFAULT_TEXT_ICON);
 	}

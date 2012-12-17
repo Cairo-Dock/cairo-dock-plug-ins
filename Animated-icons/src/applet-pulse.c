@@ -80,8 +80,7 @@ static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo
 		cairo_dock_set_icon_scale_on_context (pCairoContext, pIcon, pDock->container.bIsHorizontal, 1., pDock->container.bDirectionUp);
 		cairo_scale (pCairoContext, fScaleFactor, fScaleFactor);
 		
-		cairo_set_source_surface (pCairoContext, pIcon->pIconBuffer, 0.0, 0.0);
-		cairo_paint_with_alpha (pCairoContext, pData->fPulseAlpha * pIcon->fAlpha);
+		cairo_dock_apply_image_buffer_surface_with_offset (&pIcon->image, pCairoContext, 0, 0, pIcon->fAlpha);
 		cairo_restore (pCairoContext);
 	}
 	else
@@ -92,7 +91,7 @@ static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo
 		_cairo_dock_enable_texture ();
 		_cairo_dock_set_blend_alpha ();
 		_cairo_dock_set_alpha (pData->fPulseAlpha * pIcon->fAlpha);
-		_cairo_dock_apply_texture (pIcon->iIconTexture);
+		cairo_dock_apply_image_buffer_texture_at_size (&pIcon->image, 1, 1, 0, 0);
 		_cairo_dock_disable_texture ();
 		glPopMatrix ();
 	}

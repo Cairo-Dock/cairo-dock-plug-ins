@@ -29,6 +29,47 @@
 static const gchar *s_cIconName[CONNECTION_NB_QUALITY] = {"link-0.svg", "link-1.svg", "link-2.svg", "link-3.svg", "link-4.svg", "link-5.svg", "network-not-connected.png", "network-wired.png"};
 // static const gchar *s_cLevelQualityName[CONNECTION_NB_QUALITY] = {N_("None"), N_("Very Low"), N_("Low"), N_("Middle"), N_("Good"), N_("Excellent"), N_("Not connected"), N_("Wired connection")}; // not used
 
+static void cd_NetworkMonitor_draw_icon_with_effect (CDConnectionQuality iQuality) {
+	if (iQuality >= CONNECTION_NB_QUALITY)
+		iQuality = WIFI_QUALITY_NO_SIGNAL;
+	
+	cairo_surface_t *pSurface = myData.pSurfaces[iQuality];
+	if (pSurface == NULL) {
+		if (myConfig.wifiRenderer.cUserImage[iQuality] != NULL) {
+			gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.wifiRenderer.cUserImage[iQuality]);
+			myData.pSurfaces[iQuality] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
+			g_free (cUserImagePath);
+		}
+		else {
+			gchar *cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, s_cIconName[iQuality]);
+			myData.pSurfaces[iQuality] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
+			g_free (cImagePath);
+		}
+		pSurface = myData.pSurfaces[iQuality];
+	}
+	
+	CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);  /// TODO: use a data-renderer..
+	/**switch (myConfig.wifiRenderer.iEffect) {
+		double fAlpha, fScale;
+	  case WIFI_EFFECT_NONE:
+	  	CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
+	  break;
+	  case WIFI_EFFECT_ZOOM:
+	  	fScale = .2 + .8 * myData.iPercent / 100.;
+	  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ZOOM (pSurface, fScale);
+	  break;
+	  case WIFI_EFFECT_TRANSPARENCY:
+	  	fAlpha = .2 + .8 * myData.iPercent / 100.;
+	  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ALPHA (pSurface, fAlpha);
+	  break;
+	  case WIFI_EFFECT_BAR:
+	  	///CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR (pSurface, myData.iPercent / 100.);.
+	  break;
+	  default :
+	  break;
+	}*/
+}
+
 void cd_NetworkMonitor_draw_no_wireless_extension (void)
 {
 	if (myData.iPreviousQuality != myData.iQuality)
@@ -80,45 +121,6 @@ void cd_NetworkMonitor_draw_icon (void)
 		CD_APPLET_REDRAW_MY_ICON;
 }
 
-void cd_NetworkMonitor_draw_icon_with_effect (CDConnectionQuality iQuality) {
-	if (iQuality >= CONNECTION_NB_QUALITY)
-		iQuality = WIFI_QUALITY_NO_SIGNAL;
-	
-	cairo_surface_t *pSurface = myData.pSurfaces[iQuality];
-	if (pSurface == NULL) {
-		if (myConfig.wifiRenderer.cUserImage[iQuality] != NULL) {
-			gchar *cUserImagePath = cairo_dock_generate_file_path (myConfig.wifiRenderer.cUserImage[iQuality]);
-			myData.pSurfaces[iQuality] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cUserImagePath);
-			g_free (cUserImagePath);
-		}
-		else {
-			gchar *cImagePath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, s_cIconName[iQuality]);
-			myData.pSurfaces[iQuality] = CD_APPLET_LOAD_SURFACE_FOR_MY_APPLET (cImagePath);
-			g_free (cImagePath);
-		}
-		pSurface = myData.pSurfaces[iQuality];
-	}
-	
-	switch (myConfig.wifiRenderer.iEffect) {
-		double fAlpha, fScale;
-	  case WIFI_EFFECT_NONE:
-	  	CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
-	  break;
-	  case WIFI_EFFECT_ZOOM:
-	  	fScale = .2 + .8 * myData.iPercent / 100.;
-	  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ZOOM (pSurface, fScale);
-	  break;
-	  case WIFI_EFFECT_TRANSPARENCY:
-	  	fAlpha = .2 + .8 * myData.iPercent / 100.;
-	  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_ALPHA (pSurface, fAlpha);
-	  break;
-	  case WIFI_EFFECT_BAR:
-	  	CD_APPLET_SET_SURFACE_ON_MY_ICON_WITH_BAR (pSurface, myData.iPercent / 100.);
-	  break;
-	  default :
-	  break;
-	}
-}
 
 void cd_NetworkMonitor_bubble (void) {
 	if (cairo_dock_task_is_running (myData.wifi.pTask) || cairo_dock_task_is_running (myData.netSpeed.pTask))

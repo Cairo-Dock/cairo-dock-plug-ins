@@ -52,8 +52,18 @@ static void post_render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, 
 {
 	g_return_if_fail (pData->pBusyImage);
 	
+	double s = MIN (pIcon->fScale * pIcon->fWidth, pIcon->fScale * pIcon->fHeight) * myConfig.fBusySize;  // size of the drawing (square)
 	if (pCairoContext)
 	{
+		cairo_dock_apply_image_buffer_surface_at_size (pData->pBusyImage, pCairoContext,
+			s, s,  // s x s
+			(pIcon->fWidth * pIcon->fScale - s)/2, (pIcon->fHeight * pIcon->fScale - s)/2,  // centered on the icon
+			1.);
+		/**cairo_translate (pCairoContext,
+			pIcon->fWidth * pIcon->fScale / 2,
+			pIcon->fHeight * pIcon->fScale / 2);
+		
+		
 		cairo_save (pCairoContext);
 
 		cairo_translate (pCairoContext,
@@ -68,11 +78,16 @@ static void post_render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, 
 
 		cairo_dock_apply_image_buffer_surface (pData->pBusyImage, pCairoContext);
 
-		cairo_restore (pCairoContext);
+		cairo_restore (pCairoContext);*/
 	}
 	else
 	{
 		_cairo_dock_enable_texture ();
+		_cairo_dock_set_blend_over ();
+		_cairo_dock_set_alpha (1.);
+		cairo_dock_apply_image_buffer_texture_at_size (pData->pBusyImage, s, s, 0, 0);
+		_cairo_dock_disable_texture ();
+		/**_cairo_dock_enable_texture ();
 		if (pIcon->fAlpha == 1)
 			_cairo_dock_set_blend_over ();
 		else
@@ -83,7 +98,7 @@ static void post_render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, 
 
 		cairo_dock_apply_image_buffer_texture (pData->pBusyImage);
 
-		_cairo_dock_disable_texture ();
+		_cairo_dock_disable_texture ();*/
 	}
 }
 

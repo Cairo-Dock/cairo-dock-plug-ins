@@ -67,7 +67,6 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDeskto
 		y + h <= iNumViewportY * g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL] ||
 		y >= (iNumViewportY + 1) * g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL])
 		return ;
-	//g_print (" > on la dessine (%x)\n", pIcon->pIconBuffer);
 	
 	// on dessine ses traits.
 	cairo_save (pCairoContext);
@@ -94,24 +93,11 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDeskto
 		cairo_stroke (pCairoContext);
 	}
 	
-	/**Icon *pDisplayedIcon = pIcon;
-	if (pDisplayedIcon->pIconBuffer == NULL)  // icon not loaded (because not in a dock, because inhibited)
-	{
-		
-		/// TODO: we'll have to load the icons that are not loaded (not inside a dock)...
-		Icon *pInhibitor = cairo_dock_get_inhibitor (pIcon, TRUE);  // TRUE = only in dock.
-		if (pInhibitor != NULL)
-			pDisplayedIcon = pInhibitor;
-	}
-	if (pDisplayedIcon->pIconBuffer != NULL)*/
-
 	if (myConfig.bDrawIcons)
 	{
 		const CairoDockImageBuffer *pImage = cairo_dock_appli_get_image_buffer (pIcon);
 		if (pImage && pImage->pSurface)
 		{
-			///int iWidth, iHeight;
-			///cairo_dock_get_icon_extent (pDisplayedIcon, &iWidth, &iHeight);
 			double fZoomX = (double) w/g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL]*iOneViewportWidth / pImage->iWidth;
 			double fZoomY = (double) h/g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL]*iOneViewportHeight / pImage->iHeight;
 			double fZoom = MIN (fZoomX, fZoomY);  // on garde le ratio.
@@ -123,7 +109,6 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDeskto
 				fZoom,
 				fZoom);
 			cairo_set_source_surface (pCairoContext,
-				///pDisplayedIcon->pIconBuffer,
 				pImage->pSurface,
 				0.,
 				0.);
@@ -410,7 +395,7 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 			pIcon = ic->data;
 			cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
 			
-			pCairoContext = cairo_create (pIcon->pIconBuffer);
+			pCairoContext = cairo_create (pIcon->image.pSurface);
 			cairo_set_line_width (pCairoContext, 1.);
 			cairo_set_source_rgba (pCairoContext, myConfig.RGBWLineColors[0], myConfig.RGBWLineColors[1], myConfig.RGBWLineColors[2], myConfig.RGBWLineColors[3]);
 			
@@ -537,19 +522,10 @@ static void _show_desktop (GtkMenuItem *menu_item, gpointer data)
 static void _cd_switcher_list_window_on_viewport (Icon *pIcon, int iNumDesktop, int iNumViewportX, int iNumViewportY, GtkWidget *pMenu)
 {
 	//g_print (" + %s\n", pIcon->cName);
-	// on recupere la taille de l'icone.
-	/**Icon *pDisplayedIcon = pIcon;
-	if (pDisplayedIcon->pIconBuffer == NULL)  // icon not loaded (because not in a dock, because inhibited)
-	{
-		Icon *pInhibitor = cairo_dock_get_inhibitor (pIcon, TRUE);  // TRUE = only in dock.
-		if (pInhibitor != NULL)
-			pDisplayedIcon = pInhibitor;
-	}
-	const CairoDockImageBuffer *pImage = cairo_dock_appli_get_image_buffer (pIcon);*/
 	
 	// on cree une copie de la surface de l'icone a la taille du menu.
-	GdkPixbuf *pixbuf = cairo_dock_icon_buffer_to_pixbuf (pIcon/**pDisplayedIcon*/);
-	if (pixbuf == NULL)
+	GdkPixbuf *pixbuf = cairo_dock_icon_buffer_to_pixbuf (pIcon);
+	if (pixbuf == NULL)  // icon not loaded (because not in a dock, because inhibited)
 	{
 		const gchar *cIcon = cairo_dock_get_class_icon (pIcon->cClass);
 		gint iDesiredIconSize = cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR); // 24px

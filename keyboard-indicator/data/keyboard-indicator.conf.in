@@ -114,11 +114,9 @@ shortkey = <Alt><Shift>
 show indic = true
 
 #S+[Default] Icon image name for NumLock status:
-#{Leave empty to use the default icon.}
 emblem numlock =
 
 #S+[Default] Icon image name for CapsLock status:
-#{Leave empty to use the default icon.}
 emblem capslock =
 
 #i-[0;1500] Duration of the transition animation:

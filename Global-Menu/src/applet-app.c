@@ -323,6 +323,8 @@ static void _on_got_menu (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockM
 			/// TODO: it seems to hang he dock for a second, even with a task :-/
 			/// so maybe we need to cache the {window,menu} couples...
 			myData.pMenu = dbusmenu_gtkmenu_new (cService, cMenuObject);  /// can this object disappear by itself ? it seems to crash with 2 instances of inkscape, when closing one of them... 
+			if (g_object_is_floating (myData.pMenu))  // claim ownership on the menu.
+				g_object_ref_sink (myData.pMenu);
 			if (myData.pMenu)
 				g_object_weak_ref (G_OBJECT (myData.pMenu),
 					(GWeakNotify)_on_menu_destroyed,

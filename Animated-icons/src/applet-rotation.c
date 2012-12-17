@@ -77,7 +77,7 @@ static void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean
 	
 	glActiveTexture(GL_TEXTURE1); // Go pour le texturing 2eme passe
 	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
+	glBindTexture(GL_TEXTURE_2D, pIcon->image.iTexture);
 	//glColor4f(1., 1., 1., pIcon->fAlpha);
 	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR); // la je veux un mapping tout ce qu'il y a de plus classique
 	glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
@@ -131,7 +131,7 @@ static void cd_animation_render_cube (Icon *pIcon, CairoDock *pDock, gboolean bI
 	
 	glActiveTexture(GL_TEXTURE1); // Go pour le texturing 2eme passe
 	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
+	glBindTexture(GL_TEXTURE_2D, pIcon->image.iTexture);
 	//glColor4f(1., 1., 1., pIcon->fAlpha);
 	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_EXT); // Le mode de combinaison des textures
 	glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_ADD);  /// ca sature ...
@@ -175,7 +175,7 @@ static void cd_animation_render_square (Icon *pIcon, CairoDock *pDock, gboolean 
 	
 	glActiveTexture(GL_TEXTURE1); // Go pour le texturing 2eme passe
 	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
+	glBindTexture(GL_TEXTURE_2D, pIcon->image.iTexture);
 	//glColor4f(1., 1., 1., pIcon->fAlpha);
 	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_EXT); // Le mode de combinaison des textures
 	glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_ADD);

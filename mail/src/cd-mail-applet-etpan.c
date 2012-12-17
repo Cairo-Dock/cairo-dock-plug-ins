@@ -279,7 +279,7 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 	CD_APPLET_LEAVE_IF_FAIL (pIcon != NULL, TRUE);
 	
 	//\_______________________ On met a jour l'icone du compte.
-	cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
+	cairo_t *pIconContext = cairo_create (pIcon->image.pSurface);
 	
 	if (pUpdatedMailAccount->bError && pUpdatedMailAccount->pAccountMailTimer->iPeriod > 20)
 	{

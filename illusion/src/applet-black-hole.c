@@ -139,7 +139,7 @@ void cd_illusion_draw_black_hole_icon (Icon *pIcon, CairoDock *pDock, CDIllusion
 		_cairo_dock_set_blend_over ();
 	else
 		_cairo_dock_set_blend_alpha ();
-	glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
+	glBindTexture(GL_TEXTURE_2D, pIcon->image.iTexture);
 	
 	glPushMatrix ();
 	cairo_dock_set_icon_scale (pIcon, CAIRO_CONTAINER (pDock), 1.);

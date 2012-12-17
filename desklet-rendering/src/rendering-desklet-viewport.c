@@ -335,8 +335,7 @@ static void calculate_icons (CairoDesklet *pDesklet)
 		{
 			pIcon->fWidth = pViewport->iIconSize;
 			pIcon->fHeight = pViewport->iIconSize;
-			pIcon->iImageWidth = pIcon->fWidth;
-			pIcon->iImageHeight = pIcon->fHeight;
+			cairo_dock_icon_set_allocated_size (pIcon, pIcon->fWidth, pIcon->fHeight);
 			
 			pIcon->fScale = 1.;
 			pIcon->fAlpha = 1.;
@@ -430,7 +429,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 	do
 	{
 		pIcon = ic->data;
-		if (pIcon->pIconBuffer != NULL && ! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
+		if (pIcon->image.pSurface != NULL && ! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 		{
 			cairo_save (pCairoContext);
 			
@@ -608,7 +607,7 @@ static void render_opengl (CairoDesklet *pDesklet)
 	{
 		pIcon = ic->data;
 		
-		if (pIcon->iIconTexture != 0 && ! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
+		if (pIcon->image.iTexture != 0 && ! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 		{
 			glPushMatrix ();
 			
@@ -617,7 +616,7 @@ static void render_opengl (CairoDesklet *pDesklet)
 				0.);
 			//g_print (" %d) %d;%d %dx%d\n", pIcon->iIconTexture, (int)(pIcon->fDrawX + pIcon->fWidth/2), (int)(pDesklet->container.iHeight - pIcon->fDrawY - pIcon->fHeight/2), (int)(pIcon->fWidth/2), (int)(pIcon->fHeight/2));
 			_cairo_dock_enable_texture ();  // cairo_dock_draw_icon_overlays_opengl() disable textures
-			_cairo_dock_apply_texture_at_size (pIcon->iIconTexture, pIcon->fWidth, pIcon->fHeight);
+			_cairo_dock_apply_texture_at_size (pIcon->image.iTexture, pIcon->fWidth, pIcon->fHeight);
 			
 			/// generer une notification ...
 			if (pIcon->label.iTexture != 0)

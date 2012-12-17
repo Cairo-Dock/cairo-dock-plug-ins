@@ -174,7 +174,7 @@ static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo
 	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	
 	glEnable(GL_TEXTURE_2D); // Je veux de la texture
-	glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
+	glBindTexture(GL_TEXTURE_2D, pIcon->image.iTexture);
 	glPolygonMode(GL_FRONT, GL_FILL);
 	
 	glEnableClientState (GL_TEXTURE_COORD_ARRAY);
@@ -222,7 +222,7 @@ static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo
 		
 		glActiveTexture(GL_TEXTURE0_ARB); // Go pour le multitexturing 1ere passe
 		glEnable(GL_TEXTURE_2D); // On active le texturing sur cette passe
-		glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
+		glBindTexture(GL_TEXTURE_2D, pIcon->image.iTexture);
 		
 		glColor4f(1., 1., 1., myIconsParam.fAlbedo * pIcon->fAlpha);  // transparence du reflet.
 		glEnable(GL_BLEND);

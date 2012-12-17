@@ -1245,14 +1245,14 @@ gboolean cd_dbus_main_set_icon (dbusMainObject *pDbusCallback, const gchar *cIma
 	for (ic = pList; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (pIcon->pIconBuffer == NULL)
+		if (pIcon->image.pSurface == NULL)
 			continue;
 		
 		pContainer = cairo_dock_search_container_from_icon (pIcon);
 		if (pContainer == NULL)
 			continue;
 		
-		cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
+		cairo_t *pIconContext = cairo_create (pIcon->image.pSurface);
 		cairo_dock_set_image_on_icon (pIconContext, cImage, pIcon, pContainer);
 		cairo_destroy (pIconContext);
 		cairo_dock_redraw_icon (pIcon, pContainer);
@@ -1277,7 +1277,7 @@ gboolean cd_dbus_main_set_emblem (dbusMainObject *pDbusCallback, const gchar *cI
 	for (ic = pList; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		if (pIcon->pIconBuffer == NULL)
+		if (pIcon->image.pSurface == NULL)
 			continue;
 		
 		pContainer = cairo_dock_search_container_from_icon (pIcon);

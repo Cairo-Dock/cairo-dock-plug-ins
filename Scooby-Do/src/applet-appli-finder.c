@@ -172,22 +172,19 @@ static gboolean _load_applis_buffer_idle (gpointer data)
 	}
 	int iNbAppliLoaded = 0;
 	Icon *pIcon;
-	gboolean bLoadTexture = (CAIRO_CONTAINER_IS_OPENGL (g_pMainDock));
 	gint iDesiredIconSize = 10; // cairo_dock_search_icon_size (GTK_ICON_SIZE_MENU); // 16px (was 48px but why?) // to data?
 	GList *a;
 	for (a = myData.pCurrentApplicationToLoad; a != NULL && iNbAppliLoaded < 3; a = a->next)  // on en charge 3 d'un coup.
 	{
 		pIcon = a->data;
-		if (pIcon->pIconBuffer == NULL)
+		if (pIcon->image.pSurface == NULL)
 		{
 			pIcon->fWidth = iDesiredIconSize;
 			pIcon->fHeight = iDesiredIconSize;
 			pIcon->fScale = 1.;
 			gchar *cIconPath = cairo_dock_search_icon_s_path (pIcon->cFileName, iDesiredIconSize);
-			pIcon->pIconBuffer = cairo_dock_create_surface_for_icon (cIconPath, iDesiredIconSize, iDesiredIconSize);
+			cairo_dock_load_image_buffer(&pIcon->image, cIconPath, iDesiredIconSize, iDesiredIconSize, 0);
 			g_free (cIconPath);
-			if (bLoadTexture)
-				pIcon->iIconTexture = cairo_dock_create_texture_from_surface (pIcon->pIconBuffer);
 			iNbAppliLoaded ++;
 		}
 	}

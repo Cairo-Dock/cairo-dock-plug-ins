@@ -68,16 +68,19 @@ static gboolean _set_new_image_pixbuf (GtkImage *pImage)
 
 	cd_debug ("Icon Pixbuf: %p", pPixbuf);
 	gdouble fWidth, fHeight;
+	int iWidth, iHeight;
+	cairo_dock_get_icon_extent (myIcon, &iWidth, &iHeight);
 	cairo_surface_t *pSurface = cairo_dock_create_surface_from_pixbuf (pPixbuf,
 		1.,
-		myIcon->iImageWidth, myIcon->iImageHeight,
+		iWidth, iHeight,
 		0,
 		&fWidth, &fHeight,
 		NULL, NULL);
 	cd_debug ("Pixbuf: %fx%f", fWidth, fHeight);
 
 	CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
-
+	
+	cairo_surface_destroy (pSurface);
 	return TRUE;
 }
 

@@ -201,7 +201,7 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 				g_free (pConcernedIcon->cFileName);
 				pConcernedIcon->cFileName = g_strdup (pNewIcon->cFileName);
 				
-				if (pConcernedIcon->pIconBuffer != NULL)
+				if (pConcernedIcon->image.pSurface != NULL)
 					cairo_dock_load_icon_image (pConcernedIcon, pContainer);
 			}
 			

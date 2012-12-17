@@ -27,12 +27,13 @@
 
 static void _load_desktop_icon (Icon *pIcon)
 {
-	int iWidth = pIcon->iImageWidth;
-	int iHeight = pIcon->iImageHeight;
+	int iWidth = cairo_dock_icon_get_allocated_width (pIcon);
+	int iHeight = cairo_dock_icon_get_allocated_height (pIcon);
 	
-	pIcon->pIconBuffer = cairo_dock_duplicate_surface (myData.pDesktopBgMapSurface,
+	cairo_surface_t *pSurface = cairo_dock_duplicate_surface (myData.pDesktopBgMapSurface,
 		myData.iSurfaceWidth, myData.iSurfaceHeight,
 		iWidth, iHeight);
+	cairo_dock_load_image_buffer_from_surface (&pIcon->image, pSurface, iWidth, iHeight);
 }
 
 static GList * _load_icons (void)

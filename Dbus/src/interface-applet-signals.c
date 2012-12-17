@@ -704,9 +704,9 @@ void cd_dbus_action_on_init_module (CairoDockModuleInstance *pModuleInstance)
 	}
 	
 	Icon *pIcon = pModuleInstance->pIcon;
-	if (pIcon && pIcon->cFileName == NULL && pIcon->pIconBuffer)
+	if (pIcon && pIcon->cFileName == NULL && pIcon->image.pSurface)
 	{
-		cairo_t *pDrawContext = cairo_create (pIcon->pIconBuffer);
+		cairo_t *pDrawContext = cairo_create (pIcon->image.pSurface);
 		cairo_dock_set_image_on_icon (pDrawContext, pVisitCard->cIconFilePath, pIcon, pModuleInstance->pContainer);
 		cairo_destroy (pDrawContext);
 		gtk_widget_queue_draw (pModuleInstance->pContainer->pWidget);
@@ -776,9 +776,9 @@ gboolean cd_dbus_emit_on_reload_module (CairoDockModuleInstance *pModuleInstance
 	}
 	
 	Icon *pIcon = pModuleInstance->pIcon;
-	if (pIcon && pIcon->cFileName == NULL && pIcon->pIconBuffer && (pIcon->pDataRenderer == NULL || pIcon->pDataRenderer->bUseOverlay))
+	if (pIcon && pIcon->cFileName == NULL && pIcon->image.pSurface && (pIcon->pDataRenderer == NULL || pIcon->pDataRenderer->bUseOverlay))
 	{
-		cairo_t *pDrawContext = cairo_create (pIcon->pIconBuffer);
+		cairo_t *pDrawContext = cairo_create (pIcon->image.pSurface);
 		cairo_dock_set_image_on_icon (pDrawContext, pVisitCard->cIconFilePath, pIcon, pModuleInstance->pContainer);
 		cairo_destroy (pDrawContext);
 		gtk_widget_queue_draw (pModuleInstance->pContainer->pWidget);

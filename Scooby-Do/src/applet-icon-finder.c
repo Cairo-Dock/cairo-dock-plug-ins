@@ -133,7 +133,7 @@ void cd_do_select_previous_next_matching_icon (gboolean bNext)
 			myData.pCurrentMatchingElement = cairo_dock_get_previous_element (myData.pCurrentMatchingElement, myData.pMatchingIcons);
 		else
 			myData.pCurrentMatchingElement = cairo_dock_get_next_element (myData.pCurrentMatchingElement, myData.pMatchingIcons);
-	} while (myData.pCurrentMatchingElement != pMatchingElement && ((Icon*)myData.pCurrentMatchingElement->data)->pIconBuffer == NULL);
+	} while (myData.pCurrentMatchingElement != pMatchingElement && ((Icon*)myData.pCurrentMatchingElement->data)->image.pSurface == NULL);
 	
 	if (myData.pCurrentMatchingElement != pMatchingElement)  // on complete le texte et on redessine.
 	{

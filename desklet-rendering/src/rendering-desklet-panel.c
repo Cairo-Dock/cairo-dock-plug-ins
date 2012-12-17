@@ -161,8 +161,7 @@ static void calculate_icons (CairoDesklet *pDesklet)
 	{
 		pIcon->fWidth = pPanel->iMainIconSize;
 		pIcon->fHeight = pPanel->iMainIconSize;
-		pIcon->iImageWidth = pIcon->fWidth;
-		pIcon->iImageHeight = pIcon->fHeight;
+		cairo_dock_icon_set_allocated_size (pIcon, pIcon->fWidth, pIcon->fHeight);
 		
 		pIcon->fScale = 1.;
 		pIcon->fAlpha = 1.;
@@ -196,8 +195,7 @@ static void calculate_icons (CairoDesklet *pDesklet)
 		{
 			pIcon->fWidth = pPanel->iIconSize;
 			pIcon->fHeight = pPanel->iIconSize;
-			pIcon->iImageWidth = pIcon->fWidth;
-			pIcon->iImageHeight = pIcon->fHeight;
+			cairo_dock_icon_set_allocated_size (pIcon, pIcon->fWidth, pIcon->fHeight);
 		
 			pIcon->fScale = 1.;
 			pIcon->fAlpha = 1.;
@@ -294,30 +292,16 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 	GList *ic;
 	
 	pIcon = pDesklet->pIcon;
-	if (pIcon && pIcon->pIconBuffer != NULL)
+	if (pIcon && pIcon->image.pSurface != NULL)
 	{
 		cairo_save (pCairoContext);
 		
 		cairo_translate (pCairoContext, pIcon->fDrawX, pIcon->fDrawY);
-		cairo_set_source_surface (pCairoContext, pIcon->pIconBuffer, 0.0, 0.0);
-		if (pIcon->fAlpha == 1)
-			cairo_paint (pCairoContext);
-		else
-			cairo_paint_with_alpha (pCairoContext, pIcon->fAlpha);
-			
-		/**if (pIcon->pQuickInfoBuffer != NULL)
-		{
-			cairo_translate (pCairoContext,
-				pIcon->fDrawX + pIcon->fWidth,
-				pIcon->fDrawY + pIcon->fHeight/2 - pIcon->iQuickInfoHeight/2);
-			
-			cairo_set_source_surface (pCairoContext,
-				pIcon->pQuickInfoBuffer,
-				0,
-				0);
-			cairo_paint (pCairoContext);
-		}*/
+		
+		cairo_dock_apply_image_buffer_surface_with_offset (&pIcon->image, pCairoContext, 0, 0, pIcon->fAlpha);
+		
 		cairo_dock_draw_icon_overlays_cairo (pIcon, pDesklet->container.fRatio, pCairoContext);
+		
 		cairo_restore (pCairoContext);
 	}
 	
@@ -328,23 +312,17 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 	do
 	{
 		pIcon = ic->data;
-		if (pIcon->pIconBuffer != NULL && ! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
+		if (pIcon->image.pSurface != NULL && ! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 		{
 			cairo_save (pCairoContext);
 			
 			cairo_translate (pCairoContext, pIcon->fDrawX, pIcon->fDrawY);
-			cairo_set_source_surface (pCairoContext, pIcon->pIconBuffer, 0.0, 0.0);
-			if (pIcon->fAlpha == 1)
-				cairo_paint (pCairoContext);
-			else
-				cairo_paint_with_alpha (pCairoContext, pIcon->fAlpha);
 			
-			cairo_restore (pCairoContext);
+			cairo_dock_apply_image_buffer_surface_with_offset (&pIcon->image, pCairoContext, 0, 0, pIcon->fAlpha);
 			
 			if (pIcon->label.pSurface != NULL)
 			{
 				cairo_save (pCairoContext);
-				cairo_translate (pCairoContext, pIcon->fDrawX, pIcon->fDrawY);
 				
 				double fOffsetX = 0., fAlpha;
 				if (pIcon->bPointed)
@@ -414,23 +392,12 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 				cairo_restore (pCairoContext);
 			}
 			
-			/**if (pIcon->pQuickInfoBuffer != NULL)
-			{
-				cairo_save (pCairoContext);
-				
-				cairo_translate (pCairoContext,
-					pIcon->fDrawX + pIcon->fWidth,
-					pIcon->fDrawY + pIcon->fHeight/2 - pIcon->iQuickInfoHeight/2);
-				
-				cairo_set_source_surface (pCairoContext,
-					pIcon->pQuickInfoBuffer,
-					0,
-					0);
-				cairo_paint (pCairoContext);
-				
-				cairo_restore (pCairoContext);
-			}*/
+			cairo_translate (pCairoContext,
+				pIcon->fWidth,
+				- pIcon->fHeight/2);  // not ideal, it should be vertically centered.
 			cairo_dock_draw_icon_overlays_cairo (pIcon, pDesklet->container.fRatio, pCairoContext);
+			
+			cairo_restore (pCairoContext);
 		}
 		ic = cairo_dock_get_next_element (ic, pDesklet->icons);
 	}
@@ -500,14 +467,14 @@ static void render_opengl (CairoDesklet *pDesklet)
 	_cairo_dock_set_alpha (1.);
 	
 	Icon *pIcon = pDesklet->pIcon;
-	if (pIcon && pIcon->iIconTexture != 0 )
+	if (pIcon && pIcon->image.iTexture != 0 )
 	{
 		glPushMatrix ();
 		
 		glTranslatef (floor (pIcon->fDrawX + pIcon->fWidth/2),
 			floor (pDesklet->container.iHeight - pIcon->fDrawY - pIcon->fHeight/2),
 			0.);
-		_cairo_dock_apply_texture_at_size (pIcon->iIconTexture, pIcon->fWidth, pIcon->fHeight);
+		_cairo_dock_apply_texture_at_size (pIcon->image.iTexture, pIcon->fWidth, pIcon->fHeight);
 		
 		/**if (pIcon->iQuickInfoTexture != 0)
 		{
@@ -522,6 +489,9 @@ static void render_opengl (CairoDesklet *pDesklet)
 				pIcon->iQuickInfoHeight);
 			glPopMatrix ();
 		}*/
+		glTranslatef (floor (pIcon->fWidth),
+			0.,
+			0.);
 		cairo_dock_draw_icon_overlays_opengl (pIcon, pDesklet->container.fRatio);
 		
 		glPopMatrix ();
@@ -536,7 +506,7 @@ static void render_opengl (CairoDesklet *pDesklet)
 	{
 		pIcon = ic->data;
 		
-		if (pIcon->iIconTexture != 0 && ! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
+		if (pIcon->image.iTexture != 0 && ! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 		{
 			glPushMatrix ();
 			
@@ -545,7 +515,7 @@ static void render_opengl (CairoDesklet *pDesklet)
 				0.);
 			
 			_cairo_dock_enable_texture ();  // cairo_dock_draw_icon_overlays_opengl() disable textures
-			_cairo_dock_apply_texture_at_size (pIcon->iIconTexture, pIcon->fWidth, pIcon->fHeight);
+			_cairo_dock_apply_texture_at_size (pIcon->image.iTexture, pIcon->fWidth, pIcon->fHeight);
 			
 			if (pIcon->label.iTexture != 0)
 			{

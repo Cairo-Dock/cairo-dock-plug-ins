@@ -1856,12 +1856,7 @@ transport_widget_property_update(DbusmenuMenuitem* item, gchar* property,
     //g_debug("transport_widget_update_state - with value  %i", new_state);
     if (new_state == TRANSPORT_STATE_LAUNCHING){
       #if GTK_CHECK_VERSION(3, 0, 0)
-      gtk_style_context_notify_state_change (spinner_style_context, 
-                                             gtk_widget_get_window ( GTK_WIDGET(userdata)),
-                                             NULL,
-                                             GTK_STATE_FLAG_ACTIVE,
-                                             TRUE);
-      gtk_style_context_set_state (spinner_style_context, GTK_STATE_FLAG_ACTIVE);
+      gtk_style_context_set_state (spinner_style_context, GTK_STATE_FLAG_ACTIVE);  // triggers the notification
       #endif
 
       priv->current_state = TRANSPORT_STATE_LAUNCHING;

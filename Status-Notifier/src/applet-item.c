@@ -744,15 +744,18 @@ void cd_free_item (CDStatusNotifierItem *pItem)
 
 static void _load_item_image (Icon *icon)
 {
-	int iWidth = icon->iImageWidth;
-	int iHeight = icon->iImageHeight;
+	int iWidth = cairo_dock_icon_get_allocated_width (icon);
+	int iHeight = cairo_dock_icon_get_allocated_height (icon);
 	
 	CDStatusNotifierItem *pItem = cd_satus_notifier_get_item_from_icon (icon);
 	gchar *cIconPath = cd_satus_notifier_search_item_icon_s_path (pItem, MAX (iWidth, iHeight));
 	if (cIconPath != NULL && *cIconPath != '\0')
-		icon->pIconBuffer = cairo_dock_create_surface_from_image_simple (cIconPath,
+	{
+		cairo_surface_t *pSurface = cairo_dock_create_surface_from_image_simple (cIconPath,
 			iWidth,
 			iHeight);
+		cairo_dock_load_image_buffer_from_surface (&icon->image, pSurface, iWidth, iHeight);
+	}
 	g_free (cIconPath);
 }
 Icon *cd_satus_notifier_create_icon_for_item (CDStatusNotifierItem *pItem)

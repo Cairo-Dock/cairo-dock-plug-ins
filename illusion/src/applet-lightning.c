@@ -105,7 +105,7 @@ void cd_illusion_draw_lightning_icon (Icon *pIcon, CairoDock *pDock, CDIllusionD
 	_cairo_dock_set_alpha (pIcon->fAlpha);
 	_cairo_dock_set_blend_over ();
 	
-	glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
+	glBindTexture(GL_TEXTURE_2D, pIcon->image.iTexture);
 	
 	double fSizeX, fSizeY;
 	cairo_dock_get_current_icon_size (pIcon, CAIRO_CONTAINER (pDock), &fSizeX, &fSizeY);

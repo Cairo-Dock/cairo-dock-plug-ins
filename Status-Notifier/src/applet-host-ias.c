@@ -497,7 +497,7 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 		// const gchar *cHint = NULL; // oneiric
 		const gchar *cTitle = NULL;  // precise
 		
-		v = g_value_array_get_nth (va, 0);
+		v = g_value_array_get_nth (va, 0);  // GValueArray is deprecated from 2.32, yet it's so convenient to map the g_type_ptrarray type ...
 		if (v && G_VALUE_HOLDS_STRING (v))
 			cIconName = g_value_get_string (v);
 		

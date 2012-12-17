@@ -94,8 +94,8 @@ static gboolean _applet_set_icon (dbusApplet *pDbusApplet, const gchar *cImage, 
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
-	g_return_val_if_fail (pIcon->pIconBuffer != NULL, FALSE);
-	cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
+	g_return_val_if_fail (pIcon->image.pSurface != NULL, FALSE);
+	cairo_t *pIconContext = cairo_create (pIcon->image.pSurface);
 	cairo_dock_set_image_on_icon (pIconContext, cImage, pIcon, pContainer);
 	cairo_destroy (pIconContext);
 	cairo_dock_redraw_icon (pIcon, pContainer);
@@ -110,8 +110,8 @@ static gboolean _applet_set_icon_with_default (dbusApplet *pDbusApplet, const gc
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
-	g_return_val_if_fail (pIcon->pIconBuffer != NULL, FALSE);
-	cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
+	g_return_val_if_fail (pIcon->image.pSurface != NULL, FALSE);
+	cairo_t *pIconContext = cairo_create (pIcon->image.pSurface);
 	int i;
 	for (i = 0; cImages[i] != NULL; i ++)
 	{
@@ -267,7 +267,9 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 	v = g_hash_table_lookup (hDialogAttributes, "icon");
 	if (v && G_VALUE_HOLDS_STRING (v))
 	{
-		cImageFilePath = cairo_dock_search_icon_s_path (g_value_get_string (v), MAX (pIcon->iImageWidth, pIcon->iImageHeight));
+		int w, h;
+		cairo_dock_get_icon_extent (pIcon, &w, &h);
+		cImageFilePath = cairo_dock_search_icon_s_path (g_value_get_string (v), MAX (w, h));
 		attr.cImageFilePath = cImageFilePath;
 	}
 	else
@@ -845,7 +847,7 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 	pRenderAttr->iNbValues = iNbValues;
 	//pRenderAttr->bUpdateMinMax = TRUE;
 	//pRenderAttr->bWriteValues = TRUE;
-	g_return_val_if_fail (pIcon->pIconBuffer != NULL, FALSE);
+	g_return_val_if_fail (pIcon->image.pSurface != NULL, FALSE);
 	cairo_dock_add_new_data_renderer_on_icon (pIcon, pContainer, pRenderAttr);
 
 	return TRUE;
@@ -862,8 +864,8 @@ gboolean cd_dbus_applet_render_values (dbusApplet *pDbusApplet, GArray *pValues,
 	CairoContainer *pContainer = pInstance->pContainer;
 	g_return_val_if_fail (pContainer != NULL, FALSE);
 	
-	g_return_val_if_fail (pIcon->pIconBuffer != NULL, FALSE);
-	cairo_t *pDrawContext = cairo_create (pIcon->pIconBuffer);
+	g_return_val_if_fail (pIcon->image.pSurface != NULL, FALSE);
+	cairo_t *pDrawContext = cairo_create (pIcon->image.pSurface);
 	cairo_dock_render_new_data_on_icon (pIcon, pContainer, pDrawContext, (double *)pValues->data);
 	cairo_destroy (pDrawContext);
 	

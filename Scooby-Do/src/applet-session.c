@@ -167,14 +167,14 @@ void cd_do_exit_session (void)
 		for (ic = myData.pMatchingIcons; ic != NULL; ic = ic->next)
 		{
 			pIcon = ic->data;
-			if (pIcon->cDesktopFileName && strncmp (pIcon->cDesktopFileName, "/usr", 4) == 0 && pIcon->pIconBuffer != NULL)
+			if (pIcon->cDesktopFileName && strncmp (pIcon->cDesktopFileName, "/usr", 4) == 0 && pIcon->image.pSurface != NULL)
 			{
-				cairo_surface_destroy (pIcon->pIconBuffer);
-				pIcon->pIconBuffer = NULL;
-				if (pIcon->iIconTexture != 0)
+				cairo_surface_destroy (pIcon->image.pSurface);
+				pIcon->image.pSurface = NULL;
+				if (pIcon->image.iTexture != 0)
 				{
-					_cairo_dock_delete_texture (pIcon->iIconTexture);
-					pIcon->iIconTexture = 0;
+					_cairo_dock_delete_texture (pIcon->image.iTexture);
+					pIcon->image.iTexture = 0;
 				}
 			}
 		}

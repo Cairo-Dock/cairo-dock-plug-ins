@@ -31,7 +31,7 @@ static void _render_one_icon_and_quickinfo_opengl (Icon *pIcon, CairoContainer *
 	if (pIcon == NULL)  // peut arriver avant de lier l'icone au desklet.
 		return ;
 
-	if (pIcon->iIconTexture != 0)
+	if (pIcon->image.iTexture != 0)
 	{
 		glPushMatrix ();
 			cairo_dock_draw_icon_texture (pIcon, pContainer);
@@ -49,17 +49,6 @@ static void _render_one_icon_and_quickinfo_opengl (Icon *pIcon, CairoContainer *
 				pIcon->label.iHeight);
 		glPopMatrix ();
 	}
-	/**if (pIcon->iQuickInfoTexture != 0 && !bIsReflect)
-	{
-		glPushMatrix ();
-			glTranslatef (0.,
-				(- pIcon->fHeight - pIcon->iQuickInfoHeight)/2,
-				0.);
-			cairo_dock_draw_texture (pIcon->iQuickInfoTexture,
-				pIcon->iQuickInfoWidth,
-				pIcon->iQuickInfoHeight);
-		glPopMatrix ();
-	}*/
 	if (!bIsReflect)
 	{
 		cairo_dock_draw_icon_overlays_opengl (pIcon, pContainer->fRatio);
@@ -271,8 +260,7 @@ static void calculate_icons (CairoDesklet *pDesklet)
 			pIcon->fWidth = MAX (1, pDesklet->container.iWidth * CAROUSSEL_RATIO_MAIN_ICON_DESKLET);
 			pIcon->fHeight = MAX (1, pDesklet->container.iHeight * CAROUSSEL_RATIO_MAIN_ICON_DESKLET);
 		}
-		pIcon->iImageWidth = pIcon->fWidth;
-		pIcon->iImageHeight = pIcon->fHeight;
+		cairo_dock_icon_set_allocated_size (pIcon, pIcon->fWidth, pIcon->fHeight);
 		
 		pIcon->fDrawX = (pDesklet->container.iWidth - pIcon->fWidth) / 2;
 		pIcon->fDrawY = (pDesklet->container.iHeight - pIcon->fHeight) / 2 + (pCaroussel->b3D ? myIconsParam.iconTextDescription.iSize : 0);
@@ -298,8 +286,7 @@ static void calculate_icons (CairoDesklet *pDesklet)
 			pIcon->fWidth = MAX (1, .2 * pDesklet->container.iWidth - myIconsParam.iconTextDescription.iSize);
 			pIcon->fHeight = MAX (1, .2 * pDesklet->container.iHeight - myIconsParam.iconTextDescription.iSize);
 		}
-		pIcon->iImageWidth = pIcon->fWidth;
-		pIcon->iImageHeight = pIcon->fHeight;
+		cairo_dock_icon_set_allocated_size (pIcon, pIcon->fWidth, pIcon->fHeight);
 		
 		pIcon->fScale = 1.;
 		pIcon->fAlpha = 1.;
@@ -382,7 +369,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 		for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 		{
 			pIcon = ic->data;
-			if (pIcon->pIconBuffer != NULL)
+			if (pIcon->image.pSurface != NULL)
 			{
 				cairo_save (pCairoContext);
 				
@@ -395,7 +382,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 		for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 		{
 			pIcon = ic->data;
-			if (pIcon->pIconBuffer != NULL)
+			if (pIcon->image.pSurface != NULL)
 			{
 				cairo_save (pCairoContext);
 				
@@ -414,7 +401,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 		for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 		{
 			pIcon = ic->data;
-			if (pIcon->pIconBuffer != NULL)
+			if (pIcon->image.pSurface != NULL)
 			{
 				cairo_save (pCairoContext);
 				
@@ -428,7 +415,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 		for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 		{
 			pIcon = ic->data;
-			if (pIcon->pIconBuffer != NULL)
+			if (pIcon->image.pSurface != NULL)
 			{
 				cairo_save (pCairoContext);
 				
@@ -449,7 +436,7 @@ static void render (cairo_t *pCairoContext, CairoDesklet *pDesklet)
 		for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
 		{
 			pIcon = ic->data;
-			if (pIcon->pIconBuffer != NULL)
+			if (pIcon->image.pSurface != NULL)
 			{
 				cairo_save (pCairoContext);
 				
@@ -716,12 +703,12 @@ static void render_bounding_box (CairoDesklet *pDesklet)
 		glEnable(GL_DEPTH_TEST);
 		glTranslatef( 0., 0.5*b, 0. ); // on se decale un peu plus vers le haut
 		pIcon = pDesklet->pIcon;
-		if (pIcon != NULL && pIcon->iIconTexture != 0)  // l'icone au centre.
+		if (pIcon != NULL && pIcon->image.iTexture != 0)  // l'icone au centre.
 		{
 			w = pIcon->fWidth/2;
 			h = pIcon->fHeight/2;
 			
-			glLoadName(pIcon->iIconTexture);
+			glLoadName(pIcon->image.iTexture);
 			
 			glBegin(GL_QUADS);
 			glVertex3f(-w, +h, 0.);
@@ -746,7 +733,7 @@ static void render_bounding_box (CairoDesklet *pDesklet)
 		for (ic = pDesklet->icons; ic != NULL; ic = ic->next)  // les icones autour du centre.
 		{
 			pIcon = ic->data;
-			if (pIcon->iIconTexture == 0)
+			if (pIcon->image.iTexture == 0)
 				continue;
 			
 			glPushMatrix ();
@@ -756,7 +743,7 @@ static void render_bounding_box (CairoDesklet *pDesklet)
 			
 			w = pIcon->fWidth/2;
 			h = pIcon->fHeight/2;
-			glLoadName(pIcon->iIconTexture);
+			glLoadName(pIcon->image.iTexture);
 			
 			glBegin(GL_QUADS);
 			glVertex3f(-w, +h, 0.);
@@ -775,14 +762,14 @@ static void render_bounding_box (CairoDesklet *pDesklet)
 	else
 	{
 		pIcon = pDesklet->pIcon;
-		if (pIcon != NULL && pIcon->iIconTexture != 0)  // l'icone au centre.
+		if (pIcon != NULL && pIcon->image.iTexture != 0)  // l'icone au centre.
 		{
 			w = pIcon->fWidth/2;
 			h = pIcon->fHeight/2;
 			x = 0.;
 			y = 0.;
 			
-			glLoadName(pIcon->iIconTexture);
+			glLoadName(pIcon->image.iTexture);
 			
 			glBegin(GL_QUADS);
 			glVertex3f(x-w, y+h, 0.);
@@ -796,7 +783,7 @@ static void render_bounding_box (CairoDesklet *pDesklet)
 		for (ic = pDesklet->icons; ic != NULL; ic = ic->next)  // les icones autour du centre.
 		{
 			pIcon = ic->data;
-			if (pIcon->iIconTexture == 0)
+			if (pIcon->image.iTexture == 0)
 				continue;
 			
 			w = pIcon->fWidth/2;
@@ -804,7 +791,7 @@ static void render_bounding_box (CairoDesklet *pDesklet)
 			x = a * cos (fTheta);
 			y = b * sin (fTheta);
 			
-			glLoadName(pIcon->iIconTexture);
+			glLoadName(pIcon->image.iTexture);
 			
 			glBegin(GL_QUADS);
 			glVertex3f(x-w, y+h, 0.);

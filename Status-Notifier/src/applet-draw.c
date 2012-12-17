@@ -206,7 +206,7 @@ void cd_satus_notifier_reload_compact_mode (void)
 		cd_satus_notifier_compute_grid ();
 	
 	// load surfaces, or reload them if their size has changed.
-	cd_debug ("===  item size: %d -> %d, icon size: %dx%d (%p)", iPrevSize, myData.iItemSize, myIcon->iImageWidth, myIcon->iImageHeight, myIcon->pIconBuffer);
+	cd_debug ("===  item size: %d -> %d, icon size: %dx%d", iPrevSize, myData.iItemSize, myIcon->image.iWidth, myIcon->image.iHeight);
 	CDStatusNotifierItem *pItem;
 	GList *it;
 	for (it = myData.pItems; it != NULL; it = it->next)
@@ -320,9 +320,9 @@ void cd_satus_notifier_update_item_image (CDStatusNotifierItem *pItem)
 	else
 	{
 		Icon *pIcon = cd_satus_notifier_get_icon_from_item (pItem);
-		if (pIcon != NULL && pIcon->pIconBuffer != NULL)
+		if (pIcon != NULL && pIcon->image.pSurface != NULL)
 		{
-			cairo_t *pIconContext = cairo_create (pIcon->pIconBuffer);
+			cairo_t *pIconContext = cairo_create (pIcon->image.pSurface);
 			cairo_dock_set_image_on_icon (pIconContext,
 				pItem->iStatus == CD_STATUS_NEEDS_ATTENTION ? pItem->cAttentionIconName : pItem->cIconName,
 				pIcon, CD_APPLET_MY_ICONS_LIST_CONTAINER);

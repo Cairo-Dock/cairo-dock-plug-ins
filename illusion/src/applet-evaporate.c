@@ -32,7 +32,7 @@ gboolean cd_illusion_init_evaporate (Icon *pIcon, CairoDock *pDock, CDIllusionDa
 	CairoParticleSystem *pEvaporateParticleSystem = cairo_dock_create_particle_system (myConfig.iNbEvaporateParticles,
 		myData.iEvaporateTexture,
 		pIcon->fWidth * pIcon->fScale,
-		pDock->container.bIsHorizontal ? pIcon->iImageHeight : pIcon->iImageWidth);
+		pDock->container.bIsHorizontal ? pIcon->image.iHeight : pIcon->image.iWidth);
 	g_return_val_if_fail (pEvaporateParticleSystem != NULL, FALSE);
 	double dt = pData->fDeltaT;
 	pEvaporateParticleSystem->dt = dt;
@@ -163,7 +163,7 @@ void cd_illusion_draw_evaporate_icon (Icon *pIcon, CairoDock *pDock, CDIllusionD
 	_cairo_dock_set_alpha (pIcon->fAlpha);
 	_cairo_dock_set_blend_over ();
 	
-	glBindTexture(GL_TEXTURE_2D, pIcon->iIconTexture);
+	glBindTexture(GL_TEXTURE_2D, pIcon->image.iTexture);
 	
 	glNormal3f(0,0,1);
 	glBegin(GL_QUADS);

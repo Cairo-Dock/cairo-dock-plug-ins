@@ -311,7 +311,6 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 
       		ThunarVfsPath *pThunarVfsPath = thunar_vfs_volume_get_mount_point(pThunarVfsVolume);
 			Icon *icon = cairo_dock_create_dummy_launcher (NULL, NULL, NULL, NULL, 0);
-			icon->iTrueType = CAIRO_DOCK_ICON_TYPE_FILE;
 			
 			/* il nous faut: URI, type, nom, icone */
 
@@ -419,7 +418,6 @@ GList *vfs_backend_list_directory (const gchar *cBaseURI, CairoDockFMSortType iS
 		   strcmp (thunar_vfs_path_get_name(pThunarVfsInfo->path), "..") != 0)
 		{
 			icon = cairo_dock_create_dummy_launcher (NULL, NULL, NULL, NULL, 0);
-			icon->iTrueType = CAIRO_DOCK_ICON_TYPE_FILE;
 			icon->cBaseURI = thunar_vfs_path_dup_uri(pThunarVfsInfo->path);
 			cd_message (" item in directory : %s", icon->cBaseURI);
 			icon->iGroup = iNewIconsType;

@@ -391,9 +391,12 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath, CairoDockModuleIns
 	// Home
 	gchar *cHome = g_strdup_printf ("file://%s", g_getenv ("HOME"));
 	pNewIcon = _cd_shortcuts_get_icon (cHome, D_("Home Folder"), fCurrentOrder++);
-	pNewIcon->iLastCheckTime = 1e9;  // so that this bookmark will never be considered old, and therefore removed.
-	_init_disk_usage (pNewIcon, myApplet);
-	pBookmarkIconList = g_list_append (pBookmarkIconList, pNewIcon);
+	if (pNewIcon != NULL)
+	{
+		pNewIcon->iLastCheckTime = 1e9;  // so that this bookmark will never be considered old, and therefore removed.
+		_init_disk_usage (pNewIcon, myApplet);
+		pBookmarkIconList = g_list_append (pBookmarkIconList, pNewIcon);
+	}
 
 	gchar *cContent = NULL;
 	gsize length = 0;

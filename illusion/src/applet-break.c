@@ -151,7 +151,7 @@ void cd_illusion_draw_break_icon (Icon *pIcon, CairoDock *pDock, CDIllusionData 
 	_cairo_dock_enable_texture ();
 	_cairo_dock_set_blend_alpha ();
 	_cairo_dock_set_alpha (1.);
-	glBindTexture (GL_TEXTURE_2D, pIcon->iIconTexture);
+	glBindTexture (GL_TEXTURE_2D, pIcon->image.iTexture);
 	
 	double fSizeX, fSizeY;
 	cairo_dock_get_current_icon_size (pIcon, CAIRO_CONTAINER (pDock), &fSizeX, &fSizeY);
