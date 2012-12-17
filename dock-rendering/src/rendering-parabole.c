@@ -271,6 +271,8 @@ static void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 	pDock->fMagnitudeMax = my_fParaboleMagnitude;
 	cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth);
 	
+	int Ws = g_desktopGeometry.iXScreenWidth[pDock->container.bIsHorizontal] - 2;  // let 1px on each edge, so that we can leave the dock even if it gets huge.
+	int Hs = g_desktopGeometry.iXScreenHeight[pDock->container.bIsHorizontal] - 2;
 	int iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->fFlatDockWidth, 1., 0));
 	GList* ic;
 	Icon *icon;
@@ -316,6 +318,11 @@ static void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 	double fOrientationMax = G_PI/2 - atan (my_fParaboleRatio * my_fParaboleCurvature);  // fCurve_ (W) se simplifie ici.
 	pDock->iMaxDockHeight += pDock->iMaxLabelWidth * sin (fOrientationMax);  // thetaMax est atteint en x=W.
 	//cd_debug ("> fOrientationMax : %.2fdeg -> %dx%d", fOrientationMax/G_PI*180., pDock->iMaxDockWidth, pDock->iMaxDockHeight);
+	
+	if (pDock->iMaxDockHeight > Hs)
+		pDock->iMaxDockHeight = Hs;
+	if (pDock->iMaxDockWidth > Ws)
+		pDock->iMaxDockWidth = Ws;
 	
 	pDock->iDecorationsWidth = 0;
 	pDock->iDecorationsHeight = 0;

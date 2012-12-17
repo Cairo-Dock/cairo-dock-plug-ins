@@ -403,8 +403,8 @@ static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 	int iDeltaHeight = 0;  // hauteur ne pouvant rentrer dans le dock.
 	int iMaxIconWidth = 0;
 	int iDockWidth, iDockHeight;  // dimension dock.
-	int Ws = g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL];  // dimensions ecran.
-	int Hs = g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
+	int Ws = g_desktopGeometry.iXScreenWidth[pDock->container.bIsHorizontal] - 2;  // let 1px on each edge, so that we can leave the dock even if it gets huge.
+	int Hs = g_desktopGeometry.iXScreenHeight[pDock->container.bIsHorizontal] - 2;
 	nIcones = _cd_rendering_diapo_simple_guess_grid (pDock->icons, &nRowsX, &nRowsY, &iNbSeparators);
 	//g_print ("nIcones : %d\n", nIcones);
 	
