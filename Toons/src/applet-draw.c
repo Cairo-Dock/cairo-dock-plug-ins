@@ -32,57 +32,38 @@ void cd_xeyes_render_to_texture (CairoDockModuleInstance *myApplet, int iWidth, 
 	_cairo_dock_set_blend_alpha ();
 	_cairo_dock_set_alpha (1.);
 	
-	if (myData.bWink && myData.iEyelidTexture)
+	if (myData.bWink && myData.pEyelidImage)
 	{
-		_cairo_dock_apply_texture_at_size (myData.iToonTexture,
-			myData.iToonWidth,
-			myData.iToonHeight);
+		cairo_dock_apply_image_buffer_texture (myData.pToonImage);
 		
 		_cairo_dock_set_blend_pbuffer ();
 		
-		glPushMatrix ();
-		glTranslatef (-.5*iWidth + myData.iXeyelid + .5*myData.iEyelidWidth,
-			.5*iHeight - myData.iYeyelid - .5*myData.iEyelidHeight,
-			0.);
-		_cairo_dock_apply_texture_at_size (myData.iEyelidTexture,
-			myData.iEyelidWidth,
-			myData.iEyelidHeight);
-		glPopMatrix ();
+		cairo_dock_apply_image_buffer_texture_with_offset (myData.pEyelidImage,
+			-.5*iWidth + myData.iXeyelid + .5*myData.pEyelidImage->iWidth,
+			.5*iHeight - myData.iYeyelid - .5*myData.pEyelidImage->iHeight);
 	}
 	else
 	{
-		if (myData.iBgTexture)
+		if (myData.pBgImage)
 		{
 			_cairo_dock_set_blend_source ();
-			glPushMatrix ();
-			glTranslatef (-.5*iWidth + myData.iXbg + .5*myData.iBgWidth,
-				.5*iHeight - myData.iYbg - .5*myData.iBgHeight,
-				0.);
-			_cairo_dock_apply_texture_at_size (myData.iBgTexture,
-				myData.iBgWidth,
-				myData.iBgHeight);
-			glPopMatrix ();
+			cairo_dock_apply_image_buffer_texture_with_offset (myData.pBgImage,
+				-.5*iWidth + myData.iXbg + .5*myData.pBgImage->iWidth,
+				.5*iHeight - myData.iYbg - .5*myData.pBgImage->iHeight);
 		}
 		_cairo_dock_set_blend_alpha ();
 		int i;
 		for (i = 0; i < 2; i ++)
 		{
-			if (myData.iPupilTexture[i] != 0)
+			if (myData.pPupilImage[i] != 0)
 			{
-				glPushMatrix ();
-				glTranslatef (-.5*iWidth + myData.fXpupil[i],
-					.5*iHeight - myData.fYpupil[i],
-					0.);
-				_cairo_dock_apply_texture_at_size (myData.iPupilTexture[i],
-					myData.iPupilWidth[i],
-					myData.iPupilHeight[i]);
-				glPopMatrix ();
+				cairo_dock_apply_image_buffer_texture_with_offset (myData.pPupilImage[i],
+					-.5*iWidth + myData.fXpupil[i],
+					.5*iHeight - myData.fYpupil[i]);
 			}
 		}
 		_cairo_dock_set_blend_pbuffer ();
-		_cairo_dock_apply_texture_at_size (myData.iToonTexture,
-			myData.iToonWidth,
-			myData.iToonHeight);
+		cairo_dock_apply_image_buffer_texture (myData.pToonImage);
 	}
 	
 	_cairo_dock_disable_texture ();
@@ -95,50 +76,42 @@ void cd_xeyes_render_to_surface (CairoDockModuleInstance *myApplet, int iWidth, 
 {
 	cairo_dock_erase_cairo_context (myDrawContext);
 	
-	if (myData.bWink && myData.pEyelidSurface)
+	if (myData.bWink && myData.pEyelidImage)
 	{
-		cairo_set_source_surface (myDrawContext,
-			myData.pToonSurface,
-			.5*(iWidth - myData.iToonWidth),
-			.5*(iHeight - myData.iToonHeight));
-		cairo_paint (myDrawContext);
+		cairo_dock_apply_image_buffer_surface_with_offset (myData.pToonImage, myDrawContext,
+			.5*(iWidth - myData.pToonImage->iWidth),
+			.5*(iHeight - myData.pToonImage->iHeight),
+			1.);
 		
-		cairo_set_source_surface (myDrawContext,
-			myData.pEyelidSurface,
+		cairo_dock_apply_image_buffer_surface_with_offset (myData.pEyelidImage, myDrawContext,
 			myData.iXeyelid,
-			myData.iYeyelid);
-		cairo_paint (myDrawContext);
+			myData.iYeyelid,
+			1.);	
 	}
 	else
 	{
-		if (myData.pBgSurface)
+		if (myData.pBgImage)
 		{
-			cairo_set_source_surface (myDrawContext,
-				myData.pBgSurface,
+			cairo_dock_apply_image_buffer_surface_with_offset (myData.pBgImage, myDrawContext,
 				myData.iXbg,
-				myData.iYbg);
-			cairo_paint (myDrawContext);
+				myData.iYbg,
+				1.);
 		}
 		
 		int i;
 		for (i = 0; i < 2; i ++)
 		{
-			if (myData.pPupilSurface[i])
+			if (myData.pPupilImage[i])
 			{
-				cairo_set_source_surface (myDrawContext,
-					myData.pPupilSurface[i],
-					myData.fXpupil[i] - .5*myData.iPupilWidth[i],
-					myData.fYpupil[i] - .5*myData.iPupilHeight[i]);
-				cairo_paint (myDrawContext);
+				cairo_dock_apply_image_buffer_surface_with_offset (myData.pPupilImage[i], myDrawContext,
+					myData.fXpupil[i] - .5*myData.pPupilImage[i]->iWidth,
+					myData.fYpupil[i] - .5*myData.pPupilImage[i]->iHeight,
+					1.);
 			}
 		}
-		cairo_set_source_surface (myDrawContext,
-			myData.pToonSurface,
-			.5*(iWidth - myData.iToonWidth),
-			.5*(iHeight - myData.iToonHeight));
+		cairo_dock_apply_image_buffer_surface_with_offset (myData.pToonImage, myDrawContext,
+			.5*(iWidth - myData.pToonImage->iWidth),
+			.5*(iHeight - myData.pToonImage->iHeight),
+			1.);
 	}
-	
-	cairo_paint (myDrawContext);
-	
-	///CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
 }

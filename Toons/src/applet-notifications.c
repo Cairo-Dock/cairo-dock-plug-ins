@@ -27,16 +27,10 @@
 
 #define _XEYES_SENSITIVITY .5
 
-//\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
-/*CD_APPLET_ON_BUILD_MENU_BEGIN
-
-CD_APPLET_ON_BUILD_MENU_END*/
-
 
 CD_APPLET_ON_UPDATE_ICON_BEGIN
 	//\_________________ On chope les coordonnees du curseur par rapport a notre container.
-	int iMouseX, iMouseY;
- 	gldi_display_get_pointer (&iMouseX, &iMouseY);
+ 	gldi_container_update_mouse_position (myContainer);
 	
 	//\_________________ On calcule les nouvelles coordonnees.
 	gboolean bNeedsUpdate = FALSE;
@@ -46,8 +40,16 @@ CD_APPLET_ON_UPDATE_ICON_BEGIN
 	int i;
 	for (i = 0; i < 2; i ++)
 	{
-		dx = iMouseX - ((myContainer->bIsHorizontal ? myIcon->fDrawX : myIcon->fDrawY) + myData.iXeyes[i] * fScale);
-		dy = iMouseY - ((myContainer->bIsHorizontal ? myIcon->fDrawY : myIcon->fDrawX) + myData.iYeyes[i] * fScale);
+		if (myContainer->bIsHorizontal)
+		{
+			dx = myContainer->iMouseX - (myIcon->fDrawX + myData.iXeyes[i] * fScale);
+			dy = myContainer->iMouseY - (myIcon->fDrawY + myData.iYeyes[i] * fScale);
+		}
+		else
+		{
+			dx = myContainer->iMouseY - (myIcon->fDrawY + myData.iXeyes[i] * fScale);
+			dy = myContainer->iMouseX - (myIcon->fDrawX + myData.iYeyes[i] * fScale);
+		}
 		
 		if (dx != 0)
 		{

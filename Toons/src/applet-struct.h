@@ -35,29 +35,21 @@ struct _AppletConfig {
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
 	// centre de la pupille, dans le referentiel de la surface cairo.
-	gint iXeyes[2], iYeyes[2];
-	gint iEyesWidth[2], iEyesHeight[2];
-	gdouble fPrevXpupil[2], fPrevYpupil[2];
-	gdouble fXpupil[2], fYpupil[2];
-	// image du fond
-	cairo_surface_t *pBgSurface;
-	GLuint iBgTexture;
-	gdouble iXbg, iYbg;
-	gint iBgWidth, iBgHeight;
-	// pupille
-	cairo_surface_t *pPupilSurface[2];
-	GLuint iPupilTexture[2];
-	gint iPupilWidth[2], iPupilHeight[2];
-	// paupiere
-	cairo_surface_t *pEyelidSurface;
-	GLuint iEyelidTexture;
-	gdouble iXeyelid, iYeyelid;
-	gint iEyelidWidth, iEyelidHeight;
-	// masque
-	cairo_surface_t *pToonSurface;
-	GLuint iToonTexture;
-	gint iToonWidth, iToonHeight;
-	// clignement des yeux.
+	// background image
+	CairoDockImageBuffer *pBgImage;
+	gdouble iXbg, iYbg;  // position
+	// pupil
+	CairoDockImageBuffer *pPupilImage[2];
+	gdouble fXpupil[2], fYpupil[2];  // current position
+	gdouble fPrevXpupil[2], fPrevYpupil[2];  // previous position
+	gint iXeyes[2], iYeyes[2];  // center of the eyes
+	gint iEyesWidth[2], iEyesHeight[2];  // size of the eyes (ellipse)
+	// eyelid
+	CairoDockImageBuffer *pEyelidImage;
+	gdouble iXeyelid, iYeyelid;  // position
+	// mask
+	CairoDockImageBuffer *pToonImage;
+	// eye's blink
 	gint iTimeCount;
 	gboolean bWink;
 	} ;

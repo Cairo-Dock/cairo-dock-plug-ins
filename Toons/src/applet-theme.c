@@ -79,7 +79,7 @@ gboolean cd_xeyes_load_theme (CairoDockModuleInstance *myApplet)
 		iEyesHeight[i] = g_key_file_get_integer (pKeyFile, cGroupName, "eye height", &erreur);
 		_print_error(erreur);
 		
-		iPupilWidth[i] = g_key_file_get_integer (pKeyFile, cGroupName, "pupil width", &erreur);
+		iPupilWidth[i] = g_key_file_get_integer (pKeyFile, cGroupName, "pupil width", &erreur);  // needed, because we can only load an image at a given size, not a given scale.
 		_print_error(erreur);
 		iPupilHeight[i] = g_key_file_get_integer (pKeyFile, cGroupName, "pupil height", &erreur);
 		_print_error(erreur);
@@ -89,7 +89,7 @@ gboolean cd_xeyes_load_theme (CairoDockModuleInstance *myApplet)
 	_print_error(erreur);
 	iYeyelid = g_key_file_get_integer (pKeyFile, "Eyelid", "y", &erreur);
 	_print_error(erreur);
-	iEyelidWidth = g_key_file_get_integer (pKeyFile, "Eyelid", "width", &erreur);
+	iEyelidWidth = g_key_file_get_integer (pKeyFile, "Eyelid", "width", &erreur);  // needed, because we can only load an image at a given size, not a given scale.
 	_print_error(erreur);
 	iEyelidHeight = g_key_file_get_integer (pKeyFile, "Eyelid", "height", &erreur);
 	_print_error(erreur);
@@ -106,34 +106,24 @@ gboolean cd_xeyes_load_theme (CairoDockModuleInstance *myApplet)
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 	
-	double fImageWidth, fImageHeight;
-	double fZoomX = 1., fZoomY = 1.;
 	g_string_printf (sPath, "%s/%s", myConfig.cThemePath, cToonImage);
-	myData.pToonSurface = cairo_dock_create_surface_from_image (sPath->str,
-		1.,
+	myData.pToonImage = cairo_dock_create_image_buffer (sPath->str,
 		iWidth, iHeight,
-		myConfig.iLoadingModifier,
-		&fImageWidth, &fImageHeight,
-		&fZoomX, &fZoomY);
-	myData.iToonWidth = fImageWidth;
-	myData.iToonHeight = fImageHeight;
+		myConfig.iLoadingModifier);
+	g_return_val_if_fail (myData.pToonImage != NULL, FALSE);
 	
-	double dx = .5*(iWidth - myData.iToonWidth);  // offset du au 'keep ratio'.
-	double dy = .5*(iHeight - myData.iToonHeight);
+	double fZoomX = myData.pToonImage->fZoomX, fZoomY = myData.pToonImage->fZoomY;
+	double dx = .5*(iWidth - myData.pToonImage->iWidth);  // offset du au 'keep ratio'.
+	double dy = .5*(iHeight - myData.pToonImage->iHeight);
 	
 	g_string_printf (sPath, "%s/%s", myConfig.cThemePath, cPupilImage);
 	for (i = 0; i < 2; i ++)
 	{
 		if (bEyeVisible[i])
 		{
-			myData.pPupilSurface[i] = cairo_dock_create_surface_from_image (sPath->str,
-				1.,
+			myData.pPupilImage[i] = cairo_dock_create_image_buffer (sPath->str,
 				iPupilWidth[i] * fZoomX, iPupilHeight[i] * fZoomY,
-				myConfig.iLoadingModifier,
-				&fImageWidth, &fImageHeight,
-				NULL, NULL);
-			myData.iPupilWidth[i] = fImageWidth;
-			myData.iPupilHeight[i] = fImageHeight;
+				myConfig.iLoadingModifier);
 			
 			myData.iXeyes[i] = iXeyes[i] * fZoomX + dx;
 			myData.iYeyes[i] = iYeyes[i] * fZoomY + dy;
@@ -144,14 +134,9 @@ gboolean cd_xeyes_load_theme (CairoDockModuleInstance *myApplet)
 	}
 	
 	g_string_printf (sPath, "%s/%s", myConfig.cThemePath, cEyelidImage);
-	myData.pEyelidSurface = cairo_dock_create_surface_from_image (sPath->str,
-		1.,
+	myData.pEyelidImage = cairo_dock_create_image_buffer (sPath->str,
 		iEyelidWidth * fZoomX, iEyelidHeight * fZoomY,
-		myConfig.iLoadingModifier,
-		&fImageWidth, &fImageHeight,
-		NULL, NULL);
-	myData.iEyelidWidth = fImageWidth;
-	myData.iEyelidHeight = fImageHeight;
+		myConfig.iLoadingModifier);
 	myData.iXeyelid = iXeyelid * fZoomX + dx;
 	myData.iYeyelid = iYeyelid * fZoomY + dy;
 	//g_print ("eyelid : %dx%d ; (%d;%d)\n", myData.iEyelidWidth, myData.iEyelidHeight, myData.iXeyelid, myData.iYeyelid);
@@ -159,28 +144,11 @@ gboolean cd_xeyes_load_theme (CairoDockModuleInstance *myApplet)
 	if (cBgImage != NULL && *cBgImage != '\0')
 	{
 		g_string_printf (sPath, "%s/%s", myConfig.cThemePath, cBgImage);
-		myData.pBgSurface = cairo_dock_create_surface_from_image (sPath->str,
-			1.,
+		myData.pBgImage = cairo_dock_create_image_buffer (sPath->str,
 			iBgWidth * fZoomX, iBgHeight * fZoomY,
-			myConfig.iLoadingModifier,
-			&fImageWidth, &fImageHeight,
-			NULL, NULL);
-		myData.iBgWidth = fImageWidth;
-		myData.iBgHeight = fImageHeight;
+			myConfig.iLoadingModifier);
 		myData.iXbg = iXbg * fZoomX + dx;
 		myData.iYbg = iYbg * fZoomY + dy;
-	}
-	
-	if (g_bUseOpenGL)
-	{
-		myData.iBgTexture = cairo_dock_create_texture_from_surface (myData.pBgSurface);
-		if (myData.pPupilSurface[0])
-			myData.iPupilTexture[0] = cairo_dock_create_texture_from_surface (myData.pPupilSurface[0]);
-		if (myData.pPupilSurface[1])
-			myData.iPupilTexture[1] = cairo_dock_create_texture_from_surface (myData.pPupilSurface[1]);
-		myData.iEyelidTexture = cairo_dock_create_texture_from_surface (myData.pEyelidSurface);
-		if (myData.pToonSurface)
-			myData.iToonTexture = cairo_dock_create_texture_from_surface (myData.pToonSurface);
 	}
 	
 	g_free (cBgImage);
@@ -199,48 +167,10 @@ void cd_xeyes_unload_theme (CairoDockModuleInstance *myApplet)
 	int i;
 	for (i = 0; i < 2; i ++)
 	{
-		if (myData.pPupilSurface[i])
-		{
-			cairo_surface_destroy (myData.pPupilSurface[i]);
-			myData.pPupilSurface[i] = NULL;
-		}
-		if (myData.iPupilTexture[i])
-		{
-			_cairo_dock_delete_texture (myData.iPupilTexture[i]);
-			myData.iPupilTexture[i] = 0;
-		}
+		cairo_dock_free_image_buffer (myData.pPupilImage[i]);
 	}
 	
-	if (myData.pBgSurface)
-	{
-		cairo_surface_destroy (myData.pBgSurface);
-		myData.pBgSurface = NULL;
-	}
-	if (myData.iBgTexture)
-	{
-		_cairo_dock_delete_texture (myData.iBgTexture);
-		myData.iBgTexture = 0;
-	}
-	
-	if (myData.pEyelidSurface)
-	{
-		cairo_surface_destroy (myData.pEyelidSurface);
-		myData.pEyelidSurface = NULL;
-	}
-	if (myData.iEyelidTexture)
-	{
-		_cairo_dock_delete_texture (myData.iEyelidTexture);
-		myData.iEyelidTexture = 0;
-	}
-	
-	if (myData.pToonSurface)
-	{
-		cairo_surface_destroy (myData.pToonSurface);
-		myData.pToonSurface = NULL;
-	}
-	if (myData.iToonTexture)
-	{
-		_cairo_dock_delete_texture (myData.iToonTexture);
-		myData.iToonTexture = 0;
-	}
+	cairo_dock_free_image_buffer (myData.pBgImage);
+	cairo_dock_free_image_buffer (myData.pEyelidImage);
+	cairo_dock_free_image_buffer (myData.pToonImage);
 }
