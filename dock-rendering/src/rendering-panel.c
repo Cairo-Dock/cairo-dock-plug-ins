@@ -50,17 +50,17 @@ static void cd_compute_size (CairoDock *pDock)
 		pIcon = ic->data;
 		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 		{
-			if (fCurrentGroupWidth > 0)  // le groupe courant est non vide, sinon c'est juste 2 separateurs cote a cote.
+			if (fCurrentGroupWidth > 0)  // le groupe courant est non vide, sinon c'est juste 2 separateurs cote a cote ou un au debut.
 			{
 				iNbGroups ++;
-				fGroupsWidth += MAX (0, fCurrentGroupWidth);
+				fGroupsWidth += fCurrentGroupWidth;
 				//g_print ("fGroupsWidth += %.2f\n", fCurrentGroupWidth);
 				fCurrentGroupWidth = - myIconsParam.iIconGap;
 			}
 			
 			continue;
 		}
-		fCurrentGroupWidth += pIcon->fWidth/** * my_fPanelRatio*/ + myIconsParam.iIconGap;
+		fCurrentGroupWidth += pIcon->fWidth + myIconsParam.iIconGap;
 		//g_print ("fCurrentGroupWidth <- %.2f\n", fCurrentGroupWidth);
 	}
 	if (fCurrentGroupWidth > 0)  // le groupe courant est non vide, sinon c'est juste un separateur a la fin.
@@ -68,6 +68,8 @@ static void cd_compute_size (CairoDock *pDock)
 		fGroupsWidth += MAX (0, fCurrentGroupWidth);
 		//g_print ("fGroupsWidth += %.2f\n", fCurrentGroupWidth);
 	}
+	else
+		iNbGroups --;
 	if (fGroupsWidth < 0)
 		fGroupsWidth = 0;
 	
@@ -82,12 +84,6 @@ static void cd_compute_size (CairoDock *pDock)
 	//\_____________ On calcule la position au repos des icones et la taille du dock.
 	double xg = fScreenBorderGap;  // abscisse de l'icone courante, et abscisse du debut du groupe courant.
 	double x = xg;
-	/*if (iNbGroups == 1 && pDock->icons)  // if the first icon is a separator, place icons to the right.
-	{
-		pIcon = pDock->icons->data;
-		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
-			x += fGroupGap;
-	}*/
 	fCurrentGroupWidth = - myIconsParam.iIconGap;
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
@@ -106,25 +102,25 @@ static void cd_compute_size (CairoDock *pDock)
 			
 			continue;
 		}
-		fCurrentGroupWidth += pIcon->fWidth/** * my_fPanelRatio*/ + myIconsParam.iIconGap;
+		fCurrentGroupWidth += pIcon->fWidth + myIconsParam.iIconGap;
 		
 		pIcon->fXAtRest = x;
-		x += pIcon->fWidth/** * my_fPanelRatio*/ + myIconsParam.iIconGap;
+		x += pIcon->fWidth + myIconsParam.iIconGap;
 	}
 	
 	pDock->fMagnitudeMax = 0.;  // pas de vague.
 	
-	double hicon = pDock->iMaxIconHeight/** * my_fPanelRatio*/;
+	double hicon = pDock->iMaxIconHeight;
 	pDock->iDecorationsHeight = hicon * pDock->container.fRatio + 2 * myDocksParam.iFrameMargin;
 	
-	pDock->iMaxDockWidth = pDock->fFlatDockWidth = pDock->iMinDockWidth = MAX (W, x);
+	pDock->iMaxDockWidth = pDock->fFlatDockWidth = pDock->iMinDockWidth = MAX (W, x);  // if > W, we'll come back here with a smaller ratio.
 	//g_print ("iMaxDockWidth : %d (%.2f)\n", pDock->iMaxDockWidth, pDock->container.fRatio);
 	
 	pDock->iMaxDockHeight = myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + hicon * pDock->container.fRatio + myDocksParam.iFrameMargin + myDocksParam.iDockLineWidth + (pDock->container.bIsHorizontal || !myIconsParam.bTextAlwaysHorizontal ? myIconsParam.iLabelSize : 0);
 	
 	pDock->iMaxDockHeight = MAX (pDock->iMaxDockHeight, pDock->iMaxIconHeight * (1 + myIconsParam.fAmplitude));  // au moins la taille du FBO.
 	//g_print ("panel view: pDock->iMaxIconHeight = %d\n", pDock->iMaxIconHeight);
-
+	
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth;
 	pDock->iMinDockHeight = 2 * (myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin) + hicon * pDock->container.fRatio;  /// TODO: make the height constant, to avoid moving all windows when space is reserved and ratio changes.
 	
@@ -597,7 +593,6 @@ static void cd_render_opengl (CairoDock *pDock)
 		
 		ic = cairo_dock_get_next_element (ic, pDock->icons);
 	} while (ic != pFirstDrawnElement);
-	//glDisable (GL_LIGHTING);
 }
 
 
@@ -623,7 +618,7 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 					pIcon->fScale *= (1 + pIcon->fInsertRemoveFactor);
 			}
 			
-			if (fCurrentGroupWidth > 0)  // le groupe courant est non vide, sinon c'est juste 2 separateurs cote a cote.
+			if (fCurrentGroupWidth > 0)  // le groupe courant est non vide, sinon c'est juste 2 separateurs cote a cote ou un au debut.
 			{
 				iNbGroups ++;
 				fSeparatorsPonderation += pIcon->fScale;
@@ -634,7 +629,7 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 			continue;
 		}
 		
-		pIcon->fScale = 1./** * my_fPanelRatio*/;
+		pIcon->fScale = 1.;
 		if (pIcon->fInsertRemoveFactor != 0)
 		{
 			if (pIcon->fInsertRemoveFactor > 0)
@@ -647,8 +642,10 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 	}
 	if (fCurrentGroupWidth > 0)  // le groupe courant est non vide, sinon c'est juste un separateur a la fin.
 	{
-		fGroupsWidth += MAX (0, fCurrentGroupWidth);
+		fGroupsWidth += fCurrentGroupWidth;
 	}
+	else
+		iNbGroups --;
 	if (fGroupsWidth < 0)
 		fGroupsWidth = 0;
 	
@@ -669,8 +666,10 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 	Icon *pPointedIcon = NULL;
 	double xm = pDock->container.iMouseX;
 	double xg = fScreenBorderGap;  // abscisse de l'icone courante, et abscisse du debut du groupe courant.
+	if (iNbGroups <= 1)  // if only 1 group, there is no separator that will expand icons => we use the alignment to place them.
+		xg = pDock->fAlign * (W - fGroupsWidth) + 2 * fScreenBorderGap * (.5 - pDock->fAlign);
 	double x = xg;
-	fCurrentGroupWidth = - myIconsParam.iIconGap;
+	fCurrentGroupWidth = - myIconsParam.iIconGap;                                                                                                                            
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
@@ -717,7 +716,7 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 		pIcon->fDrawX = pIcon->fX;
 		
 		if (pDock->container.bDirectionUp)
-			pIcon->fY = pDock->iMaxDockHeight - (myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + pIcon->fHeight/** * my_fPanelRatio*/);
+			pIcon->fY = pDock->iMaxDockHeight - (myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + pIcon->fHeight);
 		else
 			pIcon->fY = myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin;
 		pIcon->fDrawY = pIcon->fY;
@@ -831,8 +830,8 @@ static void cd_update_input_shape (CairoDock *pDock)
 
 static void set_icon_size (Icon *icon, CairoDock *pDock)
 {
-	int wi, hi;
-	if (pDock->iIconSize != 0)
+	int wi, hi; // user-defined icon size at rest.
+	if (! pDock->bGlobalIconSize && pDock->iIconSize != 0)
 	{
 		wi = hi = pDock->iIconSize;
 	}
@@ -841,39 +840,42 @@ static void set_icon_size (Icon *icon, CairoDock *pDock)
 		wi = myIconsParam.iIconWidth;
 		hi = myIconsParam.iIconHeight;
 	}
-	if (my_fPanelRatio != 0)  /// workaround; TODO: we need to load the config before loading any icon...
+	if (my_fPanelRatio != 0)  // shouldn't happen; the config should be read before loading any icon.
 	{
 		wi *= my_fPanelRatio;
 		hi *= my_fPanelRatio;
 	}
-	//g_print (" ~~~~~~~~~~~~ size: %d => %dx%d\n", pDock->iIconSize, wi, hi);
-	
+	//g_print (" size: %d => %dx%d\n", pDock->iIconSize, wi, hi);
+
 	// set the visible size at rest.
-	if (CAIRO_DOCK_ICON_TYPE_IS_APPLET (icon))  // for applets, consider (fWidth,fHeight) as a requested size, if not 0.
+	if (CAIRO_DOCK_ICON_TYPE_IS_APPLET (icon))  // for applets, consider the requested size, if not 0.
 	{
+		icon->fWidth = wi;
+		icon->fHeight = hi;
+
+		int wr = cairo_dock_icon_get_requested_width (icon);
+		int hr = cairo_dock_icon_get_requested_height (icon);
 		//g_print ("%s (%s, %.1fx%.1f\n", __func__, icon->pModuleInstance->pModule->pVisitCard->cModuleName, icon->fWidth, icon->fHeight);
-		if (icon->iImageWidth != 0)
+		if (wr != 0)
 		{
 			if (pDock->container.bIsHorizontal)
-				icon->fWidth = icon->iImageWidth;
+				icon->fWidth = wr;
 			else
-				icon->fHeight = icon->iImageWidth;
+				icon->fHeight = wr;
 		}
-		if (icon->iImageHeight != 0)
+		if (hr != 0)
 		{
 			if (pDock->container.bIsHorizontal)
-				icon->fHeight = icon->iImageHeight;
+				icon->fHeight = hr;
 			else
-				icon->fWidth = icon->iImageHeight;
+				icon->fWidth = hr;
+			if (icon->fHeight > hi)  // limit the icon height to the default height.
+				icon->fHeight = hi;
 		}
-		if (icon->fWidth == 0)
-			icon->fWidth = wi;
-		if (icon->fHeight == 0 || icon->fHeight > hi)
-			icon->fHeight = hi;
 	}
 	else if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))  // separators have their own size.
 	{
-		icon->fWidth = myIconsParam.iSeparatorWidth * my_fPanelRatio;;
+		icon->fWidth = myIconsParam.iSeparatorWidth * my_fPanelRatio;
 		icon->fHeight = MIN (myIconsParam.iSeparatorHeight * my_fPanelRatio, hi);
 	}
 	else  // any other icon use the global size
@@ -881,20 +883,17 @@ static void set_icon_size (Icon *icon, CairoDock *pDock)
 		icon->fWidth = wi;
 		icon->fHeight = hi;
 	}
-	
+
 	// texture size can be deduced then.
 	if (pDock->container.bIsHorizontal
 	|| (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon) && myIconsParam.bRevolveSeparator))
 	{
-		icon->iImageWidth = icon->fWidth;
-		icon->iImageHeight = icon->fHeight;
+		cairo_dock_icon_set_allocated_size (icon, icon->fWidth, icon->fHeight);
 	}
 	else
 	{
-		icon->iImageWidth = icon->fHeight;
-		icon->iImageHeight = icon->fWidth;
+		cairo_dock_icon_set_allocated_size (icon, icon->fHeight, icon->fWidth);
 	}
-	//g_print (" ~~~~~~~~~~~~ => %dx%d\n", icon->iImageWidth, icon->iImageHeight);
 }
 
 static void cd_rendering_free_panel_data (CairoDock *pDock)
