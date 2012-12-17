@@ -38,9 +38,8 @@ CD_APPLET_DEFINE_END
 
 static void _load_indicators (void)
 {
-	double fMaxScale = cairo_dock_get_max_scale (g_pMainDock);
-	double iBaseWidth = myIconsParam.iIconWidth * fMaxScale;
-	double iBaseHeight = myIconsParam.iIconHeight * fMaxScale;
+	double iBaseWidth = myIconsParam.iIconWidth * (1 + myIconsParam.fAmplitude);
+	double iBaseHeight = myIconsParam.iIconHeight * (1 + myIconsParam.fAmplitude);
 	
 	cd_drop_indicator_load_drop_indicator (myConfig.cDropIndicatorImageName,
 		iBaseWidth,
