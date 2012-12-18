@@ -28,7 +28,7 @@ add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
 add_definitions (-DGL_GLEXT_PROTOTYPES="1")
-if (NOT LIBICAL_PACKAGE_FOUND)
+if (LIBICAL_PACKAGE_FOUND)
 	add_definitions (-DCD_CLOCK_ICAL_SUPPORT="1")
 endif()
 
