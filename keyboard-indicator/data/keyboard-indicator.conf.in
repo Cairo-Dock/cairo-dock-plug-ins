@@ -141,3 +141,6 @@ text ratio = 1
 
 #S+ Background image:
 bg image =
+
+#i+[1;20] Number of letters to draw on the icon.
+nLetters = 3

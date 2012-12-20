@@ -34,4 +34,10 @@ void cd_xkbd_set_group (int iNumGroup);
 gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Window *pWindow);
 
 
+void cd_xkbd_force_redraw ();
+
+void cd_xkbd_init (Display *pDisplay);
+
+void cd_xkbd_stop ();
+
 #endif

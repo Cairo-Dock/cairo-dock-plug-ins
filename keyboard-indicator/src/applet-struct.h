@@ -32,6 +32,7 @@ struct _AppletConfig {
 	gchar *cShortkey;
 	gchar *cEmblemNumLock;
 	gchar *cEmblemCapsLock;
+	gint iNLetters;
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
@@ -48,6 +49,7 @@ struct _AppletData {
 	CairoKeyBinding *pKeyBinding;
 	gchar *cEmblemNumLock;
 	gchar *cEmblemCapsLock;
+	gpointer pEngine; // const, should not be freed
 	} ;
 
 

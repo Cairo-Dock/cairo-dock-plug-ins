@@ -55,8 +55,8 @@ static gboolean _init (gpointer data)
 {
 	cd_debug ("INIT XKBD");
 	g_return_val_if_fail (myApplet != NULL, FALSE);
-	Window Xid = cairo_dock_get_current_active_window ();
-	cd_xkbd_keyboard_state_changed (myApplet, &Xid);
+	Display *pDisplay = cairo_dock_get_Xdisplay ();
+	cd_xkbd_init (pDisplay);
 	return FALSE;
 }
 CD_APPLET_INIT_BEGIN
@@ -83,10 +83,12 @@ CD_APPLET_INIT_BEGIN
 		(CDBindkeyHandler) cd_xkbd_on_keybinding_pull);
 	
 	_load_bg_image ();
-	
-	myData.iCurrentGroup = -1;  // pour forcer le redessin.
-	
-	g_timeout_add_seconds (1, _init, NULL);
+
+
+	if (cairo_dock_is_loading ())
+		g_timeout_add_seconds (1, _init, NULL);
+	else
+		_init (NULL);
 CD_APPLET_INIT_END
 
 
@@ -100,7 +102,9 @@ CD_APPLET_STOP_BEGIN
 		(CairoDockNotificationFunc) cd_xkbd_keyboard_state_changed,
 		myApplet);
 	CD_APPLET_REMOVE_TRANSITION_ON_MY_ICON;
-	
+
+	cd_xkbd_stop ();
+
 	cd_keybinder_unbind (myData.pKeyBinding);
 CD_APPLET_STOP_END
 
@@ -118,8 +122,6 @@ CD_APPLET_RELOAD_BEGIN
 		
 		CD_APPLET_REMOVE_TRANSITION_ON_MY_ICON;  // prudence.
 		_load_bg_image ();
-		
-		myData.iCurrentGroup = -1;  // pour forcer le redessin.
 
 		// emblems
 		gboolean bCustomEmblems = (myConfig.cEmblemCapsLock || myConfig.cEmblemNumLock); // has emblem
@@ -139,14 +141,12 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		
 		//\_____________ On declenche le redessin de l'icone.
-		Window Xid = cairo_dock_get_current_active_window ();
-		cd_xkbd_keyboard_state_changed (myApplet, &Xid);
+		cd_xkbd_force_redraw ();
 		
 		cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
 	}
 	else
 	{
-		myData.iCurrentGroup = -1;
-		cd_xkbd_keyboard_state_changed (myApplet, NULL);
+		cd_xkbd_force_redraw ();
 	}
 CD_APPLET_RELOAD_END

@@ -63,6 +63,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.textDescription.bOutlined = CD_CONFIG_GET_BOOLEAN ("Configuration", "outlined");
 	
 	myConfig.cBackgroundImage = CD_CONFIG_GET_STRING ("Configuration", "bg image");
+	myConfig.iNLetters = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nLetters", 3);
 CD_APPLET_GET_CONFIG_END
 
 

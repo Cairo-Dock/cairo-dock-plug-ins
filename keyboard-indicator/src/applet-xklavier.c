@@ -20,29 +20,73 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <X11/XKBlib.h>
 #include <libxklavier/xklavier.h>
 
 #include "applet-struct.h"
 #include "applet-draw.h"
 #include "applet-xklavier.h"
 
+// If the group changes
+static void _state_changed (XklEngine *pEngine, XklEngineStateChange type,
+                            gint iGroup, gboolean bRestore)
+{
+	XklState *state = xkl_engine_get_current_state (myData.pEngine);
+	cd_debug ("State Changed: %d -> %d (%d) ; %d", myData.iCurrentGroup, state->group, iGroup, state->indicators);
 
+	if (type == GROUP_CHANGED && myData.iCurrentGroup != state->group) // new keyboard layout
+	{
+		gchar *cShortGroupName = NULL;
+		const gchar *cCurrentGroup = NULL;
+
+		// Get the current num group
+		guint n = xkl_engine_get_num_groups (myData.pEngine);
+		g_return_if_fail (n > 0);
+
+		int iNewGroup = MAX (0, MIN (n-1, state->group));  // workaround for 64bits to avoid strange numbers in 'state'
+		const gchar **pGroupNames = xkl_engine_get_groups_names (myData.pEngine);
+		g_return_if_fail (pGroupNames != NULL);
+
+		cCurrentGroup = pGroupNames[iNewGroup];
+		g_return_if_fail (cCurrentGroup != NULL);
+
+		cd_debug (" group name : %s (%d groups)", cCurrentGroup, n);
+
+		// build the displayed group name
+		cShortGroupName = g_strndup (cCurrentGroup, myConfig.iNLetters);
+		int index = 0;
+		int i;
+		for (i = 0; i < state->group; i ++)  // look for groups before us having the same name.
+		{
+			if (strncmp (cCurrentGroup, pGroupNames[i], myConfig.iNLetters) == 0)
+				index ++;
+		}
+		if (index != 0)  // add a number if several groups have the same name.
+		{
+			gchar *tmp = cShortGroupName;
+			cShortGroupName = g_strdup_printf ("%s%d", cShortGroupName, index+1);
+			g_free (tmp);
+		}
+
+		myData.iCurrentGroup = state->group;
+		cd_xkbd_update_icon (cCurrentGroup, cShortGroupName, TRUE);
+		g_free (cShortGroupName);
+	}
+	else if (type == INDICATORS_CHANGED)
+		cd_debug ("Indicators changed"); // according to libxklavier/tests/test_monitor.c, it should work... but I have to miss something
+}
+
+// A scroll on the icon
 void cd_xkbd_set_prev_next_group (int iDelta)
 {
-	Display *dsp = (Display*)cairo_dock_get_Xdisplay (); // const
-	XklEngine *pEngine = xkl_engine_get_instance (dsp);  // const
-	Window Xid = cairo_dock_get_current_active_window ();
-	if (Xid == 0)
-		Xid = DefaultRootWindow (dsp);
-	XklState state;
-	gboolean bSuccess = xkl_engine_get_state (pEngine, Xid, &state);
-	g_return_if_fail (bSuccess);
-	cd_debug ("keyboard current state : %d;%d +%d", state.group, state.indicators, iDelta);
+	XklState *state = xkl_engine_get_current_state (myData.pEngine);
+
+	cd_debug ("keyboard current state : %d;%d +%d", state->group, state->indicators, iDelta);
 	
-	int i=0, n = xkl_engine_get_num_groups (pEngine);
+	int i = 0, n = xkl_engine_get_num_groups (myData.pEngine);
 	g_return_if_fail (n > 0);
-	int iCurrentGroup = MAX (0, MIN (n-1, state.group));  // on blinde car libxklavier peut bugger en 64bits.
-	const gchar **pGroupNames = xkl_engine_get_groups_names (pEngine);
+	int iCurrentGroup = MAX (0, MIN (n-1, state->group));  // on blinde car libxklavier peut bugger en 64bits.
+	const gchar **pGroupNames = xkl_engine_get_groups_names (myData.pEngine);
 	do  // on passe au groupe suivant/precedent en sautant les faux (-).
 	{
 		i ++;
@@ -53,162 +97,111 @@ void cd_xkbd_set_prev_next_group (int iDelta)
 			iCurrentGroup = n - 1;
 	} while (i < n && (pGroupNames[iCurrentGroup] == NULL || *pGroupNames[iCurrentGroup] == '-'));
 	
-	state.group = iCurrentGroup;
-	cd_debug ("keyboard new state : %d", state.group);
-	xkl_engine_allow_one_switch_to_secondary_group (pEngine);  // sert a quoi ??
-	xkl_engine_save_state (pEngine, Xid, &state);
-	xkl_engine_lock_group (pEngine, state.group);  // sert a quoi ??
+	state->group = iCurrentGroup;
+	cd_debug ("keyboard new state : %d", state->group);
+	xkl_engine_allow_one_switch_to_secondary_group (myData.pEngine);  // sert a quoi ??
+	
+	Window Xid = xkl_engine_get_current_window (myData.pEngine);
+	xkl_engine_save_state (myData.pEngine, Xid, state);
+	xkl_engine_lock_group (myData.pEngine, state->group);  // sert a quoi ??
 }
 
+// Select the layout from the menu
 void cd_xkbd_set_group (int iNumGroup)
 {
-	Display *dsp = (Display*)cairo_dock_get_Xdisplay (); // const
-	XklEngine *pEngine = xkl_engine_get_instance (dsp); // const
-	Window Xid = cairo_dock_get_current_active_window ();
-	if (Xid == 0)
-		Xid = DefaultRootWindow (dsp);
-	XklState state;
-	gboolean bSuccess = xkl_engine_get_state (pEngine, Xid, &state);
-	g_return_if_fail (bSuccess);
-	cd_debug ("keyboard current state : %d;%d", state.group, state.indicators);
+	XklState *state = xkl_engine_get_current_state (myData.pEngine);
+	cd_debug ("keyboard current state : %d;%d", state->group, state->indicators);
 	
-	state.group = iNumGroup;
+	state->group = iNumGroup;
 	
-	xkl_engine_allow_one_switch_to_secondary_group (pEngine);  // sert a quoi ??
-	xkl_engine_save_state (pEngine, Xid, &state);
-	xkl_engine_lock_group (pEngine, state.group);  // sert a quoi ??
+	Window Xid = xkl_engine_get_current_window (myData.pEngine);
+	xkl_engine_allow_one_switch_to_secondary_group (myData.pEngine);  // sert a quoi ??
+	xkl_engine_save_state (myData.pEngine, Xid, state);
+	xkl_engine_lock_group (myData.pEngine, state->group);  // sert a quoi ??
 }
 
+static guint32 _get_state_indicators ()
+{
+	Display *dpy = cairo_dock_get_Xdisplay ();
+	Bool st;
+	guint32 indicators;
+	Atom capsLock = XInternAtom(dpy, "Caps Lock", False);
+	Atom numLock = XInternAtom(dpy, "Num Lock", False);
+	// Atom scrollLock = XInternAtom(dpy, "Scroll Lock", False);
+
+	XkbGetNamedIndicator (dpy, capsLock, NULL, &st, NULL, NULL);
+	indicators = st;
+	XkbGetNamedIndicator (dpy, numLock, NULL, &st, NULL, NULL);
+	indicators |= st << 1;
+
+	return indicators;
+}
+
+// only use to catch new state of the indicator
 gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Window *pWindow)
 {
 	CD_APPLET_ENTER;
-	cd_debug ("%s (window:%ld)", __func__, (pWindow ? *pWindow : 0));
 	///if (pWindow == NULL)
-	///	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	/// return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
-	Display *dsp = cairo_dock_get_Xdisplay ();
-	Window Xid = (pWindow ? *pWindow : 0);
-	if (Xid == 0)
-		Xid = DefaultRootWindow (dsp);
-	gchar *cShortGroupName = NULL;
-	const gchar *cCurrentGroup = NULL;
-	///GString *sCurrentIndicator = NULL;
-	gboolean bRedrawSurface = FALSE;
+	// Get the current state
+	XklState *state = xkl_engine_get_current_state (myData.pEngine);
+	guint32 indicators = _get_state_indicators ();
 	
-	if (Xid != 0)
-	{
-		// on recupere l'etat courant.
-		XklEngine *pEngine = xkl_engine_get_instance (dsp); // const
-		XklState state;
-		gboolean bSuccess = xkl_engine_get_state (pEngine, Xid, &state);
-		if (!bSuccess)
-		{
-			cd_warning ("xkl_engine_get_state() failed, we use the first keyboard layout as a workaround (%d, %d)", state.group, state.indicators);
-			state.group = 0;
-			state.indicators = 0;
-		}
-		guint32 indicators;
-		#if (GTK_MAJOR_VERSION < 3)
-		indicators = state.indicators;
-		#else // it seems that we don't get the right indicators...
-		GdkKeymap *pKeyMap = gdk_keymap_get_default ();
-		// second bit for numlock, first bit for caps lock => 0011 = numlock & caps lock
-		indicators = (gdk_keymap_get_num_lock_state (pKeyMap) << 1) + gdk_keymap_get_caps_lock_state (pKeyMap);
-		#endif
-		cd_debug ("group : %d -> %d ; indic : %d -> %d", myData.iCurrentGroup, state.group, myData.iCurrentIndic, indicators);
-		
-		if (myData.iCurrentGroup == state.group && myData.iCurrentIndic == indicators)
-			CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
-			//return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-		if (myData.iCurrentGroup != state.group)
-		{
-			bRedrawSurface = TRUE;
-			
-			// on recupere le groupe courant.
-			int n = xkl_engine_get_num_groups (pEngine);
-			CD_APPLET_LEAVE_IF_FAIL (n > 0, CAIRO_DOCK_LET_PASS_NOTIFICATION);
-			int iNewGroup = MAX (0, MIN (n-1, state.group));  // en 64bits, on dirait qu'on peut recuperer des nombres invraisemblables dans 'state' (bug de libxklavier ?).
-			const gchar **pGroupNames = xkl_engine_get_groups_names (pEngine);
-			CD_APPLET_LEAVE_IF_FAIL (pGroupNames != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
-			cCurrentGroup = pGroupNames[iNewGroup];
-			CD_APPLET_LEAVE_IF_FAIL (cCurrentGroup != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
-			cd_debug (" group name : %s (%d groups)", cCurrentGroup, n);
+	cd_debug ("group : %d -> %d ; indic : %d -> %d (%d)",
+		myData.iCurrentGroup, state->group,
+		myData.iCurrentIndic, indicators, state->indicators);
+	
+	if (myData.iCurrentIndic == indicators)
+		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 
-			// build the displayed group name
-			cShortGroupName = g_strndup (cCurrentGroup, 3);
-			int index = 0;
-			int i;
-			for (i = 0; i < state.group; i ++)  // look for groups before us having the same name.
-			{
-				if (strncmp (cCurrentGroup, pGroupNames[i], 3) == 0)
-					index ++;
-			}
-			if (index != 0)  // add a number if several groups have the same name.
-			{
-				gchar *tmp = cShortGroupName;
-				cShortGroupName = g_strdup_printf ("%s%d", cShortGroupName, index+1);
-				g_free (tmp);
-			}
-		}
-		// on recupere l'indicateur courant.
-		/**const gchar **pIndicatorNames = xkl_engine_get_indicators_names (pEngine);
-		if (myConfig.bShowKbdIndicator && pIndicatorNames != NULL)
-		{
-			if (myData.iCurrentGroup == -1 && state.indicators == 0)  // c'est probablement un bug dans libxklavier qui fait que l'indicateur n'est pas defini au debut.
-			{
-				cd_debug ("on force le num lock");
-				state.indicators = 2;  // num lock, enfin j'espere que c'est toujours le cas ...
-				xkl_engine_save_state (pEngine, Xid, &state);
-				xkl_engine_lock_group (pEngine, state.group);
-			}
-			for (i = 0; i < 2; i ++)  // on parcours le champ de bits, mais les indicateurs Compose/Suspend/Misc/Mail/Mouse Keys/etc ne nous interessent pas !
-			{
-				if ((state.indicators >> i) & 1)  // i-eme bit a 1.
-				{
-					if (sCurrentIndicator == NULL)
-						sCurrentIndicator = g_string_new ("");
-					g_string_append_printf (sCurrentIndicator, "%s%s", (sCurrentIndicator->len == 0 ? "" : "/"), pIndicatorNames[i]);
-				}
-			}
-			cd_debug (" indicator name : %s", sCurrentIndicator?sCurrentIndicator->str:"none");
-		}*/
-		if (myConfig.bShowKbdIndicator && myData.iCurrentGroup == -1 && indicators == 0)  // c'est probablement un bug dans libxklavier qui fait que l'indicateur n'est pas defini au debut.
-		{
-			cd_debug ("on force le num lock");
-			indicators = 2;  // num lock, should be enable on the second bit (0010 = 2)
-			state.indicators = 2; // we force the numlock
-			xkl_engine_save_state (pEngine, Xid, &state);
-			xkl_engine_lock_group (pEngine, state.group);
-		}
-		
-		// on se souvient de l'etat courant.
-		myData.iCurrentGroup = state.group;
-		myData.iCurrentIndic = indicators;
-		
-		/*for (i = 0; i < n; i ++)
-		{
-			cd_debug ("kbd group name %d : %s - %s", i, pGroupNames[i], pIndicatorNames[i]);
-		}
-		XklConfigRec *pConfigRec = xkl_config_rec_new ();
-		xkl_config_rec_get_from_server (pConfigRec, pEngine);
-		if (pConfigRec->layouts != NULL)
-		{
-			for (i = 0; pConfigRec->layouts[i] != NULL; i ++)
-				cd_debug(" layout : %s", pConfigRec->layouts[i]);
-		}
-		if (pConfigRec->variants != NULL)
-		{
-			for (i = 0; pConfigRec->variants[i] != NULL; i ++)
-				cd_debug(" variants : %s", pConfigRec->variants[i]);
-		}
-		if (pConfigRec->options != NULL)
-		{
-			for (i = 0; pConfigRec->options[i] != NULL; i ++)
-				cd_debug(" options : %s", pConfigRec->options[i]);
-		}*/
-	}
+	// Remember the current state
+	myData.iCurrentIndic = indicators;
 	
-	cd_xkbd_update_icon (cCurrentGroup, cShortGroupName, bRedrawSurface);
-	g_free (cShortGroupName);
+	cd_xkbd_update_icon (NULL, NULL, FALSE); // redraw only the indicators
 	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+}
+
+static GdkFilterReturn _filter_xevent (GdkXEvent *pGdkXEvent, GdkEvent *pEvent)
+{
+	xkl_engine_filter_events (myData.pEngine, (XEvent*) pGdkXEvent);
+
+	return GDK_FILTER_CONTINUE;
+}
+
+void cd_xkbd_force_redraw ()
+{
+	// indicator
+	Window Xid = xkl_engine_get_current_window (myData.pEngine);
+	cd_xkbd_keyboard_state_changed (myApplet, &Xid); // force redraw
+
+	// group
+	myData.iCurrentGroup = -1;
+	_state_changed (myData.pEngine, GROUP_CHANGED, -1, FALSE);
+}
+
+void cd_xkbd_init (Display *pDisplay)
+{
+	myData.pEngine = xkl_engine_get_instance (pDisplay);
+	g_return_if_fail (myData.pEngine != NULL);
+
+	g_signal_connect (myData.pEngine, "X-state-changed",
+		G_CALLBACK(_state_changed), NULL); // notification for the group, we receive nothing for the indicators...
+
+	gdk_window_add_filter (NULL, (GdkFilterFunc) _filter_xevent, NULL); // should connect to all type of windows
+	/// gdk_window_add_filter (gdk_get_default_root_window (), (GdkFilterFunc) _filter_xevent, NULL);
+
+	xkl_engine_start_listen (myData.pEngine, XKLL_TRACK_KEYBOARD_STATE);
+
+	cd_xkbd_force_redraw ();
+}
+
+void cd_xkbd_stop ()
+{
+	g_return_if_fail (myData.pEngine != NULL);
+
+	xkl_engine_stop_listen (myData.pEngine, XKLL_TRACK_KEYBOARD_STATE);
+
+	gdk_window_remove_filter (NULL, (GdkFilterFunc) _filter_xevent, NULL);
+	/// gdk_window_remove_filter (gdk_get_default_root_window (), (GdkFilterFunc) _filter_xevent, NULL);
 }
