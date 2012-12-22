@@ -512,7 +512,7 @@ static void _show_desktop (GtkMenuItem *menu_item, gpointer data)
 	CD_APPLET_ENTER;
 	int iIndex = GPOINTER_TO_INT (data);
 	int iNumDesktop, iNumViewportX, iNumViewportY;
-	cd_switcher_compute_viewports_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
+	cd_switcher_compute_desktop_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
 	if (iNumDesktop != myData.switcher.iCurrentDesktop)
 		cairo_dock_set_current_desktop (iNumDesktop);
 	if (iNumViewportX != myData.switcher.iCurrentViewportX || iNumViewportY != myData.switcher.iCurrentViewportY)
@@ -561,7 +561,7 @@ void cd_switcher_build_windows_list (GtkWidget *pMenu)
 	// chaque bureau/viewport.
 	int iNumDesktop=0, iNumViewportX=0, iNumViewportY=0;
 	int k = 0, N = g_desktopGeometry.iNbDesktops * g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY;
-	int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
+	int iIndex = cd_switcher_compute_index_from_desktop (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
 	GString *sDesktopName = g_string_new ("");
 	int i, j;
 	for (j = 0; j < myData.switcher.iNbLines; j ++)

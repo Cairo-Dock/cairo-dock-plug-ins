@@ -136,13 +136,12 @@ static gboolean _cd_switcher_get_viewport_from_clic (Icon *pClickedIcon, int *iN
 		int iNumLine = (int) (iMouseY / (h) * myData.switcher.iNbLines);
 		int iNumColumn = (int) (iMouseX / (w) * myData.switcher.iNbColumns);
 		cd_switcher_compute_desktop_from_coordinates (iNumLine, iNumColumn, iNumDesktop, iNumViewportX, iNumViewportY);
-		//g_print ("(%d;%d) --> (%d;%d;%d)\n", iNumLine, iNumColumn, *iNumDesktop, *iNumViewportX, *iNumViewportY);
 		return TRUE;
 	}
 	else if (pClickedIcon != NULL && pClickedIcon != myIcon)
 	{
 		int iIndex = pClickedIcon->fOrder;
-		cd_switcher_compute_viewports_from_index (iIndex, iNumDesktop, iNumViewportX, iNumViewportY);
+		cd_switcher_compute_desktop_from_index (iIndex, iNumDesktop, iNumViewportX, iNumViewportY);
 		return TRUE;
 	}
 	else
@@ -162,7 +161,7 @@ CD_APPLET_ON_CLICK_END
 
 
 CD_APPLET_ON_SCROLL_BEGIN  // Merci ChangFu !
-	int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
+	int iIndex = cd_switcher_compute_index_from_desktop (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
 	int iNumDesktop, iNumViewportX, iNumViewportY;
 	cd_debug ("Switcher: current %d", iIndex);
 	if (CD_APPLET_SCROLL_DOWN)
@@ -170,14 +169,14 @@ CD_APPLET_ON_SCROLL_BEGIN  // Merci ChangFu !
 		iIndex++;
 		if (iIndex >= myData.switcher.iNbViewportTotal)
 			iIndex = 0;
-		cd_switcher_compute_viewports_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
+		cd_switcher_compute_desktop_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
 	}
 	else if (CD_APPLET_SCROLL_UP)
 	{
 		iIndex = iIndex - 1;
 		if (iIndex < 0)
 			iIndex = myData.switcher.iNbViewportTotal - 1;
-		cd_switcher_compute_viewports_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
+		cd_switcher_compute_desktop_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
 	}
 	else
 		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
@@ -206,7 +205,7 @@ static void _cd_switcher_move_to_desktop (GtkMenuItem *menu_item, gpointer data)
 {
 	int iIndex = GPOINTER_TO_INT (data);
 	int iNumDesktop, iNumViewportX, iNumViewportY;
-	cd_switcher_compute_viewports_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
+	cd_switcher_compute_desktop_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
 	cd_switcher_move_current_desktop_to (iNumDesktop, iNumViewportX, iNumViewportY);
 }
 
@@ -288,7 +287,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	int iNumDesktop, iNumViewportX, iNumViewportY;
 	if (_cd_switcher_get_viewport_from_clic (pClickedIcon, &iNumDesktop, &iNumViewportX, &iNumViewportY))
 	{
-		int iIndex = cd_switcher_compute_index (iNumDesktop, iNumViewportX, iNumViewportY);
+		int iIndex = cd_switcher_compute_index_from_desktop (iNumDesktop, iNumViewportX, iNumViewportY);
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this workspace"),
 			GTK_STOCK_EDIT,
 			_cd_switcher_rename_desktop,
@@ -382,10 +381,10 @@ gboolean on_change_desktop (CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("");
-	int iPreviousIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
+	int iPreviousIndex = cd_switcher_compute_index_from_desktop (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
 	
 	cd_switcher_get_current_desktop ();
-	int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
+	int iIndex = cd_switcher_compute_index_from_desktop (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
 	
 	if (myConfig.bDisplayNumDesk)
 	{
@@ -466,7 +465,7 @@ gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pCon
 	if (! _cd_switcher_get_viewport_from_clic (myIcon, &iNumDesktop, &iNumViewportX, &iNumViewportY))
 		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 	
-	int iIndex = cd_switcher_compute_index (iNumDesktop, iNumViewportX, iNumViewportY);
+	int iIndex = cd_switcher_compute_index_from_desktop (iNumDesktop, iNumViewportX, iNumViewportY);
 	if (iIndex != myData.iPrevIndexHovered)
 	{
 		myData.iPrevIndexHovered = iIndex;

@@ -155,7 +155,7 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		cd_switcher_compute_nb_lines_and_columns ();
 		
-		cd_switcher_compute_desktop_coordinates (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY, &myData.switcher.iCurrentLine, &myData.switcher.iCurrentColumn);
+		cd_switcher_compute_coordinates_from_desktop (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY, &myData.switcher.iCurrentLine, &myData.switcher.iCurrentColumn);
 	}
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
@@ -213,7 +213,7 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			if (myConfig.bDisplayNumDesk)
 			{
-				int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
+				int iIndex = cd_switcher_compute_index_from_desktop (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", iIndex+1);
 			}
 			else

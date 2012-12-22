@@ -24,6 +24,9 @@
 #include "applet-draw.h"
 #include "applet-desktops.h"
 
+static void cd_switcher_compute_coordinates_from_index (int iIndex, int *iNumLine, int *iNumColumn);
+static int cd_switcher_compute_index_from_coordinates (int iNumLine, int iNumColumn);
+
 
 void cd_switcher_get_current_desktop (void)
 {
@@ -33,7 +36,7 @@ void cd_switcher_get_current_desktop (void)
 	if (myData.switcher.iNbViewportTotal == 0) // obviously, having 0 desktop cannot be true, so we force to 1 to avoid any "division by 0" later.
 		myData.switcher.iNbViewportTotal = 1;
 	
-	cd_switcher_compute_desktop_coordinates (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY, &myData.switcher.iCurrentLine, &myData.switcher.iCurrentColumn);
+	cd_switcher_compute_coordinates_from_desktop (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY, &myData.switcher.iCurrentLine, &myData.switcher.iCurrentColumn);
 	
 	cd_debug ("desktop: %d;%d;%d, %dx%d", g_desktopGeometry.iNbDesktops, g_desktopGeometry.iNbViewportX, g_desktopGeometry.iNbViewportY, myData.switcher.iCurrentLine, myData.switcher.iCurrentColumn);
 }
@@ -134,7 +137,7 @@ void cd_switcher_compute_nb_lines_and_columns (void)
 }
 
 
-void cd_switcher_compute_desktop_coordinates (int iNumDesktop, int iNumViewportX, int iNumViewportY, int *iNumLine, int *iNumColumn)
+void cd_switcher_compute_coordinates_from_desktop (int iNumDesktop, int iNumViewportX, int iNumViewportY, int *iNumLine, int *iNumColumn)
 {
 	if (myData.switcher.iNbColumns == 0)  // may happen in desklet mode with a cube desktop, when the desklet is still 0x0.
 	{
@@ -142,8 +145,10 @@ void cd_switcher_compute_desktop_coordinates (int iNumDesktop, int iNumViewportX
 		*iNumColumn = 0;
 		return;
 	}
-	//cd_debug ("%s (%d;%d)", __func__, iNumViewportX, iNumViewportY);
-	if (g_desktopGeometry.iNbDesktops > 1)  // plusieurs bureaux simples (Metacity) ou etendus (Compiz avec 2 cubes).
+	int index = cd_switcher_compute_index_from_desktop (iNumDesktop, iNumViewportX, iNumViewportY);
+	cd_switcher_compute_coordinates_from_index (index, iNumLine, iNumColumn);
+	cd_debug ("(%d;%d;%d) -> %d -> (%d;%d)", iNumDesktop, iNumViewportX, iNumViewportY, index, *iNumLine, *iNumColumn);
+	/**if (g_desktopGeometry.iNbDesktops > 1)  // plusieurs bureaux simples (Metacity) ou etendus (Compiz avec 2 cubes).
 	{
 		if (g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY > 1)  // plusieurs bureaux etendus (Compiz avec N cubes).
 		{
@@ -168,13 +173,16 @@ void cd_switcher_compute_desktop_coordinates (int iNumDesktop, int iNumViewportX
 			*iNumLine = iNumViewportX / myData.switcher.iNbColumns;
 			*iNumColumn = iNumViewportX % myData.switcher.iNbColumns;
 		}
-	}
+	}*/
 }
 
 
 void cd_switcher_compute_desktop_from_coordinates (int iNumLine, int iNumColumn, int *iNumDesktop, int *iNumViewportX, int *iNumViewportY)
 {
-	if (g_desktopGeometry.iNbDesktops > 1)  // plusieurs bureaux simples (Metacity) ou etendus (Compiz avec 2 cubes).
+	int index = cd_switcher_compute_index_from_coordinates (iNumLine, iNumColumn);
+	cd_switcher_compute_desktop_from_index (index, iNumDesktop, iNumViewportX, iNumViewportY);
+	cd_debug ("(%d;%d) -> %d -> (%d;%d;%d)", iNumLine, iNumColumn, index, *iNumDesktop, *iNumViewportX, *iNumViewportY);
+	/**if (g_desktopGeometry.iNbDesktops > 1)  // plusieurs bureaux simples (Metacity) ou etendus (Compiz avec 2 cubes).
 	{
 		if (g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY > 1)  // plusieurs bureaux etendus (Compiz avec N cubes).
 		{
@@ -202,16 +210,21 @@ void cd_switcher_compute_desktop_from_coordinates (int iNumLine, int iNumColumn,
 			*iNumViewportX = iNumLine * myData.switcher.iNbColumns +iNumColumn;
 			*iNumViewportY = 0;
 		}
-	}
+	}*/
 }
 
 
-int cd_switcher_compute_index (int iNumDesktop, int iNumViewportX, int iNumViewportY)
+int cd_switcher_compute_index_from_desktop (int iNumDesktop, int iNumViewportX, int iNumViewportY)
 {
 	return iNumDesktop * g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY + iNumViewportX + iNumViewportY * g_desktopGeometry.iNbViewportX;
 }
 
-void cd_switcher_compute_viewports_from_index (int iIndex, int *iNumDesktop, int *iNumViewportX, int *iNumViewportY)
+int cd_switcher_compute_index_from_coordinates (int iNumLine, int iNumColumn)
+{
+	return iNumLine * myData.switcher.iNbColumns + iNumColumn;
+}
+
+void cd_switcher_compute_desktop_from_index (int iIndex, int *iNumDesktop, int *iNumViewportX, int *iNumViewportY)
 {
 	if (g_desktopGeometry.iNbViewportX == 0 || g_desktopGeometry.iNbViewportY == 0)  // des fois (chgt de resolution sous Compiz), le rafraichissement se passe mal, on le force donc ici pour eviter une division par 0.
 	{
@@ -223,7 +236,19 @@ void cd_switcher_compute_viewports_from_index (int iIndex, int *iNumDesktop, int
 	int index2 = iIndex % (g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY);
 	*iNumViewportX = index2 % g_desktopGeometry.iNbViewportX;
 	*iNumViewportY = index2 / g_desktopGeometry.iNbViewportX;
-	cd_debug ("[Switcher] New coordinates -> D=%d ; X=%d ; Y=%d ; i1=%d ; i2=%d ; nX=%d ; nY=%d", *iNumDesktop, *iNumViewportX, *iNumViewportY, iIndex, index2, g_desktopGeometry.iNbViewportX, g_desktopGeometry.iNbViewportY);
+	cd_debug ("%d -> (%d, %d, %d) ; nX=%d ; nY=%d", iIndex, *iNumDesktop, *iNumViewportX, *iNumViewportY, g_desktopGeometry.iNbViewportX, g_desktopGeometry.iNbViewportY);
+}
+
+void cd_switcher_compute_coordinates_from_index (int iIndex, int *iNumLine, int *iNumColumn)
+{
+	if (g_desktopGeometry.iNbViewportX == 0 || g_desktopGeometry.iNbViewportY == 0)  // des fois (chgt de resolution sous Compiz), le rafraichissement se passe mal, on le force donc ici pour eviter une division par 0.
+	{
+		cd_switcher_refresh_desktop_values (myApplet);
+	}
+	g_return_if_fail (g_desktopGeometry.iNbViewportX > 0 && g_desktopGeometry.iNbViewportY > 0);
+	
+	*iNumLine = iIndex / myData.switcher.iNbColumns;
+	*iNumColumn = iIndex % myData.switcher.iNbColumns;
 }
 
 
@@ -270,7 +295,7 @@ static gboolean _update_idle (gpointer data)
 	//\___________________ draw the current desktop number.
 	if (myConfig.bDisplayNumDesk)
 	{
-		int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
+		int iIndex = cd_switcher_compute_index_from_desktop (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d", iIndex+1);
 	}
 	

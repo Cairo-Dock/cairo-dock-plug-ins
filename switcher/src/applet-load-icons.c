@@ -39,7 +39,7 @@ static void _load_desktop_icon (Icon *pIcon)
 static GList * _load_icons (void)
 {
 	GList *pIconList = NULL;
-	int iIndex = cd_switcher_compute_index (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
+	int iIndex = cd_switcher_compute_index_from_desktop (myData.switcher.iCurrentDesktop, myData.switcher.iCurrentViewportX, myData.switcher.iCurrentViewportY);
 	Icon *pIcon;
 	int i;
 	for (i = 0; i < myData.switcher.iNbViewportTotal; i ++)
