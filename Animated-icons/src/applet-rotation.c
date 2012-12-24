@@ -64,6 +64,7 @@ static void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean
 	else
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE);  // la capsule "ecrase" le fond.*/
 	glEnable(GL_TEXTURE);
+	_cairo_dock_set_blend_alpha ();
 	
 	glActiveTexture(GL_TEXTURE0); // Go pour le multitexturing 1ere passe
 	glEnable(GL_TEXTURE_2D); // On active le texturing sur cette passe
@@ -118,6 +119,7 @@ static void cd_animation_render_cube (Icon *pIcon, CairoDock *pDock, gboolean bI
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE);  // la capsule "ecrase" le fond.
 	_cairo_dock_set_blend_alpha ();*/
 	glEnable(GL_TEXTURE);
+	_cairo_dock_set_blend_alpha ();
 	
 	glActiveTexture(GL_TEXTURE0); // Go pour le multitexturing 1ere passe
 	glEnable(GL_TEXTURE_2D); // On active le texturing sur cette passe
@@ -162,6 +164,7 @@ static void cd_animation_render_square (Icon *pIcon, CairoDock *pDock, gboolean 
 	else
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE);  // la capsule "ecrase" le fond.*/
 	glEnable(GL_TEXTURE);
+	_cairo_dock_set_blend_alpha ();
 	
 	glActiveTexture(GL_TEXTURE0); // Go pour le multitexturing 1ere passe
 	glEnable(GL_TEXTURE_2D); // On active le texturing sur cette passe

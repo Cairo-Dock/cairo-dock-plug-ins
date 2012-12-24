@@ -80,7 +80,7 @@ static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo
 		cairo_dock_set_icon_scale_on_context (pCairoContext, pIcon, pDock->container.bIsHorizontal, 1., pDock->container.bDirectionUp);
 		cairo_scale (pCairoContext, fScaleFactor, fScaleFactor);
 		
-		cairo_dock_apply_image_buffer_surface_with_offset (&pIcon->image, pCairoContext, 0, 0, pIcon->fAlpha);
+		cairo_dock_apply_image_buffer_surface_with_offset (&pIcon->image, pCairoContext, 0, 0, pData->fPulseAlpha * pIcon->fAlpha);
 		cairo_restore (pCairoContext);
 	}
 	else
@@ -89,7 +89,7 @@ static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo
 		double fScaleFactor = (1 - myConfig.fPulseZoom) * pData->fPulseAlpha + myConfig.fPulseZoom;
 		cairo_dock_set_icon_scale (pIcon, CAIRO_CONTAINER (pDock), fScaleFactor);
 		_cairo_dock_enable_texture ();
-		_cairo_dock_set_blend_alpha ();
+		_cairo_dock_set_blend_alpha ();  // _cairo_dock_set_blend_over is good too, hard to say which is better.
 		_cairo_dock_set_alpha (pData->fPulseAlpha * pIcon->fAlpha);
 		cairo_dock_apply_image_buffer_texture_at_size (&pIcon->image, 1, 1, 0, 0);
 		_cairo_dock_disable_texture ();

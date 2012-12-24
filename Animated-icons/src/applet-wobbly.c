@@ -424,17 +424,14 @@ static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo
 		glPushMatrix ();
 		cairo_dock_set_icon_scale (pIcon, CAIRO_CONTAINER (pDock), 1.);
 		
-		glColor4f (1., 1., 1., pIcon->fAlpha);
-		glEnable(GL_BLEND);
-		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+		_cairo_dock_enable_texture ();  // enable texture, blend, and fill polygon
+		_cairo_dock_set_blend_pbuffer ();
+		_cairo_dock_set_alpha (pIcon->fAlpha);
 		
-		glEnable(GL_TEXTURE_2D); // Je veux de la texture
 		glBindTexture(GL_TEXTURE_2D, pIcon->image.iTexture);
 		
 		glEnable(GL_MAP2_VERTEX_3);  // active l'evaluateur 2D des sommets 3D
 		glEnable(GL_MAP2_TEXTURE_COORD_2);
-		glPolygonMode (GL_FRONT, GL_FILL);
 		
 		glMap2f(GL_MAP2_VERTEX_3, 0, 1, 3, 4,
 			0, 1, 12, 4, &pData->pCtrlPts[0][0][0]);
@@ -486,7 +483,6 @@ static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo
 			glColor4f(1.0f, 1.0f, 1.0f, myIconsParam.fAlbedo * pIcon->fAlpha / 2);  // transparence du reflet.
 			glBlendFuncSeparate (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA,
 				GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-			glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 			glEnable(GL_MAP2_TEXTURE_COORD_2);
 			glMap2f(GL_MAP2_TEXTURE_COORD_2, 0, 1, 2, 2,
 				0, 1, 4, 2, &pTexPts[0][0][0]);
@@ -524,8 +520,7 @@ static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo
 		}
 		glDisable(GL_MAP2_VERTEX_3);
 		glDisable(GL_MAP2_TEXTURE_COORD_2);
-		glDisable(GL_TEXTURE_2D);
-		glDisable (GL_BLEND);
+		_cairo_dock_disable_texture ();
 	}
 }
 

@@ -167,9 +167,9 @@ static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo
 	glColor4f (1., 1., 1., pIcon->fAlpha);
 	glEnable(GL_BLEND);
 	if (pIcon->fAlpha == 1)
-		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		_cairo_dock_set_blend_pbuffer ();
 	else
-		_cairo_dock_set_blend_alpha ();
+		_cairo_dock_set_blend_over ();
 	
 	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	
