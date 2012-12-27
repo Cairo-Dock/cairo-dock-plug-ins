@@ -21,6 +21,7 @@
 #include <time.h>
 
 #include <glib/gstdio.h>
+#include <gdk/gdkkeysyms.h> // GDK_Shift_[LR] for GTK2
 
 #include "tomboy-struct.h"
 #include "applet-notes.h"
