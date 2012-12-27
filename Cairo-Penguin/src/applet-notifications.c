@@ -118,6 +118,9 @@ gboolean on_build_container_menu (CairoDockModuleInstance *myApplet, Icon *pClic
 	}
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
+
+static gboolean s_bXPenguinsChecked = FALSE, s_bHasXPenguins = FALSE;
+
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if(pAnimation == NULL)
@@ -130,7 +133,6 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
 		}
 	}
-	CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 	
 	if (penguin_is_resting (pAnimation))
 	{
@@ -140,9 +142,22 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	{
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Keep quiet"), MY_APPLET_SHARE_DATA_DIR"/icon.png",_keep_quiet, CD_APPLET_MY_MENU);
 	}
-	
-	CD_APPLET_ADD_IN_MENU(D_("Start XPenguins"), _start_xpenguins, CD_APPLET_MY_MENU);
-	CD_APPLET_ADD_IN_MENU(D_("Stop XPenguins"), _stop_xpenguins, CD_APPLET_MY_MENU);
+
+	if (! s_bXPenguinsChecked)
+	{
+		s_bXPenguinsChecked = TRUE;
+		gchar *cResult = cairo_dock_launch_command_sync ("which xpenguins");
+		if (cResult != NULL && *cResult == '/')
+			s_bHasXPenguins = TRUE;
+
+		g_free (cResult);
+	}
+
+	if (s_bHasXPenguins)
+	{
+		CD_APPLET_ADD_IN_MENU(D_("Start XPenguins"), _start_xpenguins, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU(D_("Stop XPenguins"), _stop_xpenguins, CD_APPLET_MY_MENU);
+	}
 CD_APPLET_ON_BUILD_MENU_END
 
 
