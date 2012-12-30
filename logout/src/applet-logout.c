@@ -119,6 +119,10 @@ static void _cd_logout_check_capabilities_async (CDSharedMemory *pSharedMemory)
 		pSharedMemory->bHasGuestAccount = cairo_dock_dbus_get_property_as_boolean (pProxy, "org.freedesktop.DisplayManager.Seat", "HasGuestAccount");
 		g_object_unref (pProxy);
 	}
+	else
+	{
+		pSharedMemory->bHasGuestAccount = cairo_dock_dbus_detect_system_application ("org.gnome.DisplayManager");
+	}
 }
 
 static gboolean _cd_logout_got_capabilities (CDSharedMemory *pSharedMemory)
@@ -772,6 +776,17 @@ static void cd_logout_switch_to_user (const gchar *cUser)
 		}
 		g_object_unref (pProxy);
 	}
+	else // try with gdm
+	{
+		DBusGProxy *pProxy = cairo_dock_create_new_system_proxy (
+			"org.gnome.DisplayManager",
+			"/org/gnome/DisplayManager/LocalDisplayFactory",
+			"org.gnome.DisplayManager.LocalDisplayFactory");
+		dbus_g_proxy_call_no_reply (pProxy, "SwitchToUser",
+			G_TYPE_STRING, cUser,
+			G_TYPE_INVALID);  // we don't care the 'id' object path returned
+		g_object_unref (pProxy);
+	}
 }
 
 static void cd_logout_switch_to_guest (void)
@@ -793,6 +808,17 @@ static void cd_logout_switch_to_guest (void)
 			cd_warning ("DisplayManager error: %s", error->message);
 			g_error_free (error);
 		}
+		g_object_unref (pProxy);
+	}
+	else // try with gdm
+	{
+		DBusGProxy *pProxy = cairo_dock_create_new_system_proxy (
+			"org.gnome.DisplayManager",
+			"/org/gnome/DisplayManager/LocalDisplayFactory",
+			"org.gnome.DisplayManager.LocalDisplayFactory");
+		dbus_g_proxy_call_no_reply (pProxy, "StartGuestSession",
+			G_TYPE_STRING, "",  // current user session, but actually it can be NULL so why bother?
+			G_TYPE_INVALID);  // we don't care the 'id' object path returned
 		g_object_unref (pProxy);
 	}
 }
@@ -839,6 +865,7 @@ static int _compare_user_name (CDUser *pUser1, CDUser *pUser2)
 {
 	return strcmp (pUser1->cUserName, pUser2->cUserName);
 }
+
 static GList* _get_users_list_fallback (void)
 {
 	// read from /etc/passwd
@@ -883,6 +910,86 @@ static GList* _get_users_list_fallback (void)
 	g_strfreev (cUsers);
 	return pUserList;
 }
+
+static GList* _get_users_list_gdm (void)
+{
+	GError *error = NULL;
+	DBusGProxy *pProxy = cairo_dock_create_new_system_proxy ("org.gnome.DisplayManager",
+		"/org/gnome/DisplayManager/UserManager",
+		"org.gnome.DisplayManager.UserManager");
+	GArray *users =  NULL;
+	dbus_g_proxy_call (pProxy, "GetUserList", &error,
+		G_TYPE_INVALID,
+		dbus_g_type_get_collection ("GArray", G_TYPE_INT64), &users,
+		G_TYPE_INVALID);
+	if (error)
+	{
+		cd_warning ("Couldn't get users on the bus from org.gnome.DisplayManager (%s)\n-> Using a fallback method.", error->message);
+		g_error_free (error);
+		users =  NULL;
+	}
+	if (users == NULL)
+		return _get_users_list_fallback ();
+	
+	GType g_type_ptrarray = dbus_g_type_get_collection ("GPtrArray",
+		dbus_g_type_get_struct("GValueArray",
+			G_TYPE_INT64,  // uid
+			G_TYPE_STRING,  // user name
+			G_TYPE_STRING,  // real name
+			G_TYPE_STRING,  // shell
+			G_TYPE_INT,  // login frequency
+			G_TYPE_STRING,  // icon URL
+			G_TYPE_INVALID));
+	GPtrArray *info =  NULL;
+	dbus_g_proxy_call (pProxy, "GetUsersInfo", &error,
+		dbus_g_type_get_collection ("GArray", G_TYPE_INT64), users,
+		G_TYPE_INVALID,
+		g_type_ptrarray, &info,
+		G_TYPE_INVALID);
+	if (error)
+	{
+		cd_warning ("Couldn't get info on the bus from org.gnome.DisplayManager (%s)\n-> Using a fallback method.", error->message);
+		g_error_free (error);
+		info =  NULL;
+	}
+	if (info == NULL)
+		return _get_users_list_fallback ();
+	
+	CDUser *pUser;
+	GList *pUserList = NULL;
+	GValueArray *va;
+	GValue *v;
+	guint i;
+	for (i = 0; i < info->len; i ++)
+	{
+		va = info->pdata[i];
+		if (! va)
+			continue;
+		
+		pUser = g_new0 (CDUser, 1);
+		v = g_value_array_get_nth (va, 1);  // GValueArray is deprecated from 2.32, yet it's so convenient to map the g_type_ptrarray type ...
+		if (v && G_VALUE_HOLDS_STRING (v))
+			pUser->cUserName = g_strdup (g_value_get_string (v));
+		if (pUser->cUserName == NULL) // shouldn't happen
+			continue;
+		
+		v = g_value_array_get_nth (va, 2);
+		if (v && G_VALUE_HOLDS_STRING (v))
+			pUser->cRealName = g_strdup (g_value_get_string (v));
+		
+		v = g_value_array_get_nth (va, 5);
+		if (v && G_VALUE_HOLDS_STRING (v))
+			pUser->cIconFile = g_strdup (g_value_get_string (v));
+		
+		pUserList = g_list_insert_sorted (pUserList, pUser, (GCompareFunc)_compare_user_name);
+	}
+	g_ptr_array_free (info, TRUE);
+	g_array_free (users, TRUE);
+	
+	g_object_unref (pProxy);
+	return pUserList;
+}
+
 GList *cd_logout_get_users_list (void)
 {
 	// get the list of users
@@ -900,12 +1007,12 @@ GList *cd_logout_get_users_list (void)
 	
 	if (error)
 	{
-		cd_warning ("Couldn't get info on the bus from org.freedesktop.Accounts (%s)\n-> Using a fallback method.", error->message);
+		cd_warning ("Couldn't get info on the bus from org.freedesktop.Accounts (%s)\n-> Trying from GnomeDisplayManager.", error->message);
 		g_error_free (error);
-		return _get_users_list_fallback ();
+		users =  NULL;
 	}
 	if (users == NULL)
-		return _get_users_list_fallback ();
+		return _get_users_list_gdm ();
 	
 	// foreach user, get its properties (name & icon).
 	CDUser *pUser;
