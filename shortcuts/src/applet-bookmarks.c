@@ -184,7 +184,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 					}
 				}
 			}
-			
+			pIconsList = CD_APPLET_MY_ICONS_LIST;
 			cairo_dock_sort_icons_by_order (pIconsList);  // again, since 'Home Folder' is always the first bookmark, the head of the list won't change even if there are only bookmarks (so we don't need to re-assigne it to the container).
 		}
 		g_free (cBookmarkFilePath);
