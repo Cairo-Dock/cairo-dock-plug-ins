@@ -9,7 +9,7 @@ SET(MODULE_SRCS
 )
 
 # 12.10
-if (${INDICATOR_MESSAGES_12_10})
+if (INDICATOR_MESSAGES_WITH_IND3)
 	list (APPEND MODULE_SRCS applet-indicator3.c)
 else ()
 	list (APPEND MODULE_SRCS applet-messaging.c applet-menu.c)
@@ -36,9 +36,9 @@ if (${DBUSMENU_GTK3_NEW})
 	add_definitions (-DDBUSMENU_GTK3_NEW=1)
 endif()
 
-if (${INDICATOR_MESSAGES_12_10})
+if (INDICATOR_MESSAGES_WITH_IND3)
 	message (STATUS "   With Indicator-Applet3")
-	add_definitions (-DINDICATOR_MESSAGES_12_10=1)
+	add_definitions (-DINDICATOR_MESSAGES_WITH_IND3=1)
 	set (EXTRAS_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/Indicator-applet3)
 	set (EXTRAS_LIBRARY_DIRS ${CMAKE_SOURCE_DIR}/Indicator-applet3)
 	set (EXTRAS_LIBRARIES indicator-applet3)

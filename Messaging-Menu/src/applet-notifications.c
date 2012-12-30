@@ -21,7 +21,7 @@
 #include <string.h>
 
 #include "applet-struct.h"
-#ifndef INDICATOR_MESSAGES_12_10
+#ifndef INDICATOR_MESSAGES_WITH_IND3
 #include "applet-menu.h"
 #else
 #include "applet-indicator3.h"
@@ -65,7 +65,7 @@ static inline void _show_menu (void)
 	_remove_double_separators (GTK_CONTAINER (myData.pIndicator->pMenu));
 	#endif
 
-	#ifndef INDICATOR_MESSAGES_12_10
+	#ifndef INDICATOR_MESSAGES_WITH_IND3
 	if (! cd_indicator_show_menu (myData.pIndicator))
 	#else
 	GtkMenu *pMenu = cd_indicator3_get_menu (myData.pEntry);

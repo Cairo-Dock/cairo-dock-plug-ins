@@ -21,7 +21,7 @@
 
 #include "applet-config.h"
 #include "applet-notifications.h"
-#ifndef INDICATOR_MESSAGES_12_10
+#ifndef INDICATOR_MESSAGES_WITH_IND3
 #include "applet-messaging.h"
 #include "applet-menu.h"
 #else
@@ -49,7 +49,7 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 	}
 
-	#ifndef INDICATOR_MESSAGES_12_10
+	#ifndef INDICATOR_MESSAGES_WITH_IND3
 	myData.pIndicator = cd_indicator_new (myApplet,
 		INDICATOR_MESSAGES_DBUS_NAME,
 		INDICATOR_MESSAGES_DBUS_SERVICE_OBJECT,
@@ -93,7 +93,7 @@ CD_APPLET_STOP_BEGIN
 	// keyboard events
 	cd_keybinder_unbind (myData.pKeyBinding);
 
-	#ifndef INDICATOR_MESSAGES_12_10
+	#ifndef INDICATOR_MESSAGES_WITH_IND3
 	cd_indicator_destroy (myData.pIndicator);
 	#else
 	// It seems we doesn't need to free the indicator (object and event)
@@ -110,7 +110,7 @@ CD_APPLET_STOP_END
 
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
-	#ifndef INDICATOR_MESSAGES_12_10
+	#ifndef INDICATOR_MESSAGES_WITH_IND3
 	cd_indicator_reload_icon (myData.pIndicator);  // we reload the icon (if we didn't have an icon, now we have a path). It will not consider a change of icon theme, so we return the original icon.
 	#else
 	// check if the name has changed and reload the icon

@@ -97,8 +97,6 @@ icon_cb (DBusGProxy * proxy, gboolean hidden, GError * error, CairoDockModuleIns
 
 void cd_messaging_on_connect (CairoDockModuleInstance *myApplet)
 {
-	DBusGProxy * pServiceProxy = myData.pIndicator->pServiceProxy;
-	
 	dbus_g_proxy_add_signal(myData.pIndicator->pServiceProxy, "AttentionChanged", G_TYPE_BOOLEAN, G_TYPE_INVALID);
 	dbus_g_proxy_connect_signal(myData.pIndicator->pServiceProxy,
 		"AttentionChanged",
@@ -122,8 +120,6 @@ void cd_messaging_on_disconnect (CairoDockModuleInstance *myApplet)
 void cd_messaging_get_initial_values (CairoDockModuleInstance *myApplet)
 {
 	// query the service to display initial values.
-	DBusGProxy * pServiceProxy = myData.pIndicator->pServiceProxy;
-	
 	org_ayatana_indicator_messages_service_attention_requested_async(myData.pIndicator->pServiceProxy,
 		(org_ayatana_indicator_messages_service_attention_requested_reply)attention_cb,
 		myApplet);

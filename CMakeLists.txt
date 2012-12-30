@@ -997,10 +997,8 @@ endif()
 set (with_messaging_menu FALSE)
 if (with_indicator)
 	message (STATUS "> Messaging-Menu:")
-	if (with_indicator3
-		AND ${INDICATOR_MAJOR} GREATER 12
-		OR (${INDICATOR_MAJOR} EQUAL 12 AND ${INDICATOR_MINOR} GREATER 9))
-		set (INDICATOR_MESSAGES_12_10 1)  # Messaging Menu has been rewritten in Quantal
+	if (with_indicator3)
+		set (INDICATOR_MESSAGES_WITH_IND3 TRUE) # If it's supported, it's maybe better to use it
 	endif()
 	set (GETTEXT_MESSAGING_MENU ${GETTEXT_PLUGINS})
 	set (VERSION_MESSAGING_MENU "1.0.6")
