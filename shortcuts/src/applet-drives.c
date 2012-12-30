@@ -165,6 +165,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 				//g_print (" '%s' -> '%s'\n'%s' -> '%s'\n", pConcernedIcon->cName, pNewIcon->cName, pConcernedIcon->cFileName, pNewIcon->cFileName);
 				
 				CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pConcernedIcon);
+				pIconsList = CD_APPLET_MY_ICONS_LIST;
 				
 				cd_shortcuts_set_icon_order_by_name (pNewIcon, pIconsList);
 				CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pNewIcon);
@@ -236,10 +237,10 @@ void cd_shortcuts_on_drive_event (CairoDockFMEventType iEventType, const gchar *
 	Icon *icon;
 	gboolean bIsMounted;
 	gchar *cTargetURI = cairo_dock_fm_is_mounted (cURI, &bIsMounted);
-	if (cTargetURI == NULL)  // version bourrinne.
+	if (cTargetURI == NULL)  // I think we don't have anything to do here, but this needs confirmation.
 	{
 		//g_print ("couldn't guess target URi of mount point '%s'\n", cURI);
-		cd_shortcuts_on_bookmarks_event (CAIRO_DOCK_FILE_MODIFIED, NULL, myApplet);  // NULL <=> on recharge tout.
+		///cd_shortcuts_on_bookmarks_event (CAIRO_DOCK_FILE_MODIFIED, NULL, myApplet);  // NULL <=> on recharge tout.
 	}
 	else  // version optimisee.
 	{
