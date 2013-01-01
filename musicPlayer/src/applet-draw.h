@@ -31,7 +31,7 @@ void cd_musiplayer_apply_cover (void);
 void cd_musicplayer_apply_status_surface (MyPlayerStatus iStatus);
 
 
-void cd_musicplayer_popup_info (void);
+void cd_musicplayer_popup_info (gint iDialogDuration);
 
 void cd_musicplayer_animate_icon (int animationLength);
 

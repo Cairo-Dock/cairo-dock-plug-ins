@@ -75,7 +75,7 @@ void cd_musicplayer_update_icon (void)
 				cd_musicplayer_animate_icon (1);
 				if(myConfig.bEnableDialogs)
 				{
-					cd_musicplayer_popup_info ();
+					cd_musicplayer_popup_info (myConfig.iDialogDuration);
 				}
 			}
 		}
@@ -135,7 +135,7 @@ void cd_musicplayer_update_icon (void)
 
 /* Display information about the current song in a dialog.
  */
-void cd_musicplayer_popup_info (void)
+void cd_musicplayer_popup_info (gint iDialogDuration)
 {
 	cairo_dock_remove_dialog_if_any (myIcon);
 	if (myData.iPlayingStatus == PLAYER_PLAYING || myData.iPlayingStatus == PLAYER_PAUSED)
@@ -146,7 +146,7 @@ void cd_musicplayer_popup_info (void)
 				"%s: %s\n%s: %s\n%s: %s\n%s: %d:%02d\n%s %d, %s %d/%d",
 				myIcon,
 				myContainer,
-				myConfig.iDialogDuration,
+				iDialogDuration,
 				MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
 				D_("Artist"),
 				myData.cArtist != NULL ? myData.cArtist : D_("Unknown"),
@@ -171,7 +171,7 @@ void cd_musicplayer_popup_info (void)
 			cairo_dock_show_temporary_dialog_with_icon_printf ("%s : %s",
 				myIcon,
 				myContainer,
-				myConfig.iDialogDuration,
+				iDialogDuration,
 				MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
 				D_("Current song"),
 				str);
@@ -182,7 +182,7 @@ void cd_musicplayer_popup_info (void)
 		cairo_dock_show_temporary_dialog_with_icon (D_("There is no media playing."),
 			myIcon,
 			myContainer,
-			myConfig.iDialogDuration,
+			iDialogDuration,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 	}
 }

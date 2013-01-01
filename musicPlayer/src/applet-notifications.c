@@ -77,7 +77,8 @@ static void _cd_musicplayer_rate (GtkMenuItem *menu_item, gpointer *data) {
 }
 static void _cd_musicplayer_info (GtkMenuItem *menu_item, gpointer *data)
 {
-	cd_musicplayer_popup_info ();
+	// the user wants to see this dialogue, it's maybe better to not remove it automatically
+	cd_musicplayer_popup_info (0); // 0 = without any timeout
 }
 static void _cd_musicplayer_launch (GtkMenuItem *menu_item, gpointer *data)
 {
@@ -238,7 +239,7 @@ CD_APPLET_ON_CLICK_BEGIN
 			else
 			{
 				if(myData.bIsRunning)
-					cd_musicplayer_popup_info ();
+					cd_musicplayer_popup_info (myConfig.iDialogDuration);
 				else if (myData.pCurrentHandler->launch != NULL)
 					cairo_dock_launch_command (myData.pCurrentHandler->launch);
 			}
