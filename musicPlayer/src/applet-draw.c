@@ -142,8 +142,23 @@ void cd_musicplayer_popup_info (gint iDialogDuration)
 	{
 		if (myData.cTitle || myData.cArtist || myData.cAlbum)
 		{
+			/* It's maybe better to display nothing if we don't have (optional)
+			 * info about track number and id than displaying a wrong number
+			 */
+			GString *sTrack = g_string_new ("");
+			if (myData.iTrackNumber > 0)
+				g_string_printf (sTrack, "\n%s %d", D_("Track n°"), myData.iTrackNumber);
+			if (myData.iTrackListIndex > 0 || myData.iTrackListLength > 0) // 0/0
+			{
+				g_string_append_printf (sTrack, "%s%s %d",
+					sTrack->len > 0 ? ", " : "\n",
+					D_("Song n°"), myData.iTrackListIndex + 1); // iTrackListIndex start with 0.
+				if (myData.iTrackListLength > 0)
+					g_string_append_printf (sTrack, "/%d", myData.iTrackListLength);
+			}
+
 			cairo_dock_show_temporary_dialog_with_icon_printf (
-				"%s: %s\n%s: %s\n%s: %s\n%s: %d:%02d\n%s %d, %s %d/%d",
+				"%s: %s\n%s: %s\n%s: %s\n%s: %d:%02d%s",
 				myIcon,
 				myContainer,
 				iDialogDuration,
@@ -156,8 +171,9 @@ void cd_musicplayer_popup_info (gint iDialogDuration)
 				myData.cAlbum != NULL ? myData.cAlbum : D_("Unknown"),
 				D_("Length"),
 				myData.iSongLength/60, myData.iSongLength%60,  // it's not often to have a song more than 1h!
-				D_("Track n°"), myData.iTrackNumber,
-				D_("Song n°"), myData.iTrackListIndex+1, myData.iTrackListLength);  // iTrackListIndex start with 0.
+				sTrack->str);
+
+			g_string_free (sTrack, TRUE);
 		}
 		else if (myData.cPlayingUri)
 		{
