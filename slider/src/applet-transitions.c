@@ -23,7 +23,7 @@
 
 #include "applet-transitions.h"
 
-#define _cd_slider_erase_surface(myApplet) cairo_dock_erase_cairo_context (myDrawContext)
+///#define _cd_slider_erase_surface(myApplet) cairo_dock_erase_cairo_context (myDrawContext)
 
 /**#define _cd_slider_add_background_to_slide(myApplet, fX, fY, alpha, slide) do { \
 	if (myConfig.pBackgroundColor[3] != 0) {\
@@ -125,8 +125,9 @@ void cd_slider_draw_default (CairoDockModuleInstance *myApplet)
 	}
 	else
 	{
+		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN_CAIRO ();
 		//\______________________ On efface le fond
-		_cd_slider_erase_surface (myApplet);
+		///_cd_slider_erase_surface (myApplet);
 		
 		//\______________________ On empeche la transparence
 		_cd_slider_add_background_to_current_slide (myApplet, myData.slideArea.fImgX, myData.slideArea.fImgY, 1.);
@@ -134,6 +135,7 @@ void cd_slider_draw_default (CairoDockModuleInstance *myApplet)
 		//\______________________ On dessine la nouvelle surface.
 		cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.slideArea.fImgX, myData.slideArea.fImgY);
 		cairo_paint (myDrawContext);
+		CD_APPLET_FINISH_DRAWING_MY_ICON_CAIRO;
 	}
 }
 
@@ -172,8 +174,9 @@ gboolean cd_slider_fade (CairoDockModuleInstance *myApplet) {
 	}
 	else
 	{
+		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN_CAIRO (FALSE);
 		//On efface le fond
-		_cd_slider_erase_surface (myApplet);
+		///_cd_slider_erase_surface (myApplet);
 		
 		//Fond précédent.
 		if (myData.pPrevCairoSurface != NULL)
@@ -190,6 +193,7 @@ gboolean cd_slider_fade (CairoDockModuleInstance *myApplet) {
 		
 		cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.slideArea.fImgX, myData.slideArea.fImgY);
 		cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
+		CD_APPLET_FINISH_DRAWING_MY_ICON_CAIRO;
 	}
 	
 	return (myData.fAnimAlpha < .99);
@@ -232,8 +236,9 @@ gboolean cd_slider_blank_fade (CairoDockModuleInstance *myApplet) {
 	}
 	else
 	{
+		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN_CAIRO (FALSE);
 		//On efface le fond
-		_cd_slider_erase_surface (myApplet);
+		///_cd_slider_erase_surface (myApplet);
 		
 		//On empeche la transparence
 		_cd_slider_add_background_to_current_slide (myApplet, myData.slideArea.fImgX, myData.slideArea.fImgY, 1.);
@@ -246,6 +251,7 @@ gboolean cd_slider_blank_fade (CairoDockModuleInstance *myApplet) {
 		cairo_set_source_rgba (myDrawContext, 1., 1., 1., myData.fAnimAlpha);
 		cairo_rectangle(myDrawContext, 0., 0., myData.iSurfaceWidth, myData.iSurfaceHeight);
 		cairo_fill(myDrawContext);
+		CD_APPLET_FINISH_DRAWING_MY_ICON_CAIRO;
 	}
 	
 	return (myData.fAnimAlpha > 0.01);
@@ -297,8 +303,9 @@ gboolean cd_slider_fade_in_out (CairoDockModuleInstance *myApplet) {
 	}
 	else
 	{
+		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN_CAIRO (FALSE);
 		//On efface le fond
-		_cd_slider_erase_surface (myApplet);
+		///_cd_slider_erase_surface (myApplet);
 		
 		if (myData.iAnimCNT < myConfig.iNbAnimationStep)  // image precedente en train de disparaitre
 		{
@@ -315,6 +322,7 @@ gboolean cd_slider_fade_in_out (CairoDockModuleInstance *myApplet) {
 			cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.slideArea.fImgX, myData.slideArea.fImgY);
 		}
 		cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
+		CD_APPLET_FINISH_DRAWING_MY_ICON_CAIRO;
 	}
 	
 	return (myData.fAnimAlpha < .99);
@@ -362,8 +370,9 @@ gboolean cd_slider_side_kick (CairoDockModuleInstance *myApplet) {
 	}
 	else
 	{
+		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN_CAIRO (FALSE);
 		//On efface le fond
-		_cd_slider_erase_surface (myApplet);
+		///_cd_slider_erase_surface (myApplet);
 		
 		if (myData.sens == 1)  // image precedente qui part sur la gauche.
 		{
@@ -378,6 +387,7 @@ gboolean cd_slider_side_kick (CairoDockModuleInstance *myApplet) {
 			cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.slideArea.fImgX + xcumul, myData.slideArea.fImgY);
 		}
 		cairo_paint (myDrawContext);
+		CD_APPLET_FINISH_DRAWING_MY_ICON_CAIRO;
 	}
 	
 	return (myData.iAnimCNT > 0);
@@ -443,8 +453,9 @@ gboolean cd_slider_diaporama (CairoDockModuleInstance *myApplet) {
 	}
 	else
 	{
+		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN_CAIRO (FALSE);
 		//On efface le fond
-		_cd_slider_erase_surface (myApplet);
+		///_cd_slider_erase_surface (myApplet);
 		
 		//Image précédante
 		if (myData.pPrevCairoSurface != NULL)
@@ -460,6 +471,7 @@ gboolean cd_slider_diaporama (CairoDockModuleInstance *myApplet) {
 		
 		cairo_set_source_surface (myDrawContext, myData.pCairoSurface, myData.slideArea.fImgX + myData.iSurfaceWidth * (1 - myData.fAnimAlpha), myData.slideArea.fImgY);
 		cairo_paint(myDrawContext);
+		CD_APPLET_FINISH_DRAWING_MY_ICON_CAIRO;
 	}
 	
 	return (myData.fAnimAlpha < .999);
@@ -493,8 +505,9 @@ gboolean cd_slider_grow_up (CairoDockModuleInstance *myApplet) {
 	}
 	else
 	{
+		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN_CAIRO (FALSE);
 		//On efface le fond
-		_cd_slider_erase_surface (myApplet);
+		///_cd_slider_erase_surface (myApplet);
 		
 		//On met a l'échelle en recentrant.
 		cairo_save(myDrawContext);
@@ -507,6 +520,7 @@ gboolean cd_slider_grow_up (CairoDockModuleInstance *myApplet) {
 		
 		cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
 		cairo_restore(myDrawContext);
+		CD_APPLET_FINISH_DRAWING_MY_ICON_CAIRO;
 	}
 	
 	return (myData.fAnimAlpha < .99);
@@ -540,8 +554,9 @@ gboolean cd_slider_shrink_down (CairoDockModuleInstance *myApplet) {
 	}
 	else
 	{
+		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN_CAIRO (FALSE);
 		//On efface le fond
-		_cd_slider_erase_surface (myApplet);
+		///_cd_slider_erase_surface (myApplet);
 		
 		//On met a l'échelle en recentrant.
 		cairo_save(myDrawContext);
@@ -554,6 +569,7 @@ gboolean cd_slider_shrink_down (CairoDockModuleInstance *myApplet) {
 		
 		cairo_paint_with_alpha (myDrawContext, myData.fAnimAlpha);
 		cairo_restore(myDrawContext);
+		CD_APPLET_FINISH_DRAWING_MY_ICON_CAIRO;
 	}
 	
 	return (myData.fAnimAlpha > 1.01);

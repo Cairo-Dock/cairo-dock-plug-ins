@@ -74,8 +74,8 @@ void cd_xeyes_render_to_texture (CairoDockModuleInstance *myApplet, int iWidth, 
 
 void cd_xeyes_render_to_surface (CairoDockModuleInstance *myApplet, int iWidth, int iHeight)
 {
-	cairo_dock_erase_cairo_context (myDrawContext);
-	
+	CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN_CAIRO ();
+	///cairo_dock_erase_cairo_context (myDrawContext);
 	if (myData.bWink && myData.pEyelidImage)
 	{
 		cairo_dock_apply_image_buffer_surface_with_offset (myData.pToonImage, myDrawContext,
@@ -114,4 +114,5 @@ void cd_xeyes_render_to_surface (CairoDockModuleInstance *myApplet, int iWidth, 
 			.5*(iHeight - myData.pToonImage->iHeight),
 			1.);
 	}
+	CD_APPLET_FINISH_DRAWING_MY_ICON_CAIRO;
 }

@@ -125,12 +125,13 @@ static void cd_satus_notifier_compute_icon_size (void)
 
 static void cd_satus_notifier_draw_compact_icon (void)
 {
-	cd_debug ("=== %s ()", __func__);
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 	
+	CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN_CAIRO ();
+	
 	// erase all.
-	cairo_dock_erase_cairo_context (myDrawContext);
+	/**cairo_dock_erase_cairo_context (myDrawContext);
 	
 	// draw icons background.
 	if (g_pIconBackgroundBuffer.pSurface != NULL)
@@ -145,7 +146,7 @@ static void cd_satus_notifier_draw_compact_icon (void)
 			0.);
 		cairo_paint (myDrawContext);
 		cairo_restore (myDrawContext);
-	}
+	}*/
 
 	int iIconGap;
 	if (myConfig.bResizeIcon)
@@ -181,17 +182,13 @@ static void cd_satus_notifier_draw_compact_icon (void)
 		}
 	}
 	
+	CD_APPLET_FINISH_DRAWING_MY_ICON_CAIRO;
 	// update cairo/opengl
-	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)  // we are lazy, we could do an opengl rendering.
+	/**if (CD_APPLET_MY_CONTAINER_IS_OPENGL)  // we are lazy, we could do an opengl rendering.
 	{
 		cairo_dock_update_icon_texture (myIcon);
 	}
-	/**else if (myDock)  // les reflets pour cairo.
-	{
-		CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
-	}*/
-	
-	CD_APPLET_REDRAW_MY_ICON;
+	CD_APPLET_REDRAW_MY_ICON;*/
 }
 
 

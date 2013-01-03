@@ -154,7 +154,8 @@ static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, CairoDockModuleInsta
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 	CD_APPLET_LEAVE_IF_FAIL (iHeight != 0, TRUE);
 	
-	cairo_dock_erase_cairo_context (myDrawContext);
+	CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN (FALSE);
+	///cairo_dock_erase_cairo_context (myDrawContext);
 	
 	// items size
 	int x, y, w, h;
@@ -262,6 +263,7 @@ static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, CairoDockModuleInsta
 				x, y, myData.bCanClose ? 1. : .6);
 	}
 	
+	CD_APPLET_FINISH_DRAWING_MY_ICON_CAIRO;
 	CD_APPLET_LEAVE (TRUE);
 }
 
@@ -363,7 +365,6 @@ void cd_app_menu_redraw_buttons (void)
 	else
 	{
 		cd_app_menu_render_step_cairo (myIcon, myApplet);
-		///CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
 	}
 	CD_APPLET_REDRAW_MY_ICON;
 }

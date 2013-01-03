@@ -39,8 +39,8 @@ void cd_animations_draw_unfolding_icon_cairo (Icon *pIcon, CairoDock *pDock, CDA
 	cairo_scale (pCairoContext, z, z);
 	if (g_pIconBackgroundBuffer.pSurface != NULL)  // on ecrase le dessin existant avec l'image de fond des icones.
 	{
-		cairo_save (pCairoContext);
-		cairo_scale(pCairoContext,
+		cairo_dock_apply_image_buffer_surface_at_size (&g_pIconBackgroundBuffer, pCairoContext, w, h, 0, 0, 1);
+		/**cairo_scale(pCairoContext,
 			(double) w / g_pIconBackgroundBuffer.iWidth,
 			(double) h / g_pIconBackgroundBuffer.iHeight);
 		cairo_set_source_surface (pCairoContext,
@@ -48,7 +48,7 @@ void cd_animations_draw_unfolding_icon_cairo (Icon *pIcon, CairoDock *pDock, CDA
 			0.,
 			0.);
 		cairo_paint (pCairoContext);
-		cairo_restore (pCairoContext);
+		cairo_restore (pCairoContext);*/
 	}
 	
 	cairo_save (pCairoContext);
@@ -77,7 +77,7 @@ void cd_animations_draw_unfolding_icon_cairo (Icon *pIcon, CairoDock *pDock, CDA
 	}
 	int i;
 	double dx, dy;
-	int wi, hi;
+	///int wi, hi;
 	Icon *icon;
 	GList *ic;
 	for (ic = pIcon->pSubDock->icons, i = 0; ic != NULL && i < 3; ic = ic->next, i++)
@@ -106,8 +106,8 @@ void cd_animations_draw_unfolding_icon_cairo (Icon *pIcon, CairoDock *pDock, CDA
 				dx = - (.1*i - f*1.5) * h/z;
 		}
 		
-		cairo_dock_get_icon_extent (icon, &wi, &hi);
-		
+		cairo_dock_apply_image_buffer_surface_at_size (&icon->image, pCairoContext, .8 * w, .8 * h, dx, dy, 1. - f);
+		/**cairo_dock_get_icon_extent (icon, &wi, &hi);
 		cairo_save (pCairoContext);
 		cairo_translate (pCairoContext, dx, dy);
 		cairo_scale (pCairoContext, .8 * w / wi, .8 * h / hi);
@@ -116,7 +116,7 @@ void cd_animations_draw_unfolding_icon_cairo (Icon *pIcon, CairoDock *pDock, CDA
 			0,
 			0);
 		cairo_paint_with_alpha (pCairoContext, 1. - f);
-		cairo_restore (pCairoContext);
+		cairo_restore (pCairoContext);*/
 	}
 	cairo_restore (pCairoContext);
 	
@@ -164,14 +164,17 @@ void cd_animations_draw_unfolding_icon (Icon *pIcon, CairoDock *pDock, CDAnimati
 	}
 	glScalef (z, z, 1.);
 	_cairo_dock_enable_texture ();
-	_cairo_dock_set_blend_alpha ();
 	_cairo_dock_set_alpha (1.);
 	if (g_pIconBackgroundBuffer.iTexture != 0)  // on ecrase le dessin existant avec l'image de fond des icones.
 	{
-		_cairo_dock_apply_texture_at_size (g_pIconBackgroundBuffer.iTexture, w, h);
+		_cairo_dock_set_blend_pbuffer ();
+		cairo_dock_apply_image_buffer_texture_at_size (&g_pIconBackgroundBuffer, w, h, 0, 0);
+		///_cairo_dock_apply_texture_at_size (g_pIconBackgroundBuffer.iTexture, w, h);
 	}
+	_cairo_dock_set_blend_alpha ();
 	
-	_cairo_dock_apply_texture_at_size (g_pBoxBelowBuffer.iTexture, w, h);
+	cairo_dock_apply_image_buffer_texture_at_size (&g_pBoxBelowBuffer, w, h, 0, 0);
+	///_cairo_dock_apply_texture_at_size (g_pBoxBelowBuffer.iTexture, w, h);
 	
 	//\______________ On dessine les 3 premieres icones du sous-dock.
 	glMatrixMode(GL_TEXTURE);
@@ -200,11 +203,14 @@ void cd_animations_draw_unfolding_icon (Icon *pIcon, CairoDock *pDock, CDAnimati
 			i --;
 			continue;
 		}
-		glBindTexture (GL_TEXTURE_2D, icon->image.iTexture);
+		cairo_dock_apply_image_buffer_texture_at_size (&icon->image,
+			.8*w, .8*h,
+			0., (.1*(1-i) + f) * h/z);
+		/**glBindTexture (GL_TEXTURE_2D, icon->image.iTexture);
 		_cairo_dock_apply_current_texture_at_size_with_offset (.8*w,
 			.8*h,
 			0.,
-			(.1*(1-i) + f) * h/z);
+			(.1*(1-i) + f) * h/z);*/
 	}
 	glMatrixMode(GL_TEXTURE);
 	glPopMatrix ();
@@ -212,7 +218,8 @@ void cd_animations_draw_unfolding_icon (Icon *pIcon, CairoDock *pDock, CDAnimati
 	
 	//\______________ On dessine la boite devant.
 	_cairo_dock_set_alpha (1.);
-	_cairo_dock_apply_texture_at_size (g_pBoxAboveBuffer.iTexture, w, h);
+	cairo_dock_apply_image_buffer_texture_at_size (&g_pBoxAboveBuffer, w, h, 0, 0);
+	///_cairo_dock_apply_texture_at_size (g_pBoxAboveBuffer.iTexture, w, h);
 	glPopMatrix ();
 	
 	//\_____________________ On dessine son reflet.

@@ -310,16 +310,11 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 	else
 	{
 		cd_clock_draw_text (myApplet, iWidth, iHeight, &myData.currentTime);
-		if (CD_APPLET_MY_CONTAINER_IS_OPENGL)  // on ne sait pas bien dessiner du texte, donc on le fait en cairo, et on transfere tout sur notre texture.
-			cairo_dock_update_icon_texture (myIcon);
+		///if (CD_APPLET_MY_CONTAINER_IS_OPENGL)  // on ne sait pas bien dessiner du texte, donc on le fait en cairo, et on transfere tout sur notre texture.
+		///	cairo_dock_update_icon_texture (myIcon);
 	}
 	
-	/**if (myDock && ! CD_APPLET_MY_CONTAINER_IS_OPENGL)  // les reflets pour cairo.
-	{
-		CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
-	}*/
-	
-	CD_APPLET_REDRAW_MY_ICON;
+	///CD_APPLET_REDRAW_MY_ICON;
 	
 	//\________________ On teste les alarmes et les taches.
 	if (!myConfig.bShowSeconds || myData.currentTime.tm_min != myData.iLastCheckedMinute)  // un g_timeout de 1min ne s'effectue pas forcement a exectement 1 minute d'intervalle, et donc pourrait "sauter" la minute de l'alarme, d'ou le test sur bShowSeconds dans le cas ou l'applet ne verifie que chaque minute.

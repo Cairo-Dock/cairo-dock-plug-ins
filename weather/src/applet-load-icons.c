@@ -64,7 +64,6 @@ static GList * _list_icons (CairoDockModuleInstance *myApplet)
 
 static void _weather_draw_current_conditions (CairoDockModuleInstance *myApplet)
 {
-	g_return_if_fail (myDrawContext != NULL);
 	if (myConfig.bCurrentConditions || myData.bErrorRetrievingData)
 	{
 		cd_message ("  chargement de l'icone meteo (%x)", myApplet);

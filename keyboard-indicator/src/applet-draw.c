@@ -32,39 +32,50 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 	if (bRedrawSurface)  // group has changed -> update the icon and label
 	{
 		//\__________________ On sauvegarde l'ancienne surface/texture.
-		if (myData.pOldSurface != NULL)
+		cairo_dock_free_image_buffer (myData.pOldImage);
+		myData.pOldImage = myData.pCurrentImage;
+		myData.pCurrentImage = NULL;
+		/**if (myData.pOldSurface != NULL)
 			cairo_surface_destroy (myData.pOldSurface);
-		if (myData.iOldTexture != 0)
-			_cairo_dock_delete_texture (myData.iOldTexture);
+		if (myData.pOldImage->iure != 0)
+			_cairo_dock_delete_texture (myData.pOldImage->iure);
 		myData.pOldSurface = myData.pCurrentSurface;
-		myData.iOldTexture = myData.iCurrentTexture;
-		myData.iOldTextWidth = myData.iCurrentTextWidth;
-		myData.iOldTextHeight = myData.iCurrentTextHeight;
+		myData.pOldImage->iure = myData.pCurrentImage->iure;
+		myData.pOldImage->iWidth = myData.pCurrentImage->iWidth;
+		myData.pOldImage->iHeight = myData.pCurrentImage->iHeight;*/
 		
 		//\__________________ On cree la nouvelle surface (la taille du texte peut avoir change).
 		int iWidth, iHeight;
 		CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 		if (iWidth <= 1 && iHeight <= 1)  // peut arriver au lancement en mode desklet.
 		{
-			myData.pCurrentSurface = NULL;
-			myData.iCurrentTexture = 0;
-			myData.iCurrentTextWidth = 0;
-			myData.iCurrentTextHeight = 0;
+			/**myData.pCurrentSurface = NULL;
+			myData.pCurrentImage->iure = 0;
+			myData.pCurrentImage->iWidth = 0;
+			myData.pCurrentImage->iHeight = 0;*/
 			return;
 		}
-		myData.pCurrentSurface = cairo_dock_create_surface_from_text_full (cShortGroupName,
+		int w, h;
+		cairo_surface_t *pSurface = cairo_dock_create_surface_from_text_full (cShortGroupName,
+			&myConfig.textDescription,
+			1.,
+			0,  /// iWidth
+			&w, &h);
+		myData.pCurrentImage = g_new0 (CairoDockImageBuffer, 1);
+		cairo_dock_load_image_buffer_from_surface (myData.pCurrentImage, pSurface, w, h);
+		/**myData.pCurrentSurface = cairo_dock_create_surface_from_text_full (cShortGroupName,
 			&myConfig.textDescription,
 			1.,
 			0*iWidth,
-			&myData.iCurrentTextWidth, &myData.iCurrentTextHeight);
-		cd_debug ("KEYBOARD: %dx%d / %dx%d", myData.iCurrentTextWidth, myData.iCurrentTextHeight, myIcon->image.iWidth, myIcon->image.iHeight);
+			&myData.pCurrentImage->iWidth, &myData.pCurrentImage->iHeight);
+		cd_debug ("KEYBOARD: %dx%d / %dx%d", myData.pCurrentImage->iWidth, myData.pCurrentImage->iHeight, myIcon->image.iWidth, myIcon->image.iHeight);
 		if (g_bUseOpenGL)
 		{
-			myData.iCurrentTexture = cairo_dock_create_texture_from_surface (myData.pCurrentSurface);
-		}
+			myData.pCurrentImage->iure = cairo_dock_create_texture_from_surface (myData.pCurrentSurface);
+		}*/
 		
 		//\__________________ On lance une transition entre ancienne et nouvelle surface/texture, ou on dessine direct.
-		if (myConfig.iTransitionDuration != 0 && myData.pOldSurface != NULL)
+		if (myConfig.iTransitionDuration != 0 && myData.pOldImage != NULL)
 		{
 			CD_APPLET_SET_TRANSITION_ON_MY_ICON (cd_xkbd_render_step_cairo,
 				cd_xkbd_render_step_opengl,
@@ -91,7 +102,7 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 		//\__________________ update the label.
 		CD_APPLET_SET_NAME_FOR_MY_ICON (cGroupName);
 	}
-	else  // only the indicators have changed -> trigger a redraw event only  (overlay update).
+	else  // only the indicators have changed -> trigger a redraw event only (overlay update).
 	{
 		CD_APPLET_REDRAW_MY_ICON;
 	}
@@ -142,6 +153,7 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 
 gboolean cd_xkbd_render_step_opengl (Icon *pIcon, CairoDockModuleInstance *myApplet)
 {
+	g_return_val_if_fail (myData.pCurrentImage != NULL, FALSE);
 	CD_APPLET_ENTER;
 	double f = CD_APPLET_GET_TRANSITION_FRACTION ();
 	cd_debug ("%s (%.2f; %.2fx%.2f)", __func__, f, myIcon->fWidth, myIcon->fHeight);
@@ -166,10 +178,10 @@ gboolean cd_xkbd_render_step_opengl (Icon *pIcon, CairoDockModuleInstance *myApp
 	
 	// image precedente.
 	int w=0, h;
-	if (fTheta < 25 && myData.iOldTexture != 0)  // inutile de dessiner si elle est derriere l'image courante, par l'effet de perspective (en fait 22.5, mais bizarrement ca a l'air un peu trop tot).
+	if (fTheta < 25 && myData.pOldImage != NULL)  // inutile de dessiner si elle est derriere l'image courante, par l'effet de perspective (en fait 22.5, mais bizarrement ca a l'air un peu trop tot).
 	{
 		w = iWidth * myConfig.fTextRatio;  // fill horizontally
-		h = myData.iOldTextHeight * (double)w/myData.iOldTextWidth;  // keep ratio
+		h = myData.pOldImage->iHeight * (double)w/myData.pOldImage->iWidth;  // keep ratio
 		if (h > iHeight * myConfig.fTextRatio)
 		{
 			w *= iHeight * myConfig.fTextRatio / h;
@@ -179,13 +191,13 @@ gboolean cd_xkbd_render_step_opengl (Icon *pIcon, CairoDockModuleInstance *myApp
 		glPushMatrix ();
 		glRotatef (45. + fTheta, 0., 1., 0.);  // 0 -> 90
 		glTranslatef (0., (-iHeight + h)/2, w/2);  // H center, V bottom
-		cairo_dock_apply_texture_at_size (myData.iOldTexture, w, h);
+		cairo_dock_apply_texture_at_size (myData.pOldImage->iTexture, w, h);
 		glPopMatrix ();
 	}
 	
 	// image courante a 90deg.
 	w = iWidth * myConfig.fTextRatio;  // fill horizontally
-	h = myData.iCurrentTextHeight * (double)w/myData.iCurrentTextWidth;  // keep ratio
+	h = myData.pCurrentImage->iHeight * (double)w/myData.pCurrentImage->iWidth;  // keep ratio
 	if (h > iHeight * myConfig.fTextRatio)
 	{
 		w *= iHeight * myConfig.fTextRatio / h;
@@ -197,7 +209,7 @@ gboolean cd_xkbd_render_step_opengl (Icon *pIcon, CairoDockModuleInstance *myApp
 	glRotatef (-90., 0., 1., 0.);*/
 	glRotatef (-45. + fTheta, 0., 1., 0.);  // -90 -> 0
 	glTranslatef (0., (-iHeight + h)/2, w/2);  // H center, V bottom
-	cairo_dock_apply_texture_at_size (myData.iCurrentTexture, w, h);
+	cairo_dock_apply_texture_at_size (myData.pCurrentImage->iTexture, w, h);
 	
 	glDisable (GL_DEPTH_TEST);
 	_cairo_dock_disable_texture ();
@@ -221,8 +233,9 @@ gboolean cd_xkbd_render_step_cairo (Icon *pIcon, CairoDockModuleInstance *myAppl
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 	CD_APPLET_LEAVE_IF_FAIL (iHeight != 0, TRUE);
 	
-	cairo_dock_erase_cairo_context (myDrawContext);
-	
+	///cairo_dock_erase_cairo_context (myDrawContext);
+	CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN_CAIRO (FALSE);
+
 	if (myData.bgImage.pSurface != NULL)
 	{
 		cairo_set_source_surface (
@@ -234,49 +247,50 @@ gboolean cd_xkbd_render_step_cairo (Icon *pIcon, CairoDockModuleInstance *myAppl
 	}
 	
 	double dx, dy, fScale;
-	if (myData.pOldSurface != NULL && 1-f > .01)
+	if (myData.pOldImage != NULL && 1-f > .01)
 	{
-		fScale = (double)iWidth / myData.iOldTextWidth;  // scale to fill the icon horizontally
-		if (fScale * myData.iOldTextHeight > iHeight)  // if the text is too height, scale down
+		fScale = (double)iWidth / myData.pOldImage->iWidth;  // scale to fill the icon horizontally
+		if (fScale * myData.pOldImage->iHeight > iHeight)  // if the text is too height, scale down
 		{
-			fScale = (double)iHeight / myData.iOldTextHeight;  // that's smaller than the previous value.
+			fScale = (double)iHeight / myData.pOldImage->iHeight;  // that's smaller than the previous value.
 		}
-		dx = (iWidth - fScale * myData.iOldTextWidth)/2;  // center horizontally
-		dy = iHeight - fScale * myData.iOldTextHeight;  // bottom (we draw the caps/num lock on top).
+		dx = (iWidth - fScale * myData.pOldImage->iWidth)/2;  // center horizontally
+		dy = iHeight - fScale * myData.pOldImage->iHeight;  // bottom (we draw the caps/num lock on top).
 		
 		cairo_save (myDrawContext);
 		cairo_translate (myDrawContext, dx, dy);
 		cairo_scale (myDrawContext, fScale, fScale);  // keep ratio
 		cairo_set_source_surface (
 			myDrawContext,
-			myData.pOldSurface,
+			myData.pOldImage->pSurface,
 			0,
 			0);
 		cairo_paint_with_alpha (myDrawContext, 1-f);
 		cairo_restore (myDrawContext);
 	}
 	
-	if (myData.pCurrentSurface != NULL)
+	if (myData.pCurrentImage != NULL)
 	{
-		fScale = (double)iWidth / myData.iCurrentTextWidth;  // scale to fill the icon horizontally
-		if (fScale * myData.iCurrentTextHeight > iHeight)  // if the text is too height, scale down
+		fScale = (double)iWidth / myData.pCurrentImage->iWidth;  // scale to fill the icon horizontally
+		if (fScale * myData.pCurrentImage->iHeight > iHeight)  // if the text is too height, scale down
 		{
-			fScale = (double)iHeight / myData.iCurrentTextHeight;  // that's smaller than the previous value.
+			fScale = (double)iHeight / myData.pCurrentImage->iHeight;  // that's smaller than the previous value.
 		}
-		dx = (iWidth - fScale * myData.iCurrentTextWidth)/2;  // center horizontally
-		dy = iHeight - fScale * myData.iCurrentTextHeight;  // bottom (we draw the caps/num lock on top).
+		dx = (iWidth - fScale * myData.pCurrentImage->iWidth)/2;  // center horizontally
+		dy = iHeight - fScale * myData.pCurrentImage->iHeight;  // bottom (we draw the caps/num lock on top).
 		
 		cairo_save (myDrawContext);
 		cairo_translate (myDrawContext, dx, dy);
 		cairo_scale (myDrawContext, fScale, fScale);  // keep ratio
 		cairo_set_source_surface (
 			myDrawContext,
-			myData.pCurrentSurface,
+			myData.pCurrentImage->pSurface,
 			0,
 			0);
 		cairo_paint_with_alpha (myDrawContext, f);
 		cairo_restore (myDrawContext);
 	}
 	
+	CD_APPLET_FINISH_DRAWING_MY_ICON_CAIRO;
 	CD_APPLET_LEAVE (TRUE);
 }

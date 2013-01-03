@@ -418,7 +418,15 @@ static gboolean cd_slider_start_slide (CDListSharedMemory *pSharedMemory)
 		myApplet);  // 0 <=> one shot task.
 	
 	// display the first slide.
-	cd_slider_jump_to_next_slide (myApplet);
+	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
+	if (myData.pList != NULL)
+	{
+		cd_slider_jump_to_next_slide (myApplet);
+	}
+	else  // no images found or folder not defined => no need to launch the loop, display a 'missing' icon
+	{
+		CD_APPLET_SET_IMAGE_ON_MY_ICON ("gtk-missing-image.png");
+	}
 	return FALSE;
 }
 
@@ -440,6 +448,7 @@ void cd_slider_start (CairoDockModuleInstance *myApplet, gboolean bDelay)
 	pSharedMemory->cDirectory = g_strdup (myConfig.cDirectory);
 	pSharedMemory->pApplet = myApplet;
 	
+	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("...");  // Note: we could launch a 'busy' animation, but it's maybe not a good idea to add more CPU load (anyway, the animation should be launched with a g_idle_add, because animations may not be inited yet).
 	myData.pMeasureDirectory = cairo_dock_new_task_full (0,
 		(CairoDockGetDataAsyncFunc) cd_slider_get_files_from_dir,
 		(CairoDockUpdateSyncFunc) cd_slider_start_slide,

@@ -135,10 +135,11 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 {
 	if (myData.switcher.iNbColumns == 0 || myData.switcher.iNbLines == 0)  // may happen in desklet mode with a cube desktop, when the desklet is still 0x0.
 		return;
-	g_return_if_fail (myDrawContext != NULL);
+	CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN_CAIRO ();
+	///g_return_if_fail (myDrawContext != NULL);
 	//g_print ("%s (%d;%d)\n", __func__, myData.switcher.iCurrentLine, myData.switcher.iCurrentColumn);
 	// On efface l'icone.
-	cairo_dock_erase_cairo_context (myDrawContext);
+	///cairo_dock_erase_cairo_context (myDrawContext);
 	
 	// definition des parametres de dessin.
 	int iWidth, iHeight;
@@ -326,10 +327,9 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	cairo_restore (myDrawContext);
 	g_list_free (pWindowList);  // le contenu appartient a la hash table, mais pas la liste.
 	
-	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
-		cairo_dock_update_icon_texture (myIcon);
-	/**else
-		CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;*/
+	CD_APPLET_FINISH_DRAWING_MY_ICON_CAIRO;
+	///if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+	///	cairo_dock_update_icon_texture (myIcon);
 }
 
 

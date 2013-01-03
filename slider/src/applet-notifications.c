@@ -63,6 +63,11 @@ static void _open_current_folder (CairoDockModuleInstance *myApplet)
 }
 static void _cd_slider_action (SliderClickOption iAction, CairoDockModuleInstance *myApplet)
 {
+	if (myConfig.cDirectory == NULL)
+	{
+		cairo_dock_show_temporary_dialog_with_icon (D_("You need to define the images folder first."), myIcon, myContainer, 8000, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+		return;
+	}
 	switch (iAction)
 	{
 		case SLIDER_PAUSE:

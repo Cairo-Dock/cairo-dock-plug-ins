@@ -35,8 +35,9 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 	PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
 	PangoRectangle ink, log;
 	
+	CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN_CAIRO ();
 	// On efface la surface cairo actuelle
-	cairo_dock_erase_cairo_context (myDrawContext);	
+	///cairo_dock_erase_cairo_context (myDrawContext);	
 	
 	// dessin du fond (optionnel).
 	if (myConfig.bDisplayBackground)
@@ -275,11 +276,12 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 	
 	g_object_unref (pLayout);
 	
+	CD_APPLET_FINISH_DRAWING_MY_ICON_CAIRO;
 	// on met a jour la texture OpenGL.
-	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
+	/**if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
 	{
 		cairo_dock_update_icon_texture (myIcon);
-	}
+	}*/
 }
 
 

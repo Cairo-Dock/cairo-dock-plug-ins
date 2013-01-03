@@ -221,11 +221,12 @@ void penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 		cairo_surface_t *pSurface = pAnimation->pSurfaces[myData.iCurrentDirection][myData.iCurrentFrame];
 		g_return_if_fail (pSurface != NULL);
 		
+		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN_CAIRO ();
 		//\________________ On efface l'ancienne image.
-		cairo_set_source_rgba (myDrawContext, 0.0, 0.0, 0.0, 0.0);
+		/**cairo_set_source_rgba (myDrawContext, 0.0, 0.0, 0.0, 0.0);
 		cairo_set_operator (myDrawContext, CAIRO_OPERATOR_SOURCE);
 		cairo_paint (myDrawContext);
-		cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);
+		cairo_set_operator (myDrawContext, CAIRO_OPERATOR_OVER);*/
 		
 		//\________________ On applique la nouvelle image.
 		if (pSurface != NULL)
@@ -241,8 +242,7 @@ void penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 			cairo_restore (myDrawContext);
 		}
 		
-		//\________________ les reflets.
-		///CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
+		CD_APPLET_FINISH_DRAWING_MY_ICON_CAIRO;
 	}
 	
 	CD_APPLET_REDRAW_MY_ICON;
@@ -329,15 +329,12 @@ void penguin_advance_to_next_frame (CairoDockModuleInstance *myApplet, PenguinAn
 			myData.iSleepingTime = 0;
 			if (! myConfig.bFree)
 			{
-				cairo_dock_erase_cairo_context (myDrawContext);  // CD_APPLET_SET_SURFACE_ON_MY_ICON (NULL)
+				CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN_CAIRO ();
+				///cairo_dock_erase_cairo_context (myDrawContext);  // CD_APPLET_SET_SURFACE_ON_MY_ICON (NULL)
 				
-				/**if (myIcon->pReflectionBuffer != NULL)
-				{
-					cairo_surface_destroy (myIcon->pReflectionBuffer);
-					myIcon->pReflectionBuffer = NULL;
-				}*/
-				if (CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer))
-					cairo_dock_update_icon_texture (myIcon);
+				CD_APPLET_FINISH_DRAWING_MY_ICON_CAIRO;
+				///if (CAIRO_DOCK_CONTAINER_IS_OPENGL (myContainer))
+				///	cairo_dock_update_icon_texture (myIcon);
 			}
 			else  // on reste sur la derniere image de l'animation de fin.
 			{
