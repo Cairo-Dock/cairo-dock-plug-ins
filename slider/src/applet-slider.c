@@ -425,7 +425,7 @@ static gboolean cd_slider_start_slide (CDListSharedMemory *pSharedMemory)
 	}
 	else  // no images found or folder not defined => no need to launch the loop, display a 'missing' icon
 	{
-		CD_APPLET_SET_IMAGE_ON_MY_ICON ("gtk-missing-image.png");
+		CD_APPLET_SET_IMAGE_ON_MY_ICON (GTK_STOCK_MISSING_IMAGE);
 	}
 	return FALSE;
 }
