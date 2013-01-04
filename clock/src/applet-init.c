@@ -75,6 +75,51 @@ static void _cd_launch_timer (CairoDockModuleInstance *myApplet)
 		myData.iSidUpdateClock = g_timeout_add_seconds (1, (GSourceFunc) cd_clock_update_with_time, (gpointer) myApplet);
 }
 
+static void _on_resuming (DBusGProxy *proxy_item, CairoDockModuleInstance *myApplet)
+{
+	cd_debug ("Refresh timer after resuming");
+	if (! myConfig.bShowSeconds) // not interesting if the hour is updated each second
+	{
+		g_source_remove (myData.iSidUpdateClock); // stop the timer
+		myData.iSidUpdateClock = 0;
+		_cd_launch_timer (myApplet); // relaunch the timer to be sync with the right second.
+	}
+}
+
+static void _cd_connect_to_resuming_signal (CairoDockModuleInstance *myApplet)
+{
+	myData.pProxyResumingUPower = cairo_dock_create_new_system_proxy (
+		"org.freedesktop.UPower",
+		"/org/freedesktop/UPower",
+		"org.freedesktop.UPower");
+
+	if (myData.pProxyResumingUPower == NULL)
+	{
+		cd_debug ("UPower bus not available, can't connect to 'resuming' signal");
+		return;
+	}
+
+	dbus_g_object_register_marshaller (
+		g_cclosure_marshal_VOID__VOID,
+		G_TYPE_NONE,
+		G_TYPE_INVALID);
+
+	dbus_g_proxy_add_signal (myData.pProxyResumingUPower, "Resuming",
+		G_TYPE_INVALID);
+	dbus_g_proxy_connect_signal (myData.pProxyResumingUPower, "Resuming",
+		G_CALLBACK (_on_resuming), myApplet, NULL);
+}
+
+static void _cd_disconnect_from_resuming_signal (CairoDockModuleInstance *myApplet)
+{
+	if (myData.pProxyResumingUPower)
+	{
+		dbus_g_proxy_disconnect_signal (myData.pProxyResumingUPower, "Resuming",
+			G_CALLBACK (_on_resuming), myApplet);
+		g_object_unref (myData.pProxyResumingUPower);
+	}
+}
+
 CD_APPLET_INIT_BEGIN
 	if (myDesklet)
 	{
@@ -122,6 +167,9 @@ CD_APPLET_INIT_BEGIN
 	
 	//\_______________ On lance le timer.
 	_cd_launch_timer (myApplet);
+
+	//\_______________ Connect to UPower's resuming signal (if available)
+	_cd_connect_to_resuming_signal (myApplet);
 CD_APPLET_INIT_END
 
 
@@ -137,6 +185,9 @@ CD_APPLET_STOP_BEGIN
 	myData.iSidUpdateClock = 0;
 
 	cd_clock_free_timezone_list ();
+
+	//\_______________ Disconnect from UPower's resuming signal
+	_cd_disconnect_from_resuming_signal (myApplet);
 CD_APPLET_STOP_END
 
 
