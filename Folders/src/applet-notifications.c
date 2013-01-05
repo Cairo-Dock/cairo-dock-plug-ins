@@ -487,10 +487,6 @@ static void _on_answer_import (int iClickedButton, GtkWidget *pInteractiveWidget
 	
 	// instanciate the module from this conf file.
 	CairoDockModuleInstance *pNewInstance = cairo_dock_instanciate_module (pModule, cConfFilePath);  // prend le 'cConfFilePath'.
-	if (pNewInstance != NULL && pNewInstance->pDock)
-	{
-		cairo_dock_update_dock_size (pNewInstance->pDock);
-	}
 	
 	// show a success message on the new icon.
 	if (pNewInstance != NULL)
