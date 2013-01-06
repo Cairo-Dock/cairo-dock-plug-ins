@@ -36,10 +36,11 @@ static void _cd_upower_connect_async (CDSharedMemory *pSharedMemory)
 	UpClient *pUPowerClient = up_client_new ();
 	
 	// get the list of devices.
-	if (! up_client_enumerate_devices_sync (pUPowerClient, NULL, NULL))
+	if (pUPowerClient == NULL || ! up_client_enumerate_devices_sync (pUPowerClient, NULL, NULL))
 	{	
 		cd_warning ("couldn't get devices from UPower daemon");
-		g_object_unref (pUPowerClient);
+		if (pUPowerClient)
+			g_object_unref (pUPowerClient);
 		return;
 	}
 	
