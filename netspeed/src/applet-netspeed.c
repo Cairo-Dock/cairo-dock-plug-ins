@@ -119,9 +119,9 @@ void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
 		int iNumLine = 1;
 		gchar *tmp = cContent;
 		long long int iReceivedBytes, iTransmittedBytes;
-		while (TRUE)
+		do
 		{
-			if (iNumLine > 3)  // les 2 premieres lignes sont les noms des champs, la 3eme est la loopback.
+			if (iNumLine > 2)  // first 2 lines are the names of the fields (next lines are the various interfaces, in any order, the loopback is not always the first one).
 			{
 				while (*tmp == ' ')  // on saute les espaces.
 					tmp ++;
@@ -160,10 +160,13 @@ void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
 			tmp ++;
 			iNumLine ++;
 		}
+		while (1);
 		myData.bAcquisitionOK = (tmp != NULL);
 		if (! myData.bInitialized)
 			myData.bInitialized = TRUE;
 	}
+	else
+		myData.bAcquisitionOK = FALSE;
 	g_free (cContent);
 }
 
