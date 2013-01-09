@@ -951,9 +951,12 @@ static gsize cairo_dock_gio_vfs_measure_directory (const gchar *cBaseURI, gint i
 		&erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("gvfs-integration : %s", erreur->message);
+		cd_warning ("gvfs-integration: %s (%s)", erreur->message, cURI);
 		g_error_free (erreur);
 		g_object_unref (pFile);
+		if (cURI != cBaseURI)
+			g_free (cURI);
+		g_atomic_int_set (pCancel, TRUE);
 		return 0;
 	}
 	
@@ -965,7 +968,10 @@ static gsize cairo_dock_gio_vfs_measure_directory (const gchar *cBaseURI, gint i
 		pFileInfo = g_file_enumerator_next_file (pFileEnum, NULL, &erreur);
 		if (erreur != NULL)
 		{
-			cd_warning ("gvfs-integration : %s", erreur->message);
+			cd_warning ("gvfs-integration : %s (%s [%s]: %s)", erreur->message,
+				g_file_info_get_name (pFileInfo),
+				g_file_info_get_display_name (pFileInfo),
+				g_file_info_get_content_type (pFileInfo));
 			g_error_free (erreur);
 			erreur = NULL;
 			continue;
@@ -1000,7 +1006,7 @@ static gsize cairo_dock_gio_vfs_measure_directory (const gchar *cBaseURI, gint i
 		g_object_unref (pFileInfo);
 	} while (! g_atomic_int_get (pCancel));
 	if (*pCancel)
-		cd_debug ("mesure annulee");
+		cd_debug ("measure cancelled");
 	
 	g_object_unref (pFileEnum);
 	g_object_unref (pFile);
