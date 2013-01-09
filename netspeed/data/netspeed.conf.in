@@ -140,7 +140,7 @@ mix graph = false
 frame_param =
 
 #s interface:
-#{By default this will be 'eth0'.}
+#{By default all interfaces will be monitored.}
 interface = 
 
 #i[1;30] Refresh time:

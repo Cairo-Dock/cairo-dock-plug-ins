@@ -32,9 +32,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.fSmoothFactor = CD_CONFIG_GET_DOUBLE ("Configuration", "smooth");
 	
 	myConfig.cInterface = CD_CONFIG_GET_STRING ("Configuration", "interface");
-	if (myConfig.cInterface == NULL)
-		myConfig.cInterface = g_strdup ("eth0");
-	myConfig.iStringLen = strlen (myConfig.cInterface);
+	// if NULL, monitor all interfaces
+	myConfig.iStringLen = myConfig.cInterface ? strlen (myConfig.cInterface) : 0;
 	
 	myConfig.iDisplayType = CD_CONFIG_GET_INTEGER ("Configuration", "renderer");
 	myConfig.iInfoDisplay = CD_CONFIG_GET_INTEGER ("Configuration", "info display");

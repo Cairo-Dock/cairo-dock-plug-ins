@@ -96,6 +96,27 @@ void cd_netspeed_format_value (CairoDataRenderer *pRenderer, int iNumValue, gcha
 		s_upRateFormatted);
 }
 
+static gboolean _cd_is_a_good_interface (gchar *cPointer, CairoDockModuleInstance *myApplet)
+{
+	if (myConfig.cInterface == NULL) // we monitor all interfaces except 'lo'
+	{
+		gchar *cColon = cPointer; // yeah, it's an English word and not a French one :D
+		int iStringLen = 0;
+		while (*cColon != ':') // || *cColon != '\0')
+		{
+			cColon ++;
+			iStringLen ++;
+		}
+		if (strncmp (cPointer, "lo", iStringLen) != 0) // skip 'lo'
+			return iStringLen;
+	}
+	else if (strncmp (cPointer, myConfig.cInterface, myConfig.iStringLen) == 0
+		&& *(cPointer + myConfig.iStringLen) == ':')
+		return myConfig.iStringLen; // the right interface followed by ':'
+
+	return 0;
+}
+
 void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
 {
 	g_timer_stop (myData.pClock);
@@ -103,6 +124,7 @@ void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
 	g_timer_start (myData.pClock);
 	g_return_if_fail (fTimeElapsed > 0.1 || !myData.bInitialized);
 	
+	myData.bAcquisitionOK = FALSE;
 	gchar *cContent = NULL;
 	gsize length=0;
 	GError *erreur = NULL;
@@ -112,61 +134,58 @@ void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
 		cd_warning("NetSpeed : %s", erreur->message);
 		g_error_free(erreur);
 		erreur = NULL;
-		myData.bAcquisitionOK = FALSE;
 	}
 	else if (cContent && *cContent != '\0')
 	{
-		int iNumLine = 1;
+		int iNumLine = 1, iStringLen;
 		gchar *tmp = cContent;
-		long long int iReceivedBytes, iTransmittedBytes;
+		long long int iReceivedBytes = 0, iTransmittedBytes = 0;
 		do
 		{
 			if (iNumLine > 2)  // first 2 lines are the names of the fields (next lines are the various interfaces, in any order, the loopback is not always the first one).
 			{
-				while (*tmp == ' ')  // on saute les espaces.
+				while (*tmp == ' ')  // drop spaces
 					tmp ++;
 				
-				if (strncmp (tmp, myConfig.cInterface, myConfig.iStringLen) == 0 && *(tmp+myConfig.iStringLen) == ':')  // c'est l'interface qu'on veut.
+				if ((iStringLen = _cd_is_a_good_interface (tmp, myApplet)) != 0)
 				{
-					tmp += myConfig.iStringLen+1;  // on saute le ':' avec.
-					while (*tmp == ' ')  // on saute les espaces.
+					myData.bAcquisitionOK = TRUE;
+					tmp += iStringLen+1;  // drop ':'
+					while (*tmp == ' ')  // drop spaces
 						tmp ++;
-					iReceivedBytes = atoll (tmp);
+					iReceivedBytes += atoll (tmp);
 					
 					int i = 0;
-					for (i = 0; i < 8; i ++)  // on saute les 8 valeurs suivantes.
+					for (i = 0; i < 8; i ++)  // drop 8 next values
 					{
-						while (*tmp != ' ')  // saute le chiffre courant.
+						while (*tmp != ' ')  // drop numbers
 							tmp ++;
-						while (*tmp == ' ')  // saute les espaces.
+						while (*tmp == ' ')  // drop spaces
 							tmp ++;
 					}
-					iTransmittedBytes = atoll (tmp);
-					
-					if (myData.bInitialized)  // la 1ere iteration on ne peut pas calculer le debit.
-					{
-						myData.iDownloadSpeed = (iReceivedBytes - myData.iReceivedBytes) / fTimeElapsed;
-						myData.iUploadSpeed = (iTransmittedBytes - myData.iTransmittedBytes) / fTimeElapsed;
-					}
-					
-					myData.iReceivedBytes = iReceivedBytes;
-					myData.iTransmittedBytes = iTransmittedBytes;
-					break ;
+					iTransmittedBytes += atoll (tmp);
+
+					if (myConfig.cInterface != NULL) // only one interface
+						break ;
 				}
 			}
 			tmp = strchr (tmp, '\n');
-			if (tmp == NULL)
+			if (tmp == NULL || *(++tmp) == '\0') // EOF
 				break;
-			tmp ++;
 			iNumLine ++;
 		}
 		while (1);
-		myData.bAcquisitionOK = (tmp != NULL);
+		if (myData.bInitialized)  // first iteration, we can compute the speed
+		{
+			myData.iDownloadSpeed = (iReceivedBytes - myData.iReceivedBytes) / fTimeElapsed;
+			myData.iUploadSpeed = (iTransmittedBytes - myData.iTransmittedBytes) / fTimeElapsed;
+		}
+		myData.iReceivedBytes = iReceivedBytes;
+		myData.iTransmittedBytes = iTransmittedBytes;
+
 		if (! myData.bInitialized)
 			myData.bInitialized = TRUE;
 	}
-	else
-		myData.bAcquisitionOK = FALSE;
 	g_free (cContent);
 }
 

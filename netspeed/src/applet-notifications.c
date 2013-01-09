@@ -39,8 +39,19 @@ CD_APPLET_ON_CLICK_BEGIN
 	}
 	else
 	{
-		gchar *cQuestion = g_strdup_printf (D_("Interface '%s' doesn't seem to exist or is not readable.\n You may have to set up the interface you wish to monitor.\n Do you want to do it now?"), myConfig.cInterface);
-		cairo_dock_show_dialog_with_question (cQuestion, myIcon, myContainer, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, (CairoDockActionOnAnswerFunc) cairo_dock_open_module_config_on_demand, myApplet, NULL);
+		gchar *cQuestion;
+		if (myConfig.iStringLen == 0)
+			cQuestion = g_strdup (D_("No interface found.\n"
+				"Please be sure that at least one interface is available\n"
+				" and that you have the right to monitor it"));
+		else
+			cQuestion = g_strdup_printf (D_("Interface '%s' doesn't seem to exist or is not readable.\n"
+				"You may have to set up the interface you wish to monitor.\n"
+				"Do you want to do it now?"), myConfig.cInterface);
+		cairo_dock_show_dialog_with_question (cQuestion, myIcon, myContainer,
+			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
+			(CairoDockActionOnAnswerFunc) cairo_dock_open_module_config_on_demand,
+			myApplet, NULL);
 		g_free (cQuestion);
 	}
 CD_APPLET_ON_CLICK_END
