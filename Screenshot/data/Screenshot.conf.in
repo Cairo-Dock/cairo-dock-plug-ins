@@ -100,6 +100,6 @@ fg alpha = 1
 [Configuration]
 
 #k Shortkey to take a screenshot
-menu shortkey = PrintScreen
+shortkey = Print
 
 

@@ -25,7 +25,7 @@
 
 
 CD_APPLET_GET_CONFIG_BEGIN
-	myConfig.cShortkey = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "shortkey", "Print");  /// TODO: trouver la cle...
+	myConfig.cShortkey = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "shortkey", "Print");
 CD_APPLET_GET_CONFIG_END
 
 
