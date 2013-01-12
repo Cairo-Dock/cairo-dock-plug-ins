@@ -107,7 +107,7 @@ set (PROGRAMS_MISSING "")
 
 ###########     Misc     ###############
 macro (enable_if_not_defined MODULE1)
-	if (NOT DEFINED MODULE1) # true if not defined
+	if (NOT DEFINED ${MODULE1}) # true if not defined
 		set (${MODULE1} TRUE)
 	endif ()
 endmacro (enable_if_not_defined)
@@ -1177,6 +1177,7 @@ add_subdirectory (show-mouse)
 
 ############# SLIDER #################
 message (STATUS "> Slider:")
+set (with_exif no)
 enable_if_not_defined (enable-exif-support)
 if (enable-exif-support)
 	pkg_check_modules (EXIF libexif)
@@ -1184,7 +1185,6 @@ if (enable-exif-support)
 		message (STATUS "Could not find libexif; Slider won't be able to rotate the images accordingly to their exif data.")
 		message (WARNING "This module is required to compile Slider applet with Exif support: libexif")
 		set (MODULES_MISSING "${MODULES_MISSING} libexif")
-		set (with_exif no)
 	else ()
 		set (with_exif yes)
 	endif()
