@@ -60,6 +60,7 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Screenshot with options"), D_("middle-click"));
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_PROPERTIES, _take_screenshot_with_options, CD_APPLET_MY_MENU);
+	g_free (cLabel);
 CD_APPLET_ON_BUILD_MENU_END
 
 

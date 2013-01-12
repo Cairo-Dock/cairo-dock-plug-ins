@@ -139,13 +139,18 @@ static void _cd_copy_location (GtkMenuItem *pMenuItem, gpointer data)
 
 static gchar *_make_image_name (const gchar *cFolder, const gchar *cFileName)
 {
-	char s_cDateBuffer[51];
+	const gchar *cDestinationDir = cFolder ? cFolder : g_getenv ("HOME");
+	if (cFileName)
+		return g_strdup_printf ("%s/%s.png", cDestinationDir, cFileName);
+
+	char s_cDateBuffer[21];
 	time_t epoch = (time_t) time (NULL);
 	struct tm currentTime;
 	localtime_r (&epoch, &currentTime);
 	
-	strftime (s_cDateBuffer, 50, "screenshot_%Y_%m_%d-%H_%M_%S", &currentTime);
-	return g_strdup_printf ("%s/%s.png", cFolder?cFolder:g_getenv ("HOME"), cFileName?cFileName:s_cDateBuffer);
+	strftime (s_cDateBuffer, 20, "%Y-%m-%d %H:%M:%S", &currentTime);
+	return g_strdup_printf ("%s/%s %s.png", cDestinationDir,
+		D_("Screenshot from"), s_cDateBuffer);
 }
 
 static gchar *_make_screenshot (gboolean bActiveWindow, const gchar *cFolder, const gchar *cFileName)
