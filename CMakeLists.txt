@@ -1136,6 +1136,15 @@ if (enable-scooby-do)
 	add_subdirectory (Scooby-Do)
 endif()
 
+############# SCREENSHOT #################
+message (STATUS "> Screenshot:")
+set (GETTEXT_SCREENSHOT ${GETTEXT_PLUGINS})
+set (VERSION_SCREENSHOT "0.0.1")
+set (PACKAGE_SCREENSHOT "cd-Screenshot")
+set (screenshotdatadir "${pluginsdatadir}/Screenshot")
+configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Screenshot/data/Screenshot.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Screenshot/data/Screenshot.conf)
+add_subdirectory (Screenshot)
+
 ############# SHORTCUTS #################
 message (STATUS "> Shortcuts:")
 set (GETTEXT_SHORTCUTS ${GETTEXT_PLUGINS})
