@@ -26,8 +26,8 @@
 #include "applet-notifications.h"
 #include "applet-rotation.h"
 
-static float fCapsuleObjectPlaneS[4] = { 0.59f*2, 0., 0., 0. }; // pour un plaquages propre des textures
-static float fCapsuleObjectPlaneT[4] = { 0., 0.59f*2, 0., 0. };  // le 2 c'est le 'c'.
+static float fCapsuleObjectPlaneS[4] = { 0.59f*2, 0., 0., 0. }; // to project texture properly
+static float fCapsuleObjectPlaneT[4] = { 0., 0.59f*2, 0., 0. };  // about 2: it's the 'c'.
 
 
 static void init (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL)
@@ -60,38 +60,38 @@ static void cd_animation_render_capsule (Icon *pIcon, CairoDock *pDock, gboolean
 	glEnable(GL_DEPTH_TEST);
 	glEnable (GL_BLEND);
 	/*if (bInvisibleBackground)
-		_cairo_dock_set_blend_alpha ();  // rend la capsule transparente.
+		_cairo_dock_set_blend_alpha ();  // to have a transparency capsule.
 	else
-		glBlendFunc (GL_SRC_ALPHA, GL_ONE);  // la capsule "ecrase" le fond.*/
+		glBlendFunc (GL_SRC_ALPHA, GL_ONE);  // the capsule "erase" the background.*/
 	glEnable(GL_TEXTURE);
 	_cairo_dock_set_blend_alpha ();
 	
-	glActiveTexture(GL_TEXTURE0); // Go pour le multitexturing 1ere passe
-	glEnable(GL_TEXTURE_2D); // On active le texturing sur cette passe
+	glActiveTexture(GL_TEXTURE0); // Active multitexturing for the 1st time
+	glEnable(GL_TEXTURE_2D); // Enable texturing for this time
 	glBindTexture(GL_TEXTURE_2D, myData.iChromeTexture);
-	glEnable(GL_TEXTURE_GEN_S);                                // oui je veux une generation en S
+	glEnable(GL_TEXTURE_GEN_S);                                // yes, we want a S generation
 	glEnable(GL_TEXTURE_GEN_T);
-	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP); // type de generation des coordonnees de la texture
+	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP); // generation's type of coordinates for the texture
 	glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);  // pour les bouts de textures qui depassent.
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);  // for textures that are too large
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	
-	glActiveTexture(GL_TEXTURE1); // Go pour le texturing 2eme passe
+	glActiveTexture(GL_TEXTURE1); // Active multitexturing for the 2d time
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, pIcon->image.iTexture);
 	//glColor4f(1., 1., 1., pIcon->fAlpha);
-	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR); // la je veux un mapping tout ce qu'il y a de plus classique
+	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR); // we want a classical mapping
 	glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);  // pour les bouts de textures qui depassent.
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);  // for textures that are too large
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexGenfv(GL_S, GL_OBJECT_PLANE, fCapsuleObjectPlaneS); // Je decale un peu la texture
+	glTexGenfv(GL_S, GL_OBJECT_PLANE, fCapsuleObjectPlaneS); // we move the texture
 	glTexGenfv(GL_T, GL_OBJECT_PLANE, fCapsuleObjectPlaneT);
-	glEnable(GL_TEXTURE_GEN_S);                                // generation texture en S
-	glEnable(GL_TEXTURE_GEN_T);        // et en T
-	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_EXT); // Le mode de combinaison des textures
-	glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_ADD);  /// ca sature ...
+	glEnable(GL_TEXTURE_GEN_S);                                // texture's generation in S
+	glEnable(GL_TEXTURE_GEN_T);        // and T
+	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_EXT); // combination's mode of the textures
+	glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_ADD);  /// it saturates ...
 	//glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_MODULATE);
-	//glTexEnvf(GL_TEXTURE_ENV, GL_RGB_SCALE, 1.3);  // booster la combinaison.
+	//glTexEnvf(GL_TEXTURE_ENV, GL_RGB_SCALE, 1.3);  // boost the combination
 	
 	glPolygonMode (GL_FRONT, GL_FILL);
 	glCallList (myData.iCallList[CD_CAPSULE_MESH]);
@@ -114,31 +114,31 @@ static void cd_animation_render_cube (Icon *pIcon, CairoDock *pDock, gboolean bI
 	glEnable(GL_DEPTH_TEST);
 	glEnable (GL_BLEND);
 	/*if (bInvisibleBackground)
-		_cairo_dock_set_blend_alpha ();  // rend la capsule transparente.
+		_cairo_dock_set_blend_alpha ();  // to have a transparency cube.
 	else
-		glBlendFunc (GL_SRC_ALPHA, GL_ONE);  // la capsule "ecrase" le fond.
+		glBlendFunc (GL_SRC_ALPHA, GL_ONE);  // the capsule "erase" the background.
 	_cairo_dock_set_blend_alpha ();*/
 	glEnable(GL_TEXTURE);
 	_cairo_dock_set_blend_alpha ();
 	
-	glActiveTexture(GL_TEXTURE0); // Go pour le multitexturing 1ere passe
-	glEnable(GL_TEXTURE_2D); // On active le texturing sur cette passe
+	glActiveTexture(GL_TEXTURE0); // Active multitexturing for the 1st time
+	glEnable(GL_TEXTURE_2D); // Enable texturing for this time
 	glBindTexture(GL_TEXTURE_2D, myData.iChromeTexture);
-	glEnable(GL_TEXTURE_GEN_S);                                // oui je veux une generation en S
+	glEnable(GL_TEXTURE_GEN_S);                                // yes, we want a S generation
 	glEnable(GL_TEXTURE_GEN_T);
-	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP); // type de generation des coordonnees de la texture
+	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP); // generation's type of coordinates for the texture
 	glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);  // pour les bouts de textures qui depassent.
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);  // for textures that are too large
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	
-	glActiveTexture(GL_TEXTURE1); // Go pour le texturing 2eme passe
+	glActiveTexture(GL_TEXTURE1); // Active multitexturing for the 2d time
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, pIcon->image.iTexture);
 	//glColor4f(1., 1., 1., pIcon->fAlpha);
-	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_EXT); // Le mode de combinaison des textures
-	glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_ADD);  /// ca sature ...
+	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_EXT); // combination's mode of the textures
+	glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_ADD);  /// it saturates ...
 	//glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_MODULATE);
-	//glTexEnvf(GL_TEXTURE_ENV, GL_RGB_SCALE, 1.3);  // booster la combinaison.
+	//glTexEnvf(GL_TEXTURE_ENV, GL_RGB_SCALE, 1.3);  // boost the combination
 	
 	glPolygonMode (GL_FRONT, GL_FILL);
 	glCallList (myData.iCallList[CD_CUBE_MESH]);
@@ -160,30 +160,30 @@ static void cd_animation_render_square (Icon *pIcon, CairoDock *pDock, gboolean 
 {
 	glEnable (GL_BLEND);
 	/*if (bInvisibleBackground)
-		_cairo_dock_set_blend_alpha ();  // rend la capsule transparente.
+		_cairo_dock_set_blend_alpha ();  // to have a transparency square.
 	else
-		glBlendFunc (GL_SRC_ALPHA, GL_ONE);  // la capsule "ecrase" le fond.*/
+		glBlendFunc (GL_SRC_ALPHA, GL_ONE);  // the capsule "erase" the background.*/
 	glEnable(GL_TEXTURE);
 	_cairo_dock_set_blend_alpha ();
 	
-	glActiveTexture(GL_TEXTURE0); // Go pour le multitexturing 1ere passe
-	glEnable(GL_TEXTURE_2D); // On active le texturing sur cette passe
+	glActiveTexture(GL_TEXTURE0); // Active multitexturing for the 1st time
+	glEnable(GL_TEXTURE_2D); // Enable texturing for this time
 	glBindTexture(GL_TEXTURE_2D, myData.iChromeTexture);
-	glEnable(GL_TEXTURE_GEN_S);                                // oui je veux une generation en S
+	glEnable(GL_TEXTURE_GEN_S);                                // yes, we want a S generation
 	glEnable(GL_TEXTURE_GEN_T);
-	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP); // type de generation des coordonnees de la texture
+	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP); // generation's type of coordinates for the texture
 	glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);  // pour les bouts de textures qui depassent.
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);  // for textures that are too large
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	
-	glActiveTexture(GL_TEXTURE1); // Go pour le texturing 2eme passe
+	glActiveTexture(GL_TEXTURE1); // Active multitexturing for the 2d time
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, pIcon->image.iTexture);
 	//glColor4f(1., 1., 1., pIcon->fAlpha);
-	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_EXT); // Le mode de combinaison des textures
+	glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE_EXT); // combination's mode of the textures
 	glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_ADD);
 	//glTexEnvi (GL_TEXTURE_ENV, GL_COMBINE_RGB_EXT, GL_MODULATE);
-	//glTexEnvf(GL_TEXTURE_ENV, GL_RGB_SCALE, 1.2);  // booster la combinaison.
+	//glTexEnvf(GL_TEXTURE_ENV, GL_RGB_SCALE, 1.2);  // boost the combination
 	
 	glPolygonMode (GL_FRONT_AND_BACK, GL_FILL);
 	glCallList (myData.iCallList[CD_SQUARE_MESH]);
@@ -278,7 +278,7 @@ static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo
 		if (pDock->container.bUseReflect)
 		{
 			glPushMatrix ();
-			_cairo_dock_set_alpha (myIconsParam.fAlbedo * sqrt (myIconsParam.fAlbedo) * pIcon->fAlpha);  // transparence du reflet, arrange pour essayer de cacher l'absence de degrade :p
+			_cairo_dock_set_alpha (myIconsParam.fAlbedo * sqrt (myIconsParam.fAlbedo) * pIcon->fAlpha);  // reflect's transparency: we try to hide the lack of degrade :p
 			double fOffsetY = pIcon->fHeight * pIcon->fScale + (0 + pIcon->fDeltaYReflection) * pDock->container.fRatio;
 			if (pDock->container.bIsHorizontal)
 			{
@@ -286,7 +286,7 @@ static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo
 				{
 					fOffsetY = pIcon->fHeight * pIcon->fScale + pIcon->fDeltaYReflection;
 					glTranslatef (0., - fOffsetY, 0.);
-					//glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, - pIcon->fHeight * pIcon->fScale, 1.);  // taille du reflet et on se retourne.
+					//glScalef (pIcon->fWidth * pIcon->fWidthFactor * pIcon->fScale, - pIcon->fHeight * pIcon->fScale, 1.);  // reflect's size and we reverse it.
 				}
 				else
 				{
@@ -364,7 +364,7 @@ static gboolean update (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, d
 	else
 	{
 		//if (myConfig.iMeshType == CD_CUBE_MESH)
-			//pIcon->fWidth *= (1 + .2 * 1);  // pour prendre en compte la rotation du cube au depart et a l'arrivee (transition), lorsque le cube n'est pas assez zoome et deborde legerement sur les icones voisines.
+			//pIcon->fWidth *= (1 + .2 * 1);  // the cube is larger than it's icon
 		cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
 		//if (myConfig.iMeshType == CD_CUBE_MESH)
 			//pIcon->fWidth /= (1 + .2 * 1);
