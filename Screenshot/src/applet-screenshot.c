@@ -139,7 +139,11 @@ static void _cd_copy_location (GtkMenuItem *pMenuItem, gpointer data)
 
 static gchar *_make_image_name (const gchar *cFolder, const gchar *cFileName)
 {
-	const gchar *cDestinationDir = cFolder ? cFolder : g_getenv ("HOME");
+	const gchar *cDestinationDir;
+	if (cFolder && g_file_test (cFolder, G_FILE_TEST_IS_DIR))
+		cDestinationDir = cFolder;
+	else
+		cDestinationDir = g_getenv ("HOME");
 	if (cFileName)
 		return g_strdup_printf ("%s/%s.png", cDestinationDir, cFileName);
 
@@ -231,7 +235,7 @@ static void _take_screenshot (CDScreenshotOptions *pOptions)
 {
 	g_free (myData.cCurrentUri);
 	myData.cCurrentUri = _make_screenshot (pOptions?pOptions->bActiveWindow:FALSE,
-		NULL,
+		myConfig.cDirPath,
 		pOptions?pOptions->cName:NULL);
 	
 	if (myData.cCurrentUri)

@@ -99,6 +99,9 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
+#D[Home directory] Default folder's path:
+dir path =
+
 #k Shortkey to take a screenshot
 shortkey = Print
 

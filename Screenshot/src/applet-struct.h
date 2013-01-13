@@ -26,6 +26,7 @@
 
 struct _AppletConfig {
 	gchar *cShortkey;
+	gchar *cDirPath;
 	} ;
 
 typedef struct {
