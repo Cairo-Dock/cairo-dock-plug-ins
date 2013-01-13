@@ -156,7 +156,6 @@ static inline CDAnimationsEffects _get_animation_from_name (const gchar *cName)
 }
 gboolean cd_animations_on_request (gpointer pUserData, Icon *pIcon, CairoDock *pDock, const gchar *cAnimation, gint iNbRounds)
 {
-	g_print ("%s -> %d\n", pIcon->cName, pIcon->iAnimationState);
 	if (cAnimation == NULL || pIcon == NULL || pIcon->iAnimationState > CAIRO_DOCK_STATE_CLICKED)
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
@@ -175,7 +174,6 @@ gboolean cd_animations_on_request (gpointer pUserData, Icon *pIcon, CairoDock *p
 	
 	gboolean bStartAnimation = FALSE;
 	_cd_animations_start (pUserData, pIcon, pDock, anim, &bStartAnimation);
-	g_print ("%s -> %d\n", pIcon->cName, bStartAnimation);
 	if (bStartAnimation)
 	{
 		CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);

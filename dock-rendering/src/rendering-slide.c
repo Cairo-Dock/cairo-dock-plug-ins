@@ -406,7 +406,7 @@ static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 	int Ws = g_desktopGeometry.iXScreenWidth[pDock->container.bIsHorizontal] - 2;  // let 1px on each edge, so that we can leave the dock even if it gets huge.
 	int Hs = g_desktopGeometry.iXScreenHeight[pDock->container.bIsHorizontal] - 2;
 	nIcones = _cd_rendering_diapo_simple_guess_grid (pDock->icons, &nRowsX, &nRowsY, &iNbSeparators);
-	//g_print ("nIcones : %d\n", nIcones);
+	//g_print ("*** nIcones : %d (%dx%d)\n", nIcones, Ws, Hs);
 	
 	if (! pDock->container.bIsHorizontal)
 	{
@@ -490,6 +490,7 @@ static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 			+ fScrollbarWidth;  // donc a droite on a : derniere icone en taille max + demi-gapx + gap + scrollbar + X_BORDER_SPACE
 		iDockWidth += iScrollMargin;
 	}
+	pData->iScrollOffset = MIN (pData->iScrollOffset, iDeltaHeight);  // ensure we don't suddenly become out of range.
 	
 	// taille du dock
 	//if (pDock->container.bIsHorizontal)
