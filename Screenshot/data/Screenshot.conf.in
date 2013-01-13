@@ -103,6 +103,4 @@ fg alpha = 1
 shortkey = Print
 
 #D[home] Save image in
-save in = 
-
-
+dir path =

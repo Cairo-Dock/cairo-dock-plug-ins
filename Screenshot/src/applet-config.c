@@ -26,13 +26,13 @@
 
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cShortkey = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "shortkey", "Print");
-	myConfig.cSaveFolder = CD_CONFIG_GET_STRING ("Configuration", "save in");
+	myConfig.cDirPath = CD_CONFIG_GET_STRING ("Configuration", "dir path");
 CD_APPLET_GET_CONFIG_END
 
 
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cShortkey);
-	g_free (myConfig.cSaveFolder);
+	g_free (myConfig.cDirPath);
 CD_APPLET_RESET_CONFIG_END
 
 
