@@ -366,6 +366,16 @@ static GtkWidget *cd_build_events_widget (void)
 	GtkWidget *pToolBar = gtk_toolbar_new ();
 	///gtk_toolbar_set_orientation (GTK_TOOLBAR (pToolBar), GTK_ORIENTATION_HORIZONTAL);
 	gtk_toolbar_set_style (GTK_TOOLBAR (pToolBar), GTK_TOOLBAR_BOTH);  // overwrite system preference (GTK_TOOLBAR_ICONS)
+	#if (GTK_MAJOR_VERSION > 2)
+	gtk_style_context_add_class (gtk_widget_get_style_context (pToolBar),
+		GTK_STYLE_CLASS_INLINE_TOOLBAR); // style: inline
+	GtkCssProvider *css = gtk_css_provider_new (); // but without border
+	gtk_css_provider_load_from_data (css, ".inline-toolbar.toolbar { "
+		"background: transparent; border-color: transparent; }", -1, NULL);
+	GtkStyleContext *ctx = gtk_widget_get_style_context (pToolBar);
+	gtk_style_context_add_provider (ctx, GTK_STYLE_PROVIDER (css),
+		GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+	#endif
 	gtk_toolbar_set_show_arrow (GTK_TOOLBAR (pToolBar), FALSE);  // force to display all the entries.
 	gtk_box_pack_start (GTK_BOX (pMainBox), pToolBar, TRUE, TRUE, MARGIN);
 	
