@@ -139,7 +139,9 @@ static void _cd_copy_location (GtkMenuItem *pMenuItem, gpointer data)
 
 static gchar *_make_image_name (const gchar *cFolder, const gchar *cFileName)
 {
-	const gchar *cDestinationDir = cFolder ? cFolder : g_getenv ("HOME");
+	const gchar *cDestinationDir = (cFolder ? cFolder : myConfig.cSaveFolder);
+	if (! cDestinationDir || ! g_file_test (cDestinationDir, G_FILE_TEST_EXISTS))
+		cDestinationDir = g_getenv ("HOME");
 	if (cFileName)
 		return g_strdup_printf ("%s/%s.png", cDestinationDir, cFileName);
 

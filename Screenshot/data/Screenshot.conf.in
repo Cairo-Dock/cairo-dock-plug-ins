@@ -102,4 +102,7 @@ fg alpha = 1
 #k Shortkey to take a screenshot
 shortkey = Print
 
+#D[home] Save image in
+save in = 
+
 
