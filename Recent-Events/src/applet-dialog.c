@@ -379,7 +379,7 @@ static GtkWidget *cd_build_events_widget (void)
 	_add_category_button (pToolBar, D_("Video"), "video", i++, group);
 	_add_category_button (pToolBar, D_("Web"), "text-html", i++, group);
 	_add_category_button (pToolBar, D_("Other"), "unknown", i++, group);
-	_add_category_button (pToolBar, D_("Top Results"), "gtk-about", i++, group);
+	_add_category_button (pToolBar, D_("Top Results"), "gtk-about", i, group);
 	
 	// search entry.
 	GtkWidget *pFilterBox = _gtk_hbox_new (CAIRO_DOCK_GUI_MARGIN);
@@ -392,7 +392,7 @@ static GtkWidget *cd_build_events_widget (void)
 	GtkWidget *pEntry = gtk_entry_new ();
 	g_signal_connect (pEntry, "activate", G_CALLBACK (on_activate_filter), NULL);
 	gtk_box_pack_start (GTK_BOX (pFilterBox), pEntry, FALSE, FALSE, MARGIN);
-	gtk_widget_set_tooltip_text (pEntry, "The default boolean operator is AND. Thus the query foo bar will be interpreted as foo AND bar. To exclude a term from the result set prepend it with a minus sign - eg foo -bar. Phrase queries can be done by double quoting the string \"foo is a bar\". You can truncate terms by appending a *. ");
+	gtk_widget_set_tooltip_text (pEntry, D_("The default boolean operator is AND. Thus the query foo bar will be interpreted as foo AND bar. To exclude a term from the result set prepend it with a minus sign - eg foo -bar. Phrase queries can be done by double quoting the string \"foo is a bar\". You can truncate terms by appending a *. "));
 	
 	#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
 	gtk_entry_set_icon_activatable (GTK_ENTRY (pEntry), GTK_ENTRY_ICON_SECONDARY, TRUE);
@@ -435,14 +435,14 @@ static GtkWidget *cd_build_events_widget (void)
 	gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (pOneWidget), -1, NULL, rend, "pixbuf", CD_MODEL_ICON, NULL);
 	// file name
 	rend = gtk_cell_renderer_text_new ();
-	col = gtk_tree_view_column_new_with_attributes (_("File name"), rend, "text", CD_MODEL_NAME, NULL);
+	col = gtk_tree_view_column_new_with_attributes (D_("File name"), rend, "text", CD_MODEL_NAME, NULL);
 	gtk_tree_view_column_set_min_width (col, 200);
 	gtk_tree_view_column_set_max_width (col, MAX (500, g_desktopGeometry.iScreenWidth[CAIRO_DOCK_HORIZONTAL]*.67));
 	gtk_tree_view_column_set_sort_column_id (col, CD_MODEL_NAME);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (pOneWidget), col);
 	// date
 	rend = gtk_cell_renderer_text_new ();
-	col = gtk_tree_view_column_new_with_attributes (_("Last access"), rend, "text", CD_MODEL_DATE, NULL);
+	col = gtk_tree_view_column_new_with_attributes (D_("Last access"), rend, "text", CD_MODEL_DATE, NULL);
 	gtk_tree_view_column_set_cell_data_func (col, rend, (GtkTreeCellDataFunc)_render_date, NULL, NULL);
 	gtk_tree_view_column_set_sort_column_id (col, CD_MODEL_DATE);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (pOneWidget), col);
