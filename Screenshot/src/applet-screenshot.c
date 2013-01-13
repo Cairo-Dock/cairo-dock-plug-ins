@@ -373,6 +373,7 @@ GtkWidget *cd_screenshot_build_options_widget (void)
 	gtk_box_pack_start (GTK_BOX (pBox), pHBox, FALSE, FALSE, _MARGIN);
 	
 	GtkWidget *pLabel = gtk_label_new (D_("Delay"));
+	cairo_dock_set_dialog_widget_text_color (pLabel);
 	gtk_box_pack_start (GTK_BOX (pHBox), pLabel, FALSE, FALSE, _MARGIN);
 	
 	GtkWidget *pScale;
@@ -389,6 +390,7 @@ GtkWidget *cd_screenshot_build_options_widget (void)
 	#endif
 	gtk_scale_set_digits (GTK_SCALE (pScale), 0);
 	g_object_set (pScale, "width-request", 100, NULL);
+	cairo_dock_set_dialog_widget_text_color (pScale);
 	gtk_box_pack_end (GTK_BOX (pHBox), pScale, FALSE, FALSE, _MARGIN);
 	g_object_set_data (G_OBJECT (pBox), "delay", pScale);
 	
@@ -397,6 +399,7 @@ GtkWidget *cd_screenshot_build_options_widget (void)
 	gtk_box_pack_start (GTK_BOX (pBox), pHBox, FALSE, FALSE, _MARGIN);
 	
 	pLabel = gtk_label_new (D_("Current window"));
+	cairo_dock_set_dialog_widget_text_color (pLabel);
 	gtk_box_pack_start (GTK_BOX (pHBox), pLabel, FALSE, FALSE, _MARGIN);
 	
 	GtkWidget *pCheckButton = gtk_check_button_new ();
@@ -408,6 +411,7 @@ GtkWidget *cd_screenshot_build_options_widget (void)
 	gtk_box_pack_start (GTK_BOX (pBox), pHBox, FALSE, FALSE, _MARGIN);
 	
 	pLabel = gtk_label_new (D_("File name"));
+	cairo_dock_set_dialog_widget_text_color (pLabel);
 	gtk_box_pack_start (GTK_BOX (pHBox), pLabel, FALSE, FALSE, _MARGIN);
 	
 	GtkWidget *pEntry = gtk_entry_new ();

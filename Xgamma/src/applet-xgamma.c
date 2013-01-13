@@ -178,7 +178,10 @@ static GtkWidget *_xgamma_add_channel_widget (GtkWidget *pInteractiveWidget, con
 		g_free (cText);
 	}
 	else
+	{
 		gtk_label_set_text (GTK_LABEL (pLabel), cLabel);
+		cairo_dock_set_dialog_widget_text_color (pLabel); // default colour
+	}
 
 	#if GTK_CHECK_VERSION (3, 4, 0)
 	gtk_grid_attach (GTK_GRID (pInteractiveWidget),
@@ -340,6 +343,7 @@ CairoDialog *xgamma_build_dialog_simple (void)
 		"value-changed",
 		G_CALLBACK (on_scale_value_changed_simple),
 		NULL);
+	cairo_dock_set_dialog_widget_text_color (pHScale);
 	
 	attr.cText = D_("Set up gamma:");
 	attr.pInteractiveWidget = pHScale;
