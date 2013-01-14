@@ -46,6 +46,7 @@ struct _AppletData {
 	CairoDockImageBuffer *pOldImage;
 	CairoKeyBinding *pKeyBinding;
 	gboolean bFromShortkey;
+	CairoDialog *pDialog;
 	} ;
 
 #endif

@@ -237,7 +237,7 @@ static void _take_screenshot (CDScreenshotOptions *pOptions)
 {
 	g_free (myData.cCurrentUri);
 	myData.cCurrentUri = _make_screenshot (pOptions?pOptions->bActiveWindow:FALSE,
-		myConfig.cDirPath,
+		pOptions ? pOptions->cFolder : NULL,
 		pOptions?pOptions->cName:NULL);
 	
 	if (myData.cCurrentUri)
@@ -365,6 +365,48 @@ void cd_screenshot_take (CDScreenshotOptions *pOptions)
  /// OPTIONS WIDGET ///
 //////////////////////
 
+static GtkWidget * _add_label_in_new_hbox (const gchar *cLabel, const gchar *cTooltip, GtkWidget *pBox)
+{
+	GtkWidget *pHBox = _gtk_hbox_new (0);
+	gtk_box_pack_start (GTK_BOX (pBox), pHBox, FALSE, FALSE, _MARGIN);
+	
+	GtkWidget *pLabel = gtk_label_new (cLabel);
+	cairo_dock_set_dialog_widget_text_color (pLabel);
+	gtk_box_pack_start (GTK_BOX (pHBox), pLabel, FALSE, FALSE, _MARGIN);
+
+	gtk_widget_set_tooltip_text (pLabel, cTooltip);
+
+	return pHBox;
+}
+
+static void _cairo_dock_pick_a_file (G_GNUC_UNUSED GtkButton *button, GtkWidget *pEntry)
+{
+	GtkWidget* pFileChooserDialog = gtk_file_chooser_dialog_new (
+		D_("Pick up a directory"),
+		GTK_WINDOW (myContainer->pWidget), // pParentWindow,
+		GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER,
+		GTK_STOCK_OK,
+		GTK_RESPONSE_OK,
+		GTK_STOCK_CANCEL,
+		GTK_RESPONSE_CANCEL,
+		NULL);
+	gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (pFileChooserDialog),
+		myConfig.cDirPath ? myConfig.cDirPath : g_getenv ("HOME"));
+	gtk_file_chooser_set_select_multiple (GTK_FILE_CHOOSER (pFileChooserDialog),
+		FALSE);
+
+	gtk_widget_show (pFileChooserDialog);
+	int answer = gtk_dialog_run (GTK_DIALOG (pFileChooserDialog));
+	if (answer == GTK_RESPONSE_OK)
+	{
+		gchar *cDirPath = gtk_file_chooser_get_filename (
+			GTK_FILE_CHOOSER (pFileChooserDialog));
+		gtk_entry_set_text (GTK_ENTRY (pEntry), cDirPath);
+		g_free (cDirPath);
+	}
+	gtk_widget_destroy (pFileChooserDialog);
+}
+
 #if (GTK_MAJOR_VERSION < 3)
 #define Adjustment GtkObject
 #else
@@ -373,15 +415,13 @@ void cd_screenshot_take (CDScreenshotOptions *pOptions)
 
 GtkWidget *cd_screenshot_build_options_widget (void)
 {
+	GtkWidget *pHBox;
+	const gchar *cTooltip;
 	GtkWidget *pBox = _gtk_vbox_new (CAIRO_DOCK_GUI_MARGIN);
-	
-	GtkWidget *pHBox = _gtk_hbox_new (0);
-	gtk_box_pack_start (GTK_BOX (pBox), pHBox, FALSE, FALSE, _MARGIN);
-	
-	GtkWidget *pLabel = gtk_label_new (D_("Delay"));
-	cairo_dock_set_dialog_widget_text_color (pLabel);
-	gtk_box_pack_start (GTK_BOX (pHBox), pLabel, FALSE, FALSE, _MARGIN);
-	
+
+	cTooltip = D_("in seconds.");
+	pHBox = _add_label_in_new_hbox (D_("Delay"), cTooltip, pBox);
+
 	GtkWidget *pScale;
 	Adjustment *pAdjustment = gtk_adjustment_new (0,
 		0,  // min
@@ -399,30 +439,40 @@ GtkWidget *cd_screenshot_build_options_widget (void)
 	cairo_dock_set_dialog_widget_text_color (pScale);
 	gtk_box_pack_end (GTK_BOX (pHBox), pScale, FALSE, FALSE, _MARGIN);
 	g_object_set_data (G_OBJECT (pBox), "delay", pScale);
+	gtk_widget_set_tooltip_text (pScale, cTooltip);
 	
 	
-	pHBox = _gtk_hbox_new (0);
-	gtk_box_pack_start (GTK_BOX (pBox), pHBox, FALSE, FALSE, _MARGIN);
-	
-	pLabel = gtk_label_new (D_("Current window"));
-	cairo_dock_set_dialog_widget_text_color (pLabel);
-	gtk_box_pack_start (GTK_BOX (pHBox), pLabel, FALSE, FALSE, _MARGIN);
-	
+	cTooltip = D_("Grab the current window instead of the all screen");
+	pHBox = _add_label_in_new_hbox (D_("Grab the current window"), cTooltip, pBox);
+
 	GtkWidget *pCheckButton = gtk_check_button_new ();
 	gtk_box_pack_end (GTK_BOX (pHBox), pCheckButton, FALSE, FALSE, _MARGIN);
 	g_object_set_data (G_OBJECT (pBox), "current", pCheckButton);
+	gtk_widget_set_tooltip_text (pCheckButton, cTooltip);
 	
 	
-	pHBox = _gtk_hbox_new (0);
-	gtk_box_pack_start (GTK_BOX (pBox), pHBox, FALSE, FALSE, _MARGIN);
-	
-	pLabel = gtk_label_new (D_("File name"));
-	cairo_dock_set_dialog_widget_text_color (pLabel);
-	gtk_box_pack_start (GTK_BOX (pHBox), pLabel, FALSE, FALSE, _MARGIN);
-	
+	cTooltip = D_("Let empty to use the default one.");
+	pHBox = _add_label_in_new_hbox (D_("File name"), cTooltip, pBox);
+
 	GtkWidget *pEntry = gtk_entry_new ();
 	gtk_box_pack_end (GTK_BOX (pHBox), pEntry, FALSE, FALSE, _MARGIN);
 	g_object_set_data (G_OBJECT (pBox), "name", pEntry);
+	gtk_widget_set_tooltip_text (pEntry, cTooltip);
+	
+	
+	cTooltip = D_("Let empty to use the default one.");
+	pHBox = _add_label_in_new_hbox (D_("Directory"), cTooltip, pBox);
+
+	pEntry = gtk_entry_new ();
+	g_object_set_data (G_OBJECT (pBox), "dir", pEntry);
+	GtkWidget *pButtonFileChooser = gtk_button_new_from_stock (GTK_STOCK_OPEN);
+	g_signal_connect (G_OBJECT (pButtonFileChooser),
+		"clicked",
+		G_CALLBACK (_cairo_dock_pick_a_file),
+		pEntry);
+	gtk_box_pack_end (GTK_BOX (pHBox), pButtonFileChooser, FALSE, FALSE, _MARGIN);
+	gtk_box_pack_end (GTK_BOX (pHBox), pEntry, FALSE, FALSE, _MARGIN);
+	gtk_widget_set_tooltip_text (pEntry, cTooltip);
 	
 	return pBox;
 }
@@ -435,12 +485,14 @@ CDScreenshotOptions *cd_screenshot_get_options_from_widget (GtkWidget *pWidget)
 	GtkWidget *pScale = g_object_get_data (G_OBJECT (pWidget), "delay");
 	GtkWidget *pEntry = g_object_get_data (G_OBJECT (pWidget), "name");
 	GtkWidget *pCheckButton = g_object_get_data (G_OBJECT (pWidget), "current");
+	GtkWidget *pEntryDir = g_object_get_data (G_OBJECT (pWidget), "dir");
 
 	pOptions->iDelay = gtk_range_get_value (GTK_RANGE (pScale));
 	const gchar *cName = gtk_entry_get_text (GTK_ENTRY (pEntry));
 	pOptions->cName = (cName && *cName != '\0' ? g_strdup (cName) : NULL);
 	pOptions->bActiveWindow = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (pCheckButton));
-	pOptions->cFolder = NULL;  /// TODO  ...
+	cName = gtk_entry_get_text (GTK_ENTRY (pEntryDir));
+	pOptions->cFolder = (cName && *cName != '\0' ? g_strdup (cName) : NULL);
 	
 	return pOptions;
 }
