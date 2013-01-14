@@ -63,6 +63,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	
 	cd_screenshot_cancel ();
+	cd_screenshot_free_apps_list (myApplet);
 	
 	cd_keybinder_unbind (myData.pKeyBinding);
 CD_APPLET_STOP_END

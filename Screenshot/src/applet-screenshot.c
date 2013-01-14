@@ -102,7 +102,7 @@ void cd_screenshot_free_apps_list (CairoDockModuleInstance *myApplet)
 {
 	if (myData.pAppList != NULL)
 	{
-		g_list_foreach (myData.pAppList, (GFunc) g_free, NULL);
+		g_list_foreach (myData.pAppList, (GFunc) g_strfreev, NULL);
 		g_list_free (myData.pAppList);
 		myData.pAppList = NULL;
 	}
@@ -259,9 +259,9 @@ static void _on_menu_deactivated (G_GNUC_UNUSED GtkMenuShell *menu, G_GNUC_UNUSE
 static void _take_screenshot (CDScreenshotOptions *pOptions)
 {
 	g_free (myData.cCurrentUri);
-	myData.cCurrentUri = _make_screenshot (pOptions?pOptions->bActiveWindow:FALSE,
+	myData.cCurrentUri = _make_screenshot (pOptions ? pOptions->bActiveWindow : FALSE,
 		pOptions ? pOptions->cFolder : NULL,
-		pOptions?pOptions->cName:NULL);
+		pOptions ? pOptions->cName   : NULL);
 	
 	if (myData.cCurrentUri)
 	{
@@ -276,34 +276,41 @@ static void _take_screenshot (CDScreenshotOptions *pOptions)
 		
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Copy the location"), GTK_STOCK_COPY, _cd_copy_location, pMenu, NULL);
 		
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open"), GTK_STOCK_OPEN, _cd_open, pMenu, NULL);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open"), GTK_STOCK_FILE, _cd_open, pMenu, NULL);
 
-		GList *pApps = cairo_dock_fm_list_apps_for_file (myData.cCurrentUri);
-		if (pApps != NULL)
+		if (myData.pAppList == NULL)
 		{
-			GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Open with"), pMenu, GTK_STOCK_OPEN);
-
-			cd_screenshot_free_apps_list (myApplet);
-
+			/* It's always a .png file always made by Cairo
+			 *  ==> no need to recreate the list, to search for icons, etc.
+			 * But we have to use the right icon and then reverse the list
+			 */
+			myData.pAppList = cairo_dock_fm_list_apps_for_file (myData.cCurrentUri);
 			GList *a;
-			gchar **pAppInfo;
+			gchar **pAppInfo; // name, icon, cmd
 			gchar *cIconPath;
-			for (a = pApps; a != NULL; a = a->next)
+			for (a = myData.pAppList; a != NULL; a = a->next)
 			{
 				pAppInfo = a->data;
-				myData.pAppList = g_list_prepend (myData.pAppList, pAppInfo[1]);
-
 				if (pAppInfo[2] != NULL)
-					cIconPath = cairo_dock_search_icon_s_path (pAppInfo[2], cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR));
-				else
-					cIconPath = NULL;
-				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pAppInfo[0], cIconPath, _cd_launch_with, pSubMenu, pAppInfo[1]);
-				g_free (cIconPath);
-				g_free (pAppInfo[0]);
-				g_free (pAppInfo[2]);
-				g_free (pAppInfo);
+				{
+					cIconPath = cairo_dock_search_icon_s_path (pAppInfo[2],
+						cairo_dock_search_icon_size (GTK_ICON_SIZE_MENU));
+					g_free (pAppInfo[2]);
+					pAppInfo[2] = cIconPath;
+				}
 			}
-			g_list_free (pApps);
+			myData.pAppList = g_list_reverse (myData.pAppList); // it's normal, we received a reversed list
+		}
+		if (myData.pAppList)
+		{
+			GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Open with"), pMenu, GTK_STOCK_OPEN);
+			GList *pItem;
+			gchar **pAppInfo;
+			for (pItem = myData.pAppList; pItem != NULL; pItem = g_list_next (pItem))
+			{
+				pAppInfo = pItem->data;
+				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pAppInfo[0], pAppInfo[2], _cd_launch_with, pSubMenu, pAppInfo[1]);
+			}
 		}
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open parent folder"), GTK_STOCK_DIRECTORY, _cd_open_parent, pMenu, NULL);
 		
