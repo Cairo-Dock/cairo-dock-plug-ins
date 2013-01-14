@@ -139,6 +139,8 @@ static void _cd_copy_location (GtkMenuItem *pMenuItem, gpointer data)
 
 static gchar *_make_image_name (const gchar *cFolder, const gchar *cFileName)
 {
+	gchar *cOutputFile;
+
 	const gchar *cDestinationDir;
 	if (cFolder && g_file_test (cFolder, G_FILE_TEST_IS_DIR))
 		cDestinationDir = cFolder;
@@ -146,17 +148,38 @@ static gchar *_make_image_name (const gchar *cFolder, const gchar *cFileName)
 		cDestinationDir = myConfig.cDirPath;
 	else
 		cDestinationDir = g_getenv ("HOME");
-	if (cFileName)
-		return g_strdup_printf ("%s/%s.png", cDestinationDir, cFileName);
 
-	char s_cDateBuffer[21];
-	time_t epoch = (time_t) time (NULL);
-	struct tm currentTime;
-	localtime_r (&epoch, &currentTime);
-	
-	strftime (s_cDateBuffer, 20, "%Y-%m-%d %H:%M:%S", &currentTime);
-	return g_strdup_printf ("%s/%s %s.png", cDestinationDir,
-		D_("Screenshot from"), s_cDateBuffer);
+	if (cFileName)
+		cOutputFile = g_strdup_printf ("%s/%s.png", cDestinationDir, cFileName);
+	else
+	{
+		char s_cDateBuffer[21];
+		time_t epoch = (time_t) time (NULL);
+		struct tm currentTime;
+		localtime_r (&epoch, &currentTime);
+		
+		strftime (s_cDateBuffer, 20, "%Y-%m-%d %H:%M:%S", &currentTime);
+		cOutputFile = g_strdup_printf ("%s/%s %s.png", cDestinationDir,
+			D_("Screenshot from"), s_cDateBuffer);
+	}
+
+	// if the file exists, add a number
+	if (g_file_test (cOutputFile, G_FILE_TEST_EXISTS))
+	{
+		int i = 1;
+		gchar *cOriginalOutputFile = g_strdup (cOutputFile);
+		gchar *cDot = strrchr (cOriginalOutputFile, '.'); // end with .png
+		cDot[0] = '\0'; // without the extension
+		do
+		{
+			g_free (cOutputFile);
+			cOutputFile = g_strdup_printf ("%s-%d.png", cOriginalOutputFile, i);
+			i++;
+		} while (g_file_test (cOutputFile, G_FILE_TEST_EXISTS));
+		g_free (cOriginalOutputFile);
+	}
+
+	return cOutputFile;
 }
 
 static gchar *_make_screenshot (gboolean bActiveWindow, const gchar *cFolder, const gchar *cFileName)
@@ -391,7 +414,7 @@ static void _cairo_dock_pick_a_file (G_GNUC_UNUSED GtkButton *button, GtkWidget 
 		GTK_RESPONSE_CANCEL,
 		NULL);
 	gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (pFileChooserDialog),
-		myConfig.cDirPath ? myConfig.cDirPath : g_getenv ("HOME"));
+		gtk_entry_get_text (GTK_ENTRY (pEntry)));
 	gtk_file_chooser_set_select_multiple (GTK_FILE_CHOOSER (pFileChooserDialog),
 		FALSE);
 
@@ -464,6 +487,7 @@ GtkWidget *cd_screenshot_build_options_widget (void)
 	pHBox = _add_label_in_new_hbox (D_("Directory"), cTooltip, pBox);
 
 	pEntry = gtk_entry_new ();
+	gtk_entry_set_text (GTK_ENTRY (pEntry), myConfig.cDirPath ? myConfig.cDirPath : g_getenv ("HOME"));
 	g_object_set_data (G_OBJECT (pBox), "dir", pEntry);
 	GtkWidget *pButtonFileChooser = gtk_button_new_from_stock (GTK_STOCK_OPEN);
 	g_signal_connect (G_OBJECT (pButtonFileChooser),
