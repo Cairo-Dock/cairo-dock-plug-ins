@@ -280,7 +280,7 @@ static gboolean _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButt
 						myData.pAppList = g_list_prepend (myData.pAppList, pAppInfo[1]);
 						
 						if (pAppInfo[2] != NULL)
-							cIconPath = cairo_dock_search_icon_s_path (pAppInfo[2], cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR));
+							cIconPath = cairo_dock_search_icon_s_path (pAppInfo[2], cairo_dock_search_icon_size (GTK_ICON_SIZE_MENU));
 						else
 							cIconPath = NULL;
 						CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pAppInfo[0], cIconPath, _cd_launch_with, pSubMenu, pAppInfo[1]);
