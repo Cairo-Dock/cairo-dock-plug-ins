@@ -27,6 +27,9 @@
 CDQuickBrowserItem *cd_quick_browser_make_menu_from_dir (const gchar *cDirPath, CairoDockModuleInstance *myApplet);
 
 
+void cd_quick_browser_free_apps_list (CairoDockModuleInstance *myApplet);
+
+
 void cd_quick_browser_destroy_menu (CairoDockModuleInstance *myApplet);
 
 

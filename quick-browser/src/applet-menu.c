@@ -23,6 +23,7 @@
 #include "applet-menu.h"
 
 static void _on_activate_item (GtkWidget *pMenuItem, CDQuickBrowserItem *pItem);
+static gboolean _on_click_item (GtkWidget *pWidget, GdkEventButton* pButton, CDQuickBrowserItem *pItem);
 
 static int _sort_item (CDQuickBrowserItem *pItem1, CDQuickBrowserItem *pItem2)
 {
@@ -111,9 +112,20 @@ static void _init_fill_menu_from_dir (CDQuickBrowserItem *pItem)
 		pMenuItem = gtk_menu_item_new_with_label (D_("Open this folder"));
 	}
 	gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);
-	g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK(_on_activate_item), pOpenDirItem);
+	g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK(_on_activate_item), pOpenDirItem); // left click
+	g_signal_connect (G_OBJECT (pMenuItem), "button-release-event", G_CALLBACK(_on_click_item), pOpenDirItem); // right click (e.g. open Bonobo or another file mgr)
 }
 
+
+static void _drag_begin (GtkWidget *pWidget, GdkDragContext *pDragContext, GtkWidget *pMenuItem)
+{
+	// add an icon: the current pixbuf (add it now, once and for all).
+	if (GTK_IS_IMAGE_MENU_ITEM (pMenuItem)) // some items don't have any icon.
+	{
+		gtk_drag_source_set_icon_pixbuf (pMenuItem,
+			gtk_image_get_pixbuf (GTK_IMAGE (gtk_image_menu_item_get_image (GTK_IMAGE_MENU_ITEM (pMenuItem)))));  // GTK+ retains a reference on the pixbuf; when pMenuItem disappear, it will naturally loose this reference.
+	}
+}
 
 static void _drag_data_get (GtkWidget *pWidget, GdkDragContext *pDragContext,
 	GtkSelectionData *pSelectionData, guint iInfo, guint iTime, CDQuickBrowserItem *pItem)
@@ -179,7 +191,6 @@ static void _fill_submenu_with_items (CDQuickBrowserItem *pRootItem, int iNbSubI
 
 		//\______________ On l'insere dans le menu.
 		gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);
-		g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK(_on_activate_item), pItem);
 		
 		if (pItem->pSubMenu != NULL)
 		{
@@ -195,14 +206,11 @@ static void _fill_submenu_with_items (CDQuickBrowserItem *pRootItem, int iNbSubI
 			gtk_drag_source_add_text_targets (pMenuItem);
 			gtk_drag_source_add_uri_targets (pMenuItem);
 			
-			// add an icon: the current pixbuf (add it now, once and for all).
-			if (GTK_IS_IMAGE_MENU_ITEM (pMenuItem)) // some items don't have any icon.
-			{
-				gtk_drag_source_set_icon_pixbuf (pMenuItem,
-					gtk_image_get_pixbuf (GTK_IMAGE (gtk_image_menu_item_get_image (GTK_IMAGE_MENU_ITEM (pMenuItem)))));  // GTK+ retains a reference on the pixbuf; when pMenuItem disappear, it will naturally loose this reference.
-			}
-			g_signal_connect (pMenuItem, "drag-data-get", G_CALLBACK (_drag_data_get), pItem);
+			g_signal_connect (G_OBJECT (pMenuItem), "button-release-event", G_CALLBACK(_on_click_item), pItem); // left and right click
+			g_signal_connect (G_OBJECT (pMenuItem), "drag-begin", G_CALLBACK (_drag_begin), pMenuItem); // to create pixbuf
+			g_signal_connect (G_OBJECT (pMenuItem), "drag-data-get", G_CALLBACK (_drag_data_get), pItem); // when the item is dropped
 		}
+		g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK(_on_activate_item), pItem); // select or over (submenu)
 	}
 	pRootItem->pCurrentItem = l;
 }
@@ -227,34 +235,143 @@ static gboolean _fill_submenu_idle (CDQuickBrowserItem *pItem)
 	{
 		CairoDockModuleInstance *myApplet = pItem->pApplet;
 		myData.iSidFillDirIdle = 0;
+		gtk_widget_realize (pItem->pSubMenu); // force to compute the size of the menu before displaying it -> avoid big menu that are out of the screen
 		gtk_widget_show_all (pItem->pSubMenu);
 		CD_APPLET_LEAVE (FALSE);
-		//return FALSE;
 	}
 	CD_APPLET_LEAVE (TRUE);
-	//return TRUE;
 }
 static void _on_activate_item (GtkWidget *pMenuItem, CDQuickBrowserItem *pItem)
 {
-	//g_print ("%s (%s, %x)\n", __func__, pItem->cPath, pItem->pSubMenu);
+	g_return_if_fail (pItem != NULL);
 	CairoDockModuleInstance *myApplet = pItem->pApplet;
 	CD_APPLET_ENTER;
 	if (pItem->pSubMenu != NULL)
 	{
 		if (! pItem->bMenuBuilt)
 		{
-			//g_print ("  c'est un repertoire (tache courante : %d)\n", myData.iSidFillDirIdle);
 			if (myData.iSidFillDirIdle != 0)
 				g_source_remove (myData.iSidFillDirIdle);
 			myData.iSidFillDirIdle = g_idle_add ((GSourceFunc) _fill_submenu_idle, pItem);
 		}
 	}
-	else
+	else // left click, no drag
 	{
 		cairo_dock_fm_launch_uri (pItem->cPath);
 		cd_quick_browser_destroy_menu (myApplet);
 	}
 	CD_APPLET_LEAVE ();
+}
+
+static void _free_app_list_data (gpointer *data)
+{
+	gchar *cExec = data[1];
+	g_free (cExec);
+	g_free (data);
+}
+
+void cd_quick_browser_free_apps_list (CairoDockModuleInstance *myApplet)
+{
+	if (myData.pAppList != NULL)
+	{
+		g_list_foreach (myData.pAppList, (GFunc) _free_app_list_data, NULL);
+		g_list_free (myData.pAppList);
+		myData.pAppList = NULL;
+	}
+}
+
+static void _cd_launch_with (GtkMenuItem *pMenuItem, gpointer *data)
+{
+	CDQuickBrowserItem *pItem = data[0];
+	const gchar *cExec = data[1];
+
+	cairo_dock_launch_command_printf ("%s \"%s\"", NULL, cExec, pItem->cPath);  // in case the program doesn't handle URI (geeqie, etc).
+
+	cd_quick_browser_destroy_menu (pItem->pApplet);
+}
+
+static void _cd_open_parent (GtkMenuItem *pMenuItem, CDQuickBrowserItem *pItem)
+{
+	gchar *cUri = g_filename_to_uri (pItem->cPath, NULL, NULL);
+	gchar *cFolder = g_path_get_dirname (cUri);
+	cairo_dock_fm_launch_uri (cFolder);
+	g_free (cFolder);
+	g_free (cUri);
+
+	cd_quick_browser_destroy_menu (pItem->pApplet);
+}
+static void _cd_copy_location (GtkMenuItem *pMenuItem, CDQuickBrowserItem *pItem)
+{
+	GtkClipboard *pClipBoard;
+	pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);  // GDK_SELECTION_PRIMARY
+
+	gtk_clipboard_set_text (pClipBoard, pItem->cPath, -1);
+
+	cd_quick_browser_destroy_menu (pItem->pApplet);
+}
+static gboolean _on_click_item (GtkWidget *pWidget, GdkEventButton* pButton, CDQuickBrowserItem *pItem)
+{
+	g_return_val_if_fail (pItem != NULL, FALSE);
+	CairoDockModuleInstance *myApplet = pItem->pApplet;
+	CD_APPLET_ENTER;
+
+	if (pButton->button == 3) // right click
+	{
+		gchar *cUri = g_filename_to_uri (pItem->cPath, NULL, NULL);
+		g_return_val_if_fail (cUri != NULL, FALSE);
+
+		GtkWidget *pMenu = gtk_menu_new ();
+		
+		GList *pApps = cairo_dock_fm_list_apps_for_file (cUri);
+		if (pApps != NULL)
+		{
+			GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Open with"), pMenu, GTK_STOCK_OPEN);
+
+			cd_quick_browser_free_apps_list (myApplet);
+
+			GList *a;
+			gchar **pAppInfo;
+			gchar *cIconPath;
+			for (a = pApps; a != NULL; a = a->next)
+			{
+				pAppInfo = a->data;
+
+				if (pAppInfo[2] != NULL)
+					cIconPath = cairo_dock_search_icon_s_path (pAppInfo[2], cairo_dock_search_icon_size (GTK_ICON_SIZE_MENU));
+				else
+					cIconPath = NULL;
+
+				gpointer *data = g_new (gpointer, 2);
+				data[0] = pItem;
+				data[1] = pAppInfo[1];
+				myData.pAppList = g_list_prepend (myData.pAppList, data); // to save the exec command
+
+				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pAppInfo[0], cIconPath, _cd_launch_with, pSubMenu, data);
+
+				g_free (cIconPath);
+				g_free (pAppInfo[0]);
+				g_free (pAppInfo[2]);
+				g_free (pAppInfo);
+			}
+			g_list_free (pApps);
+		}
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open parent folder"), GTK_STOCK_DIRECTORY, _cd_open_parent, pMenu, pItem);
+		
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Copy the location"), GTK_STOCK_COPY, _cd_copy_location, pMenu, pItem);
+		
+		gtk_widget_show_all (pMenu);
+		gtk_menu_popup (GTK_MENU (pMenu),
+			NULL,
+			NULL,
+			NULL,  // popup on mouse.
+			NULL,
+			1,
+			gtk_get_current_event_time ());
+		g_free (cUri);
+		CD_APPLET_LEAVE (TRUE); // do not remove quick_browser menu now
+	}
+
+	CD_APPLET_LEAVE (FALSE);
 }
 
 CDQuickBrowserItem *cd_quick_browser_make_menu_from_dir (const gchar *cDirPath, CairoDockModuleInstance *myApplet)
