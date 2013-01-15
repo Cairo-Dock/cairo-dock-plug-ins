@@ -250,8 +250,10 @@ static gchar *_make_screenshot (gboolean bActiveWindow, const gchar *cFolder, co
 	return cName;
 }
 
+
 static void _on_menu_deactivated (G_GNUC_UNUSED GtkMenuShell *menu, G_GNUC_UNUSED gpointer data)
 {
+	CD_APPLET_REMOVE_TRANSITION_ON_MY_ICON;
 	CD_APPLET_STOP_DEMANDING_ATTENTION;
 	CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->cFileName);
 }
