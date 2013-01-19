@@ -42,8 +42,8 @@ CD_APPLET_DEFINE_END
 static gboolean _reversed_buttons_order (void)
 {	// TRUE: on the left (close, min, max) || FALSE: on the right (min, max, close)
 	if (myConfig.iButtonsOrder == CD_GM_BUTTON_ORDER_AUTO
-	        && ((myDock && (int) myIcon->fXAtRest < (g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL] / 2))
-	        || (myDesklet && myDesklet->container.iWindowPositionX < (g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL] / 2))))
+	        && ((myDock && (int) myIcon->fXAtRest < (myDock->container.iWidth / 2))
+	        || (myDesklet && myDesklet->container.iWindowPositionX < (g_desktopGeometry.Xscreen.width / 2))))
 		return TRUE;
 	return (myConfig.iButtonsOrder == CD_GM_BUTTON_ORDER_LEFT);
 }

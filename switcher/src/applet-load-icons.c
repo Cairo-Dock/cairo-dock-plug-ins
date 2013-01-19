@@ -213,7 +213,7 @@ void cd_switcher_load_desktop_bg_map_surface (void)
 	//g_print ("%s (%dx%d)\n", __func__, myData.iSurfaceWidth, myData.iSurfaceHeight);
 	
 	myData.pDesktopBgMapSurface = cairo_dock_duplicate_surface (pBgSurface,
-		g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL], g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL],
+		g_desktopGeometry.Xscreen.width, g_desktopGeometry.Xscreen.height,
 		myData.iSurfaceWidth, myData.iSurfaceHeight);
 	
 	cairo_dock_destroy_desktop_background (db);

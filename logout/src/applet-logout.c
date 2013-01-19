@@ -281,7 +281,7 @@ static GtkWidget *_build_menu (void)
 	}
 
 	if ((myDock && myDock->container.bIsHorizontal && ! myDock->container.bDirectionUp)  // on the top, we inverse the menu (mainly to be close to what others do).
-		|| (myDesklet && myDesklet->container.iWindowPositionY < (g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL] / 2)))
+		|| (myDesklet && myDesklet->container.iWindowPositionY < (g_desktopGeometry.Xscreen.height / 2)))
 	{
 		GList *children = gtk_container_get_children (GTK_CONTAINER (pMenu));
 		GList *pMenuList;
@@ -304,7 +304,7 @@ static void _display_menu (void)
 	
 	// select the first (or last) item, which corresponds to the 'shutdown' action.
 	if ((myDock && myDock->container.bIsHorizontal && ! myDock->container.bDirectionUp)  // on the top, we inverse the menu
-		|| (myDesklet && myDesklet->container.iWindowPositionY < (g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL] / 2)))
+		|| (myDesklet && myDesklet->container.iWindowPositionY < (g_desktopGeometry.Xscreen.height / 2)))
 	{
 		GList *children = gtk_container_get_children (GTK_CONTAINER (pMenu));
 		GList *last_child = g_list_last (children);

@@ -403,8 +403,8 @@ static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 	int iDeltaHeight = 0;  // hauteur ne pouvant rentrer dans le dock.
 	int iMaxIconWidth = 0;
 	int iDockWidth, iDockHeight;  // dimension dock.
-	int Ws = g_desktopGeometry.iXScreenWidth[pDock->container.bIsHorizontal] - 2;  // let 1px on each edge, so that we can leave the dock even if it gets huge.
-	int Hs = g_desktopGeometry.iXScreenHeight[pDock->container.bIsHorizontal] - 2;
+	int Ws = gldi_dock_get_screen_width (pDock) - 2;  // let 1px on each edge, so that we can leave the dock even if it gets huge.
+	int Hs = gldi_dock_get_screen_height (pDock) - 2;
 	nIcones = _cd_rendering_diapo_simple_guess_grid (pDock->icons, &nRowsX, &nRowsY, &iNbSeparators);
 	//g_print ("*** nIcones : %d (%dx%d)\n", nIcones, Ws, Hs);
 	
@@ -1783,11 +1783,13 @@ void cd_rendering_set_subdock_position_slide (Icon *pPointedIcon, CairoDock *pDo
 	
 	///int iX = pPointedIcon->fXAtRest - (pDock->fFlatDockWidth - pDock->iMaxDockWidth) / 2 + pPointedIcon->fWidth / 2 + (pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2);
 	//int iX = pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2 + (pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2);
+	int W = gldi_dock_get_screen_width (pDock);
+	int iScreenOffsetX = gldi_dock_get_screen_offset_x (pDock);
 	int iX = pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2;
 	if (pSubDock->container.bIsHorizontal == pDock->container.bIsHorizontal)
 	{
 		pSubDock->fAlign = 0.5;
-		pSubDock->iGapX = iX + pDock->container.iWindowPositionX - (pDock->container.bIsHorizontal ? pDock->iScreenOffsetX : pDock->iScreenOffsetY) - g_desktopGeometry.iScreenWidth[pDock->container.bIsHorizontal] / 2;  // ici les sous-dock ont un alignement egal a 0.5
+		pSubDock->iGapX = iX + pDock->container.iWindowPositionX - iScreenOffsetX - W / 2;  // ici les sous-dock ont un alignement egal a 0.5
 		pSubDock->iGapY = pDock->iGapY + pDock->iActiveHeight;
 	}
 	else
@@ -1795,14 +1797,14 @@ void cd_rendering_set_subdock_position_slide (Icon *pPointedIcon, CairoDock *pDo
 		pSubDock->fAlign = (pDock->container.bDirectionUp ? 1 : 0);
 		pSubDock->iGapX = (pDock->iGapY + pDock->iActiveHeight) * (pDock->container.bDirectionUp ? -1 : 1);
 		if (pDock->container.bDirectionUp)
-			pSubDock->iGapY = g_desktopGeometry.iScreenWidth[pDock->container.bIsHorizontal] - (iX + pDock->container.iWindowPositionX - (pDock->container.bIsHorizontal ? pDock->iScreenOffsetX : pDock->iScreenOffsetY)) - pSubDock->iMaxDockHeight / 2;  // les sous-dock ont un alignement egal a 1.
+			pSubDock->iGapY = W - (iX + pDock->container.iWindowPositionX - iScreenOffsetX) - pSubDock->iMaxDockHeight / 2;  // les sous-dock ont un alignement egal a 1.
 		else
 			pSubDock->iGapY = iX + pDock->container.iWindowPositionX - pSubDock->iMaxDockHeight / 2;  // les sous-dock ont un alignement egal a 0.
 	}
 	
 	pData->iDeltaIconX = MIN (0, iX + pDock->container.iWindowPositionX - pSubDock->iMaxDockWidth/2);
 	if (pData->iDeltaIconX == 0)
-		pData->iDeltaIconX = MAX (0, iX + pDock->container.iWindowPositionX + pSubDock->iMaxDockWidth/2 - g_desktopGeometry.iScreenWidth[pDock->container.bIsHorizontal]);
+		pData->iDeltaIconX = MAX (0, iX + pDock->container.iWindowPositionX + pSubDock->iMaxDockWidth/2 - W);
 	//g_print ("iDeltaIconX: %d\n", pData->iDeltaIconX);
 	
 	if (pData->iDeltaIconX != 0)  // il y'a un decalage, on va limiter la pente du cote le plus court de la pointe a 30 degres.

@@ -69,8 +69,8 @@ static void _cd_switcher_get_best_agencement (int iNbViewports, int *iBestNbLine
 	{
 		iNbDesktopByLine = ceil ((double)iNbViewports / iNbLines);
 		
-		fZoomX = (double)w / (iNbDesktopByLine * g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL]);
-		fZoomY = (double)h / (iNbLines * g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL]);
+		fZoomX = (double)w / (iNbDesktopByLine * g_desktopGeometry.Xscreen.width);
+		fZoomY = (double)h / (iNbLines * g_desktopGeometry.Xscreen.height);
 		fZoom = MIN (fZoomX, fZoomY);  // on preserve le ratio
 		//cd_debug ("%d lignes => iNbDesktopByLine: %d, zooms: %.3f,%.3f", iNbLines, iNbDesktopByLine, fZoomX, fZoomY);
 		if (fZoom > fZoomMax)

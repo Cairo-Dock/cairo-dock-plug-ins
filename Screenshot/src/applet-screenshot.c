@@ -207,8 +207,8 @@ static gchar *_make_screenshot (gboolean bActiveWindow, const gchar *cFolder, co
 	else
 	{
 		Xid = cairo_dock_get_root_id();
-		w = g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL];
-		h = g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
+		w = g_desktopGeometry.Xscreen.width;
+		h = g_desktopGeometry.Xscreen.height;
 	}
 	cairo_surface_t *s = cairo_xlib_surface_create (display,
 		Xid,

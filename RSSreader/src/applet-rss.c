@@ -692,7 +692,7 @@ void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
 		PangoFontDescription *fd = pango_font_description_from_string ("");
 		pango_layout_set_font_description (pLayout, fd);
 		
-		int w = MIN (600, g_desktopGeometry.iScreenWidth[CAIRO_DOCK_HORIZONTAL]/2);
+		int w = MIN (600, g_desktopGeometry.Xscreen.width / g_desktopGeometry.iNbScreens / 2);  // we don't know on which screen is place the container...
 		gchar *cLine;
 		GtkWidget *pLinkButton, *pAlign;
 		CDRssItem *pItem;

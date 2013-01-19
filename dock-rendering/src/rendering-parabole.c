@@ -78,7 +78,9 @@ static void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, Cair
 	//int iX = iMouseX + (-iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2) / 2;
 	int iX = iMouseX;
 	
-	if ((pDock->container.iWindowPositionX - (pDock->container.bIsHorizontal ? pDock->iScreenOffsetX : pDock->iScreenOffsetY) + pPointedIcon->fDrawX < g_desktopGeometry.iScreenWidth[pDock->container.bIsHorizontal] / 2) ^ my_bParaboleCurveOutside)
+	int W = gldi_dock_get_screen_width (pDock);
+	int iScreenOffsetX = gldi_dock_get_screen_offset_x (pDock);
+	if ((pDock->container.iWindowPositionX - iScreenOffsetX + pPointedIcon->fDrawX < W / 2) ^ my_bParaboleCurveOutside)
 	{
 		///iX = iMouseX + MIN (0, -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2);
 		iX = pPointedIcon->fDrawX;
@@ -90,7 +92,7 @@ static void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, Cair
 		//cd_debug ("recalage : %.2f (%d)", -iMouseX + pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2, pSubDock->iMaxLabelWidth);
 		pSubDock->fAlign = 0;
 		pSubDock->iGapY = (pDock->iGapY + pDock->iActiveHeight);
-		pSubDock->iGapX = iX + pDock->container.iWindowPositionX - (pDock->container.bIsHorizontal ? pDock->iScreenOffsetX : pDock->iScreenOffsetY) - pSubDock->iMaxLabelWidth;
+		pSubDock->iGapX = iX + pDock->container.iWindowPositionX - iScreenOffsetX - pSubDock->iMaxLabelWidth;
 	}
 	else
 	{
@@ -103,7 +105,7 @@ static void cd_rendering_set_subdock_position_parabole (Icon *pPointedIcon, Cair
 		}
 		pSubDock->fAlign = 1;
 		pSubDock->iGapY = (pDock->iGapY + pDock->iActiveHeight);
-		pSubDock->iGapX =  pDock->container.iWindowPositionX - (pDock->container.bIsHorizontal ? pDock->iScreenOffsetX : pDock->iScreenOffsetY) + iX - g_desktopGeometry.iScreenWidth[pDock->container.bIsHorizontal] + pSubDock->iMaxLabelWidth;
+		pSubDock->iGapX =  pDock->container.iWindowPositionX - iScreenOffsetX + iX - W + pSubDock->iMaxLabelWidth;
 		
 	}
 	//cd_debug ("pSubDock->iGapY : %d", pSubDock->iGapY);
@@ -214,7 +216,7 @@ static void cd_rendering_calculate_reference_parabole (double alpha)
 		s_pReferenceParaboleT[0] = 0;
 	}
 	
-	double w = g_desktopGeometry.iScreenHeight[CAIRO_DOCK_HORIZONTAL] / my_fParaboleRatio;
+	double w = g_desktopGeometry.Xscreen.height / my_fParaboleRatio;
 	double lambda = my_fParaboleRatio * pow (w, 1 - alpha);
 	double s=0, ds = 1;
 	double x = 0, y = 0, theta = 0;
@@ -241,7 +243,7 @@ static void cd_rendering_calculate_reference_parabole (double alpha)
 
 double cd_rendering_interpol_curvilign_abscisse (double x, double y, double lambda, double alpha)
 {
-	double w = g_desktopGeometry.iScreenHeight[CAIRO_DOCK_HORIZONTAL] / my_fParaboleRatio;  // aie, au changement de resolution ...
+	double w = g_desktopGeometry.Xscreen.height / my_fParaboleRatio;  // aie, au changement de resolution ...
 	double lambda_reference = my_fParaboleRatio * pow (w, 1 - alpha);
 	//cd_debug ("%s (%.2f / %.2f)", __func__, lambda, lambda_reference);
 	if (my_fParaboleRatio < 1)
@@ -271,8 +273,8 @@ static void cd_rendering_calculate_max_dock_size_parabole (CairoDock *pDock)
 	pDock->fMagnitudeMax = my_fParaboleMagnitude;
 	cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth);
 	
-	int Ws = g_desktopGeometry.iXScreenWidth[pDock->container.bIsHorizontal] - 2;  // let 1px on each edge, so that we can leave the dock even if it gets huge.
-	int Hs = g_desktopGeometry.iXScreenHeight[pDock->container.bIsHorizontal] - 2;
+	int Ws = gldi_dock_get_screen_width (pDock) - 2;  // let 1px on each edge, so that we can leave the dock even if it gets huge.
+	int Hs = gldi_dock_get_screen_height (pDock) - 2;
 	int iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->fFlatDockWidth, 1., 0));
 	GList* ic;
 	Icon *icon;

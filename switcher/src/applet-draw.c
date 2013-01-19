@@ -50,22 +50,22 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDeskto
 	
 	// On calcule les coordonnees en repere absolu.
 	int x = pIcon->windowGeometry.x;  // par rapport au viewport courant.
-	x += myData.switcher.iCurrentViewportX * g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL];  // repere absolu
+	x += myData.switcher.iCurrentViewportX * g_desktopGeometry.Xscreen.width;  // repere absolu
 	if (x < 0)
-		x += g_desktopGeometry.iNbViewportX * g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL];
+		x += g_desktopGeometry.iNbViewportX * g_desktopGeometry.Xscreen.width;
 	int y = pIcon->windowGeometry.y;
-	y += myData.switcher.iCurrentViewportY * g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
+	y += myData.switcher.iCurrentViewportY * g_desktopGeometry.Xscreen.height;
 	if (y < 0)
-		y += g_desktopGeometry.iNbViewportY * g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
+		y += g_desktopGeometry.iNbViewportY * g_desktopGeometry.Xscreen.height;
 	int w = pIcon->windowGeometry.width, h = pIcon->windowGeometry.height;
 	
 	// test d'intersection avec le viewport donne.
 	//g_print (" %s : (%d;%d) %dx%d\n", pIcon->cName, x, y, w, h);
 	if ((pIcon->iNumDesktop != -1 && pIcon->iNumDesktop != iNumDesktop) ||
-		x + w <= iNumViewportX * g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL] ||
-		x >= (iNumViewportX + 1) * g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL] ||
-		y + h <= iNumViewportY * g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL] ||
-		y >= (iNumViewportY + 1) * g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL])
+		x + w <= iNumViewportX * g_desktopGeometry.Xscreen.width ||
+		x >= (iNumViewportX + 1) * g_desktopGeometry.Xscreen.width ||
+		y + h <= iNumViewportY * g_desktopGeometry.Xscreen.height ||
+		y >= (iNumViewportY + 1) * g_desktopGeometry.Xscreen.height)
 		return ;
 	
 	// on dessine ses traits.
@@ -78,10 +78,10 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDeskto
 	else
 		cairo_set_source_rgba (pCairoContext, myConfig.RGBWLineColors[0], myConfig.RGBWLineColors[1], myConfig.RGBWLineColors[2], myConfig.RGBWLineColors[3]);
 	cairo_rectangle (pCairoContext,
-		(1.*x/g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL] - iNumViewportX)*iOneViewportWidth,
-		(1.*y/g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL] - iNumViewportY)*iOneViewportHeight,
-		1.*w/g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL]*iOneViewportWidth,
-		1.*h/g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL]*iOneViewportHeight);
+		(1.*x/g_desktopGeometry.Xscreen.width - iNumViewportX)*iOneViewportWidth,
+		(1.*y/g_desktopGeometry.Xscreen.height - iNumViewportY)*iOneViewportHeight,
+		1.*w/g_desktopGeometry.Xscreen.width*iOneViewportWidth,
+		1.*h/g_desktopGeometry.Xscreen.height*iOneViewportHeight);
 
 	if (myConfig.bFillAllWindows || pIcon->Xid == iActiveWindow)
 	{
@@ -98,13 +98,13 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDeskto
 		const CairoDockImageBuffer *pImage = cairo_dock_appli_get_image_buffer (pIcon);
 		if (pImage && pImage->pSurface)
 		{
-			double fZoomX = (double) w/g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL]*iOneViewportWidth / pImage->iWidth;
-			double fZoomY = (double) h/g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL]*iOneViewportHeight / pImage->iHeight;
+			double fZoomX = (double) w/g_desktopGeometry.Xscreen.width*iOneViewportWidth / pImage->iWidth;
+			double fZoomY = (double) h/g_desktopGeometry.Xscreen.height*iOneViewportHeight / pImage->iHeight;
 			double fZoom = MIN (fZoomX, fZoomY);  // on garde le ratio.
 			
 			cairo_translate (pCairoContext,
-				(1.*x/g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL] - iNumViewportX)*iOneViewportWidth + (fZoomX - fZoom) * pImage->iWidth/2,
-				(1.*y/g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL] - iNumViewportY)*iOneViewportHeight + (fZoomY - fZoom) * pImage->iHeight/2);
+				(1.*x/g_desktopGeometry.Xscreen.width - iNumViewportX)*iOneViewportWidth + (fZoomX - fZoom) * pImage->iWidth/2,
+				(1.*y/g_desktopGeometry.Xscreen.height - iNumViewportY)*iOneViewportHeight + (fZoomY - fZoom) * pImage->iHeight/2);
 			cairo_scale (pCairoContext,
 				fZoom,
 				fZoom);
@@ -151,7 +151,7 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	double w = iWidth, h = iHeight;
 	if (myConfig.bPreserveScreenRatio)
 	{
-		double r = (double) g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL] / g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL];
+		double r = (double) g_desktopGeometry.Xscreen.width / g_desktopGeometry.Xscreen.height;
 		double r_ = myData.switcher.fOneViewportWidth / myData.switcher.fOneViewportHeight;
 		if (r_ > r)  // on etire trop en largeur.
 		{
@@ -637,8 +637,8 @@ static void _cd_switcher_move_window_to_viewport (Icon *pIcon, int iNumDesktop, 
 	
 	cairo_dock_move_xwindow_to_nth_desktop (pIcon->Xid,
 		iDestNumDesktop,
-		(iDestNumViewportX - myData.switcher.iCurrentViewportX) * g_desktopGeometry.iXScreenWidth[CAIRO_DOCK_HORIZONTAL],
-		(iDestNumViewportY - myData.switcher.iCurrentViewportY) * g_desktopGeometry.iXScreenHeight[CAIRO_DOCK_HORIZONTAL]);
+		(iDestNumViewportX - myData.switcher.iCurrentViewportX) * g_desktopGeometry.Xscreen.width,
+		(iDestNumViewportY - myData.switcher.iCurrentViewportY) * g_desktopGeometry.Xscreen.height);
 }
 void cd_switcher_move_current_desktop_to (int iNumDesktop, int iNumViewportX, int iNumViewportY)
 {

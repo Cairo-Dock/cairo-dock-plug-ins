@@ -447,7 +447,7 @@ static GtkWidget *cd_build_events_widget (void)
 	rend = gtk_cell_renderer_text_new ();
 	col = gtk_tree_view_column_new_with_attributes (D_("File name"), rend, "text", CD_MODEL_NAME, NULL);
 	gtk_tree_view_column_set_min_width (col, 200);
-	gtk_tree_view_column_set_max_width (col, MAX (500, g_desktopGeometry.iScreenWidth[CAIRO_DOCK_HORIZONTAL]*.67));
+	gtk_tree_view_column_set_max_width (col, MAX (500, g_desktopGeometry.Xscreen.width / g_desktopGeometry.iNbScreens * .67));  // we don't know on which screen is place the container...
 	gtk_tree_view_column_set_sort_column_id (col, CD_MODEL_NAME);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (pOneWidget), col);
 	// date
