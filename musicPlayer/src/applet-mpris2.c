@@ -132,7 +132,7 @@ static gboolean _raise (void)
 {
 	if (! s_bGotCanRaise)
 	{
-		s_bCanRaise = cairo_dock_dbus_get_property_as_boolean (myData.dbus_proxy_shell, "org.mpris.MediaPlayer2", "CanRaise");
+		s_bCanRaise = cairo_dock_dbus_get_property_as_boolean_with_timeout (myData.dbus_proxy_shell, "org.mpris.MediaPlayer2", "CanRaise", 1000);
 		cd_debug ("s_bCanRaise : %d", s_bCanRaise);
 		s_bGotCanRaise = TRUE;
 	}
@@ -152,7 +152,7 @@ static gboolean _quit (void)
 {
 	if (! s_bGotCanQuit)
 	{
-		s_bCanQuit = cairo_dock_dbus_get_property_as_boolean (myData.dbus_proxy_shell, "org.mpris.MediaPlayer2", "CanQuit");
+		s_bCanQuit = cairo_dock_dbus_get_property_as_boolean_with_timeout (myData.dbus_proxy_shell, "org.mpris.MediaPlayer2", "CanQuit", 1000);
 		cd_debug ("s_bCanQuit : %d", s_bCanQuit);
 		s_bGotCanQuit = TRUE;
 	}
@@ -230,7 +230,7 @@ static void cd_mpris2_getPlaying_async (void)
 
 static gboolean cd_mpris2_is_loop (void)
 {
-	gchar *cLoopStatus = cairo_dock_dbus_get_property_as_string (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "LoopStatus");
+	gchar *cLoopStatus = cairo_dock_dbus_get_property_as_string_with_timeout (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "LoopStatus", 500);
 	gboolean bLoop = (cLoopStatus != NULL && strcmp (cLoopStatus, "Playlist") == 0);
 	g_free (cLoopStatus);
 	return bLoop;
@@ -238,13 +238,13 @@ static gboolean cd_mpris2_is_loop (void)
 
 static gboolean cd_mpris2_is_shuffle (void)
 {
-	return cairo_dock_dbus_get_property_as_boolean (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "Shuffle");
+	return cairo_dock_dbus_get_property_as_boolean_with_timeout (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "Shuffle", 500);
 }
 
 static void cd_mpris2_get_time_elapsed (void)
 {
 	GValue v = G_VALUE_INIT;
-	cairo_dock_dbus_get_property_in_value (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "Position", &v);
+	cairo_dock_dbus_get_property_in_value_with_timeout (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "Position", &v, 250); // will be call each second, 250ms is already a big timeout, we can wait the next call.
 	if (G_VALUE_HOLDS_INT64 (&v))
 		myData.iCurrentTime =  g_value_get_int64 (&v) / 1e6;
 	else if (G_VALUE_HOLDS_UINT64 (&v))
@@ -268,7 +268,7 @@ static void cd_mpris2_get_time_elapsed (void)
 
 static double cd_mpris2_get_volume (void)
 {
-	return cairo_dock_dbus_get_property_as_double (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "Volume");
+	return cairo_dock_dbus_get_property_as_double_with_timeout (myData.dbus_proxy_player, "org.mpris.MediaPlayer2.Player", "Volume", 500);
 }
 
 static gboolean _is_a_new_track (const gchar *cTrackID)
