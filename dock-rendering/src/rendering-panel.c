@@ -830,7 +830,80 @@ static void cd_update_input_shape (CairoDock *pDock)
 
 static void set_icon_size (Icon *icon, CairoDock *pDock)
 {
-	int wi, hi; // user-defined icon size at rest.
+	int wi, hi;  // icon size (icon size displayed at rest, as defined in the config)
+	int wa, ha;  // allocated size (surface/texture).
+	
+	// get the icon size as defined in the config
+	if (! pDock->bGlobalIconSize && pDock->iIconSize != 0)
+	{
+		wi = hi = pDock->iIconSize;
+	}
+	else  // same size as main dock.
+	{
+		wi = myIconsParam.iIconWidth;
+		hi = myIconsParam.iIconHeight;
+	}
+	
+	if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))  // separators have their own size.
+	{
+		wi = myIconsParam.iSeparatorWidth;
+		hi = MIN (myIconsParam.iSeparatorHeight, hi);
+	}
+	
+	// get the requested size if any
+	wa = cairo_dock_icon_get_requested_width (icon);
+	if (wa == 0)
+	{
+		int wir = cairo_dock_icon_get_requested_display_width (icon);
+		if (wir != 0)
+			wi = wir;
+	}
+	
+	ha = cairo_dock_icon_get_requested_height (icon);
+	if (ha == 0)
+	{
+		int hir = cairo_dock_icon_get_requested_display_height (icon);
+		if (hir != 0)
+			hi = MIN (hir, hi);  // limit the icon height to the default height.
+	}
+	
+	// compute the missing size (allocated or displayed).
+	if (my_fPanelRatio == 0)  // shouldn't happen; the config should be read before loading any icon, but just in case, be parano.
+		my_fPanelRatio = 1;
+	if (wa == 0)
+	{
+		wi *= my_fPanelRatio;
+		wa = wi;
+	}
+	else
+	{
+		wa *= my_fPanelRatio;
+		wi = wa;
+	}
+	if (ha == 0)
+	{
+		hi *= my_fPanelRatio;
+		ha = hi;
+	}
+	else
+	{
+		ha *= my_fPanelRatio;
+		hi = ha;
+	}
+	
+	// set both allocated and displayed size 
+	if (pDock->container.bIsHorizontal
+	|| (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon) && myIconsParam.bRevolveSeparator))
+	{
+		cairo_dock_icon_set_allocated_size (icon, wa, ha);
+	}
+	else
+	{
+		cairo_dock_icon_set_allocated_size (icon, ha, wa);
+	}
+	icon->fWidth = wi;
+	icon->fHeight = hi;
+	/**int wi, hi; // user-defined icon size at rest.
 	if (! pDock->bGlobalIconSize && pDock->iIconSize != 0)
 	{
 		wi = hi = pDock->iIconSize;
@@ -893,7 +966,7 @@ static void set_icon_size (Icon *icon, CairoDock *pDock)
 	else
 	{
 		cairo_dock_icon_set_allocated_size (icon, icon->fHeight, icon->fWidth);
-	}
+	}*/
 }
 
 static void cd_rendering_free_panel_data (CairoDock *pDock)
