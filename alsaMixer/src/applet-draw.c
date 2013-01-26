@@ -61,13 +61,6 @@ void cd_update_icon (void)
 				bNeedRedraw = FALSE;
 			}
 		break;
-		
-		default :
-		break;
-	}
-	switch (myConfig.iVolumeEffect)  // render the value
-	{
-		case VOLUME_EFFECT_BAR :
 		case VOLUME_EFFECT_GAUGE :
 		{
 			double fPercent;
