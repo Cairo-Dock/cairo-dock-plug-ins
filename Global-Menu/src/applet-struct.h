@@ -77,7 +77,7 @@ struct _AppletData {
 	CairoDockImageBuffer maximizeButton;
 	CairoDockImageBuffer restoreButton;
 	CairoDockImageBuffer closeButton;
-	gint iAnimIterMin, iAnimIterMax, iAnimIterClose;
+	gint iAnimIterMin, iAnimIterMax, iAnimIterClose, iAnimIterRestore;
 	gboolean bButtonAnimating;
 	guint iSidInitIdle;
 	guint iSidInitIdle2;

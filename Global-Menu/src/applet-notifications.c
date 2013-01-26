@@ -190,7 +190,6 @@ gboolean cd_app_menu_on_active_window_changed (CairoDockModuleInstance *myApplet
 		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 	
 	// check if a dock has the focus (we don't want to control the dock, it wouldn't make sense anyway).
-	/// TODO: check each container...
 	Window data[2] = {*XActiveWindow, 0};
 	cairo_dock_foreach_docks ((GHFunc) _check_dock_is_active, data);
 	
@@ -279,134 +278,99 @@ gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pCon
 }
 
 
+static gboolean _update_button_image_no_loop (CairoDockImageBuffer *pImage, int *iStep)
+{
+	gboolean bButtonAnimating = FALSE;
+	if (cairo_dock_image_buffer_is_animated (pImage))
+	{
+		if (pImage->iCurrentFrame != 0)  // in the loop
+		{
+			gboolean bLastFrame = cairo_dock_image_buffer_next_frame_no_loop (pImage);
+			if (bLastFrame)
+				pImage->iCurrentFrame = 0;
+			else
+				bButtonAnimating = TRUE;
+		}
+	}
+	else  // update the step
+	{
+		if (*iStep != 0)  // in the loop
+		{
+			++ *iStep;
+			if (*iStep >= CD_ANIM_STEPS)
+				*iStep = 0;
+			else
+				bButtonAnimating = TRUE;
+		}
+	}
+	return bButtonAnimating;
+}
+
+static void _update_button_image_loop (CairoDockImageBuffer *pImage, int *iStep)
+{
+	if (cairo_dock_image_buffer_is_animated (pImage))
+	{
+		cairo_dock_image_buffer_next_frame (pImage);
+	}
+	else  // update the step
+	{
+		++ *iStep;
+		if (*iStep >= CD_ANIM_STEPS)
+			*iStep = 0;
+	}
+}
+
+static gboolean _update_button_image (CairoDockImageBuffer *pImage, int *iStep, gboolean bLoop)
+{
+	if (bLoop)
+	{
+		_update_button_image_loop (pImage, iStep);
+		return TRUE;
+	}
+	else
+	{
+		return _update_button_image_no_loop (pImage, iStep);
+	}
+}
+
 gboolean cd_app_menu_on_update_container (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bContinueAnimation)
 {
 	CD_APPLET_ENTER;
-	int iNumButton = 0;
+	
 	if (! myIcon->bPointed || ! pContainer->bInside)  // our icon is not pointed, only update it to finish the current button animations.
 	{
 		if (myData.bButtonAnimating)  // one or more button is animating.
 		{
 			myData.bButtonAnimating = FALSE;
 			
-			if (cairo_dock_image_buffer_is_animated (&myData.minimizeButton))
-			{
-				if (iNumButton == CD_BUTTON_MINIMIZE || myData.minimizeButton.iCurrentFrame != 0)
-					cairo_dock_image_buffer_next_frame (&myData.minimizeButton);
-				myData.bButtonAnimating |= (iNumButton == CD_BUTTON_MINIMIZE || myData.minimizeButton.iCurrentFrame != 0);
-			}
-			else
-			{
-				if (iNumButton == CD_BUTTON_MINIMIZE || myData.iAnimIterMin != 0)
-				{
-					myData.iAnimIterMin ++;
-					if (myData.iAnimIterMin >= CD_ANIM_STEPS)
-						myData.iAnimIterMin = 0;
-				}
-				myData.bButtonAnimating |= (iNumButton == CD_BUTTON_MINIMIZE || myData.iAnimIterMin != 0);
-			}
+			myData.bButtonAnimating |= _update_button_image_no_loop (&myData.minimizeButton, &myData.iAnimIterMin);
 			
-			if (cairo_dock_image_buffer_is_animated (&myData.maximizeButton))
-			{
-				if (iNumButton == CD_BUTTON_MAXIMIZE || myData.maximizeButton.iCurrentFrame != 0)
-				{
-					cairo_dock_image_buffer_next_frame (&myData.maximizeButton);
-					cairo_dock_image_buffer_next_frame (&myData.restoreButton);
-				}
-				myData.bButtonAnimating |= (iNumButton == CD_BUTTON_MAXIMIZE || myData.maximizeButton.iCurrentFrame != 0);
-			}
-			else
-			{
-				if (iNumButton == CD_BUTTON_MAXIMIZE || myData.iAnimIterMax != 0)
-				{
-					myData.iAnimIterMax ++;
-					if (myData.iAnimIterMax >= CD_ANIM_STEPS)
-						myData.iAnimIterMax = 0;
-				}
-				myData.bButtonAnimating |= (iNumButton == CD_BUTTON_MAXIMIZE || myData.iAnimIterMax != 0);
-			}
+			myData.bButtonAnimating |= _update_button_image_no_loop (&myData.maximizeButton, &myData.iAnimIterMax);
 			
-			if (cairo_dock_image_buffer_is_animated (&myData.closeButton))
-			{
-				if (iNumButton == CD_BUTTON_CLOSE || myData.closeButton.iCurrentFrame != 0)
-					cairo_dock_image_buffer_next_frame (&myData.closeButton);
-				myData.bButtonAnimating |= (iNumButton == CD_BUTTON_CLOSE || myData.closeButton.iCurrentFrame != 0);
-			}
-			else
-			{
-				if (iNumButton == CD_BUTTON_CLOSE || myData.iAnimIterClose != 0)
-				{
-					myData.iAnimIterClose ++;
-					if (myData.iAnimIterClose >= CD_ANIM_STEPS)
-						myData.iAnimIterClose = 0;
-				}
-				myData.bButtonAnimating |= (iNumButton == CD_BUTTON_CLOSE || myData.iAnimIterClose != 0);
-			}
+			myData.bButtonAnimating |= _update_button_image_no_loop (&myData.restoreButton, &myData.iAnimIterRestore);
+			
+			myData.bButtonAnimating |= _update_button_image_no_loop (&myData.closeButton, &myData.iAnimIterClose);
 			
 			cd_app_menu_redraw_buttons ();
-			*bContinueAnimation = myData.bButtonAnimating;
 		}
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	}
+	else  // our button is currently pointed.
+	{
+		myData.bButtonAnimating = FALSE;
+		int iNumButton = cd_app_menu_find_button (myApplet);
+		
+		myData.bButtonAnimating |= _update_button_image (&myData.minimizeButton, &myData.iAnimIterMin, iNumButton == CD_BUTTON_MINIMIZE);
+		
+		myData.bButtonAnimating |= _update_button_image (&myData.maximizeButton, &myData.iAnimIterMax, iNumButton == CD_BUTTON_MAXIMIZE);
+		
+		myData.bButtonAnimating |= _update_button_image (&myData.restoreButton, &myData.iAnimIterRestore, iNumButton == CD_BUTTON_MAXIMIZE);
+		
+		myData.bButtonAnimating |= _update_button_image (&myData.closeButton, &myData.iAnimIterClose, iNumButton == CD_BUTTON_CLOSE);
+		
+		cd_app_menu_redraw_buttons ();
 	}
 	
-	iNumButton = cd_app_menu_find_button (myApplet);
-	myData.bButtonAnimating = FALSE;
-	
-	if (cairo_dock_image_buffer_is_animated (&myData.minimizeButton))
-	{
-		if (iNumButton == CD_BUTTON_MINIMIZE || myData.minimizeButton.iCurrentFrame != 0)
-			cairo_dock_image_buffer_next_frame (&myData.minimizeButton);
-		myData.bButtonAnimating |= (iNumButton == CD_BUTTON_MINIMIZE || myData.minimizeButton.iCurrentFrame != 0);
-	}
-	else
-	{
-		if (iNumButton == CD_BUTTON_MINIMIZE || myData.iAnimIterMin != 0)
-		{
-			myData.iAnimIterMin ++;
-			if (myData.iAnimIterMin >= CD_ANIM_STEPS)
-				myData.iAnimIterMin = 0;
-		}
-		myData.bButtonAnimating |= (iNumButton == CD_BUTTON_MINIMIZE || myData.iAnimIterMin != 0);
-	}
-	
-	if (cairo_dock_image_buffer_is_animated (&myData.maximizeButton))
-	{
-		if (iNumButton == CD_BUTTON_MAXIMIZE || myData.maximizeButton.iCurrentFrame != 0)
-		{
-			cairo_dock_image_buffer_next_frame (&myData.maximizeButton);
-			cairo_dock_image_buffer_next_frame (&myData.restoreButton);
-		}
-		myData.bButtonAnimating |= (iNumButton == CD_BUTTON_MAXIMIZE || myData.maximizeButton.iCurrentFrame != 0);
-	}
-	else
-	{
-		if (iNumButton == CD_BUTTON_MAXIMIZE || myData.iAnimIterMax != 0)
-		{
-			myData.iAnimIterMax ++;
-			if (myData.iAnimIterMax >= CD_ANIM_STEPS)
-				myData.iAnimIterMax = 0;
-		}
-		myData.bButtonAnimating |= (iNumButton == CD_BUTTON_MAXIMIZE || myData.iAnimIterMax != 0);
-	}
-	
-	if (cairo_dock_image_buffer_is_animated (&myData.closeButton))
-	{
-		if (iNumButton == CD_BUTTON_CLOSE || myData.closeButton.iCurrentFrame != 0)
-			cairo_dock_image_buffer_next_frame (&myData.closeButton);
-		myData.bButtonAnimating |= (iNumButton == CD_BUTTON_CLOSE || myData.closeButton.iCurrentFrame != 0);
-	}
-	else
-	{
-		if (iNumButton == CD_BUTTON_CLOSE || myData.iAnimIterClose != 0)
-		{
-			myData.iAnimIterClose ++;
-			if (myData.iAnimIterClose >= CD_ANIM_STEPS)
-				myData.iAnimIterClose = 0;
-		}
-		myData.bButtonAnimating |= (iNumButton == CD_BUTTON_CLOSE || myData.iAnimIterClose != 0);
-	}
-	
-	cd_app_menu_redraw_buttons ();
-	*bContinueAnimation = myData.bButtonAnimating;
+	if (myData.bButtonAnimating)
+		*bContinueAnimation = TRUE;
 	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
 }
