@@ -328,12 +328,21 @@ static void _load_notes (void)
 		NOTIFICATION_ENTER_ICON,
 		(CairoDockNotificationFunc) cd_tomboy_on_change_icon,
 		myApplet);  // le sous-dock n'est pas forcement detruit.
+	cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_ICONS_LIST_CONTAINER,
+		myDock ? NOTIFICATION_LEAVE_DOCK : NOTIFICATION_LEAVE_DESKLET,
+		(CairoDockNotificationFunc) cd_tomboy_on_leave_container,
+		myApplet);  // le sous-dock n'est pas forcement detruit.
 	if (myConfig.bPopupContent)
+	{
 		cairo_dock_register_notification_on_object (CD_APPLET_MY_ICONS_LIST_CONTAINER,
 			NOTIFICATION_ENTER_ICON,
 			(CairoDockNotificationFunc) cd_tomboy_on_change_icon,
 			CAIRO_DOCK_RUN_AFTER, myApplet);
-	
+		cairo_dock_register_notification_on_object (CD_APPLET_MY_ICONS_LIST_CONTAINER,
+			myDock ? NOTIFICATION_LEAVE_DOCK : NOTIFICATION_LEAVE_DESKLET,  // a bit unfortunate
+			(CairoDockNotificationFunc) cd_tomboy_on_leave_container,
+			CAIRO_DOCK_RUN_AFTER, myApplet);
+	}
 	cd_tomboy_update_icon ();
 }
 void cd_notes_store_load_notes (GList *pNotes)
@@ -398,9 +407,11 @@ void cd_notes_store_update_note (CDNote *pUpdatedNote)
 		{
 			g_free (pIcon->cClass);
 			pIcon->cClass = pUpdatedNote->cContent;
+			pUpdatedNote->cContent = NULL;
 			if (pIcon->image.pSurface)
 			{
-				cairo_t *pIconContext = cairo_create (pIcon->image.pSurface);
+				cairo_t *pIconContext = cairo_dock_begin_draw_icon_cairo (pIcon, 0, NULL);
+				g_return_if_fail (pIconContext != NULL);
 				if (myData.pSurfaceNote == NULL)
 				{
 					int iWidth, iHeight;
@@ -409,6 +420,7 @@ void cd_notes_store_update_note (CDNote *pUpdatedNote)
 				}
 				cairo_dock_set_icon_surface (pIconContext, myData.pSurfaceNote, pIcon);  // on efface l'ancien texte.
 				cd_tomboy_draw_content_on_icon (pIconContext, pIcon);
+				cairo_dock_end_draw_icon_cairo (pIcon);
 				cairo_destroy (pIconContext);
 			}
 		}

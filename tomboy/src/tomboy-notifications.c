@@ -28,7 +28,6 @@
 #include "tomboy-notifications.h"
 
 
-
 CD_APPLET_ON_CLICK_BEGIN
 	if (pClickedIcon != NULL && pClickedIcon != myIcon)
 	{
@@ -303,6 +302,27 @@ gboolean cd_tomboy_on_change_icon (gpointer pUserData, Icon *pIcon, CairoDock *p
 	if (pIcon && pIcon->bPointed)
 	{
 		myData.iSidPopupDialog = g_timeout_add (500, (GSourceFunc)_popup_dialog, pIcon);
+	}
+	
+	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+}
+
+gboolean cd_tomboy_on_leave_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bStartAnimation)
+{
+	CD_APPLET_ENTER;
+	if (myData.iSidPopupDialog != 0)
+	{
+		g_source_remove (myData.iSidPopupDialog);
+		myData.iSidPopupDialog = 0;
+	}
+	
+	GList *pList = CD_APPLET_MY_ICONS_LIST;
+	Icon *icon;
+	GList *ic;
+	for (ic = pList; ic != NULL; ic = ic->next)
+	{
+		icon = ic->data;
+		cairo_dock_remove_dialog_if_any (icon);
 	}
 	
 	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);

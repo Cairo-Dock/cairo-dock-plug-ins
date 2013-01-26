@@ -64,6 +64,10 @@ CD_APPLET_STOP_BEGIN
 		NOTIFICATION_ENTER_ICON,
 		(CairoDockNotificationFunc) cd_tomboy_on_change_icon,
 		myApplet);
+	cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_ICONS_LIST_CONTAINER,
+		myDock ? NOTIFICATION_LEAVE_DOCK : NOTIFICATION_LEAVE_DESKLET,
+		(CairoDockNotificationFunc) cd_tomboy_on_leave_container,
+		myApplet);
 	
 	if (myData.iSidResetQuickInfo != 0)
 		g_source_remove (myData.iSidResetQuickInfo);
