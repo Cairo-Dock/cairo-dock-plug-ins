@@ -96,10 +96,6 @@ CD_APPLET_RESET_DATA_BEGIN
 		myData.pScale = NULL;
 	}
 	cairo_dock_dialog_unreference (myData.pDialog);
-
-	g_free (myData.cDefaultIcon);
-	g_free (myData.cBrokenIcon);
-	g_free (myData.cMuteIcon);
 CD_APPLET_RESET_DATA_END
 
 

@@ -54,13 +54,20 @@ void cd_update_icon (void)
 			if (myData.bIsMute != myData.bMuteImage)
 			{
 				if (myData.bIsMute)
-					CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myData.cMuteIcon, "mute.svg");
+					CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cMuteIcon, "mute.svg");
 				else
-					CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myData.cDefaultIcon, "default.svg");
+					CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cDefaultIcon, "default.svg");
 				myData.bMuteImage = myData.bIsMute;
 				bNeedRedraw = FALSE;
 			}
 		break;
+		
+		default :
+		break;
+	}
+	switch (myConfig.iVolumeEffect)  // render the value
+	{
+		case VOLUME_EFFECT_BAR :
 		case VOLUME_EFFECT_GAUGE :
 		{
 			double fPercent;

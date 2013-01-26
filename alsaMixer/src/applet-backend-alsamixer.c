@@ -375,9 +375,7 @@ static void cd_mixer_reload_alsa (void)
 	
 	if (myData.pControledElement == NULL)
 	{
-		if (myData.cBrokenIcon == NULL && myConfig.cBrokenIcon != NULL)
-			myData.cBrokenIcon = cairo_dock_search_icon_s_path (myConfig.cBrokenIcon, MAX (myIcon->image.iWidth, myIcon->image.iHeight));
-		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myData.cBrokenIcon, "broken.svg");
+		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cBrokenIcon, "broken.svg");
 	}
 	else
 	{
@@ -398,9 +396,7 @@ void cd_mixer_init_alsa (void)
 	// update the icon
 	if (myData.pControledElement == NULL)  // no luck
 	{
-		if (myData.cBrokenIcon == NULL && myConfig.cBrokenIcon != NULL)
-			myData.cBrokenIcon = cairo_dock_search_icon_s_path (myConfig.cBrokenIcon, MAX (myIcon->image.iWidth, myIcon->image.iHeight));
-		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myData.cBrokenIcon, "broken.svg");
+		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cBrokenIcon, "broken.svg");
 	}
 	else  // mixer aquired
 	{

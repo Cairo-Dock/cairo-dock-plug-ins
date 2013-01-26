@@ -64,15 +64,6 @@ gboolean _cd_mixer_on_leave (GtkWidget* pWidget,
 	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
 }
 
-static void _get_right_icon (void)
-{
-	gint iSize = MAX (myIcon->image.iWidth, myIcon->image.iHeight);
-	if (myData.cDefaultIcon == NULL && myConfig.cDefaultIcon != NULL)
-		myData.cDefaultIcon = cairo_dock_search_icon_s_path (myConfig.cDefaultIcon, iSize);
-	if (myData.cMuteIcon == NULL && myConfig.cMuteIcon != NULL)
-		myData.cMuteIcon = cairo_dock_search_icon_s_path (myConfig.cMuteIcon, iSize);
-}
-
 static void _set_data_renderer (void)
 {
 	switch (myConfig.iVolumeEffect)
@@ -92,8 +83,7 @@ static void _set_data_renderer (void)
 		break;
 		case VOLUME_EFFECT_BAR:
 		{
-			_get_right_icon ();
-			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myData.cDefaultIcon, "default.svg");
+			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cDefaultIcon, "default.svg");
 			
 			CairoDataRendererAttribute *pRenderAttr;  // les attributs du data-renderer global.
 			CairoProgressBarAttribute attr;
@@ -106,9 +96,6 @@ static void _set_data_renderer (void)
 		}
 		break;
 		case VOLUME_EFFECT_NONE:
-			_get_right_icon ();
-			CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myData.cDefaultIcon, "default.svg");
-		break;
 		case VOLUME_NB_EFFECTS:
 		break;
 	}
@@ -186,14 +173,7 @@ CD_APPLET_RELOAD_BEGIN
 		
 		if (myConfig.iVolumeDisplay != VOLUME_ON_ICON)
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL);
-
-		g_free (myData.cDefaultIcon);
-		myData.cDefaultIcon = NULL;
-		g_free (myData.cBrokenIcon);
-		myData.cBrokenIcon = NULL;
-		g_free (myData.cMuteIcon);
-		myData.cMuteIcon = NULL;
-
+		
 		// reload the data renderer
 		_set_data_renderer ();
 		
