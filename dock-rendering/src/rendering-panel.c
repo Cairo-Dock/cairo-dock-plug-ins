@@ -869,16 +869,18 @@ static void set_icon_size (Icon *icon, CairoDock *pDock)
 	
 	// compute the missing size (allocated or displayed).
 	if (my_fPanelRatio == 0)  // shouldn't happen; the config should be read before loading any icon, but just in case, be parano.
+	{
+		cd_warning ("my_fPanelRatio is NUL");
 		my_fPanelRatio = 1;
+	}
 	if (wa == 0)
 	{
-		wi *= my_fPanelRatio;
+		wi *= my_fPanelRatio;  // for the displayed size, apply the ratio
 		wa = wi;
 	}
 	else
 	{
-		wa *= my_fPanelRatio;
-		wi = wa;
+		wi = wa;  // for the allocated size, just take it directly
 	}
 	if (ha == 0)
 	{
@@ -887,7 +889,6 @@ static void set_icon_size (Icon *icon, CairoDock *pDock)
 	}
 	else
 	{
-		ha *= my_fPanelRatio;
 		hi = ha;
 	}
 	
