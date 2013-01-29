@@ -433,7 +433,6 @@ void cd_dbus_clean_up_processes (gboolean bAll)
 void cd_dbus_launch_service (void)
 {
 	g_return_if_fail (myData.pMainObject == NULL);
-	g_type_init();
 	cd_message ("dbus : launching service...");
 	
 	//\____________ define the base path on the bus. So each program built on gldi has its own path on the gldi bus, and will place its applets under its own path.
