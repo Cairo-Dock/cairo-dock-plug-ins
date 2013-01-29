@@ -20,6 +20,7 @@
 #ifndef __CD_APPLET_STRUCT__
 #define  __CD_APPLET_STRUCT__
 
+#include <sys/types.h>
 #include <alsa/asoundlib.h>
 #define _STRUCT_TIMEVAL
 #include <cairo-dock.h>
