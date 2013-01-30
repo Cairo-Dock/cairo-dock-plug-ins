@@ -195,6 +195,9 @@ static void post_render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, 
 
 static gboolean update (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL, gboolean bRepeat)
 {
+	if (!bUseOpenGL)  // no cairo rendering (yet).
+		return FALSE;
+
 	gboolean bContinueAnimation = bRepeat;
 	if (pData->bGrowingSpot)
 	{

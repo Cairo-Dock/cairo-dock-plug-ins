@@ -54,6 +54,9 @@ static inline void _init_wave (GLfloat *pVertices, GLfloat *pCoords)
 
 static void init (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL)
 {
+	if (!bUseOpenGL)  // no cairo rendering (yet).
+		return;
+
 	_init_wave (pData->pVertices, pData->pCoords);
 	
 	pData->iNumActiveNodes = 4;
@@ -63,6 +66,9 @@ static void init (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double 
 
 static gboolean update (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL, gboolean bRepeat)
 {
+	if (!bUseOpenGL)  // no cairo rendering (yet).
+		return FALSE;
+
 	GLfloat *pVertices = pData->pVertices;
 	GLfloat *pCoords = pData->pCoords;
 	
@@ -161,6 +167,9 @@ static gboolean update (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, d
 
 static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo_t *pCairoContext)
 {
+	if (pCairoContext != NULL)  // no cairo rendering (yet).
+		return;
+
 	glPushMatrix ();
 	cairo_dock_set_icon_scale (pIcon, CAIRO_CONTAINER (pDock), 1.);
 	
