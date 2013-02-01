@@ -1802,9 +1802,9 @@ void cd_rendering_set_subdock_position_slide (Icon *pPointedIcon, CairoDock *pDo
 			pSubDock->iGapY = iX + pDock->container.iWindowPositionX - pSubDock->iMaxDockHeight / 2;  // les sous-dock ont un alignement egal a 0.
 	}
 	
-	pData->iDeltaIconX = MIN (0, iX + pDock->container.iWindowPositionX - pSubDock->iMaxDockWidth/2);
+	pData->iDeltaIconX = MIN (0, iX + pDock->container.iWindowPositionX - iScreenOffsetX - pSubDock->iMaxDockWidth/2);
 	if (pData->iDeltaIconX == 0)
-		pData->iDeltaIconX = MAX (0, iX + pDock->container.iWindowPositionX + pSubDock->iMaxDockWidth/2 - W);
+		pData->iDeltaIconX = MAX (0, iX + pDock->container.iWindowPositionX - iScreenOffsetX + pSubDock->iMaxDockWidth/2 - W);
 	//g_print ("iDeltaIconX: %d\n", pData->iDeltaIconX);
 	
 	if (pData->iDeltaIconX != 0)  // il y'a un decalage, on va limiter la pente du cote le plus court de la pointe a 30 degres.
