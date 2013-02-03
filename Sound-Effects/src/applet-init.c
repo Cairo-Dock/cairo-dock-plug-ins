@@ -37,30 +37,29 @@ CD_APPLET_DEFINE_BEGIN (N_("Sound Effects"),
 CD_APPLET_DEFINE_END
 
 
-//\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
-CD_APPLET_INIT_BEGIN
+static void _register_notifications (void)
+{
+	if (myConfig.bPlayOnClick)
+		cairo_dock_register_notification_on_object (&myContainersMgr,
+			NOTIFICATION_CLICK_ICON,
+			(CairoDockNotificationFunc) cd_sound_on_click,
+			CAIRO_DOCK_RUN_FIRST, NULL);
 	
-	cairo_dock_register_notification_on_object (&myContainersMgr,
-		NOTIFICATION_CLICK_ICON,
-		(CairoDockNotificationFunc) cd_sound_on_click,
-		CAIRO_DOCK_RUN_FIRST, NULL);
+	if (myConfig.bPlayOnMiddleClick)
+		cairo_dock_register_notification_on_object (&myContainersMgr,
+			NOTIFICATION_MIDDLE_CLICK_ICON,
+			(CairoDockNotificationFunc) cd_sound_on_middle_click,
+			CAIRO_DOCK_RUN_FIRST, NULL);
 	
-	cairo_dock_register_notification_on_object (&myContainersMgr,
-		NOTIFICATION_MIDDLE_CLICK_ICON,
-		(CairoDockNotificationFunc) cd_sound_on_middle_click,
-		CAIRO_DOCK_RUN_FIRST, NULL);
-	
-	cairo_dock_register_notification_on_object (&myContainersMgr,
-		NOTIFICATION_ENTER_ICON,
-		(CairoDockNotificationFunc) cd_sound_on_hover,
-		CAIRO_DOCK_RUN_FIRST, NULL);
+	if (myConfig.bPlayOnHover)
+		cairo_dock_register_notification_on_object (&myContainersMgr,
+			NOTIFICATION_ENTER_ICON,
+			(CairoDockNotificationFunc) cd_sound_on_hover,
+			CAIRO_DOCK_RUN_FIRST, NULL);
+}
 
-CD_APPLET_INIT_END
-
-
-//\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
-CD_APPLET_STOP_BEGIN
-	// unregister from events
+static void _unregister_notifications (void)
+{
 	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
 		NOTIFICATION_CLICK_ICON,
 		(CairoDockNotificationFunc) cd_sound_on_click, NULL);
@@ -70,6 +69,20 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
 		NOTIFICATION_ENTER_ICON,
 		(CairoDockNotificationFunc) cd_sound_on_hover, NULL);
+}
+
+//\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
+CD_APPLET_INIT_BEGIN
+	
+	_register_notifications ();
+
+CD_APPLET_INIT_END
+
+
+//\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
+CD_APPLET_STOP_BEGIN
+	// unregister from events
+	_unregister_notifications ();
 	
 	// stop current tasks.
 	cd_sound_free_current_tasks ();
@@ -88,6 +101,9 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		// stop current tasks.
 		cd_sound_free_current_tasks ();
+		
+		_unregister_notifications ();
+		_register_notifications ();
 		
 		// delete sound files so that they are re-loaded on event
 		cd_sound_free_sound_file (myData.pOnClickSound);
