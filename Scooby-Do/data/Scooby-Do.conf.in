@@ -29,7 +29,7 @@ stop duration = 800
 animation=pulse
 
 
-#X[Is detached from the dock]
+#X[Text]
 char=
 
 #P+ Font used to display what you type:
@@ -140,7 +140,7 @@ z =
 
 
 #[gtk-find]
-[Start XPenguins]
+[Files]
 
 #b Show hidden files?
 files = true

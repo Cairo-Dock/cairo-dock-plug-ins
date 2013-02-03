@@ -139,7 +139,7 @@ renderer =
 frame_param =
 
 #l[Gnote;Tomboy;Default] Choose the note-taking application to control :
-app controlled = 1
+app controlled = 2
 
 #b Ask for confirmation before deleting a note?
 ask delete = false
