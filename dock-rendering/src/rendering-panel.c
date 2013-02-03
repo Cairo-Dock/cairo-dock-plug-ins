@@ -832,8 +832,9 @@ static void set_icon_size (Icon *icon, CairoDock *pDock)
 {
 	int wi, hi;  // icon size (icon size displayed at rest, as defined in the config)
 	int wa, ha;  // allocated size (surface/texture).
+	gboolean bIsHorizontal = (pDock->container.bIsHorizontal || (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon) && myIconsParam.bRevolveSeparator));
 	
-	// get the icon size as defined in the config
+	// get the displayed icon size as defined in the config
 	if (! pDock->bGlobalIconSize && pDock->iIconSize != 0)
 	{
 		wi = hi = pDock->iIconSize;
@@ -850,124 +851,55 @@ static void set_icon_size (Icon *icon, CairoDock *pDock)
 		hi = MIN (myIconsParam.iSeparatorHeight, hi);
 	}
 	
-	// get the requested size if any
-	wa = cairo_dock_icon_get_requested_width (icon);
-	if (wa == 0)
-	{
-		int wir = cairo_dock_icon_get_requested_display_width (icon);
-		if (wir != 0)
-			wi = wir;
-	}
+	// take into account the requested displayed size if any
+	int wir = cairo_dock_icon_get_requested_display_width (icon);
+	if (wir != 0)
+		wi = wir;
+	int hir = cairo_dock_icon_get_requested_display_height (icon);
+	if (hir != 0)
+		hi = MIN (hir, hi);  // limit the icon height to the default height.
 	
-	ha = cairo_dock_icon_get_requested_height (icon);
-	if (ha == 0)
-	{
-		int hir = cairo_dock_icon_get_requested_display_height (icon);
-		if (hir != 0)
-			hi = MIN (hir, hi);  // limit the icon height to the default height.
-	}
-	
-	// compute the missing size (allocated or displayed).
+	// take into account the zoom the panel view applies to icons
 	if (my_fPanelRatio == 0)  // shouldn't happen; the config should be read before loading any icon, but just in case, be parano.
 	{
 		cd_warning ("my_fPanelRatio is NUL");
 		my_fPanelRatio = 1;
 	}
+	wi *= my_fPanelRatio;
+	hi *= my_fPanelRatio;
+	
+	// get the requested size if any
+	wa = cairo_dock_icon_get_requested_width (icon);
+	ha = cairo_dock_icon_get_requested_height (icon);
+	
+	// compute the missing size (allocated or displayed).
 	if (wa == 0)
 	{
-		wi *= my_fPanelRatio;  // for the displayed size, apply the ratio
-		wa = wi;
+		wa = (bIsHorizontal ? wi : hi);
 	}
 	else
 	{
-		wi = wa;  // for the allocated size, just take it directly
+		if (bIsHorizontal)
+			wi = wa;  // for the allocated size, just take it directly
+		else
+			hi = wa;
 	}
 	if (ha == 0)
 	{
-		hi *= my_fPanelRatio;
-		ha = hi;
+		ha = (bIsHorizontal ? hi : wi);
 	}
 	else
 	{
-		hi = ha;
+		if (bIsHorizontal)
+			hi = ha;
+		else
+			wi = ha;
 	}
 	
 	// set both allocated and displayed size 
-	if (pDock->container.bIsHorizontal
-	|| (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon) && myIconsParam.bRevolveSeparator))
-	{
-		cairo_dock_icon_set_allocated_size (icon, wa, ha);
-	}
-	else
-	{
-		cairo_dock_icon_set_allocated_size (icon, ha, wa);
-	}
+	cairo_dock_icon_set_allocated_size (icon, wa, ha);
 	icon->fWidth = wi;
 	icon->fHeight = hi;
-	/**int wi, hi; // user-defined icon size at rest.
-	if (! pDock->bGlobalIconSize && pDock->iIconSize != 0)
-	{
-		wi = hi = pDock->iIconSize;
-	}
-	else  // same size as main dock.
-	{
-		wi = myIconsParam.iIconWidth;
-		hi = myIconsParam.iIconHeight;
-	}
-	if (my_fPanelRatio != 0)  // shouldn't happen; the config should be read before loading any icon.
-	{
-		wi *= my_fPanelRatio;
-		hi *= my_fPanelRatio;
-	}
-	//g_print (" size: %d => %dx%d\n", pDock->iIconSize, wi, hi);
-
-	// set the visible size at rest.
-	if (CAIRO_DOCK_ICON_TYPE_IS_APPLET (icon))  // for applets, consider the requested size, if not 0.
-	{
-		icon->fWidth = wi;
-		icon->fHeight = hi;
-
-		int wr = cairo_dock_icon_get_requested_width (icon);
-		int hr = cairo_dock_icon_get_requested_height (icon);
-		//g_print ("%s (%s, %.1fx%.1f\n", __func__, icon->pModuleInstance->pModule->pVisitCard->cModuleName, icon->fWidth, icon->fHeight);
-		if (wr != 0)
-		{
-			if (pDock->container.bIsHorizontal)
-				icon->fWidth = wr;
-			else
-				icon->fHeight = wr;
-		}
-		if (hr != 0)
-		{
-			if (pDock->container.bIsHorizontal)
-				icon->fHeight = hr;
-			else
-				icon->fWidth = hr;
-			if (icon->fHeight > hi)  // limit the icon height to the default height.
-				icon->fHeight = hi;
-		}
-	}
-	else if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))  // separators have their own size.
-	{
-		icon->fWidth = myIconsParam.iSeparatorWidth * my_fPanelRatio;
-		icon->fHeight = MIN (myIconsParam.iSeparatorHeight * my_fPanelRatio, hi);
-	}
-	else  // any other icon use the global size
-	{
-		icon->fWidth = wi;
-		icon->fHeight = hi;
-	}
-
-	// texture size can be deduced then.
-	if (pDock->container.bIsHorizontal
-	|| (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon) && myIconsParam.bRevolveSeparator))
-	{
-		cairo_dock_icon_set_allocated_size (icon, icon->fWidth, icon->fHeight);
-	}
-	else
-	{
-		cairo_dock_icon_set_allocated_size (icon, icon->fHeight, icon->fWidth);
-	}*/
 }
 
 static void cd_rendering_free_panel_data (CairoDock *pDock)
