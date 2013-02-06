@@ -7,16 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2012-11-03 02:13+0000\n"
 "PO-Revision-Date: 2012-09-30 17:34+0000\n"
 "Last-Translator: kawaji <jiro.kawada@gmail.com>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-11-04 05:04+0000\n"
 "X-Generator: Launchpad (build 16218)\n"
-"Language: \n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -30,7 +29,7 @@ msgstr "点滅"
 msgid "Bounce"
 msgstr "バウンド"
 
-#: ../Animated-icons/src/applet-busy.c:95 ../Animated-icons/data/messages:21
+#: ../Animated-icons/src/applet-busy.c:110 ../Animated-icons/data/messages:21
 #: ../Animated-icons/data/messages:41 ../Animated-icons/data/messages:63
 #: ../Animated-icons/data/messages:179
 msgid "Busy"
@@ -44,31 +43,31 @@ msgstr "動画アイコン"
 msgid "This plug-in provides many different animations for your icons."
 msgstr "アイコンの多様なアニメーションを提供するプラグイン"
 
-#: ../Animated-icons/src/applet-pulse.c:107 ../Animated-icons/data/messages:13
+#: ../Animated-icons/src/applet-pulse.c:106 ../Animated-icons/data/messages:13
 #: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:55
 #: ../Animated-icons/data/messages:145
 msgid "Pulse"
 msgstr "パルス"
 
-#: ../Animated-icons/src/applet-rotation.c:386
+#: ../Animated-icons/src/applet-rotation.c:389
 #: ../Animated-icons/data/messages:9 ../Animated-icons/data/messages:29
 #: ../Animated-icons/data/messages:51
 msgid "Rotate"
 msgstr "回転"
 
-#: ../Animated-icons/src/applet-spot.c:263 ../Animated-icons/data/messages:19
+#: ../Animated-icons/src/applet-spot.c:266 ../Animated-icons/data/messages:19
 #: ../Animated-icons/data/messages:39 ../Animated-icons/data/messages:61
 #: ../Animated-icons/data/messages:85 ../Animated-icons/data/messages:93
 msgid "Spot"
 msgstr "スポット"
 
-#: ../Animated-icons/src/applet-wave.c:278 ../Animated-icons/data/messages:17
+#: ../Animated-icons/src/applet-wave.c:287 ../Animated-icons/data/messages:17
 #: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:59
 #: ../Animated-icons/data/messages:133
 msgid "Wave"
 msgstr "ウェーブ"
 
-#: ../Animated-icons/src/applet-wobbly.c:537
+#: ../Animated-icons/src/applet-wobbly.c:532
 #: ../Animated-icons/data/messages:15 ../Animated-icons/data/messages:35
 #: ../Animated-icons/data/messages:57 ../Animated-icons/data/messages:117
 msgid "Wobbly"
@@ -85,7 +84,8 @@ msgstr ""
 "ドックに動くペンギンを追加！\n"
 "左クリックでアニメーションの変更。\n"
 "中クリックでペンギンにちょっかい。^_^\n"
-"Tux 画像は Pingus から取得したもの。他のキャラクタを使用したり、簡単に追加することも可能です。"
+"Tux 画像は Pingus から取得したもの。他のキャラクタを使用したり、簡単に追加す"
+"ることも可能です。"
 
 #: ../Cairo-Penguin/src/applet-init.c:39
 msgid "Cairo-Penguin"
@@ -102,7 +102,9 @@ msgstr "申し訳ないが今ちょうど忙しいんで。"
 #: ../Cairo-Penguin/src/applet-notifications.c:31
 msgid ""
 "I don't have time to play with you, I have to dig and mine all these icons."
-msgstr "君に付き合ってる暇なんかないよ。ここいらのアイコンを全部掘ったり埋めたりしなきゃいかんから。"
+msgstr ""
+"君に付き合ってる暇なんかないよ。ここいらのアイコンを全部掘ったり埋めたりしな"
+"きゃいかんから。"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:32
 msgid "Your dock is so messy! Let me clean it."
@@ -148,25 +150,24 @@ msgstr ""
 msgid "For Aiur!"
 msgstr "アイアーのために！"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:137
+#: ../Cairo-Penguin/src/applet-notifications.c:139
 msgid "Wake up"
 msgstr "起こす"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:141
+#: ../Cairo-Penguin/src/applet-notifications.c:143
 msgid "Keep quiet"
 msgstr "大人しくさせる"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:144
-#: ../Scooby-Do/data/messages:99
+#: ../Cairo-Penguin/src/applet-notifications.c:158
 msgid "Start XPenguins"
 msgstr "XPenguins 開始"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:145
+#: ../Cairo-Penguin/src/applet-notifications.c:159
 msgid "Stop XPenguins"
 msgstr "XPenguins 停止"
 
-#: ../Cairo-Penguin/src/applet-notifications.c:167
-#: ../Cairo-Penguin/src/applet-notifications.c:169
+#: ../Cairo-Penguin/src/applet-notifications.c:182
+#: ../Cairo-Penguin/src/applet-notifications.c:184
 msgid "Zzzzz"
 msgstr "Zzzzz"
 
@@ -181,10 +182,13 @@ msgid ""
 "them."
 msgstr ""
 "クリップボードとマウスによる選択を監視して、\n"
-"それらを素早く呼び出せるようにするアプレット。有名な Klipper のクローンです。\n"
-"クリップボードやマウス・セレクション、既定のアクション、定型文アイテムに対応しています。\n"
+"それらを素早く呼び出せるようにするアプレット。有名な Klipper のクローンで"
+"す。\n"
+"クリップボードやマウス・セレクション、既定のアクション、定型文アイテムに対応"
+"しています。\n"
 "左クリックでクリップボードとマウス・セレクション履歴のポップアップ、\n"
-"テキストをアイコンにドロップすると定型文アイテムを作成、中クリックでそれらを呼び出します。"
+"テキストをアイコンにドロップすると定型文アイテムを作成、中クリックでそれらを"
+"呼び出します。"
 
 #: ../Clipper/src/applet-init.c:39
 msgid "Clipboard history"
@@ -254,10 +258,14 @@ msgid ""
 "composite, and another as a fallback."
 msgstr ""
 "<b>コンポジットのオンオフ切り替え</b>を行えるアプレット。\n"
-"デスクトップ上のウィンドウ等の透過処理はコンポジットのおかげですが、PCの速度が遅くなる場合があり、特にゲーム中はその可能性が高くなります。\n"
-"アイコンの<b>クリック</b>でコンポジットのオンオフを切り替えます。 このアクションに<b>ショートカット</b>を割り当てることができます。\n"
-"<b>中クリックやメニュー</b>からは、ウィンドウマネージャのアクションにアクセスすることも可能です。\n"
-"設定画面で、コンポジットを提供するウィンドウマネージャやコンポジットをオフにする時の予備のウィンドウマネージャを指定できます。"
+"デスクトップ上のウィンドウ等の透過処理はコンポジットのおかげですが、PCの速度"
+"が遅くなる場合があり、特にゲーム中はその可能性が高くなります。\n"
+"アイコンの<b>クリック</b>でコンポジットのオンオフを切り替えます。 このアク"
+"ションに<b>ショートカット</b>を割り当てることができます。\n"
+"<b>中クリックやメニュー</b>からは、ウィンドウマネージャのアクションにアクセス"
+"することも可能です。\n"
+"設定画面で、コンポジットを提供するウィンドウマネージャやコンポジットをオフに"
+"する時の予備のウィンドウマネージャを指定できます。"
 
 #: ../Composite-Manager/src/applet-init.c:52
 msgid "Toggle the composite ON/OFF"
@@ -281,27 +289,28 @@ msgstr "ウィンドウマネージャの設定変更"
 #: ../Folders/src/applet-notifications.c:394
 #: ../GMenu/src/applet-notifications.c:90
 #: ../RSSreader/src/applet-notifications.c:129
+#: ../Screenshot/src/applet-notifications.c:61
 #: ../System-Monitor/src/applet-notifications.c:106
 #: ../Xgamma/src/applet-notifications.c:87
-#: ../alsaMixer/src/applet-notifications.c:84
+#: ../alsaMixer/src/applet-notifications.c:85
 #: ../dustbin/src/applet-notifications.c:147
 #: ../mail/src/cd-mail-applet-notifications.c:154
-#: ../musicPlayer/src/applet-notifications.c:300
-#: ../netspeed/src/applet-notifications.c:94
+#: ../musicPlayer/src/applet-notifications.c:301
+#: ../netspeed/src/applet-notifications.c:105
 #: ../quick-browser/src/applet-notifications.c:41
 #: ../shortcuts/src/applet-notifications.c:296
 #: ../shortcuts/src/applet-notifications.c:329
 #: ../showDesktop/src/applet-notifications.c:165
 #: ../showDesktop/src/applet-notifications.c:177
 #: ../showDesktop/src/applet-notifications.c:189
-#: ../slider/src/applet-notifications.c:223
-#: ../slider/src/applet-notifications.c:265
+#: ../slider/src/applet-notifications.c:228
+#: ../slider/src/applet-notifications.c:270
 #: ../stack/src/applet-notifications.c:214
-#: ../switcher/src/applet-notifications.c:313
-#: ../switcher/src/applet-notifications.c:318
-#: ../switcher/src/applet-notifications.c:327
-#: ../switcher/src/applet-notifications.c:336
-#: ../tomboy/src/tomboy-notifications.c:248
+#: ../switcher/src/applet-notifications.c:312
+#: ../switcher/src/applet-notifications.c:317
+#: ../switcher/src/applet-notifications.c:326
+#: ../switcher/src/applet-notifications.c:335
+#: ../tomboy/src/tomboy-notifications.c:217
 #: ../wifi/src/applet-notifications.c:88
 msgid "middle-click"
 msgstr "中クリック"
@@ -322,14 +331,14 @@ msgstr "デスクトップの表示"
 #: ../Composite-Manager/src/applet-notifications.c:145
 #: ../showDesktop/src/applet-notifications.c:177
 #: ../showDesktop/src/applet-notifications.c:179
-#: ../switcher/src/applet-notifications.c:327
+#: ../switcher/src/applet-notifications.c:326
 #: ../Composite-Manager/data/messages:131 ../showDesktop/data/messages:107
 #: ../showDesktop/data/messages:121 ../switcher/data/messages:145
 msgid "Expose all the desktops"
 msgstr "全てのデスクトップの展開"
 
 #: ../Composite-Manager/src/applet-notifications.c:154
-#: ../switcher/src/applet-notifications.c:336
+#: ../switcher/src/applet-notifications.c:335
 #: ../Composite-Manager/data/messages:133 ../switcher/data/messages:147
 msgid "Expose all the windows"
 msgstr "全てのウィンドウの展開"
@@ -362,8 +371,7 @@ msgstr "モジュールを追加しましたが、起動できません。"
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid ""
-"The applet '%s' has been succefully updated and automatically reloaded"
+msgid "The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "アプレット '%s' は問題なくアップデートされ自動的に再読込されました。"
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -472,7 +480,8 @@ msgid ""
 "  - NEED TO BE DETACHED FROM THE DOCK TO WORK !\n"
 "  - Middle-clic to reload values"
 msgstr ""
-"”テキストスタイルのデスクレット”で、テキストの表示やシステムの監視が可能なアプレット。\n"
+"”テキストスタイルのデスクレット”で、テキストの表示やシステムの監視が可能なア"
+"プレット。\n"
 "使用方法:\n"
 " - 動作させるには、ドックから分離させる必要があります！\n"
 " - 中クリックで値の再読み込み"
@@ -500,7 +509,8 @@ msgid ""
 "Middle-click on the main icon opens the folder.\n"
 msgstr ""
 "ドック内にフォルダをインポートするアプレット。\n"
-"このアプレットは、任意の数だけ同時に起動させて、各アプレットに異なるフォルダを割り当てられます。\n"
+"このアプレットは、任意の数だけ同時に起動させて、各アプレットに異なるフォルダ"
+"を割り当てられます。\n"
 "ドックへのフォルダ追加方法：\n"
 " - アプレットを起動させ、設定パネルを開き、フォルダを選択\n"
 " - または、フォルダをドックへドロップするだけ\n"
@@ -509,7 +519,9 @@ msgstr ""
 #: ../Folders/src/applet-init.c:87 ../Folders/src/applet-init.c:150
 #: ../Folders/src/applet-notifications.c:42
 msgid "Open the configuration of the applet to choose a folder to import."
-msgstr "インポートするフォルダを選択するには、このアプレットの設定画面を開いてください。"
+msgstr ""
+"インポートするフォルダを選択するには、このアプレットの設定画面を開いてくださ"
+"い。"
 
 #: ../Folders/src/applet-notifications.c:54
 msgid "Empty or unreadable folder."
@@ -624,6 +636,7 @@ msgstr "新しい名前 :"
 
 #: ../Folders/src/applet-notifications.c:268
 #: ../Scooby-Do/src/applet-backend-files.c:390
+#: ../Screenshot/src/applet-screenshot.c:417
 msgid "Pick up a directory"
 msgstr "ディレクトリの選択"
 
@@ -660,7 +673,9 @@ msgstr "このファイルの移動"
 
 #: ../Folders/src/applet-notifications.c:409
 #: ../Recent-Events/src/applet-dialog.c:270
-#: ../slider/src/applet-notifications.c:233
+#: ../Screenshot/src/applet-screenshot.c:308
+#: ../quick-browser/src/applet-menu.c:328
+#: ../slider/src/applet-notifications.c:238
 msgid "Open with"
 msgstr "指定アプリで開く"
 
@@ -696,11 +711,11 @@ msgstr "サイズ順"
 msgid "By type"
 msgstr "種類別"
 
-#: ../Folders/src/applet-notifications.c:497
+#: ../Folders/src/applet-notifications.c:493
 msgid "The folder has been imported."
 msgstr "フォルダがインポートされました。"
 
-#: ../Folders/src/applet-notifications.c:558
+#: ../Folders/src/applet-notifications.c:554
 msgid "Do you want to import the content of the folder too?"
 msgstr "このフォルダの内容もインポートしますか？"
 
@@ -714,26 +729,28 @@ msgid ""
 msgstr ""
 "一般的なアプリケーションメニューと最近使用したファイルを表示します。\n"
 "XDG に準拠したメニュー (Gnome, XFCE, KDE, ...) と互換性があります。\n"
-"中クリックすると、コマンドを素早く実行するためのダイアログを開きます（ALT+F2 のようなショートキーも設定可能）。\n"
-"メニューをポップアップさせるショートキー（ALT+F1 のような)を設定することができます。"
+"中クリックすると、コマンドを素早く実行するためのダイアログを開きます（ALT+F2 "
+"のようなショートキーも設定可能）。\n"
+"メニューをポップアップさせるショートキー（ALT+F1 のような)を設定することがで"
+"きます。"
 
 #: ../GMenu/src/applet-init.c:41
 msgid "Applications Menu"
 msgstr "アプリケーション・メニュー"
 
-#: ../GMenu/src/applet-init.c:108
+#: ../GMenu/src/applet-init.c:114
 msgid "Show/hide the Applications menu"
 msgstr ""
 
-#: ../GMenu/src/applet-init.c:113
+#: ../GMenu/src/applet-init.c:119
 msgid "Show/hide the quick-launch dialog"
 msgstr ""
 
-#: ../GMenu/src/applet-menu-callbacks.c:175 ../GMenu/data/messages:107
+#: ../GMenu/src/applet-menu-callbacks.c:178 ../GMenu/data/messages:107
 msgid "Logout"
 msgstr "ログアウト"
 
-#: ../GMenu/src/applet-menu-callbacks.c:178 ../GMenu/data/messages:109
+#: ../GMenu/src/applet-menu-callbacks.c:181 ../GMenu/data/messages:109
 msgid "Shutdown"
 msgstr "シャットダウン"
 
@@ -789,8 +806,8 @@ msgid ""
 "(if any) to forum.glx-dock.org"
 msgstr ""
 "PulseAudio に何か問題があるようです。\n"
-"可能ならば状態を確認して（インストール済み？実行されてる？バージョンは？）、このバグ（もしあるならば）をフォーラム glx-dock.org "
-"まで報告ください。"
+"可能ならば状態を確認して（インストール済み？実行されてる？バージョンは？）、"
+"このバグ（もしあるならば）をフォーラム glx-dock.org まで報告ください。"
 
 #: ../Impulse/src/applet-init.c:32
 msgid ""
@@ -812,7 +829,9 @@ msgstr "Me Menu"
 msgid ""
 "A menu that lets you access quickly to your information, your online status, "
 "your friends."
-msgstr "自分の個人情報やオンライン・ステータス、友人への素早いアクセスを可能にするメニュー"
+msgstr ""
+"自分の個人情報やオンライン・ステータス、友人への素早いアクセスを可能にするメ"
+"ニュー"
 
 #: ../MeMenu/src/applet-notifications.c:31
 msgid "It seems that the Me-Menu is not installed on your system"
@@ -863,7 +882,7 @@ msgstr "ケーブルが接続されました。"
 msgid "A cable has been unplugged"
 msgstr "ケーブルが抜かれました。"
 
-#: ../Network-Monitor/src/applet-draw.c:126 ../wifi/src/applet-draw.c:130
+#: ../Network-Monitor/src/applet-draw.c:128 ../wifi/src/applet-draw.c:130
 msgid ""
 "Checking connection...\n"
 "Please retry in a few seconds"
@@ -871,41 +890,41 @@ msgstr ""
 "接続をチェックしています…\n"
 "数秒後に再試行してください。"
 
-#: ../Network-Monitor/src/applet-draw.c:134
+#: ../Network-Monitor/src/applet-draw.c:136
 msgid "Wired Connection."
 msgstr "有線接続"
 
-#: ../Network-Monitor/src/applet-draw.c:136
-#: ../Network-Monitor/src/applet-draw.c:151 ../wifi/src/applet-draw.c:147
+#: ../Network-Monitor/src/applet-draw.c:138
+#: ../Network-Monitor/src/applet-draw.c:153 ../wifi/src/applet-draw.c:147
 msgid "Interface"
 msgstr "インターフェイス"
 
-#: ../Network-Monitor/src/applet-draw.c:137
-#: ../Network-Monitor/src/applet-draw.c:149
+#: ../Network-Monitor/src/applet-draw.c:139
+#: ../Network-Monitor/src/applet-draw.c:151
 msgid "Speed"
 msgstr "速度"
 
-#: ../Network-Monitor/src/applet-draw.c:146 ../wifi/src/applet-draw.c:143
+#: ../Network-Monitor/src/applet-draw.c:148 ../wifi/src/applet-draw.c:143
 msgid "Wifi enabled."
 msgstr "WiFi 有効"
 
-#: ../Network-Monitor/src/applet-draw.c:148 ../wifi/src/applet-draw.c:145
+#: ../Network-Monitor/src/applet-draw.c:150 ../wifi/src/applet-draw.c:145
 msgid "Network ID"
 msgstr "ネットワーク ID"
 
-#: ../Network-Monitor/src/applet-draw.c:148
-#: ../musicPlayer/src/applet-draw.c:152 ../musicPlayer/src/applet-draw.c:154
-#: ../musicPlayer/src/applet-draw.c:156
+#: ../Network-Monitor/src/applet-draw.c:150
+#: ../musicPlayer/src/applet-draw.c:167 ../musicPlayer/src/applet-draw.c:169
+#: ../musicPlayer/src/applet-draw.c:171
 #: ../powermanager/src/powermanager-draw.c:259
 #: ../powermanager/src/powermanager-draw.c:314
 msgid "Unknown"
 msgstr "不明"
 
-#: ../Network-Monitor/src/applet-draw.c:150 ../wifi/src/applet-draw.c:146
+#: ../Network-Monitor/src/applet-draw.c:152 ../wifi/src/applet-draw.c:146
 msgid "Access point"
 msgstr "アクセス・ポイント"
 
-#: ../Network-Monitor/src/applet-draw.c:152 ../wifi/src/applet-draw.c:148
+#: ../Network-Monitor/src/applet-draw.c:154 ../wifi/src/applet-draw.c:148
 msgid "Signal Quality"
 msgstr "信号の強さ"
 
@@ -924,13 +943,15 @@ msgid ""
 msgstr ""
 "ネットワーク接続を監視するためのアプレット。\n"
 "ダウンロード/アップロード速度や WiFi 信号の強さを表示できます。\n"
-"ネットワーク・マネージャを現在稼働させている場合は、WiFi ネットワークの接続先の選択も可能です。\n"
-"アイコン上での左クリックで詳細情報のポップアップ、スクロールでネット速度と WiFi との表示の切り替えを行います。"
+"ネットワーク・マネージャを現在稼働させている場合は、WiFi ネットワークの接続先"
+"の選択も可能です。\n"
+"アイコン上での左クリックで詳細情報のポップアップ、スクロールでネット速度と "
+"WiFi との表示の切り替えを行います。"
 
-#: ../Network-Monitor/src/applet-netspeed.c:200
+#: ../Network-Monitor/src/applet-netspeed.c:202
 #: ../System-Monitor/src/applet-monitor.c:95
 #: ../System-Monitor/src/applet-top.c:427
-#: ../netspeed/src/applet-netspeed.c:200
+#: ../netspeed/src/applet-netspeed.c:222
 msgid "Loading"
 msgstr "読み込み中"
 
@@ -1020,7 +1041,7 @@ msgid "Open with your web browser"
 msgstr "ウェブ・ブラウザで開く"
 
 #: ../RSSreader/src/applet-notifications.c:129
-#: ../switcher/src/applet-notifications.c:345
+#: ../switcher/src/applet-notifications.c:344
 msgid "Refresh"
 msgstr "更新"
 
@@ -1052,7 +1073,7 @@ msgstr "更新なし"
 msgid "This RSS feed has been modified..."
 msgstr "この RSS フィードは更新されています…"
 
-#: ../RSSreader/src/applet-rss.c:775
+#: ../RSSreader/src/applet-rss.c:776
 msgid ""
 "No URL is defined\n"
 "You can define one by copying the URL in the clipboard,\n"
@@ -1062,7 +1083,7 @@ msgstr ""
 "URL をクリップボードにコピーして、\n"
 "メニューにある「URL を貼り付け」を選択することで指定できます。"
 
-#: ../RSSreader/src/applet-rss.c:781
+#: ../RSSreader/src/applet-rss.c:782
 msgid ""
 "No data\n"
 "Did you set a valid RSS feed?\n"
@@ -1073,11 +1094,15 @@ msgstr ""
 "回線に接続していますか？"
 
 #: ../Recent-Events/src/applet-dialog.c:294
+#: ../Screenshot/src/applet-screenshot.c:317
+#: ../quick-browser/src/applet-menu.c:358
 #: ../stack/src/applet-notifications.c:212
 msgid "Open parent folder"
 msgstr "親フォルダを開く"
 
 #: ../Recent-Events/src/applet-dialog.c:296
+#: ../Screenshot/src/applet-screenshot.c:279
+#: ../quick-browser/src/applet-menu.c:360
 msgid "Copy the location"
 msgstr "ロケーションのコピー"
 
@@ -1085,59 +1110,69 @@ msgstr "ロケーションのコピー"
 msgid "Delete this event"
 msgstr "このイベントの削除"
 
-#: ../Recent-Events/src/applet-dialog.c:373
+#: ../Recent-Events/src/applet-dialog.c:383
 msgid "All"
 msgstr "全て"
 
-#: ../Recent-Events/src/applet-dialog.c:374
+#: ../Recent-Events/src/applet-dialog.c:384
 msgid "Applications"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:375
+#: ../Recent-Events/src/applet-dialog.c:385
 msgid "Document"
 msgstr "ドキュメント"
 
-#: ../Recent-Events/src/applet-dialog.c:377 ../logout/data/messages:117
+#: ../Recent-Events/src/applet-dialog.c:387 ../logout/data/messages:117
 msgid "Image"
 msgstr "画像"
 
-#: ../Recent-Events/src/applet-dialog.c:378
+#: ../Recent-Events/src/applet-dialog.c:388
 msgid "Audio"
 msgstr "音楽"
 
-#: ../Recent-Events/src/applet-dialog.c:379
+#: ../Recent-Events/src/applet-dialog.c:389
 msgid "Video"
 msgstr "動画"
 
-#: ../Recent-Events/src/applet-dialog.c:380
+#: ../Recent-Events/src/applet-dialog.c:390
 msgid "Web"
 msgstr "ウェブ"
 
-#: ../Recent-Events/src/applet-dialog.c:381
+#: ../Recent-Events/src/applet-dialog.c:391
 msgid "Other"
 msgstr "その他"
 
-#: ../Recent-Events/src/applet-dialog.c:382
+#: ../Recent-Events/src/applet-dialog.c:392
 msgid "Top Results"
 msgstr "トップアイテム"
 
-#: ../Recent-Events/src/applet-dialog.c:388
+#: ../Recent-Events/src/applet-dialog.c:398
 msgid "Look for events"
 msgstr "イベントの検索"
 
-#: ../Recent-Events/src/applet-dialog.c:438
+#: ../Recent-Events/src/applet-dialog.c:405
+msgid ""
+"The default boolean operator is AND. Thus the query foo bar will be "
+"interpreted as foo AND bar. To exclude a term from the result set prepend it "
+"with a minus sign - eg foo -bar. Phrase queries can be done by double "
+"quoting the string \"foo is a bar\". You can truncate terms by appending a "
+"*. "
+msgstr ""
+
+#: ../Recent-Events/src/applet-dialog.c:448
+#: ../Screenshot/src/applet-screenshot.c:487
 msgid "File name"
 msgstr "ファイル名"
 
-#: ../Recent-Events/src/applet-dialog.c:445
+#: ../Recent-Events/src/applet-dialog.c:455
 msgid "Last access"
 msgstr "最終アクセス"
 
-#: ../Recent-Events/src/applet-dialog.c:489
+#: ../Recent-Events/src/applet-dialog.c:499
 msgid "You need to install the Zeitgeist data engine."
 msgstr "Zeitgeistデータエンジンのインストールが必要です。"
 
-#: ../Recent-Events/src/applet-dialog.c:524
+#: ../Recent-Events/src/applet-dialog.c:534
 msgid "Browse and search in recent events"
 msgstr "最近のイベントの参照と検索"
 
@@ -1226,11 +1261,12 @@ msgstr "ファイルを書庫に圧縮"
 msgid "Mail file"
 msgstr "ファイルをメール"
 
-#: ../Scooby-Do/src/applet-backend-files.c:524
+#: ../Scooby-Do/src/applet-backend-files.c:524 ../Scooby-Do/data/messages:99
 msgid "Files"
 msgstr "ファイル"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:357
+#: ../Screenshot/src/applet-screenshot.c:281
 msgid "Open"
 msgstr "開く"
 
@@ -1309,12 +1345,12 @@ msgid "No result"
 msgstr "検索結果なし"
 
 #: ../Scooby-Do/src/applet-listing.c:681 ../Scooby-Do/src/applet-search.c:358
-#: ../tomboy/src/tomboy-draw.c:213
+#: ../tomboy/src/tomboy-draw.c:205
 msgid "results"
 msgstr "検索結果"
 
 #: ../Scooby-Do/src/applet-listing.c:681 ../Scooby-Do/src/applet-search.c:358
-#: ../tomboy/src/tomboy-draw.c:213
+#: ../tomboy/src/tomboy-draw.c:205
 msgid "result"
 msgstr "検索結果"
 
@@ -1326,6 +1362,82 @@ msgstr "検索中…"
 msgid "Enter your search"
 msgstr "検索入力"
 
+#: ../Screenshot/src/applet-init.c:31
+msgid ""
+"A simple applet to quickly take screenshots.\n"
+"<b>Click</b> to take a screenshot.\n"
+"<b>Middle-click</b> gives you more options.\n"
+"You can bind a <b>shortcut</b> to the action."
+msgstr ""
+
+#: ../Screenshot/src/applet-init.c:53
+msgid "Take a screenshot"
+msgstr ""
+
+#: ../Screenshot/src/applet-notifications.c:49
+msgid "Screenshot"
+msgstr ""
+
+#: ../Screenshot/src/applet-notifications.c:61
+msgid "Screenshot with options"
+msgstr ""
+
+#: ../Screenshot/src/applet-screenshot.c:163
+msgid "Screenshot from"
+msgstr ""
+
+#: ../Screenshot/src/applet-screenshot.c:331
+msgid "Unable to take a screenshot"
+msgstr ""
+
+#: ../Screenshot/src/applet-screenshot.c:454 ../Cairo-Penguin/data/messages:19
+#: ../Clipper/data/messages:137 ../Disks/data/messages:143
+#: ../Network-Monitor/data/messages:175 ../System-Monitor/data/messages:169
+#: ../System-Monitor/data/messages:215 ../Toons/data/messages:101
+#: ../dnd2share/data/messages:91 ../mail/data/messages:137
+#: ../musicPlayer/data/messages:153 ../netspeed/data/messages:149
+#: ../powermanager/data/messages:157 ../shortcuts/data/messages:127
+#: ../slider/data/messages:131 ../tomboy/data/messages:115
+#: ../wifi/data/messages:155
+msgid "in seconds."
+msgstr "秒単位"
+
+#: ../Screenshot/src/applet-screenshot.c:455
+msgid "Delay"
+msgstr ""
+
+#: ../Screenshot/src/applet-screenshot.c:477
+msgid "Grab the current window instead of the all screen"
+msgstr ""
+
+#: ../Screenshot/src/applet-screenshot.c:478
+#, fuzzy
+msgid "Grab the current window"
+msgstr "現在のデスクトップの描画の仕方 :"
+
+#: ../Screenshot/src/applet-screenshot.c:486
+#: ../Screenshot/src/applet-screenshot.c:495
+#: ../Status-Notifier/data/messages:11 ../mail/data/messages:107
+#: ../mail/data/messages:111 ../mail/data/messages:127
+msgid "Let empty to use the default one."
+msgstr "デフォルトのものを使用するには空欄のままに。"
+
+#: ../Screenshot/src/applet-screenshot.c:496
+#, fuzzy
+msgid "Directory"
+msgstr "履歴"
+
+#: ../Sound-Effects/src/applet-init.c:29
+#, fuzzy
+msgid "Sound Effects"
+msgstr "アイコン効果"
+
+#: ../Sound-Effects/src/applet-init.c:32
+msgid ""
+"This plug-in add sound effects on various events in the dock:\n"
+" When clicking an icon, when hovering an icon, etc"
+msgstr ""
+
 #: ../Status-Notifier/src/applet-init.c:33
 msgid ""
 "A <b>notification area</b> for your dock\n"
@@ -1335,7 +1447,8 @@ msgid ""
 msgstr ""
 "ドックのための<b>通知領域</b>機能。\n"
 "各種プログラムが現在のステータスを示すため使用できます。\n"
-"通知領域に表示されるべきプラグラムが表示されない場合、それはまだこの機能に対応していないためでしょう。当該プログラムの開発者にバグ報告してください。"
+"通知領域に表示されるべきプラグラムが表示されない場合、それはまだこの機能に対"
+"応していないためでしょう。当該プログラムの開発者にバグ報告してください。"
 
 #: ../Status-Notifier/src/applet-init.c:38
 msgid "Notification Area"
@@ -1392,8 +1505,10 @@ msgid ""
 msgstr ""
 "CPU の負荷や RAM 使用率、グラフィックカードの温度などを表示するアプレット。\n"
 "アイコンの中クリックで情報表示、\n"
-"アイコンの左クリックでリソースを最も使用しているプログラムのリストを表示します。\n"
-"アプレットを複数起動させて、モニター対象をそれぞれ別にした表示をさせることもできます。"
+"アイコンの左クリックでリソースを最も使用しているプログラムのリストを表示しま"
+"す。\n"
+"アプレットを複数起動させて、モニター対象をそれぞれ別にした表示をさせることも"
+"できます。"
 
 #: ../System-Monitor/src/applet-notifications.c:40
 #: ../System-Monitor/src/applet-notifications.c:83
@@ -1405,7 +1520,7 @@ msgstr ""
 "取得できなかったデータを削除する必要があります。"
 
 #: ../System-Monitor/src/applet-notifications.c:104
-#: ../netspeed/src/applet-notifications.c:98
+#: ../netspeed/src/applet-notifications.c:109
 msgid "Open the System-Monitor"
 msgstr "システム・モニタを開く"
 
@@ -1530,27 +1645,27 @@ msgstr "ガンマ補正の設定"
 msgid "Apply current luminosity on startup"
 msgstr "現在の輝度をスタートアップ時に適用"
 
-#: ../Xgamma/src/applet-xgamma.c:238
+#: ../Xgamma/src/applet-xgamma.c:241
 msgid "Gamma :"
 msgstr ""
 
-#: ../Xgamma/src/applet-xgamma.c:240
+#: ../Xgamma/src/applet-xgamma.c:243
 msgid "Red :"
 msgstr ""
 
-#: ../Xgamma/src/applet-xgamma.c:242
+#: ../Xgamma/src/applet-xgamma.c:245
 msgid "Green :"
 msgstr ""
 
-#: ../Xgamma/src/applet-xgamma.c:244
+#: ../Xgamma/src/applet-xgamma.c:247
 msgid "Blue :"
 msgstr ""
 
-#: ../Xgamma/src/applet-xgamma.c:270 ../Xgamma/src/applet-xgamma.c:344
+#: ../Xgamma/src/applet-xgamma.c:273 ../Xgamma/src/applet-xgamma.c:348
 msgid "Set up gamma:"
 msgstr "ガンマ値設定 :"
 
-#: ../Xgamma/src/applet-xgamma.c:357
+#: ../Xgamma/src/applet-xgamma.c:361
 msgid "Luminosity"
 msgstr "輝度"
 
@@ -1607,20 +1722,20 @@ msgstr "サウンド制御"
 msgid "Show/hide the Sound menu"
 msgstr ""
 
-#: ../alsaMixer/src/applet-notifications.c:79
+#: ../alsaMixer/src/applet-notifications.c:80
 msgid "Adjust channels"
 msgstr "チャンネル調整"
 
-#: ../alsaMixer/src/applet-notifications.c:79
+#: ../alsaMixer/src/applet-notifications.c:80
 #: ../clock/src/applet-calendar.c:608
 msgid "double-click"
 msgstr "ダブルクリック"
 
-#: ../alsaMixer/src/applet-notifications.c:84
+#: ../alsaMixer/src/applet-notifications.c:85
 msgid "Unmute"
 msgstr "ミュート解除"
 
-#: ../alsaMixer/src/applet-notifications.c:84
+#: ../alsaMixer/src/applet-notifications.c:85
 msgid "Mute"
 msgstr "ミュート"
 
@@ -1628,8 +1743,8 @@ msgstr "ミュート"
 #: ../clock/src/applet-calendar.c:528 ../clock/src/applet-calendar.c:533
 #: ../clock/src/applet-calendar.c:575 ../clock/src/applet-task-editor.c:120
 #: ../clock/src/applet-timer.c:98 ../clock/src/applet-timer.c:186
-#: ../clock/src/applet-timer.c:466 ../clock/src/applet-timer.c:480
-#: ../clock/src/applet-timer.c:514
+#: ../clock/src/applet-timer.c:461 ../clock/src/applet-timer.c:475
+#: ../clock/src/applet-timer.c:509
 msgid "No title"
 msgstr "タイトルなし"
 
@@ -1747,16 +1862,16 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
-"tasks</b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
+"b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
 msgstr ""
 "時刻や日付、カレンダーを表示するアプレット。\n"
 "利用可能な2種類の表示 : <b>デジタル</b> と <b>アナログ</b>。\n"
-"アナログ表示は Cairo-Clock のテーマと互換性があり、アプレットをドックから分離させれば Cairo-Clock "
-"の完全なクローンにできます。\n"
+"アナログ表示は Cairo-Clock のテーマと互換性があり、アプレットをドックから分離"
+"させれば Cairo-Clock の完全なクローンにできます。\n"
 "左クリックで<b>カレンダー</b>を表示し、<b>タスク管理</b>が行えます。\n"
 "アプレットはアラームにも対応していて、日付や時刻の設定もできます。\n"
 "左クリックでカレンダーを表示/隠す、中クリックで通知を停止します。\n"
@@ -1771,7 +1886,8 @@ msgid ""
 msgstr ""
 "今日に予定されているタスクはありません。\n"
 "\n"
-"タスクを追加するには、アプレットをクリックしてカレンダーを開き、日付をダブルクリックします。"
+"タスクを追加するには、アプレットをクリックしてカレンダーを開き、日付をダブル"
+"クリックします。"
 
 #: ../clock/src/applet-notifications.c:82
 msgid ""
@@ -1782,7 +1898,8 @@ msgid ""
 msgstr ""
 "今後７日間に予定されているタスクはありません。\n"
 "\n"
-"タスクを追加するには、アプレットをクリックしてカレンダーを開き、日付をダブルクリックします。"
+"タスクを追加するには、アプレットをクリックしてカレンダーを開き、日付をダブル"
+"クリックします。"
 
 #: ../clock/src/applet-notifications.c:99
 msgid "Show today's tasks"
@@ -1824,14 +1941,14 @@ msgstr "毎年"
 msgid "Right-click to add a new task."
 msgstr "新しいタスクを追加するには右クリックします。"
 
-#: ../clock/src/applet-task-editor.c:416 ../musicPlayer/src/applet-draw.c:153
+#: ../clock/src/applet-task-editor.c:416 ../musicPlayer/src/applet-draw.c:168
 #: ../RSSreader/data/messages:133
 msgid "Title"
 msgstr "タイトル"
 
 #: ../clock/src/applet-task-editor.c:423
 #: ../dnd2share/src/applet-notifications.c:398 ../Doncky/data/messages:95
-#: ../RSSreader/data/messages:149
+#: ../RSSreader/data/messages:149 ../Scooby-Do/data/messages:25
 msgid "Text"
 msgstr "テキスト"
 
@@ -1859,8 +1976,8 @@ msgstr "１時間毎"
 msgid "The following task was scheduled at"
 msgstr "以下のタスクが予定されていた時刻"
 
-#: ../clock/src/applet-timer.c:100 ../clock/src/applet-timer.c:468
-#: ../clock/src/applet-timer.c:516
+#: ../clock/src/applet-timer.c:100 ../clock/src/applet-timer.c:463
+#: ../clock/src/applet-timer.c:511
 msgid "Repeat this message every:"
 msgstr "このメッセージをリピート :"
 
@@ -1868,19 +1985,19 @@ msgstr "このメッセージをリピート :"
 msgid "The following task has felt due:"
 msgstr ""
 
-#: ../clock/src/applet-timer.c:465
+#: ../clock/src/applet-timer.c:460
 msgid "It's time for the following task:"
 msgstr "以下のタスクの時間になりました :"
 
-#: ../clock/src/applet-timer.c:479
+#: ../clock/src/applet-timer.c:474
 msgid "This task will begin in 15 minutes:"
 msgstr "このタスクが15分以内に開始となります :"
 
-#: ../clock/src/applet-timer.c:513
+#: ../clock/src/applet-timer.c:508
 msgid "Today is the following anniversary:"
 msgstr "今日は以下の記念日です :"
 
-#: ../clock/src/applet-timer.c:513
+#: ../clock/src/applet-timer.c:508
 msgid "Tomorrow is the following anniversary:"
 msgstr "明日は以下の記念日です :"
 
@@ -1944,7 +2061,9 @@ msgstr "ツールチップ"
 #: ../dnd2share/src/applet-dnd2share.c:165
 msgid ""
 "Couldn't upload the file, check that your internet connection is active."
-msgstr "ファイルのアップロードができませんでした。インターネット回線が機能しているか確かめてください。"
+msgstr ""
+"ファイルのアップロードができませんでした。インターネット回線が機能しているか"
+"確かめてください。"
 
 #: ../dnd2share/src/applet-dnd2share.c:282
 msgid ""
@@ -1955,9 +2074,9 @@ msgstr ""
 "CTRL+v を押すと、このファイルの URL を任意の場所に貼り付けられます。"
 
 #: ../dnd2share/src/applet-dnd2share.c:333
-msgid ""
-"Please wait for the current upload to finish before starting a new one."
-msgstr "新しいアップロードの開始は、現在のアップロードが完了するまでお待ちください。"
+msgid "Please wait for the current upload to finish before starting a new one."
+msgstr ""
+"新しいアップロードの開始は、現在のアップロードが完了するまでお待ちください。"
 
 #: ../dnd2share/src/applet-dnd2share.c:401
 msgid "This file is not readable."
@@ -1984,13 +2103,19 @@ msgid ""
 "You'll need to install 'curl' and 'wget' to upload the data."
 msgstr ""
 "自分のファイルを簡単に共有できるようにするためのアプレット :\n"
-"ファイルをアイコン上にドラッグ＆ドロップすると、利用可能なホスティング・サイトの内の１つにそれをアップロード。\n"
+"ファイルをアイコン上にドラッグ＆ドロップすると、利用可能なホスティング・サイ"
+"トの内の１つにそれをアップロード。\n"
 "DropBox や Imageshack, pastebin など多くのサイトから選択して、\n"
-"テキストや画像、動画、ファイル、さらにはクリップボードの内容をアップロードすることができます。\n"
-"結果として得られるURLは、CTRL+v で直接コピーできるように自動的にクリップボードに保存されます。\n"
-"サイトへの登録なしでファイルを取り出せるようにするために、アップロードの履歴を保持することができます。\n"
-"左クリックで直近のURLをクリップボードにコピー、中クリックでそれをマウス・セレクションにコピーします。\n"
-"データをアップロードするには、'curl' と 'wget' をインストールする必要があります。"
+"テキストや画像、動画、ファイル、さらにはクリップボードの内容をアップロードす"
+"ることができます。\n"
+"結果として得られるURLは、CTRL+v で直接コピーできるように自動的にクリップボー"
+"ドに保存されます。\n"
+"サイトへの登録なしでファイルを取り出せるようにするために、アップロードの履歴"
+"を保持することができます。\n"
+"左クリックで直近のURLをクリップボードにコピー、中クリックでそれをマウス・セレ"
+"クションにコピーします。\n"
+"データをアップロードするには、'curl' と 'wget' をインストールする必要がありま"
+"す。"
 
 #: ../dnd2share/src/applet-init.c:55
 msgid "Drop to share"
@@ -2035,7 +2160,8 @@ msgid ""
 "uploads."
 msgstr ""
 "利用可能なアップロード済みファイルはありません。\n"
-"以前のアップロードをアプレットに記憶させたい場合は、履歴の有効化を検討してください。"
+"以前のアップロードをアプレットに記憶させたい場合は、履歴の有効化を検討してく"
+"ださい。"
 
 #: ../dnd2share/src/applet-notifications.c:138
 msgid ""
@@ -2134,7 +2260,8 @@ msgid ""
 "Middle-click on the icon will empty the dustbin."
 msgstr ""
 "ゴミ箱を管理するアプレット。\n"
-"アイコンへドラッグ＆ドロップして、ファイルをゴミ箱に入れたり、ディスクをアンマウントできます。\n"
+"アイコンへドラッグ＆ドロップして、ファイルをゴミ箱に入れたり、ディスクをアン"
+"マウントできます。\n"
 "アイコンを中クリックすると、ゴミ箱を空にします。"
 
 #: ../dustbin/src/applet-notifications.c:40
@@ -2294,7 +2421,7 @@ msgid ""
 "You can bind a <b>shortcut</b> to it, and also to lock the screen."
 msgstr ""
 
-#: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:229
+#: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:233
 #: ../logout/data/messages:95
 msgid "Log out"
 msgstr "ログアウト"
@@ -2307,86 +2434,86 @@ msgstr ""
 msgid "Show the log-out menu"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:201 ../logout/data/messages:97
+#: ../logout/src/applet-logout.c:205 ../logout/data/messages:97
 msgid "Shut down"
 msgstr "シャットダウン"
 
-#: ../logout/src/applet-logout.c:207
+#: ../logout/src/applet-logout.c:211
 msgid "Restart"
 msgstr "再起動"
 
-#: ../logout/src/applet-logout.c:213
+#: ../logout/src/applet-logout.c:217
 #: ../powermanager/src/powermanager-menu-functions.c:96
 #: ../powermanager/src/powermanager-menu-functions.c:104
 msgid "Hibernate"
 msgstr "ハイバネート"
 
-#: ../logout/src/applet-logout.c:215
+#: ../logout/src/applet-logout.c:219
 msgid "Your computer will not consume any energy."
 msgstr "コンピュータは電力を全く消費しなくなります。"
 
-#: ../logout/src/applet-logout.c:220
+#: ../logout/src/applet-logout.c:224
 #: ../powermanager/src/powermanager-menu-functions.c:99
 #: ../powermanager/src/powermanager-menu-functions.c:106
 msgid "Suspend"
 msgstr "サスペンド"
 
-#: ../logout/src/applet-logout.c:222
+#: ../logout/src/applet-logout.c:226
 msgid "Your computer will still consume a small amount of energy."
 msgstr "コンピュータは電力を若干ですが消費します。"
 
-#: ../logout/src/applet-logout.c:231
+#: ../logout/src/applet-logout.c:235
 msgid "Close your session and allow to open a new one."
 msgstr "現在のセッションを閉じて新しいセッションを開けるようにします。"
 
-#: ../logout/src/applet-logout.c:242
+#: ../logout/src/applet-logout.c:246
 msgid "Switch user"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:263
+#: ../logout/src/applet-logout.c:267
 msgid "Guest session"
 msgstr "ゲストセッション"
 
-#: ../logout/src/applet-logout.c:270 ../logout/data/messages:99
+#: ../logout/src/applet-logout.c:274 ../logout/data/messages:99
 msgid "Lock screen"
 msgstr "画面のロック"
 
-#: ../logout/src/applet-logout.c:275
+#: ../logout/src/applet-logout.c:279
 msgid "Program an automatic shut-down"
 msgstr "自動シャットダウンの実行設定"
 
-#: ../logout/src/applet-logout.c:343
+#: ../logout/src/applet-logout.c:347
 msgid "Your computer will shut-down in 1 minute."
 msgstr "コンピュータは１分後にシャットダウンします。"
 
-#: ../logout/src/applet-logout.c:390
+#: ../logout/src/applet-logout.c:394
 msgid "Choose in how many minutes your PC will stop:"
 msgstr "何分後に PC を止めるかの選択 :"
 
-#: ../logout/src/applet-logout.c:430
+#: ../logout/src/applet-logout.c:434
 msgid ""
 "Your session needs to be restarted in order to update new configuration "
 "files."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:433
+#: ../logout/src/applet-logout.c:437
 msgid "Please do that at the end of the update."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:646
+#: ../logout/src/applet-logout.c:650
 #, c-format
 msgid "It will automatically shut-down in %ds"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:647
+#: ../logout/src/applet-logout.c:651
 msgid "Shut down the computer?"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:707
+#: ../logout/src/applet-logout.c:711
 msgid "Restart the computer?"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:744
+#: ../logout/src/applet-logout.c:748
 msgid "Close the current session?"
 msgstr ""
 
@@ -2423,14 +2550,16 @@ msgid ""
 "Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and "
 "995 for POP3S."
 msgstr ""
-"デフォルトのポートを使用するには 0 を入力します。POP3 または APOP は 110、POP3S は 995 がデフォルトのポートです。"
+"デフォルトのポートを使用するには 0 を入力します。POP3 または APOP は 110、"
+"POP3S は 995 がデフォルトのポートです。"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid ""
 "Enter 0 to use the default port. Default ports are 143 for IMAP4 and 993 for "
 "IMAP4 over SSL."
 msgstr ""
-"デフォルトのポートを使用するには 0 を入力してください。デフォルトのポートは IMAP4 が 143、IMAP4 over SSL が 993 です。"
+"デフォルトのポートを使用するには 0 を入力してください。デフォルトのポートは "
+"IMAP4 が 143、IMAP4 over SSL が 993 です。"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Use a secure connection (SSL)"
@@ -2453,7 +2582,8 @@ msgstr "メール・アプリケーションの指定"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Leave empty to use the default mail application."
-msgstr "デフォルトのメール・アプリケーションを使用するには空欄のままにしてください。"
+msgstr ""
+"デフォルトのメール・アプリケーションを使用するには空欄のままにしてください。"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Directory on server:"
@@ -2503,7 +2633,8 @@ msgstr ""
 
 #: ../mail/src/cd-mail-applet-config.c:392
 msgid "Enter a name for this account. You can give it any name you want."
-msgstr "このアカウントの名前を入力してください。任意の名前を付けることができます。"
+msgstr ""
+"このアカウントの名前を入力してください。任意の名前を付けることができます。"
 
 #: ../mail/src/cd-mail-applet-config.c:447
 msgid "Remove Account"
@@ -2611,31 +2742,31 @@ msgstr "タイトル不明"
 msgid "Track"
 msgstr "トラック"
 
-#: ../musicPlayer/src/applet-draw.c:151
-msgid "Artist"
-msgstr "アーティスト"
-
-#: ../musicPlayer/src/applet-draw.c:155
-msgid "Album"
-msgstr "アルバム"
-
-#: ../musicPlayer/src/applet-draw.c:157
-msgid "Length"
-msgstr "演奏時間"
-
-#: ../musicPlayer/src/applet-draw.c:159
+#: ../musicPlayer/src/applet-draw.c:150
 msgid "Track n°"
 msgstr "トラック番号"
 
-#: ../musicPlayer/src/applet-draw.c:160
+#: ../musicPlayer/src/applet-draw.c:155
 msgid "Song n°"
 msgstr "曲番号"
 
-#: ../musicPlayer/src/applet-draw.c:176
+#: ../musicPlayer/src/applet-draw.c:166
+msgid "Artist"
+msgstr "アーティスト"
+
+#: ../musicPlayer/src/applet-draw.c:170
+msgid "Album"
+msgstr "アルバム"
+
+#: ../musicPlayer/src/applet-draw.c:172
+msgid "Length"
+msgstr "演奏時間"
+
+#: ../musicPlayer/src/applet-draw.c:192
 msgid "Current song"
 msgstr "現在の曲"
 
-#: ../musicPlayer/src/applet-draw.c:182
+#: ../musicPlayer/src/applet-draw.c:198
 msgid "There is no media playing."
 msgstr "再生中のメディアはありません。"
 
@@ -2656,80 +2787,81 @@ msgid ""
 "Note: you may have to install or activate the MPRIS plug-in of the player."
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:100
+#: ../musicPlayer/src/applet-notifications.c:101
 msgid ""
 "Sorry, I couldn't detect any player.\n"
 "If it is running, it is maybe because its version is too old and does not "
 "offer such service."
 msgstr ""
 "残念ながらプレイヤーを検出できませんでした。\n"
-"実際に現在プレイヤーを実行中の場合、バージョンが古いためサービス未提供なことが原因かもしれません。"
+"実際に現在プレイヤーを実行中の場合、バージョンが古いためサービス未提供なこと"
+"が原因かもしれません。"
 
-#: ../musicPlayer/src/applet-notifications.c:192
+#: ../musicPlayer/src/applet-notifications.c:193
 msgid "Choose a music player to control"
 msgstr "制御する音楽プレイヤーの選択"
 
-#: ../musicPlayer/src/applet-notifications.c:284
+#: ../musicPlayer/src/applet-notifications.c:285
 msgid "Find opened player"
 msgstr "実行中のプレイヤーの検出"
 
-#: ../musicPlayer/src/applet-notifications.c:288
+#: ../musicPlayer/src/applet-notifications.c:289
 msgid "Choose a player"
 msgstr "プレイヤーの選択"
 
-#: ../musicPlayer/src/applet-notifications.c:294
+#: ../musicPlayer/src/applet-notifications.c:295
 msgid "Previous"
 msgstr "前へ"
 
-#: ../musicPlayer/src/applet-notifications.c:294
+#: ../musicPlayer/src/applet-notifications.c:295
 msgid "scroll-up"
 msgstr "上スクロール"
 
-#: ../musicPlayer/src/applet-notifications.c:300
+#: ../musicPlayer/src/applet-notifications.c:301
 msgid "Play/Pause"
 msgstr "再生/一時停止"
 
-#: ../musicPlayer/src/applet-notifications.c:300
+#: ../musicPlayer/src/applet-notifications.c:301
 msgid "left-click"
 msgstr "左クリック"
 
-#: ../musicPlayer/src/applet-notifications.c:306
+#: ../musicPlayer/src/applet-notifications.c:307
 msgid "Next"
 msgstr "次へ"
 
-#: ../musicPlayer/src/applet-notifications.c:306
+#: ../musicPlayer/src/applet-notifications.c:307
 msgid "scroll-down"
 msgstr "下スクロール"
 
-#: ../musicPlayer/src/applet-notifications.c:311
+#: ../musicPlayer/src/applet-notifications.c:312
 msgid "Stop"
 msgstr "停止"
 
-#: ../musicPlayer/src/applet-notifications.c:315
+#: ../musicPlayer/src/applet-notifications.c:316
 msgid "Information"
 msgstr "情報"
 
-#: ../musicPlayer/src/applet-notifications.c:320
+#: ../musicPlayer/src/applet-notifications.c:321
 msgid "Show JumpBox"
 msgstr "ジャンプ先の指定"
 
-#: ../musicPlayer/src/applet-notifications.c:323
+#: ../musicPlayer/src/applet-notifications.c:324
 msgid "Shuffle"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:331
+#: ../musicPlayer/src/applet-notifications.c:332
 msgid "Repeat"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:339
+#: ../musicPlayer/src/applet-notifications.c:340
 msgid "Rate this song"
 msgstr "この曲の評価付け"
 
-#: ../musicPlayer/src/applet-notifications.c:343
+#: ../musicPlayer/src/applet-notifications.c:344
 msgid "Show"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:344
+#: ../musicPlayer/src/applet-notifications.c:345
 msgid "Quit"
 msgstr ""
 
@@ -2760,22 +2892,29 @@ msgstr "ダウンロード"
 msgid "uploaded"
 msgstr "アップロード"
 
-#: ../netspeed/src/applet-notifications.c:42
-#, c-format
+#: ../netspeed/src/applet-notifications.c:44
+msgid ""
+"No interface found.\n"
+"Please be sure that at least one interface is available\n"
+" and that you have the right to monitor it"
+msgstr ""
+
+#: ../netspeed/src/applet-notifications.c:48
+#, fuzzy, c-format
 msgid ""
 "Interface '%s' doesn't seem to exist or is not readable.\n"
-" You may have to set up the interface you wish to monitor.\n"
-" Do you want to do it now?"
+"You may have to set up the interface you wish to monitor.\n"
+"Do you want to do it now?"
 msgstr ""
 "インターフェイス '%s' は存在しないか、読み込みことができません。\n"
 "監視したいインターフェイスのセットアップが必要な可能性があります。\n"
 "直ちに行いますか？"
 
-#: ../netspeed/src/applet-notifications.c:94
+#: ../netspeed/src/applet-notifications.c:105
 msgid "Enable/disable network"
 msgstr "ネットワークの有効化/無効化"
 
-#: ../netspeed/src/applet-notifications.c:102
+#: ../netspeed/src/applet-notifications.c:113
 msgid "Re-check interface"
 msgstr "インターフェイスの再チェック"
 
@@ -2870,9 +3009,11 @@ msgid ""
 "<b>Click</b> on the icon to have useful inforamtion,\n"
 "<b>Right-click</b> on the icon to hibernate or suspend the system."
 msgstr ""
-"<b>ラップトップのバッテリー</b>の現在の状態を表示するアプレット： 充電量、残量時間、等々\n"
+"<b>ラップトップのバッテリー</b>の現在の状態を表示するアプレット： 充電量、残"
+"量時間、等々\n"
 "アイコンを<b>クリック</b>すると有益な情報が表示され、\n"
-"<b>右クリック</b>のメニューからはシステムのハイバネートやサスペンドが可能です。"
+"<b>右クリック</b>のメニューからはシステムのハイバネートやサスペンドが可能で"
+"す。"
 
 #: ../powermanager/src/powermanager-menu-functions.c:70
 msgid "Set up power management"
@@ -2903,8 +3044,8 @@ msgstr ""
 msgid "Show/hide the folder menu"
 msgstr ""
 
-#: ../quick-browser/src/applet-menu.c:105
-#: ../quick-browser/src/applet-menu.c:111
+#: ../quick-browser/src/applet-menu.c:106
+#: ../quick-browser/src/applet-menu.c:112
 msgid "Open this folder"
 msgstr "このフォルダを開く"
 
@@ -2914,7 +3055,7 @@ msgstr "フォルダを開く"
 
 #: ../shortcuts/src/applet-bookmarks.c:142
 #: ../shortcuts/src/applet-bookmarks.c:364
-#: ../shortcuts/src/applet-drives.c:268
+#: ../shortcuts/src/applet-drives.c:269
 msgid "Unmounted"
 msgstr "アンマウント済み"
 
@@ -2922,7 +3063,7 @@ msgstr "アンマウント済み"
 msgid "Home Folder"
 msgstr ""
 
-#: ../shortcuts/src/applet-drives.c:130 ../shortcuts/src/applet-drives.c:193
+#: ../shortcuts/src/applet-drives.c:130 ../shortcuts/src/applet-drives.c:194
 #, c-format
 msgid "%s is now mounted"
 msgstr "%s がマウントされました"
@@ -2933,7 +3074,7 @@ msgstr "%s がマウントされました"
 msgid "%s has been connected"
 msgstr "%s は接続されました"
 
-#: ../shortcuts/src/applet-drives.c:193
+#: ../shortcuts/src/applet-drives.c:194
 #, c-format
 msgid "%s is now unmounted"
 msgstr "%s は現在アンマウントされています"
@@ -2954,11 +3095,14 @@ msgid ""
 "space, type, etc."
 msgstr ""
 "あらゆるショートカットに素早くアクセスできるアプレット。\n"
-"ディスクやネットワークポイント、Nautilusブックッマーク（Nautilusは必須ではありません）を管理できます。\n"
-"ブックマークを追加するには、メインのアイコンまたはサブ・ドックにフォルダをドラッグ&ドロップします。\n"
+"ディスクやネットワークポイント、Nautilusブックッマーク（Nautilusは必須ではあ"
+"りません）を管理できます。\n"
+"ブックマークを追加するには、メインのアイコンまたはサブ・ドックにフォルダをド"
+"ラッグ&ドロップします。\n"
 "メイン・アイコンを中クリックすると、ホームフォルダが表示されます。\n"
 "マウントポイント・アイコンの中クリックで、（アン）マウントを素早く。\n"
-"アプレットは、空き容量や種類などの有益なディスク情報を表示することもできます。"
+"アプレットは、空き容量や種類などの有益なディスク情報を表示することもできま"
+"す。"
 
 #: ../shortcuts/src/applet-notifications.c:43
 #: ../shortcuts/src/applet-notifications.c:70
@@ -3038,9 +3182,11 @@ msgstr "マウス表示"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a "
-"dock/desklet."
-msgstr "マウスカーソルがドックやデスクレット内にあるとき、カーソルの周囲にアニメーションを描画するプラグイン"
+"This plugin draws some animations around the cursor when it's inside a dock/"
+"desklet."
+msgstr ""
+"マウスカーソルがドックやデスクレット内にあるとき、カーソルの周囲にアニメー"
+"ションを描画するプラグイン"
 
 #: ../showDesktop/src/applet-init.c:28
 msgid "showDesktop"
@@ -3057,10 +3203,12 @@ msgid ""
 "Layer, or all the desktops at once."
 msgstr ""
 "デスクトップを表示するためのアイコンを追加するアプレット。\n"
-"デスクレットやウィジェット・レイヤを表示したり、デスクトップを展開させることも可能です。\n"
+"デスクレットやウィジェット・レイヤを表示したり、デスクトップを展開させること"
+"も可能です。\n"
 "右クリック・メニューから画面の解像度を素早く変更するためにも利用できます。\n"
 "左クリックでデスクトップを表示/隠す、\n"
-"中クリックでデスクトップやデスクレット、ウィジェット・レイヤを表示/隠す、またはデスクトップを展開します。"
+"中クリックでデスクトップやデスクレット、ウィジェット・レイヤを表示/隠す、また"
+"はデスクトップを展開します。"
 
 #: ../showDesktop/src/applet-notifications.c:203
 msgid "Change screen resolution"
@@ -3082,25 +3230,30 @@ msgstr ""
 "クリックで再生/一時停止、または現在の画像の編集、\n"
 "中クリックで画像フォルダを開きます。"
 
-#: ../slider/src/applet-notifications.c:215
+#: ../slider/src/applet-notifications.c:68
+#, fuzzy
+msgid "You need to define the images folder first."
+msgstr "Zeitgeistデータエンジンのインストールが必要です。"
+
+#: ../slider/src/applet-notifications.c:220
 msgid "Play"
 msgstr "再生"
 
-#: ../slider/src/applet-notifications.c:215
+#: ../slider/src/applet-notifications.c:220
 msgid "Pause"
 msgstr "停止"
 
-#: ../slider/src/applet-notifications.c:223
-#: ../slider/src/applet-notifications.c:225
+#: ../slider/src/applet-notifications.c:228
+#: ../slider/src/applet-notifications.c:230
 msgid "Open current image"
 msgstr "現在の画像を開く"
 
-#: ../slider/src/applet-notifications.c:265
-#: ../slider/src/applet-notifications.c:267
+#: ../slider/src/applet-notifications.c:270
+#: ../slider/src/applet-notifications.c:272
 msgid "Browse images folder"
 msgstr "画像フォルダを参照"
 
-#: ../slider/src/applet-notifications.c:270
+#: ../slider/src/applet-notifications.c:275
 msgid "Refresh images list"
 msgstr ""
 
@@ -3117,10 +3270,14 @@ msgid ""
 "You can drop any file, or web URL, or even some piece of text\n"
 "You can quickly copy the path/url/text to the clipboard, or open it."
 msgstr ""
-"MacOS X のスタック・アプレット風にファイルのスタックの構築を行うためのアプレット。\n"
-"スタックにファイルを追加するには、スタック・アイコンにドラッグ＆ドロップするだけです。\n"
-"ファイル全般や、Web URL、さらにはテキストの一部をドロップすることも可能です。\n"
-"従って、パス/URL/テキストを素早くクリップボードにコピーしたり、開くことができます。"
+"MacOS X のスタック・アプレット風にファイルのスタックの構築を行うためのアプ"
+"レット。\n"
+"スタックにファイルを追加するには、スタック・アイコンにドラッグ＆ドロップする"
+"だけです。\n"
+"ファイル全般や、Web URL、さらにはテキストの一部をドロップすることも可能で"
+"す。\n"
+"従って、パス/URL/テキストを素早くクリップボードにコピーしたり、開くことができ"
+"ます。"
 
 #: ../stack/src/applet-notifications.c:54
 msgid ""
@@ -3177,18 +3334,18 @@ msgstr "ファイルがスタックに追加されました。"
 msgid "The URL has been added to the stack."
 msgstr "URLがスタックに追加されました。"
 
-#: ../switcher/src/applet-draw.c:603 ../switcher/src/applet-draw.c:610
-#: ../switcher/src/applet-load-icons.c:53
-#: ../switcher/src/applet-notifications.c:428
+#: ../switcher/src/applet-draw.c:579 ../switcher/src/applet-draw.c:586
+#: ../switcher/src/applet-load-icons.c:54
+#: ../switcher/src/applet-notifications.c:427
 msgid "Current"
 msgstr "現在"
 
-#: ../switcher/src/applet-draw.c:610 ../switcher/src/applet-draw.c:612
-#: ../switcher/src/applet-load-icons.c:59
-#: ../switcher/src/applet-notifications.c:229
-#: ../switcher/src/applet-notifications.c:257
-#: ../switcher/src/applet-notifications.c:420
-#: ../switcher/src/applet-notifications.c:480
+#: ../switcher/src/applet-draw.c:586 ../switcher/src/applet-draw.c:588
+#: ../switcher/src/applet-load-icons.c:60
+#: ../switcher/src/applet-notifications.c:228
+#: ../switcher/src/applet-notifications.c:256
+#: ../switcher/src/applet-notifications.c:419
+#: ../switcher/src/applet-notifications.c:479
 msgid "Desktop"
 msgstr "デスクトップ"
 
@@ -3212,36 +3369,39 @@ msgstr ""
 " - ワークスペースの素早い追加や削除（メニューから）\n"
 " - デスクトップの表示（中クリックまたはメニューから）\n"
 " - 各ワークスペースの全ウィンドウの一覧（中クリックまたはメニューから）\n"
-"アプレットには、コンパクト（アイコン１つ）と拡張（サブ・ドックあり）の２モードがあります。"
+"アプレットには、コンパクト（アイコン１つ）と拡張（サブ・ドックあり）の２モー"
+"ドがあります。"
 
-#: ../switcher/src/applet-notifications.c:258
-#: ../switcher/src/applet-notifications.c:292
+#: ../switcher/src/applet-notifications.c:257
+#: ../switcher/src/applet-notifications.c:291
 msgid "Rename this workspace"
 msgstr "このワークスペースの名前変更"
 
-#: ../switcher/src/applet-notifications.c:279
+#: ../switcher/src/applet-notifications.c:278
 msgid "Add a workspace"
 msgstr "デスクトップの追加"
 
-#: ../switcher/src/applet-notifications.c:283
+#: ../switcher/src/applet-notifications.c:282
 msgid "Remove last workspace"
 msgstr "最後のデスクトップの削除"
 
-#: ../switcher/src/applet-notifications.c:299
+#: ../switcher/src/applet-notifications.c:298
 msgid "Move current workspace to this workspace"
 msgstr "現在のデスクトップからこのデスクトップへ移動"
 
-#: ../switcher/src/applet-notifications.c:304
+#: ../switcher/src/applet-notifications.c:303
 msgid ""
 "This will move all windows from the current desktop to the one you clicked "
 "on."
-msgstr "全てのウィンドウを現在のデスクトップからクリックしたデスクトップへ移動させます。"
+msgstr ""
+"全てのウィンドウを現在のデスクトップからクリックしたデスクトップへ移動させま"
+"す。"
 
-#: ../switcher/src/applet-notifications.c:313
+#: ../switcher/src/applet-notifications.c:312
 msgid "Windows List"
 msgstr "ウィンドウ・リスト"
 
-#: ../switcher/src/applet-notifications.c:318
+#: ../switcher/src/applet-notifications.c:317
 msgid "Show the desktop"
 msgstr "デスクトップの表示"
 
@@ -3254,8 +3414,10 @@ msgid ""
 "somewhere, above other windows."
 msgstr ""
 "ドックにシストレイを追加。\n"
-"左クリックでダイアログにシストレイを表示/隠す（キーボード・ショートカットの割り当て可能）、\n"
-"しかし、ドックから分離させて任意の場所に最前面表示させるのがこのアプレットの最良の使用方法です。"
+"左クリックでダイアログにシストレイを表示/隠す（キーボード・ショートカットの割"
+"り当て可能）、\n"
+"しかし、ドックから分離させて任意の場所に最前面表示させるのがこのアプレットの"
+"最良の使用方法です。"
 
 #: ../systray/src/systray-init.c:41
 msgid "Notification Area Old"
@@ -3272,7 +3434,8 @@ msgid ""
 "any conflict."
 msgstr ""
 "別のシストレイが（おそらくパネル上で）すでに実行中です。\n"
-"シストレイが存在できるのは1度に1つだけなので、衝突回避のために取り除く必要があります。"
+"シストレイが存在できるのは1度に1つだけなので、衝突回避のために取り除く必要が"
+"あります。"
 
 #: ../template/src/applet-init.c:28
 msgid "CD_APPLET_NAME"
@@ -3301,9 +3464,11 @@ msgid ""
 "To close a tab : type 'CTRL+w' or middle-click on it."
 msgstr ""
 "ドックに端末を追加！\n"
-"左クリックで端末の表示/隠す。（キーボード・ショートカットの割り当てもできます。）\n"
+"左クリックで端末の表示/隠す。（キーボード・ショートカットの割り当てもできま"
+"す。）\n"
 "ファイルやテキストをドラッグ＆ドロップしてアクションを選択することが可能。\n"
-"タブを数多く開いたり、それらをリネームしたり、色を変更することができます。（タブを右クリックして操作）\n"
+"タブを数多く開いたり、それらをリネームしたり、色を変更することができます。"
+"（タブを右クリックして操作）\n"
 "新しいタブを開くには、'CTRL+t' または最後のタブのとなりをダブル・クリック。\n"
 "タブを閉じるには、'CTRL+w' またはそのタブを中クリックします。"
 
@@ -3357,15 +3522,20 @@ msgstr "このタブの色を変更"
 msgid "Close this Tab"
 msgstr "このタブを閉じる"
 
-#: ../tomboy/src/tomboy-draw.c:198
+#: ../tomboy/src/applet-backend-default.c:189
+#, fuzzy
+msgid "Title:"
+msgstr "タイトル"
+
+#: ../tomboy/src/tomboy-draw.c:190
 msgid "Open all"
 msgstr ""
 
-#: ../tomboy/src/tomboy-init.c:30
+#: ../tomboy/src/tomboy-init.c:32
 msgid "Note-Taking"
 msgstr "ノート取り"
 
-#: ../tomboy/src/tomboy-init.c:33
+#: ../tomboy/src/tomboy-init.c:35
 msgid ""
 "Control your Gnote or TomBoy's notes directly in the dock !\n"
 "Click on a note to open it, Escape to close it.\n"
@@ -3377,55 +3547,55 @@ msgstr ""
 "新しいノートを素早く作成するには中クリック。\n"
 "ノート内の検索をしたり、アイコンにノート内容を表示することもできます。"
 
-#: ../tomboy/src/tomboy-notifications.c:118
+#: ../tomboy/src/tomboy-notifications.c:86
 msgid "Note name : "
 msgstr "ノートの名前 : "
 
-#: ../tomboy/src/tomboy-notifications.c:145
+#: ../tomboy/src/tomboy-notifications.c:113
 msgid "Delete this note?"
 msgstr "このノートを削除？"
 
-#: ../tomboy/src/tomboy-notifications.c:184
+#: ../tomboy/src/tomboy-notifications.c:153
 msgid "Search for:"
 msgstr "検索 :"
 
-#: ../tomboy/src/tomboy-notifications.c:209
+#: ../tomboy/src/tomboy-notifications.c:178
 msgid "Search for tag:"
 msgstr "タグ検索 :"
 
-#: ../tomboy/src/tomboy-notifications.c:248
+#: ../tomboy/src/tomboy-notifications.c:217
 msgid "Add a note"
 msgstr "ノートの追加"
 
-#: ../tomboy/src/tomboy-notifications.c:254
+#: ../tomboy/src/tomboy-notifications.c:223
 msgid "Delete this note"
 msgstr "このノートの削除"
 
-#: ../tomboy/src/tomboy-notifications.c:257
+#: ../tomboy/src/tomboy-notifications.c:226
 msgid "Reload notes"
 msgstr "ノートの再読み込み"
 
-#: ../tomboy/src/tomboy-notifications.c:261
+#: ../tomboy/src/tomboy-notifications.c:230
 msgid "Search"
 msgstr "検索"
 
-#: ../tomboy/src/tomboy-notifications.c:262
+#: ../tomboy/src/tomboy-notifications.c:231
 msgid "Search for tag"
 msgstr "タグ検索"
 
-#: ../tomboy/src/tomboy-notifications.c:264
+#: ../tomboy/src/tomboy-notifications.c:233
 msgid "Search for today's note"
 msgstr "今日のノートの検索"
 
-#: ../tomboy/src/tomboy-notifications.c:265
+#: ../tomboy/src/tomboy-notifications.c:234
 msgid "Search for this week's note"
 msgstr "今週のノートの検索"
 
-#: ../tomboy/src/tomboy-notifications.c:266
+#: ../tomboy/src/tomboy-notifications.c:235
 msgid "Search for next week's note"
 msgstr "次週のノートの検索"
 
-#: ../tomboy/src/tomboy-notifications.c:276
+#: ../tomboy/src/tomboy-notifications.c:245
 msgid "Reset marks"
 msgstr "マークの消去"
 
@@ -3468,9 +3638,11 @@ msgid ""
 "click on a sub-icon to have forcast information.\n"
 msgstr ""
 "ドックに天気を表示するアプレット。\n"
-"データは www.weather.com から提供されていて、設定パネルから現在地の検索を行うことができます。\n"
+"データは www.weather.com から提供されていて、設定パネルから現在地の検索を行う"
+"ことができます。\n"
 "目を楽しませる 3D デスクレットとしてドックから分離させることが可能です。\n"
-"メインのアイコンを中クリックすると現在の気象情報が、サブのアイコンを左クリックすると予報が表示されます。\n"
+"メインのアイコンを中クリックすると現在の気象情報が、サブのアイコンを左クリッ"
+"クすると予報が表示されます。\n"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Jan"
@@ -3604,7 +3776,8 @@ msgid ""
 "You can select your web page, set the desired scrolling,\n"
 "and hide the scrollbars to get a real 'crop' of the page."
 msgstr ""
-"デスクトップにインタラクティブなウェブページを表示できるウェブレット・アプレット。\n"
+"デスクトップにインタラクティブなウェブページを表示できるウェブレット・アプ"
+"レット。\n"
 "任意のウェブページを選択して、好みのスクロール位置を設定したり、\n"
 "スクロールバーを隠してページの本当の”切り抜き”にすることができます。"
 
@@ -3616,7 +3789,7 @@ msgstr "ウェブレット"
 msgid "Very Low"
 msgstr "非常に弱い"
 
-#: ../wifi/src/applet-draw.c:30
+#: ../wifi/src/applet-draw.c:30 ../Sound-Effects/data/messages:23
 msgid "Low"
 msgstr "弱い"
 
@@ -3654,7 +3827,7 @@ msgid "Toggle wifi ON/OFF"
 msgstr ""
 
 #: ../gvfs-integration/cairo-dock-gio-vfs.c:466
-#: ../gvfs-integration/cairo-dock-gio-vfs.c:833
+#: ../gvfs-integration/cairo-dock-gio-vfs.c:831
 msgid "File System"
 msgstr ""
 
@@ -3739,21 +3912,21 @@ msgstr "メッシュの種類 :"
 #: ../Impulse/data/messages:37 ../MeMenu/data/messages:37
 #: ../Messaging-Menu/data/messages:51 ../Network-Monitor/data/messages:53
 #: ../Printers-Menu/data/messages:41 ../RSSreader/data/messages:45
-#: ../Recent-Events/data/messages:43 ../Status-Notifier/data/messages:55
-#: ../Sync-Menu/data/messages:41 ../System-Monitor/data/messages:51
-#: ../Toons/data/messages:51 ../Xgamma/data/messages:45
-#: ../alsaMixer/data/messages:51 ../clock/data/messages:53
-#: ../dnd2share/data/messages:39 ../dustbin/data/messages:41
-#: ../keyboard-indicator/data/messages:51 ../logout/data/messages:43
-#: ../mail/data/messages:51 ../musicPlayer/data/messages:53
-#: ../netspeed/data/messages:51 ../powermanager/data/messages:53
-#: ../quick-browser/data/messages:45 ../shortcuts/data/messages:43
-#: ../showDesktop/data/messages:45 ../slider/data/messages:51
-#: ../stack/data/messages:45 ../switcher/data/messages:43
-#: ../systray/data/messages:35 ../template/data/messages:43
-#: ../terminal/data/messages:43 ../tomboy/data/messages:55
-#: ../weather/data/messages:53 ../weblets/data/messages:43
-#: ../wifi/data/messages:51
+#: ../Recent-Events/data/messages:43 ../Screenshot/data/messages:43
+#: ../Status-Notifier/data/messages:55 ../Sync-Menu/data/messages:41
+#: ../System-Monitor/data/messages:51 ../Toons/data/messages:51
+#: ../Xgamma/data/messages:45 ../alsaMixer/data/messages:51
+#: ../clock/data/messages:53 ../dnd2share/data/messages:39
+#: ../dustbin/data/messages:41 ../keyboard-indicator/data/messages:51
+#: ../logout/data/messages:43 ../mail/data/messages:51
+#: ../musicPlayer/data/messages:53 ../netspeed/data/messages:51
+#: ../powermanager/data/messages:53 ../quick-browser/data/messages:45
+#: ../shortcuts/data/messages:43 ../showDesktop/data/messages:45
+#: ../slider/data/messages:51 ../stack/data/messages:45
+#: ../switcher/data/messages:43 ../systray/data/messages:35
+#: ../template/data/messages:43 ../terminal/data/messages:43
+#: ../tomboy/data/messages:55 ../weather/data/messages:53
+#: ../weblets/data/messages:43 ../wifi/data/messages:51
 msgid "Normal"
 msgstr "通常"
 
@@ -3921,7 +4094,8 @@ msgstr ""
 #: ../Network-Monitor/data/messages:3 ../Printers-Menu/data/messages:1
 #: ../Printers-Menu/data/messages:3 ../RSSreader/data/messages:1
 #: ../RSSreader/data/messages:3 ../Recent-Events/data/messages:1
-#: ../Recent-Events/data/messages:3 ../Status-Notifier/data/messages:1
+#: ../Recent-Events/data/messages:3 ../Screenshot/data/messages:1
+#: ../Screenshot/data/messages:3 ../Status-Notifier/data/messages:1
 #: ../Status-Notifier/data/messages:3 ../Sync-Menu/data/messages:1
 #: ../Sync-Menu/data/messages:3 ../System-Monitor/data/messages:1
 #: ../System-Monitor/data/messages:3 ../Toons/data/messages:1
@@ -3960,20 +4134,21 @@ msgstr "アイコン"
 #: ../MeMenu/data/messages:5 ../Messaging-Menu/data/messages:5
 #: ../Network-Monitor/data/messages:5 ../Printers-Menu/data/messages:5
 #: ../RSSreader/data/messages:5 ../Recent-Events/data/messages:5
-#: ../Status-Notifier/data/messages:5 ../Sync-Menu/data/messages:5
-#: ../System-Monitor/data/messages:5 ../Toons/data/messages:5
-#: ../Xgamma/data/messages:5 ../alsaMixer/data/messages:5
-#: ../clock/data/messages:5 ../dnd2share/data/messages:5
-#: ../dustbin/data/messages:5 ../keyboard-indicator/data/messages:5
-#: ../logout/data/messages:5 ../mail/data/messages:5
-#: ../musicPlayer/data/messages:5 ../netspeed/data/messages:5
-#: ../powermanager/data/messages:5 ../quick-browser/data/messages:5
-#: ../shortcuts/data/messages:5 ../showDesktop/data/messages:5
-#: ../slider/data/messages:5 ../stack/data/messages:5
-#: ../switcher/data/messages:5 ../systray/data/messages:5
-#: ../template/data/messages:5 ../terminal/data/messages:5
-#: ../tomboy/data/messages:5 ../weather/data/messages:5
-#: ../weblets/data/messages:5 ../wifi/data/messages:5
+#: ../Screenshot/data/messages:5 ../Status-Notifier/data/messages:5
+#: ../Sync-Menu/data/messages:5 ../System-Monitor/data/messages:5
+#: ../Toons/data/messages:5 ../Xgamma/data/messages:5
+#: ../alsaMixer/data/messages:5 ../clock/data/messages:5
+#: ../dnd2share/data/messages:5 ../dustbin/data/messages:5
+#: ../keyboard-indicator/data/messages:5 ../logout/data/messages:5
+#: ../mail/data/messages:5 ../musicPlayer/data/messages:5
+#: ../netspeed/data/messages:5 ../powermanager/data/messages:5
+#: ../quick-browser/data/messages:5 ../shortcuts/data/messages:5
+#: ../showDesktop/data/messages:5 ../slider/data/messages:5
+#: ../stack/data/messages:5 ../switcher/data/messages:5
+#: ../systray/data/messages:5 ../template/data/messages:5
+#: ../terminal/data/messages:5 ../tomboy/data/messages:5
+#: ../weather/data/messages:5 ../weblets/data/messages:5
+#: ../wifi/data/messages:5
 msgid "Name of the dock it belongs to:"
 msgstr "帰属先ドックの名前 :"
 
@@ -3983,20 +4158,21 @@ msgstr "帰属先ドックの名前 :"
 #: ../GMenu/data/messages:7 ../Messaging-Menu/data/messages:7
 #: ../Network-Monitor/data/messages:9 ../Printers-Menu/data/messages:7
 #: ../RSSreader/data/messages:9 ../Recent-Events/data/messages:7
-#: ../Status-Notifier/data/messages:7 ../Sync-Menu/data/messages:7
-#: ../System-Monitor/data/messages:7 ../Toons/data/messages:7
-#: ../Xgamma/data/messages:9 ../alsaMixer/data/messages:7
-#: ../clock/data/messages:9 ../dnd2share/data/messages:7
-#: ../dustbin/data/messages:7 ../keyboard-indicator/data/messages:7
-#: ../logout/data/messages:7 ../mail/data/messages:7
-#: ../musicPlayer/data/messages:9 ../netspeed/data/messages:7
-#: ../powermanager/data/messages:9 ../quick-browser/data/messages:9
-#: ../shortcuts/data/messages:7 ../showDesktop/data/messages:7
-#: ../slider/data/messages:7 ../stack/data/messages:9
-#: ../switcher/data/messages:7 ../systray/data/messages:7
-#: ../template/data/messages:7 ../terminal/data/messages:7
-#: ../tomboy/data/messages:7 ../weather/data/messages:9
-#: ../weblets/data/messages:7 ../wifi/data/messages:7
+#: ../Screenshot/data/messages:7 ../Status-Notifier/data/messages:7
+#: ../Sync-Menu/data/messages:7 ../System-Monitor/data/messages:7
+#: ../Toons/data/messages:7 ../Xgamma/data/messages:9
+#: ../alsaMixer/data/messages:7 ../clock/data/messages:9
+#: ../dnd2share/data/messages:7 ../dustbin/data/messages:7
+#: ../keyboard-indicator/data/messages:7 ../logout/data/messages:7
+#: ../mail/data/messages:7 ../musicPlayer/data/messages:9
+#: ../netspeed/data/messages:7 ../powermanager/data/messages:9
+#: ../quick-browser/data/messages:9 ../shortcuts/data/messages:7
+#: ../showDesktop/data/messages:7 ../slider/data/messages:7
+#: ../stack/data/messages:9 ../switcher/data/messages:7
+#: ../systray/data/messages:7 ../template/data/messages:7
+#: ../terminal/data/messages:7 ../tomboy/data/messages:7
+#: ../weather/data/messages:9 ../weblets/data/messages:7
+#: ../wifi/data/messages:7
 msgid "Name of the icon as it will appear in its caption in the dock:"
 msgstr "ドックのラベル上に表示するアイコンの名前 :"
 
@@ -4006,19 +4182,20 @@ msgstr "ドックのラベル上に表示するアイコンの名前 :"
 #: ../GMenu/data/messages:101 ../Messaging-Menu/data/messages:9
 #: ../Printers-Menu/data/messages:9 ../RSSreader/data/messages:11
 #: ../RSSreader/data/messages:129 ../Recent-Events/data/messages:9
-#: ../Status-Notifier/data/messages:9 ../Sync-Menu/data/messages:9
-#: ../System-Monitor/data/messages:9 ../System-Monitor/data/messages:189
-#: ../System-Monitor/data/messages:197 ../Toons/data/messages:9
-#: ../alsaMixer/data/messages:153 ../clock/data/messages:11
-#: ../clock/data/messages:129 ../dnd2share/data/messages:9
-#: ../dustbin/data/messages:9 ../keyboard-indicator/data/messages:9
-#: ../logout/data/messages:9 ../mail/data/messages:9
-#: ../netspeed/data/messages:9 ../shortcuts/data/messages:9
-#: ../showDesktop/data/messages:9 ../slider/data/messages:9
-#: ../stack/data/messages:11 ../switcher/data/messages:9
-#: ../systray/data/messages:9 ../template/data/messages:9
-#: ../terminal/data/messages:9 ../tomboy/data/messages:9
-#: ../tomboy/data/messages:141 ../weblets/data/messages:9
+#: ../Screenshot/data/messages:9 ../Status-Notifier/data/messages:9
+#: ../Sync-Menu/data/messages:9 ../System-Monitor/data/messages:9
+#: ../System-Monitor/data/messages:189 ../System-Monitor/data/messages:197
+#: ../Toons/data/messages:9 ../alsaMixer/data/messages:153
+#: ../clock/data/messages:11 ../clock/data/messages:129
+#: ../dnd2share/data/messages:9 ../dustbin/data/messages:9
+#: ../keyboard-indicator/data/messages:9 ../logout/data/messages:9
+#: ../mail/data/messages:9 ../netspeed/data/messages:9
+#: ../shortcuts/data/messages:9 ../showDesktop/data/messages:9
+#: ../slider/data/messages:9 ../stack/data/messages:11
+#: ../switcher/data/messages:9 ../systray/data/messages:9
+#: ../template/data/messages:9 ../terminal/data/messages:9
+#: ../tomboy/data/messages:9 ../tomboy/data/messages:131
+#: ../tomboy/data/messages:143 ../weblets/data/messages:9
 msgid "Default"
 msgstr "デフォルト"
 
@@ -4029,21 +4206,21 @@ msgstr "デフォルト"
 #: ../Impulse/data/messages:7 ../MeMenu/data/messages:7
 #: ../Messaging-Menu/data/messages:11 ../Network-Monitor/data/messages:13
 #: ../Printers-Menu/data/messages:11 ../RSSreader/data/messages:15
-#: ../Recent-Events/data/messages:13 ../Status-Notifier/data/messages:15
-#: ../Sync-Menu/data/messages:11 ../System-Monitor/data/messages:11
-#: ../Toons/data/messages:11 ../Xgamma/data/messages:15
-#: ../alsaMixer/data/messages:11 ../clock/data/messages:13
-#: ../dnd2share/data/messages:13 ../dustbin/data/messages:11
-#: ../keyboard-indicator/data/messages:11 ../logout/data/messages:13
-#: ../mail/data/messages:11 ../musicPlayer/data/messages:13
-#: ../netspeed/data/messages:11 ../powermanager/data/messages:13
-#: ../quick-browser/data/messages:15 ../shortcuts/data/messages:13
-#: ../showDesktop/data/messages:15 ../slider/data/messages:11
-#: ../stack/data/messages:15 ../switcher/data/messages:13
-#: ../systray/data/messages:13 ../template/data/messages:13
-#: ../terminal/data/messages:13 ../tomboy/data/messages:25
-#: ../weather/data/messages:13 ../weblets/data/messages:13
-#: ../wifi/data/messages:11
+#: ../Recent-Events/data/messages:13 ../Screenshot/data/messages:13
+#: ../Status-Notifier/data/messages:15 ../Sync-Menu/data/messages:11
+#: ../System-Monitor/data/messages:11 ../Toons/data/messages:11
+#: ../Xgamma/data/messages:15 ../alsaMixer/data/messages:11
+#: ../clock/data/messages:13 ../dnd2share/data/messages:13
+#: ../dustbin/data/messages:11 ../keyboard-indicator/data/messages:11
+#: ../logout/data/messages:13 ../mail/data/messages:11
+#: ../musicPlayer/data/messages:13 ../netspeed/data/messages:11
+#: ../powermanager/data/messages:13 ../quick-browser/data/messages:15
+#: ../shortcuts/data/messages:13 ../showDesktop/data/messages:15
+#: ../slider/data/messages:11 ../stack/data/messages:15
+#: ../switcher/data/messages:13 ../systray/data/messages:13
+#: ../template/data/messages:13 ../terminal/data/messages:13
+#: ../tomboy/data/messages:25 ../weather/data/messages:13
+#: ../weblets/data/messages:13 ../wifi/data/messages:11
 msgid "Set to 0 to use the default applet size"
 msgstr "デフォルトのアプレット・サイズを使用するには 0 に設定してください。"
 
@@ -4054,21 +4231,21 @@ msgstr "デフォルトのアプレット・サイズを使用するには 0 に
 #: ../Impulse/data/messages:9 ../MeMenu/data/messages:9
 #: ../Messaging-Menu/data/messages:13 ../Network-Monitor/data/messages:15
 #: ../Printers-Menu/data/messages:13 ../RSSreader/data/messages:17
-#: ../Recent-Events/data/messages:15 ../Status-Notifier/data/messages:17
-#: ../Sync-Menu/data/messages:13 ../System-Monitor/data/messages:13
-#: ../Toons/data/messages:13 ../Xgamma/data/messages:17
-#: ../alsaMixer/data/messages:13 ../clock/data/messages:15
-#: ../dnd2share/data/messages:15 ../dustbin/data/messages:13
-#: ../keyboard-indicator/data/messages:13 ../logout/data/messages:15
-#: ../mail/data/messages:13 ../musicPlayer/data/messages:15
-#: ../netspeed/data/messages:13 ../powermanager/data/messages:15
-#: ../quick-browser/data/messages:17 ../shortcuts/data/messages:15
-#: ../showDesktop/data/messages:17 ../slider/data/messages:13
-#: ../stack/data/messages:17 ../switcher/data/messages:15
-#: ../systray/data/messages:15 ../template/data/messages:15
-#: ../terminal/data/messages:15 ../tomboy/data/messages:27
-#: ../weather/data/messages:15 ../weblets/data/messages:15
-#: ../wifi/data/messages:13
+#: ../Recent-Events/data/messages:15 ../Screenshot/data/messages:15
+#: ../Status-Notifier/data/messages:17 ../Sync-Menu/data/messages:13
+#: ../System-Monitor/data/messages:13 ../Toons/data/messages:13
+#: ../Xgamma/data/messages:17 ../alsaMixer/data/messages:13
+#: ../clock/data/messages:15 ../dnd2share/data/messages:15
+#: ../dustbin/data/messages:13 ../keyboard-indicator/data/messages:13
+#: ../logout/data/messages:15 ../mail/data/messages:13
+#: ../musicPlayer/data/messages:15 ../netspeed/data/messages:13
+#: ../powermanager/data/messages:15 ../quick-browser/data/messages:17
+#: ../shortcuts/data/messages:15 ../showDesktop/data/messages:17
+#: ../slider/data/messages:13 ../stack/data/messages:17
+#: ../switcher/data/messages:15 ../systray/data/messages:15
+#: ../template/data/messages:15 ../terminal/data/messages:15
+#: ../tomboy/data/messages:27 ../weather/data/messages:15
+#: ../weblets/data/messages:15 ../wifi/data/messages:13
 msgid "Desired icon size for this applet"
 msgstr "このアプレットのアイコンの大きさ"
 
@@ -4081,6 +4258,7 @@ msgstr "このアプレットのアイコンの大きさ"
 #: ../Network-Monitor/data/messages:99 ../Printers-Menu/data/messages:87
 #: ../RSSreader/data/messages:91 ../Recent-Events/data/messages:89
 #: ../Remote-Control/data/messages:3 ../Scooby-Do/data/messages:1
+#: ../Screenshot/data/messages:89 ../Sound-Effects/data/messages:1
 #: ../Status-Notifier/data/messages:101 ../Sync-Menu/data/messages:87
 #: ../System-Monitor/data/messages:97 ../Toons/data/messages:97
 #: ../Xgamma/data/messages:91 ../alsaMixer/data/messages:97
@@ -4108,17 +4286,6 @@ msgstr "設定"
 msgid "Choose one of the available themes:"
 msgstr "利用可能なテーマから1つ選択 :"
 
-#: ../Cairo-Penguin/data/messages:19 ../Clipper/data/messages:137
-#: ../Disks/data/messages:143 ../Network-Monitor/data/messages:175
-#: ../System-Monitor/data/messages:169 ../System-Monitor/data/messages:215
-#: ../Toons/data/messages:101 ../dnd2share/data/messages:91
-#: ../mail/data/messages:137 ../musicPlayer/data/messages:153
-#: ../netspeed/data/messages:149 ../powermanager/data/messages:157
-#: ../shortcuts/data/messages:127 ../slider/data/messages:131
-#: ../tomboy/data/messages:115 ../wifi/data/messages:155
-msgid "in seconds."
-msgstr "秒単位"
-
 #: ../Cairo-Penguin/data/messages:21
 msgid "Delay between animation changes :"
 msgstr "アニメーションの切り替わりの遅延時間 :"
@@ -4143,12 +4310,13 @@ msgstr "地面のオフセット :"
 #: ../Clipper/data/messages:11 ../Doncky/data/messages:11
 #: ../Folders/data/messages:23 ../GMenu/data/messages:11
 #: ../RSSreader/data/messages:13 ../Recent-Events/data/messages:11
-#: ../Xgamma/data/messages:13 ../dnd2share/data/messages:11
-#: ../logout/data/messages:11 ../quick-browser/data/messages:13
-#: ../shortcuts/data/messages:11 ../showDesktop/data/messages:11
-#: ../stack/data/messages:13 ../switcher/data/messages:11
-#: ../systray/data/messages:11 ../template/data/messages:11
-#: ../terminal/data/messages:11 ../weblets/data/messages:11
+#: ../Screenshot/data/messages:11 ../Xgamma/data/messages:13
+#: ../dnd2share/data/messages:11 ../logout/data/messages:11
+#: ../quick-browser/data/messages:13 ../shortcuts/data/messages:11
+#: ../showDesktop/data/messages:11 ../stack/data/messages:13
+#: ../switcher/data/messages:11 ../systray/data/messages:11
+#: ../template/data/messages:11 ../terminal/data/messages:11
+#: ../weblets/data/messages:11
 msgid "Image filename:"
 msgstr "画像のファイル名 :"
 
@@ -4159,21 +4327,21 @@ msgstr "画像のファイル名 :"
 #: ../MeMenu/data/messages:11 ../Messaging-Menu/data/messages:25
 #: ../Network-Monitor/data/messages:27 ../Printers-Menu/data/messages:15
 #: ../RSSreader/data/messages:19 ../Recent-Events/data/messages:17
-#: ../Status-Notifier/data/messages:29 ../Sync-Menu/data/messages:15
-#: ../System-Monitor/data/messages:25 ../Toons/data/messages:25
-#: ../Xgamma/data/messages:19 ../alsaMixer/data/messages:25
-#: ../clock/data/messages:27 ../dnd2share/data/messages:17
-#: ../dustbin/data/messages:15 ../keyboard-indicator/data/messages:25
-#: ../logout/data/messages:17 ../mail/data/messages:25
-#: ../musicPlayer/data/messages:27 ../netspeed/data/messages:25
-#: ../powermanager/data/messages:27 ../quick-browser/data/messages:19
-#: ../shortcuts/data/messages:17 ../show-mouse/data/messages:13
-#: ../showDesktop/data/messages:19 ../slider/data/messages:25
-#: ../stack/data/messages:19 ../switcher/data/messages:17
-#: ../systray/data/messages:17 ../template/data/messages:17
-#: ../terminal/data/messages:17 ../tomboy/data/messages:29
-#: ../weather/data/messages:27 ../weblets/data/messages:17
-#: ../wifi/data/messages:25
+#: ../Screenshot/data/messages:17 ../Status-Notifier/data/messages:29
+#: ../Sync-Menu/data/messages:15 ../System-Monitor/data/messages:25
+#: ../Toons/data/messages:25 ../Xgamma/data/messages:19
+#: ../alsaMixer/data/messages:25 ../clock/data/messages:27
+#: ../dnd2share/data/messages:17 ../dustbin/data/messages:15
+#: ../keyboard-indicator/data/messages:25 ../logout/data/messages:17
+#: ../mail/data/messages:25 ../musicPlayer/data/messages:27
+#: ../netspeed/data/messages:25 ../powermanager/data/messages:27
+#: ../quick-browser/data/messages:19 ../shortcuts/data/messages:17
+#: ../show-mouse/data/messages:13 ../showDesktop/data/messages:19
+#: ../slider/data/messages:25 ../stack/data/messages:19
+#: ../switcher/data/messages:17 ../systray/data/messages:17
+#: ../template/data/messages:17 ../terminal/data/messages:17
+#: ../tomboy/data/messages:29 ../weather/data/messages:27
+#: ../weblets/data/messages:17 ../wifi/data/messages:25
 msgid "Desklet"
 msgstr "デスクレット"
 
@@ -4184,20 +4352,21 @@ msgstr "デスクレット"
 #: ../MeMenu/data/messages:13 ../Messaging-Menu/data/messages:27
 #: ../Network-Monitor/data/messages:29 ../Printers-Menu/data/messages:17
 #: ../RSSreader/data/messages:21 ../Recent-Events/data/messages:19
-#: ../Status-Notifier/data/messages:31 ../Sync-Menu/data/messages:17
-#: ../System-Monitor/data/messages:27 ../Toons/data/messages:27
-#: ../Xgamma/data/messages:21 ../alsaMixer/data/messages:27
-#: ../clock/data/messages:29 ../dnd2share/data/messages:19
-#: ../dustbin/data/messages:17 ../keyboard-indicator/data/messages:27
-#: ../logout/data/messages:19 ../mail/data/messages:27
-#: ../musicPlayer/data/messages:29 ../netspeed/data/messages:27
-#: ../powermanager/data/messages:29 ../quick-browser/data/messages:21
-#: ../shortcuts/data/messages:19 ../showDesktop/data/messages:21
-#: ../slider/data/messages:27 ../stack/data/messages:21
-#: ../switcher/data/messages:19 ../systray/data/messages:19
-#: ../template/data/messages:19 ../terminal/data/messages:19
-#: ../tomboy/data/messages:31 ../weather/data/messages:29
-#: ../weblets/data/messages:19 ../wifi/data/messages:27
+#: ../Screenshot/data/messages:19 ../Status-Notifier/data/messages:31
+#: ../Sync-Menu/data/messages:17 ../System-Monitor/data/messages:27
+#: ../Toons/data/messages:27 ../Xgamma/data/messages:21
+#: ../alsaMixer/data/messages:27 ../clock/data/messages:29
+#: ../dnd2share/data/messages:19 ../dustbin/data/messages:17
+#: ../keyboard-indicator/data/messages:27 ../logout/data/messages:19
+#: ../mail/data/messages:27 ../musicPlayer/data/messages:29
+#: ../netspeed/data/messages:27 ../powermanager/data/messages:29
+#: ../quick-browser/data/messages:21 ../shortcuts/data/messages:19
+#: ../showDesktop/data/messages:21 ../slider/data/messages:27
+#: ../stack/data/messages:21 ../switcher/data/messages:19
+#: ../systray/data/messages:19 ../template/data/messages:19
+#: ../terminal/data/messages:19 ../tomboy/data/messages:31
+#: ../weather/data/messages:29 ../weblets/data/messages:19
+#: ../wifi/data/messages:27
 msgid "Position"
 msgstr "位置"
 
@@ -4208,26 +4377,28 @@ msgstr "位置"
 #: ../MeMenu/data/messages:15 ../Messaging-Menu/data/messages:29
 #: ../Network-Monitor/data/messages:31 ../Printers-Menu/data/messages:19
 #: ../RSSreader/data/messages:23 ../Recent-Events/data/messages:21
-#: ../Status-Notifier/data/messages:33 ../Sync-Menu/data/messages:19
-#: ../System-Monitor/data/messages:29 ../Toons/data/messages:29
-#: ../Xgamma/data/messages:23 ../alsaMixer/data/messages:29
-#: ../clock/data/messages:31 ../dnd2share/data/messages:21
-#: ../dustbin/data/messages:19 ../keyboard-indicator/data/messages:29
-#: ../logout/data/messages:21 ../mail/data/messages:29
-#: ../musicPlayer/data/messages:31 ../netspeed/data/messages:29
-#: ../powermanager/data/messages:31 ../quick-browser/data/messages:23
-#: ../shortcuts/data/messages:21 ../showDesktop/data/messages:23
-#: ../slider/data/messages:29 ../stack/data/messages:23
-#: ../switcher/data/messages:21 ../systray/data/messages:21
-#: ../template/data/messages:21 ../terminal/data/messages:21
-#: ../tomboy/data/messages:33 ../weather/data/messages:31
-#: ../weblets/data/messages:21 ../wifi/data/messages:29
+#: ../Screenshot/data/messages:21 ../Status-Notifier/data/messages:33
+#: ../Sync-Menu/data/messages:19 ../System-Monitor/data/messages:29
+#: ../Toons/data/messages:29 ../Xgamma/data/messages:23
+#: ../alsaMixer/data/messages:29 ../clock/data/messages:31
+#: ../dnd2share/data/messages:21 ../dustbin/data/messages:19
+#: ../keyboard-indicator/data/messages:29 ../logout/data/messages:21
+#: ../mail/data/messages:29 ../musicPlayer/data/messages:31
+#: ../netspeed/data/messages:29 ../powermanager/data/messages:31
+#: ../quick-browser/data/messages:23 ../shortcuts/data/messages:21
+#: ../showDesktop/data/messages:23 ../slider/data/messages:29
+#: ../stack/data/messages:23 ../switcher/data/messages:21
+#: ../systray/data/messages:21 ../template/data/messages:21
+#: ../terminal/data/messages:21 ../tomboy/data/messages:33
+#: ../weather/data/messages:31 ../weblets/data/messages:21
+#: ../wifi/data/messages:29
 msgid ""
 "If locked, the desklet cannot be moved by simply dragging it with the left "
 "mouse button. It can still be moved with ALT + left-click."
 msgstr ""
-"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移動出来なくなりますが、その場合でも ALT + "
-"左クリックを使用すれば移動は可能です。"
+"固定した場合、デスクレットはマウスの左ボタンだけを押しながらのドラッグでは移"
+"動出来なくなりますが、その場合でも ALT + 左クリックを使用すれば移動は可能で"
+"す。"
 
 #: ../Clipper/data/messages:23 ../Composite-Manager/data/messages:21
 #: ../Disks/data/messages:43 ../Doncky/data/messages:23
@@ -4236,20 +4407,21 @@ msgstr ""
 #: ../MeMenu/data/messages:17 ../Messaging-Menu/data/messages:31
 #: ../Network-Monitor/data/messages:33 ../Printers-Menu/data/messages:21
 #: ../RSSreader/data/messages:25 ../Recent-Events/data/messages:23
-#: ../Status-Notifier/data/messages:35 ../Sync-Menu/data/messages:21
-#: ../System-Monitor/data/messages:31 ../Toons/data/messages:31
-#: ../Xgamma/data/messages:25 ../alsaMixer/data/messages:31
-#: ../clock/data/messages:33 ../dnd2share/data/messages:23
-#: ../dustbin/data/messages:21 ../keyboard-indicator/data/messages:31
-#: ../logout/data/messages:23 ../mail/data/messages:31
-#: ../musicPlayer/data/messages:33 ../netspeed/data/messages:31
-#: ../powermanager/data/messages:33 ../quick-browser/data/messages:25
-#: ../shortcuts/data/messages:23 ../showDesktop/data/messages:25
-#: ../slider/data/messages:31 ../stack/data/messages:25
-#: ../switcher/data/messages:23 ../systray/data/messages:23
-#: ../template/data/messages:23 ../terminal/data/messages:23
-#: ../tomboy/data/messages:35 ../weather/data/messages:33
-#: ../weblets/data/messages:23 ../wifi/data/messages:31
+#: ../Screenshot/data/messages:23 ../Status-Notifier/data/messages:35
+#: ../Sync-Menu/data/messages:21 ../System-Monitor/data/messages:31
+#: ../Toons/data/messages:31 ../Xgamma/data/messages:25
+#: ../alsaMixer/data/messages:31 ../clock/data/messages:33
+#: ../dnd2share/data/messages:23 ../dustbin/data/messages:21
+#: ../keyboard-indicator/data/messages:31 ../logout/data/messages:23
+#: ../mail/data/messages:31 ../musicPlayer/data/messages:33
+#: ../netspeed/data/messages:31 ../powermanager/data/messages:33
+#: ../quick-browser/data/messages:25 ../shortcuts/data/messages:23
+#: ../showDesktop/data/messages:25 ../slider/data/messages:31
+#: ../stack/data/messages:25 ../switcher/data/messages:23
+#: ../systray/data/messages:23 ../template/data/messages:23
+#: ../terminal/data/messages:23 ../tomboy/data/messages:35
+#: ../weather/data/messages:33 ../weblets/data/messages:23
+#: ../wifi/data/messages:31
 msgid "Lock position?"
 msgstr "位置を固定？"
 
@@ -4260,24 +4432,26 @@ msgstr "位置を固定？"
 #: ../MeMenu/data/messages:19 ../Messaging-Menu/data/messages:33
 #: ../Network-Monitor/data/messages:35 ../Printers-Menu/data/messages:23
 #: ../RSSreader/data/messages:27 ../Recent-Events/data/messages:25
-#: ../Status-Notifier/data/messages:37 ../Sync-Menu/data/messages:23
-#: ../System-Monitor/data/messages:33 ../Toons/data/messages:33
-#: ../Xgamma/data/messages:27 ../alsaMixer/data/messages:33
-#: ../clock/data/messages:35 ../dnd2share/data/messages:25
-#: ../dustbin/data/messages:23 ../keyboard-indicator/data/messages:33
-#: ../logout/data/messages:25 ../mail/data/messages:33
-#: ../musicPlayer/data/messages:35 ../netspeed/data/messages:33
-#: ../powermanager/data/messages:35 ../quick-browser/data/messages:27
-#: ../shortcuts/data/messages:25 ../showDesktop/data/messages:27
-#: ../slider/data/messages:33 ../stack/data/messages:27
-#: ../switcher/data/messages:25 ../template/data/messages:25
-#: ../terminal/data/messages:25 ../tomboy/data/messages:37
-#: ../weather/data/messages:35 ../weblets/data/messages:25
-#: ../wifi/data/messages:33
+#: ../Screenshot/data/messages:25 ../Status-Notifier/data/messages:37
+#: ../Sync-Menu/data/messages:23 ../System-Monitor/data/messages:33
+#: ../Toons/data/messages:33 ../Xgamma/data/messages:27
+#: ../alsaMixer/data/messages:33 ../clock/data/messages:35
+#: ../dnd2share/data/messages:25 ../dustbin/data/messages:23
+#: ../keyboard-indicator/data/messages:33 ../logout/data/messages:25
+#: ../mail/data/messages:33 ../musicPlayer/data/messages:35
+#: ../netspeed/data/messages:33 ../powermanager/data/messages:35
+#: ../quick-browser/data/messages:27 ../shortcuts/data/messages:25
+#: ../showDesktop/data/messages:27 ../slider/data/messages:33
+#: ../stack/data/messages:27 ../switcher/data/messages:25
+#: ../template/data/messages:25 ../terminal/data/messages:25
+#: ../tomboy/data/messages:37 ../weather/data/messages:35
+#: ../weblets/data/messages:25 ../wifi/data/messages:33
 msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、または ALT + 左クリックでサイズ変更できます。"
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 中クリック、"
+"または ALT + 左クリックでサイズ変更できます。"
 
 #: ../Clipper/data/messages:27 ../Composite-Manager/data/messages:25
 #: ../Disks/data/messages:23 ../Doncky/data/messages:27
@@ -4286,20 +4460,20 @@ msgstr "使用中のウィンドウ・マネージャによって異なります
 #: ../MeMenu/data/messages:21 ../Messaging-Menu/data/messages:35
 #: ../Network-Monitor/data/messages:37 ../Printers-Menu/data/messages:25
 #: ../RSSreader/data/messages:29 ../Recent-Events/data/messages:27
-#: ../Status-Notifier/data/messages:39 ../Sync-Menu/data/messages:25
-#: ../System-Monitor/data/messages:35 ../Toons/data/messages:35
-#: ../Xgamma/data/messages:29 ../alsaMixer/data/messages:35
-#: ../clock/data/messages:37 ../dnd2share/data/messages:27
-#: ../dustbin/data/messages:25 ../keyboard-indicator/data/messages:35
-#: ../logout/data/messages:27 ../mail/data/messages:35
-#: ../musicPlayer/data/messages:37 ../netspeed/data/messages:35
-#: ../powermanager/data/messages:37 ../quick-browser/data/messages:29
-#: ../shortcuts/data/messages:27 ../showDesktop/data/messages:29
-#: ../slider/data/messages:35 ../stack/data/messages:29
-#: ../switcher/data/messages:27 ../template/data/messages:27
-#: ../terminal/data/messages:27 ../tomboy/data/messages:39
-#: ../weather/data/messages:37 ../weblets/data/messages:27
-#: ../wifi/data/messages:35
+#: ../Screenshot/data/messages:27 ../Status-Notifier/data/messages:39
+#: ../Sync-Menu/data/messages:25 ../System-Monitor/data/messages:35
+#: ../Toons/data/messages:35 ../Xgamma/data/messages:29
+#: ../alsaMixer/data/messages:35 ../clock/data/messages:37
+#: ../dnd2share/data/messages:27 ../dustbin/data/messages:25
+#: ../keyboard-indicator/data/messages:35 ../logout/data/messages:27
+#: ../mail/data/messages:35 ../musicPlayer/data/messages:37
+#: ../netspeed/data/messages:35 ../powermanager/data/messages:37
+#: ../quick-browser/data/messages:29 ../shortcuts/data/messages:27
+#: ../showDesktop/data/messages:29 ../slider/data/messages:35
+#: ../stack/data/messages:29 ../switcher/data/messages:27
+#: ../template/data/messages:27 ../terminal/data/messages:27
+#: ../tomboy/data/messages:39 ../weather/data/messages:37
+#: ../weblets/data/messages:27 ../wifi/data/messages:35
 msgid "Desklet dimensions (width x height):"
 msgstr "デスクレットの寸法（幅×高さ） :"
 
@@ -4320,7 +4494,9 @@ msgstr "デスクレットの寸法（幅×高さ） :"
 msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
-msgstr "使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動させることができます。"
+msgstr ""
+"使用中のウィンドウ・マネージャによって異なりますが、ALT + 左クリックで移動さ"
+"せることができます。"
 
 #: ../Clipper/data/messages:31 ../Composite-Manager/data/messages:29
 #: ../Disks/data/messages:47 ../Doncky/data/messages:31
@@ -4329,20 +4505,21 @@ msgstr "使用中のウィンドウ・マネージャによって異なります
 #: ../MeMenu/data/messages:25 ../Messaging-Menu/data/messages:39
 #: ../Network-Monitor/data/messages:41 ../Printers-Menu/data/messages:29
 #: ../RSSreader/data/messages:33 ../Recent-Events/data/messages:31
-#: ../Status-Notifier/data/messages:43 ../Sync-Menu/data/messages:29
-#: ../System-Monitor/data/messages:39 ../Toons/data/messages:39
-#: ../Xgamma/data/messages:33 ../alsaMixer/data/messages:39
-#: ../clock/data/messages:41 ../dnd2share/data/messages:31
-#: ../dustbin/data/messages:29 ../keyboard-indicator/data/messages:39
-#: ../logout/data/messages:31 ../mail/data/messages:39
-#: ../musicPlayer/data/messages:41 ../netspeed/data/messages:39
-#: ../powermanager/data/messages:41 ../quick-browser/data/messages:33
-#: ../shortcuts/data/messages:31 ../showDesktop/data/messages:33
-#: ../slider/data/messages:39 ../stack/data/messages:33
-#: ../switcher/data/messages:31 ../systray/data/messages:27
-#: ../template/data/messages:31 ../terminal/data/messages:31
-#: ../tomboy/data/messages:43 ../weather/data/messages:41
-#: ../weblets/data/messages:31 ../wifi/data/messages:39
+#: ../Screenshot/data/messages:31 ../Status-Notifier/data/messages:43
+#: ../Sync-Menu/data/messages:29 ../System-Monitor/data/messages:39
+#: ../Toons/data/messages:39 ../Xgamma/data/messages:33
+#: ../alsaMixer/data/messages:39 ../clock/data/messages:41
+#: ../dnd2share/data/messages:31 ../dustbin/data/messages:29
+#: ../keyboard-indicator/data/messages:39 ../logout/data/messages:31
+#: ../mail/data/messages:39 ../musicPlayer/data/messages:41
+#: ../netspeed/data/messages:39 ../powermanager/data/messages:41
+#: ../quick-browser/data/messages:33 ../shortcuts/data/messages:31
+#: ../showDesktop/data/messages:33 ../slider/data/messages:39
+#: ../stack/data/messages:33 ../switcher/data/messages:31
+#: ../systray/data/messages:27 ../template/data/messages:31
+#: ../terminal/data/messages:31 ../tomboy/data/messages:43
+#: ../weather/data/messages:41 ../weblets/data/messages:31
+#: ../wifi/data/messages:39
 msgid "Desklet position (x, y):"
 msgstr "デスクレットの位置（X ; Y） :"
 
@@ -4353,23 +4530,26 @@ msgstr "デスクレットの位置（X ; Y） :"
 #: ../MeMenu/data/messages:27 ../Messaging-Menu/data/messages:41
 #: ../Network-Monitor/data/messages:43 ../Printers-Menu/data/messages:31
 #: ../RSSreader/data/messages:35 ../Recent-Events/data/messages:33
-#: ../Status-Notifier/data/messages:45 ../Sync-Menu/data/messages:31
-#: ../System-Monitor/data/messages:41 ../Toons/data/messages:41
-#: ../Xgamma/data/messages:35 ../alsaMixer/data/messages:41
-#: ../clock/data/messages:43 ../dustbin/data/messages:31
-#: ../keyboard-indicator/data/messages:41 ../logout/data/messages:33
-#: ../mail/data/messages:41 ../musicPlayer/data/messages:43
-#: ../netspeed/data/messages:41 ../powermanager/data/messages:43
-#: ../quick-browser/data/messages:35 ../shortcuts/data/messages:33
-#: ../showDesktop/data/messages:35 ../slider/data/messages:41
-#: ../stack/data/messages:35 ../switcher/data/messages:33
-#: ../template/data/messages:33 ../terminal/data/messages:33
-#: ../tomboy/data/messages:45 ../weather/data/messages:43
-#: ../weblets/data/messages:33 ../wifi/data/messages:41
+#: ../Screenshot/data/messages:33 ../Status-Notifier/data/messages:45
+#: ../Sync-Menu/data/messages:31 ../System-Monitor/data/messages:41
+#: ../Toons/data/messages:41 ../Xgamma/data/messages:35
+#: ../alsaMixer/data/messages:41 ../clock/data/messages:43
+#: ../dustbin/data/messages:31 ../keyboard-indicator/data/messages:41
+#: ../logout/data/messages:33 ../mail/data/messages:41
+#: ../musicPlayer/data/messages:43 ../netspeed/data/messages:41
+#: ../powermanager/data/messages:43 ../quick-browser/data/messages:35
+#: ../shortcuts/data/messages:33 ../showDesktop/data/messages:35
+#: ../slider/data/messages:41 ../stack/data/messages:35
+#: ../switcher/data/messages:33 ../template/data/messages:33
+#: ../terminal/data/messages:33 ../tomboy/data/messages:45
+#: ../weather/data/messages:43 ../weblets/data/messages:33
+#: ../wifi/data/messages:41
 msgid ""
 "You can quickly rotate the desklet with the mouse, by dragging the little "
 "buttons on its left and top sides."
-msgstr "デスクレットの左側や上側にある小さなボタンをマウスでドラッグして、デスクレットを素早く回転させることができます。"
+msgstr ""
+"デスクレットの左側や上側にある小さなボタンをマウスでドラッグして、デスクレッ"
+"トを素早く回転させることができます。"
 
 #: ../Clipper/data/messages:35 ../Composite-Manager/data/messages:33
 #: ../Disks/data/messages:51 ../Doncky/data/messages:35
@@ -4378,19 +4558,20 @@ msgstr "デスクレットの左側や上側にある小さなボタンをマウ
 #: ../MeMenu/data/messages:29 ../Messaging-Menu/data/messages:43
 #: ../Network-Monitor/data/messages:45 ../Printers-Menu/data/messages:33
 #: ../RSSreader/data/messages:37 ../Recent-Events/data/messages:35
-#: ../Status-Notifier/data/messages:47 ../Sync-Menu/data/messages:33
-#: ../System-Monitor/data/messages:43 ../Toons/data/messages:43
-#: ../Xgamma/data/messages:37 ../alsaMixer/data/messages:43
-#: ../clock/data/messages:45 ../dustbin/data/messages:33
-#: ../keyboard-indicator/data/messages:43 ../logout/data/messages:35
-#: ../mail/data/messages:43 ../musicPlayer/data/messages:45
-#: ../netspeed/data/messages:43 ../powermanager/data/messages:45
-#: ../quick-browser/data/messages:37 ../shortcuts/data/messages:35
-#: ../showDesktop/data/messages:37 ../slider/data/messages:43
-#: ../stack/data/messages:37 ../switcher/data/messages:35
-#: ../template/data/messages:35 ../terminal/data/messages:35
-#: ../tomboy/data/messages:47 ../weather/data/messages:45
-#: ../weblets/data/messages:35 ../wifi/data/messages:43
+#: ../Screenshot/data/messages:35 ../Status-Notifier/data/messages:47
+#: ../Sync-Menu/data/messages:33 ../System-Monitor/data/messages:43
+#: ../Toons/data/messages:43 ../Xgamma/data/messages:37
+#: ../alsaMixer/data/messages:43 ../clock/data/messages:45
+#: ../dustbin/data/messages:33 ../keyboard-indicator/data/messages:43
+#: ../logout/data/messages:35 ../mail/data/messages:43
+#: ../musicPlayer/data/messages:45 ../netspeed/data/messages:43
+#: ../powermanager/data/messages:45 ../quick-browser/data/messages:37
+#: ../shortcuts/data/messages:35 ../showDesktop/data/messages:37
+#: ../slider/data/messages:43 ../stack/data/messages:37
+#: ../switcher/data/messages:35 ../template/data/messages:35
+#: ../terminal/data/messages:35 ../tomboy/data/messages:47
+#: ../weather/data/messages:45 ../weblets/data/messages:35
+#: ../wifi/data/messages:43
 msgid "Rotation:"
 msgstr "回転 :"
 
@@ -4400,21 +4581,21 @@ msgstr "回転 :"
 #: ../Impulse/data/messages:31 ../MeMenu/data/messages:31
 #: ../Messaging-Menu/data/messages:45 ../Network-Monitor/data/messages:47
 #: ../Printers-Menu/data/messages:35 ../RSSreader/data/messages:39
-#: ../Recent-Events/data/messages:37 ../Status-Notifier/data/messages:49
-#: ../Sync-Menu/data/messages:35 ../System-Monitor/data/messages:45
-#: ../Toons/data/messages:45 ../Xgamma/data/messages:39
-#: ../alsaMixer/data/messages:45 ../clock/data/messages:47
-#: ../dnd2share/data/messages:33 ../dustbin/data/messages:35
-#: ../keyboard-indicator/data/messages:45 ../logout/data/messages:37
-#: ../mail/data/messages:45 ../musicPlayer/data/messages:47
-#: ../netspeed/data/messages:45 ../powermanager/data/messages:47
-#: ../quick-browser/data/messages:39 ../shortcuts/data/messages:37
-#: ../showDesktop/data/messages:39 ../slider/data/messages:45
-#: ../stack/data/messages:39 ../switcher/data/messages:37
-#: ../systray/data/messages:29 ../template/data/messages:37
-#: ../terminal/data/messages:37 ../tomboy/data/messages:49
-#: ../weather/data/messages:47 ../weblets/data/messages:37
-#: ../wifi/data/messages:45
+#: ../Recent-Events/data/messages:37 ../Screenshot/data/messages:37
+#: ../Status-Notifier/data/messages:49 ../Sync-Menu/data/messages:35
+#: ../System-Monitor/data/messages:45 ../Toons/data/messages:45
+#: ../Xgamma/data/messages:39 ../alsaMixer/data/messages:45
+#: ../clock/data/messages:47 ../dnd2share/data/messages:33
+#: ../dustbin/data/messages:35 ../keyboard-indicator/data/messages:45
+#: ../logout/data/messages:37 ../mail/data/messages:45
+#: ../musicPlayer/data/messages:47 ../netspeed/data/messages:45
+#: ../powermanager/data/messages:47 ../quick-browser/data/messages:39
+#: ../shortcuts/data/messages:37 ../showDesktop/data/messages:39
+#: ../slider/data/messages:45 ../stack/data/messages:39
+#: ../switcher/data/messages:37 ../systray/data/messages:29
+#: ../template/data/messages:37 ../terminal/data/messages:37
+#: ../tomboy/data/messages:49 ../weather/data/messages:47
+#: ../weblets/data/messages:37 ../wifi/data/messages:45
 msgid "Visibility"
 msgstr "表示"
 
@@ -4425,7 +4606,7 @@ msgstr "表示"
 #: ../MeMenu/data/messages:33 ../Messaging-Menu/data/messages:47
 #: ../Network-Monitor/data/messages:49 ../Printers-Menu/data/messages:37
 #: ../RSSreader/data/messages:41 ../Recent-Events/data/messages:39
-#: ../Scooby-Do/data/messages:25 ../Status-Notifier/data/messages:51
+#: ../Screenshot/data/messages:39 ../Status-Notifier/data/messages:51
 #: ../Sync-Menu/data/messages:37 ../System-Monitor/data/messages:47
 #: ../Toons/data/messages:47 ../Xgamma/data/messages:41
 #: ../alsaMixer/data/messages:47 ../clock/data/messages:49
@@ -4450,20 +4631,21 @@ msgstr "ドックから分離？"
 #: ../MeMenu/data/messages:35 ../Messaging-Menu/data/messages:49
 #: ../Network-Monitor/data/messages:51 ../Printers-Menu/data/messages:39
 #: ../RSSreader/data/messages:43 ../Recent-Events/data/messages:41
-#: ../Status-Notifier/data/messages:53 ../Sync-Menu/data/messages:39
-#: ../System-Monitor/data/messages:49 ../Toons/data/messages:49
-#: ../Xgamma/data/messages:43 ../alsaMixer/data/messages:49
-#: ../clock/data/messages:51 ../dnd2share/data/messages:37
-#: ../dustbin/data/messages:39 ../keyboard-indicator/data/messages:49
-#: ../logout/data/messages:41 ../mail/data/messages:49
-#: ../musicPlayer/data/messages:51 ../netspeed/data/messages:49
-#: ../powermanager/data/messages:51 ../quick-browser/data/messages:43
-#: ../shortcuts/data/messages:41 ../showDesktop/data/messages:43
-#: ../slider/data/messages:49 ../stack/data/messages:43
-#: ../switcher/data/messages:41 ../systray/data/messages:33
-#: ../template/data/messages:41 ../terminal/data/messages:41
-#: ../tomboy/data/messages:53 ../weather/data/messages:51
-#: ../weblets/data/messages:41 ../wifi/data/messages:49
+#: ../Screenshot/data/messages:41 ../Status-Notifier/data/messages:53
+#: ../Sync-Menu/data/messages:39 ../System-Monitor/data/messages:49
+#: ../Toons/data/messages:49 ../Xgamma/data/messages:43
+#: ../alsaMixer/data/messages:49 ../clock/data/messages:51
+#: ../dnd2share/data/messages:37 ../dustbin/data/messages:39
+#: ../keyboard-indicator/data/messages:49 ../logout/data/messages:41
+#: ../mail/data/messages:49 ../musicPlayer/data/messages:51
+#: ../netspeed/data/messages:49 ../powermanager/data/messages:51
+#: ../quick-browser/data/messages:43 ../shortcuts/data/messages:41
+#: ../showDesktop/data/messages:43 ../slider/data/messages:49
+#: ../stack/data/messages:43 ../switcher/data/messages:41
+#: ../systray/data/messages:33 ../template/data/messages:41
+#: ../terminal/data/messages:41 ../tomboy/data/messages:53
+#: ../weather/data/messages:51 ../weblets/data/messages:41
+#: ../wifi/data/messages:49
 msgid "Visibility:"
 msgstr "表示 :"
 
@@ -4474,20 +4656,21 @@ msgstr "表示 :"
 #: ../MeMenu/data/messages:39 ../Messaging-Menu/data/messages:53
 #: ../Network-Monitor/data/messages:55 ../Printers-Menu/data/messages:43
 #: ../RSSreader/data/messages:47 ../Recent-Events/data/messages:45
-#: ../Status-Notifier/data/messages:57 ../Sync-Menu/data/messages:43
-#: ../System-Monitor/data/messages:53 ../Toons/data/messages:53
-#: ../Xgamma/data/messages:47 ../alsaMixer/data/messages:53
-#: ../clock/data/messages:55 ../dnd2share/data/messages:41
-#: ../dustbin/data/messages:43 ../keyboard-indicator/data/messages:53
-#: ../logout/data/messages:45 ../mail/data/messages:53
-#: ../musicPlayer/data/messages:55 ../netspeed/data/messages:53
-#: ../powermanager/data/messages:55 ../quick-browser/data/messages:47
-#: ../shortcuts/data/messages:45 ../showDesktop/data/messages:47
-#: ../slider/data/messages:53 ../stack/data/messages:47
-#: ../switcher/data/messages:45 ../systray/data/messages:37
-#: ../template/data/messages:45 ../terminal/data/messages:45
-#: ../tomboy/data/messages:57 ../weather/data/messages:55
-#: ../weblets/data/messages:45 ../wifi/data/messages:53
+#: ../Screenshot/data/messages:45 ../Status-Notifier/data/messages:57
+#: ../Sync-Menu/data/messages:43 ../System-Monitor/data/messages:53
+#: ../Toons/data/messages:53 ../Xgamma/data/messages:47
+#: ../alsaMixer/data/messages:53 ../clock/data/messages:55
+#: ../dnd2share/data/messages:41 ../dustbin/data/messages:43
+#: ../keyboard-indicator/data/messages:53 ../logout/data/messages:45
+#: ../mail/data/messages:53 ../musicPlayer/data/messages:55
+#: ../netspeed/data/messages:53 ../powermanager/data/messages:55
+#: ../quick-browser/data/messages:47 ../shortcuts/data/messages:45
+#: ../showDesktop/data/messages:47 ../slider/data/messages:53
+#: ../stack/data/messages:47 ../switcher/data/messages:45
+#: ../systray/data/messages:37 ../template/data/messages:45
+#: ../terminal/data/messages:45 ../tomboy/data/messages:57
+#: ../weather/data/messages:55 ../weblets/data/messages:45
+#: ../wifi/data/messages:53
 msgid "Keep above"
 msgstr "最前面表示"
 
@@ -4498,20 +4681,21 @@ msgstr "最前面表示"
 #: ../MeMenu/data/messages:41 ../Messaging-Menu/data/messages:55
 #: ../Network-Monitor/data/messages:57 ../Printers-Menu/data/messages:45
 #: ../RSSreader/data/messages:49 ../Recent-Events/data/messages:47
-#: ../Status-Notifier/data/messages:59 ../Sync-Menu/data/messages:45
-#: ../System-Monitor/data/messages:55 ../Toons/data/messages:55
-#: ../Xgamma/data/messages:49 ../alsaMixer/data/messages:55
-#: ../clock/data/messages:57 ../dnd2share/data/messages:43
-#: ../dustbin/data/messages:45 ../keyboard-indicator/data/messages:55
-#: ../logout/data/messages:47 ../mail/data/messages:55
-#: ../musicPlayer/data/messages:57 ../netspeed/data/messages:55
-#: ../powermanager/data/messages:57 ../quick-browser/data/messages:49
-#: ../shortcuts/data/messages:47 ../showDesktop/data/messages:49
-#: ../slider/data/messages:55 ../stack/data/messages:49
-#: ../switcher/data/messages:47 ../systray/data/messages:39
-#: ../template/data/messages:47 ../terminal/data/messages:47
-#: ../tomboy/data/messages:59 ../weather/data/messages:57
-#: ../weblets/data/messages:47 ../wifi/data/messages:55
+#: ../Screenshot/data/messages:47 ../Status-Notifier/data/messages:59
+#: ../Sync-Menu/data/messages:45 ../System-Monitor/data/messages:55
+#: ../Toons/data/messages:55 ../Xgamma/data/messages:49
+#: ../alsaMixer/data/messages:55 ../clock/data/messages:57
+#: ../dnd2share/data/messages:43 ../dustbin/data/messages:45
+#: ../keyboard-indicator/data/messages:55 ../logout/data/messages:47
+#: ../mail/data/messages:55 ../musicPlayer/data/messages:57
+#: ../netspeed/data/messages:55 ../powermanager/data/messages:57
+#: ../quick-browser/data/messages:49 ../shortcuts/data/messages:47
+#: ../showDesktop/data/messages:49 ../slider/data/messages:55
+#: ../stack/data/messages:49 ../switcher/data/messages:47
+#: ../systray/data/messages:39 ../template/data/messages:47
+#: ../terminal/data/messages:47 ../tomboy/data/messages:59
+#: ../weather/data/messages:57 ../weblets/data/messages:47
+#: ../wifi/data/messages:55
 msgid "Keep below"
 msgstr "最後面表示"
 
@@ -4522,20 +4706,21 @@ msgstr "最後面表示"
 #: ../MeMenu/data/messages:43 ../Messaging-Menu/data/messages:57
 #: ../Network-Monitor/data/messages:59 ../Printers-Menu/data/messages:47
 #: ../RSSreader/data/messages:51 ../Recent-Events/data/messages:49
-#: ../Status-Notifier/data/messages:61 ../Sync-Menu/data/messages:47
-#: ../System-Monitor/data/messages:57 ../Toons/data/messages:57
-#: ../Xgamma/data/messages:51 ../alsaMixer/data/messages:57
-#: ../clock/data/messages:59 ../dnd2share/data/messages:45
-#: ../dustbin/data/messages:47 ../keyboard-indicator/data/messages:57
-#: ../logout/data/messages:49 ../mail/data/messages:57
-#: ../musicPlayer/data/messages:59 ../netspeed/data/messages:57
-#: ../powermanager/data/messages:59 ../quick-browser/data/messages:51
-#: ../shortcuts/data/messages:49 ../showDesktop/data/messages:51
-#: ../slider/data/messages:57 ../stack/data/messages:51
-#: ../switcher/data/messages:49 ../systray/data/messages:41
-#: ../template/data/messages:49 ../terminal/data/messages:49
-#: ../tomboy/data/messages:61 ../weather/data/messages:59
-#: ../weblets/data/messages:49 ../wifi/data/messages:57
+#: ../Screenshot/data/messages:49 ../Status-Notifier/data/messages:61
+#: ../Sync-Menu/data/messages:47 ../System-Monitor/data/messages:57
+#: ../Toons/data/messages:57 ../Xgamma/data/messages:51
+#: ../alsaMixer/data/messages:57 ../clock/data/messages:59
+#: ../dnd2share/data/messages:45 ../dustbin/data/messages:47
+#: ../keyboard-indicator/data/messages:57 ../logout/data/messages:49
+#: ../mail/data/messages:57 ../musicPlayer/data/messages:59
+#: ../netspeed/data/messages:57 ../powermanager/data/messages:59
+#: ../quick-browser/data/messages:51 ../shortcuts/data/messages:49
+#: ../showDesktop/data/messages:51 ../slider/data/messages:57
+#: ../stack/data/messages:51 ../switcher/data/messages:49
+#: ../systray/data/messages:41 ../template/data/messages:49
+#: ../terminal/data/messages:49 ../tomboy/data/messages:61
+#: ../weather/data/messages:59 ../weblets/data/messages:49
+#: ../wifi/data/messages:57
 msgid "Keep on widget layer"
 msgstr "ウィジェット・レイヤ上"
 
@@ -4546,20 +4731,21 @@ msgstr "ウィジェット・レイヤ上"
 #: ../MeMenu/data/messages:45 ../Messaging-Menu/data/messages:59
 #: ../Network-Monitor/data/messages:61 ../Printers-Menu/data/messages:49
 #: ../RSSreader/data/messages:53 ../Recent-Events/data/messages:51
-#: ../Status-Notifier/data/messages:63 ../Sync-Menu/data/messages:49
-#: ../System-Monitor/data/messages:59 ../Toons/data/messages:59
-#: ../Xgamma/data/messages:53 ../alsaMixer/data/messages:59
-#: ../clock/data/messages:61 ../dnd2share/data/messages:47
-#: ../dustbin/data/messages:49 ../keyboard-indicator/data/messages:59
-#: ../logout/data/messages:51 ../mail/data/messages:59
-#: ../musicPlayer/data/messages:61 ../netspeed/data/messages:59
-#: ../powermanager/data/messages:61 ../quick-browser/data/messages:53
-#: ../shortcuts/data/messages:51 ../showDesktop/data/messages:53
-#: ../slider/data/messages:59 ../stack/data/messages:53
-#: ../switcher/data/messages:51 ../systray/data/messages:43
-#: ../template/data/messages:51 ../terminal/data/messages:51
-#: ../tomboy/data/messages:63 ../weather/data/messages:61
-#: ../weblets/data/messages:51 ../wifi/data/messages:59
+#: ../Screenshot/data/messages:51 ../Status-Notifier/data/messages:63
+#: ../Sync-Menu/data/messages:49 ../System-Monitor/data/messages:59
+#: ../Toons/data/messages:59 ../Xgamma/data/messages:53
+#: ../alsaMixer/data/messages:59 ../clock/data/messages:61
+#: ../dnd2share/data/messages:47 ../dustbin/data/messages:49
+#: ../keyboard-indicator/data/messages:59 ../logout/data/messages:51
+#: ../mail/data/messages:59 ../musicPlayer/data/messages:61
+#: ../netspeed/data/messages:59 ../powermanager/data/messages:61
+#: ../quick-browser/data/messages:53 ../shortcuts/data/messages:51
+#: ../showDesktop/data/messages:53 ../slider/data/messages:59
+#: ../stack/data/messages:53 ../switcher/data/messages:51
+#: ../systray/data/messages:43 ../template/data/messages:51
+#: ../terminal/data/messages:51 ../tomboy/data/messages:63
+#: ../weather/data/messages:61 ../weblets/data/messages:51
+#: ../wifi/data/messages:59
 msgid "Reserve space"
 msgstr "空間確保"
 
@@ -4570,20 +4756,21 @@ msgstr "空間確保"
 #: ../MeMenu/data/messages:47 ../Messaging-Menu/data/messages:61
 #: ../Network-Monitor/data/messages:63 ../Printers-Menu/data/messages:51
 #: ../RSSreader/data/messages:55 ../Recent-Events/data/messages:53
-#: ../Status-Notifier/data/messages:65 ../Sync-Menu/data/messages:51
-#: ../System-Monitor/data/messages:61 ../Toons/data/messages:61
-#: ../Xgamma/data/messages:55 ../alsaMixer/data/messages:61
-#: ../clock/data/messages:63 ../dnd2share/data/messages:49
-#: ../dustbin/data/messages:51 ../keyboard-indicator/data/messages:61
-#: ../logout/data/messages:53 ../mail/data/messages:61
-#: ../musicPlayer/data/messages:63 ../netspeed/data/messages:61
-#: ../powermanager/data/messages:63 ../quick-browser/data/messages:55
-#: ../shortcuts/data/messages:53 ../showDesktop/data/messages:55
-#: ../slider/data/messages:61 ../stack/data/messages:55
-#: ../switcher/data/messages:53 ../systray/data/messages:45
-#: ../template/data/messages:53 ../terminal/data/messages:53
-#: ../tomboy/data/messages:65 ../weather/data/messages:63
-#: ../weblets/data/messages:53 ../wifi/data/messages:61
+#: ../Screenshot/data/messages:53 ../Status-Notifier/data/messages:65
+#: ../Sync-Menu/data/messages:51 ../System-Monitor/data/messages:61
+#: ../Toons/data/messages:61 ../Xgamma/data/messages:55
+#: ../alsaMixer/data/messages:61 ../clock/data/messages:63
+#: ../dnd2share/data/messages:49 ../dustbin/data/messages:51
+#: ../keyboard-indicator/data/messages:61 ../logout/data/messages:53
+#: ../mail/data/messages:61 ../musicPlayer/data/messages:63
+#: ../netspeed/data/messages:61 ../powermanager/data/messages:63
+#: ../quick-browser/data/messages:55 ../shortcuts/data/messages:53
+#: ../showDesktop/data/messages:55 ../slider/data/messages:61
+#: ../stack/data/messages:55 ../switcher/data/messages:53
+#: ../systray/data/messages:45 ../template/data/messages:53
+#: ../terminal/data/messages:53 ../tomboy/data/messages:65
+#: ../weather/data/messages:63 ../weblets/data/messages:53
+#: ../wifi/data/messages:61
 msgid "Should be visible on all desktops?"
 msgstr "全てのデスクトップで表示する？"
 
@@ -4594,20 +4781,21 @@ msgstr "全てのデスクトップで表示する？"
 #: ../MeMenu/data/messages:49 ../Messaging-Menu/data/messages:63
 #: ../Network-Monitor/data/messages:65 ../Printers-Menu/data/messages:53
 #: ../RSSreader/data/messages:57 ../Recent-Events/data/messages:55
-#: ../Status-Notifier/data/messages:67 ../Sync-Menu/data/messages:53
-#: ../System-Monitor/data/messages:63 ../Toons/data/messages:63
-#: ../Xgamma/data/messages:57 ../alsaMixer/data/messages:63
-#: ../clock/data/messages:65 ../dnd2share/data/messages:51
-#: ../dustbin/data/messages:53 ../keyboard-indicator/data/messages:63
-#: ../logout/data/messages:55 ../mail/data/messages:63
-#: ../musicPlayer/data/messages:65 ../netspeed/data/messages:63
-#: ../powermanager/data/messages:65 ../quick-browser/data/messages:57
-#: ../shortcuts/data/messages:55 ../showDesktop/data/messages:57
-#: ../slider/data/messages:63 ../stack/data/messages:57
-#: ../switcher/data/messages:55 ../systray/data/messages:47
-#: ../template/data/messages:55 ../terminal/data/messages:55
-#: ../tomboy/data/messages:67 ../weather/data/messages:65
-#: ../weblets/data/messages:55 ../wifi/data/messages:63
+#: ../Screenshot/data/messages:55 ../Status-Notifier/data/messages:67
+#: ../Sync-Menu/data/messages:53 ../System-Monitor/data/messages:63
+#: ../Toons/data/messages:63 ../Xgamma/data/messages:57
+#: ../alsaMixer/data/messages:63 ../clock/data/messages:65
+#: ../dnd2share/data/messages:51 ../dustbin/data/messages:53
+#: ../keyboard-indicator/data/messages:63 ../logout/data/messages:55
+#: ../mail/data/messages:63 ../musicPlayer/data/messages:65
+#: ../netspeed/data/messages:63 ../powermanager/data/messages:65
+#: ../quick-browser/data/messages:57 ../shortcuts/data/messages:55
+#: ../showDesktop/data/messages:57 ../slider/data/messages:63
+#: ../stack/data/messages:57 ../switcher/data/messages:55
+#: ../systray/data/messages:47 ../template/data/messages:55
+#: ../terminal/data/messages:55 ../tomboy/data/messages:67
+#: ../weather/data/messages:65 ../weblets/data/messages:55
+#: ../wifi/data/messages:63
 msgid "Decorations"
 msgstr "装飾"
 
@@ -4618,20 +4806,21 @@ msgstr "装飾"
 #: ../MeMenu/data/messages:51 ../Messaging-Menu/data/messages:65
 #: ../Network-Monitor/data/messages:67 ../Printers-Menu/data/messages:55
 #: ../RSSreader/data/messages:59 ../Recent-Events/data/messages:57
-#: ../Status-Notifier/data/messages:69 ../Sync-Menu/data/messages:55
-#: ../System-Monitor/data/messages:65 ../Toons/data/messages:65
-#: ../Xgamma/data/messages:59 ../alsaMixer/data/messages:65
-#: ../clock/data/messages:67 ../dnd2share/data/messages:53
-#: ../dustbin/data/messages:55 ../keyboard-indicator/data/messages:65
-#: ../logout/data/messages:57 ../mail/data/messages:65
-#: ../musicPlayer/data/messages:67 ../netspeed/data/messages:65
-#: ../powermanager/data/messages:67 ../quick-browser/data/messages:59
-#: ../shortcuts/data/messages:57 ../showDesktop/data/messages:59
-#: ../slider/data/messages:65 ../stack/data/messages:59
-#: ../switcher/data/messages:57 ../systray/data/messages:49
-#: ../template/data/messages:57 ../terminal/data/messages:57
-#: ../tomboy/data/messages:69 ../weather/data/messages:67
-#: ../weblets/data/messages:57 ../wifi/data/messages:65
+#: ../Screenshot/data/messages:57 ../Status-Notifier/data/messages:69
+#: ../Sync-Menu/data/messages:55 ../System-Monitor/data/messages:65
+#: ../Toons/data/messages:65 ../Xgamma/data/messages:59
+#: ../alsaMixer/data/messages:65 ../clock/data/messages:67
+#: ../dnd2share/data/messages:53 ../dustbin/data/messages:55
+#: ../keyboard-indicator/data/messages:65 ../logout/data/messages:57
+#: ../mail/data/messages:65 ../musicPlayer/data/messages:67
+#: ../netspeed/data/messages:65 ../powermanager/data/messages:67
+#: ../quick-browser/data/messages:59 ../shortcuts/data/messages:57
+#: ../showDesktop/data/messages:59 ../slider/data/messages:65
+#: ../stack/data/messages:59 ../switcher/data/messages:57
+#: ../systray/data/messages:49 ../template/data/messages:57
+#: ../terminal/data/messages:57 ../tomboy/data/messages:69
+#: ../weather/data/messages:67 ../weblets/data/messages:57
+#: ../wifi/data/messages:65
 msgid "Choose 'Custom decorations' to define your own decorations below."
 msgstr "自分の装飾を定義するには以下で 'カスタム装飾' を選択してください。"
 
@@ -4642,20 +4831,21 @@ msgstr "自分の装飾を定義するには以下で 'カスタム装飾' を�
 #: ../MeMenu/data/messages:53 ../Messaging-Menu/data/messages:67
 #: ../Network-Monitor/data/messages:69 ../Printers-Menu/data/messages:57
 #: ../RSSreader/data/messages:61 ../Recent-Events/data/messages:59
-#: ../Status-Notifier/data/messages:71 ../Sync-Menu/data/messages:57
-#: ../System-Monitor/data/messages:67 ../Toons/data/messages:67
-#: ../Xgamma/data/messages:61 ../alsaMixer/data/messages:67
-#: ../clock/data/messages:69 ../dnd2share/data/messages:55
-#: ../dustbin/data/messages:57 ../keyboard-indicator/data/messages:67
-#: ../logout/data/messages:59 ../mail/data/messages:67
-#: ../musicPlayer/data/messages:69 ../netspeed/data/messages:67
-#: ../powermanager/data/messages:69 ../quick-browser/data/messages:61
-#: ../shortcuts/data/messages:59 ../showDesktop/data/messages:61
-#: ../slider/data/messages:67 ../stack/data/messages:61
-#: ../switcher/data/messages:59 ../systray/data/messages:51
-#: ../template/data/messages:59 ../terminal/data/messages:59
-#: ../tomboy/data/messages:71 ../weather/data/messages:69
-#: ../weblets/data/messages:59 ../wifi/data/messages:67
+#: ../Screenshot/data/messages:59 ../Status-Notifier/data/messages:71
+#: ../Sync-Menu/data/messages:57 ../System-Monitor/data/messages:67
+#: ../Toons/data/messages:67 ../Xgamma/data/messages:61
+#: ../alsaMixer/data/messages:67 ../clock/data/messages:69
+#: ../dnd2share/data/messages:55 ../dustbin/data/messages:57
+#: ../keyboard-indicator/data/messages:67 ../logout/data/messages:59
+#: ../mail/data/messages:67 ../musicPlayer/data/messages:69
+#: ../netspeed/data/messages:67 ../powermanager/data/messages:69
+#: ../quick-browser/data/messages:61 ../shortcuts/data/messages:59
+#: ../showDesktop/data/messages:61 ../slider/data/messages:67
+#: ../stack/data/messages:61 ../switcher/data/messages:59
+#: ../systray/data/messages:51 ../template/data/messages:59
+#: ../terminal/data/messages:59 ../tomboy/data/messages:71
+#: ../weather/data/messages:69 ../weblets/data/messages:59
+#: ../wifi/data/messages:67
 msgid "Choose a decoration theme for this desklet:"
 msgstr "このデスクレットの装飾テーマの選択 :"
 
@@ -4666,23 +4856,26 @@ msgstr "このデスクレットの装飾テーマの選択 :"
 #: ../MeMenu/data/messages:55 ../Messaging-Menu/data/messages:69
 #: ../Network-Monitor/data/messages:71 ../Printers-Menu/data/messages:59
 #: ../RSSreader/data/messages:63 ../Recent-Events/data/messages:61
-#: ../Status-Notifier/data/messages:73 ../Sync-Menu/data/messages:59
-#: ../System-Monitor/data/messages:69 ../Toons/data/messages:69
-#: ../Xgamma/data/messages:63 ../alsaMixer/data/messages:69
-#: ../clock/data/messages:71 ../dnd2share/data/messages:57
-#: ../dustbin/data/messages:59 ../keyboard-indicator/data/messages:69
-#: ../logout/data/messages:61 ../mail/data/messages:69
-#: ../musicPlayer/data/messages:71 ../netspeed/data/messages:69
-#: ../powermanager/data/messages:71 ../quick-browser/data/messages:63
-#: ../shortcuts/data/messages:61 ../showDesktop/data/messages:63
-#: ../slider/data/messages:69 ../stack/data/messages:63
-#: ../switcher/data/messages:61 ../systray/data/messages:53
-#: ../template/data/messages:61 ../terminal/data/messages:61
-#: ../tomboy/data/messages:73 ../weather/data/messages:71
-#: ../weblets/data/messages:61 ../wifi/data/messages:69
+#: ../Screenshot/data/messages:61 ../Status-Notifier/data/messages:73
+#: ../Sync-Menu/data/messages:59 ../System-Monitor/data/messages:69
+#: ../Toons/data/messages:69 ../Xgamma/data/messages:63
+#: ../alsaMixer/data/messages:69 ../clock/data/messages:71
+#: ../dnd2share/data/messages:57 ../dustbin/data/messages:59
+#: ../keyboard-indicator/data/messages:69 ../logout/data/messages:61
+#: ../mail/data/messages:69 ../musicPlayer/data/messages:71
+#: ../netspeed/data/messages:69 ../powermanager/data/messages:71
+#: ../quick-browser/data/messages:63 ../shortcuts/data/messages:61
+#: ../showDesktop/data/messages:63 ../slider/data/messages:69
+#: ../stack/data/messages:63 ../switcher/data/messages:61
+#: ../systray/data/messages:53 ../template/data/messages:61
+#: ../terminal/data/messages:61 ../tomboy/data/messages:73
+#: ../weather/data/messages:71 ../weblets/data/messages:61
+#: ../wifi/data/messages:69
 msgid ""
 "Image to be displayed below drawings, e.g. a frame. Leave empty for no image."
-msgstr "例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
+msgstr ""
+"例えば外枠のように、描画物の背後に表示する画像です。画像を使用しない場合は空"
+"欄のままにしてください。"
 
 #: ../Clipper/data/messages:63 ../Composite-Manager/data/messages:61
 #: ../Disks/data/messages:61 ../Doncky/data/messages:63
@@ -4691,13 +4884,13 @@ msgstr "例えば外枠のように、描画物の背後に表示する画像で
 #: ../MeMenu/data/messages:57 ../Messaging-Menu/data/messages:71
 #: ../Network-Monitor/data/messages:73 ../Printers-Menu/data/messages:61
 #: ../RSSreader/data/messages:65 ../Recent-Events/data/messages:63
-#: ../Status-Notifier/data/messages:75 ../Sync-Menu/data/messages:61
-#: ../System-Monitor/data/messages:71 ../Toons/data/messages:71
-#: ../Xgamma/data/messages:65 ../alsaMixer/data/messages:71
-#: ../clock/data/messages:73 ../clock/data/messages:173
-#: ../dnd2share/data/messages:59 ../dustbin/data/messages:61
-#: ../keyboard-indicator/data/messages:71
-#: ../keyboard-indicator/data/messages:133 ../logout/data/messages:63
+#: ../Screenshot/data/messages:63 ../Status-Notifier/data/messages:75
+#: ../Sync-Menu/data/messages:61 ../System-Monitor/data/messages:71
+#: ../Toons/data/messages:71 ../Xgamma/data/messages:65
+#: ../alsaMixer/data/messages:71 ../clock/data/messages:73
+#: ../clock/data/messages:173 ../dnd2share/data/messages:59
+#: ../dustbin/data/messages:61 ../keyboard-indicator/data/messages:71
+#: ../keyboard-indicator/data/messages:129 ../logout/data/messages:63
 #: ../mail/data/messages:71 ../musicPlayer/data/messages:73
 #: ../netspeed/data/messages:71 ../powermanager/data/messages:73
 #: ../quick-browser/data/messages:65 ../shortcuts/data/messages:63
@@ -4717,20 +4910,21 @@ msgstr "背景画像 :"
 #: ../MeMenu/data/messages:59 ../Messaging-Menu/data/messages:73
 #: ../Network-Monitor/data/messages:75 ../Printers-Menu/data/messages:63
 #: ../RSSreader/data/messages:67 ../Recent-Events/data/messages:65
-#: ../Status-Notifier/data/messages:77 ../Sync-Menu/data/messages:63
-#: ../System-Monitor/data/messages:73 ../Toons/data/messages:73
-#: ../Xgamma/data/messages:67 ../alsaMixer/data/messages:73
-#: ../clock/data/messages:75 ../dnd2share/data/messages:61
-#: ../dustbin/data/messages:63 ../keyboard-indicator/data/messages:73
-#: ../logout/data/messages:65 ../mail/data/messages:73
-#: ../musicPlayer/data/messages:75 ../netspeed/data/messages:73
-#: ../powermanager/data/messages:75 ../quick-browser/data/messages:67
-#: ../shortcuts/data/messages:65 ../showDesktop/data/messages:67
-#: ../slider/data/messages:73 ../stack/data/messages:67
-#: ../switcher/data/messages:65 ../systray/data/messages:57
-#: ../template/data/messages:65 ../terminal/data/messages:65
-#: ../tomboy/data/messages:77 ../weather/data/messages:75
-#: ../weblets/data/messages:65 ../wifi/data/messages:73
+#: ../Screenshot/data/messages:65 ../Status-Notifier/data/messages:77
+#: ../Sync-Menu/data/messages:63 ../System-Monitor/data/messages:73
+#: ../Toons/data/messages:73 ../Xgamma/data/messages:67
+#: ../alsaMixer/data/messages:73 ../clock/data/messages:75
+#: ../dnd2share/data/messages:61 ../dustbin/data/messages:63
+#: ../keyboard-indicator/data/messages:73 ../logout/data/messages:65
+#: ../mail/data/messages:73 ../musicPlayer/data/messages:75
+#: ../netspeed/data/messages:73 ../powermanager/data/messages:75
+#: ../quick-browser/data/messages:67 ../shortcuts/data/messages:65
+#: ../showDesktop/data/messages:67 ../slider/data/messages:73
+#: ../stack/data/messages:67 ../switcher/data/messages:65
+#: ../systray/data/messages:57 ../template/data/messages:65
+#: ../terminal/data/messages:65 ../tomboy/data/messages:77
+#: ../weather/data/messages:75 ../weblets/data/messages:65
+#: ../wifi/data/messages:73
 msgid "Background transparency:"
 msgstr "背景の透明度 :"
 
@@ -4741,20 +4935,21 @@ msgstr "背景の透明度 :"
 #: ../MeMenu/data/messages:61 ../Messaging-Menu/data/messages:75
 #: ../Network-Monitor/data/messages:77 ../Printers-Menu/data/messages:65
 #: ../RSSreader/data/messages:69 ../Recent-Events/data/messages:67
-#: ../Status-Notifier/data/messages:79 ../Sync-Menu/data/messages:65
-#: ../System-Monitor/data/messages:75 ../Toons/data/messages:75
-#: ../Xgamma/data/messages:69 ../alsaMixer/data/messages:75
-#: ../clock/data/messages:77 ../dnd2share/data/messages:63
-#: ../dustbin/data/messages:65 ../keyboard-indicator/data/messages:75
-#: ../logout/data/messages:67 ../mail/data/messages:75
-#: ../musicPlayer/data/messages:77 ../netspeed/data/messages:75
-#: ../powermanager/data/messages:77 ../quick-browser/data/messages:69
-#: ../shortcuts/data/messages:67 ../showDesktop/data/messages:69
-#: ../slider/data/messages:75 ../stack/data/messages:69
-#: ../switcher/data/messages:67 ../systray/data/messages:59
-#: ../template/data/messages:67 ../terminal/data/messages:67
-#: ../tomboy/data/messages:79 ../weather/data/messages:77
-#: ../weblets/data/messages:67 ../wifi/data/messages:75
+#: ../Screenshot/data/messages:67 ../Status-Notifier/data/messages:79
+#: ../Sync-Menu/data/messages:65 ../System-Monitor/data/messages:75
+#: ../Toons/data/messages:75 ../Xgamma/data/messages:69
+#: ../alsaMixer/data/messages:75 ../clock/data/messages:77
+#: ../dnd2share/data/messages:63 ../dustbin/data/messages:65
+#: ../keyboard-indicator/data/messages:75 ../logout/data/messages:67
+#: ../mail/data/messages:75 ../musicPlayer/data/messages:77
+#: ../netspeed/data/messages:75 ../powermanager/data/messages:77
+#: ../quick-browser/data/messages:69 ../shortcuts/data/messages:67
+#: ../showDesktop/data/messages:69 ../slider/data/messages:75
+#: ../stack/data/messages:69 ../switcher/data/messages:67
+#: ../systray/data/messages:59 ../template/data/messages:67
+#: ../terminal/data/messages:67 ../tomboy/data/messages:79
+#: ../weather/data/messages:77 ../weblets/data/messages:67
+#: ../wifi/data/messages:75
 msgid "in pixels. Use this to adjust the left position of drawings."
 msgstr "ピクセル単位。描画内容の左方向位置の調整に使用してください。"
 
@@ -4765,20 +4960,21 @@ msgstr "ピクセル単位。描画内容の左方向位置の調整に使用し
 #: ../MeMenu/data/messages:63 ../Messaging-Menu/data/messages:77
 #: ../Network-Monitor/data/messages:79 ../Printers-Menu/data/messages:67
 #: ../RSSreader/data/messages:71 ../Recent-Events/data/messages:69
-#: ../Status-Notifier/data/messages:81 ../Sync-Menu/data/messages:67
-#: ../System-Monitor/data/messages:77 ../Toons/data/messages:77
-#: ../Xgamma/data/messages:71 ../alsaMixer/data/messages:77
-#: ../clock/data/messages:79 ../dnd2share/data/messages:65
-#: ../dustbin/data/messages:67 ../keyboard-indicator/data/messages:77
-#: ../logout/data/messages:69 ../mail/data/messages:77
-#: ../musicPlayer/data/messages:79 ../netspeed/data/messages:77
-#: ../powermanager/data/messages:79 ../quick-browser/data/messages:71
-#: ../shortcuts/data/messages:69 ../showDesktop/data/messages:71
-#: ../slider/data/messages:77 ../stack/data/messages:71
-#: ../switcher/data/messages:69 ../systray/data/messages:61
-#: ../template/data/messages:69 ../terminal/data/messages:69
-#: ../tomboy/data/messages:81 ../weather/data/messages:79
-#: ../weblets/data/messages:69 ../wifi/data/messages:77
+#: ../Screenshot/data/messages:69 ../Status-Notifier/data/messages:81
+#: ../Sync-Menu/data/messages:67 ../System-Monitor/data/messages:77
+#: ../Toons/data/messages:77 ../Xgamma/data/messages:71
+#: ../alsaMixer/data/messages:77 ../clock/data/messages:79
+#: ../dnd2share/data/messages:65 ../dustbin/data/messages:67
+#: ../keyboard-indicator/data/messages:77 ../logout/data/messages:69
+#: ../mail/data/messages:77 ../musicPlayer/data/messages:79
+#: ../netspeed/data/messages:77 ../powermanager/data/messages:79
+#: ../quick-browser/data/messages:71 ../shortcuts/data/messages:69
+#: ../showDesktop/data/messages:71 ../slider/data/messages:77
+#: ../stack/data/messages:71 ../switcher/data/messages:69
+#: ../systray/data/messages:61 ../template/data/messages:69
+#: ../terminal/data/messages:69 ../tomboy/data/messages:81
+#: ../weather/data/messages:79 ../weblets/data/messages:69
+#: ../wifi/data/messages:77
 msgid "Left offset:"
 msgstr "左方向のオフセット :"
 
@@ -4789,20 +4985,21 @@ msgstr "左方向のオフセット :"
 #: ../MeMenu/data/messages:65 ../Messaging-Menu/data/messages:79
 #: ../Network-Monitor/data/messages:81 ../Printers-Menu/data/messages:69
 #: ../RSSreader/data/messages:73 ../Recent-Events/data/messages:71
-#: ../Status-Notifier/data/messages:83 ../Sync-Menu/data/messages:69
-#: ../System-Monitor/data/messages:79 ../Toons/data/messages:79
-#: ../Xgamma/data/messages:73 ../alsaMixer/data/messages:79
-#: ../clock/data/messages:81 ../dnd2share/data/messages:67
-#: ../dustbin/data/messages:69 ../keyboard-indicator/data/messages:79
-#: ../logout/data/messages:71 ../mail/data/messages:79
-#: ../musicPlayer/data/messages:81 ../netspeed/data/messages:79
-#: ../powermanager/data/messages:81 ../quick-browser/data/messages:73
-#: ../shortcuts/data/messages:71 ../showDesktop/data/messages:73
-#: ../slider/data/messages:79 ../stack/data/messages:73
-#: ../switcher/data/messages:71 ../systray/data/messages:63
-#: ../template/data/messages:71 ../terminal/data/messages:71
-#: ../tomboy/data/messages:83 ../weather/data/messages:81
-#: ../weblets/data/messages:71 ../wifi/data/messages:79
+#: ../Screenshot/data/messages:71 ../Status-Notifier/data/messages:83
+#: ../Sync-Menu/data/messages:69 ../System-Monitor/data/messages:79
+#: ../Toons/data/messages:79 ../Xgamma/data/messages:73
+#: ../alsaMixer/data/messages:79 ../clock/data/messages:81
+#: ../dnd2share/data/messages:67 ../dustbin/data/messages:69
+#: ../keyboard-indicator/data/messages:79 ../logout/data/messages:71
+#: ../mail/data/messages:79 ../musicPlayer/data/messages:81
+#: ../netspeed/data/messages:79 ../powermanager/data/messages:81
+#: ../quick-browser/data/messages:73 ../shortcuts/data/messages:71
+#: ../showDesktop/data/messages:73 ../slider/data/messages:79
+#: ../stack/data/messages:73 ../switcher/data/messages:71
+#: ../systray/data/messages:63 ../template/data/messages:71
+#: ../terminal/data/messages:71 ../tomboy/data/messages:83
+#: ../weather/data/messages:81 ../weblets/data/messages:71
+#: ../wifi/data/messages:79
 msgid "in pixels. Use this to adjust the top position of drawings."
 msgstr "ピクセル単位。描画内容の上方向位置の調整に使用してください。"
 
@@ -4813,20 +5010,21 @@ msgstr "ピクセル単位。描画内容の上方向位置の調整に使用し
 #: ../MeMenu/data/messages:67 ../Messaging-Menu/data/messages:81
 #: ../Network-Monitor/data/messages:83 ../Printers-Menu/data/messages:71
 #: ../RSSreader/data/messages:75 ../Recent-Events/data/messages:73
-#: ../Status-Notifier/data/messages:85 ../Sync-Menu/data/messages:71
-#: ../System-Monitor/data/messages:81 ../Toons/data/messages:81
-#: ../Xgamma/data/messages:75 ../alsaMixer/data/messages:81
-#: ../clock/data/messages:83 ../dnd2share/data/messages:69
-#: ../dustbin/data/messages:71 ../keyboard-indicator/data/messages:81
-#: ../logout/data/messages:73 ../mail/data/messages:81
-#: ../musicPlayer/data/messages:83 ../netspeed/data/messages:81
-#: ../powermanager/data/messages:83 ../quick-browser/data/messages:75
-#: ../shortcuts/data/messages:73 ../showDesktop/data/messages:75
-#: ../slider/data/messages:81 ../stack/data/messages:75
-#: ../switcher/data/messages:73 ../systray/data/messages:65
-#: ../template/data/messages:73 ../terminal/data/messages:73
-#: ../tomboy/data/messages:85 ../weather/data/messages:83
-#: ../weblets/data/messages:73 ../wifi/data/messages:81
+#: ../Screenshot/data/messages:73 ../Status-Notifier/data/messages:85
+#: ../Sync-Menu/data/messages:71 ../System-Monitor/data/messages:81
+#: ../Toons/data/messages:81 ../Xgamma/data/messages:75
+#: ../alsaMixer/data/messages:81 ../clock/data/messages:83
+#: ../dnd2share/data/messages:69 ../dustbin/data/messages:71
+#: ../keyboard-indicator/data/messages:81 ../logout/data/messages:73
+#: ../mail/data/messages:81 ../musicPlayer/data/messages:83
+#: ../netspeed/data/messages:81 ../powermanager/data/messages:83
+#: ../quick-browser/data/messages:75 ../shortcuts/data/messages:73
+#: ../showDesktop/data/messages:75 ../slider/data/messages:81
+#: ../stack/data/messages:75 ../switcher/data/messages:73
+#: ../systray/data/messages:65 ../template/data/messages:73
+#: ../terminal/data/messages:73 ../tomboy/data/messages:85
+#: ../weather/data/messages:83 ../weblets/data/messages:73
+#: ../wifi/data/messages:81
 msgid "Top offset:"
 msgstr "上方向のオフセット :"
 
@@ -4837,20 +5035,21 @@ msgstr "上方向のオフセット :"
 #: ../MeMenu/data/messages:69 ../Messaging-Menu/data/messages:83
 #: ../Network-Monitor/data/messages:85 ../Printers-Menu/data/messages:73
 #: ../RSSreader/data/messages:77 ../Recent-Events/data/messages:75
-#: ../Status-Notifier/data/messages:87 ../Sync-Menu/data/messages:73
-#: ../System-Monitor/data/messages:83 ../Toons/data/messages:83
-#: ../Xgamma/data/messages:77 ../alsaMixer/data/messages:83
-#: ../clock/data/messages:85 ../dnd2share/data/messages:71
-#: ../dustbin/data/messages:73 ../keyboard-indicator/data/messages:83
-#: ../logout/data/messages:75 ../mail/data/messages:83
-#: ../musicPlayer/data/messages:85 ../netspeed/data/messages:83
-#: ../powermanager/data/messages:85 ../quick-browser/data/messages:77
-#: ../shortcuts/data/messages:75 ../showDesktop/data/messages:77
-#: ../slider/data/messages:83 ../stack/data/messages:77
-#: ../switcher/data/messages:75 ../systray/data/messages:67
-#: ../template/data/messages:75 ../terminal/data/messages:75
-#: ../tomboy/data/messages:87 ../weather/data/messages:85
-#: ../weblets/data/messages:75 ../wifi/data/messages:83
+#: ../Screenshot/data/messages:75 ../Status-Notifier/data/messages:87
+#: ../Sync-Menu/data/messages:73 ../System-Monitor/data/messages:83
+#: ../Toons/data/messages:83 ../Xgamma/data/messages:77
+#: ../alsaMixer/data/messages:83 ../clock/data/messages:85
+#: ../dnd2share/data/messages:71 ../dustbin/data/messages:73
+#: ../keyboard-indicator/data/messages:83 ../logout/data/messages:75
+#: ../mail/data/messages:83 ../musicPlayer/data/messages:85
+#: ../netspeed/data/messages:83 ../powermanager/data/messages:85
+#: ../quick-browser/data/messages:77 ../shortcuts/data/messages:75
+#: ../showDesktop/data/messages:77 ../slider/data/messages:83
+#: ../stack/data/messages:77 ../switcher/data/messages:75
+#: ../systray/data/messages:67 ../template/data/messages:75
+#: ../terminal/data/messages:75 ../tomboy/data/messages:87
+#: ../weather/data/messages:85 ../weblets/data/messages:75
+#: ../wifi/data/messages:83
 msgid "in pixels. Use this to adjust the right position of drawings."
 msgstr "ピクセル単位。描画内容の右位置の調整に使用してください。"
 
@@ -4861,20 +5060,21 @@ msgstr "ピクセル単位。描画内容の右位置の調整に使用してく
 #: ../MeMenu/data/messages:71 ../Messaging-Menu/data/messages:85
 #: ../Network-Monitor/data/messages:87 ../Printers-Menu/data/messages:75
 #: ../RSSreader/data/messages:79 ../Recent-Events/data/messages:77
-#: ../Status-Notifier/data/messages:89 ../Sync-Menu/data/messages:75
-#: ../System-Monitor/data/messages:85 ../Toons/data/messages:85
-#: ../Xgamma/data/messages:79 ../alsaMixer/data/messages:85
-#: ../clock/data/messages:87 ../dnd2share/data/messages:73
-#: ../dustbin/data/messages:75 ../keyboard-indicator/data/messages:85
-#: ../logout/data/messages:77 ../mail/data/messages:85
-#: ../musicPlayer/data/messages:87 ../netspeed/data/messages:85
-#: ../powermanager/data/messages:87 ../quick-browser/data/messages:79
-#: ../shortcuts/data/messages:77 ../showDesktop/data/messages:79
-#: ../slider/data/messages:85 ../stack/data/messages:79
-#: ../switcher/data/messages:77 ../systray/data/messages:69
-#: ../template/data/messages:77 ../terminal/data/messages:77
-#: ../tomboy/data/messages:89 ../weather/data/messages:87
-#: ../weblets/data/messages:77 ../wifi/data/messages:85
+#: ../Screenshot/data/messages:77 ../Status-Notifier/data/messages:89
+#: ../Sync-Menu/data/messages:75 ../System-Monitor/data/messages:85
+#: ../Toons/data/messages:85 ../Xgamma/data/messages:79
+#: ../alsaMixer/data/messages:85 ../clock/data/messages:87
+#: ../dnd2share/data/messages:73 ../dustbin/data/messages:75
+#: ../keyboard-indicator/data/messages:85 ../logout/data/messages:77
+#: ../mail/data/messages:85 ../musicPlayer/data/messages:87
+#: ../netspeed/data/messages:85 ../powermanager/data/messages:87
+#: ../quick-browser/data/messages:79 ../shortcuts/data/messages:77
+#: ../showDesktop/data/messages:79 ../slider/data/messages:85
+#: ../stack/data/messages:79 ../switcher/data/messages:77
+#: ../systray/data/messages:69 ../template/data/messages:77
+#: ../terminal/data/messages:77 ../tomboy/data/messages:89
+#: ../weather/data/messages:87 ../weblets/data/messages:77
+#: ../wifi/data/messages:85
 msgid "Right offset:"
 msgstr "右方向のオフセット :"
 
@@ -4885,20 +5085,21 @@ msgstr "右方向のオフセット :"
 #: ../MeMenu/data/messages:73 ../Messaging-Menu/data/messages:87
 #: ../Network-Monitor/data/messages:89 ../Printers-Menu/data/messages:77
 #: ../RSSreader/data/messages:81 ../Recent-Events/data/messages:79
-#: ../Status-Notifier/data/messages:91 ../Sync-Menu/data/messages:77
-#: ../System-Monitor/data/messages:87 ../Toons/data/messages:87
-#: ../Xgamma/data/messages:81 ../alsaMixer/data/messages:87
-#: ../clock/data/messages:89 ../dnd2share/data/messages:75
-#: ../dustbin/data/messages:77 ../keyboard-indicator/data/messages:87
-#: ../logout/data/messages:79 ../mail/data/messages:87
-#: ../musicPlayer/data/messages:89 ../netspeed/data/messages:87
-#: ../powermanager/data/messages:89 ../quick-browser/data/messages:81
-#: ../shortcuts/data/messages:79 ../showDesktop/data/messages:81
-#: ../slider/data/messages:87 ../stack/data/messages:81
-#: ../switcher/data/messages:79 ../systray/data/messages:71
-#: ../template/data/messages:79 ../terminal/data/messages:79
-#: ../tomboy/data/messages:91 ../weather/data/messages:89
-#: ../weblets/data/messages:79 ../wifi/data/messages:87
+#: ../Screenshot/data/messages:79 ../Status-Notifier/data/messages:91
+#: ../Sync-Menu/data/messages:77 ../System-Monitor/data/messages:87
+#: ../Toons/data/messages:87 ../Xgamma/data/messages:81
+#: ../alsaMixer/data/messages:87 ../clock/data/messages:89
+#: ../dnd2share/data/messages:75 ../dustbin/data/messages:77
+#: ../keyboard-indicator/data/messages:87 ../logout/data/messages:79
+#: ../mail/data/messages:87 ../musicPlayer/data/messages:89
+#: ../netspeed/data/messages:87 ../powermanager/data/messages:89
+#: ../quick-browser/data/messages:81 ../shortcuts/data/messages:79
+#: ../showDesktop/data/messages:81 ../slider/data/messages:87
+#: ../stack/data/messages:81 ../switcher/data/messages:79
+#: ../systray/data/messages:71 ../template/data/messages:79
+#: ../terminal/data/messages:79 ../tomboy/data/messages:91
+#: ../weather/data/messages:89 ../weblets/data/messages:79
+#: ../wifi/data/messages:87
 msgid "in pixels. Use this to adjust the bottom position of drawings."
 msgstr "ピクセル単位。描画内容の下方向位置の調整に使用してください。"
 
@@ -4909,20 +5110,21 @@ msgstr "ピクセル単位。描画内容の下方向位置の調整に使用し
 #: ../MeMenu/data/messages:75 ../Messaging-Menu/data/messages:89
 #: ../Network-Monitor/data/messages:91 ../Printers-Menu/data/messages:79
 #: ../RSSreader/data/messages:83 ../Recent-Events/data/messages:81
-#: ../Status-Notifier/data/messages:93 ../Sync-Menu/data/messages:79
-#: ../System-Monitor/data/messages:89 ../Toons/data/messages:89
-#: ../Xgamma/data/messages:83 ../alsaMixer/data/messages:89
-#: ../clock/data/messages:91 ../dnd2share/data/messages:77
-#: ../dustbin/data/messages:79 ../keyboard-indicator/data/messages:89
-#: ../logout/data/messages:81 ../mail/data/messages:89
-#: ../musicPlayer/data/messages:91 ../netspeed/data/messages:89
-#: ../powermanager/data/messages:91 ../quick-browser/data/messages:83
-#: ../shortcuts/data/messages:81 ../showDesktop/data/messages:83
-#: ../slider/data/messages:89 ../stack/data/messages:83
-#: ../switcher/data/messages:81 ../systray/data/messages:73
-#: ../template/data/messages:81 ../terminal/data/messages:81
-#: ../tomboy/data/messages:93 ../weather/data/messages:91
-#: ../weblets/data/messages:81 ../wifi/data/messages:89
+#: ../Screenshot/data/messages:81 ../Status-Notifier/data/messages:93
+#: ../Sync-Menu/data/messages:79 ../System-Monitor/data/messages:89
+#: ../Toons/data/messages:89 ../Xgamma/data/messages:83
+#: ../alsaMixer/data/messages:89 ../clock/data/messages:91
+#: ../dnd2share/data/messages:77 ../dustbin/data/messages:79
+#: ../keyboard-indicator/data/messages:89 ../logout/data/messages:81
+#: ../mail/data/messages:89 ../musicPlayer/data/messages:91
+#: ../netspeed/data/messages:89 ../powermanager/data/messages:91
+#: ../quick-browser/data/messages:83 ../shortcuts/data/messages:81
+#: ../showDesktop/data/messages:83 ../slider/data/messages:89
+#: ../stack/data/messages:83 ../switcher/data/messages:81
+#: ../systray/data/messages:73 ../template/data/messages:81
+#: ../terminal/data/messages:81 ../tomboy/data/messages:93
+#: ../weather/data/messages:91 ../weblets/data/messages:81
+#: ../wifi/data/messages:89
 msgid "Bottom offset:"
 msgstr "下方向のオフセット :"
 
@@ -4933,24 +5135,27 @@ msgstr "下方向のオフセット :"
 #: ../MeMenu/data/messages:77 ../Messaging-Menu/data/messages:91
 #: ../Network-Monitor/data/messages:93 ../Printers-Menu/data/messages:81
 #: ../RSSreader/data/messages:85 ../Recent-Events/data/messages:83
-#: ../Status-Notifier/data/messages:95 ../Sync-Menu/data/messages:81
-#: ../System-Monitor/data/messages:91 ../Toons/data/messages:91
-#: ../Xgamma/data/messages:85 ../alsaMixer/data/messages:91
-#: ../clock/data/messages:93 ../dnd2share/data/messages:79
-#: ../dustbin/data/messages:81 ../keyboard-indicator/data/messages:91
-#: ../logout/data/messages:83 ../mail/data/messages:91
-#: ../musicPlayer/data/messages:93 ../netspeed/data/messages:91
-#: ../powermanager/data/messages:93 ../quick-browser/data/messages:85
-#: ../shortcuts/data/messages:83 ../showDesktop/data/messages:85
-#: ../slider/data/messages:91 ../stack/data/messages:85
-#: ../switcher/data/messages:83 ../systray/data/messages:75
-#: ../template/data/messages:83 ../terminal/data/messages:83
-#: ../tomboy/data/messages:95 ../weather/data/messages:93
-#: ../weblets/data/messages:83 ../wifi/data/messages:91
+#: ../Screenshot/data/messages:83 ../Status-Notifier/data/messages:95
+#: ../Sync-Menu/data/messages:81 ../System-Monitor/data/messages:91
+#: ../Toons/data/messages:91 ../Xgamma/data/messages:85
+#: ../alsaMixer/data/messages:91 ../clock/data/messages:93
+#: ../dnd2share/data/messages:79 ../dustbin/data/messages:81
+#: ../keyboard-indicator/data/messages:91 ../logout/data/messages:83
+#: ../mail/data/messages:91 ../musicPlayer/data/messages:93
+#: ../netspeed/data/messages:91 ../powermanager/data/messages:93
+#: ../quick-browser/data/messages:85 ../shortcuts/data/messages:83
+#: ../showDesktop/data/messages:85 ../slider/data/messages:91
+#: ../stack/data/messages:85 ../switcher/data/messages:83
+#: ../systray/data/messages:75 ../template/data/messages:83
+#: ../terminal/data/messages:83 ../tomboy/data/messages:95
+#: ../weather/data/messages:93 ../weblets/data/messages:83
+#: ../wifi/data/messages:91
 msgid ""
 "Image to be displayed above the drawings, e.g. a reflection. Leave empty for "
 "no image."
-msgstr "例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場合は空欄のままにしてください。"
+msgstr ""
+"例えばテカリ表現のように、描画物の手前に表示する画像です。画像を使用しない場"
+"合は空欄のままにしてください。"
 
 #: ../Clipper/data/messages:85 ../Composite-Manager/data/messages:83
 #: ../Disks/data/messages:67 ../Doncky/data/messages:85
@@ -4959,20 +5164,21 @@ msgstr "例えばテカリ表現のように、描画物の手前に表示する
 #: ../MeMenu/data/messages:79 ../Messaging-Menu/data/messages:93
 #: ../Network-Monitor/data/messages:95 ../Printers-Menu/data/messages:83
 #: ../RSSreader/data/messages:87 ../Recent-Events/data/messages:85
-#: ../Status-Notifier/data/messages:97 ../Sync-Menu/data/messages:83
-#: ../System-Monitor/data/messages:93 ../Toons/data/messages:93
-#: ../Xgamma/data/messages:87 ../alsaMixer/data/messages:93
-#: ../clock/data/messages:95 ../dnd2share/data/messages:81
-#: ../dustbin/data/messages:83 ../keyboard-indicator/data/messages:93
-#: ../logout/data/messages:85 ../mail/data/messages:93
-#: ../musicPlayer/data/messages:95 ../netspeed/data/messages:93
-#: ../powermanager/data/messages:95 ../quick-browser/data/messages:87
-#: ../shortcuts/data/messages:85 ../showDesktop/data/messages:87
-#: ../slider/data/messages:93 ../stack/data/messages:87
-#: ../switcher/data/messages:85 ../systray/data/messages:77
-#: ../template/data/messages:85 ../terminal/data/messages:85
-#: ../tomboy/data/messages:97 ../weather/data/messages:95
-#: ../weblets/data/messages:85 ../wifi/data/messages:93
+#: ../Screenshot/data/messages:85 ../Status-Notifier/data/messages:97
+#: ../Sync-Menu/data/messages:83 ../System-Monitor/data/messages:93
+#: ../Toons/data/messages:93 ../Xgamma/data/messages:87
+#: ../alsaMixer/data/messages:93 ../clock/data/messages:95
+#: ../dnd2share/data/messages:81 ../dustbin/data/messages:83
+#: ../keyboard-indicator/data/messages:93 ../logout/data/messages:85
+#: ../mail/data/messages:93 ../musicPlayer/data/messages:95
+#: ../netspeed/data/messages:93 ../powermanager/data/messages:95
+#: ../quick-browser/data/messages:87 ../shortcuts/data/messages:85
+#: ../showDesktop/data/messages:87 ../slider/data/messages:93
+#: ../stack/data/messages:87 ../switcher/data/messages:85
+#: ../systray/data/messages:77 ../template/data/messages:85
+#: ../terminal/data/messages:85 ../tomboy/data/messages:97
+#: ../weather/data/messages:95 ../weblets/data/messages:85
+#: ../wifi/data/messages:93
 msgid "Foreground image:"
 msgstr "前景画像 :"
 
@@ -4983,20 +5189,21 @@ msgstr "前景画像 :"
 #: ../MeMenu/data/messages:81 ../Messaging-Menu/data/messages:95
 #: ../Network-Monitor/data/messages:97 ../Printers-Menu/data/messages:85
 #: ../RSSreader/data/messages:89 ../Recent-Events/data/messages:87
-#: ../Status-Notifier/data/messages:99 ../Sync-Menu/data/messages:85
-#: ../System-Monitor/data/messages:95 ../Toons/data/messages:95
-#: ../Xgamma/data/messages:89 ../alsaMixer/data/messages:95
-#: ../clock/data/messages:97 ../dnd2share/data/messages:83
-#: ../dustbin/data/messages:85 ../keyboard-indicator/data/messages:95
-#: ../logout/data/messages:87 ../mail/data/messages:95
-#: ../musicPlayer/data/messages:97 ../netspeed/data/messages:95
-#: ../powermanager/data/messages:97 ../quick-browser/data/messages:89
-#: ../shortcuts/data/messages:87 ../showDesktop/data/messages:89
-#: ../slider/data/messages:95 ../stack/data/messages:89
-#: ../switcher/data/messages:87 ../systray/data/messages:79
-#: ../template/data/messages:87 ../terminal/data/messages:87
-#: ../tomboy/data/messages:99 ../weather/data/messages:97
-#: ../weblets/data/messages:87 ../wifi/data/messages:95
+#: ../Screenshot/data/messages:87 ../Status-Notifier/data/messages:99
+#: ../Sync-Menu/data/messages:85 ../System-Monitor/data/messages:95
+#: ../Toons/data/messages:95 ../Xgamma/data/messages:89
+#: ../alsaMixer/data/messages:95 ../clock/data/messages:97
+#: ../dnd2share/data/messages:83 ../dustbin/data/messages:85
+#: ../keyboard-indicator/data/messages:95 ../logout/data/messages:87
+#: ../mail/data/messages:95 ../musicPlayer/data/messages:97
+#: ../netspeed/data/messages:95 ../powermanager/data/messages:97
+#: ../quick-browser/data/messages:89 ../shortcuts/data/messages:87
+#: ../showDesktop/data/messages:89 ../slider/data/messages:95
+#: ../stack/data/messages:89 ../switcher/data/messages:87
+#: ../systray/data/messages:79 ../template/data/messages:87
+#: ../terminal/data/messages:87 ../tomboy/data/messages:99
+#: ../weather/data/messages:97 ../weblets/data/messages:87
+#: ../wifi/data/messages:95
 msgid "Foreground tansparency:"
 msgstr "前景の透明度 :"
 
@@ -5009,7 +5216,8 @@ msgid ""
 "Clipboard items are those you get with CTRL+c. Selection items are those you "
 "get by selecting some text with the mouse."
 msgstr ""
-"クリップボード・アイテムは、CTRL+c で取得するアイテムです。セレクション・アイテムは、マウスでテキストを選択することで取得するアイテムです。"
+"クリップボード・アイテムは、CTRL+c で取得するアイテムです。セレクション・アイ"
+"テムは、マウスでテキストを選択することで取得するアイテムです。"
 
 #: ../Clipper/data/messages:95
 msgid "Which items should be remembered?"
@@ -5041,7 +5249,8 @@ msgid ""
 "It is especially useful if you often select text with the mouse and don't "
 "want to loose your clipboard items due to too many items in the selection."
 msgstr ""
-"マウスでテキストを頻繁に選択していて、その大量の選択アイテムによってクリップボード・アイテムが失われてしまうことがないようにしたい場合に特に有用です。"
+"マウスでテキストを頻繁に選択していて、その大量の選択アイテムによってクリップ"
+"ボード・アイテムが失われてしまうことがないようにしたい場合に特に有用です。"
 
 #: ../Clipper/data/messages:111
 msgid "Separate clipboard and selection?"
@@ -5054,7 +5263,8 @@ msgstr "分離させる場合のセレクション・アイテム数 :"
 #: ../Clipper/data/messages:115
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
-msgstr "アイテムをクリックしたときに、それが CTRL+v でアクセスできる状態になります。"
+msgstr ""
+"アイテムをクリックしたときに、それが CTRL+v でアクセスできる状態になります。"
 
 #: ../Clipper/data/messages:117
 msgid "Paste into Clipboard?"
@@ -5064,7 +5274,9 @@ msgstr "クリップボードに貼り付け？"
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
-msgstr "アイテムをクリックしたときに、それが中クリックでアクセスできる状態になります。"
+msgstr ""
+"アイテムをクリックしたときに、それが中クリックでアクセスできる状態になりま"
+"す。"
 
 #: ../Clipper/data/messages:121
 msgid "Paste into Selection?"
@@ -5086,7 +5298,9 @@ msgstr "アクション"
 msgid ""
 "If some actions are associated with an item, they will be proposed when the "
 "item is created."
-msgstr "アイテムにアクションが関連付けられている場合、アイテムが作成された時点でそのアクションを提示します。"
+msgstr ""
+"アイテムにアクションが関連付けられている場合、アイテムが作成された時点でその"
+"アクションを提示します。"
 
 #: ../Clipper/data/messages:131
 msgid "Enable actions?"
@@ -5114,16 +5328,18 @@ msgstr "中クリックでアクセス可能な定型文として登録された
 
 #: ../Composite-Manager/data/messages:27 ../Global-Menu/data/messages:23
 #: ../Impulse/data/messages:23 ../Printers-Menu/data/messages:27
-#: ../Recent-Events/data/messages:29 ../Status-Notifier/data/messages:41
-#: ../Sync-Menu/data/messages:27 ../alsaMixer/data/messages:37
-#: ../clock/data/messages:39 ../dustbin/data/messages:27
-#: ../netspeed/data/messages:37 ../systray/data/messages:25
-#: ../template/data/messages:29 ../tomboy/data/messages:41
+#: ../Recent-Events/data/messages:29 ../Screenshot/data/messages:29
+#: ../Status-Notifier/data/messages:41 ../Sync-Menu/data/messages:27
+#: ../alsaMixer/data/messages:37 ../clock/data/messages:39
+#: ../dustbin/data/messages:27 ../netspeed/data/messages:37
+#: ../systray/data/messages:25 ../template/data/messages:29
+#: ../tomboy/data/messages:41
 msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click.. Negative values are counted from the right/bottom of the screen"
 msgstr ""
-"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 左クリックで移動させることができます... 負の値は画面の右下から数えられます。"
+"使用中のウィンドウ・マネージャによって異なりますが、例えば ALT + 左クリックで"
+"移動させることができます... 負の値は画面の右下から数えられます。"
 
 #: ../Composite-Manager/data/messages:89 ../Impulse/data/messages:117
 #: ../clock/data/messages:133
@@ -5150,7 +5366,9 @@ msgstr "動作"
 msgid ""
 "Let empty to use the default one. Alternatively, you can set any command you "
 "want."
-msgstr "デフォルトを使用する場合は空欄にしてください。または、任意のコマンドを記入して指定することも可能です。"
+msgstr ""
+"デフォルトを使用する場合は空欄にしてください。または、任意のコマンドを記入し"
+"て指定することも可能です。"
 
 #: ../Composite-Manager/data/messages:99
 msgid "Composite window-manager:"
@@ -5196,7 +5414,8 @@ msgstr "コンポジットON/OFF切り替えのショートキー："
 
 #: ../Dbus/data/messages:3
 msgid "Let external applications pop up dialogs in the dock?"
-msgstr "外部アプリケーションからドック上にダイアログをポップアップできるようにする？"
+msgstr ""
+"外部アプリケーションからドック上にダイアログをポップアップできるようにする？"
 
 #: ../Dbus/data/messages:5
 msgid "Let external applications reboot the dock?"
@@ -5228,7 +5447,8 @@ msgstr "外部アプリケーションからアイコンのラベルを変更で
 
 #: ../Dbus/data/messages:19
 msgid "Let extern applications modify the quick-infos on icons?"
-msgstr "外部アプリケーションからアイコン上のクイック情報を変更できるようにする？"
+msgstr ""
+"外部アプリケーションからアイコン上のクイック情報を変更できるようにする？"
 
 #: ../Dbus/data/messages:21
 msgid "Let extern applications modify the icons' image?"
@@ -5237,6 +5457,14 @@ msgstr "外部アプリケーションからアイコンの画像を変更でき
 #: ../Dbus/data/messages:23
 msgid "Let extern applications animate icons?"
 msgstr "外部アプリケーションからアイコンをアニメーション表示できるようにする？"
+
+#: ../Dbus/data/messages:25
+msgid "The dock will catch DBus signals to Launcher API and act as Unity"
+msgstr ""
+
+#: ../Dbus/data/messages:27
+msgid "Launch the Launcher API daemon?"
+msgstr ""
 
 #: ../Disks/data/messages:5
 msgid "Name of the container it belongs to:"
@@ -5360,7 +5588,7 @@ msgstr "全ての値を同じグラフに表示？"
 
 #: ../Disks/data/messages:133 ../Impulse/data/messages:85
 #: ../Status-Notifier/data/messages:103 ../alsaMixer/data/messages:99
-#: ../keyboard-indicator/data/messages:117 ../mail/data/messages:103
+#: ../keyboard-indicator/data/messages:113 ../mail/data/messages:103
 #: ../musicPlayer/data/messages:159 ../shortcuts/data/messages:91
 #: ../shortcuts/data/messages:101 ../slider/data/messages:163
 #: ../stack/data/messages:93 ../tomboy/data/messages:103
@@ -5392,7 +5620,9 @@ msgstr "更新間隔"
 msgid ""
 "You need OpenGL for this option. Set it to 0 to disable it, 1 means the "
 "transition is continue."
-msgstr "このオプションには OpenGL が必要です。0 に設定するとオプション不使用になり、1 に設定すると継続動作になります。"
+msgstr ""
+"このオプションには OpenGL が必要です。0 に設定するとオプション不使用になり、"
+"1 に設定すると継続動作になります。"
 
 #: ../Disks/data/messages:149
 msgid "Fluidity of the transition between 2 values"
@@ -5472,9 +5702,9 @@ msgid "Background"
 msgstr "背景"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid ""
-"You can have more attractive backgrounds using the Desklet decorations"
-msgstr "デスクレットの装飾を使用して、より魅力的な背景を持たせることができます。"
+msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgstr ""
+"デスクレットの装飾を使用して、より魅力的な背景を持たせることができます。"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
 msgid "Display a simple background?"
@@ -5556,7 +5786,9 @@ msgstr "フォルダのパス："
 msgid ""
 "Allow to show the files of the folder in a sub-dock. If disabled, the applet "
 "behaves as a mere launcher."
-msgstr "フォルダに含まれるファイルをサブ・ドックに表示します。無効にした場合、アプレットは単純にフォルダのランチャーとして振る舞います。"
+msgstr ""
+"フォルダに含まれるファイルをサブ・ドックに表示します。無効にした場合、アプ"
+"レットは単純にフォルダのランチャーとして振る舞います。"
 
 #: ../Folders/data/messages:107
 msgid "Show folder's content?"
@@ -5838,7 +6070,8 @@ msgstr "接続速度"
 
 #: ../Network-Monitor/data/messages:111
 msgid "By default the first active interface is used."
-msgstr "何も指定しない場合は、最初に有効になったインターフェイスが使用されます。"
+msgstr ""
+"何も指定しない場合は、最初に有効になったインターフェイスが使用されます。"
 
 #: ../Network-Monitor/data/messages:113
 msgid "Connection interface to monitor:"
@@ -5853,7 +6086,9 @@ msgstr "数値の表示 :"
 msgid ""
 "You need OpenGL for this option. Set it to 0 means not used, 1 means the "
 "movement is continue."
-msgstr "このオプションには OpenGL が必要です。0 に設定するとオプション不使用になり、1 に設定すると連続動作になります。"
+msgstr ""
+"このオプションには OpenGL が必要です。0 に設定するとオプション不使用になり、"
+"1 に設定すると連続動作になります。"
 
 #: ../Network-Monitor/data/messages:125
 msgid "Fluidity of the transition animation between 2 values:"
@@ -5867,7 +6102,9 @@ msgstr "接続試行中時のアイコンのアニメーション :"
 msgid ""
 "Allow you to overwrite applet's default command line and launch your "
 "preferred wireless configuration interface."
-msgstr "アプレットのデフォルトのコマンドラインを上書きして、任意の無線設定インタフェースを起動することができます。"
+msgstr ""
+"アプレットのデフォルトのコマンドラインを上書きして、任意の無線設定インタ"
+"フェースを起動することができます。"
 
 #: ../Network-Monitor/data/messages:131
 msgid "User command to show Wireless Configuration:"
@@ -5925,13 +6162,11 @@ msgstr "バーの描画"
 #: ../Network-Monitor/data/messages:237 ../Network-Monitor/data/messages:241
 #: ../Network-Monitor/data/messages:245 ../Network-Monitor/data/messages:249
 #: ../Network-Monitor/data/messages:253 ../Network-Monitor/data/messages:257
-#: ../keyboard-indicator/data/messages:105
-#: ../keyboard-indicator/data/messages:109 ../logout/data/messages:109
-#: ../musicPlayer/data/messages:187 ../musicPlayer/data/messages:191
-#: ../musicPlayer/data/messages:195 ../musicPlayer/data/messages:199
-#: ../musicPlayer/data/messages:203 ../tomboy/data/messages:13
-#: ../tomboy/data/messages:17 ../tomboy/data/messages:21
-#: ../tomboy/data/messages:105
+#: ../logout/data/messages:109 ../musicPlayer/data/messages:187
+#: ../musicPlayer/data/messages:191 ../musicPlayer/data/messages:195
+#: ../musicPlayer/data/messages:199 ../musicPlayer/data/messages:203
+#: ../tomboy/data/messages:13 ../tomboy/data/messages:17
+#: ../tomboy/data/messages:21 ../tomboy/data/messages:105
 msgid "Leave empty to use the default icon."
 msgstr "デフォルトのアイコンを使用するには空欄のままに。"
 
@@ -6026,7 +6261,9 @@ msgstr "アイコンのアニメーション :"
 #: ../RSSreader/data/messages:123 ../powermanager/data/messages:199
 msgid ""
 "In seconds. Set to 0 for infinite time (need to click on dialog to close it)."
-msgstr "秒単位。0 に設定すると時間制限なし（ダイアログをクリックして閉じる）になります。"
+msgstr ""
+"秒単位。0 に設定すると時間制限なし（ダイアログをクリックして閉じる）になりま"
+"す。"
 
 #: ../RSSreader/data/messages:125 ../powermanager/data/messages:201
 msgid "Duration of the notification:"
@@ -6109,7 +6346,7 @@ msgid "Logo size:"
 msgstr "ロゴの大きさ :"
 
 #: ../RSSreader/data/messages:173 ../dock-rendering/data/messages:47
-#: ../keyboard-indicator/data/messages:131
+#: ../keyboard-indicator/data/messages:127
 msgid "normal"
 msgstr "普通"
 
@@ -6153,7 +6390,8 @@ msgstr "ファインダー・モードを開始/停止するショートキー :
 msgid ""
 "Maximum number of mails that will be previewed. Put -1 to show the maximum "
 "possible."
-msgstr "プレビューするメール数の上限です。-1 に設定すると最大限多く表示します。"
+msgstr ""
+"プレビューするメール数の上限です。-1 に設定すると最大限多く表示します。"
 
 #: ../Scooby-Do/data/messages:7
 msgid "Maximum number of results :"
@@ -6163,7 +6401,9 @@ msgstr "検索結果の最大数 :"
 msgid ""
 "Number of lines of the listing. If there are more results, the listing will "
 "scroll when you go up or down with the arrows."
-msgstr "リストの行数。結果がこれよりも多い場合、上下カーソルキーでリストがスクロールします。"
+msgstr ""
+"リストの行数。結果がこれよりも多い場合、上下カーソルキーでリストがスクロール"
+"します。"
 
 #: ../Scooby-Do/data/messages:11
 msgid "Number of lines to display :"
@@ -6197,7 +6437,7 @@ msgstr "1 から 9 の間、大きい値ほど太くなります。"
 msgid "Text size:"
 msgstr "文字の太さ :"
 
-#: ../Scooby-Do/data/messages:37 ../keyboard-indicator/data/messages:123
+#: ../Scooby-Do/data/messages:37 ../keyboard-indicator/data/messages:119
 msgid "Outline text?"
 msgstr "文字をアウトライン？"
 
@@ -6329,10 +6569,49 @@ msgstr "ウェブ検索エンジンを指定？"
 msgid "It can launch commands and even do some calculations."
 msgstr "コマンド実行の他、数値計算もできます。"
 
-#: ../Status-Notifier/data/messages:11 ../mail/data/messages:107
-#: ../mail/data/messages:111 ../mail/data/messages:127
-msgid "Let empty to use the default one."
-msgstr "デフォルトのものを使用するには空欄のままに。"
+#: ../Screenshot/data/messages:91
+#, fuzzy
+msgid "Shortkey to take a screenshot"
+msgstr "アプレットを呼び出すショートキー："
+
+#: ../Screenshot/data/messages:93
+#, fuzzy
+msgid "Save image in"
+msgstr "画像を開く"
+
+#: ../Sound-Effects/data/messages:3
+#, fuzzy
+msgid "Play a sound on click ?"
+msgstr "音を使用 :"
+
+#: ../Sound-Effects/data/messages:5 ../Sound-Effects/data/messages:11
+#: ../Sound-Effects/data/messages:17
+msgid "A .wav file encoded in PCM."
+msgstr ""
+
+#: ../Sound-Effects/data/messages:7 ../Sound-Effects/data/messages:13
+#: ../Sound-Effects/data/messages:19
+#, fuzzy
+msgid "Sound file"
+msgstr "ファイルを開く"
+
+#: ../Sound-Effects/data/messages:9
+#, fuzzy
+msgid "Play a sound on middle click ?"
+msgstr "クリックで再生/一時停止、中クリックで次へ"
+
+#: ../Sound-Effects/data/messages:15
+#, fuzzy
+msgid "Play a sound on mouse hover ?"
+msgstr "マウス動作時の挙動にもブラー効果？"
+
+#: ../Sound-Effects/data/messages:21
+msgid "Volume:"
+msgstr ""
+
+#: ../Sound-Effects/data/messages:25
+msgid "High"
+msgstr ""
 
 #: ../Status-Notifier/data/messages:13
 msgid "Image's filename :"
@@ -6453,8 +6732,9 @@ msgid ""
 "It will prevent the system monitor's icon to show in the taskbar. The "
 "applet's icon will then behave as a launcher, an application, and an applet."
 msgstr ""
-"タスクバーにシステム・モニタのアイコンが表示されないようにします。これにより、アプレットのアイコンがランチャーやアプリケーション、アプレットとして動作する"
-"ようになります。"
+"タスクバーにシステム・モニタのアイコンが表示されないようにします。これによ"
+"り、アプレットのアイコンがランチャーやアプリケーション、アプレットとして動作"
+"するようになります。"
 
 #: ../System-Monitor/data/messages:193
 msgid "Steal the system monitor's icon from the taskbar?"
@@ -6472,7 +6752,9 @@ msgstr "トップ・リスト"
 msgid ""
 "When you left-click on the icon, you will get the list of the N most CPU/RAM-"
 "intensive programs."
-msgstr "アイコンを左クリックすると、最も CPU/RAM を使用している上位 N 番目までのプログラムを一覧にします。"
+msgstr ""
+"アイコンを左クリックすると、最も CPU/RAM を使用している上位 N 番目までのプロ"
+"グラムを一覧にします。"
 
 #: ../System-Monitor/data/messages:203
 msgid "Number of programs to display in the top list:"
@@ -6627,8 +6909,9 @@ msgid ""
 "need to specify a second channel here, to control both sides. Most of the "
 "time, you should just leave this empty."
 msgstr ""
-"カードのなかには、1チャンネルが右または左の片側のみ制御するものがあります。その際は両側の制御のために第2チャンネルの指定が必要になります。大抵の場合、空"
-"欄のままにしてください。"
+"カードのなかには、1チャンネルが右または左の片側のみ制御するものがあります。そ"
+"の際は両側の制御のために第2チャンネルの指定が必要になります。大抵の場合、空欄"
+"のままにしてください。"
 
 #: ../alsaMixer/data/messages:149
 msgid "Choose a second channel to control (optional):"
@@ -6667,7 +6950,9 @@ msgstr "秒を表示？"
 msgid ""
 "In ms. Set 0 for non-smooth animation, set 1000 to have a continuous "
 "animation. Requires OpenGL."
-msgstr "ミリ秒単位。滑らかなアニメーションにしない場合は 0 に設定、1000 に設定すると連続したアニメーションになります。要 OpenGL。"
+msgstr ""
+"ミリ秒単位。滑らかなアニメーションにしない場合は 0 に設定、1000 に設定すると"
+"連続したアニメーションになります。要 OpenGL。"
 
 #: ../clock/data/messages:121
 msgid "Display seconds with smooth animation for a duration of:"
@@ -6675,7 +6960,9 @@ msgstr "滑らかなアニメーションによる秒針表示の継続時間 :"
 
 #: ../clock/data/messages:123
 msgid "E.g. :Europe/Paris, :Japan, etc. Leave empty for local time."
-msgstr "例えば :Europe/Paris, :Japan 等々。ローカルの時間を取得するには空欄のままにしてください。"
+msgstr ""
+"例えば :Europe/Paris, :Japan 等々。ローカルの時間を取得するには空欄のままにし"
+"てください。"
 
 #: ../clock/data/messages:125
 msgid "Timezone:"
@@ -6693,7 +6980,9 @@ msgstr "iCal"
 msgid ""
 "The analogue view is based on CairoClock; otherwise it will be displayed in "
 "digital format."
-msgstr "アナログ表示は CairoClock を元にしています。それ以外の場合、デジタル方式で表示されます。"
+msgstr ""
+"アナログ表示は CairoClock を元にしています。それ以外の場合、デジタル方式で表"
+"示されます。"
 
 #: ../clock/data/messages:137
 msgid "Select the view :"
@@ -6727,7 +7016,7 @@ msgstr "デジタル表示"
 msgid "Use a custom font"
 msgstr ""
 
-#: ../clock/data/messages:153 ../keyboard-indicator/data/messages:119
+#: ../clock/data/messages:153 ../keyboard-indicator/data/messages:115
 msgid "Font:"
 msgstr "フォント :"
 
@@ -6962,7 +7251,9 @@ msgstr "UbuntuOne"
 msgid ""
 "The script takes the file path as a parameter, and write the resulting URL "
 "on the standard output."
-msgstr "スクリプトは、ファイルのパスをパラメータとして受け取り、結果のURLを標準出力に書き出します。"
+msgstr ""
+"スクリプトは、ファイルのパスをパラメータとして受け取り、結果のURLを標準出力に"
+"書き出します。"
 
 #: ../dnd2share/data/messages:165
 msgid "Custom script for text upload :"
@@ -7158,7 +7449,9 @@ msgstr "高さ/幅 の割合 :"
 
 #: ../dock-rendering/data/messages:97
 msgid "0 represents a flat wave, 1 represents maximum wave curvature."
-msgstr "0 に設定するとアイコンのうねりが完全に平坦になります。1 に設定するとうねりが最大になります。"
+msgstr ""
+"0 に設定するとアイコンのうねりが完全に平坦になります。1 に設定するとうねりが"
+"最大になります。"
 
 #: ../dock-rendering/data/messages:99 ../dock-rendering/data/messages:119
 msgid "Magnitude of the wave:"
@@ -7176,7 +7469,9 @@ msgstr "アイコンとそのラベル同士の隙間 :"
 msgid ""
 "This may recquire more CPU during the unfolding animation, except if you "
 "launch Cairo-Dock with OpenGL."
-msgstr "OpenGL を利用していない場合、展開アニメーション中に CPU の使用がより必要になる可能性があります。"
+msgstr ""
+"OpenGL を利用していない場合、展開アニメーション中に CPU の使用がより必要にな"
+"る可能性があります。"
 
 #: ../dock-rendering/data/messages:109
 msgid "Draw captions while unfolding?"
@@ -7187,9 +7482,10 @@ msgid "Space between icons:"
 msgstr "同列アイコン同士の間隔 :"
 
 #: ../dock-rendering/data/messages:117
-msgid ""
-"0 represents a flat wave, 1 means the wave is identical to other views."
-msgstr "0 に設定するとうねりは完全に平坦になります。1 に設定するとうねりの大きさは他の外観と同一になります。"
+msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgstr ""
+"0 に設定するとうねりは完全に平坦になります。1 に設定するとうねりの大きさは他"
+"の外観と同一になります。"
 
 #: ../dock-rendering/data/messages:121
 msgid "Number of icons on the first row:"
@@ -7199,7 +7495,9 @@ msgstr "最初の横列のアイコンの数 :"
 msgid ""
 "in degrees. The lower the value, the narrower the cone. 180° represents a "
 "wide open cone."
-msgstr "円錐の角度。数値が小さいほど円錐が細くなります。180° にすると円錐が広く展開します。"
+msgstr ""
+"円錐の角度。数値が小さいほど円錐が細くなります。180° にすると円錐が広く展開し"
+"ます。"
 
 #: ../dock-rendering/data/messages:125
 msgid "Cone width:"
@@ -7207,7 +7505,9 @@ msgstr "円錐の幅 :"
 
 #: ../dock-rendering/data/messages:127
 msgid "Set transparency to 0 to not use it. This is quite slow with cairo."
-msgstr "弓形を使用しない場合は透明度を 0 に設定してください。この場合、cairo では描画が遅くなります。"
+msgstr ""
+"弓形を使用しない場合は透明度を 0 に設定してください。この場合、cairo では描画"
+"が遅くなります。"
 
 #: ../dock-rendering/data/messages:129
 msgid "Bow colour:"
@@ -7287,7 +7587,8 @@ msgid ""
 "Typically an arrow, this will be displayed when you try to drop a new "
 "launcher into the dock. Leave this empty to use the default."
 msgstr ""
-"ドックに新規ランチャーをドロップしようとするときなどに表示されるもので、典型なのは矢印です。デフォルトの画像を使用するには空欄のままにしてください。"
+"ドックに新規ランチャーをドロップしようとするときなどに表示されるもので、典型"
+"なのは矢印です。デフォルトの画像を使用するには空欄のままにしてください。"
 
 #: ../drop-indicator/data/messages:7
 msgid "Image for the drag & drop animation:"
@@ -7297,7 +7598,9 @@ msgstr "ドラッグ＆ドロップ・アニメーションの画像 :"
 msgid ""
 "An emblem that will be displayed when you try to drop something on an icon. "
 "Leave empty to use the default one."
-msgstr "アイコン上にファイル等をドロップしようとする際に表示されるエンブレムです。デフォルトのものを使用するには空欄のままに。"
+msgstr ""
+"アイコン上にファイル等をドロップしようとする際に表示されるエンブレムです。デ"
+"フォルトのものを使用するには空欄のままに。"
 
 #: ../drop-indicator/data/messages:11
 msgid "Image when hovering an icon :"
@@ -7376,9 +7679,10 @@ msgid "Colours"
 msgstr "色"
 
 #: ../icon-effect/data/messages:71
-msgid ""
-"This will slightly alter your colours, so you may have to modify them."
-msgstr "これを使用すると色が若干変化してしまうので、炎の色設定を修正する必要があるかもしれません。"
+msgid "This will slightly alter your colours, so you may have to modify them."
+msgstr ""
+"これを使用すると色が若干変化してしまうので、炎の色設定を修正する必要があるか"
+"もしれません。"
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
 msgid "Add luminance?"
@@ -7514,40 +7818,49 @@ msgstr "caps lock, num lock 等"
 msgid "Display keyboard locks as quick-info?"
 msgstr "キーボードの Lock をクイック情報として表示？"
 
-#: ../keyboard-indicator/data/messages:107
+#: ../keyboard-indicator/data/messages:105
 msgid "Icon image name for NumLock status:"
 msgstr ""
 
-#: ../keyboard-indicator/data/messages:111
+#: ../keyboard-indicator/data/messages:107
 msgid "Icon image name for CapsLock status:"
 msgstr ""
 
-#: ../keyboard-indicator/data/messages:113
+#: ../keyboard-indicator/data/messages:109
 msgid ""
 "in ms. Set to 0 if you don't want an animation when the keyboard layout "
 "changes."
-msgstr "ミリ秒単位。キーボード・レイアウト変更時にアニメーションさせたくない場合は 0 に設定してください。"
+msgstr ""
+"ミリ秒単位。キーボード・レイアウト変更時にアニメーションさせたくない場合は 0 "
+"に設定してください。"
 
-#: ../keyboard-indicator/data/messages:115
+#: ../keyboard-indicator/data/messages:111
 msgid "Duration of the transition animation:"
 msgstr "レイアウト変更時のアニメーション持続時間 :"
 
-#: ../keyboard-indicator/data/messages:121
+#: ../keyboard-indicator/data/messages:117
 msgid "Text colour"
 msgstr "文字の色 :"
 
-#: ../keyboard-indicator/data/messages:125
+#: ../keyboard-indicator/data/messages:121
 msgid ""
 "the smaller is the text in the icon. 1 means the text fills all the icon."
-msgstr "小さい数値ほどアイコン上の文字が小さくなり、1 に設定するとアイコン全体を埋める大きさになります。"
+msgstr ""
+"小さい数値ほどアイコン上の文字が小さくなり、1 に設定するとアイコン全体を埋め"
+"る大きさになります。"
 
-#: ../keyboard-indicator/data/messages:127
+#: ../keyboard-indicator/data/messages:123
 msgid "Relative size of the text :"
 msgstr "文字の相対的な大きさ :"
 
-#: ../keyboard-indicator/data/messages:129
+#: ../keyboard-indicator/data/messages:125
 msgid "smaller"
 msgstr "小さく"
+
+#: ../keyboard-indicator/data/messages:131
+#, fuzzy
+msgid "Number of letters to draw on the icon."
+msgstr "アイテムをまとめる行数："
 
 #: ../logout/data/messages:91
 msgid "Action"
@@ -7597,8 +7910,10 @@ msgid ""
 "default command, which depends on your distribution. In some cases the "
 "command to shutdown is the same as the one to log out."
 msgstr ""
-"中クリックによって利用できます。使用しているディストリビューションに大きく依存しますが、デフォルトのコマンドを実行するには空欄のままにしてください。シャッ"
-"トダウンするコマンドがログアウトするためのものと同じ場合がしばしばあります。"
+"中クリックによって利用できます。使用しているディストリビューションに大きく依"
+"存しますが、デフォルトのコマンドを実行するには空欄のままにしてください。"
+"シャットダウンするコマンドがログアウトするためのものと同じ場合がしばしばあり"
+"ます。"
 
 #: ../logout/data/messages:127
 msgid "User-defined command to execute for shutdown:"
@@ -7610,8 +7925,9 @@ msgid ""
 "maintenance mode, then after the dock has relaunched, remove/modify the mail "
 "accounts you want."
 msgstr ""
-"このアプレットに何か問題があった場合、メンテナンス・モードでこのオプションのチェックを外してからドックを起動させ、メール・アカウントの設定変更や削除を行っ"
-"てください。"
+"このアプレットに何か問題があった場合、メンテナンス・モードでこのオプションの"
+"チェックを外してからドックを起動させ、メール・アカウントの設定変更や削除を"
+"行ってください。"
 
 #: ../mail/data/messages:101
 msgid "Check mail account on startup?"
@@ -7626,8 +7942,7 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "「メールあり」画像のファイルの名前 :"
 
 #: ../mail/data/messages:115
-msgid ""
-"If checked, the number of mails will be shown even if there is no mail."
+msgid "If checked, the number of mails will be shown even if there is no mail."
 msgstr "チェックを入れると、新着メールがない場合でもメール数が表示されます。"
 
 #: ../mail/data/messages:117
@@ -7711,8 +8026,7 @@ msgid "Blur amount:"
 msgstr "ブラー量 :"
 
 #: ../musicPlayer/data/messages:7
-msgid ""
-"Leave it empty to display the name of the player currently controlled."
+msgid "Leave it empty to display the name of the player currently controlled."
 msgstr "現在制御しているプレイヤーの名前を表示するには空欄のままに。"
 
 #: ../musicPlayer/data/messages:11
@@ -7788,8 +8102,9 @@ msgid ""
 "This will prevent the player icon appearing in the taskbar. The applet's "
 "icon will then behave as a launcher, an application and an applet."
 msgstr ""
-"タスクバーにプレイヤーのアイコンが表示されないようにします。これにより、アプレットのアイコンがランチャーやアプリケーション、アプレットとして動作するように"
-"なります。"
+"タスクバーにプレイヤーのアイコンが表示されないようにします。これにより、アプ"
+"レットのアイコンがランチャーやアプリケーション、アプレットとして動作するよう"
+"になります。"
 
 #: ../musicPlayer/data/messages:135
 msgid "Steal the player's icon from the taskbar?"
@@ -7897,7 +8212,8 @@ msgid "Name of the image for the 'pause' icon :"
 msgstr "「一時停止」のアイコン画像の名前 :"
 
 #: ../netspeed/data/messages:145
-msgid "By default this will be 'eth0'."
+#, fuzzy
+msgid "By default all interfaces will be monitored."
 msgstr "デフォルトでは 'eth0' になります。"
 
 #: ../netspeed/data/messages:147
@@ -8038,7 +8354,9 @@ msgstr "大"
 msgid ""
 "Number of items loaded at once. Setting a high value speeds up loading a "
 "little but will hang the application for longer."
-msgstr "一度に読み込むアイテムの数。高い値に設定すると読み込み速度が若干上がりますが、その分アプリをブロックします。"
+msgstr ""
+"一度に読み込むアイテムの数。高い値に設定すると読み込み速度が若干上がります"
+"が、その分アプリをブロックします。"
 
 #: ../quick-browser/data/messages:121
 msgid "Build menu gradually:"
@@ -8134,8 +8452,9 @@ msgid ""
 "You need to activate the Dbus plug-in in Compiz for the last 2 actions. "
 "Showing desktop and desklets can fail on some Window Manager (like Metacity)."
 msgstr ""
-"最後の２つのアクションには、Compiz の Dbus プラグインの有効化が必要です。例えば Metacity "
-"など、ウィンドウ・マネージャによっては「デスクトップとデスクレットの表示」が正しく働きません。"
+"最後の２つのアクションには、Compiz の Dbus プラグインの有効化が必要です。例え"
+"ば Metacity など、ウィンドウ・マネージャによっては「デスクトップとデスクレッ"
+"トの表示」が正しく働きません。"
 
 #: ../showDesktop/data/messages:97 ../slider/data/messages:117
 msgid "Action on left-click:"
@@ -8173,7 +8492,9 @@ msgstr "画像の名前をクイック情報として表示？"
 msgid ""
 "This will prevent the dock from freezing during image loading, but works "
 "only with OpenGL."
-msgstr "画像読み込み中にドックがフリーズすることを防ぎますが、Cairo バックエンド使用時には働きません。"
+msgstr ""
+"画像読み込み中にドックがフリーズすることを防ぎますが、Cairo バックエンド使用"
+"時には働きません。"
 
 #: ../slider/data/messages:111
 msgid "Use another thread to load images?"
@@ -8259,7 +8580,8 @@ msgstr "画像に背景を追加？"
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
-msgstr "背景を持たせたくない場合は、透明度のチャンネルを 0 に設定してください。"
+msgstr ""
+"背景を持たせたくない場合は、透明度のチャンネルを 0 に設定してください。"
 
 #: ../slider/data/messages:175
 msgid "Choose a background colour :"
@@ -8317,7 +8639,9 @@ msgstr ""
 msgid ""
 "These options allow you to prevent some files from displaying in stacks "
 "based on their type (video, image, etc.)"
-msgstr "このオプションを使用すると、特定の種類（動画、画像、等々）のファイルをスタックに表示しないようにすることができます。"
+msgstr ""
+"このオプションを使用すると、特定の種類（動画、画像、等々）のファイルをスタッ"
+"クに表示しないようにすることができます。"
 
 #: ../stack/data/messages:119
 msgid "Filter files on MIME type?"
@@ -8541,7 +8865,9 @@ msgstr "前景の色 :"
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
-msgstr "ダイアログやデスクレットに端末が表示されているとき、通常のようにデスクレットのサイズ変更が可能です。"
+msgstr ""
+"ダイアログやデスクレットに端末が表示されているとき、通常のようにデスクレット"
+"のサイズ変更が可能です。"
 
 #: ../terminal/data/messages:109
 msgid "Size of the terminal (line x columns):"
@@ -8583,43 +8909,45 @@ msgstr "Gnote"
 msgid "Tomboy"
 msgstr "Tomboy"
 
-#: ../tomboy/data/messages:131
+#: ../tomboy/data/messages:133
 msgid "Ask for confirmation before deleting a note?"
 msgstr "ノートを削除する前に確認を取る？"
 
-#: ../tomboy/data/messages:133
+#: ../tomboy/data/messages:135
 msgid "Otherwise you will be asked to name it."
 msgstr "無効の場合は名前の入力が求められます。"
 
-#: ../tomboy/data/messages:135
+#: ../tomboy/data/messages:137
 msgid "Automatically name a new note?"
 msgstr "新しいノートに自動的に名前を付ける？"
 
-#: ../tomboy/data/messages:137
+#: ../tomboy/data/messages:139
 msgid ""
 "Write the date format you usually use in your notes. The syntax is the one "
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
 "digits), etc. Leave it blank to use the default one (%d/%m/%y)."
 msgstr ""
-"ノートで普段使用している日付形式を記入してください。記述法は、年（下2桁）が %y、月が %m、日が %d 等の 'strftime' "
-"に則ります。デフォルト（%d/%m/%y）を使用するには、空欄のままにしてください。"
+"ノートで普段使用している日付形式を記入してください。記述法は、年（下2桁）が "
+"%y、月が %m、日が %d 等の 'strftime' に則ります。デフォルト（%d/%m/%y）を使用"
+"するには、空欄のままにしてください。"
 
-#: ../tomboy/data/messages:139
+#: ../tomboy/data/messages:141
 msgid "Date format to search for :"
 msgstr "検索のための日付フォーマット :"
 
-#: ../tomboy/data/messages:143
+#: ../tomboy/data/messages:145
 msgid ""
 "Depending on your tomboy's version, the note deletion may not be "
 "automatically notified to us. Only check this box if you notice some error "
 "message like <<No marshaller for signature of signal 'NoteDeleted'>> in the "
 "terminal."
 msgstr ""
-"使用中の Tomboy のバージョンによっては、ノートの削除の自動的な通知が行われない可能性があります。端末上で <<No marshaller for "
-"signature of signal 'NoteDeleted'>> "
-"のようなエラーメッセージに気づいた場合にのみ、このオプションにチェックを入れてください。"
+"使用中の Tomboy のバージョンによっては、ノートの削除の自動的な通知が行われな"
+"い可能性があります。端末上で <<No marshaller for signature of signal "
+"'NoteDeleted'>> のようなエラーメッセージに気づいた場合にのみ、このオプション"
+"にチェックを入れてください。"
 
-#: ../tomboy/data/messages:145
+#: ../tomboy/data/messages:147
 msgid "Emulate the 'NoteDeleted' signal?"
 msgstr "'NoteDeleted' 信号をエミュレート？"
 
@@ -8704,9 +9032,10 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "縦スクロールバーの位置（ピクセル単位）"
 
 #: ../weblets/data/messages:103
-msgid ""
-"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
-msgstr "これにより、デスクレットの右クリック可能エリアを確保し、Cairo-Dock メニューをポップアップさせることができます。"
+msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgstr ""
+"これにより、デスクレットの右クリック可能エリアを確保し、Cairo-Dock メニューを"
+"ポップアップさせることができます。"
 
 #: ../weblets/data/messages:105
 msgid "Right margin width, in pixels:"
@@ -8719,7 +9048,9 @@ msgstr "透明な背景？"
 #: ../weblets/data/messages:109
 msgid ""
 "Time before reloading the weblet URI, in seconds. Zero means never reload."
-msgstr "Weblet URI の再読み込みを開始するまでの時間（秒）。ゼロの場合は再読み込みしません。"
+msgstr ""
+"Weblet URI の再読み込みを開始するまでの時間（秒）。ゼロの場合は再読み込みしま"
+"せん。"
 
 #: ../weblets/data/messages:111
 msgid "Time between two page refreshes"
@@ -8757,7 +9088,9 @@ msgstr "信号チェックの間隔時間 :"
 msgid ""
 "Allow you to overwrite applet's default command line and launch your "
 "wireless configuration interface."
-msgstr "アプレットのデフォルトのコマンドラインを上書きして、自分が使用中の無線設定インタフェースを起動することができます。"
+msgstr ""
+"アプレットのデフォルトのコマンドラインを上書きして、自分が使用中の無線設定イ"
+"ンタフェースを起動することができます。"
 
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
