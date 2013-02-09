@@ -108,7 +108,7 @@ static void cd_satus_notifier_compute_icon_size (void)
 		myData.iNbColumns = myConfig.iNbLines;
 		myData.iItemSize = MAX (1, iHeight / myConfig.iNbLines);
 		myData.iNbLines = ceil ((float)iNbItems / myConfig.iNbLines);  // nb items by line.
-		w = MAX (w0, myData.iItemSize * myData.iNbLines + myIconsParam.iIconGap * (myData.iNbLines - 1));
+		w = MAX (h0, myData.iItemSize * myData.iNbLines + myIconsParam.iIconGap * (myData.iNbLines - 1));
 	}
 	cd_debug ("=== required width: %d (now: %d)", w, iWidth);
 	
@@ -129,24 +129,6 @@ static void cd_satus_notifier_draw_compact_icon (void)
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 	
 	CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN_CAIRO ();
-	
-	// erase all.
-	/**cairo_dock_erase_cairo_context (myDrawContext);
-	
-	// draw icons background.
-	if (g_pIconBackgroundBuffer.pSurface != NULL)
-	{
-		cairo_save (myDrawContext);
-		cairo_scale(myDrawContext,
-			iWidth / g_pIconBackgroundBuffer.iWidth,
-			iHeight / g_pIconBackgroundBuffer.iHeight);
-		cairo_set_source_surface (myDrawContext,
-			g_pIconBackgroundBuffer.pSurface,
-			0.,
-			0.);
-		cairo_paint (myDrawContext);
-		cairo_restore (myDrawContext);
-	}*/
 
 	int iIconGap;
 	if (myConfig.bResizeIcon)
@@ -183,12 +165,6 @@ static void cd_satus_notifier_draw_compact_icon (void)
 	}
 	
 	CD_APPLET_FINISH_DRAWING_MY_ICON_CAIRO;
-	// update cairo/opengl
-	/**if (CD_APPLET_MY_CONTAINER_IS_OPENGL)  // we are lazy, we could do an opengl rendering.
-	{
-		cairo_dock_update_icon_texture (myIcon);
-	}
-	CD_APPLET_REDRAW_MY_ICON;*/
 }
 
 

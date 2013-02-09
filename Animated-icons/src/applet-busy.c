@@ -33,6 +33,7 @@ static void init (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double 
 	g_free (pData->pBusyImage);
 	pData->pBusyImage = g_memdup (myData.pBusyImage, sizeof (CairoDockImageBuffer));
 	cairo_dock_image_buffer_set_timelength (pData->pBusyImage, 1.e-3 * myConfig.iBusyDuration);
+	cairo_dock_image_buffer_rewind (pData->pBusyImage);
 }
 
 static gboolean update (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL, gboolean bRepeat)

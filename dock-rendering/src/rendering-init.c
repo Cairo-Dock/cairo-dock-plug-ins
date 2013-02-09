@@ -120,6 +120,7 @@ gint my_iCurveAmplitude;
 gdouble my_fPanelRadius;
 gdouble my_fPanelInclination;
 gdouble my_fPanelRatio;
+static gdouble s_fPreviousPanelRatio;
 gboolean my_bPanelPhysicalSeparator;
 
 CairoDockSpeparatorType my_iDrawSeparator3D = CAIRO_DOCK_NORMAL_SEPARATOR;
@@ -152,7 +153,7 @@ CD_APPLET_DEFINE_BEGIN ("dock rendering",
 	cd_rendering_register_curve_renderer 			(CD_RENDERING_CURVE_VIEW_NAME);  // By Paradoxxx_Zero and Fabounet
 	
 	cd_rendering_register_panel_renderer 			(CD_RENDERING_PANEL_VIEW_NAME);
-	
+	s_fPreviousPanelRatio = my_fPanelRatio;
 CD_APPLET_DEFINE_END
 
 
@@ -212,6 +213,14 @@ CD_APPLET_RELOAD_BEGIN
 		cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
 		
 		cairo_dock_set_all_views_to_default (0);
+		
+		// reload icons surface/texture in case their size have changed.
+		if (s_fPreviousPanelRatio != my_fPanelRatio)
+		{
+			s_fPreviousPanelRatio = my_fPanelRatio;
+			cairo_dock_reload_buffers_in_all_docks (TRUE);
+		}
+		
 		cairo_dock_redraw_root_docks (FALSE);  // FALSE <=> main dock inclus.
 	}
 CD_APPLET_RELOAD_END

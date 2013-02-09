@@ -122,7 +122,7 @@ static gboolean _cd_dbus_register_new_module (const gchar *cModuleName, const gc
 	}
 	else  // on enregistre ce nouveau module.
 	{
-		pModule = g_new0 (CairoDockModule, 1);
+		pModule = gldi_object_new (CairoDockModule, &myModulesMgr);
 		CairoDockVisitCard *pVisitCard = g_new0 (CairoDockVisitCard, 1);
 		pModule->pVisitCard = pVisitCard;
 		pVisitCard->cModuleName = g_strdup (cModuleName);
