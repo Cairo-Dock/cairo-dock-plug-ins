@@ -76,22 +76,24 @@ static void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	double g = (-b + sqrt (b * b - 4 * a * c)) / 2  / a;
 	cd_debug ("gamma : %f (=) %f", gamma, g);*/
 	
+	int iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->fFlatDockWidth, 1., 2 * dw));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
+	pDock->iMaxDockWidth = iMaxDockWidth;
 	double Ws = cairo_dock_get_max_authorized_dock_width (pDock);
-	if (cairo_dock_is_extended_dock (pDock) && w + 2 * dw < Ws)  // alors on etend.
+	///if (cairo_dock_is_extended_dock (pDock) && w + 2 * dw < Ws)  // alors on etend.
+	if (pDock->iRefCount == 0)
 	{
-		double extra = Ws - w;
-		pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->fFlatDockWidth, 1., extra));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
-		double W = Ws - 2 * (r + (l+(r==0)*2)*sqrt(1+gamma*gamma));
-		double a = H + hi;
-		double b = H + hi + h0 - W / 2;
-		double c = - W / 2;
-		gamma = (-b + sqrt (b * b - 4 * a * c)) / 2  / a;
-		//g_print ("mode etendu : pDock->iMaxDockWidth : %d, gamma = %f\n", pDock->iMaxDockWidth, gamma);
-		h = hi + h0 / (1 + gamma);
-	}
-	else  // rien d'autre a faire
-	{
-		pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->fFlatDockWidth, 1., 2 * dw));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
+		if (pDock->iMaxDockWidth < Ws)  // alors on etend.
+		{
+			double extra = Ws - w;
+			pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->fFlatDockWidth, 1., extra));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
+			double W = Ws - 2 * (r + (l+(r==0)*2)*sqrt(1+gamma*gamma));
+			double a = H + hi;
+			double b = H + hi + h0 - W / 2;
+			double c = - W / 2;
+			gamma = (-b + sqrt (b * b - 4 * a * c)) / 2  / a;
+			//g_print ("mode etendu : pDock->iMaxDockWidth : %d, gamma = %f\n", pDock->iMaxDockWidth, gamma);
+			h = hi + h0 / (1 + gamma);
+		}
 	}
 	pDock->iDecorationsHeight = h;
 	//g_print ("h : %.2f -> %d\n", h, pDock->iDecorationsHeight);
@@ -120,7 +122,7 @@ static void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	
 	pDock->iMinDockWidth = MAX (1, pDock->fFlatDockWidth);  // fFlatDockWidth peut etre meme negatif avec un dock vide.
 	
-	pDock->iActiveWidth = pDock->iMaxDockWidth;
+	pDock->iActiveWidth = iMaxDockWidth;
 	pDock->iActiveHeight = pDock->iMaxDockHeight;
 	if (! pDock->container.bIsHorizontal && myIconsParam.bTextAlwaysHorizontal)
 		pDock->iMaxDockHeight += 8*myIconsParam.iLabelSize;  // vertical dock, add some padding to draw the labels.	
