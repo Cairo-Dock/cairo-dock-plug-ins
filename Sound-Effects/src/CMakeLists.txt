@@ -13,7 +13,7 @@ add_library(${PACKAGE_SOUND_EFFECTS} SHARED ${MODULE_SRCS})
 
 ########### compil ###############
 add_definitions (-DMY_APPLET_SHARE_DATA_DIR="${sound_effectsdatadir}")
-add_definitions (-DMY_APPLET_PREVIEW_FILE="preview.jpg")
+add_definitions (-DMY_APPLET_PREVIEW_FILE="preview.png")
 add_definitions (-DMY_APPLET_CONF_FILE="Sound-Effects.conf")
 add_definitions (-DMY_APPLET_USER_DATA_DIR="Sound-Effects")
 add_definitions (-DMY_APPLET_VERSION="${VERSION_SOUND_EFFECTS}")

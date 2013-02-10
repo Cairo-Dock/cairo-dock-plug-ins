@@ -14,7 +14,7 @@
    width="48"
    height="48"
    id="svg2418"
-   inkscape:version="0.48.2 r9819"
+   inkscape:version="0.48.4 r9939"
    sodipodi:docname="icon.svg">
   <metadata
      id="metadata34">
@@ -41,8 +41,8 @@
      id="namedview32"
      showgrid="false"
      inkscape:zoom="3.4766083"
-     inkscape:cx="25.867885"
-     inkscape:cy="50.468041"
+     inkscape:cx="2.8569522"
+     inkscape:cy="27.457108"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
@@ -206,16 +206,6 @@
        y1="-6.6212053"
        y2="37.16391" />
     <linearGradient
-       gradientTransform="scale(0.583097,1.71498)"
-       gradientUnits="userSpaceOnUse"
-       id="linearGradient10466"
-       inkscape:collect="always"
-       x1="95.224609"
-       x2="156.67999"
-       xlink:href="#linearGradient3579"
-       y1="4.4250841"
-       y2="20.792826" />
-    <linearGradient
        y2="20.792826"
        x2="156.67999"
        y1="4.4250841"
@@ -278,16 +268,6 @@
        xlink:href="#linearGradient3579-2"
        y1="-6.6212053"
        y2="37.16391" />
-    <linearGradient
-       gradientTransform="scale(0.583097,1.71498)"
-       gradientUnits="userSpaceOnUse"
-       id="linearGradient10466-2"
-       inkscape:collect="always"
-       x1="95.224609"
-       x2="156.67999"
-       xlink:href="#linearGradient3579-2"
-       y1="4.4250841"
-       y2="20.792826" />
     <linearGradient
        y2="20.792826"
        x2="156.67999"
