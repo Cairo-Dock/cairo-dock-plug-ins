@@ -8,15 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2012-09-30 17:34+0000\n"
-"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
+"POT-Creation-Date: 2013-02-06 14:31+0000\n"
+"PO-Revision-Date: 2013-01-04 22:36+0000\n"
+"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-04 05:04+0000\n"
-"X-Generator: Launchpad (build 16218)\n"
+"X-Launchpad-Export-Date: 2013-02-07 05:02+0000\n"
+"X-Generator: Launchpad (build 16477)\n"
+"Language: de\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -377,7 +378,8 @@ msgstr "Das Modul wurde hinzugefügt, konnte aber nicht gestartet werden."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "Das Applet '%s' wurde erfolgreich aktualisiert und automatisch neu geladen."
 
@@ -536,7 +538,7 @@ msgstr "Das scheint keine gültige XML-Datei zu sein."
 
 #: ../Doncky/src/applet-xml.c:311
 msgid "Please wait..."
-msgstr ""
+msgstr "Bitte warten..."
 
 #: ../Folders/src/applet-init.c:29
 msgid "Folders"
@@ -776,8 +778,8 @@ msgstr ""
 "Kompatibel zu jedem XDG-konformen Menü (Gnome, XFCE, KDE, ...)\n"
 "Mittelklick zum Öffnen eines Schnellstart-Dialogs (Sie können ein "
 "Tastenkürzel für es festlegen, wie ALT+F2)\n"
-"Sie können auch ein Kürzel für das Aufklappen des Menüs festlegen (wie ALT"
-"+F1)."
+"Sie können auch ein Kürzel für das Aufklappen des Menüs festlegen (wie "
+"ALT+F1)."
 
 #: ../GMenu/src/applet-init.c:41
 msgid "Applications Menu"
@@ -1487,9 +1489,8 @@ msgid "Grab the current window instead of the all screen"
 msgstr ""
 
 #: ../Screenshot/src/applet-screenshot.c:478
-#, fuzzy
 msgid "Grab the current window"
-msgstr "Wie die augenblickliche Arbeitsfläche gezeichnet werden soll :"
+msgstr ""
 
 #: ../Screenshot/src/applet-screenshot.c:486
 #: ../Screenshot/src/applet-screenshot.c:495
@@ -1499,14 +1500,12 @@ msgid "Let empty to use the default one."
 msgstr "Leer lassen, um den Voreingestellten zu verwenden."
 
 #: ../Screenshot/src/applet-screenshot.c:496
-#, fuzzy
 msgid "Directory"
-msgstr "Verlauf"
+msgstr ""
 
 #: ../Sound-Effects/src/applet-init.c:29
-#, fuzzy
 msgid "Sound Effects"
-msgstr "Symboleffekte"
+msgstr ""
 
 #: ../Sound-Effects/src/applet-init.c:32
 msgid ""
@@ -1533,7 +1532,7 @@ msgstr "Benachrichtigungsfeld"
 
 #: ../Sync-Menu/src/applet-init.c:30
 msgid "Sync-Menu"
-msgstr ""
+msgstr "Sync-Menü"
 
 #: ../Sync-Menu/src/applet-init.c:33
 msgid ""
@@ -1949,8 +1948,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2164,7 +2163,8 @@ msgstr ""
 "Drücken Sie Strg+V, um die URL irgendwo anders einzufügen."
 
 #: ../dnd2share/src/applet-dnd2share.c:333
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Bitte beginnen Sie erst mit einem neuen Upload, wenn der Aktuelle beendet "
 "ist."
@@ -2193,16 +2193,16 @@ msgid ""
 "copy it into the mouse selection.\n"
 "You'll need to install 'curl' and 'wget' to upload the data."
 msgstr ""
-"Diese Applet gestattet es ihnen, ihre Dateien leicht mit anderen zu "
-"teilen :\n"
+"Diese Applet gestattet es ihnen, ihre Dateien leicht mit anderen zu teilen "
+":\n"
 "Ziehen Sie eine Datei auf das Symbol, um es zu einer der verfügbaren "
 "Hostingseiten hochzuladen.\n"
 "Sie können Texte, Bilder, Videos, Dateien und sogar die momentane "
 "Zwischenablage hochladen,\n"
 " und Sie können zwischen vielen Seiten wie DropBox, ImageShack, PasteBin "
 "usw. wählen.\n"
-"Die daraus resultierende URL wird automatisch gespeichert und kann über CTRL"
-"+V direkt woanders hineinkopiert werden.\n"
+"Die daraus resultierende URL wird automatisch gespeichert und kann über "
+"CTRL+V direkt woanders hineinkopiert werden.\n"
 "Es kann einen Verlauf ihrer letzten Uploads anfertigen, damit Sie sie "
 "zurückholen können, ohne sich auf den Seiten registrieren zu müssen.\n"
 "Linksklick zum Kopieren der letzten URL in die Zwischenablage, Mittelklick "
@@ -3012,16 +3012,12 @@ msgid ""
 msgstr ""
 
 #: ../netspeed/src/applet-notifications.c:48
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Interface '%s' doesn't seem to exist or is not readable.\n"
 "You may have to set up the interface you wish to monitor.\n"
 "Do you want to do it now?"
 msgstr ""
-"Die Schnittstelle '%s' scheint nicht zu existieren oder ist nicht lesbar.\n"
-" Sie müssen möglicherweise erst die Schnittstelle einstellen, die Sie "
-"überwachen möchten.\n"
-" Wollen Sie das jetzt tun ?"
 
 #: ../netspeed/src/applet-notifications.c:105
 msgid "Enable/disable network"
@@ -3235,7 +3231,8 @@ msgstr "Aushängen von %s fehlgeschlagen"
 
 #: ../shortcuts/src/applet-notifications.c:86
 msgid "Sorry, this applet is not yet available for KDE."
-msgstr "Entschuldigung, dieses Applet ist leider noch nicht für KDE verfügbar."
+msgstr ""
+"Entschuldigung, dieses Applet ist leider noch nicht für KDE verfügbar."
 
 #: ../shortcuts/src/applet-notifications.c:88
 msgid "No disks or bookmarks were found."
@@ -3299,11 +3296,11 @@ msgstr "zeige Maus"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
-"Dieses Plugin zeichnet Animationen um den Cursor, wenn er sich in einem "
-"Dock / Desklet befindet."
+"Dieses Plugin zeichnet Animationen um den Cursor, wenn er sich in einem Dock "
+"/ Desklet befindet."
 
 #: ../showDesktop/src/applet-init.c:28
 msgid "showDesktop"
@@ -3350,9 +3347,8 @@ msgstr ""
 "Mittelklick um den Bild-Ordner zu öffnen."
 
 #: ../slider/src/applet-notifications.c:68
-#, fuzzy
 msgid "You need to define the images folder first."
-msgstr "Sie müssen die Zeitgeist Daten-Engine installieren."
+msgstr ""
 
 #: ../slider/src/applet-notifications.c:220
 msgid "Play"
@@ -3628,7 +3624,8 @@ msgstr "Wählen Sie eine Farbe"
 #: ../terminal/src/terminal-widget.c:430
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
-msgstr "Sie können das Konsole-Desklet wieder aufrufen, indem Sie  %s eingeben"
+msgstr ""
+"Sie können das Konsole-Desklet wieder aufrufen, indem Sie  %s eingeben"
 
 #: ../terminal/src/terminal-widget.c:476
 msgid "Paste"
@@ -3647,9 +3644,8 @@ msgid "Close this Tab"
 msgstr "Schließe diesen Tab"
 
 #: ../tomboy/src/applet-backend-default.c:189
-#, fuzzy
 msgid "Title:"
-msgstr "Titel"
+msgstr ""
 
 #: ../tomboy/src/tomboy-draw.c:190
 msgid "Open all"
@@ -4586,8 +4582,8 @@ msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
 msgstr ""
-"Abhängig von ihrem Fenstermanager können Sie die Größe mithilfe von ALT"
-"+Mittelklick oder ALT+Linksklick verändern."
+"Abhängig von ihrem Fenstermanager können Sie die Größe mithilfe von "
+"ALT+Mittelklick oder ALT+Linksklick verändern."
 
 #: ../Clipper/data/messages:27 ../Composite-Manager/data/messages:25
 #: ../Disks/data/messages:23 ../Doncky/data/messages:27
@@ -5583,7 +5579,8 @@ msgstr "Neuladen von Applets durch externe Anwendungen zulassen ?"
 
 #: ../Dbus/data/messages:13
 msgid "Let external applications show/hide docks?"
-msgstr "Anzeigen / verstecken der Docks durch externe Applikationen zulassen ?"
+msgstr ""
+"Anzeigen / verstecken der Docks durch externe Applikationen zulassen ?"
 
 #: ../Dbus/data/messages:15
 msgid "Let extern applications add launchers to the docks?"
@@ -5603,7 +5600,8 @@ msgstr ""
 
 #: ../Dbus/data/messages:21
 msgid "Let extern applications modify the icons' image?"
-msgstr "Modifikation von Symbolbildern durch externe Applikationen zulassen ?"
+msgstr ""
+"Modifikation von Symbolbildern durch externe Applikationen zulassen ?"
 
 #: ../Dbus/data/messages:23
 msgid "Let extern applications animate icons?"
@@ -5856,7 +5854,8 @@ msgid "Background"
 msgstr "Hintergrund"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Sie können viel attraktivere Hintergründe verwenden, wenn Sie die Desklet-"
 "Dekorationen benutzen."
@@ -6729,22 +6728,20 @@ msgstr "Ein paar Web-Suchmaschinen vorschlagen ?"
 
 #: ../Scooby-Do/data/messages:109
 msgid "It can launch commands and even do some calculations."
-msgstr "Es kann Kommandos starten und sogar ein paar Berechnungen durchführen."
+msgstr ""
+"Es kann Kommandos starten und sogar ein paar Berechnungen durchführen."
 
 #: ../Screenshot/data/messages:91
-#, fuzzy
 msgid "Shortkey to take a screenshot"
-msgstr "Tastenkürzel zum Sperren des Bildschirms"
+msgstr ""
 
 #: ../Screenshot/data/messages:93
-#, fuzzy
 msgid "Save image in"
-msgstr "Öffne Bild"
+msgstr ""
 
 #: ../Sound-Effects/data/messages:3
-#, fuzzy
 msgid "Play a sound on click ?"
-msgstr "Einen Klang abspielen :"
+msgstr ""
 
 #: ../Sound-Effects/data/messages:5 ../Sound-Effects/data/messages:11
 #: ../Sound-Effects/data/messages:17
@@ -6753,24 +6750,20 @@ msgstr ""
 
 #: ../Sound-Effects/data/messages:7 ../Sound-Effects/data/messages:13
 #: ../Sound-Effects/data/messages:19
-#, fuzzy
 msgid "Sound file"
-msgstr "Öffne Datei"
+msgstr ""
 
 #: ../Sound-Effects/data/messages:9
-#, fuzzy
 msgid "Play a sound on middle click ?"
-msgstr "Abspielen / Pause auf Klick, nächstes auf Mittelklick"
+msgstr ""
 
 #: ../Sound-Effects/data/messages:15
-#, fuzzy
 msgid "Play a sound on mouse hover ?"
-msgstr "Ebenfalls bei Mausbewegung mit Unschärfe versehen ?"
+msgstr ""
 
 #: ../Sound-Effects/data/messages:21
-#, fuzzy
 msgid "Volume:"
-msgstr "Lautstärke"
+msgstr ""
 
 #: ../Sound-Effects/data/messages:25
 msgid "High"
@@ -7132,7 +7125,8 @@ msgstr ""
 
 #: ../clock/data/messages:121
 msgid "Display seconds with smooth animation for a duration of:"
-msgstr "Zeigt Sekunden in einer flüssigen Animation für eine Zeitspanne von :"
+msgstr ""
+"Zeigt Sekunden in einer flüssigen Animation für eine Zeitspanne von :"
 
 #: ../clock/data/messages:123
 msgid "E.g. :Europe/Paris, :Japan, etc. Leave empty for local time."
@@ -7468,7 +7462,8 @@ msgstr "Geneigte Fläche"
 
 #: ../dock-rendering/data/messages:3
 msgid "The lower the value, the lower the point of view on the plane."
-msgstr "Je kleiner der Wert, desto kleiner der Ansichtswinkel auf die Fläche."
+msgstr ""
+"Je kleiner der Wert, desto kleiner der Ansichtswinkel auf die Fläche."
 
 #: ../dock-rendering/data/messages:5
 msgid "Height of the vanishing point:"
@@ -7657,7 +7652,8 @@ msgid "Space between icons:"
 msgstr "Leerraum zwischen Symbolen :"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 repräsentiert eine flache Welle, 1 bedeutet, die Welle ist identisch mit "
 "anderen Wellen."
@@ -7856,7 +7852,8 @@ msgid "Colours"
 msgstr "Farben"
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 "Dies wird ihre Farben leicht verändern, deshalb müssen Sie sie "
 "möglicherweise modifizieren."
@@ -8037,9 +8034,8 @@ msgid "smaller"
 msgstr "kleiner"
 
 #: ../keyboard-indicator/data/messages:131
-#, fuzzy
 msgid "Number of letters to draw on the icon."
-msgstr "Anzahl der Reihen zur Füllung mit Objekten :"
+msgstr ""
 
 #: ../logout/data/messages:91
 msgid "Action"
@@ -8123,7 +8119,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Name der Datei für das \"Habe Mail\"-Bild :"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Wenn abgehakt, wird die Anzahl der Mails selbst dann gezeigt, wenn keine "
 "Mail vorhanden ist."
@@ -8210,7 +8207,8 @@ msgid "Blur amount:"
 msgstr "Unschärfestärke :"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 "Leer lassen, um den Namen des augenblicklich gesteuerten Abspielers "
 "anzuzeigen."
@@ -8398,9 +8396,8 @@ msgid "Name of the image for the 'pause' icon :"
 msgstr "Name des Bildes für das \"Pause\"-Symbol :"
 
 #: ../netspeed/data/messages:145
-#, fuzzy
 msgid "By default all interfaces will be monitored."
-msgstr "Voreingestellt ist 'eth0'."
+msgstr ""
 
 #: ../netspeed/data/messages:147
 msgid "interface:"
@@ -9235,7 +9232,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Position der senkrechten Scrollleiste"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Dies läßt Sie bei einem Rechtsklick auf das Desklet das Cairo-Dock-Menü "
 "aufklappen."
@@ -9265,7 +9263,8 @@ msgstr "Jede gültige URL sollte funktionieren."
 
 #: ../weblets/data/messages:115
 msgid "Predefined bookmarks to show in applet menu:"
-msgstr "Vordefinierte Lesezeichen, die im Applet-Menü gezeigt werden sollen :"
+msgstr ""
+"Vordefinierte Lesezeichen, die im Applet-Menü gezeigt werden sollen :"
 
 #: ../wifi/data/messages:139
 msgid "\"No signal\" icon"
@@ -9297,4 +9296,5 @@ msgstr ""
 
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
-msgstr "Alternative Kommandozeile, um die drahtlose Konfiguration zu starten :"
+msgstr ""
+"Alternative Kommandozeile, um die drahtlose Konfiguration zu starten :"

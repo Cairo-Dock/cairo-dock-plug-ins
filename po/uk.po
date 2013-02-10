@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2012-10-28 20:57+0000\n"
-"Last-Translator: ma$terok <Unknown>\n"
+"POT-Creation-Date: 2013-02-06 14:31+0000\n"
+"PO-Revision-Date: 2013-01-04 22:36+0000\n"
+"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-04 05:06+0000\n"
-"X-Generator: Launchpad (build 16218)\n"
+"X-Launchpad-Export-Date: 2013-02-07 05:04+0000\n"
+"X-Generator: Launchpad (build 16477)\n"
+"Language: uk\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -148,7 +149,7 @@ msgstr ""
 
 #: ../Cairo-Penguin/src/applet-notifications.c:41
 msgid "For Aiur!"
-msgstr "За Азерот!"
+msgstr "За мій народ!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:139
 msgid "Wake up"
@@ -371,7 +372,8 @@ msgstr "Модуль був доданий, але не може бути зап
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Аплет '%s' оновлено та автоматично перезавантажено"
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -1467,9 +1469,8 @@ msgid "Grab the current window instead of the all screen"
 msgstr ""
 
 #: ../Screenshot/src/applet-screenshot.c:478
-#, fuzzy
 msgid "Grab the current window"
-msgstr "Як відображати поточну стільницю:"
+msgstr ""
 
 #: ../Screenshot/src/applet-screenshot.c:486
 #: ../Screenshot/src/applet-screenshot.c:495
@@ -1479,14 +1480,12 @@ msgid "Let empty to use the default one."
 msgstr "Залиште порожнім, щоб використовувати типове."
 
 #: ../Screenshot/src/applet-screenshot.c:496
-#, fuzzy
 msgid "Directory"
-msgstr "Історія"
+msgstr ""
 
 #: ../Sound-Effects/src/applet-init.c:29
-#, fuzzy
 msgid "Sound Effects"
-msgstr "Ефекти значків"
+msgstr ""
 
 #: ../Sound-Effects/src/applet-init.c:32
 msgid ""
@@ -1512,7 +1511,7 @@ msgstr "Область сповіщення"
 
 #: ../Sync-Menu/src/applet-init.c:30
 msgid "Sync-Menu"
-msgstr ""
+msgstr "Sync-Menu"
 
 #: ../Sync-Menu/src/applet-init.c:33
 msgid ""
@@ -1522,6 +1521,11 @@ msgid ""
 "Its menu provides a condensed and collected view of all of these providers "
 "for quick view."
 msgstr ""
+"Цей додаток збирає інформацію про стан процесів\n"
+" які включають деякі форми синхронізації з серверами:\n"
+"  Ubuntu One, Dropbox, і інших.\n"
+"Це меню забезпечує зібране і стисле відображення всіх цих постачальників для "
+"швидкого перегляду."
 
 #: ../Sync-Menu/src/applet-notifications.c:34
 msgid ""
@@ -1529,6 +1533,9 @@ msgid ""
 "Please check that 'libsyncindicator.so' (indicator-sync) is correctly "
 "installed."
 msgstr ""
+"Служба індикатора синхронізації не відповідає.\n"
+"Перевірте будь-ласка правильність встановлення 'libsyncindicator.so' "
+"(індикатор синхонізації)."
 
 #: ../System-Monitor/src/applet-cpusage.c:59
 msgid "Uptime"
@@ -1773,11 +1780,11 @@ msgid ""
 "The applet can either use the Ubuntu Sound-menu or the Alsa driver."
 msgstr ""
 "Цей додаток дозволяє керувати гучністю з панелі.\n"
-"Прокручування скролом вгору/вниз на іконці для збільшує/зменшує гучність.\n"
+"Прокручування скролом вгору/вниз на іконці збільшує/зменшує гучність.\n"
 "Лівий клік по іконці показує/приховує регулятор гучності (ви також можете "
 "вказати власну комбінацію для цього)\n"
-"Клік середньою клавішею для вимикає звук, подвійний лівий клік викликає "
-"вікно налаштування звуку.\n"
+"Клік середньою клавішею вимикає звук, подвійний лівий клік викликає вікно "
+"налаштування звуку.\n"
 "Цей додаток може використовувати звукове меню Убунту або драйвер Alsa."
 
 #: ../alsaMixer/src/applet-init.c:40
@@ -1928,8 +1935,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2139,7 +2146,8 @@ msgstr ""
 "Натисніть CTRL+v, щоб вставити його URL куди завгодно."
 
 #: ../dnd2share/src/applet-dnd2share.c:333
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Зачекайте на закінчення поточного звантаження перед тим, як почати нове."
 
@@ -2361,7 +2369,7 @@ msgstr "Підрахунок загального розміру та кільк
 
 #: ../dustbin/src/applet-notifications.c:146
 msgid "Show Trash (click)"
-msgstr "Показати смітник (лівий клік)"
+msgstr "Відкрити смітник (клацання лівою кнопкою)"
 
 #: ../dustbin/src/applet-notifications.c:147
 msgid "Empty Trash"
@@ -2493,8 +2501,8 @@ msgstr ""
 "автоматичне завершення роботи\n"
 "і повідомляти вам, якщо ваша система потребує перезавантаження.\n"
 "<b>Клікніть</b> по значку, щоб викликати спливаюче меню.\n"
-"Ви можете прив'язати до нього і до блокування екрану <b>комбінації клавіш</"
-"b>."
+"Ви можете прив'язати до нього і до блокування екрану <b>комбінації "
+"клавіш</b>."
 
 #: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:233
 #: ../logout/data/messages:95
@@ -2986,15 +2994,12 @@ msgid ""
 msgstr ""
 
 #: ../netspeed/src/applet-notifications.c:48
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Interface '%s' doesn't seem to exist or is not readable.\n"
 "You may have to set up the interface you wish to monitor.\n"
 "Do you want to do it now?"
 msgstr ""
-"Інтерфейс '%s' не існує або не доступний.\n"
-"Задайте інтерфейс для відслідковування.\n"
-"Зробити зараз?"
 
 #: ../netspeed/src/applet-notifications.c:105
 msgid "Enable/disable network"
@@ -3222,15 +3227,15 @@ msgstr "З'єднання з сервером…"
 
 #: ../shortcuts/src/applet-notifications.c:307
 msgid "Browse Network"
-msgstr ""
+msgstr "Огляд мережі"
 
 #: ../shortcuts/src/applet-notifications.c:309
 msgid "Browse recent files"
-msgstr ""
+msgstr "Переглянути нещодавні файли"
 
 #: ../shortcuts/src/applet-notifications.c:311
 msgid "Open Trash"
-msgstr ""
+msgstr "Відкрити смітник"
 
 #: ../shortcuts/src/applet-notifications.c:317
 msgid "Rename this bookmark"
@@ -3266,8 +3271,8 @@ msgstr "Прикрасити курсор"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Цей модуль прикрашає курсор різною анімацією, коли той знаходиться всередині "
 "панелі/десклету."
@@ -3314,9 +3319,8 @@ msgstr ""
 "Середнє клацання, щоб відкрити теку із зображеннями."
 
 #: ../slider/src/applet-notifications.c:68
-#, fuzzy
 msgid "You need to define the images folder first."
-msgstr "Вам потрібно встановити рушій даних Zeitgeist."
+msgstr ""
 
 #: ../slider/src/applet-notifications.c:220
 msgid "Play"
@@ -3604,13 +3608,12 @@ msgid "Close this Tab"
 msgstr "Закрити цю вкладку"
 
 #: ../tomboy/src/applet-backend-default.c:189
-#, fuzzy
 msgid "Title:"
-msgstr "Назва"
+msgstr ""
 
 #: ../tomboy/src/tomboy-draw.c:190
 msgid "Open all"
-msgstr ""
+msgstr "Відкрити всі"
 
 #: ../tomboy/src/tomboy-init.c:32
 msgid "Note-Taking"
@@ -4580,8 +4583,8 @@ msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
 msgstr ""
-"Залежно від вашого менеджеру вікон, ви можете переміщувати за допомогою ALT"
-"+ліве клацання."
+"Залежно від вашого менеджеру вікон, ви можете переміщувати за допомогою "
+"ALT+ліве клацання."
 
 #: ../Clipper/data/messages:31 ../Composite-Manager/data/messages:29
 #: ../Disks/data/messages:47 ../Doncky/data/messages:31
@@ -4907,7 +4910,8 @@ msgstr "Оформлення"
 #: ../weather/data/messages:67 ../weblets/data/messages:57
 #: ../wifi/data/messages:65
 msgid "Choose 'Custom decorations' to define your own decorations below."
-msgstr "Виберіть 'Власне оформлення', щоб налаштувати власне оформлення нижче."
+msgstr ""
+"Виберіть 'Власне оформлення', щоб налаштувати власне оформлення нижче."
 
 #: ../Clipper/data/messages:59 ../Composite-Manager/data/messages:57
 #: ../Disks/data/messages:57 ../Doncky/data/messages:59
@@ -5788,7 +5792,8 @@ msgid "Background"
 msgstr "Тло"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Ви можете отримати привабливіше тло використовуючи Оформлення десклетів"
 
@@ -5928,7 +5933,7 @@ msgstr "Показати Вихід та/або Вимкнення: "
 
 #: ../GMenu/data/messages:113
 msgid "Preload icons at startup"
-msgstr ""
+msgstr "Передзавантажувати іконки при запуску."
 
 #: ../Global-Menu/data/messages:85
 msgid ""
@@ -6663,19 +6668,16 @@ msgid "It can launch commands and even do some calculations."
 msgstr "Він може запустити команди і навіть зробити деякі розрахунки."
 
 #: ../Screenshot/data/messages:91
-#, fuzzy
 msgid "Shortkey to take a screenshot"
-msgstr "Комбінація клавіш для блокування екрану"
+msgstr ""
 
 #: ../Screenshot/data/messages:93
-#, fuzzy
 msgid "Save image in"
-msgstr "відкрити зображення"
+msgstr ""
 
 #: ../Sound-Effects/data/messages:3
-#, fuzzy
 msgid "Play a sound on click ?"
-msgstr "Використовувати звук:"
+msgstr ""
 
 #: ../Sound-Effects/data/messages:5 ../Sound-Effects/data/messages:11
 #: ../Sound-Effects/data/messages:17
@@ -6684,24 +6686,20 @@ msgstr ""
 
 #: ../Sound-Effects/data/messages:7 ../Sound-Effects/data/messages:13
 #: ../Sound-Effects/data/messages:19
-#, fuzzy
 msgid "Sound file"
-msgstr "Відкрити файл"
+msgstr ""
 
 #: ../Sound-Effects/data/messages:9
-#, fuzzy
 msgid "Play a sound on middle click ?"
-msgstr "Грати/Пауза за клацанням, Наступна за середнім клацанням"
+msgstr ""
 
 #: ../Sound-Effects/data/messages:15
-#, fuzzy
 msgid "Play a sound on mouse hover ?"
-msgstr "Також розмивати при наведенні мишею?"
+msgstr ""
 
 #: ../Sound-Effects/data/messages:21
-#, fuzzy
 msgid "Volume:"
-msgstr "Гучність"
+msgstr ""
 
 #: ../Sound-Effects/data/messages:25
 msgid "High"
@@ -7399,7 +7397,8 @@ msgstr "Висота точки сходження:"
 
 #: ../dock-rendering/data/messages:9
 msgid "The lower the value, the flatter the curve will appear."
-msgstr "Чим менше значення, тим більша частина кривої буде виглядати пласкою."
+msgstr ""
+"Чим менше значення, тим більша частина кривої буде виглядати пласкою."
 
 #: ../dock-rendering/data/messages:11
 msgid "Curvature of the curve in percent:"
@@ -7579,7 +7578,8 @@ msgid "Space between icons:"
 msgstr "Відстань між іконками:"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "При значенні 0 хвиля буде повністю пласкою, при значенні 1 хвиля буде "
 "ідентична іншим видам."
@@ -7801,7 +7801,8 @@ msgid "Colours"
 msgstr "Кольори"
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr "Він ледве змінює колір, так що ви можете навіть не змінювати його."
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
@@ -7928,7 +7929,7 @@ msgstr "Сила всмоктування:"
 
 #: ../keyboard-indicator/data/messages:99
 msgid "General"
-msgstr ""
+msgstr "Загальні"
 
 #: ../keyboard-indicator/data/messages:101
 msgid "caps lock, num lock, etc."
@@ -7940,11 +7941,11 @@ msgstr "Відображати стан клавіатурних режимів 
 
 #: ../keyboard-indicator/data/messages:105
 msgid "Icon image name for NumLock status:"
-msgstr ""
+msgstr "Ім’я зображення іконки для статусу NumLock:"
 
 #: ../keyboard-indicator/data/messages:107
 msgid "Icon image name for CapsLock status:"
-msgstr ""
+msgstr "Ім’я зображення іконки для статусу CapsLock:"
 
 #: ../keyboard-indicator/data/messages:109
 msgid ""
@@ -7978,9 +7979,8 @@ msgid "smaller"
 msgstr "менше"
 
 #: ../keyboard-indicator/data/messages:131
-#, fuzzy
 msgid "Number of letters to draw on the icon."
-msgstr "Кількість рядків у пакуванні:"
+msgstr ""
 
 #: ../logout/data/messages:91
 msgid "Action"
@@ -8063,7 +8063,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Файл зображення для статусу 'є нові листи':"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Якщо вибрано, то кількість листів буде показуватися навіть, якщо листів не "
 "має."
@@ -8149,8 +8150,10 @@ msgid "Blur amount:"
 msgstr "Якість розмиття:"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
-msgstr "Залиште порожнім, щоб відображати ім'я програвача, яким зараз керуєте."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
+msgstr ""
+"Залиште порожнім, щоб відображати ім'я програвача, яким зараз керуєте."
 
 #: ../musicPlayer/data/messages:11
 msgid "Player name"
@@ -8334,9 +8337,8 @@ msgid "Name of the image for the 'pause' icon :"
 msgstr "Файл зображення значка 'пауза':"
 
 #: ../netspeed/data/messages:145
-#, fuzzy
 msgid "By default all interfaces will be monitored."
-msgstr "Типовим буде 'eth0'."
+msgstr ""
 
 #: ../netspeed/data/messages:147
 msgid "interface:"
@@ -8560,7 +8562,8 @@ msgstr "Тривалість життя частинок:"
 #: ../show-mouse/data/messages:33
 msgid ""
 "The higher the value, the more particles will scatter from their source."
-msgstr "Чим більше значення, тим більше часток розсіюватиметься з їх джерела."
+msgstr ""
+"Чим більше значення, тим більше часток розсіюватиметься з їх джерела."
 
 #: ../show-mouse/data/messages:35
 msgid "Scattering:"
@@ -9157,7 +9160,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Позиція вертикальної смуги"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Це дозволить використовувати праве клацання для виклику меню Cairo-Dock."
 

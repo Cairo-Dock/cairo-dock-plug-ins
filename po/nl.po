@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2012-10-04 18:22+0000\n"
+"POT-Creation-Date: 2013-02-06 14:31+0000\n"
+"PO-Revision-Date: 2013-02-08 19:00+0000\n"
 "Last-Translator: rob <linuxned@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-04 05:03+0000\n"
-"X-Generator: Launchpad (build 16218)\n"
+"X-Launchpad-Export-Date: 2013-02-09 05:07+0000\n"
+"X-Generator: Launchpad (build 16482)\n"
+"Language: \n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -41,7 +42,8 @@ msgstr "Geanimeerde pictogrammen"
 
 #: ../Animated-icons/src/applet-init.c:42
 msgid "This plug-in provides many different animations for your icons."
-msgstr "Deze plug-in bevat vele verschillende animaties voor uw pictogrammen."
+msgstr ""
+"Deze plug-in bevat vele verschillende animaties voor uw pictogrammen."
 
 #: ../Animated-icons/src/applet-pulse.c:106 ../Animated-icons/data/messages:13
 #: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:55
@@ -371,7 +373,8 @@ msgstr "De module is wel toegevoegd, maar kon niet gestart worden."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Het applet '%s' is bijgewerkt en is automatisch opnieuw geladen"
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -469,8 +472,8 @@ msgstr ""
 "problemen veroorzaken met de snelheidsweergave die niet omlaag wil gaan.\n"
 "\n"
 "<b>Schijfruimte</b> :  Toon schijfoverdrachtswaarden. tot 10 partities\n"
-"  U moet het koppelpunt instellen van elke gemonitoorde partitie, zoals / "
-"of /home\n"
+"  U moet het koppelpunt instellen van elke gemonitoorde partitie, zoals / of "
+"/home\n"
 "  Beter weergeven in een meter, met 30 of 60 seconden ververssnelheid en "
 "hele korte of geen vertraging tussen overgangen.\n"
 "\n"
@@ -1272,8 +1275,8 @@ msgstr ""
 "+ Page up/down om te wisselen naar een ander hoofd-dock)\n"
 " - of typ de naam in van een starter en druk op de Tab-toets om automatisch "
 "naar de eerstvolgende starter te springen.\n"
-"Druk Enter om op het pictogram te klikken, Shift+Enter voor Shift+klik, Alt"
-"+Enter voor middelklik, en Ctrl+Enter voor linkermuisklik\n"
+"Druk Enter om op het pictogram te klikken, Shift+Enter voor Shift+klik, "
+"Alt+Enter voor middelklik, en Ctrl+Enter voor linkermuisklik\n"
 "Voor annuleren drukt u op Escape of nog een keer op dezelfde sneltoets."
 
 #: ../Remote-Control/src/applet-init.c:42
@@ -1429,26 +1432,30 @@ msgid ""
 "<b>Middle-click</b> gives you more options.\n"
 "You can bind a <b>shortcut</b> to the action."
 msgstr ""
+"Een eenvoudig applet om snel een schermafdruk te maken.\n"
+"<b>Klik</b> om een schermafdruk te maken.\n"
+"<b>Middelklik</b> voor meer opties.\n"
+"U kunt voor deze actie een <b>sneltoets</b> instellen."
 
 #: ../Screenshot/src/applet-init.c:53
 msgid "Take a screenshot"
-msgstr ""
+msgstr "Schermafdruk maken"
 
 #: ../Screenshot/src/applet-notifications.c:49
 msgid "Screenshot"
-msgstr ""
+msgstr "Schermafdruk"
 
 #: ../Screenshot/src/applet-notifications.c:61
 msgid "Screenshot with options"
-msgstr ""
+msgstr "Schermafdruk met opties"
 
 #: ../Screenshot/src/applet-screenshot.c:163
 msgid "Screenshot from"
-msgstr ""
+msgstr "Schermafdruk van"
 
 #: ../Screenshot/src/applet-screenshot.c:331
 msgid "Unable to take a screenshot"
-msgstr ""
+msgstr "Kon geen schermafdruk maken"
 
 #: ../Screenshot/src/applet-screenshot.c:454 ../Cairo-Penguin/data/messages:19
 #: ../Clipper/data/messages:137 ../Disks/data/messages:143
@@ -1464,16 +1471,16 @@ msgstr "In seconden."
 
 #: ../Screenshot/src/applet-screenshot.c:455
 msgid "Delay"
-msgstr ""
+msgstr "Vertraging"
 
 #: ../Screenshot/src/applet-screenshot.c:477
 msgid "Grab the current window instead of the all screen"
 msgstr ""
+"Schemadfruk maken van huidige venster in plaats van het gehele scherm"
 
 #: ../Screenshot/src/applet-screenshot.c:478
-#, fuzzy
 msgid "Grab the current window"
-msgstr "Hoe wilt u het huidige bureaublad tekenen :"
+msgstr "Schemadfruk maken van huidige venster"
 
 #: ../Screenshot/src/applet-screenshot.c:486
 #: ../Screenshot/src/applet-screenshot.c:495
@@ -1483,20 +1490,21 @@ msgid "Let empty to use the default one."
 msgstr "Laat leeg om standaardwaarde te gebruiken."
 
 #: ../Screenshot/src/applet-screenshot.c:496
-#, fuzzy
 msgid "Directory"
-msgstr "Geschiedenis"
+msgstr "Map"
 
 #: ../Sound-Effects/src/applet-init.c:29
-#, fuzzy
 msgid "Sound Effects"
-msgstr "Pictogrameffecten"
+msgstr "Geluidseffecten"
 
 #: ../Sound-Effects/src/applet-init.c:32
 msgid ""
 "This plug-in add sound effects on various events in the dock:\n"
 " When clicking an icon, when hovering an icon, etc"
 msgstr ""
+"Deze plug-in voegt geluidseffecten toe aan diverse acties in het dock:\n"
+" Wanneer u op een pictogram klikt, wanneer u de muis over een pictogram heen "
+"beweegt, enz."
 
 #: ../Status-Notifier/src/applet-init.c:33
 msgid ""
@@ -1620,7 +1628,8 @@ msgstr "Core-temperatuur:"
 #: ../System-Monitor/src/applet-nvidia.c:161
 #, c-format
 msgid "Alert! Graphic Card core temperature has reached %d°C"
-msgstr "Waarschuwing ! Core-temperatuur van grafische kaart heeft %d°C bereikt"
+msgstr ""
+"Waarschuwing ! Core-temperatuur van grafische kaart heeft %d°C bereikt"
 
 #: ../System-Monitor/src/applet-rame.c:123
 msgid "Gb"
@@ -1936,8 +1945,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2149,7 +2158,8 @@ msgstr ""
 "Druk op CTRL+v om de URL ergens in te plakken."
 
 #: ../dnd2share/src/applet-dnd2share.c:333
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Wacht a.u.b. met het starten van een nieuwe upload, totdat de huidige upload "
 "beëindigd is."
@@ -2503,7 +2513,7 @@ msgstr ""
 "Met dit applet kunt u  de huidige sessie beheren. Het biedt de volgende "
 "opties:\n"
 "uitschakelen, herstarten, in slaapstand zetten, in pauzestand zetten, "
-"afmelden, scherm afgrendelen, naar een andere gebruiker wisselen of "
+"afmelden, scherm vergrendelen, naar een andere gebruiker wisselen of "
 "automatisch uitschakelen.\n"
 "Het zal u ook waarschuwen wanneer uw systeem herstart dient te worden.\n"
 "<b>Klik</b> op het pictogram om het menu te tonen.\n"
@@ -3002,18 +3012,20 @@ msgid ""
 "Please be sure that at least one interface is available\n"
 " and that you have the right to monitor it"
 msgstr ""
+"Geen interface gevonden.\n"
+"Zorg ervoor dat er minimaal een interface beschikbaar is\n"
+" en dat u de rechten heeft om deze te monitoren"
 
 #: ../netspeed/src/applet-notifications.c:48
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Interface '%s' doesn't seem to exist or is not readable.\n"
 "You may have to set up the interface you wish to monitor.\n"
 "Do you want to do it now?"
 msgstr ""
-"Interface '%s' schijnt niet te bestaan of is onleesbaar.\n"
-"Misschien moet u het configuratiepaneel van dit applet openen en de "
-"interface selecteren die u wenst te monitoren.\n"
-"Wilt u dit nu doen ?"
+"Interface '%s' bestaat niet of is niet leesbaar.\n"
+"Mogelijk dient u de interface die u wilt monitoren eerst te configureren.\n"
+"Wilt u dit nu doen?"
 
 #: ../netspeed/src/applet-notifications.c:105
 msgid "Enable/disable network"
@@ -3244,15 +3256,15 @@ msgstr "Verbinden met server…"
 
 #: ../shortcuts/src/applet-notifications.c:307
 msgid "Browse Network"
-msgstr ""
+msgstr "Netwerk doorbladeren"
 
 #: ../shortcuts/src/applet-notifications.c:309
 msgid "Browse recent files"
-msgstr ""
+msgstr "Recente bestanden doorbladeren"
 
 #: ../shortcuts/src/applet-notifications.c:311
 msgid "Open Trash"
-msgstr ""
+msgstr "Prullenbak openen"
 
 #: ../shortcuts/src/applet-notifications.c:317
 msgid "Rename this bookmark"
@@ -3288,8 +3300,8 @@ msgstr "Toon muis"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Deze plug-in tekent enige animatie rond de muisaanwijzer wanneer het zich in "
 "een dock/desklet bevindt."
@@ -3336,9 +3348,8 @@ msgstr ""
 "Middelklik om de afbeeldingenmap te openen."
 
 #: ../slider/src/applet-notifications.c:68
-#, fuzzy
 msgid "You need to define the images folder first."
-msgstr "U moet de Zeitgeist-data-engine installeren."
+msgstr "U dient eerst de afbeeldingenmap in te stellen"
 
 #: ../slider/src/applet-notifications.c:220
 msgid "Play"
@@ -3628,13 +3639,12 @@ msgid "Close this Tab"
 msgstr "Dit tabblad sluiten"
 
 #: ../tomboy/src/applet-backend-default.c:189
-#, fuzzy
 msgid "Title:"
-msgstr "Titel"
+msgstr "Naam:"
 
 #: ../tomboy/src/tomboy-draw.c:190
 msgid "Open all"
-msgstr ""
+msgstr "Alles openen"
 
 #: ../tomboy/src/tomboy-init.c:32
 msgid "Note-Taking"
@@ -3648,9 +3658,8 @@ msgid ""
 "You can search inside notes and display their content on the icons."
 msgstr ""
 "Beheer uw Tomboy-notities direct vanuit uw dock !\n"
-"Klik op een notitie om het te openen en op Escape om het te sluiten.\n"
+"Klik op een notitie om deze te openen en op Escape om deze te sluiten.\n"
 "Middelklik om een nieuwe notitie te maken.\n"
-"Middelklik om een nieuwe notitie te maken.\\n\n"
 "U kunt zoeken in de notities en hun inhoud tonen op hun pictogrammen."
 
 #: ../tomboy/src/tomboy-notifications.c:86
@@ -5388,7 +5397,8 @@ msgstr "Plakken in klembord ?"
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
-msgstr "Als u klikt op een item, wordt de inhoud zichtbaar met een middelklik"
+msgstr ""
+"Als u klikt op een item, wordt de inhoud zichtbaar met een middelklik"
 
 #: ../Clipper/data/messages:121
 msgid "Paste into Selection?"
@@ -5559,7 +5569,8 @@ msgstr "Mogen externe toepassingen de labels van de pictogrammen bewerken ?"
 
 #: ../Dbus/data/messages:19
 msgid "Let extern applications modify the quick-infos on icons?"
-msgstr "Mogen externe toepassingen de snel-info van de pictogrammen bewerken ?"
+msgstr ""
+"Mogen externe toepassingen de snel-info van de pictogrammen bewerken ?"
 
 #: ../Dbus/data/messages:21
 msgid "Let extern applications modify the icons' image?"
@@ -5573,10 +5584,12 @@ msgstr "Mogen externe toepassingen de pictogrammen animeren ?"
 #: ../Dbus/data/messages:25
 msgid "The dock will catch DBus signals to Launcher API and act as Unity"
 msgstr ""
+"Het dock zal DBus-signalen aan de Starter-API opvangen en zich gedragen als "
+"Unity"
 
 #: ../Dbus/data/messages:27
 msgid "Launch the Launcher API daemon?"
-msgstr ""
+msgstr "De Starter-API inschakelen?"
 
 #: ../Disks/data/messages:5
 msgid "Name of the container it belongs to:"
@@ -5818,7 +5831,8 @@ msgid "Background"
 msgstr "Achtergrond"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "U kunt meer mooie achtergronden krijgen als u de decoraties van het Desklet "
 "gebruikt"
@@ -5959,7 +5973,7 @@ msgstr "Afmelden en/of Uitschakelen tonen : "
 
 #: ../GMenu/data/messages:113
 msgid "Preload icons at startup"
-msgstr ""
+msgstr "Pictogrammen vooraf laden bij het opstarten"
 
 #: ../Global-Menu/data/messages:85
 msgid ""
@@ -6100,7 +6114,7 @@ msgstr "Afbeelding wanneer het applet inactief is:"
 #: ../Impulse/data/messages:123 ../musicPlayer/data/messages:205
 #: ../tomboy/data/messages:23
 msgid "'Broken' icon image name:"
-msgstr "Naam van afbeelding voor het pictogram 'Gebroken' :"
+msgstr "Afbeeldingsnaam voor het pictogram 'Gebroken' :"
 
 #: ../Impulse/data/messages:125
 msgid "PulseAudio"
@@ -6699,49 +6713,42 @@ msgid "It can launch commands and even do some calculations."
 msgstr "Het kan opdrachten uitvoeren en zelfs enige berekeningen doen."
 
 #: ../Screenshot/data/messages:91
-#, fuzzy
 msgid "Shortkey to take a screenshot"
-msgstr "Sneltoets om het scherm te vergrendelen"
+msgstr "Sneltoets om een schermafdruk te maken"
 
 #: ../Screenshot/data/messages:93
-#, fuzzy
 msgid "Save image in"
-msgstr "Afbeelding openen"
+msgstr "Afbeelding opslaan in"
 
 #: ../Sound-Effects/data/messages:3
-#, fuzzy
 msgid "Play a sound on click ?"
-msgstr "Gebruik een geluid :"
+msgstr "Geluid afspelen bij klik ?"
 
 #: ../Sound-Effects/data/messages:5 ../Sound-Effects/data/messages:11
 #: ../Sound-Effects/data/messages:17
 msgid "A .wav file encoded in PCM."
-msgstr ""
+msgstr "Een .wav-bestand gecodeerd in PCM."
 
 #: ../Sound-Effects/data/messages:7 ../Sound-Effects/data/messages:13
 #: ../Sound-Effects/data/messages:19
-#, fuzzy
 msgid "Sound file"
-msgstr "Open bestand"
+msgstr "Geluidsbestand"
 
 #: ../Sound-Effects/data/messages:9
-#, fuzzy
 msgid "Play a sound on middle click ?"
-msgstr "Afspelen/pauzeren bij linkerklik, Volgende bij middelklik"
+msgstr "Geluid afspelen bij middelklik ?"
 
 #: ../Sound-Effects/data/messages:15
-#, fuzzy
 msgid "Play a sound on mouse hover ?"
-msgstr "Ook vervagen bij muisbewegingen ?"
+msgstr "Geluid afspelen wanneer u de muis eroverheen beweegt ?"
 
 #: ../Sound-Effects/data/messages:21
-#, fuzzy
 msgid "Volume:"
-msgstr "Volume"
+msgstr "Volume:"
 
 #: ../Sound-Effects/data/messages:25
 msgid "High"
-msgstr ""
+msgstr "Hoog"
 
 #: ../Status-Notifier/data/messages:13
 msgid "Image's filename :"
@@ -7057,7 +7064,8 @@ msgstr "Specifieke uit te voeren opdracht, om geluidsmixer te tonen :"
 
 #: ../clock/data/messages:7
 msgid "Leave empty to use the location name if available."
-msgstr "Laat leeg om de naam van de locatie te gebruiken, indien beschikbaar."
+msgstr ""
+"Laat leeg om de naam van de locatie te gebruiken, indien beschikbaar."
 
 #: ../clock/data/messages:103
 msgid "Show the date:"
@@ -7580,7 +7588,8 @@ msgstr "Kromming :"
 
 #: ../dock-rendering/data/messages:93
 msgid "The parabola will be restricted to a rectangle of this proportion."
-msgstr "De parabool zal gemaakt worden tot een rechthoek van deze proporties."
+msgstr ""
+"De parabool zal gemaakt worden tot een rechthoek van deze proporties."
 
 #: ../dock-rendering/data/messages:95
 msgid "Height/width ratio:"
@@ -7619,7 +7628,8 @@ msgid "Space between icons:"
 msgstr "Ruimte tussen pictogrammen :"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 betekent dat de golf plat is, 1 betekent dat de golf gelijk is aan andere "
 "weergaves."
@@ -7797,7 +7807,8 @@ msgstr ""
 
 #: ../dustbin/data/messages:95
 msgid "Name of the image to overwrite the theme's full image :"
-msgstr "Naam van een afbeelding om thema´s ´Vol´ afbeelding te overschrijven :"
+msgstr ""
+"Naam van een afbeelding om thema´s ´Vol´ afbeelding te overschrijven :"
 
 #: ../dustbin/data/messages:97
 msgid "Config"
@@ -7843,7 +7854,8 @@ msgid "Colours"
 msgstr "Kleuren"
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr "De kleuren zullen iets afwijken, mogelijk moet u ze aanpassen."
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
@@ -7970,7 +7982,7 @@ msgstr "Aantrekkingskracht van zwarte gat :"
 
 #: ../keyboard-indicator/data/messages:99
 msgid "General"
-msgstr ""
+msgstr "Algemeen"
 
 #: ../keyboard-indicator/data/messages:101
 msgid "caps lock, num lock, etc."
@@ -7982,11 +7994,11 @@ msgstr "Lock-toetsen van toetsenbord tonen als snel-info ?"
 
 #: ../keyboard-indicator/data/messages:105
 msgid "Icon image name for NumLock status:"
-msgstr ""
+msgstr "Afbeeldingsnaam pictogram voor NumLock-status:"
 
 #: ../keyboard-indicator/data/messages:107
 msgid "Icon image name for CapsLock status:"
-msgstr ""
+msgstr "Afbeeldingsnaam pictogram voor CapsLock-status:"
 
 #: ../keyboard-indicator/data/messages:109
 msgid ""
@@ -8019,9 +8031,8 @@ msgid "smaller"
 msgstr "Kleiner"
 
 #: ../keyboard-indicator/data/messages:131
-#, fuzzy
 msgid "Number of letters to draw on the icon."
-msgstr "Aantal regels om items in te pakken:"
+msgstr "Aantal letters om weer te geven op het pictogram."
 
 #: ../logout/data/messages:91
 msgid "Action"
@@ -8107,7 +8118,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Naam van het bestand voor de \"Nieuwe e-mail\" afbeelding :"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Indien aangevinkt, zal het aantal e-mails getoond worden zelfs als er geen e-"
 "mails zijn."
@@ -8120,7 +8132,8 @@ msgstr "'0' laten zien wanneer er geen e-mail is?"
 #: ../stack/data/messages:95 ../switcher/data/messages:123
 #: ../tomboy/data/messages:119 ../weather/data/messages:133
 msgid "Leave empty to use default sub-dock view."
-msgstr "Laat leeg als u de standaardweergave van de sub-docks wilt gebruiken."
+msgstr ""
+"Laat leeg als u de standaardweergave van de sub-docks wilt gebruiken."
 
 #: ../mail/data/messages:121 ../shortcuts/data/messages:105
 #: ../stack/data/messages:97 ../switcher/data/messages:125
@@ -8193,7 +8206,8 @@ msgid "Blur amount:"
 msgstr "Hoeveelheid vervaging :"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr "Laat leeg om de naam van de momenteel bediende speler te tonen."
 
 #: ../musicPlayer/data/messages:11
@@ -8365,7 +8379,7 @@ msgstr "Lijst met beschikbare 3D-thema´s voor albumhoezen :"
 
 #: ../musicPlayer/data/messages:189 ../tomboy/data/messages:15
 msgid "'Default' icon image name:"
-msgstr "Naam van de afbeelding voor het pictogram 'Standaard' :"
+msgstr "Afbeeldingsnaam voor het pictogram 'Standaard' :"
 
 #: ../musicPlayer/data/messages:193
 msgid "Name of the image for the 'play' icon :"
@@ -8380,9 +8394,8 @@ msgid "Name of the image for the 'pause' icon :"
 msgstr "Naam van de afbeelding voor het pictogram 'Pauzeren' :"
 
 #: ../netspeed/data/messages:145
-#, fuzzy
 msgid "By default all interfaces will be monitored."
-msgstr "Standaard is dit 'eth0'."
+msgstr "Standaard zullen alle interfaces gemonitord worden."
 
 #: ../netspeed/data/messages:147
 msgid "interface:"
@@ -8748,7 +8761,8 @@ msgstr "Achtergrond toevoegen aan de afbeelding?"
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
-msgstr "Stel de doorzichtigheid in op 0 als u geen achtergrond wilt gebruiken."
+msgstr ""
+"Stel de doorzichtigheid in op 0 als u geen achtergrond wilt gebruiken."
 
 #: ../slider/data/messages:175
 msgid "Choose a background colour :"
@@ -9050,7 +9064,7 @@ msgstr "Sneltoets om terminal te tonen :"
 
 #: ../tomboy/data/messages:19
 msgid "'Close' icon image name:"
-msgstr "Naam van de afbeelding voor het pictogram 'Afsluiten' :"
+msgstr "Afbeeldingsnaam voor het pictogram 'Afsluiten' :"
 
 #: ../tomboy/data/messages:107
 msgid "Image file for the notes:"
@@ -9206,7 +9220,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Positie van de verticale scrollbalk in pixel"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Hierdoor kunt u met rechts klikken op het desklet voor het Cairo-Dock menu."
 

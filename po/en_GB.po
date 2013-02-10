@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2013-02-06 15:23+0100\n"
-"PO-Revision-Date: 2012-09-30 17:29+0000\n"
-"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
+"POT-Creation-Date: 2013-02-06 14:31+0000\n"
+"PO-Revision-Date: 2013-01-04 22:36+0000\n"
+"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-04 05:06+0000\n"
-"X-Generator: Launchpad (build 16218)\n"
+"X-Launchpad-Export-Date: 2013-02-07 05:04+0000\n"
+"X-Generator: Launchpad (build 16477)\n"
+"Language: \n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -362,7 +362,8 @@ msgstr "The module has been added, but couldn't be launched."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "The applet '%s' has been successfully updated and automatically reloaded"
 
@@ -1396,9 +1397,8 @@ msgid "Grab the current window instead of the all screen"
 msgstr ""
 
 #: ../Screenshot/src/applet-screenshot.c:478
-#, fuzzy
 msgid "Grab the current window"
-msgstr "How to draw the current desktop:"
+msgstr ""
 
 #: ../Screenshot/src/applet-screenshot.c:486
 #: ../Screenshot/src/applet-screenshot.c:495
@@ -1408,14 +1408,12 @@ msgid "Let empty to use the default one."
 msgstr "Leave empty to use the default one."
 
 #: ../Screenshot/src/applet-screenshot.c:496
-#, fuzzy
 msgid "Directory"
-msgstr "History"
+msgstr ""
 
 #: ../Sound-Effects/src/applet-init.c:29
-#, fuzzy
 msgid "Sound Effects"
-msgstr "Icon Effects"
+msgstr ""
 
 #: ../Sound-Effects/src/applet-init.c:32
 msgid ""
@@ -1844,8 +1842,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1854,8 +1852,8 @@ msgstr ""
 "2 views are available : <b>numeric</b> and <b>analogue</b>.\n"
 " Analogue view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2056,7 +2054,8 @@ msgstr ""
 "Just press CTRL+v to paste its URL anywhere."
 
 #: ../dnd2share/src/applet-dnd2share.c:333
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Please wait for the current upload to finish before starting a new one."
 
@@ -2864,15 +2863,12 @@ msgid ""
 msgstr ""
 
 #: ../netspeed/src/applet-notifications.c:48
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Interface '%s' doesn't seem to exist or is not readable.\n"
 "You may have to set up the interface you wish to monitor.\n"
 "Do you want to do it now?"
 msgstr ""
-"Interface '%s' doesn't seem to exist or is not readable.\n"
-" You may have to set up the interface you wish to monitor.\n"
-" Do you want to do it now?"
 
 #: ../netspeed/src/applet-notifications.c:105
 msgid "Enable/disable network"
@@ -3140,11 +3136,11 @@ msgstr "Show Mouse"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 
 #: ../showDesktop/src/applet-init.c:28
 msgid "showDesktop"
@@ -3465,9 +3461,8 @@ msgid "Close this Tab"
 msgstr "Close this Tab"
 
 #: ../tomboy/src/applet-backend-default.c:189
-#, fuzzy
 msgid "Title:"
-msgstr "Title"
+msgstr ""
 
 #: ../tomboy/src/tomboy-draw.c:190
 msgid "Open all"
@@ -5641,8 +5636,10 @@ msgid "Background"
 msgstr "Background"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
-msgstr "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
+msgstr ""
+"You can have more attractive backgrounds using the Desklet decorations"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
 msgid "Display a simple background?"
@@ -6506,19 +6503,16 @@ msgid "It can launch commands and even do some calculations."
 msgstr "It can launch commands and even do some calculations."
 
 #: ../Screenshot/data/messages:91
-#, fuzzy
 msgid "Shortkey to take a screenshot"
-msgstr "Shortcut key to trigger the applet:"
+msgstr ""
 
 #: ../Screenshot/data/messages:93
-#, fuzzy
 msgid "Save image in"
-msgstr "open image"
+msgstr ""
 
 #: ../Sound-Effects/data/messages:3
-#, fuzzy
 msgid "Play a sound on click ?"
-msgstr "Play a sound:"
+msgstr ""
 
 #: ../Sound-Effects/data/messages:5 ../Sound-Effects/data/messages:11
 #: ../Sound-Effects/data/messages:17
@@ -6527,19 +6521,16 @@ msgstr ""
 
 #: ../Sound-Effects/data/messages:7 ../Sound-Effects/data/messages:13
 #: ../Sound-Effects/data/messages:19
-#, fuzzy
 msgid "Sound file"
-msgstr "Open file"
+msgstr ""
 
 #: ../Sound-Effects/data/messages:9
-#, fuzzy
 msgid "Play a sound on middle click ?"
-msgstr "Play/Pause on click, Next on middle-click"
+msgstr ""
 
 #: ../Sound-Effects/data/messages:15
-#, fuzzy
 msgid "Play a sound on mouse hover ?"
-msgstr "Also blur on mouse movement?"
+msgstr ""
 
 #: ../Sound-Effects/data/messages:21
 msgid "Volume:"
@@ -7417,7 +7408,8 @@ msgid "Space between icons:"
 msgstr "Space between icons:"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 represents a flat wave, 1 means the wave is identical to other views."
 
@@ -7611,8 +7603,10 @@ msgid "Colours"
 msgstr "Colours"
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
-msgstr "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
+msgstr ""
+"This will slightly alter your colours, so you may have to modify them."
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
 msgid "Add luminance?"
@@ -7787,9 +7781,8 @@ msgid "smaller"
 msgstr "smaller"
 
 #: ../keyboard-indicator/data/messages:131
-#, fuzzy
 msgid "Number of letters to draw on the icon."
-msgstr "Number of items to keep in the history :"
+msgstr ""
 
 #: ../logout/data/messages:91
 msgid "Action"
@@ -7870,7 +7863,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Name of the file for the \"has mail\" image :"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "If checked, the number of messages will be shown even if there is no mail."
 
@@ -7955,8 +7949,10 @@ msgid "Blur amount:"
 msgstr "Blur amount:"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
-msgstr "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
+msgstr ""
+"Leave it empty to display the name of the player currently controlled."
 
 #: ../musicPlayer/data/messages:11
 msgid "Player name"
@@ -8140,9 +8136,8 @@ msgid "Name of the image for the 'pause' icon :"
 msgstr "Name of the image for the 'pause' icon :"
 
 #: ../netspeed/data/messages:145
-#, fuzzy
 msgid "By default all interfaces will be monitored."
-msgstr "By default this will be 'eth0'."
+msgstr ""
 
 #: ../netspeed/data/messages:147
 msgid "interface:"
@@ -8898,7 +8893,8 @@ msgstr "Code for your location:"
 
 #: ../weather/data/messages:107
 msgid "If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
-msgstr "If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
+msgstr ""
+"If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
 
 #: ../weather/data/messages:109
 msgid "Use International System Units?"
@@ -8961,7 +8957,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Position of vertical scrollbar in pixels"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 

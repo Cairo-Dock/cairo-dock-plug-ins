@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2012-11-04 01:00+0000\n"
+"POT-Creation-Date: 2013-02-06 14:31+0000\n"
+"PO-Revision-Date: 2013-02-06 15:01+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Cairo-Dock <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-05 04:44+0000\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Launchpad-Export-Date: 2013-02-07 05:02+0000\n"
+"X-Generator: Launchpad (build 16477)\n"
+"Language: \n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -266,8 +267,8 @@ msgstr ""
 "Un <b>clic gauche</b> sur l'icône permet d'activer/désactiver le composite. "
 "Vous pouvez définir un <b>raccourci clavier</b> pour cette action.\n"
 "Cette applet vous donne également accès à certaines fonctionnalités de votre "
-"gestionnaire de fenêtre grâce à un <b>clic du milieu et le menu de l'icône</"
-"b>.\n"
+"gestionnaire de fenêtre grâce à un <b>clic du milieu et le menu de "
+"l'icône</b>.\n"
 "Vous pouvez définir dans la configuration de l'applet, le gestionnaire de "
 "fenêtre qui fourni le composite et choisir l'alternative à celui-ci."
 
@@ -375,7 +376,8 @@ msgstr "Le module a été ajouté, mais n'a pas pu être exécuté"
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "L'applet '%s' a été mise a jour et rechargée avec succès."
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -882,7 +884,8 @@ msgstr ""
 
 #: ../MeMenu/src/applet-notifications.c:31
 msgid "It seems that the Me-Menu is not installed on your system"
-msgstr "Il semblerait que \"Me-Menu\" ne soit pas installé sur votre système."
+msgstr ""
+"Il semblerait que \"Me-Menu\" ne soit pas installé sur votre système."
 
 #: ../Messaging-Menu/src/applet-init.c:34
 msgid "Messaging Menu"
@@ -1450,23 +1453,23 @@ msgstr ""
 
 #: ../Screenshot/src/applet-init.c:53
 msgid "Take a screenshot"
-msgstr ""
+msgstr "Prendre une capture d'écran"
 
 #: ../Screenshot/src/applet-notifications.c:49
 msgid "Screenshot"
-msgstr ""
+msgstr "Capture d'écran"
 
 #: ../Screenshot/src/applet-notifications.c:61
 msgid "Screenshot with options"
-msgstr ""
+msgstr "Capture d'écran avec options"
 
 #: ../Screenshot/src/applet-screenshot.c:163
 msgid "Screenshot from"
-msgstr ""
+msgstr "Capture du"
 
 #: ../Screenshot/src/applet-screenshot.c:331
 msgid "Unable to take a screenshot"
-msgstr ""
+msgstr "Impossible de prendre une capture d'écran"
 
 #: ../Screenshot/src/applet-screenshot.c:454 ../Cairo-Penguin/data/messages:19
 #: ../Clipper/data/messages:137 ../Disks/data/messages:143
@@ -1482,16 +1485,15 @@ msgstr "en secondes."
 
 #: ../Screenshot/src/applet-screenshot.c:455
 msgid "Delay"
-msgstr ""
+msgstr "Délai"
 
 #: ../Screenshot/src/applet-screenshot.c:477
 msgid "Grab the current window instead of the all screen"
-msgstr ""
+msgstr "Capturer la fenêtre courante au lieu de tout l'écran"
 
 #: ../Screenshot/src/applet-screenshot.c:478
-#, fuzzy
 msgid "Grab the current window"
-msgstr "Pour dessiner le bureau courant :"
+msgstr "Capturer la fenêtre courante"
 
 #: ../Screenshot/src/applet-screenshot.c:486
 #: ../Screenshot/src/applet-screenshot.c:495
@@ -1501,14 +1503,12 @@ msgid "Let empty to use the default one."
 msgstr "Laissez vide pour utiliser celle par défaut."
 
 #: ../Screenshot/src/applet-screenshot.c:496
-#, fuzzy
 msgid "Directory"
-msgstr "Historique"
+msgstr "Répertoire"
 
 #: ../Sound-Effects/src/applet-init.c:29
-#, fuzzy
 msgid "Sound Effects"
-msgstr "Effets d'icône"
+msgstr "Effets Sonores"
 
 #: ../Sound-Effects/src/applet-init.c:32
 msgid ""
@@ -1643,7 +1643,8 @@ msgstr "Température du coeur"
 #: ../System-Monitor/src/applet-nvidia.c:161
 #, c-format
 msgid "Alert! Graphic Card core temperature has reached %d°C"
-msgstr "Alerte ! La temmérature du coeur de la carte graphique a atteint %d°C"
+msgstr ""
+"Alerte ! La temmérature du coeur de la carte graphique a atteint %d°C"
 
 #: ../System-Monitor/src/applet-rame.c:123
 msgid "Gb"
@@ -1805,8 +1806,8 @@ msgid ""
 "The applet can either use the Ubuntu Sound-menu or the Alsa driver."
 msgstr ""
 "Cette applet vous permet de contrôler le volume du son depuis le dock.\n"
-"Faites un coup de molette vers le haut/bas sur l'icône pour augmenter/"
-"diminuer le volume.\n"
+"Faites un coup de molette vers le haut/bas sur l'icône pour "
+"augmenter/diminuer le volume.\n"
 "Cliquez sur l'icône pour afficher/cacher le contrôle du volume (vous pouvez "
 "spécifier un raccourci clavier pour cela)\n"
 "Le clic du milieu est utilisé pour activer/désactiver le son et le double-"
@@ -1962,8 +1963,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2177,7 +2178,8 @@ msgstr ""
 "Tapez juste CTRL+v pour coller l'URL n'importe où."
 
 #: ../dnd2share/src/applet-dnd2share.c:333
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Veuillez attendre que le chargement en cours soit terminé avant d'en "
 "commencer un nouveau."
@@ -2355,7 +2357,7 @@ msgstr "Indicateur de drop"
 
 #: ../dustbin/src/applet-init.c:30
 msgid "dustbin"
-msgstr "Poubelle"
+msgstr "corbeille"
 
 #: ../dustbin/src/applet-init.c:33
 msgid ""
@@ -2367,7 +2369,7 @@ msgstr ""
 "Cette applet gère la corbeille\n"
 "Vous pouvez jeter des fichiers et démonter des disques en les déposant sur "
 "l'icône de l'applet.\n"
-"Clic du milieu pour vider la poubelle."
+"Clic du milieu pour vider la corbeille."
 
 #: ../dustbin/src/applet-notifications.c:40
 msgid "You're about to delete all files in all dustbins. Sure ?"
@@ -2403,7 +2405,7 @@ msgstr "Afficher la Corbeille (clic gauche)"
 
 #: ../dustbin/src/applet-notifications.c:147
 msgid "Empty Trash"
-msgstr "Vider la poubelle"
+msgstr "Vider la corbeille"
 
 #: ../dustbin/src/applet-notifications.c:151
 msgid "Display dustbins information"
@@ -2507,8 +2509,8 @@ msgstr ""
 "Cette applet vous permet de contrôler l'agencement de votre clavier.\n"
 "\tElle peut aussi afficher le statut de NUM et CAPS lock\n"
 "\tClic gauche pour basculer vers l'agencement suivant,\n"
-"\tMolette vers le haut/bas pour sélectionner l'agencement précédent/"
-"suivant,\n"
+"\tMolette vers le haut/bas pour sélectionner l'agencement "
+"précédent/suivant,\n"
 "\tClic droit pour donner un accès à la liste des agencements disponibles."
 
 #: ../keyboard-indicator/src/applet-init.c:81
@@ -3034,15 +3036,12 @@ msgid ""
 msgstr ""
 
 #: ../netspeed/src/applet-notifications.c:48
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Interface '%s' doesn't seem to exist or is not readable.\n"
 "You may have to set up the interface you wish to monitor.\n"
 "Do you want to do it now?"
 msgstr ""
-"L'interface '%s' semble ne pas exister ou n'est pas lisible.\n"
-"Vous devez probablement choisir l'interface que vous voulez surveiller.\n"
-"Voulez-vous le faire maintenant ?"
 
 #: ../netspeed/src/applet-notifications.c:105
 msgid "Enable/disable network"
@@ -3321,8 +3320,8 @@ msgstr "Montrer la souris"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Ce plug-in dessine une animation autour du curseur quand il se trouve à "
 "l'intérieur d'un dock/desklet."
@@ -3375,9 +3374,8 @@ msgstr ""
 "Clic du milieu pour ouvrir le dossier des images."
 
 #: ../slider/src/applet-notifications.c:68
-#, fuzzy
 msgid "You need to define the images folder first."
-msgstr "Vous devez installer le moteur de données Zeitgeist"
+msgstr "Vous devez d'abord définir le dossier d'images."
 
 #: ../slider/src/applet-notifications.c:220
 msgid "Play"
@@ -3671,9 +3669,8 @@ msgid "Close this Tab"
 msgstr "Fermer cet onglet"
 
 #: ../tomboy/src/applet-backend-default.c:189
-#, fuzzy
 msgid "Title:"
-msgstr "Titre"
+msgstr "Titre :"
 
 #: ../tomboy/src/tomboy-draw.c:190
 msgid "Open all"
@@ -5109,7 +5106,8 @@ msgstr "Transparence du fond :"
 #: ../weather/data/messages:77 ../weblets/data/messages:67
 #: ../wifi/data/messages:75
 msgid "in pixels. Use this to adjust the left position of drawings."
-msgstr "en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
+msgstr ""
+"en pixels. Utilisez-le pour ajuster la position à gauche des dessins."
 
 #: ../Clipper/data/messages:69 ../Composite-Manager/data/messages:67
 #: ../Disks/data/messages:73 ../Doncky/data/messages:69
@@ -5209,7 +5207,8 @@ msgstr "Décalage en haut :"
 #: ../weather/data/messages:85 ../weblets/data/messages:75
 #: ../wifi/data/messages:83
 msgid "in pixels. Use this to adjust the right position of drawings."
-msgstr "en pixels. Utilisez-le pour ajuster la position à droite des dessins."
+msgstr ""
+"en pixels. Utilisez-le pour ajuster la position à droite des dessins."
 
 #: ../Clipper/data/messages:77 ../Composite-Manager/data/messages:75
 #: ../Disks/data/messages:81 ../Doncky/data/messages:77
@@ -5424,8 +5423,8 @@ msgstr "Si oui, nombre de sélection d'objets :"
 msgid ""
 "When you click on an item, its content will become accessible with CTRL+v"
 msgstr ""
-"Lorsque vous cliquez sur un objet, son contenu deviendra accessible avec CTRL"
-"+v"
+"Lorsque vous cliquez sur un objet, son contenu deviendra accessible avec "
+"CTRL+v"
 
 #: ../Clipper/data/messages:117
 msgid "Paste into Clipboard?"
@@ -5619,7 +5618,8 @@ msgstr ""
 
 #: ../Dbus/data/messages:21
 msgid "Let extern applications modify the icons' image?"
-msgstr "Autoriser les applications externes à modifier les images des icônes ?"
+msgstr ""
+"Autoriser les applications externes à modifier les images des icônes ?"
 
 #: ../Dbus/data/messages:23
 msgid "Let extern applications animate icons?"
@@ -5628,10 +5628,12 @@ msgstr "Autoriser les applications externes à animer les icônes ?"
 #: ../Dbus/data/messages:25
 msgid "The dock will catch DBus signals to Launcher API and act as Unity"
 msgstr ""
+"Le dock capturera les signaux DBus à destination de l'API Launcher et agira "
+"comme Unity"
 
 #: ../Dbus/data/messages:27
 msgid "Launch the Launcher API daemon?"
-msgstr ""
+msgstr "Lancer le démon de l'API Launcher ?"
 
 #: ../Disks/data/messages:5
 msgid "Name of the container it belongs to:"
@@ -5869,7 +5871,8 @@ msgid "Background"
 msgstr "Fond :"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Vous pouvez avoir plus d'arrières plan attractifs en utilisant les "
 "décorations des Desklets"
@@ -6745,52 +6748,46 @@ msgstr "Proposer des moteurs de recherche du web?"
 
 #: ../Scooby-Do/data/messages:109
 msgid "It can launch commands and even do some calculations."
-msgstr "Il est possible d'exécuter des commandes et même des faire des calculs"
+msgstr ""
+"Il est possible d'exécuter des commandes et même des faire des calculs"
 
 #: ../Screenshot/data/messages:91
-#, fuzzy
 msgid "Shortkey to take a screenshot"
-msgstr "Raccourci clavier pour verrouiller l'écran"
+msgstr "Raccourci clavier pour prendre une capture d'écran :"
 
 #: ../Screenshot/data/messages:93
-#, fuzzy
 msgid "Save image in"
-msgstr "ouvrir l'image"
+msgstr "Sauvegarder les images dans le répertoire :"
 
 #: ../Sound-Effects/data/messages:3
-#, fuzzy
 msgid "Play a sound on click ?"
-msgstr "Utiliser un son :"
+msgstr "Jouer un son au clic ?"
 
 #: ../Sound-Effects/data/messages:5 ../Sound-Effects/data/messages:11
 #: ../Sound-Effects/data/messages:17
 msgid "A .wav file encoded in PCM."
-msgstr ""
+msgstr "Un fichier .wav encodé en PCM."
 
 #: ../Sound-Effects/data/messages:7 ../Sound-Effects/data/messages:13
 #: ../Sound-Effects/data/messages:19
-#, fuzzy
 msgid "Sound file"
-msgstr "Ouvrir le fichier"
+msgstr "Fichier de son"
 
 #: ../Sound-Effects/data/messages:9
-#, fuzzy
 msgid "Play a sound on middle click ?"
-msgstr "Jouer/Pause au clic, Suivant au clic-milieu"
+msgstr "Jouer un son au clic du milieu ?"
 
 #: ../Sound-Effects/data/messages:15
-#, fuzzy
 msgid "Play a sound on mouse hover ?"
-msgstr "Ajouter du flou sur les mouvements de la souris ?"
+msgstr "Jouer un son lorsque le pointeur de la souris recouvre une icône ?"
 
 #: ../Sound-Effects/data/messages:21
-#, fuzzy
 msgid "Volume:"
-msgstr "Volume"
+msgstr "Volume :"
 
 #: ../Sound-Effects/data/messages:25
 msgid "High"
-msgstr ""
+msgstr "Élevé"
 
 #: ../Status-Notifier/data/messages:13
 msgid "Image's filename :"
@@ -7459,8 +7456,8 @@ msgstr "Script personnel pour l'upload des fichiers :"
 #: ../dnd2share/data/messages:179
 msgid "Leave empty to upload files into '~/Dropbox/Public'."
 msgstr ""
-"Laissez vide pour uploader les fichiers dans le répertoire '~/Dropbox/"
-"Public'."
+"Laissez vide pour uploader les fichiers dans le répertoire "
+"'~/Dropbox/Public'."
 
 #: ../dnd2share/data/messages:181
 msgid "Path of the DropBox folder :"
@@ -7669,7 +7666,8 @@ msgid "Space between icons:"
 msgstr "Espacement entre les icônes :"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 signifie que la vague est totalement plate, 1 que la vague est identique "
 "aux autres vues."
@@ -7893,7 +7891,8 @@ msgid "Colours"
 msgstr "Couleurs"
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 "Les couleurs vont être légèrement altérées, donc, vous pourriez avoir à les "
 "changer."
@@ -8077,9 +8076,8 @@ msgid "smaller"
 msgstr "Plus petit"
 
 #: ../keyboard-indicator/data/messages:131
-#, fuzzy
 msgid "Number of letters to draw on the icon."
-msgstr "Nombre de lignes pour y afficher les éléments :"
+msgstr "Nombre de lettres à dessiner sur l'icône."
 
 #: ../logout/data/messages:91
 msgid "Action"
@@ -8162,8 +8160,10 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Nom d'une image pour les nouveaux e-mails :"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
-msgstr "Si coché, le nombre de courriel sera affiché me si il n'y en a aucun."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
+msgstr ""
+"Si coché, le nombre de courriel sera affiché me si il n'y en a aucun."
 
 #: ../mail/data/messages:117
 msgid "Show '0' if there is no mail?"
@@ -8228,7 +8228,8 @@ msgstr "Application mail préférée à exécuter au clic gauche"
 
 #: ../mail/data/messages:151
 msgid "Add a mail account (you've to launch the applet)"
-msgstr "Ajouter un compte e-mail (vous devez activer l'applet pour continuer)"
+msgstr ""
+"Ajouter un compte e-mail (vous devez activer l'applet pour continuer)"
 
 #: ../mail/data/messages:153
 msgid "The new account will be created with the specified type and name."
@@ -8247,7 +8248,8 @@ msgid "Blur amount:"
 msgstr "Quantité de flou :"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr "Laissez vide pour afficher le nom du lecteur courant."
 
 #: ../musicPlayer/data/messages:11
@@ -8433,9 +8435,8 @@ msgid "Name of the image for the 'pause' icon :"
 msgstr "Nom de l'image 'Pause' :"
 
 #: ../netspeed/data/messages:145
-#, fuzzy
 msgid "By default all interfaces will be monitored."
-msgstr "Par défaut ce sera 'eth0'."
+msgstr "Par défaut, toutes les interfaces réseaux seront surveillées."
 
 #: ../netspeed/data/messages:147
 msgid "interface:"
@@ -9151,8 +9152,8 @@ msgid ""
 msgstr ""
 "Ecrire le format de date que vous utilisez couramment dans vos notes. La "
 "syntaxe est l'une de 'strftime' : %d pour le jour, %m pour le mois, %y pour "
-"l'année (2 chiffres), etc. Laissez vide pour utilisez celui par défaut (%d/"
-"%m/%y)."
+"l'année (2 chiffres), etc. Laissez vide pour utilisez celui par défaut "
+"(%d/%m/%y)."
 
 #: ../tomboy/data/messages:141
 msgid "Date format to search for :"
@@ -9257,7 +9258,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Position de la barre de défilement verticale"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Cela vous permet de cliquer gauche sur le desklet pour afficher le pop-up du "
 "menu de Cairo-Dock"
