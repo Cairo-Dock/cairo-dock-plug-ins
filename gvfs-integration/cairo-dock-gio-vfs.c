@@ -1216,7 +1216,7 @@ static void _gio_vfs_mount_callback (gpointer pObject, GAsyncResult *res, gpoint
 	gboolean bSuccess;
 	if (GPOINTER_TO_INT (data[1]) == 1)
 		bSuccess = (g_file_mount_mountable_finish (G_FILE (pObject), res, &erreur) != NULL);
-		//bSuccess = (g_volume_mount_finish (G_VOLUME (pObject), res, &erreur));
+		//bSuccess = g_file_mount_enclosing_volume_finish (G_FILE (pObject), res, &erreur);
 	else if (GPOINTER_TO_INT (data[1]) == 0)
 		#if GLIB_CHECK_VERSION (2, 22, 0)
 		bSuccess = g_mount_unmount_with_operation_finish (G_MOUNT (pObject), res, &erreur);
@@ -1257,12 +1257,24 @@ static void cairo_dock_gio_vfs_mount (const gchar *cURI, int iVolumeID, CairoDoc
 	data[2] = (cTargetURI ? g_path_get_basename (cTargetURI) : g_strdup (cURI));
 	data[3] = g_strdup (cURI);
 	data[4] = user_data;
+	
+	GMountOperation *mount_op = gtk_mount_operation_new (GTK_WINDOW (g_pPrimaryContainer->pWidget));
+	g_mount_operation_set_password_save (mount_op, G_PASSWORD_SAVE_FOR_SESSION);
+	/*g_file_mount_enclosing_volume (pFile,
+		G_MOUNT_MOUNT_NONE,
+		mount_op,
+		NULL,
+		(GAsyncReadyCallback) _gio_vfs_mount_callback,
+		data);*/
 	g_file_mount_mountable  (pFile,
 		G_MOUNT_MOUNT_NONE,
-		NULL,
+		mount_op,
 		NULL,
 		(GAsyncReadyCallback) _gio_vfs_mount_callback,
 		data);
+	// unref mount_op here - g_file_mount_enclosing_volume() does ref for itself
+	g_object_unref (mount_op);
+	g_object_unref (pFile);
 	g_free (cTargetURI);
 }
 
