@@ -68,7 +68,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 {
 	gchar *cURI = (g_strdup (cBaseURI));
 	cairo_dock_remove_html_spaces (cURI);
-	//g_print (" * event %d on '%s'\n", iEventType, cURI);
+	g_print (" * event %d on '%s'\n", iEventType, cURI);
 	
 	switch (iEventType)
 	{
@@ -87,6 +87,8 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 			//g_print (" %s will be removed\n", pConcernedIcon->cName);
 			
 			CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pConcernedIcon);
+			g_free (myData.cLastDeletedUri);
+			myData.cLastDeletedUri = g_strdup (cURI);
 		}
 		break ;
 		
@@ -132,6 +134,8 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 				4000,
 				NULL,  // son icone n'est pas encore chargee
 				pNewIcon->cName);
+			g_free (myData.cLastCreatedUri);
+			myData.cLastCreatedUri = g_strdup (cURI);
 		}
 		break ;
 		

@@ -84,6 +84,8 @@ struct _AppletData {
 	gchar *cNetworkURI;
 	gchar *cBookmarksURI;
 	CairoDockTask *pDiskTask;  // tache non threadee.
+	gchar *cLastCreatedUri;
+	gchar *cLastDeletedUri;
 	} ;
 
 

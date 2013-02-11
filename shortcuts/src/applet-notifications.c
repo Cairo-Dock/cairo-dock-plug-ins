@@ -32,12 +32,12 @@ static void _on_volume_mounted (gboolean bMounting, gboolean bSuccess, const gch
 	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
 	
-	Icon *pIcon = cairo_dock_get_icon_with_base_uri (CD_APPLET_MY_ICONS_LIST, cURI);
-	CD_APPLET_LEAVE_IF_FAIL (pIcon != NULL);
-	
 	//g_print ("%s (%s , %d)\n", __func__, cURI, bSuccess);
 	if (! bSuccess)  // en cas de montage reussi, on aura un dialogue via les evenements.
 	{
+		Icon *pIcon = cairo_dock_get_icon_with_base_uri (CD_APPLET_MY_ICONS_LIST, cURI);
+		CD_APPLET_LEAVE_IF_FAIL (pIcon != NULL);
+		
 		cairo_dock_remove_dialog_if_any (pIcon);
 		cairo_dock_show_temporary_dialog_with_icon_printf (
 			bMounting ? _("failed to mount %s") : _("Failed to unmount %s"),
@@ -55,8 +55,12 @@ static void _open_on_mount (gboolean bMounting, gboolean bSuccess, const gchar *
 	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
 	
-	//g_print ("%s (%s)\n", __func__, cURI);
 	Icon *pIcon = cairo_dock_get_icon_with_base_uri (CD_APPLET_MY_ICONS_LIST, cURI);
+	if (pIcon == NULL && g_strcmp0 (myData.cLastDeletedUri, cURI) == 0 && myData.cLastCreatedUri != NULL)  // when mouting a mount point (for instance a file mounted as a loop device), the associated .volume (its actual URI) might be deleted, and a new one is created for the mounted volume (therefore the icon is deleted and a new one is created, with another URI). So we lose the track of the initial icon. That's why we use a trick: we remember the last created volume; it's very likely this one.
+	{
+		cd_debug ("no icon for '%s', trying with '%s'", cURI, myData.cLastCreatedUri);
+		pIcon = cairo_dock_get_icon_with_base_uri (CD_APPLET_MY_ICONS_LIST, myData.cLastCreatedUri);
+	}
 	CD_APPLET_LEAVE_IF_FAIL (pIcon != NULL);
 	
 	if (bSuccess)  // montage reussi.

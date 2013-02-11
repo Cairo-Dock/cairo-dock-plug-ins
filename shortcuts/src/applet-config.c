@@ -80,4 +80,6 @@ void cd_shortcuts_reset_all_datas (CairoDockModuleInstance *myApplet)
 
 CD_APPLET_RESET_DATA_BEGIN
 	cd_shortcuts_reset_all_datas (myApplet);
+	g_free (myData.cLastCreatedUri);
+	g_free (myData.cLastDeletedUri);
 CD_APPLET_RESET_DATA_END
