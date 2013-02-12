@@ -333,6 +333,10 @@ void cd_shortcuts_start (CairoDockModuleInstance *myApplet)
 		(CairoDockUpdateSyncFunc) cd_shortcuts_build_shortcuts_from_data,
 		(GFreeFunc) _free_shared_memory,
 		pSharedMemory);
-	cairo_dock_launch_task (myData.pTask);
+
+	if (cairo_dock_is_loading ())
+		cairo_dock_launch_task_delayed (myData.pTask, 1000);
+	else
+		cairo_dock_launch_task (myData.pTask);
 }
 
