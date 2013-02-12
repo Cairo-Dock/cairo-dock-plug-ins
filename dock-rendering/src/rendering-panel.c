@@ -411,7 +411,7 @@ static void cd_render_optimized (cairo_t *pCairoContext, CairoDock *pDock, GdkRe
 			fXLeft = icon->fDrawX + icon->fScale + 1;
 			fXRight = icon->fDrawX + (icon->fWidth - 1) * icon->fScale * icon->fWidthFactor - 1;
 
-			if (fXLeft < fXMax && fXRight > fXMin)
+			if (fXLeft < fXMax && fXRight > fXMin && ! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))
 			{
 				cairo_save (pCairoContext);
 				//g_print ("dessin optimise de %s [%.2f -> %.2f]\n", icon->cName, fXLeft, fXRight);
