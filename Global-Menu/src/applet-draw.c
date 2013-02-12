@@ -27,21 +27,21 @@
 #include "applet-struct.h"
 #include "applet-draw.h"
 
-#define _compute_alpha(pImage, iAnimIter, bAlpha) (bAlpha ? \
-		.6 : \
+#define _compute_alpha(pImage, iAnimIter, bEnabled) (bEnabled ? \
 		cairo_dock_image_buffer_is_animated (pImage) ? \
 			1. : \
-			1. - .4 * sin (G_PI * iAnimIter / (CD_ANIM_STEPS - 1)))
-static void _apply_button_opengl (CairoDockImageBuffer *pImage, int x, int y, gboolean bAlpha, gint iAnimIter)
+			1. - .4 * sin (G_PI * iAnimIter / (CD_ANIM_STEPS - 1))\
+		: .6)
+static void _apply_button_opengl (CairoDockImageBuffer *pImage, int x, int y, gboolean bEnabled, gint iAnimIter)
 {
-	double fAlpha = _compute_alpha (pImage, iAnimIter, bAlpha);
+	double fAlpha = _compute_alpha (pImage, iAnimIter, bEnabled);
 	_cairo_dock_set_alpha (fAlpha);
 	cairo_dock_apply_image_buffer_texture_with_offset (pImage, x, y);
 }
 
-static void _apply_button_cairo (CairoDockImageBuffer *pImage, int x, int y, gboolean bAlpha, gint iAnimIter)
+static void _apply_button_cairo (CairoDockImageBuffer *pImage, int x, int y, gboolean bEnabled, gint iAnimIter)
 {
-	double fAlpha = _compute_alpha (pImage, iAnimIter, bAlpha);
+	double fAlpha = _compute_alpha (pImage, iAnimIter, bEnabled);
 	cairo_dock_apply_image_buffer_surface_with_offset (pImage, myDrawContext,
 		x, y,
 		fAlpha);
@@ -123,9 +123,9 @@ static gboolean cd_app_menu_render_step_opengl (Icon *pIcon, CairoDockModuleInst
 			y -= w;
 		
 		if (myData.bReversedButtonsOrder)
-			_apply_button_opengl (&myData.closeButton, x, y, myData.bCanClose, myData.iAnimIterClose);
+			_apply_button_opengl (&myData.closeButton, x, y, pAppli && myData.bCanClose, myData.iAnimIterClose);
 		else
-			_apply_button_opengl (&myData.minimizeButton, x, y, myData.bCanMinimize, myData.iAnimIterMin);
+			_apply_button_opengl (&myData.minimizeButton, x, y, pAppli && myData.bCanMinimize, myData.iAnimIterMin);
 
 		// restore/maximize button
 		if (iWidth > iHeight)  // horizontal alignment
@@ -134,13 +134,13 @@ static gboolean cd_app_menu_render_step_opengl (Icon *pIcon, CairoDockModuleInst
 			y -= w;
 
 		if (myData.bReversedButtonsOrder)
-			_apply_button_opengl (&myData.minimizeButton, x, y, myData.bCanMinimize, myData.iAnimIterMin);
+			_apply_button_opengl (&myData.minimizeButton, x, y, pAppli && myData.bCanMinimize, myData.iAnimIterMin);
 		else
 		{
 			if (pAppli && pAppli->bIsMaximized)
-				_apply_button_opengl (&myData.restoreButton, x, y, myData.bCanMaximize, myData.iAnimIterRestore);
+				_apply_button_opengl (&myData.restoreButton, x, y, pAppli && myData.bCanMaximize, myData.iAnimIterRestore);
 			else
-				_apply_button_opengl (&myData.maximizeButton, x, y, myData.bCanMaximize, myData.iAnimIterMax);
+				_apply_button_opengl (&myData.maximizeButton, x, y, pAppli && myData.bCanMaximize, myData.iAnimIterMax);
 		}
 		
 		// close button
@@ -152,12 +152,12 @@ static gboolean cd_app_menu_render_step_opengl (Icon *pIcon, CairoDockModuleInst
 		if (myData.bReversedButtonsOrder)
 		{
 			if (pAppli && pAppli->bIsMaximized)
-				_apply_button_opengl (&myData.restoreButton, x, y, myData.bCanMaximize, myData.iAnimIterRestore);
+				_apply_button_opengl (&myData.restoreButton, x, y, pAppli && myData.bCanMaximize, myData.iAnimIterRestore);
 			else
-				_apply_button_opengl (&myData.maximizeButton, x, y, myData.bCanMaximize, myData.iAnimIterMax);
+				_apply_button_opengl (&myData.maximizeButton, x, y, pAppli && myData.bCanMaximize, myData.iAnimIterMax);
 		}
 		else
-			_apply_button_opengl (&myData.closeButton, x, y, myData.bCanClose, myData.iAnimIterClose);
+			_apply_button_opengl (&myData.closeButton, x, y, pAppli && myData.bCanClose, myData.iAnimIterClose);
 	}
 	_cairo_dock_disable_texture ();
 	
@@ -217,11 +217,7 @@ static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, CairoDockModuleInsta
 	}
 	if (pPrevImage && pPrevImage->pSurface)
 	{
-		cairo_save (myDrawContext);
-		cairo_scale (myDrawContext, (double)w / pPrevImage->iWidth, (double)h / pPrevImage->iHeight);
-		cairo_set_source_surface (myDrawContext, pPrevImage->pSurface, x, y);
-		cairo_paint_with_alpha (myDrawContext, 1-f);
-		cairo_restore (myDrawContext);
+		cairo_dock_apply_image_buffer_surface_at_size (pPrevImage, myDrawContext, w, h, x, y, 1-f);
 	}
 	
 	Icon *pAppli = cairo_dock_get_icon_with_Xid (myData.iCurrentWindow);
@@ -231,11 +227,7 @@ static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, CairoDockModuleInsta
 	}
 	if (pImage && pImage->pSurface)
 	{
-		cairo_save (myDrawContext);
-		cairo_scale (myDrawContext, (double)w / pImage->iWidth, (double)h / pImage->iHeight);
-		cairo_set_source_surface (myDrawContext, pImage->pSurface, x, y);
-		cairo_paint_with_alpha (myDrawContext, f);
-		cairo_restore (myDrawContext);
+		cairo_dock_apply_image_buffer_surface_at_size (pImage, myDrawContext, w, h, x, y, f);
 	}
 	
 	// draw window buttons
@@ -248,9 +240,9 @@ static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, CairoDockModuleInsta
 			y += h;
 		
 		if (myData.bReversedButtonsOrder)
-			_apply_button_cairo (&myData.closeButton, x, y, !myData.bCanClose, myData.iAnimIterClose);
+			_apply_button_cairo (&myData.closeButton, x, y, pAppli && myData.bCanClose, myData.iAnimIterClose);
 		else
-			_apply_button_cairo (&myData.minimizeButton, x, y, !myData.bCanMinimize, myData.iAnimIterMin);
+			_apply_button_cairo (&myData.minimizeButton, x, y, pAppli && myData.bCanMinimize, myData.iAnimIterMin);
 		
 		// restore/maximize button
 		if (iWidth > iHeight)  // horizontal alignment
@@ -259,13 +251,13 @@ static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, CairoDockModuleInsta
 			y += h;
 
 		if (myData.bReversedButtonsOrder)
-			_apply_button_cairo (&myData.minimizeButton, x, y, !myData.bCanMinimize, myData.iAnimIterMin);
+			_apply_button_cairo (&myData.minimizeButton, x, y, pAppli && myData.bCanMinimize, myData.iAnimIterMin);
 		else
 		{
 			if (pAppli && pAppli->bIsMaximized)
-				_apply_button_cairo (&myData.maximizeButton, x, y, !myData.bCanMaximize, myData.iAnimIterMax);
+				_apply_button_cairo (&myData.maximizeButton, x, y, pAppli && myData.bCanMaximize, myData.iAnimIterMax);
 			else
-				_apply_button_cairo (&myData.restoreButton, x, y, !myData.bCanMaximize, myData.iAnimIterRestore);
+				_apply_button_cairo (&myData.restoreButton, x, y, pAppli && myData.bCanMaximize, myData.iAnimIterRestore);
 		}
 		
 		// close button
@@ -277,12 +269,12 @@ static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, CairoDockModuleInsta
 		if (myData.bReversedButtonsOrder)
 		{
 			if (pAppli && pAppli->bIsMaximized)
-				_apply_button_cairo (&myData.maximizeButton, x, y, !myData.bCanMaximize, myData.iAnimIterMax);
+				_apply_button_cairo (&myData.maximizeButton, x, y, pAppli && myData.bCanMaximize, myData.iAnimIterMax);
 			else
-				_apply_button_cairo (&myData.restoreButton, x, y, !myData.bCanMaximize, myData.iAnimIterRestore);
+				_apply_button_cairo (&myData.restoreButton, x, y, pAppli && myData.bCanMaximize, myData.iAnimIterRestore);
 		}
 		else
-			_apply_button_cairo (&myData.closeButton, x, y, !myData.bCanClose, myData.iAnimIterClose);
+			_apply_button_cairo (&myData.closeButton, x, y, pAppli && myData.bCanClose, myData.iAnimIterClose);
 	}
 	
 	CD_APPLET_FINISH_DRAWING_MY_ICON_CAIRO;
@@ -387,7 +379,6 @@ void cd_app_menu_redraw_buttons (void)
 	{
 		cd_app_menu_render_step_cairo (myIcon, myApplet);
 	}
-	CD_APPLET_REDRAW_MY_ICON;
 }
 
 
