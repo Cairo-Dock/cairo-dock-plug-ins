@@ -57,14 +57,19 @@ GtkWidget * create_fake_menu (GMenuTreeDirectory *directory)
 	g_signal_connect (menu, "show",
 			  G_CALLBACK (submenu_to_display), NULL);
 
-	idle_id = g_idle_add_full (G_PRIORITY_LOW,
-				   submenu_to_display_in_idle,
-				   menu,
-				   NULL);
-	g_object_set_data_full (G_OBJECT (menu),
-				"panel-menu-idle-id",
-				GUINT_TO_POINTER (idle_id),
-				remove_submenu_to_display_idle);
+	if (myData.bLoaded)
+	{
+		idle_id = g_idle_add_full (G_PRIORITY_LOW,
+					submenu_to_display_in_idle,
+					menu,
+					NULL);
+		g_object_set_data_full (G_OBJECT (menu),
+					"panel-menu-idle-id",
+					GUINT_TO_POINTER (idle_id),
+					remove_submenu_to_display_idle);
+	}
+	else
+		submenu_to_display_in_idle (menu);
 
 	return menu;
 }
@@ -72,7 +77,7 @@ GtkWidget * create_fake_menu (GMenuTreeDirectory *directory)
 void image_menu_destroy (GtkWidget *image, gpointer *data)
 {
 	myData.image_menu_items = g_slist_remove (myData.image_menu_items, image);
-	if (myConfig.bLoadIconsAtStartup && ! myData.bLoaded && myData.pPreloadedImagesList && data)
+	if (myConfig.bLoadIconsAtStartup && ! myData.bIconsLoaded && myData.pPreloadedImagesList && data)
 	{ // we want to preload icon, the task has not been launched, the list is not empty and we receive data
 		myData.pPreloadedImagesList = g_list_remove (myData.pPreloadedImagesList, data);
 		g_free (data);
@@ -274,7 +279,7 @@ void panel_load_menu_image_deferred (GtkWidget   *image_menu_item,
 
 	// pre-load all icons
 	gpointer *data = NULL;
-	if (myConfig.bLoadIconsAtStartup && ! myData.bLoaded)
+	if (myConfig.bLoadIconsAtStartup && ! myData.bIconsLoaded)
 	{
 		data = g_new0 (gpointer, 2);
 		data[0] = image;
@@ -656,14 +661,19 @@ GtkWidget * create_applications_menu (const char *menu_file,
 	g_signal_connect (menu, "show",
 			  G_CALLBACK (submenu_to_display), NULL);
 
-	idle_id = g_idle_add_full (G_PRIORITY_LOW,
-				   submenu_to_display_in_idle,
-				   menu,
-				   NULL);
-	g_object_set_data_full (G_OBJECT (menu),
-				"panel-menu-idle-id",
-				GUINT_TO_POINTER (idle_id),
-				remove_submenu_to_display_idle);
+	if (myData.bLoaded)
+	{
+		idle_id = g_idle_add_full (G_PRIORITY_LOW,
+					submenu_to_display_in_idle,
+					menu,
+					NULL);
+		g_object_set_data_full (G_OBJECT (menu),
+					"panel-menu-idle-id",
+					GUINT_TO_POINTER (idle_id),
+					remove_submenu_to_display_idle);
+	}
+	else // we are in a thread
+		submenu_to_display_in_idle (menu);
 
 	gmenu_tree_add_monitor (tree,
 			       (GMenuTreeChangedFunc) handle_gmenu_tree_changed,

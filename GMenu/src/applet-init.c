@@ -53,8 +53,8 @@ static gboolean _cd_gmenu_end_update (CairoDockModuleInstance *myApplet)
 
 static void _cd_gmenu_load_images (CairoDockModuleInstance *myApplet)
 {
-	myData.bLoaded = TRUE;
-	cd_debug ("Task launched (%d images have to be pre-loaded)", g_list_length (myData.pPreloadedImagesList));
+	myData.bIconsLoaded = TRUE;
+	cd_debug ("Task launched to pre-load images");
 	gpointer *pData;
 	GtkWidget *pImage;
 	IconToLoad *pIcon;
@@ -86,6 +86,23 @@ void cd_gmenu_preload_icon (void)
 	}
 }
 
+static gboolean _cd_gmenu_create_main_menu_end (CairoDockModuleInstance *myApplet)
+{
+	myData.bLoaded = TRUE;
+	cairo_dock_discard_task (myData.pTask);
+	myData.pTask = NULL;
+
+	cd_gmenu_preload_icon (); // preload menu if it's needed
+	return FALSE;
+}
+
+static void _cd_gmenu_create_main_menu_async (CairoDockModuleInstance *myApplet)
+{
+	if (myConfig.bShowRecent)
+		cd_menu_init_recent (myApplet);
+	myData.pMenu = create_main_menu (myApplet);
+}
+
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
 	if (myDesklet)
@@ -95,16 +112,18 @@ CD_APPLET_INIT_BEGIN
 	
 	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 	
-	if (myConfig.bShowRecent)
-	{
-		cd_menu_init_recent (myApplet);
-	}
 	myData.iPanelDefaultMenuIconSize = cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR); // 24 by default
-	myData.pMenu = create_main_menu (myApplet);
+	// myData.pMenu = create_main_menu (myApplet);
+	myData.pTask = cairo_dock_new_task (0,
+			(CairoDockGetDataAsyncFunc) _cd_gmenu_create_main_menu_async,
+			(CairoDockUpdateSyncFunc) _cd_gmenu_create_main_menu_end,
+			myApplet);  // 0 <=> one shot task.
+	if (cairo_dock_is_loading ())
+		cairo_dock_launch_task_delayed (myData.pTask, 0); // 0 <=> g_idle
+	else
+		cairo_dock_launch_task (myData.pTask);
 	myData.iShowQuit = myConfig.iShowQuit;
 
-	cd_gmenu_preload_icon ();
-	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -164,6 +183,7 @@ CD_APPLET_RELOAD_BEGIN
 		if (myData.pMenu == NULL)
 		{
 			myData.pMenu = create_main_menu (myApplet);
+			cd_gmenu_preload_icon ();
 		}
 		else  // menu deja existant, on rajoute/enleve les recents a la main.
 		{

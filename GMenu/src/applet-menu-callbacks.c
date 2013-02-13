@@ -44,11 +44,10 @@ void handle_gmenu_tree_changed (GMenuTree *tree,
 		gtk_widget_destroy (myData.pMenu);
 		myData.pMenu = NULL;
 		myData.pRecentMenuItem = NULL;
-
-		cd_gmenu_preload_icon ();
 	}
 	
 	myData.pMenu = create_main_menu (myApplet);
+	cd_gmenu_preload_icon ();
 }
 
 void remove_gmenu_tree_monitor (GtkWidget *menu,
@@ -514,8 +513,8 @@ void image_menu_shown (GtkWidget *image, gpointer data)
 	}
 	if (load_icons_id == 0)
 	{
-		if (myConfig.bLoadIconsAtStartup && myData.bLoaded && myData.pTask)
-		{  // bLoaded when the thread is started and pTask is null at the end of the thread
+		if (myConfig.bLoadIconsAtStartup && myData.bIconsLoaded && myData.pTask)
+		{  // bIconsLoaded when the thread is started and pTask is null at the end of the thread
 			load_icons_id = 1;
 			while ((load_icons_id = load_icons_handler (NULL)) && myApplet); // load it in the thread
 		}
