@@ -162,3 +162,5 @@ mixer element 2 =
 
 #s[Default] Specific command to run to show an advanced sound mixer:
 show mixer = 
+
+indicator = libsoundmenu.so

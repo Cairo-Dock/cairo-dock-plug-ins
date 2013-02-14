@@ -29,7 +29,7 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "common-defs.h"
 #include <libido/idoscalemenuitem.h>
 ///#include "indicator-sound.h"
-#include "applet-backend-sound-menu.h"
+#include "applet-backend-sound-menu-old.h"
 
 typedef struct _VolumeWidgetPrivate VolumeWidgetPrivate;
 

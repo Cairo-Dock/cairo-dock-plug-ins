@@ -73,6 +73,10 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cDefaultIcon = CD_CONFIG_GET_STRING ("Configuration", "default icon");
 	myConfig.cBrokenIcon = CD_CONFIG_GET_STRING ("Configuration", "broken icon");
 	myConfig.cMuteIcon = CD_CONFIG_GET_STRING ("Configuration", "mute icon");
+
+	#ifdef INDICATOR_SOUNDMENU_WITH_IND3
+	myConfig.cIndicatorName = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "indicator", "libsoundmenu.so");
+	#endif
 CD_APPLET_GET_CONFIG_END
 
 
@@ -86,6 +90,9 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cBrokenIcon);
 	g_free (myConfig.cMuteIcon);
 	g_free (myConfig.cGThemePath);
+	#ifdef INDICATOR_SOUNDMENU_WITH_IND3
+	g_free (myConfig.cIndicatorName);
+	#endif
 CD_APPLET_RESET_CONFIG_END
 
 

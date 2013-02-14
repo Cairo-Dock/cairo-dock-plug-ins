@@ -385,12 +385,15 @@ if (enable-alsa-mixer)
 		set (MODULES_MISSING "${MODULES_MISSING} alsa")
 	else()
 		set (GETTEXT_ALSA_MIXER ${GETTEXT_PLUGINS})
-		set (VERSION_ALSA_MIXER "2.1.3")
+		set (VERSION_ALSA_MIXER "2.1.4")
 		set (PACKAGE_ALSA_MIXER "cd-AlsaMixer")
 		set (with_alsa yes)
 		set (alsa_mixerdatadir "${pluginsdatadir}/AlsaMixer")
 		configure_file (${CMAKE_CURRENT_SOURCE_DIR}/alsaMixer/data/AlsaMixer.conf.in ${CMAKE_CURRENT_BINARY_DIR}/alsaMixer/data/AlsaMixer.conf)
-		if (with_indicator AND IDO_FOUND
+		if (with_indicator3)
+			set (INDICATOR_SOUNDMENU_WITH_IND3 TRUE) # If it's supported, it's maybe better to use it
+			set (with_soundmenu yes)
+		elseif (with_indicator AND IDO_FOUND
 			AND "${INDICATOR_OLD_NAMES}" STREQUAL "0")
 			set (with_soundmenu yes)
 		endif()

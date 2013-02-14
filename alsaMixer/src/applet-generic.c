@@ -24,7 +24,11 @@
 
 #include "applet-struct.h"
 #include "applet-backend-alsamixer.h"
+#ifdef INDICATOR_SOUNDMENU_WITH_IND3
 #include "applet-backend-sound-menu.h"
+#elif defined SOUND_SERVICE_SUPPORT // OLD
+#include "applet-backend-sound-menu-old.h"
+#endif
 #include "applet-generic.h"
 
 
@@ -67,7 +71,7 @@ void cd_reload (void)
 
 void cd_start (void)
 {
-	#ifdef SOUND_SERVICE_SUPPORT
+	#if defined INDICATOR_SOUNDMENU_WITH_IND3 || defined SOUND_SERVICE_SUPPORT
 	cd_mixer_connect_to_sound_service ();  // connect to the sound service, it will fall back to alsa if it's not available.
 	#else
 	cd_mixer_init_alsa ();

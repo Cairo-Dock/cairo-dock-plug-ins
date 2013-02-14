@@ -28,7 +28,7 @@
 #include <gdk/gdkkeysyms.h>
 
 #include "applet-struct.h"
-#include "applet-backend-sound-menu.h"  // update_accessible_desc
+#include "applet-backend-sound-menu-old.h"  // update_accessible_desc
 #include "transport-widget.h"
 #include "volume-widget.h"
 #include "voip-input-widget.h"

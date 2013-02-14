@@ -23,9 +23,6 @@
 #include <cairo-dock.h>
 
 
-void update_accessible_desc (double new_value);
-
-
 void cd_mixer_connect_to_sound_service (void);
 
 

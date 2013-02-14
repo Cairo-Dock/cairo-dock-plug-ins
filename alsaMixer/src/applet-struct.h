@@ -25,7 +25,9 @@
 #define _STRUCT_TIMEVAL
 #include <cairo-dock.h>
 
-#ifdef SOUND_SERVICE_SUPPORT
+#ifdef INDICATOR_SOUNDMENU_WITH_IND3
+#include "indicator-applet3.h"
+#elif defined SOUND_SERVICE_SUPPORT // OLD
 #include "indicator-applet.h"
 #include "mute-widget.h"
 #endif
@@ -64,6 +66,9 @@ struct _AppletConfig {
 	gchar *cShortcut;
 	gint iScrollVariation;
 	gboolean bHideScaleOnLeave;
+	#ifdef INDICATOR_SOUNDMENU_WITH_IND3
+	gchar *cIndicatorName;
+	#endif
 	} ;
 
 // Interface of a Sound Controler
@@ -93,7 +98,10 @@ struct _AppletData {
 	CairoDialog *pDialog;
 	int iCurrentVolume;  // current volume in [0-100]
 	// sound service data
-	#ifdef SOUND_SERVICE_SUPPORT
+	#ifdef INDICATOR_SOUNDMENU_WITH_IND3
+	IndicatorObject *pIndicator;
+	IndicatorObjectEntry *pEntry;
+	#elif defined SOUND_SERVICE_SUPPORT // OLD
 	CDAppletIndicator *pIndicator;
 	GtkWidget* volume_widget;
 	GList *transport_widgets_list;

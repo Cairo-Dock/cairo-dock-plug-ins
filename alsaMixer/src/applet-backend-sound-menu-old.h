@@ -17,21 +17,16 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __APPLET_MIXER__
-#define  __APPLET_MIXER__
+#ifndef __APPLET_SOUND__
+#define  __APPLET_SOUND__
+
+#include <cairo-dock.h>
 
 
-#include <gtk/gtk.h>
+void update_accessible_desc (double new_value);
 
 
-GList *mixer_get_cards_list (void);
-
-GList *mixer_get_elements_list (void);
-
-
-void cd_mixer_init_alsa (void);
-
-void cd_mixer_stop_alsa (void);
+void cd_mixer_connect_to_sound_service (void);
 
 
 #endif

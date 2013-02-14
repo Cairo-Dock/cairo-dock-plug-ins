@@ -12,10 +12,12 @@ set (cd-AlsaMixer_LIB_SRCS
 	applet-struct.h)
 
 # Sound service backend (optionnal)
-if (with_soundmenu)
-	set (cd-AlsaMixer_LIB_SRCS
-		${cd-AlsaMixer_LIB_SRCS}
-		applet-backend-sound-menu.c applet-backend-sound-menu.h
+if (INDICATOR_SOUNDMENU_WITH_IND3)
+	list (APPEND cd-AlsaMixer_LIB_SRCS
+		applet-backend-sound-menu.c applet-backend-sound-menu.h)
+elseif (with_soundmenu)
+	list (APPEND cd-AlsaMixer_LIB_SRCS
+		applet-backend-sound-menu-old.c applet-backend-sound-menu-old.h
 		applet-menu.c 				applet-menu.h
 		volume-widget.c				volume-widget.h
 		voip-input-widget.c			voip-input-widget.h
@@ -36,55 +38,44 @@ add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_ALSA_MIXER}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 
-if (with_soundmenu)
+if (INDICATOR_SOUNDMENU_WITH_IND3)
+	message (STATUS "   With Indicator-Applet3")
+	add_definitions (-DINDICATOR_SOUNDMENU_WITH_IND3=1)
+	set (EXTRAS_INCLUDE_DIRS ${INDICATOR_APPLET_INCLUDE_DIRS}
+		${CMAKE_SOURCE_DIR}/Indicator-applet3)
+	set (EXTRAS_LIBRARY_DIRS ${INDICATOR_APPLET_LIBRARY_DIRS}
+		${CMAKE_SOURCE_DIR}/Indicator-applet3)
+	set (EXTRAS_LIBRARIES ${INDICATOR_APPLET_LIBRARIES} indicator-applet3)
+elseif (with_soundmenu)
 	add_definitions (-DSOUND_SERVICE_SUPPORT="1")
 	add_definitions (-DSOUND_SERVICE_VERSION=${SOUND_SERVICE_VERSION})
+	if (${DBUSMENU_GTK3_NEW})
+		add_definitions (-DDBUSMENU_GTK3_NEW=1)
+	endif()
+	set (EXTRAS_INCLUDE_DIRS ${DBUSMENU_INCLUDE_DIRS}
+		${DBUSMENU_GTK_INCLUDE_DIRS} ${INDICATOR_APPLET_INCLUDE_DIRS}
+		${IDO_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/Indicator-applet)
+	set (EXTRAS_LIBRARY_DIRS ${DBUSMENU_LIBRARY_DIRS}
+		${DBUSMENU_GTK_LIBRARY_DIRS} ${INDICATOR_APPLET_LIBRARY_DIRS}
+		${IDO_LIBRARY_DIRS} ${CMAKE_SOURCE_DIR}/Indicator-applet)
+	set (EXTRAS_LIBRARIES ${DBUSMENU_LIBRARIES} ${DBUSMENU_GTK_LIBRARIES}
+		${INDICATOR_APPLET_LIBRARIES} ${IDO_LIBRARIES} indicator-applet)
 endif()
-if (${DBUSMENU_GTK3_NEW})
-	add_definitions (-DDBUSMENU_GTK3_NEW=1)
-endif()
 
+include_directories (
+	${PACKAGE_INCLUDE_DIRS}
+	${ALSA_MIXER_PACKAGE_INCLUDE_DIRS}
+	${EXTRAS_INCLUDE_DIRS})
 
-if (with_soundmenu)
-	include_directories (
-		${PACKAGE_INCLUDE_DIRS}
-		${ALSA_MIXER_PACKAGE_INCLUDE_DIRS}
-		${DBUSMENU_INCLUDE_DIRS}
-		${DBUSMENU_GTK_INCLUDE_DIRS}
-		${INDICATOR_APPLET_INCLUDE_DIRS}
-		${IDO_INCLUDE_DIRS}
-		${CMAKE_SOURCE_DIR}/Indicator-applet)
+link_directories (
+	${PACKAGE_LIBRARY_DIRS}
+	${ALSA_MIXER_PACKAGE_LIBRARY_DIRS}
+	${EXTRAS_LIBRARY_DIRS})
 
-	link_directories (
-		${PACKAGE_LIBRARY_DIRS}
-		${ALSA_MIXER_PACKAGE_LIBRARY_DIRS}
-		${DBUSMENU_LIBRARY_DIRS}
-		${DBUSMENU_GTK_LIBRARY_DIRS}
-		${INDICATOR_APPLET_LIBRARY_DIRS}
-		${IDO_LIBRARY_DIRS}
-		${CMAKE_SOURCE_DIR}/Indicator-applet)
-
-	target_link_libraries (${PACKAGE_ALSA_MIXER}
-		${PACKAGE_LIBRARIES}
-		${ALSA_MIXER_PACKAGE_LIBRARIES}
-		${DBUSMENU_LIBRARIES}
-		${DBUSMENU_GTK_LIBRARIES}
-		${INDICATOR_APPLET_LIBRARIES}
-		${IDO_LIBRARIES}
-		indicator-applet)
-else()
-	include_directories (
-		${PACKAGE_INCLUDE_DIRS}
-		${ALSA_MIXER_PACKAGE_INCLUDE_DIRS})
-
-	link_directories (
-		${PACKAGE_LIBRARY_DIRS}
-		${ALSA_MIXER_PACKAGE_LIBRARY_DIRS})
-
-	target_link_libraries (${PACKAGE_ALSA_MIXER}
-		${PACKAGE_LIBRARIES}
-		${ALSA_MIXER_PACKAGE_LIBRARIES})
-endif()
+target_link_libraries (${PACKAGE_ALSA_MIXER}
+	${PACKAGE_LIBRARIES}
+	${ALSA_MIXER_PACKAGE_LIBRARIES}
+	${EXTRAS_LIBRARIES})
 
 ########### install files ###############
 

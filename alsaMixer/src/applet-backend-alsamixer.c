@@ -337,7 +337,7 @@ static void mixer_show_hide_dialog (void)
 }
 
 
-static void cd_mixer_stop_alsa (void)
+void cd_mixer_stop_alsa (void)
 {
 	if (myData.mixer_handle != NULL)
 	{
@@ -368,7 +368,7 @@ static gboolean mixer_check_events (gpointer data)
 
 static void cd_mixer_reload_alsa (void)
 {
-	cd_mixer_stop_alsa ();
+	myData.ctl.stop ();
 	
 	mixer_init (myConfig.card_id);
 	mixer_get_controlled_element ();
