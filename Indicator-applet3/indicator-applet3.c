@@ -58,17 +58,20 @@ IndicatorObject * cd_indicator3_load (const gchar *cName, CairoDockIndicator3Fun
 	// INDICATOR_OBJECT_SIGNAL_SECONDARY_ACTIVATE
 	// INDICATOR_OBJECT_SIGNAL_SHOW_NOW_CHANGED
 
-	GList *pList = indicator_object_get_entries (pIndicator);
-	GList *pEntry = NULL;
-
-	// we can receive more than one entry (e.g. AppMenu)
-	for (pEntry = pList; pEntry != NULL; pEntry = g_list_next (pEntry))
+	if (entry_added)
 	{
-		IndicatorObjectEntry *pData = (IndicatorObjectEntry *) pEntry->data;
-		entry_added (pIndicator, pData, data);
-	}
+		GList *pList = indicator_object_get_entries (pIndicator);
+		GList *pEntry = NULL;
 
-	g_list_free (pList);
+		// we can receive more than one entry (e.g. AppMenu)
+		for (pEntry = pList; pEntry != NULL; pEntry = g_list_next (pEntry))
+		{
+			IndicatorObjectEntry *pData = (IndicatorObjectEntry *) pEntry->data;
+			entry_added (pIndicator, pData, data);
+		}
+
+		g_list_free (pList);
+	}
 	return pIndicator;
 }
 
