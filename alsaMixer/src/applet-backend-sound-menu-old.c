@@ -36,7 +36,7 @@
 #include "applet-backend-alsamixer.h"  // cd_mixer_init_alsa (fallback alsa backend)
 #include "applet-generic.h"
 #include "applet-draw.h"
-#include "applet-backend-sound-menu.h"
+#include "applet-backend-sound-menu-old.h"
 
 /*
 // we can use icons designed for Unity, or more common icons that we are likely to find in icons themes.

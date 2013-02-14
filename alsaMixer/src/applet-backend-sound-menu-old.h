@@ -17,8 +17,8 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __APPLET_SOUND__
-#define  __APPLET_SOUND__
+#ifndef __APPLET_SOUND_OLD__
+#define  __APPLET_SOUND_OLD__
 
 #include <cairo-dock.h>
 
