@@ -78,7 +78,6 @@ struct _AppletConfig {
 	SwitcherDrawCurrentDesktopMode iDrawCurrentDesktopMode;
 	gboolean bDisplayHiddenWindows;
 	gchar **cDesktopNames;
-	gint iNbNames;
 	SwitcherAction iActionOnMiddleClick;
 	} ;
 
@@ -91,6 +90,7 @@ typedef struct
 	double fOneViewportWidth;
 	double fOneViewportHeight;
 	double fOffsetX, fOffsetY;
+	gchar **cDesktopNames;
 } SwitcherApplet;
 
 typedef void (*CDSwitcherActionOnViewportFunc) (Icon *pIcon, int iNumDesktop, int iNumViewportX, int iNumViewportY, gpointer pUserData);
@@ -105,6 +105,8 @@ struct _AppletData {
 	gint iSidUpdateIdle;
 	gint iPrevIndexHovered;
 	gdouble fDesktopNameAlpha;
-	///guint iSidPainIcons;
+	guint iSidGetDesktopNames;
+	gchar **cDesktopNames;
+	gint iNbNames;
 } ;
 #endif

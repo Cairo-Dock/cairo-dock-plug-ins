@@ -120,23 +120,13 @@ default icon =
 #{r, g, b, a}
 rgbbgcolor = 0.0; 0.0; 0.0; 0.0
 
-#X[Sub-Dock]
-frame_pos =
-
-#n+ Sub-dock view name:
-#{Leave empty to use default sub-dock view.}
-renderer = 
-
-#b+ In expanded mode, render the desklet in 3D?
-3D desklet = true
-
 #F[Icon]
 frame_icon =
 
 #b Show desktop number on icons?
 display numero desktop = true
 
-#B Draw windows on icons?
+#B[2] Draw windows on icons?
 Draw Windows = true
 
 #b Draw hidden windows?
@@ -151,8 +141,18 @@ sep_conf =
 #l[Show windows' list;Show desktop;Expose all the desktops;Expose all the windows] Action on middle-click:
 action on click = 0
 
-#U Workspace names :
 desktop names = 
+
+
+#X[Sub-Dock]
+frame_pos =
+
+#n+ Sub-dock view name:
+#{Leave empty to use default sub-dock view.}
+renderer = 
+
+#b+ In expanded mode, render the desklet in 3D?
+3D desklet = true
 
 
 #X[Display options]

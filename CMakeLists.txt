@@ -1266,7 +1266,7 @@ endif()
 ############# SWITCHER #################
 message (STATUS "> Switcher:")
 set (GETTEXT_SWITCHER ${GETTEXT_PLUGINS})
-set (VERSION_SWITCHER "2.1.11")
+set (VERSION_SWITCHER "2.2.0")
 set (PACKAGE_SWITCHER "cd-switcher")
 set (switcherdatadir "${pluginsdatadir}/switcher")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/switcher/data/switcher.conf.in ${CMAKE_CURRENT_BINARY_DIR}/switcher/data/switcher.conf)

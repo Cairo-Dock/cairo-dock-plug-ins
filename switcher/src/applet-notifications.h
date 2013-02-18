@@ -40,6 +40,8 @@ gboolean on_change_screen_geometry (CairoDockModuleInstance *myApplet);
 
 gboolean on_window_configured (CairoDockModuleInstance *myApplet, Window Xid, XConfigureEvent *xconfigure);
 
+gboolean on_change_desktop_names (CairoDockModuleInstance *myApplet);
+
 
 gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation);
 

@@ -45,6 +45,21 @@ CD_APPLET_DEFINE_BEGIN (N_("switcher"),
 CD_APPLET_DEFINE_END
 
 
+static gboolean _get_desktop_names (G_GNUC_UNUSED gpointer data)
+{
+	// retrieve the desktop names
+	myData.cDesktopNames = cairo_dock_get_desktops_names ();
+	myData.iNbNames = g_strv_length (myData.cDesktopNames);
+	g_print ("got desktop names: %s, ...", myData.cDesktopNames?myData.cDesktopNames[0]:NULL);
+	// if no names are set yet, set the names stored in the config.
+	if ((myData.cDesktopNames == NULL || *myData.cDesktopNames == NULL) && myConfig.cDesktopNames != NULL)
+	{
+		cairo_dock_set_desktops_names (myConfig.cDesktopNames);
+	}
+	myData.iSidGetDesktopNames = 0;
+	return FALSE;
+}
+
 CD_APPLET_INIT_BEGIN
 	//\_______________ Rregister the notifications we'll need
 	CD_APPLET_SET_STATIC_ICON;
@@ -67,6 +82,10 @@ CD_APPLET_INIT_BEGIN
 	cairo_dock_register_notification_on_object (&myDesktopMgr,
 		NOTIFICATION_WINDOW_ACTIVATED,
 		(CairoDockNotificationFunc) on_change_active_window,
+		CAIRO_DOCK_RUN_AFTER, myApplet);
+	cairo_dock_register_notification_on_object (&myDesktopMgr,
+		NOTIFICATION_DESKTOP_NAMES_CHANGED,
+		(CairoDockNotificationFunc) on_change_desktop_names,
 		CAIRO_DOCK_RUN_AFTER, myApplet);
 	if (myConfig.bCompactView)  // in this mode we need to monitor the cursor
 	{
@@ -95,6 +114,9 @@ CD_APPLET_INIT_BEGIN
 	if (myDesklet)
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	cd_switcher_trigger_update_from_screen_geometry (FALSE);  // FALSE = delayed
+	
+	//\___________________ retrieve the desktop names (wait a fex seconds so that the settings daemon can set them).
+	myData.iSidGetDesktopNames = g_timeout_add_seconds (2, _get_desktop_names, NULL);
 CD_APPLET_INIT_END
 
 
@@ -108,8 +130,10 @@ CD_APPLET_STOP_BEGIN
 	{
 		g_source_remove (myData.iSidUpdateIdle);
 	}
-	///if (myData.iSidPainIcons != 0)
-	///	g_source_remove (myData.iSidPainIcons);
+	if (myData.iSidGetDesktopNames != 0)
+	{
+		g_source_remove (myData.iSidGetDesktopNames);
+	}
 	
 	//\_______________ Unregister notifications
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
@@ -128,6 +152,9 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
 		NOTIFICATION_WINDOW_ACTIVATED,
 		(CairoDockNotificationFunc) on_change_active_window, myApplet);
+	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
+		NOTIFICATION_DESKTOP_NAMES_CHANGED,
+		(CairoDockNotificationFunc) on_change_desktop_names, myApplet);
 	cairo_dock_remove_notification_func_on_object (myContainer,
 		NOTIFICATION_MOUSE_MOVED,
 		(CairoDockNotificationFunc) on_mouse_moved, myApplet);

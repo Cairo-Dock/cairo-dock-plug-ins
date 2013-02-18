@@ -219,41 +219,32 @@ static void _on_got_workspace_name (int iClickedButton, GtkWidget *pInteractiveW
 		if (cNewName != NULL)
 		{
 			int iIndex = GPOINTER_TO_INT (data);
-			// on augmente la taille du tableau si necessaire.
-			if (iIndex >= myConfig.iNbNames)
+			// store the new name inside the array.
+			if (iIndex >= myData.iNbNames)
 			{
-				myConfig.cDesktopNames = g_realloc (myConfig.cDesktopNames, (iIndex + 2) * sizeof (gchar*));  // NULL-terminated.
+				myData.cDesktopNames = g_realloc (myData.cDesktopNames, (iIndex + 2) * sizeof (gchar*));  // NULL-terminated.
 				int i;
-				for (i = myConfig.iNbNames; i < iIndex; i ++)  // on met des noms par defaut aux nouveaux, sauf a celui choisi.
-					myConfig.cDesktopNames[i] = g_strdup_printf ("%s %d", D_("Desktop"), i+1);
-				myConfig.cDesktopNames[iIndex] = NULL;
-				myConfig.cDesktopNames[iIndex+1] = NULL;  // NULL-terminated.
-				myConfig.iNbNames = iIndex + 1;
+				for (i = myData.iNbNames; i < iIndex; i ++)  // on met des noms par defaut aux nouveaux, sauf a celui choisi.
+					myData.cDesktopNames[i] = g_strdup_printf ("%s %d", D_("Desktop"), i+1);
+				myData.cDesktopNames[iIndex] = NULL;
+				myData.cDesktopNames[iIndex+1] = NULL;  // NULL-terminated.
+				myData.iNbNames = iIndex + 1;
 			}
 			
-			g_free (myConfig.cDesktopNames[iIndex]);
-			myConfig.cDesktopNames[iIndex] = g_strdup (cNewName);  // donc ne pas liberer 'cNewName'.
+			g_free (myData.cDesktopNames[iIndex]);
+			myData.cDesktopNames[iIndex] = g_strdup (cNewName);  // donc ne pas liberer 'cNewName'.
 			
-			// on sauvegarde le nom dans le fichier de conf.
-			GString *sNames = g_string_new ("");
-			int i;
-			for (i = 0; i < myConfig.iNbNames; i ++)
-			{
-				g_string_append_printf (sNames, "%s;", myConfig.cDesktopNames[i]);
-			}
-			sNames->str[sNames->len-1] = '\0';
-			cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
-				G_TYPE_STRING, "Configuration", "desktop names", sNames->str,
-				G_TYPE_INVALID);
-			g_string_free (sNames, TRUE);
+			// apply the change on X (it will trigger the notification, which will store the names in config).
+			cairo_dock_set_desktops_names (myData.cDesktopNames);
 		}
 	}
 	CD_APPLET_LEAVE ();
-}static void _cd_switcher_rename_desktop (GtkMenuItem *menu_item, gpointer data)
+}
+static void _cd_switcher_rename_desktop (GtkMenuItem *menu_item, gpointer data)
 {
 	// on demande le nouveau nom.
 	int iIndex = GPOINTER_TO_INT (data);
-	gchar *cName = (iIndex < myConfig.iNbNames ? g_strdup (myConfig.cDesktopNames[iIndex]) : g_strdup_printf ("%s %d", D_("Desktop"), iIndex+1));
+	gchar *cName = (iIndex < myData.iNbNames ? g_strdup (myData.cDesktopNames[iIndex]) : g_strdup_printf ("%s %d", D_("Desktop"), iIndex+1));
 	cairo_dock_show_dialog_with_entry (D_("Rename this workspace"),
 		myIcon, myContainer, "same icon",
 		cName,
@@ -413,8 +404,8 @@ gboolean on_change_desktop (CairoDockModuleInstance *myApplet)
 			icon = ic->data;
 			if (icon->fOrder == iPreviousIndex)  // l'ancienne icone du bureau courant.
 			{
-				if (iPreviousIndex < myConfig.iNbNames)
-					cairo_dock_set_icon_name (myConfig.cDesktopNames[iPreviousIndex], icon, pContainer);
+				if (iPreviousIndex < myData.iNbNames)
+					cairo_dock_set_icon_name (myData.cDesktopNames[iPreviousIndex], icon, pContainer);
 				else
 					cairo_dock_set_icon_name_printf (icon, pContainer, "%s %d", D_("Desktop"), iPreviousIndex+1);
 				icon->bHasIndicator = FALSE;
@@ -455,6 +446,35 @@ gboolean on_window_configured (CairoDockModuleInstance *myApplet, Window Xid, XC
 }
 
 
+static void _save_desktop_names (void)
+{
+	GString *sNames = g_string_new ("");
+	int i;
+	for (i = 0; i < myData.iNbNames; i ++)
+	{
+		g_string_append_printf (sNames, "%s;", myData.cDesktopNames[i]);
+	}
+	sNames->str[sNames->len-1] = '\0';
+	cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
+		G_TYPE_STRING, "Configuration", "desktop names", sNames->str,
+		G_TYPE_INVALID);
+	g_string_free (sNames, TRUE);
+}
+gboolean on_change_desktop_names (CairoDockModuleInstance *myApplet)
+{
+	CD_APPLET_ENTER;
+	g_print ("%s ()\n", __func__);
+	// retrieve the desktop names
+	if (myData.cDesktopNames != NULL)
+		g_strfreev (myData.cDesktopNames);
+	myData.cDesktopNames = cairo_dock_get_desktops_names ();
+	myData.iNbNames = g_strv_length (myData.cDesktopNames);
+	// store them in config, to be able to set them on startup if noone has done it.
+	_save_desktop_names ();
+	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+}
+
+
 gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation)
 {
 	CD_APPLET_ENTER;
@@ -470,9 +490,9 @@ gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pCon
 	{
 		myData.iPrevIndexHovered = iIndex;
 		myData.fDesktopNameAlpha = 0.;
-		if (iIndex < myConfig.iNbNames)
+		if (iIndex < myData.iNbNames)
 		{
-			CD_APPLET_SET_NAME_FOR_MY_ICON (myConfig.cDesktopNames[iIndex]);
+			CD_APPLET_SET_NAME_FOR_MY_ICON (myData.cDesktopNames[iIndex]);
 		}
 		else
 		{

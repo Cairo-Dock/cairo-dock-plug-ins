@@ -573,12 +573,12 @@ void cd_switcher_build_windows_list (GtkWidget *pMenu)
 			gtk_menu_shell_append(GTK_MENU_SHELL (pMenu), pMenuItem);
 			g_object_set (pMenuItem, "height-request", 3, NULL);
 			
-			if (k < myConfig.iNbNames)
+			if (k < myData.iNbNames)
 			{
 				if (k == iIndex)
-					g_string_printf (sDesktopName, "<b>%s (%s)</b>", myConfig.cDesktopNames[k], D_("Current"));
+					g_string_printf (sDesktopName, "<b>%s (%s)</b>", myData.cDesktopNames[k], D_("Current"));
 				else
-					g_string_printf (sDesktopName, "<b>%s</b>", myConfig.cDesktopNames[k]);
+					g_string_printf (sDesktopName, "<b>%s</b>", myData.cDesktopNames[k]);
 			}
 			else
 			{

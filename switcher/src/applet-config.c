@@ -69,8 +69,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bDesklet3D = CD_CONFIG_GET_BOOLEAN ("Configuration", "3D desklet");
 	
 	gsize iNbNamesSize;
-	myConfig.cDesktopNames = CD_CONFIG_GET_STRING_LIST_WITH_DEFAULT ("Configuration", "desktop names", &iNbNamesSize, "Work;Game;Video;Chat");
-	myConfig.iNbNames = (gint) iNbNamesSize;
+	myConfig.cDesktopNames = CD_CONFIG_GET_STRING_LIST_WITH_DEFAULT ("Configuration", "desktop names", &iNbNamesSize, "Work;Game;Video;Chat");  // used to be a #U widget, but since it can be set from different ways (the applet's menu or the desktop tools), it's not useful to have it in the config
 CD_APPLET_GET_CONFIG_END
 
 
@@ -86,4 +85,6 @@ CD_APPLET_RESET_DATA_BEGIN
 	CD_APPLET_DELETE_MY_ICONS_LIST;
 	cairo_surface_destroy (myData.pDefaultMapSurface);
 	cairo_surface_destroy (myData.pDesktopBgMapSurface);
+	if (myData.cDesktopNames != NULL)
+		g_strfreev (myData.cDesktopNames);
 CD_APPLET_RESET_DATA_END
