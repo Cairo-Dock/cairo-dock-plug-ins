@@ -44,6 +44,12 @@ sed -i "s/CD_MY_NAME/$MyName/g" applet-init.c
 if test "x$AppletIcon" = "xy" -o "x$AppletIcon" = "xY"; then
 	sed -i "/CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE/d" applet-init.c
 fi
+cd_version_comma=`cairo-dock -v | cut -d. -f1-3 | sed -e 's/\./, /g'`
+if test -n "$cd_version_comma"; then
+	sed -i "/#define MINIMAL_VERSION/d" applet-init.c
+	sed -i "s/MINIMAL_VERSION/$cd_version_comma/g" applet-init.c
+fi
+sed -i "s/CD_APPLET_NAME/$AppletName/g" applet-init.c
 
 
 cd ../..
