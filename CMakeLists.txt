@@ -793,6 +793,19 @@ if (enable-impulse)
 	endif()
 endif()
 
+############# INDICATOR_GENERIC #################
+set (with_indicator_generic no)
+if (with_indicator3)
+	message (STATUS "> Indicator-Generic:")
+	set (GETTEXT_INDICATOR_GENERIC ${GETTEXT_PLUGINS})
+	set (VERSION_INDICATOR_GENERIC "0.0.1")
+	set (PACKAGE_INDICATOR_GENERIC "cd-Indicator-Generic")
+	set (with_indicator_generic yes)
+	set (indicator_genericdatadir "${pluginsdatadir}/Indicator-Generic")
+	configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Indicator-Generic/data/Indicator-Generic.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Indicator-Generic/data/Indicator-Generic.conf)
+	add_subdirectory (Indicator-Generic)
+endif()
+
 ############# ILLUSION #################
 message (STATUS "> Illusion:")
 set (GETTEXT_ILLUSION ${GETTEXT_PLUGINS})
@@ -1061,23 +1074,6 @@ set (powermanagerdatadir "${pluginsdatadir}/powermanager")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/powermanager/data/powermanager.conf.in ${CMAKE_CURRENT_BINARY_DIR}/powermanager/data/powermanager.conf)
 add_subdirectory (powermanager)
 
-############# PRINTERS_MENU #################
-set (with_printers_menu no)
-if (with_indicator3) # then ${INDICATOR_*} are defined
-if (${INDICATOR_MAJOR} GREATER 0 # >= 1.0.0 (now 12.10.1)
-		OR ${INDICATOR_MINOR} GREATER 4 # >= 0.5.0
-		OR (${INDICATOR_MINOR} EQUAL 4 AND ${INDICATOR_NANO} GREATER 89)) # min 0.4.90
-	message (STATUS "> Printers-Menu:")
-	set (GETTEXT_PRINTERS_MENU ${GETTEXT_PLUGINS})
-	set (VERSION_PRINTERS_MENU "1.0.1")
-	set (PACKAGE_PRINTERS_MENU "cd-Printers-Menu")
-	set (with_printers_menu yes)
-	set (printers_menudatadir "${pluginsdatadir}/Printers-Menu")
-	configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Printers-Menu/data/Printers-Menu.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Printers-Menu/data/Printers-Menu.conf)
-	add_subdirectory (Printers-Menu)
-endif()
-endif()
-
 ############# QUICK BROWSER #################
 message (STATUS "> Quick Browser:")
 set (GETTEXT_QUICK_BROWSER ${GETTEXT_PLUGINS})
@@ -1272,22 +1268,6 @@ set (switcherdatadir "${pluginsdatadir}/switcher")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/switcher/data/switcher.conf.in ${CMAKE_CURRENT_BINARY_DIR}/switcher/data/switcher.conf)
 add_subdirectory (switcher)
 
-############# SYNC_MENU #################
-set (with_sync_menu no)
-if (with_indicator3) # then ${INDICATOR_*} are defined
-if (${INDICATOR_MAJOR} GREATER 12 # > 12.0.0
-		OR (${INDICATOR_MAJOR} EQUAL 12 AND ${INDICATOR_MINOR} GREATER 9))  # >= 12.10.0 (now 12.10.1)
-	message (STATUS "> Sync-Menu:")
-	set (GETTEXT_SYNC_MENU ${GETTEXT_PLUGINS})
-	set (VERSION_SYNC_MENU "0.0.2")
-	set (PACKAGE_SYNC_MENU "cd-Sync-Menu")
-	set (with_sync_menu yes)
-	set (sync_menudatadir "${pluginsdatadir}/Sync-Menu")
-	configure_file (${CMAKE_CURRENT_SOURCE_DIR}/Sync-Menu/data/Sync-Menu.conf.in ${CMAKE_CURRENT_BINARY_DIR}/Sync-Menu/data/Sync-Menu.conf)
-	add_subdirectory (Sync-Menu)
-endif()
-endif()
-
 ############# SYSTEM MONITOR #################
 message (STATUS "> System Monitor:")
 enable_if_not_defined (enable-sensors-support)
@@ -1471,17 +1451,16 @@ message (STATUS " Plug-ins:")
 message (STATUS " - with Alsa-Mixer applet:         ${with_alsa}")
 message (STATUS " - with GMenu applet:              ${with_gmenu}")
 message (STATUS " - with Impulse applet:            ${with_impulse}")
+message (STATUS " - with Indicator-Generic applet:  ${with_indicator_generic}")
 message (STATUS " - with Keyboard-indicator applet: ${with_keyboard_indicator}")
 message (STATUS " - with Mail applet:               ${with_mail}")
 if (NOT INDICATOR_NEW_VERSION OR enable-memenu)  # oneiric or newer
 message (STATUS " - with Me-Menu applet applet:     ${with_me_menu}")
 endif()
 message (STATUS " - with Messaging-Menu applet:     ${with_messaging_menu}")
-message (STATUS " - with Printers-Menu applet:      ${with_printers_menu}")
 message (STATUS " - with Recent-Events applet:      ${with_recent_events}")
 message (STATUS " - with Sound Effects applet:      ${with_sound_effects}")
 message (STATUS " - with Status-Notifier applet:    ${with_status_notifier}")
-message (STATUS " - with Sync-Menu applet:          ${with_sync_menu}")
 message (STATUS " - with Terminal applet:           ${with_terminal}")
 message (STATUS " - with Weblets applet:            ${with_weblets}")
 message (STATUS " - with Xgamma applet:             ${with_xgamma}")
