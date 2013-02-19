@@ -50,7 +50,7 @@ cd ../..
 
 echo "" >> CMakeLists.txt
 echo "############# $UpperName #################" >> CMakeLists.txt
-echo "set (with_${LowerName} FALSE)" >> CMakeLists.txt
+echo "set (with_${LowerName} no)" >> CMakeLists.txt
 echo "if (enable-${LowerName})" >> CMakeLists.txt
 echo "	message (STATUS \"> $AppletName:\")" >> CMakeLists.txt
 echo "	set (GETTEXT_$UpperName \${GETTEXT_PLUGINS})" >> CMakeLists.txt
@@ -68,7 +68,7 @@ echo "Compile it in the build directory" # not in the parent directory: it's cle
 mkdir -p build
 cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=/usr -Denable-${LowerName}=yes
-make
+make -j $(grep -c ^processor /proc/cpuinfo)
 
 echo "Applet $AppletName has been generated."
 echo "Now its' your turn ! type 'sudo make install' to install your applet."
