@@ -222,7 +222,7 @@ void cd_indicator3_notify_visibility (GtkImage *pImage, GCallback pCallBack, gpo
 
 void cd_indicator3_check_visibility (GtkImage *pImage, CairoDockModuleInstance *myApplet)
 {
-	if (! gtk_widget_get_visible (GTK_WIDGET (pImage)))
+	if (pImage == NULL || ! gtk_widget_get_visible (GTK_WIDGET (pImage)))
 		_hide (NULL, myApplet);
 	else
 		_show (NULL, myApplet);
