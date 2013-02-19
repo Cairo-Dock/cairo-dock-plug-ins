@@ -51,4 +51,6 @@ const gchar * cd_indicator3_get_accessible_desc (IndicatorObjectEntry *pEntry);
 
 const gchar * cd_indicator3_get_name_hint (IndicatorObjectEntry *pEntry);
 
+const gchar * cd_indicator3_get_directory_path (void);
+
 #endif /* __CD_INDICATOR_APPLET3__ */

@@ -116,3 +116,8 @@ const gchar * cd_indicator3_get_name_hint (IndicatorObjectEntry *pEntry)
 	g_return_val_if_fail (pEntry != NULL, NULL);
 	return pEntry->name_hint;
 }
+
+const gchar * cd_indicator3_get_directory_path (void)
+{
+	return INDICATOR_DIR;
+}
