@@ -61,7 +61,7 @@ static gchar * _get_name_from_gicon (GtkImage *pImage)
 	return cName;
 }
 
-static gboolean _set_new_image_pixbuf (GtkImage *pImage)
+static gboolean _set_new_image_pixbuf (GtkImage *pImage, CairoDockModuleInstance *myApplet)
 {
 	GdkPixbuf *pPixbuf = gtk_image_get_pixbuf (pImage);
 	g_return_val_if_fail (pPixbuf != NULL, FALSE);
@@ -116,7 +116,7 @@ gboolean cd_indicator3_update_image (GtkImage *pImage, gchar **cName, CairoDockM
 			return _set_image_on_icon (*cName, myApplet, cDefaultFile);
 		break;
 		case GTK_IMAGE_PIXBUF:
-			return _set_new_image_pixbuf (pImage);
+			return _set_new_image_pixbuf (pImage, myApplet);
 		break;
 		case GTK_IMAGE_STOCK:
 			*cName = g_strdup (_get_image_stock (pImage));

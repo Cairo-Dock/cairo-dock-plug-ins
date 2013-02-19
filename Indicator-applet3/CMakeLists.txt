@@ -9,6 +9,7 @@ add_library(indicator-applet3 STATIC ${impl_SRCS})
 # Needed for amd64 architecture
 add_definitions (-fPIC)
 add_definitions (-DINDICATOR_DIR="${INDICATORDIR}")
+add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
 
 link_directories(
 	${PACKAGE_LIBRARY_DIRS}
