@@ -87,24 +87,66 @@ static void _cd_logout_check_capabilities_async (CDSharedMemory *pSharedMemory)
 		G_TYPE_INVALID,
 		G_TYPE_BOOLEAN, &pSharedMemory->bCanRestart,
 		G_TYPE_INVALID);
-	if (error)
+	if (!error)
 	{
-		cd_warning ("ConsoleKit error: %s", error->message);
-		g_error_free (error);
-		g_object_unref (pProxy);
-		return;
+		pSharedMemory->iLoginManager = CD_CONSOLE_KIT;
+		
+		dbus_g_proxy_call (pProxy, "CanStop", &error,
+			G_TYPE_INVALID,
+			G_TYPE_BOOLEAN, &pSharedMemory->bCanStop,
+			G_TYPE_INVALID);
+		if (error)
+		{
+			cd_warning ("ConsoleKit error: %s", error->message);
+			g_error_free (error);
+			g_object_unref (pProxy);
+			return;
+		}
 	}
-	
-	dbus_g_proxy_call (pProxy, "CanStop", &error,
-		G_TYPE_INVALID,
-		G_TYPE_BOOLEAN, &pSharedMemory->bCanStop,
-		G_TYPE_INVALID);
-	if (error)
+	else  // console kit is probably not used on this system, try with Logind from Systemd
 	{
-		cd_warning ("ConsoleKit error: %s", error->message);
+		cd_debug ("ConsoleKit error: %s", error->message);
 		g_error_free (error);
-		g_object_unref (pProxy);
-		return;
+		error = NULL;
+		
+		pProxy = cairo_dock_create_new_system_proxy (
+			"org.freedesktop.login1",
+			"/org/freedesktop/login1",
+			"org.freedesktop.login1.Manager");
+		
+		gchar *res;
+		dbus_g_proxy_call (pProxy, "CanReboot", &error,
+			G_TYPE_INVALID,
+			G_TYPE_STRING, &res,
+			G_TYPE_INVALID);
+		if (!error)
+		{
+			pSharedMemory->iLoginManager = CD_SYSTEMD;
+			
+			pSharedMemory->bCanRestart = (res && strcmp (res, "yes") == 0);
+			g_free (res);
+			
+			dbus_g_proxy_call (pProxy, "CanPowerOff", &error,
+				G_TYPE_INVALID,
+				G_TYPE_STRING, &res,
+				G_TYPE_INVALID);
+			if (error)
+			{
+				cd_warning ("Logind error: %s", error->message);
+				g_error_free (error);
+				g_object_unref (pProxy);
+				return;
+			}
+			pSharedMemory->bCanStop = (res && strcmp (res, "yes") == 0);
+			g_free (res);
+		}
+		else
+		{
+			cd_debug ("Logind error: %s", error->message);
+			g_error_free (error);
+			error = NULL;
+		}
+		
 	}
 	g_object_unref (pProxy);
 	
@@ -136,6 +178,7 @@ static gboolean _cd_logout_got_capabilities (CDSharedMemory *pSharedMemory)
 	myData.bCanRestart = pSharedMemory->bCanRestart;
 	myData.bCanStop = pSharedMemory->bCanStop;
 	myData.bHasGuestAccount = pSharedMemory->bHasGuestAccount;
+	myData.iLoginManager = pSharedMemory->iLoginManager;
 	cd_debug ("capabilities: %d; %d; %d; %d; %d", myData.bCanHibernate, myData.bCanSuspend, myData.bCanRestart, myData.bCanStop, myData.bHasGuestAccount);
 	
 	// display the menu that has been asked beforehand.
@@ -603,6 +646,26 @@ static void _console_kit_action (const gchar *cAction)
 	g_object_unref (pProxy);
 }
 
+static void _systemd_action (const gchar *cAction)
+{
+	GError *error = NULL;
+	DBusGProxy *pProxy = cairo_dock_create_new_system_proxy (
+		"org.freedesktop.login1",
+		"/org/freedesktop/login1",
+		"org.freedesktop.login1.Manager");
+	
+	dbus_g_proxy_call (pProxy, cAction, &error,
+		G_TYPE_BOOLEAN, FALSE,  // non-interactive
+		G_TYPE_INVALID,
+		G_TYPE_INVALID);
+	if (error)
+	{
+		cd_warning ("Logind error: %s", error->message);
+		g_error_free (error);
+	}
+	g_object_unref (pProxy);
+}
+
 static void _upower_action (gboolean bSuspend)
 {
 	#ifdef CD_UPOWER_AVAILABLE
@@ -638,7 +701,17 @@ static void _shut_down (void)
 {
 	if (myData.bCanStop)
 	{
-		_console_kit_action ("Stop");  // could use org.gnome.SessionManager.RequestShutdown, but it's not standard.
+		switch (myData.iLoginManager)
+		{
+			case CD_CONSOLE_KIT:
+				_console_kit_action ("Stop");  // could use org.gnome.SessionManager.RequestShutdown, but it's not standard.
+			break;
+			case CD_SYSTEMD:
+				_systemd_action ("PowerOff");
+			break;
+			default:
+			break;
+		}
 	}
 	else if (myConfig.cUserAction2)
 	{
@@ -697,7 +770,17 @@ static void _restart (void)
 {
 	if (myData.bCanRestart)
 	{
-		_console_kit_action ("Restart");  // could use org.gnome.SessionManager.RequestReboot
+		switch (myData.iLoginManager)
+		{
+			case CD_CONSOLE_KIT:
+				_console_kit_action ("Restart");  // could use org.gnome.SessionManager.RequestShutdown, but it's not standard.
+			break;
+			case CD_SYSTEMD:
+				_systemd_action ("Reboot");
+				break;
+			default:
+				break;
+		}
 	}
 	else if (myConfig.cUserAction2)
 	{
@@ -888,9 +971,8 @@ static GList* _get_users_list_fallback (void)
 	{
 		cUserProps = g_strsplit (cUsers[i], ":", 0);
 		// add the user if it fits
-		if (cUserProps && cUserProps[0] && cUserProps[1] && cUserProps[2] && cUserProps[3]
-		&& atoi (cUserProps[2]) >= 1000  // heuristic: first user has an udi of 1000, and other users an uid >= 1000
-		&& strcmp (cUserProps[0], "nobody") != 0)  // remove the 'nobody' user (uid=65534)
+		if (cUserProps && cUserProps[0] && cUserProps[1] && cUserProps[2]
+			&& atoi (cUserProps[2]) >= 1000 && atoi (cUserProps[2]) < 65530)  // heuristic: first user has an udi of 1000, and other users an uid >= 1000; remove the 'nobody' user (uid=65534)
 		{
 			pUser = g_new0 (CDUser, 1);
 			pUser->cUserName = g_strdup (cUserProps[0]);

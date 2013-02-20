@@ -60,13 +60,20 @@ struct _AppletConfig {
 	CDDisplayRebootNeeded iRebootNeededImage;
 	} ;
 
-
+typedef enum {
+	CD_UNKNOWN,
+	CD_CONSOLE_KIT,
+	CD_SYSTEMD,
+	CD_NB_LOGIN_MANAGER
+	} CDLoginManager;
+	
 typedef struct {
 	gboolean bCanHibernate;
 	gboolean bCanSuspend;
 	gboolean bCanStop;
 	gboolean bCanRestart;
 	gboolean bHasGuestAccount;
+	CDLoginManager iLoginManager;
 	} CDSharedMemory;
 
 struct _AppletData {
@@ -82,6 +89,7 @@ struct _AppletData {
 	gboolean bCanStop;
 	gboolean bCanRestart;
 	gboolean bHasGuestAccount;
+	CDLoginManager iLoginManager;
 	CairoKeyBinding *pKeyBinding;
 	CairoKeyBinding *pKeyBinding2;
 	GList *pUserList;
