@@ -70,14 +70,13 @@ CD_APPLET_INIT_END
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
-	if (/*&myData != 0 && */! myData.bIsLauncher)
+	if (! myData.bIsLauncher)
 	{
 		CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 		cd_indicator_generic_indicator_stop (myApplet);
 	}
 	
 CD_APPLET_STOP_END
-
 
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
 CD_APPLET_RELOAD_BEGIN
@@ -90,8 +89,7 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		if (myData.bIsLauncher)
 		{
-			/// TODO
-			/// reload all indicators? // stop all indicators? // maybe the exception list has changed
+			cd_indicator_generic_reload_all_indicators (myApplet); // if we have modified the blacklist
 		}
 		else
 		{

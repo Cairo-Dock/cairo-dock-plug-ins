@@ -49,6 +49,7 @@ void cd_indicator_generic_load_all_indicators (CairoDockModuleInstance *myApplet
 	// for each indicator file, instanciate a new plugin with it (useful to place it where we want, all icons are not regrouped into one big icon)
 	const gchar *cFileName;
 	gchar *cInstanceFilePath;
+	CairoDockModuleInstance *pModuleInstance;
 	while ((cFileName = g_dir_read_name (pDir)) != NULL)
 	{
 		if (*cFileName == '\0' || ! g_str_has_suffix (cFileName, ".so")
@@ -80,8 +81,20 @@ void cd_indicator_generic_load_all_indicators (CairoDockModuleInstance *myApplet
 			}
 		}
 		// create the new icon
-		cairo_dock_instanciate_module (myApplet->pModule, cInstanceFilePath);  // we don't have to free cInstanceFilePath
+		pModuleInstance = cairo_dock_instanciate_module (myApplet->pModule, cInstanceFilePath);  // we don't have to free cInstanceFilePath
+		myData.pIndicatorsList = g_list_prepend (myData.pIndicatorsList, pModuleInstance);
 		g_free (cUserDataDirPath);
 	}
 	g_dir_close (pDir);
+}
+
+void cd_indicator_generic_reload_all_indicators (CairoDockModuleInstance *myApplet)
+{
+	cd_debug ("Reload all indicators");
+	g_list_foreach (myData.pIndicatorsList, (GFunc) cairo_dock_deinstanciate_module, NULL);
+
+	g_list_free (myData.pIndicatorsList);
+	myData.pIndicatorsList = NULL;
+
+	cd_indicator_generic_load_all_indicators (myApplet);
 }

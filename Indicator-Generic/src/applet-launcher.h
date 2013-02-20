@@ -24,4 +24,6 @@
 
 void cd_indicator_generic_load_all_indicators (CairoDockModuleInstance *myApplet);
 
+void cd_indicator_generic_reload_all_indicators (CairoDockModuleInstance *myApplet);
+
 #endif

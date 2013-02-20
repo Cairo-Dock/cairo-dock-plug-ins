@@ -37,7 +37,7 @@ struct _AppletConfig {
 struct _AppletData {
 	gboolean bIsLauncher;
 	// launcher
-	/// GList *pIndicatorsList; // usefull? to reload something? or a g_hash_table?
+	GList *pIndicatorsList;
 	// indicator
 	IndicatorObject *pIndicator;
 	IndicatorObjectEntry *pEntry;
