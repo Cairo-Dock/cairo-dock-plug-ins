@@ -75,7 +75,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cMuteIcon = CD_CONFIG_GET_STRING ("Configuration", "mute icon");
 
 	#ifdef INDICATOR_SOUNDMENU_WITH_IND3
-	myConfig.cIndicatorName = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "indicator", "libsoundmenu.so");
+	myConfig.cIndicatorName = CD_CONFIG_GET_STRING ("Configuration", "indicator name");
+	if (myConfig.cIndicatorName == NULL)
+		myConfig.cIndicatorName = g_strdup ("libsoundmenu.so");
 	#endif
 CD_APPLET_GET_CONFIG_END
 

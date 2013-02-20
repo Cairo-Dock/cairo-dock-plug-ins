@@ -30,7 +30,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cAnimationName = CD_CONFIG_GET_STRING ("Configuration", "animation");
 	myConfig.cShortkey = CD_CONFIG_GET_STRING ("Configuration", "shortkey");
 	#ifdef INDICATOR_MESSAGES_WITH_IND3
-	myConfig.cIndicatorName = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "indicator", "libmessaging.so");
+	myConfig.cIndicatorName = CD_CONFIG_GET_STRING ("Configuration", "indicator name");
+	if (myConfig.cIndicatorName == NULL)
+		myConfig.cIndicatorName = g_strdup ("libmessaging.so");
 	#endif
 CD_APPLET_GET_CONFIG_END
 

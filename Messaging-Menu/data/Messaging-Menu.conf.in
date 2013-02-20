@@ -110,4 +110,4 @@ animation = rotate
 #k Shortkey to show/hide the menu:
 shortkey = <Control><Alt>m
 
-indicator = libmessaging.so
+indicator name =

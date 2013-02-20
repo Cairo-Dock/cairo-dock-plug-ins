@@ -23,6 +23,7 @@
 #include "applet-struct.h"
 #include "applet-config.h"
 
+#define IND_GEN_EXCEPTIONS_HARD "libapplication.so;libappmenu.so;libdatetime.so;libmessaging.so;libsoundmenu.so"
 
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
@@ -33,6 +34,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	if (myConfig.cIndicatorName == NULL || *myConfig.cIndicatorName == '\0')
 	{
 		gchar *cExceptionsHard = CD_CONFIG_GET_STRING ("Configuration", "exceptions");
+		if (cExceptionsHard == NULL)
+			cExceptionsHard = g_strdup (IND_GEN_EXCEPTIONS_HARD);
 		gchar *cExceptionsEditable = CD_CONFIG_GET_STRING ("Configuration", "except-edit");
 		// merge
 		gchar *cExceptions = g_strdup_printf ("%s;%s", cExceptionsHard, cExceptionsEditable);
