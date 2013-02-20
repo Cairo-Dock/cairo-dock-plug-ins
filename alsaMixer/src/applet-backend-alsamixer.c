@@ -337,7 +337,7 @@ static void mixer_show_hide_dialog (void)
 }
 
 
-void cd_mixer_stop_alsa (void)
+static void cd_mixer_stop_alsa (void)
 {
 	if (myData.mixer_handle != NULL)
 	{

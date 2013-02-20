@@ -31,7 +31,5 @@ GList *mixer_get_elements_list (void);
 
 void cd_mixer_init_alsa (void);
 
-void cd_mixer_stop_alsa (void);
-
 
 #endif

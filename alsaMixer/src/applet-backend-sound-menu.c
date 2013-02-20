@@ -18,8 +18,13 @@
 */
 
 #include "applet-struct.h"
-#include "applet-backend-alsamixer.h"  // cd_mixer_init_alsa + stop (fallback alsa backend)
+#include "applet-generic.h"
+#include "applet-backend-alsamixer.h"  // cd_mixer_init_alsa
 #include "applet-backend-sound-menu.h"
+
+static void _show_menu (void);
+static void (*_stop_parent) (void) = NULL;
+static void (*_show_menu_parent) (void)  = NULL;
 
 
 static void _entry_added (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data)
@@ -35,43 +40,63 @@ static void _entry_removed (IndicatorObject *pIndicator, IndicatorObjectEntry *p
 	// should not happen... except at the end.
 	cd_debug ("Entry Removed");
 
-	// no (more) sound service... now rely on alsa.
+	// no (more) sound service... now rely on alsa to display the menu/dialog.
 	if (myData.pEntry == pEntry) // the same entry as before, we can remove the previous one
+	{
 		myData.pEntry = NULL;
+	}
 }
+
 
 static void _show_menu (void)
 {
-	GtkMenu *pMenu = cd_indicator3_get_menu (myData.pEntry);
+	GtkMenu *pMenu = NULL;
+	if (myData.pEntry)
+		pMenu = cd_indicator3_get_menu (myData.pEntry);
 	if (pMenu)
-		cairo_dock_popup_menu_on_icon (GTK_WIDGET (pMenu), myIcon, myContainer);
-	else // if problem
 	{
-		cd_mixer_init_alsa ();
-		myData.ctl.show_hide ();
+		GList *entries = gtk_container_get_children (GTK_CONTAINER (pMenu));
+		if (entries)  // if the menu is ok
+		{
+			CD_APPLET_POPUP_MENU_ON_MY_ICON (GTK_WIDGET (pMenu));
+			g_list_free (entries);
+		}
+		else  // else, the daemon was probaby not launched.
+			pMenu = NULL;
+	}
+	if (!pMenu)  // if no menu, it's maybe because the daemon has not started, or has stopped (the entry is not removed).
+	{
+		if (_show_menu_parent) _show_menu_parent ();
 	}
 }
+
 
 static void _stop (void)
 {
 	_entry_removed (myData.pIndicator, myData.pEntry, myApplet);
-	cd_mixer_stop_alsa ();
+	if (_stop_parent)
+		_stop_parent ();
 }
+
 
 void cd_mixer_connect_to_sound_service (void)
 {
+	// load the indicator (we only want its menu, label and image are set by us).
 	myData.pIndicator = cd_indicator3_load (myConfig.cIndicatorName,
 		_entry_added,
 		_entry_removed,
 		NULL,
 		NULL,
 		myApplet);
-
+	
+	// init the backend. we'll use the alsa backend (to get the exact volume and volume changes), and we'll override only the functions we need.
 	cd_mixer_init_alsa ();  // alsa backend
 	if (myData.pIndicator)
 	{
-		myData.ctl.show_hide = _show_menu; // but with our menu
+		_stop_parent = myData.ctl.stop;
 		myData.ctl.stop = _stop;
+		_show_menu_parent = myData.ctl.show_hide;
+		myData.ctl.show_hide = _show_menu;  // but with our menu
 	}
 
 }

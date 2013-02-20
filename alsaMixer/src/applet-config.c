@@ -75,7 +75,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cMuteIcon = CD_CONFIG_GET_STRING ("Configuration", "mute icon");
 
 	#ifdef INDICATOR_SOUNDMENU_WITH_IND3
-	myConfig.cIndicatorName = CD_CONFIG_GET_STRING ("Configuration", "indicator name");
+	myConfig.cIndicatorName = CD_CONFIG_GET_STRING ("Configuration", "indicator name");  // we take it from the config just in case the name changes, it's not a visible option.
 	if (myConfig.cIndicatorName == NULL)
 		myConfig.cIndicatorName = g_strdup ("libsoundmenu.so");
 	#endif
@@ -108,36 +108,37 @@ CD_APPLET_RESET_DATA_BEGIN
 CD_APPLET_RESET_DATA_END
 
 
-void cd_mixer_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile, GSList *pWidgetList)
+void cd_mixer_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile, GSList *pWidgetList)  // myApplet can be NULL
 {
-	cd_debug ("%s (%s)", __func__, myIcon->cName);
-	
 	//\____________ build the list of available sound cards.
 	GList *pList = mixer_get_cards_list ();
 	//\____________ get the combo
 	CairoDockGroupKeyWidget *pGroupKeyWidget = cairo_dock_gui_find_group_key_widget_in_list (pWidgetList, "Configuration", "card id");
 	GtkWidget *pCombo = cairo_dock_gui_get_first_widget (pGroupKeyWidget);
 	g_return_if_fail (pCombo != NULL);
-	cairo_dock_fill_combo_with_list (pCombo, pList, myConfig.card_id);
+	cairo_dock_fill_combo_with_list (pCombo, pList, myApplet?myConfig.card_id:NULL);
 	
 	g_list_foreach (pList, (GFunc)free, NULL);
 	g_list_free (pList);
 	
 	//\____________ On construit la liste des canaux a controler.
-	pList = mixer_get_elements_list ();
-	
-	//\____________ On recupere la combo.
-	pGroupKeyWidget = cairo_dock_gui_find_group_key_widget_in_list (pWidgetList, "Configuration", "mixer element");
-	pCombo = cairo_dock_gui_get_first_widget (pGroupKeyWidget);
-	g_return_if_fail (pCombo != NULL);
-	cairo_dock_fill_combo_with_list (pCombo, pList, myConfig.cMixerElementName);
-	
-	//\____________ Idem pour la 2eme, avec une entree vide au debut.
-	pGroupKeyWidget = cairo_dock_gui_find_group_key_widget_in_list (pWidgetList, "Configuration", "mixer element 2");
-	pCombo = cairo_dock_gui_get_first_widget (pGroupKeyWidget);
-	g_return_if_fail (pCombo != NULL);
-	pList = g_list_prepend (pList, (gpointer)"");  // on peut caster ici car tous les elements sont des const pour nous.
-	cairo_dock_fill_combo_with_list (pCombo, pList, myConfig.cMixerElementName2);
-	
-	g_list_free (pList);  // les elements appartiennent au mixer_handle.
+	if (myApplet)
+	{
+		pList = mixer_get_elements_list ();
+		
+		//\____________ On recupere la combo.
+		pGroupKeyWidget = cairo_dock_gui_find_group_key_widget_in_list (pWidgetList, "Configuration", "mixer element");
+		pCombo = cairo_dock_gui_get_first_widget (pGroupKeyWidget);
+		g_return_if_fail (pCombo != NULL);
+		cairo_dock_fill_combo_with_list (pCombo, pList, myConfig.cMixerElementName);
+		
+		//\____________ Idem pour la 2eme, avec une entree vide au debut.
+		pGroupKeyWidget = cairo_dock_gui_find_group_key_widget_in_list (pWidgetList, "Configuration", "mixer element 2");
+		pCombo = cairo_dock_gui_get_first_widget (pGroupKeyWidget);
+		g_return_if_fail (pCombo != NULL);
+		pList = g_list_prepend (pList, (gpointer)"");  // on peut caster ici car tous les elements sont des const pour nous.
+		cairo_dock_fill_combo_with_list (pCombo, pList, myConfig.cMixerElementName2);
+		
+		g_list_free (pList);  // les elements appartiennent au mixer_handle.
+	}
 }
