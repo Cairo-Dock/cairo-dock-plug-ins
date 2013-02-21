@@ -276,7 +276,7 @@ static gboolean cd_shortcuts_build_shortcuts_from_data (CDSharedMemory *pSharedM
 	{
 		case CD_DESKLET_SLIDE :
 		default :
-			cDeskletRendererName = "Slide";
+			cDeskletRendererName = "Viewport";
 		break ;
 		
 		case CD_DESKLET_TREE :
