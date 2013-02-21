@@ -16,22 +16,22 @@
    sodipodi:version="0.32"
    inkscape:version="0.48.3.1 r9886"
    version="1.0"
-   sodipodi:docname="clear-bg2.svg"
+   sodipodi:docname="light-bg.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <defs
      id="defs2751">
     <linearGradient
        id="linearGradient3856">
       <stop
-         style="stop-color:#d7d7d7;stop-opacity:0;"
+         style="stop-color:#ffffff;stop-opacity:0;"
          offset="0"
          id="stop3858" />
       <stop
          id="stop3862"
          offset="0.5"
-         style="stop-color:#d2dfe7;stop-opacity:0.60512823;" />
+         style="stop-color:#ffffff;stop-opacity:0.65128207;" />
       <stop
-         style="stop-color:#c9d8df;stop-opacity:0;"
+         style="stop-color:#ffffff;stop-opacity:0;"
          offset="1"
          id="stop3860" />
     </linearGradient>
@@ -105,7 +105,7 @@
        x2="130.3046"
        y2="-0.32620314"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0.99804103,0,0,0.99311388,195.3656,-811.49434)" />
+       gradientTransform="matrix(0.99386229,0,0,0.99033803,195.72311,-811.13771)" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -114,16 +114,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.959798"
-     inkscape:cx="107.46011"
-     inkscape:cy="57.212642"
+     inkscape:zoom="2.8"
+     inkscape:cx="114.53479"
+     inkscape:cy="155.1608"
      inkscape:document-units="px"
      inkscape:current-layer="g2767"
      showgrid="false"
      inkscape:window-width="1220"
      inkscape:window-height="777"
-     inkscape:window-x="282"
-     inkscape:window-y="148"
+     inkscape:window-x="146"
+     inkscape:window-y="185"
      showguides="false"
      inkscape:window-maximized="0">
     <inkscape:grid
@@ -155,14 +155,14 @@
          id="path2276"
          sodipodi:nodetypes="ccc" />
       <rect
-         style="fill:url(#linearGradient3854);fill-opacity:1;stroke:#c6dde9;stroke-width:0.99557436;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.99215686;stroke-dasharray:none"
+         style="fill:url(#linearGradient3854);fill-opacity:1;stroke:#ffffff;stroke-width:0.99209857000000001;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.99215686;stroke-dasharray:none"
          id="rect3846"
-         width="255.06795"
-         height="254.31033"
-         x="195.86969"
-         y="-811.06592"
-         rx="18.470221"
-         ry="20.614048" />
+         width="254"
+         height="253.59952"
+         x="196.22508"
+         y="-810.71057"
+         rx="18.392887"
+         ry="20.556429" />
     </g>
   </g>
 </svg>

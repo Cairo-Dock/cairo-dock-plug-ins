@@ -16,22 +16,22 @@
    sodipodi:version="0.32"
    inkscape:version="0.48.3.1 r9886"
    version="1.0"
-   sodipodi:docname="clear-bg2.svg"
+   sodipodi:docname="dark-bg2.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <defs
      id="defs2751">
     <linearGradient
        id="linearGradient3856">
       <stop
-         style="stop-color:#d7d7d7;stop-opacity:0;"
+         style="stop-color:#000000;stop-opacity:0;"
          offset="0"
          id="stop3858" />
       <stop
          id="stop3862"
          offset="0.5"
-         style="stop-color:#d2dfe7;stop-opacity:0.60512823;" />
+         style="stop-color:#000000;stop-opacity:1;" />
       <stop
-         style="stop-color:#c9d8df;stop-opacity:0;"
+         style="stop-color:#000000;stop-opacity:0;"
          offset="1"
          id="stop3860" />
     </linearGradient>
@@ -114,18 +114,22 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.959798"
-     inkscape:cx="107.46011"
-     inkscape:cy="57.212642"
+     inkscape:zoom="1.979899"
+     inkscape:cx="175.15828"
+     inkscape:cy="169.00218"
      inkscape:document-units="px"
      inkscape:current-layer="g2767"
      showgrid="false"
-     inkscape:window-width="1220"
-     inkscape:window-height="777"
-     inkscape:window-x="282"
-     inkscape:window-y="148"
+     inkscape:window-width="1327"
+     inkscape:window-height="842"
+     inkscape:window-x="106"
+     inkscape:window-y="54"
      showguides="false"
-     inkscape:window-maximized="0">
+     inkscape:window-maximized="0"
+     inkscape:snap-bbox="false"
+     inkscape:bbox-paths="false"
+     inkscape:bbox-nodes="false"
+     inkscape:snap-smooth-nodes="true">
     <inkscape:grid
        type="xygrid"
        id="grid3064" />
@@ -155,14 +159,14 @@
          id="path2276"
          sodipodi:nodetypes="ccc" />
       <rect
-         style="fill:url(#linearGradient3854);fill-opacity:1;stroke:#c6dde9;stroke-width:0.99557436;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.99215686;stroke-dasharray:none"
+         style="fill:url(#linearGradient3854);fill-opacity:1;stroke:#000000;stroke-width:0.99557436;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.99215686;stroke-dasharray:none"
          id="rect3846"
          width="255.06795"
          height="254.31033"
          x="195.86969"
          y="-811.06592"
-         rx="18.470221"
-         ry="20.614048" />
+         rx="16.327364"
+         ry="18.828333" />
     </g>
   </g>
 </svg>

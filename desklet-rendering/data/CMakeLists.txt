@@ -11,7 +11,10 @@ install(FILES icon.svg
 	cd_box_cover.svg
 	cd_box.svg
 	starcraft2.png
-	dark-bg.png
+	dark-bg.svg
 	clear-bg.svg
+	light-bg.svg
+	water-drop-bg.png
+	water-dark-bg.png
 	board.png
 	DESTINATION ${desklet_renderingdatadir})
