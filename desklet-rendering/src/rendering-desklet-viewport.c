@@ -82,6 +82,7 @@ static void _compute_icons_grid (CairoDesklet *pDesklet, CDViewportParameters *p
 	pViewport->nRowsX = (pDesklet->container.iWidth - w_min) / (pViewport->iIconSize + pViewport->iIconGapX) + 1;
 	pViewport->nRowsY = ceil ((double)nIcones / pViewport->nRowsX);
 	pViewport->iDeltaHeight = MAX (0, (pViewport->nRowsY - 1) * (pViewport->iIconSize + myIconsParam.iLabelSize + pViewport->iIconGapY) + pViewport->iIconSize + myIconsParam.iLabelSize - pDesklet->container.iHeight);
+	pViewport->iScrollOffset = MIN (pViewport->iScrollOffset, pViewport->iDeltaHeight);  // ensure we don't suddenly become out of range if 'iDeltaHeight' has changed
 	pViewport->fMargin = (pDesklet->container.iWidth - (pViewport->nRowsX * (pViewport->iIconSize + pViewport->iIconGapX) - pViewport->iIconSize + pViewport->fScrollbarIconGap + pViewport->fScrollbarWidth + pViewport->fScrollbarIconGap)) / 2;  // on reajuste la marge pour centrer les icones.
 }
 
