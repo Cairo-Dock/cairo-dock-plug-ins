@@ -135,9 +135,8 @@ static void _cd_find_mount_from_volume_name (const gchar *cVolumeName, GMount **
 	GError *erreur = NULL;
 	const gchar *cAttributes = G_FILE_ATTRIBUTE_STANDARD_TYPE","
 		G_FILE_ATTRIBUTE_STANDARD_NAME","
-		G_FILE_ATTRIBUTE_STANDARD_ICON","
-		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI","
-		G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE;
+		///G_FILE_ATTRIBUTE_STANDARD_ICON","
+		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI;
 	GFileEnumerator *pFileEnum = g_file_enumerate_children (pFile,
 		cAttributes,
 		G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS,
@@ -385,8 +384,7 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 		#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
 		///G_FILE_ATTRIBUTE_PREVIEW_ICON","
 		#endif
-		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI","
-		G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE;
+		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI;
 	GFileInfo *pFileInfo = g_file_query_info (pFile,
 		cQuery,
 		G_FILE_QUERY_INFO_NONE,  /// G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS
@@ -726,18 +724,14 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 	GFile *pFile = g_file_new_for_uri (cURI);
 	GError *erreur = NULL;
 	const gchar *cAttributes = G_FILE_ATTRIBUTE_STANDARD_TYPE","
-		G_FILE_ATTRIBUTE_STANDARD_SIZE","
-		G_FILE_ATTRIBUTE_TIME_MODIFIED","
 		G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE","
 		G_FILE_ATTRIBUTE_STANDARD_NAME","
-		G_FILE_ATTRIBUTE_STANDARD_IS_HIDDEN","
 		G_FILE_ATTRIBUTE_STANDARD_ICON","
 		G_FILE_ATTRIBUTE_THUMBNAIL_PATH","
 		#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
 		///G_FILE_ATTRIBUTE_PREVIEW_ICON","
 		#endif
-		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI","
-		G_FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE;
+		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI;
 	GFileEnumerator *pFileEnum = g_file_enumerate_children (pFile,
 		cAttributes,
 		G_FILE_QUERY_INFO_NONE,  /// G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS
