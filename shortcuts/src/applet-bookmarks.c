@@ -143,7 +143,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 							g_free (cGuessedName);
 						}
 						if (cRealURI == NULL)
-							cRealURI = g_strdup ("none");
+							cRealURI = g_strdup (cOneBookmark);
 						if (cIconName == NULL)
 							cIconName = cairo_dock_search_icon_s_path (CD_SHORTCUT_DEFAULT_DIRECTORY_ICON_FILENAME, CAIRO_DOCK_DEFAULT_ICON_SIZE);
 						
@@ -342,7 +342,7 @@ void cd_shortcuts_add_one_bookmark (const gchar *cURI)
 	g_free (cBookmarkFilePath);
 }
 
-Icon * _cd_shortcuts_get_icon (gchar *cFileName, const gchar *cUserName, double fCurrentOrder)
+static Icon * _cd_shortcuts_get_icon (gchar *cFileName, const gchar *cUserName, double fCurrentOrder)
 {
 	cd_debug ("New icon: %s, %s, %f", cFileName, cUserName, fCurrentOrder);
 	gchar *cName, *cRealURI, *cIconName;
@@ -352,10 +352,14 @@ Icon * _cd_shortcuts_get_icon (gchar *cFileName, const gchar *cUserName, double 
 	if (! cairo_dock_fm_get_file_info (cFileName, &cName, &cRealURI, &cIconName,
 		&bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_NAME))
 		return NULL;
+	g_print ("%s -> %s;%s\n", cFileName, cUserName, cName);
 	if (cUserName != NULL)
 	{
 		g_free (cName);
-		cName = g_strdup (cUserName);
+		if (cName == NULL)  // a bookmark on a unmounted system or a folder that doesn't exist any more
+			cName = g_strdup_printf ("%s\n[%s]", cUserName, D_("Unmounted"));
+		else
+			cName = g_strdup (cUserName);
 	}
 	else if (cName == NULL)  // a bookmark on a unmounted system
 	{
@@ -365,7 +369,7 @@ Icon * _cd_shortcuts_get_icon (gchar *cFileName, const gchar *cUserName, double 
 		g_free (cGuessedName);
 	}
 	if (cRealURI == NULL)
-		cRealURI = g_strdup ("none");
+		cRealURI = g_strdup (cFileName);
 	if (cIconName == NULL)
 		cIconName = cairo_dock_search_icon_s_path (
 			CD_SHORTCUT_DEFAULT_DIRECTORY_ICON_FILENAME,

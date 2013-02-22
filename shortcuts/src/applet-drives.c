@@ -265,11 +265,20 @@ void cd_shortcuts_on_drive_event (CairoDockFMEventType iEventType, const gchar *
 					if (cairo_dock_fm_get_file_info (icon->cBaseURI, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_NAME))
 					{
 						//g_print (" -> %s (%d)\n", cIconName, bIsMounted);
-						g_free (icon->cName);
-						if (bIsMounted || cIconName == NULL)
-							icon->cName = cName;
+						if (bIsMounted/** || cIconName == NULL*/)
+						{
+							gchar *str;
+							if ((str = strchr (icon->cName, '\n')) != NULL)  // if it was previously an unmounted bookmark, just remove the 'unmounted' part to avoid changing the name (when mounted, gvfs returns the path whereas we want to display the bookmark name). Note that the icon might also changes (it was NULL when the bookmark was not mounted), and we can use this new one which is probably more accurate.
+								*str = '\0';
+							else
+							{
+								g_free (icon->cName);
+								icon->cName = cName;
+							}
+						}
 						else
 						{
+							g_free (icon->cName);
 							icon->cName = g_strdup_printf ("%s\n[%s]", cName, D_("Unmounted"));
 							g_free (cName);
 						}
