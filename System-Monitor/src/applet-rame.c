@@ -119,8 +119,10 @@ void cd_sysmonitor_get_ram_data (CairoDockModuleInstance *myApplet)
 }
 
 
-#define _convert_from_kb(s) (int) (((s >> 20) == 0) ? (s >> 10) : (s >> 20))
+#define _convert_from_kb(s) (((s >> 20) == 0) ? (s / 1024.) : (s / (1048576.)))
 #define _unit(s) (((s >> 20) == 0) ? D_("Mb") : D_("Gb"))
+#define _append_value_from_kb(pInfo, s) t = _convert_from_kb (s); g_string_append_printf (pInfo, t<10 ? "%.1f" : "%.0f", t); g_string_append (pInfo, _unit(s));
+
 void cd_sysmonitor_get_ram_info (CairoDockModuleInstance *myApplet, GString *pInfo)
 {
 	if (!myConfig.bShowRam && ! myConfig.bShowSwap)
@@ -129,9 +131,16 @@ void cd_sysmonitor_get_ram_info (CairoDockModuleInstance *myApplet, GString *pIn
 		return;
 	
 	unsigned long long ram = myData.ramFree + myData.ramCached + myData.ramBuffers;
-	g_string_append_printf (pInfo,"\n%s : %d%s - %s : %d%s\n  %s : %d%s - %s : %d%s",
-		D_("Memory"), _convert_from_kb (myData.ramTotal), _unit (myData.ramTotal),
-		D_("Available"), _convert_from_kb (ram), _unit (ram),
-		D_("Cached"), _convert_from_kb (myData.ramCached), _unit (myData.ramCached),
-		D_("Buffers"), _convert_from_kb (myData.ramBuffers), _unit (myData.ramBuffers));
+	double t;
+	g_string_append_printf (pInfo, "\n%s : ", D_("Memory"));
+	_append_value_from_kb (pInfo, myData.ramTotal);
+	
+	g_string_append_printf (pInfo, " - %s : ", D_("Available"));
+	_append_value_from_kb (pInfo, ram);
+	
+	g_string_append_printf (pInfo, "\n  %s : ", D_("Cached"));
+	_append_value_from_kb (pInfo, myData.ramCached);
+	
+	g_string_append_printf (pInfo, " - %s : ", D_("Buffers"));
+	_append_value_from_kb (pInfo, myData.ramBuffers);
 }

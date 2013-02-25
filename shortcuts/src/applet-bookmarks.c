@@ -352,7 +352,6 @@ static Icon * _cd_shortcuts_get_icon (gchar *cFileName, const gchar *cUserName, 
 	if (! cairo_dock_fm_get_file_info (cFileName, &cName, &cRealURI, &cIconName,
 		&bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_NAME))
 		return NULL;
-	g_print ("%s -> %s;%s\n", cFileName, cUserName, cName);
 	if (cUserName != NULL)
 	{
 		g_free (cName);
