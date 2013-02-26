@@ -5,7 +5,7 @@ X-Debianized-Date: Sat, 07 Aug 2010 03:37:36 +0200
 
 Files: systray/src/cd-tray.c: LGPL (v2 or later)
 Copyright: 2007 Neil Jagdish Patel
-Licence: LGPL 2+ (See /usr/share/common-licenses/LGPL-2 for complete licence)
+License: LGPL 2+ (See /usr/share/common-licenses/LGPL-2 for complete license)
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -27,7 +27,7 @@ Files: 	systray/src/cd-tray.h
 	systray-menu-functions.*
 	systray/src/systray-struct.h
 Copyright: 2007, 2008 GESTES Cedric
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+License: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete license)
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3 of the License, or
@@ -44,11 +44,11 @@ Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
 
 Files: 	terminal/*
 Copyright: 2007, 2008 GESTES Cedric and Fabrice Rey
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+License: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete license)
 
 Files: systray/src/na-tray-manager.*
 Copyright: 2002 Anders Carlsson <andersca@gnu.org>, 2003-2006 Vincent Untz
-Licence: LGPL 2+ (See /usr/share/common-licenses/LGPL-2 for complete licence)
+License: LGPL 2+ (See /usr/share/common-licenses/LGPL-2 for complete license)
 
 Files: 	compiz-icon/*
 	nVidia/*
@@ -56,79 +56,79 @@ Files: 	compiz-icon/*
 	wifi/*
 	xmms/*
 Copyright: 2008, 2009 Rémy Robertson
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+License: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete license)
 
 Files: 	slider/*
 Copyright: 2008, 2009 Fabrice Rey and Rémy Robertson
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+License: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete license)
 
 Files: 	cpusage/*
 	netspeed/*
 	rame/*
 Copyright: 2008 parAdOxxx_ZeRo
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+License: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete license)
 
 Files: 	dock-rendering/*
 Copyright: 2008, 2009 Fabrice Rey and parAdOxxx_ZeRo
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+License: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete license)
 
 Files: 	Dbus/*
 Copyright: 2008 Fabrice Rey and Adrien Pilleboue
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+License: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete license)
 
 Files: 	powermanager/*
 	tomboy/*
 Copyright: 2008 Adrien Pilleboue
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+License: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete license)
 
 Files: 	mail/*
 Copyright: Christophe Chapuis and Fabrice Rey
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+License: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete license)
 
 Files: 	weblets/*
 	xfce-integration/*
 Copyright: Christophe Chapuis
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+License: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete license)
 
 Files: 	shortcuts/*
 Copyright: Benjamin SANS and Fabrice Rey
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+License: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete license)
 
 Files: 	showDesktop/*
 Copyright: Romain PEROL
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+License: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete license)
 
 Files: 	switcher/*
 Copyright: Cchumi and Fabrice Rey <fabounet@glx-dock.org>
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+License: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete license)
 
 Files: 	musicPlayer/*
 Copyright: Rémy Robertson, Yann Sladek, Yann Dulieu and Fabrice Rey <fabounet@glx-dock.org>
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+License: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete license)
 
 Files: dnd2share/*
 Copyright: Yann Dulieu and Fabrice Rey <fabounet@glx-dock.org>
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+License: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete license)
 
 Files: 	RSSreader/*
 Copyright: 2008 Yann Dulieu and Fabrice Rey <fabounet@glx-dock.org>
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+License: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete license)
 
 Files: 	Doncky/*
 Copyright: 2008 Yann Dulieu
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+License: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete license)
 
 Files: 	Network-Monitor/*
 Copyright: 2008 Yann Sladek and Fabrice Rey <fabounet@glx-dock.org>
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+License: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete license)
 
 Files:  Composite-Manager/data/composite*.svg
 Copyright: John Varouhakis
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+License: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete license)
 
 Files:  shared-images/*.svg
 Copyright: ccsm icons
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+License: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete license)
 
 Files: 	alsaMixer/*
 	Animated-icons/*
@@ -162,19 +162,19 @@ Files: 	alsaMixer/*
 	gvfs-integration/*
 	*/*
 Copyright: 2007-2011 Fabrice Rey <fabounet@glx-dock.org>
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+License: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete license)
 
 Icons inspired of the Humanity Icons theme and recolorized by Matthieu Baerts
 Copyright: Daniel Fore, Jonian Guveli and K.Vishnoo Charan Reddy.
-Licence: GPL v2  (See /usr/share/common-licenses/GPL-2 for complete licence)
+License: GPL v2  (See /usr/share/common-licenses/GPL-2 for complete license)
 
 Pictures on slider/data/preview.jpg:
 Copyright: Matthieu Baerts
-Licence: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete licence)
+License: GPL 3+ (See /usr/share/common-licenses/GPL-3 for complete license)
 
 Files: 	debian/*
 Copyright: Copyright (C) Julien Lavergne <julien.lavergne@gmail.com>
-Licence: GPL 2+ (See /usr/share/common-licenses/GPL-2 for complete licence)
+License: GPL 2+ (See /usr/share/common-licenses/GPL-2 for complete license)
 Updated by Matthieu Baerts and Didier Roche for new releases.
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
