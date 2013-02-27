@@ -22,9 +22,11 @@ import sys
 try:
 	import glib
 	import gobject
+	g_bMainLoopInGObject = True
 except:
 	from gi.repository import GLib as glib
 	from gi.repository import GObject as gobject
+	g_bMainLoopInGObject = False
 
 import re
 from os import popen, getpid
@@ -166,7 +168,10 @@ class ULWatcher:
 		
 		self.dock = CairoDock()
 		
-		self.loop = gobject.MainLoop()
+		if g_bMainLoopInGObject:
+			self.loop = gobject.MainLoop()
+		else:
+			self.loop = glib.MainLoop()
 		self.loop.run()
 	
 	def on_launcher_entry_signal(self, val1=None, val2=None, member=None, sender=None):  # application://evolution.desktop, dictionnary (sv)

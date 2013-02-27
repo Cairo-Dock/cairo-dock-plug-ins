@@ -24,9 +24,11 @@ import sys
 try:
 	import glib
 	import gobject
+	g_bMainLoopInGObject = True
 except:
 	from gi.repository import GLib as glib
 	from gi.repository import GObject as gobject
+	g_bMainLoopInGObject = False
 
 import dbus, dbus.service
 from dbus.mainloop.glib import DBusGMainLoop
@@ -57,7 +59,10 @@ class SNWatcher(dbus.service.Object):
 		self.main = dbus.Interface(bus_object, dbus.BUS_DAEMON_IFACE)
 		self.main.connect_to_signal("NameOwnerChanged", self.on_name_owner_changed)
 		
-		self.loop = gobject.MainLoop()
+		if g_bMainLoopInGObject:
+			self.loop = gobject.MainLoop()
+		else:
+			self.loop = glib.MainLoop()
 		self.loop.run()
 	
 	def on_name_owner_changed(self, service, prev_owner, new_owner):

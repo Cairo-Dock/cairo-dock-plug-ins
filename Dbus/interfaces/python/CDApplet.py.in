@@ -28,9 +28,11 @@ import os.path
 try:
 	import glib
 	import gobject
+	g_bMainLoopInGObject = True
 except:
 	from gi.repository import GLib as glib
 	from gi.repository import GObject as gobject
+	g_bMainLoopInGObject = False
 
 import gettext
 import dbus
@@ -156,7 +158,10 @@ class CDApplet:
 		""" start the applet and enter the main loop; we never get out of this function """
 		self.begin()
 		if not self._bEnded:  # _bEnded can be true if the applet runs its own main loop, in which case we stay stuck in the 'begin' function until the end of the applet; in this case, we don't want to run a main loop again!
-			self.loop = gobject.MainLoop()
+			if g_bMainLoopInGObject:
+				self.loop = gobject.MainLoop()
+			else:
+				self.loop = glib.MainLoop()
 			self.loop.run()
 		print(">>> applet '"+self.cAppletName+"' terminated.")
 		sys.exit(0)
