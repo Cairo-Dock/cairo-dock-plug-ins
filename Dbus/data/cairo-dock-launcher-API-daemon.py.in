@@ -18,8 +18,14 @@
 
 from __future__ import print_function
 import sys
-import glib
-import gobject
+
+try:
+	import glib
+	import gobject
+except:
+	from gi.repository import GLib as glib
+	from gi.repository import GObject as gobject
+
 import re
 from os import popen, getpid
 import dbus, dbus.service
