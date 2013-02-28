@@ -30,9 +30,11 @@
 CD_APPLET_DEFINE_BEGIN (N_("Indicator-Generic"),
 	3, 1, 99,
 	CAIRO_DOCK_CATEGORY_APPLET_DESKTOP,
-	N_("A plugin to hold all your 'indicators' applets.\n"
-	"Simply enable it and it will load all your installed indicators.\n"
-	"You can define a blacklist to not load some indicators."),
+	N_("This plug-in can display all the available Indicators into your dock.\n"
+	"Indicators provide information about something, and a menu to act on it:\n"
+	"  for instance, an indicator to control the printer jobs."
+	"Idle Indicators are automatically hidden.\n"
+	"You can also blacklist indicators you don't want to see."),
 	"Matthieu Baerts (matttbe)")
 	pVisitCard->bMultiInstance = FALSE; // don't load other instances, it will be done by the dock
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
