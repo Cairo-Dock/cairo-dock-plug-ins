@@ -35,11 +35,12 @@
 #include "applet-backend-ical.h"
 
 typedef struct {
-	icalset *piCalSet;
-	icalcomponent *piCalCalendar;
+	icalset *piCalSet;  // the equivalent of a GKeyFile for the ICS file
+	icalcomponent *piCalCalendar;  // the (first) calendar contained in the set
 	} CDClockIcalBackendData;
 
 static CDClockIcalBackendData *_pBackendData = NULL;
+static int s_iCounter = 0;  // a counter used to define a new ID
 
 static void backend_ical_init(CairoDockModuleInstance *myApplet)
 {
@@ -169,7 +170,7 @@ static GList *get_tasks (CairoDockModuleInstance *myApplet)
 		
 		pTask->cID = cTaskID;
 		pTask->iDay = liCalStartDate.day;
-		pTask->iMonth = liCalStartDate.month;
+		pTask->iMonth = liCalStartDate.month - 1;  // we use the gtk-calendar format (month between 0 and 11).
 		pTask->iYear = liCalStartDate.year;
 		pTask->iHour = liCalStartDate.hour;
 		pTask->iMinute = liCalStartDate.minute;
@@ -191,7 +192,7 @@ static GList *get_tasks (CairoDockModuleInstance *myApplet)
 		pTask->cText = g_strdup(icalcomponent_get_description(piCalComponent));
 		pTask->cTags = g_strdup(icalcomponent_get_comment(piCalComponent));
 		
-		pTask->bAcknowledged = TRUE;  /// a recuperer si possible ...
+		pTask->bAcknowledged = (icalcomponent_get_status(piCalComponent) == ICAL_STATUS_COMPLETED || icalcomponent_get_status(piCalComponent) == ICAL_STATUS_CANCELLED);
 		
 		pTaskList = g_list_prepend (pTaskList, pTask);
 	}
@@ -199,7 +200,7 @@ static GList *get_tasks (CairoDockModuleInstance *myApplet)
 	return pTaskList;
 }
 
-static int s_iCounter = 0;
+
 static gboolean create_task (CDClockTask *pTask, CairoDockModuleInstance *myApplet)
 {
 	if( !_assert_data() ) return FALSE;
@@ -213,10 +214,11 @@ static gboolean create_task (CDClockTask *pTask, CairoDockModuleInstance *myAppl
 		// find the first free slot for the ID
 		do {
 			if( pTask->cID ) g_free(pTask->cID);
-			pTask->cID = g_strdup_printf ("%d", ++s_iCounter);
+			pTask->cID = g_strdup_printf ("a%d", ++s_iCounter);  // Google calendar doesn't like a sole number as an ID.
 		} while( find_task(pTask->cID) != NULL );
 
-		piCalComponent = icalcomponent_new_vtodo();
+		///piCalComponent = icalcomponent_new_vtodo();
+		piCalComponent = icalcomponent_new_vevent();  // use a vevent rather than a vtodo, because Google calendar doesn't import/export todos; it doesn't change much for us.
 		if( piCalComponent == NULL ) return FALSE;		
 		icalcomponent_set_uid(piCalComponent, pTask->cID);
 	}
@@ -224,17 +226,16 @@ static gboolean create_task (CDClockTask *pTask, CairoDockModuleInstance *myAppl
 	{
 		// ID is already set, so it is a modification
 		piCalComponent = find_task(pTask->cID);
-		cd_warning("Trying to modify task ID=%s, but didn't find it in the iCal database!", pTask->cID);
+		//cd_warning("Trying to modify task ID=%s, but didn't find it in the iCal database!", pTask->cID);
 		if( piCalComponent == NULL ) return FALSE;
 		bIsModification = TRUE;
 	}
-
 
 	struct icaltimetype liCalStartDate = icaltime_null_time();
 	// struct icaldurationtype liCalDuration = icalcomponent_get_duration(piCalComponent); //ignored until Clock manages tasks duration
 	
 	liCalStartDate.day = pTask->iDay;
-	liCalStartDate.month = pTask->iMonth;
+	liCalStartDate.month = pTask->iMonth + 1;  // gtk-calendar format
 	liCalStartDate.year = pTask->iYear;
 	liCalStartDate.hour = pTask->iHour;
 	liCalStartDate.minute = pTask->iMinute;
@@ -281,6 +282,7 @@ static gboolean create_task (CDClockTask *pTask, CairoDockModuleInstance *myAppl
 	{
 		icalcomponent_set_comment(piCalComponent, pTask->cTags);
 	}
+	icalcomponent_set_status(piCalComponent, pTask->bAcknowledged ? ICAL_STATUS_COMPLETED : ICAL_STATUS_CONFIRMED);
 
 	if( !bIsModification )
 	{
@@ -317,10 +319,7 @@ static gboolean delete_task (CDClockTask *pTask, CairoDockModuleInstance *myAppl
 static gboolean update_task (CDClockTask *pTask, CairoDockModuleInstance *myApplet)
 {
 	//g_print ("%s (%s, '%s')\n", __func__, pTask->cTitle, pTask->cText);
-	//if( !delete_task (pTask, myApplet) ) return FALSE;
-	if( !create_task (pTask, myApplet) ) return FALSE;
-		
-	return TRUE;
+	return create_task (pTask, myApplet);  // the 'create' can also update a task
 }
 #endif
 
