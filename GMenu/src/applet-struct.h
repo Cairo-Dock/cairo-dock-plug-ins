@@ -79,7 +79,6 @@ struct _AppletData {
 	// guint iSidPreloaded;
 	CairoDockTask *pTask;
 	gboolean bIconsLoaded;
-	gboolean bLoaded;
 	// recent files sub-menu
 	GtkRecentManager *pRecentManager;
 	GtkWidget *pRecentMenuItem;

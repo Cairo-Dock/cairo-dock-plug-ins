@@ -57,19 +57,14 @@ GtkWidget * create_fake_menu (GMenuTreeDirectory *directory)
 	g_signal_connect (menu, "show",
 			  G_CALLBACK (submenu_to_display), NULL);
 
-	if (myData.bLoaded)
-	{
-		idle_id = g_idle_add_full (G_PRIORITY_LOW,
-					submenu_to_display_in_idle,
-					menu,
-					NULL);
-		g_object_set_data_full (G_OBJECT (menu),
-					"panel-menu-idle-id",
-					GUINT_TO_POINTER (idle_id),
-					remove_submenu_to_display_idle);
-	}
-	else
-		submenu_to_display_in_idle (menu);
+	idle_id = g_idle_add_full (G_PRIORITY_LOW,
+				submenu_to_display_in_idle,
+				menu,
+				NULL);
+	g_object_set_data_full (G_OBJECT (menu),
+				"panel-menu-idle-id",
+				GUINT_TO_POINTER (idle_id),
+				remove_submenu_to_display_idle);
 
 	return menu;
 }
@@ -661,19 +656,14 @@ GtkWidget * create_applications_menu (const char *menu_file,
 	g_signal_connect (menu, "show",
 			  G_CALLBACK (submenu_to_display), NULL);
 
-	if (myData.bLoaded)
-	{
-		idle_id = g_idle_add_full (G_PRIORITY_LOW,
-					submenu_to_display_in_idle,
-					menu,
-					NULL);
-		g_object_set_data_full (G_OBJECT (menu),
-					"panel-menu-idle-id",
-					GUINT_TO_POINTER (idle_id),
-					remove_submenu_to_display_idle);
-	}
-	else // we are in a thread
-		submenu_to_display_in_idle (menu);
+	idle_id = g_idle_add_full (G_PRIORITY_LOW,
+				submenu_to_display_in_idle,
+				menu,
+				NULL);
+	g_object_set_data_full (G_OBJECT (menu),
+				"panel-menu-idle-id",
+				GUINT_TO_POINTER (idle_id),
+				remove_submenu_to_display_idle);
 
 	gmenu_tree_add_monitor (tree,
 			       (GMenuTreeChangedFunc) handle_gmenu_tree_changed,
