@@ -47,7 +47,9 @@ void cd_do_numberize_icons (CairoDock *pDock)
 				number[0] = '1' + n;  // the first icon will take the "1" number.
 			
 			pSurface = cairo_dock_create_surface_from_text (number, &myIconsParam.quickInfoTextDescription, &iWidth, &iHeight);
-			cairo_dock_add_overlay_from_surface (pIcon, pSurface, iWidth, iHeight, CAIRO_OVERLAY_UPPER_RIGHT, myApplet);  // we could remember the existing overlay to replace it later ...
+			CairoOverlay *pOverlay = cairo_dock_add_overlay_from_surface (pIcon, pSurface, iWidth, iHeight, CAIRO_OVERLAY_UPPER_RIGHT, myApplet);
+			if (pOverlay)
+				cairo_dock_set_overlay_scale (pOverlay, 0);  // on't scale with the icon.
 			n ++;
 		}
 	}
