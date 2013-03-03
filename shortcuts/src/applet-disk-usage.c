@@ -228,7 +228,7 @@ gchar *cd_shortcuts_get_disk_info (const gchar *cDiskURI, const gchar *cDiskName
 	cd_shortcuts_get_fs_stat (cDiskURI, &diskUsage);
 	
 	// on recupere les infos du file system.
-	if (diskUsage.iTotal > 0)  // le disque est monte.
+	if (diskUsage.iTotal > 0)  // info are available
 	{
 		gchar *cFreeSpace = cairo_dock_get_human_readable_size (diskUsage.iAvail);
 		gchar *cCapacity = cairo_dock_get_human_readable_size (diskUsage.iTotal);
@@ -237,9 +237,13 @@ gchar *cd_shortcuts_get_disk_info (const gchar *cDiskURI, const gchar *cDiskName
 		g_free (cFreeSpace);
 		_cd_shortcuts_get_fs_info (cDiskURI, sInfo);
 	}
-	else  // disque non monte.
+	else if (strncmp (cDiskURI, "computer:/", 10) == 0 || strncmp (cDiskURI, "file:/", 6) == 0)  // no info on a local mount point => it's not mounted
 	{
 		g_string_append_printf (sInfo, "Name : %s\nNot mounted", cDiskName);
+	}
+	else  // not a local mount point => a distant connection
+	{
+		g_string_append_printf (sInfo, "Name : %s\nURL : %s", cDiskName, cDiskURI);
 	}
 	
 	gchar *cInfo = sInfo->str;
