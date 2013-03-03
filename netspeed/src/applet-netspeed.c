@@ -20,9 +20,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <glib/gi18n.h>
-#include <glib.h>
-#include <glib/gprintf.h>
+
+#ifdef __FreeBSD__ 
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <ifaddrs.h>
+#include <net/if.h>
+#include <net/if_types.h>
+#include <net/if_dl.h> 
+#endif
 
 #include "applet-struct.h"
 #include "applet-notifications.h"
@@ -96,26 +102,6 @@ void cd_netspeed_format_value (CairoDataRenderer *pRenderer, int iNumValue, gcha
 		s_upRateFormatted);
 }
 
-static gboolean _cd_is_a_good_interface (gchar *cPointer, CairoDockModuleInstance *myApplet)
-{
-	if (myConfig.cInterface == NULL) // we monitor all interfaces except 'lo'
-	{
-		gchar *cColon = cPointer; // yeah, it's an English word and not a French one :D
-		int iStringLen = 0;
-		while (*cColon != ':') // || *cColon != '\0')
-		{
-			cColon ++;
-			iStringLen ++;
-		}
-		if (strncmp (cPointer, "lo", iStringLen) != 0) // skip 'lo'
-			return iStringLen;
-	}
-	else if (strncmp (cPointer, myConfig.cInterface, myConfig.iStringLen) == 0
-		&& *(cPointer + myConfig.iStringLen) == ':')
-		return myConfig.iStringLen; // the right interface followed by ':'
-
-	return 0;
-}
 
 void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
 {
@@ -123,8 +109,34 @@ void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
 	double fTimeElapsed = g_timer_elapsed (myData.pClock, NULL);
 	g_timer_start (myData.pClock);
 	g_return_if_fail (fTimeElapsed > 0.1 || !myData.bInitialized);
-	
 	myData.bAcquisitionOK = FALSE;
+	
+	#ifdef __FreeBSD__  // thanks to Max Power for the BSD port
+	struct ifaddrs *ifap, *ifa;
+	if (getifaddrs(&ifap) != 0)
+	{
+		cd_warning ("NetSpeed : getifaddrs");
+		return;
+	}
+	long long int iReceivedBytes = 0, iTransmittedBytes = 0;
+	for (ifa = ifap; ifa; ifa = ifa->ifa_next)  // for all interfaces
+	{
+		// check the interface
+		struct sockaddr_dl *sdl = (struct sockaddr_dl *) ifa->ifa_addr;
+		if (sdl->sdl_type != IFT_ETHER)
+			continue;  // skip all non ethernet interfaces such as loopback, usb, etc...
+		if (myConfig.cInterface != NULL && strcmp (ifa->ifa_name, myConfig.cInterface) != 0))  // we monitor a given interface
+			continue;
+		
+		myData.bAcquisitionOK = TRUE;
+		struct if_data *data = (struct if_data*) ifa->ifa_data;  // get data
+		if (data != NULL)
+		{
+			iReceivedBytes += (long long int)data->ifi_ibytes;
+			iTransmittedBytes += (long long int)data->ifi_obytes;
+		}
+	}
+	#else
 	gchar *cContent = NULL;
 	gsize length=0;
 	GError *erreur = NULL;
@@ -133,60 +145,69 @@ void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
 	{
 		cd_warning("NetSpeed : %s", erreur->message);
 		g_error_free(erreur);
-		erreur = NULL;
+		return;
 	}
-	else if (cContent && *cContent != '\0')
+	int iNumLine = 1;
+	gchar *tmp = cContent, *if_data;
+	long long int iReceivedBytes = 0, iTransmittedBytes = 0;
+	do
 	{
-		int iNumLine = 1, iStringLen;
-		gchar *tmp = cContent;
-		long long int iReceivedBytes = 0, iTransmittedBytes = 0;
-		do
+		if (iNumLine > 2)  // first 2 lines are the names of the fields (next lines are the various interfaces, in any order, the loopback is not always the first one).
 		{
-			if (iNumLine > 2)  // first 2 lines are the names of the fields (next lines are the various interfaces, in any order, the loopback is not always the first one).
+			while (*tmp == ' ')  // drop spaces
+				tmp ++;
+			
+			// "interface : data"
+			if_data = strchr (tmp, ':');
+			if (!if_data)  // shouldn't occur
+				break;
+			*if_data = '\0';
+			
+			if ((myConfig.cInterface == NULL && strcmp (tmp, "lo") != 0)  // we monitor all interfaces except 'lo'
+			|| (myConfig.cInterface != NULL && strcmp (tmp, myConfig.cInterface) == 0))  // we monitor a given interface
 			{
+				myData.bAcquisitionOK = TRUE;
+				tmp = if_data + 1;  // drop ':'
 				while (*tmp == ' ')  // drop spaces
 					tmp ++;
+				iReceivedBytes += atoll (tmp);
 				
-				if ((iStringLen = _cd_is_a_good_interface (tmp, myApplet)) != 0)
+				int i = 0;
+				for (i = 0; i < 8; i ++)  // drop 8 next values
 				{
-					myData.bAcquisitionOK = TRUE;
-					tmp += iStringLen+1;  // drop ':'
+					while (*tmp != ' ')  // drop numbers
+						tmp ++;
 					while (*tmp == ' ')  // drop spaces
 						tmp ++;
-					iReceivedBytes += atoll (tmp);
-					
-					int i = 0;
-					for (i = 0; i < 8; i ++)  // drop 8 next values
-					{
-						while (*tmp != ' ')  // drop numbers
-							tmp ++;
-						while (*tmp == ' ')  // drop spaces
-							tmp ++;
-					}
-					iTransmittedBytes += atoll (tmp);
-
-					if (myConfig.cInterface != NULL) // only one interface
-						break ;
 				}
-			}
-			tmp = strchr (tmp, '\n');
-			if (tmp == NULL || *(++tmp) == '\0') // EOF
-				break;
-			iNumLine ++;
-		}
-		while (1);
-		if (myData.bInitialized)  // first iteration, we can compute the speed
-		{
-			myData.iDownloadSpeed = (iReceivedBytes - myData.iReceivedBytes) / fTimeElapsed;
-			myData.iUploadSpeed = (iTransmittedBytes - myData.iTransmittedBytes) / fTimeElapsed;
-		}
-		myData.iReceivedBytes = iReceivedBytes;
-		myData.iTransmittedBytes = iTransmittedBytes;
+				iTransmittedBytes += atoll (tmp);
 
-		if (! myData.bInitialized)
-			myData.bInitialized = TRUE;
+				if (myConfig.cInterface != NULL) // only one interface
+					break ;
+			}
+			else  // skip this interface
+			{
+				tmp = if_data + 1;  // drop ':'
+			}
+		}
+		tmp = strchr (tmp, '\n');
+		if (tmp == NULL || *(++tmp) == '\0') // EOF
+			break;
+		iNumLine ++;
 	}
+	while (1);
 	g_free (cContent);
+	#endif
+	if (myData.bInitialized)  // we already have some previous values => we can compute the speed
+	{
+		myData.iDownloadSpeed = (iReceivedBytes - myData.iReceivedBytes) / fTimeElapsed;
+		myData.iUploadSpeed = (iTransmittedBytes - myData.iTransmittedBytes) / fTimeElapsed;
+	}
+	myData.iReceivedBytes = iReceivedBytes;
+	myData.iTransmittedBytes = iTransmittedBytes;
+
+	if (! myData.bInitialized)
+		myData.bInitialized = TRUE;
 }
 
 gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)

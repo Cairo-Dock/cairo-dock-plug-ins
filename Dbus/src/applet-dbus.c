@@ -42,6 +42,14 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-bindings.h>
 
+#ifdef __FreeBSD__
+#include <kvm.h>
+#include <sys/param.h>
+#include <sys/sysctl.h>
+#include <sys/user.h>
+#include <limits.h>
+#endif
+
 #include "interface-main-methods.h"
 #include "dbus-main-spec.h"
 #include "interface-applet-object.h"
@@ -364,9 +372,46 @@ static void _on_got_list (GHashTable *pPackagesTable, gpointer data)
   ///////////////
  /// SERVICE ///
 ///////////////
-
 void cd_dbus_clean_up_processes (gboolean bAll)
 {
+	#ifdef __FreeBSD__   // thanks to Max Power for the BSD port
+	kvm_t *kd; //pointer for KVM library
+	char errbuf[_POSIX2_LINE_MAX]; //error message
+	int nentries; //number of processes
+	int p; //current process
+	struct kinfo_proc *kp;
+	kd = kvm_openfiles (NULL,"/dev/null",NULL,O_RDONLY,errbuf);
+	if(kd == 0)
+	{
+		cd_warning ("Dbus : %s",errbuf);
+		return;
+	}
+	kp = kvm_getprocs(kd,KERN_PROC_PROC,0,&nentries);
+	for(p=0; p<nentries;p++)
+	{
+		//SEARCHING...
+		char** pidargv = kvm_getargv(kd,&kp[p],0);
+		if(pidargv==NULL)
+			continue;  // not able to get args
+		int pidargc;
+		for(pidargc=0;pidargv[pidargc];pidargc++);  // get the number or args
+		if(pidargc<3) //not enough parameters
+			continue;
+		if(strcmp (pidargv[pidargc-2], myData.cProgName) != 0)  // not our program name.
+			continue;
+		if(atoi (pidargv[pidargc-1]) == 0)  // last arg is not a number
+			continue;
+		
+		//..SEEK...
+		if (bAll || kp[p].ki_ppid==1) // old process, if parent exprired ppid is set to 1
+		{
+			//...AND DESTROY
+			cd_message ("this applet (%s %d) is linked to an old gldi process (%d), kill it.", kp[p].ki_comm, kp[p].ki_pid, kp[p].ki_ppid);
+			kill (kp[p].ki_pid, SIGKILL); // SIGTERM sometimes lets the process alive.
+		}
+	}
+	kvm_close(kd);
+	#else
 	static gchar cFilePathBuffer[23+1];  // /proc/12345/cmdline + 4octets de marge.
 	static gchar cContent[512+1];
 	
@@ -428,6 +473,7 @@ void cd_dbus_clean_up_processes (gboolean bAll)
 		}
 	}
 	g_dir_close (dir);
+	#endif
 }
 
 void cd_dbus_launch_service (void)

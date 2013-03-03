@@ -28,6 +28,10 @@ add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
 add_definitions (-DCD_PLUGINS_DIR="${pluginsdir}")
 
+IF (${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
+	set(kvm "kvm")
+endif()
+
 if (DBUSMENU_FOUND AND DBUSMENU_GTK_FOUND)
 	message (STATUS " * With DBusMenu support")
 	add_definitions (-DDBUSMENU_GTK_FOUND=1)
@@ -48,7 +52,8 @@ if (DBUSMENU_FOUND AND DBUSMENU_GTK_FOUND)
 	target_link_libraries (${PACKAGE_DBUS}
 		${DBUSMENU_LIBRARIES}
 		${DBUSMENU_GTK_LIBRARIES}
-		${PACKAGE_LIBRARIES})
+		${PACKAGE_LIBRARIES}
+		${kvm})
 else()
 	include_directories (
 		${PACKAGE_INCLUDE_DIRS})
@@ -57,7 +62,8 @@ else()
 		${PACKAGE_LIBRARY_DIRS})
 
 	target_link_libraries (${PACKAGE_DBUS}
-		${PACKAGE_LIBRARIES})
+		${PACKAGE_LIBRARIES}
+		${kvm})
 endif()
 
 ########### install files ###############

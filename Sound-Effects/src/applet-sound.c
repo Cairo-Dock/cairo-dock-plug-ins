@@ -20,9 +20,12 @@
 */
 
 #include <stdlib.h>
-
+#ifndef __FreeBSD__
 #include <endian.h>
 #include <byteswap.h>
+#else
+#include <sys/endian.h>
+#endif
 
 #include "applet-struct.h"
 #include "applet-sound.h"
