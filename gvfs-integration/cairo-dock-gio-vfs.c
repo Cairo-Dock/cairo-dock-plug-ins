@@ -775,7 +775,6 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 				continue;
 			}
 			const gchar *cFileName = g_file_info_get_name (pFileInfo);
-			g_print ("%s: %d/%d\n", cFileName, bIsHidden, bListHiddenFiles);
 			const gchar *cMimeType = g_file_info_get_content_type (pFileInfo);
 			gchar *cName = NULL;
 			
