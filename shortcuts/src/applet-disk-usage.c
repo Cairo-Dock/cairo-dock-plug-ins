@@ -175,11 +175,11 @@ static void _cd_shortcuts_get_fs_info (const gchar *cDiskURI, GString *sInfo)
 		{
 			if (me->f_mntonname && strcmp (me->f_mntonname, cMountPath) == 0)
 			{
-				g_string_append_printf (sInfo, "Mount point : %s\nFile system : %s\nDevice : %s\nMount options : %s",
-				me->f_mntonname,
-				me->f_mntfromname,
-				me->f_fstypename,
-				me->f_charspare);
+				g_string_append_printf (sInfo, "%s %s\n%s %s\n%s %s\n%s %s",
+					D_("Mount point:"), me->f_mntonname,
+					D_("File system:"), me->f_mntfromname,
+					D_("Device:"), me->f_fstypename,
+					D_("Mount options:"), me->f_charspare);
 				// if (me->mnt_freq != 0)
 				// g_string_append_printf (sInfo, "\nBackup frequency : %d days", me->mnt_freq);
 				break ;
@@ -204,13 +204,14 @@ static void _cd_shortcuts_get_fs_info (const gchar *cDiskURI, GString *sInfo)
 	{
 		if (me->mnt_dir && strcmp (me->mnt_dir, cMountPath) == 0)
 		{
-			g_string_append_printf (sInfo, "Mount point : %s\nFile system : %s\nDevice : %s\nMount options : %s",
-				me->mnt_dir,
-				me->mnt_type,
-				me->mnt_fsname,
-				me->mnt_opts);
+			g_string_append_printf (sInfo, "%s %s\n%s %s\n%s %s\n%s %s",
+				D_("Mount point:"), me->mnt_dir,
+				D_("File system:"), me->mnt_type,
+				D_("Device:"), me->mnt_fsname,
+				D_("Mount options:"), me->mnt_opts);
 			if (me->mnt_freq != 0)
-				g_string_append_printf (sInfo, "\nBackup frequency : %d days", me->mnt_freq);
+				g_string_append_printf (sInfo, "\n%s %d %s",
+					D_("Backup frequency:"), me->mnt_freq, D_("days"));
 			break ;
 		}
 	}
@@ -232,18 +233,24 @@ gchar *cd_shortcuts_get_disk_info (const gchar *cDiskURI, const gchar *cDiskName
 	{
 		gchar *cFreeSpace = cairo_dock_get_human_readable_size (diskUsage.iAvail);
 		gchar *cCapacity = cairo_dock_get_human_readable_size (diskUsage.iTotal);
-		g_string_append_printf (sInfo, "Name : %s\nCapacity : %s\nFree space : %s\n", cDiskName, cCapacity, cFreeSpace);
+		g_string_append_printf (sInfo, "%s %s\n%s %s\n%s %s\n", // added '\n' -> _cd_shortcuts_get_fs_info
+			D_("Name:"), cDiskName,
+			D_("Capacity:"), cCapacity,
+			D_("Free space:"), cFreeSpace);
 		g_free (cCapacity);
 		g_free (cFreeSpace);
 		_cd_shortcuts_get_fs_info (cDiskURI, sInfo);
 	}
 	else if (strncmp (cDiskURI, "computer:/", 10) == 0 || strncmp (cDiskURI, "file:/", 6) == 0)  // no info on a local mount point => it's not mounted
 	{
-		g_string_append_printf (sInfo, "Name : %s\nNot mounted", cDiskName);
+		g_string_append_printf (sInfo, "%s %s\n%s",
+			D_("Name:"), cDiskName, D_("Not mounted"));
 	}
 	else  // not a local mount point => a distant connection
 	{
-		g_string_append_printf (sInfo, "Name : %s\nURL : %s", cDiskName, cDiskURI);
+		g_string_append_printf (sInfo, "%s %s\n%s %s",
+			D_("Name:"), cDiskName,
+			D_("URL:"), cDiskURI);
 	}
 	
 	gchar *cInfo = sInfo->str;

@@ -298,8 +298,8 @@ msgstr "ウィンドウマネージャの設定変更"
 #: ../musicPlayer/src/applet-notifications.c:301
 #: ../netspeed/src/applet-notifications.c:105
 #: ../quick-browser/src/applet-notifications.c:41
-#: ../shortcuts/src/applet-notifications.c:300
-#: ../shortcuts/src/applet-notifications.c:333
+#: ../shortcuts/src/applet-notifications.c:301
+#: ../shortcuts/src/applet-notifications.c:334
 #: ../showDesktop/src/applet-notifications.c:165
 #: ../showDesktop/src/applet-notifications.c:177
 #: ../showDesktop/src/applet-notifications.c:189
@@ -383,31 +383,31 @@ msgstr "アプレット '%s' は問題なくインストールされ自動的に
 #: ../Disks/src/applet-disks.c:45 ../Disks/src/applet-disks.c:53
 #: ../Network-Monitor/src/applet-netspeed.c:42
 #: ../Network-Monitor/src/applet-netspeed.c:50
-#: ../netspeed/src/applet-netspeed.c:42 ../netspeed/src/applet-netspeed.c:50
+#: ../netspeed/src/applet-netspeed.c:48 ../netspeed/src/applet-netspeed.c:56
 msgid "B"
 msgstr "B"
 
 #: ../Disks/src/applet-disks.c:61 ../Folders/src/applet-notifications.c:140
 #: ../Network-Monitor/src/applet-netspeed.c:58
-#: ../netspeed/src/applet-netspeed.c:58
+#: ../netspeed/src/applet-netspeed.c:64
 msgid "KB"
 msgstr "KB"
 
 #: ../Disks/src/applet-disks.c:69 ../Folders/src/applet-notifications.c:138
 #: ../Network-Monitor/src/applet-netspeed.c:66
-#: ../netspeed/src/applet-netspeed.c:66
+#: ../netspeed/src/applet-netspeed.c:72
 #: ../netspeed/src/applet-notifications.c:37
 #: ../netspeed/src/applet-notifications.c:38
 msgid "MB"
 msgstr "MB"
 
 #: ../Disks/src/applet-disks.c:77 ../Network-Monitor/src/applet-netspeed.c:74
-#: ../netspeed/src/applet-netspeed.c:74
+#: ../netspeed/src/applet-netspeed.c:80
 msgid "GB"
 msgstr "GB"
 
 #: ../Disks/src/applet-disks.c:85 ../Network-Monitor/src/applet-netspeed.c:82
-#: ../netspeed/src/applet-netspeed.c:82
+#: ../netspeed/src/applet-netspeed.c:88
 msgid "TB"
 msgstr "TB"
 
@@ -738,11 +738,11 @@ msgstr ""
 msgid "Applications Menu"
 msgstr "アプリケーション・メニュー"
 
-#: ../GMenu/src/applet-init.c:133
+#: ../GMenu/src/applet-init.c:132
 msgid "Show/hide the Applications menu"
 msgstr "アプリケーション・メニューを表示/隠す"
 
-#: ../GMenu/src/applet-init.c:138
+#: ../GMenu/src/applet-init.c:137
 msgid "Show/hide the quick-launch dialog"
 msgstr "クイック起動のダイアログを表示/隠す"
 
@@ -985,7 +985,7 @@ msgstr ""
 #: ../Network-Monitor/src/applet-netspeed.c:202
 #: ../System-Monitor/src/applet-monitor.c:95
 #: ../System-Monitor/src/applet-top.c:427
-#: ../netspeed/src/applet-netspeed.c:222
+#: ../netspeed/src/applet-netspeed.c:243
 msgid "Loading"
 msgstr "読み込み中"
 
@@ -1674,39 +1674,32 @@ msgid "Luminosity"
 msgstr "輝度"
 
 #: ../alsaMixer/src/applet-backend-alsamixer.c:71
-#: ../alsaMixer/src/applet-mixer.c:51
 #, c-format
 msgid "I couldn't open card '%s'"
 msgstr "カード '%s' が開けません"
 
 #: ../alsaMixer/src/applet-backend-alsamixer.c:77
-#: ../alsaMixer/src/applet-mixer.c:56
 #, c-format
 msgid "Card '%s' opened but I couldn't get any info"
 msgstr "カード '%s' は開かれましたが、情報を取得できません"
 
 #: ../alsaMixer/src/applet-backend-alsamixer.c:86
-#: ../alsaMixer/src/applet-mixer.c:64
 msgid "I couldn't open the mixer"
 msgstr "ミキサーが開けません"
 
 #: ../alsaMixer/src/applet-backend-alsamixer.c:95
-#: ../alsaMixer/src/applet-mixer.c:71
 msgid "I couldn't attach the mixer to the card"
 msgstr "カードにミキサーを接続できません"
 
 #: ../alsaMixer/src/applet-backend-alsamixer.c:103
-#: ../alsaMixer/src/applet-mixer.c:78
 msgid "I couldn't register options"
 msgstr "オプションを登録できません"
 
 #: ../alsaMixer/src/applet-backend-alsamixer.c:111
-#: ../alsaMixer/src/applet-mixer.c:86
 msgid "I couldn't load the mixer"
 msgstr "ミキサーを読み込めません"
 
 #: ../alsaMixer/src/applet-backend-alsamixer.c:318
-#: ../alsaMixer/src/applet-mixer.c:286
 msgid "Set up volume:"
 msgstr "ボリューム設定 :"
 
@@ -3110,6 +3103,63 @@ msgstr "アンマウント済み"
 msgid "Home Folder"
 msgstr "ホームフォルダ"
 
+#: ../shortcuts/src/applet-disk-usage.c:179
+#: ../shortcuts/src/applet-disk-usage.c:208
+msgid "Mount point:"
+msgstr ""
+
+#: ../shortcuts/src/applet-disk-usage.c:180
+#: ../shortcuts/src/applet-disk-usage.c:209
+#, fuzzy
+msgid "File system:"
+msgstr "ファイルシステム"
+
+#: ../shortcuts/src/applet-disk-usage.c:181
+#: ../shortcuts/src/applet-disk-usage.c:210
+msgid "Device:"
+msgstr ""
+
+#: ../shortcuts/src/applet-disk-usage.c:182
+#: ../shortcuts/src/applet-disk-usage.c:211
+#, fuzzy
+msgid "Mount options:"
+msgstr "回転 :"
+
+#: ../shortcuts/src/applet-disk-usage.c:214
+#, fuzzy
+msgid "Backup frequency:"
+msgstr "周波数"
+
+#: ../shortcuts/src/applet-disk-usage.c:214
+msgid "days"
+msgstr ""
+
+#: ../shortcuts/src/applet-disk-usage.c:237
+#: ../shortcuts/src/applet-disk-usage.c:247
+#: ../shortcuts/src/applet-disk-usage.c:252
+#, fuzzy
+msgid "Name:"
+msgstr "名前"
+
+#: ../shortcuts/src/applet-disk-usage.c:238
+#, fuzzy
+msgid "Capacity:"
+msgstr "最大容量："
+
+#: ../shortcuts/src/applet-disk-usage.c:239
+#, fuzzy
+msgid "Free space:"
+msgstr "空き容量"
+
+#: ../shortcuts/src/applet-disk-usage.c:247
+#, fuzzy
+msgid "Not mounted"
+msgstr "アンマウント済み"
+
+#: ../shortcuts/src/applet-disk-usage.c:253 ../RSSreader/data/messages:97
+msgid "URL:"
+msgstr "URL:"
+
 #: ../shortcuts/src/applet-drives.c:132 ../shortcuts/src/applet-drives.c:198
 #, c-format
 msgid "%s is now mounted"
@@ -3175,51 +3225,51 @@ msgstr "ディスクまたはブックマークが見つかりませんでした
 msgid "Enter a name for this bookmark:"
 msgstr "このブックマークに付ける名前の入力："
 
-#: ../shortcuts/src/applet-notifications.c:300
+#: ../shortcuts/src/applet-notifications.c:301
 msgid "Open Home directory"
 msgstr "ホームディレクトリを開く"
 
-#: ../shortcuts/src/applet-notifications.c:308
+#: ../shortcuts/src/applet-notifications.c:309
 msgid "Connect to Server..."
 msgstr "サーバへ接続..."
 
-#: ../shortcuts/src/applet-notifications.c:311
+#: ../shortcuts/src/applet-notifications.c:312
 msgid "Browse Network"
 msgstr "ネットワークを表示"
 
-#: ../shortcuts/src/applet-notifications.c:313
+#: ../shortcuts/src/applet-notifications.c:314
 msgid "Browse recent files"
 msgstr "最近使用したファイルを表示"
 
-#: ../shortcuts/src/applet-notifications.c:315
+#: ../shortcuts/src/applet-notifications.c:316
 msgid "Open Trash"
 msgstr "ゴミ箱を開く"
 
-#: ../shortcuts/src/applet-notifications.c:321
+#: ../shortcuts/src/applet-notifications.c:322
 msgid "Rename this bookmark"
 msgstr "このブックマークをリネーム"
 
-#: ../shortcuts/src/applet-notifications.c:322
+#: ../shortcuts/src/applet-notifications.c:323
 msgid "Remove this bookmark"
 msgstr "このブックマークを削除"
 
-#: ../shortcuts/src/applet-notifications.c:328
+#: ../shortcuts/src/applet-notifications.c:329
 msgid "Eject"
 msgstr "取り外す"
 
-#: ../shortcuts/src/applet-notifications.c:333
+#: ../shortcuts/src/applet-notifications.c:334
 msgid "Unmount"
 msgstr "アンマウント"
 
-#: ../shortcuts/src/applet-notifications.c:333
+#: ../shortcuts/src/applet-notifications.c:334
 msgid "Mount"
 msgstr "マウント"
 
-#: ../shortcuts/src/applet-notifications.c:337
+#: ../shortcuts/src/applet-notifications.c:338
 msgid "Get disk info"
 msgstr "ディスク情報取得"
 
-#: ../shortcuts/src/applet-notifications.c:363
+#: ../shortcuts/src/applet-notifications.c:364
 msgid "Only folders can be bookmarked."
 msgstr "フォルダのみブックマーク可能です。"
 
@@ -6247,10 +6297,6 @@ msgstr "RSS フィード"
 #: ../RSSreader/data/messages:95
 msgid "Enter a valid atom/rss feed"
 msgstr "有効な ATOM/RSS フィードを入力してください"
-
-#: ../RSSreader/data/messages:97
-msgid "URL:"
-msgstr "URL:"
 
 #: ../RSSreader/data/messages:99
 msgid "RSS login (optional):"

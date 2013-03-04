@@ -244,7 +244,7 @@ static void _cd_shortcuts_show_disk_info (GtkMenuItem *menu_item, gpointer *data
 	Icon *pIcon = data[1];
 	CairoContainer *pContainer = data[2];
 	
-	g_print ("pIcon->cCommand:%s\n", pIcon->cCommand);
+	//g_print ("pIcon->cCommand:%s\n", pIcon->cCommand);
 	gchar *cInfo = cd_shortcuts_get_disk_info (pIcon->cCommand, pIcon->cName);
 	cairo_dock_show_temporary_dialog_with_icon (cInfo, pIcon, pContainer, 15000, "same icon");
 	g_free (cInfo);

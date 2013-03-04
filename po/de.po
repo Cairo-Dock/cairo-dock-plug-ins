@@ -304,8 +304,8 @@ msgstr "Fenstermanager-Einstellungen editieren"
 #: ../musicPlayer/src/applet-notifications.c:301
 #: ../netspeed/src/applet-notifications.c:105
 #: ../quick-browser/src/applet-notifications.c:41
-#: ../shortcuts/src/applet-notifications.c:300
-#: ../shortcuts/src/applet-notifications.c:333
+#: ../shortcuts/src/applet-notifications.c:301
+#: ../shortcuts/src/applet-notifications.c:334
 #: ../showDesktop/src/applet-notifications.c:165
 #: ../showDesktop/src/applet-notifications.c:177
 #: ../showDesktop/src/applet-notifications.c:189
@@ -391,31 +391,31 @@ msgstr ""
 #: ../Disks/src/applet-disks.c:45 ../Disks/src/applet-disks.c:53
 #: ../Network-Monitor/src/applet-netspeed.c:42
 #: ../Network-Monitor/src/applet-netspeed.c:50
-#: ../netspeed/src/applet-netspeed.c:42 ../netspeed/src/applet-netspeed.c:50
+#: ../netspeed/src/applet-netspeed.c:48 ../netspeed/src/applet-netspeed.c:56
 msgid "B"
 msgstr "B"
 
 #: ../Disks/src/applet-disks.c:61 ../Folders/src/applet-notifications.c:140
 #: ../Network-Monitor/src/applet-netspeed.c:58
-#: ../netspeed/src/applet-netspeed.c:58
+#: ../netspeed/src/applet-netspeed.c:64
 msgid "KB"
 msgstr "KB"
 
 #: ../Disks/src/applet-disks.c:69 ../Folders/src/applet-notifications.c:138
 #: ../Network-Monitor/src/applet-netspeed.c:66
-#: ../netspeed/src/applet-netspeed.c:66
+#: ../netspeed/src/applet-netspeed.c:72
 #: ../netspeed/src/applet-notifications.c:37
 #: ../netspeed/src/applet-notifications.c:38
 msgid "MB"
 msgstr "MB"
 
 #: ../Disks/src/applet-disks.c:77 ../Network-Monitor/src/applet-netspeed.c:74
-#: ../netspeed/src/applet-netspeed.c:74
+#: ../netspeed/src/applet-netspeed.c:80
 msgid "GB"
 msgstr "GB"
 
 #: ../Disks/src/applet-disks.c:85 ../Network-Monitor/src/applet-netspeed.c:82
-#: ../netspeed/src/applet-netspeed.c:82
+#: ../netspeed/src/applet-netspeed.c:88
 msgid "TB"
 msgstr "TB"
 
@@ -783,11 +783,11 @@ msgstr ""
 msgid "Applications Menu"
 msgstr "Applikationsmenü"
 
-#: ../GMenu/src/applet-init.c:133
+#: ../GMenu/src/applet-init.c:132
 msgid "Show/hide the Applications menu"
 msgstr "Das Anwendungsmenü anzeigen oder verbergen"
 
-#: ../GMenu/src/applet-init.c:138
+#: ../GMenu/src/applet-init.c:137
 msgid "Show/hide the quick-launch dialog"
 msgstr "Den Schnellstartdialog anzeigen oder verbergen"
 
@@ -1030,7 +1030,7 @@ msgstr ""
 #: ../Network-Monitor/src/applet-netspeed.c:202
 #: ../System-Monitor/src/applet-monitor.c:95
 #: ../System-Monitor/src/applet-top.c:427
-#: ../netspeed/src/applet-netspeed.c:222
+#: ../netspeed/src/applet-netspeed.c:243
 msgid "Loading"
 msgstr "Laden"
 
@@ -1728,39 +1728,32 @@ msgid "Luminosity"
 msgstr "Leuchtkraft"
 
 #: ../alsaMixer/src/applet-backend-alsamixer.c:71
-#: ../alsaMixer/src/applet-mixer.c:51
 #, c-format
 msgid "I couldn't open card '%s'"
 msgstr "Ich konnte die Karte '%s' nicht öffnen"
 
 #: ../alsaMixer/src/applet-backend-alsamixer.c:77
-#: ../alsaMixer/src/applet-mixer.c:56
 #, c-format
 msgid "Card '%s' opened but I couldn't get any info"
 msgstr "Karte '%s' geöffnet, aber ich konnte keinerlei Info's erhalten"
 
 #: ../alsaMixer/src/applet-backend-alsamixer.c:86
-#: ../alsaMixer/src/applet-mixer.c:64
 msgid "I couldn't open the mixer"
 msgstr "Ich konnte den Mixer nicht öffnen"
 
 #: ../alsaMixer/src/applet-backend-alsamixer.c:95
-#: ../alsaMixer/src/applet-mixer.c:71
 msgid "I couldn't attach the mixer to the card"
 msgstr "Ich konnte den Mixer nicht an der Karte anbringen"
 
 #: ../alsaMixer/src/applet-backend-alsamixer.c:103
-#: ../alsaMixer/src/applet-mixer.c:78
 msgid "I couldn't register options"
 msgstr "Ich konnte keine Optionen registrieren"
 
 #: ../alsaMixer/src/applet-backend-alsamixer.c:111
-#: ../alsaMixer/src/applet-mixer.c:86
 msgid "I couldn't load the mixer"
 msgstr "Ich konnte den Mixer nicht laden."
 
 #: ../alsaMixer/src/applet-backend-alsamixer.c:318
-#: ../alsaMixer/src/applet-mixer.c:286
 msgid "Set up volume:"
 msgstr "Lautstärke einstellen :"
 
@@ -3175,6 +3168,63 @@ msgstr "Ausgehängt"
 msgid "Home Folder"
 msgstr "Persönlicher Ordner"
 
+#: ../shortcuts/src/applet-disk-usage.c:179
+#: ../shortcuts/src/applet-disk-usage.c:208
+msgid "Mount point:"
+msgstr ""
+
+#: ../shortcuts/src/applet-disk-usage.c:180
+#: ../shortcuts/src/applet-disk-usage.c:209
+#, fuzzy
+msgid "File system:"
+msgstr "Dateisystem"
+
+#: ../shortcuts/src/applet-disk-usage.c:181
+#: ../shortcuts/src/applet-disk-usage.c:210
+msgid "Device:"
+msgstr ""
+
+#: ../shortcuts/src/applet-disk-usage.c:182
+#: ../shortcuts/src/applet-disk-usage.c:211
+#, fuzzy
+msgid "Mount options:"
+msgstr "Rotation :"
+
+#: ../shortcuts/src/applet-disk-usage.c:214
+#, fuzzy
+msgid "Backup frequency:"
+msgstr "Taktfrequenz"
+
+#: ../shortcuts/src/applet-disk-usage.c:214
+msgid "days"
+msgstr ""
+
+#: ../shortcuts/src/applet-disk-usage.c:237
+#: ../shortcuts/src/applet-disk-usage.c:247
+#: ../shortcuts/src/applet-disk-usage.c:252
+#, fuzzy
+msgid "Name:"
+msgstr "Name"
+
+#: ../shortcuts/src/applet-disk-usage.c:238
+#, fuzzy
+msgid "Capacity:"
+msgstr "Maximale Kapazität:"
+
+#: ../shortcuts/src/applet-disk-usage.c:239
+#, fuzzy
+msgid "Free space:"
+msgstr "Freier Speicher"
+
+#: ../shortcuts/src/applet-disk-usage.c:247
+#, fuzzy
+msgid "Not mounted"
+msgstr "Ausgehängt"
+
+#: ../shortcuts/src/applet-disk-usage.c:253 ../RSSreader/data/messages:97
+msgid "URL:"
+msgstr "URL :"
+
 #: ../shortcuts/src/applet-drives.c:132 ../shortcuts/src/applet-drives.c:198
 #, c-format
 msgid "%s is now mounted"
@@ -3241,51 +3291,51 @@ msgstr "Es wurden keine Datenträger oder Lesezeichen gefunden."
 msgid "Enter a name for this bookmark:"
 msgstr "Geben Sie einen Namen für dieses Lesezeichen ein :"
 
-#: ../shortcuts/src/applet-notifications.c:300
+#: ../shortcuts/src/applet-notifications.c:301
 msgid "Open Home directory"
 msgstr "Öffne Home-Ordner"
 
-#: ../shortcuts/src/applet-notifications.c:308
+#: ../shortcuts/src/applet-notifications.c:309
 msgid "Connect to Server..."
 msgstr "Zum Server verbinden..."
 
-#: ../shortcuts/src/applet-notifications.c:311
+#: ../shortcuts/src/applet-notifications.c:312
 msgid "Browse Network"
 msgstr ""
 
-#: ../shortcuts/src/applet-notifications.c:313
+#: ../shortcuts/src/applet-notifications.c:314
 msgid "Browse recent files"
 msgstr ""
 
-#: ../shortcuts/src/applet-notifications.c:315
+#: ../shortcuts/src/applet-notifications.c:316
 msgid "Open Trash"
 msgstr ""
 
-#: ../shortcuts/src/applet-notifications.c:321
+#: ../shortcuts/src/applet-notifications.c:322
 msgid "Rename this bookmark"
 msgstr "Dieses Lesezeichen umbenennen"
 
-#: ../shortcuts/src/applet-notifications.c:322
+#: ../shortcuts/src/applet-notifications.c:323
 msgid "Remove this bookmark"
 msgstr "Dieses Lesezeichen entfernen"
 
-#: ../shortcuts/src/applet-notifications.c:328
+#: ../shortcuts/src/applet-notifications.c:329
 msgid "Eject"
 msgstr "Auswurf"
 
-#: ../shortcuts/src/applet-notifications.c:333
+#: ../shortcuts/src/applet-notifications.c:334
 msgid "Unmount"
 msgstr "Aushängen"
 
-#: ../shortcuts/src/applet-notifications.c:333
+#: ../shortcuts/src/applet-notifications.c:334
 msgid "Mount"
 msgstr "Einhängen"
 
-#: ../shortcuts/src/applet-notifications.c:337
+#: ../shortcuts/src/applet-notifications.c:338
 msgid "Get disk info"
 msgstr "Hole Datenträger-Informationen"
 
-#: ../shortcuts/src/applet-notifications.c:363
+#: ../shortcuts/src/applet-notifications.c:364
 msgid "Only folders can be bookmarked."
 msgstr "Nur Ordner können als Lesezeichen angegeben werden."
 
@@ -6351,10 +6401,6 @@ msgstr "RSS-Feed"
 #: ../RSSreader/data/messages:95
 msgid "Enter a valid atom/rss feed"
 msgstr "Geben Sie einen gültigen Atom/RSS-Feed ein"
-
-#: ../RSSreader/data/messages:97
-msgid "URL:"
-msgstr "URL :"
 
 #: ../RSSreader/data/messages:99
 msgid "RSS login (optional):"
