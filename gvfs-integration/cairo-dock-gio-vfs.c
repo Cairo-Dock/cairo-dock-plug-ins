@@ -728,6 +728,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 		G_FILE_ATTRIBUTE_STANDARD_NAME","
 		G_FILE_ATTRIBUTE_STANDARD_ICON","
 		G_FILE_ATTRIBUTE_THUMBNAIL_PATH","
+		G_FILE_ATTRIBUTE_STANDARD_IS_HIDDEN","
 		#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
 		///G_FILE_ATTRIBUTE_PREVIEW_ICON","
 		#endif
@@ -774,6 +775,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 				continue;
 			}
 			const gchar *cFileName = g_file_info_get_name (pFileInfo);
+			g_print ("%s: %d/%d\n", cFileName, bIsHidden, bListHiddenFiles);
 			const gchar *cMimeType = g_file_info_get_content_type (pFileInfo);
 			gchar *cName = NULL;
 			
