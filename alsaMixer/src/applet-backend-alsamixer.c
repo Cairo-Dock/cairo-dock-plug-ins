@@ -200,14 +200,15 @@ static int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int
 	CD_APPLET_ENTER;
 	cd_debug ("%s (%d)", __func__, mask);
 	
-	if (mask != 0)
+	
+	if (mask != SND_CTL_EVENT_MASK_REMOVE && (mask & SND_CTL_EVENT_MASK_VALUE))  // filter calls that can occur when we really don't want, like when closing the applet.
 	{
 		myData.iCurrentVolume = mixer_get_mean_volume ();
 		myData.bIsMute = mixer_is_mute ();
 		cd_debug (" iCurrentVolume <- %d bIsMute <- %d", myData.iCurrentVolume, myData.bIsMute);
+		
+		cd_update_icon ();
 	}
-	
-	cd_update_icon ();
 	
 	CD_APPLET_LEAVE(0);
 }
