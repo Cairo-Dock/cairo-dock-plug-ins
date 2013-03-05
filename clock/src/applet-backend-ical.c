@@ -162,6 +162,8 @@ static GList *get_tasks (CairoDockModuleInstance *myApplet)
 		cd_debug( "Fetching iCal component of kind: %s", icalcomponent_kind_to_string(icalcomponent_isa(piCalComponent)) );
 		
 		cTaskID = g_strdup(icalcomponent_get_uid(piCalComponent));
+		if (cTaskID == NULL) // if the uid is NULL, skip it.
+			continue;
 		pTask = g_new0 (CDClockTask, 1);
 		cd_debug ("+ task %s", cTaskID);
 
