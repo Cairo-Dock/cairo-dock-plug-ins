@@ -111,35 +111,17 @@ CD_APPLET_ON_CLICK_BEGIN
 		}
 		else if (CD_APPLET_CLICKED_ICON->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)  // clic sur un signet, il peut etre place sur un volume non monte.
 		{
+			// check if it's a mounted URI
+			// note: if it's a folder on an unmouned volume, it can't be launched nor mounted; we would need to get its volume first and it's not obvious (Nautilus just hide them until the volume is mounted)
+			gboolean bIsMounted = TRUE;
+			gchar *cTarget = cairo_dock_fm_is_mounted (CD_APPLET_CLICKED_ICON->cCommand, &bIsMounted);
+			cd_debug ("%s is mounted: %d (%s)", CD_APPLET_CLICKED_ICON->cCommand, bIsMounted, cTarget);
+			g_free (cTarget);
 			
-			/// chercher un volume contenant le signet
-			
-			/// si trouve et non monte, on le monte
-			
-			/// si non trouve, on cree l'URI et on monte.
-			
-			/*gchar *cVolumeUri = g_strdup (CD_APPLET_CLICKED_ICON->cCommand);
-			gchar *str = strchr (cVolumeUri, ':');
-			if (str && strlen (str) > 3)
-			{
-				str = strchr (str, '/');
-			}
-			//g_print ("bookmark '%s' on '%s'\n", CD_APPLET_CLICKED_ICON->cCommand, cVolumeUri);
-			gboolean bIsMounted = FALSE;
-			gchar *cActivationURI = cairo_dock_fm_is_mounted (CD_APPLET_CLICKED_ICON->cBaseURI, &bIsMounted);
-			g_free (cActivationURI);
-			* 
-			if (!bIsMounted)
-			{
-				//g_print (" volume not mounted\n");
-				cairo_dock_fm_mount_full (cVolumeUri, 1, (CairoDockFMMountCallback) _open_on_mount, myApplet);
-			}
-			else
-			{
+			if (bIsMounted)  // if mounted, just open it
 				cairo_dock_fm_launch_uri (CD_APPLET_CLICKED_ICON->cCommand);
-			}
-			g_free (cVolumeUri);*/
-			cairo_dock_fm_launch_uri (CD_APPLET_CLICKED_ICON->cCommand);
+			else  // else, mount it, and it will be opened in the callback.
+				cairo_dock_fm_mount_full (CD_APPLET_CLICKED_ICON->cCommand, 1, (CairoDockFMMountCallback) _open_on_mount, myApplet);
 		}
 		else
 		{
