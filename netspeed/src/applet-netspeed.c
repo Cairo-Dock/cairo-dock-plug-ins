@@ -125,7 +125,7 @@ void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
 		struct sockaddr_dl *sdl = (struct sockaddr_dl *) ifa->ifa_addr;
 		if (sdl->sdl_type != IFT_ETHER)
 			continue;  // skip all non ethernet interfaces such as loopback, usb, etc...
-		if (myConfig.cInterface != NULL && strcmp (ifa->ifa_name, myConfig.cInterface) != 0))  // we monitor a given interface
+		if (myConfig.cInterface != NULL && strcmp (ifa->ifa_name, myConfig.cInterface) != 0)  // we monitor a given interface
 			continue;
 		
 		myData.bAcquisitionOK = TRUE;

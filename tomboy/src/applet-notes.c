@@ -32,7 +32,7 @@
 
 static DBusGProxy *dbus_proxy_tomboy = NULL;
 
-extern struct tm *localtime_r (time_t *timer, struct tm *tp);
+extern struct tm *localtime_r (const time_t *timer, struct tm *tp);
 
 #define g_marshal_value_peek_string(v)   (char*) g_value_get_string (v)
 #define g_marshal_value_peek_object(v)   g_value_get_object (v)
