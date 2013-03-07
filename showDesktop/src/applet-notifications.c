@@ -79,7 +79,11 @@ static void _cd_expose (void)
 {
 	cairo_dock_wm_present_desktops ();
 }
-
+static gboolean _expose_delayed (G_GNUC_UNUSED gpointer data)
+{
+	_cd_expose ();
+	return FALSE;
+}
 static void _cd_action (CDActionOnClick iAction)
 {
 	switch (iAction)
@@ -104,7 +108,9 @@ static void _cd_action (CDActionOnClick iAction)
 		break ;
 		case CD_EXPOSE :
 			if (cairo_dock_wm_can_present_desktops ())
-				_cd_expose ();
+			{
+				g_timeout_add (250, _expose_delayed, NULL);  // Gnome-Shell bug here: it doesn't execute the Dbus command right after a click; I suspect the delay to be the interval of a double-click... anyway, it's stupid but it's barely noticeable, so it doesn't hurt that much even when not using GS.
+			}
 			else
 			{
 				cd_warning ("It seems we can't present desktops, we show/hide the desktop");
