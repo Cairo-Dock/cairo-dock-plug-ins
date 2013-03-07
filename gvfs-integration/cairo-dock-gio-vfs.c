@@ -176,7 +176,7 @@ static void _cd_find_mount_from_volume_name (const gchar *cVolumeName, GMount **
 				{
 					GFile *file = g_file_new_for_uri (cTargetURI);
 					pMount = g_file_find_enclosing_mount (file, NULL, NULL);
-					//g_object_unref (file);
+					g_object_unref (file);
 				}
 				if (pMount != NULL)
 				{
@@ -350,10 +350,10 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 			*iVolumeID = 1;
 		if (fOrder)
 			*fOrder = 0;
-		//g_object_unref (pMount);
 		
+		g_object_unref (pMount);
 		g_free (cValidUri);
-		//g_free (cNautilusFile);
+		g_free (cNautilusFile);
 		return;
 	}
 	else  // normal file
@@ -443,12 +443,13 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 			{
 				GFile *file = g_file_new_for_uri (cTargetURI);
 				pMount = g_file_find_enclosing_mount (file, NULL, NULL);
-				//g_object_unref (file);
+				g_object_unref (file);
 			}
 			if (pMount != NULL)
 			{
 				*cName = g_mount_get_name (pMount);
 				cd_message ("un GMount existe (%s)",* cName);
+				g_object_unref (pMount);
 			}
 			else
 			{
@@ -475,8 +476,8 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 				}
 				if (*cName == NULL)
 					*cName = cMountName;
-				//else
-					//g_free (cMountName);
+				else
+					g_free (cMountName);
 			}
 			if (*cName ==  NULL)
 				*cName = g_strdup (cFileName);
@@ -1105,7 +1106,7 @@ static GMount *_cd_find_mount_from_uri (const gchar *cURI, gchar **cTargetURI)
 	GMount *pMount = NULL;
 	if (_cTargetURI != NULL)
 	{
-		cd_message ("  pointe sur %s", _cTargetURI);
+		cd_debug ("  pointe sur %s", _cTargetURI);
 		GFile *file = g_file_new_for_uri (_cTargetURI);
 		pMount = g_file_find_enclosing_mount (file, NULL, NULL);
 		g_object_unref (file);
@@ -1121,16 +1122,36 @@ static gchar *cairo_dock_gio_vfs_is_mounted (const gchar *cURI, gboolean *bIsMou
 {
 	cd_message ("%s (%s)", __func__, cURI);
 	gchar *cTargetURI = NULL;
-	GMount *pMount = _cd_find_mount_from_uri (cURI, &cTargetURI);
-	cd_message (" cTargetURI : %s", cTargetURI);
-	if (pMount != NULL)
-		*bIsMounted = TRUE;
-	else
+	
+	GFile *pFile = g_file_new_for_uri (cURI);
+	GFileType iType = g_file_query_file_type (pFile, G_FILE_QUERY_INFO_NONE, NULL);
+	g_object_unref (pFile);
+	cd_debug ("iType: %d\n", iType);
+	
+	if (iType == G_FILE_TYPE_MOUNTABLE)  // look for the mount point it targets
 	{
-		if (cTargetURI != NULL && strcmp (cTargetURI, "file:///") == 0)  // cas particulier ?
+		GMount *pMount = _cd_find_mount_from_uri (cURI, &cTargetURI);
+		cd_debug (" cTargetURI : %s", cTargetURI);
+		if (pMount != NULL)
+		{
 			*bIsMounted = TRUE;
+			g_object_unref (pMount);
+		}
 		else
-			*bIsMounted = FALSE;
+		{
+			if (cTargetURI != NULL && strcmp (cTargetURI, "file:///") == 0)  // cas particulier ?
+				*bIsMounted = TRUE;
+			else
+				*bIsMounted = FALSE;
+		}
+	}
+	else if (iType == G_FILE_TYPE_UNKNOWN)  // probably a remote share folder or whatever that is not yet mounted
+	{
+		*bIsMounted = FALSE;
+	}
+	else  // any other types (directory, regular file, etc) that is on (or point to) a monted volume.
+	{
+		*bIsMounted = TRUE;
 	}
 	return cTargetURI;
 }
@@ -1210,8 +1231,12 @@ static void _gio_vfs_mount_callback (gpointer pObject, GAsyncResult *res, gpoint
 	GError *erreur = NULL;
 	gboolean bSuccess;
 	if (GPOINTER_TO_INT (data[1]) == 1)
-		bSuccess = (g_file_mount_mountable_finish (G_FILE (pObject), res, &erreur) != NULL);
-		//bSuccess = g_file_mount_enclosing_volume_finish (G_FILE (pObject), res, &erreur);
+	{
+		if (data[5])
+			bSuccess = (g_file_mount_mountable_finish (G_FILE (pObject), res, &erreur) != NULL);
+		else
+			bSuccess = g_file_mount_enclosing_volume_finish (G_FILE (pObject), res, &erreur);
+	}
 	else if (GPOINTER_TO_INT (data[1]) == 0)
 		#if GLIB_CHECK_VERSION (2, 22, 0)
 		bSuccess = g_mount_unmount_with_operation_finish (G_MOUNT (pObject), res, &erreur);
@@ -1246,7 +1271,7 @@ static void cairo_dock_gio_vfs_mount (const gchar *cURI, int iVolumeID, CairoDoc
 	gchar *cTargetURI = _cd_find_target_uri (cURI);
 	GFile *pFile = g_file_new_for_uri (cURI);
 	
-	gpointer *data = g_new (gpointer, 5);  // libere dans la callback.
+	gpointer *data = g_new (gpointer, 6);  // libere dans la callback.
 	data[0] = pCallback;
 	data[1] = GINT_TO_POINTER (1);  // mount
 	data[2] = (cTargetURI ? g_path_get_basename (cTargetURI) : g_strdup (cURI));
@@ -1255,18 +1280,29 @@ static void cairo_dock_gio_vfs_mount (const gchar *cURI, int iVolumeID, CairoDoc
 	
 	GMountOperation *mount_op = gtk_mount_operation_new (GTK_WINDOW (g_pPrimaryContainer->pWidget));
 	g_mount_operation_set_password_save (mount_op, G_PASSWORD_SAVE_FOR_SESSION);
-	/*g_file_mount_enclosing_volume (pFile,
-		G_MOUNT_MOUNT_NONE,
-		mount_op,
-		NULL,
-		(GAsyncReadyCallback) _gio_vfs_mount_callback,
-		data);*/
-	g_file_mount_mountable  (pFile,
-		G_MOUNT_MOUNT_NONE,
-		mount_op,
-		NULL,
-		(GAsyncReadyCallback) _gio_vfs_mount_callback,
-		data);
+	
+	GFileType iType = g_file_query_file_type (pFile, G_FILE_QUERY_INFO_NONE, NULL);
+	cd_debug ("iType: %d\n", iType);
+	if (iType == G_FILE_TYPE_MOUNTABLE)
+	{
+		data[5] = GINT_TO_POINTER (1);
+		g_file_mount_mountable  (pFile,
+			G_MOUNT_MOUNT_NONE,
+			mount_op,
+			NULL,
+			(GAsyncReadyCallback) _gio_vfs_mount_callback,
+			data);
+	}
+	else  // smb share folders typically have an unknown type; we have to use the other mount function for these types of mount points.
+	{
+		data[5] = GINT_TO_POINTER (0);
+		g_file_mount_enclosing_volume (pFile,
+			G_MOUNT_MOUNT_NONE,
+			mount_op,
+			NULL,
+			(GAsyncReadyCallback) _gio_vfs_mount_callback,
+			data);
+	}
 	// unref mount_op here - g_file_mount_enclosing_volume() does ref for itself
 	g_object_unref (mount_op);
 	g_object_unref (pFile);
