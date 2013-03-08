@@ -78,12 +78,14 @@ static void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	
 	int iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->fFlatDockWidth, 1., 2 * dw));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
 	pDock->iMaxDockWidth = iMaxDockWidth;
+	pDock->iOffsetForExtend = 0;
 	double Ws = cairo_dock_get_max_authorized_dock_width (pDock);
 	///if (cairo_dock_is_extended_dock (pDock) && w + 2 * dw < Ws)  // alors on etend.
 	if (pDock->iRefCount == 0)
 	{
 		if (pDock->iMaxDockWidth < Ws)  // alors on etend.
 		{
+			pDock->iOffsetForExtend = (Ws - pDock->iMaxDockWidth) / 2;
 			double extra = Ws - w;
 			pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->fFlatDockWidth, 1., extra));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
 			double W = Ws - 2 * (r + (l+(r==0)*2)*sqrt(1+gamma*gamma));
@@ -128,9 +130,9 @@ static void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 		pDock->iMaxDockHeight += 8*myIconsParam.iLabelSize;  // vertical dock, add some padding to draw the labels.	
 }
 
-static void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon, int iWidth, int iHeight, int iMaxDockWidth, double fReflectionOffsetY)
+static void cd_rendering_calculate_construction_parameters_3D_plane (Icon *icon, double fOffsetX, double fReflectionOffsetY)
 {
-	icon->fDrawX = icon->fX;
+	icon->fDrawX = icon->fX + fOffsetX;
 	icon->fDrawY = icon->fY + fReflectionOffsetY;
 	icon->fWidthFactor = 1.;
 	icon->fHeightFactor = 1.;
@@ -313,6 +315,7 @@ static void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDo
 		h = pDock->iDecorationsHeight;
 		Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
 		dx = (pFirstIcon != NULL ? pFirstIcon->fX - 0*myDocksParam.iFrameMargin : r);
+		dx += (pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2);
 	}
 	
 	int sens;
@@ -720,12 +723,13 @@ static Icon *cd_rendering_calculate_icons_3D_plane (CairoDock *pDock)
 	
 	//\____________________ On calcule les position/etirements/alpha des icones.
 	double fReflectionOffsetY = (pDock->container.bDirectionUp ? -1 : 1) * /**myIconsParam.fReflectSize*/pDock->iIconSize * myIconsParam.fReflectHeightRatio * pDock->container.fRatio;
+	double offsetx = pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2;
 	Icon* icon;
 	GList* ic;
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
-		cd_rendering_calculate_construction_parameters_3D_plane (icon, pDock->container.iWidth, pDock->container.iHeight, pDock->iMaxDockWidth, fReflectionOffsetY);
+		cd_rendering_calculate_construction_parameters_3D_plane (icon, offsetx, fReflectionOffsetY);
 	}
 	
 	cairo_dock_check_if_mouse_inside_linear (pDock);
@@ -769,6 +773,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 		h = pDock->iDecorationsHeight;
 		Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
 		dx = (pFirstIcon != NULL ? pFirstIcon->fX - myDocksParam.iFrameMargin : r);
+		dx += (pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2);
 	}
 	
 	//\_____________ On genere les coordonnees du contour.

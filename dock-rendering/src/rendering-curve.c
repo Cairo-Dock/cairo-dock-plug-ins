@@ -141,6 +141,7 @@ static void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	{
 		if (pDock->iMaxDockWidth < Ws)  // alors on etend.
 		{
+			pDock->iOffsetForExtend = (Ws - pDock->iMaxDockWidth) / 2;
 			double extra = Ws - w;
 			pDock->iMaxDockWidth = ceil (cairo_dock_calculate_max_dock_width (pDock, pDock->fFlatDockWidth, 1., extra));  // on pourra optimiser, ce qui nous interesse ici c'est les fXMin/fXMax.
 		}
@@ -509,7 +510,7 @@ static void cairo_dock_draw_curved_frame_horizontal (cairo_t *pCairoContext, dou
 }
 static void cairo_dock_draw_curved_frame_vertical (cairo_t *pCairoContext, double fFrameWidth, double fControlHeight, double fDockOffsetX, double fDockOffsetY, int sens)
 {
-       cairo_move_to (pCairoContext, fDockOffsetY, fDockOffsetX);
+	cairo_move_to (pCairoContext, fDockOffsetY, fDockOffsetX);
 	cairo_rel_curve_to (pCairoContext,
 		-sens * fControlHeight, (1 - my_fCurveCurvature) * fFrameWidth / 2,
 		-sens * fControlHeight, (1 + my_fCurveCurvature) * fFrameWidth / 2,
@@ -546,7 +547,8 @@ static void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 	{
 		dw = w * xi / (1 - 2 * xi);
 		Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
-		dx = (pFirstIcon != NULL ? pFirstIcon->fDrawX - dw : fLineWidth / 2);
+		dx = (pFirstIcon != NULL ? pFirstIcon->fX - dw : fLineWidth / 2);
+		dx += (pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2);
 	}
 	if (pDock->container.bDirectionUp)
 	{
@@ -773,6 +775,7 @@ static void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDo
 		dw = w * xi / (1 - 2 * xi);
 		Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
 		dx = (pFirstIcon != NULL ? pFirstIcon->fX - dw : fLineWidth / 2);  // la gauche du cadre suit la 1ere icone.
+		dx += (pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2);
 	}
 	
 	if (pDock->container.bDirectionUp)
@@ -1051,7 +1054,7 @@ Icon *cd_rendering_calculate_icons_curve (CairoDock *pDock)
 		double x = icon->fX;
 		double y = k1*(x-xb)*(x-xc) + k2*(x-xa)*(x-xc) + k3*(x-xa)*(x-xb);
 		
-		icon->fDrawX = icon->fX;
+		icon->fDrawX = icon->fX + (pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2);
 		icon->fDrawY = icon->fY + sens * y;
 		//g_print ("y : %.2f -> fDrawY = %.2f\n", y, icon->fDrawY);
 		icon->fWidthFactor = 1.;
@@ -1110,7 +1113,8 @@ static void cd_rendering_render_curve_opengl (CairoDock *pDock)
 	else
 	{
 		Icon *pFirstIcon = cairo_dock_get_first_icon (pDock->icons);
-		dx = (pFirstIcon != NULL ? pFirstIcon->fDrawX - dw : fLineWidth / 2);
+		dx = (pFirstIcon != NULL ? pFirstIcon->fX - dw : fLineWidth / 2);
+		dx += (pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2);
 	}
 	
 	double fFrameHeight = pDock->iDecorationsHeight + fLineWidth;
