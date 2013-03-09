@@ -88,6 +88,7 @@ void cd_gmenu_preload_icon (void)
 
 static gboolean _cd_gmenu_create_main_menu_end (CairoDockModuleInstance *myApplet)
 {
+	myData.bLoadInThread = FALSE;
 	cairo_dock_discard_task (myData.pTask);
 	myData.pTask = NULL;
 
@@ -97,6 +98,7 @@ static gboolean _cd_gmenu_create_main_menu_end (CairoDockModuleInstance *myApple
 
 static void _cd_gmenu_create_main_menu_async (CairoDockModuleInstance *myApplet)
 {
+	myData.bLoadInThread = TRUE;
 	if (myConfig.bShowRecent)
 		cd_menu_init_recent (myApplet);
 	myData.pMenu = create_main_menu (myApplet);

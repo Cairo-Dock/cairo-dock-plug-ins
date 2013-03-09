@@ -38,6 +38,10 @@ GtkWidget * add_menu_separator (GtkWidget *menu)
 	return menuitem;
 }
 
+/* REM: if this function is used in a thread (myData.bLaunchInThread == TRUE)
+ *  submenu_to_display will be launched there but no notification will be send
+ *  after having created this fake menu
+ */
 GtkWidget * create_fake_menu (GMenuTreeDirectory *directory)
 {	
 	GtkWidget *menu;
@@ -57,14 +61,19 @@ GtkWidget * create_fake_menu (GMenuTreeDirectory *directory)
 	g_signal_connect (menu, "show",
 			  G_CALLBACK (submenu_to_display), NULL);
 
-	idle_id = g_idle_add_full (G_PRIORITY_LOW,
-				submenu_to_display_in_idle,
-				menu,
-				NULL);
-	g_object_set_data_full (G_OBJECT (menu),
-				"panel-menu-idle-id",
-				GUINT_TO_POINTER (idle_id),
-				remove_submenu_to_display_idle);
+	if (! myData.bLoadInThread)
+	{
+		idle_id = g_idle_add_full (G_PRIORITY_LOW,
+					submenu_to_display_in_idle,
+					menu,
+					NULL);
+		g_object_set_data_full (G_OBJECT (menu),
+					"panel-menu-idle-id",
+					GUINT_TO_POINTER (idle_id),
+					remove_submenu_to_display_idle);
+	}
+	else
+		submenu_to_display (menu);
 
 	return menu;
 }
@@ -330,6 +339,7 @@ void create_submenu (GtkWidget          *menu,
 		menuitem = create_submenu_entry (menu, directory);
 	
 	submenu = create_fake_menu (directory);
+	
 
 	gtk_menu_item_set_submenu (GTK_MENU_ITEM (menuitem), submenu);
 }
@@ -625,6 +635,10 @@ static void _on_remove_tree (GMenuTree  *tree)
 	//gmenu_tree_unref (tree);
 }
 
+/* REM: if this function is used in a thread (myData.bLaunchInThread == TRUE)
+ *  submenu_to_display should be launched after having set data to the menu
+ *  for keys "panel-menu-append-callback*"
+ */
 GtkWidget * create_applications_menu (const char *menu_file,
 			  const char *menu_path, GtkWidget *parent_menu)
 {
@@ -656,14 +670,18 @@ GtkWidget * create_applications_menu (const char *menu_file,
 	g_signal_connect (menu, "show",
 			  G_CALLBACK (submenu_to_display), NULL);
 
-	idle_id = g_idle_add_full (G_PRIORITY_LOW,
-				submenu_to_display_in_idle,
-				menu,
-				NULL);
-	g_object_set_data_full (G_OBJECT (menu),
-				"panel-menu-idle-id",
-				GUINT_TO_POINTER (idle_id),
-				remove_submenu_to_display_idle);
+	if (! myData.bLoadInThread)
+	{
+		idle_id = g_idle_add_full (G_PRIORITY_LOW,
+					submenu_to_display_in_idle,
+					menu,
+					NULL);
+		g_object_set_data_full (G_OBJECT (menu),
+					"panel-menu-idle-id",
+					GUINT_TO_POINTER (idle_id),
+					remove_submenu_to_display_idle); // => g_source_remove (idle_id);
+	}
+	// else: submenu_to_display should be launched after...
 
 	gmenu_tree_add_monitor (tree,
 			       (GMenuTreeChangedFunc) handle_gmenu_tree_changed,
@@ -755,15 +773,18 @@ GtkWidget * create_main_menu (CairoDockModuleInstance *myApplet)
 
 	if (cMenuFileName == NULL) // arf
 		cMenuFileName = g_strdup ("applications.menu");
-	
+
 	main_menu = create_applications_menu (cMenuFileName, NULL, NULL);
-	
+
 	g_object_set_data (G_OBJECT (main_menu),
 		"panel-menu-append-callback",
 		main_menu_append);
 	g_object_set_data (G_OBJECT (main_menu),
 		"panel-menu-append-callback-data",
 		myApplet);
+
+	if (myData.bLoadInThread) // load submenu in a thread
+		submenu_to_display (main_menu);
 
 	g_strfreev (cXdgPath);
 	g_free (cMenuFileName);

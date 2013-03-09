@@ -247,6 +247,9 @@ void main_menu_append (GtkWidget *main_menu,
 	g_object_set_data (G_OBJECT (desktop_menu),
 			   "panel-menu-append-callback-data",
 			   myApplet);
+
+	if (myData.bLoadInThread) // load submenu in a thread
+		submenu_to_display (desktop_menu);
 	
 	if (myConfig.bShowRecent)
 	{
