@@ -8,12 +8,10 @@ SET(cd-GMenu_LIB_SRCS
 	applet-config.h
 	applet-notifications.c
 	applet-notifications.h
-	applet-menu-callbacks.c
-	applet-menu-callbacks.h
 	applet-menu.c
 	applet-menu.h
-	applet-util.c
-	applet-util.h
+	applet-tree.c
+	applet-tree.h
 	applet-recent.c
 	applet-recent.h
 	applet-run-dialog.c

@@ -346,19 +346,46 @@ static void _cd_menu_on_quick_launch (int iClickedButton, GtkWidget *pInteractiv
 	cairo_dock_dialog_reference (myData.pQuickLaunchDialog);
 	cairo_dock_hide_dialog (myData.pQuickLaunchDialog);
 }
-CairoDialog *cd_menu_create_quick_launch_dialog (CairoDockModuleInstance *myApplet)
+void cd_run_dialog_show_hide (CairoDockModuleInstance *myApplet)
 {
-	gchar *cIconPath = cairo_dock_search_icon_s_path (GTK_STOCK_EXECUTE, myData.iPanelDefaultMenuIconSize);
-	CairoDialog *pDialog = cairo_dock_show_dialog_with_entry (D_("Enter a command to launch:"),
-		myIcon, myContainer,
-		cIconPath ? cIconPath : "same icon",
-		NULL,
-		(CairoDockActionOnAnswerFunc) _cd_menu_on_quick_launch, NULL, NULL);
-	g_free (cIconPath);
+	if (myData.pQuickLaunchDialog == NULL)
+	{
+		gchar *cIconPath = cairo_dock_search_icon_s_path (GTK_STOCK_EXECUTE, myData.iPanelDefaultMenuIconSize);
+		myData.pQuickLaunchDialog = cairo_dock_show_dialog_with_entry (D_("Enter a command to launch:"),
+			myIcon, myContainer,
+			cIconPath ? cIconPath : "same icon",
+			NULL,
+			(CairoDockActionOnAnswerFunc) _cd_menu_on_quick_launch, NULL, NULL);
+		g_free (cIconPath);
+		
+		GtkWidget *pEntry = myData.pQuickLaunchDialog->pInteractiveWidget;
+		g_signal_connect (pEntry, "key-press-event",
+			G_CALLBACK (_entry_event),
+			myApplet);
+	}
+	else
+	{
+		cairo_dock_toggle_dialog_visibility (myData.pQuickLaunchDialog);
+	}
+}
+
+void cd_run_dialog_free (void)
+{
+	if (!cairo_dock_dialog_unreference (myData.pQuickLaunchDialog))
+		cairo_dock_dialog_unreference (myData.pQuickLaunchDialog);
 	
-	GtkWidget *pEntry = pDialog->pInteractiveWidget;
-	g_signal_connect (pEntry, "key-press-event",
-		G_CALLBACK (_entry_event),
-		myApplet);
-	return pDialog;
+	if (myData.dir_hash)
+		g_hash_table_destroy (myData.dir_hash);
+	
+	GList *l;
+	for (l = myData.possible_executables; l; l = l->next)
+		g_free (l->data);
+	g_list_free (myData.possible_executables);
+	
+	for (l = myData.completion_items; l; l = l->next)
+		g_free (l->data);
+	g_list_free (myData.completion_items);
+	
+	if (myData.completion)
+		g_completion_free (myData.completion);
 }

@@ -24,7 +24,9 @@
 #include <cairo-dock.h>
 
 
-CairoDialog *cd_menu_create_quick_launch_dialog (CairoDockModuleInstance *myApplet);
+void cd_run_dialog_show_hide (CairoDockModuleInstance *myApplet);
+
+void cd_run_dialog_free (void);
 
 
 #endif

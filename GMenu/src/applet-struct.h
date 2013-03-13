@@ -17,33 +17,10 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef __CD_APPLET_STRUCT__
 #define  __CD_APPLET_STRUCT__
 
 #include <cairo-dock.h>
-/**#ifdef HAVE_GIO
-#include <gio/gio.h>
-#else
-#define GIcon gpointer
-#endif*/
-
-typedef struct {
-	GtkWidget    *pixmap;
-	///const char   *stock_id;
-	///GIcon        *gicon;
-	char         *image;
-	char         *fallback_image;
-	GtkIconTheme *icon_theme;
-	GtkIconSize   icon_size;
-} IconToLoad;
-
-typedef struct {
-	GtkWidget   *image;
-	///const char  *stock_id;
-	GdkPixbuf   *pixbuf;
-	GtkIconSize  icon_size;
-} IconToAdd;
 
 typedef enum _CDGMenuShowQuit {
 	CD_GMENU_SHOW_QUIT_NONE=0,
@@ -52,7 +29,6 @@ typedef enum _CDGMenuShowQuit {
 	CD_GMENU_SHOW_QUIT_BOTH,
 	CD_GMENU_NB_SHOW_QUIT
 	} CDGMenuShowQuit; 
-
 
 //\___________ structure containing the applet's configuration parameters.
 struct _AppletConfig {
@@ -63,27 +39,26 @@ struct _AppletConfig {
 	gboolean bLoadIconsAtStartup;
 	gint iNbRecentItems;
 	CDGMenuShowQuit iShowQuit;
-	gchar *cRecentRootDirFilter;
 	} ;
+
+typedef struct _CDSharedMemory {
+	GList *pTrees;
+	} CDSharedMemory;
+
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
 	// menu
 	GtkWidget *pMenu;
+	GList *pTrees;  // list of trees that have been loaded from .menu files
+	CairoDockTask *pTask;
 	CDGMenuShowQuit iShowQuit;
 	gint iPanelDefaultMenuIconSize;
-	GSList *image_menu_items;
-	GHashTable *loaded_icons;
 	// preload
 	GList *pPreloadedImagesList;
-	// guint iSidPreloaded;
-	CairoDockTask *pTask;
-	gboolean bIconsLoaded;
-	gboolean bLoadInThread;
+	guint iSidIconLoading;
 	// recent files sub-menu
-	GtkRecentManager *pRecentManager;
 	GtkWidget *pRecentMenuItem;
-	GtkRecentFilter *pRecentFilter;
 	gint iNbRecentItems;
 	// quick-launcher
 	CairoDialog *pQuickLaunchDialog;
