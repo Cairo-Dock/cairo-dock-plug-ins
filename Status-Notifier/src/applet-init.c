@@ -184,7 +184,10 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		else
 		{
+			// reload all icons
+			CD_APPLET_DELETE_MY_ICONS_LIST;
 			myData.iItemSize = 0;  // unvalidate the grid.
+			
 			cd_satus_notifier_load_icons_from_items ();
 			
 			if (myDock)
