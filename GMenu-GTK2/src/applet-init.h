@@ -18,16 +18,15 @@
 */
 
 
-#ifndef __APPLET_RECENT__
-#define  __APPLET_RECENT__
+#ifndef __APPLET_INIT__
+#define  __APPLET_INIT__
+
 
 #include <cairo-dock.h>
 
+void cd_gmenu_preload_icon (void);
 
-void cd_menu_append_recent_to_menu (GtkWidget *top_menu, CairoDockModuleInstance *myApplet);
-
-
-void cd_menu_clear_recent (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet);
+CD_APPLET_H
 
 
 #endif

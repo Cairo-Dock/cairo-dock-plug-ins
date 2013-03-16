@@ -17,17 +17,24 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-#ifndef __APPLET_RECENT__
-#define  __APPLET_RECENT__
+#ifndef __APPLET_TREE__
+#define  __APPLET_TREE__
 
 #include <cairo-dock.h>
+#define GMENU_I_KNOW_THIS_IS_UNSTABLE
+#include <gmenu-tree.h>
 
 
-void cd_menu_append_recent_to_menu (GtkWidget *top_menu, CairoDockModuleInstance *myApplet);
+void reload_image_menu_items (void);
 
 
-void cd_menu_clear_recent (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet);
+GMenuTree *cd_load_tree_from_file (const gchar *cMenuFile);
+
+
+void cd_icons_to_load_preload (void);
+
+
+void cd_append_tree_in_menu (GMenuTree *tree);
 
 
 #endif

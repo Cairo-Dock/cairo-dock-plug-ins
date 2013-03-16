@@ -18,16 +18,23 @@
 */
 
 
-#ifndef __APPLET_RECENT__
-#define  __APPLET_RECENT__
+#ifndef __APPLET_NOTIFICATIONS__
+#define  __APPLET_NOTIFICATIONS__
+
 
 #include <cairo-dock.h>
 
 
-void cd_menu_append_recent_to_menu (GtkWidget *top_menu, CairoDockModuleInstance *myApplet);
 
+CD_APPLET_ON_CLICK_H
 
-void cd_menu_clear_recent (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet);
+CD_APPLET_ON_MIDDLE_CLICK_H
+
+CD_APPLET_ON_BUILD_MENU_H
+
+void cd_menu_on_shortkey_menu (const char *keystring, gpointer data);
+
+void cd_menu_on_shortkey_quick_launch (const char *keystring, gpointer data);
 
 
 #endif

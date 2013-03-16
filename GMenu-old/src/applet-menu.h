@@ -17,48 +17,14 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef __APPLET_MENU__
 #define  __APPLET_MENU__
 
-#include <cairo-dock.h>
-#define GMENU_I_KNOW_THIS_IS_UNSTABLE
-#include <gmenu-tree.h>
 
-#define PANEL_ICON_FOLDER "folder"
-// #define PANEL_DEFAULT_MENU_ICON_SIZE 24
+void cd_menu_start (void);
 
 
-GtkWidget * add_menu_separator (GtkWidget *menu);
-
-GtkWidget * create_fake_menu (GMenuTreeDirectory *directory);
-
-GdkPixbuf * panel_make_menu_icon (GtkIconTheme *icon_theme,
-		      const char   *icon,
-		      const char   *fallback,
-		      int           size,
-		      gboolean     *long_operation);
-
-void setup_menuitem (GtkWidget   *menuitem,
-		GtkIconSize  icon_size,
-		///GtkWidget   *image,
-		const char  *title);
-
-GtkWidget * populate_menu_from_directory (GtkWidget          *menu,
-			      GMenuTreeDirectory *directory);
-
-void image_menu_destroy (GtkWidget *image, gpointer *data);
-
-void reload_image_menu_items (void);
-
-GtkWidget * create_empty_menu (void);
-
-GtkWidget * create_applications_menu (const char *menu_file,
-			  const char *menu_path, GtkWidget *parent_menu);
-
-gchar ** cd_gmenu_get_xdg_menu_dirs (void);
-
-GtkWidget * create_main_menu (CairoDockModuleInstance *myApplet);
+void cd_menu_stop (void);
 
 
 #endif

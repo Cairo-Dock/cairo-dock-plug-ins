@@ -37,7 +37,15 @@ static void cd_menu_show_menu (void)
 
 static void cd_menu_show_hide_quick_launch (void)
 {
-	cd_run_dialog_show_hide (myApplet);
+	if (myData.pQuickLaunchDialog == NULL)
+	{
+		myData.pQuickLaunchDialog = cd_menu_create_quick_launch_dialog (myApplet);
+		cairo_dock_dialog_reference (myData.pQuickLaunchDialog);
+	}
+	else
+	{
+		cairo_dock_toggle_dialog_visibility (myData.pQuickLaunchDialog);
+	}
 }
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
