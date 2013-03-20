@@ -34,18 +34,9 @@ static gboolean _make_menu_from_trees (CDSharedMemory *pSharedMemory)
 	
 	myData.pTrees = pSharedMemory->pTrees;
 	pSharedMemory->pTrees = NULL;
-	
-	// create the menu
-	myData.pMenu = gtk_menu_new ();
-	
-	// append the trees we got
-	GMenuTree *tree;
-	GList *t;
-	for (t = myData.pTrees; t != NULL; t = t->next)
-	{
-		tree = t->data;
-		cd_append_tree_in_menu (tree);
-	}
+
+	myData.pMenu = pSharedMemory->pMenu;
+	pSharedMemory->pMenu = NULL;
 	
 	// append recent events
 	if (myConfig.bShowRecent)
@@ -58,7 +49,6 @@ static gboolean _make_menu_from_trees (CDSharedMemory *pSharedMemory)
 	cairo_dock_discard_task (myData.pTask);
 	myData.pTask = NULL;
 	
-	cd_icons_to_load_preload ();
 	CD_APPLET_LEAVE (FALSE);
 }
 
@@ -71,6 +61,21 @@ static void _load_trees_async (CDSharedMemory *pSharedMemory)
 	tree = cd_load_tree_from_file ("settings.menu");
 	if (tree)
 		pSharedMemory->pTrees = g_list_append (pSharedMemory->pTrees, tree);
+
+	// create the menu
+	pSharedMemory->pMenu = gtk_menu_new ();
+	
+	/* append the trees we got
+	 *  + it will populate menu and create all things
+	 *     (it will have a look at new images and maybe preload them)
+	 *  => do that in the separated thread
+	 */
+	GList *t;
+	for (t = pSharedMemory->pTrees; t != NULL; t = t->next)
+	{
+		tree = t->data;
+		cd_append_tree_in_menu (tree, pSharedMemory->pMenu);
+	}
 }
 
 static void _free_shared_memory (CDSharedMemory *pSharedMemory)
@@ -100,14 +105,6 @@ void cd_menu_stop (void)
 {
 	cairo_dock_discard_task (myData.pTask);
 	myData.pTask = NULL;
-	
-	if (myData.iSidIconLoading != 0)
-	{
-		g_source_remove (myData.iSidIconLoading);
-		myData.iSidIconLoading = 0;
-	}
-	g_list_free (myData.pPreloadedImagesList);  // the content of the list will be freed along with the menu
-	myData.pPreloadedImagesList = NULL;
 	
 	g_list_foreach (myData.pTrees, (GFunc)g_object_unref, NULL);
 	g_list_free (myData.pTrees);

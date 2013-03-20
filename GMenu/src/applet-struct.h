@@ -43,6 +43,7 @@ struct _AppletConfig {
 
 typedef struct _CDSharedMemory {
 	GList *pTrees;
+	GtkWidget *pMenu;
 	} CDSharedMemory;
 
 
@@ -54,9 +55,6 @@ struct _AppletData {
 	CairoDockTask *pTask;
 	CDGMenuShowQuit iShowQuit;
 	gint iPanelDefaultMenuIconSize;
-	// preload
-	GList *pPreloadedImagesList;
-	guint iSidIconLoading;
 	// recent files sub-menu
 	GtkWidget *pRecentMenuItem;
 	gint iNbRecentItems;

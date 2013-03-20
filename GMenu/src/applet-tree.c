@@ -68,15 +68,8 @@ static void _on_drag_data_get (GtkWidget *widget,
  /// MENU FROM TREE ///
 //////////////////////
 
-static gboolean _load_one_icon_idle (gpointer data)
+static void _load_one_icon (GtkWidget *image)
 {
-	if (myData.pPreloadedImagesList == NULL)  // no more icons ot load
-	{
-		myData.iSidIconLoading = 0;
-		return FALSE;
-	}
-	
-	GtkWidget *image = myData.pPreloadedImagesList->data;
 	// this actually loads the pixbuf of the gicon
 	GtkRequisition requisition;
 	#if (GTK_MAJOR_VERSION < 3)
@@ -84,23 +77,8 @@ static gboolean _load_one_icon_idle (gpointer data)
 	#else
 	gtk_widget_get_preferred_size (image, &requisition, NULL);
 	#endif
-	myData.pPreloadedImagesList = g_list_delete_link (myData.pPreloadedImagesList, myData.pPreloadedImagesList);  // remove the element we just loaded
-	return TRUE;
 }
 
-void cd_icons_to_load_preload (void)
-{
-	g_return_if_fail (myData.iSidIconLoading == 0);
-	if (myConfig.bLoadIconsAtStartup)
-	{
-		myData.iSidIconLoading = g_idle_add (_load_one_icon_idle, NULL);
-	}
-}
-
-static void _on_image_menu_item_destroyed (GtkWidget *image, G_GNUC_UNUSED gpointer data)
-{
-	myData.pPreloadedImagesList = g_list_remove (myData.pPreloadedImagesList, image);
-}
 static void add_image_to_menu_item (GtkWidget *image_menu_item,
 	GIcon *pIcon,
 	const char *fallback_image_filename)
@@ -113,15 +91,11 @@ static void add_image_to_menu_item (GtkWidget *image_menu_item,
 		gtk_image_set_from_gicon (GTK_IMAGE (image), pIcon, GTK_ICON_SIZE_LARGE_TOOLBAR);
 	else if (fallback_image_filename)  // same
 		gtk_image_set_from_icon_name (GTK_IMAGE (image), fallback_image_filename, GTK_ICON_SIZE_LARGE_TOOLBAR);
-	
-	// add it to the list of images to be loaded
+
+	// preload if needed
 	if (myConfig.bLoadIconsAtStartup)
-	{
-		myData.pPreloadedImagesList = g_list_append (myData.pPreloadedImagesList, image);
-		g_signal_connect (image, "destroy",
-			G_CALLBACK (_on_image_menu_item_destroyed), NULL);  // be sure to remove it from the list if it disappears
-	}
-	
+		_load_one_icon (image);
+
 	// insert the image in the menu-item
 	_gtk_image_menu_item_set_image (
 		GTK_IMAGE_MENU_ITEM (image_menu_item), image);
@@ -380,12 +354,12 @@ static void cd_populate_menu_from_directory (GtkWidget *menu, GMenuTreeDirectory
 	gmenu_tree_iter_unref (iter);
 }
 
-void cd_append_tree_in_menu (GMenuTree *tree)
+void cd_append_tree_in_menu (GMenuTree *tree, GtkWidget *pMenu)
 {
 	GMenuTreeDirectory *dir = gmenu_tree_get_root_directory (tree);
 	g_return_if_fail (dir);
 	
-	cd_populate_menu_from_directory (myData.pMenu, dir);
+	cd_populate_menu_from_directory (pMenu, dir);
 	gmenu_tree_item_unref (dir);
 	
 	g_signal_connect (tree, "changed", G_CALLBACK (_on_tree_changed), NULL);

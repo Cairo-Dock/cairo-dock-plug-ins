@@ -31,10 +31,7 @@ void reload_image_menu_items (void);
 GMenuTree *cd_load_tree_from_file (const gchar *cMenuFile);
 
 
-void cd_icons_to_load_preload (void);
-
-
-void cd_append_tree_in_menu (GMenuTree *tree);
+void cd_append_tree_in_menu (GMenuTree *tree, GtkWidget *pMenu);
 
 
 #endif
