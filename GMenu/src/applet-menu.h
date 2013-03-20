@@ -27,4 +27,7 @@ void cd_menu_start (void);
 void cd_menu_stop (void);
 
 
+void cd_menu_show_menu (void);
+
+
 #endif

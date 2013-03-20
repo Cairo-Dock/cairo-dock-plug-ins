@@ -23,39 +23,11 @@
 #include "applet-struct.h"
 #include "applet-recent.h"
 #include "applet-run-dialog.h"
+#include "applet-menu.h"
 #include "applet-notifications.h"
 
 static const gchar *s_cEditMenuCmd = NULL; // we need to check with 'which' only one time if alacarte or kmenuedit is available
 
-static gboolean _show_menu (gpointer data)
-{
-	static int iNbTry = 0; // just when loading the menu at startup...
-
-	if (myApplet && myData.pMenu != NULL)
-	{
-		if (! gtk_widget_get_visible (myData.pMenu))
-			CD_APPLET_POPUP_MENU_ON_MY_ICON (myData.pMenu);
-	}
-	else if (iNbTry < 19) // check during 20 sec
-	{
-		iNbTry++;
-		return TRUE;
-	}
-
-	iNbTry = 0;
-	return FALSE;
-}
-
-static void cd_menu_show_menu (void)
-{
-	if (myData.pMenu != NULL)
-	{
-		CD_APPLET_POPUP_MENU_ON_MY_ICON (myData.pMenu);
-	}
-	else
-		g_timeout_add (500, _show_menu, NULL); // can be launched more than one time
-		// => will stop when the menu will be ready (and only display it if not visible)
-}
 
 static void cd_menu_show_hide_quick_launch (void)
 {

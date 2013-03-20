@@ -46,6 +46,9 @@ static gboolean _make_menu_from_trees (CDSharedMemory *pSharedMemory)
 	if (myConfig.iShowQuit != CD_GMENU_SHOW_QUIT_NONE)
 		cd_menu_append_poweroff_to_menu (myData.pMenu, myApplet);
 	
+	if (myData.bShowMenuPending)
+		cd_menu_show_menu ();
+	
 	cairo_dock_discard_task (myData.pTask);
 	myData.pTask = NULL;
 	
@@ -82,6 +85,8 @@ static void _free_shared_memory (CDSharedMemory *pSharedMemory)
 {
 	g_list_foreach (pSharedMemory->pTrees, (GFunc)g_object_unref, NULL);
 	g_list_free (pSharedMemory->pTrees);
+	if (pSharedMemory->pMenu)
+		gtk_widget_destroy (pSharedMemory->pMenu);
 	g_free (pSharedMemory);
 }
 
@@ -163,4 +168,16 @@ static void cd_menu_append_poweroff_to_menu (GtkWidget *menu, CairoDockModuleIns
 
 	if (myConfig.iShowQuit == CD_GMENU_SHOW_QUIT_SHUTDOWN || myConfig.iShowQuit == CD_GMENU_SHOW_QUIT_BOTH)
 		_append_one_item_to_menu (D_("Shutdown"), "system-shutdown", (GFunc) cairo_dock_fm_shutdown, menu, NULL);
+}
+
+void cd_menu_show_menu (void)
+{
+	if (myData.pMenu != NULL)
+	{
+		CD_APPLET_POPUP_MENU_ON_MY_ICON (myData.pMenu);
+	}
+	else
+	{
+		myData.bShowMenuPending = TRUE;
+	}
 }

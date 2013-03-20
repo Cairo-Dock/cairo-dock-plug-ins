@@ -55,6 +55,7 @@ struct _AppletData {
 	CairoDockTask *pTask;
 	CDGMenuShowQuit iShowQuit;
 	gint iPanelDefaultMenuIconSize;
+	gboolean bShowMenuPending;
 	// recent files sub-menu
 	GtkWidget *pRecentMenuItem;
 	gint iNbRecentItems;
