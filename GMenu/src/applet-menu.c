@@ -47,7 +47,10 @@ static gboolean _make_menu_from_trees (CDSharedMemory *pSharedMemory)
 		cd_menu_append_poweroff_to_menu (myData.pMenu, myApplet);
 	
 	if (myData.bShowMenuPending)
+	{
 		cd_menu_show_menu ();
+		myData.bShowMenuPending = FALSE;
+	}
 	
 	cairo_dock_discard_task (myData.pTask);
 	myData.pTask = NULL;
