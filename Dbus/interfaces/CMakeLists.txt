@@ -1,5 +1,5 @@
 
-if (PYTHON_FOUND)
+if (PYTHON2_FOUND OR PYTHON3_FOUND)
 	add_subdirectory(python)
 	add_subdirectory(bash)
 endif()
