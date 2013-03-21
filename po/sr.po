@@ -5,15 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: то\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2013-02-06 22:03+0000\n"
+"POT-Creation-Date: 2013-03-04 16:42+0000\n"
+"PO-Revision-Date: 2013-03-06 22:31+0000\n"
 "Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
 "Language-Team: српски <xfce-i18n@xfce.org>\n"
-"Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-02-07 05:04+0000\n"
-"X-Generator: Launchpad (build 16477)\n"
+"X-Launchpad-Export-Date: 2013-03-07 05:07+0000\n"
+"X-Generator: Launchpad (build 16514)\n"
+"Language: sr\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -367,7 +368,8 @@ msgstr "Овај модул је додат, али га не могу покр�
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Програмче „%s“ успешно дограђено, и самостално учитано поново"
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -466,8 +468,8 @@ msgstr ""
 "\n"
 "<b>Простор на диску </b> :  Приказује брзину преноса података диска. До 10 "
 "партиција.\n"
-"  Требате подесити тачку качења сваке партиције која се прати, као / или /"
-"home\n"
+"  Требате подесити тачку качења сваке партиције која се прати, као / или "
+"/home\n"
 "  Бољи приказ у мерачу је са 30 или 60s учесталошћу освежавања и без, или са "
 "врло кратким кашњењем преласка.\n"
 "<b>Брзина диска</b> : Приказује брзину преноса података диска. До пет "
@@ -854,7 +856,7 @@ msgstr ""
 
 #: ../Indicator-Generic/src/applet-init.c:30
 msgid "Indicator-Generic"
-msgstr ""
+msgstr "Општи указивач"
 
 #: ../Indicator-Generic/src/applet-init.c:33
 msgid ""
@@ -864,15 +866,21 @@ msgid ""
 "automatically hidden.\n"
 "You can also blacklist indicators you don't want to see."
 msgstr ""
+"Овај прикључак може приказати све доступне указиваче на док.\n"
+"Указивачи дају податке о нечему, и изборник за дество над њима:\n"
+"  на пример, указивач за управљање пословима штампања. Беспослени указивачи "
+"су самостално скривени.\n"
+"Можете отписати указиваче које не желите да гледате."
 
 #: ../Indicator-Generic/src/applet-notifications.c:34
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "This indicator service did not reply.\n"
 "Please check that '%s' is correctly installed and its daemon is running."
 msgstr ""
-"Услужник порука није одговорио.\n"
-"олим, проверите да ли је правилно уграђен."
+"Услуга указивања није одговорила.\n"
+"Молим, проверите да ли је „%s“ правилно уграђен, и да ли је његов домар "
+"покренут."
 
 #: ../MeMenu/src/applet-init.c:30
 msgid "Me Menu"
@@ -1912,8 +1920,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2077,17 +2085,16 @@ msgid "clear"
 msgstr "чисто"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:97
-#, fuzzy
 msgid "light"
-msgstr "десно"
+msgstr "светло"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:105
 msgid "water drop"
-msgstr ""
+msgstr "кап воде"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:113
 msgid "water"
-msgstr ""
+msgstr "вода"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:121
 msgid "futuristic"
@@ -2136,8 +2143,10 @@ msgstr ""
 "Само притисните КТРЛ+в за лепење адресе било где."
 
 #: ../dnd2share/src/applet-dnd2share.c:333
-msgid "Please wait for the current upload to finish before starting a new one."
-msgstr "Молим, сачекајте да се тренутно отпремање заврши пре покретања новог."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
+msgstr ""
+"Молим, сачекајте да се тренутно отпремање заврши пре покретања новог."
 
 #: ../dnd2share/src/applet-dnd2share.c:401
 msgid "This file is not readable."
@@ -2293,7 +2302,7 @@ msgstr "дуга"
 #: ../dock-rendering/data/messages:29 ../shortcuts/data/messages:109
 #: ../stack/data/messages:101
 msgid "Slide"
-msgstr "клизање"
+msgstr "плочица"
 
 #: ../dock-rendering/src/rendering-init.c:40 ../dock-rendering/data/messages:7
 msgid "Curve"
@@ -3159,55 +3168,48 @@ msgstr "Лична фасцикла"
 #: ../shortcuts/src/applet-disk-usage.c:179
 #: ../shortcuts/src/applet-disk-usage.c:208
 msgid "Mount point:"
-msgstr ""
+msgstr "Тачка качења:"
 
 #: ../shortcuts/src/applet-disk-usage.c:180
 #: ../shortcuts/src/applet-disk-usage.c:209
-#, fuzzy
 msgid "File system:"
-msgstr "Систем Датотека"
+msgstr "Систем датотека:"
 
 #: ../shortcuts/src/applet-disk-usage.c:181
 #: ../shortcuts/src/applet-disk-usage.c:210
 msgid "Device:"
-msgstr ""
+msgstr "Уређај:"
 
 #: ../shortcuts/src/applet-disk-usage.c:182
 #: ../shortcuts/src/applet-disk-usage.c:211
-#, fuzzy
 msgid "Mount options:"
-msgstr "Обртање:"
+msgstr "Могућности качења:"
 
 #: ../shortcuts/src/applet-disk-usage.c:214
-#, fuzzy
 msgid "Backup frequency:"
-msgstr "Учесталост"
+msgstr "Учесталост резерви:"
 
 #: ../shortcuts/src/applet-disk-usage.c:214
 msgid "days"
-msgstr ""
+msgstr "дана"
 
 #: ../shortcuts/src/applet-disk-usage.c:237
 #: ../shortcuts/src/applet-disk-usage.c:247
 #: ../shortcuts/src/applet-disk-usage.c:252
-#, fuzzy
 msgid "Name:"
-msgstr "називу"
+msgstr "Име:"
 
 #: ../shortcuts/src/applet-disk-usage.c:238
-#, fuzzy
 msgid "Capacity:"
-msgstr "Највиши капацитет"
+msgstr "Величина:"
 
 #: ../shortcuts/src/applet-disk-usage.c:239
-#, fuzzy
 msgid "Free space:"
-msgstr "Слободан простор"
+msgstr "Слободан простор:"
 
 #: ../shortcuts/src/applet-disk-usage.c:247
-#, fuzzy
 msgid "Not mounted"
-msgstr "Откачен"
+msgstr "Није прикачена"
 
 #: ../shortcuts/src/applet-disk-usage.c:253 ../RSSreader/data/messages:97
 msgid "URL:"
@@ -3332,8 +3334,8 @@ msgstr "прикажи миша"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "овај прикључак исцртава неке анимације око показивача миша кад се нађе у "
 "доку/справици површи."
@@ -4344,7 +4346,7 @@ msgstr "Назив иконе који ће се јављати као натп�
 #: ../tomboy/data/messages:131 ../tomboy/data/messages:143
 #: ../weblets/data/messages:9
 msgid "Default"
-msgstr "Подразумевано"
+msgstr "подразумевано"
 
 #: ../Cairo-Penguin/data/messages:11 ../Clipper/data/messages:13
 #: ../Composite-Manager/data/messages:11 ../Disks/data/messages:11
@@ -5390,7 +5392,8 @@ msgstr "Налепи у оставу исечака?"
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
-msgstr "Кад кликнете на ставку, њен садржај ће постати доступан на средњи клик"
+msgstr ""
+"Кад кликнете на ставку, њен садржај ће постати доступан на средњи клик"
 
 #: ../Clipper/data/messages:121
 msgid "Paste into Selection?"
@@ -5817,7 +5820,8 @@ msgid "Background"
 msgstr "Позадина"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Можете имати више привлачних позадина користећи украшавања справица површи"
 
@@ -6112,11 +6116,11 @@ msgstr "Садржина извора:"
 
 #: ../Indicator-Generic/data/messages:91
 msgid "Separated by a semi-colon ';'"
-msgstr ""
+msgstr "Одвојено тачком и запетом „;“"
 
 #: ../Indicator-Generic/data/messages:93
 msgid "Blacklist these indicators:"
-msgstr ""
+msgstr "Отпиши ове указиваче:"
 
 #: ../Messaging-Menu/data/messages:15 ../Network-Monitor/data/messages:17
 #: ../Status-Notifier/data/messages:19 ../System-Monitor/data/messages:15
@@ -7603,8 +7607,10 @@ msgid "Space between icons:"
 msgstr "Растојање између икона:"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
-msgstr "0 представља раван талас, и значи да је талас исти као други прикази."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
+msgstr ""
+"0 представља раван талас, и значи да је талас исти као други прикази."
 
 #: ../dock-rendering/data/messages:121
 msgid "Number of icons on the first row:"
@@ -7821,7 +7827,8 @@ msgid "Colours"
 msgstr "Боје"
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 "Ово ће благо изменити ваше боје, тако да ћете можда морати да их преправите."
 
@@ -8023,7 +8030,8 @@ msgstr "Прилагођавање"
 
 #: ../logout/data/messages:111
 msgid "Icon image name to use when the system has to be rebooted:"
-msgstr "Назив слике иконе за коришћење кад систем треба да се покрене поново:"
+msgstr ""
+"Назив слике иконе за коришћење кад систем треба да се покрене поново:"
 
 #: ../logout/data/messages:113
 msgid ""
@@ -8080,7 +8088,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Назив датотеке за слику „има поште“ :"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr "Ако је означено, број порука ће бити приказан чак и ако нема поште."
 
 #: ../mail/data/messages:117
@@ -8164,7 +8173,8 @@ msgid "Blur amount:"
 msgstr "Количина замућења:"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 "Оставите празно за приказ назива музичког програма који се тренутно користи"
 
@@ -8258,7 +8268,8 @@ msgstr "пусти/заустави на клик, следећа на сред�
 
 #: ../musicPlayer/data/messages:141
 msgid "Show/Hide player on click, Play/Pause on middle-click"
-msgstr "прикажи/сакриј музички програм на клик, пусти/заустави на средњи клик"
+msgstr ""
+"прикажи/сакриј музички програм на клик, пусти/заустави на средњи клик"
 
 #: ../musicPlayer/data/messages:143
 msgid "Actions on scroll up/down:"
@@ -9168,7 +9179,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Положај усправне шине премицања у тачкама"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Ово вам омогућује искакање изборника Каиро-дока на десни клик по справици "
 "површи"
@@ -9231,52 +9243,3 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Заменска наредбена линија за покретање бежичних поставки :"
-
-#~ msgid "Printers-Menu"
-#~ msgstr "Изборник штампача"
-
-#~ msgid ""
-#~ "This applet is designed to let you view and control active print jobs.\n"
-#~ "Its icon will only be visible if at least one print job is active."
-#~ msgstr ""
-#~ "Ово програмче је направљено да би вам приказивало управљање текућим "
-#~ "пословима штампања.\n"
-#~ "Његова икона ће бити видива само ако најмање један задатак штампања "
-#~ "текући."
-
-#~ msgid ""
-#~ "The PrintersMenu service did not reply.\n"
-#~ "Please check that 'libprintersmenu.so' is correctly installed."
-#~ msgstr ""
-#~ "Послужитељ изборника штампања није одговорио.\n"
-#~ "Молим, проверите да ли је „libprintersmenu.so“ правилно уграђен."
-
-# ?
-#~ msgid "Sync-Menu"
-#~ msgstr "Изборник усаглашавања"
-
-# Сервер- послужитељ, услужник? Убунту уан? Гррр.
-#~ msgid ""
-#~ "This applet collects status information data from processes\n"
-#~ " that involve some form of synchronisation with servers:\n"
-#~ "  Ubuntu One, Dropbox, and others.\n"
-#~ "Its menu provides a condensed and collected view of all of these "
-#~ "providers for quick view."
-#~ msgstr ""
-#~ "Ови програмчићи сакупаљју податке стања из процеса\n"
-#~ " који укучују неки вид усаглашавања са даваоцима услуга:\n"
-#~ "  Убунту један, Дропбокс, и други.\n"
-#~ "Његов изборник обезбеђује сажет и скупљен приказ свих услужника за брзи "
-#~ "преглед."
-
-# А? Дајте ми топломер.
-#~ msgid ""
-#~ "The Sync Indicator service did not reply.\n"
-#~ "Please check that 'libsyncindicator.so' (indicator-sync) is correctly "
-#~ "installed."
-#~ msgstr ""
-#~ "Услуга указивача усаглашавања не даје одговор.\n"
-#~ "Молим, проверите да ли је „libsyncindicator.so“ правилно уграђен."
-
-#~ msgid "Workspace names :"
-#~ msgstr "Називи радних простора :"

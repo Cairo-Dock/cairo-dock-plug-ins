@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2013-01-04 22:36+0000\n"
-"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
+"POT-Creation-Date: 2013-03-04 16:42+0000\n"
+"PO-Revision-Date: 2013-02-19 10:34+0000\n"
+"Last-Translator: Ohadcn <Unknown>\n"
 "Language-Team: Hebrew <he@li.org>\n"
-"Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-02-07 05:02+0000\n"
-"X-Generator: Launchpad (build 16477)\n"
+"X-Launchpad-Export-Date: 2013-03-05 05:12+0000\n"
+"X-Generator: Launchpad (build 16514)\n"
+"Language: he\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -365,7 +366,8 @@ msgstr "הרכיב נוסף אך לא ניתן להפעיל אותו."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "היישומון '%s' עודכן ונטען בהצלחה."
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -645,7 +647,7 @@ msgstr "פתיחת תיקייה"
 
 #: ../Folders/src/applet-notifications.c:401
 msgid "Rename this file"
-msgstr ""
+msgstr "שנה שם קובץ"
 
 #: ../Folders/src/applet-notifications.c:402
 msgid "Delete this file"
@@ -653,7 +655,7 @@ msgstr "מחיקת קובץ זה"
 
 #: ../Folders/src/applet-notifications.c:403
 msgid "Move this file"
-msgstr ""
+msgstr "העבר קובץ"
 
 #: ../Folders/src/applet-notifications.c:409
 #: ../Recent-Events/src/applet-dialog.c:270
@@ -701,7 +703,7 @@ msgstr "התיקייה יובאה"
 
 #: ../Folders/src/applet-notifications.c:554
 msgid "Do you want to import the content of the folder too?"
-msgstr ""
+msgstr "האם ברצונך לייבא גם את תכולת התיקייה?"
 
 #: ../GMenu/src/applet-init.c:35
 msgid ""
@@ -723,11 +725,11 @@ msgstr "תפריט יישומים"
 
 #: ../GMenu/src/applet-init.c:132
 msgid "Show/hide the Applications menu"
-msgstr ""
+msgstr "הצג/הסתר את תפריט היישומים"
 
 #: ../GMenu/src/applet-init.c:137
 msgid "Show/hide the quick-launch dialog"
-msgstr ""
+msgstr "הצג/הסתר את חלון ההפעלה המהירה"
 
 #: ../GMenu/src/applet-menu-callbacks.c:177 ../GMenu/data/messages:107
 msgid "Logout"
@@ -755,15 +757,15 @@ msgstr "מסמכים בשימוש לאחרונה"
 
 #: ../GMenu/src/applet-recent.c:117
 msgid "Clear the list of the recently used documents?"
-msgstr ""
+msgstr "למחוק את רשימת המסמכים האחרונים?"
 
 #: ../GMenu/src/applet-run-dialog.c:352 ../Scooby-Do/data/messages:111
 msgid "Enter a command to launch:"
-msgstr ""
+msgstr "הכנס פקודה לביצוע:"
 
 #: ../Global-Menu/src/applet-init.c:30
 msgid "Global Menu"
-msgstr ""
+msgstr "תפריט ראשי"
 
 #: ../Global-Menu/src/applet-init.c:33
 msgid ""
@@ -776,11 +778,11 @@ msgstr ""
 
 #: ../Global-Menu/src/applet-init.c:108 ../Global-Menu/src/applet-init.c:210
 msgid "Show/hide the current application menu"
-msgstr ""
+msgstr "הצג/הסתר את תפריט היישוימים שפועלים כעת"
 
 #: ../Global-Menu/src/applet-notifications.c:98
 msgid "The application didn't send its menu to us."
-msgstr ""
+msgstr "יישום זה לא שולח את התפריט שלו אלינו."
 
 #: ../Impulse/src/applet-impulse.c:170
 msgid ""
@@ -796,6 +798,10 @@ msgid ""
 "In fact, you will have a graphical equalizer into the dock\n"
 "It will analyse the signal given by PulseAudio."
 msgstr ""
+"הידעת? הלוח שלך יכול לרקוד!\n"
+"לחיצה על כפתור תגרום ללוח שלך לרקוד!\n"
+"למעשה, הלוח יהפוך לאקולייזר גרפי\n"
+"הלוח ינתח את הקול מPulseAudio."
 
 #: ../Indicator-Generic/src/applet-init.c:30
 msgid "Indicator-Generic"
@@ -819,21 +825,22 @@ msgstr ""
 
 #: ../MeMenu/src/applet-init.c:30
 msgid "Me Menu"
-msgstr ""
+msgstr "התפריט שלי"
 
 #: ../MeMenu/src/applet-init.c:33
 msgid ""
 "A menu that lets you access quickly to your information, your online status, "
 "your friends."
 msgstr ""
+"תפריט שנותן לך גישה מהירה למידע שלך - מצב ההתחברות שלך ושל החברים שלך."
 
 #: ../MeMenu/src/applet-notifications.c:31
 msgid "It seems that the Me-Menu is not installed on your system"
-msgstr ""
+msgstr "נראה שהתפריט-שלי לא מותקן במחשב שלך"
 
 #: ../Messaging-Menu/src/applet-init.c:34
 msgid "Messaging Menu"
-msgstr ""
+msgstr "תפריט הודעות"
 
 #: ../Messaging-Menu/src/applet-init.c:37
 msgid ""
@@ -1779,8 +1786,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1983,7 +1990,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:333
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:401
@@ -2918,9 +2926,8 @@ msgid "Mount options:"
 msgstr ""
 
 #: ../shortcuts/src/applet-disk-usage.c:214
-#, fuzzy
 msgid "Backup frequency:"
-msgstr "תדירות"
+msgstr ""
 
 #: ../shortcuts/src/applet-disk-usage.c:214
 msgid "days"
@@ -3058,8 +3065,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -5440,7 +5447,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
@@ -7187,7 +7195,8 @@ msgid "Space between icons:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:121
@@ -7374,7 +7383,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
@@ -7623,7 +7633,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:117
@@ -7707,7 +7718,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:11
@@ -8686,7 +8698,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:105

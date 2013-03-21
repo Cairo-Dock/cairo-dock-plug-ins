@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2013-01-04 22:36+0000\n"
-"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
+"POT-Creation-Date: 2013-03-04 16:42+0000\n"
+"PO-Revision-Date: 2013-03-15 05:46+0000\n"
+"Last-Translator: ma$terok <Unknown>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-02-07 05:04+0000\n"
-"X-Generator: Launchpad (build 16477)\n"
+"X-Launchpad-Export-Date: 2013-03-16 06:04+0000\n"
+"X-Generator: Launchpad (build 16532)\n"
+"Language: uk\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -371,7 +372,8 @@ msgstr "Модуль був доданий, але не може бути зап
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Аплет '%s' оновлено та автоматично перезавантажено"
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -857,7 +859,7 @@ msgstr ""
 
 #: ../Indicator-Generic/src/applet-init.c:30
 msgid "Indicator-Generic"
-msgstr ""
+msgstr "Універсальний індикатор"
 
 #: ../Indicator-Generic/src/applet-init.c:33
 msgid ""
@@ -867,15 +869,22 @@ msgid ""
 "automatically hidden.\n"
 "You can also blacklist indicators you don't want to see."
 msgstr ""
+"Цей плагін може відображати всі доступні індикатори на панелі.\n"
+"Індикатори надають інформацію, про щось , і меню, щоб впливати на нього:\n"
+"  наприклад індикатор для керування завданнями принтера. Неактивні "
+"індикатори приховуються автоматично.\n"
+"Також ви можете помістити у чорний список індикатори, які не бажаєте бачити "
+"на панелі.."
 
 #: ../Indicator-Generic/src/applet-notifications.c:34
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "This indicator service did not reply.\n"
 "Please check that '%s' is correctly installed and its daemon is running."
 msgstr ""
-"Служба обміну повідомленнями не відповідає.\n"
-"Перевірте, будь-ласка, правильність її встановлення."
+"Служба індикатора не відповідає.\n"
+"Будь-ласка переконайтеся, що '%s' правильно встановлений і відповідний демон "
+"запущений."
 
 #: ../MeMenu/src/applet-init.c:30
 msgid "Me Menu"
@@ -1205,6 +1214,11 @@ msgid ""
 "quoting the string \"foo is a bar\". You can truncate terms by appending a "
 "*. "
 msgstr ""
+"Типовим логічним оператором є AND. Таким чином, запит foo bar буде "
+"інтерпретуватися як foo AND bar. Щоб виключити термін , перед  ним можна "
+"поставити знак мінус, наприклад: foo -bar. Фразу запиту можна взяти у "
+"подвійні лапки \"foo is a bar\". Також можна змінювати умови шляхом "
+"додавання *. "
 
 #: ../Recent-Events/src/applet-dialog.c:448
 #: ../Screenshot/src/applet-screenshot.c:487
@@ -1426,26 +1440,30 @@ msgid ""
 "<b>Middle-click</b> gives you more options.\n"
 "You can bind a <b>shortcut</b> to the action."
 msgstr ""
+"Простий додаток для створення знімків екрана.\n"
+"<b>Клацніть</b> щоб зробити знімок.\n"
+"<b>Середня конпка /b> викликає додаткові опції.\n"
+"Також ви можете призначити свої <b>гарячі клавіші</b> на цю дію."
 
 #: ../Screenshot/src/applet-init.c:53
 msgid "Take a screenshot"
-msgstr ""
+msgstr "Зробити знімок екрана"
 
 #: ../Screenshot/src/applet-notifications.c:49
 msgid "Screenshot"
-msgstr ""
+msgstr "Знімок екрана"
 
 #: ../Screenshot/src/applet-notifications.c:61
 msgid "Screenshot with options"
-msgstr ""
+msgstr "Знімок екрана з опціями"
 
 #: ../Screenshot/src/applet-screenshot.c:163
 msgid "Screenshot from"
-msgstr ""
+msgstr "Знімок екрана з"
 
 #: ../Screenshot/src/applet-screenshot.c:331
 msgid "Unable to take a screenshot"
-msgstr ""
+msgstr "Неможливо зробити знімок"
 
 #: ../Screenshot/src/applet-screenshot.c:454 ../Cairo-Penguin/data/messages:19
 #: ../Clipper/data/messages:137 ../Disks/data/messages:143
@@ -1461,15 +1479,15 @@ msgstr "в секундах."
 
 #: ../Screenshot/src/applet-screenshot.c:455
 msgid "Delay"
-msgstr ""
+msgstr "Затримка"
 
 #: ../Screenshot/src/applet-screenshot.c:477
 msgid "Grab the current window instead of the all screen"
-msgstr ""
+msgstr "Захопити лише поточне вікно а не весь екран"
 
 #: ../Screenshot/src/applet-screenshot.c:478
 msgid "Grab the current window"
-msgstr ""
+msgstr "Захопити лише поточне вікно"
 
 #: ../Screenshot/src/applet-screenshot.c:486
 #: ../Screenshot/src/applet-screenshot.c:495
@@ -1480,17 +1498,19 @@ msgstr "Залиште порожнім, щоб використовувати �
 
 #: ../Screenshot/src/applet-screenshot.c:496
 msgid "Directory"
-msgstr ""
+msgstr "Тека"
 
 #: ../Sound-Effects/src/applet-init.c:29
 msgid "Sound Effects"
-msgstr ""
+msgstr "Звукові ефекти"
 
 #: ../Sound-Effects/src/applet-init.c:32
 msgid ""
 "This plug-in add sound effects on various events in the dock:\n"
 " When clicking an icon, when hovering an icon, etc"
 msgstr ""
+"Цей додаток додає звукові ефекти подіям на панелі:\n"
+" При клацанні по іконці, при наведенні курсору на іконку, тощо."
 
 #: ../Status-Notifier/src/applet-init.c:33
 msgid ""
@@ -1906,8 +1926,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2071,17 +2091,16 @@ msgid "clear"
 msgstr "чистий"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:97
-#, fuzzy
 msgid "light"
-msgstr "праворуч"
+msgstr "світло"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:105
 msgid "water drop"
-msgstr ""
+msgstr "краплі води"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:113
 msgid "water"
-msgstr ""
+msgstr "вода"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:121
 msgid "futuristic"
@@ -2130,7 +2149,8 @@ msgstr ""
 "Натисніть CTRL+v, щоб вставити його URL куди завгодно."
 
 #: ../dnd2share/src/applet-dnd2share.c:333
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Зачекайте на закінчення поточного звантаження перед тим, як почати нове."
 
@@ -2484,8 +2504,8 @@ msgstr ""
 "автоматичне завершення роботи\n"
 "і повідомляти вам, якщо ваша система потребує перезавантаження.\n"
 "<b>Клікніть</b> по значку, щоб викликати спливаюче меню.\n"
-"Ви можете прив'язати до нього і до блокування екрану <b>комбінації клавіш</"
-"b>."
+"Ви можете прив'язати до нього і до блокування екрану <b>комбінації "
+"клавіш</b>."
 
 #: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:276
 #: ../logout/data/messages:95
@@ -2975,6 +2995,9 @@ msgid ""
 "Please be sure that at least one interface is available\n"
 " and that you have the right to monitor it"
 msgstr ""
+"Інтерфейс не знайдено.\n"
+"Переконайтеся, будь-ласка, що хоча б один інтерфейс доступний\n"
+" і ви маєте право керувати ним"
 
 #: ../netspeed/src/applet-notifications.c:48
 #, c-format
@@ -2983,6 +3006,9 @@ msgid ""
 "You may have to set up the interface you wish to monitor.\n"
 "Do you want to do it now?"
 msgstr ""
+"Здається інтерфейс '%s' не існує або не доступний.\n"
+"Можливо, вам доведеться спершу налаштувати інтерфейс, щоб керувати ним.\n"
+"Розпочати налаштування зараз?"
 
 #: ../netspeed/src/applet-notifications.c:105
 msgid "Enable/disable network"
@@ -3141,55 +3167,48 @@ msgstr "Домашня тека"
 #: ../shortcuts/src/applet-disk-usage.c:179
 #: ../shortcuts/src/applet-disk-usage.c:208
 msgid "Mount point:"
-msgstr ""
+msgstr "Точка монтування:"
 
 #: ../shortcuts/src/applet-disk-usage.c:180
 #: ../shortcuts/src/applet-disk-usage.c:209
-#, fuzzy
 msgid "File system:"
-msgstr "Файлова система"
+msgstr "Файлова система:"
 
 #: ../shortcuts/src/applet-disk-usage.c:181
 #: ../shortcuts/src/applet-disk-usage.c:210
 msgid "Device:"
-msgstr ""
+msgstr "Пристрій:"
 
 #: ../shortcuts/src/applet-disk-usage.c:182
 #: ../shortcuts/src/applet-disk-usage.c:211
-#, fuzzy
 msgid "Mount options:"
-msgstr "Обертання:"
+msgstr "Опції монтування:"
 
 #: ../shortcuts/src/applet-disk-usage.c:214
-#, fuzzy
 msgid "Backup frequency:"
-msgstr "Частота"
+msgstr "Частота резервного копіювання:"
 
 #: ../shortcuts/src/applet-disk-usage.c:214
 msgid "days"
-msgstr ""
+msgstr "днів"
 
 #: ../shortcuts/src/applet-disk-usage.c:237
 #: ../shortcuts/src/applet-disk-usage.c:247
 #: ../shortcuts/src/applet-disk-usage.c:252
-#, fuzzy
 msgid "Name:"
-msgstr "назвою"
+msgstr "Ім'я:"
 
 #: ../shortcuts/src/applet-disk-usage.c:238
-#, fuzzy
 msgid "Capacity:"
-msgstr "Максимальна ємність:"
+msgstr "Об’єм:"
 
 #: ../shortcuts/src/applet-disk-usage.c:239
-#, fuzzy
 msgid "Free space:"
-msgstr "Вільне місце"
+msgstr "Вільне місце:"
 
 #: ../shortcuts/src/applet-disk-usage.c:247
-#, fuzzy
 msgid "Not mounted"
-msgstr "Відмонтовано"
+msgstr "Не змонтований"
 
 #: ../shortcuts/src/applet-disk-usage.c:253 ../RSSreader/data/messages:97
 msgid "URL:"
@@ -3312,8 +3331,8 @@ msgstr "Прикрасити курсор"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Цей модуль прикрашає курсор різною анімацією, коли той знаходиться всередині "
 "панелі/десклету."
@@ -3361,7 +3380,7 @@ msgstr ""
 
 #: ../slider/src/applet-notifications.c:68
 msgid "You need to define the images folder first."
-msgstr ""
+msgstr "В першу чергу ви повинні призначити теку із зображеннями."
 
 #: ../slider/src/applet-notifications.c:220
 msgid "Play"
@@ -3650,7 +3669,7 @@ msgstr "Закрити цю вкладку"
 
 #: ../tomboy/src/applet-backend-default.c:189
 msgid "Title:"
-msgstr ""
+msgstr "Заголовок:"
 
 #: ../tomboy/src/tomboy-draw.c:190
 msgid "Open all"
@@ -4618,8 +4637,8 @@ msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
 msgstr ""
-"Залежно від вашого менеджеру вікон, ви можете переміщувати за допомогою ALT"
-"+ліве клацання."
+"Залежно від вашого менеджеру вікон, ви можете переміщувати за допомогою "
+"ALT+ліве клацання."
 
 #: ../Clipper/data/messages:31 ../Composite-Manager/data/messages:29
 #: ../Disks/data/messages:47 ../Doncky/data/messages:31
@@ -4933,7 +4952,8 @@ msgstr "Оформлення"
 #: ../tomboy/data/messages:69 ../weather/data/messages:67
 #: ../weblets/data/messages:57 ../wifi/data/messages:65
 msgid "Choose 'Custom decorations' to define your own decorations below."
-msgstr "Виберіть 'Власне оформлення', щоб налаштувати власне оформлення нижче."
+msgstr ""
+"Виберіть 'Власне оформлення', щоб налаштувати власне оформлення нижче."
 
 #: ../Clipper/data/messages:59 ../Composite-Manager/data/messages:57
 #: ../Disks/data/messages:57 ../Doncky/data/messages:59
@@ -5555,11 +5575,11 @@ msgstr "Дозволити стороннім програмам анімува�
 
 #: ../Dbus/data/messages:25
 msgid "The dock will catch DBus signals to Launcher API and act as Unity"
-msgstr ""
+msgstr "Панель буде ловити сигнали DBus до Launcher API і діяти як Unity"
 
 #: ../Dbus/data/messages:27
 msgid "Launch the Launcher API daemon?"
-msgstr ""
+msgstr "Запустити демон Launcher API?"
 
 #: ../Disks/data/messages:5
 msgid "Name of the container it belongs to:"
@@ -5799,7 +5819,8 @@ msgid "Background"
 msgstr "Тло"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Ви можете отримати привабливіше тло використовуючи Оформлення десклетів"
 
@@ -6093,11 +6114,11 @@ msgstr "Індекс джерела:"
 
 #: ../Indicator-Generic/data/messages:91
 msgid "Separated by a semi-colon ';'"
-msgstr ""
+msgstr "Розділяти крапкою з комою ';'"
 
 #: ../Indicator-Generic/data/messages:93
 msgid "Blacklist these indicators:"
-msgstr ""
+msgstr "Чорний список індикаторів:"
 
 #: ../Messaging-Menu/data/messages:15 ../Network-Monitor/data/messages:17
 #: ../Status-Notifier/data/messages:19 ../System-Monitor/data/messages:15
@@ -6679,41 +6700,41 @@ msgstr "Він може запустити команди і навіть зро
 
 #: ../Screenshot/data/messages:91
 msgid "Shortkey to take a screenshot"
-msgstr ""
+msgstr "Гаряча клавіша для знімків екрана"
 
 #: ../Screenshot/data/messages:93
 msgid "Save image in"
-msgstr ""
+msgstr "Зберегти зображення в"
 
 #: ../Sound-Effects/data/messages:3
 msgid "Play a sound on click ?"
-msgstr ""
+msgstr "Програвати звук при клацанні?"
 
 #: ../Sound-Effects/data/messages:5 ../Sound-Effects/data/messages:11
 #: ../Sound-Effects/data/messages:17
 msgid "A .wav file encoded in PCM."
-msgstr ""
+msgstr "A .wav файл закодовано в PCM."
 
 #: ../Sound-Effects/data/messages:7 ../Sound-Effects/data/messages:13
 #: ../Sound-Effects/data/messages:19
 msgid "Sound file"
-msgstr ""
+msgstr "Звуковий файл"
 
 #: ../Sound-Effects/data/messages:9
 msgid "Play a sound on middle click ?"
-msgstr ""
+msgstr "Програвати звук при клацанні середньою кнопкою?"
 
 #: ../Sound-Effects/data/messages:15
 msgid "Play a sound on mouse hover ?"
-msgstr ""
+msgstr "Програвати звук при наведенні миші?"
 
 #: ../Sound-Effects/data/messages:21
 msgid "Volume:"
-msgstr ""
+msgstr "Гучність:"
 
 #: ../Sound-Effects/data/messages:25
 msgid "High"
-msgstr ""
+msgstr "Висока"
 
 #: ../Status-Notifier/data/messages:13
 msgid "Image's filename :"
@@ -7407,7 +7428,8 @@ msgstr "Висота точки сходження:"
 
 #: ../dock-rendering/data/messages:9
 msgid "The lower the value, the flatter the curve will appear."
-msgstr "Чим менше значення, тим більша частина кривої буде виглядати пласкою."
+msgstr ""
+"Чим менше значення, тим більша частина кривої буде виглядати пласкою."
 
 #: ../dock-rendering/data/messages:11
 msgid "Curvature of the curve in percent:"
@@ -7587,7 +7609,8 @@ msgid "Space between icons:"
 msgstr "Відстань між іконками:"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "При значенні 0 хвиля буде повністю пласкою, при значенні 1 хвиля буде "
 "ідентична іншим видам."
@@ -7809,7 +7832,8 @@ msgid "Colours"
 msgstr "Кольори"
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr "Він ледве змінює колір, так що ви можете навіть не змінювати його."
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
@@ -7987,7 +8011,7 @@ msgstr "менше"
 
 #: ../keyboard-indicator/data/messages:131
 msgid "Number of letters to draw on the icon."
-msgstr ""
+msgstr "Кількість літер, що буде зображено на іконці."
 
 #: ../logout/data/messages:91
 msgid "Action"
@@ -8070,7 +8094,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Файл зображення для статусу 'є нові листи':"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Якщо вибрано, то кількість листів буде показуватися навіть, якщо листів не "
 "має."
@@ -8156,8 +8181,10 @@ msgid "Blur amount:"
 msgstr "Якість розмиття:"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
-msgstr "Залиште порожнім, щоб відображати ім'я програвача, яким зараз керуєте."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
+msgstr ""
+"Залиште порожнім, щоб відображати ім'я програвача, яким зараз керуєте."
 
 #: ../musicPlayer/data/messages:11
 msgid "Player name"
@@ -8342,7 +8369,7 @@ msgstr "Файл зображення значка 'пауза':"
 
 #: ../netspeed/data/messages:145
 msgid "By default all interfaces will be monitored."
-msgstr ""
+msgstr "Типово усі інтерфейси будуть контролюватися."
 
 #: ../netspeed/data/messages:147
 msgid "interface:"
@@ -8566,7 +8593,8 @@ msgstr "Тривалість життя частинок:"
 #: ../show-mouse/data/messages:33
 msgid ""
 "The higher the value, the more particles will scatter from their source."
-msgstr "Чим більше значення, тим більше часток розсіюватиметься з їх джерела."
+msgstr ""
+"Чим більше значення, тим більше часток розсіюватиметься з їх джерела."
 
 #: ../show-mouse/data/messages:35
 msgid "Scattering:"
@@ -9159,7 +9187,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Позиція вертикальної смуги"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Це дозволить використовувати праве клацання для виклику меню Cairo-Dock."
 
@@ -9221,49 +9250,3 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Альтернативна команда запуску налаштування бездротового з'єднання:"
-
-#~ msgid "Printers-Menu"
-#~ msgstr "Меню принтерів"
-
-#~ msgid ""
-#~ "This applet is designed to let you view and control active print jobs.\n"
-#~ "Its icon will only be visible if at least one print job is active."
-#~ msgstr ""
-#~ "Цей додаток розроблено для того, щоб дозволити вам переглядати і керувати "
-#~ "активними завданнями друку.\n"
-#~ "Його іконку буде видно, якщо хоча б одне завдання на друк активне."
-
-#~ msgid ""
-#~ "The PrintersMenu service did not reply.\n"
-#~ "Please check that 'libprintersmenu.so' is correctly installed."
-#~ msgstr ""
-#~ "Служба Меню принтерів не відповідає.\n"
-#~ "Будь-ласка, перевірте правильність встановлення 'libprintersmenu.so'."
-
-#~ msgid "Sync-Menu"
-#~ msgstr "Sync-Menu"
-
-#~ msgid ""
-#~ "This applet collects status information data from processes\n"
-#~ " that involve some form of synchronisation with servers:\n"
-#~ "  Ubuntu One, Dropbox, and others.\n"
-#~ "Its menu provides a condensed and collected view of all of these "
-#~ "providers for quick view."
-#~ msgstr ""
-#~ "Цей додаток збирає інформацію про стан процесів\n"
-#~ " які включають деякі форми синхронізації з серверами:\n"
-#~ "  Ubuntu One, Dropbox, і інших.\n"
-#~ "Це меню забезпечує зібране і стисле відображення всіх цих постачальників "
-#~ "для швидкого перегляду."
-
-#~ msgid ""
-#~ "The Sync Indicator service did not reply.\n"
-#~ "Please check that 'libsyncindicator.so' (indicator-sync) is correctly "
-#~ "installed."
-#~ msgstr ""
-#~ "Служба індикатора синхронізації не відповідає.\n"
-#~ "Перевірте будь-ласка правильність встановлення 'libsyncindicator."
-#~ "so' (індикатор синхонізації)."
-
-#~ msgid "Workspace names :"
-#~ msgstr "Назви стільниць:"
