@@ -298,6 +298,12 @@ static gboolean cd_shortcuts_build_shortcuts_from_data (CDSharedMemory *pSharedM
 	
 	//\_______________________ On lance la tache de mesure des disques.
 	cd_shortcuts_launch_disk_periodic_task (myApplet);
+
+	if (myData.bShowMenuPending)
+	{
+		cairo_dock_notify_on_object (myContainer, NOTIFICATION_CLICK_ICON, myIcon, myDock, GDK_BUTTON1_MASK);
+		myData.bShowMenuPending = FALSE;
+	}
 	
 	cairo_dock_discard_task (myData.pTask);
 	myData.pTask = NULL;

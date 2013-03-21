@@ -86,6 +86,7 @@ struct _AppletData {
 	CairoDockTask *pDiskTask;  // tache non threadee.
 	gchar *cLastCreatedUri;
 	gchar *cLastDeletedUri;
+	gboolean bShowMenuPending;
 	} ;
 
 

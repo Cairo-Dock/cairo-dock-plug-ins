@@ -86,7 +86,9 @@ CD_APPLET_ON_CLICK_BEGIN
 		if (CD_APPLET_MY_ICONS_LIST == NULL)
 		{
 			cairo_dock_remove_dialog_if_any (myIcon);
-			if (g_iDesktopEnv == CAIRO_DOCK_KDE)
+			if (myData.pTask != NULL) // if it's loading
+				myData.bShowMenuPending = TRUE;
+			else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
 				cairo_dock_show_temporary_dialog_with_icon (D_("Sorry, this applet is not yet available for KDE."), myIcon, myContainer, 6000., "same icon");
 			else
 				cairo_dock_show_temporary_dialog_with_icon (D_("No disks or bookmarks were found."), myIcon, myContainer, 6000., "same icon");
