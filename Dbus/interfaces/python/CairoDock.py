@@ -1,5 +1,3 @@
-#!@PYTHON_EXECUTABLE@
-#
 # This is a part of the Cairo-Dock plug-ins.
 # Copyright : (C) 2010-2011 by Fabounet
 # E-mail : fabounet@glx-dock.org
