@@ -181,6 +181,7 @@ CD_APPLET_RELOAD_BEGIN
 				myIcon->pSubDock = NULL;
 			}
 			cd_satus_notifier_reload_compact_mode ();
+			CD_APPLET_SET_STATIC_ICON;
 		}
 		else
 		{

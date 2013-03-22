@@ -2,6 +2,6 @@
 add_subdirectory(src)
 add_subdirectory(data)
 
-if (PYTHON_FOUND)
+if (PYTHON2_FOUND OR PYTHON3_FOUND)
 	add_subdirectory(watcher)
 endif()

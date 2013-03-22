@@ -1,4 +1,3 @@
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/status-notifier-watcher.py.in ${CMAKE_CURRENT_BINARY_DIR}/status-notifier-watcher.py)
 
 ########### install files ###############
 

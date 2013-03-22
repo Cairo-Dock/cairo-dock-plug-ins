@@ -1,4 +1,4 @@
-#!@PYTHON_EXECUTABLE@
+#!/usr/bin/env python
 #
 # This is a part of the Cairo-Dock plug-ins.
 # Copyright : (C) 2012 by Fabrice Rey

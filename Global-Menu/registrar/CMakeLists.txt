@@ -1,4 +1,3 @@
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/appmenu-registrar.py.in ${CMAKE_CURRENT_BINARY_DIR}/appmenu-registrar.py)
 
 ########### install files ###############
 
