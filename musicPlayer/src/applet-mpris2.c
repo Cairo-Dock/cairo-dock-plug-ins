@@ -631,6 +631,8 @@ static void cd_mpris2_control (MyPlayerControl pControl, const char* song)
 				fVolume += .05;
 			else
 				fVolume -= .05;
+			if (fVolume > 1) fVolume = 1;
+			if (fVolume < 0) fVolume = 0;
 			cd_debug ("volume <- %f", fVolume);
 			g_value_init (&s_pValue, G_TYPE_DOUBLE);
 			g_value_set_double (&s_pValue, fVolume);
