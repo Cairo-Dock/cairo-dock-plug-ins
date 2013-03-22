@@ -474,7 +474,7 @@ if (enable-python-interface)
 	if (PYTHON3_EXECUTABLE AND EXISTS ${PYTHON3_EXECUTABLE})
 		set (PYTHON3_FOUND TRUE)
 	endif()
-	if (NOT PYTHON2_FOUND AND NOT PYTHON3_FOUND)  # if we didn't find one of them, 
+	if (NOT PYTHON2_FOUND OR NOT PYTHON3_FOUND)  # if we didn't find one of them, 
 		find_program (PYTHON_EXECUTABLE python)
 		EXECUTE_PROCESS(COMMAND ${PYTHON_EXECUTABLE} -c "import sys; print sys.version" OUTPUT_VARIABLE PYTHON_VERSION)
 		STRING (REGEX REPLACE "\..*" "" PYTHON_VERSION ${PYTHON_VERSION})
