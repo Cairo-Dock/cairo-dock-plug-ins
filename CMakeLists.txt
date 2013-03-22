@@ -11,7 +11,7 @@ include ("${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules/GNUInstallDirs.cmake")
 ########### project ###############
 
 project ("cairo-dock-plugins")
-set (VERSION "3.1.99.rc2")
+set (VERSION "3.2.0")
 
 add_definitions (-std=c99 -Wall) # -Wextra -Wwrite-strings -Wuninitialized -Werror-implicit-function-declaration -Wstrict-prototypes -Wreturn-type -Wparentheses -Warray-bounds) # removed for stable versions: -Wstrict-prototypes #-Wunreachable-code -Wno-unused-parameter -Wall
 if (NOT ${CMAKE_BUILD_TYPE})
@@ -477,7 +477,7 @@ if (enable-python-interface)
 	if (NOT PYTHON2_FOUND OR NOT PYTHON3_FOUND)  # if we didn't find one of them, 
 		find_program (PYTHON_EXECUTABLE python)
 		EXECUTE_PROCESS(COMMAND ${PYTHON_EXECUTABLE} -c "import sys; print sys.version" OUTPUT_VARIABLE PYTHON_VERSION)
-		STRING (REGEX REPLACE "\..*" "" PYTHON_VERSION ${PYTHON_VERSION})
+		STRING (REGEX REPLACE "\\..*" "" PYTHON_VERSION ${PYTHON_VERSION})
 		message (STATUS "   Python Version: ${PYTHON_VERSION}")
 		if ("${PYTHON_VERSION}" STREQUAL "2")
 			set (PYTHON2_EXECUTABLE ${PYTHON_EXECUTABLE})
