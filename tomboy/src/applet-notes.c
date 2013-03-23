@@ -394,7 +394,7 @@ void cd_notes_store_update_note (CDNote *pUpdatedNote)
 	Icon *pIcon = _cd_tomboy_find_note_from_uri (pUpdatedNote->cID);
 	g_return_if_fail (pIcon != NULL);
 	
-	g_print ("  %s -> %s\n", pUpdatedNote->cTitle, pIcon->cName);
+	cd_debug ("  %s -> %s", pUpdatedNote->cTitle, pIcon->cName);
 	if (g_strcmp0 (pUpdatedNote->cTitle, pIcon->cName) != 0)  // nouveau titre.
 	{
 		cairo_dock_set_icon_name (pUpdatedNote->cTitle, pIcon, CD_APPLET_MY_ICONS_LIST_CONTAINER);
@@ -402,7 +402,7 @@ void cd_notes_store_update_note (CDNote *pUpdatedNote)
 	
 	if (myConfig.bDrawContent)
 	{
-		g_print ("  %s -> %s\n", pIcon->cClass, pUpdatedNote->cContent);
+		cd_debug ("  %s -> %s", pIcon->cClass, pUpdatedNote->cContent);
 		if (g_strcmp0 (pIcon->cClass, pUpdatedNote->cContent) != 0)
 		{
 			g_free (pIcon->cClass);

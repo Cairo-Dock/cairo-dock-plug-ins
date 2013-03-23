@@ -98,7 +98,6 @@ void cd_tomboy_draw_content_on_icon (cairo_t *pIconContext, Icon *pIcon)
 				12./200*h,  // on laisse un peu de place pour ne pas deborder sur la gauche.
 				iNeedleOffset+j*(textExtents.height+2));
 			cairo_show_text (pIconContext, cLines[i]);
-			g_print (" + %s\n", cLines[i]);
 			j ++;
 		}
 		i ++;
@@ -121,7 +120,6 @@ static gboolean _cd_tomboy_reset_quick_info (gpointer data)
 }
 static void _on_select_note (GtkWidget *pMenuItem, const gchar *cCommand)
 {
-	g_print ("%s (%s)\n", __func__, cCommand);
 	cd_notes_show_note (cCommand);
 }
 static void _on_select_all_notes (GtkWidget *pMenuItem, GList *pNotes)

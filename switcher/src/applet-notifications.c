@@ -463,7 +463,6 @@ static void _save_desktop_names (void)
 gboolean on_change_desktop_names (CairoDockModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
-	g_print ("%s ()\n", __func__);
 	// retrieve the desktop names
 	if (myData.cDesktopNames != NULL)
 		g_strfreev (myData.cDesktopNames);

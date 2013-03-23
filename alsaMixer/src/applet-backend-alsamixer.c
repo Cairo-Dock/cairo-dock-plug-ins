@@ -42,7 +42,7 @@ static gchar *_mixer_get_card_id_from_name (const gchar *cName)
 	while (snd_card_next (&iCardID) == 0 && iCardID != -1)
 	{
 		snd_card_get_name (iCardID, &cName2);
-		g_print ("+ card %d: %s\n", iCardID, cName2);
+		cd_debug ("+ card %d: %s", iCardID, cName2);
 		if (! cName2)
 			continue;
 		if (strcmp (cName2, cName) == 0)

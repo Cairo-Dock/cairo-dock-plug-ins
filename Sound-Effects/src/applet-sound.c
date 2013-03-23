@@ -480,7 +480,7 @@ static void _play_sound_async (CDSharedMemory *pSharedMemory)
 		}
 		else if (r == -EPIPE)  // an underrun occurred 
 		{
-			g_print ("underrun\n");
+			cd_debug ("underrun");
 			snd_pcm_status_t *status;
 			int res;
 			snd_pcm_status_alloca(&status);
@@ -508,7 +508,7 @@ static void _play_sound_async (CDSharedMemory *pSharedMemory)
 		}
 		else if (r == -ESTRPIPE)  // a suspend event occurred (stream is suspended and waiting for an application recovery)
 		{
-			g_print ("suspend\n");
+			cd_debug ("suspend");
 			int res;
 			while ((res = snd_pcm_resume (handle)) == -EAGAIN)
 				sleep(1);	// wait until suspend flag is released

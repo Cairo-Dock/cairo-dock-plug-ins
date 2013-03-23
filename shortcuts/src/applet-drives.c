@@ -68,7 +68,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 {
 	gchar *cURI = (g_strdup (cBaseURI));
 	cairo_dock_remove_html_spaces (cURI);
-	g_print (" * event %d on '%s'\n", iEventType, cURI);
+	cd_debug (" * event %d on '%s'", iEventType, cURI);
 	
 	switch (iEventType)
 	{
