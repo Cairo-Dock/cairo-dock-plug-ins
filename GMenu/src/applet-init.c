@@ -17,8 +17,6 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "stdlib.h"
-
 #include "applet-config.h"
 #include "applet-notifications.h"
 #include "applet-struct.h"

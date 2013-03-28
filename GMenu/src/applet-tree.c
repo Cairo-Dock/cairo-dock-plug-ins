@@ -22,6 +22,7 @@
 
 #include "applet-struct.h"
 #include "applet-menu.h"  // start/stop
+#include "applet-apps.h"
 #include "applet-tree.h"
 
 #define CD_FOLDER_DEFAULT_ICON "folder"
@@ -102,7 +103,7 @@ static void add_image_to_menu_item (GtkWidget *image_menu_item,
 	gtk_widget_show (image);
 }
 
-static gchar * menu_escape_underscores_and_prepend (const char *text)
+/**static gchar * menu_escape_underscores_and_prepend (const char *text)
 {
 	GString    *escaped_text;
 	const char *src;
@@ -135,15 +136,15 @@ static gchar * menu_escape_underscores_and_prepend (const char *text)
 	}
 
 	return g_string_free (escaped_text, FALSE);
-}
+}*/
 
 static void setup_menuitem (GtkWidget *menuitem,
 	const char  *title)
 {
 	GtkWidget *label;
+	/**
+	// this creates a label with an invisible mnemonic
 	gchar      *_title;
-
-	/* this creates a label with an invisible mnemonic */
 	label = g_object_new (GTK_TYPE_ACCEL_LABEL, NULL);
 	_title = menu_escape_underscores_and_prepend (title);
 	gtk_label_set_text_with_mnemonic (GTK_LABEL (label), _title);
@@ -151,7 +152,8 @@ static void setup_menuitem (GtkWidget *menuitem,
 	
 	gtk_label_set_pattern (GTK_LABEL (label), "");  // hide the _
 	
-	gtk_accel_label_set_accel_widget (GTK_ACCEL_LABEL (label), menuitem);
+	gtk_accel_label_set_accel_widget (GTK_ACCEL_LABEL (label), menuitem);*/
+	label = gtk_label_new (title);
 	
 	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
 	gtk_widget_show (label);
@@ -171,9 +173,12 @@ static GtkWidget * add_menu_separator (GtkWidget *menu)
 	return menuitem;
 }
 
-static GtkWidget * create_submenu_entry (GtkWidget          *menu,
+static GtkWidget * create_submenu_entry (GtkWidget *menu,
 	GMenuTreeDirectory *directory)
 {
+	if (gmenu_tree_directory_get_is_nodisplay (directory))
+		return NULL;
+	
 	GtkWidget *menuitem = gtk_image_menu_item_new ();
 	setup_menuitem (menuitem,
 		gmenu_tree_directory_get_name (directory));
@@ -187,7 +192,7 @@ static GtkWidget * create_submenu_entry (GtkWidget          *menu,
 	return menuitem;
 }
 
-static void create_submenu (GtkWidget          *menu,
+static void create_submenu (GtkWidget *menu,
 	GMenuTreeDirectory *directory,
 	GMenuTreeDirectory *alias_directory)
 {
@@ -197,6 +202,8 @@ static void create_submenu (GtkWidget          *menu,
 		menuitem = create_submenu_entry (menu, alias_directory);
 	else
 		menuitem = create_submenu_entry (menu, directory);
+	if (!menuitem)
+		return;
 	
 	// create a sub-menu for it
 	GtkWidget *submenu = gtk_menu_new ();
@@ -219,8 +226,15 @@ static void create_menuitem (GtkWidget *menu,
 	GMenuTreeEntry *entry,
 	GMenuTreeDirectory *alias_directory)
 {
-	// create an entry
+	// register the application
 	GDesktopAppInfo *pAppInfo = gmenu_tree_entry_get_app_info (entry);
+	cd_menu_register_app (pAppInfo);
+	
+	// ignore entry that are not shown in the menu
+	if (gmenu_tree_entry_get_is_nodisplay_recurse (entry) || gmenu_tree_entry_get_is_excluded (entry))
+		return;
+	
+	// create an entry
 	const gchar *cName = NULL;
 	if (alias_directory)
 		cName = gmenu_tree_directory_get_name (alias_directory);
@@ -318,7 +332,6 @@ static void cd_populate_menu_from_directory (GtkWidget *menu, GMenuTreeDirectory
 	while ((next_type = gmenu_tree_iter_next (iter)) != GMENU_TREE_ITEM_INVALID)
 	{
 		gpointer item = NULL;
-		
 		switch (next_type)
 		{
 			case GMENU_TREE_ITEM_DIRECTORY:  // we suppose that unicity is assured.
@@ -455,7 +468,7 @@ static gchar * cd_find_menu_file (const gchar *cMenuFile)
 GMenuTree *cd_load_tree_from_file (const gchar *cMenuFile)
 {
 	gchar *cMenuFileName = cd_find_menu_file (cMenuFile);
-	GMenuTree *tree = gmenu_tree_new (cMenuFileName, GMENU_TREE_FLAGS_NONE);
+	GMenuTree *tree = gmenu_tree_new (cMenuFileName, GMENU_TREE_FLAGS_INCLUDE_NODISPLAY | GMENU_TREE_FLAGS_INCLUDE_EXCLUDED);  /// GMENU_TREE_FLAGS_INCLUDE_NODISPLAY
 	if (! gmenu_tree_load_sync (tree, NULL))  // this does all the heavy work of parsing the .menu and each desktop files.
 	{
 		g_object_unref (tree);

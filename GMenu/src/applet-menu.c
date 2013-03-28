@@ -17,12 +17,10 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <string.h>
-#include <cairo-dock.h>
-
 #include "applet-struct.h"
 #include "applet-menu.h"
 #include "applet-recent.h"
+#include "applet-apps.h"
 #include "applet-tree.h"
 
 static void cd_menu_append_poweroff_to_menu (GtkWidget *menu, CairoDockModuleInstance *myApplet);
@@ -34,9 +32,22 @@ static gboolean _make_menu_from_trees (CDSharedMemory *pSharedMemory)
 	
 	myData.pTrees = pSharedMemory->pTrees;
 	pSharedMemory->pTrees = NULL;
-
-	myData.pMenu = pSharedMemory->pMenu;
-	pSharedMemory->pMenu = NULL;
+	
+	// create the menu
+	myData.pMenu = gtk_menu_new ();
+	
+	/* append the trees we got
+	 *  + it will populate menu and create all things
+	 *     (it will have a look at new images and maybe preload them)
+	 *  => do that in the separated thread
+	 */
+	GMenuTree *tree;
+	GList *t;
+	for (t = myData.pTrees; t != NULL; t = t->next)
+	{
+		tree = t->data;
+		cd_append_tree_in_menu (tree, myData.pMenu);
+	}
 	
 	// append recent events
 	if (myConfig.bShowRecent)
@@ -46,14 +57,13 @@ static gboolean _make_menu_from_trees (CDSharedMemory *pSharedMemory)
 	if (myConfig.iShowQuit != CD_GMENU_SHOW_QUIT_NONE)
 		cd_menu_append_poweroff_to_menu (myData.pMenu, myApplet);
 	
-	if (myData.bShowMenuPending)
-	{
-		cd_menu_show_menu ();
-		myData.bShowMenuPending = FALSE;
-	}
+	cd_menu_check_for_new_apps ();
 	
 	cairo_dock_discard_task (myData.pTask);
 	myData.pTask = NULL;
+	
+	if (myData.bShowMenuPending)
+		cd_menu_show_menu ();
 	
 	CD_APPLET_LEAVE (FALSE);
 }
@@ -67,21 +77,8 @@ static void _load_trees_async (CDSharedMemory *pSharedMemory)
 	tree = cd_load_tree_from_file ("settings.menu");
 	if (tree)
 		pSharedMemory->pTrees = g_list_append (pSharedMemory->pTrees, tree);
-
-	// create the menu
-	pSharedMemory->pMenu = gtk_menu_new ();
 	
-	/* append the trees we got
-	 *  + it will populate menu and create all things
-	 *     (it will have a look at new images and maybe preload them)
-	 *  => do that in the separated thread
-	 */
-	GList *t;
-	for (t = pSharedMemory->pTrees; t != NULL; t = t->next)
-	{
-		tree = t->data;
-		cd_append_tree_in_menu (tree, pSharedMemory->pMenu);
-	}
+	
 }
 
 static void _free_shared_memory (CDSharedMemory *pSharedMemory)
@@ -95,6 +92,8 @@ static void _free_shared_memory (CDSharedMemory *pSharedMemory)
 
 void cd_menu_start (void)
 {
+	cd_menu_init_apps ();
+	
 	CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
 	
 	myData.pTask = cairo_dock_new_task_full (0,  // 1 shot task.
@@ -125,7 +124,6 @@ void cd_menu_stop (void)
 		myData.pRecentMenuItem = NULL;
 	}
 }
-
 
 
 // == cairo_dock_add_in_menu_with_stock_and_data   with icon size 24
@@ -178,6 +176,7 @@ void cd_menu_show_menu (void)
 	if (myData.pMenu != NULL)
 	{
 		CD_APPLET_POPUP_MENU_ON_MY_ICON (myData.pMenu);
+		gtk_widget_grab_focus (myData.pEntry);
 	}
 	else
 	{

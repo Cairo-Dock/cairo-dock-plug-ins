@@ -56,6 +56,18 @@ struct _AppletData {
 	CDGMenuShowQuit iShowQuit;
 	gint iPanelDefaultMenuIconSize;
 	gboolean bShowMenuPending;
+	// new apps
+	gboolean bFirstLaunch;
+	GHashTable *pKnownApplications;  // table of all applications that could go in the menu, including ignored ones
+	GList *pNewApps;  // a list of GAppInfo that were not present before.
+	// entry
+	GtkWidget *pEntry;
+	GtkWidget *pAppsWindow;
+	GtkTreeModel *pModelFilter;
+	gint iTreeViewCellHeight;
+	GtkWidget *pScrolledWindow;
+	GtkWidget *pTreeView;
+	gboolean bModelLoaded;
 	// recent files sub-menu
 	GtkWidget *pRecentMenuItem;
 	gint iNbRecentItems;

@@ -21,9 +21,9 @@
 #include <string.h>
 
 #include "applet-struct.h"
+#include "applet-menu.h"
 #include "applet-recent.h"
 #include "applet-run-dialog.h"
-#include "applet-menu.h"
 #include "applet-notifications.h"
 
 static const gchar *s_cEditMenuCmd = NULL; // we need to check with 'which' only one time if alacarte or kmenuedit is available
