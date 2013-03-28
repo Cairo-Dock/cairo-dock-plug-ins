@@ -20,6 +20,7 @@
 #include "applet-struct.h"
 #include "applet-menu.h"
 #include "applet-recent.h"
+#include "applet-entry.h"
 #include "applet-apps.h"
 #include "applet-tree.h"
 
@@ -35,6 +36,8 @@ static gboolean _make_menu_from_trees (CDSharedMemory *pSharedMemory)
 	
 	// create the menu
 	myData.pMenu = gtk_menu_new ();
+	
+	cd_menu_append_entry ();
 	
 	/* append the trees we got
 	 *  + it will populate menu and create all things
@@ -56,6 +59,8 @@ static gboolean _make_menu_from_trees (CDSharedMemory *pSharedMemory)
 	// append logout item
 	if (myConfig.iShowQuit != CD_GMENU_SHOW_QUIT_NONE)
 		cd_menu_append_poweroff_to_menu (myData.pMenu, myApplet);
+	
+	cd_menu_invalidate_entry_model ();
 	
 	cd_menu_check_for_new_apps ();
 	

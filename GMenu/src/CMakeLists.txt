@@ -16,6 +16,8 @@ SET(cd-GMenu_LIB_SRCS
 	applet-recent.h
 	applet-run-dialog.c
 	applet-run-dialog.h
+	applet-entry.c
+	applet-entry.h
 	applet-apps.c
 	applet-apps.h
 	applet-struct.h
