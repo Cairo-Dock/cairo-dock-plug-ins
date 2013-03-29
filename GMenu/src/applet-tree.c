@@ -231,8 +231,12 @@ static void create_menuitem (GtkWidget *menu,
 	cd_menu_register_app (pAppInfo);
 	
 	// ignore entry that are not shown in the menu
-	if (gmenu_tree_entry_get_is_nodisplay_recurse (entry) || gmenu_tree_entry_get_is_excluded (entry))
+	if (gmenu_tree_entry_get_is_excluded (entry))
 		return;
+	#ifdef GLIB_VERSION_2_30
+	if (g_desktop_app_info_get_nodisplay (pAppInfo))
+		return;
+	#endif
 	
 	// create an entry
 	const gchar *cName = NULL;
