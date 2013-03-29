@@ -43,6 +43,43 @@ static void _launch_selected_app (void)
 	}
 }
 
+static gboolean _load_pixbuf (GtkTreeModel *pModelFilter, GtkTreePath *path, GtkTreeIter *pIter, G_GNUC_UNUSED gpointer data)
+{
+	GtkTreeModel *pModel = gtk_tree_model_filter_get_model (GTK_TREE_MODEL_FILTER (pModelFilter));
+	GtkTreeIter child_iter;
+	gtk_tree_model_filter_convert_iter_to_child_iter (GTK_TREE_MODEL_FILTER (pModelFilter), &child_iter, pIter);
+	
+	GAppInfo *pAppInfo = NULL;
+	GdkPixbuf *pixbuf = NULL;
+	gtk_tree_model_get (pModel, &child_iter,
+		1, &pixbuf,
+		2, &pAppInfo, -1);
+	
+	if (! pixbuf)
+	{
+		GIcon *gicon = g_app_info_get_icon (pAppInfo);
+		if (!gicon)
+			return FALSE;
+		gchar *cFileName = g_icon_to_string (gicon);
+		gchar *cImagePath = cairo_dock_search_icon_s_path (cFileName, myData.iPanelDefaultMenuIconSize);
+		pixbuf = gdk_pixbuf_new_from_file_at_size (cImagePath, myData.iPanelDefaultMenuIconSize, myData.iPanelDefaultMenuIconSize, NULL);
+		if (gdk_pixbuf_get_width (pixbuf) != myData.iPanelDefaultMenuIconSize)  // 'gdk_pixbuf_new_from_file_at_size' doesn't respect the given size with xpm images...
+		{
+			GdkPixbuf *src = pixbuf;
+			pixbuf = gdk_pixbuf_scale_simple (src, myData.iPanelDefaultMenuIconSize, myData.iPanelDefaultMenuIconSize, GDK_INTERP_BILINEAR);
+			g_object_unref (src);
+		}
+		gtk_list_store_set (GTK_LIST_STORE (pModel), &child_iter,
+			1, pixbuf,
+			-1);
+		g_free (cImagePath);
+		g_free (cFileName);
+	}
+	g_object_unref (pixbuf);
+	
+	return FALSE;
+}
+
 static gboolean _on_entry_changed (GtkWidget *pEntry,
 	CairoDockModuleInstance *myApplet)
 {
@@ -63,6 +100,8 @@ static gboolean _on_entry_changed (GtkWidget *pEntry,
 			if (gtk_tree_model_get_iter_first (pModel, &iter))
 				gtk_tree_selection_select_iter (selection, &iter);
 		}
+		
+		gtk_tree_model_foreach (myData.pModelFilter, (GtkTreeModelForeachFunc)_load_pixbuf, NULL);  // load pixbufs of visible rows that don't have been loaded yet
 		
 		gint n = gtk_tree_model_iter_n_children (GTK_TREE_MODEL (myData.pModelFilter), NULL);  // even if n=0, it's probably better to display the empty treeview, to show that there is no result, than hiding it suddenly.
 		g_print ("%d elements x %d\n", n, myData.iTreeViewCellHeight);
@@ -236,8 +275,10 @@ static gboolean _app_match (GAppInfo *pAppInfo, const gchar *key)
 				if (n < 3)
 					return FALSE;
 				prop = g_app_info_get_description (pAppInfo);
+				if (!prop)
+					return FALSE;
 				gchar *lower_prop = g_ascii_strdown (prop, -1);
-				if (!prop || strstr (lower_prop, key) == NULL)
+				if (!lower_prop || strstr (lower_prop, key) == NULL)
 				{
 					g_free (lower_prop);
 					return FALSE;
@@ -278,22 +319,9 @@ static void _add_app_to_model (G_GNUC_UNUSED gchar *cDesktopFilePath, GAppInfo *
 	memset (&iter, 0, sizeof (GtkTreeIter));
 	gtk_list_store_append (GTK_LIST_STORE (pModel), &iter);
 	
-	GIcon *gicon = g_app_info_get_icon (pAppInfo);
-	gchar *cFileName = g_icon_to_string (gicon);
-	gchar *cImagePath = cairo_dock_search_icon_s_path (cFileName, myData.iPanelDefaultMenuIconSize);
-	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cImagePath, myData.iPanelDefaultMenuIconSize, myData.iPanelDefaultMenuIconSize, NULL);
-	if (gdk_pixbuf_get_width (pixbuf) != myData.iPanelDefaultMenuIconSize)  // 'gdk_pixbuf_new_from_file_at_size' doesn't respect the given size with xpm images...
-	{
-		GdkPixbuf *src = pixbuf;
-		pixbuf = gdk_pixbuf_scale_simple (src, myData.iPanelDefaultMenuIconSize, myData.iPanelDefaultMenuIconSize, GDK_INTERP_BILINEAR);
-		g_object_unref (src);
-	}
 	gtk_list_store_set (GTK_LIST_STORE (pModel), &iter,
 		0, g_app_info_get_name (pAppInfo),
-		1, pixbuf,
-		2, pAppInfo, -1);
-	g_free (cImagePath);
-	g_free (cFileName);
+		2, pAppInfo, -1);  // load the pixbufs in a second time, to avoid loading all items at once (it's very expensive).
 }
 
 /*static gboolean _on_button_press_treeview (GtkWidget *pTreeView, GdkEventButton* event, G_GNUC_UNUSED gpointer data)
