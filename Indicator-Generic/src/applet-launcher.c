@@ -35,21 +35,25 @@ static gboolean _is_an_exception (const gchar *cIndicatorName, gchar **cExceptio
 	return FALSE;
 }
 
-void cd_indicator_generic_load_all_indicators (CairoDockModuleInstance *myApplet)
+GDir * cd_indicator_generic_open_dir (CairoDockModuleInstance *myApplet)
 {
 	GError *error = NULL;
 	GDir *pDir = g_dir_open (cd_indicator3_get_directory_path (), 0, &error); // all indicators are on the same dir
 	if (error != NULL)
 	{
 		cd_warning ("Failed to load indicator3 dir: %s", cd_indicator3_get_directory_path ());
-		return;
+		return NULL;
 	}
+	return pDir;
+}
 
-	
+gint cd_indicator_generic_load_all_indicators (CairoDockModuleInstance *myApplet, GDir *pDir)
+{
 	// for each indicator file, instanciate a new plugin with it (useful to place it where we want, all icons are not regrouped into one big icon)
 	const gchar *cFileName;
 	gchar *cInstanceFilePath;
 	CairoDockModuleInstance *pModuleInstance;
+	gint iNbFiles = 0;
 	while ((cFileName = g_dir_read_name (pDir)) != NULL)
 	{
 		if (*cFileName == '\0' || ! g_str_has_suffix (cFileName, ".so")
@@ -84,8 +88,10 @@ void cd_indicator_generic_load_all_indicators (CairoDockModuleInstance *myApplet
 		pModuleInstance = cairo_dock_instanciate_module (myApplet->pModule, cInstanceFilePath);  // we don't have to free cInstanceFilePath
 		myData.pIndicatorsList = g_list_prepend (myData.pIndicatorsList, pModuleInstance);
 		g_free (cUserDataDirPath);
+		iNbFiles++;
 	}
 	g_dir_close (pDir);
+	return iNbFiles;
 }
 
 void cd_indicator_generic_reload_all_indicators (CairoDockModuleInstance *myApplet)
@@ -96,5 +102,8 @@ void cd_indicator_generic_reload_all_indicators (CairoDockModuleInstance *myAppl
 	g_list_free (myData.pIndicatorsList);
 	myData.pIndicatorsList = NULL;
 
-	cd_indicator_generic_load_all_indicators (myApplet);
+	GDir *pDir = cd_indicator_generic_open_dir (myApplet);
+	if (pDir == NULL)
+		return;
+	cd_indicator_generic_load_all_indicators (myApplet, pDir);
 }
