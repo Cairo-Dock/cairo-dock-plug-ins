@@ -22,6 +22,10 @@
 
 #include <cairo-dock.h>
 
+void cd_indicator_generic_add_monitor_dir (CairoDockModuleInstance *myApplet);
+
+void cd_indicator_generic_remove_monitor_dir (void);
+
 GDir * cd_indicator_generic_open_dir (CairoDockModuleInstance *myApplet);
 
 /// pDir will be closed at the end
