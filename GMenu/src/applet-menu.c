@@ -82,16 +82,12 @@ static void _load_trees_async (CDSharedMemory *pSharedMemory)
 	tree = cd_load_tree_from_file ("settings.menu");
 	if (tree)
 		pSharedMemory->pTrees = g_list_append (pSharedMemory->pTrees, tree);
-	
-	
 }
 
 static void _free_shared_memory (CDSharedMemory *pSharedMemory)
 {
 	g_list_foreach (pSharedMemory->pTrees, (GFunc)g_object_unref, NULL);
 	g_list_free (pSharedMemory->pTrees);
-	if (pSharedMemory->pMenu)
-		gtk_widget_destroy (pSharedMemory->pMenu);
 	g_free (pSharedMemory);
 }
 

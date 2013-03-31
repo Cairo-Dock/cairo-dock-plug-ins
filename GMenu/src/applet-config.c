@@ -36,7 +36,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cConfigureMenuCommand = CD_CONFIG_GET_STRING ("Configuration", "config menu");
 	myConfig.iNbRecentItems = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb recent", 20);
 	myConfig.iShowQuit = CD_CONFIG_GET_INTEGER ("Configuration", "show quit");
-	myConfig.bLoadIconsAtStartup = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "startup load", FALSE);
 CD_APPLET_GET_CONFIG_END
 
 

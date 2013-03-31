@@ -119,6 +119,3 @@ config menu =
 
 #l+[None;Logout;Shutdown;Both] Show Logout and/or Shutdown : 
 show quit = 0
-
-#b Preload icons at startup
-startup load = false
