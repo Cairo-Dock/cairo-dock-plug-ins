@@ -902,7 +902,7 @@ gboolean cd_dbus_applet_control_appli (dbusApplet *pDbusApplet, const gchar *cAp
 	return TRUE;
 }
 
-gboolean cd_dbus_applet_show_appli (dbusApplet *pDbusApplet, gboolean bShow, GError **error)
+gboolean cd_dbus_applet_show_appli (dbusApplet *pDbusApplet, gboolean bShow, GError **error)  // deprecated
 {
 	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
 	g_return_val_if_fail (pInstance != NULL, FALSE);
@@ -941,7 +941,7 @@ gboolean cd_dbus_applet_act_on_appli (dbusApplet *pDbusApplet, const gchar *cAct
 	}	
 	else if (strcmp (cAction, "maximize") == 0)
 		cairo_dock_maximize_xwindow (pIcon->Xid, TRUE);
-	else if (strcmp (cAction, "restaure") == 0)
+	else if (strcmp (cAction, "restore") == 0)
 		cairo_dock_maximize_xwindow (pIcon->Xid, FALSE);
 	else if (strcmp (cAction, "toggle-size") == 0)
 	{
@@ -959,7 +959,7 @@ gboolean cd_dbus_applet_act_on_appli (dbusApplet *pDbusApplet, const gchar *cAct
 	return TRUE;
 }
 
-gboolean cd_dbus_applet_populate_menu (dbusApplet *pDbusApplet, const gchar **pLabels, GError **error)
+gboolean cd_dbus_applet_populate_menu (dbusApplet *pDbusApplet, const gchar **pLabels, GError **error)  // deprecated
 {
 	if (myData.pModuleMainMenu == NULL || pDbusApplet != myData.pCurrentMenuDbusApplet)
 	{
@@ -996,11 +996,18 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 		return FALSE;
 	}
 	
+	GtkRequisition natural_size;
+	gtk_widget_get_preferred_size (myData.pModuleMainMenu, NULL, &natural_size);
+	int iItemHeight = 0, iMenuHeight = natural_size.height;
+	
 	// get the position of our items in the menu.
 	int iPosition = myData.iMenuPosition;
 	
 	// insert a separator
-	gtk_menu_shell_insert (GTK_MENU_SHELL (myData.pModuleMainMenu), gtk_separator_menu_item_new (), iPosition++);
+	GtkWidget *pMenuItem = gtk_separator_menu_item_new ();
+	gtk_menu_shell_insert (GTK_MENU_SHELL (myData.pModuleMainMenu), pMenuItem, iPosition++);
+	gtk_widget_get_preferred_size (pMenuItem, NULL, &natural_size);
+	iItemHeight += natural_size.height;
 	
 	// table des menus et groupes de radio-boutons.
 	GHashTable *pSubMenus = g_hash_table_new_full (g_int_hash,
@@ -1014,7 +1021,7 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 	
 	// on parcours la liste des items.
 	GHashTable *pItem;
-	GtkWidget *pMenuItem, *pMenu;
+	GtkWidget *pMenu;
 	GSList *group = NULL;
 	GValue *v;
 	guint i;
@@ -1152,12 +1159,18 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 		}
 		
 		gtk_menu_shell_insert (GTK_MENU_SHELL (pMenu), pMenuItem, iPosition++);
+		if (pMenu == myData.pModuleMainMenu)
+		{
+			gtk_widget_get_preferred_size (pMenuItem, NULL, &natural_size);
+			iItemHeight += natural_size.height;
+		}
 	}
 	
 	g_hash_table_destroy (pSubMenus);
 	g_hash_table_destroy (pGroups);
 	gtk_widget_show_all (myData.pModuleMainMenu);
 	
+	g_object_set (myData.pModuleMainMenu, "height-request", iMenuHeight + iItemHeight, NULL);  // GTK doesn't resize menus correctly, so we have to force it...
 	gtk_menu_reposition (GTK_MENU (myData.pModuleMainMenu));
 	
 	return TRUE;
