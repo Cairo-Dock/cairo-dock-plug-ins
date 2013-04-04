@@ -22,7 +22,10 @@
 
 #include <cairo-dock.h>
 
-void cd_indicator_generic_load_all_indicators (CairoDockModuleInstance *myApplet);
+GDir * cd_indicator_generic_open_dir (CairoDockModuleInstance *myApplet);
+
+/// pDir will be closed at the end
+gint cd_indicator_generic_load_all_indicators (CairoDockModuleInstance *myApplet, GDir *pDir);
 
 void cd_indicator_generic_reload_all_indicators (CairoDockModuleInstance *myApplet);
 
