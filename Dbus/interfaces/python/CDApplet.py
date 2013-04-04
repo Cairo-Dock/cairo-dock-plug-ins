@@ -37,10 +37,8 @@ import dbus
 from dbus.mainloop.glib import DBusGMainLoop
 try:
 	import ConfigParser # python 2
-	_ = lambda x: x  # unfortunately python2 is screwed with Unicode
 except:
 	import configparser # python 3
-	_ = lambda x: gettext.dgettext(GETTEXT_NAME,x)
 
 gobject.threads_init()				          # Enabling threading
 dbus.mainloop.glib.threads_init()
@@ -51,9 +49,11 @@ INSTALL_PREFIX = os.path.abspath("..")  # applets are launched from their instal
 
 GETTEXT_NAME = 'cairo-dock-plugins-extra'
 LOCALE_DIR = INSTALL_PREFIX + '/locale'  # user version of /usr/share/locale
-gettext.textdomain(GETTEXT_NAME)
-gettext.bind_textdomain_codeset (GETTEXT_NAME, 'UTF-8');
-gettext.bindtextdomain(GETTEXT_NAME, LOCALE_DIR)
+translations = gettext.translation(GETTEXT_NAME, LOCALE_DIR)
+try:
+	_ = translations.ugettext  # python 2 => force the use of UTF8
+except:
+	_ = translations.gettext
 
 ####################
 ### Applet class ###

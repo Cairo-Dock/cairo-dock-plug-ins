@@ -35,6 +35,29 @@ static gboolean _is_an_exception (const gchar *cIndicatorName, gchar **cExceptio
 	return FALSE;
 }
 
+static void _on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
+{
+	g_return_if_fail (cURI != NULL);
+	CD_APPLET_ENTER;
+
+	cd_debug ("File event: Reload all indicators");
+	cd_indicator_generic_reload_all_indicators (myApplet);
+
+	CD_APPLET_LEAVE();
+}
+
+void cd_indicator_generic_add_monitor_dir (CairoDockModuleInstance *myApplet)
+{
+	cairo_dock_fm_add_monitor_full (cd_indicator3_get_directory_path (), TRUE,
+		NULL, (CairoDockFMMonitorCallback) _on_file_event, myApplet);
+}
+
+void cd_indicator_generic_remove_monitor_dir (void)
+{
+	cairo_dock_fm_remove_monitor_full (cd_indicator3_get_directory_path (),
+		TRUE, NULL);
+}
+
 GDir * cd_indicator_generic_open_dir (CairoDockModuleInstance *myApplet)
 {
 	GError *error = NULL;
@@ -105,5 +128,9 @@ void cd_indicator_generic_reload_all_indicators (CairoDockModuleInstance *myAppl
 	GDir *pDir = cd_indicator_generic_open_dir (myApplet);
 	if (pDir == NULL)
 		return;
-	cd_indicator_generic_load_all_indicators (myApplet, pDir);
+
+	myApplet->pModule->pVisitCard->iContainerType = CAIRO_DOCK_MODULE_CAN_DOCK | CAIRO_DOCK_MODULE_CAN_DESKLET;
+
+	if (cd_indicator_generic_load_all_indicators (myApplet, pDir) == 0)
+		myApplet->pModule->pVisitCard->iContainerType = CAIRO_DOCK_MODULE_IS_PLUGIN; // dir is empty...
 }

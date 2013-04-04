@@ -36,14 +36,12 @@ struct _AppletConfig {
 	gchar *cQuickLaunchShortkey;
 	gchar *cConfigureMenuCommand;
 	gboolean bShowRecent;
-	gboolean bLoadIconsAtStartup;
 	gint iNbRecentItems;
 	CDGMenuShowQuit iShowQuit;
 	} ;
 
 typedef struct _CDSharedMemory {
 	GList *pTrees;
-	GtkWidget *pMenu;
 	} CDSharedMemory;
 
 

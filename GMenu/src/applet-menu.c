@@ -35,8 +35,21 @@ static gboolean _make_menu_from_trees (CDSharedMemory *pSharedMemory)
 	myData.pTrees = pSharedMemory->pTrees;
 	pSharedMemory->pTrees = NULL;
 
-	myData.pMenu = pSharedMemory->pMenu;
-	pSharedMemory->pMenu = NULL;
+	// create the menu
+	myData.pMenu = gtk_menu_new ();
+	
+	/* append the trees we got
+	 *  + it will populate menu and create all things
+	 *     (it will have a look at new images and maybe preload them)
+	 *  => do that in the separated thread
+	 */
+	GMenuTree *tree;
+	GList *t;
+	for (t = myData.pTrees; t != NULL; t = t->next)
+	{
+		tree = t->data;
+		cd_append_tree_in_menu (tree, myData.pMenu);
+	}
 	
 	// append recent events
 	if (myConfig.bShowRecent)
@@ -67,29 +80,12 @@ static void _load_trees_async (CDSharedMemory *pSharedMemory)
 	tree = cd_load_tree_from_file ("settings.menu");
 	if (tree)
 		pSharedMemory->pTrees = g_list_append (pSharedMemory->pTrees, tree);
-
-	// create the menu
-	pSharedMemory->pMenu = gtk_menu_new ();
-	
-	/* append the trees we got
-	 *  + it will populate menu and create all things
-	 *     (it will have a look at new images and maybe preload them)
-	 *  => do that in the separated thread
-	 */
-	GList *t;
-	for (t = pSharedMemory->pTrees; t != NULL; t = t->next)
-	{
-		tree = t->data;
-		cd_append_tree_in_menu (tree, pSharedMemory->pMenu);
-	}
 }
 
 static void _free_shared_memory (CDSharedMemory *pSharedMemory)
 {
 	g_list_foreach (pSharedMemory->pTrees, (GFunc)g_object_unref, NULL);
 	g_list_free (pSharedMemory->pTrees);
-	if (pSharedMemory->pMenu)
-		gtk_widget_destroy (pSharedMemory->pMenu);
 	g_free (pSharedMemory);
 }
 

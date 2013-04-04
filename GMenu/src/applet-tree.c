@@ -68,6 +68,7 @@ static void _on_drag_data_get (GtkWidget *widget,
  /// MENU FROM TREE ///
 //////////////////////
 
+/* Not really needed with libgnome-menu-3
 static void _load_one_icon (GtkWidget *image)
 {
 	// this actually loads the pixbuf of the gicon
@@ -77,7 +78,7 @@ static void _load_one_icon (GtkWidget *image)
 	#else
 	gtk_widget_get_preferred_size (image, &requisition, NULL);
 	#endif
-}
+}*/
 
 static void add_image_to_menu_item (GtkWidget *image_menu_item,
 	GIcon *pIcon,
@@ -91,10 +92,6 @@ static void add_image_to_menu_item (GtkWidget *image_menu_item,
 		gtk_image_set_from_gicon (GTK_IMAGE (image), pIcon, GTK_ICON_SIZE_LARGE_TOOLBAR);
 	else if (fallback_image_filename)  // same
 		gtk_image_set_from_icon_name (GTK_IMAGE (image), fallback_image_filename, GTK_ICON_SIZE_LARGE_TOOLBAR);
-
-	// preload if needed
-	if (myConfig.bLoadIconsAtStartup)
-		_load_one_icon (image);
 
 	// insert the image in the menu-item
 	_gtk_image_menu_item_set_image (
