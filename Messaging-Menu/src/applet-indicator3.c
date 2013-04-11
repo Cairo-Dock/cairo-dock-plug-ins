@@ -75,13 +75,19 @@ void cd_messaging_entry_removed (IndicatorObject *pIndicator, IndicatorObjectEnt
 	// should not happen... except at the end.
 	cd_debug ("Entry Removed");
 	CairoDockModuleInstance *myApplet = data;
+
+	gboolean bHide = FALSE;
+	if (myData.pEntry != NULL && myData.pEntry == pEntry) // only if an entry was already added and it was the same that we want to remove
+	{
+		myData.pEntry = NULL;
+		bHide = TRUE;
+	}
+	
 	if (pEntry && pEntry->image)
 	{
 		g_signal_handlers_disconnect_by_func (G_OBJECT (pEntry->image), G_CALLBACK (_icon_updated), myApplet);
-		cd_indicator3_disconnect_visibility (pEntry->image, myApplet);
+		cd_indicator3_disconnect_visibility (pEntry->image, myApplet, bHide);
 	}
-
-	myData.pEntry = NULL;
 }
 
 void cd_messaging_destroy (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data)

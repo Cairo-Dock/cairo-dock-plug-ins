@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
 "POT-Creation-Date: 2013-03-04 16:42+0000\n"
-"PO-Revision-Date: 2013-03-05 00:09+0000\n"
-"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
+"PO-Revision-Date: 2013-03-26 12:26+0000\n"
+"Last-Translator: Wonderfulheart <Unknown>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-03-06 05:50+0000\n"
-"X-Generator: Launchpad (build 16514)\n"
+"X-Launchpad-Export-Date: 2013-03-27 04:38+0000\n"
+"X-Generator: Launchpad (build 16540)\n"
 "Language: it\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
@@ -862,7 +862,7 @@ msgstr ""
 
 #: ../Indicator-Generic/src/applet-init.c:30
 msgid "Indicator-Generic"
-msgstr ""
+msgstr "Indicatore Generico"
 
 #: ../Indicator-Generic/src/applet-init.c:33
 msgid ""
@@ -872,6 +872,14 @@ msgid ""
 "automatically hidden.\n"
 "You can also blacklist indicators you don't want to see."
 msgstr ""
+"Questo plug-in può visualizzare tutti gli indicatori disponibili nella tua "
+"dock.\n"
+"Gli indicatori forniscono informazioni su qualcosa, e un menu per agire su "
+"di esso:\n"
+"  per esempio, un indicatore per controllare i lavori della stampante. Gli "
+"indicatori dormienti vengono automaticamente nascosti.\n"
+"È inoltre possibile inserire nella blacklist gli indicatori che non desideri "
+"vedere."
 
 #: ../Indicator-Generic/src/applet-notifications.c:34
 #, c-format
@@ -879,6 +887,9 @@ msgid ""
 "This indicator service did not reply.\n"
 "Please check that '%s' is correctly installed and its daemon is running."
 msgstr ""
+"Questo servizio indicatore non ha risposto.\n"
+"Per favore, controlla che '%s' sia correttamente installato e il suo demone "
+"sia in esecuzione."
 
 #: ../MeMenu/src/applet-init.c:30
 msgid "Me Menu"
@@ -1211,6 +1222,12 @@ msgid ""
 "quoting the string \"foo is a bar\". You can truncate terms by appending a "
 "*. "
 msgstr ""
+"L'operatore booleano di default è AND. Così l'interrogazione 'pippo barra' "
+"verrà interpretata come 'pippo AND barra'. Per escludere un termine dal "
+"gruppo dei risultati fallo precedere da un segno meno '-', ad esempio: "
+"'pippo -barra'. Le frasi di interrogazione possono essere scritte con le "
+"virgolette doppie con la stringa \"pippo è una barra\". Puoi troncare i "
+"termini aggiungendo un *. "
 
 #: ../Recent-Events/src/applet-dialog.c:448
 #: ../Screenshot/src/applet-screenshot.c:487
@@ -1433,26 +1450,30 @@ msgid ""
 "<b>Middle-click</b> gives you more options.\n"
 "You can bind a <b>shortcut</b> to the action."
 msgstr ""
+"Una semplice applet per catturare velocemente delle schermate.\n"
+"<b>Clic</b> per catturare una schermata.\n"
+"<b>Clic centrale</b> ti dà più opzioni.\n"
+"Per l'azione puoi associare una <b> scorciatoia </b>."
 
 #: ../Screenshot/src/applet-init.c:53
 msgid "Take a screenshot"
-msgstr ""
+msgstr "Cattura una schermata"
 
 #: ../Screenshot/src/applet-notifications.c:49
 msgid "Screenshot"
-msgstr ""
+msgstr "Cattura schermata"
 
 #: ../Screenshot/src/applet-notifications.c:61
 msgid "Screenshot with options"
-msgstr ""
+msgstr "Cattura schermata con opzioni"
 
 #: ../Screenshot/src/applet-screenshot.c:163
 msgid "Screenshot from"
-msgstr ""
+msgstr "Cattura schermata da"
 
 #: ../Screenshot/src/applet-screenshot.c:331
 msgid "Unable to take a screenshot"
-msgstr ""
+msgstr "Impossibile catturare una schermata"
 
 #: ../Screenshot/src/applet-screenshot.c:454 ../Cairo-Penguin/data/messages:19
 #: ../Clipper/data/messages:137 ../Disks/data/messages:143
@@ -1468,15 +1489,15 @@ msgstr "in secondi."
 
 #: ../Screenshot/src/applet-screenshot.c:455
 msgid "Delay"
-msgstr ""
+msgstr "Ritardo"
 
 #: ../Screenshot/src/applet-screenshot.c:477
 msgid "Grab the current window instead of the all screen"
-msgstr ""
+msgstr "Cattura la finestra corrente invece dello schermo"
 
 #: ../Screenshot/src/applet-screenshot.c:478
 msgid "Grab the current window"
-msgstr ""
+msgstr "Cattura la finestra corrente"
 
 #: ../Screenshot/src/applet-screenshot.c:486
 #: ../Screenshot/src/applet-screenshot.c:495
@@ -1487,17 +1508,19 @@ msgstr "Lasciare vuoto per utilizzare quello predefinito."
 
 #: ../Screenshot/src/applet-screenshot.c:496
 msgid "Directory"
-msgstr ""
+msgstr "Directory"
 
 #: ../Sound-Effects/src/applet-init.c:29
 msgid "Sound Effects"
-msgstr ""
+msgstr "Effetti sonori"
 
 #: ../Sound-Effects/src/applet-init.c:32
 msgid ""
 "This plug-in add sound effects on various events in the dock:\n"
 " When clicking an icon, when hovering an icon, etc"
 msgstr ""
+"Questo plug-in aggiunge degli effetti sonori ai diversi eventi della dock:\n"
+" Quando clicchi su un'icona, quando passi su un'icona, ecc."
 
 #: ../Status-Notifier/src/applet-init.c:33
 msgid ""
@@ -2081,15 +2104,15 @@ msgstr "pulito"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:97
 msgid "light"
-msgstr ""
+msgstr "leggero"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:105
 msgid "water drop"
-msgstr ""
+msgstr "goccia d'acqua"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:113
 msgid "water"
-msgstr ""
+msgstr "acqua"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:121
 msgid "futuristic"
@@ -2487,7 +2510,7 @@ msgid ""
 "<b>Click</b> on the icon to pop the menu up.\n"
 "You can bind a <b>shortcut</b> to it, and also to lock the screen."
 msgstr ""
-"Questa applet ti permette di gestire la sessione attuale. Puoi:\n"
+"Quest'applet ti permette di gestire la sessione attuale. Puoi:\n"
 "spegnere, riavviare, ibernare, sospendere, fare il log out, bloccare lo "
 "schermo, cambiare utente o programmare uno spegnimento automatico.\n"
 "Ti informerà anche se il tuo Sistema necessita di essere riavviato.\n"
@@ -2866,7 +2889,7 @@ msgid ""
 " and jpeg image to use as cover.\n"
 "Note: you may have to install or activate the MPRIS plug-in of the player."
 msgstr ""
-"Questa applet ti permette di controllare alcuni lettori musicali.\n"
+"Quest'applet ti permette di controllare alcuni lettori musicali.\n"
 "Scegli dapprima il lettore che vuoi controllare.\n"
 "<b>clic</b> per mostrare/nascondere il lettore o per la pausa,\n"
 "<b>clic centrale del mouse</b> per la pausa o per andare al brano "
@@ -2990,6 +3013,9 @@ msgid ""
 "Please be sure that at least one interface is available\n"
 " and that you have the right to monitor it"
 msgstr ""
+"Non è stata trovata alcuna interfaccia.\n"
+"Per favore, assicurati che sia disponibile almeno un'interfaccia\n"
+" e che tu abbia i diritti per monitorarla"
 
 #: ../netspeed/src/applet-notifications.c:48
 #, c-format
@@ -2998,6 +3024,9 @@ msgid ""
 "You may have to set up the interface you wish to monitor.\n"
 "Do you want to do it now?"
 msgstr ""
+"L'interfaccia '%s' non sembra esistere oppure non è leggibile.\n"
+"Potrebbe essere necessario impostare l'interfaccia che desideri monitorare.\n"
+"Vuoi farlo adesso?"
 
 #: ../netspeed/src/applet-notifications.c:105
 msgid "Enable/disable network"
@@ -3157,48 +3186,48 @@ msgstr "Cartella Home"
 #: ../shortcuts/src/applet-disk-usage.c:179
 #: ../shortcuts/src/applet-disk-usage.c:208
 msgid "Mount point:"
-msgstr ""
+msgstr "Punto di mount:"
 
 #: ../shortcuts/src/applet-disk-usage.c:180
 #: ../shortcuts/src/applet-disk-usage.c:209
 msgid "File system:"
-msgstr ""
+msgstr "File system:"
 
 #: ../shortcuts/src/applet-disk-usage.c:181
 #: ../shortcuts/src/applet-disk-usage.c:210
 msgid "Device:"
-msgstr ""
+msgstr "Dispositivo:"
 
 #: ../shortcuts/src/applet-disk-usage.c:182
 #: ../shortcuts/src/applet-disk-usage.c:211
 msgid "Mount options:"
-msgstr ""
+msgstr "Opzioni di mount:"
 
 #: ../shortcuts/src/applet-disk-usage.c:214
 msgid "Backup frequency:"
-msgstr ""
+msgstr "Frequenza di backup:"
 
 #: ../shortcuts/src/applet-disk-usage.c:214
 msgid "days"
-msgstr ""
+msgstr "giorni"
 
 #: ../shortcuts/src/applet-disk-usage.c:237
 #: ../shortcuts/src/applet-disk-usage.c:247
 #: ../shortcuts/src/applet-disk-usage.c:252
 msgid "Name:"
-msgstr ""
+msgstr "Nome:"
 
 #: ../shortcuts/src/applet-disk-usage.c:238
 msgid "Capacity:"
-msgstr ""
+msgstr "Capacità:"
 
 #: ../shortcuts/src/applet-disk-usage.c:239
 msgid "Free space:"
-msgstr ""
+msgstr "Spazio libero:"
 
 #: ../shortcuts/src/applet-disk-usage.c:247
 msgid "Not mounted"
-msgstr ""
+msgstr "Non montato"
 
 #: ../shortcuts/src/applet-disk-usage.c:253 ../RSSreader/data/messages:97
 msgid "URL:"
@@ -3374,7 +3403,7 @@ msgstr ""
 
 #: ../slider/src/applet-notifications.c:68
 msgid "You need to define the images folder first."
-msgstr ""
+msgstr "Devi prima definire l'immagine della cartella."
 
 #: ../slider/src/applet-notifications.c:220
 msgid "Play"
@@ -3664,7 +3693,7 @@ msgstr "Chiudi questa Scheda"
 
 #: ../tomboy/src/applet-backend-default.c:189
 msgid "Title:"
-msgstr ""
+msgstr "Titolo:"
 
 #: ../tomboy/src/tomboy-draw.c:190
 msgid "Open all"
@@ -5587,10 +5616,12 @@ msgstr "Le applicazioni esterne possono animare le icone?"
 #: ../Dbus/data/messages:25
 msgid "The dock will catch DBus signals to Launcher API and act as Unity"
 msgstr ""
+"La dock prenderà i segnali da DBus per il Lanciatore API e comportarsi come "
+"Unity"
 
 #: ../Dbus/data/messages:27
 msgid "Launch the Launcher API daemon?"
-msgstr ""
+msgstr "Avvio il demone Lanciatore API?"
 
 #: ../Disks/data/messages:5
 msgid "Name of the container it belongs to:"
@@ -6127,11 +6158,11 @@ msgstr "Indice della sorgente:"
 
 #: ../Indicator-Generic/data/messages:91
 msgid "Separated by a semi-colon ';'"
-msgstr ""
+msgstr "Separati da un punto e virgola ';'"
 
 #: ../Indicator-Generic/data/messages:93
 msgid "Blacklist these indicators:"
-msgstr ""
+msgstr "Inserisci questi indicatori nella blacklist:"
 
 #: ../Messaging-Menu/data/messages:15 ../Network-Monitor/data/messages:17
 #: ../Status-Notifier/data/messages:19 ../System-Monitor/data/messages:15
@@ -6716,41 +6747,41 @@ msgstr "Può lanciare i comandi e anche fare dei calcoli."
 
 #: ../Screenshot/data/messages:91
 msgid "Shortkey to take a screenshot"
-msgstr ""
+msgstr "Scorciatoia per catturare una schermata"
 
 #: ../Screenshot/data/messages:93
 msgid "Save image in"
-msgstr ""
+msgstr "Salva l'immagine in"
 
 #: ../Sound-Effects/data/messages:3
 msgid "Play a sound on click ?"
-msgstr ""
+msgstr "Riprodurre un suono al clic?"
 
 #: ../Sound-Effects/data/messages:5 ../Sound-Effects/data/messages:11
 #: ../Sound-Effects/data/messages:17
 msgid "A .wav file encoded in PCM."
-msgstr ""
+msgstr "Un file .wav codificato in PCM."
 
 #: ../Sound-Effects/data/messages:7 ../Sound-Effects/data/messages:13
 #: ../Sound-Effects/data/messages:19
 msgid "Sound file"
-msgstr ""
+msgstr "File audio"
 
 #: ../Sound-Effects/data/messages:9
 msgid "Play a sound on middle click ?"
-msgstr ""
+msgstr "Riprodurre un suono al clic centrale del mouse?"
 
 #: ../Sound-Effects/data/messages:15
 msgid "Play a sound on mouse hover ?"
-msgstr ""
+msgstr "Riprodurre un suono al passaggio del mouse?"
 
 #: ../Sound-Effects/data/messages:21
 msgid "Volume:"
-msgstr ""
+msgstr "Volume:"
 
 #: ../Sound-Effects/data/messages:25
 msgid "High"
-msgstr ""
+msgstr "Alto"
 
 #: ../Status-Notifier/data/messages:13
 msgid "Image's filename :"
@@ -8032,7 +8063,7 @@ msgstr "più piccolo"
 
 #: ../keyboard-indicator/data/messages:131
 msgid "Number of letters to draw on the icon."
-msgstr ""
+msgstr "Numero di lettere da disegnare sull'icona."
 
 #: ../logout/data/messages:91
 msgid "Action"
@@ -8392,7 +8423,7 @@ msgstr "Immagine per l'icona 'pausa':"
 
 #: ../netspeed/data/messages:145
 msgid "By default all interfaces will be monitored."
-msgstr ""
+msgstr "In modo predefinito, tutte le interfacce saranno monitorate."
 
 #: ../netspeed/data/messages:147
 msgid "interface:"

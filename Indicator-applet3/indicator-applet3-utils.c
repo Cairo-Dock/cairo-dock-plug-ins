@@ -220,20 +220,29 @@ void cd_indicator3_notify_visibility (GtkImage *pImage, GCallback pCallBack, gpo
 	g_signal_connect (G_OBJECT (pImage), "hide", G_CALLBACK (_hide), myApplet);
 }
 
-void cd_indicator3_check_visibility (GtkImage *pImage, CairoDockModuleInstance *myApplet)
+gboolean cd_indicator3_hide_if_not_visible (GtkImage *pImage, CairoDockModuleInstance *myApplet)
 {
 	if (pImage == NULL || ! gtk_widget_get_visible (GTK_WIDGET (pImage)))
+	{
 		_hide (NULL, myApplet);
-	else
+		return TRUE;
+	}
+	return FALSE;
+}
+
+void cd_indicator3_check_visibility (GtkImage *pImage, CairoDockModuleInstance *myApplet)
+{
+	if (! cd_indicator3_hide_if_not_visible (pImage, myApplet))
 		_show (NULL, myApplet);
 		// _image_update (G_OBJECT (pImage), NULL, myApplet);
 		// cd_printers_accessible_desc_update (pIndicator, pEntry, data);
 }
 
-void cd_indicator3_disconnect_visibility (GtkImage *pImage, CairoDockModuleInstance *myApplet)
+void cd_indicator3_disconnect_visibility (GtkImage *pImage, CairoDockModuleInstance *myApplet, gboolean bHide)
 {
 	g_signal_handlers_disconnect_by_func (G_OBJECT (pImage), G_CALLBACK (_show), myApplet);
 	g_signal_handlers_disconnect_by_func (G_OBJECT (pImage), G_CALLBACK (_hide), myApplet);
 
-	_hide (NULL, myApplet);
+	if (bHide)
+		_hide (NULL, myApplet);
 }

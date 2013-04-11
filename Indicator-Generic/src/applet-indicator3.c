@@ -66,14 +66,18 @@ static void _entry_removed (IndicatorObject *pIndicator, IndicatorObjectEntry *p
 	cd_debug ("Entry Removed: %s", myConfig.cIndicatorName);
 	
 	// the same entry as before, we can remove the previous one
-	if (myData.pEntry == pEntry)
+	gboolean bHide = FALSE;
+	if (myData.pEntry != NULL && myData.pEntry == pEntry) // only if an entry was already added and it was the same that we want to remove
+	{
 		myData.pEntry = NULL;
+		bHide = TRUE;
+	}
 
 	// it's not a fake signal
 	if (pEntry && pEntry->image)
 	{
 		g_signal_handlers_disconnect_by_func (G_OBJECT (pEntry->image), G_CALLBACK (_icon_updated), myApplet);
-		cd_indicator3_disconnect_visibility (pEntry->image, myApplet);
+		cd_indicator3_disconnect_visibility (pEntry->image, myApplet, bHide);
 	}
 }
 
@@ -100,7 +104,7 @@ void cd_indicator_generic_load_one_indicator (CairoDockModuleInstance *myApplet)
 		myApplet);
 
 	// hide it if there is no entry or no image
-	cd_indicator3_check_visibility (myData.pEntry ? myData.pEntry->image : NULL, myApplet);
+	cd_indicator3_hide_if_not_visible (myData.pEntry ? myData.pEntry->image : NULL, myApplet);
 
 	if (! myData.pIndicator)
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.

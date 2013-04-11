@@ -50,9 +50,15 @@ void cd_indicator3_accessible_desc_update (IndicatorObjectEntry *pEntry, const g
 void cd_indicator3_notify_visibility (GtkImage *pImage, GCallback pCallBack, gpointer data);
 
 /**
- * Disconnect to the show/hide signal
+ * Disconnect to the show/hide signal and hide the icon if it's needed
  */
-void cd_indicator3_disconnect_visibility (GtkImage *pImage, CairoDockModuleInstance *myApplet);
+void cd_indicator3_disconnect_visibility (GtkImage *pImage, CairoDockModuleInstance *myApplet, gboolean bHide);
+
+/**
+ * Check if the widget (pImage) exists and if it's visible.
+ * If no, hide the icon and return TRUE
+ */
+gboolean cd_indicator3_hide_if_not_visible (GtkImage *pImage, CairoDockModuleInstance *myApplet);
 
 /**
  * Check the visibility of a widget and then show/hide the icon

@@ -53,19 +53,16 @@ CD_APPLET_INIT_BEGIN
 	// plugin <=> it's the first instance which should launch all indicators
 	if (myApplet->pModule->pVisitCard->iContainerType == CAIRO_DOCK_MODULE_IS_PLUGIN)
 	{
+		myData.bIsLauncher = TRUE;
+		
+		// other instances will have an icon
+		myApplet->pModule->pVisitCard->iContainerType = CAIRO_DOCK_MODULE_CAN_DOCK | CAIRO_DOCK_MODULE_CAN_DESKLET;
+
 		cd_indicator_generic_add_monitor_dir (myApplet);
 
 		GDir *pDir = cd_indicator_generic_open_dir (myApplet);
-		if (pDir == NULL)
-			return;
-
-		// other instances will have an icon
-		myApplet->pModule->pVisitCard->iContainerType = CAIRO_DOCK_MODULE_CAN_DOCK | CAIRO_DOCK_MODULE_CAN_DESKLET;
-		myData.bIsLauncher = TRUE;
-
-		// load all:
-		if (cd_indicator_generic_load_all_indicators (myApplet, pDir) == 0)
-			myApplet->pModule->pVisitCard->iContainerType = CAIRO_DOCK_MODULE_IS_PLUGIN; // dir is empty...
+		if (pDir == NULL || cd_indicator_generic_load_all_indicators (myApplet, pDir) == 0)
+			myApplet->pModule->pVisitCard->iContainerType = CAIRO_DOCK_MODULE_IS_PLUGIN; // dir is empty... no need to create an icon
 	}
 	else
 	{
