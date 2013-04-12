@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
 "POT-Creation-Date: 2013-03-04 16:42+0000\n"
-"PO-Revision-Date: 2013-03-05 00:08+0000\n"
-"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
+"PO-Revision-Date: 2013-04-08 15:53+0000\n"
+"Last-Translator: Michael Konrad <Nephelyn@arcor.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-03-06 05:50+0000\n"
-"X-Generator: Launchpad (build 16514)\n"
+"X-Launchpad-Export-Date: 2013-04-09 05:28+0000\n"
+"X-Generator: Launchpad (build 16550)\n"
 "Language: de\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
@@ -202,7 +202,7 @@ msgstr "Verlauf der Zwischenablage"
 
 #: ../Clipper/src/applet-init.c:72
 msgid "Pop-up the items menu"
-msgstr ""
+msgstr "Das Objektmenü aufklappen lassen"
 
 #: ../Clipper/src/applet-notifications.c:33
 msgid "The clipboard history is empty."
@@ -875,7 +875,7 @@ msgstr ""
 
 #: ../Indicator-Generic/src/applet-init.c:30
 msgid "Indicator-Generic"
-msgstr ""
+msgstr "Standard-Hinweis"
 
 #: ../Indicator-Generic/src/applet-init.c:33
 msgid ""
@@ -885,6 +885,12 @@ msgid ""
 "automatically hidden.\n"
 "You can also blacklist indicators you don't want to see."
 msgstr ""
+"Dieses Plugin kann alle verfügbaren Hinweise in ihrem Dock anzeigen.\n"
+"Hinweise stellen Informationen über etwas und ein Menü um darauf zu "
+"reagieren, bereit.\n"
+"  zum Beispiel ein Hinweis, um die Druckaufgaben zu überwachen. Untätige "
+"Hinweise werden dann automatisch ausgeblendet.\n"
+"Sie können auch Hinweise ausblenden, die sie nicht sehen möchten."
 
 #: ../Indicator-Generic/src/applet-notifications.c:34
 #, c-format
@@ -892,6 +898,9 @@ msgid ""
 "This indicator service did not reply.\n"
 "Please check that '%s' is correctly installed and its daemon is running."
 msgstr ""
+"Dieser Hinweisdienst hat nicht reagiert.\n"
+"Bitte überprüfen Sie, ob '%s' korrekt installiert wurde, und der "
+"entsprechende Dämon gestartet ist."
 
 #: ../MeMenu/src/applet-init.c:30
 msgid "Me Menu"
@@ -1225,6 +1234,12 @@ msgid ""
 "quoting the string \"foo is a bar\". You can truncate terms by appending a "
 "*. "
 msgstr ""
+"Der boolesche Standard-Operator ist AND. Demnach wird die Eingabe von 'foo "
+"bar' als 'foo' AND 'bar' interpretiert. Um einen Begriff vom Ergebnissatz "
+"auszuschließen, müssen sie ihn mit einem Minuszeichen ausstatten. z.B. 'foo -"
+"bar'. Phraseneingaben können durch Anführungsstriche realisiert werden .z:b. "
+"\"foo is a bar\". Sie können Eingaben durch die Eingabe von einem *. "
+"verkürzen. "
 
 #: ../Recent-Events/src/applet-dialog.c:448
 #: ../Screenshot/src/applet-screenshot.c:487
@@ -1447,26 +1462,30 @@ msgid ""
 "<b>Middle-click</b> gives you more options.\n"
 "You can bind a <b>shortcut</b> to the action."
 msgstr ""
+"Ein einfaches Applet, um schnell Bildschirmfotos zu machen.\n"
+"<b>Klicken</b>, um ein Bildschirmfoto zu machen.\n"
+"Ein <b>Mittelklick</b> gibt ihnen mehr Optionen.\n"
+"Sie können einen <b>Kurzbefehl</b> an diese Aktion binden."
 
 #: ../Screenshot/src/applet-init.c:53
 msgid "Take a screenshot"
-msgstr ""
+msgstr "Bildschirmfoto machen"
 
 #: ../Screenshot/src/applet-notifications.c:49
 msgid "Screenshot"
-msgstr ""
+msgstr "Bildschirmfoto"
 
 #: ../Screenshot/src/applet-notifications.c:61
 msgid "Screenshot with options"
-msgstr ""
+msgstr "Bildschirmfoto mit Optionen"
 
 #: ../Screenshot/src/applet-screenshot.c:163
 msgid "Screenshot from"
-msgstr ""
+msgstr "Bildschirmfoto von"
 
 #: ../Screenshot/src/applet-screenshot.c:331
 msgid "Unable to take a screenshot"
-msgstr ""
+msgstr "Kann kein Bildschrimfoto machen"
 
 #: ../Screenshot/src/applet-screenshot.c:454 ../Cairo-Penguin/data/messages:19
 #: ../Clipper/data/messages:137 ../Disks/data/messages:143
@@ -1482,15 +1501,15 @@ msgstr "in Sekunden."
 
 #: ../Screenshot/src/applet-screenshot.c:455
 msgid "Delay"
-msgstr ""
+msgstr "Verzögerung"
 
 #: ../Screenshot/src/applet-screenshot.c:477
 msgid "Grab the current window instead of the all screen"
-msgstr ""
+msgstr "Das derzeitige Fenster, anstatt den ganzen Desktop schnappen."
 
 #: ../Screenshot/src/applet-screenshot.c:478
 msgid "Grab the current window"
-msgstr ""
+msgstr "Das augenblickliche Fenster schnappen"
 
 #: ../Screenshot/src/applet-screenshot.c:486
 #: ../Screenshot/src/applet-screenshot.c:495
@@ -1501,17 +1520,20 @@ msgstr "Leer lassen, um den Voreingestellten zu verwenden."
 
 #: ../Screenshot/src/applet-screenshot.c:496
 msgid "Directory"
-msgstr ""
+msgstr "Verzeichnis"
 
 #: ../Sound-Effects/src/applet-init.c:29
 msgid "Sound Effects"
-msgstr ""
+msgstr "Sound-Effekte"
 
 #: ../Sound-Effects/src/applet-init.c:32
 msgid ""
 "This plug-in add sound effects on various events in the dock:\n"
 " When clicking an icon, when hovering an icon, etc"
 msgstr ""
+"Dieses Plugin fügt diversen Ereignissen Klangeffekte hinzu:\n"
+" Wenn z.B. auf ein Symbol geklickt oder der Mauszeiger sich auf dem Symbol "
+"befindet, usw."
 
 #: ../Status-Notifier/src/applet-init.c:33
 msgid ""
@@ -1705,19 +1727,19 @@ msgstr "Übernehmen der aktuellen Bildschirmhelligkeit beim Start"
 
 #: ../Xgamma/src/applet-xgamma.c:241
 msgid "Gamma :"
-msgstr ""
+msgstr "Gamma :"
 
 #: ../Xgamma/src/applet-xgamma.c:243
 msgid "Red :"
-msgstr ""
+msgstr "Rot :"
 
 #: ../Xgamma/src/applet-xgamma.c:245
 msgid "Green :"
-msgstr ""
+msgstr "Grün :"
 
 #: ../Xgamma/src/applet-xgamma.c:247
 msgid "Blue :"
-msgstr ""
+msgstr "Blau :"
 
 #: ../Xgamma/src/applet-xgamma.c:273 ../Xgamma/src/applet-xgamma.c:348
 msgid "Set up gamma:"
@@ -1824,7 +1846,7 @@ msgstr "Eine neue Aufgabe hinzufügen"
 
 #: ../clock/src/applet-calendar.c:608
 msgid "Edit tasks"
-msgstr ""
+msgstr "Aufgaben editieren"
 
 #: ../clock/src/applet-calendar.c:682
 msgid "Calendar and tasks"
@@ -2096,15 +2118,15 @@ msgstr "leeren"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:97
 msgid "light"
-msgstr ""
+msgstr "Licht"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:105
 msgid "water drop"
-msgstr ""
+msgstr "Wassertropfen"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:113
 msgid "water"
-msgstr ""
+msgstr "Wasser"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:121
 msgid "futuristic"
@@ -2513,6 +2535,16 @@ msgid ""
 "<b>Click</b> on the icon to pop the menu up.\n"
 "You can bind a <b>shortcut</b> to it, and also to lock the screen."
 msgstr ""
+"Dieses Applet lässt Sie die momentane Sitzung steuern. Sie können entweder "
+":\n"
+"herunterfahren, neu starten, in den Schlafmodus gehen, abmelden, den "
+"Bildschirm sperren, zu einem anderen Nutzer\n"
+"wechseln oder ein automatisches Herunterfahren programmieren. Es wird ihnen "
+"auch sagen, wann der Rechner neu gestartet\n"
+"werden muss.\n"
+"Auf das Symbol <b>klicken</b>, um das Menü aufklappen zu lassen.\n"
+"Sie können ein Tastenkürzel an diese Funktion binden und ausserdem den "
+"Bildschirm sperren."
 
 #: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:276
 #: ../logout/data/messages:95
@@ -2888,6 +2920,17 @@ msgid ""
 " and jpeg image to use as cover.\n"
 "Note: you may have to install or activate the MPRIS plug-in of the player."
 msgstr ""
+"Dieses Applet lässt Sie jeden Musikabspieler steuern.\n"
+"Zuerst müssen Sie den Abspieler wählen, den Sie steuern möchten.\n"
+"<b>Klicken</b>, um den Abspieler zu verstecken oder zu pausieren,\n"
+"<b>Mittelklick</b>, um zu pausieren oder zum nächsten Lied zu springen,\n"
+"<b>Hoch- / runter scrollen</b> um das Lied zu wechseln oder die Lautstärke "
+"zu steuern.\n"
+"Durch ziehen und ablegen auf dem Symbol können Sie Lieder in die "
+"Abspielliste aufnehmen (abhängig vom Abspieler),\n"
+" und JPEG-Bilder als Cover verwenden.\n"
+"Anmerkung : Sie müssen eventuell das MPRIS-Plugin des Abspielers "
+"installieren oder aktivieren."
 
 #: ../musicPlayer/src/applet-notifications.c:101
 msgid ""
@@ -3002,6 +3045,9 @@ msgid ""
 "Please be sure that at least one interface is available\n"
 " and that you have the right to monitor it"
 msgstr ""
+"Keine Schnittstelle gefunden.\n"
+"Bitte stellen Sie sicher, dass wenigstens eine Schnittstelle verfügbar ist\n"
+" und das Sie die Rechte besitzen, diese zu überwachen."
 
 #: ../netspeed/src/applet-notifications.c:48
 #, c-format
@@ -3010,6 +3056,11 @@ msgid ""
 "You may have to set up the interface you wish to monitor.\n"
 "Do you want to do it now?"
 msgstr ""
+"Die Schnittstelle namens '%s' scheint nicht zu existieren oder ist nicht "
+"ansprechbar.\n"
+"Sie müssen eventuell zuerst eine Schnittstelle wählen, die Sie überwachen "
+"möchten.\n"
+"Möchten Sie jetzt eine wählen ?"
 
 #: ../netspeed/src/applet-notifications.c:105
 msgid "Enable/disable network"
@@ -3171,48 +3222,48 @@ msgstr "Persönlicher Ordner"
 #: ../shortcuts/src/applet-disk-usage.c:179
 #: ../shortcuts/src/applet-disk-usage.c:208
 msgid "Mount point:"
-msgstr ""
+msgstr "Einhängepunkt :"
 
 #: ../shortcuts/src/applet-disk-usage.c:180
 #: ../shortcuts/src/applet-disk-usage.c:209
 msgid "File system:"
-msgstr ""
+msgstr "Dateisystem :"
 
 #: ../shortcuts/src/applet-disk-usage.c:181
 #: ../shortcuts/src/applet-disk-usage.c:210
 msgid "Device:"
-msgstr ""
+msgstr "Gerät :"
 
 #: ../shortcuts/src/applet-disk-usage.c:182
 #: ../shortcuts/src/applet-disk-usage.c:211
 msgid "Mount options:"
-msgstr ""
+msgstr "Einhängeoptionen :"
 
 #: ../shortcuts/src/applet-disk-usage.c:214
 msgid "Backup frequency:"
-msgstr ""
+msgstr "Sicherungshäufigkeit :"
 
 #: ../shortcuts/src/applet-disk-usage.c:214
 msgid "days"
-msgstr ""
+msgstr "Tage :"
 
 #: ../shortcuts/src/applet-disk-usage.c:237
 #: ../shortcuts/src/applet-disk-usage.c:247
 #: ../shortcuts/src/applet-disk-usage.c:252
 msgid "Name:"
-msgstr ""
+msgstr "Name :"
 
 #: ../shortcuts/src/applet-disk-usage.c:238
 msgid "Capacity:"
-msgstr ""
+msgstr "Kapazität :"
 
 #: ../shortcuts/src/applet-disk-usage.c:239
 msgid "Free space:"
-msgstr ""
+msgstr "Freier Speicherplatz :"
 
 #: ../shortcuts/src/applet-disk-usage.c:247
 msgid "Not mounted"
-msgstr ""
+msgstr "Nicht eingehängt"
 
 #: ../shortcuts/src/applet-disk-usage.c:253 ../RSSreader/data/messages:97
 msgid "URL:"
@@ -3295,15 +3346,15 @@ msgstr "Zum Server verbinden..."
 
 #: ../shortcuts/src/applet-notifications.c:312
 msgid "Browse Network"
-msgstr ""
+msgstr "Netzwerk durchsuchen"
 
 #: ../shortcuts/src/applet-notifications.c:314
 msgid "Browse recent files"
-msgstr ""
+msgstr "Neuere Dateien durchsuchen"
 
 #: ../shortcuts/src/applet-notifications.c:316
 msgid "Open Trash"
-msgstr ""
+msgstr "Mülleimer öffnen"
 
 #: ../shortcuts/src/applet-notifications.c:322
 msgid "Rename this bookmark"
@@ -3391,7 +3442,7 @@ msgstr ""
 
 #: ../slider/src/applet-notifications.c:68
 msgid "You need to define the images folder first."
-msgstr ""
+msgstr "Sie müssen zuerst ein Bilddatei-Verzeichnis auswählen."
 
 #: ../slider/src/applet-notifications.c:220
 msgid "Play"
@@ -3688,11 +3739,11 @@ msgstr "Schließe diesen Tab"
 
 #: ../tomboy/src/applet-backend-default.c:189
 msgid "Title:"
-msgstr ""
+msgstr "Titel :"
 
 #: ../tomboy/src/tomboy-draw.c:190
 msgid "Open all"
-msgstr ""
+msgstr "Alle öffnen"
 
 #: ../tomboy/src/tomboy-init.c:32
 msgid "Note-Taking"
@@ -5620,10 +5671,12 @@ msgstr "Symbolanimationen durch externe Applikationen zulassen ?"
 #: ../Dbus/data/messages:25
 msgid "The dock will catch DBus signals to Launcher API and act as Unity"
 msgstr ""
+"Das Dock wird DBus-Signale auffangen die zur Starter-API gehen und sich als "
+"Unity ausgeben."
 
 #: ../Dbus/data/messages:27
 msgid "Launch the Launcher API daemon?"
-msgstr ""
+msgstr "Den Starter-API-Dämon starten ?"
 
 #: ../Disks/data/messages:5
 msgid "Name of the container it belongs to:"
@@ -6006,7 +6059,7 @@ msgstr "Ausloggen oder Herunterfahren zeigen : "
 
 #: ../GMenu/data/messages:113
 msgid "Preload icons at startup"
-msgstr ""
+msgstr "Symbole beim Hochfahren laden"
 
 #: ../Global-Menu/data/messages:85
 msgid ""
@@ -6015,18 +6068,23 @@ msgid ""
 " The applet can steal the menu from the windows, in which case it will "
 "display a button to pop up the menu of the current window."
 msgstr ""
+"Das Applet kann die Oberkante von maximierten Fenstern stehlen, in welchem "
+"Fall es die Steuerknöpfe des Fensters darstellt.\n"
+" Das Applet kann die Menüs der Fenster stehlen, in welchem Fall es einen "
+"Knopf darstellt, der das Menü des im Augenblick geöffneten Fensters "
+"aufklappen lässt."
 
 #: ../Global-Menu/data/messages:89
 msgid "Steal window menu"
-msgstr ""
+msgstr "Fenstermenü stehlen"
 
 #: ../Global-Menu/data/messages:91
 msgid "Steal window decoration"
-msgstr ""
+msgstr "Fensterdekoration stehlen"
 
 #: ../Global-Menu/data/messages:93
 msgid "Steal window menu and border"
-msgstr ""
+msgstr "Fenstermenü und Kanten stehlen"
 
 #: ../Global-Menu/data/messages:95
 msgid "Shortkey to pop up the menu"
@@ -6158,11 +6216,11 @@ msgstr "Inhaltsverzeichnis der Quelle :"
 
 #: ../Indicator-Generic/data/messages:91
 msgid "Separated by a semi-colon ';'"
-msgstr ""
+msgstr "Durch ein Semikolon ';' getrennt"
 
 #: ../Indicator-Generic/data/messages:93
 msgid "Blacklist these indicators:"
-msgstr ""
+msgstr "Diese Hinweise auf die schwarze Liste setzen :"
 
 #: ../Messaging-Menu/data/messages:15 ../Network-Monitor/data/messages:17
 #: ../Status-Notifier/data/messages:19 ../System-Monitor/data/messages:15
@@ -6546,7 +6604,7 @@ msgstr "Tastaturkürzel um das Applet auszulösen :"
 
 #: ../Remote-Control/data/messages:7
 msgid "Dock to control initially"
-msgstr ""
+msgstr "Das urspünglich zu steuernde Dock :"
 
 #: ../Remote-Control/data/messages:9 ../Scooby-Do/data/messages:23
 msgid "Animation of the current icon :"
@@ -6747,41 +6805,41 @@ msgstr ""
 
 #: ../Screenshot/data/messages:91
 msgid "Shortkey to take a screenshot"
-msgstr ""
+msgstr "Tastenkürzel für ein Bildschrimfoto :"
 
 #: ../Screenshot/data/messages:93
 msgid "Save image in"
-msgstr ""
+msgstr "Datei speichern unter :"
 
 #: ../Sound-Effects/data/messages:3
 msgid "Play a sound on click ?"
-msgstr ""
+msgstr "Beim Klicken Geräusch abspielen ?"
 
 #: ../Sound-Effects/data/messages:5 ../Sound-Effects/data/messages:11
 #: ../Sound-Effects/data/messages:17
 msgid "A .wav file encoded in PCM."
-msgstr ""
+msgstr "Eine WAV-Datei kodiert in PCM."
 
 #: ../Sound-Effects/data/messages:7 ../Sound-Effects/data/messages:13
 #: ../Sound-Effects/data/messages:19
 msgid "Sound file"
-msgstr ""
+msgstr "Klangdatei :"
 
 #: ../Sound-Effects/data/messages:9
 msgid "Play a sound on middle click ?"
-msgstr ""
+msgstr "Ein Geräusch bei Mittelklick abspielen ?"
 
 #: ../Sound-Effects/data/messages:15
 msgid "Play a sound on mouse hover ?"
-msgstr ""
+msgstr "Ein Geräusch bei Mausberührung abspielen ?"
 
 #: ../Sound-Effects/data/messages:21
 msgid "Volume:"
-msgstr ""
+msgstr "Lautstärke :"
 
 #: ../Sound-Effects/data/messages:25
 msgid "High"
-msgstr ""
+msgstr "Hoch"
 
 #: ../Status-Notifier/data/messages:13
 msgid "Image's filename :"
@@ -6823,7 +6881,7 @@ msgstr "Anzeigeart"
 #: ../System-Monitor/data/messages:107 ../alsaMixer/data/messages:121
 #: ../powermanager/data/messages:111 ../wifi/data/messages:109
 msgid "Gauge theme"
-msgstr ""
+msgstr "Thema beurteilen"
 
 #: ../System-Monitor/data/messages:131 ../powermanager/data/messages:127
 msgid "It's the colour of the graphic for high values."
@@ -7038,7 +7096,7 @@ msgstr "Tastenkürzel zum Erhöhen der Helligkeit:"
 
 #: ../alsaMixer/data/messages:9
 msgid "Sound card name"
-msgstr ""
+msgstr "Name der Soundkarte :"
 
 #: ../alsaMixer/data/messages:101
 msgid "Display volume :"
@@ -7047,7 +7105,7 @@ msgstr "Anzeigevolumen :"
 #: ../alsaMixer/data/messages:113 ../powermanager/data/messages:107
 #: ../wifi/data/messages:105
 msgid "Icon with progress bar"
-msgstr ""
+msgstr "Symbol mit Fortschrittsbalken"
 
 #: ../alsaMixer/data/messages:117 ../wifi/data/messages:137
 msgid "Default icon:"
@@ -7204,15 +7262,15 @@ msgstr "Schriftart :"
 
 #: ../clock/data/messages:157
 msgid "Set to 0 to not have it"
-msgstr ""
+msgstr "Auf 0 setzen, um es zu deaktivieren"
 
 #: ../clock/data/messages:159
 msgid "Outline thickness:"
-msgstr ""
+msgstr "Randdicke :"
 
 #: ../clock/data/messages:161
 msgid "Outline colour:"
-msgstr ""
+msgstr "Randfarbe :"
 
 #: ../clock/data/messages:163
 msgid "Layout of the text:"
@@ -7497,7 +7555,7 @@ msgstr "Krümmungsamplitude :"
 
 #: ../dock-rendering/data/messages:19
 msgid "Physically separate groups of icons"
-msgstr ""
+msgstr "Symbolgruppen physisch trennen"
 
 #: ../dock-rendering/data/messages:21
 msgid "At 1, the icons will have the same size as in other views."
@@ -7709,12 +7767,18 @@ msgid ""
 "You can choose to display separators as a line\n"
 " or a physical hole on the plane."
 msgstr ""
+"<b>Eine 3D-Flächenansicht</b>\n"
+"Dies ist die Ansicht, die dem MacOSX-Dock am nächsten kommt.\n"
+"Sie haben die Wahl, Trennlinien entweder als Linie\n"
+" oder als physisches Loch in der Fläche darzustellen."
 
 #: ../dock-rendering/data/messages:136
 msgid ""
 "<b>A 3D caroussel view</b>\n"
 "Icons scroll with mouse position."
 msgstr ""
+"<b>Eine 3D-Karussellansicht</b>\n"
+"Symbole scrollen mit der Mausposition."
 
 #: ../dock-rendering/data/messages:138
 msgid ""
@@ -7723,12 +7787,18 @@ msgid ""
 "You can choose to display separators as a line\n"
 " or a physical hole on the plane."
 msgstr ""
+"<b>Gekrümmte Darstellung </b>\n"
+"Erlaubt ihnen, das Dock zu krümmen !\n"
+"Sie haben die Wahl, Trennlinien entweder als Linie\n"
+" oder als physisches Loch in der Fläche darzustellen."
 
 #: ../dock-rendering/data/messages:140
 msgid ""
 "<b>Slide view</b>\n"
 "A brand new view, especially designed for big subdocks."
 msgstr ""
+"<b>Ansicht von der Seite</b>\n"
+"Eine ganz neue Ansicht, speziell für große Unterdocks entworfen."
 
 #: ../dock-rendering/data/messages:142
 msgid ""
@@ -7737,6 +7807,11 @@ msgid ""
 "Icons are not zoomed on mouse over.\n"
 "Separators are rendered as spaces between the different groups of icons."
 msgstr ""
+"<b>Panel-Ansicht</b>\n"
+"Diese Ansicht wird ihr Dock wie ein Gnome- oder KDE-Panel aussehen lassen.\n"
+"Symbole werden bei Berührung mit der Maus nicht vergrößert dargestellt.\n"
+"Trennlinien werden als Leerraum zwischen den verschiedenen Symbolgruppen "
+"dargestellt."
 
 #: ../dock-rendering/data/messages:144
 msgid ""
@@ -7744,6 +7819,9 @@ msgid ""
 "Perfect for medium sub-docks with 3 to 10 icons.\n"
 "Labels are also clickable."
 msgstr ""
+"<b>Parabolische Ansicht</b>\n"
+"Perfekt für mittelgroße Unterdocks von drei bis zu zehn Symbolen.\n"
+"Aufkleber sind ebenfalls anklickbar."
 
 #: ../dock-rendering/data/messages:146
 msgid ""
@@ -7751,6 +7829,9 @@ msgid ""
 "An original view, designed for sub-docks with few icons.\n"
 "Icons' labels can be displayed horizontally or not."
 msgstr ""
+"<b>Regenbogen-Ansicht</b>\n"
+"Die Original-Ansicht, entworfen für Unterdocks mit wenigen Symbolen.\n"
+"Symbolaufkleber können senkrecht oder waagerecht dargestellt werden."
 
 #: ../dock-rendering/data/messages:148
 msgid ""
@@ -7758,6 +7839,9 @@ msgid ""
 "This view is specially adapted to large sub-docks.\n"
 "You can choose to display all icons' labels."
 msgstr ""
+"<b>Gleit-Ansicht</b>\n"
+"Diese Ansicht wurde für große Unterdocks angepasst.\n"
+"Hier können Sie wählen, alle Symbolaufkleber anzeigen zu lassen."
 
 #: ../drop-indicator/data/messages:1
 msgid "Drag and drop indicator"
@@ -7998,7 +8082,7 @@ msgstr "Anziehungskraft des schwarzen Lochs ?"
 
 #: ../keyboard-indicator/data/messages:99
 msgid "General"
-msgstr ""
+msgstr "Allgemein"
 
 #: ../keyboard-indicator/data/messages:101
 msgid "caps lock, num lock, etc."
@@ -8010,11 +8094,11 @@ msgstr "Tastatur-Verriegelungen als Schnellinfo anzeigen ?"
 
 #: ../keyboard-indicator/data/messages:105
 msgid "Icon image name for NumLock status:"
-msgstr ""
+msgstr "Symbolbild-Name für den Numlock-Status :"
 
 #: ../keyboard-indicator/data/messages:107
 msgid "Icon image name for CapsLock status:"
-msgstr ""
+msgstr "Symbolbild-Name für den CapsLock-Status :"
 
 #: ../keyboard-indicator/data/messages:109
 msgid ""
@@ -8049,7 +8133,7 @@ msgstr "kleiner"
 
 #: ../keyboard-indicator/data/messages:131
 msgid "Number of letters to draw on the icon."
-msgstr ""
+msgstr "Anzahl der darzustellenden Buchstaben auf dem Symbol."
 
 #: ../logout/data/messages:91
 msgid "Action"
@@ -8065,7 +8149,7 @@ msgstr "Tastenkürzel zum Anzeigen des Menüs"
 
 #: ../logout/data/messages:105
 msgid "Demand confirmation before closing"
-msgstr ""
+msgstr "Bestätigung vor dem Schließen erzwingen"
 
 #: ../logout/data/messages:107 ../musicPlayer/data/messages:185
 #: ../tomboy/data/messages:11
@@ -8229,7 +8313,7 @@ msgstr ""
 
 #: ../musicPlayer/data/messages:11
 msgid "Player name"
-msgstr ""
+msgstr "Name des Abspielers"
 
 #: ../musicPlayer/data/messages:101
 msgid "Audio Player"
@@ -8411,7 +8495,7 @@ msgstr "Name des Bildes für das \"Pause\"-Symbol :"
 
 #: ../netspeed/data/messages:145
 msgid "By default all interfaces will be monitored."
-msgstr ""
+msgstr "Als Voreinstellung werden alle Schnittstellen überwacht."
 
 #: ../netspeed/data/messages:147
 msgid "interface:"
@@ -8431,7 +8515,7 @@ msgstr "Leer lassen, um die augenblicklichen Statusinformationen anzuzeigen."
 
 #: ../powermanager/data/messages:11
 msgid "Current status"
-msgstr ""
+msgstr "Derzeitiger Status"
 
 #: ../powermanager/data/messages:139
 msgid "'On-battery' icon filename:"
@@ -8838,7 +8922,7 @@ msgstr "Optionen"
 
 #: ../stack/data/messages:115
 msgid "Separate the items by type (file/web page/text)"
-msgstr ""
+msgstr "Die Elemente nach Typ trennen (Datei / Webseite / Text)"
 
 #: ../stack/data/messages:117
 msgid ""
@@ -8875,19 +8959,19 @@ msgstr "Manuelle Ordnung"
 
 #: ../switcher/data/messages:93
 msgid "How to display all desktops?"
-msgstr ""
+msgstr "Wie werden alle Desktops dargestellt ?"
 
 #: ../switcher/data/messages:95
 msgid "A sub-dock with all desktops"
-msgstr ""
+msgstr "Ein Unterdock mit allen Desktops"
 
 #: ../switcher/data/messages:97
 msgid "All desktops drawn on the main icon"
-msgstr ""
+msgstr "Alle Desktops werden auf dem Hauptsymbol gezeigt"
 
 #: ../switcher/data/messages:99
 msgid "Desktops layout"
-msgstr ""
+msgstr "Layout der Desktops"
 
 #: ../switcher/data/messages:103
 msgid "On a single line"
@@ -8895,23 +8979,23 @@ msgstr "In einer Zeile"
 
 #: ../switcher/data/messages:105
 msgid "Preserve the ratio of the screen?"
-msgstr ""
+msgstr "Das Seitenverhältnis beibehalten ?"
 
 #: ../switcher/data/messages:107
 msgid "How to draw the icon?"
-msgstr ""
+msgstr "Wie soll das Symbol gezeichnet werden ?"
 
 #: ../switcher/data/messages:109
 msgid "Map wallpaper to icons"
-msgstr ""
+msgstr "Hintergrundbilder zu Symbolen verkleinern"
 
 #: ../switcher/data/messages:111
 msgid "Use an image for each desktop"
-msgstr ""
+msgstr "Benutze ein Bild für jeden Desktop"
 
 #: ../switcher/data/messages:113
 msgid "Use a colour for each desktop"
-msgstr ""
+msgstr "Benutze eine Farbe für jeden Desktop"
 
 #: ../switcher/data/messages:115
 msgid "Icon to use in expanded mode if wallpaper is not mapped:"
@@ -8931,7 +9015,7 @@ msgstr "Hintergrundfarbe :"
 
 #: ../switcher/data/messages:123
 msgid "Show desktop number on icons?"
-msgstr ""
+msgstr "Die Nummer des Desktops auf den Symbolen anzeigen ?"
 
 #: ../switcher/data/messages:125
 msgid "Draw windows on icons?"
@@ -8943,7 +9027,7 @@ msgstr "Versteckte Fenster zeichnen ?"
 
 #: ../switcher/data/messages:129
 msgid "Draw icons of windows?"
-msgstr ""
+msgstr "Symbole für Fenster zeichnen ?"
 
 #: ../switcher/data/messages:133
 msgid "Show windows' list"
@@ -8951,7 +9035,7 @@ msgstr "Zeige Fensterliste"
 
 #: ../switcher/data/messages:141
 msgid "Sub-Dock"
-msgstr ""
+msgstr "Unterdock"
 
 #: ../switcher/data/messages:147
 msgid "In expanded mode, render the desklet in 3D?"
@@ -9162,7 +9246,7 @@ msgstr "Leer lassen, um den Namen der Stadt zu benutzen."
 
 #: ../weather/data/messages:11
 msgid "City name"
-msgstr ""
+msgstr "Stadtname"
 
 #: ../weather/data/messages:103
 msgid "Enter the name of your location in the text entry and press Enter."
