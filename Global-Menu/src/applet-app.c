@@ -69,53 +69,7 @@ static void _get_window_allowed_actions (Window Xid)
 		myData.bCanClose = FALSE;
 		return;
 	}
-	
-	Atom aReturnedType = 0;
-	int aReturnedFormat = 0;
-	unsigned long iLeftBytes, iBufferNbElements = 0;
-	gulong *pXStateBuffer = NULL;
-	Display *dpy = cairo_dock_get_Xdisplay ();
-	Atom allowedActions = XInternAtom (dpy, "_NET_WM_ALLOWED_ACTIONS", False);
-	Atom atomMinimize = XInternAtom (dpy, "_NET_WM_ACTION_MINIMIZE", False);
-	Atom atomMaximizeHorz = XInternAtom (dpy, "_NET_WM_ACTION_MAXIMIZE_HORZ", False);
-	Atom atomMaximizeVert = XInternAtom (dpy, "_NET_WM_ACTION_MAXIMIZE_VERT", False);
-	Atom atomClose = XInternAtom (dpy, "_NET_WM_ACTION_CLOSE", False);
-	
-	XGetWindowProperty (dpy,
-		Xid, allowedActions, 0, G_MAXULONG, False, XA_ATOM,
-		&aReturnedType, &aReturnedFormat, &iBufferNbElements, &iLeftBytes, (guchar **)&pXStateBuffer);
-	
-	if (iBufferNbElements > 0)
-	{
-		myData.bCanMinimize = FALSE;
-		myData.bCanMaximize = FALSE;
-		myData.bCanClose = FALSE;
-		guint i;
-		for (i = 0; i < iBufferNbElements; i ++)
-		{
-			if (pXStateBuffer[i] == atomMinimize)
-			{
-				myData.bCanMinimize = TRUE;
-			}
-			else if (pXStateBuffer[i] == atomMaximizeHorz || pXStateBuffer[i] == atomMaximizeVert)
-			{
-				myData.bCanMaximize = TRUE;
-			}
-			else if (pXStateBuffer[i] == atomClose)
-			{
-				myData.bCanClose = TRUE;
-			}
-		}
-	}
-	else  // by default, allow all actions.
-	{
-		cd_warning ("couldn't get allowed actions for the window %u", Xid);
-		myData.bCanMinimize = TRUE;
-		myData.bCanMaximize = TRUE;
-		myData.bCanClose = TRUE;
-	}
-
-	XFree (pXStateBuffer);
+	cairo_dock_xwindow_can_minimize_maximized_close (Xid, &myData.bCanMinimize, &myData.bCanMaximize, &myData.bCanClose);
 }
 
 static void _set_border (Icon *icon, CairoContainer *pContainer, gboolean bWithBorder)
