@@ -49,11 +49,14 @@ INSTALL_PREFIX = os.path.abspath("..")  # applets are launched from their instal
 
 GETTEXT_NAME = 'cairo-dock-plugins-extra'
 LOCALE_DIR = INSTALL_PREFIX + '/locale'  # user version of /usr/share/locale
-translations = gettext.translation(GETTEXT_NAME, LOCALE_DIR)
 try:
-	_ = translations.ugettext  # python 2 => force the use of UTF8
-except:
-	_ = translations.gettext
+	translations = gettext.translation(GETTEXT_NAME, LOCALE_DIR)
+	try:
+		_ = translations.ugettext  # python 2 => force the use of UTF8
+	except:
+		_ = translations.gettext
+except: # e.g. No translation file found for this domain
+	_ = lambda x: x
 
 ####################
 ### Applet class ###
