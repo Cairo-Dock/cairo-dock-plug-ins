@@ -390,7 +390,7 @@ static gchar ** _get_xdg_menu_dirs (void)
 {
 	const gchar *dirs = g_getenv ("XDG_CONFIG_DIRS");
 	if (! dirs || *dirs == '\0')
-		dirs = "/etc/xdg/menus";
+		dirs = "/etc/xdg";
 
 	return g_strsplit (dirs, ":", 0);
 }
