@@ -47,6 +47,8 @@ endif( WIN32 )
 set (PACKAGE ${CMAKE_PROJECT_NAME})
 set (GETTEXT_PACKAGE ${PACKAGE})
 
+pkg_check_modules ("GLDI" REQUIRED "gldi") # we need GLDI which contains most global var.
+
 # get plug-ins install dir
 execute_process(
     COMMAND pkg-config gldi --variable=pluginsdir  # /usr/lib/cairo-dock # or /usr/lib/x86_64-linux-gnu/cairo-dock
