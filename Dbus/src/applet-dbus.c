@@ -530,9 +530,27 @@ void cd_dbus_launch_service (void)
 				cd_warning ("couldn't create '%s'; third-party applets can't be added", cUserAppletsFolder);
 		}
 		g_free (cUserAppletsFolder);
-		
-		if (g_mkdir (cLocaleDir, 7*8*8+7*8+5) != 0)  // create an empty folder; since there is no date file, the "locale" package will be seen as "to be updated" by the package manager, and will therefore download it.
+
+		/*
+		 * create an empty folder; since there is no date file, the "locale"
+		 * package will be seen as "to be updated" by the package manager, and
+		 * will therefore download it.
+		 * But if last-modif file is not available, it will be seen as "to be
+		 * updated" only if the external package is younger than one month:
+		 *  => cairo-dock-packages.c:_cairo_dock_parse_package_list
+		 * Solution: added a file with "0" to force the download
+		 */
+		if (g_mkdir (cLocaleDir, 7*8*8+7*8+5) != 0)
 			cd_warning ("couldn't create '%s'; applets won't be translated", cLocaleDir);
+		else
+		{
+			gchar *cVersionFile = g_strdup_printf ("%s/last-modif", cLocaleDir);
+			g_file_set_contents (cVersionFile,
+					"0",
+					-1,
+					NULL);
+			g_free (cVersionFile);
+		}
 	}
 	bindtextdomain (GETTEXT_NAME_EXTRAS, cLocaleDir);  // bind the applets' domain to the user locale folder.
 	bind_textdomain_codeset (GETTEXT_NAME_EXTRAS, "UTF-8");
