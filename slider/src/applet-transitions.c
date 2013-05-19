@@ -43,7 +43,7 @@
 		glVertex3f(fX - slide.fImgW/2, fY + slide.fImgH/2, 0.);\
 		glEnd(); } } while (0)*/
 
-static void _cd_slider_add_background_to_slide (CairoDockModuleInstance *myApplet, double fX, double fY, double alpha, SliderImageArea *slide)
+static void _cd_slider_add_background_to_slide (GldiModuleInstance *myApplet, double fX, double fY, double alpha, SliderImageArea *slide)
 {
 	if (myConfig.pBackgroundColor[3] != 0)
 	{
@@ -69,7 +69,7 @@ static void _cd_slider_add_background_to_slide (CairoDockModuleInstance *myApple
 #define _cd_slider_add_background_to_current_slide(myApplet, fX, fY, alpha) _cd_slider_add_background_to_slide (myApplet, fX, fY, alpha, &myData.slideArea)
 #define _cd_slider_add_background_to_prev_slide(myApplet, fX, fY, alpha) _cd_slider_add_background_to_slide (myApplet, fX, fY, alpha, &myData.prevSlideArea)
 
-static void _cd_slider_add_background_to_slide_opengl(CairoDockModuleInstance *myApplet, double fX, double fY, double alpha, SliderImageArea *slide)
+static void _cd_slider_add_background_to_slide_opengl(GldiModuleInstance *myApplet, double fX, double fY, double alpha, SliderImageArea *slide)
 {
 	if (myConfig.pBackgroundColor[3] != 0)
 	{
@@ -106,7 +106,7 @@ static void _cd_slider_add_background_to_slide_opengl(CairoDockModuleInstance *m
 #define _cd_slider_add_background_to_current_slide_opengl(myApplet, fX, fY, alpha) _cd_slider_add_background_to_slide_opengl (myApplet, fX, fY, alpha, &myData.slideArea)
 #define _cd_slider_add_background_to_prev_slide_opengl(myApplet, fX, fY, alpha) _cd_slider_add_background_to_slide_opengl (myApplet, fX, fY, alpha, &myData.prevSlideArea)
 
-void cd_slider_draw_default (CairoDockModuleInstance *myApplet)
+void cd_slider_draw_default (GldiModuleInstance *myApplet)
 {
 	if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
 	{
@@ -139,7 +139,7 @@ void cd_slider_draw_default (CairoDockModuleInstance *myApplet)
 	}
 }
 
-gboolean cd_slider_fade (CairoDockModuleInstance *myApplet) {
+gboolean cd_slider_fade (GldiModuleInstance *myApplet) {
 	myData.iAnimCNT ++;
 	myData.fAnimAlpha = 1.*myData.iAnimCNT / myConfig.iNbAnimationStep;
 	if (myData.fAnimAlpha > 1)
@@ -199,7 +199,7 @@ gboolean cd_slider_fade (CairoDockModuleInstance *myApplet) {
 	return (myData.fAnimAlpha < .99);
 }
 
-gboolean cd_slider_blank_fade (CairoDockModuleInstance *myApplet) {
+gboolean cd_slider_blank_fade (GldiModuleInstance *myApplet) {
 	myData.iAnimCNT ++;
 	myData.fAnimAlpha = 1 - 1.*myData.iAnimCNT / myConfig.iNbAnimationStep;
 	if (myData.fAnimAlpha < 0)
@@ -257,7 +257,7 @@ gboolean cd_slider_blank_fade (CairoDockModuleInstance *myApplet) {
 	return (myData.fAnimAlpha > 0.01);
 }
 
-gboolean cd_slider_fade_in_out (CairoDockModuleInstance *myApplet) {
+gboolean cd_slider_fade_in_out (GldiModuleInstance *myApplet) {
 	myData.iAnimCNT ++;
 	if (myData.iAnimCNT <= myConfig.iNbAnimationStep)  // courbe de alpha : \__/
 		myData.fAnimAlpha = 1. * (myConfig.iNbAnimationStep - myData.iAnimCNT) / myConfig.iNbAnimationStep;
@@ -328,7 +328,7 @@ gboolean cd_slider_fade_in_out (CairoDockModuleInstance *myApplet) {
 	return (myData.fAnimAlpha < .99);
 }
 
-gboolean cd_slider_side_kick (CairoDockModuleInstance *myApplet) {
+gboolean cd_slider_side_kick (GldiModuleInstance *myApplet) {
 	myData.iAnimCNT += myData.sens;
 	int xcumul = myData.iAnimCNT * (myData.iAnimCNT + 1) / 2;
 	xcumul *= (10./myConfig.iNbAnimationStep);  /// au pif, a calculer ...
@@ -393,7 +393,7 @@ gboolean cd_slider_side_kick (CairoDockModuleInstance *myApplet) {
 	return (myData.iAnimCNT > 0);
 }
 
-gboolean cd_slider_diaporama (CairoDockModuleInstance *myApplet) {
+gboolean cd_slider_diaporama (GldiModuleInstance *myApplet) {
 	static double a = .75;
 	myData.iAnimCNT ++;
 	myData.fAnimAlpha = 1.*myData.iAnimCNT / myConfig.iNbAnimationStep;
@@ -477,7 +477,7 @@ gboolean cd_slider_diaporama (CairoDockModuleInstance *myApplet) {
 	return (myData.fAnimAlpha < .999);
 }
 
-gboolean cd_slider_grow_up (CairoDockModuleInstance *myApplet) {
+gboolean cd_slider_grow_up (GldiModuleInstance *myApplet) {
 	myData.iAnimCNT ++;
 	myData.fAnimAlpha = 1.*myData.iAnimCNT / myConfig.iNbAnimationStep;
 	if (myData.fAnimAlpha > 1)
@@ -526,7 +526,7 @@ gboolean cd_slider_grow_up (CairoDockModuleInstance *myApplet) {
 	return (myData.fAnimAlpha < .99);
 }
 
-gboolean cd_slider_shrink_down (CairoDockModuleInstance *myApplet) {
+gboolean cd_slider_shrink_down (GldiModuleInstance *myApplet) {
 	myData.iAnimCNT ++;
 	myData.fAnimAlpha = 2 - 1.*myData.iAnimCNT / myConfig.iNbAnimationStep;
 	if (myData.fAnimAlpha < 1)
@@ -575,7 +575,7 @@ gboolean cd_slider_shrink_down (CairoDockModuleInstance *myApplet) {
 	return (myData.fAnimAlpha > 1.01);
 }
 
-gboolean cd_slider_cube (CairoDockModuleInstance *myApplet) {
+gboolean cd_slider_cube (GldiModuleInstance *myApplet) {
 	myData.iAnimCNT ++;
 	myData.fAnimAlpha = 1.*myData.iAnimCNT / myConfig.iNbAnimationStep;
 	if (myData.fAnimAlpha > 1)

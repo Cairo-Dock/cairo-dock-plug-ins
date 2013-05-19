@@ -77,13 +77,13 @@ void cd_shortcuts_set_icon_order_by_name (Icon *pNewIcon, GList *pIconsList)
 }
 
 
-static void _cd_shortcuts_on_network_event (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
+static void _cd_shortcuts_on_network_event (CairoDockFMEventType iEventType, const gchar *cURI, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	
 	//g_print (" * event %d on network '%s'\n", iEventType, cURI);
 	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
-	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+	GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
 	
 	switch (iEventType)
@@ -133,7 +133,7 @@ static void _cd_shortcuts_on_network_event (CairoDockFMEventType iEventType, con
 			CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pNewIcon);
 			
 			//\_______________________ on affiche un message.
-			cairo_dock_show_temporary_dialog_with_icon_printf (
+			gldi_dialog_show_temporary_with_icon_printf (
 				D_("%s has been connected"),
 				pNewIcon, pContainer,
 				4000,
@@ -236,7 +236,7 @@ static void cd_shortcuts_get_shortcuts_data (CDSharedMemory *pSharedMemory)
 
 static gboolean cd_shortcuts_build_shortcuts_from_data (CDSharedMemory *pSharedMemory)
 {
-	CairoDockModuleInstance *myApplet = pSharedMemory->pApplet;
+	GldiModuleInstance *myApplet = pSharedMemory->pApplet;
 	g_return_val_if_fail (myIcon != NULL, FALSE);  // paranoia
 	CD_APPLET_ENTER;
 	
@@ -301,7 +301,7 @@ static gboolean cd_shortcuts_build_shortcuts_from_data (CDSharedMemory *pSharedM
 
 	if (myData.bShowMenuPending)
 	{
-		cairo_dock_notify_on_object (myContainer, NOTIFICATION_CLICK_ICON, myIcon, myDock, GDK_BUTTON1_MASK);
+		gldi_object_notify (myContainer, NOTIFICATION_CLICK_ICON, myIcon, myDock, GDK_BUTTON1_MASK);
 		myData.bShowMenuPending = FALSE;
 	}
 	
@@ -320,7 +320,7 @@ static void _free_shared_memory (CDSharedMemory *pSharedMemory)
 	g_list_free (pSharedMemory->pIconList);
 	g_free (pSharedMemory);
 }
-void cd_shortcuts_start (CairoDockModuleInstance *myApplet)
+void cd_shortcuts_start (GldiModuleInstance *myApplet)
 {
 	if (myData.pTask != NULL)
 	{

@@ -43,7 +43,7 @@ typedef struct {
 	gboolean bFoldersFirst;
 	gboolean bShowHiddenFiles;
 	GList *pIconList;
-	CairoDockModuleInstance *pApplet;
+	GldiModuleInstance *pApplet;
 	} CDSharedMemory;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.

@@ -180,7 +180,7 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 	g_hash_table_destroy (pHashTable);
 }
 
-void cd_folders_free_apps_list (CairoDockModuleInstance *myApplet)
+void cd_folders_free_apps_list (GldiModuleInstance *myApplet)
 {
 	if (myData.pAppList != NULL)
 	{
@@ -396,7 +396,7 @@ static GtkWidget *cd_build_events_widget (void)
 	gtk_box_pack_start (GTK_BOX (pMainBox), pFilterBox, FALSE, FALSE, MARGIN);
 	
 	GtkWidget *pFilterLabel = gtk_label_new (D_("Look for events"));
-	cairo_dock_set_dialog_widget_text_color (GTK_WIDGET (pFilterLabel));
+	gldi_dialog_set_widget_text_color (GTK_WIDGET (pFilterLabel));
 	gtk_box_pack_start (GTK_BOX (pFilterBox), pFilterLabel, FALSE, FALSE, MARGIN);
 	
 	GtkWidget *pEntry = gtk_entry_new ();
@@ -474,7 +474,7 @@ static GtkWidget *cd_build_events_widget (void)
 	return pMainBox;
 }
 
-static void _on_dialog_destroyed (CairoDockModuleInstance *myApplet)
+static void _on_dialog_destroyed (GldiModuleInstance *myApplet)
 {
 	myData.pDialog = NULL;
 	myData.pEntry = NULL;  // interactive widget inside the dialog are destroyed with it.
@@ -495,8 +495,8 @@ static gboolean _show_dialog_delayed (gpointer data)
 		cd_debug (" %d tries", myData.iNbTries);
 		if (myData.iNbTries >= 3)  // definitely no hope -> show a message to the user.
 		{
-			cairo_dock_remove_dialog_if_any (myIcon);
-			cairo_dock_show_temporary_dialog_with_icon (D_("You need to install the Zeitgeist data engine."), myIcon, myContainer, 6000, "same icon");
+			gldi_dialogs_remove_on_icon (myIcon);
+			gldi_dialog_show_temporary_with_icon (D_("You need to install the Zeitgeist data engine."), myIcon, myContainer, 6000, "same icon");
 			myData.iSidTryDialog = 0;
 			return FALSE;
 		}
@@ -507,7 +507,7 @@ void cd_toggle_dialog (void)
 {
 	if (myData.pDialog != NULL)  // the dialog can be opened in the case it was called from the shortkey.
 	{
-		cairo_dock_dialog_unreference (myData.pDialog);
+		gldi_object_unref (GLDI_OBJECT(myData.pDialog));
 		myData.pDialog = NULL;
 	}
 	else
@@ -531,7 +531,7 @@ void cd_toggle_dialog (void)
 		
 		// build the dialog and the tree model.
 		GtkWidget *pInteractiveWidget = cd_build_events_widget ();
-		myData.pDialog = cairo_dock_show_dialog_full (D_("Browse and search in recent events"),
+		myData.pDialog = gldi_dialog_show (D_("Browse and search in recent events"),
 			myIcon,
 			myContainer,
 			0,

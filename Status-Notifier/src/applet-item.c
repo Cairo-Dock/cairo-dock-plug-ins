@@ -112,7 +112,7 @@ static CDToolTip *_make_tooltip_from_dbus_struct (GValueArray *pToolTipTab)
 static void _show_item_tooltip (Icon *pIcon, CDStatusNotifierItem *pItem)
 {
 	gchar *cText = g_strdup_printf ("<b>%s</b>\n%s", pItem->pToolTip->cTitle, pItem->pToolTip->cMessage);
-	cairo_dock_show_temporary_dialog_with_icon (cText, pIcon, CAIRO_CONTAINER (myIcon->pSubDock), 4000, pItem->pToolTip->cIconName);
+	gldi_dialog_show_temporary_with_icon (cText, pIcon, CAIRO_CONTAINER (myIcon->pSubDock), 4000, pItem->pToolTip->cIconName);
 	g_free (cText);
 }
 */
@@ -298,7 +298,7 @@ static void on_new_item_tooltip (DBusGProxy *proxy_item, CDStatusNotifierItem *p
 	cd_free_tooltip (pItem->pToolTip);
 	pItem->pToolTip = NULL;
 	
-	//cairo_dock_remove_dialog_if_any (pIcon);
+	//gldi_dialogs_remove_on_icon (pIcon);
 	
 	GValueArray *pToolTipTab = cairo_dock_dbus_get_property_as_boxed (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "ToolTip");
 	if (pToolTipTab)

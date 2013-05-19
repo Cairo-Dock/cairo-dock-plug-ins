@@ -24,8 +24,8 @@
 
 #include <cairo-dock.h>
 
-gboolean _check_size_is_constant (CairoDockModuleInstance *myApplet, const gchar *cFilePath);
-gboolean _new_xml_to_conf (CairoDockModuleInstance *myApplet, gchar *cReceivedData);
+gboolean _check_size_is_constant (GldiModuleInstance *myApplet, const gchar *cFilePath);
+gboolean _new_xml_to_conf (GldiModuleInstance *myApplet, gchar *cReceivedData);
 
 //~ CD_APPLET_ON_CLICK_H
 //~ CD_APPLET_ON_DOUBLE_CLICK_H

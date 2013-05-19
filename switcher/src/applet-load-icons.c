@@ -97,7 +97,7 @@ void cd_switcher_load_icons (void)
 	{
 		if (myIcon->pSubDock != NULL)  // si on est passe de expanded a compact, le sous-dock vide reste.
 		{
-			cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->cName);
+			gldi_object_unref (GLDI_OBJECT(myIcon->pSubDock));
 			myIcon->pSubDock = NULL;
 		}
 		if (myDesklet)
@@ -122,7 +122,7 @@ void cd_switcher_load_icons (void)
 /**void cd_switcher_paint_icons (void)
 {
 	//\_______________________ On applique la surface.
-	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+	GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	GList *pIconList = CD_APPLET_MY_ICONS_LIST;
 	if (pIconList == NULL)
 		return ;
@@ -187,8 +187,8 @@ void cd_switcher_trigger_paint_icons (void)
 void cd_switcher_load_desktop_bg_map_surface (void)
 {
 	// get the background surface
-	CairoDockDesktopBackground *db = cairo_dock_get_desktop_background (FALSE);  // FALSE <=> sans texture.
-	cairo_surface_t *pBgSurface = cairo_dock_get_desktop_bg_surface (db);
+	GldiDesktopBackground *db = gldi_desktop_background_get (FALSE);  // FALSE <=> sans texture.
+	cairo_surface_t *pBgSurface = gldi_desktop_background_get_surface (db);
 	
 	if (myData.pDesktopBgMapSurface != NULL)
 		cairo_surface_destroy (myData.pDesktopBgMapSurface);
@@ -196,7 +196,7 @@ void cd_switcher_load_desktop_bg_map_surface (void)
 	{
 		cd_warning ("couldn't get the wallpaper");
 		myData.pDesktopBgMapSurface = NULL;
-		cairo_dock_destroy_desktop_background (db);
+		gldi_desktop_background_destroy (db);
 		return ;
 	}
 	
@@ -216,7 +216,7 @@ void cd_switcher_load_desktop_bg_map_surface (void)
 		g_desktopGeometry.Xscreen.width, g_desktopGeometry.Xscreen.height,
 		myData.iSurfaceWidth, myData.iSurfaceHeight);
 	
-	cairo_dock_destroy_desktop_background (db);
+	gldi_desktop_background_destroy (db);
 }
 
 void cd_switcher_load_default_map_surface (void)

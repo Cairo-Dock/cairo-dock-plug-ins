@@ -84,7 +84,7 @@ void cd_rendering_calculate_max_dock_size_caroussel (CairoDock *pDock)
 	if (pDock->pRendererData == NULL)
 	{
 		pDock->pRendererData = GINT_TO_POINTER (1);
-		cairo_dock_register_notification_on_object (pDock, NOTIFICATION_UPDATE, (CairoDockNotificationFunc) cd_rendering_caroussel_update_dock, CAIRO_DOCK_RUN_AFTER, NULL);
+		gldi_object_register_notification (pDock, NOTIFICATION_UPDATE, (GldiNotificationFunc) cd_rendering_caroussel_update_dock, GLDI_RUN_AFTER, NULL);
 	}
 	
 	if (g_bEasterEggs)
@@ -317,7 +317,7 @@ void cd_rendering_free_caroussel_data (CairoDock *pDock)
 {
 	if (pDock->pRendererData != NULL)
 	{
-		cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDock), NOTIFICATION_UPDATE, (CairoDockNotificationFunc) cd_rendering_caroussel_update_dock, NULL);
+		gldi_object_remove_notification (CAIRO_CONTAINER (pDock), NOTIFICATION_UPDATE, (GldiNotificationFunc) cd_rendering_caroussel_update_dock, NULL);
 	}
 }
 
@@ -369,13 +369,13 @@ static void _scroll_dock_icons (CairoDock *pDock, int iScrollAmount)
 	}
 }
 
-gboolean cd_rendering_caroussel_update_dock (gpointer pUserData, CairoContainer *pContainer, gboolean *bContinueAnimation)
+gboolean cd_rendering_caroussel_update_dock (gpointer pUserData, GldiContainer *pContainer, gboolean *bContinueAnimation)
 {
 	if (! CAIRO_DOCK_IS_DOCK (pContainer))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	CairoDock *pDock = CAIRO_DOCK (pContainer);
 	if (pDock->pRenderer->calculate_icons != cd_rendering_calculate_icons_caroussel)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	if (pDock->container.bInside)
 	{
@@ -398,5 +398,5 @@ gboolean cd_rendering_caroussel_update_dock (gpointer pUserData, CairoContainer 
 		_scroll_dock_icons (pDock, iScrollAmount);  // avec un scroll de 0, cela termine le scroll.
 		*bContinueAnimation |= (pDock->iScrollOffset != 0);
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }

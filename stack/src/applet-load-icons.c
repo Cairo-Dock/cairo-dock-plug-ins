@@ -42,7 +42,7 @@ static gboolean _isin (gchar **cString, gchar *cCompar) {
 }
 static void _load_html_icon (Icon *pIcon)
 {
-	CairoDockModuleInstance *myApplet = pIcon->pAppletOwner;
+	GldiModuleInstance *myApplet = pIcon->pAppletOwner;
 	int iWidth = cairo_dock_icon_get_allocated_width (pIcon);
 	int iHeight = cairo_dock_icon_get_allocated_height (pIcon);
 	if (pIcon->cFileName)  // icone possedant une image, on affiche celle-ci.
@@ -57,14 +57,14 @@ static void _load_html_icon (Icon *pIcon)
 			
 			if (pIcon->image.pSurface != NULL && pIcon->cWorkingDirectory != NULL)
 			{
-				CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+				GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 				cairo_dock_print_overlay_on_icon_from_image (pIcon, pContainer, pIcon->cWorkingDirectory, CAIRO_OVERLAY_LOWER_RIGHT);
 			}
 		}
 		g_free (cIconPath);
 	}
 }
-Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile)
+Icon *cd_stack_build_one_icon (GldiModuleInstance *myApplet, GKeyFile *pKeyFile)
 {
 	GError *erreur = NULL;
 	gchar *cContent = g_key_file_get_string (pKeyFile, "Desktop Entry", "Content", &erreur);
@@ -166,7 +166,7 @@ Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKey
 	return pIcon;
 }
 
-Icon *cd_stack_build_one_icon_from_file (CairoDockModuleInstance *myApplet, gchar *cDesktopFilePath)
+Icon *cd_stack_build_one_icon_from_file (GldiModuleInstance *myApplet, gchar *cDesktopFilePath)
 {
 	GKeyFile *pKeyFile = cairo_dock_open_key_file (cDesktopFilePath);
 	g_return_val_if_fail (pKeyFile != NULL, NULL);
@@ -177,7 +177,7 @@ Icon *cd_stack_build_one_icon_from_file (CairoDockModuleInstance *myApplet, gcha
 	return pIcon;
 }
 
-GList *cd_stack_build_icons_list (CairoDockModuleInstance *myApplet, gchar *cStackDir)
+GList *cd_stack_build_icons_list (GldiModuleInstance *myApplet, gchar *cStackDir)
 {
 	// on parcourt tous les fichiers du repertoire.
 	GDir *dir = g_dir_open (cStackDir, 0, NULL);
@@ -234,7 +234,7 @@ GList *cd_stack_build_icons_list (CairoDockModuleInstance *myApplet, gchar *cSta
 	return pIconsList;
 }
 
-void cd_stack_build_icons (CairoDockModuleInstance *myApplet)
+void cd_stack_build_icons (GldiModuleInstance *myApplet)
 {
 	//\_______________________ On efface l'ancienne liste.
 	CD_APPLET_DELETE_MY_ICONS_LIST;
@@ -261,7 +261,7 @@ void cd_stack_build_icons (CairoDockModuleInstance *myApplet)
 	}
 	else if (myDock)  // sinon on ne veut pas du sous-dock vide.
 	{
-		cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->cName);
+		gldi_object_unref (GLDI_OBJECT(myIcon->pSubDock));
 		myIcon->pSubDock = NULL;
 	}
 }

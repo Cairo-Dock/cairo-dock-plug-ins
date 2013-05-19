@@ -29,7 +29,7 @@ on battery -> gauge + %, no emblem, alert
 on sector -> gauge + %, on-sector emblem, alert
 */
 
-static void _set_data_renderer (CairoDockModuleInstance *myApplet)
+static void _set_data_renderer (GldiModuleInstance *myApplet)
 {
 	CairoDataRendererAttribute *pRenderAttr = NULL;  // generic attributes of the data-renderer.
 	switch (myConfig.iDisplayType)
@@ -234,7 +234,7 @@ gchar *get_hours_minutes (int iTimeInSeconds)
 
 static void _cd_powermanager_dialog (const gchar *cInfo, int iDuration)
 {
-	cairo_dock_remove_dialog_if_any (myIcon);
+	gldi_dialogs_remove_on_icon (myIcon);
 	
 	/**const gchar *cIconPath;
 	if (!myData.bOnBattery)
@@ -243,7 +243,7 @@ static void _cd_powermanager_dialog (const gchar *cInfo, int iDuration)
 		cIconPath = MY_APPLET_SHARE_DATA_DIR"/default-battery.svg";
 	
 	cd_debug ("%s (%s)", cInfo, cIconPath);*/
-	cairo_dock_show_temporary_dialog_with_icon (cInfo, myIcon, myContainer, 1000*iDuration, "same icon");
+	gldi_dialog_show_temporary_with_icon (cInfo, myIcon, myContainer, 1000*iDuration, "same icon");
 }
 
 void cd_powermanager_bubble (void)
@@ -348,7 +348,7 @@ gboolean cd_powermanager_alert (MyAppletCharge alert)
 }
 
 
-void cd_powermanager_format_value (CairoDataRenderer *pRenderer, int iNumValue, gchar *cFormatBuffer, int iBufferLength, CairoDockModuleInstance *myApplet)
+void cd_powermanager_format_value (CairoDataRenderer *pRenderer, int iNumValue, gchar *cFormatBuffer, int iBufferLength, GldiModuleInstance *myApplet)
 {
 	// double fValue = cairo_data_renderer_get_normalized_current_value_with_latency (pRenderer, iNumValue);
 	if(myConfig.quickInfoType == POWER_MANAGER_TIME)

@@ -721,7 +721,7 @@ gboolean _check_file_exists (const gchar *cDir, const gchar *cPrefix, gchar **cM
 
 static const gchar *cPrefixNames[] = {"", "gnome-", "kde-", "kde4-", "xfce-", "lxde-", NULL};
 
-GtkWidget * create_main_menu (CairoDockModuleInstance *myApplet)
+GtkWidget * create_main_menu (GldiModuleInstance *myApplet)
 {
 	GtkWidget *main_menu;
 

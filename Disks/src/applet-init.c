@@ -58,7 +58,7 @@ CD_APPLET_DEFINITION (N_("Disks"),
 	"SQP");
 
 
-static void _set_data_renderer (CairoDockModuleInstance *myApplet)
+static void _set_data_renderer (GldiModuleInstance *myApplet)
 {
 	CairoDataRendererAttribute *pRenderAttr = NULL;  // attributes for the global data-renderer.
 	CairoGaugeAttribute aGaugeAttr;  // gauge attributes.

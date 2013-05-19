@@ -30,7 +30,7 @@
 
 
 
-void _cd_weblets_set_crop_position (CairoDockModuleInstance *myApplet)
+void _cd_weblets_set_crop_position (GldiModuleInstance *myApplet)
 {
 	GtkAdjustment *pGtkAdjustmentH = gtk_scrolled_window_get_hadjustment(GTK_SCROLLED_WINDOW (myData.pGtkMozEmbed));
 	gtk_adjustment_set_value(pGtkAdjustmentH, 0);
@@ -41,7 +41,7 @@ void _cd_weblets_set_crop_position (CairoDockModuleInstance *myApplet)
 }
 
 // hide/show the scrollbars
-static void show_hide_scrollbars(CairoDockModuleInstance *myApplet)
+static void show_hide_scrollbars(GldiModuleInstance *myApplet)
 {
 	// First, set the position
 	_cd_weblets_set_crop_position (myApplet);
@@ -51,18 +51,20 @@ static void show_hide_scrollbars(CairoDockModuleInstance *myApplet)
 }
 
 
-CairoDialog *cd_weblets_build_dialog(CairoDockModuleInstance *myApplet)
+CairoDialog *cd_weblets_build_dialog(GldiModuleInstance *myApplet)
 {
-	CairoDialogAttribute attr;
-	memset (&attr, 0, sizeof (CairoDialogAttribute));
+	CairoDialogAttr attr;
+	memset (&attr, 0, sizeof (CairoDialogAttr));
 	attr.cText = D_ ("Weblets");
 	attr.pInteractiveWidget = myData.pGtkMozEmbed;
-	return cairo_dock_build_dialog (&attr, myIcon, myContainer);
+	attr.pIcon = myIcon;
+	attr.pContainer = myContainer;
+	return gldi_dialog_new (&attr);
 }
 
 /* Will be called when loading of the page is finished*/
 void load_finished_cb(WebKitWebView *pWebKitView, WebKitWebFrame* widget
-, CairoDockModuleInstance *myApplet)
+, GldiModuleInstance *myApplet)
 {
 	cd_debug ("weblets : (re)load finished\n");
 	// update scrollbars status
@@ -70,7 +72,7 @@ void load_finished_cb(WebKitWebView *pWebKitView, WebKitWebFrame* widget
 }
 
 /* Build the embedded widget */
-void weblet_build_and_show(CairoDockModuleInstance *myApplet)
+void weblet_build_and_show(GldiModuleInstance *myApplet)
 {
 	myData.pGtkMozEmbed = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (myData.pGtkMozEmbed), myConfig.bShowScrollbars?GTK_POLICY_AUTOMATIC:GTK_POLICY_NEVER, myConfig.bShowScrollbars?GTK_POLICY_AUTOMATIC:GTK_POLICY_NEVER);
@@ -90,12 +92,12 @@ void weblet_build_and_show(CairoDockModuleInstance *myApplet)
 	}
 	else
 	{
-		cairo_dock_add_interactive_widget_to_desklet_full (myData.pGtkMozEmbed, myDesklet, myConfig.iRightMargin);
+		gldi_desklet_add_interactive_widget_with_margin (myDesklet, myData.pGtkMozEmbed, myConfig.iRightMargin);
 		CD_APPLET_SET_DESKLET_RENDERER (NULL);
 	}
 }
 
-gboolean cd_weblets_refresh_page (CairoDockModuleInstance *myApplet)
+gboolean cd_weblets_refresh_page (GldiModuleInstance *myApplet)
 {
 	cd_message( "weblets: refreshing page.\n" );
 

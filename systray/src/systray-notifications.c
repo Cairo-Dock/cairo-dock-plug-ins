@@ -32,9 +32,9 @@
 CD_APPLET_ON_CLICK_BEGIN
 
 	if (myDesklet)
-		cairo_dock_show_desklet (myDesklet);
+		gldi_desklet_show (myDesklet);
 	else if (myData.dialog)
-		cairo_dock_toggle_dialog_visibility (myData.dialog);
+		gldi_dialog_toggle_visibility (myData.dialog);
 
 CD_APPLET_ON_CLICK_END
 
@@ -44,7 +44,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	if (myData.tray)
 	{
 		if (myData.dialog)
-			cairo_dock_hide_dialog (myData.dialog);
+			gldi_dialog_hide (myData.dialog);
 	}
 
 CD_APPLET_ON_MIDDLE_CLICK_END

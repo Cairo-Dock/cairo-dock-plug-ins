@@ -56,7 +56,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 CD_APPLET_RESET_CONFIG_END
 
 
-void cd_weather_reset_all_datas (CairoDockModuleInstance *myApplet)
+void cd_weather_reset_all_datas (GldiModuleInstance *myApplet)
 {
 	cairo_dock_discard_task (myData.pTask);
 	cairo_dock_discard_task (myData.pGetLocationTask);
@@ -92,13 +92,13 @@ static void _cd_weather_location_choosed (GtkMenuItem *pMenuItem, gchar *cLocati
 	g_return_if_fail (cLocationCode != NULL);
 	
 	//\____________________ On met a jour le panneau de conf.
-	CairoDockModuleInstance *myApplet = g_object_get_data (G_OBJECT (pMenuItem), "cd-applet");
+	GldiModuleInstance *myApplet = g_object_get_data (G_OBJECT (pMenuItem), "cd-applet");
 	GtkWidget *pCodeEntry = myData.pCodeEntry;
 	if (pCodeEntry)
 		gtk_entry_set_text (GTK_ENTRY (pCodeEntry), cLocationCode);
 	cd_weather_free_location_list ();
 }
-static void _on_got_location_data (const gchar *cLocationData, CairoDockModuleInstance *myApplet)
+static void _on_got_location_data (const gchar *cLocationData, GldiModuleInstance *myApplet)
 {
 	GError *erreur = NULL;
 	cd_weather_free_location_list ();
@@ -117,7 +117,7 @@ static void _on_got_location_data (const gchar *cLocationData, CairoDockModuleIn
 	if (erreur != NULL)
 	{
 		gchar *cIconPath = g_strdup_printf ("%s/broken.png", MY_APPLET_SHARE_DATA_DIR);
-		cairo_dock_show_temporary_dialog_with_icon (D_("I couldn't get the info\n Is connexion alive ?"),
+		gldi_dialog_show_temporary_with_icon (D_("I couldn't get the info\n Is connexion alive ?"),
 			myIcon,
 			myContainer,
 			0,
@@ -131,7 +131,7 @@ static void _on_got_location_data (const gchar *cLocationData, CairoDockModuleIn
 	else if (s_pLocationsList == NULL)
 	{
 		gchar *cIconPath = g_strdup_printf ("%s/broken.png", MY_APPLET_SHARE_DATA_DIR);
-		cairo_dock_show_temporary_dialog_with_icon (D_("I couldn't find this location"),
+		gldi_dialog_show_temporary_with_icon (D_("I couldn't find this location"),
 			myIcon,
 			myContainer,
 			0,
@@ -175,7 +175,7 @@ static void _on_got_location_data (const gchar *cLocationData, CairoDockModuleIn
 	myData.pGetLocationTask = NULL;
 }
 #define CD_WEATHER_BASE_URL "http://xml.weather.com"
-static void _cd_weather_search_for_location (GtkEntry *pEntry, CairoDockModuleInstance *myApplet)
+static void _cd_weather_search_for_location (GtkEntry *pEntry, GldiModuleInstance *myApplet)
 {
 	const gchar *cLocationName = gtk_entry_get_text (pEntry);
 	if (cLocationName == NULL || *cLocationName == '\0')
@@ -192,11 +192,11 @@ static void _cd_weather_search_for_location (GtkEntry *pEntry, CairoDockModuleIn
 	myData.pGetLocationTask = cairo_dock_get_url_data_async (cURL, (GFunc) _on_got_location_data, myApplet);
 	g_free (cURL);
 }
-static void _on_destroyed_code_entry (GtkWidget *pEntry, CairoDockModuleInstance *myApplet)
+static void _on_destroyed_code_entry (GtkWidget *pEntry, GldiModuleInstance *myApplet)
 {
 	myData.pCodeEntry = NULL;
 }
-void cd_weather_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile, GSList *pWidgetList)
+void cd_weather_load_custom_widget (GldiModuleInstance *myApplet, GKeyFile* pKeyFile, GSList *pWidgetList)
 {
 	if (!myApplet)  // if called when the applet is not started
 		return;

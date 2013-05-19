@@ -24,10 +24,10 @@
 #include <cairo-dock.h>
 
 
-void cd_menu_append_recent_to_menu (GtkWidget *top_menu, CairoDockModuleInstance *myApplet);
+void cd_menu_append_recent_to_menu (GtkWidget *top_menu, GldiModuleInstance *myApplet);
 
 
-void cd_menu_clear_recent (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet);
+void cd_menu_clear_recent (GtkMenuItem *menu_item, GldiModuleInstance *myApplet);
 
 
 #endif

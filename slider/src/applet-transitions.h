@@ -27,23 +27,23 @@
 //#define _get_frame_linewidth(myApplet) 5*MIN (6, .1 * MIN (myData.iSurfaceWidth, myData.iSurfaceHeight))
 #define _get_frame_linewidth(myApplet) (2*myConfig.iFrameWidth)
 
-void cd_slider_draw_default (CairoDockModuleInstance *myApplet);
+void cd_slider_draw_default (GldiModuleInstance *myApplet);
 
-gboolean cd_slider_fade (CairoDockModuleInstance *myApplet);
+gboolean cd_slider_fade (GldiModuleInstance *myApplet);
 
-gboolean cd_slider_blank_fade (CairoDockModuleInstance *myApplet);
+gboolean cd_slider_blank_fade (GldiModuleInstance *myApplet);
 
-gboolean cd_slider_fade_in_out (CairoDockModuleInstance *myApplet);
+gboolean cd_slider_fade_in_out (GldiModuleInstance *myApplet);
 
-gboolean cd_slider_side_kick (CairoDockModuleInstance *myApplet);
+gboolean cd_slider_side_kick (GldiModuleInstance *myApplet);
 
-gboolean cd_slider_diaporama (CairoDockModuleInstance *myApplet);
+gboolean cd_slider_diaporama (GldiModuleInstance *myApplet);
 
-gboolean cd_slider_grow_up (CairoDockModuleInstance *myApplet);
+gboolean cd_slider_grow_up (GldiModuleInstance *myApplet);
 
-gboolean cd_slider_shrink_down (CairoDockModuleInstance *myApplet);
+gboolean cd_slider_shrink_down (GldiModuleInstance *myApplet);
 
-gboolean cd_slider_cube (CairoDockModuleInstance *myApplet);
+gboolean cd_slider_cube (GldiModuleInstance *myApplet);
 
 
 #endif

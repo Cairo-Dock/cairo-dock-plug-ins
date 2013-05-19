@@ -41,25 +41,25 @@ void cd_do_open_session (void)
 	// register to draw on dock.
 	if (cd_do_session_is_off ())
 	{
-		cairo_dock_register_notification_on_object (g_pMainDock,
+		gldi_object_register_notification (g_pMainDock,
 			NOTIFICATION_UPDATE,
-			(CairoDockNotificationFunc) cd_do_update_container,
-			CAIRO_DOCK_RUN_AFTER, NULL);
-		cairo_dock_register_notification_on_object (g_pMainDock,
+			(GldiNotificationFunc) cd_do_update_container,
+			GLDI_RUN_AFTER, NULL);
+		gldi_object_register_notification (g_pMainDock,
 			NOTIFICATION_RENDER,
-			(CairoDockNotificationFunc) cd_do_render,
-			CAIRO_DOCK_RUN_AFTER, NULL);
+			(GldiNotificationFunc) cd_do_render,
+			GLDI_RUN_AFTER, NULL);
 	}
 	
 	// wait for keyboard input.
-	cairo_dock_register_notification_on_object (&myContainersMgr,
+	gldi_object_register_notification (&myContainersMgr,
 		NOTIFICATION_KEY_PRESSED,
-		(CairoDockNotificationFunc) cd_do_key_pressed,
-		CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification_on_object (&myDesktopMgr,
+		(GldiNotificationFunc) cd_do_key_pressed,
+		GLDI_RUN_AFTER, NULL);
+	gldi_object_register_notification (&myDesktopMgr,
 		NOTIFICATION_WINDOW_ACTIVATED,
-		(CairoDockNotificationFunc) cd_do_check_active_dock,
-		CAIRO_DOCK_RUN_AFTER, NULL);
+		(GldiNotificationFunc) cd_do_check_active_dock,
+		GLDI_RUN_AFTER, NULL);
 	
 	myData.sCurrentText = g_string_sized_new (20);
 	myConfig.labelDescription.iSize = myConfig.fFontSizeRatio * g_pMainDock->iMaxDockHeight;
@@ -98,12 +98,12 @@ void cd_do_close_session (void)
 		return;
 	
 	// no more keyboard input.
-	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
+	gldi_object_remove_notification (&myContainersMgr,
 		NOTIFICATION_KEY_PRESSED,
-		(CairoDockNotificationFunc) cd_do_key_pressed, NULL);
-	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
+		(GldiNotificationFunc) cd_do_key_pressed, NULL);
+	gldi_object_remove_notification (&myDesktopMgr,
 		NOTIFICATION_WINDOW_ACTIVATED,
-		(CairoDockNotificationFunc) cd_do_check_active_dock, NULL);
+		(GldiNotificationFunc) cd_do_check_active_dock, NULL);
 	
 	g_string_free (myData.sCurrentText, TRUE);
 	myData.sCurrentText = NULL;
@@ -146,8 +146,8 @@ void cd_do_exit_session (void)
 	
 	myData.iCloseTime = 0;
 	
-	cairo_dock_remove_notification_func_on_object (g_pMainDock, NOTIFICATION_RENDER, (CairoDockNotificationFunc) cd_do_render, NULL);
-	cairo_dock_remove_notification_func_on_object (g_pMainDock, NOTIFICATION_UPDATE, (CairoDockNotificationFunc) cd_do_update_container, NULL);
+	gldi_object_remove_notification (g_pMainDock, NOTIFICATION_RENDER, (GldiNotificationFunc) cd_do_render, NULL);
+	gldi_object_remove_notification (g_pMainDock, NOTIFICATION_UPDATE, (GldiNotificationFunc) cd_do_update_container, NULL);
 	
 	/// arreter les backends...
 	

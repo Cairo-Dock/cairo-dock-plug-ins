@@ -57,7 +57,7 @@ struct _AppletData {
 	IndicatorObject *pIndicator;
 	IndicatorObjectEntry *pEntry;
 	#endif
-	CairoKeyBinding *pKeyBinding;
+	GldiShortkey *pKeyBinding;
 	} ;
 
 

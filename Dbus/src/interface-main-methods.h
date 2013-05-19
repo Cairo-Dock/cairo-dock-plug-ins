@@ -74,4 +74,13 @@ gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBus
 gboolean cd_dbus_main_set_progress (dbusMainObject *dbusMainObject, double fPercent, gchar *cIconQuery, GError **error);
 
 
+gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pProperties, gchar **cConfigFile, GError **error);
+
+gboolean cd_dbus_main_reload (dbusMainObject *pDbusCallback, gchar *cQuery, GError **error);
+
+gboolean cd_dbus_main_remove (dbusMainObject *pDbusCallback, gchar *cQuery, GError **error);
+
+gboolean cd_dbus_main_get_properties (dbusMainObject *pDbusCallback, gchar *cQuery, GPtrArray **pIconAttributes, GError **error);
+
+
 #endif

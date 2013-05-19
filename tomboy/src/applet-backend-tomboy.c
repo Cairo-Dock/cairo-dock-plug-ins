@@ -531,7 +531,7 @@ static void run_manager (void)
 				cCommand = "gnote &";
 			break;
 		}
-		cairo_dock_show_temporary_dialog_with_icon_printf ("Launching %s...",
+		gldi_dialog_show_temporary_with_icon_printf ("Launching %s...",
 			myIcon, myContainer,
 			2000,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,

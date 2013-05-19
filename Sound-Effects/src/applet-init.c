@@ -40,35 +40,35 @@ CD_APPLET_DEFINE_END
 static void _register_notifications (void)
 {
 	if (myConfig.bPlayOnClick)
-		cairo_dock_register_notification_on_object (&myContainersMgr,
+		gldi_object_register_notification (&myContainersMgr,
 			NOTIFICATION_CLICK_ICON,
-			(CairoDockNotificationFunc) cd_sound_on_click,
-			CAIRO_DOCK_RUN_FIRST, NULL);
+			(GldiNotificationFunc) cd_sound_on_click,
+			GLDI_RUN_FIRST, NULL);
 	
 	if (myConfig.bPlayOnMiddleClick)
-		cairo_dock_register_notification_on_object (&myContainersMgr,
+		gldi_object_register_notification (&myContainersMgr,
 			NOTIFICATION_MIDDLE_CLICK_ICON,
-			(CairoDockNotificationFunc) cd_sound_on_middle_click,
-			CAIRO_DOCK_RUN_FIRST, NULL);
+			(GldiNotificationFunc) cd_sound_on_middle_click,
+			GLDI_RUN_FIRST, NULL);
 	
 	if (myConfig.bPlayOnHover)
-		cairo_dock_register_notification_on_object (&myContainersMgr,
+		gldi_object_register_notification (&myContainersMgr,
 			NOTIFICATION_ENTER_ICON,
-			(CairoDockNotificationFunc) cd_sound_on_hover,
-			CAIRO_DOCK_RUN_FIRST, NULL);
+			(GldiNotificationFunc) cd_sound_on_hover,
+			GLDI_RUN_FIRST, NULL);
 }
 
 static void _unregister_notifications (void)
 {
-	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
+	gldi_object_remove_notification (&myContainersMgr,
 		NOTIFICATION_CLICK_ICON,
-		(CairoDockNotificationFunc) cd_sound_on_click, NULL);
-	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
+		(GldiNotificationFunc) cd_sound_on_click, NULL);
+	gldi_object_remove_notification (&myContainersMgr,
 		NOTIFICATION_MIDDLE_CLICK_ICON,
-		(CairoDockNotificationFunc) cd_sound_on_middle_click, NULL);
-	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
+		(GldiNotificationFunc) cd_sound_on_middle_click, NULL);
+	gldi_object_remove_notification (&myContainersMgr,
 		NOTIFICATION_ENTER_ICON,
-		(CairoDockNotificationFunc) cd_sound_on_hover, NULL);
+		(GldiNotificationFunc) cd_sound_on_hover, NULL);
 }
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).

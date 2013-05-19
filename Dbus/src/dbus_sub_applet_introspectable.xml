@@ -29,6 +29,7 @@
 			<arg name="iDuration" type="i" direction="in"/>
 			<arg name="cIconID" type="s" direction="in"/>
 		</method>>
+		<!-- Deprecated since 3.0 -->
 		<method name="AskQuestion">
 			<arg name="cMessage" type="s" direction="in"/>
 			<arg name="cIconID" type="s" direction="in"/>
@@ -44,7 +45,8 @@
 			<arg name="cInitialText" type="s" direction="in"/>
 			<arg name="cIconID" type="s" direction="in"/>
 		</method>
-
+		<!-- End of deprecated -->
+		
 		<method name="AddSubIcons">
 			<arg name="pIconFields" type="as" direction="in"/>
 		</method>

@@ -98,7 +98,7 @@ static gchar * _penguin_get_animation_properties (GKeyFile *pKeyFile, const gcha
 }
 
 
-void penguin_load_theme (CairoDockModuleInstance *myApplet, gchar *cThemePath)
+void penguin_load_theme (GldiModuleInstance *myApplet, gchar *cThemePath)
 {
 	g_return_if_fail (cThemePath != NULL);
 	cd_message ("%s (%s)", __func__, cThemePath);

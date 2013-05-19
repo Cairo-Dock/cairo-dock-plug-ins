@@ -81,7 +81,7 @@ static gboolean _load_pixbuf (GtkTreeModel *pModelFilter, GtkTreePath *path, Gtk
 }
 
 static gboolean _on_entry_changed (GtkWidget *pEntry,
-	CairoDockModuleInstance *myApplet)
+	GldiModuleInstance *myApplet)
 {
 	const gchar *cText = gtk_entry_get_text (GTK_ENTRY (pEntry));
 	g_print ("%s (%s)\n", __func__, cText);
@@ -174,7 +174,7 @@ static gboolean _select_last (GtkTreeModel *pModel, GtkTreePath *path, GtkTreeIt
 
 static gboolean _on_key_pressed_menu (GtkWidget *pMenuItem,
 	GdkEventKey *pEvent,
-	CairoDockModuleInstance *myApplet)
+	GldiModuleInstance *myApplet)
 {
 	// redirect the signal to the entry
 	g_signal_emit_by_name (myData.pEntry, "key-press-event", pEvent, myApplet);

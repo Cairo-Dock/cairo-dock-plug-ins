@@ -38,14 +38,14 @@ CD_APPLET_DEFINE_BEGIN (N_("Folders"),
 	"Fabounet")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_ALLOW_EMPTY_TITLE
-	cairo_dock_register_notification_on_object (&myContainersMgr,
+	gldi_object_register_notification (&myContainersMgr,
 		NOTIFICATION_DROP_DATA,
-		(CairoDockNotificationFunc) cd_folders_on_drop_data,
-		CAIRO_DOCK_RUN_FIRST, NULL);
+		(GldiNotificationFunc) cd_folders_on_drop_data,
+		GLDI_RUN_FIRST, NULL);
 CD_APPLET_DEFINE_END
 
 
-static inline void _set_comparaison_func (CairoDockModuleInstance *myApplet)
+static inline void _set_comparaison_func (GldiModuleInstance *myApplet)
 {
 	switch (myConfig.iSortType)
 	{
@@ -63,7 +63,7 @@ static inline void _set_comparaison_func (CairoDockModuleInstance *myApplet)
 	}
 }
 
-static inline void _set_icon_label (CairoDockModuleInstance *myApplet)
+static inline void _set_icon_label (GldiModuleInstance *myApplet)
 {
 	if (myDock && myConfig.cDefaultTitle == NULL && myConfig.cDirPath != NULL)
 	{
@@ -84,7 +84,7 @@ CD_APPLET_INIT_BEGIN
 	if (myConfig.cDirPath == NULL)
 	{
 		CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cImageFile);
-		cairo_dock_show_temporary_dialog_with_icon (D_("Open the configuration of the applet to choose a folder to import."),
+		gldi_dialog_show_temporary_with_icon (D_("Open the configuration of the applet to choose a folder to import."),
 			myIcon, myContainer,
 			8000.,
 			myConfig.iSubdockViewType == 0 ? "same icon" : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
@@ -129,9 +129,9 @@ CD_APPLET_INIT_END
 CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
-	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
+	gldi_object_remove_notification (&myContainersMgr,
 		NOTIFICATION_CLICK_ICON,
-		(CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC,
+		(GldiNotificationFunc) CD_APPLET_ON_CLICK_FUNC,
 		myApplet);
 	
 CD_APPLET_STOP_END
@@ -147,7 +147,7 @@ CD_APPLET_RELOAD_BEGIN
 		if (myConfig.cDirPath == NULL)
 		{
 			CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cImageFile);
-			cairo_dock_show_temporary_dialog_with_icon (D_("Open the configuration of the applet to choose a folder to import."),
+			gldi_dialog_show_temporary_with_icon (D_("Open the configuration of the applet to choose a folder to import."),
 				myIcon, myContainer,
 				8000.,
 				myConfig.iSubdockViewType == 0 ? "same icon" : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
@@ -162,7 +162,7 @@ CD_APPLET_RELOAD_BEGIN
 			}
 			else if (myDock && myIcon->pSubDock)  // dans ce cas on veut un comportement de type lanceur, donc on ne veut pas d'un sous-dock vide.
 			{
-				cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->cName);
+				gldi_object_unref (GLDI_OBJECT(myIcon->pSubDock));
 				myIcon->pSubDock = NULL;
 			}
 			

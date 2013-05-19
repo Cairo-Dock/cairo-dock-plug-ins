@@ -92,7 +92,7 @@ static inline void _init_sensors (void)
 	}
 }
 
-void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
+void cd_sysmonitor_get_sensors_data (GldiModuleInstance *myApplet)
 {
 	_init_sensors ();
 	if (s_iSensorsState != 1)
@@ -257,7 +257,7 @@ void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet)
 }
 
 
-void cd_sysmonitor_get_sensors_info (CairoDockModuleInstance *myApplet, GString *pInfo)
+void cd_sysmonitor_get_sensors_info (GldiModuleInstance *myApplet, GString *pInfo)
 {
 	_init_sensors ();
 	if (s_iSensorsState != 1)
@@ -404,13 +404,13 @@ void cd_sysmonitor_get_sensors_info (CairoDockModuleInstance *myApplet, GString 
 	}
 }
 
-void cd_cpu_alert (CairoDockModuleInstance *myApplet)
+void cd_cpu_alert (GldiModuleInstance *myApplet)
 {
 	if (myData.bCPUAlerted || ! myConfig.bAlert)
 		return;
 	
-	cairo_dock_remove_dialog_if_any (myIcon);
-	cairo_dock_show_temporary_dialog_with_icon_printf (D_("CPU temperature has reached %d°C"), myIcon, myContainer, 4e3, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, myData.iCPUTemp);
+	gldi_dialogs_remove_on_icon (myIcon);
+	gldi_dialog_show_temporary_with_icon_printf (D_("CPU temperature has reached %d°C"), myIcon, myContainer, 4e3, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, myData.iCPUTemp);
 	
 	if (myConfig.bAlertSound)
 		cairo_dock_play_sound (myConfig.cSoundPath);
@@ -418,13 +418,13 @@ void cd_cpu_alert (CairoDockModuleInstance *myApplet)
 	myData.bCPUAlerted = TRUE;
 }
 
-void cd_fan_alert (CairoDockModuleInstance *myApplet)
+void cd_fan_alert (GldiModuleInstance *myApplet)
 {
 	if (myData.bFanAlerted || ! myConfig.bAlert)
 		return;
 	
-	cairo_dock_remove_dialog_if_any (myIcon);
-	cairo_dock_show_temporary_dialog_with_icon_printf (D_("Fan speed has reached %d rpm"), myIcon, myContainer, 4e3, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, myData.iFanSpeed);
+	gldi_dialogs_remove_on_icon (myIcon);
+	gldi_dialog_show_temporary_with_icon_printf (D_("Fan speed has reached %d rpm"), myIcon, myContainer, 4e3, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, myData.iFanSpeed);
 	
 	if (myConfig.bAlertSound)
 		cairo_dock_play_sound (myConfig.cSoundPath);

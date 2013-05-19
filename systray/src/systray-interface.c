@@ -33,13 +33,15 @@
 
 void cd_systray_build_dialog (void)
 {
-	CairoDialogAttribute attr;
-	memset (&attr, 0, sizeof (CairoDialogAttribute));
+	CairoDialogAttr attr;
+	memset (&attr, 0, sizeof (CairoDialogAttr));
 	attr.pInteractiveWidget = GTK_WIDGET (myData.tray);
 	attr.bHideOnClick = TRUE;  // keep the dialog alive on click (hide it).
-	myData.dialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);
+	attr.pIcon = myIcon;
+	attr.pContainer = myContainer;
+	myData.dialog = gldi_dialog_new (&attr);
 	gtk_window_set_resizable (GTK_WINDOW(myData.dialog->container.pWidget), FALSE);  /// utile ?...
-	cairo_dock_hide_dialog (myData.dialog);
+	gldi_dialog_hide (myData.dialog);
 }
 
 void cd_systray_build_systray (void)
@@ -58,7 +60,7 @@ void cd_systray_build_systray (void)
 	}
 	else
 	{
-		cairo_dock_add_interactive_widget_to_desklet (GTK_WIDGET (myData.tray), myDesklet);
+		gldi_desklet_add_interactive_widget (myDesklet, GTK_WIDGET (myData.tray));
 		CD_APPLET_SET_DESKLET_RENDERER (NULL);
 	}
 	gtk_widget_show (GTK_WIDGET (myData.tray));
@@ -69,7 +71,7 @@ void cd_systray_check_running (void)
 {
 	if (na_tray_manager_check_running (gtk_widget_get_screen (GTK_WIDGET (myContainer->pWidget))) && ! cairo_dock_is_loading ())
 	{
-		cairo_dock_show_temporary_dialog_with_icon (D_("Another systray is already running (probably on your panel)\nSince there can only be one systray at once, you should remove it to avoid any conflict."), myIcon, myContainer, 8000, NULL);
+		gldi_dialog_show_temporary_with_icon (D_("Another systray is already running (probably on your panel)\nSince there can only be one systray at once, you should remove it to avoid any conflict."), myIcon, myContainer, 8000, NULL);
 	}
 }
 
@@ -79,9 +81,9 @@ void systray_on_keybinding_pull (const char *keystring, gpointer user_data)
 	if (myData.tray)
 	{
 		if (myDesklet)
-			cairo_dock_show_desklet(myDesklet);
+			gldi_desklet_show(myDesklet);
 		else if (myData.dialog)
-			cairo_dock_unhide_dialog(myData.dialog);
+			gldi_dialog_unhide (myData.dialog);
 	}
 }
 

@@ -25,11 +25,11 @@
 #include "applet-stack.h"
  
 
-void cd_stack_check_local (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile)
+void cd_stack_check_local (GldiModuleInstance *myApplet, GKeyFile *pKeyFile)
 {
 	// be sure to not use the stack dir of another instance (it can happen when the applet is multi-instanciated, since new instances are initialized with the conf file of the first instance when they are created).
 	GList *mi;
-	CairoDockModuleInstance *applet;
+	GldiModuleInstance *applet;
 	AppletConfig *cfg;
 	for (mi = myApplet->pModule->pInstancesList; mi!= NULL; mi = mi->next)
 	{
@@ -77,7 +77,7 @@ void cd_stack_check_local (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile
 	}
 }
 
-void cd_stack_clear_stack (CairoDockModuleInstance *myApplet)
+void cd_stack_clear_stack (GldiModuleInstance *myApplet)
 {
 	gchar *cCommand = g_strdup_printf("rm -rf \"%s\"/*", myConfig.cStackDir);
 	cd_debug("Stack: will use '%s'", cCommand);
@@ -89,13 +89,13 @@ void cd_stack_clear_stack (CairoDockModuleInstance *myApplet)
 	CD_APPLET_DELETE_MY_ICONS_LIST;
 	if (myDock)  // on ne veut pas d'un sous-dock vide, meme si on va probablement y rajouter des items aussitot.
 	{
-		cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->cName);
+		gldi_object_unref (GLDI_OBJECT(myIcon->pSubDock));
 		myIcon->pSubDock = NULL;
 	}
 }
 
 
-void cd_stack_remove_item (CairoDockModuleInstance *myApplet, Icon *pIcon)
+void cd_stack_remove_item (GldiModuleInstance *myApplet, Icon *pIcon)
 {
 	gchar *cFilePath = g_strdup_printf ("%s/%s", myConfig.cStackDir, pIcon->cDesktopFileName);
 	cd_message ("removing %s...", cFilePath);
@@ -108,7 +108,7 @@ void cd_stack_remove_item (CairoDockModuleInstance *myApplet, Icon *pIcon)
 
 static void _get_html_page (CDHtmlLink *pHtmlLink)
 {
-	// CairoDockModuleInstance *myApplet = pHtmlLink->pApplet;
+	// GldiModuleInstance *myApplet = pHtmlLink->pApplet;
 	// get the HTML page content
 	gchar *cPageContent = cairo_dock_get_url_data (pHtmlLink->cURL, NULL);
 	if (cPageContent == NULL)
@@ -240,7 +240,7 @@ static void _get_html_page (CDHtmlLink *pHtmlLink)
 
 static gboolean _update_html_link (CDHtmlLink *pHtmlLink)
 {
-	CairoDockModuleInstance *myApplet = pHtmlLink->pApplet;
+	GldiModuleInstance *myApplet = pHtmlLink->pApplet;
 	CD_APPLET_ENTER;
 	
 	// store in the conf file.
@@ -261,7 +261,7 @@ static gboolean _update_html_link (CDHtmlLink *pHtmlLink)
 			pIcon = ic->data;
 			if (pIcon->cDesktopFileName && strcmp (pIcon->cDesktopFileName, cDesktopFileName) == 0)
 			{
-				CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+				GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 				
 				cairo_dock_set_icon_name (pHtmlLink->cTitle, pIcon, pContainer);
 				
@@ -289,7 +289,7 @@ static void _free_html_link (CDHtmlLink *pHtmlLink)
 	g_free (pHtmlLink);
 }
 
-static void _set_icon_order (Icon *pIcon, CairoDockModuleInstance *myApplet, GCompareFunc comp)
+static void _set_icon_order (Icon *pIcon, GldiModuleInstance *myApplet, GCompareFunc comp)
 {
 	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
 	Icon *icon;
@@ -311,7 +311,7 @@ static void _set_icon_order (Icon *pIcon, CairoDockModuleInstance *myApplet, GCo
 		}
 	}
 }
-static Icon *_cd_stack_create_new_item (CairoDockModuleInstance *myApplet, const gchar *cContent)
+static Icon *_cd_stack_create_new_item (GldiModuleInstance *myApplet, const gchar *cContent)
 {
 	gchar *cName;
 	double fOrder = 0;
@@ -432,7 +432,7 @@ static Icon *_cd_stack_create_new_item (CairoDockModuleInstance *myApplet, const
 	return pIcon;
 }
 
-void cd_stack_create_and_load_item (CairoDockModuleInstance *myApplet, const gchar *cContent)
+void cd_stack_create_and_load_item (GldiModuleInstance *myApplet, const gchar *cContent)
 {
 	//\_______________________ On cree l'item.
 	Icon *pIcon = _cd_stack_create_new_item (myApplet, cContent);

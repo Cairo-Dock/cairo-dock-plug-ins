@@ -26,7 +26,7 @@
 
 CD_APPLET_CONFIG_H
 
-void cd_quick_browser_destroy_menu (CairoDockModuleInstance *myApplet);
+void cd_quick_browser_destroy_menu (GldiModuleInstance *myApplet);
 
 
 #endif

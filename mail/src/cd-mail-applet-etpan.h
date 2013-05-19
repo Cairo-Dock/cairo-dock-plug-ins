@@ -28,10 +28,10 @@ void cd_mail_get_folder_data(CDMailAccount *pMailAccount);
 gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount );
 void cd_mail_mark_all_mails_as_read(CDMailAccount *pMailAccount);
 
-void cd_mail_load_icons( CairoDockModuleInstance *myApplet );
-void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gboolean bSignalNewMessages);
+void cd_mail_load_icons( GldiModuleInstance *myApplet );
+void cd_mail_draw_main_icon (GldiModuleInstance *myApplet, gboolean bSignalNewMessages);
 
-void cd_mail_render_3D_to_texture (CairoDockModuleInstance *myApplet);
+void cd_mail_render_3D_to_texture (GldiModuleInstance *myApplet);
 
 
 #endif

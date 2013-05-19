@@ -70,10 +70,10 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
-	cairo_dock_register_notification_on_object (&myDesktopMgr,
+	gldi_object_register_notification (&myDesktopMgr,
 		NOTIFICATION_KBD_STATE_CHANGED,
-		(CairoDockNotificationFunc) cd_xkbd_keyboard_state_changed,
-		CAIRO_DOCK_RUN_AFTER,
+		(GldiNotificationFunc) cd_xkbd_keyboard_state_changed,
+		GLDI_RUN_AFTER,
 		myApplet);
 	
 	// shortkey
@@ -97,15 +97,15 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
-	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
+	gldi_object_remove_notification (&myDesktopMgr,
                 NOTIFICATION_KBD_STATE_CHANGED,
-		(CairoDockNotificationFunc) cd_xkbd_keyboard_state_changed,
+		(GldiNotificationFunc) cd_xkbd_keyboard_state_changed,
 		myApplet);
 	CD_APPLET_REMOVE_TRANSITION_ON_MY_ICON;
 
 	cd_xkbd_stop ();
 
-	cd_keybinder_unbind (myData.pKeyBinding);
+	gldi_object_unref (GLDI_OBJECT(myData.pKeyBinding));
 CD_APPLET_STOP_END
 
 
@@ -143,7 +143,7 @@ CD_APPLET_RELOAD_BEGIN
 		//\_____________ On declenche le redessin de l'icone.
 		cd_xkbd_force_redraw ();
 		
-		cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
+		gldi_shortkey_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
 	}
 	else
 	{

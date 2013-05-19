@@ -698,7 +698,7 @@ static void _vfs_backend_mount_callback(ThunarVfsVolume *volume, gpointer *data)
 	pCallback (GPOINTER_TO_INT (data[1]), TRUE, data[2], data[3], data[4]);
 }*/
 
-void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, CairoContainer *pContainer)
+void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, GldiContainer *pContainer)
 {
 	GError *erreur = NULL;
 	g_return_if_fail (cURI != NULL);
@@ -738,7 +738,7 @@ void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallba
 	g_free (data2);
 }
 
-void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, CairoContainer *pContainer)
+void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, GldiContainer *pContainer)
 {
 	GError *erreur = NULL;
 	g_return_if_fail (cURI != NULL);

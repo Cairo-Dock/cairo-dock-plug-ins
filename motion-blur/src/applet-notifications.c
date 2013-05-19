@@ -30,19 +30,19 @@
 gboolean cd_motion_blur_pre_render (gpointer pUserData, CairoDock *pDock, cairo_t *pCairoContext)
 {
 	if (pCairoContext != NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	CDMotionBlurData *pData = CD_APPLET_GET_MY_DOCK_DATA (pDock);
 	
 	if ((pData != NULL && pData->iBlurCount != 0) || CD_DOCK_IN_MOVMENT (pDock))
 		glAccum(GL_MULT, myConfig.fBlurFactor);
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 gboolean cd_motion_blur_post_render (gpointer pUserData, CairoDock *pDock, cairo_t *pCairoContext)
 {
 	if (pCairoContext != NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	CDMotionBlurData *pData = CD_APPLET_GET_MY_DOCK_DATA (pDock);
 	
 	if ((pData != NULL && pData->iBlurCount != 0) || CD_DOCK_IN_MOVMENT (pDock))
@@ -57,14 +57,14 @@ gboolean cd_motion_blur_post_render (gpointer pUserData, CairoDock *pDock, cairo
 		glAccum (GL_ACCUM, 1.);
 	}
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
 gboolean cd_motion_blur_mouse_moved (gpointer pUserData, CairoDock *pDock, gboolean *bStartAnimation)
 {
 	if (! CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	CDMotionBlurData *pData = CD_APPLET_GET_MY_DOCK_DATA (pDock);
 	if (pData == NULL)
 	{
@@ -74,7 +74,7 @@ gboolean cd_motion_blur_mouse_moved (gpointer pUserData, CairoDock *pDock, gbool
 	pData->iBlurCount = -3 / log (myConfig.fBlurFactor);  // blur applied N times to get 10^-3
 	*bStartAnimation = TRUE;
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
@@ -82,7 +82,7 @@ gboolean cd_motion_blur_update_dock (gpointer pUserData, CairoDock *pDock, gbool
 {
 	CDMotionBlurData *pData = CD_APPLET_GET_MY_DOCK_DATA (pDock);
 	if (pData == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	if (! pDock->bIsShrinkingDown && ! pDock->bIsGrowingUp)
 		pData->iBlurCount --;
@@ -93,11 +93,11 @@ gboolean cd_motion_blur_update_dock (gpointer pUserData, CairoDock *pDock, gbool
 	{
 		g_free (pData);
 		CD_APPLET_SET_MY_DOCK_DATA (pDock, NULL);
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	}
 	
 	*bContinueAnimation = TRUE;
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 gboolean cd_motion_free_data (gpointer pUserData, CairoDock *pDock)
@@ -108,5 +108,5 @@ gboolean cd_motion_free_data (gpointer pUserData, CairoDock *pDock)
 		g_free (pData);
 		CD_APPLET_SET_MY_DOCK_DATA (pDock, NULL);
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }

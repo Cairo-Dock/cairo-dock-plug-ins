@@ -51,12 +51,14 @@ void cd_terminal_grab_focus (void)
 
 CairoDialog *cd_terminal_build_dialog (void)
 {
-	CairoDialogAttribute attr;
-	memset (&attr, 0, sizeof (CairoDialogAttribute));
+	CairoDialogAttr attr;
+	memset (&attr, 0, sizeof (CairoDialogAttr));
 	attr.cText = D_("Terminal");
 	attr.pInteractiveWidget = myData.tab;
 	attr.bHideOnClick = TRUE;  // keep the dialog alive on click (hide it).
-	return cairo_dock_build_dialog (&attr, myIcon, myContainer);
+	attr.pIcon = myIcon;
+	attr.pContainer = myContainer;
+	return gldi_dialog_new (&attr);
 }
 
 void term_on_keybinding_pull(const char *keystring, gpointer user_data)
@@ -75,17 +77,17 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 					vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), i);
 					bHasFocus = gtk_widget_has_focus (vterm);
 				}
-				bHasFocus |= (gldi_container_get_Xid (myContainer) == cairo_dock_get_current_active_window ());
+				bHasFocus |= (gldi_container_get_Xid (myContainer) == cairo_dock_get_active_xwindow ());
 			}
 			cd_debug ("%s (%d)", __func__, bHasFocus);
 			
 			if (bHasFocus)
 			{
-				cairo_dock_hide_desklet(myDesklet);
+				gldi_desklet_hide (myDesklet);
 			}
 			else
 			{
-				cairo_dock_show_desklet (myDesklet);
+				gldi_desklet_show (myDesklet);
 				
 			}
 		}
@@ -93,11 +95,11 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 		{
 			if (gldi_container_is_visible (CAIRO_CONTAINER (myData.dialog)))
 			{
-				cairo_dock_hide_dialog (myData.dialog);
+				gldi_dialog_hide (myData.dialog);
 			}
 			else
 			{
-				cairo_dock_unhide_dialog (myData.dialog);
+				gldi_dialog_unhide (myData.dialog);
 				cd_terminal_grab_focus ();
 			}
 		}
@@ -212,7 +214,7 @@ void terminal_rename_tab (GtkWidget *vterm)
 		gpointer *data = g_new (gpointer, 2);
 		data[0] = pLabel;
 		data[1] = pColor;
-		cairo_dock_show_dialog_with_entry (D_("Set title for this tab:"),
+		gldi_dialog_show_with_entry (D_("Set title for this tab:"),
 			myIcon, myContainer, "same icon",  /// NULL, (myDock ? CAIRO_CONTAINER (myData.dialog) : CAIRO_CONTAINER (myDesklet))
 			cUsefulLabel,
 			(CairoDockActionOnAnswerFunc)_on_got_tab_name, data, (GFreeFunc)_free_rename_data);
@@ -421,13 +423,13 @@ static void on_terminal_child_exited(VteTerminal *vterm,
 				FALSE);
 		#endif
 		if (myData.dialog)
-			cairo_dock_hide_dialog (myData.dialog);
+			gldi_dialog_hide (myData.dialog);
 		else if (myDesklet && myConfig.shortcut)
 		{
-			cairo_dock_hide_desklet (myDesklet);
-			Icon *icon = cairo_dock_get_dialogless_icon ();
+			gldi_desklet_hide (myDesklet);
+			Icon *icon = gldi_icons_get_any_without_dialog ();
 			g_return_if_fail (icon != NULL);
-			cairo_dock_show_temporary_dialog_with_icon_printf (D_("You can recall the Terminal desklet by typing %s"), icon, CAIRO_CONTAINER (g_pMainDock), 3500, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, myConfig.shortcut);
+			gldi_dialog_show_temporary_with_icon_printf (D_("You can recall the Terminal desklet by typing %s"), icon, CAIRO_CONTAINER (g_pMainDock), 3500, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, myConfig.shortcut);
 		}
 	}
 }
@@ -893,7 +895,7 @@ void terminal_build_and_show_tab (void)
 	}
 	else
 	{
-		cairo_dock_add_interactive_widget_to_desklet (myData.tab, myDesklet);
+		gldi_desklet_add_interactive_widget (myDesklet, myData.tab);
 		CD_APPLET_SET_DESKLET_RENDERER (NULL);  // pour empecher le clignotement du au double-buffer.
 	}
 }

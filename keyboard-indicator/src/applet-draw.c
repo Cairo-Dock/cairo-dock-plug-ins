@@ -151,7 +151,7 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 }
 
 
-gboolean cd_xkbd_render_step_opengl (Icon *pIcon, CairoDockModuleInstance *myApplet)
+gboolean cd_xkbd_render_step_opengl (Icon *pIcon, GldiModuleInstance *myApplet)
 {
 	g_return_val_if_fail (myData.pCurrentImage != NULL, FALSE);
 	CD_APPLET_ENTER;
@@ -223,7 +223,7 @@ gboolean cd_xkbd_render_step_opengl (Icon *pIcon, CairoDockModuleInstance *myApp
 }
 
 
-gboolean cd_xkbd_render_step_cairo (Icon *pIcon, CairoDockModuleInstance *myApplet)
+gboolean cd_xkbd_render_step_cairo (Icon *pIcon, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	double f = CD_APPLET_GET_TRANSITION_FRACTION ();

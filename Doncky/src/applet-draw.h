@@ -28,19 +28,19 @@ void ltrim( gchar* str, const gchar* t );
 void rtrim( gchar* str, const gchar* t );
 gchar *g_str_replace (gchar *cString, const gchar cWord, const gchar cReplace);
 void cd_doncky_get_color_from_xml (gchar *cNodeContent, double *fColor);
-void cd_doncky_export_color_to_conf (double *fColor, const gchar *cGroupName, const gchar *cParam, CairoDockModuleInstance *myApplet);
+void cd_doncky_export_color_to_conf (double *fColor, const gchar *cGroupName, const gchar *cParam, GldiModuleInstance *myApplet);
 // gchar *g_str_position (const gchar *cString, const int iPosition, const char cSeparator);
-double _Ko_to_Mo (CairoDockModuleInstance *myApplet , double fValueInKo);
-double _Ko_to_Go (CairoDockModuleInstance *myApplet , double fValueInKo);
+double _Ko_to_Mo (GldiModuleInstance *myApplet , double fValueInKo);
+double _Ko_to_Go (GldiModuleInstance *myApplet , double fValueInKo);
 
-void cd_launch_command (CairoDockModuleInstance *myApplet);
+void cd_launch_command (GldiModuleInstance *myApplet);
 
-gboolean cd_retrieve_command_result (CairoDockModuleInstance *myApplet);
+gboolean cd_retrieve_command_result (GldiModuleInstance *myApplet);
 
 
-void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, int iHeight);
+void cd_applet_draw_my_desklet (GldiModuleInstance *myApplet, int iWidth, int iHeight);
 
-void cd_applet_update_my_icon (CairoDockModuleInstance *myApplet);
+void cd_applet_update_my_icon (GldiModuleInstance *myApplet);
 
 
 #endif

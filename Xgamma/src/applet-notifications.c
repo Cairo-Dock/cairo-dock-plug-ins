@@ -66,13 +66,13 @@ static void _cd_xgamma_set_up_gamma_correction (void)
 			
 			if (myData.pDialog != NULL)
 			{
-				cairo_dock_unhide_dialog (myData.pDialog);
+				gldi_dialog_unhide (myData.pDialog);
 			}
 		}
 	}
 }
 
-static void _cd_xgamma_remember_current_gamma (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_xgamma_remember_current_gamma (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	double fGamma = xgamma_get_gamma (&myData.Xgamma);
 	g_return_if_fail (fGamma > 0);

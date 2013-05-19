@@ -2,10 +2,11 @@
 ########### sources ###############
 
 SET (cd-Dbus_LIB_SRCS
-	applet-init.c 			applet-init.h
+	applet-init.c 				applet-init.h
 	applet-config.c 			applet-config.h
-	applet-dbus.c 			applet-dbus.h
+	applet-dbus.c 				applet-dbus.h
 	interface-main-methods.c 	interface-main-methods.h
+	interface-main-query.c 		interface-main-query.h
 	interface-applet-object.c 	interface-applet-object.h
 	interface-applet-methods.c 	interface-applet-methods.h
 	interface-applet-signals.c 	interface-applet-signals.h

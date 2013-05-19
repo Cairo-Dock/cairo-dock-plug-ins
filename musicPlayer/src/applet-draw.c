@@ -137,7 +137,7 @@ void cd_musicplayer_update_icon (void)
  */
 void cd_musicplayer_popup_info (gint iDialogDuration)
 {
-	cairo_dock_remove_dialog_if_any (myIcon);
+	gldi_dialogs_remove_on_icon (myIcon);
 	if (myData.iPlayingStatus == PLAYER_PLAYING || myData.iPlayingStatus == PLAYER_PAUSED)
 	{
 		if (myData.cTitle || myData.cArtist || myData.cAlbum)
@@ -157,7 +157,7 @@ void cd_musicplayer_popup_info (gint iDialogDuration)
 					g_string_append_printf (sTrack, "/%d", myData.iTrackListLength);
 			}
 
-			cairo_dock_show_temporary_dialog_with_icon_printf (
+			gldi_dialog_show_temporary_with_icon_printf (
 				"%s: %s\n%s: %s\n%s: %s\n%s: %d:%02d%s",
 				myIcon,
 				myContainer,
@@ -184,7 +184,7 @@ void cd_musicplayer_popup_info (gint iDialogDuration)
 			else
 				str = myData.cPlayingUri;
 			cairo_dock_remove_html_spaces (str); // %20 => " "
-			cairo_dock_show_temporary_dialog_with_icon_printf ("%s : %s",
+			gldi_dialog_show_temporary_with_icon_printf ("%s : %s",
 				myIcon,
 				myContainer,
 				iDialogDuration,
@@ -195,7 +195,7 @@ void cd_musicplayer_popup_info (gint iDialogDuration)
 	}
 	else
 	{
-		cairo_dock_show_temporary_dialog_with_icon (D_("There is no media playing."),
+		gldi_dialog_show_temporary_with_icon (D_("There is no media playing."),
 			myIcon,
 			myContainer,
 			iDialogDuration,

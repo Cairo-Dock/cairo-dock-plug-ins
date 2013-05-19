@@ -59,7 +59,7 @@ CD_APPLET_INIT_BEGIN
 		D_("Show/hide the terminal"),
 		"Configuration", "shortkey",
 		(CDBindkeyHandler) term_on_keybinding_pull);
-	if (! cd_keybinder_could_grab (myData.cKeyBinding))  // si le bind n'a pas eu lieu, on s'en souvient. En effet, on a besoin de savoir si on pourra rappeler le desklet lors d'un 'exit' dans le dernier onglet pour cacher ou non le desklet.
+	if (! gldi_shortkey_could_grab (myData.cKeyBinding))  // si le bind n'a pas eu lieu, on s'en souvient. En effet, on a besoin de savoir si on pourra rappeler le desklet lors d'un 'exit' dans le dernier onglet pour cacher ou non le desklet.
 	{
 		g_free (myConfig.shortcut);
 		myConfig.shortcut = NULL;
@@ -72,7 +72,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	
-	cd_keybinder_unbind (myData.cKeyBinding);
+	gldi_object_unref (GLDI_OBJECT(myData.cKeyBinding));
 CD_APPLET_STOP_END
 
 
@@ -89,12 +89,12 @@ CD_APPLET_RELOAD_BEGIN
 			if (myDesklet)  // il faut passer du dialogue au desklet.
 			{
 				// on retire le terminal du dialogue.
-				myData.tab = cairo_dock_steal_interactive_widget_from_dialog (myData.dialog);
-				cairo_dock_dialog_unreference (myData.dialog);
+				myData.tab = gldi_dialog_steal_interactive_widget (myData.dialog);
+				gldi_object_unref (GLDI_OBJECT(myData.dialog));
 				myData.dialog = NULL;
 				
 				// on l'insere dans le desklet.
-				cairo_dock_add_interactive_widget_to_desklet (myData.tab, myDesklet);
+				gldi_desklet_add_interactive_widget (myDesklet, myData.tab);
 				g_object_unref (myData.tab);  // le 'steal' a rajoute une reference.
 				CD_APPLET_SET_DESKLET_RENDERER (NULL);  // pour empecher le clignotement du au double-buffer.
 				CD_APPLET_SET_STATIC_DESKLET;
@@ -102,11 +102,10 @@ CD_APPLET_RELOAD_BEGIN
 			else  // il faut passer du desklet au dialogue
 			{
 				// on retire le terminal du desklet.
-				myData.tab = cairo_dock_steal_interactive_widget_from_desklet (CAIRO_DESKLET (CD_APPLET_MY_OLD_CONTAINER));
-				///myData.tab = cairo_dock_steal_widget_from_its_container (myData.tab);
+				myData.tab = gldi_desklet_steal_interactive_widget (CAIRO_DESKLET (CD_APPLET_MY_OLD_CONTAINER));
 				myData.dialog = cd_terminal_build_dialog ();
 				g_object_unref (myData.tab);  // le 'steal' a rajoute une reference.
-				cairo_dock_hide_dialog (myData.dialog);
+				gldi_dialog_hide (myData.dialog);
 			}
 		}
 		
@@ -120,6 +119,6 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		}
 		
-		cd_keybinder_rebind (myData.cKeyBinding, myConfig.shortcut, NULL);
+		gldi_shortkey_rebind (myData.cKeyBinding, myConfig.shortcut, NULL);
 	}
 CD_APPLET_RELOAD_END

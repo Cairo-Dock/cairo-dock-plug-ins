@@ -35,9 +35,9 @@
 #include <gdk/gdkkeysyms-compat.h>
 #endif
 
-gboolean cd_do_render (gpointer pUserData, CairoContainer *pContainer, cairo_t *pCairoContext)
+gboolean cd_do_render (gpointer pUserData, GldiContainer *pContainer, cairo_t *pCairoContext)
 {
-	g_return_val_if_fail (!cd_do_session_is_off (), CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	g_return_val_if_fail (!cd_do_session_is_off (), GLDI_NOTIFICATION_LET_PASS);
 	
 	if (pCairoContext != NULL)
 	{
@@ -48,13 +48,13 @@ gboolean cd_do_render (gpointer pUserData, CairoContainer *pContainer, cairo_t *
 		cd_do_render_opengl (g_pMainDock);
 	}
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
-gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bContinueAnimation)
+gboolean cd_do_update_container (gpointer pUserData, GldiContainer *pContainer, gboolean *bContinueAnimation)
 {
-	g_return_val_if_fail (!cd_do_session_is_off (), CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	g_return_val_if_fail (!cd_do_session_is_off (), GLDI_NOTIFICATION_LET_PASS);
 	
 	int iDeltaT = cairo_dock_get_animation_delta_t (pContainer);
 	if (cd_do_session_is_closing ())
@@ -116,19 +116,19 @@ gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer,
 		cairo_dock_redraw_container (pContainer);
 	}
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
-/*gboolean cd_do_enter_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bStartAnimation)
+/*gboolean cd_do_enter_container (gpointer pUserData, GldiContainer *pContainer, gboolean *bStartAnimation)
 {
 	if (myData.sCurrentText == NULL || myData.bIgnoreIconState)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	cd_do_close_session ();
 	
 	*bStartAnimation = TRUE;
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }*/
 
 
@@ -140,25 +140,25 @@ static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, Window *d
 }
 gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow)
 {
-	g_return_val_if_fail (cd_do_session_is_running (), CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	g_return_val_if_fail (cd_do_session_is_running (), GLDI_NOTIFICATION_LET_PASS);
 	
 	if (myData.sCurrentText == NULL || XActiveWindow == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	Window data[2] = {*XActiveWindow, 0};
 	cairo_dock_foreach_docks ((GHFunc) _check_dock_is_active, data);
 	
 	if (data[1] == 0)
 		gtk_window_present (GTK_WINDOW (g_pMainDock->container.pWidget));
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
-gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guint iKeyVal, guint iModifierType, const gchar *string)
+gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint iKeyVal, guint iModifierType, const gchar *string)
 {
-	g_return_val_if_fail (cd_do_session_is_running (), CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	g_return_val_if_fail (cd_do_session_is_running (), GLDI_NOTIFICATION_LET_PASS);
 	
 	if (myData.sCurrentText == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	const gchar *cKeyName = gdk_keyval_name (iKeyVal);
 	guint32 iUnicodeChar = gdk_keyval_to_unicode (iKeyVal);
@@ -248,7 +248,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			if (pEntry->execute)
 				pEntry->execute (pEntry);
 			else
-				return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+				return GLDI_NOTIFICATION_INTERCEPT;
 		}
 		else if (myData.iNbValidCaracters > 0)  // pas d'entree mais du texte => on l'execute tel quel.
 		{
@@ -366,7 +366,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		cd_do_launch_appearance_animation ();
 	}
 	
-	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+	return GLDI_NOTIFICATION_INTERCEPT;
 }
 
 

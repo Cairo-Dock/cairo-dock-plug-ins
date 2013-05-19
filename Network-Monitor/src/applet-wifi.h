@@ -23,10 +23,10 @@
 #include <cairo-dock.h>
 
 
-void cd_netmonitor_launch_wifi_task (CairoDockModuleInstance *myApplet);
+void cd_netmonitor_launch_wifi_task (GldiModuleInstance *myApplet);
 
 
-void cd_netmonitor_free_wifi_task (CairoDockModuleInstance *myApplet);
+void cd_netmonitor_free_wifi_task (GldiModuleInstance *myApplet);
 
 
 #endif

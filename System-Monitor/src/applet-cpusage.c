@@ -69,7 +69,7 @@ void cd_sysmonitor_get_uptime_info (GString *pInfo)
 }
 
 
-static void _get_cpu_info (CairoDockModuleInstance *myApplet)
+static void _get_cpu_info (GldiModuleInstance *myApplet)
 {
 	gchar *cContent = NULL;
 	gsize length=0;
@@ -137,7 +137,7 @@ static void _get_cpu_info (CairoDockModuleInstance *myApplet)
 	g_free (cContent);
 }
 
-void cd_sysmonitor_get_cpu_info (CairoDockModuleInstance *myApplet, GString *pInfo)
+void cd_sysmonitor_get_cpu_info (GldiModuleInstance *myApplet, GString *pInfo)
 {
 	if (myData.iNbCPU == 0)  // on n'a encore jamais initialise ca.
 		_get_cpu_info (myApplet);
@@ -161,7 +161,7 @@ void cd_sysmonitor_get_cpu_info (CairoDockModuleInstance *myApplet, GString *pIn
 		myData.bAcquisitionOK = FALSE; \
 		return ; }
 
-void cd_sysmonitor_get_cpu_data (CairoDockModuleInstance *myApplet)
+void cd_sysmonitor_get_cpu_data (GldiModuleInstance *myApplet)
 {
 	static char cContent[512+1];
 	

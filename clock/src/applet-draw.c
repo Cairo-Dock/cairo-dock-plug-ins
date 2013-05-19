@@ -34,7 +34,7 @@ static char s_cDateBuffer[CD_CLOCK_DATE_BUFFER_LENGTH+1];
 ///#define MAX_RATIO 2.
 #define MIN_TEXT_HEIGHT 12.  // the text should be at least 12 pixels height, or it would be hard to read for a lot of people.
 
-static void _outlined_pango_cairo (CairoDockModuleInstance *myApplet, PangoLayout *pLayout)
+static void _outlined_pango_cairo (GldiModuleInstance *myApplet, PangoLayout *pLayout)
 {
 	cairo_save (myDrawContext);
 	cairo_set_source_rgba (myDrawContext,
@@ -48,7 +48,7 @@ static void _outlined_pango_cairo (CairoDockModuleInstance *myApplet, PangoLayou
 	cairo_restore (myDrawContext);
 }
 
-void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime)
+void cd_clock_draw_text (GldiModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime)
 {
 	CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN_CAIRO ();
 	/**g_return_if_fail (myDrawContext != NULL);
@@ -237,7 +237,7 @@ void cd_clock_draw_text (CairoDockModuleInstance *myApplet, int iWidth, int iHei
 }
 
 
-void cd_clock_draw_analogic (CairoDockModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime)
+void cd_clock_draw_analogic (GldiModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime)
 {
 	CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN_CAIRO ();
 	///g_return_if_fail (myDrawContext != NULL);
@@ -333,7 +333,7 @@ void cd_clock_draw_analogic (CairoDockModuleInstance *myApplet, int iWidth, int 
 }
 
 
-void cd_clock_render_analogic_to_texture (CairoDockModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime, double fFraction)
+void cd_clock_render_analogic_to_texture (GldiModuleInstance *myApplet, int iWidth, int iHeight, struct tm *pTime, double fFraction)
 {
 	CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN ();
 	

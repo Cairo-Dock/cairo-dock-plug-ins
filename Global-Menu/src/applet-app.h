@@ -23,7 +23,7 @@
 #include <cairo-dock.h>
 
 
-void cd_app_menu_set_window_border (Window Xid, gboolean bWithBorder);
+void cd_app_menu_set_window_border (GldiWindowActor *actor, gboolean bWithBorder);
 
 
 void cd_app_menu_set_windows_borders (gboolean bWithBorder);
@@ -38,7 +38,7 @@ void cd_app_menu_start (void);
 
 void cd_app_menu_stop (void);
 
-void cd_app_menu_set_current_window (Window iActiveWindow);
+void cd_app_menu_set_current_window (GldiWindowActor *actor);
 
 
 #endif

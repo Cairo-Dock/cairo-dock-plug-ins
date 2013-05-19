@@ -48,7 +48,7 @@ typedef struct {
 	gboolean bStopAnimations;
 	gboolean bNeedRefreshIfNotAnimated; // if bStopAnimations and there is no animation after, the icon is not refreshed
 	CairoDock *pDock;
-	//CairoDockModuleInstance *pApplet;
+	//GldiModuleInstance *pApplet;
 	} CDSharedMemory;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.

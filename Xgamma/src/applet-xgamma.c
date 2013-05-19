@@ -1,4 +1,4 @@
-/**
+	/**
 * This file is a part of the Cairo-Dock project
 *
 * Copyright : (C) see the 'copyright' file.
@@ -180,7 +180,7 @@ static GtkWidget *_xgamma_add_channel_widget (GtkWidget *pInteractiveWidget, con
 	else
 	{
 		gtk_label_set_text (GTK_LABEL (pLabel), cLabel);
-		cairo_dock_set_dialog_widget_text_color (pLabel); // default colour
+		gldi_dialog_set_widget_text_color (pLabel); // default colour
 	}
 
 	#if GTK_CHECK_VERSION (3, 4, 0)
@@ -262,21 +262,23 @@ static void _xgamma_apply_values (int iClickedButton, GtkWidget *pWidget, gpoint
 		myData.Xgamma = myData.XoldGamma;
 		xgamma_set_gamma (&myData.Xgamma);
 	}
-	cairo_dock_hide_dialog (myData.pDialog);
-	cairo_dock_dialog_reference (myData.pDialog);  // pour garder notre dialogue en vie.
+	gldi_dialog_hide (myData.pDialog);
+	gldi_object_ref (GLDI_OBJECT(myData.pDialog));  // pour garder notre dialogue en vie.
 	
 }
 CairoDialog *xgamma_build_dialog (void)
 {
-	CairoDialogAttribute attr;
-	memset (&attr, 0, sizeof (CairoDialogAttribute));
+	CairoDialogAttr attr;
+	memset (&attr, 0, sizeof (CairoDialogAttr));
 	attr.cText = D_("Set up gamma:");
 	attr.pInteractiveWidget = myData.pWidget;
 	const gchar *cButtons[3] = {"ok", "cancel", NULL};
 	attr.cButtonsImage = cButtons;
 	attr.pActionFunc = (CairoDockActionOnAnswerFunc) _xgamma_apply_values;
 	attr.pUserData = myApplet;
-	return cairo_dock_build_dialog (&attr, myIcon, myContainer);
+	attr.pIcon = myIcon;
+	attr.pContainer = myContainer;
+	return gldi_dialog_new (&attr);
 }
 
 void xgamma_build_and_show_widget (void)
@@ -292,7 +294,7 @@ void xgamma_build_and_show_widget (void)
 	}
 	else
 	{
-		cairo_dock_add_interactive_widget_to_desklet (myData.pWidget, myDesklet);
+		gldi_desklet_add_interactive_widget (myDesklet, myData.pWidget);
 		CD_APPLET_SET_DESKLET_RENDERER (NULL);  // pour empecher le clignotement du au double-buffer.
 		CD_APPLET_SET_STATIC_DESKLET;
 	}
@@ -328,8 +330,8 @@ CairoDialog *xgamma_build_dialog_simple (void)
 	double fGammaPercent = _gamma_to_percent (fGamma);
 	myData.XoldGamma = myData.Xgamma;
 	
-	CairoDialogAttribute attr;
-	memset (&attr, 0, sizeof (CairoDialogAttribute));
+	CairoDialogAttr attr;
+	memset (&attr, 0, sizeof (CairoDialogAttr));
 
 	#if (GTK_MAJOR_VERSION < 3)
 	GtkWidget *pHScale = gtk_hscale_new_with_range (0, 100., 1.);
@@ -343,7 +345,7 @@ CairoDialog *xgamma_build_dialog_simple (void)
 		"value-changed",
 		G_CALLBACK (on_scale_value_changed_simple),
 		NULL);
-	cairo_dock_set_dialog_widget_text_color (pHScale);
+	gldi_dialog_set_widget_text_color (pHScale);
 	
 	attr.cText = D_("Set up gamma:");
 	attr.pInteractiveWidget = pHScale;
@@ -351,7 +353,9 @@ CairoDialog *xgamma_build_dialog_simple (void)
 	attr.cButtonsImage = cButtons;
 	attr.pActionFunc = (CairoDockActionOnAnswerFunc) _xgamma_apply_value_simple;
 	attr.pUserData = myApplet;
-	return cairo_dock_build_dialog (&attr, myIcon, myContainer);
+	attr.pIcon = myIcon;
+	attr.pContainer = myContainer;
+	return gldi_dialog_new (&attr);
 }
 
 

@@ -88,7 +88,7 @@ static void cd_dbus_main_init (dbusMainObject *pMainObject)
  /// MODULE REGISTERING ///
 //////////////////////////
 
-static void _on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile *pKeyFile)
+static void _on_init_module (GldiModuleInstance *pModuleInstance, GKeyFile *pKeyFile)
 {
 	cd_debug ("%s ()", __func__);
 	
@@ -118,21 +118,15 @@ static gboolean _cd_dbus_register_new_module (const gchar *cModuleName, const gc
 	cd_message ("%s (%s)", __func__, cModuleName);
 	
 	//\____________ on cree et on enregistre un nouveau module s'il n'existe pas deja.
-	CairoDockModule *pModule = cairo_dock_find_module_from_name (cModuleName);
+	GldiModule *pModule = gldi_module_get (cModuleName);
 	if (pModule != NULL)  // le module existe deja, rien a faire.
 	{
 		cd_warning ("this module (%s) is already registered", cModuleName);
-		if (pModule->cSoFilePath != NULL)
-		{
-			cd_warning ("an installed module already exists with this name (%s).", cModuleName);
-			return FALSE;
-		}
+		return FALSE;
 	}
 	else  // on enregistre ce nouveau module.
 	{
-		pModule = gldi_object_new (CairoDockModule, &myModulesMgr);
-		CairoDockVisitCard *pVisitCard = g_new0 (CairoDockVisitCard, 1);
-		pModule->pVisitCard = pVisitCard;
+		GldiVisitCard *pVisitCard = g_new0 (GldiVisitCard, 1);
 		pVisitCard->cModuleName = g_strdup (cModuleName);
 		pVisitCard->iMajorVersionNeeded = 2;
 		pVisitCard->iMinorVersionNeeded = 1;
@@ -156,13 +150,13 @@ static gboolean _cd_dbus_register_new_module (const gchar *cModuleName, const gc
 		pVisitCard->iContainerType = CAIRO_DOCK_MODULE_CAN_DOCK | CAIRO_DOCK_MODULE_CAN_DESKLET;
 		pVisitCard->bMultiInstance = bMultiInstance;
 		pVisitCard->bActAsLauncher = bActAsLauncher;  // ex.: XChat controls xchat/xchat-gnome, but it does that only after initializing; we need to know if it's a launcher before the taskbar is loaded, hence this parameter.
-		pModule->pInterface = g_new0 (CairoDockModuleInterface, 1);
-		pModule->pInterface->initModule = _on_init_module;
-		pModule->pInterface->stopModule = cd_dbus_emit_on_stop_module;
-		pModule->pInterface->reloadModule = cd_dbus_emit_on_reload_module;
-		if (! cairo_dock_register_module (pModule))
+		GldiModuleInterface *pInterface = g_new0 (GldiModuleInterface, 1);
+		pInterface->initModule = _on_init_module;
+		pInterface->stopModule = cd_dbus_emit_on_stop_module;
+		pInterface->reloadModule = cd_dbus_emit_on_reload_module;
+		pModule = gldi_module_new (pVisitCard, pInterface);
+		if (! pModule)
 		{
-			cairo_dock_free_module (pModule);
 			cd_warning ("registration of '%s' has failed.", cModuleName);
 			return FALSE;
 		}
@@ -289,17 +283,17 @@ static void _get_package_path (gchar *cModuleName)
 }
 static gboolean _apply_package_update (gchar *cModuleName)
 {
-	CairoDockModule *pModule = cairo_dock_find_module_from_name (cModuleName);
+	GldiModule *pModule = gldi_module_get (cModuleName);
 	
 	if (pModule && pModule->pInstancesList != NULL)  // applet active => reload it (pModule can be NULL in case of "locale").
 	{
 		cd_debug ("*** applet '%s' is active, reload it", cModuleName);
-		CairoDockModuleInstance *pModuleInstance = pModule->pInstancesList->data;
+		GldiModuleInstance *pModuleInstance = pModule->pInstancesList->data;
 		Icon *pIcon = pModuleInstance->pIcon;
-		CairoContainer *pContainer = pModuleInstance->pContainer;
+		GldiContainer *pContainer = pModuleInstance->pContainer;
 		
 		// unregister the module, since anything can have changed, including its definition.
-		cairo_dock_unregister_module (cModuleName);  // stoppe le module (toutes les instances), ce qui appelle stop_module, qui emet le signal 'stop' vers l'applet distante (qui du coup quitte), et enleve le module de la table. L'objet distant est detruit durant le stop.
+		gldi_object_unref (GLDI_OBJECT(pModule));  // stoppe le module (toutes les instances), ce qui appelle stop_module, qui emet le signal 'stop' vers l'applet distante (qui du coup quitte). L'objet distant est detruit durant le stop.
 		
 		// clean the dock from the remaining icon.
 		if (pIcon != NULL && pContainer != NULL)  // par contre les icones restent, mais ne sont plus des applets (elles ont perdu leur module). On fait donc le menage.
@@ -319,9 +313,9 @@ static gboolean _apply_package_update (gchar *cModuleName)
 		g_free (cThirdPartyPath);
 		
 		// and activate it again.
-		pModule = cairo_dock_find_module_from_name (cModuleName);  // the module has been destroyed previously, so grab it again.
+		pModule = gldi_module_get (cModuleName);  // the module has been destroyed previously, so grab it again.
 		g_return_val_if_fail (pModule != NULL, TRUE);
-		cairo_dock_activate_module (pModule, NULL);
+		gldi_module_activate (pModule);
 	}
 	
 	// get corresponding task and free it.

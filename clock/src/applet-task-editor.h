@@ -25,7 +25,7 @@
 #include "applet-struct.h"
 
 
-void cd_clock_build_task_editor (guint iDay, guint iMonth, guint iYear, CairoDockModuleInstance *myApplet);
+void cd_clock_build_task_editor (guint iDay, guint iMonth, guint iYear, GldiModuleInstance *myApplet);
 
 
 #endif

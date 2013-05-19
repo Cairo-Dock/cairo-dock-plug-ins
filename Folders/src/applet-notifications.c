@@ -37,16 +37,16 @@ CD_APPLET_ON_CLICK_BEGIN
 		}
 		else if (CD_APPLET_MY_ICONS_LIST == NULL)  // repertoire vide, ou illisible, ou non defini
 		{
-			cairo_dock_remove_dialog_if_any (myIcon);
+			gldi_dialogs_remove_on_icon (myIcon);
 			if (myConfig.cDirPath == NULL)
-				cairo_dock_show_temporary_dialog_with_icon (D_("Open the configuration of the applet to choose a folder to import."),
+				gldi_dialog_show_temporary_with_icon (D_("Open the configuration of the applet to choose a folder to import."),
 					myIcon, myContainer,
 					8000.,
 					myConfig.iSubdockViewType == 0 ? "same icon" : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 			else
 			{
 				gchar *cPath = g_filename_from_uri (myConfig.cDirPath, NULL, NULL);
-				cairo_dock_show_temporary_dialog_with_icon_printf ("%s :\n%s",
+				gldi_dialog_show_temporary_with_icon_printf ("%s :\n%s",
 					myIcon, myContainer,
 					4000.,
 					myConfig.iSubdockViewType == 0 ? "same icon" : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
@@ -56,7 +56,7 @@ CD_APPLET_ON_CLICK_BEGIN
 			}
 		}
 		else
-			CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);  // on laisse passer la notification (pour ouvrir le sous-dock au clic).
+			CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);  // on laisse passer la notification (pour ouvrir le sous-dock au clic).
 	}
 	else if (CD_APPLET_CLICKED_ICON != NULL)
 	{
@@ -209,7 +209,7 @@ static void _on_answer_delete_file (int iClickedButton, GtkWidget *pInteractiveW
 		{
 			cd_warning ("couldn't delete this file.\nCheck that you have writing rights on this file.\n");
 			gchar *cMessage = g_strdup_printf (D_("Warning: could not delete this file.\nPlease check file permissions."));
-			cairo_dock_show_temporary_dialog_with_default_icon (cMessage, icon, icon->pContainer, 4000);
+			gldi_dialog_show_temporary_with_default_icon (cMessage, icon, icon->pContainer, 4000);
 			g_free (cMessage);
 		}
 	}
@@ -217,14 +217,14 @@ static void _on_answer_delete_file (int iClickedButton, GtkWidget *pInteractiveW
 static void _cd_folders_delete_file (GtkMenuItem *pMenuItem, gpointer *data)
 {
 	Icon *icon = data[0];
-	CairoContainer *pContainer = data[1];
+	GldiContainer *pContainer = data[1];
 	cd_message ("%s (%s)", __func__, icon->cName);
 	
 	gchar *cPath = g_filename_from_uri (icon->cBaseURI, NULL, NULL);
 	g_return_if_fail (cPath != NULL);
 	gchar *question = g_strdup_printf (D_("You're about deleting this file\n  (%s)\nfrom your hard-disk. Sure ?"), cPath);
 	g_free (cPath);
-	cairo_dock_show_dialog_with_question (question,
+	gldi_dialog_show_with_question (question,
 		icon, pContainer,
 		"same icon",
 		(CairoDockActionOnAnswerFunc) _on_answer_delete_file, icon, (GFreeFunc)NULL);  // if the icon is deleted during the question, the dialog will disappear with it, and we won't be called back.
@@ -241,7 +241,7 @@ static void _on_answer_rename_file (int iClickedButton, GtkWidget *pInteractiveW
 			if (! bSuccess)
 			{
 				cd_warning ("couldn't rename this file.\nCheck that you have writing rights, and that the new name does not already exist.");
-				cairo_dock_show_temporary_dialog_with_icon_printf (D_("Warning: could not rename %s.\nCheck file permissions \nand that the new name does not already exist."), icon, icon->pContainer, 5000, NULL, icon->cBaseURI);
+				gldi_dialog_show_temporary_with_icon_printf (D_("Warning: could not rename %s.\nCheck file permissions \nand that the new name does not already exist."), icon, icon->pContainer, 5000, NULL, icon->cBaseURI);
 			}
 		}
 	}
@@ -250,7 +250,7 @@ static void _cd_folders_rename_file (GtkMenuItem *pMenuItem, gpointer *data)
 {
 	Icon *icon = data[0];
 	cd_message ("%s (%s)", __func__, icon->cName);
-	cairo_dock_show_dialog_with_entry (D_("Rename to:"),
+	gldi_dialog_show_with_entry (D_("Rename to:"),
 		icon, icon->pContainer,
 		"same icon",
 		icon->cName,
@@ -260,8 +260,8 @@ static void _cd_folders_rename_file (GtkMenuItem *pMenuItem, gpointer *data)
 static void _cd_folders_move_file (GtkMenuItem *pMenuItem, gpointer *data)
 {
 	Icon *icon = data[0];
-	CairoContainer *pContainer = data[1];
-	CairoDockModuleInstance *myApplet = data[2];
+	GldiContainer *pContainer = data[1];
+	GldiModuleInstance *myApplet = data[2];
 	cd_message ("%s (%s)", __func__, icon->cName);
 	
 	GtkWidget* pFileChooserDialog = gtk_file_chooser_dialog_new (
@@ -293,7 +293,7 @@ static void _on_answer_create_file (int iClickedButton, GtkWidget *pInteractiveW
 	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
 	{
 		gboolean bFolder = GPOINTER_TO_INT (data[0]);
-		CairoDockModuleInstance *myApplet = data[1];
+		GldiModuleInstance *myApplet = data[1];
 		const gchar *cNewName = gtk_entry_get_text (GTK_ENTRY (pInteractiveWidget));
 		if (cNewName != NULL && *cNewName != '\0')
 		{
@@ -302,32 +302,32 @@ static void _on_answer_create_file (int iClickedButton, GtkWidget *pInteractiveW
 			if (! bSuccess)
 			{
 				cd_warning ("couldn't create this file.\nCheck that you have writing rights, and that the new name does not already exist.");
-				cairo_dock_show_temporary_dialog_with_icon_printf (D_("Warning: could not create %s.\nCheck file permissions \nand that the new name does not already exist."), myIcon, myContainer, 5000, NULL, cNewName);
+				gldi_dialog_show_temporary_with_icon_printf (D_("Warning: could not create %s.\nCheck file permissions \nand that the new name does not already exist."), myIcon, myContainer, 5000, NULL, cNewName);
 			}
 		}
 	}
 }
-static inline void _create_new_file (CairoDockModuleInstance *myApplet, gboolean bFolder)
+static inline void _create_new_file (GldiModuleInstance *myApplet, gboolean bFolder)
 {
 	gpointer *data = g_new (gpointer, 2);
 	data[0] = GINT_TO_POINTER (bFolder);
 	data[1] = myApplet;
-	cairo_dock_show_dialog_with_entry (D_("Enter a file name:"),
+	gldi_dialog_show_with_entry (D_("Enter a file name:"),
 		myIcon, myContainer,
 		"same icon",
 		NULL,
 		(CairoDockActionOnAnswerFunc)_on_answer_create_file, data, (GFreeFunc)g_free);
 }
-static void _cd_folders_new_file (GtkMenuItem *pMenuItem, CairoDockModuleInstance *myApplet)
+static void _cd_folders_new_file (GtkMenuItem *pMenuItem, GldiModuleInstance *myApplet)
 {
 	_create_new_file (myApplet, FALSE);
 }
-static void _cd_folders_new_folder (GtkMenuItem *pMenuItem, CairoDockModuleInstance *myApplet)
+static void _cd_folders_new_folder (GtkMenuItem *pMenuItem, GldiModuleInstance *myApplet)
 {
 	_create_new_file (myApplet, TRUE);
 }
 
-static void _cd_folders_open_folder (GtkMenuItem *pMenuItem, CairoDockModuleInstance *myApplet)
+static void _cd_folders_open_folder (GtkMenuItem *pMenuItem, GldiModuleInstance *myApplet)
 {
 	cairo_dock_fm_launch_uri (myConfig.cDirPath);
 }
@@ -343,22 +343,22 @@ static void _cd_folders_launch_with (GtkMenuItem *pMenuItem, gpointer *app)
 	g_free (cUri);
 }
 
-static void _cd_folders_sort_by_name (GtkMenuItem *pMenuItem, CairoDockModuleInstance *myApplet)
+static void _cd_folders_sort_by_name (GtkMenuItem *pMenuItem, GldiModuleInstance *myApplet)
 {
 	cd_folders_sort_icons (myApplet, CAIRO_DOCK_FM_SORT_BY_NAME);
 }
 
-static void _cd_folders_sort_by_date (GtkMenuItem *pMenuItem, CairoDockModuleInstance *myApplet)
+static void _cd_folders_sort_by_date (GtkMenuItem *pMenuItem, GldiModuleInstance *myApplet)
 {
 	cd_folders_sort_icons (myApplet, CAIRO_DOCK_FM_SORT_BY_DATE);
 }
 
-static void _cd_folders_sort_by_size (GtkMenuItem *pMenuItem, CairoDockModuleInstance *myApplet)
+static void _cd_folders_sort_by_size (GtkMenuItem *pMenuItem, GldiModuleInstance *myApplet)
 {
 	cd_folders_sort_icons (myApplet, CAIRO_DOCK_FM_SORT_BY_SIZE);
 }
 
-static void _cd_folders_sort_by_type (GtkMenuItem *pMenuItem, CairoDockModuleInstance *myApplet)
+static void _cd_folders_sort_by_type (GtkMenuItem *pMenuItem, GldiModuleInstance *myApplet)
 {
 	cd_folders_sort_icons (myApplet, CAIRO_DOCK_FM_SORT_BY_TYPE);
 }
@@ -368,7 +368,7 @@ static void _free_app (gpointer *app)
 	g_free (app[3]);
 	g_free (app);
 }
-void cd_folders_free_apps_list (CairoDockModuleInstance *myApplet)
+void cd_folders_free_apps_list (GldiModuleInstance *myApplet)
 {
 	if (myData.pAppList != NULL)
 	{
@@ -456,7 +456,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	}
 	
 	if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON != myIcon)
-		CD_APPLET_LEAVE (CAIRO_DOCK_INTERCEPT_NOTIFICATION);
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_INTERCEPT);
 CD_APPLET_ON_BUILD_MENU_END
 
 
@@ -474,10 +474,10 @@ static void _on_answer_import (int iClickedButton, GtkWidget *pInteractiveWidget
 	gboolean bImportFiles = (iClickedButton == 0 || iClickedButton == -1);  // ok or Enter.
 	
 	// add a new conf file for the "Folders" module, with proper values.
-	CairoDockModule *pModule = cairo_dock_find_module_from_name ("Folders");
+	GldiModule *pModule = gldi_module_get ("Folders");
 	g_return_if_fail (pModule != NULL);
 
-	gchar *cConfFilePath = cairo_dock_add_module_conf_file (pModule);  // we want to update the conf file before we instanciate the applet, so don't use high-level functions.
+	gchar *cConfFilePath = gldi_module_add_conf_file (pModule);  // we want to update the conf file before we instanciate the applet, so don't use high-level functions.
 	cairo_dock_update_conf_file (cConfFilePath,
 		G_TYPE_STRING, "Configuration", "dir path", cReceivedData,
 		G_TYPE_BOOLEAN, "Configuration", "show files", bImportFiles,
@@ -486,20 +486,14 @@ static void _on_answer_import (int iClickedButton, GtkWidget *pInteractiveWidget
 		G_TYPE_INVALID);
 	
 	// instanciate the module from this conf file.
-	CairoDockModuleInstance *pNewInstance = cairo_dock_instanciate_module (pModule, cConfFilePath);  // prend le 'cConfFilePath'.
+	GldiModuleInstance *pNewInstance = gldi_module_instance_new (pModule, cConfFilePath);  // prend le 'cConfFilePath'.
 	
 	// show a success message on the new icon.
 	if (pNewInstance != NULL)
-		cairo_dock_show_temporary_dialog_with_icon (D_("The folder has been imported."),
+		gldi_dialog_show_temporary_with_icon (D_("The folder has been imported."),
 			pNewInstance->pIcon, pNewInstance->pContainer,
 			5000,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);  // not "same icon" because the icon may not be loaded yet (eg. stack or emblem icon).
-	
-	// if the module has just been activated for the first time, write it down so that it is loaded on the next startup.
-	if (pModule->pInstancesList && pModule->pInstancesList->next == NULL)  // module nouvellement active.
-	{
-		cairo_dock_write_active_modules ();
-	}
 }
 static void _free_dialog_data (CDDropData *data)
 {
@@ -507,11 +501,11 @@ static void _free_dialog_data (CDDropData *data)
 	g_free (data->cDockName);
 	g_free (data);
 }
-gboolean cd_folders_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *icon, double fOrder, CairoContainer *pContainer)
+gboolean cd_folders_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *icon, double fOrder, GldiContainer *pContainer)
 {
 	//g_print ("Folders received '%s'\n", cReceivedData);
 	if (icon != NULL || fOrder == CAIRO_DOCK_LAST_ORDER)  // drop on an icon or outside of icons.
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	gchar *cPath = NULL;
 	if (strncmp (cReceivedData, "file://", 7) == 0)
@@ -540,9 +534,9 @@ gboolean cd_folders_on_drop_data (gpointer data, const gchar *cReceivedData, Ico
 		if (pIcon == NULL)
 		{
 			if (CAIRO_DOCK_IS_DOCK (pContainer))
-				pIcon = cairo_dock_get_dialogless_icon_full (CAIRO_DOCK (pContainer));
+				pIcon = gldi_icons_get_without_dialog (CAIRO_DOCK (pContainer)->icons);
 			else
-				pIcon = cairo_dock_get_dialogless_icon ();
+				pIcon = gldi_icons_get_any_without_dialog ();
 		}
 		
 		// ask the user whether (s)he wants to import the folder's content.
@@ -551,7 +545,7 @@ gboolean cd_folders_on_drop_data (gpointer data, const gchar *cReceivedData, Ico
 		data->fOrder = fOrder;
 		if (CAIRO_DOCK_IS_DOCK (pContainer))
 			data->cDockName = g_strdup (cairo_dock_search_dock_name (CAIRO_DOCK (pContainer)));
-		cairo_dock_show_dialog_full (D_("Do you want to import the content of the folder too?"),
+		gldi_dialog_show (D_("Do you want to import the content of the folder too?"),
 			pIcon, pContainer,
 			0,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
@@ -560,7 +554,7 @@ gboolean cd_folders_on_drop_data (gpointer data, const gchar *cReceivedData, Ico
 			data,
 			(GFreeFunc)_free_dialog_data);
 		
-		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+		return GLDI_NOTIFICATION_INTERCEPT;
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }

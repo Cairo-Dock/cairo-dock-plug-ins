@@ -49,17 +49,17 @@ struct _CDAppletIndicator {
 	const gchar *cServiceObject;
 	const gchar *cServiceInterface;
 	const gchar *cMenuObject;
-	CairoDockModuleInstance *pApplet;
-	void (*on_connect) (CairoDockModuleInstance *pApplet);
-	void (*on_disconnect) (CairoDockModuleInstance *pApplet);
-	void (*get_initial_values) (CairoDockModuleInstance *pApplet);
+	GldiModuleInstance *pApplet;
+	void (*on_connect) (GldiModuleInstance *pApplet);
+	void (*on_disconnect) (GldiModuleInstance *pApplet);
+	void (*get_initial_values) (GldiModuleInstance *pApplet);
 	void (*add_menu_handler) (DbusmenuGtkClient * client);
 	};
 
 #define INDICATOR_APPLET_DEFAULT_VERSION 1
 
 
-CDAppletIndicator *cd_indicator_new (CairoDockModuleInstance *pApplet, const gchar *cBusName, const gchar *cObjectName, const gchar *cServiceInterface, const gchar *cMenuObject, int iVersion);
+CDAppletIndicator *cd_indicator_new (GldiModuleInstance *pApplet, const gchar *cBusName, const gchar *cObjectName, const gchar *cServiceInterface, const gchar *cMenuObject, int iVersion);
 
 void cd_indicator_destroy (CDAppletIndicator *pIndicator);
 

@@ -176,7 +176,7 @@ class ULWatcher:
 	
 	def on_launcher_entry_signal(self, val1=None, val2=None, member=None, sender=None):  # application://evolution.desktop, dictionnary (sv)
 		if (member == 'Update'):
-			print('Launcher-API-Daemon: Update',val1)
+			print('Launcher-API-Daemon: Update',val1,'with',val2)
 			
 			launcher = None
 			if val1 in self.launchers:

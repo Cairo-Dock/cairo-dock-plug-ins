@@ -24,7 +24,7 @@
 #include <cairo-dock.h>
 
 
-void cd_run_dialog_show_hide (CairoDockModuleInstance *myApplet);
+void cd_run_dialog_show_hide (GldiModuleInstance *myApplet);
 
 void cd_run_dialog_free (void);
 

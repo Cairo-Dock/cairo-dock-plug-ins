@@ -67,46 +67,46 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
-	cairo_dock_register_notification_on_object (&myDesktopMgr,
-		NOTIFICATION_SCREEN_GEOMETRY_ALTERED,
-		(CairoDockNotificationFunc) on_change_screen_geometry,
-		CAIRO_DOCK_RUN_AFTER, myApplet);
-	cairo_dock_register_notification_on_object (&myDesktopMgr,
+	gldi_object_register_notification (&myDesktopMgr,
+		NOTIFICATION_DESKTOP_GEOMETRY_CHANGED,
+		(GldiNotificationFunc) on_change_screen_geometry,
+		GLDI_RUN_AFTER, myApplet);
+	gldi_object_register_notification (&myDesktopMgr,
 		NOTIFICATION_DESKTOP_CHANGED,
-		(CairoDockNotificationFunc) on_change_desktop,
-		CAIRO_DOCK_RUN_AFTER, myApplet);
-	cairo_dock_register_notification_on_object (&myDesktopMgr,
-		NOTIFICATION_WINDOW_CONFIGURED,
-		(CairoDockNotificationFunc) on_window_configured,
-		CAIRO_DOCK_RUN_AFTER, myApplet);
-	cairo_dock_register_notification_on_object (&myDesktopMgr,
-		NOTIFICATION_WINDOW_ACTIVATED,
-		(CairoDockNotificationFunc) on_change_active_window,
-		CAIRO_DOCK_RUN_AFTER, myApplet);
-	cairo_dock_register_notification_on_object (&myDesktopMgr,
+		(GldiNotificationFunc) on_change_desktop,
+		GLDI_RUN_AFTER, myApplet);
+	gldi_object_register_notification (&myWindowsMgr,
+		NOTIFICATION_WINDOW_SIZE_POSITION_CHANGED,
+		(GldiNotificationFunc) on_window_size_position_changed,
+		GLDI_RUN_AFTER, myApplet);
+	gldi_object_register_notification (&myWindowsMgr,
+		NOTIFICATION_WINDOW_Z_ORDER_CHANGED,
+		(GldiNotificationFunc) on_change_window_order,
+		GLDI_RUN_AFTER, myApplet);
+	gldi_object_register_notification (&myDesktopMgr,
 		NOTIFICATION_DESKTOP_NAMES_CHANGED,
-		(CairoDockNotificationFunc) on_change_desktop_names,
-		CAIRO_DOCK_RUN_AFTER, myApplet);
+		(GldiNotificationFunc) on_change_desktop_names,
+		GLDI_RUN_AFTER, myApplet);
 	if (myConfig.bCompactView)  // in this mode we need to monitor the cursor
 	{
-		cairo_dock_register_notification_on_object (myContainer,
+		gldi_object_register_notification (myContainer,
 			NOTIFICATION_MOUSE_MOVED,
-			(CairoDockNotificationFunc) on_mouse_moved,
-			CAIRO_DOCK_RUN_AFTER, myApplet);
+			(GldiNotificationFunc) on_mouse_moved,
+			GLDI_RUN_AFTER, myApplet);
 		if (myDesklet)  // in this mode we draw the name of the pointed desktop
 		{
-			cairo_dock_register_notification_on_object (&myDeskletsMgr,
+			gldi_object_register_notification (&myDeskletsMgr,
 				NOTIFICATION_RENDER,
-				(CairoDockNotificationFunc) on_render_desklet,
-				CAIRO_DOCK_RUN_AFTER, myApplet);  // we register on the parent manager to be drawn after the desklet, until the notifications order is reversed.
-			cairo_dock_register_notification_on_object (myContainer,
+				(GldiNotificationFunc) on_render_desklet,
+				GLDI_RUN_AFTER, myApplet);  // we register on the parent manager to be drawn after the desklet, until the notifications order is reversed.
+			gldi_object_register_notification (myContainer,
 				NOTIFICATION_UPDATE,
-				(CairoDockNotificationFunc) on_update_desklet,
-				CAIRO_DOCK_RUN_AFTER, myApplet);
-			cairo_dock_register_notification_on_object (myContainer,
+				(GldiNotificationFunc) on_update_desklet,
+				GLDI_RUN_AFTER, myApplet);
+			gldi_object_register_notification (myContainer,
 				NOTIFICATION_LEAVE_DESKLET,
-				(CairoDockNotificationFunc) on_leave_desklet,
-				CAIRO_DOCK_RUN_AFTER, myApplet);
+				(GldiNotificationFunc) on_leave_desklet,
+				GLDI_RUN_AFTER, myApplet);
 		}
 	}
 	
@@ -140,33 +140,33 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
-	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
-		NOTIFICATION_SCREEN_GEOMETRY_ALTERED,
-		(CairoDockNotificationFunc) on_change_screen_geometry, myApplet);
-	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
+	gldi_object_remove_notification (&myDesktopMgr,
+		NOTIFICATION_DESKTOP_GEOMETRY_CHANGED,
+		(GldiNotificationFunc) on_change_screen_geometry, myApplet);
+	gldi_object_remove_notification (&myDesktopMgr,
 		NOTIFICATION_DESKTOP_CHANGED,
-		(CairoDockNotificationFunc) on_change_desktop, myApplet);
-	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
-		NOTIFICATION_WINDOW_CONFIGURED,
-		(CairoDockNotificationFunc) on_window_configured, myApplet);
-	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
-		NOTIFICATION_WINDOW_ACTIVATED,
-		(CairoDockNotificationFunc) on_change_active_window, myApplet);
-	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
+		(GldiNotificationFunc) on_change_desktop, myApplet);
+	gldi_object_remove_notification (&myWindowsMgr,
+		NOTIFICATION_WINDOW_SIZE_POSITION_CHANGED,
+		(GldiNotificationFunc) on_window_size_position_changed, myApplet);
+	gldi_object_remove_notification (&myWindowsMgr,
+		NOTIFICATION_WINDOW_Z_ORDER_CHANGED,
+		(GldiNotificationFunc) on_change_window_order, myApplet);
+	gldi_object_remove_notification (&myDesktopMgr,
 		NOTIFICATION_DESKTOP_NAMES_CHANGED,
-		(CairoDockNotificationFunc) on_change_desktop_names, myApplet);
-	cairo_dock_remove_notification_func_on_object (myContainer,
+		(GldiNotificationFunc) on_change_desktop_names, myApplet);
+	gldi_object_remove_notification (myContainer,
 		NOTIFICATION_MOUSE_MOVED,
-		(CairoDockNotificationFunc) on_mouse_moved, myApplet);
-	cairo_dock_remove_notification_func_on_object (&myDeskletsMgr,
+		(GldiNotificationFunc) on_mouse_moved, myApplet);
+	gldi_object_remove_notification (&myDeskletsMgr,
 		NOTIFICATION_RENDER,
-		(CairoDockNotificationFunc) on_render_desklet, myApplet);
-	cairo_dock_remove_notification_func_on_object (myContainer,
+		(GldiNotificationFunc) on_render_desklet, myApplet);
+	gldi_object_remove_notification (myContainer,
 		NOTIFICATION_UPDATE,
-		(CairoDockNotificationFunc) on_update_desklet, myApplet);
-	cairo_dock_remove_notification_func_on_object (myContainer,
+		(GldiNotificationFunc) on_update_desklet, myApplet);
+	gldi_object_remove_notification (myContainer,
 		NOTIFICATION_LEAVE_DESKLET,
-		(CairoDockNotificationFunc) on_leave_desklet, myApplet);
+		(GldiNotificationFunc) on_leave_desklet, myApplet);
 CD_APPLET_STOP_END
 
 
@@ -200,39 +200,39 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		
 		// in case our container or our mode has changed (desklet <-> dock, compact <-> expanded), register to the needed notifications.
-		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+		gldi_object_remove_notification (CD_APPLET_MY_OLD_CONTAINER,
 			NOTIFICATION_MOUSE_MOVED,
-			(CairoDockNotificationFunc) on_mouse_moved, myApplet);
-		cairo_dock_remove_notification_func_on_object (&myDeskletsMgr,
+			(GldiNotificationFunc) on_mouse_moved, myApplet);
+		gldi_object_remove_notification (&myDeskletsMgr,
 			NOTIFICATION_RENDER,
-			(CairoDockNotificationFunc) on_render_desklet, myApplet);
-		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+			(GldiNotificationFunc) on_render_desklet, myApplet);
+		gldi_object_remove_notification (CD_APPLET_MY_OLD_CONTAINER,
 			NOTIFICATION_UPDATE,
-			(CairoDockNotificationFunc) on_update_desklet, myApplet);
-		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+			(GldiNotificationFunc) on_update_desklet, myApplet);
+		gldi_object_remove_notification (CD_APPLET_MY_OLD_CONTAINER,
 			NOTIFICATION_LEAVE_DESKLET,
-			(CairoDockNotificationFunc) on_leave_desklet, myApplet);
+			(GldiNotificationFunc) on_leave_desklet, myApplet);
 		
 		if (myConfig.bCompactView)
 		{
-			cairo_dock_register_notification_on_object (myContainer,
+			gldi_object_register_notification (myContainer,
 				NOTIFICATION_MOUSE_MOVED,
-				(CairoDockNotificationFunc) on_mouse_moved,
-				CAIRO_DOCK_RUN_AFTER, myApplet);
+				(GldiNotificationFunc) on_mouse_moved,
+				GLDI_RUN_AFTER, myApplet);
 			if (myDesklet)
 			{
-				cairo_dock_register_notification_on_object (&myDeskletsMgr,
+				gldi_object_register_notification (&myDeskletsMgr,
 					NOTIFICATION_RENDER,
-					(CairoDockNotificationFunc) on_render_desklet,
-					CAIRO_DOCK_RUN_AFTER, myApplet);
-				cairo_dock_register_notification_on_object (myContainer,
+					(GldiNotificationFunc) on_render_desklet,
+					GLDI_RUN_AFTER, myApplet);
+				gldi_object_register_notification (myContainer,
 					NOTIFICATION_UPDATE,
-					(CairoDockNotificationFunc) on_update_desklet,
-					CAIRO_DOCK_RUN_AFTER, myApplet);
-				cairo_dock_register_notification_on_object (myContainer,
+					(GldiNotificationFunc) on_update_desklet,
+					GLDI_RUN_AFTER, myApplet);
+				gldi_object_register_notification (myContainer,
 					NOTIFICATION_LEAVE_DESKLET,
-					(CairoDockNotificationFunc) on_leave_desklet,
-					CAIRO_DOCK_RUN_AFTER, myApplet);
+					(GldiNotificationFunc) on_leave_desklet,
+					GLDI_RUN_AFTER, myApplet);
 			}
 		}
 		

@@ -152,10 +152,10 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 		
 		cd_do_remove_icons_number (myData.pCurrentDock);
 		
-		cairo_dock_remove_notification_func_on_object (myData.pCurrentDock, NOTIFICATION_RENDER, (CairoDockNotificationFunc) cd_do_render, NULL);
-		cairo_dock_remove_notification_func_on_object (myData.pCurrentDock, NOTIFICATION_UPDATE, (CairoDockNotificationFunc) cd_do_update_container, NULL);
-		cairo_dock_remove_notification_func_on_object (myData.pCurrentDock, NOTIFICATION_CLICK_ICON, (CairoDockNotificationFunc) cd_do_on_click, NULL);
-		cairo_dock_remove_notification_func_on_object (myData.pCurrentDock, NOTIFICATION_MIDDLE_CLICK_ICON, (CairoDockNotificationFunc) cd_do_on_click, NULL);
+		gldi_object_remove_notification (myData.pCurrentDock, NOTIFICATION_RENDER, (GldiNotificationFunc) cd_do_render, NULL);
+		gldi_object_remove_notification (myData.pCurrentDock, NOTIFICATION_UPDATE, (GldiNotificationFunc) cd_do_update_container, NULL);
+		gldi_object_remove_notification (myData.pCurrentDock, NOTIFICATION_CLICK_ICON, (GldiNotificationFunc) cd_do_on_click, NULL);
+		gldi_object_remove_notification (myData.pCurrentDock, NOTIFICATION_MIDDLE_CLICK_ICON, (GldiNotificationFunc) cd_do_on_click, NULL);
 	}
 	if (pDock != NULL && pDock != myData.pCurrentDock)  // on montre le nouveau dock
 	{
@@ -182,22 +182,22 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 		
 		cd_do_numberize_icons (pDock);
 		
-		cairo_dock_register_notification_on_object (pDock,
+		gldi_object_register_notification (pDock,
 			NOTIFICATION_UPDATE,
-			(CairoDockNotificationFunc) cd_do_update_container,
-			CAIRO_DOCK_RUN_AFTER, NULL);
-		cairo_dock_register_notification_on_object (pDock,
+			(GldiNotificationFunc) cd_do_update_container,
+			GLDI_RUN_AFTER, NULL);
+		gldi_object_register_notification (pDock,
 			NOTIFICATION_RENDER,
-			(CairoDockNotificationFunc) cd_do_render,
-			CAIRO_DOCK_RUN_AFTER, NULL);
-		cairo_dock_register_notification_on_object (pDock,
+			(GldiNotificationFunc) cd_do_render,
+			GLDI_RUN_AFTER, NULL);
+		gldi_object_register_notification (pDock,
 			NOTIFICATION_CLICK_ICON,
-			(CairoDockNotificationFunc) cd_do_on_click,
-			CAIRO_DOCK_RUN_AFTER, NULL);  // we don't disable the clicks, rather we will close the session.
-		cairo_dock_register_notification_on_object (pDock,
+			(GldiNotificationFunc) cd_do_on_click,
+			GLDI_RUN_AFTER, NULL);  // we don't disable the clicks, rather we will close the session.
+		gldi_object_register_notification (pDock,
 			NOTIFICATION_MIDDLE_CLICK_ICON,
-			(CairoDockNotificationFunc) cd_do_on_click,
-			CAIRO_DOCK_RUN_AFTER, NULL);
+			(GldiNotificationFunc) cd_do_on_click,
+			GLDI_RUN_AFTER, NULL);
 		
 		
 	}

@@ -25,13 +25,13 @@
 
 GList* cd_stack_mime_filter(GList *pList);
 
-void cd_stack_check_local (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile);
-void cd_stack_clear_stack (CairoDockModuleInstance *myApplet);
+void cd_stack_check_local (GldiModuleInstance *myApplet, GKeyFile *pKeyFile);
+void cd_stack_clear_stack (GldiModuleInstance *myApplet);
 
-void cd_stack_remove_item (CairoDockModuleInstance *myApplet, Icon *pIcon);
+void cd_stack_remove_item (GldiModuleInstance *myApplet, Icon *pIcon);
 
 
-void cd_stack_create_and_load_item (CairoDockModuleInstance *myApplet, const gchar *cContent);
+void cd_stack_create_and_load_item (GldiModuleInstance *myApplet, const gchar *cContent);
 void cd_stack_set_item_name (const gchar *cDesktopFilePath, const gchar *cName);
 void cd_stack_set_item_order (const gchar *cDesktopFilePath, double fOrder);
 

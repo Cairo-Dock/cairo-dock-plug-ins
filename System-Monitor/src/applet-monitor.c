@@ -36,7 +36,7 @@
 #include "applet-monitor.h"
 
 
-void cd_sysmonitor_get_data (CairoDockModuleInstance *myApplet)
+void cd_sysmonitor_get_data (GldiModuleInstance *myApplet)
 {
 	myData.bNeedsUpdate = FALSE;
 	
@@ -68,7 +68,7 @@ void cd_sysmonitor_get_data (CairoDockModuleInstance *myApplet)
 }
 
 
-gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet)
+gboolean cd_sysmonitor_update_from_data (GldiModuleInstance *myApplet)
 {
 	static double s_fValues[CD_SYSMONITOR_NB_MAX_VALUES];
 	CD_APPLET_ENTER;
@@ -207,7 +207,7 @@ gboolean cd_sysmonitor_update_from_data (CairoDockModuleInstance *myApplet)
 }
 
 
-void cd_sysmonitor_format_value (CairoDataRenderer *pRenderer, int iNumValue, gchar *cFormatBuffer, int iBufferLength, CairoDockModuleInstance *myApplet)
+void cd_sysmonitor_format_value (CairoDataRenderer *pRenderer, int iNumValue, gchar *cFormatBuffer, int iBufferLength, GldiModuleInstance *myApplet)
 {
 	double fValue = cairo_data_renderer_get_normalized_current_value_with_latency (pRenderer, iNumValue);
 	int i = -1;

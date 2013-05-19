@@ -73,7 +73,7 @@ static inline void _show_menu (void)
 		cairo_dock_popup_menu_on_icon (GTK_WIDGET (pMenu), myIcon, myContainer);
 	else
 	#endif
-		cairo_dock_show_temporary_dialog_with_icon (D_("The Messaging service did not reply.\nPlease check that it is correctly installed."), myIcon, myContainer, 8000., "same icon");
+		gldi_dialog_show_temporary_with_icon (D_("The Messaging service did not reply.\nPlease check that it is correctly installed."), myIcon, myContainer, 8000., "same icon");
 }
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
@@ -102,7 +102,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 CD_APPLET_ON_BUILD_MENU_END
 */
 
-void cd_messaging_on_keybinding_pull (const gchar *keystring, CairoDockModuleInstance *myApplet)
+void cd_messaging_on_keybinding_pull (const gchar *keystring, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	_show_menu ();

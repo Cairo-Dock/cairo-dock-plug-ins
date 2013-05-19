@@ -29,7 +29,7 @@
 
 static int s_iCounter = 0;
 
-static GList *get_tasks (CairoDockModuleInstance *myApplet)
+static GList *get_tasks (GldiModuleInstance *myApplet)
 {
 	gchar *cDirPath = g_strdup_printf ("%s/%s", g_cCairoDockDataDir, "clock");
 	if (! g_file_test (cDirPath, G_FILE_TEST_EXISTS))
@@ -114,7 +114,7 @@ static GList *get_tasks (CairoDockModuleInstance *myApplet)
 	return pTaskList;
 }
 
-static gboolean create_task (CDClockTask *pTask, CairoDockModuleInstance *myApplet)
+static gboolean create_task (CDClockTask *pTask, GldiModuleInstance *myApplet)
 {
 	//g_print ("%s (%d/%d/%d)\n", __func__, pTask->iDay, pTask->iMonth, pTask->iYear);
 	
@@ -141,7 +141,7 @@ static gboolean create_task (CDClockTask *pTask, CairoDockModuleInstance *myAppl
 	return TRUE;
 }
 
-static gboolean delete_task (CDClockTask *pTask, CairoDockModuleInstance *myApplet)
+static gboolean delete_task (CDClockTask *pTask, GldiModuleInstance *myApplet)
 {
 	cd_debug ("%s (%s)", __func__, pTask->cTitle);
 	
@@ -156,7 +156,7 @@ static gboolean delete_task (CDClockTask *pTask, CairoDockModuleInstance *myAppl
 	return TRUE;
 }
 
-static gboolean update_task (CDClockTask *pTask, CairoDockModuleInstance *myApplet)
+static gboolean update_task (CDClockTask *pTask, GldiModuleInstance *myApplet)
 {
 	cd_debug ("%s (%s, '%s')", __func__, pTask->cTitle, pTask->cText);
 	
@@ -178,7 +178,7 @@ static gboolean update_task (CDClockTask *pTask, CairoDockModuleInstance *myAppl
 	return TRUE;
 }
 
-void cd_clock_register_backend_default (CairoDockModuleInstance *myApplet)
+void cd_clock_register_backend_default (GldiModuleInstance *myApplet)
 {
 	CDClockTaskBackend *pBackend = g_new0 (CDClockTaskBackend, 1);
 	pBackend->get_tasks = get_tasks;

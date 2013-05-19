@@ -27,7 +27,7 @@
 
 static AppletData s_myDataCopy;
 
-static void cd_dbus_save_my_data (CairoDockModuleInstance *myApplet);
+static void cd_dbus_save_my_data (GldiModuleInstance *myApplet);
 
 
 CD_APPLET_DEFINE_BEGIN ("Dbus",
@@ -47,16 +47,16 @@ CD_APPLET_DEFINE_END
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
 	static gboolean s_bInitialized = FALSE;
-	if (! cairo_dock_reserve_data_slot (myApplet))
+	if (! CD_APPLET_RESERVE_DATA_SLOT ())
 		return;
 	if (!s_bInitialized)  // since the service lives on the bus, only launch it once.
 	{
 		s_bInitialized = TRUE;
 		cd_dbus_launch_service ();
-		cairo_dock_register_notification_on_object (&myContainersMgr,
+		gldi_object_register_notification (&myContainersMgr,
 			NOTIFICATION_DROP_DATA,
-			(CairoDockNotificationFunc) cd_dbus_applet_emit_on_drop_data,
-			CAIRO_DOCK_RUN_FIRST,
+			(GldiNotificationFunc) cd_dbus_applet_emit_on_drop_data,
+			GLDI_RUN_FIRST,
 			NULL);  // to register new applets by dropping a package on the dock.
 	}
 	else
@@ -67,7 +67,7 @@ CD_APPLET_INIT_BEGIN
 CD_APPLET_INIT_END
 
 
-static void cd_dbus_save_my_data (CairoDockModuleInstance *myApplet)
+static void cd_dbus_save_my_data (GldiModuleInstance *myApplet)
 {
 	memcpy (&s_myDataCopy, myDataPtr, sizeof (AppletData));
 }

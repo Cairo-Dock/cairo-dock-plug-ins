@@ -320,7 +320,7 @@ static void render (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, cairo
 }
 
 
-double alpha_brake = 30.;
+const double alpha_brake = 30.;
 static gboolean update (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, double dt, gboolean bUseOpenGL, gboolean bRepeat)
 {
 	pData->fAdjustFactor = 0.;

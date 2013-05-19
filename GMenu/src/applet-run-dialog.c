@@ -160,7 +160,7 @@ fill_executables (GList *possible_executables,
 	return list;
 }
 
-static void cd_menu_run_dialog_update_completion (CairoDockModuleInstance *myApplet,
+static void cd_menu_run_dialog_update_completion (GldiModuleInstance *myApplet,
 	const char *text)
 {
 	GList *list;
@@ -234,7 +234,7 @@ static void cd_menu_run_dialog_update_completion (CairoDockModuleInstance *myApp
 
 static gboolean _entry_event (GtkEditable *entry,
 	GdkEventKey *event,
-	CairoDockModuleInstance *myApplet)
+	GldiModuleInstance *myApplet)
 {
 	char             *prefix;
 	char             *nospace_prefix;
@@ -343,15 +343,15 @@ static void _cd_menu_on_quick_launch (int iClickedButton, GtkWidget *pInteractiv
 	{
 		gtk_entry_set_text (GTK_ENTRY (pInteractiveWidget), "");
 	}
-	cairo_dock_dialog_reference (myData.pQuickLaunchDialog);
-	cairo_dock_hide_dialog (myData.pQuickLaunchDialog);
+	gldi_object_ref (GLDI_OBJECT(myData.pQuickLaunchDialog));
+	gldi_dialog_hide (myData.pQuickLaunchDialog);
 }
-void cd_run_dialog_show_hide (CairoDockModuleInstance *myApplet)
+void cd_run_dialog_show_hide (GldiModuleInstance *myApplet)
 {
 	if (myData.pQuickLaunchDialog == NULL)
 	{
 		gchar *cIconPath = cairo_dock_search_icon_s_path (GTK_STOCK_EXECUTE, myData.iPanelDefaultMenuIconSize);
-		myData.pQuickLaunchDialog = cairo_dock_show_dialog_with_entry (D_("Enter a command to launch:"),
+		myData.pQuickLaunchDialog = gldi_dialog_show_with_entry (D_("Enter a command to launch:"),
 			myIcon, myContainer,
 			cIconPath ? cIconPath : "same icon",
 			NULL,
@@ -365,14 +365,13 @@ void cd_run_dialog_show_hide (CairoDockModuleInstance *myApplet)
 	}
 	else
 	{
-		cairo_dock_toggle_dialog_visibility (myData.pQuickLaunchDialog);
+		gldi_dialog_toggle_visibility (myData.pQuickLaunchDialog);
 	}
 }
 
 void cd_run_dialog_free (void)
 {
-	if (!cairo_dock_dialog_unreference (myData.pQuickLaunchDialog))
-		cairo_dock_dialog_unreference (myData.pQuickLaunchDialog);
+	gldi_object_unref (GLDI_OBJECT(myData.pQuickLaunchDialog));
 	
 	if (myData.dir_hash)
 		g_hash_table_destroy (myData.dir_hash);

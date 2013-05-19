@@ -24,16 +24,16 @@
 #include <cairo-dock.h>
 
 
-CDQuickBrowserItem *cd_quick_browser_make_menu_from_dir (const gchar *cDirPath, CairoDockModuleInstance *myApplet);
+CDQuickBrowserItem *cd_quick_browser_make_menu_from_dir (const gchar *cDirPath, GldiModuleInstance *myApplet);
 
 
-void cd_quick_browser_free_apps_list (CairoDockModuleInstance *myApplet);
+void cd_quick_browser_free_apps_list (GldiModuleInstance *myApplet);
 
 
-void cd_quick_browser_destroy_menu (CairoDockModuleInstance *myApplet);
+void cd_quick_browser_destroy_menu (GldiModuleInstance *myApplet);
 
 
-void cd_quick_browser_show_menu (CairoDockModuleInstance *myApplet);
+void cd_quick_browser_show_menu (GldiModuleInstance *myApplet);
 
 
 #endif

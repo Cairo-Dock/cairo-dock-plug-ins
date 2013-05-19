@@ -48,10 +48,10 @@ CD_APPLET_INIT_BEGIN
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	// CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
-	cairo_dock_register_notification_on_object (&myContainersMgr,
+	gldi_object_register_notification (&myContainersMgr,
 		NOTIFICATION_BUILD_ICON_MENU,
-		(CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU_FUNC,
-		CAIRO_DOCK_RUN_FIRST,
+		(GldiNotificationFunc) CD_APPLET_ON_BUILD_MENU_FUNC,
+		GLDI_RUN_FIRST,
 		myApplet);
 	
 	myData.pKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortkey,
@@ -65,18 +65,18 @@ CD_APPLET_INIT_END
 CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	// CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
-	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
-		NOTIFICATION_BUILD_ICON_MENU, (CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU_FUNC, myApplet);
+	gldi_object_remove_notification (&myContainersMgr,
+		NOTIFICATION_BUILD_ICON_MENU, (GldiNotificationFunc) CD_APPLET_ON_BUILD_MENU_FUNC, myApplet);
 	
 	if (myData.iSidTryDialog != 0)
 		g_source_remove (myData.iSidTryDialog);
 	
-	cairo_dock_dialog_unreference (myData.pDialog);  // pModel will be destroyed with the viewport.
+	gldi_object_unref (GLDI_OBJECT(myData.pDialog));  // pModel will be destroyed with the viewport.
 	
 	g_free (myData.cCurrentUri);
 	cd_folders_free_apps_list (myApplet);
 	
-	cd_keybinder_unbind (myData.pKeyBinding);
+	gldi_object_unref (GLDI_OBJECT(myData.pKeyBinding));
 CD_APPLET_STOP_END
 
 
@@ -91,6 +91,6 @@ CD_APPLET_RELOAD_BEGIN
 		
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		
-		cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
+		gldi_shortkey_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
 	}
 CD_APPLET_RELOAD_END

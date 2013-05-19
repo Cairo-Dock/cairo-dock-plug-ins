@@ -45,7 +45,7 @@ CD_APPLET_ON_CLICK_PROTO
 {
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if (penguin_is_resting (pAnimation))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	if ((myConfig.bFree && pClickedContainer == myContainer && myDock->container.iMouseX >  (myDock->container.iWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX && myDock->container.iMouseX < (myDock->container.iWidth - myDock->fFlatDockWidth) / 2 +  myData.iCurrentPositionX + pAnimation->iFrameWidth && myDock->container.iMouseY > myContainer->iHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight && myDock->container.iMouseY < myContainer->iHeight - myData.iCurrentPositionY) || (! myConfig.bFree && pClickedIcon == myIcon))
 	{
@@ -73,7 +73,7 @@ static void _stop_xpenguins (GtkMenuItem *menu_item, gpointer *data)
 {
 	cairo_dock_launch_command ("xpenguins-stop");
 }
-static void _keep_quiet (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _keep_quiet (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	//\_______________ On arrete tout.
 	if (myData.iSidRestartDelayed != 0)
@@ -81,8 +81,8 @@ static void _keep_quiet (GtkMenuItem *menu_item, CairoDockModuleInstance *myAppl
 		g_source_remove (myData.iSidRestartDelayed);
 		myData.iSidRestartDelayed = 0;
 	}
-	cairo_dock_remove_notification_func_on_object (myContainer, NOTIFICATION_UPDATE_SLOW, (CairoDockNotificationFunc) penguin_update_container, myApplet);
-	cairo_dock_remove_notification_func_on_object (myIcon, NOTIFICATION_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, myApplet);
+	gldi_object_remove_notification (myContainer, NOTIFICATION_UPDATE_SLOW, (GldiNotificationFunc) penguin_update_container, myApplet);
+	gldi_object_remove_notification (myIcon, NOTIFICATION_UPDATE_ICON_SLOW, (GldiNotificationFunc) penguin_update_icon, myApplet);
 	
 	//\_______________ On met l'animation de repos et on la dessine.
 	int iNewAnimation = penguin_choose_resting_animation (myApplet);
@@ -97,26 +97,26 @@ static void _keep_quiet (GtkMenuItem *menu_item, CairoDockModuleInstance *myAppl
 		penguin_move_in_icon (myApplet);
 	}
 }
-static void _wake_up (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _wake_up (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	penguin_start_animating (myApplet);
 }
-gboolean on_build_container_menu (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer, GtkWidget *pAppletMenu, gboolean *bDiscardMenu)
+gboolean on_build_container_menu (GldiModuleInstance *myApplet, Icon *pClickedIcon, GldiContainer *pClickedContainer, GtkWidget *pAppletMenu, gboolean *bDiscardMenu)
 {
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if(pAnimation == NULL)
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 	
 	if ((myConfig.bFree && pClickedContainer == myContainer && myDock->container.iMouseX >  (myDock->container.iWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX && myDock->container.iMouseX < (myDock->container.iWidth - myDock->fFlatDockWidth) / 2 +  myData.iCurrentPositionX + pAnimation->iFrameWidth && myDock->container.iMouseY > myContainer->iHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight && myDock->container.iMouseY < myContainer->iHeight - myData.iCurrentPositionY) || (! myConfig.bFree && pClickedIcon == myIcon))
 	{
 		if (pClickedIcon != myIcon)
 		{
-			cairo_dock_notify_on_object (myContainer, NOTIFICATION_BUILD_CONTAINER_MENU, myIcon, myContainer, pAppletMenu, bDiscardMenu);
-			cairo_dock_notify_on_object (myContainer, NOTIFICATION_BUILD_ICON_MENU, myIcon, myContainer, pAppletMenu);
-			return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+			gldi_object_notify (myContainer, NOTIFICATION_BUILD_CONTAINER_MENU, myIcon, myContainer, pAppletMenu, bDiscardMenu);
+			gldi_object_notify (myContainer, NOTIFICATION_BUILD_ICON_MENU, myIcon, myContainer, pAppletMenu);
+			return GLDI_NOTIFICATION_INTERCEPT;
 		}
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 static gboolean s_bXPenguinsChecked = FALSE, s_bHasXPenguins = FALSE;
@@ -124,13 +124,13 @@ static gboolean s_bXPenguinsChecked = FALSE, s_bHasXPenguins = FALSE;
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if(pAnimation == NULL)
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 	
 	if ((myConfig.bFree && pClickedContainer == myContainer && myDock->container.iMouseX >  (myDock->container.iWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX && myDock->container.iMouseX < (myDock->container.iWidth - myDock->fFlatDockWidth) / 2 +  myData.iCurrentPositionX + pAnimation->iFrameWidth && myDock->container.iMouseY > myContainer->iHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight && myDock->container.iMouseY < myContainer->iHeight - myData.iCurrentPositionY) || (! myConfig.bFree && pClickedIcon == myIcon))
 	{
 		if (pClickedIcon != myIcon)
 		{
-			return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+			return GLDI_NOTIFICATION_INTERCEPT;
 		}
 	}
 	
@@ -161,17 +161,17 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 CD_APPLET_ON_BUILD_MENU_END
 
 
-gboolean CD_APPLET_ON_MIDDLE_CLICK_FUNC (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer)
+gboolean CD_APPLET_ON_MIDDLE_CLICK_FUNC (GldiModuleInstance *myApplet, Icon *pClickedIcon, GldiContainer *pClickedContainer)
 {
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if(pAnimation == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	if ((myConfig.bFree && pClickedContainer == myContainer && myDock->container.iMouseX > (myDock->container.iWidth - myDock->fFlatDockWidth) / 2 + myData.iCurrentPositionX && myDock->container.iMouseX < (myDock->container.iWidth - myDock->fFlatDockWidth) / 2 +  myData.iCurrentPositionX + pAnimation->iFrameWidth && myDock->container.iMouseY > myContainer->iHeight - myData.iCurrentPositionY - pAnimation->iFrameHeight && myDock->container.iMouseY < myContainer->iHeight - myData.iCurrentPositionY) || (! myConfig.bFree && pClickedIcon == myIcon))
 	{
 		if (myData.pDialog != NULL)
 		{
-			cairo_dock_dialog_unreference (myData.pDialog);
+			gldi_object_unref (GLDI_OBJECT(myData.pDialog));
 			myData.pDialog = NULL;
 		}
 		PenguinAnimation *pAnimation = penguin_get_current_animation ();
@@ -179,9 +179,9 @@ gboolean CD_APPLET_ON_MIDDLE_CLICK_FUNC (CairoDockModuleInstance *myApplet, Icon
 		{
 			Icon *pIcon = cairo_dock_get_pointed_icon (myDock->icons);
 			if (pIcon != NULL)
-				myData.pDialog = cairo_dock_show_temporary_dialog (D_("Zzzzz"), pIcon, myContainer, 2000);
+				myData.pDialog = gldi_dialog_show_temporary (D_("Zzzzz"), pIcon, myContainer, 2000);
 			else
-				myData.pDialog = cairo_dock_show_general_message (D_("Zzzzz"), 2000);
+				myData.pDialog = gldi_dialog_show_general_message (D_("Zzzzz"), 2000);
 		}
 		else if (! pAnimation->bEnding && myData.iSidRestartDelayed == 0)
 		{
@@ -194,7 +194,7 @@ gboolean CD_APPLET_ON_MIDDLE_CLICK_FUNC (CairoDockModuleInstance *myApplet, Icon
 			else if (iRandom == 1 && ! myConfig.bFree)
 			{
 				CD_APPLET_ANIMATE_MY_ICON ("bounce", 3);
-				myData.pDialog = cairo_dock_show_temporary_dialog ("Olll����� !", myIcon, myContainer, 2500);
+				myData.pDialog = gldi_dialog_show_temporary ("Olll����� !", myIcon, myContainer, 2500);
 			}
 			else
 			{
@@ -203,16 +203,16 @@ gboolean CD_APPLET_ON_MIDDLE_CLICK_FUNC (CairoDockModuleInstance *myApplet, Icon
 				const gchar *cMessage = D_(s_pMessage[iRandom]);
 				int iDuration = 2000 + 25 * g_utf8_strlen (cMessage, -1);
 				if (pIcon != NULL)
-					myData.pDialog = cairo_dock_show_temporary_dialog (cMessage, pIcon, myContainer, iDuration);
+					myData.pDialog = gldi_dialog_show_temporary (cMessage, pIcon, myContainer, iDuration);
 				else
-					myData.pDialog = cairo_dock_show_general_message (cMessage, iDuration);
+					myData.pDialog = gldi_dialog_show_general_message (cMessage, iDuration);
 			}
 		}
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
-gboolean cd_on_dock_destroyed (CairoDockModuleInstance *myApplet, CairoDock *pDock)
+gboolean cd_on_dock_destroyed (GldiModuleInstance *myApplet, CairoDock *pDock)
 {
-	cairo_dock_deactivate_module_and_unload (myApplet->pModule->pVisitCard->cModuleName);
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	gldi_module_remove_instance (myApplet);
+	return GLDI_NOTIFICATION_LET_PASS;
 }

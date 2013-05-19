@@ -130,7 +130,7 @@ void cd_doncky_get_color_from_xml (gchar *cNodeContent, double *fColor)
 	fColor[3] = iText4 / 255;
 }
 
-void cd_doncky_export_color_to_conf (double *fColor, const gchar *cGroupName, const gchar *cParam, CairoDockModuleInstance *myApplet)
+void cd_doncky_export_color_to_conf (double *fColor, const gchar *cGroupName, const gchar *cParam, GldiModuleInstance *myApplet)
 {
 	gchar *cStringInConfig = NULL;
 	cStringInConfig = g_strdup_printf ("%f;%f;%f;%f;", fColor[0], fColor[1], fColor[2], fColor[3]);
@@ -196,13 +196,13 @@ gchar *g_str_position (const gchar *cString, const int iPosition, const char cSe
 }*/
 
 
-double _Ko_to_Mo (CairoDockModuleInstance *myApplet , double fValueInKo)
+double _Ko_to_Mo (GldiModuleInstance *myApplet , double fValueInKo)
 {
 	fValueInKo = fValueInKo / 1024;
 	return fValueInKo;
 }
 
-double _Ko_to_Go (CairoDockModuleInstance *myApplet , double fValueInKo)
+double _Ko_to_Go (GldiModuleInstance *myApplet , double fValueInKo)
 {
 	fValueInKo = _Ko_to_Mo (myApplet ,fValueInKo);
 	fValueInKo = _Ko_to_Mo (myApplet ,fValueInKo);
@@ -210,7 +210,7 @@ double _Ko_to_Go (CairoDockModuleInstance *myApplet , double fValueInKo)
 }
 
 
-void cd_launch_command (CairoDockModuleInstance *myApplet)
+void cd_launch_command (GldiModuleInstance *myApplet)
 {
 	
 	// SYSTEM-MONITOR
@@ -452,7 +452,7 @@ void cd_launch_command (CairoDockModuleInstance *myApplet)
 	}	
 }
 
-gboolean cd_retrieve_command_result (CairoDockModuleInstance *myApplet)
+gboolean cd_retrieve_command_result (GldiModuleInstance *myApplet)
 {
 	GList *it;
 	TextZone *pTextZone;
@@ -494,7 +494,7 @@ gboolean cd_retrieve_command_result (CairoDockModuleInstance *myApplet)
 
 
 
-void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, int iHeight)
+void cd_applet_draw_my_desklet (GldiModuleInstance *myApplet, int iWidth, int iHeight)
 {
 	PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
 	PangoRectangle ink, log;
@@ -885,7 +885,7 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 }
 
 
-void cd_applet_update_my_icon (CairoDockModuleInstance *myApplet)
+void cd_applet_update_my_icon (GldiModuleInstance *myApplet)
 {
 	// taille de la texture.
 	int iWidth, iHeight;

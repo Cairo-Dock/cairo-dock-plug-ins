@@ -44,7 +44,7 @@ struct _AppletData {
 	gint iCountdown;
 	CairoDockImageBuffer *pCurrentImage;
 	CairoDockImageBuffer *pOldImage;
-	CairoKeyBinding *pKeyBinding;
+	GldiShortkey *pKeyBinding;
 	gboolean bFromShortkey;
 	CairoDialog *pDialog;
 	} ;

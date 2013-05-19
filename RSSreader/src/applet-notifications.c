@@ -28,7 +28,7 @@
 #include "applet-notifications.h"
 
 
-static void _new_url_to_conf (CairoDockModuleInstance *myApplet, const gchar *cNewURL)
+static void _new_url_to_conf (GldiModuleInstance *myApplet, const gchar *cNewURL)
 {
 	if (g_strstr_len (cNewURL, -1, "http") != NULL)  // On verifie que l'element glisser/copier commence bien par http
 	{
@@ -65,8 +65,8 @@ static void _new_url_to_conf (CairoDockModuleInstance *myApplet, const gchar *cN
 	else
 	{
 		cd_debug ("RSSreader-debug : It doesn't seem to be a valid URL.");	
-		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog_with_icon (D_("It doesn't seem to be a valid URL."),
+		gldi_dialogs_remove_on_icon (myIcon);
+		gldi_dialog_show_temporary_with_icon (D_("It doesn't seem to be a valid URL."),
 			myIcon,
 			myContainer,
 			3000, // Suffisant 
@@ -74,7 +74,7 @@ static void _new_url_to_conf (CairoDockModuleInstance *myApplet, const gchar *cN
 	}
 }
 
-static void _paste_new_url_to_conf (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _paste_new_url_to_conf (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	GtkClipboard *pClipBoardSelection = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);	
@@ -90,7 +90,7 @@ CD_APPLET_ON_CLICK_BEGIN
 CD_APPLET_ON_CLICK_END
 
 
-static inline void _update_feeds (CairoDockModuleInstance *myApplet)
+static inline void _update_feeds (GldiModuleInstance *myApplet)
 {
 	myData.bUpdateIsManual = TRUE;
 	// on ne met pas de message d'attente pour conserver les items actuels, on prefere afficher un dialogue signalant ou pas une modification.
@@ -109,14 +109,14 @@ CD_APPLET_ON_DROP_DATA_END
 
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
-static void _start_browser (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _start_browser (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	if (myConfig.cSpecificWebBrowser != NULL)  // une commande specifique est fournie.
 		cairo_dock_launch_command_printf ("%s %s", NULL, myConfig.cSpecificWebBrowser, myConfig.cUrl);
 	else  // sinon on utilise la commande par defaut.
 		cairo_dock_fm_launch_uri (myConfig.cUrl);
 }
-static void _refresh (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _refresh (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	_update_feeds (myApplet);
 }
@@ -133,7 +133,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 CD_APPLET_ON_BUILD_MENU_END
 
 
-static gboolean _redraw_desklet_idle (CairoDockModuleInstance *myApplet)
+static gboolean _redraw_desklet_idle (GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cd_applet_update_my_icon (myApplet);
@@ -143,13 +143,13 @@ static gboolean _redraw_desklet_idle (CairoDockModuleInstance *myApplet)
 }
 CD_APPLET_ON_SCROLL_BEGIN
 	if (! myDesklet)
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 	
 	myData.iFirstDisplayedItem += (CD_APPLET_SCROLL_UP ? -1 : 1);
 	if (myData.iFirstDisplayedItem < 0)  // on a scrolle trop haut.
 	{
 		myData.iFirstDisplayedItem = 0;
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 	}
 	else
 	{
@@ -157,7 +157,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 		if (myData.iFirstDisplayedItem > n - 1)  // on a scrolle trop bas.
 		{
 			myData.iFirstDisplayedItem = n - 1;
-			CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+			CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 		}
 	}
 	if (myData.iSidRedrawIdle == 0)  // on planifie un redessin pour quand la boucle principale sera accessible, de facon a éviter de la surcharger en cas de scroll rapide.

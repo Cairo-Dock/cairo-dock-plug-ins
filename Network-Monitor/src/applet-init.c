@@ -72,7 +72,7 @@ static CairoDataRendererAttribute *make_data_renderer_attribute (Icon *myIcon, C
 	return pRenderAttr;
 }
 
-static void _set_data_renderer (CairoDockModuleInstance *myApplet)
+static void _set_data_renderer (GldiModuleInstance *myApplet)
 {
 	CairoDataRendererAttribute *pRenderAttr = make_data_renderer_attribute (myIcon, (myConfig.bModeWifi ? &myConfig.wifiRenderer : &myConfig.netSpeedRenderer));  // les attributs du data-renderer global.
 	

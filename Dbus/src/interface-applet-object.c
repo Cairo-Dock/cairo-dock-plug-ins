@@ -90,7 +90,7 @@ static void cd_dbus_sub_applet_init (dbusSubApplet *pDbusSubApplet)
 }
 
 
-dbusApplet * cd_dbus_get_dbus_applet_from_instance (CairoDockModuleInstance *pModuleInstance)
+dbusApplet * cd_dbus_get_dbus_applet_from_instance (GldiModuleInstance *pModuleInstance)
 {
 	dbusApplet *pDbusApplet = NULL;
 	GList *a;
@@ -106,7 +106,7 @@ dbusApplet * cd_dbus_get_dbus_applet_from_instance (CairoDockModuleInstance *pMo
 
 #define _applet_list_is_empty() (s_pAppletList == NULL)
 
-dbusApplet *cd_dbus_create_remote_applet_object (CairoDockModuleInstance *pModuleInstance)
+dbusApplet *cd_dbus_create_remote_applet_object (GldiModuleInstance *pModuleInstance)
 {
 	g_return_val_if_fail (pModuleInstance != NULL && myData.pMainObject != NULL, NULL);
 	const gchar *cModuleName = pModuleInstance->pModule->pVisitCard->cModuleName;
@@ -129,7 +129,7 @@ dbusApplet *cd_dbus_create_remote_applet_object (CairoDockModuleInstance *pModul
 	
 	//\_____________ register it under a unique path.
 	gchar *cSuffix = NULL;
-	if (pModuleInstance->pModule->pInstancesList->next != NULL)  // if this is the only instance of the applet, don't add suffix (it's not needed, and it keeps backward compatibility).
+	if (pModuleInstance->pModule->pInstancesList != NULL)  // if this is the only instance of the applet, don't add suffix (it's not needed, and it keeps backward compatibility).
 		cSuffix = g_strdup_printf ("_%d", pDbusApplet->id);
 	
 	gchar *cNameWithoutHyphen = NULL;
@@ -155,32 +155,32 @@ dbusApplet *cd_dbus_create_remote_applet_object (CairoDockModuleInstance *pModul
 	//\_____________ register to the notifications we'll want to propagate on the bus.
 	if (pDbusApplet->proxy != NULL && _applet_list_is_empty ())  // 1ere applet Dbus.
 	{
-		cairo_dock_register_notification_on_object (&myContainersMgr,
+		gldi_object_register_notification (&myContainersMgr,
 			NOTIFICATION_CLICK_ICON,
-			(CairoDockNotificationFunc) cd_dbus_applet_emit_on_click_icon,
-			CAIRO_DOCK_RUN_AFTER,
+			(GldiNotificationFunc) cd_dbus_applet_emit_on_click_icon,
+			GLDI_RUN_AFTER,
 			NULL);
-		cairo_dock_register_notification_on_object (&myContainersMgr,
+		gldi_object_register_notification (&myContainersMgr,
 			NOTIFICATION_MIDDLE_CLICK_ICON,
-			(CairoDockNotificationFunc) cd_dbus_applet_emit_on_middle_click_icon,
-			CAIRO_DOCK_RUN_AFTER,
+			(GldiNotificationFunc) cd_dbus_applet_emit_on_middle_click_icon,
+			GLDI_RUN_AFTER,
 			NULL);
-		cairo_dock_register_notification_on_object (&myContainersMgr,
+		gldi_object_register_notification (&myContainersMgr,
 			NOTIFICATION_SCROLL_ICON,
-			(CairoDockNotificationFunc) cd_dbus_applet_emit_on_scroll_icon,
-			CAIRO_DOCK_RUN_FIRST,
+			(GldiNotificationFunc) cd_dbus_applet_emit_on_scroll_icon,
+			GLDI_RUN_FIRST,
 			NULL);
-		cairo_dock_register_notification_on_object (&myContainersMgr,
+		gldi_object_register_notification (&myContainersMgr,
 			NOTIFICATION_BUILD_ICON_MENU,
-			(CairoDockNotificationFunc) cd_dbus_applet_emit_on_build_menu,
-			CAIRO_DOCK_RUN_FIRST,
+			(GldiNotificationFunc) cd_dbus_applet_emit_on_build_menu,
+			GLDI_RUN_FIRST,
 			NULL);
-		cairo_dock_register_notification_on_object (&myDesktopMgr,
+		gldi_object_register_notification (&myWindowsMgr,
 			NOTIFICATION_WINDOW_ACTIVATED,
-			(CairoDockNotificationFunc) cd_dbus_applet_emit_on_change_focus,
-			CAIRO_DOCK_RUN_AFTER,
+			(GldiNotificationFunc) cd_dbus_applet_emit_on_change_focus,
+			GLDI_RUN_AFTER,
 			NULL);
-		myData.xActiveWindow = cairo_dock_get_current_active_window ();
+		myData.pActiveWindow = gldi_windows_get_active ();
 	}
 	
 	s_pAppletList = g_list_prepend (s_pAppletList, pDbusApplet);
@@ -200,11 +200,11 @@ void cd_dbus_delete_remote_applet_object (dbusApplet *pDbusApplet)
 	{
 		// on enleve les raccourcis clavier de l'applet.
 		GList *kb;
-		CairoKeyBinding *pKeyBinding;
+		GldiShortkey *pKeyBinding;
 		for (kb = pDbusApplet->pShortkeyList; kb != NULL; kb = kb->next)
 		{
 			pKeyBinding = kb->data;
-			cd_keybinder_unbind (pKeyBinding);
+			gldi_object_unref (GLDI_OBJECT(pKeyBinding));
 		}
 		g_list_free (pDbusApplet->pShortkeyList);
 		pDbusApplet->pShortkeyList = NULL;
@@ -216,30 +216,30 @@ void cd_dbus_delete_remote_applet_object (dbusApplet *pDbusApplet)
 
 void cd_dbus_unregister_notifications (void)
 {
-	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
+	gldi_object_remove_notification (&myContainersMgr,
 		NOTIFICATION_CLICK_ICON,
-		(CairoDockNotificationFunc) cd_dbus_applet_emit_on_click_icon,
+		(GldiNotificationFunc) cd_dbus_applet_emit_on_click_icon,
 		NULL);
-	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
+	gldi_object_remove_notification (&myContainersMgr,
 		NOTIFICATION_MIDDLE_CLICK_ICON,
-		(CairoDockNotificationFunc) cd_dbus_applet_emit_on_middle_click_icon,
+		(GldiNotificationFunc) cd_dbus_applet_emit_on_middle_click_icon,
 		NULL);
-	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
+	gldi_object_remove_notification (&myContainersMgr,
 		NOTIFICATION_SCROLL_ICON,
-		(CairoDockNotificationFunc) cd_dbus_applet_emit_on_scroll_icon,
+		(GldiNotificationFunc) cd_dbus_applet_emit_on_scroll_icon,
 		NULL);
-	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
+	gldi_object_remove_notification (&myContainersMgr,
 		NOTIFICATION_BUILD_ICON_MENU,
-		(CairoDockNotificationFunc) cd_dbus_applet_emit_on_build_menu,
+		(GldiNotificationFunc) cd_dbus_applet_emit_on_build_menu,
 		NULL);
-	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
+	gldi_object_remove_notification (&myDesktopMgr,
 		NOTIFICATION_WINDOW_ACTIVATED,
-		(CairoDockNotificationFunc) cd_dbus_applet_emit_on_change_focus,
+		(GldiNotificationFunc) cd_dbus_applet_emit_on_change_focus,
 		NULL);
 }
 
 
-void cd_dbus_launch_applet_process (CairoDockModuleInstance *pModuleInstance, dbusApplet *pDbusApplet)
+void cd_dbus_launch_applet_process (GldiModuleInstance *pModuleInstance, dbusApplet *pDbusApplet)
 {
 	const gchar *cModuleName = pModuleInstance->pModule->pVisitCard->cModuleName;
 	const gchar *cDirPath = pModuleInstance->pModule->pVisitCard->cShareDataDir;

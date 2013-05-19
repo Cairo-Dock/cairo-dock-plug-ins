@@ -25,7 +25,7 @@
 #include "applet-struct.h"
 
 
-void cd_clock_register_backend_default (CairoDockModuleInstance *myApplet);
+void cd_clock_register_backend_default (GldiModuleInstance *myApplet);
 
 
 #endif

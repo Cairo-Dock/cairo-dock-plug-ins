@@ -45,41 +45,26 @@ static DBusGProxyCall *s_pGetMenuCall = NULL;
  /// WINDOW CONTROLS ///
 ///////////////////////
 
-void cd_app_menu_set_window_border (Window Xid, gboolean bWithBorder)
+static void _get_window_allowed_actions (GldiWindowActor *actor)
 {
-	Display *dpy = cairo_dock_get_Xdisplay();
-	MwmHints mwmhints;
-	Atom prop;
-	memset(&mwmhints, 0, sizeof(mwmhints));
-	prop = XInternAtom(dpy, "_MOTIF_WM_HINTS", False);
-	mwmhints.flags = MWM_HINTS_DECORATIONS;
-	mwmhints.decorations = bWithBorder;
-	XChangeProperty (dpy, Xid, prop,
-		prop, 32, PropModeReplace,
-		(unsigned char *) &mwmhints,
-		PROP_MWM_HINTS_ELEMENTS);
-}
-
-static void _get_window_allowed_actions (Window Xid)
-{
-	if (Xid == 0)
+	if (actor == NULL)
 	{
 		myData.bCanMinimize = FALSE;
 		myData.bCanMaximize = FALSE;
 		myData.bCanClose = FALSE;
 		return;
 	}
-	cairo_dock_xwindow_can_minimize_maximized_close (Xid, &myData.bCanMinimize, &myData.bCanMaximize, &myData.bCanClose);
+	gldi_window_can_minimize_maximize_close (actor, &myData.bCanMinimize, &myData.bCanMaximize, &myData.bCanClose);
 }
 
-static void _set_border (Icon *icon, CairoContainer *pContainer, gboolean bWithBorder)
+static void _set_border (GldiWindowActor *actor, gboolean bWithBorder)
 {
-	if (icon->bIsMaximized)
-		cd_app_menu_set_window_border (icon->Xid, bWithBorder);
+	if (actor->bIsMaximized)
+		gldi_window_set_border (actor, bWithBorder);
 }
 void cd_app_menu_set_windows_borders (gboolean bWithBorder)
 {
-	cairo_dock_foreach_applis ((CairoDockForeachIconFunc)_set_border, FALSE, GINT_TO_POINTER (bWithBorder));
+	gldi_windows_foreach (FALSE, (GFunc)_set_border, GINT_TO_POINTER (bWithBorder));
 }
 
 
@@ -107,9 +92,9 @@ static void _on_registrar_owner_changed (const gchar *cName, gboolean bOwned, gp
 			CD_APP_MENU_REGISTRAR_IFACE);  // whenever it appears on the bus, we'll get it.
 		
 		// get the controls and menu of the current window.
-		Window iActiveWindow = cairo_dock_get_current_active_window ();
+		GldiWindowActor *actor = gldi_windows_get_active ();
 		
-		cd_app_menu_set_current_window (iActiveWindow);
+		cd_app_menu_set_current_window (actor);
 	}
 	else  // no more registrar on the bus.
 	{
@@ -201,7 +186,7 @@ typedef struct {
 	DbusmenuGtkMenu *pMenu;
 } CDSharedMemory;
 
-static void _on_menu_destroyed (CairoDockModuleInstance *myApplet, GObject *old_menu_pointer)
+static void _on_menu_destroyed (GldiModuleInstance *myApplet, GObject *old_menu_pointer)
 {
 	if (old_menu_pointer == (GObject*)myData.pMenu)
 		myData.pMenu = NULL;
@@ -234,7 +219,7 @@ static gboolean _fetch_menu (CDSharedMemory *pSharedMemory)
 	CD_APPLET_LEAVE (TRUE);
 }*/
 
-static void _on_got_menu (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockModuleInstance *myApplet)
+static void _on_got_menu (DBusGProxy *proxy, DBusGProxyCall *call_id, GldiModuleInstance *myApplet)
 {
 	cd_debug ("%s ()", __func__);
 	CD_APPLET_ENTER;
@@ -290,7 +275,7 @@ static void _on_got_menu (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockM
 	///g_free (cMenuObject);
 	CD_APPLET_LEAVE ();
 }
-static void _get_application_menu (Window Xid)
+static void _get_application_menu (GldiWindowActor *actor)
 {
 	// destroy the current menu
 	if (myData.pMenu != NULL)
@@ -313,16 +298,19 @@ static void _get_application_menu (Window Xid)
 	}
 	
 	// get the new one.
-	if (Xid != 0)
+	if (actor != NULL)
 	{
 		if (myData.pProxyRegistrar != NULL)
 		{
+			int id = 0;
+			/// TODO: get an id of the actor...
+			
 			s_pGetMenuCall = dbus_g_proxy_begin_call (myData.pProxyRegistrar,
 				"GetMenuForWindow",
 				(DBusGProxyCallNotify)_on_got_menu,
 				myApplet,
 				(GDestroyNotify) NULL,
-				G_TYPE_UINT, Xid,
+				G_TYPE_UINT, id,
 				G_TYPE_INVALID);
 		}
 	}
@@ -333,17 +321,17 @@ static void _get_application_menu (Window Xid)
  /// START / STOP ///
 ////////////////////
 
-static gboolean _get_current_window_idle (CairoDockModuleInstance *myApplet)
+static gboolean _get_current_window_idle (GldiModuleInstance *myApplet)
 {
 	// get the controls and menu of the current window.
-	Window iActiveWindow = cairo_dock_get_current_active_window ();
+	GldiWindowActor *actor = gldi_windows_get_active ();
 	
-	cd_app_menu_set_current_window (iActiveWindow);
+	cd_app_menu_set_current_window (actor);
 	
 	myData.iSidInitIdle = 0;
 	return FALSE;
 }
-static gboolean _remove_windows_borders (CairoDockModuleInstance *myApplet)
+static gboolean _remove_windows_borders_idle (GldiModuleInstance *myApplet)
 {
 	cd_app_menu_set_windows_borders (FALSE);
 	
@@ -365,7 +353,7 @@ void cd_app_menu_start (void)
 	// remove borders from all maximised windows
 	if (myConfig.bDisplayControls)
 	{
-		myData.iSidInitIdle2 = g_idle_add ((GSourceFunc)_remove_windows_borders, myApplet);  // in idle, because it's heavy + the applications-manager is started after the plug-ins.
+		myData.iSidInitIdle2 = g_idle_add ((GSourceFunc)_remove_windows_borders_idle, myApplet);  // in idle, because it's heavy + the applications-manager is started after the plug-ins.
 	}
 	
 	if (myConfig.bDisplayControls)
@@ -393,27 +381,27 @@ void cd_app_menu_stop (void)
 		g_source_remove (myData.iSidInitIdle);
 	if (myData.iSidInitIdle2 != 0)
 		g_source_remove (myData.iSidInitIdle2);
+	gldi_icon_unset_appli (myIcon);
 }
 
 
-void cd_app_menu_set_current_window (Window iActiveWindow)
+void cd_app_menu_set_current_window (GldiWindowActor *actor)
 {
-	cd_debug ("%s (%ld)", __func__, iActiveWindow);
-	if (iActiveWindow != myData.iCurrentWindow)
+	cd_debug ("%s (%p)", __func__, actor);
+	if (actor != myData.pCurrentWindow)
 	{
-		myData.iPreviousWindow = myData.iCurrentWindow;
-		myData.iCurrentWindow = iActiveWindow;
-		myIcon->Xid = iActiveWindow;  // set the Xid on our icon, so that the dock adds the usual actions in our right-click menu.
+		myData.pPreviousWindow = myData.pCurrentWindow;
+		myData.pCurrentWindow = actor;
+		gldi_icon_set_appli (myIcon, actor);  // set the actor on our icon, so that the dock adds the usual actions in our right-click menu. // this takes a reference on the actor, and remove the ref on the previous one.
 		
 		if (myConfig.bDisplayMenu)
-			_get_application_menu (iActiveWindow);
+			_get_application_menu (actor);
 		
 		if (myConfig.bDisplayControls)
-			_get_window_allowed_actions (iActiveWindow);
+			_get_window_allowed_actions (actor);
 		
 		// update the icon
-		Icon *icon = cairo_dock_get_icon_with_Xid (iActiveWindow);
-		CD_APPLET_SET_NAME_FOR_MY_ICON (icon ? icon->cName : NULL);
+		CD_APPLET_SET_NAME_FOR_MY_ICON (actor ? actor->cName : NULL);
 		
 		cd_app_menu_redraw_icon ();
 	}

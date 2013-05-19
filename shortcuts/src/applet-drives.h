@@ -23,12 +23,12 @@
 #include <cairo-dock.h>
 
 
-void cd_shortcuts_add_progress_bar (Icon *pIcon, CairoDockModuleInstance *myApplet);
+void cd_shortcuts_add_progress_bar (Icon *pIcon, GldiModuleInstance *myApplet);
 
-void _init_disk_usage (Icon *pIcon, CairoDockModuleInstance *myApplet);
+void _init_disk_usage (Icon *pIcon, GldiModuleInstance *myApplet);
 
 
-void cd_shortcuts_on_drive_event (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet);
+void cd_shortcuts_on_drive_event (CairoDockFMEventType iEventType, const gchar *cURI, GldiModuleInstance *myApplet);
 
 
 GList * cd_shortcuts_list_drives (CDSharedMemory *pSharedMemory);

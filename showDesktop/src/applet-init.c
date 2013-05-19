@@ -52,10 +52,10 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
-	cairo_dock_register_notification_on_object (&myDesktopMgr,
+	gldi_object_register_notification (&myDesktopMgr,
 		NOTIFICATION_DESKTOP_VISIBILITY_CHANGED,
-		(CairoDockNotificationFunc) on_show_desktop,
-		CAIRO_DOCK_RUN_AFTER, myApplet);
+		(GldiNotificationFunc) on_show_desktop,
+		GLDI_RUN_AFTER, myApplet);
 	
 	myIcon->iface.action_on_drag_hover = _show_desktop_for_drop;
 	
@@ -77,11 +77,11 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
-	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
+	gldi_object_remove_notification (&myDesktopMgr,
 		NOTIFICATION_DESKTOP_VISIBILITY_CHANGED,
-		(CairoDockNotificationFunc) on_show_desktop, myApplet);
+		(GldiNotificationFunc) on_show_desktop, myApplet);
 	
-	cd_keybinder_unbind (myData.cKeyBinding);
+	gldi_object_unref (GLDI_OBJECT(myData.cKeyBinding));
 CD_APPLET_STOP_END
 
 
@@ -99,6 +99,6 @@ CD_APPLET_RELOAD_BEGIN
 		else
 			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 		
-		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cShortcut, D_(s_cShortkeyDescription[myConfig.iActionOnMiddleClick]));
+		gldi_shortkey_rebind (myData.cKeyBinding, myConfig.cShortcut, D_(s_cShortkeyDescription[myConfig.iActionOnMiddleClick]));
 	}
 CD_APPLET_RELOAD_END

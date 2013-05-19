@@ -43,7 +43,7 @@ static void _set_warning_repetition (int iClickedButton, GtkWidget *pInteractive
 static gboolean _task_warning (CDClockTask *pTask, const gchar *cMessage)
 {
 	cd_debug ("%s (%s)", __func__, cMessage);
-	CairoDockModuleInstance *myApplet = pTask->pApplet;
+	GldiModuleInstance *myApplet = pTask->pApplet;
 
 	#if (GTK_MAJOR_VERSION < 3)
 	GtkWidget *pScale = gtk_hscale_new_with_range (1, 60, 1);  // 1mn-60mn et 1 cran/mn.
@@ -65,10 +65,10 @@ static gboolean _task_warning (CDClockTask *pTask, const gchar *cMessage)
 	gtk_container_add (GTK_CONTAINER (pAlign), label);
 	gtk_box_pack_start (GTK_BOX (pExtendedWidget), pAlign, FALSE, FALSE, 0);
 	
-	cairo_dock_dialog_unreference (pTask->pWarningDialog);
+	gldi_object_unref (GLDI_OBJECT(pTask->pWarningDialog));
 	
-	CairoDialogAttribute attr;
-	memset (&attr, 0, sizeof (CairoDialogAttribute));
+	CairoDialogAttr attr;
+	memset (&attr, 0, sizeof (CairoDialogAttr));
 	attr.cText = (gchar *)cMessage;
 	attr.bUseMarkup = TRUE;
 	attr.cImageFilePath = (gchar *)MY_APPLET_SHARE_DATA_DIR"/icon-task.png";
@@ -78,15 +78,9 @@ static gboolean _task_warning (CDClockTask *pTask, const gchar *cMessage)
 	attr.iTimeLength = (pTask->iWarningDelay != 0 ? MIN (pTask->iWarningDelay-.1, 15.) : 15) * 60e3;  // on laisse le dialogue visible le plus longtemps possible, jusqu'a 15mn.
 	const gchar *cDefaultActionButtons[3] = {"ok", "cancel", NULL};
 	attr.cButtonsImage = cDefaultActionButtons;
-	pTask->pWarningDialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);
-	/**pTask->pWarningDialog = cairo_dock_show_dialog_full (cMessage,
-		myIcon, myContainer,
-		(pTask->iWarningDelay != 0 ? MIN (pTask->iWarningDelay-.1, 15.) : 15) * 60e3,  // on laisse le dialogue visible le plus longtemps possible, jusqu'a 15mn.
-		MY_APPLET_SHARE_DATA_DIR"/icon-task.png",
-		pExtendedWidget,
-		(CairoDockActionOnAnswerFunc) _set_warning_repetition,
-		pTask,
-		NULL);*/
+	attr.pIcon = myIcon;
+	attr.pContainer = myContainer;
+	pTask->pWarningDialog = gldi_dialog_new (&attr);
 	
 	CD_APPLET_DEMANDS_ATTENTION (NULL, 3600);  // ~ 1h, pour si on loupe le dialogue.
 	return TRUE;
@@ -133,11 +127,11 @@ static void _set_warning_repetition (int iClickedButton, GtkWidget *pInteractive
 		}
 	}
 	pTask->pWarningDialog = NULL;
-	CairoDockModuleInstance *myApplet = pTask->pApplet;
+	GldiModuleInstance *myApplet = pTask->pApplet;
 	CD_APPLET_STOP_DEMANDING_ATTENTION;
 }
 
-static inline void _get_current_time (time_t epoch, CairoDockModuleInstance *myApplet)
+static inline void _get_current_time (time_t epoch, GldiModuleInstance *myApplet)
 {
 	if (myConfig.cLocation != NULL)
 	{
@@ -154,13 +148,13 @@ static inline void _get_current_time (time_t epoch, CairoDockModuleInstance *myA
 	}
 }
 
-void cd_clock_init_time (CairoDockModuleInstance *myApplet)
+void cd_clock_init_time (GldiModuleInstance *myApplet)
 {
 	time_t epoch = (time_t) time (NULL);
 	_get_current_time (epoch, myApplet);
 }
 
-static gchar *_make_missed_task_message (CDClockTask *pTask, CairoDockModuleInstance *myApplet)
+static gchar *_make_missed_task_message (CDClockTask *pTask, GldiModuleInstance *myApplet)
 {
 	//g_print ("%s (%s)\n", __func__, pTask->cID);
 	struct tm st;
@@ -186,7 +180,7 @@ static gchar *_make_missed_task_message (CDClockTask *pTask, CairoDockModuleInst
 		pTask->cTitle?pTask->cTitle:D_("No title"),
 		pTask->cText?pTask->cText:"");
 }
-static void _on_next_missed_task (int iClickedButton, GtkWidget *pInteractiveWidget, CairoDockModuleInstance *myApplet, CairoDialog *pDialog)
+static void _on_next_missed_task (int iClickedButton, GtkWidget *pInteractiveWidget, GldiModuleInstance *myApplet, CairoDialog *pDialog)
 {
 	g_return_if_fail (myData.pMissedTasks != NULL);
 	//g_print ("%s ()\n", __func__);
@@ -206,7 +200,7 @@ static void _on_next_missed_task (int iClickedButton, GtkWidget *pInteractiveWid
 			pTask = myData.pMissedTasks->data;
 			//g_print ("display task '%s'\n", pTask->cID);
 			gchar *cMessage = _make_missed_task_message (pTask, myApplet);
-			cairo_dock_set_dialog_message (pDialog, cMessage);
+			gldi_dialog_set_message (pDialog, cMessage);
 			g_free (cMessage);
 			
 			// remove 'next' button if no more task will follow.
@@ -234,7 +228,7 @@ static void _on_next_missed_task (int iClickedButton, GtkWidget *pInteractiveWid
 				i = 0;
 				pDialog->pButtons[i].iDefaultType = 1;
 			}
-			cairo_dock_dialog_reference (pDialog);  // keep the dialog alive.
+			gldi_object_ref (GLDI_OBJECT(pDialog));  // keep the dialog alive.
 		}
 	}
 	else  // dismiss next missed tasks and let the dialog close itself.
@@ -244,7 +238,7 @@ static void _on_next_missed_task (int iClickedButton, GtkWidget *pInteractiveWid
 	}
 }
 
-gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
+gboolean cd_clock_update_with_time (GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	//\________________ On recupere l'heure courante.
@@ -356,7 +350,7 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 				if (bShowAlarm)
 				{
 					cd_message ("Dring ! %s", pAlarm->cMessage);
-					cairo_dock_show_temporary_dialog (pAlarm->cMessage, myIcon, myContainer, 60e3);
+					gldi_dialog_show_temporary (pAlarm->cMessage, myIcon, myContainer, 60e3);
 					if (pAlarm->cCommand != NULL)
 					{
 						if (myData.iAlarmPID > 0)
@@ -405,8 +399,8 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 		{
 			CDClockTask *pTask = myData.pMissedTasks->data;
 			gchar *cMessage = _make_missed_task_message (pTask, myApplet);
-			CairoDialogAttribute attr;
-			memset (&attr, 0, sizeof (CairoDialogAttribute));
+			CairoDialogAttr attr;
+			memset (&attr, 0, sizeof (CairoDialogAttr));
 			attr.cText = cMessage;
 			attr.bUseMarkup = TRUE;
 			attr.cImageFilePath = (gchar *)MY_APPLET_SHARE_DATA_DIR"/icon-task.png";
@@ -421,7 +415,10 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 			attr.pUserData = myApplet;
 			attr.pFreeDataFunc = NULL;
 			attr.iTimeLength = 0;
-			cairo_dock_build_dialog (&attr, myIcon, myContainer);
+			attr.pIcon = myIcon;
+			attr.pContainer = myContainer;
+			gldi_dialog_new (&attr);
+			
 			g_free (cMessage);
 		}
 		
@@ -475,20 +472,15 @@ gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet)
 						myData.pNextTask->cTitle?myData.pNextTask->cTitle:D_("No title"),
 						myData.pNextTask->cText?myData.pNextTask->cText:"");
 					
-					CairoDialogAttribute attr;
-					memset (&attr, 0, sizeof (CairoDialogAttribute));
+					CairoDialogAttr attr;
+					memset (&attr, 0, sizeof (CairoDialogAttr));
 					attr.cText = (gchar *)cText;
 					attr.cImageFilePath = (gchar *)MY_APPLET_SHARE_DATA_DIR"/icon-task.png";
 					attr.iTimeLength = 60e3;
 					attr.bUseMarkup = TRUE;
-					cairo_dock_build_dialog (&attr, myIcon, myContainer);
-					/**cairo_dock_show_temporary_dialog_with_icon_printf ("%s\n<b>%s</b>\n %s",
-						myIcon, myContainer,
-						60e3,
-						MY_APPLET_SHARE_DATA_DIR"/icon-task.png",
-						D_("This task will begin in 15 minutes:"),
-						myData.pNextTask->cTitle?myData.pNextTask->cTitle:D_("No title"),
-						myData.pNextTask->cText?myData.pNextTask->cText:"");*/
+					attr.pIcon = myIcon;
+					attr.pContainer = myContainer;
+					gldi_dialog_new (&attr);
 					CD_APPLET_DEMANDS_ATTENTION (NULL, 60);
 				}
 			}

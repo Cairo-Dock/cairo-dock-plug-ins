@@ -26,9 +26,9 @@
 
 void cd_sysmonitor_get_uptime_info (GString *pInfo);
 
-void cd_sysmonitor_get_cpu_info (CairoDockModuleInstance *myApplet, GString *pInfo);
+void cd_sysmonitor_get_cpu_info (GldiModuleInstance *myApplet, GString *pInfo);
 
-void cd_sysmonitor_get_cpu_data (CairoDockModuleInstance *myApplet);
+void cd_sysmonitor_get_cpu_data (GldiModuleInstance *myApplet);
 
 
 #endif

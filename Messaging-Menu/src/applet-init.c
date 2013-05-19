@@ -91,7 +91,7 @@ CD_APPLET_STOP_BEGIN
 	// CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	
 	// keyboard events
-	cd_keybinder_unbind (myData.pKeyBinding);
+	gldi_object_unref (GLDI_OBJECT(myData.pKeyBinding));
 
 	#ifndef INDICATOR_MESSAGES_WITH_IND3
 	cd_indicator_destroy (myData.pIndicator);
@@ -124,6 +124,6 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		}
 		
-		cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
+		gldi_shortkey_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
 	}
 CD_APPLET_RELOAD_END

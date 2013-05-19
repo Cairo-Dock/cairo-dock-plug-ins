@@ -85,7 +85,7 @@ static gboolean cd_dustbin_display_result (CDSharedMemory *pSharedMemory)
 	return TRUE;
 }
 
-static void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
+static void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, GldiModuleInstance *myApplet)
 {
 	g_return_if_fail (cURI != NULL);
 	//g_print ("%s (%s, %d)\n", __func__, cURI, myData.iMeasure);
@@ -120,7 +120,7 @@ static void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gch
 	}
 }
 
-void cd_dustbin_start (CairoDockModuleInstance *myApplet)
+void cd_dustbin_start (GldiModuleInstance *myApplet)
 {
 	// get the trash folder if not already done.
 	if (myData.cDustbinPath == NULL)
@@ -159,7 +159,7 @@ void cd_dustbin_start (CairoDockModuleInstance *myApplet)
 	}
 }
 
-void cd_dustbin_stop (CairoDockModuleInstance *myApplet)
+void cd_dustbin_stop (GldiModuleInstance *myApplet)
 {
 	cairo_dock_discard_task (myData.pTask);
 	myData.pTask = NULL;
@@ -169,5 +169,6 @@ void cd_dustbin_stop (CairoDockModuleInstance *myApplet)
 		cairo_dock_fm_remove_monitor_full (myData.cDustbinPath, TRUE, NULL);
 	}
 	
-	cairo_dock_dialog_unreference (myData.pInfoDialog);
+	gldi_object_unref (GLDI_OBJECT(myData.pInfoDialog));
+	myData.pInfoDialog = NULL;
 }

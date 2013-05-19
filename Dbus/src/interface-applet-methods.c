@@ -37,14 +37,14 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock/demo
 #include "interface-applet-signals.h"
 #include "interface-applet-methods.h"
 
-static inline CairoDockModuleInstance *_get_module_instance_from_dbus_applet (dbusApplet *pDbusApplet)
+static inline GldiModuleInstance *_get_module_instance_from_dbus_applet (dbusApplet *pDbusApplet)
 {
 	return pDbusApplet->pModuleInstance;
 }
 
-static inline gboolean _get_icon_and_container_from_id (dbusApplet *pDbusApplet, const gchar *cIconID, Icon **pIcon, CairoContainer **pContainer)
+static inline gboolean _get_icon_and_container_from_id (dbusApplet *pDbusApplet, const gchar *cIconID, Icon **pIcon, GldiContainer **pContainer)
 {
-	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
+	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
 	g_return_val_if_fail (pInstance != NULL, FALSE);
 	
 	if (cIconID == NULL)
@@ -66,7 +66,7 @@ static inline gboolean _get_icon_and_container_from_id (dbusApplet *pDbusApplet,
 static gboolean _applet_set_quick_info (dbusApplet *pDbusApplet, const gchar *cQuickInfo, const gchar *cIconID, GError **error)
 {
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
@@ -78,7 +78,7 @@ static gboolean _applet_set_quick_info (dbusApplet *pDbusApplet, const gchar *cQ
 static gboolean _applet_set_label (dbusApplet *pDbusApplet, const gchar *cLabel, const gchar *cIconID, GError **error)
 {
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
@@ -90,7 +90,7 @@ static gboolean _applet_set_label (dbusApplet *pDbusApplet, const gchar *cLabel,
 static gboolean _applet_set_icon (dbusApplet *pDbusApplet, const gchar *cImage, const gchar *cIconID, GError **error)
 {
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
@@ -106,7 +106,7 @@ static gboolean _applet_set_icon (dbusApplet *pDbusApplet, const gchar *cImage, 
 static gboolean _applet_set_icon_with_default (dbusApplet *pDbusApplet, const gchar **cImages, const gchar *cIconID, GError **error)
 {
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
@@ -126,7 +126,7 @@ static gboolean _applet_set_icon_with_default (dbusApplet *pDbusApplet, const gc
 static gboolean _applet_set_emblem (dbusApplet *pDbusApplet, const gchar *cImage, gint iPosition, const gchar *cIconID, GError **error)
 {
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
@@ -149,7 +149,7 @@ static gboolean _applet_set_emblem (dbusApplet *pDbusApplet, const gchar *cImage
 static gboolean _applet_animate (dbusApplet *pDbusApplet, const gchar *cAnimation, gint iNbRounds, const gchar *cIconID, GError **error)
 {
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
@@ -164,14 +164,14 @@ static gboolean _applet_animate (dbusApplet *pDbusApplet, const gchar *cAnimatio
 static gboolean _applet_show_dialog (dbusApplet *pDbusApplet, const gchar *message, gint iDuration, const gchar *cIconID, GError **error)
 {
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
 	// On empeche l'accumulation de dialogues informatifs.
-	cairo_dock_remove_dialog_if_any_full (pIcon, FALSE);  // hors dialogues interactifs.
+	gldi_dialogs_remove_on_icon (pIcon);
 	
-	cairo_dock_show_temporary_dialog_with_icon (message, pIcon, pContainer, 1000 * iDuration, "same icon");
+	gldi_dialog_show_temporary_with_icon (message, pIcon, pContainer, 1000 * iDuration, "same icon");
 	return TRUE;
 }
 
@@ -179,39 +179,39 @@ static gboolean _applet_show_dialog (dbusApplet *pDbusApplet, const gchar *messa
 static gboolean _applet_ask_question (dbusApplet *pDbusApplet, const gchar *cMessage, const gchar *cIconID, GError **error)
 {
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
 	if (pDbusApplet->pDialog)  // on n'autorise qu'un seul dialogue interactif a la fois.
-		cairo_dock_dialog_unreference (pDbusApplet->pDialog);
-	pDbusApplet->pDialog = cairo_dock_show_dialog_with_question (cMessage, pIcon, pContainer, "same icon", (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_question, pDbusApplet, NULL);
+		gldi_object_unref (GLDI_OBJECT(pDbusApplet->pDialog));
+	pDbusApplet->pDialog = gldi_dialog_show_with_question (cMessage, pIcon, pContainer, "same icon", (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_question, pDbusApplet, NULL);
 	return TRUE;
 }
 
 static gboolean _applet_ask_value (dbusApplet *pDbusApplet, const gchar *cMessage, gdouble fInitialValue, gdouble fMaxValue, const gchar *cIconID, GError **error)
 {
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
 	if (pDbusApplet->pDialog)  // on n'autorise qu'un seul dialogue interactif a la fois.
-		cairo_dock_dialog_unreference (pDbusApplet->pDialog);
-	pDbusApplet->pDialog = cairo_dock_show_dialog_with_value (cMessage, pIcon, pContainer, "same icon", fInitialValue, fMaxValue, (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_value, pDbusApplet, NULL);
+		gldi_object_unref (GLDI_OBJECT(pDbusApplet->pDialog));
+	pDbusApplet->pDialog = gldi_dialog_show_with_value (cMessage, pIcon, pContainer, "same icon", fInitialValue, fMaxValue, (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_value, pDbusApplet, NULL);
 	return TRUE;
 }
 
 static gboolean _applet_ask_text (dbusApplet *pDbusApplet, const gchar *cMessage, const gchar *cInitialText, const gchar *cIconID, GError **error)
 {
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
 	if (pDbusApplet->pDialog)  // on n'autorise qu'un seul dialogue interactif a la fois.
-		cairo_dock_dialog_unreference (pDbusApplet->pDialog);
-	pDbusApplet->pDialog = cairo_dock_show_dialog_with_entry (cMessage, pIcon, pContainer, "same icon", cInitialText, (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_text, pDbusApplet, NULL);
+		gldi_object_unref (GLDI_OBJECT(pDbusApplet->pDialog));
+	pDbusApplet->pDialog = gldi_dialog_show_with_entry (cMessage, pIcon, pContainer, "same icon", cInitialText, (CairoDockActionOnAnswerFunc) cd_dbus_applet_emit_on_answer_text, pDbusApplet, NULL);
 	return TRUE;
 }
 // end of deprecated
@@ -238,7 +238,7 @@ static void _on_text_changed (GtkWidget *pEntry, GtkWidget *pLabel)
 	else
 		cLabel = g_strdup_printf ("<span color=\"red\"><b>%d</b></span>", iNbChars);
 	gtk_label_set_markup (GTK_LABEL (pLabel), cLabel);
-	cairo_dock_set_dialog_widget_text_color (pLabel);
+	gldi_dialog_set_widget_text_color (pLabel);
 	g_free (cLabel);
 }
 static void _on_dialog_destroyed (dbusApplet *pDbusApplet)
@@ -251,15 +251,15 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 {
 	g_return_val_if_fail (hDialogAttributes != NULL, FALSE);
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
 	if (pDbusApplet->pDialog)  // on n'autorise qu'un seul dialogue interactif a la fois.
-		cairo_dock_dialog_unreference (pDbusApplet->pDialog);
+		gldi_object_unref (GLDI_OBJECT(pDbusApplet->pDialog));
 	
-	CairoDialogAttribute attr;
-	memset (&attr, 0, sizeof (CairoDialogAttribute));
+	CairoDialogAttr attr;
+	memset (&attr, 0, sizeof (CairoDialogAttr));
 	GValue *v;
 	
 	// attributs du dialogue.
@@ -448,7 +448,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 					gtk_range_set_value (GTK_RANGE (pScale), fInitialValue);
 					
 					g_object_set (pScale, "width-request", 150, NULL);
-					cairo_dock_set_dialog_widget_text_color (pScale);
+					gldi_dialog_set_widget_text_color (pScale);
 					
 					if (cMinLabel || cMaxLabel)
 					{
@@ -556,7 +556,10 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 	else
 		g_object_set_data (G_OBJECT (pInteractiveWidget), "cd-widget", pOneWidget);
 	
-	pDbusApplet->pDialog = cairo_dock_build_dialog (&attr, pIcon, pContainer);
+	attr.pIcon = pIcon;
+	attr.pContainer = pContainer;
+	
+	pDbusApplet->pDialog = gldi_dialog_new (&attr);
 	if (pOneWidget)
 		gtk_widget_grab_focus (pOneWidget);
 	
@@ -627,13 +630,13 @@ gboolean cd_dbus_sub_applet_popup_dialog (dbusSubApplet *pDbusSubApplet, GHashTa
 gboolean cd_dbus_sub_applet_add_sub_icons (dbusSubApplet *pDbusSubApplet, const gchar **pIconFields, GError **error)
 {
 	//g_print ("%s ()\n", __func__);
-	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusSubApplet->pApplet);
+	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusSubApplet->pApplet);
 	g_return_val_if_fail (pInstance != NULL, FALSE);
 	
 	Icon *pIcon = pInstance->pIcon;
 	g_return_val_if_fail (pIcon != NULL, FALSE);
 	
-	CairoContainer *pContainer = pInstance->pContainer;
+	GldiContainer *pContainer = pInstance->pContainer;
 	g_return_val_if_fail (pContainer != NULL, FALSE);
 	
 	GList *pCurrentIconsList = (pInstance->pDock ? (pIcon->pSubDock ? pIcon->pSubDock->icons : NULL) : pInstance->pDesklet->icons);
@@ -665,13 +668,13 @@ gboolean cd_dbus_sub_applet_add_sub_icons (dbusSubApplet *pDbusSubApplet, const 
 
 gboolean cd_dbus_sub_applet_remove_sub_icon (dbusSubApplet *pDbusSubApplet, const gchar *cIconID, GError **error)
 {
-	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusSubApplet->pApplet);
+	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusSubApplet->pApplet);
 	g_return_val_if_fail (pInstance != NULL, FALSE);
 	
 	Icon *pIcon = pInstance->pIcon;
 	g_return_val_if_fail (pIcon != NULL, FALSE);
 	
-	CairoContainer *pContainer = pInstance->pContainer;
+	GldiContainer *pContainer = pInstance->pContainer;
 	g_return_val_if_fail (pContainer != NULL, FALSE);
 	
 	if (cIconID == NULL || strcmp (cIconID, "any") == 0)  // remove all
@@ -721,7 +724,7 @@ gboolean cd_dbus_applet_animate (dbusApplet *pDbusApplet, const gchar *cAnimatio
 gboolean cd_dbus_applet_demands_attention (dbusApplet *pDbusApplet, gboolean bStart, const gchar *cAnimation, GError **error)
 {
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	if (! _get_icon_and_container_from_id (pDbusApplet, NULL, &pIcon, &pContainer))
 		return FALSE;
 	
@@ -773,13 +776,13 @@ gboolean cd_dbus_applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 
 gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar *cType, gint iNbValues, const gchar *cTheme, GError **error)
 {
-	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
+	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
 	g_return_val_if_fail (pInstance != NULL, FALSE);
 	
 	Icon *pIcon = pInstance->pIcon;
 	g_return_val_if_fail (pIcon != NULL, FALSE);
 	
-	CairoContainer *pContainer = pInstance->pContainer;
+	GldiContainer *pContainer = pInstance->pContainer;
 	g_return_val_if_fail (pContainer != NULL, FALSE);
 	
 	CairoDataRendererAttribute *pRenderAttr = NULL;  // attributes for the global data-renderer.
@@ -855,13 +858,13 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 
 gboolean cd_dbus_applet_render_values (dbusApplet *pDbusApplet, GArray *pValues, GError **error)
 {
-	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
+	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
 	g_return_val_if_fail (pInstance != NULL, FALSE);
 	
 	Icon *pIcon = pInstance->pIcon;
 	g_return_val_if_fail (pIcon != NULL, FALSE);
 	
-	CairoContainer *pContainer = pInstance->pContainer;
+	GldiContainer *pContainer = pInstance->pContainer;
 	g_return_val_if_fail (pContainer != NULL, FALSE);
 	
 	g_return_val_if_fail (pIcon->image.pSurface != NULL, FALSE);
@@ -875,7 +878,7 @@ gboolean cd_dbus_applet_render_values (dbusApplet *pDbusApplet, GArray *pValues,
 
 gboolean cd_dbus_applet_control_appli (dbusApplet *pDbusApplet, const gchar *cApplicationClass, GError **error)
 {
-	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
+	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
 	g_return_val_if_fail (pInstance != NULL, FALSE);
 	
 	Icon *pIcon = pInstance->pIcon;
@@ -892,7 +895,7 @@ gboolean cd_dbus_applet_control_appli (dbusApplet *pDbusApplet, const gchar *cAp
 		}
 		if (! cairo_dock_is_loading ())
 		{
-			CairoContainer *pContainer = pInstance->pContainer;
+			GldiContainer *pContainer = pInstance->pContainer;
 			if (pContainer != NULL)
 				cairo_dock_redraw_icon (pIcon, pContainer);
 		}
@@ -904,53 +907,53 @@ gboolean cd_dbus_applet_control_appli (dbusApplet *pDbusApplet, const gchar *cAp
 
 gboolean cd_dbus_applet_show_appli (dbusApplet *pDbusApplet, gboolean bShow, GError **error)  // deprecated
 {
-	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
+	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
 	g_return_val_if_fail (pInstance != NULL, FALSE);
 	
 	Icon *pIcon = pInstance->pIcon;
-	g_return_val_if_fail (pIcon != NULL && pIcon->Xid != 0, FALSE);
+	g_return_val_if_fail (pIcon != NULL && pIcon->pAppli != NULL, FALSE);
 	
 	if (bShow)
-		cairo_dock_show_xwindow (pIcon->Xid);
+		gldi_window_show (pIcon->pAppli);
 	else
-		cairo_dock_minimize_xwindow (pIcon->Xid);
+		gldi_window_minimize (pIcon->pAppli);
 	
 	return TRUE;
 }
 
 gboolean cd_dbus_applet_act_on_appli (dbusApplet *pDbusApplet, const gchar *cAction, GError **error)
 {
-	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
+	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
 	g_return_val_if_fail (pInstance != NULL, FALSE);
 	
 	Icon *pIcon = pInstance->pIcon;
-	g_return_val_if_fail (pIcon != NULL && pIcon->Xid != 0, FALSE);
+	g_return_val_if_fail (pIcon != NULL && pIcon->pAppli != NULL, FALSE);
 	
 	g_return_val_if_fail (cAction != NULL, FALSE);
 	
 	if (strcmp (cAction, "minimize") == 0)
-		cairo_dock_minimize_xwindow (pIcon->Xid);
+		gldi_window_minimize (pIcon->pAppli);
 	else if (strcmp (cAction, "show") == 0)
-		cairo_dock_show_xwindow (pIcon->Xid);
+		gldi_window_show (pIcon->pAppli);
 	else if (strcmp (cAction, "toggle-visibility") == 0)
 	{
-		if (pIcon->bIsHidden)
-			cairo_dock_show_xwindow (pIcon->Xid);
+		if (pIcon->pAppli->bIsHidden)
+			gldi_window_show (pIcon->pAppli);
 		else
-			cairo_dock_minimize_xwindow (pIcon->Xid);
+			gldi_window_minimize (pIcon->pAppli);
 	}	
 	else if (strcmp (cAction, "maximize") == 0)
-		cairo_dock_maximize_xwindow (pIcon->Xid, TRUE);
+		 gldi_window_maximize(pIcon->pAppli, TRUE);
 	else if (strcmp (cAction, "restore") == 0)
-		cairo_dock_maximize_xwindow (pIcon->Xid, FALSE);
+		gldi_window_maximize (pIcon->pAppli, FALSE);
 	else if (strcmp (cAction, "toggle-size") == 0)
 	{
-		cairo_dock_maximize_xwindow (pIcon->Xid, ! pIcon->bIsMaximized);
+		gldi_window_maximize (pIcon->pAppli, ! pIcon->pAppli->bIsMaximized);
 	}
 	else if (strcmp (cAction, "close") == 0)
-		cairo_dock_close_xwindow (pIcon->Xid);
+		gldi_window_close (pIcon->pAppli);
 	else if (strcmp (cAction, "kill") == 0)
-		cairo_dock_kill_xwindow (pIcon->Xid);
+		gldi_window_kill (pIcon->pAppli);
 	else
 	{
 		cd_warning ("invalid action '%s' on window %s", cAction, pIcon->cName);
@@ -1182,11 +1185,11 @@ gboolean cd_dbus_applet_bind_shortkey (dbusApplet *pDbusApplet, const gchar **cS
 	cd_debug ("%s ()", __func__);
 	g_return_val_if_fail (cShortkeys != NULL, FALSE);
 	
-	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
+	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
 	g_return_val_if_fail (pInstance != NULL, FALSE);
 	
 	const gchar *cShortkey, *cDescription = "Pouet", *cGroupName = "Configuration", *cKeyName = "shortkey";
-	CairoKeyBinding *pKeyBinding;
+	GldiShortkey *pKeyBinding;
 	int i;
 	GList *kb;
 	
@@ -1195,7 +1198,7 @@ gboolean cd_dbus_applet_bind_shortkey (dbusApplet *pDbusApplet, const gchar **cS
 		for (i = 0; cShortkeys[i] != NULL; i ++)
 		{
 			cShortkey = cShortkeys[i];
-			pKeyBinding = cd_keybinder_bind (cShortkey,
+			pKeyBinding = gldi_shortkey_new (cShortkey,
 				pInstance->pModule->pVisitCard->cTitle,
 				cDescription,
 				pInstance->pModule->pVisitCard->cIconFilePath,
@@ -1211,52 +1214,9 @@ gboolean cd_dbus_applet_bind_shortkey (dbusApplet *pDbusApplet, const gchar **cS
 		{
 			cShortkey = cShortkeys[i];
 			pKeyBinding = kb->data;
-			cd_keybinder_rebind (pKeyBinding, cShortkey, NULL);
+			gldi_shortkey_rebind (pKeyBinding, cShortkey, NULL);
 		}
 	}
-	/** // on enleve les vieux raccourcis dont l'applet ne veut plus.
-	sk = pDbusApplet->pShortkeyList;
-	while (sk != NULL)
-	{
-		next_sk = sk->next;
-		key = sk->data;
-		
-		// on cherche ce raccourci parmi la nouvelle liste.
-		for (i = 0; cShortkeys[i] != NULL; i ++)
-		{
-			cShortkey = cShortkeys[i];
-			if (strcmp (cShortkey, key) == 0)
-				break;
-		}
-		if (! cShortkeys[i])  // raccourci non trouve dans la nouvelle liste => on l'enleve
-		{
-			//g_print (" shortkey '%s' not wanted anymore\n", key);
-			cd_keybinder_unbind (key, (CDBindkeyHandler) cd_dbus_applet_emit_on_shortkey);
-			pDbusApplet->pShortkeyList = g_list_delete_link (pDbusApplet->pShortkeyList, sk);
-		}
-		sk = next_sk;
-	}
-	
-	// on lie les nouveaux raccourcis non encore lies.
-	gboolean bCouldBind;
-	for (i = 0; cShortkeys[i] != NULL; i ++)
-	{
-		cShortkey = cShortkeys[i];
-		for (sk = pDbusApplet->pShortkeyList; sk != NULL; sk = sk->next)  // on regarde si ce nouveau raccourci est deja lie.
-		{
-			key = sk->data;
-			if (strcmp (cShortkey, key) == 0)  // ce raccourci a deja ete lie avec succes precedemment.
-				break;
-		}
-		if (! sk)  // raccourci non encore lie => on lie.
-		{
-			//g_print (" shortkey '%s' wanted\n", cShortkey);
-			bCouldBind = cd_keybinder_bind (cShortkey, (CDBindkeyHandler) cd_dbus_applet_emit_on_shortkey, pDbusApplet);
-			if (bCouldBind)
-				pDbusApplet->pShortkeyList = g_list_prepend (pDbusApplet->pShortkeyList, g_strdup (cShortkey));
-			cd_debug ("*** bind %s: %d", cShortkey, bCouldBind);
-		}
-	}*/
 	return TRUE;
 }
 
@@ -1264,13 +1224,13 @@ gboolean cd_dbus_applet_bind_shortkey (dbusApplet *pDbusApplet, const gchar **cS
 gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GValue *v, GError **error)
 {
 	cd_debug ("%s (%s)", __func__, cProperty);
-	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
+	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
 	g_return_val_if_fail (pInstance != NULL, FALSE);
 	
 	Icon *pIcon = pInstance->pIcon;
 	g_return_val_if_fail (pIcon != NULL, FALSE);
 	
-	CairoContainer *pContainer = pInstance->pContainer;
+	GldiContainer *pContainer = pInstance->pContainer;
 	g_return_val_if_fail (pContainer != NULL, FALSE);
 	
 	// x, y, orientation, type, width, height
@@ -1329,13 +1289,12 @@ gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GV
 	}
 	else if (strncmp (cProperty, "Xid", 3) == 0)
 	{
-		Window Xid = pIcon->Xid;
 		g_value_init (v, G_TYPE_UINT64);
-		g_value_set_uint64 (v, Xid);
+		g_value_set_uint64 (v, GPOINTER_TO_INT(pIcon->pAppli));
 	}
 	else if (strcmp (cProperty, "has_focus") == 0)
 	{
-		gboolean bHasFocus = (pIcon->Xid != 0 && pIcon->Xid == cairo_dock_get_current_active_window ());
+		gboolean bHasFocus = (pIcon->pAppli != NULL && pIcon->pAppli == gldi_windows_get_active ());
 		g_value_init (v, G_TYPE_BOOLEAN);
 		g_value_set_boolean (v, bHasFocus);
 	}
@@ -1350,13 +1309,13 @@ gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GV
 gboolean cd_dbus_applet_get_all (dbusApplet *pDbusApplet, GHashTable **hProperties, GError **error)
 {
 	cd_debug ("%s ()", __func__);
-	CairoDockModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
+	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
 	g_return_val_if_fail (pInstance != NULL, FALSE);
 	
 	Icon *pIcon = pInstance->pIcon;
 	g_return_val_if_fail (pIcon != NULL, FALSE);
 	
-	CairoContainer *pContainer = pInstance->pContainer;
+	GldiContainer *pContainer = pInstance->pContainer;
 	g_return_val_if_fail (pContainer != NULL, FALSE);
 	
 	int x, y;
@@ -1374,8 +1333,7 @@ gboolean cd_dbus_applet_get_all (dbusApplet *pDbusApplet, GHashTable **hProperti
 	int iWidth, iHeight;
 	cairo_dock_get_icon_extent (pIcon, &iWidth, &iHeight);
 	
-	Window Xid = pIcon->Xid;
-	gboolean bHasFocus = (pIcon->Xid != 0 && pIcon->Xid == cairo_dock_get_current_active_window ());
+	gboolean bHasFocus = (pIcon->pAppli != NULL && pIcon->pAppli == gldi_windows_get_active ());
 	
 	GHashTable *h = g_hash_table_new_full (g_str_hash,
 		g_str_equal,
@@ -1416,7 +1374,7 @@ gboolean cd_dbus_applet_get_all (dbusApplet *pDbusApplet, GHashTable **hProperti
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_UINT64);
-	g_value_set_uint64(v, Xid);
+	g_value_set_uint64(v, GPOINTER_TO_INT(pIcon->pAppli));
 	g_hash_table_insert (h, g_strdup ("Xid"), v);
 	
 	v = g_new0 (GValue, 1);

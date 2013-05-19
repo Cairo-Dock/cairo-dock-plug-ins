@@ -98,7 +98,7 @@ cairo_surface_t *cd_rendering_create_flat_separator_surface (int iWidth, int iHe
 }
 
 
-void cd_rendering_load_flat_separator (CairoContainer *pContainer)
+void cd_rendering_load_flat_separator (GldiContainer *pContainer)
 {
 	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
 	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL]);

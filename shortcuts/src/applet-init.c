@@ -43,7 +43,7 @@ CD_APPLET_DEFINITION (N_("shortcuts"),
 
 CD_APPLET_INIT_BEGIN
 	//\_______________ get a slot for our private data (for disk usage)
-	if (! cairo_dock_reserve_data_slot (myApplet))
+	if (! CD_APPLET_RESERVE_DATA_SLOT ())
 		return;
 	
 	//\_______________ // set the default icon if none is specified in conf.
@@ -57,10 +57,10 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT;
-	cairo_dock_register_notification_on_object (&myIconsMgr,
+	gldi_object_register_notification (&myIconsMgr,
 		NOTIFICATION_DESTROY,
-		(CairoDockNotificationFunc) cd_shortcuts_free_data,
-		CAIRO_DOCK_RUN_AFTER, myApplet);
+		(GldiNotificationFunc) cd_shortcuts_free_data,
+		GLDI_RUN_AFTER, myApplet);
 CD_APPLET_INIT_END
 
 
@@ -70,9 +70,9 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT;
-	cairo_dock_remove_notification_func_on_object (&myIconsMgr,
+	gldi_object_remove_notification (&myIconsMgr,
 		NOTIFICATION_DESTROY,
-		(CairoDockNotificationFunc) cd_shortcuts_free_data, myApplet);
+		(GldiNotificationFunc) cd_shortcuts_free_data, myApplet);
 CD_APPLET_STOP_END
 
 

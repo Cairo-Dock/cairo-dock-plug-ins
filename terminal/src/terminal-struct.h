@@ -36,7 +36,7 @@ struct _AppletConfig {
 struct _AppletData {
 	CairoDialog *dialog;
 	GtkWidget *tab;
-	CairoKeyBinding *cKeyBinding;
+	GldiShortkey *cKeyBinding;
 	} ;
 
 

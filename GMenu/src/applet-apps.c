@@ -81,7 +81,7 @@ void cd_menu_check_for_new_apps (void)
 			cText = g_strconcat (cQuestion, "\n  ", g_app_info_get_display_name (G_APP_INFO (myData.pNewApps->data)), NULL);
 		}
 		gchar *cIconPath = cairo_dock_search_icon_s_path (GTK_STOCK_EXECUTE, myDialogsParam.iDialogIconSize);
-		cairo_dock_show_dialog_full (cText?cText:cQuestion,
+		gldi_dialog_show (cText?cText:cQuestion,
 			myIcon, myContainer,
 			0,
 			cIconPath ? cIconPath : "same icon",

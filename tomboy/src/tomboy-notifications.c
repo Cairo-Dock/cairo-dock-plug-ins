@@ -39,14 +39,14 @@ CD_APPLET_ON_CLICK_BEGIN
 			g_source_remove (myData.iSidPopupDialog);
 			myData.iSidPopupDialog = 0;
 		}
-		cairo_dock_remove_dialog_if_any (pClickedIcon);
+		gldi_dialogs_remove_on_icon (pClickedIcon);
 	}
 	else if (pClickedIcon == myIcon && ! myData.bIsRunning)  // possible si on l'a quitte apres le demarrage de l'applet.
 	{
 		cd_notes_run_manager ();
 	}
 	else
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 CD_APPLET_ON_CLICK_END
 
 
@@ -83,7 +83,7 @@ static void _cd_tomboy_create_new_note (void)
 	}
 	else
 	{
-		cairo_dock_show_dialog_with_entry (D_("Note name : "),
+		gldi_dialog_show_with_entry (D_("Note name : "),
 			myIcon, myContainer,
 			"same icon",
 			NULL,
@@ -111,7 +111,7 @@ static void _cd_tomboy_delete_note (GtkMenuItem *menu_item, Icon *pIcon)
 	if (myConfig.bAskBeforeDelete)
 	{
 		gchar *cQuestion = g_strdup_printf ("%s (%s)", D_("Delete this note?"), pIcon->cName);
-		cairo_dock_show_dialog_with_question (cQuestion,
+		gldi_dialog_show_with_question (cQuestion,
 			pIcon, myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer,
 			"same icon",
 			(CairoDockActionOnAnswerFunc) _on_answer_delete,
@@ -150,7 +150,7 @@ static void _on_active_search (int iClickedButton, GtkWidget *pInteractiveWidget
 }
 static void _cd_tomboy_search_for_content (GtkMenuItem *menu_item, gpointer data)
 {
-	cairo_dock_show_dialog_with_entry (D_("Search for:"),
+	gldi_dialog_show_with_entry (D_("Search for:"),
 		myIcon,	myContainer,
 		"same icon",
 		NULL,
@@ -175,7 +175,7 @@ static void _on_active_search_tag (int iClickedButton, GtkWidget *pInteractiveWi
 }
 static void _cd_tomboy_search_for_tag (GtkMenuItem *menu_item, gpointer data)
 {
-	cairo_dock_show_dialog_with_entry (D_("Search for tag:"),
+	gldi_dialog_show_with_entry (D_("Search for tag:"),
 		myIcon,	myContainer,
 		"same icon",
 		NULL,
@@ -248,7 +248,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	}
 	
 	if (bClickOnNotes && pClickedIcon != NULL)
-		CD_APPLET_LEAVE (CAIRO_DOCK_INTERCEPT_NOTIFICATION);
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_INTERCEPT);
 CD_APPLET_ON_BUILD_MENU_END
 
 
@@ -268,11 +268,11 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 static gboolean _popup_dialog (Icon *pIcon)
 {
 	CD_APPLET_ENTER;
-	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+	GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	if (pContainer->bInside)
 	{
 		if (g_list_find (CD_APPLET_MY_ICONS_LIST, pIcon))  // on verifie que l'icone ne s'est pas fait effacee entre-temps.
-			cairo_dock_show_temporary_dialog_with_icon (pIcon->cClass,
+			gldi_dialog_show_temporary_with_icon (pIcon->cClass,
 				pIcon,
 				CD_APPLET_MY_ICONS_LIST_CONTAINER,
 				myConfig.iDialogDuration,
@@ -296,7 +296,7 @@ gboolean cd_tomboy_on_change_icon (gpointer pUserData, Icon *pIcon, CairoDock *p
 	for (ic = pList; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
-		cairo_dock_remove_dialog_if_any (icon);
+		gldi_dialogs_remove_on_icon (icon);
 	}
 	
 	if (pIcon && pIcon->bPointed)
@@ -304,10 +304,10 @@ gboolean cd_tomboy_on_change_icon (gpointer pUserData, Icon *pIcon, CairoDock *p
 		myData.iSidPopupDialog = g_timeout_add (500, (GSourceFunc)_popup_dialog, pIcon);
 	}
 	
-	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 }
 
-gboolean cd_tomboy_on_leave_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bStartAnimation)
+gboolean cd_tomboy_on_leave_container (gpointer pUserData, GldiContainer *pContainer, gboolean *bStartAnimation)
 {
 	CD_APPLET_ENTER;
 	if (myData.iSidPopupDialog != 0)
@@ -322,8 +322,8 @@ gboolean cd_tomboy_on_leave_container (gpointer pUserData, CairoContainer *pCont
 	for (ic = pList; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
-		cairo_dock_remove_dialog_if_any (icon);
+		gldi_dialogs_remove_on_icon (icon);
 	}
 	
-	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 }

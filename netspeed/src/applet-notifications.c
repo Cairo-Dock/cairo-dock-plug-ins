@@ -27,10 +27,10 @@
 
 
 CD_APPLET_ON_CLICK_BEGIN
-	cairo_dock_remove_dialog_if_any (myIcon);
+	gldi_dialogs_remove_on_icon (myIcon);
 	if (myData.bAcquisitionOK)
 	{
-		cairo_dock_show_temporary_dialog_with_icon_printf ("%s :\n  %s : %.2f%s\n  %s : %.2f%s",
+		gldi_dialog_show_temporary_with_icon_printf ("%s :\n  %s : %.2f%s\n  %s : %.2f%s",
 			myIcon, myContainer, 6e3,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
 			D_("Total amount of data"),
@@ -48,7 +48,7 @@ CD_APPLET_ON_CLICK_BEGIN
 			cQuestion = g_strdup_printf (D_("Interface '%s' doesn't seem to exist or is not readable.\n"
 				"You may have to set up the interface you wish to monitor.\n"
 				"Do you want to do it now?"), myConfig.cInterface);
-		cairo_dock_show_dialog_with_question (cQuestion, myIcon, myContainer,
+		gldi_dialog_show_with_question (cQuestion, myIcon, myContainer,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
 			(CairoDockActionOnAnswerFunc) cairo_dock_open_module_config_on_demand,
 			myApplet, NULL);
@@ -56,7 +56,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	}
 CD_APPLET_ON_CLICK_END
 
-static void _nm_sleep (CairoDockModuleInstance *myApplet)
+static void _nm_sleep (GldiModuleInstance *myApplet)
 {
 	DBusGProxy *pDbusProxy = cairo_dock_create_new_system_proxy (
 			"org.freedesktop.NetworkManager",
@@ -81,16 +81,16 @@ static void _nm_sleep (CairoDockModuleInstance *myApplet)
 		G_TYPE_INVALID);
 	g_object_unref (pDbusProxy);
 }
-static void _netspeed_sleep (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _netspeed_sleep (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	_nm_sleep (myApplet);
 }
-static void _netspeed_recheck (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _netspeed_recheck (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	cairo_dock_stop_task (myData.pPeriodicTask);
 	cairo_dock_launch_task (myData.pPeriodicTask);
 }
-static void _show_system_monitor (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _show_system_monitor (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	if (myConfig.cSystemMonitorCommand != NULL)
 	{

@@ -98,7 +98,7 @@ static void _cd_musicplayer_find_player (GtkMenuItem *menu_item, gpointer *data)
 	MusicPlayerHandler *pHandler = cd_musicplayer_dbus_find_opened_player ();
 	if (pHandler == NULL)
 	{
-		cairo_dock_show_temporary_dialog_with_icon (D_("Sorry, I couldn't detect any player.\nIf it is running, it is maybe because its version is too old and does not offer such service."),
+		gldi_dialog_show_temporary_with_icon (D_("Sorry, I couldn't detect any player.\nIf it is running, it is maybe because its version is too old and does not offer such service."),
 			myIcon,
 			myContainer,
 			7000,
@@ -188,8 +188,8 @@ static void _show_players_list_dialog (void)
 	}
 
 	// build the dialog.
-	CairoDialogAttribute attr;
-	memset (&attr, 0, sizeof (CairoDialogAttribute));
+	CairoDialogAttr attr;
+	memset (&attr, 0, sizeof (CairoDialogAttr));
 	attr.cText = D_("Choose a music player to control");
 	attr.cImageFilePath = NULL;
 	attr.pInteractiveWidget = pComboBox;
@@ -198,8 +198,10 @@ static void _show_players_list_dialog (void)
 	attr.pFreeDataFunc = (GFreeFunc)NULL;
 	const gchar *cButtons[] = {"ok", "cancel", NULL};
 	attr.cButtonsImage = cButtons;
+	attr.pIcon = myIcon;
+	attr.pContainer = myContainer;
 
-	cairo_dock_build_dialog (&attr, myIcon, myContainer);
+	gldi_dialog_new (&attr);
 }
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
@@ -230,8 +232,8 @@ CD_APPLET_ON_CLICK_BEGIN
 				{
 					if (myData.pCurrentHandler->iPlayerControls & PLAYER_JUMPBOX)
 						_cd_musicplayer_jumpbox (NULL, NULL);
-					else if (myIcon->Xid != 0)
-						cairo_dock_show_xwindow (myIcon->Xid);
+					else if (myIcon->pAppli != NULL)
+						gldi_window_show (myIcon->pAppli);
 				}
 				else if (myData.pCurrentHandler->launch != NULL)
 					cairo_dock_launch_command (myData.pCurrentHandler->launch);
@@ -252,12 +254,12 @@ CD_APPLET_ON_CLICK_BEGIN
 				{
 					_cd_musicplayer_pp (NULL, NULL);
 				}
-				else if (myIcon->Xid != 0)
+				else if (myIcon->pAppli != NULL)
 				{
-					if (myIcon->Xid == cairo_dock_get_current_active_window ())  // la fenetre du lecteur a le focus. en mode desklet ca ne marche pas car il aura pris le focus au moment du clic.
-						cairo_dock_minimize_xwindow (myIcon->Xid);
+					if (myIcon->pAppli == gldi_windows_get_active ())  // la fenetre du lecteur a le focus. en mode desklet ca ne marche pas car il aura pris le focus au moment du clic.
+						gldi_window_minimize (myIcon->pAppli);
 					else
-						cairo_dock_show_xwindow (myIcon->Xid);
+						gldi_window_show (myIcon->pAppli);
 				}
 				else
 				{
@@ -339,7 +341,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		if (myData.pCurrentHandler->iPlayerControls & PLAYER_RATE)
 			CD_APPLET_ADD_IN_MENU (D_("Rate this song"), _cd_musicplayer_rate, CD_APPLET_MY_MENU);
 		
-		if (myIcon->Xid == 0)  // player in the systray.
+		if (myIcon->pAppli == NULL)  // player in the systray.
 		{
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Show"), GTK_STOCK_FIND, _cd_musicplayer_show_from_systray, CD_APPLET_MY_MENU);
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Quit"), GTK_STOCK_CLOSE, _cd_musicplayer_quit, CD_APPLET_MY_MENU);  // GTK_STOCK_QUIT looks too much like the "quit" of the dock.
@@ -495,7 +497,7 @@ CD_APPLET_ON_UPDATE_ICON_BEGIN
 CD_APPLET_ON_UPDATE_ICON_END
 
 
-gboolean cd_opengl_test_mouse_over_buttons (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation)
+gboolean cd_opengl_test_mouse_over_buttons (GldiModuleInstance *myApplet, GldiContainer *pContainer, gboolean *bStartAnimation)
 {
 	CD_APPLET_ENTER;
 	int iPrevButtonState = myData.iButtonState;
@@ -505,5 +507,5 @@ gboolean cd_opengl_test_mouse_over_buttons (CairoDockModuleInstance *myApplet, C
 	{
 		*bStartAnimation = TRUE;  // ca c'est pour faire une animation de transition...
 	}
-	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 }

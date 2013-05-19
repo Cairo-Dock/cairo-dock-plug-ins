@@ -27,9 +27,9 @@
 void cd_clock_free_alarm (CDClockAlarm *pAlarm);
 
 
-void cd_clock_init_time (CairoDockModuleInstance *myApplet);
+void cd_clock_init_time (GldiModuleInstance *myApplet);
 
-gboolean cd_clock_update_with_time (CairoDockModuleInstance *myApplet);
+gboolean cd_clock_update_with_time (GldiModuleInstance *myApplet);
 
 
 #endif

@@ -236,7 +236,7 @@ static void _cd_sysmonitor_get_top_list (CDTopSharedMemory *pSharedMemory)
 
 static gboolean _cd_sysmonitor_update_top_list (CDTopSharedMemory *pSharedMemory)
 {
-	CairoDockModuleInstance *myApplet = pSharedMemory->pApplet;
+	GldiModuleInstance *myApplet = pSharedMemory->pApplet;
 	CD_APPLET_ENTER;
 	
 	// determine the max length of process names.
@@ -317,7 +317,7 @@ static gboolean _cd_sysmonitor_update_top_list (CDTopSharedMemory *pSharedMemory
 	{
 		myData.iNbProcesses = g_hash_table_size (pSharedMemory->pProcessTable);
 		gchar *cTitle = g_strdup_printf ("  [ Top %d / %d ] :", pSharedMemory->iNbDisplayedProcesses, myData.iNbProcesses);
-		cairo_dock_set_dialog_message (myData.pTopDialog, cTitle);
+		gldi_dialog_set_message (myData.pTopDialog, cTitle);
 		g_free (cTitle);
 	}
 	
@@ -335,7 +335,7 @@ static void _free_shared_memory (CDTopSharedMemory *pSharedMemory)
 	g_timer_destroy (pSharedMemory->pTopClock);
 	g_free (pSharedMemory);
 }
-static void cd_sysmonitor_launch_top_task (CairoDockModuleInstance *myApplet)
+static void cd_sysmonitor_launch_top_task (GldiModuleInstance *myApplet)
 {
 	g_return_if_fail (myData.pTopTask == NULL);
 	
@@ -361,7 +361,7 @@ static void _sort_one_process (int *iPid, CDProcess *pProcess, CDTopSharedMemory
 {
 	_cd_sysmonitor_insert_process_in_top_list (pSharedMemory, pProcess);
 }
-static void _on_change_order (int iClickedButton, GtkWidget *pInteractiveWidget, CairoDockModuleInstance *myApplet, CairoDialog *pDialog)
+static void _on_change_order (int iClickedButton, GtkWidget *pInteractiveWidget, GldiModuleInstance *myApplet, CairoDialog *pDialog)
 {
 	if (iClickedButton == 2 || iClickedButton == -2)  // 'close' button or Escape, just return and let the dialog be destroyed.
 	{
@@ -385,9 +385,9 @@ static void _on_change_order (int iClickedButton, GtkWidget *pInteractiveWidget,
 		
 		cairo_dock_launch_task_delayed (myData.pTopTask, 1000. * myConfig.iProcessCheckInterval);  // restart the task with a delay equal to the interval, to keep the measure accurate.
 	}
-	cairo_dock_dialog_reference (pDialog);  // keep the dialog alive.
+	gldi_object_ref (GLDI_OBJECT (pDialog));  // keep the dialog alive.
 }
-static void _on_dialog_destroyed (CairoDockModuleInstance *myApplet)
+static void _on_dialog_destroyed (GldiModuleInstance *myApplet)
 {
 	// discard the 'top' task.
 	cairo_dock_discard_task (myData.pTopTask);
@@ -396,10 +396,10 @@ static void _on_dialog_destroyed (CairoDockModuleInstance *myApplet)
 	// no more dialog.
 	myData.pTopDialog = NULL;
 }
-void cd_sysmonitor_start_top_dialog (CairoDockModuleInstance *myApplet)
+void cd_sysmonitor_start_top_dialog (GldiModuleInstance *myApplet)
 {
 	g_return_if_fail (myData.pTopDialog == NULL);
-	cairo_dock_remove_dialog_if_any (myIcon);
+	gldi_dialogs_remove_on_icon (myIcon);
 	// build an interactive widget that will be used to display the top list.
 	gchar *cTitle = g_strdup_printf ("  [ Top %d ] :", myConfig.iNbDisplayedProcesses);
 	GtkWidget *pInteractiveWidget = _gtk_vbox_new (0);
@@ -408,8 +408,8 @@ void cd_sysmonitor_start_top_dialog (CairoDockModuleInstance *myApplet)
 		myConfig.pTopTextDescription->iSize * myConfig.iNbDisplayedProcesses);  // approximatif au depart.
 	
 	// build the dialog.
-	CairoDialogAttribute attr;
-	memset (&attr, 0, sizeof (CairoDialogAttribute));
+	CairoDialogAttr attr;
+	memset (&attr, 0, sizeof (CairoDialogAttr));
 	attr.cText = cTitle;
 	attr.cImageFilePath = MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE;
 	attr.pInteractiveWidget = pInteractiveWidget;
@@ -418,7 +418,9 @@ void cd_sysmonitor_start_top_dialog (CairoDockModuleInstance *myApplet)
 	attr.pFreeDataFunc = (GFreeFunc) _on_dialog_destroyed;
 	const gchar *cButtons[] = {MY_APPLET_SHARE_DATA_DIR"/button-cpu.svg", MY_APPLET_SHARE_DATA_DIR"/button-ram.svg", "cancel", NULL};
 	attr.cButtonsImage = cButtons;
-	myData.pTopDialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);
+	attr.pIcon = myIcon;
+	attr.pContainer = myContainer;
+	myData.pTopDialog = gldi_dialog_new (&attr);
 	
 	g_free (cTitle);
 	g_return_if_fail (myData.pTopDialog != NULL);

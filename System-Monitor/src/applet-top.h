@@ -23,7 +23,7 @@
 #include <cairo-dock.h>
 
 
-void cd_sysmonitor_start_top_dialog (CairoDockModuleInstance *myApplet);
+void cd_sysmonitor_start_top_dialog (GldiModuleInstance *myApplet);
 
 
 #endif

@@ -28,7 +28,7 @@
 #include "applet-notifications.h"
 
 
-static void _cd_clock_launch_time_admin (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_clock_launch_time_admin (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	if (myConfig.cSetupTimeCommand != NULL)
 	{
@@ -55,7 +55,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	cd_clock_show_hide_calendar (myApplet);
 CD_APPLET_ON_CLICK_END
 
-static void _cd_clock_show_tasks_today (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_clock_show_tasks_today (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	gchar *cTasks = cd_clock_get_tasks_for_today (myApplet);
 	if (cTasks == NULL)
@@ -63,17 +63,19 @@ static void _cd_clock_show_tasks_today (GtkMenuItem *menu_item, CairoDockModuleI
 	
 	cd_clock_hide_dialogs (myApplet);
 	
-	CairoDialogAttribute attr;
-	memset (&attr, 0, sizeof (CairoDialogAttribute));
+	CairoDialogAttr attr;
+	memset (&attr, 0, sizeof (CairoDialogAttr));
 	attr.cText = cTasks;
 	attr.cImageFilePath = MY_APPLET_SHARE_DATA_DIR"/icon-task.png";
 	attr.iTimeLength = 30e3;
 	attr.bUseMarkup = TRUE;
-	cairo_dock_build_dialog (&attr, myIcon, myContainer);
+	attr.pIcon = myIcon;
+	attr.pContainer = myContainer;
+	gldi_dialog_new (&attr);
 	
 	g_free (cTasks);
 }
-static void _cd_clock_show_tasks_week (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_clock_show_tasks_week (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	gchar *cTasks = cd_clock_get_tasks_for_this_week (myApplet);
 	double fDelay = 30e3;
@@ -85,13 +87,15 @@ static void _cd_clock_show_tasks_week (GtkMenuItem *menu_item, CairoDockModuleIn
 	
 	cd_clock_hide_dialogs (myApplet);
 	
-	CairoDialogAttribute attr;
-	memset (&attr, 0, sizeof (CairoDialogAttribute));
+	CairoDialogAttr attr;
+	memset (&attr, 0, sizeof (CairoDialogAttr));
 	attr.cText = cTasks;
 	attr.cImageFilePath = MY_APPLET_SHARE_DATA_DIR"/icon-task.png";
 	attr.iTimeLength = fDelay;
 	attr.bUseMarkup = TRUE;
-	cairo_dock_build_dialog (&attr, myIcon, myContainer);
+	attr.pIcon = myIcon;
+	attr.pContainer = myContainer;
+	gldi_dialog_new (&attr);
 	
 	g_free (cTasks);
 }

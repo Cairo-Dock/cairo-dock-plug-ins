@@ -77,7 +77,7 @@ struct _AppletData {
 	gboolean bIsComposited;
 	CDWM *wmc;
 	CDWM *wmfb;
-	CairoKeyBinding *cKeyBinding;
+	GldiShortkey *cKeyBinding;
 } ;
 
 

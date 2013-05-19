@@ -26,9 +26,9 @@
 
 void cd_sysmonitor_get_uptime (gchar **cUpTime, gchar **cActivityTime);
 
-void cd_sysmonitor_get_cpu_info (CairoDockModuleInstance *myApplet);
+void cd_sysmonitor_get_cpu_info (GldiModuleInstance *myApplet);
 
-void cd_sysmonitor_get_cpu_data (CairoDockModuleInstance *myApplet);
+void cd_sysmonitor_get_cpu_data (GldiModuleInstance *myApplet);
 
 
 #endif

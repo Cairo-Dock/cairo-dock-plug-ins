@@ -427,7 +427,7 @@ void cd_weather_reset_weather_data (CDWeatherData *pData)
 	}
 }
 
-void cd_weather_reset_data (CairoDockModuleInstance *myApplet)
+void cd_weather_reset_data (GldiModuleInstance *myApplet)
 {
 	cd_weather_reset_weather_data (&myData.wdata);
 }
@@ -437,7 +437,7 @@ static void _free_shared_memory (CDSharedMemory *pSharedMemory)
 	cd_weather_reset_weather_data (&pSharedMemory->wdata);
 	g_free (pSharedMemory);
 }
-void cd_weather_launch_periodic_task (CairoDockModuleInstance *myApplet)
+void cd_weather_launch_periodic_task (GldiModuleInstance *myApplet)
 {
 	if (myData.pTask != NULL)
 	{

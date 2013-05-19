@@ -32,7 +32,7 @@ CD_APPLET_ON_MIDDLE_CLICK_H
 
 CD_APPLET_ON_DROP_DATA_H
 
-gboolean cd_shortcuts_free_data (CairoDockModuleInstance *myApplet, Icon *pIcon);
+gboolean cd_shortcuts_free_data (GldiModuleInstance *myApplet, Icon *pIcon);
 
 
 #endif

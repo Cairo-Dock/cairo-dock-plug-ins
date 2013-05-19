@@ -44,7 +44,7 @@ typedef enum _CDClockTaskColumns
 } CDClockTaskColumns;
 
 
-static gboolean on_delete_task_window (GtkWidget *pWidget, CairoDockModuleInstance *myApplet)
+static gboolean on_delete_task_window (GtkWidget *pWidget, GldiModuleInstance *myApplet)
 {
 	//g_print ("%s ()\n", __func__);
 	/// get day
@@ -60,7 +60,7 @@ static gboolean on_delete_task_window (GtkWidget *pWidget, CairoDockModuleInstan
 	return FALSE;  // detruit la fenetre.
 }
 
-static GtkListStore *_cd_clock_create_model_for_current_day (guint iDay, guint iMonth, guint iYear, CairoDockModuleInstance *myApplet)
+static GtkListStore *_cd_clock_create_model_for_current_day (guint iDay, guint iMonth, guint iYear, GldiModuleInstance *myApplet)
 {
 	//g_print ("%s (%d/%d/%d)\n", __func__, iDay, iMonth, iYear);
 	//\______________ On cree le modele.
@@ -109,7 +109,7 @@ static GtkListStore *_cd_clock_create_model_for_current_day (guint iDay, guint i
 	return pModel;
 }
 
-static void _cd_clock_add_new_task (GtkMenuItem *pMenuItem, CairoDockModuleInstance *myApplet)
+static void _cd_clock_add_new_task (GtkMenuItem *pMenuItem, GldiModuleInstance *myApplet)
 {
 	//g_print ("%s ()\n", __func__);
 	CDClockTask *pTask = g_new0 (CDClockTask, 1);
@@ -133,7 +133,7 @@ static void _cd_clock_add_new_task (GtkMenuItem *pMenuItem, CairoDockModuleInsta
 static void _cd_clock_delete_task (GtkMenuItem *pMenuItem, gpointer *data)
 {
 	cd_debug ("%s ()", __func__);
-	CairoDockModuleInstance *myApplet = data[0];
+	GldiModuleInstance *myApplet = data[0];
 	CDClockTask *pTask = data[1];
 	gboolean bDeleted = myData.pBackend->delete_task (pTask, myApplet);
 	
@@ -148,7 +148,7 @@ static void _cd_clock_delete_task (GtkMenuItem *pMenuItem, gpointer *data)
 		cd_clock_update_calendar_marks (myApplet);
 	}
 }
-static gboolean _on_click_tree_view (GtkTreeView *pTreeView, GdkEventButton* pButton, CairoDockModuleInstance *myApplet)
+static gboolean _on_click_tree_view (GtkTreeView *pTreeView, GdkEventButton* pButton, GldiModuleInstance *myApplet)
 {
 	static gpointer *data = NULL;
 	if (pButton->button == 3 && pButton->type == GDK_BUTTON_RELEASE)
@@ -190,7 +190,7 @@ static gboolean _on_click_tree_view (GtkTreeView *pTreeView, GdkEventButton* pBu
 	return FALSE;
 }
 
-static gboolean _cd_clock_select_one_item_in_tree (GtkTreeSelection * selection, GtkTreeModel * model, GtkTreePath * path, gboolean path_currently_selected, CairoDockModuleInstance *myApplet)
+static gboolean _cd_clock_select_one_item_in_tree (GtkTreeSelection * selection, GtkTreeModel * model, GtkTreePath * path, gboolean path_currently_selected, GldiModuleInstance *myApplet)
 {
 	if (path_currently_selected)
 		return TRUE;
@@ -241,7 +241,7 @@ static GtkListStore *_make_frequency_list_store (void)
 	g_free (cID);\
 	g_return_if_fail (pTask != NULL);
 	
-static void _on_change_title (GtkCellRendererText * cell, gchar * path_string, gchar * new_text, CairoDockModuleInstance *myApplet)
+static void _on_change_title (GtkCellRendererText * cell, gchar * path_string, gchar * new_text, GldiModuleInstance *myApplet)
 {
 	if (new_text == NULL || *new_text == '\0')\
 		return;
@@ -256,7 +256,7 @@ static void _on_change_title (GtkCellRendererText * cell, gchar * path_string, g
 	}
 }
 
-static void _on_change_text (GtkCellRendererText * cell, gchar * path_string, gchar * new_text, CairoDockModuleInstance *myApplet)
+static void _on_change_text (GtkCellRendererText * cell, gchar * path_string, gchar * new_text, GldiModuleInstance *myApplet)
 {
 	_get_task_from_path (new_text, path_string);
 	
@@ -269,7 +269,7 @@ static void _on_change_text (GtkCellRendererText * cell, gchar * path_string, gc
 	}
 }
 
-static void _on_change_tags (GtkCellRendererText * cell, gchar * path_string, gchar * new_text, CairoDockModuleInstance *myApplet)
+static void _on_change_tags (GtkCellRendererText * cell, gchar * path_string, gchar * new_text, GldiModuleInstance *myApplet)
 {
 	_get_task_from_path (new_text, path_string);
 	
@@ -282,7 +282,7 @@ static void _on_change_tags (GtkCellRendererText * cell, gchar * path_string, gc
 	}
 }
 
-static void _on_change_time (GtkCellRendererText * cell, gchar * path_string, gchar * new_text, CairoDockModuleInstance *myApplet)
+static void _on_change_time (GtkCellRendererText * cell, gchar * path_string, gchar * new_text, GldiModuleInstance *myApplet)
 {
 	_get_task_from_path(new_text, path_string);
 	
@@ -314,7 +314,7 @@ static gboolean _search_frequency (GtkTreeModel * model, GtkTreePath * path, Gtk
 	}
 	return FALSE;
 }
-static void _on_change_frequency (GtkCellRendererText * cell, gchar * path_string, gchar * new_text, CairoDockModuleInstance *myApplet)
+static void _on_change_frequency (GtkCellRendererText * cell, gchar * path_string, gchar * new_text, GldiModuleInstance *myApplet)
 {
 	_get_task_from_path(new_text, path_string);
 	
@@ -336,7 +336,7 @@ static void _on_change_frequency (GtkCellRendererText * cell, gchar * path_strin
 	}
 }
 
-static void _cd_clock_render_frequency (GtkTreeViewColumn *tree_column, GtkCellRenderer *cell, GtkTreeModel *model,GtkTreeIter *iter, CairoDockModuleInstance *myApplet)
+static void _cd_clock_render_frequency (GtkTreeViewColumn *tree_column, GtkCellRenderer *cell, GtkTreeModel *model,GtkTreeIter *iter, GldiModuleInstance *myApplet)
 {
 	int iFrequency;
 	gtk_tree_model_get (model, iter, CD_TASK_FREQ, &iFrequency, -1);
@@ -356,7 +356,7 @@ static void _cd_clock_render_frequency (GtkTreeViewColumn *tree_column, GtkCellR
 	}
 }
 
-static void _cd_clock_render_time (GtkTreeViewColumn *tree_column, GtkCellRenderer *cell, GtkTreeModel *model,GtkTreeIter *iter, CairoDockModuleInstance *myApplet)
+static void _cd_clock_render_time (GtkTreeViewColumn *tree_column, GtkCellRenderer *cell, GtkTreeModel *model,GtkTreeIter *iter, GldiModuleInstance *myApplet)
 {
 	int iTime;
 	gtk_tree_model_get (model, iter, CD_TASK_TIME, &iTime, -1);
@@ -371,7 +371,7 @@ static void _cd_clock_render_time (GtkTreeViewColumn *tree_column, GtkCellRender
 
 gboolean _on_key_press (G_GNUC_UNUSED GtkWidget *pWidget,
 	GdkEventKey *pKey,
-	CairoDockModuleInstance *myApplet)
+	GldiModuleInstance *myApplet)
 {
 	if (pKey->type == GDK_KEY_PRESS && pKey->keyval == GLDI_KEY(Escape))
 	{
@@ -381,7 +381,7 @@ gboolean _on_key_press (G_GNUC_UNUSED GtkWidget *pWidget,
 	return FALSE;
 }
 
-void cd_clock_build_task_editor (guint iDay, guint iMonth, guint iYear, CairoDockModuleInstance *myApplet)
+void cd_clock_build_task_editor (guint iDay, guint iMonth, guint iYear, GldiModuleInstance *myApplet)
 {
 	//\______________ On remplit le modele avec la date courante.
 	GtkListStore *pModel = _cd_clock_create_model_for_current_day (iDay, iMonth, iYear, myApplet);

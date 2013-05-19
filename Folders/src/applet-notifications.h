@@ -33,10 +33,10 @@ CD_APPLET_ON_MIDDLE_CLICK_H
 CD_APPLET_ON_BUILD_MENU_H
 
 
-gboolean cd_folders_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *icon, double fOrder, CairoContainer *pContainer);
+gboolean cd_folders_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *icon, double fOrder, GldiContainer *pContainer);
 
 
-void cd_folders_free_apps_list (CairoDockModuleInstance *myApplet);
+void cd_folders_free_apps_list (GldiModuleInstance *myApplet);
 
 
 #endif

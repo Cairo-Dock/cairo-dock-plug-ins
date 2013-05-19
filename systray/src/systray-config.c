@@ -43,12 +43,12 @@ CD_APPLET_RESET_CONFIG_END
 CD_APPLET_RESET_DATA_BEGIN
 	if (myData.dialog)
 	{
-		cairo_dock_dialog_unreference (myData.dialog);  // detruit aussi le widget interactif.
+		gldi_object_unref (GLDI_OBJECT(myData.dialog));  // detruit aussi le widget interactif.
 		myData.dialog = NULL;
 	}
 	else if (myDesklet && myData.tray)
 	{
-		cairo_dock_steal_interactive_widget_from_desklet (myDesklet);
+		gldi_desklet_steal_interactive_widget (myDesklet);
 		gtk_widget_destroy (GTK_WIDGET (myData.tray));
 		myData.tray = NULL;
 	}

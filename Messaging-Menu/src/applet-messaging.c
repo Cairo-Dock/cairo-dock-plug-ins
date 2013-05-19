@@ -35,7 +35,7 @@
 
 /* Called everytime the attention changes in the service. */
 static void
-attention_changed_cb (DBusGProxy * proxy, gboolean dot, CairoDockModuleInstance *myApplet)
+attention_changed_cb (DBusGProxy * proxy, gboolean dot, GldiModuleInstance *myApplet)
 {
 	//g_print ("%s (attention : %d)\n", __func__, dot);
 	if (dot)
@@ -55,7 +55,7 @@ attention_changed_cb (DBusGProxy * proxy, gboolean dot, CairoDockModuleInstance 
 
 /* Change the icon to whether it should be visible or not */
 static void
-icon_changed_cb (DBusGProxy * proxy, gboolean hidden, CairoDockModuleInstance *myApplet)
+icon_changed_cb (DBusGProxy * proxy, gboolean hidden, GldiModuleInstance *myApplet)
 {
 	cd_debug ("%s (hidden : %d)", __func__, hidden);
 	if (hidden)
@@ -71,7 +71,7 @@ icon_changed_cb (DBusGProxy * proxy, gboolean hidden, CairoDockModuleInstance *m
 
 /* Callback from getting the attention status from the service. */
 static void
-attention_cb (DBusGProxy * proxy, gboolean dot, GError * error, CairoDockModuleInstance *myApplet)
+attention_cb (DBusGProxy * proxy, gboolean dot, GError * error, GldiModuleInstance *myApplet)
 {
 	if (error != NULL) {
 		cd_warning ("Unable to get attention status: %s", error->message);
@@ -84,7 +84,7 @@ attention_cb (DBusGProxy * proxy, gboolean dot, GError * error, CairoDockModuleI
 
 /* Change from getting the icon visibility from the service */
 static void
-icon_cb (DBusGProxy * proxy, gboolean hidden, GError * error, CairoDockModuleInstance *myApplet)
+icon_cb (DBusGProxy * proxy, gboolean hidden, GError * error, GldiModuleInstance *myApplet)
 {
 	if (error != NULL) {
 		cd_warning ("Unable to get icon visibility: %s", error->message);
@@ -95,7 +95,7 @@ icon_cb (DBusGProxy * proxy, gboolean hidden, GError * error, CairoDockModuleIns
 	return icon_changed_cb(proxy, hidden, myApplet);
 }
 
-void cd_messaging_on_connect (CairoDockModuleInstance *myApplet)
+void cd_messaging_on_connect (GldiModuleInstance *myApplet)
 {
 	dbus_g_proxy_add_signal(myData.pIndicator->pServiceProxy, "AttentionChanged", G_TYPE_BOOLEAN, G_TYPE_INVALID);
 	dbus_g_proxy_connect_signal(myData.pIndicator->pServiceProxy,
@@ -111,13 +111,13 @@ void cd_messaging_on_connect (CairoDockModuleInstance *myApplet)
 		NULL);
 }
 
-void cd_messaging_on_disconnect (CairoDockModuleInstance *myApplet)
+void cd_messaging_on_disconnect (GldiModuleInstance *myApplet)
 {
 	//g_print ("disconnected\n");
 	cd_indicator_set_icon (myData.pIndicator, DEFAULT_ICON);  // If we're disconnecting, go back to offline.
 }
 
-void cd_messaging_get_initial_values (CairoDockModuleInstance *myApplet)
+void cd_messaging_get_initial_values (GldiModuleInstance *myApplet)
 {
 	// query the service to display initial values.
 	org_ayatana_indicator_messages_service_attention_requested_async(myData.pIndicator->pServiceProxy,

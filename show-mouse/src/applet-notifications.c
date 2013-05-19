@@ -28,11 +28,11 @@ static double fRadius = .33;
 static double a = .2;
 
 
-gboolean cd_show_mouse_render (gpointer pUserData, CairoContainer *pContainer, cairo_t *pCairoContext)
+gboolean cd_show_mouse_render (gpointer pUserData, GldiContainer *pContainer, cairo_t *pCairoContext)
 {
 	CDShowMouseData *pData = CD_APPLET_GET_MY_CONTAINER_DATA (pContainer);
 	if (pData == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	glPushMatrix();
 	
@@ -49,7 +49,7 @@ gboolean cd_show_mouse_render (gpointer pUserData, CairoContainer *pContainer, c
 	
 	glPopMatrix();
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
@@ -64,11 +64,11 @@ else {\
 	area.x = MAX (0, pContainer->iMouseY - pData->pSystem->fHeight);\
 	area.height = pData->pSystem->fWidth;\
 	area.width = pData->pSystem->fHeight*2; } } while (0)
-gboolean cd_show_mouse_update_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bContinueAnimation)
+gboolean cd_show_mouse_update_container (gpointer pUserData, GldiContainer *pContainer, gboolean *bContinueAnimation)
 {
 	CDShowMouseData *pData = CD_APPLET_GET_MY_CONTAINER_DATA (pContainer);
 	if (pData == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	GdkRectangle area;
 	if (! pContainer->bInside)
@@ -83,7 +83,7 @@ gboolean cd_show_mouse_update_container (gpointer pUserData, CairoContainer *pCo
 			g_free (pData);
 			CD_APPLET_SET_MY_CONTAINER_DATA (pContainer, NULL);
 			
-			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+			return GLDI_NOTIFICATION_LET_PASS;
 		}
 	}
 	else if (pData->fAlpha != 1)
@@ -101,14 +101,14 @@ gboolean cd_show_mouse_update_container (gpointer pUserData, CairoContainer *pCo
 	cairo_dock_redraw_container_area (pContainer, &area);
 	
 	*bContinueAnimation = TRUE;
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
-gboolean cd_show_mouse_enter_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bStartAnimation)
+gboolean cd_show_mouse_enter_container (gpointer pUserData, GldiContainer *pContainer, gboolean *bStartAnimation)
 {
 	if (! CAIRO_DOCK_CONTAINER_IS_OPENGL (pContainer))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	CDShowMouseData *pData = CD_APPLET_GET_MY_CONTAINER_DATA (pContainer);
 	if (pData == NULL)
@@ -125,7 +125,7 @@ gboolean cd_show_mouse_enter_container (gpointer pUserData, CairoContainer *pCon
 	
 	
 	*bStartAnimation = TRUE;
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
@@ -144,7 +144,7 @@ gdouble *cd_show_mouse_init_sources (void)
 	return pSourceCoords;
 }
 
-CairoParticleSystem *cd_show_mouse_init_system (CairoContainer *pContainer, double dt, double *pSourceCoords)
+CairoParticleSystem *cd_show_mouse_init_system (GldiContainer *pContainer, double dt, double *pSourceCoords)
 {
 	if (myData.iTexture == 0)
 		myData.iTexture = cairo_dock_create_texture_from_raw_data (starTex, 32, 32);  /// 32 = sqrt (4096/4)
@@ -248,15 +248,15 @@ void cd_show_mouse_update_particle_system (CairoParticleSystem *pParticleSystem,
 	}
 }
 
-gboolean cd_show_mouse_free_data (gpointer pUserData, CairoContainer *pContainer)
+gboolean cd_show_mouse_free_data (gpointer pUserData, GldiContainer *pContainer)
 {
 	cd_message ("");
 	CDShowMouseData *pData = CD_APPLET_GET_MY_CONTAINER_DATA (pContainer);
 	if (pData == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	cairo_dock_free_particle_system (pData->pSystem);
 	g_free (pData);
 	CD_APPLET_SET_MY_CONTAINER_DATA (pContainer, NULL);
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }

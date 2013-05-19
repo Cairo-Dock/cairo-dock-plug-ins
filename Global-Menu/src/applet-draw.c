@@ -47,7 +47,7 @@ static void _apply_button_cairo (CairoDockImageBuffer *pImage, int x, int y, gbo
 		fAlpha);
 }
 
-static gboolean cd_app_menu_render_step_opengl (Icon *pIcon, CairoDockModuleInstance *myApplet)
+static gboolean cd_app_menu_render_step_opengl (Icon *pIcon, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	double f = CD_APPLET_GET_TRANSITION_FRACTION ();
@@ -85,14 +85,14 @@ static gboolean cd_app_menu_render_step_opengl (Icon *pIcon, CairoDockModuleInst
 	// draw current icon
 	const CairoDockImageBuffer *pImage = NULL, *pPrevImage = NULL;
 	
-	Icon *pAppli = cairo_dock_get_icon_with_Xid (myData.iCurrentWindow);
+	Icon *pAppli = cairo_dock_get_appli_icon (myData.pCurrentWindow);
 	if (pAppli)
 	{
 		pImage = cairo_dock_appli_get_image_buffer (pAppli);
 	}
 	GLuint iTexture = (pImage ? pImage->iTexture : 0);
 	
-	Icon *pPrevIcon = cairo_dock_get_icon_with_Xid (myData.iPreviousWindow);
+	Icon *pPrevIcon = cairo_dock_get_appli_icon (myData.pPreviousWindow);
 	if (pPrevIcon)
 	{
 		pPrevImage = cairo_dock_appli_get_image_buffer (pPrevIcon);
@@ -123,9 +123,9 @@ static gboolean cd_app_menu_render_step_opengl (Icon *pIcon, CairoDockModuleInst
 			y -= w;
 		
 		if (myData.bReversedButtonsOrder)
-			_apply_button_opengl (&myData.closeButton, x, y, pAppli && myData.bCanClose, myData.iAnimIterClose);
+			_apply_button_opengl (&myData.closeButton, x, y, myData.pCurrentWindow && myData.bCanClose, myData.iAnimIterClose);
 		else
-			_apply_button_opengl (&myData.minimizeButton, x, y, pAppli && myData.bCanMinimize, myData.iAnimIterMin);
+			_apply_button_opengl (&myData.minimizeButton, x, y, myData.pCurrentWindow && myData.bCanMinimize, myData.iAnimIterMin);
 
 		// restore/maximize button
 		if (iWidth > iHeight)  // horizontal alignment
@@ -134,13 +134,13 @@ static gboolean cd_app_menu_render_step_opengl (Icon *pIcon, CairoDockModuleInst
 			y -= w;
 
 		if (myData.bReversedButtonsOrder)
-			_apply_button_opengl (&myData.minimizeButton, x, y, pAppli && myData.bCanMinimize, myData.iAnimIterMin);
+			_apply_button_opengl (&myData.minimizeButton, x, y, myData.pCurrentWindow && myData.bCanMinimize, myData.iAnimIterMin);
 		else
 		{
-			if (pAppli && pAppli->bIsMaximized)
-				_apply_button_opengl (&myData.restoreButton, x, y, pAppli && myData.bCanMaximize, myData.iAnimIterRestore);
+			if (myData.pCurrentWindow && myData.pCurrentWindow->bIsMaximized)
+				_apply_button_opengl (&myData.restoreButton, x, y, myData.pCurrentWindow && myData.bCanMaximize, myData.iAnimIterRestore);
 			else
-				_apply_button_opengl (&myData.maximizeButton, x, y, pAppli && myData.bCanMaximize, myData.iAnimIterMax);
+				_apply_button_opengl (&myData.maximizeButton, x, y, myData.pCurrentWindow && myData.bCanMaximize, myData.iAnimIterMax);
 		}
 		
 		// close button
@@ -151,20 +151,20 @@ static gboolean cd_app_menu_render_step_opengl (Icon *pIcon, CairoDockModuleInst
 
 		if (myData.bReversedButtonsOrder)
 		{
-			if (pAppli && pAppli->bIsMaximized)
-				_apply_button_opengl (&myData.restoreButton, x, y, pAppli && myData.bCanMaximize, myData.iAnimIterRestore);
+			if (myData.pCurrentWindow && myData.pCurrentWindow->bIsMaximized)
+				_apply_button_opengl (&myData.restoreButton, x, y, myData.pCurrentWindow && myData.bCanMaximize, myData.iAnimIterRestore);
 			else
-				_apply_button_opengl (&myData.maximizeButton, x, y, pAppli && myData.bCanMaximize, myData.iAnimIterMax);
+				_apply_button_opengl (&myData.maximizeButton, x, y, myData.pCurrentWindow && myData.bCanMaximize, myData.iAnimIterMax);
 		}
 		else
-			_apply_button_opengl (&myData.closeButton, x, y, pAppli && myData.bCanClose, myData.iAnimIterClose);
+			_apply_button_opengl (&myData.closeButton, x, y, myData.pCurrentWindow && myData.bCanClose, myData.iAnimIterClose);
 	}
 	_cairo_dock_disable_texture ();
 	
 	CD_APPLET_LEAVE (TRUE);
 }
 
-static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, CairoDockModuleInstance *myApplet)
+static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	double f = CD_APPLET_GET_TRANSITION_FRACTION ();
@@ -210,7 +210,7 @@ static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, CairoDockModuleInsta
 	
 	const CairoDockImageBuffer *pImage = NULL, *pPrevImage = NULL;
 	
-	Icon *pPrevIcon = cairo_dock_get_icon_with_Xid (myData.iPreviousWindow);
+	Icon *pPrevIcon = cairo_dock_get_appli_icon (myData.pPreviousWindow);
 	if (pPrevIcon)
 	{
 		pPrevImage = cairo_dock_appli_get_image_buffer (pPrevIcon);
@@ -220,7 +220,7 @@ static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, CairoDockModuleInsta
 		cairo_dock_apply_image_buffer_surface_at_size (pPrevImage, myDrawContext, w, h, x, y, 1-f);
 	}
 	
-	Icon *pAppli = cairo_dock_get_icon_with_Xid (myData.iCurrentWindow);
+	Icon *pAppli = cairo_dock_get_appli_icon (myData.pCurrentWindow);
 	if (pAppli)
 	{
 		pImage = cairo_dock_appli_get_image_buffer (pAppli);
@@ -240,9 +240,9 @@ static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, CairoDockModuleInsta
 			y += h;
 		
 		if (myData.bReversedButtonsOrder)
-			_apply_button_cairo (&myData.closeButton, x, y, pAppli && myData.bCanClose, myData.iAnimIterClose);
+			_apply_button_cairo (&myData.closeButton, x, y, myData.pCurrentWindow && myData.bCanClose, myData.iAnimIterClose);
 		else
-			_apply_button_cairo (&myData.minimizeButton, x, y, pAppli && myData.bCanMinimize, myData.iAnimIterMin);
+			_apply_button_cairo (&myData.minimizeButton, x, y, myData.pCurrentWindow && myData.bCanMinimize, myData.iAnimIterMin);
 		
 		// restore/maximize button
 		if (iWidth > iHeight)  // horizontal alignment
@@ -251,13 +251,13 @@ static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, CairoDockModuleInsta
 			y += h;
 
 		if (myData.bReversedButtonsOrder)
-			_apply_button_cairo (&myData.minimizeButton, x, y, pAppli && myData.bCanMinimize, myData.iAnimIterMin);
+			_apply_button_cairo (&myData.minimizeButton, x, y, myData.pCurrentWindow && myData.bCanMinimize, myData.iAnimIterMin);
 		else
 		{
-			if (pAppli && pAppli->bIsMaximized)
-				_apply_button_cairo (&myData.maximizeButton, x, y, pAppli && myData.bCanMaximize, myData.iAnimIterMax);
+			if (myData.pCurrentWindow && myData.pCurrentWindow->bIsMaximized)
+				_apply_button_cairo (&myData.maximizeButton, x, y, myData.pCurrentWindow && myData.bCanMaximize, myData.iAnimIterMax);
 			else
-				_apply_button_cairo (&myData.restoreButton, x, y, pAppli && myData.bCanMaximize, myData.iAnimIterRestore);
+				_apply_button_cairo (&myData.restoreButton, x, y, myData.pCurrentWindow && myData.bCanMaximize, myData.iAnimIterRestore);
 		}
 		
 		// close button
@@ -268,13 +268,13 @@ static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, CairoDockModuleInsta
 
 		if (myData.bReversedButtonsOrder)
 		{
-			if (pAppli && pAppli->bIsMaximized)
-				_apply_button_cairo (&myData.maximizeButton, x, y, pAppli && myData.bCanMaximize, myData.iAnimIterMax);
+			if (myData.pCurrentWindow && myData.pCurrentWindow->bIsMaximized)
+				_apply_button_cairo (&myData.maximizeButton, x, y, myData.pCurrentWindow && myData.bCanMaximize, myData.iAnimIterMax);
 			else
-				_apply_button_cairo (&myData.restoreButton, x, y, pAppli && myData.bCanMaximize, myData.iAnimIterRestore);
+				_apply_button_cairo (&myData.restoreButton, x, y, myData.pCurrentWindow && myData.bCanMaximize, myData.iAnimIterRestore);
 		}
 		else
-			_apply_button_cairo (&myData.closeButton, x, y, pAppli && myData.bCanClose, myData.iAnimIterClose);
+			_apply_button_cairo (&myData.closeButton, x, y, myData.pCurrentWindow && myData.bCanClose, myData.iAnimIterClose);
 	}
 	
 	CD_APPLET_FINISH_DRAWING_MY_ICON_CAIRO;
@@ -348,7 +348,7 @@ void cd_app_menu_default_image (void)
 void cd_app_menu_redraw_icon (void)
 {
 	// load the buttons and the default icon
-	if (myData.iCurrentWindow == 0 && myData.defaultIcon.iWidth == 0)
+	if (myData.pCurrentWindow == NULL && myData.defaultIcon.iWidth == 0)
 	{
 		cd_app_menu_default_image ();
 	}
@@ -393,7 +393,7 @@ void cd_app_menu_resize (void)
 }
 
 
-CDButtonEnum cd_app_menu_find_button (CairoDockModuleInstance *myApplet)
+CDButtonEnum cd_app_menu_find_button (GldiModuleInstance *myApplet)
 {
 	int iNumButton = -1;
 	int iMouseX, iMouseY;

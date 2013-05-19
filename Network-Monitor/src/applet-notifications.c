@@ -39,7 +39,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	}
 	else
 	{
-		cairo_dock_remove_dialog_if_any (myIcon);
+		gldi_dialogs_remove_on_icon (myIcon);
 		cd_NetworkMonitor_bubble();
 	}
 CD_APPLET_ON_CLICK_END

@@ -49,7 +49,7 @@
 	while (*str == ' ') \
 		str ++; \
 	iValue = atoll (str);
-void cd_sysmonitor_get_ram_data (CairoDockModuleInstance *myApplet)
+void cd_sysmonitor_get_ram_data (GldiModuleInstance *myApplet)
 {
 	gchar *cContent = NULL;
 	gsize length=0;
@@ -123,7 +123,7 @@ void cd_sysmonitor_get_ram_data (CairoDockModuleInstance *myApplet)
 #define _unit(s) (((s >> 20) == 0) ? D_("Mb") : D_("Gb"))
 #define _append_value_from_kb(pInfo, s) t = _convert_from_kb (s); g_string_append_printf (pInfo, t<10 ? "%.1f" : "%.0f", t); g_string_append (pInfo, _unit(s));
 
-void cd_sysmonitor_get_ram_info (CairoDockModuleInstance *myApplet, GString *pInfo)
+void cd_sysmonitor_get_ram_info (GldiModuleInstance *myApplet, GString *pInfo)
 {
 	if (!myConfig.bShowRam && ! myConfig.bShowSwap)
 		cd_sysmonitor_get_ram_data (myApplet);  // le thread ne passe pas par la => pas de conflit.

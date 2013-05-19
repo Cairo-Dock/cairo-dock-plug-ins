@@ -25,10 +25,10 @@
 #include <cairo-dock.h>
 
 
-void cd_xeyes_render_to_texture (CairoDockModuleInstance *myApplet, int iWidth, int iHeight);
+void cd_xeyes_render_to_texture (GldiModuleInstance *myApplet, int iWidth, int iHeight);
 
 
-void cd_xeyes_render_to_surface (CairoDockModuleInstance *myApplet, int iWidth, int iHeight);
+void cd_xeyes_render_to_surface (GldiModuleInstance *myApplet, int iWidth, int iHeight);
 
 
 #endif

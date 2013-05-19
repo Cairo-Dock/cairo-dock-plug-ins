@@ -23,9 +23,9 @@
 #include <cairo-dock.h>
 
 
-void cd_sysmonitor_get_ram_data (CairoDockModuleInstance *myApplet);
+void cd_sysmonitor_get_ram_data (GldiModuleInstance *myApplet);
 
-void cd_sysmonitor_get_ram_info (CairoDockModuleInstance *myApplet, GString *pInfo);
+void cd_sysmonitor_get_ram_info (GldiModuleInstance *myApplet, GString *pInfo);
 
 
 #endif

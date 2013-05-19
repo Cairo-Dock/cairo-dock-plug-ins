@@ -24,10 +24,10 @@
 
 #include <cairo-dock.h>
 
-CairoDialog *cd_weblets_build_dialog (CairoDockModuleInstance *myApplet);
+CairoDialog *cd_weblets_build_dialog (GldiModuleInstance *myApplet);
 
-gboolean cd_weblets_refresh_page (CairoDockModuleInstance *myApplet);
+gboolean cd_weblets_refresh_page (GldiModuleInstance *myApplet);
 
-void weblet_build_and_show (CairoDockModuleInstance *myApplet);
+void weblet_build_and_show (GldiModuleInstance *myApplet);
 
 #endif

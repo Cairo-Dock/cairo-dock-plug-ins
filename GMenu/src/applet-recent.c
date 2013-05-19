@@ -41,7 +41,7 @@ static void _on_size_changed (GtkRecentManager *manager,
 	gtk_widget_set_sensitive (menu_item, size > 0);
 }
 
-void cd_menu_append_recent_to_menu (GtkWidget *top_menu, CairoDockModuleInstance *myApplet)
+void cd_menu_append_recent_to_menu (GtkWidget *top_menu, GldiModuleInstance *myApplet)
 {
 	//\_____________ On construit une entree de sous-menu qu'on insere dans le menu principal.
 	if (myData.pRecentMenuItem == NULL)
@@ -97,7 +97,7 @@ void cd_menu_append_recent_to_menu (GtkWidget *top_menu, CairoDockModuleInstance
 
 
 
-static void _on_answer_clear_recent (int iClickedButton, GtkWidget *pInteractiveWidget, CairoDockModuleInstance *myApplet, CairoDialog *pDialog)
+static void _on_answer_clear_recent (int iClickedButton, GtkWidget *pInteractiveWidget, GldiModuleInstance *myApplet, CairoDialog *pDialog)
 {
 	CD_APPLET_ENTER;
 	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
@@ -107,9 +107,9 @@ static void _on_answer_clear_recent (int iClickedButton, GtkWidget *pInteractive
 	}
 	CD_APPLET_LEAVE ();
 }
-void cd_menu_clear_recent (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+void cd_menu_clear_recent (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
-	cairo_dock_show_dialog_with_question (D_("Clear the list of the recently used documents?"),
+	gldi_dialog_show_with_question (D_("Clear the list of the recently used documents?"),
 		myIcon, myContainer,
 		"same icon",
 		(CairoDockActionOnAnswerFunc) _on_answer_clear_recent, myApplet, (GFreeFunc)NULL);

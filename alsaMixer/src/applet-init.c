@@ -50,7 +50,7 @@ static gboolean _cd_mixer_on_enter (GtkWidget* pWidget,
 	{
 		gtk_widget_show (myData.pScale);
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 gboolean _cd_mixer_on_leave (GtkWidget* pWidget,
 	GdkEventCrossing* pEvent,
@@ -61,7 +61,7 @@ gboolean _cd_mixer_on_leave (GtkWidget* pWidget,
 		if (! myDesklet->container.bInside)
 			gtk_widget_hide (myData.pScale);
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 static void _set_data_renderer (void)
@@ -153,7 +153,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_DOUBLE_CLICK_EVENT;
 	
 	// keyboard events
-	cd_keybinder_unbind (myData.cKeyBinding);
+	gldi_object_unref (GLDI_OBJECT(myData.cKeyBinding));
 	
 	// stop the current controler.
 	cd_stop ();
@@ -181,14 +181,14 @@ CD_APPLET_RELOAD_BEGIN
 		cd_reload ();
 		
 		// shortkey
-		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cShortcut, NULL);
+		gldi_shortkey_rebind (myData.cKeyBinding, myConfig.cShortcut, NULL);
 		
 		// scale
 		if (myDesklet)
 		{
 			if (CD_APPLET_MY_CONTAINER_TYPE_CHANGED)
 			{
-				cairo_dock_dialog_unreference (myData.pDialog);
+				gldi_object_unref (GLDI_OBJECT(myData.pDialog));
 				myData.pDialog = NULL;
 
 				GtkWidget *box = _gtk_hbox_new (0);

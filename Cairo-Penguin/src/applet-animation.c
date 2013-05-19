@@ -27,7 +27,7 @@
 #include "applet-animation.h"
 
 
-void penguin_move_in_dock (CairoDockModuleInstance *myApplet)
+void penguin_move_in_dock (GldiModuleInstance *myApplet)
 {
 	static GdkRectangle area;
 	if (! cairo_dock_animation_will_be_visible (myDock))
@@ -81,7 +81,7 @@ void penguin_move_in_dock (CairoDockModuleInstance *myApplet)
 	cairo_dock_redraw_container_area (myContainer, &area);
 }
 
-static void _penguin_draw_texture (CairoDockModuleInstance *myApplet, PenguinAnimation *pAnimation, double fOffsetX, double fOffsetY, double fScale)
+static void _penguin_draw_texture (GldiModuleInstance *myApplet, PenguinAnimation *pAnimation, double fOffsetX, double fOffsetY, double fScale)
 {
 	g_return_if_fail (pAnimation->iTexture != 0);
 	int iIconWidth, iIconHeight;
@@ -102,7 +102,7 @@ static void _penguin_draw_texture (CairoDockModuleInstance *myApplet, PenguinAni
 		floor (fOffsetY + myData.iCurrentPositionY + .5*pAnimation->iFrameHeight*fScale) + .5);
 	_cairo_dock_disable_texture ();
 }
-void penguin_draw_on_dock_opengl (CairoDockModuleInstance *myApplet, CairoContainer *pContainer)
+void penguin_draw_on_dock_opengl (GldiModuleInstance *myApplet, GldiContainer *pContainer)
 {
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if (pAnimation == NULL)
@@ -122,7 +122,7 @@ void penguin_draw_on_dock_opengl (CairoDockModuleInstance *myApplet, CairoContai
 	glPopMatrix ();
 }
 
-void penguin_draw_on_dock (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, cairo_t *pCairoContext)
+void penguin_draw_on_dock (GldiModuleInstance *myApplet, GldiContainer *pContainer, cairo_t *pCairoContext)
 {
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if (pAnimation == NULL)
@@ -155,23 +155,23 @@ void penguin_draw_on_dock (CairoDockModuleInstance *myApplet, CairoContainer *pC
 	
 	cairo_restore (pCairoContext);
 }
-gboolean penguin_render_on_container (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, cairo_t *pCairoContext)
+gboolean penguin_render_on_container (GldiModuleInstance *myApplet, GldiContainer *pContainer, cairo_t *pCairoContext)
 {
 	if (pContainer != myContainer)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	if (! cairo_dock_animation_will_be_visible (myDock))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	if (pCairoContext != NULL)
 		penguin_draw_on_dock (myApplet, pContainer, pCairoContext);
 	else
 		penguin_draw_on_dock_opengl (myApplet, pContainer);
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
 
-void penguin_move_in_icon (CairoDockModuleInstance *myApplet)
+void penguin_move_in_icon (GldiModuleInstance *myApplet)
 {
 	if (! cairo_dock_animation_will_be_visible (myDock))
 		return ;
@@ -250,7 +250,7 @@ void penguin_move_in_icon (CairoDockModuleInstance *myApplet)
 
 
 
-void penguin_calculate_new_position (CairoDockModuleInstance *myApplet, PenguinAnimation *pAnimation, int iXMin, int iXMax, int iHeight)
+void penguin_calculate_new_position (GldiModuleInstance *myApplet, PenguinAnimation *pAnimation, int iXMin, int iXMax, int iHeight)
 {
 	//\________________ On calule la nouvelle vitesse.
 	if (pAnimation->iAcceleration != 0 && myData.iCurrentSpeed != pAnimation->iTerminalVelocity)
@@ -316,7 +316,7 @@ void penguin_calculate_new_position (CairoDockModuleInstance *myApplet, PenguinA
 
 
 
-void penguin_advance_to_next_frame (CairoDockModuleInstance *myApplet, PenguinAnimation *pAnimation)
+void penguin_advance_to_next_frame (GldiModuleInstance *myApplet, PenguinAnimation *pAnimation)
 {
 	myData.iCurrentFrame ++;
 	if (myData.iCurrentFrame >= pAnimation->iNbFrames)
@@ -353,7 +353,7 @@ void penguin_advance_to_next_frame (CairoDockModuleInstance *myApplet, PenguinAn
 
 
 
-int penguin_choose_movement_animation (CairoDockModuleInstance *myApplet)
+int penguin_choose_movement_animation (GldiModuleInstance *myApplet)
 {
 	//cd_debug ("");
 	if (myData.iNbMovmentAnimations == 0)
@@ -366,7 +366,7 @@ int penguin_choose_movement_animation (CairoDockModuleInstance *myApplet)
 	}
 }
 
-int penguin_choose_go_up_animation (CairoDockModuleInstance *myApplet)
+int penguin_choose_go_up_animation (GldiModuleInstance *myApplet)
 {
 	//cd_debug ("");
 	if (myData.iNbGoUpAnimations == 0)
@@ -379,7 +379,7 @@ int penguin_choose_go_up_animation (CairoDockModuleInstance *myApplet)
 	}
 }
 
-int penguin_choose_beginning_animation (CairoDockModuleInstance *myApplet)
+int penguin_choose_beginning_animation (GldiModuleInstance *myApplet)
 {
 	//cd_debug ("");
 	if (myData.iNbBeginningAnimations == 0)
@@ -392,7 +392,7 @@ int penguin_choose_beginning_animation (CairoDockModuleInstance *myApplet)
 	}
 }
 
-int penguin_choose_ending_animation (CairoDockModuleInstance *myApplet)
+int penguin_choose_ending_animation (GldiModuleInstance *myApplet)
 {
 	//cd_debug ("");
 	if (myData.iNbEndingAnimations == 0)
@@ -405,7 +405,7 @@ int penguin_choose_ending_animation (CairoDockModuleInstance *myApplet)
 	}
 }
 
-int penguin_choose_resting_animation (CairoDockModuleInstance *myApplet)
+int penguin_choose_resting_animation (GldiModuleInstance *myApplet)
 {
 	//cd_debug ("");
 	if (myData.iNbRestAnimations == 0)
@@ -418,7 +418,7 @@ int penguin_choose_resting_animation (CairoDockModuleInstance *myApplet)
 	}
 }
 
-int penguin_choose_next_animation (CairoDockModuleInstance *myApplet, PenguinAnimation *pAnimation)
+int penguin_choose_next_animation (GldiModuleInstance *myApplet, PenguinAnimation *pAnimation)
 {
 	//cd_debug ("");
 	int iNewAnimation;
@@ -450,7 +450,7 @@ int penguin_choose_next_animation (CairoDockModuleInstance *myApplet, PenguinAni
 }
 
 
-void penguin_set_new_animation (CairoDockModuleInstance *myApplet, int iNewAnimation)
+void penguin_set_new_animation (GldiModuleInstance *myApplet, int iNewAnimation)
 {
 	//cd_message ("%s (%d)", __func__, iNewAnimation);
 	PenguinAnimation *pPreviousAnimation = penguin_get_current_animation ();
@@ -493,30 +493,30 @@ void penguin_set_new_animation (CairoDockModuleInstance *myApplet, int iNewAnima
 }
 
 
-gboolean penguin_update_container (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bContinueAnimation)
+gboolean penguin_update_container (GldiModuleInstance *myApplet, GldiContainer *pContainer, gboolean *bContinueAnimation)
 {
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if (pAnimation == NULL || (pAnimation->bEnding && myData.iCount > 0))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	penguin_move_in_dock (myApplet);
 	*bContinueAnimation = TRUE;
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
-gboolean penguin_update_icon (CairoDockModuleInstance *myApplet, Icon *pIcon, CairoContainer *pContainer, gboolean *bContinueAnimation)
+gboolean penguin_update_icon (GldiModuleInstance *myApplet, Icon *pIcon, GldiContainer *pContainer, gboolean *bContinueAnimation)
 {
 	PenguinAnimation *pAnimation = penguin_get_current_animation ();
 	if (pAnimation == NULL || (pAnimation->bEnding && myData.iCount > 0))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	penguin_move_in_icon (myApplet);
 	*bContinueAnimation = TRUE;
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
-void penguin_start_animating (CairoDockModuleInstance *myApplet)
+void penguin_start_animating (GldiModuleInstance *myApplet)
 {
 	int iNewAnimation = penguin_choose_beginning_animation (myApplet);
 	penguin_set_new_animation (myApplet, iNewAnimation);
@@ -524,16 +524,16 @@ void penguin_start_animating (CairoDockModuleInstance *myApplet)
 	penguin_remove_notfications();
 	if (myConfig.bFree)
 	{
-		cairo_dock_register_notification_on_object (myContainer, NOTIFICATION_UPDATE_SLOW, (CairoDockNotificationFunc) penguin_update_container, CAIRO_DOCK_RUN_AFTER, myApplet);
-		cairo_dock_register_notification_on_object (myContainer, NOTIFICATION_RENDER, (CairoDockNotificationFunc) penguin_render_on_container, CAIRO_DOCK_RUN_AFTER, myApplet);
+		gldi_object_register_notification (myContainer, NOTIFICATION_UPDATE_SLOW, (GldiNotificationFunc) penguin_update_container, GLDI_RUN_AFTER, myApplet);
+		gldi_object_register_notification (myContainer, NOTIFICATION_RENDER, (GldiNotificationFunc) penguin_render_on_container, GLDI_RUN_AFTER, myApplet);
 	}
 	else
 	{
-		cairo_dock_register_notification_on_object (myIcon, NOTIFICATION_UPDATE_ICON_SLOW, (CairoDockNotificationFunc) penguin_update_icon, CAIRO_DOCK_RUN_AFTER, myApplet);
+		gldi_object_register_notification (myIcon, NOTIFICATION_UPDATE_ICON_SLOW, (GldiNotificationFunc) penguin_update_icon, GLDI_RUN_AFTER, myApplet);
 	}
 }
 
-static gboolean _penguin_restart_delayed (CairoDockModuleInstance *myApplet)
+static gboolean _penguin_restart_delayed (GldiModuleInstance *myApplet)
 {
 	myData.iSidRestartDelayed = 0;
 	penguin_start_animating (myApplet);
@@ -556,7 +556,7 @@ static gboolean _penguin_restart_delayed (CairoDockModuleInstance *myApplet)
 	
 	return FALSE;
 }
-void penguin_start_animating_with_delay (CairoDockModuleInstance *myApplet)
+void penguin_start_animating_with_delay (GldiModuleInstance *myApplet)
 {
 	if (myData.iSidRestartDelayed != 0)
 		return ;

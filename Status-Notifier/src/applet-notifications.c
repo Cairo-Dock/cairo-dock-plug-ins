@@ -28,7 +28,7 @@
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
 
-static void _get_x_y (Icon *pIcon, CairoContainer *pContainer, int *x, int *y)
+static void _get_x_y (Icon *pIcon, GldiContainer *pContainer, int *x, int *y)
 {
 	if (pContainer->bIsHorizontal)
 	{
@@ -42,7 +42,7 @@ static void _get_x_y (Icon *pIcon, CairoContainer *pContainer, int *x, int *y)
 	}
 	//g_print ("click position : %d;%d\n", *x, *y);
 }
-static inline gboolean _emit_click (CDStatusNotifierItem *pItem, Icon *pIcon, CairoContainer *pContainer, const gchar *cSignal)
+static inline gboolean _emit_click (CDStatusNotifierItem *pItem, Icon *pIcon, GldiContainer *pContainer, const gchar *cSignal)
 {
 	int x, y;
 	_get_x_y (pIcon, pContainer, &x, &y);
@@ -62,7 +62,7 @@ static inline gboolean _emit_click (CDStatusNotifierItem *pItem, Icon *pIcon, Ca
 	return TRUE;
 }
 
-static inline CDStatusNotifierItem *_get_item (Icon *pClickedIcon, CairoContainer *pClickedContainer)
+static inline CDStatusNotifierItem *_get_item (Icon *pClickedIcon, GldiContainer *pClickedContainer)
 {
 	CDStatusNotifierItem *pItem = NULL;
 	if (myConfig.bCompactMode)
@@ -84,7 +84,7 @@ static inline CDStatusNotifierItem *_get_item (Icon *pClickedIcon, CairoContaine
 }
 
 
-static gboolean _popup_menu (CDStatusNotifierItem *pItem, Icon *pIcon, CairoContainer *pContainer)
+static gboolean _popup_menu (CDStatusNotifierItem *pItem, Icon *pIcon, GldiContainer *pContainer)
 {
 	gboolean r = FALSE;
 	
@@ -170,10 +170,10 @@ CD_APPLET_ON_SCROLL_END
 CD_APPLET_ON_BUILD_MENU_END*/
 
 
-gboolean cd_status_notifier_on_right_click (CairoDockModuleInstance *myApplet, Icon *pClickedIcon, CairoContainer *pClickedContainer, GtkWidget *pAppletMenu, gboolean *bDiscardMenu)
+gboolean cd_status_notifier_on_right_click (GldiModuleInstance *myApplet, Icon *pClickedIcon, GldiContainer *pClickedContainer, GtkWidget *pAppletMenu, gboolean *bDiscardMenu)
 {
 	if (pClickedIcon == NULL || myConfig.bMenuOnLeftClick)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	CD_APPLET_ENTER;
 	CDStatusNotifierItem *pItem = _get_item (pClickedIcon, pClickedContainer);
@@ -182,9 +182,9 @@ gboolean cd_status_notifier_on_right_click (CairoDockModuleInstance *myApplet, I
 		_popup_menu (pItem, pClickedIcon, pClickedContainer);
 
 		*bDiscardMenu = TRUE;
-		CD_APPLET_LEAVE (CAIRO_DOCK_INTERCEPT_NOTIFICATION);
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_INTERCEPT);
 	}
-	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 }
 
 
@@ -202,14 +202,14 @@ gboolean cd_status_notifier_on_right_click (CairoDockModuleInstance *myApplet, I
 			cIconPath = cairo_dock_search_icon_s_path (pItemData->pToolTip->cIconName, cairo_dock_search_icon_size (GTK_ICON_SIZE_DND)); // dialog
 		}
 		
-		cairo_dock_show_temporary_dialog_with_icon (cText, pIcon, CAIRO_CONTAINER (myIcon->pSubDock), 3000, cIconPath ? cIconPath : "same icon");
+		gldi_dialog_show_temporary_with_icon (cText, pIcon, CAIRO_CONTAINER (myIcon->pSubDock), 3000, cIconPath ? cIconPath : "same icon");
 		g_free (cText);
 		myDialogsParam.dialogTextDescription.bUseMarkup = FALSE;
 		pItemData->iSidPopupTooltip = 0;
 	}
 	return FALSE;
 }*/
-gboolean cd_status_notifier_on_enter_icon (CairoDockModuleInstance *myApplet, Icon *pIcon, CairoDock *pDock, gboolean *bStartAnimation)
+gboolean cd_status_notifier_on_enter_icon (GldiModuleInstance *myApplet, Icon *pIcon, CairoDock *pDock, gboolean *bStartAnimation)
 {
 	if (pDock == myIcon->pSubDock && myIcon->pSubDock != NULL)
 	{
@@ -224,7 +224,7 @@ gboolean cd_status_notifier_on_enter_icon (CairoDockModuleInstance *myApplet, Ic
 				g_source_remove (pItemData->iSidPopupTooltip);
 				pItemData->iSidPopupTooltip = 0;
 			}
-			cairo_dock_remove_dialog_if_any (icon);
+			gldi_dialogs_remove_on_icon (icon);
 		}
 		
 		if (pIcon)
@@ -233,16 +233,16 @@ gboolean cd_status_notifier_on_enter_icon (CairoDockModuleInstance *myApplet, Ic
 			pItemData->iSidPopupTooltip = g_timeout_add (600, (GSourceFunc) _popup_tooltip, pIcon);
 		}*/
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
 
-gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation)
+gboolean on_mouse_moved (GldiModuleInstance *myApplet, GldiContainer *pContainer, gboolean *bStartAnimation)
 {
 	CD_APPLET_ENTER;
 	if (! myIcon->bPointed || ! pContainer->bInside)
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 	
 	CDStatusNotifierItem *pItem = cd_satus_notifier_find_item_from_coord ();
 	
@@ -289,10 +289,10 @@ gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pCon
 		else
 			*bStartAnimation = TRUE;
 	}
-	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 }
 
-gboolean on_update_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bContinueAnimation)
+gboolean on_update_desklet (GldiModuleInstance *myApplet, GldiContainer *pContainer, gboolean *bContinueAnimation)
 {
 	CD_APPLET_ENTER;
 	if (! myIcon->bPointed || ! pContainer->bInside)
@@ -312,10 +312,10 @@ gboolean on_update_desklet (CairoDockModuleInstance *myApplet, CairoContainer *p
 			*bContinueAnimation = TRUE;
 	}
 	CAIRO_DOCK_REDRAW_MY_CONTAINER;
-	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 }
 
-gboolean on_render_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, cairo_t *pCairoContext)
+gboolean on_render_desklet (GldiModuleInstance *myApplet, GldiContainer *pContainer, cairo_t *pCairoContext)
 {
 	CD_APPLET_ENTER;
 	int x, y;  // text center (middle of the icon).
@@ -358,12 +358,12 @@ gboolean on_render_desklet (CairoDockModuleInstance *myApplet, CairoContainer *p
 			glPopMatrix ();
 		}
 	}
-	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 }
 
-gboolean on_leave_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation)
+gboolean on_leave_desklet (GldiModuleInstance *myApplet, GldiContainer *pContainer, gboolean *bStartAnimation)
 {
 	*bStartAnimation = TRUE;
 	myData.pCurrentlyHoveredItem = NULL;
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }

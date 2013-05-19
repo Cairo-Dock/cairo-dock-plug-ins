@@ -40,7 +40,7 @@ static void _on_answer_clear_history (int iClickedButton, GtkWidget *pInteractiv
 
 static void _clear_history (GtkMenuItem *menu_item, gpointer data)
 {
-	cairo_dock_show_dialog_with_question (D_("Clear the list of the recently uploaded files?"),
+	gldi_dialog_show_with_question (D_("Clear the list of the recently uploaded files?"),
 		myIcon, myContainer,
 		"same icon",
 		(CairoDockActionOnAnswerFunc) _on_answer_clear_history, NULL, (GFreeFunc)NULL);
@@ -54,8 +54,8 @@ static void _show_local_file (GtkMenuItem *menu_item, CDUploadedItem *pItem)
 		cd_dnd2share_copy_url_to_clipboard (pItem->cLocalPath);
 		if (myConfig.bEnableDialogs)
 		{
-			cairo_dock_remove_dialog_if_any (myIcon);
-			cairo_dock_show_temporary_dialog_with_icon (D_("The text has been pasted in the clipboard.\nYou can retrieve it with CTRL+v."),
+			gldi_dialogs_remove_on_icon (myIcon);
+			gldi_dialog_show_temporary_with_icon (D_("The text has been pasted in the clipboard.\nYou can retrieve it with CTRL+v."),
 				myIcon,
 				myContainer,
 				myConfig.dTimeDialogs,
@@ -76,8 +76,8 @@ static void _show_local_file (GtkMenuItem *menu_item, CDUploadedItem *pItem)
 			else
 			{
 				cd_warning ("couldn't find the orignial file nor a preview of it");
-				cairo_dock_remove_dialog_if_any (myIcon);
-				cairo_dock_show_temporary_dialog_with_icon (D_("Sorry, couldn't find the original file nor a preview of it."),
+				gldi_dialogs_remove_on_icon (myIcon);
+				gldi_dialog_show_temporary_with_icon (D_("Sorry, couldn't find the original file nor a preview of it."),
 					myIcon,
 					myContainer,
 					myConfig.dTimeDialogs,
@@ -101,8 +101,8 @@ static void _copy_url_into_clipboard (GtkMenuItem *menu_item, const gchar *cURL)
 	cd_dnd2share_copy_url_to_clipboard (cURL);
 	if (myConfig.bEnableDialogs)
 	{
-		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog_with_icon (D_("The URL has been stored in the clipboard.\nJust use 'CTRL+v' to paste it anywhere."),
+		gldi_dialogs_remove_on_icon (myIcon);
+		gldi_dialog_show_temporary_with_icon (D_("The URL has been stored in the clipboard.\nJust use 'CTRL+v' to paste it anywhere."),
 			myIcon,
 			myContainer,
 			myConfig.dTimeDialogs,
@@ -115,8 +115,8 @@ static void _store_last_url (gboolean bIntoClipboard)
 {
 	if (myData.cLastURL == NULL)
 	{
-		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog_with_icon (myConfig.iNbItems != 0 ?
+		gldi_dialogs_remove_on_icon (myIcon);
+		gldi_dialog_show_temporary_with_icon (myConfig.iNbItems != 0 ?
 			D_("No uploaded file available\n.Just drag'n drop a file on the icon to upload it") :
 			D_("No uploaded file available.\nConsider activating the history if you want the applet to remember previous uploads."),
 		myIcon,
@@ -133,8 +133,8 @@ static void _store_last_url (gboolean bIntoClipboard)
 		
 		if (myConfig.bEnableDialogs)
 		{
-			cairo_dock_remove_dialog_if_any (myIcon);
-			cairo_dock_show_temporary_dialog_with_icon (bIntoClipboard ? 
+			gldi_dialogs_remove_on_icon (myIcon);
+			gldi_dialog_show_temporary_with_icon (bIntoClipboard ? 
 					D_("The current URL has been stored in the clipboard.\nJust use 'CTRL+v' to paste it anywhere.") :
 					D_("The current URL has been stored into the selection.\nJust middle-click to paste it anywhere."),
 				myIcon,
@@ -332,7 +332,7 @@ CD_APPLET_ON_DROP_DATA_END
 
 CD_APPLET_ON_SCROLL_BEGIN
 	if (myData.pUpoadedItems == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	CDUploadedItem *pItem;
 	if (CD_APPLET_SCROLL_DOWN)
@@ -357,11 +357,11 @@ CD_APPLET_ON_SCROLL_BEGIN
 		}
 	}
 	else
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	g_free (myData.cLastURL);
 	myData.cLastURL = NULL;
 	
-	g_return_val_if_fail (pItem != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);  // parano
+	g_return_val_if_fail (pItem != NULL, GLDI_NOTIFICATION_LET_PASS);  // parano
 	
 	myData.cLastURL = g_strdup (cd_dnd2share_get_prefered_url_from_item (pItem));
 	if (myConfig.bDisplayLastImage)
@@ -389,8 +389,8 @@ CD_APPLET_ON_SCROLL_BEGIN
 	
 	if (myConfig.bEnableDialogs)
 	{
-		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog_with_icon_printf ("%s '%s' (n°%d):\n%s",
+		gldi_dialogs_remove_on_icon (myIcon);
+		gldi_dialog_show_temporary_with_icon_printf ("%s '%s' (n°%d):\n%s",
 			myIcon,
 			myContainer,
 			myConfig.dTimeDialogs,

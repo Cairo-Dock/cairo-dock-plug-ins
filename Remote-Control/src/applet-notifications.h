@@ -23,13 +23,13 @@
 #include <cairo-dock.h>
 
 
-gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guint iKeyVal, guint iModifierType, const gchar *string, int iKeyCode);
+gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint iKeyVal, guint iModifierType, const gchar *string, int iKeyCode);
 
 
 void cd_do_on_shortkey_nav (const char *keystring, gpointer data);
 
 
-gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bContinueAnimation);
+gboolean cd_do_update_container (gpointer pUserData, GldiContainer *pContainer, gboolean *bContinueAnimation);
 
 
 gboolean cd_do_check_icon_destroyed (gpointer pUserData, Icon *pIcon);
@@ -38,8 +38,8 @@ gboolean cd_do_check_icon_destroyed (gpointer pUserData, Icon *pIcon);
 gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow);
 
 
-gboolean cd_do_render (gpointer pUserData, CairoContainer *pContainer, cairo_t *pCairoContext);
+gboolean cd_do_render (gpointer pUserData, GldiContainer *pContainer, cairo_t *pCairoContext);
 
-gboolean cd_do_on_click (gpointer pUserData, Icon *icon, CairoContainer *pContainer);
+gboolean cd_do_on_click (gpointer pUserData, Icon *icon, GldiContainer *pContainer);
 
 #endif

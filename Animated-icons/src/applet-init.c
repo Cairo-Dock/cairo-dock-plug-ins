@@ -48,41 +48,41 @@ CD_APPLET_DEFINE_END
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
-	if (! cairo_dock_reserve_data_slot (myApplet))
+	if (!CD_APPLET_RESERVE_DATA_SLOT())
 		return;
 	
-	cairo_dock_register_notification_on_object (&myContainersMgr,
+	gldi_object_register_notification (&myContainersMgr,
 		NOTIFICATION_ENTER_ICON,
-		(CairoDockNotificationFunc) cd_animations_on_enter,
-		CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification_on_object (&myContainersMgr,
+		(GldiNotificationFunc) cd_animations_on_enter,
+		GLDI_RUN_AFTER, NULL);
+	gldi_object_register_notification (&myContainersMgr,
 		NOTIFICATION_CLICK_ICON,
-		(CairoDockNotificationFunc) cd_animations_on_click,
-		CAIRO_DOCK_RUN_FIRST, NULL);
-	cairo_dock_register_notification_on_object (&myIconsMgr,
+		(GldiNotificationFunc) cd_animations_on_click,
+		GLDI_RUN_FIRST, NULL);
+	gldi_object_register_notification (&myIconsMgr,
 		NOTIFICATION_REQUEST_ICON_ANIMATION,
-		(CairoDockNotificationFunc) cd_animations_on_request,
-		CAIRO_DOCK_RUN_FIRST, NULL);
-	cairo_dock_register_notification_on_object (&myIconsMgr,
+		(GldiNotificationFunc) cd_animations_on_request,
+		GLDI_RUN_FIRST, NULL);
+	gldi_object_register_notification (&myIconsMgr,
 		NOTIFICATION_UPDATE_ICON,
-		(CairoDockNotificationFunc) cd_animations_update_icon,
-		CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification_on_object (&myIconsMgr,
+		(GldiNotificationFunc) cd_animations_update_icon,
+		GLDI_RUN_AFTER, NULL);
+	gldi_object_register_notification (&myIconsMgr,
 		NOTIFICATION_RENDER_ICON,
-		(CairoDockNotificationFunc) cd_animations_render_icon,
-		CAIRO_DOCK_RUN_FIRST, NULL);
-	cairo_dock_register_notification_on_object (&myIconsMgr,
+		(GldiNotificationFunc) cd_animations_render_icon,
+		GLDI_RUN_FIRST, NULL);
+	gldi_object_register_notification (&myIconsMgr,
 		NOTIFICATION_RENDER_ICON,
-		(CairoDockNotificationFunc) cd_animations_post_render_icon,
-		CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification_on_object (&myIconsMgr,
+		(GldiNotificationFunc) cd_animations_post_render_icon,
+		GLDI_RUN_AFTER, NULL);
+	gldi_object_register_notification (&myIconsMgr,
 		NOTIFICATION_STOP_ICON,
-		(CairoDockNotificationFunc) cd_animations_free_data,
-		CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification_on_object (&myIconsMgr,
+		(GldiNotificationFunc) cd_animations_free_data,
+		GLDI_RUN_AFTER, NULL);
+	gldi_object_register_notification (&myIconsMgr,
 		NOTIFICATION_UNFOLD_SUBDOCK,
-		(CairoDockNotificationFunc) cd_animations_unfold_subdock,
-		CAIRO_DOCK_RUN_AFTER, NULL);
+		(GldiNotificationFunc) cd_animations_unfold_subdock,
+		GLDI_RUN_AFTER, NULL);
 	
 	// register each animation, in their rendering order.
 	cd_animations_register_bounce ();  // alter context
@@ -101,30 +101,30 @@ static void _free_data_on_icon (Icon *pIcon, CairoDock *pDock, gpointer data)
 }
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
-	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
+	gldi_object_remove_notification (&myContainersMgr,
 		NOTIFICATION_ENTER_ICON,
-		(CairoDockNotificationFunc) cd_animations_on_enter, NULL);
-	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
+		(GldiNotificationFunc) cd_animations_on_enter, NULL);
+	gldi_object_remove_notification (&myContainersMgr,
 		NOTIFICATION_CLICK_ICON,
-		(CairoDockNotificationFunc) cd_animations_on_click, NULL);
-	cairo_dock_remove_notification_func_on_object (&myIconsMgr,
+		(GldiNotificationFunc) cd_animations_on_click, NULL);
+	gldi_object_remove_notification (&myIconsMgr,
 		NOTIFICATION_REQUEST_ICON_ANIMATION,
-		(CairoDockNotificationFunc) cd_animations_on_request, NULL);
-	cairo_dock_remove_notification_func_on_object (&myIconsMgr,
+		(GldiNotificationFunc) cd_animations_on_request, NULL);
+	gldi_object_remove_notification (&myIconsMgr,
 		NOTIFICATION_UPDATE_ICON,
-		(CairoDockNotificationFunc) cd_animations_update_icon, NULL);
-	cairo_dock_remove_notification_func_on_object (&myIconsMgr,
+		(GldiNotificationFunc) cd_animations_update_icon, NULL);
+	gldi_object_remove_notification (&myIconsMgr,
 		NOTIFICATION_RENDER_ICON,
-		(CairoDockNotificationFunc) cd_animations_render_icon, NULL);
-	cairo_dock_remove_notification_func_on_object (&myIconsMgr,
+		(GldiNotificationFunc) cd_animations_render_icon, NULL);
+	gldi_object_remove_notification (&myIconsMgr,
 		NOTIFICATION_RENDER_ICON,
-		(CairoDockNotificationFunc) cd_animations_post_render_icon, NULL);
-	cairo_dock_remove_notification_func_on_object (&myIconsMgr,
+		(GldiNotificationFunc) cd_animations_post_render_icon, NULL);
+	gldi_object_remove_notification (&myIconsMgr,
 		NOTIFICATION_STOP_ICON,
-		(CairoDockNotificationFunc) cd_animations_free_data, NULL);
-	cairo_dock_remove_notification_func_on_object (&myIconsMgr,
+		(GldiNotificationFunc) cd_animations_free_data, NULL);
+	gldi_object_remove_notification (&myIconsMgr,
 		NOTIFICATION_UNFOLD_SUBDOCK,
-		(CairoDockNotificationFunc) cd_animations_unfold_subdock, NULL);
+		(GldiNotificationFunc) cd_animations_unfold_subdock, NULL);
 	
 	CDAnimation *pAnimation;
 	int i;

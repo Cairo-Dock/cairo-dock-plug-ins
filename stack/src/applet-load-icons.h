@@ -24,12 +24,12 @@
 
 #include <cairo-dock.h>
 
-//void cd_stack_destroy_icons (CairoDockModuleInstance *myApplet);
+//void cd_stack_destroy_icons (GldiModuleInstance *myApplet);
 
-Icon *cd_stack_build_one_icon (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile);
-Icon *cd_stack_build_one_icon_from_file (CairoDockModuleInstance *myApplet, gchar *cDesktopFilePath);
-GList *cd_stack_insert_icon_in_list (CairoDockModuleInstance *myApplet, GList *pIconsList, Icon *pIcon);
-GList *cd_stack_build_icons_list (CairoDockModuleInstance *myApplet, gchar *cStackDir);
-void cd_stack_build_icons (CairoDockModuleInstance *myApplet);
+Icon *cd_stack_build_one_icon (GldiModuleInstance *myApplet, GKeyFile *pKeyFile);
+Icon *cd_stack_build_one_icon_from_file (GldiModuleInstance *myApplet, gchar *cDesktopFilePath);
+GList *cd_stack_insert_icon_in_list (GldiModuleInstance *myApplet, GList *pIconsList, Icon *pIcon);
+GList *cd_stack_build_icons_list (GldiModuleInstance *myApplet, gchar *cStackDir);
+void cd_stack_build_icons (GldiModuleInstance *myApplet);
 
 #endif

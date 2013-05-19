@@ -42,7 +42,7 @@ CD_APPLET_ON_CLICK_BEGIN
 	if (! myData.tab)
 		terminal_build_and_show_tab ();
 	else if (myData.dialog)
-		cairo_dock_toggle_dialog_visibility (myData.dialog);
+		gldi_dialog_toggle_visibility (myData.dialog);
 	// on donne le focus au terminal de l'onglet courant.
 	cd_terminal_grab_focus ();
 }
@@ -54,7 +54,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	if (myData.tab)
 	{
           if (myData.dialog)
-            cairo_dock_hide_dialog (myData.dialog);
+           gldi_dialog_hide (myData.dialog);
 	}
 }
 CD_APPLET_ON_MIDDLE_CLICK_END

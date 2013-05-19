@@ -40,7 +40,7 @@ static void _on_answer (int iClickedButton, GtkWidget *pInteractiveWidget, gpoin
 CD_APPLET_ON_CLICK_BEGIN
 	if (myConfig.bAskBeforeSwitching)
 	{
-		cairo_dock_show_dialog_full (D_("Toggle composite?"), myIcon, myContainer, 0, "same icon", NULL, (CairoDockActionOnAnswerFunc)_on_answer, NULL, NULL);
+		gldi_dialog_show (D_("Toggle composite?"), myIcon, myContainer, 0, "same icon", NULL, (CairoDockActionOnAnswerFunc)_on_answer, NULL, NULL);
 	}
 	else
 	{
@@ -51,12 +51,12 @@ CD_APPLET_ON_CLICK_END
 		
 static void _cd_show_desktop (void)
 {
-	gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
-	cairo_dock_show_hide_desktop (! bDesktopIsVisible);
+	gboolean bDesktopIsVisible = gldi_desktop_is_visible ();
+	gldi_desktop_show_hide (! bDesktopIsVisible);
 }
 static void _cd_expose_windows (void)
 {
-	cairo_dock_wm_present_windows ();
+	gldi_desktop_present_windows ();
 }
 static gboolean _cd_expose_windows_idle (gpointer data)
 {
@@ -65,11 +65,11 @@ static gboolean _cd_expose_windows_idle (gpointer data)
 }
 static void _cd_expose_desktops (void)
 {
-	cairo_dock_wm_present_desktops ();
+	gldi_desktop_present_desktops ();
 }
 static void _cd_show_widget_layer (void)
 {
-	cairo_dock_wm_show_widget_layer ();
+	gldi_desktop_show_widget_layer ();
 }
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
@@ -78,12 +78,12 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 		
 		case CD_EDIT_CONFIG:
 		{
-			 cd_open_wm_config();
+			cd_open_wm_config();
 		}
 		break;
 		case CD_RELOAD_WM:
 		{
-			 cd_reload_wm();
+			cd_reload_wm();
 		}
 		break;
 		case CD_SHOW_DESKTOP:
@@ -140,7 +140,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_MY_MENU);
 	g_free (cLabel);
 	
-	if (cairo_dock_wm_can_present_desktops ())
+	if (gldi_desktop_can_present_desktops ())
 	{
 		cLabel = (myConfig.iActionOnMiddleClick == CD_EXPOSE_DESKTOPS ? g_strdup_printf ("%s (%s)", D_("Expose all the desktops"), D_("middle-click")) : g_strdup (D_("Expose all the desktops")));
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel,
@@ -149,7 +149,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
-	if (cairo_dock_wm_can_present_windows ())
+	if (gldi_desktop_can_present_windows ())
 	{
 		cLabel = (myConfig.iActionOnMiddleClick == CD_EXPOSE_WINDOWS ? g_strdup_printf ("%s (%s)", D_("Expose all the windows"), D_("middle-click")) : g_strdup (D_("Expose all the windows")));
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel,
@@ -158,7 +158,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
-	if (cairo_dock_wm_can_show_widget_layer ())
+	if (gldi_desktop_can_show_widget_layer ())
 	{
 		cLabel = (myConfig.iActionOnMiddleClick == CD_SHOW_WIDGET_LAYER ? g_strdup_printf ("%s (%s)", D_("Show the Widget Layer"), D_("middle-click")) : g_strdup (D_("Show the Widget Layer")));
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel,

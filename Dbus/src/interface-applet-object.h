@@ -25,9 +25,9 @@
 #include "applet-struct.h"
 
 
-dbusApplet * cd_dbus_get_dbus_applet_from_instance (CairoDockModuleInstance *pModuleInstance);
+dbusApplet * cd_dbus_get_dbus_applet_from_instance (GldiModuleInstance *pModuleInstance);
 
-dbusApplet *cd_dbus_create_remote_applet_object (CairoDockModuleInstance *pModuleInstance);
+dbusApplet *cd_dbus_create_remote_applet_object (GldiModuleInstance *pModuleInstance);
 
 void cd_dbus_delete_remote_applet_object (dbusApplet *pDbusApplet);
 
@@ -36,7 +36,7 @@ void cd_dbus_unregister_notifications (void);
 
 int cd_dbus_applet_is_running (const gchar *cModuleName);
 
-void cd_dbus_launch_applet_process (CairoDockModuleInstance *pModuleInstance, dbusApplet *pDbusApplet);
+void cd_dbus_launch_applet_process (GldiModuleInstance *pModuleInstance, dbusApplet *pDbusApplet);
 
 
 #endif

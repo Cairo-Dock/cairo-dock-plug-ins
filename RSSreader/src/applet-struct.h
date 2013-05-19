@@ -70,7 +70,7 @@ typedef struct {
 	gchar *cUrlLogin;
 	gchar *cUrlPassword;
 	gchar *cTaskBridge;
-	CairoDockModuleInstance *pApplet;
+	GldiModuleInstance *pApplet;
 	} CDSharedMemory;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.

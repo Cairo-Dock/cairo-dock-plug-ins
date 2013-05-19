@@ -24,10 +24,10 @@
 #include <cairo-dock.h>
 
 
-gboolean cd_xeyes_load_theme (CairoDockModuleInstance *myApplet);
+gboolean cd_xeyes_load_theme (GldiModuleInstance *myApplet);
 
 
-void cd_xeyes_unload_theme (CairoDockModuleInstance *myApplet);
+void cd_xeyes_unload_theme (GldiModuleInstance *myApplet);
 
 
 #endif

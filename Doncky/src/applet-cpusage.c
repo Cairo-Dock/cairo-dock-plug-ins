@@ -71,7 +71,7 @@ void cd_sysmonitor_get_uptime (gchar **cUpTime, gchar **cActivityTime)
 }
 
 
-void cd_sysmonitor_get_cpu_info (CairoDockModuleInstance *myApplet)
+void cd_sysmonitor_get_cpu_info (GldiModuleInstance *myApplet)
 {
 	gchar *cContent = NULL;
 	gsize length=0;
@@ -139,7 +139,7 @@ void cd_sysmonitor_get_cpu_info (CairoDockModuleInstance *myApplet)
 		myData.bAcquisitionOK = FALSE; \
 		return ; }
 
-void cd_sysmonitor_get_cpu_data (CairoDockModuleInstance *myApplet)
+void cd_sysmonitor_get_cpu_data (GldiModuleInstance *myApplet)
 {
 	static char cContent[512+1];
 	

@@ -138,11 +138,11 @@ static guint32 _get_state_indicators ()
 }
 
 // only use to catch new state of the indicator
-gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Window *pWindow)
+gboolean cd_xkbd_keyboard_state_changed (GldiModuleInstance *myApplet, Window *pWindow)
 {
 	CD_APPLET_ENTER;
 	///if (pWindow == NULL)
-	/// return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	/// return GLDI_NOTIFICATION_LET_PASS;
 	
 	// Get the current state
 	XklState *state = xkl_engine_get_current_state (myData.pEngine);
@@ -153,13 +153,13 @@ gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Wind
 		myData.iCurrentIndic, indicators, state->indicators);
 	
 	if (myData.iCurrentIndic == indicators)
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 
 	// Remember the current state
 	myData.iCurrentIndic = indicators;
 	
 	cd_xkbd_update_icon (NULL, NULL, FALSE); // redraw only the indicators
-	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 }
 
 static GdkFilterReturn _filter_xevent (GdkXEvent *pGdkXEvent, GdkEvent *pEvent)

@@ -38,12 +38,12 @@ CD_APPLET_ON_CLICK_BEGIN
 	}
 CD_APPLET_ON_CLICK_END
 
-static int _get_num_day_from_icon (CairoDockModuleInstance *myApplet, Icon *pIcon)
+static int _get_num_day_from_icon (GldiModuleInstance *myApplet, Icon *pIcon)
 {
 	/// TODO: determiner le jour exact...
 	return (pIcon == myIcon ? 0 : pIcon->fOrder/2);  // la 1ere icone est le plus souvent celle d'aujourd'hui, toutefois cela peut ne pas etre vrai, surtout la nuit autour du changement de jour.
 }
-static inline void _go_to_site (CairoDockModuleInstance *myApplet, int iNumDay)
+static inline void _go_to_site (GldiModuleInstance *myApplet, int iNumDay)
 {
 	gchar *cURI;
 	if (iNumDay == 0)
@@ -54,11 +54,11 @@ static inline void _go_to_site (CairoDockModuleInstance *myApplet, int iNumDay)
 	g_free (cURI);
 }
 
-static inline void _reload (CairoDockModuleInstance *myApplet)
+static inline void _reload (GldiModuleInstance *myApplet)
 {
 	if (cairo_dock_task_is_running (myData.pTask))
 	{
-		cairo_dock_show_temporary_dialog_with_icon (D_("Data are being retrieved, please wait a moment."), 
+		gldi_dialog_show_temporary_with_icon (D_("Data are being retrieved, please wait a moment."), 
 			myIcon,
 			myContainer,
 			3000,
@@ -76,19 +76,19 @@ static inline void _reload (CairoDockModuleInstance *myApplet)
 }
 
 
-static void _cd_weather_reload (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_weather_reload (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	_reload (myApplet);
 	CD_APPLET_LEAVE ();
 }
-static void _cd_weather_show_site (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_weather_show_site (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	_go_to_site (myApplet, myData.iClickedDay);
 	CD_APPLET_LEAVE ();
 }
-static void _cd_weather_show_cc (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_weather_show_cc (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cd_weather_show_current_conditions_dialog (myApplet);
@@ -119,25 +119,25 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 CD_APPLET_ON_DOUBLE_CLICK_BEGIN
 	if (pClickedIcon != NULL)
 	{
-		cairo_dock_remove_dialog_if_any (pClickedIcon);
+		gldi_dialogs_remove_on_icon (pClickedIcon);
 		int iNumDay = _get_num_day_from_icon (myApplet, pClickedIcon);
 		_go_to_site (myApplet, iNumDay);
 	}
 CD_APPLET_ON_DOUBLE_CLICK_END
 
 
-void cd_weather_show_forecast_dialog (CairoDockModuleInstance *myApplet, Icon *pIcon)
+void cd_weather_show_forecast_dialog (GldiModuleInstance *myApplet, Icon *pIcon)
 {
 	// remove any other forecast dialog.
 	if (myDock != NULL)
-		g_list_foreach (myIcon->pSubDock->icons, (GFunc) cairo_dock_remove_dialog_if_any_full, GINT_TO_POINTER (TRUE));
+		g_list_foreach (myIcon->pSubDock->icons, (GFunc) gldi_dialogs_remove_on_icon, NULL);
 	else
-		cairo_dock_remove_dialog_if_any (myIcon);
+		gldi_dialogs_remove_on_icon (myIcon);
 	
 	// if we never got any result, show an error message. If we lost the connection, but could get some data beforehand, we'll just present the old data, since they are not likely to change very often.
 	if (myData.wdata.cLocation == NULL)
 	{
-		cairo_dock_show_temporary_dialog_with_icon (D_("No data available\n is your connection alive?"), 
+		gldi_dialog_show_temporary_with_icon (D_("No data available\n is your connection alive?"), 
 			(myDock ? pIcon : myIcon),
 			(myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer),
 			myConfig.cDialogDuration,
@@ -151,7 +151,7 @@ void cd_weather_show_forecast_dialog (CairoDockModuleInstance *myApplet, Icon *p
 	
 	Day *day = &myData.wdata.days[iNumDay];
 	DayPart *part = &day->part[iPart];
-	cairo_dock_show_temporary_dialog_with_icon_printf ("%s (%s) : %s\n %s : %s%s -> %s%s\n %s : %s%%\n %s : %s%s (%s)\n %s : %s%%\n %s : %s  %s %s",
+	gldi_dialog_show_temporary_with_icon_printf ("%s (%s) : %s\n %s : %s%s -> %s%s\n %s : %s%%\n %s : %s%s (%s)\n %s : %s%%\n %s : %s  %s %s",
 		(myDock ? pIcon : myIcon),
 		(myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer),
 		myConfig.cDialogDuration,
@@ -164,14 +164,14 @@ void cd_weather_show_forecast_dialog (CairoDockModuleInstance *myApplet, Icon *p
 		D_("Sunrise"), _display (day->cSunRise), _("Sunset"), _display (day->cSunSet));
 }
 
-void cd_weather_show_current_conditions_dialog (CairoDockModuleInstance *myApplet)
+void cd_weather_show_current_conditions_dialog (GldiModuleInstance *myApplet)
 {
-	cairo_dock_remove_dialog_if_any (myIcon);
+	gldi_dialogs_remove_on_icon (myIcon);
 	
 	// if an error occured, the current conditions are no more valid.
 	if (cairo_dock_task_is_running (myData.pTask))  // current conditions are outdated.
 	{
-		cairo_dock_show_temporary_dialog_with_icon (D_("Data are being fetched, please re-try in a few seconds."),
+		gldi_dialog_show_temporary_with_icon (D_("Data are being fetched, please re-try in a few seconds."),
 			myIcon,
 			myContainer,
 			3000,
@@ -181,7 +181,7 @@ void cd_weather_show_current_conditions_dialog (CairoDockModuleInstance *myApple
 	
 	if (myData.bErrorRetrievingData)
 	{
-		cairo_dock_show_temporary_dialog_with_icon (D_("No data available\nRetrying now..."),
+		gldi_dialog_show_temporary_with_icon (D_("No data available\nRetrying now..."),
 			myIcon,
 			myContainer,
 			3000,
@@ -192,7 +192,7 @@ void cd_weather_show_current_conditions_dialog (CairoDockModuleInstance *myApple
 	
 	// show a dialog with the current conditions.
 	CurrentContitions *cc = &myData.wdata.currentConditions;
-	cairo_dock_show_temporary_dialog_with_icon_printf ("%s (%s, %s)\n %s : %s%s (%s : %s%s)\n %s : %s%s (%s)\n %s : %s - %s : %s%s\n %s : %s  %s %s",
+	gldi_dialog_show_temporary_with_icon_printf ("%s (%s, %s)\n %s : %s%s (%s : %s%s)\n %s : %s%s (%s)\n %s : %s - %s : %s%s\n %s : %s  %s %s",
 		myIcon, myContainer, myConfig.cDialogDuration, myIcon->cFileName,
 		cc->cWeatherDescription, cc->cDataAcquisitionDate, cc->cObservatory,
 		D_("Temperature"), _display (cc->cTemp), myData.wdata.units.cTemp, D_("Feels like"), _display (cc->cFeltTemp), myData.wdata.units.cTemp,

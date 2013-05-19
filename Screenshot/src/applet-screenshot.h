@@ -28,7 +28,7 @@ void cd_screenshot_cancel (void);
 void cd_screenshot_take (CDScreenshotOptions *pOptions);
 
 
-void cd_screenshot_free_apps_list (CairoDockModuleInstance *myApplet);
+void cd_screenshot_free_apps_list (GldiModuleInstance *myApplet);
 
 GtkWidget *cd_screenshot_build_options_widget (void);
 

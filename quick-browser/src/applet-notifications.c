@@ -33,7 +33,7 @@ CD_APPLET_ON_CLICK_END
 
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
-static void _open_dir (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _open_dir (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	cairo_dock_fm_launch_uri (myConfig.cDirPath);
 }
@@ -49,7 +49,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
-void cd_quick_browser_on_shortkey_menu (const char *keystring, CairoDockModuleInstance *myApplet)
+void cd_quick_browser_on_shortkey_menu (const char *keystring, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cd_quick_browser_show_menu (myApplet);

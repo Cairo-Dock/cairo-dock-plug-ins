@@ -48,7 +48,7 @@ void cd_doncky_free_item (TextZone *pTextZone)
 }
 
 
-void cd_doncky_free_item_list (CairoDockModuleInstance *myApplet)
+void cd_doncky_free_item_list (GldiModuleInstance *myApplet)
 {
 	if (myData.pTextZoneList == NULL)
 		return;
@@ -64,7 +64,7 @@ void cd_doncky_free_item_list (CairoDockModuleInstance *myApplet)
 	myData.pTextZoneList = NULL;
 }
 
-gchar *_Get_FilePath (CairoDockModuleInstance *myApplet, const gchar *cXmlString)
+gchar *_Get_FilePath (GldiModuleInstance *myApplet, const gchar *cXmlString)
 {
 	gchar *cString = (gchar *) cXmlString;
 	gchar *cReturn;
@@ -94,7 +94,7 @@ gchar *_Get_FilePath (CairoDockModuleInstance *myApplet, const gchar *cXmlString
 }
 
 
-gboolean cd_doncky_readxml (CairoDockModuleInstance *myApplet)
+gboolean cd_doncky_readxml (GldiModuleInstance *myApplet)
 {
 	// On va lire le contenu de myConfig.cXmlFilePath	
 	cd_debug ("Doncky-debug : ---------------------->  myConfig.cXmlFilePath = \"%s\"",myConfig.cXmlFilePath);

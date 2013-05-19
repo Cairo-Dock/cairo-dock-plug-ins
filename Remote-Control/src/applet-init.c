@@ -56,7 +56,7 @@ CD_APPLET_INIT_END
 CD_APPLET_STOP_BEGIN
 	cd_do_exit_session ();
 
-	cd_keybinder_unbind (myData.pKeyBinding);
+	gldi_object_unref (GLDI_OBJECT(myData.pKeyBinding));
 CD_APPLET_STOP_END
 
 
@@ -65,6 +65,6 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
 		cd_do_exit_session ();
-		cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
+		gldi_shortkey_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
 	}
 CD_APPLET_RELOAD_END

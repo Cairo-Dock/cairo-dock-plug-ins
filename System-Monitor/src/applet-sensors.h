@@ -26,14 +26,14 @@
 void cd_sysmonitor_clean_sensors (void);
 
 
-void cd_sysmonitor_get_sensors_data (CairoDockModuleInstance *myApplet);
+void cd_sysmonitor_get_sensors_data (GldiModuleInstance *myApplet);
 
 
-void cd_sysmonitor_get_sensors_info (CairoDockModuleInstance *myApplet, GString *pInfo);
+void cd_sysmonitor_get_sensors_info (GldiModuleInstance *myApplet, GString *pInfo);
 
-void cd_cpu_alert (CairoDockModuleInstance *myApplet);
+void cd_cpu_alert (GldiModuleInstance *myApplet);
 
-void cd_fan_alert (CairoDockModuleInstance *myApplet);
+void cd_fan_alert (GldiModuleInstance *myApplet);
 
 
 #endif

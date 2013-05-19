@@ -71,7 +71,7 @@ struct _CDEntry {
 	} ;
 
 struct _CDListing {
-	CairoContainer container;
+	GldiContainer container;
 	GList *pEntries;
 	gint iNbEntries;
 	GList *pCurrentEntry;
@@ -184,7 +184,7 @@ struct _AppletData {
 	gchar *cSearchText;
 	
 	GList *pBackends;
-	CairoKeyBinding *cKeyBinding;
+	GldiShortkey *cKeyBinding;
 	} ;
 
 

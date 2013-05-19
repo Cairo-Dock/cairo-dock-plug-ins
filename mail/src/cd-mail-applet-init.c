@@ -98,7 +98,7 @@ GLuint cd_mail_load_cube_calllist (void)
 }
 
 
-static void _load_theme (CairoDockModuleInstance *myApplet, GError **erreur)
+static void _load_theme (GldiModuleInstance *myApplet, GError **erreur)
 {
 	//\_______________ On charge le theme si necessaire, avec en priorite les images utilisateur.
 	if (myConfig.cNoMailUserImage != NULL)

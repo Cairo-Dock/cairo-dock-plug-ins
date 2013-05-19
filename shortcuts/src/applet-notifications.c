@@ -26,10 +26,10 @@
 #include "applet-disk-usage.h"
 #include "applet-notifications.h"
 
-static void _on_volume_mounted (gboolean bMounting, gboolean bSuccess, const gchar *cName, const gchar *cURI, CairoDockModuleInstance *myApplet)
+static void _on_volume_mounted (gboolean bMounting, gboolean bSuccess, const gchar *cName, const gchar *cURI, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
-	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+	GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
 	
 	//g_print ("%s (%s , %d)\n", __func__, cURI, bSuccess);
@@ -38,8 +38,8 @@ static void _on_volume_mounted (gboolean bMounting, gboolean bSuccess, const gch
 		Icon *pIcon = cairo_dock_get_icon_with_base_uri (CD_APPLET_MY_ICONS_LIST, cURI);
 		CD_APPLET_LEAVE_IF_FAIL (pIcon != NULL);
 		
-		cairo_dock_remove_dialog_if_any (pIcon);
-		cairo_dock_show_temporary_dialog_with_icon_printf (
+		gldi_dialogs_remove_on_icon (pIcon);
+		gldi_dialog_show_temporary_with_icon_printf (
 			bMounting ? _("failed to mount %s") : _("Failed to unmount %s"),
 			pIcon, pContainer,
 			4000,
@@ -49,10 +49,10 @@ static void _on_volume_mounted (gboolean bMounting, gboolean bSuccess, const gch
 	CD_APPLET_LEAVE ();
 }
 
-static void _open_on_mount (gboolean bMounting, gboolean bSuccess, const gchar *cName, const gchar *cURI, CairoDockModuleInstance *myApplet)
+static void _open_on_mount (gboolean bMounting, gboolean bSuccess, const gchar *cName, const gchar *cURI, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
-	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+	GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
 	
 	Icon *pIcon = cairo_dock_get_icon_with_base_uri (CD_APPLET_MY_ICONS_LIST, cURI);
@@ -69,8 +69,8 @@ static void _open_on_mount (gboolean bMounting, gboolean bSuccess, const gchar *
 	}
 	else
 	{
-		cairo_dock_remove_dialog_if_any (pIcon);
-		cairo_dock_show_temporary_dialog_with_icon_printf (
+		gldi_dialogs_remove_on_icon (pIcon);
+		gldi_dialog_show_temporary_with_icon_printf (
 			bMounting ? _("failed to mount %s") : _("Failed to unmount %s"),
 			pIcon, pContainer,
 			4000,
@@ -85,15 +85,15 @@ CD_APPLET_ON_CLICK_BEGIN
 	{
 		if (CD_APPLET_MY_ICONS_LIST == NULL)
 		{
-			cairo_dock_remove_dialog_if_any (myIcon);
+			gldi_dialogs_remove_on_icon (myIcon);
 			if (myData.pTask != NULL) // if it's loading
 				myData.bShowMenuPending = TRUE;
 			else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
-				cairo_dock_show_temporary_dialog_with_icon (D_("Sorry, this applet is not yet available for KDE."), myIcon, myContainer, 6000., "same icon");
+				gldi_dialog_show_temporary_with_icon (D_("Sorry, this applet is not yet available for KDE."), myIcon, myContainer, 6000., "same icon");
 			else
-				cairo_dock_show_temporary_dialog_with_icon (D_("No disks or bookmarks were found."), myIcon, myContainer, 6000., "same icon");
+				gldi_dialog_show_temporary_with_icon (D_("No disks or bookmarks were found."), myIcon, myContainer, 6000., "same icon");
 		}
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);  // on laisse passer la notification (pour ouvrir le sous-dock au clic).
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);  // on laisse passer la notification (pour ouvrir le sous-dock au clic).
 	}
 	else if (CD_APPLET_CLICKED_ICON != NULL)  // clic sur une des icones de la liste.
 	{
@@ -134,7 +134,7 @@ CD_APPLET_ON_CLICK_END
 
 
 
-static void _mount_unmount (Icon *pIcon, CairoContainer *pContainer, CairoDockModuleInstance *myApplet)
+static void _mount_unmount (Icon *pIcon, GldiContainer *pContainer, GldiModuleInstance *myApplet)
 {
 	gboolean bIsMounted = FALSE;
 	gchar *cActivationURI = cairo_dock_fm_is_mounted (pIcon->cBaseURI, &bIsMounted);
@@ -148,7 +148,7 @@ static void _mount_unmount (Icon *pIcon, CairoContainer *pContainer, CairoDockMo
 	{
 		cairo_dock_fm_unmount_full (pIcon->cBaseURI, pIcon->iVolumeID, (CairoDockFMMountCallback) _on_volume_mounted, myApplet);
 		
-		cairo_dock_show_temporary_dialog_with_icon (D_("Unmouting this volume ..."), pIcon, pContainer, 15000., "same icon");  // le dialogue sera enleve lorsque le volume sera demonte.
+		gldi_dialog_show_temporary_with_icon (D_("Unmouting this volume ..."), pIcon, pContainer, 15000., "same icon");  // le dialogue sera enleve lorsque le volume sera demonte.
 	}
 }
 
@@ -171,7 +171,7 @@ static void _cd_shortcuts_remove_bookmark (GtkMenuItem *menu_item, const gchar *
 
 static void _on_got_bookmark_name (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer *data, CairoDialog *pDialog)
 {
-	CairoDockModuleInstance *myApplet = data[0];
+	GldiModuleInstance *myApplet = data[0];
 	Icon *pIcon = data[1];
 	CD_APPLET_ENTER;
 	
@@ -187,15 +187,15 @@ static void _on_got_bookmark_name (int iClickedButton, GtkWidget *pInteractiveWi
 }
 static void _cd_shortcuts_rename_bookmark (GtkMenuItem *menu_item, gpointer *data)
 {
-	CairoDockModuleInstance *myApplet = data[0];
+	GldiModuleInstance *myApplet = data[0];
 	Icon *pIcon = data[1];
-	CairoContainer *pContainer = data[2];
+	GldiContainer *pContainer = data[2];
 	CD_APPLET_ENTER;
 	
 	gpointer *ddata = g_new (gpointer, 2);
 	ddata[0] = myApplet;
 	ddata[1] = pIcon;
-	cairo_dock_show_dialog_with_entry (D_("Enter a name for this bookmark:"),
+	gldi_dialog_show_with_entry (D_("Enter a name for this bookmark:"),
 		pIcon, pContainer, "same icon",
 		pIcon->cName,
 		(CairoDockActionOnAnswerFunc)_on_got_bookmark_name, ddata, (GFreeFunc)g_free);  // if the icon gets deleted, the dialog will disappear with it.
@@ -203,34 +203,34 @@ static void _cd_shortcuts_rename_bookmark (GtkMenuItem *menu_item, gpointer *dat
 }
 static void _cd_shortcuts_eject (GtkMenuItem *menu_item, gpointer *data)
 {
-	CairoDockModuleInstance *myApplet = data[0];
+	GldiModuleInstance *myApplet = data[0];
 	CD_APPLET_ENTER;
 	Icon *pIcon = data[1];
-	// CairoContainer *pContainer = data[2];
+	// GldiContainer *pContainer = data[2];
 	
 	cairo_dock_fm_eject_drive (pIcon->cBaseURI);
 	CD_APPLET_LEAVE ();
 }
 static void _cd_shortcuts_unmount (GtkMenuItem *menu_item, gpointer *data)
 {
-	CairoDockModuleInstance *myApplet = data[0];
+	GldiModuleInstance *myApplet = data[0];
 	CD_APPLET_ENTER;
 	Icon *pIcon = data[1];
-	CairoContainer *pContainer = data[2];
+	GldiContainer *pContainer = data[2];
 	
 	_mount_unmount (pIcon, pContainer, myApplet);
 	CD_APPLET_LEAVE ();
 }
 static void _cd_shortcuts_show_disk_info (GtkMenuItem *menu_item, gpointer *data)
 {
-	CairoDockModuleInstance *myApplet = data[0];
+	GldiModuleInstance *myApplet = data[0];
 	CD_APPLET_ENTER;
 	Icon *pIcon = data[1];
-	CairoContainer *pContainer = data[2];
+	GldiContainer *pContainer = data[2];
 	
 	//g_print ("pIcon->cCommand:%s\n", pIcon->cCommand);
 	gchar *cInfo = cd_shortcuts_get_disk_info (pIcon->cCommand, pIcon->cName);
-	cairo_dock_show_temporary_dialog_with_icon (cInfo, pIcon, pContainer, 15000, "same icon");
+	gldi_dialog_show_temporary_with_icon (cInfo, pIcon, pContainer, 15000, "same icon");
 	g_free (cInfo);
 	CD_APPLET_LEAVE ();
 }
@@ -305,7 +305,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		{
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this bookmark"),  GTK_STOCK_SAVE_AS, _cd_shortcuts_rename_bookmark, CD_APPLET_MY_MENU, data);
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove this bookmark"), GTK_STOCK_REMOVE, _cd_shortcuts_remove_bookmark, CD_APPLET_MY_MENU, CD_APPLET_CLICKED_ICON->cBaseURI);
-			CD_APPLET_LEAVE (CAIRO_DOCK_INTERCEPT_NOTIFICATION);
+			CD_APPLET_LEAVE (GLDI_NOTIFICATION_INTERCEPT);
 		}
 		else if (CD_APPLET_CLICKED_ICON->iGroup == (CairoDockIconGroup) CD_DRIVE_GROUP && CD_APPLET_CLICKED_ICON->cBaseURI != NULL)  // clic sur un volume.
 		{
@@ -327,7 +327,7 @@ CD_APPLET_ON_BUILD_MENU_END
 
 CD_APPLET_ON_DROP_DATA_BEGIN
 	if (myDock && myIcon->pSubDock == NULL)
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 	cd_message ("  new bookmark : %s", CD_APPLET_RECEIVED_DATA);
 	gchar *cName=NULL, *cURI=NULL, *cIconName=NULL;
 	gboolean bIsDirectory;
@@ -345,7 +345,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 		if (! iVolumeID && ! bIsDirectory)
 		{
 			cd_warning ("this can't be a bookmark");
-			cairo_dock_show_temporary_dialog_with_icon (D_("Only folders can be bookmarked."), myIcon, myContainer, 4000, "same icon");
+			gldi_dialog_show_temporary_with_icon (D_("Only folders can be bookmarked."), myIcon, myContainer, 4000, "same icon");
 		}
 		else
 		{
@@ -362,14 +362,14 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 CD_APPLET_ON_DROP_DATA_END
 
 
-gboolean cd_shortcuts_free_data (CairoDockModuleInstance *myApplet, Icon *pIcon)
+gboolean cd_shortcuts_free_data (GldiModuleInstance *myApplet, Icon *pIcon)
 {
 	CDDiskUsage *pDiskUsage = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pDiskUsage == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	g_free (pDiskUsage);
 	
 	CD_APPLET_SET_MY_ICON_DATA (pIcon, NULL);
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }

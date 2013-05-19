@@ -30,7 +30,7 @@
  */
 gboolean cd_indicator3_update_image (GtkImage *pImage,
 	gchar **cName,
-	CairoDockModuleInstance *myApplet,
+	GldiModuleInstance *myApplet,
 	const gchar *cDefaultFile);
 
 /**
@@ -52,17 +52,17 @@ void cd_indicator3_notify_visibility (GtkImage *pImage, GCallback pCallBack, gpo
 /**
  * Disconnect to the show/hide signal and hide the icon if it's needed
  */
-void cd_indicator3_disconnect_visibility (GtkImage *pImage, CairoDockModuleInstance *myApplet, gboolean bHide);
+void cd_indicator3_disconnect_visibility (GtkImage *pImage, GldiModuleInstance *myApplet, gboolean bHide);
 
 /**
  * Check if the widget (pImage) exists and if it's visible.
  * If no, hide the icon and return TRUE
  */
-gboolean cd_indicator3_hide_if_not_visible (GtkImage *pImage, CairoDockModuleInstance *myApplet);
+gboolean cd_indicator3_hide_if_not_visible (GtkImage *pImage, GldiModuleInstance *myApplet);
 
 /**
  * Check the visibility of a widget and then show/hide the icon
  */
-void cd_indicator3_check_visibility (GtkImage *pImage, CairoDockModuleInstance *myApplet);
+void cd_indicator3_check_visibility (GtkImage *pImage, GldiModuleInstance *myApplet);
 
 #endif /* __CD_INDICATOR_APPLET3_UTILS__ */

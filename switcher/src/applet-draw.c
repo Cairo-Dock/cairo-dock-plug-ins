@@ -39,7 +39,8 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDeskto
 {
 	if (pIcon == NULL || pIcon->fInsertRemoveFactor > 0)
 		return ;
-	if (pIcon->bIsHidden && ! myConfig.bDisplayHiddenWindows)
+	GldiWindowActor *actor = pIcon->pAppli;
+	if (actor->bIsHidden && ! myConfig.bDisplayHiddenWindows)
 		return ;
 	int iNumDesktop = data->iNumDesktop;
 	int iNumViewportX = data->iNumViewportX;
@@ -49,19 +50,19 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDeskto
 	cairo_t *pCairoContext = data->pCairoContext;
 	
 	// On calcule les coordonnees en repere absolu.
-	int x = pIcon->windowGeometry.x;  // par rapport au viewport courant.
+	int x = actor->windowGeometry.x;  // par rapport au viewport courant.
 	x += myData.switcher.iCurrentViewportX * g_desktopGeometry.Xscreen.width;  // repere absolu
 	if (x < 0)
 		x += g_desktopGeometry.iNbViewportX * g_desktopGeometry.Xscreen.width;
-	int y = pIcon->windowGeometry.y;
+	int y = actor->windowGeometry.y;
 	y += myData.switcher.iCurrentViewportY * g_desktopGeometry.Xscreen.height;
 	if (y < 0)
 		y += g_desktopGeometry.iNbViewportY * g_desktopGeometry.Xscreen.height;
-	int w = pIcon->windowGeometry.width, h = pIcon->windowGeometry.height;
+	int w = actor->windowGeometry.width, h = actor->windowGeometry.height;
 	
 	// test d'intersection avec le viewport donne.
 	//g_print (" %s : (%d;%d) %dx%d\n", pIcon->cName, x, y, w, h);
-	if ((pIcon->iNumDesktop != -1 && pIcon->iNumDesktop != iNumDesktop) ||
+	if ((actor->iNumDesktop != -1 && actor->iNumDesktop != iNumDesktop) ||
 		x + w <= iNumViewportX * g_desktopGeometry.Xscreen.width ||
 		x >= (iNumViewportX + 1) * g_desktopGeometry.Xscreen.width ||
 		y + h <= iNumViewportY * g_desktopGeometry.Xscreen.height ||
@@ -71,9 +72,9 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDeskto
 	// on dessine ses traits.
 	cairo_save (pCairoContext);
 
-	Window iActiveWindow = cairo_dock_get_current_active_window ();
-
-	if (myConfig.bFillAllWindows && pIcon->Xid != iActiveWindow)
+	GldiWindowActor *pActiveWindow = gldi_windows_get_active ();
+	
+	if (myConfig.bFillAllWindows && actor != pActiveWindow)
 		cairo_set_source_rgba (pCairoContext, myConfig.RGBWFillColors[0], myConfig.RGBWFillColors[1], myConfig.RGBWFillColors[2], myConfig.RGBWFillColors[3]);
 	else
 		cairo_set_source_rgba (pCairoContext, myConfig.RGBWLineColors[0], myConfig.RGBWLineColors[1], myConfig.RGBWLineColors[2], myConfig.RGBWLineColors[3]);
@@ -83,7 +84,7 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDeskto
 		1.*w/g_desktopGeometry.Xscreen.width*iOneViewportWidth,
 		1.*h/g_desktopGeometry.Xscreen.height*iOneViewportHeight);
 
-	if (myConfig.bFillAllWindows || pIcon->Xid == iActiveWindow)
+	if (myConfig.bFillAllWindows || actor == pActiveWindow)
 	{
 		//g_print (" %s est la fenetre active\n", pIcon->cName);
 		cairo_fill (pCairoContext);
@@ -126,7 +127,7 @@ static int _compare_icons_stack_order (Icon *icon1, Icon *icon2)
 		return 1;
 	if (icon2 == NULL)
 		return -1;
-	if (icon1->iStackOrder < icon2->iStackOrder)  // ordre petit => dessus => dessinee en dernier.
+	if (icon1->pAppli->iStackOrder < icon2->pAppli->iStackOrder)  // ordre petit => dessus => dessinee en dernier.
 		return -1;
 	else
 		return 1;
@@ -503,7 +504,7 @@ void cd_switcher_extract_viewport_coords_from_picked_object (CairoDesklet *pDesk
 static void _show_window (GtkMenuItem *menu_item, Icon *pIcon)
 {
 	CD_APPLET_ENTER;
-	cairo_dock_show_xwindow (pIcon->Xid);
+	gldi_window_show (pIcon->pAppli);
 	CD_APPLET_LEAVE ();
 }
 
@@ -519,7 +520,7 @@ static void _show_desktop (GtkMenuItem *menu_item, gpointer data)
 		cairo_dock_set_current_viewport (iNumViewportX, iNumViewportY);
 	CD_APPLET_LEAVE ();
 }
-static void _cd_switcher_list_window_on_viewport (Icon *pIcon, int iNumDesktop, int iNumViewportX, int iNumViewportY, GtkWidget *pMenu)
+static void _cd_switcher_add_window_on_viewport (Icon *pIcon, int iNumDesktop, int iNumViewportX, int iNumViewportY, GtkWidget *pMenu)
 {
 	//g_print (" + %s\n", pIcon->cName);
 	
@@ -604,7 +605,7 @@ void cd_switcher_build_windows_list (GtkWidget *pMenu)
 			cd_switcher_foreach_window_on_viewport (iNumDesktop,
 				iNumViewportX,
 				iNumViewportY,
-				(CDSwitcherActionOnViewportFunc) _cd_switcher_list_window_on_viewport,
+				(CDSwitcherActionOnViewportFunc) _cd_switcher_add_window_on_viewport,
 				pMenu);
 			
 			// on passe au viewport suivant.
@@ -635,7 +636,7 @@ static void _cd_switcher_move_window_to_viewport (Icon *pIcon, int iNumDesktop, 
 	int iDestNumViewportX = data[1];
 	int iDestNumViewportY = data[2];
 	
-	cairo_dock_move_xwindow_to_nth_desktop (pIcon->Xid,
+	gldi_window_move_to_desktop (pIcon->pAppli,
 		iDestNumDesktop,
 		(iDestNumViewportX - myData.switcher.iCurrentViewportX) * g_desktopGeometry.Xscreen.width,
 		(iDestNumViewportY - myData.switcher.iCurrentViewportY) * g_desktopGeometry.Xscreen.height);

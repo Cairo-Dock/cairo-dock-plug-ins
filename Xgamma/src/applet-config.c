@@ -44,7 +44,7 @@ CD_APPLET_RESET_CONFIG_END
 CD_APPLET_RESET_DATA_BEGIN
 	if (myData.pDialog)
 	{
-		cairo_dock_dialog_unreference (myData.pDialog);  // detruit aussi le widget interactif.
+		gldi_object_unref (GLDI_OBJECT(myData.pDialog));  // detruit aussi le widget interactif.
 	}
 	else
 	{

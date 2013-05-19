@@ -30,7 +30,7 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 {
 	CDDropIndicatorData *pData = CD_APPLET_GET_MY_DOCK_DATA (pDock);
 	if (pData == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	if (pCairoContext != NULL)
 	{
@@ -61,7 +61,7 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 			
 			cairo_translate (pCairoContext, 0, pData->iDropIndicatorOffset);
 			cairo_pattern_t* pPattern = cairo_pattern_create_for_surface (myData.dropIndicator.pSurface);
-			g_return_val_if_fail (cairo_pattern_status (pPattern) == CAIRO_STATUS_SUCCESS, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+			g_return_val_if_fail (cairo_pattern_status (pPattern) == CAIRO_STATUS_SUCCESS, GLDI_NOTIFICATION_LET_PASS);
 			cairo_pattern_set_extend (pPattern, CAIRO_EXTEND_REPEAT);
 			cairo_set_source (pCairoContext, pPattern);
 			
@@ -70,7 +70,7 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 				0.,
 				0.,
 				2*myData.dropIndicator.iHeight);  // de haut en bas.
-			g_return_val_if_fail (cairo_pattern_status (pGradationPattern) == CAIRO_STATUS_SUCCESS, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+			g_return_val_if_fail (cairo_pattern_status (pGradationPattern) == CAIRO_STATUS_SUCCESS, GLDI_NOTIFICATION_LET_PASS);
 		
 			cairo_pattern_set_extend (pGradationPattern, CAIRO_EXTEND_NONE);
 			cairo_pattern_add_color_stop_rgba (pGradationPattern,
@@ -249,7 +249,7 @@ gboolean cd_drop_indicator_render (gpointer pUserData, CairoDock *pDock, cairo_t
 			}
 		}
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
@@ -278,7 +278,7 @@ gboolean cd_drop_indicator_mouse_moved (gpointer pUserData, CairoDock *pDock, gb
 	
 	if (pData != NULL)
 		*bStartAnimation = TRUE;
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 #define delta_alpha 0.06
@@ -286,7 +286,7 @@ gboolean cd_drop_indicator_update_dock (gpointer pUserData, CairoDock *pDock, gb
 {
 	CDDropIndicatorData *pData = CD_APPLET_GET_MY_DOCK_DATA (pDock);
 	if (pData == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	pData->iDropIndicatorOffset += myConfig.iSpeed;
 	if (pData->iDropIndicatorOffset > 2*myData.dropIndicator.iHeight)
@@ -340,7 +340,7 @@ gboolean cd_drop_indicator_update_dock (gpointer pUserData, CairoDock *pDock, gb
 			cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
 	}
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
@@ -400,5 +400,5 @@ gboolean cd_drop_indicator_stop_dock (gpointer data, CairoDock *pDock)
 		g_free (pData);
 		CD_APPLET_SET_MY_DOCK_DATA (pDock, NULL);
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }

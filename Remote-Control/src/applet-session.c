@@ -79,12 +79,12 @@ void cd_do_open_session (void)
 		cd_do_exit_session ();
 	
 	// wait for keyboard input.
-	cairo_dock_register_notification_on_object (&myContainersMgr,
-		NOTIFICATION_KEY_PRESSED, (CairoDockNotificationFunc) cd_do_key_pressed, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification_on_object (&myIconsMgr,
-		NOTIFICATION_DESTROY, (CairoDockNotificationFunc) cd_do_check_icon_destroyed, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification_on_object (&myDesktopMgr,
-		NOTIFICATION_WINDOW_ACTIVATED, (CairoDockNotificationFunc) cd_do_check_active_dock, CAIRO_DOCK_RUN_AFTER, NULL);
+	gldi_object_register_notification (&myContainersMgr,
+		NOTIFICATION_KEY_PRESSED, (GldiNotificationFunc) cd_do_key_pressed, GLDI_RUN_AFTER, NULL);
+	gldi_object_register_notification (&myIconsMgr,
+		NOTIFICATION_DESTROY, (GldiNotificationFunc) cd_do_check_icon_destroyed, GLDI_RUN_AFTER, NULL);
+	gldi_object_register_notification (&myDesktopMgr,
+		NOTIFICATION_WINDOW_ACTIVATED, (GldiNotificationFunc) cd_do_check_active_dock, GLDI_RUN_AFTER, NULL);
 	
 	myData.sCurrentText = g_string_sized_new (20);
 	
@@ -139,15 +139,15 @@ void cd_do_close_session (void)
 		return;
 	
 	// no more keyboard input.
-	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
+	gldi_object_remove_notification (&myContainersMgr,
 		NOTIFICATION_KEY_PRESSED,
-		(CairoDockNotificationFunc) cd_do_key_pressed, NULL);
-	cairo_dock_remove_notification_func_on_object (&myIconsMgr,
+		(GldiNotificationFunc) cd_do_key_pressed, NULL);
+	gldi_object_remove_notification (&myIconsMgr,
 		NOTIFICATION_DESTROY,
-		(CairoDockNotificationFunc) cd_do_check_icon_destroyed, NULL);
-	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
+		(GldiNotificationFunc) cd_do_check_icon_destroyed, NULL);
+	gldi_object_remove_notification (&myDesktopMgr,
 		NOTIFICATION_WINDOW_ACTIVATED,
-		(CairoDockNotificationFunc) cd_do_check_active_dock, NULL);
+		(GldiNotificationFunc) cd_do_check_active_dock, NULL);
 	
 	g_string_free (myData.sCurrentText, TRUE);
 	myData.sCurrentText = NULL;

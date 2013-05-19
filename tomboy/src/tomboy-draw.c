@@ -207,7 +207,7 @@ void cd_tomboy_show_results (GList *pIconsList)
 	}
 	/**else
 	{
-		cairo_dock_show_temporary_dialog_with_icon_printf ("%d %s",
+		gldi_dialog_show_temporary_with_icon_printf ("%d %s",
 			pIconsList ? pIconsList->data : myDesklet->icons->data,
 			myContainer,
 			myConfig.iDialogDuration,

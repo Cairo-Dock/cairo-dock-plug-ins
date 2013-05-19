@@ -26,7 +26,7 @@
 void cd_shortcuts_set_icon_order_by_name (Icon *pNewIcon, GList *pIconsList);
 
 
-void cd_shortcuts_start (CairoDockModuleInstance *myApplet);
+void cd_shortcuts_start (GldiModuleInstance *myApplet);
 
 
 #endif

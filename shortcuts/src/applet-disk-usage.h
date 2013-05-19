@@ -28,11 +28,11 @@
 
 void cd_shortcuts_get_fs_stat (const gchar *cDiskURI, CDDiskUsage *pDiskUsage);
 
-void cd_shortcuts_display_disk_usage (Icon *pIcon, CairoDockModuleInstance *myApplet);
+void cd_shortcuts_display_disk_usage (Icon *pIcon, GldiModuleInstance *myApplet);
 
-void cd_shortcuts_launch_disk_periodic_task (CairoDockModuleInstance *myApplet);
+void cd_shortcuts_launch_disk_periodic_task (GldiModuleInstance *myApplet);
 
-void cd_shortcuts_free_disk_periodic_task (CairoDockModuleInstance *myApplet);
+void cd_shortcuts_free_disk_periodic_task (GldiModuleInstance *myApplet);
 
 
 gchar *cd_shortcuts_get_disk_info (const gchar *cDiskURI, const gchar *cDiskName);

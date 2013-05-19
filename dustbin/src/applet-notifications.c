@@ -33,11 +33,11 @@ static void _on_answer_delete_trash (int iClickedButton, GtkWidget *pInteractive
 	}
 	CD_APPLET_LEAVE ();
 }
-static void _cd_dustbin_delete_trash (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_dustbin_delete_trash (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	if (myConfig.bAskBeforeDelete)
 	{
-		cairo_dock_show_dialog_with_question (D_("You're about to delete all files in all dustbins. Sure ?"),
+		gldi_dialog_show_with_question (D_("You're about to delete all files in all dustbins. Sure ?"),
 			myIcon, myContainer,
 			"same icon",
 			(CairoDockActionOnAnswerFunc) _on_answer_delete_trash, NULL, (GFreeFunc)NULL);
@@ -48,13 +48,13 @@ static void _cd_dustbin_delete_trash (GtkMenuItem *menu_item, CairoDockModuleIns
 	}
 }
 
-static void _cd_dustbin_show_trash (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_dustbin_show_trash (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	cairo_dock_fm_launch_uri ("trash:/"/**myData.cDustbinPath*/);  // on force l'utilisation de trash:/ ici, car on sait que tous les backends sauront l'ouvrir.
 }
 
 
-static void _free_info_dialog (CairoDockModuleInstance *myApplet)
+static void _free_info_dialog (GldiModuleInstance *myApplet)
 {
 	myData.pInfoDialog = NULL;
 	if (myData.pInfoTask != NULL)
@@ -99,7 +99,7 @@ static gboolean _display_result (CDSharedMemory *pSharedMemory)
 			}
 		}
 		
-		cairo_dock_set_dialog_message_printf (myData.pInfoDialog, "%s :\n %d %s\n %.2f %s",
+		gldi_dialog_set_message_printf (myData.pInfoDialog, "%s :\n %d %s\n %.2f %s",
 			D_("The trash contains"),
 			iNbFiles > -1 ? iNbFiles : iTrashes,
 			iNbFiles > -1 ? D_("files") : D_("elements"),
@@ -111,22 +111,24 @@ static gboolean _display_result (CDSharedMemory *pSharedMemory)
 
 	return FALSE;
 }
-static void _cd_dustbin_show_info (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_dustbin_show_info (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	if (myData.pInfoDialog != NULL)
 	{
-		cairo_dock_dialog_unreference (myData.pInfoDialog);
+		gldi_object_unref (GLDI_OBJECT(myData.pInfoDialog));
 		myData.pInfoDialog = NULL;
 	}
 	g_return_if_fail (myData.pInfoTask == NULL);
 	
-	CairoDialogAttribute attr;
-	memset (&attr, 0, sizeof (CairoDialogAttribute));
+	CairoDialogAttr attr;
+	memset (&attr, 0, sizeof (CairoDialogAttr));
 	attr.cImageFilePath = "same icon";
 	attr.cText = g_strdup_printf ("%s ...\n\n", D_("Counting total size and files number..."));
 	attr.pFreeDataFunc = (GFreeFunc)_free_info_dialog;
+	attr.pIcon = myIcon;
+	attr.pContainer = myContainer;
 	attr.pUserData = myApplet;
-	myData.pInfoDialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);
+	myData.pInfoDialog = gldi_dialog_new (&attr);
 	
 	// launch the task and update the dialog when finished.
 	CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
@@ -165,8 +167,8 @@ static void _cd_dustbin_action_after_unmount (gboolean bMounting, gboolean bSucc
 		cMessage = g_strdup_printf (D_("failed to unmount %s"), cName);
 		
 	}
-	cairo_dock_remove_dialog_if_any (myIcon);
-	cairo_dock_show_temporary_dialog (cMessage, myIcon, myContainer, 4000);
+	gldi_dialogs_remove_on_icon (myIcon);
+	gldi_dialog_show_temporary (cMessage, myIcon, myContainer, 4000);
 	g_free (cMessage);
 }
 CD_APPLET_ON_DROP_DATA_BEGIN
@@ -186,7 +188,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 	{
 		if (iVolumeID > 0)
 		{
-			cairo_dock_show_temporary_dialog_with_icon (D_("Unmouting this volume ..."), myIcon, myContainer, 15000., "same icon");  // le dialogue sera enleve lorsque le volume sera demonte.
+			gldi_dialog_show_temporary_with_icon (D_("Unmouting this volume ..."), myIcon, myContainer, 15000., "same icon");  // le dialogue sera enleve lorsque le volume sera demonte.
 			cairo_dock_fm_unmount_full (cURI, iVolumeID, (CairoDockFMMountCallback) _cd_dustbin_action_after_unmount, myApplet);
 		}
 		else

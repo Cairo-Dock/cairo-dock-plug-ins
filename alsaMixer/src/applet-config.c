@@ -104,11 +104,11 @@ CD_APPLET_RESET_DATA_BEGIN
 		gtk_widget_destroy (myData.pScale);
 		myData.pScale = NULL;
 	}
-	cairo_dock_dialog_unreference (myData.pDialog);
+	gldi_object_unref (GLDI_OBJECT(myData.pDialog));
 CD_APPLET_RESET_DATA_END
 
 
-void cd_mixer_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile, GSList *pWidgetList)  // myApplet can be NULL
+void cd_mixer_load_custom_widget (GldiModuleInstance *myApplet, GKeyFile* pKeyFile, GSList *pWidgetList)  // myApplet can be NULL
 {
 	//\____________ build the list of available sound cards.
 	GList *pList = mixer_get_cards_list ();

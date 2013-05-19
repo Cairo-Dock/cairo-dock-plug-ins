@@ -34,7 +34,7 @@ CD_APPLET_DEFINITION (N_("netspeed"),
 	"Middle-click to (de)activate the network (needs NetworManager)"),
 	"parAdOxxx_ZeRo");
 
-static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
+static void _set_data_renderer (GldiModuleInstance *myApplet, gboolean bReload)
 {
 	if (myConfig.iDisplayType == CD_NETSPEED_BAR)
 		return; /// TODO

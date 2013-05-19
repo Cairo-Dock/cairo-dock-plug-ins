@@ -76,8 +76,8 @@ struct _AppletData {
 	GList *completion_items;
 	GCompletion *completion;
 	gboolean completion_started;
-	CairoKeyBinding *cKeyBinding;
-	CairoKeyBinding *cKeyBindingQuickLaunch;
+	GldiShortkey *cKeyBinding;
+	GldiShortkey *cKeyBindingQuickLaunch;
 	} ;
 
 

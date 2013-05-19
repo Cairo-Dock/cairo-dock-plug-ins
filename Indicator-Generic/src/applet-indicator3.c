@@ -22,7 +22,7 @@
 #include "applet-indicator3.h"
 
 
-static void _icon_updated (GObject *pObject, G_GNUC_UNUSED GParamSpec *pParam, CairoDockModuleInstance *myApplet)
+static void _icon_updated (GObject *pObject, G_GNUC_UNUSED GParamSpec *pParam, GldiModuleInstance *myApplet)
 {
 	g_return_if_fail (GTK_IS_IMAGE (pObject));
 	GtkImage *pImage = GTK_IMAGE (pObject);
@@ -35,13 +35,13 @@ static void _icon_updated (GObject *pObject, G_GNUC_UNUSED GParamSpec *pParam, C
 
 static void _accessible_desc_update (G_GNUC_UNUSED IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data)
 {
-	CairoDockModuleInstance *myApplet = data;
+	GldiModuleInstance *myApplet = data;
 	cd_indicator3_accessible_desc_update (pEntry, myConfig.defaultTitle, data);
 }
 
 static void _entry_added (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data)
 {
-	CairoDockModuleInstance *myApplet = data;
+	GldiModuleInstance *myApplet = data;
 	cd_debug ("Entry Added: %s", myConfig.cIndicatorName);
 	g_return_if_fail (myData.pEntry == NULL && pEntry != NULL); // should not happen...
 	// only one entry (or should we support more than one entry => ex: global-menu?)
@@ -62,7 +62,7 @@ static void _entry_added (IndicatorObject *pIndicator, IndicatorObjectEntry *pEn
 static void _entry_removed (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data)
 {
 	// should not happen so often... except at the end.
-	CairoDockModuleInstance *myApplet = data;
+	GldiModuleInstance *myApplet = data;
 	cd_debug ("Entry Removed: %s", myConfig.cIndicatorName);
 	
 	// the same entry as before, we can remove the previous one
@@ -93,7 +93,7 @@ void cd_indicator_generic_indicator_reload (IndicatorObject *pIndicator, Indicat
 	_icon_updated (G_OBJECT (pEntry->image), NULL, data);
 }
 
-void cd_indicator_generic_load_one_indicator (CairoDockModuleInstance *myApplet)
+void cd_indicator_generic_load_one_indicator (GldiModuleInstance *myApplet)
 {
 	cd_debug ("Load: %s", myConfig.cIndicatorName);
 	myData.pIndicator = cd_indicator3_load (myConfig.cIndicatorName,
@@ -110,7 +110,7 @@ void cd_indicator_generic_load_one_indicator (CairoDockModuleInstance *myApplet)
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 }
 
-void cd_indicator_generic_indicator_stop (CairoDockModuleInstance *myApplet)
+void cd_indicator_generic_indicator_stop (GldiModuleInstance *myApplet)
 {
 	cd_debug ("Stop: %s", myConfig.cIndicatorName);
 	// It seems we doesn't need to free the indicator (object and event)

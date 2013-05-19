@@ -29,7 +29,7 @@
 #include "applet-struct.h"
 #include "applet-nvidia.h"
 
-void cd_sysmonitor_get_nvidia_data (CairoDockModuleInstance *myApplet)
+void cd_sysmonitor_get_nvidia_data (GldiModuleInstance *myApplet)
 {
 	gchar *cCommand = g_strdup_printf ("nvidia-settings -q GPUCoreTemp -t");
 	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
@@ -61,7 +61,7 @@ void cd_sysmonitor_get_nvidia_data (CairoDockModuleInstance *myApplet)
 }
 
 
-static void _get_nvidia_info (CairoDockModuleInstance *myApplet)
+static void _get_nvidia_info (GldiModuleInstance *myApplet)
 {
 	gchar *cCommand = g_strdup_printf ("bash %s/nvidia-config", MY_APPLET_SHARE_DATA_DIR);
 	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
@@ -132,7 +132,7 @@ static void _get_nvidia_info (CairoDockModuleInstance *myApplet)
 	g_strfreev (cInfopipesList);
 }
 
-void cd_sysmonitor_get_nivdia_info (CairoDockModuleInstance *myApplet, GString *pInfo)
+void cd_sysmonitor_get_nivdia_info (GldiModuleInstance *myApplet, GString *pInfo)
 {
 	if (myData.cGPUName == NULL)  // nvidia-config n'a encore jamais ete appele.
 		_get_nvidia_info (myApplet);
@@ -152,13 +152,13 @@ void cd_sysmonitor_get_nivdia_info (CairoDockModuleInstance *myApplet, GString *
 
 
 
-void cd_nvidia_alert (CairoDockModuleInstance *myApplet)
+void cd_nvidia_alert (GldiModuleInstance *myApplet)
 {
 	if (myData.bAlerted || ! myConfig.bAlert)
 		return;
 	
-	cairo_dock_remove_dialog_if_any (myIcon);
-	cairo_dock_show_temporary_dialog_with_icon_printf (D_("Alert! Graphic Card core temperature has reached %d°C"), myIcon, myContainer, 4e3, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, myData.iGPUTemp);
+	gldi_dialogs_remove_on_icon (myIcon);
+	gldi_dialog_show_temporary_with_icon_printf (D_("Alert! Graphic Card core temperature has reached %d°C"), myIcon, myContainer, 4e3, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, myData.iGPUTemp);
 	
 	if (myConfig.bAlertSound)
 		cairo_dock_play_sound (myConfig.cSoundPath);

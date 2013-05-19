@@ -96,8 +96,8 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	
-	cd_keybinder_unbind (myData.pKeyBinding);
-	cd_keybinder_unbind (myData.pKeyBinding2);
+	gldi_object_unref (GLDI_OBJECT(myData.pKeyBinding));
+	gldi_object_unref (GLDI_OBJECT(myData.pKeyBinding2));
 
 	gchar *cNull = NULL;
 	CD_APPLET_MANAGE_APPLICATION (cNull);  // on relache le controle de l'icone de la fenetre.
@@ -125,7 +125,7 @@ CD_APPLET_RELOAD_BEGIN
 		cd_logout_check_reboot_required_init ();
 		// cd_logout_check_logout_required_init ();
 		
-		cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
-		cd_keybinder_rebind (myData.pKeyBinding2, myConfig.cShortkey2, NULL);
+		gldi_shortkey_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
+		gldi_shortkey_rebind (myData.pKeyBinding2, myConfig.cShortkey2, NULL);
 	}
 CD_APPLET_RELOAD_END

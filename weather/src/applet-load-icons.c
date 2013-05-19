@@ -42,7 +42,7 @@ const char *cMonthsWeeks[19] = { N_("Monday") , N_("Tuesday") , N_("Wednesday") 
 		pIconList = g_list_append (pIconList, pIcon);\
 	}
 
-static GList * _list_icons (CairoDockModuleInstance *myApplet)
+static GList * _list_icons (GldiModuleInstance *myApplet)
 {
 	GList *pIconList = NULL;
 	
@@ -62,7 +62,7 @@ static GList * _list_icons (CairoDockModuleInstance *myApplet)
 }
 
 
-static void _weather_draw_current_conditions (CairoDockModuleInstance *myApplet)
+static void _weather_draw_current_conditions (GldiModuleInstance *myApplet)
 {
 	if (myConfig.bCurrentConditions || myData.bErrorRetrievingData)
 	{
@@ -112,7 +112,7 @@ static void _weather_draw_current_conditions (CairoDockModuleInstance *myApplet)
 
 gboolean cd_weather_update_from_data (CDSharedMemory *pSharedMemory)
 {
-	CairoDockModuleInstance *myApplet = pSharedMemory->pApplet;
+	GldiModuleInstance *myApplet = pSharedMemory->pApplet;
 	g_return_val_if_fail (myIcon != NULL, FALSE);  // paranoia
 	CD_APPLET_ENTER;
 	
@@ -180,7 +180,7 @@ gboolean cd_weather_update_from_data (CDSharedMemory *pSharedMemory)
 	}
 	else if (myDock)  // sinon on ne veut pas du sous-dock vide.
 	{
-		cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->cName);
+		gldi_object_unref (GLDI_OBJECT(myIcon->pSubDock));
 		myIcon->pSubDock = NULL;
 	}
 	if (myDesklet)

@@ -26,7 +26,7 @@
 #include "applet-stack.h"
 
 
-static inline void _launch_item (Icon *pIcon, CairoDockModuleInstance *myApplet)
+static inline void _launch_item (Icon *pIcon, GldiModuleInstance *myApplet)
 {
 	if (pIcon->iVolumeID == 1)
 	{
@@ -34,8 +34,8 @@ static inline void _launch_item (Icon *pIcon, CairoDockModuleInstance *myApplet)
 	}
 	else
 	{
-		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog_with_icon (pIcon->cCommand,
+		gldi_dialogs_remove_on_icon (myIcon);
+		gldi_dialog_show_temporary_with_icon (pIcon->cCommand,
 			pIcon,
 			(myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer),
 			0,
@@ -50,12 +50,12 @@ CD_APPLET_ON_CLICK_BEGIN
 	{
 		if (CD_APPLET_MY_ICONS_LIST == NULL)  // empty sub-dock or desklet.
 		{
-			cairo_dock_remove_dialog_if_any (myIcon);
-			cairo_dock_show_temporary_dialog_with_icon (D_("No items in the stack.\nYou can add files, URL, and even a piece of text by dragging them onto the icon."), myIcon, myContainer, 8000., "same icon");
+			gldi_dialogs_remove_on_icon (myIcon);
+			gldi_dialog_show_temporary_with_icon (D_("No items in the stack.\nYou can add files, URL, and even a piece of text by dragging them onto the icon."), myIcon, myContainer, 8000., "same icon");
 		}
 		else
 		{
-			CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);  // on laisse passer la notification (pour ouvrir le sous-dock au clic).
+			CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);  // on laisse passer la notification (pour ouvrir le sous-dock au clic).
 		}
 	}
 	else if (CD_APPLET_CLICKED_ICON != NULL)
@@ -64,12 +64,12 @@ CD_APPLET_ON_CLICK_BEGIN
 		_launch_item (CD_APPLET_CLICKED_ICON, myApplet);  // on intercepte la notification.
 	}
 	else
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 CD_APPLET_ON_CLICK_END
 
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
-static void _on_text_received (GtkClipboard *clipboard, const gchar *text, CairoDockModuleInstance *myApplet)
+static void _on_text_received (GtkClipboard *clipboard, const gchar *text, GldiModuleInstance *myApplet)
 {
 	g_return_if_fail (text != NULL);
 	CD_APPLET_ENTER;
@@ -77,7 +77,7 @@ static void _on_text_received (GtkClipboard *clipboard, const gchar *text, Cairo
 	CD_APPLET_LEAVE ();
 }
 
-static void _on_clear_stack (int iClickedButton, GtkWidget *pInteractiveWidget, CairoDockModuleInstance *myApplet, CairoDialog *pDialog)
+static void _on_clear_stack (int iClickedButton, GtkWidget *pInteractiveWidget, GldiModuleInstance *myApplet, CairoDialog *pDialog)
 {
 	CD_APPLET_ENTER;
 	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
@@ -86,10 +86,10 @@ static void _on_clear_stack (int iClickedButton, GtkWidget *pInteractiveWidget, 
 	}
 	CD_APPLET_LEAVE ();
 }
-static void _cd_stack_clear_stack (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_stack_clear_stack (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
-	cairo_dock_show_dialog_with_question (D_("Clear the stack?"),
+	gldi_dialog_show_with_question (D_("Clear the stack?"),
 		myIcon,  myContainer,
 		"same icon",
 		(CairoDockActionOnAnswerFunc)_on_clear_stack, myApplet, (GFreeFunc)NULL);
@@ -98,7 +98,7 @@ static void _cd_stack_clear_stack (GtkMenuItem *menu_item, CairoDockModuleInstan
 
 static void _cd_stack_remove_item (GtkMenuItem *menu_item, gpointer *data)
 {
-	CairoDockModuleInstance *myApplet = data[0];
+	GldiModuleInstance *myApplet = data[0];
 	CD_APPLET_ENTER;
 	Icon *pIcon = data[1];
 	
@@ -108,7 +108,7 @@ static void _cd_stack_remove_item (GtkMenuItem *menu_item, gpointer *data)
 
 static void _on_got_item_name (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer *data, CairoDialog *pDialog)
 {
-	CairoDockModuleInstance *myApplet = data[0];
+	GldiModuleInstance *myApplet = data[0];
 	Icon *pIcon = data[1];
 	CD_APPLET_ENTER;
 	
@@ -128,15 +128,15 @@ static void _on_got_item_name (int iClickedButton, GtkWidget *pInteractiveWidget
 }
 static void _cd_stack_rename_item (GtkMenuItem *menu_item, gpointer *data)
 {
-	CairoDockModuleInstance *myApplet = data[0];
+	GldiModuleInstance *myApplet = data[0];
 	CD_APPLET_ENTER;
 	Icon *pIcon = data[1];
 	
-	CairoContainer *pContainer = (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer);
+	GldiContainer *pContainer = (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer);
 	gpointer *ddata = g_new (gpointer, 2);
 	ddata[0] = myApplet;
 	ddata[1] = pIcon;
-	cairo_dock_show_dialog_with_entry (D_("Set new name for this item:"),
+	gldi_dialog_show_with_entry (D_("Set new name for this item:"),
 		pIcon, pContainer, "same icon",
 		pIcon->cName,
 		(CairoDockActionOnAnswerFunc)_on_got_item_name, ddata, (GFreeFunc)g_free);  // if the icon gets deleted, the dialog will disappear with it.
@@ -144,7 +144,7 @@ static void _cd_stack_rename_item (GtkMenuItem *menu_item, gpointer *data)
 }
 static void _cd_stack_copy_content (GtkMenuItem *menu_item, gpointer *data)
 {
-	CairoDockModuleInstance *myApplet = data[0];
+	GldiModuleInstance *myApplet = data[0];
 	CD_APPLET_ENTER;
 	Icon *pIcon = data[1];
 	
@@ -153,7 +153,7 @@ static void _cd_stack_copy_content (GtkMenuItem *menu_item, gpointer *data)
 	gtk_clipboard_set_text (pClipBoard, pIcon->cCommand, -1);
 	CD_APPLET_LEAVE ();
 }
-static void _cd_stack_paste_content (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_stack_paste_content (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	GtkClipboard *pClipBoard = (myConfig.bSelectionClipBoard ? gtk_clipboard_get (GDK_SELECTION_PRIMARY) : gtk_clipboard_get (GDK_SELECTION_CLIPBOARD));
@@ -162,7 +162,7 @@ static void _cd_stack_paste_content (GtkMenuItem *menu_item, CairoDockModuleInst
 }
 static void _cd_stack_cut_item (GtkMenuItem *menu_item, gpointer *data)
 {
-	CairoDockModuleInstance *myApplet = data[0];
+	GldiModuleInstance *myApplet = data[0];
 	CD_APPLET_ENTER;
 	Icon *pIcon = data[1];
 	
@@ -173,7 +173,7 @@ static void _cd_stack_cut_item (GtkMenuItem *menu_item, gpointer *data)
 }
 static void _cd_stack_open_item (GtkMenuItem *menu_item, gpointer *data)
 {
-	CairoDockModuleInstance *myApplet = data[0];
+	GldiModuleInstance *myApplet = data[0];
 	CD_APPLET_ENTER;
 	Icon *pIcon = data[1];
 	
@@ -182,7 +182,7 @@ static void _cd_stack_open_item (GtkMenuItem *menu_item, gpointer *data)
 }
 static void _cd_stack_open_item_folder (GtkMenuItem *menu_item, gpointer *data)
 {
-	CairoDockModuleInstance *myApplet = data[0];
+	GldiModuleInstance *myApplet = data[0];
 	CD_APPLET_ENTER;
 	Icon *pIcon = data[1];
 	
@@ -222,7 +222,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	}
 	
 	if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON != myIcon)
-		CD_APPLET_LEAVE (CAIRO_DOCK_INTERCEPT_NOTIFICATION);
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_INTERCEPT);
 CD_APPLET_ON_BUILD_MENU_END
 
 
@@ -241,17 +241,17 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
-gboolean cd_stack_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *icon, double fOrder, CairoContainer *pContainer)
+gboolean cd_stack_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *icon, double fOrder, GldiContainer *pContainer)
 {
 	//g_print ("Stack received '%s'\n", cReceivedData);
 	
 	// if we dropped on an icon, let pass the notif to it.
 	if (icon != NULL || fOrder == CAIRO_DOCK_LAST_ORDER)  // drop on an icon or outside of icons.
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	// if it's a .desktop, let pass to the core (it will create the associated launcher).
 	if (g_str_has_suffix (cReceivedData, ".desktop"))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	// if it's not a file or an URL, let pass it.
 	gchar *cPath = NULL;
@@ -262,30 +262,30 @@ gboolean cd_stack_on_drop_data (gpointer data, const gchar *cReceivedData, Icon 
 		|| g_file_test (cPath, G_FILE_TEST_IS_DIR))  // if the path doesn't exist, or is a folder, skip it (folders are handled by the 'Folders' applet).
 		{
 			g_free (cPath);
-			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+			return GLDI_NOTIFICATION_LET_PASS;
 		}
 	}
 	else if (strncmp (cReceivedData, "http://", 7) != 0
 	&& strncmp (cReceivedData, "https://", 8) != 0)  // it's neither a file nor an URL.
 	{
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	}
 	
 	// grab the first instance of the Stack applet (launch it if necessary)
-	CairoDockModule *pModule = cairo_dock_find_module_from_name ("stack");
-	g_return_val_if_fail (pModule != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	GldiModule *pModule = gldi_module_get ("stack");
+	g_return_val_if_fail (pModule != NULL, GLDI_NOTIFICATION_LET_PASS);
 	
 	if (pModule->pInstancesList == NULL)  // no stack yet
 	{
-		cairo_dock_activate_module_and_load ("stack");
-		g_return_val_if_fail (pModule->pInstancesList != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		gldi_module_activate (pModule);
+		g_return_val_if_fail (pModule->pInstancesList != NULL, GLDI_NOTIFICATION_LET_PASS);
 	}
 	
 	// add the item to the instance.
-	CairoDockModuleInstance *myApplet = pModule->pInstancesList->data;
+	GldiModuleInstance *myApplet = pModule->pInstancesList->data;
 	cd_stack_create_and_load_item (myApplet, cReceivedData);
 	
-	cairo_dock_show_temporary_dialog_with_icon (
+	gldi_dialog_show_temporary_with_icon (
 		cPath != NULL ?
 		D_("The file has been added to the stack."):
 		D_("The URL has been added to the stack."),
@@ -294,5 +294,5 @@ gboolean cd_stack_on_drop_data (gpointer data, const gchar *cReceivedData, Icon 
 		"same icon");
 	
 	g_free (cPath);
-	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+	return GLDI_NOTIFICATION_INTERCEPT;
 }

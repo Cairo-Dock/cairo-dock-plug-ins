@@ -571,7 +571,7 @@ void cd_mail_retrieve_skynet_params (CDMailAccount *mailaccount, GKeyFile *pKeyF
 };*/
 
 
-void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
+void cd_mail_init_accounts(GldiModuleInstance *myApplet)
 {
 	if (myData.pMailAccounts == NULL)
 		return ;
@@ -581,7 +581,7 @@ void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
 	CDMailAccount *pMailAccount;
 	GList *pIconList = NULL;
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	int iNbIcons = 0;
 	int r;
 	gboolean bIsGettingMail = FALSE;
@@ -664,7 +664,7 @@ void cd_mail_init_accounts(CairoDockModuleInstance *myApplet)
 		else
 		{
 			cd_warning ("mail : the mail account %s couldn't be initialized !", pMailAccount->name);
-			CairoContainer *pContainer = (myData.pMailAccounts->len == 1 ? myContainer : CD_APPLET_MY_ICONS_LIST_CONTAINER);
+			GldiContainer *pContainer = (myData.pMailAccounts->len == 1 ? myContainer : CD_APPLET_MY_ICONS_LIST_CONTAINER);
 			cairo_dock_set_quick_info (pIcon, pContainer, "N/A");
 		}
 	}
@@ -714,7 +714,7 @@ void cd_mail_free_account (CDMailAccount *pMailAccount)
 	g_free( pMailAccount );
 }
 
-void cd_mail_free_all_accounts (CairoDockModuleInstance *myApplet)
+void cd_mail_free_all_accounts (GldiModuleInstance *myApplet)
 {
 	if (myData.pMailAccounts == NULL)
 		return ;

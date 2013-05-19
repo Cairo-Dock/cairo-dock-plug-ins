@@ -40,7 +40,7 @@ CD_APPLET_DEFINE_BEGIN ("wifi",
 CD_APPLET_DEFINE_END
 
 
-static void _set_data_renderer (CairoDockModuleInstance *myApplet, gboolean bReload)
+static void _set_data_renderer (GldiModuleInstance *myApplet, gboolean bReload)
 {
 	CairoDataRendererAttribute *pRenderAttr = NULL;  // attributes for the global data-renderer.
 	CairoGaugeAttribute aGaugeAttr;  // gauge attributes.

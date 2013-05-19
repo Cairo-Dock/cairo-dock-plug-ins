@@ -46,7 +46,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 CD_APPLET_RESET_CONFIG_END
 
 
-void cd_shortcuts_reset_all_datas (CairoDockModuleInstance *myApplet)
+void cd_shortcuts_reset_all_datas (GldiModuleInstance *myApplet)
 {
 	cd_shortcuts_free_disk_periodic_task (myApplet);
 	

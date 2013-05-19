@@ -37,7 +37,7 @@ CD_APPLET_ON_SCROLL_H
 
 CD_APPLET_ON_UPDATE_ICON_H
 
-gboolean cd_opengl_test_mouse_over_buttons (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation);
+gboolean cd_opengl_test_mouse_over_buttons (GldiModuleInstance *myApplet, GldiContainer *pContainer, gboolean *bStartAnimation);
 
 
 #endif

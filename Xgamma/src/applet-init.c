@@ -136,8 +136,8 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
 	
-	cd_keybinder_unbind (myData.pKeyBinding);
-	cd_keybinder_unbind (myData.pKeyBinding2);
+	gldi_object_unref (GLDI_OBJECT(myData.pKeyBinding));
+	gldi_object_unref (GLDI_OBJECT(myData.pKeyBinding2));
 	
 	if (myData.iSidScrollAction != 0)
 		g_source_remove (myData.iSidScrollAction);
@@ -157,18 +157,18 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			if (myDesklet)  // il faut passer du dialogue au desklet.
 			{
-				cairo_dock_steal_interactive_widget_from_dialog (myData.pDialog);
-				cairo_dock_dialog_unreference (myData.pDialog);
+				gldi_dialog_steal_interactive_widget (myData.pDialog);
+				gldi_object_unref (GLDI_OBJECT(myData.pDialog));
 				myData.pDialog = NULL;
-				cairo_dock_add_interactive_widget_to_desklet (myData.pWidget, myDesklet);
+				gldi_desklet_add_interactive_widget (myDesklet, myData.pWidget);
 				CD_APPLET_SET_DESKLET_RENDERER (NULL);
 				CD_APPLET_SET_STATIC_DESKLET;
 			}
 			else  // il faut passer du desklet au dialogue
 			{
-				cairo_dock_steal_interactive_widget_from_desklet (CAIRO_DESKLET (CD_APPLET_MY_OLD_CONTAINER));
+				gldi_desklet_steal_interactive_widget (CAIRO_DESKLET (CD_APPLET_MY_OLD_CONTAINER));
 				myData.pDialog = xgamma_build_dialog ();
-				cairo_dock_hide_dialog (myData.pDialog);
+				gldi_dialog_hide (myData.pDialog);
 			}
 		}
 		
@@ -178,8 +178,8 @@ CD_APPLET_RELOAD_BEGIN
 			cd_gamma_display_gamma_on_label (fGamma);
 		}
 		
-		cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
-		cd_keybinder_rebind (myData.pKeyBinding2, myConfig.cShortkey2, NULL);
+		gldi_shortkey_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
+		gldi_shortkey_rebind (myData.pKeyBinding2, myConfig.cShortkey2, NULL);
 	}
 	
 	if (myDock)

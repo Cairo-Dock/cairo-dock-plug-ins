@@ -28,7 +28,7 @@
 
 
 CD_APPLET_ON_CLICK_BEGIN
-	cairo_dock_remove_dialog_if_any (myIcon);
+	gldi_dialogs_remove_on_icon (myIcon);
 	cd_wifi_bubble();
 CD_APPLET_ON_CLICK_END
 

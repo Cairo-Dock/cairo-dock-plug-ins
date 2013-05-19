@@ -34,7 +34,7 @@ static void cd_screenshot_free_options (CDScreenshotOptions *pOptions);
  /// DRAWING ///
 ///////////////
 
-static gboolean _render_step_cairo (Icon *pIcon, CairoDockModuleInstance *myApplet)
+static gboolean _render_step_cairo (Icon *pIcon, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	double f = CD_APPLET_GET_TRANSITION_FRACTION ();
@@ -63,7 +63,7 @@ static gboolean _render_step_cairo (Icon *pIcon, CairoDockModuleInstance *myAppl
 	CD_APPLET_LEAVE (TRUE);
 }
 
-static gboolean _render_step_opengl (Icon *pIcon, CairoDockModuleInstance *myApplet)
+static gboolean _render_step_opengl (Icon *pIcon, GldiModuleInstance *myApplet)
 {
 	g_return_val_if_fail (myData.pCurrentImage != NULL, FALSE);
 	CD_APPLET_ENTER;
@@ -98,7 +98,7 @@ static gboolean _render_step_opengl (Icon *pIcon, CairoDockModuleInstance *myApp
  /// MENU ///
 ////////////
 
-void cd_screenshot_free_apps_list (CairoDockModuleInstance *myApplet)
+void cd_screenshot_free_apps_list (GldiModuleInstance *myApplet)
 {
 	if (myData.pAppList != NULL)
 	{
@@ -192,7 +192,7 @@ static gchar *_make_screenshot (gboolean bActiveWindow, const gchar *cFolder, co
 	Window Xid;
 	if (bActiveWindow)
 	{
-		Xid = cairo_dock_get_current_active_window();
+		Xid = cairo_dock_get_active_xwindow ();
 		Window root_return;
 		int x_return=1, y_return=1;
 		unsigned int width_return, height_return, border_width_return, depth_return;
@@ -328,7 +328,7 @@ static void _take_screenshot (CDScreenshotOptions *pOptions)
 	}
 	else  // show an error message
 	{
-		cairo_dock_show_temporary_dialog_with_icon (D_("Unable to take a screenshot"), myIcon, myContainer, 7000, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+		gldi_dialog_show_temporary_with_icon (D_("Unable to take a screenshot"), myIcon, myContainer, 7000, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 	}
 }
 
@@ -403,7 +403,7 @@ static GtkWidget * _add_label_in_new_hbox (const gchar *cLabel, const gchar *cTo
 	gtk_box_pack_start (GTK_BOX (pBox), pHBox, FALSE, FALSE, _MARGIN);
 	
 	GtkWidget *pLabel = gtk_label_new (cLabel);
-	cairo_dock_set_dialog_widget_text_color (pLabel);
+	gldi_dialog_set_widget_text_color (pLabel);
 	gtk_box_pack_start (GTK_BOX (pHBox), pLabel, FALSE, FALSE, _MARGIN);
 
 	gtk_widget_set_tooltip_text (pLabel, cTooltip);
@@ -468,7 +468,7 @@ GtkWidget *cd_screenshot_build_options_widget (void)
 	#endif
 	gtk_scale_set_digits (GTK_SCALE (pScale), 0);
 	g_object_set (pScale, "width-request", 100, NULL);
-	cairo_dock_set_dialog_widget_text_color (pScale);
+	gldi_dialog_set_widget_text_color (pScale);
 	gtk_box_pack_end (GTK_BOX (pHBox), pScale, FALSE, FALSE, _MARGIN);
 	g_object_set_data (G_OBJECT (pBox), "delay", pScale);
 	gtk_widget_set_tooltip_text (pScale, cTooltip);

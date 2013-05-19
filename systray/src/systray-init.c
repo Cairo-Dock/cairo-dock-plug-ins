@@ -74,7 +74,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	// CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	
-	cd_keybinder_unbind (myData.cKeyBinding);
+	gldi_object_unref (GLDI_OBJECT(myData.cKeyBinding));
 	
 CD_APPLET_STOP_END
 
@@ -97,17 +97,17 @@ CD_APPLET_RELOAD_BEGIN
 			{
 				if (myDesklet != NULL)  // il faut passer du dialogue au desklet.
 				{
-					cairo_dock_steal_interactive_widget_from_dialog (myData.dialog);
-					cairo_dock_dialog_unreference (myData.dialog);
+					gldi_dialog_steal_interactive_widget (myData.dialog);
+					gldi_object_unref (GLDI_OBJECT(myData.dialog));
 					myData.dialog = NULL;
-					cairo_dock_add_interactive_widget_to_desklet (GTK_WIDGET (myData.tray), myDesklet);
+					gldi_desklet_add_interactive_widget (myDesklet, GTK_WIDGET (myData.tray));
 					CD_APPLET_SET_DESKLET_RENDERER (NULL);  // pour empecher le clignotement du au double-buffer.
 					CD_APPLET_SET_STATIC_DESKLET;
 				}
 				else  // il faut passer du desklet au dialogue
 				{
 					CairoDesklet *pDesklet = CAIRO_DESKLET (CD_APPLET_MY_OLD_CONTAINER);
-					cairo_dock_steal_interactive_widget_from_desklet (pDesklet);
+					gldi_desklet_steal_interactive_widget (pDesklet);
 					cd_systray_build_dialog ();
 				}
 				g_object_unref (G_OBJECT (myData.tray));  // le 'steal' a ajoute une reference, et l'insertion dans le container aussi.
@@ -117,7 +117,7 @@ CD_APPLET_RELOAD_BEGIN
 				CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		}
 		
-		cd_keybinder_rebind (myData.cKeyBinding, myConfig.shortcut, NULL);
+		gldi_shortkey_rebind (myData.cKeyBinding, myConfig.shortcut, NULL);
 	}
 	
 	if (myDesklet)  // on cloue le desklet.

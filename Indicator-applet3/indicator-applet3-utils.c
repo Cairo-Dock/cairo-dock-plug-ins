@@ -61,7 +61,7 @@ static gchar * _get_name_from_gicon (GtkImage *pImage)
 	return cName;
 }
 
-static gboolean _set_new_image_pixbuf (GtkImage *pImage, CairoDockModuleInstance *myApplet)
+static gboolean _set_new_image_pixbuf (GtkImage *pImage, GldiModuleInstance *myApplet)
 {
 	GdkPixbuf *pPixbuf = gtk_image_get_pixbuf (pImage);
 	g_return_val_if_fail (pPixbuf != NULL, FALSE);
@@ -92,7 +92,7 @@ const gchar *_get_image_stock (GtkImage *pImage)
 	return cName;
 }
 
-static gboolean _set_image_on_icon (const gchar *cName, CairoDockModuleInstance *myApplet, const gchar *cDefaultFile)
+static gboolean _set_image_on_icon (const gchar *cName, GldiModuleInstance *myApplet, const gchar *cDefaultFile)
 {
 	if (! cName)
 		return FALSE;
@@ -101,7 +101,7 @@ static gboolean _set_image_on_icon (const gchar *cName, CairoDockModuleInstance 
 	return TRUE;
 }
 
-gboolean cd_indicator3_update_image (GtkImage *pImage, gchar **cName, CairoDockModuleInstance *myApplet, const gchar *cDefaultFile)
+gboolean cd_indicator3_update_image (GtkImage *pImage, gchar **cName, GldiModuleInstance *myApplet, const gchar *cDefaultFile)
 {
 	GtkImageType iType = gtk_image_get_storage_type (pImage);
 	cd_debug ("Icon updated: type %d", iType);
@@ -175,7 +175,7 @@ void cd_indicator3_accessible_desc_update (IndicatorObjectEntry *pEntry, const g
 {
 	const gchar *cDesc = cd_indicator3_get_accessible_desc (pEntry);
 	cd_debug ("Get Accessible description: %s", cDesc);
-	CairoDockModuleInstance *myApplet = data;
+	GldiModuleInstance *myApplet = data;
 	if (cDesc != NULL && *cDesc != '\0')
 		CD_APPLET_SET_NAME_FOR_MY_ICON (cDesc);
 	else if (defaultTitle != NULL && *defaultTitle != '\0')
@@ -187,7 +187,7 @@ void cd_indicator3_accessible_desc_update (IndicatorObjectEntry *pEntry, const g
 
 static void _show (G_GNUC_UNUSED GtkWidget *pWidget, gpointer data)
 {
-	CairoDockModuleInstance *myApplet = data;
+	GldiModuleInstance *myApplet = data;
 
 	if (myDock)
 	{
@@ -201,7 +201,7 @@ static void _show (G_GNUC_UNUSED GtkWidget *pWidget, gpointer data)
 
 static void _hide (G_GNUC_UNUSED GtkWidget *pWidget, gpointer data)
 {
-	CairoDockModuleInstance *myApplet = data;
+	GldiModuleInstance *myApplet = data;
 
 	if (myDock)
 	{
@@ -214,13 +214,13 @@ static void _hide (G_GNUC_UNUSED GtkWidget *pWidget, gpointer data)
 
 void cd_indicator3_notify_visibility (GtkImage *pImage, GCallback pCallBack, gpointer data)
 {
-	CairoDockModuleInstance *myApplet = data;
+	GldiModuleInstance *myApplet = data;
 
 	g_signal_connect (G_OBJECT (pImage), "show", G_CALLBACK (_show), myApplet);
 	g_signal_connect (G_OBJECT (pImage), "hide", G_CALLBACK (_hide), myApplet);
 }
 
-gboolean cd_indicator3_hide_if_not_visible (GtkImage *pImage, CairoDockModuleInstance *myApplet)
+gboolean cd_indicator3_hide_if_not_visible (GtkImage *pImage, GldiModuleInstance *myApplet)
 {
 	if (pImage == NULL || ! gtk_widget_get_visible (GTK_WIDGET (pImage)))
 	{
@@ -230,7 +230,7 @@ gboolean cd_indicator3_hide_if_not_visible (GtkImage *pImage, CairoDockModuleIns
 	return FALSE;
 }
 
-void cd_indicator3_check_visibility (GtkImage *pImage, CairoDockModuleInstance *myApplet)
+void cd_indicator3_check_visibility (GtkImage *pImage, GldiModuleInstance *myApplet)
 {
 	if (! cd_indicator3_hide_if_not_visible (pImage, myApplet))
 		_show (NULL, myApplet);
@@ -238,7 +238,7 @@ void cd_indicator3_check_visibility (GtkImage *pImage, CairoDockModuleInstance *
 		// cd_printers_accessible_desc_update (pIndicator, pEntry, data);
 }
 
-void cd_indicator3_disconnect_visibility (GtkImage *pImage, CairoDockModuleInstance *myApplet, gboolean bHide)
+void cd_indicator3_disconnect_visibility (GtkImage *pImage, GldiModuleInstance *myApplet, gboolean bHide)
 {
 	g_signal_handlers_disconnect_by_func (G_OBJECT (pImage), G_CALLBACK (_show), myApplet);
 	g_signal_handlers_disconnect_by_func (G_OBJECT (pImage), G_CALLBACK (_hide), myApplet);

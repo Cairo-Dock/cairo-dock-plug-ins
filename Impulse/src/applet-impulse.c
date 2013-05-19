@@ -166,8 +166,8 @@ static gboolean _impulse_check_pulse_status (void)
 	{
 		cd_impulse_stop_animations ();
 		cd_debug ("Impulse: starting failed");
-		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog_with_icon (D_("There is something wrong with PulseAudio.\nCan you check its status (installed? running? version?) and report this bug (if any) to forum.glx-dock.org"),
+		gldi_dialogs_remove_on_icon (myIcon);
+		gldi_dialog_show_temporary_with_icon (D_("There is something wrong with PulseAudio.\nCan you check its status (installed? running? version?) and report this bug (if any) to forum.glx-dock.org"),
 			myIcon,
 			myContainer,
 			5000,
@@ -187,31 +187,31 @@ static gboolean _impulse_check_pulse_status (void)
 
 void _remove_notifications (void)
 {
-	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
+	gldi_object_remove_notification (&myDocksMgr,
 		NOTIFICATION_ICON_MOVED,
-		(CairoDockNotificationFunc) cd_impulse_on_icon_changed, NULL);
-	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
+		(GldiNotificationFunc) cd_impulse_on_icon_changed, NULL);
+	gldi_object_remove_notification (&myDocksMgr,
 		NOTIFICATION_INSERT_ICON,
-		(CairoDockNotificationFunc) cd_impulse_on_icon_changed, NULL);
-	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
+		(GldiNotificationFunc) cd_impulse_on_icon_changed, NULL);
+	gldi_object_remove_notification (&myDocksMgr,
 		NOTIFICATION_REMOVE_ICON,
-		(CairoDockNotificationFunc) cd_impulse_on_icon_changed, NULL);
+		(GldiNotificationFunc) cd_impulse_on_icon_changed, NULL);
 }
 
 void _register_notifications (void)
 {
-	cairo_dock_register_notification_on_object (&myDocksMgr,
+	gldi_object_register_notification (&myDocksMgr,
 		NOTIFICATION_ICON_MOVED,
-		(CairoDockNotificationFunc) cd_impulse_on_icon_changed,
-		CAIRO_DOCK_RUN_FIRST, NULL);
-	cairo_dock_register_notification_on_object (&myDocksMgr,
+		(GldiNotificationFunc) cd_impulse_on_icon_changed,
+		GLDI_RUN_FIRST, NULL);
+	gldi_object_register_notification (&myDocksMgr,
 		NOTIFICATION_INSERT_ICON,
-		(CairoDockNotificationFunc) cd_impulse_on_icon_changed,
-		CAIRO_DOCK_RUN_FIRST, NULL);
-	cairo_dock_register_notification_on_object (&myDocksMgr,
+		(GldiNotificationFunc) cd_impulse_on_icon_changed,
+		GLDI_RUN_FIRST, NULL);
+	gldi_object_register_notification (&myDocksMgr,
 		NOTIFICATION_REMOVE_ICON,
-		(CairoDockNotificationFunc) cd_impulse_on_icon_changed,
-		CAIRO_DOCK_RUN_FIRST, NULL);
+		(GldiNotificationFunc) cd_impulse_on_icon_changed,
+		GLDI_RUN_FIRST, NULL);
 }
 
 ////////////////// GENERAL FUNCTIONS //////////////////
@@ -234,7 +234,7 @@ void cd_impulse_stop_animations (void)
 	// myData.bPulseLaunched = FALSE; //FIXME => if already started and stopped, it will crash... because not correctly stopped...
 }
 
-void cd_impulse_launch_task (void) //(CairoDockModuleInstance *myApplet)
+void cd_impulse_launch_task (void) //(GldiModuleInstance *myApplet)
 {
 	// if a task is already launching
 	/*if (myData.pTask != NULL)
@@ -280,7 +280,7 @@ gboolean cd_impulse_on_icon_changed (gpointer pUserData, Icon *pIcon, CairoDock 
 	{
 		_get_icons_list_without_separators (myData.pSharedMemory);
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 void cd_impulse_draw_current_state (void)

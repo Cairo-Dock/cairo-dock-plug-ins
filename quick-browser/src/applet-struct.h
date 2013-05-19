@@ -26,7 +26,7 @@
 typedef struct {
 	gchar *cPath;
 	GtkWidget *pSubMenu;
-	CairoDockModuleInstance *pApplet;
+	GldiModuleInstance *pApplet;
 	gboolean bMenuBuilt;
 	const gchar *cTmpFileName;
 	GList *pLocalItemList;
@@ -50,7 +50,7 @@ struct _AppletData {
 	gboolean bFoldersFirst;
 	CDQuickBrowserItem *pRootItem;
 	gint iSidFillDirIdle;
-	CairoKeyBinding *cKeyBinding;
+	GldiShortkey *cKeyBinding;
 	GList *pAppList;
 	} ;
 

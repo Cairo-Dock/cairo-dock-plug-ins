@@ -129,10 +129,10 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;  // pour les animation de transitions.
 		if (myDesklet)  // On ne teste le survol des boutons que si l'applet est detachee
 		{
-			cairo_dock_register_notification_on_object (myContainer,
+			gldi_object_register_notification (myContainer,
 				NOTIFICATION_MOUSE_MOVED,
-				(CairoDockNotificationFunc) cd_opengl_test_mouse_over_buttons,
-				CAIRO_DOCK_RUN_AFTER,
+				(GldiNotificationFunc) cd_opengl_test_mouse_over_buttons,
+				GLDI_RUN_AFTER,
 				myApplet);
 		}
 	}
@@ -146,9 +146,9 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT;
 	CD_APPLET_UNREGISTER_FOR_SCROLL_EVENT;
-	cairo_dock_remove_notification_func_on_object (myContainer,
+	gldi_object_remove_notification (myContainer,
 		NOTIFICATION_MOUSE_MOVED,
-		(CairoDockNotificationFunc) cd_opengl_test_mouse_over_buttons,
+		(GldiNotificationFunc) cd_opengl_test_mouse_over_buttons,
 		myApplet);
 	
 	// stop the current handler.
@@ -198,19 +198,19 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		
 		CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
-		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+		gldi_object_remove_notification (CD_APPLET_MY_OLD_CONTAINER,
 			NOTIFICATION_MOUSE_MOVED,
-			(CairoDockNotificationFunc) cd_opengl_test_mouse_over_buttons,
+			(GldiNotificationFunc) cd_opengl_test_mouse_over_buttons,
 			myApplet);
 		
 		if (CD_APPLET_MY_CONTAINER_IS_OPENGL && myConfig.bOpenglThemes)
 		{
 			CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
 			if (myDesklet)  // On ne teste le survol des boutons que si l'applet est detachee
-				cairo_dock_register_notification_on_object (myContainer,
+				gldi_object_register_notification (myContainer,
 					NOTIFICATION_MOUSE_MOVED,
-					(CairoDockNotificationFunc) cd_opengl_test_mouse_over_buttons,
-					CAIRO_DOCK_RUN_AFTER,
+					(GldiNotificationFunc) cd_opengl_test_mouse_over_buttons,
+					GLDI_RUN_AFTER,
 					myApplet);
 		}
 	}

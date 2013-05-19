@@ -25,15 +25,15 @@
 #include "applet-struct.h"
 
 
-gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThemePath);
+gboolean cd_opengl_load_3D_theme (GldiModuleInstance *myApplet, gchar *cThemePath);
 
-void cd_opengl_reset_opengl_datas (CairoDockModuleInstance *myApplet);
+void cd_opengl_reset_opengl_datas (GldiModuleInstance *myApplet);
 
-void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight);
+void cd_opengl_scene (GldiModuleInstance *myApplet, int iWidth, int iHeight);
 
-void cd_opengl_render_to_texture (CairoDockModuleInstance *myApplet);
+void cd_opengl_render_to_texture (GldiModuleInstance *myApplet);
 
-int cd_opengl_check_buttons_state (CairoDockModuleInstance *myApplet);
+int cd_opengl_check_buttons_state (GldiModuleInstance *myApplet);
 
 
 #endif //__CD_3DCOVER_DRAW__

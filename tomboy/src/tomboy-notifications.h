@@ -29,7 +29,7 @@ CD_APPLET_ON_MIDDLE_CLICK_H
 
 gboolean cd_tomboy_on_change_icon (gpointer pUserData, Icon *pPointedIcon, CairoDock *pDock, gboolean *bStartAnimation);
 
-gboolean cd_tomboy_on_leave_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bStartAnimation);
+gboolean cd_tomboy_on_leave_container (gpointer pUserData, GldiContainer *pContainer, gboolean *bStartAnimation);
 
 
 #endif

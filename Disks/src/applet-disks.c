@@ -88,7 +88,7 @@ static void _cd_speed_formatRate (unsigned long long rate, gchar* debit, int iBu
 	}
 }
 
-void cd_disks_format_value_on_icon (CairoDataRenderer *pRenderer, int iNumValue, gchar *cFormatBuffer, int iBufferLength, CairoDockModuleInstance *myApplet)
+void cd_disks_format_value_on_icon (CairoDataRenderer *pRenderer, int iNumValue, gchar *cFormatBuffer, int iBufferLength, GldiModuleInstance *myApplet)
 {
 	if (iNumValue < (int) myConfig.iNumberParts)
 		{
@@ -115,7 +115,7 @@ void cd_disks_format_value_on_icon (CairoDataRenderer *pRenderer, int iNumValue,
 }
 
 
-gboolean cd_disks_update_from_data (CairoDockModuleInstance *myApplet)
+gboolean cd_disks_update_from_data (GldiModuleInstance *myApplet)
 {
 	static gchar s_readRateFormatted[11], s_writeRateFormatted[11];
 	static double s_fValues[CD_DISKS_NB_MAX_VALUES];
@@ -213,7 +213,7 @@ void _cd_disks_set_data (CDDiskSpeedData *pSpeed, long long unsigned uReadBlocks
 #define BUFFSIZE (64*1024)
 static char buff[BUFFSIZE];
 
-void cd_disks_get_data (CairoDockModuleInstance *myApplet)
+void cd_disks_get_data (GldiModuleInstance *myApplet)
 {
 	g_timer_stop (myData.pClock);
 	double fTimeElapsed = g_timer_elapsed (myData.pClock, NULL);
@@ -323,7 +323,7 @@ void _reset_parts_list (double *pSize)
 }
 #endif
 
-void cd_disks_reset_parts_list (CairoDockModuleInstance *myApplet)
+void cd_disks_reset_parts_list (GldiModuleInstance *myApplet)
 {
 	if (myConfig.iNumberParts > 0)
 	{
@@ -345,7 +345,7 @@ void _reset_one_disk (CDDiskSpeedData *pSpeed)
 	g_free (pSpeed);
 }
 
-void cd_disks_reset_disks_list (CairoDockModuleInstance *myApplet)
+void cd_disks_reset_disks_list (GldiModuleInstance *myApplet)
 {
 	if (myData.iNumberDisks > 0)
 	{

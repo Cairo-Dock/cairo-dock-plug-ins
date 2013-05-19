@@ -70,7 +70,7 @@ static void
 connection_changed (IndicatorServiceManager * sm, gboolean connected, CDAppletIndicator *pIndicator)
 {
 	cd_debug ("%s (%s : %d)", __func__, pIndicator->cBusName, connected);
-	CairoDockModuleInstance *myApplet = pIndicator->pApplet;
+	GldiModuleInstance *myApplet = pIndicator->pApplet;
 	if (connected)
 	{
 		if (!pIndicator->bConnected)
@@ -136,7 +136,7 @@ connection_changed (IndicatorServiceManager * sm, gboolean connected, CDAppletIn
 
 static gboolean _check_indicator (CDAppletIndicator *pIndicator)
 {
-	CairoDockModuleInstance *myApplet = pIndicator->pApplet;
+	GldiModuleInstance *myApplet = pIndicator->pApplet;
 	if (!pIndicator->bConnected && pIndicator->on_disconnect)
 		pIndicator->on_disconnect (myApplet);
 		
@@ -144,7 +144,7 @@ static gboolean _check_indicator (CDAppletIndicator *pIndicator)
 	return FALSE;
 }
 
-CDAppletIndicator *cd_indicator_new (CairoDockModuleInstance *pApplet, const gchar *cBusName, const gchar *cServiceObject, const gchar *cServiceInterface, const gchar *cMenuObject, int iVersion)
+CDAppletIndicator *cd_indicator_new (GldiModuleInstance *pApplet, const gchar *cBusName, const gchar *cServiceObject, const gchar *cServiceInterface, const gchar *cMenuObject, int iVersion)
 {
 	if (!s_bIndicatorIconThemeAdded)
 	{
@@ -208,7 +208,7 @@ void cd_indicator_destroy (CDAppletIndicator *pIndicator)
 
 void cd_indicator_set_icon (CDAppletIndicator *pIndicator, const gchar *cStatusIcon)
 {
-	CairoDockModuleInstance *myApplet = pIndicator->pApplet;
+	GldiModuleInstance *myApplet = pIndicator->pApplet;
 	if (cStatusIcon != pIndicator->cStatusIcon)
 	{
 		g_free (pIndicator->cStatusIcon);

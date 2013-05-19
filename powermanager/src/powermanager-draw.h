@@ -30,7 +30,7 @@ void cd_powermanager_bubble(void);
 
 gboolean cd_powermanager_alert(MyAppletCharge alert);
 
-void cd_powermanager_format_value (CairoDataRenderer *pRenderer, int iNumValue, gchar *cFormatBuffer, int iBufferLength, CairoDockModuleInstance *myApplet);
+void cd_powermanager_format_value (CairoDataRenderer *pRenderer, int iNumValue, gchar *cFormatBuffer, int iBufferLength, GldiModuleInstance *myApplet);
 
 
 #endif

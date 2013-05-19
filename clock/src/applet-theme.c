@@ -40,7 +40,7 @@ static char s_cFileNames[CLOCK_ELEMENTS][30] = {
 	"clock-frame.svg" };
 
 
-void cd_clock_load_theme (CairoDockModuleInstance *myApplet)
+void cd_clock_load_theme (GldiModuleInstance *myApplet)
 {
 	cd_message ("%s (%s)", __func__, myConfig.cThemePath);
 	//\_______________ On charge le theme choisi (on n'a pas besoin de connaitre les dimmensions de l'icone).
@@ -111,7 +111,7 @@ void cd_clock_load_theme (CairoDockModuleInstance *myApplet)
 }
 
 
-static void paint_background (CairoDockModuleInstance *myApplet, cairo_t* pDrawingContext)
+static void paint_background (GldiModuleInstance *myApplet, cairo_t* pDrawingContext)
 {
 	if (myData.pSvgHandles[CLOCK_DROP_SHADOW] != NULL)
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_DROP_SHADOW], pDrawingContext);
@@ -120,7 +120,7 @@ static void paint_background (CairoDockModuleInstance *myApplet, cairo_t* pDrawi
 	if (myData.pSvgHandles[CLOCK_MARKS] != NULL)
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_MARKS], pDrawingContext);
 }
-static void paint_foreground (CairoDockModuleInstance *myApplet, cairo_t* pDrawingContext)
+static void paint_foreground (GldiModuleInstance *myApplet, cairo_t* pDrawingContext)
 {
 	if (myData.pSvgHandles[CLOCK_FACE_SHADOW] != NULL)
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_FACE_SHADOW], pDrawingContext);
@@ -129,7 +129,7 @@ static void paint_foreground (CairoDockModuleInstance *myApplet, cairo_t* pDrawi
 	if (myData.pSvgHandles[CLOCK_FRAME] != NULL)
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_FRAME], pDrawingContext);
 }
-static cairo_surface_t* cd_clock_create_bg_surface (CairoDockModuleInstance *myApplet, int iWidth, int iHeight, SurfaceKind kind)
+static cairo_surface_t* cd_clock_create_bg_surface (GldiModuleInstance *myApplet, int iWidth, int iHeight, SurfaceKind kind)
 {
 	//g_print ("%s (%dx%d)\n", __func__, iWidth, iHeight);
 	cairo_surface_t* pNewSurface = cairo_dock_create_blank_surface (iWidth, iHeight);
@@ -166,7 +166,7 @@ static cairo_surface_t* cd_clock_create_bg_surface (CairoDockModuleInstance *myA
 	return pNewSurface;
 }
 
-static void paint_hour (CairoDockModuleInstance *myApplet, cairo_t* pDrawingContext)
+static void paint_hour (GldiModuleInstance *myApplet, cairo_t* pDrawingContext)
 {
 	double fShadowOffsetX = -0.75f;
 	double fShadowOffsetY = 0.75f;
@@ -178,7 +178,7 @@ static void paint_hour (CairoDockModuleInstance *myApplet, cairo_t* pDrawingCont
 	if (myData.pSvgHandles[CLOCK_HOUR_HAND] != NULL)
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_HOUR_HAND], pDrawingContext);
 }
-static void paint_minute (CairoDockModuleInstance *myApplet, cairo_t* pDrawingContext)
+static void paint_minute (GldiModuleInstance *myApplet, cairo_t* pDrawingContext)
 {
 	double fShadowOffsetX = -0.75f;
 	double fShadowOffsetY = 0.75f;
@@ -190,7 +190,7 @@ static void paint_minute (CairoDockModuleInstance *myApplet, cairo_t* pDrawingCo
 	if (myData.pSvgHandles[CLOCK_MINUTE_HAND] != NULL)
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_MINUTE_HAND], pDrawingContext);
 }
-static void paint_second (CairoDockModuleInstance *myApplet, cairo_t* pDrawingContext)
+static void paint_second (GldiModuleInstance *myApplet, cairo_t* pDrawingContext)
 {
 	double fShadowOffsetX = -0.75f;
 	double fShadowOffsetY = 0.75f;
@@ -202,7 +202,7 @@ static void paint_second (CairoDockModuleInstance *myApplet, cairo_t* pDrawingCo
 	if (myData.pSvgHandles[CLOCK_SECOND_HAND] != NULL)
 		rsvg_handle_render_cairo (myData.pSvgHandles[CLOCK_SECOND_HAND], pDrawingContext);
 }
-static cairo_surface_t *create_needle_surface (CairoDockModuleInstance *myApplet, cairo_t* pSourceContext, SurfaceKind kind)
+static cairo_surface_t *create_needle_surface (GldiModuleInstance *myApplet, cairo_t* pSourceContext, SurfaceKind kind)
 {
 	cairo_surface_t* pNewSurface = cairo_dock_create_blank_surface (myData.iNeedleWidth, myData.iNeedleHeight + 0);  // +1 pour les ombres.
 	g_return_val_if_fail (cairo_surface_status (pNewSurface) == CAIRO_STATUS_SUCCESS, NULL);
@@ -240,7 +240,7 @@ static cairo_surface_t *create_needle_surface (CairoDockModuleInstance *myApplet
 	return pNewSurface;
 }
 
-void cd_clock_load_back_and_fore_ground (CairoDockModuleInstance *myApplet)
+void cd_clock_load_back_and_fore_ground (GldiModuleInstance *myApplet)
 {
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
@@ -263,7 +263,7 @@ void cd_clock_load_back_and_fore_ground (CairoDockModuleInstance *myApplet)
 	}
 }
 
-void cd_clock_load_textures (CairoDockModuleInstance *myApplet)
+void cd_clock_load_textures (GldiModuleInstance *myApplet)
 {
 	if (myData.pBackgroundSurface != NULL)
 		myData.iBgTexture = cairo_dock_create_texture_from_surface (myData.pBackgroundSurface);
@@ -308,7 +308,7 @@ void cd_clock_load_textures (CairoDockModuleInstance *myApplet)
 
 
 
-void cd_clock_clear_theme (CairoDockModuleInstance *myApplet, gboolean bClearAll)
+void cd_clock_clear_theme (GldiModuleInstance *myApplet, gboolean bClearAll)
 {
 	if (myData.pBackgroundSurface != NULL)
 	{

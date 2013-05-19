@@ -29,7 +29,7 @@ void _check_demanding_attention (const gchar *cName, const gchar *cAnimationName
 		CD_APPLET_STOP_DEMANDING_ATTENTION;
 }
 
-static void _icon_updated (GObject *pObject, G_GNUC_UNUSED GParamSpec *pParam, CairoDockModuleInstance *myApplet)
+static void _icon_updated (GObject *pObject, G_GNUC_UNUSED GParamSpec *pParam, GldiModuleInstance *myApplet)
 {
 	g_return_if_fail (GTK_IS_IMAGE (pObject));
 	GtkImage *pImage = GTK_IMAGE (pObject);
@@ -53,7 +53,7 @@ void cd_messaging_accessible_desc_update (G_GNUC_UNUSED IndicatorObject *pIndica
 void cd_messaging_entry_added (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data)
 {
 	cd_debug ("Entry Added: %p", pEntry);
-	CairoDockModuleInstance *myApplet = data;
+	GldiModuleInstance *myApplet = data;
 	g_return_if_fail (myData.pEntry == NULL); // should not happen... only one entry
 
 	myData.pEntry = pEntry;
@@ -74,7 +74,7 @@ void cd_messaging_entry_removed (IndicatorObject *pIndicator, IndicatorObjectEnt
 {
 	// should not happen... except at the end.
 	cd_debug ("Entry Removed");
-	CairoDockModuleInstance *myApplet = data;
+	GldiModuleInstance *myApplet = data;
 
 	gboolean bHide = FALSE;
 	if (myData.pEntry != NULL && myData.pEntry == pEntry) // only if an entry was already added and it was the same that we want to remove

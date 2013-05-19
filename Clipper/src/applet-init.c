@@ -108,7 +108,7 @@ CD_APPLET_STOP_BEGIN
 		g_free (cRememberedItems);
 	}
 	
-	cd_keybinder_unbind (myData.cKeyBinding);
+	gldi_object_unref (GLDI_OBJECT(myData.cKeyBinding));
 CD_APPLET_STOP_END
 
 
@@ -166,7 +166,7 @@ CD_APPLET_RELOAD_BEGIN
 			}
 		}
 		
-		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cShortcut, NULL);
+		gldi_shortkey_rebind (myData.cKeyBinding, myConfig.cShortcut, NULL);
 		
 		if (myConfig.cRememberedItems != NULL && ! myConfig.bRememberItems)  // on ne veut plus s'en souvenir.
 		{

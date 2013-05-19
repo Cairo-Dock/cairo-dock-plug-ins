@@ -38,7 +38,7 @@ void cd_app_menu_redraw_buttons (void);
 void cd_app_menu_resize (void);
 
 
-CDButtonEnum cd_app_menu_find_button (CairoDockModuleInstance *myApplet);
+CDButtonEnum cd_app_menu_find_button (GldiModuleInstance *myApplet);
 
 
 #endif

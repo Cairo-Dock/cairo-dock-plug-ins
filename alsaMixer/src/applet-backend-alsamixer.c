@@ -300,7 +300,7 @@ static void mixer_switch_mute (void)
 
 
 
-static void _on_dialog_destroyed (CairoDockModuleInstance *myApplet)
+static void _on_dialog_destroyed (GldiModuleInstance *myApplet)
 {
 	myData.pDialog = NULL;
 }
@@ -320,19 +320,20 @@ static void mixer_show_hide_dialog (void)
 			pScale = mixer_build_widget (TRUE);
 		}
 		
-		CairoDialogAttribute attr;
-		memset (&attr, 0, sizeof (CairoDialogAttribute));
+		CairoDialogAttr attr;
+		memset (&attr, 0, sizeof (CairoDialogAttr));
 		attr.cText = cMessage;
 		attr.cImageFilePath = MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE;
 		attr.pInteractiveWidget = pScale;
 		attr.pUserData = myApplet;
 		attr.pFreeDataFunc = (GFreeFunc)_on_dialog_destroyed;
-		
-		myData.pDialog = cairo_dock_build_dialog (&attr, myIcon, myContainer);
+		attr.pIcon = myIcon;
+		attr.pContainer = myContainer;
+		myData.pDialog = gldi_dialog_new (&attr);
 	}
 	else
 	{
-		cairo_dock_dialog_unreference (myData.pDialog);
+		gldi_object_unref (GLDI_OBJECT(myData.pDialog));
 		myData.pDialog = NULL;
 	}
 }

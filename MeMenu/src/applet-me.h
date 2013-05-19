@@ -24,11 +24,11 @@
 #include <cairo-dock.h>
 
 
-void cd_me_on_connect (CairoDockModuleInstance *myApplet);
+void cd_me_on_connect (GldiModuleInstance *myApplet);
 
-void cd_me_on_disconnect (CairoDockModuleInstance *myApplet);
+void cd_me_on_disconnect (GldiModuleInstance *myApplet);
 
-void cd_me_get_initial_values (CairoDockModuleInstance *myApplet);
+void cd_me_get_initial_values (GldiModuleInstance *myApplet);
 
 
 #endif

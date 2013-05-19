@@ -125,7 +125,7 @@ void cd_NetworkMonitor_draw_icon (void)
 void cd_NetworkMonitor_bubble (void) {
 	if (cairo_dock_task_is_running (myData.wifi.pTask) || cairo_dock_task_is_running (myData.netSpeed.pTask))
 	{
-		cairo_dock_show_temporary_dialog  (D_("Checking connection...\nPlease retry in a few seconds"), myIcon, myContainer, 3000);
+		gldi_dialog_show_temporary  (D_("Checking connection...\nPlease retry in a few seconds"), myIcon, myContainer, 3000);
 		return ;
 	}
 	GString *sInfo = g_string_new ("");
@@ -155,5 +155,5 @@ void cd_NetworkMonitor_bubble (void) {
 	}
 		
 	//cd_debug ("%s (%s)", sInfo->str, cIconPath);
-	cairo_dock_show_temporary_dialog_with_icon (sInfo->str, myIcon, myContainer, 6000, cIconPath);
+	gldi_dialog_show_temporary_with_icon (sInfo->str, myIcon, myContainer, 6000, cIconPath);
 	g_string_free (sInfo, TRUE);}

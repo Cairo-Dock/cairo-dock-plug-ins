@@ -22,11 +22,11 @@
 
 #include <cairo-dock.h>
 
-void cd_disks_get_data (CairoDockModuleInstance *myApplet);
-void cd_disks_format_value_on_icon (CairoDataRenderer *pRenderer, int iNumValue, gchar *cFormatBuffer, int iBufferLength, CairoDockModuleInstance *myApplet);
-gboolean cd_disks_update_from_data (CairoDockModuleInstance *myApplet);
+void cd_disks_get_data (GldiModuleInstance *myApplet);
+void cd_disks_format_value_on_icon (CairoDataRenderer *pRenderer, int iNumValue, gchar *cFormatBuffer, int iBufferLength, GldiModuleInstance *myApplet);
+gboolean cd_disks_update_from_data (GldiModuleInstance *myApplet);
 
-void cd_disks_reset_parts_list (CairoDockModuleInstance *myApplet);
-void cd_disks_reset_disks_list (CairoDockModuleInstance *myApplet);
+void cd_disks_reset_parts_list (GldiModuleInstance *myApplet);
+void cd_disks_reset_disks_list (GldiModuleInstance *myApplet);
 
 #endif

@@ -70,7 +70,7 @@ static const gchar *_get_icon_from_state (gint iState)
 ///////////
 
 static void
-on_sound_state_updated (DBusGProxy * proxy, gint iNewState, CairoDockModuleInstance *myApplet)
+on_sound_state_updated (DBusGProxy * proxy, gint iNewState, GldiModuleInstance *myApplet)
 {
 	cd_debug ("%s (iNewState : %d)", __func__, iNewState);
 	CD_APPLET_ENTER;
@@ -121,7 +121,7 @@ static void _stop (void)
 	g_list_free (myData.transport_widgets_list);
 }
 
-static void cd_sound_on_connect (CairoDockModuleInstance *myApplet)
+static void cd_sound_on_connect (GldiModuleInstance *myApplet)
 {
 	cd_debug ("%s ()", __func__);
 	// the sound service is up and running, stop the alsa mixer if ever we initialized it before.
@@ -144,7 +144,7 @@ static void cd_sound_on_connect (CairoDockModuleInstance *myApplet)
 		NULL);
 }
 
-static void cd_sound_on_disconnect (CairoDockModuleInstance *myApplet)
+static void cd_sound_on_disconnect (GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("%s", __func__);
@@ -166,7 +166,7 @@ static void cd_sound_on_disconnect (CairoDockModuleInstance *myApplet)
 	CD_APPLET_LEAVE();
 }
 
-static void _on_got_sound_state (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockModuleInstance *myApplet)
+static void _on_got_sound_state (DBusGProxy *proxy, DBusGProxyCall *call_id, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	int iCurrentState = 0;
@@ -191,7 +191,7 @@ static void _on_got_sound_state (DBusGProxy *proxy, DBusGProxyCall *call_id, Cai
 	}
 	CD_APPLET_LEAVE();
 }
-static void cd_sound_get_initial_values (CairoDockModuleInstance *myApplet)
+static void cd_sound_get_initial_values (GldiModuleInstance *myApplet)
 {
 	// query the service to display initial values.
 	dbus_g_proxy_begin_call (myData.pIndicator->pServiceProxy, "GetSoundState",

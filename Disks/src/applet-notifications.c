@@ -27,10 +27,10 @@
 
 
 CD_APPLET_ON_CLICK_BEGIN
-	cairo_dock_remove_dialog_if_any (myIcon);
+	gldi_dialogs_remove_on_icon (myIcon);
 	//~ if (myData.bAcquisitionOK)
 	//~ {
-		//~ cairo_dock_show_temporary_dialog_with_icon_printf ("%s :\n  %s : %.2f%s\n  %s : %.2f%s",
+		//~ gldi_dialog_show_temporary_with_icon_printf ("%s :\n  %s : %.2f%s\n  %s : %.2f%s",
 			//~ myIcon, myContainer, 6e3,
 			//~ MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
 			//~ D_("Total amount of data"),
@@ -40,18 +40,18 @@ CD_APPLET_ON_CLICK_BEGIN
 	//~ else
 	//~ {
 		//~ gchar *cQuestion = g_strdup_printf (D_("Interface '%s' doesn't seem to exist or is not readable.\n You may have to set up the interface you wish to monitor.\n Do you want to do it now?"), myConfig.cInterface);
-		//~ cairo_dock_show_dialog_with_question (cQuestion, myIcon, myContainer, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, (CairoDockActionOnAnswerFunc) cairo_dock_open_module_config_on_demand, myApplet, NULL);
+		//~ gldi_dialog_show_with_question (cQuestion, myIcon, myContainer, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE, (CairoDockActionOnAnswerFunc) cairo_dock_open_module_config_on_demand, myApplet, NULL);
 		//~ g_free (cQuestion);
 	//~ }
 CD_APPLET_ON_CLICK_END
 
 /* Not used
-static void _disks_recheck (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet) {
+static void _disks_recheck (GtkMenuItem *menu_item, GldiModuleInstance *myApplet) {
 	cairo_dock_stop_task (myData.pPeriodicTask);
 	cairo_dock_launch_task (myData.pPeriodicTask);
 }
 */
-static void _show_monitor_system (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _show_monitor_system (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	if (myConfig.cSystemMonitorCommand != NULL)
 	{
@@ -86,7 +86,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 			//~ "org.freedesktop.NetworkManager",
 			//~ "/org/freedesktop/NetworkManager",
 			//~ "org.freedesktop.NetworkManager");
-	//~ g_return_val_if_fail (myData.dbus_proxy_nm != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	//~ g_return_val_if_fail (myData.dbus_proxy_nm != NULL, GLDI_NOTIFICATION_LET_PASS);
 	//~ 
 	//~ guint state = 0;
 	//~ dbus_g_proxy_call (myData.dbus_proxy_nm, "state", NULL,

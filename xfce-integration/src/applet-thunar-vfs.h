@@ -34,8 +34,8 @@ void vfs_backend_launch_uri (const gchar *cURI);
 
 
 gchar * vfs_backend_is_mounted (const gchar *cURI, gboolean *bIsMounted);
-void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, CairoContainer *pContainer);
-void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, CairoContainer *pContainer);
+void vfs_backend_mount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, GldiContainer *pContainer);
+void vfs_backend_unmount (const gchar *cURI, int iVolumeID, CairoDockFMMountCallback pCallback, Icon *icon, GldiContainer *pContainer);
 
 void vfs_backend_add_monitor (const gchar *cURI, gboolean bDirectory, CairoDockFMMonitorCallback pCallback, gpointer data);
 void vfs_backend_remove_monitor (const gchar *cURI);

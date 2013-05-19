@@ -145,7 +145,7 @@ static void on_delete_note_window (GtkWidget *pWidget, gchar *cNoteID)
 
 gboolean _on_key_press (G_GNUC_UNUSED GtkWidget *pWidget,
 	GdkEventKey *pKey,
-	CairoDockModuleInstance *myApplet)
+	GldiModuleInstance *myApplet)
 {
 	if (pKey->type == GDK_KEY_PRESS && pKey->keyval == GLDI_KEY(Escape))
 	{

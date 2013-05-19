@@ -117,9 +117,9 @@ static void free_all_notes (void)
 {
 	cd_debug ("");
 	g_hash_table_remove_all (myData.hNoteTable);
-	cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_ICONS_LIST_CONTAINER,
+	gldi_object_remove_notification (CD_APPLET_MY_ICONS_LIST_CONTAINER,
 		NOTIFICATION_ENTER_ICON,
-		(CairoDockNotificationFunc) cd_tomboy_on_change_icon,
+		(GldiNotificationFunc) cd_tomboy_on_change_icon,
 		myApplet);
 	CD_APPLET_DELETE_MY_ICONS_LIST;
 }
@@ -324,24 +324,24 @@ static void _load_notes (void)
 	GList *pList = g_hash_table_get_values (myData.hNoteTable);
 	CD_APPLET_LOAD_MY_ICONS_LIST (pList, myConfig.cRenderer, "Slide", NULL);  // pList desormais appartient au container de l'applet, donc on ne la libere pas.
 	
-	cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_ICONS_LIST_CONTAINER,
+	gldi_object_remove_notification (CD_APPLET_MY_ICONS_LIST_CONTAINER,
 		NOTIFICATION_ENTER_ICON,
-		(CairoDockNotificationFunc) cd_tomboy_on_change_icon,
+		(GldiNotificationFunc) cd_tomboy_on_change_icon,
 		myApplet);  // le sous-dock n'est pas forcement detruit.
-	cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_ICONS_LIST_CONTAINER,
+	gldi_object_remove_notification (CD_APPLET_MY_ICONS_LIST_CONTAINER,
 		myDock ? NOTIFICATION_LEAVE_DOCK : NOTIFICATION_LEAVE_DESKLET,
-		(CairoDockNotificationFunc) cd_tomboy_on_leave_container,
+		(GldiNotificationFunc) cd_tomboy_on_leave_container,
 		myApplet);  // le sous-dock n'est pas forcement detruit.
 	if (myConfig.bPopupContent)
 	{
-		cairo_dock_register_notification_on_object (CD_APPLET_MY_ICONS_LIST_CONTAINER,
+		gldi_object_register_notification (CD_APPLET_MY_ICONS_LIST_CONTAINER,
 			NOTIFICATION_ENTER_ICON,
-			(CairoDockNotificationFunc) cd_tomboy_on_change_icon,
-			CAIRO_DOCK_RUN_AFTER, myApplet);
-		cairo_dock_register_notification_on_object (CD_APPLET_MY_ICONS_LIST_CONTAINER,
+			(GldiNotificationFunc) cd_tomboy_on_change_icon,
+			GLDI_RUN_AFTER, myApplet);
+		gldi_object_register_notification (CD_APPLET_MY_ICONS_LIST_CONTAINER,
 			myDock ? NOTIFICATION_LEAVE_DOCK : NOTIFICATION_LEAVE_DESKLET,  // a bit unfortunate
-			(CairoDockNotificationFunc) cd_tomboy_on_leave_container,
-			CAIRO_DOCK_RUN_AFTER, myApplet);
+			(GldiNotificationFunc) cd_tomboy_on_leave_container,
+			GLDI_RUN_AFTER, myApplet);
 	}
 	cd_tomboy_update_icon ();
 }

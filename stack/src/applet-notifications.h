@@ -32,7 +32,7 @@ CD_APPLET_ON_DROP_DATA_H
 CD_APPLET_ON_MIDDLE_CLICK_H
 
 
-gboolean cd_stack_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *icon, double fOrder, CairoContainer *pContainer);
+gboolean cd_stack_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *icon, double fOrder, GldiContainer *pContainer);
 
 
 #endif

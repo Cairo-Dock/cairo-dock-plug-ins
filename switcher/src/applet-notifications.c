@@ -31,11 +31,11 @@
 
 static void _cd_expose_windows (void)
 {
-	cairo_dock_wm_present_windows ();
+	gldi_desktop_present_windows ();
 }
 static void _cd_expose_desktops (void)
 {
-	cairo_dock_wm_present_desktops ();
+	gldi_desktop_present_desktops ();
 }
 static gboolean _cd_expose_windows_idle (gpointer data)
 {
@@ -151,7 +151,7 @@ static gboolean _cd_switcher_get_viewport_from_clic (Icon *pClickedIcon, int *iN
 CD_APPLET_ON_CLICK_BEGIN
 	int iNumDesktop, iNumViewportX, iNumViewportY;
 	if (! _cd_switcher_get_viewport_from_clic (pClickedIcon, &iNumDesktop, &iNumViewportX, &iNumViewportY))
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 	
 	if (iNumDesktop != myData.switcher.iCurrentDesktop)
 		cairo_dock_set_current_desktop (iNumDesktop);
@@ -179,7 +179,7 @@ CD_APPLET_ON_SCROLL_BEGIN  // Merci ChangFu !
 		cd_switcher_compute_desktop_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
 	}
 	else
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 	
 	cd_debug ("Switcher: switching to %d", iIndex);
 	if (iNumDesktop != myData.switcher.iCurrentDesktop)
@@ -189,15 +189,15 @@ CD_APPLET_ON_SCROLL_BEGIN  // Merci ChangFu !
 CD_APPLET_ON_SCROLL_END
 
 
-static void _cd_switcher_add_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_switcher_add_desktop (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	cd_switcher_add_a_desktop ();
 }
-static void _cd_switcher_remove_last_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_switcher_remove_last_desktop (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	cd_switcher_remove_last_desktop ();
 }
-static void _cd_switcher_refresh (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_switcher_refresh (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	cd_switcher_refresh_desktop_values (myApplet);
 }
@@ -245,22 +245,22 @@ static void _cd_switcher_rename_desktop (GtkMenuItem *menu_item, gpointer data)
 	// on demande le nouveau nom.
 	int iIndex = GPOINTER_TO_INT (data);
 	gchar *cName = (iIndex < myData.iNbNames ? g_strdup (myData.cDesktopNames[iIndex]) : g_strdup_printf ("%s %d", D_("Desktop"), iIndex+1));
-	cairo_dock_show_dialog_with_entry (D_("Rename this workspace"),
+	gldi_dialog_show_with_entry (D_("Rename this workspace"),
 		myIcon, myContainer, "same icon",
 		cName,
 		(CairoDockActionOnAnswerFunc)_on_got_workspace_name, data, (GFreeFunc)NULL);
 	g_free (cName);
 }
-static void _cd_switcher_show_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_switcher_show_desktop (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
-	cairo_dock_show_hide_desktop (! bDesktopIsVisible);
+	gldi_desktop_show_hide (! bDesktopIsVisible);
 }
-static void _cd_switcher_expose_windows (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_switcher_expose_windows (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	_cd_expose_windows ();
 }
-static void _cd_switcher_expose_desktops (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_switcher_expose_desktops (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	_cd_expose_desktops ();
 }
@@ -312,7 +312,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_MY_MENU);
 	g_free (cLabel);
 	
-	if (cairo_dock_wm_can_present_desktops ())
+	if (gldi_desktop_can_present_desktops ())
 	{
 		cLabel = (myConfig.iActionOnMiddleClick == SWICTHER_EXPOSE_DESKTOPS ? g_strdup_printf ("%s (%s)", D_("Expose all the desktops"), D_("middle-click")) : g_strdup (D_("Expose all the desktops")));
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel,
@@ -321,7 +321,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
-	if (cairo_dock_wm_can_present_windows ())
+	if (gldi_desktop_can_present_windows ())
 	{
 		cLabel = (myConfig.iActionOnMiddleClick == SWICTHER_EXPOSE_WINDOWS ? g_strdup_printf ("%s (%s)", D_("Expose all the windows"), D_("middle-click")) : g_strdup (D_("Expose all the windows")));
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel,
@@ -340,7 +340,7 @@ CD_APPLET_ON_BUILD_MENU_END
 
 
 
-static gboolean _cd_switcher_redraw_main_icon_idle (CairoDockModuleInstance *myApplet)
+static gboolean _cd_switcher_redraw_main_icon_idle (GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	if (myData.switcher.iNbColumns == 0)
@@ -353,7 +353,7 @@ static gboolean _cd_switcher_redraw_main_icon_idle (CairoDockModuleInstance *myA
 	CD_APPLET_LEAVE (FALSE);
 	//return FALSE;
 }
-static void _cd_switcher_trigger_redraw (CairoDockModuleInstance *myApplet)
+static void _cd_switcher_trigger_redraw (GldiModuleInstance *myApplet)
 {
 	if (myData.iSidRedrawMainIconIdle == 0 && myData.iSidUpdateIdle == 0)
 	{
@@ -361,14 +361,7 @@ static void _cd_switcher_trigger_redraw (CairoDockModuleInstance *myApplet)
 	}
 }
 
-gboolean on_change_active_window (CairoDockModuleInstance *myApplet, Window *XActiveWindow)
-{
-	CD_APPLET_ENTER;
-	_cd_switcher_trigger_redraw (myApplet);
-	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
-}
-
-gboolean on_change_desktop (CairoDockModuleInstance *myApplet)
+gboolean on_change_desktop (GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("");
@@ -388,9 +381,9 @@ gboolean on_change_desktop (CairoDockModuleInstance *myApplet)
 	}
 	else
 	{
-		CairoContainer *pContainer = (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer);
-		CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
-		//g_return_val_if_fail (pContainer != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		GldiContainer *pContainer = (myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer);
+		CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL, GLDI_NOTIFICATION_LET_PASS);
+		//g_return_val_if_fail (pContainer != NULL, GLDI_NOTIFICATION_LET_PASS);
 		
 		if (myDock && myConfig.bDisplayNumDesk)
 			CD_APPLET_REDRAW_MY_ICON;
@@ -426,25 +419,31 @@ gboolean on_change_desktop (CairoDockModuleInstance *myApplet)
 			gtk_widget_queue_draw (myDesklet->container.pWidget);
 	}
 	
-	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 }
 
-gboolean on_change_screen_geometry (CairoDockModuleInstance *myApplet)
+gboolean on_change_screen_geometry (GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("");
 	cd_switcher_trigger_update_from_screen_geometry (TRUE);  // TRUE = now
-	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 }
 
-gboolean on_window_configured (CairoDockModuleInstance *myApplet, Window Xid, XConfigureEvent *xconfigure)
+gboolean on_window_size_position_changed (GldiModuleInstance *myApplet, GldiWindowsManager *actor)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("");
 	_cd_switcher_trigger_redraw (myApplet);
-	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 }
 
+gboolean on_change_window_order (GldiModuleInstance *myApplet)
+{
+	CD_APPLET_ENTER;
+	_cd_switcher_trigger_redraw (myApplet);
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
+}
 
 static void _save_desktop_names (void)
 {
@@ -460,7 +459,7 @@ static void _save_desktop_names (void)
 		G_TYPE_INVALID);
 	g_string_free (sNames, TRUE);
 }
-gboolean on_change_desktop_names (CairoDockModuleInstance *myApplet)
+gboolean on_change_desktop_names (GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	// retrieve the desktop names
@@ -470,19 +469,19 @@ gboolean on_change_desktop_names (CairoDockModuleInstance *myApplet)
 	myData.iNbNames = g_strv_length (myData.cDesktopNames);
 	// store them in config, to be able to set them on startup if noone has done it.
 	_save_desktop_names ();
-	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 }
 
 
-gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation)
+gboolean on_mouse_moved (GldiModuleInstance *myApplet, GldiContainer *pContainer, gboolean *bStartAnimation)
 {
 	CD_APPLET_ENTER;
 	if (! myIcon->bPointed || ! pContainer->bInside)
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 	
 	int iNumDesktop, iNumViewportX, iNumViewportY;
 	if (! _cd_switcher_get_viewport_from_clic (myIcon, &iNumDesktop, &iNumViewportX, &iNumViewportY))
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 	
 	int iIndex = cd_switcher_compute_index_from_desktop (iNumDesktop, iNumViewportX, iNumViewportY);
 	if (iIndex != myData.iPrevIndexHovered)
@@ -502,10 +501,10 @@ gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pCon
 		else
 			*bStartAnimation = TRUE;
 	}
-	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 }
 
-gboolean on_update_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bContinueAnimation)
+gboolean on_update_desklet (GldiModuleInstance *myApplet, GldiContainer *pContainer, gboolean *bContinueAnimation)
 {
 	CD_APPLET_ENTER;
 	if (! myIcon->bPointed || ! pContainer->bInside)
@@ -525,13 +524,13 @@ gboolean on_update_desklet (CairoDockModuleInstance *myApplet, CairoContainer *p
 			*bContinueAnimation = TRUE;
 	}
 	CAIRO_DOCK_REDRAW_MY_CONTAINER;
-	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 }
 
-gboolean on_render_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, cairo_t *pCairoContext)
+gboolean on_render_desklet (GldiModuleInstance *myApplet, GldiContainer *pContainer, cairo_t *pCairoContext)
 {
 	if (myContainer != pContainer)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	CD_APPLET_ENTER;
 	int x, y;  // text center (middle of the icon).
 	x = myIcon->fDrawX + myIcon->fWidth * myIcon->fScale / 2;
@@ -573,12 +572,12 @@ gboolean on_render_desklet (CairoDockModuleInstance *myApplet, CairoContainer *p
 			glPopMatrix ();
 		}
 	}
-	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 }
 
-gboolean on_leave_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation)
+gboolean on_leave_desklet (GldiModuleInstance *myApplet, GldiContainer *pContainer, gboolean *bStartAnimation)
 {
 	*bStartAnimation = TRUE;
 	myData.iPrevIndexHovered = -1;
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }

@@ -36,16 +36,17 @@ CD_APPLET_ON_CLICK_BEGIN
 	}
 	else
 	{
-		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog_with_icon (D_("The acquisition of one or more data has failed.\nYou should remove the data that couldn't be fetched."), myIcon, myContainer, 6e3, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+		gldi_dialogs_remove_on_icon (myIcon);
+		gldi_dialog_show_temporary_with_icon (D_("The acquisition of one or more data has failed.\nYou should remove the data that couldn't be fetched."), myIcon, myContainer, 6e3, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 	}
 CD_APPLET_ON_CLICK_END
 
 
-static void _pop_up_dialog_info (CairoDockModuleInstance *myApplet)
+static void _pop_up_dialog_info (GldiModuleInstance *myApplet)
 {
-	if (myData.pTopDialog != NULL || cairo_dock_remove_dialog_if_any (myIcon))  // don't popup if another dialog is present.
+	if (myData.pTopDialog != NULL)  // we shouldn't get the click event anyway
 		return;
+	gldi_dialogs_remove_on_icon (myIcon);
 	
 	GString *pInfo = g_string_new ("");
 	
@@ -65,7 +66,7 @@ static void _pop_up_dialog_info (CairoDockModuleInstance *myApplet)
 	cd_sysmonitor_get_sensors_info (myApplet, pInfo);
 	
 	// On affiche tout ca.
-	cairo_dock_show_temporary_dialog_with_icon (pInfo->str,
+	gldi_dialog_show_temporary_with_icon (pInfo->str,
 		myIcon, myContainer,
 		15e3,
 		MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
@@ -80,12 +81,12 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	}
 	else
 	{
-		cairo_dock_show_temporary_dialog_with_icon (D_("The acquisition of one or more data has failed.\nYou should remove the data that couldn't be fetched."), myIcon, myContainer, 5e3, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+		gldi_dialog_show_temporary_with_icon (D_("The acquisition of one or more data has failed.\nYou should remove the data that couldn't be fetched."), myIcon, myContainer, 5e3, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 	}
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
-static void _open_system_monitor (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _open_system_monitor (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	if (myConfig.cSystemMonitorCommand != NULL)
 	{
@@ -96,7 +97,7 @@ static void _open_system_monitor (GtkMenuItem *menu_item, CairoDockModuleInstanc
 		cairo_dock_fm_show_system_monitor ();
 	}
 }
-static void _show_info (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _show_info (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	_pop_up_dialog_info (myApplet);
 }

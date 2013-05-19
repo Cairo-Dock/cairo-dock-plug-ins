@@ -104,7 +104,7 @@ typedef struct {
 	gint iNbDays;
 	CDWeatherData wdata;
 	gboolean bErrorInThread;
-	CairoDockModuleInstance *pApplet;
+	GldiModuleInstance *pApplet;
 	} CDSharedMemory;
 
 struct _AppletData {

@@ -94,24 +94,26 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			if (myDesklet != NULL)  // il faut passer du dialogue au desklet.
 			{
-				myData.pGtkMozEmbed = cairo_dock_steal_widget_from_its_container (myData.pGtkMozEmbed);
-				cairo_dock_dialog_unreference (myData.dialog);
+				gldi_dialog_steal_interactive_widget (myData.dialog);
+				gldi_object_unref (GLDI_OBJECT(myData.dialog));
 				myData.dialog = NULL;
-				cairo_dock_add_interactive_widget_to_desklet (myData.pGtkMozEmbed, myDesklet);
+				gldi_desklet_add_interactive_widget (myDesklet, myData.pGtkMozEmbed);
+				g_object_unref (myData.pGtkMozEmbed);  // le 'steal' a rajoute une reference.
 				CD_APPLET_SET_DESKLET_RENDERER (NULL);  // pour rempecher le clignotement du au double-buffer.
 				//cairo_dock_set_desklet_renderer_by_name (myDesklet, NULL, ! CAIRO_DOCK_LOAD_ICONS_FOR_DESKLET, NULL);  // pou rempecher le clignotement du au double-buffer.
 				CD_APPLET_SET_STATIC_DESKLET;
 			}
 			else  // il faut passer du desklet au dialogue
 			{
+				gldi_desklet_steal_interactive_widget (CAIRO_DESKLET (CD_APPLET_MY_OLD_CONTAINER));
 				myData.dialog =  cd_weblets_build_dialog(myApplet);
-				
-				cairo_dock_hide_dialog (myData.dialog);
+				g_object_unref (myData.tab);  // le 'steal' a rajoute une reference.
+				gldi_dialog_hide (myData.dialog);
 			}
 		}
 		else
 		{
-			cairo_dock_set_desklet_margin (myDesklet, myConfig.iRightMargin);
+			gldi_desklet_set_margin (myDesklet, myConfig.iRightMargin);
 		}
 
 		// on remet en place un timer tout frais

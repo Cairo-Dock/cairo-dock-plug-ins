@@ -31,7 +31,7 @@ static int _sort_item (CDQuickBrowserItem *pItem1, CDQuickBrowserItem *pItem2)
 		return -1;
 	if (pItem2 == NULL)
 		return 1;
-	CairoDockModuleInstance *myApplet = pItem2->pApplet;
+	GldiModuleInstance *myApplet = pItem2->pApplet;
 	if (myConfig.bFoldersFirst)
 	{
 		if (pItem1->pSubMenu && ! pItem2->pSubMenu)
@@ -44,7 +44,7 @@ static int _sort_item (CDQuickBrowserItem *pItem1, CDQuickBrowserItem *pItem2)
 	else
 		return strcmp (pItem1->cTmpFileName, pItem2->cTmpFileName);
 }
-static GList *_list_dir (const gchar *cDirPath, CairoDockModuleInstance *myApplet)
+static GList *_list_dir (const gchar *cDirPath, GldiModuleInstance *myApplet)
 {
 	//\______________ On ouvre le repertoire en lecture.
 	GError *erreur = NULL;
@@ -87,7 +87,7 @@ static void _init_fill_menu_from_dir (CDQuickBrowserItem *pItem)
 {
 	const gchar *cDirPath = pItem->cPath;
 	GtkWidget *pMenu = pItem->pSubMenu;
-	CairoDockModuleInstance *myApplet = pItem->pApplet;
+	GldiModuleInstance *myApplet = pItem->pApplet;
 	
 	//\______________ On recupere les items du repertoire.
 	GList *pLocalItemList = _list_dir (cDirPath, myApplet);
@@ -140,7 +140,7 @@ static void _drag_data_get (GtkWidget *pWidget, GdkDragContext *pDragContext,
 
 static void _fill_submenu_with_items (CDQuickBrowserItem *pRootItem, int iNbSubItemsAtOnce)
 {
-	CairoDockModuleInstance *myApplet = pRootItem->pApplet;
+	GldiModuleInstance *myApplet = pRootItem->pApplet;
 	GtkWidget *pMenu = pRootItem->pSubMenu;
 	GList *pFirstItem = pRootItem->pCurrentItem;
 
@@ -216,7 +216,7 @@ static void _fill_submenu_with_items (CDQuickBrowserItem *pRootItem, int iNbSubI
 }
 static gboolean _fill_submenu_idle (CDQuickBrowserItem *pItem)
 {
-	CairoDockModuleInstance *myApplet = pItem->pApplet;
+	GldiModuleInstance *myApplet = pItem->pApplet;
 	CD_APPLET_ENTER;
 	if (pItem->pLocalItemList == NULL)
 	{
@@ -233,7 +233,7 @@ static gboolean _fill_submenu_idle (CDQuickBrowserItem *pItem)
 
 	if (pItem->bMenuBuilt)
 	{
-		CairoDockModuleInstance *myApplet = pItem->pApplet;
+		GldiModuleInstance *myApplet = pItem->pApplet;
 		myData.iSidFillDirIdle = 0;
 		gtk_widget_realize (pItem->pSubMenu); // force to compute the size of the menu before displaying it -> avoid big menu that are out of the screen
 		gtk_widget_show_all (pItem->pSubMenu);
@@ -244,7 +244,7 @@ static gboolean _fill_submenu_idle (CDQuickBrowserItem *pItem)
 static void _on_activate_item (GtkWidget *pMenuItem, CDQuickBrowserItem *pItem)
 {
 	g_return_if_fail (pItem != NULL);
-	CairoDockModuleInstance *myApplet = pItem->pApplet;
+	GldiModuleInstance *myApplet = pItem->pApplet;
 	CD_APPLET_ENTER;
 	if (pItem->pSubMenu != NULL)
 	{
@@ -270,7 +270,7 @@ static void _free_app_list_data (gpointer *data)
 	g_free (data);
 }
 
-void cd_quick_browser_free_apps_list (CairoDockModuleInstance *myApplet)
+void cd_quick_browser_free_apps_list (GldiModuleInstance *myApplet)
 {
 	if (myData.pAppList != NULL)
 	{
@@ -312,7 +312,7 @@ static void _cd_copy_location (GtkMenuItem *pMenuItem, CDQuickBrowserItem *pItem
 static gboolean _on_click_item (GtkWidget *pWidget, GdkEventButton* pButton, CDQuickBrowserItem *pItem)
 {
 	g_return_val_if_fail (pItem != NULL, FALSE);
-	CairoDockModuleInstance *myApplet = pItem->pApplet;
+	GldiModuleInstance *myApplet = pItem->pApplet;
 	CD_APPLET_ENTER;
 
 	if (pButton->button == 3) // right click
@@ -374,7 +374,7 @@ static gboolean _on_click_item (GtkWidget *pWidget, GdkEventButton* pButton, CDQ
 	CD_APPLET_LEAVE (FALSE);
 }
 
-CDQuickBrowserItem *cd_quick_browser_make_menu_from_dir (const gchar *cDirPath, CairoDockModuleInstance *myApplet)
+CDQuickBrowserItem *cd_quick_browser_make_menu_from_dir (const gchar *cDirPath, GldiModuleInstance *myApplet)
 {
 	CDQuickBrowserItem *pRootItem = g_new0 (CDQuickBrowserItem, 1);
 	pRootItem->cPath = g_strdup (cDirPath);
@@ -399,7 +399,7 @@ static void _free_item (CDQuickBrowserItem *pItem)
 	}
 	g_free (pItem);
 }
-void cd_quick_browser_destroy_menu (CairoDockModuleInstance *myApplet)
+void cd_quick_browser_destroy_menu (GldiModuleInstance *myApplet)
 {
 	if (myData.iSidFillDirIdle != 0)
 		g_source_remove (myData.iSidFillDirIdle);
@@ -413,7 +413,7 @@ void cd_quick_browser_destroy_menu (CairoDockModuleInstance *myApplet)
 	}
 }
 
-void cd_quick_browser_show_menu (CairoDockModuleInstance *myApplet)
+void cd_quick_browser_show_menu (GldiModuleInstance *myApplet)
 {
 	cd_quick_browser_destroy_menu (myApplet);
 	

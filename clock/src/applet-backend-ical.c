@@ -42,7 +42,7 @@ typedef struct {
 static CDClockIcalBackendData *_pBackendData = NULL;
 static int s_iCounter = 0;  // a counter used to define a new ID
 
-static void backend_ical_init(CairoDockModuleInstance *myApplet)
+static void backend_ical_init(GldiModuleInstance *myApplet)
 {
 	cd_debug("Backend initialization.");
 	gchar *cDirPath = g_strdup_printf ("%s/%s", g_cCairoDockDataDir, "clock");
@@ -88,7 +88,7 @@ static void backend_ical_init(CairoDockModuleInstance *myApplet)
 	g_free (cDirPath);
 }
 
-static void backend_ical_stop(CairoDockModuleInstance *myApplet)
+static void backend_ical_stop(GldiModuleInstance *myApplet)
 {
 	if( _pBackendData )
 	{
@@ -144,7 +144,7 @@ static icalcomponent *find_task(const char* uid)
 	return piCalComponent;
 }
 
-static GList *get_tasks (CairoDockModuleInstance *myApplet)
+static GList *get_tasks (GldiModuleInstance *myApplet)
 {
 	if( !_assert_data() ) return NULL;
 	
@@ -203,7 +203,7 @@ static GList *get_tasks (CairoDockModuleInstance *myApplet)
 }
 
 
-static gboolean create_task (CDClockTask *pTask, CairoDockModuleInstance *myApplet)
+static gboolean create_task (CDClockTask *pTask, GldiModuleInstance *myApplet)
 {
 	if( !_assert_data() ) return FALSE;
 	if( pTask == NULL ) return FALSE;
@@ -297,7 +297,7 @@ static gboolean create_task (CDClockTask *pTask, CairoDockModuleInstance *myAppl
 	return TRUE;
 }
 
-static gboolean delete_task (CDClockTask *pTask, CairoDockModuleInstance *myApplet)
+static gboolean delete_task (CDClockTask *pTask, GldiModuleInstance *myApplet)
 {
 	//g_print ("%s (%s)\n", __func__, pTask->cTitle);
 
@@ -318,14 +318,14 @@ static gboolean delete_task (CDClockTask *pTask, CairoDockModuleInstance *myAppl
 	return TRUE;
 }
 
-static gboolean update_task (CDClockTask *pTask, CairoDockModuleInstance *myApplet)
+static gboolean update_task (CDClockTask *pTask, GldiModuleInstance *myApplet)
 {
 	//g_print ("%s (%s, '%s')\n", __func__, pTask->cTitle, pTask->cText);
 	return create_task (pTask, myApplet);  // the 'create' can also update a task
 }
 #endif
 
-void cd_clock_register_backend_ical (CairoDockModuleInstance *myApplet)
+void cd_clock_register_backend_ical (GldiModuleInstance *myApplet)
 {
 #ifdef CD_CLOCK_ICAL_SUPPORT
 	CDClockTaskBackend *pBackend = g_new0 (CDClockTaskBackend, 1);

@@ -23,10 +23,10 @@
 #include <cairo-dock.h>
 
 
-void cd_netmonitor_launch_netspeed_task (CairoDockModuleInstance *myApplet);
+void cd_netmonitor_launch_netspeed_task (GldiModuleInstance *myApplet);
 
 
-void cd_netmonitor_free_netspeed_task (CairoDockModuleInstance *myApplet);
+void cd_netmonitor_free_netspeed_task (GldiModuleInstance *myApplet);
 
 
 GList *cd_netmonitor_get_wireless_interfaces (void);

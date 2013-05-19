@@ -181,7 +181,7 @@ static MyPlayerStatus _extract_status (const gchar *cStatus)
 	return PLAYER_BROKEN;
 }
 
-static void _on_got_playing_status (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockModuleInstance *myApplet)
+static void _on_got_playing_status (DBusGProxy *proxy, DBusGProxyCall *call_id, GldiModuleInstance *myApplet)
 {
 	cd_debug ("=== %s ()", __func__);
 	CD_APPLET_ENTER;
@@ -391,7 +391,7 @@ static gboolean _extract_metadata (GHashTable *pMetadata)
 	return bTrackHasChanged;
 }
 
-static void _on_got_song_infos (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockModuleInstance *myApplet)
+static void _on_got_song_infos (DBusGProxy *proxy, DBusGProxyCall *call_id, GldiModuleInstance *myApplet)
 {
 	cd_debug ("=== %s ()", __func__);
 	CD_APPLET_ENTER;

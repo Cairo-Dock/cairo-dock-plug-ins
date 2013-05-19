@@ -26,7 +26,7 @@
 #include "applet-draw.h"
 
 
-void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, int iHeight)
+void cd_applet_draw_my_desklet (GldiModuleInstance *myApplet, int iWidth, int iHeight)
 {
 	if (iWidth < 20 || iHeight < 20)  // inutile de dessiner tant que le desklet n'a pas atteint sa taille definitive.
 		return;
@@ -285,7 +285,7 @@ void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, i
 }
 
 
-void cd_applet_update_my_icon (CairoDockModuleInstance *myApplet)
+void cd_applet_update_my_icon (GldiModuleInstance *myApplet)
 {
 	if (myDesklet)
 	{

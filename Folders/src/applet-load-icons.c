@@ -24,7 +24,7 @@
 #include "applet-notifications.h"
 #include "applet-load-icons.h"
 
-static void _cd_folders_remove_all_icons (CairoDockModuleInstance *myApplet);
+static void _cd_folders_remove_all_icons (GldiModuleInstance *myApplet);
 
 void cd_shortcuts_set_icon_order (Icon *pNewIcon, GList *pIconsList, GCompareFunc comp)
 {
@@ -83,7 +83,7 @@ void cd_shortcuts_set_icon_order (Icon *pNewIcon, GList *pIconsList, GCompareFun
 }
 
 
-static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar *cBaseURI, GList *pIconsList, CairoContainer *pContainer, CairoDockModuleInstance *myApplet)
+static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar *cBaseURI, GList *pIconsList, GldiContainer *pContainer, GldiModuleInstance *myApplet)
 {
 	if (!cBaseURI)
 		return;
@@ -225,14 +225,14 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 	g_free (cURI);
 }
 
-static void _cd_folders_on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
+static void _cd_folders_on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, GldiModuleInstance *myApplet)
 {
 	g_return_if_fail (cURI != NULL);
 	CD_APPLET_ENTER;
 	
 	//\________________ On gere l'evenement sur le fichier.
 	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
-	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+	GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
 	
 	_manage_event_on_file (iEventType, cURI, pIconsList, pContainer, myApplet);
@@ -289,7 +289,7 @@ static void _cd_folders_get_data (CDSharedMemory *pSharedMemory)
 	
 static gboolean _cd_folders_load_icons_from_data (CDSharedMemory *pSharedMemory)
 {
-	CairoDockModuleInstance *myApplet = pSharedMemory->pApplet;
+	GldiModuleInstance *myApplet = pSharedMemory->pApplet;
 	g_return_val_if_fail (myIcon != NULL, FALSE);  // paranoia
 	CD_APPLET_ENTER;
 	
@@ -316,7 +316,7 @@ static void _free_shared_memory (CDSharedMemory *pSharedMemory)
 	g_free (pSharedMemory);
 }
 
-void cd_folders_start (CairoDockModuleInstance *myApplet)
+void cd_folders_start (GldiModuleInstance *myApplet)
 {
 	if (myData.pTask != NULL)
 	{
@@ -343,7 +343,7 @@ void cd_folders_start (CairoDockModuleInstance *myApplet)
 
 
 
-static void _cd_folders_remove_all_icons (CairoDockModuleInstance *myApplet)
+static void _cd_folders_remove_all_icons (GldiModuleInstance *myApplet)
 {
 	//\_______________________ On stoppe la tache.
 	cairo_dock_discard_task (myData.pTask);
@@ -352,7 +352,7 @@ static void _cd_folders_remove_all_icons (CairoDockModuleInstance *myApplet)
 	//\_______________________ On detruit ensuite les icones chargees dans le container.
 	CD_APPLET_DELETE_MY_ICONS_LIST;  // si le container a change entre-temps, le ModuleManager se chargera de nettoyer derriere nous.
 }
-void cd_folders_free_all_data (CairoDockModuleInstance *myApplet)
+void cd_folders_free_all_data (GldiModuleInstance *myApplet)
 {
 	//\_______________________ On arrete de surveiller le repertoire.
 	cairo_dock_fm_remove_monitor_full (myConfig.cDirPath, TRUE, NULL);
@@ -398,10 +398,10 @@ GList *cairo_dock_sort_icons_by_extension (GList *pIconList)
 	return pSortedIconList;
 }
 
-void cd_folders_sort_icons (CairoDockModuleInstance *myApplet, CairoDockFMSortType iSortType)
+void cd_folders_sort_icons (GldiModuleInstance *myApplet, CairoDockFMSortType iSortType)
 {
 	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
-	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+	GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	if (!pIconsList || !pContainer)  // nothing to do.
 		return;
 	

@@ -24,7 +24,7 @@
 #include "applet-apps.h"
 #include "applet-tree.h"
 
-static void cd_menu_append_poweroff_to_menu (GtkWidget *menu, CairoDockModuleInstance *myApplet);
+static void cd_menu_append_poweroff_to_menu (GtkWidget *menu, GldiModuleInstance *myApplet);
 
 
 static gboolean _make_menu_from_trees (CDSharedMemory *pSharedMemory)
@@ -64,11 +64,14 @@ static gboolean _make_menu_from_trees (CDSharedMemory *pSharedMemory)
 	
 	cd_menu_check_for_new_apps ();
 	
+	if (myData.bShowMenuPending)
+	{
+		cd_menu_show_menu ();
+		myData.bShowMenuPending = FALSE;
+	}
+	
 	cairo_dock_discard_task (myData.pTask);
 	myData.pTask = NULL;
-	
-	if (myData.bShowMenuPending)
-		cd_menu_show_menu ();
 	
 	CD_APPLET_LEAVE (FALSE);
 }
@@ -159,7 +162,7 @@ static GtkWidget *_append_one_item_to_menu (const gchar *cLabel, const gchar *gt
 	return pMenuItem;
 }
 
-static void cd_menu_append_poweroff_to_menu (GtkWidget *menu, CairoDockModuleInstance *myApplet)
+static void cd_menu_append_poweroff_to_menu (GtkWidget *menu, GldiModuleInstance *myApplet)
 {
 	GtkWidget *menuitem = gtk_separator_menu_item_new ();
 	gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);

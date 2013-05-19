@@ -130,7 +130,7 @@ static void _free_item (CDRssItem *pItem)
 	g_free (pItem->cDate);
 	g_free (pItem);
 }
-void cd_rssreader_free_item_list (CairoDockModuleInstance *myApplet)
+void cd_rssreader_free_item_list (GldiModuleInstance *myApplet)
 {
 	if (myData.pItemList == NULL)
 		return;
@@ -145,7 +145,7 @@ void cd_rssreader_free_item_list (CairoDockModuleInstance *myApplet)
 	myData.pItemList = NULL;
 	myData.iFirstDisplayedItem = 0;
 	
-	cairo_dock_dialog_unreference (myData.pDialog);  // un peu bourrin mais bon ... on pourrait le reafficher s'il etait present ...
+	gldi_object_unref (GLDI_OBJECT(myData.pDialog));  // un peu bourrin mais bon ... on pourrait le reafficher s'il etait present ...
 	myData.pDialog = NULL;
 }
 
@@ -388,7 +388,7 @@ static GList * _parse_atom_item (xmlNodePtr node, CDRssItem *pItem, GList *pItem
 	return pItemList;
 }
 
-static void _insert_error_message (CairoDockModuleInstance *myApplet, const gchar *cErrorMessage)
+static void _insert_error_message (GldiModuleInstance *myApplet, const gchar *cErrorMessage)
 {
 	cd_debug ("%s (%s, %d)", __func__, cErrorMessage, myData.bError);
 	CDRssItem *pItem;
@@ -419,7 +419,7 @@ static void _insert_error_message (CairoDockModuleInstance *myApplet, const gcha
 
 static gboolean _update_from_feeds (CDSharedMemory *pSharedMemory)
 {
-	CairoDockModuleInstance *myApplet = pSharedMemory->pApplet;
+	GldiModuleInstance *myApplet = pSharedMemory->pApplet;
 	CD_APPLET_ENTER;
 	if (! myData.bInit)  // pas encore initialise, on vire le message d'attente.
 	{
@@ -585,8 +585,8 @@ static gboolean _update_from_feeds (CDSharedMemory *pSharedMemory)
 		
 		if (myData.bUpdateIsManual)  // L'update a ete manuel -> On affiche donc un dialogue meme s'il n'y a pas eu de changement
 		{
-			cairo_dock_remove_dialog_if_any (myIcon);
-			cairo_dock_show_temporary_dialog_with_icon (D_("No modification"),
+			gldi_dialogs_remove_on_icon (myIcon);
+			gldi_dialog_show_temporary_with_icon (D_("No modification"),
 				myIcon,
 				myContainer,
 				2000, // Suffisant vu que la MaJ est manuelle
@@ -610,8 +610,8 @@ static gboolean _update_from_feeds (CDSharedMemory *pSharedMemory)
 	{
 		if (myConfig.iNotificationType != 1)
 		{
-			cairo_dock_remove_dialog_if_any (myIcon);
-			cairo_dock_show_temporary_dialog_with_icon (D_("This RSS feed has been modified..."),
+			gldi_dialogs_remove_on_icon (myIcon);
+			gldi_dialog_show_temporary_with_icon (D_("This RSS feed has been modified..."),
 				myIcon,
 				myContainer,
 				1000*myConfig.iNotificationDuration,
@@ -639,7 +639,7 @@ static void _free_shared_memory (CDSharedMemory *pSharedMemory)
 	g_free (pSharedMemory->cTaskBridge);
 	g_free (pSharedMemory);
 }
-void cd_rssreader_launch_task (CairoDockModuleInstance *myApplet)
+void cd_rssreader_launch_task (GldiModuleInstance *myApplet)
 {
 	if (myData.pTask != NULL)
 	{
@@ -663,21 +663,21 @@ void cd_rssreader_launch_task (CairoDockModuleInstance *myApplet)
 
 
 
-static void _on_dialog_destroyed (CairoDockModuleInstance *myApplet)
+static void _on_dialog_destroyed (GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	myData.pDialog = NULL;
 	CD_APPLET_LEAVE();
 }
-void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
+void cd_rssreader_show_dialog (GldiModuleInstance *myApplet)
 {
 	if (myData.pDialog != NULL)  // on detruit le dialogue actuel.
 	{
-		cairo_dock_dialog_unreference (myData.pDialog);
+		gldi_object_unref (GLDI_OBJECT(myData.pDialog));
 		myData.pDialog = NULL;
 		return;
 	}
-	cairo_dock_remove_dialog_if_any (myIcon);  // on enleve tout autre dialogue (message d'erreur).
+	gldi_dialogs_remove_on_icon (myIcon);  // on enleve tout autre dialogue (message d'erreur).
 	
 	if (myData.pItemList != NULL && myData.pItemList->next != NULL && (myData.pItemList->next->next != NULL || ! myData.bError))  // on construit le dialogue contenant toutes les infos.
 	{
@@ -757,7 +757,7 @@ void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
 		pItem = myData.pItemList->data;  // le nom du flux en titre du dialogue.
 		
 		// on affiche le dialogue.
-		myData.pDialog = cairo_dock_show_dialog_full (pItem->cTitle,
+		myData.pDialog = gldi_dialog_show (pItem->cTitle,
 			myIcon, myContainer,
 			0,
 			myDock ? "same icon" : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
@@ -773,13 +773,13 @@ void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet)
 	else  // on affiche un message clair a l'utilisateur.
 	{
 		if (myConfig.cUrl == NULL)
-			cairo_dock_show_temporary_dialog_with_icon (D_("No URL is defined\nYou can define one by copying the URL in the clipboard,\n and selecting \"Paste the URL\" in the menu."),
+			gldi_dialog_show_temporary_with_icon (D_("No URL is defined\nYou can define one by copying the URL in the clipboard,\n and selecting \"Paste the URL\" in the menu."),
 				myIcon,
 				myContainer,
 				1000*myConfig.iNotificationDuration,
 				myDock ? "same icon" : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 		else
-			cairo_dock_show_temporary_dialog_with_icon (D_("No data\nDid you set a valid RSS feed?\nIs your connection alive?"),
+			gldi_dialog_show_temporary_with_icon (D_("No data\nDid you set a valid RSS feed?\nIs your connection alive?"),
 				myIcon,
 				myContainer,
 				1000*myConfig.iNotificationDuration,

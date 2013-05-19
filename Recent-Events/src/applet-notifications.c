@@ -71,7 +71,7 @@ static void _on_delete_events (int iNbEvents, gpointer data)
 {
 	if (iNbEvents > 0)
 	{
-		cairo_dock_show_temporary_dialog_with_icon_printf (D_("%d event(s) deleted"), myIcon, myContainer, 3e3, "same icon", iNbEvents);
+		gldi_dialog_show_temporary_with_icon_printf (D_("%d event(s) deleted"), myIcon, myContainer, 3e3, "same icon", iNbEvents);
 	}
 	if (iNbEvents != 0)
 	{
@@ -191,11 +191,11 @@ CD_APPLET_ON_BUILD_MENU_PROTO
 			g_signal_connect (G_OBJECT (pAppletMenu), "destroy", G_CALLBACK (_on_delete_menu), NULL);
 		}
 	}
-	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 }
 
 
-void cd_on_shortkey (const char *keystring, CairoDockModuleInstance *myApplet)
+void cd_on_shortkey (const char *keystring, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cd_toggle_dialog ();

@@ -67,7 +67,7 @@
 	glVertex3f (- iWidth/2 + u4, + iHeight/2 - v4, 0);\
 	glEnd ();
 
-gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThemePath)
+gboolean cd_opengl_load_3D_theme (GldiModuleInstance *myApplet, gchar *cThemePath)
 {
 	gchar *cImageName;
 	cairo_surface_t *pSurface;
@@ -326,7 +326,7 @@ gboolean cd_opengl_load_3D_theme (CairoDockModuleInstance *myApplet, gchar *cThe
 	return TRUE;
 }
 
-void cd_opengl_reset_opengl_datas (CairoDockModuleInstance *myApplet)
+void cd_opengl_reset_opengl_datas (GldiModuleInstance *myApplet)
 {
 	if (myData.draw_cover != 0)
 	{
@@ -417,7 +417,7 @@ void cd_opengl_reset_opengl_datas (CairoDockModuleInstance *myApplet)
 	x = X + dx1 * dy1 * t1x + dx2 * dy2 * t2x + dx3 * dy3 * t3x + dx4 * dy4 * t4x;\
 	y = Y + dx1 * dy1 * t1y + dx2 * dy2 * t2y + dx3 * dy3 * t3y + dx4 * dy4 * t4y;
 
-void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight)
+void cd_opengl_scene (GldiModuleInstance *myApplet, int iWidth, int iHeight)
 {
 	//cd_debug ("%s (%d)", __func__, myData.iCoverTransition);
 	_cairo_dock_enable_texture ();
@@ -556,7 +556,7 @@ void cd_opengl_scene (CairoDockModuleInstance *myApplet, int iWidth, int iHeight
 }
 
 
-void cd_opengl_render_to_texture (CairoDockModuleInstance *myApplet)
+void cd_opengl_render_to_texture (GldiModuleInstance *myApplet)
 {
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
@@ -569,7 +569,7 @@ void cd_opengl_render_to_texture (CairoDockModuleInstance *myApplet)
 }
 
 
-int cd_opengl_check_buttons_state (CairoDockModuleInstance *myApplet)
+int cd_opengl_check_buttons_state (GldiModuleInstance *myApplet)
 {	
 	if (! myDesklet || myDesklet->container.iWidth == 0 || myDesklet->container.iHeight == 0 || myData.numberButtons == 0)  // precaution.
 		return FALSE;

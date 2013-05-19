@@ -33,6 +33,21 @@
 			<arg name="pModuleProperties" direction="out" type="aa{sv}"/>
 		</method>
 		
+		<method name="Add">
+			<arg name="pProperties" direction="in" type="a{sv}"/>
+			<arg name="cConfigFile" type="s" direction="out"/>
+		</method>
+		<method name="Reload">
+			<arg name="cQuery" type="s" direction="in"/>
+		</method>
+		<method name="Remove">
+			<arg name="cQuery" type="s" direction="in"/>
+		</method>
+		<method name="GetProperties">
+			<arg name="cQuery" type="s" direction="in"/>
+			<arg name="pProperties" direction="out" type="aa{sv}"/>
+		</method>
+		
 		<method name="AddLauncher">
 			<arg name="cDesktopFilePath" type="s" direction="in"/>
 			<arg name="fOrder" type="d" direction="in"/>

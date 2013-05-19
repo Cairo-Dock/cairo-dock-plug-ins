@@ -66,7 +66,7 @@ static gboolean _cd_icon_effect_start (gpointer pUserData, Icon *pIcon, CairoDoc
 gboolean cd_icon_effect_on_enter (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bStartAnimation)
 {
 	if (pIcon->iAnimationState > CAIRO_DOCK_STATE_MOUSE_HOVERED)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	gboolean bStart = _cd_icon_effect_start (pUserData, pIcon, pDock, myConfig.iEffectsUsed);
 	if (bStart)
 	{
@@ -75,13 +75,13 @@ gboolean cd_icon_effect_on_enter (gpointer pUserData, Icon *pIcon, CairoDock *pD
 		pData->iRequestTime = 0;
 		cairo_dock_mark_icon_as_hovered_by_mouse (pIcon);
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 gboolean cd_icon_effect_on_click (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gint iButtonState)
 {
 	if (! CAIRO_DOCK_IS_DOCK (pDock) || pIcon == NULL || pIcon->iAnimationState > CAIRO_DOCK_STATE_CLICKED)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	CairoDockIconGroup iType = cairo_dock_get_icon_type (pIcon);
 	if (iType == CAIRO_DOCK_LAUNCHER && CAIRO_DOCK_IS_APPLI (pIcon) && ! (iButtonState & GDK_SHIFT_MASK))
@@ -95,13 +95,13 @@ gboolean cd_icon_effect_on_click (gpointer pUserData, Icon *pIcon, CairoDock *pD
 		cairo_dock_mark_icon_as_clicked (pIcon);
 	}
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 gboolean cd_icon_effect_on_request (gpointer pUserData, Icon *pIcon, CairoDock *pDock, const gchar *cAnimation, gint iNbRounds)
 {
 	if (pIcon == NULL || pIcon->iAnimationState > CAIRO_DOCK_STATE_CLICKED)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	CDIconEffectsEnum iEffect = -1;
 	if (strcmp (cAnimation, "default") == 0)
@@ -138,7 +138,7 @@ gboolean cd_icon_effect_on_request (gpointer pUserData, Icon *pIcon, CairoDock *
 		}
 	}
 	if (iEffect >= CD_ICON_EFFECT_NB_EFFECTS)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	CDIconEffectsEnum anim[2] = {iEffect, -1};
 	int iRoundDuration = myData.pEffects[iEffect].iDuration;
@@ -150,7 +150,7 @@ gboolean cd_icon_effect_on_request (gpointer pUserData, Icon *pIcon, CairoDock *
 		pData->iRequestTime = iNbRounds * iRoundDuration;
 		cairo_dock_mark_icon_as_hovered_by_mouse (pIcon);
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
@@ -194,24 +194,24 @@ gboolean cd_icon_effect_pre_render_icon (gpointer pUserData, Icon *pIcon, CairoD
 {
 	CDIconEffectData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	_cd_icon_effect_render_effects (pIcon, pDock, pData, TRUE);
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 gboolean cd_icon_effect_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bHasBeenRendered, cairo_t *pCairoContext)
 {
 	if (pCairoContext != NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	CDIconEffectData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	_cd_icon_effect_render_effects (pIcon, pDock, pData, FALSE);
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
@@ -221,7 +221,7 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 {
 	CDIconEffectData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	if (pData->iRequestTime > 0)
 	{
@@ -310,7 +310,7 @@ gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 	if (! *bContinueAnimation)
 		cd_icon_effect_free_data (pUserData, pIcon);
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
@@ -319,7 +319,7 @@ gboolean cd_icon_effect_free_data (gpointer pUserData, Icon *pIcon)
 	cd_message ("");
 	CDIconEffectData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	CDIconEffect *pEffect;
 	int i;
@@ -333,5 +333,5 @@ gboolean cd_icon_effect_free_data (gpointer pUserData, Icon *pIcon)
 	}
 	g_free (pData);
 	CD_APPLET_SET_MY_ICON_DATA (pIcon, NULL);
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }

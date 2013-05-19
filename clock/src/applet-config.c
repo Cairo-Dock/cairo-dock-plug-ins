@@ -218,7 +218,7 @@ CD_APPLET_RESET_DATA_BEGIN
 	g_free (myData.cSystemLocation);
 	
 	if (myData.pCalendarDialog != NULL)
-		cairo_dock_dialog_unreference (myData.pCalendarDialog);
+		gldi_object_unref (GLDI_OBJECT(myData.pCalendarDialog));
 	if (myData.pTaskWindow != NULL)
 		gtk_widget_destroy (myData.pTaskWindow);
 	
@@ -238,7 +238,7 @@ CD_APPLET_RESET_DATA_END
 	g_string_printf (sKeyName, cEntryName"%d", iNumLastAlarm);\
 	g_key_file_remove_comment (pKeyFile, cGroupName, sKeyName->str, NULL);\
 	g_key_file_remove_key (pKeyFile, cGroupName, sKeyName->str, NULL); } while (0)
-static void _cd_clock_add_alarm (GtkButton *button, CairoDockModuleInstance *myApplet)
+static void _cd_clock_add_alarm (GtkButton *button, GldiModuleInstance *myApplet)
 {
 	cd_debug ("%s (%d)", __func__, myConfig.pAlarms->len);
 	//\____________ On ouvre notre fichier de conf.
@@ -280,7 +280,7 @@ static void _cd_clock_add_alarm (GtkButton *button, CairoDockModuleInstance *myA
 	//\____________ On recharge le panneau de config.
 	CD_APPLET_RELOAD_CONFIG_PANEL;
 }
-static void _cd_clock_remove_alarm (GtkButton *button, CairoDockModuleInstance *myApplet)
+static void _cd_clock_remove_alarm (GtkButton *button, GldiModuleInstance *myApplet)
 {
 	cd_debug ("%s (%d)", __func__, myConfig.pAlarms->len);
 	
@@ -330,7 +330,7 @@ static void _cd_clock_remove_alarm (GtkButton *button, CairoDockModuleInstance *
 /////////////////
 static void _cd_clock_select_location (GtkMenuItem *pMenuItem, gpointer *data)
 {
-	CairoDockModuleInstance *myApplet = data[0];
+	GldiModuleInstance *myApplet = data[0];
 	gchar *cLocationPath = data[1];
 	g_return_if_fail (cLocationPath != NULL);
 	cd_debug ("%s (%s, %s)", __func__, cLocationPath, myApplet->cConfFilePath);
@@ -360,7 +360,7 @@ static int _cd_clock_compare_path_order (gpointer *data1, gpointer *data2) {
 	g_free (cURI_2);
 	return iOrder;
 }
-static GList *_cd_clock_parse_dir (const gchar *cDirPath, const gchar *cCurrentLocation, GtkWidget *pMenu, GList *pLocationPathList, CairoDockModuleInstance *myApplet)
+static GList *_cd_clock_parse_dir (const gchar *cDirPath, const gchar *cCurrentLocation, GtkWidget *pMenu, GList *pLocationPathList, GldiModuleInstance *myApplet)
 {
 	//\__________________ Ouverture du (sous-)repertoire.
 	GError *erreur = NULL;
@@ -433,7 +433,7 @@ static GList *_cd_clock_parse_dir (const gchar *cDirPath, const gchar *cCurrentL
 	g_dir_close (dir);
 	return pPathList;
 }
-static void _cd_clock_search_for_location (GtkButton *pButton, CairoDockModuleInstance *myApplet)
+static void _cd_clock_search_for_location (GtkButton *pButton, GldiModuleInstance *myApplet)
 {
 	GtkWidget *pMenu = gtk_menu_new ();
 	if (s_pTimeZoneList != NULL)
@@ -470,7 +470,7 @@ void cd_clock_free_timezone_list (void)
 	s_pTimeZoneList = NULL;
 }
 
-void cd_clock_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile, GSList *pWidgetList)  // warning: myApplet can be NULL if the applet has not been yet started.
+void cd_clock_load_custom_widget (GldiModuleInstance *myApplet, GKeyFile* pKeyFile, GSList *pWidgetList)  // warning: myApplet can be NULL if the applet has not been yet started.
 {
 	//\____________ On recupere notre widget personnalise (un simple container vide qu'on va remplir avec nos trucs).
 	CairoDockGroupKeyWidget *pGroupKeyWidget = cairo_dock_gui_find_group_key_widget_in_list (pWidgetList, "Alarm", "add new");
@@ -518,7 +518,7 @@ void cd_clock_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* p
 }
 
 
-void cd_clock_save_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile, GSList *pWidgetList)
+void cd_clock_save_custom_widget (GldiModuleInstance *myApplet, GKeyFile *pKeyFile, GSList *pWidgetList)
 {
 	cd_debug ("%s (%s)", __func__, myIcon->cName);
 	// ca c'est si on avait des valeurs a recuperer dans nos widgets personnalises, et a stocker dans le pKeyFile. mais ici ils sont simple, et donc tous pris en charge par le dock.

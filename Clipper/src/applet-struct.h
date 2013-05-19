@@ -78,7 +78,7 @@ struct _AppletData {
 	gboolean bActionsLoaded;
 	gboolean bActionBlocked;
 	GtkWidget *pActionMenu;
-	CairoKeyBinding *cKeyBinding;
+	GldiShortkey *cKeyBinding;
 	} ;
 
 #endif

@@ -276,7 +276,7 @@ const gchar *cTitle,
 #endif
 #endif
 #endif
-CairoDockModuleInstance *myApplet)
+GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("=== %s (%s, %s, %s, %s, %d)", __func__, cAddress, cObjectPath, cIconName, cIconThemePath, iPosition);
@@ -322,7 +322,7 @@ CairoDockModuleInstance *myApplet)
 	CD_APPLET_LEAVE ();
 }
 
-static void on_removed_application (DBusGProxy *proxy_watcher, gint iPosition, CairoDockModuleInstance *myApplet)
+static void on_removed_application (DBusGProxy *proxy_watcher, gint iPosition, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("=== %s (%d)", __func__, iPosition);
@@ -345,7 +345,7 @@ static void on_removed_application (DBusGProxy *proxy_watcher, gint iPosition, C
 	CD_APPLET_LEAVE ();
 }
 
-static void on_application_icon_changed (DBusGProxy *proxy_watcher, gint iPosition, const gchar *cIconName, const gchar *cIconDesc, CairoDockModuleInstance *myApplet)
+static void on_application_icon_changed (DBusGProxy *proxy_watcher, gint iPosition, const gchar *cIconName, const gchar *cIconDesc, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("=== %s (%d, %s, %s)", __func__, iPosition, cIconName, cIconDesc);
@@ -368,7 +368,7 @@ static void on_application_icon_changed (DBusGProxy *proxy_watcher, gint iPositi
 	CD_APPLET_LEAVE ();
 }
 
-static void on_application_icon_theme_path_changed (DBusGProxy *proxy_watcher, gint iPosition, const gchar *cIconThemePath, CairoDockModuleInstance *myApplet)
+static void on_application_icon_theme_path_changed (DBusGProxy *proxy_watcher, gint iPosition, const gchar *cIconThemePath, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("=== %s (%d, %s)", __func__, iPosition, cIconThemePath);
@@ -393,7 +393,7 @@ static void on_application_icon_theme_path_changed (DBusGProxy *proxy_watcher, g
 	CD_APPLET_LEAVE ();
 }
 
-static void on_application_label_changed (DBusGProxy *proxy_watcher, gint iPosition, const gchar *cLabel, const gchar *cLabelGuide, CairoDockModuleInstance *myApplet)
+static void on_application_label_changed (DBusGProxy *proxy_watcher, gint iPosition, const gchar *cLabel, const gchar *cLabelGuide, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("=== %s (%d, %s, %s)", __func__, iPosition, cLabel, cLabelGuide);
@@ -409,7 +409,7 @@ static void on_application_label_changed (DBusGProxy *proxy_watcher, gint iPosit
 	CD_APPLET_LEAVE ();
 }
 
-static void on_application_title_changed (DBusGProxy *proxy_watcher, gint iPosition, const gchar *cTitle, CairoDockModuleInstance *myApplet)
+static void on_application_title_changed (DBusGProxy *proxy_watcher, gint iPosition, const gchar *cTitle, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("=== %s (%d, %s)", __func__, iPosition, cTitle);
@@ -430,7 +430,7 @@ static void on_application_title_changed (DBusGProxy *proxy_watcher, gint iPosit
  /// Get Items ///
 /////////////////
 
-static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockModuleInstance *myApplet)
+static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall *call_id, GldiModuleInstance *myApplet)
 {
 	cd_debug ("=== %s ()", __func__);
 	CD_APPLET_ENTER;

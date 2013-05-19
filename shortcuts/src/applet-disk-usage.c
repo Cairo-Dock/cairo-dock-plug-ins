@@ -58,7 +58,7 @@ void cd_shortcuts_get_fs_stat (const gchar *cDiskURI, CDDiskUsage *pDiskUsage)
 	}
 }
 
-static void _display_disk_usage (Icon *pIcon, CairoContainer *pContainer, CDDiskUsage *pDiskUsage, CairoDockModuleInstance *myApplet)
+static void _display_disk_usage (Icon *pIcon, GldiContainer *pContainer, CDDiskUsage *pDiskUsage, GldiModuleInstance *myApplet)
 {
 	double fValue;
 	if (pDiskUsage->iTotal != 0 && (pDiskUsage->iPrevAvail == -1 || (double)fabs (pDiskUsage->iPrevAvail - pDiskUsage->iAvail) / pDiskUsage->iTotal > .001))  // .1 % d'ecart ou info encore non renseignee.
@@ -94,19 +94,19 @@ static void _display_disk_usage (Icon *pIcon, CairoContainer *pContainer, CDDisk
 	}
 }
 
-void cd_shortcuts_display_disk_usage (Icon *pIcon, CairoDockModuleInstance *myApplet)
+void cd_shortcuts_display_disk_usage (Icon *pIcon, GldiModuleInstance *myApplet)
 {
-	CairoContainer *pContainer = pIcon->pContainer;
+	GldiContainer *pContainer = pIcon->pContainer;
 	g_return_if_fail (pContainer != NULL);
 	CDDiskUsage *pDiskUsage = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	g_return_if_fail (pDiskUsage != NULL);
 	_display_disk_usage (pIcon, pContainer, pDiskUsage, myApplet);
 }
 
-static gboolean _cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myApplet)
+static gboolean _cd_shortcuts_update_disk_usage (GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
-	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+	GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	CDDiskUsage *pDiskUsage;
 	Icon *pIcon;
 	GList *ic;
@@ -139,7 +139,7 @@ static gboolean _cd_shortcuts_update_disk_usage (CairoDockModuleInstance *myAppl
 }
 
 
-void cd_shortcuts_launch_disk_periodic_task (CairoDockModuleInstance *myApplet)
+void cd_shortcuts_launch_disk_periodic_task (GldiModuleInstance *myApplet)
 {
 	if (myConfig.iDisplayType != CD_SHOW_NOTHING && myConfig.bListDrives)
 	{
@@ -154,7 +154,7 @@ void cd_shortcuts_launch_disk_periodic_task (CairoDockModuleInstance *myApplet)
 	}
 }
 
-void cd_shortcuts_free_disk_periodic_task (CairoDockModuleInstance *myApplet)
+void cd_shortcuts_free_disk_periodic_task (GldiModuleInstance *myApplet)
 {
 	cairo_dock_free_task (myData.pDiskTask);
 	myData.pDiskTask = NULL;

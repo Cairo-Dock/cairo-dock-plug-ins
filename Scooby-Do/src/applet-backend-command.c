@@ -59,8 +59,8 @@ static void _cd_do_execute_command (CDEntry *pEntry)
 		cd_debug (" resultat du calcul : '%s'", cResult);
 		GtkClipboard *pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
 		gtk_clipboard_set_text (pClipBoard, cResult, -1);
-		Icon *pIcon = cairo_dock_get_dialogless_icon ();
-		cairo_dock_show_temporary_dialog_with_icon_printf (D_("The value %s has been copied into the clipboard."),
+		Icon *pIcon = gldi_icons_get_any_without_dialog ();
+		gldi_dialog_show_temporary_with_icon_printf (D_("The value %s has been copied into the clipboard."),
 			pIcon,
 			CAIRO_CONTAINER (g_pMainDock),
 			3000,

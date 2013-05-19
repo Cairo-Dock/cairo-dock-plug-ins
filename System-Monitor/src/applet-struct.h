@@ -101,7 +101,7 @@ typedef struct {
 	gdouble fUserHZ;
 	gulong iMemPageSize;
 	gint iNbCPU;
-	CairoDockModuleInstance *pApplet;
+	GldiModuleInstance *pApplet;
 	} CDTopSharedMemory;
 	
 struct _AppletData {

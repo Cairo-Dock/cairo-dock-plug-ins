@@ -40,10 +40,10 @@ static void _cd_show_hide_desktop (gboolean bShowDesklets)
 {
 	if (! myData.bDesktopVisible && ! bShowDesklets)  // on autorise chaque desklet a etre minimise. l'autorisation est annulee lors de leur cachage, donc on n'a pas besoin de faire le contraire apres avoir montre le bureau.
 	{
-		cairo_dock_foreach_desklet ((CairoDockForeachDeskletFunc) _cd_allow_minimize, NULL);
+		gldi_desklets_foreach ((GldiDeskletForeachFunc) _cd_allow_minimize, NULL);
 	}
 	
-	cairo_dock_show_hide_desktop (! myData.bDesktopVisible);
+	gldi_desktop_show_hide (! myData.bDesktopVisible);
 }
 
 static void _cd_show_hide_desklet (void)
@@ -51,11 +51,11 @@ static void _cd_show_hide_desklet (void)
 	if (!myData.bDeskletsVisible)
 	{
 		//myData.xLastActiveWindow = cairo_dock_get_current_active_window ();
-		cairo_dock_set_all_desklets_visible (TRUE);  // TRUE <=> les desklets de la couche widget aussi.
+		gldi_desklets_set_visible (TRUE);  // TRUE <=> les desklets de la couche widget aussi.
 	}
 	else
 	{
-		cairo_dock_set_desklets_visibility_to_default ();
+		gldi_desklets_set_visibility_to_default ();
 		//cairo_dock_show_xwindow (myData.xLastActiveWindow);
 	}
 	myData.bDeskletsVisible = ! myData.bDeskletsVisible;
@@ -72,12 +72,12 @@ static void _cd_show_hide_desklet (void)
 
 static void _cd_show_widget_layer (void)
 {
-	cairo_dock_wm_show_widget_layer ();
+	gldi_desktop_show_widget_layer ();
 }
 
 static void _cd_expose (void)
 {
-	cairo_dock_wm_present_desktops ();
+	gldi_desktop_present_desktops ();
 }
 static gboolean _expose_delayed (G_GNUC_UNUSED gpointer data)
 {
@@ -98,7 +98,7 @@ static void _cd_action (CDActionOnClick iAction)
 			_cd_show_hide_desktop (TRUE);  // TRUE <=> show the desklets
 		break ;
 		case CD_SHOW_WIDGET_LAYER :
-			if (cairo_dock_wm_can_show_widget_layer ())
+			if (gldi_desktop_can_show_widget_layer ())
 				_cd_show_widget_layer ();
 			else
 			{
@@ -107,7 +107,7 @@ static void _cd_action (CDActionOnClick iAction)
 			}
 		break ;
 		case CD_EXPOSE :
-			if (cairo_dock_wm_can_present_desktops ())
+			if (gldi_desktop_can_present_desktops ())
 			{
 				g_timeout_add (250, _expose_delayed, NULL);  // Gnome-Shell bug here: it doesn't execute the Dbus command right after a click; I suspect the delay to be the interval of a double-click... anyway, it's stupid but it's barely noticeable, so it doesn't hurt that much even when not using GS.
 			}
@@ -177,7 +177,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
-	if (myConfig.iActionOnLeftClick != CD_EXPOSE && cairo_dock_wm_can_present_desktops ())  // action is not bound to left-click => put it in the menu
+	if (myConfig.iActionOnLeftClick != CD_EXPOSE && gldi_desktop_can_present_desktops ())  // action is not bound to left-click => put it in the menu
 	{
 		if (myConfig.iActionOnMiddleClick == CD_EXPOSE)
 			cLabel = g_strdup_printf ("%s (%s)", D_("Expose all the desktops"), D_("middle-click"));
@@ -189,7 +189,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
-	if (myConfig.iActionOnLeftClick != CD_SHOW_WIDGET_LAYER && cairo_dock_wm_can_show_widget_layer ())  // action is not bound to left-click => put it in the menu
+	if (myConfig.iActionOnLeftClick != CD_SHOW_WIDGET_LAYER && gldi_desktop_can_show_widget_layer ())  // action is not bound to left-click => put it in the menu
 	{
 		if (myConfig.iActionOnMiddleClick == CD_SHOW_WIDGET_LAYER)
 			cLabel = g_strdup_printf ("%s (%s)", D_("Show the Widget Layer"), D_("middle-click"));
@@ -265,7 +265,7 @@ static gchar *_get_desktop_path (void)
 		cDesktopDir = g_strdup_printf ("%s/Desktop", g_getenv ("HOME"));
 	return cDesktopDir;
 }
-static void _move_to_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _move_to_desktop (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	gchar *cDesktopDir = _get_desktop_path ();
 	if (cDesktopDir != NULL)
@@ -274,7 +274,7 @@ static void _move_to_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *m
 		g_free (cDesktopDir);
 	}
 }
-static void _copy_to_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _copy_to_desktop (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	gchar *cDesktopDir = _get_desktop_path ();
 	if (cDesktopDir != NULL)
@@ -283,7 +283,7 @@ static void _copy_to_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *m
 		g_free (cDesktopDir);
 	}
 }
-static void _link_to_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _link_to_desktop (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	gchar *cDesktopDir = _get_desktop_path ();
 	if (cDesktopDir != NULL)
@@ -292,7 +292,7 @@ static void _link_to_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *m
 		g_free (cDesktopDir);
 	}
 }
-static void _make_link_to_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _make_link_to_desktop (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	gchar *cDesktopDir = _get_desktop_path ();
 	if (cDesktopDir != NULL)
@@ -322,7 +322,7 @@ static void _dl_finished (gpointer data)
 {
 	cd_debug ("DL IS FINISHED");
 }
-static void _download_to_desktop (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _download_to_desktop (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	gchar *cDesktopDir = _get_desktop_path ();
 	if (cDesktopDir != NULL)
@@ -362,7 +362,7 @@ void on_keybinding_pull (const char *keystring, gpointer user_data)
 }
 
 
-gboolean on_show_desktop (CairoDockModuleInstance *myApplet)
+gboolean on_show_desktop (GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	myData.bDesktopVisible = cairo_dock_desktop_is_visible ();
@@ -376,5 +376,5 @@ gboolean on_show_desktop (CairoDockModuleInstance *myApplet)
 			CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cHiddenImage);
 		CD_APPLET_REDRAW_MY_ICON;
 	}
-	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 }

@@ -40,34 +40,34 @@ CD_APPLET_DEFINE_END
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
-	if (! g_bUseOpenGL || ! cairo_dock_reserve_data_slot (myApplet))
+	if (! g_bUseOpenGL || ! CD_APPLET_RESERVE_DATA_SLOT ())
 		return;
 	
-	cairo_dock_register_notification_on_object (&myDocksMgr,
+	gldi_object_register_notification (&myDocksMgr,
 		NOTIFICATION_RENDER,
-		(CairoDockNotificationFunc) cd_motion_blur_pre_render,
-		CAIRO_DOCK_RUN_FIRST, NULL);
-	cairo_dock_register_notification_on_object (&myDocksMgr,
+		(GldiNotificationFunc) cd_motion_blur_pre_render,
+		GLDI_RUN_FIRST, NULL);
+	gldi_object_register_notification (&myDocksMgr,
 		NOTIFICATION_RENDER,
-		(CairoDockNotificationFunc) cd_motion_blur_post_render,
-		CAIRO_DOCK_RUN_AFTER, NULL);
+		(GldiNotificationFunc) cd_motion_blur_post_render,
+		GLDI_RUN_AFTER, NULL);
 	if (myConfig.bAlways)
-		cairo_dock_register_notification_on_object (&myContainersMgr,
+		gldi_object_register_notification (&myContainersMgr,
 		NOTIFICATION_MOUSE_MOVED,
-		(CairoDockNotificationFunc) cd_motion_blur_mouse_moved,
-		CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification_on_object (&myDocksMgr,
+		(GldiNotificationFunc) cd_motion_blur_mouse_moved,
+		GLDI_RUN_AFTER, NULL);
+	gldi_object_register_notification (&myDocksMgr,
 		NOTIFICATION_ENTER_DOCK,
-		(CairoDockNotificationFunc) cd_motion_blur_mouse_moved,
-		CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification_on_object (&myDocksMgr,
+		(GldiNotificationFunc) cd_motion_blur_mouse_moved,
+		GLDI_RUN_AFTER, NULL);
+	gldi_object_register_notification (&myDocksMgr,
 		NOTIFICATION_UPDATE,
-		(CairoDockNotificationFunc) cd_motion_blur_update_dock,
-		CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification_on_object (&myDocksMgr,
+		(GldiNotificationFunc) cd_motion_blur_update_dock,
+		GLDI_RUN_AFTER, NULL);
+	gldi_object_register_notification (&myDocksMgr,
 		NOTIFICATION_DESTROY,
-		(CairoDockNotificationFunc) cd_motion_free_data,
-		CAIRO_DOCK_RUN_AFTER, NULL);
+		(GldiNotificationFunc) cd_motion_free_data,
+		GLDI_RUN_AFTER, NULL);
 CD_APPLET_INIT_END
 
 
@@ -77,25 +77,25 @@ static void _free_data_on_dock (const gchar *cDockName, CairoDock *pDock, gpoint
 	cd_motion_free_data (NULL, pDock);
 }
 CD_APPLET_STOP_BEGIN
-	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
+	gldi_object_remove_notification (&myDocksMgr,
 		NOTIFICATION_RENDER,
-		(CairoDockNotificationFunc) cd_motion_blur_pre_render, NULL);
-	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
+		(GldiNotificationFunc) cd_motion_blur_pre_render, NULL);
+	gldi_object_remove_notification (&myDocksMgr,
 		NOTIFICATION_RENDER,
-		(CairoDockNotificationFunc) cd_motion_blur_post_render, NULL);
+		(GldiNotificationFunc) cd_motion_blur_post_render, NULL);
 	if (myConfig.bAlways)
-		cairo_dock_remove_notification_func_on_object (&myContainersMgr,
+		gldi_object_remove_notification (&myContainersMgr,
 			NOTIFICATION_MOUSE_MOVED,
-			(CairoDockNotificationFunc) cd_motion_blur_mouse_moved, NULL);
-	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
+			(GldiNotificationFunc) cd_motion_blur_mouse_moved, NULL);
+	gldi_object_remove_notification (&myDocksMgr,
 		NOTIFICATION_ENTER_DOCK,
-		(CairoDockNotificationFunc) cd_motion_blur_mouse_moved, NULL);
-	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
+		(GldiNotificationFunc) cd_motion_blur_mouse_moved, NULL);
+	gldi_object_remove_notification (&myDocksMgr,
 		NOTIFICATION_UPDATE,
-		(CairoDockNotificationFunc) cd_motion_blur_update_dock, NULL);
-	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
+		(GldiNotificationFunc) cd_motion_blur_update_dock, NULL);
+	gldi_object_remove_notification (&myDocksMgr,
 		NOTIFICATION_DESTROY,
-		(CairoDockNotificationFunc) cd_motion_free_data, NULL);
+		(GldiNotificationFunc) cd_motion_free_data, NULL);
 	
 	cairo_dock_foreach_docks ((GHFunc) _free_data_on_dock, NULL);
 CD_APPLET_STOP_END

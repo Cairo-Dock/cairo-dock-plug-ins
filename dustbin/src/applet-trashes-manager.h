@@ -25,9 +25,9 @@
 #include "applet-struct.h"
 
 
-void cd_dustbin_start (CairoDockModuleInstance *myApplet);
+void cd_dustbin_start (GldiModuleInstance *myApplet);
 
-void cd_dustbin_stop (CairoDockModuleInstance *myApplet);
+void cd_dustbin_stop (GldiModuleInstance *myApplet);
 
 
 #endif

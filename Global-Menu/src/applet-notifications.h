@@ -37,22 +37,20 @@ CD_APPLET_ON_DOUBLE_CLICK_H
 
 // CD_APPLET_ON_BUILD_MENU_H
 
-void cd_app_menu_on_keybinding_pull (const gchar *keystring, CairoDockModuleInstance *myApplet);
+void cd_app_menu_on_keybinding_pull (const gchar *keystring, GldiModuleInstance *myApplet);
 
-gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation);
-
-
-gboolean cd_app_menu_on_active_window_changed (CairoDockModuleInstance *myApplet, Window *XActiveWindow);
-
-gboolean cd_app_menu_on_state_changed (CairoDockModuleInstance *myApplet, Icon *pIcon, gboolean bHiddenChanged, gboolean bMaximizedChanged, gboolean bFullScreenChanged);
-
-gboolean cd_app_menu_on_name_changed (CairoDockModuleInstance *myApplet, Icon *pIcon);
-
-gboolean cd_app_menu_on_new_appli (CairoDockModuleInstance *myApplet, Icon *pIcon);
-
-///gboolean cd_app_menu_on_property_changed (CairoDockModuleInstance *myApplet, Window Xid, Atom aProperty, int iState);
+gboolean on_mouse_moved (GldiModuleInstance *myApplet, GldiContainer *pContainer, gboolean *bStartAnimation);
 
 
-gboolean cd_app_menu_on_update_container (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bContinueAnimation);
+gboolean cd_app_menu_on_active_window_changed (GldiModuleInstance *myApplet, GldiWindowActor *actor);
+
+gboolean cd_app_menu_on_state_changed (GldiModuleInstance *myApplet, GldiWindowActor *actor, gboolean bHiddenChanged, gboolean bMaximizedChanged, gboolean bFullScreenChanged);
+
+gboolean cd_app_menu_on_name_changed (GldiModuleInstance *myApplet, GldiWindowActor *actor);
+
+gboolean cd_app_menu_on_new_appli (GldiModuleInstance *myApplet, GldiWindowActor *actor);
+
+
+gboolean cd_app_menu_on_update_container (GldiModuleInstance *myApplet, GldiContainer *pContainer, gboolean *bContinueAnimation);
 
 #endif

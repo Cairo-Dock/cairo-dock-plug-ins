@@ -49,7 +49,7 @@ CD_APPLET_DEFINE_BEGIN (N_("clock"),
 	pInterface->save_custom_widget = cd_clock_save_custom_widget;
 CD_APPLET_DEFINE_END
 
-static gboolean _cd_check_new_minute (CairoDockModuleInstance *myApplet)
+static gboolean _cd_check_new_minute (GldiModuleInstance *myApplet)
 {
 	myData.iSidUpdateClock = g_timeout_add_seconds (60,
 		(GSourceFunc) cd_clock_update_with_time,
@@ -58,7 +58,7 @@ static gboolean _cd_check_new_minute (CairoDockModuleInstance *myApplet)
 	return FALSE;
 }
 
-static void _cd_launch_timer (CairoDockModuleInstance *myApplet)
+static void _cd_launch_timer (GldiModuleInstance *myApplet)
 {
 	cd_clock_update_with_time (myApplet); // should update myData.currentTime
 
@@ -75,7 +75,7 @@ static void _cd_launch_timer (CairoDockModuleInstance *myApplet)
 		myData.iSidUpdateClock = g_timeout_add_seconds (1, (GSourceFunc) cd_clock_update_with_time, (gpointer) myApplet);
 }
 
-static void _on_resuming (DBusGProxy *proxy_item, CairoDockModuleInstance *myApplet)
+static void _on_resuming (DBusGProxy *proxy_item, GldiModuleInstance *myApplet)
 {
 	cd_debug ("Refresh timer after resuming");
 	if (! myConfig.bShowSeconds) // not interesting if the hour is updated each second
@@ -86,7 +86,7 @@ static void _on_resuming (DBusGProxy *proxy_item, CairoDockModuleInstance *myApp
 	}
 }
 
-static void _cd_connect_to_resuming_signal (CairoDockModuleInstance *myApplet)
+static void _cd_connect_to_resuming_signal (GldiModuleInstance *myApplet)
 {
 	myData.pProxyResumingUPower = cairo_dock_create_new_system_proxy (
 		"org.freedesktop.UPower",
@@ -110,7 +110,7 @@ static void _cd_connect_to_resuming_signal (CairoDockModuleInstance *myApplet)
 		G_CALLBACK (_on_resuming), myApplet, NULL);
 }
 
-static void _cd_disconnect_from_resuming_signal (CairoDockModuleInstance *myApplet)
+static void _cd_disconnect_from_resuming_signal (GldiModuleInstance *myApplet)
 {
 	if (myData.pProxyResumingUPower)
 	{

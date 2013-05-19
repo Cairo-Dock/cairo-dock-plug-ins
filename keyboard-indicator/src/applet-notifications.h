@@ -29,7 +29,7 @@ CD_APPLET_ON_BUILD_MENU_H
 
 CD_APPLET_ON_SCROLL_H
 
-gboolean cd_xkbd_keyboard_state_changed (CairoDockModuleInstance *myApplet, Window *pWindow);
+gboolean cd_xkbd_keyboard_state_changed (GldiModuleInstance *myApplet, Window *pWindow);
 
 void cd_xkbd_on_keybinding_pull (const gchar *keystring, gpointer user_data);
 

@@ -28,9 +28,9 @@
 void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName, gboolean bRedrawSurface);
 
 
-gboolean cd_xkbd_render_step_opengl (Icon *pIcon, CairoDockModuleInstance *myApplet);
+gboolean cd_xkbd_render_step_opengl (Icon *pIcon, GldiModuleInstance *myApplet);
 
-gboolean cd_xkbd_render_step_cairo (Icon *pIcon, CairoDockModuleInstance *myApplet);
+gboolean cd_xkbd_render_step_cairo (Icon *pIcon, GldiModuleInstance *myApplet);
 
 
 #endif

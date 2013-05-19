@@ -57,9 +57,9 @@ void cd_mail_retrieve_orange_params (CDMailAccount *mailaccount, GKeyFile *pKeyF
 void cd_mail_retrieve_uclouvain_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name);
 void cd_mail_retrieve_skynet_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name);
 
-void cd_mail_init_accounts(CairoDockModuleInstance *myApplet);
+void cd_mail_init_accounts(GldiModuleInstance *myApplet);
 void cd_mail_free_account (CDMailAccount *pMailAccount);
-void cd_mail_free_all_accounts (CairoDockModuleInstance *myApplet);
+void cd_mail_free_all_accounts (GldiModuleInstance *myApplet);
 
 
 #endif

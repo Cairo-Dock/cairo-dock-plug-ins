@@ -42,7 +42,7 @@ typedef enum {
 
 typedef struct _CDHtmlLink
 {
-	CairoDockModuleInstance *pApplet;
+	GldiModuleInstance *pApplet;
 	gchar *cURL;
 	gchar *cTitle;
 	gchar *cFaviconPath;

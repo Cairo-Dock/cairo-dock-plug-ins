@@ -145,10 +145,10 @@ CD_APPLET_DEFINE_BEGIN ("dock rendering",
 	cd_rendering_register_rainbow_renderer 		(CD_RENDERING_RAINBOW_VIEW_NAME);
 	
 	cd_rendering_register_diapo_simple_renderer 	(CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);  // By Paradoxxx_Zero
-	cairo_dock_register_notification_on_object (&myDocksMgr,
+	gldi_object_register_notification (&myDocksMgr,
 		NOTIFICATION_LEAVE_DOCK,
-		(CairoDockNotificationFunc) cd_slide_on_leave,
-		CAIRO_DOCK_RUN_FIRST, NULL);  // on l'enregistre ici, et non pas sur le container, pour intercepter la fermeture du dock lorsque l'on en sort en tirant la scrollbar.
+		(GldiNotificationFunc) cd_slide_on_leave,
+		GLDI_RUN_FIRST, NULL);  // on l'enregistre ici, et non pas sur le container, pour intercepter la fermeture du dock lorsque l'on en sort en tirant la scrollbar.
 	
 	cd_rendering_register_curve_renderer 			(CD_RENDERING_CURVE_VIEW_NAME);  // By Paradoxxx_Zero and Fabounet
 	
@@ -170,10 +170,10 @@ CD_APPLET_INIT_BEGIN
 	//cd_rendering_register_diapo_renderer 			(CD_RENDERING_DIAPO_VIEW_NAME);  // By Paradoxxx_Zero
 
 	cd_rendering_register_diapo_simple_renderer 	(CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);  // By Paradoxxx_Zero
-	cairo_dock_register_notification_on_object (&myDocksMgr,
+	gldi_object_register_notification (&myDocksMgr,
 		NOTIFICATION_LEAVE_DOCK,
-		(CairoDockNotificationFunc) cd_slide_on_leave,
-		CAIRO_DOCK_RUN_FIRST, NULL);  // on l'enregistre ici, et non pas sur le container, pour intercepter la fermeture du dock lorsque l'on en sort en tirant la scrollbar.
+		(GldiNotificationFunc) cd_slide_on_leave,
+		GLDI_RUN_FIRST, NULL);  // on l'enregistre ici, et non pas sur le container, pour intercepter la fermeture du dock lorsque l'on en sort en tirant la scrollbar.
 	
 	cd_rendering_register_curve_renderer 			(CD_RENDERING_CURVE_VIEW_NAME);  // By Paradoxxx_Zero and Fabounet
 	
@@ -198,9 +198,9 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_renderer (CD_RENDERING_CURVE_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_PANEL_VIEW_NAME);
 	
-	cairo_dock_remove_notification_func_on_object (&myDocksMgr,
+	gldi_object_remove_notification (&myDocksMgr,
                 NOTIFICATION_LEAVE_DOCK,
-		(CairoDockNotificationFunc) cd_slide_on_leave, NULL);
+		(GldiNotificationFunc) cd_slide_on_leave, NULL);
 	
 	cairo_dock_reset_all_views ();
 	gtk_widget_queue_draw (g_pMainDock->container.pWidget);*/

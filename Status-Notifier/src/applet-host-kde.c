@@ -41,7 +41,7 @@ static DBusGProxyCall *s_pDetectWatcherCall = NULL;
  /// Signals ///
 ///////////////
 
-static void on_new_item (DBusGProxy *proxy_watcher, const gchar *cNotifierItemId, CairoDockModuleInstance *myApplet)
+static void on_new_item (DBusGProxy *proxy_watcher, const gchar *cNotifierItemId, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("=== %s (%s)", __func__, cNotifierItemId);
@@ -65,7 +65,7 @@ static void on_new_item (DBusGProxy *proxy_watcher, const gchar *cNotifierItemId
 	CD_APPLET_LEAVE ();
 }
 
-static void on_removed_item (DBusGProxy *proxy_watcher, const gchar *cNotifierItemId, CairoDockModuleInstance *myApplet)
+static void on_removed_item (DBusGProxy *proxy_watcher, const gchar *cNotifierItemId, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("=== %s (%s)", __func__, cNotifierItemId);
@@ -84,7 +84,7 @@ static void on_removed_item (DBusGProxy *proxy_watcher, const gchar *cNotifierIt
  /// Get Items ///
 /////////////////
 
-static void _on_get_applications_from_watcher (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockModuleInstance *myApplet)
+static void _on_get_applications_from_watcher (DBusGProxy *proxy, DBusGProxyCall *call_id, GldiModuleInstance *myApplet)
 {
 	cd_debug ("=== %s ()", __func__);
 	CD_APPLET_ENTER;
@@ -166,7 +166,7 @@ static void _on_get_applications_from_watcher (DBusGProxy *proxy, DBusGProxyCall
  /// Connection ///
 //////////////////
 
-static void _on_register_host (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockModuleInstance *myApplet)
+static void _on_register_host (DBusGProxy *proxy, DBusGProxyCall *call_id, GldiModuleInstance *myApplet)
 {
 	cd_debug ("=== %s ()", __func__);
 	CD_APPLET_ENTER;

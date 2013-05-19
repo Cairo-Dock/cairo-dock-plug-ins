@@ -24,13 +24,13 @@
 #include <cairo-dock.h>
 
 
-void cd_folders_start (CairoDockModuleInstance *myApplet);
+void cd_folders_start (GldiModuleInstance *myApplet);
 
 
-void cd_folders_free_all_data (CairoDockModuleInstance *myApplet);
+void cd_folders_free_all_data (GldiModuleInstance *myApplet);
 
 
-void cd_folders_sort_icons (CairoDockModuleInstance *myApplet, CairoDockFMSortType iSortType);
+void cd_folders_sort_icons (GldiModuleInstance *myApplet, CairoDockFMSortType iSortType);
 
 
 #endif

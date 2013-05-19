@@ -112,7 +112,7 @@ CD_APPLET_RESET_DATA_BEGIN
 	
 	CD_APPLET_REMOVE_MY_DATA_RENDERER;
 	
-	cairo_dock_dialog_unreference (myData.pTopDialog);
+	gldi_object_unref (GLDI_OBJECT(myData.pTopDialog));
 	
 	g_free (myData.cModelName);
 	g_free (myData.cGPUName);

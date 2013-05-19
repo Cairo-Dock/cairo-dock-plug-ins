@@ -46,7 +46,7 @@ static void _on_got_answer (int iClickedButton, GtkWidget *pInteractiveWidget, g
 static void _take_screenshot_with_options (void)
 {
 	GtkWidget *pWidget = cd_screenshot_build_options_widget ();
-	myData.pDialog = cairo_dock_show_dialog_full (D_("Screenshot"), myIcon, myContainer,
+	myData.pDialog = gldi_dialog_show (D_("Screenshot"), myIcon, myContainer,
 		0,
 		MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE,
 		pWidget, (CairoDockActionOnAnswerFunc)_on_got_answer, NULL, (GFreeFunc)NULL);

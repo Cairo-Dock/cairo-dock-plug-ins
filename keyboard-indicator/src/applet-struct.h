@@ -48,7 +48,7 @@ struct _AppletData {
 	gint iOldTextWidth, iOldTextHeight;*/
 	gint iCurrentGroup;
 	guint iCurrentIndic, iPreviousIndic;
-	CairoKeyBinding *pKeyBinding;
+	GldiShortkey *pKeyBinding;
 	gchar *cEmblemNumLock;
 	gchar *cEmblemCapsLock;
 	gpointer pEngine; // const, should not be freed

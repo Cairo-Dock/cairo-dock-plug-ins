@@ -59,13 +59,17 @@ struct _AppletConfig {
 	} ;
 
 typedef struct _CDDiskUsage {
+	// for disks
 	long long iPrevAvail;
 	long long iAvail;
 	long long iFree;
 	long long iTotal;
 	long long iUsed;
 	int iType;
+	// for bookmarks
+	int iLastCheckTime;
 	} CDDiskUsage;
+
 
 typedef struct {
 	gboolean bListDrives;
@@ -75,7 +79,7 @@ typedef struct {
 	gchar *cNetworkURI;
 	gchar *cBookmarksURI;
 	GList *pIconList;
-	CairoDockModuleInstance *pApplet;
+	GldiModuleInstance *pApplet;
 	} CDSharedMemory;
 
 struct _AppletData {

@@ -34,7 +34,7 @@ CD_APPLET_ON_CLICK_BEGIN
 		gchar *cErrorMessage = g_strdup_printf (D_("This indicator service did not reply.\n"
 			"Please check that '%s' is correctly installed and its daemon is running."),
 			myConfig.cIndicatorName);
-		cairo_dock_show_temporary_dialog_with_icon (cErrorMessage, myApplet->pIcon, myContainer, 8000., "same icon");
+		gldi_dialog_show_temporary_with_icon (cErrorMessage, myApplet->pIcon, myContainer, 8000., "same icon");
 		g_free (cErrorMessage);
 	}
 	

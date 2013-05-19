@@ -49,9 +49,6 @@
 		pData->iNumRound = 0;\
 		pData->bIsUnfolding = FALSE;\
 		}
-		/**pData->fRadiusFactor = 0;\
-		pData->fPulseAlpha = 0;\
-		}*/
 
 static int _compare_rendering_order (CDCurrentAnimation *pCurrentAnimation1, CDCurrentAnimation *pCurrentAnimation2)
 {
@@ -84,20 +81,17 @@ static void _cd_animations_start (gpointer pUserData, Icon *pIcon, CairoDock *pD
 			pAnimation->init (pIcon, pDock, pData, dt, bUseOpenGL);
 		*bStartAnimation = TRUE;
 	}
-	
-	/**if (pData->fRadiusFactor == 0)
-		pData->fIconOffsetY = 0;*/
 }
 
 gboolean cd_animations_on_enter (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bStartAnimation)
 {
 	if (pIcon->bStatic || ! CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)) || pIcon->iAnimationState > CAIRO_DOCK_STATE_MOUSE_HOVERED)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	if (pIcon->pSubDock && pIcon->iSubdockViewType == 3 && !myDocksParam.bShowSubDockOnClick)  // icone de sous-dock avec rendu de type "box"-> on n'anime pas.
 	{
 		//cd_animations_free_data (pUserData, pIcon);
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	}
 	
 	_cd_animations_start (pUserData, pIcon, pDock, myConfig.iEffectsOnMouseOver, bStartAnimation);
@@ -108,20 +102,20 @@ gboolean cd_animations_on_enter (gpointer pUserData, Icon *pIcon, CairoDock *pDo
 		pData->iNumRound = 0;
 		cairo_dock_mark_icon_as_hovered_by_mouse (pIcon);
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 gboolean cd_animations_on_click (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gint iButtonState)
 {
 	if (! CAIRO_DOCK_IS_DOCK (pDock) || pIcon->iAnimationState > CAIRO_DOCK_STATE_CLICKED)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	if (pIcon->pSubDock && pIcon->iSubdockViewType == 3)  // icone de sous-dock avec rendu de type "box" -> on arrete l'animation en cours.
 	{
 		CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 		if (pData && ! pData->bIsUnfolding)
 			cd_animations_free_data (pUserData, pIcon);  // on arrete l'animation en cours.
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	}
 	
 	CairoDockIconGroup iType = cairo_dock_get_icon_type (pIcon);
@@ -136,7 +130,7 @@ gboolean cd_animations_on_click (gpointer pUserData, Icon *pIcon, CairoDock *pDo
 		pData->iNumRound = myConfig.iNbRoundsOnClick[iType] - 1;
 		cairo_dock_mark_icon_as_clicked (pIcon);
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 static inline CDAnimationsEffects _get_animation_from_name (const gchar *cName)
@@ -157,7 +151,7 @@ static inline CDAnimationsEffects _get_animation_from_name (const gchar *cName)
 gboolean cd_animations_on_request (gpointer pUserData, Icon *pIcon, CairoDock *pDock, const gchar *cAnimation, gint iNbRounds)
 {
 	if (cAnimation == NULL || pIcon == NULL || pIcon->iAnimationState > CAIRO_DOCK_STATE_CLICKED)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	CDAnimationsEffects anim[2] = {0, -1};
 	if (strcmp (cAnimation, "default") == 0)
@@ -169,7 +163,7 @@ gboolean cd_animations_on_request (gpointer pUserData, Icon *pIcon, CairoDock *p
 	{
 		anim[0] = _get_animation_from_name (cAnimation);
 		if (anim[0] >= CD_ANIMATIONS_NB_EFFECTS)  // enums are unsigned int, so >= 0
-			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+			return GLDI_NOTIFICATION_LET_PASS;
 	}
 	
 	gboolean bStartAnimation = FALSE;
@@ -180,7 +174,7 @@ gboolean cd_animations_on_request (gpointer pUserData, Icon *pIcon, CairoDock *p
 		pData->iNumRound = iNbRounds - 1;
 		cairo_dock_mark_icon_as_hovered_by_mouse (pIcon);
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
@@ -188,7 +182,7 @@ gboolean cd_animations_post_render_icon (gpointer pUserData, Icon *pIcon, CairoD
 {
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL || pData->bIsUnfolding)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	CDCurrentAnimation *pCurrentAnimation;
 	CDAnimation *pAnimation;
@@ -206,14 +200,14 @@ gboolean cd_animations_post_render_icon (gpointer pUserData, Icon *pIcon, CairoD
 		}
 	}
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bHasBeenRendered, cairo_t *pCairoContext)
 {
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	if (pData->bIsUnfolding && pIcon->pSubDock)
 	{
@@ -222,7 +216,7 @@ gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 		else
 			cd_animations_draw_unfolding_icon (pIcon, pDock, pData);
 		*bHasBeenRendered = TRUE;
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	}
 	
 	pData->bHasBeenPulsed = FALSE;
@@ -247,7 +241,7 @@ gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 			}
 		}
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
@@ -256,7 +250,7 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 {
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	gboolean bUseOpenGL = CAIRO_DOCK_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock));
 	double dt = cairo_dock_get_animation_delta_t (CAIRO_CONTAINER (pDock));
 	
@@ -267,7 +261,7 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 		else
 			*bContinueAnimation = TRUE;
 		cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));  // un peu bourrin ...
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	}
 	
 	gboolean bIconDrawn = FALSE;
@@ -320,14 +314,14 @@ gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 		cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
 	}
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
 gboolean cd_animations_unfold_subdock (gpointer pUserData, Icon *pIcon)  // called on start (un)folding.
 {
 	if (pIcon == NULL || pIcon->iSubdockViewType != 3)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	CairoDock *pDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
 	if (pDock != NULL)
@@ -337,7 +331,7 @@ gboolean cd_animations_unfold_subdock (gpointer pUserData, Icon *pIcon)  // call
 		cairo_dock_launch_animation (CAIRO_CONTAINER (pDock));
 	}
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
@@ -345,7 +339,7 @@ gboolean cd_animations_free_data (gpointer pUserData, Icon *pIcon)
 {
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	cairo_dock_free_particle_system (pData->pRaysSystem);
 	
@@ -356,7 +350,7 @@ gboolean cd_animations_free_data (gpointer pUserData, Icon *pIcon)
 	
 	g_free (pData);
 	CD_APPLET_SET_MY_ICON_DATA (pIcon, NULL);
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 

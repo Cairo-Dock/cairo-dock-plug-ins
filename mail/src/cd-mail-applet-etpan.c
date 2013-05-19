@@ -71,7 +71,7 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 	{
 		cd_debug ("mail : %d/%d/%d", result_messages, result_recent, result_unseen);
 		pMailAccount->iPrevNbUnseenMails = pMailAccount->iNbUnseenMails;
-		CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
+		GldiModuleInstance *myApplet = pMailAccount->pAppletInstance;
 		if (! myConfig.bShowMessageContent) // only if we want to show the message content...
 			pMailAccount->iNbUnseenMails = (guint)result_unseen;
 		else if ( pMailAccount->iNbUnseenMails != (guint)result_unseen )  // nombre de messages non lus a change, on va supposer que cela provient soit de leur lecture, soit de leur arrivee, en excluant le cas ou arrivee = lecture, qui laisserait inchange le nombre de mails non lus.
@@ -80,7 +80,7 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 			
 			// On recupere les messages non lus.
 			//if (myConfig.bShowMessageContent && pMailAccount->bInitialized)  // && pMailAccount->iNbUnseenMails > pMailAccount->iPrevNbUnseenMails
-			CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
+			GldiModuleInstance *myApplet = pMailAccount->pAppletInstance;
 			cd_debug ("getting %d message body...", pMailAccount->iNbUnseenMails);
 			g_list_foreach (pMailAccount->pUnseenMessageList, (GFunc) g_free, NULL);
 			g_list_free (pMailAccount->pUnseenMessageList);
@@ -267,9 +267,9 @@ void cd_mail_get_folder_data (CDMailAccount *pMailAccount)  ///Extraire les donn
 gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 {
 	if( !pUpdatedMailAccount ) return TRUE;
-	CairoDockModuleInstance *myApplet = pUpdatedMailAccount->pAppletInstance;
+	GldiModuleInstance *myApplet = pUpdatedMailAccount->pAppletInstance;
 	CD_APPLET_ENTER;
-	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+	GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	Icon *pIcon = pUpdatedMailAccount->icon;
 	if (pIcon == NULL)  // cas d'un seul compte.
 	{
@@ -385,7 +385,7 @@ void cd_mail_mark_all_mails_as_read(CDMailAccount *pMailAccount)
 	}
 }
 
-void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gboolean bSignalNewMessages)
+void cd_mail_draw_main_icon (GldiModuleInstance *myApplet, gboolean bSignalNewMessages)
 {
 	g_return_if_fail (myDrawContext != NULL);
 	cd_debug ("%s ()", __func__);
@@ -400,8 +400,8 @@ void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gboolean bSignal
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
 		if (bSignalNewMessages)
 		{
-			cairo_dock_remove_dialog_if_any (myIcon);
-			cairo_dock_show_temporary_dialog_with_icon (D_("No unread mail in your mailboxes"), myIcon, myContainer, 1500, "same icon");
+			gldi_dialogs_remove_on_icon (myIcon);
+			gldi_dialog_show_temporary_with_icon (D_("No unread mail in your mailboxes"), myIcon, myContainer, 1500, "same icon");
 		}
 	}
 	else if (myData.iNbUnreadMails != myData.iPrevNbUnreadMails)
@@ -462,8 +462,8 @@ void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gboolean bSignal
 					}
 				}
 			}
-			cairo_dock_remove_dialog_if_any (myIcon);
-			cairo_dock_show_temporary_dialog_with_icon (ttip_str->str,
+			gldi_dialogs_remove_on_icon (myIcon);
+			gldi_dialog_show_temporary_with_icon (ttip_str->str,
 				myIcon,
 				myContainer,
 				myConfig.iDialogDuration,
@@ -488,7 +488,7 @@ void cd_mail_draw_main_icon (CairoDockModuleInstance *myApplet, gboolean bSignal
 }
 
 
-void cd_mail_render_3D_to_texture (CairoDockModuleInstance *myApplet)
+void cd_mail_render_3D_to_texture (GldiModuleInstance *myApplet)
 {
 	CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN ();
 

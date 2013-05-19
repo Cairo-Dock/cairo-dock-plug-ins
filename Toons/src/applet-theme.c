@@ -31,7 +31,7 @@
 
 static const gchar *group[2] = {"Left eye", "Right eye"};
 
-gboolean cd_xeyes_load_theme (CairoDockModuleInstance *myApplet)
+gboolean cd_xeyes_load_theme (GldiModuleInstance *myApplet)
 {
 	GString *sPath = g_string_new ("");
 	g_string_printf (sPath, "%s/theme.conf", myConfig.cThemePath);
@@ -162,7 +162,7 @@ gboolean cd_xeyes_load_theme (CairoDockModuleInstance *myApplet)
 }
 
 
-void cd_xeyes_unload_theme (CairoDockModuleInstance *myApplet)
+void cd_xeyes_unload_theme (GldiModuleInstance *myApplet)
 {
 	int i;
 	for (i = 0; i < 2; i ++)

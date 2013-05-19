@@ -26,6 +26,6 @@
 
 CD_APPLET_CONFIG_H
 
-void cd_penguin_reset_data (CairoDockModuleInstance *myApplet);
+void cd_penguin_reset_data (GldiModuleInstance *myApplet);
 
 #endif

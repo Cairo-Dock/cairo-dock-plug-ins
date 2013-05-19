@@ -27,20 +27,20 @@
 
 char* ltrim( char* str, const char* t );
 
-gchar *cd_rssreader_cut_feed_lines_with_return (CairoDockModuleInstance *myApplet, int iMaxWidth, gchar *cLongLine);
+gchar *cd_rssreader_cut_feed_lines_with_return (GldiModuleInstance *myApplet, int iMaxWidth, gchar *cLongLine);
 
-void cd_rssreader_cut_feed_lines (CairoDockModuleInstance *myApplet, int iMaxWidth, gchar *cLongLine);
-
-
-void cd_rssreader_upload_title_TASK (CairoDockModuleInstance *myApplet);
+void cd_rssreader_cut_feed_lines (GldiModuleInstance *myApplet, int iMaxWidth, gchar *cLongLine);
 
 
-void cd_rssreader_launch_task (CairoDockModuleInstance *myApplet);
+void cd_rssreader_upload_title_TASK (GldiModuleInstance *myApplet);
 
 
-void cd_applet_draw_my_desklet (CairoDockModuleInstance *myApplet, int iWidth, int iHeight);
+void cd_rssreader_launch_task (GldiModuleInstance *myApplet);
 
-void cd_applet_update_my_icon (CairoDockModuleInstance *myApplet/**, Icon *pIcon, CairoContainer *pContainer*/);
+
+void cd_applet_draw_my_desklet (GldiModuleInstance *myApplet, int iWidth, int iHeight);
+
+void cd_applet_update_my_icon (GldiModuleInstance *myApplet/**, Icon *pIcon, GldiContainer *pContainer*/);
 
 
 #endif

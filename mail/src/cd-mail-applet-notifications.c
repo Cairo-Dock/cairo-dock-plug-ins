@@ -59,12 +59,12 @@ CD_APPLET_ON_CLICK_BEGIN
 			if (!r)
 			{
 				cd_warning ("when couldn't execute '%s'", cMailAppToLaunch);
-				cairo_dock_show_temporary_dialog_with_icon_printf (D_("A problem occured\nIf '%s' is not your usual mail application,\nyou can change it in the configuration panel of this module"), myIcon, myContainer, 5000, "same icon", cMailAppToLaunch);
+				gldi_dialog_show_temporary_with_icon_printf (D_("A problem occured\nIf '%s' is not your usual mail application,\nyou can change it in the configuration panel of this module"), myIcon, myContainer, 5000, "same icon", cMailAppToLaunch);
 			}
 		}
 		else
 		{
-			cairo_dock_show_temporary_dialog_with_icon (D_("No mail application is defined,\nyou can define it in the configuration panel of this module"), myIcon, myContainer, 5000, "same icon");
+			gldi_dialog_show_temporary_with_icon (D_("No mail application is defined,\nyou can define it in the configuration panel of this module"), myIcon, myContainer, 5000, "same icon");
 		}
 	}
 CD_APPLET_ON_CLICK_END
@@ -81,16 +81,16 @@ static void _cd_mail_update_account (GtkMenuItem *menu_item, CDMailAccount *pMai
 			return;
 		}
 
-		CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
+		GldiModuleInstance *myApplet = pMailAccount->pAppletInstance;
 		Icon *pIcon = (pMailAccount->icon ? pMailAccount->icon : myIcon);
-		CairoContainer *pContainer = (pMailAccount->icon ? CD_APPLET_MY_ICONS_LIST_CONTAINER : myContainer);
+		GldiContainer *pContainer = (pMailAccount->icon ? CD_APPLET_MY_ICONS_LIST_CONTAINER : myContainer);
 		cairo_dock_set_quick_info (pIcon, pContainer, "...");
 		
 		cairo_dock_launch_task(pMailAccount->pAccountMailTimer);
 	}
 }
 
-static void _cd_mail_force_update(CairoDockModuleInstance *myApplet)
+static void _cd_mail_force_update(GldiModuleInstance *myApplet)
 {
 	guint i;
 	if (myData.pMailAccounts != NULL)
@@ -106,7 +106,7 @@ static void _cd_mail_force_update(CairoDockModuleInstance *myApplet)
 	}
 }
 
-static void _cd_mail_update_all_accounts (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_mail_update_all_accounts (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	_cd_mail_force_update (myApplet);
 }
@@ -117,12 +117,12 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 
 CD_APPLET_ON_MIDDLE_CLICK_END
 
-static void _cd_mail_launch_mail_appli (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_mail_launch_mail_appli (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	cairo_dock_launch_command (myConfig.cMailApplication);
 }
 
-static void _cd_mail_mark_all_as_read (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_mail_mark_all_as_read (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	guint i;
 	if (myData.pMailAccounts != NULL)
@@ -175,7 +175,7 @@ CD_APPLET_ON_BUILD_MENU_END
 
 void _cd_mail_show_current_mail(CDMailAccount *pMailAccount)
 {
-	CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
+	GldiModuleInstance *myApplet = pMailAccount->pAppletInstance;
 	GList *l = pMailAccount->pUnseenMessageList;
 	const gchar *cMessage = "";
 	gint i = myData.iCurrentlyShownMail;
@@ -216,7 +216,7 @@ void _cd_mail_show_current_mail(CDMailAccount *pMailAccount)
 
 void _cd_mail_show_prev_mail_cb(GtkWidget *widget, CDMailAccount *pMailAccount)
 {
-	CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
+	GldiModuleInstance *myApplet = pMailAccount->pAppletInstance;
 
 	myData.iCurrentlyShownMail--;
 	_cd_mail_show_current_mail(pMailAccount);
@@ -224,7 +224,7 @@ void _cd_mail_show_prev_mail_cb(GtkWidget *widget, CDMailAccount *pMailAccount)
 
 void _cd_mail_show_next_mail_cb(GtkWidget *widget, CDMailAccount *pMailAccount)
 {
-	CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
+	GldiModuleInstance *myApplet = pMailAccount->pAppletInstance;
 
 	myData.iCurrentlyShownMail++;
 	_cd_mail_show_current_mail(pMailAccount);
@@ -232,18 +232,18 @@ void _cd_mail_show_next_mail_cb(GtkWidget *widget, CDMailAccount *pMailAccount)
 
 void _cd_mail_close_preview_cb(GtkWidget *widget, CDMailAccount *pMailAccount)
 {
-	CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
+	GldiModuleInstance *myApplet = pMailAccount->pAppletInstance;
 
 	if( myData.pMessagesDialog != NULL )
 	{
-		cairo_dock_dialog_unreference (myData.pMessagesDialog);
+		gldi_object_unref (GLDI_OBJECT(myData.pMessagesDialog));
 		myData.pMessagesDialog = NULL;
 	}
 }
 
 GtkWidget *cd_mail_messages_container_new(CDMailAccount *pMailAccount)
 {
-	CairoDockModuleInstance *myApplet = pMailAccount->pAppletInstance;
+	GldiModuleInstance *myApplet = pMailAccount->pAppletInstance;
 
 	/*
 	 * Appearance of the container:
@@ -306,7 +306,7 @@ GtkWidget *cd_mail_messages_container_new(CDMailAccount *pMailAccount)
 
 CD_APPLET_ON_SCROLL_BEGIN
 	if (myData.pMailAccounts == NULL || !myConfig.bShowMessageContent)
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 
 	CDMailAccount *pMailAccount = NULL;
 	guint i;
@@ -318,12 +318,12 @@ CD_APPLET_ON_SCROLL_BEGIN
 			break ;
 	}
 	if (i == myData.pMailAccounts->len || pMailAccount == NULL)
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 	
 	if (cairo_dock_task_is_running (pMailAccount->pAccountMailTimer))
 	{
 		cd_debug ("account is being checked, wait a second\n");
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 	}
 	
 	/* Ensure the connection is alive */
@@ -340,7 +340,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 			cd_debug ( "Displaying messages" );
 			if( pMailAccount->pUnseenMessageList != NULL )
 			{
-				myData.pMessagesDialog = cairo_dock_show_dialog_full (_("Mail"),
+				myData.pMessagesDialog = gldi_dialog_show (_("Mail"),
 					myIcon, myContainer,
 					0,
 					"same icon",

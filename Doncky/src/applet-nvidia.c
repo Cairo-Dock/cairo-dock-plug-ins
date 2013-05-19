@@ -29,7 +29,7 @@
 #include "applet-struct.h"
 #include "applet-nvidia.h"
 
-void cd_sysmonitor_get_nvidia_data (CairoDockModuleInstance *myApplet)
+void cd_sysmonitor_get_nvidia_data (GldiModuleInstance *myApplet)
 {
 	if (myConfig.bShowNvidia) // Une petite sécurité :-)
 	{
@@ -58,7 +58,7 @@ void cd_sysmonitor_get_nvidia_data (CairoDockModuleInstance *myApplet)
 }
 
 
-void cd_sysmonitor_get_nvidia_info (CairoDockModuleInstance *myApplet)
+void cd_sysmonitor_get_nvidia_info (GldiModuleInstance *myApplet)
 {
 	if (myConfig.bShowNvidia) // Une petite sécurité :-)
 	{

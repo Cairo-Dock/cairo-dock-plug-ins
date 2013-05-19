@@ -95,14 +95,14 @@ static void _show_menu (gboolean bOnMouse)
 	}
 	else  /// either show a message, or remember the user demand, so that we pop the menu as soon as we get it...
 	{
-		cairo_dock_show_temporary_dialog_with_icon (D_("The application didn't send its menu to us."), myIcon, myContainer, 4000., "same icon");
+		gldi_dialog_show_temporary_with_icon (D_("The application didn't send its menu to us."), myIcon, myContainer, 4000., "same icon");
 	}
 }
 
 //\___________ Action on click: show the menu
 CD_APPLET_ON_CLICK_BEGIN
-	if (myData.iCurrentWindow == 0)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	if (myData.pCurrentWindow == NULL)
+		return GLDI_NOTIFICATION_LET_PASS;
 	if (myConfig.bDisplayControls)
 	{
 		int iNumButton = cd_app_menu_find_button (myApplet);
@@ -115,19 +115,17 @@ CD_APPLET_ON_CLICK_BEGIN
 				break;
 				case CD_BUTTON_MINIMIZE:
 					if (myData.bCanMinimize)
-						cairo_dock_minimize_xwindow (myData.iCurrentWindow);
+						gldi_window_minimize (myData.pCurrentWindow);
 				break;
 				case CD_BUTTON_MAXIMIZE:
 					if (myData.bCanMaximize)
 					{
-						Icon *pAppli = cairo_dock_get_icon_with_Xid (myData.iCurrentWindow);
-						if (pAppli)
-							cairo_dock_maximize_xwindow (pAppli->Xid, ! pAppli->bIsMaximized);
+						gldi_window_maximize (myData.pCurrentWindow, ! myData.pCurrentWindow->bIsMaximized);
 					}
 				break;
 				case CD_BUTTON_CLOSE:
 					if (myData.bCanClose)
-						cairo_dock_close_xwindow (myData.iCurrentWindow);
+						gldi_window_close (myData.pCurrentWindow);
 				break;
 			}
 		}
@@ -140,25 +138,25 @@ CD_APPLET_ON_CLICK_END
 //\___________ Other actions are defined to mime the usual actions available on windows top border
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	// set the window behind all the others.
-	if (myData.iCurrentWindow != 0)
-		cairo_dock_lower_xwindow (myData.iCurrentWindow);
+	GldiWindowActor *actor = gldi_windows_get_active();
+	if (actor)
+		gldi_window_lower (actor);
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
 CD_APPLET_ON_SCROLL_BEGIN
 	// minimize the window (we could also use the scroll to (un)shade the window, but I'm afraid that a maximized shaded window would be too much hidden, users could be confused).
-	if (myData.iCurrentWindow != 0 && CD_APPLET_SCROLL_DOWN)
-		cairo_dock_minimize_xwindow (myData.iCurrentWindow);
+	GldiWindowActor *actor = gldi_windows_get_active();
+	if (actor && CD_APPLET_SCROLL_DOWN)
+		gldi_window_minimize (actor);
 CD_APPLET_ON_SCROLL_END
 
 		
 CD_APPLET_ON_DOUBLE_CLICK_BEGIN
 	// maximize/restaure the window.
-	if (myData.iCurrentWindow != 0)
+	if (myData.pCurrentWindow != 0)
 	{
-		Icon *pAppli = cairo_dock_get_icon_with_Xid (myData.iCurrentWindow);
-		if (pAppli)
-			cairo_dock_maximize_xwindow (pAppli->Xid, ! pAppli->bIsMaximized);
+		gldi_window_maximize (myData.pCurrentWindow, ! myData.pCurrentWindow->bIsMaximized);
 	}
 CD_APPLET_ON_DOUBLE_CLICK_END
 
@@ -169,7 +167,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 CD_APPLET_ON_BUILD_MENU_END
 */
 
-void cd_app_menu_on_keybinding_pull (const gchar *keystring, CairoDockModuleInstance *myApplet)
+void cd_app_menu_on_keybinding_pull (const gchar *keystring, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	_show_menu (myConfig.bMenuOnMouse);
@@ -184,87 +182,62 @@ static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, Window *d
 	if (gldi_container_get_Xid (CAIRO_CONTAINER (pDock)) == xActiveWindow)
 		data[1] = 1;
 }
-gboolean cd_app_menu_on_active_window_changed (CairoDockModuleInstance *myApplet, Window *XActiveWindow)
+gboolean cd_app_menu_on_active_window_changed (GldiModuleInstance *myApplet, GldiWindowActor *actor)
 {
-	if (XActiveWindow == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-	
 	// check if a dock has the focus (we don't want to control the dock, it wouldn't make sense anyway).
-	Window data[2] = {*XActiveWindow, 0};
-	cairo_dock_foreach_docks ((GHFunc) _check_dock_is_active, data);
-	
-	if (data[1] == 0)  // not a dock, so let's take it.
+	if (actor)
 	{
-		// take this new window (possibly 0).
-		cd_app_menu_set_current_window (*XActiveWindow);
+		Window data[2] = {cairo_dock_get_active_xwindow(), 0};
+		cairo_dock_foreach_docks ((GHFunc) _check_dock_is_active, data);
+		if (data[1])  // not a dock, so let's take it.
+			actor = NULL;
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	
+	// take this new window (possibly NULL).
+	cd_app_menu_set_current_window (actor);
+	
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
-gboolean cd_app_menu_on_state_changed (CairoDockModuleInstance *myApplet, Icon *pIcon, gboolean bHiddenChanged, gboolean bMaximizedChanged, gboolean bFullScreenChanged)
+gboolean cd_app_menu_on_state_changed (GldiModuleInstance *myApplet, GldiWindowActor *actor, gboolean bHiddenChanged, gboolean bMaximizedChanged, gboolean bFullScreenChanged)
 {
-	if (pIcon && pIcon->Xid == myData.iCurrentWindow)
+	if (actor == myData.pCurrentWindow)
 	{
 		if (bMaximizedChanged)
 		{
-			cd_app_menu_set_window_border (pIcon->Xid, ! pIcon->bIsMaximized);
+			gldi_window_set_border (actor, ! actor->bIsMaximized);
 			cd_app_menu_redraw_buttons ();
 		}
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
-gboolean cd_app_menu_on_name_changed (CairoDockModuleInstance *myApplet, Icon *pIcon)
+gboolean cd_app_menu_on_name_changed (GldiModuleInstance *myApplet, GldiWindowActor *actor)
 {
-	if (pIcon && pIcon->Xid == myData.iCurrentWindow)
+	if (actor == myData.pCurrentWindow)
 	{
-		CD_APPLET_SET_NAME_FOR_MY_ICON (pIcon->cName);
+		CD_APPLET_SET_NAME_FOR_MY_ICON (actor->cName);
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
-gboolean cd_app_menu_on_new_appli (CairoDockModuleInstance *myApplet, Icon *pIcon)
+gboolean cd_app_menu_on_new_appli (GldiModuleInstance *myApplet, GldiWindowActor *actor)
 {
-	if (pIcon && pIcon->bIsMaximized)
+	if (actor->bIsMaximized)
 	{
-		cd_app_menu_set_window_border (pIcon->Xid, ! pIcon->bIsMaximized);
+		gldi_window_set_border (actor, ! actor->bIsMaximized);
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
-
-/**gboolean cd_app_menu_on_property_changed (CairoDockModuleInstance *myApplet, Window Xid, Atom aProperty, int iState)
-{
-	if (Xid != 0 && Xid == myData.iCurrentWindow)
-	{
-		Display *dpy = cairo_dock_get_Xdisplay();
-		Atom aNetWmState = XInternAtom (dpy, "_NET_WM_STATE", False);
-		Atom s_aNetWmName = XInternAtom (dpy, "_NET_WM_NAME", False);
-		Atom s_aWmName = XInternAtom (dpy, "WM_NAME", False);
-		if (aProperty == aNetWmState)
-		{
-			Icon *icon = cairo_dock_get_icon_with_Xid (Xid);
-			if (icon)
-				cd_app_menu_set_window_border (Xid, ! icon->bIsMaximized);
-			// update the icon to reflect the change of state (max/restore button)
-			cd_app_menu_redraw_buttons ();
-		}
-		else if (iState == PropertyNewValue && (aProperty == s_aNetWmName || aProperty == s_aWmName))
-		{
-			Icon *icon = cairo_dock_get_icon_with_Xid (Xid);
-			CD_APPLET_SET_NAME_FOR_MY_ICON (icon ? icon->cName : NULL);
-		}  // ignore the change of icon, we just want to use the default application icon.
-	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
-}*/
 
 
 //\___________ Other notifications, for animation of the buttons.
 
-gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation)
+gboolean on_mouse_moved (GldiModuleInstance *myApplet, GldiContainer *pContainer, gboolean *bStartAnimation)
 {
 	CD_APPLET_ENTER;
 	if (! myIcon->bPointed || ! pContainer->bInside)
-		CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 	
 	// find the pointed button
 	int iNumButton = cd_app_menu_find_button (myApplet);
@@ -274,7 +247,7 @@ gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pCon
 		*bStartAnimation = TRUE;
 	}
 	
-	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 }
 
 
@@ -333,7 +306,7 @@ static gboolean _update_button_image (CairoDockImageBuffer *pImage, int *iStep, 
 	}
 }
 
-gboolean cd_app_menu_on_update_container (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bContinueAnimation)
+gboolean cd_app_menu_on_update_container (GldiModuleInstance *myApplet, GldiContainer *pContainer, gboolean *bContinueAnimation)
 {
 	CD_APPLET_ENTER;
 	
@@ -372,5 +345,5 @@ gboolean cd_app_menu_on_update_container (CairoDockModuleInstance *myApplet, Cai
 	
 	if (myData.bButtonAnimating)
 		*bContinueAnimation = TRUE;
-	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 }

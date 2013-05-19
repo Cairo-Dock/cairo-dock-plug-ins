@@ -38,28 +38,28 @@ CD_APPLET_DEFINE_END
 
 
 #define _cd_mouse_register_on_dock(...) \
-	cairo_dock_register_notification_on_object (&myDocksMgr, NOTIFICATION_ENTER_DOCK, (CairoDockNotificationFunc) cd_show_mouse_enter_container, CAIRO_DOCK_RUN_AFTER, NULL);\
-	cairo_dock_register_notification_on_object (&myDocksMgr, NOTIFICATION_UPDATE, (CairoDockNotificationFunc) cd_show_mouse_update_container, CAIRO_DOCK_RUN_AFTER, NULL);\
-	cairo_dock_register_notification_on_object (&myDocksMgr, NOTIFICATION_RENDER, (CairoDockNotificationFunc) cd_show_mouse_render, CAIRO_DOCK_RUN_AFTER, NULL);
+	gldi_object_register_notification (&myDocksMgr, NOTIFICATION_ENTER_DOCK, (GldiNotificationFunc) cd_show_mouse_enter_container, GLDI_RUN_AFTER, NULL);\
+	gldi_object_register_notification (&myDocksMgr, NOTIFICATION_UPDATE, (GldiNotificationFunc) cd_show_mouse_update_container, GLDI_RUN_AFTER, NULL);\
+	gldi_object_register_notification (&myDocksMgr, NOTIFICATION_RENDER, (GldiNotificationFunc) cd_show_mouse_render, GLDI_RUN_AFTER, NULL);
 
 #define _cd_mouse_register_on_desklet(...) \
-	cairo_dock_register_notification_on_object (&myDeskletsMgr, NOTIFICATION_ENTER_DESKLET, (CairoDockNotificationFunc) cd_show_mouse_enter_container, CAIRO_DOCK_RUN_AFTER, NULL);\
-	cairo_dock_register_notification_on_object (&myDeskletsMgr, NOTIFICATION_UPDATE, (CairoDockNotificationFunc) cd_show_mouse_update_container, CAIRO_DOCK_RUN_AFTER, NULL);\
-	cairo_dock_register_notification_on_object (&myDeskletsMgr, NOTIFICATION_RENDER, (CairoDockNotificationFunc) cd_show_mouse_render, CAIRO_DOCK_RUN_AFTER, NULL);
+	gldi_object_register_notification (&myDeskletsMgr, NOTIFICATION_ENTER_DESKLET, (GldiNotificationFunc) cd_show_mouse_enter_container, GLDI_RUN_AFTER, NULL);\
+	gldi_object_register_notification (&myDeskletsMgr, NOTIFICATION_UPDATE, (GldiNotificationFunc) cd_show_mouse_update_container, GLDI_RUN_AFTER, NULL);\
+	gldi_object_register_notification (&myDeskletsMgr, NOTIFICATION_RENDER, (GldiNotificationFunc) cd_show_mouse_render, GLDI_RUN_AFTER, NULL);
 
 #define _cd_mouse_unregister_from_dock(...) \
-	cairo_dock_remove_notification_func_on_object (&myDocksMgr, NOTIFICATION_RENDER, (CairoDockNotificationFunc) cd_show_mouse_render, NULL);\
-	cairo_dock_remove_notification_func_on_object (&myDocksMgr, NOTIFICATION_UPDATE, (CairoDockNotificationFunc) cd_show_mouse_update_container, NULL);\
-	cairo_dock_remove_notification_func_on_object (&myDocksMgr, NOTIFICATION_ENTER_DOCK, (CairoDockNotificationFunc) cd_show_mouse_enter_container, NULL);
+	gldi_object_remove_notification (&myDocksMgr, NOTIFICATION_RENDER, (GldiNotificationFunc) cd_show_mouse_render, NULL);\
+	gldi_object_remove_notification (&myDocksMgr, NOTIFICATION_UPDATE, (GldiNotificationFunc) cd_show_mouse_update_container, NULL);\
+	gldi_object_remove_notification (&myDocksMgr, NOTIFICATION_ENTER_DOCK, (GldiNotificationFunc) cd_show_mouse_enter_container, NULL);
 
 #define _cd_mouse_unregister_from_desklet(...) \
-	cairo_dock_remove_notification_func_on_object (&myDeskletsMgr, NOTIFICATION_RENDER, (CairoDockNotificationFunc) cd_show_mouse_render, NULL);\
-	cairo_dock_remove_notification_func_on_object (&myDeskletsMgr, NOTIFICATION_UPDATE, (CairoDockNotificationFunc) cd_show_mouse_update_container, NULL);\
-	cairo_dock_remove_notification_func_on_object (&myDeskletsMgr, NOTIFICATION_ENTER_DESKLET, (CairoDockNotificationFunc) cd_show_mouse_enter_container, NULL);
+	gldi_object_remove_notification (&myDeskletsMgr, NOTIFICATION_RENDER, (GldiNotificationFunc) cd_show_mouse_render, NULL);\
+	gldi_object_remove_notification (&myDeskletsMgr, NOTIFICATION_UPDATE, (GldiNotificationFunc) cd_show_mouse_update_container, NULL);\
+	gldi_object_remove_notification (&myDeskletsMgr, NOTIFICATION_ENTER_DESKLET, (GldiNotificationFunc) cd_show_mouse_enter_container, NULL);
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
-	if (! cairo_dock_reserve_data_slot (myApplet))
+	if (! CD_APPLET_RESERVE_DATA_SLOT())
 		return;
 	
 	if (myConfig.iContainerType & CD_SHOW_MOUSE_ON_DOCK)
@@ -73,8 +73,8 @@ CD_APPLET_INIT_BEGIN
 	}
 	myData.iContainerType = myConfig.iContainerType;
 	
-	cairo_dock_register_notification_on_object (&myDocksMgr, NOTIFICATION_DESTROY, (CairoDockNotificationFunc) cd_show_mouse_free_data, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification_on_object (&myDeskletsMgr, NOTIFICATION_DESTROY, (CairoDockNotificationFunc) cd_show_mouse_free_data, CAIRO_DOCK_RUN_AFTER, NULL);
+	gldi_object_register_notification (&myDocksMgr, NOTIFICATION_DESTROY, (GldiNotificationFunc) cd_show_mouse_free_data, GLDI_RUN_AFTER, NULL);
+	gldi_object_register_notification (&myDeskletsMgr, NOTIFICATION_DESTROY, (GldiNotificationFunc) cd_show_mouse_free_data, GLDI_RUN_AFTER, NULL);
 CD_APPLET_INIT_END
 
 
@@ -91,11 +91,11 @@ static gboolean _free_desklet_data (CairoDesklet *pDesklet, gpointer data)
 CD_APPLET_STOP_BEGIN
 	_cd_mouse_unregister_from_dock ();
 	_cd_mouse_unregister_from_desklet ();
-	cairo_dock_remove_notification_func_on_object (&myDocksMgr, NOTIFICATION_DESTROY, (CairoDockNotificationFunc) cd_show_mouse_free_data, NULL);
-	cairo_dock_remove_notification_func_on_object (&myDeskletsMgr, NOTIFICATION_DESTROY, (CairoDockNotificationFunc) cd_show_mouse_free_data, NULL);
+	gldi_object_remove_notification (&myDocksMgr, NOTIFICATION_DESTROY, (GldiNotificationFunc) cd_show_mouse_free_data, NULL);
+	gldi_object_remove_notification (&myDeskletsMgr, NOTIFICATION_DESTROY, (GldiNotificationFunc) cd_show_mouse_free_data, NULL);
 	
 	cairo_dock_foreach_docks ((GHFunc)_free_dock_data, NULL);
-	cairo_dock_foreach_desklet (_free_desklet_data, NULL);
+	gldi_desklets_foreach (_free_desklet_data, NULL);
 CD_APPLET_STOP_END
 
 

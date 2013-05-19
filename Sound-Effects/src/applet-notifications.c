@@ -25,10 +25,10 @@
 #include "applet-notifications.h"
 
 
-gboolean cd_sound_on_click (G_GNUC_UNUSED gpointer pUserData, Icon *pIcon, CairoContainer *pContainer, guint iButtonState)
+gboolean cd_sound_on_click (G_GNUC_UNUSED gpointer pUserData, Icon *pIcon, GldiContainer *pContainer, guint iButtonState)
 {
 	if (pIcon == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	if (myData.pOnClickSound == NULL)
 	{
@@ -36,13 +36,13 @@ gboolean cd_sound_on_click (G_GNUC_UNUSED gpointer pUserData, Icon *pIcon, Cairo
 	}
 	cd_sound_play_sound (myData.pOnClickSound);
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
-gboolean cd_sound_on_middle_click (G_GNUC_UNUSED gpointer pUserData, Icon *pIcon, CairoContainer *pContainer)
+gboolean cd_sound_on_middle_click (G_GNUC_UNUSED gpointer pUserData, Icon *pIcon, GldiContainer *pContainer)
 {
 	if (pIcon == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	if (myData.pOnMiddleClickSound == NULL)
 	{
@@ -50,13 +50,13 @@ gboolean cd_sound_on_middle_click (G_GNUC_UNUSED gpointer pUserData, Icon *pIcon
 	}
 	cd_sound_play_sound (myData.pOnMiddleClickSound);
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 gboolean cd_sound_on_hover (G_GNUC_UNUSED gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bStartAnimation)
 {
 	if (pIcon == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	if (myData.pOnHoverSound == NULL)
 	{
@@ -65,5 +65,5 @@ gboolean cd_sound_on_hover (G_GNUC_UNUSED gpointer pUserData, Icon *pIcon, Cairo
 	cd_sound_play_sound (myData.pOnHoverSound);
 	
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }

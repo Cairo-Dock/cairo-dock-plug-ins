@@ -258,9 +258,9 @@ void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass)
 	}
 }
 
-#define CAIRO_DOCK_IS_EXTERNAL_APPLET(pIcon) (CAIRO_DOCK_IS_APPLET (pIcon) && pIcon->pModuleInstance->pModule->cSoFilePath == NULL && pIcon->pModuleInstance->pModule->pInterface->stopModule == cd_dbus_emit_on_stop_module)
+#define CAIRO_DOCK_IS_EXTERNAL_APPLET(pIcon) (CAIRO_DOCK_IS_APPLET (pIcon) && pIcon->pModuleInstance->pModule->pInterface->stopModule == cd_dbus_emit_on_stop_module)
 
-static inline Icon *_get_main_icon_from_clicked_icon (Icon *pIcon, CairoContainer *pContainer)
+static inline Icon *_get_main_icon_from_clicked_icon (Icon *pIcon, GldiContainer *pContainer)
 {
 	Icon *pMainIcon = NULL;
 	if (CAIRO_DOCK_IS_DESKLET (pContainer))
@@ -281,17 +281,17 @@ static inline Icon *_get_main_icon_from_clicked_icon (Icon *pIcon, CairoContaine
 	return pMainIcon;
 }
 
-gboolean cd_dbus_applet_emit_on_click_icon (gpointer data, Icon *pClickedIcon, CairoContainer *pClickedContainer, guint iButtonState)
+gboolean cd_dbus_applet_emit_on_click_icon (gpointer data, Icon *pClickedIcon, GldiContainer *pClickedContainer, guint iButtonState)
 {
 	if (pClickedIcon == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	Icon *pAppletIcon = _get_main_icon_from_clicked_icon (pClickedIcon, pClickedContainer);
 	if (! CAIRO_DOCK_IS_EXTERNAL_APPLET (pAppletIcon))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	//g_print ("%s (%s, %d)\n", __func__, pAppletIcon->pModuleInstance->pModule->pVisitCard->cModuleName, iButtonState);
 	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pAppletIcon->pModuleInstance);
-	g_return_val_if_fail (pDbusApplet != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	g_return_val_if_fail (pDbusApplet != NULL, GLDI_NOTIFICATION_LET_PASS);
 	
 	if (pClickedIcon == pAppletIcon)
 	{
@@ -303,59 +303,59 @@ gboolean cd_dbus_applet_emit_on_click_icon (gpointer data, Icon *pClickedIcon, C
 		//g_print ("emit clic on sub icon\n");
 		g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[CLIC], 0, iButtonState, pClickedIcon->cCommand);
 	}
-	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+	return GLDI_NOTIFICATION_INTERCEPT;
 }
 
-gboolean cd_dbus_applet_emit_on_middle_click_icon (gpointer data, Icon *pClickedIcon, CairoContainer *pClickedContainer)
+gboolean cd_dbus_applet_emit_on_middle_click_icon (gpointer data, Icon *pClickedIcon, GldiContainer *pClickedContainer)
 {
 	if (pClickedIcon == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	Icon *pAppletIcon = _get_main_icon_from_clicked_icon (pClickedIcon, pClickedContainer);
 	if (! CAIRO_DOCK_IS_EXTERNAL_APPLET (pAppletIcon))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	//g_print ("%s (%s)\n", __func__, pAppletIcon->pModuleInstance->pModule->pVisitCard->cModuleName);
 	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pAppletIcon->pModuleInstance);
-	g_return_val_if_fail (pDbusApplet != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	g_return_val_if_fail (pDbusApplet != NULL, GLDI_NOTIFICATION_LET_PASS);
 	
 	if (pClickedIcon == pAppletIcon)
 		g_signal_emit (pDbusApplet, s_iSignals[MIDDLE_CLIC], 0, NULL);
 	else if (pDbusApplet->pSubApplet != NULL)
 		g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[MIDDLE_CLIC], 0, pClickedIcon->cCommand);
-	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+	return GLDI_NOTIFICATION_INTERCEPT;
 }
 
-gboolean cd_dbus_applet_emit_on_scroll_icon (gpointer data, Icon *pClickedIcon, CairoContainer *pClickedContainer, int iDirection)
+gboolean cd_dbus_applet_emit_on_scroll_icon (gpointer data, Icon *pClickedIcon, GldiContainer *pClickedContainer, int iDirection)
 {
 	if (pClickedIcon == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	Icon *pAppletIcon = _get_main_icon_from_clicked_icon (pClickedIcon, pClickedContainer);
 	if (! CAIRO_DOCK_IS_EXTERNAL_APPLET (pAppletIcon))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	//g_print ("%s (%s, %d)\n", __func__, pAppletIcon->pModuleInstance->pModule->pVisitCard->cModuleName, iDirection);
 	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pAppletIcon->pModuleInstance);
-	g_return_val_if_fail (pDbusApplet != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	g_return_val_if_fail (pDbusApplet != NULL, GLDI_NOTIFICATION_LET_PASS);
 	
 	if (pClickedIcon == pAppletIcon)
 		g_signal_emit (pDbusApplet, s_iSignals[SCROLL], 0, (iDirection == GDK_SCROLL_UP));
 	else if (pDbusApplet->pSubApplet != NULL)
 		g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[SCROLL], 0, (iDirection == GDK_SCROLL_UP), pClickedIcon->cCommand);
-	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+	return GLDI_NOTIFICATION_INTERCEPT;
 }
 
-static void _delete_menu (GtkMenuShell *menu, CairoDockModuleInstance *myApplet)
+static void _delete_menu (GtkMenuShell *menu, GldiModuleInstance *myApplet)
 {
 	///myData.pModuleSubMenu = NULL;
 	myData.pModuleMainMenu = NULL;
 }
-gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, CairoContainer *pClickedContainer, GtkWidget *pAppletMenu)
+gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, GldiContainer *pClickedContainer, GtkWidget *pAppletMenu)
 {
 	if (pClickedIcon == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	Icon *pAppletIcon = _get_main_icon_from_clicked_icon (pClickedIcon, pClickedContainer);
 	if (! CAIRO_DOCK_IS_EXTERNAL_APPLET (pAppletIcon))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	myData.pModuleMainMenu = pAppletMenu;
 	/**myData.pModuleSubMenu = cairo_dock_create_sub_menu (pAppletIcon->pModuleInstance->pModule->pVisitCard->cModuleName,
@@ -375,7 +375,7 @@ gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, C
 	
 	//g_print ("%s (%s)\n", __func__, pAppletIcon->pModuleInstance->pModule->pVisitCard->cModuleName);
 	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pAppletIcon->pModuleInstance);
-	g_return_val_if_fail (pDbusApplet != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	g_return_val_if_fail (pDbusApplet != NULL, GLDI_NOTIFICATION_LET_PASS);
 	myData.pCurrentMenuDbusApplet = pDbusApplet;
 	
 	GList *pChildren = gtk_container_get_children (GTK_CONTAINER (pAppletMenu));
@@ -386,7 +386,7 @@ gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, C
 		g_signal_emit (pDbusApplet, s_iSignals[BUILD_MENU], 0);
 	else if (pDbusApplet->pSubApplet != NULL)
 		g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[BUILD_MENU], 0, pClickedIcon->cCommand);
-	return (pClickedIcon == pAppletIcon ? CAIRO_DOCK_LET_PASS_NOTIFICATION : CAIRO_DOCK_INTERCEPT_NOTIFICATION);
+	return (pClickedIcon == pAppletIcon ? GLDI_NOTIFICATION_LET_PASS : GLDI_NOTIFICATION_INTERCEPT);
 }
 
 void cd_dbus_emit_on_menu_select (GtkMenuItem *pMenuItem, gpointer data)
@@ -402,7 +402,7 @@ void cd_dbus_emit_on_menu_select (GtkMenuItem *pMenuItem, gpointer data)
 	g_signal_emit (myData.pCurrentMenuDbusApplet, s_iSignals[MENU_SELECT], 0, iNumEntry);  // since there can only be 1 menu at once, and the applet knows when the menu is raised, there is no need to pass the icon in the signal: the applet can remember the clicked icon when it received the 'build-menu' event.
 }
 
-gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *pClickedIcon, double fPosition, CairoContainer *pClickedContainer)
+gboolean cd_dbus_applet_emit_on_drop_data (G_GNUC_UNUSED gpointer data, const gchar *cReceivedData, Icon *pClickedIcon, double fPosition, GldiContainer *pClickedContainer)
 {
 	//\________________ On gere le cas d'une applet tierce-partie en provenance de nos depots.
 	if (cReceivedData && strncmp (cReceivedData, "http://", 7) == 0 && g_str_has_suffix (cReceivedData, ".tar.gz") && (g_strstr_len (cReceivedData, -1, "glxdock") || g_strstr_len (cReceivedData, -1, "glx-dock")))
@@ -419,7 +419,7 @@ gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceived
 		}
 		if (cAppletDirPath == NULL)
 		{
-			cairo_dock_show_general_message (D_("Sorry, this module couldn't be added."), 10000);
+			gldi_dialog_show_general_message (D_("Sorry, this module couldn't be added."), 10000);
 		}
 		else
 		{
@@ -432,38 +432,38 @@ gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceived
 					*str = '\0';
 			}
 			
-			CairoDockModule *pModule = cairo_dock_find_module_from_name (cAppletName);
+			GldiModule *pModule = gldi_module_get (cAppletName);
 			gboolean bUpdate = FALSE;
 			if (pModule != NULL)  // on va totalement supprimer le module pour le recharger de zero.
 			{
 				bUpdate = TRUE;
-				cairo_dock_deactivate_module_and_unload (cAppletName);
-				cairo_dock_unregister_module (cAppletName);
+				gldi_object_unref (GLDI_OBJECT(pModule));
+				pModule = NULL;
 			}
 			
 			//\________________ On l'enregistre et on la (re)lance.
 			cd_dbus_register_module_in_dir (cAppletName, cExtractTo);
+			pModule = gldi_module_get (cAppletName);
 			
-			cairo_dock_activate_module_and_load (cAppletName);
+			gldi_module_activate (pModule);
 			
 			//\________________ On balance un petit message a l'utilisateur.
-			pModule = cairo_dock_find_module_from_name (cAppletName);
 			if (!pModule)
 			{
-				cairo_dock_show_general_message (D_("Sorry, this module couldn't be added."), 10000);
+				gldi_dialog_show_general_message (D_("Sorry, this module couldn't be added."), 10000);
 			}
 			else if (!pModule->pInstancesList)
 			{
-				cairo_dock_show_general_message (D_("The module has been added, but couldn't be launched."), 10000);
+				gldi_dialog_show_general_message (D_("The module has been added, but couldn't be launched."), 10000);
 			}
 			else
 			{
-				CairoDockModuleInstance *pInstance = pModule->pInstancesList->data;
+				GldiModuleInstance *pInstance = pModule->pInstancesList->data;
 				if (!pInstance->pIcon || !pInstance->pContainer)
-					cairo_dock_show_general_message (D_("The module has been added, but couldn't be launched."), 10000);
+					gldi_dialog_show_general_message (D_("The module has been added, but couldn't be launched."), 10000);
 				else
 				{
-					cairo_dock_show_temporary_dialog_with_icon_printf (bUpdate ? D_("The applet '%s' has been succefully updated and automatically reloaded") : D_("The applet '%s' has been succefully installed and automatically launched"),
+					gldi_dialog_show_temporary_with_icon_printf (bUpdate ? D_("The applet '%s' has been succefully updated and automatically reloaded") : D_("The applet '%s' has been succefully installed and automatically launched"),
 						pInstance->pIcon,
 						pInstance->pContainer,
 						10000,
@@ -474,59 +474,66 @@ gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceived
 			g_free (cAppletName);
 		}
 		g_free (cExtractTo);
-		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+		return GLDI_NOTIFICATION_INTERCEPT;
 	}
 	
 	//\________________ Sinon on notifie l'applet du drop.
 	Icon *pAppletIcon = _get_main_icon_from_clicked_icon (pClickedIcon, pClickedContainer);
 	if (! CAIRO_DOCK_IS_EXTERNAL_APPLET (pAppletIcon))
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	cd_debug (" %s --> sur le bus !", cReceivedData);
 	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pAppletIcon->pModuleInstance);
-	g_return_val_if_fail (pDbusApplet != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	g_return_val_if_fail (pDbusApplet != NULL, GLDI_NOTIFICATION_LET_PASS);
 	
 	if (pClickedIcon == pAppletIcon)
 		g_signal_emit (pDbusApplet, s_iSignals[DROP_DATA], 0, cReceivedData);
 	else if (pDbusApplet->pSubApplet != NULL)
 		g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[DROP_DATA], 0, cReceivedData, pClickedIcon->cCommand);
-	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+	return GLDI_NOTIFICATION_INTERCEPT;
 }
 
-
-gboolean cd_dbus_applet_emit_on_change_focus (gpointer data, Window *xNewActiveWindow)
+static gboolean _on_window_destroyed (G_GNUC_UNUSED gpointer data, GldiWindowActor *actor)
+{
+	if (actor == myData.pActiveWindow)
+		myData.pActiveWindow = NULL;
+	return GLDI_NOTIFICATION_LET_PASS;
+}
+gboolean cd_dbus_applet_emit_on_change_focus (G_GNUC_UNUSED gpointer data, GldiWindowActor *pNewActiveWindow)
 {
 	// on emet le signal sur l'icone qui avait le focus.
-	if (myData.xActiveWindow != 0)
+	if (myData.pActiveWindow != NULL)
 	{
-		Icon *pPrevActiveIcon = cairo_dock_get_icon_with_Xid (myData.xActiveWindow);
+		Icon *pPrevActiveIcon = cairo_dock_get_appli_icon (myData.pActiveWindow);
 		if (pPrevActiveIcon && pPrevActiveIcon->cParentDockName == NULL)
 			pPrevActiveIcon = cairo_dock_get_inhibitor (pPrevActiveIcon, FALSE);
 		if (CAIRO_DOCK_IS_EXTERNAL_APPLET (pPrevActiveIcon))
 		{
 			dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pPrevActiveIcon->pModuleInstance);
-			g_return_val_if_fail (pDbusApplet != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+			g_return_val_if_fail (pDbusApplet != NULL, GLDI_NOTIFICATION_LET_PASS);
 			g_signal_emit (pDbusApplet, s_iSignals[CHANGE_FOCUS], 0, FALSE);
 		}
 	}
 	
 	// on emet le signal sur l'icone qui a desormais le focus.
 	//g_print ("DBUS : new active window : %ld\n", *xNewActiveWindow);
-	if (*xNewActiveWindow != 0)
+	if (pNewActiveWindow != NULL)
 	{
-		Icon *pNewActiveIcon = cairo_dock_get_icon_with_Xid (*xNewActiveWindow);
+		Icon *pNewActiveIcon = cairo_dock_get_appli_icon (pNewActiveWindow);
 		if (pNewActiveIcon && pNewActiveIcon->cParentDockName == NULL)
 			pNewActiveIcon = cairo_dock_get_inhibitor (pNewActiveIcon, FALSE);
 		if (CAIRO_DOCK_IS_EXTERNAL_APPLET (pNewActiveIcon))
 		{
 			dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pNewActiveIcon->pModuleInstance);
-			g_return_val_if_fail (pDbusApplet != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+			g_return_val_if_fail (pDbusApplet != NULL, GLDI_NOTIFICATION_LET_PASS);
 			g_signal_emit (pDbusApplet, s_iSignals[CHANGE_FOCUS], 0, TRUE);
 		}
 	}
 	
-	myData.xActiveWindow = *xNewActiveWindow;
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	myData.pActiveWindow = pNewActiveWindow;
+	if (pNewActiveWindow)
+		gldi_object_register_notification (pNewActiveWindow, NOTIFICATION_DESTROY, (GldiNotificationFunc)_on_window_destroyed, GLDI_RUN_AFTER, NULL);
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
@@ -693,9 +700,9 @@ void cd_dbus_applet_emit_on_shortkey (const gchar *cShortkey, dbusApplet *pDbusA
 }
 
 
-void cd_dbus_action_on_init_module (CairoDockModuleInstance *pModuleInstance)
+void cd_dbus_action_on_init_module (GldiModuleInstance *pModuleInstance)
 {
-	CairoDockVisitCard *pVisitCard = pModuleInstance->pModule->pVisitCard;
+	GldiVisitCard *pVisitCard = pModuleInstance->pModule->pVisitCard;
 	if (pModuleInstance->pDesklet)
 	{
 		cairo_dock_set_desklet_renderer_by_name (pModuleInstance->pDesklet,
@@ -714,11 +721,11 @@ void cd_dbus_action_on_init_module (CairoDockModuleInstance *pModuleInstance)
 }
 
 
-void cd_dbus_action_on_stop_module (CairoDockModuleInstance *pModuleInstance)
+void cd_dbus_action_on_stop_module (GldiModuleInstance *pModuleInstance)
 {
 	if (pModuleInstance->pIcon->pSubDock != NULL)
 	{
-		cairo_dock_destroy_dock (pModuleInstance->pIcon->pSubDock, pModuleInstance->pIcon->cName);
+		gldi_object_unref (GLDI_OBJECT(pModuleInstance->pIcon->pSubDock));
 		pModuleInstance->pIcon->pSubDock = NULL;
 	}
 	
@@ -726,13 +733,13 @@ void cd_dbus_action_on_stop_module (CairoDockModuleInstance *pModuleInstance)
 	
 	if (pModuleInstance->pDesklet != NULL && pModuleInstance->pDesklet->icons != NULL)  // idem, version desklet.
 	{
-		g_list_foreach (pModuleInstance->pDesklet->icons, (GFunc) cairo_dock_free_icon, NULL);
+		g_list_foreach (pModuleInstance->pDesklet->icons, (GFunc) gldi_object_unref, NULL);
 		g_list_free (pModuleInstance->pDesklet->icons);
 		pModuleInstance->pDesklet->icons = NULL;
 	}
 }
 
-void cd_dbus_emit_on_stop_module (CairoDockModuleInstance *pModuleInstance)
+void cd_dbus_emit_on_stop_module (GldiModuleInstance *pModuleInstance)
 {
 	//g_print ("%s (%s)\n", __func__, pModuleInstance->pModule->pVisitCard->cModuleName);
 	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pModuleInstance);
@@ -747,10 +754,10 @@ void cd_dbus_emit_on_stop_module (CairoDockModuleInstance *pModuleInstance)
 	cd_dbus_delete_remote_applet_object (pDbusApplet);
 }
 
-gboolean cd_dbus_emit_on_reload_module (CairoDockModuleInstance *pModuleInstance, CairoContainer *pOldContainer, GKeyFile *pKeyFile)
+gboolean cd_dbus_emit_on_reload_module (GldiModuleInstance *pModuleInstance, GldiContainer *pOldContainer, GKeyFile *pKeyFile)
 {
 	//g_print ("%s ()\n", __func__);
-	CairoDockVisitCard *pVisitCard = pModuleInstance->pModule->pVisitCard;
+	GldiVisitCard *pVisitCard = pModuleInstance->pModule->pVisitCard;
 	dbusApplet *pDbusApplet = cd_dbus_get_dbus_applet_from_instance (pModuleInstance);
 	g_return_val_if_fail (pDbusApplet != NULL, FALSE);
 	g_signal_emit (pDbusApplet,

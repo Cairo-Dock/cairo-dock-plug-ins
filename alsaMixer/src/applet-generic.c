@@ -109,7 +109,7 @@ GtkWidget *mixer_build_widget (gboolean bHorizontal)
 		G_CALLBACK (on_change_volume),
 		NULL);
 	
-	cairo_dock_set_dialog_widget_text_color (pScale);
+	gldi_dialog_set_widget_text_color (pScale);
 	return pScale;
 }
 

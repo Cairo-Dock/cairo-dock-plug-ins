@@ -47,7 +47,7 @@ struct _AppletData {
 	gboolean bDeskletsVisible;
 	Window xLastActiveWindow;
 	gchar *cPendingFile;
-	CairoKeyBinding *cKeyBinding;
+	GldiShortkey *cKeyBinding;
 	} ;
 
 

@@ -55,35 +55,31 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 	}
 	
-	cairo_dock_register_notification_on_object (&myDesktopMgr,
+	gldi_object_register_notification (&myDesktopMgr,
 		NOTIFICATION_WINDOW_ACTIVATED,
-		(CairoDockNotificationFunc) cd_app_menu_on_active_window_changed,
-		CAIRO_DOCK_RUN_AFTER, myApplet);
-	cairo_dock_register_notification_on_object (&myTaskbarMgr,
-		NOTIFICATION_APPLI_STATE_CHANGED,
-		(CairoDockNotificationFunc) cd_app_menu_on_state_changed,
-		CAIRO_DOCK_RUN_AFTER, myApplet);
-	cairo_dock_register_notification_on_object (&myTaskbarMgr,
-		NOTIFICATION_APPLI_NAME_CHANGED,
-		(CairoDockNotificationFunc) cd_app_menu_on_name_changed,
-		CAIRO_DOCK_RUN_AFTER, myApplet);
-	cairo_dock_register_notification_on_object (&myTaskbarMgr,
-		NOTIFICATION_APPLI_CREATED,
-		(CairoDockNotificationFunc) cd_app_menu_on_new_appli,
-		CAIRO_DOCK_RUN_AFTER, myApplet);
-	/**cairo_dock_register_notification_on_object (&myDesktopMgr,
-		NOTIFICATION_WINDOW_PROPERTY_CHANGED,
-		(CairoDockNotificationFunc) cd_app_menu_on_property_changed,
-		CAIRO_DOCK_RUN_AFTER, myApplet);*/
+		(GldiNotificationFunc) cd_app_menu_on_active_window_changed,
+		GLDI_RUN_AFTER, myApplet);
+	gldi_object_register_notification (&myTaskbarMgr,
+		NOTIFICATION_WINDOW_STATE_CHANGED,
+		(GldiNotificationFunc) cd_app_menu_on_state_changed,
+		GLDI_RUN_AFTER, myApplet);
+	gldi_object_register_notification (&myTaskbarMgr,
+		NOTIFICATION_WINDOW_NAME_CHANGED,
+		(GldiNotificationFunc) cd_app_menu_on_name_changed,
+		GLDI_RUN_AFTER, myApplet);
+	gldi_object_register_notification (&myTaskbarMgr,
+		NOTIFICATION_WINDOW_CREATED,
+		(GldiNotificationFunc) cd_app_menu_on_new_appli,
+		GLDI_RUN_AFTER, myApplet);
 	
-	cairo_dock_register_notification_on_object (myContainer,
+	gldi_object_register_notification (myContainer,
 		NOTIFICATION_MOUSE_MOVED,
-		(CairoDockNotificationFunc) on_mouse_moved,
-		CAIRO_DOCK_RUN_AFTER, myApplet);
-	cairo_dock_register_notification_on_object (myContainer,
+		(GldiNotificationFunc) on_mouse_moved,
+		GLDI_RUN_AFTER, myApplet);
+	gldi_object_register_notification (myContainer,
 		NOTIFICATION_UPDATE_SLOW,
-		(CairoDockNotificationFunc) cd_app_menu_on_update_container,
-		CAIRO_DOCK_RUN_AFTER, myApplet);
+		(GldiNotificationFunc) cd_app_menu_on_update_container,
+		GLDI_RUN_AFTER, myApplet);
 	
 	// start !
 	myData.iNbButtons = myConfig.bDisplayControls * 3 + 1;  // we display the icon even if we don't provide the menu.
@@ -113,28 +109,25 @@ CD_APPLET_INIT_END
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
-	cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
+	gldi_object_remove_notification (&myDesktopMgr,
 		NOTIFICATION_WINDOW_ACTIVATED,
-		(CairoDockNotificationFunc) cd_app_menu_on_active_window_changed, myApplet);
-	/**cairo_dock_remove_notification_func_on_object (&myDesktopMgr,
-		NOTIFICATION_WINDOW_PROPERTY_CHANGED,
-		(CairoDockNotificationFunc) cd_app_menu_on_property_changed, myApplet);*/
-	cairo_dock_remove_notification_func_on_object (&myTaskbarMgr,
-		NOTIFICATION_APPLI_STATE_CHANGED,
-		(CairoDockNotificationFunc) cd_app_menu_on_state_changed, myApplet);
-	cairo_dock_remove_notification_func_on_object (&myTaskbarMgr,
-		NOTIFICATION_APPLI_NAME_CHANGED,
-		(CairoDockNotificationFunc) cd_app_menu_on_name_changed, myApplet);
-	cairo_dock_remove_notification_func_on_object (&myTaskbarMgr,
-		NOTIFICATION_APPLI_CREATED,
-		(CairoDockNotificationFunc) cd_app_menu_on_new_appli, myApplet);
+		(GldiNotificationFunc) cd_app_menu_on_active_window_changed, myApplet);
+	gldi_object_remove_notification (&myTaskbarMgr,
+		NOTIFICATION_WINDOW_STATE_CHANGED,
+		(GldiNotificationFunc) cd_app_menu_on_state_changed, myApplet);
+	gldi_object_remove_notification (&myTaskbarMgr,
+		NOTIFICATION_WINDOW_NAME_CHANGED,
+		(GldiNotificationFunc) cd_app_menu_on_name_changed, myApplet);
+	gldi_object_remove_notification (&myTaskbarMgr,
+		NOTIFICATION_WINDOW_CREATED,
+		(GldiNotificationFunc) cd_app_menu_on_new_appli, myApplet);
 	
-	cairo_dock_remove_notification_func_on_object (myContainer,
+	gldi_object_remove_notification (myContainer,
 		NOTIFICATION_MOUSE_MOVED,
-		(CairoDockNotificationFunc) on_mouse_moved, myApplet);
-	cairo_dock_remove_notification_func_on_object (myContainer,
+		(GldiNotificationFunc) on_mouse_moved, myApplet);
+	gldi_object_remove_notification (myContainer,
 		NOTIFICATION_UPDATE_SLOW,
-		(CairoDockNotificationFunc) cd_app_menu_on_update_container, myApplet);
+		(GldiNotificationFunc) cd_app_menu_on_update_container, myApplet);
 	
 	cd_app_menu_stop ();
 
@@ -147,7 +140,7 @@ CD_APPLET_STOP_BEGIN
 	
 	// keyboard events
 	if (myConfig.bDisplayMenu)
-		cd_keybinder_unbind (myData.pKeyBinding);
+		gldi_object_unref (GLDI_OBJECT(myData.pKeyBinding));
 CD_APPLET_STOP_END
 
 
@@ -166,21 +159,21 @@ CD_APPLET_RELOAD_BEGIN
 		
 		if (CD_APPLET_MY_OLD_CONTAINER != myContainer)
 		{
-			cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+			gldi_object_remove_notification (CD_APPLET_MY_OLD_CONTAINER,
 				NOTIFICATION_MOUSE_MOVED,
-				(CairoDockNotificationFunc) on_mouse_moved, myApplet);
-			cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+				(GldiNotificationFunc) on_mouse_moved, myApplet);
+			gldi_object_remove_notification (CD_APPLET_MY_OLD_CONTAINER,
 				NOTIFICATION_UPDATE_SLOW,
-				(CairoDockNotificationFunc) cd_app_menu_on_update_container, myApplet);
+				(GldiNotificationFunc) cd_app_menu_on_update_container, myApplet);
 			
-			cairo_dock_register_notification_on_object (myContainer,
+			gldi_object_register_notification (myContainer,
 				NOTIFICATION_MOUSE_MOVED,
-				(CairoDockNotificationFunc) on_mouse_moved,
-				CAIRO_DOCK_RUN_AFTER, myApplet);
-			cairo_dock_register_notification_on_object (myContainer,
+				(GldiNotificationFunc) on_mouse_moved,
+				GLDI_RUN_AFTER, myApplet);
+			gldi_object_register_notification (myContainer,
 				NOTIFICATION_UPDATE_SLOW,
-				(CairoDockNotificationFunc) cd_app_menu_on_update_container,
-				CAIRO_DOCK_RUN_AFTER, myApplet);
+				(GldiNotificationFunc) cd_app_menu_on_update_container,
+				GLDI_RUN_AFTER, myApplet);
 		}
 		
 		// windows borders
@@ -196,15 +189,15 @@ CD_APPLET_RELOAD_BEGIN
 		myData.iNbButtons = myConfig.bDisplayControls * 3 + 1;
 		myData.iAnimIterMin = myData.iAnimIterMax = myData.iAnimIterClose = 0;
 		myData.bButtonAnimating = FALSE;
-		Window iActiveWindow = myData.iCurrentWindow;
-		myData.iCurrentWindow = 0;
-		cd_app_menu_set_current_window (iActiveWindow);
+		GldiWindowActor *pActiveWindow = myData.pCurrentWindow;
+		myData.pCurrentWindow = NULL;
+		cd_app_menu_set_current_window (pActiveWindow);
 		
 		// shortkey
 		if (myConfig.bDisplayMenu)
 		{
 			if (myData.pKeyBinding)
-				cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
+				gldi_shortkey_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
 			else
 				myData.pKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortkey,
 					D_("Show/hide the current application menu"),
@@ -213,7 +206,7 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		else if (myData.pKeyBinding)
 		{
-			cd_keybinder_unbind (myData.pKeyBinding);
+			gldi_object_unref (GLDI_OBJECT(myData.pKeyBinding));
 		}
 		
 		cairo_dock_set_icon_static (myIcon, myConfig.bDisplayControls);

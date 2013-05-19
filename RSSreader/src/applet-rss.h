@@ -28,13 +28,13 @@
 void cd_rssreader_cut_line (gchar *cLine, PangoLayout *pLayout, int iMaxWidth);
 
 
-void cd_rssreader_free_item_list (CairoDockModuleInstance *myApplet);
+void cd_rssreader_free_item_list (GldiModuleInstance *myApplet);
 
 
-void cd_rssreader_launch_task (CairoDockModuleInstance *myApplet);
+void cd_rssreader_launch_task (GldiModuleInstance *myApplet);
 
 
-void cd_rssreader_show_dialog (CairoDockModuleInstance *myApplet);
+void cd_rssreader_show_dialog (GldiModuleInstance *myApplet);
 
 
 #endif

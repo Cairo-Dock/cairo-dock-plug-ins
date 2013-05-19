@@ -34,7 +34,7 @@
  // BACKEND //
 /////////////
 
-void cd_clock_register_backend (CairoDockModuleInstance *myApplet, const gchar *cBackendName, CDClockTaskBackend *pBackend)
+void cd_clock_register_backend (GldiModuleInstance *myApplet, const gchar *cBackendName, CDClockTaskBackend *pBackend)
 {
 	if (myData.pBackends == NULL)
 		myData.pBackends = g_hash_table_new_full (g_str_hash,
@@ -44,7 +44,7 @@ void cd_clock_register_backend (CairoDockModuleInstance *myApplet, const gchar *
 	g_hash_table_insert (myData.pBackends, g_strdup (cBackendName), pBackend);
 }
 
-CDClockTaskBackend *cd_clock_get_backend (CairoDockModuleInstance *myApplet, const gchar *cBackendName)
+CDClockTaskBackend *cd_clock_get_backend (GldiModuleInstance *myApplet, const gchar *cBackendName)
 {
 	CDClockTaskBackend *pBackend = NULL;
 	if (cBackendName != NULL)
@@ -53,7 +53,7 @@ CDClockTaskBackend *cd_clock_get_backend (CairoDockModuleInstance *myApplet, con
 	return pBackend;
 }
 
-void cd_clock_set_current_backend (CairoDockModuleInstance *myApplet)
+void cd_clock_set_current_backend (GldiModuleInstance *myApplet)
 {
 	if (myData.pBackend && myData.pBackend->stop)
 		myData.pBackend->stop (myApplet);
@@ -99,7 +99,7 @@ static int _compare_task (CDClockTask *pTask1, CDClockTask *pTask2, gpointer dat
 	return 0;
 	
 }
-void cd_clock_list_tasks (CairoDockModuleInstance *myApplet)
+void cd_clock_list_tasks (GldiModuleInstance *myApplet)
 {
 	cd_message ("%s ()", __func__);
 	if (myData.pTasks != NULL)
@@ -120,7 +120,7 @@ void cd_clock_list_tasks (CairoDockModuleInstance *myApplet)
 	myData.pNextAnniversary = cd_clock_get_next_anniversary (myApplet);
 }
 
-void cd_clock_add_task_to_list (CDClockTask *pTask, CairoDockModuleInstance *myApplet)
+void cd_clock_add_task_to_list (CDClockTask *pTask, GldiModuleInstance *myApplet)
 {
 	pTask->pApplet = myApplet;
 	myData.pTasks = g_list_insert_sorted (myData.pTasks, pTask, (GCompareFunc)_compare_task);
@@ -128,7 +128,7 @@ void cd_clock_add_task_to_list (CDClockTask *pTask, CairoDockModuleInstance *myA
 	myData.pNextAnniversary = cd_clock_get_next_anniversary (myApplet);
 }
 
-void cd_clock_remove_task_from_list (CDClockTask *pTask, CairoDockModuleInstance *myApplet)
+void cd_clock_remove_task_from_list (CDClockTask *pTask, GldiModuleInstance *myApplet)
 {
 	myData.pTasks = g_list_remove (myData.pTasks, pTask);
 	myData.pMissedTasks = g_list_remove (myData.pMissedTasks, pTask);
@@ -142,8 +142,7 @@ void cd_clock_free_task (CDClockTask *pTask)
 		return;
 	if (pTask->iSidWarning != 0)
 		g_source_remove (pTask->iSidWarning);
-	if (pTask->pWarningDialog != NULL)
-		cairo_dock_dialog_unreference (pTask->pWarningDialog);
+	gldi_object_unref (GLDI_OBJECT(pTask->pWarningDialog));
 	g_free (pTask->cTitle);
 	g_free (pTask->cText);
 	g_free (pTask->cTags);
@@ -151,7 +150,7 @@ void cd_clock_free_task (CDClockTask *pTask)
 	g_free (pTask);
 }
 
-void cd_clock_reset_tasks_list (CairoDockModuleInstance *myApplet)
+void cd_clock_reset_tasks_list (GldiModuleInstance *myApplet)
 {
 	g_list_foreach (myData.pTasks, (GFunc)cd_clock_free_task, NULL);
 	g_list_free (myData.pTasks);
@@ -161,7 +160,7 @@ void cd_clock_reset_tasks_list (CairoDockModuleInstance *myApplet)
 	myData.pMissedTasks = NULL;
 }
 
-CDClockTask *cd_clock_get_task_by_id (const gchar *cID, CairoDockModuleInstance *myApplet)
+CDClockTask *cd_clock_get_task_by_id (const gchar *cID, GldiModuleInstance *myApplet)
 {
 	if (cID == NULL)
 		return NULL;
@@ -176,7 +175,7 @@ CDClockTask *cd_clock_get_task_by_id (const gchar *cID, CairoDockModuleInstance 
 	return NULL;
 }
 
-gchar *cd_clock_get_tasks_for_today (CairoDockModuleInstance *myApplet)
+gchar *cd_clock_get_tasks_for_today (GldiModuleInstance *myApplet)
 {
 	guint iDay = myData.currentTime.tm_mday, iMonth = myData.currentTime.tm_mon, iYear = myData.currentTime.tm_year + 1900;
 	
@@ -202,7 +201,7 @@ gchar *cd_clock_get_tasks_for_today (CairoDockModuleInstance *myApplet)
 	return cTasks;
 }
 
-gchar *cd_clock_get_tasks_for_this_week (CairoDockModuleInstance *myApplet)
+gchar *cd_clock_get_tasks_for_this_week (GldiModuleInstance *myApplet)
 {
 	guint iDay = myData.currentTime.tm_mday, iMonth = myData.currentTime.tm_mon, iYear = myData.currentTime.tm_year + 1900;
 	
@@ -289,7 +288,7 @@ gchar *cd_clock_get_tasks_for_this_week (CairoDockModuleInstance *myApplet)
 }
 
 #define _compute_index(y,m,d,h,mi) ((((y*12+m)*32+d)*24+h)*60+mi)
-CDClockTask *cd_clock_get_next_scheduled_task (CairoDockModuleInstance *myApplet)
+CDClockTask *cd_clock_get_next_scheduled_task (GldiModuleInstance *myApplet)
 {
 	if (myData.pTasks == NULL)
 		return NULL;
@@ -347,7 +346,7 @@ CDClockTask *cd_clock_get_next_scheduled_task (CairoDockModuleInstance *myApplet
 	return pNextTask;
 }
 
-CDClockTask *cd_clock_get_next_anniversary (CairoDockModuleInstance *myApplet)
+CDClockTask *cd_clock_get_next_anniversary (GldiModuleInstance *myApplet)
 {
 	if (myData.pTasks == NULL)
 		return NULL;
@@ -387,7 +386,7 @@ CDClockTask *cd_clock_get_next_anniversary (CairoDockModuleInstance *myApplet)
 }
 
 
-GList *cd_clock_get_missed_tasks (CairoDockModuleInstance *myApplet)
+GList *cd_clock_get_missed_tasks (GldiModuleInstance *myApplet)
 {
 	GList *pTaskList = NULL;
 	guint iDay = myData.currentTime.tm_mday;
@@ -479,7 +478,7 @@ GList *cd_clock_get_missed_tasks (CairoDockModuleInstance *myApplet)
  // CALENDAR //
 //////////////
 
-static void _mark_days (GtkCalendar *pCalendar, CairoDockModuleInstance *myApplet)
+static void _mark_days (GtkCalendar *pCalendar, GldiModuleInstance *myApplet)
 {
 	guint iYear, iMonth, iDay;
 	gtk_calendar_get_date (GTK_CALENDAR (pCalendar),
@@ -498,7 +497,7 @@ static void _mark_days (GtkCalendar *pCalendar, CairoDockModuleInstance *myApple
 		}
 	}
 }
-void cd_clock_update_calendar_marks (CairoDockModuleInstance *myApplet)
+void cd_clock_update_calendar_marks (GldiModuleInstance *myApplet)
 {
 	if (myData.pCalendarDialog != NULL)
 	{
@@ -507,7 +506,7 @@ void cd_clock_update_calendar_marks (CairoDockModuleInstance *myApplet)
 	}
 }
 
-static gchar * _on_display_task_detail (GtkCalendar *calendar, guint iYear, guint iMonth, guint iDay, CairoDockModuleInstance *myApplet)
+static gchar * _on_display_task_detail (GtkCalendar *calendar, guint iYear, guint iMonth, guint iDay, GldiModuleInstance *myApplet)
 {
 	if (myData.pTasks == NULL)
 		return NULL;
@@ -544,7 +543,7 @@ static gchar * _on_display_task_detail (GtkCalendar *calendar, guint iYear, guin
 	return cDetail;
 }
 
-static void _on_day_selected_double_click (GtkCalendar *pCalendar, CairoDockModuleInstance *myApplet)
+static void _on_day_selected_double_click (GtkCalendar *pCalendar, GldiModuleInstance *myApplet)
 {
 	guint iDay, iMonth, iYear;
 	gtk_calendar_get_date (pCalendar,
@@ -554,13 +553,13 @@ static void _on_day_selected_double_click (GtkCalendar *pCalendar, CairoDockModu
 	cd_clock_build_task_editor (iDay, iMonth, iYear, myApplet);
 }
 
-static void _on_date_changed (GtkCalendar *pCalendar, CairoDockModuleInstance *myApplet)
+static void _on_date_changed (GtkCalendar *pCalendar, GldiModuleInstance *myApplet)
 {
 	gtk_calendar_clear_marks (pCalendar);
 	_mark_days (pCalendar, myApplet);
 }
 
-static void _on_add_task (GtkWidget *pMenuItem, CairoDockModuleInstance *myApplet)
+static void _on_add_task (GtkWidget *pMenuItem, GldiModuleInstance *myApplet)
 {
 	guint iDay, iMonth, iYear;
 	gtk_calendar_get_date (GTK_CALENDAR (myData.pCalendarDialog->pInteractiveWidget),
@@ -584,7 +583,7 @@ static void _on_add_task (GtkWidget *pMenuItem, CairoDockModuleInstance *myApple
 	
 	cd_clock_build_task_editor (iDay, iMonth, iYear, myApplet);
 }
-static void _on_edit_tasks (GtkWidget *pMenuItem, CairoDockModuleInstance *myApplet)
+static void _on_edit_tasks (GtkWidget *pMenuItem, GldiModuleInstance *myApplet)
 {
 	guint iDay, iMonth, iYear;
 	gtk_calendar_get_date (GTK_CALENDAR (myData.pCalendarDialog->pInteractiveWidget),
@@ -595,7 +594,7 @@ static void _on_edit_tasks (GtkWidget *pMenuItem, CairoDockModuleInstance *myApp
 }
 static gboolean on_button_released_calendar (GtkWidget *widget,
 	GdkEventButton *pButton,
-	CairoDockModuleInstance *myApplet)
+	GldiModuleInstance *myApplet)
 {
 	if (pButton->button == 3)  // right-click
 	{
@@ -621,7 +620,7 @@ static gboolean on_button_released_calendar (GtkWidget *widget,
 	return FALSE;
 }
 
-static GtkWidget *cd_clock_build_calendar (CairoDockModuleInstance *myApplet)
+static GtkWidget *cd_clock_build_calendar (GldiModuleInstance *myApplet)
 {
 	cd_message ("%s ()", __func__);
 	GtkWidget *pCalendar = gtk_calendar_new ();
@@ -650,23 +649,23 @@ static GtkWidget *cd_clock_build_calendar (CairoDockModuleInstance *myApplet)
 	return pCalendar;
 }
 
-void cd_clock_hide_dialogs (CairoDockModuleInstance *myApplet)
+void cd_clock_hide_dialogs (GldiModuleInstance *myApplet)
 {
-	cairo_dock_remove_dialog_if_any (myIcon);
+	gldi_dialogs_remove_on_icon (myIcon);
 	myData.pCalendarDialog = NULL;
 }
 
 
-static void _on_dialog_destroyed (CairoDockModuleInstance *myApplet)
+static void _on_dialog_destroyed (GldiModuleInstance *myApplet)
 {
 	myData.pCalendarDialog = NULL;
 }
-void cd_clock_show_hide_calendar (CairoDockModuleInstance *myApplet)
+void cd_clock_show_hide_calendar (GldiModuleInstance *myApplet)
 {
 	cd_debug ("%s (%x)", __func__, myData.pCalendarDialog);
 	if (myData.pCalendarDialog != NULL)
 	{
-		cairo_dock_dialog_unreference (myData.pCalendarDialog);
+		gldi_object_unref (GLDI_OBJECT(myData.pCalendarDialog));
 		myData.pCalendarDialog = NULL;
 		if (myData.pTaskWindow != NULL)
 		{
@@ -677,9 +676,9 @@ void cd_clock_show_hide_calendar (CairoDockModuleInstance *myApplet)
 	}
 	else
 	{
-		cairo_dock_remove_dialog_if_any (myIcon);
+		gldi_dialogs_remove_on_icon (myIcon);
 		GtkWidget *pCalendar = cd_clock_build_calendar (myApplet);
-		myData.pCalendarDialog = cairo_dock_show_dialog_full (D_("Calendar and tasks"),
+		myData.pCalendarDialog = gldi_dialog_show (D_("Calendar and tasks"),
 			myIcon, myContainer,
 			0,
 			MY_APPLET_SHARE_DATA_DIR"/dates.svg",

@@ -113,7 +113,7 @@ struct _AppletData {
 	gboolean bIsMute;
 	gboolean bMuteImage;  // TRUE if the "mute" image is currently displayed
 	GtkWidget *pScale;
-	CairoKeyBinding *cKeyBinding;
+	GldiShortkey *cKeyBinding;
 	} ;
 
 

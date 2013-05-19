@@ -92,7 +92,7 @@ static void cd_netspeed_formatRate (unsigned long long rate, gchar* debit, int i
 }
 
 
-void cd_netspeed_format_value (CairoDataRenderer *pRenderer, int iNumValue, gchar *cFormatBuffer, int iBufferLength, CairoDockModuleInstance *myApplet)
+void cd_netspeed_format_value (CairoDataRenderer *pRenderer, int iNumValue, gchar *cFormatBuffer, int iBufferLength, GldiModuleInstance *myApplet)
 {
 	static gchar s_upRateFormatted[11];
 	cd_netspeed_formatRate (iNumValue == 0 ? myData.iDownloadSpeed : myData.iUploadSpeed, s_upRateFormatted, 11, FALSE);
@@ -103,7 +103,7 @@ void cd_netspeed_format_value (CairoDataRenderer *pRenderer, int iNumValue, gcha
 }
 
 
-void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
+void cd_netspeed_get_data (GldiModuleInstance *myApplet)
 {
 	g_timer_stop (myData.pClock);
 	double fTimeElapsed = g_timer_elapsed (myData.pClock, NULL);
@@ -210,7 +210,7 @@ void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
 		myData.bInitialized = TRUE;
 }
 
-gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
+gboolean cd_netspeed_update_from_data (GldiModuleInstance *myApplet)
 {
 	static double s_fValues[CD_NETSPEED_NB_MAX_VALUES];
 	static gchar s_upRateFormatted[11];

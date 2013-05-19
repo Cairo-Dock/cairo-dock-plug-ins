@@ -80,7 +80,27 @@ static void _compute_icons_grid (CairoDesklet *pDesklet, CDViewportParameters *p
 	
 	// taille de la grille.
 	pViewport->nRowsX = (pDesklet->container.iWidth - w_min) / (pViewport->iIconSize + pViewport->iIconGapX) + 1;
-	pViewport->nRowsY = ceil ((double)nIcones / pViewport->nRowsX);
+	int nx = 0, nRowsY = 0;
+	for (ic = pDesklet->icons; ic != NULL; ic = ic->next)
+	{
+		icon = ic->data;
+		if (! CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))
+		{
+			nx ++;
+			if (nx == pViewport->nRowsX)
+			{
+				nx = 0;
+				nRowsY ++;
+			}
+		}
+		else
+		{
+			nx = 0;
+			nRowsY ++;
+		}
+	}
+	///pViewport->nRowsY = ceil ((double)nIcones / pViewport->nRowsX);
+	pViewport->nRowsY = nRowsY;
 	pViewport->iDeltaHeight = MAX (0, (pViewport->nRowsY - 1) * (pViewport->iIconSize + myIconsParam.iLabelSize + pViewport->iIconGapY) + pViewport->iIconSize + myIconsParam.iLabelSize - pDesklet->container.iHeight);
 	pViewport->iScrollOffset = MIN (pViewport->iScrollOffset, pViewport->iDeltaHeight);  // ensure we don't suddenly become out of range if 'iDeltaHeight' has changed
 	pViewport->fMargin = (pDesklet->container.iWidth - (pViewport->nRowsX * (pViewport->iIconSize + pViewport->iIconGapX) - pViewport->iIconSize + pViewport->fScrollbarIconGap + pViewport->fScrollbarWidth + pViewport->fScrollbarIconGap)) / 2;  // on reajuste la marge pour centrer les icones.
@@ -96,20 +116,35 @@ static void _compute_icons_position (CairoDesklet *pDesklet, CDViewportParameter
 	
 	Icon* icon;
 	GList* ic;
-	gint i, x, y;
+	gint i, x=0, y=0;
 	for (ic = pDesklet->icons, i = 0; ic != NULL; ic = ic->next, i++)
 	{
 		icon = ic->data;
 		
-		// position sur la grille.
-		_get_gridXY_from_index (pViewport->nRowsX, i, &x, &y);
-		
-		// on en deduit la position au repos.
-		icon->fX = pViewport->fMargin + (icon->fWidth + pViewport->iIconGapX) * x;
-		icon->fY = iOffsetY + (icon->fHeight + myIconsParam.iLabelSize + pViewport->iIconGapY) * y;
-		
-		icon->fDrawX = icon->fX;
-		icon->fDrawY = icon->fY;
+		if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))
+		{
+			x = 0;
+			y ++;
+		}
+		else
+		{
+			///_get_gridXY_from_index (pViewport->nRowsX, i, &x, &y);
+			
+			// on en deduit la position au repos.
+			icon->fX = pViewport->fMargin + (icon->fWidth + pViewport->iIconGapX) * x;
+			icon->fY = iOffsetY + (icon->fHeight + myIconsParam.iLabelSize + pViewport->iIconGapY) * y;
+			
+			icon->fDrawX = icon->fX;
+			icon->fDrawY = icon->fY;
+			
+			// position sur la grille.
+			x ++;
+			if (x == pViewport->nRowsX)
+			{
+				x = 0;
+				y ++;
+			}
+		}
 	}
 }
 
@@ -148,12 +183,12 @@ static gboolean _add_scroll (CairoDesklet *pDesklet, int iDeltaOffsetY)
 static gboolean _cd_slide_on_scroll (gpointer data, Icon *pClickedIcon, CairoDesklet *pDesklet, int iDirection)
 {
 	CDViewportParameters *pData = pDesklet->pRendererData;
-	g_return_val_if_fail (pData != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	g_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
 	if (pData->iDeltaHeight == 0)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	gboolean bScrolled = _add_scroll (pDesklet, iDirection == 1 ? pData->iIconSize : - pData->iIconSize);
-	return (bScrolled ? CAIRO_DOCK_INTERCEPT_NOTIFICATION : CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	return (bScrolled ? GLDI_NOTIFICATION_INTERCEPT : GLDI_NOTIFICATION_LET_PASS);
 }
 
 static gboolean _cd_slide_on_press_button (GtkWidget* pWidget, GdkEventButton* pButton, CairoDesklet *pDesklet)
@@ -207,9 +242,9 @@ static gboolean _cd_slide_on_press_button (GtkWidget* pWidget, GdkEventButton* p
 static gboolean _cd_slide_on_mouse_moved (gpointer data, CairoDesklet *pDesklet, gboolean *bStartAnimation)
 {
 	CDViewportParameters *pData = pDesklet->pRendererData;
-	g_return_val_if_fail (pData != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	g_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
 	if (pData->iDeltaHeight == 0)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	if (pData->bDraggingScrollbar)
 	{
@@ -220,16 +255,16 @@ static gboolean _cd_slide_on_mouse_moved (gpointer data, CairoDesklet *pDesklet,
 		
 		int delta = pDesklet->container.iMouseY - pData->iClickY;
 		_set_scroll (pDesklet, (pData->iClickOffset + (double)delta / (y_arrow_bottom - y_arrow_top - 2*(pData->fArrowHeight + pData->fScrollbarArrowGap) - fGripHeight) * pData->iDeltaHeight));
-		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+		return GLDI_NOTIFICATION_INTERCEPT;
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
-static gboolean on_enter_icon_slide (gpointer pUserData, Icon *pPointedIcon, CairoContainer *pContainer, gboolean *bStartAnimation)
+static gboolean on_enter_icon_slide (gpointer pUserData, Icon *pPointedIcon, GldiContainer *pContainer, gboolean *bStartAnimation)
 {
 	gtk_widget_queue_draw (pContainer->pWidget);  // et oui, on n'a rien d'autre a faire.
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 static CDViewportParameters *configure (CairoDesklet *pDesklet, gpointer *pConfig)
@@ -254,9 +289,9 @@ static CDViewportParameters *configure (CairoDesklet *pDesklet, gpointer *pConfi
 	pViewport->color_grip[2] = .9;
 	pViewport->color_grip[3] = 1.;
 	
-	cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDesklet), NOTIFICATION_SCROLL_ICON, (CairoDockNotificationFunc) _cd_slide_on_scroll, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDesklet), NOTIFICATION_MOUSE_MOVED, (CairoDockNotificationFunc) _cd_slide_on_mouse_moved, CAIRO_DOCK_RUN_FIRST, NULL);
-	cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDesklet), NOTIFICATION_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, CAIRO_DOCK_RUN_FIRST, NULL);
+	gldi_object_register_notification (CAIRO_CONTAINER (pDesklet), NOTIFICATION_SCROLL_ICON, (GldiNotificationFunc) _cd_slide_on_scroll, GLDI_RUN_AFTER, NULL);
+	gldi_object_register_notification (CAIRO_CONTAINER (pDesklet), NOTIFICATION_MOUSE_MOVED, (GldiNotificationFunc) _cd_slide_on_mouse_moved, GLDI_RUN_FIRST, NULL);
+	gldi_object_register_notification (CAIRO_CONTAINER (pDesklet), NOTIFICATION_ENTER_ICON, (GldiNotificationFunc) on_enter_icon_slide, GLDI_RUN_FIRST, NULL);
 	pViewport->iSidPressEvent = g_signal_connect (G_OBJECT (pDesklet->container.pWidget),
 		"button-press-event",
 		G_CALLBACK (_cd_slide_on_press_button),
@@ -276,9 +311,9 @@ static void free_data (CairoDesklet *pDesklet)
 	if (pViewport == NULL)
 		return ;
 	
-	cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDesklet), NOTIFICATION_SCROLL_ICON, (CairoDockNotificationFunc) _cd_slide_on_scroll, NULL);
-	cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDesklet), NOTIFICATION_MOUSE_MOVED, (CairoDockNotificationFunc) _cd_slide_on_mouse_moved, NULL);
-	cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDesklet), NOTIFICATION_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon_slide, NULL);
+	gldi_object_remove_notification (CAIRO_CONTAINER (pDesklet), NOTIFICATION_SCROLL_ICON, (GldiNotificationFunc) _cd_slide_on_scroll, NULL);
+	gldi_object_remove_notification (CAIRO_CONTAINER (pDesklet), NOTIFICATION_MOUSE_MOVED, (GldiNotificationFunc) _cd_slide_on_mouse_moved, NULL);
+	gldi_object_remove_notification (CAIRO_CONTAINER (pDesklet), NOTIFICATION_ENTER_ICON, (GldiNotificationFunc) on_enter_icon_slide, NULL);
 	g_signal_handler_disconnect (pDesklet->container.pWidget, pViewport->iSidPressEvent);
 	g_signal_handler_disconnect (pDesklet->container.pWidget, pViewport->iSidReleaseEvent);
 	

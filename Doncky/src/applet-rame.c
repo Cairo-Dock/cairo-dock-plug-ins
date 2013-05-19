@@ -49,7 +49,7 @@
 	while (*str == ' ') \
 		str ++; \
 	iValue = atoll (str);
-void cd_sysmonitor_get_ram_data (CairoDockModuleInstance *myApplet)
+void cd_sysmonitor_get_ram_data (GldiModuleInstance *myApplet)
 {
 	gchar *cContent = NULL;
 	gsize length=0;

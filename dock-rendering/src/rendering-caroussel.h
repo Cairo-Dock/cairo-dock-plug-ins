@@ -39,6 +39,6 @@ Icon *cd_rendering_calculate_icons_caroussel (CairoDock *pDock);
 void cd_rendering_register_caroussel_renderer (const gchar *cRendererName);
 
 
-gboolean cd_rendering_caroussel_update_dock (gpointer pUserData, CairoContainer *pContainer, gboolean *bContinueAnimation);
+gboolean cd_rendering_caroussel_update_dock (gpointer pUserData, GldiContainer *pContainer, gboolean *bContinueAnimation);
 
 #endif

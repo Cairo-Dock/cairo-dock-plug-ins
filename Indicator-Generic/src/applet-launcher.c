@@ -35,7 +35,7 @@ static gboolean _is_an_exception (const gchar *cIndicatorName, gchar **cExceptio
 	return FALSE;
 }
 
-static void _on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
+static void _on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, GldiModuleInstance *myApplet)
 {
 	g_return_if_fail (cURI != NULL);
 	CD_APPLET_ENTER;
@@ -46,7 +46,7 @@ static void _on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, 
 	CD_APPLET_LEAVE();
 }
 
-void cd_indicator_generic_add_monitor_dir (CairoDockModuleInstance *myApplet)
+void cd_indicator_generic_add_monitor_dir (GldiModuleInstance *myApplet)
 {
 	cairo_dock_fm_add_monitor_full (cd_indicator3_get_directory_path (), TRUE,
 		NULL, (CairoDockFMMonitorCallback) _on_file_event, myApplet);
@@ -58,7 +58,7 @@ void cd_indicator_generic_remove_monitor_dir (void)
 		TRUE, NULL);
 }
 
-GDir * cd_indicator_generic_open_dir (CairoDockModuleInstance *myApplet)
+GDir * cd_indicator_generic_open_dir (GldiModuleInstance *myApplet)
 {
 	GError *error = NULL;
 	GDir *pDir = g_dir_open (cd_indicator3_get_directory_path (), 0, &error); // all indicators are on the same dir
@@ -70,12 +70,12 @@ GDir * cd_indicator_generic_open_dir (CairoDockModuleInstance *myApplet)
 	return pDir;
 }
 
-gint cd_indicator_generic_load_all_indicators (CairoDockModuleInstance *myApplet, GDir *pDir)
+gint cd_indicator_generic_load_all_indicators (GldiModuleInstance *myApplet, GDir *pDir)
 {
 	// for each indicator file, instanciate a new plugin with it (useful to place it where we want, all icons are not regrouped into one big icon)
 	const gchar *cFileName;
 	gchar *cInstanceFilePath;
-	CairoDockModuleInstance *pModuleInstance;
+	GldiModuleInstance *pModuleInstance;
 	gint iNbFiles = 0;
 	while ((cFileName = g_dir_read_name (pDir)) != NULL)
 	{
@@ -83,7 +83,7 @@ gint cd_indicator_generic_load_all_indicators (CairoDockModuleInstance *myApplet
 			|| _is_an_exception (cFileName, myConfig.cExceptionsList))
 			continue;
 
-		gchar *cUserDataDirPath = cairo_dock_check_module_conf_dir (myApplet->pModule);
+		gchar *cUserDataDirPath = gldi_module_get_config_dir (myApplet->pModule);
 		// config file: indicator.so.conf ; e.g. libprintersmenu.so.conf
 		cInstanceFilePath = g_strdup_printf ("%s/%s.conf", cUserDataDirPath, cFileName);
 		if (! g_file_test (cInstanceFilePath, G_FILE_TEST_EXISTS))
@@ -108,7 +108,7 @@ gint cd_indicator_generic_load_all_indicators (CairoDockModuleInstance *myApplet
 			}
 		}
 		// create the new icon
-		pModuleInstance = cairo_dock_instanciate_module (myApplet->pModule, cInstanceFilePath);  // we don't have to free cInstanceFilePath
+		pModuleInstance = gldi_module_instance_new (myApplet->pModule, cInstanceFilePath);  // we don't have to free cInstanceFilePath
 		myData.pIndicatorsList = g_list_prepend (myData.pIndicatorsList, pModuleInstance);
 		g_free (cUserDataDirPath);
 		iNbFiles++;
@@ -117,10 +117,10 @@ gint cd_indicator_generic_load_all_indicators (CairoDockModuleInstance *myApplet
 	return iNbFiles;
 }
 
-void cd_indicator_generic_reload_all_indicators (CairoDockModuleInstance *myApplet)
+void cd_indicator_generic_reload_all_indicators (GldiModuleInstance *myApplet)
 {
 	cd_debug ("Reload all indicators");
-	g_list_foreach (myData.pIndicatorsList, (GFunc) cairo_dock_deinstanciate_module, NULL);
+	g_list_foreach (myData.pIndicatorsList, (GFunc)gldi_object_unref, NULL);
 
 	g_list_free (myData.pIndicatorsList);
 	myData.pIndicatorsList = NULL;

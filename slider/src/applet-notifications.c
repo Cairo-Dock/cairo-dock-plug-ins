@@ -28,7 +28,7 @@
 #include "applet-transitions.h"
 #include "applet-slider.h"
 
-static inline void _toggle_pause (CairoDockModuleInstance *myApplet)
+static inline void _toggle_pause (GldiModuleInstance *myApplet)
 {
 	if (!myData.bPause) {
 		myData.bPause = TRUE;  // will stop the slider.
@@ -40,7 +40,7 @@ static inline void _toggle_pause (CairoDockModuleInstance *myApplet)
 }
 
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.
-static void _open_current_slide (CairoDockModuleInstance *myApplet)
+static void _open_current_slide (GldiModuleInstance *myApplet)
 {
 	if (myData.pElement != NULL && myData.pElement->data != NULL)
 	{
@@ -50,7 +50,7 @@ static void _open_current_slide (CairoDockModuleInstance *myApplet)
 		cairo_dock_fm_launch_uri (cImagePath);
 	}
 }
-static void _open_current_folder (CairoDockModuleInstance *myApplet)
+static void _open_current_folder (GldiModuleInstance *myApplet)
 {
 	if (myData.pElement != NULL && myData.pElement->data != NULL)
 	{
@@ -61,11 +61,11 @@ static void _open_current_folder (CairoDockModuleInstance *myApplet)
 		g_free (cDirPath);
 	}
 }
-static void _cd_slider_action (SliderClickOption iAction, CairoDockModuleInstance *myApplet)
+static void _cd_slider_action (SliderClickOption iAction, GldiModuleInstance *myApplet)
 {
 	if (myConfig.cDirectory == NULL)
 	{
-		cairo_dock_show_temporary_dialog_with_icon (D_("You need to define the images folder first."), myIcon, myContainer, 8000, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+		gldi_dialog_show_temporary_with_icon (D_("You need to define the images folder first."), myIcon, myContainer, 8000, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 		return;
 	}
 	switch (iAction)
@@ -92,7 +92,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
-static gboolean _cd_slider_scroll_delayed (CairoDockModuleInstance *myApplet)
+static gboolean _cd_slider_scroll_delayed (GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	if (myData.iNbScroll == 0)
@@ -142,7 +142,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 	}
 	
 	myData.iScrollID = g_timeout_add (100, (GSourceFunc) _cd_slider_scroll_delayed, myApplet);
-	CD_APPLET_LEAVE (CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 CD_APPLET_ON_SCROLL_END
 
 
@@ -152,7 +152,7 @@ static void _free_app (gpointer *app)
 	g_free (app[1]);
 	g_free (app);
 }
-void cd_slider_free_apps_list (CairoDockModuleInstance *myApplet)
+void cd_slider_free_apps_list (GldiModuleInstance *myApplet)
 {
 	if (myData.pAppList != NULL)
 	{
@@ -162,13 +162,13 @@ void cd_slider_free_apps_list (CairoDockModuleInstance *myApplet)
 	}
 }
 
-static void _cd_slider_toogle_pause (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_slider_toogle_pause (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	_toggle_pause (myApplet);
 	CD_APPLET_LEAVE();
 }
-static void _cd_slider_open_selected (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_slider_open_selected (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cairo_dock_fm_launch_uri (myData.cSelectedImagePath);
@@ -176,11 +176,11 @@ static void _cd_slider_open_selected (GtkMenuItem *menu_item, CairoDockModuleIns
 }
 static void _cd_slider_launch_with (GtkMenuItem *pMenuItem, gpointer *app)
 {
-	CairoDockModuleInstance *myApplet = app[0];
+	GldiModuleInstance *myApplet = app[0];
 	gchar *cExec = app[1];
 	cairo_dock_launch_command_printf ("%s \"%s\"", NULL, cExec, myData.cSelectedImagePath);  // en esperant que l'appli gere les URI.
 }
-static void _cd_slider_run_dir (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_slider_run_dir (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	if (myData.cSelectedImagePath == NULL)
@@ -195,7 +195,7 @@ static void _cd_slider_run_dir (GtkMenuItem *menu_item, CairoDockModuleInstance 
 	}
 	CD_APPLET_LEAVE();
 }
-static void _cd_slider_refresh_images_list (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_slider_refresh_images_list (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cd_slider_stop (myApplet);

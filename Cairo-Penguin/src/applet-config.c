@@ -66,7 +66,7 @@ static void _penguin_reset_one_animation (PenguinAnimation *pAnimation)
 	}
 }
 
-void cd_penguin_reset_data (CairoDockModuleInstance *myApplet)
+void cd_penguin_reset_data (GldiModuleInstance *myApplet)
 {
 	int i;
 	for (i = 0; i < myData.iNbAnimations; i++)

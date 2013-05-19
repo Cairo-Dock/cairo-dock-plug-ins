@@ -28,10 +28,10 @@ GList *cd_weather_parse_location_data  (const gchar *cData, GError **erreur);
 
 void cd_weather_reset_weather_data (CDWeatherData *pData);
 
-void cd_weather_reset_data (CairoDockModuleInstance *myApplet);
+void cd_weather_reset_data (GldiModuleInstance *myApplet);
 
 
-void cd_weather_launch_periodic_task (CairoDockModuleInstance *myApplet);
+void cd_weather_launch_periodic_task (GldiModuleInstance *myApplet);
 
 
 #endif

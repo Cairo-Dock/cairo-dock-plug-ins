@@ -33,7 +33,7 @@
 
 
 // Prend un debit en octet par seconde et le transforme en une chaine de la forme : xxx yB/s
-static void cd_netspeed_formatRate (CairoDockModuleInstance *myApplet, unsigned long long rate, gchar* debit) {
+static void cd_netspeed_formatRate (GldiModuleInstance *myApplet, unsigned long long rate, gchar* debit) {
 	int smallRate;
 	
 	if (rate <= 0)
@@ -86,7 +86,7 @@ static void cd_netspeed_formatRate (CairoDockModuleInstance *myApplet, unsigned 
 }
 
 
-void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
+void cd_netspeed_get_data (GldiModuleInstance *myApplet)
 {
 	double fTimeElapsed = cairo_dock_get_task_elapsed_time (myData.netSpeed.pTask);
 	
@@ -169,7 +169,7 @@ void cd_netspeed_get_data (CairoDockModuleInstance *myApplet)
 		myData.netSpeed._bAcquisitionOK = FALSE;
 }
 
-gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
+gboolean cd_netspeed_update_from_data (GldiModuleInstance *myApplet)
 {
 	static double s_fValues[CD_NETSPEED_NB_MAX_VALUES];
 	static gchar s_upRateFormatted[11];
@@ -245,7 +245,7 @@ gboolean cd_netspeed_update_from_data (CairoDockModuleInstance *myApplet)
 }
 
 
-void cd_netmonitor_launch_netspeed_task (CairoDockModuleInstance *myApplet)
+void cd_netmonitor_launch_netspeed_task (GldiModuleInstance *myApplet)
 {
 	cd_netmonitor_free_wifi_task (myApplet);
 	
@@ -263,7 +263,7 @@ void cd_netmonitor_launch_netspeed_task (CairoDockModuleInstance *myApplet)
 	}
 }
 
-void cd_netmonitor_free_netspeed_task (CairoDockModuleInstance *myApplet)
+void cd_netmonitor_free_netspeed_task (GldiModuleInstance *myApplet)
 {
 	if (myData.netSpeed.pTask != NULL)
 	{

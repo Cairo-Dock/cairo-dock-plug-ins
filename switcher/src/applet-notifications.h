@@ -32,24 +32,24 @@ CD_APPLET_ON_MIDDLE_CLICK_H
 
 CD_APPLET_ON_SCROLL_H
 
-gboolean on_change_active_window (CairoDockModuleInstance *myApplet, Window *XActiveWindow);
+gboolean on_change_desktop (GldiModuleInstance *myApplet);
 
-gboolean on_change_desktop (CairoDockModuleInstance *myApplet);
+gboolean on_change_screen_geometry (GldiModuleInstance *myApplet);
 
-gboolean on_change_screen_geometry (CairoDockModuleInstance *myApplet);
+gboolean on_window_size_position_changed (GldiModuleInstance *myApplet, GldiWindowsManager *actor);
 
-gboolean on_window_configured (CairoDockModuleInstance *myApplet, Window Xid, XConfigureEvent *xconfigure);
+gboolean on_change_window_order (GldiModuleInstance *myApplet);
 
-gboolean on_change_desktop_names (CairoDockModuleInstance *myApplet);
+gboolean on_change_desktop_names (GldiModuleInstance *myApplet);
 
 
-gboolean on_mouse_moved (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation);
+gboolean on_mouse_moved (GldiModuleInstance *myApplet, GldiContainer *pContainer, gboolean *bStartAnimation);
 
-gboolean on_update_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bContinueAnimation);
+gboolean on_update_desklet (GldiModuleInstance *myApplet, GldiContainer *pContainer, gboolean *bContinueAnimation);
 
-gboolean on_render_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, cairo_t *pCairoContext);
+gboolean on_render_desklet (GldiModuleInstance *myApplet, GldiContainer *pContainer, cairo_t *pCairoContext);
 
-gboolean on_leave_desklet (CairoDockModuleInstance *myApplet, CairoContainer *pContainer, gboolean *bStartAnimation);
+gboolean on_leave_desklet (GldiModuleInstance *myApplet, GldiContainer *pContainer, gboolean *bStartAnimation);
 
 
 #endif

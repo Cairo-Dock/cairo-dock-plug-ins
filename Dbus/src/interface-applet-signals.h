@@ -28,19 +28,19 @@ void cd_dbus_applet_init_signals_once (dbusAppletClass *klass);
 void cd_dbus_sub_applet_init_signals_once (dbusSubAppletClass *klass);
 
 
-gboolean cd_dbus_applet_emit_on_click_icon (gpointer data, Icon *pClickedIcon, CairoContainer *pClickedContainer, guint iButtonState);
+gboolean cd_dbus_applet_emit_on_click_icon (gpointer data, Icon *pClickedIcon, GldiContainer *pClickedContainer, guint iButtonState);
 
-gboolean cd_dbus_applet_emit_on_middle_click_icon (gpointer data, Icon *pClickedIcon, CairoContainer *pClickedContainer);
+gboolean cd_dbus_applet_emit_on_middle_click_icon (gpointer data, Icon *pClickedIcon, GldiContainer *pClickedContainer);
 
-gboolean cd_dbus_applet_emit_on_scroll_icon (gpointer data, Icon *pClickedIcon, CairoContainer *pClickedContainer, int iDirection);
+gboolean cd_dbus_applet_emit_on_scroll_icon (gpointer data, Icon *pClickedIcon, GldiContainer *pClickedContainer, int iDirection);
 
-gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, CairoContainer *pClickedContainer, GtkWidget *pAppletMenu);
+gboolean cd_dbus_applet_emit_on_build_menu (gpointer data, Icon *pClickedIcon, GldiContainer *pClickedContainer, GtkWidget *pAppletMenu);
 
 void cd_dbus_emit_on_menu_select (GtkMenuItem *pMenuItem, gpointer data);
 
-gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *pClickedIcon, double fPosition, CairoContainer *pClickedContainer);
+gboolean cd_dbus_applet_emit_on_drop_data (gpointer data, const gchar *cReceivedData, Icon *pClickedIcon, double fPosition, GldiContainer *pClickedContainer);
 
-gboolean cd_dbus_applet_emit_on_change_focus (gpointer data, Window *xNewActiveWindow);
+gboolean cd_dbus_applet_emit_on_change_focus (gpointer data, GldiWindowActor *pNewActiveWindow);
 
 
 void cd_dbus_applet_emit_on_answer_question (int iClickedButton, GtkWidget *pInteractiveWidget, dbusApplet *pDbusApplet, CairoDialog *pDialog);
@@ -64,15 +64,15 @@ void cd_dbus_applet_emit_on_answer_combo (int iClickedButton, GtkWidget *pIntera
 void cd_dbus_applet_emit_on_shortkey (const gchar *cShortkey, dbusApplet *pDbusApplet);
 
 
-void cd_dbus_action_on_init_module (CairoDockModuleInstance *pModuleInstance);
+void cd_dbus_action_on_init_module (GldiModuleInstance *pModuleInstance);
 gboolean cd_dbus_emit_init_module_delayed (dbusApplet *pDbusApplet);
-void cd_dbus_emit_init_signal (CairoDockModuleInstance *pModuleInstance);
-void cd_dbus_emit_on_init_module (CairoDockModuleInstance *pModuleInstance, GKeyFile *pKeyFile);
+void cd_dbus_emit_init_signal (GldiModuleInstance *pModuleInstance);
+void cd_dbus_emit_on_init_module (GldiModuleInstance *pModuleInstance, GKeyFile *pKeyFile);
 
-void cd_dbus_action_on_stop_module (CairoDockModuleInstance *pModuleInstance);
-void cd_dbus_emit_on_stop_module (CairoDockModuleInstance *pModuleInstance);
+void cd_dbus_action_on_stop_module (GldiModuleInstance *pModuleInstance);
+void cd_dbus_emit_on_stop_module (GldiModuleInstance *pModuleInstance);
 
-gboolean cd_dbus_emit_on_reload_module (CairoDockModuleInstance *pModuleInstance, CairoContainer *pOldContainer, GKeyFile *pKeyFile);
+gboolean cd_dbus_emit_on_reload_module (GldiModuleInstance *pModuleInstance, GldiContainer *pOldContainer, GKeyFile *pKeyFile);
 
 
 #endif

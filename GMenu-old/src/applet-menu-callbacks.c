@@ -169,7 +169,7 @@ static GtkWidget *cd_menu_append_one_item_to_menu (const gchar *cLabel, const gc
 	return pMenuItem;
 }
 
-void cd_menu_append_poweroff_to_menu (GtkWidget *menu, CairoDockModuleInstance *myApplet)
+void cd_menu_append_poweroff_to_menu (GtkWidget *menu, GldiModuleInstance *myApplet)
 {
 	add_menu_separator (menu);
 
@@ -217,7 +217,7 @@ static gchar * _get_settings_menu_name (void)
 
 void panel_desktop_menu_item_append_menu (GtkWidget *menu, gpointer data)
 {
-	CairoDockModuleInstance *myApplet = (CairoDockModuleInstance *) data;
+	GldiModuleInstance *myApplet = (GldiModuleInstance *) data;
 	if (myConfig.iShowQuit != CD_GMENU_SHOW_QUIT_NONE)
 		cd_menu_append_poweroff_to_menu (menu, myApplet);
 }
@@ -226,9 +226,9 @@ void main_menu_append (GtkWidget *main_menu,
 		  gpointer   data)
 {
 	//g_print ("%s ()\n", __func__);	
-	CairoDockModuleInstance *myApplet;
+	GldiModuleInstance *myApplet;
 
-	myApplet = (CairoDockModuleInstance *) data;
+	myApplet = (GldiModuleInstance *) data;
 
 	GtkWidget *desktop_menu;
 

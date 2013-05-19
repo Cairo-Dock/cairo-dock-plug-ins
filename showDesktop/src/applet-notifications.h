@@ -37,7 +37,7 @@ CD_APPLET_ON_DROP_DATA_H
 
 void on_keybinding_pull (const char *keystring, gpointer user_data);
 
-gboolean on_show_desktop (CairoDockModuleInstance *myApplet);
+gboolean on_show_desktop (GldiModuleInstance *myApplet);
 
 
 #endif

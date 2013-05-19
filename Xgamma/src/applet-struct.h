@@ -56,8 +56,8 @@ struct _AppletData {
 	XF86VidModeGamma XoldGamma;
 	guint iSidScrollAction;
 	gint iScrollCount;
-	CairoKeyBinding *pKeyBinding;
-	CairoKeyBinding *pKeyBinding2;
+	GldiShortkey *pKeyBinding;
+	GldiShortkey *pKeyBinding2;
 	} ;
 
 

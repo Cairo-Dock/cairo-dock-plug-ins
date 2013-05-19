@@ -66,12 +66,12 @@ struct _AppletConfig {
 struct _AppletData {
 	DBusGProxy *pProxyRegistrar;
 	gboolean bOwnRegistrar;
-	Window iPreviousWindow, iCurrentWindow;  // window currently controlled.
+	GldiWindowActor *pPreviousWindow, *pCurrentWindow;  // window currently controlled.
 	gboolean bCanClose;
 	gboolean bCanMinimize;
 	gboolean bCanMaximize;
 	DbusmenuGtkMenu *pMenu;
-	CairoKeyBinding *pKeyBinding;
+	GldiShortkey *pKeyBinding;
 	CairoDockImageBuffer defaultIcon;
 	CairoDockImageBuffer minimizeButton;
 	CairoDockImageBuffer maximizeButton;

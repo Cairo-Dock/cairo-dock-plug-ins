@@ -29,8 +29,8 @@
 CD_APPLET_ON_CLICK_BEGIN
 	if (myData.pItems == NULL)
 	{
-		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog_with_icon (D_("The clipboard history is empty."), myIcon, myContainer, 3000, "same icon");
+		gldi_dialogs_remove_on_icon (myIcon);
+		gldi_dialog_show_temporary_with_icon (D_("The clipboard history is empty."), myIcon, myContainer, 3000, "same icon");
 	}
 	else
 	{
@@ -95,8 +95,8 @@ CD_APPLET_ON_BUILD_MENU_END
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	if (myConfig.pPersistentItems == NULL)
 	{
-		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog_with_icon (D_("No persistent items.\nYou can add some by drag and dropping some text on the icon."), myIcon, myContainer, 6000, "same icon");
+		gldi_dialogs_remove_on_icon (myIcon);
+		gldi_dialog_show_temporary_with_icon (D_("No persistent items.\nYou can add some by drag and dropping some text on the icon."), myIcon, myContainer, 6000, "same icon");
 	}
 	else
 	{
@@ -140,7 +140,7 @@ void cd_clipper_on_keybinding_pull (const char *keystring, gpointer user_data)
 	if (myData.pItems == NULL)
 	{
 		gchar *cIconPath = g_strdup_printf ("%s/%s", MY_APPLET_SHARE_DATA_DIR, MY_APPLET_ICON_FILE);
-		cairo_dock_show_temporary_dialog_with_icon (D_("No items yet."), myIcon, myContainer, 2000, cIconPath);
+		gldi_dialog_show_temporary_with_icon (D_("No items yet."), myIcon, myContainer, 2000, cIconPath);
 		g_free (cIconPath);
 	}
 	else

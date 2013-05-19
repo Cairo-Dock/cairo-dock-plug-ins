@@ -26,11 +26,11 @@
 #define GAP_X_MIN 10
 #define GAP_Y_MIN 8
 
-static gboolean on_enter_icon (gpointer pUserData, Icon *pPointedIcon, CairoContainer *pContainer, gboolean *bStartAnimation)
+static gboolean on_enter_icon (gpointer pUserData, Icon *pPointedIcon, GldiContainer *pContainer, gboolean *bStartAnimation)
 {
 	gtk_widget_queue_draw (pContainer->pWidget);  // et oui, on n'a rien d'autre a faire.
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 static CDPanelParameters *configure (CairoDesklet *pDesklet, gpointer *pConfig)  // gint, gboolean, gdouble[4]
@@ -49,7 +49,7 @@ static CDPanelParameters *configure (CairoDesklet *pDesklet, gpointer *pConfig) 
 		}
 	}
 	
-	cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDesklet), NOTIFICATION_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon, CAIRO_DOCK_RUN_FIRST, NULL);  // CAIRO_CONTAINER (pDesklet)
+	gldi_object_register_notification (CAIRO_CONTAINER (pDesklet), NOTIFICATION_ENTER_ICON, (GldiNotificationFunc) on_enter_icon, GLDI_RUN_FIRST, NULL);  // CAIRO_CONTAINER (pDesklet)
 	
 	return pPanel;
 }
@@ -117,7 +117,7 @@ static inline void _compute_icons_grid (CairoDesklet *pDesklet, CDPanelParameter
 
 static void free_data (CairoDesklet *pDesklet)
 {
-	cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDesklet), NOTIFICATION_ENTER_ICON, (CairoDockNotificationFunc) on_enter_icon, NULL);
+	gldi_object_remove_notification (CAIRO_CONTAINER (pDesklet), NOTIFICATION_ENTER_ICON, (GldiNotificationFunc) on_enter_icon, NULL);
 	
 	CDPanelParameters *pPanel = (CDPanelParameters *) pDesklet->pRendererData;
 	if (pPanel == NULL)

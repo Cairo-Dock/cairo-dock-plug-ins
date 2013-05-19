@@ -387,7 +387,7 @@ static gboolean _timer (gpointer data)
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%dmn", (int) ceil ((double)(myConfig.iShutdownTime - t_cur) / 60.));
 		CD_APPLET_REDRAW_MY_ICON;
 		if (t_cur >= myConfig.iShutdownTime - 60)
-			cairo_dock_show_temporary_dialog_with_icon (D_("Your computer will shut-down in 1 minute."), myIcon, myContainer, 8000, "same icon");
+			gldi_dialog_show_temporary_with_icon (D_("Your computer will shut-down in 1 minute."), myIcon, myContainer, 8000, "same icon");
 	}
 	CD_APPLET_LEAVE (TRUE);
 	
@@ -434,7 +434,7 @@ static void _on_program_shutdown (int iClickedButton, GtkWidget *pInteractiveWid
 }
 void cd_logout_program_shutdown (void)
 {
-	cairo_dock_show_dialog_with_value (D_("Choose in how many minutes your PC will stop:"),
+	gldi_dialog_show_with_value (D_("Choose in how many minutes your PC will stop:"),
 		myIcon, myContainer,
 		"same icon",
 		30, 150,
@@ -482,7 +482,7 @@ static gchar * _get_reboot_message (void)
 static void _notify_action_required (void)
 {
 	CD_APPLET_DEMANDS_ATTENTION ("pulse", 20);
-	cairo_dock_remove_dialog_if_any (myIcon);
+	gldi_dialogs_remove_on_icon (myIcon);
 
 	gchar *cName;
 	if (/*myData.bLogoutNeeded && */myData.bRebootNeeded)
@@ -497,7 +497,7 @@ static void _notify_action_required (void)
 	else
 		cName = g_strdup_printf ("%s\n%s", myIcon->cName, CD_LOGOUT_UPDATE_MESSAGE);
 
-	cairo_dock_show_temporary_dialog_with_icon (cName, myIcon, myContainer, 15e3, "same icon");
+	gldi_dialog_show_temporary_with_icon (cName, myIcon, myContainer, 15e3, "same icon");
 
 	g_free (cName);
 
@@ -526,7 +526,7 @@ static void _notify_action_required (void)
 static void _stop_notify_action_required (void)
 {
 	 // should not happen... mainly for the tests.
-	cairo_dock_remove_dialog_if_any (myIcon);
+	gldi_dialogs_remove_on_icon (myIcon);
 	if (myConfig.iRebootNeededImage == CD_DISPLAY_EMBLEM)
 		CD_APPLET_PRINT_OVERLAY_ON_MY_ICON (NULL, CAIRO_OVERLAY_UPPER_RIGHT);
 	else
@@ -693,7 +693,7 @@ static void _exec_action (int iClickedButton, GtkWidget *pInteractiveWidget, voi
 static void _demand_confirmation (const gchar *cMessage, const gchar *cIconStock, const gchar *cIconImage, void (*callback) (void))
 {
 	gchar *cImagePath = _check_icon (cIconStock, 32); // dialog
-	myData.pConfirmationDialog = cairo_dock_show_dialog_full (cMessage, myIcon, myContainer, 0, cImagePath ? cImagePath : cIconImage, NULL, (CairoDockActionOnAnswerFunc) _exec_action, callback, NULL);
+	myData.pConfirmationDialog = gldi_dialog_show (cMessage, myIcon, myContainer, 0, cImagePath ? cImagePath : cIconImage, NULL, (CairoDockActionOnAnswerFunc) _exec_action, callback, NULL);
 	g_free (cImagePath);
 }
 
@@ -731,7 +731,7 @@ static gboolean _auto_shot_down (gpointer data)
 	if (myData.iCountDown <= 0)
 	{
 		myData.iSidShutDown = 0;
-		cairo_dock_dialog_unreference (myData.pConfirmationDialog);
+		gldi_object_unref (GLDI_OBJECT(myData.pConfirmationDialog));
 		myData.pConfirmationDialog = NULL;
 		_shut_down ();
 		return FALSE;
@@ -741,7 +741,7 @@ static gboolean _auto_shot_down (gpointer data)
 		if (myData.pConfirmationDialog)  // paranoia
 		{
 			gchar *cMessage = _info_msg ();
-			cairo_dock_set_dialog_message (myData.pConfirmationDialog, cMessage);
+			gldi_dialog_set_message (myData.pConfirmationDialog, cMessage);
 			g_free (cMessage);
 		}
 		return TRUE;

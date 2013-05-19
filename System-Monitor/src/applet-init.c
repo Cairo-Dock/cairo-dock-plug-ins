@@ -42,7 +42,7 @@ CD_APPLET_DEFINITION (N_("System Monitor"),
 	"parAdOxxx_ZeRo and Fabounet")
 
 
-static gboolean _unthreaded_task (CairoDockModuleInstance *myApplet)
+static gboolean _unthreaded_task (GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	cd_sysmonitor_get_data (myApplet);
@@ -56,7 +56,7 @@ static gboolean _unthreaded_task (CairoDockModuleInstance *myApplet)
 		memcpy (&fHighColor[3*i], myConfig.fHigholor, 3*sizeof (double));\
 		memcpy (&fLowColor[3*i], myConfig.fLowColor, 3*sizeof (double));\
 		i ++; }
-static void _set_data_renderer (CairoDockModuleInstance *myApplet)
+static void _set_data_renderer (GldiModuleInstance *myApplet)
 {
 	if (myConfig.iDisplayType == CD_SYSMONITOR_BAR)
 		return; /// TODO

@@ -23,13 +23,13 @@
 #include <cairo-dock.h>
 
 
-void cd_sysmonitor_get_nvidia_data (CairoDockModuleInstance *myApplet);
+void cd_sysmonitor_get_nvidia_data (GldiModuleInstance *myApplet);
 
 
-void cd_sysmonitor_get_nivdia_info (CairoDockModuleInstance *myApplet, GString *pInfo);
+void cd_sysmonitor_get_nivdia_info (GldiModuleInstance *myApplet, GString *pInfo);
 
 
-void cd_nvidia_alert (CairoDockModuleInstance *myApplet);
+void cd_nvidia_alert (GldiModuleInstance *myApplet);
 
 
 #endif

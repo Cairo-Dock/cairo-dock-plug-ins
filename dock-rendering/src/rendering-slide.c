@@ -115,23 +115,23 @@ static gboolean _add_scroll (CairoDock *pDock, int iDeltaOffsetY)
 static gboolean _cd_slide_on_scroll (gpointer data, Icon *pClickedIcon, CairoDock *pDock, int iDirection)
 {
 	CDSlideData *pData = pDock->pRendererData;
-	g_return_val_if_fail (pData != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	g_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
 	if (pData->iDeltaHeight == 0)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	gboolean bScrolled = _add_scroll (pDock, iDirection == 1 ? pDock->iMaxIconHeight : - pDock->iMaxIconHeight);
-	return (bScrolled ? CAIRO_DOCK_INTERCEPT_NOTIFICATION : CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	return (bScrolled ? GLDI_NOTIFICATION_INTERCEPT : GLDI_NOTIFICATION_LET_PASS);
 }
 static gboolean _cd_slide_on_click (gpointer data, Icon *pClickedIcon, CairoDock *pDock, guint iButtonState)
 {
 	CDSlideData *pData = pDock->pRendererData;
-	g_return_val_if_fail (pData != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	g_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
 	if (pData->iDeltaHeight == 0)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	if (pData->bDraggingScrollbar)
-		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+		return GLDI_NOTIFICATION_INTERCEPT;
 	else
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 }
 gboolean _cd_slide_on_press_button (GtkWidget* pWidget, GdkEventButton* pButton, CairoDock *pDock)
 {
@@ -196,9 +196,9 @@ gboolean _cd_slide_on_press_button (GtkWidget* pWidget, GdkEventButton* pButton,
 static gboolean _cd_slide_on_mouse_moved (gpointer data, CairoDock *pDock, gboolean *bStartAnimation)
 {
 	CDSlideData *pData = pDock->pRendererData;
-	g_return_val_if_fail (pData != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	g_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
 	if (pData->iDeltaHeight == 0)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	if (pData->bDraggingScrollbar)
 	{
@@ -221,20 +221,20 @@ static gboolean _cd_slide_on_mouse_moved (gpointer data, CairoDock *pDock, gbool
 		
 		int delta = pDock->container.iMouseY - pData->iClickY;
 		_set_scroll (pDock, (pData->iClickOffset + (double)delta / (y_arrow_top - y_arrow_bottom - 2*(fArrowHeight+fScrollbarArrowGap) - fGripHeight) * pData->iDeltaHeight));
-		return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+		return GLDI_NOTIFICATION_INTERCEPT;
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 gboolean cd_slide_on_leave (gpointer data, CairoDock *pDock, gboolean *bStartAnimation)
 {
 	CDSlideData *pData = pDock->pRendererData;
-	//g_return_val_if_fail (pData != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	//g_return_val_if_fail (pData != NULL, GLDI_NOTIFICATION_LET_PASS);
 	if (pData == NULL || ! pDock->pRenderer || pDock->pRenderer->render != cd_rendering_render_diapo_simple)  // pas nous
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	//g_print (" LEAVE (%d)\n", pData->bDraggingScrollbar);
 	
-	return (pData->bDraggingScrollbar ? CAIRO_DOCK_INTERCEPT_NOTIFICATION : CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	return (pData->bDraggingScrollbar ? GLDI_NOTIFICATION_INTERCEPT : GLDI_NOTIFICATION_LET_PASS);
 }
 
 
@@ -467,9 +467,9 @@ static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 	{
 		pData = g_new0 (CDSlideData, 1);
 		pDock->pRendererData = pData;
-		cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDock), NOTIFICATION_SCROLL_ICON, (CairoDockNotificationFunc) _cd_slide_on_scroll, CAIRO_DOCK_RUN_AFTER, NULL);
-		cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDock), NOTIFICATION_CLICK_ICON, (CairoDockNotificationFunc) _cd_slide_on_click, CAIRO_DOCK_RUN_FIRST, NULL);
-		cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDock), NOTIFICATION_MOUSE_MOVED, (CairoDockNotificationFunc) _cd_slide_on_mouse_moved, CAIRO_DOCK_RUN_AFTER, NULL);
+		gldi_object_register_notification (CAIRO_CONTAINER (pDock), NOTIFICATION_SCROLL_ICON, (GldiNotificationFunc) _cd_slide_on_scroll, GLDI_RUN_AFTER, NULL);
+		gldi_object_register_notification (CAIRO_CONTAINER (pDock), NOTIFICATION_CLICK_ICON, (GldiNotificationFunc) _cd_slide_on_click, GLDI_RUN_FIRST, NULL);
+		gldi_object_register_notification (CAIRO_CONTAINER (pDock), NOTIFICATION_MOUSE_MOVED, (GldiNotificationFunc) _cd_slide_on_mouse_moved, GLDI_RUN_AFTER, NULL);
 		pData->iSidPressEvent = g_signal_connect (G_OBJECT (pDock->container.pWidget),
 			"button-press-event",
 			G_CALLBACK (_cd_slide_on_press_button),
@@ -1762,9 +1762,9 @@ void cd_rendering_free_slide_data (CairoDock *pDock)
 	CDSlideData *pData = pDock->pRendererData;
 	if (pData != NULL)
 	{
-		cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDock), NOTIFICATION_SCROLL_ICON, (CairoDockNotificationFunc) _cd_slide_on_scroll, NULL);
-		cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDock), NOTIFICATION_CLICK_ICON, (CairoDockNotificationFunc) _cd_slide_on_click, NULL);
-		cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDock), NOTIFICATION_MOUSE_MOVED, (CairoDockNotificationFunc) _cd_slide_on_mouse_moved, NULL);
+		gldi_object_remove_notification (CAIRO_CONTAINER (pDock), NOTIFICATION_SCROLL_ICON, (GldiNotificationFunc) _cd_slide_on_scroll, NULL);
+		gldi_object_remove_notification (CAIRO_CONTAINER (pDock), NOTIFICATION_CLICK_ICON, (GldiNotificationFunc) _cd_slide_on_click, NULL);
+		gldi_object_remove_notification (CAIRO_CONTAINER (pDock), NOTIFICATION_MOUSE_MOVED, (GldiNotificationFunc) _cd_slide_on_mouse_moved, NULL);
 		g_signal_handler_disconnect (pDock->container.pWidget, pData->iSidPressEvent);
 		g_signal_handler_disconnect (pDock->container.pWidget, pData->iSidReleaseEvent);
 		

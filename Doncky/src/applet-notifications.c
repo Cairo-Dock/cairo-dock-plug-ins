@@ -31,7 +31,7 @@
 //~ #include <glib.h>
 #include <glib/gstdio.h>
 
-gboolean _check_size_is_constant (CairoDockModuleInstance *myApplet, const gchar *cFilePath)
+gboolean _check_size_is_constant (GldiModuleInstance *myApplet, const gchar *cFilePath)
 {
 	int iSize = cairo_dock_get_file_size (cFilePath);
 	gchar *cCommand = g_strdup_printf ("ping 127.0.0.1 -i 0.2 -c 2"); // On fait un temps d'arret de 200ms
@@ -45,7 +45,7 @@ gboolean _check_size_is_constant (CairoDockModuleInstance *myApplet, const gchar
 	return bConstantSize;
 }
 
-gboolean _new_xml_to_conf (CairoDockModuleInstance *myApplet, gchar *cReceivedData)
+gboolean _new_xml_to_conf (GldiModuleInstance *myApplet, gchar *cReceivedData)
 {
 	gboolean bContinue = FALSE;
 	
@@ -206,8 +206,8 @@ gboolean _new_xml_to_conf (CairoDockModuleInstance *myApplet, gchar *cReceivedDa
 	else
 	{
 		cd_debug ("DONCKY-debug : It doesn't seem to be a valid XML.");	
-		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog_with_icon (D_("It doesn't seem to be a valid XML file."),
+		gldi_dialogs_remove_on_icon (myIcon);
+		gldi_dialog_show_temporary_with_icon (D_("It doesn't seem to be a valid XML file."),
 			myIcon,
 			myContainer,
 			3000, // Suffisant 
@@ -409,7 +409,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 					g_free (cNodeContent);
 				}
 				
-				cairo_dock_reload_module_instance (myApplet, TRUE); // TRUE <=> read conf file
+				gldi_module_instance_reload (myApplet, TRUE); // TRUE <=> read conf file
 			}				
 		}	
 		cairo_dock_close_xml_file (pXmlFile);

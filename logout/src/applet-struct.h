@@ -90,8 +90,8 @@ struct _AppletData {
 	gboolean bCanRestart;
 	gboolean bHasGuestAccount;
 	CDLoginManager iLoginManager;
-	CairoKeyBinding *pKeyBinding;
-	CairoKeyBinding *pKeyBinding2;
+	GldiShortkey *pKeyBinding;
+	GldiShortkey *pKeyBinding2;
 	GList *pUserList;
 	// shut-down confirmation
 	gint iCountDown;

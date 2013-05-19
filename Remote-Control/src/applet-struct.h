@@ -52,7 +52,7 @@ struct _AppletData {
 	int iPrevMouseX, iPrevMouseY;
 	int iMouseX, iMouseY;
 	int iMotionCount;
-	CairoKeyBinding *pKeyBinding;
+	GldiShortkey *pKeyBinding;
 	} ;
 
 

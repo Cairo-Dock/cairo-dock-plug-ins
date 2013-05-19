@@ -25,16 +25,16 @@
 #include "applet-struct.h"
 
 
-void cd_slider_jump_to_next_slide (CairoDockModuleInstance *myApplet);
+void cd_slider_jump_to_next_slide (GldiModuleInstance *myApplet);
 
-void cd_slider_schedule_next_slide (CairoDockModuleInstance *myApplet);
+void cd_slider_schedule_next_slide (GldiModuleInstance *myApplet);
 
 #define cd_slider_next_slide_is_scheduled(myApplet) (myData.iTimerID != 0)
 
 
-void cd_slider_start (CairoDockModuleInstance *myApplet, gboolean bDelay);
+void cd_slider_start (GldiModuleInstance *myApplet, gboolean bDelay);
 
-void cd_slider_stop (CairoDockModuleInstance *myApplet);
+void cd_slider_stop (GldiModuleInstance *myApplet);
 
 
 #endif

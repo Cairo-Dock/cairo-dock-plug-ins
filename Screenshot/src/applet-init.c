@@ -65,7 +65,7 @@ CD_APPLET_STOP_BEGIN
 	cd_screenshot_cancel ();
 	cd_screenshot_free_apps_list (myApplet);
 	
-	cd_keybinder_unbind (myData.pKeyBinding);
+	gldi_object_unref (GLDI_OBJECT(myData.pKeyBinding));
 CD_APPLET_STOP_END
 
 
@@ -79,6 +79,6 @@ CD_APPLET_RELOAD_BEGIN
 		
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		
-		cd_keybinder_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
+		gldi_shortkey_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
 	}
 CD_APPLET_RELOAD_END

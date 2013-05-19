@@ -77,8 +77,8 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 
 	// keyboard events
-	cd_keybinder_unbind (myData.cKeyBinding);
-	cd_keybinder_unbind (myData.cKeyBindingQuickLaunch);
+	gldi_object_unref (GLDI_OBJECT(myData.cKeyBinding));
+	gldi_object_unref (GLDI_OBJECT(myData.cKeyBindingQuickLaunch));
 	
 CD_APPLET_STOP_END
 
@@ -94,8 +94,8 @@ CD_APPLET_RELOAD_BEGIN
 
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
 		
-		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cMenuShortkey, NULL);
-		cd_keybinder_rebind (myData.cKeyBindingQuickLaunch, myConfig.cQuickLaunchShortkey, NULL);
+		gldi_shortkey_rebind (myData.cKeyBinding, myConfig.cMenuShortkey, NULL);
+		gldi_shortkey_rebind (myData.cKeyBindingQuickLaunch, myConfig.cQuickLaunchShortkey, NULL);
 		
 		// on reset ce qu'il faut.
 		if (myData.pMenu != NULL &&

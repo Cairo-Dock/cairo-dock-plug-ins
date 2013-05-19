@@ -31,7 +31,7 @@
 #define CD_SHORTCUT_DEFAULT_DRIVE_ICON_FILENAME "drive-harddisk"
 
 
-void cd_shortcuts_add_progress_bar (Icon *pIcon, CairoDockModuleInstance *myApplet)
+void cd_shortcuts_add_progress_bar (Icon *pIcon, GldiModuleInstance *myApplet)
 {
 	// set a progress bar to display the disk space
 	CairoProgressBarAttribute attr;
@@ -46,7 +46,7 @@ void cd_shortcuts_add_progress_bar (Icon *pIcon, CairoDockModuleInstance *myAppl
 }
 
 
-void _init_disk_usage (Icon *pIcon, CairoDockModuleInstance *myApplet)
+void _init_disk_usage (Icon *pIcon, GldiModuleInstance *myApplet)
 {
 	// ensure the applet has a valid icon, in case the VFS didn't give us one.
 	if (pIcon->cFileName == NULL)
@@ -64,7 +64,7 @@ void _init_disk_usage (Icon *pIcon, CairoDockModuleInstance *myApplet)
 	}
 }
 
-static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar *cBaseURI, GList *pIconsList, CairoContainer *pContainer, CairoDockModuleInstance *myApplet)
+static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar *cBaseURI, GList *pIconsList, GldiContainer *pContainer, GldiModuleInstance *myApplet)
 {
 	gchar *cURI = (g_strdup (cBaseURI));
 	cairo_dock_remove_html_spaces (cURI);
@@ -128,7 +128,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 			gboolean bIsMounted = FALSE;
 			gchar *cUri = cairo_dock_fm_is_mounted (pNewIcon->cBaseURI, &bIsMounted);
 			g_free (cUri);
-			cairo_dock_show_temporary_dialog_with_icon_printf (
+			gldi_dialog_show_temporary_with_icon_printf (
 				bIsMounted ? D_("%s is now mounted") : D_("%s has been connected"),
 				pNewIcon, pContainer,
 				4000,
@@ -190,11 +190,11 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 			cd_shortcuts_display_disk_usage (pConcernedIcon, myApplet);
 			
 			//\_______________________ on affiche un message.
-			cairo_dock_remove_dialog_if_any (pConcernedIcon);  // on empeche la multiplication des dialogues de (de)montage.
+			gldi_dialogs_remove_on_icon (pConcernedIcon);  // on empeche la multiplication des dialogues de (de)montage.
 			gboolean bIsMounted = FALSE;
 			gchar *cUri = cairo_dock_fm_is_mounted (pConcernedIcon->cBaseURI, &bIsMounted);
 			g_free (cUri);
-			cairo_dock_show_temporary_dialog_with_icon_printf (
+			gldi_dialog_show_temporary_with_icon_printf (
 				bIsMounted ? D_("%s is now mounted") : D_("%s is now unmounted"),
 				pConcernedIcon, pContainer,
 				4000,
@@ -221,13 +221,13 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 	g_free (cURI);
 }
 
-void cd_shortcuts_on_drive_event (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
+void cd_shortcuts_on_drive_event (CairoDockFMEventType iEventType, const gchar *cURI, GldiModuleInstance *myApplet)
 {
 	g_return_if_fail (cURI != NULL);
 	CD_APPLET_ENTER;
 	//\________________ On gere l'evenement sur le point de montage.
 	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
-	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+	GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
 	
 	_manage_event_on_drive (iEventType, cURI, pIconsList, pContainer, myApplet);

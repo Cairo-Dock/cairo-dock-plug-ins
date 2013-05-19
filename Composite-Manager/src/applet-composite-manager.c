@@ -427,7 +427,7 @@ static void cd_turn_composite_on (void)
 {
 	if (myData.wmc == NULL)  // no compositor.
 	{
-		cairo_dock_show_temporary_dialog_with_icon (D_("No compositor is available."), myIcon, myContainer, 6000, "same icon");
+		gldi_dialog_show_temporary_with_icon (D_("No compositor is available."), myIcon, myContainer, 6000, "same icon");
 		return;
 	}
 	
@@ -442,7 +442,7 @@ static void cd_turn_composite_on (void)
 		if (myData.wmc->activate_composite != NULL)
 			myData.wmc->activate_composite (TRUE);
 		else
-			cairo_dock_show_temporary_dialog_with_icon (D_("No compositor is available."), myIcon, myContainer, 6000, "same icon");
+			gldi_dialog_show_temporary_with_icon (D_("No compositor is available."), myIcon, myContainer, 6000, "same icon");
 	}
 }
 
@@ -450,7 +450,7 @@ static void cd_turn_composite_off (void)
 {
 	if (myData.wmfb == NULL)  // no fallback.
 	{
-		cairo_dock_show_temporary_dialog_with_icon (D_("No fallback is available."), myIcon, myContainer, 6000, "same icon");
+		gldi_dialog_show_temporary_with_icon (D_("No fallback is available."), myIcon, myContainer, 6000, "same icon");
 		return;
 	}
 	
@@ -465,7 +465,7 @@ static void cd_turn_composite_off (void)
 		if (myData.wmfb->activate_composite != NULL)
 			myData.wmfb->activate_composite (FALSE);
 		else
-			cairo_dock_show_temporary_dialog_with_icon (D_("No fallback is available."), myIcon, myContainer, 6000, "same icon");
+			gldi_dialog_show_temporary_with_icon (D_("No fallback is available."), myIcon, myContainer, 6000, "same icon");
 	}
 }
 
@@ -506,7 +506,7 @@ void cd_open_wm_config (void)
 		if (cResult == NULL || *cResult != '/')
       	{
 			gchar *msg = g_strdup_printf (D_("You need to install '%s'"), cConfigTool);
-			cairo_dock_show_temporary_dialog_with_icon (msg, myIcon, myContainer, 6000, "same icon");
+			gldi_dialog_show_temporary_with_icon (msg, myIcon, myContainer, 6000, "same icon");
 			g_free (msg);
       	}
 		else
@@ -516,7 +516,7 @@ void cd_open_wm_config (void)
 	}
 	else
 	{
-		cairo_dock_show_temporary_dialog_with_icon (D_("No configuration tool is available."), myIcon, myContainer, 6000, "same icon");
+		gldi_dialog_show_temporary_with_icon (D_("No configuration tool is available."), myIcon, myContainer, 6000, "same icon");
 	}
 }
 

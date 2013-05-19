@@ -219,7 +219,7 @@ static int _mpris_get_status (int iStatusIndex)
 	}
 }
 
-static void _on_got_playing_status (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockModuleInstance *myApplet)
+static void _on_got_playing_status (DBusGProxy *proxy, DBusGProxyCall *call_id, GldiModuleInstance *myApplet)
 {
 	cd_debug ("=== %s ()", __func__);
 	CD_APPLET_ENTER;
@@ -470,7 +470,7 @@ static inline void _extract_metadata (GHashTable *data_list)
 	cd_musicplayer_set_cover_path (cCoverPath);
 }
 
-static void _on_got_song_infos (DBusGProxy *proxy, DBusGProxyCall *call_id, CairoDockModuleInstance *myApplet)
+static void _on_got_song_infos (DBusGProxy *proxy, DBusGProxyCall *call_id, GldiModuleInstance *myApplet)
 {
 	cd_debug ("=== %s ()", __func__);
 	CD_APPLET_ENTER;

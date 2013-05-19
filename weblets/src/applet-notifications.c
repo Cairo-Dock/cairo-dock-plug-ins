@@ -58,7 +58,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
-static void _cd_weblets_set_current_URI (CairoDockModuleInstance *myApplet, const gchar *cURI)
+static void _cd_weblets_set_current_URI (GldiModuleInstance *myApplet, const gchar *cURI)
 {
 	g_return_if_fail (cURI != NULL);
 	
@@ -78,7 +78,7 @@ static void _cd_weblets_set_current_URI (CairoDockModuleInstance *myApplet, cons
 
 static void _cd_weblets_open_URI (GtkMenuItem *menu_item, gpointer *data)
 {
-	CairoDockModuleInstance *myApplet = data[0];
+	GldiModuleInstance *myApplet = data[0];
 	gint index_URI = GPOINTER_TO_INT(data[1]);
 	cd_message( "weblets: opening predefined URI %d (%s).", index_URI, myConfig.cListURI[index_URI] );
 	
@@ -87,7 +87,7 @@ static void _cd_weblets_open_URI (GtkMenuItem *menu_item, gpointer *data)
 	cd_weblet_free_uri_list ();
 }
 
-static void _cd_weblets_reload_webpage (GtkMenuItem *menu_item, CairoDockModuleInstance *myApplet)
+static void _cd_weblets_reload_webpage (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
 	// on rafraichit le tout !
 	cairo_dock_relaunch_task_immediately (myData.pRefreshTimer, myConfig.iReloadTimeout);

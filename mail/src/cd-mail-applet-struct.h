@@ -80,7 +80,7 @@ struct _AppletData {
 
 
 typedef struct {
-    CairoDockModuleInstance *pAppletInstance;
+    GldiModuleInstance *pAppletInstance;
     gchar *name;
     struct mailstorage *storage;
     struct mailfolder *folder;

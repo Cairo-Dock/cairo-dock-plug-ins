@@ -37,15 +37,15 @@
 
 const int s_iNbPromptAnimationSteps = 40;
 
-static void cd_do_simulate_click (CairoContainer *pContainer, Icon *pIcon, int iModifierType)
+static void cd_do_simulate_click (GldiContainer *pContainer, Icon *pIcon, int iModifierType)
 {
 	g_return_if_fail (pIcon != NULL);
 	myData.bIgnoreClick = TRUE;  // -> ignore the "click" notification, which would close the session and remove the notification while in the loop. the caller of this method should ensure to close the session after.
-	cairo_dock_notify_on_object (pContainer, NOTIFICATION_CLICK_ICON, pIcon, pContainer, iModifierType);
+	gldi_object_notify (pContainer, NOTIFICATION_CLICK_ICON, pIcon, pContainer, iModifierType);
 	myData.bIgnoreClick = FALSE;
 }
 
-static inline int _orient_arrow (CairoContainer *pContainer, int iKeyVal)
+static inline int _orient_arrow (GldiContainer *pContainer, int iKeyVal)
 {
 	switch (iKeyVal)
 	{
@@ -149,7 +149,7 @@ static void _activate_nth_icon (guint iKeyVal, guint iModifierType)  // iKeyVal 
 	if (pNthIcon != NULL)
 	{
 		cd_debug ("click on %s", pNthIcon->cName);
-		///cairo_dock_notify_on_object (CAIRO_CONTAINER (myData.pCurrentDock), NOTIFICATION_CLICK_ICON, pNthIcon, myData.pCurrentDock, iModifierType);
+		///gldi_object_notify (CAIRO_CONTAINER (myData.pCurrentDock), NOTIFICATION_CLICK_ICON, pNthIcon, myData.pCurrentDock, iModifierType);
 		cd_do_simulate_click (CAIRO_CONTAINER (myData.pCurrentDock), pNthIcon, iModifierType);
 
 		cairo_dock_start_icon_animation (pNthIcon, myData.pCurrentDock);
@@ -161,10 +161,10 @@ static void _activate_nth_icon (guint iKeyVal, guint iModifierType)  // iKeyVal 
 	}
 }
 
-gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guint iKeyVal, guint iModifierType, const gchar *string, int iKeyCode)
+gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint iKeyVal, guint iModifierType, const gchar *string, int iKeyCode)
 {
-	g_return_val_if_fail (cd_do_session_is_running (), CAIRO_DOCK_LET_PASS_NOTIFICATION);
-	g_return_val_if_fail (myData.pCurrentDock != NULL, CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	g_return_val_if_fail (cd_do_session_is_running (), GLDI_NOTIFICATION_LET_PASS);
+	g_return_val_if_fail (myData.pCurrentDock != NULL, GLDI_NOTIFICATION_LET_PASS);
 	
 	const gchar *cKeyName = gdk_keyval_name (iKeyVal);
 	guint32 iUnicodeChar = gdk_keyval_to_unicode (iKeyVal);
@@ -257,8 +257,8 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 				myData.bIgnoreIconState = TRUE;
 				cairo_dock_stop_icon_animation (myData.pCurrentIcon);  // car aucune animation ne va la remplacer.
 				myData.bIgnoreIconState = FALSE;
-				///cairo_dock_notify_on_object (&myContainersMgr, NOTIFICATION_MIDDLE_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock);
-				cairo_dock_notify_on_object (CAIRO_CONTAINER (myData.pCurrentDock), NOTIFICATION_MIDDLE_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock);
+				///gldi_object_notify (&myContainersMgr, NOTIFICATION_MIDDLE_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock);
+				gldi_object_notify (CAIRO_CONTAINER (myData.pCurrentDock), NOTIFICATION_MIDDLE_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock);
 			}
 			else if (iModifierType & GDK_CONTROL_MASK)  // CTRL
 			{
@@ -271,7 +271,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 			}
 			else
 			{
-				///cairo_dock_notify_on_object (CAIRO_CONTAINER (myData.pCurrentDock), NOTIFICATION_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock, iModifierType);
+				///gldi_object_notify (CAIRO_CONTAINER (myData.pCurrentDock), NOTIFICATION_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock, iModifierType);
 				cd_do_simulate_click (CAIRO_CONTAINER (myData.pCurrentDock), myData.pCurrentIcon, iModifierType);
 			}
 			cairo_dock_start_icon_animation (myData.pCurrentIcon, myData.pCurrentDock);
@@ -378,7 +378,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, CairoContainer *pContainer, guin
 		cd_do_search_current_icon (FALSE);
 	}
 	
-	return CAIRO_DOCK_INTERCEPT_NOTIFICATION;
+	return GLDI_NOTIFICATION_INTERCEPT;
 }
 
 
@@ -400,9 +400,9 @@ void cd_do_on_shortkey_nav (const char *keystring, gpointer data)
 }
 
 
-gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bContinueAnimation)
+gboolean cd_do_update_container (gpointer pUserData, GldiContainer *pContainer, gboolean *bContinueAnimation)
 {
-	g_return_val_if_fail (!cd_do_session_is_off (), CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	g_return_val_if_fail (!cd_do_session_is_off (), GLDI_NOTIFICATION_LET_PASS);
 	
 	if (myData.iMotionCount != 0)
 	{
@@ -434,7 +434,7 @@ gboolean cd_do_update_container (gpointer pUserData, CairoContainer *pContainer,
 		cairo_dock_redraw_container (pContainer);
 	}
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
@@ -460,7 +460,7 @@ gboolean cd_do_check_icon_destroyed (gpointer pUserData, Icon *pIcon)
 			cd_do_exit_session ();
 	}
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
@@ -473,9 +473,9 @@ static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, Window *d
 gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow)
 {
 	if (! cd_do_session_is_running ())
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	if (XActiveWindow == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	// check if a dock has the focus (the user has switched to either another dock, or another window)
 	Window data[2] = {*XActiveWindow, 0};
@@ -486,11 +486,11 @@ gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow)
 		cd_do_close_session ();
 		///gtk_window_present (GTK_WINDOW (myData.pCurrentDock->container.pWidget));
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
-static void _render_cairo (CairoContainer *pContainer, cairo_t *pCairoContext)
+static void _render_cairo (GldiContainer *pContainer, cairo_t *pCairoContext)
 {
 	double fAlpha;
 	if (myData.iCloseTime != 0) // animation de fin
@@ -530,7 +530,7 @@ static void _render_cairo (CairoContainer *pContainer, cairo_t *pCairoContext)
 	}
 }
 
-static void _render_opengl (CairoContainer *pContainer)
+static void _render_opengl (GldiContainer *pContainer)
 {
 	double fAlpha;
 	if (myData.iCloseTime != 0) // animation de fin
@@ -572,9 +572,9 @@ static void _render_opengl (CairoContainer *pContainer)
 	}
 }
 
-gboolean cd_do_render (gpointer pUserData, CairoContainer *pContainer, cairo_t *pCairoContext)
+gboolean cd_do_render (gpointer pUserData, GldiContainer *pContainer, cairo_t *pCairoContext)
 {
-	g_return_val_if_fail (!cd_do_session_is_off (), CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	g_return_val_if_fail (!cd_do_session_is_off (), GLDI_NOTIFICATION_LET_PASS);
 	
 	if (pCairoContext != NULL)
 	{
@@ -585,16 +585,16 @@ gboolean cd_do_render (gpointer pUserData, CairoContainer *pContainer, cairo_t *
 		_render_opengl (pContainer);
 	}
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
-gboolean cd_do_on_click (gpointer pUserData, Icon *icon, CairoContainer *pContainer)
+gboolean cd_do_on_click (gpointer pUserData, Icon *icon, GldiContainer *pContainer)
 {
-	g_return_val_if_fail (!cd_do_session_is_off (), CAIRO_DOCK_LET_PASS_NOTIFICATION);
+	g_return_val_if_fail (!cd_do_session_is_off (), GLDI_NOTIFICATION_LET_PASS);
 	
 	if (! myData.bIgnoreClick)
 		cd_do_close_session ();
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 

@@ -74,7 +74,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 
 	cd_quick_browser_free_apps_list (myApplet);
-	cd_keybinder_unbind (myData.cKeyBinding);
+	gldi_object_unref (GLDI_OBJECT(myData.cKeyBinding));
 CD_APPLET_STOP_END
 
 
@@ -96,6 +96,6 @@ CD_APPLET_RELOAD_BEGIN
 			g_free (cDirName);
 		}
 		
-		cd_keybinder_rebind (myData.cKeyBinding, myConfig.cMenuShortkey, NULL);
+		gldi_shortkey_rebind (myData.cKeyBinding, myConfig.cMenuShortkey, NULL);
 	}
 CD_APPLET_RELOAD_END

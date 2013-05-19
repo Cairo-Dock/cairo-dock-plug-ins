@@ -24,8 +24,8 @@
 
 void cd_indicator_generic_indicator_reload (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data);
 
-void cd_indicator_generic_load_one_indicator (CairoDockModuleInstance *myApplet);
+void cd_indicator_generic_load_one_indicator (GldiModuleInstance *myApplet);
 
-void cd_indicator_generic_indicator_stop (CairoDockModuleInstance *myApplet);
+void cd_indicator_generic_indicator_stop (GldiModuleInstance *myApplet);
 
 #endif /* __CD_APPLET_INDICATOR3__ */

@@ -30,7 +30,9 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 #include <unistd.h>
 #include <glib.h>
 
-#include "cairo-dock.h"
+#include <cairo-dock.h>
+#include <cairo-dock-module-instance-manager.h>
+#include "interface-main-query.h"
 #include "interface-main-methods.h"
 
 
@@ -39,7 +41,6 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 		string = NULL; } while (0)
 
 static gboolean dbus_deskletVisible = FALSE;
-static guint dbus_xLastActiveWindow;
 
 gboolean cd_dbus_main_reboot(dbusMainObject *pDbusCallback, GError **error)
 {
@@ -115,13 +116,11 @@ gboolean cd_dbus_main_show_desklet (dbusMainObject *pDbusCallback, gboolean *wid
 		return FALSE;
 	if (dbus_deskletVisible)
 	{
-		cairo_dock_set_desklets_visibility_to_default ();
-		cairo_dock_show_xwindow (dbus_xLastActiveWindow);
+		gldi_desklets_set_visibility_to_default ();
 	}
 	else
 	{
-		dbus_xLastActiveWindow = cairo_dock_get_current_active_window ();
-		cairo_dock_set_all_desklets_visible (widgetLayer != NULL ? *widgetLayer : FALSE);
+		gldi_desklets_set_visible (widgetLayer != NULL ? *widgetLayer : FALSE);
 	}
 	dbus_deskletVisible = !dbus_deskletVisible;
 	return TRUE;
@@ -132,10 +131,10 @@ gboolean cd_dbus_main_reload_module (dbusMainObject *pDbusCallback, const gchar 
 {
 	if (! myConfig.bEnableReloadModule)
 		return FALSE;
-	CairoDockModule *pModule = cairo_dock_find_module_from_name (cModuleName);
+	GldiModule *pModule = gldi_module_get (cModuleName);
 	if (pModule != NULL)
 	{
-		cairo_dock_reload_module (pModule, TRUE);  // TRUE <=> reload module conf file.
+		gldi_module_reload (pModule, TRUE);  // TRUE <=> reload module conf file.
 	}
 	else
 	{
@@ -158,7 +157,7 @@ gboolean cd_dbus_main_activate_module (dbusMainObject *pDbusCallback, const gcha
 	if (! myConfig.bEnableActivateModule)
 		return FALSE;
 	
-	CairoDockModule *pModule = cairo_dock_find_module_from_name (cModuleName);
+	GldiModule *pModule = gldi_module_get (cModuleName);
 	if (pModule == NULL)
 	{
 		if (gldi_get_manager (cModuleName) != NULL)
@@ -169,283 +168,16 @@ gboolean cd_dbus_main_activate_module (dbusMainObject *pDbusCallback, const gcha
 	}
 	
 	if (bActivate)
-		cairo_dock_activate_module_and_load (cModuleName);
+		gldi_module_activate (pModule);
 	else
-		cairo_dock_deactivate_module_and_unload (cModuleName);
+		gldi_module_deactivate (pModule);
 	return TRUE;
 }
 
 
   //////////////////
- /// ICON QUERY ///
+ /// PROPERTIES ///
 //////////////////
-
-typedef struct {
-	const gchar *cType;
-	const gchar *cName;
-	const gchar *cCommand;
-	const gchar *cClass;
-	const gchar *cContainerName;
-	Window Xid;
-	const gchar *cDesktopFile;
-	const gchar *cModuleName;
-	gint iPosition;
-	gboolean bMatchAll;
-	GList *pMatchingIcons;
-} CDIconQueryBuffer;
-static inline gboolean _strings_match (const gchar *q, const gchar *p)  // query, parameter
-{
-	if (!p)
-		return (strcmp (q, "none") == 0);
-	int n = strlen(q);
-	if (n != 0 && q[n-1] == '*')  // ok with UTF-8 too.
-		return (strncmp (q, p, n-1) == 0);
-	return (strcmp (q, p) == 0);
-}
-static inline gboolean _strings_match_case (const gchar *q, const gchar *p)  // query, parameter
-{
-	if (!p)
-		return (strcmp (q, "none") == 0);
-	int n = strlen(q);
-	if (n != 0 && q[n-1] == '*')
-		return (g_ascii_strncasecmp (q, p, n-1) == 0);
-	return (g_ascii_strcasecmp (q, p) == 0);
-}
-static gboolean _icon_is_matching (Icon *pIcon, CairoContainer *pContainer, CDIconQueryBuffer *pQuery)
-{
-	gboolean bOr = FALSE;
-	gboolean bAnd = TRUE;  // at least 1 of the fields is not nul.
-	gboolean r;
-	if (pQuery->cType)
-	{
-		const gchar *cType;
-		if (CAIRO_DOCK_ICON_TYPE_IS_LAUNCHER (pIcon))
-			cType = "Launcher";
-		else if (CAIRO_DOCK_ICON_TYPE_IS_APPLI (pIcon))
-			cType = "Application";
-		else if (CAIRO_DOCK_ICON_TYPE_IS_APPLET (pIcon))
-			cType = "Applet";
-		else if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
-			cType = "Separator";
-		else if (CAIRO_DOCK_ICON_TYPE_IS_CONTAINER (pIcon))
-			cType = "Container";
-		else if (CAIRO_DOCK_ICON_TYPE_IS_CLASS_CONTAINER (pIcon))
-			cType = "Class-Container";
-		else
-			cType = "Other";
-		r = (strcmp (pQuery->cType, cType) == 0);
-		bOr |= r;
-		bAnd &= r;
-	}
-	if (pQuery->cName)
-	{
-		r = _strings_match (pQuery->cName, pIcon->cName);
-		bOr |= r;
-		bAnd &= r;
-	}
-	if (pQuery->cCommand)
-	{
-		r = _strings_match (pQuery->cCommand, pIcon->cCommand);
-		bOr |= r;
-		bAnd &= r;
-	}
-	if (pQuery->cClass)
-	{
-		r = _strings_match_case (pQuery->cClass, pIcon->cClass);
-		bOr |= r;
-		bAnd &= r;
-	}
-	if (pQuery->cContainerName)
-	{
-		const gchar *cContainerName = NULL;
-		if (CAIRO_DOCK_IS_DOCK (pContainer))
-			cContainerName = pIcon->cParentDockName;
-		else if (CAIRO_DOCK_IS_DESKLET (pContainer))
-		{
-			Icon *pMainIcon = CAIRO_DESKLET (pContainer)->pIcon;
-			if (CAIRO_DOCK_IS_APPLET (pMainIcon))
-				cContainerName = pMainIcon->pModuleInstance->pModule->pVisitCard->cModuleName;
-		}
-		r = _strings_match (pQuery->cContainerName, cContainerName);
-		bOr |= r;
-		bAnd &= r;
-	}
-	if (pQuery->Xid != 0)
-	{
-		r = (pIcon->Xid == pQuery->Xid);
-		bOr |= r;
-		bAnd &= r;
-	}
-	if (pQuery->cDesktopFile)
-	{
-		r = _strings_match (pQuery->cDesktopFile, pIcon->cDesktopFileName);
-		if (!r && CAIRO_DOCK_IS_APPLET (pIcon) && pIcon->pModuleInstance->cConfFilePath)
-		{
-			if (*pQuery->cDesktopFile == '/')  // query the complete path.
-			{
-				r = _strings_match (pQuery->cDesktopFile, pIcon->pModuleInstance->cConfFilePath);
-			}
-			else  // query the file name only.
-			{
-				gchar *str = strrchr (pIcon->pModuleInstance->cConfFilePath, '/');
-				if (str)
-					r = _strings_match (pQuery->cDesktopFile, str+1);
-			}
-		}
-		bOr |= r;
-		bAnd &= r;
-	}
-	if (pQuery->cModuleName)
-	{
-		r = (CAIRO_DOCK_IS_APPLET (pIcon) && _strings_match (pQuery->cModuleName, pIcon->pModuleInstance->pModule->pVisitCard->cModuleName));
-		bOr |= r;
-		bAnd &= r;
-	}
-	
-	return ((pQuery->bMatchAll && bAnd) || (!pQuery->bMatchAll && bOr));
-}
-static void _check_icon_matching (Icon *pIcon, CairoContainer *pContainer, CDIconQueryBuffer *pQuery)
-{
-	if (_icon_is_matching (pIcon, pContainer, pQuery))
-		pQuery->pMatchingIcons = g_list_prepend (pQuery->pMatchingIcons, pIcon);
-}
-static void _get_icon_at_position_in_dock (const gchar *cDockName, CairoDock *pDock, CDIconQueryBuffer *pQuery)
-{
-	Icon *pIcon = g_list_nth_data (pDock->icons, pQuery->iPosition);
-	if (pIcon != NULL)
-		pQuery->pMatchingIcons = g_list_prepend (pQuery->pMatchingIcons, pIcon);
-}
-static gboolean _get_icon_at_position_in_desklet (CairoDesklet *pDesklet, CDIconQueryBuffer *pQuery)
-{
-	Icon *pIcon = g_list_nth_data (pDesklet->icons, pQuery->iPosition);
-	if (pIcon != NULL)
-		pQuery->pMatchingIcons = g_list_prepend (pQuery->pMatchingIcons, pIcon);
-	return FALSE;  // don't stop.
-}
-static gboolean _prepare_query (CDIconQueryBuffer *pQuery, const gchar *cKey, const gchar *cValue)
-{
-	g_return_val_if_fail (cKey != NULL, FALSE);
-	if (cValue == NULL)  // use "none" keyword to look for "icons that don't have key".
-		return FALSE;
-	
-	if (strcmp (cKey, "name") == 0 || strcmp (cKey, "label") == 0)
-		pQuery->cName = cValue;
-	else if (strcmp (cKey, "command") == 0)
-		pQuery->cCommand = cValue;
-	else if (strcmp (cKey, "class") == 0)
-		pQuery->cClass = cValue;
-	else if (strcmp (cKey, "container") == 0)
-		pQuery->cContainerName = cValue;
-	else if (strcmp (cKey, "Xid") == 0)
-		pQuery->Xid = strtol(cValue, NULL, 0);  // can read hexa, decimal or octal.
-	else if (strcmp (cKey, "config-file") == 0)
-		pQuery->cDesktopFile = cValue;
-	else if (strcmp (cKey, "module") == 0)
-		pQuery->cModuleName = cValue;
-	else if (strcmp (cKey, "position") == 0)
-		pQuery->iPosition = atoi (cValue);
-	else if (strcmp (cKey, "type") == 0)
-		pQuery->cType = cValue;
-	else
-	{
-		cd_warning ("wrong key (%s)", cKey);
-		return FALSE;
-	}
-	return TRUE;
-}
-static GList *_find_matching_icons_for_key (const gchar *cKey, const gchar *cValue)
-{
-	//g_print ("  %s (%s, %s)\n", __func__, cKey, cValue);
-	CDIconQueryBuffer query;
-	memset (&query, 0, sizeof (CDIconQueryBuffer));
-	query.iPosition = -1;
-	query.bMatchAll = TRUE;
-	
-	gboolean bValidQuery = _prepare_query (&query, cKey, cValue);
-	g_return_val_if_fail (bValidQuery, NULL);
-	
-	if (query.iPosition >= 0)
-	{
-		cairo_dock_foreach_docks ((GHFunc) _get_icon_at_position_in_dock, &query);
-		cairo_dock_foreach_desklet ((CairoDockForeachDeskletFunc) _get_icon_at_position_in_desklet, &query);
-	}
-	else
-	{
-		cairo_dock_foreach_icons ((CairoDockForeachIconFunc) _check_icon_matching, &query);
-	}
-	return query.pMatchingIcons;
-}
-static GList *_find_matching_icons_for_test (gchar *cTest)
-{
-	g_return_val_if_fail (cTest != NULL, NULL);
-	//g_print (" %s (%s)\n", __func__, cTest);
-	
-	gchar *str = strchr (cTest, '=');
-	g_return_val_if_fail (str != NULL, NULL);
-	
-	*str = '\0';
-	gchar *cKey = g_strstrip ((gchar*)cTest);  // g_strstrip modifies the string in place (by moving the rest of the characters forward and cutting the trailing spaces)
-	gchar *cValue = g_strstrip (str+1);
-	
-	return _find_matching_icons_for_key (cKey, cValue);
-}
-static GList *_merge (GList *pList1, GList *pList2)
-{
-	//g_print ("%s ()\n", __func__);
-	GList *pList = NULL;
-	GList *ic;
-	Icon *pIcon;
-	for (ic = pList1; ic != NULL; ic = ic->next)
-	{
-		pIcon = ic->data;
-		if (g_list_find (pList2, pIcon) != NULL)
-			pList = g_list_prepend (pList, pIcon);
-	}
-	g_list_free (pList1);
-	g_list_free (pList2);
-	return pList;
-}
-static GList *_concat (GList *pList1, GList *pList2)
-{
-	//g_print ("%s ()\n", __func__);
-	GList *pList = g_list_copy (pList2);
-	GList *ic;
-	Icon *pIcon;
-	for (ic = pList1; ic != NULL; ic = ic->next)
-	{
-		pIcon = ic->data;
-		if (!g_list_find (pList2, pIcon))
-			pList = g_list_prepend (pList, pIcon);
-	}
-	g_list_free (pList1);
-	g_list_free (pList2);
-	return pList;
-}
-GList *cd_dbus_find_matching_icons (gchar *cQuery)
-{
-	g_return_val_if_fail (cQuery != NULL, NULL);
-	//g_print ("%s (%s)\n", __func__, cQuery);
-	
-	gchar *str;
-	str = strchr (cQuery, '|');  // a && b || c && d <=> (a && b) || (c && d)
-	if (str)
-	{
-		*str = '\0';
-		GList *pList1 = cd_dbus_find_matching_icons (cQuery);
-		GList *pList2 = cd_dbus_find_matching_icons (str+1);
-		return _concat (pList1, pList2);
-	}
-	str = strchr (cQuery, '&');
-	if (str)
-	{
-		*str = '\0';
-		GList *pList1 = cd_dbus_find_matching_icons (cQuery);
-		GList *pList2 = cd_dbus_find_matching_icons (str+1);
-		return _merge (pList1, pList2);
-	}
-	return _find_matching_icons_for_test (cQuery);
-}
-
 
 gboolean cd_dbus_main_get_icon_properties (dbusMainObject *pDbusCallback, gchar *cIconQuery, GPtrArray **pIconAttributes, GError **error)
 {
@@ -457,7 +189,7 @@ gboolean cd_dbus_main_get_icon_properties (dbusMainObject *pDbusCallback, gchar 
 	GHashTable *h;
 	GValue *v;
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	int iPosition;
 	const gchar *cType;
 	const gchar *cContainerName;
@@ -466,7 +198,7 @@ gboolean cd_dbus_main_get_icon_properties (dbusMainObject *pDbusCallback, gchar 
 	for (ic = pList; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		pContainer = cairo_dock_search_container_from_icon (pIcon);
+		pContainer = cairo_dock_get_icon_container (pIcon);
 		
 		h = g_hash_table_new_full (g_str_hash,
 			g_str_equal,
@@ -475,19 +207,19 @@ gboolean cd_dbus_main_get_icon_properties (dbusMainObject *pDbusCallback, gchar 
 		g_ptr_array_add (pTab, h);
 		
 		if (CAIRO_DOCK_ICON_TYPE_IS_LAUNCHER (pIcon))
-			cType = "Launcher";
+			cType = CD_TYPE_LAUNCHER;
 		else if (CAIRO_DOCK_ICON_TYPE_IS_APPLI (pIcon))
-			cType = "Application";
+			cType = CD_TYPE_APPLICATION;
 		else if (CAIRO_DOCK_ICON_TYPE_IS_APPLET (pIcon))
-			cType = "Applet";
+			cType = CD_TYPE_APPLET;
 		else if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
-			cType = "Separator";
+			cType = CD_TYPE_SEPARATOR;
 		else if (CAIRO_DOCK_ICON_TYPE_IS_CONTAINER (pIcon))
-			cType = "Container";
+			cType = CD_TYPE_ICON_CONTAINER;
 		else if (CAIRO_DOCK_ICON_TYPE_IS_CLASS_CONTAINER (pIcon))
-			cType = "Class-Container";
+			cType = CD_TYPE_CLASS_CONTAINER;
 		else
-			cType = "Other";
+			cType = CD_TYPE_ICON_OTHER;
 		v = g_new0 (GValue, 1);
 		g_value_init (v, G_TYPE_STRING);
 		g_value_set_string (v, cType);
@@ -538,7 +270,7 @@ gboolean cd_dbus_main_get_icon_properties (dbusMainObject *pDbusCallback, gchar 
 		
 		v = g_new0 (GValue, 1);
 		g_value_init (v, G_TYPE_UINT);
-		g_value_set_uint (v, pIcon->Xid);
+		g_value_set_uint (v, GPOINTER_TO_INT(pIcon->pAppli));  // not sure what we can do with it
 		g_hash_table_insert (h, g_strdup ("Xid"), v);
 		
 		iPosition = -1;
@@ -579,7 +311,7 @@ gboolean cd_dbus_main_get_icon_properties (dbusMainObject *pDbusCallback, gchar 
 	return TRUE;
 }
 
-static void _set_container_props (CairoContainer *pContainer, GHashTable *h)
+static void _set_container_props (GldiContainer *pContainer, GHashTable *h)
 {
 	GValue *v;
 	int x, y, w, ht;
@@ -701,7 +433,7 @@ gboolean cd_dbus_main_get_container_properties (dbusMainObject *pDbusCallback, c
 	if (cName == NULL)
 	{
 		cairo_dock_foreach_docks ((GHFunc)_insert_dock_props, pTab);
-		cairo_dock_foreach_desklet ((CairoDockForeachDeskletFunc) _insert_desklet_props, pTab);
+		gldi_desklets_foreach ((GldiDeskletForeachFunc) _insert_desklet_props, pTab);
 	}
 	else
 	{
@@ -712,7 +444,7 @@ gboolean cd_dbus_main_get_container_properties (dbusMainObject *pDbusCallback, c
 		}
 		else
 		{
-			CairoDesklet *pDesklet = cairo_dock_foreach_desklet ((CairoDockForeachDeskletFunc) _check_desklet_name, (gpointer)cName);
+			CairoDesklet *pDesklet = gldi_desklets_foreach ((GldiDeskletForeachFunc) _check_desklet_name, (gpointer)cName);
 			if (pDesklet != NULL)
 			{
 				_insert_desklet_props (pDesklet, pTab);
@@ -723,7 +455,7 @@ gboolean cd_dbus_main_get_container_properties (dbusMainObject *pDbusCallback, c
 	return TRUE;
 }
 
-static gboolean _insert_module_props (CairoDockModule *pModule, GPtrArray *pTab)
+static gboolean _insert_module_props (GldiModule *pModule, GPtrArray *pTab)
 {
 	GHashTable *h = g_hash_table_new_full (g_str_hash,
 		g_str_equal,
@@ -780,7 +512,7 @@ static gboolean _insert_module_props (CairoDockModule *pModule, GPtrArray *pTab)
 	
 	cd_debug ("list instances ...");
 	gchar **pInstances = g_new0 (gchar*, g_list_length (pModule->pInstancesList)+1);
-	CairoDockModuleInstance *pInstance;
+	GldiModuleInstance *pInstance;
 	int i = 0;
 	GList *mi;
 	for (mi = pModule->pInstancesList; mi != NULL; mi = mi->next)
@@ -805,11 +537,11 @@ gboolean cd_dbus_main_get_module_properties (dbusMainObject *pDbusCallback, cons
 	
 	if (cName == NULL)
 	{
-		cairo_dock_foreach_module_in_alphabetical_order ((GCompareFunc) _insert_module_props, pTab);
+		gldi_module_foreach_in_alphabetical_order ((GCompareFunc) _insert_module_props, pTab);
 	}
 	else
 	{
-		CairoDockModule *pModule = cairo_dock_find_module_from_name (cName);
+		GldiModule *pModule = gldi_module_get (cName);
 		if (pModule != NULL)
 		{
 			_insert_module_props (pModule, pTab);
@@ -1015,7 +747,7 @@ gboolean cd_dbus_main_add_temporary_icon (dbusMainObject *pDbusCallback, GHashTa
 			fOrder);
 		pIcon->iTrueType = CAIRO_DOCK_ICON_TYPE_CONTAINER;
 		cairo_dock_set_subdock_content_renderer (pIcon, iSubdockViewType);
-		pIcon->pSubDock = cairo_dock_create_subdock (pIcon->cName, NULL, pParentDock, NULL);  // NULL <=> default sub-docks view.
+		pIcon->pSubDock = gldi_subdock_new (pIcon->cName, NULL, pParentDock, NULL);  // NULL <=> default sub-docks view.
 	}
 	else if (strcmp (cType, "Separator") == 0)
 	{
@@ -1030,8 +762,6 @@ gboolean cd_dbus_main_add_temporary_icon (dbusMainObject *pDbusCallback, GHashTa
 	
 	//\_______________ load it inside the dock.
 	cairo_dock_insert_icon_in_dock (pIcon, pParentDock, CAIRO_DOCK_ANIMATE_ICON);
-	
-	///cairo_dock_load_icon_buffers (pIcon, CAIRO_CONTAINER (pParentDock));
 	
 	if (pIcon->cClass != NULL)
 	{
@@ -1072,7 +802,7 @@ gboolean cd_dbus_main_reload_icon (dbusMainObject *pDbusCallback, gchar *cIconQu
 		return FALSE;
 	
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	GList *ic;
 	for (ic = pList; ic != NULL; ic = ic->next)
 	{
@@ -1087,11 +817,11 @@ gboolean cd_dbus_main_reload_icon (dbusMainObject *pDbusCallback, gchar *cIconQu
 		}
 		else if (CAIRO_DOCK_IS_APPLET (pIcon))
 		{
-			cairo_dock_reload_module_instance (pIcon->pModuleInstance, TRUE);  // TRUE <=> reload config.
+			gldi_module_instance_reload (pIcon->pModuleInstance, TRUE);  // TRUE <=> reload config.
 		}
 		else  // for appli icons, reload their image (custom image for instance).
 		{
-			pContainer = cairo_dock_search_container_from_icon (pIcon);
+			pContainer = cairo_dock_get_icon_container (pIcon);
 			if (pContainer == NULL)
 				continue;
 			
@@ -1106,7 +836,7 @@ gboolean cd_dbus_main_reload_icon (dbusMainObject *pDbusCallback, gchar *cIconQu
 static gboolean _on_icon_deleted (GList *ic, Icon *pIcon)
 {
 	ic->data = NULL;
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 gboolean cd_dbus_main_remove_icon (dbusMainObject *pDbusCallback, gchar *cIconQuery, GError **error)
 {
@@ -1119,15 +849,15 @@ gboolean cd_dbus_main_remove_icon (dbusMainObject *pDbusCallback, gchar *cIconQu
 	
 	// first connect to the "delete" signal, to not destroy 2 times an icon (case of an icon in a sub-dock that is destroyed just before).
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	GList *ic;
 	for (ic = pList; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		cairo_dock_register_notification_on_object (pIcon,
+		gldi_object_register_notification (pIcon,
 			NOTIFICATION_DESTROY,
-			(CairoDockNotificationFunc) _on_icon_deleted,
-			CAIRO_DOCK_RUN_FIRST, ic);
+			(GldiNotificationFunc) _on_icon_deleted,
+			GLDI_RUN_FIRST, ic);
 	}
 	
 	// delete all the matching icons, including their sub-icons.
@@ -1137,12 +867,12 @@ gboolean cd_dbus_main_remove_icon (dbusMainObject *pDbusCallback, gchar *cIconQu
 		if (pIcon == NULL)  // icon has been destroyed just before.
 			continue;
 		
-		cairo_dock_remove_notification_func_on_object (pIcon,
+		gldi_object_remove_notification (pIcon,
 			NOTIFICATION_DESTROY,
-			(CairoDockNotificationFunc) _on_icon_deleted,
+			(GldiNotificationFunc) _on_icon_deleted,
 			ic);  // remove it now, since maybe this icon won't be deleted.
 		
-		pContainer = cairo_dock_search_container_from_icon (pIcon);
+		pContainer = cairo_dock_get_icon_container (pIcon);
 		if (pContainer == NULL)
 			continue;
 		
@@ -1152,7 +882,7 @@ gboolean cd_dbus_main_remove_icon (dbusMainObject *pDbusCallback, gchar *cIconQu
 		{
 			if (pIcon->pSubDock != NULL)  // on detruit le sous-dock et ce qu'il contient.
 			{
-				cairo_dock_destroy_dock (pIcon->pSubDock, (pIcon->cClass != NULL ? pIcon->cClass : pIcon->cName));
+				gldi_object_unref (GLDI_OBJECT(pIcon->pSubDock));
 				pIcon->pSubDock = NULL;
 			}
 
@@ -1160,7 +890,7 @@ gboolean cd_dbus_main_remove_icon (dbusMainObject *pDbusCallback, gchar *cIconQu
 		}
 		else if (CAIRO_DOCK_IS_APPLET (pIcon))  // case of an applet inside a dock or a desklet.
 		{
-			cairo_dock_remove_module_instance (pIcon->pModuleInstance);
+			gldi_module_remove_instance (pIcon->pModuleInstance);
 		}  // don't remove appli icons, as they would anyway be re-created automatically by the applications-manager.
 	}
 	
@@ -1185,12 +915,12 @@ gboolean cd_dbus_main_set_quick_info (dbusMainObject *pDbusCallback, const gchar
 	nullify_argument (cQuickInfo);
 	
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	GList *ic;
 	for (ic = pList; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		pContainer = cairo_dock_search_container_from_icon (pIcon);
+		pContainer = cairo_dock_get_icon_container (pIcon);
 		if (pContainer == NULL)
 			continue;
 		
@@ -1214,12 +944,12 @@ gboolean cd_dbus_main_set_label (dbusMainObject *pDbusCallback, const gchar *cLa
 	nullify_argument (cLabel);
 	
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	GList *ic;
 	for (ic = pList; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		pContainer = cairo_dock_search_container_from_icon (pIcon);
+		pContainer = cairo_dock_get_icon_container (pIcon);
 		if (pContainer == NULL)
 			continue;
 		
@@ -1240,7 +970,7 @@ gboolean cd_dbus_main_set_icon (dbusMainObject *pDbusCallback, const gchar *cIma
 		return TRUE;
 	
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	GList *ic;
 	for (ic = pList; ic != NULL; ic = ic->next)
 	{
@@ -1248,7 +978,7 @@ gboolean cd_dbus_main_set_icon (dbusMainObject *pDbusCallback, const gchar *cIma
 		if (pIcon->image.pSurface == NULL)
 			continue;
 		
-		pContainer = cairo_dock_search_container_from_icon (pIcon);
+		pContainer = cairo_dock_get_icon_container (pIcon);
 		if (pContainer == NULL)
 			continue;
 		
@@ -1272,7 +1002,7 @@ gboolean cd_dbus_main_set_emblem (dbusMainObject *pDbusCallback, const gchar *cI
 		return TRUE;
 	
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	GList *ic;
 	for (ic = pList; ic != NULL; ic = ic->next)
 	{
@@ -1280,7 +1010,7 @@ gboolean cd_dbus_main_set_emblem (dbusMainObject *pDbusCallback, const gchar *cI
 		if (pIcon->image.pSurface == NULL)
 			continue;
 		
-		pContainer = cairo_dock_search_container_from_icon (pIcon);
+		pContainer = cairo_dock_get_icon_container (pIcon);
 		if (pContainer == NULL)
 			continue;
 		
@@ -1313,12 +1043,12 @@ gboolean cd_dbus_main_animate (dbusMainObject *pDbusCallback, const gchar *cAnim
 		return TRUE;
 	
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	GList *ic;
 	for (ic = pList; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		pContainer = cairo_dock_search_container_from_icon (pIcon);
+		pContainer = cairo_dock_get_icon_container (pIcon);
 		if (! CAIRO_DOCK_IS_DOCK (pContainer))
 			continue;
 		cairo_dock_request_icon_animation (pIcon, pContainer, cAnimation, iNbRounds);
@@ -1338,12 +1068,12 @@ gboolean cd_dbus_main_demands_attention (dbusMainObject *pDbusCallback, gboolean
 		return TRUE;
 	
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	GList *ic;
 	for (ic = pList; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		pContainer = cairo_dock_search_container_from_icon (pIcon);
+		pContainer = cairo_dock_get_icon_container (pIcon);
 		if (! CAIRO_DOCK_IS_DOCK (pContainer))
 			continue;
 		
@@ -1370,20 +1100,20 @@ gboolean cd_dbus_main_show_dialog (dbusMainObject *pDbusCallback, const gchar *m
 	GList *pList = cd_dbus_find_matching_icons (cIconQuery);
 	
 	Icon *pIcon;
-	CairoContainer *pContainer;
+	GldiContainer *pContainer;
 	GList *ic;
 	for (ic = pList; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
-		pContainer = cairo_dock_search_container_from_icon (pIcon);
+		pContainer = cairo_dock_get_icon_container (pIcon);
 		if (! CAIRO_DOCK_IS_DOCK (pContainer))
 			continue;
-		cairo_dock_show_temporary_dialog_with_icon (message, pIcon, pContainer, 1000 * iDuration, "same icon");
+		gldi_dialog_show_temporary_with_icon (message, pIcon, pContainer, 1000 * iDuration, "same icon");
 		break;  // only show 1 dialog.
 	}
 	
 	if (ic == NULL)  // empty list, or didn't find a valid icon.
-		cairo_dock_show_general_message (message, 1000 * iDuration);
+		gldi_dialog_show_general_message (message, 1000 * iDuration);
 	
 	g_list_free (pList);
 	return TRUE;
@@ -1406,10 +1136,10 @@ static void _on_menu_destroyed (GtkWidget *menu, CDIconData *pData)
 		}
 	}
 }
-static gboolean cd_dbus_main_emit_on_build_menu (gpointer data, Icon *pClickedIcon, CairoContainer *pClickedContainer, GtkWidget *pMenu)
+static gboolean cd_dbus_main_emit_on_build_menu (gpointer data, Icon *pClickedIcon, GldiContainer *pClickedContainer, GtkWidget *pMenu)
 {
 	if (pClickedIcon == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	CDIconData *pData = CD_APPLET_GET_MY_ICON_DATA (pClickedIcon);
 	if (pData != NULL && pData->menu_items_list != NULL)
@@ -1429,7 +1159,7 @@ static gboolean cd_dbus_main_emit_on_build_menu (gpointer data, Icon *pClickedIc
 			G_CALLBACK (_on_menu_destroyed),
 			pData);
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
@@ -1485,10 +1215,10 @@ gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBus
 	if (! s_bInit)  // register for right-click events once.
 	{
 		s_bInit = TRUE;
-		cairo_dock_register_notification_on_object (&myContainersMgr,
+		gldi_object_register_notification (&myContainersMgr,
 			NOTIFICATION_BUILD_ICON_MENU,
-			(CairoDockNotificationFunc) cd_dbus_main_emit_on_build_menu,
-			CAIRO_DOCK_RUN_FIRST,
+			(GldiNotificationFunc) cd_dbus_main_emit_on_build_menu,
+			GLDI_RUN_FIRST,
 			NULL);
 	}
 	
@@ -1546,7 +1276,7 @@ gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBus
 #else
 gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBusName, const gchar *cMenuPath, gchar *cIconQuery, GError **error)
 {
-	g_set_error (error, 1, 1, "Cairo-Dock has not been compiled with DbusMenu support, so The 'SetMenu' method won't work.", NULL);
+	g_set_error (error, 1, 1, "Cairo-Dock has not been compiled with DbusMenu support, so The 'SetMenu' method won't work.");
 	return FALSE;
 }
 #endif
@@ -1578,5 +1308,809 @@ gboolean cd_dbus_main_set_progress (dbusMainObject *dbusMainObject, double fPerc
 		cairo_dock_render_new_data_on_icon (pIcon, pIcon->pContainer, NULL, &fPercent);
 	}
 	g_list_free (pList);
+	return TRUE;
+}
+
+
+/**
+Add -> config-file:
+activate module: type=Module, module=module-name
+instanciate module: type=Module-Instance, module=module-name
+dock: type=Dock
+launcher: type=Launcher, desktop-file, position/order, container [, name, icon, command, class]
+icon-container: type=Icon-Container, name, icon, position/order, container
+separator: type=Separator, position/order, container
+
+Reload/Remove:
+module: module=module-name
+module instance: config-file=conf-file
+icon: icon-query
+dock: config-file=conf-file, container=dock-name
+
+GetProperties -> dict
+module=module-name
+container=container-name
+icon query
+*/
+
+  ///////////
+ /// ADD ///
+///////////
+
+gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pProperties, gchar **cConfigFile, GError **error)
+{
+	GValue *v;
+	const gchar *cType = "";
+	v = g_hash_table_lookup (pProperties, "type");
+	if (v && G_VALUE_HOLDS_STRING (v))
+		cType = g_value_get_string (v);
+	CDMainType iType = cd_dbus_get_main_type (cType, -1);
+	
+	switch (iType)
+	{
+		case CD_MAIN_TYPE_ICON:
+		{
+			// get the dock
+			const gchar *cDockName = NULL;
+			v = g_hash_table_lookup (pProperties, "container");
+			if (v && G_VALUE_HOLDS_STRING (v))
+				cDockName = g_value_get_string (v);
+			if (cDockName == NULL)
+				cDockName = CAIRO_DOCK_MAIN_DOCK_NAME;
+			CairoDock *pParentDock = cairo_dock_search_dock_from_name (cDockName);
+			if (pParentDock == NULL)
+			{
+				cd_warning ("dock %s does not exist", cDockName);
+				pParentDock = g_pMainDock;
+			}
+			
+			// get the order
+			double fOrder = 0;
+			v = g_hash_table_lookup (pProperties, "order");
+			if (v)
+			{
+				if (G_VALUE_HOLDS_DOUBLE (v))
+					fOrder = g_value_get_double (v);
+				else if (G_VALUE_HOLDS_INT (v))
+					fOrder = g_value_get_int (v);
+			}
+			if (fOrder < 0)
+				fOrder = CAIRO_DOCK_LAST_ORDER;
+			
+			Icon *pNewIcon = NULL;
+			if (strcmp (cType, CD_TYPE_LAUNCHER) == 0)
+			{
+				const gchar *cDesktopFile = NULL;
+				v = g_hash_table_lookup (pProperties, "config-file");
+				if (v && G_VALUE_HOLDS_STRING (v))
+					cDesktopFile = g_value_get_string (v);
+				
+				g_print ("add %s\n", cDesktopFile);
+				if (cDesktopFile != NULL)
+				{
+					pNewIcon = cairo_dock_add_new_launcher_by_uri (cDesktopFile, pParentDock, fOrder);
+				}
+				else
+				{
+					pNewIcon = cairo_dock_add_new_launcher_by_type (CAIRO_DOCK_DESKTOP_FILE_FOR_LAUNCHER, pParentDock, fOrder);
+					
+					// get additional properties
+					const gchar *cName = NULL;
+					v = g_hash_table_lookup (pProperties, "name");
+					if (v && G_VALUE_HOLDS_STRING (v))
+						cName = g_value_get_string (v);
+					const gchar *cIcon = NULL;
+					v = g_hash_table_lookup (pProperties, "icon");
+					if (v && G_VALUE_HOLDS_STRING (v))
+						cIcon = g_value_get_string (v);
+					const gchar *cCommand = NULL;
+					v = g_hash_table_lookup (pProperties, "command");
+					if (v && G_VALUE_HOLDS_STRING (v))
+						cCommand = g_value_get_string (v);
+					const gchar *cClass = NULL;
+					v = g_hash_table_lookup (pProperties, "class");
+					if (v && G_VALUE_HOLDS_STRING (v))
+						cClass = g_value_get_string (v);
+					
+					// open the conf-file and set the fields.
+					gchar *cConfFilePath = (*pNewIcon->cDesktopFileName == '/' ? g_strdup (pNewIcon->cDesktopFileName) : g_strdup_printf ("%s/%s", g_cCurrentLaunchersPath, pNewIcon->cDesktopFileName));
+					GKeyFile *pKeyFile = cairo_dock_open_key_file (cConfFilePath);
+					
+					if (cName)
+						g_key_file_set_string (pKeyFile, "Desktop Entry", "Name", cName);
+					
+					if (cIcon)
+						g_key_file_set_string (pKeyFile, "Desktop Entry", "Icon", cIcon);
+					
+					if (cCommand)
+						g_key_file_set_string (pKeyFile, "Desktop Entry", "Exec", cCommand);
+					
+					if (cClass)
+						g_key_file_set_string (pKeyFile, "Desktop Entry", "StartupWMClass", cClass);
+					
+					cairo_dock_write_keys_to_file (pKeyFile, cConfFilePath);
+					
+					g_key_file_free (pKeyFile);
+					g_free (cConfFilePath);
+					
+					cairo_dock_reload_launcher (pNewIcon);
+				}
+			}
+			else if (strcmp (cType, CD_TYPE_SEPARATOR) == 0)
+			{
+				pNewIcon = cairo_dock_add_new_launcher_by_type (CAIRO_DOCK_DESKTOP_FILE_FOR_SEPARATOR, pParentDock, fOrder);
+			}
+			else if (strcmp (cType, CD_TYPE_ICON_CONTAINER) == 0)
+			{
+				pNewIcon = cairo_dock_add_new_launcher_by_type (CAIRO_DOCK_DESKTOP_FILE_FOR_CONTAINER, pParentDock, fOrder);
+				
+				// get additional properties
+				const gchar *cName = NULL;
+				v = g_hash_table_lookup (pProperties, "name");
+				if (v && G_VALUE_HOLDS_STRING (v))
+					cName = g_value_get_string (v);
+				const gchar *cIcon = NULL;
+				v = g_hash_table_lookup (pProperties, "icon");
+				if (v && G_VALUE_HOLDS_STRING (v))
+					cIcon = g_value_get_string (v);
+				
+				// open the conf-file and set the fields.
+				gchar *cConfFilePath = (*pNewIcon->cDesktopFileName == '/' ? g_strdup (pNewIcon->cDesktopFileName) : g_strdup_printf ("%s/%s", g_cCurrentLaunchersPath, pNewIcon->cDesktopFileName));
+				GKeyFile *pKeyFile = cairo_dock_open_key_file (cConfFilePath);
+				
+				if (cName)
+					g_key_file_set_string (pKeyFile, "Desktop Entry", "Name", cName);
+				
+				if (cIcon)
+					g_key_file_set_string (pKeyFile, "Desktop Entry", "Icon", cIcon);
+				
+				cairo_dock_write_keys_to_file (pKeyFile, cConfFilePath);
+				
+				g_key_file_free (pKeyFile);
+				g_free (cConfFilePath);
+				
+				cairo_dock_reload_launcher (pNewIcon);
+			}
+			else
+			{
+				g_set_error (error, 1, 1, "can't add an icon of type '%s'", cType);
+				return FALSE;
+			}
+			if (pNewIcon != NULL && pNewIcon->cDesktopFileName != NULL)
+				*cConfigFile = (*pNewIcon->cDesktopFileName == '/' ? g_strdup (pNewIcon->cDesktopFileName) : g_strdup_printf ("%s/%s", g_cCurrentLaunchersPath, pNewIcon->cDesktopFileName));
+		}
+		break;
+		
+		case CD_MAIN_TYPE_CONTAINER:
+		{
+			if (strcmp (cType, CD_TYPE_DOCK) == 0)
+			{
+				gchar *cDockName = cairo_dock_add_root_dock_config ();
+				CairoDock *pDock = gldi_dock_new (cDockName);
+				if (!pDock)
+					return FALSE;
+				gldi_dock_reload (pDock);
+				*cConfigFile = g_strdup_printf ("%s/%s.conf", g_cCurrentThemePath, cDockName);
+				g_free (cDockName);
+			}
+			else
+			{
+				g_set_error (error, 1, 1, "can't add a desklet, add a module-instance instead");
+				return FALSE;
+			}
+		}
+		break;
+		case CD_MAIN_TYPE_MODULE:
+		{
+			const gchar *cModuleName = NULL;
+			v = g_hash_table_lookup (pProperties, "module");
+			if (v && G_VALUE_HOLDS_STRING (v))
+				cModuleName = g_value_get_string (v);
+			
+			GldiModule *pModule = gldi_module_get (cModuleName);
+			if (pModule == NULL)
+			{
+				g_set_error (error, 1, 1, "no such module (%s)", cModuleName);
+				return FALSE;
+			}
+			if (pModule->pInstancesList == NULL)
+				gldi_module_activate (pModule);
+		}
+		break;
+		case CD_MAIN_TYPE_MODULE_INSTANCE:
+		{
+			const gchar *cModuleName = NULL;
+			v = g_hash_table_lookup (pProperties, "module");
+			if (v && G_VALUE_HOLDS_STRING (v))
+				cModuleName = g_value_get_string (v);
+			
+			GldiModule *pModule = gldi_module_get (cModuleName);
+			if (pModule == NULL)
+			{
+				g_set_error (error, 1, 1, "no such module (%s)", cModuleName);
+				return FALSE;
+			}
+			
+			if (pModule->pInstancesList == NULL)
+			{
+				gldi_module_activate (pModule);
+			}
+			else if (pModule->pVisitCard->bMultiInstance)
+			{
+				gldi_module_add_instance (pModule);
+			}
+			if (pModule->pInstancesList)
+			{
+				GldiModuleInstance *pModuleInstance = pModule->pInstancesList->data;  // prepend
+				*cConfigFile = g_strdup (pModuleInstance->cConfFilePath);
+			}
+		}
+		break;
+		default:
+			g_set_error (error, 1, 1, "Unknown type (%s)", cType);
+			return FALSE;
+		break;
+	}
+	
+	return TRUE;
+}
+
+
+  //////////////
+ /// RELOAD ///
+//////////////
+
+gboolean cd_dbus_main_reload (dbusMainObject *pDbusCallback, gchar *cQuery, GError **error)
+{
+	GList *pObjects = cd_dbus_find_matching_objects (cQuery);
+	GList *o;
+	GldiObject *obj;
+	for (o = pObjects; o != NULL; o = o->next)
+	{
+		obj = o->data;
+		if (CAIRO_DOCK_IS_ICON (obj))
+		{
+			Icon *pIcon = (Icon*)obj;
+			if ((CAIRO_DOCK_ICON_TYPE_IS_LAUNCHER (pIcon)
+				|| CAIRO_DOCK_ICON_TYPE_IS_CONTAINER (pIcon)
+				|| CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
+			&& pIcon->cDesktopFileName != NULL)  // user icon.
+			{
+				cairo_dock_reload_launcher (pIcon);
+			}
+			else if (CAIRO_DOCK_IS_APPLET (pIcon))
+			{
+				gldi_module_instance_reload (pIcon->pModuleInstance, TRUE);  // TRUE <=> reload config.
+			}
+			else  // for appli icons, reload their image (custom image for instance).
+			{
+				GldiContainer *pContainer = cairo_dock_get_icon_container (pIcon);
+				if (pContainer == NULL)
+					continue;
+				
+				cairo_dock_reload_icon_image (pIcon, pContainer);
+				cairo_dock_redraw_icon (pIcon, pContainer);
+			}
+		}
+		else if (CAIRO_DOCK_IS_CONTAINER (obj))
+		{
+			if (CAIRO_DOCK_IS_DOCK (obj))
+			{
+				CairoDock *pDock = CAIRO_DOCK (obj);
+				if (!pDock->bIsMainDock)  // pour l'instant le main dock n'a pas de fichier de conf
+				{
+					gldi_dock_reload (pDock);
+				}
+			}
+			else if (CAIRO_DOCK_IS_DESKLET (obj))
+			{
+				CairoDesklet *pDesklet = CAIRO_DESKLET (obj);
+				Icon *pIcon = pDesklet->pIcon;
+				g_return_val_if_fail (CAIRO_DOCK_IS_APPLET (pIcon), FALSE);
+				gldi_module_instance_reload (pIcon->pModuleInstance, TRUE);  // TRUE <=> reload config.
+			}
+		}
+		else if (CAIRO_DOCK_IS_MODULE (obj))
+		{
+			gldi_module_reload ((GldiModule*)obj, TRUE);  // TRUE <=> reload module conf file.
+		}
+		else if (CAIRO_DOCK_IS_MANAGER (obj))
+		{
+			gldi_reload_manager ((GldiManager*)obj, g_cConfFile);
+		}
+		else if (CAIRO_DOCK_IS_MODULE_INSTANCE (obj))
+		{
+			gldi_module_instance_reload ((GldiModuleInstance*)obj, TRUE);  // TRUE <=> reload config.
+		}
+	}
+	g_list_free (pObjects);
+	return TRUE;
+}
+
+
+  //////////////
+ /// REMOVE ///
+//////////////
+
+static gboolean _on_object_deleted (GList *o, G_GNUC_UNUSED GldiObject *obj)
+{
+	o->data = NULL;
+	return GLDI_NOTIFICATION_LET_PASS;
+}
+gboolean cd_dbus_main_remove (dbusMainObject *pDbusCallback, gchar *cQuery, GError **error)
+{
+	GList *pObjects = cd_dbus_find_matching_objects (cQuery);
+	
+	// first connect to the "delete" signal, to not destroy 2 times an icon (case of an icon in a sub-dock that is destroyed just before).
+	GldiObject *obj;
+	GList *o;
+	for (o = pObjects; o != NULL; o = o->next)
+	{
+		obj = o->data;
+		gldi_object_register_notification (obj,
+			NOTIFICATION_DESTROY,
+			(GldiNotificationFunc) _on_object_deleted,
+			GLDI_RUN_FIRST, o);
+	}
+	
+	for (o = pObjects; o != NULL; o = o->next)
+	{
+		obj = o->data;
+		if (! obj)
+			continue;
+		if (CAIRO_DOCK_IS_ICON (obj))
+		{
+			Icon *pIcon = (Icon*)obj;
+			if ((CAIRO_DOCK_ICON_TYPE_IS_LAUNCHER (pIcon)
+				|| CAIRO_DOCK_ICON_TYPE_IS_CONTAINER (pIcon)
+				|| CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
+			&& pIcon->cDesktopFileName != NULL)  // user icon.
+			{
+				if (CAIRO_DOCK_ICON_TYPE_IS_CONTAINER (pIcon)
+				&& pIcon->pSubDock != NULL)  // remove the sub-dock's content as well
+				{
+					cairo_dock_remove_icons_from_dock (pIcon->pSubDock, NULL, NULL);
+					gldi_object_unref (GLDI_OBJECT(pIcon->pSubDock));
+					pIcon->pSubDock = NULL;
+				}
+				cairo_dock_trigger_icon_removal_from_dock (pIcon);
+			}
+			else if (CAIRO_DOCK_IS_APPLET (pIcon))
+			{
+				gldi_module_instance_reload (pIcon->pModuleInstance, TRUE);  // TRUE <=> reload config.
+			}  // don't remove appli icons
+		}
+		else if (CAIRO_DOCK_IS_CONTAINER (obj))
+		{
+			if (CAIRO_DOCK_IS_DOCK (obj))
+			{
+				CairoDock *pDock = CAIRO_DOCK (obj);
+				cairo_dock_remove_icons_from_dock (pDock, NULL, NULL);
+				
+				gldi_object_unref (GLDI_OBJECT(pDock));
+			}
+			else if (CAIRO_DOCK_IS_DESKLET (obj))
+			{
+				CairoDesklet *pDesklet = CAIRO_DESKLET (obj);
+				Icon *pIcon = pDesklet->pIcon;
+				g_return_val_if_fail (CAIRO_DOCK_IS_APPLET (pIcon), FALSE);
+				gldi_module_remove_instance (pIcon->pModuleInstance);
+			}
+		}
+		else if (CAIRO_DOCK_IS_MODULE (obj))
+		{
+			GldiModule *pModule = (GldiModule *)obj;
+			gldi_module_deactivate (pModule);
+		}
+		else if (CAIRO_DOCK_IS_MANAGER (obj))
+		{
+			cd_warning ("can't remove a manager");
+		}
+		else if (CAIRO_DOCK_IS_MODULE_INSTANCE (obj))
+		{
+			GldiModuleInstance *pModuleInstance = (GldiModuleInstance *)obj;
+			g_print ("remove instance %s\n", pModuleInstance->cConfFilePath);
+			gldi_module_remove_instance (pModuleInstance);
+		}
+	}
+	g_list_free (pObjects);
+	return TRUE;
+}
+
+
+  //////////////////
+ /// PROPERTIES ///
+//////////////////
+
+static void _add_icon_properties (Icon *pIcon, GPtrArray *pTab)
+{
+	GldiContainer *pContainer = cairo_dock_get_icon_container (pIcon);
+	
+	GHashTable *h = g_hash_table_new_full (g_str_hash,
+		g_str_equal,
+		g_free,  /// can we use const char here instead of duplicating each string ?...
+		g_free);
+	g_ptr_array_add (pTab, h);
+	
+	GValue *v;
+	int iPosition;
+	const gchar *cType;
+	const gchar *cContainerName;
+	const gchar *cDesktopFile;
+	
+	if (CAIRO_DOCK_ICON_TYPE_IS_LAUNCHER (pIcon))
+		cType = CD_TYPE_LAUNCHER;
+	else if (CAIRO_DOCK_ICON_TYPE_IS_APPLI (pIcon))
+		cType = CD_TYPE_APPLICATION;
+	else if (CAIRO_DOCK_ICON_TYPE_IS_APPLET (pIcon))
+		cType = CD_TYPE_APPLET;
+	else if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
+		cType = CD_TYPE_SEPARATOR;
+	else if (CAIRO_DOCK_ICON_TYPE_IS_CONTAINER (pIcon))
+		cType = CD_TYPE_ICON_CONTAINER;
+	else if (CAIRO_DOCK_ICON_TYPE_IS_CLASS_CONTAINER (pIcon))
+		cType = CD_TYPE_CLASS_CONTAINER;
+	else
+		cType = CD_TYPE_ICON_OTHER;
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, cType);
+	g_hash_table_insert (h, g_strdup ("type"), v);
+	
+	cDesktopFile = "";
+	if (pIcon->cDesktopFileName != NULL)
+		cDesktopFile = pIcon->cDesktopFileName;
+	else if (CAIRO_DOCK_IS_APPLET (pIcon))
+		cDesktopFile = pIcon->pModuleInstance->cConfFilePath;
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, cDesktopFile);
+	g_hash_table_insert (h, g_strdup ("config-file"), v);
+	
+	if (CAIRO_DOCK_IS_APPLET (pIcon))
+	{
+		v = g_new0 (GValue, 1);
+		g_value_init (v, G_TYPE_STRING);
+		g_value_set_string (v, pIcon->pModuleInstance->pModule->pVisitCard->cModuleName);
+		g_hash_table_insert (h, g_strdup ("module"), v);
+	}
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, pIcon->cName);  /// g_value_set_static_string ?...
+	g_hash_table_insert (h, g_strdup ("name"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, pIcon->cCommand);
+	g_hash_table_insert (h, g_strdup ("command"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, pIcon->cClass);
+	g_hash_table_insert (h, g_strdup ("class"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, pIcon->cFileName);
+	g_hash_table_insert (h, g_strdup ("icon"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, pIcon->cQuickInfo);
+	g_hash_table_insert (h, g_strdup ("quick-info"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_UINT);
+	g_value_set_uint (v, GPOINTER_TO_INT(pIcon->pAppli));
+	g_hash_table_insert (h, g_strdup ("Xid"), v);
+	
+	iPosition = -1;
+	cContainerName = "";
+	if (CAIRO_DOCK_IS_DOCK (pContainer))
+	{
+		CairoDock *pDock = CAIRO_DOCK (pContainer);
+		iPosition = g_list_index (pDock->icons, pIcon);
+		cContainerName = pIcon->cParentDockName;
+	}
+	else if (CAIRO_DOCK_IS_DESKLET (pContainer))
+	{
+		CairoDesklet *pDesklet = CAIRO_DESKLET (pContainer);
+		if (pDesklet->pIcon == pIcon)
+			iPosition = 0;
+		else
+			iPosition = g_list_index (pDesklet->icons, pIcon);
+		if (CAIRO_DOCK_IS_APPLET (pDesklet->pIcon))
+			cContainerName = pDesklet->pIcon->pModuleInstance->pModule->pVisitCard->cModuleName;
+	}
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_INT);
+	g_value_set_int (v, iPosition);
+	g_hash_table_insert (h, g_strdup ("position"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, cContainerName);
+	g_hash_table_insert (h, g_strdup ("container"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_DOUBLE);
+	g_value_set_double (v, pIcon->fOrder);
+	g_hash_table_insert (h, g_strdup ("order"), v);
+}
+
+static void _add_module_properties (GldiModule *pModule, GPtrArray *pTab)
+{
+	GHashTable *h = g_hash_table_new_full (g_str_hash,
+		g_str_equal,
+		g_free,  /// can we use const char here instead of duplicating each string ?...
+		g_free);
+	g_ptr_array_add (pTab, h);
+	
+	GValue *v;
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, "Module");
+	g_hash_table_insert (h, g_strdup ("type"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, pModule->pVisitCard->cModuleName);
+	g_hash_table_insert (h, g_strdup ("name"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_UINT);
+	g_value_set_uint (v, pModule->pVisitCard->iContainerType);
+	g_hash_table_insert (h, g_strdup ("module-type"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_UINT);
+	g_value_set_uint (v, pModule->pVisitCard->iCategory);
+	g_hash_table_insert (h, g_strdup ("category"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, pModule->pVisitCard->cTitle);
+	g_hash_table_insert (h, g_strdup ("title"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, pModule->pVisitCard->cIconFilePath);
+	g_hash_table_insert (h, g_strdup ("icon"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, pModule->pVisitCard->cPreviewFilePath);
+	g_hash_table_insert (h, g_strdup ("preview"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, dgettext (pModule->pVisitCard->cGettextDomain, pModule->pVisitCard->cDescription));
+	g_hash_table_insert (h, g_strdup ("description"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, pModule->pVisitCard->cAuthor);
+	g_hash_table_insert (h, g_strdup ("author"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_BOOLEAN);
+	g_value_set_boolean (v, pModule->pVisitCard->bMultiInstance);
+	g_hash_table_insert (h, g_strdup ("is-multi-instance"), v);
+	
+	cd_debug ("list instances ...");
+	gchar **pInstances = g_new0 (gchar*, g_list_length (pModule->pInstancesList)+1);
+	GldiModuleInstance *pInstance;
+	int i = 0;
+	GList *mi;
+	for (mi = pModule->pInstancesList; mi != NULL; mi = mi->next)
+	{
+		pInstance = mi->data;
+		pInstances[i++] = g_strdup (pInstance->cConfFilePath);
+	}
+	cd_debug ("write instances ...");
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRV);
+	g_value_set_boxed (v, pInstances);
+	g_hash_table_insert (h, g_strdup ("instances"), v);
+	cd_debug ("done.");
+}
+
+static void _add_manager_properties (GldiManager *pManager, GPtrArray *pTab)
+{
+	GHashTable *h = g_hash_table_new_full (g_str_hash,
+		g_str_equal,
+		g_free,  /// can we use const char here instead of duplicating each string ?...
+		g_free);
+	g_ptr_array_add (pTab, h);
+	
+	GValue *v;
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, CD_TYPE_MANAGER);
+	g_hash_table_insert (h, g_strdup ("type"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, pManager->cModuleName);
+	g_hash_table_insert (h, g_strdup ("name"), v);
+}
+
+static void _set_container_properties (GldiContainer *pContainer, GHashTable *h)
+{
+	GValue *v;
+	int x, y, w, ht;
+	if (pContainer->bIsHorizontal)
+	{
+		x = pContainer->iWindowPositionX;
+		y = pContainer->iWindowPositionY;
+		w = pContainer->iWidth;
+		ht = pContainer->iHeight;
+	}
+	else
+	{
+		y = pContainer->iWindowPositionX;
+		x = pContainer->iWindowPositionY;
+		ht = pContainer->iWidth;
+		w = pContainer->iHeight;
+	}
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_INT);
+	g_value_set_int (v, x);
+	g_hash_table_insert (h, g_strdup ("x"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_INT);
+	g_value_set_int (v, y);
+	g_hash_table_insert (h, g_strdup ("y"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_INT);
+	g_value_set_int (v, w);
+	g_hash_table_insert (h, g_strdup ("width"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_INT);
+	g_value_set_int (v, ht);
+	g_hash_table_insert (h, g_strdup ("height"), v);
+	
+	CairoDockPositionType iScreenBorder = ((! pContainer->bIsHorizontal) << 1) | (! pContainer->bDirectionUp);
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_UINT);
+	g_value_set_uint (v, iScreenBorder);
+	g_hash_table_insert (h, g_strdup ("orientation"), v);
+}
+
+static void _add_dock_properties (CairoDock *pDock, GPtrArray *pTab)
+{
+	GHashTable *h = g_hash_table_new_full (g_str_hash,
+		g_str_equal,
+		g_free,  /// can we use const char here instead of duplicating each string ?...
+		g_free);
+	g_ptr_array_add (pTab, h);
+	
+	GValue *v;
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, CD_TYPE_DOCK);
+	g_hash_table_insert (h, g_strdup ("type"), v);
+	
+	const gchar *cDockName = cairo_dock_search_dock_name (pDock);
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, cDockName);
+	g_hash_table_insert (h, g_strdup ("name"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_BOOLEAN);
+	g_value_set_boolean (v, (pDock->iRefCount > 0));
+	g_hash_table_insert (h, g_strdup ("is-sub-dock"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_INT);
+	g_value_set_int (v, g_list_length (pDock->icons));
+	g_hash_table_insert (h, g_strdup ("nb-icons"), v);
+	
+	_set_container_properties (CAIRO_CONTAINER (pDock), h);
+}
+
+static void _add_desklet_properties (CairoDesklet *pDesklet, GPtrArray *pTab)
+{
+	GHashTable *h = g_hash_table_new_full (g_str_hash,
+		g_str_equal,
+		g_free,  /// can we use const char here instead of duplicating each string ?...
+		g_free);
+	g_ptr_array_add (pTab, h);
+	
+	GValue *v;
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, CD_TYPE_DESKLET);
+	g_hash_table_insert (h, g_strdup ("type"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, CAIRO_DOCK_IS_APPLET (pDesklet->pIcon) ? pDesklet->pIcon->pModuleInstance->pModule->pVisitCard->cModuleName : "");
+	g_hash_table_insert (h, g_strdup ("name"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_INT);
+	g_value_set_int (v, 1 + g_list_length (pDesklet->icons));
+	g_hash_table_insert (h, g_strdup ("nb-icons"), v);
+	
+	_set_container_properties (CAIRO_CONTAINER (pDesklet), h);
+}
+
+static void _add_module_instance_properties (GldiModuleInstance *pModuleInstance, GPtrArray *pTab)
+{
+	GHashTable *h = g_hash_table_new_full (g_str_hash,
+		g_str_equal,
+		g_free,  /// can we use const char here instead of duplicating each string ?...
+		g_free);
+	g_ptr_array_add (pTab, h);
+	
+	GValue *v;
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, CD_TYPE_MODULE_INSTANCE);
+	g_hash_table_insert (h, g_strdup ("type"), v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, pModuleInstance->pModule->pVisitCard->cModuleName);
+	g_hash_table_insert (h, g_strdup ("name"), v);
+}
+
+gboolean cd_dbus_main_get_properties (dbusMainObject *pDbusCallback, gchar *cQuery, GPtrArray **pAttributes, GError **error)
+{
+	GPtrArray *pTab = g_ptr_array_new ();
+	*pAttributes = pTab;
+	
+	GList *pObjects = cd_dbus_find_matching_objects (cQuery);
+	GList *o;
+	GldiObject *obj;
+	for (o = pObjects; o != NULL; o = o->next)
+	{
+		obj = o->data;
+		if (CAIRO_DOCK_IS_ICON (obj))
+		{
+			Icon *pIcon = (Icon*)obj;
+			_add_icon_properties (pIcon, pTab);
+		}
+		else if (CAIRO_DOCK_IS_CONTAINER (obj))
+		{
+			if (CAIRO_DOCK_IS_DOCK (obj))
+			{
+				CairoDock *pDock = CAIRO_DOCK (obj);
+				_add_dock_properties (pDock, pTab);
+			}
+			else if (CAIRO_DOCK_IS_DESKLET (obj))
+			{
+				CairoDesklet *pDesklet = CAIRO_DESKLET (obj);
+				_add_desklet_properties (pDesklet, pTab);
+			}
+		}
+		else if (CAIRO_DOCK_IS_MODULE (obj))
+		{
+			GldiModule *pModule = (GldiModule *)obj;
+			_add_module_properties (pModule, pTab);
+		}
+		else if (CAIRO_DOCK_IS_MANAGER (obj))
+		{
+			GldiManager *pManager = (GldiManager *)obj;
+			_add_manager_properties (pManager, pTab);
+		}
+		else if (CAIRO_DOCK_IS_MODULE_INSTANCE (obj))
+		{
+			GldiModuleInstance *pModuleInstance = (GldiModuleInstance *)obj;
+			_add_module_instance_properties (pModuleInstance, pTab);
+		}
+	}
+	g_list_free (pObjects);
 	return TRUE;
 }

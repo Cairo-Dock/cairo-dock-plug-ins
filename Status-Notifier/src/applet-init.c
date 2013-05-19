@@ -41,7 +41,7 @@ CD_APPLET_DEFINE_END
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
-	if (! cairo_dock_reserve_data_slot (myApplet))
+	if (! CD_APPLET_RESERVE_DATA_SLOT ())
 		return;
 	
 	if (myConfig.bCompactMode)
@@ -58,35 +58,35 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	// CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
-	/*cairo_dock_register_notification_on_object (&myIconsMgr,
+	/*gldi_object_register_notification (&myIconsMgr,
 		CAIRO_DOCK_ENTER_ICON,
-		(CairoDockNotificationFunc) cd_status_notifier_on_enter_icon,
-		CAIRO_DOCK_RUN_AFTER, myApplet);*/
-	cairo_dock_register_notification_on_object (&myContainersMgr,
+		(GldiNotificationFunc) cd_status_notifier_on_enter_icon,
+		GLDI_RUN_AFTER, myApplet);*/
+	gldi_object_register_notification (&myContainersMgr,
 		NOTIFICATION_BUILD_CONTAINER_MENU,
-		(CairoDockNotificationFunc) cd_status_notifier_on_right_click,
-		CAIRO_DOCK_RUN_FIRST, myApplet);
+		(GldiNotificationFunc) cd_status_notifier_on_right_click,
+		GLDI_RUN_FIRST, myApplet);
 	
 	if (myConfig.bCompactMode)
 	{
-		cairo_dock_register_notification_on_object (myContainer,
+		gldi_object_register_notification (myContainer,
 			NOTIFICATION_MOUSE_MOVED,
-			(CairoDockNotificationFunc) on_mouse_moved,
-			CAIRO_DOCK_RUN_AFTER, myApplet);
+			(GldiNotificationFunc) on_mouse_moved,
+			GLDI_RUN_AFTER, myApplet);
 		if (myDesklet)
 		{
-			cairo_dock_register_notification_on_object (myContainer,
+			gldi_object_register_notification (myContainer,
 				NOTIFICATION_RENDER,
-				(CairoDockNotificationFunc) on_render_desklet,
-				CAIRO_DOCK_RUN_AFTER, myApplet);
-			cairo_dock_register_notification_on_object (myContainer,
+				(GldiNotificationFunc) on_render_desklet,
+				GLDI_RUN_AFTER, myApplet);
+			gldi_object_register_notification (myContainer,
 				NOTIFICATION_UPDATE,
-				(CairoDockNotificationFunc) on_update_desklet,
-				CAIRO_DOCK_RUN_AFTER, myApplet);
-			cairo_dock_register_notification_on_object (myContainer,
+				(GldiNotificationFunc) on_update_desklet,
+				GLDI_RUN_AFTER, myApplet);
+			gldi_object_register_notification (myContainer,
 				NOTIFICATION_LEAVE_DESKLET,
-				(CairoDockNotificationFunc) on_leave_desklet,
-				CAIRO_DOCK_RUN_AFTER, myApplet);
+				(GldiNotificationFunc) on_leave_desklet,
+				GLDI_RUN_AFTER, myApplet);
 		}
 	}
 	
@@ -103,22 +103,22 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	// CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
-	cairo_dock_remove_notification_func_on_object (&myContainersMgr,
+	gldi_object_remove_notification (&myContainersMgr,
 		NOTIFICATION_BUILD_CONTAINER_MENU,
-		(CairoDockNotificationFunc) cd_status_notifier_on_right_click,
+		(GldiNotificationFunc) cd_status_notifier_on_right_click,
 		myApplet);
-	cairo_dock_remove_notification_func_on_object (myContainer,
+	gldi_object_remove_notification (myContainer,
 		NOTIFICATION_MOUSE_MOVED,
-		(CairoDockNotificationFunc) on_mouse_moved, myApplet);
-	cairo_dock_remove_notification_func_on_object (myContainer,
+		(GldiNotificationFunc) on_mouse_moved, myApplet);
+	gldi_object_remove_notification (myContainer,
 		NOTIFICATION_RENDER,
-		(CairoDockNotificationFunc) on_render_desklet, myApplet);
-	cairo_dock_remove_notification_func_on_object (myContainer,
+		(GldiNotificationFunc) on_render_desklet, myApplet);
+	gldi_object_remove_notification (myContainer,
 		NOTIFICATION_UPDATE,
-		(CairoDockNotificationFunc) on_update_desklet, myApplet);
-	cairo_dock_remove_notification_func_on_object (myContainer,
+		(GldiNotificationFunc) on_update_desklet, myApplet);
+	gldi_object_remove_notification (myContainer,
 		NOTIFICATION_LEAVE_DESKLET,
-		(CairoDockNotificationFunc) on_leave_desklet, myApplet);
+		(GldiNotificationFunc) on_leave_desklet, myApplet);
 	
 	cd_satus_notifier_stop_service ();
 CD_APPLET_STOP_END
@@ -132,39 +132,39 @@ CD_APPLET_RELOAD_BEGIN
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+		gldi_object_remove_notification (CD_APPLET_MY_OLD_CONTAINER,
 			NOTIFICATION_MOUSE_MOVED,
-			(CairoDockNotificationFunc) on_mouse_moved, myApplet);
-		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+			(GldiNotificationFunc) on_mouse_moved, myApplet);
+		gldi_object_remove_notification (CD_APPLET_MY_OLD_CONTAINER,
 			NOTIFICATION_RENDER,
-			(CairoDockNotificationFunc) on_render_desklet, myApplet);
-		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+			(GldiNotificationFunc) on_render_desklet, myApplet);
+		gldi_object_remove_notification (CD_APPLET_MY_OLD_CONTAINER,
 			NOTIFICATION_UPDATE,
-			(CairoDockNotificationFunc) on_update_desklet, myApplet);
-		cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_OLD_CONTAINER,
+			(GldiNotificationFunc) on_update_desklet, myApplet);
+		gldi_object_remove_notification (CD_APPLET_MY_OLD_CONTAINER,
 			NOTIFICATION_LEAVE_DESKLET,
-			(CairoDockNotificationFunc) on_leave_desklet, myApplet);
+			(GldiNotificationFunc) on_leave_desklet, myApplet);
 		
 		if (myConfig.bCompactMode)
 		{
-			cairo_dock_register_notification_on_object (myContainer,
+			gldi_object_register_notification (myContainer,
 				NOTIFICATION_MOUSE_MOVED,
-				(CairoDockNotificationFunc) on_mouse_moved,
-				CAIRO_DOCK_RUN_AFTER, myApplet);
+				(GldiNotificationFunc) on_mouse_moved,
+				GLDI_RUN_AFTER, myApplet);
 			if (myDesklet)
 			{
-				cairo_dock_register_notification_on_object (myContainer,
+				gldi_object_register_notification (myContainer,
 					NOTIFICATION_RENDER,
-					(CairoDockNotificationFunc) on_render_desklet,
-					CAIRO_DOCK_RUN_AFTER, myApplet);
-				cairo_dock_register_notification_on_object (myContainer,
+					(GldiNotificationFunc) on_render_desklet,
+					GLDI_RUN_AFTER, myApplet);
+				gldi_object_register_notification (myContainer,
 					NOTIFICATION_UPDATE,
-					(CairoDockNotificationFunc) on_update_desklet,
-					CAIRO_DOCK_RUN_AFTER, myApplet);
-				cairo_dock_register_notification_on_object (myContainer,
+					(GldiNotificationFunc) on_update_desklet,
+					GLDI_RUN_AFTER, myApplet);
+				gldi_object_register_notification (myContainer,
 					NOTIFICATION_LEAVE_DESKLET,
-					(CairoDockNotificationFunc) on_leave_desklet,
-					CAIRO_DOCK_RUN_AFTER, myApplet);
+					(GldiNotificationFunc) on_leave_desklet,
+					GLDI_RUN_AFTER, myApplet);
 			}
 		}
 		
@@ -177,7 +177,7 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_DELETE_MY_ICONS_LIST;
 			if (myDock)  // on ne veut pas d'un sous-dock vide.
 			{
-				cairo_dock_destroy_dock (myIcon->pSubDock, myIcon->cName);
+				gldi_object_unref (GLDI_OBJECT(myIcon->pSubDock));
 				myIcon->pSubDock = NULL;
 			}
 			cd_satus_notifier_reload_compact_mode ();

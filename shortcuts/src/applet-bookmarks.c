@@ -28,7 +28,7 @@
 
 #define CD_SHORTCUT_DEFAULT_DIRECTORY_ICON_FILENAME "inode-directory"
 
-void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gchar *cURI, CairoDockModuleInstance *myApplet)
+void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gchar *cURI, GldiModuleInstance *myApplet)
 {
 	static int iTime = 0;
 	iTime ++;
@@ -44,7 +44,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 			break;
 	}
 	pIconsList = ic;  // Note that since the first bookmark is always the Home Folder, 'pIconsList' will never change when inserting/removing a bookmark.
-	CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+	GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
 	
 	if (iEventType == CAIRO_DOCK_FILE_CREATED || iEventType == CAIRO_DOCK_FILE_MODIFIED)  // le fichier des bookmarks a ete modifie.
@@ -116,7 +116,13 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 					}
 					else
 					{
-						pExistingIcon->iLastCheckTime = iTime;
+						CDDiskUsage *pDiskUsage = CD_APPLET_GET_MY_ICON_DATA (pExistingIcon);
+						if (! pDiskUsage)
+						{
+							pDiskUsage = g_new0 (CDDiskUsage, 1);
+							CD_APPLET_SET_MY_ICON_DATA (pExistingIcon, pDiskUsage);
+						}
+						pDiskUsage->iLastCheckTime = iTime;
 						pExistingIcon->fOrder = fCurrentOrder ++;
 					}
 				}
@@ -155,7 +161,9 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 						pNewIcon->iGroup = CD_BOOKMARK_GROUP;
 						pNewIcon->cBaseURI = cOneBookmark;
 						pNewIcon->iVolumeID = iVolumeID;
-						pNewIcon->iLastCheckTime = iTime;
+						CDDiskUsage *pDiskUsage = g_new0 (CDDiskUsage, 1);
+						pDiskUsage->iLastCheckTime = iTime;
+						CD_APPLET_SET_MY_ICON_DATA (pNewIcon, pDiskUsage);
 						
 						CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pNewIcon);
 					}
@@ -177,7 +185,8 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 				icon = ic->data;
 				if (icon->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)
 				{
-					if (icon->iLastCheckTime < iTime)
+					CDDiskUsage *pDiskUsage = CD_APPLET_GET_MY_ICON_DATA (icon);
+					if (! pDiskUsage || pDiskUsage->iLastCheckTime < iTime)
 					{
 						cd_debug ("this bookmark is too old (%s)", icon->cName);
 						CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (icon);
@@ -385,7 +394,7 @@ static Icon * _cd_shortcuts_get_icon (gchar *cFileName, const gchar *cUserName, 
 	return pNewIcon;
 }
 
-GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath, CairoDockModuleInstance *myApplet)
+GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath, GldiModuleInstance *myApplet)
 {
 	GList *pBookmarkIconList = NULL;
 	Icon *pNewIcon;
@@ -396,8 +405,9 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath, CairoDockModuleIns
 	pNewIcon = _cd_shortcuts_get_icon (cHome, D_("Home Folder"), fCurrentOrder++);
 	if (pNewIcon != NULL)
 	{
-		pNewIcon->iLastCheckTime = 1e9;  // so that this bookmark will never be considered old, and therefore removed.
 		_init_disk_usage (pNewIcon, myApplet);
+		CDDiskUsage *pDiskUsage = CD_APPLET_GET_MY_ICON_DATA (pNewIcon);
+		if (pDiskUsage) pDiskUsage->iLastCheckTime = 1e9;  // so that this bookmark will never be considered old, and therefore removed.
 		pBookmarkIconList = g_list_append (pBookmarkIconList, pNewIcon);
 	}
 

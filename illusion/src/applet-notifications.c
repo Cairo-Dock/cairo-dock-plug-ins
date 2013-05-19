@@ -34,9 +34,9 @@
 gboolean cd_illusion_on_remove_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock)
 {
 	if (fabs (pIcon->fInsertRemoveFactor) < .1)  // useless or not needed animation.
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	if (! CAIRO_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)))  // gere le cas ou pDock est NULL.
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	CDIllusionData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
@@ -109,17 +109,17 @@ gboolean cd_illusion_on_remove_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		cairo_dock_mark_icon_as_inserting_removing (pIcon);
 	}
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
 gboolean cd_illusion_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bHasBeenRendered, cairo_t *pCairoContext)
 {
 	if (pCairoContext != NULL || *bHasBeenRendered)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	CDIllusionData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	switch (pData->iCurrentEffect)
 	{
@@ -150,7 +150,7 @@ gboolean cd_illusion_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *pD
 		break ;
 	}
 	
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
@@ -158,7 +158,7 @@ gboolean cd_illusion_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *pD
 {
 	CDIllusionData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	pData->fTime += pData->sens * pData->fDeltaT;
 	if (pData->fTime < 0)
@@ -201,7 +201,7 @@ gboolean cd_illusion_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *pD
 	{
 		cd_illusion_free_data (pUserData, pIcon);
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
@@ -210,7 +210,7 @@ gboolean cd_illusion_free_data (gpointer pUserData, Icon *pIcon)
 	cd_message ("");
 	CDIllusionData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData == NULL)
-		return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+		return GLDI_NOTIFICATION_LET_PASS;
 	
 	cairo_dock_free_particle_system (pData->pEvaporateSystem);
 	
@@ -231,5 +231,5 @@ gboolean cd_illusion_free_data (gpointer pUserData, Icon *pIcon)
 	
 	g_free (pData);
 	CD_APPLET_SET_MY_ICON_DATA (pIcon, NULL);
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }

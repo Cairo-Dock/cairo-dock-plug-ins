@@ -47,10 +47,10 @@ CD_APPLET_INIT_BEGIN
 	cd_notes_start ();
 	
 	//Enregistrement des notifications
-	cairo_dock_register_notification_on_object (&myContainersMgr,
+	gldi_object_register_notification (&myContainersMgr,
 		NOTIFICATION_CLICK_ICON,
-		(CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC,
-		CAIRO_DOCK_RUN_FIRST, myApplet);  // ici on s'enregistre explicitement avant le dock, pour pas qu'il essaye de lancer nos notes.
+		(GldiNotificationFunc) CD_APPLET_ON_CLICK_FUNC,
+		GLDI_RUN_FIRST, myApplet);  // ici on s'enregistre explicitement avant le dock, pour pas qu'il essaye de lancer nos notes.
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 CD_APPLET_INIT_END
@@ -60,13 +60,13 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
-	cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_ICONS_LIST_CONTAINER,
+	gldi_object_remove_notification (CD_APPLET_MY_ICONS_LIST_CONTAINER,
 		NOTIFICATION_ENTER_ICON,
-		(CairoDockNotificationFunc) cd_tomboy_on_change_icon,
+		(GldiNotificationFunc) cd_tomboy_on_change_icon,
 		myApplet);
-	cairo_dock_remove_notification_func_on_object (CD_APPLET_MY_ICONS_LIST_CONTAINER,
+	gldi_object_remove_notification (CD_APPLET_MY_ICONS_LIST_CONTAINER,
 		myDock ? NOTIFICATION_LEAVE_DOCK : NOTIFICATION_LEAVE_DESKLET,
-		(CairoDockNotificationFunc) cd_tomboy_on_leave_container,
+		(GldiNotificationFunc) cd_tomboy_on_leave_container,
 		myApplet);
 	
 	if (myData.iSidResetQuickInfo != 0)

@@ -47,51 +47,51 @@ CD_APPLET_INIT_BEGIN
 	
 	penguin_start_animating_with_delay (myApplet);
 	
-	cairo_dock_register_notification_on_object (myContainer,
+	gldi_object_register_notification (myContainer,
 		NOTIFICATION_CLICK_ICON,
-		(CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC,
-		CAIRO_DOCK_RUN_FIRST,
+		(GldiNotificationFunc) CD_APPLET_ON_CLICK_FUNC,
+		GLDI_RUN_FIRST,
 		myApplet);
-	cairo_dock_register_notification_on_object (myContainer,
+	gldi_object_register_notification (myContainer,
 		NOTIFICATION_MIDDLE_CLICK_ICON,
-		(CairoDockNotificationFunc) CD_APPLET_ON_MIDDLE_CLICK_FUNC,
-		CAIRO_DOCK_RUN_FIRST,
+		(GldiNotificationFunc) CD_APPLET_ON_MIDDLE_CLICK_FUNC,
+		GLDI_RUN_FIRST,
 		myApplet);
-	cairo_dock_register_notification_on_object (myContainer,
+	gldi_object_register_notification (myContainer,
 		NOTIFICATION_BUILD_CONTAINER_MENU,
-		(CairoDockNotificationFunc) on_build_container_menu,
-		CAIRO_DOCK_RUN_FIRST,
+		(GldiNotificationFunc) on_build_container_menu,
+		GLDI_RUN_FIRST,
 		myApplet);
-	cairo_dock_register_notification_on_object (myContainer,
+	gldi_object_register_notification (myContainer,
 		NOTIFICATION_BUILD_ICON_MENU,
-		(CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU_FUNC,
-		CAIRO_DOCK_RUN_FIRST,
+		(GldiNotificationFunc) CD_APPLET_ON_BUILD_MENU_FUNC,
+		GLDI_RUN_FIRST,
 		myApplet);
-	cairo_dock_register_notification_on_object (myDock,
+	gldi_object_register_notification (myDock,
 		NOTIFICATION_DESTROY,
-		(CairoDockNotificationFunc) cd_on_dock_destroyed,
-		CAIRO_DOCK_RUN_AFTER,
+		(GldiNotificationFunc) cd_on_dock_destroyed,
+		GLDI_RUN_AFTER,
 		myApplet);
 CD_APPLET_INIT_END
 
 
 CD_APPLET_STOP_BEGIN
 	//\_______________ On se desabonne de nos notifications.
-	cairo_dock_remove_notification_func_on_object (myContainer,
+	gldi_object_remove_notification (myContainer,
 		NOTIFICATION_CLICK_ICON,
-		(CairoDockNotificationFunc) CD_APPLET_ON_CLICK_FUNC,
+		(GldiNotificationFunc) CD_APPLET_ON_CLICK_FUNC,
 		myApplet);
-	cairo_dock_remove_notification_func_on_object (myContainer,
+	gldi_object_remove_notification (myContainer,
 		NOTIFICATION_MIDDLE_CLICK_ICON,
-		(CairoDockNotificationFunc) CD_APPLET_ON_MIDDLE_CLICK_FUNC,
+		(GldiNotificationFunc) CD_APPLET_ON_MIDDLE_CLICK_FUNC,
 		myApplet);
-	cairo_dock_remove_notification_func_on_object (myContainer,
+	gldi_object_remove_notification (myContainer,
 		NOTIFICATION_BUILD_ICON_MENU,
-		(CairoDockNotificationFunc) CD_APPLET_ON_BUILD_MENU_FUNC,
+		(GldiNotificationFunc) CD_APPLET_ON_BUILD_MENU_FUNC,
 		myApplet);
-	cairo_dock_remove_notification_func_on_object (myDock,
+	gldi_object_remove_notification (myDock,
 		NOTIFICATION_DESTROY,
-		(CairoDockNotificationFunc) cd_on_dock_destroyed,
+		(GldiNotificationFunc) cd_on_dock_destroyed,
 		myApplet);
 	penguin_remove_notfications();
 	

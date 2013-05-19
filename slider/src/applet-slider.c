@@ -55,7 +55,7 @@ static void cd_slider_free_images_list (GList *pList) {
 }
 
 
-static void _cd_slider_load_image (CairoDockModuleInstance *myApplet)
+static void _cd_slider_load_image (GldiModuleInstance *myApplet)
 {
 	g_return_if_fail (myData.pElement != NULL);
 	SliderImage *pImage = myData.pElement->data;
@@ -98,7 +98,7 @@ static void _cd_slider_load_image (CairoDockModuleInstance *myApplet)
 	cd_debug ("  %s loaded", cImagePath);
 }
 
-static gboolean _cd_slider_display_image (CairoDockModuleInstance *myApplet)
+static gboolean _cd_slider_display_image (GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	//\_______________ On cree la texture (en-dehors du thread).
@@ -134,7 +134,7 @@ static gboolean _cd_slider_display_image (CairoDockModuleInstance *myApplet)
 	CD_APPLET_LEAVE (FALSE);
 }
 
-void cd_slider_jump_to_next_slide (CairoDockModuleInstance *myApplet)
+void cd_slider_jump_to_next_slide (GldiModuleInstance *myApplet)
 {
 	//\___________________________ stop any pending action.
 	if (myData.iTimerID != 0)
@@ -206,7 +206,7 @@ void cd_slider_jump_to_next_slide (CairoDockModuleInstance *myApplet)
 }
 
 
-static gboolean _next_slide (CairoDockModuleInstance *myApplet)
+static gboolean _next_slide (GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
 	
@@ -219,7 +219,7 @@ static gboolean _next_slide (CairoDockModuleInstance *myApplet)
 	
 	CD_APPLET_LEAVE (FALSE);
 }
-void cd_slider_schedule_next_slide (CairoDockModuleInstance *myApplet)
+void cd_slider_schedule_next_slide (GldiModuleInstance *myApplet)
 {
 	if (myData.iTimerID == 0)
 		myData.iTimerID = g_timeout_add_seconds (myConfig.iSlideTime, (GSourceFunc) _next_slide, (gpointer) myApplet);
@@ -258,7 +258,7 @@ static void _cd_slider_get_exif_props (SliderImage *pImage)
 	pImage->bGotExifData = TRUE;
 }
 
-static gboolean _cd_slider_get_exif_props_idle (CairoDockModuleInstance *myApplet)
+static gboolean _cd_slider_get_exif_props_idle (GldiModuleInstance *myApplet)
 {
 #ifdef HAVE_EXIF
 	if (myData.pExifElement == NULL)
@@ -289,7 +289,7 @@ typedef struct {
 	gboolean bSubDirs;
 	gboolean bRandom;
 	GList *pList;  // the result
-	CairoDockModuleInstance *pApplet;
+	GldiModuleInstance *pApplet;
 	} CDListSharedMemory;
 
 static void _free_shared_memory (CDListSharedMemory *pSharedMemory)
@@ -398,7 +398,7 @@ static void cd_slider_get_files_from_dir (CDListSharedMemory *pSharedMemory)
 static gboolean cd_slider_start_slide (CDListSharedMemory *pSharedMemory)
 {
 	// grab the result
-	CairoDockModuleInstance *myApplet = pSharedMemory->pApplet;
+	GldiModuleInstance *myApplet = pSharedMemory->pApplet;
 	myData.pList = pSharedMemory->pList;
 	
 	// if needed, get the EXIF data now
@@ -431,7 +431,7 @@ static gboolean cd_slider_start_slide (CDListSharedMemory *pSharedMemory)
 }
 
 
-void cd_slider_start (CairoDockModuleInstance *myApplet, gboolean bDelay)
+void cd_slider_start (GldiModuleInstance *myApplet, gboolean bDelay)
 {
 	cairo_dock_discard_task (myData.pMeasureDirectory);
 	
@@ -462,7 +462,7 @@ void cd_slider_start (CairoDockModuleInstance *myApplet, gboolean bDelay)
 		cairo_dock_launch_task (myData.pMeasureDirectory);
 }
 
-void cd_slider_stop (CairoDockModuleInstance *myApplet)
+void cd_slider_stop (GldiModuleInstance *myApplet)
 {
 	//Stop all processes
 	cairo_dock_free_task (myData.pMeasureImage);  // since it needs a cairo context, we can't let it live.

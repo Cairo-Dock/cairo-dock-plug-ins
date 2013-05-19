@@ -92,7 +92,7 @@ static gboolean on_expose_listing (GtkWidget *pWidget,
 				(int) pExpose->area.height);
 		}
 		
-		cairo_dock_notify_on_object (CAIRO_CONTAINER (pListing), NOTIFICATION_RENDER, pListing, NULL);
+		gldi_object_notify (CAIRO_CONTAINER (pListing), NOTIFICATION_RENDER, pListing, NULL);
 		
 		glDisable (GL_SCISSOR_TEST);
 		
@@ -112,11 +112,11 @@ static gboolean on_expose_listing (GtkWidget *pWidget,
 			pCairoContext = cairo_dock_create_drawing_context (CAIRO_CONTAINER (pListing));
 		}
 		
-		cairo_dock_notify_on_object (CAIRO_CONTAINER (pListing), NOTIFICATION_RENDER, pListing, pCairoContext);
+		gldi_object_notify (CAIRO_CONTAINER (pListing), NOTIFICATION_RENDER, pListing, pCairoContext);
 		
 		cairo_destroy (pCairoContext);
 		#else
-		cairo_dock_notify_on_object (CAIRO_CONTAINER (pListing), NOTIFICATION_RENDER, pListing, ctx);
+		gldi_object_notify (CAIRO_CONTAINER (pListing), NOTIFICATION_RENDER, pListing, ctx);
 		#endif
 	}
 	return FALSE;
@@ -163,7 +163,7 @@ static gboolean on_key_press_listing (GtkWidget *pWidget, GdkEventKey *pKey, CDL
 {
 	if (pKey->type == GDK_KEY_PRESS)
 	{
-		cairo_dock_notify_on_object (CAIRO_CONTAINER (pListing), NOTIFICATION_KEY_PRESSED, pListing, pKey->keyval, pKey->state, pKey->string);
+		gldi_object_notify (CAIRO_CONTAINER (pListing), NOTIFICATION_KEY_PRESSED, pListing, pKey->keyval, pKey->state, pKey->string);
 	}
 	return FALSE;
 }
@@ -199,13 +199,16 @@ static inline void _place_listing (CDListing *pListing)
 CDListing *cd_do_create_listing (void)
 {
 	CDListing *pListing = g_new0 (CDListing, 1);
+	GldiContainerAttr attr;
+	memset (&attr, 0, sizeof (GldiContainerAttr));
+	gldi_object_init (GLDI_OBJECT(pListing), GLDI_MANAGER(&myContainersMgr), &attr);
 	
-	pListing->container.iType = CAIRO_DOCK_NB_CONTAINER_TYPES+1;
+	/*pListing->container.iType = CAIRO_DOCK_NB_CONTAINER_TYPES+1;
 	pListing->container.bIsHorizontal = TRUE;
 	pListing->container.bDirectionUp = TRUE;
 	pListing->container.fRatio = 1.;
-	
-	GtkWidget *pWindow = cairo_dock_init_container_no_opengl (CAIRO_CONTAINER (pListing));
+	GtkWidget *pWindow = cairo_dock_init_container_no_opengl (CAIRO_CONTAINER (pListing));*/
+	GtkWidget *pWindow = pListing->container.pWidget;
 	gtk_window_set_title (GTK_WINDOW (pWindow), "cairo-dock-listing");
 	//gtk_widget_add_events (pWindow, GDK_BUTTON_PRESS_MASK | GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK);
 	g_signal_connect (G_OBJECT (pWindow),
@@ -263,9 +266,7 @@ void cd_do_destroy_listing (CDListing *pListing)
 	if (pListing->iSidFillEntries != 0)
 		g_source_remove (pListing->iSidFillEntries);
 	
-	cairo_dock_finish_container (CAIRO_CONTAINER (pListing));
-	
-	g_free (pListing);
+	gldi_object_unref (GLDI_OBJECT(pListing));
 }
 
   ////////////////////////
@@ -316,7 +317,7 @@ gboolean cd_do_update_listing_notification (gpointer pUserData, CDListing *pList
 		
 	}
 	cairo_dock_redraw_container (CAIRO_CONTAINER (pListing));
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pListing, cairo_t *pCairoContext)
@@ -559,7 +560,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 	
 	pango_font_description_free (pDesc);
 	g_object_unref (pLayout);
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 
@@ -569,15 +570,15 @@ void cd_do_show_listing (void)
 	{
 		myData.pListing = cd_do_create_listing ();
 		
-		cairo_dock_register_notification_on_object (CAIRO_CONTAINER (myData.pListing),
+		gldi_object_register_notification (CAIRO_CONTAINER (myData.pListing),
 			NOTIFICATION_UPDATE,
-			(CairoDockNotificationFunc) cd_do_update_listing_notification,
-			CAIRO_DOCK_RUN_AFTER,
+			(GldiNotificationFunc) cd_do_update_listing_notification,
+			GLDI_RUN_AFTER,
 			NULL);
-		cairo_dock_register_notification_on_object (CAIRO_CONTAINER (myData.pListing),
+		gldi_object_register_notification (CAIRO_CONTAINER (myData.pListing),
 			NOTIFICATION_RENDER,
-			(CairoDockNotificationFunc) cd_do_render_listing_notification,
-			CAIRO_DOCK_RUN_AFTER,
+			(GldiNotificationFunc) cd_do_render_listing_notification,
+			GLDI_RUN_AFTER,
 			NULL);
 		if (myData.pScoobySurface == NULL)
 		{

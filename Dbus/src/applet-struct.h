@@ -62,7 +62,7 @@ struct _dbusApplet {
 	GObject parent;
 	DBusGConnection *connection;
 	DBusGProxy *proxy;
-	CairoDockModuleInstance *pModuleInstance;
+	GldiModuleInstance *pModuleInstance;
 	gchar *cModuleName;
 	gint id;
 	gchar *cBusPath;
@@ -128,7 +128,7 @@ struct _AppletData {
 	GtkWidget *pModuleMainMenu;
 	dbusApplet *pCurrentMenuDbusApplet;
 	gint iMenuPosition;
-	Window xActiveWindow;
+	GldiWindowActor *pActiveWindow;;
 	CairoDockTask *pGetListTask;
 	GList *pUpdateTasksList;
 	} ;

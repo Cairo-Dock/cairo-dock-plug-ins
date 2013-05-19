@@ -161,8 +161,8 @@ static gboolean _cd_dnd2share_update_from_result (CDSharedMemory *pSharedMemory)
 	gchar *cFilePath = pSharedMemory->cCurrentFilePath;
 	if (pSharedMemory->cResultUrls == NULL || pSharedMemory->cResultUrls[0] == NULL)  // une erreur s'est produite.
 	{
-		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog_with_icon (D_("Couldn't upload the file, check that your internet connection is active."),
+		gldi_dialogs_remove_on_icon (myIcon);
+		gldi_dialog_show_temporary_with_icon (D_("Couldn't upload the file, check that your internet connection is active."),
 			myIcon,
 			myContainer,
 			myConfig.dTimeDialogs,
@@ -278,8 +278,8 @@ static gboolean _cd_dnd2share_update_from_result (CDSharedMemory *pSharedMemory)
 		// On signale par un dialogue la fin de l'upload.
 		if (myConfig.bEnableDialogs || myDesklet)
 		{
-			cairo_dock_remove_dialog_if_any (myIcon);
-			cairo_dock_show_temporary_dialog_with_icon (D_("File has been uploaded.\nJust press CTRL+v to paste its URL anywhere."),
+			gldi_dialogs_remove_on_icon (myIcon);
+			gldi_dialog_show_temporary_with_icon (D_("File has been uploaded.\nJust press CTRL+v to paste its URL anywhere."),
 				myIcon,
 				myContainer,
 				myConfig.dTimeDialogs,
@@ -329,8 +329,8 @@ void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 	if (myData.pTask != NULL)
 	{
 		cd_warning ("Please wait the current upload is finished before starting a new one.");
-		cairo_dock_remove_dialog_if_any (myIcon);
-		cairo_dock_show_temporary_dialog_with_icon (D_("Please wait for the current upload to finish before starting a new one."),
+		gldi_dialogs_remove_on_icon (myIcon);
+		gldi_dialog_show_temporary_with_icon (D_("Please wait for the current upload to finish before starting a new one."),
 			myIcon,
 			myContainer,
 			myConfig.dTimeDialogs,
@@ -397,8 +397,8 @@ void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 		if (cContents == NULL)  // file was not readable, abort.
 		{
 			cd_warning ("file not readable !");
-			cairo_dock_remove_dialog_if_any (myIcon);
-			cairo_dock_show_temporary_dialog_with_icon (D_("This file is not readable."),
+			gldi_dialogs_remove_on_icon (myIcon);
+			gldi_dialog_show_temporary_with_icon (D_("This file is not readable."),
 				myIcon,
 				myContainer,
 				myConfig.dTimeDialogs,

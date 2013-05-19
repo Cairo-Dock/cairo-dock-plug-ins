@@ -23,7 +23,7 @@
 #include <cairo-dock.h>
 
 
-void cd_slider_free_apps_list (CairoDockModuleInstance *myApplet);
+void cd_slider_free_apps_list (GldiModuleInstance *myApplet);
 
 
 CD_APPLET_ON_CLICK_H

@@ -26,23 +26,23 @@
 #include "applet-struct.h"
 
 
-gboolean cd_show_mouse_render (gpointer pUserData, CairoContainer *pContainer, cairo_t *pCairoContext);
+gboolean cd_show_mouse_render (gpointer pUserData, GldiContainer *pContainer, cairo_t *pCairoContext);
 
 
-gboolean cd_show_mouse_update_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bContinueAnimation);
+gboolean cd_show_mouse_update_container (gpointer pUserData, GldiContainer *pContainer, gboolean *bContinueAnimation);
 
 
-gboolean cd_show_mouse_enter_container (gpointer pUserData, CairoContainer *pContainer, gboolean *bStartAnimation);
+gboolean cd_show_mouse_enter_container (gpointer pUserData, GldiContainer *pContainer, gboolean *bStartAnimation);
 
 
 gdouble *cd_show_mouse_init_sources (void);
-CairoParticleSystem *cd_show_mouse_init_system (CairoContainer *pContainer, double dt, double *pSourceCoords);
+CairoParticleSystem *cd_show_mouse_init_system (GldiContainer *pContainer, double dt, double *pSourceCoords);
 
 void cd_show_mouse_update_sources (CDShowMouseData *pData);
 void cd_show_mouse_update_particle_system (CairoParticleSystem *pParticleSystem, CDShowMouseData *pData);
 
 
-gboolean cd_show_mouse_free_data (gpointer pUserData, CairoContainer *pContainer);
+gboolean cd_show_mouse_free_data (gpointer pUserData, GldiContainer *pContainer);
 
 
 #endif

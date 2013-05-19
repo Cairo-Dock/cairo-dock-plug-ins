@@ -113,7 +113,7 @@ typedef struct {
 	CDClockTaskFrequency iFrequency;
 	GList *pSubTaskList;
 	// private data
-	CairoDockModuleInstance *pApplet;
+	GldiModuleInstance *pApplet;
 	gboolean b1DayWarning;
 	gboolean b15mnWarning;
 	gboolean bFirstWarning;
@@ -124,12 +124,12 @@ typedef struct {
 	} CDClockTask;
 
 typedef struct {
-	void (*init) (CairoDockModuleInstance *myApplet);
-	void (*stop) (CairoDockModuleInstance *myApplet);
-	GList * (*get_tasks) (CairoDockModuleInstance *myApplet);
-	gboolean (*create_task) (CDClockTask *pTask, CairoDockModuleInstance *myApplet);
-	gboolean (*delete_task) (CDClockTask *pTask, CairoDockModuleInstance *myApplet);
-	gboolean (*update_task) (CDClockTask *pTask, CairoDockModuleInstance *myApplet);
+	void (*init) (GldiModuleInstance *myApplet);
+	void (*stop) (GldiModuleInstance *myApplet);
+	GList * (*get_tasks) (GldiModuleInstance *myApplet);
+	gboolean (*create_task) (CDClockTask *pTask, GldiModuleInstance *myApplet);
+	gboolean (*delete_task) (CDClockTask *pTask, GldiModuleInstance *myApplet);
+	gboolean (*update_task) (CDClockTask *pTask, GldiModuleInstance *myApplet);
 	gpointer pData;
 	} CDClockTaskBackend;
 

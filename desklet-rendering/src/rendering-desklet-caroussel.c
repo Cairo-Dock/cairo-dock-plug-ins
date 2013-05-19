@@ -26,7 +26,7 @@
 #define CAROUSSEL_RATIO_MAIN_ICON_DESKLET .5
 
 // Pour dessiner une icone, avec son quickinfo, dans la matrice courante.
-static void _render_one_icon_and_quickinfo_opengl (Icon *pIcon, CairoContainer *pContainer, gboolean bIsReflect)
+static void _render_one_icon_and_quickinfo_opengl (Icon *pIcon, GldiContainer *pContainer, gboolean bIsReflect)
 {
 	if (pIcon == NULL)  // peut arriver avant de lier l'icone au desklet.
 		return ;
@@ -73,7 +73,7 @@ static gboolean on_update_desklet (gpointer pUserData, CairoDesklet *pDesklet, g
 	{
 		CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 		if (pCaroussel == NULL)
-			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+			return GLDI_NOTIFICATION_LET_PASS;
 		
 		if (! pDesklet->container.bInside)  // on est en-dehors du desklet, on ralentit.
 		{
@@ -81,7 +81,7 @@ static gboolean on_update_desklet (gpointer pUserData, CairoDesklet *pDesklet, g
 			if (fabs (pCaroussel->fCurrentRotationSpeed) < .5/180.*G_PI)  // vitesse de rotation epsilonesque, on quitte.
 			{
 				pCaroussel->fCurrentRotationSpeed = 0;
-				return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+				return GLDI_NOTIFICATION_LET_PASS;
 			}
 			*bContinueAnimation = TRUE;
 		}
@@ -110,7 +110,7 @@ static gboolean on_update_desklet (gpointer pUserData, CairoDesklet *pDesklet, g
 			pCaroussel->fCurrentRotationSpeed = 0.;
 		}
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 static gboolean on_mouse_move (gpointer pUserData, CairoDesklet *pDesklet, gboolean *bStartAnimation)
 {
@@ -118,11 +118,11 @@ static gboolean on_mouse_move (gpointer pUserData, CairoDesklet *pDesklet, gbool
 	{
 		CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 		if (pCaroussel == NULL)
-			return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+			return GLDI_NOTIFICATION_LET_PASS;
 		if (pCaroussel->b3D && (pDesklet->container.iMouseX <= pDesklet->container.iWidth*0.3 || pDesklet->container.iMouseX >= pDesklet->container.iWidth*0.7))
 			*bStartAnimation = TRUE;
 	}
-	return CAIRO_DOCK_LET_PASS_NOTIFICATION;
+	return GLDI_NOTIFICATION_LET_PASS;
 }
 
 static CDCarousselParameters *configure (CairoDesklet *pDesklet, gpointer *pConfig)
@@ -134,8 +134,8 @@ static CDCarousselParameters *configure (CairoDesklet *pDesklet, gpointer *pConf
 		pCaroussel->bRotateIconsOnEllipse = GPOINTER_TO_INT (pConfig[1]);
 	}
 	
-	cairo_dock_register_notification_on_object (pDesklet, NOTIFICATION_UPDATE, (CairoDockNotificationFunc) on_update_desklet, CAIRO_DOCK_RUN_AFTER, NULL);
-	cairo_dock_register_notification_on_object (CAIRO_CONTAINER (pDesklet), NOTIFICATION_MOUSE_MOVED, (CairoDockNotificationFunc) on_mouse_move, CAIRO_DOCK_RUN_AFTER, NULL);
+	gldi_object_register_notification (pDesklet, NOTIFICATION_UPDATE, (GldiNotificationFunc) on_update_desklet, GLDI_RUN_AFTER, NULL);
+	gldi_object_register_notification (CAIRO_CONTAINER (pDesklet), NOTIFICATION_MOUSE_MOVED, (GldiNotificationFunc) on_mouse_move, GLDI_RUN_AFTER, NULL);
 	
 	return pCaroussel;
 }
@@ -189,8 +189,8 @@ static void load_data (CairoDesklet *pDesklet)
 
 static void free_data (CairoDesklet *pDesklet)
 {
-	cairo_dock_remove_notification_func_on_object (pDesklet, NOTIFICATION_UPDATE, (CairoDockNotificationFunc) on_update_desklet, NULL);
-	cairo_dock_remove_notification_func_on_object (CAIRO_CONTAINER (pDesklet), NOTIFICATION_MOUSE_MOVED, (CairoDockNotificationFunc) on_mouse_move, NULL);
+	gldi_object_remove_notification (pDesklet, NOTIFICATION_UPDATE, (GldiNotificationFunc) on_update_desklet, NULL);
+	gldi_object_remove_notification (CAIRO_CONTAINER (pDesklet), NOTIFICATION_MOUSE_MOVED, (GldiNotificationFunc) on_mouse_move, NULL);
 	
 	CDCarousselParameters *pCaroussel = (CDCarousselParameters *) pDesklet->pRendererData;
 	if (pCaroussel == NULL)

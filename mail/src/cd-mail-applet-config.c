@@ -60,7 +60,7 @@ static struct storage_type_def storage_tab[] = {
 
 const guint MAIL_NB_STORAGE_TYPES = sizeof(storage_tab) / sizeof(struct storage_type_def);
 
-static void _get_mail_accounts (GKeyFile *pKeyFile, CairoDockModuleInstance *myApplet)
+static void _get_mail_accounts (GKeyFile *pKeyFile, GldiModuleInstance *myApplet)
 {
 	//\_______________ On remet a zero les comptes mail.
 	if( myData.pMailAccounts )
@@ -193,7 +193,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 
 	if( myData.pMessagesDialog != NULL ) // make sure the dialog is closed
 	{
-		cairo_dock_dialog_unreference (myData.pMessagesDialog);
+		gldi_object_unref (GLDI_OBJECT(myData.pMessagesDialog));
 		myData.pMessagesDialog = NULL;
 	}
 		
@@ -218,7 +218,7 @@ CD_APPLET_RESET_DATA_END
 
 
 
-static void _cd_mail_add_new_account (GtkComboBox *pMailTypesCombo, GtkEntry *pMailNameEntry, CairoDockModuleInstance *myApplet)
+static void _cd_mail_add_new_account (GtkComboBox *pMailTypesCombo, GtkEntry *pMailNameEntry, GldiModuleInstance *myApplet)
 {
 	cd_debug ("");
 	
@@ -227,7 +227,7 @@ static void _cd_mail_add_new_account (GtkComboBox *pMailTypesCombo, GtkEntry *pM
 	if( iChosenAccountType >= MAIL_NB_STORAGE_TYPES )
 	{
 		cd_warning ("while trying get chosen account type (%d) : out of range.", iChosenAccountType);
-		cairo_dock_show_temporary_dialog_with_icon (D_("Please choose an account type."), myIcon, myContainer, 3000, "same icon");
+		gldi_dialog_show_temporary_with_icon (D_("Please choose an account type."), myIcon, myContainer, 3000, "same icon");
 		return ;
 	}
 	
@@ -235,7 +235,7 @@ static void _cd_mail_add_new_account (GtkComboBox *pMailTypesCombo, GtkEntry *pM
 	if( !pMailNameEntry || *pMailAccountName == '\0' || strcmp (pMailAccountName, D_("New account's name")) == 0)
 	{
 		cd_warning ("while trying get name of account to create : empty name");
-		cairo_dock_show_temporary_dialog_with_icon (D_("Please enter a name for this account."), myIcon, myContainer, 3000, "same icon");
+		gldi_dialog_show_temporary_with_icon (D_("Please enter a name for this account."), myIcon, myContainer, 3000, "same icon");
 		return ;
 	}
 	
@@ -245,7 +245,7 @@ static void _cd_mail_add_new_account (GtkComboBox *pMailTypesCombo, GtkEntry *pM
 	
 	if (g_key_file_has_group (pKeyFile, pMailAccountName))
 	{
-		cairo_dock_show_temporary_dialog_with_icon (D_("This account already exists.\nPlease choose another name for the new account."), myIcon, myContainer, 5000, "same icon");
+		gldi_dialog_show_temporary_with_icon (D_("This account already exists.\nPlease choose another name for the new account."), myIcon, myContainer, 5000, "same icon");
 		g_key_file_free (pKeyFile);
 		return ;
 	}
@@ -267,19 +267,19 @@ static void _cd_mail_add_new_account (GtkComboBox *pMailTypesCombo, GtkEntry *pM
 	
 	g_key_file_free (pKeyFile);
 }
-static void _cd_mail_activate_account (GtkEntry *pEntry, CairoDockModuleInstance *myApplet)
+static void _cd_mail_activate_account (GtkEntry *pEntry, GldiModuleInstance *myApplet)
 {
 	GtkComboBox *pMailTypesCombo = GTK_COMBO_BOX(g_object_get_data(G_OBJECT (pEntry), "MailTypesCombo"));
 	_cd_mail_add_new_account (pMailTypesCombo, pEntry, myApplet);
 }
-static void _cd_mail_add_account (GtkButton *pButton, CairoDockModuleInstance *myApplet)
+static void _cd_mail_add_account (GtkButton *pButton, GldiModuleInstance *myApplet)
 {
 	GtkComboBox *pMailTypesCombo = GTK_COMBO_BOX(g_object_get_data(G_OBJECT (pButton), "MailTypesCombo"));
 	GtkEntry *pMailNameEntry = GTK_ENTRY(g_object_get_data(G_OBJECT (pButton), "MailNameEntry"));
 	_cd_mail_add_new_account (pMailTypesCombo, pMailNameEntry, myApplet);
 }
 
-static void _cd_mail_remove_account (GtkButton *pButton, CairoDockModuleInstance *myApplet)
+static void _cd_mail_remove_account (GtkButton *pButton, GldiModuleInstance *myApplet)
 {
 	cd_debug ("");
 	//\____________ On supprime le groupe correspondant dans le fichier de conf.
@@ -315,7 +315,7 @@ static void _cd_mail_remove_account (GtkButton *pButton, CairoDockModuleInstance
 			cd_debug ("mail : found old account");
 			CDMailAccount *pRemovedMailAccount = g_ptr_array_remove_index (myData.pMailAccounts, i); // decale tout de 1 vers la gauche.
 			Icon *pIcon = pRemovedMailAccount->icon;
-			CairoContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
+			GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 			if (myDock)
 				cairo_dock_remove_one_icon_from_dock (CAIRO_DOCK (pContainer), pIcon);
 			else
@@ -347,7 +347,7 @@ static void _cd_mail_remove_account (GtkButton *pButton, CairoDockModuleInstance
 	g_strfreev (pGroupList);
 }
 
-void cd_mail_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pKeyFile, GSList *pWidgetList)
+void cd_mail_load_custom_widget (GldiModuleInstance *myApplet, GKeyFile* pKeyFile, GSList *pWidgetList)
 {
 	cd_debug ("");
 	//\____________ On recupere notre widget personnalise (un simple container vide qu'on va remplir avec nos trucs).
@@ -460,7 +460,7 @@ void cd_mail_load_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile* pK
 }
 
 
-void cd_mail_save_custom_widget (CairoDockModuleInstance *myApplet, GKeyFile *pKeyFile, GSList *pWidgetList)
+void cd_mail_save_custom_widget (GldiModuleInstance *myApplet, GKeyFile *pKeyFile, GSList *pWidgetList)
 {
 	cd_debug ("%s (%s)", __func__, myIcon->cName);
 	// ca c'est si on avait des valeurs a recuperer dans nos widgets personnalises, et a stocker dans le pKeyFile. mais ici ils sont simple, et donc tous pris en charge par le dock.
