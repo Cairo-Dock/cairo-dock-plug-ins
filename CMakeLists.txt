@@ -47,7 +47,10 @@ endif( WIN32 )
 set (PACKAGE ${CMAKE_PROJECT_NAME})
 set (GETTEXT_PACKAGE ${PACKAGE})
 
-pkg_check_modules ("GLDI" REQUIRED "gldi") # we need GLDI which contains most global var.
+if ("${PACKAGEMENT}" STREQUAL "")
+	# we need GLDI which contains most global var: check it now to avoid many errors with regex
+	pkg_check_modules (GLDI REQUIRED gldi=${VERSION})
+endif ()
 
 # get plug-ins install dir
 execute_process(
