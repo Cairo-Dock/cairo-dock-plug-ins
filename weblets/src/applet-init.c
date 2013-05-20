@@ -107,7 +107,7 @@ CD_APPLET_RELOAD_BEGIN
 			{
 				gldi_desklet_steal_interactive_widget (CAIRO_DESKLET (CD_APPLET_MY_OLD_CONTAINER));
 				myData.dialog =  cd_weblets_build_dialog(myApplet);
-				g_object_unref (myData.tab);  // le 'steal' a rajoute une reference.
+				g_object_unref (myData.pGtkMozEmbed);  // le 'steal' a rajoute une reference.
 				gldi_dialog_hide (myData.dialog);
 			}
 		}

@@ -45,7 +45,7 @@ CD_APPLET_ON_CLICK_BEGIN
 		if (myData.dialog == NULL)
 			weblet_build_and_show (myApplet);
 		else
-			cairo_dock_unhide_dialog (myData.dialog);
+			gldi_dialog_unhide (myData.dialog);
 	}
 CD_APPLET_ON_CLICK_END
 
@@ -53,7 +53,7 @@ CD_APPLET_ON_CLICK_END
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	if (myDock && myData.dialog != NULL)
 	{
-		cairo_dock_hide_dialog (myData.dialog);
+		gldi_dialog_hide (myData.dialog);
 	}
 CD_APPLET_ON_MIDDLE_CLICK_END
 
