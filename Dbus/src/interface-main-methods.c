@@ -102,7 +102,7 @@ gboolean cd_dbus_main_show_dock (dbusMainObject *pDbusCallback, gint iVisibiliy,
 	if (bShow)
 		cairo_dock_stop_quick_hide ();
 	
-	cairo_dock_foreach_docks ((GHFunc) _show_hide_one_dock, GINT_TO_POINTER (bShow));
+	gldi_docks_foreach ((GHFunc) _show_hide_one_dock, GINT_TO_POINTER (bShow));
 	
 	if (! bShow)
 		cairo_dock_quick_hide_all_docks ();
@@ -432,12 +432,12 @@ gboolean cd_dbus_main_get_container_properties (dbusMainObject *pDbusCallback, c
 	
 	if (cName == NULL)
 	{
-		cairo_dock_foreach_docks ((GHFunc)_insert_dock_props, pTab);
+		gldi_docks_foreach ((GHFunc)_insert_dock_props, pTab);
 		gldi_desklets_foreach ((GldiDeskletForeachFunc) _insert_desklet_props, pTab);
 	}
 	else
 	{
-		CairoDock *pDock = cairo_dock_search_dock_from_name (cName);
+		CairoDock *pDock = gldi_dock_get (cName);
 		if (pDock != NULL)
 		{
 			_insert_dock_props (cName, pDock, pTab);
@@ -562,7 +562,7 @@ gboolean cd_dbus_main_add_launcher (dbusMainObject *pDbusCallback, const gchar *
 	if (cDockName == NULL)
 		cDockName = CAIRO_DOCK_MAIN_DOCK_NAME;
 	
-	CairoDock * pParentDock = cairo_dock_search_dock_from_name (cDockName);
+	CairoDock * pParentDock = gldi_dock_get (cDockName);
 	if (pParentDock == NULL)
 	{
 		cd_warning ("dock %s does not exist", cDockName);
@@ -668,7 +668,7 @@ gboolean cd_dbus_main_add_temporary_icon (dbusMainObject *pDbusCallback, GHashTa
 		cClass = g_value_get_string (v);  // "none" to skip taskbar
 	}
 	
-	CairoDock *pParentDock = cairo_dock_search_dock_from_name (cParentDockName);
+	CairoDock *pParentDock = gldi_dock_get (cParentDockName);
 	if (pParentDock == NULL)
 	{
 		cd_warning ("dock %s does not exist", cParentDockName);
@@ -890,7 +890,7 @@ gboolean cd_dbus_main_remove_icon (dbusMainObject *pDbusCallback, gchar *cIconQu
 		}
 		else if (CAIRO_DOCK_IS_APPLET (pIcon))  // case of an applet inside a dock or a desklet.
 		{
-			gldi_module_remove_instance (pIcon->pModuleInstance);
+			gldi_module_delete_instance (pIcon->pModuleInstance);
 		}  // don't remove appli icons, as they would anyway be re-created automatically by the applications-manager.
 	}
 	
@@ -1357,7 +1357,7 @@ gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pPropertie
 				cDockName = g_value_get_string (v);
 			if (cDockName == NULL)
 				cDockName = CAIRO_DOCK_MAIN_DOCK_NAME;
-			CairoDock *pParentDock = cairo_dock_search_dock_from_name (cDockName);
+			CairoDock *pParentDock = gldi_dock_get (cDockName);
 			if (pParentDock == NULL)
 			{
 				cd_warning ("dock %s does not exist", cDockName);
@@ -1485,7 +1485,7 @@ gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pPropertie
 		{
 			if (strcmp (cType, CD_TYPE_DOCK) == 0)
 			{
-				gchar *cDockName = cairo_dock_add_root_dock_config ();
+				gchar *cDockName = gldi_dock_add_conf_file ();
 				CairoDock *pDock = gldi_dock_new (cDockName);
 				if (!pDock)
 					return FALSE;
@@ -1669,7 +1669,7 @@ gboolean cd_dbus_main_remove (dbusMainObject *pDbusCallback, gchar *cQuery, GErr
 				if (CAIRO_DOCK_ICON_TYPE_IS_CONTAINER (pIcon)
 				&& pIcon->pSubDock != NULL)  // remove the sub-dock's content as well
 				{
-					cairo_dock_remove_icons_from_dock (pIcon->pSubDock, NULL, NULL);
+					cairo_dock_remove_icons_from_dock (pIcon->pSubDock, NULL);
 					gldi_object_unref (GLDI_OBJECT(pIcon->pSubDock));
 					pIcon->pSubDock = NULL;
 				}
@@ -1685,7 +1685,7 @@ gboolean cd_dbus_main_remove (dbusMainObject *pDbusCallback, gchar *cQuery, GErr
 			if (CAIRO_DOCK_IS_DOCK (obj))
 			{
 				CairoDock *pDock = CAIRO_DOCK (obj);
-				cairo_dock_remove_icons_from_dock (pDock, NULL, NULL);
+				cairo_dock_remove_icons_from_dock (pDock, NULL);
 				
 				gldi_object_unref (GLDI_OBJECT(pDock));
 			}
@@ -1694,7 +1694,7 @@ gboolean cd_dbus_main_remove (dbusMainObject *pDbusCallback, gchar *cQuery, GErr
 				CairoDesklet *pDesklet = CAIRO_DESKLET (obj);
 				Icon *pIcon = pDesklet->pIcon;
 				g_return_val_if_fail (CAIRO_DOCK_IS_APPLET (pIcon), FALSE);
-				gldi_module_remove_instance (pIcon->pModuleInstance);
+				gldi_module_delete_instance (pIcon->pModuleInstance);
 			}
 		}
 		else if (CAIRO_DOCK_IS_MODULE (obj))
@@ -1710,7 +1710,7 @@ gboolean cd_dbus_main_remove (dbusMainObject *pDbusCallback, gchar *cQuery, GErr
 		{
 			GldiModuleInstance *pModuleInstance = (GldiModuleInstance *)obj;
 			g_print ("remove instance %s\n", pModuleInstance->cConfFilePath);
-			gldi_module_remove_instance (pModuleInstance);
+			gldi_module_delete_instance (pModuleInstance);
 		}
 	}
 	g_list_free (pObjects);
@@ -1998,7 +1998,7 @@ static void _add_dock_properties (CairoDock *pDock, GPtrArray *pTab)
 	g_value_set_string (v, CD_TYPE_DOCK);
 	g_hash_table_insert (h, g_strdup ("type"), v);
 	
-	const gchar *cDockName = cairo_dock_search_dock_name (pDock);
+	const gchar *cDockName = gldi_dock_get_name (pDock);
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, cDockName);

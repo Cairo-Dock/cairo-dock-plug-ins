@@ -32,7 +32,11 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.fMinValueToAnim = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "sensitivity", 0.25) / 3; // PER 3
 	myConfig.iNbAnimations = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb animations", 1);
 	myConfig.iLoopTime = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "refresh", 250);
-	myConfig.pDock = cairo_dock_search_dock_from_name (CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "dock", "_MainDock_"));
+	gchar *cDockName = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "dock", CAIRO_DOCK_MAIN_DOCK_NAME);
+	myConfig.pDock = gldi_dock_get (cDockName);
+	if (myConfig.pDock == NULL)
+		myConfig.pDock = g_pMainDock;
+	g_free (cDockName);
 	myConfig.bStopAnimations = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "stop animations", FALSE);
 	myConfig.bLaunchAtStartup = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "startup", FALSE);
 	myConfig.bFree = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "free", FALSE);

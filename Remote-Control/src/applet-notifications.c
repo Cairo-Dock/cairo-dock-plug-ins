@@ -343,7 +343,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 		if (iModifierType & GDK_CONTROL_MASK)  // changement de dock principal
 		{
 			gpointer data[4] = {myData.pCurrentDock, NULL, GINT_TO_POINTER (FALSE), NULL};
-			cairo_dock_foreach_root_docks ((GFunc) _find_next_dock, data);
+			gldi_docks_foreach_root ((GFunc) _find_next_dock, data);
 			CairoDock *pNextDock = data[1];
 			if (pNextDock == NULL)
 				pNextDock = data[3];
@@ -479,7 +479,7 @@ gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow)
 	
 	// check if a dock has the focus (the user has switched to either another dock, or another window)
 	Window data[2] = {*XActiveWindow, 0};
-	cairo_dock_foreach_docks ((GHFunc) _check_dock_is_active, data);
+	gldi_docks_foreach ((GHFunc) _check_dock_is_active, data);
 	
 	if (data[1] == 0)  // no dock is active, so the current dock has lost the focus.
 	{

@@ -92,7 +92,7 @@ void cd_do_open_session (void)
 	myData.pCurrentDock = NULL;
 	myData.pCurrentIcon =  NULL;
 	
-	CairoDock *pDock = cairo_dock_search_dock_from_name (myConfig.cDockName);
+	CairoDock *pDock = gldi_dock_get (myConfig.cDockName);
 	if (pDock == NULL)
 		pDock = g_pMainDock;
 	Icon *pIcon = NULL;

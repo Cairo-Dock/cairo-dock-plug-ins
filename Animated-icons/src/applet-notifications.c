@@ -323,7 +323,8 @@ gboolean cd_animations_unfold_subdock (gpointer pUserData, Icon *pIcon)  // call
 	if (pIcon == NULL || pIcon->iSubdockViewType != 3)
 		return GLDI_NOTIFICATION_LET_PASS;
 	
-	CairoDock *pDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
+	///CairoDock *pDock = cairo_dock_search_dock_from_name (pIcon->cParentDockName);
+	CairoDock *pDock = CAIRO_DOCK (cairo_dock_get_icon_container (pIcon));
 	if (pDock != NULL)
 	{
 		_set_new_data (pIcon);

@@ -145,7 +145,7 @@ gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow)
 	if (myData.sCurrentText == NULL || XActiveWindow == NULL)
 		return GLDI_NOTIFICATION_LET_PASS;
 	Window data[2] = {*XActiveWindow, 0};
-	cairo_dock_foreach_docks ((GHFunc) _check_dock_is_active, data);
+	gldi_docks_foreach ((GHFunc) _check_dock_is_active, data);
 	
 	if (data[1] == 0)
 		gtk_window_present (GTK_WINDOW (g_pMainDock->container.pWidget));

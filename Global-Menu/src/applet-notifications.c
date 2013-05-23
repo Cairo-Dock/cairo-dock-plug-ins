@@ -188,7 +188,7 @@ gboolean cd_app_menu_on_active_window_changed (GldiModuleInstance *myApplet, Gld
 	if (actor)
 	{
 		Window data[2] = {cairo_dock_get_active_xwindow(), 0};
-		cairo_dock_foreach_docks ((GHFunc) _check_dock_is_active, data);
+		gldi_docks_foreach ((GHFunc) _check_dock_is_active, data);
 		if (data[1])  // not a dock, so let's take it.
 			actor = NULL;
 	}

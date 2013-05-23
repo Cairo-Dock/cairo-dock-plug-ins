@@ -97,7 +97,7 @@ CD_APPLET_STOP_BEGIN
 		NOTIFICATION_DESTROY,
 		(GldiNotificationFunc) cd_motion_free_data, NULL);
 	
-	cairo_dock_foreach_docks ((GHFunc) _free_data_on_dock, NULL);
+	gldi_docks_foreach ((GHFunc) _free_data_on_dock, NULL);
 CD_APPLET_STOP_END
 
 

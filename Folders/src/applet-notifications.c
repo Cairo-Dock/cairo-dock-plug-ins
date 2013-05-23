@@ -544,7 +544,7 @@ gboolean cd_folders_on_drop_data (gpointer data, const gchar *cReceivedData, Ico
 		data->cReceivedData = g_strdup (cReceivedData);
 		data->fOrder = fOrder;
 		if (CAIRO_DOCK_IS_DOCK (pContainer))
-			data->cDockName = g_strdup (cairo_dock_search_dock_name (CAIRO_DOCK (pContainer)));
+			data->cDockName = g_strdup (gldi_dock_get_name (CAIRO_DOCK (pContainer)));
 		gldi_dialog_show (D_("Do you want to import the content of the folder too?"),
 			pIcon, pContainer,
 			0,

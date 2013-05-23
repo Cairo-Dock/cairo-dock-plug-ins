@@ -94,7 +94,7 @@ CD_APPLET_STOP_BEGIN
 	gldi_object_remove_notification (&myDocksMgr, NOTIFICATION_DESTROY, (GldiNotificationFunc) cd_show_mouse_free_data, NULL);
 	gldi_object_remove_notification (&myDeskletsMgr, NOTIFICATION_DESTROY, (GldiNotificationFunc) cd_show_mouse_free_data, NULL);
 	
-	cairo_dock_foreach_docks ((GHFunc)_free_dock_data, NULL);
+	gldi_docks_foreach ((GHFunc)_free_dock_data, NULL);
 	gldi_desklets_foreach (_free_desklet_data, NULL);
 CD_APPLET_STOP_END
 

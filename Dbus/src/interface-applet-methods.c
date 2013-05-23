@@ -62,6 +62,22 @@ static inline gboolean _get_icon_and_container_from_id (dbusApplet *pDbusApplet,
 	return TRUE;
 }
 
+static inline int _get_container_type (GldiContainer *pContainer)
+{
+	int iType = -1;
+	
+	if (CAIRO_DOCK_IS_DOCK (GLDI_OBJECT(pContainer)))
+		return 0;
+	if (CAIRO_DOCK_IS_DESKLET (pContainer))
+		return 1;
+	if (CAIRO_DOCK_IS_DIALOG (pContainer))
+		return 2;
+	if (CAIRO_DOCK_IS_FLYING_CONTAINER (pContainer))
+		return 3;
+	
+	return iType;
+}
+
 
 static gboolean _applet_set_quick_info (dbusApplet *pDbusApplet, const gchar *cQuickInfo, const gchar *cIconID, GError **error)
 {
@@ -1271,7 +1287,8 @@ gboolean cd_dbus_applet_get (dbusApplet *pDbusApplet, const gchar *cProperty, GV
 	else if (strcmp (cProperty, "container") == 0)
 	{
 		g_value_init (v, G_TYPE_UINT);
-		g_value_set_uint (v, pContainer->iType);
+		int iType = _get_container_type (pContainer);
+		g_value_set_uint (v, iType);
 	}
 	else if (strcmp (cProperty, "width") == 0)  // this is the dimension of the icon when it's hovered.
 	{
@@ -1359,7 +1376,8 @@ gboolean cd_dbus_applet_get_all (dbusApplet *pDbusApplet, GHashTable **hProperti
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_UINT);
-	g_value_set_uint (v, pContainer->iType);
+	int iType = _get_container_type (pContainer);
+	g_value_set_uint (v, iType);
 	g_hash_table_insert (h, g_strdup ("container"), v);
 	
 	v = g_new0 (GValue, 1);

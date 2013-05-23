@@ -52,7 +52,7 @@ static void _reset_data_on_one_dock (const gchar *cDockName, CairoDock *pDock, g
 	CD_APPLET_SET_MY_DOCK_DATA (pDock, NULL);
 }
 CD_APPLET_RESET_DATA_BEGIN
-	cairo_dock_foreach_docks ((GHFunc) _reset_data_on_one_dock, NULL);
+	gldi_docks_foreach ((GHFunc) _reset_data_on_one_dock, NULL);
 	
 	cd_drop_indicator_free_buffers ();
 	

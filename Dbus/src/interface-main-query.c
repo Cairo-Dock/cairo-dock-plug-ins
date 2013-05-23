@@ -284,7 +284,7 @@ static GList *_find_matching_icons_for_key (const gchar *cKey, const gchar *cVal
 	
 	if (query.iPosition >= 0)
 	{
-		cairo_dock_foreach_docks ((GHFunc) _get_icon_at_position_in_dock, &query);
+		gldi_docks_foreach ((GHFunc) _get_icon_at_position_in_dock, &query);
 		gldi_desklets_foreach ((GldiDeskletForeachFunc) _get_icon_at_position_in_desklet, &query);
 	}
 	else
@@ -418,7 +418,7 @@ static GList *_find_matching_containers_for_key (const gchar *cKey, const gchar 
 	gboolean bValidQuery = _prepare_query (&query, cKey, cValue);
 	g_return_val_if_fail (bValidQuery, NULL);
 	
-	cairo_dock_foreach_docks ((GHFunc) _check_dock_matching, &query);
+	gldi_docks_foreach ((GHFunc) _check_dock_matching, &query);
 	gldi_desklets_foreach ((GldiDeskletForeachFunc) _check_desklet_matching, &query);
 	
 	return query.pMatchingIcons;
