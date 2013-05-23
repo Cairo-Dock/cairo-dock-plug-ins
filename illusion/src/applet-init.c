@@ -46,16 +46,16 @@ CD_APPLET_INIT_BEGIN
 	
 	gldi_object_register_notification (&myDocksMgr,
 		NOTIFICATION_REMOVE_ICON,
-		(GldiNotificationFunc) cd_illusion_on_remove_icon,
+		(GldiNotificationFunc) cd_illusion_on_remove_insert_icon,
 		GLDI_RUN_FIRST, NULL);
 	gldi_object_register_notification (&myDocksMgr,
 		NOTIFICATION_INSERT_ICON,
-		(GldiNotificationFunc) cd_illusion_on_remove_icon,
+		(GldiNotificationFunc) cd_illusion_on_remove_insert_icon,
 		GLDI_RUN_FIRST, NULL);
 	gldi_object_register_notification (&myIconsMgr,
 		NOTIFICATION_UPDATE_ICON,
 		(GldiNotificationFunc) cd_illusion_update_icon ,
-		GLDI_RUN_FIRST, NULL);
+		GLDI_RUN_AFTER, NULL);
 	gldi_object_register_notification (&myIconsMgr,
 		NOTIFICATION_RENDER_ICON,
 		(GldiNotificationFunc) cd_illusion_render_icon,
@@ -74,10 +74,10 @@ static void _free_data_on_icon (Icon *pIcon, CairoDock *pDock, gpointer data)
 CD_APPLET_STOP_BEGIN
 	gldi_object_remove_notification (&myDocksMgr,
 		NOTIFICATION_REMOVE_ICON,
-		(GldiNotificationFunc) cd_illusion_on_remove_icon, NULL);
+		(GldiNotificationFunc) cd_illusion_on_remove_insert_icon, NULL);
 	gldi_object_remove_notification (&myDocksMgr,
 		NOTIFICATION_INSERT_ICON,
-		(GldiNotificationFunc) cd_illusion_on_remove_icon, NULL);
+		(GldiNotificationFunc) cd_illusion_on_remove_insert_icon, NULL);
 	gldi_object_remove_notification (&myIconsMgr,
 		NOTIFICATION_UPDATE_ICON,
 		(GldiNotificationFunc) cd_illusion_update_icon, NULL);

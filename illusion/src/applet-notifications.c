@@ -31,10 +31,13 @@
 #include "applet-notifications.h"
 
 
-gboolean cd_illusion_on_remove_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock)
+gboolean cd_illusion_on_remove_insert_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock)
 {
 	if (fabs (pIcon->fInsertRemoveFactor) < .1)  // useless or not needed animation.
+	{
+		cd_illusion_free_data (pUserData, pIcon);  // be sure we won't handle the animation, in case the previous appearance animation was still here
 		return GLDI_NOTIFICATION_LET_PASS;
+	}
 	if (! CAIRO_CONTAINER_IS_OPENGL (CAIRO_CONTAINER (pDock)))  // gere le cas ou pDock est NULL.
 		return GLDI_NOTIFICATION_LET_PASS;
 	
@@ -100,13 +103,11 @@ gboolean cd_illusion_on_remove_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 		if (bSartAnimation)
 		{
 			pData->iCurrentEffect = iEffect;
-			cairo_dock_mark_icon_as_inserting_removing (pIcon);
 		}
 	}
 	else  // si on a un pData, c'est qu'on etait deja en pleine animation, on garde la meme, qui partira en sens inverse a partir du temps actuel.
 	{
 		pData->sens = (pIcon->fInsertRemoveFactor > 0 ? 1 : -1);
-		cairo_dock_mark_icon_as_inserting_removing (pIcon);
 	}
 	
 	return GLDI_NOTIFICATION_LET_PASS;
@@ -187,13 +188,14 @@ gboolean cd_illusion_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *pD
 		break ;
 	}	
 	
-	if ((pData->sens == 1 && pData->fTime > pData->fTimeLimitPercent * pData->iEffectDuration) ||
-		(pData->sens == -1 && pIcon->fInsertRemoveFactor < -.05))
-		cairo_dock_update_removing_inserting_icon_size_default (pIcon);
+	if (pData->sens == 1 && pData->fTime < pData->fTimeLimitPercent * pData->iEffectDuration)  // if the icon is disappearing, we keep it at max size until x% of the animation is complete, so that we can see the animation (that's why we register after the core).
+	{
+		pIcon->fInsertRemoveFactor = 1.;
+		*bContinueAnimation = TRUE;
+	}
 	
-	if ((pData->sens == 1 && pData->fTime < pData->iEffectDuration) ||
-		(pData->sens == -1 && pData->fTime > 0) ||
-		fabs (pIcon->fInsertRemoveFactor) > .05)
+	if ((pData->sens == 1 && pData->fTime < pData->iEffectDuration)
+	|| (pData->sens == -1 && pData->fTime > 0))  // the animation is not yet finished
 	{
 		*bContinueAnimation = TRUE;
 	}
