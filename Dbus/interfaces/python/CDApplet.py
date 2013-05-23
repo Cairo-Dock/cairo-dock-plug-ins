@@ -40,7 +40,11 @@ try:
 except:
 	import configparser # python 3
 
-gobject.threads_init()				          # Enabling threading
+# Enabling threading support (only for GLib < 2.32)
+if glib.glib_version[0] < 2 or (glib.glib_version[0] == 2 and glib.glib_version[1] < 32):
+	gobject.threads_init()
+
+# enable dbus thread support
 dbus.mainloop.glib.threads_init()
 
 DBusGMainLoop(set_as_default=True)
