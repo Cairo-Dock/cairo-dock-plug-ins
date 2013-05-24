@@ -3076,7 +3076,7 @@ msgstr ""
 #: ../shortcuts/src/applet-notifications.c:43
 #: ../shortcuts/src/applet-notifications.c:74
 #, c-format
-msgid "failed to mount %s"
+msgid "Failed to mount %s"
 msgstr "掛載 %s 失敗"
 
 #: ../shortcuts/src/applet-notifications.c:43

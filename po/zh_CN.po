@@ -3000,7 +3000,7 @@ msgstr ""
 #: ../shortcuts/src/applet-notifications.c:43
 #: ../shortcuts/src/applet-notifications.c:74
 #, c-format
-msgid "failed to mount %s"
+msgid "Failed to mount %s"
 msgstr "%s 挂载失败"
 
 #: ../shortcuts/src/applet-notifications.c:43

@@ -40,7 +40,7 @@ static void _on_volume_mounted (gboolean bMounting, gboolean bSuccess, const gch
 		
 		gldi_dialogs_remove_on_icon (pIcon);
 		gldi_dialog_show_temporary_with_icon_printf (
-			bMounting ? _("failed to mount %s") : _("Failed to unmount %s"),
+			bMounting ? D_("Failed to mount %s") : D_("Failed to unmount %s"),
 			pIcon, pContainer,
 			4000,
 			"same icon",  // petit risque de n'avoir pas encore d'image a afficher, pas bien grave.

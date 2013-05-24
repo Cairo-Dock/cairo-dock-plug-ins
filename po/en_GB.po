@@ -3108,8 +3108,8 @@ msgstr ""
 #: ../shortcuts/src/applet-notifications.c:43
 #: ../shortcuts/src/applet-notifications.c:74
 #, c-format
-msgid "failed to mount %s"
-msgstr "failed to mount %s"
+msgid "Failed to mount %s"
+msgstr "Failed to mount %s"
 
 #: ../shortcuts/src/applet-notifications.c:43
 #: ../shortcuts/src/applet-notifications.c:74

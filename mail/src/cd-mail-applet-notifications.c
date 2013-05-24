@@ -340,7 +340,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 			cd_debug ( "Displaying messages" );
 			if( pMailAccount->pUnseenMessageList != NULL )
 			{
-				myData.pMessagesDialog = gldi_dialog_show (_("Mail"),
+				myData.pMessagesDialog = gldi_dialog_show (D_("Mail"),
 					myIcon, myContainer,
 					0,
 					"same icon",
