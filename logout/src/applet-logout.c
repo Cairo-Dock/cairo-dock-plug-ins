@@ -474,10 +474,10 @@ static gchar * _get_reboot_message (void)
 
 // it seems the file only contains a timestamp
 /* static const gchar * _get_logout_message (void) {}*/
-#define _get_logout_message() _("Your session needs to be restarted in order to update new configuration files.")
+// #define _get_logout_message() D_("Your session needs to be restarted in order to update new configuration files.")
 
 // yes, it's not a good idea to reboot the computer before the end of the update ;)
-#define CD_LOGOUT_UPDATE_MESSAGE _("Please do that at the end of the update.")
+#define CD_LOGOUT_UPDATE_MESSAGE D_("Please do that at the end of the update.")
 
 static void _notify_action_required (void)
 {
@@ -485,7 +485,7 @@ static void _notify_action_required (void)
 	gldi_dialogs_remove_on_icon (myIcon);
 
 	gchar *cName;
-	if (/*myData.bLogoutNeeded && */myData.bRebootNeeded)
+	/*if (/*myData.bLogoutNeeded && myData.bRebootNeeded)
 	{
 		gchar *cTmpName = g_strdup (myIcon->cName); // Icon's name contains the message for the reboot and then for the logout
 		gchar *cTmpPtr = g_strrstr (cTmpName, CD_LOGOUT_MESSAGE_SEPARATOR);
@@ -494,7 +494,7 @@ static void _notify_action_required (void)
 		cName = g_strdup_printf ("%s\n%s", cTmpName, CD_LOGOUT_UPDATE_MESSAGE);
 		g_free (cTmpName);
 	}
-	else
+	else*/
 		cName = g_strdup_printf ("%s\n%s", myIcon->cName, CD_LOGOUT_UPDATE_MESSAGE);
 
 	gldi_dialog_show_temporary_with_icon (cName, myIcon, myContainer, 15e3, "same icon");
