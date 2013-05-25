@@ -132,7 +132,6 @@ static gboolean _animate_the_dock (gpointer data)
 			{
 				//cd_debug ("Impulse: animation on this icon=%s", pIcon->cName);
 				gldi_icon_request_animation (pIcon,
-					CAIRO_CONTAINER (myData.pSharedMemory->pDock),
 					myData.pSharedMemory->cIconAnimation,
 					myData.pSharedMemory->iNbAnimations);
 				bHasNotBeenAnimated = FALSE;
