@@ -221,7 +221,11 @@ static void show_note (const gchar *cNoteID)
 	g_object_ref (pTextWidget);
 	GtkWidget *pScrolledWindow = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (pScrolledWindow), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+	#if GTK_CHECK_VERSION (3, 8, 0)
+	gtk_container_add (GTK_CONTAINER (pScrolledWindow), pTextWidget);
+	#else
 	gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (pScrolledWindow), pTextWidget);
+	#endif
 	//g_object_set (pScrolledWindow, "width-request", 600, "height-request", 250, NULL);
 	gtk_box_pack_start (GTK_BOX (vbox),
 		pScrolledWindow,

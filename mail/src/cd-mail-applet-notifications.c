@@ -266,7 +266,11 @@ GtkWidget *cd_mail_messages_container_new(CDMailAccount *pMailAccount)
 	myData.pTextBuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(pTextView));
 
 	GtkWidget* pScrolledWindow = gtk_scrolled_window_new(NULL, NULL);
-	gtk_scrolled_window_add_with_viewport( GTK_SCROLLED_WINDOW(pScrolledWindow), pTextView );
+	#if GTK_CHECK_VERSION (3, 8, 0)
+	gtk_container_add (GTK_CONTAINER (pScrolledWindow), pTextView);
+	#else
+	gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (pScrolledWindow), pTextView);
+	#endif
 	gtk_scrolled_window_set_policy( GTK_SCROLLED_WINDOW(pScrolledWindow), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC );
 	
 	gtk_box_pack_start(GTK_BOX(vbox), pScrolledWindow, TRUE, TRUE, 0);

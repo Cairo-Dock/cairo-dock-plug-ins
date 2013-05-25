@@ -389,7 +389,11 @@ static void cd_menu_build_entry_model (void)
 	// vertical scrollbar
 	GtkWidget *pScrolledWindow = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (pScrolledWindow), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+	#if GTK_CHECK_VERSION (3, 8, 0)
+	gtk_container_add (GTK_CONTAINER (pScrolledWindow), pTreeView);
+	#else
 	gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (pScrolledWindow), pTreeView);
+	#endif
 	g_object_set (pScrolledWindow, "height-request", myData.iTreeViewCellHeight, NULL);
 	myData.pScrolledWindow = pScrolledWindow;
 	

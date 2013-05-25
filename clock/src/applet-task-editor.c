@@ -462,7 +462,11 @@ void cd_clock_build_task_editor (guint iDay, guint iMonth, guint iYear, GldiModu
 		//\______________ On l'ajoute a la fenetre.
 		GtkWidget *pScrolledWindow = gtk_scrolled_window_new (NULL, NULL);
 		gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (pScrolledWindow), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+		#if GTK_CHECK_VERSION (3, 8, 0)
+		gtk_container_add (GTK_CONTAINER (pScrolledWindow), pTreeView);
+		#else
 		gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (pScrolledWindow), pTreeView);
+		#endif
 		gtk_container_add (GTK_CONTAINER (myData.pTaskWindow), pScrolledWindow);
 		//gtk_box_pack_start (GTK_BOX (pVBox), pScrolledWindow, FALSE, FALSE, 0);
 		

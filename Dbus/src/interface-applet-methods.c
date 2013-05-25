@@ -361,7 +361,11 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 						pOneWidget = gtk_text_view_new ();
 						GtkWidget *pScrolledWindow = gtk_scrolled_window_new (NULL, NULL);
 						gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (pScrolledWindow), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+						#if GTK_CHECK_VERSION (3, 8, 0)
+						gtk_container_add (GTK_CONTAINER (pScrolledWindow), pOneWidget);
+						#else
 						gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (pScrolledWindow), pOneWidget);
+						#endif
 						g_object_set (pScrolledWindow, "width-request", 230, "height-request", 130, NULL);
 						pInteractiveWidget = pScrolledWindow;
 						
