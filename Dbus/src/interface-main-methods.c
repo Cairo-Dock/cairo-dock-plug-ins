@@ -1051,7 +1051,7 @@ gboolean cd_dbus_main_animate (dbusMainObject *pDbusCallback, const gchar *cAnim
 		pContainer = cairo_dock_get_icon_container (pIcon);
 		if (! CAIRO_DOCK_IS_DOCK (pContainer))
 			continue;
-		cairo_dock_request_icon_animation (pIcon, pContainer, cAnimation, iNbRounds);
+		gldi_icon_request_animation (pIcon, cAnimation, iNbRounds);
 	}
 	
 	g_list_free (pList);
@@ -1079,11 +1079,11 @@ gboolean cd_dbus_main_demands_attention (dbusMainObject *pDbusCallback, gboolean
 		
 		if (bStart)
 		{
-			cairo_dock_request_icon_attention (pIcon, CAIRO_DOCK (pContainer), cAnimation, 0);  // 0 <=> non-stop.
+			gldi_icon_request_attention (pIcon, cAnimation, 0);  // 0 <=> non-stop.
 		}
 		else if (pIcon->bIsDemandingAttention)
 		{
-			cairo_dock_stop_icon_attention (pIcon, CAIRO_DOCK (pContainer));
+			gldi_icon_stop_attention (pIcon);
 		}
 	}
 	

@@ -171,7 +171,7 @@ static gboolean _applet_animate (dbusApplet *pDbusApplet, const gchar *cAnimatio
 	
 	if (CAIRO_DOCK_IS_DOCK (pContainer) && cAnimation != NULL)
 	{
-		cairo_dock_request_icon_animation (pIcon, pContainer, cAnimation, iNbRounds);
+		gldi_icon_request_animation (pIcon, cAnimation, iNbRounds);
 		return TRUE;
 	}
 	return FALSE;
@@ -748,12 +748,12 @@ gboolean cd_dbus_applet_demands_attention (dbusApplet *pDbusApplet, gboolean bSt
 	{
 		if (CAIRO_DOCK_IS_DOCK (pContainer))
 		{
-			cairo_dock_request_icon_attention (pIcon, CAIRO_DOCK (pContainer), cAnimation, 0);  // 0 <=> sans arret.
+			gldi_icon_request_attention (pIcon, cAnimation, 0);  // 0 <=> sans arret.
 		}
 	}
 	else if (pIcon->bIsDemandingAttention)
 	{
-		cairo_dock_stop_icon_attention (pIcon, CAIRO_DOCK (pContainer));
+		gldi_icon_stop_attention (pIcon);
 	}
 	return TRUE;
 }

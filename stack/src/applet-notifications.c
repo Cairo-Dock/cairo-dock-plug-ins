@@ -41,7 +41,7 @@ static inline void _launch_item (Icon *pIcon, GldiModuleInstance *myApplet)
 			0,
 			"same icon");
 		
-		cairo_dock_stop_icon_animation (pIcon);
+		gldi_icon_stop_animation (pIcon);
 	}
 }
 //\___________ Define here the action to be taken when the user left-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons.

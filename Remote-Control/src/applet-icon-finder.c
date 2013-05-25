@@ -210,7 +210,7 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 	if (myData.pCurrentIcon != NULL && pIcon != myData.pCurrentIcon)  // on remet au repos l'icone precedemment anime.
 	{
 		myData.bIgnoreIconState = TRUE;
-		cairo_dock_stop_icon_animation (myData.pCurrentIcon);
+		gldi_icon_stop_animation (myData.pCurrentIcon);
 		myData.bIgnoreIconState = FALSE;
 		cairo_dock_redraw_icon (myData.pCurrentIcon, CAIRO_CONTAINER (myData.pCurrentDock));  /// utile ?...
 	}
@@ -232,7 +232,7 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 		}
 		myData.iMouseX = x;
 		myData.iMouseY = y;
-		cairo_dock_request_icon_animation (pIcon, CAIRO_CONTAINER (pDock), myConfig.cIconAnimation, 1e6);  // interrompt l'animation de "mouse over".
+		gldi_icon_request_animation (pIcon, myConfig.cIconAnimation, 1e6);  // interrompt l'animation de "mouse over".
 		cairo_dock_launch_animation (CAIRO_CONTAINER (pDock));
 	}
 	

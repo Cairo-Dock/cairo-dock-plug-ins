@@ -119,7 +119,7 @@ gboolean cd_weather_update_from_data (CDSharedMemory *pSharedMemory)
 	if (myData.bBusy)
 	{
 		myData.bBusy = FALSE;
-		cairo_dock_request_icon_animation (myIcon, myContainer, NULL, 0);
+		CD_APPLET_STOP_ANIMATING_MY_ICON;
 	}
 	
 	//\_______________________ in case an error occured, keep the current data, and just redraw the main icon.

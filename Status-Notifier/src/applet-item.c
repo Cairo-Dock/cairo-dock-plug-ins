@@ -122,18 +122,18 @@ static void _show_item_tooltip (Icon *pIcon, CDStatusNotifierItem *pItem)
 	{
 		case CD_STATUS_PASSIVE :
 			pIcon->fAlpha = 0.5;
-			cairo_dock_stop_icon_attention (pIcon, myIcon->pSubDock);
+			gldi_icon_stop_attention (pIcon, myIcon->pSubDock);
 			cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
 		break;
 		case CD_STATUS_ACTIVE :
 		default:
 			pIcon->fAlpha = 1.;
-			cairo_dock_stop_icon_attention (pIcon, myIcon->pSubDock);
+			gldi_icon_stop_attention (pIcon, myIcon->pSubDock);
 			cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
 		break;
 		case CD_STATUS_NEEDS_ATTENTION:
 			pIcon->fAlpha = 1.;
-			cairo_dock_request_icon_attention (pIcon, myIcon->pSubDock, "rotate", 60);
+			gldi_icon_request_attention (pIcon, "rotate", 60);
 		break;
 	}
 }*/

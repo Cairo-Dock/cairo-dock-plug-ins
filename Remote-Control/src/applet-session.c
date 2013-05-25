@@ -156,7 +156,7 @@ void cd_do_close_session (void)
 	if (myData.pCurrentIcon != NULL)
 	{
 		myData.bIgnoreIconState = TRUE;
-		cairo_dock_stop_icon_animation (myData.pCurrentIcon);
+		gldi_icon_stop_animation (myData.pCurrentIcon);
 		myData.bIgnoreIconState = FALSE;
 		myData.pCurrentIcon = NULL;
 	}

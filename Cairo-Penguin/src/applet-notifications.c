@@ -61,7 +61,7 @@ CD_APPLET_ON_CLICK_PROTO
 		
 		cairo_dock_redraw_container (myContainer);  // si l'animation etait down, la nouvelle a pu nous placer ailleurs.
 		
-		cairo_dock_stop_icon_animation (pClickedIcon);
+		gldi_icon_stop_animation (pClickedIcon);
 CD_APPLET_ON_CLICK_END
 
 

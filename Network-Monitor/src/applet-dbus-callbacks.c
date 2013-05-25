@@ -58,7 +58,7 @@ void onChangeNMProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpoin
 	{
 		cd_debug (" -> changement de l'etat de NM : %d", g_value_get_uint (value));
 		gldi_dialogs_remove_on_icon (myIcon);
-		cairo_dock_stop_icon_animation (myIcon);
+		CD_APPLET_STOP_ANIMATING_MY_ICON;
 		switch (g_value_get_uint (value))
 		{
 			case 0:  // NM_STATE_UNKNOWN
@@ -73,7 +73,7 @@ void onChangeNMProperties (DBusGProxy *dbus_proxy, GHashTable *properties, gpoin
 			
 			case 2:  // NM_STATE_CONNECTING
 				gldi_dialog_show_temporary_with_icon (D_("Connecting..."), myIcon, myContainer, 4000, "same icon");
-				cairo_dock_request_icon_animation (myIcon, myContainer, myConfig.cAnimation, 1e3);
+				CD_APPLET_ANIMATE_MY_ICON (myConfig.cAnimation, 1e3);
 				myData.iPreviousQuality = 0;
 				cd_NetworkMonitor_draw_icon ();
 			break;

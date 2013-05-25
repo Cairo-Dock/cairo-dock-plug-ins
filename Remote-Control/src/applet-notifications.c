@@ -149,10 +149,9 @@ static void _activate_nth_icon (guint iKeyVal, guint iModifierType)  // iKeyVal 
 	if (pNthIcon != NULL)
 	{
 		cd_debug ("click on %s", pNthIcon->cName);
-		///gldi_object_notify (CAIRO_CONTAINER (myData.pCurrentDock), NOTIFICATION_CLICK_ICON, pNthIcon, myData.pCurrentDock, iModifierType);
 		cd_do_simulate_click (CAIRO_CONTAINER (myData.pCurrentDock), pNthIcon, iModifierType);
 
-		cairo_dock_start_icon_animation (pNthIcon, myData.pCurrentDock);
+		gldi_icon_start_animation (pNthIcon);
 		myData.bIgnoreIconState = FALSE;
 		if (pNthIcon == myData.pCurrentIcon)
 			myData.pCurrentIcon = NULL;  // sinon on va interrompre l'animation en fermant la session.
@@ -216,7 +215,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 		if (myData.pCurrentIcon != NULL)
 		{
 			myData.bIgnoreIconState = TRUE;
-			cairo_dock_stop_icon_animation (myData.pCurrentIcon);  // car on va perdre le focus.
+			gldi_icon_stop_animation (myData.pCurrentIcon);  // car on va perdre le focus.
 			myData.bIgnoreIconState = FALSE;
 			
 			GtkWidget *menu = cairo_dock_build_menu (myData.pCurrentIcon, CAIRO_CONTAINER (myData.pCurrentDock));
@@ -255,15 +254,14 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 			if (iModifierType & GDK_MOD1_MASK)  // ALT
 			{
 				myData.bIgnoreIconState = TRUE;
-				cairo_dock_stop_icon_animation (myData.pCurrentIcon);  // car aucune animation ne va la remplacer.
+				gldi_icon_stop_animation (myData.pCurrentIcon);  // car aucune animation ne va la remplacer.
 				myData.bIgnoreIconState = FALSE;
-				///gldi_object_notify (&myContainersMgr, NOTIFICATION_MIDDLE_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock);
 				gldi_object_notify (CAIRO_CONTAINER (myData.pCurrentDock), NOTIFICATION_MIDDLE_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock);
 			}
 			else if (iModifierType & GDK_CONTROL_MASK)  // CTRL
 			{
 				myData.bIgnoreIconState = TRUE;
-				cairo_dock_stop_icon_animation (myData.pCurrentIcon);  // car on va perdre le focus.
+				gldi_icon_stop_animation (myData.pCurrentIcon);  // car on va perdre le focus.
 				myData.bIgnoreIconState = FALSE;
 				
 				GtkWidget *menu = cairo_dock_build_menu (myData.pCurrentIcon, CAIRO_CONTAINER (myData.pCurrentDock));
@@ -271,10 +269,9 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 			}
 			else
 			{
-				///gldi_object_notify (CAIRO_CONTAINER (myData.pCurrentDock), NOTIFICATION_CLICK_ICON, myData.pCurrentIcon, myData.pCurrentDock, iModifierType);
 				cd_do_simulate_click (CAIRO_CONTAINER (myData.pCurrentDock), myData.pCurrentIcon, iModifierType);
 			}
-			cairo_dock_start_icon_animation (myData.pCurrentIcon, myData.pCurrentDock);
+			gldi_icon_start_animation (myData.pCurrentIcon);
 			myData.bIgnoreIconState = FALSE;
 			myData.pCurrentIcon = NULL;  // sinon on va interrompre l'animation en fermant la session.
 		}

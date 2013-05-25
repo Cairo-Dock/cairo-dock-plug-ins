@@ -131,7 +131,7 @@ static gboolean _animate_the_dock (gpointer data)
 			if ((l/iIcons) > myData.pSharedMemory->fMinValueToAnim) // animation
 			{
 				//cd_debug ("Impulse: animation on this icon=%s", pIcon->cName);
-				cairo_dock_request_icon_animation (pIcon,
+				gldi_icon_request_animation (pIcon,
 					CAIRO_CONTAINER (myData.pSharedMemory->pDock),
 					myData.pSharedMemory->cIconAnimation,
 					myData.pSharedMemory->iNbAnimations);
@@ -139,7 +139,7 @@ static gboolean _animate_the_dock (gpointer data)
 				myData.pSharedMemory->bNeedRefreshIfNotAnimated = TRUE;
 			}
 			else if (myData.pSharedMemory->bStopAnimations)
-				cairo_dock_stop_icon_animation (pIcon);
+				gldi_icon_stop_animation (pIcon);
 			l = 0.0;
 			ic = ic->next;
 		}
