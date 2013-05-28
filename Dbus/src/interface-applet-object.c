@@ -232,7 +232,7 @@ void cd_dbus_unregister_notifications (void)
 		NOTIFICATION_BUILD_ICON_MENU,
 		(GldiNotificationFunc) cd_dbus_applet_emit_on_build_menu,
 		NULL);
-	gldi_object_remove_notification (&myDesktopMgr,
+	gldi_object_remove_notification (&myWindowsMgr,
 		NOTIFICATION_WINDOW_ACTIVATED,
 		(GldiNotificationFunc) cd_dbus_applet_emit_on_change_focus,
 		NULL);
