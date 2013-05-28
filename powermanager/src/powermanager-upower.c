@@ -30,6 +30,18 @@
 
 #ifdef CD_UPOWER_AVAILABLE  // code with libupower
 
+static GList * _cd_upower_add_and_ref_device_if_battery (UpDevice *pDevice, GList *pBatteryDeviceList)
+{
+	UpDeviceKind kind;
+	g_object_get (G_OBJECT (pDevice), "kind", &kind, NULL);
+	if (kind == UP_DEVICE_KIND_BATTERY)
+	{
+		pBatteryDeviceList = g_list_append (pBatteryDeviceList, pDevice);
+		g_object_ref (pDevice);  // since the object does not belong to us, we ref it here, and we'll keep our ref until the end of the applet.
+	}
+	return pBatteryDeviceList;
+}
+
 static void _cd_upower_connect_async (CDSharedMemory *pSharedMemory)
 {
 	// connect to UPower on Dbus.
@@ -49,17 +61,11 @@ static void _cd_upower_connect_async (CDSharedMemory *pSharedMemory)
 	g_return_if_fail (pDevices != NULL);  // just to be sure.
 	UpDevice *pDevice;
 	GList *pBatteryDeviceList = NULL;
-	UpDeviceKind kind;
 	guint i;
 	for (i = 0; i < pDevices->len; i ++)
 	{
 		pDevice = g_ptr_array_index (pDevices, i);
-		g_object_get (G_OBJECT (pDevice), "kind", &kind, NULL);
-		if (kind == UP_DEVICE_KIND_BATTERY)
-		{
-			pBatteryDeviceList = g_list_append (pBatteryDeviceList, pDevice);
-			g_object_ref (pDevice);  // since the object does not belong to us, we ref it here, and we'll keep our ref until the end of the applet.
-		}
+		pBatteryDeviceList = _cd_upower_add_and_ref_device_if_battery (pDevice, pBatteryDeviceList);
 	}
 	if (pBatteryDeviceList == NULL)
 	{
@@ -85,7 +91,7 @@ static void _fetch_current_values (GList *pBatteryDeviceList)
 	gboolean is_present;
 	gdouble fPercentageGlobal = 0.;
 	GList *pItem;
-	int iNbBatteries = 0;
+	gint iNbBatteries = 0;
 	for (pItem = pBatteryDeviceList; pItem != NULL; pItem = g_list_next (pItem))
 	{
 		pDevice = pItem->data;
@@ -116,7 +122,7 @@ static void _fetch_current_values (GList *pBatteryDeviceList)
 		myData.iTime = cd_estimate_time ();
 }
 
-static void _on_device_list_changed (UpClient *pClient, UpDevice *pDevice, gpointer data)
+static void _on_device_list_changed_free_data (void)
 {
 	cd_debug ("Device list changed");
 	g_free (myData.cTechnology);
@@ -125,11 +131,58 @@ static void _on_device_list_changed (UpClient *pClient, UpDevice *pDevice, gpoin
 	myData.cVendor = NULL;
 	g_free (myData.cModel);
 	myData.cModel = NULL;
-	cd_upower_stop ();
-	cd_powermanager_start (); // yeah, it's not the best solution but we have to check the list and re-compute all properties (properties needs to be placed in a structure for each battery)
 }
 
-static void _on_device_changed (UpDevice *pDevice, G_GNUC_UNUSED gpointer data)
+static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory);
+
+static void _on_device_added (UpClient *pClient, UpDevice *pDevice, gpointer data)
+{
+	CD_APPLET_ENTER;
+	if (pClient != myData.pUPowerClient) // should not happen...
+	{
+		g_object_unref (myData.pUPowerClient);
+		myData.pUPowerClient = NULL;
+	}
+
+	// if it's really a new device (yes, be secured...)
+	if (g_list_find (myData.pBatteryDeviceList, pDevice) == NULL)
+	{
+		_on_device_list_changed_free_data (); // free data
+
+		// update state: get all devices and all info
+		CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
+		pSharedMemory->pBatteryDeviceList = _cd_upower_add_and_ref_device_if_battery (pDevice, myData.pBatteryDeviceList);
+		pSharedMemory->pUPowerClient = pClient;
+		_cd_upower_update_state (pSharedMemory);
+	}
+	CD_APPLET_LEAVE ();
+}
+
+static void _on_device_removed (UpClient *pClient, UpDevice *pDevice, gpointer data)
+{
+	CD_APPLET_ENTER;
+	if (pClient != myData.pUPowerClient) // should not happen...
+	{
+		g_object_unref (myData.pUPowerClient);
+		myData.pUPowerClient = NULL;
+	}
+
+	GList *pOldDevice = g_list_find (myData.pBatteryDeviceList, pDevice);
+	if (pOldDevice != NULL) // if we've already added this device (yes, be secured)
+	{
+		_on_device_list_changed_free_data (); // free data
+		g_object_unref (pDevice); // unref, we no longer need it...
+
+		// update state: get all devices and all info
+		CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
+		pSharedMemory->pBatteryDeviceList = g_list_delete_link (myData.pBatteryDeviceList, pOldDevice);
+		pSharedMemory->pUPowerClient = pClient;
+		_cd_upower_update_state (pSharedMemory);
+	}
+	CD_APPLET_LEAVE ();
+}
+
+static void _on_device_changed (G_GNUC_UNUSED UpDevice *pDevice, G_GNUC_UNUSED gpointer data)
 {
 	CD_APPLET_ENTER;
 	cd_debug ("battery properties changed");
@@ -142,6 +195,7 @@ static void _on_device_changed (UpDevice *pDevice, G_GNUC_UNUSED gpointer data)
 	CD_APPLET_LEAVE ();
 }
 
+// Can be launched the first time (with the Task) or when a device is added/removed after.
 static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
 {
 	CD_APPLET_ENTER;
@@ -165,7 +219,6 @@ static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
 		gdouble fMaxAvailableCapacity = 0., fTmp;
 		UpDeviceTechnology iTechnology;
 		gboolean bFirst = TRUE;
-		gint iNbBatteries = 0;
 		for (pItem = pSharedMemory->pBatteryDeviceList ; pItem != NULL ; pItem = g_list_next (pItem))
 		{
 			pDevice = pItem->data;
@@ -195,20 +248,42 @@ static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
 			g_free (cVendor);
 			g_free (cModel);
 
-			// watch for any change. A priori, no need to watch the "onBattery" signal on the client, since we can deduce this property from the device state.
-			iSignalID = g_signal_connect (pDevice, "changed", G_CALLBACK (_on_device_changed), NULL);  // a battery not present is still a valid device. So if we could find a battery device, it will stay here forever, so we don't need to watch for the destruction/creation of a battery device.
-			myData.pSignalIDList = g_list_append (myData.pSignalIDList, GINT_TO_POINTER (iSignalID));
+			if (myData.pTask != NULL // only the first time
+				|| myData.pBatteryDeviceList == NULL // or if it's a new device
+				|| g_list_find (myData.pBatteryDeviceList, pDevice) == NULL)
+			{
+				/* watch for any change. A priori, no need to watch the
+				 * "onBattery" signal on the client, since we can deduce this
+				 * property from the device state.
+				 * A battery not present is still a valid device. So if we could
+				 * find a battery device, it will stay here forever, so we don't
+				 * need to watch for the destruction/creation of a battery device.
+				 */
+				iSignalID = g_signal_connect (pDevice, "changed", G_CALLBACK (_on_device_changed), NULL);  
+				myData.pSignalIDList = g_list_append (myData.pSignalIDList, GINT_TO_POINTER (iSignalID));
+			}
 
 			bFirst = FALSE;
-			iNbBatteries ++;
 		}
-		if (iNbBatteries != 0)
-			myData.fMaxAvailableCapacity = fMaxAvailableCapacity / iNbBatteries;
-		myData.cTechnology = g_string_free (sTechnology, FALSE);
-		myData.cVendor = g_string_free (sVendor, FALSE);
-		myData.cModel = g_string_free (sModel, FALSE);
-		myData.iSignalIDAdded = g_signal_connect (pSharedMemory->pUPowerClient, "device-added", G_CALLBACK (_on_device_list_changed), NULL);
-		myData.iSignalIDRemoved = g_signal_connect (pSharedMemory->pUPowerClient, "device-removed", G_CALLBACK (_on_device_list_changed), NULL);
+
+		myData.fMaxAvailableCapacity = fMaxAvailableCapacity; // Add all capacities
+
+		if (! bFirst) // at least one battery, strings have been defined
+		{
+			myData.cTechnology = g_string_free (sTechnology, FALSE);
+			myData.cVendor = g_string_free (sVendor, FALSE);
+			myData.cModel = g_string_free (sModel, FALSE);
+		}
+
+		if (myData.pTask != NULL // only the first time
+			|| pSharedMemory->pUPowerClient != myData.pUPowerClient) // or a new client (should not happen...)
+		{
+			myData.iSignalIDAdded = g_signal_connect (pSharedMemory->pUPowerClient,
+				"device-added", G_CALLBACK (_on_device_added), NULL);
+			myData.iSignalIDRemoved = g_signal_connect (pSharedMemory->pUPowerClient,
+				"device-removed", G_CALLBACK (_on_device_removed), NULL);
+			// Note: these signals (removed and added) are also send when resuming from suspend...
+		}
 		
 		// keep our client and devices.
 		myData.pUPowerClient = pSharedMemory->pUPowerClient;
@@ -219,9 +294,12 @@ static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
 	
 	// in any case, update the icon to show the current state we are in.
 	update_icon ();
-	
-	cairo_dock_discard_task (myData.pTask);
-	myData.pTask = NULL;
+
+	if (myData.pTask != NULL)
+	{
+		cairo_dock_discard_task (myData.pTask);
+		myData.pTask = NULL;
+	}
 	
 	CD_APPLET_LEAVE (FALSE);
 }
