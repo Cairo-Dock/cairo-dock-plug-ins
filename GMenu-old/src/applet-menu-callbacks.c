@@ -279,7 +279,11 @@ static void menu_item_style_set (GtkImage *image,
 
 	widget = GTK_WIDGET (image);
 
+	#if GTK_CHECK_VERSION (2, 20, 0)
 	is_mapped = gtk_widget_get_mapped (widget);  // since gtk-2.20
+	#else
+	is_mapped = GTK_WIDGET_MAPPED (widget);
+	#endif
 	if (is_mapped)
 		gtk_widget_unmap (widget);
 
