@@ -39,6 +39,7 @@ static void cd_logout_shut_down (void);
 static void cd_logout_restart (void);
 static void cd_logout_suspend (void);
 static void cd_logout_hibernate (void);
+static void cd_logout_hybridSleep (void);
 static void cd_logout_close_session (void);
 static void cd_logout_switch_to_user (const gchar *cUser);
 static void cd_logout_switch_to_guest (void);
@@ -55,101 +56,109 @@ static void _display_menu (void);
  /// CAPABILITIES ///
 ////////////////////
 
-static void _cd_logout_check_capabilities_async (CDSharedMemory *pSharedMemory)
+/*
+ * Check if the method (cMethod) exists and returns 'yes'.
+ * If it exists, *bIsAble is modified and TRUE is returned.
+ */
+static gboolean _cd_logout_check_capabilities_logind (DBusGProxy *pProxy, const gchar *cMethod, gboolean *bIsAble)
 {
 	GError *error = NULL;
-
-	// get capabilities from UPower.
-	#ifdef CD_UPOWER_AVAILABLE
-	UpClient *pUPowerClient = up_client_new ();
-	up_client_get_properties_sync (pUPowerClient, NULL, &error);  // this function always returns false ... and it crashes the dock (Debian 6) ! :-O
-	if (error)
-	{
-		cd_warning ("UPower error: %s", error->message);
-		g_error_free (error);
-		error = NULL;
-	}
-	else
-	{
-		pSharedMemory->bCanHibernate = up_client_get_can_hibernate (pUPowerClient);
-		pSharedMemory->bCanSuspend = up_client_get_can_suspend (pUPowerClient);
-	}
-	g_object_unref (pUPowerClient);
-	#endif
-	
-	// get capabilities from ConsoleKit.
-	DBusGProxy *pProxy = cairo_dock_create_new_system_proxy (
-		"org.freedesktop.ConsoleKit",
-		"/org/freedesktop/ConsoleKit/Manager",
-		"org.freedesktop.ConsoleKit.Manager");
-	
-	dbus_g_proxy_call (pProxy, "CanRestart", &error,
+	gchar *cResult = NULL;
+	dbus_g_proxy_call (pProxy, cMethod, &error,
 		G_TYPE_INVALID,
-		G_TYPE_BOOLEAN, &pSharedMemory->bCanRestart,
+		G_TYPE_STRING, &cResult,
 		G_TYPE_INVALID);
 	if (!error)
 	{
-		pSharedMemory->iLoginManager = CD_CONSOLE_KIT;
-		
-		dbus_g_proxy_call (pProxy, "CanStop", &error,
-			G_TYPE_INVALID,
-			G_TYPE_BOOLEAN, &pSharedMemory->bCanStop,
-			G_TYPE_INVALID);
+		*bIsAble = (cResult && strcmp (cResult, "yes") == 0);
+		g_free (cResult);
+	}
+	else
+	{
+		cd_debug ("Logind error: %s", error->message);
+		g_error_free (error);
+		return FALSE;
+	}
+	return TRUE;
+}
+
+static void _cd_logout_check_capabilities_async (CDSharedMemory *pSharedMemory)
+{
+	// test first with LoginD
+	DBusGProxy *pProxy = cairo_dock_create_new_system_proxy (
+		"org.freedesktop.login1",
+		"/org/freedesktop/login1",
+		"org.freedesktop.login1.Manager");
+
+	const gchar *cLogindMethods[] = {"CanPowerOff", "CanReboot", "CanSuspend", "CanHibernate", "CanHybridSleep", NULL};
+	gboolean *bCapabilities[] = {&pSharedMemory->bCanStop,
+		&pSharedMemory->bCanRestart, &pSharedMemory->bCanSuspend,
+		&pSharedMemory->bCanHibernate, &pSharedMemory->bCanHybridSleep};
+
+	if (pProxy && _cd_logout_check_capabilities_logind (pProxy, cLogindMethods[0], bCapabilities[0]))
+	{
+		pSharedMemory->iLoginManager = CD_LOGIND;
+		for (int i = 1; cLogindMethods[i] != NULL; i++)
+			_cd_logout_check_capabilities_logind (pProxy, cLogindMethods[i], bCapabilities[i]);
+
+		g_object_unref (pProxy);
+	}
+	else // then check with ConsoleKit and UPower
+	{
+		GError *error = NULL;
+
+		// get capabilities from UPower: hibernate and suspend
+		#ifdef CD_UPOWER_AVAILABLE
+		UpClient *pUPowerClient = up_client_new ();
+		up_client_get_properties_sync (pUPowerClient, NULL, &error);  // this function always returns false ... and it crashes the dock (Debian 6) ! :-O
 		if (error)
 		{
-			cd_warning ("ConsoleKit error: %s", error->message);
-			g_error_free (error);
-			g_object_unref (pProxy);
-			return;
-		}
-	}
-	else  // console kit is probably not used on this system, try with Logind from Systemd
-	{
-		cd_debug ("ConsoleKit error: %s", error->message);
-		g_error_free (error);
-		error = NULL;
-		
-		pProxy = cairo_dock_create_new_system_proxy (
-			"org.freedesktop.login1",
-			"/org/freedesktop/login1",
-			"org.freedesktop.login1.Manager");
-		
-		gchar *res;
-		dbus_g_proxy_call (pProxy, "CanReboot", &error,
-			G_TYPE_INVALID,
-			G_TYPE_STRING, &res,
-			G_TYPE_INVALID);
-		if (!error)
-		{
-			pSharedMemory->iLoginManager = CD_SYSTEMD;
-			
-			pSharedMemory->bCanRestart = (res && strcmp (res, "yes") == 0);
-			g_free (res);
-			
-			dbus_g_proxy_call (pProxy, "CanPowerOff", &error,
-				G_TYPE_INVALID,
-				G_TYPE_STRING, &res,
-				G_TYPE_INVALID);
-			if (error)
-			{
-				cd_warning ("Logind error: %s", error->message);
-				g_error_free (error);
-				g_object_unref (pProxy);
-				return;
-			}
-			pSharedMemory->bCanStop = (res && strcmp (res, "yes") == 0);
-			g_free (res);
-		}
-		else
-		{
-			cd_debug ("Logind error: %s", error->message);
+			cd_warning ("UPower error: %s", error->message);
 			g_error_free (error);
 			error = NULL;
 		}
+		else
+		{
+			pSharedMemory->bCanHibernate = up_client_get_can_hibernate (pUPowerClient);
+			pSharedMemory->bCanSuspend = up_client_get_can_suspend (pUPowerClient);
+		}
+		g_object_unref (pUPowerClient);
+		#endif
 		
+		// get capabilities from ConsoleKit.: reboot and poweroff
+		pProxy = cairo_dock_create_new_system_proxy (
+			"org.freedesktop.ConsoleKit",
+			"/org/freedesktop/ConsoleKit/Manager",
+			"org.freedesktop.ConsoleKit.Manager");
+		
+		dbus_g_proxy_call (pProxy, "CanRestart", &error,
+			G_TYPE_INVALID,
+			G_TYPE_BOOLEAN, &pSharedMemory->bCanRestart,
+			G_TYPE_INVALID);
+		if (!error)
+		{
+			pSharedMemory->iLoginManager = CD_CONSOLE_KIT;
+			
+			dbus_g_proxy_call (pProxy, "CanStop", &error,
+				G_TYPE_INVALID,
+				G_TYPE_BOOLEAN, &pSharedMemory->bCanStop,
+				G_TYPE_INVALID);
+			if (error)
+			{
+				cd_warning ("ConsoleKit error: %s", error->message);
+				g_error_free (error);
+				/*g_object_unref (pProxy); // should not happen but lets check guest account
+				return;*/
+			}
+		}
+		else
+		{
+			cd_debug ("ConsoleKit error: %s", error->message);
+			g_error_free (error);
+		}
+		g_object_unref (pProxy);
 	}
-	g_object_unref (pProxy);
-	
+
 	// get capabilities from DisplayManager
 	const gchar *seat = g_getenv ("XDG_SEAT_PATH");
 	if (seat)  // else, we could possibly get it by: ck -> GetCurrentSession -> session -> GetSeatId
@@ -174,12 +183,15 @@ static gboolean _cd_logout_got_capabilities (CDSharedMemory *pSharedMemory)
 	// fetch the capabilities.
 	myData.bCapabilitiesChecked = TRUE;
 	myData.bCanHibernate = pSharedMemory->bCanHibernate;
+	myData.bCanHybridSleep = pSharedMemory->bCanHybridSleep;
 	myData.bCanSuspend = pSharedMemory->bCanSuspend;
 	myData.bCanRestart = pSharedMemory->bCanRestart;
 	myData.bCanStop = pSharedMemory->bCanStop;
 	myData.bHasGuestAccount = pSharedMemory->bHasGuestAccount;
 	myData.iLoginManager = pSharedMemory->iLoginManager;
-	cd_debug ("capabilities: %d; %d; %d; %d; %d", myData.bCanHibernate, myData.bCanSuspend, myData.bCanRestart, myData.bCanStop, myData.bHasGuestAccount);
+	cd_debug ("capabilities: %d; %d; %d; %d; %d; %d", myData.bCanHibernate,
+		myData.bCanHybridSleep, myData.bCanSuspend, myData.bCanRestart,
+		myData.bCanStop, myData.bHasGuestAccount);
 	
 	// display the menu that has been asked beforehand.
 	_display_menu ();
@@ -258,10 +270,16 @@ static GtkWidget *_build_menu (void)
 	
 	cImagePath = _check_icon ("sleep", myData.iDesiredIconSize);
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Hibernate"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-hibernate.svg", cd_logout_hibernate, pMenu);
-	g_free (cImagePath);
 	gtk_widget_set_tooltip_text (pMenuItem, D_("Your computer will not consume any energy."));
 	if (!myData.bCanHibernate)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
+	
+	if (myData.bCanHybridSleep)
+	{
+		pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Hybrid Sleep"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-hibernate.svg", cd_logout_hybridSleep, pMenu);
+		gtk_widget_set_tooltip_text (pMenuItem, D_("Your computer will still consume a small amount of energy but after some time, the computer will suspend to disk and not consume any energy."));
+	}
+	g_free (cImagePath);
 	
 	cImagePath = _check_icon ("clock", myData.iDesiredIconSize);
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Suspend"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-suspend.svg", cd_logout_suspend, pMenu);
@@ -485,7 +503,7 @@ static void _notify_action_required (void)
 	gldi_dialogs_remove_on_icon (myIcon);
 
 	gchar *cName;
-	/*if (/*myData.bLogoutNeeded && myData.bRebootNeeded)
+	/*if (myData.bLogoutNeeded && myData.bRebootNeeded)
 	{
 		gchar *cTmpName = g_strdup (myIcon->cName); // Icon's name contains the message for the reboot and then for the logout
 		gchar *cTmpPtr = g_strrstr (cTmpName, CD_LOGOUT_MESSAGE_SEPARATOR);
@@ -646,7 +664,7 @@ static void _console_kit_action (const gchar *cAction)
 	g_object_unref (pProxy);
 }
 
-static void _systemd_action (const gchar *cAction)
+static void _logind_action (const gchar *cAction)
 {
 	GError *error = NULL;
 	DBusGProxy *pProxy = cairo_dock_create_new_system_proxy (
@@ -706,8 +724,8 @@ static void _shut_down (void)
 			case CD_CONSOLE_KIT:
 				_console_kit_action ("Stop");  // could use org.gnome.SessionManager.RequestShutdown, but it's not standard.
 			break;
-			case CD_SYSTEMD:
-				_systemd_action ("PowerOff");
+			case CD_LOGIND:
+				_logind_action ("PowerOff");
 			break;
 			default:
 			break;
@@ -775,8 +793,8 @@ static void _restart (void)
 			case CD_CONSOLE_KIT:
 				_console_kit_action ("Restart");  // could use org.gnome.SessionManager.RequestShutdown, but it's not standard.
 			break;
-			case CD_SYSTEMD:
-				_systemd_action ("Reboot");
+			case CD_LOGIND:
+				_logind_action ("Reboot");
 				break;
 			default:
 				break;
@@ -787,7 +805,8 @@ static void _restart (void)
 		cairo_dock_launch_command (myConfig.cUserAction2);
 	}
 }
-void cd_logout_restart (void)
+
+static void cd_logout_restart (void)
 {
 	if (myConfig.bConfirmAction)
 	{
@@ -799,14 +818,28 @@ void cd_logout_restart (void)
 	}
 }
 
-void cd_logout_suspend (void)
+static void cd_logout_suspend (void)
 {
-	_upower_action (TRUE);
+	if (myData.iLoginManager == CD_LOGIND)
+		_logind_action ("Suspend");
+	else
+		_upower_action (TRUE);
 }
 
-void cd_logout_hibernate (void)
+static void cd_logout_hibernate (void)
 {
-	_upower_action (FALSE);
+	if (myData.iLoginManager == CD_LOGIND)
+		_logind_action ("Hibernate");
+	else
+		_upower_action (FALSE);
+}
+
+static void cd_logout_hybridSleep (void)
+{
+	if (myData.iLoginManager == CD_LOGIND)
+		_logind_action ("HybridSleep");
+	else
+		_upower_action (FALSE);
 }
 
 static void _logout (void)
@@ -816,7 +849,8 @@ static void _logout (void)
 	else  // SwitchToGreeter will only show the greeter, we want to close the session
 		cairo_dock_launch_command (MY_APPLET_SHARE_DATA_DIR"/logout.sh");
 }
-void cd_logout_close_session (void)  // could use org.gnome.SessionManager.Logout
+
+static void cd_logout_close_session (void)  // could use org.gnome.SessionManager.Logout
 {
 	/* Currently, cairo_dock_fm_logout displays to us a window from the DE
 	 * to confirm if we want to close the session or not. So there is a

@@ -63,12 +63,13 @@ struct _AppletConfig {
 typedef enum {
 	CD_UNKNOWN,
 	CD_CONSOLE_KIT,
-	CD_SYSTEMD,
+	CD_LOGIND,
 	CD_NB_LOGIN_MANAGER
 	} CDLoginManager;
 	
 typedef struct {
 	gboolean bCanHibernate;
+	gboolean bCanHybridSleep;
 	gboolean bCanSuspend;
 	gboolean bCanStop;
 	gboolean bCanRestart;
@@ -85,6 +86,7 @@ struct _AppletData {
 	CairoDockTask *pTask;
 	gboolean bCapabilitiesChecked;
 	gboolean bCanHibernate;
+	gboolean bCanHybridSleep;
 	gboolean bCanSuspend;
 	gboolean bCanStop;
 	gboolean bCanRestart;
