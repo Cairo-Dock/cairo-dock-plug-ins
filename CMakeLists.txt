@@ -47,9 +47,19 @@ endif( WIN32 )
 set (PACKAGE ${CMAKE_PROJECT_NAME})
 set (GETTEXT_PACKAGE ${PACKAGE})
 
-if ("${PACKAGEMENT}" STREQUAL "")
+if ("${PACKAGEMENT}" STREQUAL "") ## do not check if we're using the same version when packaging the application (e.g. if we just want to generate a tarball of a previous version)
 	# we need GLDI which contains most global var: check it now to avoid many errors with regex
 	pkg_check_modules (GLDI REQUIRED gldi=${VERSION})
+	if (NOT GLDI_FOUND)
+		execute_process(
+			COMMAND pkg-config --modversion gldi  # 2.2.0-3
+			OUTPUT_VARIABLE dock_version)
+		if (NOT "${PACKAGEMENT}" STREQUAL "")
+			STRING (REGEX REPLACE "\n" "" dock_version ${dock_version})
+		endif ()
+		MESSAGE (FATAL_ERROR "Error: version mismatch with the core: ${VERSION} <> ${dock_version}")
+	endif ()
+	set (dock_version ${GLDI_VERSION})
 endif ()
 
 # get plug-ins install dir
@@ -72,18 +82,6 @@ execute_process(
     COMMAND pkg-config gldi --variable=gtkversion  # 2 or 3
     OUTPUT_VARIABLE gtkversion)
 STRING (REGEX REPLACE "\n" "" gtkversion ${gtkversion})
-# check that version matches with the core
-execute_process(
-    COMMAND pkg-config --modversion gldi  # 2.2.0-3
-    OUTPUT_VARIABLE dock_version)
-STRING (REGEX REPLACE "\n" "" dock_version ${dock_version})
-if (NOT "${dock_version}" STREQUAL "${VERSION}")		# Version
-	if ("${PACKAGEMENT}" STREQUAL "")
-		MESSAGE (FATAL_ERROR "Error : version mismatch with the core : " ${VERSION} <> ${dock_version})
-	else ()
-		MESSAGE (WARNING "Warning : version mismatch with the core : " ${VERSION} <> ${dock_version})
-	endif ()
-endif()
 
 # check that installation dir matches with the core
 GET_FILENAME_COMPONENT(libdir "${pluginsdir}/.." ABSOLUTE)  # /usr/lib # or /usr/lib/x86_64-linux-gnu
