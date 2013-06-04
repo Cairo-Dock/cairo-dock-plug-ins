@@ -183,7 +183,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 			}
 			else
 			{
-				cairo_dock_free_icon (pNewIcon);
+				gldi_object_unref (GLDI_OBJECT (pNewIcon));
 				pNewIcon = NULL;
 			}
 			
@@ -209,7 +209,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 					{
 						pDiskUsage->iTotal = 0;
 						pDiskUsage->iAvail = 0;
-						cairo_dock_set_quick_info (pConcernedIcon, pContainer, NULL);  // on lui enleve son quick-info (ses infos n'etant plus valides, son quick-info ne sera pas mis a jour).
+						gldi_icon_set_quick_info (pConcernedIcon, NULL);  // on lui enleve son quick-info (ses infos n'etant plus valides, son quick-info ne sera pas mis a jour).
 					}
 				}
 			}

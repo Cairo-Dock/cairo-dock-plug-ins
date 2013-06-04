@@ -131,7 +131,7 @@ Icon *cd_do_search_icon_by_command (const gchar *cCommandPrefix, Icon *pAfterIco
 	data[4] = pDock;
 	data[5] = &pFirstIcon;
 	data[6] = &pFirstParentDock;
-	cairo_dock_foreach_icons_in_docks ((CairoDockForeachIconFunc) _find_icon_in_dock_with_command, data);
+	gldi_icons_foreach_in_docks ((CairoDockForeachIconFunc) _find_icon_in_dock_with_command, data);
 	
 	if (pIcon == NULL)
 	{
@@ -212,7 +212,7 @@ void cd_do_change_current_icon (Icon *pIcon, CairoDock *pDock)
 		myData.bIgnoreIconState = TRUE;
 		gldi_icon_stop_animation (myData.pCurrentIcon);
 		myData.bIgnoreIconState = FALSE;
-		cairo_dock_redraw_icon (myData.pCurrentIcon, CAIRO_CONTAINER (myData.pCurrentDock));  /// utile ?...
+		cairo_dock_redraw_icon (myData.pCurrentIcon);  /// utile ?...
 	}
 	if (pIcon != NULL && myData.pCurrentIcon != pIcon)  // on anime la nouvelle icone.
 	{

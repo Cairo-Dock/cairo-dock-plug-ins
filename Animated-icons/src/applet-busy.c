@@ -44,7 +44,7 @@ static gboolean update (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, d
 	double fPrevFrame = pData->pBusyImage->iCurrentFrame;
 	cairo_dock_image_buffer_next_frame (pData->pBusyImage);
 	
-	cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
+	cairo_dock_redraw_icon (pIcon);
 	
 	return (pData->pBusyImage->iCurrentFrame > fPrevFrame);
 }

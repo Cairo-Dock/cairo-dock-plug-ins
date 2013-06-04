@@ -108,7 +108,7 @@ static gboolean update (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, d
 		pIcon->fDrawY -= (pDock->container.bDirectionUp ? 1 : 0) * fPrevElevation;
 		pIcon->fHeight += fPrevElevation;
 		
-		cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
+		cairo_dock_redraw_icon (pIcon);
 		pIcon->fDrawY += (pDock->container.bDirectionUp ? 1 : 0) * fPrevElevation;
 		pIcon->fWidthFactor = fDamageWidthFactor;
 		pIcon->fHeightFactor = fDamageHeightFactor;

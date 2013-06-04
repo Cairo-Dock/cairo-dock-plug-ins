@@ -356,7 +356,7 @@ static gboolean update (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, d
 			fDamageWidthFactor = MAX (fabs (fDamageWidthFactor), fabs (pData->fRotateWidthFactor));
 			pIcon->fWidthFactor *= fDamageWidthFactor;
 			
-			cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
+			cairo_dock_redraw_icon (pIcon);
 			
 			pIcon->fWidthFactor /= fDamageWidthFactor;
 		}
@@ -365,7 +365,7 @@ static gboolean update (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, d
 	{
 		//if (myConfig.iMeshType == CD_CUBE_MESH)
 			//pIcon->fWidth *= (1 + .2 * 1);  // the cube is larger than it's icon
-		cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
+		cairo_dock_redraw_icon (pIcon);
 		//if (myConfig.iMeshType == CD_CUBE_MESH)
 			//pIcon->fWidth /= (1 + .2 * 1);
 	}

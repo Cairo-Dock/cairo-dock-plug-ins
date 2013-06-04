@@ -213,6 +213,6 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 
 gboolean cd_on_dock_destroyed (GldiModuleInstance *myApplet, CairoDock *pDock)
 {
-	gldi_module_delete_instance (myApplet);
+	gldi_object_delete (GLDI_OBJECT(myApplet));
 	return GLDI_NOTIFICATION_LET_PASS;
 }

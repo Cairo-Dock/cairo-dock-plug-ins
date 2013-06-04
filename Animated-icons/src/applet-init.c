@@ -134,7 +134,7 @@ CD_APPLET_STOP_BEGIN
 		cairo_dock_unregister_animation (pAnimation->cName);
 	}
 	
-	cairo_dock_foreach_icons ((CairoDockForeachIconFunc) _free_data_on_icon, NULL);
+	gldi_icons_foreach ((CairoDockForeachIconFunc) _free_data_on_icon, NULL);
 CD_APPLET_STOP_END
 
 
@@ -225,7 +225,7 @@ CD_APPLET_RELOAD_BEGIN
 				0, 0,
 				CAIRO_DOCK_ANIMATED_IMAGE);
 			
-			cairo_dock_foreach_icons ((CairoDockForeachIconFunc) _update_busy_image_on_icon, NULL);  // since the image is loaded as a shared ressources for all icons, we have to update them if they were using it.
+			gldi_icons_foreach ((CairoDockForeachIconFunc) _update_busy_image_on_icon, NULL);  // since the image is loaded as a shared ressources for all icons, we have to update them if they were using it.
 		}
 	}
 CD_APPLET_RELOAD_END

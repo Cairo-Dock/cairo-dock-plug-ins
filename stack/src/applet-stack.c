@@ -263,11 +263,11 @@ static gboolean _update_html_link (CDHtmlLink *pHtmlLink)
 			{
 				GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 				
-				cairo_dock_set_icon_name (pHtmlLink->cTitle, pIcon, pContainer);
+				gldi_icon_set_name (pIcon, pHtmlLink->cTitle);
 				
 				cd_debug ("draw emblem on %s", pIcon->cName);
 				cairo_dock_print_overlay_on_icon_from_image (pIcon, pContainer, pHtmlLink->cFaviconPath, CAIRO_OVERLAY_LOWER_RIGHT);
-				cairo_dock_redraw_icon (pIcon, pContainer);
+				cairo_dock_redraw_icon (pIcon);
 				break;
 			}
 		}

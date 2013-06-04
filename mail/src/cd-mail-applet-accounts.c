@@ -581,7 +581,6 @@ void cd_mail_init_accounts(GldiModuleInstance *myApplet)
 	CDMailAccount *pMailAccount;
 	GList *pIconList = NULL;
 	Icon *pIcon;
-	GldiContainer *pContainer;
 	int iNbIcons = 0;
 	int r;
 	gboolean bIsGettingMail = FALSE;
@@ -641,19 +640,17 @@ void cd_mail_init_accounts(GldiModuleInstance *myApplet)
 		if (myData.pMailAccounts->len == 1)  // 1 seul compte
 		{
 			pIcon = myIcon;
-			pContainer = myContainer;
 		}
 		else
 		{
 			_add_icon (pMailAccount);
-			pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 		}
 		iNbIcons ++;
 		
 		//  if all is OK, then set a timeout for this mail account
 		if (r == MAIL_NO_ERROR)
 		{
-			cairo_dock_set_quick_info (pIcon, pContainer, "..."); // on the current icon
+			gldi_icon_set_quick_info (pIcon, "..."); // on the current icon
 			pMailAccount->pAccountMailTimer = cairo_dock_new_task (pMailAccount->timeout * 60,
 				(CairoDockGetDataAsyncFunc) cd_mail_get_folder_data,
 				(CairoDockUpdateSyncFunc) cd_mail_update_account_status,
@@ -664,8 +661,7 @@ void cd_mail_init_accounts(GldiModuleInstance *myApplet)
 		else
 		{
 			cd_warning ("mail : the mail account %s couldn't be initialized !", pMailAccount->name);
-			GldiContainer *pContainer = (myData.pMailAccounts->len == 1 ? myContainer : CD_APPLET_MY_ICONS_LIST_CONTAINER);
-			cairo_dock_set_quick_info (pIcon, pContainer, "N/A");
+			gldi_icon_set_quick_info (pIcon, "N/A");
 		}
 	}
 	

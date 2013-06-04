@@ -397,7 +397,7 @@ void cd_notes_store_update_note (CDNote *pUpdatedNote)
 	cd_debug ("  %s -> %s", pUpdatedNote->cTitle, pIcon->cName);
 	if (g_strcmp0 (pUpdatedNote->cTitle, pIcon->cName) != 0)  // nouveau titre.
 	{
-		cairo_dock_set_icon_name (pUpdatedNote->cTitle, pIcon, CD_APPLET_MY_ICONS_LIST_CONTAINER);
+		gldi_icon_set_name (pIcon, pUpdatedNote->cTitle);
 	}
 	
 	if (myConfig.bDrawContent)

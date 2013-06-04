@@ -289,7 +289,7 @@ static GList *_find_matching_icons_for_key (const gchar *cKey, const gchar *cVal
 	}
 	else
 	{
-		cairo_dock_foreach_icons ((CairoDockForeachIconFunc) _check_icon_matching, &query);
+		gldi_icons_foreach ((CairoDockForeachIconFunc) _check_icon_matching, &query);
 	}
 	return query.pMatchingIcons;
 }

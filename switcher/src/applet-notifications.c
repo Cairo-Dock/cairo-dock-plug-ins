@@ -398,21 +398,21 @@ gboolean on_change_desktop (GldiModuleInstance *myApplet)
 			if (icon->fOrder == iPreviousIndex)  // l'ancienne icone du bureau courant.
 			{
 				if (iPreviousIndex < myData.iNbNames)
-					cairo_dock_set_icon_name (myData.cDesktopNames[iPreviousIndex], icon, pContainer);
+					gldi_icon_set_name (icon, myData.cDesktopNames[iPreviousIndex]);
 				else
-					cairo_dock_set_icon_name_printf (icon, pContainer, "%s %d", D_("Desktop"), iPreviousIndex+1);
+					gldi_icon_set_name_printf (icon, "%s %d", D_("Desktop"), iPreviousIndex+1);
 				icon->bHasIndicator = FALSE;
 				icon->fAlpha = 1.;
 				if (myDock)
-					cairo_dock_redraw_icon (icon, pContainer);
+					cairo_dock_redraw_icon (icon);
 			}
 			if (icon->fOrder == iIndex)  // c'est l'icone du bureau courant.
 			{
-				cairo_dock_set_icon_name_printf (icon, pContainer, "%s (%d)", D_("Current"), iIndex+1);
+				gldi_icon_set_name_printf (icon, "%s (%d)", D_("Current"), iIndex+1);
 				icon->bHasIndicator = TRUE;
 				icon->fAlpha = .7;
 				if (myDock)
-					cairo_dock_redraw_icon (icon, pContainer);
+					cairo_dock_redraw_icon (icon);
 			}
 		}
 		if (myDesklet)

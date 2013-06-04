@@ -36,7 +36,7 @@ static void _browse_dir (const gchar *cDirPath);
 
 void cd_do_reset_applications_list (void)
 {
-	g_list_foreach (myData.pApplications, (GFunc) cairo_dock_free_icon, NULL);
+	g_list_foreach (myData.pApplications, (GFunc) gldi_object_unref, NULL);
 	g_list_free (myData.pApplications);
 	myData.pApplications = NULL;
 	

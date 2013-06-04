@@ -190,7 +190,7 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 			if (cairo_dock_strings_differ (pConcernedIcon->cName, pNewIcon->cName))  // le nom a change.
 			{
 				cd_debug ("  name changed : '%s' -> '%s'", pConcernedIcon->cName, pNewIcon->cName);
-				cairo_dock_set_icon_name (pNewIcon->cName, pConcernedIcon, pContainer);
+				gldi_icon_set_name (pConcernedIcon, pNewIcon->cName);
 				cd_shortcuts_set_icon_order (pConcernedIcon, pIconsList, myData.comp);
 			}
 			
@@ -216,7 +216,7 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 				
 				CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pConcernedIcon);
 			}
-			cairo_dock_free_icon (pNewIcon);
+			gldi_object_unref (GLDI_OBJECT (pNewIcon));
 		}
 		break ;
 		case CAIRO_DOCK_NB_EVENT_ON_FILES :

@@ -337,7 +337,7 @@ gboolean cd_drop_indicator_update_dock (gpointer pUserData, CairoDock *pDock, gb
 	{
 		Icon *pIcon = cairo_dock_get_pointed_icon (pDock->icons);
 		if (pIcon != NULL)
-			cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
+			cairo_dock_redraw_icon (pIcon);
 	}
 	
 	return GLDI_NOTIFICATION_LET_PASS;

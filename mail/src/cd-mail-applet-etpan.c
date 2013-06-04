@@ -294,7 +294,7 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 	
 	if (pUpdatedMailAccount->bError)
 	{
-		cairo_dock_set_quick_info (pIcon, pContainer, "N/A");
+		gldi_icon_set_quick_info (pIcon, "N/A");
 		
 		cairo_dock_set_image_on_icon (pIconContext, myConfig.cNoMailUserImage, pIcon, pContainer);
 	}
@@ -302,7 +302,7 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 	{
 		if (pUpdatedMailAccount->iNbUnseenMails > 0)
 		{
-			cairo_dock_set_quick_info_printf (pIcon, pContainer, "%d", pUpdatedMailAccount->iNbUnseenMails);
+			gldi_icon_set_quick_info_printf (pIcon, "%d", pUpdatedMailAccount->iNbUnseenMails);
 		
 			cairo_dock_set_image_on_icon (pIconContext, myConfig.cHasMailUserImage, pIcon, pContainer);
 		}
@@ -310,11 +310,11 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 		{
 			if( myConfig.bAlwaysShowMailCount )
 			{
-				cairo_dock_set_quick_info (pIcon, pContainer, "0");
+				gldi_icon_set_quick_info (pIcon, "0");
 			}
 			else
 			{
-				cairo_dock_remove_quick_info(pIcon);
+				gldi_icon_set_quick_info (pIcon, NULL);
 			}
 		
 			cairo_dock_set_image_on_icon (pIconContext, myConfig.cNoMailUserImage, pIcon, pContainer);
@@ -332,7 +332,7 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 		myData.iNbUnreadMails += pUpdatedMailAccount->iNbUnseenMails - pUpdatedMailAccount->iPrevNbUnseenMails;
 		cd_mail_draw_main_icon (myApplet, pUpdatedMailAccount->bInitialized);
 	}
-	cairo_dock_redraw_icon (pIcon, pContainer);
+	cairo_dock_redraw_icon (pIcon);
 	
 	pUpdatedMailAccount->bInitialized = TRUE;
 	CD_APPLET_LEAVE (TRUE);

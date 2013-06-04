@@ -68,19 +68,19 @@ static void _display_disk_usage (Icon *pIcon, GldiContainer *pContainer, CDDiskU
 		{
 			case CD_SHOW_FREE_SPACE :
 				fValue = (double) pDiskUsage->iAvail / pDiskUsage->iTotal;
-				cairo_dock_set_size_as_quick_info (pIcon, pContainer, pDiskUsage->iAvail);
+				cairo_dock_set_size_as_quick_info (pIcon, pDiskUsage->iAvail);
 			break ;
 			case CD_SHOW_USED_SPACE :
 				fValue = (double) pDiskUsage->iUsed / pDiskUsage->iTotal;
-				cairo_dock_set_size_as_quick_info (pIcon, pContainer, pDiskUsage->iUsed);
+				cairo_dock_set_size_as_quick_info (pIcon, pDiskUsage->iUsed);
 			break ;
 			case CD_SHOW_FREE_SPACE_PERCENT :
 				fValue = (double) pDiskUsage->iAvail / pDiskUsage->iTotal;
-				cairo_dock_set_quick_info_printf (pIcon, pContainer, "%.1f%%", 100.*fValue);
+				gldi_icon_set_quick_info_printf (pIcon, "%.1f%%", 100.*fValue);
 			break ;
 			case CD_SHOW_USED_SPACE_PERCENT :
 				fValue = (double) pDiskUsage->iUsed / pDiskUsage->iTotal;
-				cairo_dock_set_quick_info_printf (pIcon, pContainer, "%.1f%%", 100.*fValue);
+				gldi_icon_set_quick_info_printf (pIcon, "%.1f%%", 100.*fValue);
 			break ;
 			default:
 				fValue = CAIRO_DATA_RENDERER_UNDEF_VALUE;
@@ -90,7 +90,7 @@ static void _display_disk_usage (Icon *pIcon, GldiContainer *pContainer, CDDiskU
 		if (myConfig.bDrawBar)
 			cairo_dock_render_new_data_on_icon (pIcon, pContainer, myDrawContext, &fValue);
 		else  // just trigger the redraw for the quick-info
-			cairo_dock_redraw_icon (pIcon, pContainer);
+			cairo_dock_redraw_icon (pIcon);
 	}
 }
 

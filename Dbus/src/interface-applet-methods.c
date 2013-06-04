@@ -86,8 +86,8 @@ static gboolean _applet_set_quick_info (dbusApplet *pDbusApplet, const gchar *cQ
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
-	cairo_dock_set_quick_info (pIcon, pContainer, cQuickInfo && *cQuickInfo != '\0' ? cQuickInfo : NULL);
-	cairo_dock_redraw_icon (pIcon, pContainer);
+	gldi_icon_set_quick_info (pIcon, cQuickInfo && *cQuickInfo != '\0' ? cQuickInfo : NULL);
+	cairo_dock_redraw_icon (pIcon);
 	return TRUE;
 }
 
@@ -98,8 +98,8 @@ static gboolean _applet_set_label (dbusApplet *pDbusApplet, const gchar *cLabel,
 	if (! _get_icon_and_container_from_id (pDbusApplet, cIconID, &pIcon, &pContainer))
 		return FALSE;
 	
-	cairo_dock_set_icon_name (cLabel, pIcon, pContainer);
-	cairo_dock_redraw_icon (pIcon, pContainer);  /// needs a function to redraw the label...
+	gldi_icon_set_name (pIcon, cLabel);
+	cairo_dock_redraw_icon (pIcon);  /// needs a function to redraw the label...
 	return TRUE;
 }
 
@@ -114,7 +114,7 @@ static gboolean _applet_set_icon (dbusApplet *pDbusApplet, const gchar *cImage, 
 	cairo_t *pIconContext = cairo_create (pIcon->image.pSurface);
 	cairo_dock_set_image_on_icon (pIconContext, cImage, pIcon, pContainer);
 	cairo_destroy (pIconContext);
-	cairo_dock_redraw_icon (pIcon, pContainer);
+	cairo_dock_redraw_icon (pIcon);
 	return TRUE;
 }
 
@@ -135,7 +135,7 @@ static gboolean _applet_set_icon_with_default (dbusApplet *pDbusApplet, const gc
 		///cairo_dock_set_image_on_icon (pIconContext, cImage, pIcon, pContainer);
 	}
 	cairo_destroy (pIconContext);
-	cairo_dock_redraw_icon (pIcon, pContainer);
+	cairo_dock_redraw_icon (pIcon);
 	return TRUE;
 }
 */
@@ -158,7 +158,7 @@ static gboolean _applet_set_emblem (dbusApplet *pDbusApplet, const gchar *cImage
 			cairo_dock_add_overlay_from_image (pIcon, cImage, iPosition, myApplet);  // use 'myApplet' to identify the overlays set by the Dbus plug-in (since the plug-in can't be deactivated, 'myApplet' is constant).
 	}
 	
-	cairo_dock_redraw_icon (pIcon, pContainer);
+	cairo_dock_redraw_icon (pIcon);
 	return TRUE;
 }
 
@@ -892,7 +892,7 @@ gboolean cd_dbus_applet_render_values (dbusApplet *pDbusApplet, GArray *pValues,
 	cairo_dock_render_new_data_on_icon (pIcon, pContainer, pDrawContext, (double *)pValues->data);
 	cairo_destroy (pDrawContext);
 	
-	cairo_dock_redraw_icon (pIcon, pContainer);
+	cairo_dock_redraw_icon (pIcon);
 	return TRUE;
 }
 
@@ -917,7 +917,7 @@ gboolean cd_dbus_applet_control_appli (dbusApplet *pDbusApplet, const gchar *cAp
 		{
 			GldiContainer *pContainer = pInstance->pContainer;
 			if (pContainer != NULL)
-				cairo_dock_redraw_icon (pIcon, pContainer);
+				cairo_dock_redraw_icon (pIcon);
 		}
 	}
 	

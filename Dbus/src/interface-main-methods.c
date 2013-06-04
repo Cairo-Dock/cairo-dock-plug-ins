@@ -555,6 +555,7 @@ gboolean cd_dbus_main_add_launcher (dbusMainObject *pDbusCallback, const gchar *
 	*cLauncherFile = NULL;
 	if (! myConfig.bEnableCreateLauncher)
 		return FALSE;
+	nullify_argument (cDesktopFilePath);
 	g_return_val_if_fail (cDesktopFilePath != NULL, FALSE);
 	
 	//\_______________ get the dock where to insert the icon.
@@ -570,21 +571,17 @@ gboolean cd_dbus_main_add_launcher (dbusMainObject *pDbusCallback, const gchar *
 	}
 	
 	//\_______________ add a new icon in the current theme.
-	int iLauncherType = -1;
-	if (strcmp (cDesktopFilePath, "separator.desktop") == 0)
-		iLauncherType = CAIRO_DOCK_DESKTOP_FILE_FOR_SEPARATOR;
-	else if (strcmp (cDesktopFilePath, "container.desktop") == 0)
-		iLauncherType = CAIRO_DOCK_DESKTOP_FILE_FOR_CONTAINER;
-	else if (strcmp (cDesktopFilePath, "launcher.desktop") == 0)
-		iLauncherType = CAIRO_DOCK_DESKTOP_FILE_FOR_LAUNCHER;
-	
 	if (fOrder < 0)
 		fOrder = CAIRO_DOCK_LAST_ORDER;
 	Icon *pNewIcon;
-	if (iLauncherType != -1)
-		pNewIcon = cairo_dock_add_new_launcher_by_type (iLauncherType, pParentDock, fOrder);
+	if (strcmp (cDesktopFilePath, "separator.desktop") == 0)
+		pNewIcon = gldi_separator_icon_add_new (pParentDock, fOrder);
+	else if (strcmp (cDesktopFilePath, "container.desktop") == 0)
+		pNewIcon = gldi_stack_icon_add_new (pParentDock, fOrder);
+	else if (strcmp (cDesktopFilePath, "launcher.desktop") == 0)
+		pNewIcon = gldi_launcher_add_new (NULL, pParentDock, fOrder);
 	else
-		pNewIcon = cairo_dock_add_new_launcher_by_uri (cDesktopFilePath, pParentDock, fOrder);
+		pNewIcon = gldi_launcher_add_new (cDesktopFilePath, pParentDock, fOrder);
 	if (pNewIcon != NULL)
 	{
 		*cLauncherFile = g_strdup (pNewIcon->cDesktopFileName);
@@ -751,7 +748,7 @@ gboolean cd_dbus_main_add_temporary_icon (dbusMainObject *pDbusCallback, GHashTa
 	}
 	else if (strcmp (cType, "Separator") == 0)
 	{
-		pIcon = cairo_dock_create_separator_icon (CAIRO_DOCK_LAUNCHER);
+		pIcon = gldi_separator_icon_new (NULL, NULL);
 	}
 	else
 	{
@@ -826,7 +823,7 @@ gboolean cd_dbus_main_reload_icon (dbusMainObject *pDbusCallback, gchar *cIconQu
 				continue;
 			
 			cairo_dock_reload_icon_image (pIcon, pContainer);
-			cairo_dock_redraw_icon (pIcon, pContainer);
+			cairo_dock_redraw_icon (pIcon);
 		}
 	}
 	
@@ -890,7 +887,7 @@ gboolean cd_dbus_main_remove_icon (dbusMainObject *pDbusCallback, gchar *cIconQu
 		}
 		else if (CAIRO_DOCK_IS_APPLET (pIcon))  // case of an applet inside a dock or a desklet.
 		{
-			gldi_module_delete_instance (pIcon->pModuleInstance);
+			gldi_object_delete (GLDI_OBJECT(pIcon->pModuleInstance));
 		}  // don't remove appli icons, as they would anyway be re-created automatically by the applications-manager.
 	}
 	
@@ -924,8 +921,8 @@ gboolean cd_dbus_main_set_quick_info (dbusMainObject *pDbusCallback, const gchar
 		if (pContainer == NULL)
 			continue;
 		
-		cairo_dock_set_quick_info (pIcon, pContainer, cQuickInfo);
-		cairo_dock_redraw_icon (pIcon, pContainer);
+		gldi_icon_set_quick_info (pIcon, cQuickInfo);
+		cairo_dock_redraw_icon (pIcon);
 	}
 	
 	g_list_free (pList);
@@ -953,7 +950,7 @@ gboolean cd_dbus_main_set_label (dbusMainObject *pDbusCallback, const gchar *cLa
 		if (pContainer == NULL)
 			continue;
 		
-		cairo_dock_set_icon_name (cLabel, pIcon, pContainer);
+		gldi_icon_set_name (pIcon, cLabel);
 	}
 	
 	g_list_free (pList);
@@ -985,7 +982,7 @@ gboolean cd_dbus_main_set_icon (dbusMainObject *pDbusCallback, const gchar *cIma
 		cairo_t *pIconContext = cairo_create (pIcon->image.pSurface);
 		cairo_dock_set_image_on_icon (pIconContext, cImage, pIcon, pContainer);
 		cairo_destroy (pIconContext);
-		cairo_dock_redraw_icon (pIcon, pContainer);
+		cairo_dock_redraw_icon (pIcon);
 	}
 	
 	g_list_free (pList);
@@ -1026,7 +1023,7 @@ gboolean cd_dbus_main_set_emblem (dbusMainObject *pDbusCallback, const gchar *cI
 				cairo_dock_add_overlay_from_image (pIcon, cImage, iPosition, myApplet);  // use 'myApplet' to identify the overlays set by the Dbus plug-in (since the plug-in can't be deactivated, 'myApplet' is constant).
 		}
 		
-		cairo_dock_redraw_icon (pIcon, pContainer);
+		cairo_dock_redraw_icon (pIcon);
 	}
 	
 	g_list_free (pList);
@@ -1388,11 +1385,11 @@ gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pPropertie
 				g_print ("add %s\n", cDesktopFile);
 				if (cDesktopFile != NULL)
 				{
-					pNewIcon = cairo_dock_add_new_launcher_by_uri (cDesktopFile, pParentDock, fOrder);
+					pNewIcon = gldi_launcher_add_new (cDesktopFile, pParentDock, fOrder);
 				}
 				else
 				{
-					pNewIcon = cairo_dock_add_new_launcher_by_type (CAIRO_DOCK_DESKTOP_FILE_FOR_LAUNCHER, pParentDock, fOrder);
+					pNewIcon = gldi_launcher_add_new (NULL, pParentDock, fOrder);
 					
 					// get additional properties
 					const gchar *cName = NULL;
@@ -1438,11 +1435,11 @@ gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pPropertie
 			}
 			else if (strcmp (cType, CD_TYPE_SEPARATOR) == 0)
 			{
-				pNewIcon = cairo_dock_add_new_launcher_by_type (CAIRO_DOCK_DESKTOP_FILE_FOR_SEPARATOR, pParentDock, fOrder);
+				pNewIcon = gldi_separator_icon_add_new (pParentDock, fOrder);
 			}
 			else if (strcmp (cType, CD_TYPE_ICON_CONTAINER) == 0)
 			{
-				pNewIcon = cairo_dock_add_new_launcher_by_type (CAIRO_DOCK_DESKTOP_FILE_FOR_CONTAINER, pParentDock, fOrder);
+				pNewIcon = gldi_stack_icon_add_new (pParentDock, fOrder);
 				
 				// get additional properties
 				const gchar *cName = NULL;
@@ -1589,7 +1586,7 @@ gboolean cd_dbus_main_reload (dbusMainObject *pDbusCallback, gchar *cQuery, GErr
 					continue;
 				
 				cairo_dock_reload_icon_image (pIcon, pContainer);
-				cairo_dock_redraw_icon (pIcon, pContainer);
+				cairo_dock_redraw_icon (pIcon);
 			}
 		}
 		else if (CAIRO_DOCK_IS_CONTAINER (obj))
@@ -1694,7 +1691,7 @@ gboolean cd_dbus_main_remove (dbusMainObject *pDbusCallback, gchar *cQuery, GErr
 				CairoDesklet *pDesklet = CAIRO_DESKLET (obj);
 				Icon *pIcon = pDesklet->pIcon;
 				g_return_val_if_fail (CAIRO_DOCK_IS_APPLET (pIcon), FALSE);
-				gldi_module_delete_instance (pIcon->pModuleInstance);
+				gldi_object_delete (GLDI_OBJECT(pIcon->pModuleInstance));
 			}
 		}
 		else if (CAIRO_DOCK_IS_MODULE (obj))
@@ -1710,7 +1707,7 @@ gboolean cd_dbus_main_remove (dbusMainObject *pDbusCallback, gchar *cQuery, GErr
 		{
 			GldiModuleInstance *pModuleInstance = (GldiModuleInstance *)obj;
 			g_print ("remove instance %s\n", pModuleInstance->cConfFilePath);
-			gldi_module_delete_instance (pModuleInstance);
+			gldi_object_delete (GLDI_OBJECT(pModuleInstance));
 		}
 	}
 	g_list_free (pObjects);

@@ -179,7 +179,7 @@ static void _cd_shortcuts_on_network_event (CairoDockFMEventType iEventType, con
 			}
 			else
 			{
-				cairo_dock_free_icon (pNewIcon);
+				gldi_object_unref (GLDI_OBJECT (pNewIcon));
 			}
 		}
 		break ;

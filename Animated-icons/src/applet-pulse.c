@@ -47,7 +47,7 @@ static gboolean update (Icon *pIcon, CairoDock *pDock, CDAnimationData *pData, d
 		pIcon->fWidthFactor *= fScaleFactor;
 		pIcon->fHeightFactor *= fScaleFactor;
 		
-		cairo_dock_redraw_icon (pIcon, CAIRO_CONTAINER (pDock));
+		cairo_dock_redraw_icon (pIcon);
 		
 		pIcon->fWidthFactor /= fScaleFactor;
 		pIcon->fHeightFactor /= fScaleFactor;

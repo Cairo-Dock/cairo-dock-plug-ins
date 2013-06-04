@@ -363,6 +363,6 @@ void cd_gamma_display_gamma_on_label (double fGamma)
 {
 	double fGammaPercent = _gamma_to_percent (fGamma);
 	gchar *cLabel = g_strdup_printf ("%s: %d%%", D_("Luminosity"), (int)fGammaPercent);
-	cairo_dock_set_icon_name (cLabel, myIcon, myContainer);
+	gldi_icon_set_name (myIcon, cLabel);
 	g_free (cLabel);
 }

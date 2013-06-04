@@ -317,7 +317,7 @@ static void _cd_mail_remove_account (GtkButton *pButton, GldiModuleInstance *myA
 			Icon *pIcon = pRemovedMailAccount->icon;
 			GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 			if (myDock)
-				cairo_dock_remove_one_icon_from_dock (CAIRO_DOCK (pContainer), pIcon);
+				cairo_dock_detach_icon_from_dock (pIcon, CAIRO_DOCK (pContainer));
 			else
 			{
 				CairoDesklet *pDesklet = CAIRO_DESKLET (pContainer);
@@ -325,7 +325,7 @@ static void _cd_mail_remove_account (GtkButton *pButton, GldiModuleInstance *myA
 				cairo_dock_redraw_container (pContainer);
 			}
 			cd_debug ("mail : delete old icon");
-			cairo_dock_free_icon (pIcon);
+			gldi_object_unref (GLDI_OBJECT(pIcon));
 			cd_debug ("mail : delete old account");
 			cd_mail_free_account (pRemovedMailAccount);
 			break ;

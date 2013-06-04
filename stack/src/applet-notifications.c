@@ -121,7 +121,7 @@ static void _on_got_item_name (int iClickedButton, GtkWidget *pInteractiveWidget
 			cd_stack_set_item_name (cDesktopFilePath, cNewName);
 			g_free (cDesktopFilePath);
 			
-			cairo_dock_set_icon_name (cNewName, pIcon, pIcon->pContainer);
+			gldi_icon_set_name (pIcon, cNewName);
 		}
 	}
 	CD_APPLET_LEAVE ();

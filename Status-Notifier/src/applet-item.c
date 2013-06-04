@@ -256,7 +256,7 @@ static void on_new_item_title (DBusGProxy *proxy_item, CDStatusNotifierItem *pIt
 	pItem->cTitle = cairo_dock_dbus_get_property_as_string (pItem->pProxyProps, CD_STATUS_NOTIFIER_ITEM_IFACE, "Title");
 	cd_debug ("===  new title : %s", pItem->cTitle);
 	
-	//cairo_dock_set_icon_name (cTitle, pIcon, CAIRO_CONTAINER (myIcon->pSubDock));
+	//gldi_icon_set_name (pIcon, cTitle);
 	
 	CD_APPLET_LEAVE ();
 }
