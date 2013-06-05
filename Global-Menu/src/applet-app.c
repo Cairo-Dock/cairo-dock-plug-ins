@@ -302,8 +302,7 @@ static void _get_application_menu (GldiWindowActor *actor)
 	{
 		if (myData.pProxyRegistrar != NULL)
 		{
-			guint id = cairo_dock_get_active_xwindow (); // gldi_window_get_id (actor);
-			/// TODO: get an id of the actor... => http://glx-dock.org/bg_topic.php?t=7031
+			guint id = gldi_window_get_id (actor);
 			
 			s_pGetMenuCall = dbus_g_proxy_begin_call (myData.pProxyRegistrar,
 				"GetMenuForWindow",
