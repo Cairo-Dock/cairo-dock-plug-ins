@@ -261,12 +261,10 @@ static gboolean _update_html_link (CDHtmlLink *pHtmlLink)
 			pIcon = ic->data;
 			if (pIcon->cDesktopFileName && strcmp (pIcon->cDesktopFileName, cDesktopFileName) == 0)
 			{
-				GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
-				
 				gldi_icon_set_name (pIcon, pHtmlLink->cTitle);
 				
 				cd_debug ("draw emblem on %s", pIcon->cName);
-				cairo_dock_print_overlay_on_icon_from_image (pIcon, pContainer, pHtmlLink->cFaviconPath, CAIRO_OVERLAY_LOWER_RIGHT);
+				cairo_dock_print_overlay_on_icon_from_image (pIcon, pHtmlLink->cFaviconPath, CAIRO_OVERLAY_LOWER_RIGHT);
 				cairo_dock_redraw_icon (pIcon);
 				break;
 			}

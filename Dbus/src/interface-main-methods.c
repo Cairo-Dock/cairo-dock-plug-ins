@@ -1018,7 +1018,7 @@ gboolean cd_dbus_main_set_emblem (dbusMainObject *pDbusCallback, const gchar *cI
 		else
 		{
 			if (iPosition >= CAIRO_OVERLAY_NB_POSITIONS)  // [N; 2N-1] => print the overlay
-				cairo_dock_print_overlay_on_icon_from_image (pIcon, pContainer, cImage, iPosition - CAIRO_OVERLAY_NB_POSITIONS);
+				cairo_dock_print_overlay_on_icon_from_image (pIcon, cImage, iPosition - CAIRO_OVERLAY_NB_POSITIONS);
 			else  // [0, N-1] => add it
 				cairo_dock_add_overlay_from_image (pIcon, cImage, iPosition, myApplet);  // use 'myApplet' to identify the overlays set by the Dbus plug-in (since the plug-in can't be deactivated, 'myApplet' is constant).
 		}

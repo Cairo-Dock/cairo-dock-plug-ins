@@ -42,7 +42,6 @@ static gboolean _isin (gchar **cString, gchar *cCompar) {
 }
 static void _load_html_icon (Icon *pIcon)
 {
-	GldiModuleInstance *myApplet = pIcon->pAppletOwner;
 	int iWidth = cairo_dock_icon_get_allocated_width (pIcon);
 	int iHeight = cairo_dock_icon_get_allocated_height (pIcon);
 	if (pIcon->cFileName)  // icone possedant une image, on affiche celle-ci.
@@ -57,8 +56,7 @@ static void _load_html_icon (Icon *pIcon)
 			
 			if (pIcon->image.pSurface != NULL && pIcon->cWorkingDirectory != NULL)
 			{
-				GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
-				cairo_dock_print_overlay_on_icon_from_image (pIcon, pContainer, pIcon->cWorkingDirectory, CAIRO_OVERLAY_LOWER_RIGHT);
+				cairo_dock_print_overlay_on_icon_from_image (pIcon, pIcon->cWorkingDirectory, CAIRO_OVERLAY_LOWER_RIGHT);
 			}
 		}
 		g_free (cIconPath);
