@@ -2202,8 +2202,10 @@ msgid "%s successfully unmounted"
 msgstr "%s已经卸载"
 
 #: ../dustbin/src/applet-notifications.c:167
+#: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
-msgid "failed to unmount %s"
+msgid "Failed to unmount %s"
 msgstr "卸载%s失败"
 
 #: ../dustbin/src/applet-notifications.c:191
@@ -3015,20 +3017,10 @@ msgstr ""
 "该插件还可以显示磁盘信息，比如类型、剩余空间等。"
 
 #: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
 msgid "Failed to mount %s"
 msgstr "%s 挂载失败"
-
-#: ../shortcuts/src/applet-notifications.c:43
-#: ../shortcuts/src/applet-notifications.c:74
-#, c-format
-msgid "Failed to unmount %s"
-msgstr "卸载%s失败"
-
-#: ../shortcuts/src/applet-notifications.c:74
-#, fuzzy, c-format
-msgid "failed to mount %s"
-msgstr "卸载%s失败"
 
 #: ../shortcuts/src/applet-notifications.c:92
 msgid "Sorry, this applet is not yet available for KDE."
@@ -8828,6 +8820,13 @@ msgstr "允许您启动自己的无线配置界面以替代默认命令行。"
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "载入无线配置界面替代命令:"
+
+#~ msgid "failed to unmount %s"
+#~ msgstr "卸载%s失败"
+
+#, fuzzy
+#~ msgid "failed to mount %s"
+#~ msgstr "卸载%s失败"
 
 #~ msgid ""
 #~ "Your session needs to be restarted in order to update new configuration "

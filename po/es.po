@@ -2316,9 +2316,11 @@ msgid "%s successfully unmounted"
 msgstr "%s ahora está desmontado"
 
 #: ../dustbin/src/applet-notifications.c:167
+#: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
-msgid "failed to unmount %s"
-msgstr "no se pudo desmontar %s"
+msgid "Failed to unmount %s"
+msgstr "Falló al desmontar %s"
 
 #: ../dustbin/src/applet-notifications.c:191
 #: ../shortcuts/src/applet-notifications.c:151
@@ -3171,20 +3173,10 @@ msgstr ""
 "discos, como espacio libre, tipo, etc."
 
 #: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
 msgid "Failed to mount %s"
 msgstr "falló al montar %s"
-
-#: ../shortcuts/src/applet-notifications.c:43
-#: ../shortcuts/src/applet-notifications.c:74
-#, c-format
-msgid "Failed to unmount %s"
-msgstr "Falló al desmontar %s"
-
-#: ../shortcuts/src/applet-notifications.c:74
-#, fuzzy, c-format
-msgid "failed to mount %s"
-msgstr "no se pudo desmontar %s"
 
 #: ../shortcuts/src/applet-notifications.c:92
 msgid "Sorry, this applet is not yet available for KDE."
@@ -9221,6 +9213,13 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Línea de órdenes alternativa para lanzar la configuración inalámbrica:"
+
+#~ msgid "failed to unmount %s"
+#~ msgstr "no se pudo desmontar %s"
+
+#, fuzzy
+#~ msgid "failed to mount %s"
+#~ msgstr "no se pudo desmontar %s"
 
 #~ msgid ""
 #~ "Your session needs to be restarted in order to update new configuration "

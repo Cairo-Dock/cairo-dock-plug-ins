@@ -2289,9 +2289,11 @@ msgid "%s successfully unmounted"
 msgstr "%s je teraz odpojený"
 
 #: ../dustbin/src/applet-notifications.c:167
+#: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
-msgid "failed to unmount %s"
-msgstr "zlyhalo pripojenie %s"
+msgid "Failed to unmount %s"
+msgstr "Zlyhalo odpojenie %s"
 
 #: ../dustbin/src/applet-notifications.c:191
 #: ../shortcuts/src/applet-notifications.c:151
@@ -3135,20 +3137,10 @@ msgstr ""
 "voľné miesto, typ, atď"
 
 #: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
 msgid "Failed to mount %s"
 msgstr "Zlyhalo pripojenie %s"
-
-#: ../shortcuts/src/applet-notifications.c:43
-#: ../shortcuts/src/applet-notifications.c:74
-#, c-format
-msgid "Failed to unmount %s"
-msgstr "Zlyhalo odpojenie %s"
-
-#: ../shortcuts/src/applet-notifications.c:74
-#, fuzzy, c-format
-msgid "failed to mount %s"
-msgstr "zlyhalo pripojenie %s"
 
 #: ../shortcuts/src/applet-notifications.c:92
 msgid "Sorry, this applet is not yet available for KDE."
@@ -9089,6 +9081,13 @@ msgstr ""
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr ""
 "Alternatívny príkaz pre spustenie Konfigurácie bezdrôtového pripojenia :"
+
+#~ msgid "failed to unmount %s"
+#~ msgstr "zlyhalo pripojenie %s"
+
+#, fuzzy
+#~ msgid "failed to mount %s"
+#~ msgstr "zlyhalo pripojenie %s"
 
 #~ msgid ""
 #~ "Your session needs to be restarted in order to update new configuration "

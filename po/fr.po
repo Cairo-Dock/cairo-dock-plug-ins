@@ -2433,9 +2433,11 @@ msgid "%s successfully unmounted"
 msgstr "%s est maintenant démonté"
 
 #: ../dustbin/src/applet-notifications.c:167
+#: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
-msgid "failed to unmount %s"
-msgstr "échec au démontage de %s"
+msgid "Failed to unmount %s"
+msgstr "Échec au démontage de %s"
 
 #: ../dustbin/src/applet-notifications.c:191
 #: ../shortcuts/src/applet-notifications.c:151
@@ -3319,20 +3321,10 @@ msgstr ""
 "disques, comme l'espace disponible, le type, etc."
 
 #: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
 msgid "Failed to mount %s"
 msgstr "Le montage de %s a échoué"
-
-#: ../shortcuts/src/applet-notifications.c:43
-#: ../shortcuts/src/applet-notifications.c:74
-#, c-format
-msgid "Failed to unmount %s"
-msgstr "Échec au démontage de %s"
-
-#: ../shortcuts/src/applet-notifications.c:74
-#, fuzzy, c-format
-msgid "failed to mount %s"
-msgstr "échec au démontage de %s"
 
 #: ../shortcuts/src/applet-notifications.c:92
 msgid "Sorry, this applet is not yet available for KDE."
@@ -9389,6 +9381,13 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Ouvrir la configuration du Wifi avec :"
+
+#~ msgid "failed to unmount %s"
+#~ msgstr "échec au démontage de %s"
+
+#, fuzzy
+#~ msgid "failed to mount %s"
+#~ msgstr "échec au démontage de %s"
 
 #~ msgid ""
 #~ "Your session needs to be restarted in order to update new configuration "

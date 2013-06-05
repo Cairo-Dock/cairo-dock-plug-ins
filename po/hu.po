@@ -2310,9 +2310,11 @@ msgid "%s successfully unmounted"
 msgstr "%s leválasztva."
 
 #: ../dustbin/src/applet-notifications.c:167
+#: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
-msgid "failed to unmount %s"
-msgstr "%s leválasztása sikertelen"
+msgid "Failed to unmount %s"
+msgstr "Nem sikerült leválasztani a(z) %s eszközt"
 
 #: ../dustbin/src/applet-notifications.c:191
 #: ../shortcuts/src/applet-notifications.c:151
@@ -3164,20 +3166,10 @@ msgstr ""
 "szabad terület stb."
 
 #: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
 msgid "Failed to mount %s"
 msgstr "Nem sikerült csatolni a(z) %s eszközt"
-
-#: ../shortcuts/src/applet-notifications.c:43
-#: ../shortcuts/src/applet-notifications.c:74
-#, c-format
-msgid "Failed to unmount %s"
-msgstr "Nem sikerült leválasztani a(z) %s eszközt"
-
-#: ../shortcuts/src/applet-notifications.c:74
-#, fuzzy, c-format
-msgid "failed to mount %s"
-msgstr "%s leválasztása sikertelen"
 
 #: ../shortcuts/src/applet-notifications.c:92
 msgid "Sorry, this applet is not yet available for KDE."
@@ -9056,3 +9048,10 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr ""
+
+#~ msgid "failed to unmount %s"
+#~ msgstr "%s leválasztása sikertelen"
+
+#, fuzzy
+#~ msgid "failed to mount %s"
+#~ msgstr "%s leválasztása sikertelen"

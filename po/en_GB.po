@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2013-06-05 03:09+0200\n"
+"POT-Creation-Date: 2013-06-05 11:41+0200\n"
 "PO-Revision-Date: 2013-03-04 23:54+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
@@ -2283,9 +2283,11 @@ msgid "%s successfully unmounted"
 msgstr "%s successfully unmounted"
 
 #: ../dustbin/src/applet-notifications.c:167
+#: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
-msgid "failed to unmount %s"
-msgstr "failed to unmount %s"
+msgid "Failed to unmount %s"
+msgstr "Failed to unmount %s"
 
 #: ../dustbin/src/applet-notifications.c:191
 #: ../shortcuts/src/applet-notifications.c:151
@@ -3121,20 +3123,10 @@ msgstr ""
 "space, type, etc."
 
 #: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
 msgid "Failed to mount %s"
 msgstr "Failed to mount %s"
-
-#: ../shortcuts/src/applet-notifications.c:43
-#: ../shortcuts/src/applet-notifications.c:74
-#, c-format
-msgid "Failed to unmount %s"
-msgstr "Failed to unmount %s"
-
-#: ../shortcuts/src/applet-notifications.c:74
-#, fuzzy, c-format
-msgid "failed to mount %s"
-msgstr "failed to unmount %s"
 
 #: ../shortcuts/src/applet-notifications.c:92
 msgid "Sorry, this applet is not yet available for KDE."
@@ -9073,3 +9065,10 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Alternative command line to launch Wireless Configuration :"
+
+#~ msgid "failed to unmount %s"
+#~ msgstr "failed to unmount %s"
+
+#, fuzzy
+#~ msgid "failed to mount %s"
+#~ msgstr "failed to unmount %s"

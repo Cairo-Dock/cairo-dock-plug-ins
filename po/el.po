@@ -2326,9 +2326,11 @@ msgid "%s successfully unmounted"
 msgstr "%s αποπροσαρτήθηκε επιτυχώς"
 
 #: ../dustbin/src/applet-notifications.c:167
+#: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
-msgid "failed to unmount %s"
-msgstr "αποτυχία αποπροσάρτησης του %s"
+msgid "Failed to unmount %s"
+msgstr "Αποτυχία αποπροσάρτησης του %s"
 
 #: ../dustbin/src/applet-notifications.c:191
 #: ../shortcuts/src/applet-notifications.c:151
@@ -3180,20 +3182,10 @@ msgstr ""
 "δίσκους, όπως ελεύθερο χώρο, τύπο κλπ."
 
 #: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
 msgid "Failed to mount %s"
 msgstr "αποτυχία προσάρτησης %s"
-
-#: ../shortcuts/src/applet-notifications.c:43
-#: ../shortcuts/src/applet-notifications.c:74
-#, c-format
-msgid "Failed to unmount %s"
-msgstr "Αποτυχία αποπροσάρτησης του %s"
-
-#: ../shortcuts/src/applet-notifications.c:74
-#, fuzzy, c-format
-msgid "failed to mount %s"
-msgstr "αποτυχία αποπροσάρτησης του %s"
 
 #: ../shortcuts/src/applet-notifications.c:92
 msgid "Sorry, this applet is not yet available for KDE."
@@ -9226,3 +9218,10 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Εναλλακτική εντολή για εκκίνηση Διαμόρφωση ασύρματης σύνδεσης :"
+
+#~ msgid "failed to unmount %s"
+#~ msgstr "αποτυχία αποπροσάρτησης του %s"
+
+#, fuzzy
+#~ msgid "failed to mount %s"
+#~ msgstr "αποτυχία αποπροσάρτησης του %s"

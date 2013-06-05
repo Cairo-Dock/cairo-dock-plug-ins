@@ -164,7 +164,7 @@ static void _cd_dustbin_action_after_unmount (gboolean bMounting, gboolean bSucc
 	}
 	else
 	{
-		cMessage = g_strdup_printf (D_("failed to unmount %s"), cName);
+		cMessage = g_strdup_printf (D_("Failed to unmount %s"), cName);
 		
 	}
 	gldi_dialogs_remove_on_icon (myIcon);

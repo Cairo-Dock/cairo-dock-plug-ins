@@ -71,7 +71,7 @@ static void _open_on_mount (gboolean bMounting, gboolean bSuccess, const gchar *
 	{
 		gldi_dialogs_remove_on_icon (pIcon);
 		gldi_dialog_show_temporary_with_icon_printf (
-			bMounting ? _("failed to mount %s") : _("Failed to unmount %s"),
+			bMounting ? _("Failed to mount %s") : _("Failed to unmount %s"),
 			pIcon, pContainer,
 			4000,
 			"same icon",  // petit risque de n'avoir pas encore d'image a afficher, pas bien grave.

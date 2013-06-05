@@ -2326,9 +2326,11 @@ msgid "%s successfully unmounted"
 msgstr "%s отсоединён"
 
 #: ../dustbin/src/applet-notifications.c:167
+#: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
-msgid "failed to unmount %s"
-msgstr "не удалось отсоединить %s"
+msgid "Failed to unmount %s"
+msgstr "Не удалось отсоединить %s"
 
 #: ../dustbin/src/applet-notifications.c:191
 #: ../shortcuts/src/applet-notifications.c:151
@@ -3174,20 +3176,10 @@ msgstr ""
 "д."
 
 #: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
 msgid "Failed to mount %s"
 msgstr "Не удалось присоединить %s"
-
-#: ../shortcuts/src/applet-notifications.c:43
-#: ../shortcuts/src/applet-notifications.c:74
-#, c-format
-msgid "Failed to unmount %s"
-msgstr "Не удалось отсоединить %s"
-
-#: ../shortcuts/src/applet-notifications.c:74
-#, fuzzy, c-format
-msgid "failed to mount %s"
-msgstr "не удалось отсоединить %s"
 
 #: ../shortcuts/src/applet-notifications.c:92
 msgid "Sorry, this applet is not yet available for KDE."
@@ -9170,6 +9162,13 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Альтернативная команда запуска Настройки Беспроводного Соединения:"
+
+#~ msgid "failed to unmount %s"
+#~ msgstr "не удалось отсоединить %s"
+
+#, fuzzy
+#~ msgid "failed to mount %s"
+#~ msgstr "не удалось отсоединить %s"
 
 #~ msgid ""
 #~ "Your session needs to be restarted in order to update new configuration "

@@ -2235,8 +2235,10 @@ msgid "%s successfully unmounted"
 msgstr "%s edukalt lahtihaagitud"
 
 #: ../dustbin/src/applet-notifications.c:167
+#: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
-msgid "failed to unmount %s"
+msgid "Failed to unmount %s"
 msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:191
@@ -3035,19 +3037,9 @@ msgid ""
 msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
 msgid "Failed to mount %s"
-msgstr ""
-
-#: ../shortcuts/src/applet-notifications.c:43
-#: ../shortcuts/src/applet-notifications.c:74
-#, c-format
-msgid "Failed to unmount %s"
-msgstr ""
-
-#: ../shortcuts/src/applet-notifications.c:74
-#, c-format
-msgid "failed to mount %s"
 msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:92

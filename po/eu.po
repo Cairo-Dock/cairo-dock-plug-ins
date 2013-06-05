@@ -2159,9 +2159,11 @@ msgid "%s successfully unmounted"
 msgstr "%s egoki desmuntatua"
 
 #: ../dustbin/src/applet-notifications.c:167
+#: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
-msgid "failed to unmount %s"
-msgstr "Huts egin du %s desmuntatzeak"
+msgid "Failed to unmount %s"
+msgstr ""
 
 #: ../dustbin/src/applet-notifications.c:191
 #: ../shortcuts/src/applet-notifications.c:151
@@ -2959,20 +2961,10 @@ msgid ""
 msgstr ""
 
 #: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
 msgid "Failed to mount %s"
 msgstr ""
-
-#: ../shortcuts/src/applet-notifications.c:43
-#: ../shortcuts/src/applet-notifications.c:74
-#, c-format
-msgid "Failed to unmount %s"
-msgstr ""
-
-#: ../shortcuts/src/applet-notifications.c:74
-#, fuzzy, c-format
-msgid "failed to mount %s"
-msgstr "Huts egin du %s desmuntatzeak"
 
 #: ../shortcuts/src/applet-notifications.c:92
 msgid "Sorry, this applet is not yet available for KDE."
@@ -8754,3 +8746,10 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr ""
+
+#~ msgid "failed to unmount %s"
+#~ msgstr "Huts egin du %s desmuntatzeak"
+
+#, fuzzy
+#~ msgid "failed to mount %s"
+#~ msgstr "Huts egin du %s desmuntatzeak"

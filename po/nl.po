@@ -2395,9 +2395,11 @@ msgid "%s successfully unmounted"
 msgstr "%s is nu ontkoppeld"
 
 #: ../dustbin/src/applet-notifications.c:167
+#: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
-msgid "failed to unmount %s"
-msgstr "Kon %s niet ontkoppelen"
+msgid "Failed to unmount %s"
+msgstr "kon %s niet ontkoppelen"
 
 #: ../dustbin/src/applet-notifications.c:191
 #: ../shortcuts/src/applet-notifications.c:151
@@ -3274,20 +3276,10 @@ msgstr ""
 "ruimte, type, etc."
 
 #: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
 msgid "Failed to mount %s"
 msgstr "kon %s niet aankoppelen"
-
-#: ../shortcuts/src/applet-notifications.c:43
-#: ../shortcuts/src/applet-notifications.c:74
-#, c-format
-msgid "Failed to unmount %s"
-msgstr "kon %s niet ontkoppelen"
-
-#: ../shortcuts/src/applet-notifications.c:74
-#, fuzzy, c-format
-msgid "failed to mount %s"
-msgstr "Kon %s niet ontkoppelen"
 
 #: ../shortcuts/src/applet-notifications.c:92
 msgid "Sorry, this applet is not yet available for KDE."
@@ -9323,6 +9315,13 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Alternatieve opdracht om ´Draadloos configuratie´ te openen :"
+
+#~ msgid "failed to unmount %s"
+#~ msgstr "Kon %s niet ontkoppelen"
+
+#, fuzzy
+#~ msgid "failed to mount %s"
+#~ msgstr "Kon %s niet ontkoppelen"
 
 #~ msgid ""
 #~ "Your session needs to be restarted in order to update new configuration "

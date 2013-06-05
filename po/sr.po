@@ -2391,9 +2391,11 @@ msgid "%s successfully unmounted"
 msgstr "%s успешно откачен"
 
 #: ../dustbin/src/applet-notifications.c:167
+#: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
-msgid "failed to unmount %s"
-msgstr "неуспело откачињање %s"
+msgid "Failed to unmount %s"
+msgstr "Нисам успео да откачим %s"
 
 #: ../dustbin/src/applet-notifications.c:191
 #: ../shortcuts/src/applet-notifications.c:151
@@ -3273,20 +3275,10 @@ msgstr ""
 "слободно место, врста, итд."
 
 #: ../shortcuts/src/applet-notifications.c:43
+#: ../shortcuts/src/applet-notifications.c:74
 #, c-format
 msgid "Failed to mount %s"
 msgstr "Не могу да закачим %s"
-
-#: ../shortcuts/src/applet-notifications.c:43
-#: ../shortcuts/src/applet-notifications.c:74
-#, c-format
-msgid "Failed to unmount %s"
-msgstr "Нисам успео да откачим %s"
-
-#: ../shortcuts/src/applet-notifications.c:74
-#, fuzzy, c-format
-msgid "failed to mount %s"
-msgstr "неуспело откачињање %s"
 
 #: ../shortcuts/src/applet-notifications.c:92
 msgid "Sorry, this applet is not yet available for KDE."
@@ -9284,6 +9276,13 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Заменска наредбена линија за покретање бежичних поставки :"
+
+#~ msgid "failed to unmount %s"
+#~ msgstr "неуспело откачињање %s"
+
+#, fuzzy
+#~ msgid "failed to mount %s"
+#~ msgstr "неуспело откачињање %s"
 
 #~ msgid ""
 #~ "Your session needs to be restarted in order to update new configuration "
