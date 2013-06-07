@@ -93,7 +93,18 @@ static void _load_note_image (Icon *pIcon)
 }
 Icon *cd_notes_create_icon_for_note (CDNote *pNote)
 {
-	Icon *pIcon = cairo_dock_create_dummy_launcher (pNote->cTitle,
+	gchar *cTitle;
+	if (pNote->cTitle == NULL)
+		cTitle = g_strdup (D_("No title"));
+	else if (*pNote->cTitle == '\0')
+	{
+		cTitle = g_strdup (D_("No title"));
+		g_free (pNote->cTitle);
+	}
+	else
+		cTitle = pNote->cTitle;
+
+	Icon *pIcon = cairo_dock_create_dummy_launcher (cTitle,
 		(myConfig.cNoteIcon == NULL ?
 			g_strdup (MY_APPLET_SHARE_DATA_DIR"/note.svg") :
 			g_strdup (myConfig.cNoteIcon)),
@@ -102,6 +113,7 @@ Icon *cd_notes_create_icon_for_note (CDNote *pNote)
 		0);
 	pNote->cTitle = NULL;
 	pNote->cID = NULL;
+
 	if (myConfig.bDrawContent)
 	{
 		pIcon->cClass = pNote->cContent;
@@ -389,6 +401,11 @@ void cd_notes_store_remove_note (const gchar *cNoteID)
 	cd_tomboy_update_icon ();
 }
 
+static const gchar * _get_display_title (const gchar *cTitle)
+{
+	return cTitle && *cTitle != '\0' ? cTitle : D_("No title");
+}
+
 void cd_notes_store_update_note (CDNote *pUpdatedNote)
 {
 	Icon *pIcon = _cd_tomboy_find_note_from_uri (pUpdatedNote->cID);
@@ -397,7 +414,7 @@ void cd_notes_store_update_note (CDNote *pUpdatedNote)
 	cd_debug ("  %s -> %s", pUpdatedNote->cTitle, pIcon->cName);
 	if (g_strcmp0 (pUpdatedNote->cTitle, pIcon->cName) != 0)  // nouveau titre.
 	{
-		gldi_icon_set_name (pIcon, pUpdatedNote->cTitle);
+		gldi_icon_set_name (pIcon, _get_display_title (pUpdatedNote->cTitle));
 	}
 	
 	if (myConfig.bDrawContent)
