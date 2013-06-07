@@ -88,7 +88,15 @@ CD_APPLET_INIT_BEGIN
 	if (myConfig.bDisplayControls)  // no animation on mouse hover if the buttons are displayed, it's hard to click
 	{
 		CD_APPLET_SET_STATIC_ICON;
-		myData.bReversedButtonsOrder = FALSE; /// _reversed_buttons_order (); => TODO? check if the position of the icon has changed. => the position of the icon seems to not be correct if we call this function here... we can check if something has changed with CD_APPLET_RELOAD but the order doesn't change if the icon has been moved in the same dock (it works if the container has changed). Do we have to register to this notifications? => NOTIFICATION_ICON_MOVED
+		myData.bReversedButtonsOrder = _reversed_buttons_order ();
+		/** => TODO? check if the position of the icon has changed?
+		 * => if we use the 'auto' position, this position of the icon seems to
+		 * not be correct if we call this function here... we can check if
+		 * something has changed with CD_APPLET_RELOAD but the order doesn't
+		 * change if the icon has been moved in the same dock (it works if the
+		 * container has changed). Do we have to register to this notifications?
+		 * => NOTIFICATION_ICON_MOVED
+		 */
 	}
 	
 	// mouse events
