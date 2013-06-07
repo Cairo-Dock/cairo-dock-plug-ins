@@ -515,30 +515,6 @@ void cd_mail_retrieve_orange_params (CDMailAccount *mailaccount, GKeyFile *pKeyF
 	_retrieve_user_password( mailaccount, pKeyFile, mailbox_name );
 }
 
-void cd_mail_create_uclouvain_params( GKeyFile *pKeyFile, const gchar *pMailAccountName )
-{
-	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "uclouvain");
-	g_key_file_set_comment (pKeyFile, pMailAccountName, "type", ">0 ", NULL);
-
-	_add_default_create_params( pKeyFile, pMailAccountName );
-}
-
-void cd_mail_retrieve_uclouvain_params (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name)
-{	// IMAP
-	if( !mailaccount || !pKeyFile || !mailbox_name )
-		return;
-
-	mailaccount->driver = IMAP_STORAGE;
-	mailaccount->storage = mailstorage_new(NULL);
-	mailaccount->server = g_strdup("mail.sipr.ucl.ac.be");
-	mailaccount->port = 993;
-	mailaccount->connection_type = CONNECTION_TYPE_TLS;
-	mailaccount->auth_type = IMAP_AUTH_TYPE_PLAIN;
-	mailaccount->path = g_strdup("Inbox");
-	
-	_retrieve_user_password( mailaccount, pKeyFile, mailbox_name );
-}
-
 void cd_mail_create_skynet_params( GKeyFile *pKeyFile, const gchar *pMailAccountName )
 {
 	g_key_file_set_string (pKeyFile, pMailAccountName, "type", "skynet");

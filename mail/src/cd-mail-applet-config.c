@@ -48,7 +48,6 @@ static struct storage_type_def storage_tab[] = {
 	{"neuf", "Neuf Télécom", cd_mail_retrieve_neuf_params, cd_mail_create_neuf_params },
 	{"sfr", "SFR", cd_mail_retrieve_sfr_params, cd_mail_create_sfr_params },
 	{"orange", "Orange", cd_mail_retrieve_orange_params, cd_mail_create_orange_params },
-	{"uclouvain", "UCLouvain", cd_mail_retrieve_uclouvain_params, cd_mail_create_uclouvain_params },
 	{"skynet", "Skynet (Belgacom)", cd_mail_retrieve_skynet_params, cd_mail_create_skynet_params }
 #if ( __WORDSIZE == 64 )
 /* in 64bit libetpan crashes with RSS, so... avoid it. */
