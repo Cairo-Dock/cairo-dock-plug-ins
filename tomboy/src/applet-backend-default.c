@@ -143,7 +143,7 @@ static void on_delete_note_window (GtkWidget *pWidget, gchar *cNoteID)
 	g_object_unref (pTextWidget);
 }
 
-gboolean _on_key_press (G_GNUC_UNUSED GtkWidget *pWidget,
+static gboolean _on_key_press (G_GNUC_UNUSED GtkWidget *pWidget,
 	GdkEventKey *pKey,
 	GldiModuleInstance *myApplet)
 {
@@ -155,6 +155,24 @@ gboolean _on_key_press (G_GNUC_UNUSED GtkWidget *pWidget,
 	return FALSE;
 }
 
+static void _set_new_title_on_window (const gchar *cTitle)
+{
+	gchar *cFullTitle = g_strdup_printf ("Cairo-Dock - %s %s", D_("Note:"),
+		cTitle && *cTitle != '\0' ? cTitle : D_("No title"));
+
+	gtk_window_set_title (GTK_WINDOW (s_pNoteWindow), cFullTitle);
+
+	g_free (cFullTitle);
+}
+
+static gboolean _on_key_press_title (GtkWidget *pTitleWidget,
+	G_GNUC_UNUSED GdkEventKey *pKey, G_GNUC_UNUSED gpointer data)
+{
+	_set_new_title_on_window (gtk_entry_get_text (GTK_ENTRY (pTitleWidget)));
+	return FALSE; // let modify the text in the GUI
+}
+
+
 static void show_note (const gchar *cNoteID)
 {
 	if (s_pNoteWindow != NULL)
@@ -165,6 +183,7 @@ static void show_note (const gchar *cNoteID)
 	CDNote *pNote = _get_note (cNoteID);
 	
 	s_pNoteWindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+	_set_new_title_on_window (pNote->cTitle);
 	//gtk_window_set_modal (GTK_WINDOW (s_pNoteWindow), TRUE);  // set as modal, since the dialog it comes from (the one containing the calendar) is modal (as any interactive dialog).
 	
 	g_signal_connect (G_OBJECT (s_pNoteWindow),
@@ -202,7 +221,13 @@ static void show_note (const gchar *cNoteID)
 		TRUE,
 		0);
 	gtk_entry_set_text (GTK_ENTRY (pTitleWidget), pNote->cTitle);
-	
+
+	// update window's title when the title widget is modified
+	g_signal_connect (G_OBJECT (pTitleWidget),
+		"key-release-event",
+		G_CALLBACK (_on_key_press_title),
+		NULL);
+
 	/** Lister les tags et les ajouter a la combo ...
 	#if (GTK_MAJOR_VERSION < 3 && GTK_MINOR_VERSION < 24)
 	#define _combo_box_entry_new gtk_combo_box_entry_new
