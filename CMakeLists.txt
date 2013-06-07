@@ -59,8 +59,9 @@ if ("${PACKAGEMENT}" STREQUAL "") ## do not check if we're using the same versio
 		endif ()
 		MESSAGE (FATAL_ERROR "Error: version mismatch with the core: ${VERSION} <> ${dock_version}")
 	endif ()
-	set (dock_version ${GLDI_VERSION})
 endif ()
+
+set (dock_version ${VERSION}) # should be the same except if PACKAGEMENT is set
 
 # get plug-ins install dir
 execute_process(
