@@ -272,11 +272,15 @@ static gboolean _popup_dialog (Icon *pIcon)
 	if (pContainer->bInside)
 	{
 		if (g_list_find (CD_APPLET_MY_ICONS_LIST, pIcon))  // on verifie que l'icone ne s'est pas fait effacee entre-temps.
-			gldi_dialog_show_temporary_with_icon (pIcon->cClass,
+		{
+			gchar *cDescription = pIcon->cClass && *pIcon->cClass != '\0' ?
+				pIcon->cClass : D_("No description");
+			gldi_dialog_show_temporary_with_icon (cDescription,
 				pIcon,
 				CD_APPLET_MY_ICONS_LIST_CONTAINER,
 				myConfig.iDialogDuration,
 				myConfig.cIconDefault != NULL ? myConfig.cIconDefault : MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+		}
 	}
 	myData.iSidPopupDialog = 0;
 	CD_APPLET_LEAVE (FALSE);
