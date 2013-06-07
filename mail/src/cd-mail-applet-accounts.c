@@ -27,7 +27,7 @@
 
 #define _add_icon(pMailAccount)\
 	pIcon = cairo_dock_create_dummy_launcher (g_strdup (pMailAccount->name),\
-		g_strdup (myConfig.cNoMailUserImage),\
+		pMailAccount->cIconName ? g_strdup (pMailAccount->cIconName) : g_strdup (myConfig.cNoMailUserImage),\
 		g_strdup (pMailAccount->cMailApp),\
 		g_strdup ("..."),\
 		i);\
@@ -36,7 +36,7 @@
 	pMailAccount->icon = pIcon;
 
 // Translation Hack:
-const char *strings_to_translate[20] = {N_("Server address:"), N_("myHost"), N_("Username:"), N_("Password:"), N_("The password will be crypted."), N_("Port:"), N_("Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and 995 for POP3S."), N_("Enter 0 to use the default port. Default ports are 143 for IMAP4 and 993 for IMAP4 over SSL."), N_("Use a secure connection (SSL)"), N_("Refresh time:"), N_("In minutes."), N_("Specific mail application"), N_("Leave empty to use the default mail application."), N_("Directory on server:"), N_("Path of mbox file:"), N_("Path to Mail directory:"), N_("Address of feed:"), N_("Remove this account"), N_("Don't forget to enable IMAP (or POP) service from settings of your mail account.")};
+const char *strings_to_translate[20] = {N_("Server address:"), N_("myHost"), N_("Username:"), N_("Password:"), N_("The password will be crypted."), N_("Port:"), N_("Enter 0 to use the default port. Default ports are 110 for POP3 or APOP and 995 for POP3S."), N_("Enter 0 to use the default port. Default ports are 143 for IMAP4 and 993 for IMAP4 over SSL."), N_("Use a secure connection (SSL)"), N_("Refresh time:"), N_("In minutes."), N_("Specific mail application"), N_("Leave empty to use the default mail application."), N_("Specific icon file when using multiple accounts"), N_("Directory on server:"), N_("Path of mbox file:"), N_("Path to Mail directory:"), N_("Address of feed:"), N_("Remove this account"), N_("Don't forget to enable IMAP (or POP) service from settings of your mail account.")};
 
 // Default parameters (to not copy these parameters each time)
 void _add_default_create_params( GKeyFile *pKeyFile, const gchar *pMailAccountName )
@@ -52,6 +52,9 @@ void _add_default_create_params( GKeyFile *pKeyFile, const gchar *pMailAccountNa
 
 	g_key_file_set_string (pKeyFile, pMailAccountName, "mail application", "");
 	g_key_file_set_comment (pKeyFile, pMailAccountName, "mail application", "s0 Specific mail application\n{Leave empty to use the default mail application.}", NULL);
+
+	g_key_file_set_string (pKeyFile, pMailAccountName, "icon name", "");
+	g_key_file_set_comment (pKeyFile, pMailAccountName, "icon name", "g0 Specific icon file when using multiple accounts\n{Leave empty to use the default icon.}", NULL);
 }
 
 void _retrieve_user_password (CDMailAccount *mailaccount, GKeyFile *pKeyFile, const gchar *mailbox_name)
@@ -695,6 +698,7 @@ void cd_mail_free_account (CDMailAccount *pMailAccount)
 	g_free( pMailAccount->password );
 	g_free( pMailAccount->path );
 	g_free( pMailAccount->cMailApp );
+	g_free( pMailAccount->cIconName );
 
 	if( pMailAccount->folder )
 		mailfolder_free(pMailAccount->folder);

@@ -277,6 +277,8 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 		pContainer = myContainer;
 	}
 	CD_APPLET_LEAVE_IF_FAIL (pIcon != NULL, TRUE);
+
+	gchar *cIconName = pUpdatedMailAccount->cIconName;
 	
 	//\_______________________ On met a jour l'icone du compte.
 	cairo_t *pIconContext = cairo_create (pIcon->image.pSurface);
@@ -295,8 +297,8 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 	if (pUpdatedMailAccount->bError)
 	{
 		gldi_icon_set_quick_info (pIcon, "N/A");
-		
-		cairo_dock_set_image_on_icon (pIconContext, myConfig.cNoMailUserImage, pIcon, pContainer);
+
+		cairo_dock_set_image_on_icon (pIconContext, cIconName ? cIconName : myConfig.cNoMailUserImage, pIcon, pContainer);
 	}
 	else
 	{
@@ -304,7 +306,7 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 		{
 			gldi_icon_set_quick_info_printf (pIcon, "%d", pUpdatedMailAccount->iNbUnseenMails);
 		
-			cairo_dock_set_image_on_icon (pIconContext, myConfig.cHasMailUserImage, pIcon, pContainer);
+			cairo_dock_set_image_on_icon (pIconContext, cIconName ? cIconName : myConfig.cHasMailUserImage, pIcon, pContainer);
 		}
 		else
 		{
@@ -317,7 +319,7 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 				gldi_icon_set_quick_info (pIcon, NULL);
 			}
 		
-			cairo_dock_set_image_on_icon (pIconContext, myConfig.cNoMailUserImage, pIcon, pContainer);
+			cairo_dock_set_image_on_icon (pIconContext, cIconName ? cIconName : myConfig.cNoMailUserImage, pIcon, pContainer);
 		}
 	}
 	cairo_destroy (pIconContext);

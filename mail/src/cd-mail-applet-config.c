@@ -60,6 +60,14 @@ static struct storage_type_def storage_tab[] = {
 
 const guint MAIL_NB_STORAGE_TYPES = sizeof(storage_tab) / sizeof(struct storage_type_def);
 
+#define _find_image_path(path) \
+	__extension__ ({\
+	gchar *_found_image = NULL; \
+	if (path != NULL) { \
+		_found_image = cairo_dock_search_image_s_path (path); \
+		if (_found_image == NULL)\
+			_found_image = cairo_dock_search_icon_s_path (path, MAX (myIcon->image.iWidth, myIcon->image.iHeight)); }\
+	_found_image; })
 static void _get_mail_accounts (GKeyFile *pKeyFile, GldiModuleInstance *myApplet)
 {
 	//\_______________ On remet a zero les comptes mail.
@@ -124,25 +132,15 @@ static void _get_mail_accounts (GKeyFile *pKeyFile, GldiModuleInstance *myApplet
 		pMailAccount->name = g_strdup (cMailAccountName);
 		pMailAccount->timeout = CD_CONFIG_GET_INTEGER_WITH_DEFAULT (cMailAccountName, "timeout mn", 10);
 		pMailAccount->pAppletInstance = myApplet;
-		pMailAccount->cMailApp = g_key_file_get_string (pKeyFile, cMailAccountName, "mail application", NULL);  // a specific mail application to launch for this account, if any.
-		if (pMailAccount->cMailApp && *pMailAccount->cMailApp == '\0')
-		{
-			g_free (pMailAccount->cMailApp);
-			pMailAccount->cMailApp = NULL;
-		}
+		pMailAccount->cMailApp = CD_CONFIG_GET_STRING (cMailAccountName, "mail application");  // a specific mail application to launch for this account, if any.
+		gchar *cIconName = CD_CONFIG_GET_STRING (cMailAccountName, "icon name");
+		pMailAccount->cIconName = _find_image_path (cIconName);
+		g_free (cIconName);
 		(storage_tab[j].pfillFunc)( pMailAccount, pKeyFile, cMailAccountName );
 	}
 	g_strfreev (pGroupList);
 }
 
-#define _find_image_path(path) \
-	__extension__ ({\
-	gchar *_found_image = NULL; \
-	if (path != NULL) { \
-		_found_image = cairo_dock_search_image_s_path (path); \
-		if (_found_image == NULL)\
-			_found_image = cairo_dock_search_icon_s_path (path, MAX (myIcon->image.iWidth, myIcon->image.iHeight)); }\
-	_found_image; })
 CD_APPLET_GET_CONFIG_BEGIN
 	//\_________________ On recupere toutes les valeurs de notre fichier de conf.
 	gchar *path;

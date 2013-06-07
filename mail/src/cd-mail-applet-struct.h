@@ -96,9 +96,10 @@ typedef struct {
     guint timeout;
     CairoDockTask *pAccountMailTimer;
     Icon *icon;
+    gchar *cIconName;
     gboolean bInitialized;
-    GList *pUnseenMessageList;  // liste de gchar*
-    GList *pUnseenMessageUid;  // liste de gchar*
+    GList *pUnseenMessageList;  // list of gchar*
+    GList *pUnseenMessageUid;  // list of gchar*
 
     gchar *cMailApp;
 
