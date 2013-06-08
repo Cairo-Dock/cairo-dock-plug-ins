@@ -167,7 +167,7 @@ static gboolean _icon_is_matching (Icon *pIcon, GldiContainer *pContainer, CDQue
 		else if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 			cType = CD_TYPE_SEPARATOR;
 		else if (CAIRO_DOCK_ICON_TYPE_IS_CONTAINER (pIcon))
-			cType = CD_TYPE_ICON_CONTAINER;
+			cType = CD_TYPE_STACK_ICON;
 		else if (CAIRO_DOCK_ICON_TYPE_IS_CLASS_CONTAINER (pIcon))
 			cType = CD_TYPE_CLASS_CONTAINER;
 		else
@@ -661,7 +661,7 @@ CDMainType cd_dbus_get_main_type (const gchar *cType, int n)
 	|| strncmp (cType, CD_TYPE_APPLICATION, n) == 0
 	|| strncmp (cType, CD_TYPE_APPLET, n) == 0
 	|| strncmp (cType, CD_TYPE_SEPARATOR, n) == 0
-	|| strncmp (cType, CD_TYPE_ICON_CONTAINER, n) == 0
+	|| strncmp (cType, CD_TYPE_STACK_ICON, n) == 0
 	|| strncmp (cType, CD_TYPE_CLASS_CONTAINER, n) == 0
 	|| strncmp (cType, CD_TYPE_ICON_OTHER, n) == 0)
 	{

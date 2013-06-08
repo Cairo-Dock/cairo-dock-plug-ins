@@ -134,7 +134,7 @@ gboolean cd_dbus_main_reload_module (dbusMainObject *pDbusCallback, const gchar 
 	GldiModule *pModule = gldi_module_get (cModuleName);
 	if (pModule != NULL)
 	{
-		gldi_module_reload (pModule, TRUE);  // TRUE <=> reload module conf file.
+		gldi_object_reload (GLDI_OBJECT(pModule), TRUE);  // TRUE <=> reload module conf file.
 	}
 	else
 	{
@@ -215,7 +215,7 @@ gboolean cd_dbus_main_get_icon_properties (dbusMainObject *pDbusCallback, gchar 
 		else if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 			cType = CD_TYPE_SEPARATOR;
 		else if (CAIRO_DOCK_ICON_TYPE_IS_CONTAINER (pIcon))
-			cType = CD_TYPE_ICON_CONTAINER;
+			cType = CD_TYPE_STACK_ICON;
 		else if (CAIRO_DOCK_ICON_TYPE_IS_CLASS_CONTAINER (pIcon))
 			cType = CD_TYPE_CLASS_CONTAINER;
 		else
@@ -810,11 +810,11 @@ gboolean cd_dbus_main_reload_icon (dbusMainObject *pDbusCallback, gchar *cIconQu
 			|| CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 		&& pIcon->cDesktopFileName != NULL)  // user icon.
 		{
-			cairo_dock_reload_launcher (pIcon);
+			gldi_object_reload (GLDI_OBJECT(pIcon), TRUE);
 		}
 		else if (CAIRO_DOCK_IS_APPLET (pIcon))
 		{
-			gldi_module_instance_reload (pIcon->pModuleInstance, TRUE);  // TRUE <=> reload config.
+			gldi_object_reload (GLDI_OBJECT(pIcon->pModuleInstance), TRUE);  // TRUE <=> reload config.
 		}
 		else  // for appli icons, reload their image (custom image for instance).
 		{
@@ -1429,15 +1429,14 @@ gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pPropertie
 					
 					g_key_file_free (pKeyFile);
 					g_free (cConfFilePath);
-					
-					cairo_dock_reload_launcher (pNewIcon);
+					gldi_object_reload (GLDI_OBJECT(pNewIcon), TRUE);
 				}
 			}
 			else if (strcmp (cType, CD_TYPE_SEPARATOR) == 0)
 			{
 				pNewIcon = gldi_separator_icon_add_new (pParentDock, fOrder);
 			}
-			else if (strcmp (cType, CD_TYPE_ICON_CONTAINER) == 0)
+			else if (strcmp (cType, CD_TYPE_STACK_ICON) == 0)
 			{
 				pNewIcon = gldi_stack_icon_add_new (pParentDock, fOrder);
 				
@@ -1465,8 +1464,6 @@ gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pPropertie
 				
 				g_key_file_free (pKeyFile);
 				g_free (cConfFilePath);
-				
-				cairo_dock_reload_launcher (pNewIcon);
 			}
 			else
 			{
@@ -1486,7 +1483,6 @@ gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pPropertie
 				CairoDock *pDock = gldi_dock_new (cDockName);
 				if (!pDock)
 					return FALSE;
-				gldi_dock_reload (pDock);
 				*cConfigFile = g_strdup_printf ("%s/%s.conf", g_cCurrentThemePath, cDockName);
 				g_free (cDockName);
 			}
@@ -1565,7 +1561,8 @@ gboolean cd_dbus_main_reload (dbusMainObject *pDbusCallback, gchar *cQuery, GErr
 	for (o = pObjects; o != NULL; o = o->next)
 	{
 		obj = o->data;
-		if (CAIRO_DOCK_IS_ICON (obj))
+		gldi_object_reload (obj, TRUE);
+		/**if (CAIRO_DOCK_IS_ICON (obj))
 		{
 			Icon *pIcon = (Icon*)obj;
 			if ((CAIRO_DOCK_ICON_TYPE_IS_LAUNCHER (pIcon)
@@ -1609,7 +1606,7 @@ gboolean cd_dbus_main_reload (dbusMainObject *pDbusCallback, gchar *cQuery, GErr
 		}
 		else if (CAIRO_DOCK_IS_MODULE (obj))
 		{
-			gldi_module_reload ((GldiModule*)obj, TRUE);  // TRUE <=> reload module conf file.
+			gldi_object_reload (GLDI_OBJECT(obj), TRUE);  // TRUE <=> reload module conf file.
 		}
 		else if (CAIRO_DOCK_IS_MANAGER (obj))
 		{
@@ -1618,7 +1615,7 @@ gboolean cd_dbus_main_reload (dbusMainObject *pDbusCallback, gchar *cQuery, GErr
 		else if (CAIRO_DOCK_IS_MODULE_INSTANCE (obj))
 		{
 			gldi_module_instance_reload ((GldiModuleInstance*)obj, TRUE);  // TRUE <=> reload config.
-		}
+		}*/
 	}
 	g_list_free (pObjects);
 	return TRUE;
@@ -1655,7 +1652,8 @@ gboolean cd_dbus_main_remove (dbusMainObject *pDbusCallback, gchar *cQuery, GErr
 		obj = o->data;
 		if (! obj)
 			continue;
-		if (CAIRO_DOCK_IS_ICON (obj))
+		gldi_object_delete (obj);
+		/**if (CAIRO_DOCK_IS_ICON (obj))
 		{
 			Icon *pIcon = (Icon*)obj;
 			if ((CAIRO_DOCK_ICON_TYPE_IS_LAUNCHER (pIcon)
@@ -1708,7 +1706,7 @@ gboolean cd_dbus_main_remove (dbusMainObject *pDbusCallback, gchar *cQuery, GErr
 			GldiModuleInstance *pModuleInstance = (GldiModuleInstance *)obj;
 			g_print ("remove instance %s\n", pModuleInstance->cConfFilePath);
 			gldi_object_delete (GLDI_OBJECT(pModuleInstance));
-		}
+		}*/
 	}
 	g_list_free (pObjects);
 	return TRUE;
@@ -1744,7 +1742,7 @@ static void _add_icon_properties (Icon *pIcon, GPtrArray *pTab)
 	else if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
 		cType = CD_TYPE_SEPARATOR;
 	else if (CAIRO_DOCK_ICON_TYPE_IS_CONTAINER (pIcon))
-		cType = CD_TYPE_ICON_CONTAINER;
+		cType = CD_TYPE_STACK_ICON;
 	else if (CAIRO_DOCK_ICON_TYPE_IS_CLASS_CONTAINER (pIcon))
 		cType = CD_TYPE_CLASS_CONTAINER;
 	else
