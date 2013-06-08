@@ -61,10 +61,10 @@ continue = true
 #F-[Spot;gtk-dialog-info]
 frame_spot =
 
-#S+[Default] Image for the spotlight:
+#g+[Default] Image for the spotlight:
 spot image =
 
-#S+[Default] Image for the front spotlight:
+#g+[Default] Image for the front spotlight:
 spot front image =
 
 #c Spot colour:
@@ -192,7 +192,7 @@ duration = 800
 #b+ Repeat while icon is pointed to?
 continue = false
 
-#S+[Default] Image :
+#g+[Default] Image :
 #{The image must contain all the frames of the animation, side by side, from left to right.}
 image =
 
