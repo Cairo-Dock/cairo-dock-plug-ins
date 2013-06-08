@@ -17,6 +17,7 @@
 ### dependancies ###
 ####################
 import os.path
+import subprocess
 from CDApplet import CDApplet
 
 ####################
@@ -31,7 +32,7 @@ class CDBashApplet(CDApplet):
 	##### private methods #####
 	
 	def call(self,action):
-		os.popen("cd " + self.app_folder + " && ./" + self.cAppletName + ".sh " + self.cAppletName + " " + self.cBusPath + " " + self.cConfFile + " " + self.cParentAppName + " " + action)
+		subprocess.call("cd " + self.app_folder + " && ./" + self.cAppletName + ".sh " + self.cAppletName + " " + self.cBusPath + " " + self.cConfFile + " " + self.cParentAppName + " " + action, shell=True)
 	
 	##### applet definition #####
 	
