@@ -1,7 +1,7 @@
 Makefile
 Makefile.in
 .deps
-*.conf
+*/data/*.conf
 *.gmo
 .libs
 *.lo
