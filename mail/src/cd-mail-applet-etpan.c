@@ -271,16 +271,18 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 	CD_APPLET_ENTER;
 	GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	Icon *pIcon = pUpdatedMailAccount->icon;
-	if (pIcon == NULL)  // cas d'un seul compte.
+	gchar *cIconName;
+	if (pIcon == NULL)  // only one account
 	{
 		pIcon = myIcon;
 		pContainer = myContainer;
+		cIconName = NULL; // only use a specific icon when having multiple accounts
 	}
+	else
+		cIconName = pUpdatedMailAccount->cIconName;
 	CD_APPLET_LEAVE_IF_FAIL (pIcon != NULL, TRUE);
-
-	gchar *cIconName = pUpdatedMailAccount->cIconName;
 	
-	//\_______________________ On met a jour l'icone du compte.
+	//\_______________________ We update this account's icon
 	cairo_t *pIconContext = cairo_create (pIcon->image.pSurface);
 	
 	if (pUpdatedMailAccount->bError && pUpdatedMailAccount->pAccountMailTimer->iPeriod > 20)
