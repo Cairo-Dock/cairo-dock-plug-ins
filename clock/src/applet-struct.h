@@ -205,7 +205,7 @@ struct _AppletData {
 	GList *pMissedTasks;
 	
 	GtkWidget *pLocationEntry;
-	DBusGProxy *pProxyResumingUPower;
+	DBusGProxy *pProxyResuming;
 	} ;
 
 #endif

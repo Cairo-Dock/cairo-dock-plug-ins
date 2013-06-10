@@ -75,9 +75,21 @@ static void _cd_launch_timer (GldiModuleInstance *myApplet)
 		myData.iSidUpdateClock = g_timeout_add_seconds (1, (GSourceFunc) cd_clock_update_with_time, (gpointer) myApplet);
 }
 
+// bSuspend <=> false when resuming
+static void _on_prepare_for_sleep (DBusGProxy *proxy_item, gboolean bSuspend, GldiModuleInstance *myApplet)
+{
+	cd_debug ("Refresh timer after resuming: login1 (%d)", bSuspend);
+	if (!bSuspend && ! myConfig.bShowSeconds) // not interesting if the hour is updated each second
+	{
+		g_source_remove (myData.iSidUpdateClock); // stop the timer
+		myData.iSidUpdateClock = 0;
+		_cd_launch_timer (myApplet); // relaunch the timer to be sync with the right second.
+	}
+}
+
 static void _on_resuming (DBusGProxy *proxy_item, GldiModuleInstance *myApplet)
 {
-	cd_debug ("Refresh timer after resuming");
+	cd_debug ("Refresh timer after resuming: UPower");
 	if (! myConfig.bShowSeconds) // not interesting if the hour is updated each second
 	{
 		g_source_remove (myData.iSidUpdateClock); // stop the timer
@@ -86,37 +98,65 @@ static void _on_resuming (DBusGProxy *proxy_item, GldiModuleInstance *myApplet)
 	}
 }
 
+static gboolean s_bUsedLogind;
+
 static void _cd_connect_to_resuming_signal (GldiModuleInstance *myApplet)
 {
-	myData.pProxyResumingUPower = cairo_dock_create_new_system_proxy (
-		"org.freedesktop.UPower",
-		"/org/freedesktop/UPower",
-		"org.freedesktop.UPower");
+	if ((s_bUsedLogind = cairo_dock_dbus_detect_system_application ("org.freedesktop.login1")))
+		myData.pProxyResuming = cairo_dock_create_new_system_proxy (
+			"org.freedesktop.login1",
+			"/org/freedesktop/login1",
+			"org.freedesktop.login1.Manager");
+	else if (cairo_dock_dbus_detect_system_application ("org.freedesktop.UPower"))
+		myData.pProxyResuming = cairo_dock_create_new_system_proxy (
+			"org.freedesktop.UPower",
+			"/org/freedesktop/UPower",
+			"org.freedesktop.UPower");
 
-	if (myData.pProxyResumingUPower == NULL)
+	if (myData.pProxyResuming == NULL) // no proxy found
 	{
-		cd_debug ("UPower bus not available, can't connect to 'resuming' signal");
+		cd_debug ("LoginD and UPower bus are not available, can't connect to 'resuming' signal");
 		return;
 	}
 
-	dbus_g_object_register_marshaller (
-		g_cclosure_marshal_VOID__VOID,
-		G_TYPE_NONE,
-		G_TYPE_INVALID);
+	if (s_bUsedLogind)
+	{
+		dbus_g_object_register_marshaller (
+			g_cclosure_marshal_VOID__BOOLEAN,
+			G_TYPE_BOOLEAN,
+			G_TYPE_INVALID);
 
-	dbus_g_proxy_add_signal (myData.pProxyResumingUPower, "Resuming",
-		G_TYPE_INVALID);
-	dbus_g_proxy_connect_signal (myData.pProxyResumingUPower, "Resuming",
-		G_CALLBACK (_on_resuming), myApplet, NULL);
+		dbus_g_proxy_add_signal (myData.pProxyResuming, "PrepareForSleep",
+			G_TYPE_BOOLEAN, G_TYPE_INVALID);
+		dbus_g_proxy_connect_signal (myData.pProxyResuming, "PrepareForSleep",
+			G_CALLBACK (_on_prepare_for_sleep), myApplet, NULL);
+	}
+	else // UPower
+	{
+		dbus_g_object_register_marshaller (
+			g_cclosure_marshal_VOID__VOID,
+			G_TYPE_NONE,
+			G_TYPE_INVALID);
+
+		dbus_g_proxy_add_signal (myData.pProxyResuming, "Resuming",
+			G_TYPE_INVALID);
+		dbus_g_proxy_connect_signal (myData.pProxyResuming, "Resuming",
+			G_CALLBACK (_on_resuming), myApplet, NULL);
+	}
 }
 
 static void _cd_disconnect_from_resuming_signal (GldiModuleInstance *myApplet)
 {
-	if (myData.pProxyResumingUPower)
+	if (myData.pProxyResuming)
 	{
-		dbus_g_proxy_disconnect_signal (myData.pProxyResumingUPower, "Resuming",
-			G_CALLBACK (_on_resuming), myApplet);
-		g_object_unref (myData.pProxyResumingUPower);
+		if (s_bUsedLogind)
+			dbus_g_proxy_disconnect_signal (myData.pProxyResuming, "PrepareForSleep",
+				G_CALLBACK (_on_prepare_for_sleep), myApplet);
+		else
+			dbus_g_proxy_disconnect_signal (myData.pProxyResuming, "Resuming",
+				G_CALLBACK (_on_resuming), myApplet);
+
+		g_object_unref (myData.pProxyResuming);
 	}
 }
 
