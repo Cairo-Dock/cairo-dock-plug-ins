@@ -149,7 +149,7 @@ static GList *get_tasks (GldiModuleInstance *myApplet)
 	if( !_assert_data() ) return NULL;
 	
 	CDClockTask *pTask = NULL;
-	gchar *cTaskID = NULL;
+	gchar *cTaskID = NULL, *cTitle = NULL;
 	GList *pTaskList = NULL;
 
 	icalcomponent *piCalComponent = NULL;
@@ -159,13 +159,25 @@ static GList *get_tasks (GldiModuleInstance *myApplet)
 	     piCalComponent = icalcomponent_get_next_component(_pBackendData->piCalCalendar, ICAL_ANY_COMPONENT))
 	{
 		//if( ICAL_VCALENDAR_COMPONENT != icalcomponent_isa(piCalComponent) ) continue;
-		cd_debug( "Fetching iCal component of kind: %s", icalcomponent_kind_to_string(icalcomponent_isa(piCalComponent)) );
+		// cd_debug( "Fetching iCal component of kind: %s", icalcomponent_kind_to_string(icalcomponent_isa(piCalComponent)) );
 		
 		cTaskID = g_strdup(icalcomponent_get_uid(piCalComponent));
 		if (cTaskID == NULL) // if the uid is NULL, skip it.
 			continue;
+
+		cTitle = g_strdup (icalcomponent_get_summary (piCalComponent));
+		/* if there is no title, it's not a task...
+		 * It seems that some calendars add tasks with a correct ID but no title
+		 * and the status is 'completed' and no other info => skip these tasks
+		 */
+		if (cTitle == NULL)
+		{
+			g_free (cTaskID);
+			continue;
+		}
+
 		pTask = g_new0 (CDClockTask, 1);
-		cd_debug ("+ task %s", cTaskID);
+		// cd_debug ("+ task %s", cTaskID);
 
 		struct icaltimetype liCalStartDate = icalcomponent_get_dtstart(piCalComponent);
 		// struct icaldurationtype liCalDuration = icalcomponent_get_duration(piCalComponent); //ignored until Clock manages tasks duration
@@ -176,7 +188,17 @@ static GList *get_tasks (GldiModuleInstance *myApplet)
 		pTask->iYear = liCalStartDate.year;
 		pTask->iHour = liCalStartDate.hour;
 		pTask->iMinute = liCalStartDate.minute;
-		
+
+		if (pTask->iMonth < 0 || pTask->iDay <= 0  // not a valid task, should not happen 
+			|| pTask->iHour < 0 || pTask->iMinute < 0) // but be secure, data comes from outside
+		{
+			cd_debug ("Not a valid task: %s", cTaskID);
+			g_free (cTaskID);
+			g_free (cTitle);
+			g_free (pTask);
+			continue;
+		}
+
 		pTask->iFrequency = CD_TASK_DONT_REPEAT;
 		// TODO: really do the frequency management. If possible.
 		icalproperty *rrule = NULL;
@@ -190,7 +212,7 @@ static GList *get_tasks (GldiModuleInstance *myApplet)
 			default:pTask->iFrequency = CD_TASK_DONT_REPEAT; break;
 		}
 
-		pTask->cTitle = g_strdup(icalcomponent_get_summary(piCalComponent));
+		pTask->cTitle = cTitle;
 		pTask->cText = g_strdup(icalcomponent_get_description(piCalComponent));
 		pTask->cTags = g_strdup(icalcomponent_get_comment(piCalComponent));
 		
