@@ -75,11 +75,9 @@ static void _cd_launch_timer (GldiModuleInstance *myApplet)
 		myData.iSidUpdateClock = g_timeout_add_seconds (1, (GSourceFunc) cd_clock_update_with_time, (gpointer) myApplet);
 }
 
-// bSuspend <=> false when resuming
-static void _on_prepare_for_sleep (DBusGProxy *proxy_item, gboolean bSuspend, GldiModuleInstance *myApplet)
+static void _relaunch_timer (GldiModuleInstance *myApplet)
 {
-	cd_debug ("Refresh timer after resuming: login1 (%d)", bSuspend);
-	if (!bSuspend && ! myConfig.bShowSeconds) // not interesting if the hour is updated each second
+	if (! myConfig.bShowSeconds) // not interesting if the hour is updated each second
 	{
 		g_source_remove (myData.iSidUpdateClock); // stop the timer
 		myData.iSidUpdateClock = 0;
@@ -87,15 +85,17 @@ static void _on_prepare_for_sleep (DBusGProxy *proxy_item, gboolean bSuspend, Gl
 	}
 }
 
-static void _on_resuming (DBusGProxy *proxy_item, GldiModuleInstance *myApplet)
+static void _on_prepare_for_sleep (G_GNUC_UNUSED DBusGProxy *proxy_item, gboolean bSuspend, GldiModuleInstance *myApplet)
+{
+	cd_debug ("Refresh timer after resuming: login1 (%d)", bSuspend);
+	if (! bSuspend) // bSuspend <=> false when resuming
+		_relaunch_timer (myApplet);
+}
+
+static void _on_resuming (G_GNUC_UNUSED DBusGProxy *proxy_item, GldiModuleInstance *myApplet)
 {
 	cd_debug ("Refresh timer after resuming: UPower");
-	if (! myConfig.bShowSeconds) // not interesting if the hour is updated each second
-	{
-		g_source_remove (myData.iSidUpdateClock); // stop the timer
-		myData.iSidUpdateClock = 0;
-		_cd_launch_timer (myApplet); // relaunch the timer to be sync with the right second.
-	}
+	_relaunch_timer (myApplet);
 }
 
 static gboolean s_bUsedLogind;
