@@ -97,8 +97,11 @@ void reload_image_menu_items (void)
 		GtkWidget *image = l->data;
 		gboolean   is_mapped;
       
-		///is_mapped = GTK_WIDGET_MAPPED (image);
+		#if GTK_CHECK_VERSION (2, 20, 0)
 		is_mapped = gtk_widget_get_mapped (image);
+		#else
+		is_mapped = GTK_WIDGET_MAPPED (image);
+		#endif
 		
 		if (is_mapped)
 			gtk_widget_unmap (image);
