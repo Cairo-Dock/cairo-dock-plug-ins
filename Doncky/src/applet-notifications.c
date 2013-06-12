@@ -409,7 +409,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 					g_free (cNodeContent);
 				}
 				
-				gldi_module_instance_reload (myApplet, TRUE); // TRUE <=> read conf file
+				gldi_object_reload (GLDI_OBJECT(myApplet), TRUE); // TRUE <=> read conf file
 			}				
 		}	
 		cairo_dock_close_xml_file (pXmlFile);

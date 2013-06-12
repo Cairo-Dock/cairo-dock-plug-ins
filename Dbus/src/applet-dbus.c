@@ -300,10 +300,10 @@ static gboolean _apply_package_update (gchar *cModuleName)
 		{
 			if (CAIRO_DOCK_IS_DOCK (pContainer))
 			{
-				cairo_dock_detach_icon_from_dock (pIcon, CAIRO_DOCK (pContainer));
+				gldi_icon_detach (pIcon);
 				gldi_object_unref (GLDI_OBJECT(pIcon));
-				cairo_dock_update_dock_size (CAIRO_DOCK (pContainer));
-				cairo_dock_redraw_container (pContainer);
+				///cairo_dock_update_dock_size (CAIRO_DOCK (pContainer));
+				///cairo_dock_redraw_container (pContainer);
 			}
 		}
 		

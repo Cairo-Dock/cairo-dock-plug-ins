@@ -545,11 +545,11 @@ static gboolean _penguin_restart_delayed (GldiModuleInstance *myApplet)
 		
 		if (myConfig.bFree)  // attention : c'est un hack moyen; il faudrait pouvoir indiquer a cairo-dock de ne pas inserer notre icone...
 		{
-			cairo_dock_detach_icon_from_dock (myIcon, myDock);
+			gldi_icon_detach (myIcon);
 		}
 		else
 		{
-			cairo_dock_insert_icon_in_dock (myIcon, myDock, ! CAIRO_DOCK_ANIMATE_ICON);
+			gldi_icon_insert_in_container (myIcon, myContainer, ! CAIRO_DOCK_ANIMATE_ICON);
 		}
 		cairo_dock_launch_animation (myContainer);
 	}

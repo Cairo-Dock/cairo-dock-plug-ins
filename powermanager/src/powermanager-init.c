@@ -91,13 +91,12 @@ CD_APPLET_RELOAD_BEGIN
 		{
 			if (myConfig.bHideNotOnBattery && ! myData.bOnBattery)
 			{ // hide the icon when not on battery and if needed
-				cairo_dock_detach_icon_from_dock (myIcon, myDock);
+				gldi_icon_detach (myIcon);
 				myData.bIsHidden = TRUE;
 			}
 			else if (myData.bIsHidden)
 			{
-				cairo_dock_insert_icon_in_dock (myIcon, myDock, CAIRO_DOCK_ANIMATE_ICON);
-				///cairo_dock_redraw_container (CAIRO_CONTAINER (myDock));
+				gldi_icon_insert_in_container (myIcon, myContainer, CAIRO_DOCK_ANIMATE_ICON);
 				myData.bIsHidden = FALSE;
 			}
 		}

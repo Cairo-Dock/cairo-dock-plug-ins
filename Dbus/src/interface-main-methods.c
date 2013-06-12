@@ -758,7 +758,7 @@ gboolean cd_dbus_main_add_temporary_icon (dbusMainObject *pDbusCallback, GHashTa
 	pIcon->cParentDockName = g_strdup (cParentDockName);
 	
 	//\_______________ load it inside the dock.
-	cairo_dock_insert_icon_in_dock (pIcon, pParentDock, CAIRO_DOCK_ANIMATE_ICON);
+	gldi_icon_insert_in_container (pIcon, CAIRO_CONTAINER(pParentDock), CAIRO_DOCK_ANIMATE_ICON);
 	
 	if (pIcon->cClass != NULL)
 	{

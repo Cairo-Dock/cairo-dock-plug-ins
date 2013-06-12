@@ -188,12 +188,11 @@ void cd_indicator3_accessible_desc_update (IndicatorObjectEntry *pEntry, const g
 static void _show (G_GNUC_UNUSED GtkWidget *pWidget, gpointer data)
 {
 	GldiModuleInstance *myApplet = data;
-
+	
 	if (myDock)
 	{
 		cd_debug ("Re-insert the icon");
-		cairo_dock_insert_icon_in_dock (myIcon, myDock, ! CAIRO_DOCK_ANIMATE_ICON);
-		///cairo_dock_redraw_container (CAIRO_CONTAINER (myDock)); // dock refresh forced
+		gldi_icon_insert_in_container (myIcon, myContainer, ! CAIRO_DOCK_ANIMATE_ICON);
 	}
 	else
 		cd_debug ("It's not possible to re-insert the icon (%p)", myApplet);
@@ -206,7 +205,7 @@ static void _hide (G_GNUC_UNUSED GtkWidget *pWidget, gpointer data)
 	if (myDock)
 	{
 		cd_debug ("Detach the icon");
-		cairo_dock_detach_icon_from_dock (myIcon, myDock);
+		gldi_icon_detach (myIcon);
 	}
 	else
 		cd_debug ("It's not possible to detach the icon (%p)", myApplet);
