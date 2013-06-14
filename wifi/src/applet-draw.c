@@ -99,8 +99,8 @@ void cd_wifi_draw_icon (void)
 				bNeedRedraw = TRUE;
 			}
 		break;
-		default:
-		return;
+		default: // WIFI_INFO_NONE
+		break;
 	}
 	
 	if (myData.iQuality != myData.iPreviousQuality || myConfig.iDisplayType == CD_WIFI_GRAPH)
