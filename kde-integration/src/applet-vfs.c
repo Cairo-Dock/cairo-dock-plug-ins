@@ -1309,57 +1309,85 @@ gchar *vfs_backend_get_desktop_path (void)
 gsize vfs_backend_measure_directory (const gchar *cBaseURI, gint iCountType, gboolean bRecursive, gint *pCancel)
 {
 	g_return_val_if_fail (cBaseURI != NULL, 0);
-	//g_print ("%s (%s)\n", __func__, cBaseURI);
+	//cd_debug ("%s (%s)", __func__, cBaseURI);
 	
+	gchar *cURI = (*cBaseURI == '/' ? g_strconcat ("file://", cBaseURI, NULL) : (gchar*)cBaseURI);  // on le libere a la fin si necessaire.
+	
+	GFile *pFile = g_file_new_for_uri (cURI);
 	GError *erreur = NULL;
-	gchar *cDirectory = (*cBaseURI == '/' ? (gchar*)cBaseURI : g_filename_from_uri (cBaseURI, NULL, &erreur));
+	const gchar *cAttributes = G_FILE_ATTRIBUTE_STANDARD_TYPE","
+		G_FILE_ATTRIBUTE_STANDARD_SIZE","
+		G_FILE_ATTRIBUTE_STANDARD_NAME","
+		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI;
+	GFileEnumerator *pFileEnum = g_file_enumerate_children (pFile,
+		cAttributes,
+		G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS,
+		NULL,
+		&erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("kde-integration : %s", erreur->message);
+		cd_warning ("kde-integration: %s (%s)", erreur->message, cURI);
 		g_error_free (erreur);
-		return 0;
-	}
-	
-	GDir *dir = g_dir_open (cDirectory, 0, &erreur);
-	if (erreur != NULL)
-	{
-		cd_warning ("kde-integration : %s", erreur->message);
-		g_error_free (erreur);
+		g_object_unref (pFile);
+		if (cURI != cBaseURI)
+			g_free (cURI);
+		g_atomic_int_set (pCancel, TRUE);
 		return 0;
 	}
 	
 	gsize iMeasure = 0;
-	struct stat buf;
-	const gchar *cFileName;
+	GFileInfo *pFileInfo;
 	GString *sFilePath = g_string_new ("");
-	while ((cFileName = g_dir_read_name (dir)) != NULL && ! g_atomic_int_get (pCancel))
+	do
 	{
-		g_string_printf (sFilePath, "%s/%s", cDirectory, cFileName);
-		
-		if (lstat (sFilePath->str, &buf) != -1)
+		pFileInfo = g_file_enumerator_next_file (pFileEnum, NULL, &erreur);
+		if (erreur != NULL)
 		{
-			if (S_ISDIR (buf.st_mode) && bRecursive)  // repertoire.
+			cd_warning ("kde-integration : %s (%s [%s]: %s)", erreur->message,
+				g_file_info_get_name (pFileInfo),
+				g_file_info_get_display_name (pFileInfo),
+				g_file_info_get_content_type (pFileInfo));
+			g_error_free (erreur);
+			erreur = NULL;
+			continue;
+		}
+		if (pFileInfo == NULL)
+			break ;
+		
+		const gchar *cFileName = g_file_info_get_name (pFileInfo);
+		
+		g_string_printf (sFilePath, "%s/%s", cURI, cFileName);
+		//GFile *file = g_file_new_for_uri (sFilePath->str);
+		//const gchar *cTargetURI = g_file_get_uri (file);
+		//g_print ("+ %s [%s]\n", cFileName, cTargetURI);
+		GFileType iFileType = g_file_info_get_file_type (pFileInfo);
+		
+		if (iFileType == G_FILE_TYPE_DIRECTORY && bRecursive)
+		{
+			g_string_printf (sFilePath, "%s/%s", cURI, cFileName);
+			iMeasure += MAX (1, vfs_backend_measure_directory (sFilePath->str, iCountType, bRecursive, pCancel));  // un repertoire vide comptera pour 1.
+		}
+		else
+		{
+			if (iCountType == 1)  // measure size.
 			{
-				iMeasure += MAX (1, vfs_backend_measure_directory (sFilePath->str, iCountType, bRecursive, pCancel));  // un repertoire vide comptera pour 1.
+				iMeasure += g_file_info_get_size (pFileInfo);
 			}
-			else  // fichier simple.
+			else  // measure nb files.
 			{
-				if (iCountType == 1)  // measure size.
-				{
-					iMeasure += buf.st_size;
-				}
-				else  // measure nb files.
-				{
-					iMeasure ++;
-				}
+				iMeasure ++;
 			}
 		}
-	}
+		g_object_unref (pFileInfo);
+	} while (! g_atomic_int_get (pCancel));
+	if (*pCancel)
+		cd_debug ("kde: measure cancelled");
 	
-	g_dir_close (dir);
+	g_object_unref (pFileEnum);
+	g_object_unref (pFile);
 	g_string_free (sFilePath, TRUE);
-	if (cDirectory != cBaseURI)
-		g_free (cDirectory);
+	if (cURI != cBaseURI)
+		g_free (cURI);
 	
 	return iMeasure;
 }
