@@ -230,26 +230,29 @@ void main_menu_append (GtkWidget *main_menu,
 
 	myApplet = (GldiModuleInstance *) data;
 
-	GtkWidget *desktop_menu;
+	if (myConfig.bLoadSettingsMenu)
+	{
+		GtkWidget *desktop_menu;
 
-	gchar *cSettingsMenuName = _get_settings_menu_name ();
+		gchar *cSettingsMenuName = _get_settings_menu_name ();
 
-	desktop_menu = create_applications_menu (cSettingsMenuName, NULL, main_menu);
-	g_free (cSettingsMenuName);
+		desktop_menu = create_applications_menu (cSettingsMenuName, NULL, main_menu);
+		g_free (cSettingsMenuName);
 
-	g_object_set_data_full (G_OBJECT (desktop_menu),
-			"panel-menu-tree-directory",
-			NULL, NULL);
-	
-	g_object_set_data (G_OBJECT (desktop_menu),
-			   "panel-menu-append-callback",
-			   panel_desktop_menu_item_append_menu);
-	g_object_set_data (G_OBJECT (desktop_menu),
-			   "panel-menu-append-callback-data",
-			   myApplet);
+		g_object_set_data_full (G_OBJECT (desktop_menu),
+				"panel-menu-tree-directory",
+				NULL, NULL);
+		
+		g_object_set_data (G_OBJECT (desktop_menu),
+				   "panel-menu-append-callback",
+				   panel_desktop_menu_item_append_menu);
+		g_object_set_data (G_OBJECT (desktop_menu),
+				   "panel-menu-append-callback-data",
+				   myApplet);
 
-	if (myData.bLoadInThread) // load submenu in a thread
-		submenu_to_display (desktop_menu);
+		if (myData.bLoadInThread) // load submenu in a thread
+			submenu_to_display (desktop_menu);
+	}
 	
 	if (myConfig.bShowRecent)
 	{

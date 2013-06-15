@@ -22,9 +22,6 @@
 
 #include "applet-struct.h"
 #include "applet-notifications.h"
-#include "applet-run-dialog.h"
-#include "applet-menu.h"
-#include "applet-apps.h"
 #include "applet-config.h"
 
 
@@ -37,6 +34,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cConfigureMenuCommand = CD_CONFIG_GET_STRING ("Configuration", "config menu");
 	myConfig.iNbRecentItems = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb recent", 20);
 	myConfig.iShowQuit = CD_CONFIG_GET_INTEGER ("Configuration", "show quit");
+	myConfig.bLoadIconsAtStartup = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "startup load", FALSE);
 CD_APPLET_GET_CONFIG_END
 
 
@@ -50,9 +48,41 @@ CD_APPLET_RESET_CONFIG_END
 
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped, in the very end.
 CD_APPLET_RESET_DATA_BEGIN
-	cd_menu_stop ();
+	myData.bIconsLoaded = TRUE;
+	if (myData.pTask)
+		cairo_dock_discard_task (myData.pTask);
+	g_list_free (myData.pPreloadedImagesList);
+
+	if (myData.pMenu)
+		gtk_widget_destroy (myData.pMenu);  // detruit aussi pRecentMenuItem.
 	
-	cd_run_dialog_free ();
+	if (myData.loaded_icons != NULL)
+	{
+		g_hash_table_destroy (myData.loaded_icons);  // wll unref objects inside.
+		myData.loaded_icons = NULL;  // set to NULL for the callback
+	}
 	
-	cd_menu_free_apps ();
+	if (myData.image_menu_items != NULL)
+	{
+		g_slist_free (myData.image_menu_items);  // objects inside will be destroyed with the menu.
+		myData.image_menu_items = NULL;
+	}
+	
+	if (myData.dir_hash)
+		g_hash_table_destroy (myData.dir_hash);
+	
+	GList *l;
+	for (l = myData.possible_executables; l; l = l->next)
+		g_free (l->data);
+	g_list_free (myData.possible_executables);
+	
+	for (l = myData.completion_items; l; l = l->next)
+		g_free (l->data);
+	g_list_free (myData.completion_items);
+	
+	if (myData.completion)
+		g_completion_free (myData.completion);
+	
+	if (!cairo_dock_dialog_unreference (myData.pQuickLaunchDialog))
+		cairo_dock_dialog_unreference (myData.pQuickLaunchDialog);
 CD_APPLET_RESET_DATA_END

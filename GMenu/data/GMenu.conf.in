@@ -113,6 +113,10 @@ show recent = true
 #i[5;50] Number of items to display
 nb recent = 20
 
+#b Load settings' menu?
+#{The settings menu file is sometimes available in a settings.menu file but its content can also be available in the main .menu file used by the dock}
+settings menu = true
+
 #s[Default] Command to use for configuring the menu:
 config menu =
 

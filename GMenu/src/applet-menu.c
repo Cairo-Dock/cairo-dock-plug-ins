@@ -81,10 +81,13 @@ static void _load_trees_async (CDSharedMemory *pSharedMemory)
 	GMenuTree *tree = cd_load_tree_from_file ("applications.menu");
 	if (tree)
 		pSharedMemory->pTrees = g_list_append (pSharedMemory->pTrees, tree);
-	
-	tree = cd_load_tree_from_file ("settings.menu");
-	if (tree)
-		pSharedMemory->pTrees = g_list_append (pSharedMemory->pTrees, tree);
+
+	if (myConfig.bLoadSettingsMenu)
+	{
+		tree = cd_load_tree_from_file ("settings.menu");
+		if (tree)
+			pSharedMemory->pTrees = g_list_append (pSharedMemory->pTrees, tree);
+	}
 }
 
 static void _free_shared_memory (CDSharedMemory *pSharedMemory)
