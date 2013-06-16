@@ -37,7 +37,7 @@ typedef enum {
 #define CD_TYPE_APPLET "Applet"
 #define CD_TYPE_SEPARATOR "Separator"
 #define CD_TYPE_STACK_ICON "Stack-icon"
-#define CD_TYPE_CLASS_CONTAINER "Class-Container"
+#define CD_TYPE_CLASS_ICON "Class-icon"
 #define CD_TYPE_ICON_OTHER "Other"
 #define CD_TYPE_CONTAINER "Container"
 #define CD_TYPE_DOCK "Dock"

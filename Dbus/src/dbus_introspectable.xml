@@ -12,26 +12,6 @@
 		<method name="ShowDesklet">
 			<arg name="widgetLayer" type="b" direction="in"/>
 		</method>
-		<method name="ReloadModule">
-			<arg name="cModuleName" type="s" direction="in"/>
-		</method>
-		<method name="ActivateModule">
-			<arg name="cModuleName" type="s" direction="in"/>
-			<arg name="bActivate" type="b" direction="in"/>
-		</method>
-		
-		<method name="GetIconProperties">
-			<arg name="cIconQuery" type="s" direction="in"/>
-			<arg name="pIconProperties" direction="out" type="aa{sv}"/>
-		</method>
-		<method name="GetContainerProperties">
-			<arg name="cName" type="s" direction="in"/>
-			<arg name="pContainerProperties" direction="out" type="aa{sv}"/>
-		</method>
-		<method name="GetModuleProperties">
-			<arg name="cName" type="s" direction="in"/>
-			<arg name="pModuleProperties" direction="out" type="aa{sv}"/>
-		</method>
 		
 		<method name="Add">
 			<arg name="pProperties" direction="in" type="a{sv}"/>
@@ -46,22 +26,6 @@
 		<method name="GetProperties">
 			<arg name="cQuery" type="s" direction="in"/>
 			<arg name="pProperties" direction="out" type="aa{sv}"/>
-		</method>
-		
-		<method name="AddLauncher">
-			<arg name="cDesktopFilePath" type="s" direction="in"/>
-			<arg name="fOrder" type="d" direction="in"/>
-			<arg name="cDockName" type="s" direction="in"/>
-			<arg name="cLauncherFile" type="s" direction="out"/>
-		</method>
-		<method name="AddTemporaryIcon">
-			<arg name="hIconProperties" direction="in" type="a{sv}"/>
-		</method>
-		<method name="ReloadIcon">
-			<arg name="cIconQuery" type="s" direction="in"/>
-		</method>
-		<method name="RemoveIcon">
-			<arg name="cIconQuery" type="s" direction="in"/>
 		</method>
 		
 		<method name="SetQuickInfo">
@@ -103,6 +67,42 @@
 		</method>
 		<method name="SetProgress">
 			<arg name="fPercent" type="d" direction="in"/>
+			<arg name="cIconQuery" type="s" direction="in"/>
+		</method>
+		
+		<!-- Deprecated -->
+		<method name="ReloadModule">
+			<arg name="cModuleName" type="s" direction="in"/>
+		</method>
+		<method name="ActivateModule">
+			<arg name="cModuleName" type="s" direction="in"/>
+			<arg name="bActivate" type="b" direction="in"/>
+		</method>
+		<method name="GetIconProperties">
+			<arg name="cIconQuery" type="s" direction="in"/>
+			<arg name="pIconProperties" direction="out" type="aa{sv}"/>
+		</method>
+		<method name="GetContainerProperties">
+			<arg name="cName" type="s" direction="in"/>
+			<arg name="pContainerProperties" direction="out" type="aa{sv}"/>
+		</method>
+		<method name="GetModuleProperties">
+			<arg name="cName" type="s" direction="in"/>
+			<arg name="pModuleProperties" direction="out" type="aa{sv}"/>
+		</method>
+		<method name="AddLauncher">
+			<arg name="cDesktopFilePath" type="s" direction="in"/>
+			<arg name="fOrder" type="d" direction="in"/>
+			<arg name="cDockName" type="s" direction="in"/>
+			<arg name="cLauncherFile" type="s" direction="out"/>
+		</method>
+		<method name="AddTemporaryIcon">
+			<arg name="hIconProperties" direction="in" type="a{sv}"/>
+		</method>
+		<method name="ReloadIcon">
+			<arg name="cIconQuery" type="s" direction="in"/>
+		</method>
+		<method name="RemoveIcon">
 			<arg name="cIconQuery" type="s" direction="in"/>
 		</method>
 	</interface>

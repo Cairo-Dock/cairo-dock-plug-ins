@@ -217,7 +217,7 @@ gboolean cd_dbus_main_get_icon_properties (dbusMainObject *pDbusCallback, gchar 
 		else if (CAIRO_DOCK_ICON_TYPE_IS_CONTAINER (pIcon))
 			cType = CD_TYPE_STACK_ICON;
 		else if (CAIRO_DOCK_ICON_TYPE_IS_CLASS_CONTAINER (pIcon))
-			cType = CD_TYPE_CLASS_CONTAINER;
+			cType = CD_TYPE_CLASS_ICON;
 		else
 			cType = CD_TYPE_ICON_OTHER;
 		v = g_new0 (GValue, 1);
@@ -270,7 +270,8 @@ gboolean cd_dbus_main_get_icon_properties (dbusMainObject *pDbusCallback, gchar 
 		
 		v = g_new0 (GValue, 1);
 		g_value_init (v, G_TYPE_UINT);
-		g_value_set_uint (v, GPOINTER_TO_INT(pIcon->pAppli));  // not sure what we can do with it
+		int id = gldi_window_get_id (pIcon->pAppli);
+		g_value_set_uint (v, GPOINTER_TO_INT(id));  // not sure what we can do with it
 		g_hash_table_insert (h, g_strdup ("Xid"), v);
 		
 		iPosition = -1;
@@ -1723,7 +1724,7 @@ static void _add_icon_properties (Icon *pIcon, GPtrArray *pTab)
 	
 	GHashTable *h = g_hash_table_new_full (g_str_hash,
 		g_str_equal,
-		g_free,  /// can we use const char here instead of duplicating each string ?...
+		NULL,
 		g_free);
 	g_ptr_array_add (pTab, h);
 	
@@ -1744,13 +1745,13 @@ static void _add_icon_properties (Icon *pIcon, GPtrArray *pTab)
 	else if (CAIRO_DOCK_ICON_TYPE_IS_CONTAINER (pIcon))
 		cType = CD_TYPE_STACK_ICON;
 	else if (CAIRO_DOCK_ICON_TYPE_IS_CLASS_CONTAINER (pIcon))
-		cType = CD_TYPE_CLASS_CONTAINER;
+		cType = CD_TYPE_CLASS_ICON;
 	else
 		cType = CD_TYPE_ICON_OTHER;
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, cType);
-	g_hash_table_insert (h, g_strdup ("type"), v);
+	g_hash_table_insert (h, "type", v);
 	
 	cDesktopFile = "";
 	if (pIcon->cDesktopFileName != NULL)
@@ -1760,45 +1761,46 @@ static void _add_icon_properties (Icon *pIcon, GPtrArray *pTab)
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, cDesktopFile);
-	g_hash_table_insert (h, g_strdup ("config-file"), v);
+	g_hash_table_insert (h, "config-file", v);
 	
 	if (CAIRO_DOCK_IS_APPLET (pIcon))
 	{
 		v = g_new0 (GValue, 1);
 		g_value_init (v, G_TYPE_STRING);
 		g_value_set_string (v, pIcon->pModuleInstance->pModule->pVisitCard->cModuleName);
-		g_hash_table_insert (h, g_strdup ("module"), v);
+		g_hash_table_insert (h, "module", v);
 	}
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, pIcon->cName);  /// g_value_set_static_string ?...
-	g_hash_table_insert (h, g_strdup ("name"), v);
+	g_hash_table_insert (h, "name", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, pIcon->cCommand);
-	g_hash_table_insert (h, g_strdup ("command"), v);
+	g_hash_table_insert (h, "command", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, pIcon->cClass);
-	g_hash_table_insert (h, g_strdup ("class"), v);
+	g_hash_table_insert (h, "class", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, pIcon->cFileName);
-	g_hash_table_insert (h, g_strdup ("icon"), v);
+	g_hash_table_insert (h, "icon", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, pIcon->cQuickInfo);
-	g_hash_table_insert (h, g_strdup ("quick-info"), v);
+	g_hash_table_insert (h, "quick-info", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_UINT);
-	g_value_set_uint (v, GPOINTER_TO_INT(pIcon->pAppli));
-	g_hash_table_insert (h, g_strdup ("Xid"), v);
+	int id = gldi_window_get_id (pIcon->pAppli);
+	g_value_set_uint (v, GPOINTER_TO_INT(id));
+	g_hash_table_insert (h, "Xid", v);
 	
 	iPosition = -1;
 	cContainerName = "";
@@ -1821,24 +1823,24 @@ static void _add_icon_properties (Icon *pIcon, GPtrArray *pTab)
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_INT);
 	g_value_set_int (v, iPosition);
-	g_hash_table_insert (h, g_strdup ("position"), v);
+	g_hash_table_insert (h, "position", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, cContainerName);
-	g_hash_table_insert (h, g_strdup ("container"), v);
+	g_hash_table_insert (h, "container", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_DOUBLE);
 	g_value_set_double (v, pIcon->fOrder);
-	g_hash_table_insert (h, g_strdup ("order"), v);
+	g_hash_table_insert (h, "order", v);
 }
 
 static void _add_module_properties (GldiModule *pModule, GPtrArray *pTab)
 {
 	GHashTable *h = g_hash_table_new_full (g_str_hash,
 		g_str_equal,
-		g_free,  /// can we use const char here instead of duplicating each string ?...
+		NULL,
 		g_free);
 	g_ptr_array_add (pTab, h);
 	
@@ -1847,52 +1849,52 @@ static void _add_module_properties (GldiModule *pModule, GPtrArray *pTab)
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, "Module");
-	g_hash_table_insert (h, g_strdup ("type"), v);
+	g_hash_table_insert (h, "type", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, pModule->pVisitCard->cModuleName);
-	g_hash_table_insert (h, g_strdup ("name"), v);
+	g_hash_table_insert (h, "name", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_UINT);
 	g_value_set_uint (v, pModule->pVisitCard->iContainerType);
-	g_hash_table_insert (h, g_strdup ("module-type"), v);
+	g_hash_table_insert (h, "module-type", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_UINT);
 	g_value_set_uint (v, pModule->pVisitCard->iCategory);
-	g_hash_table_insert (h, g_strdup ("category"), v);
+	g_hash_table_insert (h, "category", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, pModule->pVisitCard->cTitle);
-	g_hash_table_insert (h, g_strdup ("title"), v);
+	g_hash_table_insert (h, "title", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, pModule->pVisitCard->cIconFilePath);
-	g_hash_table_insert (h, g_strdup ("icon"), v);
+	g_hash_table_insert (h, "icon", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, pModule->pVisitCard->cPreviewFilePath);
-	g_hash_table_insert (h, g_strdup ("preview"), v);
+	g_hash_table_insert (h, "preview", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, dgettext (pModule->pVisitCard->cGettextDomain, pModule->pVisitCard->cDescription));
-	g_hash_table_insert (h, g_strdup ("description"), v);
+	g_hash_table_insert (h, "description", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, pModule->pVisitCard->cAuthor);
-	g_hash_table_insert (h, g_strdup ("author"), v);
+	g_hash_table_insert (h, "author", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_BOOLEAN);
 	g_value_set_boolean (v, pModule->pVisitCard->bMultiInstance);
-	g_hash_table_insert (h, g_strdup ("is-multi-instance"), v);
+	g_hash_table_insert (h, "is-multi-instance", v);
 	
 	cd_debug ("list instances ...");
 	gchar **pInstances = g_new0 (gchar*, g_list_length (pModule->pInstancesList)+1);
@@ -1908,7 +1910,7 @@ static void _add_module_properties (GldiModule *pModule, GPtrArray *pTab)
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRV);
 	g_value_set_boxed (v, pInstances);
-	g_hash_table_insert (h, g_strdup ("instances"), v);
+	g_hash_table_insert (h, "instances", v);
 	cd_debug ("done.");
 }
 
@@ -1916,7 +1918,7 @@ static void _add_manager_properties (GldiManager *pManager, GPtrArray *pTab)
 {
 	GHashTable *h = g_hash_table_new_full (g_str_hash,
 		g_str_equal,
-		g_free,  /// can we use const char here instead of duplicating each string ?...
+		NULL,
 		g_free);
 	g_ptr_array_add (pTab, h);
 	
@@ -1925,12 +1927,12 @@ static void _add_manager_properties (GldiManager *pManager, GPtrArray *pTab)
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, CD_TYPE_MANAGER);
-	g_hash_table_insert (h, g_strdup ("type"), v);
+	g_hash_table_insert (h, "type", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, pManager->cModuleName);
-	g_hash_table_insert (h, g_strdup ("name"), v);
+	g_hash_table_insert (h, "name", v);
 }
 
 static void _set_container_properties (GldiContainer *pContainer, GHashTable *h)
@@ -1954,35 +1956,35 @@ static void _set_container_properties (GldiContainer *pContainer, GHashTable *h)
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_INT);
 	g_value_set_int (v, x);
-	g_hash_table_insert (h, g_strdup ("x"), v);
+	g_hash_table_insert (h, "x", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_INT);
 	g_value_set_int (v, y);
-	g_hash_table_insert (h, g_strdup ("y"), v);
+	g_hash_table_insert (h, "y", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_INT);
 	g_value_set_int (v, w);
-	g_hash_table_insert (h, g_strdup ("width"), v);
+	g_hash_table_insert (h, "width", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_INT);
 	g_value_set_int (v, ht);
-	g_hash_table_insert (h, g_strdup ("height"), v);
+	g_hash_table_insert (h, "height", v);
 	
 	CairoDockPositionType iScreenBorder = ((! pContainer->bIsHorizontal) << 1) | (! pContainer->bDirectionUp);
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_UINT);
 	g_value_set_uint (v, iScreenBorder);
-	g_hash_table_insert (h, g_strdup ("orientation"), v);
+	g_hash_table_insert (h, "orientation", v);
 }
 
 static void _add_dock_properties (CairoDock *pDock, GPtrArray *pTab)
 {
 	GHashTable *h = g_hash_table_new_full (g_str_hash,
 		g_str_equal,
-		g_free,  /// can we use const char here instead of duplicating each string ?...
+		NULL,
 		g_free);
 	g_ptr_array_add (pTab, h);
 	
@@ -1991,23 +1993,33 @@ static void _add_dock_properties (CairoDock *pDock, GPtrArray *pTab)
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, CD_TYPE_DOCK);
-	g_hash_table_insert (h, g_strdup ("type"), v);
+	g_hash_table_insert (h, "type", v);
 	
 	const gchar *cDockName = gldi_dock_get_name (pDock);
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, cDockName);
-	g_hash_table_insert (h, g_strdup ("name"), v);
+	g_hash_table_insert (h, "name", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_BOOLEAN);
 	g_value_set_boolean (v, (pDock->iRefCount > 0));
-	g_hash_table_insert (h, g_strdup ("is-sub-dock"), v);
+	g_hash_table_insert (h, "is-sub-dock", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_INT);
 	g_value_set_int (v, g_list_length (pDock->icons));
-	g_hash_table_insert (h, g_strdup ("nb-icons"), v);
+	g_hash_table_insert (h, "nb-icons", v);
+	
+	if (pDock->iRefCount == 0 && ! pDock->bIsMainDock)
+	{
+		gchar *cConfFilePath = g_strdup_printf ("%s/%s.conf", g_cCurrentThemePath, cDockName);
+		v = g_new0 (GValue, 1);
+		g_value_init (v, G_TYPE_STRING);
+		g_value_set_string (v, cConfFilePath);
+		g_hash_table_insert (h, "config-file", v);
+		g_free (cConfFilePath);
+	}
 	
 	_set_container_properties (CAIRO_CONTAINER (pDock), h);
 }
@@ -2016,7 +2028,7 @@ static void _add_desklet_properties (CairoDesklet *pDesklet, GPtrArray *pTab)
 {
 	GHashTable *h = g_hash_table_new_full (g_str_hash,
 		g_str_equal,
-		g_free,  /// can we use const char here instead of duplicating each string ?...
+		NULL,
 		g_free);
 	g_ptr_array_add (pTab, h);
 	
@@ -2025,17 +2037,17 @@ static void _add_desklet_properties (CairoDesklet *pDesklet, GPtrArray *pTab)
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, CD_TYPE_DESKLET);
-	g_hash_table_insert (h, g_strdup ("type"), v);
+	g_hash_table_insert (h, "type", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, CAIRO_DOCK_IS_APPLET (pDesklet->pIcon) ? pDesklet->pIcon->pModuleInstance->pModule->pVisitCard->cModuleName : "");
-	g_hash_table_insert (h, g_strdup ("name"), v);
+	g_hash_table_insert (h, "name", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_INT);
 	g_value_set_int (v, 1 + g_list_length (pDesklet->icons));
-	g_hash_table_insert (h, g_strdup ("nb-icons"), v);
+	g_hash_table_insert (h, "nb-icons", v);
 	
 	_set_container_properties (CAIRO_CONTAINER (pDesklet), h);
 }
@@ -2044,7 +2056,7 @@ static void _add_module_instance_properties (GldiModuleInstance *pModuleInstance
 {
 	GHashTable *h = g_hash_table_new_full (g_str_hash,
 		g_str_equal,
-		g_free,  /// can we use const char here instead of duplicating each string ?...
+		NULL,
 		g_free);
 	g_ptr_array_add (pTab, h);
 	
@@ -2053,12 +2065,17 @@ static void _add_module_instance_properties (GldiModuleInstance *pModuleInstance
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, CD_TYPE_MODULE_INSTANCE);
-	g_hash_table_insert (h, g_strdup ("type"), v);
+	g_hash_table_insert (h, "type", v);
 	
 	v = g_new0 (GValue, 1);
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, pModuleInstance->pModule->pVisitCard->cModuleName);
-	g_hash_table_insert (h, g_strdup ("name"), v);
+	g_hash_table_insert (h, "name", v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, pModuleInstance->cConfFilePath);
+	g_hash_table_insert (h, "config-file", v);
 }
 
 gboolean cd_dbus_main_get_properties (dbusMainObject *pDbusCallback, gchar *cQuery, GPtrArray **pAttributes, GError **error)
