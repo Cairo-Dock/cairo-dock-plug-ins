@@ -194,7 +194,7 @@ static gboolean _icon_is_matching (Icon *pIcon, GldiContainer *pContainer, CDQue
 	{
 		const gchar *cContainerName = NULL;
 		if (CAIRO_DOCK_IS_DOCK (pContainer))
-			cContainerName = pIcon->cParentDockName;
+			cContainerName = gldi_dock_get_name (CAIRO_DOCK(pContainer));
 		else if (CAIRO_DOCK_IS_DESKLET (pContainer))
 		{
 			Icon *pMainIcon = CAIRO_DESKLET (pContainer)->pIcon;

@@ -280,7 +280,7 @@ gboolean cd_dbus_main_get_icon_properties (dbusMainObject *pDbusCallback, gchar 
 		{
 			CairoDock *pDock = CAIRO_DOCK (pContainer);
 			iPosition = g_list_index (pDock->icons, pIcon);
-			cContainerName = pIcon->cParentDockName;
+			cContainerName = gldi_dock_get_name (pDock);
 		}
 		else if (CAIRO_DOCK_IS_DESKLET (pContainer))
 		{
@@ -756,7 +756,6 @@ gboolean cd_dbus_main_add_temporary_icon (dbusMainObject *pDbusCallback, GHashTa
 		cd_warning ("type '%s' invalid", cType);
 		return FALSE;
 	}
-	pIcon->cParentDockName = g_strdup (cParentDockName);
 	
 	//\_______________ load it inside the dock.
 	gldi_icon_insert_in_container (pIcon, CAIRO_CONTAINER(pParentDock), CAIRO_DOCK_ANIMATE_ICON);
@@ -1465,6 +1464,7 @@ gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pPropertie
 				
 				g_key_file_free (pKeyFile);
 				g_free (cConfFilePath);
+				gldi_object_reload (GLDI_OBJECT(pNewIcon), TRUE);
 			}
 			else
 			{
@@ -1808,7 +1808,7 @@ static void _add_icon_properties (Icon *pIcon, GPtrArray *pTab)
 	{
 		CairoDock *pDock = CAIRO_DOCK (pContainer);
 		iPosition = g_list_index (pDock->icons, pIcon);
-		cContainerName = pIcon->cParentDockName;
+		cContainerName = gldi_dock_get_name (pDock);
 	}
 	else if (CAIRO_DOCK_IS_DESKLET (pContainer))
 	{
