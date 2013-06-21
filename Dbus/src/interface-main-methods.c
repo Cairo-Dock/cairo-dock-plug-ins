@@ -1370,9 +1370,43 @@ gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pPropertie
 					fOrder = g_value_get_double (v);
 				else if (G_VALUE_HOLDS_INT (v))
 					fOrder = g_value_get_int (v);
+				if (fOrder < 0)
+					fOrder = CAIRO_DOCK_LAST_ORDER;
 			}
-			if (fOrder < 0)
-				fOrder = CAIRO_DOCK_LAST_ORDER;
+			else  // no order defined, look for a position
+			{
+				v = g_hash_table_lookup (pProperties, "position");  // this option is especially useful for tests, when you need to know exactly where an icon will be
+				if (v && G_VALUE_HOLDS_INT (v))
+				{
+					int iPosition = g_value_get_int (v);
+					if (iPosition >= 0)
+					{
+						int i;
+						GList *ic;
+						Icon *icon;
+						for (ic = pParentDock->icons, i = 0; ic != NULL && i < iPosition; ic = ic->next)
+						{
+							icon = ic->data;
+							if (GLDI_OBJECT_IS_AUTO_SEPARATOR_ICON (icon))
+								continue;
+							i ++;
+						}
+						if (ic != NULL)
+						{
+							Icon *pPrevIcon = (ic->prev ? ic->prev->data : NULL);
+							Icon *pNextIcon = ic->data;
+							if (pPrevIcon == NULL)
+								fOrder = pNextIcon->fOrder - 1;
+							else if (cairo_dock_get_icon_order (pNextIcon) != cairo_dock_get_icon_order (pPrevIcon))
+								fOrder = pPrevIcon->fOrder + 1;
+							else
+								fOrder = (pNextIcon->fOrder + pPrevIcon->fOrder) / 2;
+						}
+						else  // at the end
+							fOrder = CAIRO_DOCK_LAST_ORDER;
+					}
+				}
+			}
 			
 			Icon *pNewIcon = NULL;
 			if (strcmp (cType, CD_TYPE_LAUNCHER) == 0)
