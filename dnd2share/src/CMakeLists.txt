@@ -2,38 +2,40 @@
 ########### sources ###############
 
 SET(cd-dnd2share_LIB_SRCS
-	applet-init.c
-	applet-init.h
-	applet-config.c
-	applet-config.h
-	applet-notifications.c
-	applet-notifications.h
-	applet-dnd2share.c
-	applet-dnd2share.h
-	applet-backend-uppix.c
-	applet-backend-uppix.h
-	applet-backend-imagebin.c
-	applet-backend-imagebin.h
-	applet-backend-imageshack.c
-	applet-backend-imageshack.h
-	applet-backend-free.c
-	applet-backend-free.h
-	applet-backend-pastebin.c
-	applet-backend-pastebin.h
+	applet-backend-codepad.c
+	applet-backend-codepad.h
 	applet-backend-custom.c
 	applet-backend-custom.h
 	applet-backend-dropbox.c
 	applet-backend-dropbox.h
-	applet-backend-ubuntuone.c
-	applet-backend-ubuntuone.h
-	applet-backend-videobin.c
-	applet-backend-videobin.h
-	applet-backend-paste-ubuntu.c
-	applet-backend-paste-ubuntu.h
+	applet-backend-free.c
+	applet-backend-free.h
+	applet-backend-imagebin.c
+	applet-backend-imagebin.h
+	applet-backend-imageshack.c
+	applet-backend-imageshack.h
+	applet-backend-imgur.c
+	applet-backend-imgur.h
+	applet-backend-pastebin.c
+	applet-backend-pastebin.h
 	applet-backend-pastebin-mozilla.c
 	applet-backend-pastebin-mozilla.h
-	applet-backend-codepad.c
-	applet-backend-codepad.h
+	applet-backend-paste-ubuntu.c
+	applet-backend-paste-ubuntu.h
+	applet-backend-ubuntuone.c
+	applet-backend-ubuntuone.h
+	applet-backend-uppix.c
+	applet-backend-uppix.h
+	applet-backend-videobin.c
+	applet-backend-videobin.h
+	applet-config.c
+	applet-config.h
+	applet-dnd2share.c
+	applet-dnd2share.h
+	applet-init.c
+	applet-init.h
+	applet-notifications.c
+	applet-notifications.h
 	applet-struct.h
 )
 

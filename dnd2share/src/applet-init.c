@@ -24,17 +24,18 @@
 #include "applet-notifications.h"
 #include "applet-struct.h"
 #include "applet-dnd2share.h"
-#include "applet-backend-pastebin.h"
-#include "applet-backend-paste-ubuntu.h"
 #include "applet-backend-codepad.h"
-#include "applet-backend-pastebin-mozilla.h"
-#include "applet-backend-uppix.h"
-#include "applet-backend-imagebin.h"
-#include "applet-backend-imageshack.h"
-#include "applet-backend-free.h"
 #include "applet-backend-custom.h"
 #include "applet-backend-dropbox.h"
+#include "applet-backend-free.h"
+#include "applet-backend-imagebin.h"
+#include "applet-backend-imageshack.h"
+#include "applet-backend-imgur.h"
+#include "applet-backend-pastebin.h"
+#include "applet-backend-pastebin-mozilla.h"
+#include "applet-backend-paste-ubuntu.h"
 #include "applet-backend-ubuntuone.h"
+#include "applet-backend-uppix.h"
 #include "applet-backend-videobin.h"
 #include "applet-init.h"
 
@@ -90,6 +91,7 @@ CD_APPLET_INIT_BEGIN
 	cd_dnd2share_register_uppix_backend ();
 	cd_dnd2share_register_imagebin_backend ();
 	cd_dnd2share_register_imageshack_backend ();
+	cd_dnd2share_register_imgur_backend ();
 	// video backends
 	cd_dnd2share_register_videobin_backend ();
 	// file backends

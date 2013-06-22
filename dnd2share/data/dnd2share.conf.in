@@ -138,7 +138,7 @@ only file type=false
 #l[Custom;Pastebin.com;Paste-ubuntu.com;Pastebin.mozilla.org;Codepad.org] Preferred site for texts hosting :
 text site = 1
 
-#l[Custom;Uppix.net;Imagebin.ca;ImageShack.us] Preferred site for images hosting :
+#l[Custom;Uppix.net;Imagebin.ca;ImageShack.us;Imgur.com] Preferred site for images hosting :
 image site = 1
 
 #l[Custom;VideoBin.org] Preferred site for videos hosting :
