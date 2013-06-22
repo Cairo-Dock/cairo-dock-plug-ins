@@ -17,7 +17,14 @@
 
 ### d'après un script posté par naholyr sur ubuntu-fr.org, adapte pour Cairo-Dock.
 
-TMP=$(tempfile)
+TMP=$(tempfile) # tool available in Debian packages
+if test "$TMP" = ""; then
+	TMP=$(mktemp) # /tmp/tmp.XXXXXXXXXX
+	if test "$TMP" = ""; then
+		TMP="/tmp/cairo_dock_curl_free"
+	fi
+fi
+
 curl -q -v -T "$1" --limit-rate $2 -u cairo@dock.org:toto ftp://dl.free.fr/ 2> "$TMP"
 
 if test $? -eq 0; then
@@ -26,5 +33,5 @@ if test $? -eq 0; then
 		echo $URL
 	fi
 fi
-#rm -f "$TMP"
+rm -f "$TMP"
 exit 0
