@@ -26,7 +26,7 @@
 
 #include "applet-struct.h"
 #include "applet-dnd2share.h"
-#include "applet-backend-pastebin.h"
+#include "applet-backend-codepad.h"
 
 #define URL "http://codepad.org"
 #define FORMAT "Plain Text"
@@ -63,6 +63,7 @@ static void upload (const gchar *cText, gchar *cDropboxDir, gboolean bAnonymous,
 		gchar *str = strstr (cResult, "http");
 		if (str)
 			cResultUrls[0] = g_strdup (str);
+		g_free (cResult);
 	}
 }
 

@@ -2,7 +2,6 @@
 ########### install files ###############
 
 install (FILES ${CMAKE_CURRENT_BINARY_DIR}/dnd2share.conf
-	readme
 	preview.jpg
 	icon.svg
 	DESTINATION ${dnd2sharedatadir})
