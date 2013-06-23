@@ -42,23 +42,28 @@ static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonym
 	if (! cResult)
 		return;
 
+	gchar *cDirectLink = NULL, *cThumbnail = NULL, *cBBCode = NULL;
 	gchar *cDirectLinkStart = strstr (cResult, "http://uppix.com/"); // find the direct link
 	if (cDirectLinkStart)
 	{
 		gchar *cDirectLinkEnd = strstr (cDirectLinkStart, "&quot;");
 		if (cDirectLinkEnd)
+		{
 			*cDirectLinkEnd = '\0';
+			gint iLength = cDirectLinkEnd - cDirectLinkStart;
+			cDirectLink = g_strdup (cDirectLinkStart); // http://uppix.com/f-(...)
+			cThumbnail = g_strdup (cDirectLink); // the same url but with 't' instead of 'f' => http://uppix.com/t-(...)
+			if (iLength > 17 && cThumbnail[17] == 'f')
+				cThumbnail[17] = 't';
+			cBBCode = g_strdup_printf ("[url=%s][img]%s[/img][/url]", cDirectLink, cThumbnail);
+		}
 	}
-	gchar *cDirectLink = g_strdup (cDirectLinkStart); // http://uppix.com/f-(...)
 	g_free (cResult);
-
-	gchar *cThumbnail = g_strdup (cDirectLink); // the same url but with 't' instead of 'f' => http://uppix.com/t-(...)
-	cThumbnail[17] = 't';
 
 	// Enfin on remplit la memoire partagee avec nos URLs.
 	cResultUrls[0] = cDirectLink;
 	cResultUrls[1] = cThumbnail;
-	cResultUrls[2] = g_strdup_printf ("[url=%s][img]%s[/img][/url]", cDirectLink, cThumbnail);
+	cResultUrls[2] = cBBCode;
 }
 
 
