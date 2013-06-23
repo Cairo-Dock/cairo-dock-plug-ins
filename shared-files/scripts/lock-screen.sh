@@ -15,10 +15,13 @@
 # GNU General Public License for more details.
 # http://www.gnu.org/licenses/licenses.html#GPL
 
-if test -n "`ps -ef | grep gnome-screensaver | grep -v grep`"; then  ## "gnome-screensaver" is too long for pgrep
+PS_OUTPUT=`ps -u $USER -wwo pid,cmd` # restricted to the current user
+if test -n "`echo $PS_OUTPUT | grep gnome-screensaver`"; then  ## "gnome-screensaver" is too long for pgrep
 	gnome-screensaver-command --lock
-elif test -n "`ps -ef | grep xscreensaver | grep -v grep`"; then
+elif test -n "`echo $PS_OUTPUT | grep xscreensaver`"; then
 	xscreensaver-command -lock
+elif test -n "`echo $PS_OUTPUT | grep cinnamon-screensaver`"; then
+	cinnamon-screensaver-command --lock
 else
 	xlock
 fi

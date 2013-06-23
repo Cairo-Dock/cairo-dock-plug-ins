@@ -22,7 +22,7 @@
 
 gdm_proc=`pgrep "gdm|kdm|ldm|xdm|lightdm" | tail -1`
 if test -n "$gdm_proc"; then
-	last_process=`ps -ef | grep $gdm_proc | grep -v grep | tail -1 | tr -s " " | cut -d " " -f 2`
+	last_process=`ps -ef | grep $gdm_proc | grep $USER | grep -v grep | tail -1 | tr -s " " | cut -d " " -f 2`
 	if test -n "$last_process"; then
 		kill $last_process
 		exit 0
@@ -30,7 +30,7 @@ if test -n "$gdm_proc"; then
 fi
 
 # if the display manager couldn't be found, look for an endless sleep (likely to be the last process of the session), and kill it.
-sleep_proc=`ps -ef | grep sleep | grep -v grep | head -1`
+sleep_proc=`ps -ef | grep sleep | grep $USER | grep -v grep | head -1`
 if test -n "$sleep_proc"; then
 	sleep_time=`echo $sleep_proc | sed "s/.*sleep//g"`
 	if test $sleep_time -gt 3600; then
