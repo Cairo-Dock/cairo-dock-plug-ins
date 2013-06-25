@@ -182,9 +182,9 @@ void update_icon (void)
 			{
 				if (! myData.bOnBattery && myData.iPercentage > 99.9)
 				{
-					CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s (%d%%)",
-						D_("Battery charged"),
-						(int)myData.iPercentage);
+					CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%d%% - %s",
+						(int)myData.iPercentage,
+						D_("Battery charged"));
 				}
 				else
 				{
@@ -196,18 +196,18 @@ void update_icon (void)
 						int hours = time / 3600;
 						int minutes = (time % 3600) / 60;
 						if (hours != 0)
-							snprintf (cFormatBuffer, iBufferLength, "%dh%02d", hours, abs (minutes));
+							snprintf (cFormatBuffer, iBufferLength, "%d%s%02d", hours, D_("h"), abs (minutes));
 						else
-							snprintf (cFormatBuffer, iBufferLength, "%dmn", minutes);
+							snprintf (cFormatBuffer, iBufferLength, "%d%s", minutes, D_("mn"));
 					}
 					else
 					{
 						strncpy (cFormatBuffer, "-:--", iBufferLength);
 					}
-					CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s: %s (%d%%)",
-						myData.bOnBattery ? D_("Time before empty") : D_("Time before full"),
+					CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%d%% - %s %s",
+						(int)myData.iPercentage,
 						cFormatBuffer,
-						(int)myData.iPercentage);
+						myData.bOnBattery ? D_("remaining") : D_("until charged"));
 				}
 			}
 			
