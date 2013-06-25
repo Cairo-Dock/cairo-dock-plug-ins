@@ -52,11 +52,11 @@ void cd_do_open_session (void)
 	}
 	
 	// wait for keyboard input.
-	gldi_object_register_notification (&myContainersMgr,
+	gldi_object_register_notification (&myContainerObjectMgr,
 		NOTIFICATION_KEY_PRESSED,
 		(GldiNotificationFunc) cd_do_key_pressed,
 		GLDI_RUN_AFTER, NULL);
-	gldi_object_register_notification (&myWindowsMgr,
+	gldi_object_register_notification (&myWindowObjectMgr,
 		NOTIFICATION_WINDOW_ACTIVATED,
 		(GldiNotificationFunc) cd_do_check_active_dock,
 		GLDI_RUN_AFTER, NULL);
@@ -98,10 +98,10 @@ void cd_do_close_session (void)
 		return;
 	
 	// no more keyboard input.
-	gldi_object_remove_notification (&myContainersMgr,
+	gldi_object_remove_notification (&myContainerObjectMgr,
 		NOTIFICATION_KEY_PRESSED,
 		(GldiNotificationFunc) cd_do_key_pressed, NULL);
-	gldi_object_remove_notification (&myWindowsMgr,
+	gldi_object_remove_notification (&myWindowObjectMgr,
 		NOTIFICATION_WINDOW_ACTIVATED,
 		(GldiNotificationFunc) cd_do_check_active_dock, NULL);
 	

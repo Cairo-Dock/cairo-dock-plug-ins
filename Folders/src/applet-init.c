@@ -38,7 +38,7 @@ CD_APPLET_DEFINE_BEGIN (N_("Folders"),
 	"Fabounet")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_ALLOW_EMPTY_TITLE
-	gldi_object_register_notification (&myContainersMgr,
+	gldi_object_register_notification (&myContainerObjectMgr,
 		NOTIFICATION_DROP_DATA,
 		(GldiNotificationFunc) cd_folders_on_drop_data,
 		GLDI_RUN_FIRST, NULL);
@@ -129,7 +129,7 @@ CD_APPLET_INIT_END
 CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
-	gldi_object_remove_notification (&myContainersMgr,
+	gldi_object_remove_notification (&myContainerObjectMgr,
 		NOTIFICATION_CLICK_ICON,
 		(GldiNotificationFunc) CD_APPLET_ON_CLICK_FUNC,
 		myApplet);

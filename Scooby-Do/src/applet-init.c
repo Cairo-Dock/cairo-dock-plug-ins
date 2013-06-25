@@ -64,7 +64,7 @@ CD_APPLET_DEFINE_END
 		cd_do_register_recent_backend (); } while (0)
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
-	gldi_object_register_notification (&myContainersMgr,
+	gldi_object_register_notification (&myContainerObjectMgr,
 		NOTIFICATION_KEY_PRESSED,
 		(GldiNotificationFunc) cd_do_key_pressed,
 		GLDI_RUN_AFTER, NULL);
@@ -80,7 +80,7 @@ CD_APPLET_INIT_END
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
-	gldi_object_remove_notification (&myContainersMgr,
+	gldi_object_remove_notification (&myContainerObjectMgr,
 		NOTIFICATION_KEY_PRESSED,
 		(GldiNotificationFunc) cd_do_key_pressed, NULL);
 	

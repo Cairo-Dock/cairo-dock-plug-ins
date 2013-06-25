@@ -38,24 +38,24 @@ CD_APPLET_DEFINE_END
 
 
 #define _cd_mouse_register_on_dock(...) \
-	gldi_object_register_notification (&myDocksMgr, NOTIFICATION_ENTER_DOCK, (GldiNotificationFunc) cd_show_mouse_enter_container, GLDI_RUN_AFTER, NULL);\
-	gldi_object_register_notification (&myDocksMgr, NOTIFICATION_UPDATE, (GldiNotificationFunc) cd_show_mouse_update_container, GLDI_RUN_AFTER, NULL);\
-	gldi_object_register_notification (&myDocksMgr, NOTIFICATION_RENDER, (GldiNotificationFunc) cd_show_mouse_render, GLDI_RUN_AFTER, NULL);
+	gldi_object_register_notification (&myDockObjectMgr, NOTIFICATION_ENTER_DOCK, (GldiNotificationFunc) cd_show_mouse_enter_container, GLDI_RUN_AFTER, NULL);\
+	gldi_object_register_notification (&myDockObjectMgr, NOTIFICATION_UPDATE, (GldiNotificationFunc) cd_show_mouse_update_container, GLDI_RUN_AFTER, NULL);\
+	gldi_object_register_notification (&myDockObjectMgr, NOTIFICATION_RENDER, (GldiNotificationFunc) cd_show_mouse_render, GLDI_RUN_AFTER, NULL);
 
 #define _cd_mouse_register_on_desklet(...) \
-	gldi_object_register_notification (&myDeskletsMgr, NOTIFICATION_ENTER_DESKLET, (GldiNotificationFunc) cd_show_mouse_enter_container, GLDI_RUN_AFTER, NULL);\
-	gldi_object_register_notification (&myDeskletsMgr, NOTIFICATION_UPDATE, (GldiNotificationFunc) cd_show_mouse_update_container, GLDI_RUN_AFTER, NULL);\
-	gldi_object_register_notification (&myDeskletsMgr, NOTIFICATION_RENDER, (GldiNotificationFunc) cd_show_mouse_render, GLDI_RUN_AFTER, NULL);
+	gldi_object_register_notification (&myDeskletObjectMgr, NOTIFICATION_ENTER_DESKLET, (GldiNotificationFunc) cd_show_mouse_enter_container, GLDI_RUN_AFTER, NULL);\
+	gldi_object_register_notification (&myDeskletObjectMgr, NOTIFICATION_UPDATE, (GldiNotificationFunc) cd_show_mouse_update_container, GLDI_RUN_AFTER, NULL);\
+	gldi_object_register_notification (&myDeskletObjectMgr, NOTIFICATION_RENDER, (GldiNotificationFunc) cd_show_mouse_render, GLDI_RUN_AFTER, NULL);
 
 #define _cd_mouse_unregister_from_dock(...) \
-	gldi_object_remove_notification (&myDocksMgr, NOTIFICATION_RENDER, (GldiNotificationFunc) cd_show_mouse_render, NULL);\
-	gldi_object_remove_notification (&myDocksMgr, NOTIFICATION_UPDATE, (GldiNotificationFunc) cd_show_mouse_update_container, NULL);\
-	gldi_object_remove_notification (&myDocksMgr, NOTIFICATION_ENTER_DOCK, (GldiNotificationFunc) cd_show_mouse_enter_container, NULL);
+	gldi_object_remove_notification (&myDockObjectMgr, NOTIFICATION_RENDER, (GldiNotificationFunc) cd_show_mouse_render, NULL);\
+	gldi_object_remove_notification (&myDockObjectMgr, NOTIFICATION_UPDATE, (GldiNotificationFunc) cd_show_mouse_update_container, NULL);\
+	gldi_object_remove_notification (&myDockObjectMgr, NOTIFICATION_ENTER_DOCK, (GldiNotificationFunc) cd_show_mouse_enter_container, NULL);
 
 #define _cd_mouse_unregister_from_desklet(...) \
-	gldi_object_remove_notification (&myDeskletsMgr, NOTIFICATION_RENDER, (GldiNotificationFunc) cd_show_mouse_render, NULL);\
-	gldi_object_remove_notification (&myDeskletsMgr, NOTIFICATION_UPDATE, (GldiNotificationFunc) cd_show_mouse_update_container, NULL);\
-	gldi_object_remove_notification (&myDeskletsMgr, NOTIFICATION_ENTER_DESKLET, (GldiNotificationFunc) cd_show_mouse_enter_container, NULL);
+	gldi_object_remove_notification (&myDeskletObjectMgr, NOTIFICATION_RENDER, (GldiNotificationFunc) cd_show_mouse_render, NULL);\
+	gldi_object_remove_notification (&myDeskletObjectMgr, NOTIFICATION_UPDATE, (GldiNotificationFunc) cd_show_mouse_update_container, NULL);\
+	gldi_object_remove_notification (&myDeskletObjectMgr, NOTIFICATION_ENTER_DESKLET, (GldiNotificationFunc) cd_show_mouse_enter_container, NULL);
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
@@ -73,8 +73,8 @@ CD_APPLET_INIT_BEGIN
 	}
 	myData.iContainerType = myConfig.iContainerType;
 	
-	gldi_object_register_notification (&myDocksMgr, NOTIFICATION_DESTROY, (GldiNotificationFunc) cd_show_mouse_free_data, GLDI_RUN_AFTER, NULL);
-	gldi_object_register_notification (&myDeskletsMgr, NOTIFICATION_DESTROY, (GldiNotificationFunc) cd_show_mouse_free_data, GLDI_RUN_AFTER, NULL);
+	gldi_object_register_notification (&myDockObjectMgr, NOTIFICATION_DESTROY, (GldiNotificationFunc) cd_show_mouse_free_data, GLDI_RUN_AFTER, NULL);
+	gldi_object_register_notification (&myDeskletObjectMgr, NOTIFICATION_DESTROY, (GldiNotificationFunc) cd_show_mouse_free_data, GLDI_RUN_AFTER, NULL);
 CD_APPLET_INIT_END
 
 
@@ -91,8 +91,8 @@ static gboolean _free_desklet_data (CairoDesklet *pDesklet, gpointer data)
 CD_APPLET_STOP_BEGIN
 	_cd_mouse_unregister_from_dock ();
 	_cd_mouse_unregister_from_desklet ();
-	gldi_object_remove_notification (&myDocksMgr, NOTIFICATION_DESTROY, (GldiNotificationFunc) cd_show_mouse_free_data, NULL);
-	gldi_object_remove_notification (&myDeskletsMgr, NOTIFICATION_DESTROY, (GldiNotificationFunc) cd_show_mouse_free_data, NULL);
+	gldi_object_remove_notification (&myDockObjectMgr, NOTIFICATION_DESTROY, (GldiNotificationFunc) cd_show_mouse_free_data, NULL);
+	gldi_object_remove_notification (&myDeskletObjectMgr, NOTIFICATION_DESTROY, (GldiNotificationFunc) cd_show_mouse_free_data, NULL);
 	
 	gldi_docks_foreach ((GHFunc)_free_dock_data, NULL);
 	gldi_desklets_foreach (_free_desklet_data, NULL);

@@ -201,7 +201,7 @@ CDListing *cd_do_create_listing (void)
 	CDListing *pListing = g_new0 (CDListing, 1);
 	GldiContainerAttr attr;
 	memset (&attr, 0, sizeof (GldiContainerAttr));
-	gldi_object_init (GLDI_OBJECT(pListing), GLDI_MANAGER(&myContainersMgr), &attr);
+	gldi_object_init (GLDI_OBJECT(pListing), &myContainerObjectMgr, &attr);
 	
 	/*pListing->container.iType = CAIRO_DOCK_NB_CONTAINER_TYPES+1;
 	pListing->container.bIsHorizontal = TRUE;

@@ -51,35 +51,35 @@ CD_APPLET_INIT_BEGIN
 	if (!CD_APPLET_RESERVE_DATA_SLOT())
 		return;
 	
-	gldi_object_register_notification (&myContainersMgr,
+	gldi_object_register_notification (&myContainerObjectMgr,
 		NOTIFICATION_ENTER_ICON,
 		(GldiNotificationFunc) cd_animations_on_enter,
 		GLDI_RUN_AFTER, NULL);
-	gldi_object_register_notification (&myContainersMgr,
+	gldi_object_register_notification (&myContainerObjectMgr,
 		NOTIFICATION_CLICK_ICON,
 		(GldiNotificationFunc) cd_animations_on_click,
 		GLDI_RUN_FIRST, NULL);
-	gldi_object_register_notification (&myIconsMgr,
+	gldi_object_register_notification (&myIconObjectMgr,
 		NOTIFICATION_REQUEST_ICON_ANIMATION,
 		(GldiNotificationFunc) cd_animations_on_request,
 		GLDI_RUN_FIRST, NULL);
-	gldi_object_register_notification (&myIconsMgr,
+	gldi_object_register_notification (&myIconObjectMgr,
 		NOTIFICATION_UPDATE_ICON,
 		(GldiNotificationFunc) cd_animations_update_icon,
 		GLDI_RUN_AFTER, NULL);
-	gldi_object_register_notification (&myIconsMgr,
+	gldi_object_register_notification (&myIconObjectMgr,
 		NOTIFICATION_RENDER_ICON,
 		(GldiNotificationFunc) cd_animations_render_icon,
 		GLDI_RUN_FIRST, NULL);
-	gldi_object_register_notification (&myIconsMgr,
+	gldi_object_register_notification (&myIconObjectMgr,
 		NOTIFICATION_RENDER_ICON,
 		(GldiNotificationFunc) cd_animations_post_render_icon,
 		GLDI_RUN_AFTER, NULL);
-	gldi_object_register_notification (&myIconsMgr,
+	gldi_object_register_notification (&myIconObjectMgr,
 		NOTIFICATION_STOP_ICON,
 		(GldiNotificationFunc) cd_animations_free_data,
 		GLDI_RUN_AFTER, NULL);
-	gldi_object_register_notification (&myIconsMgr,
+	gldi_object_register_notification (&myIconObjectMgr,
 		NOTIFICATION_UNFOLD_SUBDOCK,
 		(GldiNotificationFunc) cd_animations_unfold_subdock,
 		GLDI_RUN_AFTER, NULL);
@@ -101,28 +101,28 @@ static void _free_data_on_icon (Icon *pIcon, CairoDock *pDock, gpointer data)
 }
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
-	gldi_object_remove_notification (&myContainersMgr,
+	gldi_object_remove_notification (&myContainerObjectMgr,
 		NOTIFICATION_ENTER_ICON,
 		(GldiNotificationFunc) cd_animations_on_enter, NULL);
-	gldi_object_remove_notification (&myContainersMgr,
+	gldi_object_remove_notification (&myContainerObjectMgr,
 		NOTIFICATION_CLICK_ICON,
 		(GldiNotificationFunc) cd_animations_on_click, NULL);
-	gldi_object_remove_notification (&myIconsMgr,
+	gldi_object_remove_notification (&myIconObjectMgr,
 		NOTIFICATION_REQUEST_ICON_ANIMATION,
 		(GldiNotificationFunc) cd_animations_on_request, NULL);
-	gldi_object_remove_notification (&myIconsMgr,
+	gldi_object_remove_notification (&myIconObjectMgr,
 		NOTIFICATION_UPDATE_ICON,
 		(GldiNotificationFunc) cd_animations_update_icon, NULL);
-	gldi_object_remove_notification (&myIconsMgr,
+	gldi_object_remove_notification (&myIconObjectMgr,
 		NOTIFICATION_RENDER_ICON,
 		(GldiNotificationFunc) cd_animations_render_icon, NULL);
-	gldi_object_remove_notification (&myIconsMgr,
+	gldi_object_remove_notification (&myIconObjectMgr,
 		NOTIFICATION_RENDER_ICON,
 		(GldiNotificationFunc) cd_animations_post_render_icon, NULL);
-	gldi_object_remove_notification (&myIconsMgr,
+	gldi_object_remove_notification (&myIconObjectMgr,
 		NOTIFICATION_STOP_ICON,
 		(GldiNotificationFunc) cd_animations_free_data, NULL);
-	gldi_object_remove_notification (&myIconsMgr,
+	gldi_object_remove_notification (&myIconObjectMgr,
 		NOTIFICATION_UNFOLD_SUBDOCK,
 		(GldiNotificationFunc) cd_animations_unfold_subdock, NULL);
 	

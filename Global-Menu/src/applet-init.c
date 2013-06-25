@@ -55,19 +55,19 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 	}
 	
-	gldi_object_register_notification (&myWindowsMgr,
+	gldi_object_register_notification (&myWindowObjectMgr,
 		NOTIFICATION_WINDOW_ACTIVATED,
 		(GldiNotificationFunc) cd_app_menu_on_active_window_changed,
 		GLDI_RUN_AFTER, myApplet);
-	gldi_object_register_notification (&myWindowsMgr,
+	gldi_object_register_notification (&myWindowObjectMgr,
 		NOTIFICATION_WINDOW_STATE_CHANGED,
 		(GldiNotificationFunc) cd_app_menu_on_state_changed,
 		GLDI_RUN_AFTER, myApplet);
-	gldi_object_register_notification (&myWindowsMgr,
+	gldi_object_register_notification (&myWindowObjectMgr,
 		NOTIFICATION_WINDOW_NAME_CHANGED,
 		(GldiNotificationFunc) cd_app_menu_on_name_changed,
 		GLDI_RUN_AFTER, myApplet);
-	gldi_object_register_notification (&myWindowsMgr,
+	gldi_object_register_notification (&myWindowObjectMgr,
 		NOTIFICATION_WINDOW_CREATED,
 		(GldiNotificationFunc) cd_app_menu_on_new_appli,
 		GLDI_RUN_AFTER, myApplet);
@@ -117,16 +117,16 @@ CD_APPLET_INIT_END
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
-	gldi_object_remove_notification (&myWindowsMgr,
+	gldi_object_remove_notification (&myWindowObjectMgr,
 		NOTIFICATION_WINDOW_ACTIVATED,
 		(GldiNotificationFunc) cd_app_menu_on_active_window_changed, myApplet);
-	gldi_object_remove_notification (&myWindowsMgr,
+	gldi_object_remove_notification (&myWindowObjectMgr,
 		NOTIFICATION_WINDOW_STATE_CHANGED,
 		(GldiNotificationFunc) cd_app_menu_on_state_changed, myApplet);
-	gldi_object_remove_notification (&myWindowsMgr,
+	gldi_object_remove_notification (&myWindowObjectMgr,
 		NOTIFICATION_WINDOW_NAME_CHANGED,
 		(GldiNotificationFunc) cd_app_menu_on_name_changed, myApplet);
-	gldi_object_remove_notification (&myWindowsMgr,
+	gldi_object_remove_notification (&myWindowObjectMgr,
 		NOTIFICATION_WINDOW_CREATED,
 		(GldiNotificationFunc) cd_app_menu_on_new_appli, myApplet);
 	

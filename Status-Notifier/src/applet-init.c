@@ -58,11 +58,11 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	// CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
-	/*gldi_object_register_notification (&myIconsMgr,
+	/*gldi_object_register_notification (&myIconObjectMgr,
 		CAIRO_DOCK_ENTER_ICON,
 		(GldiNotificationFunc) cd_status_notifier_on_enter_icon,
 		GLDI_RUN_AFTER, myApplet);*/
-	gldi_object_register_notification (&myContainersMgr,
+	gldi_object_register_notification (&myContainerObjectMgr,
 		NOTIFICATION_BUILD_CONTAINER_MENU,
 		(GldiNotificationFunc) cd_status_notifier_on_right_click,
 		GLDI_RUN_FIRST, myApplet);
@@ -103,7 +103,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	// CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
-	gldi_object_remove_notification (&myContainersMgr,
+	gldi_object_remove_notification (&myContainerObjectMgr,
 		NOTIFICATION_BUILD_CONTAINER_MENU,
 		(GldiNotificationFunc) cd_status_notifier_on_right_click,
 		myApplet);

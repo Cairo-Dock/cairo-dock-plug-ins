@@ -79,11 +79,11 @@ void cd_do_open_session (void)
 		cd_do_exit_session ();
 	
 	// wait for keyboard input.
-	gldi_object_register_notification (&myContainersMgr,
+	gldi_object_register_notification (&myContainerObjectMgr,
 		NOTIFICATION_KEY_PRESSED, (GldiNotificationFunc) cd_do_key_pressed, GLDI_RUN_AFTER, NULL);
-	gldi_object_register_notification (&myIconsMgr,
+	gldi_object_register_notification (&myIconObjectMgr,
 		NOTIFICATION_DESTROY, (GldiNotificationFunc) cd_do_check_icon_destroyed, GLDI_RUN_AFTER, NULL);
-	gldi_object_register_notification (&myWindowsMgr,
+	gldi_object_register_notification (&myWindowObjectMgr,
 		NOTIFICATION_WINDOW_ACTIVATED, (GldiNotificationFunc) cd_do_check_active_dock, GLDI_RUN_AFTER, NULL);
 	
 	myData.sCurrentText = g_string_sized_new (20);
@@ -139,13 +139,13 @@ void cd_do_close_session (void)
 		return;
 	
 	// no more keyboard input.
-	gldi_object_remove_notification (&myContainersMgr,
+	gldi_object_remove_notification (&myContainerObjectMgr,
 		NOTIFICATION_KEY_PRESSED,
 		(GldiNotificationFunc) cd_do_key_pressed, NULL);
-	gldi_object_remove_notification (&myIconsMgr,
+	gldi_object_remove_notification (&myIconObjectMgr,
 		NOTIFICATION_DESTROY,
 		(GldiNotificationFunc) cd_do_check_icon_destroyed, NULL);
-	gldi_object_remove_notification (&myWindowsMgr,
+	gldi_object_remove_notification (&myWindowObjectMgr,
 		NOTIFICATION_WINDOW_ACTIVATED,
 		(GldiNotificationFunc) cd_do_check_active_dock, NULL);
 	

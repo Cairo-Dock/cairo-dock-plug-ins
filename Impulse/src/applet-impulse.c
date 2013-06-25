@@ -186,28 +186,28 @@ static gboolean _impulse_check_pulse_status (void)
 
 void _remove_notifications (void)
 {
-	gldi_object_remove_notification (&myDocksMgr,
+	gldi_object_remove_notification (&myDockObjectMgr,
 		NOTIFICATION_ICON_MOVED,
 		(GldiNotificationFunc) cd_impulse_on_icon_changed, NULL);
-	gldi_object_remove_notification (&myDocksMgr,
+	gldi_object_remove_notification (&myDockObjectMgr,
 		NOTIFICATION_INSERT_ICON,
 		(GldiNotificationFunc) cd_impulse_on_icon_changed, NULL);
-	gldi_object_remove_notification (&myDocksMgr,
+	gldi_object_remove_notification (&myDockObjectMgr,
 		NOTIFICATION_REMOVE_ICON,
 		(GldiNotificationFunc) cd_impulse_on_icon_changed, NULL);
 }
 
 void _register_notifications (void)
 {
-	gldi_object_register_notification (&myDocksMgr,
+	gldi_object_register_notification (&myDockObjectMgr,
 		NOTIFICATION_ICON_MOVED,
 		(GldiNotificationFunc) cd_impulse_on_icon_changed,
 		GLDI_RUN_FIRST, NULL);
-	gldi_object_register_notification (&myDocksMgr,
+	gldi_object_register_notification (&myDockObjectMgr,
 		NOTIFICATION_INSERT_ICON,
 		(GldiNotificationFunc) cd_impulse_on_icon_changed,
 		GLDI_RUN_FIRST, NULL);
-	gldi_object_register_notification (&myDocksMgr,
+	gldi_object_register_notification (&myDockObjectMgr,
 		NOTIFICATION_REMOVE_ICON,
 		(GldiNotificationFunc) cd_impulse_on_icon_changed,
 		GLDI_RUN_FIRST, NULL);

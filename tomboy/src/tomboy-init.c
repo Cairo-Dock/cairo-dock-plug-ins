@@ -47,7 +47,7 @@ CD_APPLET_INIT_BEGIN
 	cd_notes_start ();
 	
 	//Enregistrement des notifications
-	gldi_object_register_notification (&myContainersMgr,
+	gldi_object_register_notification (&myContainerObjectMgr,
 		NOTIFICATION_CLICK_ICON,
 		(GldiNotificationFunc) CD_APPLET_ON_CLICK_FUNC,
 		GLDI_RUN_FIRST, myApplet);  // ici on s'enregistre explicitement avant le dock, pour pas qu'il essaye de lancer nos notes.

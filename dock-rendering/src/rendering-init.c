@@ -145,7 +145,7 @@ CD_APPLET_DEFINE_BEGIN ("dock rendering",
 	cd_rendering_register_rainbow_renderer 		(CD_RENDERING_RAINBOW_VIEW_NAME);
 	
 	cd_rendering_register_diapo_simple_renderer 	(CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);  // By Paradoxxx_Zero
-	gldi_object_register_notification (&myDocksMgr,
+	gldi_object_register_notification (&myDockObjectMgr,
 		NOTIFICATION_LEAVE_DOCK,
 		(GldiNotificationFunc) cd_slide_on_leave,
 		GLDI_RUN_FIRST, NULL);  // on l'enregistre ici, et non pas sur le container, pour intercepter la fermeture du dock lorsque l'on en sort en tirant la scrollbar.
@@ -170,7 +170,7 @@ CD_APPLET_INIT_BEGIN
 	//cd_rendering_register_diapo_renderer 			(CD_RENDERING_DIAPO_VIEW_NAME);  // By Paradoxxx_Zero
 
 	cd_rendering_register_diapo_simple_renderer 	(CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);  // By Paradoxxx_Zero
-	gldi_object_register_notification (&myDocksMgr,
+	gldi_object_register_notification (&myDockObjectMgr,
 		NOTIFICATION_LEAVE_DOCK,
 		(GldiNotificationFunc) cd_slide_on_leave,
 		GLDI_RUN_FIRST, NULL);  // on l'enregistre ici, et non pas sur le container, pour intercepter la fermeture du dock lorsque l'on en sort en tirant la scrollbar.
@@ -198,7 +198,7 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_remove_renderer (CD_RENDERING_CURVE_VIEW_NAME);
 	cairo_dock_remove_renderer (CD_RENDERING_PANEL_VIEW_NAME);
 	
-	gldi_object_remove_notification (&myDocksMgr,
+	gldi_object_remove_notification (&myDockObjectMgr,
                 NOTIFICATION_LEAVE_DOCK,
 		(GldiNotificationFunc) cd_slide_on_leave, NULL);
 	

@@ -44,23 +44,23 @@ CD_APPLET_INIT_BEGIN
 	if (! g_bUseOpenGL || ! CD_APPLET_RESERVE_DATA_SLOT ())
 		return;
 	
-	gldi_object_register_notification (&myDocksMgr,
+	gldi_object_register_notification (&myDockObjectMgr,
 		NOTIFICATION_REMOVE_ICON,
 		(GldiNotificationFunc) cd_illusion_on_remove_insert_icon,
 		GLDI_RUN_FIRST, NULL);
-	gldi_object_register_notification (&myDocksMgr,
+	gldi_object_register_notification (&myDockObjectMgr,
 		NOTIFICATION_INSERT_ICON,
 		(GldiNotificationFunc) cd_illusion_on_remove_insert_icon,
 		GLDI_RUN_FIRST, NULL);
-	gldi_object_register_notification (&myIconsMgr,
+	gldi_object_register_notification (&myIconObjectMgr,
 		NOTIFICATION_UPDATE_ICON,
 		(GldiNotificationFunc) cd_illusion_update_icon ,
 		GLDI_RUN_AFTER, NULL);
-	gldi_object_register_notification (&myIconsMgr,
+	gldi_object_register_notification (&myIconObjectMgr,
 		NOTIFICATION_RENDER_ICON,
 		(GldiNotificationFunc) cd_illusion_render_icon,
 		GLDI_RUN_FIRST, NULL);
-	gldi_object_register_notification (&myIconsMgr,
+	gldi_object_register_notification (&myIconObjectMgr,
 		NOTIFICATION_STOP_ICON,
 		(GldiNotificationFunc) cd_illusion_free_data,
 		GLDI_RUN_AFTER, NULL);
@@ -72,19 +72,19 @@ static void _free_data_on_icon (Icon *pIcon, CairoDock *pDock, gpointer data)
 }
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
-	gldi_object_remove_notification (&myDocksMgr,
+	gldi_object_remove_notification (&myDockObjectMgr,
 		NOTIFICATION_REMOVE_ICON,
 		(GldiNotificationFunc) cd_illusion_on_remove_insert_icon, NULL);
-	gldi_object_remove_notification (&myDocksMgr,
+	gldi_object_remove_notification (&myDockObjectMgr,
 		NOTIFICATION_INSERT_ICON,
 		(GldiNotificationFunc) cd_illusion_on_remove_insert_icon, NULL);
-	gldi_object_remove_notification (&myIconsMgr,
+	gldi_object_remove_notification (&myIconObjectMgr,
 		NOTIFICATION_UPDATE_ICON,
 		(GldiNotificationFunc) cd_illusion_update_icon, NULL);
-	gldi_object_remove_notification (&myIconsMgr,
+	gldi_object_remove_notification (&myIconObjectMgr,
 		NOTIFICATION_RENDER_ICON,
 		(GldiNotificationFunc) cd_illusion_render_icon, NULL);
-	gldi_object_remove_notification (&myIconsMgr,
+	gldi_object_remove_notification (&myIconObjectMgr,
 		NOTIFICATION_STOP_ICON,
 		(GldiNotificationFunc) cd_illusion_free_data, NULL);
 	

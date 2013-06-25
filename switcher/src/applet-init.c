@@ -75,11 +75,11 @@ CD_APPLET_INIT_BEGIN
 		NOTIFICATION_DESKTOP_CHANGED,
 		(GldiNotificationFunc) on_change_desktop,
 		GLDI_RUN_AFTER, myApplet);
-	gldi_object_register_notification (&myWindowsMgr,
+	gldi_object_register_notification (&myWindowObjectMgr,
 		NOTIFICATION_WINDOW_SIZE_POSITION_CHANGED,
 		(GldiNotificationFunc) on_window_size_position_changed,
 		GLDI_RUN_AFTER, myApplet);
-	gldi_object_register_notification (&myWindowsMgr,
+	gldi_object_register_notification (&myWindowObjectMgr,
 		NOTIFICATION_WINDOW_Z_ORDER_CHANGED,
 		(GldiNotificationFunc) on_change_window_order,
 		GLDI_RUN_AFTER, myApplet);
@@ -95,7 +95,7 @@ CD_APPLET_INIT_BEGIN
 			GLDI_RUN_AFTER, myApplet);
 		if (myDesklet)  // in this mode we draw the name of the pointed desktop
 		{
-			gldi_object_register_notification (&myDeskletsMgr,
+			gldi_object_register_notification (&myDeskletObjectMgr,
 				NOTIFICATION_RENDER,
 				(GldiNotificationFunc) on_render_desklet,
 				GLDI_RUN_AFTER, myApplet);  // we register on the parent manager to be drawn after the desklet, until the notifications order is reversed.
@@ -146,10 +146,10 @@ CD_APPLET_STOP_BEGIN
 	gldi_object_remove_notification (&myDesktopMgr,
 		NOTIFICATION_DESKTOP_CHANGED,
 		(GldiNotificationFunc) on_change_desktop, myApplet);
-	gldi_object_remove_notification (&myWindowsMgr,
+	gldi_object_remove_notification (&myWindowObjectMgr,
 		NOTIFICATION_WINDOW_SIZE_POSITION_CHANGED,
 		(GldiNotificationFunc) on_window_size_position_changed, myApplet);
-	gldi_object_remove_notification (&myWindowsMgr,
+	gldi_object_remove_notification (&myWindowObjectMgr,
 		NOTIFICATION_WINDOW_Z_ORDER_CHANGED,
 		(GldiNotificationFunc) on_change_window_order, myApplet);
 	gldi_object_remove_notification (&myDesktopMgr,
@@ -158,7 +158,7 @@ CD_APPLET_STOP_BEGIN
 	gldi_object_remove_notification (myContainer,
 		NOTIFICATION_MOUSE_MOVED,
 		(GldiNotificationFunc) on_mouse_moved, myApplet);
-	gldi_object_remove_notification (&myDeskletsMgr,
+	gldi_object_remove_notification (&myDeskletObjectMgr,
 		NOTIFICATION_RENDER,
 		(GldiNotificationFunc) on_render_desklet, myApplet);
 	gldi_object_remove_notification (myContainer,
@@ -203,7 +203,7 @@ CD_APPLET_RELOAD_BEGIN
 		gldi_object_remove_notification (CD_APPLET_MY_OLD_CONTAINER,
 			NOTIFICATION_MOUSE_MOVED,
 			(GldiNotificationFunc) on_mouse_moved, myApplet);
-		gldi_object_remove_notification (&myDeskletsMgr,
+		gldi_object_remove_notification (&myDeskletObjectMgr,
 			NOTIFICATION_RENDER,
 			(GldiNotificationFunc) on_render_desklet, myApplet);
 		gldi_object_remove_notification (CD_APPLET_MY_OLD_CONTAINER,
@@ -221,7 +221,7 @@ CD_APPLET_RELOAD_BEGIN
 				GLDI_RUN_AFTER, myApplet);
 			if (myDesklet)
 			{
-				gldi_object_register_notification (&myDeskletsMgr,
+				gldi_object_register_notification (&myDeskletObjectMgr,
 					NOTIFICATION_RENDER,
 					(GldiNotificationFunc) on_render_desklet,
 					GLDI_RUN_AFTER, myApplet);

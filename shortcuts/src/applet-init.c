@@ -57,7 +57,7 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT;
-	gldi_object_register_notification (&myIconsMgr,
+	gldi_object_register_notification (&myIconObjectMgr,
 		NOTIFICATION_DESTROY,
 		(GldiNotificationFunc) cd_shortcuts_free_data,
 		GLDI_RUN_AFTER, myApplet);
@@ -70,7 +70,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT;
-	gldi_object_remove_notification (&myIconsMgr,
+	gldi_object_remove_notification (&myIconObjectMgr,
 		NOTIFICATION_DESTROY,
 		(GldiNotificationFunc) cd_shortcuts_free_data, myApplet);
 CD_APPLET_STOP_END

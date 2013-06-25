@@ -57,19 +57,19 @@ CD_APPLET_INIT_BEGIN
 	
 	_load_indicators ();
 	
-	gldi_object_register_notification (&myContainersMgr,
+	gldi_object_register_notification (&myContainerObjectMgr,
 		NOTIFICATION_MOUSE_MOVED,
 		(GldiNotificationFunc) cd_drop_indicator_mouse_moved,
 		GLDI_RUN_AFTER, NULL);
-	gldi_object_register_notification (&myDocksMgr,
+	gldi_object_register_notification (&myDockObjectMgr,
 		NOTIFICATION_RENDER,
 		(GldiNotificationFunc) cd_drop_indicator_render,
 		GLDI_RUN_AFTER, NULL);
-	gldi_object_register_notification (&myDocksMgr,
+	gldi_object_register_notification (&myDockObjectMgr,
 		NOTIFICATION_UPDATE,
 		(GldiNotificationFunc) cd_drop_indicator_update_dock,
 		GLDI_RUN_AFTER, NULL);
-	gldi_object_register_notification (&myDocksMgr,
+	gldi_object_register_notification (&myDockObjectMgr,
 		NOTIFICATION_DESTROY,
 		(GldiNotificationFunc) cd_drop_indicator_stop_dock,
 		GLDI_RUN_AFTER, NULL);
@@ -83,16 +83,16 @@ static void _free_data_on_dock (const gchar *cDockName, CairoDock *pDock, gpoint
 	cd_drop_indicator_stop_dock (NULL, pDock);
 }
 CD_APPLET_STOP_BEGIN
-	gldi_object_remove_notification (&myContainersMgr,
+	gldi_object_remove_notification (&myContainerObjectMgr,
 		NOTIFICATION_MOUSE_MOVED,
 		(GldiNotificationFunc) cd_drop_indicator_mouse_moved, NULL);
-	gldi_object_remove_notification (&myDocksMgr,
+	gldi_object_remove_notification (&myDockObjectMgr,
 		NOTIFICATION_RENDER,
 		(GldiNotificationFunc) cd_drop_indicator_render, NULL);
-	gldi_object_remove_notification (&myDocksMgr,
+	gldi_object_remove_notification (&myDockObjectMgr,
 		NOTIFICATION_UPDATE,
 		(GldiNotificationFunc) cd_drop_indicator_update_dock, NULL);
-	gldi_object_remove_notification (&myDocksMgr,
+	gldi_object_remove_notification (&myDockObjectMgr,
 		NOTIFICATION_DESTROY,
 		(GldiNotificationFunc) cd_drop_indicator_stop_dock, NULL);
 	

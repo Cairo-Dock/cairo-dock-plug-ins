@@ -48,7 +48,7 @@ CD_APPLET_INIT_BEGIN
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	// CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
-	gldi_object_register_notification (&myContainersMgr,
+	gldi_object_register_notification (&myContainerObjectMgr,
 		NOTIFICATION_BUILD_ICON_MENU,
 		(GldiNotificationFunc) CD_APPLET_ON_BUILD_MENU_FUNC,
 		GLDI_RUN_FIRST,
@@ -65,7 +65,7 @@ CD_APPLET_INIT_END
 CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	// CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
-	gldi_object_remove_notification (&myContainersMgr,
+	gldi_object_remove_notification (&myContainerObjectMgr,
 		NOTIFICATION_BUILD_ICON_MENU, (GldiNotificationFunc) CD_APPLET_ON_BUILD_MENU_FUNC, myApplet);
 	
 	if (myData.iSidTryDialog != 0)

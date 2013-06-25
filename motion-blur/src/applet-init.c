@@ -43,28 +43,28 @@ CD_APPLET_INIT_BEGIN
 	if (! g_bUseOpenGL || ! CD_APPLET_RESERVE_DATA_SLOT ())
 		return;
 	
-	gldi_object_register_notification (&myDocksMgr,
+	gldi_object_register_notification (&myDockObjectMgr,
 		NOTIFICATION_RENDER,
 		(GldiNotificationFunc) cd_motion_blur_pre_render,
 		GLDI_RUN_FIRST, NULL);
-	gldi_object_register_notification (&myDocksMgr,
+	gldi_object_register_notification (&myDockObjectMgr,
 		NOTIFICATION_RENDER,
 		(GldiNotificationFunc) cd_motion_blur_post_render,
 		GLDI_RUN_AFTER, NULL);
 	if (myConfig.bAlways)
-		gldi_object_register_notification (&myContainersMgr,
+		gldi_object_register_notification (&myContainerObjectMgr,
 		NOTIFICATION_MOUSE_MOVED,
 		(GldiNotificationFunc) cd_motion_blur_mouse_moved,
 		GLDI_RUN_AFTER, NULL);
-	gldi_object_register_notification (&myDocksMgr,
+	gldi_object_register_notification (&myDockObjectMgr,
 		NOTIFICATION_ENTER_DOCK,
 		(GldiNotificationFunc) cd_motion_blur_mouse_moved,
 		GLDI_RUN_AFTER, NULL);
-	gldi_object_register_notification (&myDocksMgr,
+	gldi_object_register_notification (&myDockObjectMgr,
 		NOTIFICATION_UPDATE,
 		(GldiNotificationFunc) cd_motion_blur_update_dock,
 		GLDI_RUN_AFTER, NULL);
-	gldi_object_register_notification (&myDocksMgr,
+	gldi_object_register_notification (&myDockObjectMgr,
 		NOTIFICATION_DESTROY,
 		(GldiNotificationFunc) cd_motion_free_data,
 		GLDI_RUN_AFTER, NULL);
@@ -77,23 +77,23 @@ static void _free_data_on_dock (const gchar *cDockName, CairoDock *pDock, gpoint
 	cd_motion_free_data (NULL, pDock);
 }
 CD_APPLET_STOP_BEGIN
-	gldi_object_remove_notification (&myDocksMgr,
+	gldi_object_remove_notification (&myDockObjectMgr,
 		NOTIFICATION_RENDER,
 		(GldiNotificationFunc) cd_motion_blur_pre_render, NULL);
-	gldi_object_remove_notification (&myDocksMgr,
+	gldi_object_remove_notification (&myDockObjectMgr,
 		NOTIFICATION_RENDER,
 		(GldiNotificationFunc) cd_motion_blur_post_render, NULL);
 	if (myConfig.bAlways)
-		gldi_object_remove_notification (&myContainersMgr,
+		gldi_object_remove_notification (&myContainerObjectMgr,
 			NOTIFICATION_MOUSE_MOVED,
 			(GldiNotificationFunc) cd_motion_blur_mouse_moved, NULL);
-	gldi_object_remove_notification (&myDocksMgr,
+	gldi_object_remove_notification (&myDockObjectMgr,
 		NOTIFICATION_ENTER_DOCK,
 		(GldiNotificationFunc) cd_motion_blur_mouse_moved, NULL);
-	gldi_object_remove_notification (&myDocksMgr,
+	gldi_object_remove_notification (&myDockObjectMgr,
 		NOTIFICATION_UPDATE,
 		(GldiNotificationFunc) cd_motion_blur_update_dock, NULL);
-	gldi_object_remove_notification (&myDocksMgr,
+	gldi_object_remove_notification (&myDockObjectMgr,
 		NOTIFICATION_DESTROY,
 		(GldiNotificationFunc) cd_motion_free_data, NULL);
 	

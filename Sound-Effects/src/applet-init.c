@@ -40,19 +40,19 @@ CD_APPLET_DEFINE_END
 static void _register_notifications (void)
 {
 	if (myConfig.bPlayOnClick)
-		gldi_object_register_notification (&myContainersMgr,
+		gldi_object_register_notification (&myContainerObjectMgr,
 			NOTIFICATION_CLICK_ICON,
 			(GldiNotificationFunc) cd_sound_on_click,
 			GLDI_RUN_FIRST, NULL);
 	
 	if (myConfig.bPlayOnMiddleClick)
-		gldi_object_register_notification (&myContainersMgr,
+		gldi_object_register_notification (&myContainerObjectMgr,
 			NOTIFICATION_MIDDLE_CLICK_ICON,
 			(GldiNotificationFunc) cd_sound_on_middle_click,
 			GLDI_RUN_FIRST, NULL);
 	
 	if (myConfig.bPlayOnHover)
-		gldi_object_register_notification (&myContainersMgr,
+		gldi_object_register_notification (&myContainerObjectMgr,
 			NOTIFICATION_ENTER_ICON,
 			(GldiNotificationFunc) cd_sound_on_hover,
 			GLDI_RUN_FIRST, NULL);
@@ -60,13 +60,13 @@ static void _register_notifications (void)
 
 static void _unregister_notifications (void)
 {
-	gldi_object_remove_notification (&myContainersMgr,
+	gldi_object_remove_notification (&myContainerObjectMgr,
 		NOTIFICATION_CLICK_ICON,
 		(GldiNotificationFunc) cd_sound_on_click, NULL);
-	gldi_object_remove_notification (&myContainersMgr,
+	gldi_object_remove_notification (&myContainerObjectMgr,
 		NOTIFICATION_MIDDLE_CLICK_ICON,
 		(GldiNotificationFunc) cd_sound_on_middle_click, NULL);
-	gldi_object_remove_notification (&myContainersMgr,
+	gldi_object_remove_notification (&myContainerObjectMgr,
 		NOTIFICATION_ENTER_ICON,
 		(GldiNotificationFunc) cd_sound_on_hover, NULL);
 }

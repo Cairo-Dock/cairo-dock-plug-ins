@@ -37,7 +37,7 @@ CD_APPLET_DEFINE_BEGIN (N_("stack"),
 	"You can quickly copy the path/url/text to the clipboard, or open it."),
 	"ChAnGFu (Remy Robertson)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
-	gldi_object_register_notification (&myContainersMgr,
+	gldi_object_register_notification (&myContainerObjectMgr,
 		NOTIFICATION_DROP_DATA,
 		(GldiNotificationFunc) cd_stack_on_drop_data,
 		GLDI_RUN_FIRST, NULL);  // future instances of the applet will register before this, and therefore handle the drop of files on themselves.
