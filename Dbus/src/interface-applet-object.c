@@ -155,27 +155,27 @@ dbusApplet *cd_dbus_create_remote_applet_object (GldiModuleInstance *pModuleInst
 	//\_____________ register to the notifications we'll want to propagate on the bus.
 	if (pDbusApplet->proxy != NULL && _applet_list_is_empty ())  // 1ere applet Dbus.
 	{
-		gldi_object_register_notification (&myContainersMgr,
+		gldi_object_register_notification (&myContainerObjectMgr,
 			NOTIFICATION_CLICK_ICON,
 			(GldiNotificationFunc) cd_dbus_applet_emit_on_click_icon,
 			GLDI_RUN_AFTER,
 			NULL);
-		gldi_object_register_notification (&myContainersMgr,
+		gldi_object_register_notification (&myContainerObjectMgr,
 			NOTIFICATION_MIDDLE_CLICK_ICON,
 			(GldiNotificationFunc) cd_dbus_applet_emit_on_middle_click_icon,
 			GLDI_RUN_AFTER,
 			NULL);
-		gldi_object_register_notification (&myContainersMgr,
+		gldi_object_register_notification (&myContainerObjectMgr,
 			NOTIFICATION_SCROLL_ICON,
 			(GldiNotificationFunc) cd_dbus_applet_emit_on_scroll_icon,
 			GLDI_RUN_FIRST,
 			NULL);
-		gldi_object_register_notification (&myContainersMgr,
+		gldi_object_register_notification (&myContainerObjectMgr,
 			NOTIFICATION_BUILD_ICON_MENU,
 			(GldiNotificationFunc) cd_dbus_applet_emit_on_build_menu,
 			GLDI_RUN_FIRST,
 			NULL);
-		gldi_object_register_notification (&myWindowsMgr,
+		gldi_object_register_notification (&myWindowObjectMgr,
 			NOTIFICATION_WINDOW_ACTIVATED,
 			(GldiNotificationFunc) cd_dbus_applet_emit_on_change_focus,
 			GLDI_RUN_AFTER,
@@ -216,23 +216,23 @@ void cd_dbus_delete_remote_applet_object (dbusApplet *pDbusApplet)
 
 void cd_dbus_unregister_notifications (void)
 {
-	gldi_object_remove_notification (&myContainersMgr,
+	gldi_object_remove_notification (&myContainerObjectMgr,
 		NOTIFICATION_CLICK_ICON,
 		(GldiNotificationFunc) cd_dbus_applet_emit_on_click_icon,
 		NULL);
-	gldi_object_remove_notification (&myContainersMgr,
+	gldi_object_remove_notification (&myContainerObjectMgr,
 		NOTIFICATION_MIDDLE_CLICK_ICON,
 		(GldiNotificationFunc) cd_dbus_applet_emit_on_middle_click_icon,
 		NULL);
-	gldi_object_remove_notification (&myContainersMgr,
+	gldi_object_remove_notification (&myContainerObjectMgr,
 		NOTIFICATION_SCROLL_ICON,
 		(GldiNotificationFunc) cd_dbus_applet_emit_on_scroll_icon,
 		NULL);
-	gldi_object_remove_notification (&myContainersMgr,
+	gldi_object_remove_notification (&myContainerObjectMgr,
 		NOTIFICATION_BUILD_ICON_MENU,
 		(GldiNotificationFunc) cd_dbus_applet_emit_on_build_menu,
 		NULL);
-	gldi_object_remove_notification (&myWindowsMgr,
+	gldi_object_remove_notification (&myWindowObjectMgr,
 		NOTIFICATION_WINDOW_ACTIVATED,
 		(GldiNotificationFunc) cd_dbus_applet_emit_on_change_focus,
 		NULL);

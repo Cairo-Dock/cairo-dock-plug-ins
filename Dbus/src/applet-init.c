@@ -53,7 +53,7 @@ CD_APPLET_INIT_BEGIN
 	{
 		s_bInitialized = TRUE;
 		cd_dbus_launch_service ();
-		gldi_object_register_notification (&myContainersMgr,
+		gldi_object_register_notification (&myContainerObjectMgr,
 			NOTIFICATION_DROP_DATA,
 			(GldiNotificationFunc) cd_dbus_applet_emit_on_drop_data,
 			GLDI_RUN_FIRST,

@@ -72,8 +72,8 @@ class CairoDock:
 	TYPE_APPLICATION     = "Application"
 	TYPE_APPLET          = "Applet"
 	TYPE_SEPARATOR       = "Separator"
-	TYPE_CONTAINER       = "Container"
-	TYPE_CLASS_CONTAINER = "Class-Container"
+	TYPE_STACK_ICON      = "Stack-Icon"
+	TYPE_CLASS_CONTAINER = "Class-Icon"
 	TYPE_OTHER           = "Other"
 	# toggle dock visibility
 	HIDE_DOCK   = 0

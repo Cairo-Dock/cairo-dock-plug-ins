@@ -705,7 +705,8 @@ gboolean cd_dbus_sub_applet_remove_sub_icon (dbusSubApplet *pDbusSubApplet, cons
 	{
 		GList *pIconsList = (pInstance->pDock ? (pIcon->pSubDock ? pIcon->pSubDock->icons : NULL) : pInstance->pDesklet->icons);
 		Icon *pOneIcon = cairo_dock_get_icon_with_command (pIconsList, cIconID);
-		cairo_dock_remove_icon_from_applet (pInstance, pOneIcon);
+		///cairo_dock_remove_icon_from_applet (pInstance, pOneIcon);
+		gldi_object_unref (GLDI_OBJECT(pOneIcon));
 	}
 	
 	return TRUE;

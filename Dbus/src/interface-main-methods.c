@@ -138,10 +138,10 @@ gboolean cd_dbus_main_reload_module (dbusMainObject *pDbusCallback, const gchar 
 	}
 	else
 	{
-		GldiManager *pManager = gldi_get_manager (cModuleName);
+		GldiManager *pManager = gldi_manager_get (cModuleName);
 		if (pManager != NULL)
 		{
-			gldi_reload_manager (pManager, g_cConfFile);
+			gldi_object_reload (GLDI_OBJECT(pManager), TRUE);
 		}
 		else
 		{
@@ -160,7 +160,7 @@ gboolean cd_dbus_main_activate_module (dbusMainObject *pDbusCallback, const gcha
 	GldiModule *pModule = gldi_module_get (cModuleName);
 	if (pModule == NULL)
 	{
-		if (gldi_get_manager (cModuleName) != NULL)
+		if (gldi_manager_get (cModuleName) != NULL)
 			cd_warning ("Internal modules can't be (de)activated.");
 		else
 			cd_warning ("no such module (%s)", cModuleName);
@@ -1212,7 +1212,7 @@ gboolean cd_dbus_main_set_menu (dbusMainObject *pDbusCallback, const gchar *cBus
 	if (! s_bInit)  // register for right-click events once.
 	{
 		s_bInit = TRUE;
-		gldi_object_register_notification (&myContainersMgr,
+		gldi_object_register_notification (&myContainerObjectMgr,
 			NOTIFICATION_BUILD_ICON_MENU,
 			(GldiNotificationFunc) cd_dbus_main_emit_on_build_menu,
 			GLDI_RUN_FIRST,
@@ -1597,60 +1597,6 @@ gboolean cd_dbus_main_reload (dbusMainObject *pDbusCallback, gchar *cQuery, GErr
 	{
 		obj = o->data;
 		gldi_object_reload (obj, TRUE);
-		/**if (CAIRO_DOCK_IS_ICON (obj))
-		{
-			Icon *pIcon = (Icon*)obj;
-			if ((CAIRO_DOCK_ICON_TYPE_IS_LAUNCHER (pIcon)
-				|| CAIRO_DOCK_ICON_TYPE_IS_CONTAINER (pIcon)
-				|| CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
-			&& pIcon->cDesktopFileName != NULL)  // user icon.
-			{
-				cairo_dock_reload_launcher (pIcon);
-			}
-			else if (CAIRO_DOCK_IS_APPLET (pIcon))
-			{
-				gldi_module_instance_reload (pIcon->pModuleInstance, TRUE);  // TRUE <=> reload config.
-			}
-			else  // for appli icons, reload their image (custom image for instance).
-			{
-				GldiContainer *pContainer = cairo_dock_get_icon_container (pIcon);
-				if (pContainer == NULL)
-					continue;
-				
-				cairo_dock_reload_icon_image (pIcon, pContainer);
-				cairo_dock_redraw_icon (pIcon);
-			}
-		}
-		else if (CAIRO_DOCK_IS_CONTAINER (obj))
-		{
-			if (CAIRO_DOCK_IS_DOCK (obj))
-			{
-				CairoDock *pDock = CAIRO_DOCK (obj);
-				if (!pDock->bIsMainDock)  // pour l'instant le main dock n'a pas de fichier de conf
-				{
-					gldi_dock_reload (pDock);
-				}
-			}
-			else if (CAIRO_DOCK_IS_DESKLET (obj))
-			{
-				CairoDesklet *pDesklet = CAIRO_DESKLET (obj);
-				Icon *pIcon = pDesklet->pIcon;
-				g_return_val_if_fail (CAIRO_DOCK_IS_APPLET (pIcon), FALSE);
-				gldi_module_instance_reload (pIcon->pModuleInstance, TRUE);  // TRUE <=> reload config.
-			}
-		}
-		else if (CAIRO_DOCK_IS_MODULE (obj))
-		{
-			gldi_object_reload (GLDI_OBJECT(obj), TRUE);  // TRUE <=> reload module conf file.
-		}
-		else if (CAIRO_DOCK_IS_MANAGER (obj))
-		{
-			gldi_reload_manager ((GldiManager*)obj, g_cConfFile);
-		}
-		else if (CAIRO_DOCK_IS_MODULE_INSTANCE (obj))
-		{
-			gldi_module_instance_reload ((GldiModuleInstance*)obj, TRUE);  // TRUE <=> reload config.
-		}*/
 	}
 	g_list_free (pObjects);
 	return TRUE;
@@ -1685,63 +1631,9 @@ gboolean cd_dbus_main_remove (dbusMainObject *pDbusCallback, gchar *cQuery, GErr
 	for (o = pObjects; o != NULL; o = o->next)
 	{
 		obj = o->data;
-		if (! obj)
+		if (! obj)  // has been deleted by a previous object destruction
 			continue;
 		gldi_object_delete (obj);
-		/**if (CAIRO_DOCK_IS_ICON (obj))
-		{
-			Icon *pIcon = (Icon*)obj;
-			if ((CAIRO_DOCK_ICON_TYPE_IS_LAUNCHER (pIcon)
-				|| CAIRO_DOCK_ICON_TYPE_IS_CONTAINER (pIcon)
-				|| CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (pIcon))
-			&& pIcon->cDesktopFileName != NULL)  // user icon.
-			{
-				if (CAIRO_DOCK_ICON_TYPE_IS_CONTAINER (pIcon)
-				&& pIcon->pSubDock != NULL)  // remove the sub-dock's content as well
-				{
-					cairo_dock_remove_icons_from_dock (pIcon->pSubDock, NULL);
-					gldi_object_unref (GLDI_OBJECT(pIcon->pSubDock));
-					pIcon->pSubDock = NULL;
-				}
-				cairo_dock_trigger_icon_removal_from_dock (pIcon);
-			}
-			else if (CAIRO_DOCK_IS_APPLET (pIcon))
-			{
-				gldi_module_instance_reload (pIcon->pModuleInstance, TRUE);  // TRUE <=> reload config.
-			}  // don't remove appli icons
-		}
-		else if (CAIRO_DOCK_IS_CONTAINER (obj))
-		{
-			if (CAIRO_DOCK_IS_DOCK (obj))
-			{
-				CairoDock *pDock = CAIRO_DOCK (obj);
-				cairo_dock_remove_icons_from_dock (pDock, NULL);
-				
-				gldi_object_unref (GLDI_OBJECT(pDock));
-			}
-			else if (CAIRO_DOCK_IS_DESKLET (obj))
-			{
-				CairoDesklet *pDesklet = CAIRO_DESKLET (obj);
-				Icon *pIcon = pDesklet->pIcon;
-				g_return_val_if_fail (CAIRO_DOCK_IS_APPLET (pIcon), FALSE);
-				gldi_object_delete (GLDI_OBJECT(pIcon->pModuleInstance));
-			}
-		}
-		else if (CAIRO_DOCK_IS_MODULE (obj))
-		{
-			GldiModule *pModule = (GldiModule *)obj;
-			gldi_module_deactivate (pModule);
-		}
-		else if (CAIRO_DOCK_IS_MANAGER (obj))
-		{
-			cd_warning ("can't remove a manager");
-		}
-		else if (CAIRO_DOCK_IS_MODULE_INSTANCE (obj))
-		{
-			GldiModuleInstance *pModuleInstance = (GldiModuleInstance *)obj;
-			g_print ("remove instance %s\n", pModuleInstance->cConfFilePath);
-			gldi_object_delete (GLDI_OBJECT(pModuleInstance));
-		}*/
 	}
 	g_list_free (pObjects);
 	return TRUE;
@@ -2141,17 +2033,17 @@ gboolean cd_dbus_main_get_properties (dbusMainObject *pDbusCallback, gchar *cQue
 				_add_desklet_properties (pDesklet, pTab);
 			}
 		}
-		else if (CAIRO_DOCK_IS_MODULE (obj))
+		else if (GLDI_OBJECT_IS_MODULE (obj))
 		{
 			GldiModule *pModule = (GldiModule *)obj;
 			_add_module_properties (pModule, pTab);
 		}
-		else if (CAIRO_DOCK_IS_MANAGER (obj))
+		else if (GLDI_OBJECT_IS_MANAGER (obj))
 		{
 			GldiManager *pManager = (GldiManager *)obj;
 			_add_manager_properties (pManager, pTab);
 		}
-		else if (CAIRO_DOCK_IS_MODULE_INSTANCE (obj))
+		else if (GLDI_OBJECT_IS_MODULE_INSTANCE (obj))
 		{
 			GldiModuleInstance *pModuleInstance = (GldiModuleInstance *)obj;
 			_add_module_instance_properties (pModuleInstance, pTab);

@@ -473,6 +473,10 @@ static gboolean _add_module (const gchar *cModuleName, GldiModule *pModule, CDQu
 	pQuery->pMatchingIcons = g_list_prepend (pQuery->pMatchingIcons, pModule);
 	return FALSE;  // don't stop.
 }
+static void _add_manager (GldiManager *pManager, CDQuery *pQuery)
+{
+	pQuery->pMatchingIcons = g_list_prepend (pQuery->pMatchingIcons, pManager);
+}
 static GList *_find_matching_modules_for_key (const gchar *cKey, const gchar *cValue)
 {
 	//g_print ("  %s (%s, %s)\n", __func__, cKey, cValue);
@@ -482,8 +486,10 @@ static GList *_find_matching_modules_for_key (const gchar *cKey, const gchar *cV
 	
 	if (query.cType)
 	{
-		if (strcmp (query.cType, "Module") == 0)  // we can't get the list of managers...
+		if (strcmp (query.cType, CD_TYPE_MODULE) == 0)
 			gldi_module_foreach ((GHRFunc)_add_module, &query);
+		else if (strcmp (query.cType, CD_TYPE_MANAGER) == 0)
+			gldi_managers_foreach ((GFunc)_add_manager, &query);
 	}
 	
 	if (query.cName)  // the only relevant way to identify a module/maanger is by name, so we just need to look for the given name.
@@ -496,7 +502,7 @@ static GList *_find_matching_modules_for_key (const gchar *cKey, const gchar *cV
 		}
 		else
 		{
-			GldiManager *pManager = gldi_get_manager (query.cName);
+			GldiManager *pManager = gldi_manager_get (query.cName);
 			if (pManager != NULL)
 			{
 				g_print (" found manager %s\n", pManager->cModuleName);
