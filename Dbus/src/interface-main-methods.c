@@ -1859,6 +1859,11 @@ static void _add_manager_properties (GldiManager *pManager, GPtrArray *pTab)
 	g_value_init (v, G_TYPE_STRING);
 	g_value_set_string (v, pManager->cModuleName);
 	g_hash_table_insert (h, "name", v);
+	
+	v = g_new0 (GValue, 1);
+	g_value_init (v, G_TYPE_STRING);
+	g_value_set_string (v, g_cConfFile);
+	g_hash_table_insert (h, "config-file", v);
 }
 
 static void _set_container_properties (GldiContainer *pContainer, GHashTable *h)
