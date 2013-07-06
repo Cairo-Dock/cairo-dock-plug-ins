@@ -52,6 +52,7 @@ CD_APPLET_INIT_BEGIN
 	cd_menu_start ();
 	
 	myData.iShowQuit = myConfig.iShowQuit;
+	myData.bLoadSettingsMenu = myConfig.bLoadSettingsMenu;
 
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
@@ -98,12 +99,14 @@ CD_APPLET_RELOAD_BEGIN
 		gldi_shortkey_rebind (myData.cKeyBindingQuickLaunch, myConfig.cQuickLaunchShortkey, NULL);
 		
 		// on reset ce qu'il faut.
-		if (myData.pMenu != NULL &&
-			(myConfig.iShowQuit != myData.iShowQuit))
+		if (myData.pMenu != NULL
+		&& (myConfig.iShowQuit != myData.iShowQuit
+			|| myConfig.bLoadSettingsMenu != myData.bLoadSettingsMenu))
 		{
 			cd_menu_stop ();  // this is not very optimized but well...
-			myData.iShowQuit = myConfig.iShowQuit;
 		}
+		myData.iShowQuit = myConfig.iShowQuit;
+		myData.bLoadSettingsMenu = myConfig.bLoadSettingsMenu;
 		
 		// on reconstruit ce qu'il faut.
 		if (myData.pMenu == NULL)

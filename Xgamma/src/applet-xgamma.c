@@ -33,7 +33,7 @@ static gboolean _xf86vidmode_supported (void)
 		return s_bUseXf86VidMode;
 
 	int event_base, error_base;
-	Display *dpy = cairo_dock_get_Xdisplay ();
+	Display *dpy = gdk_x11_get_default_xdisplay ();
 	if (! XF86VidModeQueryExtension (dpy, &event_base, &error_base))  // on regarde si le serveur X supporte l'extension.
 	{
 		cd_warning ("XF86VidMode extension not available.");
@@ -82,7 +82,7 @@ void xgamma_add_gamma (XF86VidModeGamma *pGamma, gint iNbSteps)
 double xgamma_get_gamma (XF86VidModeGamma *pGamma)
 {
 	g_return_val_if_fail (pGamma != NULL, 1);
-	Display *dpy = cairo_dock_get_Xdisplay ();
+	Display *dpy = gdk_x11_get_default_xdisplay ();
 	
 	g_return_val_if_fail (_xf86vidmode_supported (), 1.);
 	if (!XF86VidModeGetGamma (dpy, DefaultScreen (dpy), pGamma))
@@ -100,7 +100,7 @@ double xgamma_get_gamma (XF86VidModeGamma *pGamma)
 void xgamma_set_gamma (XF86VidModeGamma *pGamma)
 {
 	g_return_if_fail (pGamma != NULL);
-	Display *dpy = cairo_dock_get_Xdisplay ();
+	Display *dpy = gdk_x11_get_default_xdisplay ();
 	
 	g_return_if_fail (_xf86vidmode_supported ());
 	if (!XF86VidModeSetGamma(dpy, DefaultScreen (dpy), pGamma))

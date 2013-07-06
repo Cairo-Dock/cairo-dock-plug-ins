@@ -132,23 +132,25 @@ gboolean cd_do_update_container (gpointer pUserData, GldiContainer *pContainer, 
 }*/
 
 
-static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, Window *data)
+static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, gboolean *data)
 {
-	Window xActiveWindow = data[0];
-	if (gldi_container_get_Xid (CAIRO_CONTAINER (pDock)) == xActiveWindow)
-		data[1] = 1;
+	if (gldi_container_is_active (CAIRO_CONTAINER (pDock)))
+		*data = TRUE;
 }
-gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow)
+gboolean cd_do_check_active_dock (gpointer pUserData, GldiWindowActor *actor)
 {
 	g_return_val_if_fail (cd_do_session_is_running (), GLDI_NOTIFICATION_LET_PASS);
 	
-	if (myData.sCurrentText == NULL || XActiveWindow == NULL)
+	if (myData.sCurrentText == NULL)
 		return GLDI_NOTIFICATION_LET_PASS;
-	Window data[2] = {*XActiveWindow, 0};
-	gldi_docks_foreach ((GHFunc) _check_dock_is_active, data);
 	
-	if (data[1] == 0)
+	gboolean bDockIsActive = FALSE;
+	gldi_docks_foreach ((GHFunc) _check_dock_is_active, &bDockIsActive);
+	
+	if (! bDockIsActive)
+	{
 		gtk_window_present (GTK_WINDOW (g_pMainDock->container.pWidget));
+	}
 	return GLDI_NOTIFICATION_LET_PASS;
 }
 

@@ -29,6 +29,7 @@
 
 gboolean cd_motion_blur_pre_render (gpointer pUserData, CairoDock *pDock, cairo_t *pCairoContext)
 {
+	return GLDI_NOTIFICATION_LET_PASS;
 	if (pCairoContext != NULL)
 		return GLDI_NOTIFICATION_LET_PASS;
 	CDMotionBlurData *pData = CD_APPLET_GET_MY_DOCK_DATA (pDock);
@@ -43,15 +44,21 @@ gboolean cd_motion_blur_post_render (gpointer pUserData, CairoDock *pDock, cairo
 {
 	if (pCairoContext != NULL)
 		return GLDI_NOTIFICATION_LET_PASS;
-	CDMotionBlurData *pData = CD_APPLET_GET_MY_DOCK_DATA (pDock);
 	
-	if ((pData != NULL && pData->iBlurCount != 0) || CD_DOCK_IN_MOVMENT (pDock))
+	CDMotionBlurData *pData = CD_APPLET_GET_MY_DOCK_DATA (pDock);
+	if (pData == NULL)
+		return GLDI_NOTIFICATION_LET_PASS;
+	
+	if ((pData != NULL && pData->iBlurCount > 0) || CD_DOCK_IN_MOVMENT (pDock))
 	{
 		glAccum (GL_ACCUM, 1 - myConfig.fBlurFactor);
 		glAccum (GL_RETURN, 1.0);
+		glAccum (GL_LOAD, myConfig.fBlurFactor);
+		g_print ("blur\n");
 	}
 	else
 	{
+		g_print ("blur stop\n");
 		glClearAccum (0., 0., 0., 0.);
 		glClear (GL_ACCUM_BUFFER_BIT);
 		glAccum (GL_ACCUM, 1.);
@@ -89,7 +96,7 @@ gboolean cd_motion_blur_update_dock (gpointer pUserData, CairoDock *pDock, gbool
 	//g_print ("blur <- %d\n", pData->iBlurCount);
 	
 	cairo_dock_redraw_container (CAIRO_CONTAINER (pDock));
-	if (pData->iBlurCount <= 0)
+	if (pData->iBlurCount < 0)
 	{
 		g_free (pData);
 		CD_APPLET_SET_MY_DOCK_DATA (pDock, NULL);

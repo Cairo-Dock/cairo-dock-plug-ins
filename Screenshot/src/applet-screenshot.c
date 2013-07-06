@@ -22,6 +22,7 @@
 #include <time.h>
 
 #include <cairo-xlib.h>
+#include <gdk/gdkx.h>
 
 #include "applet-struct.h"
 #include "applet-screenshot.h"
@@ -185,14 +186,15 @@ static gchar *_make_image_name (const gchar *cFolder, const gchar *cFileName)
 static gchar *_make_screenshot (gboolean bActiveWindow, const gchar *cFolder, const gchar *cFileName)
 {
 	// create a surface that points on the root window.
-	Display *display = cairo_dock_get_Xdisplay ();
+	Display *display = gdk_x11_get_default_xdisplay ();
 	Screen *screen = XDefaultScreenOfDisplay (display);
 	Visual *visual = DefaultVisualOfScreen (screen);
 	int w, h;
 	Window Xid;
 	if (bActiveWindow)
 	{
-		Xid = cairo_dock_get_active_xwindow ();
+		GldiWindowActor *pActiveWindow = gldi_windows_get_active ();
+		Xid = gldi_window_get_id (pActiveWindow);  // cairo_dock_get_active_xwindow ()
 		Window root_return;
 		int x_return=1, y_return=1;
 		unsigned int width_return, height_return, border_width_return, depth_return;
@@ -200,13 +202,13 @@ static gchar *_make_screenshot (gboolean bActiveWindow, const gchar *cFolder, co
 			&root_return,
 			&x_return, &y_return,
 			&width_return, &height_return,
-			&border_width_return, &depth_return);  // we can't use the data from the Task manager, because it takes into account the window border.
+			&border_width_return, &depth_return);  // we can't use the data from the WindowActor, because it takes into account the window border.
 		w = width_return;
 		h = height_return;
 	}
 	else
 	{
-		Xid = cairo_dock_get_root_id();
+		Xid = DefaultRootWindow (display);
 		w = g_desktopGeometry.Xscreen.width;
 		h = g_desktopGeometry.Xscreen.height;
 	}
@@ -233,7 +235,7 @@ static gchar *_make_screenshot (gboolean bActiveWindow, const gchar *cFolder, co
 		int h0 = h * ratio;
 		cairo_surface_t *pSurface = cairo_dock_duplicate_surface (s,
 			w, h,
-			w0, h0);  // we must duplicate the surface, because it's an Xlib surface, not an data surface (plus it's way too large anyway).
+			w0, h0);  // we must duplicate the surface, because it's an Xlib surface, not a data surface (plus it's way too large anyway).
 		cairo_dock_load_image_buffer_from_surface (myData.pCurrentImage, pSurface, w0, h0);
 		
 		cairo_dock_free_image_buffer (myData.pOldImage);

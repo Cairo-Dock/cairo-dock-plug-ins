@@ -176,20 +176,19 @@ void cd_app_menu_on_keybinding_pull (const gchar *keystring, GldiModuleInstance 
 
 
 //\___________ Other notifications, that are not from the user (but from the Applications-manager)
-static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, Window *data)
+static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, gboolean *data)
 {
-	Window xActiveWindow = data[0];
-	if (gldi_container_get_Xid (CAIRO_CONTAINER (pDock)) == xActiveWindow)
-		data[1] = 1;
+	if (gldi_container_is_active (CAIRO_CONTAINER (pDock)))
+		*data = 1;
 }
 gboolean cd_app_menu_on_active_window_changed (GldiModuleInstance *myApplet, GldiWindowActor *actor)
 {
 	// check if a dock has the focus (we don't want to control the dock, it wouldn't make sense anyway).
 	if (actor)
 	{
-		Window data[2] = {cairo_dock_get_active_xwindow(), 0};
-		gldi_docks_foreach ((GHFunc) _check_dock_is_active, data);
-		if (data[1])  // not a dock, so let's take it.
+		gboolean is_dock = FALSE;
+		gldi_docks_foreach ((GHFunc) _check_dock_is_active, &is_dock);
+		if (is_dock)  // it's a dock, ignore it.
 			actor = NULL;
 	}
 	

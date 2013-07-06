@@ -20,6 +20,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <libxklavier/xklavier.h>
+#include <gdk/gdkx.h>
 
 #include "applet-struct.h"
 #include "applet-xklavier.h"
@@ -63,7 +64,7 @@ static void _open_keyboard_properties (GtkMenuItem *menu_item, gpointer data)
 	}
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	XklEngine *pEngine = xkl_engine_get_instance (cairo_dock_get_Xdisplay ());  // singleton.
+	XklEngine *pEngine = xkl_engine_get_instance (gdk_x11_get_default_xdisplay ());  // singleton.
 	const gchar **pGroupNames = xkl_engine_get_groups_names (pEngine);
 	int i;
 	for (i = 0; pGroupNames[i] != NULL && *pGroupNames[i] != '-'; i ++)

@@ -514,10 +514,11 @@ static void _show_desktop (GtkMenuItem *menu_item, gpointer data)
 	int iIndex = GPOINTER_TO_INT (data);
 	int iNumDesktop, iNumViewportX, iNumViewportY;
 	cd_switcher_compute_desktop_from_index (iIndex, &iNumDesktop, &iNumViewportX, &iNumViewportY);
-	if (iNumDesktop != myData.switcher.iCurrentDesktop)
-		cairo_dock_set_current_desktop (iNumDesktop);
-	if (iNumViewportX != myData.switcher.iCurrentViewportX || iNumViewportY != myData.switcher.iCurrentViewportY)
-		cairo_dock_set_current_viewport (iNumViewportX, iNumViewportY);
+	
+	if (iNumViewportX != myData.switcher.iCurrentViewportX
+	|| iNumViewportY != myData.switcher.iCurrentViewportY
+	|| iNumDesktop != myData.switcher.iCurrentDesktop)
+		gldi_desktop_set_current (iNumDesktop, iNumViewportX, iNumViewportY);
 	CD_APPLET_LEAVE ();
 }
 static void _cd_switcher_add_window_on_viewport (Icon *pIcon, int iNumDesktop, int iNumViewportX, int iNumViewportY, GtkWidget *pMenu)

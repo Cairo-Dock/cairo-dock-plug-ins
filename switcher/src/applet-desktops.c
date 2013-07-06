@@ -30,7 +30,7 @@ static int cd_switcher_compute_index_from_coordinates (int iNumLine, int iNumCol
 
 void cd_switcher_get_current_desktop (void)
 {
-	cairo_dock_get_current_desktop_and_viewport (&myData.switcher.iCurrentDesktop, &myData.switcher.iCurrentViewportX, &myData.switcher.iCurrentViewportY);
+	gldi_desktop_get_current (&myData.switcher.iCurrentDesktop, &myData.switcher.iCurrentViewportX, &myData.switcher.iCurrentViewportY);
 	
 	myData.switcher.iNbViewportTotal = g_desktopGeometry.iNbDesktops * g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY;
 	if (myData.switcher.iNbViewportTotal == 0) // obviously, having 0 desktop cannot be true, so we force to 1 to avoid any "division by 0" later.
@@ -256,14 +256,14 @@ static void cd_switcher_change_nb_desktops (int iDeltaNbDesktops)
 {
 	if (g_desktopGeometry.iNbDesktops >= g_desktopGeometry.iNbViewportX * g_desktopGeometry.iNbViewportY)
 	{
-		cairo_dock_set_nb_desktops (g_desktopGeometry.iNbDesktops + iDeltaNbDesktops);
+		gldi_desktop_set_nb_desktops (g_desktopGeometry.iNbDesktops + iDeltaNbDesktops, -1, -1);  // -1 = don't udpdate viewports number
 	}
 	else
 	{
 		if (g_desktopGeometry.iNbViewportX >= g_desktopGeometry.iNbViewportY)
-			cairo_dock_set_nb_viewports (g_desktopGeometry.iNbViewportX + iDeltaNbDesktops, g_desktopGeometry.iNbViewportY);
+			gldi_desktop_set_nb_desktops (-1, g_desktopGeometry.iNbViewportX + iDeltaNbDesktops, g_desktopGeometry.iNbViewportY);  // -1 = don't update desktops number
 		else
-			cairo_dock_set_nb_viewports (g_desktopGeometry.iNbViewportX, g_desktopGeometry.iNbViewportY + iDeltaNbDesktops);
+			gldi_desktop_set_nb_desktops (-1, g_desktopGeometry.iNbViewportX, g_desktopGeometry.iNbViewportY + iDeltaNbDesktops);
 	}
 }
 
@@ -316,9 +316,7 @@ void cd_switcher_trigger_update_from_screen_geometry (gboolean bNow)
 
 void cd_switcher_refresh_desktop_values (GldiModuleInstance *myApplet)
 {
-	g_desktopGeometry.iNbDesktops = cairo_dock_get_nb_desktops ();
-	cairo_dock_get_nb_viewports (&g_desktopGeometry.iNbViewportX, &g_desktopGeometry.iNbViewportY);
-	cd_debug ("refresh -> %d/%d/%d", g_desktopGeometry.iNbDesktops, g_desktopGeometry.iNbViewportX, g_desktopGeometry.iNbViewportY);
+	gldi_desktop_refresh ();
 	cd_switcher_trigger_update_from_screen_geometry (TRUE);
 }
 

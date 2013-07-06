@@ -79,10 +79,6 @@ void cd_do_open_session (void)
 	cairo_dock_emit_enter_signal (CAIRO_CONTAINER (g_pMainDock));
 	
 	// le main dock prend le focus.
-	myData.iPreviouslyActiveWindow = cairo_dock_get_active_xwindow ();
-	//if (cairo_dock_get_desklet_by_Xid (myData.iPreviouslyActiveWindow))
-	//	myData.iPreviouslyActiveWindow = 0;
-	///gtk_window_present (GTK_WINDOW (g_pMainDock->container.pWidget));
 	gtk_window_present_with_time (GTK_WINDOW (g_pMainDock->container.pWidget), gdk_x11_get_server_time (gldi_container_get_gdk_window(CAIRO_CONTAINER (g_pMainDock))));  // pour eviter la prevention du vol de focus.
 	cairo_dock_freeze_docks (TRUE);
 	
@@ -117,16 +113,6 @@ void cd_do_close_session (void)
 	myData.iCurrentFilter = 0;
 	
 	cairo_dock_emit_leave_signal (CAIRO_CONTAINER (g_pMainDock));
-	
-	// on redonne le focus a l'ancienne fenetre.
-	if (myData.iPreviouslyActiveWindow != 0)
-	{
-		/// ne le faire que si on a encore le focus, sinon c'est que l'utilisateur a change lui-meme de fenetre...
-		//Window iActiveWindow = cairo_dock_get_active_xwindow ();
-		
-		//cairo_dock_show_xwindow (myData.iPreviouslyActiveWindow);
-		myData.iPreviouslyActiveWindow = 0;
-	}
 	
 	// on quitte dans une animation.
 	myData.iCloseTime = myConfig.iCloseDuration;

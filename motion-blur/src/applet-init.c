@@ -42,7 +42,6 @@ CD_APPLET_DEFINE_END
 CD_APPLET_INIT_BEGIN
 	if (! g_bUseOpenGL || ! CD_APPLET_RESERVE_DATA_SLOT ())
 		return;
-	
 	gldi_object_register_notification (&myDockObjectMgr,
 		NOTIFICATION_RENDER,
 		(GldiNotificationFunc) cd_motion_blur_pre_render,
@@ -58,6 +57,10 @@ CD_APPLET_INIT_BEGIN
 		GLDI_RUN_AFTER, NULL);
 	gldi_object_register_notification (&myDockObjectMgr,
 		NOTIFICATION_ENTER_DOCK,
+		(GldiNotificationFunc) cd_motion_blur_mouse_moved,
+		GLDI_RUN_AFTER, NULL);
+	gldi_object_register_notification (&myDockObjectMgr,
+		NOTIFICATION_LEAVE_DOCK,
 		(GldiNotificationFunc) cd_motion_blur_mouse_moved,
 		GLDI_RUN_AFTER, NULL);
 	gldi_object_register_notification (&myDockObjectMgr,
@@ -89,6 +92,9 @@ CD_APPLET_STOP_BEGIN
 			(GldiNotificationFunc) cd_motion_blur_mouse_moved, NULL);
 	gldi_object_remove_notification (&myDockObjectMgr,
 		NOTIFICATION_ENTER_DOCK,
+		(GldiNotificationFunc) cd_motion_blur_mouse_moved, NULL);
+	gldi_object_remove_notification (&myDockObjectMgr,
+		NOTIFICATION_LEAVE_DOCK,
 		(GldiNotificationFunc) cd_motion_blur_mouse_moved, NULL);
 	gldi_object_remove_notification (&myDockObjectMgr,
 		NOTIFICATION_UPDATE,

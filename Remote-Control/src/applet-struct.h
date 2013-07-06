@@ -44,7 +44,7 @@ struct _AppletData {
 	CairoDockImageBuffer *pArrowImage;
 	gint iPromptAnimationCount;
 	gint iCloseTime;
-	Window iPreviouslyActiveWindow;
+	GldiWindowActor *pPreviouslyActiveWindow;
 	Icon *pCurrentIcon;
 	CairoDock *pCurrentDock;
 	gboolean bIgnoreIconState;

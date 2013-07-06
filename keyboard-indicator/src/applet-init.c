@@ -19,6 +19,7 @@
 
 #include <stdlib.h>
 #include <libxklavier/xklavier.h>
+#include <gdk/gdkx.h>
 
 #include "applet-config.h"
 #include "applet-xklavier.h"
@@ -55,7 +56,7 @@ static gboolean _init (gpointer data)
 {
 	cd_debug ("INIT XKBD");
 	g_return_val_if_fail (myApplet != NULL, FALSE);
-	Display *pDisplay = cairo_dock_get_Xdisplay ();
+	Display *pDisplay = gdk_x11_get_default_xdisplay ();
 	cd_xkbd_init (pDisplay);
 	return FALSE;
 }

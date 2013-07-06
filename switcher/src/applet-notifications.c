@@ -55,8 +55,8 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 		break;
 		case SWICTHER_SHOW_DESKTOP:
 		{
-			gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
-			cairo_dock_show_hide_desktop (! bDesktopIsVisible);
+			gboolean bDesktopIsVisible = gldi_desktop_is_visible ();
+			gldi_desktop_show_hide (! bDesktopIsVisible);
 		}
 		break;
 		case SWICTHER_EXPOSE_DESKTOPS:
@@ -153,10 +153,10 @@ CD_APPLET_ON_CLICK_BEGIN
 	if (! _cd_switcher_get_viewport_from_clic (pClickedIcon, &iNumDesktop, &iNumViewportX, &iNumViewportY))
 		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 	
-	if (iNumDesktop != myData.switcher.iCurrentDesktop)
-		cairo_dock_set_current_desktop (iNumDesktop);
-	if (iNumViewportX != myData.switcher.iCurrentViewportX || iNumViewportY != myData.switcher.iCurrentViewportY)
-		cairo_dock_set_current_viewport (iNumViewportX, iNumViewportY);
+	if (iNumViewportX != myData.switcher.iCurrentViewportX
+	|| iNumViewportY != myData.switcher.iCurrentViewportY
+	|| iNumDesktop != myData.switcher.iCurrentDesktop)
+		gldi_desktop_set_current (iNumDesktop, iNumViewportX, iNumViewportY);
 CD_APPLET_ON_CLICK_END
 
 
@@ -182,10 +182,10 @@ CD_APPLET_ON_SCROLL_BEGIN  // Merci ChangFu !
 		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 	
 	cd_debug ("Switcher: switching to %d", iIndex);
-	if (iNumDesktop != myData.switcher.iCurrentDesktop)
-		cairo_dock_set_current_desktop (iNumDesktop);
-	if (iNumViewportX != myData.switcher.iCurrentViewportX || iNumViewportY != myData.switcher.iCurrentViewportY)
-		cairo_dock_set_current_viewport (iNumViewportX, iNumViewportY);
+	if (iNumViewportX != myData.switcher.iCurrentViewportX
+	|| iNumViewportY != myData.switcher.iCurrentViewportY
+	|| iNumDesktop != myData.switcher.iCurrentDesktop)
+		gldi_desktop_set_current (iNumDesktop, iNumViewportX, iNumViewportY);
 CD_APPLET_ON_SCROLL_END
 
 
@@ -235,7 +235,7 @@ static void _on_got_workspace_name (int iClickedButton, GtkWidget *pInteractiveW
 			myData.cDesktopNames[iIndex] = g_strdup (cNewName);  // donc ne pas liberer 'cNewName'.
 			
 			// apply the change on X (it will trigger the notification, which will store the names in config).
-			cairo_dock_set_desktops_names (myData.cDesktopNames);
+			gldi_desktop_set_names (myData.cDesktopNames);
 		}
 	}
 	CD_APPLET_LEAVE ();
@@ -253,7 +253,7 @@ static void _cd_switcher_rename_desktop (GtkMenuItem *menu_item, gpointer data)
 }
 static void _cd_switcher_show_desktop (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
-	gboolean bDesktopIsVisible = cairo_dock_desktop_is_visible ();
+	gboolean bDesktopIsVisible = gldi_desktop_is_visible ();
 	gldi_desktop_show_hide (! bDesktopIsVisible);
 }
 static void _cd_switcher_expose_windows (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
@@ -465,7 +465,7 @@ gboolean on_change_desktop_names (GldiModuleInstance *myApplet)
 	// retrieve the desktop names
 	if (myData.cDesktopNames != NULL)
 		g_strfreev (myData.cDesktopNames);
-	myData.cDesktopNames = cairo_dock_get_desktops_names ();
+	myData.cDesktopNames = gldi_desktop_get_names ();
 	myData.iNbNames = g_strv_length (myData.cDesktopNames);
 	// store them in config, to be able to set them on startup if noone has done it.
 	_save_desktop_names ();

@@ -53,6 +53,7 @@ struct _AppletData {
 	GList *pTrees;  // list of trees that have been loaded from .menu files
 	CairoDockTask *pTask;
 	CDGMenuShowQuit iShowQuit;
+	gboolean bLoadSettingsMenu;
 	gint iPanelDefaultMenuIconSize;
 	gboolean bShowMenuPending;
 	// new apps

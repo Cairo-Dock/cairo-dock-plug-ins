@@ -33,6 +33,9 @@ void cd_do_numberize_icons (CairoDock *pDock)
 	int iWidth, iHeight;
 	gchar number[2];
 	number[1] = '\0';
+	
+	CairoDockLabelDescription *pLabelDesc = cairo_dock_duplicate_label_description (&myIconsParam.quickInfoTextDescription);
+	int iSize = pLabelDesc->iSize;
 	cairo_surface_t *pSurface;
 	Icon *pIcon;
 	GList *ic;
@@ -46,13 +49,16 @@ void cd_do_numberize_icons (CairoDock *pDock)
 			else
 				number[0] = '1' + n;  // the first icon will take the "1" number.
 			
-			pSurface = cairo_dock_create_surface_from_text (number, &myIconsParam.quickInfoTextDescription, &iWidth, &iHeight);
+			pLabelDesc->iSize *= cairo_dock_get_icon_max_scale (pIcon);
+			pSurface = cairo_dock_create_surface_from_text (number, pLabelDesc, &iWidth, &iHeight);
+			pLabelDesc->iSize = iSize;
 			CairoOverlay *pOverlay = cairo_dock_add_overlay_from_surface (pIcon, pSurface, iWidth, iHeight, CAIRO_OVERLAY_UPPER_RIGHT, myApplet);
 			if (pOverlay)
-				cairo_dock_set_overlay_scale (pOverlay, 0);  // on't scale with the icon.
+				cairo_dock_set_overlay_scale (pOverlay, 0);  // don't scale with the icon.
 			n ++;
 		}
 	}
+	cairo_dock_free_label_description (pLabelDesc);
 }
 
 void cd_do_remove_icons_number (CairoDock *pDock)
@@ -114,7 +120,7 @@ void cd_do_open_session (void)
 	myData.bIgnoreIconState = FALSE;
 	
 	// give it focus for inputs.
-	myData.iPreviouslyActiveWindow = cairo_dock_get_active_xwindow ();
+	myData.pPreviouslyActiveWindow = gldi_windows_get_active ();
 	///gtk_window_present (GTK_WINDOW (pDock->container.pWidget));
 	gtk_window_present_with_time (GTK_WINDOW (pDock->container.pWidget), gdk_x11_get_server_time (gldi_container_get_gdk_window(CAIRO_CONTAINER (pDock))));  // pour eviter la prevention du vol de focus.
 	cairo_dock_freeze_docks (TRUE);
@@ -161,7 +167,7 @@ void cd_do_close_session (void)
 		myData.pCurrentIcon = NULL;
 	}
 	
-	myData.iPreviouslyActiveWindow = 0;
+	myData.pPreviouslyActiveWindow = NULL;
 	
 	if (myData.pCurrentDock != NULL)
 	{

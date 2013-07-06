@@ -365,7 +365,7 @@ void on_keybinding_pull (const char *keystring, gpointer user_data)
 gboolean on_show_desktop (GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
-	myData.bDesktopVisible = cairo_dock_desktop_is_visible ();
+	myData.bDesktopVisible = gldi_desktop_is_visible ();
 	cd_debug ("bDesktopVisible <- %d", myData.bDesktopVisible);
 	
 	if (myConfig.cVisibleImage)

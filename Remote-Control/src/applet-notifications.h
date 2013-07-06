@@ -35,7 +35,7 @@ gboolean cd_do_update_container (gpointer pUserData, GldiContainer *pContainer, 
 gboolean cd_do_check_icon_destroyed (gpointer pUserData, Icon *pIcon);
 
 
-gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow);
+gboolean cd_do_check_active_dock (gpointer pUserData, GldiWindowActor *actor);
 
 
 gboolean cd_do_render (gpointer pUserData, GldiContainer *pContainer, cairo_t *pCairoContext);

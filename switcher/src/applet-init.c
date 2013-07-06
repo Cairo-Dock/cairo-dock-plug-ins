@@ -48,13 +48,13 @@ CD_APPLET_DEFINE_END
 static gboolean _get_desktop_names (G_GNUC_UNUSED gpointer data)
 {
 	// retrieve the desktop names
-	myData.cDesktopNames = cairo_dock_get_desktops_names ();
+	myData.cDesktopNames = gldi_desktop_get_names ();
 	myData.iNbNames = g_strv_length (myData.cDesktopNames);
 	cd_debug ("got desktop names: %s, ...", myData.cDesktopNames ? myData.cDesktopNames[0] : NULL);
 	// if no names are set yet, set the names stored in the config.
 	if ((myData.cDesktopNames == NULL || *myData.cDesktopNames == NULL) && myConfig.cDesktopNames != NULL)
 	{
-		cairo_dock_set_desktops_names (myConfig.cDesktopNames);
+		gldi_desktop_set_names (myConfig.cDesktopNames);
 	}
 	myData.iSidGetDesktopNames = 0;
 	return FALSE;

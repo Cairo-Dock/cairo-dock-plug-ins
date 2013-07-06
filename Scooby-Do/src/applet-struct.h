@@ -151,7 +151,6 @@ struct _AppletData {
 	gint iSessionState;  // 0:no session, 1: session closing, 2: session running
 	GString *sCurrentText;
 	guint iNbValidCaracters;
-	Window iPreviouslyActiveWindow;
 	gint iTextWidth, iTextHeight;
 	gint iCloseTime;
 	GList *pCharList;

@@ -35,7 +35,7 @@ gboolean cd_do_update_container (gpointer pUserData, GldiContainer *pContainer, 
 //gboolean cd_do_enter_container (gpointer pUserData, GldiContainer *pContainer, gboolean *bStartAnimation);
 
 
-gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow);
+gboolean cd_do_check_active_dock (gpointer pUserData, GldiWindowActor *actor);
 
 
 gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint iKeyVal, guint iModifierType, const gchar *string);

@@ -40,7 +40,7 @@ static const gchar *s_cShortkeyDescription[CD_NB_ACTIONS] = {"Show desktop", "Sh
 
 static void _show_desktop_for_drop (Icon *pIcon)
 {
-	cairo_dock_show_hide_desktop (! myData.bDesktopVisible);
+	gldi_desktop_show_hide (! myData.bDesktopVisible);
 }
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
@@ -59,7 +59,7 @@ CD_APPLET_INIT_BEGIN
 	
 	myIcon->iface.action_on_drag_hover = _show_desktop_for_drop;
 	
-	myData.bDesktopVisible = cairo_dock_desktop_is_visible ();
+	myData.bDesktopVisible = gldi_desktop_is_visible ();
 	if ((myData.bDesktopVisible || myData.bDeskletsVisible) && myConfig.cVisibleImage)
 		CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cVisibleImage);
 	else

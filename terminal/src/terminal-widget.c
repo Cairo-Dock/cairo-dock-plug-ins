@@ -67,20 +67,7 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 	{
 		if (myDesklet)
 		{
-			gboolean bHasFocus = (gtk_window_has_toplevel_focus (GTK_WINDOW (myDesklet->container.pWidget)) || gtk_widget_has_focus (myData.tab) || gtk_widget_has_focus (myDesklet->container.pWidget));
-			if (! bHasFocus)
-			{
-				GtkWidget *vterm;
-				int i, iNbPages = gtk_notebook_get_n_pages (GTK_NOTEBOOK (myData.tab));
-				for (i = 0; i < iNbPages && ! bHasFocus; ++i)
-				{
-					vterm = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), i);
-					bHasFocus = gtk_widget_has_focus (vterm);
-				}
-				bHasFocus |= (gldi_container_get_Xid (myContainer) == cairo_dock_get_active_xwindow ());
-			}
-			cd_debug ("%s (%d)", __func__, bHasFocus);
-			
+			gboolean bHasFocus = gldi_container_is_active (myContainer);
 			if (bHasFocus)
 			{
 				gldi_desklet_hide (myDesklet);
@@ -88,7 +75,7 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 			else
 			{
 				gldi_desklet_show (myDesklet);
-				
+				cd_terminal_grab_focus ();
 			}
 		}
 		else if (myData.dialog)

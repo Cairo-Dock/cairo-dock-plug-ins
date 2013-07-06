@@ -22,6 +22,7 @@
 #include <string.h>
 #include <X11/XKBlib.h>
 #include <libxklavier/xklavier.h>
+#include <gdk/gdkx.h>
 
 #include "applet-struct.h"
 #include "applet-draw.h"
@@ -122,7 +123,7 @@ void cd_xkbd_set_group (int iNumGroup)
 
 static guint32 _get_state_indicators ()
 {
-	Display *dpy = cairo_dock_get_Xdisplay ();
+	Display *dpy = gdk_x11_get_default_xdisplay ();
 	Bool st;
 	guint32 indicators;
 	Atom capsLock = XInternAtom(dpy, "Caps Lock", False);

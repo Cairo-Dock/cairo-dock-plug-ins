@@ -196,9 +196,9 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 	if (iKeyVal == GDK_Escape)  // on clot la session.
 	{
 		// give the focus back to the window that had it before the user opened this session.
-		if (myData.iPreviouslyActiveWindow != 0)
+		if (myData.pPreviouslyActiveWindow != NULL)
 		{
-			cairo_dock_show_xwindow (myData.iPreviouslyActiveWindow);
+			gldi_window_show (myData.pPreviouslyActiveWindow);
 		}
 		cd_do_close_session ();
 	}
@@ -388,9 +388,9 @@ void cd_do_on_shortkey_nav (const char *keystring, gpointer data)
 	else
 	{
 		// give the focus back to the window that had it before the user opened this session.
-		if (myData.iPreviouslyActiveWindow != 0)
+		if (myData.pPreviouslyActiveWindow != NULL)
 		{
-			cairo_dock_show_xwindow (myData.iPreviouslyActiveWindow);
+			gldi_window_show (myData.pPreviouslyActiveWindow);
 		}
 		cd_do_close_session ();
 	}
@@ -461,27 +461,23 @@ gboolean cd_do_check_icon_destroyed (gpointer pUserData, Icon *pIcon)
 }
 
 
-static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, Window *data)
+static void _check_dock_is_active (gchar *cDockName, CairoDock *pDock, gboolean *data)
 {
-	Window xActiveWindow = data[0];
-	if (gldi_container_get_Xid (CAIRO_CONTAINER (pDock)) == xActiveWindow)
-		data[1] = 1;
+	if (gldi_container_is_active (CAIRO_CONTAINER (pDock)))
+		*data = TRUE;
 }
-gboolean cd_do_check_active_dock (gpointer pUserData, Window *XActiveWindow)
+gboolean cd_do_check_active_dock (gpointer pUserData, GldiWindowActor *actor)
 {
 	if (! cd_do_session_is_running ())
 		return GLDI_NOTIFICATION_LET_PASS;
-	if (XActiveWindow == NULL)
-		return GLDI_NOTIFICATION_LET_PASS;
 	
 	// check if a dock has the focus (the user has switched to either another dock, or another window)
-	Window data[2] = {*XActiveWindow, 0};
-	gldi_docks_foreach ((GHFunc) _check_dock_is_active, data);
+	gboolean bDockIsActive = FALSE;
+	gldi_docks_foreach ((GHFunc) _check_dock_is_active, &bDockIsActive);
 	
-	if (data[1] == 0)  // no dock is active, so the current dock has lost the focus.
+	if (! bDockIsActive)  // the user has switched to another window -> close the session
 	{
 		cd_do_close_session ();
-		///gtk_window_present (GTK_WINDOW (myData.pCurrentDock->container.pWidget));
 	}
 	return GLDI_NOTIFICATION_LET_PASS;
 }
