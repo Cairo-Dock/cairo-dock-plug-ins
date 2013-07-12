@@ -221,6 +221,6 @@ CD_APPLET_RELOAD_BEGIN
 			cairo_dock_reload_buffers_in_all_docks (TRUE);
 		}
 		
-		cairo_dock_redraw_root_docks (FALSE);  // FALSE <=> main dock inclus.
+		gldi_docks_redraw_all_root ();
 	}
 CD_APPLET_RELOAD_END
