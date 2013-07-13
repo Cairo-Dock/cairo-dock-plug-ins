@@ -22,6 +22,8 @@ elif test -n "`echo $PS_OUTPUT | grep xscreensaver`"; then
 	xscreensaver-command -lock
 elif test -n "`echo $PS_OUTPUT | grep cinnamon-screensaver`"; then
 	cinnamon-screensaver-command --lock
+elif test -n "`echo $PS_OUTPUT | grep light-locker`"; then
+	light-locker-command --lock
 else
 	xlock
 fi
