@@ -58,28 +58,45 @@ void cd_indicator_generic_remove_monitor_dir (void)
 		TRUE, NULL);
 }
 
-GDir * cd_indicator_generic_open_dir (GldiModuleInstance *myApplet)
+GDir * cd_indicator_generic_open_dir_modules (GldiModuleInstance *myApplet)
 {
 	GError *error = NULL;
 	GDir *pDir = g_dir_open (cd_indicator3_get_directory_path (), 0, &error); // all indicators are on the same dir
 	if (error != NULL)
 	{
-		cd_warning ("Failed to load indicator3 dir: %s", cd_indicator3_get_directory_path ());
+		cd_warning ("Failed to load indicator3 modules dir: %s", cd_indicator3_get_directory_path ());
 		return NULL;
 	}
 	return pDir;
 }
 
-gint cd_indicator_generic_load_all_indicators (GldiModuleInstance *myApplet, GDir *pDir)
+GDir * cd_indicator_generic_open_dir_sevices (GldiModuleInstance *myApplet)
 {
-	// for each indicator file, instanciate a new plugin with it (useful to place it where we want, all icons are not regrouped into one big icon)
+	#ifdef IS_INDICATOR_NG
+	GError *error = NULL;
+	GDir *pDir = g_dir_open (INDICATOR_SERVICE_DIR, 0, &error); // all indicators are on the same dir
+	if (error != NULL)
+	{
+		cd_warning ("Failed to load indicator3 services dir: %s", INDICATOR_SERVICE_DIR);
+		return NULL;
+	}
+	return pDir;
+	#else
+	return NULL;
+	#endif
+}
+
+static gint _load_all_indicators_in_dir (GldiModuleInstance *myApplet, GDir *pDir, gboolean bIsModule)
+{
+	// for each indicator file, instanciate a new plugin with it
+	// (useful to place it where we want, all icons are not regrouped into one big icon)
 	const gchar *cFileName;
 	gchar *cInstanceFilePath;
 	GldiModuleInstance *pModuleInstance;
 	gint iNbFiles = 0;
 	while ((cFileName = g_dir_read_name (pDir)) != NULL)
 	{
-		if (*cFileName == '\0' || ! g_str_has_suffix (cFileName, ".so")
+		if (*cFileName == '\0' || (bIsModule && ! g_str_has_suffix (cFileName, G_MODULE_SUFFIX))
 			|| _is_an_exception (cFileName, myConfig.cExceptionsList))
 			continue;
 
@@ -117,6 +134,16 @@ gint cd_indicator_generic_load_all_indicators (GldiModuleInstance *myApplet, GDi
 	return iNbFiles;
 }
 
+gint cd_indicator_generic_load_all_indicators (GldiModuleInstance *myApplet, GDir *pDirModules, GDir *pDirServices)
+{
+	gint iNbFiles = 0;
+	if (pDirModules != NULL)
+		iNbFiles = _load_all_indicators_in_dir (myApplet, pDirModules, TRUE);
+	if (pDirServices != NULL)
+		iNbFiles += _load_all_indicators_in_dir (myApplet, pDirServices, FALSE);
+	return iNbFiles;
+}
+
 void cd_indicator_generic_reload_all_indicators (GldiModuleInstance *myApplet)
 {
 	cd_debug ("Reload all indicators");
@@ -125,12 +152,16 @@ void cd_indicator_generic_reload_all_indicators (GldiModuleInstance *myApplet)
 	g_list_free (myData.pIndicatorsList);
 	myData.pIndicatorsList = NULL;
 
-	GDir *pDir = cd_indicator_generic_open_dir (myApplet);
-	if (pDir == NULL)
+	GDir *pDirModules = cd_indicator_generic_open_dir_modules (myApplet);
+	GDir *pDirServices = cd_indicator_generic_open_dir_sevices (myApplet);
+	if (pDirModules == NULL && pDirServices == NULL)
+	{
+		myApplet->pModule->pVisitCard->iContainerType = CAIRO_DOCK_MODULE_IS_PLUGIN; // dir is empty...
 		return;
+	}
 
 	myApplet->pModule->pVisitCard->iContainerType = CAIRO_DOCK_MODULE_CAN_DOCK | CAIRO_DOCK_MODULE_CAN_DESKLET;
 
-	if (cd_indicator_generic_load_all_indicators (myApplet, pDir) == 0)
+	if (cd_indicator_generic_load_all_indicators (myApplet, pDirModules, pDirServices) == 0)
 		myApplet->pModule->pVisitCard->iContainerType = CAIRO_DOCK_MODULE_IS_PLUGIN; // dir is empty...
 }

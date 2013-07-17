@@ -26,10 +26,11 @@ void cd_indicator_generic_add_monitor_dir (GldiModuleInstance *myApplet);
 
 void cd_indicator_generic_remove_monitor_dir (void);
 
-GDir * cd_indicator_generic_open_dir (GldiModuleInstance *myApplet);
+GDir * cd_indicator_generic_open_dir_modules (GldiModuleInstance *myApplet);
+GDir * cd_indicator_generic_open_dir_sevices (GldiModuleInstance *myApplet);
 
 /// pDir will be closed at the end
-gint cd_indicator_generic_load_all_indicators (GldiModuleInstance *myApplet, GDir *pDir);
+gint cd_indicator_generic_load_all_indicators (GldiModuleInstance *myApplet, GDir *pDirModules, GDir *pDirServices);
 
 void cd_indicator_generic_reload_all_indicators (GldiModuleInstance *myApplet);
 

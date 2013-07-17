@@ -60,9 +60,11 @@ CD_APPLET_INIT_BEGIN
 
 		cd_indicator_generic_add_monitor_dir (myApplet);
 
-		GDir *pDir = cd_indicator_generic_open_dir (myApplet);
-		if (pDir == NULL || cd_indicator_generic_load_all_indicators (myApplet, pDir) == 0)
-			myApplet->pModule->pVisitCard->iContainerType = CAIRO_DOCK_MODULE_IS_PLUGIN; // dir is empty... no need to create an icon
+		GDir *pDirModules = cd_indicator_generic_open_dir_modules (myApplet);
+		GDir *pDirServices = cd_indicator_generic_open_dir_sevices (myApplet);
+		if ((pDirModules == NULL && pDirServices == NULL)
+			|| cd_indicator_generic_load_all_indicators (myApplet, pDirModules, pDirServices) == 0)
+			myApplet->pModule->pVisitCard->iContainerType = CAIRO_DOCK_MODULE_IS_PLUGIN; // dir are empty... no need to create an icon
 	}
 	else
 	{

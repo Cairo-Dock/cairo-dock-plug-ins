@@ -26,6 +26,10 @@ add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
 ### uncomment the following line to allow extended OpenGL drawing.
 #add_definitions (-DGL_GLEXT_PROTOTYPES="1")
 
+if (INDICATOR_NG)
+	add_definitions (-DIS_INDICATOR_NG=1)
+endif()
+
 include_directories (
 	${PACKAGE_INCLUDE_DIRS}
 	${INDICATOR_APPLET_INCLUDE_DIRS}
