@@ -114,7 +114,11 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 	pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Recent files"), s_pMenu, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);  // GTK_STOCK_FILE
 	while (zeitgeist_result_set_has_next (pEvents))
 	{
+		#ifdef ZEITGEIST_OLD
 		event = zeitgeist_result_set_next (pEvents);
+		#else
+		event = zeitgeist_result_set_next_value (pEvents);
+		#endif
 		n = zeitgeist_event_num_subjects (event);
 		for (i = 0; i < n; i++)
 		{

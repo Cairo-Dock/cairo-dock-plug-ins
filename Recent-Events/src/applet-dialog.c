@@ -92,7 +92,11 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 	//\_____________ parse all the events.
 	while (zeitgeist_result_set_has_next (pEvents))
 	{
+		#ifdef ZEITGEIST_OLD
 		event = zeitgeist_result_set_next (pEvents);
+		#else
+		event = zeitgeist_result_set_next_value (pEvents);
+		#endif
 		iTimeStamp = zeitgeist_event_get_timestamp (event) / 1e3;
 		id = zeitgeist_event_get_id (event);
 		n = zeitgeist_event_num_subjects (event);
@@ -488,6 +492,7 @@ static void _on_dialog_destroyed (GldiModuleInstance *myApplet)
 static gboolean _show_dialog_delayed (gpointer data)
 {
 	cd_toggle_dialog ();
+	#ifdef ZEITGEIST_OLD
 	if (myData.pDialog != NULL)  // dialog built with success, quit.
 	{
 		myData.iSidTryDialog = 0;
@@ -505,6 +510,7 @@ static gboolean _show_dialog_delayed (gpointer data)
 			return FALSE;
 		}
 	}
+	#endif
 	return TRUE;
 }
 void cd_toggle_dialog (void)
@@ -522,6 +528,7 @@ void cd_toggle_dialog (void)
 			cd_debug ("first search");
 			myData.pLog = zeitgeist_log_new ();  // may launch the Zeitgeist daemon if it's not yet running.
 		}
+		#ifdef ZEITGEIST_OLD
 		if (! zeitgeist_log_is_connected (myData.pLog))
 		{
 			cd_debug ("not yet connected");
@@ -532,7 +539,18 @@ void cd_toggle_dialog (void)
 			}
 			return;
 		}
-		
+		#else
+		gboolean bIsConnected;
+		g_object_get (G_OBJECT (myData.pLog), "is-connected", &bIsConnected, NULL);
+		if (! bIsConnected)
+		{
+			// will retry when it will be connected
+			g_signal_connect (myData.pLog, "notify::is-connected",
+				G_CALLBACK (_show_dialog_delayed), NULL);
+			return;
+		}
+		#endif
+
 		// build the dialog and the tree model.
 		GtkWidget *pInteractiveWidget = cd_build_events_widget ();
 		myData.pDialog = gldi_dialog_show (D_("Browse and search in recent events"),
