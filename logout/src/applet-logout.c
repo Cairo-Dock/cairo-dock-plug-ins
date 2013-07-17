@@ -717,6 +717,7 @@ static void _demand_confirmation (const gchar *cMessage, const gchar *cIconStock
 
 static void _shut_down (void)
 {
+	gldi_object_notify (&myModuleObjectMgr, NOTIFICATION_LOGOUT);
 	if (myData.bCanStop)
 	{
 		switch (myData.iLoginManager)
@@ -786,6 +787,7 @@ void cd_logout_shut_down (void)
 
 static void _restart (void)
 {
+	gldi_object_notify (&myModuleObjectMgr, NOTIFICATION_LOGOUT);
 	if (myData.bCanRestart)
 	{
 		switch (myData.iLoginManager)
@@ -844,6 +846,7 @@ static void cd_logout_hybridSleep (void)
 
 static void _logout (void)
 {
+	gldi_object_notify (&myModuleObjectMgr, NOTIFICATION_LOGOUT);
 	if (myConfig.cUserAction != NULL)
 		cairo_dock_launch_command (myConfig.cUserAction);
 	else  // SwitchToGreeter will only show the greeter, we want to close the session
@@ -869,6 +872,8 @@ static void cd_logout_close_session (void)  // could use org.gnome.SessionManage
 			_logout ();
 		}
 	}
+	else
+		gldi_object_notify (&myModuleObjectMgr, NOTIFICATION_LOGOUT);
 }
 
 static void cd_logout_switch_to_user (const gchar *cUser)
