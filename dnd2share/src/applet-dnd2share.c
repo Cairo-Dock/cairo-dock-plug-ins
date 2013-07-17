@@ -162,11 +162,26 @@ static gboolean _cd_dnd2share_update_from_result (CDSharedMemory *pSharedMemory)
 	if (pSharedMemory->cResultUrls == NULL || pSharedMemory->cResultUrls[0] == NULL)  // une erreur s'est produite.
 	{
 		gldi_dialogs_remove_on_icon (myIcon);
-		gldi_dialog_show_temporary_with_icon (D_("Couldn't upload the file, check that your internet connection is active."),
+
+		const gchar *cSiteError;
+		const gchar *cSiteName = myData.pCurrentBackend[pSharedMemory->iCurrentFileType]->cSiteName;
+		// special case for Dropbox and U1
+		if (g_strcmp0 (cSiteName, "UbuntuOne") == 0
+		    || g_strcmp0 (cSiteName, "DropBox") == 0)
+			cSiteError = D_("this service is correctly installed:");
+		else
+			cSiteError = D_("this website is available:");
+
+		gchar *cErrorMsg = g_strdup_printf ("%s %s %s.",
+			D_("Couldn't upload the file, check that your internet connection is active and"),
+			cSiteError, cSiteName);
+
+		gldi_dialog_show_temporary_with_icon (cErrorMsg,
 			myIcon,
 			myContainer,
-			myConfig.dTimeDialogs,
+			myConfig.dTimeDialogs * 2,
 			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+		g_free (cErrorMsg);
 	}
 	else
 	{
