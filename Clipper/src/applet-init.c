@@ -39,6 +39,21 @@ CD_APPLET_DEFINE_BEGIN ("Clipper",
 	CD_APPLET_REDEFINE_TITLE (N_("Clipboard history"))
 CD_APPLET_DEFINE_END
 
+static gboolean _on_shutdown (GldiModuleInstance *myApplet)
+{
+	// remember current items for the next session
+	if (myConfig.bRememberItems) /// @fabounet: Check if we already used it? Mmh, can be problematic if there is a problem with logout :-/
+	{
+		gchar *cRememberedItems = cd_clipper_concat_items_of_type (
+			myConfig.bSeparateSelections ? CD_CLIPPER_CLIPBOARD : CD_CLIPPER_BOTH,
+			CD_ITEMS_DELIMITER);
+		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
+			G_TYPE_STRING, "Configuration", "last items", cRememberedItems,
+			G_TYPE_INVALID);
+		g_free (cRememberedItems);
+	}
+	return GLDI_NOTIFICATION_LET_PASS;
+}
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
@@ -77,6 +92,10 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT;
+	gldi_object_register_notification (&myModuleObjectMgr,
+		NOTIFICATION_LOGOUT,
+		(GldiNotificationFunc) _on_shutdown,
+		GLDI_RUN_AFTER, myApplet);
 CD_APPLET_INIT_END
 
 
@@ -86,6 +105,9 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_DROP_DATA_EVENT;
+	gldi_object_remove_notification (&myModuleObjectMgr,
+		NOTIFICATION_LOGOUT,
+		(GldiNotificationFunc) _on_shutdown, myApplet);
 	
 	GtkClipboard *pClipBoard;
 	if (myData.iSidClipboardOwnerChange != 0)
@@ -98,16 +120,9 @@ CD_APPLET_STOP_BEGIN
 		pClipBoard = gtk_clipboard_get (GDK_SELECTION_PRIMARY);
 		g_signal_handler_disconnect (pClipBoard, myData.iSidPrimaryOwnerChange);
 	}
-	
-	if (myConfig.bRememberItems)  // on se souvient des items courants.
-	{
-		gchar *cRememberedItems = cd_clipper_concat_items_of_type (myConfig.bSeparateSelections ? CD_CLIPPER_CLIPBOARD : CD_CLIPPER_BOTH, CD_ITEMS_DELIMITER);  // on prend que les CTRL+c.
-		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
-			G_TYPE_STRING, "Configuration", "last items", cRememberedItems,
-			G_TYPE_INVALID);
-		g_free (cRememberedItems);
-	}
-	
+
+	_on_shutdown (myApplet);
+
 	gldi_object_unref (GLDI_OBJECT(myData.cKeyBinding));
 CD_APPLET_STOP_END
 
