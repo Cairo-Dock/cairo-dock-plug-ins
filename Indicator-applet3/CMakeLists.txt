@@ -11,12 +11,26 @@ add_definitions (-fPIC)
 add_definitions (-DINDICATOR_DIR="${INDICATORDIR}")
 add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
 
+if (INDICATOR_NG)
+	add_definitions (-DIS_INDICATOR_NG=1)
+	set (EXTRAS_LIBRARY_DIRS ${IDO_LIBRARY_DIRS})
+	set (EXTRAS_INCLUDE_DIRS ${IDO_INCLUDE_DIRS})
+	set (EXTRAS_LIBRARIES    ${IDO_LIBRARIES})
+endif()
+
 link_directories(
 	${PACKAGE_LIBRARY_DIRS}
+	${EXTRAS_LIBRARY_DIRS}
 	${INDICATOR_APPLET_LIBRARY_DIRS})
 
 include_directories(
 	${PACKAGE_INCLUDE_DIRS}
+	${EXTRAS_INCLUDE_DIRS}
 	${INDICATOR_APPLET_INCLUDE_DIRS})
+
+target_link_libraries (indicator-applet3
+	${PACKAGE_LIBRARIES}
+	${EXTRAS_LIBRARIES}
+	${INDICATOR_APPLET_LIBRARIES})
 
 ########### install files ###############

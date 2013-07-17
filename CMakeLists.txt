@@ -223,6 +223,15 @@ if (enable-libido-support)
 		set (IDO_MODULE libido3-0.1)
 	endif()
 	pkg_check_modules (IDO ${IDO_MODULE})
+	if (IDO_FOUND)
+		STRING (REGEX REPLACE "\\..*" "" IDO_MAJOR "${IDO_VERSION}")
+		STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" IDO_MINOR "${IDO_VERSION}")  # 0.1.7 => 1.7
+		STRING (REGEX REPLACE "\\.[0-9]*" "" IDO_MINOR "${IDO_MINOR}")
+		if (${IDO_MAJOR} GREATER 13
+		    OR ${IDO_MAJOR} EQUAL 13 AND ${IDO_MINOR} GREATER 9)
+			set (INDICATOR_NG 1)
+		endif()
+	endif()
 endif()
 
 ## Extract versions of DBusMenu

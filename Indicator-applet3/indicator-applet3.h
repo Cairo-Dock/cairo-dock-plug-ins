@@ -24,6 +24,8 @@
 #include <gtk/gtk.h>
 #include <libindicator/indicator-object.h>
 
+#define INDICATOR_SERVICE_DIR "/usr/share/unity/indicators"
+
 typedef void (* CairoDockIndicator3Func ) (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data);
 typedef void (* CairoDockIndicator3FuncMenu ) (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, guint32 timestamp, gpointer data);
 

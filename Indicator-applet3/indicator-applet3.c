@@ -26,15 +26,49 @@
 
 #include "indicator-applet3.h"
 
+#ifdef IS_INDICATOR_NG
+#include <libindicator/indicator-ng.h>
+#include <libido/libido.h>
+static gboolean bIsIdoInit = FALSE;
+#endif
+
 IndicatorObject * cd_indicator3_load (const gchar *cName, CairoDockIndicator3Func entry_added, CairoDockIndicator3Func entry_removed, CairoDockIndicator3Func accessible_desc_update, CairoDockIndicator3FuncMenu menu_show, gpointer data)
 {
+	#ifdef IS_INDICATOR_NG
+	if (! bIsIdoInit)
+	{
+		ido_init(); // need to be init ones...
+		bIsIdoInit = TRUE;
+	}
+	#endif
 	cd_debug ("Load: %s", cName);
 	g_return_val_if_fail (cName != NULL, NULL);
 
-	gchar *cFullPath = g_build_filename (INDICATOR_DIR, cName, NULL);
-	cd_debug ("Load: %s (%s)", cName, cFullPath);
-	IndicatorObject *pIndicator = indicator_object_new_from_file (cFullPath);
-	g_free (cFullPath);
+	IndicatorObject *pIndicator;
+	gchar *cFullPath;
+	if (g_str_has_suffix (cName, G_MODULE_SUFFIX))
+	{
+		cFullPath = g_build_filename (INDICATOR_DIR, cName, NULL);
+		cd_debug ("Load: %s (%s)", cName, cFullPath);
+		pIndicator = indicator_object_new_from_file (cFullPath);
+		g_free (cFullPath);
+	}
+	else
+	{
+		#ifdef IS_INDICATOR_NG
+		GError *error = NULL;
+		cFullPath = g_build_filename (INDICATOR_SERVICE_DIR, cName, NULL);
+		pIndicator = INDICATOR_OBJECT (indicator_ng_new_for_profile (cFullPath, "desktop", &error));
+		g_free (cFullPath);
+		if (pIndicator == NULL)
+		{
+			cd_warning ("could not load indicator from '%s': %s", cName, error->message);
+			g_error_free (error);
+		}
+		#else
+		pIndicator = NULL;
+		#endif
+	}
 
 	if (pIndicator == NULL)
 	{
