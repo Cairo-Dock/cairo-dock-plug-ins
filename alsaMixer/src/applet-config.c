@@ -77,7 +77,11 @@ CD_APPLET_GET_CONFIG_BEGIN
 	#ifdef INDICATOR_SOUNDMENU_WITH_IND3
 	myConfig.cIndicatorName = CD_CONFIG_GET_STRING ("Configuration", "indicator name");  // we take it from the config just in case the name changes, it's not a visible option.
 	if (myConfig.cIndicatorName == NULL)
+		#ifdef IS_INDICATOR_NG
+		myConfig.cIndicatorName = g_strdup ("com.canonical.indicator.sound");
+		#else
 		myConfig.cIndicatorName = g_strdup ("libsoundmenu.so");
+		#endif
 	#endif
 CD_APPLET_GET_CONFIG_END
 
