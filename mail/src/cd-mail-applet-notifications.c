@@ -55,7 +55,12 @@ CD_APPLET_ON_CLICK_BEGIN
 			cMailAppToLaunch = myConfig.cMailApplication;
 		if (cMailAppToLaunch != NULL)
 		{
-			gboolean r = cairo_dock_launch_command (cMailAppToLaunch);
+			gboolean r;
+			if (myConfig.bStealTaskBarIcon)
+				r = cairo_dock_launch_command_with_opening_animation_full (
+					CD_APPLET_CLICKED_ICON, cMailAppToLaunch, NULL);
+			else
+				r = cairo_dock_launch_command (cMailAppToLaunch);
 			if (!r)
 			{
 				cd_warning ("when couldn't execute '%s'", cMailAppToLaunch);

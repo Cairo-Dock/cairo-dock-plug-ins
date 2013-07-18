@@ -269,7 +269,11 @@ CD_APPLET_ON_CLICK_BEGIN
 			else /*if (myData.pCurrentHandler->launch != NULL)*/
 			{
 				cd_message ("launching '%s'...", myData.pCurrentHandler->launch);
-				cairo_dock_launch_command (myData.pCurrentHandler->launch);
+				if (myConfig.bStealTaskBarIcon)
+					cairo_dock_launch_command_with_opening_animation_full (myIcon,
+						myData.pCurrentHandler->launch, NULL);
+				else
+					cairo_dock_launch_command (myData.pCurrentHandler->launch);
 			}
 		}
 	}
