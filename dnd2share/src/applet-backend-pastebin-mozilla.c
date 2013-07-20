@@ -45,8 +45,13 @@ Content-Length: 0
 Content-Type: text/html; charset=UTF-8*/
 
 
-static void upload (const gchar *cText, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
+static void upload (const gchar *cText, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
+	if (cText == NULL || *cText == '\0')
+	{
+		g_set_error (pError, 1, 1, D_("Your text is empty and couldn't be uploaded to this server"));
+		return;
+	}
 	GError *erreur = NULL;
 	gchar *cResult = cairo_dock_get_url_data_with_post (URL, TRUE, &erreur,
 		"code2", cText,
@@ -61,13 +66,17 @@ static void upload (const gchar *cText, gchar *cDropboxDir, gboolean bAnonymous,
 	{
 		cd_warning (erreur->message);
 		g_error_free (erreur);
+			DND2SHARE_SET_GENERIC_ERROR_WEBSITE ("Pastebin Mozilla");
 	}
 	else if (cResult)
 	{
 		cd_debug (" --> got '%s'", cResult);
 		gchar *str = strstr (cResult, "Location:");
 		if (!str)
+		{
+			DND2SHARE_SET_GENERIC_ERROR_WEBSITE ("Pastebin Mozilla");
 			return;
+		}
 		str += 9;
 		while (*str == ' ')
 			str ++;

@@ -32,7 +32,7 @@
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
 
-static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
+static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
 	// On lance la commande d'upload.
 	gchar *cCommand = g_strdup_printf ("curl -L --connect-timeout 5 --retry 2 --limit-rate %dk http://videobin.org/add -F videoFile=@\"%s\" -F api=1", iLimitRate, cFilePath);
@@ -42,6 +42,7 @@ static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonym
 
 	if (cURL == NULL)
 	{
+		DND2SHARE_SET_GENERIC_ERROR_WEBSITE ("Videobin");
 		return ;
 	}
 

@@ -42,8 +42,14 @@ Content-Type: text/html; charset=utf-8
 Location: http://paste.ubuntu.com/557014/
 Content-Length: 0*/
 
-static void upload (const gchar *cText, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
+static void upload (const gchar *cText, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
+	if (cText == NULL || *cText == '\0')
+	{
+		g_set_error (pError, 1, 1, D_("Your text is empty and couldn't be uploaded to this server"));
+		return;
+	}
+
 	GError *erreur = NULL;
 	gchar *cResult = cairo_dock_get_url_data_with_post (URL, TRUE, &erreur,
 		"content", cText,
@@ -55,13 +61,17 @@ static void upload (const gchar *cText, gchar *cDropboxDir, gboolean bAnonymous,
 	{
 		cd_warning (erreur->message);
 		g_error_free (erreur);
+		DND2SHARE_SET_GENERIC_ERROR_WEBSITE ("paste.ubuntu.com");
 	}
 	else if (cResult)
 	{
 		cd_debug (" --> got '%s'", cResult);
 		gchar *str = strstr (cResult, "Location:");
 		if (!str)
+		{
+			DND2SHARE_SET_GENERIC_ERROR_WEBSITE ("paste.ubuntu.com");
 			return;
+		}
 		str += 9;
 		while (*str == ' ')
 			str ++;

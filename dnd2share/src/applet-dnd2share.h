@@ -24,6 +24,15 @@
 #include "applet-struct.h"
 
 
+#define DND2SHARE_GENERIC_ERROR_MSG D_("Couldn't upload the file, check that your internet connection is active.")
+#define DND2SHARE_SET_GENERIC_ERROR_WEBSITE(cWebsite) g_set_error (pError, 1, 1, \
+	D_("Couldn't upload the file to %s, check that your internet connection is active."), \
+	cWebsite)
+#define DND2SHARE_SET_GENERIC_ERROR_SERVICE(cService, cCommand) g_set_error (pError, 1, 1, \
+	D_("Couldn't upload the file to %s.\nCheck that your internet connection is active and '%s' is correctly installed and running"), \
+	cService, cCommand)
+
+
 void cd_dnd2share_free_uploaded_item (CDUploadedItem *pItem);
 
 void cd_dnd2share_build_history (void);

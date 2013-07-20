@@ -44,8 +44,14 @@ static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 you should be redirected automatically.
  </body>
 </html>'*/
-static void upload (const gchar *cText, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
+static void upload (const gchar *cText, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
+	if (cText == NULL || *cText == '\0')
+	{
+		g_set_error (pError, 1, 1, D_("Your text is empty and couldn't be uploaded to this server"));
+		return;
+	}
+
 	GError *erreur = NULL;
 	gchar *cResult = cairo_dock_get_url_data_with_post (URL, FALSE, &erreur,
 		"code", cText,
@@ -56,6 +62,7 @@ static void upload (const gchar *cText, gchar *cDropboxDir, gboolean bAnonymous,
 	{
 		cd_warning (erreur->message);
 		g_error_free (erreur);
+		DND2SHARE_SET_GENERIC_ERROR_WEBSITE("Codepad.org");
 	}
 	else if (cResult)
 	{
@@ -63,8 +70,11 @@ static void upload (const gchar *cText, gchar *cDropboxDir, gboolean bAnonymous,
 		gchar *str = strstr (cResult, "http");
 		if (str)
 			cResultUrls[0] = g_strdup (str);
+		else
+			DND2SHARE_SET_GENERIC_ERROR_WEBSITE("Codepad.org");
 		g_free (cResult);
 	}
+	// else -> generic error
 }
 
 

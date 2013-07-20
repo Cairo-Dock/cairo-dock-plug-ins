@@ -28,9 +28,15 @@
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
 
-static void _upload (CDFileType iCurrentFileType, const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
+static void _upload (CDFileType iCurrentFileType, const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
-	g_return_if_fail (iCurrentFileType < CD_NB_FILE_TYPES && myConfig.cCustomScripts[iCurrentFileType] != NULL);
+	if (myConfig.cCustomScripts[iCurrentFileType] == NULL)
+	{
+		const gchar *cError = D_("No script set for this file type");
+		cd_warning (cError);
+		g_set_error (pError, 1, 1, cError);
+		return;
+	}
 	
 	// On lance la commande d'upload.
 	gchar *cCommand = g_strdup_printf ("%s '%s'", myConfig.cCustomScripts[iCurrentFileType], cFilePath);
@@ -38,7 +44,8 @@ static void _upload (CDFileType iCurrentFileType, const gchar *cFilePath, gchar 
 	g_free (cCommand);
 	if (cResult == NULL || *cResult == '\0')
 	{
-		return ;
+		g_set_error (pError, 1, 1, DND2SHARE_GENERIC_ERROR_MSG);
+		return;
 	}
 	
 	if (cResult[strlen(cResult)-1] == '\r')
@@ -54,31 +61,36 @@ static void _upload (CDFileType iCurrentFileType, const gchar *cFilePath, gchar 
 		str = cResult;
 	
 	if (! cairo_dock_string_is_adress (str))
-		cd_warning ("this adress (%s) seems not valid !\nThe output was : '%s'", str, cResult);
+		cd_warning ("this address (%s) seems not valid !\nThe output was : '%s'", str, cResult);
 	
 	// Enfin on remplit la memoire partagee avec nos URLs.
 	cResultUrls[0] = g_strdup (str);
 	g_free (cResult);
 }
 
-static void upload_text (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
+static void upload_text (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
-	_upload (CD_TYPE_TEXT, cFilePath, cDropboxDir, bAnonymous, iLimitRate, cResultUrls);
+	if (cFilePath == NULL || *cFilePath == '\0')
+	{
+		g_set_error (pError, 1, 1, D_("Your text is empty and couldn't be uploaded to this server"));
+		return;
+	}
+	_upload (CD_TYPE_TEXT, cFilePath, cLocalDir, bAnonymous, iLimitRate, cResultUrls, pError);
 }
 
-static void upload_image (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
+static void upload_image (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
-	_upload (CD_TYPE_IMAGE, cFilePath, cDropboxDir, bAnonymous, iLimitRate, cResultUrls);
+	_upload (CD_TYPE_IMAGE, cFilePath, cLocalDir, bAnonymous, iLimitRate, cResultUrls, pError);
 }
 
-static void upload_video (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
+static void upload_video (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
-	_upload (CD_TYPE_VIDEO, cFilePath, cDropboxDir, bAnonymous, iLimitRate, cResultUrls);
+	_upload (CD_TYPE_VIDEO, cFilePath, cLocalDir, bAnonymous, iLimitRate, cResultUrls, pError);
 }
 
-static void upload_file (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
+static void upload_file (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
-	_upload (CD_TYPE_FILE, cFilePath, cDropboxDir, bAnonymous, iLimitRate, cResultUrls);
+	_upload (CD_TYPE_FILE, cFilePath, cLocalDir, bAnonymous, iLimitRate, cResultUrls, pError);
 }
 
 static const CDUploadFunc upload_funcs[CD_NB_FILE_TYPES] = {upload_text, upload_image, upload_video, upload_file};

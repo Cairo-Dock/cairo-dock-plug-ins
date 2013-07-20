@@ -127,7 +127,7 @@ static void _cd_dnd2share_threaded_upload (CDSharedMemory *pSharedMemory)
 	gchar *cFilePath = pSharedMemory->cCurrentFilePath;
 	
 	pSharedMemory->cResultUrls = g_new0 (gchar *, pSharedMemory->iNbUrls+1);  // NULL-terminated
-	pSharedMemory->upload (cFilePath, pSharedMemory->cDropboxDir, pSharedMemory->bAnonymous, pSharedMemory->iLimitRate, pSharedMemory->cResultUrls);
+	pSharedMemory->upload (cFilePath, pSharedMemory->cLocalDir, pSharedMemory->bAnonymous, pSharedMemory->iLimitRate, pSharedMemory->cResultUrls, &pSharedMemory->pError);
 	
 	if (pSharedMemory->cResultUrls[0] && pSharedMemory->iTinyURLService != 0)  // on en fait une tiny-url.
 	{
@@ -155,34 +155,26 @@ static void _cd_dnd2share_threaded_upload (CDSharedMemory *pSharedMemory)
 		g_free (Command);
 	}
 }
+
+static void _cd_dnd2share_show_error_dialog (const gchar *cError)
+{
+	gldi_dialogs_remove_on_icon (myIcon);
+
+	gldi_dialog_show_temporary_with_icon (cError,
+		myIcon,
+		myContainer,
+		myConfig.dTimeDialogs * 2,
+		MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
+}
+
 static gboolean _cd_dnd2share_update_from_result (CDSharedMemory *pSharedMemory)
 {
 	CD_APPLET_ENTER;
 	gchar *cFilePath = pSharedMemory->cCurrentFilePath;
-	if (pSharedMemory->cResultUrls == NULL || pSharedMemory->cResultUrls[0] == NULL)  // une erreur s'est produite.
-	{
-		gldi_dialogs_remove_on_icon (myIcon);
-
-		const gchar *cSiteError;
-		const gchar *cSiteName = myData.pCurrentBackend[pSharedMemory->iCurrentFileType]->cSiteName;
-		// special case for Dropbox and U1
-		if (g_strcmp0 (cSiteName, "UbuntuOne") == 0
-		    || g_strcmp0 (cSiteName, "DropBox") == 0)
-			cSiteError = D_("this service is correctly installed:");
-		else
-			cSiteError = D_("this website is available:");
-
-		gchar *cErrorMsg = g_strdup_printf ("%s %s %s.",
-			D_("Couldn't upload the file, check that your internet connection is active and"),
-			cSiteError, cSiteName);
-
-		gldi_dialog_show_temporary_with_icon (cErrorMsg,
-			myIcon,
-			myContainer,
-			myConfig.dTimeDialogs * 2,
-			MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
-		g_free (cErrorMsg);
-	}
+	if (pSharedMemory->pError != NULL)
+		_cd_dnd2share_show_error_dialog (pSharedMemory->pError->message);
+	else if (pSharedMemory->cResultUrls == NULL || pSharedMemory->cResultUrls[0] == NULL) // just to be sure
+		_cd_dnd2share_show_error_dialog (DND2SHARE_GENERIC_ERROR_MSG);
 	else
 	{
 		CDSiteBackend *pCurrentBackend = myData.pCurrentBackend[pSharedMemory->iCurrentFileType];
@@ -333,9 +325,11 @@ static gboolean _cd_dnd2share_update_from_result (CDSharedMemory *pSharedMemory)
 }
 static void _free_shared_memory (CDSharedMemory *pSharedMemory)
 {
-	g_free (pSharedMemory->cDropboxDir);
+	g_free (pSharedMemory->cLocalDir);
 	g_free (pSharedMemory->cCurrentFilePath);
 	g_strfreev (pSharedMemory->cResultUrls);
+	if (pSharedMemory->pError != NULL)
+		g_error_free (pSharedMemory->pError);
 	g_free (pSharedMemory);
 }
 #define CD_BUFFER_LENGTH 50
@@ -428,7 +422,7 @@ void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 	g_free (cTmpFile);
 	
 	pSharedMemory->iTinyURLService = myConfig.iTinyURLService;
-	pSharedMemory->cDropboxDir = g_strdup (myConfig.cDropboxDir);
+	pSharedMemory->cLocalDir = g_strdup (myConfig.cLocalDir);
 	pSharedMemory->bAnonymous = myConfig.bAnonymous;
 	pSharedMemory->iLimitRate = myConfig.iLimitRate;
 	

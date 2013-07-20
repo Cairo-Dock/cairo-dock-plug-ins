@@ -31,7 +31,7 @@
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink", "Thumbnail", "BBCode"};
 
 
-static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
+static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
 	// On lance la commande d'upload.
 	gchar *cCommand = g_strdup_printf ("curl -L --connect-timeout 5 --retry 2 --limit-rate %dk uppix.com/upload -H Expect: -F u_file=@\"%s\" -F u_submit=Upload -F u_agb=yes", iLimitRate, cFilePath);
@@ -40,7 +40,10 @@ static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonym
 	g_free (cCommand);
 
 	if (! cResult)
+	{
+		DND2SHARE_SET_GENERIC_ERROR_WEBSITE ("Uppix.com");
 		return;
+	}
 
 	gchar *cDirectLink = NULL, *cThumbnail = NULL, *cBBCode = NULL;
 	gchar *cDirectLinkStart = strstr (cResult, "http://uppix.com/"); // find the direct link
@@ -58,6 +61,8 @@ static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonym
 			cBBCode = g_strdup_printf ("[url=%s][img]%s[/img][/url]", cDirectLink, cThumbnail);
 		}
 	}
+	else
+		DND2SHARE_SET_GENERIC_ERROR_WEBSITE ("Uppix.com");
 	g_free (cResult);
 
 	// Enfin on remplit la memoire partagee avec nos URLs.
@@ -70,7 +75,7 @@ static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonym
 void cd_dnd2share_register_uppix_backend (void)
 {
 	cd_dnd2share_register_new_backend (CD_TYPE_IMAGE,
-		"Uppix.net",
+		"Uppix.com",
 		NB_URLS,
 		s_UrlLabels,
 		0,

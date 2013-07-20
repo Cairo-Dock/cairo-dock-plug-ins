@@ -46,7 +46,7 @@ typedef struct _CDUploadedItem {
 	CDFileType iFileType;
 	} CDUploadedItem;
 
-typedef void (* CDUploadFunc) (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls);
+typedef void (* CDUploadFunc) (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError);
 
 typedef struct _CDSiteBackend {
 	const gchar *cSiteName;  // nom du site, pour affichage
@@ -69,7 +69,7 @@ struct _AppletConfig {
 	gint iPreferedSite[CD_NB_FILE_TYPES];
 	gchar *cIconAnimation;
 	gchar *cCustomScripts[CD_NB_FILE_TYPES];
-	gchar *cDropboxDir;
+	gchar *cLocalDir;
 	gboolean bAnonymous;
 	gint iTinyURLService;
 	gboolean bUseTinyAsDefault;
@@ -82,10 +82,11 @@ typedef struct _CDSharedMemory {
 	CDUploadFunc upload;  // we don't keep a pointer to the current backend in the shard memory, because it can be destroyed meanwhile. so we just copy the part that is useful.
 	gint iNbUrls;
 	gint iTinyURLService;
-	gchar *cDropboxDir;
+	gchar *cLocalDir;
 	gboolean bAnonymous;
 	gint iLimitRate;
 	gchar **cResultUrls;
+	GError *pError;
 	} CDSharedMemory;
 
 

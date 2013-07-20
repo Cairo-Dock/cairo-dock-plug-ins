@@ -38,8 +38,14 @@
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
 
-static void upload (const gchar *cText, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
+static void upload (const gchar *cText, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
+	if (cText == NULL || *cText == '\0')
+	{
+		g_set_error (pError, 1, 1, D_("Your text is empty and couldn't be uploaded to this server"));
+		return;
+	}
+
 	GError *erreur = NULL;
 	// http://pastebin.com/api
 	gchar *cResult = cairo_dock_get_url_data_with_post (URL, FALSE, &erreur,
@@ -56,11 +62,15 @@ static void upload (const gchar *cText, gchar *cDropboxDir, gboolean bAnonymous,
 	{
 		cd_warning (erreur->message);
 		g_error_free (erreur);
+		DND2SHARE_SET_GENERIC_ERROR_WEBSITE ("Pastebin.com");
 	}
 	else
 	{
 		cd_debug (" --> got '%s'", cResult);
-		cResultUrls[0] = cResult;
+		if (cResult == NULL || ! g_str_has_prefix (cResult, "http"))
+			DND2SHARE_SET_GENERIC_ERROR_WEBSITE ("Pastebin.com");
+		else
+			cResultUrls[0] = cResult;
 	}
 }
 

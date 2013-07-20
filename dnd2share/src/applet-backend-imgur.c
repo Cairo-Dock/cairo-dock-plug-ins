@@ -37,7 +37,7 @@ static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink", "DisplayImage", "Large
 <rsp stat="ok"><image_hash>Elqb97k</image_hash><delete_hash>qkIeCD33HUtBA3h</delete_hash><original_image>http://i.imgur.com/Elqb97k.png</original_image><large_thumbnail>http://i.imgur.com/Elqb97kl.jpg</large_thumbnail><small_thumbnail>http://i.imgur.com/Elqb97ks.jpg</small_thumbnail><imgur_page>http://imgur.com/Elqb97k</imgur_page><delete_page>http://imgur.com/delete/qkIeCD33HUtBA3h</delete_page></rsp>
 */
 
-static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
+static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
 	gchar *cCommand = g_strdup_printf ("curl -L --connect-timeout 5 --retry 2 --limit-rate %dk http://imgur.com/api/upload.xml -F key=b3625162d3418ac51a9ee805b1840452 -H \"Expect: \" -F image=@\"%s\"", iLimitRate, cFilePath);
 	cd_debug ("%s", cCommand);
@@ -45,7 +45,10 @@ static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonym
 	g_free (cCommand);
 
 	if (! cResult)
+	{
+		DND2SHARE_SET_GENERIC_ERROR_WEBSITE ("Imgur");
 		return;
+	}
 
 	gchar *cHashStart = strstr (cResult, "<image_hash>");
 	if (cHashStart)

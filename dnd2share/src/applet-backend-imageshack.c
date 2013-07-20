@@ -22,6 +22,8 @@
 #include <math.h>
 #include <unistd.h>
 #include <glib/gstdio.h>
+#include <errno.h> // errno
+#include <string.h> // strerror
 
 #include "applet-struct.h"
 #include "applet-dnd2share.h"
@@ -31,13 +33,14 @@
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink", "Thumbnail"};
 
 
-static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
+static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
 	// On cree un fichier de log temporaire.
 	gchar *cLogFile = g_strdup ("/tmp/dnd2share-log.XXXXXX");
 	int fds = mkstemp (cLogFile);
 	if (fds == -1)
 	{
+		g_set_error (pError, 1, 1, "%s\n(%s)", D_("No able to access to your temporary directory"), strerror (errno));
 		g_free (cLogFile);
 		return ;
 	}
@@ -86,6 +89,7 @@ static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonym
 	
 	if (cURL == NULL)
 	{
+		DND2SHARE_SET_GENERIC_ERROR_WEBSITE ("ImageShack");
 		return ;
 	}
 	

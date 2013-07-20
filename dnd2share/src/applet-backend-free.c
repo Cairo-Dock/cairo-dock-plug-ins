@@ -32,7 +32,7 @@
 #define NB_URLS 1
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
-static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
+static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
 	// On lance la commande d'upload.
 	gchar *cCommand = g_strdup_printf ("%s/%s \"%s\" \"%dk\"", MY_APPLET_SHARE_DATA_DIR, "upload2free.sh", cFilePath, iLimitRate);
@@ -41,7 +41,8 @@ static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonym
 	g_free (cCommand);
 	if (cResult == NULL || *cResult == '\0')
 	{
-		return ;
+		DND2SHARE_SET_GENERIC_ERROR_WEBSITE ("Free.fr");
+		return;
 	}
 	
 	if (cResult[strlen(cResult)-1] == '\r')

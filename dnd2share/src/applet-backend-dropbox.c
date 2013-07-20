@@ -32,12 +32,12 @@
 #define NB_URLS 1
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
-static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
+static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
 	// launch the upload command.
 	gchar *cCommand;
-	if (cDropboxDir)
-		cCommand = g_strdup_printf ("cp \"%s\" \"%s\"", cFilePath, cDropboxDir);
+	if (cLocalDir)
+		cCommand = g_strdup_printf ("cp \"%s\" \"%s\"", cFilePath, cLocalDir);
 	else
 		cCommand= g_strdup_printf ("cp \"%s\" ~/Dropbox/Public", cFilePath);
 	cd_debug ("commande dropbox1 : %s", cCommand);
@@ -48,18 +48,23 @@ static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonym
 	
 	// get the result URL (available immediately, no need to loop on 'dropbox status' until having 'Idle').
 	gchar *cFileName = g_path_get_basename (cFilePath);
-	if (cDropboxDir)
+	if (cLocalDir)
 	{
-		gchar *str = g_strstr_len (cDropboxDir, -1, "Dropbox");
+		gchar *str = g_strstr_len (cLocalDir, -1, "Dropbox");
 		if (!str)
 		{
-			str = strrchr (cDropboxDir, '/');
+			str = strrchr (cLocalDir, '/');
 			if (str)
 				str ++;
 		}
-		g_return_if_fail (str != NULL);
-			
-		cCommand = g_strdup_printf ("dropbox puburl \"%s/%s\"", cDropboxDir, cFileName);
+		if (!str)
+		{
+			cd_warning ("Wrong dropbox dir");
+			g_set_error (pError, 1, 1, "%s %s", D_("This directory seems not valid:"), cLocalDir);
+			return;
+		}
+
+		cCommand = g_strdup_printf ("dropbox puburl \"%s/%s\"", cLocalDir, cFileName);
 	}
 	else
 		cCommand = g_strdup_printf ("dropbox puburl \"%s/Dropbox/Public/%s\"", getenv("HOME"), cFileName); 
@@ -70,7 +75,8 @@ static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonym
 	g_free (cCommand);
 	if (cResult == NULL || *cResult == '\0')
 	{
-		cd_warning ("Dropbox ne nous a pas renvoye d'adresse :-(");
+		cd_warning ("Dropbox did not give use an address :-(");
+		DND2SHARE_SET_GENERIC_ERROR_SERVICE ("Dropbox", "dropbox");
 		return ;
 	}
 	

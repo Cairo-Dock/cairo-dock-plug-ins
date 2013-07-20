@@ -50,9 +50,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 		if (myConfig.cCustomScripts[i] == NULL && myConfig.iPreferedSite[i] == 0)
 			myConfig.iPreferedSite[i] = 1;
 	}
-	myConfig.cDropboxDir = CD_CONFIG_GET_STRING ("Configuration", "dropbox dir");
-	if (myConfig.cDropboxDir && myConfig.cDropboxDir[strlen(myConfig.cDropboxDir)-1] == '/')
-		myConfig.cDropboxDir[strlen(myConfig.cDropboxDir)-1] = '\0';
+	myConfig.cLocalDir = CD_CONFIG_GET_STRING ("Configuration", "dropbox dir");
+	if (myConfig.cLocalDir && myConfig.cLocalDir[strlen(myConfig.cLocalDir)-1] == '/')
+		myConfig.cLocalDir[strlen(myConfig.cLocalDir)-1] = '\0';
 	myConfig.bAnonymous = CD_CONFIG_GET_BOOLEAN ("Configuration", "anonymous");
 	myConfig.iTinyURLService = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "tiny url", 1);
 	if (myConfig.iTinyURLService != 0)
@@ -66,7 +66,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	int i;
 	for (i = 0; i < CD_NB_FILE_TYPES; i ++)
 		g_free (myConfig.cCustomScripts[i]);
-	g_free (myConfig.cDropboxDir);
+	g_free (myConfig.cLocalDir);
 CD_APPLET_RESET_CONFIG_END
 
 

@@ -32,13 +32,13 @@
 static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
 
-static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls)
+static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
 	// On lance la commande d'upload.
 	gchar *cFileName = g_path_get_basename (cFilePath);
 	gchar *cLocalFilePath;
-	if (cDropboxDir)
-		cLocalFilePath = g_strdup_printf ("%s/%s", cDropboxDir, cFileName);
+	if (cLocalDir)
+		cLocalFilePath = g_strdup_printf ("%s/%s", cLocalDir, cFileName);
 	else
 		cLocalFilePath = g_strdup_printf ("/home/%s/Ubuntu One/%s", g_getenv ("USER"), cFileName);
 	g_free (cFileName);
@@ -50,6 +50,13 @@ static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonym
 	if (r != 0)
 	{
 		cd_warning ("couldn't copy the file to %s", cLocalFilePath);
+		if (cLocalFilePath != NULL)
+		{
+			gchar *str = strrchr (cLocalFilePath, '/');
+			if (str)
+				*str = '\0';
+		}
+		g_set_error (pError, 1, 1, "%s %s", D_("This directory seems not valid:"), cLocalFilePath);
 		g_free (cLocalFilePath);
 		return;
 	}
@@ -65,6 +72,7 @@ static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonym
 	if (cResult == NULL || *cResult == '\0')
 	{
 		cd_warning ("is u1sdtool installed?");
+		DND2SHARE_SET_GENERIC_ERROR_SERVICE ("UbuntuOne", "u1sdtool");
 		return ;
 	}
 	
@@ -78,6 +86,7 @@ static void upload (const gchar *cFilePath, gchar *cDropboxDir, gboolean bAnonym
 	if (! str)
 	{
 		cd_warning ("couldn't publish this file: %s", cResult);
+		DND2SHARE_SET_GENERIC_ERROR_SERVICE ("UbuntuOne", "u1sdtool");
 		g_free (cResult);
 		return ;
 	}
