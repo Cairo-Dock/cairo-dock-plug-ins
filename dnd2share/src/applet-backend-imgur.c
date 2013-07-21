@@ -30,7 +30,7 @@
 #include "applet-backend-imgur.h"
 
 #define NB_URLS 6
-static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink", "DisplayImage", "Large", "Small", "BBCode", "HTML"};
+static const gchar *s_UrlLabels[NB_URLS] = {N_("Direct Link"), N_("Display Image"), N_("Large"), N_("Small"), "BBCode", "HTML"};
 
 /*
 <?xml version="1.0" encoding="utf-8"?>

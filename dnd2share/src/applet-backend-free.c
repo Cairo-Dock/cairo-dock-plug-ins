@@ -30,11 +30,11 @@
 #include "applet-backend-free.h"
 
 #define NB_URLS 1
-static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
+static const gchar *s_UrlLabels[NB_URLS] = {N_("Direct Link")};
 
 static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
-	// On lance la commande d'upload.
+	// Upload the file
 	gchar *cCommand = g_strdup_printf ("%s/%s \"%s\" \"%dk\"", MY_APPLET_SHARE_DATA_DIR, "upload2free.sh", cFilePath, iLimitRate);
 	cd_debug ("%s", cCommand);
 	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
@@ -49,8 +49,7 @@ static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymou
 		cResult[strlen(cResult)-1] = '\0';
 	if (cResult[strlen(cResult)-1] == '\n')
 		cResult[strlen(cResult)-1] = '\0';
-	
-	// Enfin on remplit la memoire partagee avec nos URLs.
+
 	cResultUrls[0] = cResult;
 }
 

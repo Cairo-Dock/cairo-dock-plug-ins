@@ -33,7 +33,7 @@
 #define EXPIRE "d"
 
 #define NB_URLS 1
-static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
+static const gchar *s_UrlLabels[NB_URLS] = {N_("Direct Link")};
 
 /*HTTP/1.1 302 Found
 Date: Sun, 23 Jan 2011 00:57:12 GMT
@@ -80,7 +80,7 @@ static void upload (const gchar *cText, gchar *cLocalDir, gboolean bAnonymous, g
 		str += 9;
 		while (*str == ' ')
 			str ++;
-		gchar *rc = strchr (str, '\r');  // les lignes du header sont separes par des CRLF (\r\n).
+		gchar *rc = strchr (str, '\r');  // header's lines are separated by CRLF (\r\n).
 		if (rc)
 			*rc = '\0';
 		cResultUrls[0] = g_strdup (str);

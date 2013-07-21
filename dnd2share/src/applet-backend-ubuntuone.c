@@ -29,12 +29,12 @@
 #include "applet-backend-ubuntuone.h"
 
 #define NB_URLS 1
-static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
+static const gchar *s_UrlLabels[NB_URLS] = {N_("Direct Link")};
 
 
 static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
-	// On lance la commande d'upload.
+	// Upload the file
 	gchar *cFileName = g_path_get_basename (cFilePath);
 	gchar *cLocalFilePath;
 	if (cLocalDir)
@@ -80,8 +80,7 @@ static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymou
 		cResult[strlen(cResult)-1] = '\0';
 	if (cResult[strlen(cResult)-1] == '\n')
 		cResult[strlen(cResult)-1] = '\0';
-	
-	// Enfin on remplit la memoire partagee avec nos URLs.
+
 	gchar *str = strstr (cResult, "http");  // File is published at http://ubuntuone.com/x/y
 	if (! str)
 	{

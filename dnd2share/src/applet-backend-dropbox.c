@@ -30,11 +30,11 @@
 #include "applet-backend-dropbox.h"
 
 #define NB_URLS 1
-static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
+static const gchar *s_UrlLabels[NB_URLS] = {N_("Direct Link")};
 
 static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
-	// launch the upload command.
+	// Upload the file
 	gchar *cCommand;
 	if (cLocalDir)
 		cCommand = g_strdup_printf ("cp \"%s\" \"%s\"", cFilePath, cLocalDir);
@@ -69,7 +69,7 @@ static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymou
 	else
 		cCommand = g_strdup_printf ("dropbox puburl \"%s/Dropbox/Public/%s\"", getenv("HOME"), cFileName); 
 	
-	cd_debug ("commande dropbox2 : %s", cCommand);
+	cd_debug ("command dropbox2 : %s", cCommand);
 	g_free (cFileName);
 	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
 	g_free (cCommand);

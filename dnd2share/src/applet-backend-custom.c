@@ -25,7 +25,7 @@
 #include "applet-backend-custom.h"
 
 #define NB_URLS 1
-static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
+static const gchar *s_UrlLabels[NB_URLS] = {N_("Direct Link")};
 
 
 static void _upload (CDFileType iCurrentFileType, const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
@@ -37,8 +37,8 @@ static void _upload (CDFileType iCurrentFileType, const gchar *cFilePath, gchar 
 		g_set_error (pError, 1, 1, cError);
 		return;
 	}
-	
-	// On lance la commande d'upload.
+
+	// Upload the file
 	gchar *cCommand = g_strdup_printf ("%s '%s'", myConfig.cCustomScripts[iCurrentFileType], cFilePath);
 	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
 	g_free (cCommand);
@@ -52,8 +52,8 @@ static void _upload (CDFileType iCurrentFileType, const gchar *cFilePath, gchar 
 		cResult[strlen(cResult)-1] = '\0';
 	if (cResult[strlen(cResult)-1] == '\n')
 		cResult[strlen(cResult)-1] = '\0';
-	
-	// On prend la derniere ligne, au cas ou le script aurait blablate sur la sortie.
+
+	// We take the last line in case of there are some log text before
 	gchar *str = strrchr (cResult, '\n');
 	if (str != NULL)
 		str ++;
@@ -62,8 +62,7 @@ static void _upload (CDFileType iCurrentFileType, const gchar *cFilePath, gchar 
 	
 	if (! cairo_dock_string_is_adress (str))
 		cd_warning ("this address (%s) seems not valid !\nThe output was : '%s'", str, cResult);
-	
-	// Enfin on remplit la memoire partagee avec nos URLs.
+
 	cResultUrls[0] = g_strdup (str);
 	g_free (cResult);
 }

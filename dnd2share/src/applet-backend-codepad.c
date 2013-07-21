@@ -32,7 +32,7 @@
 #define FORMAT "Plain Text"
 
 #define NB_URLS 1
-static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
+static const gchar *s_UrlLabels[NB_URLS] = {N_("Direct Link")};
 
 /*<html>
  <head>

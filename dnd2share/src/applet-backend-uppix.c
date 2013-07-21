@@ -28,12 +28,12 @@
 #include "applet-backend-uppix.h"
 
 #define NB_URLS 3
-static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink", "Thumbnail", "BBCode"};
+static const gchar *s_UrlLabels[NB_URLS] = {N_("Direct Link"), N_("Thumbnail"), "BBCode"};
 
 
 static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
-	// On lance la commande d'upload.
+	// Upload the file
 	gchar *cCommand = g_strdup_printf ("curl -L --connect-timeout 5 --retry 2 --limit-rate %dk uppix.com/upload -H Expect: -F u_file=@\"%s\" -F u_submit=Upload -F u_agb=yes", iLimitRate, cFilePath);
 	cd_debug ("%s", cCommand);
 	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
@@ -65,7 +65,6 @@ static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymou
 		DND2SHARE_SET_GENERIC_ERROR_WEBSITE ("Uppix.com");
 	g_free (cResult);
 
-	// Enfin on remplit la memoire partagee avec nos URLs.
 	cResultUrls[0] = cDirectLink;
 	cResultUrls[1] = cThumbnail;
 	cResultUrls[2] = cBBCode;

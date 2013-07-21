@@ -28,7 +28,7 @@
 #include "applet-backend-uppix.h"
 
 #define NB_URLS 2
-static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink", "Thumbnail"};
+static const gchar *s_UrlLabels[NB_URLS] = {N_("Direct Link"), N_("Thumbnail")};
 
 
 static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)

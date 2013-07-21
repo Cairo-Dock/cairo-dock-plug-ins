@@ -29,12 +29,12 @@
 #include "applet-backend-videobin.h"
 
 #define NB_URLS 1
-static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
+static const gchar *s_UrlLabels[NB_URLS] = {N_("Direct Link")};
 
 
 static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
-	// On lance la commande d'upload.
+	// Upload the file
 	gchar *cCommand = g_strdup_printf ("curl -L --connect-timeout 5 --retry 2 --limit-rate %dk http://videobin.org/add -F videoFile=@\"%s\" -F api=1", iLimitRate, cFilePath);
 	cd_debug ("%s", cCommand);
 	gchar *cURL = cairo_dock_launch_command_sync (cCommand);
@@ -46,8 +46,6 @@ static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymou
 		return ;
 	}
 
-	
-	// Enfin on remplit la memoire partagee avec nos URLs.
 	cResultUrls[0] = cURL;
 }
 
