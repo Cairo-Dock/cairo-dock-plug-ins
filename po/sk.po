@@ -191,7 +191,7 @@ msgstr ""
 msgid "Clipboard history"
 msgstr "História schránky"
 
-#: ../Clipper/src/applet-init.c:72
+#: ../Clipper/src/applet-init.c:87
 msgid "Pop-up the items menu"
 msgstr "Vyskakovacie položky ponuky"
 
@@ -283,8 +283,8 @@ msgstr "Upraviť nastavenia správcu okien"
 #: ../Xgamma/src/applet-notifications.c:87
 #: ../alsaMixer/src/applet-notifications.c:85
 #: ../dustbin/src/applet-notifications.c:149
-#: ../mail/src/cd-mail-applet-notifications.c:153
-#: ../musicPlayer/src/applet-notifications.c:303
+#: ../mail/src/cd-mail-applet-notifications.c:158
+#: ../musicPlayer/src/applet-notifications.c:307
 #: ../netspeed/src/applet-notifications.c:105
 #: ../quick-browser/src/applet-notifications.c:41
 #: ../shortcuts/src/applet-notifications.c:285
@@ -616,7 +616,7 @@ msgstr "Premenovať na :"
 
 #: ../Folders/src/applet-notifications.c:268
 #: ../Scooby-Do/src/applet-backend-files.c:390
-#: ../Screenshot/src/applet-screenshot.c:417
+#: ../Screenshot/src/applet-screenshot.c:419
 msgid "Pick up a directory"
 msgstr "Prejsť do vyššieho adresára"
 
@@ -652,8 +652,8 @@ msgid "Move this file"
 msgstr "Premiestniť tento súbor"
 
 #: ../Folders/src/applet-notifications.c:409
-#: ../Recent-Events/src/applet-dialog.c:270
-#: ../Screenshot/src/applet-screenshot.c:308
+#: ../Recent-Events/src/applet-dialog.c:274
+#: ../Screenshot/src/applet-screenshot.c:310
 #: ../quick-browser/src/applet-menu.c:328
 #: ../slider/src/applet-notifications.c:238
 msgid "Open with"
@@ -717,21 +717,21 @@ msgstr ""
 msgid "Applications Menu"
 msgstr "Menu aplikácií"
 
-#: ../GMenu-old/src/applet-init.c:134 ../GMenu/src/applet-init.c:62
+#: ../GMenu-old/src/applet-init.c:134 ../GMenu/src/applet-init.c:63
 msgid "Show/hide the Applications menu"
 msgstr "Zobraziť/Skryť Ponuku aplikácií"
 
-#: ../GMenu-old/src/applet-init.c:139 ../GMenu/src/applet-init.c:67
+#: ../GMenu-old/src/applet-init.c:139 ../GMenu/src/applet-init.c:68
 msgid "Show/hide the quick-launch dialog"
 msgstr "Zobraziť/Skryť ponuku rýchle spustenie"
 
-#: ../GMenu-old/src/applet-menu-callbacks.c:177 ../GMenu/src/applet-menu.c:172
-#: ../GMenu-old/data/messages:107 ../GMenu/data/messages:107
+#: ../GMenu-old/src/applet-menu-callbacks.c:177 ../GMenu/src/applet-menu.c:175
+#: ../GMenu-old/data/messages:111 ../GMenu/data/messages:111
 msgid "Logout"
 msgstr "Odhlásiť sa"
 
-#: ../GMenu-old/src/applet-menu-callbacks.c:180 ../GMenu/src/applet-menu.c:175
-#: ../GMenu-old/data/messages:109 ../GMenu/data/messages:109
+#: ../GMenu-old/src/applet-menu-callbacks.c:180 ../GMenu/src/applet-menu.c:178
+#: ../GMenu-old/data/messages:113 ../GMenu/data/messages:113
 msgid "Shutdown"
 msgstr "Vypnúť"
 
@@ -740,13 +740,13 @@ msgstr "Vypnúť"
 msgid "Quick launch"
 msgstr "Rýchle spustenie"
 
-#: ../GMenu-old/src/applet-notifications.c:107
-#: ../GMenu/src/applet-notifications.c:93
+#: ../GMenu-old/src/applet-notifications.c:109
+#: ../GMenu/src/applet-notifications.c:95
 msgid "Configure menu"
 msgstr "Nastaviť ponuku"
 
-#: ../GMenu-old/src/applet-notifications.c:110
-#: ../GMenu/src/applet-notifications.c:96
+#: ../GMenu-old/src/applet-notifications.c:112
+#: ../GMenu/src/applet-notifications.c:98
 msgid "Clear recent"
 msgstr "Vyčistiť nedávne"
 
@@ -765,7 +765,7 @@ msgstr "Vložte príkaz pre spustenie :"
 
 #: ../GMenu/src/applet-apps.c:67
 #, fuzzy
-msgid "Launch this new application ?"
+msgid "Launch this new application?"
 msgstr "Poštová aplikácia"
 
 #: ../Global-Menu/src/applet-init.c:30
@@ -786,7 +786,7 @@ msgstr ""
 "Ubuntu v predvolenom nastavení.\n"
 "Na túto akciu môžete naviazať klávesovú skratku."
 
-#: ../Global-Menu/src/applet-init.c:104 ../Global-Menu/src/applet-init.c:203
+#: ../Global-Menu/src/applet-init.c:112 ../Global-Menu/src/applet-init.c:211
 msgid "Show/hide the current application menu"
 msgstr "Zobraziť/skryť aktuálnu ponuku aplikácií"
 
@@ -934,8 +934,8 @@ msgstr "ID siete"
 #: ../Network-Monitor/src/applet-draw.c:150
 #: ../musicPlayer/src/applet-draw.c:167 ../musicPlayer/src/applet-draw.c:169
 #: ../musicPlayer/src/applet-draw.c:171
-#: ../powermanager/src/powermanager-draw.c:259
-#: ../powermanager/src/powermanager-draw.c:314
+#: ../powermanager/src/powermanager-draw.c:257
+#: ../powermanager/src/powermanager-draw.c:312
 msgid "Unknown"
 msgstr "Neznáme"
 
@@ -1096,64 +1096,64 @@ msgstr ""
 "Nastavili ste správny RSS zdroj ?\n"
 "Je vaše pripojenie aktívne ?"
 
-#: ../Recent-Events/src/applet-dialog.c:294
-#: ../Screenshot/src/applet-screenshot.c:317
+#: ../Recent-Events/src/applet-dialog.c:298
+#: ../Screenshot/src/applet-screenshot.c:319
 #: ../quick-browser/src/applet-menu.c:358
 #: ../stack/src/applet-notifications.c:212
 msgid "Open parent folder"
 msgstr "Otvoriť nadradený priečinok"
 
-#: ../Recent-Events/src/applet-dialog.c:296
-#: ../Screenshot/src/applet-screenshot.c:279
+#: ../Recent-Events/src/applet-dialog.c:300
+#: ../Screenshot/src/applet-screenshot.c:281
 #: ../quick-browser/src/applet-menu.c:360
 msgid "Copy the location"
 msgstr "Kopírovať umiestnenie"
 
-#: ../Recent-Events/src/applet-dialog.c:299
+#: ../Recent-Events/src/applet-dialog.c:303
 msgid "Delete this event"
 msgstr "odstrániť túto udalosť"
 
-#: ../Recent-Events/src/applet-dialog.c:383
+#: ../Recent-Events/src/applet-dialog.c:387
 msgid "All"
 msgstr "Všetko"
 
-#: ../Recent-Events/src/applet-dialog.c:384
+#: ../Recent-Events/src/applet-dialog.c:388
 msgid "Applications"
 msgstr "Aplikácie"
 
-#: ../Recent-Events/src/applet-dialog.c:385
+#: ../Recent-Events/src/applet-dialog.c:389
 msgid "Document"
 msgstr "Dokument"
 
-#: ../Recent-Events/src/applet-dialog.c:387 ../logout/data/messages:117
+#: ../Recent-Events/src/applet-dialog.c:391 ../logout/data/messages:117
 msgid "Image"
 msgstr "Obrázok"
 
-#: ../Recent-Events/src/applet-dialog.c:388
+#: ../Recent-Events/src/applet-dialog.c:392
 msgid "Audio"
 msgstr "Zvuk"
 
-#: ../Recent-Events/src/applet-dialog.c:389
+#: ../Recent-Events/src/applet-dialog.c:393
 msgid "Video"
 msgstr "Video"
 
-#: ../Recent-Events/src/applet-dialog.c:390
+#: ../Recent-Events/src/applet-dialog.c:394
 msgid "Web"
 msgstr "Web"
 
-#: ../Recent-Events/src/applet-dialog.c:391
+#: ../Recent-Events/src/applet-dialog.c:395
 msgid "Other"
 msgstr "Iné"
 
-#: ../Recent-Events/src/applet-dialog.c:392
+#: ../Recent-Events/src/applet-dialog.c:396
 msgid "Top Results"
 msgstr "Najlepšie výsledky"
 
-#: ../Recent-Events/src/applet-dialog.c:398
+#: ../Recent-Events/src/applet-dialog.c:402
 msgid "Look for events"
 msgstr "Pozrieť sa na udalosti"
 
-#: ../Recent-Events/src/applet-dialog.c:405
+#: ../Recent-Events/src/applet-dialog.c:409
 msgid ""
 "The default boolean operator is AND. Thus the query foo bar will be "
 "interpreted as foo AND bar. To exclude a term from the result set prepend it "
@@ -1162,20 +1162,20 @@ msgid ""
 "*. "
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:448
-#: ../Screenshot/src/applet-screenshot.c:487
+#: ../Recent-Events/src/applet-dialog.c:452
+#: ../Screenshot/src/applet-screenshot.c:489
 msgid "File name"
 msgstr "Názov súboru"
 
-#: ../Recent-Events/src/applet-dialog.c:455
+#: ../Recent-Events/src/applet-dialog.c:459
 msgid "Last access"
 msgstr "Posledný prístup"
 
-#: ../Recent-Events/src/applet-dialog.c:503
+#: ../Recent-Events/src/applet-dialog.c:508
 msgid "You need to install the Zeitgeist data engine."
 msgstr "Musíte nainštalovať spätne predošlé dáta."
 
-#: ../Recent-Events/src/applet-dialog.c:538
+#: ../Recent-Events/src/applet-dialog.c:556
 msgid "Browse and search in recent events"
 msgstr "Prehliadať a nájsť nedávne udalosti"
 
@@ -1197,11 +1197,11 @@ msgstr "%d udalosť(i) odstránená"
 msgid "Recent files"
 msgstr "Nedávne súbory"
 
-#: ../Recent-Events/src/applet-notifications.c:183
+#: ../Recent-Events/src/applet-notifications.c:187
 msgid "Delete today's events"
 msgstr "Odstrániť dnešné udalosti"
 
-#: ../Recent-Events/src/applet-notifications.c:185
+#: ../Recent-Events/src/applet-notifications.c:189
 msgid "Delete all events"
 msgstr "Odstrániť všetky udalosti"
 
@@ -1269,7 +1269,7 @@ msgid "Files"
 msgstr "Súbory"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:357
-#: ../Screenshot/src/applet-screenshot.c:281
+#: ../Screenshot/src/applet-screenshot.c:283
 msgid "Open"
 msgstr "Otvoriť"
 
@@ -1389,15 +1389,15 @@ msgstr "Snímka obrazovky"
 msgid "Screenshot with options"
 msgstr "Snímka s nastavením"
 
-#: ../Screenshot/src/applet-screenshot.c:163
+#: ../Screenshot/src/applet-screenshot.c:164
 msgid "Screenshot from"
 msgstr "Snímka z"
 
-#: ../Screenshot/src/applet-screenshot.c:331
+#: ../Screenshot/src/applet-screenshot.c:333
 msgid "Unable to take a screenshot"
 msgstr "Nedá sa urobiť snímka"
 
-#: ../Screenshot/src/applet-screenshot.c:454 ../Cairo-Penguin/data/messages:19
+#: ../Screenshot/src/applet-screenshot.c:456 ../Cairo-Penguin/data/messages:19
 #: ../Clipper/data/messages:137 ../Disks/data/messages:143
 #: ../Network-Monitor/data/messages:175 ../System-Monitor/data/messages:169
 #: ../System-Monitor/data/messages:215 ../Toons/data/messages:101
@@ -1409,26 +1409,26 @@ msgstr "Nedá sa urobiť snímka"
 msgid "in seconds."
 msgstr "v sekundách."
 
-#: ../Screenshot/src/applet-screenshot.c:455
+#: ../Screenshot/src/applet-screenshot.c:457
 msgid "Delay"
 msgstr "Oneskorenie"
 
-#: ../Screenshot/src/applet-screenshot.c:477
+#: ../Screenshot/src/applet-screenshot.c:479
 msgid "Grab the current window instead of the all screen"
 msgstr "Zosnímať aktuálne okno namiesto celej obrazovky"
 
-#: ../Screenshot/src/applet-screenshot.c:478
+#: ../Screenshot/src/applet-screenshot.c:480
 msgid "Grab the current window"
 msgstr "Zosnímať aktuálne okno"
 
-#: ../Screenshot/src/applet-screenshot.c:486
-#: ../Screenshot/src/applet-screenshot.c:495
+#: ../Screenshot/src/applet-screenshot.c:488
+#: ../Screenshot/src/applet-screenshot.c:497
 #: ../Status-Notifier/data/messages:11 ../mail/data/messages:107
 #: ../mail/data/messages:111 ../mail/data/messages:127
 msgid "Let empty to use the default one."
 msgstr "Nechať prázdne a použiť predvolené."
 
-#: ../Screenshot/src/applet-screenshot.c:496
+#: ../Screenshot/src/applet-screenshot.c:498
 msgid "Directory"
 msgstr "Adresár"
 
@@ -1725,7 +1725,9 @@ msgstr "Vypnúť zvuk"
 #: ../clock/src/applet-calendar.c:574 ../clock/src/applet-task-editor.c:120
 #: ../clock/src/applet-timer.c:92 ../clock/src/applet-timer.c:180
 #: ../clock/src/applet-timer.c:458 ../clock/src/applet-timer.c:472
-#: ../clock/src/applet-timer.c:501
+#: ../clock/src/applet-timer.c:501 ../tomboy/src/applet-backend-default.c:161
+#: ../tomboy/src/applet-notes.c:98 ../tomboy/src/applet-notes.c:101
+#: ../tomboy/src/applet-notes.c:406
 msgid "No title"
 msgstr "Bez názvu"
 
@@ -2053,13 +2055,62 @@ msgstr "moderný"
 msgid "tooltip"
 msgstr "Bublinová nápoveda"
 
-#: ../dnd2share/src/applet-dnd2share.c:165
-msgid ""
-"Couldn't upload the file, check that your internet connection is active."
-msgstr ""
-"Nedá sa nahrať súbor, skontrolujte či je vaše internetové pripojenie aktívne."
+#: ../dnd2share/src/applet-backend-codepad.c:35
+#: ../dnd2share/src/applet-backend-custom.c:28
+#: ../dnd2share/src/applet-backend-dropbox.c:33
+#: ../dnd2share/src/applet-backend-free.c:33
+#: ../dnd2share/src/applet-backend-imagebin.c:32
+#: ../dnd2share/src/applet-backend-imageshack.c:31
+#: ../dnd2share/src/applet-backend-imgur.c:33
+#: ../dnd2share/src/applet-backend-paste-ubuntu.c:35
+#: ../dnd2share/src/applet-backend-pastebin-mozilla.c:36
+#: ../dnd2share/src/applet-backend-pastebin.c:38
+#: ../dnd2share/src/applet-backend-ubuntuone.c:32
+#: ../dnd2share/src/applet-backend-uppix.c:31
+#: ../dnd2share/src/applet-backend-videobin.c:32
+#, fuzzy
+msgid "Direct Link"
+msgstr "Adresár"
 
-#: ../dnd2share/src/applet-dnd2share.c:282
+#: ../dnd2share/src/applet-backend-codepad.c:51
+#: ../dnd2share/src/applet-backend-custom.c:74
+#: ../dnd2share/src/applet-backend-paste-ubuntu.c:49
+#: ../dnd2share/src/applet-backend-pastebin-mozilla.c:52
+#: ../dnd2share/src/applet-backend-pastebin.c:45
+msgid "Your text is empty and couldn't be uploaded to this server"
+msgstr ""
+
+#: ../dnd2share/src/applet-backend-custom.c:35
+#, fuzzy
+msgid "No script set for this file type"
+msgstr "Vlastný skript pre odoslanie súboru:"
+
+#: ../dnd2share/src/applet-backend-dropbox.c:63
+#: ../dnd2share/src/applet-backend-ubuntuone.c:59
+msgid "This directory seems not valid:"
+msgstr ""
+
+#: ../dnd2share/src/applet-backend-imageshack.c:31
+#: ../dnd2share/src/applet-backend-uppix.c:31
+msgid "Thumbnail"
+msgstr ""
+
+#: ../dnd2share/src/applet-backend-imgur.c:33
+#, fuzzy
+msgid "Display Image"
+msgstr "Zobraziť hodnoty"
+
+#: ../dnd2share/src/applet-backend-imgur.c:33
+#, fuzzy
+msgid "Large"
+msgstr "veľký"
+
+#: ../dnd2share/src/applet-backend-imgur.c:33
+#: ../dock-rendering/data/messages:41
+msgid "Small"
+msgstr "Malý"
+
+#: ../dnd2share/src/applet-dnd2share.c:289
 msgid ""
 "File has been uploaded.\n"
 "Just press CTRL+v to paste its URL anywhere."
@@ -2067,19 +2118,42 @@ msgstr ""
 "Súbor bol nahraný.\n"
 "Stačí stlačiť CTRL + V k prilepeniu adresy URL kdekoľvek."
 
-#: ../dnd2share/src/applet-dnd2share.c:333
+#: ../dnd2share/src/applet-dnd2share.c:342
 msgid "Please wait for the current upload to finish before starting a new one."
 msgstr "Prosím, počkajte kým súčasné nahrávanie skončí pred začatím nového."
 
-#: ../dnd2share/src/applet-dnd2share.c:401
+#: ../dnd2share/src/applet-dnd2share.c:410
 msgid "This file is not readable."
 msgstr "Tento súbor sa nedá čítať."
 
-#: ../dnd2share/src/applet-dnd2share.c:628
+#: ../dnd2share/src/applet-dnd2share.c:637
 msgid "Tiny URL"
 msgstr "Tiny URL"
 
-#: ../dnd2share/src/applet-init.c:45
+#: ../dnd2share/src/applet-dnd2share.h:27
+msgid ""
+"Couldn't upload the file, check that your internet connection is active."
+msgstr ""
+"Nedá sa nahrať súbor, skontrolujte či je vaše internetové pripojenie aktívne."
+
+#: ../dnd2share/src/applet-dnd2share.h:29
+#, fuzzy, c-format
+msgid ""
+"Couldn't upload the file to %s, check that your internet connection is "
+"active."
+msgstr ""
+"Nedá sa nahrať súbor, skontrolujte či je vaše internetové pripojenie aktívne."
+
+#: ../dnd2share/src/applet-dnd2share.h:32
+#, fuzzy, c-format
+msgid ""
+"Couldn't upload the file to %s.\n"
+"Check that your internet connection is active and '%s' is correctly "
+"installed and running"
+msgstr ""
+"Nedá sa nahrať súbor, skontrolujte či je vaše internetové pripojenie aktívne."
+
+#: ../dnd2share/src/applet-init.c:46
 msgid ""
 "This applet lets you share files easily:\n"
 "Drag-and-drop a file on the icon to upload it to one of the available "
@@ -2096,7 +2170,7 @@ msgid ""
 "You'll need to install 'curl' and 'wget' to upload the data."
 msgstr ""
 
-#: ../dnd2share/src/applet-init.c:55
+#: ../dnd2share/src/applet-init.c:56
 msgid "Drop to share"
 msgstr "Pustiť pre zdieľanie"
 
@@ -2366,11 +2440,11 @@ msgid ""
 "This plugin provides animations for appearance & disappearance of icons."
 msgstr "Tento plug-in umožňuje animácie pre vzhľad & miznutie ikôn."
 
-#: ../keyboard-indicator/src/applet-init.c:31
+#: ../keyboard-indicator/src/applet-init.c:32
 msgid "keyboard indicator"
 msgstr "indikátor klávesnice"
 
-#: ../keyboard-indicator/src/applet-init.c:34
+#: ../keyboard-indicator/src/applet-init.c:35
 msgid ""
 "This applet lets you control the keyboard layout.\n"
 "\tIt can also display the current num and caps lock.\n"
@@ -2384,11 +2458,11 @@ msgstr ""
 "\t Posun nahor/nadol vyberie predchádzajúce/nasledujúce rozloženie\n"
 "\t Pravé-kliknutie vám umožní prístup k zoznamu dostupných rozložení."
 
-#: ../keyboard-indicator/src/applet-init.c:81
+#: ../keyboard-indicator/src/applet-init.c:82
 msgid "Switch keyboard language"
 msgstr "Prepnúť klávesnicu na iný jazyk"
 
-#: ../keyboard-indicator/src/applet-notifications.c:77
+#: ../keyboard-indicator/src/applet-notifications.c:78
 msgid "Keyboard preferences"
 msgstr "Predvoľby klávesnice"
 
@@ -2485,20 +2559,20 @@ msgstr "Vyberte si za koľko minút bude vaše PC vypnuté :"
 msgid "Please do that at the end of the update."
 msgstr "Počkajte prosím, na ukončenie aktualizácie."
 
-#: ../logout/src/applet-logout.c:741
+#: ../logout/src/applet-logout.c:742
 #, c-format
 msgid "It will automatically shut-down in %ds"
 msgstr "Automatické vypnutie o %ds"
 
-#: ../logout/src/applet-logout.c:742
+#: ../logout/src/applet-logout.c:743
 msgid "Shut down the computer?"
 msgstr "Vypnúť počítač?"
 
-#: ../logout/src/applet-logout.c:813
+#: ../logout/src/applet-logout.c:815
 msgid "Restart the computer?"
 msgstr "Reštartovať počítač?"
 
-#: ../logout/src/applet-logout.c:865
+#: ../logout/src/applet-logout.c:868
 msgid "Close the current session?"
 msgstr "Ukončiť aktuálne sedenie?"
 
@@ -2570,6 +2644,10 @@ msgid "Leave empty to use the default mail application."
 msgstr "Nechajte prázdne pre požitie predvolenej poštovej aplikácie."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
+msgid "Specific icon file when using multiple accounts"
+msgstr ""
+
+#: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Directory on server:"
 msgstr "Adresár na serveri:"
 
@@ -2597,19 +2675,19 @@ msgstr ""
 "Nezabudnite povoliť službu IMAP (alebo POP) v nastaveniach vášho poštového "
 "účtu."
 
-#: ../mail/src/cd-mail-applet-config.c:230
+#: ../mail/src/cd-mail-applet-config.c:227
 msgid "Please choose an account type."
 msgstr "Prosím vyberte typ účtu."
 
-#: ../mail/src/cd-mail-applet-config.c:235
+#: ../mail/src/cd-mail-applet-config.c:232
 msgid "New account's name"
 msgstr "Nový názov účtu"
 
-#: ../mail/src/cd-mail-applet-config.c:238
+#: ../mail/src/cd-mail-applet-config.c:235
 msgid "Please enter a name for this account."
 msgstr "Prosím, zadajte názov pre tento účet."
 
-#: ../mail/src/cd-mail-applet-config.c:248
+#: ../mail/src/cd-mail-applet-config.c:245
 msgid ""
 "This account already exists.\n"
 "Please choose another name for the new account."
@@ -2617,11 +2695,11 @@ msgstr ""
 "Tento účet už existuje.\n"
 "Prosím vyberte iný názov pre tento účet."
 
-#: ../mail/src/cd-mail-applet-config.c:392
+#: ../mail/src/cd-mail-applet-config.c:384
 msgid "Enter a name for this account. You can give it any name you want."
 msgstr "Prosím, zadajte názov pre tento účet. Môžete vložiť názov aký chcete."
 
-#: ../mail/src/cd-mail-applet-config.c:447
+#: ../mail/src/cd-mail-applet-config.c:439
 msgid "Remove Account"
 msgstr "Odstrániť účet"
 
@@ -2633,16 +2711,16 @@ msgstr "neznámy"
 msgid "no subject"
 msgstr "bez predmetu"
 
-#: ../mail/src/cd-mail-applet-etpan.c:404
+#: ../mail/src/cd-mail-applet-etpan.c:408
 msgid "No unread mail in your mailboxes"
 msgstr "Žiadna neprečítaná správa vo vašej schránke"
 
-#: ../mail/src/cd-mail-applet-etpan.c:426
+#: ../mail/src/cd-mail-applet-etpan.c:430
 #, c-format
 msgid "You have %d new mails:"
 msgstr "Máte %d nových mailov :"
 
-#: ../mail/src/cd-mail-applet-etpan.c:428
+#: ../mail/src/cd-mail-applet-etpan.c:432
 msgid "You have a new mail:"
 msgstr "Máte nový e-mail :"
 
@@ -2662,7 +2740,7 @@ msgstr ""
 "Ľavé kliknutie spustí preferovaný mail,\n"
 "Stredným kliknutím obnovíte všetky poštové schránky."
 
-#: ../mail/src/cd-mail-applet-notifications.c:62
+#: ../mail/src/cd-mail-applet-notifications.c:67
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -2673,7 +2751,7 @@ msgstr ""
 "Ak '%s' nie je obvyklou aplikáciou na spracovanie pošty,\n"
 "môžete to zmeniť v conf paneli tohto modulu"
 
-#: ../mail/src/cd-mail-applet-notifications.c:67
+#: ../mail/src/cd-mail-applet-notifications.c:72
 msgid ""
 "No mail application is defined,\n"
 "you can define it in the configuration panel of this module"
@@ -2681,29 +2759,29 @@ msgstr ""
 "Nie je definovana poštová aplikácia.\n"
 "Môžete ju definovať v konfiguračnom paneli tohto modulu."
 
-#: ../mail/src/cd-mail-applet-notifications.c:146
+#: ../mail/src/cd-mail-applet-notifications.c:151
 msgid "Refresh a mail account"
 msgstr "Obnoviť poštový účet"
 
-#: ../mail/src/cd-mail-applet-notifications.c:153
+#: ../mail/src/cd-mail-applet-notifications.c:158
 msgid "Refresh all"
 msgstr "Obnoviť všetko"
 
-#: ../mail/src/cd-mail-applet-notifications.c:160
+#: ../mail/src/cd-mail-applet-notifications.c:165
 #, c-format
 msgid "Refresh %s"
 msgstr "Obnoviť %s"
 
-#: ../mail/src/cd-mail-applet-notifications.c:166
+#: ../mail/src/cd-mail-applet-notifications.c:171
 msgid "Mark all emails as read"
 msgstr "Označiť všetku poštu ako prečítanú"
 
-#: ../mail/src/cd-mail-applet-notifications.c:169
+#: ../mail/src/cd-mail-applet-notifications.c:174
 #, c-format
 msgid "Launch %s"
 msgstr "Spustiť %s"
 
-#: ../mail/src/cd-mail-applet-notifications.c:346
+#: ../mail/src/cd-mail-applet-notifications.c:351
 msgid "Mail"
 msgstr "Pošta"
 
@@ -2786,67 +2864,67 @@ msgstr ""
 msgid "Choose a music player to control"
 msgstr "Vyberte prehrávač zvuku, ktorý chcete ovládať"
 
-#: ../musicPlayer/src/applet-notifications.c:287
+#: ../musicPlayer/src/applet-notifications.c:291
 msgid "Find opened player"
 msgstr "Nájdi otvorený prehrávač"
 
-#: ../musicPlayer/src/applet-notifications.c:291
+#: ../musicPlayer/src/applet-notifications.c:295
 msgid "Choose a player"
 msgstr "Vyberte prehrávač"
 
-#: ../musicPlayer/src/applet-notifications.c:297
+#: ../musicPlayer/src/applet-notifications.c:301
 msgid "Previous"
 msgstr "Predchádzajúci"
 
-#: ../musicPlayer/src/applet-notifications.c:297
+#: ../musicPlayer/src/applet-notifications.c:301
 msgid "scroll-up"
 msgstr "posunúť hore"
 
-#: ../musicPlayer/src/applet-notifications.c:303
+#: ../musicPlayer/src/applet-notifications.c:307
 msgid "Play/Pause"
 msgstr "Prehrať/Pozastaviť"
 
-#: ../musicPlayer/src/applet-notifications.c:303
+#: ../musicPlayer/src/applet-notifications.c:307
 msgid "left-click"
 msgstr "ľavé kliknutie"
 
-#: ../musicPlayer/src/applet-notifications.c:309
+#: ../musicPlayer/src/applet-notifications.c:313
 msgid "Next"
 msgstr "Ďalej"
 
-#: ../musicPlayer/src/applet-notifications.c:309
+#: ../musicPlayer/src/applet-notifications.c:313
 msgid "scroll-down"
 msgstr "posunúť dole"
 
-#: ../musicPlayer/src/applet-notifications.c:314
+#: ../musicPlayer/src/applet-notifications.c:318
 msgid "Stop"
 msgstr "Stop"
 
-#: ../musicPlayer/src/applet-notifications.c:318
+#: ../musicPlayer/src/applet-notifications.c:322
 msgid "Information"
 msgstr "Informácia"
 
-#: ../musicPlayer/src/applet-notifications.c:323
+#: ../musicPlayer/src/applet-notifications.c:327
 msgid "Show JumpBox"
 msgstr "Zobraziť JumpBox"
 
-#: ../musicPlayer/src/applet-notifications.c:326
+#: ../musicPlayer/src/applet-notifications.c:330
 msgid "Shuffle"
 msgstr "Náhodne"
 
-#: ../musicPlayer/src/applet-notifications.c:334
+#: ../musicPlayer/src/applet-notifications.c:338
 msgid "Repeat"
 msgstr "Opakovať"
 
-#: ../musicPlayer/src/applet-notifications.c:342
+#: ../musicPlayer/src/applet-notifications.c:346
 msgid "Rate this song"
 msgstr "Hodnotiť túto skladbu"
 
-#: ../musicPlayer/src/applet-notifications.c:346
+#: ../musicPlayer/src/applet-notifications.c:350
 msgid "Show"
 msgstr "Zobraziť"
 
-#: ../musicPlayer/src/applet-notifications.c:347
+#: ../musicPlayer/src/applet-notifications.c:351
 msgid "Quit"
 msgstr "Ukončiť"
 
@@ -2901,64 +2979,76 @@ msgstr "Povoliť/zakázať sieť"
 msgid "Re-check interface"
 msgstr "Skontrolovanie rozhrania"
 
-#: ../powermanager/src/powermanager-draw.c:188
+#: ../powermanager/src/powermanager-draw.c:187
 msgid "Battery charged"
 msgstr "Batéria nabitá"
 
-#: ../powermanager/src/powermanager-draw.c:210
-msgid "Time before empty"
-msgstr "Čas do vybitia"
+#: ../powermanager/src/powermanager-draw.c:199
+#, fuzzy
+msgid "h"
+msgstr "1h"
+
+#: ../powermanager/src/powermanager-draw.c:201
+#, fuzzy
+msgid "mn"
+msgstr "min"
 
 #: ../powermanager/src/powermanager-draw.c:210
-msgid "Time before full"
-msgstr "Čas zostávajúci do úplného nabitia"
+#, fuzzy
+msgid "remaining"
+msgstr "Zostávajúci čas"
 
-#: ../powermanager/src/powermanager-draw.c:230 ../wifi/src/applet-draw.c:30
-#: ../Clipper/data/messages:97 ../GMenu-old/data/messages:105
-#: ../GMenu/data/messages:105 ../Network-Monitor/data/messages:221
+#: ../powermanager/src/powermanager-draw.c:210
+#, fuzzy
+msgid "until charged"
+msgstr "Batéria nabitá"
+
+#: ../powermanager/src/powermanager-draw.c:228 ../wifi/src/applet-draw.c:30
+#: ../Clipper/data/messages:97 ../GMenu-old/data/messages:109
+#: ../GMenu/data/messages:109 ../Network-Monitor/data/messages:221
 #: ../dnd2share/data/messages:109 ../dustbin/data/messages:101
 #: ../wifi/data/messages:145
 msgid "None"
 msgstr "Žiadny"
 
-#: ../powermanager/src/powermanager-draw.c:265
+#: ../powermanager/src/powermanager-draw.c:263
 msgid "Laptop on Battery."
 msgstr "Batéria prenosného počítača."
 
-#: ../powermanager/src/powermanager-draw.c:266
-#: ../powermanager/src/powermanager-draw.c:275
+#: ../powermanager/src/powermanager-draw.c:264
+#: ../powermanager/src/powermanager-draw.c:273
 msgid "Battery charged at:"
 msgstr "Batéria nabitá na:"
 
-#: ../powermanager/src/powermanager-draw.c:267
+#: ../powermanager/src/powermanager-draw.c:265
 msgid "Estimated time before empty:"
 msgstr "Zostávajúci čas do vybitia:"
 
-#: ../powermanager/src/powermanager-draw.c:274
+#: ../powermanager/src/powermanager-draw.c:272
 msgid "Laptop on Charge."
 msgstr "Prenosný počítač sa nabíja."
 
-#: ../powermanager/src/powermanager-draw.c:276
+#: ../powermanager/src/powermanager-draw.c:274
 msgid "Estimated time before full:"
 msgstr "Zostávajúci čas do úplného nabitia:"
 
-#: ../powermanager/src/powermanager-draw.c:283
+#: ../powermanager/src/powermanager-draw.c:281
 msgid "Model:"
 msgstr "Model:"
 
-#: ../powermanager/src/powermanager-draw.c:289
+#: ../powermanager/src/powermanager-draw.c:287
 msgid "Technology:"
 msgstr "Technológia:"
 
-#: ../powermanager/src/powermanager-draw.c:293
+#: ../powermanager/src/powermanager-draw.c:291
 msgid "Maximum capacity:"
 msgstr "Maximálna kapacita:"
 
-#: ../powermanager/src/powermanager-draw.c:298
+#: ../powermanager/src/powermanager-draw.c:296
 msgid "No battery found."
 msgstr "Batéria nenájdená"
 
-#: ../powermanager/src/powermanager-draw.c:320
+#: ../powermanager/src/powermanager-draw.c:318
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -2966,15 +3056,15 @@ msgstr ""
 "Správa napájania.\n"
 "Nabitia batérie je nízke"
 
-#: ../powermanager/src/powermanager-draw.c:320
+#: ../powermanager/src/powermanager-draw.c:318
 msgid "Estimated time with charge:"
 msgstr "Zostávajúci čas do nabitia:"
 
-#: ../powermanager/src/powermanager-draw.c:320
+#: ../powermanager/src/powermanager-draw.c:318
 msgid "Please put your laptop on charge."
 msgstr "Prosím pripojte váš laptop na nabíjanie."
 
-#: ../powermanager/src/powermanager-draw.c:334
+#: ../powermanager/src/powermanager-draw.c:332
 msgid ""
 "PowerManager.\n"
 "Your battery is now charged"
@@ -3334,7 +3424,7 @@ msgstr "Otvoriť (klik)"
 
 #: ../stack/src/applet-notifications.c:214
 #: ../terminal/src/terminal-callbacks.c:82
-#: ../terminal/src/terminal-widget.c:472
+#: ../terminal/src/terminal-widget.c:459
 msgid "Copy"
 msgstr "Kopírovať"
 
@@ -3358,13 +3448,13 @@ msgstr "Súbor bol pridaný do zásobníka."
 msgid "The URL has been added to the stack."
 msgstr "URL bola pridaná do zásobníka."
 
-#: ../switcher/src/applet-draw.c:580 ../switcher/src/applet-draw.c:587
+#: ../switcher/src/applet-draw.c:581 ../switcher/src/applet-draw.c:588
 #: ../switcher/src/applet-load-icons.c:54
 #: ../switcher/src/applet-notifications.c:411
 msgid "Current"
 msgstr "Aktuálny"
 
-#: ../switcher/src/applet-draw.c:587 ../switcher/src/applet-draw.c:589
+#: ../switcher/src/applet-draw.c:588 ../switcher/src/applet-draw.c:590
 #: ../switcher/src/applet-load-icons.c:60
 #: ../switcher/src/applet-notifications.c:228
 #: ../switcher/src/applet-notifications.c:247
@@ -3487,7 +3577,7 @@ msgid "Show/hide the terminal"
 msgstr "Zobraziť/Skryť terminál"
 
 #: ../terminal/src/terminal-menu-functions.c:78
-#: ../terminal/src/terminal-widget.c:488
+#: ../terminal/src/terminal-widget.c:475
 msgid "New Tab"
 msgstr "Nová karta"
 
@@ -3503,36 +3593,40 @@ msgstr "Zavrieť aktuálnu kartu"
 msgid "Terminal"
 msgstr "Terminál"
 
-#: ../terminal/src/terminal-widget.c:217
+#: ../terminal/src/terminal-widget.c:204
 msgid "Set title for this tab:"
 msgstr "Nastaviť názov pre túto kartu :"
 
-#: ../terminal/src/terminal-widget.c:275 ../terminal/src/terminal-widget.c:277
+#: ../terminal/src/terminal-widget.c:262 ../terminal/src/terminal-widget.c:264
 msgid "Select a color"
 msgstr "Vyberte farbu"
 
-#: ../terminal/src/terminal-widget.c:432
+#: ../terminal/src/terminal-widget.c:419
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
 msgstr "Môžete vrátiť späť v Termináli napísaním %s"
 
-#: ../terminal/src/terminal-widget.c:478
+#: ../terminal/src/terminal-widget.c:465
 msgid "Paste"
 msgstr "Vložiť"
 
-#: ../terminal/src/terminal-widget.c:494
+#: ../terminal/src/terminal-widget.c:481
 msgid "Rename this Tab"
 msgstr "Premenovať"
 
-#: ../terminal/src/terminal-widget.c:500
+#: ../terminal/src/terminal-widget.c:487
 msgid "Change this Tab's colour"
 msgstr "Zmeniť farbu kariet"
 
-#: ../terminal/src/terminal-widget.c:506
+#: ../terminal/src/terminal-widget.c:493
 msgid "Close this Tab"
 msgstr "Zatvoriť túto kartu"
 
-#: ../tomboy/src/applet-backend-default.c:189
+#: ../tomboy/src/applet-backend-default.c:160
+msgid "Note:"
+msgstr ""
+
+#: ../tomboy/src/applet-backend-default.c:208
 msgid "Title:"
 msgstr "Názov"
 
@@ -3607,6 +3701,11 @@ msgstr "Vyhľadať poznámku na nasledujúci týždeň"
 #: ../tomboy/src/tomboy-notifications.c:245
 msgid "Reset marks"
 msgstr "Vymazať označenia"
+
+#: ../tomboy/src/tomboy-notifications.c:277
+#, fuzzy
+msgid "No description"
+msgstr "Pozícia"
 
 #: ../weather/src/applet-config.c:120
 msgid ""
@@ -4190,8 +4289,8 @@ msgstr "Názov ikony, ktorá sa objaví na štítku v docku :"
 #: ../Cairo-Penguin/data/messages:9 ../Clipper/data/messages:9
 #: ../Composite-Manager/data/messages:9 ../Disks/data/messages:9
 #: ../Doncky/data/messages:9 ../GMenu-old/data/messages:9
-#: ../GMenu-old/data/messages:101 ../GMenu/data/messages:9
-#: ../GMenu/data/messages:101 ../Indicator-Generic/data/messages:9
+#: ../GMenu-old/data/messages:105 ../GMenu/data/messages:9
+#: ../GMenu/data/messages:105 ../Indicator-Generic/data/messages:9
 #: ../Messaging-Menu/data/messages:9 ../RSSreader/data/messages:11
 #: ../RSSreader/data/messages:129 ../Recent-Events/data/messages:9
 #: ../Screenshot/data/messages:9 ../Status-Notifier/data/messages:9
@@ -5245,8 +5344,8 @@ msgstr "Schránka"
 msgid "Selection"
 msgstr "Výber"
 
-#: ../Clipper/data/messages:103 ../GMenu-old/data/messages:111
-#: ../GMenu/data/messages:111 ../show-mouse/data/messages:15
+#: ../Clipper/data/messages:103 ../GMenu-old/data/messages:115
+#: ../GMenu/data/messages:115 ../show-mouse/data/messages:15
 msgid "Both"
 msgstr "Obidve"
 
@@ -5843,10 +5942,20 @@ msgid "Number of items to display"
 msgstr ""
 
 #: ../GMenu-old/data/messages:99 ../GMenu/data/messages:99
+msgid ""
+"The settings menu file is sometimes available in a settings.menu file but "
+"its content can also be available in the main .menu file used by the dock"
+msgstr ""
+
+#: ../GMenu-old/data/messages:101 ../GMenu/data/messages:101
+msgid "Load settings' menu?"
+msgstr ""
+
+#: ../GMenu-old/data/messages:103 ../GMenu/data/messages:103
 msgid "Command to use for configuring the menu:"
 msgstr "Príkaz k nastaveniu menu :"
 
-#: ../GMenu-old/data/messages:103 ../GMenu/data/messages:103
+#: ../GMenu-old/data/messages:107 ../GMenu/data/messages:107
 msgid "Show Logout and/or Shutdown : "
 msgstr "Zobraziť tlačítko Odhlásiť a/alebo Vypnúť : "
 
@@ -7191,7 +7300,7 @@ msgid "Preferred site for texts hosting :"
 msgstr "Preferovaná sieť pre hosťovanie textov :"
 
 #: ../dnd2share/data/messages:127 ../dnd2share/data/messages:139
-#: ../dnd2share/data/messages:149 ../dnd2share/data/messages:155
+#: ../dnd2share/data/messages:151 ../dnd2share/data/messages:157
 msgid "Custom"
 msgstr "Vlastná"
 
@@ -7216,7 +7325,8 @@ msgid "Preferred site for images hosting :"
 msgstr "Preferovaná sieť pre hosting obrázkov :"
 
 #: ../dnd2share/data/messages:141
-msgid "Uppix.net"
+#, fuzzy
+msgid "Uppix.com"
 msgstr "Uppix.net"
 
 #: ../dnd2share/data/messages:143
@@ -7228,65 +7338,71 @@ msgid "ImageShack.us"
 msgstr "ImageShack.us"
 
 #: ../dnd2share/data/messages:147
+msgid "Imgur.com"
+msgstr ""
+
+#: ../dnd2share/data/messages:149
 msgid "Preferred site for videos hosting :"
 msgstr "Preferovaná sieť pre uloženie videí :"
 
-#: ../dnd2share/data/messages:151
+#: ../dnd2share/data/messages:153
 msgid "VideoBin.org"
 msgstr "VideoBin.org"
 
-#: ../dnd2share/data/messages:153
+#: ../dnd2share/data/messages:155
 msgid "Preferred site for files hosting :"
 msgstr "Preferovaná sieť pre uloženie súborov :"
 
-#: ../dnd2share/data/messages:157
+#: ../dnd2share/data/messages:159
 msgid "dl.free.fr"
 msgstr "dl.free.fr"
 
-#: ../dnd2share/data/messages:159
+#: ../dnd2share/data/messages:161
 msgid "DropBox"
 msgstr "DropBox"
 
-#: ../dnd2share/data/messages:161
+#: ../dnd2share/data/messages:163
 msgid "UbuntuOne"
 msgstr "UbuntuOne"
 
-#: ../dnd2share/data/messages:163 ../dnd2share/data/messages:167
-#: ../dnd2share/data/messages:171 ../dnd2share/data/messages:175
+#: ../dnd2share/data/messages:165 ../dnd2share/data/messages:169
+#: ../dnd2share/data/messages:173 ../dnd2share/data/messages:177
 msgid ""
 "The script takes the file path as a parameter, and write the resulting URL "
 "on the standard output."
 msgstr ""
 
-#: ../dnd2share/data/messages:165
+#: ../dnd2share/data/messages:167
 msgid "Custom script for text upload :"
 msgstr "Vlastný skript pre odoslanie textu:"
 
-#: ../dnd2share/data/messages:169
+#: ../dnd2share/data/messages:171
 msgid "Custom script for image upload :"
 msgstr "Vlastný skript pre odoslanie obrázku:"
 
-#: ../dnd2share/data/messages:173
+#: ../dnd2share/data/messages:175
 msgid "Custom script for video upload :"
 msgstr "Vlastný skript pre odoslanie videa:"
 
-#: ../dnd2share/data/messages:177
+#: ../dnd2share/data/messages:179
 msgid "Custom script for file upload :"
 msgstr "Vlastný skript pre odoslanie súboru:"
 
-#: ../dnd2share/data/messages:179
-msgid "Leave empty to upload files into '~/Dropbox/Public'."
+#: ../dnd2share/data/messages:181
+#, fuzzy
+msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 msgstr "Nechať prázdne pre odosielanie súborov do '~/Dropbox/Verejné'."
 
-#: ../dnd2share/data/messages:181
-msgid "Path of the DropBox folder :"
+#: ../dnd2share/data/messages:183
+#, fuzzy
+msgid "Path of a custom DropBox / UbuntuOne folder :"
 msgstr "Cesta do priečinka DropBox :"
 
-#: ../dnd2share/data/messages:183
+#: ../dnd2share/data/messages:185
 msgid "Otherwise, your user name will be used when possible."
 msgstr ""
 
-#: ../dnd2share/data/messages:185
+#: ../dnd2share/data/messages:187
 msgid "Post text as Anonymous ?"
 msgstr "Textový príspevok ako anonym?"
 
@@ -7353,10 +7469,6 @@ msgstr ""
 #: ../dock-rendering/data/messages:39
 msgid "Maximum size of the dock:"
 msgstr "Maximálna veľkosť panela:"
-
-#: ../dock-rendering/data/messages:41
-msgid "Small"
-msgstr "Malý"
 
 #: ../dock-rendering/data/messages:43
 msgid "Full screen"
@@ -9081,6 +9193,12 @@ msgstr ""
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr ""
 "Alternatívny príkaz pre spustenie Konfigurácie bezdrôtového pripojenia :"
+
+#~ msgid "Time before empty"
+#~ msgstr "Čas do vybitia"
+
+#~ msgid "Time before full"
+#~ msgstr "Čas zostávajúci do úplného nabitia"
 
 #~ msgid "failed to unmount %s"
 #~ msgstr "zlyhalo pripojenie %s"

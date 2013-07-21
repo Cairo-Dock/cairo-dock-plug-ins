@@ -189,7 +189,7 @@ msgstr ""
 msgid "Clipboard history"
 msgstr "剪貼簿歷史"
 
-#: ../Clipper/src/applet-init.c:72
+#: ../Clipper/src/applet-init.c:87
 msgid "Pop-up the items menu"
 msgstr ""
 
@@ -281,8 +281,8 @@ msgstr ""
 #: ../Xgamma/src/applet-notifications.c:87
 #: ../alsaMixer/src/applet-notifications.c:85
 #: ../dustbin/src/applet-notifications.c:149
-#: ../mail/src/cd-mail-applet-notifications.c:153
-#: ../musicPlayer/src/applet-notifications.c:303
+#: ../mail/src/cd-mail-applet-notifications.c:158
+#: ../musicPlayer/src/applet-notifications.c:307
 #: ../netspeed/src/applet-notifications.c:105
 #: ../quick-browser/src/applet-notifications.c:41
 #: ../shortcuts/src/applet-notifications.c:285
@@ -620,7 +620,7 @@ msgstr "重新命名為："
 
 #: ../Folders/src/applet-notifications.c:268
 #: ../Scooby-Do/src/applet-backend-files.c:390
-#: ../Screenshot/src/applet-screenshot.c:417
+#: ../Screenshot/src/applet-screenshot.c:419
 msgid "Pick up a directory"
 msgstr "挑選目錄"
 
@@ -656,8 +656,8 @@ msgid "Move this file"
 msgstr "移動此檔案"
 
 #: ../Folders/src/applet-notifications.c:409
-#: ../Recent-Events/src/applet-dialog.c:270
-#: ../Screenshot/src/applet-screenshot.c:308
+#: ../Recent-Events/src/applet-dialog.c:274
+#: ../Screenshot/src/applet-screenshot.c:310
 #: ../quick-browser/src/applet-menu.c:328
 #: ../slider/src/applet-notifications.c:238
 msgid "Open with"
@@ -721,21 +721,21 @@ msgstr ""
 msgid "Applications Menu"
 msgstr "應用程式選單"
 
-#: ../GMenu-old/src/applet-init.c:134 ../GMenu/src/applet-init.c:62
+#: ../GMenu-old/src/applet-init.c:134 ../GMenu/src/applet-init.c:63
 msgid "Show/hide the Applications menu"
 msgstr ""
 
-#: ../GMenu-old/src/applet-init.c:139 ../GMenu/src/applet-init.c:67
+#: ../GMenu-old/src/applet-init.c:139 ../GMenu/src/applet-init.c:68
 msgid "Show/hide the quick-launch dialog"
 msgstr ""
 
-#: ../GMenu-old/src/applet-menu-callbacks.c:177 ../GMenu/src/applet-menu.c:172
-#: ../GMenu-old/data/messages:107 ../GMenu/data/messages:107
+#: ../GMenu-old/src/applet-menu-callbacks.c:177 ../GMenu/src/applet-menu.c:175
+#: ../GMenu-old/data/messages:111 ../GMenu/data/messages:111
 msgid "Logout"
 msgstr ""
 
-#: ../GMenu-old/src/applet-menu-callbacks.c:180 ../GMenu/src/applet-menu.c:175
-#: ../GMenu-old/data/messages:109 ../GMenu/data/messages:109
+#: ../GMenu-old/src/applet-menu-callbacks.c:180 ../GMenu/src/applet-menu.c:178
+#: ../GMenu-old/data/messages:113 ../GMenu/data/messages:113
 msgid "Shutdown"
 msgstr ""
 
@@ -744,13 +744,13 @@ msgstr ""
 msgid "Quick launch"
 msgstr "快速啟動"
 
-#: ../GMenu-old/src/applet-notifications.c:107
-#: ../GMenu/src/applet-notifications.c:93
+#: ../GMenu-old/src/applet-notifications.c:109
+#: ../GMenu/src/applet-notifications.c:95
 msgid "Configure menu"
 msgstr "配置選單"
 
-#: ../GMenu-old/src/applet-notifications.c:110
-#: ../GMenu/src/applet-notifications.c:96
+#: ../GMenu-old/src/applet-notifications.c:112
+#: ../GMenu/src/applet-notifications.c:98
 msgid "Clear recent"
 msgstr "清除最近的紀錄"
 
@@ -769,7 +769,7 @@ msgstr "輸入要啟動的指令："
 
 #: ../GMenu/src/applet-apps.c:67
 #, fuzzy
-msgid "Launch this new application ?"
+msgid "Launch this new application?"
 msgstr "信件的應用程式"
 
 #: ../Global-Menu/src/applet-init.c:30
@@ -785,7 +785,7 @@ msgid ""
 "You can bind a shortkey to this action."
 msgstr ""
 
-#: ../Global-Menu/src/applet-init.c:104 ../Global-Menu/src/applet-init.c:203
+#: ../Global-Menu/src/applet-init.c:112 ../Global-Menu/src/applet-init.c:211
 msgid "Show/hide the current application menu"
 msgstr ""
 
@@ -920,8 +920,8 @@ msgstr "網路 ID"
 #: ../Network-Monitor/src/applet-draw.c:150
 #: ../musicPlayer/src/applet-draw.c:167 ../musicPlayer/src/applet-draw.c:169
 #: ../musicPlayer/src/applet-draw.c:171
-#: ../powermanager/src/powermanager-draw.c:259
-#: ../powermanager/src/powermanager-draw.c:314
+#: ../powermanager/src/powermanager-draw.c:257
+#: ../powermanager/src/powermanager-draw.c:312
 msgid "Unknown"
 msgstr "未知"
 
@@ -1081,64 +1081,64 @@ msgstr ""
 "您已設定有效的 RSS 饋流嗎？\n"
 "您的連線還正常嗎？"
 
-#: ../Recent-Events/src/applet-dialog.c:294
-#: ../Screenshot/src/applet-screenshot.c:317
+#: ../Recent-Events/src/applet-dialog.c:298
+#: ../Screenshot/src/applet-screenshot.c:319
 #: ../quick-browser/src/applet-menu.c:358
 #: ../stack/src/applet-notifications.c:212
 msgid "Open parent folder"
 msgstr "打開父資料夾"
 
-#: ../Recent-Events/src/applet-dialog.c:296
-#: ../Screenshot/src/applet-screenshot.c:279
+#: ../Recent-Events/src/applet-dialog.c:300
+#: ../Screenshot/src/applet-screenshot.c:281
 #: ../quick-browser/src/applet-menu.c:360
 msgid "Copy the location"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:299
+#: ../Recent-Events/src/applet-dialog.c:303
 msgid "Delete this event"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:383
+#: ../Recent-Events/src/applet-dialog.c:387
 msgid "All"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:384
+#: ../Recent-Events/src/applet-dialog.c:388
 msgid "Applications"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:385
+#: ../Recent-Events/src/applet-dialog.c:389
 msgid "Document"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:387 ../logout/data/messages:117
+#: ../Recent-Events/src/applet-dialog.c:391 ../logout/data/messages:117
 msgid "Image"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:388
+#: ../Recent-Events/src/applet-dialog.c:392
 msgid "Audio"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:389
+#: ../Recent-Events/src/applet-dialog.c:393
 msgid "Video"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:390
+#: ../Recent-Events/src/applet-dialog.c:394
 msgid "Web"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:391
+#: ../Recent-Events/src/applet-dialog.c:395
 msgid "Other"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:392
+#: ../Recent-Events/src/applet-dialog.c:396
 msgid "Top Results"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:398
+#: ../Recent-Events/src/applet-dialog.c:402
 msgid "Look for events"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:405
+#: ../Recent-Events/src/applet-dialog.c:409
 msgid ""
 "The default boolean operator is AND. Thus the query foo bar will be "
 "interpreted as foo AND bar. To exclude a term from the result set prepend it "
@@ -1147,20 +1147,20 @@ msgid ""
 "*. "
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:448
-#: ../Screenshot/src/applet-screenshot.c:487
+#: ../Recent-Events/src/applet-dialog.c:452
+#: ../Screenshot/src/applet-screenshot.c:489
 msgid "File name"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:455
+#: ../Recent-Events/src/applet-dialog.c:459
 msgid "Last access"
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:503
+#: ../Recent-Events/src/applet-dialog.c:508
 msgid "You need to install the Zeitgeist data engine."
 msgstr ""
 
-#: ../Recent-Events/src/applet-dialog.c:538
+#: ../Recent-Events/src/applet-dialog.c:556
 msgid "Browse and search in recent events"
 msgstr ""
 
@@ -1182,11 +1182,11 @@ msgstr ""
 msgid "Recent files"
 msgstr "最近開啟的檔案"
 
-#: ../Recent-Events/src/applet-notifications.c:183
+#: ../Recent-Events/src/applet-notifications.c:187
 msgid "Delete today's events"
 msgstr ""
 
-#: ../Recent-Events/src/applet-notifications.c:185
+#: ../Recent-Events/src/applet-notifications.c:189
 msgid "Delete all events"
 msgstr ""
 
@@ -1254,7 +1254,7 @@ msgid "Files"
 msgstr "檔案"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:357
-#: ../Screenshot/src/applet-screenshot.c:281
+#: ../Screenshot/src/applet-screenshot.c:283
 msgid "Open"
 msgstr "開啟"
 
@@ -1370,15 +1370,15 @@ msgstr ""
 msgid "Screenshot with options"
 msgstr ""
 
-#: ../Screenshot/src/applet-screenshot.c:163
+#: ../Screenshot/src/applet-screenshot.c:164
 msgid "Screenshot from"
 msgstr ""
 
-#: ../Screenshot/src/applet-screenshot.c:331
+#: ../Screenshot/src/applet-screenshot.c:333
 msgid "Unable to take a screenshot"
 msgstr ""
 
-#: ../Screenshot/src/applet-screenshot.c:454 ../Cairo-Penguin/data/messages:19
+#: ../Screenshot/src/applet-screenshot.c:456 ../Cairo-Penguin/data/messages:19
 #: ../Clipper/data/messages:137 ../Disks/data/messages:143
 #: ../Network-Monitor/data/messages:175 ../System-Monitor/data/messages:169
 #: ../System-Monitor/data/messages:215 ../Toons/data/messages:101
@@ -1390,26 +1390,26 @@ msgstr ""
 msgid "in seconds."
 msgstr "以秒為單位"
 
-#: ../Screenshot/src/applet-screenshot.c:455
+#: ../Screenshot/src/applet-screenshot.c:457
 msgid "Delay"
 msgstr ""
 
-#: ../Screenshot/src/applet-screenshot.c:477
+#: ../Screenshot/src/applet-screenshot.c:479
 msgid "Grab the current window instead of the all screen"
 msgstr ""
 
-#: ../Screenshot/src/applet-screenshot.c:478
+#: ../Screenshot/src/applet-screenshot.c:480
 msgid "Grab the current window"
 msgstr ""
 
-#: ../Screenshot/src/applet-screenshot.c:486
-#: ../Screenshot/src/applet-screenshot.c:495
+#: ../Screenshot/src/applet-screenshot.c:488
+#: ../Screenshot/src/applet-screenshot.c:497
 #: ../Status-Notifier/data/messages:11 ../mail/data/messages:107
 #: ../mail/data/messages:111 ../mail/data/messages:127
 msgid "Let empty to use the default one."
 msgstr "空白來使用預設的那個設定。"
 
-#: ../Screenshot/src/applet-screenshot.c:496
+#: ../Screenshot/src/applet-screenshot.c:498
 msgid "Directory"
 msgstr ""
 
@@ -1703,7 +1703,9 @@ msgstr "靜音"
 #: ../clock/src/applet-calendar.c:574 ../clock/src/applet-task-editor.c:120
 #: ../clock/src/applet-timer.c:92 ../clock/src/applet-timer.c:180
 #: ../clock/src/applet-timer.c:458 ../clock/src/applet-timer.c:472
-#: ../clock/src/applet-timer.c:501
+#: ../clock/src/applet-timer.c:501 ../tomboy/src/applet-backend-default.c:161
+#: ../tomboy/src/applet-notes.c:98 ../tomboy/src/applet-notes.c:101
+#: ../tomboy/src/applet-notes.c:406
 msgid "No title"
 msgstr "無標題"
 
@@ -2027,12 +2029,61 @@ msgstr "現代"
 msgid "tooltip"
 msgstr "提示"
 
-#: ../dnd2share/src/applet-dnd2share.c:165
-msgid ""
-"Couldn't upload the file, check that your internet connection is active."
-msgstr "無法上傳檔案，請檢查您的網路連線是否啟用。"
+#: ../dnd2share/src/applet-backend-codepad.c:35
+#: ../dnd2share/src/applet-backend-custom.c:28
+#: ../dnd2share/src/applet-backend-dropbox.c:33
+#: ../dnd2share/src/applet-backend-free.c:33
+#: ../dnd2share/src/applet-backend-imagebin.c:32
+#: ../dnd2share/src/applet-backend-imageshack.c:31
+#: ../dnd2share/src/applet-backend-imgur.c:33
+#: ../dnd2share/src/applet-backend-paste-ubuntu.c:35
+#: ../dnd2share/src/applet-backend-pastebin-mozilla.c:36
+#: ../dnd2share/src/applet-backend-pastebin.c:38
+#: ../dnd2share/src/applet-backend-ubuntuone.c:32
+#: ../dnd2share/src/applet-backend-uppix.c:31
+#: ../dnd2share/src/applet-backend-videobin.c:32
+msgid "Direct Link"
+msgstr ""
 
-#: ../dnd2share/src/applet-dnd2share.c:282
+#: ../dnd2share/src/applet-backend-codepad.c:51
+#: ../dnd2share/src/applet-backend-custom.c:74
+#: ../dnd2share/src/applet-backend-paste-ubuntu.c:49
+#: ../dnd2share/src/applet-backend-pastebin-mozilla.c:52
+#: ../dnd2share/src/applet-backend-pastebin.c:45
+msgid "Your text is empty and couldn't be uploaded to this server"
+msgstr ""
+
+#: ../dnd2share/src/applet-backend-custom.c:35
+#, fuzzy
+msgid "No script set for this file type"
+msgstr "自訂檔案上傳的指令稿："
+
+#: ../dnd2share/src/applet-backend-dropbox.c:63
+#: ../dnd2share/src/applet-backend-ubuntuone.c:59
+msgid "This directory seems not valid:"
+msgstr ""
+
+#: ../dnd2share/src/applet-backend-imageshack.c:31
+#: ../dnd2share/src/applet-backend-uppix.c:31
+msgid "Thumbnail"
+msgstr ""
+
+#: ../dnd2share/src/applet-backend-imgur.c:33
+#, fuzzy
+msgid "Display Image"
+msgstr "顯示"
+
+#: ../dnd2share/src/applet-backend-imgur.c:33
+#, fuzzy
+msgid "Large"
+msgstr "大"
+
+#: ../dnd2share/src/applet-backend-imgur.c:33
+#: ../dock-rendering/data/messages:41
+msgid "Small"
+msgstr ""
+
+#: ../dnd2share/src/applet-dnd2share.c:289
 msgid ""
 "File has been uploaded.\n"
 "Just press CTRL+v to paste its URL anywhere."
@@ -2040,19 +2091,39 @@ msgstr ""
 "檔案已上傳。\n"
 "只要按下 CTRL+V 就能到處貼上其網址。"
 
-#: ../dnd2share/src/applet-dnd2share.c:333
+#: ../dnd2share/src/applet-dnd2share.c:342
 msgid "Please wait for the current upload to finish before starting a new one."
 msgstr "在開始新的上傳之前，請等候目前的上傳結束。"
 
-#: ../dnd2share/src/applet-dnd2share.c:401
+#: ../dnd2share/src/applet-dnd2share.c:410
 msgid "This file is not readable."
 msgstr ""
 
-#: ../dnd2share/src/applet-dnd2share.c:628
+#: ../dnd2share/src/applet-dnd2share.c:637
 msgid "Tiny URL"
 msgstr "Tiny URL"
 
-#: ../dnd2share/src/applet-init.c:45
+#: ../dnd2share/src/applet-dnd2share.h:27
+msgid ""
+"Couldn't upload the file, check that your internet connection is active."
+msgstr "無法上傳檔案，請檢查您的網路連線是否啟用。"
+
+#: ../dnd2share/src/applet-dnd2share.h:29
+#, fuzzy, c-format
+msgid ""
+"Couldn't upload the file to %s, check that your internet connection is "
+"active."
+msgstr "無法上傳檔案，請檢查您的網路連線是否啟用。"
+
+#: ../dnd2share/src/applet-dnd2share.h:32
+#, fuzzy, c-format
+msgid ""
+"Couldn't upload the file to %s.\n"
+"Check that your internet connection is active and '%s' is correctly "
+"installed and running"
+msgstr "無法上傳檔案，請檢查您的網路連線是否啟用。"
+
+#: ../dnd2share/src/applet-init.c:46
 msgid ""
 "This applet lets you share files easily:\n"
 "Drag-and-drop a file on the icon to upload it to one of the available "
@@ -2069,7 +2140,7 @@ msgid ""
 "You'll need to install 'curl' and 'wget' to upload the data."
 msgstr ""
 
-#: ../dnd2share/src/applet-init.c:55
+#: ../dnd2share/src/applet-init.c:56
 msgid "Drop to share"
 msgstr "放至分享"
 
@@ -2337,11 +2408,11 @@ msgid ""
 "This plugin provides animations for appearance & disappearance of icons."
 msgstr "此插件提供圖示的顯示與消失動畫。"
 
-#: ../keyboard-indicator/src/applet-init.c:31
+#: ../keyboard-indicator/src/applet-init.c:32
 msgid "keyboard indicator"
 msgstr "鍵盤指示器"
 
-#: ../keyboard-indicator/src/applet-init.c:34
+#: ../keyboard-indicator/src/applet-init.c:35
 msgid ""
 "This applet lets you control the keyboard layout.\n"
 "\tIt can also display the current num and caps lock.\n"
@@ -2355,11 +2426,11 @@ msgstr ""
 "\t向上/向下 滾動選擇 上一個/下一個 鍵盤佈局。\n"
 "\t右鍵點擊，您可以存取現有的鍵盤佈局列表。"
 
-#: ../keyboard-indicator/src/applet-init.c:81
+#: ../keyboard-indicator/src/applet-init.c:82
 msgid "Switch keyboard language"
 msgstr ""
 
-#: ../keyboard-indicator/src/applet-notifications.c:77
+#: ../keyboard-indicator/src/applet-notifications.c:78
 msgid "Keyboard preferences"
 msgstr ""
 
@@ -2456,20 +2527,20 @@ msgstr "選擇多少分鐘後電腦就會停止："
 msgid "Please do that at the end of the update."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:741
+#: ../logout/src/applet-logout.c:742
 #, c-format
 msgid "It will automatically shut-down in %ds"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:742
+#: ../logout/src/applet-logout.c:743
 msgid "Shut down the computer?"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:813
+#: ../logout/src/applet-logout.c:815
 msgid "Restart the computer?"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:865
+#: ../logout/src/applet-logout.c:868
 msgid "Close the current session?"
 msgstr ""
 
@@ -2538,6 +2609,10 @@ msgid "Leave empty to use the default mail application."
 msgstr "留空白以使用預設郵件應用程式。"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
+msgid "Specific icon file when using multiple accounts"
+msgstr ""
+
+#: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Directory on server:"
 msgstr "伺服器上的目錄："
 
@@ -2563,19 +2638,19 @@ msgid ""
 "account."
 msgstr ""
 
-#: ../mail/src/cd-mail-applet-config.c:230
+#: ../mail/src/cd-mail-applet-config.c:227
 msgid "Please choose an account type."
 msgstr "請選擇帳戶類型。"
 
-#: ../mail/src/cd-mail-applet-config.c:235
+#: ../mail/src/cd-mail-applet-config.c:232
 msgid "New account's name"
 msgstr "新帳號的名稱"
 
-#: ../mail/src/cd-mail-applet-config.c:238
+#: ../mail/src/cd-mail-applet-config.c:235
 msgid "Please enter a name for this account."
 msgstr "請輸入此帳號的名稱。"
 
-#: ../mail/src/cd-mail-applet-config.c:248
+#: ../mail/src/cd-mail-applet-config.c:245
 msgid ""
 "This account already exists.\n"
 "Please choose another name for the new account."
@@ -2583,11 +2658,11 @@ msgstr ""
 "此帳號已存在。\n"
 "請選擇其他名稱為新帳號。"
 
-#: ../mail/src/cd-mail-applet-config.c:392
+#: ../mail/src/cd-mail-applet-config.c:384
 msgid "Enter a name for this account. You can give it any name you want."
 msgstr "輸入此帳號的名稱。你可以給它任何你想要的名字。"
 
-#: ../mail/src/cd-mail-applet-config.c:447
+#: ../mail/src/cd-mail-applet-config.c:439
 msgid "Remove Account"
 msgstr "移除帳號"
 
@@ -2599,16 +2674,16 @@ msgstr "未知"
 msgid "no subject"
 msgstr "沒有主旨"
 
-#: ../mail/src/cd-mail-applet-etpan.c:404
+#: ../mail/src/cd-mail-applet-etpan.c:408
 msgid "No unread mail in your mailboxes"
 msgstr "沒有未讀的信件在您的信箱當中"
 
-#: ../mail/src/cd-mail-applet-etpan.c:426
+#: ../mail/src/cd-mail-applet-etpan.c:430
 #, c-format
 msgid "You have %d new mails:"
 msgstr "您有 %d 封新信件："
 
-#: ../mail/src/cd-mail-applet-etpan.c:428
+#: ../mail/src/cd-mail-applet-etpan.c:432
 msgid "You have a new mail:"
 msgstr "您有新信件："
 
@@ -2628,7 +2703,7 @@ msgstr ""
 "左鍵點擊會啟動首選信件應用程式，\n"
 "中鍵點擊會更新所有信箱。"
 
-#: ../mail/src/cd-mail-applet-notifications.c:62
+#: ../mail/src/cd-mail-applet-notifications.c:67
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -2639,35 +2714,35 @@ msgstr ""
 "如果 '%s' 不是您平常使用的信件應用程式，\n"
 "您可以在這個模組的設置面板裏面更改它。"
 
-#: ../mail/src/cd-mail-applet-notifications.c:67
+#: ../mail/src/cd-mail-applet-notifications.c:72
 msgid ""
 "No mail application is defined,\n"
 "you can define it in the configuration panel of this module"
 msgstr ""
 
-#: ../mail/src/cd-mail-applet-notifications.c:146
+#: ../mail/src/cd-mail-applet-notifications.c:151
 msgid "Refresh a mail account"
 msgstr "更新信件帳戶"
 
-#: ../mail/src/cd-mail-applet-notifications.c:153
+#: ../mail/src/cd-mail-applet-notifications.c:158
 msgid "Refresh all"
 msgstr ""
 
-#: ../mail/src/cd-mail-applet-notifications.c:160
+#: ../mail/src/cd-mail-applet-notifications.c:165
 #, c-format
 msgid "Refresh %s"
 msgstr "刷新 %s"
 
-#: ../mail/src/cd-mail-applet-notifications.c:166
+#: ../mail/src/cd-mail-applet-notifications.c:171
 msgid "Mark all emails as read"
 msgstr "設定全部的信件為已經讀取"
 
-#: ../mail/src/cd-mail-applet-notifications.c:169
+#: ../mail/src/cd-mail-applet-notifications.c:174
 #, c-format
 msgid "Launch %s"
 msgstr "執行 %s"
 
-#: ../mail/src/cd-mail-applet-notifications.c:346
+#: ../mail/src/cd-mail-applet-notifications.c:351
 msgid "Mail"
 msgstr "信件"
 
@@ -2749,67 +2824,67 @@ msgstr ""
 msgid "Choose a music player to control"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:287
+#: ../musicPlayer/src/applet-notifications.c:291
 msgid "Find opened player"
 msgstr "尋找已開啟的播放器"
 
-#: ../musicPlayer/src/applet-notifications.c:291
+#: ../musicPlayer/src/applet-notifications.c:295
 msgid "Choose a player"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:297
+#: ../musicPlayer/src/applet-notifications.c:301
 msgid "Previous"
 msgstr "上一首"
 
-#: ../musicPlayer/src/applet-notifications.c:297
+#: ../musicPlayer/src/applet-notifications.c:301
 msgid "scroll-up"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:303
+#: ../musicPlayer/src/applet-notifications.c:307
 msgid "Play/Pause"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:303
+#: ../musicPlayer/src/applet-notifications.c:307
 msgid "left-click"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:309
+#: ../musicPlayer/src/applet-notifications.c:313
 msgid "Next"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:309
+#: ../musicPlayer/src/applet-notifications.c:313
 msgid "scroll-down"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:314
+#: ../musicPlayer/src/applet-notifications.c:318
 msgid "Stop"
 msgstr "停止"
 
-#: ../musicPlayer/src/applet-notifications.c:318
+#: ../musicPlayer/src/applet-notifications.c:322
 msgid "Information"
 msgstr "資訊"
 
-#: ../musicPlayer/src/applet-notifications.c:323
+#: ../musicPlayer/src/applet-notifications.c:327
 msgid "Show JumpBox"
 msgstr "顯示 JumpBox"
 
-#: ../musicPlayer/src/applet-notifications.c:326
+#: ../musicPlayer/src/applet-notifications.c:330
 msgid "Shuffle"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:334
+#: ../musicPlayer/src/applet-notifications.c:338
 msgid "Repeat"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:342
+#: ../musicPlayer/src/applet-notifications.c:346
 msgid "Rate this song"
 msgstr "評等這首歌"
 
-#: ../musicPlayer/src/applet-notifications.c:346
+#: ../musicPlayer/src/applet-notifications.c:350
 msgid "Show"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:347
+#: ../musicPlayer/src/applet-notifications.c:351
 msgid "Quit"
 msgstr ""
 
@@ -2863,64 +2938,76 @@ msgstr ""
 msgid "Re-check interface"
 msgstr "重新檢查界面卡"
 
-#: ../powermanager/src/powermanager-draw.c:188
+#: ../powermanager/src/powermanager-draw.c:187
 msgid "Battery charged"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:210
-msgid "Time before empty"
-msgstr ""
+#: ../powermanager/src/powermanager-draw.c:199
+#, fuzzy
+msgid "h"
+msgstr "1小時"
+
+#: ../powermanager/src/powermanager-draw.c:201
+#, fuzzy
+msgid "mn"
+msgstr "1分鐘"
 
 #: ../powermanager/src/powermanager-draw.c:210
-msgid "Time before full"
-msgstr ""
+#, fuzzy
+msgid "remaining"
+msgstr "剩餘時間"
 
-#: ../powermanager/src/powermanager-draw.c:230 ../wifi/src/applet-draw.c:30
-#: ../Clipper/data/messages:97 ../GMenu-old/data/messages:105
-#: ../GMenu/data/messages:105 ../Network-Monitor/data/messages:221
+#: ../powermanager/src/powermanager-draw.c:210
+#, fuzzy
+msgid "until charged"
+msgstr "充電"
+
+#: ../powermanager/src/powermanager-draw.c:228 ../wifi/src/applet-draw.c:30
+#: ../Clipper/data/messages:97 ../GMenu-old/data/messages:109
+#: ../GMenu/data/messages:109 ../Network-Monitor/data/messages:221
 #: ../dnd2share/data/messages:109 ../dustbin/data/messages:101
 #: ../wifi/data/messages:145
 msgid "None"
 msgstr "無"
 
-#: ../powermanager/src/powermanager-draw.c:265
+#: ../powermanager/src/powermanager-draw.c:263
 msgid "Laptop on Battery."
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:266
-#: ../powermanager/src/powermanager-draw.c:275
+#: ../powermanager/src/powermanager-draw.c:264
+#: ../powermanager/src/powermanager-draw.c:273
 msgid "Battery charged at:"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:267
+#: ../powermanager/src/powermanager-draw.c:265
 msgid "Estimated time before empty:"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:274
+#: ../powermanager/src/powermanager-draw.c:272
 msgid "Laptop on Charge."
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:276
+#: ../powermanager/src/powermanager-draw.c:274
 msgid "Estimated time before full:"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:283
+#: ../powermanager/src/powermanager-draw.c:281
 msgid "Model:"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:289
+#: ../powermanager/src/powermanager-draw.c:287
 msgid "Technology:"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:293
+#: ../powermanager/src/powermanager-draw.c:291
 msgid "Maximum capacity:"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:298
+#: ../powermanager/src/powermanager-draw.c:296
 msgid "No battery found."
 msgstr "沒有找到電池 。"
 
-#: ../powermanager/src/powermanager-draw.c:320
+#: ../powermanager/src/powermanager-draw.c:318
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -2928,15 +3015,15 @@ msgstr ""
 "電源管理員。\n"
 "電池電量似乎是低的"
 
-#: ../powermanager/src/powermanager-draw.c:320
+#: ../powermanager/src/powermanager-draw.c:318
 msgid "Estimated time with charge:"
 msgstr "估計充電的時間："
 
-#: ../powermanager/src/powermanager-draw.c:320
+#: ../powermanager/src/powermanager-draw.c:318
 msgid "Please put your laptop on charge."
 msgstr "請把您的筆記型電腦充電。"
 
-#: ../powermanager/src/powermanager-draw.c:334
+#: ../powermanager/src/powermanager-draw.c:332
 msgid ""
 "PowerManager.\n"
 "Your battery is now charged"
@@ -3286,7 +3373,7 @@ msgstr "開啟(點擊)"
 
 #: ../stack/src/applet-notifications.c:214
 #: ../terminal/src/terminal-callbacks.c:82
-#: ../terminal/src/terminal-widget.c:472
+#: ../terminal/src/terminal-widget.c:459
 msgid "Copy"
 msgstr "複製"
 
@@ -3310,13 +3397,13 @@ msgstr ""
 msgid "The URL has been added to the stack."
 msgstr ""
 
-#: ../switcher/src/applet-draw.c:580 ../switcher/src/applet-draw.c:587
+#: ../switcher/src/applet-draw.c:581 ../switcher/src/applet-draw.c:588
 #: ../switcher/src/applet-load-icons.c:54
 #: ../switcher/src/applet-notifications.c:411
 msgid "Current"
 msgstr "目前"
 
-#: ../switcher/src/applet-draw.c:587 ../switcher/src/applet-draw.c:589
+#: ../switcher/src/applet-draw.c:588 ../switcher/src/applet-draw.c:590
 #: ../switcher/src/applet-load-icons.c:60
 #: ../switcher/src/applet-notifications.c:228
 #: ../switcher/src/applet-notifications.c:247
@@ -3437,7 +3524,7 @@ msgid "Show/hide the terminal"
 msgstr ""
 
 #: ../terminal/src/terminal-menu-functions.c:78
-#: ../terminal/src/terminal-widget.c:488
+#: ../terminal/src/terminal-widget.c:475
 msgid "New Tab"
 msgstr "新分頁"
 
@@ -3453,36 +3540,40 @@ msgstr "關閉目前的分頁"
 msgid "Terminal"
 msgstr "終端機"
 
-#: ../terminal/src/terminal-widget.c:217
+#: ../terminal/src/terminal-widget.c:204
 msgid "Set title for this tab:"
 msgstr "設定這個分頁的標籤"
 
-#: ../terminal/src/terminal-widget.c:275 ../terminal/src/terminal-widget.c:277
+#: ../terminal/src/terminal-widget.c:262 ../terminal/src/terminal-widget.c:264
 msgid "Select a color"
 msgstr "請選取顏色"
 
-#: ../terminal/src/terminal-widget.c:432
+#: ../terminal/src/terminal-widget.c:419
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
 msgstr "您可以按下 %s 來喚回終端機桌面小工具"
 
-#: ../terminal/src/terminal-widget.c:478
+#: ../terminal/src/terminal-widget.c:465
 msgid "Paste"
 msgstr "貼上"
 
-#: ../terminal/src/terminal-widget.c:494
+#: ../terminal/src/terminal-widget.c:481
 msgid "Rename this Tab"
 msgstr "更改這個分頁的名稱"
 
-#: ../terminal/src/terminal-widget.c:500
+#: ../terminal/src/terminal-widget.c:487
 msgid "Change this Tab's colour"
 msgstr "改變這個分頁的顏色"
 
-#: ../terminal/src/terminal-widget.c:506
+#: ../terminal/src/terminal-widget.c:493
 msgid "Close this Tab"
 msgstr "關閉這個分頁"
 
-#: ../tomboy/src/applet-backend-default.c:189
+#: ../tomboy/src/applet-backend-default.c:160
+msgid "Note:"
+msgstr ""
+
+#: ../tomboy/src/applet-backend-default.c:208
 msgid "Title:"
 msgstr ""
 
@@ -3557,6 +3648,11 @@ msgstr "搜尋下個星期的筆記"
 #: ../tomboy/src/tomboy-notifications.c:245
 msgid "Reset marks"
 msgstr "清除標記"
+
+#: ../tomboy/src/tomboy-notifications.c:277
+#, fuzzy
+msgid "No description"
+msgstr "位置"
 
 #: ../weather/src/applet-config.c:120
 msgid ""
@@ -4136,8 +4232,8 @@ msgstr "圖示的名稱，它將出現在 Dock 的圖示名稱上面顯示此名
 #: ../Cairo-Penguin/data/messages:9 ../Clipper/data/messages:9
 #: ../Composite-Manager/data/messages:9 ../Disks/data/messages:9
 #: ../Doncky/data/messages:9 ../GMenu-old/data/messages:9
-#: ../GMenu-old/data/messages:101 ../GMenu/data/messages:9
-#: ../GMenu/data/messages:101 ../Indicator-Generic/data/messages:9
+#: ../GMenu-old/data/messages:105 ../GMenu/data/messages:9
+#: ../GMenu/data/messages:105 ../Indicator-Generic/data/messages:9
 #: ../Messaging-Menu/data/messages:9 ../RSSreader/data/messages:11
 #: ../RSSreader/data/messages:129 ../Recent-Events/data/messages:9
 #: ../Screenshot/data/messages:9 ../Status-Notifier/data/messages:9
@@ -5181,8 +5277,8 @@ msgstr "剪貼簿"
 msgid "Selection"
 msgstr "選擇"
 
-#: ../Clipper/data/messages:103 ../GMenu-old/data/messages:111
-#: ../GMenu/data/messages:111 ../show-mouse/data/messages:15
+#: ../Clipper/data/messages:103 ../GMenu-old/data/messages:115
+#: ../GMenu/data/messages:115 ../show-mouse/data/messages:15
 msgid "Both"
 msgstr "兩者"
 
@@ -5768,10 +5864,20 @@ msgid "Number of items to display"
 msgstr ""
 
 #: ../GMenu-old/data/messages:99 ../GMenu/data/messages:99
+msgid ""
+"The settings menu file is sometimes available in a settings.menu file but "
+"its content can also be available in the main .menu file used by the dock"
+msgstr ""
+
+#: ../GMenu-old/data/messages:101 ../GMenu/data/messages:101
+msgid "Load settings' menu?"
+msgstr ""
+
+#: ../GMenu-old/data/messages:103 ../GMenu/data/messages:103
 msgid "Command to use for configuring the menu:"
 msgstr "設置選單的指令："
 
-#: ../GMenu-old/data/messages:103 ../GMenu/data/messages:103
+#: ../GMenu-old/data/messages:107 ../GMenu/data/messages:107
 msgid "Show Logout and/or Shutdown : "
 msgstr ""
 
@@ -7099,7 +7205,7 @@ msgid "Preferred site for texts hosting :"
 msgstr "喜好的主要文件網站："
 
 #: ../dnd2share/data/messages:127 ../dnd2share/data/messages:139
-#: ../dnd2share/data/messages:149 ../dnd2share/data/messages:155
+#: ../dnd2share/data/messages:151 ../dnd2share/data/messages:157
 msgid "Custom"
 msgstr "自定義"
 
@@ -7124,7 +7230,8 @@ msgid "Preferred site for images hosting :"
 msgstr "喜好的主要圖檔網站："
 
 #: ../dnd2share/data/messages:141
-msgid "Uppix.net"
+#, fuzzy
+msgid "Uppix.com"
 msgstr "Uppix.net"
 
 #: ../dnd2share/data/messages:143
@@ -7136,65 +7243,71 @@ msgid "ImageShack.us"
 msgstr "ImageShack.us"
 
 #: ../dnd2share/data/messages:147
+msgid "Imgur.com"
+msgstr ""
+
+#: ../dnd2share/data/messages:149
 msgid "Preferred site for videos hosting :"
 msgstr "喜好的主要影片網站："
 
-#: ../dnd2share/data/messages:151
+#: ../dnd2share/data/messages:153
 msgid "VideoBin.org"
 msgstr "VideoBin.org"
 
-#: ../dnd2share/data/messages:153
+#: ../dnd2share/data/messages:155
 msgid "Preferred site for files hosting :"
 msgstr "喜好的主要檔案網站："
 
-#: ../dnd2share/data/messages:157
+#: ../dnd2share/data/messages:159
 msgid "dl.free.fr"
 msgstr "dl.free.fr"
 
-#: ../dnd2share/data/messages:159
+#: ../dnd2share/data/messages:161
 msgid "DropBox"
 msgstr "DropBox"
 
-#: ../dnd2share/data/messages:161
+#: ../dnd2share/data/messages:163
 msgid "UbuntuOne"
 msgstr ""
 
-#: ../dnd2share/data/messages:163 ../dnd2share/data/messages:167
-#: ../dnd2share/data/messages:171 ../dnd2share/data/messages:175
+#: ../dnd2share/data/messages:165 ../dnd2share/data/messages:169
+#: ../dnd2share/data/messages:173 ../dnd2share/data/messages:177
 msgid ""
 "The script takes the file path as a parameter, and write the resulting URL "
 "on the standard output."
 msgstr "該指令稿將檔案路徑作為參數，並在標準輸出寫入處理後的網址。"
 
-#: ../dnd2share/data/messages:165
+#: ../dnd2share/data/messages:167
 msgid "Custom script for text upload :"
 msgstr "自訂文字上傳的指令稿："
 
-#: ../dnd2share/data/messages:169
+#: ../dnd2share/data/messages:171
 msgid "Custom script for image upload :"
 msgstr "自訂影像上傳的指令稿："
 
-#: ../dnd2share/data/messages:173
+#: ../dnd2share/data/messages:175
 msgid "Custom script for video upload :"
 msgstr "自訂影片上傳的指令稿："
 
-#: ../dnd2share/data/messages:177
+#: ../dnd2share/data/messages:179
 msgid "Custom script for file upload :"
 msgstr "自訂檔案上傳的指令稿："
 
-#: ../dnd2share/data/messages:179
-msgid "Leave empty to upload files into '~/Dropbox/Public'."
+#: ../dnd2share/data/messages:181
+#, fuzzy
+msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 msgstr "讓他空白讓上傳的檔案放置在 ~/Dropbox/Public 。"
 
-#: ../dnd2share/data/messages:181
-msgid "Path of the DropBox folder :"
+#: ../dnd2share/data/messages:183
+#, fuzzy
+msgid "Path of a custom DropBox / UbuntuOne folder :"
 msgstr "DropBox 資料夾的路徑："
 
-#: ../dnd2share/data/messages:183
+#: ../dnd2share/data/messages:185
 msgid "Otherwise, your user name will be used when possible."
 msgstr "否則，如果可能的話我們會使用您的使用者名稱。"
 
-#: ../dnd2share/data/messages:185
+#: ../dnd2share/data/messages:187
 msgid "Post text as Anonymous ?"
 msgstr "以無名氏發文？"
 
@@ -7260,10 +7373,6 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:39
 msgid "Maximum size of the dock:"
-msgstr ""
-
-#: ../dock-rendering/data/messages:41
-msgid "Small"
 msgstr ""
 
 #: ../dock-rendering/data/messages:43

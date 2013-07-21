@@ -196,7 +196,7 @@ msgstr ""
 msgid "Clipboard history"
 msgstr "Presse-papier"
 
-#: ../Clipper/src/applet-init.c:72
+#: ../Clipper/src/applet-init.c:87
 msgid "Pop-up the items menu"
 msgstr "Afficher les éléments du menu"
 
@@ -299,8 +299,8 @@ msgstr "Editer les parametres du gestionnaire de fenêtres"
 #: ../Xgamma/src/applet-notifications.c:87
 #: ../alsaMixer/src/applet-notifications.c:85
 #: ../dustbin/src/applet-notifications.c:149
-#: ../mail/src/cd-mail-applet-notifications.c:153
-#: ../musicPlayer/src/applet-notifications.c:303
+#: ../mail/src/cd-mail-applet-notifications.c:158
+#: ../musicPlayer/src/applet-notifications.c:307
 #: ../netspeed/src/applet-notifications.c:105
 #: ../quick-browser/src/applet-notifications.c:41
 #: ../shortcuts/src/applet-notifications.c:285
@@ -680,7 +680,7 @@ msgstr "Renommer en :"
 
 #: ../Folders/src/applet-notifications.c:268
 #: ../Scooby-Do/src/applet-backend-files.c:390
-#: ../Screenshot/src/applet-screenshot.c:417
+#: ../Screenshot/src/applet-screenshot.c:419
 msgid "Pick up a directory"
 msgstr "Choisissez un répertoire"
 
@@ -716,8 +716,8 @@ msgid "Move this file"
 msgstr "Déplacer ce fichier"
 
 #: ../Folders/src/applet-notifications.c:409
-#: ../Recent-Events/src/applet-dialog.c:270
-#: ../Screenshot/src/applet-screenshot.c:308
+#: ../Recent-Events/src/applet-dialog.c:274
+#: ../Screenshot/src/applet-screenshot.c:310
 #: ../quick-browser/src/applet-menu.c:328
 #: ../slider/src/applet-notifications.c:238
 msgid "Open with"
@@ -783,21 +783,21 @@ msgstr ""
 msgid "Applications Menu"
 msgstr "Menu d'Applications"
 
-#: ../GMenu-old/src/applet-init.c:134 ../GMenu/src/applet-init.c:62
+#: ../GMenu-old/src/applet-init.c:134 ../GMenu/src/applet-init.c:63
 msgid "Show/hide the Applications menu"
 msgstr "Afficher/cacher le menu des applications"
 
-#: ../GMenu-old/src/applet-init.c:139 ../GMenu/src/applet-init.c:67
+#: ../GMenu-old/src/applet-init.c:139 ../GMenu/src/applet-init.c:68
 msgid "Show/hide the quick-launch dialog"
 msgstr "Afficher/cacher la fenêtre de lancement rapide"
 
-#: ../GMenu-old/src/applet-menu-callbacks.c:177 ../GMenu/src/applet-menu.c:172
-#: ../GMenu-old/data/messages:107 ../GMenu/data/messages:107
+#: ../GMenu-old/src/applet-menu-callbacks.c:177 ../GMenu/src/applet-menu.c:175
+#: ../GMenu-old/data/messages:111 ../GMenu/data/messages:111
 msgid "Logout"
 msgstr "Se déconnecter"
 
-#: ../GMenu-old/src/applet-menu-callbacks.c:180 ../GMenu/src/applet-menu.c:175
-#: ../GMenu-old/data/messages:109 ../GMenu/data/messages:109
+#: ../GMenu-old/src/applet-menu-callbacks.c:180 ../GMenu/src/applet-menu.c:178
+#: ../GMenu-old/data/messages:113 ../GMenu/data/messages:113
 msgid "Shutdown"
 msgstr "Éteindre"
 
@@ -806,13 +806,13 @@ msgstr "Éteindre"
 msgid "Quick launch"
 msgstr "Lancement rapide"
 
-#: ../GMenu-old/src/applet-notifications.c:107
-#: ../GMenu/src/applet-notifications.c:93
+#: ../GMenu-old/src/applet-notifications.c:109
+#: ../GMenu/src/applet-notifications.c:95
 msgid "Configure menu"
 msgstr "Configurer le menu"
 
-#: ../GMenu-old/src/applet-notifications.c:110
-#: ../GMenu/src/applet-notifications.c:96
+#: ../GMenu-old/src/applet-notifications.c:112
+#: ../GMenu/src/applet-notifications.c:98
 msgid "Clear recent"
 msgstr "Vider les documents récents"
 
@@ -830,9 +830,8 @@ msgid "Enter a command to launch:"
 msgstr "Entrez une commande à lancer :"
 
 #: ../GMenu/src/applet-apps.c:67
-#, fuzzy
-msgid "Launch this new application ?"
-msgstr "Application mail"
+msgid "Launch this new application?"
+msgstr "Lancer cette nouvelle application ?"
 
 #: ../Global-Menu/src/applet-init.c:30
 msgid "Global Menu"
@@ -852,7 +851,7 @@ msgstr ""
 "fonctionnalité, ce qui est le cas pour Ubuntu par défaut.\n"
 "Vous pouvez spécifier un raccourci pour cette action."
 
-#: ../Global-Menu/src/applet-init.c:104 ../Global-Menu/src/applet-init.c:203
+#: ../Global-Menu/src/applet-init.c:112 ../Global-Menu/src/applet-init.c:211
 msgid "Show/hide the current application menu"
 msgstr "Afficher/cacher le menu principal des applications"
 
@@ -1014,8 +1013,8 @@ msgstr "ID du réseau"
 #: ../Network-Monitor/src/applet-draw.c:150
 #: ../musicPlayer/src/applet-draw.c:167 ../musicPlayer/src/applet-draw.c:169
 #: ../musicPlayer/src/applet-draw.c:171
-#: ../powermanager/src/powermanager-draw.c:259
-#: ../powermanager/src/powermanager-draw.c:314
+#: ../powermanager/src/powermanager-draw.c:257
+#: ../powermanager/src/powermanager-draw.c:312
 msgid "Unknown"
 msgstr "Inconnu"
 
@@ -1182,64 +1181,64 @@ msgstr ""
 "Avez-vous sélectionné un flux RSS ou Atom valide ?\n"
 "Votre connexion est-elle active ?"
 
-#: ../Recent-Events/src/applet-dialog.c:294
-#: ../Screenshot/src/applet-screenshot.c:317
+#: ../Recent-Events/src/applet-dialog.c:298
+#: ../Screenshot/src/applet-screenshot.c:319
 #: ../quick-browser/src/applet-menu.c:358
 #: ../stack/src/applet-notifications.c:212
 msgid "Open parent folder"
 msgstr "Ouvrir le dossier parent"
 
-#: ../Recent-Events/src/applet-dialog.c:296
-#: ../Screenshot/src/applet-screenshot.c:279
+#: ../Recent-Events/src/applet-dialog.c:300
+#: ../Screenshot/src/applet-screenshot.c:281
 #: ../quick-browser/src/applet-menu.c:360
 msgid "Copy the location"
 msgstr "Copier le chemin"
 
-#: ../Recent-Events/src/applet-dialog.c:299
+#: ../Recent-Events/src/applet-dialog.c:303
 msgid "Delete this event"
 msgstr "Effacer cet évènement"
 
-#: ../Recent-Events/src/applet-dialog.c:383
+#: ../Recent-Events/src/applet-dialog.c:387
 msgid "All"
 msgstr "Tous"
 
-#: ../Recent-Events/src/applet-dialog.c:384
+#: ../Recent-Events/src/applet-dialog.c:388
 msgid "Applications"
 msgstr "Programmes"
 
-#: ../Recent-Events/src/applet-dialog.c:385
+#: ../Recent-Events/src/applet-dialog.c:389
 msgid "Document"
 msgstr "Documents"
 
-#: ../Recent-Events/src/applet-dialog.c:387 ../logout/data/messages:117
+#: ../Recent-Events/src/applet-dialog.c:391 ../logout/data/messages:117
 msgid "Image"
 msgstr "Images"
 
-#: ../Recent-Events/src/applet-dialog.c:388
+#: ../Recent-Events/src/applet-dialog.c:392
 msgid "Audio"
 msgstr "Audio"
 
-#: ../Recent-Events/src/applet-dialog.c:389
+#: ../Recent-Events/src/applet-dialog.c:393
 msgid "Video"
 msgstr "Vidéos"
 
-#: ../Recent-Events/src/applet-dialog.c:390
+#: ../Recent-Events/src/applet-dialog.c:394
 msgid "Web"
 msgstr "Web"
 
-#: ../Recent-Events/src/applet-dialog.c:391
+#: ../Recent-Events/src/applet-dialog.c:395
 msgid "Other"
 msgstr "Autres"
 
-#: ../Recent-Events/src/applet-dialog.c:392
+#: ../Recent-Events/src/applet-dialog.c:396
 msgid "Top Results"
 msgstr "Meilleurs Résultats"
 
-#: ../Recent-Events/src/applet-dialog.c:398
+#: ../Recent-Events/src/applet-dialog.c:402
 msgid "Look for events"
 msgstr "Recherche d'évènements"
 
-#: ../Recent-Events/src/applet-dialog.c:405
+#: ../Recent-Events/src/applet-dialog.c:409
 msgid ""
 "The default boolean operator is AND. Thus the query foo bar will be "
 "interpreted as foo AND bar. To exclude a term from the result set prepend it "
@@ -1256,20 +1255,20 @@ msgstr ""
 "Vous pouvez tronquer des termes en ajoutant un astérisque (*) (par exemple : "
 "« Doc* » pour espérer trouver « Documentation », « Document », etc.) "
 
-#: ../Recent-Events/src/applet-dialog.c:448
-#: ../Screenshot/src/applet-screenshot.c:487
+#: ../Recent-Events/src/applet-dialog.c:452
+#: ../Screenshot/src/applet-screenshot.c:489
 msgid "File name"
 msgstr "Nom du fichier"
 
-#: ../Recent-Events/src/applet-dialog.c:455
+#: ../Recent-Events/src/applet-dialog.c:459
 msgid "Last access"
 msgstr "Dernier accès"
 
-#: ../Recent-Events/src/applet-dialog.c:503
+#: ../Recent-Events/src/applet-dialog.c:508
 msgid "You need to install the Zeitgeist data engine."
 msgstr "Vous devez installer le moteur de données Zeitgeist"
 
-#: ../Recent-Events/src/applet-dialog.c:538
+#: ../Recent-Events/src/applet-dialog.c:556
 msgid "Browse and search in recent events"
 msgstr "Parcourir et naviguer dans les évènements récents"
 
@@ -1291,11 +1290,11 @@ msgstr "%d évènement(s) effacé(s)"
 msgid "Recent files"
 msgstr "Fichiers récents"
 
-#: ../Recent-Events/src/applet-notifications.c:183
+#: ../Recent-Events/src/applet-notifications.c:187
 msgid "Delete today's events"
 msgstr "Effacer les évènements du jour"
 
-#: ../Recent-Events/src/applet-notifications.c:185
+#: ../Recent-Events/src/applet-notifications.c:189
 msgid "Delete all events"
 msgstr "Effacer tous les évènements"
 
@@ -1376,7 +1375,7 @@ msgid "Files"
 msgstr "Fichiers"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:357
-#: ../Screenshot/src/applet-screenshot.c:281
+#: ../Screenshot/src/applet-screenshot.c:283
 msgid "Open"
 msgstr "Ouvrir"
 
@@ -1496,15 +1495,15 @@ msgstr "Capture d'écran"
 msgid "Screenshot with options"
 msgstr "Capture d'écran avec options"
 
-#: ../Screenshot/src/applet-screenshot.c:163
+#: ../Screenshot/src/applet-screenshot.c:164
 msgid "Screenshot from"
 msgstr "Capture du"
 
-#: ../Screenshot/src/applet-screenshot.c:331
+#: ../Screenshot/src/applet-screenshot.c:333
 msgid "Unable to take a screenshot"
 msgstr "Impossible de prendre une capture d'écran"
 
-#: ../Screenshot/src/applet-screenshot.c:454 ../Cairo-Penguin/data/messages:19
+#: ../Screenshot/src/applet-screenshot.c:456 ../Cairo-Penguin/data/messages:19
 #: ../Clipper/data/messages:137 ../Disks/data/messages:143
 #: ../Network-Monitor/data/messages:175 ../System-Monitor/data/messages:169
 #: ../System-Monitor/data/messages:215 ../Toons/data/messages:101
@@ -1516,26 +1515,26 @@ msgstr "Impossible de prendre une capture d'écran"
 msgid "in seconds."
 msgstr "en secondes."
 
-#: ../Screenshot/src/applet-screenshot.c:455
+#: ../Screenshot/src/applet-screenshot.c:457
 msgid "Delay"
 msgstr "Délai"
 
-#: ../Screenshot/src/applet-screenshot.c:477
+#: ../Screenshot/src/applet-screenshot.c:479
 msgid "Grab the current window instead of the all screen"
 msgstr "Capturer la fenêtre courante au lieu de tout l'écran"
 
-#: ../Screenshot/src/applet-screenshot.c:478
+#: ../Screenshot/src/applet-screenshot.c:480
 msgid "Grab the current window"
 msgstr "Capturer la fenêtre courante"
 
-#: ../Screenshot/src/applet-screenshot.c:486
-#: ../Screenshot/src/applet-screenshot.c:495
+#: ../Screenshot/src/applet-screenshot.c:488
+#: ../Screenshot/src/applet-screenshot.c:497
 #: ../Status-Notifier/data/messages:11 ../mail/data/messages:107
 #: ../mail/data/messages:111 ../mail/data/messages:127
 msgid "Let empty to use the default one."
 msgstr "Laissez vide pour utiliser celle par défaut."
 
-#: ../Screenshot/src/applet-screenshot.c:496
+#: ../Screenshot/src/applet-screenshot.c:498
 msgid "Directory"
 msgstr "Répertoire"
 
@@ -1850,7 +1849,9 @@ msgstr "Désactiver le son"
 #: ../clock/src/applet-calendar.c:574 ../clock/src/applet-task-editor.c:120
 #: ../clock/src/applet-timer.c:92 ../clock/src/applet-timer.c:180
 #: ../clock/src/applet-timer.c:458 ../clock/src/applet-timer.c:472
-#: ../clock/src/applet-timer.c:501
+#: ../clock/src/applet-timer.c:501 ../tomboy/src/applet-backend-default.c:161
+#: ../tomboy/src/applet-notes.c:98 ../tomboy/src/applet-notes.c:101
+#: ../tomboy/src/applet-notes.c:406
 msgid "No title"
 msgstr "Sans titre"
 
@@ -2179,14 +2180,58 @@ msgstr "Moderne"
 msgid "tooltip"
 msgstr "Info-bulle"
 
-#: ../dnd2share/src/applet-dnd2share.c:165
-msgid ""
-"Couldn't upload the file, check that your internet connection is active."
-msgstr ""
-"Impossible d'uploader le fichier, vérifiez que votre connexion Internet est "
-"active."
+#: ../dnd2share/src/applet-backend-codepad.c:35
+#: ../dnd2share/src/applet-backend-custom.c:28
+#: ../dnd2share/src/applet-backend-dropbox.c:33
+#: ../dnd2share/src/applet-backend-free.c:33
+#: ../dnd2share/src/applet-backend-imagebin.c:32
+#: ../dnd2share/src/applet-backend-imageshack.c:31
+#: ../dnd2share/src/applet-backend-imgur.c:33
+#: ../dnd2share/src/applet-backend-paste-ubuntu.c:35
+#: ../dnd2share/src/applet-backend-pastebin-mozilla.c:36
+#: ../dnd2share/src/applet-backend-pastebin.c:38
+#: ../dnd2share/src/applet-backend-ubuntuone.c:32
+#: ../dnd2share/src/applet-backend-uppix.c:31
+#: ../dnd2share/src/applet-backend-videobin.c:32
+msgid "Direct Link"
+msgstr "Lien direct"
 
-#: ../dnd2share/src/applet-dnd2share.c:282
+#: ../dnd2share/src/applet-backend-codepad.c:51
+#: ../dnd2share/src/applet-backend-custom.c:74
+#: ../dnd2share/src/applet-backend-paste-ubuntu.c:49
+#: ../dnd2share/src/applet-backend-pastebin-mozilla.c:52
+#: ../dnd2share/src/applet-backend-pastebin.c:45
+msgid "Your text is empty and couldn't be uploaded to this server"
+msgstr ""
+
+#: ../dnd2share/src/applet-backend-custom.c:35
+msgid "No script set for this file type"
+msgstr "Aucun script défini pour ce type de fichier"
+
+#: ../dnd2share/src/applet-backend-dropbox.c:63
+#: ../dnd2share/src/applet-backend-ubuntuone.c:59
+msgid "This directory seems not valid:"
+msgstr ""
+
+#: ../dnd2share/src/applet-backend-imageshack.c:31
+#: ../dnd2share/src/applet-backend-uppix.c:31
+msgid "Thumbnail"
+msgstr ""
+
+#: ../dnd2share/src/applet-backend-imgur.c:33
+msgid "Display Image"
+msgstr "Afficher l'image"
+
+#: ../dnd2share/src/applet-backend-imgur.c:33
+msgid "Large"
+msgstr "Grand"
+
+#: ../dnd2share/src/applet-backend-imgur.c:33
+#: ../dock-rendering/data/messages:41
+msgid "Small"
+msgstr "Petit"
+
+#: ../dnd2share/src/applet-dnd2share.c:289
 msgid ""
 "File has been uploaded.\n"
 "Just press CTRL+v to paste its URL anywhere."
@@ -2194,21 +2239,48 @@ msgstr ""
 "Le fichier a été uploadé.\n"
 "Tapez juste CTRL+v pour coller l'URL n'importe où."
 
-#: ../dnd2share/src/applet-dnd2share.c:333
+#: ../dnd2share/src/applet-dnd2share.c:342
 msgid "Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Veuillez attendre que le chargement en cours soit terminé avant d'en "
 "commencer un nouveau."
 
-#: ../dnd2share/src/applet-dnd2share.c:401
+#: ../dnd2share/src/applet-dnd2share.c:410
 msgid "This file is not readable."
 msgstr "Ce fichier n'est pas lisible."
 
-#: ../dnd2share/src/applet-dnd2share.c:628
+#: ../dnd2share/src/applet-dnd2share.c:637
 msgid "Tiny URL"
 msgstr "URL réduite"
 
-#: ../dnd2share/src/applet-init.c:45
+#: ../dnd2share/src/applet-dnd2share.h:27
+msgid ""
+"Couldn't upload the file, check that your internet connection is active."
+msgstr ""
+"Impossible d'uploader le fichier, vérifiez que votre connexion Internet est "
+"active."
+
+#: ../dnd2share/src/applet-dnd2share.h:29
+#, c-format
+msgid ""
+"Couldn't upload the file to %s, check that your internet connection is "
+"active."
+msgstr ""
+"Impossible d'uploader le fichier vers %s, vérifiez que votre connexion "
+"Internet est active."
+
+#: ../dnd2share/src/applet-dnd2share.h:32
+#, c-format
+msgid ""
+"Couldn't upload the file to %s.\n"
+"Check that your internet connection is active and '%s' is correctly "
+"installed and running"
+msgstr ""
+"Impossible d'uploader le fichier vers %s.\n"
+"Vérifiez que votre connexion Internet est active et '%s' est correctement "
+"installé et en train de fonctionner."
+
+#: ../dnd2share/src/applet-init.c:46
 msgid ""
 "This applet lets you share files easily:\n"
 "Drag-and-drop a file on the icon to upload it to one of the available "
@@ -2239,7 +2311,7 @@ msgstr ""
 "clic du milieu pour le copier dans la sélection de la souris.\n"
 "Vous devez installer « curl » et « wget » pour l'envoie de vos données."
 
-#: ../dnd2share/src/applet-init.c:55
+#: ../dnd2share/src/applet-init.c:56
 msgid "Drop to share"
 msgstr "Déposer pour Partager"
 
@@ -2512,11 +2584,11 @@ msgstr ""
 "Ce plug-in ajoute des animations pour l'apparition et la disparition des "
 "icônes."
 
-#: ../keyboard-indicator/src/applet-init.c:31
+#: ../keyboard-indicator/src/applet-init.c:32
 msgid "keyboard indicator"
 msgstr "Indicateur clavier"
 
-#: ../keyboard-indicator/src/applet-init.c:34
+#: ../keyboard-indicator/src/applet-init.c:35
 msgid ""
 "This applet lets you control the keyboard layout.\n"
 "\tIt can also display the current num and caps lock.\n"
@@ -2531,11 +2603,11 @@ msgstr ""
 "suivant,\n"
 "\tClic droit pour donner un accès à la liste des agencements disponibles."
 
-#: ../keyboard-indicator/src/applet-init.c:81
+#: ../keyboard-indicator/src/applet-init.c:82
 msgid "Switch keyboard language"
 msgstr "Changer la langue du clavier"
 
-#: ../keyboard-indicator/src/applet-notifications.c:77
+#: ../keyboard-indicator/src/applet-notifications.c:78
 msgid "Keyboard preferences"
 msgstr "Préférences du clavier"
 
@@ -2641,20 +2713,20 @@ msgstr "Choisissez dans combien de minutes votre PC s'arrêtera :"
 msgid "Please do that at the end of the update."
 msgstr "Merci de faire ceci à la fin des mises à jour."
 
-#: ../logout/src/applet-logout.c:741
+#: ../logout/src/applet-logout.c:742
 #, c-format
 msgid "It will automatically shut-down in %ds"
 msgstr "Il s'éteindra automatiquement dans %d secondes"
 
-#: ../logout/src/applet-logout.c:742
+#: ../logout/src/applet-logout.c:743
 msgid "Shut down the computer?"
 msgstr "Éteindre l'ordinateur ?"
 
-#: ../logout/src/applet-logout.c:813
+#: ../logout/src/applet-logout.c:815
 msgid "Restart the computer?"
 msgstr "Redémarrer l'ordinateur ?"
 
-#: ../logout/src/applet-logout.c:865
+#: ../logout/src/applet-logout.c:868
 msgid "Close the current session?"
 msgstr "Fermer la session courante ?"
 
@@ -2727,6 +2799,10 @@ msgstr ""
 "Laissez vide pour utiliser l'application de gestion du courrier par défaut."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
+msgid "Specific icon file when using multiple accounts"
+msgstr ""
+
+#: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Directory on server:"
 msgstr "Dossier sur le serveur :"
 
@@ -2754,19 +2830,19 @@ msgstr ""
 "N'oubliez pas d'activer le service IMAP (ou POP) depuis les paramètres de "
 "votre compte d'adresse courriel."
 
-#: ../mail/src/cd-mail-applet-config.c:230
+#: ../mail/src/cd-mail-applet-config.c:227
 msgid "Please choose an account type."
 msgstr "Veuillez choisir un type de compte"
 
-#: ../mail/src/cd-mail-applet-config.c:235
+#: ../mail/src/cd-mail-applet-config.c:232
 msgid "New account's name"
 msgstr "Nom du nouveau compte"
 
-#: ../mail/src/cd-mail-applet-config.c:238
+#: ../mail/src/cd-mail-applet-config.c:235
 msgid "Please enter a name for this account."
 msgstr "Entrez un nom pour ce compte"
 
-#: ../mail/src/cd-mail-applet-config.c:248
+#: ../mail/src/cd-mail-applet-config.c:245
 msgid ""
 "This account already exists.\n"
 "Please choose another name for the new account."
@@ -2774,12 +2850,12 @@ msgstr ""
 "Ce compte existe déjà.\n"
 "Veuillez choisir un autre nom pour le nouveau compte"
 
-#: ../mail/src/cd-mail-applet-config.c:392
+#: ../mail/src/cd-mail-applet-config.c:384
 msgid "Enter a name for this account. You can give it any name you want."
 msgstr ""
 "Entrez un nom pour ce compte. Vous pouvez mettre le nom que vous voulez."
 
-#: ../mail/src/cd-mail-applet-config.c:447
+#: ../mail/src/cd-mail-applet-config.c:439
 msgid "Remove Account"
 msgstr "Supprimer ce compte"
 
@@ -2791,16 +2867,16 @@ msgstr "Inconnu"
 msgid "no subject"
 msgstr "Pas de sujet"
 
-#: ../mail/src/cd-mail-applet-etpan.c:404
+#: ../mail/src/cd-mail-applet-etpan.c:408
 msgid "No unread mail in your mailboxes"
 msgstr "Aucun message non lu dans votre boîte de réception"
 
-#: ../mail/src/cd-mail-applet-etpan.c:426
+#: ../mail/src/cd-mail-applet-etpan.c:430
 #, c-format
 msgid "You have %d new mails:"
 msgstr "Vous avez %d nouveaux messages"
 
-#: ../mail/src/cd-mail-applet-etpan.c:428
+#: ../mail/src/cd-mail-applet-etpan.c:432
 msgid "You have a new mail:"
 msgstr "Vous avez un nouveau message"
 
@@ -2820,7 +2896,7 @@ msgstr ""
 "Un clic gauche lance l'application de mail préféré,\n"
 " et le clic du milieu rafraîchi toutes les boites mail."
 
-#: ../mail/src/cd-mail-applet-notifications.c:62
+#: ../mail/src/cd-mail-applet-notifications.c:67
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -2831,7 +2907,7 @@ msgstr ""
 "Si « %s » n'est pas votre application mail par défaut,\n"
 "vous pouvez le modifier dans le panneau de configuration de ce module"
 
-#: ../mail/src/cd-mail-applet-notifications.c:67
+#: ../mail/src/cd-mail-applet-notifications.c:72
 msgid ""
 "No mail application is defined,\n"
 "you can define it in the configuration panel of this module"
@@ -2839,29 +2915,29 @@ msgstr ""
 "Aucune application courriel n'est définie,\n"
 "vous pouvez la définir dans le panneau de configuration de ce module"
 
-#: ../mail/src/cd-mail-applet-notifications.c:146
+#: ../mail/src/cd-mail-applet-notifications.c:151
 msgid "Refresh a mail account"
 msgstr "Rafraîchir un compte e-mail"
 
-#: ../mail/src/cd-mail-applet-notifications.c:153
+#: ../mail/src/cd-mail-applet-notifications.c:158
 msgid "Refresh all"
 msgstr "Tout réactualiser"
 
-#: ../mail/src/cd-mail-applet-notifications.c:160
+#: ../mail/src/cd-mail-applet-notifications.c:165
 #, c-format
 msgid "Refresh %s"
 msgstr "Actualiser %s"
 
-#: ../mail/src/cd-mail-applet-notifications.c:166
+#: ../mail/src/cd-mail-applet-notifications.c:171
 msgid "Mark all emails as read"
 msgstr "Marquer tous les messages comme lus."
 
-#: ../mail/src/cd-mail-applet-notifications.c:169
+#: ../mail/src/cd-mail-applet-notifications.c:174
 #, c-format
 msgid "Launch %s"
 msgstr "Lancer %s"
 
-#: ../mail/src/cd-mail-applet-notifications.c:346
+#: ../mail/src/cd-mail-applet-notifications.c:351
 msgid "Mail"
 msgstr "Mail"
 
@@ -2956,67 +3032,67 @@ msgstr ""
 msgid "Choose a music player to control"
 msgstr "Choisissez un lecteur de musique à contrôler."
 
-#: ../musicPlayer/src/applet-notifications.c:287
+#: ../musicPlayer/src/applet-notifications.c:291
 msgid "Find opened player"
 msgstr "Trouver le lecteur ouvert"
 
-#: ../musicPlayer/src/applet-notifications.c:291
+#: ../musicPlayer/src/applet-notifications.c:295
 msgid "Choose a player"
 msgstr "Choisir un lecteur"
 
-#: ../musicPlayer/src/applet-notifications.c:297
+#: ../musicPlayer/src/applet-notifications.c:301
 msgid "Previous"
 msgstr "Précédent"
 
-#: ../musicPlayer/src/applet-notifications.c:297
+#: ../musicPlayer/src/applet-notifications.c:301
 msgid "scroll-up"
 msgstr "Défiler vers le haut"
 
-#: ../musicPlayer/src/applet-notifications.c:303
+#: ../musicPlayer/src/applet-notifications.c:307
 msgid "Play/Pause"
 msgstr "Lecture / pause"
 
-#: ../musicPlayer/src/applet-notifications.c:303
+#: ../musicPlayer/src/applet-notifications.c:307
 msgid "left-click"
 msgstr "Clic gauche"
 
-#: ../musicPlayer/src/applet-notifications.c:309
+#: ../musicPlayer/src/applet-notifications.c:313
 msgid "Next"
 msgstr "Suivant"
 
-#: ../musicPlayer/src/applet-notifications.c:309
+#: ../musicPlayer/src/applet-notifications.c:313
 msgid "scroll-down"
 msgstr "Défiler vers le bas"
 
-#: ../musicPlayer/src/applet-notifications.c:314
+#: ../musicPlayer/src/applet-notifications.c:318
 msgid "Stop"
 msgstr "Stop"
 
-#: ../musicPlayer/src/applet-notifications.c:318
+#: ../musicPlayer/src/applet-notifications.c:322
 msgid "Information"
 msgstr "Informations"
 
-#: ../musicPlayer/src/applet-notifications.c:323
+#: ../musicPlayer/src/applet-notifications.c:327
 msgid "Show JumpBox"
 msgstr "Montrer la boite de Recherche"
 
-#: ../musicPlayer/src/applet-notifications.c:326
+#: ../musicPlayer/src/applet-notifications.c:330
 msgid "Shuffle"
 msgstr "Lecture aléatoire"
 
-#: ../musicPlayer/src/applet-notifications.c:334
+#: ../musicPlayer/src/applet-notifications.c:338
 msgid "Repeat"
 msgstr "Lecture en boucle"
 
-#: ../musicPlayer/src/applet-notifications.c:342
+#: ../musicPlayer/src/applet-notifications.c:346
 msgid "Rate this song"
 msgstr "Noter cette chanson"
 
-#: ../musicPlayer/src/applet-notifications.c:346
+#: ../musicPlayer/src/applet-notifications.c:350
 msgid "Show"
 msgstr "Afficher"
 
-#: ../musicPlayer/src/applet-notifications.c:347
+#: ../musicPlayer/src/applet-notifications.c:351
 msgid "Quit"
 msgstr "Quitter"
 
@@ -3078,64 +3154,72 @@ msgstr "Activer/Désactiver le réseau"
 msgid "Re-check interface"
 msgstr "Revérifier l'interface"
 
-#: ../powermanager/src/powermanager-draw.c:188
+#: ../powermanager/src/powermanager-draw.c:187
 msgid "Battery charged"
 msgstr "Batterie chargée"
 
-#: ../powermanager/src/powermanager-draw.c:210
-msgid "Time before empty"
-msgstr "Temps avant d'être déchargée"
+#: ../powermanager/src/powermanager-draw.c:199
+msgid "h"
+msgstr "h"
+
+#: ../powermanager/src/powermanager-draw.c:201
+msgid "mn"
+msgstr "min"
 
 #: ../powermanager/src/powermanager-draw.c:210
-msgid "Time before full"
-msgstr "Temps avant d'être pleine"
+msgid "remaining"
+msgstr "temps restant"
 
-#: ../powermanager/src/powermanager-draw.c:230 ../wifi/src/applet-draw.c:30
-#: ../Clipper/data/messages:97 ../GMenu-old/data/messages:105
-#: ../GMenu/data/messages:105 ../Network-Monitor/data/messages:221
+#: ../powermanager/src/powermanager-draw.c:210
+msgid "until charged"
+msgstr "avant d'être chargée"
+
+#: ../powermanager/src/powermanager-draw.c:228 ../wifi/src/applet-draw.c:30
+#: ../Clipper/data/messages:97 ../GMenu-old/data/messages:109
+#: ../GMenu/data/messages:109 ../Network-Monitor/data/messages:221
 #: ../dnd2share/data/messages:109 ../dustbin/data/messages:101
 #: ../wifi/data/messages:145
 msgid "None"
 msgstr "Aucune"
 
-#: ../powermanager/src/powermanager-draw.c:265
+#: ../powermanager/src/powermanager-draw.c:263
 msgid "Laptop on Battery."
 msgstr "Portable avec une batterie."
 
-#: ../powermanager/src/powermanager-draw.c:266
-#: ../powermanager/src/powermanager-draw.c:275
+#: ../powermanager/src/powermanager-draw.c:264
+#: ../powermanager/src/powermanager-draw.c:273
 msgid "Battery charged at:"
 msgstr "Batterie chargée à :"
 
-#: ../powermanager/src/powermanager-draw.c:267
+#: ../powermanager/src/powermanager-draw.c:265
 msgid "Estimated time before empty:"
 msgstr "Temps estimé pour décharger la batterie :"
 
-#: ../powermanager/src/powermanager-draw.c:274
+#: ../powermanager/src/powermanager-draw.c:272
 msgid "Laptop on Charge."
 msgstr "Portable en charge."
 
-#: ../powermanager/src/powermanager-draw.c:276
+#: ../powermanager/src/powermanager-draw.c:274
 msgid "Estimated time before full:"
 msgstr "Temps estimé pour charger la batterie :"
 
-#: ../powermanager/src/powermanager-draw.c:283
+#: ../powermanager/src/powermanager-draw.c:281
 msgid "Model:"
 msgstr "Modèle :"
 
-#: ../powermanager/src/powermanager-draw.c:289
+#: ../powermanager/src/powermanager-draw.c:287
 msgid "Technology:"
 msgstr "Technologie :"
 
-#: ../powermanager/src/powermanager-draw.c:293
+#: ../powermanager/src/powermanager-draw.c:291
 msgid "Maximum capacity:"
 msgstr "Capacité maximum :"
 
-#: ../powermanager/src/powermanager-draw.c:298
+#: ../powermanager/src/powermanager-draw.c:296
 msgid "No battery found."
 msgstr "Aucune Batterie trouvée."
 
-#: ../powermanager/src/powermanager-draw.c:320
+#: ../powermanager/src/powermanager-draw.c:318
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -3143,15 +3227,15 @@ msgstr ""
 "PowerManager.\n"
 "Le niveau de la batterie semble être bas"
 
-#: ../powermanager/src/powermanager-draw.c:320
+#: ../powermanager/src/powermanager-draw.c:318
 msgid "Estimated time with charge:"
 msgstr "Temp de batterie estimé:"
 
-#: ../powermanager/src/powermanager-draw.c:320
+#: ../powermanager/src/powermanager-draw.c:318
 msgid "Please put your laptop on charge."
 msgstr "Veuillez mettre votre portable en charge."
 
-#: ../powermanager/src/powermanager-draw.c:334
+#: ../powermanager/src/powermanager-draw.c:332
 msgid ""
 "PowerManager.\n"
 "Your battery is now charged"
@@ -3526,7 +3610,7 @@ msgstr "Ouvrir (clic)"
 
 #: ../stack/src/applet-notifications.c:214
 #: ../terminal/src/terminal-callbacks.c:82
-#: ../terminal/src/terminal-widget.c:472
+#: ../terminal/src/terminal-widget.c:459
 msgid "Copy"
 msgstr "Copier"
 
@@ -3550,13 +3634,13 @@ msgstr "Ce fichier a été ajouté à la pile."
 msgid "The URL has been added to the stack."
 msgstr "L'URL a été ajouté à la pile."
 
-#: ../switcher/src/applet-draw.c:580 ../switcher/src/applet-draw.c:587
+#: ../switcher/src/applet-draw.c:581 ../switcher/src/applet-draw.c:588
 #: ../switcher/src/applet-load-icons.c:54
 #: ../switcher/src/applet-notifications.c:411
 msgid "Current"
 msgstr "Courant"
 
-#: ../switcher/src/applet-draw.c:587 ../switcher/src/applet-draw.c:589
+#: ../switcher/src/applet-draw.c:588 ../switcher/src/applet-draw.c:590
 #: ../switcher/src/applet-load-icons.c:60
 #: ../switcher/src/applet-notifications.c:228
 #: ../switcher/src/applet-notifications.c:247
@@ -3696,7 +3780,7 @@ msgid "Show/hide the terminal"
 msgstr "Afficher/cacher le terminal"
 
 #: ../terminal/src/terminal-menu-functions.c:78
-#: ../terminal/src/terminal-widget.c:488
+#: ../terminal/src/terminal-widget.c:475
 msgid "New Tab"
 msgstr "Nouvel onglet"
 
@@ -3712,36 +3796,40 @@ msgstr "Fermer l'onglet courant"
 msgid "Terminal"
 msgstr "Terminal"
 
-#: ../terminal/src/terminal-widget.c:217
+#: ../terminal/src/terminal-widget.c:204
 msgid "Set title for this tab:"
 msgstr "Définissez un titre pour cet onglet :"
 
-#: ../terminal/src/terminal-widget.c:275 ../terminal/src/terminal-widget.c:277
+#: ../terminal/src/terminal-widget.c:262 ../terminal/src/terminal-widget.c:264
 msgid "Select a color"
 msgstr "Sélectionner une couleur"
 
-#: ../terminal/src/terminal-widget.c:432
+#: ../terminal/src/terminal-widget.c:419
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
 msgstr "Vous pouvez rappeler le desklet Terminal en tapant %s"
 
-#: ../terminal/src/terminal-widget.c:478
+#: ../terminal/src/terminal-widget.c:465
 msgid "Paste"
 msgstr "Coller"
 
-#: ../terminal/src/terminal-widget.c:494
+#: ../terminal/src/terminal-widget.c:481
 msgid "Rename this Tab"
 msgstr "Renommer cet onglet"
 
-#: ../terminal/src/terminal-widget.c:500
+#: ../terminal/src/terminal-widget.c:487
 msgid "Change this Tab's colour"
 msgstr "Changer la couleur de cet onglet"
 
-#: ../terminal/src/terminal-widget.c:506
+#: ../terminal/src/terminal-widget.c:493
 msgid "Close this Tab"
 msgstr "Fermer cet onglet"
 
-#: ../tomboy/src/applet-backend-default.c:189
+#: ../tomboy/src/applet-backend-default.c:160
+msgid "Note:"
+msgstr ""
+
+#: ../tomboy/src/applet-backend-default.c:208
 msgid "Title:"
 msgstr "Titre :"
 
@@ -3816,6 +3904,10 @@ msgstr "Chercher la note de la semaine prochaine"
 #: ../tomboy/src/tomboy-notifications.c:245
 msgid "Reset marks"
 msgstr "Effacer les marques"
+
+#: ../tomboy/src/tomboy-notifications.c:277
+msgid "No description"
+msgstr "Aucune description"
 
 #: ../weather/src/applet-config.c:120
 msgid ""
@@ -4406,8 +4498,8 @@ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 #: ../Cairo-Penguin/data/messages:9 ../Clipper/data/messages:9
 #: ../Composite-Manager/data/messages:9 ../Disks/data/messages:9
 #: ../Doncky/data/messages:9 ../GMenu-old/data/messages:9
-#: ../GMenu-old/data/messages:101 ../GMenu/data/messages:9
-#: ../GMenu/data/messages:101 ../Indicator-Generic/data/messages:9
+#: ../GMenu-old/data/messages:105 ../GMenu/data/messages:9
+#: ../GMenu/data/messages:105 ../Indicator-Generic/data/messages:9
 #: ../Messaging-Menu/data/messages:9 ../RSSreader/data/messages:11
 #: ../RSSreader/data/messages:129 ../Recent-Events/data/messages:9
 #: ../Screenshot/data/messages:9 ../Status-Notifier/data/messages:9
@@ -5464,8 +5556,8 @@ msgstr "Presse-papier"
 msgid "Selection"
 msgstr "Sélection"
 
-#: ../Clipper/data/messages:103 ../GMenu-old/data/messages:111
-#: ../GMenu/data/messages:111 ../show-mouse/data/messages:15
+#: ../Clipper/data/messages:103 ../GMenu-old/data/messages:115
+#: ../GMenu/data/messages:115 ../show-mouse/data/messages:15
 msgid "Both"
 msgstr "Les deux"
 
@@ -6076,10 +6168,20 @@ msgid "Number of items to display"
 msgstr "Nombre d'éléments à afficher"
 
 #: ../GMenu-old/data/messages:99 ../GMenu/data/messages:99
+msgid ""
+"The settings menu file is sometimes available in a settings.menu file but "
+"its content can also be available in the main .menu file used by the dock"
+msgstr ""
+
+#: ../GMenu-old/data/messages:101 ../GMenu/data/messages:101
+msgid "Load settings' menu?"
+msgstr ""
+
+#: ../GMenu-old/data/messages:103 ../GMenu/data/messages:103
 msgid "Command to use for configuring the menu:"
 msgstr "Commande à utiliser pour configurer le menu :"
 
-#: ../GMenu-old/data/messages:103 ../GMenu/data/messages:103
+#: ../GMenu-old/data/messages:107 ../GMenu/data/messages:107
 msgid "Show Logout and/or Shutdown : "
 msgstr "Afficher « Se déconnecter » et/ou « Éteindre » : "
 
@@ -7439,7 +7541,7 @@ msgid "Preferred site for texts hosting :"
 msgstr "Site préféré pour l'hébergement des textes :"
 
 #: ../dnd2share/data/messages:127 ../dnd2share/data/messages:139
-#: ../dnd2share/data/messages:149 ../dnd2share/data/messages:155
+#: ../dnd2share/data/messages:151 ../dnd2share/data/messages:157
 msgid "Custom"
 msgstr "Personel"
 
@@ -7464,8 +7566,8 @@ msgid "Preferred site for images hosting :"
 msgstr "Site préféré pour l'hébergement des images :"
 
 #: ../dnd2share/data/messages:141
-msgid "Uppix.net"
-msgstr "Uppix.net"
+msgid "Uppix.com"
+msgstr "Uppix.com"
 
 #: ../dnd2share/data/messages:143
 msgid "Imagebin.ca"
@@ -7476,31 +7578,35 @@ msgid "ImageShack.us"
 msgstr "ImageShack.us"
 
 #: ../dnd2share/data/messages:147
+msgid "Imgur.com"
+msgstr ""
+
+#: ../dnd2share/data/messages:149
 msgid "Preferred site for videos hosting :"
 msgstr "Site préféré pour l'hébergement des vidéos :"
 
-#: ../dnd2share/data/messages:151
+#: ../dnd2share/data/messages:153
 msgid "VideoBin.org"
 msgstr "VideoBin.org"
 
-#: ../dnd2share/data/messages:153
+#: ../dnd2share/data/messages:155
 msgid "Preferred site for files hosting :"
 msgstr "Site préféré pour l'hébergement des fichiers :"
 
-#: ../dnd2share/data/messages:157
+#: ../dnd2share/data/messages:159
 msgid "dl.free.fr"
 msgstr "dl.free.fr"
 
-#: ../dnd2share/data/messages:159
+#: ../dnd2share/data/messages:161
 msgid "DropBox"
 msgstr "DropBox"
 
-#: ../dnd2share/data/messages:161
+#: ../dnd2share/data/messages:163
 msgid "UbuntuOne"
 msgstr "UbuntuOne"
 
-#: ../dnd2share/data/messages:163 ../dnd2share/data/messages:167
-#: ../dnd2share/data/messages:171 ../dnd2share/data/messages:175
+#: ../dnd2share/data/messages:165 ../dnd2share/data/messages:169
+#: ../dnd2share/data/messages:173 ../dnd2share/data/messages:177
 msgid ""
 "The script takes the file path as a parameter, and write the resulting URL "
 "on the standard output."
@@ -7508,37 +7614,37 @@ msgstr ""
 "Le script prend le chemin du fichier en paramètre, et écrit l'URL résultante "
 "sur la sortie standard."
 
-#: ../dnd2share/data/messages:165
+#: ../dnd2share/data/messages:167
 msgid "Custom script for text upload :"
 msgstr "Script personnel pour l'upload des textes :"
 
-#: ../dnd2share/data/messages:169
+#: ../dnd2share/data/messages:171
 msgid "Custom script for image upload :"
 msgstr "Script personnel pour l'upload des images :"
 
-#: ../dnd2share/data/messages:173
+#: ../dnd2share/data/messages:175
 msgid "Custom script for video upload :"
 msgstr "Script personnel pour l'upload des vidéos :"
 
-#: ../dnd2share/data/messages:177
+#: ../dnd2share/data/messages:179
 msgid "Custom script for file upload :"
 msgstr "Script personnel pour l'upload des fichiers :"
 
-#: ../dnd2share/data/messages:179
-msgid "Leave empty to upload files into '~/Dropbox/Public'."
+#: ../dnd2share/data/messages:181
+msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 msgstr ""
 "Laissez vide pour télécharger les fichiers dans le répertoire « ~/Dropbox/"
-"Public »."
-
-#: ../dnd2share/data/messages:181
-msgid "Path of the DropBox folder :"
-msgstr "Chemin du dossier DropBox :"
+"Public » ou « ~/Ubuntu One »."
 
 #: ../dnd2share/data/messages:183
+msgid "Path of a custom DropBox / UbuntuOne folder :"
+msgstr "Chemin du dossier DropBox / UbuntuOne :"
+
+#: ../dnd2share/data/messages:185
 msgid "Otherwise, your user name will be used when possible."
 msgstr "Sinon, votre nom utilisateur sera utilisé si possible."
 
-#: ../dnd2share/data/messages:185
+#: ../dnd2share/data/messages:187
 msgid "Post text as Anonymous ?"
 msgstr "Envoyer le texte en tant qu'anonyme ?"
 
@@ -7606,10 +7712,6 @@ msgstr "Seulement pour les sous docks"
 #: ../dock-rendering/data/messages:39
 msgid "Maximum size of the dock:"
 msgstr "Taille maximale du dock"
-
-#: ../dock-rendering/data/messages:41
-msgid "Small"
-msgstr "Petit"
 
 #: ../dock-rendering/data/messages:43
 msgid "Full screen"
@@ -9381,6 +9483,12 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Ouvrir la configuration du Wifi avec :"
+
+#~ msgid "Time before empty"
+#~ msgstr "Temps avant d'être déchargée"
+
+#~ msgid "Time before full"
+#~ msgstr "Temps avant d'être pleine"
 
 #~ msgid "failed to unmount %s"
 #~ msgstr "échec au démontage de %s"

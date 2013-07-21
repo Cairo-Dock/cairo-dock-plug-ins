@@ -64,7 +64,7 @@ void cd_menu_check_for_new_apps (void)
 {
 	if (myData.pNewApps != NULL)
 	{
-		const gchar *cQuestion = D_("Launch this new application ?");
+		const gchar *cQuestion = D_("Launch this new application?");
 		gchar *cText = NULL;
 		GtkWidget *pInteractiveWidget = NULL;
 		if (myData.pNewApps->next)  // several entries, make a list
