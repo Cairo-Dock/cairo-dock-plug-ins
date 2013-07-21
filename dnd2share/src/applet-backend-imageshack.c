@@ -22,8 +22,6 @@
 #include <math.h>
 #include <unistd.h>
 #include <glib/gstdio.h>
-#include <errno.h> // errno
-#include <string.h> // strerror
 
 #include "applet-struct.h"
 #include "applet-dnd2share.h"
@@ -35,65 +33,46 @@ static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink", "Thumbnail"};
 
 static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
-	// On cree un fichier de log temporaire.
-	gchar *cLogFile = g_strdup ("/tmp/dnd2share-log.XXXXXX");
-	int fds = mkstemp (cLogFile);
-	if (fds == -1)
-	{
-		g_set_error (pError, 1, 1, "%s\n(%s)", D_("No able to access to your temporary directory"), strerror (errno));
-		g_free (cLogFile);
-		return ;
-	}
-	close(fds);
-	
-	// On lance la commande d'upload.
-	gchar *cCommand = NULL;
-	cCommand = g_strdup_printf ("curl -L --connect-timeout 5 --retry 2 --limit-rate %dk http://imageshack.us/upload_api.php -H Expect: -F xml=yes -F tags=Cairo-Dock -F fileupload=@\"%s\" -F key=ABDGHOQS7d32e206ee33ef8cefb208d55dd030a6 -o \"%s\"", iLimitRate, cFilePath, cLogFile);
-	cd_debug ("%s", cCommand);
-	int r = system (cCommand);
-	if (r < 0)
-		cd_warning ("Not able to launch this command: %s", cCommand);
+	// Upload the file
+	gchar *cCommand = g_strdup_printf ("curl -L --connect-timeout 5 --retry 2 --limit-rate %dk http://imageshack.us/upload_api.php -H Expect: -F xml=yes -F public=no -F fileupload=@\"%s\" -F key=ABDGHOQS7d32e206ee33ef8cefb208d55dd030a6", iLimitRate, cFilePath);
+	gchar *cContent = cairo_dock_launch_command_sync (cCommand);
 	g_free (cCommand);
-	
-	// On récupère l'URL dans le log :
+
+	if (! cContent)
+	{
+		DND2SHARE_SET_GENERIC_ERROR_WEBSITE ("ImageShack");
+		return;
+	}
+
+	// We have the content, now we can extract data
 	gchar *cURL = NULL, *cThumbnail = NULL;
-	gchar *cContent = NULL;
-	gsize length = 0;
-	g_file_get_contents (cLogFile, &cContent, &length, NULL);
-	
-	gchar *str = g_strstr_len (cContent, -1, "<image_link>");
+
+	gchar *str = strstr (cContent, "<image_link>");
 	if (str != NULL)
 	{
 		str += 12;  // <image_link>http://bla/bla/bla.png</image_link>
-		gchar *end = g_strstr_len (str, -1, "</image_link>");
+		gchar *end = strstr (str, "</image_link>");
 		if (end != NULL)
-		{
 			cURL = g_strndup (str, end - str);
+		else
+		{
+			g_free (cContent);
+			DND2SHARE_SET_GENERIC_ERROR_WEBSITE ("ImageShack");
+			return;
 		}
 	}
-	
-	str = g_strstr_len (cContent, -1, "<thumb_link>");
+
+	str = strstr (cContent, "<is_link>");
 	if (str != NULL)
 	{
-		str += 12;  // <thumb_link>http://bla/bla/bla.png</thumb_link>
-		gchar *end = g_strstr_len (str, -1, "</thumb_link>");
+		str += 9;  // <thumb_link>http://bla/bla/bla.png</thumb_link>
+		gchar *end = strstr (str, "</is_link>");
 		if (end != NULL)
-		{
 			cThumbnail = g_strndup (str, end - str);
-		}
-	}	
-	
-	g_free (cContent);
-	g_remove (cLogFile);
-	g_free (cLogFile);
-	
-	if (cURL == NULL)
-	{
-		DND2SHARE_SET_GENERIC_ERROR_WEBSITE ("ImageShack");
-		return ;
 	}
-	
-	// Enfin on remplit la memoire partagee avec nos URLs.
+
+	g_free (cContent);
+
 	cResultUrls[0] = cURL;
 	cResultUrls[1] = cThumbnail;
 }

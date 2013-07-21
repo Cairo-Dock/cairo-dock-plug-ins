@@ -23,8 +23,6 @@
 #include <unistd.h>
 #include <glib/gstdio.h>
 #include <string.h>
-#include <errno.h> // errno
-#include <string.h> // strerror
 
 #include "applet-struct.h"
 #include "applet-dnd2share.h"
@@ -36,31 +34,21 @@ static const gchar *s_UrlLabels[NB_URLS] = {"DirectLink"};
 
 static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
-	// On cree un fichier de log temporaire.
-	gchar *cLogFile = g_strdup ("/tmp/dnd2share-log.XXXXXX");
-	int fds = mkstemp (cLogFile);
-	if (fds == -1)
+	// Upload the file
+	gchar *cCommand = g_strdup_printf ("curl -L --connect-timeout 5 --retry 2 --limit-rate %dk http://imagebin.ca/upload.php -F f=@\"%s\" -F t=file", iLimitRate, cFilePath);
+	cd_debug ("%s", cCommand);
+	gchar *cContent = cairo_dock_launch_command_sync (cCommand);
+	g_free (cCommand);
+
+	if (! cContent)
 	{
-		g_set_error (pError, 1, 1, "%s\n(%s)", D_("No able to access to your temporary directory"), strerror (errno));
-		g_free (cLogFile);
+		DND2SHARE_SET_GENERIC_ERROR_WEBSITE ("ImageBin");
 		return;
 	}
-	close(fds);
-	
-	// On lance la commande d'upload.
-	gchar *cCommand = g_strdup_printf ("curl -L --connect-timeout 5 --retry 2 --limit-rate %dk http://imagebin.ca/upload.php -F f=@\"%s\" -F t=file -o \"%s\"", iLimitRate, cFilePath, cLogFile);
-	cd_debug ("%s", cCommand);
-	int r = system (cCommand);
-	if (r < 0)
-		cd_warning ("Not able to launch this command: %s", cCommand);
-	g_free (cCommand);
-	
-	// On récupère l'URL dans le log :
+
+	// We have the content, now we can extract data
 	gchar *cURL = NULL;
-	gchar *cContent = NULL;
-	gsize length = 0;
-	g_file_get_contents (cLogFile, &cContent, &length, NULL);
-	gchar *str = g_strstr_len (cContent, -1, "href='");
+	gchar *str = strstr (cContent, "href='");
 	if (str != NULL)
 	{
 		str += 6;
@@ -72,17 +60,13 @@ static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymou
 		}
 	}
 	g_free (cContent);
-	
-	g_remove (cLogFile);
-	g_free (cLogFile);
-	
+
 	if (cURL == NULL)
 	{
 		DND2SHARE_SET_GENERIC_ERROR_WEBSITE ("ImageBin");
-		return ;
+		return;
 	}
-	
-	// Enfin on remplit la memoire partagee avec nos URLs.
+
 	cResultUrls[0] = cURL;
 }
 
