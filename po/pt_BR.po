@@ -6,15 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.1.0-alpha\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2013-03-05 00:09+0000\n"
+"POT-Creation-Date: 2013-07-21 16:31+0000\n"
+"PO-Revision-Date: 2013-07-21 19:53+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-03-06 05:51+0000\n"
-"X-Generator: Launchpad (build 16514)\n"
+"X-Launchpad-Export-Date: 2013-07-22 05:40+0000\n"
+"X-Generator: Launchpad (build 16696)\n"
+"Language: \n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -373,7 +374,8 @@ msgstr "O módulo foi adicionado, mas não pode ser executado."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "O mini-aplicativo '%s' foi atualizado com sucesso e automaticamente "
 "recarregado"
@@ -789,9 +791,8 @@ msgid "Enter a command to launch:"
 msgstr "Entre o comando a ser executado :"
 
 #: ../GMenu/src/applet-apps.c:67
-#, fuzzy
 msgid "Launch this new application?"
-msgstr "Gerenciador de e-mail"
+msgstr ""
 
 #: ../Global-Menu/src/applet-init.c:30
 msgid "Global Menu"
@@ -1870,8 +1871,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2105,9 +2106,8 @@ msgid "Your text is empty and couldn't be uploaded to this server"
 msgstr ""
 
 #: ../dnd2share/src/applet-backend-custom.c:35
-#, fuzzy
 msgid "No script set for this file type"
-msgstr "Script padrão de arquivo para upload:"
+msgstr ""
 
 #: ../dnd2share/src/applet-backend-dropbox.c:63
 #: ../dnd2share/src/applet-backend-ubuntuone.c:59
@@ -2120,14 +2120,12 @@ msgid "Thumbnail"
 msgstr ""
 
 #: ../dnd2share/src/applet-backend-imgur.c:33
-#, fuzzy
 msgid "Display Image"
-msgstr "Mostrar valores"
+msgstr ""
 
 #: ../dnd2share/src/applet-backend-imgur.c:33
-#, fuzzy
 msgid "Large"
-msgstr "grande"
+msgstr ""
 
 #: ../dnd2share/src/applet-backend-imgur.c:33
 #: ../dock-rendering/data/messages:41
@@ -2143,7 +2141,8 @@ msgstr ""
 "Pressione CTRL+v para colar sua URL em qualquer lugar."
 
 #: ../dnd2share/src/applet-dnd2share.c:342
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Por favor, aguarde o upload atual ser terminado antes de começar um novo."
 
@@ -2163,23 +2162,19 @@ msgstr ""
 "está ativa."
 
 #: ../dnd2share/src/applet-dnd2share.h:29
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Couldn't upload the file to %s, check that your internet connection is "
 "active."
 msgstr ""
-"Não foi possível enviar o arquivo, verifique se sua conexão com a internet "
-"está ativa."
 
 #: ../dnd2share/src/applet-dnd2share.h:32
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Couldn't upload the file to %s.\n"
 "Check that your internet connection is active and '%s' is correctly "
 "installed and running"
 msgstr ""
-"Não foi possível enviar o arquivo, verifique se sua conexão com a internet "
-"está ativa."
 
 #: ../dnd2share/src/applet-init.c:46
 msgid ""
@@ -3033,24 +3028,20 @@ msgid "Battery charged"
 msgstr "Bateria carregada"
 
 #: ../powermanager/src/powermanager-draw.c:199
-#, fuzzy
 msgid "h"
-msgstr "1h"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:201
-#, fuzzy
 msgid "mn"
-msgstr "min"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:210
-#, fuzzy
 msgid "remaining"
-msgstr "Tempo restante"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:210
-#, fuzzy
 msgid "until charged"
-msgstr "Bateria carregada"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:228 ../wifi/src/applet-draw.c:30
 #: ../Clipper/data/messages:97 ../GMenu-old/data/messages:109
@@ -3347,8 +3338,8 @@ msgstr "mostrar mouse"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Este mini-aplicativo desenha algumas animações ao redor do cursor quando "
 "mesmo estiver dentro do dock/desklet."
@@ -3770,9 +3761,8 @@ msgid "Reset marks"
 msgstr "Limpar marcas"
 
 #: ../tomboy/src/tomboy-notifications.c:277
-#, fuzzy
 msgid "No description"
-msgstr "Posição"
+msgstr ""
 
 #: ../weather/src/applet-config.c:120
 msgid ""
@@ -4636,8 +4626,8 @@ msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
 msgstr ""
-"Dependendo do seu Administrador de Janelas, você pode redimensioná-lo com ALT"
-"+Clique do botão do meio, ou ALT+clique do botão esquerdo."
+"Dependendo do seu Administrador de Janelas, você pode redimensioná-lo com "
+"ALT+Clique do botão do meio, ou ALT+clique do botão esquerdo."
 
 #: ../Clipper/data/messages:27 ../Composite-Manager/data/messages:25
 #: ../Disks/data/messages:23 ../Doncky/data/messages:27
@@ -5530,8 +5520,8 @@ msgid ""
 "left-click.. Negative values are counted from the right/bottom of the screen"
 msgstr ""
 "Dependendo do seu Gerenciador de Janelas, você pode movê-lo com Alt + Clique "
-"com botão esquerdo. Valores negativos são contados a partir da parte direita/"
-"inferior da tela."
+"com botão esquerdo. Valores negativos são contados a partir da parte "
+"direita/inferior da tela."
 
 #: ../Composite-Manager/data/messages:89 ../Impulse/data/messages:117
 #: ../clock/data/messages:133
@@ -5894,7 +5884,8 @@ msgid "Background"
 msgstr "Plano de fundo"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Você pode ter planos de fundo mais atrativos usando as decorações de Desklet"
 
@@ -7411,9 +7402,8 @@ msgid "Preferred site for images hosting :"
 msgstr "Site preferido para hospedagem da(s) imagem(ns):"
 
 #: ../dnd2share/data/messages:141
-#, fuzzy
 msgid "Uppix.com"
-msgstr "Uppix.net"
+msgstr ""
 
 #: ../dnd2share/data/messages:143
 msgid "Imagebin.ca"
@@ -7477,15 +7467,13 @@ msgid "Custom script for file upload :"
 msgstr "Script padrão de arquivo para upload:"
 
 #: ../dnd2share/data/messages:181
-#, fuzzy
-msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
+msgid ""
+"Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 msgstr ""
-"Deixe em branco para carregar os arquivos a partir de '~/Dropbox/Public'."
 
 #: ../dnd2share/data/messages:183
-#, fuzzy
 msgid "Path of a custom DropBox / UbuntuOne folder :"
-msgstr "Caminho da pasta do Dropbox."
+msgstr ""
 
 #: ../dnd2share/data/messages:185
 msgid "Otherwise, your user name will be used when possible."
@@ -7685,7 +7673,8 @@ msgid "Space between icons:"
 msgstr "Espaço entre ícones :"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 significa que a onda é totalmente plana, 1 fica que a onda é idêntica a "
 "outros pontos de vista."
@@ -7903,7 +7892,8 @@ msgid "Colours"
 msgstr "Cores"
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 "Ele alterará ligeiramente as cores, assim você pode ter que modificá-las."
 
@@ -8165,7 +8155,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Nome do arquivo para a imagem de 'tem e-mail':"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Se marcado, o número de e-mails será mostrado mesmo se não houverem e-mails."
 
@@ -8251,7 +8242,8 @@ msgid "Blur amount:"
 msgstr "Tamanho do rastro"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 "Deixe em branco para mostrar o nome do reproduzir de aúdio que está sendo "
 "controlado."
@@ -8348,8 +8340,8 @@ msgstr "Clique para reproduzir/pausar, e clique do meio para próximo"
 #: ../musicPlayer/data/messages:141
 msgid "Show/Hide player on click, Play/Pause on middle-click"
 msgstr ""
-"Clique para mostrar/ocultar o reprodutor, e clique do meio para reproduzir/"
-"pausar"
+"Clique para mostrar/ocultar o reprodutor, e clique do meio para "
+"reproduzir/pausar"
 
 #: ../musicPlayer/data/messages:143
 msgid "Actions on scroll up/down:"
@@ -8882,7 +8874,8 @@ msgstr "Ex.: imagem, texto, vídeo, áudio, aplicação,..."
 
 #: ../stack/data/messages:123
 msgid "Here you can specify a list of MIME types to ignore:"
-msgstr "Aqui você pode especificar uma lista dos tipos mime a serem evitados:"
+msgstr ""
+"Aqui você pode especificar uma lista dos tipos mime a serem evitados:"
 
 #: ../stack/data/messages:125
 msgid "Sort items by:"
@@ -9259,7 +9252,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Posição da barra de rolagem vertical em pixels"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Isto permite que você dê um clique direito sobre o desklet  para exibir o "
 "pop-up do menu do Cairo-Dock."
@@ -9324,26 +9318,3 @@ msgid "Alternative command line to launch Wireless Configuration :"
 msgstr ""
 "Alternativa para iniciar um linha de comando de configuração sem fio "
 "(wireless):"
-
-#~ msgid "Time before empty"
-#~ msgstr "Tempo antes de esgotar"
-
-#~ msgid "Time before full"
-#~ msgstr "Tempo antes de encher"
-
-#~ msgid "failed to unmount %s"
-#~ msgstr "falha ao desmontar %s"
-
-#, fuzzy
-#~ msgid "failed to mount %s"
-#~ msgstr "falha ao desmontar %s"
-
-#~ msgid ""
-#~ "Your session needs to be restarted in order to update new configuration "
-#~ "files."
-#~ msgstr ""
-#~ "Sua sessão precisa ser reiniciada para atualizar os arquivos de "
-#~ "configuração"
-
-#~ msgid "Preload icons at startup"
-#~ msgstr "Pré carregar ícones na inicialização"

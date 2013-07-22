@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2013-04-04 12:18+0000\n"
+"POT-Creation-Date: 2013-07-21 16:31+0000\n"
+"PO-Revision-Date: 2013-07-21 19:59+0000\n"
 "Last-Translator: Backspaceyao <huangyaowudi@gmail.com>\n"
 "Language-Team: Simplified Chinese <tigersoldi@gmail.com>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-04-05 05:39+0000\n"
-"X-Generator: Launchpad (build 16550)\n"
+"X-Launchpad-Export-Date: 2013-07-22 05:41+0000\n"
+"X-Generator: Launchpad (build 16696)\n"
+"Language: \n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -33,7 +34,7 @@ msgstr "弹跳"
 #: ../Animated-icons/data/messages:41 ../Animated-icons/data/messages:63
 #: ../Animated-icons/data/messages:179
 msgid "Busy"
-msgstr ""
+msgstr "繁忙"
 
 #: ../Animated-icons/src/applet-init.c:39
 msgid "Animated icons"
@@ -190,19 +191,19 @@ msgstr "剪贴板历史"
 
 #: ../Clipper/src/applet-init.c:87
 msgid "Pop-up the items menu"
-msgstr ""
+msgstr "弹出项目菜单"
 
 #: ../Clipper/src/applet-notifications.c:33
 msgid "The clipboard history is empty."
-msgstr ""
+msgstr "剪贴板历史为空"
 
 #: ../Clipper/src/applet-notifications.c:89
 msgid "Clear clipboard History"
-msgstr ""
+msgstr "清空剪切板历史记录"
 
 #: ../Clipper/src/applet-notifications.c:91
 msgid "Paste all copied items"
-msgstr ""
+msgstr "粘贴所有复制的项目"
 
 #: ../Clipper/src/applet-notifications.c:99
 msgid ""
@@ -217,7 +218,7 @@ msgstr "目前无项目"
 #: ../Composite-Manager/src/applet-composite-manager.c:430
 #: ../Composite-Manager/src/applet-composite-manager.c:445
 msgid "No compositor is available."
-msgstr ""
+msgstr "没有可用的合成器"
 
 #: ../Composite-Manager/src/applet-composite-manager.c:453
 #: ../Composite-Manager/src/applet-composite-manager.c:468
@@ -355,7 +356,8 @@ msgstr "这个模块已经被添加,但是无法启动."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "这个小程序'%s'已经成功升级并且自动重启."
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -475,7 +477,7 @@ msgstr "似乎不是合法的XML文件"
 
 #: ../Doncky/src/applet-xml.c:311
 msgid "Please wait..."
-msgstr ""
+msgstr "请稍等……"
 
 #: ../Folders/src/applet-init.c:29
 msgid "Folders"
@@ -503,35 +505,35 @@ msgstr "空的或者无法读取的文件夹."
 
 #: ../Folders/src/applet-notifications.c:116
 msgid "Properties:"
-msgstr ""
+msgstr "属性"
 
 #: ../Folders/src/applet-notifications.c:136 ../Folders/data/messages:115
 msgid "Size"
-msgstr ""
+msgstr "大小"
 
 #: ../Folders/src/applet-notifications.c:136
 msgid "bytes"
-msgstr ""
+msgstr "字节"
 
 #: ../Folders/src/applet-notifications.c:150
 msgid "Last Modification"
-msgstr ""
+msgstr "上一次修改"
 
 #: ../Folders/src/applet-notifications.c:159
 msgid "Mime Type"
-msgstr ""
+msgstr "MIME类型"
 
 #: ../Folders/src/applet-notifications.c:173
 msgid "User ID"
-msgstr ""
+msgstr "用户 ID"
 
 #: ../Folders/src/applet-notifications.c:173
 msgid "Group ID"
-msgstr ""
+msgstr "组 ID"
 
 #: ../Folders/src/applet-notifications.c:183
 msgid "Permissions"
-msgstr ""
+msgstr "权限"
 
 #: ../Folders/src/applet-notifications.c:183
 msgid "Read"
@@ -667,7 +669,7 @@ msgstr "排序方式"
 
 #: ../Folders/src/applet-notifications.c:452
 msgid "By name"
-msgstr ""
+msgstr "根据名称"
 
 #: ../Folders/src/applet-notifications.c:453
 msgid "By date"
@@ -708,21 +710,21 @@ msgstr "应用程序菜单"
 
 #: ../GMenu-old/src/applet-init.c:134 ../GMenu/src/applet-init.c:63
 msgid "Show/hide the Applications menu"
-msgstr ""
+msgstr "显示/隐藏应用程序的菜单"
 
 #: ../GMenu-old/src/applet-init.c:139 ../GMenu/src/applet-init.c:68
 msgid "Show/hide the quick-launch dialog"
-msgstr ""
+msgstr "显示/隐藏快速启动对话框"
 
 #: ../GMenu-old/src/applet-menu-callbacks.c:177 ../GMenu/src/applet-menu.c:175
 #: ../GMenu-old/data/messages:111 ../GMenu/data/messages:111
 msgid "Logout"
-msgstr ""
+msgstr "注销"
 
 #: ../GMenu-old/src/applet-menu-callbacks.c:180 ../GMenu/src/applet-menu.c:178
 #: ../GMenu-old/data/messages:113 ../GMenu/data/messages:113
 msgid "Shutdown"
-msgstr ""
+msgstr "关机"
 
 #: ../GMenu-old/src/applet-notifications.c:90
 #: ../GMenu/src/applet-notifications.c:76
@@ -758,7 +760,7 @@ msgstr ""
 
 #: ../Global-Menu/src/applet-init.c:30
 msgid "Global Menu"
-msgstr ""
+msgstr "全局菜单"
 
 #: ../Global-Menu/src/applet-init.c:33
 msgid ""
@@ -768,14 +770,17 @@ msgid ""
 "by default.\n"
 "You can bind a shortkey to this action."
 msgstr ""
+"这个applet允许你控制当前的活动窗口：\n"
+"  关闭, 最小化,最大化,显示应用程序菜单.显示菜单, 应用程序必须支持此特性,这是一个Ubuntu缺省的例子。\n"
+"你可以为这个动作绑定一个快捷键。"
 
 #: ../Global-Menu/src/applet-init.c:112 ../Global-Menu/src/applet-init.c:211
 msgid "Show/hide the current application menu"
-msgstr ""
+msgstr "显示/关闭当前活动的应用程序菜单"
 
 #: ../Global-Menu/src/applet-notifications.c:98
 msgid "The application didn't send its menu to us."
-msgstr ""
+msgstr "应用程序并不对自身发送其菜单"
 
 #: ../Impulse/src/applet-impulse.c:169
 msgid ""
@@ -783,6 +788,8 @@ msgid ""
 "Can you check its status (installed? running? version?) and report this bug "
 "(if any) to forum.glx-dock.org"
 msgstr ""
+"PulseAudio有一些错误。\n"
+"你可以检查其状态（是否安装？是否运行？版本是否正确？）并发送错误报告（如果有任何）到forum.glx-dock.org"
 
 #: ../Impulse/src/applet-init.c:32
 msgid ""
@@ -791,10 +798,14 @@ msgid ""
 "In fact, you will have a graphical equalizer into the dock\n"
 "It will analyse the signal given by PulseAudio."
 msgstr ""
+"你是否知道你的Dock可以跳舞？ :)\n"
+"如果你点击这个图标，Dock将会舞动起来！\n"
+"实际上，你的dock中将拥有一个图形方式的均衡器\n"
+"它将分析PulseAudio给出的信号."
 
 #: ../Indicator-Generic/src/applet-init.c:30
 msgid "Indicator-Generic"
-msgstr ""
+msgstr "通用指针"
 
 #: ../Indicator-Generic/src/applet-init.c:33
 msgid ""
@@ -804,6 +815,10 @@ msgid ""
 "automatically hidden.\n"
 "You can also blacklist indicators you don't want to see."
 msgstr ""
+"这个插件可以显示你的Dock中所有的指针.\n"
+"指针提供一些信息,并且有一个动作菜单:\n"
+"  例如, 一个指针来控制打印机任务.空闲指针自动隐藏.\n"
+"你也可以在不想看到它的时候将其放入黑名单."
 
 #: ../Indicator-Generic/src/applet-notifications.c:34
 #, c-format
@@ -811,6 +826,8 @@ msgid ""
 "This indicator service did not reply.\n"
 "Please check that '%s' is correctly installed and its daemon is running."
 msgstr ""
+"这个指针服务没有回应.\n"
+"请检查 '%s'是否正确？是否安装并且其精灵是否运行."
 
 #: ../MeMenu/src/applet-init.c:30
 msgid "Me Menu"
@@ -839,13 +856,15 @@ msgstr ""
 
 #: ../Messaging-Menu/src/applet-init.c:81
 msgid "Show/hide the Messaging menu"
-msgstr ""
+msgstr "显示/隐藏消息菜单"
 
 #: ../Messaging-Menu/src/applet-notifications.c:76
 msgid ""
 "The Messaging service did not reply.\n"
 "Please check that it is correctly installed."
 msgstr ""
+"消息服务没有响应。\n"
+"请检查其是否已经安装。"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:69
 msgid "Network connection state changed to inactive."
@@ -990,8 +1009,7 @@ msgstr ""
 "       -左键：在一个对话框中显示feed的所有行\n"
 "       -中键：刷新feed\n"
 "       -在平台上滑动：滑动feed行\n"
-"       -拖拽一个有效的URL到图标上进行订阅，或者复制地址并使用菜单中的“拷贝新"
-"RSS地址”，或者编辑配置栏"
+"       -拖拽一个有效的URL到图标上进行订阅，或者复制地址并使用菜单中的“拷贝新RSS地址”，或者编辑配置栏"
 
 #: ../RSSreader/src/applet-init.c:65 ../RSSreader/src/applet-init.c:125
 #: ../RSSreader/src/applet-notifications.c:56
@@ -1073,7 +1091,7 @@ msgstr "打开父目录"
 #: ../Screenshot/src/applet-screenshot.c:281
 #: ../quick-browser/src/applet-menu.c:360
 msgid "Copy the location"
-msgstr ""
+msgstr "复制其位置"
 
 #: ../Recent-Events/src/applet-dialog.c:303
 msgid "Delete this event"
@@ -1085,7 +1103,7 @@ msgstr "全选"
 
 #: ../Recent-Events/src/applet-dialog.c:388
 msgid "Applications"
-msgstr ""
+msgstr "应用程序"
 
 #: ../Recent-Events/src/applet-dialog.c:389
 msgid "Document"
@@ -1139,7 +1157,7 @@ msgstr "上次访问"
 
 #: ../Recent-Events/src/applet-dialog.c:508
 msgid "You need to install the Zeitgeist data engine."
-msgstr ""
+msgstr "你需要安装 Zeitgeist 数据引擎"
 
 #: ../Recent-Events/src/applet-dialog.c:556
 msgid "Browse and search in recent events"
@@ -1151,7 +1169,7 @@ msgstr "最近的事件"
 
 #: ../Recent-Events/src/applet-init.c:58
 msgid "Show/hide the Recent Events"
-msgstr ""
+msgstr "显示/隐藏最近的事件"
 
 #: ../Recent-Events/src/applet-notifications.c:74
 #, c-format
@@ -1187,11 +1205,11 @@ msgstr ""
 
 #: ../Remote-Control/src/applet-init.c:42
 msgid "Control from keyboard"
-msgstr ""
+msgstr "通过键盘控制"
 
 #: ../Remote-Control/src/applet-init.c:49
 msgid "Enable/disable the keyboard control of the dock"
-msgstr ""
+msgstr "打开/关闭键盘控制Dock功能"
 
 #: ../Scooby-Do/src/applet-backend-command.c:63
 #, c-format
@@ -1279,7 +1297,7 @@ msgstr "Amazon"
 
 #: ../Scooby-Do/src/applet-init.c:73
 msgid "Enable/disable the Finder"
-msgstr ""
+msgstr "打开/关闭搜索功能"
 
 #: ../Scooby-Do/src/applet-listing.c:516
 msgid "(F1) Match case"
@@ -1341,7 +1359,7 @@ msgstr ""
 
 #: ../Screenshot/src/applet-init.c:53
 msgid "Take a screenshot"
-msgstr ""
+msgstr "抓取屏幕截图"
 
 #: ../Screenshot/src/applet-notifications.c:49
 msgid "Screenshot"
@@ -1349,15 +1367,15 @@ msgstr ""
 
 #: ../Screenshot/src/applet-notifications.c:61
 msgid "Screenshot with options"
-msgstr ""
+msgstr "屏幕截图选项"
 
 #: ../Screenshot/src/applet-screenshot.c:164
 msgid "Screenshot from"
-msgstr ""
+msgstr "屏幕截图来自"
 
 #: ../Screenshot/src/applet-screenshot.c:333
 msgid "Unable to take a screenshot"
-msgstr ""
+msgstr "禁止启动屏幕截图"
 
 #: ../Screenshot/src/applet-screenshot.c:456 ../Cairo-Penguin/data/messages:19
 #: ../Clipper/data/messages:137 ../Disks/data/messages:143
@@ -1793,8 +1811,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2024,9 +2042,8 @@ msgid "Thumbnail"
 msgstr ""
 
 #: ../dnd2share/src/applet-backend-imgur.c:33
-#, fuzzy
 msgid "Display Image"
-msgstr "显示"
+msgstr ""
 
 #: ../dnd2share/src/applet-backend-imgur.c:33
 msgid "Large"
@@ -2044,7 +2061,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:342
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:410
@@ -2221,8 +2239,7 @@ msgid ""
 "icon.\n"
 "Middle-click on the icon will empty the dustbin."
 msgstr ""
-"该插件管理回收站，您可以将文件拖进回收站；如果把已加载(mount)的磁盘进回收站，"
-"则会卸载它(umount)。\n"
+"该插件管理回收站，您可以将文件拖进回收站；如果把已加载(mount)的磁盘进回收站，则会卸载它(umount)。\n"
 "在图标上按鼠标中键，将清空回收站。"
 
 #: ../dustbin/src/applet-notifications.c:40
@@ -2379,8 +2396,7 @@ msgid ""
 "You can bind a <b>shortcut</b> to it, and also to lock the screen."
 msgstr ""
 "此程序可以让您控制当前用户会话。您可以：\n"
-"关机，重新启动，休眠，挂起，注销，锁定屏幕，切换用户，或者设置一次自动关"
-"机。\n"
+"关机，重新启动，休眠，挂起，注销，锁定屏幕，切换用户，或者设置一次自动关机。\n"
 "它还会在您的系统需要重新启动时通知您\n"
 "点击此程序的图标以弹出菜单。\n"
 "您可以绑定一个快捷方式，也可以将其锁定在屏幕上。"
@@ -2875,14 +2891,12 @@ msgid "h"
 msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:201
-#, fuzzy
 msgid "mn"
-msgstr "最小"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:210
-#, fuzzy
 msgid "remaining"
-msgstr "剩余时间"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:210
 msgid "until charged"
@@ -3092,8 +3106,7 @@ msgid ""
 "space, type, etc."
 msgstr ""
 "通过该插件，您可以快速访问所有快捷方式。\n"
-"它可以管理磁盘、网络挂载点，以及 Nautilus 文件管理器的书签（即使您没有安装"
-"Nautilus）。\n"
+"它可以管理磁盘、网络挂载点，以及 Nautilus 文件管理器的书签（即使您没有安装Nautilus）。\n"
 "将文件夹拖到该“快捷方式”图标或者子 dock 上，就可以创建一个书签。\n"
 "在图标上点击鼠标中键，即显示您的主目录。\n"
 "在一个挂载点的图标上点鼠标中键，可以将其迅速卸载。\n"
@@ -3171,8 +3184,8 @@ msgstr "显示鼠标"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -3536,9 +3549,8 @@ msgid "Reset marks"
 msgstr "重置标记"
 
 #: ../tomboy/src/tomboy-notifications.c:277
-#, fuzzy
 msgid "No description"
-msgstr "未更改"
+msgstr ""
 
 #: ../weather/src/applet-config.c:120
 msgid ""
@@ -4322,9 +4334,7 @@ msgstr ""
 msgid ""
 "If locked, the desklet cannot be moved by simply dragging it with the left "
 "mouse button. It can still be moved with ALT + left-click."
-msgstr ""
-"一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来"
-"移动。"
+msgstr "一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来移动。"
 
 #: ../Clipper/data/messages:23 ../Composite-Manager/data/messages:21
 #: ../Disks/data/messages:43 ../Doncky/data/messages:23
@@ -4375,9 +4385,7 @@ msgstr "锁定位置?"
 msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
-msgstr ""
-"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理"
-"器。"
+msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理器。"
 
 #: ../Clipper/data/messages:27 ../Composite-Manager/data/messages:25
 #: ../Disks/data/messages:23 ../Doncky/data/messages:27
@@ -5603,7 +5611,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
@@ -7152,7 +7161,8 @@ msgid "Custom script for file upload :"
 msgstr ""
 
 #: ../dnd2share/data/messages:181
-msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
+msgid ""
+"Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 msgstr ""
 
 #: ../dnd2share/data/messages:183
@@ -7354,7 +7364,8 @@ msgid "Space between icons:"
 msgstr "图标间隔:"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr "0意味着平波，1意味着与其它视图一样"
 
 #: ../dock-rendering/data/messages:121
@@ -7541,7 +7552,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
@@ -7764,9 +7776,7 @@ msgid ""
 "This will be available when middle-clicking. Leave empty to execute the "
 "default command, which depends on your distribution. In some cases the "
 "command to shutdown is the same as the one to log out."
-msgstr ""
-"中键单击时使用。留空则使用默认命令，该命令取决于您所使用的发行版。有时关机和"
-"注销是同一个命令。"
+msgstr "中键单击时使用。留空则使用默认命令，该命令取决于您所使用的发行版。有时关机和注销是同一个命令。"
 
 #: ../logout/data/messages:127
 msgid "User-defined command to execute for shutdown:"
@@ -7792,7 +7802,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "“有邮件”图像文件名:"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:117
@@ -7876,7 +7887,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:11
@@ -7951,9 +7963,7 @@ msgstr ""
 msgid ""
 "This will prevent the player icon appearing in the taskbar. The applet's "
 "icon will then behave as a launcher, an application and an applet."
-msgstr ""
-"这将阻止播放器的图标显示于任务栏。小程序的图标将具有启动器、应用程序和小程序"
-"的功能。"
+msgstr "这将阻止播放器的图标显示于任务栏。小程序的图标将具有启动器、应用程序和小程序的功能。"
 
 #: ../musicPlayer/data/messages:135
 msgid "Steal the player's icon from the taskbar?"
@@ -8479,8 +8489,7 @@ msgstr ""
 msgid ""
 "These options allow you to prevent some files from displaying in stacks "
 "based on their type (video, image, etc.)"
-msgstr ""
-"此选项允许您根据文件的类型（影像、图片等），使特定的文件不在stack中显示"
+msgstr "此选项允许您根据文件的类型（影像、图片等），使特定的文件不在stack中显示"
 
 #: ../stack/data/messages:119
 msgid "Filter files on MIME type?"
@@ -8700,9 +8709,7 @@ msgstr ""
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
-msgstr ""
-"当终端在对话框中时。当位于桌面小工具中时，您可以如平常一样改变桌面小工具的大"
-"小。"
+msgstr "当终端在对话框中时。当位于桌面小工具中时，您可以如平常一样改变桌面小工具的大小。"
 
 #: ../terminal/data/messages:109
 msgid "Size of the terminal (line x columns):"
@@ -8762,8 +8769,8 @@ msgid ""
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
 "digits), etc. Leave it blank to use the default one (%d/%m/%y)."
 msgstr ""
-"写下您便签平时使用的日期格式。语法为'strftime'的一种: %d表示日，%m表示月, %y"
-"表示年（2位数字）等。如使用默认的（%d/%m/%y）格式，则留空。"
+"写下您便签平时使用的日期格式。语法为'strftime'的一种: %d表示日，%m表示月, "
+"%y表示年（2位数字）等。如使用默认的（%d/%m/%y）格式，则留空。"
 
 #: ../tomboy/data/messages:141
 msgid "Date format to search for :"
@@ -8776,9 +8783,8 @@ msgid ""
 "message like <<No marshaller for signature of signal 'NoteDeleted'>> in the "
 "terminal."
 msgstr ""
-"如果您使用了某些tomboy的版本，便签的删除可能不会自动通知。仅当您在终端中发现"
-"类似<<No marshaller for signature of signal 'NoteDeleted'>>的错误的时候，启用"
-"此项目"
+"如果您使用了某些tomboy的版本，便签的删除可能不会自动通知。仅当您在终端中发现类似<<No marshaller for signature of "
+"signal 'NoteDeleted'>>的错误的时候，启用此项目"
 
 #: ../tomboy/data/messages:147
 msgid "Emulate the 'NoteDeleted' signal?"
@@ -8865,7 +8871,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "垂直卷轴位置"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:105
@@ -8922,15 +8929,3 @@ msgstr "允许您启动自己的无线配置界面以替代默认命令行。"
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "载入无线配置界面替代命令:"
-
-#~ msgid "failed to unmount %s"
-#~ msgstr "卸载%s失败"
-
-#, fuzzy
-#~ msgid "failed to mount %s"
-#~ msgstr "卸载%s失败"
-
-#~ msgid ""
-#~ "Your session needs to be restarted in order to update new configuration "
-#~ "files."
-#~ msgstr "您的会话需要重新启动以更新新的配置文件"

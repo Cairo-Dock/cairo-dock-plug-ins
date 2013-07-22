@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2013-03-08 16:28+0000\n"
+"POT-Creation-Date: 2013-07-21 16:31+0000\n"
+"PO-Revision-Date: 2013-07-21 20:14+0000\n"
 "Last-Translator: rob <linuxned@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-03-09 05:16+0000\n"
-"X-Generator: Launchpad (build 16523)\n"
+"X-Launchpad-Export-Date: 2013-07-22 05:38+0000\n"
+"X-Generator: Launchpad (build 16696)\n"
+"Language: \n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -41,7 +42,8 @@ msgstr "Geanimeerde pictogrammen"
 
 #: ../Animated-icons/src/applet-init.c:42
 msgid "This plug-in provides many different animations for your icons."
-msgstr "Deze plug-in bevat vele verschillende animaties voor uw pictogrammen."
+msgstr ""
+"Deze plug-in bevat vele verschillende animaties voor uw pictogrammen."
 
 #: ../Animated-icons/src/applet-pulse.c:106 ../Animated-icons/data/messages:13
 #: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:55
@@ -372,7 +374,8 @@ msgstr "De module is wel toegevoegd, maar kon niet gestart worden."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Het applet '%s' is bijgewerkt en is automatisch opnieuw geladen"
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -470,8 +473,8 @@ msgstr ""
 "problemen veroorzaken met de snelheidsweergave die niet omlaag wil gaan.\n"
 "\n"
 "<b>Schijfruimte</b> :  Toon schijfoverdrachtswaarden. tot 10 partities\n"
-"  U moet het koppelpunt instellen van elke gemonitoorde partitie, zoals / "
-"of /home\n"
+"  U moet het koppelpunt instellen van elke gemonitoorde partitie, zoals / of "
+"/home\n"
 "  Beter weergeven in een meter, met 30 of 60 seconden ververssnelheid en "
 "hele korte of geen vertraging tussen overgangen.\n"
 "\n"
@@ -817,9 +820,8 @@ msgid "Enter a command to launch:"
 msgstr "Voer een opdracht in om uit te voeren :"
 
 #: ../GMenu/src/applet-apps.c:67
-#, fuzzy
 msgid "Launch this new application?"
-msgstr "E-mailprogramma"
+msgstr ""
 
 #: ../Global-Menu/src/applet-init.c:30
 msgid "Global Menu"
@@ -871,7 +873,7 @@ msgstr ""
 
 #: ../Indicator-Generic/src/applet-init.c:30
 msgid "Indicator-Generic"
-msgstr ""
+msgstr "Indicatoren-algemeen"
 
 #: ../Indicator-Generic/src/applet-init.c:33
 msgid ""
@@ -882,7 +884,8 @@ msgid ""
 "You can also blacklist indicators you don't want to see."
 msgstr ""
 "Deze plug-in kan alle beschikbare indicatoren weergeven in uw dock.\n"
-"Indicatoren geven informatie over iets en een menu om taken uit te voeren:\n"
+"Indicatoren geven informatie over iets en hebben een menu om taken uit te "
+"voeren:\n"
 "  bijvoorbeeld een indicator om de afdruktaken te beheren. Niet actieve "
 "indicatoren worden automatisch verborgen.\n"
 "U kunt ook indicatoren verbergen die u niet wilt zien."
@@ -1290,8 +1293,8 @@ msgstr ""
 "+ Page up/down om te wisselen naar een ander hoofd-dock)\n"
 " - of typ de naam in van een starter en druk op de Tab-toets om automatisch "
 "naar de eerstvolgende starter te springen.\n"
-"Druk Enter om op het pictogram te klikken, Shift+Enter voor Shift+klik, Alt"
-"+Enter voor middelklik, en Ctrl+Enter voor linkermuisklik\n"
+"Druk Enter om op het pictogram te klikken, Shift+Enter voor Shift+klik, "
+"Alt+Enter voor middelklik, en Ctrl+Enter voor linkermuisklik\n"
 "Voor annuleren drukt u op Escape of nog een keer op dezelfde sneltoets."
 
 #: ../Remote-Control/src/applet-init.c:42
@@ -1490,7 +1493,8 @@ msgstr "Vertraging"
 
 #: ../Screenshot/src/applet-screenshot.c:479
 msgid "Grab the current window instead of the all screen"
-msgstr "Schemadfruk maken van huidige venster in plaats van het gehele scherm"
+msgstr ""
+"Schemadfruk maken van huidige venster in plaats van het gehele scherm"
 
 #: ../Screenshot/src/applet-screenshot.c:480
 msgid "Grab the current window"
@@ -1615,7 +1619,8 @@ msgstr "Core-temperatuur:"
 #: ../System-Monitor/src/applet-nvidia.c:161
 #, c-format
 msgid "Alert! Graphic Card core temperature has reached %d°C"
-msgstr "Waarschuwing ! Core-temperatuur van grafische kaart heeft %d°C bereikt"
+msgstr ""
+"Waarschuwing ! Core-temperatuur van grafische kaart heeft %d°C bereikt"
 
 #: ../System-Monitor/src/applet-rame.c:123
 msgid "Gb"
@@ -1933,8 +1938,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2096,7 +2101,7 @@ msgstr "Donker"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:89
 msgid "clear"
-msgstr "Licht"
+msgstr "Helder"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:97
 msgid "light"
@@ -2137,7 +2142,7 @@ msgstr "Gekruld"
 
 #: ../dialog-rendering/src/applet-decorator-modern.h:26
 msgid "modern"
-msgstr "modern"
+msgstr "Modern"
 
 #: ../dialog-rendering/src/applet-decorator-tooltip.h:26
 msgid "tooltip"
@@ -2156,9 +2161,8 @@ msgstr "Infotekst"
 #: ../dnd2share/src/applet-backend-ubuntuone.c:32
 #: ../dnd2share/src/applet-backend-uppix.c:31
 #: ../dnd2share/src/applet-backend-videobin.c:32
-#, fuzzy
 msgid "Direct Link"
-msgstr "Map"
+msgstr ""
 
 #: ../dnd2share/src/applet-backend-codepad.c:51
 #: ../dnd2share/src/applet-backend-custom.c:74
@@ -2169,9 +2173,8 @@ msgid "Your text is empty and couldn't be uploaded to this server"
 msgstr ""
 
 #: ../dnd2share/src/applet-backend-custom.c:35
-#, fuzzy
 msgid "No script set for this file type"
-msgstr "Aangepast script voor uploaden bestand :"
+msgstr ""
 
 #: ../dnd2share/src/applet-backend-dropbox.c:63
 #: ../dnd2share/src/applet-backend-ubuntuone.c:59
@@ -2184,14 +2187,12 @@ msgid "Thumbnail"
 msgstr ""
 
 #: ../dnd2share/src/applet-backend-imgur.c:33
-#, fuzzy
 msgid "Display Image"
-msgstr "Waarden tonen"
+msgstr ""
 
 #: ../dnd2share/src/applet-backend-imgur.c:33
-#, fuzzy
 msgid "Large"
-msgstr "Groot"
+msgstr ""
 
 #: ../dnd2share/src/applet-backend-imgur.c:33
 #: ../dock-rendering/data/messages:41
@@ -2207,7 +2208,8 @@ msgstr ""
 "Druk op CTRL+v om de URL ergens in te plakken."
 
 #: ../dnd2share/src/applet-dnd2share.c:342
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Wacht a.u.b. met het starten van een nieuwe upload, totdat de huidige upload "
 "beëindigd is."
@@ -2227,21 +2229,19 @@ msgstr ""
 "Kon bestand niet uploaden, controleer of uw verbonden bent met het internet."
 
 #: ../dnd2share/src/applet-dnd2share.h:29
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Couldn't upload the file to %s, check that your internet connection is "
 "active."
 msgstr ""
-"Kon bestand niet uploaden, controleer of uw verbonden bent met het internet."
 
 #: ../dnd2share/src/applet-dnd2share.h:32
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Couldn't upload the file to %s.\n"
 "Check that your internet connection is active and '%s' is correctly "
 "installed and running"
 msgstr ""
-"Kon bestand niet uploaden, controleer of uw verbonden bent met het internet."
 
 #: ../dnd2share/src/applet-init.c:46
 msgid ""
@@ -2603,7 +2603,7 @@ msgstr "Het scherm vergrendelen"
 
 #: ../logout/src/applet-init.c:71
 msgid "Show the log-out menu"
-msgstr "Het uitlogmenu tonen"
+msgstr "Het afmeldmenu tonen"
 
 #: ../logout/src/applet-logout.c:260 ../logout/data/messages:97
 msgid "Shut down"
@@ -2625,13 +2625,16 @@ msgstr "Uw computer zal geen stroom gebruiken."
 
 #: ../logout/src/applet-logout.c:279
 msgid "Hybrid Sleep"
-msgstr ""
+msgstr "Hybride slaapstand"
 
 #: ../logout/src/applet-logout.c:280
 msgid ""
 "Your computer will still consume a small amount of energy but after some "
 "time, the computer will suspend to disk and not consume any energy."
 msgstr ""
+"Uw computer zal nog een klein beetje stroom gebruiken, maar zal na enige "
+"tijd overschakelen naar de pauzestand waarna er geen stroom meer gebruikt "
+"zal worden."
 
 #: ../logout/src/applet-logout.c:285
 #: ../powermanager/src/powermanager-menu-functions.c:99
@@ -3119,24 +3122,20 @@ msgid "Battery charged"
 msgstr "Accu is opgeladen"
 
 #: ../powermanager/src/powermanager-draw.c:199
-#, fuzzy
 msgid "h"
-msgstr "1uur"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:201
-#, fuzzy
 msgid "mn"
-msgstr "min"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:210
-#, fuzzy
 msgid "remaining"
-msgstr "Resterende tijd"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:210
-#, fuzzy
 msgid "until charged"
-msgstr "Accu is opgeladen"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:228 ../wifi/src/applet-draw.c:30
 #: ../Clipper/data/messages:97 ../GMenu-old/data/messages:109
@@ -3437,8 +3436,8 @@ msgstr "Toon muis"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Deze plug-in tekent enige animatie rond de muisaanwijzer wanneer het zich in "
 "een dock/desklet bevindt."
@@ -3856,9 +3855,8 @@ msgid "Reset marks"
 msgstr "Markeringen verwijderen"
 
 #: ../tomboy/src/tomboy-notifications.c:277
-#, fuzzy
 msgid "No description"
-msgstr "Positie"
+msgstr ""
 
 #: ../weather/src/applet-config.c:120
 msgid ""
@@ -5014,7 +5012,7 @@ msgstr "Op Widget Layer laten"
 #: ../weather/data/messages:61 ../weblets/data/messages:51
 #: ../wifi/data/messages:59
 msgid "Reserve space"
-msgstr "Reserveer ruimte"
+msgstr "Ruimte reserveren"
 
 #: ../Clipper/data/messages:53 ../Composite-Manager/data/messages:51
 #: ../Disks/data/messages:37 ../Doncky/data/messages:53
@@ -5546,7 +5544,8 @@ msgstr "Plakken in klembord ?"
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
-msgstr "Als u klikt op een item, wordt de inhoud zichtbaar met een middelklik"
+msgstr ""
+"Als u klikt op een item, wordt de inhoud zichtbaar met een middelklik"
 
 #: ../Clipper/data/messages:121
 msgid "Paste into Selection?"
@@ -5716,7 +5715,8 @@ msgstr "Mogen externe toepassingen de labels van de pictogrammen bewerken ?"
 
 #: ../Dbus/data/messages:19
 msgid "Let extern applications modify the quick-infos on icons?"
-msgstr "Mogen externe toepassingen de snel-info van de pictogrammen bewerken ?"
+msgstr ""
+"Mogen externe toepassingen de snel-info van de pictogrammen bewerken ?"
 
 #: ../Dbus/data/messages:21
 msgid "Let extern applications modify the icons' image?"
@@ -5977,7 +5977,8 @@ msgid "Background"
 msgstr "Achtergrond"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "U kunt meer mooie achtergronden krijgen als u de decoraties van het Desklet "
 "gebruikt"
@@ -7219,7 +7220,8 @@ msgstr "Specifieke uit te voeren opdracht, om geluidsmixer te tonen :"
 
 #: ../clock/data/messages:7
 msgid "Leave empty to use the location name if available."
-msgstr "Laat leeg om de naam van de locatie te gebruiken, indien beschikbaar."
+msgstr ""
+"Laat leeg om de naam van de locatie te gebruiken, indien beschikbaar."
 
 #: ../clock/data/messages:103
 msgid "Show the date:"
@@ -7511,9 +7513,8 @@ msgid "Preferred site for images hosting :"
 msgstr "Geprefereerde website voor afbeeldingen-hosting :"
 
 #: ../dnd2share/data/messages:141
-#, fuzzy
 msgid "Uppix.com"
-msgstr "Uppix.net"
+msgstr ""
 
 #: ../dnd2share/data/messages:143
 msgid "Imagebin.ca"
@@ -7577,14 +7578,13 @@ msgid "Custom script for file upload :"
 msgstr "Aangepast script voor uploaden bestand :"
 
 #: ../dnd2share/data/messages:181
-#, fuzzy
-msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
-msgstr "Laat leeg om bestanden te uploaden naar '~/Dropbox/Public'."
+msgid ""
+"Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
+msgstr ""
 
 #: ../dnd2share/data/messages:183
-#, fuzzy
 msgid "Path of a custom DropBox / UbuntuOne folder :"
-msgstr "Pad naar DropBox-map :"
+msgstr ""
 
 #: ../dnd2share/data/messages:185
 msgid "Otherwise, your user name will be used when possible."
@@ -7745,7 +7745,8 @@ msgstr "Kromming :"
 
 #: ../dock-rendering/data/messages:93
 msgid "The parabola will be restricted to a rectangle of this proportion."
-msgstr "De parabool zal gemaakt worden tot een rechthoek van deze proporties."
+msgstr ""
+"De parabool zal gemaakt worden tot een rechthoek van deze proporties."
 
 #: ../dock-rendering/data/messages:95
 msgid "Height/width ratio:"
@@ -7784,7 +7785,8 @@ msgid "Space between icons:"
 msgstr "Ruimte tussen pictogrammen :"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 betekent dat de golf plat is, 1 betekent dat de golf gelijk is aan andere "
 "weergaves."
@@ -7962,7 +7964,8 @@ msgstr ""
 
 #: ../dustbin/data/messages:95
 msgid "Name of the image to overwrite the theme's full image :"
-msgstr "Naam van een afbeelding om thema´s ´Vol´ afbeelding te overschrijven :"
+msgstr ""
+"Naam van een afbeelding om thema´s ´Vol´ afbeelding te overschrijven :"
 
 #: ../dustbin/data/messages:97
 msgid "Config"
@@ -8008,7 +8011,8 @@ msgid "Colours"
 msgstr "Kleuren"
 
 #: ../icon-effect/data/messages:71
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr "De kleuren zullen iets afwijken, mogelijk moet u ze aanpassen."
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
@@ -8271,7 +8275,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Naam van het bestand voor de \"Nieuwe e-mail\" afbeelding :"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Indien aangevinkt, zal het aantal e-mails getoond worden zelfs als er geen e-"
 "mails zijn."
@@ -8284,7 +8289,8 @@ msgstr "'0' laten zien wanneer er geen e-mail is?"
 #: ../stack/data/messages:95 ../switcher/data/messages:143
 #: ../tomboy/data/messages:119 ../weather/data/messages:133
 msgid "Leave empty to use default sub-dock view."
-msgstr "Laat leeg als u de standaardweergave van de sub-docks wilt gebruiken."
+msgstr ""
+"Laat leeg als u de standaardweergave van de sub-docks wilt gebruiken."
 
 #: ../mail/data/messages:121 ../shortcuts/data/messages:105
 #: ../stack/data/messages:97 ../switcher/data/messages:145
@@ -8357,7 +8363,8 @@ msgid "Blur amount:"
 msgstr "Hoeveelheid vervaging :"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr "Laat leeg om de naam van de momenteel bediende speler te tonen."
 
 #: ../musicPlayer/data/messages:11
@@ -8911,7 +8918,8 @@ msgstr "Achtergrond toevoegen aan de afbeelding?"
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
-msgstr "Stel de doorzichtigheid in op 0 als u geen achtergrond wilt gebruiken."
+msgstr ""
+"Stel de doorzichtigheid in op 0 als u geen achtergrond wilt gebruiken."
 
 #: ../slider/data/messages:175
 msgid "Choose a background colour :"
@@ -9365,7 +9373,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Positie van de verticale scrollbalk in pixel"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Hierdoor kunt u met rechts klikken op het desklet voor het Cairo-Dock menu."
 
@@ -9427,26 +9436,3 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Alternatieve opdracht om ´Draadloos configuratie´ te openen :"
-
-#~ msgid "Time before empty"
-#~ msgstr "Tijd voordat de accu leeg is"
-
-#~ msgid "Time before full"
-#~ msgstr "Tijd voordat de accu vol is"
-
-#~ msgid "failed to unmount %s"
-#~ msgstr "Kon %s niet ontkoppelen"
-
-#, fuzzy
-#~ msgid "failed to mount %s"
-#~ msgstr "Kon %s niet ontkoppelen"
-
-#~ msgid ""
-#~ "Your session needs to be restarted in order to update new configuration "
-#~ "files."
-#~ msgstr ""
-#~ "Uw sessie dient herstart te worden om de configuratiebestanden bij te "
-#~ "kunnen werken."
-
-#~ msgid "Preload icons at startup"
-#~ msgstr "Pictogrammen vooraf laden bij het opstarten"
