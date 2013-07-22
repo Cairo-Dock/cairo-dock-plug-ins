@@ -48,7 +48,8 @@ typedef enum {
 
 struct _AppletConfig {
 	gchar *cUserAction;  // custom logout command
-	gchar *cUserAction2;  // custom shutdown command
+	gchar *cUserActionShutdown;  // custom shutdown command
+	gchar *cUserActionSwitchUser;  // custom switch-user command
 	CDActionsEnum iActionOnMiddleClick;
 	gint iShutdownTime;  // time_t
 	gchar *cEmblemPath;

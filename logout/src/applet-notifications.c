@@ -49,9 +49,9 @@ static void _logout (void)
 }
 static void _shutdown (void)
 {
-	if (myConfig.cUserAction2 != NULL)
+	if (myConfig.cUserActionShutdown != NULL)
 	{
-		cairo_dock_launch_command (myConfig.cUserAction2);
+		cairo_dock_launch_command (myConfig.cUserActionShutdown);
 	}
 	else
 	{

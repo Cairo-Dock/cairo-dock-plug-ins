@@ -259,7 +259,7 @@ static GtkWidget *_build_menu (void)
 	cImagePath = _check_icon ("system-shutdown", myData.iDesiredIconSize);
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Shut down"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-shutdown.svg", cd_logout_shut_down, pMenu);
 	g_free (cImagePath);
-	if (!myData.bCanStop && ! myConfig.cUserAction2)
+	if (!myData.bCanStop && ! myConfig.cUserActionShutdown)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
 	cImagePath = _check_icon (GTK_STOCK_REFRESH, myData.iDesiredIconSize);
@@ -732,9 +732,9 @@ static void _shut_down (void)
 			break;
 		}
 	}
-	else if (myConfig.cUserAction2)
+	else if (myConfig.cUserActionShutdown)
 	{
-		cairo_dock_launch_command (myConfig.cUserAction2);
+		cairo_dock_launch_command (myConfig.cUserActionShutdown);
 	}
 }
 static inline gchar *_info_msg (void)
@@ -802,9 +802,9 @@ static void _restart (void)
 				break;
 		}
 	}
-	else if (myConfig.cUserAction2)
+	else if (myConfig.cUserActionShutdown)
 	{
-		cairo_dock_launch_command (myConfig.cUserAction2);
+		cairo_dock_launch_command (myConfig.cUserActionShutdown);
 	}
 }
 
@@ -879,9 +879,9 @@ static void cd_logout_close_session (void)  // could use org.gnome.SessionManage
 static void cd_logout_switch_to_user (const gchar *cUser)
 {
 	const gchar *seat = g_getenv ("XDG_SEAT_PATH");
+	GError *error = NULL;
 	if (seat)  // else, we could possibly get it by: ck -> GetCurrentSession -> session -> GetSeatId
 	{
-		GError *error = NULL;
 		DBusGProxy *pProxy = cairo_dock_create_new_system_proxy (
 			"org.freedesktop.DisplayManager",
 			seat,
@@ -893,8 +893,11 @@ static void cd_logout_switch_to_user (const gchar *cUser)
 			G_TYPE_INVALID);
 		if (error)
 		{
-			cd_warning ("DisplayManager error: %s", error->message);
+			cd_warning ("DisplayManager (LocalDisplay) error: %s", error->message);
 			g_error_free (error);
+			if (myConfig.cUserActionSwitchUser != NULL)
+				cairo_dock_launch_command_printf ("%s %s", NULL,
+					myConfig.cUserActionSwitchUser, cUser);
 		}
 		g_object_unref (pProxy);
 	}
@@ -906,7 +909,16 @@ static void cd_logout_switch_to_user (const gchar *cUser)
 			"org.gnome.DisplayManager.LocalDisplayFactory");
 		dbus_g_proxy_call_no_reply (pProxy, "SwitchToUser",
 			G_TYPE_STRING, cUser,
+			G_TYPE_INVALID,
 			G_TYPE_INVALID);  // we don't care the 'id' object path returned
+		if (error)
+		{
+			cd_warning ("DisplayManager error: %s", error->message);
+			g_error_free (error);
+			if (myConfig.cUserActionSwitchUser != NULL)
+				cairo_dock_launch_command_printf ("%s %s", NULL,
+					myConfig.cUserActionSwitchUser, cUser);
+		}
 		g_object_unref (pProxy);
 	}
 }
@@ -914,9 +926,9 @@ static void cd_logout_switch_to_user (const gchar *cUser)
 static void cd_logout_switch_to_guest (void)
 {
 	const gchar *seat = g_getenv ("XDG_SEAT_PATH");
+	GError *error = NULL;
 	if (seat)  // else, we could possibly get it by: ck -> GetCurrentSession -> session -> GetSeatId
 	{
-		GError *error = NULL;
 		DBusGProxy *pProxy = cairo_dock_create_new_system_proxy (
 			"org.freedesktop.DisplayManager",
 			seat,
@@ -929,6 +941,8 @@ static void cd_logout_switch_to_guest (void)
 		{
 			cd_warning ("DisplayManager error: %s", error->message);
 			g_error_free (error);
+			if (myConfig.cUserActionSwitchUser != NULL)
+				cairo_dock_launch_command (myConfig.cUserActionSwitchUser);
 		}
 		g_object_unref (pProxy);
 	}
@@ -938,9 +952,17 @@ static void cd_logout_switch_to_guest (void)
 			"org.gnome.DisplayManager",
 			"/org/gnome/DisplayManager/LocalDisplayFactory",
 			"org.gnome.DisplayManager.LocalDisplayFactory");
-		dbus_g_proxy_call_no_reply (pProxy, "StartGuestSession",
+		dbus_g_proxy_call (pProxy, "StartGuestSession", &error,
 			G_TYPE_STRING, "",  // current user session, but actually it can be NULL so why bother?
+			G_TYPE_INVALID,
 			G_TYPE_INVALID);  // we don't care the 'id' object path returned
+		if (error)
+		{
+			cd_warning ("DisplayManager (LocalDisplay) error: %s", error->message);
+			g_error_free (error);
+			if (myConfig.cUserActionSwitchUser != NULL)
+				cairo_dock_launch_command (myConfig.cUserActionSwitchUser);
+		}
 		g_object_unref (pProxy);
 	}
 }

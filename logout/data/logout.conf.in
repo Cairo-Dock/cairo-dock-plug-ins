@@ -139,5 +139,9 @@ user action =
 #{This will be available when middle-clicking. Leave empty to execute the default command, which depends on your distribution. In some cases the command to shutdown is the same as the one to log out.}
 user action2 =
 
+#s User-defined command to execute for changing user:
+#{Leave empty to execute the default command. If not empty, it will execute this command with the name of the user (or nothing for guest session)}
+user action switch =
+
 
 shutdown time = 0

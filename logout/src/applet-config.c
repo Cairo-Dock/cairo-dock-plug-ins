@@ -30,7 +30,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cShortkey2 = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "shortkey2", "<Control>F12");
 	myConfig.bConfirmAction = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "confirm action", TRUE);
 	myConfig.cUserAction = CD_CONFIG_GET_STRING ("Configuration", "user action");
-	myConfig.cUserAction2 = CD_CONFIG_GET_STRING ("Configuration", "user action2");
+	myConfig.cUserActionShutdown = CD_CONFIG_GET_STRING ("Configuration", "user action2");
+	myConfig.cUserActionSwitchUser = CD_CONFIG_GET_STRING ("Configuration", "user action switch");
 	myConfig.iShutdownTime = CD_CONFIG_GET_INTEGER ("Configuration", "shutdown time");
 	myConfig.cEmblemPath = CD_CONFIG_GET_STRING ("Configuration", "emblem");
 	myConfig.cDefaultLabel = CD_CONFIG_GET_STRING ("Icon", "name");
@@ -41,7 +42,8 @@ CD_APPLET_GET_CONFIG_END
 
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cUserAction);
-	g_free (myConfig.cUserAction2);
+	g_free (myConfig.cUserActionShutdown);
+	g_free (myConfig.cUserActionSwitchUser);
 	g_free (myConfig.cDefaultLabel);
 	g_free (myConfig.cDefaultIcon);
 	g_free (myConfig.cEmblemPath);
