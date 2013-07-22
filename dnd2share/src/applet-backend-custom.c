@@ -30,13 +30,14 @@ static const gchar *s_UrlLabels[NB_URLS] = {N_("Direct Link")};
 
 static void _upload (CDFileType iCurrentFileType, const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
+	/* => already check in applet-config.c
 	if (myConfig.cCustomScripts[iCurrentFileType] == NULL)
 	{
 		const gchar *cError = D_("No script set for this file type");
-		cd_warning (cError);
-		g_set_error (pError, 1, 1, cError);
+		cd_warning ("%s", cError);
+		g_set_error (pError, 1, 1, "%s", cError);
 		return;
-	}
+	}*/
 
 	// Upload the file
 	gchar *cCommand = g_strdup_printf ("%s '%s'", myConfig.cCustomScripts[iCurrentFileType], cFilePath);

@@ -45,7 +45,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cCustomScripts[CD_TYPE_VIDEO] = CD_CONFIG_GET_STRING ("Configuration", "video script");
 	myConfig.cCustomScripts[CD_TYPE_FILE] = CD_CONFIG_GET_STRING ("Configuration", "file script");
 	int i;
-	for (i = 0; i < CD_NB_FILE_TYPES; i ++)  // on empeche de choisir le backend custom si aucun script n'est fourni.
+	for (i = 0; i < CD_NB_FILE_TYPES; i ++)  // avoid using custom backend if no script is set for this type
 	{
 		if (myConfig.cCustomScripts[i] == NULL && myConfig.iPreferedSite[i] == 0)
 			myConfig.iPreferedSite[i] = 1;
