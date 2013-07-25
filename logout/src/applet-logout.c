@@ -57,7 +57,12 @@ static void _display_menu (void);
 ////////////////////
 
 /*
- * Check if the method (cMethod) exists and returns 'yes'.
+ * Check if the method (cMethod) exists and returns 'yes' or 'challenge':
+ * http://www.freedesktop.org/wiki/Software/systemd/logind/
+ *  If "yes" is returned the operation is supported and the user may execute the
+ *   operation without further authentication.
+ *  If "challenge" is returned the operation is available, but only after
+ *   authorization.
  * If it exists, *bIsAble is modified and TRUE is returned.
  */
 static gboolean _cd_logout_check_capabilities_logind (DBusGProxy *pProxy, const gchar *cMethod, gboolean *bIsAble)
@@ -70,7 +75,8 @@ static gboolean _cd_logout_check_capabilities_logind (DBusGProxy *pProxy, const 
 		G_TYPE_INVALID);
 	if (!error)
 	{
-		*bIsAble = (cResult && strcmp (cResult, "yes") == 0);
+		*bIsAble = (cResult && (strcmp (cResult, "yes") == 0
+		            || strcmp (cResult, "challenge") == 0));
 		g_free (cResult);
 	}
 	else
