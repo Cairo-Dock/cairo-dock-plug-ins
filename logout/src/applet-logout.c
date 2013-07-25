@@ -907,7 +907,7 @@ static void cd_logout_switch_to_user (const gchar *cUser)
 			"org.gnome.DisplayManager",
 			"/org/gnome/DisplayManager/LocalDisplayFactory",
 			"org.gnome.DisplayManager.LocalDisplayFactory");
-		dbus_g_proxy_call_no_reply (pProxy, "SwitchToUser",
+		dbus_g_proxy_call (pProxy, "SwitchToUser", &error,
 			G_TYPE_STRING, cUser,
 			G_TYPE_INVALID,
 			G_TYPE_INVALID);  // we don't care the 'id' object path returned
