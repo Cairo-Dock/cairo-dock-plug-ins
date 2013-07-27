@@ -1,8 +1,11 @@
+# Note: DESTDIR is set during the make install, we can't check it before
+
 if ("@PYTHON2_FOUND@" STREQUAL "TRUE")
 	IF("@ROOT_PREFIX@" STREQUAL "")
 		EXEC_PROGRAM("@PYTHON2_EXECUTABLE@" "${CMAKE_CURRENT_BINARY_DIR}" ARGS
 						"setup.py" "install"
 						"--prefix=${CMAKE_INSTALL_PREFIX}"
+						"--root=`test -z \"\$DESTDIR\" && echo / || echo \$DESTDIR`"
 						"@DEBIAN_INSTALL_LAYOUT@")
 	ELSEIF(NOT "@ROOT_PREFIX@" STREQUAL "" AND "@python_no_deb_layout@" STREQUAL "")
 		EXEC_PROGRAM("@PYTHON2_EXECUTABLE@" "${CMAKE_CURRENT_BINARY_DIR}" ARGS
@@ -21,6 +24,7 @@ if ("@PYTHON3_FOUND@" STREQUAL "TRUE")
 		EXEC_PROGRAM("@PYTHON3_EXECUTABLE@" "${CMAKE_CURRENT_BINARY_DIR}" ARGS
 						"setup.py" "install"
 						"--prefix=${CMAKE_INSTALL_PREFIX}"
+						"--root=`test -z \"\$DESTDIR\" && echo / || echo \$DESTDIR`"
 						"@DEBIAN_INSTALL_LAYOUT@")
 	ELSEIF(NOT "@ROOT_PREFIX@" STREQUAL "" AND "@python_no_deb_layout@" STREQUAL "")
 		EXEC_PROGRAM("@PYTHON3_EXECUTABLE@" "${CMAKE_CURRENT_BINARY_DIR}" ARGS

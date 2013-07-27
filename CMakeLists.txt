@@ -481,10 +481,6 @@ set (with_python3 no)
 enable_if_not_defined (enable-python-interface)
 if (enable-python-interface)
 	message (STATUS " * Python:")
-	# support make install DESTDIR=/tmp
-	if ("${ROOT_PREFIX}" STREQUAL "")
-		set (ROOT_PREFIX "$ENV{DESTDIR}")
-	endif()
 	# find python executables
 	find_program (PYTHON2_EXECUTABLE python2)  # if both python2&3 are installed, usually we will have 'python2' and 'python3' available (one of them being a link to 'python')
 	if (PYTHON2_EXECUTABLE AND EXISTS ${PYTHON2_EXECUTABLE})
