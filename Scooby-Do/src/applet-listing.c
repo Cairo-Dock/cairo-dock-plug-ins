@@ -148,7 +148,7 @@ static gboolean on_configure_listing (GtkWidget* pWidget, GdkEventConfigure* pEv
 		{
 			GLsizei w = pEvent->width;
 			GLsizei h = pEvent->height;
-			if (! gldi_glx_begin_draw_container (CAIRO_CONTAINER (pListing)))
+			if (! gldi_gl_container_begin_draw (CAIRO_CONTAINER (pListing)))
 				return FALSE;
 			
 			glViewport(0, 0, w, h);
