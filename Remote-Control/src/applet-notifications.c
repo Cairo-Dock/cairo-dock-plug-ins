@@ -218,7 +218,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 			gldi_icon_stop_animation (myData.pCurrentIcon);  // car on va perdre le focus.
 			myData.bIgnoreIconState = FALSE;
 			
-			GtkWidget *menu = cairo_dock_build_menu (myData.pCurrentIcon, CAIRO_CONTAINER (myData.pCurrentDock));
+			GtkWidget *menu = gldi_container_build_menu (CAIRO_CONTAINER (myData.pCurrentDock), myData.pCurrentIcon);
 			cairo_dock_popup_menu_on_icon (menu, myData.pCurrentIcon, CAIRO_CONTAINER (myData.pCurrentDock));
 		}
 	}
@@ -264,7 +264,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 				gldi_icon_stop_animation (myData.pCurrentIcon);  // car on va perdre le focus.
 				myData.bIgnoreIconState = FALSE;
 				
-				GtkWidget *menu = cairo_dock_build_menu (myData.pCurrentIcon, CAIRO_CONTAINER (myData.pCurrentDock));
+				GtkWidget *menu = gldi_container_build_menu (CAIRO_CONTAINER (myData.pCurrentDock), myData.pCurrentIcon);
 				cairo_dock_popup_menu_on_icon (menu, myData.pCurrentIcon, CAIRO_CONTAINER (myData.pCurrentDock));
 			}
 			else
