@@ -45,7 +45,7 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (ZEITGEIST_ZG_EVENT_INTERPRETATION)
 			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
-			#ifndef ZEITGEIST_OLD
+			#ifndef ZEITGEIST_1_0
 			"", // origin
 			#endif
 			subj,  // a list of subjects
@@ -62,7 +62,7 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (ZEITGEIST_ZG_EVENT_INTERPRETATION)
 			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
-			#ifndef ZEITGEIST_OLD
+			#ifndef ZEITGEIST_1_0
 			"", // origin
 			#endif
 			subj,  // a list of subjects
@@ -79,7 +79,7 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (ZEITGEIST_ZG_EVENT_INTERPRETATION)
 			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
-			#ifndef ZEITGEIST_OLD
+			#ifndef ZEITGEIST_1_0
 			"", // origin
 			#endif
 			subj,  // a list of subjects
@@ -96,7 +96,7 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (ZEITGEIST_ZG_EVENT_INTERPRETATION)
 			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
-			#ifndef ZEITGEIST_OLD
+			#ifndef ZEITGEIST_1_0
 			"", // origin
 			#endif
 			subj,  // a list of subjects
@@ -113,7 +113,7 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (ZEITGEIST_ZG_EVENT_INTERPRETATION)
 			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
-			#ifndef ZEITGEIST_OLD
+			#ifndef ZEITGEIST_1_0
 			"", // origin
 			#endif
 			subj,  // a list of subjects
@@ -130,7 +130,7 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (ZEITGEIST_ZG_EVENT_INTERPRETATION)
 			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
-			#ifndef ZEITGEIST_OLD
+			#ifndef ZEITGEIST_1_0
 			"", // origin
 			#endif
 			subj,  // a list of subjects
@@ -147,7 +147,7 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (ZEITGEIST_ZG_EVENT_INTERPRETATION)
 			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
-			#ifndef ZEITGEIST_OLD
+			#ifndef ZEITGEIST_1_0
 			"", // origin
 			#endif
 			subj,  // a list of subjects
@@ -164,7 +164,7 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (ZEITGEIST_ZG_EVENT_INTERPRETATION)
 			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
-			#ifndef ZEITGEIST_OLD
+			#ifndef ZEITGEIST_1_0
 			"", // origin
 			#endif
 			subj,  // a list of subjects
@@ -181,7 +181,7 @@ static ZeitgeistEvent *_get_event_template_for_category (CDEventType iCategory)
 			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (ZEITGEIST_ZG_EVENT_INTERPRETATION)
 			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
-			#ifndef ZEITGEIST_OLD
+			#ifndef ZEITGEIST_1_0
 			"", // origin
 			#endif
 			subj,  // a list of subjects
@@ -268,7 +268,7 @@ void cd_find_recent_related_files (const gchar **cMimeTypes, CDOnGetEventsFunc p
 			ZEITGEIST_ZG_ACCESS_EVENT,  // interpretation type of the event (ZEITGEIST_ZG_EVENT_INTERPRETATION)
 			ZEITGEIST_ZG_USER_ACTIVITY,  // manifestation type of the event (ZEITGEIST_ZG_EVENT_MANIFESTATION)
 			"",  // actor (the party responsible for triggering the event, eg: app://firefox.desktop)
-			#ifndef ZEITGEIST_OLD
+			#ifndef ZEITGEIST_1_0
 			"", // origin
 			#endif
 			subj, NULL);  // a list of subjects, terminated with NULL
@@ -413,7 +413,7 @@ static void on_deleting_event_received (ZeitgeistLog *log, GAsyncResult *res, gp
 	
 	GError *error = NULL;
 	int iResultLength;
-	#ifdef ZEITGEIST_OLD
+	#ifdef ZEITGEIST_1_0
 	GArray *event_ids = zeitgeist_log_find_event_ids_finish (log, res, &error);
 	iResultLength = event_ids->len;
 	#else
@@ -437,7 +437,7 @@ static void on_deleting_event_received (ZeitgeistLog *log, GAsyncResult *res, gp
 		(GAsyncReadyCallback)on_delete_events,
 		user_data);
 }
-#ifdef ZEITGEIST_OLD
+#ifdef ZEITGEIST_1_0
 static void on_delete_whole_log (ZeitgeistLog *log, GAsyncResult *res, gpointer *user_data)
 {
 	CDOnDeleteEventsFunc pCallback = user_data[0];
@@ -466,14 +466,14 @@ void cd_delete_recent_events (int iNbDays, CDOnDeleteEventsFunc pCallback, gpoin
 	
 	if (myData.pLog == NULL)
 		myData.pLog = zeitgeist_log_new ();
-
-	#ifndef ZEITGEIST_OLD /// WORKAROUND for Zeitgeist2: zeitgeist_log_delete_log is no longer available...
+	
+	#ifdef ZEITGEIST_1_0  // WORKAROUND for Zeitgeist2: zeitgeist_log_delete_log is no longer available, so if we want to delete the whole log (nbdays<0), we'll delete as many logs as we can (20 years seems large enough ^^).
 	if (iNbDays <= 0)
 		iNbDays = 20*365;
-	#else
+	#endif
+	
 	if (iNbDays > 0)
 	{
-	#endif
 		// find events IDs of less than 'iNbDays' days
 		time_t t = (time_t) time (NULL);
 		gint64 now = t * 1e3;  // msec
@@ -490,8 +490,8 @@ void cd_delete_recent_events (int iNbDays, CDOnDeleteEventsFunc pCallback, gpoin
 			(GCancellable *)NULL,
 			(GAsyncReadyCallback)on_deleting_event_received,
 			s_data);
-	#ifdef ZEITGEIST_OLD
 	}
+	#ifdef ZEITGEIST_1_0
 	else  // delete the whole log
 	{
 		zeitgeist_log_delete_log (myData.pLog,

@@ -92,7 +92,7 @@ static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
 	//\_____________ parse all the events.
 	while (zeitgeist_result_set_has_next (pEvents))
 	{
-		#ifdef ZEITGEIST_OLD
+		#ifdef ZEITGEIST_1_0
 		event = zeitgeist_result_set_next (pEvents);
 		#else
 		event = zeitgeist_result_set_next_value (pEvents);
@@ -492,7 +492,7 @@ static void _on_dialog_destroyed (GldiModuleInstance *myApplet)
 static gboolean _show_dialog_delayed (gpointer data)
 {
 	cd_toggle_dialog ();
-	#ifdef ZEITGEIST_OLD
+	#ifdef ZEITGEIST_1_0
 	if (myData.pDialog != NULL)  // dialog built with success, quit.
 	{
 		myData.iSidTryDialog = 0;
@@ -528,7 +528,7 @@ void cd_toggle_dialog (void)
 			cd_debug ("first search");
 			myData.pLog = zeitgeist_log_new ();  // may launch the Zeitgeist daemon if it's not yet running.
 		}
-		#ifdef ZEITGEIST_OLD
+		#ifdef ZEITGEIST_1_0
 		if (! zeitgeist_log_is_connected (myData.pLog))
 		{
 			cd_debug ("not yet connected");
