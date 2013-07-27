@@ -144,7 +144,7 @@ static gboolean on_configure_listing (GtkWidget* pWidget, GdkEventConfigure* pEv
 		pListing->container.iWidth = iNewWidth;
 		pListing->container.iHeight = iNewHeight;
 		
-		if (g_bUseOpenGL && pListing->container.glContext)
+		/*if (g_bUseOpenGL && pListing->container.glContext)
 		{
 			GLsizei w = pEvent->width;
 			GLsizei h = pEvent->height;
@@ -154,7 +154,7 @@ static gboolean on_configure_listing (GtkWidget* pWidget, GdkEventConfigure* pEv
 			glViewport(0, 0, w, h);
 			
 			cairo_dock_set_ortho_view (CAIRO_CONTAINER (pListing));
-		}
+		}*/
 	}
 	return FALSE;
 }

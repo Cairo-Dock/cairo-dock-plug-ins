@@ -19,7 +19,7 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <gdk/gdkx.h>
+#include <gdk/gdkx.h>  // gldi_container_present
 
 #include "applet-struct.h"
 #include "applet-notifications.h"
@@ -121,8 +121,7 @@ void cd_do_open_session (void)
 	
 	// give it focus for inputs.
 	myData.pPreviouslyActiveWindow = gldi_windows_get_active ();
-	///gtk_window_present (GTK_WINDOW (pDock->container.pWidget));
-	gtk_window_present_with_time (GTK_WINDOW (pDock->container.pWidget), gdk_x11_get_server_time (gldi_container_get_gdk_window(CAIRO_CONTAINER (pDock))));  // pour eviter la prevention du vol de focus.
+	gldi_container_present (CAIRO_CONTAINER (pDock));
 	cairo_dock_freeze_docks (TRUE);
 	
 	// launch the animation.

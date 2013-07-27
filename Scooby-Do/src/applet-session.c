@@ -20,7 +20,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <gdk/gdkx.h>
+#include <gdk/gdkx.h>  // gldi_container_present
 
 #include "applet-struct.h"
 #include "applet-search.h"
@@ -79,7 +79,7 @@ void cd_do_open_session (void)
 	cairo_dock_emit_enter_signal (CAIRO_CONTAINER (g_pMainDock));
 	
 	// le main dock prend le focus.
-	gtk_window_present_with_time (GTK_WINDOW (g_pMainDock->container.pWidget), gdk_x11_get_server_time (gldi_container_get_gdk_window(CAIRO_CONTAINER (g_pMainDock))));  // pour eviter la prevention du vol de focus.
+	gldi_container_present (CAIRO_CONTAINER (g_pMainDock));
 	cairo_dock_freeze_docks (TRUE);
 	
 	// On lance l'animation d'attente.
