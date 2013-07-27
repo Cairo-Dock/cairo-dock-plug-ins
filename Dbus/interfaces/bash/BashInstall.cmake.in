@@ -7,7 +7,7 @@ IF ("@PYTHON2_FOUND@" STREQUAL "TRUE")
 						"--prefix=${CMAKE_INSTALL_PREFIX}"
 						"--root=`test -z \"\$DESTDIR\" && echo / || echo \$DESTDIR`"
 						"@DEBIAN_INSTALL_LAYOUT@")
-	ELSEIF(NOT "@ROOT_PREFIX@" STREQUAL "" AND "@python_no_deb_layout@" STREQUAL "")
+	ELSEIF("@python_no_deb_layout@" STREQUAL "")
 		EXEC_PROGRAM("@PYTHON2_EXECUTABLE@" "${CMAKE_CURRENT_BINARY_DIR}" ARGS
 						"setup.py" "install"
 						"--root=@ROOT_PREFIX@"
@@ -26,7 +26,7 @@ IF ("@PYTHON3_FOUND@" STREQUAL "TRUE")
 						"--prefix=${CMAKE_INSTALL_PREFIX}"
 						"--root=`test -z \"\$DESTDIR\" && echo / || echo \$DESTDIR`"
 						"@DEBIAN_INSTALL_LAYOUT@")
-	ELSEIF(NOT "@ROOT_PREFIX@" STREQUAL "" AND "@python_no_deb_layout@" STREQUAL "")
+	ELSEIF("@python_no_deb_layout@" STREQUAL "")
 		EXEC_PROGRAM("@PYTHON3_EXECUTABLE@" "${CMAKE_CURRENT_BINARY_DIR}" ARGS
 						"setup.py" "install"
 						"--root=@ROOT_PREFIX@"
