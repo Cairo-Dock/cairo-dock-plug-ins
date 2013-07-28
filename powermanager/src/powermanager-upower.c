@@ -29,6 +29,10 @@
 
 
 #ifdef CD_UPOWER_AVAILABLE  // code with libupower
+/* to access suspend/resume functionality on Upower 0.9
+ * even if we use first logind, we only use logind via DBus
+ */
+#define UPOWER_ENABLE_DEPRECATED
 
 static GList * _cd_upower_add_and_ref_device_if_battery (UpDevice *pDevice, GList *pBatteryDeviceList)
 {
