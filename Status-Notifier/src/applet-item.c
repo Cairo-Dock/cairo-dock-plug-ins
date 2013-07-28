@@ -806,7 +806,11 @@ static gboolean _on_draw_menu_reposition (GtkWidget *pWidget, G_GNUC_UNUSED gpoi
 {
 	g_return_val_if_fail (pItem != NULL, FALSE);
 
+	#if (GTK_MAJOR_VERSION < 3)
+	int iMenuWidth = pWidget->allocation.width;
+	#else
 	int iMenuWidth = gtk_widget_get_allocated_width (pWidget);
+	#endif
 
 	if (pItem->iMenuWidth != iMenuWidth)  // if the width has changed, reposition the menu to be sure it won't out of the screen.
 	{
