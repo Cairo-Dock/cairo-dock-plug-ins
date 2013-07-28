@@ -40,11 +40,11 @@ static void cd_menu_show_hide_quick_launch (void)
 	if (myData.pQuickLaunchDialog == NULL)
 	{
 		myData.pQuickLaunchDialog = cd_menu_create_quick_launch_dialog (myApplet);
-		cairo_dock_dialog_reference (myData.pQuickLaunchDialog);
+		gldi_object_ref (GLDI_OBJECT(myData.pQuickLaunchDialog));
 	}
 	else
 	{
-		cairo_dock_toggle_dialog_visibility (myData.pQuickLaunchDialog);
+		gldi_dialog_toggle_visibility (myData.pQuickLaunchDialog);
 	}
 }
 

@@ -343,13 +343,13 @@ static void _cd_menu_on_quick_launch (int iClickedButton, GtkWidget *pInteractiv
 	{
 		gtk_entry_set_text (GTK_ENTRY (pInteractiveWidget), "");
 	}
-	cairo_dock_dialog_reference (myData.pQuickLaunchDialog);
-	cairo_dock_hide_dialog (myData.pQuickLaunchDialog);
+	gldi_object_ref (GLDI_OBJECT(myData.pQuickLaunchDialog));
+	gldi_dialog_hide (myData.pQuickLaunchDialog);
 }
 CairoDialog *cd_menu_create_quick_launch_dialog (GldiModuleInstance *myApplet)
 {
 	gchar *cIconPath = cairo_dock_search_icon_s_path (GTK_STOCK_EXECUTE, myData.iPanelDefaultMenuIconSize);
-	CairoDialog *pDialog = cairo_dock_show_dialog_with_entry (D_("Enter a command to launch:"),
+	CairoDialog *pDialog = gldi_dialog_show_with_entry (D_("Enter a command to launch:"),
 		myIcon, myContainer,
 		cIconPath ? cIconPath : "same icon",
 		NULL,
