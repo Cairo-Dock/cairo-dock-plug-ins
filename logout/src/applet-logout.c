@@ -22,6 +22,10 @@
 #include <math.h>
 
 #ifdef CD_UPOWER_AVAILABLE
+/* to access suspend/resume functionality on Upower 0.9
+ * even if we use first logind, we only use logind via DBus
+ */
+#define UPOWER_ENABLE_DEPRECATED
 #include <upower.h>
 #endif
 
