@@ -1021,7 +1021,11 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 	}
 	
 	GtkRequisition natural_size;
+	#if (GTK_MAJOR_VERSION < 3)
+	gtk_widget_size_request (myData.pModuleMainMenu, &natural_size); // it's the minimum size...
+	#else
 	gtk_widget_get_preferred_size (myData.pModuleMainMenu, NULL, &natural_size);
+	#endif
 	int iItemHeight = 0, iMenuHeight = natural_size.height;
 	
 	// get the position of our items in the menu.
@@ -1030,7 +1034,11 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 	// insert a separator
 	GtkWidget *pMenuItem = gtk_separator_menu_item_new ();
 	gtk_menu_shell_insert (GTK_MENU_SHELL (myData.pModuleMainMenu), pMenuItem, iPosition++);
+	#if (GTK_MAJOR_VERSION < 3)
+	gtk_widget_size_request (pMenuItem, &natural_size); // it's the minimum size...
+	#else
 	gtk_widget_get_preferred_size (pMenuItem, NULL, &natural_size);
+	#endif
 	iItemHeight += natural_size.height;
 	
 	// table des menus et groupes de radio-boutons.
@@ -1185,7 +1193,11 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 		gtk_menu_shell_insert (GTK_MENU_SHELL (pMenu), pMenuItem, iPosition++);
 		if (pMenu == myData.pModuleMainMenu)
 		{
+			#if (GTK_MAJOR_VERSION < 3)
+			gtk_widget_size_request (pMenuItem, &natural_size); // it's the minimum size...
+			#else
 			gtk_widget_get_preferred_size (pMenuItem, NULL, &natural_size);
+			#endif
 			iItemHeight += natural_size.height;
 		}
 	}
