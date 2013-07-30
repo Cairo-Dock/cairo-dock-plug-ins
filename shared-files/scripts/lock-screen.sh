@@ -15,8 +15,12 @@
 # GNU General Public License for more details.
 # http://www.gnu.org/licenses/licenses.html#GPL
 
+# Notes:
+# * "gnome-screensaver" is too long for pgrep
+# * PS_OUTPUT will contain only one big line
+
 PS_OUTPUT=`ps -u $USER -wwo pid,cmd` # restricted to the current user
-if test -n "`echo $PS_OUTPUT | grep gnome-screensaver`"; then  ## "gnome-screensaver" is too long for pgrep
+if test -n "`echo $PS_OUTPUT | grep gnome-screensaver`"; then
 	gnome-screensaver-command --lock
 elif test -n "`echo $PS_OUTPUT | grep xscreensaver`"; then
 	xscreensaver-command -lock
@@ -24,8 +28,22 @@ elif test -n "`echo $PS_OUTPUT | grep cinnamon-screensaver`"; then
 	cinnamon-screensaver-command --lock
 elif test -n "`echo $PS_OUTPUT | grep light-locker`"; then
 	light-locker-command --lock
-else
+elif hash xlock 2> /dev/null; then
 	xlock
+else # check is another "*-screensaver" daemon is running
+	# we need to relaunch ps, easier to parse compare to PS_OUTPUT which contains only one big line
+	SCREENSAVER=`ps -u $USER -wwo pid,cmd | grep "\-[s]creensaver" | awk '{print $2}'`
+	if test -n "$SCREENSAVER"; then
+		if hash ${SCREENSAVER}-command 2> /dev/null; then
+			${SCREENSAVER}-command --lock
+		else
+			echo "WARNING: ${SCREENSAVER} is running but ${SCREENSAVER}-command is not available."
+			echo "Please report this bug to Cairo-Dock devs on http://forum.glx-dock.org"
+			exit 1
+		fi
+	else
+		echo "WARNING: No screensaver found! Please report this bug to Cairo-Dock devs on http://forum.glx-dock.org"
+		exit 1
+	fi
 fi
-
-exit 0
+# the return value is given by the last program launched
