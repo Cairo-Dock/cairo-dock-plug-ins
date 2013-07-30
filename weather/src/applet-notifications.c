@@ -48,8 +48,10 @@ static inline void _go_to_site (GldiModuleInstance *myApplet, int iNumDay)
 	gchar *cURI;
 	if (iNumDay == 0)
 		cURI = g_strdup_printf ("http://www.weather.com/weather/today/%s", myConfig.cLocationCode);
+	else if (iNumDay == 1)
+		cURI = g_strdup_printf ("http://www.weather.com/weather/tomorrow/%s", myConfig.cLocationCode);
 	else
-		cURI = g_strdup_printf ("http://www.weather.com/weather/wxdetail/%s?dayNum=%d", myConfig.cLocationCode, iNumDay);
+		cURI = g_strdup_printf ("http://www.weather.com/weather/wxdetail%d/%s", iNumDay, myConfig.cLocationCode);  // ?dayNum=%d
 	cairo_dock_fm_launch_uri (cURI);
 	g_free (cURI);
 }
