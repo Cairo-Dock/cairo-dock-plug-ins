@@ -170,7 +170,13 @@ void _on_text_received (GtkClipboard *pClipBoard, const gchar *text, gpointer us
 		pItem = g_new0 (CDClipperItem, 1);
 		pItem->iType = iType;
 		pItem->cText = g_strdup (text);
-		pItem->cDisplayedText = cairo_dock_cut_string (g_strstrip (g_strdup (text)), 50); // g_strstrip: Removes leading and trailing whitespace from a string
+		/* g_strstrip removes leading and trailing whitespaces from a string
+		 * g_strstrip modifies the string in place (by moving the rest of the
+		 * characters forward and cutting the trailing spaces)
+		 */
+		gchar *cLongText = g_strstrip (g_strdup (text)); // remove extras withespaces first
+		pItem->cDisplayedText = cairo_dock_cut_string (cLongText, 50);
+		g_free (cLongText);
 	}
 	myData.pItems = g_list_insert_sorted (myData.pItems, pItem, (GCompareFunc)_cd_clipper_compare_item);
 	myData.iNbItems[pItem->iType] ++;
@@ -634,7 +640,13 @@ void cd_clipper_load_items (const gchar *cItems)
 		pItem = g_new0 (CDClipperItem, 1);
 		pItem->iType = iClipperItemType;
 		pItem->cText = cItemList[i];
-		pItem->cDisplayedText = cairo_dock_cut_string (g_strstrip (pItem->cText), 50); // g_strstrip: Removes leading and trailing whitespace from a string
+		/* g_strstrip removes leading and trailing whitespaces from a string
+		 * g_strstrip modifies the string in place (by moving the rest of the
+		 * characters forward and cutting the trailing spaces)
+		 */
+		gchar *cLongText = g_strstrip (g_strdup (pItem->cText)); // remove extras withespaces first
+		pItem->cDisplayedText = cairo_dock_cut_string (cLongText, 50);
+		g_free (cLongText);
 		myData.pItems = g_list_insert_sorted (myData.pItems, pItem, (GCompareFunc)_cd_clipper_compare_item);
 		myData.iNbItems[iClipperItemType] ++;
 	}
