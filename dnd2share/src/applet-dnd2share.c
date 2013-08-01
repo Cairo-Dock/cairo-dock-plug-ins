@@ -38,12 +38,34 @@ void cd_dnd2share_free_uploaded_item (CDUploadedItem *pItem)
 }
 
 
+static gchar * _get_short_text_for_menu (const gchar *cInitText)
+{
+	if (cInitText == NULL) // the backend should not allow that!
+		return g_strdup (D_("No text"));
+
+	// remove extras withespaces first
+	gchar *cLongText = g_strstrip (g_strdup (cInitText));
+	// then print only the first line => no, like Clipper
+	/*gchar *str = strchr (cLongText, '\n');
+	if (str)
+		*str = '\0';*/
+	gchar *cShortText = cairo_dock_cut_string (cLongText, 40);
+
+	// With 'Text' label, it's different than filename
+	gchar *cResult = g_strdup_printf ("%s %s", D_("Text:"), cShortText);
+
+	g_free (cLongText);
+	g_free (cShortText);
+
+	return cResult;
+}
+
 void cd_dnd2share_build_history (void)
 {
 	gchar *cConfFilePath = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, "history.conf");
 	GKeyFile *pKeyFile = cairo_dock_open_key_file (cConfFilePath);
 	g_free (cConfFilePath);
-	if (pKeyFile == NULL)  // pas encore d'historique.
+	if (pKeyFile == NULL)  // no history yet.
 		return ;
 	
 	gsize length = 0;
@@ -99,17 +121,20 @@ void cd_dnd2share_build_history (void)
 		for (j = 0; j < myData.backends[iFileType][iSiteID].iNbUrls; j ++)
 		{
 			g_string_printf (sUrlKey, "url%d", j);
-			pItem->cDistantUrls[j] = g_key_file_get_string (pKeyFile, cItemName, sUrlKey->str, NULL);  // NULL si cette URL n'avait pas ete sauvegardee avant.
+			pItem->cDistantUrls[j] = g_key_file_get_string (pKeyFile, cItemName, sUrlKey->str, NULL);  // NULL if this URL has not been saved before.
 		}
-		pItem->iDate = g_key_file_get_integer (pKeyFile, cItemName, "date", NULL);  /// un 'int' est-ce que ca suffit ?...
+		pItem->iDate = g_key_file_get_integer (pKeyFile, cItemName, "date", NULL);
 		
 		pItem->cLocalPath = g_key_file_get_string (pKeyFile, cItemName, "local path", NULL);
-		pItem->cFileName = g_path_get_basename (pItem->cLocalPath);
-		
+		if (pItem->iFileType == CD_TYPE_TEXT)
+			pItem->cFileName = _get_short_text_for_menu (pItem->cLocalPath);
+		else
+			pItem->cFileName = g_path_get_basename (pItem->cLocalPath);
+
 		myData.pUpoadedItems = g_list_prepend (myData.pUpoadedItems, pItem);
 	}
 	g_string_free (sUrlKey, TRUE);
-	g_free (pGroupList);  // le contenu a ete pris par la liste.
+	g_free (pGroupList);  // the content has been added in the list.
 	g_key_file_free (pKeyFile);
 }
 
@@ -129,7 +154,7 @@ static void _cd_dnd2share_threaded_upload (CDSharedMemory *pSharedMemory)
 	pSharedMemory->cResultUrls = g_new0 (gchar *, pSharedMemory->iNbUrls+1);  // NULL-terminated
 	pSharedMemory->upload (cFilePath, pSharedMemory->cLocalDir, pSharedMemory->bAnonymous, pSharedMemory->iLimitRate, pSharedMemory->cResultUrls, &pSharedMemory->pError);
 	
-	if (pSharedMemory->cResultUrls[0] && pSharedMemory->iTinyURLService != 0)  // on en fait une tiny-url.
+	if (pSharedMemory->cResultUrls[0] && pSharedMemory->iTinyURLService != 0)  // tiny-url.
 	{
 		gchar *Command = NULL;
 		switch (pSharedMemory->iTinyURLService)
@@ -178,13 +203,13 @@ static gboolean _cd_dnd2share_update_from_result (CDSharedMemory *pSharedMemory)
 	else
 	{
 		CDSiteBackend *pCurrentBackend = myData.pCurrentBackend[pSharedMemory->iCurrentFileType];
-		// On rajoute l'item a l'historique.
+		// we add it in the history.
 		if (myConfig.iNbItems != 0)
 		{
-			// On ouvre le fichier de l'historique.
+			// open the file which contains the history
 			gchar *cConfFilePath = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, "history.conf");
 			GKeyFile *pKeyFile;
-			if (! g_file_test (cConfFilePath, G_FILE_TEST_EXISTS))  // pas encore d'historique.
+			if (! g_file_test (cConfFilePath, G_FILE_TEST_EXISTS))  // no history yet.
 				pKeyFile = g_key_file_new ();
 			else
 				pKeyFile = cairo_dock_open_key_file (cConfFilePath);
@@ -194,13 +219,13 @@ static gboolean _cd_dnd2share_update_from_result (CDSharedMemory *pSharedMemory)
 			}
 			else
 			{
-				// On regarde si on n'a pas atteint la limite de taille de l'historique.
+				// we check the size limit
 				gsize length = 0;
 				gchar **pGroupList = g_key_file_get_groups (pKeyFile, &length);
-				if (length == myConfig.iNbItems)  // il faut supprimer le 1er item.
+				if (length == myConfig.iNbItems)  // if yes, we remove the first entry
 				{
 					g_key_file_remove_group (pKeyFile, pGroupList[0], NULL);
-					if (myData.pUpoadedItems != NULL)  // il est en dernier dans la liste.
+					if (myData.pUpoadedItems != NULL)  // which is the last one in the list
 					{
 						GList *it = g_list_last (myData.pUpoadedItems);
 						if (it->prev != NULL)
@@ -212,12 +237,12 @@ static gboolean _cd_dnd2share_update_from_result (CDSharedMemory *pSharedMemory)
 				}
 				g_strfreev (pGroupList);
 				
-				// on rajoute le nouvel item en fin de fichier.
+				// we add the new item at the end of the file
 				time_t iDate = time (NULL);
 				gchar *cItemName = g_strdup_printf ("item_%ld", iDate);
 				
 				g_key_file_set_integer (pKeyFile, cItemName, "site", myConfig.iPreferedSite[pSharedMemory->iCurrentFileType]);
-				g_key_file_set_integer (pKeyFile, cItemName, "date", iDate);  // idem que precedemment sur l'integer.
+				g_key_file_set_integer (pKeyFile, cItemName, "date", iDate);
 				g_key_file_set_integer (pKeyFile, cItemName, "type", pSharedMemory->iCurrentFileType);
 				GString *sUrlKey = g_string_new ("");
 				int j;
@@ -228,7 +253,7 @@ static gboolean _cd_dnd2share_update_from_result (CDSharedMemory *pSharedMemory)
 				}
 				g_key_file_set_string (pKeyFile, cItemName, "local path", cFilePath);
 				
-				// et en debut de liste aussi.
+				// and at the beginning of the list
 				CDUploadedItem *pItem = g_new0 (CDUploadedItem, 1);
 				pItem->cItemName = cItemName;
 				pItem->iSiteID = myConfig.iPreferedSite[pSharedMemory->iCurrentFileType];
@@ -240,15 +265,18 @@ static gboolean _cd_dnd2share_update_from_result (CDSharedMemory *pSharedMemory)
 				}
 				pItem->iDate = iDate;
 				pItem->cLocalPath = g_strdup (cFilePath);
-				pItem->cFileName = g_path_get_basename (cFilePath);
+				if (pItem->iFileType == CD_TYPE_TEXT)
+					pItem->cFileName = _get_short_text_for_menu (cFilePath);
+				else
+					pItem->cFileName = g_path_get_basename (cFilePath);
 				myData.pUpoadedItems = g_list_prepend (myData.pUpoadedItems, pItem);
 				
-				// On ecrit tout.
+				// We flush the file.
 				cairo_dock_write_keys_to_file (pKeyFile, cConfFilePath);
 				g_key_file_free (pKeyFile);
 				g_string_free (sUrlKey, TRUE);
 				
-				// On garde une copie du fichier (si c'est une image).
+				// we keep a copy if it's an image
 				if (myConfig.bkeepCopy && pSharedMemory->iCurrentFileType == CD_TYPE_IMAGE)
 				{
 					gchar *cCommand = g_strdup_printf ("cp '%s' '%s/%s'", cFilePath, myData.cWorkingDirPath, cItemName);
@@ -261,7 +289,7 @@ static gboolean _cd_dnd2share_update_from_result (CDSharedMemory *pSharedMemory)
 			g_free (cConfFilePath);
 		}
 		
-		// On copie l'URL dans le clipboard.
+		// We copy the url to the clipboard
 		gchar *cURL = NULL;
 		if (myConfig.bUseTinyAsDefault)
 			cURL = pSharedMemory->cResultUrls[pCurrentBackend->iNbUrls-1];
@@ -277,12 +305,12 @@ static gboolean _cd_dnd2share_update_from_result (CDSharedMemory *pSharedMemory)
 		}
 		cd_dnd2share_copy_url_to_clipboard (cURL);
 		
-		// On garde en memoire la derniere URL au cas ou on n'aurait pas/plus d'historique.
+		// we keep the last URL if we don't want the history.
 		g_free (myData.cLastURL);
 		myData.cLastURL = g_strdup (cURL);
 		myData.iCurrentItemNum = 0;
 		
-		// On signale par un dialogue la fin de l'upload.
+		// we can now display a dialogue.
 		if (myConfig.bEnableDialogs || myDesklet)
 		{
 			gldi_dialogs_remove_on_icon (myIcon);
@@ -293,7 +321,7 @@ static gboolean _cd_dnd2share_update_from_result (CDSharedMemory *pSharedMemory)
 				MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);
 		}
 		
-		// on met l'image correspondante sur l'icone.
+		// and set the image on the icon.
 		if (myConfig.bDisplayLastImage)
 		{
 			if (pSharedMemory->iCurrentFileType == CD_TYPE_IMAGE)
@@ -438,9 +466,8 @@ void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 		pSharedMemory);
 	
 	cairo_dock_launch_task (myData.pTask);
-	
-	// On lance une animation.
-	CD_APPLET_DEMANDS_ATTENTION (myConfig.cIconAnimation, 1e6);  // on l'interrompra nous-memes a la fin de l'upload.
+
+	CD_APPLET_DEMANDS_ATTENTION (myConfig.cIconAnimation, 1e6);  // we'll stop it later, at the end of the upload.
 }
 
 
@@ -479,7 +506,7 @@ void cd_dnd2share_set_working_directory_size (guint iNbItems)
 {
 	gchar *cConfFilePath = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, "history.conf");
 	GKeyFile *pKeyFile = cairo_dock_open_key_file (cConfFilePath);
-	if (pKeyFile == NULL)  // pas encore d'historique.
+	if (pKeyFile == NULL)  // no history yet
 	{
 		g_free (cConfFilePath);
 		return ;
@@ -492,7 +519,7 @@ void cd_dnd2share_set_working_directory_size (guint iNbItems)
 		gchar *cItemName;
 		GString *sPreviewPath = g_string_new ("");
 		guint i;
-		for (i = 0; pGroupList[i] != NULL && i < length - iNbItems; i ++)  // on supprime les n premiers groupes en trop, ainsi que leurs eventuelles prevues.
+		for (i = 0; pGroupList[i] != NULL && i < length - iNbItems; i ++)  // we remove all extras groups and the preview
 		{
 			cItemName = pGroupList[i];
 			g_string_printf (sPreviewPath, "%s/%s", myData.cWorkingDirPath, cItemName);
@@ -510,15 +537,15 @@ void cd_dnd2share_set_working_directory_size (guint iNbItems)
 
 void cd_dnd2share_clean_working_directory (void)
 {
-	if (myConfig.iNbItems == 0)  // on ne veut plus d'historique => vidons le repertoire.
+	if (myConfig.iNbItems == 0)  // no more history => clean the working directory.
 	{
 		cd_debug ("DND2SHARE : Pas d'historique -> On efface le contenu de '%s'", myData.cWorkingDirPath);
 		cd_dnd2share_clear_working_directory ();
 	}
 	else
 	{
-		cd_dnd2share_set_working_directory_size (myConfig.iNbItems);  // on efface les items en trop.
-		if (! myConfig.bkeepCopy)  // on veut bien un historique mais sans les sauvegardes locales des images => nettoyons le repertoire.
+		cd_dnd2share_set_working_directory_size (myConfig.iNbItems);  // we remove extras items.
+		if (! myConfig.bkeepCopy)  // we don't want a copy of the images
 		{
 			cd_debug ("DND2SHARE : Pas de copies locales -> On efface les images de '%s'", myData.cWorkingDirPath);
 			cd_dnd2share_clear_copies_in_working_directory ();
@@ -582,13 +609,13 @@ void cd_dnd2share_remove_one_item (CDUploadedItem *pItem)
 {
 	g_return_if_fail (pItem != NULL);
 	
-	// On enleve le groupe correspondant dans le fichier de l'historique.
+	// we remove the corresponding group in the history file
 	gchar *cConfFilePath = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, "history.conf");
-	if (! g_file_test (cConfFilePath, G_FILE_TEST_EXISTS))  // pas encore d'historique.
+	if (! g_file_test (cConfFilePath, G_FILE_TEST_EXISTS))  // no history yet.
 		return;
 	
 	GKeyFile *pKeyFile = cairo_dock_open_key_file (cConfFilePath);
-	if (pKeyFile == NULL)  // probleme de droit ?
+	if (pKeyFile == NULL)  // right problem?
 	{
 		cd_warning ("Couldn't remove this item from history.");
 		return ;
@@ -599,12 +626,12 @@ void cd_dnd2share_remove_one_item (CDUploadedItem *pItem)
 	g_key_file_free (pKeyFile);
 	g_free (cConfFilePath);
 	
-	// On efface sa copie de sauvegarde.
+	// we remove the local copy.
 	gchar *cPreviewPath = g_strdup_printf ("%s/%s", myData.cWorkingDirPath, pItem->cItemName);
 	g_remove (cPreviewPath);
 	g_free (cPreviewPath);
 	
-	// Si c'est l'item courant, on pointe vers le suivant.
+	// If it's the current item, switch to the next one.
 	if (myData.pUpoadedItems && myData.pUpoadedItems->data == pItem)
 	{
 		g_free (myData.cLastURL);
@@ -617,8 +644,8 @@ void cd_dnd2share_remove_one_item (CDUploadedItem *pItem)
 			myData.cLastURL = g_strdup (cURL);
 		}
 	}
-	
-	// On enleve l'item de la liste.
+
+	// We remove the item from the list
 	myData.pUpoadedItems = g_list_remove (myData.pUpoadedItems, pItem);
 	cd_dnd2share_free_uploaded_item (pItem);
 }
@@ -631,10 +658,10 @@ void cd_dnd2share_register_new_backend (CDFileType iFileType, const gchar *cSite
 	myData.iNbSitesForType[iFileType] ++;
 	
 	pNewBackend->cSiteName = cSiteName;
-	pNewBackend->iNbUrls = iNbUrls + 1;  // +1 pour la tiny-url.
-	pNewBackend->cUrlLabels = g_new0 (gchar *, pNewBackend->iNbUrls+1);  // +1 pour le NULL final.
-	memcpy (pNewBackend->cUrlLabels, cUrlLabels, iNbUrls * sizeof (gchar*));  // on prend les N labels fournis par le backend.
-	pNewBackend->cUrlLabels[iNbUrls] = D_("Tiny URL");  // on rajoute le tiny-url.
+	pNewBackend->iNbUrls = iNbUrls + 1;  // +1 for tiny-url.
+	pNewBackend->cUrlLabels = g_new0 (gchar *, pNewBackend->iNbUrls+1);  // +1 for end NULL.
+	memcpy (pNewBackend->cUrlLabels, cUrlLabels, iNbUrls * sizeof (gchar*));  // we take N first labels given by the backend.
+	pNewBackend->cUrlLabels[iNbUrls] = D_("Tiny URL");  // + tiny-url.
 	pNewBackend->iPreferedUrlType = iPreferedUrlType;
 	pNewBackend->upload = pUploadFunc;
 }

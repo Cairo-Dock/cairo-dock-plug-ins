@@ -37,23 +37,23 @@ typedef enum _CDFileType {
 
 
 typedef struct _CDUploadedItem {
-	gchar *cItemName;  // nom de l'item, c'est aussi le nom du groupe dans le fichier historique et de la copie locale si l'option est activee (de la forme "item-$timestamp").
-	gint iSiteID;  // pour savoir quel site on a utilise => nous donne le backend.
-	gchar **cDistantUrls;  // il peut y en avoir plusieurs (differentes tailles, etc), le backend sait lesquelles il s'agit.
-	time_t iDate;  // date de l'upload, permet de classer les items entre eux et de leur donner un nom unique.
-	gchar *cLocalPath;  // chemin du fichier sur le disque dur au moment de son upload.
-	gchar *cFileName;  // nom du fichier (et nom affiche pour l'utilisateur).
+	gchar *cItemName;     // name of the item (also the group name in the history file and the local copy if needed -> looks like "item-$timestamp").
+	gint iSiteID;         // to link it with the right backend.
+	gchar **cDistantUrls; // can have several url (with different size, etc) => check backend.
+	time_t iDate;         // date of the upload, to sort items and it's unique.
+	gchar *cLocalPath;    // Path of the file when the user has uploaded it.
+	gchar *cFileName;     // name of the file (which will be displayed to the user).
 	CDFileType iFileType;
 	} CDUploadedItem;
 
 typedef void (* CDUploadFunc) (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError);
 
 typedef struct _CDSiteBackend {
-	const gchar *cSiteName;  // nom du site, pour affichage
-	gint iNbUrls;  // nombre d'URLs qu'il renvoie.
-	gchar **cUrlLabels;  // description de chacune de ces URL.
-	gint iPreferedUrlType;  // celle qui est la plus utile, eventuellement a mettre en conf.
-	CDUploadFunc upload;  // la fonction d'upload, threadee.
+	const gchar *cSiteName; // name of the website (display)
+	gint iNbUrls;           // number of URL returned.
+	gchar **cUrlLabels;     // description of each URL.
+	gint iPreferedUrlType;  // the most 'useful' URL
+	CDUploadFunc upload;    // the upload function (launched in a separated thread).
 	} CDSiteBackend;
 
 
@@ -99,9 +99,9 @@ struct _AppletData {
 	
 	CairoDockTask *pTask;  // current upload task.
 	
-	GList *pUpoadedItems;  // une liste de CDUploadedItem*
-	gchar *cLastURL;  // la derniere URL a avoir ete copiee dans le clipboard; on pourra y acceder par clic gauche sur l'icone.
-	gint iCurrentItemNum;  // le numero de l'item correspondant dans la liste. C'est plus sur que de pointer directement dans la liste, au cas ou elle changerait.
+	GList *pUpoadedItems;  // list of CDUploadedItem*
+	gchar *cLastURL;       // the last copied URL -> for the left click
+	gint iCurrentItemNum;  // the number of the current item in the list (safer than using a pointer in the list if this list is modified)
 	gchar *cTmpFilePath;
 	} ;
 

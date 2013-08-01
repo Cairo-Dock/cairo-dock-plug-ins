@@ -64,7 +64,7 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 	}
 	
-	//\____________ on cree le repertoire de l'historique si necessaire.
+	//\____________ we create the history dir
 	myData.cWorkingDirPath = g_strdup_printf ("%s/dnd2share", g_cCairoDockDataDir);
 	if (! g_file_test (myData.cWorkingDirPath, G_FILE_TEST_EXISTS))
 	{
@@ -76,11 +76,11 @@ CD_APPLET_INIT_BEGIN
 		}
 	}
 	
-	//\____________ On nettoie le repertoire de l'historique si necessaire (config changee lorsque applet non active).
+	//\____________ We clean the history dir if needed
 	cd_dnd2share_clean_working_directory ();
 	
-	//\____________ On enregistre les backends (attention a bien respecter l'ordre du fichier de conf !)
-	// custom backends, ils prennent le numero 0.
+	//\____________ We save all backend (warning: we have to respect the same order as set in the .conf file)
+	// custom backends, number 0.
 	cd_dnd2share_register_custom_backends ();
 	// text backends
 	cd_dnd2share_register_pastebin_backend ();
@@ -103,18 +103,18 @@ CD_APPLET_INIT_BEGIN
 	for (t = 0; t < CD_NB_FILE_TYPES; t ++)
 		myData.pCurrentBackend[t] = &myData.backends[t][myConfig.iPreferedSite[t]];
 	
-	//\____________ On construit l'historique.
+	//\____________ We build the history.
 	if (myConfig.iNbItems != 0)
 		cd_dnd2share_build_history ();
 	
-	//\____________ On remet la derniere URL en memoire pour le clic gauche.
+	//\____________ We add the last URL in the memory (for the left click)
 	if (myData.pUpoadedItems != NULL)
 	{
 		CDUploadedItem *pItem = g_list_last (myData.pUpoadedItems)->data;
 		cd_dnd2share_set_current_url_from_item (pItem);
 	}
 	
-	//\____________ On affiche la derniere image uploadee.
+	//\____________ We display the last uploaded image.
 	if (myConfig.bDisplayLastImage && myData.pUpoadedItems != NULL)
 	{
 		CDUploadedItem *pItem = myData.pUpoadedItems->data;
@@ -125,7 +125,7 @@ CD_APPLET_INIT_BEGIN
 	}
 	CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
 	
-	//\____________ On s'abonne aux notifications.
+	//\____________ register to notifications.
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT;
 	CD_APPLET_REGISTER_FOR_SCROLL_EVENT;
@@ -155,10 +155,10 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");  // set a desklet renderer.
 		}
 		
-		//\____________ On nettoie le repertoire de travail si necessaire.
+		//\____________ We clean the working directory if needed
 		cd_dnd2share_clean_working_directory ();
 		
-		//\____________ on reconstruit l'historique.
+		//\____________ We rebuild the history.
 		cd_dnd2share_clear_history ();
 		if (myConfig.iNbItems != 0)
 			cd_dnd2share_build_history ();
@@ -167,7 +167,7 @@ CD_APPLET_RELOAD_BEGIN
 		for (t = 0; t < CD_NB_FILE_TYPES; t ++)
 			myData.pCurrentBackend[t] = &myData.backends[t][myConfig.iPreferedSite[t]];
 		
-		//\____________ on met a jour la derniere URL
+		//\____________ We update the last URL
 		if (myData.cLastURL != NULL && myData.pUpoadedItems != NULL)
 		{
 			CDUploadedItem *pItem = myData.pUpoadedItems->data;
@@ -175,7 +175,7 @@ CD_APPLET_RELOAD_BEGIN
 			myData.cLastURL = g_strdup (cd_dnd2share_get_prefered_url_from_item (pItem));
 		}
 		
-		//\____________ On affiche la derniere image uploadee.
+		//\____________ We display the last uploaded image.
 		if (myConfig.bDisplayLastImage && myData.pUpoadedItems != NULL)
 		{
 			CDUploadedItem *pItem = g_list_nth_data (myData.pUpoadedItems, myData.iCurrentItemNum);

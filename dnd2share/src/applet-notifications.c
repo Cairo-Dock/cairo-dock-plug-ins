@@ -151,14 +151,14 @@ static void _on_drop_data (const gchar *cMyData)
 	gchar *cFilePath = NULL;
 	if (strncmp(cMyData, "file://", 7) == 0)
 	{
-		// Les formats supportes par Uppix.net sont : GIF, JPEG, PNG, Flash (SWF or SWC), BMP, PSD, TIFF, JP2, JPX,
+		// Uppix.net supports : GIF, JPEG, PNG, Flash (SWF or SWC), BMP, PSD, TIFF, JP2, JPX,
 		// JB2, JPC, WBMP, and XBM.
-		// ... mais l'applet ne prendra en charge que les plus utilises :
+		// ... but the applet will support the most common
 		
-		cFilePath = g_filename_from_uri (cMyData, NULL, NULL);  // on passe en encodage UTF-8.
+		cFilePath = g_filename_from_uri (cMyData, NULL, NULL);  // switch to UTF-8.
 		g_return_if_fail (cFilePath != NULL);
 		
-		if ( strchr(cFilePath, ',') != NULL) // S'il y une virgule, curl n'aime pas
+		if (strchr(cFilePath, ',') != NULL) // if there is a comma, curl doesn't like it
 		{
 			myData.cTmpFilePath = g_strdup ("/tmp/dnd2share-file_with_comma.XXXXXX");
 			int fds = mkstemp (myData.cTmpFilePath);
@@ -170,13 +170,13 @@ static void _on_drop_data (const gchar *cMyData)
 			}
 			close(fds);
 			
-			gchar *cCommandCopyFileWithComma = g_strdup_printf ("cp '%s' '%s'", cFilePath, myData.cTmpFilePath); // copie du fichier dans tmp.
+			gchar *cCommandCopyFileWithComma = g_strdup_printf ("cp '%s' '%s'", cFilePath, myData.cTmpFilePath); // copy the current file to tmp.
 			int r = system (cCommandCopyFileWithComma);
 			if (r < 0)
 				cd_warning ("Not able to launch this command: %s", cCommandCopyFileWithComma);
 			g_free (cCommandCopyFileWithComma);
 			g_free (cFilePath);
-			cFilePath = g_strdup (myData.cTmpFilePath);  // on utilise le fichier tmp, il sera efface a la fin de l'upload.
+			cFilePath = g_strdup (myData.cTmpFilePath);  // we use a tmp file which will be remove at the end of the update
 		}
 		
 		guint64 iSize;
@@ -226,7 +226,7 @@ static void _on_drop_data (const gchar *cMyData)
 				iFileType = CD_TYPE_VIDEO;
 		}
 	}
-	else  // c'est du texte.
+	else  // text.
 	{
 		// cd_debug ("TEXT\n");
 		iFileType = CD_TYPE_TEXT;
@@ -290,7 +290,7 @@ static void _send_clipboard (GtkMenuItem *menu_item, gpointer *data)
 	CD_APPLET_ENTER;
 	GtkClipboard *pClipBoard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
 	gboolean bDataAvailable = gtk_clipboard_wait_is_image_available (pClipBoard);
-	g_return_if_fail (myIcon != NULL);  // protection, car cette fonction bloque mais laisse tourner la main loop.
+	g_return_if_fail (myIcon != NULL);  // protection, this function is blocked but the mainloop continue to run
 	if (bDataAvailable)
 	{
 		gtk_clipboard_request_image (pClipBoard, (GtkClipboardImageReceivedFunc) _get_image, data);
@@ -337,7 +337,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 	CDUploadedItem *pItem;
 	if (CD_APPLET_SCROLL_DOWN)
 	{
-		myData.iCurrentItemNum ++;  // item suivant.
+		myData.iCurrentItemNum ++;  // next item.
 		pItem = g_list_nth_data (myData.pUpoadedItems, myData.iCurrentItemNum);
 		if (pItem == NULL)
 		{
@@ -347,7 +347,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 	}
 	else if (CD_APPLET_SCROLL_UP)
 	{
-		myData.iCurrentItemNum --;  // item precedent.
+		myData.iCurrentItemNum --;  // prev item.
 		pItem = g_list_nth_data (myData.pUpoadedItems, myData.iCurrentItemNum);
 		if (pItem == NULL)
 		{
@@ -429,7 +429,6 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CDSiteBackend *pBackend;
 		CDUploadedItem *pItem;
 		GtkWidget *pItemSubMenu;
-		gchar *str;
 		gchar *cName = NULL, *cURI = NULL;
 		gboolean bIsDirectory;
 		int iVolumeID;
@@ -441,7 +440,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		{
 			pItem = it->data;
 			
-			// on cherche une miniature a mettre dans le menu.
+			// we're looking for a thumbnail (for the menu)
 			gchar *cPreview = NULL;
 			if (pItem->iFileType == CD_TYPE_IMAGE)
 			{
@@ -472,22 +471,17 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 				cURI = NULL;
 			}
 			
-			// on cree un sous-menu pour ce fichier.
-			str = strchr (pItem->cFileName, '\n');
-			if (str)
-				*str = '\0';
+			// we create a sub menu for this file
 			pItemSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (pItem->cFileName, pHistoryMenu, cPreview);
-			if (str)
-				*str = '\n';
 			g_free (cPreview);
 			
-			// on le peuple avec les liens.
+			// we add links
 			pBackend = &myData.backends[pItem->iFileType][pItem->iSiteID];
 			for (i = 0; i < pBackend->iNbUrls; i ++)
 			{
 				//g_print ("%d) %s : ", i, pBackend->cUrlLabels[i]);
 				//g_print (" + %s\n", pItem->cDistantUrls[i]);
-				if (pItem->cDistantUrls[i] != NULL)  // peut etre null (par exemple la tiny url).
+				if (pItem->cDistantUrls[i] != NULL)  // can be null (e.g. tiny url).
 					CD_APPLET_ADD_IN_MENU_WITH_DATA (dgettext (MY_APPLET_GETTEXT_DOMAIN, pBackend->cUrlLabels[i]), _copy_url_into_clipboard, pItemSubMenu, pItem->cDistantUrls[i]);
 			}
 			if (pItem->iFileType != CD_TYPE_TEXT)
