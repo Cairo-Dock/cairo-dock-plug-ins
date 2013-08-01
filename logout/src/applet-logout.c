@@ -689,6 +689,14 @@ static void _logind_action (const gchar *cAction)
 	if (error)
 	{
 		cd_warning ("Logind error: %s", error->message);
+		gchar *cMessage = g_strdup_printf ("%s %s\n%s",
+			D_("Logind has returned this error:"),
+			error->message,
+			D_("Please check that you can do this action\n"
+				"(e.g. you can't power the computer off if another session is active)"));
+		gldi_dialog_show_temporary_with_icon (cMessage, myIcon, myContainer,
+			15e3, "same icon");
+		g_free (cMessage);
 		g_error_free (error);
 	}
 	g_object_unref (pProxy);
