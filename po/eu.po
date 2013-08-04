@@ -7,16 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2013-07-21 16:31+0000\n"
 "PO-Revision-Date: 2013-07-21 19:53+0000\n"
 "Last-Translator: Ander Elortondo <ander.elor@gmail.com>\n"
 "Language-Team: Basque <eu@li.org>\n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2013-07-22 05:37+0000\n"
 "X-Generator: Launchpad (build 16696)\n"
-"Language: eu\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -343,8 +342,7 @@ msgstr "Modulua gehitu da baina ezin da abiarazi."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid ""
-"The applet '%s' has been succefully updated and automatically reloaded"
+msgid "The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -1206,7 +1204,7 @@ msgid "Open in new window"
 msgstr "Ireki leiho berrian"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:432
-#: ../dnd2share/src/applet-notifications.c:494
+#: ../dnd2share/src/applet-notifications.c:488
 msgid "Open file"
 msgstr "Ireki fitxategia"
 
@@ -1755,8 +1753,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
-"tasks</b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
+"b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1964,15 +1962,11 @@ msgid "Direct Link"
 msgstr ""
 
 #: ../dnd2share/src/applet-backend-codepad.c:51
-#: ../dnd2share/src/applet-backend-custom.c:74
+#: ../dnd2share/src/applet-backend-custom.c:75
 #: ../dnd2share/src/applet-backend-paste-ubuntu.c:49
 #: ../dnd2share/src/applet-backend-pastebin-mozilla.c:52
 #: ../dnd2share/src/applet-backend-pastebin.c:45
 msgid "Your text is empty and couldn't be uploaded to this server"
-msgstr ""
-
-#: ../dnd2share/src/applet-backend-custom.c:35
-msgid "No script set for this file type"
 msgstr ""
 
 #: ../dnd2share/src/applet-backend-dropbox.c:63
@@ -1998,22 +1992,31 @@ msgstr ""
 msgid "Small"
 msgstr ""
 
-#: ../dnd2share/src/applet-dnd2share.c:289
+#: ../dnd2share/src/applet-dnd2share.c:44
+#, fuzzy
+msgid "No text"
+msgstr "Hartu testua"
+
+#: ../dnd2share/src/applet-dnd2share.c:55
+#, fuzzy
+msgid "Text:"
+msgstr "Testua"
+
+#: ../dnd2share/src/applet-dnd2share.c:317
 msgid ""
 "File has been uploaded.\n"
 "Just press CTRL+v to paste its URL anywhere."
 msgstr ""
 
-#: ../dnd2share/src/applet-dnd2share.c:342
-msgid ""
-"Please wait for the current upload to finish before starting a new one."
+#: ../dnd2share/src/applet-dnd2share.c:370
+msgid "Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
-#: ../dnd2share/src/applet-dnd2share.c:410
+#: ../dnd2share/src/applet-dnd2share.c:438
 msgid "This file is not readable."
 msgstr ""
 
-#: ../dnd2share/src/applet-dnd2share.c:637
+#: ../dnd2share/src/applet-dnd2share.c:664
 msgid "Tiny URL"
 msgstr ""
 
@@ -2119,19 +2122,19 @@ msgstr "Bidali arbeleko edukia"
 msgid "History"
 msgstr "Historia"
 
-#: ../dnd2share/src/applet-notifications.c:496
+#: ../dnd2share/src/applet-notifications.c:490
 msgid "Get text"
 msgstr "Hartu testua"
 
-#: ../dnd2share/src/applet-notifications.c:498
+#: ../dnd2share/src/applet-notifications.c:492
 msgid "Remove from history"
 msgstr "Ezabatu historiatik"
 
-#: ../dnd2share/src/applet-notifications.c:501
+#: ../dnd2share/src/applet-notifications.c:495
 msgid "Clear History"
 msgstr "Garbitu historia"
 
-#: ../dnd2share/src/applet-notifications.c:506
+#: ../dnd2share/src/applet-notifications.c:500
 msgid "Use only a files hosting site"
 msgstr ""
 
@@ -2338,7 +2341,7 @@ msgid ""
 "You can bind a <b>shortcut</b> to it, and also to lock the screen."
 msgstr ""
 
-#: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:294
+#: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:304
 #: ../logout/data/messages:95
 msgid "Log out"
 msgstr ""
@@ -2351,90 +2354,100 @@ msgstr ""
 msgid "Show the log-out menu"
 msgstr "Erakutsi Saioa amaitu menua"
 
-#: ../logout/src/applet-logout.c:260 ../logout/data/messages:97
+#: ../logout/src/applet-logout.c:270 ../logout/data/messages:97
 msgid "Shut down"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:266
+#: ../logout/src/applet-logout.c:276
 msgid "Restart"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:272
+#: ../logout/src/applet-logout.c:282
 #: ../powermanager/src/powermanager-menu-functions.c:96
 #: ../powermanager/src/powermanager-menu-functions.c:104
 msgid "Hibernate"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:273
+#: ../logout/src/applet-logout.c:283
 msgid "Your computer will not consume any energy."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:279
+#: ../logout/src/applet-logout.c:289
 msgid "Hybrid Sleep"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:280
+#: ../logout/src/applet-logout.c:290
 msgid ""
 "Your computer will still consume a small amount of energy but after some "
 "time, the computer will suspend to disk and not consume any energy."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:285
+#: ../logout/src/applet-logout.c:295
 #: ../powermanager/src/powermanager-menu-functions.c:99
 #: ../powermanager/src/powermanager-menu-functions.c:106
 msgid "Suspend"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:287
+#: ../logout/src/applet-logout.c:297
 msgid "Your computer will still consume a small amount of energy."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:296
+#: ../logout/src/applet-logout.c:306
 msgid "Close your session and allow to open a new one."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:307
+#: ../logout/src/applet-logout.c:317
 msgid "Switch user"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:328
+#: ../logout/src/applet-logout.c:338
 msgid "Guest session"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:335 ../logout/data/messages:99
+#: ../logout/src/applet-logout.c:345 ../logout/data/messages:99
 msgid "Lock screen"
 msgstr "Pantaila blokeatu"
 
-#: ../logout/src/applet-logout.c:340
+#: ../logout/src/applet-logout.c:350
 msgid "Program an automatic shut-down"
 msgstr "Programatu itzaltze automatikoa"
 
-#: ../logout/src/applet-logout.c:408
+#: ../logout/src/applet-logout.c:418
 msgid "Your computer will shut-down in 1 minute."
 msgstr "Zure ordenagailua minutu baten itzaliko da"
 
-#: ../logout/src/applet-logout.c:455
+#: ../logout/src/applet-logout.c:465
 msgid "Choose in how many minutes your PC will stop:"
 msgstr "Aukeratu zenbat minutu barru geratuko den zure PC."
 
-#: ../logout/src/applet-logout.c:498
+#: ../logout/src/applet-logout.c:508
 msgid "Please do that at the end of the update."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:742
+#: ../logout/src/applet-logout.c:693
+msgid "Logind has returned this error:"
+msgstr ""
+
+#: ../logout/src/applet-logout.c:695
+msgid ""
+"Please check that you can do this action\n"
+"(e.g. you can't power the computer off if another session is active)"
+msgstr ""
+
+#: ../logout/src/applet-logout.c:760
 #, c-format
 msgid "It will automatically shut-down in %ds"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:743
+#: ../logout/src/applet-logout.c:761
 msgid "Shut down the computer?"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:815
+#: ../logout/src/applet-logout.c:833
 msgid "Restart the computer?"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:868
+#: ../logout/src/applet-logout.c:886
 msgid "Close the current session?"
 msgstr ""
 
@@ -3115,8 +3128,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a "
-"dock/desklet."
+"This plugin draws some animations around the cursor when it's inside a dock/"
+"desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -3568,72 +3581,72 @@ msgstr ""
 msgid "Dec"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:61
+#: ../weather/src/applet-notifications.c:63
 msgid "Data are being retrieved, please wait a moment."
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:100
+#: ../weather/src/applet-notifications.c:102
 msgid "Show current conditions (middle-click)"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:105
+#: ../weather/src/applet-notifications.c:107
 msgid "Open weather.com (double-click)"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:107
+#: ../weather/src/applet-notifications.c:109
 msgid "Reload now"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:140
+#: ../weather/src/applet-notifications.c:142
 msgid ""
 "No data available\n"
 " is your connection alive?"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:160
-#: ../weather/src/applet-notifications.c:198
+#: ../weather/src/applet-notifications.c:162
+#: ../weather/src/applet-notifications.c:200
 msgid "Temperature"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:161
+#: ../weather/src/applet-notifications.c:163
 msgid "Precipitation probability"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:162
-#: ../weather/src/applet-notifications.c:199
+#: ../weather/src/applet-notifications.c:164
+#: ../weather/src/applet-notifications.c:201
 msgid "Wind"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:163
-#: ../weather/src/applet-notifications.c:200
+#: ../weather/src/applet-notifications.c:165
+#: ../weather/src/applet-notifications.c:202
 msgid "Humidity"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:164
-#: ../weather/src/applet-notifications.c:201
+#: ../weather/src/applet-notifications.c:166
+#: ../weather/src/applet-notifications.c:203
 msgid "Sunrise"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:164
-#: ../weather/src/applet-notifications.c:201
+#: ../weather/src/applet-notifications.c:166
+#: ../weather/src/applet-notifications.c:203
 msgid "Sunset"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:174
+#: ../weather/src/applet-notifications.c:176
 msgid "Data are being fetched, please re-try in a few seconds."
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:184
+#: ../weather/src/applet-notifications.c:186
 msgid ""
 "No data available\n"
 "Retrying now..."
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:198
+#: ../weather/src/applet-notifications.c:200
 msgid "Feels like"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:200
+#: ../weather/src/applet-notifications.c:202
 msgid "Pressure"
 msgstr ""
 
@@ -5540,8 +5553,7 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid ""
-"You can have more attractive backgrounds using the Desklet decorations"
+msgid "You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
@@ -7090,8 +7102,7 @@ msgid "Custom script for file upload :"
 msgstr ""
 
 #: ../dnd2share/data/messages:181
-msgid ""
-"Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
+msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 msgstr ""
 
 #: ../dnd2share/data/messages:183
@@ -7293,8 +7304,7 @@ msgid "Space between icons:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:117
-msgid ""
-"0 represents a flat wave, 1 means the wave is identical to other views."
+msgid "0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:121
@@ -7481,8 +7491,7 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:71
-msgid ""
-"This will slightly alter your colours, so you may have to modify them."
+msgid "This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
@@ -7711,6 +7720,17 @@ msgstr ""
 msgid "User-defined command to execute for shutdown:"
 msgstr ""
 
+#: ../logout/data/messages:129
+msgid ""
+"Leave empty to execute the default command. If not empty, it will execute "
+"this command with the name of the user (or nothing for guest session)"
+msgstr ""
+
+#: ../logout/data/messages:131
+#, fuzzy
+msgid "User-defined command to execute for changing user:"
+msgstr "Saioa amaitzeko erabiltzaileak definitutako komandoa exekutatu:"
+
 #: ../mail/data/messages:99
 msgid ""
 "If you have any problem with the applet, uncheck this option during the "
@@ -7731,8 +7751,7 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:115
-msgid ""
-"If checked, the number of mails will be shown even if there is no mail."
+msgid "If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:117
@@ -7816,8 +7835,7 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid ""
-"Leave it empty to display the name of the player currently controlled."
+msgid "Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:11
@@ -8796,8 +8814,7 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:103
-msgid ""
-"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:105

@@ -7,16 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2013-07-21 16:31+0000\n"
 "PO-Revision-Date: 2013-07-21 19:59+0000\n"
 "Last-Translator: Backspaceyao <huangyaowudi@gmail.com>\n"
 "Language-Team: Simplified Chinese <tigersoldi@gmail.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2013-07-22 05:41+0000\n"
 "X-Generator: Launchpad (build 16696)\n"
-"Language: \n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -356,8 +355,7 @@ msgstr "这个模块已经被添加,但是无法启动."
 
 #: ../Dbus/src/interface-applet-signals.c:466
 #, c-format
-msgid ""
-"The applet '%s' has been succefully updated and automatically reloaded"
+msgid "The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "这个小程序'%s'已经成功升级并且自动重启."
 
 #: ../Dbus/src/interface-applet-signals.c:466
@@ -771,7 +769,8 @@ msgid ""
 "You can bind a shortkey to this action."
 msgstr ""
 "这个applet允许你控制当前的活动窗口：\n"
-"  关闭, 最小化,最大化,显示应用程序菜单.显示菜单, 应用程序必须支持此特性,这是一个Ubuntu缺省的例子。\n"
+"  关闭, 最小化,最大化,显示应用程序菜单.显示菜单, 应用程序必须支持此特性,这是"
+"一个Ubuntu缺省的例子。\n"
 "你可以为这个动作绑定一个快捷键。"
 
 #: ../Global-Menu/src/applet-init.c:112 ../Global-Menu/src/applet-init.c:211
@@ -789,7 +788,8 @@ msgid ""
 "(if any) to forum.glx-dock.org"
 msgstr ""
 "PulseAudio有一些错误。\n"
-"你可以检查其状态（是否安装？是否运行？版本是否正确？）并发送错误报告（如果有任何）到forum.glx-dock.org"
+"你可以检查其状态（是否安装？是否运行？版本是否正确？）并发送错误报告（如果有"
+"任何）到forum.glx-dock.org"
 
 #: ../Impulse/src/applet-init.c:32
 msgid ""
@@ -1009,7 +1009,8 @@ msgstr ""
 "       -左键：在一个对话框中显示feed的所有行\n"
 "       -中键：刷新feed\n"
 "       -在平台上滑动：滑动feed行\n"
-"       -拖拽一个有效的URL到图标上进行订阅，或者复制地址并使用菜单中的“拷贝新RSS地址”，或者编辑配置栏"
+"       -拖拽一个有效的URL到图标上进行订阅，或者复制地址并使用菜单中的“拷贝新"
+"RSS地址”，或者编辑配置栏"
 
 #: ../RSSreader/src/applet-init.c:65 ../RSSreader/src/applet-init.c:125
 #: ../RSSreader/src/applet-notifications.c:56
@@ -1262,7 +1263,7 @@ msgid "Open in new window"
 msgstr "在新窗口中打开..."
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:432
-#: ../dnd2share/src/applet-notifications.c:494
+#: ../dnd2share/src/applet-notifications.c:488
 msgid "Open file"
 msgstr "打开文件..."
 
@@ -1811,8 +1812,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
-"tasks</b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
+"b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2020,15 +2021,11 @@ msgid "Direct Link"
 msgstr ""
 
 #: ../dnd2share/src/applet-backend-codepad.c:51
-#: ../dnd2share/src/applet-backend-custom.c:74
+#: ../dnd2share/src/applet-backend-custom.c:75
 #: ../dnd2share/src/applet-backend-paste-ubuntu.c:49
 #: ../dnd2share/src/applet-backend-pastebin-mozilla.c:52
 #: ../dnd2share/src/applet-backend-pastebin.c:45
 msgid "Your text is empty and couldn't be uploaded to this server"
-msgstr ""
-
-#: ../dnd2share/src/applet-backend-custom.c:35
-msgid "No script set for this file type"
 msgstr ""
 
 #: ../dnd2share/src/applet-backend-dropbox.c:63
@@ -2054,22 +2051,29 @@ msgstr ""
 msgid "Small"
 msgstr ""
 
-#: ../dnd2share/src/applet-dnd2share.c:289
+#: ../dnd2share/src/applet-dnd2share.c:44
+msgid "No text"
+msgstr ""
+
+#: ../dnd2share/src/applet-dnd2share.c:55
+msgid "Text:"
+msgstr ""
+
+#: ../dnd2share/src/applet-dnd2share.c:317
 msgid ""
 "File has been uploaded.\n"
 "Just press CTRL+v to paste its URL anywhere."
 msgstr ""
 
-#: ../dnd2share/src/applet-dnd2share.c:342
-msgid ""
-"Please wait for the current upload to finish before starting a new one."
+#: ../dnd2share/src/applet-dnd2share.c:370
+msgid "Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
-#: ../dnd2share/src/applet-dnd2share.c:410
+#: ../dnd2share/src/applet-dnd2share.c:438
 msgid "This file is not readable."
 msgstr ""
 
-#: ../dnd2share/src/applet-dnd2share.c:637
+#: ../dnd2share/src/applet-dnd2share.c:664
 msgid "Tiny URL"
 msgstr ""
 
@@ -2175,19 +2179,19 @@ msgstr ""
 msgid "History"
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:496
+#: ../dnd2share/src/applet-notifications.c:490
 msgid "Get text"
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:498
+#: ../dnd2share/src/applet-notifications.c:492
 msgid "Remove from history"
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:501
+#: ../dnd2share/src/applet-notifications.c:495
 msgid "Clear History"
 msgstr ""
 
-#: ../dnd2share/src/applet-notifications.c:506
+#: ../dnd2share/src/applet-notifications.c:500
 msgid "Use only a files hosting site"
 msgstr ""
 
@@ -2239,7 +2243,8 @@ msgid ""
 "icon.\n"
 "Middle-click on the icon will empty the dustbin."
 msgstr ""
-"该插件管理回收站，您可以将文件拖进回收站；如果把已加载(mount)的磁盘进回收站，则会卸载它(umount)。\n"
+"该插件管理回收站，您可以将文件拖进回收站；如果把已加载(mount)的磁盘进回收站，"
+"则会卸载它(umount)。\n"
 "在图标上按鼠标中键，将清空回收站。"
 
 #: ../dustbin/src/applet-notifications.c:40
@@ -2396,12 +2401,13 @@ msgid ""
 "You can bind a <b>shortcut</b> to it, and also to lock the screen."
 msgstr ""
 "此程序可以让您控制当前用户会话。您可以：\n"
-"关机，重新启动，休眠，挂起，注销，锁定屏幕，切换用户，或者设置一次自动关机。\n"
+"关机，重新启动，休眠，挂起，注销，锁定屏幕，切换用户，或者设置一次自动关"
+"机。\n"
 "它还会在您的系统需要重新启动时通知您\n"
 "点击此程序的图标以弹出菜单。\n"
 "您可以绑定一个快捷方式，也可以将其锁定在屏幕上。"
 
-#: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:294
+#: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:304
 #: ../logout/data/messages:95
 msgid "Log out"
 msgstr "注销"
@@ -2414,90 +2420,100 @@ msgstr "锁住屏幕"
 msgid "Show the log-out menu"
 msgstr "显示注销菜单"
 
-#: ../logout/src/applet-logout.c:260 ../logout/data/messages:97
+#: ../logout/src/applet-logout.c:270 ../logout/data/messages:97
 msgid "Shut down"
 msgstr "关机"
 
-#: ../logout/src/applet-logout.c:266
+#: ../logout/src/applet-logout.c:276
 msgid "Restart"
 msgstr "重新启动"
 
-#: ../logout/src/applet-logout.c:272
+#: ../logout/src/applet-logout.c:282
 #: ../powermanager/src/powermanager-menu-functions.c:96
 #: ../powermanager/src/powermanager-menu-functions.c:104
 msgid "Hibernate"
 msgstr "休眠"
 
-#: ../logout/src/applet-logout.c:273
+#: ../logout/src/applet-logout.c:283
 msgid "Your computer will not consume any energy."
 msgstr "您的计算机将不会消耗任何能源。"
 
-#: ../logout/src/applet-logout.c:279
+#: ../logout/src/applet-logout.c:289
 msgid "Hybrid Sleep"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:280
+#: ../logout/src/applet-logout.c:290
 msgid ""
 "Your computer will still consume a small amount of energy but after some "
 "time, the computer will suspend to disk and not consume any energy."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:285
+#: ../logout/src/applet-logout.c:295
 #: ../powermanager/src/powermanager-menu-functions.c:99
 #: ../powermanager/src/powermanager-menu-functions.c:106
 msgid "Suspend"
 msgstr "挂起"
 
-#: ../logout/src/applet-logout.c:287
+#: ../logout/src/applet-logout.c:297
 msgid "Your computer will still consume a small amount of energy."
 msgstr "您的计算机将继续消耗少量能源。"
 
-#: ../logout/src/applet-logout.c:296
+#: ../logout/src/applet-logout.c:306
 msgid "Close your session and allow to open a new one."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:307
+#: ../logout/src/applet-logout.c:317
 msgid "Switch user"
 msgstr "切换用户"
 
-#: ../logout/src/applet-logout.c:328
+#: ../logout/src/applet-logout.c:338
 msgid "Guest session"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:335 ../logout/data/messages:99
+#: ../logout/src/applet-logout.c:345 ../logout/data/messages:99
 msgid "Lock screen"
 msgstr "锁住屏幕"
 
-#: ../logout/src/applet-logout.c:340
+#: ../logout/src/applet-logout.c:350
 msgid "Program an automatic shut-down"
 msgstr "安排一次自动关机"
 
-#: ../logout/src/applet-logout.c:408
+#: ../logout/src/applet-logout.c:418
 msgid "Your computer will shut-down in 1 minute."
 msgstr "您的计算机将在 1 分钟后关闭。"
 
-#: ../logout/src/applet-logout.c:455
+#: ../logout/src/applet-logout.c:465
 msgid "Choose in how many minutes your PC will stop:"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:498
+#: ../logout/src/applet-logout.c:508
 msgid "Please do that at the end of the update."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:742
+#: ../logout/src/applet-logout.c:693
+msgid "Logind has returned this error:"
+msgstr ""
+
+#: ../logout/src/applet-logout.c:695
+msgid ""
+"Please check that you can do this action\n"
+"(e.g. you can't power the computer off if another session is active)"
+msgstr ""
+
+#: ../logout/src/applet-logout.c:760
 #, c-format
 msgid "It will automatically shut-down in %ds"
 msgstr "您的计算机将在 %d 秒后自动关闭"
 
-#: ../logout/src/applet-logout.c:743
+#: ../logout/src/applet-logout.c:761
 msgid "Shut down the computer?"
 msgstr "确定要关闭计算机吗?"
 
-#: ../logout/src/applet-logout.c:815
+#: ../logout/src/applet-logout.c:833
 msgid "Restart the computer?"
 msgstr "确定要重新启动计算机吗?"
 
-#: ../logout/src/applet-logout.c:868
+#: ../logout/src/applet-logout.c:886
 msgid "Close the current session?"
 msgstr "确定关闭当前会话吗?"
 
@@ -3106,7 +3122,8 @@ msgid ""
 "space, type, etc."
 msgstr ""
 "通过该插件，您可以快速访问所有快捷方式。\n"
-"它可以管理磁盘、网络挂载点，以及 Nautilus 文件管理器的书签（即使您没有安装Nautilus）。\n"
+"它可以管理磁盘、网络挂载点，以及 Nautilus 文件管理器的书签（即使您没有安装"
+"Nautilus）。\n"
 "将文件夹拖到该“快捷方式”图标或者子 dock 上，就可以创建一个书签。\n"
 "在图标上点击鼠标中键，即显示您的主目录。\n"
 "在一个挂载点的图标上点鼠标中键，可以将其迅速卸载。\n"
@@ -3184,8 +3201,8 @@ msgstr "显示鼠标"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a "
-"dock/desklet."
+"This plugin draws some animations around the cursor when it's inside a dock/"
+"desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -3639,72 +3656,72 @@ msgstr "11月"
 msgid "Dec"
 msgstr "12月"
 
-#: ../weather/src/applet-notifications.c:61
+#: ../weather/src/applet-notifications.c:63
 msgid "Data are being retrieved, please wait a moment."
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:100
+#: ../weather/src/applet-notifications.c:102
 msgid "Show current conditions (middle-click)"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:105
+#: ../weather/src/applet-notifications.c:107
 msgid "Open weather.com (double-click)"
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:107
+#: ../weather/src/applet-notifications.c:109
 msgid "Reload now"
 msgstr "重新载入"
 
-#: ../weather/src/applet-notifications.c:140
+#: ../weather/src/applet-notifications.c:142
 msgid ""
 "No data available\n"
 " is your connection alive?"
 msgstr "无数据。请检查互联网连接"
 
-#: ../weather/src/applet-notifications.c:160
-#: ../weather/src/applet-notifications.c:198
+#: ../weather/src/applet-notifications.c:162
+#: ../weather/src/applet-notifications.c:200
 msgid "Temperature"
 msgstr "气温"
 
-#: ../weather/src/applet-notifications.c:161
+#: ../weather/src/applet-notifications.c:163
 msgid "Precipitation probability"
 msgstr "冰雹概率"
 
-#: ../weather/src/applet-notifications.c:162
-#: ../weather/src/applet-notifications.c:199
+#: ../weather/src/applet-notifications.c:164
+#: ../weather/src/applet-notifications.c:201
 msgid "Wind"
 msgstr "风"
 
-#: ../weather/src/applet-notifications.c:163
-#: ../weather/src/applet-notifications.c:200
+#: ../weather/src/applet-notifications.c:165
+#: ../weather/src/applet-notifications.c:202
 msgid "Humidity"
 msgstr "湿度"
 
-#: ../weather/src/applet-notifications.c:164
-#: ../weather/src/applet-notifications.c:201
+#: ../weather/src/applet-notifications.c:166
+#: ../weather/src/applet-notifications.c:203
 msgid "Sunrise"
 msgstr "日出"
 
-#: ../weather/src/applet-notifications.c:164
-#: ../weather/src/applet-notifications.c:201
+#: ../weather/src/applet-notifications.c:166
+#: ../weather/src/applet-notifications.c:203
 msgid "Sunset"
 msgstr "日落"
 
-#: ../weather/src/applet-notifications.c:174
+#: ../weather/src/applet-notifications.c:176
 msgid "Data are being fetched, please re-try in a few seconds."
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:184
+#: ../weather/src/applet-notifications.c:186
 msgid ""
 "No data available\n"
 "Retrying now..."
 msgstr ""
 
-#: ../weather/src/applet-notifications.c:198
+#: ../weather/src/applet-notifications.c:200
 msgid "Feels like"
 msgstr "体感温度"
 
-#: ../weather/src/applet-notifications.c:200
+#: ../weather/src/applet-notifications.c:202
 msgid "Pressure"
 msgstr "气压"
 
@@ -4334,7 +4351,9 @@ msgstr ""
 msgid ""
 "If locked, the desklet cannot be moved by simply dragging it with the left "
 "mouse button. It can still be moved with ALT + left-click."
-msgstr "一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来移动。"
+msgstr ""
+"一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来"
+"移动。"
 
 #: ../Clipper/data/messages:23 ../Composite-Manager/data/messages:21
 #: ../Disks/data/messages:43 ../Doncky/data/messages:23
@@ -4385,7 +4404,9 @@ msgstr "锁定位置?"
 msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
-msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理器。"
+msgstr ""
+"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理"
+"器。"
 
 #: ../Clipper/data/messages:27 ../Composite-Manager/data/messages:25
 #: ../Disks/data/messages:23 ../Doncky/data/messages:27
@@ -5611,8 +5632,7 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid ""
-"You can have more attractive backgrounds using the Desklet decorations"
+msgid "You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
@@ -7161,8 +7181,7 @@ msgid "Custom script for file upload :"
 msgstr ""
 
 #: ../dnd2share/data/messages:181
-msgid ""
-"Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
+msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 msgstr ""
 
 #: ../dnd2share/data/messages:183
@@ -7364,8 +7383,7 @@ msgid "Space between icons:"
 msgstr "图标间隔:"
 
 #: ../dock-rendering/data/messages:117
-msgid ""
-"0 represents a flat wave, 1 means the wave is identical to other views."
+msgid "0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr "0意味着平波，1意味着与其它视图一样"
 
 #: ../dock-rendering/data/messages:121
@@ -7552,8 +7570,7 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:71
-msgid ""
-"This will slightly alter your colours, so you may have to modify them."
+msgid "This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
@@ -7776,11 +7793,24 @@ msgid ""
 "This will be available when middle-clicking. Leave empty to execute the "
 "default command, which depends on your distribution. In some cases the "
 "command to shutdown is the same as the one to log out."
-msgstr "中键单击时使用。留空则使用默认命令，该命令取决于您所使用的发行版。有时关机和注销是同一个命令。"
+msgstr ""
+"中键单击时使用。留空则使用默认命令，该命令取决于您所使用的发行版。有时关机和"
+"注销是同一个命令。"
 
 #: ../logout/data/messages:127
 msgid "User-defined command to execute for shutdown:"
 msgstr "用户指定执行的关机命令:"
+
+#: ../logout/data/messages:129
+msgid ""
+"Leave empty to execute the default command. If not empty, it will execute "
+"this command with the name of the user (or nothing for guest session)"
+msgstr ""
+
+#: ../logout/data/messages:131
+#, fuzzy
+msgid "User-defined command to execute for changing user:"
+msgstr "用户指定执行的注销命令:"
 
 #: ../mail/data/messages:99
 msgid ""
@@ -7802,8 +7832,7 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "“有邮件”图像文件名:"
 
 #: ../mail/data/messages:115
-msgid ""
-"If checked, the number of mails will be shown even if there is no mail."
+msgid "If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:117
@@ -7887,8 +7916,7 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid ""
-"Leave it empty to display the name of the player currently controlled."
+msgid "Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:11
@@ -7963,7 +7991,9 @@ msgstr ""
 msgid ""
 "This will prevent the player icon appearing in the taskbar. The applet's "
 "icon will then behave as a launcher, an application and an applet."
-msgstr "这将阻止播放器的图标显示于任务栏。小程序的图标将具有启动器、应用程序和小程序的功能。"
+msgstr ""
+"这将阻止播放器的图标显示于任务栏。小程序的图标将具有启动器、应用程序和小程序"
+"的功能。"
 
 #: ../musicPlayer/data/messages:135
 msgid "Steal the player's icon from the taskbar?"
@@ -8489,7 +8519,8 @@ msgstr ""
 msgid ""
 "These options allow you to prevent some files from displaying in stacks "
 "based on their type (video, image, etc.)"
-msgstr "此选项允许您根据文件的类型（影像、图片等），使特定的文件不在stack中显示"
+msgstr ""
+"此选项允许您根据文件的类型（影像、图片等），使特定的文件不在stack中显示"
 
 #: ../stack/data/messages:119
 msgid "Filter files on MIME type?"
@@ -8709,7 +8740,9 @@ msgstr ""
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
-msgstr "当终端在对话框中时。当位于桌面小工具中时，您可以如平常一样改变桌面小工具的大小。"
+msgstr ""
+"当终端在对话框中时。当位于桌面小工具中时，您可以如平常一样改变桌面小工具的大"
+"小。"
 
 #: ../terminal/data/messages:109
 msgid "Size of the terminal (line x columns):"
@@ -8769,8 +8802,8 @@ msgid ""
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
 "digits), etc. Leave it blank to use the default one (%d/%m/%y)."
 msgstr ""
-"写下您便签平时使用的日期格式。语法为'strftime'的一种: %d表示日，%m表示月, "
-"%y表示年（2位数字）等。如使用默认的（%d/%m/%y）格式，则留空。"
+"写下您便签平时使用的日期格式。语法为'strftime'的一种: %d表示日，%m表示月, %y"
+"表示年（2位数字）等。如使用默认的（%d/%m/%y）格式，则留空。"
 
 #: ../tomboy/data/messages:141
 msgid "Date format to search for :"
@@ -8783,8 +8816,9 @@ msgid ""
 "message like <<No marshaller for signature of signal 'NoteDeleted'>> in the "
 "terminal."
 msgstr ""
-"如果您使用了某些tomboy的版本，便签的删除可能不会自动通知。仅当您在终端中发现类似<<No marshaller for signature of "
-"signal 'NoteDeleted'>>的错误的时候，启用此项目"
+"如果您使用了某些tomboy的版本，便签的删除可能不会自动通知。仅当您在终端中发现"
+"类似<<No marshaller for signature of signal 'NoteDeleted'>>的错误的时候，启用"
+"此项目"
 
 #: ../tomboy/data/messages:147
 msgid "Emulate the 'NoteDeleted' signal?"
@@ -8871,8 +8905,7 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "垂直卷轴位置"
 
 #: ../weblets/data/messages:103
-msgid ""
-"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:105
