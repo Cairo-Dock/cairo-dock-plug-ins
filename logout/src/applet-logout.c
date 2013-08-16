@@ -120,19 +120,22 @@ static void _cd_logout_check_capabilities_async (CDSharedMemory *pSharedMemory)
 		// get capabilities from UPower: hibernate and suspend
 		#ifdef CD_UPOWER_AVAILABLE
 		UpClient *pUPowerClient = up_client_new ();
-		up_client_get_properties_sync (pUPowerClient, NULL, &error);  // this function always returns false ... and it crashes the dock (Debian 6) ! :-O
-		if (error)
+		if (pUPowerClient)
 		{
-			cd_warning ("UPower error: %s", error->message);
-			g_error_free (error);
-			error = NULL;
+			up_client_get_properties_sync (pUPowerClient, NULL, &error);  // this function always returns false ... and it crashes the dock (Debian 6) ! :-O
+			if (error)
+			{
+				cd_warning ("UPower error: %s", error->message);
+				g_error_free (error);
+				error = NULL;
+			}
+			else
+			{
+				pSharedMemory->bCanHibernate = up_client_get_can_hibernate (pUPowerClient);
+				pSharedMemory->bCanSuspend = up_client_get_can_suspend (pUPowerClient);
+				g_object_unref (pUPowerClient); // not do that if there is an error to avoid: double free or corruption
+			}
 		}
-		else
-		{
-			pSharedMemory->bCanHibernate = up_client_get_can_hibernate (pUPowerClient);
-			pSharedMemory->bCanSuspend = up_client_get_can_suspend (pUPowerClient);
-		}
-		g_object_unref (pUPowerClient);
 		#endif
 		
 		// get capabilities from ConsoleKit.: reboot and poweroff
