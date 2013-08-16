@@ -138,7 +138,7 @@ message ("")
 pkg_check_modules ("PACKAGE" REQUIRED "gldi")  # we check first the common libs that most plug-ins would need: basically, all the libs used by the core.
 STRING (REGEX REPLACE "gldi;" "" PACKAGE_LIBRARIES "${PACKAGE_LIBRARIES}")  # but we don't want to link to gldi, since we are dl-opened by it.
 
-add_definitions (-DGTK_DISABLE_DEPRECATED="1")
+# add_definitions (-DGTK_DISABLE_DEPRECATED="1")
 
 #############    GLIB    #################
 pkg_check_modules (GLIB glib-2.0)
