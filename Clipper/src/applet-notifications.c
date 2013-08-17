@@ -123,7 +123,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 			g_string_append_printf (pString, "%s;", myConfig.pPersistentItems[i]);
 		}
 		g_string_append (pString, CD_APPLET_RECEIVED_DATA);
-		cairo_dock_update_conf_file (myApplet->cConfFilePath,
+		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
 			G_TYPE_STRING, "Configuration", "persistent", pString->str,
 			G_TYPE_INVALID);
 		

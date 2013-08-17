@@ -142,7 +142,7 @@ static void _choice_dialog_action (int iClickedButton, GtkWidget *pInteractiveWi
 	if (cPlayerName == NULL || *cPlayerName == '\0')
 		return;
 	// write it down into our conf file
-	cairo_dock_update_conf_file (myApplet->cConfFilePath,
+	cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
 		G_TYPE_STRING, "Configuration", "current-player", cPlayerName,
 		G_TYPE_INVALID);
 	myConfig.cMusicPlayer = g_strdup (cPlayerName);
@@ -269,11 +269,8 @@ CD_APPLET_ON_CLICK_BEGIN
 			else /*if (myData.pCurrentHandler->launch != NULL)*/
 			{
 				cd_message ("launching '%s'...", myData.pCurrentHandler->launch);
-				if (myConfig.bStealTaskBarIcon)
-					cairo_dock_launch_command_with_opening_animation_full (myIcon,
-						myData.pCurrentHandler->launch, NULL);
-				else
-					cairo_dock_launch_command (myData.pCurrentHandler->launch);
+				cairo_dock_launch_command (myData.pCurrentHandler->launch);
+				gldi_icon_mark_as_launching (myIcon);
 			}
 		}
 	}

@@ -74,9 +74,11 @@ echo "Compile it in the build directory" # not in the parent directory: it's cle
 mkdir -p build
 cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=/usr -Denable-${LowerName}=yes
+cd $AppletName
 make -j $(grep -c ^processor /proc/cpuinfo)
 
 echo "Applet $AppletName has been generated."
 echo "Now its' your turn ! type 'sudo make install' to install your applet."
-echo "Use this command to compile it: mkdir -p build; cd build; cmake .. -DCMAKE_INSTALL_PREFIX=/usr -Denable-${LowerName}=yes; make"
-echo "You can launch the 'make' commands only in this directory if you want: build/$AppletName"
+echo "Then, restart the dock and enable the applet from the configuration window."
+echo "Each time you want to update your applet, just run this command:"
+echo "  cd $PWD && make && sudo make install"

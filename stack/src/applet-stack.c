@@ -244,7 +244,7 @@ static gboolean _update_html_link (CDHtmlLink *pHtmlLink)
 	CD_APPLET_ENTER;
 	
 	// store in the conf file.
-	cairo_dock_update_conf_file (pHtmlLink->cConfFilePath,
+	cairo_dock_update_keyfile (pHtmlLink->cConfFilePath,
 		G_TYPE_STRING, "Desktop Entry", "Favicon", pHtmlLink->cFaviconPath,
 		G_TYPE_STRING, "Desktop Entry", "Name", pHtmlLink->cTitle,
 		G_TYPE_INVALID);	
@@ -443,14 +443,14 @@ void cd_stack_create_and_load_item (GldiModuleInstance *myApplet, const gchar *c
 
 void cd_stack_set_item_name (const gchar *cDesktopFilePath, const gchar *cName)
 {
-	cairo_dock_update_conf_file (cDesktopFilePath,
+	cairo_dock_update_keyfile (cDesktopFilePath,
 		G_TYPE_STRING, "Desktop Entry", "Name", cName,
 		G_TYPE_INVALID);
 }
 
 void cd_stack_set_item_order (const gchar *cDesktopFilePath, double fOrder)
 {
-	cairo_dock_update_conf_file (cDesktopFilePath,
+	cairo_dock_update_keyfile (cDesktopFilePath,
 		G_TYPE_DOUBLE, "Desktop Entry", "Order", fOrder,
 		G_TYPE_INVALID);
 }

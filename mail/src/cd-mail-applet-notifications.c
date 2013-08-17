@@ -55,15 +55,11 @@ CD_APPLET_ON_CLICK_BEGIN
 			cMailAppToLaunch = myConfig.cMailApplication;
 		if (cMailAppToLaunch != NULL)
 		{
-			gboolean r;
-			if (myConfig.bStealTaskBarIcon)
-				r = cairo_dock_launch_command_with_opening_animation_full (
-					CD_APPLET_CLICKED_ICON, cMailAppToLaunch, NULL);
-			else
-				r = cairo_dock_launch_command (cMailAppToLaunch);
+			gboolean r = cairo_dock_launch_command (cMailAppToLaunch);
+			gldi_icon_mark_as_launching (CD_APPLET_CLICKED_ICON);
 			if (!r)
 			{
-				cd_warning ("when couldn't execute '%s'", cMailAppToLaunch);
+				cd_warning ("couldn't execute '%s'", cMailAppToLaunch);
 				gldi_dialog_show_temporary_with_icon_printf (D_("A problem occured\nIf '%s' is not your usual mail application,\nyou can change it in the configuration panel of this module"), myIcon, myContainer, 5000, "same icon", cMailAppToLaunch);
 			}
 		}

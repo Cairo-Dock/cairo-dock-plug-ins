@@ -215,7 +215,7 @@ gboolean cd_icon_effect_render_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 }
 
 
-#define _will_continue(bRepeat) ((pData->iRequestTime > 0) || (pIcon->iAnimationState == CAIRO_DOCK_STATE_MOUSE_HOVERED && bRepeat && pIcon->bPointed && pDock->container.bInside))
+#define _will_continue(bRepeat) ((pData->iRequestTime > 0) || (pIcon->iAnimationState == CAIRO_DOCK_STATE_MOUSE_HOVERED && bRepeat && pIcon->bPointed && pDock->container.bInside) || (pIcon->iAnimationState == CAIRO_DOCK_STATE_CLICKED && gldi_icon_is_launching (pIcon)))
 
 gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bContinueAnimation)
 {

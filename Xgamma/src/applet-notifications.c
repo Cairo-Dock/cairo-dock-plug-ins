@@ -77,7 +77,7 @@ static void _cd_xgamma_remember_current_gamma (GtkMenuItem *menu_item, GldiModul
 	double fGamma = xgamma_get_gamma (&myData.Xgamma);
 	g_return_if_fail (fGamma > 0);
 	
-	cairo_dock_update_conf_file (myApplet->cConfFilePath,
+	cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
 		G_TYPE_DOUBLE, "Configuration", "initial gamma", fGamma,
 		G_TYPE_INVALID);
 }
