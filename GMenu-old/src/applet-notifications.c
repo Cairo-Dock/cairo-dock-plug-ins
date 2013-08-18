@@ -105,9 +105,19 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		else if (_cd_check_edit_menu_cmd ("which ezame"))
 			s_cEditMenuCmd = "ezame";
 	}
-	if (myConfig.cConfigureMenuCommand || s_cEditMenuCmd)
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Configure menu"), GTK_STOCK_PREFERENCES, _cd_menu_configure_menu, CD_APPLET_MY_MENU);
-	
+
+	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Configure menu"),
+		GTK_STOCK_PREFERENCES, _cd_menu_configure_menu, CD_APPLET_MY_MENU);
+	if (myConfig.cConfigureMenuCommand == NULL && s_cEditMenuCmd == NULL)
+	{
+		gchar *cTooltip = g_strdup_printf ("%s %s",
+			D_("None of these applications seems available:"),
+			"Alacarte, KMenuEdit, MenuLibre, Ezame");
+		gtk_widget_set_tooltip_text (pMenuItem, cTooltip);
+		g_free (cTooltip);
+		gtk_widget_set_sensitive (pMenuItem, FALSE);
+	}
+
 	CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear recent"), GTK_STOCK_CLEAR, cd_menu_clear_recent, CD_APPLET_MY_MENU);
 CD_APPLET_ON_BUILD_MENU_END
