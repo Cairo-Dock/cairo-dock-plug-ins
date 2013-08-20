@@ -76,12 +76,16 @@ CD_APPLET_INIT_BEGIN
 		int i = 0;
 		do
 		{
-			myData.pIndicator = cd_indicator3_load (cIndicatorNames[i],
-				cd_messaging_entry_added,
-				cd_messaging_entry_removed,
-				cd_messaging_accessible_desc_update,
-				NULL, // menu show
-				myApplet);
+			// no need to reload the same wrong indicator twice.
+			if (strcmp (cIndicatorNames[i], myConfig.cIndicatorName) != 0)
+			{
+				myData.pIndicator = cd_indicator3_load (cIndicatorNames[i],
+					cd_messaging_entry_added,
+					cd_messaging_entry_removed,
+					cd_messaging_accessible_desc_update,
+					NULL, // menu show
+					myApplet);
+			}
 			i++;
 		} while (myData.pIndicator == NULL && cIndicatorNames[i] != NULL);
 
