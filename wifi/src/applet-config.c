@@ -74,5 +74,6 @@ CD_APPLET_RESET_DATA_BEGIN
 	g_free (myData.cESSID);
 	g_free (myData.cInterface);
 	g_free (myData.cAccessPoint);
-	
+	g_free (myData.cIWConfigPath);
+
 CD_APPLET_RESET_DATA_END

@@ -83,8 +83,8 @@ void cd_wifi_get_data (gpointer data)
 	/* iwconfig prints wireless interface on stdout
 	 * and other interfaces (e.g. eth0 -> no wireless extensions.) on stderr...
 	 */
-	gchar *cResult = cairo_dock_launch_command_sync_with_stderr ("iwconfig", FALSE); // to avoid warnings... or with "sh -c \"iwconfig 2> /dev/null\"" but it uses 2 process each time...
-	if (cResult == NULL || *cResult == '\0')  // erreur a l'execution d'iwconfig (probleme de droit d'execution ou iwconfig pas installe) ou aucune interface wifi presente
+	gchar *cResult = cairo_dock_launch_command_sync_with_stderr (myData.cIWConfigPath, FALSE); // to avoid warnings... or with "sh -c \"iwconfig 2> /dev/null\"" but it uses 2 process each time...
+	if (cResult == NULL || *cResult == '\0')  // error when launching iwconfig: rights problem, iwconfig not available or no wifi interface?
 	{ 
 		g_free (cResult);
 		return ;
@@ -109,17 +109,17 @@ void cd_wifi_get_data (gpointer data)
 	for (i = 0; cInfopipesList[i] != NULL; i ++)
 	{
 		cOneInfopipe = cInfopipesList[i];
-		if (*cOneInfopipe == '\0' || *cOneInfopipe == '\n' )  // saut de ligne signalant une nouvelle interface.
+		if (*cOneInfopipe == '\0' || *cOneInfopipe == '\n' )  // EOL: a new interface.
 		{
-			if (myData.cInterface != NULL)  // comme on n'en veut qu'une on quitte.
+			if (myData.cInterface != NULL)  // we only want one, break
 				break;
 			else
 				continue;
 		}
 		
-		if (myData.cInterface == NULL)  // on n'a pas encore d'interface valable.
+		if (myData.cInterface == NULL)  // we don't still have any interface
 		{
-			str = strchr (cOneInfopipe, ' ');  // le nom de l'interface est en debut de ligne.
+			str = strchr (cOneInfopipe, ' ');  // interface's name is at the beginning of the line.
 			if (str)
 			{
 				str2 = str + 1;
@@ -129,7 +129,7 @@ void cd_wifi_get_data (gpointer data)
 					myData.cInterface = g_strndup (cOneInfopipe, str - cOneInfopipe);
 			}
 			cd_debug ("interface : %s", myData.cInterface);
-			if (myData.cInterface == NULL)  // cette ligne ne nous a rien apporte, on passe a la suivante.
+			if (myData.cInterface == NULL)  // no new info, skip it
 				continue;
 		}
 		
@@ -150,7 +150,7 @@ void cd_wifi_get_data (gpointer data)
 		{
 			iMaxValue = 0;
 			_pick_value ("Link Quality", myData.iQuality, iMaxValue);
-			if (iMaxValue != 0)  // vieille version, qualite indiquee en %
+			if (iMaxValue != 0)  // old version, quality in %
 			{
 				myData.iPercent = 100. * myData.iQuality / iMaxValue;
 				if (myData.iPercent <= 0)

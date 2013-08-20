@@ -63,7 +63,7 @@ static void _set_data_renderer (GldiModuleInstance *myApplet, gboolean bReload)
 			pRenderAttr->cModelName = "graph";
 			int w, h;
 			CD_APPLET_GET_MY_ICON_EXTENT (&w, &h);
-			pRenderAttr->iMemorySize = (w > 1 ? w : 32);  // fWidth peut etre <= 1 en mode desklet au chargement.  // fWidht peut etre <= 1 en mode desklet au chargement.
+			pRenderAttr->iMemorySize = (w > 1 ? w : 32);  // fWidth can be <= 1 in desklet mode when loading it
 			aGraphAttr.iType = myConfig.iGraphType;
 			aGraphAttr.fHighColor = myConfig.fHigholor;
 			aGraphAttr.fLowColor = myConfig.fLowColor;
@@ -89,6 +89,19 @@ static void _set_data_renderer (GldiModuleInstance *myApplet, gboolean bReload)
 	}
 }
 
+static void _set_iwconfig_path (GldiModuleInstance *myApplet)
+{
+	gchar *cResult = cairo_dock_launch_command_sync ("which iwconfig");
+	if (cResult != NULL && *cResult == '/')
+		myData.cIWConfigPath = cResult;
+	else
+	{
+		g_free (cResult);
+		// if '/sbin' is not in $PATH
+		myData.cIWConfigPath = g_strdup ("/sbin/iwconfig");
+	}
+}
+
 CD_APPLET_INIT_BEGIN
 	if (myDesklet != NULL)
 	{
@@ -96,11 +109,14 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_ALLOW_NO_CLICKABLE_DESKLET;
 	}
 	
-	// Initialisation du rendu.
+	// Renderer Init
 	_set_data_renderer (myApplet, FALSE);
-	
-	// Initialisation de la tache periodique de mesure.
-	myData.iPreviousQuality = -2;  // force le dessin.
+
+	// check iwconfig path
+	_set_iwconfig_path (myApplet);
+
+	// Initialisation of the periodic task
+	myData.iPreviousQuality = -2;  // force a redraw.
 	myData.pTask = cairo_dock_new_task (myConfig.iCheckInterval,
 		(CairoDockGetDataAsyncFunc) cd_wifi_get_data,
 		(CairoDockUpdateSyncFunc) cd_wifi_update_from_data,

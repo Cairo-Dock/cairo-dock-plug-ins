@@ -80,6 +80,7 @@ struct _AppletData {
 	// end of shared memory
 	gboolean bWirelessExt;
 	CairoDockTask *pTask;
+	gchar *cIWConfigPath;
 };
 
 
