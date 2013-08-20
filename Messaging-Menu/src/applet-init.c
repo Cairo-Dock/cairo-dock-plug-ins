@@ -68,8 +68,26 @@ CD_APPLET_INIT_BEGIN
 		NULL, // menu show
 		myApplet);
 
+	// check other names (if the one in the config file is wrong or switch ng)
 	if (! myData.pIndicator)
-		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
+	{
+		const gchar *cIndicatorNames[] = {"com.canonical.indicator.messages",
+			"libmessaging.so", NULL};
+		int i = 0;
+		do
+		{
+			myData.pIndicator = cd_indicator3_load (cIndicatorNames[i],
+				cd_messaging_entry_added,
+				cd_messaging_entry_removed,
+				cd_messaging_accessible_desc_update,
+				NULL, // menu show
+				myApplet);
+			i++;
+		} while (myData.pIndicator == NULL && cIndicatorNames[i] != NULL);
+
+		if (! myData.pIndicator)
+			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
+	}
 	#endif
 	
 	// mouse events

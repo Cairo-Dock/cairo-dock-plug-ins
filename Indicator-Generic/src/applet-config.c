@@ -26,7 +26,7 @@
 #ifdef IS_INDICATOR_NG
 #define IND_GEN_EXCEPTIONS_HARD "libapplication.so;libappmenu.so;" \
 	"libdatetime.so;libmessaging.so;libsoundmenu.so;" \
-	"com.canonical.indicator.sound"
+	"com.canonical.indicator.sound;com.canonical.indicator.messages"
 #else
 #define IND_GEN_EXCEPTIONS_HARD "libapplication.so;libappmenu.so;libdatetime.so;libmessaging.so;libsoundmenu.so"
 #endif

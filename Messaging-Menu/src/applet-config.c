@@ -32,7 +32,11 @@ CD_APPLET_GET_CONFIG_BEGIN
 	#ifdef INDICATOR_MESSAGES_WITH_IND3
 	myConfig.cIndicatorName = CD_CONFIG_GET_STRING ("Configuration", "indicator name");
 	if (myConfig.cIndicatorName == NULL)
+		#ifdef IS_INDICATOR_NG
+		myConfig.cIndicatorName = g_strdup ("com.canonical.indicator.messages");
+		#else
 		myConfig.cIndicatorName = g_strdup ("libmessaging.so");
+		#endif
 	#endif
 CD_APPLET_GET_CONFIG_END
 
