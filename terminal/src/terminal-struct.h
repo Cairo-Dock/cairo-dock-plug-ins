@@ -24,13 +24,21 @@
 #include <cairo-dock.h>
 
 struct _AppletConfig {
+	// appearance
 	guint16  transparency;
 	GdkColor backcolor;
 	GdkColor forecolor;
+	gboolean bCustomFont;
+	gchar   *cCustomFont;
+	// behaviour
+	gboolean bScrollOutput;
+	gboolean bScrollKeystroke;
+	gboolean bScrollback;
+	gint     iScrollback;
+	// terminal
 	gchar *shortcut;
 	gint iNbRows;
 	gint iNbColumns;
-	int iPositionX, iPositionY;
 	} ;
 
 struct _AppletData {

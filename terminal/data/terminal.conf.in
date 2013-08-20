@@ -99,18 +99,41 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#F[Colours]
-frame_col =
+#F[Appearance]
+frame_app =
 
 #e[0;1;transparent;opaque] Terminal transparency:
 #{needs to restart the applet.}
-terminal transparency=.6
+terminal transparency=.84
 
 #c+ Foreground colour:
 foreground color= 1.; 1.; 1.
 
 #c+ Background colour:
 background color= 0.; 0.; 0.
+
+#B Use a custom font?
+custom font = false
+
+#P Custom font:
+font = Monospace 8
+
+#F[Behaviour]
+frame_behav = 
+
+#b Scroll on output
+#{Automatically scroll to the bottom when new data are received}
+scroll output = false
+
+#b Scroll on keystroke
+#{Automatically scroll to the bottom when a key is pressed}
+scroll key = true
+
+#B Limited scrollback buffer
+scrollback = true
+
+#i[0;9999] Length of the scrollback buffer
+scrollback length = 512
 
 #F[Terminal]
 frame_term =

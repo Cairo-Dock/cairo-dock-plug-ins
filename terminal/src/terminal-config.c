@@ -34,7 +34,7 @@ static void set_color(GdkColor *color, double src[3]) {
 }
 
 CD_APPLET_GET_CONFIG_BEGIN
-	CD_CONFIG_RENAME_GROUP ("GUI", "Configuration");
+	// Appearance
 	//0 means completely transparent and 65535 opaque
 	myConfig.transparency = (guint16) (CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "terminal transparency", .84) * 65535);  // 55000
 
@@ -46,6 +46,18 @@ CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("Configuration", "foreground color", color_fore, color_fore);
 	set_color(&myConfig.forecolor, color_fore);
 
+	myConfig.bCustomFont = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "custom font", FALSE);
+	if (myConfig.bCustomFont)
+		myConfig.cCustomFont = CD_CONFIG_GET_STRING ("Configuration", "font");
+
+	// Behaviour
+	myConfig.bScrollOutput = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "scroll output", FALSE);
+	myConfig.bScrollKeystroke = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "scroll key", TRUE);
+	myConfig.bScrollback = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "scrollback", TRUE);
+	if (myConfig.bScrollback)
+		myConfig.iScrollback = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "scrollback length", 512);
+
+	// Terminal
 	myConfig.shortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "shortkey", "<Ctrl>F1");
 	myConfig.iNbRows = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb lines", 25);
 	myConfig.iNbColumns = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb columns", 80);
@@ -55,6 +67,7 @@ CD_APPLET_GET_CONFIG_END
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.shortcut);
 	myConfig.shortcut = NULL;
+	g_free (myConfig.cCustomFont);
 CD_APPLET_RESET_CONFIG_END
 
 

@@ -325,7 +325,19 @@ static void _term_apply_settings_on_vterm(GtkWidget *vterm)
 	#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 12)
 	vte_terminal_set_opacity(VTE_TERMINAL(vterm), myConfig.transparency);
 	#endif
-	
+
+	if (myConfig.bCustomFont)
+		vte_terminal_set_font_from_string (VTE_TERMINAL (vterm), myConfig.cCustomFont);
+	else
+		vte_terminal_set_font (VTE_TERMINAL (vterm), NULL);
+
+	vte_terminal_set_scroll_on_output (VTE_TERMINAL (vterm), myConfig.bScrollOutput);
+	vte_terminal_set_scroll_on_keystroke (VTE_TERMINAL (vterm), myConfig.bScrollKeystroke);
+	if (myConfig.bScrollback)
+		vte_terminal_set_scrollback_lines (VTE_TERMINAL (vterm), myConfig.iScrollback);
+	else
+		vte_terminal_set_scrollback_lines (VTE_TERMINAL (vterm), -1); // -1 <=> infinite
+
 	if (myDock)
 	{
 		// since dialogs can't be resized (like desklets), set the size as defined in the config.
