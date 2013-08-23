@@ -101,6 +101,7 @@ struct _AppletConfig {
 	CDIconEffectsEnum iEffectsUsed[CD_ICON_EFFECT_NB_EFFECTS];
 	CDIconEffectsEnum iEffectsOnClick[CAIRO_DOCK_NB_GROUPS][CD_ICON_EFFECT_NB_EFFECTS];
 	gboolean bRotateEffects;
+	gboolean bOpeningAnimation;
 	} ;
 
 //\___________ other structures.
