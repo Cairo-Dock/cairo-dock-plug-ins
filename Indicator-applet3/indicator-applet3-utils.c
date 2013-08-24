@@ -61,10 +61,11 @@ static gchar * _get_name_from_gicon (GtkImage *pImage)
 	return cName;
 }
 
-static gboolean _set_new_image_pixbuf (GtkImage *pImage, GldiModuleInstance *myApplet)
+static gboolean _update_image_from_pixbuf (gpointer *data)
 {
-	GdkPixbuf *pPixbuf = gtk_image_get_pixbuf (pImage);
-	g_return_val_if_fail (pPixbuf != NULL, FALSE);
+	GdkPixbuf *pPixbuf = data[0];
+	GldiModuleInstance *myApplet = data[1];
+	g_free (data);
 
 	cd_debug ("Icon Pixbuf: %p", pPixbuf);
 	gdouble fWidth, fHeight;
@@ -79,8 +80,35 @@ static gboolean _set_new_image_pixbuf (GtkImage *pImage, GldiModuleInstance *myA
 	cd_debug ("Pixbuf: %fx%f", fWidth, fHeight);
 
 	CD_APPLET_SET_SURFACE_ON_MY_ICON (pSurface);
-	
+
 	cairo_surface_destroy (pSurface);
+	g_object_unref (pPixbuf); // was ref by ourself
+
+	return FALSE;
+}
+
+static gboolean _set_new_image_pixbuf (GtkImage *pImage, GldiModuleInstance *myApplet)
+{
+	GdkPixbuf *pPixbuf = gtk_image_get_pixbuf (pImage);
+	g_return_val_if_fail (pPixbuf != NULL, FALSE);
+
+	g_object_ref (pPixbuf); // to be sure that it will be available after the delay
+	gpointer *data = g_new (gpointer, 2);
+	data[0] = pPixbuf;
+	data[1] = myApplet;
+
+	cd_debug ("Icon Pixbuf: %p - add delay: 125ms", pPixbuf);
+
+	/* Add short delay: most of the time, we receive a GdkPixbuf but it seems
+	 *  the image is not fully loaded: it has the right dimensions, rowstride
+	 *  and the number of bytes seem ok but the icon is fully transparent.
+	 * Unfortunately, we don't have the GdkPixbufLoader structure and we can't
+	 *  be connected to the "closed" signal...
+	 * => not (easily) possible to detect if the image looks fine and impossible
+	 *  to be notified when the image is available.
+	 */
+	g_timeout_add (125, (GSourceFunc)_update_image_from_pixbuf, data);
+
 	return TRUE;
 }
 
