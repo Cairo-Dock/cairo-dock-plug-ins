@@ -28,7 +28,7 @@
 #include "applet-init.h"
 
 
-CD_APPLET_DEFINE_BEGIN (N_("Network-Monitor"),
+CD_APPLET_DEFINE_BEGIN ("Network-Monitor",
 	2, 1, 4,
 	CAIRO_DOCK_CATEGORY_APPLET_INTERNET,
 	N_("This applet allows you to monitor your network connection(s).\n"
@@ -38,6 +38,7 @@ CD_APPLET_DEFINE_BEGIN (N_("Network-Monitor"),
 	"Scroll on the icon to switch the display between net speed and wifi."),
 	"Yann Sladek (Mav), Remy Robertson (ChanGFu), and Fabrice Rey (Fabounet)")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
+	CD_APPLET_REDEFINE_TITLE (N_("Network Monitor"))
 	pInterface->load_custom_widget = cd_netmonitor_load_custom_widget;
 CD_APPLET_DEFINE_END
 
