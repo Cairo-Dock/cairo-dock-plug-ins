@@ -113,7 +113,7 @@ static void _on_init_module (GldiModuleInstance *pModuleInstance, GKeyFile *pKey
 	//\_____________ On (re)lance l'executable de l'applet.
 	cd_dbus_launch_applet_process (pModuleInstance, pDbusApplet);
 }
-static gboolean _cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDescription, const gchar *cAuthor, const gchar *cVersion, gint iCategory, const gchar *cIconName, const gchar *cShareDataDir, gboolean bMultiInstance, gboolean bActAsLauncher)
+static gboolean _cd_dbus_register_new_module (const gchar *cModuleName, const gchar *cDescription, const gchar *cAuthor, const gchar *cVersion, gint iCategory, const gchar *cIconName, const gchar *cTitle, const gchar *cShareDataDir, gboolean bMultiInstance, gboolean bActAsLauncher)
 {
 	cd_message ("%s (%s)", __func__, cModuleName);
 	
@@ -146,7 +146,9 @@ static gboolean _cd_dbus_register_new_module (const gchar *cModuleName, const gc
 		pVisitCard->iSizeOfConfig = 4;  // au cas ou ...
 		pVisitCard->iSizeOfData = 4;  // au cas ou ...
 		pVisitCard->cDescription = g_strdup (cDescription);
-		pVisitCard->cTitle = g_strdup (dgettext (pVisitCard->cGettextDomain, cModuleName));
+		pVisitCard->cTitle = cTitle ?
+			g_strdup (dgettext (pVisitCard->cGettextDomain, cTitle)) :
+			g_strdup (cModuleName);
 		pVisitCard->iContainerType = CAIRO_DOCK_MODULE_CAN_DOCK | CAIRO_DOCK_MODULE_CAN_DESKLET;
 		pVisitCard->bMultiInstance = bMultiInstance;
 		pVisitCard->bActAsLauncher = bActAsLauncher;  // ex.: XChat controls xchat/xchat-gnome, but it does that only after initializing; we need to know if it's a launcher before the taskbar is loaded, hence this parameter.
@@ -213,6 +215,12 @@ gboolean cd_dbus_register_module_in_dir (const gchar *cModuleName, const gchar *
 		g_free (cIconName);
 		cIconName = NULL;
 	}
+	gchar *cTitle = g_key_file_get_string (pKeyFile, "Register", "title", NULL);  // NULL if not specified
+	if (cTitle && *cTitle == '\0')
+	{
+		g_free (cTitle);
+		cTitle = NULL;
+	}
 	
 	gboolean bMultiInstance = g_key_file_get_boolean (pKeyFile, "Register", "multi-instance", NULL);  // false if not specified
 	
@@ -222,11 +230,12 @@ gboolean cd_dbus_register_module_in_dir (const gchar *cModuleName, const gchar *
 	
 	g_key_file_free (pKeyFile);
 	
-	gboolean bActivationOk = _cd_dbus_register_new_module (cModuleName, cDescription, cAuthor, cVersion, iCategory, cIconName, cShareDataDir, bMultiInstance, bActAsLauncher);
+	gboolean bActivationOk = _cd_dbus_register_new_module (cModuleName, cDescription, cAuthor, cVersion, iCategory, cIconName, cTitle, cShareDataDir, bMultiInstance, bActAsLauncher);
 	g_free (cDescription);
 	g_free (cAuthor);
 	g_free (cVersion);
 	g_free (cIconName);
+	g_free (cTitle);
 	g_free (cShareDataDir);
 	g_free (cFilePath);
 	return bActivationOk;
