@@ -274,8 +274,8 @@ msgstr ""
 #: ../Xgamma/src/applet-notifications.c:87
 #: ../alsaMixer/src/applet-notifications.c:85
 #: ../dustbin/src/applet-notifications.c:149
-#: ../mail/src/cd-mail-applet-notifications.c:158
-#: ../musicPlayer/src/applet-notifications.c:307
+#: ../mail/src/cd-mail-applet-notifications.c:154
+#: ../musicPlayer/src/applet-notifications.c:304
 #: ../netspeed/src/applet-notifications.c:105
 #: ../quick-browser/src/applet-notifications.c:41
 #: ../shortcuts/src/applet-notifications.c:285
@@ -720,8 +720,13 @@ msgstr "Hızlı başlat"
 msgid "Configure menu"
 msgstr "Yapılandırma menüsü"
 
-#: ../GMenu-old/src/applet-notifications.c:112
-#: ../GMenu/src/applet-notifications.c:98
+#: ../GMenu-old/src/applet-notifications.c:114
+#: ../GMenu/src/applet-notifications.c:100
+msgid "None of these applications seems available:"
+msgstr ""
+
+#: ../GMenu-old/src/applet-notifications.c:122
+#: ../GMenu/src/applet-notifications.c:108
 msgid "Clear recent"
 msgstr "Son kullanılanı temizle"
 
@@ -823,7 +828,7 @@ msgid ""
 "It requires the Messaging service, which is available on Ubuntu by default."
 msgstr ""
 
-#: ../Messaging-Menu/src/applet-init.c:81
+#: ../Messaging-Menu/src/applet-init.c:103
 msgid "Show/hide the Messaging menu"
 msgstr ""
 
@@ -903,10 +908,6 @@ msgstr "Erişim noktası"
 msgid "Signal Quality"
 msgstr "Sinyal Kalitesi"
 
-#: ../Network-Monitor/src/applet-init.c:31
-msgid "Network-Monitor"
-msgstr "Ağ-Gözlemci"
-
 #: ../Network-Monitor/src/applet-init.c:34
 msgid ""
 "This applet allows you to monitor your network connection(s).\n"
@@ -922,6 +923,11 @@ msgstr ""
 "sağlar.\n"
 "Açılır pencereye bazı bilgiler için sol-tıklayın, net net ve wifi hızlarını "
 "birlikte göstermek için simge üzerine sürükleyin."
+
+#: ../Network-Monitor/src/applet-init.c:41
+#, fuzzy
+msgid "Network Monitor"
+msgstr "Ağ-Gözlemci"
 
 #: ../Network-Monitor/src/applet-netspeed.c:202
 #: ../System-Monitor/src/applet-monitor.c:95
@@ -2305,37 +2311,37 @@ msgstr ""
 
 #: ../icon-effect/src/applet-init.c:101 ../icon-effect/data/messages:7
 #: ../icon-effect/data/messages:23 ../icon-effect/data/messages:39
-#: ../icon-effect/data/messages:55
+#: ../icon-effect/data/messages:57
 msgid "Fire"
 msgstr "Ateş"
 
 #: ../icon-effect/src/applet-init.c:104 ../icon-effect/data/messages:9
 #: ../icon-effect/data/messages:25 ../icon-effect/data/messages:41
-#: ../icon-effect/data/messages:83
+#: ../icon-effect/data/messages:85
 msgid "Stars"
 msgstr "Yıldızlar"
 
 #: ../icon-effect/src/applet-init.c:107 ../icon-effect/data/messages:11
 #: ../icon-effect/data/messages:27 ../icon-effect/data/messages:43
-#: ../icon-effect/data/messages:127
+#: ../icon-effect/data/messages:129
 msgid "Rain"
 msgstr "Yağmur"
 
 #: ../icon-effect/src/applet-init.c:110 ../icon-effect/data/messages:13
 #: ../icon-effect/data/messages:29 ../icon-effect/data/messages:45
-#: ../icon-effect/data/messages:105
+#: ../icon-effect/data/messages:107
 msgid "Snow"
 msgstr "Kar"
 
 #: ../icon-effect/src/applet-init.c:113 ../icon-effect/data/messages:15
 #: ../icon-effect/data/messages:31 ../icon-effect/data/messages:47
-#: ../icon-effect/data/messages:149
+#: ../icon-effect/data/messages:151
 msgid "Storm"
 msgstr "Fırtına"
 
 #: ../icon-effect/src/applet-init.c:116 ../icon-effect/data/messages:17
 #: ../icon-effect/data/messages:33 ../icon-effect/data/messages:49
-#: ../icon-effect/data/messages:169
+#: ../icon-effect/data/messages:171
 msgid "Firework"
 msgstr "Havai fişek"
 
@@ -2379,7 +2385,7 @@ msgid ""
 "You can bind a <b>shortcut</b> to it, and also to lock the screen."
 msgstr ""
 
-#: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:304
+#: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:307
 #: ../logout/data/messages:95
 msgid "Log out"
 msgstr ""
@@ -2392,100 +2398,100 @@ msgstr ""
 msgid "Show the log-out menu"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:270 ../logout/data/messages:97
+#: ../logout/src/applet-logout.c:273 ../logout/data/messages:97
 msgid "Shut down"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:276
+#: ../logout/src/applet-logout.c:279
 msgid "Restart"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:282
+#: ../logout/src/applet-logout.c:285
 #: ../powermanager/src/powermanager-menu-functions.c:96
 #: ../powermanager/src/powermanager-menu-functions.c:104
 msgid "Hibernate"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:283
+#: ../logout/src/applet-logout.c:286
 msgid "Your computer will not consume any energy."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:289
+#: ../logout/src/applet-logout.c:292
 msgid "Hybrid Sleep"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:290
+#: ../logout/src/applet-logout.c:293
 msgid ""
 "Your computer will still consume a small amount of energy but after some "
 "time, the computer will suspend to disk and not consume any energy."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:295
+#: ../logout/src/applet-logout.c:298
 #: ../powermanager/src/powermanager-menu-functions.c:99
 #: ../powermanager/src/powermanager-menu-functions.c:106
 msgid "Suspend"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:297
+#: ../logout/src/applet-logout.c:300
 msgid "Your computer will still consume a small amount of energy."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:306
+#: ../logout/src/applet-logout.c:309
 msgid "Close your session and allow to open a new one."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:317
+#: ../logout/src/applet-logout.c:320
 msgid "Switch user"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:338
+#: ../logout/src/applet-logout.c:341
 msgid "Guest session"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:345 ../logout/data/messages:99
+#: ../logout/src/applet-logout.c:348 ../logout/data/messages:99
 msgid "Lock screen"
 msgstr "Ekranı kilitle"
 
-#: ../logout/src/applet-logout.c:350
+#: ../logout/src/applet-logout.c:353
 msgid "Program an automatic shut-down"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:418
+#: ../logout/src/applet-logout.c:421
 msgid "Your computer will shut-down in 1 minute."
 msgstr "Bilgisayarınız 1 dakika içerisinde kapanacak."
 
-#: ../logout/src/applet-logout.c:465
+#: ../logout/src/applet-logout.c:468
 msgid "Choose in how many minutes your PC will stop:"
 msgstr "Kaç dakika içinde PC'nzin duracağını seçin:"
 
-#: ../logout/src/applet-logout.c:508
+#: ../logout/src/applet-logout.c:511
 msgid "Please do that at the end of the update."
 msgstr ""
 
-#: ../logout/src/applet-logout.c:693
+#: ../logout/src/applet-logout.c:696
 msgid "Logind has returned this error:"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:695
+#: ../logout/src/applet-logout.c:698
 msgid ""
 "Please check that you can do this action\n"
 "(e.g. you can't power the computer off if another session is active)"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:760
+#: ../logout/src/applet-logout.c:763
 #, c-format
 msgid "It will automatically shut-down in %ds"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:761
+#: ../logout/src/applet-logout.c:764
 msgid "Shut down the computer?"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:833
+#: ../logout/src/applet-logout.c:836
 msgid "Restart the computer?"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:886
+#: ../logout/src/applet-logout.c:889
 msgid "Close the current session?"
 msgstr ""
 
@@ -2644,7 +2650,7 @@ msgid ""
 "Middle-click to refresh all the mailboxes."
 msgstr ""
 
-#: ../mail/src/cd-mail-applet-notifications.c:67
+#: ../mail/src/cd-mail-applet-notifications.c:63
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -2652,35 +2658,35 @@ msgid ""
 "you can change it in the configuration panel of this module"
 msgstr ""
 
-#: ../mail/src/cd-mail-applet-notifications.c:72
+#: ../mail/src/cd-mail-applet-notifications.c:68
 msgid ""
 "No mail application is defined,\n"
 "you can define it in the configuration panel of this module"
 msgstr ""
 
-#: ../mail/src/cd-mail-applet-notifications.c:151
+#: ../mail/src/cd-mail-applet-notifications.c:147
 msgid "Refresh a mail account"
 msgstr "Posta hesabını yenile"
 
-#: ../mail/src/cd-mail-applet-notifications.c:158
+#: ../mail/src/cd-mail-applet-notifications.c:154
 msgid "Refresh all"
 msgstr ""
 
-#: ../mail/src/cd-mail-applet-notifications.c:165
+#: ../mail/src/cd-mail-applet-notifications.c:161
 #, c-format
 msgid "Refresh %s"
 msgstr ""
 
-#: ../mail/src/cd-mail-applet-notifications.c:171
+#: ../mail/src/cd-mail-applet-notifications.c:167
 msgid "Mark all emails as read"
 msgstr "Tüm postaları okundu olarak işaretle"
 
-#: ../mail/src/cd-mail-applet-notifications.c:174
+#: ../mail/src/cd-mail-applet-notifications.c:170
 #, c-format
 msgid "Launch %s"
 msgstr "%s başlat"
 
-#: ../mail/src/cd-mail-applet-notifications.c:351
+#: ../mail/src/cd-mail-applet-notifications.c:347
 msgid "Mail"
 msgstr "Posta"
 
@@ -2760,67 +2766,67 @@ msgstr ""
 msgid "Choose a music player to control"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:291
+#: ../musicPlayer/src/applet-notifications.c:288
 msgid "Find opened player"
 msgstr "Açık oynatıcı bul"
 
-#: ../musicPlayer/src/applet-notifications.c:295
+#: ../musicPlayer/src/applet-notifications.c:292
 msgid "Choose a player"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:301
+#: ../musicPlayer/src/applet-notifications.c:298
 msgid "Previous"
 msgstr "Önceki"
 
-#: ../musicPlayer/src/applet-notifications.c:301
+#: ../musicPlayer/src/applet-notifications.c:298
 msgid "scroll-up"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:307
+#: ../musicPlayer/src/applet-notifications.c:304
 msgid "Play/Pause"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:307
+#: ../musicPlayer/src/applet-notifications.c:304
 msgid "left-click"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:313
+#: ../musicPlayer/src/applet-notifications.c:310
 msgid "Next"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:313
+#: ../musicPlayer/src/applet-notifications.c:310
 msgid "scroll-down"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:318
+#: ../musicPlayer/src/applet-notifications.c:315
 msgid "Stop"
 msgstr "Durdur"
 
-#: ../musicPlayer/src/applet-notifications.c:322
+#: ../musicPlayer/src/applet-notifications.c:319
 msgid "Information"
 msgstr "Bilgi"
 
-#: ../musicPlayer/src/applet-notifications.c:327
+#: ../musicPlayer/src/applet-notifications.c:324
 msgid "Show JumpBox"
 msgstr "JumpBox Göster"
 
-#: ../musicPlayer/src/applet-notifications.c:330
+#: ../musicPlayer/src/applet-notifications.c:327
 msgid "Shuffle"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:338
+#: ../musicPlayer/src/applet-notifications.c:335
 msgid "Repeat"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:346
+#: ../musicPlayer/src/applet-notifications.c:343
 msgid "Rate this song"
 msgstr "Bu şarkıyı derecelendir"
 
-#: ../musicPlayer/src/applet-notifications.c:350
+#: ../musicPlayer/src/applet-notifications.c:347
 msgid "Show"
 msgstr ""
 
-#: ../musicPlayer/src/applet-notifications.c:351
+#: ../musicPlayer/src/applet-notifications.c:348
 msgid "Quit"
 msgstr ""
 
@@ -3273,7 +3279,7 @@ msgstr "Aç (Tıkla)"
 
 #: ../stack/src/applet-notifications.c:214
 #: ../terminal/src/terminal-callbacks.c:82
-#: ../terminal/src/terminal-widget.c:459
+#: ../terminal/src/terminal-widget.c:471
 msgid "Copy"
 msgstr "Kopya"
 
@@ -3414,7 +3420,7 @@ msgid "Show/hide the terminal"
 msgstr ""
 
 #: ../terminal/src/terminal-menu-functions.c:78
-#: ../terminal/src/terminal-widget.c:475
+#: ../terminal/src/terminal-widget.c:487
 msgid "New Tab"
 msgstr "Yeni Sekme"
 
@@ -3426,7 +3432,7 @@ msgstr "Geçerli Sekmeyi yeniden adlandır"
 msgid "Close current Tab"
 msgstr "Geçerli Sekmeyi kapat"
 
-#: ../terminal/src/terminal-widget.c:56 ../terminal/data/messages:105
+#: ../terminal/src/terminal-widget.c:56 ../terminal/data/messages:123
 msgid "Terminal"
 msgstr "Uçbirim"
 
@@ -3438,24 +3444,24 @@ msgstr "Bu sekme için başlık ayarla :"
 msgid "Select a color"
 msgstr "Bir renk seç"
 
-#: ../terminal/src/terminal-widget.c:419
+#: ../terminal/src/terminal-widget.c:431
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
 msgstr "Uçbirim masaüstü uygulamacığını %s yazarak yeniden çalıştırabilirsiniz"
 
-#: ../terminal/src/terminal-widget.c:465
+#: ../terminal/src/terminal-widget.c:477
 msgid "Paste"
 msgstr "Yapıştır"
 
-#: ../terminal/src/terminal-widget.c:481
+#: ../terminal/src/terminal-widget.c:493
 msgid "Rename this Tab"
 msgstr "Bu Sekmeyi yeniden adlandır"
 
-#: ../terminal/src/terminal-widget.c:487
+#: ../terminal/src/terminal-widget.c:499
 msgid "Change this Tab's colour"
 msgstr "Bu Sekmen'nin rengini değiştir"
 
-#: ../terminal/src/terminal-widget.c:493
+#: ../terminal/src/terminal-widget.c:505
 msgid "Close this Tab"
 msgstr "Bu sekmeyi kapat"
 
@@ -3797,18 +3803,18 @@ msgstr "Dönüş"
 #: ../Animated-icons/data/messages:159 ../Animated-icons/data/messages:173
 #: ../Animated-icons/data/messages:181 ../Remote-Control/data/messages:11
 #: ../Scooby-Do/data/messages:15 ../Scooby-Do/data/messages:19
-#: ../Toons/data/messages:105 ../icon-effect/data/messages:85
-#: ../icon-effect/data/messages:107 ../icon-effect/data/messages:129
-#: ../icon-effect/data/messages:151 ../icon-effect/data/messages:171
+#: ../Toons/data/messages:105 ../icon-effect/data/messages:87
+#: ../icon-effect/data/messages:109 ../icon-effect/data/messages:131
+#: ../icon-effect/data/messages:153 ../icon-effect/data/messages:173
 #: ../show-mouse/data/messages:19
 msgid "In ms."
 msgstr "ms olarak."
 
 #: ../Animated-icons/data/messages:71 ../Animated-icons/data/messages:89
-#: ../Animated-icons/data/messages:137 ../icon-effect/data/messages:59
-#: ../icon-effect/data/messages:87 ../icon-effect/data/messages:109
-#: ../icon-effect/data/messages:131 ../icon-effect/data/messages:153
-#: ../icon-effect/data/messages:173 ../illusion/data/messages:33
+#: ../Animated-icons/data/messages:137 ../icon-effect/data/messages:61
+#: ../icon-effect/data/messages:89 ../icon-effect/data/messages:111
+#: ../icon-effect/data/messages:133 ../icon-effect/data/messages:155
+#: ../icon-effect/data/messages:175 ../illusion/data/messages:33
 #: ../illusion/data/messages:55 ../illusion/data/messages:59
 #: ../illusion/data/messages:69 ../illusion/data/messages:75
 #: ../mail/data/messages:143
@@ -3818,10 +3824,10 @@ msgstr "Canlandırmanın süresi :"
 #: ../Animated-icons/data/messages:73 ../Animated-icons/data/messages:91
 #: ../Animated-icons/data/messages:139 ../Animated-icons/data/messages:151
 #: ../Animated-icons/data/messages:163 ../Animated-icons/data/messages:177
-#: ../Animated-icons/data/messages:185 ../icon-effect/data/messages:61
-#: ../icon-effect/data/messages:89 ../icon-effect/data/messages:111
-#: ../icon-effect/data/messages:133 ../icon-effect/data/messages:155
-#: ../icon-effect/data/messages:175
+#: ../Animated-icons/data/messages:185 ../icon-effect/data/messages:63
+#: ../icon-effect/data/messages:91 ../icon-effect/data/messages:113
+#: ../icon-effect/data/messages:135 ../icon-effect/data/messages:157
+#: ../icon-effect/data/messages:177
 msgid "Repeat while icon is pointed to?"
 msgstr ""
 
@@ -3886,22 +3892,22 @@ msgstr "Hale rengi:"
 msgid "Rays"
 msgstr "Işınlar"
 
-#: ../Animated-icons/data/messages:105 ../icon-effect/data/messages:65
-#: ../icon-effect/data/messages:93 ../icon-effect/data/messages:115
-#: ../icon-effect/data/messages:137 ../icon-effect/data/messages:159
+#: ../Animated-icons/data/messages:105 ../icon-effect/data/messages:67
+#: ../icon-effect/data/messages:95 ../icon-effect/data/messages:117
+#: ../icon-effect/data/messages:139 ../icon-effect/data/messages:161
 #: ../illusion/data/messages:37 ../show-mouse/data/messages:27
 msgid "1st color of gradation :"
 msgstr ""
 
-#: ../Animated-icons/data/messages:107 ../icon-effect/data/messages:67
-#: ../icon-effect/data/messages:95 ../icon-effect/data/messages:117
-#: ../icon-effect/data/messages:139 ../icon-effect/data/messages:161
+#: ../Animated-icons/data/messages:107 ../icon-effect/data/messages:69
+#: ../icon-effect/data/messages:97 ../icon-effect/data/messages:119
+#: ../icon-effect/data/messages:141 ../icon-effect/data/messages:163
 #: ../illusion/data/messages:39 ../show-mouse/data/messages:29
 msgid "2nd color of gradation :"
 msgstr ""
 
-#: ../Animated-icons/data/messages:109 ../icon-effect/data/messages:69
-#: ../icon-effect/data/messages:97 ../icon-effect/data/messages:181
+#: ../Animated-icons/data/messages:109 ../icon-effect/data/messages:71
+#: ../icon-effect/data/messages:99 ../icon-effect/data/messages:183
 #: ../illusion/data/messages:41 ../show-mouse/data/messages:31
 msgid "Random colours?"
 msgstr "Rastgele renkler ?"
@@ -5260,6 +5266,7 @@ msgstr ""
 #: ../RSSreader/data/messages:103 ../Status-Notifier/data/messages:117
 #: ../clock/data/messages:101 ../dnd2share/data/messages:95
 #: ../showDesktop/data/messages:93 ../slider/data/messages:115
+#: ../terminal/data/messages:109
 msgid "Behaviour"
 msgstr ""
 
@@ -5558,6 +5565,7 @@ msgid "Specify the xml file to be used :"
 msgstr ""
 
 #: ../Doncky/data/messages:93 ../RSSreader/data/messages:131
+#: ../terminal/data/messages:91
 msgid "Appearance"
 msgstr "Görünüm"
 
@@ -5573,7 +5581,7 @@ msgstr ""
 msgid "Color to be used by default if none is specify in the .xml"
 msgstr ""
 
-#: ../Doncky/data/messages:103 ../icon-effect/data/messages:179
+#: ../Doncky/data/messages:103 ../icon-effect/data/messages:181
 msgid "Default colour:"
 msgstr "Varsayılan renk:"
 
@@ -7524,75 +7532,79 @@ msgstr ""
 msgid "Rotate effects with dock?"
 msgstr ""
 
-#: ../icon-effect/data/messages:57
+#: ../icon-effect/data/messages:55
+msgid "Repeat these effects until the corresponding application opens?"
+msgstr ""
+
+#: ../icon-effect/data/messages:59
 msgid "In ms. Set 0 to not use this effect."
 msgstr ""
 
-#: ../icon-effect/data/messages:63 ../icon-effect/data/messages:91
-#: ../icon-effect/data/messages:113 ../icon-effect/data/messages:135
-#: ../icon-effect/data/messages:157 ../icon-effect/data/messages:177
-#: ../illusion/data/messages:35 ../terminal/data/messages:91
+#: ../icon-effect/data/messages:65 ../icon-effect/data/messages:93
+#: ../icon-effect/data/messages:115 ../icon-effect/data/messages:137
+#: ../icon-effect/data/messages:159 ../icon-effect/data/messages:179
+#: ../illusion/data/messages:35
 msgid "Colours"
 msgstr ""
 
-#: ../icon-effect/data/messages:71
+#: ../icon-effect/data/messages:73
 msgid "This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
-#: ../icon-effect/data/messages:73 ../icon-effect/data/messages:185
+#: ../icon-effect/data/messages:75 ../icon-effect/data/messages:187
 msgid "Add luminance?"
-msgstr ""
-
-#: ../icon-effect/data/messages:75 ../icon-effect/data/messages:99
-#: ../icon-effect/data/messages:119 ../icon-effect/data/messages:141
-#: ../icon-effect/data/messages:163 ../icon-effect/data/messages:187
-#: ../illusion/data/messages:43
-msgid "Particles"
 msgstr ""
 
 #: ../icon-effect/data/messages:77 ../icon-effect/data/messages:101
 #: ../icon-effect/data/messages:121 ../icon-effect/data/messages:143
-#: ../icon-effect/data/messages:165 ../illusion/data/messages:45
-msgid "Number of particles:"
+#: ../icon-effect/data/messages:165 ../icon-effect/data/messages:189
+#: ../illusion/data/messages:43
+msgid "Particles"
 msgstr ""
 
 #: ../icon-effect/data/messages:79 ../icon-effect/data/messages:103
 #: ../icon-effect/data/messages:123 ../icon-effect/data/messages:145
-#: ../icon-effect/data/messages:167 ../icon-effect/data/messages:197
+#: ../icon-effect/data/messages:167 ../illusion/data/messages:45
+msgid "Number of particles:"
+msgstr ""
+
+#: ../icon-effect/data/messages:81 ../icon-effect/data/messages:105
+#: ../icon-effect/data/messages:125 ../icon-effect/data/messages:147
+#: ../icon-effect/data/messages:169 ../icon-effect/data/messages:199
 #: ../illusion/data/messages:47 ../show-mouse/data/messages:25
 msgid "Particle size:"
 msgstr ""
 
-#: ../icon-effect/data/messages:81 ../icon-effect/data/messages:125
-#: ../icon-effect/data/messages:147 ../illusion/data/messages:49
+#: ../icon-effect/data/messages:83 ../icon-effect/data/messages:127
+#: ../icon-effect/data/messages:149 ../illusion/data/messages:49
 msgid "Particle speed:"
 msgstr ""
 
-#: ../icon-effect/data/messages:183
+#: ../icon-effect/data/messages:185
 msgid "It particularily fits a dark wallpaper or a dark theme."
 msgstr ""
 
-#: ../icon-effect/data/messages:189 ../show-mouse/data/messages:3
+#: ../icon-effect/data/messages:191 ../show-mouse/data/messages:3
 msgid "Number of sources:"
 msgstr ""
 
-#: ../icon-effect/data/messages:191 ../show-mouse/data/messages:17
+#: ../icon-effect/data/messages:193 ../show-mouse/data/messages:17
 msgid "Number of particles per source:"
 msgstr ""
 
-#: ../icon-effect/data/messages:193
+#: ../icon-effect/data/messages:195
 msgid "In percentage of the icon's size."
 msgstr ""
 
-#: ../icon-effect/data/messages:195
+#: ../icon-effect/data/messages:197
 msgid "Radius of the explosion:"
 msgstr ""
 
-#: ../icon-effect/data/messages:199
+#: ../icon-effect/data/messages:201
 msgid "Show the launching?"
 msgstr ""
 
-#: ../icon-effect/data/messages:201
+#: ../icon-effect/data/messages:203
 msgid "Particle friction:"
 msgstr ""
 
@@ -8696,17 +8708,49 @@ msgstr ""
 msgid "Foreground colour:"
 msgstr ""
 
+#: ../terminal/data/messages:105
+msgid "Use a custom font?"
+msgstr ""
+
 #: ../terminal/data/messages:107
+msgid "Custom font:"
+msgstr ""
+
+#: ../terminal/data/messages:111
+msgid "Automatically scroll to the bottom when new data are received"
+msgstr ""
+
+#: ../terminal/data/messages:113
+msgid "Scroll on output"
+msgstr ""
+
+#: ../terminal/data/messages:115
+msgid "Automatically scroll to the bottom when a key is pressed"
+msgstr ""
+
+#: ../terminal/data/messages:117
+msgid "Scroll on keystroke"
+msgstr ""
+
+#: ../terminal/data/messages:119
+msgid "Limited scrollback buffer"
+msgstr ""
+
+#: ../terminal/data/messages:121
+msgid "Length of the scrollback buffer"
+msgstr ""
+
+#: ../terminal/data/messages:125
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
 msgstr ""
 
-#: ../terminal/data/messages:109
+#: ../terminal/data/messages:127
 msgid "Size of the terminal (line x columns):"
 msgstr ""
 
-#: ../terminal/data/messages:111
+#: ../terminal/data/messages:129
 msgid "Shortkey to show the terminal:"
 msgstr ""
 
