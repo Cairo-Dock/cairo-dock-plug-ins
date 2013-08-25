@@ -134,9 +134,6 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	#ifndef INDICATOR_MESSAGES_WITH_IND3
 	cd_indicator_reload_icon (myData.pIndicator);  // we reload the icon (if we didn't have an icon, now we have a path). It will not consider a change of icon theme, so we return the original icon.
-	#else
-	// check if the name has changed and reload the icon
-	cd_messaging_reload (myData.pIndicator, myData.pEntry, myApplet);
 	#endif
 	
 	if (CD_APPLET_MY_CONFIG_CHANGED)
@@ -146,6 +143,10 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 		}
 		
+		#ifdef INDICATOR_MESSAGES_WITH_IND3
+		// check if the name has changed and reload the icon
+		cd_messaging_reload (myData.pIndicator, myData.pEntry, myApplet);
+		#endif
 		gldi_shortkey_rebind (myData.pKeyBinding, myConfig.cShortkey, NULL);
 	}
 CD_APPLET_RELOAD_END
