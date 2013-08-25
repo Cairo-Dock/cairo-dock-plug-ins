@@ -107,7 +107,7 @@ static gboolean _set_new_image_pixbuf (GtkImage *pImage, GldiModuleInstance *myA
 	 * => not (easily) possible to detect if the image looks fine and impossible
 	 *  to be notified when the image is available.
 	 */
-	g_timeout_add (125, (GSourceFunc)_update_image_from_pixbuf, data);
+	g_timeout_add (200, (GSourceFunc)_update_image_from_pixbuf, data);
 
 	return TRUE;
 }
