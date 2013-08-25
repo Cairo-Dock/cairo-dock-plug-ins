@@ -99,9 +99,9 @@ fg alpha = 1
 #[gtk-preferences]
 [Configuration]
 
-#U Blacklist these indicators:
+#s Blacklist these indicators:
 #{Separated by a semi-colon ';'}
-except-edit = libpower.so;libsession.so
+except-edit =
 
 exceptions = 
 

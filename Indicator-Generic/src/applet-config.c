@@ -25,10 +25,14 @@
 
 #ifdef IS_INDICATOR_NG
 #define IND_GEN_EXCEPTIONS_HARD "libapplication.so;libappmenu.so;" \
-	"libdatetime.so;libmessaging.so;libsoundmenu.so;" \
-	"com.canonical.indicator.sound;com.canonical.indicator.messages"
+	"libdatetime.so;libmessaging.so;libsoundmenu.so;libpower.so;libsession.so;" \
+	"com.canonical.indicator.sound;com.canonical.indicator.messages;" \
+	"com.canonical.indicator.datetime;com.canonical.indicator.power;" \
+	"com.canonical.indicator.session;com.canonical.indicator.application;" \
+	"com.canonical.indicator.appmenu"
 #else
-#define IND_GEN_EXCEPTIONS_HARD "libapplication.so;libappmenu.so;libdatetime.so;libmessaging.so;libsoundmenu.so"
+#define IND_GEN_EXCEPTIONS_HARD "libapplication.so;libappmenu.so;" \
+	"libdatetime.so;libmessaging.so;libsoundmenu.so;libpower.so;libsession.so"
 #endif
 
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
@@ -44,7 +48,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 			cExceptionsHard = g_strdup (IND_GEN_EXCEPTIONS_HARD);
 		gchar *cExceptionsEditable = CD_CONFIG_GET_STRING ("Configuration", "except-edit");
 		// merge
-		gchar *cExceptions = g_strdup_printf ("%s;%s", cExceptionsHard, cExceptionsEditable);
+		gchar *cExceptions = g_strdup_printf ("%s;%s", cExceptionsHard,
+			cExceptionsEditable ? cExceptionsEditable : "");
 
 		myConfig.cExceptionsList = g_strsplit (cExceptions, ";", -1);
 		if (myConfig.cExceptionsList[0] == NULL || *myConfig.cExceptionsList[0] == '\0')
