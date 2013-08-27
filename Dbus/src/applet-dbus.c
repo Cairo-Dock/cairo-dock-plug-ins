@@ -56,7 +56,7 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 #include "interface-applet-signals.h"
 #include "applet-dbus.h"
 
-#define DISTANT_DIR "3.2.0"
+#define DISTANT_DIR "3.3.0"
 #define GETTEXT_NAME_EXTRAS "cairo-dock-plugins-extra"
 #define LOCALE_DIR_NAME "locale"
 
