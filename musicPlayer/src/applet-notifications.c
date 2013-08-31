@@ -217,9 +217,12 @@ CD_APPLET_ON_CLICK_BEGIN
 				{
 					_cd_musicplayer_pp (NULL, NULL);
 				}
-				else if (myData.pCurrentHandler->launch != NULL)
+				else
 				{
-					cairo_dock_launch_command (myData.pCurrentHandler->launch);
+					if (myIcon->cClass != NULL)
+						gldi_icon_launch_command (myIcon);
+					else if (myData.pCurrentHandler->launch)
+						cairo_dock_launch_command (myData.pCurrentHandler->launch);
 				}
 			}
 			else if (myData.mouseOnButton2)
@@ -242,8 +245,13 @@ CD_APPLET_ON_CLICK_BEGIN
 			{
 				if(myData.bIsRunning)
 					cd_musicplayer_popup_info (myConfig.iDialogDuration);
-				else if (myData.pCurrentHandler->launch != NULL)
-					cairo_dock_launch_command (myData.pCurrentHandler->launch);
+				else
+				{
+					if (myIcon->cClass != NULL)
+						gldi_icon_launch_command (myIcon);
+					else if (myData.pCurrentHandler->launch)
+						cairo_dock_launch_command (myData.pCurrentHandler->launch);
+				}
 			}
 		}
 		else  // pas de boutons.
@@ -266,11 +274,12 @@ CD_APPLET_ON_CLICK_BEGIN
 					_cd_musicplayer_show_from_systray (NULL, NULL);
 				}
 			}
-			else /*if (myData.pCurrentHandler->launch != NULL)*/
+			else
 			{
-				cd_message ("launching '%s'...", myData.pCurrentHandler->launch);
-				cairo_dock_launch_command (myData.pCurrentHandler->launch);
-				gldi_icon_mark_as_launching (myIcon);
+				if (myIcon->cClass != NULL)
+					gldi_icon_launch_command (myIcon);
+				else if (myData.pCurrentHandler->launch)
+					cairo_dock_launch_command (myData.pCurrentHandler->launch);
 			}
 		}
 	}

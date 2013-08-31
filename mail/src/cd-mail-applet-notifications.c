@@ -56,7 +56,6 @@ CD_APPLET_ON_CLICK_BEGIN
 		if (cMailAppToLaunch != NULL)
 		{
 			gboolean r = cairo_dock_launch_command (cMailAppToLaunch);
-			gldi_icon_mark_as_launching (CD_APPLET_CLICKED_ICON);
 			if (!r)
 			{
 				cd_warning ("couldn't execute '%s'", cMailAppToLaunch);
