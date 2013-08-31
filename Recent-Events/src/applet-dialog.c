@@ -22,6 +22,8 @@
 #define __USE_POSIX
 #include <time.h>
 
+#include <gdk/gdkkeysyms.h> // needed for 'GDK_Escape'
+
 #include "applet-struct.h"
 #include "applet-search.h"
 #include "applet-dialog.h"
@@ -32,10 +34,23 @@ void cd_trigger_search (void)
 {
 	if (myData.pDialog == NULL)
 		return;
+
+	static CDEventType iOldCategory = -1;
+
 	const gchar *cQuery = gtk_entry_get_text (GTK_ENTRY (myData.pEntry));
 	CDEventType iCategory = myData.iCurrentCaterogy;
 	GtkListStore *pModel = myData.pModel;
-	
+
+	/* avoid rebuild when pressing "non letter" keys
+	 * Note: cQuery's pointer is not automatically modified when the string change.
+	 */
+	if (iOldCategory == iCategory && g_strcmp0 (myData.cQuery, cQuery) == 0)
+		return;
+
+	g_free (myData.cQuery);
+	myData.cQuery = g_strdup (cQuery);
+	iOldCategory = iCategory;
+
 	int iSortType = 0;
 	if (iCategory >= CD_EVENT_TOP_RESULTS)
 	{
@@ -68,9 +83,16 @@ static void on_clear_filter (GtkEntry *pEntry, GtkEntryIconPosition icon_pos, Gd
 }
 #endif
 
-static void on_activate_filter (GtkEntry *pEntry, gpointer data)
+static gboolean on_key_press_filter (G_GNUC_UNUSED GtkWidget *pWidget,
+	GdkEventKey *pKey, G_GNUC_UNUSED gpointer data)
 {
+	if (pKey->keyval == GLDI_KEY(Escape))
+	{
+		cd_toggle_dialog ();
+		return TRUE;
+	}
 	cd_trigger_search ();
+	return FALSE;
 }
 
 static void _on_got_events (ZeitgeistResultSet *pEvents, GtkListStore *pModel)
@@ -404,7 +426,8 @@ static GtkWidget *cd_build_events_widget (void)
 	gtk_box_pack_start (GTK_BOX (pFilterBox), pFilterLabel, FALSE, FALSE, MARGIN);
 	
 	GtkWidget *pEntry = gtk_entry_new ();
-	g_signal_connect (pEntry, "activate", G_CALLBACK (on_activate_filter), NULL);
+	// press any key:
+	g_signal_connect (pEntry, "key-release-event", G_CALLBACK (on_key_press_filter), NULL);
 	gtk_box_pack_start (GTK_BOX (pFilterBox), pEntry, TRUE, TRUE, MARGIN);
 	gtk_widget_set_tooltip_text (pEntry, D_("The default boolean operator is AND. Thus the query foo bar will be interpreted as foo AND bar. To exclude a term from the result set prepend it with a minus sign - eg foo -bar. Phrase queries can be done by double quoting the string \"foo is a bar\". You can truncate terms by appending a *. "));
 	

@@ -42,5 +42,6 @@ CD_APPLET_RESET_CONFIG_END
 
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped, in the very end.
 CD_APPLET_RESET_DATA_BEGIN
-	
+	g_free (myData.cCurrentUri);
+	g_free (myData.cQuery);
 CD_APPLET_RESET_DATA_END

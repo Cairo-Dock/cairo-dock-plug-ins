@@ -72,6 +72,7 @@ struct _AppletData {
 	gint iDesiredIconSize;
 	guint iSidTryDialog;
 	gint iNbTries;
+	gchar *cQuery;
 	} ;
 
 

@@ -73,7 +73,6 @@ CD_APPLET_STOP_BEGIN
 	
 	gldi_object_unref (GLDI_OBJECT(myData.pDialog));  // pModel will be destroyed with the viewport.
 	
-	g_free (myData.cCurrentUri);
 	cd_folders_free_apps_list (myApplet);
 	
 	gldi_object_unref (GLDI_OBJECT(myData.pKeyBinding));
