@@ -88,14 +88,14 @@ static gboolean cd_app_menu_render_step_opengl (Icon *pIcon, GldiModuleInstance 
 	Icon *pAppli = cairo_dock_get_appli_icon (myData.pCurrentWindow);
 	if (pAppli)
 	{
-		pImage = cairo_dock_appli_get_image_buffer (pAppli);
+		pImage = gldi_appli_icon_get_image_buffer (pAppli);
 	}
 	GLuint iTexture = (pImage ? pImage->iTexture : 0);
 	
 	Icon *pPrevIcon = cairo_dock_get_appli_icon (myData.pPreviousWindow);
 	if (pPrevIcon)
 	{
-		pPrevImage = cairo_dock_appli_get_image_buffer (pPrevIcon);
+		pPrevImage = gldi_appli_icon_get_image_buffer (pPrevIcon);
 	}
 	GLuint iPrevTexture = (pPrevImage ? pPrevImage->iTexture : 0);
 	
@@ -213,7 +213,7 @@ static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, GldiModuleInstance *
 	Icon *pPrevIcon = cairo_dock_get_appli_icon (myData.pPreviousWindow);
 	if (pPrevIcon)
 	{
-		pPrevImage = cairo_dock_appli_get_image_buffer (pPrevIcon);
+		pPrevImage = gldi_appli_icon_get_image_buffer (pPrevIcon);
 	}
 	if (pPrevImage && pPrevImage->pSurface)
 	{
@@ -223,7 +223,7 @@ static gboolean cd_app_menu_render_step_cairo (Icon *pIcon, GldiModuleInstance *
 	Icon *pAppli = cairo_dock_get_appli_icon (myData.pCurrentWindow);
 	if (pAppli)
 	{
-		pImage = cairo_dock_appli_get_image_buffer (pAppli);
+		pImage = gldi_appli_icon_get_image_buffer (pAppli);
 	}
 	if (pImage && pImage->pSurface)
 	{

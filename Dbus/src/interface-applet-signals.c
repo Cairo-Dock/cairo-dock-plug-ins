@@ -303,6 +303,11 @@ gboolean cd_dbus_applet_emit_on_click_icon (gpointer data, Icon *pClickedIcon, G
 		//g_print ("emit clic on sub icon\n");
 		g_signal_emit (pDbusApplet->pSubApplet, s_iSubSignals[CLIC], 0, iButtonState, pClickedIcon->cCommand);
 	}
+	
+	// if the applet acts as a launcher, assume it launches the program it controls on click
+	// Note: if one day it poses a problem, we can either make a new attribute, or add a dbus method (or even reuse the "Animate" method with a pseudo "launching" animation).
+	if (pAppletIcon->pModuleInstance->pModule->pVisitCard->bActAsLauncher)
+		gldi_class_startup_notify (pClickedIcon);
 	return GLDI_NOTIFICATION_INTERCEPT;
 }
 

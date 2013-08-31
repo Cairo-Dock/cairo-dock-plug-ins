@@ -322,7 +322,7 @@ void cd_switcher_refresh_desktop_values (GldiModuleInstance *myApplet)
 
 
 
-static void _cd_switcher_action_on_one_window_from_viewport (Icon *pIcon, G_GNUC_UNUSED GldiContainer *pContainer, gpointer *data)
+static void _cd_switcher_action_on_one_window_from_viewport (Icon *pIcon, gpointer *data)
 {
 	int iNumDesktop = GPOINTER_TO_INT (data[0]);
 	int iNumViewportX = GPOINTER_TO_INT (data[1]);
@@ -338,5 +338,5 @@ static void _cd_switcher_action_on_one_window_from_viewport (Icon *pIcon, G_GNUC
 void cd_switcher_foreach_window_on_viewport (int iNumDesktop, int iNumViewportX, int iNumViewportY, CDSwitcherActionOnViewportFunc pFunction, gpointer pUserData)
 {
 	gpointer data[5] = {GINT_TO_POINTER (iNumDesktop), GINT_TO_POINTER (iNumViewportX), GINT_TO_POINTER (iNumViewportY), pFunction, pUserData};
-	cairo_dock_foreach_appli_icon ((CairoDockForeachIconFunc) _cd_switcher_action_on_one_window_from_viewport, data);
+	cairo_dock_foreach_appli_icon ((GldiIconFunc)_cd_switcher_action_on_one_window_from_viewport, data);
 }

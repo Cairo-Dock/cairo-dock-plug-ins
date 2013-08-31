@@ -95,7 +95,7 @@ CD_APPLET_INIT_BEGIN
 	cd_animations_register_busy ();  // draw above icon
 CD_APPLET_INIT_END
 
-static void _free_data_on_icon (Icon *pIcon, CairoDock *pDock, gpointer data)
+static void _free_data_on_icon (Icon *pIcon, G_GNUC_UNUSED gpointer data)
 {
 	cd_animations_free_data (NULL, pIcon);
 }
@@ -134,12 +134,12 @@ CD_APPLET_STOP_BEGIN
 		cairo_dock_unregister_animation (pAnimation->cName);
 	}
 	
-	gldi_icons_foreach ((CairoDockForeachIconFunc) _free_data_on_icon, NULL);
+	gldi_icons_foreach ((GldiIconFunc)_free_data_on_icon, NULL);
 CD_APPLET_STOP_END
 
 
 //\___________ The reload occurs in 2 occasions : when the user changes the applet's config, and when the user reload the cairo-dock's config or modify the desklet's size. The macro CD_APPLET_MY_CONFIG_CHANGED can tell you this. myConfig has already been reloaded at this point if you're in the first case, myData is untouched. You also have the macro CD_APPLET_MY_CONTAINER_TYPE_CHANGED that can tell you if you switched from dock/desklet to desklet/dock mode.
-static void _update_busy_image_on_icon (Icon *pIcon, CairoDock *pDock, gpointer data)
+static void _update_busy_image_on_icon (Icon *pIcon, gpointer data)
 {
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 	if (pData != NULL && pData->pBusyImage)
@@ -225,7 +225,7 @@ CD_APPLET_RELOAD_BEGIN
 				0, 0,
 				CAIRO_DOCK_ANIMATED_IMAGE);
 			
-			gldi_icons_foreach ((CairoDockForeachIconFunc) _update_busy_image_on_icon, NULL);  // since the image is loaded as a shared ressources for all icons, we have to update them if they were using it.
+			gldi_icons_foreach ((GldiIconFunc)_update_busy_image_on_icon, NULL);  // since the image is loaded as a shared ressources for all icons, we have to update them if they were using it.
 		}
 	}
 CD_APPLET_RELOAD_END

@@ -52,8 +52,9 @@ static inline gboolean _cd_do_icon_match (Icon *pIcon, const gchar *cCommandPref
 	return bMatch;
 }
 
-static void _find_icon_in_dock_with_command (Icon *pIcon, CairoDock *pDock, gpointer *data)
+static void _find_icon_in_dock_with_command (Icon *pIcon, gpointer *data)
 {
+	CairoDock *pDock = CAIRO_DOCK (cairo_dock_get_icon_container(pIcon));
 	gchar *cCommandPrefix = data[0];
 	int length = GPOINTER_TO_INT (data[1]);
 	Icon *pAfterIcon = data[2];
@@ -131,7 +132,7 @@ Icon *cd_do_search_icon_by_command (const gchar *cCommandPrefix, Icon *pAfterIco
 	data[4] = pDock;
 	data[5] = &pFirstIcon;
 	data[6] = &pFirstParentDock;
-	gldi_icons_foreach_in_docks ((CairoDockForeachIconFunc) _find_icon_in_dock_with_command, data);
+	gldi_icons_foreach_in_docks ((GldiIconFunc)_find_icon_in_dock_with_command, data);
 	
 	if (pIcon == NULL)
 	{

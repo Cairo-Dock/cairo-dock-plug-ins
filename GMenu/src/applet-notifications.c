@@ -90,6 +90,8 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			s_cEditMenuCmd = "menulibre";
 		else if (_cd_check_edit_menu_cmd ("which ezame"))
 			s_cEditMenuCmd = "ezame";
+		else if (_cd_check_edit_menu_cmd ("which cinnamon-menu-editor"))
+			s_cEditMenuCmd = "cinnamon-menu-editor";
 	}
 
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Configure menu"),

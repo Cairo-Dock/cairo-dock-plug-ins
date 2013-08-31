@@ -119,7 +119,7 @@ CD_APPLET_INIT_BEGIN
 CD_APPLET_INIT_END
 
 
-static void _free_data_on_icon (Icon *pIcon, CairoDock *pDock, gpointer data)
+static void _free_data_on_icon (Icon *pIcon, G_GNUC_UNUSED gpointer data)
 {
 	cd_icon_effect_free_data (NULL, pIcon);
 }
@@ -154,7 +154,7 @@ CD_APPLET_STOP_BEGIN
 	cairo_dock_unregister_animation ("storm");
 	cairo_dock_unregister_animation ("firework");
 	
-	gldi_icons_foreach ((CairoDockForeachIconFunc) _free_data_on_icon, NULL);
+	gldi_icons_foreach ((GldiIconFunc)_free_data_on_icon, NULL);
 CD_APPLET_STOP_END
 
 

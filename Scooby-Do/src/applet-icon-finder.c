@@ -66,7 +66,7 @@ static inline void _cd_do_search_matching_icons_in_dock (CairoDock *pDock)
 		}
 	}
 }
-static void _cd_do_search_in_one_dock (Icon *pIcon, CairoDock *pDock, gpointer data)
+static void _cd_do_search_in_one_dock (Icon *pIcon, gpointer data)
 {
 	if (_cd_do_icon_match (pIcon, myData.sCurrentText->str, myData.sCurrentText->len))
 	{
@@ -90,7 +90,7 @@ void cd_do_search_matching_icons (void)
 	{
 		cd_debug ("on cherche tout\n");
 		// on parcours tous les docks.
-		gldi_icons_foreach_in_docks ((CairoDockForeachIconFunc) _cd_do_search_in_one_dock, NULL);
+		gldi_icons_foreach_in_docks ((GldiIconFunc) _cd_do_search_in_one_dock, NULL);
 		myData.pMatchingIcons = g_list_reverse (myData.pMatchingIcons);
 		
 		// on rajoute les icones ne venant pas du dock.

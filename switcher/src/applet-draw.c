@@ -96,7 +96,7 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDeskto
 	
 	if (myConfig.bDrawIcons)
 	{
-		const CairoDockImageBuffer *pImage = cairo_dock_appli_get_image_buffer (pIcon);
+		const CairoDockImageBuffer *pImage = gldi_appli_icon_get_image_buffer (pIcon);
 		if (pImage && pImage->pSurface)
 		{
 			double fZoomX = (double) w/g_desktopGeometry.Xscreen.width*iOneViewportWidth / pImage->iWidth;

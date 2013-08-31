@@ -133,12 +133,13 @@ static inline gboolean _strings_match_case (const gchar *q, const gchar *p)  // 
  /// ICON MATCHING ///
 /////////////////////
 
-static gboolean _icon_is_matching (Icon *pIcon, GldiContainer *pContainer, CDQuery *pQuery)
+static gboolean _icon_is_matching (Icon *pIcon, CDQuery *pQuery)
 {
 	gboolean r;
-	if (CAIRO_DOCK_IS_DOCK (pIcon->pContainer))
+	GldiContainer *pContainer = cairo_dock_get_icon_container (pIcon);
+	if (CAIRO_DOCK_IS_DOCK (pContainer))
 	{
-		CairoDock *pDock = CAIRO_DOCK (pIcon->pContainer);
+		CairoDock *pDock = CAIRO_DOCK (pContainer);
 		if (pDock->iRefCount > 0)
 		{
 			Icon *pPointedIcon = cairo_dock_search_icon_pointing_on_dock (pDock, NULL);
@@ -146,7 +147,7 @@ static gboolean _icon_is_matching (Icon *pIcon, GldiContainer *pContainer, CDQue
 				return FALSE;
 		}
 	}
-	else if (CAIRO_DOCK_IS_DESKLET (pIcon->pContainer))
+	else if (CAIRO_DOCK_IS_DESKLET (pContainer))
 	{
 		Icon *pMainIcon = CAIRO_DESKLET (pContainer)->pIcon;
 		if (pIcon != pMainIcon)  // same
@@ -245,9 +246,9 @@ static gboolean _icon_is_matching (Icon *pIcon, GldiContainer *pContainer, CDQue
 	return FALSE;
 }
 
-static void _check_icon_matching (Icon *pIcon, GldiContainer *pContainer, CDQuery *pQuery)
+static void _check_icon_matching (Icon *pIcon, CDQuery *pQuery)
 {
-	if (_icon_is_matching (pIcon, pContainer, pQuery))
+	if (_icon_is_matching (pIcon, pQuery))
 	{
 		g_print (" found icon %s\n", pIcon->cName);
 		pQuery->pMatchingIcons = g_list_prepend (pQuery->pMatchingIcons, pIcon);
@@ -289,7 +290,7 @@ static GList *_find_matching_icons_for_key (const gchar *cKey, const gchar *cVal
 	}
 	else
 	{
-		gldi_icons_foreach ((CairoDockForeachIconFunc) _check_icon_matching, &query);
+		gldi_icons_foreach ((GldiIconFunc)_check_icon_matching, &query);
 	}
 	return query.pMatchingIcons;
 }
