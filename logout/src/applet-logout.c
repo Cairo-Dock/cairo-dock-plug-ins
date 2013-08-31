@@ -54,8 +54,6 @@ static GList *cd_logout_get_users_list (void);
 
 static void _display_menu (void);
 
-#define CD_LOGOUT_MESSAGE_SEPARATOR " | "
-
   ////////////////////
  /// CAPABILITIES ///
 ////////////////////
@@ -503,30 +501,14 @@ static gchar * _get_reboot_message (void)
 	return (cMessage);
 }
 
-// it seems the file only contains a timestamp
-/* static const gchar * _get_logout_message (void) {}*/
-// #define _get_logout_message() D_("Your session needs to be restarted in order to update new configuration files.")
-
-// yes, it's not a good idea to reboot the computer before the end of the update ;)
-#define CD_LOGOUT_UPDATE_MESSAGE D_("Please do that at the end of the update.")
-
 static void _notify_action_required (void)
 {
 	CD_APPLET_DEMANDS_ATTENTION ("pulse", 20);
 	gldi_dialogs_remove_on_icon (myIcon);
 
-	gchar *cName;
-	/*if (myData.bLogoutNeeded && myData.bRebootNeeded)
-	{
-		gchar *cTmpName = g_strdup (myIcon->cName); // Icon's name contains the message for the reboot and then for the logout
-		gchar *cTmpPtr = g_strrstr (cTmpName, CD_LOGOUT_MESSAGE_SEPARATOR);
-		if (cTmpPtr)
-			*cTmpPtr = '\0';
-		cName = g_strdup_printf ("%s\n%s", cTmpName, CD_LOGOUT_UPDATE_MESSAGE);
-		g_free (cTmpName);
-	}
-	else*/
-		cName = g_strdup_printf ("%s\n%s", myIcon->cName, CD_LOGOUT_UPDATE_MESSAGE);
+	// it's not a good idea to reboot the computer before the end of the update ;)
+	gchar *cName = g_strdup_printf ("%s\n%s", myIcon->cName,
+		D_("Please do that at the end of the update."));
 
 	gldi_dialog_show_temporary_with_icon (cName, myIcon, myContainer, 15e3, "same icon");
 
@@ -565,93 +547,42 @@ static void _stop_notify_action_required (void)
 	CD_APPLET_STOP_DEMANDING_ATTENTION;
 }
 
-// complete the string with the right message
-static GString * _get_message (CDActionsNeededEnum iAction)
+void cd_logout_check_reboot_required (CairoDockFMEventType iEventType, const gchar *cURI)
 {
-	GString *sMessage = g_string_new ("");
-	if (iAction == CD_REBOOT_NEEDED || myData.bRebootNeeded) // reboot is now needed or reboot is still needed
-	{
-		myData.bRebootNeeded = TRUE;
-		gchar *cRebootMessage = _get_reboot_message ();
-		if (cRebootMessage && *cRebootMessage != '\0')
-			g_string_printf (sMessage, "%s", cRebootMessage);
-		g_free (cRebootMessage);
-	}
-/*
-	if (iAction == CD_LOGOUT_NEEDED || myData.bLogoutNeeded)
-	{
-		myData.bLogoutNeeded = TRUE;
-		g_string_append_printf (sMessage, "%s%s",
-			sMessage->len == 0 ? "" : CD_LOGOUT_MESSAGE_SEPARATOR,
-			_get_logout_message ());
-	}*/
-
-	return sMessage;
-}
-
-void cd_logout_check_reboot_logout_required (CairoDockFMEventType iEventType, const gchar *cURI, CDActionsNeededEnum iAction)
-{
-	// maybe check if logout or reboot message is already available  => merge both messages
-	GString *sMessage = NULL;
+	// maybe check if reboot message is already available
+	gchar *cMessage;
 
 	switch (iEventType)
 	{
 		case CAIRO_DOCK_FILE_MODIFIED: // new message
-		case CAIRO_DOCK_FILE_CREATED:  // reboot/logout required
-			sMessage = _get_message (iAction);
+		case CAIRO_DOCK_FILE_CREATED:  // reboot required
+			cMessage = _get_reboot_message ();
 		break;
 		
 		case CAIRO_DOCK_FILE_DELETED:  // reboot/logout no more required (shouldn't happen)
-			if (iAction == CD_REBOOT_NEEDED)
-				myData.bRebootNeeded = FALSE;
-			/*else if (iAction == CD_LOGOUT_NEEDED)
-				myData.bLogoutNeeded = FALSE;*/
-			sMessage = _get_message (CD_REMOVE_MESSAGE);
-			if (! myData.bRebootNeeded/* && ! myData.bLogoutNeeded*/)
-				_stop_notify_action_required (); // default icon
+			cMessage = NULL;
+			_stop_notify_action_required (); // default icon
 		break;
 		default:
 		break;
 	}
-	if (sMessage && sMessage->len > 0)
-		CD_APPLET_SET_NAME_FOR_MY_ICON (sMessage->str);
+	if (cMessage && *cMessage != '\0')
+		CD_APPLET_SET_NAME_FOR_MY_ICON (cMessage);
 	else
 		CD_APPLET_SET_NAME_FOR_MY_ICON (_get_default_message ());
 	if (iEventType == CAIRO_DOCK_FILE_CREATED)
 		_notify_action_required ();
 
-	g_string_free (sMessage, TRUE);
+	g_free (cMessage);
 }
 
 void cd_logout_check_reboot_required_init (void)
 {
 	if (g_file_test (CD_REBOOT_NEEDED_FILE, G_FILE_TEST_EXISTS))
 	{
-		cd_logout_check_reboot_logout_required (CAIRO_DOCK_FILE_CREATED, CD_REBOOT_NEEDED_FILE, CD_REBOOT_NEEDED);
+		cd_logout_check_reboot_required (CAIRO_DOCK_FILE_CREATED, CD_REBOOT_NEEDED_FILE);
 	}
 }
-/*
-const gchar *cd_logout_get_session_migration_filename (void)
-{
-	if (! myData.cSessionMigrationFileName)
-	{
-		// according to this bzr branch lp:session-migration
-		gchar *cSessionBaseName = g_strdup_printf ("session_migration-%s", g_getenv("DESKTOP_SESSION"));
-		myData.cSessionMigrationFileName = g_build_filename (g_get_user_data_dir (), cSessionBaseName, NULL); // ~/.local/share/session_migration-cairo-dock
-		g_free (cSessionBaseName);
-	}
-
-	return myData.cSessionMigrationFileName;
-}
-
-void cd_logout_check_logout_required_init (void)
-{
-	const gchar *cFileName = cd_logout_get_session_migration_filename ();
-	if (g_file_test (cFileName, G_FILE_TEST_EXISTS))
-	{
-		cd_logout_check_reboot_logout_required (CAIRO_DOCK_FILE_CREATED, cFileName, CD_LOGOUT_NEEDED);
-	}
-}*/
 
 
   ///////////////
