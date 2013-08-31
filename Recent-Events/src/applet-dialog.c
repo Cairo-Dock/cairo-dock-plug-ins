@@ -405,7 +405,7 @@ static GtkWidget *cd_build_events_widget (void)
 	
 	GtkWidget *pEntry = gtk_entry_new ();
 	g_signal_connect (pEntry, "activate", G_CALLBACK (on_activate_filter), NULL);
-	gtk_box_pack_start (GTK_BOX (pFilterBox), pEntry, FALSE, FALSE, MARGIN);
+	gtk_box_pack_start (GTK_BOX (pFilterBox), pEntry, TRUE, TRUE, MARGIN);
 	gtk_widget_set_tooltip_text (pEntry, D_("The default boolean operator is AND. Thus the query foo bar will be interpreted as foo AND bar. To exclude a term from the result set prepend it with a minus sign - eg foo -bar. Phrase queries can be done by double quoting the string \"foo is a bar\". You can truncate terms by appending a *. "));
 	
 	#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
