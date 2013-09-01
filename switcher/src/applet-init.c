@@ -80,6 +80,14 @@ CD_APPLET_INIT_BEGIN
 		(GldiNotificationFunc) on_window_size_position_changed,
 		GLDI_RUN_AFTER, myApplet);
 	gldi_object_register_notification (&myWindowObjectMgr,
+		NOTIFICATION_WINDOW_CREATED,
+		(GldiNotificationFunc) on_window_size_position_changed,
+		GLDI_RUN_AFTER, myApplet);
+	gldi_object_register_notification (&myWindowObjectMgr,
+		NOTIFICATION_WINDOW_DESTROYED,
+		(GldiNotificationFunc) on_window_size_position_changed,
+		GLDI_RUN_AFTER, myApplet);
+	gldi_object_register_notification (&myWindowObjectMgr,
 		NOTIFICATION_WINDOW_Z_ORDER_CHANGED,
 		(GldiNotificationFunc) on_change_window_order,
 		GLDI_RUN_AFTER, myApplet);
@@ -109,7 +117,14 @@ CD_APPLET_INIT_BEGIN
 				GLDI_RUN_AFTER, myApplet);
 		}
 	}
-	
+	if (myConfig.iIconDrawing == SWICTHER_MAP_WALLPAPER)
+	{
+		gldi_object_register_notification (&myDesktopMgr,
+			NOTIFICATION_DESKTOP_WALLPAPER_CHANGED,
+			(GldiNotificationFunc) on_change_wallpaper,
+			GLDI_RUN_AFTER, myApplet); // FIRST: we want to intercept the signal
+	}
+
 	//\___________________ load the desktops with a delay (because it's quite heavy and because the desktop may not be up-to-date at the very beginning of the session).
 	if (myDesklet)
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
@@ -150,6 +165,12 @@ CD_APPLET_STOP_BEGIN
 		NOTIFICATION_WINDOW_SIZE_POSITION_CHANGED,
 		(GldiNotificationFunc) on_window_size_position_changed, myApplet);
 	gldi_object_remove_notification (&myWindowObjectMgr,
+		NOTIFICATION_WINDOW_CREATED,
+		(GldiNotificationFunc) on_window_size_position_changed, myApplet);
+	gldi_object_remove_notification (&myWindowObjectMgr,
+		NOTIFICATION_WINDOW_DESTROYED,
+		(GldiNotificationFunc) on_window_size_position_changed, myApplet);
+	gldi_object_remove_notification (&myWindowObjectMgr,
 		NOTIFICATION_WINDOW_Z_ORDER_CHANGED,
 		(GldiNotificationFunc) on_change_window_order, myApplet);
 	gldi_object_remove_notification (&myDesktopMgr,
@@ -167,6 +188,9 @@ CD_APPLET_STOP_BEGIN
 	gldi_object_remove_notification (myContainer,
 		NOTIFICATION_LEAVE_DESKLET,
 		(GldiNotificationFunc) on_leave_desklet, myApplet);
+	gldi_object_remove_notification (&myDesktopMgr,
+		NOTIFICATION_DESKTOP_WALLPAPER_CHANGED,
+		(GldiNotificationFunc) on_change_wallpaper, myApplet);
 CD_APPLET_STOP_END
 
 
@@ -212,6 +236,9 @@ CD_APPLET_RELOAD_BEGIN
 		gldi_object_remove_notification (CD_APPLET_MY_OLD_CONTAINER,
 			NOTIFICATION_LEAVE_DESKLET,
 			(GldiNotificationFunc) on_leave_desklet, myApplet);
+		gldi_object_remove_notification (&myDesktopMgr,
+			NOTIFICATION_DESKTOP_WALLPAPER_CHANGED,
+			(GldiNotificationFunc) on_change_wallpaper, myApplet);
 		
 		if (myConfig.bCompactView)
 		{
@@ -235,7 +262,15 @@ CD_APPLET_RELOAD_BEGIN
 					GLDI_RUN_AFTER, myApplet);
 			}
 		}
-		
+
+		if (myConfig.iIconDrawing == SWICTHER_MAP_WALLPAPER)
+		{
+			gldi_object_register_notification (&myDesktopMgr,
+				NOTIFICATION_DESKTOP_WALLPAPER_CHANGED,
+				(GldiNotificationFunc) on_change_wallpaper,
+				GLDI_RUN_AFTER, myApplet);
+		}
+
 		if (myData.iSidUpdateIdle == 0)
 		{
 			if (myConfig.bDisplayNumDesk)

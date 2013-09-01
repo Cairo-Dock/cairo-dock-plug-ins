@@ -36,6 +36,8 @@ gboolean on_change_desktop (GldiModuleInstance *myApplet);
 
 gboolean on_change_screen_geometry (GldiModuleInstance *myApplet);
 
+gboolean on_change_wallpaper (GldiModuleInstance *myApplet);
+
 gboolean on_window_size_position_changed (GldiModuleInstance *myApplet, GldiWindowsManager *actor);
 
 gboolean on_change_window_order (GldiModuleInstance *myApplet);

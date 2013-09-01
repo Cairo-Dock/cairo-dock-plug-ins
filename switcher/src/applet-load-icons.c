@@ -215,7 +215,12 @@ void cd_switcher_load_desktop_bg_map_surface (void)
 	myData.pDesktopBgMapSurface = cairo_dock_duplicate_surface (pBgSurface,
 		g_desktopGeometry.Xscreen.width, g_desktopGeometry.Xscreen.height,
 		myData.iSurfaceWidth, myData.iSurfaceHeight);
-	
+
+	/* we can destroy it because we are notified when a wallpaper is changed
+	 * no need to recreate the surface each time the wallpaper is modified
+	 * (e.g. a lot of time when there is a fading effect)
+	 * The bg will be destroyed only if only switcher is using it.
+	 */
 	gldi_desktop_background_destroy (db);
 }
 

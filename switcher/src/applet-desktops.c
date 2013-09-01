@@ -313,6 +313,28 @@ void cd_switcher_trigger_update_from_screen_geometry (gboolean bNow)
 	}
 }
 
+static gboolean _update_wallpaper_idle (gpointer data)
+{
+	cd_debug ("");
+	// load new surface
+	cd_switcher_load_desktop_bg_map_surface ();
+	// draw the new icon
+	cd_switcher_draw_main_icon ();
+
+	myData.iSidUpdateIdle = 0;
+	return FALSE;
+}
+
+void cd_switcher_trigger_update_from_wallpaper (void)
+{
+	/* with a delay to avoid many reloads: if there is a fading effect when
+	 * changing wallpaper, the dock will consume a lot of resources because it
+	 * will update the surface for each step of the fading effect
+	 */
+	if (myData.iSidUpdateIdle == 0)
+		myData.iSidUpdateIdle = g_timeout_add (1250, _update_wallpaper_idle, NULL);
+}
+
 
 void cd_switcher_refresh_desktop_values (GldiModuleInstance *myApplet)
 {

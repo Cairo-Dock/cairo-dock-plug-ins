@@ -47,6 +47,8 @@ void cd_switcher_remove_last_desktop (void);
 
 void cd_switcher_trigger_update_from_screen_geometry (gboolean bNow);
 
+void cd_switcher_trigger_update_from_wallpaper (void);
+
 void cd_switcher_refresh_desktop_values (GldiModuleInstance *myApplet);
 
 

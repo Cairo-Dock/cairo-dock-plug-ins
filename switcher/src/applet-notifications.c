@@ -430,6 +430,13 @@ gboolean on_change_screen_geometry (GldiModuleInstance *myApplet)
 	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 }
 
+gboolean on_change_wallpaper (GldiModuleInstance *myApplet)
+{
+	CD_APPLET_ENTER;
+	cd_switcher_trigger_update_from_wallpaper ();
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
+}
+
 gboolean on_window_size_position_changed (GldiModuleInstance *myApplet, GldiWindowsManager *actor)
 {
 	CD_APPLET_ENTER;
