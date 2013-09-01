@@ -210,10 +210,6 @@ CD_APPLET_INIT_BEGIN
 		g_error_free (erreur);
 		return;
 	}
-	/**
-	//\_______________ On gere l'appli 'mail'
-	if (myConfig.bStealTaskBarIcon)
-		CD_APPLET_MANAGE_APPLICATION (myConfig.cMailClass ? myConfig.cMailClass : myConfig.cMailApplication);*/
 	
 	//\_______________ On initialise tous les comptes et on lance un timer pour chacun.
 	myData.iPrevNbUnreadMails = G_MAXUINT;
@@ -250,11 +246,6 @@ CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED )
 	{
 		CD_APPLET_UNREGISTER_FOR_UPDATE_ICON_EVENT;
-		
-		/**if (myConfig.bStealTaskBarIcon)
-			CD_APPLET_MANAGE_APPLICATION (myConfig.cMailClass ? myConfig.cMailClass : myConfig.cMailApplication);
-		else
-			CD_APPLET_MANAGE_APPLICATION (NULL);*/
 		
 		GError *erreur = NULL;
 		_load_theme (myApplet, &erreur);
