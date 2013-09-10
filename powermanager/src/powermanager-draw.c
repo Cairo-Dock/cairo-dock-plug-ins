@@ -108,12 +108,15 @@ void update_icon (void)
 		CD_APPLET_REDRAW_MY_ICON;
 		return;
 	}
-	
-	if (cairo_dock_get_icon_data_renderer (myIcon) == NULL)
+
+	gboolean bInit = (cairo_dock_get_icon_data_renderer (myIcon) == NULL);
+	if (bInit) // first time: init or reload
 		_set_data_renderer (myApplet);
 	
-	
-	gboolean bChanged = (myData.bPrevOnBattery != myData.bOnBattery || myData.iPrevPercentage != myData.iPercentage || myData.iTime != myData.iPrevTime);
+	gboolean bChanged = (myData.bPrevOnBattery != myData.bOnBattery
+	                     || myData.iPrevPercentage != myData.iPercentage
+	                     || myData.iTime != myData.iPrevTime
+	                     || bInit); // just to be sure
 	
 	if (bChanged || myConfig.iDisplayType == CD_POWERMANAGER_GRAPH)  // graphs need to be updated each time, even if there is no change.
 	{
@@ -140,7 +143,7 @@ void update_icon (void)
 		if (bChanged)
 		{
 			// add or remove the charge overlay if the 'on_battery' status has changed.
-			if (myData.bPrevOnBattery != myData.bOnBattery)
+			if (myData.bPrevOnBattery != myData.bOnBattery || bInit)
 			{
 				if (! myData.bOnBattery)
 				{
