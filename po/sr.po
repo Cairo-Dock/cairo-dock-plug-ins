@@ -291,8 +291,8 @@ msgstr "Уређује поставке управника прозора"
 #: ../Xgamma/src/applet-notifications.c:87
 #: ../alsaMixer/src/applet-notifications.c:85
 #: ../dustbin/src/applet-notifications.c:149
-#: ../mail/src/cd-mail-applet-notifications.c:154
-#: ../musicPlayer/src/applet-notifications.c:304
+#: ../mail/src/cd-mail-applet-notifications.c:153
+#: ../musicPlayer/src/applet-notifications.c:313
 #: ../netspeed/src/applet-notifications.c:105
 #: ../quick-browser/src/applet-notifications.c:41
 #: ../shortcuts/src/applet-notifications.c:285
@@ -356,22 +356,22 @@ msgstr ""
 "Овај прикључак вам омогућава однос спољних програма са доком.\n"
 "Споразумевање између две стане је обезбеђено кроз Дбус"
 
-#: ../Dbus/src/interface-applet-signals.c:422
-#: ../Dbus/src/interface-applet-signals.c:453
+#: ../Dbus/src/interface-applet-signals.c:427
+#: ../Dbus/src/interface-applet-signals.c:458
 msgid "Sorry, this module couldn't be added."
 msgstr "Жали, овај модул нисам успео да додам."
 
-#: ../Dbus/src/interface-applet-signals.c:457
-#: ../Dbus/src/interface-applet-signals.c:463
+#: ../Dbus/src/interface-applet-signals.c:462
+#: ../Dbus/src/interface-applet-signals.c:468
 msgid "The module has been added, but couldn't be launched."
 msgstr "Овај модул је додат, али га не могу покренути."
 
-#: ../Dbus/src/interface-applet-signals.c:466
+#: ../Dbus/src/interface-applet-signals.c:471
 #, c-format
 msgid "The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Програмче „%s“ успешно дограђено, и самостално учитано поново"
 
-#: ../Dbus/src/interface-applet-signals.c:466
+#: ../Dbus/src/interface-applet-signals.c:471
 #, c-format
 msgid ""
 "The applet '%s' has been succefully installed and automatically launched"
@@ -700,7 +700,7 @@ msgid "Move this file"
 msgstr "Преписује ову датотеку (или мења место)"
 
 #: ../Folders/src/applet-notifications.c:409
-#: ../Recent-Events/src/applet-dialog.c:274
+#: ../Recent-Events/src/applet-dialog.c:296
 #: ../Screenshot/src/applet-screenshot.c:310
 #: ../quick-browser/src/applet-menu.c:328
 #: ../slider/src/applet-notifications.c:238
@@ -788,18 +788,18 @@ msgstr "Искључи"
 msgid "Quick launch"
 msgstr "Брзи покретач"
 
-#: ../GMenu-old/src/applet-notifications.c:109
-#: ../GMenu/src/applet-notifications.c:95
+#: ../GMenu-old/src/applet-notifications.c:111
+#: ../GMenu/src/applet-notifications.c:97
 msgid "Configure menu"
 msgstr "Уређивање изборника"
 
-#: ../GMenu-old/src/applet-notifications.c:114
-#: ../GMenu/src/applet-notifications.c:100
+#: ../GMenu-old/src/applet-notifications.c:116
+#: ../GMenu/src/applet-notifications.c:102
 msgid "None of these applications seems available:"
 msgstr ""
 
-#: ../GMenu-old/src/applet-notifications.c:122
-#: ../GMenu/src/applet-notifications.c:108
+#: ../GMenu-old/src/applet-notifications.c:124
+#: ../GMenu/src/applet-notifications.c:110
 msgid "Clear recent"
 msgstr "Очисти скорашње"
 
@@ -996,8 +996,8 @@ msgstr "ИБ мреже"
 #: ../Network-Monitor/src/applet-draw.c:150
 #: ../musicPlayer/src/applet-draw.c:167 ../musicPlayer/src/applet-draw.c:169
 #: ../musicPlayer/src/applet-draw.c:171
-#: ../powermanager/src/powermanager-draw.c:257
-#: ../powermanager/src/powermanager-draw.c:312
+#: ../powermanager/src/powermanager-draw.c:260
+#: ../powermanager/src/powermanager-draw.c:315
 msgid "Unknown"
 msgstr "Непознат"
 
@@ -1154,64 +1154,64 @@ msgstr ""
 "Да ли сте поставили исправан РСС довод?\n"
 "Да ли вам је исправна веза?"
 
-#: ../Recent-Events/src/applet-dialog.c:298
+#: ../Recent-Events/src/applet-dialog.c:320
 #: ../Screenshot/src/applet-screenshot.c:319
 #: ../quick-browser/src/applet-menu.c:358
 #: ../stack/src/applet-notifications.c:212
 msgid "Open parent folder"
 msgstr "Отворите надфасциклу"
 
-#: ../Recent-Events/src/applet-dialog.c:300
+#: ../Recent-Events/src/applet-dialog.c:322
 #: ../Screenshot/src/applet-screenshot.c:281
 #: ../quick-browser/src/applet-menu.c:360
 msgid "Copy the location"
 msgstr "Умножава место"
 
-#: ../Recent-Events/src/applet-dialog.c:303
+#: ../Recent-Events/src/applet-dialog.c:325
 msgid "Delete this event"
 msgstr "Брише овај догађај"
 
-#: ../Recent-Events/src/applet-dialog.c:387
+#: ../Recent-Events/src/applet-dialog.c:409
 msgid "All"
 msgstr "Све"
 
-#: ../Recent-Events/src/applet-dialog.c:388
+#: ../Recent-Events/src/applet-dialog.c:410
 msgid "Applications"
 msgstr "Програми"
 
-#: ../Recent-Events/src/applet-dialog.c:389
+#: ../Recent-Events/src/applet-dialog.c:411
 msgid "Document"
 msgstr "Документ"
 
-#: ../Recent-Events/src/applet-dialog.c:391 ../logout/data/messages:117
+#: ../Recent-Events/src/applet-dialog.c:413 ../logout/data/messages:117
 msgid "Image"
 msgstr "Слика"
 
-#: ../Recent-Events/src/applet-dialog.c:392
+#: ../Recent-Events/src/applet-dialog.c:414
 msgid "Audio"
 msgstr "Звук"
 
-#: ../Recent-Events/src/applet-dialog.c:393
+#: ../Recent-Events/src/applet-dialog.c:415
 msgid "Video"
 msgstr "Видео"
 
-#: ../Recent-Events/src/applet-dialog.c:394
+#: ../Recent-Events/src/applet-dialog.c:416
 msgid "Web"
 msgstr "Веб"
 
-#: ../Recent-Events/src/applet-dialog.c:395
+#: ../Recent-Events/src/applet-dialog.c:417
 msgid "Other"
 msgstr "Остало"
 
-#: ../Recent-Events/src/applet-dialog.c:396
+#: ../Recent-Events/src/applet-dialog.c:418
 msgid "Top Results"
 msgstr "Важни резултати"
 
-#: ../Recent-Events/src/applet-dialog.c:402
+#: ../Recent-Events/src/applet-dialog.c:424
 msgid "Look for events"
 msgstr "Потражи догађаје"
 
-#: ../Recent-Events/src/applet-dialog.c:409
+#: ../Recent-Events/src/applet-dialog.c:432
 msgid ""
 "The default boolean operator is AND. Thus the query foo bar will be "
 "interpreted as foo AND bar. To exclude a term from the result set prepend it "
@@ -1224,20 +1224,20 @@ msgstr ""
 "- на пример, фу -бар. Ниска упита се може извршити стављањем ниске под "
 "наводнике \"фу је бар\". Можете скратити изразе додавањем наставка  *. "
 
-#: ../Recent-Events/src/applet-dialog.c:452
+#: ../Recent-Events/src/applet-dialog.c:475
 #: ../Screenshot/src/applet-screenshot.c:489
 msgid "File name"
 msgstr "Назив датотеке"
 
-#: ../Recent-Events/src/applet-dialog.c:459
+#: ../Recent-Events/src/applet-dialog.c:482
 msgid "Last access"
 msgstr "Последњи приступ"
 
-#: ../Recent-Events/src/applet-dialog.c:508
+#: ../Recent-Events/src/applet-dialog.c:531
 msgid "You need to install the Zeitgeist data engine."
 msgstr "Требате уградити Цатгајст погон података"
 
-#: ../Recent-Events/src/applet-dialog.c:556
+#: ../Recent-Events/src/applet-dialog.c:579
 msgid "Browse and search in recent events"
 msgstr "Преглед и претрага скорашњих догађаја"
 
@@ -2589,7 +2589,7 @@ msgstr ""
 "<b>Клик</b> на икону за искакање изборника.\n"
 "Можете му задати <b>пречицу</b> за то, или за закључавање екрана."
 
-#: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:307
+#: ../logout/src/applet-init.c:38 ../logout/src/applet-logout.c:305
 #: ../logout/data/messages:95
 msgid "Log out"
 msgstr "Одјава"
@@ -2602,29 +2602,29 @@ msgstr "Закључај екран"
 msgid "Show the log-out menu"
 msgstr "Прикажи изборник одјаве"
 
-#: ../logout/src/applet-logout.c:273 ../logout/data/messages:97
+#: ../logout/src/applet-logout.c:271 ../logout/data/messages:97
 msgid "Shut down"
 msgstr "Гашење"
 
-#: ../logout/src/applet-logout.c:279
+#: ../logout/src/applet-logout.c:277
 msgid "Restart"
 msgstr "Поново покрени"
 
-#: ../logout/src/applet-logout.c:285
+#: ../logout/src/applet-logout.c:283
 #: ../powermanager/src/powermanager-menu-functions.c:96
 #: ../powermanager/src/powermanager-menu-functions.c:104
 msgid "Hibernate"
 msgstr "Замрзни"
 
-#: ../logout/src/applet-logout.c:286
+#: ../logout/src/applet-logout.c:284
 msgid "Your computer will not consume any energy."
 msgstr "Ваш рачунар неће трошити енергију."
 
-#: ../logout/src/applet-logout.c:292
+#: ../logout/src/applet-logout.c:290
 msgid "Hybrid Sleep"
 msgstr "Хибридно мировање"
 
-#: ../logout/src/applet-logout.c:293
+#: ../logout/src/applet-logout.c:291
 msgid ""
 "Your computer will still consume a small amount of energy but after some "
 "time, the computer will suspend to disk and not consume any energy."
@@ -2632,41 +2632,41 @@ msgstr ""
 "Рачунар ће и даље трошити мало енергије, али, после неког времена ће "
 "обуставити на диск и неће трошити енергију"
 
-#: ../logout/src/applet-logout.c:298
+#: ../logout/src/applet-logout.c:296
 #: ../powermanager/src/powermanager-menu-functions.c:99
 #: ../powermanager/src/powermanager-menu-functions.c:106
 msgid "Suspend"
 msgstr "Обустављање"
 
-#: ../logout/src/applet-logout.c:300
+#: ../logout/src/applet-logout.c:298
 msgid "Your computer will still consume a small amount of energy."
 msgstr "Ваш рачунар ће још увек трошити малу количину енергије."
 
-#: ../logout/src/applet-logout.c:309
+#: ../logout/src/applet-logout.c:307
 msgid "Close your session and allow to open a new one."
 msgstr "Затворите сесију и дозволите отварање нове."
 
-#: ../logout/src/applet-logout.c:320
+#: ../logout/src/applet-logout.c:318
 msgid "Switch user"
 msgstr "Промени корисника"
 
-#: ../logout/src/applet-logout.c:341
+#: ../logout/src/applet-logout.c:339
 msgid "Guest session"
 msgstr "Сесија госта"
 
-#: ../logout/src/applet-logout.c:348 ../logout/data/messages:99
+#: ../logout/src/applet-logout.c:346 ../logout/data/messages:99
 msgid "Lock screen"
 msgstr "Закључај екран"
 
-#: ../logout/src/applet-logout.c:353
+#: ../logout/src/applet-logout.c:351
 msgid "Program an automatic shut-down"
 msgstr "Закажи самостално гашење"
 
-#: ../logout/src/applet-logout.c:421
+#: ../logout/src/applet-logout.c:419
 msgid "Your computer will shut-down in 1 minute."
 msgstr "Ваш рачунар ће престати са радом за 1 минут."
 
-#: ../logout/src/applet-logout.c:468
+#: ../logout/src/applet-logout.c:466
 msgid "Choose in how many minutes your PC will stop:"
 msgstr "Одаберите за колико минута ће се ваш рачунар престати са радом:"
 
@@ -2674,30 +2674,30 @@ msgstr "Одаберите за колико минута ће се ваш ра�
 msgid "Please do that at the end of the update."
 msgstr "Молим, урадите то по завршетку надоградње."
 
-#: ../logout/src/applet-logout.c:696
+#: ../logout/src/applet-logout.c:627
 msgid "Logind has returned this error:"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:698
+#: ../logout/src/applet-logout.c:629
 msgid ""
 "Please check that you can do this action\n"
 "(e.g. you can't power the computer off if another session is active)"
 msgstr ""
 
-#: ../logout/src/applet-logout.c:763
+#: ../logout/src/applet-logout.c:694
 #, c-format
 msgid "It will automatically shut-down in %ds"
 msgstr "Самостално ће се искучити кроз %ds"
 
-#: ../logout/src/applet-logout.c:764
+#: ../logout/src/applet-logout.c:695
 msgid "Shut down the computer?"
 msgstr "Искључи рачунар?"
 
-#: ../logout/src/applet-logout.c:836
+#: ../logout/src/applet-logout.c:767
 msgid "Restart the computer?"
 msgstr "Поново покрени рачунар?"
 
-#: ../logout/src/applet-logout.c:889
+#: ../logout/src/applet-logout.c:820
 msgid "Close the current session?"
 msgstr "Затвори тренутну сесију?"
 
@@ -2800,19 +2800,19 @@ msgstr ""
 "Не заборавите да омогућите ИМАП (или ПОП) услуге у поставкама вашег налога "
 "поште."
 
-#: ../mail/src/cd-mail-applet-config.c:227
+#: ../mail/src/cd-mail-applet-config.c:224
 msgid "Please choose an account type."
 msgstr "Молим, одердите врсту налога."
 
-#: ../mail/src/cd-mail-applet-config.c:232
+#: ../mail/src/cd-mail-applet-config.c:229
 msgid "New account's name"
 msgstr "Нови назив налога"
 
-#: ../mail/src/cd-mail-applet-config.c:235
+#: ../mail/src/cd-mail-applet-config.c:232
 msgid "Please enter a name for this account."
 msgstr "Молим, унесите назив овог налога."
 
-#: ../mail/src/cd-mail-applet-config.c:245
+#: ../mail/src/cd-mail-applet-config.c:242
 msgid ""
 "This account already exists.\n"
 "Please choose another name for the new account."
@@ -2820,11 +2820,11 @@ msgstr ""
 "Овај налог већ постоји.\n"
 "Молим, одаберите други назив за нови налог."
 
-#: ../mail/src/cd-mail-applet-config.c:384
+#: ../mail/src/cd-mail-applet-config.c:381
 msgid "Enter a name for this account. You can give it any name you want."
 msgstr "Унесите назив за овај налог. Можете дати било које име."
 
-#: ../mail/src/cd-mail-applet-config.c:439
+#: ../mail/src/cd-mail-applet-config.c:436
 msgid "Remove Account"
 msgstr "Уклони налог"
 
@@ -2865,7 +2865,7 @@ msgstr ""
 "Леви клик за покретање жељеног програма поште,\n"
 "Средњи клик за освежавање свих сандучића поште."
 
-#: ../mail/src/cd-mail-applet-notifications.c:63
+#: ../mail/src/cd-mail-applet-notifications.c:62
 #, c-format
 msgid ""
 "A problem occured\n"
@@ -2876,7 +2876,7 @@ msgstr ""
 "Ако „%s“ није ваш уобичајени програм за пошту,\n"
 "можете га променити у плочи поставки овог модула"
 
-#: ../mail/src/cd-mail-applet-notifications.c:68
+#: ../mail/src/cd-mail-applet-notifications.c:67
 msgid ""
 "No mail application is defined,\n"
 "you can define it in the configuration panel of this module"
@@ -2885,11 +2885,11 @@ msgstr ""
 "можете га одредити у плочи поставки овог модула"
 
 # А?
-#: ../mail/src/cd-mail-applet-notifications.c:147
+#: ../mail/src/cd-mail-applet-notifications.c:146
 msgid "Refresh a mail account"
 msgstr "Освежи налог поште"
 
-#: ../mail/src/cd-mail-applet-notifications.c:154
+#: ../mail/src/cd-mail-applet-notifications.c:153
 msgid "Refresh all"
 msgstr "Освежи све"
 
@@ -2901,21 +2901,21 @@ msgstr "Освежи све"
 #
 # Путање:
 # ../mail/src/cd-mail-applet-notifications.c:161
-#: ../mail/src/cd-mail-applet-notifications.c:161
+#: ../mail/src/cd-mail-applet-notifications.c:160
 #, c-format
 msgid "Refresh %s"
 msgstr "Освежи %s"
 
-#: ../mail/src/cd-mail-applet-notifications.c:167
+#: ../mail/src/cd-mail-applet-notifications.c:166
 msgid "Mark all emails as read"
 msgstr "Означи да су све поруке прочитане"
 
-#: ../mail/src/cd-mail-applet-notifications.c:170
+#: ../mail/src/cd-mail-applet-notifications.c:169
 #, c-format
 msgid "Launch %s"
 msgstr "Покрени %s"
 
-#: ../mail/src/cd-mail-applet-notifications.c:347
+#: ../mail/src/cd-mail-applet-notifications.c:346
 msgid "Mail"
 msgstr "Пошта"
 
@@ -3008,68 +3008,68 @@ msgstr ""
 msgid "Choose a music player to control"
 msgstr "Одаберите музички програм за управљањ"
 
-#: ../musicPlayer/src/applet-notifications.c:288
+#: ../musicPlayer/src/applet-notifications.c:297
 msgid "Find opened player"
 msgstr "Пронађи музички програм"
 
-#: ../musicPlayer/src/applet-notifications.c:292
+#: ../musicPlayer/src/applet-notifications.c:301
 msgid "Choose a player"
 msgstr "Изаберите извођача музике"
 
-#: ../musicPlayer/src/applet-notifications.c:298
+#: ../musicPlayer/src/applet-notifications.c:307
 msgid "Previous"
 msgstr "Претходни"
 
-#: ../musicPlayer/src/applet-notifications.c:298
+#: ../musicPlayer/src/applet-notifications.c:307
 msgid "scroll-up"
 msgstr "макни навише"
 
-#: ../musicPlayer/src/applet-notifications.c:304
+#: ../musicPlayer/src/applet-notifications.c:313
 msgid "Play/Pause"
 msgstr "Пусти/пауза"
 
-#: ../musicPlayer/src/applet-notifications.c:304
+#: ../musicPlayer/src/applet-notifications.c:313
 msgid "left-click"
 msgstr "леви клик"
 
-#: ../musicPlayer/src/applet-notifications.c:310
+#: ../musicPlayer/src/applet-notifications.c:319
 msgid "Next"
 msgstr "Следеће"
 
-#: ../musicPlayer/src/applet-notifications.c:310
+#: ../musicPlayer/src/applet-notifications.c:319
 msgid "scroll-down"
 msgstr "Помакни доле"
 
-#: ../musicPlayer/src/applet-notifications.c:315
+#: ../musicPlayer/src/applet-notifications.c:324
 msgid "Stop"
 msgstr "Заустави"
 
-#: ../musicPlayer/src/applet-notifications.c:319
+#: ../musicPlayer/src/applet-notifications.c:328
 msgid "Information"
 msgstr "Обавештење"
 
 # не преводе се глупи називи
-#: ../musicPlayer/src/applet-notifications.c:324
+#: ../musicPlayer/src/applet-notifications.c:333
 msgid "Show JumpBox"
 msgstr "Приказује Скокутију"
 
-#: ../musicPlayer/src/applet-notifications.c:327
+#: ../musicPlayer/src/applet-notifications.c:336
 msgid "Shuffle"
 msgstr "Насумично"
 
-#: ../musicPlayer/src/applet-notifications.c:335
+#: ../musicPlayer/src/applet-notifications.c:344
 msgid "Repeat"
 msgstr "Понови"
 
-#: ../musicPlayer/src/applet-notifications.c:343
+#: ../musicPlayer/src/applet-notifications.c:352
 msgid "Rate this song"
 msgstr "Оцени ову песму"
 
-#: ../musicPlayer/src/applet-notifications.c:347
+#: ../musicPlayer/src/applet-notifications.c:356
 msgid "Show"
 msgstr "Прикажи"
 
-#: ../musicPlayer/src/applet-notifications.c:348
+#: ../musicPlayer/src/applet-notifications.c:357
 msgid "Quit"
 msgstr "Изађи"
 
@@ -3130,27 +3130,27 @@ msgstr "Прекидач мреже"
 msgid "Re-check interface"
 msgstr "Провери уређај"
 
-#: ../powermanager/src/powermanager-draw.c:187
+#: ../powermanager/src/powermanager-draw.c:190
 msgid "Battery charged"
 msgstr "Батерија пуна"
 
-#: ../powermanager/src/powermanager-draw.c:199
+#: ../powermanager/src/powermanager-draw.c:202
 msgid "h"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:201
+#: ../powermanager/src/powermanager-draw.c:204
 msgid "mn"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:210
+#: ../powermanager/src/powermanager-draw.c:213
 msgid "remaining"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:210
+#: ../powermanager/src/powermanager-draw.c:213
 msgid "until charged"
 msgstr ""
 
-#: ../powermanager/src/powermanager-draw.c:228 ../wifi/src/applet-draw.c:30
+#: ../powermanager/src/powermanager-draw.c:231 ../wifi/src/applet-draw.c:30
 #: ../Clipper/data/messages:97 ../GMenu-old/data/messages:109
 #: ../GMenu/data/messages:109 ../Network-Monitor/data/messages:221
 #: ../dnd2share/data/messages:109 ../dustbin/data/messages:101
@@ -3159,44 +3159,44 @@ msgid "None"
 msgstr "Ништа"
 
 # тостер на батерије
-#: ../powermanager/src/powermanager-draw.c:263
+#: ../powermanager/src/powermanager-draw.c:266
 msgid "Laptop on Battery."
 msgstr "Лаптоп на батерији"
 
-#: ../powermanager/src/powermanager-draw.c:264
-#: ../powermanager/src/powermanager-draw.c:273
+#: ../powermanager/src/powermanager-draw.c:267
+#: ../powermanager/src/powermanager-draw.c:276
 msgid "Battery charged at:"
 msgstr "Батерија попуњена у:"
 
-#: ../powermanager/src/powermanager-draw.c:265
+#: ../powermanager/src/powermanager-draw.c:268
 msgid "Estimated time before empty:"
 msgstr "Процењено време до потпуног пражњења"
 
-#: ../powermanager/src/powermanager-draw.c:272
+#: ../powermanager/src/powermanager-draw.c:275
 msgid "Laptop on Charge."
 msgstr "Лаптоп на пуњењу."
 
-#: ../powermanager/src/powermanager-draw.c:274
+#: ../powermanager/src/powermanager-draw.c:277
 msgid "Estimated time before full:"
 msgstr "Преостало време до попуне:"
 
-#: ../powermanager/src/powermanager-draw.c:281
+#: ../powermanager/src/powermanager-draw.c:284
 msgid "Model:"
 msgstr "Модел:"
 
-#: ../powermanager/src/powermanager-draw.c:287
+#: ../powermanager/src/powermanager-draw.c:290
 msgid "Technology:"
 msgstr "Технологија:"
 
-#: ../powermanager/src/powermanager-draw.c:291
+#: ../powermanager/src/powermanager-draw.c:294
 msgid "Maximum capacity:"
 msgstr "Највиши капацитет"
 
-#: ../powermanager/src/powermanager-draw.c:296
+#: ../powermanager/src/powermanager-draw.c:299
 msgid "No battery found."
 msgstr "Батерија није присутна."
 
-#: ../powermanager/src/powermanager-draw.c:318
+#: ../powermanager/src/powermanager-draw.c:321
 msgid ""
 "PowerManager.\n"
 "Battery charge seems to be low"
@@ -3204,15 +3204,15 @@ msgstr ""
 "Управник потрошње.\n"
 "Изгледа да је батерија празна"
 
-#: ../powermanager/src/powermanager-draw.c:318
+#: ../powermanager/src/powermanager-draw.c:321
 msgid "Estimated time with charge:"
 msgstr "Процењено време са пуњењем:"
 
-#: ../powermanager/src/powermanager-draw.c:318
+#: ../powermanager/src/powermanager-draw.c:321
 msgid "Please put your laptop on charge."
 msgstr "Молим, прикључите лаптоп на пуњење."
 
-#: ../powermanager/src/powermanager-draw.c:332
+#: ../powermanager/src/powermanager-draw.c:335
 msgid ""
 "PowerManager.\n"
 "Your battery is now charged"
@@ -3610,7 +3610,7 @@ msgstr "Тренутни"
 #: ../switcher/src/applet-notifications.c:228
 #: ../switcher/src/applet-notifications.c:247
 #: ../switcher/src/applet-notifications.c:403
-#: ../switcher/src/applet-notifications.c:497
+#: ../switcher/src/applet-notifications.c:504
 msgid "Desktop"
 msgstr "Радна површ"
 
