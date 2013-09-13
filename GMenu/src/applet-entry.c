@@ -236,16 +236,13 @@ static gboolean _on_key_pressed_menu (GtkWidget *pMenuItem,
 
 void cd_menu_append_entry (void)
 {
-	GtkWidget *pMenuItem = gtk_menu_item_new ();
-	GtkWidget *hbox =  _gtk_hbox_new (3);
-	gtk_container_add (GTK_CONTAINER (pMenuItem), hbox);  /// there's something to do to align the hbox to the left of the menu-item, but what ?...
-	
+	GtkWidget *pMenuItem = gtk_image_menu_item_new ();
+
 	GtkWidget *pImage = gtk_image_new_from_stock (GTK_STOCK_EXECUTE, GTK_ICON_SIZE_LARGE_TOOLBAR);
-	
+	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), pImage);
+
 	GtkWidget *pEntry = gtk_entry_new ();
-	
-	gtk_box_pack_start (GTK_BOX (hbox), pImage, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), pEntry, TRUE, TRUE, 0);
+	gtk_container_add (GTK_CONTAINER (pMenuItem), pEntry);
 	
 	g_signal_connect (pEntry, "changed",
 		G_CALLBACK (_on_entry_changed),
