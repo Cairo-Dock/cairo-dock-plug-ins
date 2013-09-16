@@ -81,10 +81,7 @@ static GtkWidget *_terminal_build_menu (GtkWidget *pWidget, gchar *cReceivedData
 	GtkWidget *menu_item, *image;
 	menu_item = gtk_image_menu_item_new_with_label (D_("Copy"));
 	image = gtk_image_new_from_stock (GTK_STOCK_JUSTIFY_LEFT, GTK_ICON_SIZE_MENU);
-#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
-	gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (menu_item), TRUE);
-#endif
-	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
+	_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
 	gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
 	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(_terminal_copy), my_data);
 
@@ -93,37 +90,25 @@ static GtkWidget *_terminal_build_menu (GtkWidget *pWidget, gchar *cReceivedData
 
 	menu_item = gtk_image_menu_item_new_with_label ("cd");
 	image = gtk_image_new_from_stock (GTK_STOCK_JUMP_TO, GTK_ICON_SIZE_MENU);
-#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
-	gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (menu_item), TRUE);
-#endif
-	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
+	_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
 	gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
 	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(_terminal_cd), my_data);
 
 	menu_item = gtk_image_menu_item_new_with_label ("cp");
 	image = gtk_image_new_from_stock (GTK_STOCK_COPY, GTK_ICON_SIZE_MENU);
-#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
-	gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (menu_item), TRUE);
-#endif
-	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
+	_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
 	gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
 	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(_terminal_cp), my_data);
 
 	menu_item = gtk_image_menu_item_new_with_label ("mv");
 	image = gtk_image_new_from_stock (GTK_STOCK_GOTO_LAST, GTK_ICON_SIZE_MENU);
-#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
-	gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (menu_item), TRUE);
-#endif
-	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
+	_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
 	gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
 	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(_terminal_mv), my_data);
 
 	menu_item = gtk_image_menu_item_new_with_label ("rm");
 	image = gtk_image_new_from_stock (GTK_STOCK_DELETE, GTK_ICON_SIZE_MENU);
-#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
-	gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (menu_item), TRUE);
-#endif
-	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
+	_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
 	gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
 	g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(_terminal_rm), my_data);
 

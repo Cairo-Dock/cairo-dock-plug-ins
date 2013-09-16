@@ -416,10 +416,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	GtkWidget *mi = gtk_image_menu_item_new_with_label (D_("History"));
 
 	GtkWidget *im = gtk_image_new_from_stock (GTK_STOCK_INDEX, GTK_ICON_SIZE_MENU);
-	#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
-	gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (mi), TRUE);
-	#endif
-	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), im);
+	_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), im);
 
 	gtk_menu_shell_append (GTK_MENU_SHELL (CD_APPLET_MY_MENU), mi); 
 	gtk_menu_item_set_submenu (GTK_MENU_ITEM (mi), pHistoryMenu);
