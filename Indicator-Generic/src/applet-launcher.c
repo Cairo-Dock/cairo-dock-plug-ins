@@ -40,8 +40,14 @@ static void _on_file_event (CairoDockFMEventType iEventType, const gchar *cURI, 
 	g_return_if_fail (cURI != NULL);
 	CD_APPLET_ENTER;
 
-	cd_debug ("File event: Reload all indicators");
-	cd_indicator_generic_reload_all_indicators (myApplet);
+	/* No need to reload all indicators if one is modified:
+	 *  these files are modified but the corresponding daemons are not reloaded
+	 */
+	if (iEventType != CAIRO_DOCK_FILE_MODIFIED) // created/removed
+	{
+		cd_debug ("File event: Reload all indicators");
+		cd_indicator_generic_reload_all_indicators (myApplet);
+	}
 
 	CD_APPLET_LEAVE();
 }
