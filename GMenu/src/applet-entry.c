@@ -20,226 +20,313 @@
 #include "applet-struct.h"
 #include "applet-entry.h"
 
-#include <gdk/gdkkeysyms.h>
-#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION > 20)
-#include <gdk/gdkkeysyms-compat.h>
-#endif
-
-static void cd_menu_build_entry_model (void);
+#include <gdk/gdkkeysyms.h> // needed for 'GDK_KEY_Return'
 
 
-static void _launch_selected_app (void)
+typedef struct _EntryInfo {
+	GAppInfo  *pAppInfo;
+	GtkWidget *pMenuItem;
+	gboolean   bKeepMenu; // flag to not destroy the menu item if it's reused after
+	} EntryInfo;
+
+static GList *s_pEntries = NULL;    // a list with all matches apps
+static gint s_iNbSearchEntries = 0; // the number of elements in this list (to not iterate over the whole list)
+static gint s_iNbOtherEntries = 0;  // the number of hidden entries (applications menu)
+
+static gint _compare_apps (const EntryInfo *a, const EntryInfo *b)
 {
-	GtkTreeSelection *selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (myData.pTreeView));
-	GtkTreeModel *pModel;
-	GtkTreeIter iter;
-	if (gtk_tree_selection_get_selected (selection, &pModel, &iter))
-	{
-		GAppInfo *pAppInfo = NULL;
-		gtk_tree_model_get (pModel, &iter,
-			2, &pAppInfo, -1);
-		g_print (" -> %s\n", g_app_info_get_name (pAppInfo));
+	// ignore cases: some apps don't have capital letters for the first char
+	return g_ascii_strcasecmp (g_app_info_get_name (a->pAppInfo),
+		g_app_info_get_name (b->pAppInfo));
+}
+
+static gboolean _on_button_release_menu (GtkWidget *pMenu, GdkEventButton *pEvent,
+	GAppInfo *pAppInfo)
+{
+	// left click
+	if (pEvent->button == 1 && pEvent->type == GDK_BUTTON_RELEASE)
 		g_app_info_launch (pAppInfo, NULL, NULL, NULL);
-	}
+	return FALSE; // pass the signal: hide the menu
 }
 
-static gboolean _load_pixbuf (GtkTreeModel *pModelFilter, GtkTreePath *path, GtkTreeIter *pIter, G_GNUC_UNUSED gpointer data)
+// limit to X menu entries? But how many? And it should not have too many results
+static void _add_results_in_menu (GldiModuleInstance *myApplet)
 {
-	GtkTreeModel *pModel = gtk_tree_model_filter_get_model (GTK_TREE_MODEL_FILTER (pModelFilter));
-	GtkTreeIter child_iter;
-	gtk_tree_model_filter_convert_iter_to_child_iter (GTK_TREE_MODEL_FILTER (pModelFilter), &child_iter, pIter);
-	
-	GAppInfo *pAppInfo = NULL;
-	GdkPixbuf *pixbuf = NULL;
-	gtk_tree_model_get (pModel, &child_iter,
-		1, &pixbuf,
-		2, &pAppInfo, -1);
-	
-	if (! pixbuf)
+	// sort list
+	s_pEntries = g_list_sort (s_pEntries, (GCompareFunc)_compare_apps);
+
+	gint i = 2; // there are 2 menu entries before
+	EntryInfo *pInfo;
+	GList *pList;
+	for (pList = s_pEntries; pList != NULL; pList = pList->next)
 	{
-		GIcon *gicon = g_app_info_get_icon (pAppInfo);
-		if (!gicon)
-			return FALSE;
-		gchar *cFileName = g_icon_to_string (gicon);
-		gchar *cImagePath = cairo_dock_search_icon_s_path (cFileName, myData.iPanelDefaultMenuIconSize);
-		pixbuf = gdk_pixbuf_new_from_file_at_size (cImagePath, myData.iPanelDefaultMenuIconSize, myData.iPanelDefaultMenuIconSize, NULL);
-		if (gdk_pixbuf_get_width (pixbuf) != myData.iPanelDefaultMenuIconSize)  // 'gdk_pixbuf_new_from_file_at_size' doesn't respect the given size with xpm images...
+		pInfo = pList->data;
+		if (pInfo->pMenuItem) // we already have the menu entry, just change the index
+			gtk_menu_reorder_child (GTK_MENU (myData.pMenu),
+				pInfo->pMenuItem,
+				s_iNbOtherEntries + s_iNbSearchEntries + i);
+				// items from the applications menu are hidden are other entries are still not removed
+		else
 		{
-			GdkPixbuf *src = pixbuf;
-			pixbuf = gdk_pixbuf_scale_simple (src, myData.iPanelDefaultMenuIconSize, myData.iPanelDefaultMenuIconSize, GDK_INTERP_BILINEAR);
-			g_object_unref (src);
+			// create the new entry: a label, an icon and a tooltip
+			pInfo->pMenuItem = gtk_image_menu_item_new_with_label (
+				g_app_info_get_name (pInfo->pAppInfo));
+
+			GIcon *pIcon = g_app_info_get_icon (pInfo->pAppInfo);
+			if (pIcon)
+			{
+				GtkWidget *pImage = gtk_image_new_from_gicon (pIcon,
+					GTK_ICON_SIZE_LARGE_TOOLBAR);
+				_gtk_image_menu_item_set_image (
+					GTK_IMAGE_MENU_ITEM (pInfo->pMenuItem), pImage);
+			}
+
+			gtk_widget_set_tooltip_text (pInfo->pMenuItem,
+				g_app_info_get_description (pInfo->pAppInfo));
+
+			gtk_widget_show (pInfo->pMenuItem);
+
+			gtk_menu_shell_append (GTK_MENU_SHELL (myData.pMenu),
+				pInfo->pMenuItem);
+
+			// needed to know which menu we want to launch
+			g_object_set_data (G_OBJECT (pInfo->pMenuItem), "info", pInfo->pAppInfo);
+
+			// click with the mouse
+			g_signal_connect (pInfo->pMenuItem, "button-release-event",
+				G_CALLBACK (_on_button_release_menu),
+				pInfo->pAppInfo);
+			// activate with Return key => _on_key_pressed_menu (entry has focus)
 		}
-		gtk_list_store_set (GTK_LIST_STORE (pModel), &child_iter,
-			1, pixbuf,
-			-1);
-		g_free (cImagePath);
-		g_free (cFileName);
+		i++;
 	}
-	g_object_unref (pixbuf);
-	
-	return FALSE;
+	s_iNbSearchEntries = i - 2;
+
+	// if there are results and no selection, select the first entry
+	if (s_pEntries != NULL
+	   && gtk_menu_shell_get_selected_item (GTK_MENU_SHELL (myData.pMenu)) == NULL)
+		gtk_menu_shell_select_item (GTK_MENU_SHELL (myData.pMenu),
+			((EntryInfo *)s_pEntries->data)->pMenuItem);
 }
 
-static gboolean _on_entry_changed (GtkWidget *pEntry,
-	GldiModuleInstance *myApplet)
+// to not recreate a menu entry each time and to not loose the selection
+static GtkWidget * _menu_match (GAppInfo *pAppInfo, GList *pEntryList)
+{
+	EntryInfo *pInfo;
+	GList *pList;
+	for (pList = pEntryList; pList != NULL; pList = pList->next)
+	{
+		pInfo = pList->data;
+		if (pInfo->pAppInfo == pAppInfo)
+		{
+			pInfo->bKeepMenu = TRUE;
+			return pInfo->pMenuItem;
+		}
+	}
+	return NULL;
+}
+
+/* We need to always compare two strings ignoring case of chars because both
+ * strings (property and key) can have capital letters
+ */
+static gboolean _app_match (GAppInfo *pAppInfo, const gchar *key)
+{
+	int n = strlen (key);
+	const gchar *prop = g_app_info_get_executable (pAppInfo);
+	if (!prop || g_ascii_strncasecmp (prop, key, n) != 0)
+	{
+		prop = g_app_info_get_name (pAppInfo);
+		if (!prop || g_ascii_strncasecmp (prop, key, n) != 0)
+		{
+			prop = g_app_info_get_display_name (pAppInfo);
+			if (!prop || g_ascii_strncasecmp (prop, key, n) != 0)
+			{
+				if (n < 3) // check the description when min 3 chars to avoid very very long lists
+					return FALSE;
+				prop = g_app_info_get_description (pAppInfo);
+				if (!prop)
+					return FALSE;
+				gchar *lower_prop = g_ascii_strdown (prop, -1);
+				gchar *lower_key  = g_ascii_strdown (key , -1);
+				if (!lower_prop || !lower_key
+				   || strstr (lower_prop, lower_key) == NULL)
+				{
+					g_free (lower_key);
+					g_free (lower_prop);
+					return FALSE;
+				}
+				g_free (lower_key);
+				g_free (lower_prop);
+			}
+		}
+	}
+	return TRUE;
+}
+
+
+static void _create_filtered_list (GAppInfo *pAppInfo, gpointer *data)
+{
+	const gchar *cText = data[0];
+	GList *pList = data[1]; // the previous list
+	if (_app_match (pAppInfo, cText))
+	{
+		EntryInfo *pInfo = g_new (EntryInfo, 1);
+		pInfo->pAppInfo = pAppInfo;
+		pInfo->bKeepMenu = FALSE;
+		pInfo->pMenuItem = _menu_match (pAppInfo, pList);
+		s_pEntries = g_list_prepend (s_pEntries, pInfo);
+	}
+}
+
+static void _remove_results_in_menu (GList *pList, GldiModuleInstance *myApplet)
+{
+	if (! pList)
+		return;
+
+	EntryInfo *pInfo;
+	GList *pTmpList;
+	while (pList != NULL)
+	{
+		pInfo = pList->data;
+		if (! pInfo->bKeepMenu) // only if we no longer need them for the current menu
+			gtk_widget_destroy (pInfo->pMenuItem);
+		g_free (pInfo);
+
+		pTmpList = pList->next;
+		g_list_free_1 (pList); // free the list (the element)
+		pList = pTmpList;
+	}
+}
+
+///////////////////////
+// Applications Menu //
+///////////////////////
+
+// a list with the previous application menu (we will just hide them)
+static GList *s_pOtherEntries = NULL;
+
+// hide the previous application menu (except the entry and separator)
+static void _hide_other_entries (GldiModuleInstance *myApplet)
+{
+	if (s_pOtherEntries != NULL)
+		return;
+
+	GtkWidget *pCurrentWidget;
+	GtkContainer *pContainer = GTK_CONTAINER (myData.pMenu);
+	GList *pList = gtk_container_get_children (pContainer);
+	// skip the two first entries: GtkEntry + Separator
+	for (pList = pList->next->next; pList != NULL; pList = pList->next)
+	{
+		pCurrentWidget = pList->data;
+		gtk_widget_hide (pCurrentWidget);
+		s_pOtherEntries = g_list_prepend (s_pOtherEntries, pCurrentWidget);
+		s_iNbOtherEntries++;
+	}
+}
+
+// previous elements was hidden, we can free the list and show items
+static void _show_other_entries (GldiModuleInstance *myApplet)
+{
+	GtkWidget *pCurrentWidget;
+	GList *pList;
+	while (s_pOtherEntries != NULL)
+	{
+		pCurrentWidget = s_pOtherEntries->data;
+		gtk_widget_show (pCurrentWidget);
+
+		pList = s_pOtherEntries->next;
+		g_list_free_1 (s_pOtherEntries); // free the list
+		s_pOtherEntries = pList;
+	}
+	s_iNbOtherEntries = 0;
+}
+
+///////////
+// Entry //
+///////////
+
+// modification of the GtkEntry
+static gboolean _on_entry_changed (GtkWidget *pEntry, GldiModuleInstance *myApplet)
 {
 	const gchar *cText = gtk_entry_get_text (GTK_ENTRY (pEntry));
-	g_print ("%s (%s)\n", __func__, cText);
 	if (cText && *cText != '\0')
 	{
-		cd_menu_build_entry_model ();
-		
-		gtk_widget_show_all (myData.pAppsWindow);
-		gtk_tree_model_filter_refilter (GTK_TREE_MODEL_FILTER (myData.pModelFilter));
-		
-		GtkTreeSelection *selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (myData.pTreeView));
-		GtkTreeModel *pModel;
-		GtkTreeIter iter;
-		if (! gtk_tree_selection_get_selected (selection, &pModel, &iter))  // nothing selected -> select the first row
-		{
-			if (gtk_tree_model_get_iter_first (pModel, &iter))
-				gtk_tree_selection_select_iter (selection, &iter);
-		}
-		
-		gtk_tree_model_foreach (myData.pModelFilter, (GtkTreeModelForeachFunc)_load_pixbuf, NULL);  // load pixbufs of visible rows that don't have been loaded yet
-		
-		gint n = gtk_tree_model_iter_n_children (GTK_TREE_MODEL (myData.pModelFilter), NULL);  // even if n=0, it's probably better to display the empty treeview, to show that there is no result, than hiding it suddenly.
-		g_print ("%d elements x %d\n", n, myData.iTreeViewCellHeight);
-		int iHeight = MAX (myData.iTreeViewCellHeight, n * myData.iTreeViewCellHeight);
-		
-		int x, y;
-		gtk_window_get_position (GTK_WINDOW (gtk_widget_get_toplevel (myData.pMenu)), &x, &y);
-		g_print ("menu: %d; %d\n", x, y);
-		int entry_x, entry_y;
-		gtk_widget_translate_coordinates (myData.pEntry,
-			myData.pMenu,
-			0, 0,
-			&entry_x, &entry_y);
-		g_print ("entry: %d; %d\n", entry_x, entry_y);
-		
-		gtk_scrolled_window_set_min_content_height (GTK_SCROLLED_WINDOW (myData.pScrolledWindow), iHeight);
-		
-		if (iHeight > y + entry_y)  // not enough space to display it above the entry -> display it under
-			gtk_window_move (GTK_WINDOW (myData.pAppsWindow), x + entry_x, y + myData.iTreeViewCellHeight + 2);
-		else
-			gtk_window_move (GTK_WINDOW (myData.pAppsWindow), x + entry_x, y - iHeight);
+		/* Hide the list after: first it's maybe better to prepare the list
+		 * and then modify the menu
+		 * We always search in the list of all apps
+		 */
+		GList *pList = s_pEntries;
+		s_pEntries = NULL;
+		gpointer data[2];
+		data[0] = (gchar *)cText;
+		data[1] = pList;
+		g_slist_foreach (myData.pApps, (GFunc)_create_filtered_list, data);
+
+		// destroy previous results (only if ! bKeepMenu)
+		_remove_results_in_menu (pList, myApplet);
+		// hide the previous applications menu (if it's needed)
+		_hide_other_entries (myApplet);
+		// create/move menu entries
+		_add_results_in_menu (myApplet);
 	}
-	else
+	else // re-add (show) the previous applications menu (if needed)
 	{
-		gtk_widget_hide (myData.pAppsWindow);
-		GtkTreeSelection *selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (myData.pTreeView));
-		gtk_tree_selection_unselect_all (selection);
+		_remove_results_in_menu (s_pEntries, myApplet);
+		s_pEntries = NULL;
+		_show_other_entries (myApplet);
 	}
-	
+
 	return FALSE;
 }
 
-static gboolean _select_next (GtkTreeModel *pModel, GtkTreePath *path, GtkTreeIter *iter, GtkTreeIter *pCurrentIter)
+static void _launch_app_of_selected_item (GtkWidget *pMenu)
 {
-	if (iter->stamp == pCurrentIter->stamp)
+	GtkWidget *pMenuItem = gtk_menu_shell_get_selected_item (GTK_MENU_SHELL (pMenu));
+	if (pMenuItem == myData.pEntry) // 'entry' selected
+		pMenuItem = ((EntryInfo *)s_pEntries->data)->pMenuItem; // select the first entry
+
+	if (pMenuItem != NULL)
 	{
-		if (gtk_tree_model_iter_next (pModel, pCurrentIter))
-		{
-			GtkTreeSelection *selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (myData.pTreeView));
-			gtk_tree_selection_select_iter (selection, pCurrentIter);
-		}
-		return TRUE;
+		GAppInfo *pAppInfo = g_object_get_data (G_OBJECT (pMenuItem), "info");
+		g_app_info_launch (pAppInfo, NULL, NULL, NULL);
 	}
-	return FALSE;
-}
-static gboolean _select_previous (GtkTreeModel *pModel, GtkTreePath *path, GtkTreeIter *iter, GtkTreeIter *pCurrentIter)
-{
-	if (iter->stamp == pCurrentIter->stamp)
+	else // no item, we launch the command
 	{
-		if (gtk_tree_model_iter_previous (pModel, pCurrentIter))
-		{
-			GtkTreeSelection *selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (myData.pTreeView));
-			gtk_tree_selection_select_iter (selection, pCurrentIter);
-		}
-		return TRUE;
+		cairo_dock_launch_command (gtk_entry_get_text (GTK_ENTRY (myData.pEntry)));
+		gtk_widget_hide (myData.pMenu);
 	}
-	return FALSE;
-}
-static gboolean _select_last (GtkTreeModel *pModel, GtkTreePath *path, GtkTreeIter *iter, gpointer data)
-{
-	GtkTreeIter next_iter;
-	memcpy (&next_iter, iter, sizeof (GtkTreeIter));
-	if (! gtk_tree_model_iter_next (pModel, &next_iter))  // it's the last
-	{
-		GtkTreeSelection *selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (myData.pTreeView));
-			gtk_tree_selection_select_iter (selection, iter);
-	}
-	return FALSE;
 }
 
-static gboolean _on_key_pressed_menu (GtkWidget *pMenuItem,
-	GdkEventKey *pEvent,
+// needed to redirect the signal (and launch the selected app)
+static gboolean _on_key_pressed_menu (GtkWidget *pMenu, GdkEventKey *pEvent,
 	GldiModuleInstance *myApplet)
 {
 	// redirect the signal to the entry
 	g_signal_emit_by_name (myData.pEntry, "key-press-event", pEvent, myApplet);
-	
-	// redirect the signal to the apps window if it's already visible.
-	const gchar *cText = gtk_entry_get_text (GTK_ENTRY (myData.pEntry));
-	if (cText && *cText != '\0')  // some text is typed
-	{
-		switch (pEvent->keyval)
-		{
-			case GDK_Return:
-			{
-				_launch_selected_app ();
-				gtk_menu_shell_deactivate (GTK_MENU_SHELL (myData.pMenu));
-				return TRUE;  // don't pass to the menu
-			}
-			case GDK_Up:
-			case GDK_Down:
-			case GDK_Page_Down:
-			case GDK_Page_Up:
-			{
-				GtkTreeSelection *selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (myData.pTreeView));
-				GtkTreeIter iter;
-				if (gtk_tree_selection_get_selected (selection, NULL, &iter))
-				{
-					if (pEvent->keyval == GDK_Up)
-						gtk_tree_model_foreach (myData.pModelFilter, (GtkTreeModelForeachFunc)_select_previous, &iter);
-					else if (pEvent->keyval == GDK_Down)
-						gtk_tree_model_foreach (myData.pModelFilter, (GtkTreeModelForeachFunc)_select_next, &iter);
-					else if (pEvent->keyval == GDK_Page_Up)
-					{
-						if (gtk_tree_model_get_iter_first (myData.pModelFilter, &iter))
-							gtk_tree_selection_select_iter (selection, &iter);
-					}
-					else
-						gtk_tree_model_foreach (myData.pModelFilter, (GtkTreeModelForeachFunc)_select_last, NULL);
-				}
-				else
-				{
-					if (gtk_tree_model_get_iter_first (myData.pModelFilter, &iter))
-						gtk_tree_selection_select_iter (selection, &iter);
-				}
-				return TRUE;  // don't pass to the menu
-			}
-			case GDK_Home:
-			case GDK_End:
-			{
-				return TRUE;  // don't pass to the menu
-			}
-			default:
-			break;
-		}
-	}
-	
+
+	// Launch when we list search result entries
+	if (pEvent->keyval == GDK_KEY_Return && s_pOtherEntries != NULL)
+		_launch_app_of_selected_item (pMenu);
+
 	// pass the signal to the menu (for navigation by arrows)
 	return FALSE;
 }
 
+static void _on_menu_deactivated (GtkWidget *pMenu, G_GNUC_UNUSED gpointer data)
+{
+	// modify the menu (if needed) to have the applications menu next time
+	_remove_results_in_menu (s_pEntries, myApplet);
+	s_pEntries = NULL;
+	gtk_entry_set_text (GTK_ENTRY (myData.pEntry), "");
+}
 
 void cd_menu_append_entry (void)
 {
+	// menu item at the top of the menu with a GtkImage and a GtkEntry
 	GtkWidget *pMenuItem = gtk_image_menu_item_new ();
 
 	GtkWidget *pImage = gtk_image_new_from_stock (GTK_STOCK_EXECUTE, GTK_ICON_SIZE_LARGE_TOOLBAR);
-	gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), pImage);
+	_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), pImage);
 
 	GtkWidget *pEntry = gtk_entry_new ();
 	gtk_container_add (GTK_CONTAINER (pMenuItem), pEntry);
@@ -250,162 +337,27 @@ void cd_menu_append_entry (void)
 	g_signal_connect (myData.pMenu, "key-press-event",
 		G_CALLBACK (_on_key_pressed_menu),
 		myApplet);  // to redirect the signal to the event, or it won't get it.
-	
-	gtk_widget_show_all (pMenuItem);
-	gtk_menu_shell_append (GTK_MENU_SHELL (myData.pMenu), pMenuItem);
-	myData.pEntry = pEntry;  // make it global so that we can grab the focus before we pop the menu up
-}
 
-
-static gboolean _app_match (GAppInfo *pAppInfo, const gchar *key)
-{
-	int n = strlen (key);
-	const gchar *prop = g_app_info_get_executable (pAppInfo);
-	if (!prop || strncmp (prop, key, n) != 0)
-	{
-		prop = g_app_info_get_name (pAppInfo);
-		if (!prop || g_ascii_strncasecmp (prop, key, n) != 0)
-		{
-			prop = g_app_info_get_display_name (pAppInfo);
-			if (!prop || g_ascii_strncasecmp (prop, key, n) != 0)
-			{
-				if (n < 3)
-					return FALSE;
-				prop = g_app_info_get_description (pAppInfo);
-				if (!prop)
-					return FALSE;
-				gchar *lower_prop = g_ascii_strdown (prop, -1);
-				if (!lower_prop || strstr (lower_prop, key) == NULL)
-				{
-					g_free (lower_prop);
-					return FALSE;
-				}
-				g_free (lower_prop);
-			}
-		}
-	}
-	return TRUE;
-}
-
-static gboolean _model_filter (GtkTreeModel *pModel, GtkTreeIter *iter, G_GNUC_UNUSED gpointer data)
-{
-	const gchar *key = gtk_entry_get_text (GTK_ENTRY (myData.pEntry));
-	GAppInfo *pAppInfo = NULL;
-	gtk_tree_model_get (pModel, iter,
-		2, &pAppInfo, -1);
-	
-	return _app_match (G_APP_INFO (pAppInfo), key);
-}
-
-static void _realized (GtkWidget *pTreeView, gpointer data)
-{
-	gtk_tree_view_columns_autosize (GTK_TREE_VIEW (pTreeView));  /// after realized...
-	GtkTreeViewColumn *col = gtk_tree_view_get_column (GTK_TREE_VIEW (pTreeView), 1);
-	gtk_tree_view_column_cell_get_size (col, NULL, NULL, NULL, NULL, &myData.iTreeViewCellHeight);
-	myData.iTreeViewCellHeight = MAX (myData.iTreeViewCellHeight, myData.iPanelDefaultMenuIconSize);
-	int vsep;
-	gtk_widget_style_get (pTreeView, "vertical-separator", &vsep, NULL);
-	myData.iTreeViewCellHeight += 2;  // did I miss something ? it seems not enoough...
-	g_print ("H=%d\n", myData.iTreeViewCellHeight);
-	
-}
-
-static void _add_app_to_model (G_GNUC_UNUSED gchar *cDesktopFilePath, GAppInfo *pAppInfo, GtkListStore *pModel)
-{
-	GtkTreeIter iter;
-	memset (&iter, 0, sizeof (GtkTreeIter));
-	gtk_list_store_append (GTK_LIST_STORE (pModel), &iter);
-	
-	gtk_list_store_set (GTK_LIST_STORE (pModel), &iter,
-		0, g_app_info_get_name (pAppInfo),
-		2, pAppInfo, -1);  // load the pixbufs in a second time, to avoid loading all items at once (it's very expensive).
-}
-
-/*static gboolean _on_button_press_treeview (GtkWidget *pTreeView, GdkEventButton* event, G_GNUC_UNUSED gpointer data)
-{
-	g_print ("%s ()\n", __func__);
-	_launch_selected_app ();
-	return FALSE;
-}*/
-
-static void _on_menu_deactivated (GtkWidget *pMenu, G_GNUC_UNUSED gpointer data)
-{
-	gtk_widget_hide (myData.pAppsWindow);
-	gtk_entry_set_text (GTK_ENTRY (myData.pEntry), "");
-}
-
-
-static void cd_menu_build_entry_model (void)
-{
-	if (myData.bModelLoaded)
-		return;
-	myData.bModelLoaded = TRUE;
-	
-	// build the model
-	GtkListStore *pModel = gtk_list_store_new (3,
-		G_TYPE_STRING,
-		GDK_TYPE_PIXBUF,
-		G_TYPE_POINTER);
-	
-	gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (pModel), 0, GTK_SORT_ASCENDING);
-	g_hash_table_foreach (myData.pKnownApplications, (GHFunc)_add_app_to_model, pModel);  // elements in pKnownApplications are never removed
-	
-	// filter
-	GtkTreeModel *pModelFilter = gtk_tree_model_filter_new (GTK_TREE_MODEL (pModel), NULL);
-	gtk_tree_model_filter_set_visible_func (GTK_TREE_MODEL_FILTER (pModelFilter),
-		(GtkTreeModelFilterVisibleFunc) _model_filter,
-		NULL,
-		(GDestroyNotify)NULL);
-	myData.pModelFilter = pModelFilter;
-	
-	// make a treeview
-	gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (pModel), 0, GTK_SORT_ASCENDING);
-	GtkWidget *pTreeView = gtk_tree_view_new ();
-	gtk_tree_view_set_model (GTK_TREE_VIEW (pTreeView), GTK_TREE_MODEL (pModelFilter));
-	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (pTreeView), FALSE);
-	gtk_tree_view_set_hover_selection (GTK_TREE_VIEW (pTreeView), TRUE);
-	GtkTreeSelection *selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (pTreeView));
-	gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
-	
-	GtkCellRenderer *rend = gtk_cell_renderer_pixbuf_new ();
-	gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (pTreeView), -1, NULL, rend, "pixbuf", 1, NULL);
-	rend = gtk_cell_renderer_text_new ();
-	gtk_tree_view_insert_column_with_attributes (GTK_TREE_VIEW (pTreeView), -1, NULL, rend, "text", 0, NULL);
-	
-	g_signal_connect (G_OBJECT (pTreeView),
-		"realize",
-		G_CALLBACK (_realized),
-		NULL);
-	/*g_signal_connect (G_OBJECT (pTreeView),
-		"button-press-event",
-		G_CALLBACK (_on_button_press_treeview),
-		NULL);
-	g_object_set (pTreeView, "activate-on-single-click", TRUE, NULL);*/
-	myData.pTreeView = pTreeView;
-	
-	// vertical scrollbar
-	GtkWidget *pScrolledWindow = gtk_scrolled_window_new (NULL, NULL);
-	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (pScrolledWindow), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
-	#if GTK_CHECK_VERSION (3, 8, 0)
-	gtk_container_add (GTK_CONTAINER (pScrolledWindow), pTreeView);
-	#else
-	gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (pScrolledWindow), pTreeView);
-	#endif
-	g_object_set (pScrolledWindow, "height-request", myData.iTreeViewCellHeight, NULL);
-	myData.pScrolledWindow = pScrolledWindow;
-	
-	// window
-	myData.pAppsWindow = gtk_window_new (GTK_WINDOW_POPUP);
-	gtk_window_set_resizable (GTK_WINDOW (myData.pAppsWindow), FALSE);
-	gtk_window_set_type_hint (GTK_WINDOW (myData.pAppsWindow), GDK_WINDOW_TYPE_HINT_COMBO);
-	gtk_container_add (GTK_CONTAINER (myData.pAppsWindow), pScrolledWindow);
 	g_signal_connect (G_OBJECT (myData.pMenu),
 		"deactivate",
 		G_CALLBACK (_on_menu_deactivated),
 		NULL);
-	/*gtk_widget_add_events (myData.pAppsWindow,
-		GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK | GDK_SCROLL_MASK |
-		GDK_ENTER_NOTIFY_MASK | GDK_LEAVE_NOTIFY_MASK |
-		GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK);
-	gtk_window_set_modal (GTK_WINDOW (myData.pAppsWindow), TRUE);*/
+	
+	gtk_widget_show_all (pMenuItem);
+	gtk_menu_shell_append (GTK_MENU_SHELL (myData.pMenu), pMenuItem);
+	myData.pEntry = pEntry;  // make it global so that we can grab the focus before we pop the menu up
+
+	// a separator
+	pMenuItem = gtk_separator_menu_item_new ();
+	gtk_widget_show (pMenuItem);
+	gtk_menu_shell_append (GTK_MENU_SHELL (myData.pMenu), pMenuItem);
+}
+
+// free the list of result and the list of the applications menu
+void cd_menu_free_entry (void)
+{
+	if (s_pEntries)
+		g_list_free_full (s_pEntries, g_free);
+	if (s_pOtherEntries)
+		g_list_free (s_pOtherEntries);
 }

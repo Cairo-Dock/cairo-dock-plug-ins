@@ -30,10 +30,10 @@ void cd_menu_register_app (GDesktopAppInfo *pAppInfo)
 	{
 		if (!myData.bFirstLaunch)
 		{
-			g_print ("+++ %s is NEW\n", cDesktopFilePath);
 			myData.pNewApps = g_list_prepend (myData.pNewApps, pAppInfo);
 		}
 		g_hash_table_insert (myData.pKnownApplications, g_strdup (cDesktopFilePath), g_object_ref (pAppInfo));  // since the info won't change for a given app, no need to re-insert; so we ref the appinfo, and keep it alive.
+		myData.pApps = g_slist_prepend (myData.pApps, pAppInfo);
 	}
 }
 
@@ -98,6 +98,7 @@ void cd_menu_check_for_new_apps (void)
 void cd_menu_free_apps (void)
 {
 	g_hash_table_destroy (myData.pKnownApplications);
+	g_slist_free (myData.pApps);
 }
 
 

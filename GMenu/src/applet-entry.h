@@ -26,6 +26,6 @@
 
 void cd_menu_append_entry (void);
 
-#define cd_menu_invalidate_entry_model() myData.bModelLoaded = FALSE
+void cd_menu_free_entry (void);
 
 #endif

@@ -62,12 +62,7 @@ struct _AppletData {
 	GList *pNewApps;  // a list of GAppInfo that were not present before.
 	// entry
 	GtkWidget *pEntry;
-	GtkWidget *pAppsWindow;
-	GtkTreeModel *pModelFilter;
-	gint iTreeViewCellHeight;
-	GtkWidget *pScrolledWindow;
-	GtkWidget *pTreeView;
-	gboolean bModelLoaded;
+	GSList *pApps; // a (singly linked) list of GAppInfo: better to check all items
 	// recent files sub-menu
 	GtkWidget *pRecentMenuItem;
 	gint iNbRecentItems;

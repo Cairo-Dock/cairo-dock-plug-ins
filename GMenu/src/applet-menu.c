@@ -60,8 +60,6 @@ static gboolean _make_menu_from_trees (CDSharedMemory *pSharedMemory)
 	if (myConfig.iShowQuit != CD_GMENU_SHOW_QUIT_NONE)
 		cd_menu_append_poweroff_to_menu (myData.pMenu, myApplet);
 	
-	cd_menu_invalidate_entry_model ();
-	
 	cd_menu_check_for_new_apps ();
 	
 	if (myData.bShowMenuPending)

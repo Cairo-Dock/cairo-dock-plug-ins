@@ -25,6 +25,7 @@
 #include "applet-run-dialog.h"
 #include "applet-menu.h"
 #include "applet-apps.h"
+#include "applet-entry.h"
 #include "applet-config.h"
 
 
@@ -55,4 +56,6 @@ CD_APPLET_RESET_DATA_BEGIN
 	cd_run_dialog_free ();
 	
 	cd_menu_free_apps ();
+	
+	cd_menu_free_entry ();
 CD_APPLET_RESET_DATA_END
