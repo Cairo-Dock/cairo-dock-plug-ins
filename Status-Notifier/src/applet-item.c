@@ -319,7 +319,7 @@ static void _on_item_proxy_destroyed (DBusGProxy *proxy_item, CDStatusNotifierIt
 	CD_APPLET_ENTER;
 	//g_print ("=== this item (%s) was suddenly removed\n", __func__, pItem->cService);
 	
-	myData.pItems = g_list_remove (myData.pItems, pItem);
+	cd_status_notifier_remove_item_in_list (pItem);
 	
 	if (myConfig.bCompactMode)
 	{

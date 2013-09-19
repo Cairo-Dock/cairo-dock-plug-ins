@@ -137,7 +137,7 @@ static void _on_get_applications_from_watcher (DBusGProxy *proxy, DBusGProxyCall
 			if (! pItem)
 				continue;
 			cd_debug ("===  => + %s", pItem->cTitle?pItem->cTitle:pItem->cLabel);
-			myData.pItems = g_list_prepend (myData.pItems, pItem);
+			cd_status_notifier_add_item_in_list (pItem);
 		}
 		
 		g_free (v);

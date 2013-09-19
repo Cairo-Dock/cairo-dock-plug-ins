@@ -100,7 +100,8 @@ void cd_satus_notifier_add_new_item_with_default (const gchar *cService, const g
 	pItem->iPosition = iPosition;
 	if (pItem->cLabel == NULL && pItem->cTitle == NULL)
 		pItem->cLabel = g_strdup (pItem->cId);  // cService is often a dbus name like :1.355
-	myData.pItems = g_list_prepend (myData.pItems, pItem);
+
+	cd_status_notifier_add_item_in_list (pItem);
 	cd_debug ("item '%s' appended", pItem->cId);
 	
 	if (! _item_is_visible (pItem))  // don't show a passive item.
@@ -116,12 +117,28 @@ void cd_satus_notifier_add_new_item_with_default (const gchar *cService, const g
 	}
 }
 
+void cd_status_notifier_add_item_in_list (CDStatusNotifierItem *pItem)
+{
+	if (myData.pItems == NULL)
+		gldi_icon_insert_in_container (myIcon, myContainer, ! CAIRO_DOCK_ANIMATE_ICON);
+
+	myData.pItems = g_list_prepend (myData.pItems, pItem);
+}
+
+void cd_status_notifier_remove_item_in_list (CDStatusNotifierItem *pItem)
+{
+	myData.pItems = g_list_remove (myData.pItems, pItem);
+
+	if (myData.pItems == NULL)
+		gldi_icon_detach (myIcon);
+}
+
 void cd_satus_notifier_remove_item (const gchar *cService, int iPosition)
 {
 	CDStatusNotifierItem *pItem = (cService ? cd_satus_notifier_find_item_from_service (cService) : cd_satus_notifier_find_item_from_position (iPosition));
 	g_return_if_fail (pItem != NULL);
 	
-	myData.pItems = g_list_remove (myData.pItems, pItem);
+	cd_status_notifier_remove_item_in_list (pItem);
 	
 	if (! _item_is_visible (pItem))  // the item was passive, therefore not visible.
 		return;

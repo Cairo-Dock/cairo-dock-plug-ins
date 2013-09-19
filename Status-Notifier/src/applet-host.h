@@ -32,6 +32,16 @@ void cd_satus_notifier_add_new_item_with_default (const gchar *cService, const g
 
 #define cd_satus_notifier_add_new_item(cService, cObjectPath, iPosition) cd_satus_notifier_add_new_item_with_default (cService, cObjectPath, iPosition, NULL, NULL, NULL)
 
+/**
+ * Add item in the main list and show the icon (if hidden)
+ */
+void cd_status_notifier_add_item_in_list (CDStatusNotifierItem *pItem);
+
+/**
+ * Remove an item from the main list and hide the icon (if needed)
+ */
+void cd_status_notifier_remove_item_in_list (CDStatusNotifierItem *pItem);
+
 void cd_satus_notifier_remove_item (const gchar *cService, int iPosition);
 
 

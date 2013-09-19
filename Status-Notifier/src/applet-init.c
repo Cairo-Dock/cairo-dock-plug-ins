@@ -51,9 +51,13 @@ CD_APPLET_INIT_BEGIN
 	{
 		CD_APPLET_SET_DESKLET_RENDERER ("Simple");
 	}
-	
-	if (!myConfig.bCompactMode && myDock)
-		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
+
+	if (myDock)
+	{
+		if (!myConfig.bCompactMode)
+			CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;  // set the default icon if none is specified in conf.
+		gldi_icon_detach (myIcon);
+	}
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_MIDDLE_CLICK_EVENT;
