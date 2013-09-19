@@ -25,6 +25,15 @@
 #define __USE_BSD 1
 #include <string.h>
 #include <dirent.h>
+/* With GLib 2.37.93, dirent.h is now included (in glib/gdir.h) but
+ * when '__USE_BSD' is not defined and then DT_DIR and DT_LNK are not defined
+ */
+#ifndef DT_DIR
+	#define DT_DIR 4
+#endif
+#ifndef DT_LNK
+	#define DT_LNK 10
+#endif
 #include <errno.h>
 #include <sys/types.h>
 #include <unistd.h>
