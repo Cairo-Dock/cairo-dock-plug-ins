@@ -42,6 +42,8 @@ gboolean on_window_size_position_changed (GldiModuleInstance *myApplet, GldiWind
 
 gboolean on_change_window_order (GldiModuleInstance *myApplet);
 
+gboolean on_change_window_state (GldiModuleInstance *myApplet, GldiWindowActor *actor, gboolean bHiddenChanged, G_GNUC_UNUSED gboolean bMaximizedChanged, G_GNUC_UNUSED gboolean bFullScreenChanged);
+
 gboolean on_change_desktop_names (GldiModuleInstance *myApplet);
 
 

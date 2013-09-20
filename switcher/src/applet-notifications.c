@@ -425,7 +425,6 @@ gboolean on_change_desktop (GldiModuleInstance *myApplet)
 gboolean on_change_screen_geometry (GldiModuleInstance *myApplet)
 {
 	CD_APPLET_ENTER;
-	cd_debug ("");
 	cd_switcher_trigger_update_from_screen_geometry (TRUE);  // TRUE = now
 	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 }
@@ -440,10 +439,17 @@ gboolean on_change_wallpaper (GldiModuleInstance *myApplet)
 gboolean on_window_size_position_changed (GldiModuleInstance *myApplet, GldiWindowsManager *actor)
 {
 	CD_APPLET_ENTER;
-	cd_debug ("");
 	_cd_switcher_trigger_redraw (myApplet);
 	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 }
+
+gboolean on_change_window_state (GldiModuleInstance *myApplet, G_GNUC_UNUSED GldiWindowActor *actor, G_GNUC_UNUSED gboolean bHiddenChanged, G_GNUC_UNUSED gboolean bMaximizedChanged, G_GNUC_UNUSED gboolean bFullScreenChanged)
+{
+	CD_APPLET_ENTER;
+	_cd_switcher_trigger_redraw (myApplet);
+	CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
+}
+
 
 gboolean on_change_window_order (GldiModuleInstance *myApplet)
 {

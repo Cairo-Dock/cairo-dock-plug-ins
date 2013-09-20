@@ -80,17 +80,13 @@ CD_APPLET_INIT_BEGIN
 		(GldiNotificationFunc) on_window_size_position_changed,
 		GLDI_RUN_AFTER, myApplet);
 	gldi_object_register_notification (&myWindowObjectMgr,
-		NOTIFICATION_WINDOW_CREATED,
-		(GldiNotificationFunc) on_window_size_position_changed,
-		GLDI_RUN_AFTER, myApplet);
-	gldi_object_register_notification (&myWindowObjectMgr,
-		NOTIFICATION_WINDOW_DESTROYED,
-		(GldiNotificationFunc) on_window_size_position_changed,
-		GLDI_RUN_AFTER, myApplet);
-	gldi_object_register_notification (&myWindowObjectMgr,
 		NOTIFICATION_WINDOW_Z_ORDER_CHANGED,
 		(GldiNotificationFunc) on_change_window_order,
-		GLDI_RUN_AFTER, myApplet);
+		GLDI_RUN_AFTER, myApplet);  // also handles creation/destruction of a window, since this event will change the stack order
+	gldi_object_register_notification (&myWindowObjectMgr,
+		NOTIFICATION_WINDOW_STATE_CHANGED,
+		(GldiNotificationFunc) on_change_window_state,
+		GLDI_RUN_AFTER, myApplet);  // minimizing a window doesn't change the z-order, so we register to this event too
 	gldi_object_register_notification (&myDesktopMgr,
 		NOTIFICATION_DESKTOP_NAMES_CHANGED,
 		(GldiNotificationFunc) on_change_desktop_names,
@@ -165,14 +161,11 @@ CD_APPLET_STOP_BEGIN
 		NOTIFICATION_WINDOW_SIZE_POSITION_CHANGED,
 		(GldiNotificationFunc) on_window_size_position_changed, myApplet);
 	gldi_object_remove_notification (&myWindowObjectMgr,
-		NOTIFICATION_WINDOW_CREATED,
-		(GldiNotificationFunc) on_window_size_position_changed, myApplet);
-	gldi_object_remove_notification (&myWindowObjectMgr,
-		NOTIFICATION_WINDOW_DESTROYED,
-		(GldiNotificationFunc) on_window_size_position_changed, myApplet);
-	gldi_object_remove_notification (&myWindowObjectMgr,
 		NOTIFICATION_WINDOW_Z_ORDER_CHANGED,
 		(GldiNotificationFunc) on_change_window_order, myApplet);
+	gldi_object_remove_notification (&myWindowObjectMgr,
+		NOTIFICATION_WINDOW_STATE_CHANGED,
+		(GldiNotificationFunc) on_change_window_state, myApplet);
 	gldi_object_remove_notification (&myDesktopMgr,
 		NOTIFICATION_DESKTOP_NAMES_CHANGED,
 		(GldiNotificationFunc) on_change_desktop_names, myApplet);
