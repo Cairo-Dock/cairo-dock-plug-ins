@@ -37,11 +37,10 @@ static void _remove_double_separators (GtkWidget *pWidget)
 
 	gboolean bPrevIsSeparator = TRUE; // to remove the first entry if it's a separator
 
-	GList *pChildren = gtk_container_get_children (pContainer);
+	GList *pChildren = gtk_container_get_children (GTK_CONTAINER (pWidget));
 	GList *ic;
 	GtkWidget *pCurrentWidget;
 	GtkWidget *pSubMenu;
-	GtkContainer *pContainer = GTK_CONTAINER (pWidget);
 	for (ic = pChildren; ic != NULL; ic = ic->next)
 	{
 		pCurrentWidget = ic->data;
