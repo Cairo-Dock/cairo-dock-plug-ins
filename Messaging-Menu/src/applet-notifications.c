@@ -33,6 +33,7 @@
  * I don't know why we have this bug... hope we'll remove it soon!
  */
 
+// only used with older version (when INDICATOR_MESSAGES_WITH_IND3 is not defined)
 /// REMOVE ME WHEN IT'S POSSIBLE! :)
 #ifdef FORCE_REMOVE_DOUBLE_SEPARATORS
 static void _remove_double_separators (GtkContainer *pContainer)
@@ -41,9 +42,10 @@ static void _remove_double_separators (GtkContainer *pContainer)
 		return;
 
 	gboolean bPrevIsSeparator = TRUE; // to remove the first entry if it's a separator
+	GList *pChildren = gtk_container_get_children (pContainer);
 	GList *ic;
 	GtkWidget *pIcon;
-	for (ic = gtk_container_get_children (pContainer); ic != NULL; ic = ic->next)
+	for (ic = pChildren; ic != NULL; ic = ic->next)
 	{
 		pIcon = ic->data;
 		if (GTK_IS_SEPARATOR_MENU_ITEM (pIcon))
@@ -55,7 +57,7 @@ static void _remove_double_separators (GtkContainer *pContainer)
 		else
 			bPrevIsSeparator = FALSE;
 	}
-	g_list_free (ic);
+	g_list_free (pChildren);
 }
 #endif
 
