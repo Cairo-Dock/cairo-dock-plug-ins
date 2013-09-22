@@ -321,11 +321,15 @@ static gboolean _on_entry_changed (GtkWidget *pEntry, GldiModuleInstance *myAppl
 	return FALSE;
 }
 
+// needed to know if we press 'return' key when the entry container is selected
+GtkWidget *s_pEntryContainer = NULL;
+
 static void _launch_app_of_selected_item (GtkWidget *pMenu)
 {
 	GtkWidget *pMenuItem = gtk_menu_shell_get_selected_item (GTK_MENU_SHELL (pMenu));
-	if (pMenuItem == myData.pEntry) // 'entry' selected
-		pMenuItem = ((EntryInfo *)s_pEntries->data)->pMenuItem; // select the first entry
+
+	if (pMenuItem == s_pEntryContainer) // 'entry' selected
+		pMenuItem = ((EntryInfo *)s_pEntries->data)->pMenuItem; // select the first item
 
 	if (pMenuItem != NULL)
 	{
@@ -388,6 +392,7 @@ void cd_menu_append_entry (void)
 	gtk_widget_show_all (pMenuItem);
 	gtk_menu_shell_append (GTK_MENU_SHELL (myData.pMenu), pMenuItem);
 	myData.pEntry = pEntry;  // make it global so that we can grab the focus before we pop the menu up
+	s_pEntryContainer = pMenuItem;
 
 	// a separator
 	pMenuItem = gtk_separator_menu_item_new ();
