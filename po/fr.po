@@ -791,13 +791,13 @@ msgstr "Afficher/cacher le menu des applications"
 msgid "Show/hide the quick-launch dialog"
 msgstr "Afficher/cacher la fenêtre de lancement rapide"
 
-#: ../GMenu-old/src/applet-menu-callbacks.c:177 ../GMenu/src/applet-menu.c:175
-#: ../GMenu-old/data/messages:111 ../GMenu/data/messages:111
+#: ../GMenu-old/src/applet-menu-callbacks.c:177 ../GMenu/src/applet-menu.c:173
+#: ../GMenu-old/data/messages:113 ../GMenu/data/messages:113
 msgid "Logout"
 msgstr "Se déconnecter"
 
-#: ../GMenu-old/src/applet-menu-callbacks.c:180 ../GMenu/src/applet-menu.c:178
-#: ../GMenu-old/data/messages:113 ../GMenu/data/messages:113
+#: ../GMenu-old/src/applet-menu-callbacks.c:180 ../GMenu/src/applet-menu.c:176
+#: ../GMenu-old/data/messages:115 ../GMenu/data/messages:115
 msgid "Shutdown"
 msgstr "Éteindre"
 
@@ -830,7 +830,7 @@ msgid "Clear the list of the recently used documents?"
 msgstr "Vider la liste des Documents récents ?"
 
 #: ../GMenu-old/src/applet-run-dialog.c:352
-#: ../GMenu/src/applet-run-dialog.c:354 ../Scooby-Do/data/messages:111
+#: ../GMenu/src/applet-run-dialog.c:363 ../Scooby-Do/data/messages:111
 msgid "Enter a command to launch:"
 msgstr "Entrez une commande à lancer :"
 
@@ -860,7 +860,7 @@ msgstr ""
 msgid "Show/hide the current application menu"
 msgstr "Afficher/cacher le menu principal des applications"
 
-#: ../Global-Menu/src/applet-notifications.c:98
+#: ../Global-Menu/src/applet-notifications.c:99
 msgid "The application didn't send its menu to us."
 msgstr "L'application n'a pas de menu ou ne nous l'a pas envoyé."
 
@@ -953,7 +953,7 @@ msgstr ""
 msgid "Show/hide the Messaging menu"
 msgstr "Afficher/cacher le menu des messages"
 
-#: ../Messaging-Menu/src/applet-notifications.c:76
+#: ../Messaging-Menu/src/applet-notifications.c:78
 msgid ""
 "The Messaging service did not reply.\n"
 "Please check that it is correctly installed."
@@ -1390,7 +1390,7 @@ msgid "Open in new window"
 msgstr "Ouvrir dans une nouvelle fenêtre"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:432
-#: ../dnd2share/src/applet-notifications.c:488
+#: ../dnd2share/src/applet-notifications.c:485
 msgid "Open file"
 msgstr "Ouvrir le fichier"
 
@@ -2400,19 +2400,19 @@ msgstr "Envoyer le contenu du presse-papier"
 msgid "History"
 msgstr "Historique"
 
-#: ../dnd2share/src/applet-notifications.c:490
+#: ../dnd2share/src/applet-notifications.c:487
 msgid "Get text"
 msgstr "Récupérer le texte"
 
-#: ../dnd2share/src/applet-notifications.c:492
+#: ../dnd2share/src/applet-notifications.c:489
 msgid "Remove from history"
 msgstr "Enlever de l'Historique"
 
-#: ../dnd2share/src/applet-notifications.c:495
+#: ../dnd2share/src/applet-notifications.c:492
 msgid "Clear History"
 msgstr "Vider l'Historique"
 
-#: ../dnd2share/src/applet-notifications.c:500
+#: ../dnd2share/src/applet-notifications.c:497
 msgid "Use only a files hosting site"
 msgstr "Utiliser uniquement un site d'hébergement de fichiers."
 
@@ -3199,8 +3199,8 @@ msgid "until charged"
 msgstr "avant d'être chargée"
 
 #: ../powermanager/src/powermanager-draw.c:231 ../wifi/src/applet-draw.c:30
-#: ../Clipper/data/messages:97 ../GMenu-old/data/messages:109
-#: ../GMenu/data/messages:109 ../Network-Monitor/data/messages:221
+#: ../Clipper/data/messages:97 ../GMenu-old/data/messages:111
+#: ../GMenu/data/messages:111 ../Network-Monitor/data/messages:221
 #: ../dnd2share/data/messages:109 ../dustbin/data/messages:101
 #: ../wifi/data/messages:145
 msgid "None"
@@ -3669,7 +3669,7 @@ msgstr "Courant"
 #: ../switcher/src/applet-notifications.c:228
 #: ../switcher/src/applet-notifications.c:247
 #: ../switcher/src/applet-notifications.c:403
-#: ../switcher/src/applet-notifications.c:504
+#: ../switcher/src/applet-notifications.c:510
 msgid "Desktop"
 msgstr "Bureau"
 
@@ -4522,8 +4522,8 @@ msgstr "Nom de l'icône tel qu'il apparaîtra dans son étiquette :"
 #: ../Cairo-Penguin/data/messages:9 ../Clipper/data/messages:9
 #: ../Composite-Manager/data/messages:9 ../Disks/data/messages:9
 #: ../Doncky/data/messages:9 ../GMenu-old/data/messages:9
-#: ../GMenu-old/data/messages:105 ../GMenu/data/messages:9
-#: ../GMenu/data/messages:105 ../Indicator-Generic/data/messages:9
+#: ../GMenu-old/data/messages:107 ../GMenu/data/messages:9
+#: ../GMenu/data/messages:107 ../Indicator-Generic/data/messages:9
 #: ../Messaging-Menu/data/messages:9 ../RSSreader/data/messages:11
 #: ../RSSreader/data/messages:129 ../Recent-Events/data/messages:9
 #: ../Screenshot/data/messages:9 ../Status-Notifier/data/messages:9
@@ -5580,8 +5580,8 @@ msgstr "Presse-papier"
 msgid "Selection"
 msgstr "Sélection"
 
-#: ../Clipper/data/messages:103 ../GMenu-old/data/messages:115
-#: ../GMenu/data/messages:115 ../show-mouse/data/messages:15
+#: ../Clipper/data/messages:103 ../GMenu-old/data/messages:117
+#: ../GMenu/data/messages:117 ../show-mouse/data/messages:15
 msgid "Both"
 msgstr "Les deux"
 
@@ -6207,10 +6207,14 @@ msgid "Load settings' menu?"
 msgstr "Charger le menu des paramètres ?"
 
 #: ../GMenu-old/data/messages:103 ../GMenu/data/messages:103
-msgid "Command to use for configuring the menu:"
-msgstr "Commande à utiliser pour configurer le menu :"
+msgid "Display the description in search's results?"
+msgstr "Afficher la description dans les résultats de la recherche ?"
 
-#: ../GMenu-old/data/messages:107 ../GMenu/data/messages:107
+#: ../GMenu-old/data/messages:105 ../GMenu/data/messages:105
+msgid "Command to use for configuring the menu:"
+msgstr "Commande à utiliser pour configurer le menu :"
+
+#: ../GMenu-old/data/messages:109 ../GMenu/data/messages:109
 msgid "Show Logout and/or Shutdown : "
 msgstr "Afficher « Se déconnecter » et/ou « Éteindre » : "
 
@@ -6309,7 +6313,7 @@ msgstr "C'est la sensibilité afin de savoir si l'animation est jouée ou non."
 
 #: ../Impulse/data/messages:97
 msgid "Sensitivity of the animation:"
-msgstr "Sensibilité de l'animation :"
+msgstr "Sensibilité de l'animation :"
 
 #: ../Impulse/data/messages:99 ../Impulse/data/messages:109
 msgid "More"
@@ -6325,7 +6329,7 @@ msgstr "en ms."
 
 #: ../Impulse/data/messages:105
 msgid "Time between two animations:"
-msgstr "Temps entre deux animations :"
+msgstr "Temps entre deux animations :"
 
 #: ../Impulse/data/messages:111
 msgid "Action at Startup"
@@ -6341,11 +6345,11 @@ msgstr "Cacher l'icône ?"
 
 #: ../Impulse/data/messages:119
 msgid "Image when the applet is active:"
-msgstr "Image lorsque l'applet est active :"
+msgstr "Image lorsque l'applet est active :"
 
 #: ../Impulse/data/messages:121
 msgid "Image when the applet is inactive:"
-msgstr "Image lorsque l'applet est inactive :"
+msgstr "Image lorsque l'applet est inactive :"
 
 #: ../Impulse/data/messages:123 ../musicPlayer/data/messages:205
 #: ../tomboy/data/messages:23
@@ -6362,7 +6366,7 @@ msgstr "0 dans la plupart des cas"
 
 #: ../Impulse/data/messages:129
 msgid "Index of the source:"
-msgstr "Index de la source :"
+msgstr "Index de la source :"
 
 #: ../Indicator-Generic/data/messages:91
 msgid "Separated by a semi-colon ';'"
@@ -6370,7 +6374,7 @@ msgstr "Séparé par un point virgule « ; »"
 
 #: ../Indicator-Generic/data/messages:93
 msgid "Blacklist these indicators:"
-msgstr "Interdire ces indicateurs :"
+msgstr "Interdire ces indicateurs :"
 
 #: ../Messaging-Menu/data/messages:15 ../Network-Monitor/data/messages:17
 #: ../Status-Notifier/data/messages:19 ../System-Monitor/data/messages:15
@@ -6420,7 +6424,7 @@ msgstr "Couleur d'arrière plan à ajouter dans ce cas"
 msgid ""
 "Animation of the icon when one of the application demands your attention :"
 msgstr ""
-"Animation de l'icône quand une des applications demande votre attention :"
+"Animation de l'icône quand une des applications demande votre attention :"
 
 #: ../Network-Monitor/data/messages:7
 msgid "Leave empty to use the connection name."
@@ -6445,7 +6449,7 @@ msgstr ""
 
 #: ../Network-Monitor/data/messages:105
 msgid "Info displayed by the icon:"
-msgstr "Informations afficher par l'icône :"
+msgstr "Informations afficher par l'icône :"
 
 #: ../Network-Monitor/data/messages:107
 msgid "Wifi signal"
@@ -6461,11 +6465,11 @@ msgstr "Par défaut, la première interface active est utilisée."
 
 #: ../Network-Monitor/data/messages:113
 msgid "Connection interface to monitor:"
-msgstr "Interface de la connexion à contrôler :"
+msgstr "Interface de la connexion à contrôler :"
 
 #: ../Network-Monitor/data/messages:115
 msgid "Display numeric values:"
-msgstr "Afficher des valeurs numériques :"
+msgstr "Afficher des valeurs numériques :"
 
 #: ../Network-Monitor/data/messages:123 ../System-Monitor/data/messages:173
 #: ../wifi/data/messages:159
@@ -6482,7 +6486,7 @@ msgstr "Fluidité de l'animation de transition entre deux valeurs:"
 
 #: ../Network-Monitor/data/messages:127
 msgid "Animation of the icon when connecting:"
-msgstr "Animation de l'icône en lors de la connexion :"
+msgstr "Animation de l'icône en lors de la connexion :"
 
 #: ../Network-Monitor/data/messages:129
 msgid ""
@@ -6495,12 +6499,12 @@ msgstr ""
 #: ../Network-Monitor/data/messages:131
 msgid "User command to show Wireless Configuration:"
 msgstr ""
-"Commande personnalisée pour afficher l'interface de configuration du Wifi :"
+"Commande personnalisée pour afficher l'interface de configuration du Wifi :"
 
 #: ../Network-Monitor/data/messages:135 ../System-Monitor/data/messages:187
 #: ../netspeed/data/messages:167
 msgid "User command to display a system monitor:"
-msgstr "Commande utilisateur pour afficher un moniteur système :"
+msgstr "Commande utilisateur pour afficher un moniteur système :"
 
 #: ../Network-Monitor/data/messages:137
 msgid "Net Speed"
@@ -6518,11 +6522,11 @@ msgstr "C'est la couleur du graphique pour un signal de mauvaise qualité."
 
 #: ../Network-Monitor/data/messages:177
 msgid "Delays between net speed checks:"
-msgstr "Durée entre les relevés de la vitesse de connexion :"
+msgstr "Durée entre les relevés de la vitesse de connexion :"
 
 #: ../Network-Monitor/data/messages:181
 msgid "Choose the style of the display:"
-msgstr "Choisir le style de l'affichage :"
+msgstr "Choisir le style de l'affichage :"
 
 #: ../Network-Monitor/data/messages:187 ../Network-Monitor/data/messages:217
 #: ../powermanager/data/messages:137
@@ -6531,7 +6535,7 @@ msgstr "Icônes"
 
 #: ../Network-Monitor/data/messages:219
 msgid "Effect to apply on the icon according to strength :"
-msgstr "Effet à appliquer à l'icône en fonction de la puissance :"
+msgstr "Effet à appliquer à l'icône en fonction de la puissance :"
 
 #: ../Network-Monitor/data/messages:223
 msgid "Zoom"
@@ -6595,7 +6599,7 @@ msgstr "en secondes, si vous n'avez pas Network-Manager"
 
 #: ../Network-Monitor/data/messages:265
 msgid "Delays between wifi signal checks:"
-msgstr "Durée entre les contrôles de la connexion wifi :"
+msgstr "Durée entre les contrôles de la connexion wifi :"
 
 #: ../RSSreader/data/messages:7
 msgid "Leave empty to use the title of the RSS feed."
@@ -6611,15 +6615,15 @@ msgstr "Entrez une adresse de flux RSS/Atom"
 
 #: ../RSSreader/data/messages:99
 msgid "RSS login (optional):"
-msgstr "Nom d'utilisateur pour le flux RSS (optionnel) :"
+msgstr "Nom d'utilisateur pour le flux RSS (optionnel) :"
 
 #: ../RSSreader/data/messages:101
 msgid "RSS password (optional):"
-msgstr "Mot de passe pour le flux RSS (optionnel) :"
+msgstr "Mot de passe pour le flux RSS (optionnel) :"
 
 #: ../RSSreader/data/messages:109
 msgid "Notify about feed updates:"
-msgstr "Notifier à propos des mises à jour du/des flux :"
+msgstr "Notifier à propos des mises à jour du/des flux :"
 
 #: ../RSSreader/data/messages:113 ../powermanager/data/messages:189
 msgid "Icon animation"
@@ -6639,7 +6643,7 @@ msgstr "Laissez vide pour utiliser l'animation de notification par défaut."
 
 #: ../RSSreader/data/messages:121 ../powermanager/data/messages:197
 msgid "Animation of the icon:"
-msgstr "Animation de l'icône :"
+msgstr "Animation de l'icône :"
 
 #: ../RSSreader/data/messages:123 ../powermanager/data/messages:199
 msgid ""
@@ -6650,11 +6654,11 @@ msgstr ""
 
 #: ../RSSreader/data/messages:125 ../powermanager/data/messages:201
 msgid "Duration of the notification:"
-msgstr "Durée de la notification :"
+msgstr "Durée de la notification :"
 
 #: ../RSSreader/data/messages:127
 msgid "Open the feed with the following program:"
-msgstr "Ouvrir le flux avec le programme suivant :"
+msgstr "Ouvrir le flux avec le programme suivant :"
 
 #: ../RSSreader/data/messages:135
 msgid "Font to be used for the title"
@@ -6662,7 +6666,7 @@ msgstr "Police utilisée pour le titre"
 
 #: ../RSSreader/data/messages:137
 msgid "Title font:"
-msgstr "Police du titre :"
+msgstr "Police du titre :"
 
 #: ../RSSreader/data/messages:139
 msgid "Colour to be used for the title"
@@ -6670,11 +6674,11 @@ msgstr "Couleur utilisée pour le titre"
 
 #: ../RSSreader/data/messages:141
 msgid "Title colour:"
-msgstr "Couleur du titre :"
+msgstr "Couleur du titre :"
 
 #: ../RSSreader/data/messages:143
 msgid "Alignment of the title:"
-msgstr "Alignement du titre :"
+msgstr "Alignement du titre :"
 
 #: ../RSSreader/data/messages:145
 msgid "left"
@@ -6686,27 +6690,27 @@ msgstr "À droite"
 
 #: ../RSSreader/data/messages:151
 msgid "Font to be used for the feed lines"
-msgstr "Police utilisée pour le texte :"
+msgstr "Police utilisée pour le texte :"
 
 #: ../RSSreader/data/messages:153
 msgid "Feed lines font:"
-msgstr "Police du texte :"
+msgstr "Police du texte :"
 
 #: ../RSSreader/data/messages:155
 msgid "Colour to be used for the feed lines"
-msgstr "Couleur des lignes extérieures :"
+msgstr "Couleur des lignes extérieures :"
 
 #: ../RSSreader/data/messages:157
 msgid "Feed lines colour:"
-msgstr "Couleur du texte :"
+msgstr "Couleur du texte :"
 
 #: ../RSSreader/data/messages:159
 msgid "Left margin for the feed lines:"
-msgstr "Marge à gauche pour le texte :"
+msgstr "Marge à gauche pour le texte :"
 
 #: ../RSSreader/data/messages:161
 msgid "Space between 2 feed lines:"
-msgstr "Espace entre 2 lignes :"
+msgstr "Espace entre 2 lignes :"
 
 #: ../RSSreader/data/messages:163
 msgid "Logo"
@@ -6726,7 +6730,7 @@ msgstr "Ajustez afin d'augmenter/diminuer la taille du logo"
 
 #: ../RSSreader/data/messages:171
 msgid "Logo size:"
-msgstr "Taille du logo :"
+msgstr "Taille du logo :"
 
 #: ../RSSreader/data/messages:173 ../dock-rendering/data/messages:47
 #: ../keyboard-indicator/data/messages:127
@@ -6751,7 +6755,7 @@ msgstr "Aide"
 
 #: ../Remote-Control/data/messages:5
 msgid "Shortkey to trigger the applet:"
-msgstr "Raccourci pour activer l'applet :"
+msgstr "Raccourci pour activer l'applet :"
 
 #: ../Remote-Control/data/messages:7
 msgid "Dock to control initially"
@@ -6759,15 +6763,15 @@ msgstr "Dock a contrôler au départ"
 
 #: ../Remote-Control/data/messages:9 ../Scooby-Do/data/messages:23
 msgid "Animation of the current icon :"
-msgstr "Animation de l'icône sélectionnée :"
+msgstr "Animation de l'icône sélectionnée :"
 
 #: ../Remote-Control/data/messages:13 ../Scooby-Do/data/messages:21
 msgid "Duration of the stop animation :"
-msgstr "Durée de l'animation d'arrêt"
+msgstr "Durée de l'animation d'arrêt :"
 
 #: ../Scooby-Do/data/messages:3
 msgid "Shortkey to enable/disable the finder mode:"
-msgstr "Raccourci pour activer/désactiver le mode recherche :"
+msgstr "Raccourci pour activer/désactiver le mode recherche :"
 
 #: ../Scooby-Do/data/messages:5
 msgid ""
@@ -6779,7 +6783,7 @@ msgstr ""
 
 #: ../Scooby-Do/data/messages:7
 msgid "Maximum number of results :"
-msgstr "Nombre maximal de résultats :"
+msgstr "Nombre maximal de résultats :"
 
 #: ../Scooby-Do/data/messages:9
 msgid ""
@@ -6791,7 +6795,7 @@ msgstr ""
 
 #: ../Scooby-Do/data/messages:11
 msgid "Number of lines to display :"
-msgstr "Nombre de lignes à afficher :"
+msgstr "Nombre de lignes à afficher :"
 
 #: ../Scooby-Do/data/messages:13
 msgid "Animations"
@@ -6799,19 +6803,19 @@ msgstr "Animations"
 
 #: ../Scooby-Do/data/messages:17
 msgid "Duration of the appearance animation :"
-msgstr "Durée de l'animation d'apparition :"
+msgstr "Durée de l'animation d'apparition :"
 
 #: ../Scooby-Do/data/messages:27
 msgid "Font used to display what you type:"
-msgstr "Police utilisée pour afficher ce que vous tapez :"
+msgstr "Police utilisée pour afficher ce que vous tapez :"
 
 #: ../Scooby-Do/data/messages:29
 msgid "Color of the text's frame  :"
-msgstr "Couleur du cadre du texte :"
+msgstr "Couleur du cadre du texte :"
 
 #: ../Scooby-Do/data/messages:31
 msgid "Font size, relative to the dock size:"
-msgstr "Taille de la police, en pourcentage de la taille du dock :"
+msgstr "Taille de la police, en pourcentage de la taille du dock :"
 
 #: ../Scooby-Do/data/messages:33
 msgid "between 1 and 9, the higher, the bigger."
@@ -6819,7 +6823,7 @@ msgstr "entre 1 et 9, du plus fin au plus large."
 
 #: ../Scooby-Do/data/messages:35
 msgid "Text size:"
-msgstr "Poids du texte :"
+msgstr "Poids du texte :"
 
 #: ../Scooby-Do/data/messages:37 ../keyboard-indicator/data/messages:119
 msgid "Outline text?"
@@ -6827,11 +6831,11 @@ msgstr "Tracer le contour du texte ?"
 
 #: ../Scooby-Do/data/messages:39 ../clock/data/messages:155
 msgid "Text colour:"
-msgstr "Couleur du texte :"
+msgstr "Couleur du texte :"
 
 #: ../Scooby-Do/data/messages:41
 msgid "Character background colour:"
-msgstr "Couleur d'arrière plan des caractères :"
+msgstr "Couleur d'arrière plan des caractères :"
 
 #: ../Scooby-Do/data/messages:43
 msgid "Write text on the top of the dock?"
@@ -6955,11 +6959,11 @@ msgstr "Il est possible d'exécuter des commandes et même des faire des calculs
 
 #: ../Screenshot/data/messages:91
 msgid "Shortkey to take a screenshot"
-msgstr "Raccourci clavier pour prendre une capture d'écran :"
+msgstr "Raccourci clavier pour prendre une capture d'écran"
 
 #: ../Screenshot/data/messages:93
 msgid "Save image in"
-msgstr "Sauvegarder les images dans le répertoire :"
+msgstr "Sauvegarder les images dans"
 
 #: ../Sound-Effects/data/messages:3
 msgid "Play a sound on click ?"
@@ -6993,7 +6997,7 @@ msgstr "Élevé"
 
 #: ../Status-Notifier/data/messages:13
 msgid "Image's filename :"
-msgstr "Nom du fichier de l'image :"
+msgstr "Nom du fichier de l'image :"
 
 #: ../Status-Notifier/data/messages:105
 msgid "Hide inactive items"
@@ -7001,7 +7005,7 @@ msgstr "Cacher les éléments inactifs"
 
 #: ../Status-Notifier/data/messages:107
 msgid "How to display items:"
-msgstr "Comment afficher les éléments :"
+msgstr "Comment afficher les éléments :"
 
 #: ../Status-Notifier/data/messages:109
 msgid "Compact"
@@ -7017,7 +7021,7 @@ msgstr "Autoriser l'icône à se redimensionner automatiquement ?"
 
 #: ../Status-Notifier/data/messages:115
 msgid "Number of lines to pack items in:"
-msgstr "Nombre de lignes pour y afficher les éléments :"
+msgstr "Nombre de lignes pour y afficher les éléments :"
 
 #: ../Status-Notifier/data/messages:119
 msgid "Left click pops up the items' menu"
@@ -7076,7 +7080,7 @@ msgstr "Afficher la mémoire libre au lieu de la mémoire utilisée ?"
 
 #: ../System-Monitor/data/messages:161
 msgid "Display values :"
-msgstr "Afficher les valeurs :"
+msgstr "Afficher les valeurs :"
 
 #: ../System-Monitor/data/messages:171
 msgid "Delay between refreshes:"
@@ -7084,7 +7088,7 @@ msgstr "Délai entre les rafraîchissements"
 
 #: ../System-Monitor/data/messages:175 ../wifi/data/messages:161
 msgid "How smooth is the movement?"
-msgstr "Fluidité du mouvement :"
+msgstr "Fluidité du mouvement ?"
 
 #: ../System-Monitor/data/messages:177
 msgid "Alerts"
@@ -7100,7 +7104,7 @@ msgstr "Jouer un son durant l'alerte ?"
 
 #: ../System-Monitor/data/messages:183
 msgid "Path to sound file:"
-msgstr "Chemin du fichier son :"
+msgstr "Chemin du fichier son :"
 
 #: ../System-Monitor/data/messages:185
 msgid "System-Monitor"
@@ -7137,7 +7141,7 @@ msgstr ""
 
 #: ../System-Monitor/data/messages:203
 msgid "Number of programs to display in the top list:"
-msgstr "Nombre de programmes à afficher dans la top liste :"
+msgstr "Nombre de programmes à afficher dans la top liste :"
 
 #: ../System-Monitor/data/messages:205
 msgid "The first colour of the gradient used to display the top list."
@@ -7145,7 +7149,7 @@ msgstr "Première couleur du dégradé pour le texte de la top liste."
 
 #: ../System-Monitor/data/messages:207
 msgid "Top list start colour:"
-msgstr "Couleur du haut de la top liste :"
+msgstr "Couleur du haut de la top liste :"
 
 #: ../System-Monitor/data/messages:209
 msgid "The second colour of the gradient used to display the top list."
@@ -7153,7 +7157,7 @@ msgstr "Seconde couleur du dégradé pour le texte de la top liste."
 
 #: ../System-Monitor/data/messages:211
 msgid "Top list stop colour:"
-msgstr "Couleur du bas de la top liste :"
+msgstr "Couleur du bas de la top liste :"
 
 #: ../System-Monitor/data/messages:213
 msgid "Show top memory usage in %?"
@@ -7161,7 +7165,7 @@ msgstr "Afficher l'usage mémoire du top en % ?"
 
 #: ../System-Monitor/data/messages:217
 msgid "Delay between top list refreshes:"
-msgstr "Délai entre les rafraîchissements de la top liste :"
+msgstr "Délai entre les rafraîchissements de la top liste :"
 
 #: ../System-Monitor/data/messages:219
 msgid "Graphic Card temperature"
@@ -7177,11 +7181,11 @@ msgstr ""
 
 #: ../System-Monitor/data/messages:223
 msgid "Lower limit of graphic card temperature:"
-msgstr "Limite basse de température :"
+msgstr "Limite basse de température :"
 
 #: ../System-Monitor/data/messages:227
 msgid "Upper limit of graphic card temperature:"
-msgstr "Limite haute de température :"
+msgstr "Limite haute de température :"
 
 #: ../System-Monitor/data/messages:229
 msgid "in celcius."
@@ -7189,7 +7193,7 @@ msgstr "en celsius."
 
 #: ../System-Monitor/data/messages:231
 msgid "Notification limit of graphic card temperature:"
-msgstr "Limite basse de température :"
+msgstr "Limite basse de température :"
 
 #: ../Toons/data/messages:103
 msgid "Mean delay between winks:"
@@ -7221,7 +7225,7 @@ msgstr "Luminosité actuelle"
 
 #: ../Xgamma/data/messages:93 ../alsaMixer/data/messages:137
 msgid "Variation for 1 mouse scroll, in %:"
-msgstr "Variation pour un cran de molette, en % :"
+msgstr "Variation pour un cran de molette, en % :"
 
 #: ../Xgamma/data/messages:95
 msgid "Use 0 for none."
@@ -7229,15 +7233,15 @@ msgstr "Mettez 0 pour ne pas l'utiliser."
 
 #: ../Xgamma/data/messages:97
 msgid "Brightness to apply automatically on startup:"
-msgstr "Luminosité à appliquer automatiquement au démarrage :"
+msgstr "Luminosité à appliquer automatiquement au démarrage :"
 
 #: ../Xgamma/data/messages:99
 msgid "Shortkey to increase the brightness:"
-msgstr "Raccourci clavier pour augmenter la luminosité :"
+msgstr "Raccourci clavier pour augmenter la luminosité :"
 
 #: ../Xgamma/data/messages:101
 msgid "Shortkey to decrease the brightness:"
-msgstr "Raccourci clavier pour diminuer la luminosité :"
+msgstr "Raccourci clavier pour diminuer la luminosité :"
 
 #: ../alsaMixer/data/messages:9
 msgid "Sound card name"
@@ -7245,7 +7249,7 @@ msgstr "Nom de la carte son"
 
 #: ../alsaMixer/data/messages:101
 msgid "Display volume :"
-msgstr "Afficher le volume :"
+msgstr "Afficher le volume :"
 
 #: ../alsaMixer/data/messages:113 ../powermanager/data/messages:107
 #: ../wifi/data/messages:105
@@ -7266,7 +7270,7 @@ msgstr "Icône « cassé » :"
 
 #: ../alsaMixer/data/messages:135
 msgid "Shortkey to show/hide the sound control dialog:"
-msgstr "Raccourci clavier pour montrer/cacher le dialogue :"
+msgstr "Raccourci clavier pour montrer/cacher le dialogue :"
 
 #: ../alsaMixer/data/messages:139
 msgid "Hide the scale when mouse leaves the desklet?"
@@ -7278,11 +7282,11 @@ msgstr "Alsa"
 
 #: ../alsaMixer/data/messages:143
 msgid "Sound card:"
-msgstr "Carte son à contrôler :"
+msgstr "Carte son à contrôler :"
 
 #: ../alsaMixer/data/messages:145
 msgid "Select channel:"
-msgstr "Choisissez quel canal contrôler :"
+msgstr "Choisissez quel canal contrôler :"
 
 #: ../alsaMixer/data/messages:147
 msgid ""
@@ -7297,11 +7301,11 @@ msgstr ""
 
 #: ../alsaMixer/data/messages:149
 msgid "Choose a second channel to control (optional):"
-msgstr "Optionnellement, choississez un second canal à contrôler :"
+msgstr "Optionnellement, choississez un second canal à contrôler :"
 
 #: ../alsaMixer/data/messages:151
 msgid "Specific command to run to show an advanced sound mixer:"
-msgstr "Commande spécifique pour montrer un mixer de son avancé :"
+msgstr "Commande spécifique pour montrer un mixer de son avancé :"
 
 #: ../clock/data/messages:7
 msgid "Leave empty to use the location name if available."
@@ -7309,7 +7313,7 @@ msgstr "Laissez vide pour utiliser le nom de l'emplacement si disponible."
 
 #: ../clock/data/messages:103
 msgid "Show the date:"
-msgstr "Montrer la date :"
+msgstr "Montrer la date :"
 
 #: ../clock/data/messages:111
 msgid "for digital format only."
@@ -7339,7 +7343,7 @@ msgstr ""
 
 #: ../clock/data/messages:121
 msgid "Display seconds with smooth animation for a duration of:"
-msgstr "Afficher les secondes avec une animation douce d'une durée de :"
+msgstr "Afficher les secondes avec une animation douce d'une durée de :"
 
 #: ../clock/data/messages:123
 msgid "E.g. :Europe/Paris, :Japan, etc. Leave empty for local time."
@@ -7349,7 +7353,7 @@ msgstr ""
 
 #: ../clock/data/messages:125
 msgid "Timezone:"
-msgstr "Fuseau horaire :"
+msgstr "Fuseau horaire :"
 
 #: ../clock/data/messages:127
 msgid "Use the tasks from the following task-manager:"
@@ -7369,7 +7373,7 @@ msgstr ""
 
 #: ../clock/data/messages:137
 msgid "Select the view :"
-msgstr "Choisissez la vue :"
+msgstr "Choisissez la vue :"
 
 #: ../clock/data/messages:139
 msgid "Analogue"
@@ -7385,11 +7389,11 @@ msgstr "Vue analogique"
 
 #: ../clock/data/messages:145
 msgid "List of available themes for analogue display:"
-msgstr "Liste des thèmes disponible pour l'affichage analogique :"
+msgstr "Liste des thèmes disponible pour l'affichage analogique :"
 
 #: ../clock/data/messages:147
 msgid "Date text colour:"
-msgstr "Couleur du texte de la date :"
+msgstr "Couleur du texte de la date :"
 
 #: ../clock/data/messages:149
 msgid "Digital View"
@@ -7409,15 +7413,15 @@ msgstr "Mettre 0 pour ne pas l'avoir"
 
 #: ../clock/data/messages:159
 msgid "Outline thickness:"
-msgstr "Grosseur de la ligne extérieure :"
+msgstr "Grosseur de la ligne extérieure :"
 
 #: ../clock/data/messages:161
 msgid "Outline colour:"
-msgstr "Couleur de la ligne extérieure :"
+msgstr "Couleur de la ligne extérieure :"
 
 #: ../clock/data/messages:163
 msgid "Layout of the text:"
-msgstr "Agencement du texte :"
+msgstr "Agencement du texte :"
 
 #: ../clock/data/messages:165 ../switcher/data/messages:101
 msgid "Automatic"
@@ -7433,7 +7437,7 @@ msgstr "Sur deux lignes"
 
 #: ../clock/data/messages:171
 msgid "Ratio to apply on text :"
-msgstr "Ratio à appliquer sur le texte :"
+msgstr "Ratio à appliquer sur le texte :"
 
 #: ../clock/data/messages:175
 msgid "Configure time and date"
@@ -7445,7 +7449,7 @@ msgstr "Laissez vide pour exécuter la commande par défaut."
 
 #: ../clock/data/messages:179
 msgid "Specific command to run:"
-msgstr "Commande spécifique à exécuter :"
+msgstr "Commande spécifique à exécuter :"
 
 #: ../clock/data/messages:183
 msgid ""
@@ -7455,7 +7459,7 @@ msgstr ""
 
 #: ../clock/data/messages:185
 msgid "Add or remove an alarm:"
-msgstr "Ajoute ou retire une alarme :"
+msgstr "Ajoute ou retire une alarme :"
 
 #: ../dialog-rendering/data/messages:1
 msgid "Comics"
@@ -7465,17 +7469,17 @@ msgstr "Bande-dessinée"
 #: ../dialog-rendering/data/messages:21 ../dialog-rendering/data/messages:29
 #: ../dock-rendering/data/messages:69
 msgid "Corner radius:"
-msgstr "Rayon des coins :"
+msgstr "Rayon des coins :"
 
 #: ../dialog-rendering/data/messages:5 ../dialog-rendering/data/messages:13
 #: ../dialog-rendering/data/messages:23 ../dialog-rendering/data/messages:31
 msgid "Border width:"
-msgstr "Largeur de la bordure :"
+msgstr "Largeur de la bordure :"
 
 #: ../dialog-rendering/data/messages:7 ../dialog-rendering/data/messages:15
 #: ../dialog-rendering/data/messages:25 ../dialog-rendering/data/messages:33
 msgid "Bubble's line colour:"
-msgstr "Couleur du contour de la bulle :"
+msgstr "Couleur du contour de la bulle :"
 
 #: ../dialog-rendering/data/messages:9
 msgid "Modern"
@@ -7483,7 +7487,7 @@ msgstr "Moderne"
 
 #: ../dialog-rendering/data/messages:17
 msgid "Space between lines of the tip :"
-msgstr "Espace entre les lignes de la pointe :"
+msgstr "Espace entre les lignes de la pointe :"
 
 #: ../dialog-rendering/data/messages:19
 msgid "Tooltip"
@@ -7495,7 +7499,7 @@ msgstr "Courbé"
 
 #: ../dialog-rendering/data/messages:35
 msgid "Curvature of the tip :"
-msgstr "Courbure de la pointe :"
+msgstr "Courbure de la pointe :"
 
 #: ../dialog-rendering/data/messages:37
 msgid "Curve the sides too?"
@@ -7511,11 +7515,11 @@ msgstr "Autoriser les info-bulles ?"
 
 #: ../dnd2share/data/messages:93
 msgid "Duration of the info-bubbles :"
-msgstr "Durée des info-bulles :"
+msgstr "Durée des info-bulles :"
 
 #: ../dnd2share/data/messages:97
 msgid "Number of items to keep in the history :"
-msgstr "Taille de l'historique :"
+msgstr "Taille de l'historique :"
 
 #: ../dnd2share/data/messages:99
 msgid "Keep a copy of each uploaded image?"
@@ -7531,11 +7535,11 @@ msgstr "Si oui, afficher la dernière image sur l'icône ?"
 
 #: ../dnd2share/data/messages:105
 msgid "Animation of the icon during upload :"
-msgstr "Animation de l'icone durant l'upload :"
+msgstr "Animation de l'icone durant l'upload :"
 
 #: ../dnd2share/data/messages:107
 msgid "Use the following service to make the URL smaller:"
-msgstr "Utiliser le service suivant pour raccourcir l'URL :"
+msgstr "Utiliser le service suivant pour raccourcir l'URL :"
 
 #: ../dnd2share/data/messages:111
 msgid "Tiny-URL"
@@ -7555,7 +7559,7 @@ msgstr "en Ko/s - 0 signifie illimité"
 
 #: ../dnd2share/data/messages:119
 msgid "Maximum upload rate:"
-msgstr "Vitesse d'envoi maximale :"
+msgstr "Vitesse d'envoi maximale :"
 
 #: ../dnd2share/data/messages:121
 msgid "Sites"
@@ -7567,7 +7571,7 @@ msgstr "Utiliser un hébergeur de fichiers pour tous les types de fichiers ?"
 
 #: ../dnd2share/data/messages:125
 msgid "Preferred site for texts hosting :"
-msgstr "Site préféré pour l'hébergement des textes :"
+msgstr "Site préféré pour l'hébergement des textes :"
 
 #: ../dnd2share/data/messages:127 ../dnd2share/data/messages:139
 #: ../dnd2share/data/messages:151 ../dnd2share/data/messages:157
@@ -7592,7 +7596,7 @@ msgstr "Codepad.org"
 
 #: ../dnd2share/data/messages:137
 msgid "Preferred site for images hosting :"
-msgstr "Site préféré pour l'hébergement des images :"
+msgstr "Site préféré pour l'hébergement des images :"
 
 #: ../dnd2share/data/messages:141
 msgid "Uppix.com"
@@ -7612,7 +7616,7 @@ msgstr "Imgur.com"
 
 #: ../dnd2share/data/messages:149
 msgid "Preferred site for videos hosting :"
-msgstr "Site préféré pour l'hébergement des vidéos :"
+msgstr "Site préféré pour l'hébergement des vidéos :"
 
 #: ../dnd2share/data/messages:153
 msgid "VideoBin.org"
@@ -7620,7 +7624,7 @@ msgstr "VideoBin.org"
 
 #: ../dnd2share/data/messages:155
 msgid "Preferred site for files hosting :"
-msgstr "Site préféré pour l'hébergement des fichiers :"
+msgstr "Site préféré pour l'hébergement des fichiers :"
 
 #: ../dnd2share/data/messages:159
 msgid "dl.free.fr"
@@ -7645,19 +7649,19 @@ msgstr ""
 
 #: ../dnd2share/data/messages:167
 msgid "Custom script for text upload :"
-msgstr "Script personnel pour l'upload des textes :"
+msgstr "Script personnel pour l'upload des textes :"
 
 #: ../dnd2share/data/messages:171
 msgid "Custom script for image upload :"
-msgstr "Script personnel pour l'upload des images :"
+msgstr "Script personnel pour l'upload des images :"
 
 #: ../dnd2share/data/messages:175
 msgid "Custom script for video upload :"
-msgstr "Script personnel pour l'upload des vidéos :"
+msgstr "Script personnel pour l'upload des vidéos :"
 
 #: ../dnd2share/data/messages:179
 msgid "Custom script for file upload :"
-msgstr "Script personnel pour l'upload des fichiers :"
+msgstr "Script personnel pour l'upload des fichiers :"
 
 #: ../dnd2share/data/messages:181
 msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
@@ -7667,7 +7671,7 @@ msgstr ""
 
 #: ../dnd2share/data/messages:183
 msgid "Path of a custom DropBox / UbuntuOne folder :"
-msgstr "Chemin du dossier DropBox / UbuntuOne :"
+msgstr "Chemin du dossier DropBox / UbuntuOne :"
 
 #: ../dnd2share/data/messages:185
 msgid "Otherwise, your user name will be used when possible."
@@ -7687,7 +7691,7 @@ msgstr "Plus la valeur est faible, plus le point de vue est bas sur le plan."
 
 #: ../dock-rendering/data/messages:5
 msgid "Height of the vanishing point:"
-msgstr "Hauteur du point de fuite :"
+msgstr "Hauteur du point de fuite :"
 
 #: ../dock-rendering/data/messages:9
 msgid "The lower the value, the flatter the curve will appear."
@@ -7695,11 +7699,11 @@ msgstr "Plus la valeur est faible, plus la courbure semblera aplatie."
 
 #: ../dock-rendering/data/messages:11
 msgid "Curvature of the curve in percent:"
-msgstr "Pourcentage de courbure :"
+msgstr "Pourcentage de courbure :"
 
 #: ../dock-rendering/data/messages:15
 msgid "Amplitude of the curve:"
-msgstr "Amplitude de la courbure :"
+msgstr "Amplitude de la courbure :"
 
 #: ../dock-rendering/data/messages:19
 msgid "Physically separate groups of icons"
@@ -7728,11 +7732,11 @@ msgstr "Grille"
 
 #: ../dock-rendering/data/messages:33
 msgid "Space between columns:"
-msgstr "Espacement entre les colonnes :"
+msgstr "Espacement entre les colonnes :"
 
 #: ../dock-rendering/data/messages:35 ../dock-rendering/data/messages:113
 msgid "Space between rows:"
-msgstr "Espacement entre les lignes :"
+msgstr "Espacement entre les lignes :"
 
 #: ../dock-rendering/data/messages:37
 msgid "Only for sub-docks."
@@ -7748,11 +7752,11 @@ msgstr "Plein écran"
 
 #: ../dock-rendering/data/messages:45
 msgid "Zoom when mouse hovers an icon:"
-msgstr "Zoom au survol d'une icône :"
+msgstr "Zoom au survol d'une icône :"
 
 #: ../dock-rendering/data/messages:51
 msgid "Sinusoidal wave radius:"
-msgstr "Rayon de la vague sinusoïdale :"
+msgstr "Rayon de la vague sinusoïdale :"
 
 #: ../dock-rendering/data/messages:53
 msgid "Use a linear wave rather than a sinusoidal wave?"
@@ -7772,11 +7776,11 @@ msgstr "Dessiner un fond ?"
 
 #: ../dock-rendering/data/messages:61
 msgid "First gradient colour :"
-msgstr "Première couleur du dégradé :"
+msgstr "Première couleur du dégradé :"
 
 #: ../dock-rendering/data/messages:63
 msgid "Second gradient colour :"
-msgstr "Seconde couleur du dégradé :"
+msgstr "Seconde couleur du dégradé :"
 
 #: ../dock-rendering/data/messages:65
 msgid "Top to bottom gradient?"
@@ -7788,19 +7792,19 @@ msgstr "Dégradé de droite à gauche ?"
 
 #: ../dock-rendering/data/messages:71
 msgid "Border line width :"
-msgstr "Largeur de la ligne externe :"
+msgstr "Largeur de la ligne externe :"
 
 #: ../dock-rendering/data/messages:73
 msgid "Border line colour :"
-msgstr "Couleur de la ligne externe :"
+msgstr "Couleur de la ligne externe :"
 
 #: ../dock-rendering/data/messages:75
 msgid "Arrow width :"
-msgstr "Largeur de la flèche :"
+msgstr "Largeur de la flèche :"
 
 #: ../dock-rendering/data/messages:77
 msgid "Arrow height:"
-msgstr "Hauteur de la flèche :"
+msgstr "Hauteur de la flèche :"
 
 #: ../dock-rendering/data/messages:79
 msgid "Scroll bar"
@@ -7808,11 +7812,11 @@ msgstr "Barre de défilement"
 
 #: ../dock-rendering/data/messages:81
 msgid "Color of the scroll bar's outline:"
-msgstr "Couleur du contour de la barre :"
+msgstr "Couleur du contour de la barre :"
 
 #: ../dock-rendering/data/messages:83
 msgid "Color of the scroll bar's inside:"
-msgstr "Couleur de l'intérieur de la barre :"
+msgstr "Couleur de l'intérieur de la barre :"
 
 #: ../dock-rendering/data/messages:85
 msgid "Color of the scroll grip:"
@@ -7824,7 +7828,7 @@ msgstr "Au plus c'est grand, au plus tôt la parabole sera courbée"
 
 #: ../dock-rendering/data/messages:91
 msgid "Curvature:"
-msgstr "Courbure :"
+msgstr "Courbure :"
 
 #: ../dock-rendering/data/messages:93
 msgid "The parabola will be restricted to a rectangle of this proportion."
@@ -7832,7 +7836,7 @@ msgstr "La parabole sera constricte vers un rectangle avec ces proportions."
 
 #: ../dock-rendering/data/messages:95
 msgid "Height/width ratio:"
-msgstr "Ratio hauteur/largeur :"
+msgstr "Ratio hauteur/largeur :"
 
 #: ../dock-rendering/data/messages:97
 msgid "0 represents a flat wave, 1 represents maximum wave curvature."
@@ -7841,7 +7845,7 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:99 ../dock-rendering/data/messages:119
 msgid "Magnitude of the wave:"
-msgstr "Magnitude de la vague :"
+msgstr "Magnitude de la vague :"
 
 #: ../dock-rendering/data/messages:101
 msgid "Curve towards the outside?"
@@ -7849,7 +7853,7 @@ msgstr "Courber vers l'extérieur ?"
 
 #: ../dock-rendering/data/messages:105
 msgid "Space between icons and their captions:"
-msgstr "Espace entre les icônes et leur étiquette :"
+msgstr "Espace entre les icônes et leur étiquette :"
 
 #: ../dock-rendering/data/messages:107
 msgid ""
@@ -7865,7 +7869,7 @@ msgstr "Dessiner les étiquettes pendant le dépliage ?"
 
 #: ../dock-rendering/data/messages:115
 msgid "Space between icons:"
-msgstr "Espacement entre les icônes :"
+msgstr "Espacement entre les icônes :"
 
 #: ../dock-rendering/data/messages:117
 msgid "0 represents a flat wave, 1 means the wave is identical to other views."
@@ -7875,7 +7879,7 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:121
 msgid "Number of icons on the first row:"
-msgstr "Nombre d'icônes dans la 1ère ligne :"
+msgstr "Nombre d'icônes dans la 1ère ligne :"
 
 #: ../dock-rendering/data/messages:123
 msgid ""
@@ -7887,7 +7891,7 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:125
 msgid "Cone width:"
-msgstr "Ouverture du cône :"
+msgstr "Ouverture du cône :"
 
 #: ../dock-rendering/data/messages:127
 msgid "Set transparency to 0 to not use it. This is quite slow with cairo."
@@ -7897,11 +7901,11 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:129
 msgid "Bow colour:"
-msgstr "Couleur de l'arc :"
+msgstr "Couleur de l'arc :"
 
 #: ../dock-rendering/data/messages:131
 msgid "Line colour:"
-msgstr "Couleur de la ligne :"
+msgstr "Couleur de la ligne :"
 
 #: ../dock-rendering/data/messages:134
 msgid ""
@@ -8005,7 +8009,7 @@ msgstr ""
 
 #: ../drop-indicator/data/messages:7
 msgid "Image for the drag & drop animation:"
-msgstr "Image pour l'animation lors d'un dépôt :"
+msgstr "Image pour l'animation lors d'un dépôt :"
 
 #: ../drop-indicator/data/messages:9
 msgid ""
@@ -8017,7 +8021,7 @@ msgstr ""
 
 #: ../drop-indicator/data/messages:11
 msgid "Image when hovering an icon :"
-msgstr "Image lors du survol d'une icône :"
+msgstr "Image lors du survol d'une icône :"
 
 #: ../drop-indicator/data/messages:13
 msgid "Animation"
@@ -8025,7 +8029,7 @@ msgstr "Animation"
 
 #: ../drop-indicator/data/messages:15
 msgid "Speed:"
-msgstr "Vitesse :"
+msgstr "Vitesse :"
 
 #: ../drop-indicator/data/messages:17
 msgid "Number of round per second."
@@ -8034,7 +8038,7 @@ msgstr "Nombre de tours par seconde."
 #: ../drop-indicator/data/messages:19 ../illusion/data/messages:79
 #: ../show-mouse/data/messages:7
 msgid "Rotation speed :"
-msgstr "Vitesse de rotation :"
+msgstr "Vitesse de rotation :"
 
 #: ../dustbin/data/messages:89
 msgid "Theme"
@@ -8042,11 +8046,11 @@ msgstr "Thème"
 
 #: ../dustbin/data/messages:93
 msgid "Name of the image to overwrite the theme's empty image :"
-msgstr "Nom d'une image pour écraser l'image vide du thème :"
+msgstr "Nom d'une image pour écraser l'image vide du thème :"
 
 #: ../dustbin/data/messages:95
 msgid "Name of the image to overwrite the theme's full image :"
-msgstr "Nom d'une image pour écraser l'image pleine du thème :"
+msgstr "Nom d'une image pour écraser l'image pleine du thème :"
 
 #: ../dustbin/data/messages:97
 msgid "Config"
@@ -8054,7 +8058,7 @@ msgstr "Config"
 
 #: ../dustbin/data/messages:99
 msgid "Display the following quick info :"
-msgstr "Afficher l'info-rapide suivante :"
+msgstr "Afficher l'info-rapide suivante :"
 
 #: ../dustbin/data/messages:103
 msgid "Number of files"
@@ -8116,19 +8120,19 @@ msgstr "Particules"
 #: ../icon-effect/data/messages:123 ../icon-effect/data/messages:145
 #: ../icon-effect/data/messages:167 ../illusion/data/messages:45
 msgid "Number of particles:"
-msgstr "Nombre de particules :"
+msgstr "Nombre de particules :"
 
 #: ../icon-effect/data/messages:81 ../icon-effect/data/messages:105
 #: ../icon-effect/data/messages:125 ../icon-effect/data/messages:147
 #: ../icon-effect/data/messages:169 ../icon-effect/data/messages:199
 #: ../illusion/data/messages:47 ../show-mouse/data/messages:25
 msgid "Particle size:"
-msgstr "Taille des particules :"
+msgstr "Taille des particules :"
 
 #: ../icon-effect/data/messages:83 ../icon-effect/data/messages:127
 #: ../icon-effect/data/messages:149 ../illusion/data/messages:49
 msgid "Particle speed:"
-msgstr "Vitesse des particules :"
+msgstr "Vitesse des particules :"
 
 #: ../icon-effect/data/messages:185
 msgid "It particularily fits a dark wallpaper or a dark theme."
@@ -8137,11 +8141,11 @@ msgstr ""
 
 #: ../icon-effect/data/messages:191 ../show-mouse/data/messages:3
 msgid "Number of sources:"
-msgstr "Nombre de sources :"
+msgstr "Nombre de sources :"
 
 #: ../icon-effect/data/messages:193 ../show-mouse/data/messages:17
 msgid "Number of particles per source:"
-msgstr "Nombre de particules par source :"
+msgstr "Nombre de particules par source :"
 
 #: ../icon-effect/data/messages:195
 msgid "In percentage of the icon's size."
@@ -8149,7 +8153,7 @@ msgstr "En pourcentage de la taille de l'icône."
 
 #: ../icon-effect/data/messages:197
 msgid "Radius of the explosion:"
-msgstr "Rayon de l'explosion :"
+msgstr "Rayon de l'explosion :"
 
 #: ../icon-effect/data/messages:201
 msgid "Show the launching?"
@@ -8157,11 +8161,11 @@ msgstr "Montrer le lancement ?"
 
 #: ../icon-effect/data/messages:203
 msgid "Particle friction:"
-msgstr "Friction des particules :"
+msgstr "Friction des particules :"
 
 #: ../illusion/data/messages:3
 msgid "Animation on disappearance:"
-msgstr "Animation de disparition :"
+msgstr "Animation de disparition :"
 
 #: ../illusion/data/messages:5 ../illusion/data/messages:19
 #: ../illusion/data/messages:31
@@ -8194,7 +8198,7 @@ msgstr "Aléatoire"
 
 #: ../illusion/data/messages:17
 msgid "Animation on appearance:"
-msgstr "Animation d'apparition :"
+msgstr "Animation d'apparition :"
 
 #: ../illusion/data/messages:51
 msgid "Evaporate upwards?"
@@ -8202,11 +8206,11 @@ msgstr "Évaporation ascendante ?"
 
 #: ../illusion/data/messages:61 ../illusion/data/messages:71
 msgid "Number of pieces:"
-msgstr "Nombre de pièces :"
+msgstr "Nombre de pièces :"
 
 #: ../illusion/data/messages:63
 msgid "Explosion radius:"
-msgstr "Rayon de l'explosion :"
+msgstr "Rayon de l'explosion :"
 
 #: ../illusion/data/messages:65
 msgid "Break the icon into cubes?"
@@ -8222,7 +8226,7 @@ msgstr "Plus c'est grand, plus vite l'icône va s'effondrer vers le centre."
 
 #: ../illusion/data/messages:83
 msgid "Attraction of the Black Hole:"
-msgstr "Attraction du trou noir :"
+msgstr "Attraction du trou noir :"
 
 #: ../keyboard-indicator/data/messages:99
 msgid "General"
@@ -8240,13 +8244,13 @@ msgstr "Afficher le statut des CAPS et NUM locks en info rapide ?"
 msgid "Icon image name for NumLock status:"
 msgstr ""
 "Nom de l'image à utiliser lorsque le verrouillage numérique (NumLock) est "
-"activé :"
+"activé :"
 
 #: ../keyboard-indicator/data/messages:107
 msgid "Icon image name for CapsLock status:"
 msgstr ""
 "Nom de l'image à utiliser lorsque le verrouillage des majuscules (CapsLock) "
-"est activé :"
+"est activé :"
 
 #: ../keyboard-indicator/data/messages:109
 msgid ""
@@ -8258,7 +8262,7 @@ msgstr ""
 
 #: ../keyboard-indicator/data/messages:111
 msgid "Duration of the transition animation:"
-msgstr "Durée de l'animation de transition :"
+msgstr "Durée de l'animation de transition :"
 
 #: ../keyboard-indicator/data/messages:117
 msgid "Text colour"
@@ -8273,7 +8277,7 @@ msgstr ""
 
 #: ../keyboard-indicator/data/messages:123
 msgid "Relative size of the text :"
-msgstr "Taille relative du texte :"
+msgstr "Taille relative du texte :"
 
 #: ../keyboard-indicator/data/messages:125
 msgid "smaller"
@@ -8306,7 +8310,7 @@ msgstr "Personnalisation"
 
 #: ../logout/data/messages:111
 msgid "Icon image name to use when the system has to be rebooted:"
-msgstr "Nom de l'icône à afficher lorsque le système doit redémarrer :"
+msgstr "Nom de l'icône à afficher lorsque le système doit redémarrer :"
 
 #: ../logout/data/messages:113
 msgid ""
@@ -8325,7 +8329,7 @@ msgstr "Commandes"
 
 #: ../logout/data/messages:123
 msgid "User-defined command to execute for logout:"
-msgstr "Commande spécifique à exécuter pour se déloguer :"
+msgstr "Commande spécifique à exécuter pour se déloguer :"
 
 #: ../logout/data/messages:125
 msgid ""
@@ -8339,7 +8343,7 @@ msgstr ""
 
 #: ../logout/data/messages:127
 msgid "User-defined command to execute for shutdown:"
-msgstr "Commande spécifique à exécuter pour éteindre :"
+msgstr "Commande spécifique à exécuter pour éteindre :"
 
 #: ../logout/data/messages:129
 msgid ""
@@ -8352,7 +8356,7 @@ msgstr ""
 
 #: ../logout/data/messages:131
 msgid "User-defined command to execute for changing user:"
-msgstr "Commande spécifique à exécuter pour changer d'utilisateur :"
+msgstr "Commande spécifique à exécuter pour changer d'utilisateur :"
 
 #: ../mail/data/messages:99
 msgid ""
@@ -8394,7 +8398,7 @@ msgstr "Laissez vide pour utiliser la vue par défaut des sous-docks."
 #: ../stack/data/messages:97 ../switcher/data/messages:145
 #: ../tomboy/data/messages:121 ../weather/data/messages:135
 msgid "Sub-dock view name:"
-msgstr "Nom de la vue utilisée pour le sous-dock :"
+msgstr "Nom de la vue utilisée pour le sous-dock :"
 
 #: ../mail/data/messages:123
 msgid "Action on new mail"
@@ -8423,7 +8427,7 @@ msgstr "Nombre maximal de nouveaux messages montrés ?"
 
 #: ../mail/data/messages:139 ../tomboy/data/messages:117
 msgid "Duration of the dialog:"
-msgstr "Durée des dialogues :"
+msgstr "Durée des dialogues :"
 
 #: ../mail/data/messages:141
 msgid "Animation when new message arrives:"
@@ -8459,7 +8463,7 @@ msgstr "Ajouter du flou sur les mouvements de la souris ?"
 
 #: ../motion-blur/data/messages:5
 msgid "Blur amount:"
-msgstr "Quantité de flou :"
+msgstr "Quantité de flou :"
 
 #: ../musicPlayer/data/messages:7
 msgid "Leave it empty to display the name of the player currently controlled."
@@ -8548,7 +8552,7 @@ msgstr "Voler l'icône du lecteur de la barre des taches ?"
 
 #: ../musicPlayer/data/messages:137
 msgid "Actions on click and middle-click :"
-msgstr "Actions au clic et au clic du milieu :"
+msgstr "Actions au clic et au clic du milieu :"
 
 #: ../musicPlayer/data/messages:139
 msgid "Play/Pause on click, Next on middle-click"
@@ -8580,7 +8584,7 @@ msgstr "Montrer une info-bulle ?"
 
 #: ../musicPlayer/data/messages:155
 msgid "Time length of tooltips:"
-msgstr "Durée des info-bulles :"
+msgstr "Durée des info-bulles :"
 
 #: ../musicPlayer/data/messages:157
 msgid "Animation when music changes:"
@@ -8589,7 +8593,7 @@ msgstr "Animation au changement de musique"
 #: ../musicPlayer/data/messages:161 ../powermanager/data/messages:145
 #: ../wifi/data/messages:143
 msgid "Information to display on the icon :"
-msgstr "Information à afficher sur l'icône :"
+msgstr "Information à afficher sur l'icône :"
 
 #: ../musicPlayer/data/messages:163 ../powermanager/data/messages:147
 msgid "Nothing"
@@ -8629,7 +8633,7 @@ msgstr "Utiliser les thèmes 3D ?"
 
 #: ../musicPlayer/data/messages:183
 msgid "List of available 3D themes for covers :"
-msgstr "Liste des thèmes de pochettes 3D disponibles :"
+msgstr "Liste des thèmes de pochettes 3D disponibles :"
 
 #: ../musicPlayer/data/messages:189 ../tomboy/data/messages:15
 msgid "'Default' icon image name:"
@@ -8657,15 +8661,15 @@ msgstr "interface:"
 
 #: ../netspeed/data/messages:155
 msgid "Fluidity of the transition between 2 values :"
-msgstr "Fluidité de l'animation de transition entre 2 valeurs :"
+msgstr "Fluidité de l'animation de transition entre 2 valeurs :"
 
 #: ../netspeed/data/messages:157
 msgid "Display rate values :"
-msgstr "Afficher les valeurs de débit :"
+msgstr "Afficher les valeurs de débit :"
 
 #: ../powermanager/data/messages:7
 msgid "Leave empty to display the current status information."
-msgstr "Laisser vide pour afficher les informations actuelles de status"
+msgstr "Laisser vide pour afficher les informations actuelles de status."
 
 #: ../powermanager/data/messages:11
 msgid "Current status"
@@ -8673,11 +8677,11 @@ msgstr "État actuel"
 
 #: ../powermanager/data/messages:139
 msgid "'On-battery' icon filename:"
-msgstr "Nom d'une icône en mode batterie :"
+msgstr "Nom d'une icône en mode batterie :"
 
 #: ../powermanager/data/messages:141
 msgid "Icon's filename when on charge :"
-msgstr "Nom d'une icône en mode recharge :"
+msgstr "Nom d'une icône en mode recharge :"
 
 #: ../powermanager/data/messages:149
 msgid "charge"
@@ -8689,7 +8693,7 @@ msgstr "Durée"
 
 #: ../powermanager/data/messages:153
 msgid "Emblem icon's filename when on charge:"
-msgstr "Nom du fichier de l'emblème à afficher lors de la charge :"
+msgstr "Nom du fichier de l'emblème à afficher lors de la charge :"
 
 #: ../powermanager/data/messages:155
 msgid "Hide the icon when not on battery?"
@@ -8713,7 +8717,7 @@ msgstr "Laissez vide pour ne pas avoir de son"
 #: ../powermanager/data/messages:167 ../powermanager/data/messages:177
 #: ../powermanager/data/messages:185
 msgid "Play a sound:"
-msgstr "Utiliser un son :"
+msgstr "Utiliser un son :"
 
 #: ../powermanager/data/messages:169
 msgid "Notification when low battery ?"
@@ -8737,7 +8741,7 @@ msgstr "M'alerter quand la charge de la batterie est critique ?"
 
 #: ../powermanager/data/messages:187
 msgid "Notification type:"
-msgstr "Type de notification :"
+msgstr "Type de notification :"
 
 #: ../quick-browser/data/messages:7
 msgid "Leave empty to use the folder's name."
@@ -8749,7 +8753,7 @@ msgstr "Répertoire"
 
 #: ../quick-browser/data/messages:95
 msgid "Folder to browse :"
-msgstr "Dossier à parcourir :"
+msgstr "Dossier à parcourir :"
 
 #: ../quick-browser/data/messages:97
 msgid "List folders first?"
@@ -8773,7 +8777,7 @@ msgstr "Afficher les icônes dans le menu ?"
 
 #: ../quick-browser/data/messages:109
 msgid "Icon size :"
-msgstr "Taille des icônes"
+msgstr "Taille des icônes :"
 
 #: ../quick-browser/data/messages:111
 msgid "small"
@@ -8797,7 +8801,7 @@ msgstr ""
 
 #: ../quick-browser/data/messages:121
 msgid "Build menu gradually:"
-msgstr "Construction graduelle du menu :"
+msgstr "Construction graduelle du menu :"
 
 #: ../shortcuts/data/messages:93
 msgid "List drives and volumes?"
@@ -8817,7 +8821,7 @@ msgstr "Lister les signets ?"
 
 #: ../shortcuts/data/messages:107 ../stack/data/messages:99
 msgid "Type of view for the desklet mode :"
-msgstr "Type de vue pour le mode desklet :"
+msgstr "Type de vue pour le mode desklet :"
 
 #: ../shortcuts/data/messages:111 ../stack/data/messages:103
 msgid "Tree"
@@ -8829,7 +8833,7 @@ msgstr "Utilisation du disque"
 
 #: ../shortcuts/data/messages:115
 msgid "Show disk usage :"
-msgstr "Montrer l'utilisation du disque :"
+msgstr "Montrer l'utilisation du disque :"
 
 #: ../shortcuts/data/messages:119
 msgid "Free space"
@@ -8849,7 +8853,7 @@ msgstr "Pourcentage d'espace utilisé"
 
 #: ../shortcuts/data/messages:129
 msgid "Delay between disk usage refresh :"
-msgstr "Délai entre chaque mise à jour :"
+msgstr "Délai entre chaque mise à jour :"
 
 #: ../shortcuts/data/messages:131
 msgid "Display disk usage with a bar?"
@@ -8861,7 +8865,7 @@ msgstr "En tours par seconde"
 
 #: ../show-mouse/data/messages:9
 msgid "Show mouse on:"
-msgstr "Montrer la souris sur :"
+msgstr "Montrer la souris sur :"
 
 #: ../show-mouse/data/messages:11
 msgid "Dock"
@@ -8869,7 +8873,7 @@ msgstr "Dock"
 
 #: ../show-mouse/data/messages:21
 msgid "Particle life time:"
-msgstr "Temps de vie des particules :"
+msgstr "Temps de vie des particules :"
 
 #: ../show-mouse/data/messages:33
 msgid ""
@@ -8879,11 +8883,11 @@ msgstr ""
 
 #: ../show-mouse/data/messages:35
 msgid "Scattering:"
-msgstr "Dispersion :"
+msgstr "Dispersion :"
 
 #: ../showDesktop/data/messages:13
 msgid "Image when the applet is active :"
-msgstr "Image quand l'applet est active :"
+msgstr "Image quand l'applet est active :"
 
 #: ../showDesktop/data/messages:95 ../showDesktop/data/messages:109
 msgid ""
@@ -8908,7 +8912,7 @@ msgstr "Montrer le bureau et les desklets"
 
 #: ../showDesktop/data/messages:123
 msgid "Shortkey for the middle-click action:"
-msgstr "Raccourci clavier pour l'action du clic-milieu :"
+msgstr "Raccourci clavier pour l'action du clic-milieu :"
 
 #: ../slider/data/messages:101
 msgid "Folder for the images:"
@@ -8956,11 +8960,11 @@ msgstr "Ouvrir le dossier parent"
 
 #: ../slider/data/messages:133
 msgid "Sliding delay:"
-msgstr "Délai de changement :"
+msgstr "Délai de changement :"
 
 #: ../slider/data/messages:135
 msgid "Effect while changing image:"
-msgstr "Effet au changement d'image :"
+msgstr "Effet au changement d'image :"
 
 #: ../slider/data/messages:139
 msgid "fade"
@@ -9000,7 +9004,7 @@ msgstr "Aléatoire"
 
 #: ../slider/data/messages:157
 msgid "Number of steps for transitions:"
-msgstr "Nombre d'étapes pour une transition :"
+msgstr "Nombre d'étapes pour une transition :"
 
 #: ../slider/data/messages:159
 msgid "fast"
@@ -9022,11 +9026,11 @@ msgstr "Mettez la valeur de la transparence à 0 pour ne pas avoir de fond."
 
 #: ../slider/data/messages:175
 msgid "Choose a background colour :"
-msgstr "Choisir la couleur du fond :"
+msgstr "Choisir la couleur du fond :"
 
 #: ../slider/data/messages:177
 msgid "Frame width:"
-msgstr "Largeur du cadre :"
+msgstr "Largeur du cadre :"
 
 #: ../slider/data/messages:179
 msgid "Gives better image rendering."
@@ -9094,7 +9098,7 @@ msgstr "Vous pouvez spécifié ici une liste de type mime à éviter:"
 
 #: ../stack/data/messages:125
 msgid "Sort items by:"
-msgstr "Trier les objets par :"
+msgstr "Trier les objets par :"
 
 #: ../stack/data/messages:131
 msgid "Type"
@@ -9147,7 +9151,7 @@ msgstr "Utiliser une couleur pour chaque bureau"
 #: ../switcher/data/messages:115
 msgid "Icon to use in expanded mode if wallpaper is not mapped:"
 msgstr ""
-"Icône à utiliser en mode étendu si vous ne dessinez pas le fond d'écran :"
+"Icône à utiliser en mode étendu si vous ne dessinez pas le fond d'écran :"
 
 #: ../switcher/data/messages:117 ../switcher/data/messages:153
 #: ../switcher/data/messages:159 ../switcher/data/messages:163
@@ -9157,7 +9161,7 @@ msgstr "r, g, b, a"
 
 #: ../switcher/data/messages:119 ../terminal/data/messages:103
 msgid "Background colour:"
-msgstr "Couleur de l'arrière plan :"
+msgstr "Couleur de l'arrière plan :"
 
 #: ../switcher/data/messages:123
 msgid "Show desktop number on icons?"
@@ -9193,31 +9197,31 @@ msgstr "Options d'affichage"
 
 #: ../switcher/data/messages:151
 msgid "Size of the inside lines :"
-msgstr "Taille des lignes intérieures :"
+msgstr "Taille des lignes intérieures :"
 
 #: ../switcher/data/messages:155
 msgid "Internal line colour:"
-msgstr "Couleur des lignes intérieures :"
+msgstr "Couleur des lignes intérieures :"
 
 #: ../switcher/data/messages:157
 msgid "External line size:"
-msgstr "Taille des lignes extérieures :"
+msgstr "Taille des lignes extérieures :"
 
 #: ../switcher/data/messages:161
 msgid "External line colour:"
-msgstr "Couleur des lignes extérieures :"
+msgstr "Couleur des lignes extérieures :"
 
 #: ../switcher/data/messages:165
 msgid "Active window colour:"
-msgstr "Couleur de la fenêtre active :"
+msgstr "Couleur de la fenêtre active :"
 
 #: ../switcher/data/messages:169
 msgid "Current desktop colour:"
-msgstr "Couleur du bureau courant :"
+msgstr "Couleur du bureau courant :"
 
 #: ../switcher/data/messages:171
 msgid "How to draw the current desktop:"
-msgstr "Pour dessiner le bureau courant :"
+msgstr "Pour dessiner le bureau courant :"
 
 #: ../switcher/data/messages:173
 msgid "draw a frame"
@@ -9241,7 +9245,7 @@ msgstr "Remplir toutes les fenêtres par une couleur ?"
 
 #: ../switcher/data/messages:185
 msgid "Colour of these windows:"
-msgstr "Couleur de ces fenêtres :"
+msgstr "Couleur de ces fenêtres :"
 
 #: ../systray/data/messages:83
 msgid "Shortkey to toggle the systray in dock mode:"
@@ -9249,7 +9253,7 @@ msgstr "Raccourci pour basculer le systray dans le mode du dock:"
 
 #: ../systray/data/messages:85
 msgid "Icons packing :"
-msgstr "Arrangement des icônes :"
+msgstr "Arrangement des icônes :"
 
 #: ../systray/data/messages:87
 msgid "horizontal"
@@ -9269,11 +9273,11 @@ msgstr "Ceci est un paramètre de type booléen. O/N ?"
 
 #: ../template/data/messages:95
 msgid "This integer can go from 0 to 10 :"
-msgstr "Cet entier peut aller de 0 à 10 :"
+msgstr "Cet entier peut aller de 0 à 10 :"
 
 #: ../template/data/messages:97
 msgid "Enter some text here :"
-msgstr "Entrer uun texte ici :"
+msgstr "Entrer uun texte ici :"
 
 #: ../terminal/data/messages:93
 msgid "needs to restart the applet."
@@ -9281,7 +9285,7 @@ msgstr "nécessite de recharger l'applet."
 
 #: ../terminal/data/messages:95
 msgid "Terminal transparency:"
-msgstr "Transparence du terminal :"
+msgstr "Transparence du terminal :"
 
 #: ../terminal/data/messages:97
 msgid "transparent"
@@ -9293,7 +9297,7 @@ msgstr "opaque"
 
 #: ../terminal/data/messages:101
 msgid "Foreground colour:"
-msgstr "Couleur du premier plan :"
+msgstr "Couleur du premier plan :"
 
 #: ../terminal/data/messages:105
 #, fuzzy
@@ -9340,11 +9344,11 @@ msgstr ""
 
 #: ../terminal/data/messages:127
 msgid "Size of the terminal (line x columns):"
-msgstr "Taille du terminal (ligne x colonnes) :"
+msgstr "Taille du terminal (ligne x colonnes) :"
 
 #: ../terminal/data/messages:129
 msgid "Shortkey to show the terminal:"
-msgstr "Raccourci clavier pour montrer le terminal :"
+msgstr "Raccourci clavier pour montrer le terminal :"
 
 #: ../tomboy/data/messages:19
 msgid "'Close' icon image name:"
@@ -9352,7 +9356,7 @@ msgstr "Nom de l'image « Fermé » :"
 
 #: ../tomboy/data/messages:107
 msgid "Image file for the notes:"
-msgstr "Fichier image pour les notes :"
+msgstr "Fichier image pour les notes :"
 
 #: ../tomboy/data/messages:109
 msgid "Draw note's content on their icon?"
@@ -9360,7 +9364,7 @@ msgstr "Dessiner le contenu des notes sur leur icône ?"
 
 #: ../tomboy/data/messages:111
 msgid "Text colour of the content :"
-msgstr "Couleur du texte du contenu :"
+msgstr "Couleur du texte du contenu :"
 
 #: ../tomboy/data/messages:113
 msgid "Display note's content with a dialog?"
@@ -9368,7 +9372,7 @@ msgstr "Afficher le contenu des notes avec un dialogue ?"
 
 #: ../tomboy/data/messages:125
 msgid "Choose the note-taking application to control :"
-msgstr "Choisissez l'application de prise de notes à contrôler :"
+msgstr "Choisissez l'application de prise de notes à contrôler :"
 
 #: ../tomboy/data/messages:127
 msgid "Gnote"
@@ -9403,7 +9407,7 @@ msgstr ""
 
 #: ../tomboy/data/messages:141
 msgid "Date format to search for :"
-msgstr "Format de la date à chercher :"
+msgstr "Format de la date à chercher :"
 
 #: ../tomboy/data/messages:145
 msgid ""
@@ -9436,7 +9440,7 @@ msgstr ""
 
 #: ../weather/data/messages:105
 msgid "Code for your location:"
-msgstr "Code de votre location :"
+msgstr "Code de votre location :"
 
 #: ../weather/data/messages:107
 msgid "If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
@@ -9452,7 +9456,7 @@ msgstr "en seconde. Mettez 0 pour ne pas avoir de contrainte de durée."
 
 #: ../weather/data/messages:113
 msgid "Dialog duration:"
-msgstr "Durée des dialogues :"
+msgstr "Durée des dialogues :"
 
 #: ../weather/data/messages:119 ../wifi/data/messages:141
 msgid "Info"
@@ -9465,7 +9469,7 @@ msgstr ""
 
 #: ../weather/data/messages:123
 msgid "Number of days to forecast:"
-msgstr "Nombre de jours à prédire :"
+msgstr "Nombre de jours à prédire :"
 
 #: ../weather/data/messages:125
 msgid "Display nights?"
@@ -9511,7 +9515,7 @@ msgstr ""
 
 #: ../weblets/data/messages:105
 msgid "Right margin width, in pixels:"
-msgstr "Largeur de la marge de gauche, en pixels :"
+msgstr "Largeur de la marge de gauche, en pixels :"
 
 #: ../weblets/data/messages:107
 msgid "Transparent background?"
@@ -9554,7 +9558,7 @@ msgstr "Infos Brutes du Signal"
 
 #: ../wifi/data/messages:157
 msgid "Delay between signal checks :"
-msgstr "Temps entre les vérifications :"
+msgstr "Temps entre les vérifications :"
 
 #: ../wifi/data/messages:163
 msgid ""
@@ -9565,7 +9569,7 @@ msgstr ""
 
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
-msgstr "Ouvrir la configuration du Wifi avec :"
+msgstr "Ouvrir la configuration du WiFi avec :"
 
 #~ msgid "No script set for this file type"
 #~ msgstr "Aucun script défini pour ce type de fichier"

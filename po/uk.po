@@ -777,13 +777,13 @@ msgstr "Показати/Приховати меню програм"
 msgid "Show/hide the quick-launch dialog"
 msgstr "Показати/Приховати вікно швидкого запуску"
 
-#: ../GMenu-old/src/applet-menu-callbacks.c:177 ../GMenu/src/applet-menu.c:175
-#: ../GMenu-old/data/messages:111 ../GMenu/data/messages:111
+#: ../GMenu-old/src/applet-menu-callbacks.c:177 ../GMenu/src/applet-menu.c:173
+#: ../GMenu-old/data/messages:113 ../GMenu/data/messages:113
 msgid "Logout"
 msgstr "Вихід"
 
-#: ../GMenu-old/src/applet-menu-callbacks.c:180 ../GMenu/src/applet-menu.c:178
-#: ../GMenu-old/data/messages:113 ../GMenu/data/messages:113
+#: ../GMenu-old/src/applet-menu-callbacks.c:180 ../GMenu/src/applet-menu.c:176
+#: ../GMenu-old/data/messages:115 ../GMenu/data/messages:115
 msgid "Shutdown"
 msgstr "Вимкнути"
 
@@ -816,7 +816,7 @@ msgid "Clear the list of the recently used documents?"
 msgstr "Очистити список недавніх документів?"
 
 #: ../GMenu-old/src/applet-run-dialog.c:352
-#: ../GMenu/src/applet-run-dialog.c:354 ../Scooby-Do/data/messages:111
+#: ../GMenu/src/applet-run-dialog.c:363 ../Scooby-Do/data/messages:111
 msgid "Enter a command to launch:"
 msgstr "Введіть команду для запуску:"
 
@@ -845,7 +845,7 @@ msgstr ""
 msgid "Show/hide the current application menu"
 msgstr "Показати/Приховати поточне меню програми"
 
-#: ../Global-Menu/src/applet-notifications.c:98
+#: ../Global-Menu/src/applet-notifications.c:99
 msgid "The application didn't send its menu to us."
 msgstr "Програма не відправляла нам своє меню."
 
@@ -934,7 +934,7 @@ msgstr ""
 msgid "Show/hide the Messaging menu"
 msgstr "Показати/Приховати меню повідомлень"
 
-#: ../Messaging-Menu/src/applet-notifications.c:76
+#: ../Messaging-Menu/src/applet-notifications.c:78
 msgid ""
 "The Messaging service did not reply.\n"
 "Please check that it is correctly installed."
@@ -1361,7 +1361,7 @@ msgid "Open in new window"
 msgstr "Відкрити у новому вікні"
 
 #: ../Scooby-Do/src/applet-backend-firefox.c:432
-#: ../dnd2share/src/applet-notifications.c:488
+#: ../dnd2share/src/applet-notifications.c:485
 msgid "Open file"
 msgstr "Відкрити файл"
 
@@ -2359,19 +2359,19 @@ msgstr "Надіслати містиме буферу обміну"
 msgid "History"
 msgstr "Історія"
 
-#: ../dnd2share/src/applet-notifications.c:490
+#: ../dnd2share/src/applet-notifications.c:487
 msgid "Get text"
 msgstr "Отримати текст"
 
-#: ../dnd2share/src/applet-notifications.c:492
+#: ../dnd2share/src/applet-notifications.c:489
 msgid "Remove from history"
 msgstr "Видалити з історії"
 
-#: ../dnd2share/src/applet-notifications.c:495
+#: ../dnd2share/src/applet-notifications.c:492
 msgid "Clear History"
 msgstr "Очистити історію"
 
-#: ../dnd2share/src/applet-notifications.c:500
+#: ../dnd2share/src/applet-notifications.c:497
 msgid "Use only a files hosting site"
 msgstr "Використовувати тільки файл-хостинг сайт"
 
@@ -3150,8 +3150,8 @@ msgid "until charged"
 msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:231 ../wifi/src/applet-draw.c:30
-#: ../Clipper/data/messages:97 ../GMenu-old/data/messages:109
-#: ../GMenu/data/messages:109 ../Network-Monitor/data/messages:221
+#: ../Clipper/data/messages:97 ../GMenu-old/data/messages:111
+#: ../GMenu/data/messages:111 ../Network-Monitor/data/messages:221
 #: ../dnd2share/data/messages:109 ../dustbin/data/messages:101
 #: ../wifi/data/messages:145
 msgid "None"
@@ -3604,7 +3604,7 @@ msgstr "Поточний"
 #: ../switcher/src/applet-notifications.c:228
 #: ../switcher/src/applet-notifications.c:247
 #: ../switcher/src/applet-notifications.c:403
-#: ../switcher/src/applet-notifications.c:504
+#: ../switcher/src/applet-notifications.c:510
 msgid "Desktop"
 msgstr "Стільниця"
 
@@ -4449,8 +4449,8 @@ msgstr "Ім'я значка, як воно буде відображено в �
 #: ../Cairo-Penguin/data/messages:9 ../Clipper/data/messages:9
 #: ../Composite-Manager/data/messages:9 ../Disks/data/messages:9
 #: ../Doncky/data/messages:9 ../GMenu-old/data/messages:9
-#: ../GMenu-old/data/messages:105 ../GMenu/data/messages:9
-#: ../GMenu/data/messages:105 ../Indicator-Generic/data/messages:9
+#: ../GMenu-old/data/messages:107 ../GMenu/data/messages:9
+#: ../GMenu/data/messages:107 ../Indicator-Generic/data/messages:9
 #: ../Messaging-Menu/data/messages:9 ../RSSreader/data/messages:11
 #: ../RSSreader/data/messages:129 ../Recent-Events/data/messages:9
 #: ../Screenshot/data/messages:9 ../Status-Notifier/data/messages:9
@@ -5504,8 +5504,8 @@ msgstr "Буфер обміну"
 msgid "Selection"
 msgstr "Виділення"
 
-#: ../Clipper/data/messages:103 ../GMenu-old/data/messages:115
-#: ../GMenu/data/messages:115 ../show-mouse/data/messages:15
+#: ../Clipper/data/messages:103 ../GMenu-old/data/messages:117
+#: ../GMenu/data/messages:117 ../show-mouse/data/messages:15
 msgid "Both"
 msgstr "Обидва"
 
@@ -6118,10 +6118,15 @@ msgid "Load settings' menu?"
 msgstr ""
 
 #: ../GMenu-old/data/messages:103 ../GMenu/data/messages:103
+#, fuzzy
+msgid "Display the description in search's results?"
+msgstr "Відображати в 24-часовому форматі?"
+
+#: ../GMenu-old/data/messages:105 ../GMenu/data/messages:105
 msgid "Command to use for configuring the menu:"
 msgstr "Команда для налаштування меню:"
 
-#: ../GMenu-old/data/messages:107 ../GMenu/data/messages:107
+#: ../GMenu-old/data/messages:109 ../GMenu/data/messages:109
 msgid "Show Logout and/or Shutdown : "
 msgstr "Показати Вихід та/або Вимкнення: "
 
