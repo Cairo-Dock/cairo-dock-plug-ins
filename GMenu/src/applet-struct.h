@@ -37,6 +37,7 @@ struct _AppletConfig {
 	gchar *cConfigureMenuCommand;
 	gboolean bShowRecent;
 	gboolean bLoadSettingsMenu;
+	gboolean bDisplayDesc;
 	gint iNbRecentItems;
 	CDGMenuShowQuit iShowQuit;
 	} ;

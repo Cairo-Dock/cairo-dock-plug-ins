@@ -33,6 +33,7 @@
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bShowRecent = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "show recent", TRUE);
 	myConfig.bLoadSettingsMenu = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "settings menu", TRUE);
+	myConfig.bDisplayDesc = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "search description", TRUE);
 	myConfig.cMenuShortkey = CD_CONFIG_GET_STRING ("Configuration", "menu shortkey");
 	myConfig.cQuickLaunchShortkey = CD_CONFIG_GET_STRING ("Configuration", "quick launch shortkey");
 	myConfig.cConfigureMenuCommand = CD_CONFIG_GET_STRING ("Configuration", "config menu");

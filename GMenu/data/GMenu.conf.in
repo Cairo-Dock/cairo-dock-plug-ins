@@ -117,6 +117,9 @@ nb recent = 20
 #{The settings menu file is sometimes available in a settings.menu file but its content can also be available in the main .menu file used by the dock}
 settings menu = true
 
+#b Display the description in search's results?
+search description = true
+
 #s[Default] Command to use for configuring the menu:
 config menu =
 

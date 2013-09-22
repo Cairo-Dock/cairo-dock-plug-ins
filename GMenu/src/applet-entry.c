@@ -49,6 +49,25 @@ static gboolean _on_button_release_menu (GtkWidget *pMenu, GdkEventButton *pEven
 	return FALSE; // pass the signal: hide the menu
 }
 
+// the GtkLabel should always be the only one in the list but be secure :)
+static GtkLabel * _get_label_from_menu_item (GtkWidget *pMenuItem)
+{
+	GList *pContainerList = gtk_container_get_children (GTK_CONTAINER (pMenuItem));
+	GtkWidget *pWidget;
+	GList *pList;
+	for (pList = pContainerList; pList != NULL; pList = pList->next)
+	{
+		pWidget = pList->data;
+		if (GTK_IS_LABEL (pWidget))
+		{
+			g_list_free (pContainerList); // only one item
+			return (GTK_LABEL (pWidget));
+		}
+	}
+	g_list_free (pContainerList);
+	return NULL;
+}
+
 // limit to X menu entries? But how many? And it should not have too many results
 static void _add_results_in_menu (GldiModuleInstance *myApplet)
 {
@@ -68,9 +87,31 @@ static void _add_results_in_menu (GldiModuleInstance *myApplet)
 				// items from the applications menu are hidden are other entries are still not removed
 		else
 		{
+			const gchar *cDescription = g_app_info_get_description (pInfo->pAppInfo);
+
 			// create the new entry: a label, an icon and a tooltip
-			pInfo->pMenuItem = gtk_image_menu_item_new_with_label (
-				g_app_info_get_name (pInfo->pAppInfo));
+			if (myConfig.bDisplayDesc)
+			{
+				gchar *cShortDesc = cDescription ?
+					cairo_dock_cut_string (cDescription, 60) :
+					NULL;
+				gchar *cLabel = g_markup_printf_escaped ("<b>%s</b>\n%s",
+					g_app_info_get_name (pInfo->pAppInfo),
+					cShortDesc ? cShortDesc : "");
+				pInfo->pMenuItem = gtk_image_menu_item_new_with_label (cLabel);
+				g_free (cLabel);
+				g_free (cShortDesc);
+
+				GtkLabel *pLabel = _get_label_from_menu_item (pInfo->pMenuItem);
+				if (pLabel != NULL)
+					gtk_label_set_use_markup (pLabel, TRUE);
+				else // should not happen... but be secure with Gtk :)
+					gtk_menu_item_set_label (GTK_MENU_ITEM (pInfo->pMenuItem),
+						g_app_info_get_name (pInfo->pAppInfo));
+			}
+			else
+				pInfo->pMenuItem = gtk_image_menu_item_new_with_label (
+					g_app_info_get_name (pInfo->pAppInfo));
 
 			GIcon *pIcon = g_app_info_get_icon (pInfo->pAppInfo);
 			if (pIcon)
@@ -81,8 +122,8 @@ static void _add_results_in_menu (GldiModuleInstance *myApplet)
 					GTK_IMAGE_MENU_ITEM (pInfo->pMenuItem), pImage);
 			}
 
-			gtk_widget_set_tooltip_text (pInfo->pMenuItem,
-				g_app_info_get_description (pInfo->pAppInfo));
+			if (cDescription)
+				gtk_widget_set_tooltip_text (pInfo->pMenuItem, cDescription);
 
 			gtk_widget_show (pInfo->pMenuItem);
 
@@ -213,15 +254,16 @@ static void _hide_other_entries (GldiModuleInstance *myApplet)
 
 	GtkWidget *pCurrentWidget;
 	GtkContainer *pContainer = GTK_CONTAINER (myData.pMenu);
-	GList *pList = gtk_container_get_children (pContainer);
+	GList *pList, *pContainerList = gtk_container_get_children (pContainer);
 	// skip the two first entries: GtkEntry + Separator
-	for (pList = pList->next->next; pList != NULL; pList = pList->next)
+	for (pList = pContainerList->next->next; pList != NULL; pList = pList->next)
 	{
 		pCurrentWidget = pList->data;
 		gtk_widget_hide (pCurrentWidget);
 		s_pOtherEntries = g_list_prepend (s_pOtherEntries, pCurrentWidget);
 		s_iNbOtherEntries++;
 	}
+	g_list_free (pContainerList);
 }
 
 // previous elements was hidden, we can free the list and show items
