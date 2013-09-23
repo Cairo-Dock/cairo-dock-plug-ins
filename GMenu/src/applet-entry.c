@@ -371,13 +371,20 @@ static gboolean _on_key_pressed_menu (GtkWidget *pMenu, GdkEventKey *pEvent,
 	// redirect the signal to the entry
 	g_signal_emit_by_name (myData.pEntry, "key-press-event", pEvent, myApplet);
 
-	// Launch when we list search result entries
-	if (pEvent->keyval == GDK_KEY_Return && s_pOtherEntries != NULL)
-		_launch_app_of_selected_item (pMenu);
-
-	// space key when searching, do not deactivate the menu: command or desc.
-	if (pEvent->keyval == GDK_KEY_space && s_pOtherEntries != NULL)
-		return TRUE;
+	if (s_pOtherEntries != NULL)
+	{
+		switch (pEvent->keyval)
+		{
+			// Launch when we list search result entries
+			case GDK_KEY_Return :
+			case GDK_KEY_KP_Enter : // second Enter
+				_launch_app_of_selected_item (pMenu);
+			break ;
+			// space key when searching, do not deactivate the menu: command or desc.
+			case GDK_KEY_space :
+				return TRUE;
+		}
+	}
 
 	// pass the signal to the menu (for navigation by arrows)
 	return FALSE;
