@@ -774,6 +774,10 @@ msgstr "Entre o comando a ser executado :"
 msgid "Launch this new application?"
 msgstr ""
 
+#: ../GMenu/src/applet-entry.c:435
+msgid "Launch this command"
+msgstr ""
+
 #: ../Global-Menu/src/applet-init.c:30
 msgid "Global Menu"
 msgstr ""

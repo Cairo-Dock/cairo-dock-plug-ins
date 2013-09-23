@@ -838,6 +838,10 @@ msgstr "Entrez une commande à lancer :"
 msgid "Launch this new application?"
 msgstr "Lancer cette nouvelle application ?"
 
+#: ../GMenu/src/applet-entry.c:435
+msgid "Launch this command"
+msgstr "Lancer cette commande"
+
 #: ../Global-Menu/src/applet-init.c:30
 msgid "Global Menu"
 msgstr "Menu Global"

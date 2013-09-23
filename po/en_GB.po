@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2013-09-22 22:47+0200\n"
+"POT-Creation-Date: 2013-09-23 12:44+0200\n"
 "PO-Revision-Date: 2013-07-21 21:24+0000\n"
 "Last-Translator: Anthony Harrington <untaintableangel@ubuntu.com>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
@@ -822,6 +822,11 @@ msgstr "Enter a command to launch:"
 
 #: ../GMenu/src/applet-apps.c:67
 msgid "Launch this new application?"
+msgstr "Launch this new application?"
+
+#: ../GMenu/src/applet-entry.c:435
+#, fuzzy
+msgid "Launch this command"
 msgstr "Launch this new application?"
 
 #: ../Global-Menu/src/applet-init.c:30

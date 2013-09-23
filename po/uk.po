@@ -824,6 +824,10 @@ msgstr "Введіть команду для запуску:"
 msgid "Launch this new application?"
 msgstr ""
 
+#: ../GMenu/src/applet-entry.c:435
+msgid "Launch this command"
+msgstr ""
+
 #: ../Global-Menu/src/applet-init.c:30
 msgid "Global Menu"
 msgstr "Глобальне меню"

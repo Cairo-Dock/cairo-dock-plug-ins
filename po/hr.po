@@ -818,6 +818,10 @@ msgstr "Unesi komandu koju zelis pokrenuti:"
 msgid "Launch this new application?"
 msgstr ""
 
+#: ../GMenu/src/applet-entry.c:435
+msgid "Launch this command"
+msgstr ""
+
 #: ../Global-Menu/src/applet-init.c:30
 msgid "Global Menu"
 msgstr "Globalni Meni"
