@@ -32,6 +32,7 @@ typedef struct _EntryInfo {
 static GList *s_pEntries = NULL;    // a list with all matches apps
 static gint s_iNbSearchEntries = 0; // the number of elements in this list (to not iterate over the whole list)
 static gint s_iNbOtherEntries = 0;  // the number of hidden entries (applications menu)
+static GtkWidget *s_pLaunchCommand = NULL; // widget to launch the command
 
 static gint _compare_apps (const EntryInfo *a, const EntryInfo *b)
 {
@@ -74,7 +75,7 @@ static void _add_results_in_menu (GldiModuleInstance *myApplet)
 	// sort list
 	s_pEntries = g_list_sort (s_pEntries, (GCompareFunc)_compare_apps);
 
-	gint i = 2; // there are 2 menu entries before
+	gint i = 0;
 	EntryInfo *pInfo;
 	GList *pList;
 	for (pList = s_pEntries; pList != NULL; pList = pList->next)
@@ -84,7 +85,11 @@ static void _add_results_in_menu (GldiModuleInstance *myApplet)
 			gtk_menu_reorder_child (GTK_MENU (myData.pMenu),
 				pInfo->pMenuItem,
 				s_iNbOtherEntries + s_iNbSearchEntries + i);
-				// items from the applications menu are hidden are other entries are still not removed
+				/* s_iNbOtherEntries: items from the applications menu are hidden
+				 * s_iNbSearchEntries: other entries are still not removed
+				 * i: current entry
+				 * + 3: there are 2 menu entries before + LaunchCommand (hidden)
+				 */
 		else
 		{
 			const gchar *cDescription = g_app_info_get_description (pInfo->pAppInfo);
@@ -141,13 +146,24 @@ static void _add_results_in_menu (GldiModuleInstance *myApplet)
 		}
 		i++;
 	}
-	s_iNbSearchEntries = i - 2;
+	s_iNbSearchEntries = i;
 
-	// if there are results and no selection, select the first entry
-	if (s_pEntries != NULL
-	   && gtk_menu_shell_get_selected_item (GTK_MENU_SHELL (myData.pMenu)) == NULL)
-		gtk_menu_shell_select_item (GTK_MENU_SHELL (myData.pMenu),
-			((EntryInfo *)s_pEntries->data)->pMenuItem);
+	// no entry: Launch this command
+	if (s_pEntries == NULL)
+	{
+		gtk_widget_show (s_pLaunchCommand);
+		gtk_menu_shell_select_item (GTK_MENU_SHELL (myData.pMenu), s_pLaunchCommand);
+	}
+	else
+	{
+		gtk_widget_hide (s_pLaunchCommand);
+		// if there are results and no selection, select the first entry
+		GtkWidget *pMenuItem = gtk_menu_shell_get_selected_item (
+			GTK_MENU_SHELL (myData.pMenu));
+		if (pMenuItem == NULL || pMenuItem == s_pLaunchCommand)
+			gtk_menu_shell_select_item (GTK_MENU_SHELL (myData.pMenu),
+				((EntryInfo *)s_pEntries->data)->pMenuItem);
+	}
 }
 
 // to not recreate a menu entry each time and to not loose the selection
@@ -252,11 +268,14 @@ static void _hide_other_entries (GldiModuleInstance *myApplet)
 	if (s_pOtherEntries != NULL)
 		return;
 
+	// Insert Launch this command
+	gtk_menu_shell_insert (GTK_MENU_SHELL (myData.pMenu), s_pLaunchCommand, 2);
+
 	GtkWidget *pCurrentWidget;
 	GtkContainer *pContainer = GTK_CONTAINER (myData.pMenu);
 	GList *pList, *pContainerList = gtk_container_get_children (pContainer);
-	// skip the two first entries: GtkEntry + Separator
-	for (pList = pContainerList->next->next; pList != NULL; pList = pList->next)
+	// skip the three first entries: GtkEntry + Separator + Launch this command
+	for (pList = pContainerList->next->next->next; pList != NULL; pList = pList->next)
 	{
 		pCurrentWidget = pList->data;
 		gtk_widget_hide (pCurrentWidget);
@@ -281,6 +300,8 @@ static void _show_other_entries (GldiModuleInstance *myApplet)
 		s_pOtherEntries = pList;
 	}
 	s_iNbOtherEntries = 0;
+	// remove s_pLaunchCommand
+	gtk_container_remove (GTK_CONTAINER (myData.pMenu), s_pLaunchCommand);
 }
 
 ///////////
@@ -322,7 +343,7 @@ static gboolean _on_entry_changed (GtkWidget *pEntry, GldiModuleInstance *myAppl
 }
 
 // needed to know if we press 'return' key when the entry container is selected
-GtkWidget *s_pEntryContainer = NULL;
+static GtkWidget *s_pEntryContainer = NULL;
 
 static void _launch_app_of_selected_item (GtkWidget *pMenu)
 {
@@ -331,12 +352,12 @@ static void _launch_app_of_selected_item (GtkWidget *pMenu)
 	if (pMenuItem == s_pEntryContainer) // 'entry' selected
 		pMenuItem = ((EntryInfo *)s_pEntries->data)->pMenuItem; // select the first item
 
-	if (pMenuItem != NULL)
+	if (pMenuItem != NULL && pMenuItem != s_pLaunchCommand)
 	{
 		GAppInfo *pAppInfo = g_object_get_data (G_OBJECT (pMenuItem), "info");
 		g_app_info_launch (pAppInfo, NULL, NULL, NULL);
 	}
-	else // no item, we launch the command
+	else // no item or s_pLaunchCommand, we launch the command
 	{
 		cairo_dock_launch_command (gtk_entry_get_text (GTK_ENTRY (myData.pEntry)));
 		gtk_widget_hide (myData.pMenu);
@@ -354,16 +375,27 @@ static gboolean _on_key_pressed_menu (GtkWidget *pMenu, GdkEventKey *pEvent,
 	if (pEvent->keyval == GDK_KEY_Return && s_pOtherEntries != NULL)
 		_launch_app_of_selected_item (pMenu);
 
+	// space key when searching, do not deactivate the menu: command or desc.
+	if (pEvent->keyval == GDK_KEY_space && s_pOtherEntries != NULL)
+		return TRUE;
+
 	// pass the signal to the menu (for navigation by arrows)
 	return FALSE;
 }
 
 static void _on_menu_deactivated (GtkWidget *pMenu, G_GNUC_UNUSED gpointer data)
 {
-	// modify the menu (if needed) to have the applications menu next time
-	_remove_results_in_menu (s_pEntries, myApplet);
-	s_pEntries = NULL;
 	gtk_entry_set_text (GTK_ENTRY (myData.pEntry), "");
+	// remove_result + show_other entries: see _on_entry_changed, text == '\0'
+}
+
+static gboolean _on_button_release_launch_command (G_GNUC_UNUSED GtkWidget *pMenu,
+	GdkEventButton *pEvent, G_GNUC_UNUSED gpointer data)
+{
+	// left click
+	if (pEvent->button == 1 && pEvent->type == GDK_BUTTON_RELEASE)
+		cairo_dock_launch_command (gtk_entry_get_text (GTK_ENTRY (myData.pEntry)));
+	return FALSE; // pass the signal: hide the menu
 }
 
 void cd_menu_append_entry (void)
@@ -398,6 +430,15 @@ void cd_menu_append_entry (void)
 	pMenuItem = gtk_separator_menu_item_new ();
 	gtk_widget_show (pMenuItem);
 	gtk_menu_shell_append (GTK_MENU_SHELL (myData.pMenu), pMenuItem);
+
+	// Launch this command (create the widget but we don't insert it now)
+	s_pLaunchCommand = gtk_image_menu_item_new_with_label (D_("Launch this command"));
+	pImage = gtk_image_new_from_stock (GTK_STOCK_EXECUTE, GTK_ICON_SIZE_LARGE_TOOLBAR);
+	_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (s_pLaunchCommand), pImage);
+	g_signal_connect (s_pLaunchCommand, "button-release-event",
+			G_CALLBACK (_on_button_release_launch_command), NULL);
+	g_object_ref (s_pLaunchCommand);
+
 }
 
 // free the list of result and the list of the applications menu
@@ -407,4 +448,6 @@ void cd_menu_free_entry (void)
 		g_list_free_full (s_pEntries, g_free);
 	if (s_pOtherEntries)
 		g_list_free (s_pOtherEntries);
+	if (s_pLaunchCommand)
+		g_object_unref (s_pLaunchCommand);
 }
