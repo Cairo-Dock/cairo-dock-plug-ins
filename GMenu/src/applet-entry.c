@@ -44,9 +44,7 @@ static gint _compare_apps (const EntryInfo *a, const EntryInfo *b)
 static gboolean _on_button_release_menu (GtkWidget *pMenu, GdkEventButton *pEvent,
 	GAppInfo *pAppInfo)
 {
-	// left click
-	if (pEvent->button == 1 && pEvent->type == GDK_BUTTON_RELEASE)
-		g_app_info_launch (pAppInfo, NULL, NULL, NULL);
+	g_app_info_launch (pAppInfo, NULL, NULL, NULL);
 	return FALSE; // pass the signal: hide the menu
 }
 
@@ -399,9 +397,7 @@ static void _on_menu_deactivated (GtkWidget *pMenu, G_GNUC_UNUSED gpointer data)
 static gboolean _on_button_release_launch_command (G_GNUC_UNUSED GtkWidget *pMenu,
 	GdkEventButton *pEvent, G_GNUC_UNUSED gpointer data)
 {
-	// left click
-	if (pEvent->button == 1 && pEvent->type == GDK_BUTTON_RELEASE)
-		cairo_dock_launch_command (gtk_entry_get_text (GTK_ENTRY (myData.pEntry)));
+	cairo_dock_launch_command (gtk_entry_get_text (GTK_ENTRY (myData.pEntry)));
 	return FALSE; // pass the signal: hide the menu
 }
 
