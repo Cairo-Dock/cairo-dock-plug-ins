@@ -99,7 +99,7 @@ static void _add_results_in_menu (GldiModuleInstance *myApplet)
 					cairo_dock_cut_string (cDescription, 60) :
 					NULL;
 				gchar *cLabel = g_markup_printf_escaped ("<b>%s</b>\n%s",
-					g_app_info_get_name (pInfo->pAppInfo),
+					g_app_info_get_display_name (pInfo->pAppInfo),
 					cShortDesc ? cShortDesc : "");
 				pInfo->pMenuItem = gtk_image_menu_item_new_with_label (cLabel);
 				g_free (cLabel);
@@ -110,7 +110,7 @@ static void _add_results_in_menu (GldiModuleInstance *myApplet)
 					gtk_label_set_use_markup (pLabel, TRUE);
 				else // should not happen... but be secure with Gtk :)
 					gtk_menu_item_set_label (GTK_MENU_ITEM (pInfo->pMenuItem),
-						g_app_info_get_name (pInfo->pAppInfo));
+						g_app_info_get_display_name (pInfo->pAppInfo));
 			}
 			else
 				pInfo->pMenuItem = gtk_image_menu_item_new_with_label (
