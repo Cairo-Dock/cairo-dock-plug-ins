@@ -187,32 +187,55 @@ static GtkWidget * _menu_match (GAppInfo *pAppInfo, GList *pEntryList)
 static gboolean _app_match (GAppInfo *pAppInfo, const gchar *key)
 {
 	int n = strlen (key);
-	const gchar *prop = g_app_info_get_executable (pAppInfo);
+	const gchar *prop = g_app_info_get_executable (pAppInfo); // transmission
 	if (!prop || g_ascii_strncasecmp (prop, key, n) != 0)
 	{
-		prop = g_app_info_get_name (pAppInfo);
+		prop = g_app_info_get_name (pAppInfo); // Transmission
 		if (!prop || g_ascii_strncasecmp (prop, key, n) != 0)
 		{
-			prop = g_app_info_get_display_name (pAppInfo);
-			if (!prop || g_ascii_strncasecmp (prop, key, n) != 0)
+			gchar *lower_key = g_ascii_strdown (key , -1);
+			if (!lower_key)
+				return FALSE;
+
+			prop = g_app_info_get_display_name (pAppInfo); // BitTorrent Client Transmission
+			gchar *lower_prop;
+			if (prop) // avoid warnings even if it should not happen
+				lower_prop = g_ascii_strdown (NULL, -1);
+			else
+				lower_prop = NULL;
+
+			gboolean bDisplayMatch;
+			if (! lower_prop)
+				bDisplayMatch = FALSE;
+			else if (n < 3) // 1 or 2 chars: compare the first chars
+				bDisplayMatch = strncmp (lower_prop, lower_key, n) == 0;
+			else // locate a substring in this property (if there is at least 3 chars)
+				bDisplayMatch = strstr (lower_prop, lower_key) != NULL;
+
+			if (!bDisplayMatch)
 			{
+				g_free (lower_prop);
 				if (n < 3) // check the description when min 3 chars to avoid very very long lists
+				{
+					g_free (lower_key);
 					return FALSE;
+				}
 				prop = g_app_info_get_description (pAppInfo);
 				if (!prop)
+				{
+					g_free (lower_key);
 					return FALSE;
-				gchar *lower_prop = g_ascii_strdown (prop, -1);
-				gchar *lower_key  = g_ascii_strdown (key , -1);
-				if (!lower_prop || !lower_key
-				   || strstr (lower_prop, lower_key) == NULL)
+				}
+				lower_prop = g_ascii_strdown (prop, -1);
+				if (!lower_prop || strstr (lower_prop, lower_key) == NULL)
 				{
 					g_free (lower_key);
 					g_free (lower_prop);
 					return FALSE;
 				}
-				g_free (lower_key);
-				g_free (lower_prop);
 			}
+			g_free (lower_prop);
+			g_free (lower_key);
 		}
 	}
 	return TRUE;
