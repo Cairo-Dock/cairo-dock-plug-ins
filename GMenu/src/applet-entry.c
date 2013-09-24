@@ -200,7 +200,7 @@ static gboolean _app_match (GAppInfo *pAppInfo, const gchar *key)
 			prop = g_app_info_get_display_name (pAppInfo); // BitTorrent Client Transmission
 			gchar *lower_prop;
 			if (prop) // avoid warnings even if it should not happen
-				lower_prop = g_ascii_strdown (NULL, -1);
+				lower_prop = g_ascii_strdown (prop, -1);
 			else
 				lower_prop = NULL;
 
