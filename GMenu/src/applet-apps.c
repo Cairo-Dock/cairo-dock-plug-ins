@@ -104,13 +104,14 @@ void cd_menu_free_apps (void)
 
 void cd_menu_init_apps (void)
 {
-	if (! myData.pKnownApplications)
-	{
-		myData.bFirstLaunch = TRUE;
-		myData.pKnownApplications = g_hash_table_new_full (g_str_hash,
-			g_str_equal,
-			g_free,
-			g_object_unref);
-	}
+	const gchar *cDesktopEnv = g_getenv ("XDG_CURRENT_DESKTOP");
+	if (cDesktopEnv)
+		g_desktop_app_info_set_desktop_env  (cDesktopEnv);
+
+	myData.bFirstLaunch = TRUE;
+	myData.pKnownApplications = g_hash_table_new_full (g_str_hash,
+		g_str_equal,
+		g_free,
+		g_object_unref);
 }
 
