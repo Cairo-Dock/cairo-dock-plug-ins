@@ -29,6 +29,15 @@
 #define _CAIRO_DIALOG_TOOLTIP_ARROW_HEIGHT 5
 #define _CAIRO_DIALOG_TOOLTIP_MARGIN 4
 
+/*
+ic______^___  arrow height + margin
+ic     msg
+ |
+ |   widget
+ |
+ |____________  bottom margin
+
+*/
 
 void cd_decorator_set_frame_size_tooltip (CairoDialog *pDialog)
 {
@@ -55,7 +64,7 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 	double fIconOffset = pDialog->iIconSize / 2;  // myDialogsParam.iDialogIconSize/2
 	
 	double fOffsetX = fRadius + fLineWidth / 2 + fIconOffset;
-	double fOffsetY = (pDialog->container.bDirectionUp ? fLineWidth / 2 : pDialog->container.iHeight - fLineWidth / 2) + (pDialog->container.bDirectionUp ? fIconOffset : -fIconOffset);
+	double fOffsetY = (pDialog->container.bDirectionUp ? fLineWidth / 2 : pDialog->container.iHeight - fLineWidth / 2) + (pDialog->container.bDirectionUp ? fIconOffset : /**-fIconOffset*/ -_CAIRO_DIALOG_TOOLTIP_MARGIN);  // _CAIRO_DIALOG_TOOLTIP_MARGIN is to compensate for the slightly different placement of top dialogs
 	int sens = (pDialog->container.bDirectionUp ? 1 : -1);
 	int iWidth = pDialog->container.iWidth - fIconOffset;
 	
@@ -82,6 +91,12 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 	else
 		iArrowShift = 0;
 	
+	int h = pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin - (2 * fRadius + fLineWidth);
+	if (pDialog->container.bDirectionUp)
+		h -= fIconOffset;
+	else
+		h -= _CAIRO_DIALOG_TOOLTIP_MARGIN;
+	
 	//On se déplace la ou il le faut
 	cairo_move_to (pCairoContext, fOffsetX, fOffsetY);
 	
@@ -95,7 +110,7 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 		fRadius, sens * fRadius);
 	
 	// Ligne droite. (Haut droit -> Bas droit)
-	cairo_rel_line_to (pCairoContext, 0, sens *     (pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin - (2 * fRadius + fLineWidth + fIconOffset)));
+	cairo_rel_line_to (pCairoContext, 0, sens * h);
 	
 	// Coin bas droit.
 	cairo_rel_curve_to (pCairoContext,
@@ -122,7 +137,7 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 		-fRadius, -sens * fRadius);
 	
 	// On remonte.
-	cairo_rel_line_to (pCairoContext, 0, - sens * (pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin - (2 * fRadius + fLineWidth + fIconOffset)));
+	cairo_rel_line_to (pCairoContext, 0, - sens * h);
 	
 	// Coin haut gauche.
 	cairo_rel_curve_to (pCairoContext,
