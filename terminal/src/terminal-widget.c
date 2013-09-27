@@ -29,7 +29,7 @@
 #include <gdk/gdkkeysyms.h>
 // gdk.h semble necessaire pour certains
 #include <gdk/gdk.h>
-#include <gdk/gdkx.h>
+//#include <gdk/gdkx.h>
 
 #include <vte/vte.h>
 
@@ -443,9 +443,7 @@ static void _terminal_paste (GtkMenuItem *menu_item, GtkWidget *data)
   vte_terminal_paste_clipboard(VTE_TERMINAL(data));
 }
 
-
-
-static void on_new_tab (GtkMenuItem *menu_item, gpointer *data)
+static void on_new_tab (GtkMenuItem *menu_item, G_GNUC_UNUSED gpointer data)
 {
 	terminal_new_tab();
 }
@@ -463,57 +461,33 @@ static void on_close_tab (GtkMenuItem *menu_item, GtkWidget *vterm)
 }
 static GtkWidget *_terminal_build_menu_tab (GtkWidget *vterm)
 {
-	GtkWidget *menu = gtk_menu_new ();
+	GtkWidget *menu = gldi_menu_new (NULL);
 	
-	GtkWidget *menu_item, *image;
+	GtkWidget *menu_item;
 	if (vterm)
 	{
-		menu_item = gtk_image_menu_item_new_with_label (D_("Copy"));
-		image = gtk_image_new_from_stock (GTK_STOCK_COPY, GTK_ICON_SIZE_MENU);
-		_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
-		gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
-		g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(_terminal_copy), vterm);
+		gldi_menu_add_item (menu, D_("Copy"), GTK_STOCK_COPY, G_CALLBACK(_terminal_copy), vterm);
 		
-		menu_item = gtk_image_menu_item_new_with_label (D_("Paste"));
-		image = gtk_image_new_from_stock (GTK_STOCK_PASTE, GTK_ICON_SIZE_MENU);
-		_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
-		gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
-		g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(_terminal_paste), vterm);
+		gldi_menu_add_item (menu, D_("Paste"), GTK_STOCK_PASTE, G_CALLBACK(_terminal_paste), vterm);
 		
 		menu_item = gtk_separator_menu_item_new ();
-		gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
+		gtk_menu_shell_append (GTK_MENU_SHELL (menu), menu_item);
 	}
-
-  menu_item = gtk_image_menu_item_new_with_label (D_("New Tab"));
-  image = gtk_image_new_from_stock (GTK_STOCK_NEW, GTK_ICON_SIZE_MENU);
-  _gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
-  gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
-  g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(on_new_tab), vterm);
-  
-  menu_item = gtk_image_menu_item_new_with_label (D_("Rename this Tab"));
-  image = gtk_image_new_from_stock (GTK_STOCK_EDIT, GTK_ICON_SIZE_MENU);
-  _gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
-  gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
-  g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(on_rename_tab), vterm);
-
-  menu_item = gtk_image_menu_item_new_with_label (D_("Change this Tab's colour"));
-  image = gtk_image_new_from_stock (GTK_STOCK_COLOR_PICKER, GTK_ICON_SIZE_MENU);
-  _gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
-  gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
-  g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(on_change_tab_color), vterm);
-
-  menu_item = gtk_image_menu_item_new_with_label (D_("Close this Tab"));
-  image = gtk_image_new_from_stock (GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU);
-  _gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (menu_item), image);
-  gtk_menu_shell_append  (GTK_MENU_SHELL (menu), menu_item);
-  g_signal_connect (G_OBJECT (menu_item), "activate", G_CALLBACK(on_close_tab), vterm);
-
-  return menu;
+	
+	gldi_menu_add_item (menu, D_("New Tab"), GTK_STOCK_NEW, G_CALLBACK(on_new_tab), NULL);
+	
+	gldi_menu_add_item (menu, D_("Rename this Tab"), GTK_STOCK_EDIT, G_CALLBACK(on_rename_tab), vterm);
+	
+	gldi_menu_add_item (menu, D_("Change this Tab's colour"), GTK_STOCK_COLOR_PICKER, G_CALLBACK(on_change_tab_color), vterm);
+	
+	gldi_menu_add_item (menu, D_("Close this Tab"), GTK_STOCK_CLOSE, G_CALLBACK(on_close_tab), vterm);
+	
+	return menu;
 }
 
 static gboolean applet_on_terminal_press_cb(GtkWidget *vterm, GdkEventButton *event, gpointer user_data)
 {
-	cd_debug ("%s ()", __func__);
+	g_print ("%s ()\n", __func__);
 	if (event->button == 3)
 	{
 		GtkWidget *menu = _terminal_build_menu_tab (vterm);
@@ -528,6 +502,7 @@ static gboolean applet_on_terminal_press_cb(GtkWidget *vterm, GdkEventButton *ev
 			1,
 			gtk_get_current_event_time ());
 	}
+	gtk_window_present (GTK_WINDOW (myContainer->pWidget));
 	return FALSE;
 }
 static void applet_on_terminal_eof(VteTerminal *vterm,
