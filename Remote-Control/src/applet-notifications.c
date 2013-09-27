@@ -219,7 +219,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 			myData.bIgnoreIconState = FALSE;
 			
 			GtkWidget *menu = gldi_container_build_menu (CAIRO_CONTAINER (myData.pCurrentDock), myData.pCurrentIcon);
-			cairo_dock_popup_menu_on_icon (menu, myData.pCurrentIcon, CAIRO_CONTAINER (myData.pCurrentDock));
+			gldi_menu_popup (menu);
 		}
 	}
 	else if (iKeyVal == GDK_BackSpace)  // on efface la derniere lettre.
@@ -265,7 +265,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 				myData.bIgnoreIconState = FALSE;
 				
 				GtkWidget *menu = gldi_container_build_menu (CAIRO_CONTAINER (myData.pCurrentDock), myData.pCurrentIcon);
-				cairo_dock_popup_menu_on_icon (menu, myData.pCurrentIcon, CAIRO_CONTAINER (myData.pCurrentDock));
+				gldi_menu_popup (menu);
 			}
 			else
 			{

@@ -51,8 +51,9 @@ static void _cd_indicator_make_menu (CDAppletIndicator *pIndicator)
 			g_object_weak_ref (G_OBJECT (pIndicator->pMenu),
 				(GWeakNotify)_on_menu_destroyed,
 				pIndicator);
-			DbusmenuGtkClient * client = dbusmenu_gtkmenu_get_client (pIndicator->pMenu);
+			gldi_menu_init (GTK_WIDGET(pIndicator->pMenu), myIcon);
 			
+			DbusmenuGtkClient * client = dbusmenu_gtkmenu_get_client (pIndicator->pMenu);
 			if (pIndicator->add_menu_handler)
 				pIndicator->add_menu_handler (client);
 		}
@@ -267,7 +268,7 @@ gboolean cd_indicator_show_menu (CDAppletIndicator *pIndicator)
 		_cd_indicator_make_menu (pIndicator);
 		if (pIndicator->pMenu != NULL)
 		{
-			cairo_dock_popup_menu_on_icon (GTK_WIDGET (pIndicator->pMenu), myIcon, myContainer);
+			gldi_menu_popup (GTK_WIDGET (pIndicator->pMenu));
 			return TRUE;
 		}
 	}

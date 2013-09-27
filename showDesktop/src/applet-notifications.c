@@ -333,7 +333,7 @@ static void _download_to_desktop (GtkMenuItem *menu_item, GldiModuleInstance *my
 }
 
 CD_APPLET_ON_DROP_DATA_BEGIN
-	GtkWidget *pMenu = gtk_menu_new ();
+	GtkWidget *pMenu = gldi_menu_new (myIcon);
 	g_free (myData.cPendingFile);
 	myData.cPendingFile = g_strdup (CD_APPLET_RECEIVED_DATA);
 	

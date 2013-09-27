@@ -126,9 +126,6 @@ frame_menu =
 #{It can be CPU intense to load a lot of icons.}
 has icons=true
 
-#l[small;medium;large] Icon size :
-icon size=0
-
 #k Shortkey to show/hide the menu:
 menu shortkey = <Control>F6
 

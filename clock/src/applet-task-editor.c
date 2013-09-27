@@ -153,7 +153,7 @@ static gboolean _on_click_tree_view (GtkTreeView *pTreeView, GdkEventButton* pBu
 	static gpointer *data = NULL;
 	if (pButton->button == 3 && pButton->type == GDK_BUTTON_RELEASE)
 	{
-		GtkWidget *pMenu = gtk_menu_new ();
+		GtkWidget *pMenu = gldi_menu_new (NULL);
 		cairo_dock_add_in_menu_with_stock_and_data (D_("Add a new task"), GTK_STOCK_ADD, G_CALLBACK (_cd_clock_add_new_task), pMenu, myApplet);
 		
 		GtkTreeSelection *pSelection = gtk_tree_view_get_selection (pTreeView);

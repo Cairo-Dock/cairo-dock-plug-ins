@@ -404,7 +404,7 @@ static GList *_cd_clock_parse_dir (const gchar *cDirPath, const gchar *cCurrentL
 		g_string_printf (sFilePath, "%s/%s", cDirPath, cFileName);
 		if (g_file_test (sFilePath->str, G_FILE_TEST_IS_DIR))
 		{
-			pSubMenu = gtk_menu_new ();
+			pSubMenu = gtk_menu_new ();  // inside the config window => use a normal GTK menu
 			gtk_menu_item_set_submenu (GTK_MENU_ITEM (pMenuItem), pSubMenu);
 			pPathList = _cd_clock_parse_dir (sFilePath->str, cLocationPath, pSubMenu, pPathList, myApplet);
 			g_free (cLocationPath);
@@ -435,7 +435,7 @@ static GList *_cd_clock_parse_dir (const gchar *cDirPath, const gchar *cCurrentL
 }
 static void _cd_clock_search_for_location (GtkButton *pButton, GldiModuleInstance *myApplet)
 {
-	GtkWidget *pMenu = gtk_menu_new ();
+	GtkWidget *pMenu = gtk_menu_new ();  // inside the config window => use a normal GTK menu
 	if (s_pTimeZoneList != NULL)
 		cd_clock_free_timezone_list ();
 	s_pTimeZoneList = _cd_clock_parse_dir (CD_CLOCK_TIMEZONE_DIR, NULL, pMenu, NULL, myApplet);

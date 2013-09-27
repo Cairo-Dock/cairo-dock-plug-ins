@@ -35,7 +35,7 @@ static gboolean _make_menu_from_trees (CDSharedMemory *pSharedMemory)
 	pSharedMemory->pTrees = NULL;
 	
 	// create the menu
-	myData.pMenu = gtk_menu_new ();
+	myData.pMenu = gldi_menu_new (myIcon);
 	
 	cd_menu_append_entry ();
 	
@@ -134,29 +134,8 @@ void cd_menu_stop (void)
 // == cairo_dock_add_in_menu_with_stock_and_data   with icon size 24
 static GtkWidget *_append_one_item_to_menu (const gchar *cLabel, const gchar *gtkStock, GFunc pFunction, GtkWidget *pMenu, gpointer pData)
 {
-	GtkWidget *pMenuItem = gtk_image_menu_item_new_with_label (cLabel);
-	if (gtkStock)
-	{
-		GtkWidget *image = NULL;
-		if (*gtkStock == '/')
-		{
-			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (gtkStock, myData.iPanelDefaultMenuIconSize, myData.iPanelDefaultMenuIconSize, NULL);
-			image = gtk_image_new_from_pixbuf (pixbuf);
-			g_object_unref (pixbuf);
-		}
-		else
-		{
-			const gchar *cIconPath = cairo_dock_search_icon_s_path (gtkStock, myData.iPanelDefaultMenuIconSize);
-			if (cIconPath == NULL)
-			{
-				cIconPath = g_strconcat (MY_APPLET_SHARE_DATA_DIR"/", gtkStock, ".svg", NULL);
-			}
-			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cIconPath, myData.iPanelDefaultMenuIconSize, myData.iPanelDefaultMenuIconSize, NULL);
-			image = gtk_image_new_from_pixbuf (pixbuf);
-			g_object_unref (pixbuf);
-		}
-		_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
-	}
+	GtkWidget *pMenuItem = gldi_menu_item_new_full (cLabel, gtkStock, FALSE, GTK_ICON_SIZE_LARGE_TOOLBAR);
+	
 	gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);
 	if (pFunction)
 		g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK (pFunction), pData);

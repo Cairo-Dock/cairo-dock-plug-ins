@@ -61,7 +61,7 @@ static void _upload (CDFileType iCurrentFileType, const gchar *cFilePath, gchar 
 	else
 		str = cResult;
 	
-	if (! cairo_dock_string_is_adress (str))
+	if (! cairo_dock_string_is_address (str))
 		cd_warning ("this address (%s) seems not valid !\nThe output was : '%s'", str, cResult);
 
 	cResultUrls[0] = g_strdup (str);

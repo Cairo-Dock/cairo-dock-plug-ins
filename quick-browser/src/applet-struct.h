@@ -42,7 +42,6 @@ struct _AppletConfig {
 	gchar *cMenuShortkey;
 	gchar *cDirPath;
 	gint iNbSubItemsAtOnce;
-	gint iIconSize;  // 0:petit; 1:moyen; 2:grand
 	} ;
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.

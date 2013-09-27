@@ -72,7 +72,7 @@ static GList *_list_dir (const gchar *cDirPath, GldiModuleInstance *myApplet)
 		pItem->cTmpFileName = cFileName;  // valable uniquement dans cette boucle, ca tombe bien le classement se fait ici.
 		pItem->pApplet = myApplet;
 		if (g_file_test (pItem->cPath, G_FILE_TEST_IS_DIR))
-			pItem->pSubMenu = gtk_menu_new ();
+			pItem->pSubMenu = gldi_menu_new (NULL);
 		
 		pLocalItemList = g_list_insert_sorted (pLocalItemList,
 			pItem,
@@ -100,20 +100,8 @@ static void _init_fill_menu_from_dir (CDQuickBrowserItem *pItem)
 	pItem->pCurrentItem = pItem->pLocalItemList->next;  // on la rajoute au menu ici, pas en meme temps que les autres.
 	
 	//\______________ On ajoute cette entree dans le menu des maintenant.
-	GtkWidget *pMenuItem;
-	if (myConfig.bHasIcons)
-	{
-		pMenuItem = gtk_image_menu_item_new_with_label (D_("Open this folder"));
-		GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU);
-		_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
-	}
-	else
-	{
-		pMenuItem = gtk_menu_item_new_with_label (D_("Open this folder"));
-	}
-	gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);
-	g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK(_on_activate_item), pOpenDirItem); // left click
-	g_signal_connect (G_OBJECT (pMenuItem), "button-release-event", G_CALLBACK(_on_click_item), pOpenDirItem); // right click (e.g. open Bonobo or another file mgr)
+	GtkWidget *pMenuItem = gldi_menu_add_item (pMenu, D_("Open this folder"), myConfig.bHasIcons ? GTK_STOCK_OPEN : NULL, G_CALLBACK(_on_activate_item), pOpenDirItem);  // right click (e.g. open Bonobo or another file mgr)
+	g_signal_connect (G_OBJECT (pMenuItem), "button-release-event", G_CALLBACK(_on_click_item), pOpenDirItem);
 }
 
 
@@ -123,7 +111,7 @@ static void _drag_begin (GtkWidget *pWidget, GdkDragContext *pDragContext, GtkWi
 	if (GTK_IS_IMAGE_MENU_ITEM (pMenuItem)) // some items don't have any icon.
 	{
 		gtk_drag_source_set_icon_pixbuf (pMenuItem,
-			gtk_image_get_pixbuf (GTK_IMAGE (gtk_image_menu_item_get_image (GTK_IMAGE_MENU_ITEM (pMenuItem)))));  // GTK+ retains a reference on the pixbuf; when pMenuItem disappear, it will naturally loose this reference.
+			gtk_image_get_pixbuf (GTK_IMAGE (gldi_menu_item_get_image (pMenuItem))));  // GTK+ retains a reference on the pixbuf; when pMenuItem disappear, it will naturally loose this reference.
 	}
 }
 
@@ -172,21 +160,18 @@ static void _fill_submenu_with_items (CDQuickBrowserItem *pRootItem, int iNbSubI
 		cFileName = strrchr (pItem->cPath, '/');
 		if (cFileName)
 			cFileName ++;
+		
 		if (cIconName != NULL)
 		{
-			pMenuItem = gtk_image_menu_item_new_with_label (cFileName);
-			gchar *cPath = cairo_dock_search_icon_s_path (cIconName, myConfig.iIconSize);
-			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cPath, myConfig.iIconSize, myConfig.iIconSize, NULL);
+			gchar *cPath = cairo_dock_search_icon_s_path (cIconName, cairo_dock_search_icon_size (GTK_ICON_SIZE_MENU));
+			pMenuItem = gldi_menu_item_new (cFileName, cPath);
 			g_free (cPath);
-			GtkWidget *image = gtk_image_new_from_pixbuf (pixbuf);
-			g_object_unref (pixbuf);
-			_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
 			g_free (cIconName);
 			cIconName = NULL;
 		}
 		else
 		{
-			pMenuItem = gtk_menu_item_new_with_label (cFileName);
+			pMenuItem = gldi_menu_item_new (cFileName, "");
 		}
 
 		//\______________ On l'insere dans le menu.
@@ -320,7 +305,7 @@ static gboolean _on_click_item (GtkWidget *pWidget, GdkEventButton* pButton, CDQ
 		gchar *cUri = g_filename_to_uri (pItem->cPath, NULL, NULL);
 		g_return_val_if_fail (cUri != NULL, FALSE);
 
-		GtkWidget *pMenu = gtk_menu_new ();
+		GtkWidget *pMenu = gldi_menu_new (NULL);
 		
 		GList *pApps = cairo_dock_fm_list_apps_for_file (cUri);
 		if (pApps != NULL)
@@ -379,7 +364,7 @@ CDQuickBrowserItem *cd_quick_browser_make_menu_from_dir (const gchar *cDirPath, 
 	CDQuickBrowserItem *pRootItem = g_new0 (CDQuickBrowserItem, 1);
 	pRootItem->cPath = g_strdup (cDirPath);
 	pRootItem->pApplet = myApplet;
-	pRootItem->pSubMenu = gtk_menu_new ();
+	pRootItem->pSubMenu = gldi_menu_new (myIcon);
 	
 	_init_fill_menu_from_dir (pRootItem);
 	_fill_submenu_with_items (pRootItem, 1e6);

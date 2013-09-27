@@ -272,7 +272,7 @@ GtkWidget * cd_NetworkMonitor_build_menu_with_access_points (void)
 	g_return_val_if_fail (paDevices != NULL, FALSE);
 	cd_debug ("%d device(s)", paDevices->len);
 	
-	GtkWidget *pMenu = gtk_menu_new ();
+	GtkWidget *pMenu = gldi_menu_new (myIcon);
 	
 	//\_____________ On parcourt tous les devices.
 	GHashTable *pSsidTable = g_hash_table_new_full (g_str_hash,

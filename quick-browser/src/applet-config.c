@@ -37,19 +37,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iNbSubItemsAtOnce = CD_CONFIG_GET_INTEGER ("Configuration", "granularity");
 	if (myConfig.iNbSubItemsAtOnce < 1)
 		myConfig.iNbSubItemsAtOnce = 1;
-	int iIconSize = CD_CONFIG_GET_INTEGER ("Configuration", "icon size");
-	switch (iIconSize)
-	{
-		case 0:
-			myConfig.iIconSize = 16;
-		break ;
-		case 1:
-			myConfig.iIconSize = 24;
-		break ;
-		case 2:
-			myConfig.iIconSize = 32;
-		break ;
-	}
 	
 	// On gere les chemins relatifs.
 	if (myConfig.cDirPath != NULL && *myConfig.cDirPath == '~')

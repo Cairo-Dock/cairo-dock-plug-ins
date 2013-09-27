@@ -48,7 +48,7 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 		case SWICTHER_WINDOWS_LIST:
 		default:
 		{
-			GtkWidget *pMenu = gtk_menu_new ();
+			GtkWidget *pMenu = gldi_menu_new (myIcon);
 			cd_switcher_build_windows_list (pMenu);
 			CD_APPLET_POPUP_MENU_ON_MY_ICON (pMenu);
 		}

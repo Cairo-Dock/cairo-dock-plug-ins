@@ -75,7 +75,7 @@ Icon *cd_stack_build_one_icon (GldiModuleInstance *myApplet, GKeyFile *pKeyFile)
 	g_return_val_if_fail (cContent != NULL, NULL);
 	
 	Icon *pIcon = NULL;
-	if (cairo_dock_string_is_adress (cContent))
+	if (cairo_dock_string_is_address (cContent))
 	{
 		if (strncmp (cContent, "http://", 7) == 0 || strncmp (cContent, "https://", 8) == 0)  // URL web
 		{

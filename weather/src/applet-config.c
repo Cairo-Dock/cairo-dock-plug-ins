@@ -141,7 +141,7 @@ static void _on_got_location_data (const gchar *cLocationData, GldiModuleInstanc
 	}
 	else
 	{
-		GtkWidget *pMenu = gtk_menu_new ();
+		GtkWidget *pMenu = gtk_menu_new ();  // inside the config window => use a normal GTK menu
 		GString *sOneLocation = g_string_new ("");
 		GtkWidget *pMenuItem;
 		gchar *cLocationName, *cLocationCode;

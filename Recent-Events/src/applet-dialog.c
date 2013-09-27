@@ -284,7 +284,7 @@ static gboolean _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButt
 		}
 		else  // right-click
 		{
-			GtkWidget *pMenu = gtk_menu_new ();
+			GtkWidget *pMenu = gldi_menu_new (NULL);
 			g_free (myData.cCurrentUri);
 			myData.cCurrentUri = cUri;
 			

@@ -598,7 +598,7 @@ static gboolean on_button_released_calendar (GtkWidget *widget,
 {
 	if (pButton->button == 3)  // right-click
 	{
-		GtkWidget *pMenu = gtk_menu_new ();
+		GtkWidget *pMenu = gldi_menu_new (NULL);
 		
 		// add a task
 		cairo_dock_add_in_menu_with_stock_and_data (D_("Add a new task"), GTK_STOCK_ADD, G_CALLBACK (_on_add_task), pMenu, myApplet);

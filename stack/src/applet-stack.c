@@ -318,7 +318,7 @@ static Icon *_cd_stack_create_new_item (GldiModuleInstance *myApplet, const gcha
 	
 	cd_debug ("Stack: got '%s'", cContent);
 	//\_______________________ On lui trouve un petit nom.
-	if (cairo_dock_string_is_adress (cContent) || *cContent == '/')
+	if (cairo_dock_string_is_address (cContent) || *cContent == '/')
 	{
 		if (strncmp (cContent, "http://", 7) == 0 || strncmp (cContent, "www", 3) == 0 || strncmp (cContent, "https://", 8) == 0)
 		{

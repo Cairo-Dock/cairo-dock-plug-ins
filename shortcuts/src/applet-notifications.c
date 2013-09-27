@@ -303,7 +303,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	{
 		if (CD_APPLET_CLICKED_ICON->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)  // clic sur un signet.
 		{
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this bookmark"),  GTK_STOCK_SAVE_AS, _cd_shortcuts_rename_bookmark, CD_APPLET_MY_MENU, data);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this bookmark"), NULL, _cd_shortcuts_rename_bookmark, CD_APPLET_MY_MENU, data);
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove this bookmark"), GTK_STOCK_REMOVE, _cd_shortcuts_remove_bookmark, CD_APPLET_MY_MENU, CD_APPLET_CLICKED_ICON->cBaseURI);
 			CD_APPLET_LEAVE (GLDI_NOTIFICATION_INTERCEPT);
 		}

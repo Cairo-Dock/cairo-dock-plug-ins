@@ -95,8 +95,7 @@ static void add_image_to_menu_item (GtkWidget *image_menu_item,
 		gtk_image_set_from_icon_name (GTK_IMAGE (image), fallback_image_filename, GTK_ICON_SIZE_LARGE_TOOLBAR);
 
 	// insert the image in the menu-item
-	_gtk_image_menu_item_set_image (
-		GTK_IMAGE_MENU_ITEM (image_menu_item), image);
+	gldi_menu_item_set_image (image_menu_item, image);
 	gtk_widget_show (image);
 }
 
@@ -135,31 +134,6 @@ static void add_image_to_menu_item (GtkWidget *image_menu_item,
 	return g_string_free (escaped_text, FALSE);
 }*/
 
-static void setup_menuitem (GtkWidget *menuitem,
-	const char  *title)
-{
-	GtkWidget *label;
-	/**
-	// this creates a label with an invisible mnemonic
-	gchar      *_title;
-	label = g_object_new (GTK_TYPE_ACCEL_LABEL, NULL);
-	_title = menu_escape_underscores_and_prepend (title);
-	gtk_label_set_text_with_mnemonic (GTK_LABEL (label), _title);
-	g_free (_title);
-	
-	gtk_label_set_pattern (GTK_LABEL (label), "");  // hide the _
-	
-	gtk_accel_label_set_accel_widget (GTK_ACCEL_LABEL (label), menuitem);*/
-	label = gtk_label_new (title);
-	
-	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-	gtk_widget_show (label);
-	
-	gtk_container_add (GTK_CONTAINER (menuitem), label);
-	
-	gtk_widget_show (menuitem);
-}
-
 static GtkWidget * add_menu_separator (GtkWidget *menu)
 {
 	GtkWidget *menuitem = gtk_separator_menu_item_new ();
@@ -176,9 +150,7 @@ static GtkWidget * create_submenu_entry (GtkWidget *menu,
 	if (gmenu_tree_directory_get_is_nodisplay (directory))
 		return NULL;
 	
-	GtkWidget *menuitem = gtk_image_menu_item_new ();
-	setup_menuitem (menuitem,
-		gmenu_tree_directory_get_name (directory));
+	GtkWidget *menuitem = gldi_menu_item_new (gmenu_tree_directory_get_name (directory), "");
 	
 	GIcon *pIcon = gmenu_tree_directory_get_icon (directory);  // transfer: None
 	add_image_to_menu_item (menuitem,
@@ -203,7 +175,7 @@ static void create_submenu (GtkWidget *menu,
 		return;
 	
 	// create a sub-menu for it
-	GtkWidget *submenu = gtk_menu_new ();
+	GtkWidget *submenu = gldi_submenu_new ();
 	gtk_menu_item_set_submenu (GTK_MENU_ITEM (menuitem), submenu);
 	
 	// populate the sub-menu with the directory
@@ -237,7 +209,7 @@ static void create_menuitem (GtkWidget *menu,
 	// ignore entry that are not shown in the menu
 	if (gmenu_tree_entry_get_is_excluded (entry))
 		return;
-	if (! g_app_info_should_show (G_APP_INFO (pAppInfo)))
+	if (! g_app_info_should_show (G_APP_INFO (pAppInfo)))  // should_show = NoDisplay + OnlyShowIn
 		return;
 	
 	// create an entry
@@ -246,9 +218,7 @@ static void create_menuitem (GtkWidget *menu,
 		cName = gmenu_tree_directory_get_name (alias_directory);
 	if (!cName)
 		cName = g_app_info_get_name (G_APP_INFO (pAppInfo));
-	GtkWidget *menuitem = gtk_image_menu_item_new ();
-	setup_menuitem (menuitem,
-		cName);
+	GtkWidget *menuitem = gldi_menu_item_new (cName, "");
 	
 	const gchar *cComment = NULL;
 	if (alias_directory)

@@ -262,7 +262,7 @@ static void _switch_to_user (GtkMenuItem *menu_item, gchar *cUserName)
 }
 static GtkWidget *_build_menu (void)
 {
-	GtkWidget *pMenu = gtk_menu_new ();
+	GtkWidget *pMenu = gldi_menu_new (myIcon);
 	
 	GtkWidget *pMenuItem;
 

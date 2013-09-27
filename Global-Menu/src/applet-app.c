@@ -265,9 +265,12 @@ static void _on_got_menu (DBusGProxy *proxy, DBusGProxyCall *call_id, GldiModule
 			if (g_object_is_floating (myData.pMenu))  // claim ownership on the menu.
 				g_object_ref_sink (myData.pMenu);
 			if (myData.pMenu)
+			{
 				g_object_weak_ref (G_OBJECT (myData.pMenu),
 					(GWeakNotify)_on_menu_destroyed,
 					myApplet);
+				gldi_menu_init (GTK_WIDGET(myData.pMenu), myIcon);
+			}
 		}
 	}
 	

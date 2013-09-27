@@ -276,7 +276,7 @@ static void _take_screenshot (CDScreenshotOptions *pOptions)
 		}
 		
 		// pop up the menu
-		GtkWidget *pMenu = gtk_menu_new ();
+		GtkWidget *pMenu = gldi_menu_new (myIcon);
 		
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Copy the location"), GTK_STOCK_COPY, _cd_copy_location, pMenu, NULL);
 		

@@ -49,16 +49,12 @@ void cd_menu_append_recent_to_menu (GtkWidget *top_menu, GldiModuleInstance *myA
 		GtkWidget *pSeparator = gtk_separator_menu_item_new ();
 		gtk_menu_shell_append (GTK_MENU_SHELL (top_menu), pSeparator);
 		
-		GtkWidget *pMenuItem = gtk_image_menu_item_new_with_label (D_("Recent Documents"));
-
-		const gchar *cIconPath = cairo_dock_search_icon_s_path ("document-open-recent", myData.iPanelDefaultMenuIconSize);
-		if (cIconPath == NULL)
-			cIconPath = MY_APPLET_SHARE_DATA_DIR"/icon-recent.png";
-
-		GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cIconPath, myData.iPanelDefaultMenuIconSize, myData.iPanelDefaultMenuIconSize, NULL);
-		GtkWidget *image = gtk_image_new_from_pixbuf (pixbuf);
-		g_object_unref (pixbuf);
-		_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
+		gchar *cIconPath = cairo_dock_search_icon_s_path ("document-open-recent", myData.iPanelDefaultMenuIconSize);
+		GtkWidget *pMenuItem = gldi_menu_item_new_full (D_("Recent Documents"),
+			cIconPath ? cIconPath : MY_APPLET_SHARE_DATA_DIR"/icon-recent.png",
+			FALSE, GTK_ICON_SIZE_LARGE_TOOLBAR);
+		g_free (cIconPath);
+		
 		gtk_menu_shell_append (GTK_MENU_SHELL (top_menu), pMenuItem);
 		gtk_widget_show_all (pMenuItem);
 		myData.pRecentMenuItem = pMenuItem;
@@ -69,6 +65,7 @@ void cd_menu_append_recent_to_menu (GtkWidget *top_menu, GldiModuleInstance *myA
 	//\_____________ On construit le menu des fichiers recents.
 	GtkRecentManager *pRecentManager = gtk_recent_manager_get_default ();
 	GtkWidget *recent_menu = gtk_recent_chooser_menu_new_for_manager (pRecentManager);
+	gldi_menu_init (recent_menu, NULL);
 	
 	gtk_recent_chooser_set_show_icons (GTK_RECENT_CHOOSER (recent_menu), TRUE);
 	gtk_recent_chooser_set_local_only (GTK_RECENT_CHOOSER (recent_menu), FALSE);

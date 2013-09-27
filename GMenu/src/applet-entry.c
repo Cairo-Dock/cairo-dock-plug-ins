@@ -51,20 +51,15 @@ static gboolean _on_button_release_menu (GtkWidget *pMenu, GdkEventButton *pEven
 // the GtkLabel should always be the only one in the list but be secure :)
 static GtkLabel * _get_label_from_menu_item (GtkWidget *pMenuItem)
 {
-	GList *pContainerList = gtk_container_get_children (GTK_CONTAINER (pMenuItem));
-	GtkWidget *pWidget;
-	GList *pList;
-	for (pList = pContainerList; pList != NULL; pList = pList->next)
+	GtkWidget *pWidget = gtk_bin_get_child (GTK_BIN (pMenuItem));
+	if (GTK_IS_LABEL (pWidget))
 	{
-		pWidget = pList->data;
-		if (GTK_IS_LABEL (pWidget))
-		{
-			g_list_free (pContainerList); // only one item
-			return (GTK_LABEL (pWidget));
-		}
+		return GTK_LABEL (pWidget);
 	}
-	g_list_free (pContainerList);
-	return NULL;
+	else
+	{
+		return NULL;
+	}
 }
 
 // limit to X menu entries? But how many? And it should not have too many results
@@ -101,7 +96,7 @@ static void _add_results_in_menu (GldiModuleInstance *myApplet)
 				gchar *cLabel = g_markup_printf_escaped ("<b>%s</b>\n%s",
 					g_app_info_get_display_name (pInfo->pAppInfo),
 					cShortDesc ? cShortDesc : "");
-				pInfo->pMenuItem = gtk_image_menu_item_new_with_label (cLabel);
+				pInfo->pMenuItem = gldi_menu_item_new (cLabel, "");
 				g_free (cLabel);
 				g_free (cShortDesc);
 
@@ -113,16 +108,14 @@ static void _add_results_in_menu (GldiModuleInstance *myApplet)
 						g_app_info_get_display_name (pInfo->pAppInfo));
 			}
 			else
-				pInfo->pMenuItem = gtk_image_menu_item_new_with_label (
-					g_app_info_get_name (pInfo->pAppInfo));
+				pInfo->pMenuItem = gldi_menu_item_new (g_app_info_get_name (pInfo->pAppInfo), "");
 
 			GIcon *pIcon = g_app_info_get_icon (pInfo->pAppInfo);
 			if (pIcon)
 			{
 				GtkWidget *pImage = gtk_image_new_from_gicon (pIcon,
 					GTK_ICON_SIZE_LARGE_TOOLBAR);
-				_gtk_image_menu_item_set_image (
-					GTK_IMAGE_MENU_ITEM (pInfo->pMenuItem), pImage);
+				gldi_menu_item_set_image (pInfo->pMenuItem, pImage);
 			}
 
 			if (cDescription)
@@ -427,11 +420,8 @@ static gboolean _on_button_release_launch_command (G_GNUC_UNUSED GtkWidget *pMen
 void cd_menu_append_entry (void)
 {
 	// menu item at the top of the menu with a GtkImage and a GtkEntry
-	GtkWidget *pMenuItem = gtk_image_menu_item_new ();
-
-	GtkWidget *pImage = gtk_image_new_from_stock (GTK_STOCK_EXECUTE, GTK_ICON_SIZE_LARGE_TOOLBAR);
-	_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), pImage);
-
+	GtkWidget *pMenuItem = gldi_menu_item_new_full (NULL, GTK_STOCK_EXECUTE, FALSE, GTK_ICON_SIZE_LARGE_TOOLBAR);
+	
 	GtkWidget *pEntry = gtk_entry_new ();
 	gtk_container_add (GTK_CONTAINER (pMenuItem), pEntry);
 	
@@ -441,7 +431,7 @@ void cd_menu_append_entry (void)
 	g_signal_connect (myData.pMenu, "key-press-event",
 		G_CALLBACK (_on_key_pressed_menu),
 		myApplet);  // to redirect the signal to the event, or it won't get it.
-
+	
 	g_signal_connect (G_OBJECT (myData.pMenu),
 		"deactivate",
 		G_CALLBACK (_on_menu_deactivated),
@@ -458,13 +448,10 @@ void cd_menu_append_entry (void)
 	gtk_menu_shell_append (GTK_MENU_SHELL (myData.pMenu), pMenuItem);
 
 	// Launch this command (create the widget but we don't insert it now)
-	s_pLaunchCommand = gtk_image_menu_item_new_with_label (D_("Launch this command"));
-	pImage = gtk_image_new_from_stock (GTK_STOCK_EXECUTE, GTK_ICON_SIZE_LARGE_TOOLBAR);
-	_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (s_pLaunchCommand), pImage);
+	s_pLaunchCommand = gldi_menu_item_new_full (D_("Launch this command"), GTK_STOCK_EXECUTE, FALSE, GTK_ICON_SIZE_LARGE_TOOLBAR);
 	g_signal_connect (s_pLaunchCommand, "button-release-event",
-			G_CALLBACK (_on_button_release_launch_command), NULL);
+		G_CALLBACK (_on_button_release_launch_command), NULL);
 	g_object_ref (s_pLaunchCommand);
-
 }
 
 // free the list of result and the list of the applications menu

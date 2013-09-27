@@ -829,6 +829,7 @@ void cd_satus_notifier_build_item_dbusmenu (CDStatusNotifierItem *pItem)
 			pItem->pMenu = dbusmenu_gtkmenu_new ((gchar *)pItem->cService, (gchar *)pItem->cMenuPath);
 			if (g_object_is_floating (pItem->pMenu))  // claim ownership on the menu.
 				g_object_ref_sink (pItem->pMenu);
+			gldi_menu_init (GTK_WIDGET(pItem->pMenu), myIcon);
 			/* Position of the menu: GTK doesn't do its job :-/
 			 * e.g. with Dropbox: the menu is out of the screen every time
 			 * something has changed in this menu (it displays 'connecting',
@@ -836,7 +837,7 @@ void cd_satus_notifier_build_item_dbusmenu (CDStatusNotifierItem *pItem)
 			 * (maybe it's due to a delay because Python and DBus are slower...)
 			 * We can't watch the 'configure' event (which should be triggered
 			 * each time the menu is resized) because it seems this notification
-			 * is not send...
+			 * is not sent...
 			 * This is why we need to watch the 'draw' event...
 			 */
 			g_signal_connect (G_OBJECT (pItem->pMenu),

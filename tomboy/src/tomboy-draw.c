@@ -176,7 +176,7 @@ void cd_tomboy_show_results (GList *pIconsList)
 	{
 		GList *pNotes = NULL;
 		gchar *cCommand;
-		GtkWidget *pMenu = gtk_menu_new ();
+		GtkWidget *pMenu = gldi_menu_new (myIcon);
 		for (ic = pIconsList; ic != NULL; ic = ic->next)
 		{
 			icon = ic->data;
@@ -186,7 +186,7 @@ void cd_tomboy_show_results (GList *pIconsList)
 		}
 		
 		cairo_dock_add_in_menu_with_stock_and_data (D_("Open all"), NULL, G_CALLBACK (_on_select_all_notes), pMenu, pNotes);
-		cairo_dock_popup_menu_on_icon (pMenu, myIcon, myContainer);
+		gldi_menu_popup (pMenu);
 		g_signal_connect (G_OBJECT (pMenu),
 			"destroy",
 			G_CALLBACK (_on_menu_destroyed),

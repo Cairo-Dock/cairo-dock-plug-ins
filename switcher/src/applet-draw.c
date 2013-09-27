@@ -543,16 +543,15 @@ static void _cd_switcher_add_window_on_viewport (Icon *pIcon, int iNumDesktop, i
 	
 	// on ajoute une entree au menu avec le pixbuf.
 	gchar *cLabel = cairo_dock_cut_string (pIcon->cName, 50);
-	GtkWidget *pMenuItem = gtk_image_menu_item_new_with_label (cLabel);
+	GtkWidget *pMenuItem = gldi_menu_add_item (pMenu, cLabel, "", G_CALLBACK (_show_window), pIcon);
 	g_free (cLabel);
+	
 	if (pixbuf)
 	{
 		GtkWidget *image = gtk_image_new_from_pixbuf (pixbuf);
-		_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
+		gldi_menu_item_set_image (pMenuItem, image);
 		g_object_unref (pixbuf);
 	}
-	gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);
-	g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK (_show_window), pIcon);
 }
 void cd_switcher_build_windows_list (GtkWidget *pMenu)
 {

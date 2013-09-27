@@ -91,7 +91,7 @@ static gboolean _popup_menu (CDStatusNotifierItem *pItem, Icon *pIcon, GldiConta
 	cd_satus_notifier_build_item_dbusmenu (pItem);
 	if (pItem->pMenu != NULL)
 	{
-		cairo_dock_popup_menu_on_icon (GTK_WIDGET (pItem->pMenu), pIcon, pContainer);
+		gldi_menu_popup (GTK_WIDGET (pItem->pMenu));
 		r = TRUE;
 	}
 
