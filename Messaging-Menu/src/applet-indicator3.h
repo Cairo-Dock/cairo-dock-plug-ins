@@ -22,11 +22,11 @@
 
 #include "indicator-applet3.h"
 
-void cd_messaging_accessible_desc_update (IndicatorObject *pIndicator G_GNUC_UNUSED, IndicatorObjectEntry *pEntry, gpointer data);
+void cd_messaging_accessible_desc_update (IndicatorObject *pIndicator G_GNUC_UNUSED, IndicatorObjectEntry *pEntry, GldiModuleInstance *myApplet);
 
-void cd_messaging_entry_added (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data);
+void cd_messaging_entry_added (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, GldiModuleInstance *myApplet);
 
-void cd_messaging_entry_removed (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data);
+void cd_messaging_entry_removed (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, GldiModuleInstance *myApplet);
 
 void cd_messaging_destroy (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data);
 

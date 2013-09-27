@@ -199,11 +199,10 @@ void cd_indicator3_notify_image (GtkImage *pImage, GCallback pCallBack, gpointer
 	}
 }
 
-void cd_indicator3_accessible_desc_update (IndicatorObjectEntry *pEntry, const gchar *defaultTitle, gpointer data)
+void cd_indicator3_accessible_desc_update (IndicatorObjectEntry *pEntry, const gchar *defaultTitle, GldiModuleInstance *myApplet)
 {
 	const gchar *cDesc = cd_indicator3_get_accessible_desc (pEntry);
 	cd_debug ("Get Accessible description: %s", cDesc);
-	GldiModuleInstance *myApplet = data;
 	if (cDesc != NULL && *cDesc != '\0')
 		CD_APPLET_SET_NAME_FOR_MY_ICON (cDesc);
 	else if (defaultTitle != NULL && *defaultTitle != '\0')

@@ -26,22 +26,22 @@
 
 #define INDICATOR_SERVICE_DIR "/usr/share/unity/indicators"
 
-typedef void (* CairoDockIndicator3Func ) (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data);
-typedef void (* CairoDockIndicator3FuncMenu ) (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, guint32 timestamp, gpointer data);
+typedef void (* CairoDockIndicator3Func ) (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, GldiModuleInstance *myApplet);
+typedef void (* CairoDockIndicator3FuncMenu ) (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, guint32 timestamp, GldiModuleInstance *myApplet);
 
 IndicatorObject * cd_indicator3_load (const gchar *cName,
 	CairoDockIndicator3Func entry_added,
 	CairoDockIndicator3Func entry_removed,
 	CairoDockIndicator3Func accessible_desc_update,
 	CairoDockIndicator3FuncMenu menu_show,
-	gpointer data);
+	GldiModuleInstance *myApplet);
 
 void cd_indicator3_unload (IndicatorObject *pIndicator,
 	CairoDockIndicator3Func entry_added,
 	CairoDockIndicator3Func entry_removed,
 	CairoDockIndicator3Func accessible_desc_update,
 	CairoDockIndicator3FuncMenu menu_show,
-	gpointer data);
+	GldiModuleInstance *myApplet);
 
 const gchar * cd_indicator3_get_label (IndicatorObjectEntry *pEntry);
 

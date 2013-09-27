@@ -28,7 +28,7 @@
 CD_APPLET_ON_CLICK_BEGIN
 	GtkMenu *pMenu = cd_indicator3_get_menu (myData.pEntry);
 	if (pMenu)
-		cairo_dock_popup_menu_on_icon (GTK_WIDGET (pMenu), myApplet->pIcon, myContainer);
+		gldi_menu_popup (GTK_WIDGET (pMenu));
 	else // should not happen except if the daemon crash?
 	{
 		gchar *cErrorMessage = g_strdup_printf (D_("This indicator service did not reply.\n"

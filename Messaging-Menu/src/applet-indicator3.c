@@ -45,15 +45,14 @@ static void _icon_updated (GObject *pObject, G_GNUC_UNUSED GParamSpec *pParam, G
 	}
 }
 
-void cd_messaging_accessible_desc_update (G_GNUC_UNUSED IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data)
+void cd_messaging_accessible_desc_update (G_GNUC_UNUSED IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, GldiModuleInstance *myApplet)
 {
-	cd_indicator3_accessible_desc_update (pEntry, myConfig.defaultTitle, data);
+	cd_indicator3_accessible_desc_update (pEntry, myConfig.defaultTitle, myApplet);
 }
 
-void cd_messaging_entry_added (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data)
+void cd_messaging_entry_added (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, GldiModuleInstance *myApplet)
 {
 	cd_debug ("Entry Added: %p", pEntry);
-	GldiModuleInstance *myApplet = data;
 	g_return_if_fail (myData.pEntry == NULL); // should not happen... only one entry
 
 	myData.pEntry = pEntry;
@@ -67,14 +66,13 @@ void cd_messaging_entry_added (IndicatorObject *pIndicator, IndicatorObjectEntry
 
 
 	cd_indicator3_check_visibility (pImage, myApplet);
-	cd_messaging_accessible_desc_update (pIndicator, pEntry, data);
+	cd_messaging_accessible_desc_update (pIndicator, pEntry, myApplet);
 }
 
-void cd_messaging_entry_removed (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data)
+void cd_messaging_entry_removed (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, GldiModuleInstance *myApplet)
 {
 	// should not happen... except at the end.
 	cd_debug ("Entry Removed");
-	GldiModuleInstance *myApplet = data;
 
 	gboolean bHide = FALSE;
 	if (myData.pEntry != NULL && myData.pEntry == pEntry) // only if an entry was already added and it was the same that we want to remove

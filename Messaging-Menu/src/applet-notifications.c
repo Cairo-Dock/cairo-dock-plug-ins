@@ -72,7 +72,7 @@ static inline void _show_menu (void)
 	#else
 	GtkMenu *pMenu = cd_indicator3_get_menu (myData.pEntry);
 	if (pMenu)
-		cairo_dock_popup_menu_on_icon (GTK_WIDGET (pMenu), myIcon, myContainer);
+		gldi_menu_popup (GTK_WIDGET (pMenu));
 	else
 	#endif
 		gldi_dialog_show_temporary_with_icon (D_("The Messaging service did not reply.\nPlease check that it is correctly installed."), myIcon, myContainer, 8000., "same icon");

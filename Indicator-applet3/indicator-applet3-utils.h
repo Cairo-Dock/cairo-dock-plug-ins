@@ -42,7 +42,7 @@ void cd_indicator3_notify_image (GtkImage *pImage, GCallback pCallBack, gpointer
 /**
  * Update the title of the icon with the description, defaultTitle or the name of the applet
  */
-void cd_indicator3_accessible_desc_update (IndicatorObjectEntry *pEntry, const gchar *defaultTitle, gpointer data);
+void cd_indicator3_accessible_desc_update (IndicatorObjectEntry *pEntry, const gchar *defaultTitle, GldiModuleInstance *myApplet);
 
 /**
  * Connect to the show/hide signal in order to show or hide the icon.

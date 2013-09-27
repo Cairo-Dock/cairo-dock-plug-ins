@@ -32,7 +32,13 @@
 static gboolean bIsIdoInit = FALSE;
 #endif
 
-IndicatorObject * cd_indicator3_load (const gchar *cName, CairoDockIndicator3Func entry_added, CairoDockIndicator3Func entry_removed, CairoDockIndicator3Func accessible_desc_update, CairoDockIndicator3FuncMenu menu_show, gpointer data)
+static void _init_new_entry_menu (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, GldiModuleInstance *myApplet)
+{
+	if (pEntry->menu != NULL)
+		gldi_menu_init (GTK_WIDGET(pEntry->menu), myIcon);
+}
+
+IndicatorObject * cd_indicator3_load (const gchar *cName, CairoDockIndicator3Func entry_added, CairoDockIndicator3Func entry_removed, CairoDockIndicator3Func accessible_desc_update, CairoDockIndicator3FuncMenu menu_show, GldiModuleInstance *myApplet)
 {
 	#ifdef IS_INDICATOR_NG
 	if (! bIsIdoInit)
@@ -80,13 +86,13 @@ IndicatorObject * cd_indicator3_load (const gchar *cName, CairoDockIndicator3Fun
 
 	/* Connect to its signals */
 	if (entry_added)
-		g_signal_connect (G_OBJECT (pIndicator), INDICATOR_OBJECT_SIGNAL_ENTRY_ADDED,   G_CALLBACK (entry_added),   data);
+		g_signal_connect (G_OBJECT (pIndicator), INDICATOR_OBJECT_SIGNAL_ENTRY_ADDED,   G_CALLBACK (entry_added),   myApplet);
 	if (entry_removed)
-		g_signal_connect (G_OBJECT (pIndicator), INDICATOR_OBJECT_SIGNAL_ENTRY_REMOVED, G_CALLBACK (entry_removed), data);
+		g_signal_connect (G_OBJECT (pIndicator), INDICATOR_OBJECT_SIGNAL_ENTRY_REMOVED, G_CALLBACK (entry_removed), myApplet);
 	if (menu_show)
-		g_signal_connect (G_OBJECT (pIndicator), INDICATOR_OBJECT_SIGNAL_MENU_SHOW,     G_CALLBACK (menu_show),     data);
+		g_signal_connect (G_OBJECT (pIndicator), INDICATOR_OBJECT_SIGNAL_MENU_SHOW,     G_CALLBACK (menu_show),     myApplet);
 	if (accessible_desc_update)
-		g_signal_connect (G_OBJECT (pIndicator), INDICATOR_OBJECT_SIGNAL_ACCESSIBLE_DESC_UPDATE, G_CALLBACK (accessible_desc_update), data);
+		g_signal_connect (G_OBJECT (pIndicator), INDICATOR_OBJECT_SIGNAL_ACCESSIBLE_DESC_UPDATE, G_CALLBACK (accessible_desc_update), myApplet);
 	// other signals
 	// INDICATOR_OBJECT_SIGNAL_ENTRY_MOVED
 	// INDICATOR_OBJECT_SIGNAL_SECONDARY_ACTIVATE
@@ -101,24 +107,30 @@ IndicatorObject * cd_indicator3_load (const gchar *cName, CairoDockIndicator3Fun
 		for (pEntry = pList; pEntry != NULL; pEntry = g_list_next (pEntry))
 		{
 			IndicatorObjectEntry *pData = (IndicatorObjectEntry *) pEntry->data;
-			entry_added (pIndicator, pData, data);
+			entry_added (pIndicator, pData, myApplet);
+			
+			if (pData->menu != NULL)
+				gldi_menu_init (GTK_WIDGET(pData->menu), myIcon);
 		}
 
 		g_list_free (pList);
 	}
+	
+	g_signal_connect (G_OBJECT (pIndicator), INDICATOR_OBJECT_SIGNAL_ENTRY_ADDED, G_CALLBACK (_init_new_entry_menu), NULL);
+	
 	return pIndicator;
 }
 
-void cd_indicator3_unload (IndicatorObject *pIndicator, CairoDockIndicator3Func entry_added, CairoDockIndicator3Func entry_removed, CairoDockIndicator3Func accessible_desc_update, CairoDockIndicator3FuncMenu menu_show, gpointer data)
+void cd_indicator3_unload (IndicatorObject *pIndicator, CairoDockIndicator3Func entry_added, CairoDockIndicator3Func entry_removed, CairoDockIndicator3Func accessible_desc_update, CairoDockIndicator3FuncMenu menu_show, GldiModuleInstance *myApplet)
 {
 	if (entry_added)
-		g_signal_handlers_disconnect_by_func (G_OBJECT (pIndicator), G_CALLBACK (entry_added), data);
+		g_signal_handlers_disconnect_by_func (G_OBJECT (pIndicator), G_CALLBACK (entry_added), myApplet);
 	if (entry_removed)
-		g_signal_handlers_disconnect_by_func (G_OBJECT (pIndicator), G_CALLBACK (entry_removed), data);
+		g_signal_handlers_disconnect_by_func (G_OBJECT (pIndicator), G_CALLBACK (entry_removed), myApplet);
 	if (menu_show)
-		g_signal_handlers_disconnect_by_func (G_OBJECT (pIndicator), G_CALLBACK (menu_show), data);
+		g_signal_handlers_disconnect_by_func (G_OBJECT (pIndicator), G_CALLBACK (menu_show), myApplet);
 	if (accessible_desc_update)
-		g_signal_handlers_disconnect_by_func (G_OBJECT (pIndicator), G_CALLBACK (accessible_desc_update), data);
+		g_signal_handlers_disconnect_by_func (G_OBJECT (pIndicator), G_CALLBACK (accessible_desc_update), myApplet);
 }
 
 const gchar * cd_indicator3_get_label (IndicatorObjectEntry *pEntry)

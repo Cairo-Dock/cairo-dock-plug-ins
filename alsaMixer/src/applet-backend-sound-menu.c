@@ -27,7 +27,7 @@ static void (*_stop_parent) (void) = NULL;
 static void (*_show_menu_parent) (void)  = NULL;
 
 
-static void _entry_added (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data)
+static void _entry_added (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, GldiModuleInstance *myApplet)
 {
 	cd_debug ("Entry Added: %p", pEntry);
 	g_return_if_fail (myData.pEntry == NULL && pEntry != NULL); // should not happen... only one entry
@@ -35,7 +35,7 @@ static void _entry_added (IndicatorObject *pIndicator, IndicatorObjectEntry *pEn
 	myData.pEntry = pEntry;
 }
 
-static void _entry_removed (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data)
+static void _entry_removed (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, GldiModuleInstance *myApplet)
 {
 	// should not happen... except at the end.
 	cd_debug ("Entry Removed");
