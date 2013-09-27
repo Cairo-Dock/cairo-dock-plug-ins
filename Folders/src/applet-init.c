@@ -38,7 +38,7 @@ CD_APPLET_DEFINE_BEGIN (N_("Folders"),
 	"Fabounet")
 	CD_APPLET_DEFINE_COMMON_APPLET_INTERFACE
 	CD_APPLET_ALLOW_EMPTY_TITLE
-	gldi_object_register_notification (&myContainerObjectMgr,
+	gldi_object_register_notification (&myDockObjectMgr,
 		NOTIFICATION_DROP_DATA,
 		(GldiNotificationFunc) cd_folders_on_drop_data,
 		GLDI_RUN_FIRST, NULL);
