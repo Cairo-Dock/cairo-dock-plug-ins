@@ -306,7 +306,8 @@ gboolean cd_dbus_applet_emit_on_click_icon (gpointer data, Icon *pClickedIcon, G
 	
 	// if the applet acts as a launcher, assume it launches the program it controls on click
 	// Note: if one day it poses a problem, we can either make a new attribute, or add a dbus method (or even reuse the "Animate" method with a pseudo "launching" animation).
-	if (pAppletIcon->pModuleInstance->pModule->pVisitCard->bActAsLauncher)
+	if (pAppletIcon->pModuleInstance->pModule->pVisitCard->bActAsLauncher
+	&& pClickedIcon->pAppli == NULL)  // if the icon already controls a window, don't notify; most probably, the action the applet will take is to show/minimize this window
 		gldi_class_startup_notify (pClickedIcon);
 	return GLDI_NOTIFICATION_INTERCEPT;
 }

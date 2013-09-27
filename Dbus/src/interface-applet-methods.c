@@ -1027,6 +1027,8 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 	gtk_widget_get_preferred_size (myData.pModuleMainMenu, NULL, &natural_size);
 	#endif
 	int iItemHeight = 0, iMenuHeight = natural_size.height;
+	int iIconSize;
+	gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &iIconSize, NULL);
 	
 	// get the position of our items in the menu.
 	int iPosition = myData.iMenuPosition;
@@ -1080,6 +1082,13 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 			id = g_value_get_int (v);
 		data = GINT_TO_POINTER (id);
 		
+		if (iType == 0 || iType == 1)
+		{
+			v = g_hash_table_lookup (pItem, "icon");
+			if (v && G_VALUE_HOLDS_STRING (v))
+				cIcon = g_value_get_string (v);
+		}
+		
 		v = g_hash_table_lookup (pItem, "state");
 		if (v && G_VALUE_HOLDS_BOOLEAN (v))
 			bState = g_value_get_boolean (v);
@@ -1097,16 +1106,16 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 		switch (iType)
 		{
 			case 0 :  // normal entry
-				pMenuItem = gtk_image_menu_item_new_with_label (cLabel);
-				g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK (cd_dbus_emit_on_menu_select), data);
+				pMenuItem = gldi_menu_item_new_with_action (cLabel, cIcon, G_CALLBACK (cd_dbus_emit_on_menu_select), data);
 			break;
 			case 1:  // sub-menu
-				pMenuItem = gtk_image_menu_item_new_with_label (cLabel);
-				GtkWidget *pSubMenu = gtk_menu_new ();
-				gtk_menu_item_set_submenu (GTK_MENU_ITEM (pMenuItem), pSubMenu);
+			{
+				GtkWidget *pSubMenu;
+				pMenuItem = gldi_menu_item_new_with_submenu (cLabel, cIcon, &pSubMenu);
 				int *pID = g_new (int, 1);
 				*pID = id;
 				g_hash_table_insert (pSubMenus, pID, pSubMenu);
+			}
 			break;
 			case 2:  // separator
 				pMenuItem = gtk_separator_menu_item_new ();
@@ -1138,34 +1147,6 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 		if (v && G_VALUE_HOLDS_BOOLEAN (v))
 			gtk_widget_set_sensitive (pMenuItem, g_value_get_boolean (v));
 		
-		// set an icon
-		if (iType == 0 || iType == 1)
-		{
-			v = g_hash_table_lookup (pItem, "icon");
-			if (v && G_VALUE_HOLDS_STRING (v))
-			{
-				cIcon = g_value_get_string (v);
-				if (cIcon)
-				{
-					GtkWidget *image = NULL;
-					if (*cIcon == '/')
-					{
-						GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cIcon, 16, 16, NULL);
-						if (pixbuf)
-						{
-							image = gtk_image_new_from_pixbuf (pixbuf);
-							g_object_unref (pixbuf);
-						}
-					}
-					else
-					{
-						image = gtk_image_new_from_stock (cIcon, GTK_ICON_SIZE_MENU);
-					}
-					_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
-				}
-			}
-		}
-		
 		// set the tooltip
 		v = g_hash_table_lookup (pItem, "tooltip");
 		if (v && G_VALUE_HOLDS_STRING (v))
@@ -1190,6 +1171,7 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 		gtk_menu_shell_insert (GTK_MENU_SHELL (pMenu), pMenuItem, iPosition++);
 		if (pMenu == myData.pModuleMainMenu)
 		{
+			gtk_widget_show_all (pMenuItem);  // make it visible now so that its height is correctly calculated by GTK (else its child is ignored)
 			#if (GTK_MAJOR_VERSION < 3)
 			gtk_widget_size_request (pMenuItem, &natural_size); // it's the minimum size...
 			#else
