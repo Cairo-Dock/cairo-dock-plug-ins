@@ -120,6 +120,8 @@ CD_APPLET_STOP_BEGIN
 		pClipBoard = gtk_clipboard_get (GDK_SELECTION_PRIMARY);
 		g_signal_handler_disconnect (pClipBoard, myData.iSidPrimaryOwnerChange);
 	}
+	if (myData.iSidMenuAutoDestroy != 0)
+		g_source_remove (myData.iSidMenuAutoDestroy);
 
 	_on_shutdown (myApplet);
 

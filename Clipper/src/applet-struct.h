@@ -74,6 +74,7 @@ struct _AppletData {
 	GList *pItems;
 	guint iSidClipboardOwnerChange;
 	guint iSidPrimaryOwnerChange;
+	guint iSidMenuAutoDestroy;
 	GList *pActions;
 	gboolean bActionsLoaded;
 	gboolean bActionBlocked;

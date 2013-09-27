@@ -390,23 +390,10 @@ static gboolean _cd_clipper_auto_destroy_action_menu (GtkWidget *pMenu)
 	if (pMenu == myData.pActionMenu)
 	{
 		cd_debug ("auto-destruction\n");
-		gtk_widget_destroy (myData.pActionMenu);  // n'appellera pas le 'delete_menu'
+		gtk_widget_destroy (myData.pActionMenu);
 		myData.pActionMenu = NULL;
 	}
 	CD_APPLET_LEAVE (FALSE);
-	//return FALSE;
-}
-static void _on_delete_action_menu (GtkMenuShell *menu, CairoDock *pDock)
-{
-	CD_APPLET_ENTER;
-	if (menu == (GtkMenuShell *)myData.pActionMenu)
-	{
-		cd_debug ("on oublie le menu actuel");
-		myData.pActionMenu = NULL;
-	}
-	else
-		cd_debug ("un ancien menu est detruit");
-	CD_APPLET_LEAVE();
 }
 static void _cd_clipper_launch_action (GtkMenuItem *pMenuItem, CDClipperCommand *pCommand)
 {
@@ -429,58 +416,46 @@ static void _cd_clipper_launch_action (GtkMenuItem *pMenuItem, CDClipperCommand 
 }
 GtkWidget *cd_clipper_build_action_menu (CDClipperAction *pAction)
 {
-	GtkWidget *pMenu = gtk_menu_new ();
 	cd_message ("%s (%s)", __func__, pAction->cDescription);
 	
+	if (myData.pActionMenu != NULL)
+		gtk_widget_destroy (myData.pActionMenu);
+	
+	GtkWidget *pMenu = gldi_menu_new (myIcon);
+	
 	GtkWidget *pMenuItem;
-	GtkWidget *pImage;
 	CDClipperCommand *pCommand;
-	gchar *cIconFilePath;
+	const gchar *cImage;
+	gchar *str;
 	GList *pElement;
-	gint iDesiredIconSize = cairo_dock_search_icon_size (GTK_ICON_SIZE_LARGE_TOOLBAR); // 24px by default
 	for (pElement = pAction->pCommands; pElement != NULL; pElement = pElement->next)
 	{
 		pCommand = pElement->data;
+		str = NULL;
 		if (pCommand->cIconFileName != NULL)
 		{
-			cd_debug (" icone %s", pCommand->cIconFileName);
-			cIconFilePath = cairo_dock_search_icon_s_path (pCommand->cIconFileName, iDesiredIconSize);
+			cImage = pCommand->cIconFileName;
 		}
 		else
 		{
-			gchar *tmp = pCommand->cFormat;
-			while (*tmp != '\0' && *tmp != ' ')
-				tmp ++;
-			gchar *cIconName = g_strndup (pCommand->cFormat, tmp - pCommand->cFormat);
-			cd_debug (" icone %s", cIconName);
-			cIconFilePath = cairo_dock_search_icon_s_path (cIconName, iDesiredIconSize);
-			g_free (cIconName);
+			cImage = pCommand->cFormat;
+			str = strchr (pCommand->cFormat, ' ');
+			if (str) *str = '\0';
 		}
 		
-		pMenuItem = gtk_image_menu_item_new_with_mnemonic (pCommand->cDescription);
-		if (cIconFilePath != NULL)
-		{
-			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cIconFilePath, iDesiredIconSize, iDesiredIconSize, NULL);
-			pImage = gtk_image_new_from_pixbuf (pixbuf);
-			g_free (cIconFilePath);
-			g_object_unref (pixbuf);
-			_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), pImage);
-		}
-		gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);
+		pMenuItem = gldi_menu_item_new_full (pCommand->cDescription, cImage, TRUE, 0);  // TRUE <=> use mnemonic, 0 <=> default size
 		g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK (_cd_clipper_launch_action), pCommand);
+		gtk_menu_shell_append (GTK_MENU_SHELL (pMenu), pMenuItem);
+		
+		if (str) *str = ' ';
 	}
 	
-	g_signal_connect (G_OBJECT (pMenu),
-		"deactivate",
-		G_CALLBACK (_on_delete_action_menu),
-		NULL);
-	if (myData.pActionMenu != NULL)
-	{
-		cd_debug ("on fusille l'actuel menu");
-		gtk_widget_destroy (myData.pActionMenu);
-	}
 	myData.pActionMenu = pMenu;
-	g_timeout_add_seconds (myConfig.iActionMenuDuration, (GSourceFunc) _cd_clipper_auto_destroy_action_menu, (gpointer) pMenu);
+	g_object_add_weak_pointer (G_OBJECT (pMenu), (gpointer*)&myData.pActionMenu);  // will nullify 'pActionMenu' as soon as the menu is destroyed.
+	
+	if (myData.iSidMenuAutoDestroy != 0)
+		g_source_remove (myData.iSidMenuAutoDestroy);
+	myData.iSidMenuAutoDestroy = g_timeout_add_seconds (myConfig.iActionMenuDuration, (GSourceFunc) _cd_clipper_auto_destroy_action_menu, (gpointer) pMenu);
 	return pMenu;
 }
 
@@ -552,7 +527,7 @@ static void _cd_clipper_add_item_in_menu (CDClipperItem *pItem, GtkWidget *pMenu
 */
 GtkWidget *cd_clipper_build_items_menu (void)
 {
-	GtkWidget *pMenu = gtk_menu_new ();
+	GtkWidget *pMenu = gldi_menu_new (myIcon);
 	
 	GtkWidget *pMenuItem;
 	CDClipperItem *pItem;
@@ -571,7 +546,7 @@ GtkWidget *cd_clipper_build_items_menu (void)
 
 GtkWidget *cd_clipper_build_persistent_items_menu (void)
 {
-	GtkWidget *pMenu = gtk_menu_new ();
+	GtkWidget *pMenu = gldi_menu_new (myIcon);
 	
 	gchar *cText;
 	int i;
