@@ -62,7 +62,7 @@ void cd_menu_append_recent_to_menu (GtkWidget *top_menu, GldiModuleInstance *myA
 		GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (cIconPath, myData.iPanelDefaultMenuIconSize, myData.iPanelDefaultMenuIconSize, NULL);
 		GtkWidget *image = gtk_image_new_from_pixbuf (pixbuf);
 		g_object_unref (pixbuf);
-		_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
+		gldi_menu_item_set_image (pMenuItem, image);
 		gtk_menu_shell_append (GTK_MENU_SHELL (top_menu), pMenuItem);
 		gtk_widget_show_all (pMenuItem);
 		myData.pRecentMenuItem = pMenuItem;

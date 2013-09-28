@@ -294,8 +294,8 @@ void panel_load_menu_image_deferred (GtkWidget   *image_menu_item,
 		myData.pPreloadedImagesList = g_list_append (myData.pPreloadedImagesList, data);
 	}
  
-	_gtk_image_menu_item_set_image (
-		GTK_IMAGE_MENU_ITEM (image_menu_item), image);
+	gldi_menu_item_set_image (
+		image_menu_item, image);
 
 	gtk_widget_show (image);
 

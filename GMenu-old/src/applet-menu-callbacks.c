@@ -161,7 +161,7 @@ static GtkWidget *cd_menu_append_one_item_to_menu (const gchar *cLabel, const gc
 			image = gtk_image_new_from_pixbuf (pixbuf);
 			g_object_unref (pixbuf);
 		}
-		_gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (pMenuItem), image);
+		gldi_menu_item_set_image (pMenuItem, image);
 	}
 	gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);
 	if (pFunction)
