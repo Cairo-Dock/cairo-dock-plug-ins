@@ -131,6 +131,8 @@ void cd_indicator3_unload (IndicatorObject *pIndicator, CairoDockIndicator3Func 
 		g_signal_handlers_disconnect_by_func (G_OBJECT (pIndicator), G_CALLBACK (menu_show), myApplet);
 	if (accessible_desc_update)
 		g_signal_handlers_disconnect_by_func (G_OBJECT (pIndicator), G_CALLBACK (accessible_desc_update), myApplet);
+
+	g_signal_handlers_disconnect_by_func (G_OBJECT (pIndicator), G_CALLBACK (_init_new_entry_menu), myApplet);
 }
 
 const gchar * cd_indicator3_get_label (IndicatorObjectEntry *pEntry)
