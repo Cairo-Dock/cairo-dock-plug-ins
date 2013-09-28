@@ -550,7 +550,7 @@ gboolean on_render_desklet (GldiModuleInstance *myApplet, GldiContainer *pContai
 	y = myIcon->fDrawY + myIcon->fHeight * myIcon->fScale / 2;
 	if (x - myIcon->label.iWidth/2 < 0)
 	{
-		x -= myIcon->label.iWidth/2;
+		x += (myIcon->label.iWidth/2 - x);
 	}
 	if (pCairoContext != NULL)
 	{
@@ -562,7 +562,7 @@ gboolean on_render_desklet (GldiModuleInstance *myApplet, GldiContainer *pContai
 			cairo_paint_with_alpha (pCairoContext, myData.fDesktopNameAlpha);
 			cairo_restore (pCairoContext);*/
 			cairo_dock_apply_image_buffer_surface_with_offset (&myIcon->label, pCairoContext,
-				- myIcon->label.iWidth/2, - myIcon->label.iHeight/2, myData.fDesktopNameAlpha);
+				x - myIcon->label.iWidth/2, y - myIcon->label.iHeight/2, myData.fDesktopNameAlpha);
 		}
 	}
 	else
