@@ -199,13 +199,6 @@ static void create_menuitem (GtkWidget *menu,
 	GDesktopAppInfo *pAppInfo = gmenu_tree_entry_get_app_info (entry);
 	cd_menu_register_app (pAppInfo);
 	
-	//////////////////// TO REMOVE
-	gboolean a = gmenu_tree_entry_get_is_excluded (entry),
-		b = ! g_app_info_should_show (G_APP_INFO (pAppInfo)),
-		c = g_desktop_app_info_get_nodisplay (pAppInfo);
-	if (a || b || c)
-		g_print ("=== %s %d %d %d\n", g_app_info_get_name (G_APP_INFO (pAppInfo)), a, b, c);
-	//////////////////// <=
 	// ignore entry that are not shown in the menu
 	if (gmenu_tree_entry_get_is_excluded (entry))
 		return;

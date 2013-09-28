@@ -116,7 +116,7 @@ IndicatorObject * cd_indicator3_load (const gchar *cName, CairoDockIndicator3Fun
 		g_list_free (pList);
 	}
 	
-	g_signal_connect (G_OBJECT (pIndicator), INDICATOR_OBJECT_SIGNAL_ENTRY_ADDED, G_CALLBACK (_init_new_entry_menu), NULL);
+	g_signal_connect (G_OBJECT (pIndicator), INDICATOR_OBJECT_SIGNAL_ENTRY_ADDED, G_CALLBACK (_init_new_entry_menu), myApplet);
 	
 	return pIndicator;
 }
