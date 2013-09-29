@@ -61,6 +61,9 @@ CD_APPLET_INIT_BEGIN
 	myData.pIndicator->get_initial_values 	= cd_messaging_get_initial_values;
 	myData.pIndicator->add_menu_handler 	= cd_messaging_add_menu_handler;
 	#else
+	if (myDock)
+		gldi_icon_detach (myIcon); // the icon is inserted when the entry will be added
+
 	myData.pIndicator = cd_indicator3_load (myConfig.cIndicatorName,
 		cd_messaging_entry_added,
 		cd_messaging_entry_removed,
