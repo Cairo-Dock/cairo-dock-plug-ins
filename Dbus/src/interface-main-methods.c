@@ -626,7 +626,6 @@ gboolean cd_dbus_main_add (dbusMainObject *pDbusCallback, GHashTable *pPropertie
 				if (v && G_VALUE_HOLDS_STRING (v))
 					cDesktopFile = g_value_get_string (v);
 				
-				g_print ("add %s\n", cDesktopFile);
 				if (cDesktopFile != NULL)
 				{
 					pNewIcon = gldi_launcher_add_new (cDesktopFile, pParentDock, fOrder);

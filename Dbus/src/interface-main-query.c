@@ -250,7 +250,7 @@ static void _check_icon_matching (Icon *pIcon, CDQuery *pQuery)
 {
 	if (_icon_is_matching (pIcon, pQuery))
 	{
-		g_print (" found icon %s\n", pIcon->cName);
+		cd_debug ("found icon %s", pIcon->cName);
 		pQuery->pMatchingIcons = g_list_prepend (pQuery->pMatchingIcons, pIcon);
 	}
 }
@@ -260,7 +260,7 @@ static void _get_icon_at_position_in_dock (const gchar *cDockName, CairoDock *pD
 	Icon *pIcon = g_list_nth_data (pDock->icons, pQuery->iPosition);
 	if (pIcon != NULL)
 	{
-		g_print (" found icon %s\n", pIcon->cName);
+		cd_debug ("found icon %s", pIcon->cName);
 		pQuery->pMatchingIcons = g_list_prepend (pQuery->pMatchingIcons, pIcon);
 	}
 }
@@ -270,7 +270,7 @@ static gboolean _get_icon_at_position_in_desklet (CairoDesklet *pDesklet, CDQuer
 	Icon *pIcon = g_list_nth_data (pDesklet->icons, pQuery->iPosition);
 	if (pIcon != NULL)
 	{
-		g_print (" found icon %s\n", pIcon->cName);
+		cd_debug ("found icon %s", pIcon->cName);
 		pQuery->pMatchingIcons = g_list_prepend (pQuery->pMatchingIcons, pIcon);
 	}
 	return FALSE;  // don't stop.
@@ -312,7 +312,6 @@ static GList *_find_matching_icons_for_test (gchar *cTest)
 GList *cd_dbus_find_matching_icons (gchar *cQuery)
 {
 	g_return_val_if_fail (cQuery != NULL, NULL);
-	g_print ("%s (%s)\n", __func__, cQuery);
 	
 	gchar *str;
 	str = strchr (cQuery, '|');  // a && b || c && d <=> (a && b) || (c && d)
@@ -388,7 +387,7 @@ static void _check_dock_matching (const gchar *cDockName, CairoDock *pDock, CDQu
 	
 	if (_container_is_matching (CAIRO_CONTAINER (pDock), cDockName, cConfFile, pQuery))
 	{
-		g_print (" found dock %s\n", cDockName);
+		cd_debug ("found dock %s", cDockName);
 		pQuery->pMatchingIcons = g_list_prepend (pQuery->pMatchingIcons, pDock);
 	}
 	
@@ -405,7 +404,7 @@ static gboolean _check_desklet_matching (CairoDesklet *pDesklet, CDQuery *pQuery
 	
 	if (_container_is_matching (CAIRO_CONTAINER (pDesklet), cName, cConfFile, pQuery))
 	{
-		g_print (" found desklet %s\n", cName);
+		cd_debug ("found desklet %s", cName);
 		pQuery->pMatchingIcons = g_list_prepend (pQuery->pMatchingIcons, pDesklet);
 	}
 	
@@ -498,7 +497,7 @@ static GList *_find_matching_modules_for_key (const gchar *cKey, const gchar *cV
 		GldiModule *pModule = gldi_module_get (query.cName);
 		if (pModule != NULL)
 		{
-			g_print (" found module %s\n", pModule->pVisitCard->cModuleName);
+			cd_debug ("found module %s", pModule->pVisitCard->cModuleName);
 			query.pMatchingIcons = g_list_prepend (query.pMatchingIcons, pModule);
 		}
 		else
@@ -506,7 +505,7 @@ static GList *_find_matching_modules_for_key (const gchar *cKey, const gchar *cV
 			GldiManager *pManager = gldi_manager_get (query.cName);
 			if (pManager != NULL)
 			{
-				g_print (" found manager %s\n", pManager->cModuleName);
+				cd_debug ("found manager %s", pManager->cModuleName);
 				query.pMatchingIcons = g_list_prepend (query.pMatchingIcons, pManager);
 			}
 		}
@@ -597,7 +596,7 @@ static gboolean _check_module_instance_matching (const gchar *cModuleName, GldiM
 		pInstance = mi->data;
 		if (_module_instance_is_matching (pInstance, pQuery))
 		{
-			g_print (" found module instance %s\n", pInstance->pModule->pVisitCard->cModuleName);
+			cd_debug ("found module instance %s", pInstance->pModule->pVisitCard->cModuleName);
 			pQuery->pMatchingIcons = g_list_prepend (pQuery->pMatchingIcons, pInstance);
 		}
 	}

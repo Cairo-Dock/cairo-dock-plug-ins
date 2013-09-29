@@ -487,7 +487,6 @@ static GtkWidget *_terminal_build_menu_tab (GtkWidget *vterm)
 
 static gboolean applet_on_terminal_press_cb(GtkWidget *vterm, GdkEventButton *event, gpointer user_data)
 {
-	g_print ("%s ()\n", __func__);
 	if (event->button == 3)
 	{
 		GtkWidget *menu = _terminal_build_menu_tab (vterm);

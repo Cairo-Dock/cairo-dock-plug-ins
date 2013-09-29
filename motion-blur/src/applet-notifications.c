@@ -54,11 +54,9 @@ gboolean cd_motion_blur_post_render (gpointer pUserData, CairoDock *pDock, cairo
 		glAccum (GL_ACCUM, 1 - myConfig.fBlurFactor);
 		glAccum (GL_RETURN, 1.0);
 		glAccum (GL_LOAD, myConfig.fBlurFactor);
-		g_print ("blur\n");
 	}
 	else
 	{
-		g_print ("blur stop\n");
 		glClearAccum (0., 0., 0., 0.);
 		glClear (GL_ACCUM_BUFFER_BIT);
 		glAccum (GL_ACCUM, 1.);
