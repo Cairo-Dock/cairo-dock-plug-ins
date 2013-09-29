@@ -1,78 +1,78 @@
-# Croatian translation for cairo-dock-plug-ins
-# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# Catalan translation for cairo-dock-plug-ins
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the cairo-dock-plug-ins package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
 "POT-Creation-Date: 2013-09-23 10:57+0000\n"
-"PO-Revision-Date: 2013-01-04 22:36+0000\n"
-"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
-"Language-Team: Croatian <hr@li.org>\n"
+"PO-Revision-Date: 2013-08-21 16:30+0000\n"
+"Last-Translator: Miquel Escarrà <Unknown>\n"
+"Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-09-24 06:12+0000\n"
+"X-Launchpad-Export-Date: 2013-09-24 06:10+0000\n"
 "X-Generator: Launchpad (build 16771)\n"
-"Language: hr\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
 #: ../Animated-icons/data/messages:171
 msgid "Blink"
-msgstr "Treptanje"
+msgstr "Parpelleig"
 
 #: ../Animated-icons/src/applet-bounce.c:182 ../Animated-icons/data/messages:7
 #: ../Animated-icons/data/messages:27 ../Animated-icons/data/messages:49
 #: ../Animated-icons/data/messages:157
 msgid "Bounce"
-msgstr "Odbijanje"
+msgstr "Rebot"
 
 #: ../Animated-icons/src/applet-busy.c:111 ../Animated-icons/data/messages:21
 #: ../Animated-icons/data/messages:41 ../Animated-icons/data/messages:63
 #: ../Animated-icons/data/messages:179
 msgid "Busy"
-msgstr ""
+msgstr "Ocupat"
 
 #: ../Animated-icons/src/applet-init.c:39
 msgid "Animated icons"
-msgstr "Animirane ikone"
+msgstr "Icones animades"
 
 #: ../Animated-icons/src/applet-init.c:42
 msgid "This plug-in provides many different animations for your icons."
-msgstr "Plug-in osigurava mnogo razlicitih animacija za ikone"
+msgstr ""
+"Aquest complement proporciona diversos tipus d'animació per a les icones."
 
 #: ../Animated-icons/src/applet-pulse.c:106 ../Animated-icons/data/messages:13
 #: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:55
 #: ../Animated-icons/data/messages:145
 msgid "Pulse"
-msgstr "Pulsiranje"
+msgstr "Pulsació"
 
 #: ../Animated-icons/src/applet-rotation.c:389
 #: ../Animated-icons/data/messages:9 ../Animated-icons/data/messages:29
 #: ../Animated-icons/data/messages:51
 msgid "Rotate"
-msgstr "Rotiraj"
+msgstr "Gir"
 
 #: ../Animated-icons/src/applet-spot.c:266 ../Animated-icons/data/messages:19
 #: ../Animated-icons/data/messages:39 ../Animated-icons/data/messages:61
 #: ../Animated-icons/data/messages:85 ../Animated-icons/data/messages:93
 msgid "Spot"
-msgstr "Pozicija"
+msgstr "Taca"
 
 #: ../Animated-icons/src/applet-wave.c:287 ../Animated-icons/data/messages:17
 #: ../Animated-icons/data/messages:37 ../Animated-icons/data/messages:59
 #: ../Animated-icons/data/messages:133
 msgid "Wave"
-msgstr "Val"
+msgstr "Ona"
 
 #: ../Animated-icons/src/applet-wobbly.c:532
 #: ../Animated-icons/data/messages:15 ../Animated-icons/data/messages:35
 #: ../Animated-icons/data/messages:57 ../Animated-icons/data/messages:117
 msgid "Wobbly"
-msgstr "Rastresi"
+msgstr "oscil·lant"
 
 #: ../Cairo-Penguin/src/applet-init.c:33
 msgid ""
@@ -82,89 +82,90 @@ msgid ""
 "Tux images are taken from Pingus, some other characters are available or can "
 "be added easily."
 msgstr ""
-"Dodaj okretnog Pingvina u svoj dok!\n"
-"Lijevim klikom promjeni animaciju,\n"
-"Srednjim klikom ga uznemiri.\n"
-"Slike Tuxa su iz Pingua, postoje i drugi likovi koje mozes dodati "
-"jednostavno."
+"Afegiu un pingüí ben viu al quadre!\n"
+"Amb un clic esquerre podreu canviar l'animació.\n"
+"Un clic per destorbar-lo ^_^\n"
+"Les imatges de Tux s'han agafat de Pingus; es poden agafar altres "
+"caricatures o se'n poden afegir fàcilment."
 
 #: ../Cairo-Penguin/src/applet-init.c:39
 msgid "Cairo-Penguin"
-msgstr "Cairo-Pingvin"
+msgstr "El pinguí de Cairo"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:29
 msgid "Hey, I'm here!"
-msgstr "Hej, ovdje sam!"
+msgstr "Ep! Sóc aquí!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:30
 msgid "Sorry but I'm busy right now."
-msgstr "Oprosti zauzet sam sada"
+msgstr "Ho sento, ara tinc una altra feina."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:31
 msgid ""
 "I don't have time to play with you, I have to dig and mine all these icons."
 msgstr ""
-"Nemam vremena da se igram s tobom, moram iskopati i spremiti sve te ikone"
+"No tinc temps per jugar amb vosaltres, he de fer marxar totes aquestes "
+"icones."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:32
 msgid "Your dock is so messy! Let me clean it."
-msgstr "Tvoj dok je tako neuredan! Daj da ga uredim."
+msgstr "El quadre està molt desordenat. L'endreçaré."
 
 #: ../Cairo-Penguin/src/applet-notifications.c:33
 msgid "Admit my superiority on you as a penguin!"
-msgstr "Priznaj moju prednost, ja sam ipak pingvin!"
+msgstr "Heu d'admetre que com a pinguí us passo al davant!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:34
 msgid "Wait, do you want to kill me?!"
-msgstr "Stan tamo, jel ti to mene ubijas?!"
+msgstr "Ara voleu matar-me?"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:35
 msgid "Do you know how painful it is to be clicked on??"
-msgstr "Znas li kako boli kad me kliknes??"
+msgstr "Arribeu a saber el mal que fa un clic a l'ala??"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:36
 msgid "It's my dock now, mwahahaha!"
-msgstr "To je sad moj dok, ua ha ha ha!"
+msgstr "Ara és el meu quadre, elis elis!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:37
 msgid "I want to be a pirate!"
-msgstr "Zelim postati pirat!"
+msgstr "Vull ser un pirata!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:38
 msgid "You shall not pass!"
-msgstr "Neces proci!"
+msgstr "No podreu passar!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:39
 msgid "I'm your father!"
-msgstr "Ja sam ti otac!"
+msgstr "Sóc el pare!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:40
 msgid ""
 "- Gee, Brain, what do you want to do tonight?\n"
 "- The same thing we do every night, Pinky : try to take over the Dock!"
 msgstr ""
-"Hej Brale, sto cemo raditi veceras?\n"
-"- Isto sto i svake noci, Pero : pokusacemo zauzeti Dok!"
+"- Ep, Cervell, què vols fer aquesta nit?\n"
+"- El mateix que fem cada vespre; au, llestos, intenteu controlar el quadre!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:41
 msgid "For Aiur!"
-msgstr "Za Anicu!"
+msgstr "Per Aiur!"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:139
 msgid "Wake up"
-msgstr "Probudi se"
+msgstr "Desperta't"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:143
 msgid "Keep quiet"
-msgstr "Budi tiho"
+msgstr "Calma't"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:158
 msgid "Start XPenguins"
-msgstr "Pokreni XPingvina"
+msgstr "Comença XPenguins"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:159
 msgid "Stop XPenguins"
-msgstr "Zaustavi XPingvina"
+msgstr "Atura XPenguins"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:182
 #: ../Cairo-Penguin/src/applet-notifications.c:184
@@ -181,68 +182,71 @@ msgid ""
 "Drop text on the icon to create persistent items, and middle-clck to recall "
 "them."
 msgstr ""
-"Applet pamti sadrzaj medjuspremnika i selektirani sadrzaj na ekranu,\n"
-"tako da ih mozes vratiti brzo. Klon je dobro poznatog Klippera.\n"
-"Podrzava medjuspremnik i selektirani sadrzaj, predefinirane akcije, i trajne "
-"objekte.\n"
-"Lijevi klik za prikaz povijesti medjuspremnika i selektiranih sadrzaja,\n"
-"Ispusti tekst na ikonu da stvoris trajni objekt, a srednjim klikom ih mozes "
-"vratiti."
+"Aquest complement conserva una traça del porta-retalls i les seleccions del "
+"ratolí,\n"
+"a fi de recobrar-los ràpidament. És una còpia del Klipper.\n"
+"Suporta selecció de retalls i del ratolí, accions predefinides i elements "
+"persistents.\n"
+"Feu un clic esquerre per desplegar la llista de retalls i les seleccions del "
+"ratolí,\n"
+"Arrossegueu text cap a la icona per crear elements persistents, i clic mig "
+"per recobrar-los."
 
 #: ../Clipper/src/applet-init.c:39
 msgid "Clipboard history"
-msgstr "Povijest medjuspremnika"
+msgstr "Historial del porta-retalls"
 
 #: ../Clipper/src/applet-init.c:87
 msgid "Pop-up the items menu"
-msgstr "Pop-up meni objekata"
+msgstr "Desplega el menú d'elements"
 
 #: ../Clipper/src/applet-notifications.c:33
 msgid "The clipboard history is empty."
-msgstr "Povijest medjuspremnika je prazna"
+msgstr "L'historial del porta-retalls és buit"
 
 #: ../Clipper/src/applet-notifications.c:89
 msgid "Clear clipboard History"
-msgstr "Obrisi povijest medjuspremnika"
+msgstr "Neteja l'historial del porta-retalls"
 
 #: ../Clipper/src/applet-notifications.c:91
 msgid "Paste all copied items"
-msgstr "Zalijepi sve kopirane objekte"
+msgstr "Enganxa tots els elements copiats"
 
 #: ../Clipper/src/applet-notifications.c:99
 msgid ""
 "No persistent items.\n"
 "You can add some by drag and dropping some text on the icon."
 msgstr ""
-"Nema trajnih objekata.\n"
-"Dodaj novi tako da povuces i ispustis tekst na ikonu."
+"No hi ha elements persistents-\n"
+"En podeu afegir algun arrossegant i deixant anar fragments de text cap a la "
+"icona."
 
 #: ../Clipper/src/applet-notifications.c:143
 msgid "No items yet."
-msgstr "Nema niti jedan objekt."
+msgstr "Encara no hi ha elements."
 
 #: ../Composite-Manager/src/applet-composite-manager.c:430
 #: ../Composite-Manager/src/applet-composite-manager.c:445
 msgid "No compositor is available."
-msgstr "Kompozitor nije dostupan"
+msgstr ""
 
 #: ../Composite-Manager/src/applet-composite-manager.c:453
 #: ../Composite-Manager/src/applet-composite-manager.c:468
 msgid "No fallback is available."
-msgstr "Povrat nije dostupan"
+msgstr "No es disposa de cap reserva."
 
 #: ../Composite-Manager/src/applet-composite-manager.c:508
 #, c-format
 msgid "You need to install '%s'"
-msgstr "Moras instalirati '%s'"
+msgstr "Cal que instal·leu '%s'"
 
 #: ../Composite-Manager/src/applet-composite-manager.c:519
 msgid "No configuration tool is available."
-msgstr "Alat za konfiguraciju nije dostupan"
+msgstr "No hi ha cap eina de configuració disponible."
 
 #: ../Composite-Manager/src/applet-init.c:27
 msgid "Composite-Manager"
-msgstr "Kompozitni urednik"
+msgstr "Administració del compositor"
 
 #: ../Composite-Manager/src/applet-init.c:30
 msgid ""
@@ -256,28 +260,28 @@ msgid ""
 "You can define in the configuration a Window-Manager that will provide the "
 "composite, and another as a fallback."
 msgstr ""
-"Applet omogucuje <b>promjena kompozitnog desktopa ON/OFF</b>\n"
-"Kompozit omogucuje prozirnost desktopa, ali moze usporiti tvoj PC, narocito "
-"u igricama.\n"
-"<b>Klik</b> na ikonu da promjenis stanje ON/OFF. Mozes definirati "
-"<b>shortcut</b> za ovu akciju.\n"
-"Applet dozvoljava pristup nekim akcijama Window-Manager, pomocu <b>srednji "
-"klik i meni</b>.\n"
-"Mozes definirati u konfiguraciji Window-Managera koja ce ostvariti "
-"kompozitni prikaz, te drugi kao povrat."
+"Aquest complement permet activar i desactivar el compositor.\n"
+"El compositor gestiona la transparència a l'escriptori, però podria alentir "
+"el treball de l'ordinador, especialment amb els jocs.\n"
+"Feu clic a la icona per commutar el compositor. Podeu definir una drecera de "
+"teclat per a aquesta acció.\n"
+"A més, el complement us facilita l'accés a algunes opcions del gestor de "
+"finestres, amb el clic mig i amb el menú.\n"
+"Podeu decidir quin gestor de finestres proporcionarà la funcionalitat del "
+"compositor, i un altre de reserva."
 
 #: ../Composite-Manager/src/applet-init.c:52
 msgid "Toggle the composite ON/OFF"
-msgstr "Prebaci kompozitni prikaz ON/OFF"
+msgstr "Canvia l'estat del compositor (actiu/inactiu)"
 
 #: ../Composite-Manager/src/applet-notifications.c:43
 msgid "Toggle composite?"
-msgstr "Da prebacim kompozitni?"
+msgstr "Commuto el compositor?"
 
 #: ../Composite-Manager/src/applet-notifications.c:120
 #: ../Composite-Manager/data/messages:125
 msgid "Edit Window-Manager settings"
-msgstr "Uredi Window-Manager postavke"
+msgstr "Edita els paràmetres del gestor de finestres"
 
 #: ../Composite-Manager/src/applet-notifications.c:120
 #: ../Composite-Manager/src/applet-notifications.c:127
@@ -313,12 +317,12 @@ msgstr "Uredi Window-Manager postavke"
 #: ../tomboy/src/tomboy-notifications.c:217
 #: ../wifi/src/applet-notifications.c:88
 msgid "middle-click"
-msgstr "srednji klik"
+msgstr "Clic del mig"
 
 #: ../Composite-Manager/src/applet-notifications.c:127
 #: ../Composite-Manager/data/messages:127
 msgid "Reload Window-Manager"
-msgstr "Ponovo ucitaj Window-Manager"
+msgstr "Recarrega el gestor de finestres"
 
 #: ../Composite-Manager/src/applet-notifications.c:136
 #: ../showDesktop/src/applet-notifications.c:171
@@ -326,7 +330,7 @@ msgstr "Ponovo ucitaj Window-Manager"
 #: ../Composite-Manager/data/messages:129 ../showDesktop/data/messages:99
 #: ../showDesktop/data/messages:113 ../switcher/data/messages:135
 msgid "Show desktop"
-msgstr "Pokaži radnu površinu"
+msgstr "Mostra l'escriptori"
 
 #: ../Composite-Manager/src/applet-notifications.c:145
 #: ../showDesktop/src/applet-notifications.c:183
@@ -335,13 +339,13 @@ msgstr "Pokaži radnu površinu"
 #: ../Composite-Manager/data/messages:131 ../showDesktop/data/messages:107
 #: ../showDesktop/data/messages:121 ../switcher/data/messages:137
 msgid "Expose all the desktops"
-msgstr "Prikazi sve desktope"
+msgstr "Mostra tots els escriptoris"
 
 #: ../Composite-Manager/src/applet-notifications.c:154
 #: ../switcher/src/applet-notifications.c:326
 #: ../Composite-Manager/data/messages:133 ../switcher/data/messages:139
 msgid "Expose all the windows"
-msgstr "Pokazi sve prozore"
+msgstr "Mostra totes les finestres"
 
 #: ../Composite-Manager/src/applet-notifications.c:163
 #: ../showDesktop/src/applet-notifications.c:195
@@ -349,37 +353,40 @@ msgstr "Pokazi sve prozore"
 #: ../Composite-Manager/data/messages:135 ../showDesktop/data/messages:105
 #: ../showDesktop/data/messages:119
 msgid "Show the Widget Layer"
-msgstr "Pokazi nivo widgeta"
+msgstr "Mostra el giny de capes"
 
 #: ../Dbus/src/applet-init.c:36
 msgid ""
 "This plug-in lets extern applications interact on the dock.\n"
 "The communication between both sides is based on Dbus"
 msgstr ""
-"Plug-in dozvoljava eksternim aplikacijama interakciju s dokom.\n"
-"Komunikacija izmedju obje strane zasniva se na Dbusu."
+"Aquest complement permet que aplicacions externes interactuïn amb el "
+"quadre.\n"
+"La comunicació de costat a costat es basa en Dbus."
 
 #: ../Dbus/src/interface-applet-signals.c:427
 #: ../Dbus/src/interface-applet-signals.c:458
 msgid "Sorry, this module couldn't be added."
-msgstr "Oprosti, ne mogu dodati taj modul."
+msgstr "Ho sento, no es pot afegir aquest mòdul."
 
 #: ../Dbus/src/interface-applet-signals.c:462
 #: ../Dbus/src/interface-applet-signals.c:468
 msgid "The module has been added, but couldn't be launched."
-msgstr "Modul je dodan, ali ne mogu ga pokrenuti."
+msgstr "S'ha afegit el mòdul, però caldrà fer-lo arrencar."
 
 #: ../Dbus/src/interface-applet-signals.c:471
 #, c-format
 msgid ""
 "The applet '%s' has been succefully updated and automatically reloaded"
-msgstr "Applet '%s' je uspjesno osvjezen i automatski ucitan ponovo."
+msgstr ""
+"El complement '%s' s'ha actualitzat correctament i recarregat automàticament."
 
 #: ../Dbus/src/interface-applet-signals.c:471
 #, c-format
 msgid ""
 "The applet '%s' has been succefully installed and automatically launched"
-msgstr "Applet '%s' je uspjesno instaliran i automatski pokrenut."
+msgstr ""
+"El complement '%s' s'ha instal·lat correctament i recarregat automàticament."
 
 #: ../Disks/src/applet-disks.c:45 ../Disks/src/applet-disks.c:53
 #: ../Network-Monitor/src/applet-netspeed.c:42
@@ -392,7 +399,7 @@ msgstr "B"
 #: ../Network-Monitor/src/applet-netspeed.c:58
 #: ../netspeed/src/applet-netspeed.c:64
 msgid "KB"
-msgstr "kB"
+msgstr ""
 
 #: ../Disks/src/applet-disks.c:69 ../Folders/src/applet-notifications.c:138
 #: ../Network-Monitor/src/applet-netspeed.c:66
@@ -400,33 +407,33 @@ msgstr "kB"
 #: ../netspeed/src/applet-notifications.c:37
 #: ../netspeed/src/applet-notifications.c:38
 msgid "MB"
-msgstr "MB"
+msgstr ""
 
 #: ../Disks/src/applet-disks.c:77 ../Network-Monitor/src/applet-netspeed.c:74
 #: ../netspeed/src/applet-netspeed.c:80
 msgid "GB"
-msgstr "GB"
+msgstr ""
 
 #: ../Disks/src/applet-disks.c:85 ../Network-Monitor/src/applet-netspeed.c:82
 #: ../netspeed/src/applet-netspeed.c:88
 msgid "TB"
-msgstr "TB"
+msgstr ""
 
 #: ../Disks/src/applet-disks.c:171
 msgid "r"
-msgstr "r"
+msgstr ""
 
 #: ../Disks/src/applet-disks.c:171
 msgid "w"
-msgstr "w"
+msgstr ""
 
 #: ../Disks/src/applet-disks.c:175
 msgid "N/A"
-msgstr "N/A"
+msgstr ""
 
 #: ../Disks/src/applet-init.c:29
 msgid "Disks"
-msgstr "Diskovi"
+msgstr "Discs"
 
 #: ../Disks/src/applet-init.c:32
 msgid ""
@@ -462,47 +469,16 @@ msgid ""
 " - Find actions : left, middle click, drop and wheel.\n"
 " - Fill menu with actions.\n"
 msgstr ""
-"<b><i>Prati brzinu diska i zauzece</i></b>\n"
-"\n"
-"Applet pokazuje informacije o disku. Mozes aktivirati obje opcije odjednom, "
-"ali bolje da razdvojis na 2 ili vise instanci appleta.\n"
-"Upotrebom obje opcije odjednom moze uzrokovati probleme s prikazom brzine "
-"diska.\n"
-"\n"
-"<b>Zauzece diska</b>: Prikazuje slobodan prostor na disku. Max 10 particija "
-"odjednom.\n"
-"  Moras definirati koji se direktorij promatra na svakoj particiji, poput / "
-"ili /home\n"
-"  Bolje je vidljivo u grafu, s vremenom osvjezenja 30 do 60 s i s kratkim "
-"vremenom odgode prenosa.\n"
-"<b>Brzina diska</b>: Pokazuje brzine prijenosa. Max 5 diskova.\n"
-"  Moras definirati ime svakog diska, zajedno sa imenom uredjaja, poput sda "
-"ili sdb\n"
-"  Prikaz je bolji u grafu, s vremenom osvjezenja 2 do 3s bez  odgode u "
-"prenosu.\n"
-"\n"
-"Drugo izdanje, ostaje dosta toga da se napravi:\n"
-" <u>Slobodan prostor:</u>\n"
-" - popup s detaljnim informacijama\n"
-" - labele koje mozes uredjivati ?\n"
-" <u>Brzina:</u>\n"
-" - Sve opcije diska.\n"
-" - popup pokazuje disk info da znas sto da dodas na listu\n"
-" - labele koje mozes uredjivati ?\n"
-" - daj realnu velicinu bloka za svaki disk\n"
-" <u>Globalno</u>\n"
-" - akcije misa: lijevi klik, srednji klik, ispusti, skrol na misu\n"
-" - popuni meni s akcijama\n"
 
 #: ../Disks/src/applet-notifications.c:72
 #: ../System-Monitor/src/applet-init.c:35
 msgid "System Monitor"
-msgstr "Nadzor sustava"
+msgstr "Monitor del sistema"
 
 #: ../Doncky/src/applet-cpusage.c:67 ../System-Monitor/src/applet-cpusage.c:60
 #: ../System-Monitor/src/applet-cpusage.c:65
 msgid "day(s)"
-msgstr "dan(a)"
+msgstr "dia(dies)"
 
 #: ../Doncky/src/applet-init.c:35
 msgid ""
@@ -512,23 +488,24 @@ msgid ""
 "  - NEED TO BE DETACHED FROM THE DOCK TO WORK !\n"
 "  - Middle-clic to reload values"
 msgstr ""
-"Applet dozvoljava da pisete tekstove i pratite rad sustava\n"
-"s desklet \"tekst stil\" \n"
-"UPOTREBA:\n"
-"  - Moras osloboditi s doka prije upotrebe!\n"
-"  - Srednji klik  da ucitas vrijednosti"
+"Aquest complement permet escriure textos i controlar el sistema amb un "
+"\"espai d'escriptori de text\".\n"
+"Ús:\n"
+"<ul>\n"
+"<li>S'ha de desvincular del quadre per utilitzar-lo!</lI>\n"
+"<li>Clic mig per recarregar els valors</li>"
 
 #: ../Doncky/src/applet-notifications.c:210
 msgid "It doesn't seem to be a valid XML file."
-msgstr "XML fajl nije ispravan"
+msgstr "sembla que el fitxer XML no està ben etiquetat."
 
 #: ../Doncky/src/applet-xml.c:311
 msgid "Please wait..."
-msgstr ""
+msgstr "Espereu..."
 
 #: ../Folders/src/applet-init.c:29
 msgid "Folders"
-msgstr "Mape"
+msgstr "Carpetes"
 
 #: ../Folders/src/applet-init.c:32
 msgid ""
@@ -540,57 +517,62 @@ msgid ""
 " - or just drop a folder into the dock\n"
 "Middle-click on the main icon opens the folder.\n"
 msgstr ""
-"Applet uvozi mape u Dok\n"
-"Mozes otvoriti vise instanci appleta, sa razlicitim mapama u svakom.\n"
-"Da bi dodao mapu u dok:\n"
-" - aktiviraj applet, otvori konfiguracijski panel, izaberi mapu\n"
-" - ili naprosto ispusti mapu na dok\n"
-"Srednji klik na glavnu ikonu otvara mapu.\n"
+"Aquest complement permet carpetes al quadre\n"
+"Podeu tenir-ne tantes instal·lacions com vulgueu, cadascuna amb una carpeta "
+"diferent.\n"
+"Per afegir una carpeta al quadre:\n"
+"<ul>\n"
+"<li>activeu el complement, obriu-ne el configurador i seleccioneu una "
+"carpeta.</li>\n"
+"<li>o simplement arrossegueu una carpeta al quadre</li>\n"
+"</ul>\n"
+"Un clic mig a la icona principal obre la carpeta.\n"
 
 #: ../Folders/src/applet-init.c:87 ../Folders/src/applet-init.c:150
 #: ../Folders/src/applet-notifications.c:42
 msgid "Open the configuration of the applet to choose a folder to import."
-msgstr "Otvori konfiguracijski panel appleta i izaberi mapu za unos."
+msgstr ""
+"Obriu el configurador del complement per seleccionar la carpeta per importar."
 
 #: ../Folders/src/applet-notifications.c:54
 msgid "Empty or unreadable folder."
-msgstr "Mapa je prazna ili nije dostupna"
+msgstr "Carpeta buida o il·legible."
 
 #: ../Folders/src/applet-notifications.c:116
 msgid "Properties:"
-msgstr "Svojstva"
+msgstr "Propietats:"
 
 #: ../Folders/src/applet-notifications.c:136 ../Folders/data/messages:115
 msgid "Size"
-msgstr "Veličina"
+msgstr "Mida"
 
 #: ../Folders/src/applet-notifications.c:136
 msgid "bytes"
-msgstr "bajtova"
+msgstr "bits"
 
 #: ../Folders/src/applet-notifications.c:150
 msgid "Last Modification"
-msgstr "Zadnja promjena"
+msgstr "Darrera modificació"
 
 #: ../Folders/src/applet-notifications.c:159
 msgid "Mime Type"
-msgstr "Mime tip"
+msgstr "Tipus mime"
 
 #: ../Folders/src/applet-notifications.c:173
 msgid "User ID"
-msgstr "Indentifikator korisnika"
+msgstr "Identificador d'usuari"
 
 #: ../Folders/src/applet-notifications.c:173
 msgid "Group ID"
-msgstr "ID grupe"
+msgstr "Identificador del Grup"
 
 #: ../Folders/src/applet-notifications.c:183
 msgid "Permissions"
-msgstr "Dozvole"
+msgstr "Permisos"
 
 #: ../Folders/src/applet-notifications.c:183
 msgid "Read"
-msgstr "Čitanje"
+msgstr "Lectura"
 
 #: ../Folders/src/applet-notifications.c:184
 #: ../Folders/src/applet-notifications.c:185
@@ -598,7 +580,7 @@ msgstr "Čitanje"
 #: ../System-Monitor/data/messages:115 ../alsaMixer/data/messages:129
 #: ../netspeed/data/messages:115 ../slider/data/messages:169
 msgid "Yes"
-msgstr "Da"
+msgstr "Sí"
 
 #: ../Folders/src/applet-notifications.c:184
 #: ../Folders/src/applet-notifications.c:185
@@ -618,22 +600,24 @@ msgstr "Da"
 #: ../slider/data/messages:167 ../weather/data/messages:19
 #: ../wifi/data/messages:17
 msgid "No"
-msgstr "Ne"
+msgstr "No"
 
 #: ../Folders/src/applet-notifications.c:184
 msgid "Write"
-msgstr "Pisanje"
+msgstr "Escriptura"
 
 #: ../Folders/src/applet-notifications.c:185
 #: ../Scooby-Do/src/applet-backend-command.c:95
 msgid "Execute"
-msgstr "Izvrši"
+msgstr "Execució"
 
 #: ../Folders/src/applet-notifications.c:211
 msgid ""
 "Warning: could not delete this file.\n"
 "Please check file permissions."
-msgstr "Pozor: ne mogu obrisati datoteku"
+msgstr ""
+"Compte: potser no podreu esborrar aquest fitxer.\n"
+"Si us plau, reviseu els permisos del fitxer."
 
 #: ../Folders/src/applet-notifications.c:225
 #, c-format
@@ -642,9 +626,9 @@ msgid ""
 "  (%s)\n"
 "from your hard-disk. Sure ?"
 msgstr ""
-"Obrisat ces datoteku\n"
-"  (%s)\n"
-"sa diska. Jesi siguran ?"
+"Esteu a punt d'esborrar el fitxer\n"
+"<ul><li>(%s)</li></ul>\n"
+"Segur que voleu esborrar-lo?"
 
 #: ../Folders/src/applet-notifications.c:244
 #, c-format
@@ -653,19 +637,19 @@ msgid ""
 "Check file permissions \n"
 "and that the new name does not already exist."
 msgstr ""
-"Pozor: ne mogu promjeniti ime %s\n"
-"Provjeri dozvole fajla \n"
-"ili se novo ime vec koristi."
+"Compte: potser no es podrà canviar el nom %s.\n"
+"Reviseu els permisos del fitxer i comproveu que el nom nou no coincideixi "
+"amb cap altre."
 
 #: ../Folders/src/applet-notifications.c:253
 msgid "Rename to:"
-msgstr "Preimenuj u:"
+msgstr "Canvia el nom:"
 
 #: ../Folders/src/applet-notifications.c:268
 #: ../Scooby-Do/src/applet-backend-files.c:390
 #: ../Screenshot/src/applet-screenshot.c:419
 msgid "Pick up a directory"
-msgstr "Izaberi direktorij"
+msgstr "Trieu un directori"
 
 #: ../Folders/src/applet-notifications.c:305
 #, c-format
@@ -674,29 +658,29 @@ msgid ""
 "Check file permissions \n"
 "and that the new name does not already exist."
 msgstr ""
-"Pozor: ne mogu kreirati %s\n"
-"Provjeri dozvole fajla \n"
-"ili se novo ime vec koristi."
+"Compte: no es pot crear %s.\n"
+"Comproveu els permisos de fitxers i que el nom nou no estigui assignat a un "
+"altre fitxer."
 
 #: ../Folders/src/applet-notifications.c:315
 msgid "Enter a file name:"
-msgstr "Unesi ime fajla"
+msgstr "Escriviu un nom de fitxer:"
 
 #: ../Folders/src/applet-notifications.c:394
 msgid "Open the folder"
-msgstr "Otvori mapu"
+msgstr "Obre la carpeta"
 
 #: ../Folders/src/applet-notifications.c:401
 msgid "Rename this file"
-msgstr "Promjeni ime fajla"
+msgstr "Canvia el nom d'aquest fitxer"
 
 #: ../Folders/src/applet-notifications.c:402
 msgid "Delete this file"
-msgstr "Izbriši ovu datoteku"
+msgstr "Suprimeix aquest fitxer"
 
 #: ../Folders/src/applet-notifications.c:403
 msgid "Move this file"
-msgstr "Premjesti datoteku"
+msgstr "Mou aquest fitxer"
 
 #: ../Folders/src/applet-notifications.c:409
 #: ../Recent-Events/src/applet-dialog.c:296
@@ -704,47 +688,47 @@ msgstr "Premjesti datoteku"
 #: ../quick-browser/src/applet-menu.c:328
 #: ../slider/src/applet-notifications.c:238
 msgid "Open with"
-msgstr "Otvori s(a)"
+msgstr "Obre amb"
 
 #: ../Folders/src/applet-notifications.c:442
 msgid "Properties"
-msgstr "Postavke"
+msgstr "Propietats"
 
 #: ../Folders/src/applet-notifications.c:445
 msgid "Create a new file"
-msgstr "Stvara novu datoteku"
+msgstr "Crea un fitxer"
 
 #: ../Folders/src/applet-notifications.c:446
 msgid "Create a new folder"
-msgstr "Napravi novu mapu"
+msgstr "Crea una carpeta"
 
 #: ../Folders/src/applet-notifications.c:451
 msgid "Sort by"
-msgstr "Poredaj po"
+msgstr "Ordena per"
 
 #: ../Folders/src/applet-notifications.c:452
 msgid "By name"
-msgstr "Po imenu"
+msgstr "Pel nom"
 
 #: ../Folders/src/applet-notifications.c:453
 msgid "By date"
-msgstr "Po datumu"
+msgstr "Per data"
 
 #: ../Folders/src/applet-notifications.c:454
 msgid "By size"
-msgstr "Po velicini"
+msgstr "Per mida"
 
 #: ../Folders/src/applet-notifications.c:455
 msgid "By type"
-msgstr "Po tipu"
+msgstr "Per tipus"
 
 #: ../Folders/src/applet-notifications.c:493
 msgid "The folder has been imported."
-msgstr "Mapa je uvezena"
+msgstr "S'ha importat la carpeta"
 
 #: ../Folders/src/applet-notifications.c:548
 msgid "Do you want to import the content of the folder too?"
-msgstr "Da uvezem i sadrzaj mape takodjer ?"
+msgstr "Voleu importar el contingut  de la carpeta, també?"
 
 #: ../GMenu-old/src/applet-init.c:35 ../GMenu/src/applet-init.c:31
 msgid ""
@@ -754,44 +738,40 @@ msgid ""
 "a shortkey for it, like ALT+F2)\n"
 "You can also set up a shortkey to pop up the menu (like ALT+F1)"
 msgstr ""
-"Prikazuje zajednicki meni Aplikacije te Nedavno koristene datoteke.\n"
-"Kompatibilan sa svakim XDG usluznim menijem (Gnome,XFCE,KDE,...)\n"
-"Srednji klik otvara dijalog brzog pristupa komandama (mozes definirati "
-"kombinaciju tipki za to, poput ALT F2)\n"
-"Mozes definirati kombinaciju tipki i za otvaranje samog popup menija, poput "
-"ALT F1"
+"Visualitza el menú de les aplicacions i la llista dels fitxers usats "
+"recentment."
 
 #: ../GMenu-old/src/applet-init.c:41 ../GMenu/src/applet-init.c:37
 msgid "Applications Menu"
-msgstr "Meni Aplikacija"
+msgstr "Menú d'aplicacions"
 
 #: ../GMenu-old/src/applet-init.c:134 ../GMenu/src/applet-init.c:63
 msgid "Show/hide the Applications menu"
-msgstr "Pokazi/Sakri Meni Aplikacija"
+msgstr "Mostra/oculta el menú d'aplicacions"
 
 #: ../GMenu-old/src/applet-init.c:139 ../GMenu/src/applet-init.c:68
 msgid "Show/hide the quick-launch dialog"
-msgstr "Pokazi/Sakri dijalog brzog pokretanja"
+msgstr "Mostra/oculta el diàleg de càrrega ràpida"
 
 #: ../GMenu-old/src/applet-menu-callbacks.c:177 ../GMenu/src/applet-menu.c:173
 #: ../GMenu-old/data/messages:113 ../GMenu/data/messages:113
 msgid "Logout"
-msgstr "Odjava"
+msgstr "Surt de la Sessió"
 
 #: ../GMenu-old/src/applet-menu-callbacks.c:180 ../GMenu/src/applet-menu.c:176
 #: ../GMenu-old/data/messages:115 ../GMenu/data/messages:115
 msgid "Shutdown"
-msgstr "Isključi"
+msgstr "Atura"
 
 #: ../GMenu-old/src/applet-notifications.c:90
 #: ../GMenu/src/applet-notifications.c:76
 msgid "Quick launch"
-msgstr "Brzo pokretanje"
+msgstr "Càrrega ràpida"
 
 #: ../GMenu-old/src/applet-notifications.c:111
 #: ../GMenu/src/applet-notifications.c:97
 msgid "Configure menu"
-msgstr "Meni Konfiguracije"
+msgstr "Configuració del menú"
 
 #: ../GMenu-old/src/applet-notifications.c:116
 #: ../GMenu/src/applet-notifications.c:102
@@ -801,24 +781,24 @@ msgstr ""
 #: ../GMenu-old/src/applet-notifications.c:124
 #: ../GMenu/src/applet-notifications.c:110
 msgid "Clear recent"
-msgstr "Očisti nedavno"
+msgstr "Neteja els elements recents"
 
 #: ../GMenu-old/src/applet-recent.c:56 ../GMenu/src/applet-recent.c:52
 msgid "Recent Documents"
-msgstr "Nedavno korišteni dokumenti"
+msgstr "Documents recents"
 
 #: ../GMenu-old/src/applet-recent.c:117 ../GMenu/src/applet-recent.c:112
 msgid "Clear the list of the recently used documents?"
-msgstr "Obrisi listu nedavno koristenih dokumenata?"
+msgstr "Neteja la llista dels documents recents?"
 
 #: ../GMenu-old/src/applet-run-dialog.c:352
 #: ../GMenu/src/applet-run-dialog.c:363 ../Scooby-Do/data/messages:111
 msgid "Enter a command to launch:"
-msgstr "Unesi komandu koju zelis pokrenuti:"
+msgstr "Escriviu la comanda per executar"
 
 #: ../GMenu/src/applet-apps.c:67
 msgid "Launch this new application?"
-msgstr ""
+msgstr "Carrega aquesta aplicació?"
 
 #: ../GMenu/src/applet-entry.c:435
 msgid "Launch this command"
@@ -826,7 +806,7 @@ msgstr ""
 
 #: ../Global-Menu/src/applet-init.c:30
 msgid "Global Menu"
-msgstr "Globalni Meni"
+msgstr "Menú global"
 
 #: ../Global-Menu/src/applet-init.c:33
 msgid ""
@@ -836,17 +816,21 @@ msgid ""
 "by default.\n"
 "You can bind a shortkey to this action."
 msgstr ""
-"Applet omogucuje kontrolu trenutno aktivnog prozora:\n"
-"  zatvori,minimize,maximize,prikazi meni aplikacije - ako aplikacija "
-"podrzava tu opciju, sto je kod Ubuntu dozvoljeno u osnovi."
+"Aquest complement us permet controlar la finestra activa:\n"
+"<ul>\n"
+"<li> tancar, minimitzar, maximitzar i mostrar el menú de l'aplicació.</li>\n"
+"</ul>\n"
+"Per  mostrar el menú, les aplicacions han de tenir el suport de la "
+"característica; a Ubuntu, això sol passar per defecte.\n"
+"Podeu forçar una drecera de teclat per realitzar aquesta acció."
 
 #: ../Global-Menu/src/applet-init.c:112 ../Global-Menu/src/applet-init.c:211
 msgid "Show/hide the current application menu"
-msgstr "Pokazi/Sakri meni trenutne aplikacije"
+msgstr "Mostra/oculta el menú de l'aplicació"
 
 #: ../Global-Menu/src/applet-notifications.c:99
 msgid "The application didn't send its menu to us."
-msgstr "Aplikacija nije dostavila meni"
+msgstr "L'aplicació no ens envia cap menú."
 
 #: ../Impulse/src/applet-impulse.c:169
 msgid ""
@@ -854,9 +838,9 @@ msgid ""
 "Can you check its status (installed? running? version?) and report this bug "
 "(if any) to forum.glx-dock.org"
 msgstr ""
-"Nesto nije u redu s PulseAudio.\n"
-"Provjeri status (instaliran? startan? verzija?) i prijavi bug (ako postoji) "
-"na forum.glx-dock.org"
+"Alguna cosa passa amb el PulseAudio.\n"
+"Podeu comprovar com està (instal·lat? carregat? versió?) i enviar un informe "
+"de l'error (si existeix) al fòrum de glx-dock.org"
 
 #: ../Impulse/src/applet-init.c:32
 msgid ""
@@ -865,14 +849,14 @@ msgid ""
 "In fact, you will have a graphical equalizer into the dock\n"
 "It will analyse the signal given by PulseAudio."
 msgstr ""
-"Znas li da tvoj Dok plese? :)\n"
-"Klikni na ovu ikonu, Dok ce zaplesati!\n"
-"Zapravo, dobit ces graficki prikaz miksera u Doku.\n"
-"Prikazuje signal s PulseAudio servisa."
+"Sabíeu que el vostre acoblador pot ballar? :) \n"
+"Si feu clic en aquesta icona, l'acoblador ballarà!\n"
+"De fet, hi tindreu un equalitzador gràfic.\n"
+"Analitzarà el senyal del PulseAudio."
 
 #: ../Indicator-Generic/src/applet-init.c:30
 msgid "Indicator-Generic"
-msgstr ""
+msgstr "Indicador genèric."
 
 #: ../Indicator-Generic/src/applet-init.c:33
 msgid ""
@@ -882,6 +866,12 @@ msgid ""
 "automatically hidden.\n"
 "You can also blacklist indicators you don't want to see."
 msgstr ""
+"Aquest complement pot mostrar tots els indicadors a dins de l'acoblador.\n"
+"Els indicadors proporcionen informació sobre algun comportament, i un menú "
+"per actuar-hi:\n"
+"per exemple, un indicador per controlar els treballs d'impressió. Els "
+"indicadors inactius s'amaguen automàticament.\n"
+"També podeu rebutjar els indicadors que no vulgueu."
 
 #: ../Indicator-Generic/src/applet-notifications.c:34
 #, c-format
@@ -889,97 +879,106 @@ msgid ""
 "This indicator service did not reply.\n"
 "Please check that '%s' is correctly installed and its daemon is running."
 msgstr ""
+"El servei d'aquest indicador no ha respost.\n"
+"Si us plau, comproveu que '%s' estigui correctament instal·lat i que el seu "
+"dimoni s'estigui executant."
 
 #: ../MeMenu/src/applet-init.c:30
 msgid "Me Menu"
-msgstr "Moj Meni"
+msgstr ""
 
 #: ../MeMenu/src/applet-init.c:33
 msgid ""
 "A menu that lets you access quickly to your information, your online status, "
 "your friends."
 msgstr ""
-"Meni omogucuje brzi pristup tvojim informacijama, online statusu, tvojim "
-"prijateljima."
+"Un menú que us permet accedir ràpidament a la vostra informació, l'estat de "
+"la connexió, als contactes."
 
 #: ../MeMenu/src/applet-notifications.c:31
 msgid "It seems that the Me-Menu is not installed on your system"
-msgstr "Izgleda da Moj Meni nije instaliran"
+msgstr "Sembla que el Menú Jo no està instal·lat en aquest sistema"
 
 #: ../Messaging-Menu/src/applet-init.c:34
 msgid "Messaging Menu"
-msgstr "Meni Poruka"
+msgstr "Menú de missatges"
 
 #: ../Messaging-Menu/src/applet-init.c:37
 msgid ""
 "A menu that notices you about new messages from Mail or Chat applications.\n"
 "It handles Evolution, Pidgin, Empathy, etc\n"
 "It requires the Messaging service, which is available on Ubuntu by default."
-msgstr "Meni te obavijestava o novim porukama s Mail ili Chat aplikacije"
+msgstr ""
+"Un menú que us comunica l'arribada de missatges a l'aplicació de correu o "
+"del xat.\n"
+"Comprova l'Evolution, Pidgin, Empathy, etc.\n"
+"Necessita el servei de missatgeria, que a l'Ubuntu es té per defecte."
 
 #: ../Messaging-Menu/src/applet-init.c:103
 msgid "Show/hide the Messaging menu"
-msgstr "Pokazi/Sakri Menu Poruka"
+msgstr "Mostra/oculta el menú de missatgeria"
 
 #: ../Messaging-Menu/src/applet-notifications.c:78
 msgid ""
 "The Messaging service did not reply.\n"
 "Please check that it is correctly installed."
-msgstr "Servis Poruka nije aktivan"
+msgstr ""
+"El servei de missatgeria no ha respost.\n"
+"Si us plau, comproveu que estigui instal·lat correctament."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:69
 msgid "Network connection state changed to inactive."
-msgstr "Mrežni status promijenjen u neaktivan"
+msgstr "La connexió ha canviat a l'estat d'inactivitat."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:75
 msgid "Connecting..."
-msgstr "Povezivanje…"
+msgstr "S'està connectant..."
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:82
 msgid "Network connection is established."
-msgstr "Veza je uspostavljena."
+msgstr "S'ha establert la connexió de xarxa"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:88
 msgid "Network connection state changed to disconnected."
-msgstr "Mrezni status promijenjen u odspojen."
+msgstr "S'ha desactivat la connexió de xarxa"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:150
 msgid "A cable has been plugged"
-msgstr "Kabel je ukljucen"
+msgstr "S'ha connectat un cable"
 
 #: ../Network-Monitor/src/applet-dbus-callbacks.c:150
 msgid "A cable has been unplugged"
-msgstr "Kabel je iskljucen"
+msgstr "S?ha desconnectat un cable"
 
 #: ../Network-Monitor/src/applet-draw.c:128 ../wifi/src/applet-draw.c:130
 msgid ""
 "Checking connection...\n"
 "Please retry in a few seconds"
 msgstr ""
-"Provjera veze...\n"
-"Molim ponovi za nekoliko trenutaka"
+"Comprovació de la connexió ...\n"
+"Si us plau, torneu a provar al cap de pocs segons"
 
 #: ../Network-Monitor/src/applet-draw.c:136
 msgid "Wired Connection."
-msgstr "Zicana veza"
+msgstr "Connexió per cable."
 
 #: ../Network-Monitor/src/applet-draw.c:138
 #: ../Network-Monitor/src/applet-draw.c:153 ../wifi/src/applet-draw.c:147
 msgid "Interface"
-msgstr "Sučelje"
+msgstr "Interfície"
 
 #: ../Network-Monitor/src/applet-draw.c:139
 #: ../Network-Monitor/src/applet-draw.c:151
 msgid "Speed"
-msgstr "Brzina"
+msgstr "Velocitat"
 
 #: ../Network-Monitor/src/applet-draw.c:148 ../wifi/src/applet-draw.c:143
 msgid "Wifi enabled."
-msgstr "Wifi omogucen"
+msgstr "Wifi activada."
 
 #: ../Network-Monitor/src/applet-draw.c:150 ../wifi/src/applet-draw.c:145
 msgid "Network ID"
-msgstr "ID Mreže"
+msgstr "Identificador de xarxa"
 
 #: ../Network-Monitor/src/applet-draw.c:150
 #: ../musicPlayer/src/applet-draw.c:167 ../musicPlayer/src/applet-draw.c:169
@@ -987,15 +986,15 @@ msgstr "ID Mreže"
 #: ../powermanager/src/powermanager-draw.c:260
 #: ../powermanager/src/powermanager-draw.c:315
 msgid "Unknown"
-msgstr "Nepoznato"
+msgstr "Desconegut"
 
 #: ../Network-Monitor/src/applet-draw.c:152 ../wifi/src/applet-draw.c:146
 msgid "Access point"
-msgstr "Pristupna točka"
+msgstr "Punt d'accés"
 
 #: ../Network-Monitor/src/applet-draw.c:154 ../wifi/src/applet-draw.c:148
 msgid "Signal Quality"
-msgstr "Kvaliteta signala"
+msgstr "Qualitat del senyal"
 
 #: ../Network-Monitor/src/applet-init.c:34
 msgid ""
@@ -1006,11 +1005,13 @@ msgid ""
 "Left-click to pop-up some info,Scroll on the icon to switch the display "
 "between net speed and wifi."
 msgstr ""
-"Applet dozvoljava monitoring mreznih veza.\n"
-"Prikazuje brzinu downloada/uploada te kvalitetu Wifi signala.\n"
-"Ako je mrezni-urednik startan, mozes izabrati trenutnu wifi mrezu.\n"
-"Lijevi klik daje info pop-up, skrolaj na ikoni da prebacis izmedju mrezne "
-"brzine i izbora wifi mreze."
+"Aquest complement permet observar les connexions de xarxa.\n"
+"Pot mostrar les velocitats de descàrrega i de pujada i la qualitat del "
+"senyal wifi.\n"
+"Si teniu el network-manager treballant, també us permet triar la xarxa "
+"wifi.\n"
+"Amb un clic esquerre obtindreu una mica d'informació, desplaceu-vos per la "
+"icona per intercanviar velocitat de la xarxa i wifi."
 
 #: ../Network-Monitor/src/applet-init.c:41
 msgid "Network Monitor"
@@ -1021,37 +1022,37 @@ msgstr ""
 #: ../System-Monitor/src/applet-top.c:429
 #: ../netspeed/src/applet-netspeed.c:243
 msgid "Loading"
-msgstr "Učitavam"
+msgstr "S’està carregant"
 
 #: ../Network-Monitor/src/applet-notifications.c:81
 #: ../wifi/src/applet-notifications.c:85
 msgid "Check for Wireless Extension"
-msgstr "Provjera bezicnog pristupa mrezi"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-notifications.c:82
 #: ../wifi/src/applet-notifications.c:92
 msgid "Network Administration"
-msgstr "Mrezna Administracija"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-notifications.c:86
 msgid "Activate network"
-msgstr "Aktiviraj mrezu"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-notifications.c:86
 msgid "Deactivate network"
-msgstr "Iskljuci mrezu"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-notifications.c:90
 msgid "Deactivate wifi"
-msgstr "Iskljuci wifi"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-notifications.c:90
 msgid "Activate wifi"
-msgstr "Aktiviraj wifi"
+msgstr ""
 
 #: ../RSSreader/src/applet-init.c:31
 msgid "RSSreader"
-msgstr "RSS citac"
+msgstr ""
 
 #: ../RSSreader/src/applet-init.c:34
 msgid ""
@@ -1065,65 +1066,56 @@ msgid ""
 "    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
 "    or edit the Configuration Panel."
 msgstr ""
-"Applet je RSS/Atom citac.\n"
-"Mozes otvoriti vise instanci odjednom.\n"
-"UPOTREBA:\n"
-" - Lijevi klik: prikaz kompletnog sadrzaja u dijalogu.\n"
-" - Srednji klik: osvjezi citac.\n"
-" - Skrol na desklet: skrola sadrzaj u dijalogu.\n"
-" - Pokupi i ispusti URL na ikonu, da startas citac\n"
-"    ili kopiraj/zalijepi novi RSS URL sa menija\n"
-"    ili uredi u Konfiguracijskom panelu"
 
 #: ../RSSreader/src/applet-init.c:65 ../RSSreader/src/applet-init.c:125
 #: ../RSSreader/src/applet-notifications.c:56
 msgid "Retrieving data..."
-msgstr "Prihvacam podatke"
+msgstr ""
 
 #: ../RSSreader/src/applet-notifications.c:69
 msgid "It doesn't seem to be a valid URL."
-msgstr "Izgleda da je URL neispravan"
+msgstr ""
 
 #: ../RSSreader/src/applet-notifications.c:124
 msgid "Paste a new RSS Url (drag and drop)"
-msgstr "Zalijepi novi RSS URL (pokupi i ispusti)"
+msgstr ""
 
 #: ../RSSreader/src/applet-notifications.c:128
 msgid "Open with your web browser"
-msgstr "Otvori u internet pregledniku"
+msgstr ""
 
 #: ../RSSreader/src/applet-notifications.c:129
 #: ../switcher/src/applet-notifications.c:335
 msgid "Refresh"
-msgstr "Osvježi"
+msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:400
 msgid "Warning: couldn't retrieve data last time we tried."
-msgstr "Pozor: zadnji prihvat podataka nije uspio"
+msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:436
 msgid "No URL is defined."
-msgstr "URL nije definiran"
+msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:437
 msgid "No data (no connection?)"
-msgstr "Nema podataka ( veza? )"
+msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:468 ../RSSreader/src/applet-rss.c:487
 msgid "Invalid data (invalid RSS/Atom feed?)"
-msgstr "Neispravni podaci (nije RSS/Atom ?)"
+msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:551
 msgid "No data"
-msgstr "Nema podataka"
+msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:589
 msgid "No modification"
-msgstr "Bez promjene"
+msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:614
 msgid "This RSS feed has been modified..."
-msgstr "RSS je promijenjen"
+msgstr ""
 
 #: ../RSSreader/src/applet-rss.c:780
 msgid ""
@@ -1131,9 +1123,6 @@ msgid ""
 "You can define one by copying the URL in the clipboard,\n"
 " and selecting \"Paste the URL\" in the menu."
 msgstr ""
-"URL nije definiran\n"
-"Kopiraj URL na clipboard \n"
-" zatim izaberi \"Zalijepi novi RSS URL\" s menija"
 
 #: ../RSSreader/src/applet-rss.c:786
 msgid ""
@@ -1141,30 +1130,27 @@ msgid ""
 "Did you set a valid RSS feed?\n"
 "Is your connection alive?"
 msgstr ""
-"Nema podataka\n"
-"Jesi postavio ispravan RSS?\n"
-"Da li je veza aktivna?"
 
 #: ../Recent-Events/src/applet-dialog.c:320
 #: ../Screenshot/src/applet-screenshot.c:319
 #: ../quick-browser/src/applet-menu.c:358
 #: ../stack/src/applet-notifications.c:212
 msgid "Open parent folder"
-msgstr "Otvori mapu iznad"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:322
 #: ../Screenshot/src/applet-screenshot.c:281
 #: ../quick-browser/src/applet-menu.c:360
 msgid "Copy the location"
-msgstr "Kopiraj lokaciju"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:325
 msgid "Delete this event"
-msgstr "Obrisi dogadjaj"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:409
 msgid "All"
-msgstr "Sve"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:410
 msgid "Applications"
@@ -1172,35 +1158,35 @@ msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:411
 msgid "Document"
-msgstr "Dokument"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:413 ../logout/data/messages:117
 msgid "Image"
-msgstr "Slika"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:414
 msgid "Audio"
-msgstr "Zvuk"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:415
 msgid "Video"
-msgstr "Video"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:416
 msgid "Web"
-msgstr "Internet"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:417
 msgid "Other"
-msgstr "Ostalo"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:418
 msgid "Top Results"
-msgstr "Najbolji Rezultati"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:424
 msgid "Look for events"
-msgstr "Trazi dogadjaj"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:432
 msgid ""
@@ -1214,23 +1200,23 @@ msgstr ""
 #: ../Recent-Events/src/applet-dialog.c:475
 #: ../Screenshot/src/applet-screenshot.c:489
 msgid "File name"
-msgstr "Ime datoteke"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:482
 msgid "Last access"
-msgstr "Zadnji pristup"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:531
 msgid "You need to install the Zeitgeist data engine."
-msgstr "Moras instalirati Zeitgeist engine"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:579
 msgid "Browse and search in recent events"
-msgstr "Pregledaj i pretrazi zadnje dogadjaje"
+msgstr ""
 
 #: ../Recent-Events/src/applet-init.c:29
 msgid "Recent-Events"
-msgstr "Zadnji dogadjaji"
+msgstr ""
 
 #: ../Recent-Events/src/applet-init.c:58
 msgid "Show/hide the Recent Events"
@@ -1800,31 +1786,31 @@ msgstr ""
 
 #: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Monday"
-msgstr ""
+msgstr "Dilluns"
 
 #: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Tuesday"
-msgstr ""
+msgstr "Dimarts"
 
 #: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Wednesday"
-msgstr ""
+msgstr "Dimecres"
 
 #: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Thursday"
-msgstr ""
+msgstr "Dijous"
 
 #: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Friday"
-msgstr ""
+msgstr "Divendres"
 
 #: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Saturday"
-msgstr ""
+msgstr "Dissabte"
 
 #: ../clock/src/applet-config.c:36 ../weather/src/applet-load-icons.c:26
 msgid "Sunday"
-msgstr ""
+msgstr "Diumenge"
 
 #: ../clock/src/applet-config.c:36
 msgid "Week Day"
@@ -2978,7 +2964,7 @@ msgstr ""
 #: ../dnd2share/data/messages:109 ../dustbin/data/messages:101
 #: ../wifi/data/messages:145
 msgid "None"
-msgstr "Nijedan"
+msgstr ""
 
 #: ../powermanager/src/powermanager-draw.c:266
 msgid "Laptop on Battery."
@@ -3621,6 +3607,8 @@ msgid ""
 "I couldn't get the info\n"
 " Is connexion alive ?"
 msgstr ""
+"No reb informació\n"
+" Esteu connectat?"
 
 #: ../weather/src/applet-config.c:126
 msgid "Couldn't get the location code (is connection alive?)"
@@ -3628,7 +3616,7 @@ msgstr ""
 
 #: ../weather/src/applet-config.c:134
 msgid "I couldn't find this location"
-msgstr ""
+msgstr "No es troba aquest lloc"
 
 #: ../weather/src/applet-config.c:184
 msgid "Searching the location code..."
@@ -3637,11 +3625,11 @@ msgstr ""
 #: ../weather/src/applet-config.c:217
 msgid ""
 "Enter the name of your location and press Enter to choose amongst results."
-msgstr ""
+msgstr "Escriviu el nom del lloc i premeu Enter per entre els resultats"
 
 #: ../weather/src/applet-init.c:29
 msgid "weather"
-msgstr ""
+msgstr "el temps"
 
 #: ../weather/src/applet-init.c:32
 msgid ""
@@ -3652,58 +3640,65 @@ msgid ""
 "Middle-click on the main icon to have current conditions information, left-"
 "click on a sub-icon to have forcast information.\n"
 msgstr ""
+"Aquest sub-programa mostra el temps en el Dock.\n"
+"El web www.weather.com és el proveïdor de les dades. Podeu cercar la vostra "
+"localitat en el panell de configuració.\n"
+"Es pot despendre del Dock per convertir-se en un memento en el escriptori.\n"
+"Clicant el botó del mig del ratolí sobre la icona apareix un text emergent "
+"amb informació detallada. Clic amb el botó esquerra sobre una sub-icona de "
+"la previsió per veure més informació.\n"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Jan"
-msgstr ""
+msgstr "Gen"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Feb"
-msgstr ""
+msgstr "Feb"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Apr"
-msgstr ""
+msgstr "Abr"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "May"
-msgstr ""
+msgstr "Mai"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Jun"
-msgstr ""
+msgstr "Jun"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Jui"
-msgstr ""
+msgstr "Jul"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Aug"
-msgstr ""
+msgstr "Ago"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Sep"
-msgstr ""
+msgstr "Set"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Oct"
-msgstr ""
+msgstr "Oct"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Nov"
-msgstr ""
+msgstr "Nov"
 
 #: ../weather/src/applet-load-icons.c:26
 msgid "Dec"
-msgstr ""
+msgstr "Des"
 
 #: ../weather/src/applet-notifications.c:63
 msgid "Data are being retrieved, please wait a moment."
-msgstr ""
+msgstr "Espereu mentre es rebent les dades"
 
 #: ../weather/src/applet-notifications.c:102
 msgid "Show current conditions (middle-click)"
@@ -3715,7 +3710,7 @@ msgstr ""
 
 #: ../weather/src/applet-notifications.c:109
 msgid "Reload now"
-msgstr ""
+msgstr "Torna a carregar"
 
 #: ../weather/src/applet-notifications.c:142
 msgid ""
@@ -3726,49 +3721,51 @@ msgstr ""
 #: ../weather/src/applet-notifications.c:162
 #: ../weather/src/applet-notifications.c:200
 msgid "Temperature"
-msgstr ""
+msgstr "Temperatura"
 
 #: ../weather/src/applet-notifications.c:163
 msgid "Precipitation probability"
-msgstr ""
+msgstr "Probabilitat de precipitacions"
 
 #: ../weather/src/applet-notifications.c:164
 #: ../weather/src/applet-notifications.c:201
 msgid "Wind"
-msgstr ""
+msgstr "Vent"
 
 #: ../weather/src/applet-notifications.c:165
 #: ../weather/src/applet-notifications.c:202
 msgid "Humidity"
-msgstr ""
+msgstr "Humitat"
 
 #: ../weather/src/applet-notifications.c:166
 #: ../weather/src/applet-notifications.c:203
 msgid "Sunrise"
-msgstr ""
+msgstr "Alba"
 
 #: ../weather/src/applet-notifications.c:166
 #: ../weather/src/applet-notifications.c:203
 msgid "Sunset"
-msgstr ""
+msgstr "Ocàs"
 
 #: ../weather/src/applet-notifications.c:176
 msgid "Data are being fetched, please re-try in a few seconds."
-msgstr ""
+msgstr "Dades recuperades, torneu a intentar en uns segons."
 
 #: ../weather/src/applet-notifications.c:186
 msgid ""
 "No data available\n"
 "Retrying now..."
 msgstr ""
+"Cap dada disponible\n"
+"Tornant a intentar-ho..."
 
 #: ../weather/src/applet-notifications.c:200
 msgid "Feels like"
-msgstr ""
+msgstr "Sembla"
 
 #: ../weather/src/applet-notifications.c:202
 msgid "Pressure"
-msgstr ""
+msgstr "Pressió"
 
 #: ../weblets/src/applet-init.c:28
 msgid "weblets"
@@ -3788,27 +3785,27 @@ msgstr ""
 
 #: ../wifi/src/applet-draw.c:30
 msgid "Very Low"
-msgstr "Vrlo nisko"
+msgstr ""
 
 #: ../wifi/src/applet-draw.c:30 ../Sound-Effects/data/messages:23
 msgid "Low"
-msgstr "Nisko"
+msgstr ""
 
 #: ../wifi/src/applet-draw.c:30
 msgid "Middle"
-msgstr "Sredina"
+msgstr ""
 
 #: ../wifi/src/applet-draw.c:30
 msgid "Good"
-msgstr "Dobro"
+msgstr ""
 
 #: ../wifi/src/applet-draw.c:30
 msgid "Excellent"
-msgstr "Odlicno"
+msgstr ""
 
 #: ../wifi/src/applet-draw.c:138
 msgid "WiFi disabled."
-msgstr ""
+msgstr "WiFi desactivada."
 
 #: ../wifi/src/applet-init.c:33
 msgid ""
@@ -3833,7 +3830,7 @@ msgstr ""
 #: ../Animated-icons/data/messages:1 ../icon-effect/data/messages:1
 #: ../illusion/data/messages:1
 msgid "Global"
-msgstr ""
+msgstr "Global"
 
 #: ../Animated-icons/data/messages:3 ../icon-effect/data/messages:3
 msgid "when hovering over an icon"
@@ -8942,7 +8939,7 @@ msgstr ""
 
 #: ../weather/data/messages:123
 msgid "Number of days to forecast:"
-msgstr ""
+msgstr "Dies de previsió:"
 
 #: ../weather/data/messages:125
 msgid "Display nights?"

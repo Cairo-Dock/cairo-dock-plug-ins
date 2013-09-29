@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2013-07-21 20:14+0000\n"
+"POT-Creation-Date: 2013-09-23 10:57+0000\n"
+"PO-Revision-Date: 2013-09-24 15:44+0000\n"
 "Last-Translator: rob <linuxned@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-07-22 05:38+0000\n"
-"X-Generator: Launchpad (build 16696)\n"
+"X-Launchpad-Export-Date: 2013-09-25 05:32+0000\n"
+"X-Generator: Launchpad (build 16771)\n"
+"Language: \n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -41,7 +42,8 @@ msgstr "Geanimeerde pictogrammen"
 
 #: ../Animated-icons/src/applet-init.c:42
 msgid "This plug-in provides many different animations for your icons."
-msgstr "Deze plug-in bevat vele verschillende animaties voor uw pictogrammen."
+msgstr ""
+"Deze plug-in bevat vele verschillende animaties voor uw pictogrammen."
 
 #: ../Animated-icons/src/applet-pulse.c:106 ../Animated-icons/data/messages:13
 #: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:55
@@ -372,7 +374,8 @@ msgstr "De module is wel toegevoegd, maar kon niet gestart worden."
 
 #: ../Dbus/src/interface-applet-signals.c:471
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Het applet '%s' is bijgewerkt en is automatisch opnieuw geladen"
 
 #: ../Dbus/src/interface-applet-signals.c:471
@@ -470,8 +473,8 @@ msgstr ""
 "problemen veroorzaken met de snelheidsweergave die niet omlaag wil gaan.\n"
 "\n"
 "<b>Schijfruimte</b> :  Toon schijfoverdrachtswaarden. tot 10 partities\n"
-"  U moet het koppelpunt instellen van elke gemonitoorde partitie, zoals / "
-"of /home\n"
+"  U moet het koppelpunt instellen van elke gemonitoorde partitie, zoals / of "
+"/home\n"
 "  Beter weergeven in een meter, met 30 of 60 seconden ververssnelheid en "
 "hele korte of geen vertraging tussen overgangen.\n"
 "\n"
@@ -521,7 +524,7 @@ msgstr ""
 
 #: ../Doncky/src/applet-notifications.c:210
 msgid "It doesn't seem to be a valid XML file."
-msgstr "Dit lijkt geen geldig XML-bestand."
+msgstr "Dit is geen geldig XML-bestand."
 
 #: ../Doncky/src/applet-xml.c:311
 msgid "Please wait..."
@@ -801,7 +804,7 @@ msgstr "Menu configureren"
 #: ../GMenu-old/src/applet-notifications.c:116
 #: ../GMenu/src/applet-notifications.c:102
 msgid "None of these applications seems available:"
-msgstr ""
+msgstr "Geen van deze toepassingen schijnt beschikbaar te zijn:"
 
 #: ../GMenu-old/src/applet-notifications.c:124
 #: ../GMenu/src/applet-notifications.c:110
@@ -823,11 +826,11 @@ msgstr "Voer een opdracht in om uit te voeren :"
 
 #: ../GMenu/src/applet-apps.c:67
 msgid "Launch this new application?"
-msgstr ""
+msgstr "Deze nieuwe toepassing openen?"
 
 #: ../GMenu/src/applet-entry.c:435
 msgid "Launch this command"
-msgstr ""
+msgstr "Deze opdracht uitvoeren"
 
 #: ../Global-Menu/src/applet-init.c:30
 msgid "Global Menu"
@@ -1035,7 +1038,6 @@ msgstr ""
 "de weergave van de verbindingssnelheid of wifi."
 
 #: ../Network-Monitor/src/applet-init.c:41
-#, fuzzy
 msgid "Network Monitor"
 msgstr "Netwerkmonitor"
 
@@ -1106,7 +1108,7 @@ msgstr "Data ophalen..."
 
 #: ../RSSreader/src/applet-notifications.c:69
 msgid "It doesn't seem to be a valid URL."
-msgstr "Dit lijkt geen geldige URL."
+msgstr "Dit is geen geldige URL."
 
 #: ../RSSreader/src/applet-notifications.c:124
 msgid "Paste a new RSS Url (drag and drop)"
@@ -1127,7 +1129,7 @@ msgstr "Waarschuwing : kon data bij laatste poging niet ophalen."
 
 #: ../RSSreader/src/applet-rss.c:436
 msgid "No URL is defined."
-msgstr "Geen URL ingevoerd."
+msgstr "Er is geen URL ingevoerd."
 
 #: ../RSSreader/src/applet-rss.c:437
 msgid "No data (no connection?)"
@@ -1155,7 +1157,7 @@ msgid ""
 "You can define one by copying the URL in the clipboard,\n"
 " and selecting \"Paste the URL\" in the menu."
 msgstr ""
-"Geen URL is ingevoerd\n"
+"Er is geen URL ingevoerd\n"
 "U kunt er één invoeren door de URL naar het klembord te kopiëren ,\n"
 " en \"URL plakken te selecteren\n"
 " in het menu."
@@ -1235,6 +1237,14 @@ msgid ""
 "quoting the string \"foo is a bar\". You can truncate terms by appending a "
 "*. "
 msgstr ""
+"De standaard zoekoperator is EN. Dus de zoekopdracht cairo dock zal "
+"geïnterpreteerd worden als zoeken naar de woorden cairo EN dock. Om een term "
+"uit te sluiten van de zoekresultaten dient u er het minteken (-) voor te "
+"zetten, bijvoorbeeld bij de zoekopdracht cairo -dock zal er alleen naar het "
+"woord cairo gezocht worden. Zet een term/zin(snede) tussen aanhalingstekens, "
+"bijvoorbeeld \"in de kleur van je hart\" als u de exacte woordcombinatie of "
+"een bepaalde term/zin(snede) wilt vinden. U kunt zoektermen inkorten door "
+"een sterretje (*) te gebruiken. "
 
 #: ../Recent-Events/src/applet-dialog.c:475
 #: ../Screenshot/src/applet-screenshot.c:489
@@ -1300,8 +1310,8 @@ msgstr ""
 "+ Page up/down om te wisselen naar een ander hoofd-dock)\n"
 " - of typ de naam in van een starter en druk op de Tab-toets om automatisch "
 "naar de eerstvolgende starter te springen.\n"
-"Druk Enter om op het pictogram te klikken, Shift+Enter voor Shift+klik, Alt"
-"+Enter voor middelklik, en Ctrl+Enter voor linkermuisklik\n"
+"Druk Enter om op het pictogram te klikken, Shift+Enter voor Shift+klik, "
+"Alt+Enter voor middelklik, en Ctrl+Enter voor linkermuisklik\n"
 "Voor annuleren drukt u op Escape of nog een keer op dezelfde sneltoets."
 
 #: ../Remote-Control/src/applet-init.c:42
@@ -1500,7 +1510,8 @@ msgstr "Vertraging"
 
 #: ../Screenshot/src/applet-screenshot.c:479
 msgid "Grab the current window instead of the all screen"
-msgstr "Schemadfruk maken van huidige venster in plaats van het gehele scherm"
+msgstr ""
+"Schemadfruk maken van huidige venster in plaats van het gehele scherm"
 
 #: ../Screenshot/src/applet-screenshot.c:480
 msgid "Grab the current window"
@@ -1557,7 +1568,7 @@ msgstr "Actief"
 
 #: ../System-Monitor/src/applet-cpusage.c:147
 msgid "CPU model"
-msgstr "CPU-model"
+msgstr "Processormodel"
 
 #: ../System-Monitor/src/applet-cpusage.c:148
 msgid "Frequency"
@@ -1576,7 +1587,8 @@ msgid ""
 "You can instanciate this applet several times to show different values each "
 "time."
 msgstr ""
-"Dit applet toont het CPU-, RAM-gebruik, grafische kaart temperatuur, etc.\n"
+"Dit applet toont het processor-, RAM-gebruik, grafische kaart temperatuur, "
+"etc.\n"
 "Middelklik op het pictogram voor enige informatie.\n"
 "Klik met links op het pictogram voor een lijst met toepassingen met het "
 "meeste gebruik.\n"
@@ -1625,7 +1637,8 @@ msgstr "Core-temperatuur:"
 #: ../System-Monitor/src/applet-nvidia.c:161
 #, c-format
 msgid "Alert! Graphic Card core temperature has reached %d°C"
-msgstr "Waarschuwing ! Core-temperatuur van grafische kaart heeft %d°C bereikt"
+msgstr ""
+"Waarschuwing ! Core-temperatuur van grafische kaart heeft %d°C bereikt"
 
 #: ../System-Monitor/src/applet-rame.c:123
 msgid "Gb"
@@ -1667,7 +1680,7 @@ msgstr "rpm"
 #: ../System-Monitor/src/applet-sensors.c:413
 #, c-format
 msgid "CPU temperature has reached %d°C"
-msgstr "CPU-temperatuur is nu %d°C"
+msgstr "De processortemperatuur is nu %d°C"
 
 #: ../System-Monitor/src/applet-sensors.c:427
 #, c-format
@@ -1851,7 +1864,7 @@ msgstr "Herinnering"
 
 #: ../clock/src/applet-config.c:36
 msgid "Time you want to be notified:"
-msgstr "Tijd van waarschuwing:"
+msgstr "Tijdstip waarop u een melding wilt krijgen:"
 
 #: ../clock/src/applet-config.c:36
 msgid "In the form xx:xx. E.g.: 20:35 for 8:35pm"
@@ -1915,7 +1928,7 @@ msgstr "Indien elke maand, welke dag van de maand?"
 
 #: ../clock/src/applet-config.c:36
 msgid "Message you want to use to be notified:"
-msgstr "Waarschuwingsbericht dat u wilt gebruiken:"
+msgstr "Bericht dat u voor de melding wilt gebruiken:"
 
 #: ../clock/src/applet-config.c:36
 msgid "Tea Time!"
@@ -1943,8 +1956,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1955,7 +1968,7 @@ msgstr ""
 "loskoppelen zodat u een perfecte kloon van Cairo-Clock heeft.\n"
 "Het geeft een <b>kalender</b> weer bij het linksklkken, waarin u <b>taken "
 "kunt beheren</b>.\n"
-"Het ondersteunt herinneringen en u kunt de tijd en datum instellen.\n"
+"Het kan meldingen geven en u kunt er de tijd en datum instellen.\n"
 "Klik met links om de kalender te tonen/verbergen, middelklik om een "
 "herinnering te stoppen.\n"
 "Dubbelklik op een dag om de taken van die dag te bewerken."
@@ -2167,7 +2180,7 @@ msgstr "Infotekst"
 #: ../dnd2share/src/applet-backend-uppix.c:31
 #: ../dnd2share/src/applet-backend-videobin.c:32
 msgid "Direct Link"
-msgstr ""
+msgstr "Directe koppeling"
 
 #: ../dnd2share/src/applet-backend-codepad.c:51
 #: ../dnd2share/src/applet-backend-custom.c:75
@@ -2175,25 +2188,25 @@ msgstr ""
 #: ../dnd2share/src/applet-backend-pastebin-mozilla.c:52
 #: ../dnd2share/src/applet-backend-pastebin.c:45
 msgid "Your text is empty and couldn't be uploaded to this server"
-msgstr ""
+msgstr "U heeft geen tekst ingevoerd, de upload kan hierdoor niet doorgaan"
 
 #: ../dnd2share/src/applet-backend-dropbox.c:63
 #: ../dnd2share/src/applet-backend-ubuntuone.c:59
 msgid "This directory seems not valid:"
-msgstr ""
+msgstr "Dit is geen geldige map:"
 
 #: ../dnd2share/src/applet-backend-imageshack.c:31
 #: ../dnd2share/src/applet-backend-uppix.c:31
 msgid "Thumbnail"
-msgstr ""
+msgstr "Miniatuurafbeelding"
 
 #: ../dnd2share/src/applet-backend-imgur.c:33
 msgid "Display Image"
-msgstr ""
+msgstr "Afbeelding weergeven"
 
 #: ../dnd2share/src/applet-backend-imgur.c:33
 msgid "Large"
-msgstr ""
+msgstr "Groot"
 
 #: ../dnd2share/src/applet-backend-imgur.c:33
 #: ../dock-rendering/data/messages:41
@@ -2201,14 +2214,12 @@ msgid "Small"
 msgstr "Klein"
 
 #: ../dnd2share/src/applet-dnd2share.c:44
-#, fuzzy
 msgid "No text"
-msgstr "Tekst halen"
+msgstr "Geen tekst"
 
 #: ../dnd2share/src/applet-dnd2share.c:55
-#, fuzzy
 msgid "Text:"
-msgstr "Tekst"
+msgstr "Tekst:"
 
 #: ../dnd2share/src/applet-dnd2share.c:317
 msgid ""
@@ -2219,7 +2230,8 @@ msgstr ""
 "Druk op CTRL+v om de URL ergens in te plakken."
 
 #: ../dnd2share/src/applet-dnd2share.c:370
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Wacht a.u.b. met het starten van een nieuwe upload, totdat de huidige upload "
 "beëindigd is."
@@ -2244,6 +2256,8 @@ msgid ""
 "Couldn't upload the file to %s, check that your internet connection is "
 "active."
 msgstr ""
+"Kon bestand niet uploaden naar %s, controleer of uw verbonden bent met het "
+"internet."
 
 #: ../dnd2share/src/applet-dnd2share.h:32
 #, c-format
@@ -2252,6 +2266,9 @@ msgid ""
 "Check that your internet connection is active and '%s' is correctly "
 "installed and running"
 msgstr ""
+"Kon bestand niet uploaden naar %s.\n"
+"Controleer of uw verbonden bent met het internet. en of '%s' correct "
+"geïnstalleerd is en actief is"
 
 #: ../dnd2share/src/applet-init.c:46
 msgid ""
@@ -2690,13 +2707,16 @@ msgstr "Doe dit a.u.b. aan het einde van de update."
 
 #: ../logout/src/applet-logout.c:627
 msgid "Logind has returned this error:"
-msgstr ""
+msgstr "De volgende fout is opgetreden bij het afmelden:"
 
 #: ../logout/src/applet-logout.c:629
 msgid ""
 "Please check that you can do this action\n"
 "(e.g. you can't power the computer off if another session is active)"
 msgstr ""
+"Controleer of u geautoriseerd bent om deze actie te mogen doen\n"
+"(b.v. dat u de computer niet kan uitschakelen wanneer er een andere sessie "
+"actief is)"
 
 #: ../logout/src/applet-logout.c:694
 #, c-format
@@ -2784,7 +2804,7 @@ msgstr "Laat leeg om standaarde-mailprogramma te gebruiken"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Specific icon file when using multiple accounts"
-msgstr ""
+msgstr "Specifiek pictogram bij meerdere accounts"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Directory on server:"
@@ -2897,8 +2917,8 @@ msgid ""
 "No mail application is defined,\n"
 "you can define it in the configuration panel of this module"
 msgstr ""
-"Geen e-mailprogramma gespecificeerd,\n"
-"u kunt dit aangeven in het configuratiepaneel van deze module"
+"Er is geen e-mailprogramma gespecificeerd,\n"
+"U kunt er één aangeven in het configuratiepaneel van deze module"
 
 #: ../mail/src/cd-mail-applet-notifications.c:146
 msgid "Refresh a mail account"
@@ -3143,19 +3163,19 @@ msgstr "Accu is opgeladen"
 
 #: ../powermanager/src/powermanager-draw.c:202
 msgid "h"
-msgstr ""
+msgstr "u"
 
 #: ../powermanager/src/powermanager-draw.c:204
 msgid "mn"
-msgstr ""
+msgstr "min"
 
 #: ../powermanager/src/powermanager-draw.c:213
 msgid "remaining"
-msgstr ""
+msgstr "resterend"
 
 #: ../powermanager/src/powermanager-draw.c:213
 msgid "until charged"
-msgstr ""
+msgstr "tot opgeladen"
 
 #: ../powermanager/src/powermanager-draw.c:231 ../wifi/src/applet-draw.c:30
 #: ../Clipper/data/messages:97 ../GMenu-old/data/messages:111
@@ -3456,8 +3476,8 @@ msgstr "Toon muis"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Deze plug-in tekent enige animatie rond de muisaanwijzer wanneer het zich in "
 "een dock/desklet bevindt."
@@ -3796,7 +3816,7 @@ msgstr "Dit tabblad sluiten"
 
 #: ../tomboy/src/applet-backend-default.c:160
 msgid "Note:"
-msgstr ""
+msgstr "Notitie:"
 
 #: ../tomboy/src/applet-backend-default.c:208
 msgid "Title:"
@@ -3876,7 +3896,7 @@ msgstr "Markeringen verwijderen"
 
 #: ../tomboy/src/tomboy-notifications.c:277
 msgid "No description"
-msgstr ""
+msgstr "Geen omschrijving"
 
 #: ../weather/src/applet-config.c:120
 msgid ""
@@ -3975,7 +3995,7 @@ msgstr "Dec"
 
 #: ../weather/src/applet-notifications.c:63
 msgid "Data are being retrieved, please wait a moment."
-msgstr "Data wordt opgehaaldd, een moment geduld a.u.b."
+msgstr "Data wordt opgehaald, een moment geduld a.u.b."
 
 #: ../weather/src/applet-notifications.c:102
 msgid "Show current conditions (middle-click)"
@@ -4060,7 +4080,7 @@ msgstr ""
 "Met het weblets applet kunt u een interactieve website op uw bureaublad "
 "tonen.\n"
 "U kunt uw website selecteren, het scrollen instellen,\n"
-"en de scrollbalken verbergen om een 'bijgesneden' site te krijgen."
+"en de scrolbalken verbergen om een 'bijgesneden' site te krijgen."
 
 #: ../weblets/src/applet-widget.c:58
 msgid "Weblets"
@@ -5564,7 +5584,8 @@ msgstr "Plakken in klembord ?"
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
-msgstr "Als u klikt op een item, wordt de inhoud zichtbaar met een middelklik"
+msgstr ""
+"Als u klikt op een item, wordt de inhoud zichtbaar met een middelklik"
 
 #: ../Clipper/data/messages:121
 msgid "Paste into Selection?"
@@ -5735,7 +5756,8 @@ msgstr "Mogen externe toepassingen de labels van de pictogrammen bewerken ?"
 
 #: ../Dbus/data/messages:19
 msgid "Let extern applications modify the quick-infos on icons?"
-msgstr "Mogen externe toepassingen de snel-info van de pictogrammen bewerken ?"
+msgstr ""
+"Mogen externe toepassingen de snel-info van de pictogrammen bewerken ?"
 
 #: ../Dbus/data/messages:21
 msgid "Let extern applications modify the icons' image?"
@@ -5997,14 +6019,15 @@ msgid "Background"
 msgstr "Achtergrond"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "U kunt meer mooie achtergronden krijgen als u de decoraties van het Desklet "
 "gebruikt"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
 msgid "Display a simple background?"
-msgstr "Een simpele achtergrond weergeven ?"
+msgstr "Een eenvoudige achtergrond weergeven ?"
 
 #: ../Doncky/data/messages:119 ../RSSreader/data/messages:183
 msgid "first colour of the gradation"
@@ -6133,15 +6156,17 @@ msgid ""
 "The settings menu file is sometimes available in a settings.menu file but "
 "its content can also be available in the main .menu file used by the dock"
 msgstr ""
+"Het instellingenmenubestand is soms beschikbaar via een settings.menu-"
+"bestand, maar de inhoud ervan kan ook beschikbaar zijn via het main.menu-"
+"bestand dat het dock gebruikt"
 
 #: ../GMenu-old/data/messages:101 ../GMenu/data/messages:101
 msgid "Load settings' menu?"
-msgstr ""
+msgstr "Instellingenmenu laden?"
 
 #: ../GMenu-old/data/messages:103 ../GMenu/data/messages:103
-#, fuzzy
 msgid "Display the description in search's results?"
-msgstr "Tijd weergeven in 24-uur formaat ?"
+msgstr "Omschrijving bij de zoekresultaten tonen?"
 
 #: ../GMenu-old/data/messages:105 ../GMenu/data/messages:105
 msgid "Command to use for configuring the menu:"
@@ -6982,7 +7007,7 @@ msgstr "Dit is de kleur voor de lage waarden in de grafiek."
 
 #: ../System-Monitor/data/messages:145
 msgid "Show CPU usage?"
-msgstr "CPU-gebruik tonen ?"
+msgstr "Processorgebruik tonen ?"
 
 #: ../System-Monitor/data/messages:147
 msgid "Show RAM usage ?"
@@ -6994,7 +7019,7 @@ msgstr "SWAP ook tonen ?"
 
 #: ../System-Monitor/data/messages:151
 msgid "You need an nVidia card and the 'nvidia-settings' tool."
-msgstr "U heeft nVidia kaart nodig en ´nvidia-settings´."
+msgstr "U heeft een NVIDIA-kaart nodig en het hulpmiddel ´nvidia-settings´."
 
 #: ../System-Monitor/data/messages:153
 msgid "Show graphic card's temperature?"
@@ -7002,7 +7027,7 @@ msgstr "Temperatuur grafische kaart tonen ?"
 
 #: ../System-Monitor/data/messages:155
 msgid "Show CPU temperature?"
-msgstr "CPU-temperatuur tonen?"
+msgstr "Processortemperatuur tonen?"
 
 #: ../System-Monitor/data/messages:157
 msgid "Show fan speed?"
@@ -7038,7 +7063,7 @@ msgstr "Geluid afspelen bij waarschuwing ?"
 
 #: ../System-Monitor/data/messages:183
 msgid "Path to sound file:"
-msgstr "Pad geluid :"
+msgstr "Pad naar geluidsbestand:"
 
 #: ../System-Monitor/data/messages:185
 msgid "System-Monitor"
@@ -7071,7 +7096,7 @@ msgid ""
 "intensive programs."
 msgstr ""
 "Wanneer u met links klikt op het pictogram, dan krijgt u een lijst te zien "
-"met toepassingen met het meeste CPU/RAM-gebruik."
+"met toepassingen met het meeste processor/RAM-gebruik."
 
 #: ../System-Monitor/data/messages:203
 msgid "Number of programs to display in the top list:"
@@ -7244,7 +7269,8 @@ msgstr "Specifieke uit te voeren opdracht, om geluidsmixer te tonen :"
 
 #: ../clock/data/messages:7
 msgid "Leave empty to use the location name if available."
-msgstr "Laat leeg om de naam van de locatie te gebruiken, indien beschikbaar."
+msgstr ""
+"Laat leeg om de naam van de locatie te gebruiken, indien beschikbaar."
 
 #: ../clock/data/messages:103
 msgid "Show the date:"
@@ -7262,8 +7288,8 @@ msgstr "Tijd weergeven in 24-uur formaat ?"
 msgid ""
 "if not, then the applet will update the time once a minute, saving CPU power."
 msgstr ""
-"Indien nee, zal het applet eenmaal per minuut bijgewerkt worden om CPU-"
-"gebruik te beperken."
+"Indien nee, zal het applet eenmaal per minuut bijgewerkt worden om het "
+"processorgebruik te beperken."
 
 #: ../clock/data/messages:117
 msgid "Show seconds?"
@@ -7484,7 +7510,7 @@ msgstr "TinyURL"
 
 #: ../dnd2share/data/messages:113
 msgid "Shorter-Link"
-msgstr "Shorter-Link"
+msgstr "Verkorte koppeling"
 
 #: ../dnd2share/data/messages:115
 msgid "Use the tiny URL by default?"
@@ -7537,7 +7563,7 @@ msgstr "Geprefereerde website voor afbeeldingen-hosting :"
 
 #: ../dnd2share/data/messages:141
 msgid "Uppix.com"
-msgstr ""
+msgstr "Uppix.com"
 
 #: ../dnd2share/data/messages:143
 msgid "Imagebin.ca"
@@ -7549,7 +7575,7 @@ msgstr "ImageShack.us"
 
 #: ../dnd2share/data/messages:147
 msgid "Imgur.com"
-msgstr ""
+msgstr "Imgur.com"
 
 #: ../dnd2share/data/messages:149
 msgid "Preferred site for videos hosting :"
@@ -7601,12 +7627,14 @@ msgid "Custom script for file upload :"
 msgstr "Aangepast script voor uploaden bestand :"
 
 #: ../dnd2share/data/messages:181
-msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
+msgid ""
+"Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 msgstr ""
+"Laat leeg om bestanden te uploaden naar '~/Dropbox/Public' of '~/Ubuntu One'."
 
 #: ../dnd2share/data/messages:183
 msgid "Path of a custom DropBox / UbuntuOne folder :"
-msgstr ""
+msgstr "Pad naar een aangepaste DropBox-/UbuntuOne-map :"
 
 #: ../dnd2share/data/messages:185
 msgid "Otherwise, your user name will be used when possible."
@@ -7767,7 +7795,8 @@ msgstr "Kromming :"
 
 #: ../dock-rendering/data/messages:93
 msgid "The parabola will be restricted to a rectangle of this proportion."
-msgstr "De parabool zal gemaakt worden tot een rechthoek van deze proporties."
+msgstr ""
+"De parabool zal gemaakt worden tot een rechthoek van deze proporties."
 
 #: ../dock-rendering/data/messages:95
 msgid "Height/width ratio:"
@@ -7806,7 +7835,8 @@ msgid "Space between icons:"
 msgstr "Ruimte tussen pictogrammen :"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 betekent dat de golf plat is, 1 betekent dat de golf gelijk is aan andere "
 "weergaves."
@@ -7984,7 +8014,8 @@ msgstr ""
 
 #: ../dustbin/data/messages:95
 msgid "Name of the image to overwrite the theme's full image :"
-msgstr "Naam van een afbeelding om thema´s ´Vol´ afbeelding te overschrijven :"
+msgstr ""
+"Naam van een afbeelding om thema´s ´Vol´ afbeelding te overschrijven :"
 
 #: ../dustbin/data/messages:97
 msgid "Config"
@@ -8021,6 +8052,7 @@ msgstr "Effecten draaien met dock ?"
 #: ../icon-effect/data/messages:55
 msgid "Repeat these effects until the corresponding application opens?"
 msgstr ""
+"Deze effecten herhalen totdat de corresponderende toepassing zich opent?"
 
 #: ../icon-effect/data/messages:59
 msgid "In ms. Set 0 to not use this effect."
@@ -8034,7 +8066,8 @@ msgid "Colours"
 msgstr "Kleuren"
 
 #: ../icon-effect/data/messages:73
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr "De kleuren zullen iets afwijken, mogelijk moet u ze aanpassen."
 
 #: ../icon-effect/data/messages:75 ../icon-effect/data/messages:187
@@ -8279,11 +8312,13 @@ msgid ""
 "Leave empty to execute the default command. If not empty, it will execute "
 "this command with the name of the user (or nothing for guest session)"
 msgstr ""
+"Laat leeg als u de standaardopdracht wilt uitvoeren. Indien dit niet leeg "
+"wordt gelaten zal de opdracht met de naam van de gebruiker uitgevoerd worden "
+"(of niets voor een gastsessie)"
 
 #: ../logout/data/messages:131
-#, fuzzy
 msgid "User-defined command to execute for changing user:"
-msgstr "Door gebruiker bepaalde opdracht voor afmelden :"
+msgstr "Door gebruiker bepaalde opdracht om van gebruiker te wisselen:"
 
 #: ../mail/data/messages:99
 msgid ""
@@ -8308,7 +8343,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Naam van het bestand voor de \"Nieuwe e-mail\" afbeelding :"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Indien aangevinkt, zal het aantal e-mails getoond worden zelfs als er geen e-"
 "mails zijn."
@@ -8321,7 +8357,8 @@ msgstr "'0' laten zien wanneer er geen e-mail is?"
 #: ../stack/data/messages:95 ../switcher/data/messages:143
 #: ../tomboy/data/messages:119 ../weather/data/messages:133
 msgid "Leave empty to use default sub-dock view."
-msgstr "Laat leeg als u de standaardweergave van de sub-docks wilt gebruiken."
+msgstr ""
+"Laat leeg als u de standaardweergave van de sub-docks wilt gebruiken."
 
 #: ../mail/data/messages:121 ../shortcuts/data/messages:105
 #: ../stack/data/messages:97 ../switcher/data/messages:145
@@ -8394,7 +8431,8 @@ msgid "Blur amount:"
 msgstr "Hoeveelheid vervaging :"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr "Laat leeg om de naam van de momenteel bediende speler te tonen."
 
 #: ../musicPlayer/data/messages:11
@@ -8664,7 +8702,7 @@ msgstr "Wanneer acculading onder 4% is"
 
 #: ../powermanager/data/messages:181
 msgid "Notification when battery charge is critical ?"
-msgstr "Melding gevenwanneer accu bijna leeg is ?"
+msgstr "Melding geven wanneer accu bijna leeg is ?"
 
 #: ../powermanager/data/messages:187
 msgid "Notification type:"
@@ -8696,7 +8734,8 @@ msgstr "Menu"
 
 #: ../quick-browser/data/messages:105
 msgid "It can be CPU intense to load a lot of icons."
-msgstr "De CPU-belasting kan groot zijn bij het laden van veel pictogrammen."
+msgstr ""
+"Het processorgebruik kan groot zijn bij het laden van veel pictogrammen."
 
 #: ../quick-browser/data/messages:107
 msgid "Display icons in the menu?"
@@ -8854,7 +8893,7 @@ msgstr "Bestanden willekeurig doorbladeren ?"
 
 #: ../slider/data/messages:107
 msgid "Display image name as quickinfo?"
-msgstr "Naam afbeelding tonen als snel-info ?"
+msgstr "Naam afbeelding weergeven als snel-info ?"
 
 #: ../slider/data/messages:109
 msgid ""
@@ -8948,7 +8987,8 @@ msgstr "Achtergrond toevoegen aan de afbeelding?"
 msgid ""
 "Set the transparency channel to 0 if you just don't want to have a "
 "background."
-msgstr "Stel de doorzichtigheid in op 0 als u geen achtergrond wilt gebruiken."
+msgstr ""
+"Stel de doorzichtigheid in op 0 als u geen achtergrond wilt gebruiken."
 
 #: ../slider/data/messages:175
 msgid "Choose a background colour :"
@@ -9198,7 +9238,7 @@ msgstr "Dit is een infotekst voor deze optie."
 
 #: ../template/data/messages:93
 msgid "This is a boolean parameter. Y/N ?"
-msgstr "Is dit een boolean-parameter. J/N ?"
+msgstr "Is dit een zoekoperator-parameter. J/N ?"
 
 #: ../template/data/messages:95
 msgid "This integer can go from 0 to 10 :"
@@ -9229,39 +9269,38 @@ msgid "Foreground colour:"
 msgstr "Voorgrondkleur :"
 
 #: ../terminal/data/messages:105
-#, fuzzy
 msgid "Use a custom font?"
-msgstr "Aangepast lettertype gebruiken"
+msgstr "Aangepast lettertype gebruiken?"
 
 #: ../terminal/data/messages:107
-#, fuzzy
 msgid "Custom font:"
-msgstr "Aangepast lettertype gebruiken"
+msgstr "Aangepast lettertype:"
 
 #: ../terminal/data/messages:111
 msgid "Automatically scroll to the bottom when new data are received"
 msgstr ""
+"Automatisch naar de onderkant scrollen wanneer er nieuwe data wordt ontvangen"
 
 #: ../terminal/data/messages:113
 msgid "Scroll on output"
-msgstr ""
+msgstr "Scrollen bij uitvoer"
 
 #: ../terminal/data/messages:115
-#, fuzzy
 msgid "Automatically scroll to the bottom when a key is pressed"
-msgstr "Verticale scrol van de browser in pixel"
+msgstr ""
+"Automatisch naar de onderkant scrollen wanneer er een toets ingedrukt wordt"
 
 #: ../terminal/data/messages:117
 msgid "Scroll on keystroke"
-msgstr ""
+msgstr "Scrollen bij toetsaanslag"
 
 #: ../terminal/data/messages:119
 msgid "Limited scrollback buffer"
-msgstr ""
+msgstr "Gelimiteerde terugscrolbuffer"
 
 #: ../terminal/data/messages:121
 msgid "Length of the scrollback buffer"
-msgstr ""
+msgstr "Lengte van de terugscrolbuffer"
 
 #: ../terminal/data/messages:125
 msgid ""
@@ -9418,7 +9457,7 @@ msgstr "URI om te laden in weblet"
 
 #: ../weblets/data/messages:93
 msgid "Show scrollbars?"
-msgstr "Scrollbalken tonen ?"
+msgstr "Scrolbalken tonen ?"
 
 #: ../weblets/data/messages:95
 msgid "Horizontal scroll of the browser in pixels"
@@ -9434,10 +9473,11 @@ msgstr "Verticale scrol van de browser in pixel"
 
 #: ../weblets/data/messages:101
 msgid "Position of vertical scrollbar in pixel"
-msgstr "Positie van de verticale scrollbalk in pixel"
+msgstr "Positie van de verticale scrolbalk in pixels"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Hierdoor kunt u met rechts klikken op het desklet voor het Cairo-Dock menu."
 

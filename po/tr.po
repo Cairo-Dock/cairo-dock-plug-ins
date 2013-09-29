@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
+"POT-Creation-Date: 2013-09-23 10:57+0000\n"
 "PO-Revision-Date: 2013-07-21 20:14+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Turkish <tr@li.org>\n"
-"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-07-22 05:40+0000\n"
-"X-Generator: Launchpad (build 16696)\n"
+"X-Launchpad-Export-Date: 2013-09-24 06:13+0000\n"
+"X-Generator: Launchpad (build 16771)\n"
+"Language: tr\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -349,7 +350,8 @@ msgstr "Kip eklendi, fakat başlatılamadı."
 
 #: ../Dbus/src/interface-applet-signals.c:471
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "'%s' ugulamacığı başarıyla güncellendi ve otomatik olarak yeniden yüklendi."
 
@@ -929,9 +931,8 @@ msgstr ""
 "birlikte göstermek için simge üzerine sürükleyin."
 
 #: ../Network-Monitor/src/applet-init.c:41
-#, fuzzy
 msgid "Network Monitor"
-msgstr "Ağ-Gözlemci"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-netspeed.c:202
 #: ../System-Monitor/src/applet-monitor.c:95
@@ -1791,8 +1792,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2031,14 +2032,12 @@ msgid "Small"
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:44
-#, fuzzy
 msgid "No text"
-msgstr "Metni alın"
+msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:55
-#, fuzzy
 msgid "Text:"
-msgstr "Metin"
+msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:317
 msgid ""
@@ -2047,7 +2046,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:370
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Yeni bir tanesini başlatmadan önce lütfen mevcut veri yüklemenin bitmesini "
 "bekleyin."
@@ -3179,8 +3179,8 @@ msgstr "fareyi göster"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -3451,7 +3451,8 @@ msgstr "Bir renk seç"
 #: ../terminal/src/terminal-widget.c:431
 #, c-format
 msgid "You can recall the Terminal desklet by typing %s"
-msgstr "Uçbirim masaüstü uygulamacığını %s yazarak yeniden çalıştırabilirsiniz"
+msgstr ""
+"Uçbirim masaüstü uygulamacığını %s yazarak yeniden çalıştırabilirsiniz"
 
 #: ../terminal/src/terminal-widget.c:477
 msgid "Paste"
@@ -5610,7 +5611,8 @@ msgid "Background"
 msgstr "Arkaplan"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
@@ -7163,7 +7165,8 @@ msgid "Custom script for file upload :"
 msgstr ""
 
 #: ../dnd2share/data/messages:181
-msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
+msgid ""
+"Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 msgstr ""
 
 #: ../dnd2share/data/messages:183
@@ -7365,7 +7368,8 @@ msgid "Space between icons:"
 msgstr "Simgeler arasındaki boşluk:"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:121
@@ -7556,7 +7560,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:73
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:75 ../icon-effect/data/messages:187
@@ -7815,7 +7820,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:117
@@ -7899,7 +7905,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:11
@@ -8910,7 +8917,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:105

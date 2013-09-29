@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
+"POT-Creation-Date: 2013-09-23 10:57+0000\n"
 "PO-Revision-Date: 2013-07-21 19:59+0000\n"
 "Last-Translator: Backspaceyao <huangyaowudi@gmail.com>\n"
 "Language-Team: Simplified Chinese <tigersoldi@gmail.com>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-07-22 05:41+0000\n"
-"X-Generator: Launchpad (build 16696)\n"
+"X-Launchpad-Export-Date: 2013-09-24 06:14+0000\n"
+"X-Generator: Launchpad (build 16771)\n"
+"Language: \n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -355,7 +356,8 @@ msgstr "这个模块已经被添加,但是无法启动."
 
 #: ../Dbus/src/interface-applet-signals.c:471
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "这个小程序'%s'已经成功升级并且自动重启."
 
 #: ../Dbus/src/interface-applet-signals.c:471
@@ -778,8 +780,7 @@ msgid ""
 "You can bind a shortkey to this action."
 msgstr ""
 "这个applet允许你控制当前的活动窗口：\n"
-"  关闭, 最小化,最大化,显示应用程序菜单.显示菜单, 应用程序必须支持此特性,这是"
-"一个Ubuntu缺省的例子。\n"
+"  关闭, 最小化,最大化,显示应用程序菜单.显示菜单, 应用程序必须支持此特性,这是一个Ubuntu缺省的例子。\n"
 "你可以为这个动作绑定一个快捷键。"
 
 #: ../Global-Menu/src/applet-init.c:112 ../Global-Menu/src/applet-init.c:211
@@ -797,8 +798,7 @@ msgid ""
 "(if any) to forum.glx-dock.org"
 msgstr ""
 "PulseAudio有一些错误。\n"
-"你可以检查其状态（是否安装？是否运行？版本是否正确？）并发送错误报告（如果有"
-"任何）到forum.glx-dock.org"
+"你可以检查其状态（是否安装？是否运行？版本是否正确？）并发送错误报告（如果有任何）到forum.glx-dock.org"
 
 #: ../Impulse/src/applet-init.c:32
 msgid ""
@@ -960,9 +960,8 @@ msgstr ""
 "左键弹出信息,在图标上滑动滚轮显示网络和wifi速率."
 
 #: ../Network-Monitor/src/applet-init.c:41
-#, fuzzy
 msgid "Network Monitor"
-msgstr "网络监视器"
+msgstr ""
 
 #: ../Network-Monitor/src/applet-netspeed.c:202
 #: ../System-Monitor/src/applet-monitor.c:95
@@ -1019,8 +1018,7 @@ msgstr ""
 "       -左键：在一个对话框中显示feed的所有行\n"
 "       -中键：刷新feed\n"
 "       -在平台上滑动：滑动feed行\n"
-"       -拖拽一个有效的URL到图标上进行订阅，或者复制地址并使用菜单中的“拷贝新"
-"RSS地址”，或者编辑配置栏"
+"       -拖拽一个有效的URL到图标上进行订阅，或者复制地址并使用菜单中的“拷贝新RSS地址”，或者编辑配置栏"
 
 #: ../RSSreader/src/applet-init.c:65 ../RSSreader/src/applet-init.c:125
 #: ../RSSreader/src/applet-notifications.c:56
@@ -1822,8 +1820,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2076,7 +2074,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:370
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:438
@@ -2253,8 +2252,7 @@ msgid ""
 "icon.\n"
 "Middle-click on the icon will empty the dustbin."
 msgstr ""
-"该插件管理回收站，您可以将文件拖进回收站；如果把已加载(mount)的磁盘进回收站，"
-"则会卸载它(umount)。\n"
+"该插件管理回收站，您可以将文件拖进回收站；如果把已加载(mount)的磁盘进回收站，则会卸载它(umount)。\n"
 "在图标上按鼠标中键，将清空回收站。"
 
 #: ../dustbin/src/applet-notifications.c:40
@@ -2411,8 +2409,7 @@ msgid ""
 "You can bind a <b>shortcut</b> to it, and also to lock the screen."
 msgstr ""
 "此程序可以让您控制当前用户会话。您可以：\n"
-"关机，重新启动，休眠，挂起，注销，锁定屏幕，切换用户，或者设置一次自动关"
-"机。\n"
+"关机，重新启动，休眠，挂起，注销，锁定屏幕，切换用户，或者设置一次自动关机。\n"
 "它还会在您的系统需要重新启动时通知您\n"
 "点击此程序的图标以弹出菜单。\n"
 "您可以绑定一个快捷方式，也可以将其锁定在屏幕上。"
@@ -3132,8 +3129,7 @@ msgid ""
 "space, type, etc."
 msgstr ""
 "通过该插件，您可以快速访问所有快捷方式。\n"
-"它可以管理磁盘、网络挂载点，以及 Nautilus 文件管理器的书签（即使您没有安装"
-"Nautilus）。\n"
+"它可以管理磁盘、网络挂载点，以及 Nautilus 文件管理器的书签（即使您没有安装Nautilus）。\n"
 "将文件夹拖到该“快捷方式”图标或者子 dock 上，就可以创建一个书签。\n"
 "在图标上点击鼠标中键，即显示您的主目录。\n"
 "在一个挂载点的图标上点鼠标中键，可以将其迅速卸载。\n"
@@ -3211,8 +3207,8 @@ msgstr "显示鼠标"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -4361,9 +4357,7 @@ msgstr ""
 msgid ""
 "If locked, the desklet cannot be moved by simply dragging it with the left "
 "mouse button. It can still be moved with ALT + left-click."
-msgstr ""
-"一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来"
-"移动。"
+msgstr "一旦锁定，桌面小工具无法通过简单地用左键拖放来移动。当然，您可以用ALT+左键来移动。"
 
 #: ../Clipper/data/messages:23 ../Composite-Manager/data/messages:21
 #: ../Disks/data/messages:43 ../Doncky/data/messages:23
@@ -4414,9 +4408,7 @@ msgstr "锁定位置?"
 msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
-msgstr ""
-"您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理"
-"器。"
+msgstr "您可以用诸如ALT+鼠标中键或ALT+左键点击来更改其大小，此功能依赖于您的窗口管理器。"
 
 #: ../Clipper/data/messages:27 ../Composite-Manager/data/messages:25
 #: ../Disks/data/messages:23 ../Doncky/data/messages:27
@@ -5644,7 +5636,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
@@ -7197,7 +7190,8 @@ msgid "Custom script for file upload :"
 msgstr ""
 
 #: ../dnd2share/data/messages:181
-msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
+msgid ""
+"Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 msgstr ""
 
 #: ../dnd2share/data/messages:183
@@ -7399,7 +7393,8 @@ msgid "Space between icons:"
 msgstr "图标间隔:"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr "0意味着平波，1意味着与其它视图一样"
 
 #: ../dock-rendering/data/messages:121
@@ -7590,7 +7585,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:73
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:75 ../icon-effect/data/messages:187
@@ -7813,9 +7809,7 @@ msgid ""
 "This will be available when middle-clicking. Leave empty to execute the "
 "default command, which depends on your distribution. In some cases the "
 "command to shutdown is the same as the one to log out."
-msgstr ""
-"中键单击时使用。留空则使用默认命令，该命令取决于您所使用的发行版。有时关机和"
-"注销是同一个命令。"
+msgstr "中键单击时使用。留空则使用默认命令，该命令取决于您所使用的发行版。有时关机和注销是同一个命令。"
 
 #: ../logout/data/messages:127
 msgid "User-defined command to execute for shutdown:"
@@ -7828,9 +7822,8 @@ msgid ""
 msgstr ""
 
 #: ../logout/data/messages:131
-#, fuzzy
 msgid "User-defined command to execute for changing user:"
-msgstr "用户指定执行的注销命令:"
+msgstr ""
 
 #: ../mail/data/messages:99
 msgid ""
@@ -7852,7 +7845,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "“有邮件”图像文件名:"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:117
@@ -7936,7 +7930,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:11
@@ -8011,9 +8006,7 @@ msgstr ""
 msgid ""
 "This will prevent the player icon appearing in the taskbar. The applet's "
 "icon will then behave as a launcher, an application and an applet."
-msgstr ""
-"这将阻止播放器的图标显示于任务栏。小程序的图标将具有启动器、应用程序和小程序"
-"的功能。"
+msgstr "这将阻止播放器的图标显示于任务栏。小程序的图标将具有启动器、应用程序和小程序的功能。"
 
 #: ../musicPlayer/data/messages:135
 msgid "Steal the player's icon from the taskbar?"
@@ -8539,8 +8532,7 @@ msgstr ""
 msgid ""
 "These options allow you to prevent some files from displaying in stacks "
 "based on their type (video, image, etc.)"
-msgstr ""
-"此选项允许您根据文件的类型（影像、图片等），使特定的文件不在stack中显示"
+msgstr "此选项允许您根据文件的类型（影像、图片等），使特定的文件不在stack中显示"
 
 #: ../stack/data/messages:119
 msgid "Filter files on MIME type?"
@@ -8761,9 +8753,8 @@ msgid "Use a custom font?"
 msgstr ""
 
 #: ../terminal/data/messages:107
-#, fuzzy
 msgid "Custom font:"
-msgstr "个性化"
+msgstr ""
 
 #: ../terminal/data/messages:111
 msgid "Automatically scroll to the bottom when new data are received"
@@ -8774,9 +8765,8 @@ msgid "Scroll on output"
 msgstr ""
 
 #: ../terminal/data/messages:115
-#, fuzzy
 msgid "Automatically scroll to the bottom when a key is pressed"
-msgstr "以点为单位的浏览器垂直卷轴位置"
+msgstr ""
 
 #: ../terminal/data/messages:117
 msgid "Scroll on keystroke"
@@ -8794,9 +8784,7 @@ msgstr ""
 msgid ""
 "When the terminal is in a dialog. When it is in a desklet, you can just "
 "resize the desklet as usual."
-msgstr ""
-"当终端在对话框中时。当位于桌面小工具中时，您可以如平常一样改变桌面小工具的大"
-"小。"
+msgstr "当终端在对话框中时。当位于桌面小工具中时，您可以如平常一样改变桌面小工具的大小。"
 
 #: ../terminal/data/messages:127
 msgid "Size of the terminal (line x columns):"
@@ -8856,8 +8844,8 @@ msgid ""
 "of 'strftime' : %d for the day, %m for the month, %y for the year (2 "
 "digits), etc. Leave it blank to use the default one (%d/%m/%y)."
 msgstr ""
-"写下您便签平时使用的日期格式。语法为'strftime'的一种: %d表示日，%m表示月, %y"
-"表示年（2位数字）等。如使用默认的（%d/%m/%y）格式，则留空。"
+"写下您便签平时使用的日期格式。语法为'strftime'的一种: %d表示日，%m表示月, "
+"%y表示年（2位数字）等。如使用默认的（%d/%m/%y）格式，则留空。"
 
 #: ../tomboy/data/messages:141
 msgid "Date format to search for :"
@@ -8870,9 +8858,8 @@ msgid ""
 "message like <<No marshaller for signature of signal 'NoteDeleted'>> in the "
 "terminal."
 msgstr ""
-"如果您使用了某些tomboy的版本，便签的删除可能不会自动通知。仅当您在终端中发现"
-"类似<<No marshaller for signature of signal 'NoteDeleted'>>的错误的时候，启用"
-"此项目"
+"如果您使用了某些tomboy的版本，便签的删除可能不会自动通知。仅当您在终端中发现类似<<No marshaller for signature of "
+"signal 'NoteDeleted'>>的错误的时候，启用此项目"
 
 #: ../tomboy/data/messages:147
 msgid "Emulate the 'NoteDeleted' signal?"
@@ -8959,7 +8946,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "垂直卷轴位置"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:105

@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"POT-Creation-Date: 2013-09-23 12:44+0200\n"
-"PO-Revision-Date: 2013-07-21 21:24+0000\n"
+"POT-Creation-Date: 2013-09-23 10:57+0000\n"
+"PO-Revision-Date: 2013-09-23 11:50+0000\n"
 "Last-Translator: Anthony Harrington <untaintableangel@ubuntu.com>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-07-22 05:41+0000\n"
-"X-Generator: Launchpad (build 16696)\n"
+"X-Launchpad-Export-Date: 2013-09-24 06:13+0000\n"
+"X-Generator: Launchpad (build 16771)\n"
+"Language: \n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -372,7 +372,8 @@ msgstr "The module has been added, but couldn't be launched."
 
 #: ../Dbus/src/interface-applet-signals.c:471
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "The applet '%s' has been successfully updated and automatically reloaded"
 
@@ -800,7 +801,7 @@ msgstr "Configure menu"
 #: ../GMenu-old/src/applet-notifications.c:116
 #: ../GMenu/src/applet-notifications.c:102
 msgid "None of these applications seems available:"
-msgstr ""
+msgstr "None of these applications seems available:"
 
 #: ../GMenu-old/src/applet-notifications.c:124
 #: ../GMenu/src/applet-notifications.c:110
@@ -825,9 +826,8 @@ msgid "Launch this new application?"
 msgstr "Launch this new application?"
 
 #: ../GMenu/src/applet-entry.c:435
-#, fuzzy
 msgid "Launch this command"
-msgstr "Launch this new application?"
+msgstr "Launch this command"
 
 #: ../Global-Menu/src/applet-init.c:30
 msgid "Global Menu"
@@ -1034,9 +1034,8 @@ msgstr ""
 "between net speed and wifi."
 
 #: ../Network-Monitor/src/applet-init.c:41
-#, fuzzy
 msgid "Network Monitor"
-msgstr "Network-Monitor"
+msgstr "Network Monitor"
 
 #: ../Network-Monitor/src/applet-netspeed.c:202
 #: ../System-Monitor/src/applet-monitor.c:95
@@ -1945,8 +1944,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -1955,8 +1954,8 @@ msgstr ""
 "2 views are available : <b>numeric</b> and <b>analogue</b>.\n"
 " Analogue view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2202,14 +2201,12 @@ msgid "Small"
 msgstr "Small"
 
 #: ../dnd2share/src/applet-dnd2share.c:44
-#, fuzzy
 msgid "No text"
-msgstr "Get text"
+msgstr "No text"
 
 #: ../dnd2share/src/applet-dnd2share.c:55
-#, fuzzy
 msgid "Text:"
-msgstr "Text"
+msgstr "Text:"
 
 #: ../dnd2share/src/applet-dnd2share.c:317
 msgid ""
@@ -2220,7 +2217,8 @@ msgstr ""
 "Just press CTRL+v to paste its URL anywhere."
 
 #: ../dnd2share/src/applet-dnd2share.c:370
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Please wait for the current upload to finish before starting a new one."
 
@@ -2688,13 +2686,15 @@ msgstr "Please do that at the end of the update."
 
 #: ../logout/src/applet-logout.c:627
 msgid "Logind has returned this error:"
-msgstr ""
+msgstr "Logind has returned this error:"
 
 #: ../logout/src/applet-logout.c:629
 msgid ""
 "Please check that you can do this action\n"
 "(e.g. you can't power the computer off if another session is active)"
 msgstr ""
+"Please check that you can do this action\n"
+"(e.g. you can't power the computer off if another session is active)"
 
 #: ../logout/src/applet-logout.c:694
 #, c-format
@@ -3447,11 +3447,11 @@ msgstr "Show Mouse"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 
 #: ../showDesktop/src/applet-init.c:28
 msgid "showDesktop"
@@ -5975,8 +5975,10 @@ msgid "Background"
 msgstr "Background"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
-msgstr "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
+msgstr ""
+"You can have more attractive backgrounds using the Desklet decorations"
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
 msgid "Display a simple background?"
@@ -6117,9 +6119,8 @@ msgid "Load settings' menu?"
 msgstr "Load settings' menu?"
 
 #: ../GMenu-old/data/messages:103 ../GMenu/data/messages:103
-#, fuzzy
 msgid "Display the description in search's results?"
-msgstr "Display the time in a 24h format?"
+msgstr "Display the description in search's results?"
 
 #: ../GMenu-old/data/messages:105 ../GMenu/data/messages:105
 msgid "Command to use for configuring the menu:"
@@ -7568,8 +7569,10 @@ msgid "Custom script for file upload :"
 msgstr "Custom script for file upload :"
 
 #: ../dnd2share/data/messages:181
-msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
-msgstr "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
+msgid ""
+"Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
+msgstr ""
+"Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 
 #: ../dnd2share/data/messages:183
 msgid "Path of a custom DropBox / UbuntuOne folder :"
@@ -7772,7 +7775,8 @@ msgid "Space between icons:"
 msgstr "Space between icons:"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 represents a flat wave, 1 means the wave is identical to other views."
 
@@ -7981,7 +7985,7 @@ msgstr "Rotate effects with dock?"
 
 #: ../icon-effect/data/messages:55
 msgid "Repeat these effects until the corresponding application opens?"
-msgstr ""
+msgstr "Repeat these effects until the corresponding application opens?"
 
 #: ../icon-effect/data/messages:59
 msgid "In ms. Set 0 to not use this effect."
@@ -7995,8 +7999,10 @@ msgid "Colours"
 msgstr "Colours"
 
 #: ../icon-effect/data/messages:73
-msgid "This will slightly alter your colours, so you may have to modify them."
-msgstr "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
+msgstr ""
+"This will slightly alter your colours, so you may have to modify them."
 
 #: ../icon-effect/data/messages:75 ../icon-effect/data/messages:187
 msgid "Add luminance?"
@@ -8236,11 +8242,12 @@ msgid ""
 "Leave empty to execute the default command. If not empty, it will execute "
 "this command with the name of the user (or nothing for guest session)"
 msgstr ""
+"Leave empty to execute the default command. If not empty, it will execute "
+"this command with the name of the user (or nothing for guest session)"
 
 #: ../logout/data/messages:131
-#, fuzzy
 msgid "User-defined command to execute for changing user:"
-msgstr "User-defined command to execute for logout:"
+msgstr "User-defined command to execute for changing user:"
 
 #: ../mail/data/messages:99
 msgid ""
@@ -8265,7 +8272,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Name of the file for the \"has mail\" image :"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "If checked, the number of messages will be shown even if there is no mail."
 
@@ -8350,8 +8358,10 @@ msgid "Blur amount:"
 msgstr "Blur amount:"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
-msgstr "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
+msgstr ""
+"Leave it empty to display the name of the player currently controlled."
 
 #: ../musicPlayer/data/messages:11
 msgid "Player name"
@@ -9181,39 +9191,36 @@ msgid "Foreground colour:"
 msgstr "Foreground colour:"
 
 #: ../terminal/data/messages:105
-#, fuzzy
 msgid "Use a custom font?"
-msgstr "Use a custom font"
+msgstr "Use a custom font?"
 
 #: ../terminal/data/messages:107
-#, fuzzy
 msgid "Custom font:"
-msgstr "Use a custom font"
+msgstr "Custom font:"
 
 #: ../terminal/data/messages:111
 msgid "Automatically scroll to the bottom when new data are received"
-msgstr ""
+msgstr "Automatically scroll to the bottom when receiving new data"
 
 #: ../terminal/data/messages:113
 msgid "Scroll on output"
-msgstr ""
+msgstr "Scroll on output"
 
 #: ../terminal/data/messages:115
-#, fuzzy
 msgid "Automatically scroll to the bottom when a key is pressed"
-msgstr "Vertical scroll of the browser in pixels"
+msgstr "Automatically scroll to the bottom when a key is pressed"
 
 #: ../terminal/data/messages:117
 msgid "Scroll on keystroke"
-msgstr ""
+msgstr "Scroll on keystroke"
 
 #: ../terminal/data/messages:119
 msgid "Limited scrollback buffer"
-msgstr ""
+msgstr "Limited scrollback buffer"
 
 #: ../terminal/data/messages:121
 msgid "Length of the scrollback buffer"
-msgstr ""
+msgstr "Length of the scrollback buffer"
 
 #: ../terminal/data/messages:125
 msgid ""
@@ -9323,7 +9330,8 @@ msgstr "Code for your location:"
 
 #: ../weather/data/messages:107
 msgid "If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
-msgstr "If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
+msgstr ""
+"If so, degrees will be displayed in Celsius, otherwise in Fahrenheit."
 
 #: ../weather/data/messages:109
 msgid "Use International System Units?"
@@ -9386,7 +9394,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Position of vertical scrollbar in pixels"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 
@@ -9447,6 +9456,3 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Alternative command line to launch Wireless Configuration :"
-
-#~ msgid "No script set for this file type"
-#~ msgstr "No script set for this file type"

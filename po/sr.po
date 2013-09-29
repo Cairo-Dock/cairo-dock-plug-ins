@@ -5,15 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: то\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2013-07-21 20:13+0000\n"
+"POT-Creation-Date: 2013-09-23 10:57+0000\n"
+"PO-Revision-Date: 2013-09-09 06:23+0000\n"
 "Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
 "Language-Team: српски <xfce-i18n@xfce.org>\n"
-"Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-07-22 05:40+0000\n"
-"X-Generator: Launchpad (build 16696)\n"
+"X-Launchpad-Export-Date: 2013-09-24 06:12+0000\n"
+"X-Generator: Launchpad (build 16771)\n"
+"Language: sr\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -368,7 +369,8 @@ msgstr "Овај модул је додат, али га не могу покр�
 
 #: ../Dbus/src/interface-applet-signals.c:471
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Програмче „%s“ успешно дограђено, и самостално учитано поново"
 
 #: ../Dbus/src/interface-applet-signals.c:471
@@ -467,8 +469,8 @@ msgstr ""
 "\n"
 "<b>Простор на диску </b> :  Приказује брзину преноса података диска. До 10 "
 "партиција.\n"
-"  Требате подесити тачку качења сваке партиције која се прати, као / или /"
-"home\n"
+"  Требате подесити тачку качења сваке партиције која се прати, као / или "
+"/home\n"
 "  Бољи приказ у мерачу је са 30 или 60s учесталошћу освежавања и без, или са "
 "врло кратким кашњењем преласка.\n"
 "<b>Брзина диска</b> : Приказује брзину преноса података диска. До пет "
@@ -796,7 +798,7 @@ msgstr "Уређивање изборника"
 #: ../GMenu-old/src/applet-notifications.c:116
 #: ../GMenu/src/applet-notifications.c:102
 msgid "None of these applications seems available:"
-msgstr ""
+msgstr "Ни један од ових програма није доступан:"
 
 #: ../GMenu-old/src/applet-notifications.c:124
 #: ../GMenu/src/applet-notifications.c:110
@@ -818,7 +820,7 @@ msgstr "Унесите наредбу за покретање:"
 
 #: ../GMenu/src/applet-apps.c:67
 msgid "Launch this new application?"
-msgstr ""
+msgstr "Да ли да покренем оваај нови програм?"
 
 #: ../GMenu/src/applet-entry.c:435
 msgid "Launch this command"
@@ -1024,9 +1026,8 @@ msgid ""
 msgstr "Ово програмче вам омогућује да пратите вашу мрежну везу(е)."
 
 #: ../Network-Monitor/src/applet-init.c:41
-#, fuzzy
 msgid "Network Monitor"
-msgstr "Надгледник мреже"
+msgstr "Надзорник мреже"
 
 #: ../Network-Monitor/src/applet-netspeed.c:202
 #: ../System-Monitor/src/applet-monitor.c:95
@@ -1945,8 +1946,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2168,7 +2169,7 @@ msgstr "облачић напомене"
 #: ../dnd2share/src/applet-backend-uppix.c:31
 #: ../dnd2share/src/applet-backend-videobin.c:32
 msgid "Direct Link"
-msgstr ""
+msgstr "Непосредна веза"
 
 #: ../dnd2share/src/applet-backend-codepad.c:51
 #: ../dnd2share/src/applet-backend-custom.c:75
@@ -2176,25 +2177,25 @@ msgstr ""
 #: ../dnd2share/src/applet-backend-pastebin-mozilla.c:52
 #: ../dnd2share/src/applet-backend-pastebin.c:45
 msgid "Your text is empty and couldn't be uploaded to this server"
-msgstr ""
+msgstr "Текст није унесен и није могуће отпремити га овом даваоцу услуга"
 
 #: ../dnd2share/src/applet-backend-dropbox.c:63
 #: ../dnd2share/src/applet-backend-ubuntuone.c:59
 msgid "This directory seems not valid:"
-msgstr ""
+msgstr "Ова фасцикла се чини да је неисправна"
 
 #: ../dnd2share/src/applet-backend-imageshack.c:31
 #: ../dnd2share/src/applet-backend-uppix.c:31
 msgid "Thumbnail"
-msgstr ""
+msgstr "Умањена сличица"
 
 #: ../dnd2share/src/applet-backend-imgur.c:33
 msgid "Display Image"
-msgstr ""
+msgstr "Прикажи слику"
 
 #: ../dnd2share/src/applet-backend-imgur.c:33
 msgid "Large"
-msgstr ""
+msgstr "велика"
 
 #: ../dnd2share/src/applet-backend-imgur.c:33
 #: ../dock-rendering/data/messages:41
@@ -2202,14 +2203,12 @@ msgid "Small"
 msgstr "мали"
 
 #: ../dnd2share/src/applet-dnd2share.c:44
-#, fuzzy
 msgid "No text"
-msgstr "Преузми текст"
+msgstr "нема текста"
 
 #: ../dnd2share/src/applet-dnd2share.c:55
-#, fuzzy
 msgid "Text:"
-msgstr "Текст"
+msgstr "Текст:"
 
 #: ../dnd2share/src/applet-dnd2share.c:317
 msgid ""
@@ -2220,8 +2219,10 @@ msgstr ""
 "Само притисните КТРЛ+в за лепење адресе било где."
 
 #: ../dnd2share/src/applet-dnd2share.c:370
-msgid "Please wait for the current upload to finish before starting a new one."
-msgstr "Молим, сачекајте да се тренутно отпремање заврши пре покретања новог."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
+msgstr ""
+"Молим, сачекајте да се тренутно отпремање заврши пре покретања новог."
 
 #: ../dnd2share/src/applet-dnd2share.c:438
 msgid "This file is not readable."
@@ -2242,6 +2243,7 @@ msgid ""
 "Couldn't upload the file to %s, check that your internet connection is "
 "active."
 msgstr ""
+"Нисам успео да отпремим датотеку на %s. Проверите везу са Интернетом."
 
 #: ../dnd2share/src/applet-dnd2share.h:32
 #, c-format
@@ -2250,6 +2252,9 @@ msgid ""
 "Check that your internet connection is active and '%s' is correctly "
 "installed and running"
 msgstr ""
+"Нисам успео да отпремим датотеку на %s.\n"
+"Проверите да ли је исправна веза са Интернетом, и да ли је „%s“ правилно "
+"уграђен и покренут"
 
 #: ../dnd2share/src/applet-init.c:46
 msgid ""
@@ -2680,13 +2685,15 @@ msgstr "Молим, урадите то по завршетку надоград
 
 #: ../logout/src/applet-logout.c:627
 msgid "Logind has returned this error:"
-msgstr ""
+msgstr "Пријава је вратила следећу грешку:"
 
 #: ../logout/src/applet-logout.c:629
 msgid ""
 "Please check that you can do this action\n"
 "(e.g. you can't power the computer off if another session is active)"
 msgstr ""
+"Проверите да ли можете извршити следећу радњу\n"
+"(нпр. да ли можете искључити рачунар ако је још једна сесија у погону)"
 
 #: ../logout/src/applet-logout.c:694
 #, c-format
@@ -2774,7 +2781,7 @@ msgstr "Оставите празним за коришћење задатог �
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Specific icon file when using multiple accounts"
-msgstr ""
+msgstr "Одређена датотека иконице при коришћењу више налога"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Directory on server:"
@@ -3140,19 +3147,19 @@ msgstr "Батерија пуна"
 
 #: ../powermanager/src/powermanager-draw.c:202
 msgid "h"
-msgstr ""
+msgstr "h"
 
 #: ../powermanager/src/powermanager-draw.c:204
 msgid "mn"
-msgstr ""
+msgstr "mn"
 
 #: ../powermanager/src/powermanager-draw.c:213
 msgid "remaining"
-msgstr ""
+msgstr "преостаје"
 
 #: ../powermanager/src/powermanager-draw.c:213
 msgid "until charged"
-msgstr ""
+msgstr "до потпуне попуне"
 
 #: ../powermanager/src/powermanager-draw.c:231 ../wifi/src/applet-draw.c:30
 #: ../Clipper/data/messages:97 ../GMenu-old/data/messages:111
@@ -3453,8 +3460,8 @@ msgstr "прикажи миша"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "овај прикључак исцртава неке анимације око показивача миша кад се нађе у "
 "доку/справици површи."
@@ -3794,7 +3801,7 @@ msgstr "Затвори овај језичак"
 
 #: ../tomboy/src/applet-backend-default.c:160
 msgid "Note:"
-msgstr ""
+msgstr "Напомена:"
 
 #: ../tomboy/src/applet-backend-default.c:208
 msgid "Title:"
@@ -3874,7 +3881,7 @@ msgstr "Поништите ознаке"
 
 #: ../tomboy/src/tomboy-notifications.c:277
 msgid "No description"
-msgstr ""
+msgstr "Нема описа"
 
 #: ../weather/src/applet-config.c:120
 msgid ""
@@ -5554,7 +5561,8 @@ msgstr "Налепи у оставу исечака?"
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
-msgstr "Кад кликнете на ставку, њен садржај ће постати доступан на средњи клик"
+msgstr ""
+"Кад кликнете на ставку, њен садржај ће постати доступан на средњи клик"
 
 #: ../Clipper/data/messages:121
 msgid "Paste into Selection?"
@@ -5983,7 +5991,8 @@ msgid "Background"
 msgstr "Позадина"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Можете имати више привлачних позадина користећи украшавања справица површи"
 
@@ -6119,15 +6128,16 @@ msgid ""
 "The settings menu file is sometimes available in a settings.menu file but "
 "its content can also be available in the main .menu file used by the dock"
 msgstr ""
+"Датотека изборника поставки је често доступна у датотеци „settings.menu“, "
+"али је њен садржај такође доступан у датотеци „main .menu“ коју користи док"
 
 #: ../GMenu-old/data/messages:101 ../GMenu/data/messages:101
 msgid "Load settings' menu?"
-msgstr ""
+msgstr "Да ли да учитам изборник поставки?"
 
 #: ../GMenu-old/data/messages:103 ../GMenu/data/messages:103
-#, fuzzy
 msgid "Display the description in search's results?"
-msgstr "Приказује време у облику 24 часа?"
+msgstr ""
 
 #: ../GMenu-old/data/messages:105 ../GMenu/data/messages:105
 msgid "Command to use for configuring the menu:"
@@ -7512,7 +7522,7 @@ msgstr "Омиљени домаћини за слике"
 
 #: ../dnd2share/data/messages:141
 msgid "Uppix.com"
-msgstr ""
+msgstr "Uppix.com"
 
 #: ../dnd2share/data/messages:143
 msgid "Imagebin.ca"
@@ -7524,7 +7534,7 @@ msgstr "ImageShack.us"
 
 #: ../dnd2share/data/messages:147
 msgid "Imgur.com"
-msgstr ""
+msgstr "Imgur.com"
 
 #: ../dnd2share/data/messages:149
 msgid "Preferred site for videos hosting :"
@@ -7576,12 +7586,15 @@ msgid "Custom script for file upload :"
 msgstr "Прилагођене скрипте за отпремање датотека :"
 
 #: ../dnd2share/data/messages:181
-msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
+msgid ""
+"Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 msgstr ""
+"Оставите празно да би се датотеке отпремале на „~/Dropbox/Public“ или "
+"„~/Ubuntu One“"
 
 #: ../dnd2share/data/messages:183
 msgid "Path of a custom DropBox / UbuntuOne folder :"
-msgstr ""
+msgstr "Путања до прилагођених фасцикли Дропбокса и Убунту један :"
 
 #: ../dnd2share/data/messages:185
 msgid "Otherwise, your user name will be used when possible."
@@ -7780,8 +7793,10 @@ msgid "Space between icons:"
 msgstr "Растојање између икона:"
 
 #: ../dock-rendering/data/messages:117
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
-msgstr "0 представља раван талас, и значи да је талас исти као други прикази."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
+msgstr ""
+"0 представља раван талас, и значи да је талас исти као други прикази."
 
 #: ../dock-rendering/data/messages:121
 msgid "Number of icons on the first row:"
@@ -7988,7 +8003,7 @@ msgstr "Обртати утиске са доком?"
 
 #: ../icon-effect/data/messages:55
 msgid "Repeat these effects until the corresponding application opens?"
-msgstr ""
+msgstr "Да ли понављати ове утиске док се не отвори одговарајући програм?"
 
 #: ../icon-effect/data/messages:59
 msgid "In ms. Set 0 to not use this effect."
@@ -8002,7 +8017,8 @@ msgid "Colours"
 msgstr "Боје"
 
 #: ../icon-effect/data/messages:73
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 "Ово ће благо изменити ваше боје, тако да ћете можда морати да их преправите."
 
@@ -8204,7 +8220,8 @@ msgstr "Прилагођавање"
 
 #: ../logout/data/messages:111
 msgid "Icon image name to use when the system has to be rebooted:"
-msgstr "Назив слике иконе за коришћење кад систем треба да се покрене поново:"
+msgstr ""
+"Назив слике иконе за коришћење кад систем треба да се покрене поново:"
 
 #: ../logout/data/messages:113
 msgid ""
@@ -8243,11 +8260,12 @@ msgid ""
 "Leave empty to execute the default command. If not empty, it will execute "
 "this command with the name of the user (or nothing for guest session)"
 msgstr ""
+"Оставите празно да би се извршавале подразумеване наредбе. Ако није празно, "
+"извршаваће се наредбе са именом корисника (или ништа за сесију госта)"
 
 #: ../logout/data/messages:131
-#, fuzzy
 msgid "User-defined command to execute for changing user:"
-msgstr "Кориснички одређена наредба за извршење при одјави:"
+msgstr "Кориснички одређена наредба за извршавање при промени корисника:"
 
 #: ../mail/data/messages:99
 msgid ""
@@ -8272,7 +8290,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Назив датотеке за слику „има поште“ :"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr "Ако је означено, број порука ће бити приказан чак и ако нема поште."
 
 #: ../mail/data/messages:117
@@ -8356,7 +8375,8 @@ msgid "Blur amount:"
 msgstr "Количина замућења:"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 "Оставите празно за приказ назива музичког програма који се тренутно користи"
 
@@ -8450,7 +8470,8 @@ msgstr "пусти/заустави на клик, следећа на сред�
 
 #: ../musicPlayer/data/messages:141
 msgid "Show/Hide player on click, Play/Pause on middle-click"
-msgstr "прикажи/сакриј музички програм на клик, пусти/заустави на средњи клик"
+msgstr ""
+"прикажи/сакриј музички програм на клик, пусти/заустави на средњи клик"
 
 #: ../musicPlayer/data/messages:143
 msgid "Actions on scroll up/down:"
@@ -9188,39 +9209,36 @@ msgid "Foreground colour:"
 msgstr "Боја предњег плана:"
 
 #: ../terminal/data/messages:105
-#, fuzzy
 msgid "Use a custom font?"
-msgstr "Користи прилагођени словни лик"
+msgstr "Да ли користити прилагођени словни лик?"
 
 #: ../terminal/data/messages:107
-#, fuzzy
 msgid "Custom font:"
-msgstr "Користи прилагођени словни лик"
+msgstr "Прилагођени словолик:"
 
 #: ../terminal/data/messages:111
 msgid "Automatically scroll to the bottom when new data are received"
-msgstr ""
+msgstr "Самостално премичи до дна при пријему нових података"
 
 #: ../terminal/data/messages:113
 msgid "Scroll on output"
-msgstr ""
+msgstr "Премичи при излазу"
 
 #: ../terminal/data/messages:115
-#, fuzzy
 msgid "Automatically scroll to the bottom when a key is pressed"
-msgstr "Усправна шина премицања у тачкама"
+msgstr "Самостално премичи до дна када се притисне дугме"
 
 #: ../terminal/data/messages:117
 msgid "Scroll on keystroke"
-msgstr ""
+msgstr "Премичи при притиску низа дугмади"
 
 #: ../terminal/data/messages:119
 msgid "Limited scrollback buffer"
-msgstr ""
+msgstr "Ограничена међумеморија задршке премицања"
 
 #: ../terminal/data/messages:121
 msgid "Length of the scrollback buffer"
-msgstr ""
+msgstr "Дужина задршке премицања"
 
 #: ../terminal/data/messages:125
 msgid ""
@@ -9395,7 +9413,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Положај усправне шине премицања у тачкама"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Ово вам омогућује искакање изборника Каиро-дока на десни клик по справици "
 "површи"
