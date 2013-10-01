@@ -260,6 +260,7 @@ static void _switch_to_user (GtkMenuItem *menu_item, gchar *cUserName)
 		cd_logout_switch_to_guest ();
 	}
 }
+static GtkWidget *pShutdownMenuItem;
 static GtkWidget *_build_menu (void)
 {
 	GtkWidget *pMenu = gldi_menu_new (myIcon);
@@ -272,6 +273,7 @@ static GtkWidget *_build_menu (void)
 	g_free (cImagePath);
 	if (!myData.bCanStop && ! myConfig.cUserActionShutdown)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
+	pShutdownMenuItem = pMenuItem;
 	
 	cImagePath = _check_icon (GTK_STOCK_REFRESH, myData.iDesiredIconSize);
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Restart"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-restart.svg", cd_logout_restart, pMenu);
@@ -375,19 +377,7 @@ static void _display_menu (void)
 	CD_APPLET_POPUP_MENU_ON_MY_ICON (pMenu);
 	
 	// select the first (or last) item, which corresponds to the 'shutdown' action.
-	if ((myDock && myDock->container.bIsHorizontal && ! myDock->container.bDirectionUp)  // on the top, we inverse the menu
-		|| (myDesklet && myDesklet->container.iWindowPositionY < (g_desktopGeometry.Xscreen.height / 2)))
-	{
-		GList *children = gtk_container_get_children (GTK_CONTAINER (pMenu));
-		GList *last_child = g_list_last (children);
-		if (last_child)
-			gtk_menu_shell_select_item (GTK_MENU_SHELL (pMenu), last_child->data);
-		g_list_free (children);
-	}
-	else
-	{
-		gtk_menu_shell_select_first (GTK_MENU_SHELL (pMenu), FALSE);  // must be done here, after the menu has been realized.
-	}
+	gtk_menu_shell_select_item (GTK_MENU_SHELL (pMenu), pShutdownMenuItem);
 }
 
 
