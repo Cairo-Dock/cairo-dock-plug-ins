@@ -52,7 +52,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 		cd_message ("The bookmarks list has changed");
 		
 		//\____________________ On lit le fichier des signets.
-		gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
+		gchar *cBookmarkFilePath = g_strdup_printf ("%s/"GTK_BOOKMARKS_PATH, g_getenv ("HOME"));
 		gchar *cContent = NULL;
 		gsize length=0;
 		GError *erreur = NULL;
@@ -206,7 +206,7 @@ void cd_shortcuts_remove_one_bookmark (const gchar *cURI)
 	g_return_if_fail (cURI != NULL);
 	cd_message ("%s (%s)", __func__, cURI);
 	
-	gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
+	gchar *cBookmarkFilePath = g_strdup_printf ("%s/"GTK_BOOKMARKS_PATH, g_getenv ("HOME"));
 	gchar *cContent = NULL;
 	gsize length=0;
 	GError *erreur = NULL;
@@ -271,7 +271,7 @@ void cd_shortcuts_rename_one_bookmark (const gchar *cURI, const gchar *cName)
 	g_return_if_fail (cURI != NULL);
 	cd_message ("%s (%s, %s)", __func__, cURI, cName);
 	
-	gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
+	gchar *cBookmarkFilePath = g_strdup_printf ("%s/"GTK_BOOKMARKS_PATH, g_getenv ("HOME"));
 	gchar *cContent = NULL;
 	gsize length=0;
 	GError *erreur = NULL;
@@ -327,7 +327,7 @@ void cd_shortcuts_add_one_bookmark (const gchar *cURI)
 	g_return_if_fail (cURI != NULL);
 	cd_message ("%s (%s)", __func__, cURI);
 	
-	gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
+	gchar *cBookmarkFilePath = g_strdup_printf ("%s/"GTK_BOOKMARKS_PATH, g_getenv ("HOME"));
 	
 	// see if we need to add a new line before the new URI.
 	gchar *cContent = NULL;

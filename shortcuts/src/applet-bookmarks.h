@@ -23,6 +23,11 @@
 
 #include <cairo-dock.h>
 
+#if GTK_CHECK_VERSION (3, 6, 0)
+#define GTK_BOOKMARKS_PATH ".config/gtk-3.0/bookmarks"
+#else
+#define GTK_BOOKMARKS_PATH ".gtk-bookmarks"
+#endif
 
 void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gchar *cURI, GldiModuleInstance *myApplet);
 

@@ -213,7 +213,7 @@ static inline GList * _load_icons (CDSharedMemory *pSharedMemory)
 		
 	if (pSharedMemory->bListBookmarks)
 	{
-		gchar *cBookmarkFilePath = g_strdup_printf ("%s/.gtk-bookmarks", g_getenv ("HOME"));
+		gchar *cBookmarkFilePath = g_strdup_printf ("%s/"GTK_BOOKMARKS_PATH, g_getenv ("HOME"));
 		if (! g_file_test (cBookmarkFilePath, G_FILE_TEST_EXISTS))  // on le cree pour pouvoir ajouter des signets.
 		{
 			FILE *f = fopen (cBookmarkFilePath, "a");
