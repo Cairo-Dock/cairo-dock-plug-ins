@@ -260,7 +260,7 @@ static void _switch_to_user (GtkMenuItem *menu_item, gchar *cUserName)
 		cd_logout_switch_to_guest ();
 	}
 }
-static GtkWidget *pShutdownMenuItem;
+static GtkWidget *s_pShutdownMenuItem;
 static GtkWidget *_build_menu (void)
 {
 	GtkWidget *pMenu = gldi_menu_new (myIcon);
@@ -273,7 +273,7 @@ static GtkWidget *_build_menu (void)
 	g_free (cImagePath);
 	if (!myData.bCanStop && ! myConfig.cUserActionShutdown)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
-	pShutdownMenuItem = pMenuItem;
+	s_pShutdownMenuItem = pMenuItem;
 	
 	cImagePath = _check_icon (GTK_STOCK_REFRESH, myData.iDesiredIconSize);
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Restart"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-restart.svg", cd_logout_restart, pMenu);
@@ -370,6 +370,11 @@ static GtkWidget *_build_menu (void)
 	return pMenu;
 }
 
+static void _select_shutdown_item (GtkWidget *pMenu, GtkWidget *pShutdownMenuItem)
+{
+	gtk_menu_shell_select_item (GTK_MENU_SHELL (pMenu), pShutdownMenuItem);
+}
+
 static void _display_menu (void)
 {
 	// build and show the menu
@@ -377,7 +382,11 @@ static void _display_menu (void)
 	CD_APPLET_POPUP_MENU_ON_MY_ICON (pMenu);
 	
 	// select the first (or last) item, which corresponds to the 'shutdown' action.
-	gtk_menu_shell_select_item (GTK_MENU_SHELL (pMenu), pShutdownMenuItem);
+	if (gtk_widget_get_realized (pMenu))
+		gtk_menu_shell_select_item (GTK_MENU_SHELL (pMenu), s_pShutdownMenuItem);
+	else
+		g_signal_connect (G_OBJECT (pMenu), "realize",
+			G_CALLBACK (_select_shutdown_item), s_pShutdownMenuItem);
 }
 
 
