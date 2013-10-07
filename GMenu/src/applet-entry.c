@@ -149,8 +149,12 @@ static void _add_results_in_menu (GldiModuleInstance *myApplet)
 	{
 		gtk_widget_hide (s_pLaunchCommand);
 		// if there are results and no selection, select the first entry
+		#if (GTK_MAJOR_VERSION > 2)
 		GtkWidget *pMenuItem = gtk_menu_shell_get_selected_item (
 			GTK_MENU_SHELL (myData.pMenu));
+		#else
+		GtkWidget *pMenuItem = gtk_menu_get_active (GTK_MENU (myData.pMenu));
+		#endif
 		if (pMenuItem == NULL || pMenuItem == s_pLaunchCommand)
 			gtk_menu_shell_select_item (GTK_MENU_SHELL (myData.pMenu),
 				((EntryInfo *)s_pEntries->data)->pMenuItem);
@@ -361,7 +365,11 @@ static GtkWidget *s_pEntryContainer = NULL;
 
 static void _launch_app_of_selected_item (GtkWidget *pMenu)
 {
+	#if (GTK_MAJOR_VERSION > 2)
 	GtkWidget *pMenuItem = gtk_menu_shell_get_selected_item (GTK_MENU_SHELL (pMenu));
+	#else
+	GtkWidget *pMenuItem = gtk_menu_get_active (GTK_MENU (pMenu));
+	#endif
 
 	if (pMenuItem == s_pEntryContainer) // 'entry' selected
 		pMenuItem = ((EntryInfo *)s_pEntries->data)->pMenuItem; // select the first item
