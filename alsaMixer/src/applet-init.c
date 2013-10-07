@@ -125,6 +125,7 @@ CD_APPLET_INIT_BEGIN
 	
 	// data renderer
 	_set_data_renderer ();
+	myData.bMuteImage = -1;  // no image is set on the icon
 	
 	// start the sound controler
 	cd_start ();
@@ -174,8 +175,16 @@ CD_APPLET_RELOAD_BEGIN
 		if (myConfig.iVolumeDisplay != VOLUME_ON_ICON)
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF (NULL);
 		
-		// reload the data renderer
-		_set_data_renderer ();
+		// reload or remove the data renderer
+		if (myConfig.iVolumeEffect == VOLUME_EFFECT_NONE)
+		{
+			CD_APPLET_REMOVE_MY_DATA_RENDERER;
+		}
+		else
+		{
+			_set_data_renderer ();
+		}
+		myData.bMuteImage = -1;  // to re-apply the image on the icon
 		
 		// reload the controler
 		cd_reload ();

@@ -111,7 +111,7 @@ struct _AppletData {
 	#endif
 	// other
 	gboolean bIsMute;
-	gboolean bMuteImage;  // TRUE if the "mute" image is currently displayed
+	gint bMuteImage;  // 1 if the "mute" image is currently displayed, 0 if the normal icon is set, -1 if no image is set
 	GtkWidget *pScale;
 	GldiShortkey *cKeyBinding;
 	} ;

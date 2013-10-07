@@ -51,7 +51,7 @@ void cd_update_icon (void)
 	{
 		case VOLUME_EFFECT_NONE :
 		case VOLUME_EFFECT_BAR :
-			if (myData.bIsMute != myData.bMuteImage)
+			if (myData.bMuteImage < 0 || (myData.bIsMute != myData.bMuteImage))
 			{
 				if (myData.bIsMute)
 					CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cMuteIcon, "mute.svg");
