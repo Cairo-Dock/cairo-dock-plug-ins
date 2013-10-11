@@ -26,6 +26,9 @@
 void cd_menu_register_app (GDesktopAppInfo *pAppInfo);
 
 
+gboolean cd_menu_app_should_show (GDesktopAppInfo *pAppInfo);
+
+
 void cd_menu_check_for_new_apps (void);
 
 
