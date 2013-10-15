@@ -213,7 +213,42 @@ static inline GList * _load_icons (CDSharedMemory *pSharedMemory)
 		
 	if (pSharedMemory->bListBookmarks)
 	{
-		gchar *cBookmarkFilePath = g_strdup_printf ("%s/"GTK_BOOKMARKS_PATH, g_getenv ("HOME"));
+		// guess the file we should use (from GTK 3.6, the new one should be used, but some system (like Mint-14) didn't switch on time and still use the old one...)
+		gchar *cBookmarkFilePath = NULL;
+		#if GTK_CHECK_VERSION (3, 6, 0)
+		gchar *cBookmarkFilePathNew = g_strdup_printf ("%s/"GTK_BOOKMARKS_PATH, g_getenv ("HOME"));
+		gchar *cBookmarkFilePathOld = g_strdup_printf ("%s/"GTK_BOOKMARKS_PATH_OLD, g_getenv ("HOME"));
+		if (! g_file_test (cBookmarkFilePathNew, G_FILE_TEST_EXISTS))  // the new file doesn't exist yet, it's either that the old one is used, or that none is used
+		{
+			if (g_file_test (cBookmarkFilePathOld, G_FILE_TEST_EXISTS))
+			{
+				cBookmarkFilePath = cBookmarkFilePathOld;
+				cBookmarkFilePathOld = NULL;
+			}
+			else  // none are used, use the new one
+			{
+				cBookmarkFilePath = cBookmarkFilePathNew;
+				cBookmarkFilePathNew = NULL;
+			}
+		}
+		else  // the new one exists -> take it, unless it's empty and the old one exists too (may happen if we created the new one when the old one was still used, in version 3.3.1)
+		{
+			if (cairo_dock_get_file_size (cBookmarkFilePathNew) == 0 && g_file_test (cBookmarkFilePathOld, G_FILE_TEST_EXISTS) && cairo_dock_get_file_size (cBookmarkFilePathOld) != 0)
+			{
+				cBookmarkFilePath = cBookmarkFilePathOld;
+				cBookmarkFilePathOld = NULL;
+			}
+			else  // none are used, use the new one
+			{
+				cBookmarkFilePath = cBookmarkFilePathNew;
+				cBookmarkFilePathNew = NULL;
+			}
+		}
+		g_free (cBookmarkFilePathOld);
+		g_free (cBookmarkFilePathNew);
+		#else
+		cBookmarkFilePath = g_strdup_printf ("%s/"GTK_BOOKMARKS_PATH_OLD, g_getenv ("HOME"));
+		#endif
 		if (! g_file_test (cBookmarkFilePath, G_FILE_TEST_EXISTS))  // on le cree pour pouvoir ajouter des signets.
 		{
 			FILE *f = fopen (cBookmarkFilePath, "a");
