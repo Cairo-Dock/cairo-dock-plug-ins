@@ -23,8 +23,6 @@
 
 #include <cairo-dock.h>
 
-#define SHORTCUTS_DEFAULT_NAME "_shortcuts_"
-
 
 typedef enum {
 	CD_SHOW_NOTHING=0,

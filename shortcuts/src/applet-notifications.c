@@ -164,9 +164,11 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 CD_APPLET_ON_MIDDLE_CLICK_END
 
 
-static void _cd_shortcuts_remove_bookmark (GtkMenuItem *menu_item, const gchar *cURI)
+static void _cd_shortcuts_remove_bookmark (GtkMenuItem *menu_item, gpointer *data)
 {
-	cd_shortcuts_remove_one_bookmark (cURI);
+	GldiModuleInstance *myApplet = data[0];
+	Icon *pIcon = data[1];
+	cd_shortcuts_remove_one_bookmark (pIcon->cBaseURI, myApplet);
 }
 
 static void _on_got_bookmark_name (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer *data, CairoDialog *pDialog)
@@ -180,7 +182,7 @@ static void _on_got_bookmark_name (int iClickedButton, GtkWidget *pInteractiveWi
 		const gchar *cNewName = gtk_entry_get_text (GTK_ENTRY (pInteractiveWidget));
 		if (cNewName != NULL)
 		{
-			cd_shortcuts_rename_one_bookmark (pIcon->cCommand, cNewName);
+			cd_shortcuts_rename_one_bookmark (pIcon->cCommand, cNewName, myApplet);
 		}
 	}
 	CD_APPLET_LEAVE ();
@@ -304,7 +306,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		if (CD_APPLET_CLICKED_ICON->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)  // clic sur un signet.
 		{
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this bookmark"), NULL, _cd_shortcuts_rename_bookmark, CD_APPLET_MY_MENU, data);
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove this bookmark"), GTK_STOCK_REMOVE, _cd_shortcuts_remove_bookmark, CD_APPLET_MY_MENU, CD_APPLET_CLICKED_ICON->cBaseURI);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove this bookmark"), GTK_STOCK_REMOVE, _cd_shortcuts_remove_bookmark, CD_APPLET_MY_MENU, data);
 			CD_APPLET_LEAVE (GLDI_NOTIFICATION_INTERCEPT);
 		}
 		else if (CD_APPLET_CLICKED_ICON->iGroup == (CairoDockIconGroup) CD_DRIVE_GROUP && CD_APPLET_CLICKED_ICON->cBaseURI != NULL)  // clic sur un volume.
@@ -349,7 +351,7 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 		}
 		else
 		{
-			cd_shortcuts_add_one_bookmark (cURI);
+			cd_shortcuts_add_one_bookmark (cURI, myApplet);
 		}
 	}
 	else

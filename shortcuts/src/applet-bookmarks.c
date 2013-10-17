@@ -199,7 +199,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 	CD_APPLET_LEAVE();
 }
 
-void cd_shortcuts_remove_one_bookmark (const gchar *cURI)
+void cd_shortcuts_remove_one_bookmark (const gchar *cURI, GldiModuleInstance *myApplet)
 {
 	g_return_if_fail (cURI != NULL);
 	cd_message ("%s (%s)", __func__, cURI);
@@ -262,7 +262,7 @@ void cd_shortcuts_remove_one_bookmark (const gchar *cURI)
 	}
 }
 
-void cd_shortcuts_rename_one_bookmark (const gchar *cURI, const gchar *cName)
+void cd_shortcuts_rename_one_bookmark (const gchar *cURI, const gchar *cName, GldiModuleInstance *myApplet)
 {
 	g_return_if_fail (cURI != NULL);
 	cd_message ("%s (%s, %s)", __func__, cURI, cName);
@@ -316,7 +316,7 @@ void cd_shortcuts_rename_one_bookmark (const gchar *cURI, const gchar *cName)
 	}
 }
 
-void cd_shortcuts_add_one_bookmark (const gchar *cURI)
+void cd_shortcuts_add_one_bookmark (const gchar *cURI, GldiModuleInstance *myApplet)
 {
 	g_return_if_fail (cURI != NULL);
 	cd_message ("%s (%s)", __func__, cURI);

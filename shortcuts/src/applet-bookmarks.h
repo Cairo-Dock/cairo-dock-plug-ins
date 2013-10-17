@@ -28,11 +28,11 @@
 void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gchar *cURI, GldiModuleInstance *myApplet);
 
 
-void cd_shortcuts_remove_one_bookmark (const gchar *cURI);
+void cd_shortcuts_remove_one_bookmark (const gchar *cURI, GldiModuleInstance *myApplet);
 
-void cd_shortcuts_rename_one_bookmark (const gchar *cURI, const gchar *cName);
+void cd_shortcuts_rename_one_bookmark (const gchar *cURI, const gchar *cName, GldiModuleInstance *myApplet);
 
-void cd_shortcuts_add_one_bookmark (const gchar *cURI);
+void cd_shortcuts_add_one_bookmark (const gchar *cURI, GldiModuleInstance *myApplet);
 
 
 GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath, GldiModuleInstance *myApplet);
