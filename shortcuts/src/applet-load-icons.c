@@ -249,10 +249,18 @@ static inline GList * _load_icons (CDSharedMemory *pSharedMemory)
 		#else
 		cBookmarkFilePath = g_strdup_printf ("%s/"GTK_BOOKMARKS_PATH_OLD, g_getenv ("HOME"));
 		#endif
-		if (! g_file_test (cBookmarkFilePath, G_FILE_TEST_EXISTS))  // on le cree pour pouvoir ajouter des signets.
+		// we create this file if it doesn't exist in order to be able to add bookmarks later
+		if (! g_file_test (cBookmarkFilePath, G_FILE_TEST_EXISTS))
 		{
+			// first, we need to be sure that its directory exists
+			char *str = strrchr (cBookmarkFilePath, '/'); // last occurrence of '/'
+			*str = '\0';
+			g_mkdir_with_parents (cBookmarkFilePath, 7*8*8+7*8+5);
+			*str = '/';
+			// create the empty file
 			FILE *f = fopen (cBookmarkFilePath, "a");
-			fclose (f);
+			if (f)
+				fclose (f);
 		}
 		
 		GList *pIconList2 = cd_shortcuts_list_bookmarks (cBookmarkFilePath, pSharedMemory->pApplet);
