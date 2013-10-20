@@ -17,26 +17,22 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef __APPLET_BOOKMARKS__
 #define  __APPLET_BOOKMARKS__
 
 #include <cairo-dock.h>
 
-#if GTK_CHECK_VERSION (3, 6, 0)
-#define GTK_BOOKMARKS_PATH ".config/gtk-3.0/bookmarks"
-#else
-#define GTK_BOOKMARKS_PATH ".gtk-bookmarks"
-#endif
+#define GTK_BOOKMARKS_PATH ".config/gtk-3.0/bookmarks"  // from 3.6
+#define GTK_BOOKMARKS_PATH_OLD ".gtk-bookmarks"
 
 void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gchar *cURI, GldiModuleInstance *myApplet);
 
 
-void cd_shortcuts_remove_one_bookmark (const gchar *cURI);
+void cd_shortcuts_remove_one_bookmark (const gchar *cURI, GldiModuleInstance *myApplet);
 
-void cd_shortcuts_rename_one_bookmark (const gchar *cURI, const gchar *cName);
+void cd_shortcuts_rename_one_bookmark (const gchar *cURI, const gchar *cName, GldiModuleInstance *myApplet);
 
-void cd_shortcuts_add_one_bookmark (const gchar *cURI);
+void cd_shortcuts_add_one_bookmark (const gchar *cURI, GldiModuleInstance *myApplet);
 
 
 GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath, GldiModuleInstance *myApplet);

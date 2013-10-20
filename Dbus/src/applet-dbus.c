@@ -516,13 +516,7 @@ void cd_dbus_launch_service (void)
 	//\____________ create the main object on the bus.
 	myData.pMainObject = g_object_new (cd_dbus_main_get_type(), NULL);  // call cd_dbus_main_class_init() and cd_dbus_main_init().
 	
-	//\____________ register the applets installed in the default folders.
-	gboolean bAppletRegistered = FALSE;
-	bAppletRegistered |= _cd_dbus_register_all_applets_in_dir (MY_APPLET_SHARE_DATA_DIR);
-	
-	bAppletRegistered |= _cd_dbus_register_all_applets_in_dir (g_cCairoDockDataDir);
-	
-	//\____________ internationalize the applets.
+	//\____________ internationalize the applets (we need to do that before registering applets).
 	gchar *cLocaleDir = g_strdup_printf ("%s/"CD_DBUS_APPLETS_FOLDER"/"LOCALE_DIR_NAME, g_cCairoDockDataDir);  // user version of /usr/share/locale
 	if (! g_file_test (cLocaleDir, G_FILE_TEST_EXISTS))  // translations not downloaded yet.
 	{
@@ -558,6 +552,12 @@ void cd_dbus_launch_service (void)
 	bindtextdomain (GETTEXT_NAME_EXTRAS, cLocaleDir);  // bind the applets' domain to the user locale folder.
 	bind_textdomain_codeset (GETTEXT_NAME_EXTRAS, "UTF-8");
 	g_free (cLocaleDir);
+	
+	//\____________ register the applets installed in the default folders.
+	gboolean bAppletRegistered = FALSE;
+	bAppletRegistered |= _cd_dbus_register_all_applets_in_dir (MY_APPLET_SHARE_DATA_DIR);
+	
+	bAppletRegistered |= _cd_dbus_register_all_applets_in_dir (g_cCairoDockDataDir);
 	
 	//\____________ download in background the list of existing applets.
 	if (bAppletRegistered)  // only if some third-party applets are present on the disk.

@@ -52,11 +52,10 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 		cd_message ("The bookmarks list has changed");
 		
 		//\____________________ On lit le fichier des signets.
-		gchar *cBookmarkFilePath = g_strdup_printf ("%s/"GTK_BOOKMARKS_PATH, g_getenv ("HOME"));
 		gchar *cContent = NULL;
 		gsize length=0;
 		GError *erreur = NULL;
-		g_file_get_contents  (cBookmarkFilePath, &cContent, &length, &erreur);
+		g_file_get_contents  (myData.cBookmarksURI, &cContent, &length, &erreur);
 		if (erreur != NULL)
 		{
 			cd_warning ("when trying to get the bookmarks : %s", erreur->message);
@@ -196,21 +195,19 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 			pIconsList = CD_APPLET_MY_ICONS_LIST;
 			cairo_dock_sort_icons_by_order (pIconsList);  // again, since 'Home Folder' is always the first bookmark, the head of the list won't change even if there are only bookmarks (so we don't need to re-assigne it to the container).
 		}
-		g_free (cBookmarkFilePath);
 	}
 	CD_APPLET_LEAVE();
 }
 
-void cd_shortcuts_remove_one_bookmark (const gchar *cURI)
+void cd_shortcuts_remove_one_bookmark (const gchar *cURI, GldiModuleInstance *myApplet)
 {
 	g_return_if_fail (cURI != NULL);
 	cd_message ("%s (%s)", __func__, cURI);
 	
-	gchar *cBookmarkFilePath = g_strdup_printf ("%s/"GTK_BOOKMARKS_PATH, g_getenv ("HOME"));
 	gchar *cContent = NULL;
 	gsize length=0;
 	GError *erreur = NULL;
-	g_file_get_contents  (cBookmarkFilePath, &cContent, &length, &erreur);
+	g_file_get_contents  (myData.cBookmarksURI, &cContent, &length, &erreur);
 	if (erreur != NULL)
 	{
 		cd_warning ("while trying to read bookmarks file : %s", erreur->message);
@@ -253,7 +250,7 @@ void cd_shortcuts_remove_one_bookmark (const gchar *cURI)
 		else
 		{
 			cContent = g_strjoinv ("\n", cBookmarksList);
-			g_file_set_contents (cBookmarkFilePath, cContent, -1, &erreur);
+			g_file_set_contents (myData.cBookmarksURI, cContent, -1, &erreur);
 			if (erreur != NULL)
 			{
 				cd_warning ("while trying to write bookmarks file : %s", erreur->message);
@@ -263,19 +260,17 @@ void cd_shortcuts_remove_one_bookmark (const gchar *cURI)
 		}
 		g_strfreev (cBookmarksList);
 	}
-	g_free (cBookmarkFilePath);
 }
 
-void cd_shortcuts_rename_one_bookmark (const gchar *cURI, const gchar *cName)
+void cd_shortcuts_rename_one_bookmark (const gchar *cURI, const gchar *cName, GldiModuleInstance *myApplet)
 {
 	g_return_if_fail (cURI != NULL);
 	cd_message ("%s (%s, %s)", __func__, cURI, cName);
 	
-	gchar *cBookmarkFilePath = g_strdup_printf ("%s/"GTK_BOOKMARKS_PATH, g_getenv ("HOME"));
 	gchar *cContent = NULL;
 	gsize length=0;
 	GError *erreur = NULL;
-	g_file_get_contents  (cBookmarkFilePath, &cContent, &length, &erreur);
+	g_file_get_contents  (myData.cBookmarksURI, &cContent, &length, &erreur);
 	if (erreur != NULL)
 	{
 		cd_warning ("while trying to read bookmarks file : %s", erreur->message);
@@ -309,7 +304,7 @@ void cd_shortcuts_rename_one_bookmark (const gchar *cURI, const gchar *cName)
 		else
 		{
 			cContent = g_strjoinv ("\n", cBookmarksList);
-			g_file_set_contents (cBookmarkFilePath, cContent, -1, &erreur);
+			g_file_set_contents (myData.cBookmarksURI, cContent, -1, &erreur);
 			if (erreur != NULL)
 			{
 				cd_warning ("while trying to write bookmarks file : %s", erreur->message);
@@ -319,20 +314,17 @@ void cd_shortcuts_rename_one_bookmark (const gchar *cURI, const gchar *cName)
 		}
 		g_strfreev (cBookmarksList);
 	}
-	g_free (cBookmarkFilePath);
 }
 
-void cd_shortcuts_add_one_bookmark (const gchar *cURI)
+void cd_shortcuts_add_one_bookmark (const gchar *cURI, GldiModuleInstance *myApplet)
 {
 	g_return_if_fail (cURI != NULL);
 	cd_message ("%s (%s)", __func__, cURI);
 	
-	gchar *cBookmarkFilePath = g_strdup_printf ("%s/"GTK_BOOKMARKS_PATH, g_getenv ("HOME"));
-	
 	// see if we need to add a new line before the new URI.
 	gchar *cContent = NULL;
 	gsize length = 0;
-	g_file_get_contents (cBookmarkFilePath,
+	g_file_get_contents (myData.cBookmarksURI,
 		&cContent,
 		&length,
 		NULL);
@@ -340,7 +332,7 @@ void cd_shortcuts_add_one_bookmark (const gchar *cURI)
 	g_free (cContent);
 	
 	// append the new URI to the file.
-	FILE *f = fopen (cBookmarkFilePath, "a");
+	FILE *f = fopen (myData.cBookmarksURI, "a");
 	if (f != NULL)
 	{
 		gchar *cNewLine = g_strdup_printf ("%s%s\n", bAddNewLine ? "\n" : "", cURI);
@@ -348,7 +340,6 @@ void cd_shortcuts_add_one_bookmark (const gchar *cURI)
 		g_free (cNewLine);
 		fclose (f);
 	}
-	g_free (cBookmarkFilePath);
 }
 
 static Icon * _cd_shortcuts_get_icon (gchar *cFileName, const gchar *cUserName, double fCurrentOrder)
