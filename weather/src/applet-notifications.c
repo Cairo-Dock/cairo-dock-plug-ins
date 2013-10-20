@@ -41,12 +41,14 @@ CD_APPLET_ON_CLICK_END
 static int _get_num_day_from_icon (GldiModuleInstance *myApplet, Icon *pIcon)
 {
 	/// TODO: determiner le jour exact...
-	return (pIcon == myIcon ? 0 : pIcon->fOrder/2);  // la 1ere icone est le plus souvent celle d'aujourd'hui, toutefois cela peut ne pas etre vrai, surtout la nuit autour du changement de jour.
+	return (pIcon == myIcon ? -1 : pIcon->fOrder/2);  // la 1ere icone est le plus souvent celle d'aujourd'hui, toutefois cela peut ne pas etre vrai, surtout la nuit autour du changement de jour.
 }
 static inline void _go_to_site (GldiModuleInstance *myApplet, int iNumDay)
 {
 	gchar *cURI;
-	if (iNumDay == 0)
+	if (iNumDay == -1)
+		cURI = g_strdup_printf ("http://www.weather.com/weather/hourbyhour/graph/%s", myConfig.cLocationCode);
+	else if (iNumDay == 0)
 		cURI = g_strdup_printf ("http://www.weather.com/weather/today/%s", myConfig.cLocationCode);
 	else if (iNumDay == 1)
 		cURI = g_strdup_printf ("http://www.weather.com/weather/tomorrow/%s", myConfig.cLocationCode);
