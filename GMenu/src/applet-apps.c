@@ -20,6 +20,7 @@
 #include "applet-struct.h"
 #include "applet-apps.h"
 
+static gboolean s_bDesktopEnvDef; // $XDG_CURRENT_DESKTOP is available?
 
 void cd_menu_register_app (GDesktopAppInfo *pAppInfo)
 {
@@ -37,6 +38,22 @@ void cd_menu_register_app (GDesktopAppInfo *pAppInfo)
 	}
 }
 
+/**
+ * Returns true if the app should be shown in the menu
+ */
+gboolean cd_menu_app_should_show (GDesktopAppInfo *pAppInfo)
+{
+	// should_show = NoDisplay + OnlyShowIn
+	if (s_bDesktopEnvDef)
+		return g_app_info_should_show (G_APP_INFO (pAppInfo));
+
+	// XDG_CURRENT_DESKTOP: not defined, only check 'NoDisplay' if available
+	#if GLIB_CHECK_VERSION (2, 30, 0)
+	return ! g_desktop_app_info_get_nodisplay (pAppInfo);
+	#else
+	return TRUE;
+	#endif
+}
 
 static void _on_answer_launch_recent (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer data, CairoDialog *pDialog)
 {
@@ -107,8 +124,9 @@ void cd_menu_init_apps (void)
 	if (! myData.pKnownApplications)  // only init once
 	{
 		const gchar *cDesktopEnv = g_getenv ("XDG_CURRENT_DESKTOP");
-		if (cDesktopEnv)
-			g_desktop_app_info_set_desktop_env  (cDesktopEnv);
+		s_bDesktopEnvDef = (cDesktopEnv != NULL);
+		if (s_bDesktopEnvDef)
+			g_desktop_app_info_set_desktop_env (cDesktopEnv);
 
 		myData.bFirstLaunch = TRUE;
 		myData.pKnownApplications = g_hash_table_new_full (g_str_hash,

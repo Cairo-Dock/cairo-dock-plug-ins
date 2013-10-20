@@ -202,7 +202,7 @@ static void create_menuitem (GtkWidget *menu,
 	// ignore entry that are not shown in the menu
 	if (gmenu_tree_entry_get_is_excluded (entry))
 		return;
-	if (! g_app_info_should_show (G_APP_INFO (pAppInfo)))  // should_show = NoDisplay + OnlyShowIn
+	if (! cd_menu_app_should_show (pAppInfo))
 		return;
 	
 	// create an entry
