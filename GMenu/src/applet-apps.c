@@ -20,7 +20,7 @@
 #include "applet-struct.h"
 #include "applet-apps.h"
 
-static gboolean s_bDesktopEnvDef; // $XDG_CURRENT_DESKTOP is available?
+static gboolean s_bDesktopEnvDef = TRUE; // can we use g_app_info_should_show()?
 
 void cd_menu_register_app (GDesktopAppInfo *pAppInfo)
 {
@@ -124,9 +124,16 @@ void cd_menu_init_apps (void)
 	if (! myData.pKnownApplications)  // only init once
 	{
 		const gchar *cDesktopEnv = g_getenv ("XDG_CURRENT_DESKTOP");
-		s_bDesktopEnvDef = (cDesktopEnv != NULL);
 		if (s_bDesktopEnvDef)
 			g_desktop_app_info_set_desktop_env (cDesktopEnv);
+		else if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
+			g_desktop_app_info_set_desktop_env ("GNOME");
+		else if (g_iDesktopEnv == CAIRO_DOCK_XFCE)
+			g_desktop_app_info_set_desktop_env ("XFCE");
+		else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
+			g_desktop_app_info_set_desktop_env ("KDE");
+		else
+			s_bDesktopEnvDef = FALSE;
 
 		myData.bFirstLaunch = TRUE;
 		myData.pKnownApplications = g_hash_table_new_full (g_str_hash,
