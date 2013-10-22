@@ -47,7 +47,7 @@ gboolean cd_menu_app_should_show (GDesktopAppInfo *pAppInfo)
 	if (s_bDesktopEnvDef)
 		return g_app_info_should_show (G_APP_INFO (pAppInfo));
 
-	// XDG_CURRENT_DESKTOP: not defined, only check 'NoDisplay' if available
+	// XDG_CURRENT_DESKTOP is not defined => only check 'NoDisplay', if available
 	#if GLIB_CHECK_VERSION (2, 30, 0)
 	return ! g_desktop_app_info_get_nodisplay (pAppInfo);
 	#else
@@ -123,18 +123,27 @@ void cd_menu_init_apps (void)
 {
 	if (! myData.pKnownApplications)  // only init once
 	{
+		// check the XDG_CURRENT_DESKTOP env variable, it is used to match the 'OnlyShowIn' key in the .desktop files in gio and libgnomemenu
 		const gchar *cDesktopEnv = g_getenv ("XDG_CURRENT_DESKTOP");
-		if (s_bDesktopEnvDef)
+		if (! cDesktopEnv)  // the system didn't set the variable: this is probably a bug, so let's try to set a value ourselves (this is needed for both gio and libgnomemenu); this is a workaround, most of the time the value will be set correctly.
+		{
+			switch (g_iDesktopEnv)
+			{
+				case CAIRO_DOCK_GNOME: cDesktopEnv = "GNOME"; break;
+				case CAIRO_DOCK_XFCE: cDesktopEnv = "XFCE"; break;
+				case CAIRO_DOCK_KDE: cDesktopEnv = "KDE"; break;
+				default: break;
+			}
+			// if we found something, set the env variable, because libgnomemenu uses it directly, and if it is not set, will drop any element that has a OnlyShowIn key...
+			if (cDesktopEnv)
+				g_setenv ("XDG_CURRENT_DESKTOP", cDesktopEnv, TRUE);
+		}
+		
+		if (cDesktopEnv)  // also set it for g_app_info_should_show() in gio
 			g_desktop_app_info_set_desktop_env (cDesktopEnv);
-		else if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
-			g_desktop_app_info_set_desktop_env ("GNOME");
-		else if (g_iDesktopEnv == CAIRO_DOCK_XFCE)
-			g_desktop_app_info_set_desktop_env ("XFCE");
-		else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
-			g_desktop_app_info_set_desktop_env ("KDE");
-		else
-			s_bDesktopEnvDef = FALSE;
-
+		
+		s_bDesktopEnvDef = (cDesktopEnv != NULL);  // if cDesktopEnv is NULL, g_app_info_should_show will drop any element that has a OnlyShowIn key (it does a direct comparison), so we won't use this function, as it's better to show more apps than having missing apps.
+		
 		myData.bFirstLaunch = TRUE;
 		myData.pKnownApplications = g_hash_table_new_full (g_str_hash,
 			g_str_equal,
