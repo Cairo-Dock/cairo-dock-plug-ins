@@ -40,7 +40,7 @@ static gboolean _cd_icon_effect_start (gpointer pUserData, Icon *pIcon, CairoDoc
 		pData = g_new0 (CDIconEffectData, 1);
 		CD_APPLET_SET_MY_ICON_DATA (pIcon, pData);
 	}
-        double dt = cairo_dock_get_animation_delta_t (CAIRO_CONTAINER (pDock));
+	double dt = cairo_dock_get_animation_delta_t (CAIRO_CONTAINER (pDock));
 	
 	CDIconEffectsEnum iEffect;
 	CDIconEffect *pEffect;
@@ -215,7 +215,7 @@ gboolean cd_icon_effect_render_icon (gpointer pUserData, Icon *pIcon, CairoDock 
 }
 
 
-#define _will_continue(bRepeat) ((pData->iRequestTime > 0) || (pIcon->iAnimationState == CAIRO_DOCK_STATE_MOUSE_HOVERED && bRepeat && pIcon->bPointed && pDock->container.bInside) || (pIcon->iAnimationState == CAIRO_DOCK_STATE_CLICKED && myConfig.bOpeningAnimation && gldi_icon_is_launching (pIcon)))
+#define _will_continue(bRepeat) ((pData->iRequestTime > 0) || (pIcon->iAnimationState == CAIRO_DOCK_STATE_MOUSE_HOVERED && bRepeat && pIcon->bPointed && pDock->container.bInside) || (pIcon->iAnimationState == CAIRO_DOCK_STATE_CLICKED && myTaskbarParam.bOpeningAnimation && myConfig.bOpeningAnimation && gldi_icon_is_launching (pIcon)))
 
 gboolean cd_icon_effect_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bContinueAnimation)
 {
