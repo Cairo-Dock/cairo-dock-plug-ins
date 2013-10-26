@@ -122,8 +122,12 @@ static void _cd_musicplayer_find_player (GtkMenuItem *menu_item, gpointer *data)
 		// write it down into our conf file
 		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
 			G_TYPE_STRING, "Configuration", "current-player", cPlayerName,
+			G_TYPE_STRING, "Configuration", "desktop-entry", "",  // reset the desktop filename, we'll get the new one from the "DesktopEntry" property of the new player
 			G_TYPE_INVALID);
+		g_free (myConfig.cMusicPlayer);
 		myConfig.cMusicPlayer = g_strdup (cPlayerName);
+		g_free (myConfig.cLastKnownDesktopFile);
+		myConfig.cLastKnownDesktopFile = NULL;
 		
 		// set the handler with this value.
 		cd_musicplayer_set_current_handler (myConfig.cMusicPlayer);
@@ -144,8 +148,12 @@ static void _choice_dialog_action (int iClickedButton, GtkWidget *pInteractiveWi
 	// write it down into our conf file
 	cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
 		G_TYPE_STRING, "Configuration", "current-player", cPlayerName,
+		G_TYPE_STRING, "Configuration", "desktop-entry", "",  // reset the desktop filename, we'll get the new one from the "DesktopEntry" property of the new player
 		G_TYPE_INVALID);
+	g_free (myConfig.cMusicPlayer);
 	myConfig.cMusicPlayer = g_strdup (cPlayerName);
+	g_free (myConfig.cLastKnownDesktopFile);
+	myConfig.cLastKnownDesktopFile = NULL;
 	// set the handler with this value.
 	cd_musicplayer_set_current_handler (myConfig.cMusicPlayer);
 	// launch it, if it's already running, it's likely to have no effect

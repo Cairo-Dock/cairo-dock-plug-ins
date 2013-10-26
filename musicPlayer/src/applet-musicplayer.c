@@ -424,7 +424,9 @@ static void _on_name_owner_changed (const gchar *cName, gboolean bOwned, gpointe
 		{
 			if (strcmp (myData.pCurrentHandler->name, "Mpris2") == 0)
 			{
-				CD_APPLET_SET_NAME_FOR_MY_ICON (cd_musicplayer_get_string_with_first_char_to_upper (myData.pCurrentHandler->launch));
+				gchar *cDefaultName = cd_musicplayer_get_string_with_first_char_to_upper (myData.pCurrentHandler->launch);
+				CD_APPLET_SET_NAME_FOR_MY_ICON (cDefaultName);
+				g_free (cDefaultName);
 			}
 			else
 			{
