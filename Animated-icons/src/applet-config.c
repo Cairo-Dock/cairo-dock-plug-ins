@@ -44,6 +44,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_GET_INTEGER_LIST ("Global", "click launchers", CD_ANIMATIONS_NB_EFFECTS,
 		(int *)myConfig.iEffectsOnClick[CAIRO_DOCK_LAUNCHER]);
 	myConfig.iNbRoundsOnClick[CAIRO_DOCK_LAUNCHER] = CD_CONFIG_GET_INTEGER ("Global", "nb rounds launchers");
+	myConfig.bOpeningAnimation = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Global", "opening animation", TRUE);
 	
 	CD_CONFIG_GET_INTEGER_LIST ("Global", "click applis", CD_ANIMATIONS_NB_EFFECTS,
 		(int *)myConfig.iEffectsOnClick[CAIRO_DOCK_APPLI]);

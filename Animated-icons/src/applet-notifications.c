@@ -245,7 +245,8 @@ gboolean cd_animations_render_icon (gpointer pUserData, Icon *pIcon, CairoDock *
 }
 
 
-#define _will_continue(bRepeat) ((pData->iNumRound > 0) || (pIcon->iAnimationState == CAIRO_DOCK_STATE_MOUSE_HOVERED && bRepeat && pIcon->bPointed && pDock->container.bInside) || (pIcon->iAnimationState == CAIRO_DOCK_STATE_CLICKED && myTaskbarParam.bOpeningAnimation && gldi_icon_is_launching (pIcon)))
+#define _will_continue(bRepeat) ((pData->iNumRound > 0) || (pIcon->iAnimationState == CAIRO_DOCK_STATE_MOUSE_HOVERED && bRepeat && pIcon->bPointed && pDock->container.bInside) || (pIcon->iAnimationState == CAIRO_DOCK_STATE_CLICKED && myConfig.bOpeningAnimation && gldi_icon_is_launching (pIcon)))
+
 gboolean cd_animations_update_icon (gpointer pUserData, Icon *pIcon, CairoDock *pDock, gboolean *bContinueAnimation)
 {
 	CDAnimationData *pData = CD_APPLET_GET_MY_ICON_DATA (pIcon);

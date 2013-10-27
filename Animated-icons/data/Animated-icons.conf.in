@@ -18,6 +18,9 @@ click launchers = 0
 #i+[1;5] Number of times the animation will play:
 nb rounds launchers = 1
 
+#b Repeat these effects until the corresponding application opens?
+opening animation = true
+
 #F-[when clicking on an application]
 frame_appli =
 
