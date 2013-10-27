@@ -390,8 +390,13 @@ static void _launch_app_of_selected_item (GtkWidget *pMenu)
 static gboolean _on_key_pressed_menu (GtkWidget *pMenu, GdkEventKey *pEvent,
 	GldiModuleInstance *myApplet)
 {
-	// redirect the signal to the entry
+	/* redirect the signal to the entry:
+	 * with GTK 3.10, it seems that this redirection is no longer needed and
+	 * cause a bug: each character is doubled...
+	 */
+	#if ! GTK_CHECK_VERSION (3, 10, 0)
 	g_signal_emit_by_name (myData.pEntry, "key-press-event", pEvent, myApplet);
+	#endif
 
 	if (s_pOtherEntries != NULL)
 	{
