@@ -39,7 +39,6 @@
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.bBackGround = CD_CONFIG_GET_BOOLEAN ("Global", "background");
 	myConfig.bRotateEffects = CD_CONFIG_GET_BOOLEAN ("Global", "rotate");
-	myConfig.bOpeningAnimation = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Global", "opening animation", FALSE);
 	int i,j;
 	for (i = 0; i < CD_ICON_EFFECT_NB_EFFECTS; i ++)
 	{
