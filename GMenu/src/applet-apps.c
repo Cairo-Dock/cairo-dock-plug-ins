@@ -79,6 +79,7 @@ static void _on_answer_launch_recent (int iClickedButton, GtkWidget *pInteractiv
 
 void cd_menu_check_for_new_apps (void)
 {
+	gldi_dialogs_remove_on_icon (myIcon); /// TODO: just replace the combo box
 	if (myData.pNewApps != NULL)
 	{
 		const gchar *cQuestion = D_("Launch this new application?");
@@ -92,6 +93,7 @@ void cd_menu_check_for_new_apps (void)
 			{
 				gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (pInteractiveWidget), g_app_info_get_name (a->data));
 			}
+			gtk_combo_box_set_active (GTK_COMBO_BOX (pInteractiveWidget), 0); // select the first one
 		}
 		else
 		{
