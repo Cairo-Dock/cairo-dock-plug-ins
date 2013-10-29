@@ -120,6 +120,9 @@ settings menu = true
 #b Display the description in search's results?
 search description = true
 
+#b Display a notification to quickly launch new applications?
+new apps = true
+
 #s[Default] Command to use for configuring the menu:
 config menu =
 

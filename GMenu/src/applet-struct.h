@@ -38,6 +38,7 @@ struct _AppletConfig {
 	gboolean bShowRecent;
 	gboolean bLoadSettingsMenu;
 	gboolean bDisplayDesc;
+	gboolean bShowNewApps;
 	gint iNbRecentItems;
 	CDGMenuShowQuit iShowQuit;
 	} ;

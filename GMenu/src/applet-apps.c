@@ -82,7 +82,7 @@ static void _on_answer_launch_recent (int iClickedButton, GtkWidget *pInteractiv
 
 void cd_menu_check_for_new_apps (void)
 {
-	if (myData.pNewApps != NULL)
+	if (myData.pNewApps != NULL && myConfig.bShowNewApps)
 	{
 		if (s_pNewAppsDialog) // the dialogue already exists: add new items in the list
 		{
