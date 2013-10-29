@@ -9,15 +9,19 @@ msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
 "POT-Creation-Date: 2013-09-23 10:57+0000\n"
-"PO-Revision-Date: 2013-07-21 19:52+0000\n"
-"Last-Translator: Michael Konrad <Nephelyn@arcor.de>\n"
+"PO-Revision-Date: 2013-10-29 02:10+0000\n"
+"Last-Translator: Tobias B. <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-09-24 06:11+0000\n"
-"X-Generator: Launchpad (build 16771)\n"
+"X-Launchpad-Export-Date: 2013-10-29 04:59+0000\n"
+"X-Generator: Launchpad (build 16818)\n"
 "Language: de\n"
+
+#: ../shortcuts/src/applet-init.c:32
+msgid "shortcuts"
+msgstr "Lesezeichen"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:53
@@ -784,7 +788,7 @@ msgstr ""
 
 #: ../GMenu-old/src/applet-init.c:41 ../GMenu/src/applet-init.c:37
 msgid "Applications Menu"
-msgstr "Applikationsmenü"
+msgstr "Anwendungsmenü"
 
 #: ../GMenu-old/src/applet-init.c:134 ../GMenu/src/applet-init.c:63
 msgid "Show/hide the Applications menu"
@@ -797,7 +801,7 @@ msgstr "Den Schnellstartdialog anzeigen oder verbergen"
 #: ../GMenu-old/src/applet-menu-callbacks.c:177 ../GMenu/src/applet-menu.c:173
 #: ../GMenu-old/data/messages:113 ../GMenu/data/messages:113
 msgid "Logout"
-msgstr "Ausloggen"
+msgstr "Abmelden"
 
 #: ../GMenu-old/src/applet-menu-callbacks.c:180 ../GMenu/src/applet-menu.c:176
 #: ../GMenu-old/data/messages:115 ../GMenu/data/messages:115
@@ -817,7 +821,7 @@ msgstr "Menü konfigurieren"
 #: ../GMenu-old/src/applet-notifications.c:116
 #: ../GMenu/src/applet-notifications.c:102
 msgid "None of these applications seems available:"
-msgstr ""
+msgstr "Keine dieser Applikationen scheint verfügbar zu sein :"
 
 #: ../GMenu-old/src/applet-notifications.c:124
 #: ../GMenu/src/applet-notifications.c:110
@@ -839,11 +843,11 @@ msgstr "Kommando zum Ausführen eingeben :"
 
 #: ../GMenu/src/applet-apps.c:67
 msgid "Launch this new application?"
-msgstr ""
+msgstr "Diese neue Applikation starten ?"
 
 #: ../GMenu/src/applet-entry.c:435
 msgid "Launch this command"
-msgstr ""
+msgstr "Dieses Kommando ausführen"
 
 #: ../Global-Menu/src/applet-init.c:30
 msgid "Global Menu"
@@ -1054,7 +1058,7 @@ msgstr ""
 
 #: ../Network-Monitor/src/applet-init.c:41
 msgid "Network Monitor"
-msgstr ""
+msgstr "Netzwerkmonitor"
 
 #: ../Network-Monitor/src/applet-netspeed.c:202
 #: ../System-Monitor/src/applet-monitor.c:95
@@ -2197,7 +2201,7 @@ msgstr "Tooltip"
 #: ../dnd2share/src/applet-backend-uppix.c:31
 #: ../dnd2share/src/applet-backend-videobin.c:32
 msgid "Direct Link"
-msgstr ""
+msgstr "Direkter Link"
 
 #: ../dnd2share/src/applet-backend-codepad.c:51
 #: ../dnd2share/src/applet-backend-custom.c:75
@@ -2206,24 +2210,26 @@ msgstr ""
 #: ../dnd2share/src/applet-backend-pastebin.c:45
 msgid "Your text is empty and couldn't be uploaded to this server"
 msgstr ""
+"Ihr Text ist leergelassen worden und kann nicht auf diesen Server "
+"hochgeladen werden."
 
 #: ../dnd2share/src/applet-backend-dropbox.c:63
 #: ../dnd2share/src/applet-backend-ubuntuone.c:59
 msgid "This directory seems not valid:"
-msgstr ""
+msgstr "Dieses Verzeichnis scheint nicht gültig zu sein :"
 
 #: ../dnd2share/src/applet-backend-imageshack.c:31
 #: ../dnd2share/src/applet-backend-uppix.c:31
 msgid "Thumbnail"
-msgstr ""
+msgstr "Vorschaubild"
 
 #: ../dnd2share/src/applet-backend-imgur.c:33
 msgid "Display Image"
-msgstr ""
+msgstr "Bild anzeigen"
 
 #: ../dnd2share/src/applet-backend-imgur.c:33
 msgid "Large"
-msgstr ""
+msgstr "Groß"
 
 #: ../dnd2share/src/applet-backend-imgur.c:33
 #: ../dock-rendering/data/messages:41
@@ -2232,11 +2238,11 @@ msgstr "Klein"
 
 #: ../dnd2share/src/applet-dnd2share.c:44
 msgid "No text"
-msgstr ""
+msgstr "Kein Text"
 
 #: ../dnd2share/src/applet-dnd2share.c:55
 msgid "Text:"
-msgstr ""
+msgstr "Text :"
 
 #: ../dnd2share/src/applet-dnd2share.c:317
 msgid ""
@@ -2274,6 +2280,8 @@ msgid ""
 "Couldn't upload the file to %s, check that your internet connection is "
 "active."
 msgstr ""
+"Die Datei konnte nicht zu %s hochgeldaden werden, überprüfen Sie bitte ihre "
+"Internetverbindung."
 
 #: ../dnd2share/src/applet-dnd2share.h:32
 #, c-format
@@ -2282,6 +2290,9 @@ msgid ""
 "Check that your internet connection is active and '%s' is correctly "
 "installed and running"
 msgstr ""
+"Die Datei konnte nicht zu %s hochgeldaden werden.\n"
+"Überprüfen Sie bitte, ob ihre Internetverbindung aktiv, %s korrekt "
+"installiert ist und läuft."
 
 #: ../dnd2share/src/applet-init.c:46
 msgid ""
@@ -2655,7 +2666,7 @@ msgstr "Das Abmeldemenü anzeigen"
 
 #: ../logout/src/applet-logout.c:271 ../logout/data/messages:97
 msgid "Shut down"
-msgstr "Ausschalten"
+msgstr "Herunterfahren"
 
 #: ../logout/src/applet-logout.c:277
 msgid "Restart"
@@ -2673,13 +2684,16 @@ msgstr "Ihr Computer wird keinerlei Energie verbrauchen."
 
 #: ../logout/src/applet-logout.c:290
 msgid "Hybrid Sleep"
-msgstr ""
+msgstr "Hybridschlaf"
 
 #: ../logout/src/applet-logout.c:291
 msgid ""
 "Your computer will still consume a small amount of energy but after some "
 "time, the computer will suspend to disk and not consume any energy."
 msgstr ""
+"Ihr Rechner wird immernoch eine kleine Menge Energie verbrauchen, nach einer "
+"gewissen Zeit wird er jedoch in den suspend-to-disk-Modus gehen und keine "
+"Energie mehr verbrauchen."
 
 #: ../logout/src/applet-logout.c:296
 #: ../powermanager/src/powermanager-menu-functions.c:99
@@ -2728,13 +2742,16 @@ msgstr "Bitte tun Sie dies am Ende der Aktualisierungen."
 
 #: ../logout/src/applet-logout.c:627
 msgid "Logind has returned this error:"
-msgstr ""
+msgstr "Logind hat diesen Fehlerwert zurückgegeben :"
 
 #: ../logout/src/applet-logout.c:629
 msgid ""
 "Please check that you can do this action\n"
 "(e.g. you can't power the computer off if another session is active)"
 msgstr ""
+"Bitte überprüfen Sie, ob Sie dieses Aktion ausführen dürfen.\n"
+"(z.B. können Sie den Rechner nicht herunterfahren, wenn noch eine andere "
+"Sitzung aktiv ist)."
 
 #: ../logout/src/applet-logout.c:694
 #, c-format
@@ -2822,7 +2839,7 @@ msgstr "Leer lassen, um die vorgegebene E-Mail-Anwendung zu verwenden."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Specific icon file when using multiple accounts"
-msgstr ""
+msgstr "Besondere Symbolbilddatei, wenn mehrere Konten benutzt werden"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Directory on server:"
@@ -2905,7 +2922,7 @@ msgstr "Sie haben eine neue Mail :"
 
 #: ../mail/src/cd-mail-applet-init.c:33
 msgid "mail"
-msgstr "Mail"
+msgstr "E-Mail"
 
 #: ../mail/src/cd-mail-applet-init.c:36
 msgid ""
@@ -2963,7 +2980,7 @@ msgstr "Starte %s"
 
 #: ../mail/src/cd-mail-applet-notifications.c:346
 msgid "Mail"
-msgstr "Mail"
+msgstr "E-Mail"
 
 #: ../motion-blur/src/applet-init.c:28
 msgid "motion blur"
@@ -3186,19 +3203,19 @@ msgstr "Akku geladen"
 
 #: ../powermanager/src/powermanager-draw.c:202
 msgid "h"
-msgstr ""
+msgstr "Std."
 
 #: ../powermanager/src/powermanager-draw.c:204
 msgid "mn"
-msgstr ""
+msgstr "Monat"
 
 #: ../powermanager/src/powermanager-draw.c:213
 msgid "remaining"
-msgstr ""
+msgstr "verbleibend"
 
 #: ../powermanager/src/powermanager-draw.c:213
 msgid "until charged"
-msgstr ""
+msgstr "bis geladen"
 
 #: ../powermanager/src/powermanager-draw.c:231 ../wifi/src/applet-draw.c:30
 #: ../Clipper/data/messages:97 ../GMenu-old/data/messages:111
@@ -3404,10 +3421,6 @@ msgstr "%s wurde verbunden"
 msgid "%s is now unmounted"
 msgstr "%s ist jetzt ausgehängt"
 
-#: ../shortcuts/src/applet-init.c:32
-msgid "shortcuts"
-msgstr "Kürzel"
-
 #: ../shortcuts/src/applet-init.c:35
 msgid ""
 "An applet that let you access quickly to all of your shortcuts.\n"
@@ -3419,13 +3432,13 @@ msgid ""
 "The applet can also display valuable information about your disks, like free "
 "space, type, etc."
 msgstr ""
-"Ein Applet, dass Sie auf all Ihre Tastenkombinationen zugreifen läßt.\n"
+"Ein Applet, dass Sie auf all Ihre Lesezeichen zugreifen lässt.\n"
 "Es verwaltet Datenträger, Netzwerkpunkte und Nautilus-Lesezeichen (selbst "
 "wenn Sie Nautilus nicht haben).\n"
 "Ziehen Sie einen Ordner auf das Hauptsymbol oder das Unterdock, um ein "
 "Lesezeichen hinzuzufügen.\n"
-"Mittelklick auf das Hauptsymbol zeigt Ihren Home-Ordner an. \n"
-"Ein Mittelklick auf das Symbol eines Einhängepunkts hängt das Objekt aus "
+"Mittelklick auf das Hauptsymbol zeigt Ihren persönlichen Ordner an. \n"
+"Ein Mittelklick auf das Symbol eines Einhängepunktes hängt das Objekt aus "
 "oder ein.\n"
 "Das Applet kann außerdem Informationen über Ihre Datenträger anzeigen, z.B. "
 "wie den freien Platz, Typ usw."
@@ -3451,7 +3464,7 @@ msgstr "Geben Sie einen Namen für dieses Lesezeichen ein :"
 
 #: ../shortcuts/src/applet-notifications.c:285
 msgid "Open Home directory"
-msgstr "Öffne Home-Ordner"
+msgstr "Persönlichen Ordner öffnen"
 
 #: ../shortcuts/src/applet-notifications.c:293
 msgid "Connect to Server..."
@@ -3852,7 +3865,7 @@ msgstr "Schließe diesen Tab"
 
 #: ../tomboy/src/applet-backend-default.c:160
 msgid "Note:"
-msgstr ""
+msgstr "Hinweis :"
 
 #: ../tomboy/src/applet-backend-default.c:208
 msgid "Title:"
@@ -3934,7 +3947,7 @@ msgstr "Markierungen zurücksetzen"
 
 #: ../tomboy/src/tomboy-notifications.c:277
 msgid "No description"
-msgstr ""
+msgstr "Keine Beschreibung"
 
 #: ../weather/src/applet-config.c:120
 msgid ""
@@ -6212,14 +6225,17 @@ msgid ""
 "The settings menu file is sometimes available in a settings.menu file but "
 "its content can also be available in the main .menu file used by the dock"
 msgstr ""
+"Die Datei für das Einstellungsmenü ist manchmal in einer settings.menu Datei "
+"verfügbar, aber ihr Inhalt kann außerdem in der vom Dock benutzten main.menu "
+"Datei zu finden sein."
 
 #: ../GMenu-old/data/messages:101 ../GMenu/data/messages:101
 msgid "Load settings' menu?"
-msgstr ""
+msgstr "Das Menü für die Einstellungen laden ?"
 
 #: ../GMenu-old/data/messages:103 ../GMenu/data/messages:103
 msgid "Display the description in search's results?"
-msgstr ""
+msgstr "Die Beschreibung in den Suchergebnissen anzeigen ?"
 
 #: ../GMenu-old/data/messages:105 ../GMenu/data/messages:105
 msgid "Command to use for configuring the menu:"
@@ -6227,7 +6243,7 @@ msgstr "Befehl für die Konfiguration des Menüs :"
 
 #: ../GMenu-old/data/messages:109 ../GMenu/data/messages:109
 msgid "Show Logout and/or Shutdown : "
-msgstr "Ausloggen oder Herunterfahren zeigen : "
+msgstr "Abmelden und/oder Herunterfahren anzeigen: "
 
 #: ../Global-Menu/data/messages:85
 msgid ""
@@ -7495,12 +7511,12 @@ msgstr "Eckradius :"
 #: ../dialog-rendering/data/messages:5 ../dialog-rendering/data/messages:13
 #: ../dialog-rendering/data/messages:23 ../dialog-rendering/data/messages:31
 msgid "Border width:"
-msgstr "Rahmenbreite :"
+msgstr "Rahmenbreite:"
 
 #: ../dialog-rendering/data/messages:7 ../dialog-rendering/data/messages:15
 #: ../dialog-rendering/data/messages:25 ../dialog-rendering/data/messages:33
 msgid "Bubble's line colour:"
-msgstr "Sprechblasen-Linienfarbe :"
+msgstr "Linienfarbe der Sprechblasen:"
 
 #: ../dialog-rendering/data/messages:9
 msgid "Modern"
@@ -7621,7 +7637,7 @@ msgstr "Bevorzugte Seite für Bildhosting :"
 
 #: ../dnd2share/data/messages:141
 msgid "Uppix.com"
-msgstr ""
+msgstr "Uppix.com"
 
 #: ../dnd2share/data/messages:143
 msgid "Imagebin.ca"
@@ -7633,7 +7649,7 @@ msgstr "ImageShack.us"
 
 #: ../dnd2share/data/messages:147
 msgid "Imgur.com"
-msgstr ""
+msgstr "Imgur.com"
 
 #: ../dnd2share/data/messages:149
 msgid "Preferred site for videos hosting :"
@@ -7688,10 +7704,12 @@ msgstr "Benutzerdefiniertes Skript für den Dateiupload :"
 msgid ""
 "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 msgstr ""
+"Leer lassen, um die Dateien nach  '~/Dropbox/Public' oder '~/Ubuntu One' "
+"hochzuladen."
 
 #: ../dnd2share/data/messages:183
 msgid "Path of a custom DropBox / UbuntuOne folder :"
-msgstr ""
+msgstr "Pfad zu einem benutzerdefinierten DropBox / UbuntuOne Verzeichnis :"
 
 #: ../dnd2share/data/messages:185
 msgid "Otherwise, your user name will be used when possible."
@@ -8110,6 +8128,7 @@ msgstr "Effekte mit dem Dock rotieren lassen ?"
 #: ../icon-effect/data/messages:55
 msgid "Repeat these effects until the corresponding application opens?"
 msgstr ""
+"Diese Effekte wiederholen, bis die dazugehörige Applikation sich öffnet ?"
 
 #: ../icon-effect/data/messages:59
 msgid "In ms. Set 0 to not use this effect."
@@ -8350,7 +8369,7 @@ msgstr "Kommandos"
 
 #: ../logout/data/messages:123
 msgid "User-defined command to execute for logout:"
-msgstr "Bneutzerdefinertes Kommando zum Ausführen des Logouts :"
+msgstr "Benutzerdefiniertes Kommando zum Ausführen des Abmeldens:"
 
 #: ../logout/data/messages:125
 msgid ""
@@ -8365,17 +8384,20 @@ msgstr ""
 
 #: ../logout/data/messages:127
 msgid "User-defined command to execute for shutdown:"
-msgstr "Benutzerdefiniertes Kommando, um herunterfahren auszuführen :"
+msgstr "Benutzerdefiniertes Kommando zum Ausführen des Herunterfahrens:"
 
 #: ../logout/data/messages:129
 msgid ""
 "Leave empty to execute the default command. If not empty, it will execute "
 "this command with the name of the user (or nothing for guest session)"
 msgstr ""
+"Leer lassen, um das Standardkommando auszuführen. Wenn es nicht leer ist, "
+"wird dieses Kommando in Verbindung mit dem Namen des Benutzers ausgeführt "
+"(für Gastsitzung leer lassen)."
 
 #: ../logout/data/messages:131
 msgid "User-defined command to execute for changing user:"
-msgstr ""
+msgstr "Benutzerdefiniertes Kommando zum Ausführen des Benutzerwechsels:"
 
 #: ../mail/data/messages:99
 msgid ""
@@ -8457,19 +8479,19 @@ msgstr "Animation, wenn neue Nachtricht ankommt :"
 
 #: ../mail/data/messages:145
 msgid "Mail application"
-msgstr "Mailapplikation :"
+msgstr "E-Mail-Anwendung"
 
 #: ../mail/data/messages:147
 msgid "for instance \"thunderbird\" or \"firefox mail.google.com\""
-msgstr "zum Beispiel \"thunderbird\" oder \"firefox.mail.google.com\""
+msgstr "zum Beispiel \"thunderbird\" oder \"firefox mail.google.com\""
 
 #: ../mail/data/messages:149
 msgid "Preferred mail application to launch on left-click :"
-msgstr "Gewünschte Mailapplikation zum Starten bei Linksklick :"
+msgstr "Gewünschte E-Mail-Anwendung zum Starten bei Linksklick:"
 
 #: ../mail/data/messages:151
 msgid "Add a mail account (you've to launch the applet)"
-msgstr "Ein Mailkonto hinzufügen (Sie müssen das Applet starten)"
+msgstr "Ein E-Mail-Konto hinzufügen (Sie müssen das Applet starten)"
 
 #: ../mail/data/messages:153
 msgid "The new account will be created with the specified type and name."
@@ -9334,35 +9356,36 @@ msgstr "Vordergrundfarbe :"
 
 #: ../terminal/data/messages:105
 msgid "Use a custom font?"
-msgstr ""
+msgstr "Eine benutzerdefinierte Schriftart verwenden ?"
 
 #: ../terminal/data/messages:107
 msgid "Custom font:"
-msgstr ""
+msgstr "Benutzerdefinierte Schriftart :"
 
 #: ../terminal/data/messages:111
 msgid "Automatically scroll to the bottom when new data are received"
 msgstr ""
+"Automatisch ganz nach unten scrollen, wenn neue Daten empfangen werden"
 
 #: ../terminal/data/messages:113
 msgid "Scroll on output"
-msgstr ""
+msgstr "Bei Ausgabe nach uten scrollen"
 
 #: ../terminal/data/messages:115
 msgid "Automatically scroll to the bottom when a key is pressed"
-msgstr ""
+msgstr "Automatisch ganz nach unten scrollen wenn eine Taste gedrückt wird"
 
 #: ../terminal/data/messages:117
 msgid "Scroll on keystroke"
-msgstr ""
+msgstr "Bei Tastendruck scrollen"
 
 #: ../terminal/data/messages:119
 msgid "Limited scrollback buffer"
-msgstr ""
+msgstr "Begrenzter Scrollback-Puffer"
 
 #: ../terminal/data/messages:121
 msgid "Length of the scrollback buffer"
-msgstr ""
+msgstr "Länge des Scrollback-Puffers"
 
 #: ../terminal/data/messages:125
 msgid ""

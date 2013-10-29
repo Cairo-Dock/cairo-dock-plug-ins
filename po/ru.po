@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
 "POT-Creation-Date: 2013-09-23 10:57+0000\n"
-"PO-Revision-Date: 2013-07-21 20:03+0000\n"
-"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
+"PO-Revision-Date: 2013-10-23 10:36+0000\n"
+"Last-Translator: fossil <Unknown>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-09-24 06:12+0000\n"
-"X-Generator: Launchpad (build 16771)\n"
+"X-Launchpad-Export-Date: 2013-10-24 04:48+0000\n"
+"X-Generator: Launchpad (build 16810)\n"
 "Language: \n"
 
 #: ../Cairo-Penguin/src/applet-init.c:33
@@ -52,7 +52,7 @@ msgstr "Отскакивать от краёв"
 #: ../Animated-icons/data/messages:41 ../Animated-icons/data/messages:63
 #: ../Animated-icons/data/messages:179
 msgid "Busy"
-msgstr ""
+msgstr "Не беспокоить"
 
 #: ../Animated-icons/src/applet-init.c:39
 msgid "Animated icons"
@@ -258,20 +258,20 @@ msgid ""
 "You can define in the configuration a Window-Manager that will provide the "
 "composite, and another as a fallback."
 msgstr ""
-"С помощью этого апплета можно  <b>включать или выключать композитный "
+"С помощью этого апплета можно <b>включать или выключать композитный "
 "менеджер</b>.\n"
 "Композитность позволяет использовать прозрачность на рабочем столе, но она "
 "может замедлить работу компьютера.\n"
 "<b>Щелчок</b> на значке, чтобы переключить композитность ВКЛ/ВЫКЛ. Можно "
 "назначить <b>быструю клавишу</b>.\n"
-"Кроме того, апплет обеспечивает доступ до некоторых функций ОМ, <b>сркдний "
+"Кроме того, апплет обеспечивает доступ до некоторых функций ОМ, <b>средний "
 "щелчок - меню</b>.\n"
 "В настройках можно назначить основной композитный менеджер, который будет "
 "обеспечивать композитность, а также запасной, на случай сбоев."
 
 #: ../Composite-Manager/src/applet-init.c:52
 msgid "Toggle the composite ON/OFF"
-msgstr ""
+msgstr "Переключить композитность ВКЛ/ВЫКЛ"
 
 #: ../Composite-Manager/src/applet-notifications.c:43
 msgid "Toggle composite?"
@@ -548,7 +548,7 @@ msgstr "Последнее изменение"
 
 #: ../Folders/src/applet-notifications.c:159
 msgid "Mime Type"
-msgstr ""
+msgstr "Тип Mime"
 
 #: ../Folders/src/applet-notifications.c:173
 msgid "User ID"
@@ -801,7 +801,7 @@ msgstr ""
 
 #: ../Global-Menu/src/applet-init.c:30
 msgid "Global Menu"
-msgstr ""
+msgstr "Глобальное меню"
 
 #: ../Global-Menu/src/applet-init.c:33
 msgid ""
@@ -994,7 +994,7 @@ msgstr ""
 
 #: ../Network-Monitor/src/applet-init.c:41
 msgid "Network Monitor"
-msgstr ""
+msgstr "Сетевой монитор"
 
 #: ../Network-Monitor/src/applet-netspeed.c:202
 #: ../System-Monitor/src/applet-monitor.c:95
@@ -1406,11 +1406,11 @@ msgstr ""
 
 #: ../Screenshot/src/applet-init.c:53
 msgid "Take a screenshot"
-msgstr ""
+msgstr "Сделать скриншот"
 
 #: ../Screenshot/src/applet-notifications.c:49
 msgid "Screenshot"
-msgstr ""
+msgstr "Скриншот"
 
 #: ../Screenshot/src/applet-notifications.c:61
 msgid "Screenshot with options"
@@ -1438,7 +1438,7 @@ msgstr "в секундах."
 
 #: ../Screenshot/src/applet-screenshot.c:457
 msgid "Delay"
-msgstr ""
+msgstr "Задержка"
 
 #: ../Screenshot/src/applet-screenshot.c:479
 msgid "Grab the current window instead of the all screen"
@@ -1457,11 +1457,11 @@ msgstr "Оставьте пустым, чтобы использовать ст�
 
 #: ../Screenshot/src/applet-screenshot.c:498
 msgid "Directory"
-msgstr ""
+msgstr "Папка"
 
 #: ../Sound-Effects/src/applet-init.c:29
 msgid "Sound Effects"
-msgstr ""
+msgstr "Звуковые эффекты"
 
 #: ../Sound-Effects/src/applet-init.c:32
 msgid ""
@@ -1716,7 +1716,7 @@ msgstr "Установка громкости:"
 
 #: ../alsaMixer/src/applet-draw.c:37
 msgid "Volume"
-msgstr ""
+msgstr "Громкость"
 
 #: ../alsaMixer/src/applet-init.c:32
 msgid ""
@@ -2050,11 +2050,11 @@ msgstr ""
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:105
 msgid "water drop"
-msgstr ""
+msgstr "брызги"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:113
 msgid "water"
-msgstr ""
+msgstr "вода"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:121
 msgid "futuristic"
@@ -2103,7 +2103,7 @@ msgstr "Подсказка"
 #: ../dnd2share/src/applet-backend-uppix.c:31
 #: ../dnd2share/src/applet-backend-videobin.c:32
 msgid "Direct Link"
-msgstr ""
+msgstr "Прямая ссылка"
 
 #: ../dnd2share/src/applet-backend-codepad.c:51
 #: ../dnd2share/src/applet-backend-custom.c:75
@@ -2121,7 +2121,7 @@ msgstr ""
 #: ../dnd2share/src/applet-backend-imageshack.c:31
 #: ../dnd2share/src/applet-backend-uppix.c:31
 msgid "Thumbnail"
-msgstr ""
+msgstr "Миниатюра"
 
 #: ../dnd2share/src/applet-backend-imgur.c:33
 msgid "Display Image"
@@ -2967,11 +2967,11 @@ msgstr "Показать окно перехода"
 
 #: ../musicPlayer/src/applet-notifications.c:336
 msgid "Shuffle"
-msgstr ""
+msgstr "Перемешать"
 
 #: ../musicPlayer/src/applet-notifications.c:344
 msgid "Repeat"
-msgstr ""
+msgstr "Повторить"
 
 #: ../musicPlayer/src/applet-notifications.c:352
 msgid "Rate this song"
@@ -3042,15 +3042,15 @@ msgstr "Батарея полностью зяряжена"
 
 #: ../powermanager/src/powermanager-draw.c:202
 msgid "h"
-msgstr ""
+msgstr "ч"
 
 #: ../powermanager/src/powermanager-draw.c:204
 msgid "mn"
-msgstr ""
+msgstr "мн"
 
 #: ../powermanager/src/powermanager-draw.c:213
 msgid "remaining"
-msgstr ""
+msgstr "осталось"
 
 #: ../powermanager/src/powermanager-draw.c:213
 msgid "until charged"
@@ -3194,36 +3194,36 @@ msgstr "Домашняя папка"
 #: ../shortcuts/src/applet-disk-usage.c:179
 #: ../shortcuts/src/applet-disk-usage.c:208
 msgid "Mount point:"
-msgstr ""
+msgstr "Точка монтирования:"
 
 #: ../shortcuts/src/applet-disk-usage.c:180
 #: ../shortcuts/src/applet-disk-usage.c:209
 msgid "File system:"
-msgstr ""
+msgstr "Файловая система:"
 
 #: ../shortcuts/src/applet-disk-usage.c:181
 #: ../shortcuts/src/applet-disk-usage.c:210
 msgid "Device:"
-msgstr ""
+msgstr "Устройство:"
 
 #: ../shortcuts/src/applet-disk-usage.c:182
 #: ../shortcuts/src/applet-disk-usage.c:211
 msgid "Mount options:"
-msgstr ""
+msgstr "Параметры монтирования:"
 
 #: ../shortcuts/src/applet-disk-usage.c:214
 msgid "Backup frequency:"
-msgstr ""
+msgstr "Частота резервного копирования:"
 
 #: ../shortcuts/src/applet-disk-usage.c:214
 msgid "days"
-msgstr ""
+msgstr "дней"
 
 #: ../shortcuts/src/applet-disk-usage.c:237
 #: ../shortcuts/src/applet-disk-usage.c:247
 #: ../shortcuts/src/applet-disk-usage.c:252
 msgid "Name:"
-msgstr ""
+msgstr "Имя:"
 
 #: ../shortcuts/src/applet-disk-usage.c:238
 msgid "Capacity:"
@@ -3231,11 +3231,11 @@ msgstr ""
 
 #: ../shortcuts/src/applet-disk-usage.c:239
 msgid "Free space:"
-msgstr ""
+msgstr "Свободно:"
 
 #: ../shortcuts/src/applet-disk-usage.c:247
 msgid "Not mounted"
-msgstr ""
+msgstr "Не подключено"
 
 #: ../shortcuts/src/applet-disk-usage.c:253 ../RSSreader/data/messages:97
 msgid "URL:"
@@ -3694,7 +3694,7 @@ msgstr "Закрыть эту вкладку"
 
 #: ../tomboy/src/applet-backend-default.c:160
 msgid "Note:"
-msgstr ""
+msgstr "Примечание:"
 
 #: ../tomboy/src/applet-backend-default.c:208
 msgid "Title:"
@@ -6072,7 +6072,7 @@ msgstr "Раскрытие меню по местоположению мыши"
 
 #: ../Global-Menu/data/messages:99
 msgid "Compact mode"
-msgstr ""
+msgstr "Компактынй режим"
 
 #: ../Global-Menu/data/messages:101
 msgid "Order of the buttons: "
@@ -6080,7 +6080,7 @@ msgstr ""
 
 #: ../Global-Menu/data/messages:103
 msgid "Auto"
-msgstr ""
+msgstr "Авто"
 
 #: ../Global-Menu/data/messages:105
 msgid "Close button at the end"
@@ -6795,7 +6795,7 @@ msgstr ""
 #: ../Sound-Effects/data/messages:7 ../Sound-Effects/data/messages:13
 #: ../Sound-Effects/data/messages:19
 msgid "Sound file"
-msgstr ""
+msgstr "Звуковой файл"
 
 #: ../Sound-Effects/data/messages:9
 msgid "Play a sound on middle click ?"
@@ -6807,7 +6807,7 @@ msgstr ""
 
 #: ../Sound-Effects/data/messages:21
 msgid "Volume:"
-msgstr ""
+msgstr "Громкость:"
 
 #: ../Sound-Effects/data/messages:25
 msgid "High"
@@ -6848,7 +6848,7 @@ msgstr "Левый щелчок открывает меню"
 #: ../System-Monitor/data/messages:99 ../alsaMixer/data/messages:109
 #: ../powermanager/data/messages:101 ../wifi/data/messages:99
 msgid "Display style"
-msgstr ""
+msgstr "Стиль отображения"
 
 #: ../System-Monitor/data/messages:107 ../alsaMixer/data/messages:121
 #: ../powermanager/data/messages:111 ../wifi/data/messages:109
@@ -7233,7 +7233,7 @@ msgstr ""
 
 #: ../clock/data/messages:161
 msgid "Outline colour:"
-msgstr ""
+msgstr "Цвет контура:"
 
 #: ../clock/data/messages:163
 msgid "Layout of the text:"
@@ -7417,7 +7417,7 @@ msgstr "Предпочитаемые сайты для изображений:"
 
 #: ../dnd2share/data/messages:141
 msgid "Uppix.com"
-msgstr ""
+msgstr "Uppix.com"
 
 #: ../dnd2share/data/messages:143
 msgid "Imagebin.ca"
@@ -7429,7 +7429,7 @@ msgstr "ImageShack.us"
 
 #: ../dnd2share/data/messages:147
 msgid "Imgur.com"
-msgstr ""
+msgstr "Imgur.com"
 
 #: ../dnd2share/data/messages:149
 msgid "Preferred site for videos hosting :"
@@ -9090,7 +9090,7 @@ msgstr ""
 
 #: ../terminal/data/messages:107
 msgid "Custom font:"
-msgstr ""
+msgstr "Свой шрифт:"
 
 #: ../terminal/data/messages:111
 msgid "Automatically scroll to the bottom when new data are received"
