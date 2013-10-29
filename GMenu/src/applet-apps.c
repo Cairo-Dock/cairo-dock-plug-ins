@@ -136,6 +136,7 @@ void cd_menu_free_apps (void)
 {
 	g_hash_table_destroy (myData.pKnownApplications);
 	g_slist_free (myData.pApps);
+	g_list_free (myData.pNewApps);
 }
 
 
