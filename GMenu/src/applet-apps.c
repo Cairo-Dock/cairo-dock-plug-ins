@@ -55,6 +55,8 @@ gboolean cd_menu_app_should_show (GDesktopAppInfo *pAppInfo)
 	#endif
 }
 
+static CairoDialog *s_pNewAppsDialog = NULL;
+
 static void _on_answer_launch_recent (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer data, CairoDialog *pDialog)
 {
 	if (iClickedButton == 0 || iClickedButton == -1)  // ok ou entree.
@@ -75,40 +77,56 @@ static void _on_answer_launch_recent (int iClickedButton, GtkWidget *pInteractiv
 	
 	g_list_free (myData.pNewApps);  // the content elongs to pKnownApplications
 	myData.pNewApps = NULL;
+	s_pNewAppsDialog = NULL;
 }
 
 void cd_menu_check_for_new_apps (void)
 {
-	gldi_dialogs_remove_on_icon (myIcon); /// TODO: just replace the combo box
 	if (myData.pNewApps != NULL)
 	{
-		const gchar *cQuestion = D_("Launch this new application?");
-		gchar *cText = NULL;
-		GtkWidget *pInteractiveWidget = NULL;
-		if (myData.pNewApps->next)  // several entries, make a list
+		if (s_pNewAppsDialog) // the dialogue already exists: add new items in the list
 		{
-			pInteractiveWidget = gtk_combo_box_text_new ();
+			#if GTK_MAJOR_VERSION >= 3
+			// ok, only for GTK 3 but GTK 3 should be used when using this GMenu
+			gtk_combo_box_text_remove_all (
+				GTK_COMBO_BOX_TEXT (s_pNewAppsDialog->pInteractiveWidget));
+			#endif
 			GList *a;
 			for (a = myData.pNewApps; a != NULL; a = a->next)
 			{
-				gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (pInteractiveWidget), g_app_info_get_name (a->data));
+				gtk_combo_box_text_append_text (
+					GTK_COMBO_BOX_TEXT (s_pNewAppsDialog->pInteractiveWidget),
+					g_app_info_get_name (a->data));
 			}
-			gtk_combo_box_set_active (GTK_COMBO_BOX (pInteractiveWidget), 0); // select the first one
+			gtk_combo_box_set_active (
+				GTK_COMBO_BOX (s_pNewAppsDialog->pInteractiveWidget), 0);
+
+			gldi_dialog_redraw_interactive_widget (s_pNewAppsDialog);
 		}
 		else
 		{
-			cText = g_strconcat (cQuestion, "\n  ", g_app_info_get_display_name (G_APP_INFO (myData.pNewApps->data)), NULL);
+			const gchar *cQuestion = D_("Launch this new application?");
+			GtkWidget *pInteractiveWidget = gtk_combo_box_text_new ();
+			GList *a;
+			for (a = myData.pNewApps; a != NULL; a = a->next)
+			{
+				gtk_combo_box_text_append_text (
+					GTK_COMBO_BOX_TEXT (pInteractiveWidget),
+					g_app_info_get_name (a->data));
+			}
+
+			gtk_combo_box_set_active (GTK_COMBO_BOX (pInteractiveWidget), 0); // select the first one
+
+			gchar *cIconPath = cairo_dock_search_icon_s_path (GTK_STOCK_EXECUTE, myDialogsParam.iDialogIconSize);
+			s_pNewAppsDialog = gldi_dialog_show (cQuestion,
+				myIcon, myContainer,
+				0,
+				cIconPath ? cIconPath : "same icon",
+				pInteractiveWidget, (CairoDockActionOnAnswerFunc)_on_answer_launch_recent,
+				NULL,
+				(GFreeFunc)NULL);
+			g_free (cIconPath);
 		}
-		gchar *cIconPath = cairo_dock_search_icon_s_path (GTK_STOCK_EXECUTE, myDialogsParam.iDialogIconSize);
-		gldi_dialog_show (cText?cText:cQuestion,
-			myIcon, myContainer,
-			0,
-			cIconPath ? cIconPath : "same icon",
-			pInteractiveWidget, (CairoDockActionOnAnswerFunc)_on_answer_launch_recent,
-			NULL,
-			(GFreeFunc)NULL);
-		g_free (cIconPath);
-		g_free (cText);
 	}
 	myData.bFirstLaunch = FALSE;
 }
