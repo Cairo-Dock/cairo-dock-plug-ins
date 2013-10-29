@@ -99,7 +99,9 @@ CD_APPLET_INIT_BEGIN
 	}
 	else if (myIcon->cName == NULL || *myIcon->cName == '\0')
 	{
-		CD_APPLET_SET_NAME_FOR_MY_ICON (cd_musicplayer_get_string_with_first_char_to_upper (myConfig.cMusicPlayer));
+		gchar *cDefaultName = cd_musicplayer_get_string_with_first_char_to_upper (myConfig.cMusicPlayer);
+		CD_APPLET_SET_NAME_FOR_MY_ICON (cDefaultName);
+		g_free (cDefaultName);
 	}
 	
 	cairo_dock_set_icon_ignore_quicklist (myIcon);  // ignore additional actions in the menu, as the applet already adds the actions supported by any player.

@@ -23,7 +23,7 @@
 
 #include <cairo-dock.h>
 
-#define CD_SYSMONITOR_NB_MAX_VALUES 4
+#define CD_SYSMONITOR_NB_MAX_VALUES 6
 
 #define CD_SYSMONITOR_PROC_FS "/proc"
 

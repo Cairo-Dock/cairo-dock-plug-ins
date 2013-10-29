@@ -106,7 +106,7 @@ void cd_sysmonitor_get_ram_data (GldiModuleInstance *myApplet)
 			
 			myData.swapUsed = myData.swapTotal - myData.swapFree;
 			
-			myData.fSwapPercent = 100. * myData.swapUsed / myData.swapTotal;  // que faire de SwapCached ?...
+			myData.fSwapPercent = 100. * (myData.swapTotal ? (myConfig.bShowFreeMemory ? (double)myData.swapFree : (double)myData.swapUsed) / myData.swapTotal : 0.);  // que faire de SwapCached ?...
 			if (fabs (myData.fSwapPercent - myData.fPrevSwapPercent) > 1)
 			{
 				myData.fPrevSwapPercent = myData.fSwapPercent;

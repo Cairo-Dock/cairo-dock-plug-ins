@@ -15,6 +15,9 @@ frame_lau =
 #V+[Fire;Stars;Rain;Snow;Storm;Firework] Effects used on launcher:
 click launchers = 0
 
+#b Repeat these effects until the corresponding application opens?
+opening animation = false
+
 #F-[when clicking on an application]
 frame_appli =
 
@@ -30,9 +33,6 @@ background = false
 
 #b+ Rotate effects with dock?
 rotate = false
-
-#b Repeat these effects until the corresponding application opens?
-opening animation = false
 
 #[@icon_effectsdatadir@/icon-fire.svg]
 [Fire]

@@ -167,7 +167,7 @@ gboolean cd_sysmonitor_update_from_data (GldiModuleInstance *myApplet)
 				}
 				if (myConfig.bShowSwap)
 				{
-					s_fValues[i++] = (myData.swapTotal ? (myConfig.bShowFreeMemory ? (double)myData.swapFree : (double)myData.swapUsed) / myData.swapTotal : 0.);
+					s_fValues[i++] = myData.fSwapPercent / 100.;
 				}
 				if (myConfig.bShowNvidia)
 				{
