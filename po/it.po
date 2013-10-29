@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
 "POT-Creation-Date: 2013-09-23 10:57+0000\n"
-"PO-Revision-Date: 2013-09-09 23:13+0000\n"
+"PO-Revision-Date: 2013-10-19 13:32+0000\n"
 "Last-Translator: Wonderfulheart <Unknown>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-09-24 06:11+0000\n"
-"X-Generator: Launchpad (build 16771)\n"
+"X-Launchpad-Export-Date: 2013-10-20 04:42+0000\n"
+"X-Generator: Launchpad (build 16807)\n"
 "Language: it\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
@@ -197,7 +197,7 @@ msgstr "Cronologia degli appunti"
 
 #: ../Clipper/src/applet-init.c:87
 msgid "Pop-up the items menu"
-msgstr "Voci del menu a comparsa"
+msgstr "Voci del menù a comparsa"
 
 #: ../Clipper/src/applet-notifications.c:33
 msgid "The clipboard history is empty."
@@ -258,16 +258,15 @@ msgid ""
 "You can define in the configuration a Window-Manager that will provide the "
 "composite, and another as a fallback."
 msgstr ""
-"Quest'applet ti permette di <b>gestire accendendo/spegnendo il "
-"composite</b>.\n"
+"Quest'applet ti permette di <b>attivare o disattivare il composite</b>.\n"
 "Il composite è ciò che permette la trasparenza del desktop, ma potrebbe "
 "rallentare il tuo PC, specialmente durante i giochi.\n"
-"<b>Clicca</b> sull'icona per accendere/spegnere il composite. Puoi impostare "
-"una <b>scorciatoia</b> per quest'azione.\n"
-"L'applet ti permette anche di accedere a qualche configurazione del Gestore-"
-"Finestre, con <b>clic centrale e dal menu</b>.\n"
-"Puoi anche impostare nella configurazione, un Gestore-Finestre che abbia "
-"abilitato il composite, ed un altro in modalità fallback."
+"<b>Clicca</b> sull'icona per attivare o disattivare il composite. Puoi "
+"definire una <b>scorciatoia</b> per quest'azione.\n"
+"L'applet ti permette anche di accedere ad alcune azioni del Gestore di "
+"Finestre, dal <b>clic centrale e dal menù</b>.\n"
+"Nella configurazione puoi anche definire un Gestore di Finestre che fornisca "
+"il composite oppure un altro in modalità fallback (di riserva)."
 
 #: ../Composite-Manager/src/applet-init.c:52
 msgid "Toggle the composite ON/OFF"
@@ -467,34 +466,41 @@ msgid ""
 " - Find actions : left, middle click, drop and wheel.\n"
 " - Fill menu with actions.\n"
 msgstr ""
-"<b><i>Controllo velocità dischi e spazio</i></b>.\n"
+"<b><i>Controllo della velocità e spazio dischi</i></b>.\n"
 "\n"
-"Questa applet mostra le informazioni sui dischi. Puoi attivare entrambe le "
-"opzioni contemporaneamente, anche se si consiglia di tenerle separate in due "
+"Quest'applet mostra le informazioni sui dischi. Puoi attivare entrambe le "
+"opzioni contemporaneamente anche se si consiglia di tenerle separate in due "
 "diverse istanze dell'applet. Usarle insieme nella stessa applet potrebbe "
 "causare problemi con la visualizzazione della velocità, la quale potrebbe "
 "non scalare.\n"
 "\n"
-"<b>Velocità disco</b>: mostra la velocità di trasferimento dei dischi. Fino "
-"a 10 partizioni.\n"
+"<b>Spazio dischi</b>: mostra lo spazio occupato nei dischi. Fino a 10 "
+"partizioni.\n"
 "  Devi configurare il punto di mount di ogni partizione da controllare, come "
-"/ o /home\n"
-"  Si visualizza meglio in un indicatore, con 30/60 come tasso di "
-"aggiornamento ed un breve, se non nullo, ritardo.\n"
+"\"/ \" oppure \"/home\"\n"
+"  Si visualizza meglio in un indicatore, con velocità di aggiornamento di 30 "
+"o 60 il ritardo è piuttosto breve, se non nullo.\n"
+"\n"
+"<b>Velocità dischi</b>: mostra la velocità di trasferimento dei dischi. Fino "
+"a 5 dischi\n"
+"  Devi configurare il nome di ciascun disco da controllare indicando il suo "
+"nome di dispositivo, come \"sda\" o \"sdb\"\n"
+"  Si visualizza meglio in un indicatore, con velocità di aggiornamento di 2 "
+"o 3 non si ha ritardo fra le transizioni.\n"
 "\n"
 "Seconda release, c'è da fare ancora molto:\n"
 " <u>Spazio libero:</u>\n"
 " - Notifiche con informazioni dettagliate.\n"
 " - Etichette modificabili?\n"
 " <u>Velocità:</u>\n"
-" - Opzione tutti i dischi.\n"
-" - Notifiche che mostrano informazioni sui dischi per sapere cosa aggiungere "
-"alla lista.\n"
+" - Opzione su tutti i dischi.\n"
+" - Notifiche che mostrano le informazioni sui dischi per sapere cosa "
+"aggiungere all'elenco.\n"
 " - Etichette modificabili?\n"
 " - Ottenere la reale dimensione dei blocchi dei dischi\n"
 " <u>Globale:</u>\n"
-" - Trova azioni: clic sinistro/centrale, trascinamento e scroll.\n"
-" - Riempire il menu con azioni.\n"
+" - Trova azioni: clic sinistro o centrale, trascinamento e scroll.\n"
+" - Riempire il menù con azioni.\n"
 
 #: ../Disks/src/applet-notifications.c:72
 #: ../System-Monitor/src/applet-init.c:35
@@ -761,21 +767,21 @@ msgid ""
 "a shortkey for it, like ALT+F2)\n"
 "You can also set up a shortkey to pop up the menu (like ALT+F1)"
 msgstr ""
-"Visualizza il menu delle Applicazioni classico ed i file Recentemente "
-"utilizzati.\n"
-"È compatibile con ogni menu XDG (Gnome, XFCE, KDE, ...)\n"
+"Visualizza il menù delle Applicazioni classico e i file utilizzati "
+"Recentemente.\n"
+"È compatibile con ogni menù dipendente da XDG (Gnome, XFCE, KDE, ...)\n"
 "Clic centrale per aprire una finestra di dialogo per lanciare velocemente "
 "ogni comando (puoi impostare delle scorciatoie da tastiera per farlo, come "
 "ALT+F2)\n"
-"Puoi anche impostare una scorciatoia per aprire il menu (come ALT+F1)"
+"Puoi anche impostare una scorciatoia per far comparire il menù (come ALT+F1)"
 
 #: ../GMenu-old/src/applet-init.c:41 ../GMenu/src/applet-init.c:37
 msgid "Applications Menu"
-msgstr "Menu Applicazioni"
+msgstr "Menù Applicazioni"
 
 #: ../GMenu-old/src/applet-init.c:134 ../GMenu/src/applet-init.c:63
 msgid "Show/hide the Applications menu"
-msgstr "Mostra/Nascondi il menu delle Applicazioni"
+msgstr "Mostrare o nascondere il menù delle Applicazioni"
 
 #: ../GMenu-old/src/applet-init.c:139 ../GMenu/src/applet-init.c:68
 msgid "Show/hide the quick-launch dialog"
@@ -799,7 +805,7 @@ msgstr "Avvio rapido"
 #: ../GMenu-old/src/applet-notifications.c:111
 #: ../GMenu/src/applet-notifications.c:97
 msgid "Configure menu"
-msgstr "Menu di configurazione"
+msgstr "Configurazione del menù"
 
 #: ../GMenu-old/src/applet-notifications.c:116
 #: ../GMenu/src/applet-notifications.c:102
@@ -830,11 +836,11 @@ msgstr "Lancio questa nuova applicazione?"
 
 #: ../GMenu/src/applet-entry.c:435
 msgid "Launch this command"
-msgstr ""
+msgstr "Lancia questo comando"
 
 #: ../Global-Menu/src/applet-init.c:30
 msgid "Global Menu"
-msgstr "Menu Globale"
+msgstr "Menù Globale"
 
 #: ../Global-Menu/src/applet-init.c:33
 msgid ""
@@ -844,19 +850,19 @@ msgid ""
 "by default.\n"
 "You can bind a shortkey to this action."
 msgstr ""
-"Questa applet consente di controllare l'attuale finestra attiva:\n"
-"  chiudere, minimizzare, massimizzare e visualizzare il menu delle "
-"applicazioni. Per visualizzare il menu, le applicazioni devono supportare "
+"Quest'applet consente di controllare la finestra attiva:\n"
+"  chiudere, minimizzare, massimizzare e visualizzare il menù delle "
+"applicazioni. Per visualizzare il menù, le applicazioni devono supportare "
 "questa funzionalità, la quale è la modalità predefinita di Ubuntu.\n"
 "Puoi associare una scorciatoia per questa azione."
 
 #: ../Global-Menu/src/applet-init.c:112 ../Global-Menu/src/applet-init.c:211
 msgid "Show/hide the current application menu"
-msgstr "Mostra/Nasconde il menu dell'applicazione attuale"
+msgstr "Mostrare o nascondere il menù dell'applicazione attuale"
 
 #: ../Global-Menu/src/applet-notifications.c:99
 msgid "The application didn't send its menu to us."
-msgstr "L'applicazione non ci mostrerà il suo menu."
+msgstr "L'applicazione non ci mostrerà il suo menù."
 
 #: ../Impulse/src/applet-impulse.c:169
 msgid ""
@@ -894,7 +900,7 @@ msgid ""
 msgstr ""
 "Questo plug-in può visualizzare tutti gli indicatori disponibili nella tua "
 "dock.\n"
-"Gli indicatori forniscono informazioni su qualcosa, e un menu per agire su "
+"Gli indicatori forniscono informazioni su qualcosa, e un menù per agire su "
 "di esso:\n"
 "  per esempio, un indicatore per controllare i lavori della stampante. Gli "
 "indicatori dormienti vengono automaticamente nascosti.\n"
@@ -920,7 +926,7 @@ msgid ""
 "A menu that lets you access quickly to your information, your online status, "
 "your friends."
 msgstr ""
-"Un menu che ti permette di accedere velocemente a tutte le tue informazioni, "
+"Un menù che ti permette di accedere velocemente a tutte le tue informazioni, "
 "il tuo status online, i tuoi contatti."
 
 #: ../MeMenu/src/applet-notifications.c:31
@@ -937,7 +943,7 @@ msgid ""
 "It handles Evolution, Pidgin, Empathy, etc\n"
 "It requires the Messaging service, which is available on Ubuntu by default."
 msgstr ""
-"Un menu che ti informa dei nuovi messaggi dalle applicazioni di Posta o "
+"Un menù che ti informa dei nuovi messaggi dalle applicazioni di Posta o "
 "Chat.\n"
 "Gestisce Evolution, Pidgin, Empathy, ecc\n"
 "Richiede il servizio di Messaggistica il quale è disponibile su Ubuntu in "
@@ -945,7 +951,7 @@ msgstr ""
 
 #: ../Messaging-Menu/src/applet-init.c:103
 msgid "Show/hide the Messaging menu"
-msgstr "Mostra/Nascondi il menu di Messaggistica"
+msgstr "Mostra o nascondi il menù di Messaggistica"
 
 #: ../Messaging-Menu/src/applet-notifications.c:78
 msgid ""
@@ -1095,15 +1101,15 @@ msgid ""
 "    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
 "    or edit the Configuration Panel."
 msgstr ""
-"Questa applet è un lettore di feed RSS/Atom.\n"
-"Puoi avviare diverse istanze di essa quante volte si desidera.\n"
+"Questa applet è un lettore di feed RSS o Atom.\n"
+"Puoi avviare diverse istanze di essa quante volte desideri.\n"
 "UTILIZZO:\n"
 " - Clic sinistro: visualizza le linee di feed complete in una finestra di "
 "dialogo.\n"
 " - Clic centrale: aggiorna il feed.\n"
 " - Scorrimento sulla desklet: rende le linee di feed scorrevoli.\n"
 " - Trascina e rilascia un URL valido sull'icona per utilizzarlo,\n"
-"    o copialo e usa \"Incolla un nuovo URL RSS\" nel menu.\n"
+"    o copialo e usa \"Incolla un nuovo URL RSS\" nel menù.\n"
 "    o modifica il Pannello di Configurazione."
 
 #: ../RSSreader/src/applet-init.c:65 ../RSSreader/src/applet-init.c:125
@@ -1165,7 +1171,7 @@ msgstr ""
 "Non è stato definito nessun URL\n"
 "Puoi definirne uno copiando l'URL nella clipboard,\n"
 " e selezionando \"Incolla l'URL\"\n"
-" nel menu."
+" nel menù."
 
 #: ../RSSreader/src/applet-rss.c:786
 msgid ""
@@ -1802,12 +1808,12 @@ msgid ""
 "The applet can either use the Ubuntu Sound-menu or the Alsa driver."
 msgstr ""
 "Questa applet ti permette di controllare il volume dei suoni dalla dock.\n"
-"Scorri su/giù sull'icona per alzare/abbassare il volume.\n"
-"Clicca sull'icona per mostrare/nascondere il controllo del volume (puoi "
+"Scorri su o giù sull'icona per alzare o abbassare il volume.\n"
+"Clicca sull'icona per mostrare o nascondere il controllo del volume (puoi "
 "impostare una scorciatoia da tastiera per esso)\n"
 "Clic centrale del mouse per attivare o togliere il suono, doppio clic per "
 "far apparire i canali del mixer.\n"
-"L'applet può usare uno fra il menu del Suono di Ubuntu o il driver Alsa."
+"L'applet può usare uno fra il menù del Suono di Ubuntu o il driver Alsa."
 
 #: ../alsaMixer/src/applet-init.c:40
 msgid "Sound Control"
@@ -1815,7 +1821,7 @@ msgstr "Controllo Audio"
 
 #: ../alsaMixer/src/applet-init.c:141
 msgid "Show/hide the Sound menu"
-msgstr "Mostra/Nascondi il menu del Suono"
+msgstr "Mostra o nascondi il menù del Suono"
 
 #: ../alsaMixer/src/applet-notifications.c:80
 msgid "Adjust channels"
@@ -2102,31 +2108,31 @@ msgstr "Domani è il seguente anniversario:"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:46
 msgid "frame&reflects"
-msgstr "cornici&riflessi"
+msgstr "cornici e riflessi"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:55
 msgid "scotch sellotape"
-msgstr "Scotch"
+msgstr "scotch"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:64
 msgid "frame with sellotape"
-msgstr "Cornice con scotch"
+msgstr "cornice con scotch"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:73
 msgid "CD box"
-msgstr "Box CD"
+msgstr "scatola CD"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:81
 msgid "dark"
-msgstr "scuro"
+msgstr "scura"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:89
 msgid "clear"
-msgstr "pulito"
+msgstr "pulita"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:97
 msgid "light"
-msgstr "leggero"
+msgstr "leggera"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:105
 msgid "water drop"
@@ -2138,12 +2144,12 @@ msgstr "acqua"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:121
 msgid "futuristic"
-msgstr "futuristico"
+msgstr "futuristica"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:129
 #: ../slider/data/messages:137
 msgid "none"
-msgstr "nessuno"
+msgstr "nessuna"
 
 #: ../desklet-rendering/src/rendering-desklet-decorations.c:137
 msgid "board"
@@ -2613,7 +2619,7 @@ msgstr ""
 "spegnere, riavviare, ibernare, sospendere, fare il log out, bloccare lo "
 "schermo, cambiare utente o programmare uno spegnimento automatico.\n"
 "Ti informerà anche se il tuo Sistema necessita di essere riavviato.\n"
-"<b>Clic</b> sull'icona per far comparire il menu.\n"
+"<b>Clic</b> sull'icona per far comparire il menù.\n"
 "Puoi impostare una <b>scorciatoia</b> per essa, anche per bloccare lo "
 "schermo."
 
@@ -2628,7 +2634,7 @@ msgstr "Blocca lo schermo"
 
 #: ../logout/src/applet-init.c:71
 msgid "Show the log-out menu"
-msgstr "Mostra il menu di log-out"
+msgstr "Mostra il menù di log-out"
 
 #: ../logout/src/applet-logout.c:271 ../logout/data/messages:97
 msgid "Shut down"
@@ -3283,14 +3289,14 @@ msgid ""
 msgstr ""
 "Quest'applet permette di esplorare una cartella e le sue sotto-cartelle "
 "velocemente.\n"
-"Puoi impostare una scorciatoia di tasti per far comparire il menu.\n"
+"Puoi impostare una scorciatoia di tasti per far comparire il menù.\n"
 "Clic centrale apre la cartella principale.\n"
 "Quest'applet può essere lanciata più volte, se vuoi esplorare differenti "
 "cartelle."
 
 #: ../quick-browser/src/applet-init.c:64
 msgid "Show/hide the folder menu"
-msgstr "Mostra/Nascondi il menu della cartella"
+msgstr "Mostra o nascondi il menù della cartella"
 
 #: ../quick-browser/src/applet-menu.c:106
 #: ../quick-browser/src/applet-menu.c:112
@@ -3499,9 +3505,9 @@ msgstr ""
 " e anche: le desklet, il Livello Widget, o tutte le scrivanie "
 "contemporaneamente.\n"
 "Può essere utilizzata altresì per cambiare rapidamente la risoluzione dello "
-"schermo dal menu (click destro).\n"
-"Clic sinistro per mostrare/nascondere la Scrivania.\n"
-"Clic centrale per mostrare/nascondere sia la Scrivania, le desklet, il "
+"schermo dal menù (click destro).\n"
+"Clic sinistro per mostrare o nascondere la Scrivania.\n"
+"Clic centrale per mostrare o nascondere sia la Scrivania, le desklet, il "
 "Livello Widget, o tutte le scrivanie contemporaneamente."
 
 #: ../showDesktop/src/applet-notifications.c:209
@@ -3655,12 +3661,12 @@ msgid ""
 "It has 2 modes : compact (on 1 icon) and expanded (with a sub-dock)."
 msgstr ""
 "Quest'applet permette di interagire con i tuoi spazi di lavoro:\n"
-" - passaggio tra spazi di lavoro (scroll su/giù del mouse),\n"
+" - passaggio tra spazi di lavoro (scroll su o giù del mouse),\n"
 " - dargli un nome (nella configurazione),\n"
-" - aggiungere/rimuovere uno spazio di lavoro (nel menu),\n"
-" - mostrare la scrivania (clic centrale o nel menu),\n"
+" - aggiungere o rimuovere uno spazio di lavoro (nel menù),\n"
+" - mostrare la scrivania (clic centrale o nel menù),\n"
 " - lista di tutte le finestre per ciascun spazio di lavoro (clic centrale o "
-"nel menu)\n"
+"nel menù)\n"
 "Ha due tipologie: compatta (in 1 icona) ed espansa (con una sub-dock)."
 
 #: ../switcher/src/applet-notifications.c:248
@@ -4340,7 +4346,7 @@ msgstr "Durata della pulsazione:"
 
 #: ../Animated-icons/data/messages:153
 msgid "Pulse max zoom:"
-msgstr "Zoom massimo della pulsazione:"
+msgstr "Ingrandimento massimo della pulsazione:"
 
 #: ../Animated-icons/data/messages:155
 msgid "Pulse follows icon shape?"
@@ -4364,7 +4370,7 @@ msgstr "Quanto le icone si appiattiranno quando toccheranno il suolo:"
 
 #: ../Animated-icons/data/messages:175
 msgid "Blink duration:"
-msgstr "Durata del tremolìo:"
+msgstr "Durata dell'intermittenza:"
 
 #: ../Animated-icons/data/messages:183
 msgid "Busy duration:"
@@ -4480,7 +4486,7 @@ msgstr "Nome della dock alla quale appartiene:"
 #: ../weather/data/messages:9 ../weblets/data/messages:7
 #: ../wifi/data/messages:7
 msgid "Name of the icon as it will appear in its caption in the dock:"
-msgstr "Nome dell'icona come apparirà sull'etichetta nella dock:"
+msgstr "Nome dell'icona che apparirà sulla didascalia nella dock:"
 
 #: ../Cairo-Penguin/data/messages:9 ../Clipper/data/messages:9
 #: ../Composite-Manager/data/messages:9 ../Disks/data/messages:9
@@ -5605,11 +5611,11 @@ msgstr "Incollarlo nella Selezione?"
 
 #: ../Clipper/data/messages:123
 msgid "Shortkey to pop-up the items menu:"
-msgstr "Scorcatoie di tastiera per rendere a comparsa gli oggetti del menu:"
+msgstr "Scorcatoie di tastiera per rendere a comparsa gli oggetti del menù:"
 
 #: ../Clipper/data/messages:125
 msgid "Pop-up menus at mouse position?"
-msgstr "Menu a comparsa in una posizione del mouse?"
+msgstr "Menù a comparsa nella posizione del mouse?"
 
 #: ../Clipper/data/messages:127
 msgid "Actions"
@@ -5637,7 +5643,7 @@ msgstr "Ripetere le azioni?"
 
 #: ../Clipper/data/messages:139
 msgid "Duration of the action menu:"
-msgstr "Durata del menu azioni:"
+msgstr "Durata del menù azioni:"
 
 #: ../Clipper/data/messages:141
 msgid "Persistent items"
@@ -6147,7 +6153,7 @@ msgstr "Mostra i file nascosti?"
 #: ../GMenu-old/data/messages:91 ../GMenu/data/messages:91
 #: ../Messaging-Menu/data/messages:101 ../quick-browser/data/messages:117
 msgid "Shortkey to show/hide the menu:"
-msgstr "Scorciatoia per nascondere/mostrare il menu:"
+msgstr "Scorciatoia per nascondere o mostrare il menù:"
 
 #: ../GMenu-old/data/messages:93 ../GMenu/data/messages:93
 msgid "Shortkey to show/hide the quick-launch dialog:"
@@ -6166,21 +6172,21 @@ msgid ""
 "The settings menu file is sometimes available in a settings.menu file but "
 "its content can also be available in the main .menu file used by the dock"
 msgstr ""
-"Il file delle impostazioni del menu talvolta è disponibile in un file "
-"settings.menu ma il suo contenuto può essere disponibile anche nel file "
-"principale .menu utilizzato dalla dock"
+"Il file delle impostazioni del menù talvolta è disponibile in un file "
+"\"settings.menu\" ma il suo contenuto può essere disponibile anche nel file "
+"principale \".menu\" utilizzato dalla dock"
 
 #: ../GMenu-old/data/messages:101 ../GMenu/data/messages:101
 msgid "Load settings' menu?"
-msgstr "Carico il menu delle impostazioni?"
+msgstr "Carico il menù delle impostazioni?"
 
 #: ../GMenu-old/data/messages:103 ../GMenu/data/messages:103
 msgid "Display the description in search's results?"
-msgstr ""
+msgstr "Visualizzo la descrizione nei risultati della ricerca?"
 
 #: ../GMenu-old/data/messages:105 ../GMenu/data/messages:105
 msgid "Command to use for configuring the menu:"
-msgstr "Comando da utilizzare per configurare il menu:"
+msgstr "Comando da utilizzare per configurare il menù:"
 
 #: ../GMenu-old/data/messages:109 ../GMenu/data/messages:109
 msgid "Show Logout and/or Shutdown : "
@@ -6195,12 +6201,12 @@ msgid ""
 msgstr ""
 "L'applet può togliere il bordo superiore delle finestre massimizzate, in tal "
 "caso essa visualizzerà i pulsanti di controllo della finestra.\n"
-" L'applet può togliere il menu dalle finestre, in tal caso essa visualizzerà "
-"un pulsante per la comparsa del menu della finestra attuale."
+" L'applet può togliere il menù dalle finestre, in tal caso essa visualizzerà "
+"un pulsante per la comparsa del menù della finestra attuale."
 
 #: ../Global-Menu/data/messages:89
 msgid "Steal window menu"
-msgstr "Togliere il menu della finestra"
+msgstr "Togliere il menù della finestra"
 
 #: ../Global-Menu/data/messages:91
 msgid "Steal window decoration"
@@ -6208,15 +6214,15 @@ msgstr "Togliere la decorazione della finestra"
 
 #: ../Global-Menu/data/messages:93
 msgid "Steal window menu and border"
-msgstr "Togliere il bordo e il menu della finestra"
+msgstr "Togliere il bordo e il menù della finestra"
 
 #: ../Global-Menu/data/messages:95
 msgid "Shortkey to pop up the menu"
-msgstr "Scorciatoia per il menu a comparsa"
+msgstr "Scorciatoia per il menù a comparsa"
 
 #: ../Global-Menu/data/messages:97
 msgid "Pop up the menu at mouse position"
-msgstr "Comparsa del menu nella posizione del mouse"
+msgstr "Comparsa del menù nella posizione del mouse"
 
 #: ../Global-Menu/data/messages:99
 msgid "Compact mode"
@@ -6994,7 +7000,7 @@ msgstr "Numero di linee in cui raggruppare gli elementi:"
 
 #: ../Status-Notifier/data/messages:119
 msgid "Left click pops up the items' menu"
-msgstr "Clic sinistro mostra gli oggetti del menu"
+msgstr "Clic sinistro mostra gli oggetti del menù"
 
 #: ../System-Monitor/data/messages:99 ../alsaMixer/data/messages:109
 #: ../powermanager/data/messages:101 ../wifi/data/messages:99
@@ -7823,7 +7829,7 @@ msgstr "Curva verso l'esterno?"
 
 #: ../dock-rendering/data/messages:105
 msgid "Space between icons and their captions:"
-msgstr "Spazio tra le icone e le loro etichette:"
+msgstr "Spazio tra le icone e le loro didascalie:"
 
 #: ../dock-rendering/data/messages:107
 msgid ""
@@ -7835,7 +7841,7 @@ msgstr ""
 
 #: ../dock-rendering/data/messages:109
 msgid "Draw captions while unfolding?"
-msgstr "Disegna le etichette durante lo sfogliamento?"
+msgstr "Disegnare le didascalie durante il dispiegamento?"
 
 #: ../dock-rendering/data/messages:115
 msgid "Space between icons:"
@@ -7938,8 +7944,8 @@ msgid ""
 "Labels are also clickable."
 msgstr ""
 "<b>Una vista parabolica</b>\n"
-"Perfetta per le sub-dock medie aventi da 3 a 10 icone.\n"
-"Le etichette sono cliccabili."
+"Perfetta per le sub-dock di media grandezza aventi da 3 a 10 icone.\n"
+"Anche le etichette sono cliccabili."
 
 #: ../dock-rendering/data/messages:146
 msgid ""
@@ -8264,7 +8270,7 @@ msgstr "Scorciatoia per bloccare lo schermo"
 
 #: ../logout/data/messages:103
 msgid "Shortkey to show the menu"
-msgstr "Scorciatoia per mostrare il menu"
+msgstr "Scorciatoia per mostrare il menù"
 
 #: ../logout/data/messages:105
 msgid "Demand confirmation before closing"
@@ -8734,7 +8740,7 @@ msgstr "Ignora i cassetti?"
 
 #: ../quick-browser/data/messages:103
 msgid "Menu"
-msgstr "Menu"
+msgstr "Menù"
 
 #: ../quick-browser/data/messages:105
 msgid "It can be CPU intense to load a lot of icons."
@@ -8742,7 +8748,7 @@ msgstr "Potrebbe essere pesante caricare troppe icone."
 
 #: ../quick-browser/data/messages:107
 msgid "Display icons in the menu?"
-msgstr "Mostra le icone nel menu?"
+msgstr "Mostrare le icone nel menù?"
 
 #: ../quick-browser/data/messages:109
 msgid "Icon size :"
@@ -8770,7 +8776,7 @@ msgstr ""
 
 #: ../quick-browser/data/messages:121
 msgid "Build menu gradually:"
-msgstr "Costruzione graduale del menu:"
+msgstr "Costruzione graduale del menù:"
 
 #: ../shortcuts/data/messages:93
 msgid "List drives and volumes?"
@@ -9477,8 +9483,8 @@ msgstr "Posizione dello scroll verticale"
 msgid ""
 "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
-"Questo ti permette di visualizzare come notifica a comparsa il menu di Cairo-"
-"Dock con il clic destro."
+"Il clic destro sulla desklet ti consente di visualizzare il menù di Cairo-"
+"Dock con una notifica a comparsa."
 
 #: ../weblets/data/messages:105
 msgid "Right margin width, in pixels:"
@@ -9505,7 +9511,7 @@ msgstr "Qualsiasi URI valido dovrebbe funzionare."
 
 #: ../weblets/data/messages:115
 msgid "Predefined bookmarks to show in applet menu:"
-msgstr "Segnalibri predefiniti da mostrare nel menu dell'applet:"
+msgstr "Segnalibri predefiniti da mostrare nel menù dell'applet:"
 
 #: ../wifi/data/messages:139
 msgid "\"No signal\" icon"
