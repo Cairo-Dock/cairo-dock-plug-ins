@@ -12,8 +12,6 @@ SET(cd-dialog-rendering_LIB_SRCS
 	applet-decorator-comics.h
 	applet-decorator-modern.c
 	applet-decorator-modern.h
-	applet-decorator-3Dplane.c
-	applet-decorator-3Dplane.h
 	applet-decorator-tooltip.c
 	applet-decorator-tooltip.h
 	applet-decorator-curly.c

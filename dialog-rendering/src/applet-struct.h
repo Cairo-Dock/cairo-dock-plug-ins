@@ -24,29 +24,7 @@
 #include <cairo-dock.h>
 
 struct _AppletConfig {
-	gint iComicsRadius;
-	gint iComicsLineWidth;
-	gdouble fComicsLineColor[4];
-	
-	gint iModernRadius;
-	gint iModernLineWidth;
-	gdouble fModernLineColor[4];
-	gint iModernLineSpacing;
-	
-	gint iPlaneRadius;
-	gint iPlaneLineWidth;
-	gdouble fPlaneLineColor[4];
-	gdouble fPlaneColor[4];
-	
-	gint iTooltipRadius;
-	gint iTooltipLineWidth;
-	gdouble fTooltipLineColor[4];
-	
-	gint iCurlyRadius;
-	gint iCurlyLineWidth;
-	gdouble fCurlyLineColor[4];
-	gdouble fCurlyCurvature;
-	gboolean bCulrySideToo;
+	gint no_params;
 } ;
 
 struct _AppletData {

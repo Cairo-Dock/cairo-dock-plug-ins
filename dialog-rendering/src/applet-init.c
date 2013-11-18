@@ -36,19 +36,12 @@ CD_APPLET_DEFINE_BEGIN ("dialog rendering",
 	"Fabrice Rey (Fabounet)")
 	//\_______________ On definit notre interface.
 	//pInterface->reloadModule = reload;
-	pInterface->reset_config = CD_APPLET_RESET_CONFIG_FUNC;
-	pInterface->reset_data = CD_APPLET_RESET_DATA_FUNC;
-	pInterface->read_conf_file = CD_APPLET_READ_CONFIG_FUNC;
+	//pInterface->reset_config = CD_APPLET_RESET_CONFIG_FUNC;
+	//pInterface->reset_data = CD_APPLET_RESET_DATA_FUNC;
+	//pInterface->read_conf_file = CD_APPLET_READ_CONFIG_FUNC;
 	pInterface->initModule = CD_APPLET_INIT_FUNC;
 	pInterface->stopModule = CD_APPLET_STOP_FUNC;
 
-	/*//\_______________ On enregistre les decorateurs (on le fait maintenant au cas ou un dialogue serait affiche pendant le chargement initial).
-	cd_decorator_register_comics ();
-	cd_decorator_register_modern ();
-	cd_decorator_register_3Dplane ();
-	cd_decorator_register_tooltip ();  // By ChAnGFu*
-	cd_decorator_register_curly ();*/
-	
 	//\_______________ On enregistre les moteurs de rendu (on le fait maintenant au cas ou un dialogue serait cree avec pendant le chargement initial).
 	rendering_register_text_dialog_renderer ();
 
@@ -61,17 +54,15 @@ CD_APPLET_INIT_BEGIN
 	//\_______________ On enregistre les decorateurs.
 	cd_decorator_register_comics ();
 	cd_decorator_register_modern ();
-	///cd_decorator_register_3Dplane ();
 	cd_decorator_register_tooltip ();  // By ChAnGFu
 	cd_decorator_register_curly ();
 CD_APPLET_INIT_END
 
 
 CD_APPLET_STOP_BEGIN
-	//\_______________ On enregistre les decorateurs.
+	//\_______________ On desenregistre les decorateurs.
 	cairo_dock_remove_dialog_decorator (MY_APPLET_DECORATOR_COMICS_NAME);
 	cairo_dock_remove_dialog_decorator (MY_APPLET_DECORATOR_MODERN_NAME);
-	///cairo_dock_remove_dialog_decorator (MY_APPLET_DECORATOR_3DPLANE_NAME);
 	cairo_dock_remove_dialog_decorator (MY_APPLET_DECORATOR_TOOLTIP_NAME);
 	cairo_dock_remove_dialog_decorator (MY_APPLET_DECORATOR_CURLY_NAME);
 CD_APPLET_STOP_END
