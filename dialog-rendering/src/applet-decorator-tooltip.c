@@ -24,10 +24,11 @@
 #include "applet-struct.h"
 #include "applet-decorator-tooltip.h"
 
-#define _CAIRO_DIALOG_TOOLTIP_MIN_GAP 10
 #define _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH 20
-#define _CAIRO_DIALOG_TOOLTIP_ARROW_HEIGHT 5
 #define _CAIRO_DIALOG_TOOLTIP_MARGIN 4
+#define CD_ARROW_HEIGHT 6
+#define CD_ALIGN 0.5
+#define CD_RADIUS myDialogsParam.iCornerRadius
 
 /*
 ic______^___  arrow height + margin
@@ -41,13 +42,13 @@ ic     msg
 
 void cd_decorator_set_frame_size_tooltip (CairoDialog *pDialog)
 {
-	int iMargin = .5 * myConfig.iTooltipLineWidth + (1. - sqrt (2) / 2) * myConfig.iTooltipRadius;
+	int iMargin = .5 * myDialogsParam.iLineWidth + (1. - sqrt (2) / 2) * CD_RADIUS;
 	int iIconOffset = pDialog->iIconSize / 2;
 	pDialog->iRightMargin = iMargin + _CAIRO_DIALOG_TOOLTIP_MARGIN;
 	pDialog->iLeftMargin = iIconOffset + iMargin + _CAIRO_DIALOG_TOOLTIP_MARGIN;
-	pDialog->iTopMargin = iIconOffset + _CAIRO_DIALOG_TOOLTIP_MARGIN + myConfig.iTooltipLineWidth;
+	pDialog->iTopMargin = iIconOffset + _CAIRO_DIALOG_TOOLTIP_MARGIN + myDialogsParam.iLineWidth;
 	pDialog->iBottomMargin = _CAIRO_DIALOG_TOOLTIP_MARGIN;
-	pDialog->iMinBottomGap = _CAIRO_DIALOG_TOOLTIP_MIN_GAP;
+	pDialog->iMinBottomGap = CD_ARROW_HEIGHT;
 	pDialog->iMinFrameWidth = _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH;
 	pDialog->fAlign = .5;
 	pDialog->container.fRatio = 0.;
@@ -59,37 +60,14 @@ void cd_decorator_set_frame_size_tooltip (CairoDialog *pDialog)
 
 void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog *pDialog)
 {
-	double fLineWidth = myConfig.iTooltipLineWidth;
-	double fRadius = myConfig.iTooltipRadius;
+	double fLineWidth = myDialogsParam.iLineWidth;
+	double fRadius = CD_RADIUS;
 	double fIconOffset = pDialog->iIconSize / 2;  // myDialogsParam.iDialogIconSize/2
 	
 	double fOffsetX = fRadius + fLineWidth / 2 + fIconOffset;
 	double fOffsetY = (pDialog->container.bDirectionUp ? fLineWidth / 2 : pDialog->container.iHeight - fLineWidth / 2) + (pDialog->container.bDirectionUp ? fIconOffset : /**-fIconOffset*/ -_CAIRO_DIALOG_TOOLTIP_MARGIN);  // _CAIRO_DIALOG_TOOLTIP_MARGIN is to compensate for the slightly different placement of top dialogs
 	int sens = (pDialog->container.bDirectionUp ? 1 : -1);
 	int iWidth = pDialog->container.iWidth - fIconOffset;
-	
-	int iDeltaIconX = MIN (0, pDialog->iAimedX - (pDialog->container.iWindowPositionX + pDialog->container.iWidth/2));
-	if (iDeltaIconX == 0)
-		iDeltaIconX = MAX (0, pDialog->iAimedX - (pDialog->container.iWindowPositionX + pDialog->container.iWidth/2));
-	if (fabs (iDeltaIconX) < 3)  // filter useless tiny delta (and rounding errors).
-		iDeltaIconX = 0;
-	else if (iDeltaIconX > pDialog->container.iWidth/2 - (fRadius + fLineWidth / 2))
-		iDeltaIconX = pDialog->container.iWidth/2 - (fRadius + fLineWidth / 2);
-	else if (iDeltaIconX < - pDialog->container.iWidth/2 + fRadius + fLineWidth / 2)
-		iDeltaIconX = - pDialog->container.iWidth/2 + fRadius + fLineWidth / 2;
-	//g_print ("aim: %d, window: %d, width: %d => %d\n", pDialog->iAimedX, pDialog->container.iWindowPositionX, pDialog->container.iWidth, iDeltaIconX);
-	
-	int iArrowShift;
-	if (iDeltaIconX != 0)  // il y'a un decalage, on va limiter la pente du cote le plus court de la pointe a 30 degres.
-	{
-		iArrowShift = MAX (0, fabs (iDeltaIconX) - _CAIRO_DIALOG_TOOLTIP_ARROW_HEIGHT * .577 - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2);  // tan(30)
-		if (iDeltaIconX < 0)
-			iArrowShift = - iArrowShift;
-		//g_print ("iArrowShift: %d\n", iArrowShift);
-		
-	}
-	else
-		iArrowShift = 0;
 	
 	int h = pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin - (2 * fRadius + fLineWidth);
 	if (pDialog->container.bDirectionUp)
@@ -119,16 +97,11 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 		-fRadius, sens * fRadius);
 	
 	// La pointe.
-	double fDemiWidth = (iWidth - fLineWidth - 2 * fRadius - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH)/2;
-	
-	if (- fDemiWidth + iArrowShift > 0)
-		iArrowShift = fDemiWidth;
-	else if (- fDemiWidth - iArrowShift > 0)
-		iArrowShift = - fDemiWidth;
-	cairo_rel_line_to (pCairoContext, - fDemiWidth + iArrowShift, 0);
-	cairo_rel_line_to (pCairoContext, - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2 - iArrowShift + iDeltaIconX, sens * _CAIRO_DIALOG_TOOLTIP_ARROW_HEIGHT);
-	cairo_rel_line_to (pCairoContext, - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2 + iArrowShift - iDeltaIconX, -sens * _CAIRO_DIALOG_TOOLTIP_ARROW_HEIGHT);
-	cairo_rel_line_to (pCairoContext, - fDemiWidth - iArrowShift , 0);
+	int iDeltaIconX = pDialog->container.iWindowPositionX + pDialog->container.iWidth - fRadius - fLineWidth/2 - pDialog->iAimedX;
+	cairo_rel_line_to (pCairoContext, - iDeltaIconX + _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2, 0);
+	cairo_rel_line_to (pCairoContext, - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2, sens * CD_ARROW_HEIGHT);
+	cairo_rel_line_to (pCairoContext, - _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2, -sens * CD_ARROW_HEIGHT);
+	cairo_rel_line_to (pCairoContext, - iWidth + 2*fRadius + fLineWidth + iDeltaIconX + _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2, 0);
 	
 	// Coin bas gauche.
 	cairo_rel_curve_to (pCairoContext,
@@ -147,14 +120,167 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 	if (fRadius < 1)
 		cairo_close_path (pCairoContext);
 	
-	cairo_set_source_rgba (pCairoContext, myDialogsParam.fDialogColor[0], myDialogsParam.fDialogColor[1],     myDialogsParam.fDialogColor[2], myDialogsParam.fDialogColor[3]);
-	cairo_fill_preserve (pCairoContext); //Notre fond
-	cairo_set_source_rgba (pCairoContext, myConfig.fTooltipLineColor[0], myConfig.fTooltipLineColor[1], myConfig.fTooltipLineColor[2], myConfig.fTooltipLineColor[3]);
-	cairo_set_line_width (pCairoContext, fLineWidth); //La ligne externe
+	// draw background
+	gldi_menu_set_bg_color (pCairoContext);
+	///cairo_fill_preserve (pCairoContext);
+	cairo_save (pCairoContext);
+	cairo_clip_preserve (pCairoContext);
+	gldi_menu_paint_bg_color (pCairoContext, pDialog->container.iWidth);
+	cairo_restore (pCairoContext);
 	
-	cairo_stroke (pCairoContext); //On ferme notre chemin
+	// draw outline
+	gldi_menu_set_line_color (pCairoContext);
+	cairo_set_line_width (pCairoContext, fLineWidth);
+	cairo_stroke (pCairoContext);
 }
 
+
+static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
+{
+	GldiMenuParams *pParams = g_object_get_data (G_OBJECT(pMenu), "gldi-params");
+	int iMarginPosition = -1;
+	int iAimedX = 0, iAimedY = 0;
+	int ah = CD_ARROW_HEIGHT;
+	if (pParams && pParams->pIcon)  // main menu
+	{
+		iMarginPosition = pParams->iMarginPosition;
+		iAimedX = pParams->iAimedX;
+		iAimedY = pParams->iAimedY;
+	}
+	double fRadius = CD_RADIUS, fLineWidth = myDialogsParam.iLineWidth;
+	
+	// draw the outline and set the clip
+	GtkAllocation alloc;
+	gtk_widget_get_allocation (pMenu, &alloc);
+	
+	int w = alloc.width, h = alloc.height;
+	int x, y;
+	gdk_window_get_position (gtk_widget_get_window (gtk_widget_get_toplevel(pMenu)), &x, &y);
+	int _ah = ah - fLineWidth;  // we want the tip of the arrow to reach the border, not the middle of the stroke
+	int aw = _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH/2;
+	int _aw = aw;
+	double dx, dy;
+	
+	double fDockOffsetX = fRadius + fLineWidth/2;
+	double fDockOffsetY = fLineWidth/2;
+	double fFrameWidth, fFrameHeight;
+	fFrameWidth = w - 2*fRadius - fLineWidth;
+	fFrameHeight = h - fLineWidth;
+	switch (iMarginPosition)
+	{
+		case 0:  // bottom
+			fFrameHeight -= ah;
+		break;
+		case 1:  // top
+			fFrameHeight -= ah;
+			fDockOffsetY += ah;
+		break;
+		case 2:  // right
+			fFrameWidth -= ah;
+		break;
+		case 3:  // left
+			fFrameWidth -= ah;
+			fDockOffsetX += ah;
+		break;
+		default:
+		break;
+	}
+	
+	cairo_move_to (pCairoContext, fDockOffsetX, fDockOffsetY);
+	
+	if (iMarginPosition == 1)  // top arrow
+	{
+		dx = MIN (w - fRadius - 2*aw, MAX (fRadius, iAimedX - x - aw));
+		cairo_line_to (pCairoContext, dx, fDockOffsetY);
+		cairo_line_to (pCairoContext, MIN (w, MAX (0, iAimedX - x)), fDockOffsetY - _ah);
+		cairo_line_to (pCairoContext, dx + 2*aw, fDockOffsetY);
+		cairo_line_to (pCairoContext, fFrameWidth, fDockOffsetY);
+	}
+	else
+		cairo_rel_line_to (pCairoContext, fFrameWidth, 0);
+	
+	//\_________________ Coin haut droit.
+	cairo_arc (pCairoContext,
+		fDockOffsetX + fFrameWidth, fDockOffsetY + fRadius,
+		fRadius,
+		-G_PI/2, 0.);
+	if (iMarginPosition == 2)  // right arrow
+	{
+		if (h < 2*aw + 2*fRadius)
+			_aw = (h - 2*fRadius) / 2;
+		dy = MIN (h - fRadius - 2*aw, MAX (fRadius, iAimedY - y - _aw));
+		cairo_line_to (pCairoContext, w - ah, dy);
+		cairo_line_to (pCairoContext, w - ah + _ah, MAX (0, iAimedY - y));
+		cairo_line_to (pCairoContext, w - ah, dy + 2*_aw);
+		cairo_line_to (pCairoContext, w - ah, h - fRadius);
+	}
+	else
+		cairo_rel_line_to (pCairoContext, 0, (fFrameHeight - fRadius * 2));
+	
+	//\_________________ Coin bas droit.
+	cairo_arc (pCairoContext,
+		fDockOffsetX + fFrameWidth, fDockOffsetY + fFrameHeight - fRadius,
+		fRadius,
+		0., G_PI/2);
+	
+	if (iMarginPosition == 0)  // bottom arrow
+	{
+		dx = MIN (w - fRadius - 2*aw, MAX (fRadius, iAimedX - x - aw));
+		cairo_line_to (pCairoContext, dx + 2*aw, fFrameHeight);
+		cairo_line_to (pCairoContext, MIN (w, MAX (0, iAimedX - x)), fFrameHeight + _ah);
+		cairo_line_to (pCairoContext, dx, fFrameHeight);
+		cairo_line_to (pCairoContext, fDockOffsetX, fFrameHeight);
+	}
+	else
+		cairo_rel_line_to (pCairoContext, - fFrameWidth, 0);
+	
+	//\_________________ Coin bas gauche.
+	cairo_arc (pCairoContext,
+		fDockOffsetX, fDockOffsetY + fFrameHeight - fRadius,
+		fRadius,
+		G_PI/2, G_PI);
+	
+	if (iMarginPosition == 3)  // left arrow
+	{
+		if (h < 2*aw + 2*fRadius)
+			_aw = (h - 2*fRadius) / 2;
+		dy = MIN (h - fRadius - 2*aw, MAX (fRadius, iAimedY - y - _aw));
+		cairo_line_to (pCairoContext, ah, dy);
+		cairo_line_to (pCairoContext, ah - _ah, MAX (0, iAimedY - y));
+		cairo_line_to (pCairoContext, ah, dy + 2*_aw);
+		cairo_line_to (pCairoContext, ah, fRadius);
+	}
+	else
+		cairo_rel_line_to (pCairoContext, 0, - fFrameHeight + fRadius * 2);
+	//\_________________ Coin haut gauche.
+	cairo_arc (pCairoContext,
+		fDockOffsetX, fDockOffsetY + fRadius,
+		fRadius,
+		G_PI, -G_PI/2);
+	
+	// draw outline
+	if (fLineWidth != 0)  // draw the outline with same color as bg, but opaque
+	{
+		gldi_menu_set_line_color (pCairoContext);
+		cairo_set_line_width (pCairoContext, fLineWidth);
+		cairo_stroke_preserve (pCairoContext);
+	}
+	
+	cairo_clip (pCairoContext);  // clip
+	
+	// draw the background
+	gldi_menu_set_bg_color (pCairoContext);
+	
+	gldi_menu_paint_bg_color (pCairoContext, alloc.width);
+}
+
+static void _setup_menu (GtkWidget *pMenu)
+{
+	GldiMenuParams *pParams = g_object_get_data (G_OBJECT(pMenu), "gldi-params");
+	pParams->iRadius = CD_RADIUS;
+	pParams->fAlign = CD_ALIGN;
+	pParams->iArrowHeight = CD_ARROW_HEIGHT;
+}
 
 void cd_decorator_register_tooltip (void)
 {
@@ -162,6 +288,8 @@ void cd_decorator_register_tooltip (void)
 	pDecorator->set_size = cd_decorator_set_frame_size_tooltip;
 	pDecorator->render = cd_decorator_draw_decorations_tooltip;
 	pDecorator->render_opengl = NULL;
+	pDecorator->setup_menu = _setup_menu;
+	pDecorator->render_menu = _render_menu;
 	pDecorator->cDisplayedName = D_ (MY_APPLET_DECORATOR_TOOLTIP_NAME);
 	cairo_dock_register_dialog_decorator (MY_APPLET_DECORATOR_TOOLTIP_NAME, pDecorator);
 }
