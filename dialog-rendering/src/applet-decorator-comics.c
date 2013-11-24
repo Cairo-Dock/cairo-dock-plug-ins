@@ -138,15 +138,15 @@ void cd_decorator_draw_decorations_comics (cairo_t *pCairoContext, CairoDialog *
 	if (fRadius < 1)
 		cairo_close_path (pCairoContext);
 	
-	gldi_menu_set_bg_color (pCairoContext);
+	gldi_style_colors_set_bg_color (pCairoContext);
 	///cairo_fill_preserve (pCairoContext);
 	cairo_save (pCairoContext);
 	cairo_clip_preserve (pCairoContext);
-	gldi_menu_paint_bg_color (pCairoContext, pDialog->container.iWidth);
+	gldi_style_colors_paint_bg_color (pCairoContext, pDialog->container.iWidth);
 	cairo_restore (pCairoContext);
 
 	cairo_set_line_width (pCairoContext, fLineWidth);
-	gldi_menu_set_line_color (pCairoContext);
+	gldi_style_colors_set_line_color (pCairoContext);
 	cairo_stroke (pCairoContext);
 }
 
@@ -359,16 +359,16 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	// draw outline
 	if (fLineWidth != 0)  // draw the outline with same color as bg, but opaque
 	{
-		gldi_menu_set_line_color (pCairoContext);
+		gldi_style_colors_set_line_color (pCairoContext);
 		cairo_stroke_preserve (pCairoContext);
 	}
 	
 	cairo_clip (pCairoContext);  // clip
 	
 	// draw the background
-	gldi_menu_set_bg_color (pCairoContext);
+	gldi_style_colors_set_bg_color (pCairoContext);
 	
-	gldi_menu_paint_bg_color (pCairoContext, alloc.width);
+	gldi_style_colors_paint_bg_color (pCairoContext, alloc.width);
 }
 
 static void _setup_menu (GtkWidget *pMenu)

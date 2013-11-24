@@ -73,11 +73,11 @@ void cd_decorator_draw_decorations_modern (cairo_t *pCairoContext, CairoDialog *
 		- sens2 * fRadius,
 		- sens * fRadius);
 	cairo_close_path (pCairoContext);
-	gldi_menu_set_bg_color (pCairoContext);
+	gldi_style_colors_set_bg_color (pCairoContext);
 	///cairo_fill (pCairoContext);
 	cairo_save (pCairoContext);
 	cairo_clip (pCairoContext);
-	gldi_menu_paint_bg_color (pCairoContext, pDialog->container.iWidth);
+	gldi_style_colors_paint_bg_color (pCairoContext, pDialog->container.iWidth);
 	cairo_restore (pCairoContext);
 	
 	//\_________________ On trace le cadre.
@@ -92,7 +92,7 @@ void cd_decorator_draw_decorations_modern (cairo_t *pCairoContext, CairoDialog *
 		sens2 * pDialog->iBubbleWidth,
 		0.);
 	cairo_set_line_width (pCairoContext, fLineWidth);
-	gldi_menu_set_line_color (pCairoContext);
+	gldi_style_colors_set_line_color (pCairoContext);
 	cairo_stroke (pCairoContext);
 	
 	//\_________________ On part du haut, petit cote.
@@ -170,16 +170,16 @@ static void _render_submenu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	// draw outline
 	if (fLineWidth != 0)  // draw the outline with same color as bg, but opaque
 	{
-		gldi_menu_set_line_color (pCairoContext);
+		gldi_style_colors_set_line_color (pCairoContext);
 		cairo_stroke_preserve (pCairoContext);
 	}
 	
 	cairo_clip (pCairoContext);  // clip
 	
 	//\_________________ draw background
-	gldi_menu_set_bg_color (pCairoContext);
+	gldi_style_colors_set_bg_color (pCairoContext);
 	
-	gldi_menu_paint_bg_color (pCairoContext, alloc.width);
+	gldi_style_colors_paint_bg_color (pCairoContext, alloc.width);
 }
 
 static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
@@ -237,7 +237,7 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	
 	
 	// set bg color/pattern
-	gldi_menu_set_line_color (pCairoContext);
+	gldi_style_colors_set_line_color (pCairoContext);
 	
 	//\_________________ draw outline
 	if (fLineWidth != 0)
@@ -427,9 +427,9 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	
 	cairo_clip (pCairoContext);  // clip
 	
-	gldi_menu_set_bg_color (pCairoContext);
+	gldi_style_colors_set_bg_color (pCairoContext);
 	
-	gldi_menu_paint_bg_color (pCairoContext, alloc.width);
+	gldi_style_colors_paint_bg_color (pCairoContext, alloc.width);
 }
 
 static void _setup_menu (GtkWidget *pMenu)
