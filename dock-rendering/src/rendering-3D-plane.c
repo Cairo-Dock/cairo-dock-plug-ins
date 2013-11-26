@@ -31,7 +31,7 @@
 
 extern int iVanishingPointY;
 
-extern CairoDockSpeparatorType my_iDrawSeparator3D;
+extern CairoDockSeparatorType my_iDrawSeparator3D;
 extern double my_fSeparatorColor[4];
 
 extern cairo_surface_t *my_pFlatSeparatorSurface[2];

@@ -36,7 +36,7 @@ static double *s_pReferenceCurveX = NULL;
 static double *s_pReferenceCurveY = NULL;
 extern int iVanishingPointY;
 
-extern CairoDockSpeparatorType my_iDrawSeparator3D;
+extern CairoDockSeparatorType my_iDrawSeparator3D;
 extern double my_fSeparatorColor[4];
 
 extern gdouble my_fCurveCurvature;

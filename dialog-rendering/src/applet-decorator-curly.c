@@ -102,7 +102,7 @@ void cd_decorator_draw_decorations_curly (cairo_t *pCairoContext, CairoDialog *p
 	double fHeight = pDialog->iBubbleHeight + pDialog->iTopMargin + pDialog->iBottomMargin - (fRadius + fLineWidth/2);
 	cairo_rel_line_to (pCairoContext,
 		0,
-		sens * fHeight * 2);
+		sens * fHeight);
 	
 	fDemiWidth = .5 * pDialog->container.iWidth - fLineWidth/2;
 	// Coin bas droit et pointe.
@@ -120,7 +120,7 @@ void cd_decorator_draw_decorations_curly (cairo_t *pCairoContext, CairoDialog *p
 	// On remonte par la gauche.
 	cairo_rel_line_to (pCairoContext,
 		0,
-		- sens * fHeight * 2);
+		- sens * fHeight);
 	// Coin haut gauche.
 	cairo_rel_curve_to (pCairoContext,
 		0, 0,

@@ -847,7 +847,7 @@ static void cd_update_input_shape (CairoDock *pDock)
 					rect.y = 0;
 					rect.width = xi;  // to first icon
 					rect.height = h;
-					g_print ("rect %d; %d (%s)\n", (int)rect.x, (int)rect.width, pIcon->cName);
+					cd_debug ("rect %d; %d (%s)", (int)rect.x, (int)rect.width, pIcon->cName);
 				}
 				else
 				{

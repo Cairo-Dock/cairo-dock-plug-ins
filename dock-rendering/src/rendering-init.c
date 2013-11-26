@@ -123,7 +123,7 @@ gdouble my_fPanelRatio;
 static gdouble s_fPreviousPanelRatio;
 gboolean my_bPanelPhysicalSeparator;
 
-CairoDockSpeparatorType my_iDrawSeparator3D = CAIRO_DOCK_NORMAL_SEPARATOR;
+CairoDockSeparatorType my_iDrawSeparator3D = CAIRO_DOCK_NORMAL_SEPARATOR;
 gdouble my_fSeparatorColor[4];
 
 

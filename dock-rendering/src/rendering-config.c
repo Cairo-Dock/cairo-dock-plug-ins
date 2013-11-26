@@ -109,7 +109,7 @@ extern gdouble my_fPanelInclination;
 extern gdouble my_fPanelRatio;
 extern gboolean my_bPanelPhysicalSeparator;
 
-extern CairoDockSpeparatorType my_iDrawSeparator3D;
+extern CairoDockSeparatorType my_iDrawSeparator3D;
 
 CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_RENAME_GROUP ("SimpleSlide", "Slide");
