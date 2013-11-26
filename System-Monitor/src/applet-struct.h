@@ -67,7 +67,7 @@ struct _AppletConfig {
 	gint iNbDisplayedProcesses;
 	gint iProcessCheckInterval;
 	gboolean bTopInPercent;
-	CairoDockLabelDescription *pTopTextDescription;
+	///CairoDockLabelDescription *pTopTextDescription;
 	
 	gchar *cSystemMonitorCommand;
 	gchar *cSystemMonitorClass;

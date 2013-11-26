@@ -82,7 +82,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.labelDescription.bOutlined = CD_CONFIG_GET_BOOLEAN ("Configuration", "text outlined");
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "text color", myConfig.labelDescription.fColorStart);
-	CD_CONFIG_GET_COLOR_RVB ("Configuration", "text color", myConfig.labelDescription.fColorStop);
 	myConfig.labelDescription.iMargin = 2;
 	CD_CONFIG_GET_COLOR ("Configuration", "bg color", myConfig.labelDescription.fBackgroundColor);
 	
@@ -96,9 +95,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.infoDescription.fColorStart[0] = 1;
 	myConfig.infoDescription.fColorStart[1] = 0;
 	myConfig.infoDescription.fColorStart[2] = 0;
-	myConfig.infoDescription.fColorStop[0] = 1;
-	myConfig.infoDescription.fColorStop[1] = 0;
-	myConfig.infoDescription.fColorStop[2] = 0;
 	myConfig.infoDescription.iStyle = PANGO_STYLE_NORMAL;
 	myConfig.infoDescription.fBackgroundColor[3] = 1;
 	myConfig.infoDescription.fBackgroundColor[3] = 0;

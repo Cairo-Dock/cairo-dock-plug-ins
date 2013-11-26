@@ -33,7 +33,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iTransitionDuration = CD_CONFIG_GET_INTEGER ("Configuration", "transition");
 	myConfig.fTextRatio = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "text ratio", 1.);
 	CD_CONFIG_GET_COLOR_RVB("Configuration", "text color", myConfig.textDescription.fColorStart);
-	CD_CONFIG_GET_COLOR_RVB("Configuration", "text color", myConfig.textDescription.fColorStop);
 	
 	gchar *cFontDescription = CD_CONFIG_GET_STRING ("Configuration", "font");
 	if (cFontDescription == NULL)
@@ -44,6 +43,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.textDescription.cFont = g_strdup (pango_font_description_get_family (fd));
 	myConfig.textDescription.iWeight = pango_font_description_get_weight (fd);
 	myConfig.textDescription.iStyle = pango_font_description_get_style (fd);
+	myConfig.textDescription.bNoDecorations = TRUE;
 	if (pango_font_description_get_size (fd) == 0)  // anciens parametres de font.
 	{
 		int iWeight = g_key_file_get_integer (pKeyFile, "Configuration", "text weight", NULL);
@@ -61,6 +61,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	g_free (cFontDescription);
 	
 	myConfig.textDescription.bOutlined = CD_CONFIG_GET_BOOLEAN ("Configuration", "outlined");
+	myConfig.textDescription.bNoDecorations = TRUE;
 	
 	myConfig.cBackgroundImage = CD_CONFIG_GET_STRING ("Configuration", "bg image");
 	myConfig.iNLetters = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nLetters", 3);

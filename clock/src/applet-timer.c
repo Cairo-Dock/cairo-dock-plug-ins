@@ -273,8 +273,7 @@ gboolean cd_clock_update_with_time (GldiModuleInstance *myApplet)
 			labelDescription.fColorStart[0] = myConfig.fDateColor[0];
 			labelDescription.fColorStart[1] = myConfig.fDateColor[1];
 			labelDescription.fColorStart[2] = myConfig.fDateColor[2];
-			memcpy (&labelDescription.fColorStop[0], &labelDescription.fColorStart[0], sizeof (labelDescription.fColorStop));
-			labelDescription.fBackgroundColor[3] = 0;
+			labelDescription.bNoDecorations = TRUE;
 			labelDescription.bOutlined = FALSE;
 			labelDescription.iMargin = 0;
 			cairo_surface_t *pDateSurface = cairo_dock_create_surface_from_text_full (s_cDateBuffer,

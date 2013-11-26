@@ -404,8 +404,8 @@ void cd_sysmonitor_start_top_dialog (GldiModuleInstance *myApplet)
 	gchar *cTitle = g_strdup_printf ("  [ Top %d ] :", myConfig.iNbDisplayedProcesses);
 	GtkWidget *pInteractiveWidget = _gtk_vbox_new (0);
 	gtk_widget_set_size_request (pInteractiveWidget,
-		myConfig.pTopTextDescription->iSize * 15,
-		myConfig.pTopTextDescription->iSize * myConfig.iNbDisplayedProcesses);  // approximatif au depart.
+		myDialogsParam.dialogTextDescription.iSize * 15,
+		myDialogsParam.dialogTextDescription.iSize * myConfig.iNbDisplayedProcesses);  // approximatif au depart.
 	
 	// build the dialog.
 	CairoDialogAttr attr;
@@ -426,7 +426,7 @@ void cd_sysmonitor_start_top_dialog (GldiModuleInstance *myApplet)
 	g_return_if_fail (myData.pTopDialog != NULL);
 	
 	// set a dialog renderer of type 'text'.
-	const gpointer pConfig[2] = {myConfig.pTopTextDescription, (const gpointer)D_("Loading")};
+	const gpointer pConfig[2] = {&myDialogsParam.dialogTextDescription, (const gpointer)D_("Loading")};
 	cairo_dock_set_dialog_renderer_by_name (myData.pTopDialog, "Text", (CairoDialogRendererConfigPtr) pConfig);
 	
 	// launch the 'top' task.
