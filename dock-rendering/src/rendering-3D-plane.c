@@ -51,7 +51,7 @@ static void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	//pDock->iMaxDockHeight = (int) ((1 + myIconsParam.fAmplitude) * pDock->iMaxIconHeight + myIconsParam.fReflectSize * pDock->container.fRatio) + myIconsParam.iLabelSize + myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin;
 	
 	_define_parameters (hi, h0, H, l, r, gamma, h, w, dw);
-	double h0max = (1 + myIconsParam.fAmplitude) * pDock->iMaxIconHeight * pDock->container.fRatio + MAX ((pDock->container.bIsHorizontal || !myIconsParam.bTextAlwaysHorizontal ? myIconsParam.iLabelSize : 0), myDocksParam.iFrameMargin + myDocksParam.iDockLineWidth);
+	double h0max = (1 + myIconsParam.fAmplitude) * pDock->iMaxIconHeight * pDock->container.fRatio + MAX ((pDock->container.bIsHorizontal ? myIconsParam.iLabelSize : 0), myDocksParam.iFrameMargin + myDocksParam.iDockLineWidth);
 	pDock->iMaxDockHeight = (int) (hi + h0max + l);
 	
 	// 1ere estimation.
@@ -126,7 +126,7 @@ static void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	
 	pDock->iActiveWidth = iMaxDockWidth;
 	pDock->iActiveHeight = pDock->iMaxDockHeight;
-	if (! pDock->container.bIsHorizontal && myIconsParam.bTextAlwaysHorizontal)
+	if (! pDock->container.bIsHorizontal)
 		pDock->iMaxDockHeight += 8*myIconsParam.iLabelSize;  // vertical dock, add some padding to draw the labels.	
 }
 

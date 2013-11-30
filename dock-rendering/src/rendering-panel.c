@@ -116,7 +116,7 @@ static void cd_compute_size (CairoDock *pDock)
 	pDock->iMaxDockWidth = pDock->fFlatDockWidth = pDock->iMinDockWidth = MAX (W, x);  // if > W, we'll come back here with a smaller ratio.
 	//g_print ("iMaxDockWidth : %d (%.2f)\n", pDock->iMaxDockWidth, pDock->container.fRatio);
 	
-	pDock->iMaxDockHeight = myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + hicon * pDock->container.fRatio + myDocksParam.iFrameMargin + myDocksParam.iDockLineWidth + (pDock->container.bIsHorizontal || !myIconsParam.bTextAlwaysHorizontal ? myIconsParam.iLabelSize : 0);
+	pDock->iMaxDockHeight = myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + hicon * pDock->container.fRatio + myDocksParam.iFrameMargin + myDocksParam.iDockLineWidth + (pDock->container.bIsHorizontal ? myIconsParam.iLabelSize : 0);
 	
 	pDock->iMaxDockHeight = MAX (pDock->iMaxDockHeight, pDock->iMaxIconHeight * (1 + myIconsParam.fAmplitude));  // au moins la taille du FBO.
 	//g_print ("panel view: pDock->iMaxIconHeight = %d\n", pDock->iMaxIconHeight);
@@ -126,7 +126,7 @@ static void cd_compute_size (CairoDock *pDock)
 	
 	pDock->iActiveWidth = pDock->iMaxDockWidth;
 	pDock->iActiveHeight = pDock->iMinDockHeight;
-	if (! pDock->container.bIsHorizontal && myIconsParam.bTextAlwaysHorizontal)
+	if (! pDock->container.bIsHorizontal)
 		pDock->iMaxDockHeight += 8*myIconsParam.iLabelSize;  // vertical dock, add some padding to draw the labels
 	
 	CDPanelData *pData = pDock->pRendererData;
