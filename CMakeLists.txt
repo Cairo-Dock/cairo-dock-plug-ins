@@ -644,7 +644,7 @@ add_subdirectory (desklet-rendering)
 ############# DIALOG_RENDERING #################
 message (STATUS "> Dialog Rendering:")
 set (GETTEXT_DIALOG_RENDERING ${GETTEXT_PLUGINS})
-set (VERSION_DIALOG_RENDERING "0.5.2")
+set (VERSION_DIALOG_RENDERING "0.6.0")
 set (PACKAGE_DIALOG_RENDERING "cd-dialog-rendering")
 set (dialog_renderingdatadir "${pluginsdatadir}/dialog-rendering")
 configure_file (${CMAKE_CURRENT_SOURCE_DIR}/dialog-rendering/data/dialog-rendering.conf.in ${CMAKE_CURRENT_BINARY_DIR}/dialog-rendering/data/dialog-rendering.conf)
