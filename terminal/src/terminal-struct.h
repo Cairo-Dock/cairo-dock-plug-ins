@@ -39,6 +39,7 @@ struct _AppletConfig {
 	gchar *shortcut;
 	gint iNbRows;
 	gint iNbColumns;
+	gchar *cTerminal;
 	} ;
 
 struct _AppletData {

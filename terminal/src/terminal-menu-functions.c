@@ -51,7 +51,10 @@ CD_APPLET_ON_CLICK_END
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 {
-	cairo_dock_launch_command (cairo_dock_get_default_terminal ());
+	if (myConfig.cTerminal != NULL)
+		cairo_dock_launch_command (myConfig.cTerminal);
+	else
+		cairo_dock_launch_command (cairo_dock_get_default_terminal ());
 }
 CD_APPLET_ON_MIDDLE_CLICK_END
 

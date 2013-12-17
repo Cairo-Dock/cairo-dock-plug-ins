@@ -61,6 +61,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.shortcut = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "shortkey", "<Ctrl>F1");
 	myConfig.iNbRows = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb lines", 25);
 	myConfig.iNbColumns = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb columns", 80);
+	myConfig.cTerminal = CD_CONFIG_GET_STRING ("Configuration", "terminal app");
 CD_APPLET_GET_CONFIG_END
 
 
@@ -68,6 +69,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.shortcut);
 	myConfig.shortcut = NULL;
 	g_free (myConfig.cCustomFont);
+	g_free (myConfig.cTerminal);
 CD_APPLET_RESET_CONFIG_END
 
 

@@ -146,3 +146,7 @@ nb columns = 80
 
 #k Shortkey to show the terminal:
 shortkey = <Control>F5
+
+#s[Default] Open this terminal when doing a middle click on the icon:
+#{The default terminal is defined by the COLORTERM environment variable}
+terminal app =
