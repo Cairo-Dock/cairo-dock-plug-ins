@@ -16,7 +16,7 @@ frame_lau =
 click launchers = 0
 
 #b Repeat these effects until the corresponding application opens?
-opening animation = false
+opening animation = true
 
 #F-[when clicking on an application]
 frame_appli =

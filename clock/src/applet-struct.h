@@ -146,7 +146,6 @@ struct _AppletConfig {
 	gboolean bOldStyle;
 	gboolean b24Mode;
 	CDClockTextLayout iPreferedTextLayout;
-	double fTextColor[4];
 	double fOutlineColor[4];
 	gint iOutlineWidth;
 	double fDateColor[4];
@@ -154,9 +153,10 @@ struct _AppletConfig {
 	gchar *cNumericBackgroundImage;
 	GPtrArray *pAlarms;
 	gchar *cSetupTimeCommand;
-	gchar *cFont;
+	/*gchar *cFont;
+	double fTextColor[4];
 	gint iWeight;
-	gint iStyle;
+	gint iStyle;*/
 	gboolean bOutlined;
 	gdouble fTextRatio;
 	gchar *cLocation;
@@ -165,6 +165,7 @@ struct _AppletConfig {
 	gboolean bSetName;
 	gboolean bNormalDate;
 	gchar *cTaskMgrName;
+	GldiTextDescription textDescription;
 	} ;
 
 struct _AppletData {

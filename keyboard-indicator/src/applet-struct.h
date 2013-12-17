@@ -27,7 +27,7 @@ struct _AppletConfig {
 	gboolean bShowKbdIndicator;
 	gchar *cBackgroundImage;
 	gdouble fTextRatio;
-	CairoDockLabelDescription textDescription;
+	GldiTextDescription textDescription;
 	gint iTransitionDuration;
 	gchar *cShortkey;
 	gchar *cEmblemNumLock;

@@ -69,17 +69,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.fFontSizeRatio = CD_CONFIG_GET_DOUBLE ("Configuration", "font size");
 	myConfig.bTextOnTop = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "text on top", TRUE);
 	
-	gchar *cFontDescription = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "font", "Monospace 16");
-	if (cFontDescription == NULL)
-		cFontDescription = g_strdup ("Monospace 16");  // sinon fd est NULL.
-	
-	PangoFontDescription *fd = pango_font_description_from_string (cFontDescription);
-	myConfig.labelDescription.cFont = g_strdup (pango_font_description_get_family (fd));
-	myConfig.labelDescription.iWeight = pango_font_description_get_weight (fd);
-	myConfig.labelDescription.iStyle = pango_font_description_get_style (fd);
-	pango_font_description_free (fd);
-	g_free (cFontDescription);
-	
+	myConfig.labelDescription.cFont = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "font", "Monospace 16");
 	myConfig.labelDescription.bOutlined = CD_CONFIG_GET_BOOLEAN ("Configuration", "text outlined");
 	CD_CONFIG_GET_COLOR_RVB ("Configuration", "text color", myConfig.labelDescription.fColorStart);
 	myConfig.labelDescription.iMargin = 2;
@@ -88,14 +78,12 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iNbResultMax = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb results", 50);
 	myConfig.iNbLinesInListing = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb lines", 10);
 	
-	myConfig.infoDescription.cFont = g_strdup ("Sans");
+	myConfig.infoDescription.cFont = g_strdup ("Sans 14");
 	myConfig.infoDescription.iSize = 14;
-	myConfig.infoDescription.iWeight = cairo_dock_get_pango_weight_from_1_9 (5);
 	myConfig.infoDescription.bOutlined = FALSE;
 	myConfig.infoDescription.fColorStart[0] = 1;
 	myConfig.infoDescription.fColorStart[1] = 0;
 	myConfig.infoDescription.fColorStart[2] = 0;
-	myConfig.infoDescription.iStyle = PANGO_STYLE_NORMAL;
 	myConfig.infoDescription.fBackgroundColor[3] = 1;
 	myConfig.infoDescription.fBackgroundColor[3] = 0;
 	myConfig.infoDescription.fBackgroundColor[3] = 0;

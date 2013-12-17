@@ -27,7 +27,7 @@
 struct _AppletConfig {
 	gdouble fFontSizeRatio;  // 1 <=> taille du dock
 	gboolean bTextOnTop;
-	CairoDockLabelDescription labelDescription;
+	GldiTextDescription labelDescription;
 	gchar *cShortkeySearch;
 	gchar *cIconAnimation;
 	gdouble pFrameColor[4];
@@ -35,7 +35,7 @@ struct _AppletConfig {
 	gint iAppearanceDuration;
 	gint iCloseDuration;
 	gint iNbResultMax;
-	CairoDockLabelDescription infoDescription;
+	GldiTextDescription infoDescription;
 	gint iNbLinesInListing;
 	gchar **cPreferredApplis;
 	gboolean bUseFiles;

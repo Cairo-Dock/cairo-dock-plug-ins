@@ -264,18 +264,13 @@ gboolean cd_clock_update_with_time (GldiModuleInstance *myApplet)
 				_cairo_dock_delete_texture (myData.iDateTexture);
 			
 			double fScale = (double) iWidth / (double) myData.DimensionData.width;
-			CairoDockLabelDescription labelDescription;
-			memset (&labelDescription, 0, sizeof (CairoDockLabelDescription));
-			labelDescription.iSize = 10;
-			labelDescription.cFont = (gchar*)"Sans";  // on peut caster car on ne liberera rien.
-			labelDescription.iWeight = cairo_dock_get_pango_weight_from_1_9 (5);
-			labelDescription.iStyle = PANGO_STYLE_NORMAL;
+			GldiTextDescription labelDescription;
+			memset (&labelDescription, 0, sizeof (GldiTextDescription));
+			gldi_text_description_set_font (&labelDescription, (gchar*)"Sans 8");  // casted and then set to null
 			labelDescription.fColorStart[0] = myConfig.fDateColor[0];
 			labelDescription.fColorStart[1] = myConfig.fDateColor[1];
 			labelDescription.fColorStart[2] = myConfig.fDateColor[2];
 			labelDescription.bNoDecorations = TRUE;
-			labelDescription.bOutlined = FALSE;
-			labelDescription.iMargin = 0;
 			cairo_surface_t *pDateSurface = cairo_dock_create_surface_from_text_full (s_cDateBuffer,
 				&labelDescription,
 				fScale,
@@ -284,6 +279,8 @@ gboolean cd_clock_update_with_time (GldiModuleInstance *myApplet)
 			//g_print ("date : %dx%d\n", myData.iDateWidth, myData.iDateHeight);
 			myData.iDateTexture = cairo_dock_create_texture_from_surface (pDateSurface);
 			cairo_surface_destroy (pDateSurface);
+			labelDescription.cFont = NULL;
+			gldi_text_description_reset (&labelDescription);
 		}
 	}
 	if (bNewDate && myConfig.iShowDate == CAIRO_DOCK_INFO_ON_LABEL)

@@ -588,13 +588,17 @@ void cd_switcher_build_windows_list (GtkWidget *pMenu)
 				else
 					g_string_printf (sDesktopName, "<b>%s %d</b>", D_("Desktop"), k+1);
 			}  // les noms des bureaux : _NET_DESKTOP_NAMES, UTF8_STRING
-			pMenuItem = gtk_menu_item_new ();
+			/**pMenuItem = gtk_menu_item_new ();
 			GtkWidget *pLabel = gtk_label_new (sDesktopName->str);
 			gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
 			gtk_misc_set_alignment (GTK_MISC (pLabel), .5, .5);
 			gtk_container_add (GTK_CONTAINER (pMenuItem), pLabel);
 			gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);
-			g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK (_show_desktop), GINT_TO_POINTER (k));
+			g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK (_show_desktop), GINT_TO_POINTER (k));*/
+			pMenuItem = gldi_menu_add_item (pMenu, sDesktopName->str, NULL, G_CALLBACK (_show_desktop), GINT_TO_POINTER (k));
+			GtkWidget *pLabel = gtk_bin_get_child (GTK_BIN(pMenuItem));
+			gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
+			gtk_misc_set_alignment (GTK_MISC (pLabel), .5, .5);
 			
 			pMenuItem = gtk_separator_menu_item_new ();
 			gtk_menu_shell_append(GTK_MENU_SHELL (pMenu), pMenuItem);

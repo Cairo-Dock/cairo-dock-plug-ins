@@ -357,12 +357,8 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 	cairo_restore (pCairoContext);
 	
 	PangoLayout *pLayout = pango_cairo_create_layout (pCairoContext);
-	PangoFontDescription *pDesc = pango_font_description_new ();
+	PangoFontDescription *pDesc = gldi_text_description_get_description (&myDialogsParam.dialogTextDescription);
 	
-	pango_font_description_set_absolute_size (pDesc, myDialogsParam.dialogTextDescription.iSize * PANGO_SCALE);
-	pango_font_description_set_family_static (pDesc, myDialogsParam.dialogTextDescription.cFont);
-	pango_font_description_set_weight (pDesc, PANGO_WEIGHT_NORMAL);
-	pango_font_description_set_style (pDesc, myIconsParam.iconTextDescription.iStyle);
 	pango_layout_set_font_description (pLayout, pDesc);
 	
 	// on dessine les entrees.
@@ -463,6 +459,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 			if (h >= h_)
 				alpha *= 1. - (h - h_ + dh) / (H - h_ + dh);
 			cairo_set_source_rgba (pCairoContext, 0., 0., 0., alpha);
+			int iWeight = pango_font_description_get_weight (pDesc);
 			if (pEntry->bMainEntry)
 			{
 				pango_font_description_set_weight (pDesc, PANGO_WEIGHT_HEAVY);
@@ -472,7 +469,7 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 			pango_cairo_show_layout (pCairoContext, pLayout);
 			if (pEntry->bMainEntry)
 			{
-				pango_font_description_set_weight (pDesc, PANGO_WEIGHT_MEDIUM);
+				pango_font_description_set_weight (pDesc, iWeight);
 				pango_layout_set_font_description (pLayout, pDesc);
 			}
 			
@@ -558,7 +555,6 @@ gboolean cd_do_render_listing_notification (gpointer pUserData, CDListing *pList
 	pango_layout_set_text (pLayout, D_("(F7) Sources"), -1);
 	pango_cairo_show_layout (pCairoContext, pLayout);
 	
-	pango_font_description_free (pDesc);
 	g_object_unref (pLayout);
 	return GLDI_NOTIFICATION_LET_PASS;
 }

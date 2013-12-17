@@ -34,7 +34,7 @@ void cd_do_numberize_icons (CairoDock *pDock)
 	gchar number[2];
 	number[1] = '\0';
 	
-	CairoDockLabelDescription *pLabelDesc = cairo_dock_duplicate_label_description (&myIconsParam.quickInfoTextDescription);
+	GldiTextDescription *pLabelDesc = gldi_text_description_duplicate (&myIconsParam.quickInfoTextDescription);
 	int iSize = pLabelDesc->iSize;
 	cairo_surface_t *pSurface;
 	Icon *pIcon;
@@ -58,7 +58,7 @@ void cd_do_numberize_icons (CairoDock *pDock)
 			n ++;
 		}
 	}
-	cairo_dock_free_label_description (pLabelDesc);
+	gldi_text_description_free (pLabelDesc);
 }
 
 void cd_do_remove_icons_number (CairoDock *pDock)

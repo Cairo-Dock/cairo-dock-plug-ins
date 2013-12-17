@@ -60,15 +60,12 @@ void cd_clock_draw_text (GldiModuleInstance *myApplet, int iWidth, int iHeight, 
 		cairo_set_source_surface (myDrawContext, myData.pNumericBgSurface, 0., 0.);
 		cairo_paint (myDrawContext);
 	}
-	cairo_set_source_rgba (myDrawContext, myConfig.fTextColor[0], myConfig.fTextColor[1], myConfig.fTextColor[2], myConfig.fTextColor[3]);
+	cairo_set_source_rgba (myDrawContext, myConfig.textDescription.fColorStart[0], myConfig.textDescription.fColorStart[1], myConfig.textDescription.fColorStart[2], myConfig.textDescription.fColorStart[3]);
 	
 	//\______________ On defini le texte a dessiner.
 	// layout
-	PangoFontDescription *pDesc = pango_font_description_new ();
+	PangoFontDescription *pDesc = myConfig.textDescription.fd;
 	pango_font_description_set_absolute_size (pDesc, myIcon->fHeight * 72 / myData.fDpi * PANGO_SCALE); // pixel converted to point, converted to pango dimension.
-	pango_font_description_set_family_static (pDesc, myConfig.cFont);
-	pango_font_description_set_weight (pDesc, myConfig.iWeight);
-	pango_font_description_set_style (pDesc, myConfig.iStyle);
 	
 	PangoLayout *pLayout = pango_cairo_create_layout (myDrawContext);
 	pango_layout_set_font_description (pLayout, pDesc);
@@ -231,7 +228,6 @@ void cd_clock_draw_text (GldiModuleInstance *myApplet, int iWidth, int iHeight, 
 	}
 	cairo_restore (myDrawContext);
 	g_object_unref (pLayout);
-	pango_font_description_free (pDesc);
 	
 	CD_APPLET_FINISH_DRAWING_MY_ICON_CAIRO;
 }

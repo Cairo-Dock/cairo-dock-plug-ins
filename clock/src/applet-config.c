@@ -74,47 +74,22 @@ CD_APPLET_GET_CONFIG_BEGIN
 	}
 	else
 	{
-		double colour[4] = {0.85, 0.85, 0.85, 1.};
-		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "text color", myConfig.fTextColor, colour);
-		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "outline color", myConfig.fOutlineColor, colour);
-		myConfig.iOutlineWidth = CD_CONFIG_GET_INTEGER ("Configuration", "outline width");
-		
 		gboolean bCustomFont = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "custom font", FALSE);  // false by default
 		if (bCustomFont)
 		{
-			gchar *cFontDescription = CD_CONFIG_GET_STRING ("Configuration", "font");
-			if (cFontDescription == NULL)
-			{
-				cFontDescription = g_strdup ("Sans");  // sinon fd est NULL. On ne precise pas la taille ici pour pouvoir intercepter ce cas.
-			}
-			PangoFontDescription *fd = pango_font_description_from_string (cFontDescription);
-			
-			myConfig.cFont = g_strdup (pango_font_description_get_family (fd));
-			myConfig.iWeight = pango_font_description_get_weight (fd);
-			myConfig.iStyle = pango_font_description_get_style (fd);
-			
-			if (pango_font_description_get_size (fd) == 0)  // anciens parametres de font.
-			{
-				int iWeight = g_key_file_get_integer (pKeyFile, "Configuration", "weight", NULL);
-				myConfig.iWeight = cairo_dock_get_pango_weight_from_1_9 (iWeight);
-				myConfig.iStyle = PANGO_STYLE_NORMAL;
-
-				pango_font_description_set_size (fd, 16 * PANGO_SCALE);
-				pango_font_description_set_weight (fd, myConfig.iWeight);
-				pango_font_description_set_style (fd, myConfig.iStyle);
-				g_free (cFontDescription);
-				cFontDescription = pango_font_description_to_string (fd);
-				g_key_file_set_string (pKeyFile, "Configuration", "font", cFontDescription);
-			}
-			pango_font_description_free (fd);
-			g_free (cFontDescription);
+			gchar *cFont = CD_CONFIG_GET_STRING ("Configuration", "font");
+			gldi_text_description_set_font (&myConfig.textDescription, cFont);
 		}
 		else  // use the same font as the labels
 		{
-			myConfig.cFont = g_strdup (myIconsParam.iconTextDescription.cFont);
-			myConfig.iWeight = PANGO_WEIGHT_HEAVY;  // force to bold, it's much more readable.
-			myConfig.iStyle = myIconsParam.iconTextDescription.iStyle;
+			gldi_text_description_copy (&myConfig.textDescription, &myIconsParam.iconTextDescription);
 		}
+		pango_font_description_set_weight (myConfig.textDescription.fd, PANGO_WEIGHT_HEAVY);
+		
+		double colour[4] = {0.85, 0.85, 0.85, 1.};
+		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "text color", myConfig.textDescription.fColorStart, colour);
+		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "outline color", myConfig.fOutlineColor, colour);
+		myConfig.iOutlineWidth = CD_CONFIG_GET_INTEGER ("Configuration", "outline width");
 		
 		myConfig.cNumericBackgroundImage = CD_CONFIG_GET_STRING ("Configuration", "numeric bg");
 		myConfig.fTextRatio = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "text ratio", 1.);
@@ -180,7 +155,7 @@ CD_APPLET_GET_CONFIG_END
 
 CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cThemePath);
-	g_free (myConfig.cFont);
+	gldi_text_description_reset (&myConfig.textDescription);
 	g_free (myConfig.cLocation);
 	g_free (myConfig.cDigital);
 	g_free (myConfig.cNumericBackgroundImage);
