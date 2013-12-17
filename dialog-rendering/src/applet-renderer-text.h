@@ -27,7 +27,7 @@
 
 
 typedef struct {
-	CairoDockLabelDescription textDescription;
+	GldiTextDescription textDescription;
 	cairo_surface_t *pTextSurface;
 	gdouble fImageWidth;
 	gdouble fImageHeight;

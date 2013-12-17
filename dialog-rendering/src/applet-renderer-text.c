@@ -32,7 +32,7 @@ CDTextParameters *rendering_configure_text (CairoDialog *pDialog, gpointer *pCon
 	gchar *cInitialText = NULL;
 	if (pConfig != NULL)
 	{
-		cairo_dock_copy_label_description (&pText->textDescription, (CairoDockLabelDescription *) pConfig[0]);
+		gldi_text_description_copy (&pText->textDescription, (GldiTextDescription *) pConfig[0]);
 		cInitialText = (gchar *) pConfig[1];
 	}
 	

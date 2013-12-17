@@ -138,16 +138,25 @@ void cd_decorator_draw_decorations_comics (cairo_t *pCairoContext, CairoDialog *
 	if (fRadius < 1)
 		cairo_close_path (pCairoContext);
 	
-	gldi_style_colors_set_bg_color (pCairoContext);
+	if (myDialogsParam.bUseDefaultColors)
+		gldi_style_colors_set_bg_color (pCairoContext);
+	else
+		cairo_set_source_rgba (pCairoContext, myDialogsParam.fBgColor[0], myDialogsParam.fBgColor[1], myDialogsParam.fBgColor[2], myDialogsParam.fBgColor[3]);
 	///cairo_fill_preserve (pCairoContext);
 	cairo_save (pCairoContext);
 	cairo_clip_preserve (pCairoContext);
 	gldi_style_colors_paint_bg_color (pCairoContext, pDialog->container.iWidth);
 	cairo_restore (pCairoContext);
-
-	cairo_set_line_width (pCairoContext, fLineWidth);
-	gldi_style_colors_set_line_color (pCairoContext);
-	cairo_stroke (pCairoContext);
+	
+	if (fLineWidth != 0)
+	{
+		cairo_set_line_width (pCairoContext, fLineWidth);
+		if (myDialogsParam.bUseDefaultColors)
+			gldi_style_colors_set_line_color (pCairoContext);
+		else
+			cairo_set_source_rgba (pCairoContext, myDialogsParam.fLineColor[0], myDialogsParam.fLineColor[1], myDialogsParam.fLineColor[2], myDialogsParam.fLineColor[3]);
+		cairo_stroke (pCairoContext);
+	}
 }
 
 
@@ -359,14 +368,20 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	// draw outline
 	if (fLineWidth != 0)  // draw the outline with same color as bg, but opaque
 	{
-		gldi_style_colors_set_line_color (pCairoContext);
+		if (myDialogsParam.bUseDefaultColors)
+			gldi_style_colors_set_line_color (pCairoContext);
+		else
+			cairo_set_source_rgba (pCairoContext, myDialogsParam.fLineColor[0], myDialogsParam.fLineColor[1], myDialogsParam.fLineColor[2], myDialogsParam.fLineColor[3]);
 		cairo_stroke_preserve (pCairoContext);
 	}
 	
 	cairo_clip (pCairoContext);  // clip
 	
 	// draw the background
-	gldi_style_colors_set_bg_color (pCairoContext);
+	if (myDialogsParam.bUseDefaultColors)
+		gldi_style_colors_set_bg_color (pCairoContext);
+	else
+		cairo_set_source_rgba (pCairoContext, myDialogsParam.fBgColor[0], myDialogsParam.fBgColor[1], myDialogsParam.fBgColor[2], myDialogsParam.fBgColor[3]);
 	
 	gldi_style_colors_paint_bg_color (pCairoContext, alloc.width);
 }
