@@ -26,7 +26,7 @@
 
 #define CD_ARROW_HEIGHT 20
 #define CD_ALIGN 0.33
-#define CD_RADIUS (myDialogsParam.iCornerRadius * 1.5)
+#define CD_RADIUS (myDialogsParam.bUseDefaultColors ? myStyleParam.iCornerRadius : myDialogsParam.iCornerRadius) * 1.5
 
 void cd_decorator_set_frame_size_modern (CairoDialog *pDialog)
 {

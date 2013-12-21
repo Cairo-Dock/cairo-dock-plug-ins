@@ -30,7 +30,7 @@
 #define _CAIRO_DIALOG_COMICS_MARGIN 4
 #define CD_ARROW_HEIGHT 16
 #define CD_ALIGN 0.
-#define CD_RADIUS (myDialogsParam.iCornerRadius * 1.5)
+#define CD_RADIUS (myDialogsParam.bUseDefaultColors ? myStyleParam.iCornerRadius : myDialogsParam.iCornerRadius) * 1.5
 
 void cd_decorator_set_frame_size_comics (CairoDialog *pDialog)
 {
@@ -365,6 +365,16 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 		fRadius,
 		G_PI, -G_PI/2);
 	
+	// draw the background
+	if (myDialogsParam.bUseDefaultColors)
+		gldi_style_colors_set_bg_color (pCairoContext);
+	else
+		cairo_set_source_rgba (pCairoContext, myDialogsParam.fBgColor[0], myDialogsParam.fBgColor[1], myDialogsParam.fBgColor[2], myDialogsParam.fBgColor[3]);
+	cairo_save (pCairoContext);
+	cairo_clip_preserve (pCairoContext);
+	gldi_style_colors_paint_bg_color (pCairoContext, alloc.width);
+	cairo_restore (pCairoContext);
+	
 	// draw outline
 	if (fLineWidth != 0)  // draw the outline with same color as bg, but opaque
 	{
@@ -376,14 +386,6 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	}
 	
 	cairo_clip (pCairoContext);  // clip
-	
-	// draw the background
-	if (myDialogsParam.bUseDefaultColors)
-		gldi_style_colors_set_bg_color (pCairoContext);
-	else
-		cairo_set_source_rgba (pCairoContext, myDialogsParam.fBgColor[0], myDialogsParam.fBgColor[1], myDialogsParam.fBgColor[2], myDialogsParam.fBgColor[3]);
-	
-	gldi_style_colors_paint_bg_color (pCairoContext, alloc.width);
 }
 
 static void _setup_menu (GtkWidget *pMenu)

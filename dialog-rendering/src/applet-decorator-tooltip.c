@@ -28,7 +28,7 @@
 #define _CAIRO_DIALOG_TOOLTIP_MARGIN 4
 #define CD_ARROW_HEIGHT 6
 #define CD_ALIGN 0.5
-#define CD_RADIUS myDialogsParam.iCornerRadius
+#define CD_RADIUS (myDialogsParam.bUseDefaultColors ? myStyleParam.iCornerRadius : myDialogsParam.iCornerRadius)
 
 /*
 ic______^___  arrow height + margin
@@ -232,10 +232,10 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	if (iMarginPosition == 0)  // bottom arrow
 	{
 		dx = MIN (w - fRadius - 2*aw, MAX (fRadius, iAimedX - x - aw));
-		cairo_line_to (pCairoContext, dx + 2*aw, fFrameHeight);
-		cairo_line_to (pCairoContext, MIN (w, MAX (0, iAimedX - x)), fFrameHeight + _ah);
-		cairo_line_to (pCairoContext, dx, fFrameHeight);
-		cairo_line_to (pCairoContext, fDockOffsetX, fFrameHeight);
+		cairo_line_to (pCairoContext, dx + 2*aw, fDockOffsetY + fFrameHeight);
+		cairo_line_to (pCairoContext, MIN (w, MAX (0, iAimedX - x)), fDockOffsetY + fFrameHeight + _ah);
+		cairo_line_to (pCairoContext, dx, fDockOffsetY + fFrameHeight);
+		cairo_line_to (pCairoContext, fDockOffsetX, fDockOffsetY + fFrameHeight);
 	}
 	else
 		cairo_rel_line_to (pCairoContext, - fFrameWidth, 0);
@@ -264,6 +264,16 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 		fRadius,
 		G_PI, -G_PI/2);
 	
+	// draw the background
+	if (myDialogsParam.bUseDefaultColors)
+		gldi_style_colors_set_bg_color (pCairoContext);
+	else
+		cairo_set_source_rgba (pCairoContext, myDialogsParam.fBgColor[0], myDialogsParam.fBgColor[1], myDialogsParam.fBgColor[2], myDialogsParam.fBgColor[3]);
+	cairo_save (pCairoContext);
+	cairo_clip_preserve (pCairoContext);
+	gldi_style_colors_paint_bg_color (pCairoContext, alloc.width);
+	cairo_restore (pCairoContext);
+	
 	// draw outline
 	if (fLineWidth != 0)  // draw the outline with same color as bg, but opaque
 	{
@@ -276,14 +286,6 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	}
 	
 	cairo_clip (pCairoContext);  // clip
-	
-	// draw the background
-	if (myDialogsParam.bUseDefaultColors)
-		gldi_style_colors_set_bg_color (pCairoContext);
-	else
-		cairo_set_source_rgba (pCairoContext, myDialogsParam.fBgColor[0], myDialogsParam.fBgColor[1], myDialogsParam.fBgColor[2], myDialogsParam.fBgColor[3]);
-	
-	gldi_style_colors_paint_bg_color (pCairoContext, alloc.width);
 }
 
 static void _setup_menu (GtkWidget *pMenu)
