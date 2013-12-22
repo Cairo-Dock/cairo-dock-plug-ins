@@ -160,6 +160,23 @@ static void _cd_disconnect_from_resuming_signal (GldiModuleInstance *myApplet)
 	}
 }
 
+static gboolean on_style_changed (GldiModuleInstance *myApplet)
+{
+	g_print ("%s (%d)\n", __func__, myIconsParam.iconTextDescription.bUseDefaultColors);
+	
+	if (! myConfig.bOldStyle)  // numeric mode
+	{
+		if (myConfig.textDescription.cFont == NULL)  // default font -> reload our text description
+		{
+			gldi_text_description_set_font (&myConfig.textDescription, NULL);
+			pango_font_description_set_weight (myConfig.textDescription.fd, PANGO_WEIGHT_HEAVY);
+		}
+		cd_clock_update_with_time (myApplet);  // redraw in case the font or the text color has changed
+	}
+	
+	return GLDI_NOTIFICATION_LET_PASS;
+}
+
 CD_APPLET_INIT_BEGIN
 	if (myDesklet)
 	{
@@ -194,6 +211,10 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_REGISTER_FOR_UPDATE_ICON_SLOW_EVENT;
 		cairo_dock_launch_animation (myContainer);
 	}
+	gldi_object_register_notification (&myStyleMgr,
+		NOTIFICATION_STYLE_CHANGED,
+		(GldiNotificationFunc) on_style_changed,
+		GLDI_RUN_AFTER, myApplet);
 	
 	//\_______________ On enregistre les backends de gestion des taches.
 	cd_clock_register_backend_default (myApplet);

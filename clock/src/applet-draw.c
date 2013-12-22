@@ -60,7 +60,10 @@ void cd_clock_draw_text (GldiModuleInstance *myApplet, int iWidth, int iHeight, 
 		cairo_set_source_surface (myDrawContext, myData.pNumericBgSurface, 0., 0.);
 		cairo_paint (myDrawContext);
 	}
-	cairo_set_source_rgba (myDrawContext, myConfig.textDescription.fColorStart[0], myConfig.textDescription.fColorStart[1], myConfig.textDescription.fColorStart[2], myConfig.textDescription.fColorStart[3]);
+	if (myConfig.bUseDefaultColors)
+		gldi_style_colors_set_text_color (myDrawContext);
+	else
+		cairo_set_source_rgba (myDrawContext, myConfig.textDescription.fColorStart[0], myConfig.textDescription.fColorStart[1], myConfig.textDescription.fColorStart[2], myConfig.textDescription.fColorStart[3]);
 	
 	//\______________ On defini le texte a dessiner.
 	// layout

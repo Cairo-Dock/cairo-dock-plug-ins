@@ -86,10 +86,15 @@ CD_APPLET_GET_CONFIG_BEGIN
 		}
 		pango_font_description_set_weight (myConfig.textDescription.fd, PANGO_WEIGHT_HEAVY);
 		
-		double colour[4] = {0.85, 0.85, 0.85, 1.};
-		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "text color", myConfig.textDescription.fColorStart, colour);
-		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "outline color", myConfig.fOutlineColor, colour);
-		myConfig.iOutlineWidth = CD_CONFIG_GET_INTEGER ("Configuration", "outline width");
+		myConfig.bUseDefaultColors = (CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "numeric style", 1) == 1);
+		
+		if (myConfig.bUseDefaultColors == 1)  // custom
+		{
+			double colour[4] = {0.85, 0.85, 0.85, 1.};
+			CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "text color", myConfig.textDescription.fColorStart, colour);
+			CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "outline color", myConfig.fOutlineColor, colour);
+			myConfig.iOutlineWidth = CD_CONFIG_GET_INTEGER ("Configuration", "outline width");
+		}  // else, no outline and keep default colors
 		
 		myConfig.cNumericBackgroundImage = CD_CONFIG_GET_STRING ("Configuration", "numeric bg");
 		myConfig.fTextRatio = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "text ratio", 1.);
