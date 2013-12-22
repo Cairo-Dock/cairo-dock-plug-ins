@@ -34,11 +34,18 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.fTextRatio = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "text ratio", 1.);
 	CD_CONFIG_GET_COLOR_RVB("Configuration", "text color", myConfig.textDescription.fColorStart);
 	
-	gchar *cFont = CD_CONFIG_GET_STRING ("Configuration", "font");
-	gldi_text_description_set_font (&myConfig.textDescription, cFont);
+	gboolean bCustomFont = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "custom font", FALSE);  // false by default
+	if (bCustomFont)
+	{
+		gchar *cFont = CD_CONFIG_GET_STRING ("Configuration", "font");
+		gldi_text_description_set_font (&myConfig.textDescription, cFont);
+	}
+	else  // use the same font as the labels
+	{
+		gldi_text_description_copy (&myConfig.textDescription, &myIconsParam.iconTextDescription);
+	}
 	myConfig.textDescription.bNoDecorations = TRUE;
 	myConfig.textDescription.bOutlined = CD_CONFIG_GET_BOOLEAN ("Configuration", "outlined");
-	myConfig.textDescription.bNoDecorations = TRUE;
 	
 	myConfig.cBackgroundImage = CD_CONFIG_GET_STRING ("Configuration", "bg image");
 	myConfig.iNLetters = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nLetters", 3);
