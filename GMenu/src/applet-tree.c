@@ -70,18 +70,6 @@ static void _on_drag_data_get (GtkWidget *widget,
  /// MENU FROM TREE ///
 //////////////////////
 
-/* Not really needed with libgnome-menu-3
-static void _load_one_icon (GtkWidget *image)
-{
-	// this actually loads the pixbuf of the gicon
-	GtkRequisition requisition;
-	#if (GTK_MAJOR_VERSION < 3)
-	gtk_widget_size_request (image, &requisition);
-	#else
-	gtk_widget_get_preferred_size (image, &requisition, NULL);
-	#endif
-}*/
-
 static void add_image_to_menu_item (GtkWidget *image_menu_item,
 	GIcon *pIcon,
 	const char *fallback_image_filename)
@@ -99,41 +87,6 @@ static void add_image_to_menu_item (GtkWidget *image_menu_item,
 	gldi_menu_item_set_image (image_menu_item, image);
 	gtk_widget_show (image);
 }
-
-/**static gchar * menu_escape_underscores_and_prepend (const char *text)
-{
-	GString    *escaped_text;
-	const char *src;
-	int         inserted;
-	
-	if (!text)
-		return g_strdup (text);
-
-	escaped_text = g_string_sized_new (strlen (text) + 1);
-	g_string_printf (escaped_text, "_%s", text);
-
-	src = text;
-	inserted = 1;
-
-	while (*src) {
-		gunichar c;
-
-		c = g_utf8_get_char (src);
-
-		if (c == (gunichar)-1) {
-			g_warning ("Invalid input string for underscore escaping");
-			return g_strdup (text);
-		} else if (c == '_') {
-			g_string_insert_c (escaped_text,
-					   src - text + inserted, '_');
-			inserted++;
-		}
-
-		src = g_utf8_next_char (src);
-	}
-
-	return g_string_free (escaped_text, FALSE);
-}*/
 
 static GtkWidget * add_menu_separator (GtkWidget *menu)
 {
@@ -163,6 +116,7 @@ static GtkWidget * create_submenu_entry (GtkWidget *menu,
 	return menuitem;
 }
 
+// return TRUE if the submenu is not empty
 static gboolean create_submenu (GtkWidget *menu,
 	GMenuTreeDirectory *directory,
 	GMenuTreeDirectory *alias_directory)
@@ -193,6 +147,7 @@ static gboolean create_submenu (GtkWidget *menu,
 	return TRUE;
 }
 
+// return TRUE if the header is not empty
 static gboolean create_header (GtkWidget *menu,
 	GMenuTreeHeader *header)
 {
@@ -203,6 +158,7 @@ static gboolean create_header (GtkWidget *menu,
 	return entry != NULL;
 }
 
+// return TRUE if the entry is added
 static gboolean create_menuitem (GtkWidget *menu,
 	GMenuTreeEntry *entry,
 	GMenuTreeDirectory *alias_directory)
@@ -270,10 +226,12 @@ static gboolean create_menuitem (GtkWidget *menu,
 	g_object_set_data_full (G_OBJECT (menuitem),
 		"cd-entry",
 		gmenu_tree_item_ref (entry),
-		(GDestroyNotify) gmenu_tree_item_unref);  // stick the entry on the menu-item, which allows us to ref it and be sure to unref when the menu is destroyed.
+		(GDestroyNotify) gmenu_tree_item_unref);
+	// stick the entry on the menu-item, which allows us to ref it and be sure to unref when the menu is destroyed.
 	return TRUE;
 }
 
+// return TRUE if the menu is not empty
 static gboolean create_menuitem_from_alias (GtkWidget *menu,
 	GMenuTreeAlias *alias)
 {
@@ -308,6 +266,7 @@ static gboolean create_menuitem_from_alias (GtkWidget *menu,
 	return bHasItem;
 }
 
+// return TRUE if the menu is not empty
 static gboolean cd_populate_menu_from_directory (GtkWidget *menu, GMenuTreeDirectory *directory)
 {
 	gint i = 0;
@@ -458,8 +417,10 @@ static gchar * cd_find_menu_file (const gchar *cMenuFile)
 GMenuTree *cd_load_tree_from_file (const gchar *cMenuFile)
 {
 	gchar *cMenuFileName = cd_find_menu_file (cMenuFile);
-	GMenuTree *tree = gmenu_tree_new (cMenuFileName, GMENU_TREE_FLAGS_INCLUDE_NODISPLAY | GMENU_TREE_FLAGS_INCLUDE_EXCLUDED);  /// GMENU_TREE_FLAGS_INCLUDE_NODISPLAY
-	if (! gmenu_tree_load_sync (tree, NULL))  // this does all the heavy work of parsing the .menu and each desktop files.
+	GMenuTree *tree = gmenu_tree_new (cMenuFileName,
+		GMENU_TREE_FLAGS_INCLUDE_NODISPLAY| GMENU_TREE_FLAGS_INCLUDE_EXCLUDED);
+	// this does all the heavy work of parsing the .menu and each desktop files:
+	if (! gmenu_tree_load_sync (tree, NULL))
 	{
 		g_object_unref (tree);
 		tree = NULL;
