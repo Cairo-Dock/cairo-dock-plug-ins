@@ -27,35 +27,6 @@
 static void cd_menu_append_poweroff_to_menu (GtkWidget *menu, GldiModuleInstance *myApplet);
 
 
-static gboolean _remove_empty_submenus (GtkWidget *pWidget)
-{
-	GList *pChildren = gtk_container_get_children (GTK_CONTAINER (pWidget));
-
-	GList *ic;
-	GtkWidget *pCurrentWidget;
-	GtkWidget *pSubMenu;
-	gint i = 0;
-	for (ic = pChildren; ic != NULL; ic = ic->next)
-	{
-		pCurrentWidget = ic->data;
-		if (! GTK_IS_SEPARATOR_MENU_ITEM (pCurrentWidget)
-			&& GTK_IS_MENU_ITEM (pCurrentWidget))
-		{
-			pSubMenu = gtk_menu_item_get_submenu (GTK_MENU_ITEM (pCurrentWidget));
-			if (pSubMenu != NULL && _remove_empty_submenus (pSubMenu))
-				gtk_container_remove (GTK_CONTAINER (pWidget), pCurrentWidget);
-			else
-				i++; // a menu item or a non empty menu: not hide
-		}
-	}
-
-	g_list_free (pChildren);
-
-	if (i == 0)
-		return TRUE;
-	return FALSE;
-}
-
 static gboolean _make_menu_from_trees (CDSharedMemory *pSharedMemory)
 {
 	CD_APPLET_ENTER;
@@ -76,9 +47,6 @@ static gboolean _make_menu_from_trees (CDSharedMemory *pSharedMemory)
 		tree = t->data;
 		cd_append_tree_in_menu (tree, myData.pMenu);
 	}
-
-	// A section can contain items which are not in the menu => NoDisplay=true
-	_remove_empty_submenus (myData.pMenu);
 
 	// append recent events
 	if (myConfig.bShowRecent)

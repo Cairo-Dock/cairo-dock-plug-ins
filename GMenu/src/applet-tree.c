@@ -27,7 +27,8 @@
 
 #define CD_FOLDER_DEFAULT_ICON "folder"
 
-static void cd_populate_menu_from_directory (GtkWidget *menu, GMenuTreeDirectory *directory);
+// return TRUE if the menu is not empty
+static gboolean cd_populate_menu_from_directory (GtkWidget *menu, GMenuTreeDirectory *directory);
 
 
   /////////////////
@@ -145,7 +146,7 @@ static GtkWidget * add_menu_separator (GtkWidget *menu)
 }
 
 static GtkWidget * create_submenu_entry (GtkWidget *menu,
-	GMenuTreeDirectory *directory)
+	GMenuTreeDirectory *directory, gboolean bAppend)
 {
 	if (gmenu_tree_directory_get_is_nodisplay (directory))
 		return NULL;
@@ -156,42 +157,53 @@ static GtkWidget * create_submenu_entry (GtkWidget *menu,
 	add_image_to_menu_item (menuitem,
 		pIcon,
 		CD_FOLDER_DEFAULT_ICON);
-	
-	gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
+
+	if (bAppend)
+		gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
 	return menuitem;
 }
 
-static void create_submenu (GtkWidget *menu,
+static gboolean create_submenu (GtkWidget *menu,
 	GMenuTreeDirectory *directory,
 	GMenuTreeDirectory *alias_directory)
 {
 	// create an entry
 	GtkWidget *menuitem;
 	if (alias_directory)
-		menuitem = create_submenu_entry (menu, alias_directory);
+		menuitem = create_submenu_entry (menu, alias_directory, FALSE);
 	else
-		menuitem = create_submenu_entry (menu, directory);
+		menuitem = create_submenu_entry (menu, directory, FALSE);
 	if (!menuitem)
-		return;
+		return FALSE;
 	
 	// create a sub-menu for it
 	GtkWidget *submenu = gldi_submenu_new ();
 	gtk_menu_item_set_submenu (GTK_MENU_ITEM (menuitem), submenu);
-	
+
 	// populate the sub-menu with the directory
-	cd_populate_menu_from_directory (submenu, directory);
+	if (! cd_populate_menu_from_directory (submenu, directory))
+	{
+		cd_debug ("Empty submenu: %s",
+			gtk_menu_item_get_label (GTK_MENU_ITEM (menuitem)));
+		gtk_widget_destroy (menuitem);
+		return FALSE;
+	}
+
+	gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
+	return TRUE;
 }
 
-static void create_header (GtkWidget *menu,
+static gboolean create_header (GtkWidget *menu,
 	GMenuTreeHeader *header)
 {
 	// create an entry
 	GMenuTreeDirectory *directory = gmenu_tree_header_get_directory (header);
-	create_submenu_entry (menu, directory);
+	GtkWidget *entry = create_submenu_entry (menu, directory, TRUE);
 	gmenu_tree_item_unref (directory);
+	return entry != NULL;
 }
 
-static void create_menuitem (GtkWidget *menu,
+static gboolean create_menuitem (GtkWidget *menu,
 	GMenuTreeEntry *entry,
 	GMenuTreeDirectory *alias_directory)
 {
@@ -201,9 +213,9 @@ static void create_menuitem (GtkWidget *menu,
 	
 	// ignore entry that are not shown in the menu
 	if (gmenu_tree_entry_get_is_excluded (entry))
-		return;
+		return FALSE;
 	if (! cd_menu_app_should_show (pAppInfo))
-		return;
+		return FALSE;
 	
 	// create an entry
 	const gchar *cName = NULL;
@@ -259,11 +271,13 @@ static void create_menuitem (GtkWidget *menu,
 		"cd-entry",
 		gmenu_tree_item_ref (entry),
 		(GDestroyNotify) gmenu_tree_item_unref);  // stick the entry on the menu-item, which allows us to ref it and be sure to unref when the menu is destroyed.
+	return TRUE;
 }
 
-static void create_menuitem_from_alias (GtkWidget *menu,
+static gboolean create_menuitem_from_alias (GtkWidget *menu,
 	GMenuTreeAlias *alias)
 {
+	gboolean bHasItem;
 	GMenuTreeItemType iType = gmenu_tree_alias_get_aliased_item_type (alias);
 	GMenuTreeDirectory *src = gmenu_tree_alias_get_directory (alias);
 	switch (iType)
@@ -271,9 +285,7 @@ static void create_menuitem_from_alias (GtkWidget *menu,
 		case GMENU_TREE_ITEM_DIRECTORY:
 		{
 			GMenuTreeDirectory *directory = gmenu_tree_alias_get_aliased_directory (alias);
-			create_submenu (menu,
-				directory,
-				src);
+			bHasItem = create_submenu (menu, directory, src);
 			gmenu_tree_item_unref (directory);
 		}
 		break;
@@ -281,7 +293,7 @@ static void create_menuitem_from_alias (GtkWidget *menu,
 		case GMENU_TREE_ITEM_ENTRY:
 		{
 			GMenuTreeEntry *entry = gmenu_tree_alias_get_aliased_entry (alias);
-			create_menuitem (menu,
+			bHasItem = create_menuitem (menu,
 				gmenu_tree_alias_get_aliased_entry (alias),
 				src);
 			gmenu_tree_item_unref (entry);
@@ -289,13 +301,16 @@ static void create_menuitem_from_alias (GtkWidget *menu,
 		break;
 
 		default:
+			bHasItem = FALSE;
 		break;
 	}
 	gmenu_tree_item_unref (src);
+	return bHasItem;
 }
 
-static void cd_populate_menu_from_directory (GtkWidget *menu, GMenuTreeDirectory *directory)
+static gboolean cd_populate_menu_from_directory (GtkWidget *menu, GMenuTreeDirectory *directory)
 {
+	gint i = 0;
 	GMenuTreeIter *iter = gmenu_tree_directory_iter (directory);
 	GMenuTreeItemType next_type;
 	while ((next_type = gmenu_tree_iter_next (iter)) != GMENU_TREE_ITEM_INVALID)
@@ -305,12 +320,14 @@ static void cd_populate_menu_from_directory (GtkWidget *menu, GMenuTreeDirectory
 		{
 			case GMENU_TREE_ITEM_DIRECTORY:  // we suppose that unicity is assured.
 				item = gmenu_tree_iter_get_directory (iter);
-				create_submenu (menu, item, NULL);
+				if (create_submenu (menu, item, NULL))
+					i++;
 				break;
 
 			case GMENU_TREE_ITEM_ENTRY:
 				item = gmenu_tree_iter_get_entry (iter);
-				create_menuitem (menu, item, NULL);
+				if (create_menuitem (menu, item, NULL))
+					i++;
 				break;
 
 			case GMENU_TREE_ITEM_SEPARATOR :
@@ -319,12 +336,14 @@ static void cd_populate_menu_from_directory (GtkWidget *menu, GMenuTreeDirectory
 
 			case GMENU_TREE_ITEM_ALIAS:
 				item = gmenu_tree_iter_get_alias (iter);
-				create_menuitem_from_alias (menu, item);
+				if (create_menuitem_from_alias (menu, item))
+					i++;
 				break;
 
 			case GMENU_TREE_ITEM_HEADER:
 				item = gmenu_tree_iter_get_header (iter);
-				create_header (menu, item);
+				if (create_header (menu, item))
+					i++;
 				break;
 
 			default:
@@ -334,6 +353,8 @@ static void cd_populate_menu_from_directory (GtkWidget *menu, GMenuTreeDirectory
 			gmenu_tree_item_unref (item);
 	}
 	gmenu_tree_iter_unref (iter);
+
+	return i > 0;
 }
 
 void cd_append_tree_in_menu (GMenuTree *tree, GtkWidget *pMenu)
