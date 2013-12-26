@@ -85,10 +85,11 @@ CD_APPLET_GET_CONFIG_BEGIN
 			gldi_text_description_copy (&myConfig.textDescription, &myIconsParam.iconTextDescription);
 		}
 		pango_font_description_set_weight (myConfig.textDescription.fd, PANGO_WEIGHT_HEAVY);
+
+		// 0: Automatic ; 1: Custom
+		myConfig.bUseDefaultColors = (CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "numeric style", 1) == 0);
 		
-		myConfig.bUseDefaultColors = (CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "numeric style", 1) == 1);
-		
-		if (myConfig.bUseDefaultColors == 1)  // custom
+		if (! myConfig.bUseDefaultColors)  // custom
 		{
 			double colour[4] = {0.85, 0.85, 0.85, 1.};
 			CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "text color", myConfig.textDescription.fColorStart, colour);
