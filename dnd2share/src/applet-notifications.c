@@ -411,9 +411,9 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Send the clipboard's content"), GTK_STOCK_PASTE, _send_clipboard, CD_APPLET_MY_MENU);
-	
-	GtkWidget *pHistoryMenu;
-	GtkWidget *mi = gldi_menu_add_sub_menu_full (CD_APPLET_MY_MENU, D_("History"), GTK_STOCK_INDEX, &pHistoryMenu);
+
+	GtkWidget *pHistoryMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("History"),
+		CD_APPLET_MY_MENU, GTK_STOCK_INDEX);
 	
 	if (myData.pUpoadedItems != NULL)
 	{
@@ -486,7 +486,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear History"), GTK_STOCK_CLEAR, _clear_history, pHistoryMenu);
 	}
 	else
-		gtk_widget_set_sensitive (GTK_WIDGET (mi), FALSE);
+		gtk_widget_set_sensitive (GTK_WIDGET (pHistoryMenu), FALSE);
 
 	pMenuItem = gtk_check_menu_item_new_with_label (D_("Use only a files hosting site"));
 	gtk_menu_shell_append (GTK_MENU_SHELL (CD_APPLET_MY_MENU), pMenuItem);
