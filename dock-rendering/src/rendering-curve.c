@@ -486,7 +486,10 @@ static void cd_rendering_draw_3D_curve_separator (Icon *icon, cairo_t *pCairoCon
 		
 		cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
 		cairo_set_line_width (pCairoContext, myDocksParam.iDockLineWidth);
-		cairo_set_source_rgba (pCairoContext, myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
+		if (myDocksParam.bUseDefaultColors)
+			gldi_style_colors_set_line_color (pCairoContext);
+		else
+			cairo_set_source_rgba (pCairoContext, myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
 		cairo_stroke (pCairoContext);
 	}
 	else
@@ -574,7 +577,10 @@ static void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 	if (fLineWidth > 0)
 	{
 		cairo_set_line_width (pCairoContext, fLineWidth);
-		cairo_set_source_rgba (pCairoContext, myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
+		if (myDocksParam.bUseDefaultColors)
+			gldi_style_colors_set_line_color (pCairoContext);
+		else
+			cairo_set_source_rgba (pCairoContext, myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
 		cairo_stroke (pCairoContext);
 	}
 	else
@@ -850,7 +856,10 @@ static void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDo
 	if (fLineWidth > 0)
 	{
 		cairo_set_line_width (pCairoContext, fLineWidth);
-		cairo_set_source_rgba (pCairoContext, myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
+		if (myDocksParam.bUseDefaultColors)
+			gldi_style_colors_set_line_color (pCairoContext);
+		else
+			cairo_set_source_rgba (pCairoContext, myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
 		
 		dy = (pDock->container.bDirectionUp ? pDock->container.iHeight - .5 * fLineWidth : .5 * fLineWidth);
 		
@@ -1160,7 +1169,10 @@ static void cd_rendering_render_curve_opengl (CairoDock *pDock)
 	if (fLineWidth > 0)
 	{
 		glLineWidth (fLineWidth);
-		glColor4f (myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
+		if (myDocksParam.bUseDefaultColors)
+			gldi_style_colors_set_line_color (NULL);
+		else
+			glColor4f (myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
 		_cairo_dock_set_blend_alpha ();
 		cairo_dock_stroke_gl_path (pFramePath, TRUE);
 	}
