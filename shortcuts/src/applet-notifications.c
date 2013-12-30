@@ -33,7 +33,8 @@ static void _on_volume_mounted (gboolean bMounting, gboolean bSuccess, const gch
 	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
 	
 	//g_print ("%s (%s , %d)\n", __func__, cURI, bSuccess);
-	if (! bSuccess)  // en cas de montage reussi, on aura un dialogue via les evenements.
+	// success: a dialog as notification
+	if (! bSuccess)
 	{
 		Icon *pIcon = cairo_dock_get_icon_with_base_uri (CD_APPLET_MY_ICONS_LIST, cURI);
 		CD_APPLET_LEAVE_IF_FAIL (pIcon != NULL);
@@ -43,7 +44,7 @@ static void _on_volume_mounted (gboolean bMounting, gboolean bSuccess, const gch
 			bMounting ? D_("Failed to mount %s") : D_("Failed to unmount %s"),
 			pIcon, pContainer,
 			4000,
-			"same icon",  // petit risque de n'avoir pas encore d'image a afficher, pas bien grave.
+			"same icon",  // it's possible to not have the right icon, not so important
 			pIcon->cName);
 	}
 	CD_APPLET_LEAVE ();
@@ -56,14 +57,21 @@ static void _open_on_mount (gboolean bMounting, gboolean bSuccess, const gchar *
 	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
 	
 	Icon *pIcon = cairo_dock_get_icon_with_base_uri (CD_APPLET_MY_ICONS_LIST, cURI);
-	if (pIcon == NULL && g_strcmp0 (myData.cLastDeletedUri, cURI) == 0 && myData.cLastCreatedUri != NULL)  // when mouting a mount point (for instance a file mounted as a loop device), the associated .volume (its actual URI) might be deleted, and a new one is created for the mounted volume (therefore the icon is deleted and a new one is created, with another URI). So we lose the track of the initial icon. That's why we use a trick: we remember the last created volume; it's very likely this one.
+	/* when mouting a mount point (for instance a file mounted as a loop device),
+	 * the associated .volume (its actual URI) might be deleted, and a new one is
+	 * created for the mounted volume (therefore the icon is deleted and a new
+	 * one is created, with another URI). So we lose the track of the initial
+	 * icon. That's why we use a trick: we remember the last created volume;
+	 * it's very likely this one.
+	 */
+	if (pIcon == NULL && g_strcmp0 (myData.cLastDeletedUri, cURI) == 0 && myData.cLastCreatedUri != NULL)
 	{
 		cd_debug ("no icon for '%s', trying with '%s'", cURI, myData.cLastCreatedUri);
 		pIcon = cairo_dock_get_icon_with_base_uri (CD_APPLET_MY_ICONS_LIST, myData.cLastCreatedUri);
 	}
 	CD_APPLET_LEAVE_IF_FAIL (pIcon != NULL);
 	
-	if (bSuccess)  // montage reussi.
+	if (bSuccess)
 	{
 		cairo_dock_fm_launch_uri (pIcon->cCommand);
 	}
@@ -74,14 +82,15 @@ static void _open_on_mount (gboolean bMounting, gboolean bSuccess, const gchar *
 			bMounting ? _("Failed to mount %s") : _("Failed to unmount %s"),
 			pIcon, pContainer,
 			4000,
-			"same icon",  // petit risque de n'avoir pas encore d'image a afficher, pas bien grave.
+			"same icon",  // it's possible to not have the right icon, not so important
 			pIcon->cName);
 	}
 	CD_APPLET_LEAVE ();
 }
 
 CD_APPLET_ON_CLICK_BEGIN
-	if (CD_APPLET_CLICKED_ICON == myIcon)  // clic sur l'icone principale -> on affiche un message en cas de probleme, sinon on laisse passer la notification.
+	// Click on the main icon: display a message if there is a problem
+	if (CD_APPLET_CLICKED_ICON == myIcon)
 	{
 		if (CD_APPLET_MY_ICONS_LIST == NULL)
 		{
@@ -89,15 +98,20 @@ CD_APPLET_ON_CLICK_BEGIN
 			if (myData.pTask != NULL) // if it's loading
 				myData.bShowMenuPending = TRUE;
 			else if (g_iDesktopEnv == CAIRO_DOCK_KDE)
-				gldi_dialog_show_temporary_with_icon (D_("Sorry, this applet is not yet available for KDE."), myIcon, myContainer, 6000., "same icon");
+				gldi_dialog_show_temporary_with_icon (D_("Sorry, this applet is not yet available for KDE."),
+					myIcon, myContainer, 6000., "same icon");
 			else
-				gldi_dialog_show_temporary_with_icon (D_("No disks or bookmarks were found."), myIcon, myContainer, 6000., "same icon");
+				gldi_dialog_show_temporary_with_icon (D_("No disks or bookmarks were found."),
+					myIcon, myContainer, 6000., "same icon");
 		}
-		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);  // on laisse passer la notification (pour ouvrir le sous-dock au clic).
+		// Let pass the notification: to open the subdock when clicking
+		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 	}
-	else if (CD_APPLET_CLICKED_ICON != NULL)  // clic sur une des icones de la liste.
+	else if (CD_APPLET_CLICKED_ICON != NULL)  // click on one icon of the subdock
 	{
-		if (CD_APPLET_CLICKED_ICON->iGroup == (CairoDockIconGroup) CD_DRIVE_GROUP && CD_APPLET_CLICKED_ICON->iVolumeID)  // clic sur un point de montage.
+		// click on a mount point
+		if (CD_APPLET_CLICKED_ICON->iGroup == (CairoDockIconGroup) CD_DRIVE_GROUP
+		    && CD_APPLET_CLICKED_ICON->iVolumeID)
 		{
 			gboolean bIsMounted = FALSE;
 			gchar *cActivationURI = cairo_dock_fm_is_mounted (CD_APPLET_CLICKED_ICON->cBaseURI, &bIsMounted);
@@ -108,13 +122,19 @@ CD_APPLET_ON_CLICK_BEGIN
 			}
 			else
 			{
-				cairo_dock_fm_mount_full (CD_APPLET_CLICKED_ICON->cBaseURI, CD_APPLET_CLICKED_ICON->iVolumeID, (CairoDockFMMountCallback) _open_on_mount, myApplet);
+				cairo_dock_fm_mount_full (CD_APPLET_CLICKED_ICON->cBaseURI,
+					CD_APPLET_CLICKED_ICON->iVolumeID,
+					(CairoDockFMMountCallback) _open_on_mount, myApplet);
 			}
 		}
-		else if (CD_APPLET_CLICKED_ICON->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)  // clic sur un signet, il peut etre place sur un volume non monte.
+		// click on a bookmark: can be on an unmount devise
+		else if (CD_APPLET_CLICKED_ICON->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)
 		{
-			// check if it's a mounted URI
-			// note: if it's a folder on an unmouned volume, it can't be launched nor mounted; we would need to get its volume first and it's not obvious (Nautilus just hide them until the volume is mounted)
+			/* check if it's a mounted URI
+			 * note: if it's a folder on an unmouned volume, it can't be launched
+			 * nor mounted; we would need to get its volume first and it's not
+			 * obvious (Nautilus just hide them until the volume is mounted)
+			 */
 			gboolean bIsMounted = TRUE;
 			gchar *cTarget = cairo_dock_fm_is_mounted (CD_APPLET_CLICKED_ICON->cCommand, &bIsMounted);
 			cd_debug ("%s is mounted: %d (%s)", CD_APPLET_CLICKED_ICON->cCommand, bIsMounted, cTarget);
@@ -123,7 +143,8 @@ CD_APPLET_ON_CLICK_BEGIN
 			if (bIsMounted)  // if mounted, just open it
 				cairo_dock_fm_launch_uri (CD_APPLET_CLICKED_ICON->cCommand);
 			else  // else, mount it, and it will be opened in the callback.
-				cairo_dock_fm_mount_full (CD_APPLET_CLICKED_ICON->cCommand, 1, (CairoDockFMMountCallback) _open_on_mount, myApplet);
+				cairo_dock_fm_mount_full (CD_APPLET_CLICKED_ICON->cCommand, 1,
+					(CairoDockFMMountCallback) _open_on_mount, myApplet);
 		}
 		else
 		{
@@ -142,22 +163,29 @@ static void _mount_unmount (Icon *pIcon, GldiContainer *pContainer, GldiModuleIn
 
 	if (! bIsMounted)
 	{
-		cairo_dock_fm_mount_full (pIcon->cBaseURI, pIcon->iVolumeID, (CairoDockFMMountCallback) _on_volume_mounted, myApplet);
+		cairo_dock_fm_mount_full (pIcon->cBaseURI, pIcon->iVolumeID,
+			(CairoDockFMMountCallback) _on_volume_mounted, myApplet);
 	}
 	else
 	{
-		cairo_dock_fm_unmount_full (pIcon->cBaseURI, pIcon->iVolumeID, (CairoDockFMMountCallback) _on_volume_mounted, myApplet);
-		
-		gldi_dialog_show_temporary_with_icon (D_("Unmouting this volume ..."), pIcon, pContainer, 15000., "same icon");  // le dialogue sera enleve lorsque le volume sera demonte.
+		cairo_dock_fm_unmount_full (pIcon->cBaseURI, pIcon->iVolumeID,
+			(CairoDockFMMountCallback) _on_volume_mounted, myApplet);
+
+		// this dialog will be removed when the volume will be unmounted.
+		gldi_dialog_show_temporary_with_icon (D_("Unmouting this volume ..."),
+			pIcon, pContainer, 15000., "same icon");
 	}
 }
 
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN
-	if (CD_APPLET_CLICKED_ICON == myIcon)  // clic sur l'icone principale.
+	if (CD_APPLET_CLICKED_ICON == myIcon)  // click on the main icon.
 	{
 		cairo_dock_fm_launch_uri (g_getenv ("HOME"));
 	}
-	else if (CD_APPLET_CLICKED_ICON != NULL && (CD_APPLET_CLICKED_ICON->iGroup == (CairoDockIconGroup) CD_DRIVE_GROUP || CD_APPLET_CLICKED_ICON->iVolumeID > 0))  // clic sur une icone du sous-dock ou du desklet, et de type 'point de montage'.
+	// click on an icon of the subdock or desklet and it's a mount point.
+	else if (CD_APPLET_CLICKED_ICON != NULL
+	         && (CD_APPLET_CLICKED_ICON->iGroup == (CairoDockIconGroup) CD_DRIVE_GROUP
+	         || CD_APPLET_CLICKED_ICON->iVolumeID > 0))
 	{
 		_mount_unmount (CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER, myApplet);
 	}
@@ -197,10 +225,11 @@ static void _cd_shortcuts_rename_bookmark (GtkMenuItem *menu_item, gpointer *dat
 	gpointer *ddata = g_new (gpointer, 2);
 	ddata[0] = myApplet;
 	ddata[1] = pIcon;
+	// if the icon gets deleted, the dialog will disappear with it.
 	gldi_dialog_show_with_entry (D_("Enter a name for this bookmark:"),
 		pIcon, pContainer, "same icon",
 		pIcon->cName,
-		(CairoDockActionOnAnswerFunc)_on_got_bookmark_name, ddata, (GFreeFunc)g_free);  // if the icon gets deleted, the dialog will disappear with it.
+		(CairoDockActionOnAnswerFunc)_on_got_bookmark_name, ddata, (GFreeFunc)g_free);
 	CD_APPLET_LEAVE ();
 }
 static void _cd_shortcuts_eject (GtkMenuItem *menu_item, gpointer *data)
@@ -292,36 +321,51 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		if (! s_bNCSChecked)
 			_check_ncs ();
 		if (s_bNCSAvailable)
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Connect to Server..."), GTK_STOCK_OPEN, _open_ncs, CD_APPLET_MY_MENU);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Connect to Server..."),
+				GTK_STOCK_OPEN, _open_ncs, CD_APPLET_MY_MENU);
 
 		// browse network (e.g.: samba)
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Browse Network"), GTK_STOCK_OPEN, _open_network, CD_APPLET_MY_MENU); // or GTK_STOCK_NETWORK
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Browse Network"), GTK_STOCK_OPEN,
+			_open_network, CD_APPLET_MY_MENU); // or GTK_STOCK_NETWORK
 		// browse recent files
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Browse recent files"), GTK_STOCK_OPEN, _open_recent, CD_APPLET_MY_MENU); // or "folder-recent"
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Browse recent files"),
+			GTK_STOCK_OPEN, _open_recent, CD_APPLET_MY_MENU); // or "folder-recent"
 		// trash
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open Trash"), GTK_STOCK_OPEN, _open_trash, CD_APPLET_MY_MENU); // or "user-trash"
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open Trash"), GTK_STOCK_OPEN,
+			_open_trash, CD_APPLET_MY_MENU); // or "user-trash"
 	}
 	else if (CD_APPLET_CLICKED_ICON != NULL)  // clic sur un item.
 	{
-		if (CD_APPLET_CLICKED_ICON->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)  // clic sur un signet.
+		// Click on a bookmark
+		if (CD_APPLET_CLICKED_ICON->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)
 		{
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this bookmark"), NULL, _cd_shortcuts_rename_bookmark, CD_APPLET_MY_MENU, data);
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove this bookmark"), GTK_STOCK_REMOVE, _cd_shortcuts_remove_bookmark, CD_APPLET_MY_MENU, data);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this bookmark"),
+				NULL, _cd_shortcuts_rename_bookmark, CD_APPLET_MY_MENU, data);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove this bookmark"),
+				GTK_STOCK_REMOVE, _cd_shortcuts_remove_bookmark,
+				CD_APPLET_MY_MENU, data);
 			CD_APPLET_LEAVE (GLDI_NOTIFICATION_INTERCEPT);
 		}
-		else if (CD_APPLET_CLICKED_ICON->iGroup == (CairoDockIconGroup) CD_DRIVE_GROUP && CD_APPLET_CLICKED_ICON->cBaseURI != NULL)  // clic sur un volume.
+		else if (CD_APPLET_CLICKED_ICON->iGroup == (CairoDockIconGroup) CD_DRIVE_GROUP
+		         && CD_APPLET_CLICKED_ICON->cBaseURI != NULL)  // click on a drive
 		{
 			if (cairo_dock_fm_can_eject (CD_APPLET_CLICKED_ICON->cBaseURI))
-				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Eject"), GTK_STOCK_DISCONNECT, _cd_shortcuts_eject, CD_APPLET_MY_MENU, data);
+				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Eject"),
+					GTK_STOCK_DISCONNECT, _cd_shortcuts_eject,
+					CD_APPLET_MY_MENU, data);
 			
 			gboolean bIsMounted = FALSE;
 			gchar *cURI = cairo_dock_fm_is_mounted (CD_APPLET_CLICKED_ICON->cBaseURI, &bIsMounted);
 			g_free (cURI);
-			gchar *cLabel = g_strdup_printf ("%s (%s)", bIsMounted ? D_("Unmount") : D_("Mount"), D_("middle-click"));
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GTK_STOCK_DISCONNECT, _cd_shortcuts_unmount, CD_APPLET_MY_MENU, data);
+			gchar *cLabel = g_strdup_printf ("%s (%s)",
+				bIsMounted ? D_("Unmount") : D_("Mount"), D_("middle-click"));
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GTK_STOCK_DISCONNECT,
+				_cd_shortcuts_unmount, CD_APPLET_MY_MENU, data);
 			g_free (cLabel);
 			
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Get disk info"), GTK_STOCK_PROPERTIES, _cd_shortcuts_show_disk_info, CD_APPLET_MY_MENU, data);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Get disk info"),
+				GTK_STOCK_PROPERTIES, _cd_shortcuts_show_disk_info,
+				CD_APPLET_MY_MENU, data);
 		}
 	}
 CD_APPLET_ON_BUILD_MENU_END
@@ -347,7 +391,8 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 		if (! iVolumeID && ! bIsDirectory)
 		{
 			cd_warning ("this can't be a bookmark");
-			gldi_dialog_show_temporary_with_icon (D_("Only folders can be bookmarked."), myIcon, myContainer, 4000, "same icon");
+			gldi_dialog_show_temporary_with_icon (D_("Only folders can be bookmarked."),
+				myIcon, myContainer, 4000, "same icon");
 		}
 		else
 		{

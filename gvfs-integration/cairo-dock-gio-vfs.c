@@ -326,7 +326,7 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 			g_error_free (erreur);
 			return ;
 		}
-		gchar *cVolumeName = cValidUri + 1;  // on saute le '/'.
+		gchar *cVolumeName = cValidUri + 1;  // we drop the '/'.
 		cd_message ("cVolumeName : %s", cVolumeName);
 		
 		GMount *pMount = NULL;
@@ -362,7 +362,8 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 			cValidUri = g_filename_to_uri (cBaseURI, NULL, NULL);
 		else
 			cValidUri = g_strdup (cBaseURI);
-		if (*cBaseURI == ':' || *cValidUri == ':')  // cas bizarre au demontage d'un signet ftp quand celui-ci n'est pas accessible plantage dans dbus).
+		// strange case when unmounting a FTP bookmark when it's not available: crash with DBus
+		if (*cBaseURI == ':' || *cValidUri == ':')
 		{
 			cd_warning ("invalid URI (%s ; %s), skip it", cBaseURI, cValidUri);
 			g_free (cValidUri);

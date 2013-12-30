@@ -28,6 +28,30 @@
 
 #define CD_SHORTCUT_DEFAULT_DIRECTORY_ICON_FILENAME "inode-directory"
 
+static const gchar * _get_custom_name_and_uri (gchar *cOneBookmark, gchar **cURI)
+{
+	const gchar *cUserName = NULL;
+	// should not happen if we add bookmarks via the dock or Nautilus
+	if (*cOneBookmark == '/')
+	{
+		// for 'gvfs_launch_uri':
+		*cURI = g_strconcat ("file://", cOneBookmark, NULL);
+		g_free (cOneBookmark);
+	}
+	else  // it's a valid URI but does it have a custom name?
+	{
+		*cURI = cOneBookmark;
+		// a custom name is separated with a whitespace (no whitespace in the URI)
+		gchar *str = strchr (cOneBookmark, ' ');
+		if (str != NULL)
+		{
+			cUserName = str + 1;
+			*str = '\0';
+		}
+	}
+	return cUserName;
+}
+
 void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gchar *cURI, GldiModuleInstance *myApplet)
 {
 	static int iTime = 0;
@@ -37,21 +61,26 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
 	Icon *icon;
 	GList *ic;
-	for (ic = pIconsList; ic != NULL; ic = ic->next)  // optimization: skip the disks and networks, and point on the first bookmark.
+	// optimization: skip the disks and networks, and point on the first bookmark.
+	for (ic = pIconsList; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
 		if (icon->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)
 			break;
 	}
-	pIconsList = ic;  // Note that since the first bookmark is always the Home Folder, 'pIconsList' will never change when inserting/removing a bookmark.
+	/* Note that since the first bookmark is always the Home Folder,
+	 * 'pIconsList' will never change when inserting/removing a bookmark.
+	 */
+	pIconsList = ic;
 	GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
-	
-	if (iEventType == CAIRO_DOCK_FILE_CREATED || iEventType == CAIRO_DOCK_FILE_MODIFIED)  // le fichier des bookmarks a ete modifie.
+
+	// Bookmarks file has been modified
+	if (iEventType == CAIRO_DOCK_FILE_CREATED || iEventType == CAIRO_DOCK_FILE_MODIFIED)
 	{
 		cd_message ("The bookmarks list has changed");
 		
-		//\____________________ On lit le fichier des signets.
+		//\____________________ Read bookmarks file
 		gchar *cContent = NULL;
 		gsize length=0;
 		GError *erreur = NULL;
@@ -66,11 +95,16 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 			gchar **cBookmarksList = g_strsplit (cContent, "\n", -1);
 			g_free (cContent);
 			
-			//\____________________ On parcourt le contenu.
-			double fCurrentOrder = 1.;  // bookmarks are listed in the order of the file; we need to reorder each icon in case a bookmark has changed its place, or if a new one appeared (the first one is always the Home Folder).
+			//\____________________ Read the content.
+			/* Bookmarks are listed in the order of the file; we need to
+			 * reorder each icon in case a bookmark has changed its place, or
+			 * if a new one appeared (the first one is always the Home Folder).
+			 */
+			double fCurrentOrder = 1.;
 			gchar *cOneBookmark;
 			Icon *pNewIcon;
-			gchar *cName, *cRealURI, *cIconName, *cUserName;
+			gchar *cName, *cRealURI, *cIconName;
+			const gchar *cUserName;
 			gboolean bIsDirectory;
 			int iVolumeID;
 			double fOrder;
@@ -84,32 +118,21 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 					continue;
 				}
 				
-				// on recupere le nom a afficher.
-				cUserName = NULL;
-				if (cOneBookmark != NULL && *cOneBookmark == '/')  // ne devrait pas arriver si on ajoute les signets via le dock ou Nautilus.
-				{
-					gchar *tmp = cOneBookmark;
-					cOneBookmark = g_strconcat ("file://", cOneBookmark, NULL);  // sinon launch_uri() ne marche pas sous Gnome.
-					g_free (tmp);
-				}
-				else  // c'est une URI valide, on regarde si il y'a un nom utilisateur.
-				{
-					gchar *str = strchr (cOneBookmark, ' ');  // pas d'espace dans une URI, donc le 1er espace signifie la separation entre URI et nom utilisateur.
-					if (str != NULL)
-					{
-						cUserName = str + 1;
-						*str = '\0';
-					}
-				}
+				// Grab the custom name if any
+				cUserName = _get_custom_name_and_uri (cBookmarksList[i], &cOneBookmark);
 				
-				// on cree une icone pour le signet si aucune n'existe ou qu'il a change.
+				// Check if the icon already exists: if no, create it.
 				Icon *pExistingIcon = cairo_dock_get_icon_with_base_uri (pIconsList, cOneBookmark);
 				if (pExistingIcon != NULL)
 				{
+					/* 'cUserName' may be NULL if the user has never set a
+					 * user-name yet, but once he does, 'cUserName' is not NULL.
+					 * So if 'cUserName' is NULL, it has not changed.
+					 */
 					if ((cUserName && cairo_dock_strings_differ (pExistingIcon->cName, cUserName))
-					|| cURI == NULL)  // signet inexistant ou qui a change => on le cree. 'cUserName' may be NULL if the user has never set a user-name yet, but once he does, 'cUserName' is not NULL. so if 'cUserName' is NULL, it has not changed.
+					    || cURI == NULL)
 					{
-						//g_print ("le signet '%s' a change, on le recree\n", pExistingIcon->cName);
+						//g_print ("This bookmark '%s' has changed: recreate it\n", pExistingIcon->cName);
 						CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pExistingIcon);
 						pExistingIcon = NULL;
 					}
@@ -132,7 +155,9 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 					cName = NULL;
 					cRealURI = NULL;
 					cIconName = NULL;
-					if (cairo_dock_fm_get_file_info (cOneBookmark, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_NAME))
+					if (cairo_dock_fm_get_file_info (cOneBookmark, &cName,
+					    &cRealURI, &cIconName, &bIsDirectory, &iVolumeID,
+					    &fOrder, CAIRO_DOCK_FM_SORT_BY_NAME))
 					{
 						cd_message (" + 1 bookmark : %s", cOneBookmark);
 						if (cUserName != NULL)
@@ -140,7 +165,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 							g_free (cName);
 							cName = g_strdup (cUserName);
 						}
-						else if (cName == NULL)  // cas d'un bookmark situe sur un volume non monte.
+						else if (cName == NULL)  // A bookmark on an unmounted devise
 						{
 							gchar *cGuessedName = g_path_get_basename (cOneBookmark);
 							cairo_dock_remove_html_spaces (cGuessedName);
@@ -150,7 +175,8 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 						if (cRealURI == NULL)
 							cRealURI = g_strdup (cOneBookmark);
 						if (cIconName == NULL)
-							cIconName = cairo_dock_search_icon_s_path (CD_SHORTCUT_DEFAULT_DIRECTORY_ICON_FILENAME, CAIRO_DOCK_DEFAULT_ICON_SIZE);
+							cIconName = cairo_dock_search_icon_s_path (CD_SHORTCUT_DEFAULT_DIRECTORY_ICON_FILENAME,
+								CAIRO_DOCK_DEFAULT_ICON_SIZE);
 						
 						pNewIcon = cairo_dock_create_dummy_launcher (cName,
 							cIconName,
@@ -193,7 +219,11 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 				}
 			}
 			pIconsList = CD_APPLET_MY_ICONS_LIST;
-			cairo_dock_sort_icons_by_order (pIconsList);  // again, since 'Home Folder' is always the first bookmark, the head of the list won't change even if there are only bookmarks (so we don't need to re-assigne it to the container).
+			/* Again, since 'Home Folder' is always the first bookmark,
+			 * the head of the list won't change even if there are only bookmarks
+			 * (so we don't need to re-assigne it to the container).
+			 */
+			cairo_dock_sort_icons_by_order (pIconsList);
 		}
 	}
 	CD_APPLET_LEAVE();
@@ -227,7 +257,8 @@ void cd_shortcuts_remove_one_bookmark (const gchar *cURI, GldiModuleInstance *my
 				continue;
 			
 			str = strchr (cOneBookmark, ' ');
-			if ((str && strncmp (cOneBookmark, cURI, str - cOneBookmark) == 0) || (!str && strcmp (cOneBookmark, cURI) == 0))
+			if ((str && strncmp (cOneBookmark, cURI, str - cOneBookmark) == 0)
+			    || (!str && strcmp (cOneBookmark, cURI) == 0))
 			{
 				// remove this element from the array
 				int j;
@@ -398,7 +429,8 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath, GldiModuleInstance
 	{
 		_init_disk_usage (pNewIcon, myApplet);
 		CDDiskUsage *pDiskUsage = CD_APPLET_GET_MY_ICON_DATA (pNewIcon);
-		if (pDiskUsage) pDiskUsage->iLastCheckTime = 1e9;  // so that this bookmark will never be considered old, and therefore removed.
+		if (pDiskUsage) // so that this bookmark will never be considered old, and therefore removed.
+			pDiskUsage->iLastCheckTime = 1e9;
 		pBookmarkIconList = g_list_append (pBookmarkIconList, pNewIcon);
 	}
 
@@ -408,7 +440,7 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath, GldiModuleInstance
 	g_file_get_contents  (cBookmarkFilePath, &cContent, &length, &erreur);
 	if (erreur != NULL)
 	{
-		cd_warning ("Attention : %s\n  no bookmark will be available", erreur->message);
+		cd_warning ("Attention: %s\n  no bookmark will be available", erreur->message);
 		g_error_free (erreur);
 	}
 	else
@@ -416,27 +448,12 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath, GldiModuleInstance
 		gchar **cBookmarksList = g_strsplit (cContent, "\n", -1);
 		g_free (cContent);
 		
-		gchar *cOneBookmark, *cUserName;
+		gchar *cOneBookmark;
+		const gchar *cUserName;
 		int i = 0;
 		for (i = 0; cBookmarksList[i] != NULL; i ++)
 		{
-			cOneBookmark = cBookmarksList[i];
-			cUserName = NULL;
-			if (cOneBookmark != NULL && *cOneBookmark == '/')  // ne devrait pas arriver si on ajoute les signets via le dock ou Nautilus.
-			{
-				gchar *tmp = g_strconcat ("file://", cOneBookmark, NULL);  // sinon launch_uri() ne marche pas sous Gnome.
-				g_free (cOneBookmark);
-				cOneBookmark = tmp;
-			}
-			else  // c'est une URI valide, on regarde si il y'a un nom utilisateur.
-			{
-				gchar *str = strchr (cOneBookmark, ' ');  // pas d'espace dans une URI, donc le 1er espace signifie la separation entre URI et nom utilisateur.
-				if (str != NULL)
-				{
-					cUserName = str + 1;
-					*str = '\0';
-				}
-			}
+			cUserName = _get_custom_name_and_uri (cBookmarksList[i], &cOneBookmark);
 			if (*cOneBookmark != '\0' && *cOneBookmark != '#')
 			{
 				cd_message (" + 1 bookmark : %s", cOneBookmark);
