@@ -23,6 +23,7 @@
 
 #include <cairo-dock.h>
 
+#define CD_VOLUME_ID_BOOKMARK_CMD -1
 
 typedef enum {
 	CD_SHOW_NOTHING=0,

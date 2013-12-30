@@ -127,29 +127,34 @@ CD_APPLET_ON_CLICK_BEGIN
 					(CairoDockFMMountCallback) _open_on_mount, myApplet);
 			}
 		}
-		// click on a bookmark: can be on an unmount devise
+		// click on a bookmark (not with a custom cmd): can be on an unmount devise
 		else if (CD_APPLET_CLICKED_ICON->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)
 		{
-			/* check if it's a mounted URI
-			 * note: if it's a folder on an unmouned volume, it can't be launched
-			 * nor mounted; we would need to get its volume first and it's not
-			 * obvious (Nautilus just hide them until the volume is mounted)
-			 */
-			gboolean bIsMounted = TRUE;
-			gchar *cTarget = cairo_dock_fm_is_mounted (CD_APPLET_CLICKED_ICON->cCommand, &bIsMounted);
-			cd_debug ("%s is mounted: %d (%s)", CD_APPLET_CLICKED_ICON->cCommand, bIsMounted, cTarget);
-			g_free (cTarget);
-			
-			if (bIsMounted)  // if mounted, just open it
-				cairo_dock_fm_launch_uri (CD_APPLET_CLICKED_ICON->cCommand);
-			else  // else, mount it, and it will be opened in the callback.
-				cairo_dock_fm_mount_full (CD_APPLET_CLICKED_ICON->cCommand, 1,
-					(CairoDockFMMountCallback) _open_on_mount, myApplet);
+			// Click on a bookmark which contains a custom cmd, e.g.: "nautilus x-nautilus-(...)
+			if (CD_APPLET_CLICKED_ICON->iVolumeID == CD_VOLUME_ID_BOOKMARK_CMD)
+				cairo_dock_launch_command (CD_APPLET_CLICKED_ICON->cCommand);
+			else
+			{
+				/* check if it's a mounted URI
+				 * note: if it's a folder on an unmouned volume, it can't be
+				 * launched nor mounted; we would need to get its volume first
+				 * and it's not obvious
+				 * (Nautilus just hide them until the volume is mounted)
+				 */
+				gboolean bIsMounted = TRUE;
+				gchar *cTarget = cairo_dock_fm_is_mounted (CD_APPLET_CLICKED_ICON->cCommand, &bIsMounted);
+				cd_debug ("%s is mounted: %d (%s)", CD_APPLET_CLICKED_ICON->cCommand, bIsMounted, cTarget);
+				g_free (cTarget);
+				
+				if (bIsMounted)  // if mounted, just open it
+					cairo_dock_fm_launch_uri (CD_APPLET_CLICKED_ICON->cCommand);
+				else  // else, mount it, and it will be opened in the callback.
+					cairo_dock_fm_mount_full (CD_APPLET_CLICKED_ICON->cCommand,
+						1, (CairoDockFMMountCallback) _open_on_mount, myApplet);
+			}
 		}
-		else
-		{
+		else // Network
 			cairo_dock_fm_launch_uri (CD_APPLET_CLICKED_ICON->cCommand);
-		}
 	}
 CD_APPLET_ON_CLICK_END
 

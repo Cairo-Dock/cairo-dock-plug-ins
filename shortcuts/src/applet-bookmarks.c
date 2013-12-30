@@ -55,6 +55,29 @@ static const gchar * _get_custom_name_and_uri (gchar *cOneBookmark, gchar **cURI
 static Icon * _cd_shortcuts_get_icon (gchar *cFileName, const gchar *cUserName, double fCurrentOrder)
 {
 	cd_debug ("New icon: %s, %s, %f", cFileName, cUserName, fCurrentOrder);
+
+	/* Nautilus adds custom prefixes which are not supported by gvfs...
+	 * gvfs-integration plugin can read x-nautilus-desktop but not others, e.g.:
+	 * x-nautilus-search://0/ => specific to Nautilus: open these URI with it.
+	 * Note that all these URI have a user-name
+	 */
+	if (g_str_has_prefix (cFileName, "x-nautilus-")
+	    && ! g_str_has_prefix (cFileName, "x-nautilus-desktop://"))
+	{
+		Icon *pNewIcon = cairo_dock_create_dummy_launcher (
+			cUserName ? g_strdup (cUserName) : g_strdup (cFileName),
+			cairo_dock_search_icon_s_path (
+				CD_SHORTCUT_DEFAULT_DIRECTORY_ICON_FILENAME,
+				CAIRO_DOCK_DEFAULT_ICON_SIZE),
+			g_strdup_printf ("nautilus %s", cFileName),
+			NULL,
+			fCurrentOrder);
+		pNewIcon->iGroup = CD_BOOKMARK_GROUP;
+		pNewIcon->cBaseURI = cFileName;
+		pNewIcon->iVolumeID = CD_VOLUME_ID_BOOKMARK_CMD;
+		return pNewIcon;
+	}
+
 	gchar *cName, *cRealURI, *cIconName;
 	gboolean bIsDirectory;
 	gint iVolumeID;
