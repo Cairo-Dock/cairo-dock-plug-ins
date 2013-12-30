@@ -118,6 +118,31 @@ static Icon * _cd_shortcuts_get_icon (gchar *cFileName, const gchar *cUserName, 
 	return pNewIcon;
 }
 
+static GList * _get_item_with_base_uri_icon (GList *pIconList, const gchar *cBaseURI)
+{
+	GList* ic;
+	Icon *pIcon;
+	for (ic = pIconList; ic != NULL; ic = ic->next)
+	{
+		pIcon = ic->data;
+		if (pIcon->cBaseURI != NULL && strcmp (pIcon->cBaseURI, cBaseURI) == 0)
+			return ic;
+	}
+	return NULL;
+}
+
+static void _remove_old_icons_and_free_list (GList *pOldBookmarkList)
+{
+	GList* ic;
+	Icon *pIcon;
+	for (ic = pOldBookmarkList; ic != NULL; ic = ic->next)
+	{
+		pIcon = ic->data;
+		CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pIcon);
+	}
+	g_list_free (pOldBookmarkList);
+}
+
 void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gchar *cURI, GldiModuleInstance *myApplet)
 {
 	static int iTime = 0;
@@ -125,6 +150,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 	CD_APPLET_ENTER;
 	//g_print ("%s (%d)\n", __func__, iEventType);
 	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
+	GList *pOldBookmarkList;
 	Icon *icon;
 	GList *ic;
 	// optimization: skip the disks and networks, and point on the first bookmark.
@@ -140,6 +166,11 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 	pIconsList = ic;
 	GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
+
+	// split the list: items can have been removed
+	pOldBookmarkList = pIconsList->next;
+	pIconsList->next = NULL;
+	pOldBookmarkList->prev = NULL;
 
 	// Bookmarks file has been modified
 	if (iEventType == CAIRO_DOCK_FILE_CREATED || iEventType == CAIRO_DOCK_FILE_MODIFIED)
@@ -168,7 +199,8 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 			 */
 			double fCurrentOrder = 1.;
 			gchar *cOneBookmark;
-			Icon *pNewIcon;
+			Icon *pNewIcon, *pExistingIcon;
+			GList *pExistingIconNode;
 			const gchar *cUserName;
 			int i;
 			for (i = 0; cBookmarksList[i] != NULL; i ++)
@@ -183,19 +215,28 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 				// Grab the custom name if any
 				cUserName = _get_custom_name_and_uri (cBookmarksList[i], &cOneBookmark);
 				
-				// Check if the icon already exists: if no, create it.
-				Icon *pExistingIcon = cairo_dock_get_icon_with_base_uri (pIconsList, cOneBookmark);
-				/* 'cUserName' may be NULL if the user has never set a
-				 * user-name yet, but once he does, 'cUserName' is not NULL.
-				 * So if 'cUserName' is NULL, it has not changed.
-				 */
-				if (pExistingIcon != NULL && cUserName
-				    && cairo_dock_strings_differ (pExistingIcon->cName, cUserName))
+				// Check if the icon already exists and has changed
+				pExistingIconNode = _get_item_with_base_uri_icon (pOldBookmarkList, cOneBookmark);
+				if (pExistingIconNode != NULL)
 				{
-					//g_print ("This bookmark '%s' has changed: recreate it\n", pExistingIcon->cName);
-					CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pExistingIcon);
-					pExistingIcon = NULL;
+					pExistingIcon = pExistingIconNode->data;
+					// move this node to the subdock icons list
+					pOldBookmarkList = g_list_delete_link (pOldBookmarkList, pExistingIconNode);
+					pIconsList = g_list_insert (pIconsList, pExistingIcon, 1); // after the home, will be sorted later
+					if (cUserName && g_strcmp0 (pExistingIcon->cName, cUserName) != 0)
+					{
+						CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pExistingIcon); // will destroy it
+						pExistingIcon = NULL;
+					}
+					else
+					{
+						fCurrentOrder++;
+						g_free (cOneBookmark);
+					}
 				}
+				else
+					pExistingIcon = NULL;
+
 				if (pExistingIcon == NULL)
 				{
 					pNewIcon = _cd_shortcuts_get_icon (cOneBookmark,
@@ -211,11 +252,11 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 						g_free (cOneBookmark);
 					}
 				}
-				else
-					fCurrentOrder++;
 			}
 			g_free (cBookmarksList);
-			pIconsList = CD_APPLET_MY_ICONS_LIST;
+
+			_remove_old_icons_and_free_list (pOldBookmarkList);
+
 			/* Again, since 'Home Folder' is always the first bookmark,
 			 * the head of the list won't change even if there are only bookmarks
 			 * (so we don't need to re-assigne it to the container).
