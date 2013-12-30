@@ -52,6 +52,49 @@ static const gchar * _get_custom_name_and_uri (gchar *cOneBookmark, gchar **cURI
 	return cUserName;
 }
 
+static Icon * _cd_shortcuts_get_icon (gchar *cFileName, const gchar *cUserName, double fCurrentOrder)
+{
+	cd_debug ("New icon: %s, %s, %f", cFileName, cUserName, fCurrentOrder);
+	gchar *cName, *cRealURI, *cIconName;
+	gboolean bIsDirectory;
+	gint iVolumeID;
+	gdouble fOrder;
+	if (! cairo_dock_fm_get_file_info (cFileName, &cName, &cRealURI, &cIconName,
+		&bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_NAME))
+		return NULL;
+	if (cUserName != NULL)
+	{
+		g_free (cName);
+		if (cName == NULL)  // a bookmark on a unmounted system or a folder that doesn't exist any more
+			cName = g_strdup_printf ("%s\n[%s]", cUserName, D_("Unmounted"));
+		else
+			cName = g_strdup (cUserName);
+	}
+	else if (cName == NULL)  // a bookmark on a unmounted system
+	{
+		gchar *cGuessedName = g_path_get_basename (cFileName);
+		cairo_dock_remove_html_spaces (cGuessedName); // or: g_uri_unescape_string
+		cName = g_strdup_printf ("%s\n[%s]", cGuessedName, D_("Unmounted"));
+		g_free (cGuessedName);
+	}
+	if (cRealURI == NULL)
+		cRealURI = g_strdup (cFileName);
+	if (cIconName == NULL)
+		cIconName = cairo_dock_search_icon_s_path (
+			CD_SHORTCUT_DEFAULT_DIRECTORY_ICON_FILENAME,
+			CAIRO_DOCK_DEFAULT_ICON_SIZE); // should be the default icon
+
+	Icon *pNewIcon = cairo_dock_create_dummy_launcher (cName,
+		cIconName,
+		cRealURI,
+		NULL,
+		fCurrentOrder);
+	pNewIcon->iGroup = CD_BOOKMARK_GROUP;
+	pNewIcon->cBaseURI = cFileName;
+	pNewIcon->iVolumeID = iVolumeID;
+	return pNewIcon;
+}
+
 void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gchar *cURI, GldiModuleInstance *myApplet)
 {
 	static int iTime = 0;
@@ -103,11 +146,7 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 			double fCurrentOrder = 1.;
 			gchar *cOneBookmark;
 			Icon *pNewIcon;
-			gchar *cName, *cRealURI, *cIconName;
 			const gchar *cUserName;
-			gboolean bIsDirectory;
-			int iVolumeID;
-			double fOrder;
 			int i;
 			for (i = 0; cBookmarksList[i] != NULL; i ++)
 			{
@@ -123,74 +162,25 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 				
 				// Check if the icon already exists: if no, create it.
 				Icon *pExistingIcon = cairo_dock_get_icon_with_base_uri (pIconsList, cOneBookmark);
-				if (pExistingIcon != NULL)
+				/* 'cUserName' may be NULL if the user has never set a
+				 * user-name yet, but once he does, 'cUserName' is not NULL.
+				 * So if 'cUserName' is NULL, it has not changed.
+				 */
+				if (pExistingIcon != NULL && cUserName
+				    && cairo_dock_strings_differ (pExistingIcon->cName, cUserName))
 				{
-					/* 'cUserName' may be NULL if the user has never set a
-					 * user-name yet, but once he does, 'cUserName' is not NULL.
-					 * So if 'cUserName' is NULL, it has not changed.
-					 */
-					if ((cUserName && cairo_dock_strings_differ (pExistingIcon->cName, cUserName))
-					    || cURI == NULL)
-					{
-						//g_print ("This bookmark '%s' has changed: recreate it\n", pExistingIcon->cName);
-						CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pExistingIcon);
-						pExistingIcon = NULL;
-					}
-					else
-					{
-						CDDiskUsage *pDiskUsage = CD_APPLET_GET_MY_ICON_DATA (pExistingIcon);
-						if (! pDiskUsage)
-						{
-							pDiskUsage = g_new0 (CDDiskUsage, 1);
-							CD_APPLET_SET_MY_ICON_DATA (pExistingIcon, pDiskUsage);
-						}
-						pDiskUsage->iLastCheckTime = iTime;
-						pExistingIcon->fOrder = fCurrentOrder ++;
-					}
+					//g_print ("This bookmark '%s' has changed: recreate it\n", pExistingIcon->cName);
+					CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (pExistingIcon);
+					pExistingIcon = NULL;
 				}
 				if (pExistingIcon == NULL)
 				{
-					//g_print ("new bookmark : '%s'\n", cOneBookmark);
-					
-					cName = NULL;
-					cRealURI = NULL;
-					cIconName = NULL;
-					if (cairo_dock_fm_get_file_info (cOneBookmark, &cName,
-					    &cRealURI, &cIconName, &bIsDirectory, &iVolumeID,
-					    &fOrder, CAIRO_DOCK_FM_SORT_BY_NAME))
+					pNewIcon = _cd_shortcuts_get_icon (cOneBookmark,
+						cUserName, fCurrentOrder);
+					if (pNewIcon)
 					{
-						cd_message (" + 1 bookmark : %s", cOneBookmark);
-						if (cUserName != NULL)
-						{
-							g_free (cName);
-							cName = g_strdup (cUserName);
-						}
-						else if (cName == NULL)  // A bookmark on an unmounted devise
-						{
-							gchar *cGuessedName = g_path_get_basename (cOneBookmark);
-							cairo_dock_remove_html_spaces (cGuessedName);
-							cName = g_strdup_printf ("%s\n[%s]", cGuessedName, D_("Unmounted"));
-							g_free (cGuessedName);
-						}
-						if (cRealURI == NULL)
-							cRealURI = g_strdup (cOneBookmark);
-						if (cIconName == NULL)
-							cIconName = cairo_dock_search_icon_s_path (CD_SHORTCUT_DEFAULT_DIRECTORY_ICON_FILENAME,
-								CAIRO_DOCK_DEFAULT_ICON_SIZE);
-						
-						pNewIcon = cairo_dock_create_dummy_launcher (cName,
-							cIconName,
-							cRealURI,
-							NULL,
-							fCurrentOrder++);
-						pNewIcon->iGroup = CD_BOOKMARK_GROUP;
-						pNewIcon->cBaseURI = cOneBookmark;
-						pNewIcon->iVolumeID = iVolumeID;
-						CDDiskUsage *pDiskUsage = g_new0 (CDDiskUsage, 1);
-						pDiskUsage->iLastCheckTime = iTime;
-						CD_APPLET_SET_MY_ICON_DATA (pNewIcon, pDiskUsage);
-						
 						CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pNewIcon);
+						fCurrentOrder++;
 					}
 					else
 					{
@@ -198,26 +188,10 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 						g_free (cOneBookmark);
 					}
 				}
+				else
+					fCurrentOrder++;
 			}
 			g_free (cBookmarksList);
-			
-			//\____________________ remove the old bookmarks.
-			///pIconsList = CD_APPLET_MY_ICONS_LIST;
-			GList *next_ic;
-			for (ic = pIconsList; ic != NULL; ic = next_ic)
-			{
-				next_ic = ic->next;
-				icon = ic->data;
-				if (icon->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)
-				{
-					CDDiskUsage *pDiskUsage = CD_APPLET_GET_MY_ICON_DATA (icon);
-					if (! pDiskUsage || pDiskUsage->iLastCheckTime < iTime)
-					{
-						cd_debug ("this bookmark is too old (%s)", icon->cName);
-						CD_APPLET_REMOVE_ICON_FROM_MY_ICONS_LIST (icon);
-					}
-				}
-			}
 			pIconsList = CD_APPLET_MY_ICONS_LIST;
 			/* Again, since 'Home Folder' is always the first bookmark,
 			 * the head of the list won't change even if there are only bookmarks
@@ -371,49 +345,6 @@ void cd_shortcuts_add_one_bookmark (const gchar *cURI, GldiModuleInstance *myApp
 		g_free (cNewLine);
 		fclose (f);
 	}
-}
-
-static Icon * _cd_shortcuts_get_icon (gchar *cFileName, const gchar *cUserName, double fCurrentOrder)
-{
-	cd_debug ("New icon: %s, %s, %f", cFileName, cUserName, fCurrentOrder);
-	gchar *cName, *cRealURI, *cIconName;
-	gboolean bIsDirectory;
-	gint iVolumeID;
-	gdouble fOrder;
-	if (! cairo_dock_fm_get_file_info (cFileName, &cName, &cRealURI, &cIconName,
-		&bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_NAME))
-		return NULL;
-	if (cUserName != NULL)
-	{
-		g_free (cName);
-		if (cName == NULL)  // a bookmark on a unmounted system or a folder that doesn't exist any more
-			cName = g_strdup_printf ("%s\n[%s]", cUserName, D_("Unmounted"));
-		else
-			cName = g_strdup (cUserName);
-	}
-	else if (cName == NULL)  // a bookmark on a unmounted system
-	{
-		gchar *cGuessedName = g_path_get_basename (cFileName);
-		cairo_dock_remove_html_spaces (cGuessedName); // or: g_uri_unescape_string
-		cName = g_strdup_printf ("%s\n[%s]", cGuessedName, D_("Unmounted"));
-		g_free (cGuessedName);
-	}
-	if (cRealURI == NULL)
-		cRealURI = g_strdup (cFileName);
-	if (cIconName == NULL)
-		cIconName = cairo_dock_search_icon_s_path (
-			CD_SHORTCUT_DEFAULT_DIRECTORY_ICON_FILENAME,
-			CAIRO_DOCK_DEFAULT_ICON_SIZE); // should be the default icon
-
-	Icon *pNewIcon = cairo_dock_create_dummy_launcher (cName,
-		cIconName,
-		cRealURI,
-		NULL,
-		fCurrentOrder);
-	pNewIcon->iGroup = CD_BOOKMARK_GROUP;
-	pNewIcon->cBaseURI = cFileName;
-	pNewIcon->iVolumeID = iVolumeID;
-	return pNewIcon;
 }
 
 GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath, GldiModuleInstance *myApplet)
