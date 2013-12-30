@@ -72,10 +72,10 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 	
 	switch (iEventType)
 	{
-		case CAIRO_DOCK_FILE_DELETED :  // un point de montage a ete deconnecte.
+		case CAIRO_DOCK_FILE_DELETED :  // a mount point has been disconnected
 		{
 			Icon *pConcernedIcon = cairo_dock_get_icon_with_base_uri (pIconsList, cURI);
-			if (pConcernedIcon == NULL)  // on cherche par nom.
+			if (pConcernedIcon == NULL)  // search by name
 			{
 				pConcernedIcon = cairo_dock_get_icon_with_name (pIconsList, cURI);
 			}
@@ -92,17 +92,17 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 		}
 		break ;
 		
-		case CAIRO_DOCK_FILE_CREATED :  // un point de montage a ete connecte.
+		case CAIRO_DOCK_FILE_CREATED :  // a mount point has been connected
 		{
-			//\_______________________ on verifie qu'elle n'existe pas deja.
+			//\_______________________does it already exist?
 			Icon *pSameIcon = cairo_dock_get_icon_with_base_uri (pIconsList, cURI);
 			if (pSameIcon != NULL)
 			{
 				cd_warning ("this mount point (%s) already exists.", pSameIcon->cName);
-				return;  // on decide de ne rien faire, c'est surement un signal inutile.
+				return;  // do nothing, certainly an useless/double signal
 			}
 			
-			//\_______________________ on cree une icone pour cette nouvelle URI.
+			//\_______________________ create a new icon
 			Icon *pNewIcon = cairo_dock_fm_create_icon_from_URI (cURI, pContainer, CAIRO_DOCK_FM_SORT_BY_NAME);
 			if (pNewIcon == NULL)
 			{
@@ -111,11 +111,11 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 			}
 			pNewIcon->iGroup = CD_DRIVE_GROUP;
 			
-			//\_______________________ on la place au bon endroit suivant son nom.
+			//\_______________________ place it at the right position (by name)
 			cd_shortcuts_set_icon_order_by_name (pNewIcon, pIconsList);
 			cd_debug (" new drive : %s, %s", pNewIcon->cName, pNewIcon->cCommand);
 			
-			//\_______________________ on l'insere dans la liste.
+			//\_______________________ added in the list
 			CD_APPLET_ADD_ICON_IN_MY_ICONS_LIST (pNewIcon);
 			_init_disk_usage (pNewIcon, myApplet);
 			if (pNewIcon->cCommand)
@@ -124,7 +124,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 				cd_shortcuts_display_disk_usage (pNewIcon, myApplet);
 			}
 			
-			//\_______________________ on affiche un message.
+			//\_______________________ display a notification
 			gboolean bIsMounted = FALSE;
 			gchar *cUri = cairo_dock_fm_is_mounted (pNewIcon->cBaseURI, &bIsMounted);
 			g_free (cUri);
@@ -132,18 +132,18 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 				bIsMounted ? D_("%s is now mounted") : D_("%s has been connected"),
 				pNewIcon, pContainer,
 				4000,
-				NULL,  // son icone n'est pas encore chargee
+				NULL,  // it's icon is not already loaded
 				pNewIcon->cName);
 			g_free (myData.cLastCreatedUri);
 			myData.cLastCreatedUri = g_strdup (cURI);
 		}
 		break ;
 		
-		case CAIRO_DOCK_FILE_MODIFIED :  // un point de montage a ete (de)monte
+		case CAIRO_DOCK_FILE_MODIFIED :  // a mount point has been (un)mounted
 		{
-			//\_______________________ on cherche l'icone concernee.
+			//\_______________________ search the right icon
 			Icon *pConcernedIcon = cairo_dock_get_icon_with_base_uri (pIconsList, cURI);
-			if (pConcernedIcon == NULL)  // on cherche par nom.
+			if (pConcernedIcon == NULL)  // search by using the name
 			{
 				pConcernedIcon = cairo_dock_get_icon_with_name (pIconsList, cURI);
 			}
@@ -154,7 +154,7 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 			}
 			cd_debug (" %s is modified (%s)", pConcernedIcon->cName, pConcernedIcon->cCommand);
 			
-			//\_______________________ on recupere les infos actuelles.
+			//\_______________________ grab current info
 			Icon *pNewIcon = cairo_dock_fm_create_icon_from_URI (cURI, pContainer, CAIRO_DOCK_FM_SORT_BY_NAME);
 			if (pNewIcon == NULL)
 			{
@@ -163,8 +163,9 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 			}
 			pNewIcon->iGroup = CD_DRIVE_GROUP;
 			
-			//\_______________________ on remplace l'icone si des choses ont change.
-			if (cairo_dock_strings_differ (pConcernedIcon->cName, pNewIcon->cName) || cairo_dock_strings_differ (pConcernedIcon->cFileName, pNewIcon->cFileName))
+			//\_______________________ replace the icon if smthg has changed
+			if (cairo_dock_strings_differ (pConcernedIcon->cName, pNewIcon->cName)
+			    || cairo_dock_strings_differ (pConcernedIcon->cFileName, pNewIcon->cFileName))
 			{
 				//g_print (" '%s' -> '%s'\n'%s' -> '%s'\n", pConcernedIcon->cName, pNewIcon->cName, pConcernedIcon->cFileName, pNewIcon->cFileName);
 				
@@ -178,8 +179,9 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 				{
 					cd_shortcuts_add_progress_bar (pNewIcon, myApplet);
 				}
-				
-				pConcernedIcon = pNewIcon;  // pConcernedIcon a ete detruite, on pointe sur la nouvelle pour pouvoir afficher un dialogue juste apres.
+
+				// pConcernedIcon has been distroyed, assigned the new one to display a dialogue just after
+				pConcernedIcon = pNewIcon;
 			}
 			else
 			{
@@ -189,8 +191,8 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 			
 			cd_shortcuts_display_disk_usage (pConcernedIcon, myApplet);
 			
-			//\_______________________ on affiche un message.
-			gldi_dialogs_remove_on_icon (pConcernedIcon);  // on empeche la multiplication des dialogues de (de)montage.
+			//\_______________________ display a notification
+			gldi_dialogs_remove_on_icon (pConcernedIcon); // avoid multiple dialogues
 			gboolean bIsMounted = FALSE;
 			gchar *cUri = cairo_dock_fm_is_mounted (pConcernedIcon->cBaseURI, &bIsMounted);
 			g_free (cUri);
@@ -198,9 +200,10 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 				bIsMounted ? D_("%s is now mounted") : D_("%s is now unmounted"),
 				pConcernedIcon, pContainer,
 				4000,
-				"same icon",  // petit risque de n'avoir pas encore d'image a afficher, pas bien grave.
+				"same icon",  // it's possible to not have the right icon, not so important
 				pConcernedIcon->cName);
-			if (! bIsMounted && pNewIcon == NULL)  // le disque s'est fait demonte, mais l'icone ne s'est pas faite remplacee.
+			// disk has been unmounted but a icon is needed
+			if (! bIsMounted && pNewIcon == NULL)
 			{
 				CDDiskUsage *pDiskUsage = CD_APPLET_GET_MY_ICON_DATA (pConcernedIcon);
 				if (pDiskUsage != NULL)
@@ -209,7 +212,8 @@ static void _manage_event_on_drive (CairoDockFMEventType iEventType, const gchar
 					{
 						pDiskUsage->iTotal = 0;
 						pDiskUsage->iAvail = 0;
-						gldi_icon_set_quick_info (pConcernedIcon, NULL);  // on lui enleve son quick-info (ses infos n'etant plus valides, son quick-info ne sera pas mis a jour).
+						// remove the quick-info because it has been unmounted
+						gldi_icon_set_quick_info (pConcernedIcon, NULL);
 					}
 				}
 			}
@@ -225,14 +229,14 @@ void cd_shortcuts_on_drive_event (CairoDockFMEventType iEventType, const gchar *
 {
 	g_return_if_fail (cURI != NULL);
 	CD_APPLET_ENTER;
-	//\________________ On gere l'evenement sur le point de montage.
+	//\________________ Manage event about this mount point
 	GList *pIconsList = CD_APPLET_MY_ICONS_LIST;
 	GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
 	
 	_manage_event_on_drive (iEventType, cURI, pIconsList, pContainer, myApplet);
 	
-	//\________________ On met a jour les signets qui pointeraient sur un repertoire du point de montage nouvellement (de)monte.
+	//\________________ Update bookmarks which are linked to this mount point
 	if (!myConfig.bListBookmarks || pIconsList == NULL)
 	{
 		CD_APPLET_LEAVE();
@@ -241,12 +245,7 @@ void cd_shortcuts_on_drive_event (CairoDockFMEventType iEventType, const gchar *
 	Icon *icon;
 	gboolean bIsMounted;
 	gchar *cTargetURI = cairo_dock_fm_is_mounted (cURI, &bIsMounted);
-	if (cTargetURI == NULL)  // I think we don't have anything to do here, but this needs confirmation.
-	{
-		//g_print ("couldn't guess target URi of mount point '%s'\n", cURI);
-		///cd_shortcuts_on_bookmarks_event (CAIRO_DOCK_FILE_MODIFIED, NULL, myApplet);  // NULL <=> on recharge tout.
-	}
-	else  // version optimisee.
+	if (cTargetURI != NULL)  // optimized version.
 	{
 		//g_print ("test bookmarks in '%s'...\n", cTargetURI);
 		pIconsList = CD_APPLET_MY_ICONS_LIST;
@@ -257,18 +256,28 @@ void cd_shortcuts_on_drive_event (CairoDockFMEventType iEventType, const gchar *
 			{
 				if (strncmp (cTargetURI, icon->cBaseURI, strlen (cTargetURI)) == 0)
 				{
-					//g_print ("le signet '%s' est situe sur un point de montage ayant change (%s)\n", icon->cBaseURI, cTargetURI);
+					//g_print ("bookmark '%s' is located in a mount point which has changed (%s)\n", icon->cBaseURI, cTargetURI);
 					gchar *cName = NULL, *cRealURI = NULL, *cIconName = NULL;
 					int iVolumeID = 0;
 					gboolean bIsDirectory = FALSE;
 					double fOrder;
-					if (cairo_dock_fm_get_file_info (icon->cBaseURI, &cName, &cRealURI, &cIconName, &bIsDirectory, &iVolumeID, &fOrder, CAIRO_DOCK_FM_SORT_BY_NAME))
+					if (cairo_dock_fm_get_file_info (icon->cBaseURI, &cName,
+					     &cRealURI, &cIconName, &bIsDirectory, &iVolumeID,
+					     &fOrder, CAIRO_DOCK_FM_SORT_BY_NAME))
 					{
 						//g_print (" -> %s (%d)\n", cIconName, bIsMounted);
 						if (bIsMounted/** || cIconName == NULL*/)
 						{
 							gchar *str;
-							if ((str = strchr (icon->cName, '\n')) != NULL)  // if it was previously an unmounted bookmark, just remove the 'unmounted' part to avoid changing the name (when mounted, gvfs returns the path whereas we want to display the bookmark name). Note that the icon might also changes (it was NULL when the bookmark was not mounted), and we can use this new one which is probably more accurate.
+							/* if it was previously an unmounted bookmark, just
+							 * remove the 'unmounted' part to avoid changing the
+							 * name (when mounted, gvfs returns the path whereas
+							 * we want to display the bookmark name). Note that
+							 * the icon might also changes (it was NULL when the
+							 * bookmark was not mounted), and we can use this
+							 * new one which is probably more accurate.
+							 */
+							if ((str = strchr (icon->cName, '\n')) != NULL)
 								*str = '\0';
 							else
 							{
@@ -303,18 +312,19 @@ GList * cd_shortcuts_list_drives (CDSharedMemory *pSharedMemory)
 	GList *pIconList = NULL;
 	gchar *cFullURI = NULL;
 	
-	//\_______________________ On recupere la liste des points de montage.
-	pIconList = cairo_dock_fm_list_directory (CAIRO_DOCK_FM_VFS_ROOT, CAIRO_DOCK_FM_SORT_BY_NAME, CD_DRIVE_GROUP, FALSE, 100, &cFullURI);
+	//\_______________________ Get the list of mount points.
+	pIconList = cairo_dock_fm_list_directory (CAIRO_DOCK_FM_VFS_ROOT,
+		CAIRO_DOCK_FM_SORT_BY_NAME, CD_DRIVE_GROUP, FALSE, 100, &cFullURI);
 	cd_message ("  cFullURI : %s", cFullURI);
 	if (pIconList == NULL)
 	{
-		cd_warning ("couldn't detect any drives");  // on decide de poursuivre malgre tout, pour les signets.
+		cd_warning ("couldn't detect any drives");  // continue: for bookmarks
 	}
 	/// TODO: if ! bListBookmarks, then we should add the Home in the drives list, to have the disk space information...
 	
 	pSharedMemory->cDisksURI = cFullURI;
 	
-	//\_______________________ On initialise les usages disque.
+	//\_______________________ Initialize disk usages.
 	Icon *pIcon;
 	GList *ic;
 	for (ic = pIconList; ic != NULL; ic = ic->next)

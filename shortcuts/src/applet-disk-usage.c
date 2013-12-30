@@ -120,7 +120,11 @@ static gboolean _cd_shortcuts_update_disk_usage (GldiModuleInstance *myApplet)
 			pDiskUsage = CD_APPLET_GET_MY_ICON_DATA (pIcon);
 			if (pDiskUsage == NULL)  // not a drive (eg, network or bookmark)
 			{
-				if (pIcon->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)  // drives are listed first, and Home is always the first bookmark (and the only one to have disk data), so if we got a bookmark with no disk data, we can quit the loop.
+				/* Drives are listed first, and Home is always the first
+				 * bookmark (and the only one to have disk data), so if we got a
+				 * bookmark with no disk data, we can quit the loop.
+				 */
+				if (pIcon->iGroup >= (CairoDockIconGroup) CD_BOOKMARK_GROUP)
 					break;
 				else
 					continue;
