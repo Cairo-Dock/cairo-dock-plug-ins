@@ -31,28 +31,35 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 	
 	if (bRedrawSurface)  // group has changed -> update the icon and label
 	{
+		if (! cShortGroupName)
+		{
+			cShortGroupName = myData.cShortGroupName;
+		}
+		else
+		{
+			g_free (myData.cShortGroupName);
+			myData.cShortGroupName = g_strdup (cShortGroupName);
+		}
+		if (! cGroupName)
+		{
+			cGroupName = myData.cGroupName;
+		}
+		else
+		{
+			g_free (myData.cGroupName);
+			myData.cGroupName = g_strdup (cGroupName);
+		}
+		
 		//\__________________ On sauvegarde l'ancienne surface/texture.
 		cairo_dock_free_image_buffer (myData.pOldImage);
 		myData.pOldImage = myData.pCurrentImage;
 		myData.pCurrentImage = NULL;
-		/**if (myData.pOldSurface != NULL)
-			cairo_surface_destroy (myData.pOldSurface);
-		if (myData.pOldImage->iure != 0)
-			_cairo_dock_delete_texture (myData.pOldImage->iure);
-		myData.pOldSurface = myData.pCurrentSurface;
-		myData.pOldImage->iure = myData.pCurrentImage->iure;
-		myData.pOldImage->iWidth = myData.pCurrentImage->iWidth;
-		myData.pOldImage->iHeight = myData.pCurrentImage->iHeight;*/
 		
 		//\__________________ On cree la nouvelle surface (la taille du texte peut avoir change).
 		int iWidth, iHeight;
 		CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 		if (iWidth <= 1 && iHeight <= 1)  // peut arriver au lancement en mode desklet.
 		{
-			/**myData.pCurrentSurface = NULL;
-			myData.pCurrentImage->iure = 0;
-			myData.pCurrentImage->iWidth = 0;
-			myData.pCurrentImage->iHeight = 0;*/
 			return;
 		}
 		int w, h;
@@ -63,16 +70,6 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 			&w, &h);
 		myData.pCurrentImage = g_new0 (CairoDockImageBuffer, 1);
 		cairo_dock_load_image_buffer_from_surface (myData.pCurrentImage, pSurface, w, h);
-		/**myData.pCurrentSurface = cairo_dock_create_surface_from_text_full (cShortGroupName,
-			&myConfig.textDescription,
-			1.,
-			0*iWidth,
-			&myData.pCurrentImage->iWidth, &myData.pCurrentImage->iHeight);
-		cd_debug ("KEYBOARD: %dx%d / %dx%d", myData.pCurrentImage->iWidth, myData.pCurrentImage->iHeight, myIcon->image.iWidth, myIcon->image.iHeight);
-		if (g_bUseOpenGL)
-		{
-			myData.pCurrentImage->iure = cairo_dock_create_texture_from_surface (myData.pCurrentSurface);
-		}*/
 		
 		//\__________________ On lance une transition entre ancienne et nouvelle surface/texture, ou on dessine direct.
 		if (myConfig.iTransitionDuration != 0 && myData.pOldImage != NULL)
@@ -94,7 +91,6 @@ void cd_xkbd_update_icon (const gchar *cGroupName, const gchar *cShortGroupName,
 			else
 			{
 				cd_xkbd_render_step_cairo (myIcon, myApplet);
-				///CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;
 			}
 			CD_APPLET_REDRAW_MY_ICON;
 		}

@@ -162,7 +162,7 @@ static void _cd_disconnect_from_resuming_signal (GldiModuleInstance *myApplet)
 
 static gboolean on_style_changed (GldiModuleInstance *myApplet)
 {
-	g_print ("%s (%d)\n", __func__, myIconsParam.iconTextDescription.bUseDefaultColors);
+	g_print ("%s (Clock)\n", __func__);
 	
 	if (! myConfig.bOldStyle)  // numeric mode
 	{
@@ -173,7 +173,6 @@ static gboolean on_style_changed (GldiModuleInstance *myApplet)
 		}
 		cd_clock_update_with_time (myApplet);  // redraw in case the font or the text color has changed
 	}
-	
 	return GLDI_NOTIFICATION_LET_PASS;
 }
 

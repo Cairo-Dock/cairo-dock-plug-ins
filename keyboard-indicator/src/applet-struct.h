@@ -52,6 +52,8 @@ struct _AppletData {
 	gchar *cEmblemNumLock;
 	gchar *cEmblemCapsLock;
 	gpointer pEngine; // const, should not be freed
+	gchar *cShortGroupName;  // current text displayed
+	gchar *cGroupName;  // current label displayed
 	} ;
 
 

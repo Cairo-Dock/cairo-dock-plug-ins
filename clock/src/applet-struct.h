@@ -149,7 +149,7 @@ struct _AppletConfig {
 	gboolean bUseDefaultColors;
 	double fOutlineColor[4];
 	gint iOutlineWidth;
-	double fDateColor[4];
+	double fDateColor[3];
 	gchar *cThemePath;
 	gchar *cNumericBackgroundImage;
 	GPtrArray *pAlarms;

@@ -63,7 +63,7 @@ void cd_clock_draw_text (GldiModuleInstance *myApplet, int iWidth, int iHeight, 
 	if (myConfig.bUseDefaultColors)
 		gldi_style_colors_set_text_color (myDrawContext);
 	else
-		cairo_set_source_rgba (myDrawContext, myConfig.textDescription.fColorStart[0], myConfig.textDescription.fColorStart[1], myConfig.textDescription.fColorStart[2], myConfig.textDescription.fColorStart[3]);
+		cairo_set_source_rgb (myDrawContext, myConfig.textDescription.fColorStart[0], myConfig.textDescription.fColorStart[1], myConfig.textDescription.fColorStart[2]);
 	
 	//\______________ On defini le texte a dessiner.
 	// layout
@@ -272,7 +272,7 @@ void cd_clock_draw_analogic (GldiModuleInstance *myApplet, int iWidth, int iHeig
 	if (myConfig.iShowDate == CAIRO_DOCK_INFO_ON_ICON)
 	{
 		cairo_save (myDrawContext);
-		cairo_set_source_rgba (myDrawContext, myConfig.fDateColor[0], myConfig.fDateColor[1], myConfig.fDateColor[2], myConfig.fDateColor[3]);
+		cairo_set_source_rgb (myDrawContext, myConfig.fDateColor[0], myConfig.fDateColor[1], myConfig.fDateColor[2]);
 		cairo_set_line_width (myDrawContext, 8.0f);
 		strftime (s_cDateBuffer, CD_CLOCK_DATE_BUFFER_LENGTH, "%a%d%b", pTime);
 		cairo_text_extents (myDrawContext, s_cDateBuffer, &textExtents);

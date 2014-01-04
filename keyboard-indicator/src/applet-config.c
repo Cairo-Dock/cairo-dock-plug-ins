@@ -32,20 +32,28 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cEmblemCapsLock = CD_CONFIG_GET_STRING ("Configuration", "emblem capslock");
 	myConfig.iTransitionDuration = CD_CONFIG_GET_INTEGER ("Configuration", "transition");
 	myConfig.fTextRatio = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "text ratio", 1.);
-	CD_CONFIG_GET_COLOR_RVB("Configuration", "text color", myConfig.textDescription.fColorStart);
 	
+	gboolean bUseDefaultColors = (CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "style", 1) == 0);
 	gboolean bCustomFont = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "custom font", FALSE);  // false by default
-	if (bCustomFont)
+	if (! bUseDefaultColors && bCustomFont)  // custom font
 	{
 		gchar *cFont = CD_CONFIG_GET_STRING ("Configuration", "font");
 		gldi_text_description_set_font (&myConfig.textDescription, cFont);
 	}
-	else  // use the same font as the labels
+	else  // use the default font
 	{
-		gldi_text_description_copy (&myConfig.textDescription, &myIconsParam.iconTextDescription);
+		gldi_text_description_copy (&myConfig.textDescription, &myStyleParam.textDescription);
 	}
 	myConfig.textDescription.bNoDecorations = TRUE;
-	myConfig.textDescription.bOutlined = CD_CONFIG_GET_BOOLEAN ("Configuration", "outlined");
+	
+	if (! bUseDefaultColors)  // custom colors
+	{
+		CD_CONFIG_GET_COLOR_RVB("Configuration", "text color", myConfig.textDescription.fColorStart);
+		myConfig.textDescription.bOutlined = CD_CONFIG_GET_BOOLEAN ("Configuration", "outlined");
+		myConfig.textDescription.bUseDefaultColors = FALSE;
+	}
+	else  // else, no outline and keep default colors
+		myConfig.textDescription.bUseDefaultColors = TRUE;
 	
 	myConfig.cBackgroundImage = CD_CONFIG_GET_STRING ("Configuration", "bg image");
 	myConfig.iNLetters = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nLetters", 3);
@@ -57,7 +65,7 @@ CD_APPLET_RESET_CONFIG_BEGIN
 	g_free (myConfig.cBackgroundImage);
 	g_free (myConfig.cEmblemCapsLock);
 	g_free (myConfig.cEmblemNumLock);
-	g_free (myConfig.textDescription.cFont);
+	gldi_text_description_reset (&myConfig.textDescription);
 	g_free (myConfig.cShortkey);
 CD_APPLET_RESET_CONFIG_END
 
@@ -77,4 +85,6 @@ CD_APPLET_RESET_DATA_BEGIN
 		_cairo_dock_delete_texture (myData.iCurrentTexture);*/
 	g_free (myData.cEmblemCapsLock);
 	g_free (myData.cEmblemNumLock);
+	g_free (myData.cShortGroupName);
+	g_free (myData.cGroupName);
 CD_APPLET_RESET_DATA_END

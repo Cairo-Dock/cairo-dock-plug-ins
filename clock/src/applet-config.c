@@ -68,34 +68,34 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	if (myConfig.bOldStyle)
 	{
-		double colour[4] = {0., 0., 0., 1.};
 		myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "glassy");
-		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "date color", myConfig.fDateColor, colour);
+		CD_CONFIG_GET_COLOR_RVB ("Configuration", "date color", myConfig.fDateColor);
 	}
 	else
 	{
+		myConfig.bUseDefaultColors = (CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "numeric style", 1) == 0);
 		gboolean bCustomFont = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "custom font", FALSE);  // false by default
-		if (bCustomFont)
+		if (! myConfig.bUseDefaultColors && bCustomFont)  // custom font
 		{
 			gchar *cFont = CD_CONFIG_GET_STRING ("Configuration", "font");
 			gldi_text_description_set_font (&myConfig.textDescription, cFont);
 		}
 		else  // use the same font as the labels
 		{
-			gldi_text_description_copy (&myConfig.textDescription, &myIconsParam.iconTextDescription);
+			gldi_text_description_copy (&myConfig.textDescription, &myStyleParam.textDescription);
 		}
 		pango_font_description_set_weight (myConfig.textDescription.fd, PANGO_WEIGHT_HEAVY);
-
-		// 0: Automatic ; 1: Custom
-		myConfig.bUseDefaultColors = (CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "numeric style", 1) == 0);
+		myConfig.textDescription.bNoDecorations = TRUE;
 		
-		if (! myConfig.bUseDefaultColors)  // custom
+		if (! myConfig.bUseDefaultColors)  // custom colors
 		{
-			double colour[4] = {0.85, 0.85, 0.85, 1.};
-			CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "text color", myConfig.textDescription.fColorStart, colour);
-			CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "outline color", myConfig.fOutlineColor, colour);
+			CD_CONFIG_GET_COLOR_RVB ("Configuration", "text color", myConfig.textDescription.fColorStart);
+			CD_CONFIG_GET_COLOR ("Configuration", "outline color", myConfig.fOutlineColor);
 			myConfig.iOutlineWidth = CD_CONFIG_GET_INTEGER ("Configuration", "outline width");
-		}  // else, no outline and keep default colors
+			myConfig.textDescription.bUseDefaultColors = FALSE;
+		}
+		else  // else, no outline and keep default colors
+			myConfig.textDescription.bUseDefaultColors = TRUE;
 		
 		myConfig.cNumericBackgroundImage = CD_CONFIG_GET_STRING ("Configuration", "numeric bg");
 		myConfig.fTextRatio = CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "text ratio", 1.);

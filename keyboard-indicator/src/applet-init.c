@@ -60,6 +60,21 @@ static gboolean _init (gpointer data)
 	cd_xkbd_init (pDisplay);
 	return FALSE;
 }
+
+static gboolean on_style_changed (GldiModuleInstance *myApplet)
+{
+	g_print ("%s (Keyboard Indic)\n", __func__);
+	
+	if (myConfig.textDescription.cFont == NULL)  // default font -> reload our text description
+	{
+		gldi_text_description_set_font (&myConfig.textDescription, NULL);
+		myConfig.textDescription.iSize = (int) myIcon->image.iHeight * myConfig.fTextRatio;
+	}
+	cd_xkbd_update_icon (NULL, NULL, TRUE);  // redraw in case the font or the text color has changed
+	
+	return GLDI_NOTIFICATION_LET_PASS;
+}
+
 CD_APPLET_INIT_BEGIN
 	if (myDesklet)
 	{
@@ -76,6 +91,10 @@ CD_APPLET_INIT_BEGIN
 		(GldiNotificationFunc) cd_xkbd_keyboard_state_changed,
 		GLDI_RUN_AFTER,
 		myApplet);
+	gldi_object_register_notification (&myStyleMgr,
+		NOTIFICATION_STYLE_CHANGED,
+		(GldiNotificationFunc) on_style_changed,
+		GLDI_RUN_AFTER, myApplet);
 	
 	// shortkey
 	myData.pKeyBinding = CD_APPLET_BIND_KEY (myConfig.cShortkey,
