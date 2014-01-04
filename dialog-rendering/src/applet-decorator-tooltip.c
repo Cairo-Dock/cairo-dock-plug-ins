@@ -24,9 +24,9 @@
 #include "applet-struct.h"
 #include "applet-decorator-tooltip.h"
 
-#define _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH 20
+#define _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH 28
 #define _CAIRO_DIALOG_TOOLTIP_MARGIN 4
-#define CD_ARROW_HEIGHT 6
+#define CD_ARROW_HEIGHT 8  /// maybe decrease a little if the width or the height is too small ?...
 #define CD_ALIGN 0.5
 #define CD_RADIUS (myDialogsParam.bUseDefaultColors ? myStyleParam.iCornerRadius : myDialogsParam.iCornerRadius)
 
