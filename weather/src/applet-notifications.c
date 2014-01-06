@@ -165,7 +165,7 @@ void cd_weather_show_forecast_dialog (GldiModuleInstance *myApplet, Icon *pIcon)
 		D_("Precipitation probability"), _display (part->cPrecipitationProba),
 		D_("Wind"), _display (part->cWindSpeed), myData.wdata.units.cSpeed, _display (part->cWindDirection),
 		D_("Humidity"), _display (part->cHumidity),
-		D_("Sunrise"), _display (day->cSunRise), _("Sunset"), _display (day->cSunSet));
+		D_("Sunrise"), _display (day->cSunRise), D_("Sunset"), _display (day->cSunSet));
 }
 
 void cd_weather_show_current_conditions_dialog (GldiModuleInstance *myApplet)

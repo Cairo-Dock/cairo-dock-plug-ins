@@ -319,7 +319,7 @@ void panel_menu_item_activate_desktop_file (GtkWidget  *menuitem,
 	if (error) {
 		panel_error_dialog (NULL, menuitem_to_screen (menuitem),
 				    "cannot_launch_entry", TRUE,
-				    _("Could not launch menu item"),
+				    D_("Could not launch menu item"),
 				    error->message);
 		cd_warning (error->message);
 		g_error_free (error);

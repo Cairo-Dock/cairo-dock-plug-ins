@@ -239,7 +239,7 @@ na_tray_applet_init (NaTrayApplet *applet)
   applet->priv->tray = NULL;
 
   atko = gtk_widget_get_accessible (GTK_WIDGET (applet));
-  atk_object_set_name (atko, _("Panel Notification Area"));
+  atk_object_set_name (atko, D_("Panel Notification Area"));
 
   panel_applet_set_flags (PANEL_APPLET (applet),
                           PANEL_APPLET_HAS_HANDLE|PANEL_APPLET_EXPAND_MINOR);
