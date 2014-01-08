@@ -29,6 +29,8 @@ CD_APPLET_ON_CLICK_H
 
 CD_APPLET_ON_MIDDLE_CLICK_H
 
+CD_APPLET_ON_SCROLL_H
+
 // CD_APPLET_ON_BUILD_MENU_H
 
 gboolean cd_status_notifier_on_right_click (GldiModuleInstance *myApplet, Icon *pClickedIcon, GldiContainer *pClickedContainer, GtkWidget *pAppletMenu, gboolean *bDiscardMenu);

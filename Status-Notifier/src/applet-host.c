@@ -208,7 +208,7 @@ void cd_satus_notifier_launch_our_watcher (void)
 {
 	if (myData.bNoIAS && myData.bNoWatcher)
 	{
-		cd_message ("starting our own watcher...\n");
+		cd_message ("starting our own watcher...");
 		cairo_dock_launch_command (CD_PLUGINS_DIR"/status-notifier-watcher");
 	}
 }
