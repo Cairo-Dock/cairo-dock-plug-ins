@@ -215,7 +215,8 @@ static void _old_nautilus_desktop_path (const gchar *cBaseURI, gchar **cName, gc
 	{
 		cNautilusFile[strlen(cNautilusFile)-6] = '\0';
 	}
-	cValidUri = g_filename_from_uri (cNautilusFile, NULL, &erreur);
+	GError *erreur = NULL;
+	gchar *cValidUri = g_filename_from_uri (cNautilusFile, NULL, &erreur);
 	if (erreur != NULL)
 	{
 		cd_warning ("gvfs-integration : %s", erreur->message);
