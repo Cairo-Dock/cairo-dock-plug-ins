@@ -140,7 +140,21 @@ CD_APPLET_ON_MIDDLE_CLICK_BEGIN
 	CDStatusNotifierItem *pItem = _get_item (CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER);
 	if (pItem != NULL)
 	{
-		_emit_click (pItem, CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER, "SecondaryActivate");
+		if (myData.bNoIAS) // of course it's not the same method :-)
+			_emit_click (pItem, CD_APPLET_CLICKED_ICON, CD_APPLET_CLICKED_CONTAINER, "SecondaryActivate");
+		else
+		{
+			GError *error = NULL;
+			dbus_g_proxy_call (pItem->pProxy, "XAyatanaSecondaryActivate", &error,
+				G_TYPE_UINT, gtk_get_current_event_time (),
+				G_TYPE_INVALID,
+				G_TYPE_INVALID);
+			if (error != NULL)
+			{
+				cd_warning ("Error when middle-clicking on %s: %s", pItem->cId, error->message);
+				g_error_free (error);
+			}
+		}
 	}
 CD_APPLET_ON_MIDDLE_CLICK_END
 
