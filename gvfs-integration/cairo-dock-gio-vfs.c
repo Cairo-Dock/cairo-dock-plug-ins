@@ -539,14 +539,14 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 		{
 			gchar *cHostname = NULL;
 			GError *erreur = NULL;
-			gchar *cFilePath = g_filename_from_uri (cBaseURI, &cHostname, &erreur);
+			gchar *cFilePath = g_filename_from_uri (*cURI, &cHostname, &erreur);
 			if (erreur != NULL)
 			{
 				g_error_free (erreur);
 			}
 			else if (cHostname == NULL || strcmp (cHostname, "localhost") == 0)  // on ne recupere la vignette que sur les fichiers locaux.
 			{
-				*cIconName = g_strdup (cFilePath);
+				*cIconName = cFilePath;
 				cairo_dock_remove_html_spaces (*cIconName);
 			}
 			g_free (cHostname);
