@@ -165,7 +165,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 	{
 		GError *erreur = NULL;
 		dbus_g_proxy_call (pItem->pProxy, "Scroll", &erreur,
-			G_TYPE_INT, CD_APPLET_SCROLL_UP ? +1 : -1,
+			G_TYPE_INT, CD_APPLET_SCROLL_UP ? -1 : +1,
 			G_TYPE_STRING, "vertical",
 			G_TYPE_INVALID,
 			G_TYPE_INVALID);
