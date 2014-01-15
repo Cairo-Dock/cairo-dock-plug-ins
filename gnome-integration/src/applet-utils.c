@@ -30,7 +30,15 @@ void env_backend_logout (void)
 	if (cResult != NULL && *cResult == '/')
 		cairo_dock_launch_command ("gnome-session-quit --logout");
 	else
-		cairo_dock_launch_command ("gnome-session-save --kill --gui");
+	{
+		g_free (cResult);
+		// Cinnamon?
+		cResult = cairo_dock_launch_command_sync ("which cinnamon-session-quit");
+		if (cResult != NULL && *cResult == '/')
+			cairo_dock_launch_command ("cinnamon-session-quit --logout");
+		else
+			cairo_dock_launch_command ("gnome-session-save --kill --gui");
+	}
 	g_free (cResult);
 }
 
@@ -41,7 +49,15 @@ void env_backend_shutdown (void)
 	if (cResult != NULL && *cResult == '/')
 		cairo_dock_launch_command ("gnome-session-quit --power-off");
 	else
-		cairo_dock_launch_command ("gnome-session-save --shutdown-dialog");
+	{
+		g_free (cResult);
+		// Cinnamon?
+		cResult = cairo_dock_launch_command_sync ("which cinnamon-session-quit");
+		if (cResult != NULL && *cResult == '/')
+			cairo_dock_launch_command ("cinnamon-session-quit --power-off");
+		else
+			cairo_dock_launch_command ("gnome-session-save --shutdown-dialog");
+	}
 	g_free (cResult);
 }
 
