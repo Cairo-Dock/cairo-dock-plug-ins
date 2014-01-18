@@ -131,11 +131,11 @@ replace image = 0
 #X[Commands;gtk-preferences]
 frame_comm=
 
-#s User-defined command to execute for logout:
+#s Fallback user-defined command to execute for logout in case of problem:
 #{Leave empty to execute the default command.}
 user action =
 
-#s User-defined command to execute for shutdown:
+#s Fallback user-defined command to execute for shutdown in case of problem:
 #{This will be available when middle-clicking. Leave empty to execute the default command, which depends on your distribution. In some cases the command to shutdown is the same as the one to log out.}
 user action2 =
 

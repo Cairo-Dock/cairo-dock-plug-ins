@@ -1076,7 +1076,7 @@ static GList* _get_users_list_gdm (void)
 	return pUserList;
 }
 
-GList *cd_logout_get_users_list (void)
+static GList *cd_logout_get_users_list (void)
 {
 	// get the list of users
 	GError *error = NULL;
