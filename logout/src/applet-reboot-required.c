@@ -23,6 +23,9 @@
 #include "applet-logout.h"
 #include "applet-reboot-required.h"
 
+static gboolean s_bRebootRequired = FALSE;
+static gboolean s_bMonitored = FALSE;
+
 static const gchar * _get_default_message (void)
 {
 	if (myConfig.cDefaultLabel) // has another default name
@@ -95,25 +98,17 @@ static void _stop_notify_action_required (void)
 	CD_APPLET_STOP_DEMANDING_ATTENTION;
 }
 
-void cd_logout_check_reboot_required (CairoDockFMEventType iEventType, const gchar *cURI)
+static gboolean _notify_reboot_requiered (gpointer pData)
 {
-	// maybe check if reboot message is already available
-	gchar *cMessage;
-
-	switch (iEventType)
+	if (! myApplet || ! s_bRebootRequired)
 	{
-		case CAIRO_DOCK_FILE_MODIFIED: // new message
-		case CAIRO_DOCK_FILE_CREATED:  // reboot required
-			cMessage = _get_reboot_message ();
-		break;
-		
-		case CAIRO_DOCK_FILE_DELETED:  // reboot/logout no more required (shouldn't happen)
-			cMessage = NULL;
-			_stop_notify_action_required (); // default icon
-		break;
-		default:
-		break;
+		s_bMonitored = FALSE;
+		return FALSE;
 	}
+
+	CairoDockFMEventType iEventType = GPOINTER_TO_INT (pData);
+
+	gchar *cMessage = _get_reboot_message ();
 	if (cMessage && *cMessage != '\0')
 		CD_APPLET_SET_NAME_FOR_MY_ICON (cMessage);
 	else
@@ -122,6 +117,43 @@ void cd_logout_check_reboot_required (CairoDockFMEventType iEventType, const gch
 		_notify_action_required ();
 
 	g_free (cMessage);
+	s_bMonitored = FALSE;
+
+	return FALSE;
+}
+
+void cd_logout_check_reboot_required (CairoDockFMEventType iEventType, const gchar *cURI)
+{
+	switch (iEventType)
+	{
+		case CAIRO_DOCK_FILE_MODIFIED: // new message
+		case CAIRO_DOCK_FILE_CREATED:  // reboot required
+			s_bRebootRequired = TRUE;
+			if (! s_bMonitored)
+			{
+				s_bMonitored = TRUE;
+				gpointer pEventType = GINT_TO_POINTER (iEventType);
+				#ifdef END_INSTALLATION_PID
+				/* TODO: check what can be used: apt-get, aptitude, tool from
+				 * update-manager, dpkg, etc.
+				 * Note: dpkg is launched several times: unpack, configure, etc.
+				 */
+				cairo_dock_fm_monitor_pid (END_INSTALLATION_PID,
+					_notify_reboot_requiered, TRUE, pEventType);
+				#else
+				_notify_reboot_requiered (pEventType);
+				#endif
+			}
+		break;
+		
+		case CAIRO_DOCK_FILE_DELETED:  // reboot/logout no more required (shouldn't happen)
+			s_bRebootRequired = FALSE;
+			_stop_notify_action_required (); // default icon
+			CD_APPLET_SET_NAME_FOR_MY_ICON (_get_default_message ());
+		break;
+		default:
+		break;
+	}
 }
 
 void cd_logout_check_reboot_required_init (void)
