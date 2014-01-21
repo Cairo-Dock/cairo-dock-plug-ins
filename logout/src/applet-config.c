@@ -53,5 +53,5 @@ CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
-	g_free (myData.cSessionMigrationFileName);
+
 CD_APPLET_RESET_DATA_END

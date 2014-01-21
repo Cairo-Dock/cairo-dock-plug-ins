@@ -73,7 +73,6 @@ typedef struct {
 
 struct _AppletData {
 	guint iSidTimer;
-	gchar *cSessionMigrationFileName;
 	// manual capabilities.
 	CairoDockTask *pTask;
 	gboolean bCapabilitiesChecked;
