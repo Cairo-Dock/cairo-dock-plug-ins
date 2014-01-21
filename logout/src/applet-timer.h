@@ -17,15 +17,13 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __APPLET_LOGOUT__
-#define  __APPLET_LOGOUT__
+#ifndef __APPLET_TIMER__
+#define __APPLET_TIMER__
 
 #include <cairo-dock.h>
 
+void cd_logout_set_timer (void);
 
-void cd_logout_display_actions (void);
-
-gchar *cd_logout_check_icon (const gchar *cIconStock, gint iIconSize);
-
+void cd_logout_program_shutdown (void);
 
 #endif

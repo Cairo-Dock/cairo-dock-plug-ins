@@ -22,7 +22,8 @@
 #include "applet-struct.h"
 #include "applet-config.h"
 #include "applet-notifications.h"
-#include "applet-logout.h"
+#include "applet-reboot-required.h"
+#include "applet-timer.h"
 #include "applet-init.h"
 
 CD_APPLET_DEFINE_BEGIN ("logout",

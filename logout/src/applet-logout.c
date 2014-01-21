@@ -19,7 +19,6 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 
 #ifdef CD_UPOWER_AVAILABLE
 /* to access suspend/resume functionality on Upower 0.9
@@ -30,6 +29,7 @@
 #endif
 
 #include "applet-struct.h"
+#include "applet-timer.h"
 #include "applet-logout.h"
 
 
@@ -53,6 +53,7 @@ static void _free_user (CDUser *pUser);
 static GList *cd_logout_get_users_list (void);
 
 static void _display_menu (void);
+
 
   ////////////////////
  /// CAPABILITIES ///
@@ -240,7 +241,7 @@ void cd_logout_display_actions (void)
  /// MENU ///
 ////////////
 
-static gchar *_check_icon (const gchar *cIconStock, gint iIconSize)
+gchar *cd_logout_check_icon (const gchar *cIconStock, gint iIconSize)
 {
 	gchar *cImagePath = cairo_dock_search_icon_s_path (cIconStock, iIconSize);
 	if (cImagePath != NULL && g_file_test (cImagePath, G_FILE_TEST_EXISTS))
@@ -268,20 +269,20 @@ static GtkWidget *_build_menu (GtkWidget **pShutdownMenuItem)
 	GtkWidget *pMenuItem;
 
 	gchar *cImagePath;
-	cImagePath = _check_icon ("system-shutdown", myData.iDesiredIconSize);
+	cImagePath = cd_logout_check_icon ("system-shutdown", myData.iDesiredIconSize);
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Shut down"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-shutdown.svg", cd_logout_shut_down, pMenu);
 	g_free (cImagePath);
 	if (!myData.bCanStop && ! myConfig.cUserActionShutdown)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	*pShutdownMenuItem = pMenuItem;
 	
-	cImagePath = _check_icon (GTK_STOCK_REFRESH, myData.iDesiredIconSize);
+	cImagePath = cd_logout_check_icon (GTK_STOCK_REFRESH, myData.iDesiredIconSize);
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Restart"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-restart.svg", cd_logout_restart, pMenu);
 	g_free (cImagePath);
 	if (!myData.bCanRestart)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	
-	cImagePath = _check_icon ("sleep", myData.iDesiredIconSize);
+	cImagePath = cd_logout_check_icon ("sleep", myData.iDesiredIconSize);
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Hibernate"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-hibernate.svg", cd_logout_hibernate, pMenu);
 	gtk_widget_set_tooltip_text (pMenuItem, D_("Your computer will not consume any energy."));
 	if (!myData.bCanHibernate)
@@ -294,7 +295,7 @@ static GtkWidget *_build_menu (GtkWidget **pShutdownMenuItem)
 	}
 	g_free (cImagePath);
 	
-	cImagePath = _check_icon ("clock", myData.iDesiredIconSize);
+	cImagePath = cd_logout_check_icon ("clock", myData.iDesiredIconSize);
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Suspend"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-suspend.svg", cd_logout_suspend, pMenu);
 	g_free (cImagePath);
 	gtk_widget_set_tooltip_text (pMenuItem, D_("Your computer will still consume a small amount of energy."));
@@ -303,7 +304,7 @@ static GtkWidget *_build_menu (GtkWidget **pShutdownMenuItem)
 	
 	if (g_getenv ("SESSION_MANAGER") != NULL)  // needs a session manager for this.
 	{
-		cImagePath = _check_icon ("system-log-out", myData.iDesiredIconSize);
+		cImagePath = cd_logout_check_icon ("system-log-out", myData.iDesiredIconSize);
 		pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Log out"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-log-out.svg", cd_logout_close_session, pMenu);
 		g_free (cImagePath);
 		gtk_widget_set_tooltip_text (pMenuItem, D_("Close your session and allow to open a new one."));
@@ -344,12 +345,12 @@ static GtkWidget *_build_menu (GtkWidget **pShutdownMenuItem)
 	
 	CD_APPLET_ADD_SEPARATOR_IN_MENU (pMenu);
 	
-	cImagePath = _check_icon ("system-lock-screen", myData.iDesiredIconSize);
+	cImagePath = cd_logout_check_icon ("system-lock-screen", myData.iDesiredIconSize);
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Lock screen"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/locked.svg", cairo_dock_fm_lock_screen, pMenu);  /// TODO: same question...
 	g_free (cImagePath);
 	if (myData.bCanStop)
 	{
-		cImagePath = _check_icon ("document-open-recent", myData.iDesiredIconSize);
+		cImagePath = cd_logout_check_icon ("document-open-recent", myData.iDesiredIconSize);
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Program an automatic shut-down"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/icon-scheduling.svg", cd_logout_program_shutdown, pMenu);
 		g_free (cImagePath);
 	}
@@ -379,200 +380,6 @@ static void _display_menu (void)
 	
 	// select the first (or last) item, which corresponds to the 'shutdown' action.
 	gtk_menu_shell_select_item (GTK_MENU_SHELL (pMenu), pShutdownMenuItem);  // must be done here, after the menu has been realized.
-}
-
-
-  ////////////////////
- /// REBOOT TIMER ///
-////////////////////
-
-static gboolean _timer (gpointer data)
-{
-	CD_APPLET_ENTER;
-	time_t t_cur = (time_t) time (NULL);
-	if (t_cur >= myConfig.iShutdownTime)
-	{
-		cd_debug ("shutdown !\n");
-		if (g_iDesktopEnv == CAIRO_DOCK_KDE)
-			cairo_dock_launch_command ("dbus-send --session --type=method_call --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout int32:0 int32:2 int32:2");
-		else
-			cairo_dock_launch_command ("dbus-send --system --print-reply --dest=org.freedesktop.ConsoleKit /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop");
-		
-		myData.iSidTimer = 0;
-		CD_APPLET_LEAVE (FALSE);  // inutile de faire quoique ce soit d'autre, puisque l'ordi s'eteint.
-	}
-	else
-	{
-		cd_debug ("shutdown in %d minutes", (int) (myConfig.iShutdownTime - t_cur) / 60);
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%dmn", (int) ceil ((double)(myConfig.iShutdownTime - t_cur) / 60.));
-		CD_APPLET_REDRAW_MY_ICON;
-		if (t_cur >= myConfig.iShutdownTime - 60)
-			gldi_dialog_show_temporary_with_icon (D_("Your computer will shut-down in 1 minute."), myIcon, myContainer, 8000, "same icon");
-	}
-	CD_APPLET_LEAVE (TRUE);
-	
-}
-void cd_logout_set_timer (void)
-{
-	time_t t_cur = (time_t) time (NULL);
-	if (myConfig.iShutdownTime > t_cur)
-	{
-		if (myData.iSidTimer == 0)
-			myData.iSidTimer = g_timeout_add_seconds (60, _timer, NULL);
-		_timer (NULL);
-	}
-	else if (myData.iSidTimer != 0)
-	{
-		g_source_remove (myData.iSidTimer);
-		myData.iSidTimer = 0;
-		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
-	}
-}
-
-static void _on_program_shutdown (int iClickedButton, GtkWidget *pInteractiveWidget, gpointer data, CairoDialog *pDialog)
-{
-	CD_APPLET_ENTER;
-	if (iClickedButton == 0 || iClickedButton == -1)  // ok button or Enter.
-	{
-		int iDeltaT = 60 * gtk_range_get_value (GTK_RANGE (pInteractiveWidget));
-		if (iDeltaT > 0)  // set the new time
-		{
-			//g_print ("iShutdownTime <- %ld + %d\n", t_cur, iDeltaT);
-			time_t t_cur = (time_t) time (NULL);
-			myConfig.iShutdownTime = (int) (t_cur + iDeltaT);
-		}
-		else if (iDeltaT == 0)  // cancel any previous shutdown 
-		{
-			myConfig.iShutdownTime = 0;
-		}
-		cairo_dock_update_conf_file (CD_APPLET_MY_CONF_FILE,
-			G_TYPE_INT, "Configuration", "shutdown time", myConfig.iShutdownTime,
-			G_TYPE_INVALID);
-		cd_logout_set_timer ();
-	}
-	CD_APPLET_LEAVE ();
-}
-void cd_logout_program_shutdown (void)
-{
-	gldi_dialog_show_with_value (D_("Choose in how many minutes your PC will stop:"),
-		myIcon, myContainer,
-		"same icon",
-		30, 150,
-		(CairoDockActionOnAnswerFunc) _on_program_shutdown, NULL, (GFreeFunc)NULL);
-}
-
-
-  /////////////////////
- /// REBOOT NEEDED ///
-/////////////////////
-
-static const gchar * _get_default_message (void)
-{
-	if (myConfig.cDefaultLabel) // has another default name
-		return myConfig.cDefaultLabel;
-	else
-		return myApplet->pModule->pVisitCard->cTitle;
-}
-
-static gchar * _get_reboot_message (void)
-{
-	gchar *cMessage = NULL;
-	gsize length = 0;
-	g_file_get_contents (CD_REBOOT_NEEDED_FILE,
-		&cMessage,
-		&length,
-		NULL);
-	if (cMessage != NULL)
-	{
-		int len = strlen (cMessage);
-		if (cMessage[len-1] == '\n')
-			cMessage[len-1] = '\0';
-	}
-
-	return (cMessage);
-}
-
-static void _notify_action_required (void)
-{
-	CD_APPLET_DEMANDS_ATTENTION ("pulse", 20);
-	gldi_dialogs_remove_on_icon (myIcon);
-
-	// it's not a good idea to reboot the computer before the end of the update ;)
-	gchar *cName = g_strdup_printf ("%s\n%s", myIcon->cName,
-		D_("Please do that at the end of the update."));
-
-	gldi_dialog_show_temporary_with_icon (cName, myIcon, myContainer, 15e3, "same icon");
-
-	g_free (cName);
-
-	gint iIconSize = MAX (myIcon->image.iWidth, myIcon->image.iHeight);
-	gchar *cImagePath = _check_icon (myConfig.cEmblemPath,
-		(myConfig.iRebootNeededImage == CD_DISPLAY_EMBLEM ?
-				iIconSize / 2 :
-				iIconSize));
-	if (! cImagePath)
-	{
-		cImagePath = _check_icon (GTK_STOCK_REFRESH,
-			(myConfig.iRebootNeededImage == CD_DISPLAY_EMBLEM ?
-				iIconSize / 2 :
-				iIconSize));
-		if (! cImagePath)
-			cImagePath = g_strdup (MY_APPLET_SHARE_DATA_DIR"/system-restart.svg");
-	}
-
-	if (myConfig.iRebootNeededImage == CD_DISPLAY_EMBLEM)
-		CD_APPLET_PRINT_OVERLAY_ON_MY_ICON (cImagePath, CAIRO_OVERLAY_UPPER_RIGHT);
-	else
-		CD_APPLET_SET_IMAGE_ON_MY_ICON (cImagePath);
-	g_free (cImagePath);
-}
-
-static void _stop_notify_action_required (void)
-{
-	 // should not happen... mainly for the tests.
-	gldi_dialogs_remove_on_icon (myIcon);
-	if (myConfig.iRebootNeededImage == CD_DISPLAY_EMBLEM)
-		CD_APPLET_PRINT_OVERLAY_ON_MY_ICON (NULL, CAIRO_OVERLAY_UPPER_RIGHT);
-	else
-		CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cDefaultIcon);
-	CD_APPLET_STOP_DEMANDING_ATTENTION;
-}
-
-void cd_logout_check_reboot_required (CairoDockFMEventType iEventType, const gchar *cURI)
-{
-	// maybe check if reboot message is already available
-	gchar *cMessage;
-
-	switch (iEventType)
-	{
-		case CAIRO_DOCK_FILE_MODIFIED: // new message
-		case CAIRO_DOCK_FILE_CREATED:  // reboot required
-			cMessage = _get_reboot_message ();
-		break;
-		
-		case CAIRO_DOCK_FILE_DELETED:  // reboot/logout no more required (shouldn't happen)
-			cMessage = NULL;
-			_stop_notify_action_required (); // default icon
-		break;
-		default:
-		break;
-	}
-	if (cMessage && *cMessage != '\0')
-		CD_APPLET_SET_NAME_FOR_MY_ICON (cMessage);
-	else
-		CD_APPLET_SET_NAME_FOR_MY_ICON (_get_default_message ());
-	if (iEventType == CAIRO_DOCK_FILE_CREATED)
-		_notify_action_required ();
-
-	g_free (cMessage);
-}
-
-void cd_logout_check_reboot_required_init (void)
-{
-	if (g_file_test (CD_REBOOT_NEEDED_FILE, G_FILE_TEST_EXISTS))
-	{
-		cd_logout_check_reboot_required (CAIRO_DOCK_FILE_CREATED, CD_REBOOT_NEEDED_FILE);
-	}
 }
 
 
@@ -653,7 +460,7 @@ static void _exec_action (int iClickedButton, GtkWidget *pInteractiveWidget, voi
 }
 static void _demand_confirmation (const gchar *cMessage, const gchar *cIconStock, const gchar *cIconImage, void (*callback) (void))
 {
-	gchar *cImagePath = _check_icon (cIconStock, 32); // dialog
+	gchar *cImagePath = cd_logout_check_icon (cIconStock, 32); // dialog
 	myData.pConfirmationDialog = gldi_dialog_show (cMessage, myIcon, myContainer, 0, cImagePath ? cImagePath : cIconImage, NULL, (CairoDockActionOnAnswerFunc) _exec_action, callback, NULL);
 	g_free (cImagePath);
 }

@@ -2,10 +2,12 @@
 ########### sources ###############
 
 SET(cd-logout_LIB_SRCS
-	applet-init.c		applet-init.h
-	applet-config.c		applet-config.h
-	applet-notifications.c	applet-notifications.h
-	applet-logout.c		applet-logout.h
+	applet-init.c				applet-init.h
+	applet-config.c				applet-config.h
+	applet-notifications.c		applet-notifications.h
+	applet-logout.c				applet-logout.h
+	applet-reboot-required.c	applet-reboot-required.h
+	applet-timer.c				applet-timer.h
 	applet-struct.h
 )
 
