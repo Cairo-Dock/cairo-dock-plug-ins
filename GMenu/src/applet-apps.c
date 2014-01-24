@@ -80,6 +80,15 @@ static void _on_answer_launch_recent (int iClickedButton, GtkWidget *pInteractiv
 	s_pNewAppsDialog = NULL;
 }
 
+#ifdef END_INSTALLATION_PID
+static gboolean _show_new_apps_dialog_idle (gpointer pData)
+{
+	if (pData)
+		gldi_dialog_unhide (pData);
+	return FALSE;
+}
+#endif
+
 void cd_menu_check_for_new_apps (void)
 {
 	if (myData.pNewApps != NULL && myConfig.bShowNewApps)
@@ -125,6 +134,11 @@ void cd_menu_check_for_new_apps (void)
 				pInteractiveWidget, (CairoDockActionOnAnswerFunc)_on_answer_launch_recent,
 				NULL,
 				(GFreeFunc)NULL);
+			#ifdef END_INSTALLATION_PID
+			gldi_dialog_hide (s_pNewAppsDialog);
+			cairo_dock_fm_monitor_pid (END_INSTALLATION_PID, FALSE,
+					_show_new_apps_dialog_idle, TRUE, s_pNewAppsDialog);
+			#endif
 			g_free (cIconPath);
 		}
 	}

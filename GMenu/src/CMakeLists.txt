@@ -38,6 +38,9 @@ add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
 if (${LIBGIO_FOUND})
 	add_definitions (-DHAVE_GIO=1)
 endif()
+if (EXISTS ${DEBIAN_VERSION})
+	add_definitions (-DEND_INSTALLATION_PID="${DEBIAN_PKG_MANAGERS}")
+endif()
 
 include_directories (
 	${PACKAGE_INCLUDE_DIRS}
