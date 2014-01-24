@@ -134,11 +134,7 @@ void cd_logout_check_reboot_required (CairoDockFMEventType iEventType, const gch
 				s_bMonitored = TRUE;
 				gpointer pEventType = GINT_TO_POINTER (iEventType);
 				#ifdef END_INSTALLATION_PID
-				/* TODO: check what can be used: apt-get, aptitude, tool from
-				 * update-manager, dpkg, etc.
-				 * Note: dpkg is launched several times: unpack, configure, etc.
-				 */
-				cairo_dock_fm_monitor_pid (END_INSTALLATION_PID,
+				cairo_dock_fm_monitor_pid (END_INSTALLATION_PID, FALSE,
 					_notify_reboot_requiered, TRUE, pEventType);
 				#else
 				_notify_reboot_requiered (pEventType);

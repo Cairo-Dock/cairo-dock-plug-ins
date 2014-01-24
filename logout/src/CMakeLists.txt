@@ -25,9 +25,8 @@ add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
 if (${UPOWER_FOUND})
 	add_definitions (-DCD_UPOWER_AVAILABLE="1")
 endif()
-GET_FILENAME_COMPONENT(DEBIAN_VERSION /etc/debian_version ABSOLUTE)
 if (EXISTS ${DEBIAN_VERSION})
-	add_definitions (-DEND_INSTALLATION_PID="/usr/bin/apt-get")
+	add_definitions (-DEND_INSTALLATION_PID="${DEBIAN_PKG_MANAGERS}")
 endif()
 
 

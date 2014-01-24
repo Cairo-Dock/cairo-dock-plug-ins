@@ -382,6 +382,11 @@ if (NOT "${DISTRO_ID}" STREQUAL "")
 	message (STATUS "  DISTRO_ID: ${DISTRO_ID}, DISTRO_RELEASE: ${DISTRO_RELEASE}")
 endif()
 
+GET_FILENAME_COMPONENT(DEBIAN_VERSION /etc/debian_version ABSOLUTE)
+if (EXISTS ${DEBIAN_VERSION})
+	set (DEBIAN_PKG_MANAGERS "/usr/bin/apt-get /usr/bin/dpkg /usr/bin/aptitude")
+endif()
+
 ############# SHARED LIBRARIES ###########
 message (STATUS "> Shared Libraries:")
 
@@ -519,7 +524,6 @@ if (enable-python-interface)
 		set (PROGRAMS_MISSING "${PROGRAMS_MISSING} python")
 	else()
 		message (STATUS "   Python executable program(s): ${PYTHON2_EXECUTABLE} ; ${PYTHON3_EXECUTABLE}")
-		GET_FILENAME_COMPONENT(DEBIAN_VERSION /etc/debian_version ABSOLUTE)
 		if (EXISTS ${DEBIAN_VERSION})
 			message (STATUS "   will use '--install-layout deb' with 'python setup.py install'")
 			set (DEBIAN_INSTALL_LAYOUT "--install-layout deb")
