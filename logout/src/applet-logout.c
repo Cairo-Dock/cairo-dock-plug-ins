@@ -29,6 +29,7 @@
 #endif
 
 #include "applet-struct.h"
+#include "applet-reboot-required.h"
 #include "applet-timer.h"
 #include "applet-logout.h"
 
@@ -492,6 +493,14 @@ static inline gchar *_info_msg (void)
 	gchar *cInfo = g_strdup_printf (D_("It will automatically shut-down in %ds"), myData.iCountDown);
 	gchar *cMessage = g_strdup_printf ("%s\n\n (%s)", D_("Shut down the computer?"), cInfo);
 	g_free (cInfo);
+	if (! cd_logout_can_safety_shutdown ())
+	{
+		cInfo = g_strdup_printf ("%s\n\n%s", cMessage,
+			D_("It seems your system is being updated!\n"
+			   "Please be sure that you can shut down your computer right now."));
+		g_free (cMessage);
+		return cInfo;
+	}
 	return cMessage;
 }
 static gboolean _auto_shot_down (gpointer data)

@@ -159,3 +159,12 @@ void cd_logout_check_reboot_required_init (void)
 		cd_logout_check_reboot_required (CAIRO_DOCK_FILE_CREATED, CD_REBOOT_NEEDED_FILE);
 	}
 }
+
+gboolean cd_logout_can_safety_shutdown (void)
+{
+	gboolean bResult = ! s_bMonitored || ! s_bRebootRequired;
+	#ifdef END_INSTALLATION_PID
+	bResult &= cairo_dock_fm_get_pid (END_INSTALLATION_PID) == -1;
+	#endif
+	return bResult;
+}

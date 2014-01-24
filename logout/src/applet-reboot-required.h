@@ -26,4 +26,6 @@ void cd_logout_check_reboot_required (CairoDockFMEventType iEventType, const gch
 
 void cd_logout_check_reboot_required_init (void);
 
+gboolean cd_logout_can_safety_shutdown (void);
+
 #endif
