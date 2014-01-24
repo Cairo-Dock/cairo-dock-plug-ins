@@ -25,7 +25,7 @@ add_definitions (-DMY_APPLET_ICON_FILE="icon.svg")
 if (${UPOWER_FOUND})
 	add_definitions (-DCD_UPOWER_AVAILABLE="1")
 endif()
-if (EXISTS ${DEBIAN_VERSION})
+if (DEBIAN_PKG_MANAGERS)
 	add_definitions (-DEND_INSTALLATION_PID="${DEBIAN_PKG_MANAGERS}")
 endif()
 
