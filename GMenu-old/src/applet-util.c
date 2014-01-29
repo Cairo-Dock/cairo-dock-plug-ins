@@ -27,67 +27,6 @@
 #include "applet-struct.h"
 #include "applet-util.h"
 
-/**
-#ifdef HAVE_GIO
-char * panel_util_get_icon_name_from_g_icon (GIcon *gicon)
-{
-	const char * const *names;
-	GtkIconTheme *icon_theme;
-	int i;
-
-	if (!G_IS_THEMED_ICON (gicon))
-		return NULL;
-
-	names = g_themed_icon_get_names (G_THEMED_ICON (gicon));
-	icon_theme = gtk_icon_theme_get_default ();
-
-	for (i = 0; names[i] != NULL; i++) {
-		if (gtk_icon_theme_has_icon (icon_theme, names[i]))
-			return g_strdup (names[i]);
-	}
-
-	return NULL;
-}
-
-GdkPixbuf * panel_util_get_pixbuf_from_g_loadable_icon (GIcon *gicon,
-					    int    size)
-{
-	GdkPixbuf    *pixbuf;
-	GInputStream *stream;
-
-	if (!G_IS_LOADABLE_ICON (gicon))
-		return NULL;
-
-	pixbuf = NULL;
-
-	stream = g_loadable_icon_load (G_LOADABLE_ICON (gicon),
-				       size,
-				       NULL, NULL, NULL);
-	if (stream) {
-		pixbuf = panel_util_gdk_pixbuf_load_from_stream (stream);
-		g_object_unref (stream);
-	}
-
-	if (pixbuf) {
-		gint width, height;
-
-		width = gdk_pixbuf_get_width (pixbuf);
-		height = gdk_pixbuf_get_height (pixbuf);
-
-		if (width > size || height > size) {
-			GdkPixbuf *tmp;
-
-			tmp = gdk_pixbuf_scale_simple (pixbuf, size, size,
-						       GDK_INTERP_BILINEAR);
-
-			g_object_unref (pixbuf);
-			pixbuf = tmp;
-		}
-	}
-
-	return pixbuf;
-}
-#endif*/
 
 #ifdef HAVE_GIO
 static void _launch_from_file (const gchar *cDesktopFilePath)
@@ -266,47 +205,6 @@ static void _launch_from_file (const gchar *cDesktopFilePath)
 } 
 #endif
 
-/**static void _launch_from_basename (const gchar *cDesktopFileName)
-{
-	gchar *cName = g_strdup (cDesktopFileName);
-	gchar *str = strrchr (cName, '.');
-	if (str != NULL)
-		str = '\0';
-	cairo_dock_launch_command (cName);
-	g_free (cName);
-}
-
-void
-panel_launch_desktop_file (const char  *desktop_file,
-			   const char  *fallback_exec,
-			   GdkScreen   *screen,
-			   GError     **error)
-{
-	//GnomeDesktopItem *ditem;
-
-	if (g_path_is_absolute (desktop_file))
-		//ditem = gnome_desktop_item_new_from_file (desktop_file, 0, error);
-		_launch_from_file (desktop_file);
-	else
-		//ditem = gnome_desktop_item_new_from_basename (desktop_file, 0, error);
-		_launch_from_basename (desktop_file);
-
-	if (ditem != NULL) {
-		panel_ditem_launch (ditem, NULL, screen, error);
-		gnome_desktop_item_unref (ditem);
-	} else if (fallback_exec != NULL) {
-		char *argv [2] = {(char *)fallback_exec, NULL};
-
-		if (*error) {
-			g_error_free (*error);
-			*error = NULL;
-		}
-
-		gdk_spawn_on_screen (screen, NULL, argv, NULL,
-				     G_SPAWN_SEARCH_PATH,
-				     NULL, NULL, NULL, error);
-	}
-}*/
 void panel_menu_item_activate_desktop_file (GtkWidget  *menuitem,
 				       const char *path)
 {
@@ -459,56 +357,4 @@ char * panel_find_icon (GtkIconTheme  *icon_theme,
 
 	return retval;
 }
-/**
-#ifdef HAVE_GIO
-// TODO: kill this when we can depend on GTK+ 2.14
-GdkPixbuf * panel_util_gdk_pixbuf_load_from_stream (GInputStream  *stream)
-{
-#define LOAD_BUFFER_SIZE 65536
-	unsigned char buffer[LOAD_BUFFER_SIZE];
-	gssize bytes_read;
-	GdkPixbufLoader *loader;
-	GdkPixbuf *pixbuf;
-	gboolean got_eos;
-	
 
-	g_return_val_if_fail (stream != NULL, NULL);
-
-	got_eos = FALSE;
-	loader = gdk_pixbuf_loader_new ();
-	while (1) {
-		bytes_read = g_input_stream_read (stream, buffer, sizeof (buffer),
-						  NULL, NULL);
-		
-		if (bytes_read < 0) {
-			break;
-		}
-		if (bytes_read == 0) {
-			got_eos = TRUE;
-			break;
-		}
-		if (!gdk_pixbuf_loader_write (loader,
-					      buffer,
-					      bytes_read,
-					      NULL)) {
-			break;
-		}
-	}
-
-	g_input_stream_close (stream, NULL, NULL);
-	gdk_pixbuf_loader_close (loader, NULL);
-
-	pixbuf = NULL;
-	if (got_eos) {
-		pixbuf = gdk_pixbuf_loader_get_pixbuf (loader);
-		if (pixbuf != NULL) {
-			g_object_ref (pixbuf);
-		}
-	}
-
-	g_object_unref (loader);
-
-	return pixbuf;
-}
-#endif
-*/
