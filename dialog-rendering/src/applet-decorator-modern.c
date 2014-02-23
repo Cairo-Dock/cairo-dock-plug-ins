@@ -77,7 +77,8 @@ void cd_decorator_draw_decorations_modern (cairo_t *pCairoContext, CairoDialog *
 	///cairo_fill (pCairoContext);
 	cairo_save (pCairoContext);
 	cairo_clip (pCairoContext);
-	gldi_style_colors_paint_bg_color (pCairoContext, pDialog->container.iWidth);
+	///gldi_style_colors_paint_bg_color (pCairoContext, pDialog->container.iWidth);
+	cairo_paint (pCairoContext);
 	cairo_restore (pCairoContext);
 	
 	//\_________________ On trace le cadre.
@@ -184,11 +185,11 @@ static void _render_submenu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	
 	//\_________________ draw background
 	if (myDialogsParam.bUseDefaultColors)
-		gldi_style_colors_set_bg_color (pCairoContext);
+		gldi_style_colors_set_bg_color_full (pCairoContext, FALSE);
 	else
-		cairo_set_source_rgba (pCairoContext, myDialogsParam.fBgColor[0], myDialogsParam.fBgColor[1], myDialogsParam.fBgColor[2], myDialogsParam.fBgColor[3]);
+		cairo_set_source_rgba (pCairoContext, myDialogsParam.fBgColor[0], myDialogsParam.fBgColor[1], myDialogsParam.fBgColor[2], 1.);
 	
-	gldi_style_colors_paint_bg_color (pCairoContext, alloc.width);
+	gldi_style_colors_paint_bg_color_with_alpha (pCairoContext, alloc.width, myDialogsParam.bUseDefaultColors ? -1. : myDialogsParam.fBgColor[3]);
 }
 
 static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
@@ -251,6 +252,7 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	//\_________________ draw outline
 	if (fLineWidth != 0)
 	{
+		cairo_set_line_width (pCairoContext, fLineWidth);
 		switch (iMarginPosition)
 		{
 			case 0:  // bottom
@@ -392,12 +394,12 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	switch (iMarginPosition)
 	{
 		case 0:  // bottom
-			fDockOffsetX = fLineWidth/2;
+			fDockOffsetX = fLineWidth;
 			fDockOffsetY = 0;
 			sw = 1;
 		break;
 		case 1:  // top
-			fDockOffsetX = w - fLineWidth/2;
+			fDockOffsetX = w - fLineWidth;
 			fDockOffsetY = ah + fLineWidth/2;
 			sw = -1;
 		break;
@@ -437,11 +439,11 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	cairo_clip (pCairoContext);  // clip
 	
 	if (myDialogsParam.bUseDefaultColors)
-		gldi_style_colors_set_bg_color (pCairoContext);
+		gldi_style_colors_set_bg_color_full (pCairoContext, FALSE);
 	else
-		cairo_set_source_rgba (pCairoContext, myDialogsParam.fBgColor[0], myDialogsParam.fBgColor[1], myDialogsParam.fBgColor[2], myDialogsParam.fBgColor[3]);
+		cairo_set_source_rgba (pCairoContext, myDialogsParam.fBgColor[0], myDialogsParam.fBgColor[1], myDialogsParam.fBgColor[2], 1.);
 	
-	gldi_style_colors_paint_bg_color (pCairoContext, alloc.width);
+	gldi_style_colors_paint_bg_color_with_alpha (pCairoContext, alloc.width, myDialogsParam.bUseDefaultColors ? -1. : myDialogsParam.fBgColor[3]);
 }
 
 static void _setup_menu (GtkWidget *pMenu)
