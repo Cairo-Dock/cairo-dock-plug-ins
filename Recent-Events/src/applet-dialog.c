@@ -410,7 +410,7 @@ static GtkWidget *cd_build_events_widget (void)
 	_add_category_button (pToolBar, D_("Applications"), "exec", i++, group);
 	_add_category_button (pToolBar, D_("Document"), "document", i++, group);
 	///_add_category_button (pToolBar, D_("Folder"), "folder", i++, group);
-	_add_category_button (pToolBar, D_("Image"), "image", i++, group);
+	_add_category_button (pToolBar, D_("Images"), "image", i++, group);
 	_add_category_button (pToolBar, D_("Audio"), "sound", i++, group);
 	_add_category_button (pToolBar, D_("Video"), "video", i++, group);
 	_add_category_button (pToolBar, D_("Web"), "text-html", i++, group);

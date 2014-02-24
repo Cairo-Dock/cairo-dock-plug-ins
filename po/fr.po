@@ -9082,7 +9082,7 @@ msgstr "Tous les bureaux dessinés sur l'icône principale"
 
 #: ../switcher/data/messages:99
 msgid "Desktops layout"
-msgstr "Affichage des bureaux"
+msgstr "Disposition des bureaux"
 
 #: ../switcher/data/messages:103
 msgid "On a single line"
@@ -9104,7 +9104,7 @@ msgstr "Intégrer le fond d'écran dans les icônes"
 msgid "Use an image for each desktop"
 msgstr "Utiliser une image pour chaque bureau"
 
-#: ../switcher/data/messages:113
+#: ../switcher/dat/messages:113
 msgid "Use a colour for each desktop"
 msgstr "Utiliser une couleur pour chaque bureau"
 
