@@ -24,7 +24,7 @@
 #include "applet-struct.h"
 
 void cd_impulse_im_setSourceIndex (gint iSourceIndex);
-void cd_impulse_stop_animations (void);
+void cd_impulse_stop_animations (gboolean bChangeIcon);
 void cd_impulse_launch_task (void); //(GldiModuleInstance *myApplet);
 gboolean cd_impulse_on_icon_changed (gpointer pUserData, Icon *pIcon, CairoDock *pDock);
 void cd_impulse_draw_current_state (void);

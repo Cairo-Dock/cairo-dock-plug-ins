@@ -91,7 +91,7 @@ CD_APPLET_STOP_BEGIN
 	// CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 
 	if (myData.iSidAnimate != 0)
-		cd_impulse_stop_animations ();
+		cd_impulse_stop_animations (FALSE); // no need to modify the icon
 
 	_free_shared_memory ();
 CD_APPLET_STOP_END
@@ -109,7 +109,7 @@ CD_APPLET_RELOAD_BEGIN
 		gboolean bWasLaunched;
 		if (myData.iSidAnimate != 0)
 		{
-			cd_impulse_stop_animations();
+			cd_impulse_stop_animations (FALSE); // icon will be modified here above
 			bWasLaunched = TRUE;
 		}
 		else

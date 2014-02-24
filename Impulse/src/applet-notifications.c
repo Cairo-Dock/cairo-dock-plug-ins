@@ -30,9 +30,9 @@ CD_APPLET_ON_CLICK_BEGIN
 	//if (myData.pTask != NULL)
 	cd_debug ("Impulse animation state: %d", myData.iSidAnimate);
 	if (myData.iSidAnimate != 0)
-		cd_impulse_stop_animations();
+		cd_impulse_stop_animations (TRUE);
 	else
-		cd_impulse_launch_task();// (myApplet);
+		cd_impulse_launch_task ();// (myApplet);
 	
 CD_APPLET_ON_CLICK_END
 

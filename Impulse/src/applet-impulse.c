@@ -87,7 +87,7 @@ static gboolean _animate_the_dock (gpointer data)
 
 	if (myData.pSharedMemory->pIconsList == NULL)
 	{
-		cd_impulse_stop_animations ();
+		cd_impulse_stop_animations (TRUE);
 		CD_APPLET_LEAVE (FALSE);
 	}
 
@@ -163,7 +163,7 @@ static gboolean _impulse_check_pulse_status (void)
 
 	if (! myData.bHasBeenStarted && im_context_state () == IM_FAILED)
 	{
-		cd_impulse_stop_animations ();
+		cd_impulse_stop_animations (FALSE); // icon will be modified here above
 		cd_debug ("Impulse: starting failed");
 		gldi_dialogs_remove_on_icon (myIcon);
 		gldi_dialog_show_temporary_with_icon (D_("There is something wrong with PulseAudio.\nCan you check its status (installed? running? version?) and report this bug (if any) to forum.glx-dock.org"),
@@ -215,7 +215,7 @@ void _register_notifications (void)
 
 ////////////////// GENERAL FUNCTIONS //////////////////
 
-void cd_impulse_stop_animations (void)
+void cd_impulse_stop_animations (gboolean bChangeIcon)
 {
 	//if (myData.pTask != NULL)
 	if (myData.iSidAnimate != 0)
@@ -229,7 +229,8 @@ void cd_impulse_stop_animations (void)
 	}
 	if (myData.bPulseLaunched)
 		_im_stop();
-	cd_impulse_draw_current_state ();
+	if (bChangeIcon)
+		cd_impulse_draw_current_state ();
 	// myData.bPulseLaunched = FALSE; //FIXME => if already started and stopped, it will crash... because not correctly stopped...
 }
 
@@ -242,7 +243,7 @@ void cd_impulse_launch_task (void) //(GldiModuleInstance *myApplet)
 		myData.pTask = NULL;
 	}*/
 	if (myData.iSidAnimate != 0)
-		cd_impulse_stop_animations ();
+		cd_impulse_stop_animations (FALSE); // icon will be modified here above
 
 	// PulseAudio Server
 	if (! myData.bPulseLaunched)
