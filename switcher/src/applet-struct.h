@@ -37,6 +37,7 @@ typedef enum {
 	SWICTHER_MAP_WALLPAPER,
 	SWICTHER_MAP_IMAGE,
 	SWICTHER_MAP_COLOUR,
+	SWICTHER_MAP_AUTO,
 	SWICTHER_NB_DRAWING
 	} SwitcherIconDrawing;
 
@@ -63,9 +64,9 @@ struct _AppletConfig {
 	gboolean bFillAllWindows;
 	gboolean bDisplayNumDesk;
 	gchar *cDefaultIcon;
-	gboolean bDesklet3D;
 	gchar *cThemePath;
 	gchar *cRenderer;
+	gboolean bUseDefaultColors;
 	gdouble RGBInLineColors[4];
 	gdouble RGBLineColors[4];
 	gdouble RGBWLineColors[4];

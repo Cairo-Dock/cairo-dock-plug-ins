@@ -36,37 +36,46 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iDesktopsLayout = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "layout", SWICTHER_LAYOUT_AUTO);
 	myConfig.bDrawIcons = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "Draw icons", TRUE);
 	
-	// color of internal lines
-	myConfig.iInLineSize = CD_CONFIG_GET_INTEGER("Configuration", "inlinesize");
-	double inlinecolor[4] = {0., 0., 0.5, 1.};
-	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgbinlinecolor",myConfig.RGBInLineColors, inlinecolor);
+	myConfig.bUseDefaultColors = (CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "style", 1) == 0);
 	
-	// color of the current desktop
-	double indcolor[4] = {0., 0., 0.5, 1.};
-	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgbindcolor",myConfig.RGBIndColors, indcolor);
+	if (myConfig.bUseDefaultColors)
+	{
+		myConfig.iInLineSize = myConfig.iLineSize = myStyleParam.iLineWidth;
+	}
+	else
+	{
+		// color of internal lines
+		myConfig.iInLineSize = CD_CONFIG_GET_INTEGER("Configuration", "inlinesize");
+		double inlinecolor[4] = {0., 0., 0.5, 1.};
+		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgbinlinecolor",myConfig.RGBInLineColors, inlinecolor);
+		
+		// color of the current desktop
+		double indcolor[4] = {0., 0., 0.5, 1.};
+		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgbindcolor",myConfig.RGBIndColors, indcolor);
+		// color of external lines
+		myConfig.iLineSize = CD_CONFIG_GET_INTEGER("Configuration", "linesize");
+		double linecolor[4] = {0., 0., 0.5, 1.};
+		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgblinecolor",myConfig.RGBLineColors, linecolor);
+		
+		// color of windows' lines
+		double wlinecolor[4] = {0., 0., 0.5, 1.};
+		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgbwlinecolor", myConfig.RGBWLineColors, wlinecolor);
+		
+		// color of the background
+		double fillbcolor[4] = {0., 0., 0., 1.};
+		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgbbgcolor", myConfig.RGBBgColors, fillbcolor);
+	}
+	
 	myConfig.iDrawCurrentDesktopMode = CD_CONFIG_GET_INTEGER ("Configuration", "fill current");
 	
-	// color of external lines
-	myConfig.iLineSize = CD_CONFIG_GET_INTEGER("Configuration", "linesize");
-	double linecolor[4] = {0., 0., 0.5, 1.};
-	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgblinecolor",myConfig.RGBLineColors, linecolor);
-	
-	// color of windows' lines
-	double wlinecolor[4] = {0., 0., 0.5, 1.};
-	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgbwlinecolor", myConfig.RGBWLineColors, wlinecolor);
-
 	// color of windows
 	myConfig.bFillAllWindows = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "fill windows", FALSE);
 	double fillwcolor[4] = {0.33, 0.33, 0.33, 1.};
 	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgbfindcolor", myConfig.RGBWFillColors, fillwcolor);
-
-	// color of the background
-	double fillbcolor[4] = {0., 0., 0., 1.};
-	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "rgbbgcolor", myConfig.RGBBgColors, fillbcolor);
-
-	myConfig.cDefaultIcon = CD_CONFIG_GET_FILE_PATH ("Configuration", "default icon", "default.svg");
+	
+	if (myConfig.iIconDrawing == SWICTHER_MAP_IMAGE)
+		myConfig.cDefaultIcon = CD_CONFIG_GET_FILE_PATH ("Configuration", "default icon", "default.svg");
 	myConfig.cRenderer = CD_CONFIG_GET_STRING ("Configuration", "renderer");
-	myConfig.bDesklet3D = CD_CONFIG_GET_BOOLEAN ("Configuration", "3D desklet");
 	
 	gsize iNbNamesSize;
 	myConfig.cDesktopNames = CD_CONFIG_GET_STRING_LIST_WITH_DEFAULT ("Configuration", "desktop names", &iNbNamesSize, "Work;Game;Video;Chat");  // used to be a #U widget, but since it can be set from different ways (the applet's menu or the desktop tools), it's not useful to have it in the config

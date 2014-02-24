@@ -226,6 +226,7 @@ void cd_switcher_load_desktop_bg_map_surface (void)
 
 void cd_switcher_load_default_map_surface (void)
 {
+	g_print ("%s\n", __func__);
 	if (myData.pDefaultMapSurface != NULL)
 		cairo_surface_destroy (myData.pDefaultMapSurface);
 	if (myDock)
@@ -238,22 +239,27 @@ void cd_switcher_load_default_map_surface (void)
 		myData.iSurfaceHeight = MAX (1, myContainer->iHeight / myData.switcher.iNbViewportTotal);
 	}
 	cd_debug ("%s (%dx%d)", __func__, myData.iSurfaceWidth, myData.iSurfaceHeight);
-	if (myConfig.iIconDrawing == SWICTHER_MAP_COLOUR)
+	if (myConfig.cDefaultIcon)
 	{
-		// create a surface and paint the Bg color
-		myData.pDefaultMapSurface = cairo_dock_create_blank_surface (
-				myData.iSurfaceWidth, myData.iSurfaceHeight);
-		cairo_t *pImageContext = cairo_create (myData.pDefaultMapSurface);
-		cairo_set_source_rgba (pImageContext,
-			myConfig.RGBBgColors[0],
-			myConfig.RGBBgColors[1],
-			myConfig.RGBBgColors[2],
-			myConfig.RGBBgColors[3]);
-		cairo_paint (pImageContext);
-		cairo_destroy (pImageContext);
-	}
-	else
 		myData.pDefaultMapSurface = cairo_dock_create_surface_from_image_simple (myConfig.cDefaultIcon,
 			myData.iSurfaceWidth,
 			myData.iSurfaceHeight);
+	}
+	else
+	{
+		// create a surface and paint the Bg color
+		myData.pDefaultMapSurface = cairo_dock_create_blank_surface (
+			myData.iSurfaceWidth, myData.iSurfaceHeight);
+		cairo_t *pImageContext = cairo_create (myData.pDefaultMapSurface);
+		if (myConfig.iIconDrawing == SWICTHER_MAP_COLOUR)
+			cairo_set_source_rgba (pImageContext,
+				myConfig.RGBBgColors[0],
+				myConfig.RGBBgColors[1],
+				myConfig.RGBBgColors[2],
+				myConfig.RGBBgColors[3]);
+		else
+			gldi_style_colors_set_bg_color (pImageContext);
+		cairo_paint (pImageContext);
+		cairo_destroy (pImageContext);
+	}
 }

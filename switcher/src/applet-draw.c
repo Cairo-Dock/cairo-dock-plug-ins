@@ -77,7 +77,12 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDeskto
 	if (myConfig.bFillAllWindows && actor != pActiveWindow)
 		cairo_set_source_rgba (pCairoContext, myConfig.RGBWFillColors[0], myConfig.RGBWFillColors[1], myConfig.RGBWFillColors[2], myConfig.RGBWFillColors[3]);
 	else
-		cairo_set_source_rgba (pCairoContext, myConfig.RGBWLineColors[0], myConfig.RGBWLineColors[1], myConfig.RGBWLineColors[2], myConfig.RGBWLineColors[3]);
+	{
+		if (myConfig.bUseDefaultColors)
+			gldi_style_colors_set_line_color (myDrawContext);
+		else
+			cairo_set_source_rgba (pCairoContext, myConfig.RGBWLineColors[0], myConfig.RGBWLineColors[1], myConfig.RGBWLineColors[2], myConfig.RGBWLineColors[3]);
+	}
 	cairo_rectangle (pCairoContext,
 		(1.*x/g_desktopGeometry.Xscreen.width - iNumViewportX)*iOneViewportWidth,
 		(1.*y/g_desktopGeometry.Xscreen.height - iNumViewportY)*iOneViewportHeight,
@@ -188,7 +193,10 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	
 	// cadre exterieur.
 	cairo_set_line_width (myDrawContext,myConfig.iLineSize);
-	cairo_set_source_rgba(myDrawContext,myConfig.RGBLineColors[0],myConfig.RGBLineColors[1],myConfig.RGBLineColors[2],myConfig.RGBLineColors[3]);
+	if (myConfig.bUseDefaultColors)
+		gldi_style_colors_set_line_color (myDrawContext);
+	else
+		cairo_set_source_rgba(myDrawContext,myConfig.RGBLineColors[0],myConfig.RGBLineColors[1],myConfig.RGBLineColors[2],myConfig.RGBLineColors[3]);
 	cairo_rectangle(myDrawContext,
 		.5*myConfig.iLineSize,
 		.5*myConfig.iLineSize,
@@ -199,7 +207,10 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	
 	// lignes interieures.
 	cairo_set_line_width (myDrawContext,myConfig.iInLineSize);
-	cairo_set_source_rgba(myDrawContext,myConfig.RGBInLineColors[0],myConfig.RGBInLineColors[1],myConfig.RGBInLineColors[2],myConfig.RGBInLineColors[3]);
+	if (myConfig.bUseDefaultColors)
+		gldi_style_colors_set_line_color (myDrawContext);
+	else
+		cairo_set_source_rgba (myDrawContext,myConfig.RGBInLineColors[0],myConfig.RGBInLineColors[1],myConfig.RGBInLineColors[2],myConfig.RGBInLineColors[3]);
 	double xi, yj;
 	int i, j;
 	for (i = 1; i < myData.switcher.iNbColumns; i ++)  // lignes verticales.
@@ -255,7 +266,10 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 			{
 				cairo_save (myDrawContext);
 				
-				cairo_set_source_rgba (myDrawContext, myConfig.RGBIndColors[0], myConfig.RGBIndColors[1], myConfig.RGBIndColors[2], myConfig.RGBIndColors[3]);
+				if (myConfig.bUseDefaultColors)
+					gldi_style_colors_set_selected_bg_color (myDrawContext);
+				else
+					cairo_set_source_rgba (myDrawContext, myConfig.RGBIndColors[0], myConfig.RGBIndColors[1], myConfig.RGBIndColors[2], myConfig.RGBIndColors[3]);
 				cairo_rectangle(myDrawContext,
 					xi - .5*myConfig.iLineSize,
 					yj - .5*myConfig.iLineSize,
@@ -312,7 +326,10 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 		yj = myConfig.iLineSize + j * (myData.switcher.fOneViewportHeight + myConfig.iInLineSize);
 		
 		cairo_set_line_width (myDrawContext,myConfig.iLineSize);
-		cairo_set_source_rgba (myDrawContext,myConfig.RGBIndColors[0],myConfig.RGBIndColors[1],myConfig.RGBIndColors[2],myConfig.RGBIndColors[3]);
+		if (myConfig.bUseDefaultColors)
+			gldi_style_colors_set_selected_bg_color (myDrawContext);
+		else
+			cairo_set_source_rgba (myDrawContext,myConfig.RGBIndColors[0],myConfig.RGBIndColors[1],myConfig.RGBIndColors[2],myConfig.RGBIndColors[3]);
 		cairo_rectangle(myDrawContext,
 			xi - .5*myConfig.iLineSize,
 			yj - .5*myConfig.iLineSize,
@@ -320,17 +337,18 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 			myData.switcher.fOneViewportHeight + myConfig.iLineSize);
 		
 		if (myConfig.iDrawCurrentDesktopMode == SWICTHER_FILL)
-			cairo_fill (myDrawContext);
+			cairo_fill (myDrawContext);  // maybe we need to fill it with an alpha pattern in case we use the global style color ?...
 		else
+		{
+			cairo_set_line_width (myDrawContext, MIN (4, 2*myConfig.iLineSize));
 			cairo_stroke(myDrawContext);
+		}
 	}
 	
 	cairo_restore (myDrawContext);
 	g_list_free (pWindowList);  // le contenu appartient a la hash table, mais pas la liste.
 	
 	CD_APPLET_FINISH_DRAWING_MY_ICON_CAIRO;
-	///if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
-	///	cairo_dock_update_icon_texture (myIcon);
 }
 
 
@@ -371,8 +389,6 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 
 			if (CD_APPLET_MY_CONTAINER_IS_OPENGL)
 				cairo_dock_update_icon_texture (myIcon);
-			/**else
-				CD_APPLET_UPDATE_REFLECT_ON_MY_ICON;*/
 		}
 		else
 		{
@@ -398,7 +414,10 @@ void cd_switcher_draw_main_icon_expanded_mode (void)
 			
 			pCairoContext = cairo_create (pIcon->image.pSurface);
 			cairo_set_line_width (pCairoContext, 1.);
-			cairo_set_source_rgba (pCairoContext, myConfig.RGBWLineColors[0], myConfig.RGBWLineColors[1], myConfig.RGBWLineColors[2], myConfig.RGBWLineColors[3]);
+			if (myConfig.bUseDefaultColors)
+				gldi_style_colors_set_line_color (myDrawContext);
+			else
+				cairo_set_source_rgba (pCairoContext, myConfig.RGBWLineColors[0], myConfig.RGBWLineColors[1], myConfig.RGBWLineColors[2], myConfig.RGBWLineColors[3]);
 			
 			data.iNumDesktop = iNumDesktop;
 			data.iNumViewportX = iNumViewportX;
@@ -587,14 +606,7 @@ void cd_switcher_build_windows_list (GtkWidget *pMenu)
 					g_string_printf (sDesktopName, "<b>%s %d (%s)</b>", D_("Desktop"), k+1, D_("Current"));
 				else
 					g_string_printf (sDesktopName, "<b>%s %d</b>", D_("Desktop"), k+1);
-			}  // les noms des bureaux : _NET_DESKTOP_NAMES, UTF8_STRING
-			/**pMenuItem = gtk_menu_item_new ();
-			GtkWidget *pLabel = gtk_label_new (sDesktopName->str);
-			gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
-			gtk_misc_set_alignment (GTK_MISC (pLabel), .5, .5);
-			gtk_container_add (GTK_CONTAINER (pMenuItem), pLabel);
-			gtk_menu_shell_append  (GTK_MENU_SHELL (pMenu), pMenuItem);
-			g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK (_show_desktop), GINT_TO_POINTER (k));*/
+			}
 			pMenuItem = gldi_menu_add_item (pMenu, sDesktopName->str, NULL, G_CALLBACK (_show_desktop), GINT_TO_POINTER (k));
 			GtkWidget *pLabel = gtk_bin_get_child (GTK_BIN(pMenuItem));
 			gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);

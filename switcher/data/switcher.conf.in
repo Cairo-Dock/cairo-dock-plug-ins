@@ -66,7 +66,7 @@ frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
 #{Choose 'Custom decorations' to define your own decorations below.}
-decorations = default
+decorations = none
 
 #v
 sep_deco =
@@ -101,7 +101,7 @@ fg alpha = 1
 #F[Configuration]
 frame_conf =
 
-#Y-[A sub-dock with all desktops;0;0;All desktops drawn on the main icon;0;5] How to display all desktops?
+#Y-[A sub-dock with all desktops;2;3;All desktops drawn on the main icon;0;5] How to display all desktops?
 view = 1
 
 #l+[Automatic;On a single line] Desktops layout
@@ -110,13 +110,13 @@ layout = 0
 #b Preserve the ratio of the screen?
 preserve ratio = true
 
-#Y-[Map wallpaper to icons;0;0;Use an image for each desktop;1;1;Use a colour for each desktop;2;2] How to draw the icon?
+#Y-[Wallpaper;0;0;Custom image;1;1;Custom colour;2;2;Automatic;0;0] Background for each desktop
 icon drawing = 0
 
-#g+[Default] Icon to use in expanded mode if wallpaper is not mapped:
+#g+[Default] Custom image
 default icon =
 
-#C+ Background colour:
+#C+ Custom colour
 #{r, g, b, a}
 rgbbgcolor = 0.0; 0.0; 0.0; 0.0
 
@@ -144,19 +144,11 @@ action on click = 0
 desktop names = 
 
 
-#X[Sub-Dock]
-frame_pos =
-
-#n+ Sub-dock view name:
-#{Leave empty to use default sub-dock view.}
-renderer = 
-
-#b+ In expanded mode, render the desklet in 3D?
-3D desklet = true
-
-
 #X[Display options]
 frame_disp =
+
+#Y-[Automatic;0;0;Custom;1;6] Style
+style = 0
 
 #i+[0;8] Size of the inside lines :
 inlinesize = 3
@@ -196,3 +188,11 @@ fill windows = false
 #C+ Colour of these windows:
 #{r, g, b, a}
 rgbfindcolor = 0.0; 0.0; 0.5; 0.5
+
+
+#X[Sub-Dock]
+frame_pos =
+
+#n+ Sub-dock view name:
+#{Leave empty to use default sub-dock view.}
+renderer = 
