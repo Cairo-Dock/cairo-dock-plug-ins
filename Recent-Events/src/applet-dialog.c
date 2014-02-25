@@ -408,13 +408,13 @@ static GtkWidget *cd_build_events_widget (void)
 	int i = 0;
 	GtkToolItem *group = _add_category_button (pToolBar, D_("All"), "stock_search", i++, NULL);
 	_add_category_button (pToolBar, D_("Applications"), "exec", i++, group);
-	_add_category_button (pToolBar, D_("Document"), "document", i++, group);
-	///_add_category_button (pToolBar, D_("Folder"), "folder", i++, group);
+	_add_category_button (pToolBar, D_("Documents"), "document", i++, group);
+	///_add_category_button (pToolBar, D_("Folders"), "folder", i++, group);
 	_add_category_button (pToolBar, D_("Images"), "image", i++, group);
 	_add_category_button (pToolBar, D_("Audio"), "sound", i++, group);
-	_add_category_button (pToolBar, D_("Video"), "video", i++, group);
+	_add_category_button (pToolBar, D_("Videos"), "video", i++, group);
 	_add_category_button (pToolBar, D_("Web"), "text-html", i++, group);
-	_add_category_button (pToolBar, D_("Other"), "unknown", i++, group);
+	_add_category_button (pToolBar, D_("Others"), "unknown", i++, group);
 	_add_category_button (pToolBar, D_("Top Results"), "gtk-about", i, group);
 	
 	// search entry.
