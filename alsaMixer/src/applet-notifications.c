@@ -33,15 +33,22 @@ CD_APPLET_ON_CLICK_END
 static void _check_mixer_cmd (void)
 {
 	// check for Gnome2 before Gnome3, since during the transition, both were present, and "gnome-control-center sound" didn't work (and it was anyway just a shortcut to gnome-volume-control).
-	gchar *cResult = cairo_dock_launch_command_sync ("which gnome-volume-control");  // Gnome2
+	gchar *cResult = cairo_dock_launch_command_sync ("which gnome-control-center");  // Gnome3
 	if (cResult != NULL && *cResult == '/')
-		s_cMixerCmd = "gnome-volume-control -p applications";
+		s_cMixerCmd = "gnome-control-center sound";
 	else
 	{
 		g_free (cResult);
-		cResult = cairo_dock_launch_command_sync ("which gnome-control-center");  // Gnome3
-		if (cResult != NULL && *cResult == '/')  /// TODO: other DE...
-			s_cMixerCmd = "gnome-control-center sound";
+		cResult = cairo_dock_launch_command_sync ("which gnome-volume-control");  // Gnome2
+		if (cResult != NULL && *cResult == '/')
+			s_cMixerCmd = "gnome-volume-control -p applications";
+		else
+		{
+			g_free (cResult);
+			cResult = cairo_dock_launch_command_sync ("which cinnamon-settings");  // cinnamon (Mint >= 13)
+			if (cResult != NULL && *cResult == '/')
+				s_cMixerCmd = "cinnamon-settings sound";
+		}
 	}  /// TODO: handle other DE ...
 	g_free (cResult);
 }
