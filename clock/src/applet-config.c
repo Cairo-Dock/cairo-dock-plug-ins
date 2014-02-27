@@ -311,13 +311,11 @@ static void _cd_clock_remove_alarm (GtkButton *button, GldiModuleInstance *myApp
 /////////////////
 static void _cd_clock_select_location (GtkMenuItem *pMenuItem, gpointer *data)
 {
-	GldiModuleInstance *myApplet = data[0];
+	GtkWidget *pLocationEntry = data[0];
 	gchar *cLocationPath = data[1];
 	g_return_if_fail (cLocationPath != NULL);
-	cd_debug ("%s (%s, %s)", __func__, cLocationPath, myApplet->cConfFilePath);
 	
 	//\____________________ On met a jour le panneau de conf.
-	GtkWidget *pLocationEntry = myData.pLocationEntry;
 	gtk_entry_set_text (GTK_ENTRY (pLocationEntry), cLocationPath);
 	
 	cd_clock_free_timezone_list ();
@@ -341,7 +339,7 @@ static int _cd_clock_compare_path_order (gpointer *data1, gpointer *data2) {
 	g_free (cURI_2);
 	return iOrder;
 }
-static GList *_cd_clock_parse_dir (const gchar *cDirPath, const gchar *cCurrentLocation, GtkWidget *pMenu, GList *pLocationPathList, GldiModuleInstance *myApplet)
+static GList *_cd_clock_parse_dir (const gchar *cDirPath, const gchar *cCurrentLocation, GtkWidget *pMenu, GList *pLocationPathList, GtkWidget *pLocationEntry)
 {
 	//\__________________ Ouverture du (sous-)repertoire.
 	GError *erreur = NULL;
@@ -387,13 +385,13 @@ static GList *_cd_clock_parse_dir (const gchar *cDirPath, const gchar *cCurrentL
 		{
 			pSubMenu = gtk_menu_new ();  // inside the config window => use a normal GTK menu
 			gtk_menu_item_set_submenu (GTK_MENU_ITEM (pMenuItem), pSubMenu);
-			pPathList = _cd_clock_parse_dir (sFilePath->str, cLocationPath, pSubMenu, pPathList, myApplet);
+			pPathList = _cd_clock_parse_dir (sFilePath->str, cLocationPath, pSubMenu, pPathList, pLocationEntry);
 			g_free (cLocationPath);
 		}
 		else
 		{
 			data = g_new (gpointer, 2);
-			data[0] = myApplet;
+			data[0] = pLocationEntry;
 			data[1] = cLocationPath;
 			pPathList = g_list_prepend (pPathList, data);
 			g_signal_connect (G_OBJECT (pMenuItem), "activate", G_CALLBACK(_cd_clock_select_location), data);
@@ -414,12 +412,12 @@ static GList *_cd_clock_parse_dir (const gchar *cDirPath, const gchar *cCurrentL
 	g_dir_close (dir);
 	return pPathList;
 }
-static void _cd_clock_search_for_location (GtkButton *pButton, GldiModuleInstance *myApplet)
+static void _cd_clock_search_for_location (GtkButton *pButton, GtkWidget *pLocationEntry)
 {
 	GtkWidget *pMenu = gtk_menu_new ();  // inside the config window => use a normal GTK menu
 	if (s_pTimeZoneList != NULL)
 		cd_clock_free_timezone_list ();
-	s_pTimeZoneList = _cd_clock_parse_dir (CD_CLOCK_TIMEZONE_DIR, NULL, pMenu, NULL, myApplet);
+	s_pTimeZoneList = _cd_clock_parse_dir (CD_CLOCK_TIMEZONE_DIR, NULL, pMenu, NULL, pLocationEntry);
 	gtk_widget_show_all (pMenu);
 	
 	g_signal_connect_after (G_OBJECT (pMenu),
@@ -485,7 +483,6 @@ void cd_clock_load_custom_widget (GldiModuleInstance *myApplet, GKeyFile* pKeyFi
 	g_return_if_fail (pGroupKeyWidget != NULL);
 	
 	GtkWidget *pLocationEntry = cairo_dock_gui_get_first_widget (pGroupKeyWidget);
-	myData.pLocationEntry = pLocationEntry;
 	g_return_if_fail (pLocationEntry != NULL);
 	
 	GtkWidget *pWidgetBox = gtk_widget_get_parent (pLocationEntry);
@@ -495,7 +492,7 @@ void cd_clock_load_custom_widget (GldiModuleInstance *myApplet, GKeyFile* pKeyFi
 	
 	GtkWidget *pLocationButton = gtk_button_new_from_stock (GTK_STOCK_FIND);
 	gtk_box_pack_start (GTK_BOX (pWidgetBox), pLocationButton, FALSE, FALSE, 0);
-	g_signal_connect (pLocationButton, "clicked", G_CALLBACK (_cd_clock_search_for_location), myApplet);
+	g_signal_connect (pLocationButton, "clicked", G_CALLBACK (_cd_clock_search_for_location), pLocationEntry);
 }
 
 
