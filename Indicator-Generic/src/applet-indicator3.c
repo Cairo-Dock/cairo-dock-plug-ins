@@ -78,9 +78,14 @@ static void _entry_removed (IndicatorObject *pIndicator, IndicatorObjectEntry *p
 	}
 }
 
-static void _destroy (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, GldiModuleInstance *myApplet)
+static void _destroy (IndicatorObjectEntry *pEntry, GldiModuleInstance *myApplet)
 {
-	_entry_removed (pIndicator, pEntry, myApplet);
+	// Disconnect all signals linked to the image, no need to hide it, the icon will be removed
+	if (pEntry && pEntry->image)
+	{
+		g_signal_handlers_disconnect_by_func (G_OBJECT (pEntry->image), G_CALLBACK (_icon_updated), myApplet);
+		cd_indicator3_disconnect_visibility (pEntry->image, myApplet, FALSE); // FALSE <=> no need to hide it, we'll remove it
+	}
 }
 
 void cd_indicator_generic_indicator_reload (IndicatorObject *pIndicator, IndicatorObjectEntry *pEntry, gpointer data)
@@ -111,7 +116,7 @@ void cd_indicator_generic_indicator_stop (GldiModuleInstance *myApplet)
 {
 	cd_debug ("Stop: %s", myConfig.cIndicatorName);
 	// It seems we doesn't need to free the indicator (object and event)
-	_destroy (myData.pIndicator, myData.pEntry, myApplet); // remove the connection to signals (menu)
+	_destroy (myData.pEntry, myApplet); // remove the connection to signals
 
 	cd_indicator3_unload (myData.pIndicator, // remove the connection to signals (indicator)
 		_entry_added,
