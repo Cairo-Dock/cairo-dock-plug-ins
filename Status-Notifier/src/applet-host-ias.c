@@ -743,6 +743,20 @@ static void _on_watch_service (DBusGProxy *proxy, DBusGProxyCall *call, gpointer
 		G_TYPE_UINT, &service_api_version,
 		G_TYPE_UINT, &this_service_version,
 		G_TYPE_INVALID);
+	if (error != NULL)
+	{
+		cd_debug ("Unable to watch the service: %s", error->message);
+		g_error_free (error);
+		/* Note: Not a big deal, let start getting items: it seems that the
+		 * service is no longer available and *no longer needed* on Ubuntu 14.04
+		 *  https://bazaar.launchpad.net/~indicator-applet-developers/indicator-application/trunk.14.04/revision/246
+		 *  https://bugs.launchpad.net/bugs/1303731
+		 * TODO: remove this ugly hack...
+		 */
+		#if (INDICATOR_OLD_NAMES == 0)
+		service_api_version = 1;
+		#endif
+	}
 	cd_debug ("=== got indicator service (API: %d, service: %d, broken watcher: %d)", service_api_version, this_service_version, myData.bBrokenWatcher);
 	
 	if (service_api_version > 0)  /// shouldn't the 2 versions be equal ?...
