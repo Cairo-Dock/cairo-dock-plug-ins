@@ -43,7 +43,6 @@
 #define  CD_INDICATOR_SERVICE_INTERFACE "org.ayatana.indicator.service"
 #define  CD_INDICATOR_SERVICE_OBJECT "/org/ayatana/indicator/service"
 
-#define CD_INDICATOR_APPLICATION_ITEM_OBJ "/org/ayatana/NotificationItem"
 
 static DBusGProxyCall *s_pDetectIASCall = NULL;
 
@@ -512,14 +511,6 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 		v = g_value_array_get_nth (va, 3);
 		if (v && G_VALUE_HOLDS (v, DBUS_TYPE_G_OBJECT_PATH))
 			cObjectPath = (gchar*)g_value_get_boxed (v);
-
-		/*cd_debug ("=== cObjectPath : %s", cObjectPath);
-		if (cObjectPath != NULL && strncmp (cObjectPath, CD_INDICATOR_APPLICATION_ITEM_OBJ, strlen (CD_INDICATOR_APPLICATION_ITEM_OBJ)) == 0)
-		{
-			gchar *str = strrchr (cObjectPath, '/');  // I think this is because this path is actually the menu path, and fortunately it's just under the item object's path.
-			if (str)
-				*str = '\0';
-		}*/ // => we will do that in cd_satus_notifier_create_item because this function is also called when a new application is added => host.c
 
 		v = g_value_array_get_nth (va, 4);
 		if (v && G_VALUE_HOLDS_STRING (v))
