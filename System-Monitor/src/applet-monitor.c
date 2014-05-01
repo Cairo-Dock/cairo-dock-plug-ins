@@ -253,7 +253,7 @@ void cd_sysmonitor_format_value (CairoDataRenderer *pRenderer, int iNumValue, gc
 		i ++;
 		if (i == iNumValue)
 		{
-			double fTemp = 0 + fValue * (100 - 0);
+			double fTemp = myData.iCPUTempMin + fValue * (myData.iCPUTempMax - myData.iCPUTempMin);
 			snprintf (cFormatBuffer, iBufferLength, fTemp < 100. ? " %.0f°" : "%.0f°", fTemp);
 			return ;
 		}
