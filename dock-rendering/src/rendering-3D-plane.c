@@ -31,9 +31,6 @@
 
 extern int iVanishingPointY;
 
-extern CairoDockSeparatorType my_iDrawSeparator3D;
-extern double my_fSeparatorColor[4];
-
 extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 
 #define _define_parameters(hi, h0, H, l, r, gamma, h, w, dw)\
@@ -111,15 +108,10 @@ static void cd_rendering_calculate_max_dock_size_3D_plane (CairoDock *pDock)
 	//cairo_dock_calculate_extra_width_for_trapeze (pDock->iDecorationsHeight, fInclination, myDocksParam.iDockRadius, myDocksParam.iDockLineWidth);
 	
 	// on charge les separateurs plat.
-	//g_print ("%d / %d\n", my_iDrawSeparator3D, myIconsParam.iSeparatorType);
-	if (my_iDrawSeparator3D != myIconsParam.iSeparatorType || my_fSeparatorColor[0] != myIconsParam.fSeparatorColor[0] || my_fSeparatorColor[1] != myIconsParam.fSeparatorColor[1] || my_fSeparatorColor[2] != myIconsParam.fSeparatorColor[2] || my_fSeparatorColor[3] != myIconsParam.fSeparatorColor[3])
+	//g_print ("%d / %d\n", myIconsParam.iSeparatorType, myIconsParam.iSeparatorType);
+	if (myIconsParam.iSeparatorType == CAIRO_DOCK_FLAT_SEPARATOR)
 	{
-		my_iDrawSeparator3D = myIconsParam.iSeparatorType;
-		memcpy (my_fSeparatorColor, myIconsParam.fSeparatorColor, 4*sizeof(double));
-		if (myIconsParam.iSeparatorType == CAIRO_DOCK_FLAT_SEPARATOR)
-		{
-			cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
-		}
+		cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
 	}
 	
 	pDock->iMinDockWidth = MAX (1, pDock->fFlatDockWidth);  // fFlatDockWidth peut etre meme negatif avec un dock vide.
@@ -193,7 +185,7 @@ static void cd_rendering_make_3D_separator (Icon *icon, cairo_t *pCairoContext, 
 	cairo_rel_line_to (pCairoContext, - fBigWidth, 0);
 	cairo_rel_line_to (pCairoContext, - fDeltaXLeft, - fHeight);
 	
-	if (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR)
+	if (myIconsParam.iSeparatorType == CAIRO_DOCK_FLAT_SEPARATOR)
 	{
 		cairo_clip (pCairoContext);
 		cairo_translate (pCairoContext, MIN (0, (fHeight + hi) * fLeftInclination), 0);
@@ -256,9 +248,9 @@ static void cd_rendering_draw_3D_separator (Icon *icon, cairo_t *pCairoContext, 
 			cairo_scale (pCairoContext, 1., -1.);
 		}
 	}
-	cd_rendering_make_3D_separator (icon, pCairoContext, pDock, (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR), bBackGround);
+	cd_rendering_make_3D_separator (icon, pCairoContext, pDock, (myIconsParam.iSeparatorType == CAIRO_DOCK_PHYSICAL_SEPARATOR), bBackGround);
 	
-	if (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)
+	if (myIconsParam.iSeparatorType == CAIRO_DOCK_PHYSICAL_SEPARATOR)
 	{
 		cairo_set_operator (pCairoContext, CAIRO_OPERATOR_DEST_OUT);
 		cairo_set_source_rgba (pCairoContext, 0.0, 0.0, 0.0, 1.0);
@@ -273,7 +265,7 @@ static void cd_rendering_draw_3D_separator (Icon *icon, cairo_t *pCairoContext, 
 			if (myDocksParam.bUseDefaultColors)
 				gldi_style_colors_set_line_color (pCairoContext);
 			else
-				cairo_set_source_rgba (pCairoContext, myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
+				gldi_color_set_cairo (pCairoContext, &myDocksParam.fLineColor);
 			cairo_stroke (pCairoContext);
 		}
 	}
@@ -349,7 +341,7 @@ static void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDo
 		if (myDocksParam.bUseDefaultColors)
 			gldi_style_colors_set_line_color (pCairoContext);
 		else
-			cairo_set_source_rgba (pCairoContext, myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
+			gldi_color_set_cairo (pCairoContext, &myDocksParam.fLineColor);
 		cairo_stroke (pCairoContext);
 	}
 	else
@@ -362,7 +354,7 @@ static void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDo
 	
 	//\____________________ On dessine la ficelle qui les joint.
 	if (myIconsParam.iStringLineWidth > 0)
-		cairo_dock_draw_string (pCairoContext, pDock, myIconsParam.iStringLineWidth, FALSE, (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR || my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR));
+		cairo_dock_draw_string (pCairoContext, pDock, myIconsParam.iStringLineWidth, FALSE, (myIconsParam.iSeparatorType == CAIRO_DOCK_FLAT_SEPARATOR || myIconsParam.iSeparatorType == CAIRO_DOCK_PHYSICAL_SEPARATOR));
 	
 	//\____________________ On dessine les icones et les etiquettes, en tenant compte de l'ordre pour dessiner celles en arriere-plan avant celles en avant-plan.
 	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pDock->icons);
@@ -373,7 +365,7 @@ static void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDo
 	
 	Icon *icon;
 	GList *ic = pFirstDrawnElement;
-	if (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR || my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)
+	if (myIconsParam.iSeparatorType == CAIRO_DOCK_FLAT_SEPARATOR || myIconsParam.iSeparatorType == CAIRO_DOCK_PHYSICAL_SEPARATOR)
 	{
 		cairo_set_line_cap (pCairoContext, CAIRO_LINE_CAP_SQUARE);
 		do
@@ -404,7 +396,7 @@ static void cd_rendering_render_3D_plane (cairo_t *pCairoContext, CairoDock *pDo
 			ic = cairo_dock_get_next_element (ic, pDock->icons);
 		} while (ic != pFirstDrawnElement);
 		
-		if (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)
+		if (myIconsParam.iSeparatorType == CAIRO_DOCK_PHYSICAL_SEPARATOR)
 		{
 			do
 			{
@@ -597,7 +589,7 @@ static void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, Cair
 	if (myDocksParam.bUseDefaultColors)
 		gldi_style_colors_set_line_color (pCairoContext);
 	else
-		cairo_set_source_rgba (pCairoContext, myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
+		gldi_color_set_cairo (pCairoContext, &myDocksParam.fLineColor);
 	if (pDock->container.bIsHorizontal)
 	{
 		cairo_move_to (pCairoContext, fDockOffsetX, fDockOffsetY - 0.5*fLineWidth);
@@ -632,7 +624,7 @@ static void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, Cair
 		Icon *icon;
 		GList *ic = pFirstDrawnElement;
 		
-		if (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR || my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)
+		if (myIconsParam.iSeparatorType == CAIRO_DOCK_FLAT_SEPARATOR || myIconsParam.iSeparatorType == CAIRO_DOCK_PHYSICAL_SEPARATOR)
 		{
 			cairo_set_line_cap (pCairoContext, CAIRO_LINE_CAP_SQUARE);
 			do
@@ -641,7 +633,7 @@ static void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, Cair
 				
 				if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon) && icon->cFileName == NULL)
 				{
-					if (_cd_separator_is_impacted (icon, pDock, fXMin, fXMax, TRUE, (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)))
+					if (_cd_separator_is_impacted (icon, pDock, fXMin, fXMax, TRUE, (myIconsParam.iSeparatorType == CAIRO_DOCK_PHYSICAL_SEPARATOR)))
 					{
 						cairo_save (pCairoContext);
 						cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->container.bIsHorizontal, TRUE);
@@ -675,7 +667,7 @@ static void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, Cair
 				ic = cairo_dock_get_next_element (ic, pDock->icons);
 			} while (ic != pFirstDrawnElement);
 			
-			if (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)
+			if (myIconsParam.iSeparatorType == CAIRO_DOCK_PHYSICAL_SEPARATOR)
 			{
 				do
 				{
@@ -683,7 +675,7 @@ static void cd_rendering_render_optimized_3D_plane (cairo_t *pCairoContext, Cair
 					
 					if (CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon) && icon->cFileName == NULL)
 					{
-						if (_cd_separator_is_impacted (icon, pDock, fXMin, fXMax, FALSE, (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)))
+						if (_cd_separator_is_impacted (icon, pDock, fXMin, fXMax, FALSE, (myIconsParam.iSeparatorType == CAIRO_DOCK_PHYSICAL_SEPARATOR)))
 						{
 							cairo_save (pCairoContext);
 							cd_rendering_draw_3D_separator (icon, pCairoContext, pDock, pDock->container.bIsHorizontal, FALSE);
@@ -802,7 +794,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 		if (myDocksParam.bUseDefaultColors)
 			gldi_style_colors_set_line_color (NULL);
 		else
-			glColor4f (myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
+			gldi_color_set_opengl (&myDocksParam.fLineColor);
 		_cairo_dock_set_blend_alpha ();
 		cairo_dock_stroke_gl_path (pFramePath, TRUE);
 	}
@@ -810,7 +802,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 	
 	//\____________________ On dessine la ficelle qui les joint.
 	if (myIconsParam.iStringLineWidth > 0)
-		cairo_dock_draw_string_opengl (pDock, myIconsParam.iStringLineWidth, FALSE, (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR || my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR));
+		cairo_dock_draw_string_opengl (pDock, myIconsParam.iStringLineWidth, FALSE, (myIconsParam.iSeparatorType == CAIRO_DOCK_FLAT_SEPARATOR || myIconsParam.iSeparatorType == CAIRO_DOCK_PHYSICAL_SEPARATOR));
 	
 	//\____________________ On dessine les icones et les etiquettes, en tenant compte de l'ordre pour dessiner celles en arriere-plan avant celles en avant-plan.
 	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pDock->icons);
@@ -822,7 +814,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 	GList *ic = pFirstDrawnElement;
 	
 	///glLoadIdentity ();
- 	if (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR || my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)
+ 	if (myIconsParam.iSeparatorType == CAIRO_DOCK_FLAT_SEPARATOR || myIconsParam.iSeparatorType == CAIRO_DOCK_PHYSICAL_SEPARATOR)
 	{
 		do
 		{
@@ -831,7 +823,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 			if (icon->cFileName == NULL && CAIRO_DOCK_ICON_TYPE_IS_SEPARATOR (icon))
 			{
 				glPushMatrix ();
-				if (my_iDrawSeparator3D == CAIRO_DOCK_FLAT_SEPARATOR)
+				if (myIconsParam.iSeparatorType == CAIRO_DOCK_FLAT_SEPARATOR)
 					cd_rendering_draw_flat_separator_opengl (icon, pDock);
 				else
 					cd_rendering_draw_physical_separator_opengl (icon, pDock, TRUE, NULL, NULL);
@@ -855,7 +847,7 @@ static void cd_rendering_render_3D_plane_opengl (CairoDock *pDock)
 			ic = cairo_dock_get_next_element (ic, pDock->icons);
 		} while (ic != pFirstDrawnElement);
 		
-		if (my_iDrawSeparator3D == CAIRO_DOCK_PHYSICAL_SEPARATOR)
+		if (myIconsParam.iSeparatorType == CAIRO_DOCK_PHYSICAL_SEPARATOR)
 		{
 			do
 			{

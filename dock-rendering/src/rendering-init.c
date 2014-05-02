@@ -68,27 +68,6 @@ double my_fRainbowConeOffset;
 double my_fRainbowColor[4];
 double my_fRainbowLineColor[4];
 
-/*gint     my_diapo_iconGapX;
-gint     my_diapo_iconGapY;
-gdouble  my_diapo_fScaleMax;
-gint     my_diapo_sinW;
-gboolean my_diapo_lineaire;
-gboolean  my_diapo_wide_grid;
-gboolean  my_diapo_text_only_on_pointed;
-
-gdouble  my_diapo_color_frame_start[4];
-gdouble  my_diapo_color_frame_stop[4];
-gboolean my_diapo_fade2bottom;
-gboolean my_diapo_fade2right;
-guint    my_diapo_arrowWidth;
-guint    my_diapo_arrowHeight;
-gdouble  my_diapo_arrowShift;
-guint    my_diapo_lineWidth;
-guint    my_diapo_radius;
-gdouble  my_diapo_color_border_line[4];
-gboolean my_diapo_draw_background;
-gboolean my_diapo_display_all_icons;*/
-
 gdouble  my_diapo_simple_max_size;
 gint     my_diapo_simple_iconGapX;
 gint     my_diapo_simple_iconGapY;
@@ -99,6 +78,7 @@ gboolean  my_diapo_simple_wide_grid;
 gboolean  my_diapo_simple_text_only_on_pointed;
 gboolean my_diapo_simple_display_all_labels;
 
+gboolean my_diapo_simple_use_default_colors;
 gdouble  my_diapo_simple_color_frame_start[4];
 gdouble  my_diapo_simple_color_frame_stop[4];
 gboolean my_diapo_simple_fade2bottom;
@@ -123,9 +103,28 @@ gdouble my_fPanelRatio;
 static gdouble s_fPreviousPanelRatio;
 gboolean my_bPanelPhysicalSeparator;
 
-CairoDockSeparatorType my_iDrawSeparator3D = CAIRO_DOCK_NORMAL_SEPARATOR;
-gdouble my_fSeparatorColor[4];
+GldiColor my_fSeparatorColor;
 
+
+static gboolean on_style_changed (G_GNUC_UNUSED gpointer data)
+{
+	if (my_diapo_simple_use_default_colors)  // update slide params
+	{
+		g_print ("update Slide...\n");
+		
+		my_diapo_simple_radius = myStyleParam.iCornerRadius;
+		my_diapo_simple_lineWidth = myStyleParam.iLineWidth;
+	}
+	
+	if (myIconsParam.bSeparatorUseDefaultColors
+	&& (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] != NULL || my_iFlatSeparatorTexture != 0)
+	&& g_pMainDock)
+	{
+		g_print ("update flat separators...\n");
+		cd_rendering_load_flat_separator (CAIRO_CONTAINER(g_pMainDock));
+	}
+	return GLDI_NOTIFICATION_LET_PASS;
+}
 
 CD_APPLET_DEFINE_BEGIN ("dock rendering",
 	2, 0, 0,
@@ -138,21 +137,26 @@ CD_APPLET_DEFINE_BEGIN ("dock rendering",
 	CD_APPLET_SET_CONTAINER_TYPE (CAIRO_DOCK_MODULE_IS_PLUGIN);
 	CD_APPLET_EXTEND_MANAGER ("Backends");
 	
-	cd_rendering_register_3D_plane_renderer 		(CD_RENDERING_3D_PLANE_VIEW_NAME);
+	memset (&my_fSeparatorColor, 0, sizeof(GldiColor));
+	cd_rendering_register_3D_plane_renderer (CD_RENDERING_3D_PLANE_VIEW_NAME);
 	
-	cd_rendering_register_parabole_renderer 		(CD_RENDERING_PARABOLIC_VIEW_NAME);
+	cd_rendering_register_parabole_renderer (CD_RENDERING_PARABOLIC_VIEW_NAME);
 	
-	cd_rendering_register_rainbow_renderer 		(CD_RENDERING_RAINBOW_VIEW_NAME);
+	cd_rendering_register_rainbow_renderer (CD_RENDERING_RAINBOW_VIEW_NAME);
 	
-	cd_rendering_register_diapo_simple_renderer 	(CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);  // By Paradoxxx_Zero
+	cd_rendering_register_diapo_simple_renderer (CD_RENDERING_DIAPO_SIMPLE_VIEW_NAME);  // By Paradoxxx_Zero
 	gldi_object_register_notification (&myDockObjectMgr,
 		NOTIFICATION_LEAVE_DOCK,
 		(GldiNotificationFunc) cd_slide_on_leave,
 		GLDI_RUN_FIRST, NULL);  // on l'enregistre ici, et non pas sur le container, pour intercepter la fermeture du dock lorsque l'on en sort en tirant la scrollbar.
+	gldi_object_register_notification (&myStyleMgr,
+		NOTIFICATION_STYLE_CHANGED,
+		(GldiNotificationFunc) on_style_changed,
+		GLDI_RUN_FIRST, NULL);  // register first, so that we update our params before the Dock manager update docks size (in case the linewidth has changed)
 	
-	cd_rendering_register_curve_renderer 			(CD_RENDERING_CURVE_VIEW_NAME);  // By Paradoxxx_Zero and Fabounet
+	cd_rendering_register_curve_renderer (CD_RENDERING_CURVE_VIEW_NAME);  // By Paradoxxx_Zero and Fabounet
 	
-	cd_rendering_register_panel_renderer 			(CD_RENDERING_PANEL_VIEW_NAME);
+	cd_rendering_register_panel_renderer (CD_RENDERING_PANEL_VIEW_NAME);
 	s_fPreviousPanelRatio = my_fPanelRatio;
 CD_APPLET_DEFINE_END
 
@@ -210,8 +214,6 @@ CD_APPLET_STOP_END
 CD_APPLET_RELOAD_BEGIN
 	if (CD_APPLET_MY_CONFIG_CHANGED)
 	{
-		cd_rendering_load_flat_separator (CAIRO_CONTAINER (g_pMainDock));
-		
 		cairo_dock_set_all_views_to_default (0);
 		
 		// reload icons surface/texture in case their size have changed.

@@ -186,7 +186,7 @@ static void cd_render (cairo_t *pCairoContext, CairoDock *pDock)
 	if (fLineWidth > 0)
 	{
 		cairo_set_line_width (pCairoContext, fLineWidth);
-		cairo_set_source_rgba (pCairoContext, myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
+		gldi_color_set_cairo (pCairoContext, &myDocksParam.fLineColor);
 		cairo_stroke (pCairoContext);
 	}
 	else
@@ -277,7 +277,7 @@ static void cd_render (cairo_t *pCairoContext, CairoDock *pDock)
 					
 					cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
 					cairo_set_line_width (pCairoContext, fLineWidth);
-					cairo_set_source_rgba (pCairoContext, myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
+					gldi_color_set_cairo (pCairoContext, &myDocksParam.fLineColor);
 					cairo_stroke (pCairoContext);
 				}
 			}
@@ -358,34 +358,28 @@ static void cd_render_optimized (cairo_t *pCairoContext, CairoDock *pDock, GdkRe
 	
 	//\____________________ On dessine la partie du cadre qui va bien.
 	cairo_new_path (pCairoContext);
-
+	gldi_color_set_cairo (pCairoContext, &myDocksParam.fLineColor);
+	cairo_set_line_width (pCairoContext, fLineWidth);
+	
 	if (pDock->container.bIsHorizontal)
 	{
 		cairo_move_to (pCairoContext, fDockOffsetX, fDockOffsetY - fLineWidth / 2);
 		cairo_rel_line_to (pCairoContext, pArea->width, 0);
-		cairo_set_line_width (pCairoContext, fLineWidth);
-		cairo_set_source_rgba (pCairoContext, myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
 		cairo_stroke (pCairoContext);
 
 		cairo_new_path (pCairoContext);
 		cairo_move_to (pCairoContext, fDockOffsetX, (pDock->container.bDirectionUp ? iHeight - fLineWidth / 2 : pDock->iDecorationsHeight + 1.5 * fLineWidth));
 		cairo_rel_line_to (pCairoContext, pArea->width, 0);
-		cairo_set_line_width (pCairoContext, fLineWidth);
-		cairo_set_source_rgba (pCairoContext, myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
 	}
 	else
 	{
 		cairo_move_to (pCairoContext, fDockOffsetX - fLineWidth / 2, fDockOffsetY);
 		cairo_rel_line_to (pCairoContext, 0, pArea->height);
-		cairo_set_line_width (pCairoContext, fLineWidth);
-		cairo_set_source_rgba (pCairoContext, myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
 		cairo_stroke (pCairoContext);
 
 		cairo_new_path (pCairoContext);
 		cairo_move_to (pCairoContext, (pDock->container.bDirectionUp ? iHeight - fLineWidth / 2 : pDock->iDecorationsHeight + 1.5 * fLineWidth), fDockOffsetY);
 		cairo_rel_line_to (pCairoContext, 0, pArea->height);
-		cairo_set_line_width (pCairoContext, fLineWidth);
-		cairo_set_source_rgba (pCairoContext, myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
 	}
 	cairo_stroke (pCairoContext);
 
@@ -483,7 +477,7 @@ static void cd_render_opengl (CairoDock *pDock)
 	if (fLineWidth != 0)
 	{
 		glLineWidth (fLineWidth);
-		glColor4f (myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
+		gldi_color_set_opengl (&myDocksParam.fLineColor);
 		cairo_dock_stroke_gl_path (pFramePath, TRUE);
 	}
 	glPopMatrix ();
@@ -559,7 +553,7 @@ static void cd_render_opengl (CairoDock *pDock)
 						delta - dx, h_,
 						delta, h_);
 					glLineWidth (fLineWidth);
-					glColor4f (myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
+					gldi_color_set_opengl (&myDocksParam.fLineColor);
 					cairo_dock_stroke_gl_path (pPath, FALSE);
 				}
 				

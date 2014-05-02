@@ -30,9 +30,10 @@
 extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 extern GLuint my_iFlatSeparatorTexture;
 extern int iVanishingPointY;
+extern GldiColor my_fSeparatorColor;
 
 
-cairo_surface_t *cd_rendering_create_flat_separator_surface (int iWidth, int iHeight)
+static cairo_surface_t *cd_rendering_create_flat_separator_surface (int iWidth, int iHeight)
 {
 	cairo_pattern_t *pStripesPattern = cairo_pattern_create_linear (0.0f,
 		iHeight,
@@ -71,17 +72,17 @@ cairo_surface_t *cd_rendering_create_flat_separator_surface (int iWidth, int iHe
 		dk =  (d / sqrt (1 + ak * ak));
 		cairo_pattern_add_color_stop_rgba (pStripesPattern,
 			yk/iHeight,
-			myIconsParam.fSeparatorColor[0],
-			myIconsParam.fSeparatorColor[1],
-			myIconsParam.fSeparatorColor[2],
-			myIconsParam.fSeparatorColor[3]);
+			my_fSeparatorColor.rgba.red,
+			my_fSeparatorColor.rgba.green,
+			my_fSeparatorColor.rgba.blue,
+			my_fSeparatorColor.rgba.alpha);
 		yk += dk;
 		cairo_pattern_add_color_stop_rgba (pStripesPattern,
 			yk/iHeight,
-			myIconsParam.fSeparatorColor[0],
-			myIconsParam.fSeparatorColor[1],
-			myIconsParam.fSeparatorColor[2],
-			myIconsParam.fSeparatorColor[3]);
+			my_fSeparatorColor.rgba.red,
+			my_fSeparatorColor.rgba.green,
+			my_fSeparatorColor.rgba.blue,
+			my_fSeparatorColor.rgba.alpha);
 	}
 	
 	cairo_surface_t *pNewSurface = cairo_dock_create_blank_surface (
@@ -100,6 +101,24 @@ cairo_surface_t *cd_rendering_create_flat_separator_surface (int iWidth, int iHe
 
 void cd_rendering_load_flat_separator (GldiContainer *pContainer)
 {
+	// get the color that will be used; keep it in 'my_fSeparatorColor', so that we can reload the surface if the color changes
+	GldiColor *pSeparatorColor;
+	GldiColor color;
+	if (myIconsParam.bSeparatorUseDefaultColors)
+	{
+		gldi_style_color_get (GLDI_COLOR_SEPARATOR, &color);
+		pSeparatorColor = &color;
+	}
+	else
+	{
+		pSeparatorColor = &myIconsParam.fSeparatorColor;
+	}
+	
+	if ((my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] != NULL || my_iFlatSeparatorTexture != 0)
+	&& ! gldi_color_compare (&my_fSeparatorColor, pSeparatorColor))  // the surface already exists and the color didn't change => nothing to do
+		return;
+	my_fSeparatorColor = *pSeparatorColor;
+	
 	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL]);
 	cairo_surface_destroy (my_pFlatSeparatorSurface[CAIRO_DOCK_VERTICAL]);
 	
@@ -287,7 +306,7 @@ void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, 
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
 		glLineWidth (myDocksParam.iDockLineWidth);
-		glColor4f (myDocksParam.fLineColor[0], myDocksParam.fLineColor[1], myDocksParam.fLineColor[2], myDocksParam.fLineColor[3]);
+		gldi_color_set_opengl (&myDocksParam.fLineColor);
 		
 		glBegin(GL_LINES);
 		glVertex3f(fLittleWidth, 0., 0.);
