@@ -64,16 +64,16 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iAppearanceDuration = CD_CONFIG_GET_INTEGER ("Configuration", "appear duration");
 	myConfig.iCloseDuration = CD_CONFIG_GET_INTEGER ("Configuration", "stop duration");
 	myConfig.cIconAnimation = CD_CONFIG_GET_STRING ("Configuration", "animation");
-	CD_CONFIG_GET_COLOR ("Configuration", "frame color", myConfig.pFrameColor);
+	CD_CONFIG_GET_COLOR_RGBA ("Configuration", "frame color", myConfig.pFrameColor);
 	
 	myConfig.fFontSizeRatio = CD_CONFIG_GET_DOUBLE ("Configuration", "font size");
 	myConfig.bTextOnTop = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "text on top", TRUE);
 	
 	myConfig.labelDescription.cFont = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "font", "Monospace 16");
 	myConfig.labelDescription.bOutlined = CD_CONFIG_GET_BOOLEAN ("Configuration", "text outlined");
-	CD_CONFIG_GET_COLOR_RVB ("Configuration", "text color", myConfig.labelDescription.fColorStart);
+	CD_CONFIG_GET_COLOR ("Configuration", "text color", &myConfig.labelDescription.fColorStart);
 	myConfig.labelDescription.iMargin = 2;
-	CD_CONFIG_GET_COLOR ("Configuration", "bg color", myConfig.labelDescription.fBackgroundColor);
+	CD_CONFIG_GET_COLOR ("Configuration", "bg color", &myConfig.labelDescription.fBackgroundColor);
 	
 	myConfig.iNbResultMax = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb results", 50);
 	myConfig.iNbLinesInListing = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb lines", 10);
@@ -81,13 +81,14 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.infoDescription.cFont = g_strdup ("Sans 14");
 	myConfig.infoDescription.iSize = 14;
 	myConfig.infoDescription.bOutlined = FALSE;
-	myConfig.infoDescription.fColorStart[0] = 1;
-	myConfig.infoDescription.fColorStart[1] = 0;
-	myConfig.infoDescription.fColorStart[2] = 0;
-	myConfig.infoDescription.fBackgroundColor[3] = 1;
-	myConfig.infoDescription.fBackgroundColor[3] = 0;
-	myConfig.infoDescription.fBackgroundColor[3] = 0;
-	myConfig.infoDescription.fBackgroundColor[3] = 0.33;
+	myConfig.infoDescription.fColorStart.rgba.red = 1;
+	myConfig.infoDescription.fColorStart.rgba.green = 0;
+	myConfig.infoDescription.fColorStart.rgba.blue = 0;
+	myConfig.infoDescription.fColorStart.rgba.alpha = 0;
+	myConfig.infoDescription.fBackgroundColor.rgba.red = 1;
+	myConfig.infoDescription.fBackgroundColor.rgba.green = 0;
+	myConfig.infoDescription.fBackgroundColor.rgba.blue = 0;
+	myConfig.infoDescription.fBackgroundColor.rgba.alpha = 0.33;
 	myConfig.infoDescription.iMargin = 8;
 	
 	myConfig.cPreferredApplis = g_new0 (gchar *, 26+1);  // NULL-terminated

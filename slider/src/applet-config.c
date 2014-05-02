@@ -45,7 +45,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iBackgroundType 	= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "bg type", 2);
 	double white[4] = {1,1,1,1};
 	if (myConfig.iBackgroundType != 0)
-		CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Configuration", "background_color", myConfig.pBackgroundColor, white);
+		CD_CONFIG_GET_COLOR_RGBA_WITH_DEFAULT ("Configuration", "background_color", myConfig.pBackgroundColor, white);
 	myConfig.iFrameWidth 	= CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "bg width", 8);
 CD_APPLET_GET_CONFIG_END
 

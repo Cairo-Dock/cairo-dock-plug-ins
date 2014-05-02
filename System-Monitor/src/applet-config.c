@@ -49,9 +49,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.iGraphType = CD_CONFIG_GET_INTEGER ("Configuration", "graphic type");
 	myConfig.bMixGraph = CD_CONFIG_GET_BOOLEAN ("Configuration", "mix graph");
-	CD_CONFIG_GET_COLOR_RVB ("Configuration", "low color", myConfig.fLowColor);
-	CD_CONFIG_GET_COLOR_RVB ("Configuration", "high color", myConfig.fHigholor);
-	CD_CONFIG_GET_COLOR ("Configuration", "bg color", myConfig.fBgColor);
+	CD_CONFIG_GET_COLOR_RGB ("Configuration", "low color", myConfig.fLowColor);
+	CD_CONFIG_GET_COLOR_RGB ("Configuration", "high color", myConfig.fHigholor);
+	CD_CONFIG_GET_COLOR_RGBA ("Configuration", "bg color", myConfig.fBgColor);
 	
 	myConfig.iLowerLimit = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "llt", 50);
 	myConfig.iUpperLimit = MAX (myConfig.iLowerLimit+1, CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "ult", 110));
@@ -66,7 +66,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	/**myConfig.pTopTextDescription = cairo_dock_duplicate_label_description (&myDialogsParam.dialogTextDescription);
 	g_free (myConfig.pTopTextDescription->cFont);
 	myConfig.pTopTextDescription->cFont = g_strdup ("Mono");  // on prend une police a chasse fixe.
-	CD_CONFIG_GET_COLOR_RVB ("Configuration", "top color start", myConfig.pTopTextDescription->fColorStart);*/
+	CD_CONFIG_GET_COLOR_RGB ("Configuration", "top color start", myConfig.pTopTextDescription->fColorStart);*/
 	myConfig.bTopInPercent = CD_CONFIG_GET_BOOLEAN ("Configuration", "top in percent");
 	
 	myConfig.cSystemMonitorCommand = CD_CONFIG_GET_STRING ("Configuration", "sys monitor");

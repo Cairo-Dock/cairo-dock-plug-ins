@@ -529,7 +529,6 @@ GtkWidget *cd_clipper_build_items_menu (void)
 {
 	GtkWidget *pMenu = gldi_menu_new (myIcon);
 	
-	GtkWidget *pMenuItem;
 	CDClipperItem *pItem;
 	GList *pElement;
 	for (pElement = myData.pItems; pElement != NULL; pElement = pElement->next)

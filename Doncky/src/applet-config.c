@@ -39,14 +39,14 @@ CD_APPLET_GET_CONFIG_BEGIN
 	//\___________________ Section Appearance	
 	// decoration
 	myConfig.bDisplayBackground 	= CD_CONFIG_GET_BOOLEAN ("Appearance", "display_background");
-	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Appearance", "background_color1", myConfig.fBackgroundColor1, couleur);
-	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Appearance", "background_color2", myConfig.fBackgroundColor2, couleur);
+	CD_CONFIG_GET_COLOR_RGBA_WITH_DEFAULT ("Appearance", "background_color1", myConfig.fBackgroundColor1, couleur);
+	CD_CONFIG_GET_COLOR_RGBA_WITH_DEFAULT ("Appearance", "background_color2", myConfig.fBackgroundColor2, couleur);
 	myConfig.iBackgroundRadius 	= CD_CONFIG_GET_INTEGER ("Appearance", "background_radius");
 	myConfig.iBorderThickness 	= CD_CONFIG_GET_INTEGER ("Appearance", "border_thickness");
-	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Appearance", "border_color", myConfig.fBorderColor, couleur);
+	CD_CONFIG_GET_COLOR_RGBA_WITH_DEFAULT ("Appearance", "border_color", myConfig.fBorderColor, couleur);
 	
 	// texte
-	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Appearance", "default_text_color", myConfig.fDefaultTextColor, couleur);
+	CD_CONFIG_GET_COLOR_RGBA_WITH_DEFAULT ("Appearance", "default_text_color", myConfig.fDefaultTextColor, couleur);
 	myConfig.cDefaultFont = CD_CONFIG_GET_STRING ("Appearance", "default_font");  // avec Pango il suffit de lui passer la chaine issue du GtkFontWidget.
 	myConfig.iTextMargin = CD_CONFIG_GET_INTEGER ("Appearance", "text_margin");  // marge du texte en haut et à gauche/droite suivant l'alignement.
 	myConfig.iSpaceBetweenLines = CD_CONFIG_GET_INTEGER ("Appearance", "space_between_lines");

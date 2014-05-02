@@ -69,7 +69,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	if (myConfig.bOldStyle)
 	{
 		myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "glassy");
-		CD_CONFIG_GET_COLOR_RVB ("Configuration", "date color", myConfig.fDateColor);
+		CD_CONFIG_GET_COLOR_RGB ("Configuration", "date color", myConfig.fDateColor);
 	}
 	else
 	{
@@ -89,8 +89,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 		
 		if (! myConfig.bUseDefaultColors)  // custom colors
 		{
-			CD_CONFIG_GET_COLOR_RVB ("Configuration", "text color", myConfig.textDescription.fColorStart);
-			CD_CONFIG_GET_COLOR ("Configuration", "outline color", myConfig.fOutlineColor);
+			CD_CONFIG_GET_COLOR ("Configuration", "text color", &myConfig.textDescription.fColorStart);
+			CD_CONFIG_GET_COLOR_RGBA ("Configuration", "outline color", myConfig.fOutlineColor);
 			myConfig.iOutlineWidth = CD_CONFIG_GET_INTEGER ("Configuration", "outline width");
 			myConfig.textDescription.bUseDefaultColors = FALSE;
 		}

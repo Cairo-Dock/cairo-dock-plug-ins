@@ -60,19 +60,19 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	// decoration
 	myConfig.bDisplayBackground 	= CD_CONFIG_GET_BOOLEAN ("Appearance", "display_background");
-	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Appearance", "background_color1", myConfig.fBackgroundColor1, couleur);
-	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Appearance", "background_color2", myConfig.fBackgroundColor2, couleur);
+	CD_CONFIG_GET_COLOR_RGBA_WITH_DEFAULT ("Appearance", "background_color1", myConfig.fBackgroundColor1, couleur);
+	CD_CONFIG_GET_COLOR_RGBA_WITH_DEFAULT ("Appearance", "background_color2", myConfig.fBackgroundColor2, couleur);
 	myConfig.iBackgroundRadius 	= CD_CONFIG_GET_INTEGER ("Appearance", "background_radius");
 	myConfig.iBorderThickness 	= CD_CONFIG_GET_INTEGER ("Appearance", "border_thickness");
-	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Appearance", "border_color", myConfig.fBorderColor, couleur);
+	CD_CONFIG_GET_COLOR_RGBA_WITH_DEFAULT ("Appearance", "border_color", myConfig.fBorderColor, couleur);
 	
 	// titre
-	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Appearance", "title_color", myConfig.fTitleTextColor, couleur);
+	CD_CONFIG_GET_COLOR_RGBA_WITH_DEFAULT ("Appearance", "title_color", myConfig.fTitleTextColor, couleur);
 	myConfig.cTitleFont		= CD_CONFIG_GET_STRING ("Appearance", "title_font");  // avec Pango il suffit de lui passer la chaine issue du GtkFontWidget.
 	myConfig.fTitleAlignment 	= CD_CONFIG_GET_DOUBLE ("Appearance", "title_align");  // alignement a gauche du titre
 	
 	// texte
-	CD_CONFIG_GET_COLOR_WITH_DEFAULT ("Appearance", "text_color", myConfig.fTextColor, couleur);
+	CD_CONFIG_GET_COLOR_RGBA_WITH_DEFAULT ("Appearance", "text_color", myConfig.fTextColor, couleur);
 	myConfig.cFont = CD_CONFIG_GET_STRING ("Appearance", "font");  // avec Pango il suffit de lui passer la chaine issue du GtkFontWidget.
 	myConfig.iTextMargin = CD_CONFIG_GET_INTEGER ("Appearance", "text_margin");  // marge a gauche du texte.
 	myConfig.iSpaceBetweenFeedLines = CD_CONFIG_GET_INTEGER ("Appearance", "space_between_feed_lines");

@@ -48,7 +48,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	if (! bUseDefaultColors)  // custom colors
 	{
-		CD_CONFIG_GET_COLOR_RVB("Configuration", "text color", myConfig.textDescription.fColorStart);
+		CD_CONFIG_GET_COLOR ("Configuration", "text color", &myConfig.textDescription.fColorStart);
 		myConfig.textDescription.bOutlined = CD_CONFIG_GET_BOOLEAN ("Configuration", "outlined");
 		myConfig.textDescription.bUseDefaultColors = FALSE;
 	}

@@ -252,7 +252,7 @@ static gboolean create_menuitem_from_alias (GtkWidget *menu,
 		{
 			GMenuTreeEntry *entry = gmenu_tree_alias_get_aliased_entry (alias);
 			bHasItem = create_menuitem (menu,
-				gmenu_tree_alias_get_aliased_entry (alias),
+				entry,
 				src);
 			gmenu_tree_item_unref (entry);
 		}

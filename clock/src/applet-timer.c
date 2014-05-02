@@ -267,9 +267,10 @@ gboolean cd_clock_update_with_time (GldiModuleInstance *myApplet)
 			GldiTextDescription labelDescription;
 			memset (&labelDescription, 0, sizeof (GldiTextDescription));
 			gldi_text_description_set_font (&labelDescription, (gchar*)"Sans 8");  // casted and then set to null
-			labelDescription.fColorStart[0] = myConfig.fDateColor[0];
-			labelDescription.fColorStart[1] = myConfig.fDateColor[1];
-			labelDescription.fColorStart[2] = myConfig.fDateColor[2];
+			labelDescription.fColorStart.rgba.red = myConfig.fDateColor[0];
+			labelDescription.fColorStart.rgba.green = myConfig.fDateColor[1];
+			labelDescription.fColorStart.rgba.blue = myConfig.fDateColor[2];
+			labelDescription.fColorStart.rgba.alpha = 1.;
 			labelDescription.bNoDecorations = TRUE;
 			cairo_surface_t *pDateSurface = cairo_dock_create_surface_from_text_full (s_cDateBuffer,
 				&labelDescription,

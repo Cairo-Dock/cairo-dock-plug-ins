@@ -39,11 +39,11 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.transparency = (guint16) (CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "terminal transparency", .84) * 65535);  // 55000
 
 	double color_back[3] = {1., 1., 1.};
-	CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("Configuration", "background color", color_back, color_back);
+	CD_CONFIG_GET_COLOR_RGB_WITH_DEFAULT ("Configuration", "background color", color_back, color_back);
 	set_color(&myConfig.backcolor, color_back);
 
 	double color_fore[3] = {0., 0., 0.};
-	CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("Configuration", "foreground color", color_fore, color_fore);
+	CD_CONFIG_GET_COLOR_RGB_WITH_DEFAULT ("Configuration", "foreground color", color_fore, color_fore);
 	set_color(&myConfig.forecolor, color_fore);
 
 	myConfig.bCustomFont = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "custom font", FALSE);

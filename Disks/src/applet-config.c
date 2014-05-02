@@ -39,9 +39,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 		
 	///\_________________ Graph
 	myConfig.iGraphType = CD_CONFIG_GET_INTEGER ("Configuration", "graphic type");
-	CD_CONFIG_GET_COLOR_RVB ("Configuration", "low color", myConfig.fLowColor);
-	CD_CONFIG_GET_COLOR_RVB ("Configuration", "high color", myConfig.fHigholor);
-	CD_CONFIG_GET_COLOR ("Configuration", "bg color", myConfig.fBgColor);
+	CD_CONFIG_GET_COLOR_RGB ("Configuration", "low color", myConfig.fLowColor);
+	CD_CONFIG_GET_COLOR_RGB ("Configuration", "high color", myConfig.fHigholor);
+	CD_CONFIG_GET_COLOR_RGBA ("Configuration", "bg color", myConfig.fBgColor);
 	myConfig.bMixGraph = CD_CONFIG_GET_BOOLEAN ("Configuration", "mix graph");
 	
 	///\_________________ Display

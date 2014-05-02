@@ -47,11 +47,11 @@ CD_APPLET_GET_CONFIG_BEGIN
 	}*/
 	
 	myConfig.iGraphType = CD_CONFIG_GET_INTEGER ("Configuration", "graphic type");
-	CD_CONFIG_GET_COLOR_RVB ("Configuration", "low color", myConfig.fLowColor);
-	CD_CONFIG_GET_COLOR_RVB ("Configuration", "high color", myConfig.fHigholor);
-	CD_CONFIG_GET_COLOR ("Configuration", "bg color", myConfig.fBgColor);
-	//CD_CONFIG_GET_COLOR_RVB ("Configuration", "low color2", myConfig.fLowColor2);
-	//CD_CONFIG_GET_COLOR_RVB ("Configuration", "high color2", myConfig.fHigholor2);
+	CD_CONFIG_GET_COLOR_RGB ("Configuration", "low color", myConfig.fLowColor);
+	CD_CONFIG_GET_COLOR_RGB ("Configuration", "high color", myConfig.fHigholor);
+	CD_CONFIG_GET_COLOR_RGBA ("Configuration", "bg color", myConfig.fBgColor);
+	//CD_CONFIG_GET_COLOR_RGB ("Configuration", "low color2", myConfig.fLowColor2);
+	//CD_CONFIG_GET_COLOR_RGB ("Configuration", "high color2", myConfig.fHigholor2);
 	myConfig.bMixGraph = CD_CONFIG_GET_BOOLEAN ("Configuration", "mix graph");
 	
 	myConfig.cSystemMonitorCommand = CD_CONFIG_GET_STRING ("Configuration", "sys monitor");

@@ -124,7 +124,7 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 	if (myDialogsParam.bUseDefaultColors)
 		gldi_style_colors_set_bg_color (pCairoContext);
 	else
-		cairo_set_source_rgba (pCairoContext, myDialogsParam.fBgColor[0], myDialogsParam.fBgColor[1], myDialogsParam.fBgColor[2], myDialogsParam.fBgColor[3]);
+		gldi_color_set_cairo (pCairoContext, &myDialogsParam.fBgColor);
 	///cairo_fill_preserve (pCairoContext);
 	cairo_save (pCairoContext);
 	cairo_clip_preserve (pCairoContext);
@@ -136,7 +136,7 @@ void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog 
 	if (myDialogsParam.bUseDefaultColors)
 		gldi_style_colors_set_line_color (pCairoContext);
 	else
-		cairo_set_source_rgba (pCairoContext, myDialogsParam.fLineColor[0], myDialogsParam.fLineColor[1], myDialogsParam.fLineColor[2], myDialogsParam.fLineColor[3]);
+		gldi_color_set_cairo (pCairoContext, &myDialogsParam.fLineColor);
 	cairo_set_line_width (pCairoContext, fLineWidth);
 	cairo_stroke (pCairoContext);
 }
@@ -269,10 +269,10 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	if (myDialogsParam.bUseDefaultColors)
 		gldi_style_colors_set_bg_color_full (pCairoContext, FALSE);
 	else
-		cairo_set_source_rgba (pCairoContext, myDialogsParam.fBgColor[0], myDialogsParam.fBgColor[1], myDialogsParam.fBgColor[2], 1.);
+		gldi_color_set_cairo_rgb (pCairoContext, &myDialogsParam.fBgColor);
 	cairo_save (pCairoContext);
 	cairo_clip_preserve (pCairoContext);
-	gldi_style_colors_paint_bg_color_with_alpha (pCairoContext, alloc.width, myDialogsParam.bUseDefaultColors ? -1. : myDialogsParam.fBgColor[3]);
+	gldi_style_colors_paint_bg_color_with_alpha (pCairoContext, alloc.width, myDialogsParam.bUseDefaultColors ? -1. : myDialogsParam.fBgColor.rgba.alpha);
 	cairo_restore (pCairoContext);
 	
 	// draw outline
@@ -281,7 +281,7 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 		if (myDialogsParam.bUseDefaultColors)
 			gldi_style_colors_set_line_color (pCairoContext);
 		else
-			cairo_set_source_rgba (pCairoContext, myDialogsParam.fLineColor[0], myDialogsParam.fLineColor[1], myDialogsParam.fLineColor[2], myDialogsParam.fLineColor[3]);
+			gldi_color_set_cairo (pCairoContext, &myDialogsParam.fLineColor);
 		cairo_set_line_width (pCairoContext, fLineWidth);
 		cairo_stroke_preserve (pCairoContext);
 	}

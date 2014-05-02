@@ -66,9 +66,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	else
 	{
 		myConfig.wifiRenderer.iGraphType = CD_CONFIG_GET_INTEGER ("Wifi", "graphic type");
-		CD_CONFIG_GET_COLOR_RVB ("Wifi", "low color", myConfig.wifiRenderer.fLowColor);
-		CD_CONFIG_GET_COLOR_RVB ("Wifi", "high color", myConfig.wifiRenderer.fHigholor);
-		CD_CONFIG_GET_COLOR ("Wifi", "bg color", myConfig.wifiRenderer.fBgColor);
+		CD_CONFIG_GET_COLOR_RGB ("Wifi", "low color", myConfig.wifiRenderer.fLowColor);
+		CD_CONFIG_GET_COLOR_RGB ("Wifi", "high color", myConfig.wifiRenderer.fHigholor);
+		CD_CONFIG_GET_COLOR_RGBA ("Wifi", "bg color", myConfig.wifiRenderer.fBgColor);
 	}
 	
 	myConfig.netSpeedRenderer.iRenderType = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Net Speed", "renderer", 0);
@@ -79,9 +79,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	else
 	{
 		myConfig.netSpeedRenderer.iGraphType = CD_CONFIG_GET_INTEGER ("Net Speed", "graphic type");
-		CD_CONFIG_GET_COLOR_RVB ("Net Speed", "low color", myConfig.netSpeedRenderer.fLowColor);
-		CD_CONFIG_GET_COLOR_RVB ("Net Speed", "high color", myConfig.netSpeedRenderer.fHigholor);
-		CD_CONFIG_GET_COLOR ("Net Speed", "bg color", myConfig.netSpeedRenderer.fBgColor);
+		CD_CONFIG_GET_COLOR_RGB ("Net Speed", "low color", myConfig.netSpeedRenderer.fLowColor);
+		CD_CONFIG_GET_COLOR_RGB ("Net Speed", "high color", myConfig.netSpeedRenderer.fHigholor);
+		CD_CONFIG_GET_COLOR_RGBA ("Net Speed", "bg color", myConfig.netSpeedRenderer.fBgColor);
 	}
 CD_APPLET_GET_CONFIG_END
 

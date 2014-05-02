@@ -99,7 +99,7 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 	ZeitgeistEvent     *event;
 	ZeitgeistSubject   *subject;
 	gint                i,n;
-	GtkWidget *pMenuItem = NULL, *pSubMenu = NULL;
+	GtkWidget *pSubMenu = NULL;
 	const gchar *cEventURI;
 	gchar *cName = NULL, *cURI = NULL, *cIconName = NULL, *cIconPath;
 	gchar *cCommand;
@@ -176,7 +176,6 @@ CD_APPLET_ON_BUILD_MENU_PROTO
 {
 	cd_debug ("%s (%s...)", __func__, CD_APPLET_CLICKED_ICON && CD_APPLET_CLICKED_ICON->pMimeTypes ?CD_APPLET_CLICKED_ICON->pMimeTypes[0] : "");
 	CD_APPLET_ENTER;
-	GtkWidget *pMenuItem;
 	
 	if (CD_APPLET_CLICKED_ICON != NULL)
 	{

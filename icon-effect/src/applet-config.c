@@ -27,8 +27,8 @@
 #define _get_particle_system_config(cGroupName, parameters) \
 	parameters.iDuration = CD_CONFIG_GET_INTEGER (cGroupName, "duration");\
 	parameters.bContinue = CD_CONFIG_GET_BOOLEAN (cGroupName, "continue");\
-	CD_CONFIG_GET_COLOR_RVB (cGroupName, "color1", parameters.pColor1);\
-	CD_CONFIG_GET_COLOR_RVB (cGroupName, "color2", parameters.pColor2);\
+	CD_CONFIG_GET_COLOR_RGB (cGroupName, "color1", parameters.pColor1);\
+	CD_CONFIG_GET_COLOR_RGB (cGroupName, "color2", parameters.pColor2);\
 	parameters.bMystical = CD_CONFIG_GET_BOOLEAN (cGroupName, "mystical");\
 	parameters.iNbParticles = CD_CONFIG_GET_INTEGER (cGroupName, "nb part");\
 	parameters.iParticleSize = CD_CONFIG_GET_INTEGER (cGroupName, "part size");\
@@ -64,8 +64,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.iFireDuration = CD_CONFIG_GET_INTEGER ("Fire", "duration");
 	myConfig.bContinueFire = CD_CONFIG_GET_BOOLEAN ("Fire", "continue");
-	CD_CONFIG_GET_COLOR_RVB ("Fire", "color1", myConfig.pFireColor1);
-	CD_CONFIG_GET_COLOR_RVB ("Fire", "color2", myConfig.pFireColor2);
+	CD_CONFIG_GET_COLOR_RGB ("Fire", "color1", myConfig.pFireColor1);
+	CD_CONFIG_GET_COLOR_RGB ("Fire", "color2", myConfig.pFireColor2);
 	myConfig.bMysticalFire = CD_CONFIG_GET_BOOLEAN ("Fire", "mystical");
 	myConfig.iNbFireParticles = CD_CONFIG_GET_INTEGER ("Fire", "nb part");
 	myConfig.iFireParticleSize = CD_CONFIG_GET_INTEGER ("Fire", "part size");
@@ -74,39 +74,39 @@ CD_APPLET_GET_CONFIG_BEGIN
 	
 	myConfig.iStarDuration = CD_CONFIG_GET_INTEGER ("Stars", "duration");
 	myConfig.bContinueStar = CD_CONFIG_GET_BOOLEAN ("Stars", "continue");
-	CD_CONFIG_GET_COLOR_RVB ("Stars", "color1", myConfig.pStarColor1);
-	CD_CONFIG_GET_COLOR_RVB ("Stars", "color2", myConfig.pStarColor2);
+	CD_CONFIG_GET_COLOR_RGB ("Stars", "color1", myConfig.pStarColor1);
+	CD_CONFIG_GET_COLOR_RGB ("Stars", "color2", myConfig.pStarColor2);
 	myConfig.bMysticalStars = CD_CONFIG_GET_BOOLEAN ("Stars", "mystical");
 	myConfig.iNbStarParticles = CD_CONFIG_GET_INTEGER ("Stars", "nb part");
 	myConfig.iStarParticleSize = CD_CONFIG_GET_INTEGER ("Stars", "part size");
 	
 	myConfig.iRainDuration = CD_CONFIG_GET_INTEGER ("Rain", "duration");
 	myConfig.bContinueRain = CD_CONFIG_GET_BOOLEAN ("Rain", "continue");
-	CD_CONFIG_GET_COLOR_RVB ("Rain", "color1", myConfig.pRainColor1);
-	CD_CONFIG_GET_COLOR_RVB ("Rain", "color2", myConfig.pRainColor2);
+	CD_CONFIG_GET_COLOR_RGB ("Rain", "color1", myConfig.pRainColor1);
+	CD_CONFIG_GET_COLOR_RGB ("Rain", "color2", myConfig.pRainColor2);
 	myConfig.iNbRainParticles = CD_CONFIG_GET_INTEGER ("Rain", "nb part");
 	myConfig.iRainParticleSize = CD_CONFIG_GET_INTEGER ("Rain", "part size") / 2;  // cette texture est pleine alors que les 2 precedentes sont floutees, donc pour conserver un ordre de grandeur identique on divise par 2.
 	myConfig.fRainParticleSpeed = CD_CONFIG_GET_DOUBLE ("Rain", "part speed");
 	
 	myConfig.iSnowDuration = CD_CONFIG_GET_INTEGER ("Snow", "duration");
 	myConfig.bContinueSnow = CD_CONFIG_GET_BOOLEAN ("Snow", "continue");
-	CD_CONFIG_GET_COLOR_RVB ("Snow", "color1", myConfig.pSnowColor1);
-	CD_CONFIG_GET_COLOR_RVB ("Snow", "color2", myConfig.pSnowColor2);
+	CD_CONFIG_GET_COLOR_RGB ("Snow", "color1", myConfig.pSnowColor1);
+	CD_CONFIG_GET_COLOR_RGB ("Snow", "color2", myConfig.pSnowColor2);
 	myConfig.iNbSnowParticles = CD_CONFIG_GET_INTEGER ("Snow", "nb part");
 	myConfig.iSnowParticleSize = CD_CONFIG_GET_INTEGER ("Snow", "part size") / 2;  // meme remarque.
 	myConfig.fSnowParticleSpeed = CD_CONFIG_GET_DOUBLE ("Snow", "part speed");
 	
 	myConfig.iStormDuration = CD_CONFIG_GET_INTEGER ("Storm", "duration");
 	myConfig.bContinueStorm = CD_CONFIG_GET_BOOLEAN ("Storm", "continue");
-	CD_CONFIG_GET_COLOR_RVB ("Storm", "color1", myConfig.pStormColor1);
-	CD_CONFIG_GET_COLOR_RVB ("Storm", "color2", myConfig.pStormColor2);
+	CD_CONFIG_GET_COLOR_RGB ("Storm", "color1", myConfig.pStormColor1);
+	CD_CONFIG_GET_COLOR_RGB ("Storm", "color2", myConfig.pStormColor2);
 	myConfig.iNbStormParticles = CD_CONFIG_GET_INTEGER ("Storm", "nb part");
 	myConfig.iStormParticleSize = CD_CONFIG_GET_INTEGER ("Storm", "part size");  // meme remarque.
 	
 	myConfig.iFireworkDuration = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Firework", "duration", 2000);
 	myConfig.bContinueFirework = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Firework", "continue", TRUE);
 	double col[3] = {1., 0., 0.};
-	CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("Firework", "color", myConfig.pFireworkColor, col);
+	CD_CONFIG_GET_COLOR_RGB_WITH_DEFAULT ("Firework", "color", myConfig.pFireworkColor, col);
 	myConfig.bFireworkRandomColors = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Firework", "random colors", TRUE);
 	myConfig.bFireworkLuminance = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Firework", "luminous", TRUE);
 	myConfig.iNbFireworkParticles = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Firework", "nb_part", 200);

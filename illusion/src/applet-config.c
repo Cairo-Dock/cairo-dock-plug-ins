@@ -31,8 +31,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iAppearanceEffect = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Global", "appearance", CD_ILLUSION_BLACK_HOLE);
 	
 	myConfig.iEvaporateDuration = MAX (100, CD_CONFIG_GET_INTEGER ("Evaporate", "duration"));
-	CD_CONFIG_GET_COLOR_RVB ("Evaporate", "color1", myConfig.pEvaporateColor1);
-	CD_CONFIG_GET_COLOR_RVB ("Evaporate", "color2", myConfig.pEvaporateColor2);
+	CD_CONFIG_GET_COLOR_RGB ("Evaporate", "color1", myConfig.pEvaporateColor1);
+	CD_CONFIG_GET_COLOR_RGB ("Evaporate", "color2", myConfig.pEvaporateColor2);
 	myConfig.bMysticalEvaporate = CD_CONFIG_GET_BOOLEAN ("Evaporate", "mystical");
 	myConfig.iNbEvaporateParticles = CD_CONFIG_GET_INTEGER ("Evaporate", "nb part");
 	myConfig.iEvaporateParticleSize = CD_CONFIG_GET_INTEGER ("Evaporate", "part size");
@@ -60,10 +60,10 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iLightningNbSources = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Lightning", "nb sources", 3);
 	myConfig.iLightningNbCtrlPts = CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Lightning", "nb ctrl", 12);
 	double color1[3] = {0, 1, 1};
-	CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("Lightning", "color1", myConfig.fLightningColor1, color1);
+	CD_CONFIG_GET_COLOR_RGB_WITH_DEFAULT ("Lightning", "color1", myConfig.fLightningColor1, color1);
 	myConfig.fLightningColor1[3] = .8;
 	double color2[3] = {1, 1, 0};
-	CD_CONFIG_GET_COLOR_RVB_WITH_DEFAULT ("Lightning", "color2", myConfig.fLightningColor2, color2);
+	CD_CONFIG_GET_COLOR_RGB_WITH_DEFAULT ("Lightning", "color2", myConfig.fLightningColor2, color2);
 	myConfig.fLightningColor2[3] = .8;*/
 CD_APPLET_GET_CONFIG_END
 

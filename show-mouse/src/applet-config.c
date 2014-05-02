@@ -27,8 +27,8 @@
 //\_________________ Here you have to get all your parameters from the conf file. Use the macros CD_CONFIG_GET_BOOLEAN, CD_CONFIG_GET_INTEGER, CD_CONFIG_GET_STRING, etc. myConfig has been reseted to 0 at this point. This function is called at the beginning of init and reload.
 CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iParticleLifeTime = CD_CONFIG_GET_INTEGER ("Configuration", "life");
-	CD_CONFIG_GET_COLOR_RVB ("Configuration", "color1", myConfig.pColor1);
-	CD_CONFIG_GET_COLOR_RVB ("Configuration", "color2", myConfig.pColor2);
+	CD_CONFIG_GET_COLOR_RGB ("Configuration", "color1", myConfig.pColor1);
+	CD_CONFIG_GET_COLOR_RGB ("Configuration", "color2", myConfig.pColor2);
 	myConfig.iNbParticles = CD_CONFIG_GET_INTEGER ("Configuration", "nb part");
 	myConfig.iParticleSize = CD_CONFIG_GET_INTEGER ("Configuration", "part size");
 	myConfig.bMysticalFire = CD_CONFIG_GET_BOOLEAN ("Configuration", "mystical");

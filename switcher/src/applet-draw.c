@@ -262,7 +262,8 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 			
 			cairo_restore (myDrawContext);
 			
-			if (myConfig.iDrawCurrentDesktopMode == SWICTHER_FILL_INVERTED && (i != myData.switcher.iCurrentColumn || j != myData.switcher.iCurrentLine))
+			if ((myConfig.iDrawCurrentDesktopMode == SWICTHER_FILL_INVERTED && (i != myData.switcher.iCurrentColumn || j != myData.switcher.iCurrentLine))
+			|| (myConfig.iDrawCurrentDesktopMode == SWICTHER_FILL && (i == myData.switcher.iCurrentColumn && j == myData.switcher.iCurrentLine)))
 			{
 				cairo_save (myDrawContext);
 				
@@ -318,7 +319,7 @@ void cd_switcher_draw_main_icon_compact_mode (void)
 	}
 	
 	// dessin de l'indicateur sur le bureau courant (on le fait maintenant car dans le cas ou la ligne interieure est plus petite que la ligne de l'indicateur, les surfaces suivantes recouvreraient en partie la ligne.
-	if (myConfig.iDrawCurrentDesktopMode != SWICTHER_FILL_INVERTED)
+	if (myConfig.iDrawCurrentDesktopMode == SWICTHER_DRAW_FRAME)
 	{
 		i = myData.switcher.iCurrentColumn;
 		j = myData.switcher.iCurrentLine;
