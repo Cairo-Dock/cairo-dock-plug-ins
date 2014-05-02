@@ -56,27 +56,6 @@ extern double my_fRainbowConeOffset;
 extern double my_fRainbowColor[4];
 extern double my_fRainbowLineColor[4];
 
-/*extern gint     my_diapo_iconGapX;
-extern gint     my_diapo_iconGapY;
-extern gdouble  my_diapo_fScaleMax;
-extern gint     my_diapo_sinW;
-extern gboolean my_diapo_lineaire;
-extern gboolean  my_diapo_wide_grid;
-extern gboolean  my_diapo_text_only_on_pointed;
-
-extern gdouble  my_diapo_color_frame_start[4];
-extern gdouble  my_diapo_color_frame_stop[4];
-extern gboolean my_diapo_fade2bottom;
-extern gboolean my_diapo_fade2right;
-extern guint    my_diapo_arrowWidth;
-extern guint    my_diapo_arrowHeight;
-extern gdouble  my_diapo_arrowShift;
-extern guint    my_diapo_lineWidth;
-extern guint    my_diapo_radius;
-extern gdouble  my_diapo_color_border_line[4];
-extern gboolean my_diapo_draw_background;
-extern gboolean my_diapo_display_all_icons;*/
-
 extern gdouble  my_diapo_simple_max_size;
 extern gint     my_diapo_simple_iconGapX;
 extern gint     my_diapo_simple_iconGapY;
@@ -84,18 +63,16 @@ extern gdouble  my_diapo_simple_fScaleMax;
 extern gint     my_diapo_simple_sinW;
 extern gboolean my_diapo_simple_lineaire;
 extern gboolean  my_diapo_simple_wide_grid;
-//extern gboolean  my_diapo_simple_text_only_on_pointed;
+extern gboolean  my_diapo_simple_use_default_colors;
 extern gdouble  my_diapo_simple_color_frame_start[4];
 extern gdouble  my_diapo_simple_color_frame_stop[4];
 extern gboolean my_diapo_simple_fade2bottom;
 extern gboolean my_diapo_simple_fade2right;
 extern gint    my_diapo_simple_arrowWidth;
 extern gint    my_diapo_simple_arrowHeight;
-//extern gdouble  my_diapo_simple_arrowShift;
 extern gint    my_diapo_simple_lineWidth;
 extern gint    my_diapo_simple_radius;
 extern gdouble  my_diapo_simple_color_border_line[4];
-extern gboolean my_diapo_simple_draw_background;
 extern gboolean my_diapo_simple_display_all_labels;
 extern gdouble  my_diapo_simple_color_scrollbar_line[4];
 extern gdouble  my_diapo_simple_color_scrollbar_inside[4];
@@ -108,8 +85,6 @@ extern gdouble my_fPanelRadius;
 extern gdouble my_fPanelInclination;
 extern gdouble my_fPanelRatio;
 extern gboolean my_bPanelPhysicalSeparator;
-
-extern CairoDockSeparatorType my_iDrawSeparator3D;
 
 CD_APPLET_GET_CONFIG_BEGIN
 	CD_CONFIG_RENAME_GROUP ("SimpleSlide", "Slide");
@@ -143,32 +118,6 @@ CD_APPLET_GET_CONFIG_BEGIN
 	double line_couleur[4] = {0.5,1.0,0.9,0.6};
 	cairo_dock_get_double_list_key_value (pKeyFile, "Rainbow", "line color", &bFlushConfFileNeeded, my_fRainbowLineColor, 4, line_couleur, NULL, NULL);
 	
-	
-	/*my_diapo_iconGapX             = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "iconGapX",             &bFlushConfFileNeeded,     5, NULL, NULL);
-	my_diapo_iconGapY             = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "iconGapY",             &bFlushConfFileNeeded,    10, NULL, NULL);
-	my_diapo_fScaleMax            = cairo_dock_get_double_key_value  (pKeyFile, "Slide", "fScaleMax",            &bFlushConfFileNeeded,    2., NULL, NULL);
-	my_diapo_sinW                 = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "sinW",                 &bFlushConfFileNeeded,   300, NULL, NULL);
-	my_diapo_lineaire             = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "lineaire",             &bFlushConfFileNeeded, FALSE, NULL, NULL);
-	my_diapo_wide_grid            = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "wide_grid",            &bFlushConfFileNeeded, FALSE, NULL, NULL);        
-	my_diapo_text_only_on_pointed = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "text_only_on_pointed", &bFlushConfFileNeeded, FALSE, NULL, NULL);
-	
-	gdouble color_frame_start[4] = {0.0, 0.0, 0.0, 1.0};
-	cairo_dock_get_double_list_key_value (pKeyFile, "Slide", "color_frame_start", &bFlushConfFileNeeded, my_diapo_color_frame_start, 4, color_frame_start, NULL, NULL);
-	gdouble color_frame_stop[4]  = {0.3, 0.3, 0.3, 0.6};
-	cairo_dock_get_double_list_key_value (pKeyFile, "Slide", "color_frame_stop", &bFlushConfFileNeeded, my_diapo_color_frame_stop, 4, color_frame_stop, NULL, NULL);
-	gdouble color_border_line[4] = {1., 1., 1., 0.5};
-	cairo_dock_get_double_list_key_value (pKeyFile, "Slide", "color_border_line", &bFlushConfFileNeeded, my_diapo_color_border_line, 4, color_border_line, NULL, NULL);
-	
-	my_diapo_fade2bottom = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "fade2bottom", &bFlushConfFileNeeded, TRUE, NULL, NULL);
-	my_diapo_fade2right  = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "fade2right",  &bFlushConfFileNeeded, TRUE, NULL, NULL);
-	my_diapo_arrowWidth  = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "arrowWidth",  &bFlushConfFileNeeded, 40,   NULL, NULL);
-	my_diapo_arrowHeight = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "arrowHeight", &bFlushConfFileNeeded, 40,   NULL, NULL);
-	my_diapo_arrowShift  = cairo_dock_get_double_key_value  (pKeyFile, "Slide", "arrowShift",  &bFlushConfFileNeeded, 30,   NULL, NULL) / 100;
-	my_diapo_lineWidth   = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "lineWidth",   &bFlushConfFileNeeded, 5,    NULL, NULL);
-	my_diapo_radius      = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "radius",      &bFlushConfFileNeeded, 15,   NULL, NULL);
-	my_diapo_draw_background = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "draw_background",  &bFlushConfFileNeeded, TRUE, NULL, NULL);
-	my_diapo_display_all_icons = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "display_all_icons",  &bFlushConfFileNeeded, FALSE, NULL, NULL);*/
-	
 	my_diapo_simple_max_size             = cairo_dock_get_double_key_value (pKeyFile, "Slide", "simple_max_size", &bFlushConfFileNeeded, .7, NULL, NULL);
 	my_diapo_simple_iconGapX             = MAX (30, cairo_dock_get_integer_key_value (pKeyFile, "Slide", "simple_iconGapX",             &bFlushConfFileNeeded,    50, NULL, NULL)) + 10;
 	my_diapo_simple_iconGapY             = MAX (30, cairo_dock_get_integer_key_value (pKeyFile, "Slide", "simple_iconGapY",             &bFlushConfFileNeeded,    50, NULL, NULL));
@@ -176,7 +125,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	my_diapo_simple_sinW                 = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "simple_sinW",                 &bFlushConfFileNeeded,   200, NULL, NULL);
 	my_diapo_simple_lineaire             = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "simple_lineaire",             &bFlushConfFileNeeded, FALSE, NULL, NULL);
 	my_diapo_simple_wide_grid            = TRUE;  // cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "simple_wide_grid",            &bFlushConfFileNeeded, FALSE, NULL, NULL);
-	//my_diapo_simple_text_only_on_pointed = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "simple_text_only_on_pointed", &bFlushConfFileNeeded, FALSE, NULL, NULL);
+	
+	my_diapo_simple_use_default_colors = (cairo_dock_get_integer_key_value (pKeyFile, "Slide", "simple_style", &bFlushConfFileNeeded, 1, NULL, NULL) == 0);
 	
 	gdouble color_frame_start_[4] = {0.0, 0.0, 0.0, 1.0};
 	cairo_dock_get_double_list_key_value (pKeyFile, "Slide", "simple_color_frame_start", &bFlushConfFileNeeded, my_diapo_simple_color_frame_start, 4, color_frame_start_, NULL, NULL);
@@ -189,10 +139,8 @@ CD_APPLET_GET_CONFIG_BEGIN
 	my_diapo_simple_fade2right  = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "simple_fade2right",  &bFlushConfFileNeeded, TRUE, NULL, NULL);
 	my_diapo_simple_arrowWidth  = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "simple_arrowWidth",  &bFlushConfFileNeeded, 40,   NULL, NULL);
 	my_diapo_simple_arrowHeight = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "simple_arrowHeight", &bFlushConfFileNeeded, 40,   NULL, NULL);
-	//my_diapo_simple_arrowShift  = cairo_dock_get_double_key_value (pKeyFile, "Slide", "simple_arrowShift",  &bFlushConfFileNeeded, 30,   NULL, NULL) / 100.;
 	my_diapo_simple_lineWidth   = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "simple_lineWidth",   &bFlushConfFileNeeded, 5,    NULL, NULL);
 	my_diapo_simple_radius      = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "simple_radius",      &bFlushConfFileNeeded, 15,   NULL, NULL);
-	my_diapo_simple_draw_background = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "simple_draw_background",  &bFlushConfFileNeeded, TRUE, NULL, NULL);
 	my_diapo_simple_display_all_labels = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "simple_display_all_labels",  &bFlushConfFileNeeded, TRUE, NULL, NULL);
 	
 	gdouble scrollbar_color[4] = {my_diapo_simple_color_border_line[0],my_diapo_simple_color_border_line[1],my_diapo_simple_color_border_line[2],1.};
@@ -236,6 +184,5 @@ CD_APPLET_RESET_DATA_BEGIN
 		glDeleteTextures (1, &my_iFlatSeparatorTexture);
 		my_iFlatSeparatorTexture = 0;
 	}
-	my_iDrawSeparator3D = CAIRO_DOCK_NORMAL_SEPARATOR;
 CD_APPLET_RESET_DATA_END
 

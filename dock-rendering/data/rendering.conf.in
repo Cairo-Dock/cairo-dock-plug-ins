@@ -58,11 +58,15 @@ sep_icon=
 #b Display text for all icons?
 simple_display_all_labels = true
 
+#F
+frame_grid_end=
+
+
+#Y-[Automatic;0;0;Custom;1;2] Style
+style = 0
+
 #F[Frame]
 frame_frame =
-
-#b+ Draw a background?
-simple_draw_background  = true
 
 #C+ First gradient colour :
 simple_color_frame_start=0;0;0;1;

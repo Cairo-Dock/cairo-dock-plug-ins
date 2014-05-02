@@ -36,17 +36,16 @@ extern gint     my_diapo_simple_sinW;
 extern gboolean my_diapo_simple_lineaire;
 extern gboolean  my_diapo_simple_wide_grid;
 
+extern gboolean  my_diapo_simple_use_default_colors;
 extern gdouble  my_diapo_simple_color_frame_start[4];
 extern gdouble  my_diapo_simple_color_frame_stop[4];
 extern gboolean my_diapo_simple_fade2bottom;
 extern gboolean my_diapo_simple_fade2right;
 extern gint    my_diapo_simple_arrowWidth;
 extern gint    my_diapo_simple_arrowHeight;
-//extern gdouble  my_diapo_simple_arrowShift;
 extern gint    my_diapo_simple_lineWidth;
 extern gint    my_diapo_simple_radius;
 extern gdouble  my_diapo_simple_color_border_line[4];
-extern gboolean my_diapo_simple_draw_background;
 extern gboolean my_diapo_simple_display_all_labels;
 
 extern gdouble my_diapo_simple_color_scrollbar_line[4];
@@ -931,18 +930,39 @@ static void cairo_dock_render_decorations_in_frame_for_diapo_simple (cairo_t *pC
 		0.0,
 		my_diapo_simple_fade2right  ? pDock->iMaxDockWidth  : 0.0, // Y'aurait surement des calculs complexes a faire mais 
 		my_diapo_simple_fade2bottom ? pDock->iMaxDockHeight : 0.0);     //  a quelques pixels pres pour un degrade : OSEF !
-			
-	cairo_pattern_add_color_stop_rgba (mon_super_pattern, 0, 
-		my_diapo_simple_color_frame_start[0],
-		my_diapo_simple_color_frame_start[1],
-		my_diapo_simple_color_frame_start[2],
-		my_diapo_simple_color_frame_start[3] * fAlpha);  // transparent -> opaque au depliage.
+	
+	if (my_diapo_simple_use_default_colors)
+	{
+		GldiColor bg_color, bg_color2;
+		gldi_style_color_get (GLDI_COLOR_BG, &bg_color);
+		gldi_style_color_shade (&bg_color, .12, &bg_color2);  // same as other views
 		
-	cairo_pattern_add_color_stop_rgba (mon_super_pattern, 1, 
-		my_diapo_simple_color_frame_stop[0],
-		my_diapo_simple_color_frame_stop[1],
-		my_diapo_simple_color_frame_stop[2],
-		my_diapo_simple_color_frame_stop[3] * fAlpha);
+		cairo_pattern_add_color_stop_rgba (mon_super_pattern, 0, 
+			bg_color.rgba.red,
+			bg_color.rgba.green,
+			bg_color.rgba.blue,
+			1. * fAlpha);  // transparent -> opaque au depliage.
+			
+		cairo_pattern_add_color_stop_rgba (mon_super_pattern, 1, 
+			bg_color2.rgba.red,
+			bg_color2.rgba.green,
+			bg_color2.rgba.blue,
+			bg_color2.rgba.alpha * fAlpha);
+	}
+	else
+	{
+		cairo_pattern_add_color_stop_rgba (mon_super_pattern, 0, 
+			my_diapo_simple_color_frame_start[0],
+			my_diapo_simple_color_frame_start[1],
+			my_diapo_simple_color_frame_start[2],
+			my_diapo_simple_color_frame_start[3] * fAlpha);  // transparent -> opaque au depliage.
+			
+		cairo_pattern_add_color_stop_rgba (mon_super_pattern, 1, 
+			my_diapo_simple_color_frame_stop[0],
+			my_diapo_simple_color_frame_stop[1],
+			my_diapo_simple_color_frame_stop[2],
+			my_diapo_simple_color_frame_stop[3] * fAlpha);
+	}
 	cairo_set_source (pCairoContext, mon_super_pattern);
 	
 	//On remplit le contexte en le preservant -> pourquoi ?  ----> parce qu'on va tracer le contour plus tard ;-)
@@ -1000,30 +1020,27 @@ static void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock 
 	
 	double fAlpha = (pDock->fFoldingFactor < .3 ? (.3 - pDock->fFoldingFactor) / .3 : 0.);  // apparition du cadre de 0.3 a 0
 	
-	if (my_diapo_simple_draw_background)
-	{
-		//\____________________ On trace le cadre.
-		cairo_save (pCairoContext);
-		_cairo_dock_draw_frame_for_diapo_simple (pCairoContext, pDock);
-		
-		//\____________________ On dessine les decorations dedans.
-		cairo_dock_render_decorations_in_frame_for_diapo_simple (pCairoContext, pDock, fAlpha);
+	//\____________________ On trace le cadre.
+	cairo_save (pCairoContext);
+	_cairo_dock_draw_frame_for_diapo_simple (pCairoContext, pDock);
+	
+	//\____________________ On dessine les decorations dedans.
+	cairo_dock_render_decorations_in_frame_for_diapo_simple (pCairoContext, pDock, fAlpha);
 
-		//\____________________ On dessine le cadre.
-		if (my_diapo_simple_lineWidth != 0 && my_diapo_simple_color_border_line[3] != 0 && fAlpha != 0)
-		{
-			cairo_set_line_width (pCairoContext,  my_diapo_simple_lineWidth);
-			cairo_set_source_rgba (pCairoContext,
-				my_diapo_simple_color_border_line[0],
-				my_diapo_simple_color_border_line[1],
-				my_diapo_simple_color_border_line[2],
-				my_diapo_simple_color_border_line[3] * fAlpha);
-			cairo_stroke (pCairoContext);
-		}
-		else
-			cairo_new_path (pCairoContext);
-		cairo_restore (pCairoContext);
+	//\____________________ On dessine le cadre.
+	if (my_diapo_simple_lineWidth != 0 && my_diapo_simple_color_border_line[3] != 0 && fAlpha != 0)
+	{
+		cairo_set_line_width (pCairoContext,  my_diapo_simple_lineWidth);
+		cairo_set_source_rgba (pCairoContext,
+			my_diapo_simple_color_border_line[0],
+			my_diapo_simple_color_border_line[1],
+			my_diapo_simple_color_border_line[2],
+			my_diapo_simple_color_border_line[3] * fAlpha);
+		cairo_stroke (pCairoContext);
 	}
+	else
+		cairo_new_path (pCairoContext);
+	cairo_restore (pCairoContext);
 	
 	if (pDock->icons == NULL)
 		return;
@@ -1279,10 +1296,6 @@ static void cd_add_arrow_to_path (CairoDockGLPath *pPath, double fFrameWidth, CD
 	double w = fFrameWidth / 2;
 	double aw = my_diapo_simple_arrowWidth/2;
 	double ah = my_diapo_simple_arrowHeight;
-	/**double xa = my_diapo_simple_arrowShift * (w - aw);  // abscisse de l'extremite de la pointe.
-	cairo_dock_gl_path_rel_line_to (pPath, w + xa - aw, 0.);  // pointe.
-	cairo_dock_gl_path_rel_line_to (pPath, aw, -ah);
-	cairo_dock_gl_path_rel_line_to (pPath, aw, ah);*/
 	cairo_dock_gl_path_rel_line_to (pPath, w - aw + iArrowShift, 0.);  // pointe.
 	cairo_dock_gl_path_rel_line_to (pPath, aw - iArrowShift + iDeltaIconX, -ah);
 	cairo_dock_gl_path_rel_line_to (pPath, aw + iArrowShift - iDeltaIconX, ah);
@@ -1320,13 +1333,6 @@ static CairoDockGLPath *cd_generate_arrow_path (double fFrameWidth, double fTota
 	int iDeltaIconX = pData->iDeltaIconX;
 	double aw = my_diapo_simple_arrowWidth/2;
 	double ah = my_diapo_simple_arrowHeight;
-	/**double xa = my_diapo_simple_arrowShift * (w - aw);  // abscisse de l'extremite de la pointe.
-	if (pPath == NULL)
-		pPath = cairo_dock_new_gl_path (3, xa - aw, -fTotalHeight/2, 0., 0.);
-	else
-		cairo_dock_gl_path_move_to (pPath, xa - aw, -fTotalHeight/2);
-	cairo_dock_gl_path_rel_line_to (pPath, aw, -ah);
-	cairo_dock_gl_path_rel_line_to (pPath, aw, ah);*/
 	
 	if (pPath == NULL)
 		pPath = cairo_dock_new_gl_path (3, iArrowShift - aw, -fTotalHeight/2, 0., 0.);
@@ -1346,15 +1352,33 @@ static const GLfloat *cd_generate_color_tab (double fAlpha, GLfloat *pBottomLeft
 	if (pColorTab == NULL)
 		pColorTab = g_new (GLfloat, ((iNbPoins1Round+1)*4+1) * 4);
 	
+	double *pColor1, *pColor2;
 	double *pTopRightColor, *pTopLeftColor, *pBottomLeftColor, *pBottomRightColor;
-	double pMeanColor[4] = {(my_diapo_simple_color_frame_start[0] + my_diapo_simple_color_frame_stop[0])/2,
-		(my_diapo_simple_color_frame_start[1] + my_diapo_simple_color_frame_stop[1])/2,
-		(my_diapo_simple_color_frame_start[2] + my_diapo_simple_color_frame_stop[2])/2,
-		(my_diapo_simple_color_frame_start[3] + my_diapo_simple_color_frame_stop[3])/2};
-	pTopLeftColor = my_diapo_simple_color_frame_start;
+	double pMeanColor[4];
+	
+	GldiColor bg_color, bg_color2;
+	if (my_diapo_simple_use_default_colors)
+	{
+		gldi_style_color_get (GLDI_COLOR_BG, &bg_color);
+		gldi_style_color_shade (&bg_color, .12, &bg_color2);  // same as other views
+		bg_color.rgba.alpha = 1.;
+		pColor1 = (double*)&bg_color.rgba;
+		pColor2 = (double*)&bg_color2.rgba;
+	}
+	else
+	{
+		pColor1 = my_diapo_simple_color_frame_start;
+		pColor2 = my_diapo_simple_color_frame_stop;
+	}
+	pMeanColor[0] = (pColor1[0] + pColor2[0])/2;
+	pMeanColor[1] = (pColor1[1] + pColor2[1])/2;
+	pMeanColor[2] = (pColor1[2] + pColor2[2])/2;
+	pMeanColor[3] = (pColor1[3] + pColor2[3])/2;
+	
+	pTopLeftColor = pColor1;
 	if (my_diapo_simple_fade2bottom || my_diapo_simple_fade2right)
 	{
-		pBottomRightColor = my_diapo_simple_color_frame_stop;
+		pBottomRightColor = pColor2;
 		if (my_diapo_simple_fade2bottom && my_diapo_simple_fade2right)
 		{
 			pBottomLeftColor = pMeanColor;
@@ -1362,20 +1386,20 @@ static const GLfloat *cd_generate_color_tab (double fAlpha, GLfloat *pBottomLeft
 		}
 		else if (my_diapo_simple_fade2bottom)
 		{
-			pBottomLeftColor = my_diapo_simple_color_frame_stop;
-			pTopRightColor = my_diapo_simple_color_frame_start;
+			pBottomLeftColor = pColor2;
+			pTopRightColor = pColor1;
 		}
 		else
 		{
-			pBottomLeftColor = my_diapo_simple_color_frame_start;
-			pTopRightColor = my_diapo_simple_color_frame_stop;
+			pBottomLeftColor = pColor1;
+			pTopRightColor = pColor2;
 		}
 	}
 	else
 	{
-		pBottomRightColor = my_diapo_simple_color_frame_start;
-		pBottomLeftColor = my_diapo_simple_color_frame_start;
-		pTopRightColor = my_diapo_simple_color_frame_start;
+		pBottomRightColor = pColor1;
+		pBottomLeftColor = pColor1;
+		pTopRightColor = pColor1;
 	}
 	
 	/*pMiddleBottomColor[0] = (pBottomRightColor[0] + pBottomLeftColor[0])/2;
@@ -1476,28 +1500,25 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 		0.);
 	_cairo_dock_set_blend_alpha ();
 	
-	if (my_diapo_simple_draw_background)
-	{
-		// le cadre sans la pointe.
-		GLfloat pBottomLeftColor[4], pBottomRightColor[4];
-		const GLfloat *pColorTab = cd_generate_color_tab (fAlpha, pBottomLeftColor, pBottomRightColor);
-		glEnableClientState (GL_COLOR_ARRAY);
-		glColorPointer (4, GL_FLOAT, 0, pColorTab);
-		cairo_dock_fill_gl_path (pFramePath, 0);
-		glDisableClientState (GL_COLOR_ARRAY);
-		
-		// la pointe.
-		CairoDockGLPath *pArrowPath = cd_generate_arrow_path (fFrameWidth, fFrameHeight, pData);
-		double f = .5 + (double)pData->iArrowShift / fFrameWidth;
-		GLfloat pArrowColor[4];
-		pArrowColor[0] = pBottomRightColor[0] * f + pBottomLeftColor[0] * (1-f);
-		pArrowColor[1] = pBottomRightColor[1] * f + pBottomLeftColor[1] * (1-f);
-		pArrowColor[2] = pBottomRightColor[2] * f + pBottomLeftColor[2] * (1-f);
-		pArrowColor[3] = pBottomRightColor[3] * f + pBottomLeftColor[3] * (1-f);
-		
-		glColor4f (pArrowColor[0], pArrowColor[1], pArrowColor[2], pArrowColor[3] * fAlpha);
-		cairo_dock_fill_gl_path (pArrowPath, 0);
-	}
+	// le cadre sans la pointe.
+	GLfloat pBottomLeftColor[4], pBottomRightColor[4];
+	const GLfloat *pColorTab = cd_generate_color_tab (fAlpha, pBottomLeftColor, pBottomRightColor);
+	glEnableClientState (GL_COLOR_ARRAY);
+	glColorPointer (4, GL_FLOAT, 0, pColorTab);
+	cairo_dock_fill_gl_path (pFramePath, 0);
+	glDisableClientState (GL_COLOR_ARRAY);
+	
+	// la pointe.
+	CairoDockGLPath *pArrowPath = cd_generate_arrow_path (fFrameWidth, fFrameHeight, pData);
+	double f = .5 + (double)pData->iArrowShift / fFrameWidth;
+	GLfloat pArrowColor[4];
+	pArrowColor[0] = pBottomRightColor[0] * f + pBottomLeftColor[0] * (1-f);
+	pArrowColor[1] = pBottomRightColor[1] * f + pBottomLeftColor[1] * (1-f);
+	pArrowColor[2] = pBottomRightColor[2] * f + pBottomLeftColor[2] * (1-f);
+	pArrowColor[3] = pBottomRightColor[3] * f + pBottomLeftColor[3] * (1-f);
+	
+	glColor4f (pArrowColor[0], pArrowColor[1], pArrowColor[2], pArrowColor[3] * fAlpha);
+	cairo_dock_fill_gl_path (pArrowPath, 0);
 	
 	//\_____________ On trace le contour.
 	if (my_diapo_simple_lineWidth != 0 && my_diapo_simple_color_border_line[3] != 0 && fAlpha != 0)
