@@ -126,7 +126,7 @@ CD_APPLET_GET_CONFIG_BEGIN
 	my_diapo_simple_lineaire             = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "simple_lineaire",             &bFlushConfFileNeeded, FALSE, NULL, NULL);
 	my_diapo_simple_wide_grid            = TRUE;  // cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "simple_wide_grid",            &bFlushConfFileNeeded, FALSE, NULL, NULL);
 	
-	my_diapo_simple_use_default_colors = (cairo_dock_get_integer_key_value (pKeyFile, "Slide", "simple_style", &bFlushConfFileNeeded, 1, NULL, NULL) == 0);
+	my_diapo_simple_use_default_colors = (cairo_dock_get_integer_key_value (pKeyFile, "Slide", "style", &bFlushConfFileNeeded, 1, NULL, NULL) == 0);
 	
 	gdouble color_frame_start_[4] = {0.0, 0.0, 0.0, 1.0};
 	cairo_dock_get_double_list_key_value (pKeyFile, "Slide", "simple_color_frame_start", &bFlushConfFileNeeded, my_diapo_simple_color_frame_start, 4, color_frame_start_, NULL, NULL);
@@ -139,8 +139,18 @@ CD_APPLET_GET_CONFIG_BEGIN
 	my_diapo_simple_fade2right  = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "simple_fade2right",  &bFlushConfFileNeeded, TRUE, NULL, NULL);
 	my_diapo_simple_arrowWidth  = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "simple_arrowWidth",  &bFlushConfFileNeeded, 40,   NULL, NULL);
 	my_diapo_simple_arrowHeight = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "simple_arrowHeight", &bFlushConfFileNeeded, 40,   NULL, NULL);
-	my_diapo_simple_lineWidth   = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "simple_lineWidth",   &bFlushConfFileNeeded, 5,    NULL, NULL);
+	
+	if (my_diapo_simple_use_default_colors)
+	{
+		my_diapo_simple_radius = myStyleParam.iCornerRadius;
+		my_diapo_simple_lineWidth = myStyleParam.iLineWidth;
+	}
+	else
+	{
+		my_diapo_simple_lineWidth   = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "simple_lineWidth",   &bFlushConfFileNeeded, 5,    NULL, NULL);
 	my_diapo_simple_radius      = cairo_dock_get_integer_key_value (pKeyFile, "Slide", "simple_radius",      &bFlushConfFileNeeded, 15,   NULL, NULL);
+	}
+	
 	my_diapo_simple_display_all_labels = cairo_dock_get_boolean_key_value (pKeyFile, "Slide", "simple_display_all_labels",  &bFlushConfFileNeeded, TRUE, NULL, NULL);
 	
 	gdouble scrollbar_color[4] = {my_diapo_simple_color_border_line[0],my_diapo_simple_color_border_line[1],my_diapo_simple_color_border_line[2],1.};

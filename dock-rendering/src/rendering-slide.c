@@ -562,7 +562,7 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 				y ++;
 			}
 			
-			icon->fWidthFactor = ((pDock->container.bDirectionUp?pDock->container.iWidth - 2*X_BORDER_SPACE - my_diapo_simple_iconGapX:pDock->container.iHeight - my_diapo_simple_arrowHeight - ARROW_TIP)) * (1 - fFoldingX);  // we'll use it as the width of the line.
+			icon->fWidthFactor = ((pDock->container.bIsHorizontal?pDock->container.iWidth - 2*X_BORDER_SPACE:pDock->container.iHeight - my_diapo_simple_arrowHeight - ARROW_TIP)) * (1 - fFoldingX);  // we'll use it as the width of the line.
 			
 			icon->fX = ((pDock->container.bIsHorizontal?pDock->container.iWidth:pDock->container.iHeight) - icon->fWidthFactor) / 2 + sep_offset[CAIRO_DOCK_HORIZONTAL];
 			if (pDock->container.bDirectionUp)
@@ -972,45 +972,68 @@ static void cairo_dock_render_decorations_in_frame_for_diapo_simple (cairo_t *pC
 
 static void _render_separator (Icon *icon, CairoDock *pDock, cairo_t *pCairoContext)
 {
-	cairo_pattern_t *mon_super_pattern;
+	cairo_pattern_t *mon_super_pattern = NULL;
 	mon_super_pattern = cairo_pattern_create_linear (icon->fDrawX,
 		0.0,
 		icon->fDrawX + icon->fWidthFactor,
 		0.0);
-	
-	cairo_pattern_add_color_stop_rgba (mon_super_pattern, 0.0, 
-		my_diapo_simple_color_border_line[0],
-		my_diapo_simple_color_border_line[1],
-		my_diapo_simple_color_border_line[2],
-		0.);
-	
-	cairo_pattern_add_color_stop_rgba (mon_super_pattern, .25, 
-		my_diapo_simple_color_border_line[0],
-		my_diapo_simple_color_border_line[1],
-		my_diapo_simple_color_border_line[2],
-		my_diapo_simple_color_border_line[3] * icon->fAlpha);
-	
-	cairo_pattern_add_color_stop_rgba (mon_super_pattern, .75, 
-		my_diapo_simple_color_border_line[0],
-		my_diapo_simple_color_border_line[1],
-		my_diapo_simple_color_border_line[2],
-		my_diapo_simple_color_border_line[3] * icon->fAlpha);
-	
-	cairo_pattern_add_color_stop_rgba (mon_super_pattern, 1.0, 
-		my_diapo_simple_color_border_line[0],
-		my_diapo_simple_color_border_line[1],
-		my_diapo_simple_color_border_line[2],
-		0.);
-	
+	if (my_diapo_simple_use_default_colors)
+	{
+		GldiColor color;
+		gldi_style_color_get (GLDI_COLOR_SEPARATOR, &color);
+		cairo_pattern_add_color_stop_rgba (mon_super_pattern, 0.0, 
+			color.rgba.red,
+			color.rgba.green,
+			color.rgba.blue,
+			0.);
+		cairo_pattern_add_color_stop_rgba (mon_super_pattern, .2, 
+			color.rgba.red,
+			color.rgba.green,
+			color.rgba.blue,
+			color.rgba.alpha * icon->fAlpha);
+		cairo_pattern_add_color_stop_rgba (mon_super_pattern, .8, 
+			color.rgba.red,
+			color.rgba.green,
+			color.rgba.blue,
+			color.rgba.alpha * icon->fAlpha);
+		cairo_pattern_add_color_stop_rgba (mon_super_pattern, 1.0, 
+			color.rgba.red,
+			color.rgba.green,
+			color.rgba.blue,
+			0.);
+	}
+	else
+	{
+		cairo_pattern_add_color_stop_rgba (mon_super_pattern, 0.0, 
+			my_diapo_simple_color_border_line[0],
+			my_diapo_simple_color_border_line[1],
+			my_diapo_simple_color_border_line[2],
+			0.);
+		cairo_pattern_add_color_stop_rgba (mon_super_pattern, .2, 
+			my_diapo_simple_color_border_line[0],
+			my_diapo_simple_color_border_line[1],
+			my_diapo_simple_color_border_line[2],
+			my_diapo_simple_color_border_line[3] * icon->fAlpha);
+		cairo_pattern_add_color_stop_rgba (mon_super_pattern, .8, 
+			my_diapo_simple_color_border_line[0],
+			my_diapo_simple_color_border_line[1],
+			my_diapo_simple_color_border_line[2],
+			my_diapo_simple_color_border_line[3] * icon->fAlpha);
+		cairo_pattern_add_color_stop_rgba (mon_super_pattern, 1.0, 
+			my_diapo_simple_color_border_line[0],
+			my_diapo_simple_color_border_line[1],
+			my_diapo_simple_color_border_line[2],
+			0.);
+	}
 	cairo_set_source (pCairoContext, mon_super_pattern);
-	
-	cairo_set_line_width (pCairoContext, my_diapo_simple_lineWidth);  /// TODO: essayer avec une valeur constante = 1...
+	cairo_set_line_width (pCairoContext, my_diapo_simple_lineWidth);
 	
 	cairo_move_to (pCairoContext, icon->fDrawX, icon->fDrawY + iSeparatorHeight/2);
 	cairo_rel_line_to (pCairoContext, icon->fWidthFactor, 0.);
 	
 	cairo_stroke (pCairoContext);
-	cairo_pattern_destroy (mon_super_pattern);
+	if  (mon_super_pattern)
+		cairo_pattern_destroy (mon_super_pattern);
 }
 
 static void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock)
@@ -1028,14 +1051,25 @@ static void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock 
 	cairo_dock_render_decorations_in_frame_for_diapo_simple (pCairoContext, pDock, fAlpha);
 
 	//\____________________ On dessine le cadre.
-	if (my_diapo_simple_lineWidth != 0 && my_diapo_simple_color_border_line[3] != 0 && fAlpha != 0)
+	if (my_diapo_simple_lineWidth != 0 && fAlpha != 0)
 	{
 		cairo_set_line_width (pCairoContext,  my_diapo_simple_lineWidth);
-		cairo_set_source_rgba (pCairoContext,
-			my_diapo_simple_color_border_line[0],
-			my_diapo_simple_color_border_line[1],
-			my_diapo_simple_color_border_line[2],
-			my_diapo_simple_color_border_line[3] * fAlpha);
+		
+		if (my_diapo_simple_use_default_colors)
+		{
+			GldiColor color;
+			gldi_style_color_get (GLDI_COLOR_LINE, &color);
+			color.rgba.alpha *= fAlpha;
+			gldi_color_set_cairo (pCairoContext, &color);
+		}
+		else
+		{
+			cairo_set_source_rgba (pCairoContext,
+				my_diapo_simple_color_border_line[0],
+				my_diapo_simple_color_border_line[1],
+				my_diapo_simple_color_border_line[2],
+				my_diapo_simple_color_border_line[3] * fAlpha);
+		}
 		cairo_stroke (pCairoContext);
 	}
 	else
@@ -1458,15 +1492,35 @@ static void _render_separator_opengl (Icon *icon, CairoDock *pDock)
 	glLineWidth (my_diapo_simple_lineWidth);
 	
 	glBegin(GL_LINE_STRIP);
-	glColor4f (my_diapo_simple_color_border_line[0], my_diapo_simple_color_border_line[1], my_diapo_simple_color_border_line[2], 0);
-	glVertex3f (0, 0, 0.);
 	
-	glColor4f (my_diapo_simple_color_border_line[0], my_diapo_simple_color_border_line[1], my_diapo_simple_color_border_line[2], my_diapo_simple_color_border_line[3]);
-	glVertex3f (.25 * icon->fWidthFactor, 0, 0.);
-	glVertex3f (.75 * icon->fWidthFactor, 0, 0.);
-	
-	glColor4f (my_diapo_simple_color_border_line[0], my_diapo_simple_color_border_line[1], my_diapo_simple_color_border_line[2], 0);
-	glVertex3f (icon->fWidthFactor, 0, 0.);
+	if (my_diapo_simple_use_default_colors)
+	{
+		GldiColor color;
+		gldi_style_color_get (GLDI_COLOR_SEPARATOR, &color);
+		color.rgba.alpha *= icon->fAlpha;
+		
+		glColor4f (color.rgba.red, color.rgba.green, color.rgba.blue, 0);
+		glVertex3f (0, 0, 0.);
+		
+		glColor4f (color.rgba.red, color.rgba.green, color.rgba.blue, color.rgba.alpha * icon->fAlpha);
+		glVertex3f (.2 * icon->fWidthFactor, 0, 0.);
+		glVertex3f (.8 * icon->fWidthFactor, 0, 0.);
+		
+		glColor4f (color.rgba.red, color.rgba.green, color.rgba.blue, 0);
+		glVertex3f (icon->fWidthFactor, 0, 0.);
+	}
+	else
+	{
+		glColor4f (my_diapo_simple_color_border_line[0], my_diapo_simple_color_border_line[1], my_diapo_simple_color_border_line[2], 0);
+		glVertex3f (0, 0, 0.);
+		
+		glColor4f (my_diapo_simple_color_border_line[0], my_diapo_simple_color_border_line[1], my_diapo_simple_color_border_line[2], my_diapo_simple_color_border_line[3] * icon->fAlpha);
+		glVertex3f (.2 * icon->fWidthFactor, 0, 0.);
+		glVertex3f (.8 * icon->fWidthFactor, 0, 0.);
+		
+		glColor4f (my_diapo_simple_color_border_line[0], my_diapo_simple_color_border_line[1], my_diapo_simple_color_border_line[2], 0);
+		glVertex3f (icon->fWidthFactor, 0, 0.);
+	}
 	glEnd();
 	
 	glPopMatrix ();
@@ -1521,11 +1575,21 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 	cairo_dock_fill_gl_path (pArrowPath, 0);
 	
 	//\_____________ On trace le contour.
-	if (my_diapo_simple_lineWidth != 0 && my_diapo_simple_color_border_line[3] != 0 && fAlpha != 0)
+	if (my_diapo_simple_lineWidth != 0 && fAlpha != 0)
 	{
 		cd_add_arrow_to_path (pFramePath, fFrameWidth, pData);
 		glLineWidth (my_diapo_simple_lineWidth);
-		glColor4f (my_diapo_simple_color_border_line[0], my_diapo_simple_color_border_line[1], my_diapo_simple_color_border_line[2], my_diapo_simple_color_border_line[3] * fAlpha);
+		
+		if (my_diapo_simple_use_default_colors)
+		{
+			GldiColor color;
+			gldi_style_color_get (GLDI_COLOR_LINE, &color);
+			glColor4f (color.rgba.red, color.rgba.green, color.rgba.blue, color.rgba.alpha * fAlpha);
+		}
+		else
+		{
+			glColor4f (my_diapo_simple_color_border_line[0], my_diapo_simple_color_border_line[1], my_diapo_simple_color_border_line[2], my_diapo_simple_color_border_line[3] * fAlpha);
+		}
 		cairo_dock_stroke_gl_path (pFramePath, TRUE);
 	}
 	glPopMatrix ();
