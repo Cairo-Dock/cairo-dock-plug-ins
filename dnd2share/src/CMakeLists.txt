@@ -12,8 +12,6 @@ SET(cd-dnd2share_LIB_SRCS
 	applet-backend-free.h
 	applet-backend-imagebin.c
 	applet-backend-imagebin.h
-	applet-backend-imageshack.c
-	applet-backend-imageshack.h
 	applet-backend-imgur.c
 	applet-backend-imgur.h
 	applet-backend-pastebin.c
@@ -22,8 +20,6 @@ SET(cd-dnd2share_LIB_SRCS
 	applet-backend-pastebin-mozilla.h
 	applet-backend-paste-ubuntu.c
 	applet-backend-paste-ubuntu.h
-	applet-backend-ubuntuone.c
-	applet-backend-ubuntuone.h
 	applet-backend-uppix.c
 	applet-backend-uppix.h
 	applet-backend-videobin.c
@@ -63,4 +59,3 @@ target_link_libraries (${PACKAGE_DND2SHARE}
 ########### install files ###############
 
 install(TARGETS ${PACKAGE_DND2SHARE} DESTINATION ${pluginsdir})
-

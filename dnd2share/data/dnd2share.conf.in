@@ -7,10 +7,10 @@
 frame_maininfo=
 
 #d Name of the dock it belongs to:
-dock name = 
+dock name =
 
 #s[Default] Name of the icon as it will appear in its caption in the dock:
-name = 
+name =
 #v
 sep_display=
 
@@ -138,13 +138,13 @@ only file type=false
 #l[Custom;Pastebin.com;Paste-ubuntu.com;Pastebin.mozilla.org;Codepad.org] Preferred site for texts hosting :
 text site = 1
 
-#l[Custom;Uppix.com;Imagebin.ca;ImageShack.us;Imgur.com] Preferred site for images hosting :
+#l[Custom;Uppix.com;Imagebin.ca;Imgur.com] Preferred site for images hosting :
 image site = 1
 
 #l[Custom;VideoBin.org] Preferred site for videos hosting :
 video site = 1
 
-#l[Custom;dl.free.fr;DropBox;UbuntuOne] Preferred site for files hosting :
+#l[Custom;dl.free.fr;DropBox] Preferred site for files hosting :
 file site = 1
 
 #v
