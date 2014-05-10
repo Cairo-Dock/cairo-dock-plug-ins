@@ -33,7 +33,12 @@ typedef enum _CDFileType {
 	CD_NB_FILE_TYPES
 	} CDFileType;
 
-#define CD_NB_SITES 8
+#define CD_NB_SITES_MAX 5 // max number here above
+// number of sites for the each type in the config file
+#define CD_NB_SITES_TEXT 5
+#define CD_NB_SITES_IMG 4
+#define CD_NB_SITES_VID 2
+#define CD_NB_SITES_FILE 3
 
 
 typedef struct _CDUploadedItem {
@@ -93,12 +98,12 @@ typedef struct _CDSharedMemory {
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
 	gchar *cWorkingDirPath;
-	CDSiteBackend backends[CD_NB_FILE_TYPES][CD_NB_SITES];
+	CDSiteBackend backends[CD_NB_FILE_TYPES][CD_NB_SITES_MAX];
 	CDSiteBackend *pCurrentBackend[CD_NB_FILE_TYPES];
 	int iNbSitesForType[CD_NB_FILE_TYPES];
-	
+
 	CairoDockTask *pTask;  // current upload task.
-	
+
 	GList *pUpoadedItems;  // list of CDUploadedItem*
 	gchar *cLastURL;       // the last copied URL -> for the left click
 	gint iCurrentItemNum;  // the number of the current item in the list (safer than using a pointer in the list if this list is modified)

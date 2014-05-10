@@ -95,6 +95,8 @@ CD_APPLET_INIT_BEGIN
 	cd_dnd2share_register_free_backend ();
 	cd_dnd2share_register_dropbox_backend ();
 
+	/// NOTE: when adding/removing backends: change CD_NB_SITES* in struct.h !!
+
 	int t;
 	for (t = 0; t < CD_NB_FILE_TYPES; t ++)
 		myData.pCurrentBackend[t] = &myData.backends[t][myConfig.iPreferedSite[t]];

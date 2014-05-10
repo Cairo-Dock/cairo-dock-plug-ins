@@ -35,11 +35,16 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.iLimitRate = CD_CONFIG_GET_INTEGER ("Configuration", "limit rate");
 	myConfig.cIconAnimation = CD_CONFIG_GET_STRING ("Configuration", "animation");
 	myConfig.bUseOnlyFileType = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "only file type", FALSE);
-	myConfig.iPreferedSite[CD_TYPE_TEXT] = CD_CONFIG_GET_INTEGER ("Configuration", "text site");
-	myConfig.iPreferedSite[CD_TYPE_IMAGE] = CD_CONFIG_GET_INTEGER ("Configuration", "image site");
-	myConfig.iPreferedSite[CD_TYPE_VIDEO] = CD_CONFIG_GET_INTEGER ("Configuration", "video site");
-	myConfig.iPreferedSite[CD_TYPE_FILE] = CD_CONFIG_GET_INTEGER ("Configuration", "file site");
-	
+
+	int iSite = CD_CONFIG_GET_INTEGER ("Configuration", "text site");
+	myConfig.iPreferedSite[CD_TYPE_TEXT] = iSite < CD_NB_SITES_TEXT ? iSite : 1;
+	iSite = CD_CONFIG_GET_INTEGER ("Configuration", "image site");
+	myConfig.iPreferedSite[CD_TYPE_IMAGE] = iSite < CD_NB_SITES_IMG ? iSite : 1;
+	iSite = CD_CONFIG_GET_INTEGER ("Configuration", "video site");
+	myConfig.iPreferedSite[CD_TYPE_VIDEO] = iSite < CD_NB_SITES_VID ? iSite : 1;
+	iSite = CD_CONFIG_GET_INTEGER ("Configuration", "file site");
+	myConfig.iPreferedSite[CD_TYPE_FILE] = iSite < CD_NB_SITES_FILE ? iSite : 1;
+
 	myConfig.cCustomScripts[CD_TYPE_TEXT] = CD_CONFIG_GET_STRING ("Configuration", "text script");
 	myConfig.cCustomScripts[CD_TYPE_IMAGE] = CD_CONFIG_GET_STRING ("Configuration", "image script");
 	myConfig.cCustomScripts[CD_TYPE_VIDEO] = CD_CONFIG_GET_STRING ("Configuration", "video script");
@@ -73,9 +78,9 @@ CD_APPLET_RESET_CONFIG_END
 //\_________________ Here you have to free all ressources allocated for myData. This one will be reseted to 0 at the end of this function. This function is called when your applet is stopped, in the very end.
 CD_APPLET_RESET_DATA_BEGIN
 	cairo_dock_discard_task (myData.pTask);
-	
+
 	cd_dnd2share_clear_history ();
-	
+
 	g_free (myData.cLastURL);
 	g_free (myData.cWorkingDirPath);
 CD_APPLET_RESET_DATA_END
