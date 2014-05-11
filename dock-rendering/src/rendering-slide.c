@@ -74,6 +74,7 @@ typedef struct {
 	gint iArrowShift;
 	gint lmargin, rmargin, bmargin, tmargin;  // margins around the frame
 	gint iFrameWidth, iFrameHeight;  // frame dimensions
+	gint iArrowPosition;  // b, t, r, l
 	} CDSlideData;
 
 static void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock *pDock);
@@ -143,15 +144,13 @@ gboolean _cd_slide_on_press_button (GtkWidget* pWidget, GdkEventButton* pButton,
 	
 	if (pButton->type == GDK_BUTTON_PRESS && pButton->button == 1)
 	{
-		double x_arrow = pData->lmargin + pData->iFrameWidth + fScrollbarIconGap;
+		double x_arrow = pData->lmargin + pData->iFrameWidth - fScrollbarIconGap - fScrollbarWidth;
 		int x, y;
 		x = pButton->x;
 		y = pButton->y;
 		
 		if (x > x_arrow)  // on a clique dans la zone de scroll.
 		{
-			//g_print ("click (y=%d, scroll=%d)\n", (int) y, pData->iScrollOffset);
-			
 			// on regarde sur quoi on clic.
 			double y_arrow_top, y_arrow_bottom;
 			y_arrow_top = pData->tmargin + my_diapo_simple_lineWidth + my_diapo_simple_radius;
@@ -196,11 +195,11 @@ static gboolean _cd_slide_on_mouse_moved (gpointer data, CairoDock *pDock, gbool
 		y_arrow_bottom = pData->tmargin + pData->iFrameHeight - my_diapo_simple_radius;
 		
 		double fFrameHeight = pData->iFrameHeight;
-		double fGripHeight = fFrameHeight / (fFrameHeight + pData->iDeltaHeight) * (y_arrow_top - y_arrow_bottom - 2*(fArrowHeight+fScrollbarArrowGap));
+		double fGripHeight = fFrameHeight / (fFrameHeight + pData->iDeltaHeight) * (y_arrow_bottom - y_arrow_top - 2*(fArrowHeight+fScrollbarArrowGap));
 		//double ygrip = (double) pData->iScrollOffset / pData->iDeltaHeight * (y_arrow_top - y_arrow_bottom - 2*(fArrowHeight+fScrollbarArrowGap) - fGripHeight);
 		
 		int delta = (pDock->container.bIsHorizontal ? pDock->container.iMouseY : pDock->container.iMouseX) - pData->iClickY;
-		_set_scroll (pDock, (pData->iClickOffset + (double)delta / (y_arrow_top - y_arrow_bottom - 2*(fArrowHeight+fScrollbarArrowGap) - fGripHeight) * pData->iDeltaHeight));
+		_set_scroll (pDock, (pData->iClickOffset + (double)delta / (y_arrow_bottom - y_arrow_top - 2*(fArrowHeight+fScrollbarArrowGap) - fGripHeight) * pData->iDeltaHeight));
 		return GLDI_NOTIFICATION_INTERCEPT;
 	}
 	return GLDI_NOTIFICATION_LET_PASS;
@@ -400,11 +399,13 @@ static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 		{
 			pData->bmargin = my_diapo_simple_arrowHeight + ARROW_TIP;
 			pData->tmargin = 0;
+			pData->iArrowPosition = 0;
 		}
 		else
 		{
 			pData->bmargin = 0;
 			pData->tmargin = my_diapo_simple_arrowHeight + ARROW_TIP;
+			pData->iArrowPosition = 1;
 		}
 	}
 	else
@@ -414,11 +415,13 @@ static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 		{
 			pData->rmargin = my_diapo_simple_arrowHeight + ARROW_TIP;
 			pData->lmargin = X_BORDER_SPACE;
+			pData->iArrowPosition = 2;
 		}
 		else
 		{
 			pData->rmargin = X_BORDER_SPACE;
 			pData->lmargin = my_diapo_simple_arrowHeight + ARROW_TIP;
+			pData->iArrowPosition = 3;
 		}
 	}
 	
@@ -482,7 +485,6 @@ static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 			iDeltaHeight = iMaxDockHeight0 - iDockHeight;
 			//g_print ("%d -> %d\n", iMaxHeight, iDockHeight);
 		}
-		g_print ("%p: %d x %d\n", pDock, iDockWidth, iDockHeight);
 	}
 	else
 	{
@@ -503,9 +505,8 @@ static void cd_rendering_calculate_max_dock_size_diapo_simple (CairoDock *pDock)
 	pData->iDeltaHeight = iDeltaHeight;
 	if (iDeltaHeight != 0)
 	{
-		int iScrollMargin = iMaxIconWidth * (my_diapo_simple_fScaleMax - 1) / 2
-			+ fScrollbarIconGap
-			+ fScrollbarWidth;  // donc a droite on a : derniere icone en taille max + demi-gapx + gap + scrollbar + X_BORDER_SPACE
+		int iScrollMargin = 2*fScrollbarIconGap
+			+ fScrollbarWidth;
 		iFrameWidth += iScrollMargin;
 		iDockWidth += iScrollMargin;
 	}
@@ -546,7 +547,6 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 {
 	CDSlideData *pData = pDock->pRendererData;  // non nul
 	double fScrollOffset = (pDock->container.bDirectionUp ? - pData->iScrollOffset : pData->iScrollOffset);
-	gboolean bIsHorizontal = pDock->container.bIsHorizontal;
 	
 	// On calcule la position de base pour toutes les icones
 	// int iOneLineHeight = pDock->iMaxIconHeight + my_diapo_simple_iconGapY;
@@ -554,7 +554,7 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 		+ myIconsParam.iLabelSize  // le texte des icones de la 1ere ligne
 		+ my_diapo_simple_lineWidth  // ligne du haut;
 		+ pData->tmargin
-		+ fScrollOffset;
+		+ (pDock->container.bDirectionUp ? fScrollOffset : - fScrollOffset);
 	
 	double fFoldingX = (pDock->fFoldingFactor > .2 ? (pDock->fFoldingFactor - .2) / .8 : 0.);  // placement de 1 a 0.2
 	double fFoldingY = (pDock->fFoldingFactor > .5 ? (pDock->fFoldingFactor - .5) / .5 : 0.);  // placement de 1 a 0.5
@@ -562,7 +562,6 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 	Icon* icon;
 	GList* ic, *pointed_ic=NULL;
 	int x=0, y=0;  // index of the current icon on the grid.
-	int X, Y, Ny;
 	double fx, fy, sep_offset = 0.;
 	for (ic = pDock->icons; ic != NULL; ic = ic->next)
 	{
@@ -579,7 +578,7 @@ static Icon* _cd_rendering_calculate_icons_for_diapo_simple (CairoDock *pDock, g
 			
 			icon->fWidthFactor = pData->iFrameWidth;  // we'll use it as the width of the line.
 			if (pData->iScrollOffset != 0)  // the scroll bar is present, don't overlap it
-				icon->fWidthFactor -= (fScrollbarIconGap + fScrollbarWidth);
+				icon->fWidthFactor -= (2*fScrollbarIconGap + fScrollbarWidth);
 			
 			icon->fX = pData->lmargin;
 			
@@ -803,7 +802,6 @@ static void _cairo_dock_draw_frame_for_diapo_simple (cairo_t *pCairoContext, Cai
 	CDSlideData *pData = pDock->pRendererData;  // non nul
 	int iArrowShift = pData->iArrowShift;
 	int iDeltaIconX = pData->iDeltaIconX;
-	int ah = my_diapo_simple_arrowHeight;
 	double fRadius = my_diapo_simple_radius, fLineWidth = my_diapo_simple_lineWidth;
 	
 	gdouble fFrameWidth  = pData->iFrameWidth - 2*my_diapo_simple_radius - fLineWidth;
@@ -811,20 +809,12 @@ static void _cairo_dock_draw_frame_for_diapo_simple (cairo_t *pCairoContext, Cai
 	gdouble fDockOffsetX = pData->lmargin + fRadius + fLineWidth/2;
 	gdouble fDockOffsetY = pData->tmargin + fLineWidth/2;
 	
-	int iMarginPosition;
-	if (pDock->container.bIsHorizontal)
-	{
-		iMarginPosition = (pDock->container.bDirectionUp ? 0 : 1);
-	}
-	else
-	{
-		iMarginPosition = (pDock->container.bDirectionUp ? 2 : 3);
-	}
+	int iArrowPosition = pData->iArrowPosition;
 	
 	cairo_move_to (pCairoContext, fDockOffsetX, fDockOffsetY);  // top bottom corner
 
 	//HautGauche -> HautDroit
-	if (iMarginPosition == 1)  // top arrow
+	if (iArrowPosition == 1)  // top arrow
 	{
 		cairo_rel_line_to (pCairoContext,  fFrameWidth/2 - my_diapo_simple_arrowWidth/2 + iArrowShift, 0);                //     _
 		cairo_rel_line_to (pCairoContext, + my_diapo_simple_arrowWidth/2 - iArrowShift + iDeltaIconX, -my_diapo_simple_arrowHeight);       //  \.
@@ -841,7 +831,7 @@ static void _cairo_dock_draw_frame_for_diapo_simple (cairo_t *pCairoContext, Cai
 		my_diapo_simple_radius, my_diapo_simple_radius );
 	
 	//HautDroit -> BasDroit
-	if (iMarginPosition == 2)  // right arrow
+	if (iArrowPosition == 2)  // right arrow
 	{
 		cairo_rel_line_to (pCairoContext, 0, fFrameHeight/2 - my_diapo_simple_arrowWidth/2 + iArrowShift);                //     _
 		cairo_rel_line_to (pCairoContext, +my_diapo_simple_arrowHeight, + my_diapo_simple_arrowWidth/2 - iArrowShift + iDeltaIconX);       //  \.
@@ -858,7 +848,7 @@ static void _cairo_dock_draw_frame_for_diapo_simple (cairo_t *pCairoContext, Cai
 		-my_diapo_simple_radius , my_diapo_simple_radius);
 	
 	//BasDroit -> BasGauche
-	if (iMarginPosition == 0)  // bottom arrow
+	if (iArrowPosition == 0)  // bottom arrow
 	{
 		cairo_rel_line_to (pCairoContext, - fFrameWidth/2 + my_diapo_simple_arrowWidth/2 + iArrowShift, 0);                //     _
 		cairo_rel_line_to (pCairoContext, - my_diapo_simple_arrowWidth/2 - iArrowShift + iDeltaIconX, +my_diapo_simple_arrowHeight);       //  \.
@@ -875,7 +865,7 @@ static void _cairo_dock_draw_frame_for_diapo_simple (cairo_t *pCairoContext, Cai
 		-my_diapo_simple_radius, -my_diapo_simple_radius);
 	
 	//BasGauche -> HautGauche
-	if (iMarginPosition == 3)  // left arrow
+	if (iArrowPosition == 3)  // left arrow
 	{
 		cairo_rel_line_to (pCairoContext, 0, - fFrameHeight/2 + my_diapo_simple_arrowWidth/2 + iArrowShift);                //     _
 		cairo_rel_line_to (pCairoContext, -my_diapo_simple_arrowHeight, - my_diapo_simple_arrowWidth/2 - iArrowShift + iDeltaIconX);       //  \.
@@ -1060,26 +1050,11 @@ static void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock 
 		cairo_save (pCairoContext);
 		cairo_set_line_width (pCairoContext, 2.);
 		
-		if (! pDock->container.bIsHorizontal)
-		{
-			cairo_translate (pCairoContext, pDock->container.iHeight/2, pDock->container.iWidth/2);
-			cairo_rotate (pCairoContext, G_PI/2);
-			cairo_scale (pCairoContext, 1., -1.);
-			cairo_translate (pCairoContext, -pDock->container.iWidth/2, -pDock->container.iHeight/2);
-		}
-		
-		double x_arrow = pDock->iMaxDockWidth - X_BORDER_SPACE - fScrollbarWidth/2;  // pointe de la fleche.
+		double x_arrow = pData->lmargin + pData->iFrameWidth - fScrollbarIconGap - fScrollbarWidth/2;
 		double y_arrow_top, y_arrow_bottom;
-		if (pDock->container.bDirectionUp)
-		{
-			y_arrow_bottom = pDock->iMaxDockHeight - (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth + my_diapo_simple_radius);
-			y_arrow_top = my_diapo_simple_lineWidth + my_diapo_simple_radius;
-		}
-		else
-		{
-			y_arrow_top = my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth + my_diapo_simple_radius;
-			y_arrow_bottom = pDock->iMaxDockHeight - my_diapo_simple_lineWidth - my_diapo_simple_radius;
-		}
+		y_arrow_top = pData->tmargin + my_diapo_simple_lineWidth + my_diapo_simple_radius;
+		y_arrow_bottom = pData->tmargin + pData->iFrameHeight - my_diapo_simple_radius;
+		
 		if (pData->iScrollOffset != 0)  // fleche vers le haut.
 		{
 			cairo_move_to (pCairoContext, x_arrow, y_arrow_top);
@@ -1119,7 +1094,7 @@ static void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock 
 		cairo_set_source_rgba (pCairoContext, my_diapo_simple_color_scrollbar_line[0], my_diapo_simple_color_scrollbar_line[1], my_diapo_simple_color_scrollbar_line[2], my_diapo_simple_color_scrollbar_line[3] * fAlpha);
 		cairo_stroke (pCairoContext);
 		// grip
-		double fFrameHeight = pDock->iMaxDockHeight - (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);  // hauteur du cadre avec les rayons et sans la pointe.
+		double fFrameHeight = pData->iFrameHeight;
 		double fGripHeight = fFrameHeight / (fFrameHeight + pData->iDeltaHeight) * (y_arrow_bottom - y_arrow_top - 2*(fArrowHeight+fScrollbarArrowGap));
 		double ygrip = (double) pData->iScrollOffset / pData->iDeltaHeight * (y_arrow_bottom - y_arrow_top - 2*(fArrowHeight+fScrollbarArrowGap) - fGripHeight);
 		cairo_set_source_rgba (pCairoContext, my_diapo_simple_color_grip[0], my_diapo_simple_color_grip[1], my_diapo_simple_color_grip[2], my_diapo_simple_color_grip[3] * fAlpha);
@@ -1282,7 +1257,6 @@ static void cd_rendering_render_diapo_simple (cairo_t *pCairoContext, CairoDock 
 //////////////////////
 
 #define DELTA_ROUND_DEGREE 5
-#define _recopy_prev_color(pColorTab, i) memcpy (&pColorTab[4*i], &pColorTab[4*(i-1)], 4*sizeof (GLfloat));
 #define _copy_color(pColorTab, i, fAlpha, c) do { \
 	pColorTab[4*i]   = c[0];\
 	pColorTab[4*i+1] = c[1];\
@@ -1406,11 +1380,6 @@ static const GLfloat *cd_generate_color_tab (double fAlpha, GLfloat *pBottomLeft
 		pTopRightColor = pColor1;
 	}
 	
-	/*pMiddleBottomColor[0] = (pBottomRightColor[0] + pBottomLeftColor[0])/2;
-	pMiddleBottomColor[1] = (pBottomRightColor[1] + pBottomLeftColor[1])/2;
-	pMiddleBottomColor[2] = (pBottomRightColor[2] + pBottomLeftColor[2])/2;
-	pMiddleBottomColor[3] = (pBottomRightColor[3] + pBottomLeftColor[3])/2;*/
-	
 	pBottomLeftColorTab[0] = pBottomLeftColor[0];
 	pBottomLeftColorTab[1] = pBottomLeftColor[1];
 	pBottomLeftColorTab[2] = pBottomLeftColor[2];
@@ -1452,8 +1421,7 @@ static void _render_separator_opengl (Icon *icon, CairoDock *pDock)
 {
 	glPushMatrix ();
 	
-	//glLoadIdentity ();
-	glTranslatef (icon->fDrawX, floor (pDock->container.iHeight - icon->fDrawY) + .5 * ( my_diapo_simple_lineWidth&1), 0);
+	glTranslatef (icon->fDrawX, floor ((pDock->container.bIsHorizontal?pDock->container.iHeight:pDock->container.iWidth) - icon->fDrawY) + .5 * (my_diapo_simple_lineWidth&1), 0.);
 	
 	glEnable (GL_BLEND);
 	_cairo_dock_set_blend_alpha ();
@@ -1469,27 +1437,27 @@ static void _render_separator_opengl (Icon *icon, CairoDock *pDock)
 		gldi_style_color_get (GLDI_COLOR_SEPARATOR, &color);
 		color.rgba.alpha *= icon->fAlpha;
 		
-		glColor4f (color.rgba.red, color.rgba.green, color.rgba.blue, 0);
-		glVertex3f (0, 0, 0.);
+		glColor4f (color.rgba.red, color.rgba.green, color.rgba.blue, 0.);
+		glVertex3f (0., 0., 0.);
 		
 		glColor4f (color.rgba.red, color.rgba.green, color.rgba.blue, color.rgba.alpha * icon->fAlpha);
 		glVertex3f (.2 * icon->fWidthFactor, 0, 0.);
 		glVertex3f (.8 * icon->fWidthFactor, 0, 0.);
 		
-		glColor4f (color.rgba.red, color.rgba.green, color.rgba.blue, 0);
-		glVertex3f (icon->fWidthFactor, 0, 0.);
+		glColor4f (color.rgba.red, color.rgba.green, color.rgba.blue, 0.);
+		glVertex3f (icon->fWidthFactor, 0., 0.);
 	}
 	else
 	{
-		glColor4f (my_diapo_simple_color_border_line[0], my_diapo_simple_color_border_line[1], my_diapo_simple_color_border_line[2], 0);
-		glVertex3f (0, 0, 0.);
+		glColor4f (my_diapo_simple_color_border_line[0], my_diapo_simple_color_border_line[1], my_diapo_simple_color_border_line[2], 0.);
+		glVertex3f (0., 0., 0.);
 		
 		glColor4f (my_diapo_simple_color_border_line[0], my_diapo_simple_color_border_line[1], my_diapo_simple_color_border_line[2], my_diapo_simple_color_border_line[3] * icon->fAlpha);
-		glVertex3f (.2 * icon->fWidthFactor, 0, 0.);
-		glVertex3f (.8 * icon->fWidthFactor, 0, 0.);
+		glVertex3f (.2 * icon->fWidthFactor, 0., 0.);
+		glVertex3f (.8 * icon->fWidthFactor, 0., 0.);
 		
-		glColor4f (my_diapo_simple_color_border_line[0], my_diapo_simple_color_border_line[1], my_diapo_simple_color_border_line[2], 0);
-		glVertex3f (icon->fWidthFactor, 0, 0.);
+		glColor4f (my_diapo_simple_color_border_line[0], my_diapo_simple_color_border_line[1], my_diapo_simple_color_border_line[2], 0.);
+		glVertex3f (icon->fWidthFactor, 0., 0.);
 	}
 	glEnd();
 	
@@ -1499,18 +1467,28 @@ static void _render_separator_opengl (Icon *icon, CairoDock *pDock)
 #define N_ROUND 7
 static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 {
+	CDSlideData *pData = pDock->pRendererData;
+	g_return_if_fail (pData != NULL);
 	static CairoDockGLPath *pScrollPath = NULL;
 	
 	//\____________________ On initialise le cadre.
-	CDSlideData *pData = pDock->pRendererData;
-	g_return_if_fail (pData != NULL);
-	
 	double fRadius = my_diapo_simple_radius;
-	double fFrameWidth  = pDock->iMaxDockWidth - 2*X_BORDER_SPACE;  // longueur du trait horizontal.
-	double fFrameHeight = pDock->iMaxDockHeight - (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth);  // hauteur du cadre avec les rayons et sans la pointe.
+	double fFrameWidth, fFrameHeight;
 	double fDockOffsetX, fDockOffsetY;
-	fDockOffsetX = X_BORDER_SPACE;
-	fDockOffsetY = my_diapo_simple_arrowHeight+ARROW_TIP;
+	if (pDock->container.bIsHorizontal)
+	{
+		fFrameWidth  = pData->iFrameWidth - 2*fRadius;
+		fFrameHeight = pData->iFrameHeight - my_diapo_simple_lineWidth;
+		fDockOffsetX = (pDock->container.bDirectionUp ? pData->lmargin : pData->rmargin);
+		fDockOffsetY = (pDock->container.bDirectionUp ? pData->bmargin : pData->tmargin);
+	}
+	else
+	{
+		fFrameWidth  = pData->iFrameHeight - 2*fRadius - my_diapo_simple_lineWidth;
+		fFrameHeight = pData->iFrameWidth - my_diapo_simple_lineWidth;
+		fDockOffsetX = (pDock->container.bDirectionUp ? pData->bmargin : pData->tmargin);
+		fDockOffsetY = (pDock->container.bDirectionUp ? pData->rmargin : pData->lmargin);
+	}
 	
 	//\_____________ On genere les coordonnees du contour.
 	CairoDockGLPath *pFramePath = cd_generate_frame_path_without_arrow (fFrameWidth, fFrameHeight, fRadius);
@@ -1519,7 +1497,7 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 	glPushMatrix ();
 	double fAlpha = (pDock->fFoldingFactor < .3 ? (.3 - pDock->fFoldingFactor) / .3 : 0.);  // apparition du cadre de 0.3 a 0
 	cairo_dock_set_container_orientation_opengl (CAIRO_CONTAINER (pDock));
-	glTranslatef (fDockOffsetX + (fFrameWidth)/2,
+	glTranslatef (fDockOffsetX + (fFrameWidth)/2 + fRadius,
 		fDockOffsetY + fFrameHeight/2,
 		0.);
 	_cairo_dock_set_blend_alpha ();
@@ -1563,7 +1541,7 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 		cairo_dock_stroke_gl_path (pFramePath, TRUE);
 	}
 	glPopMatrix ();
-	_cairo_dock_set_blend_over ();
+	_cairo_dock_set_blend_alpha ();
 	
 	//\____________________ On dessine les barres de defilement.
 	if (pData->iDeltaHeight != 0)
@@ -1572,25 +1550,10 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 			pScrollPath = cairo_dock_new_gl_path (N_ROUND + 5, 0., 0., 0, 0);  // un arc + le sommet + la base
 		glLineWidth (2.);
 		glPushMatrix ();
-		if (!pDock->container.bIsHorizontal)
-		{
-			glTranslatef (pDock->container.iHeight/2, pDock->container.iWidth/2, 0.);
-			glRotatef (-90., 0., 0., 1.);
-			glScalef (1., -1., 1.);  // comme si bDirectionUp
-			glTranslatef (-pDock->container.iWidth/2, -pDock->container.iHeight/2, 0.);
-		}
-		double x_arrow = pDock->iMaxDockWidth - X_BORDER_SPACE - fScrollbarWidth/2;  // pointe de la fleche.
+		double x_arrow = pData->lmargin + pData->iFrameWidth - fScrollbarIconGap - fScrollbarWidth/2;
 		double y_arrow_top, y_arrow_bottom;
-		if (pDock->container.bDirectionUp)
-		{
-			y_arrow_bottom = my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth + my_diapo_simple_radius;
-			y_arrow_top = pDock->iMaxDockHeight - my_diapo_simple_lineWidth - my_diapo_simple_radius;
-		}
-		else
-		{
-			y_arrow_top = pDock->iMaxDockHeight - (my_diapo_simple_arrowHeight + ARROW_TIP + my_diapo_simple_lineWidth + my_diapo_simple_radius);
-			y_arrow_bottom = my_diapo_simple_lineWidth + my_diapo_simple_radius;
-		}
+		y_arrow_top = pData->bmargin + pData->iFrameHeight - my_diapo_simple_radius;
+		y_arrow_bottom = pData->bmargin + my_diapo_simple_lineWidth + my_diapo_simple_radius;
 		
 		if (pData->iScrollOffset != 0)  // fleche vers le haut.
 		{
@@ -1641,7 +1604,7 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 		glPopMatrix ();
 		
 		// grip
-		double fGripHeight = fFrameHeight / (fFrameHeight + pData->iDeltaHeight) * (y_arrow_top - y_arrow_bottom - 2*(fArrowHeight+fScrollbarArrowGap));
+		double fGripHeight = (double)pData->iFrameHeight / (pData->iFrameHeight + pData->iDeltaHeight) * (y_arrow_top - y_arrow_bottom - 2*(fArrowHeight+fScrollbarArrowGap));
 		if (fGripHeight < 2*fScrollbarRadius)
 			fGripHeight = 2*fScrollbarRadius;
 		double ygrip = (double) pData->iScrollOffset / pData->iDeltaHeight * (y_arrow_top - y_arrow_bottom - 2*(fArrowHeight+fScrollbarArrowGap) - fGripHeight);
