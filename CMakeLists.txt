@@ -152,6 +152,14 @@ pkg_check_modules (GLIB glib-2.0)
 set (shared_filesdatadir "${pluginsdatadir}/shared-files")
 add_subdirectory (shared-files)
 
+
+
+################################################################################
+#          STATIC LIBS AND DEPENDENCES USED BY MORE THAN ONE PLUG-IN           #
+################################################################################
+
+
+
 ############# STATIC LIBRARIES ################
 message (STATUS "> Static Libraries:")
 
@@ -337,6 +345,29 @@ elseif (INDICATOR_APPLET_FOUND)
 	endif()
 endif()
 
+############# UPOWER #####################
+message (STATUS "> UPower:")
+enable_if_not_defined (enable-upower-support)
+if (enable-upower-support)
+	pkg_check_modules (UPOWER upower-glib)  # useful for Powermanager too.
+endif()
+if (UPOWER_FOUND)
+	set (with_upower_support yes)
+	STRING (REGEX REPLACE "\\..*" "" UPOWER_MAJOR "${UPOWER_VERSION}") # 2.28.3 => 2
+	STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" UPOWER_MINOR "${UPOWER_VERSION}")  # 2.28.3 => 2.28
+	STRING (REGEX REPLACE "\\.[0-9]*" "" UPOWER_MINOR "${UPOWER_MINOR}") # 2.28 => 28
+	if (${UPOWER_MAJOR} GREATER 0 OR ${UPOWER_MINOR} GREATER 89)
+		message (STATUS "   Your version of UPower no longer supports logout features")
+	else()
+		set (UPOWER_SUPPORTS_LOGOUT 1)
+	endif()
+else()
+	set (with_upower_support no)
+	message (STATUS "Could not find upower-glib; Logout and PowerManager plugin won't be built with UPower support.")
+	message (WARNING "This module is required to compile LogOut and PowerManager applet with UPower support: upower-glib")
+	set (MODULES_MISSING "${MODULES_MISSING} upower-glib")
+endif()
+
 ############# DISTRIBUTION #################
 message (STATUS "> Distribution:")
 # We try to detect if the user is on Ubuntu to know which bus we have to use...
@@ -386,6 +417,14 @@ GET_FILENAME_COMPONENT(DEBIAN_VERSION /etc/debian_version ABSOLUTE)
 if (EXISTS ${DEBIAN_VERSION})
 	set (DEBIAN_PKG_MANAGERS "/usr/bin/apt-get /usr/bin/dpkg /usr/bin/aptitude")
 endif()
+
+
+
+################################################################################
+#                                   PLUG-INS                                   #
+################################################################################
+
+
 
 ############# SHARED LIBRARIES ###########
 message (STATUS "> Shared Libraries:")
@@ -968,18 +1007,6 @@ endif()
 
 ############# LOGOUT #################
 message (STATUS "> Logout:")
-enable_if_not_defined (enable-upower-support)
-if (enable-upower-support)
-	pkg_check_modules (UPOWER upower-glib)  # useful for Powermanager too.
-endif()
-if (UPOWER_FOUND)
-	set (with_upower_support yes)
-else()
-	set (with_upower_support no)
-	message (STATUS "Could not find upower-glib; Logout and PowerManager plugin won't be built with UPower support.")
-	message (WARNING "This module is required to compile LogOut and PowerManager applet with UPower support: upower-glib")
-	set (MODULES_MISSING "${MODULES_MISSING} upower-glib")
-endif()
 set (GETTEXT_LOGOUT ${GETTEXT_PLUGINS})
 set (VERSION_LOGOUT "2.0.3")
 set (PACKAGE_LOGOUT "cd-logout")
