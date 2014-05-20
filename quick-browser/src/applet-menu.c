@@ -220,7 +220,10 @@ static gboolean _fill_submenu_idle (CDQuickBrowserItem *pItem)
 	{
 		GldiModuleInstance *myApplet = pItem->pApplet;
 		myData.iSidFillDirIdle = 0;
-		gtk_widget_realize (pItem->pSubMenu); // force to compute the size of the menu before displaying it -> avoid big menu that are out of the screen
+		/* force to compute the size of the menu before displaying it
+		 * -> avoid big menu that are out of the screen
+		 */
+		gtk_widget_set_size_request (pItem->pSubMenu, -1, -1);
 		gtk_widget_show_all (pItem->pSubMenu);
 		CD_APPLET_LEAVE (FALSE);
 	}
