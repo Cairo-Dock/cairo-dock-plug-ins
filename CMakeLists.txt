@@ -357,9 +357,10 @@ if (UPOWER_FOUND)
 	STRING (REGEX REPLACE "[0-9]*\\.([^ ]+)" "\\1" UPOWER_MINOR "${UPOWER_VERSION}")  # 2.28.3 => 2.28
 	STRING (REGEX REPLACE "\\.[0-9]*" "" UPOWER_MINOR "${UPOWER_MINOR}") # 2.28 => 28
 	if (${UPOWER_MAJOR} GREATER 0 OR ${UPOWER_MINOR} GREATER 89)
-		message (STATUS "   Your version of UPower no longer supports logout features")
+		message (STATUS "   Your version of UPower no longer supports suspend/hibernate features")
+		set (with_upower_support "yes (0.99+)")
 	else()
-		set (UPOWER_SUPPORTS_LOGOUT 1)
+		set (UPOWER_SUPPORTS_SUSPEND_HIBERNATE 1)
 	endif()
 else()
 	set (with_upower_support no)

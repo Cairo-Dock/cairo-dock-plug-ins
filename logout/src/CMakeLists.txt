@@ -27,10 +27,10 @@ if (DEBIAN_PKG_MANAGERS)
 endif()
 
 
-if (UPOWER_SUPPORTS_LOGOUT)
+if (UPOWER_SUPPORTS_SUSPEND_HIBERNATE)
 	add_definitions (-DCD_UPOWER_AVAILABLE="1")
 
-		include_directories (
+	include_directories (
 		${UPOWER_INCLUDE_DIRS}
 		${PACKAGE_INCLUDE_DIRS})
 

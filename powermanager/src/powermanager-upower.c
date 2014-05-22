@@ -48,7 +48,11 @@ static void _cd_upower_connect_async (CDSharedMemory *pSharedMemory)
 	UpClient *pUPowerClient = up_client_new ();
 	
 	// get the list of devices.
-	if (pUPowerClient == NULL || ! up_client_enumerate_devices_sync (pUPowerClient, NULL, NULL))
+	if (pUPowerClient == NULL
+	#ifndef CD_UPOWER_0_99 // no longer available with UPower 0.99+
+		|| ! up_client_enumerate_devices_sync (pUPowerClient, NULL, NULL)
+	#endif
+		)
 	{	
 		cd_warning ("couldn't get devices from UPower daemon");
 		if (pUPowerClient)
@@ -182,6 +186,7 @@ static void _on_device_removed (UpClient *pClient, UpDevice *pDevice, gpointer d
 	CD_APPLET_LEAVE ();
 }
 
+#ifndef CD_UPOWER_0_99 // no longer used with UPower 0.99+
 static void _on_device_changed (G_GNUC_UNUSED UpDevice *pDevice, G_GNUC_UNUSED gpointer data)
 {
 	CD_APPLET_ENTER;
@@ -194,6 +199,7 @@ static void _on_device_changed (G_GNUC_UNUSED UpDevice *pDevice, G_GNUC_UNUSED g
 	update_icon ();
 	CD_APPLET_LEAVE ();
 }
+#endif
 
 // Can be launched the first time (with the Task) or when a device is added/removed after.
 static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
@@ -248,6 +254,7 @@ static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
 			g_free (cVendor);
 			g_free (cModel);
 
+			#ifndef CD_UPOWER_0_99 // no longer used with UPower 0.99+
 			if (myData.pTask != NULL // only the first time
 				|| myData.pBatteryDeviceList == NULL // or if it's a new device
 				|| g_list_find (myData.pBatteryDeviceList, pDevice) == NULL)
@@ -262,6 +269,7 @@ static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
 				iSignalID = g_signal_connect (pDevice, "changed", G_CALLBACK (_on_device_changed), NULL);  
 				myData.pSignalIDList = g_list_append (myData.pSignalIDList, GINT_TO_POINTER (iSignalID));
 			}
+			#endif
 
 			bFirst = FALSE;
 		}
@@ -364,38 +372,6 @@ void cd_upower_stop (void)
 	}
 }
 
-gboolean cd_power_hibernate (void)
-{
-	if (myData.pUPowerClient != NULL)
-		return up_client_hibernate_sync (myData.pUPowerClient, NULL, NULL);
-	else
-		return FALSE;
-}
-
-gboolean cd_power_suspend (void)
-{
-	if (myData.pUPowerClient != NULL)
-		return up_client_suspend_sync (myData.pUPowerClient, NULL, NULL);
-	else
-		return FALSE;
-}
-
-gboolean cd_power_can_hibernate (void)
-{
-	if (myData.pUPowerClient != NULL)
-		return up_client_get_can_hibernate (myData.pUPowerClient);
-	else
-		return FALSE;
-}
-
-gboolean cd_power_can_suspend (void)
-{
-	if (myData.pUPowerClient != NULL)
-		return up_client_get_can_suspend (myData.pUPowerClient);
-	else
-		return FALSE;
-}
-
 #else // code without libupower
 
 void cd_powermanager_start (void)
@@ -406,26 +382,6 @@ void cd_powermanager_start (void)
 void cd_upower_stop (void)
 {
 
-}
-
-gboolean cd_power_hibernate (void)
-{
-	return FALSE;
-}
-
-gboolean cd_power_suspend (void)
-{
-	return FALSE;
-}
-
-gboolean cd_power_can_hibernate (void)
-{
-	return FALSE;
-}
-
-gboolean cd_power_can_suspend (void)
-{
-	return FALSE;
 }
 
 #endif

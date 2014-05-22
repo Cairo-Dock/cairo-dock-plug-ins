@@ -27,14 +27,4 @@ void cd_powermanager_start (void);
 
 void cd_upower_stop (void);
 
-
-gboolean cd_power_hibernate (void);
-
-gboolean cd_power_suspend (void);
-
-gboolean cd_power_can_hibernate (void);
-
-gboolean cd_power_can_suspend (void);
-
-
 #endif

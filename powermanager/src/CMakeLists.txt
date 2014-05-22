@@ -25,7 +25,10 @@ add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_POWERMANAGER}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
 if (${UPOWER_FOUND})
-	add_definitions (-DCD_UPOWER_AVAILABLE="1")
+	add_definitions (-DCD_UPOWER_AVAILABLE=1)
+	if (NOT UPOWER_SUPPORTS_SUSPEND_HIBERNATE)
+		add_definitions (-DCD_UPOWER_0_99=1)
+	endif()
 endif()
 
 include_directories (

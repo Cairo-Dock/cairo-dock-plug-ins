@@ -90,19 +90,5 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	
 	if (bAddSeparator)
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
-	
-	// Power actions (Hibernate/Suspend)
-	#ifdef CD_UPOWER_AVAILABLE  // if Upower is available, we should be able to suspend; if not, then it's probably just a problem with consolekit, which should be fixed by the user; so show the items to give the user a hint about the problem.
-	pMenuItem = CD_APPLET_ADD_IN_MENU (D_("Hibernate"), cd_power_hibernate, CD_APPLET_MY_MENU);
-	if (! cd_power_can_hibernate ())
-		gtk_widget_set_sensitive (pMenuItem, FALSE);
-	pMenuItem = CD_APPLET_ADD_IN_MENU (D_("Suspend"), cd_power_suspend, CD_APPLET_MY_MENU);
-	if (! cd_power_can_suspend ())
-		gtk_widget_set_sensitive (pMenuItem, FALSE);
-	#else
-	if (cd_power_can_hibernate ())
-		CD_APPLET_ADD_IN_MENU (D_("Hibernate"), cd_power_hibernate, CD_APPLET_MY_MENU);
-	if (cd_power_can_suspend ())
-		CD_APPLET_ADD_IN_MENU (D_("Suspend"), cd_power_suspend, CD_APPLET_MY_MENU);
-	#endif
+
 CD_APPLET_ON_BUILD_MENU_END
