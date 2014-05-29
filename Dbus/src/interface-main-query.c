@@ -31,7 +31,7 @@ typedef struct {
 	const gchar *cCommand;
 	const gchar *cClass;
 	const gchar *cContainerName;
-	Window Xid;
+	guint Xid;  // ID of a window, as returned by gldi_window_get_id(); when using X, it's a 'Window' type
 	const gchar *cDesktopFile;
 	const gchar *cModuleName;
 	gint iPosition;
@@ -207,7 +207,7 @@ static gboolean _icon_is_matching (Icon *pIcon, CDQuery *pQuery)
 	}
 	if (pQuery->Xid != 0)
 	{
-		r = (GPOINTER_TO_INT(pIcon->pAppli) == pQuery->Xid);  // not very useful... it's unclear how we will be able to adress a window from outside without X.
+		r = (gldi_window_get_id(pIcon->pAppli) == pQuery->Xid);
 		if (r) return TRUE;
 	}
 	if (pQuery->cDesktopFile)
