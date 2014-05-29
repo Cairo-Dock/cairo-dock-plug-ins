@@ -50,13 +50,19 @@ static void _cd_show_hide_desklet (void)
 {
 	if (!myData.bDeskletsVisible)
 	{
-		//myData.xLastActiveWindow = cairo_dock_get_current_active_window ();
+		myData.pLastActiveWindow = gldi_windows_get_active ();
+		gldi_object_ref (GLDI_OBJECT(myData.pLastActiveWindow));
 		gldi_desklets_set_visible (TRUE);  // TRUE <=> les desklets de la couche widget aussi.
 	}
 	else
 	{
 		gldi_desklets_set_visibility_to_default ();
-		//cairo_dock_show_xwindow (myData.xLastActiveWindow);
+		if (myData.pLastActiveWindow)
+		{
+			gldi_window_show (myData.pLastActiveWindow);
+			gldi_object_unref (GLDI_OBJECT(myData.pLastActiveWindow));
+			myData.pLastActiveWindow = NULL;
+		}
 	}
 	myData.bDeskletsVisible = ! myData.bDeskletsVisible;
 	

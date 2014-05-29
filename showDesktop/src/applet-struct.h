@@ -45,7 +45,7 @@ struct _AppletConfig {
 struct _AppletData {
 	gboolean bDesktopVisible;
 	gboolean bDeskletsVisible;
-	Window xLastActiveWindow;
+	GldiWindowActor *pLastActiveWindow;
 	gchar *cPendingFile;
 	GldiShortkey *cKeyBinding;
 	} ;
