@@ -30,6 +30,7 @@
 #define GAMMA_MAX 2.0
 
 #include <cairo-dock.h>
+#include <X11/Xlib.h>
 #include <X11/extensions/xf86vmode.h>
 
 struct _AppletConfig {
