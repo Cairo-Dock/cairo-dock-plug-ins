@@ -169,6 +169,7 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 	{
 		gtk_widget_show_all (pSubMenu);  // sinon des fois il n'apparait pas au 1er survol de son entree.
 		gtk_widget_show_all (s_pMenu);
+		gtk_menu_reposition (s_pMenu);
 	}
 	cd_debug ("items added");
 }
