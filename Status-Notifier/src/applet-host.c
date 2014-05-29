@@ -93,15 +93,12 @@ void cd_satus_notifier_add_new_item_with_default (const gchar *cService, const g
 	{
 		cd_debug ("No menu defined for '%s', using '%s' as the menu path", cService, cObjectPath);
 		pItem->cMenuPath = g_strdup (cObjectPath);
+		cd_satus_notifier_build_item_dbusmenu (pItem);
 	}
-	// build the dbusmenu right now, so that the menu is complete when the user first click on the item (otherwise, the menu is not placed correctly).
-	cd_satus_notifier_build_item_dbusmenu (pItem);
 	
 	pItem->iPosition = iPosition;
 	if (pItem->cLabel == NULL && pItem->cTitle == NULL)
 		pItem->cLabel = g_strdup (pItem->cId);  // cService is often a dbus name like :1.355
-
-	cd_status_notifier_add_item_in_list (pItem);
 	cd_debug ("item '%s' appended", pItem->cId);
 	
 	if (! _item_is_visible (pItem))  // don't show a passive item.

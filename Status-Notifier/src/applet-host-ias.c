@@ -577,7 +577,6 @@ static void _on_get_applications_from_service (DBusGProxy *proxy, DBusGProxyCall
 			                          cLabel && *cLabel != '\0' ? cLabel :
 			                          cTitle && *cTitle != '\0' ? cTitle :
 			                          NULL);  // don't use cId as a fallback, because it often has cryptic names (nm-applet ; dropbox-xxxx). If the appli doesn't provide a title, it's its fault.
-		cd_status_notifier_add_item_in_list (pItem);
 	}
 	
 	if (myConfig.bCompactMode)

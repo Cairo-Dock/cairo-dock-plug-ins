@@ -655,7 +655,10 @@ CDStatusNotifierItem *cd_satus_notifier_create_item (const gchar *cService, cons
 		cd_satus_notifier_add_theme_path (pItem->cIconThemePath);
 	}
 	
-	// build the dbusmenu right now, so that the menu is complete when the user first click on the item (otherwise, the menu is not placed correctly).
+	// add it in the list already (must be done before we build its dbusmenu, otherwise the applet's icon might be hidden if it's the first item (=> not in its container), which prevents from initializing the menu correctly
+	cd_status_notifier_add_item_in_list (pItem);
+	
+	// build the dbusmenu right now, so that the menu is complete when the user first clicks on the item (otherwise, the menu is not placed correctly).
 	cd_satus_notifier_build_item_dbusmenu (pItem);
 	
 	//\_________________ track any changes in the item.
