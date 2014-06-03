@@ -19,12 +19,13 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <glib/gi18n.h>
-#include <X11/Xlib.h>
+#ifdef HAVE_X11
 #ifdef HAVE_XRANDR
+#include <X11/Xlib.h>
 #include <X11/extensions/Xrandr.h>
-#endif
 #include <gdk/gdkx.h>
+#endif
+#endif
 
 #include "applet-struct.h"
 #include "applet-notifications.h"
@@ -135,8 +136,9 @@ CD_APPLET_ON_CLICK_END
 
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
+#ifdef HAVE_X11
 #ifdef HAVE_XRANDR
-static void _on_select_resolution (GtkMenuItem *menu_item, gpointer data)
+static void _on_select_resolution (GtkMenuItem *menu_item, gpointer data)  /// TODO: put that in the core...
 {
 	CD_APPLET_ENTER;
 	int 				    iNumRes = GPOINTER_TO_INT (data);
@@ -163,6 +165,7 @@ static void _on_select_resolution (GtkMenuItem *menu_item, gpointer data)
 	// restore original conf :  XRRSetScreenConfigAndRate(dpy, conf, root, original_size_id, original_rotation, original_rate, CurrentTime);
 	CD_APPLET_LEAVE();
 }
+#endif
 #endif
 static void _show_desktop (GtkMenuItem *menu_item, gpointer data)
 {
@@ -209,6 +212,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	}  // on ne met pas les actions sur les desklets, surement assez peu utilisees.
 	
 	// Main Menu
+	#ifdef HAVE_X11
 	#ifdef HAVE_XRANDR
 	if (cairo_dock_check_xrandr (1, 1))
 	{
@@ -255,6 +259,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	}
 	else
 		cd_warning ("Xrandr extension not available.");
+	#endif
 	#endif
 CD_APPLET_ON_BUILD_MENU_END
 
