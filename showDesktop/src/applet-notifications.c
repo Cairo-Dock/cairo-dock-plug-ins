@@ -19,6 +19,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <cairo-dock.h>  // include before to have 'HAVE_X11'
 #ifdef HAVE_X11
 #ifdef HAVE_XRANDR
 #include <X11/Xlib.h>
