@@ -541,31 +541,43 @@ static gboolean on_key_press_term (GtkWidget *pWidget,
 	gboolean bIntercept = FALSE;
 	if (pKey->type == GDK_KEY_PRESS && (pKey->state & GDK_CONTROL_MASK))
 	{
+		bIntercept = TRUE;
 		switch (pKey->keyval)
 		{
-			case GDK_t :
+			case GLDI_KEY(t) :
+			case GLDI_KEY(T) : // with Shift -> Gnome-Terminal
 				terminal_new_tab();
-				bIntercept = TRUE;
 			break ;
-			case GDK_w :
+			case GLDI_KEY(w) :
+			case GLDI_KEY(W) : // with Shift
 				terminal_close_tab (NULL);
-				bIntercept = TRUE;
 			break ;
-			case GDK_Page_Down :
+			case GLDI_KEY(C) :
+				if (pKey->state & GDK_SHIFT_MASK)
+					_terminal_copy (NULL, pWidget);
+				else
+					bIntercept = FALSE;
+			break ;
+			case GLDI_KEY(V) :
+				if (pKey->state & GDK_SHIFT_MASK)
+					_terminal_paste (NULL, pWidget);
+				else
+					bIntercept = FALSE;
+			break ;
+			case GLDI_KEY(Page_Down) :
 				if (pKey->state & GDK_SHIFT_MASK)
 					_terminal_move_tab (+1);
 				else
 					_terminal_switch_tab (+1);
-				bIntercept = TRUE;
 			break ;
-			case GDK_Page_Up :
+			case GLDI_KEY(Page_Up) :
 				if (pKey->state & GDK_SHIFT_MASK)
 					_terminal_move_tab (-1);
 				else
 					_terminal_switch_tab (-1);
-				bIntercept = TRUE;
 			break ;
 			default :
+				bIntercept = FALSE;
 			break ;
 		}
 	}
