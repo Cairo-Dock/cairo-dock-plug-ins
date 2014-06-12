@@ -82,6 +82,8 @@ CD_APPLET_STOP_BEGIN
 		(GldiNotificationFunc) on_show_desktop, myApplet);
 	
 	gldi_object_unref (GLDI_OBJECT(myData.cKeyBinding));
+	if (myData.pLastActiveWindow)
+		gldi_object_unref (GLDI_OBJECT(myData.pLastActiveWindow));
 CD_APPLET_STOP_END
 
 

@@ -157,7 +157,7 @@ gboolean cd_xkbd_render_step_opengl (Icon *pIcon, GldiModuleInstance *myApplet)
 	int iWidth, iHeight;
 	CD_APPLET_GET_MY_ICON_EXTENT (&iWidth, &iHeight);
 	
-	cairo_dock_set_perspective_view_for_icon (myIcon, myContainer);
+	gldi_gl_container_set_perspective_view_for_icon (myIcon);
 	glScalef (1., -1., 1.);
 	
 	_cairo_dock_enable_texture ();
@@ -212,7 +212,7 @@ gboolean cd_xkbd_render_step_opengl (Icon *pIcon, GldiModuleInstance *myApplet)
 	
 	if (myDock)
 	{
-		cairo_dock_set_ortho_view (myContainer);
+		gldi_gl_container_set_ortho_view (myContainer);
 	}
 	
 	CD_APPLET_LEAVE (TRUE);

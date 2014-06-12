@@ -404,7 +404,7 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 		_cairo_dock_set_blend_alpha ();
 		_cairo_dock_set_alpha (fAlpha);
 		
-		cairo_dock_set_perspective_view (CAIRO_CONTAINER (pMainDock));
+		gldi_gl_container_set_perspective_view (CAIRO_CONTAINER (pMainDock));
 		if (pMainDock->container.bIsHorizontal)
 		{
 			glTranslatef (-pMainDock->container.iWidth/2, -pMainDock->container.iHeight/2, 0.);
@@ -494,7 +494,7 @@ void cd_do_render_opengl (CairoDock *pMainDock)
 			
 			glPopMatrix();
 		}
-		cairo_dock_set_ortho_view (CAIRO_CONTAINER (pMainDock));
+		gldi_gl_container_set_ortho_view (CAIRO_CONTAINER (pMainDock));
 		if (pMainDock->container.bIsHorizontal)
 		{
 			glTranslatef (-pMainDock->container.iWidth/2, -pMainDock->container.iHeight/2, 0.);

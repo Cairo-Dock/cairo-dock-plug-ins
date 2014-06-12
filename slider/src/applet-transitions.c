@@ -404,7 +404,7 @@ gboolean cd_slider_diaporama (GldiModuleInstance *myApplet) {
 	{
 		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN (FALSE);
 		
-		cairo_dock_set_perspective_view_for_icon (myIcon, myContainer);
+		gldi_gl_container_set_perspective_view_for_icon (myIcon);
 		glScalef (1., -1., 1.);
 		
 		if (myData.iPrevTexture != 0 && myData.fAnimAlpha < a)
@@ -449,7 +449,7 @@ gboolean cd_slider_diaporama (GldiModuleInstance *myApplet) {
 		CD_APPLET_FINISH_DRAWING_MY_ICON;
 		
 		if (myDock)
-			cairo_dock_set_ortho_view (myContainer);
+			gldi_gl_container_set_ortho_view (myContainer);
 	}
 	else
 	{
@@ -585,7 +585,7 @@ gboolean cd_slider_cube (GldiModuleInstance *myApplet) {
 	{
 		CD_APPLET_START_DRAWING_MY_ICON_OR_RETURN (FALSE);
 		
-		cairo_dock_set_perspective_view_for_icon (myIcon, myContainer);
+		gldi_gl_container_set_perspective_view_for_icon (myIcon);
 		glScalef (1., -1., 1.);
 		
 		double fTheta = - 45. + myData.fAnimAlpha * 90.;  // -45 -> 45
@@ -637,7 +637,7 @@ gboolean cd_slider_cube (GldiModuleInstance *myApplet) {
 		CD_APPLET_FINISH_DRAWING_MY_ICON;
 		
 		if (myDock)
-			cairo_dock_set_ortho_view (myContainer);
+			gldi_gl_container_set_ortho_view (myContainer);
 	}
 	else
 	{
