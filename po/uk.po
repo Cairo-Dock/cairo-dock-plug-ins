@@ -301,9 +301,9 @@ msgstr "Налаштувати віконний менеджер"
 #: ../quick-browser/src/applet-notifications.c:41
 #: ../shortcuts/src/applet-notifications.c:321
 #: ../shortcuts/src/applet-notifications.c:366
-#: ../showDesktop/src/applet-notifications.c:171
-#: ../showDesktop/src/applet-notifications.c:183
-#: ../showDesktop/src/applet-notifications.c:195
+#: ../showDesktop/src/applet-notifications.c:181
+#: ../showDesktop/src/applet-notifications.c:193
+#: ../showDesktop/src/applet-notifications.c:205
 #: ../slider/src/applet-notifications.c:228
 #: ../slider/src/applet-notifications.c:270
 #: ../stack/src/applet-notifications.c:214
@@ -322,31 +322,31 @@ msgid "Reload Window-Manager"
 msgstr "Перезапустити Менеджер вікон"
 
 #: ../Composite-Manager/src/applet-notifications.c:136
-#: ../showDesktop/src/applet-notifications.c:171
-#: ../showDesktop/src/applet-notifications.c:173
+#: ../showDesktop/src/applet-notifications.c:181
+#: ../showDesktop/src/applet-notifications.c:183
 #: ../Composite-Manager/data/messages:129 ../showDesktop/data/messages:99
-#: ../showDesktop/data/messages:113 ../switcher/data/messages:135
+#: ../showDesktop/data/messages:113 ../switcher/data/messages:137
 msgid "Show desktop"
 msgstr "Показати стільницю"
 
 #: ../Composite-Manager/src/applet-notifications.c:145
-#: ../showDesktop/src/applet-notifications.c:183
-#: ../showDesktop/src/applet-notifications.c:185
+#: ../showDesktop/src/applet-notifications.c:193
+#: ../showDesktop/src/applet-notifications.c:195
 #: ../switcher/src/applet-notifications.c:317
 #: ../Composite-Manager/data/messages:131 ../showDesktop/data/messages:107
-#: ../showDesktop/data/messages:121 ../switcher/data/messages:137
+#: ../showDesktop/data/messages:121 ../switcher/data/messages:139
 msgid "Expose all the desktops"
 msgstr "Показати всі стільниці"
 
 #: ../Composite-Manager/src/applet-notifications.c:154
 #: ../switcher/src/applet-notifications.c:326
-#: ../Composite-Manager/data/messages:133 ../switcher/data/messages:139
+#: ../Composite-Manager/data/messages:133 ../switcher/data/messages:141
 msgid "Expose all the windows"
 msgstr "Показати всі вікна"
 
 #: ../Composite-Manager/src/applet-notifications.c:163
-#: ../showDesktop/src/applet-notifications.c:195
-#: ../showDesktop/src/applet-notifications.c:197
+#: ../showDesktop/src/applet-notifications.c:205
+#: ../showDesktop/src/applet-notifications.c:207
 #: ../Composite-Manager/data/messages:135 ../showDesktop/data/messages:105
 #: ../showDesktop/data/messages:119
 msgid "Show the Widget Layer"
@@ -706,7 +706,7 @@ msgstr "Перемістити цей файл"
 #: ../Folders/src/applet-notifications.c:409
 #: ../Recent-Events/src/applet-dialog.c:296
 #: ../Screenshot/src/applet-screenshot.c:310
-#: ../quick-browser/src/applet-menu.c:313
+#: ../quick-browser/src/applet-menu.c:316
 #: ../slider/src/applet-notifications.c:238
 msgid "Open with"
 msgstr "Відкрити за допомогою"
@@ -1169,14 +1169,14 @@ msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:320
 #: ../Screenshot/src/applet-screenshot.c:319
-#: ../quick-browser/src/applet-menu.c:343
+#: ../quick-browser/src/applet-menu.c:346
 #: ../stack/src/applet-notifications.c:212
 msgid "Open parent folder"
 msgstr "Відкрити батьківську теку"
 
 #: ../Recent-Events/src/applet-dialog.c:322
 #: ../Screenshot/src/applet-screenshot.c:281
-#: ../quick-browser/src/applet-menu.c:345
+#: ../quick-browser/src/applet-menu.c:348
 msgid "Copy the location"
 msgstr "Копіювати шлях"
 
@@ -1193,11 +1193,12 @@ msgid "Applications"
 msgstr "Додатки"
 
 #: ../Recent-Events/src/applet-dialog.c:411
-msgid "Document"
+#, fuzzy
+msgid "Documents"
 msgstr "Документ"
 
-#: ../Recent-Events/src/applet-dialog.c:413 ../logout/data/messages:117
-msgid "Image"
+#: ../Recent-Events/src/applet-dialog.c:413 ../drop-indicator/data/messages:3
+msgid "Images"
 msgstr "Зображення"
 
 #: ../Recent-Events/src/applet-dialog.c:414
@@ -1205,7 +1206,8 @@ msgid "Audio"
 msgstr "Звук"
 
 #: ../Recent-Events/src/applet-dialog.c:415
-msgid "Video"
+#, fuzzy
+msgid "Videos"
 msgstr "Відео"
 
 #: ../Recent-Events/src/applet-dialog.c:416
@@ -1213,7 +1215,8 @@ msgid "Web"
 msgstr "Веб"
 
 #: ../Recent-Events/src/applet-dialog.c:417
-msgid "Other"
+#, fuzzy
+msgid "Others"
 msgstr "Інше"
 
 #: ../Recent-Events/src/applet-dialog.c:418
@@ -1825,8 +1828,8 @@ msgstr "Вимкнути звук"
 #: ../clock/src/applet-calendar.c:527 ../clock/src/applet-calendar.c:532
 #: ../clock/src/applet-calendar.c:574 ../clock/src/applet-task-editor.c:120
 #: ../clock/src/applet-timer.c:92 ../clock/src/applet-timer.c:180
-#: ../clock/src/applet-timer.c:454 ../clock/src/applet-timer.c:468
-#: ../clock/src/applet-timer.c:497 ../tomboy/src/applet-backend-default.c:161
+#: ../clock/src/applet-timer.c:455 ../clock/src/applet-timer.c:469
+#: ../clock/src/applet-timer.c:498 ../tomboy/src/applet-backend-default.c:161
 #: ../tomboy/src/applet-notes.c:98 ../tomboy/src/applet-notes.c:101
 #: ../tomboy/src/applet-notes.c:406
 msgid "No title"
@@ -1932,7 +1935,7 @@ msgstr "Команда для запуску:"
 msgid "E.g.:"
 msgstr "Наприклад:"
 
-#: ../clock/src/applet-config.c:493 ../weather/src/applet-config.c:213
+#: ../clock/src/applet-config.c:490 ../weather/src/applet-config.c:213
 msgid "Search for your location :"
 msgstr "Пошук місцязнаходження:"
 
@@ -2061,8 +2064,8 @@ msgstr "1г"
 msgid "The following task was scheduled at"
 msgstr "Наступна подія запланована на"
 
-#: ../clock/src/applet-timer.c:94 ../clock/src/applet-timer.c:456
-#: ../clock/src/applet-timer.c:499
+#: ../clock/src/applet-timer.c:94 ../clock/src/applet-timer.c:457
+#: ../clock/src/applet-timer.c:500
 msgid "Repeat this message every:"
 msgstr "Повторювати подію кожні:"
 
@@ -2070,19 +2073,19 @@ msgstr "Повторювати подію кожні:"
 msgid "The following task has felt due:"
 msgstr "Наступне завдання в очікуванні:"
 
-#: ../clock/src/applet-timer.c:453
+#: ../clock/src/applet-timer.c:454
 msgid "It's time for the following task:"
 msgstr "Підійшов час для таких подій:"
 
-#: ../clock/src/applet-timer.c:467
+#: ../clock/src/applet-timer.c:468
 msgid "This task will begin in 15 minutes:"
 msgstr "Ця подія почнеться через 15 хвилин:"
 
-#: ../clock/src/applet-timer.c:496
+#: ../clock/src/applet-timer.c:497
 msgid "Today is the following anniversary:"
 msgstr "Сьогодні такі свята:"
 
-#: ../clock/src/applet-timer.c:496
+#: ../clock/src/applet-timer.c:497
 msgid "Tomorrow is the following anniversary:"
 msgstr "Завтра наступає річниця:"
 
@@ -2160,12 +2163,10 @@ msgstr "Підказка"
 #: ../dnd2share/src/applet-backend-dropbox.c:33
 #: ../dnd2share/src/applet-backend-free.c:33
 #: ../dnd2share/src/applet-backend-imagebin.c:32
-#: ../dnd2share/src/applet-backend-imageshack.c:31
 #: ../dnd2share/src/applet-backend-imgur.c:33
 #: ../dnd2share/src/applet-backend-paste-ubuntu.c:35
 #: ../dnd2share/src/applet-backend-pastebin-mozilla.c:36
 #: ../dnd2share/src/applet-backend-pastebin.c:38
-#: ../dnd2share/src/applet-backend-ubuntuone.c:32
 #: ../dnd2share/src/applet-backend-uppix.c:31
 #: ../dnd2share/src/applet-backend-videobin.c:32
 msgid "Direct Link"
@@ -2180,14 +2181,8 @@ msgid "Your text is empty and couldn't be uploaded to this server"
 msgstr "Ваш запис порожній і не можу бути завантажений на цей сервер"
 
 #: ../dnd2share/src/applet-backend-dropbox.c:63
-#: ../dnd2share/src/applet-backend-ubuntuone.c:59
 msgid "This directory seems not valid:"
 msgstr "Здається ця тека не доступна:"
-
-#: ../dnd2share/src/applet-backend-imageshack.c:31
-#: ../dnd2share/src/applet-backend-uppix.c:31
-msgid "Thumbnail"
-msgstr "Мініатюри"
 
 #: ../dnd2share/src/applet-backend-imgur.c:33
 msgid "Display Image"
@@ -2201,6 +2196,10 @@ msgstr "Велика"
 #: ../dock-rendering/data/messages:41
 msgid "Small"
 msgstr "Малий"
+
+#: ../dnd2share/src/applet-backend-uppix.c:31
+msgid "Thumbnail"
+msgstr "Мініатюри"
 
 #: ../dnd2share/src/applet-dnd2share.c:44
 msgid "No text"
@@ -2255,7 +2254,7 @@ msgstr ""
 "Переконайтеся, що підключення до інтернету активне і '%s' правильно "
 "налаштований і працює."
 
-#: ../dnd2share/src/applet-init.c:46
+#: ../dnd2share/src/applet-init.c:44
 msgid ""
 "This applet lets you share files easily:\n"
 "Drag-and-drop a file on the icon to upload it to one of the available "
@@ -2286,7 +2285,7 @@ msgstr ""
 "до виділення мишою.\n"
 "Для закачування файлів, вам потрібно встановити 'curl' та 'wget'."
 
-#: ../dnd2share/src/applet-init.c:56
+#: ../dnd2share/src/applet-init.c:54
 msgid "Drop to share"
 msgstr "Файлообмінник"
 
@@ -2389,12 +2388,12 @@ msgid "3D plane"
 msgstr "3D проекція"
 
 #: ../dock-rendering/src/rendering-init.c:36
-#: ../dock-rendering/data/messages:87
+#: ../dock-rendering/data/messages:91
 msgid "Parabolic"
 msgstr "Парабола"
 
 #: ../dock-rendering/src/rendering-init.c:37
-#: ../dock-rendering/data/messages:111
+#: ../dock-rendering/data/messages:115
 msgid "Rainbow"
 msgstr "Веселка"
 
@@ -2624,8 +2623,6 @@ msgid "Restart"
 msgstr "Перезавантажити"
 
 #: ../logout/src/applet-logout.c:287
-#: ../powermanager/src/powermanager-menu-functions.c:96
-#: ../powermanager/src/powermanager-menu-functions.c:104
 msgid "Hibernate"
 msgstr "Режим сну"
 
@@ -2647,8 +2644,6 @@ msgstr ""
 "електроенергію."
 
 #: ../logout/src/applet-logout.c:300
-#: ../powermanager/src/powermanager-menu-functions.c:99
-#: ../powermanager/src/powermanager-menu-functions.c:106
 msgid "Suspend"
 msgstr "Режим очікування"
 
@@ -3483,7 +3478,7 @@ msgstr ""
 "Середнє клацання для показу стільниці, десклетів, Шару Віджетів або "
 "одночасно всіх стільниць."
 
-#: ../showDesktop/src/applet-notifications.c:209
+#: ../showDesktop/src/applet-notifications.c:220
 msgid "Change screen resolution"
 msgstr "Зміна розмірів екрану"
 
@@ -3603,13 +3598,13 @@ msgstr "Файл додано в стек"
 msgid "The URL has been added to the stack."
 msgstr "URL додано в стек"
 
-#: ../switcher/src/applet-draw.c:580 ../switcher/src/applet-draw.c:587
+#: ../switcher/src/applet-draw.c:600 ../switcher/src/applet-draw.c:607
 #: ../switcher/src/applet-load-icons.c:54
 #: ../switcher/src/applet-notifications.c:411
 msgid "Current"
 msgstr "Поточний"
 
-#: ../switcher/src/applet-draw.c:587 ../switcher/src/applet-draw.c:589
+#: ../switcher/src/applet-draw.c:607 ../switcher/src/applet-draw.c:609
 #: ../switcher/src/applet-load-icons.c:60
 #: ../switcher/src/applet-notifications.c:228
 #: ../switcher/src/applet-notifications.c:247
@@ -4401,7 +4396,7 @@ msgstr "Розмір зображення"
 #: ../showDesktop/data/messages:3 ../slider/data/messages:1
 #: ../slider/data/messages:3 ../stack/data/messages:1 ../stack/data/messages:3
 #: ../switcher/data/messages:1 ../switcher/data/messages:3
-#: ../switcher/data/messages:121 ../systray/data/messages:1
+#: ../switcher/data/messages:123 ../systray/data/messages:1
 #: ../systray/data/messages:3 ../template/data/messages:1
 #: ../template/data/messages:3 ../terminal/data/messages:1
 #: ../terminal/data/messages:3 ../tomboy/data/messages:1
@@ -4585,7 +4580,7 @@ msgid "Let the penguin wander everywhere in the dock?"
 msgstr "Дозволити пінгвіну блукати по панелі?"
 
 #: ../Cairo-Penguin/data/messages:27 ../dock-rendering/data/messages:13
-#: ../dock-rendering/data/messages:103 ../show-mouse/data/messages:23
+#: ../dock-rendering/data/messages:107 ../show-mouse/data/messages:23
 msgid "in pixels."
 msgstr "в пікселях."
 
@@ -5631,7 +5626,8 @@ msgstr ""
 
 #: ../Composite-Manager/data/messages:89 ../Impulse/data/messages:117
 #: ../clock/data/messages:133 ../clock/data/messages:151
-#: ../keyboard-indicator/data/messages:115
+#: ../dock-rendering/data/messages:57 ../keyboard-indicator/data/messages:115
+#: ../switcher/data/messages:145
 msgid "Style"
 msgstr "Стиль"
 
@@ -5694,7 +5690,7 @@ msgstr "Запитати перед перемиканням:"
 
 #: ../Composite-Manager/data/messages:123 ../logout/data/messages:93
 #: ../showDesktop/data/messages:111 ../slider/data/messages:123
-#: ../switcher/data/messages:131
+#: ../switcher/data/messages:133
 msgid "Action on middle-click:"
 msgstr "Дія на середнє клацання:"
 
@@ -7329,13 +7325,16 @@ msgid "Digital View"
 msgstr "Цифровий вигляд:"
 
 #: ../clock/data/messages:153 ../clock/data/messages:171
-#: ../keyboard-indicator/data/messages:117 ../switcher/data/messages:101
+#: ../dock-rendering/data/messages:59 ../keyboard-indicator/data/messages:117
+#: ../switcher/data/messages:101 ../switcher/data/messages:115
+#: ../switcher/data/messages:147
 msgid "Automatic"
 msgstr "Автоматично"
 
 #: ../clock/data/messages:155 ../dnd2share/data/messages:127
-#: ../dnd2share/data/messages:139 ../dnd2share/data/messages:151
-#: ../dnd2share/data/messages:157 ../keyboard-indicator/data/messages:119
+#: ../dnd2share/data/messages:139 ../dnd2share/data/messages:149
+#: ../dnd2share/data/messages:155 ../dock-rendering/data/messages:61
+#: ../keyboard-indicator/data/messages:119 ../switcher/data/messages:149
 msgid "Custom"
 msgstr "Власний"
 
@@ -7494,39 +7493,31 @@ msgid "Imagebin.ca"
 msgstr "Imagebin.ca"
 
 #: ../dnd2share/data/messages:145
-msgid "ImageShack.us"
-msgstr "ImageShack.us"
-
-#: ../dnd2share/data/messages:147
 msgid "Imgur.com"
 msgstr "Imgur.com"
 
-#: ../dnd2share/data/messages:149
+#: ../dnd2share/data/messages:147
 msgid "Preferred site for videos hosting :"
 msgstr "Сайти для відео, яким надається перевага:"
 
-#: ../dnd2share/data/messages:153
+#: ../dnd2share/data/messages:151
 msgid "VideoBin.org"
 msgstr "VideoBin.org"
 
-#: ../dnd2share/data/messages:155
+#: ../dnd2share/data/messages:153
 msgid "Preferred site for files hosting :"
 msgstr "Сайти для файлів, яким надається перевага:"
 
-#: ../dnd2share/data/messages:159
+#: ../dnd2share/data/messages:157
 msgid "dl.free.fr"
 msgstr "dl.free.fr"
 
-#: ../dnd2share/data/messages:161
+#: ../dnd2share/data/messages:159
 msgid "DropBox"
 msgstr "DropBox"
 
-#: ../dnd2share/data/messages:163
-msgid "UbuntuOne"
-msgstr "UbuntuOne"
-
-#: ../dnd2share/data/messages:165 ../dnd2share/data/messages:169
-#: ../dnd2share/data/messages:173 ../dnd2share/data/messages:177
+#: ../dnd2share/data/messages:161 ../dnd2share/data/messages:165
+#: ../dnd2share/data/messages:169 ../dnd2share/data/messages:173
 msgid ""
 "The script takes the file path as a parameter, and write the resulting URL "
 "on the standard output."
@@ -7534,37 +7525,37 @@ msgstr ""
 "Цей сценарій використовує шлях до файла як параметр та записує отриману "
 "адресу у стандартному вигляді."
 
-#: ../dnd2share/data/messages:167
+#: ../dnd2share/data/messages:163
 msgid "Custom script for text upload :"
 msgstr "Власний сценарій для відвантаження тексту :"
 
-#: ../dnd2share/data/messages:171
+#: ../dnd2share/data/messages:167
 msgid "Custom script for image upload :"
 msgstr "Власний сценарій для відвантаження зображення :"
 
-#: ../dnd2share/data/messages:175
+#: ../dnd2share/data/messages:171
 msgid "Custom script for video upload :"
 msgstr "Власний сценарій для відвантаження відео :"
 
-#: ../dnd2share/data/messages:179
+#: ../dnd2share/data/messages:175
 msgid "Custom script for file upload :"
 msgstr "Власний сценарій для відвантаження файла :"
 
-#: ../dnd2share/data/messages:181
+#: ../dnd2share/data/messages:177
 msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 msgstr ""
 "Залиште порожнім, якщо хочете завантажити файл у  '~/Dropbox/Public' чи '~/"
 "Ubuntu One'."
 
-#: ../dnd2share/data/messages:183
+#: ../dnd2share/data/messages:179
 msgid "Path of a custom DropBox / UbuntuOne folder :"
 msgstr "Шлях до теки користувача DropBox / UbuntuOne :"
 
-#: ../dnd2share/data/messages:185
+#: ../dnd2share/data/messages:181
 msgid "Otherwise, your user name will be used when possible."
 msgstr "Або ж якщо можливо, використовуватиметься ім’я користувача."
 
-#: ../dnd2share/data/messages:187
+#: ../dnd2share/data/messages:183
 msgid "Post text as Anonymous ?"
 msgstr "Надсилати текст анонімно?"
 
@@ -7620,7 +7611,7 @@ msgstr "Ґратка"
 msgid "Space between columns:"
 msgstr "Відстань між колонками:"
 
-#: ../dock-rendering/data/messages:35 ../dock-rendering/data/messages:113
+#: ../dock-rendering/data/messages:35 ../dock-rendering/data/messages:117
 msgid "Space between rows:"
 msgstr "Відстань між рядками:"
 
@@ -7652,126 +7643,122 @@ msgstr "Використовувати лінійну хвилю замість 
 msgid "Display text for all icons?"
 msgstr "Показувати текст для всіх іконок?"
 
-#: ../dock-rendering/data/messages:57 ../slider/data/messages:171
+#: ../dock-rendering/data/messages:63 ../slider/data/messages:171
 msgid "Frame"
 msgstr "Рамка"
 
-#: ../dock-rendering/data/messages:59
-msgid "Draw a background?"
-msgstr "Малювати тло?"
-
-#: ../dock-rendering/data/messages:61
+#: ../dock-rendering/data/messages:65
 msgid "First gradient colour :"
 msgstr "Початковий колір градації:"
 
-#: ../dock-rendering/data/messages:63
+#: ../dock-rendering/data/messages:67
 msgid "Second gradient colour :"
 msgstr "Кінцевий колір градації:"
 
-#: ../dock-rendering/data/messages:65
+#: ../dock-rendering/data/messages:69
 msgid "Top to bottom gradient?"
 msgstr "Градієнт згори до низу?"
 
-#: ../dock-rendering/data/messages:67
+#: ../dock-rendering/data/messages:71
 msgid "Left to right gradient?"
 msgstr "Градієнт зліва направо?"
 
-#: ../dock-rendering/data/messages:69
+#: ../dock-rendering/data/messages:73
 msgid "Corner radius:"
 msgstr "Радіус закруглення кутів:"
 
-#: ../dock-rendering/data/messages:71
+#: ../dock-rendering/data/messages:75
 msgid "Border line width :"
 msgstr "Ширина лінії границі:"
 
-#: ../dock-rendering/data/messages:73
+#: ../dock-rendering/data/messages:77
 msgid "Border line colour :"
 msgstr "Колір лінії границі:"
 
-#: ../dock-rendering/data/messages:75
+#: ../dock-rendering/data/messages:79
 msgid "Arrow width :"
 msgstr "Ширина стрілки:"
 
-#: ../dock-rendering/data/messages:77
+#: ../dock-rendering/data/messages:81
 msgid "Arrow height:"
 msgstr "Висота стрілки:"
 
-#: ../dock-rendering/data/messages:79
+#: ../dock-rendering/data/messages:83
 msgid "Scroll bar"
 msgstr "Смуга прокручування"
 
-#: ../dock-rendering/data/messages:81
+#: ../dock-rendering/data/messages:85
 msgid "Color of the scroll bar's outline:"
 msgstr "Колір контуру смужки прокручування:"
 
-#: ../dock-rendering/data/messages:83
+#: ../dock-rendering/data/messages:87
 msgid "Color of the scroll bar's inside:"
 msgstr "Внутрішній колір смужки прокручування:"
 
-#: ../dock-rendering/data/messages:85
+#: ../dock-rendering/data/messages:89
 msgid "Color of the scroll grip:"
 msgstr "Колір повзунка:"
 
-#: ../dock-rendering/data/messages:89
+#: ../dock-rendering/data/messages:93
 msgid "The higher this value, the sooner the parabola will be curved."
 msgstr "Чим вище значення, тим швидше парабола буде викривленою."
 
-#: ../dock-rendering/data/messages:91
+#: ../dock-rendering/data/messages:95
 msgid "Curvature:"
 msgstr "Кривизна:"
 
-#: ../dock-rendering/data/messages:93
+#: ../dock-rendering/data/messages:97
 msgid "The parabola will be restricted to a rectangle of this proportion."
 msgstr "Парабола буде скручена в квадрат з цими пропорціями."
 
-#: ../dock-rendering/data/messages:95
+#: ../dock-rendering/data/messages:99
 msgid "Height/width ratio:"
 msgstr "Відношення висоти/ширини:"
 
-#: ../dock-rendering/data/messages:97
+#: ../dock-rendering/data/messages:101
 msgid "0 represents a flat wave, 1 represents maximum wave curvature."
 msgstr ""
 "При значенні 0 швиля буде повністю пласкою, при значенні 1, вона буде "
 "максимальною."
 
-#: ../dock-rendering/data/messages:99 ../dock-rendering/data/messages:119
+#: ../dock-rendering/data/messages:103 ../dock-rendering/data/messages:123
 msgid "Magnitude of the wave:"
 msgstr "Висота хвилі:"
 
-#: ../dock-rendering/data/messages:101
+#: ../dock-rendering/data/messages:105
 msgid "Curve towards the outside?"
 msgstr "Згинати в інший бік?"
 
-#: ../dock-rendering/data/messages:105
+#: ../dock-rendering/data/messages:109
 msgid "Space between icons and their captions:"
 msgstr "Відстань між іконками та їх підписами:"
 
-#: ../dock-rendering/data/messages:107
+#: ../dock-rendering/data/messages:111
 msgid ""
 "This may recquire more CPU during the unfolding animation, except if you "
 "launch Cairo-Dock with OpenGL."
 msgstr ""
 "Потрібно більше процесорних ресурсів, якщо тільки не використовується OpenGL."
 
-#: ../dock-rendering/data/messages:109
+#: ../dock-rendering/data/messages:113
 msgid "Draw captions while unfolding?"
 msgstr "Малювати підписи під час розкриття?"
 
-#: ../dock-rendering/data/messages:115
+#: ../dock-rendering/data/messages:119
 msgid "Space between icons:"
 msgstr "Відстань між іконками:"
 
-#: ../dock-rendering/data/messages:117
+#: ../dock-rendering/data/messages:121
 msgid "0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "При значенні 0 хвиля буде повністю пласкою, при значенні 1 хвиля буде "
 "ідентична іншим видам."
 
-#: ../dock-rendering/data/messages:121
+#: ../dock-rendering/data/messages:125
 msgid "Number of icons on the first row:"
 msgstr "Кількість іконок у першому рядку:"
 
-#: ../dock-rendering/data/messages:123
+#: ../dock-rendering/data/messages:127
 msgid ""
 "in degrees. The lower the value, the narrower the cone. 180° represents a "
 "wide open cone."
@@ -7779,25 +7766,25 @@ msgstr ""
 "в градусах. Чим менше, тим вузькішим буде конус. При значенні 180° конус "
 "буде повністю відкритий."
 
-#: ../dock-rendering/data/messages:125
+#: ../dock-rendering/data/messages:129
 msgid "Cone width:"
 msgstr "Ширина конусу:"
 
-#: ../dock-rendering/data/messages:127
+#: ../dock-rendering/data/messages:131
 msgid "Set transparency to 0 to not use it. This is quite slow with cairo."
 msgstr ""
 "Встановіть прозорість в 0, щоб не використовувати її. Вона доволі повільна з "
 "cairo."
 
-#: ../dock-rendering/data/messages:129
+#: ../dock-rendering/data/messages:133
 msgid "Bow colour:"
 msgstr "Колір дуги:"
 
-#: ../dock-rendering/data/messages:131
+#: ../dock-rendering/data/messages:135
 msgid "Line colour:"
 msgstr "Колір лінії:"
 
-#: ../dock-rendering/data/messages:134
+#: ../dock-rendering/data/messages:138
 msgid ""
 "<b>A 3D plane view</b>\n"
 "This is the closest view to MacOSX's dock.\n"
@@ -7809,7 +7796,7 @@ msgstr ""
 "Ви можете вибрати для відображення роздільника у вигляді лінії\n"
 " або фізичного прорізу на площині."
 
-#: ../dock-rendering/data/messages:136
+#: ../dock-rendering/data/messages:140
 msgid ""
 "<b>A 3D caroussel view</b>\n"
 "Icons scroll with mouse position."
@@ -7817,7 +7804,7 @@ msgstr ""
 "<b>У вигляді 3D каруселі</b>\n"
 "Іконки прокручуються під курсом миші."
 
-#: ../dock-rendering/data/messages:138
+#: ../dock-rendering/data/messages:142
 msgid ""
 "<b>Curved view</b>\n"
 "Allow you to curve your dock !\n"
@@ -7829,7 +7816,7 @@ msgstr ""
 "Ви можете вибрати для відображення роздільника у вигляді лінії\n"
 " або фізичного прорізу на площині."
 
-#: ../dock-rendering/data/messages:140
+#: ../dock-rendering/data/messages:144
 msgid ""
 "<b>Slide view</b>\n"
 "A brand new view, especially designed for big subdocks."
@@ -7837,7 +7824,7 @@ msgstr ""
 "<b>У вигляді ковзанки</b>\n"
 "Новий вигляд, спеціально призначений для великих субпанелей."
 
-#: ../dock-rendering/data/messages:142
+#: ../dock-rendering/data/messages:146
 msgid ""
 "<b>Panel view</b>\n"
 "This view will display your dock like a gnome-panel or a KDE-panel.\n"
@@ -7849,7 +7836,7 @@ msgstr ""
 "Іконки при наведенні миші не масштабуються.\n"
 "Роздільники відображаються як прогалини між різними групами іконок."
 
-#: ../dock-rendering/data/messages:144
+#: ../dock-rendering/data/messages:148
 msgid ""
 "<b>A parabolic view</b>\n"
 "Perfect for medium sub-docks with 3 to 10 icons.\n"
@@ -7859,7 +7846,7 @@ msgstr ""
 "Ідеально підходить для субпанелей з 3-10 значками.\n"
 "Також по кліку активуються мітки."
 
-#: ../dock-rendering/data/messages:146
+#: ../dock-rendering/data/messages:150
 msgid ""
 "<b>Rainbow view</b>\n"
 "An original view, designed for sub-docks with few icons.\n"
@@ -7869,7 +7856,7 @@ msgstr ""
 "Оригінальний вигляд, призначений для панелей з кількома іконками.\n"
 "Іконки міток можна розміщувати горизонтально або вертикально."
 
-#: ../dock-rendering/data/messages:148
+#: ../dock-rendering/data/messages:152
 msgid ""
 "<b>Slide view</b>\n"
 "This view is specially adapted to large sub-docks.\n"
@@ -7882,10 +7869,6 @@ msgstr ""
 #: ../drop-indicator/data/messages:1
 msgid "Drag and drop indicator"
 msgstr "Індикатор перетягування"
-
-#: ../drop-indicator/data/messages:3
-msgid "Images"
-msgstr "Зображення"
 
 #: ../drop-indicator/data/messages:5
 msgid ""
@@ -8189,6 +8172,10 @@ msgstr ""
 msgid "Emblem"
 msgstr "Емблема"
 
+#: ../logout/data/messages:117
+msgid "Image"
+msgstr "Зображення"
+
 #: ../logout/data/messages:119
 msgid "Commands"
 msgstr "Команди"
@@ -8260,13 +8247,13 @@ msgid "Show '0' if there is no mail?"
 msgstr "Показувати «0», якщо немає пошти?"
 
 #: ../mail/data/messages:119 ../shortcuts/data/messages:103
-#: ../stack/data/messages:95 ../switcher/data/messages:143
+#: ../stack/data/messages:95 ../switcher/data/messages:189
 #: ../tomboy/data/messages:119 ../weather/data/messages:133
 msgid "Leave empty to use default sub-dock view."
 msgstr "Залиште порожнім, щоб використовувати стандартний вид суб-панелі."
 
 #: ../mail/data/messages:121 ../shortcuts/data/messages:105
-#: ../stack/data/messages:97 ../switcher/data/messages:145
+#: ../stack/data/messages:97 ../switcher/data/messages:191
 #: ../tomboy/data/messages:121 ../weather/data/messages:135
 msgid "Sub-dock view name:"
 msgstr "Ім'я теми для суб-панелі:"
@@ -8984,66 +8971,51 @@ msgid "Preserve the ratio of the screen?"
 msgstr "Зберегти пропорції екрану?"
 
 #: ../switcher/data/messages:107
-msgid "How to draw the icon?"
-msgstr "Як намалювати іконку?"
-
-#: ../switcher/data/messages:109
-msgid "Map wallpaper to icons"
-msgstr "Карта шпалер для іконок"
-
-#: ../switcher/data/messages:111
-msgid "Use an image for each desktop"
-msgstr "Використовувати зображення для кожної стільниці"
-
-#: ../switcher/data/messages:113
-msgid "Use a colour for each desktop"
+#, fuzzy
+msgid "Background for each desktop"
 msgstr "Використовувати колір для кожної стільниці"
 
-#: ../switcher/data/messages:115
-msgid "Icon to use in expanded mode if wallpaper is not mapped:"
+#: ../switcher/data/messages:109
+msgid "Wallpaper"
 msgstr ""
-"Значок, який використовується в розширеному режимі, якщо шпалери не "
-"використовуються:"
 
-#: ../switcher/data/messages:117 ../switcher/data/messages:153
+#: ../switcher/data/messages:111 ../switcher/data/messages:117
+#, fuzzy
+msgid "Custom image"
+msgstr "Власний"
+
+#: ../switcher/data/messages:113 ../switcher/data/messages:121
+#, fuzzy
+msgid "Custom colour"
+msgstr "Колір тексту"
+
+#: ../switcher/data/messages:119 ../switcher/data/messages:153
 #: ../switcher/data/messages:159 ../switcher/data/messages:163
 #: ../switcher/data/messages:167 ../switcher/data/messages:183
 msgid "r, g, b, a"
 msgstr "ч, з, с, а"
 
-#: ../switcher/data/messages:119 ../terminal/data/messages:103
-msgid "Background colour:"
-msgstr "Колір тла:"
-
-#: ../switcher/data/messages:123
+#: ../switcher/data/messages:125
 msgid "Show desktop number on icons?"
 msgstr "Відображати номер стільниці на іконках?"
 
-#: ../switcher/data/messages:125
+#: ../switcher/data/messages:127
 msgid "Draw windows on icons?"
 msgstr "Відображати вікна на іконці?"
 
-#: ../switcher/data/messages:127
+#: ../switcher/data/messages:129
 msgid "Draw hidden windows?"
 msgstr "Відображати сховані вікна?"
 
-#: ../switcher/data/messages:129
+#: ../switcher/data/messages:131
 msgid "Draw icons of windows?"
 msgstr "Відображати іконки вікон?"
 
-#: ../switcher/data/messages:133
+#: ../switcher/data/messages:135
 msgid "Show windows' list"
 msgstr "Показувати список вікон"
 
-#: ../switcher/data/messages:141
-msgid "Sub-Dock"
-msgstr "Суб-панель"
-
-#: ../switcher/data/messages:147
-msgid "In expanded mode, render the desklet in 3D?"
-msgstr "В розширеному режимі, відображати десклет в 3D?"
-
-#: ../switcher/data/messages:149
+#: ../switcher/data/messages:143
 msgid "Display options"
 msgstr "Параметри відображення"
 
@@ -9099,6 +9071,10 @@ msgstr "Заповнити всі вікна?"
 msgid "Colour of these windows:"
 msgstr "Колір цих вікон:"
 
+#: ../switcher/data/messages:187
+msgid "Sub-Dock"
+msgstr "Суб-панель"
+
 #: ../systray/data/messages:83
 msgid "Shortkey to toggle the systray in dock mode:"
 msgstr "Комбінація клавіш для перемикання області:"
@@ -9150,6 +9126,10 @@ msgstr "непрозорий"
 #: ../terminal/data/messages:101
 msgid "Foreground colour:"
 msgstr "Колір переднього плану:"
+
+#: ../terminal/data/messages:103
+msgid "Background colour:"
+msgstr "Колір тла:"
 
 #: ../terminal/data/messages:105
 msgid "Use a custom font?"
@@ -9425,6 +9405,32 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Альтернативна команда запуску налаштування бездротового з'єднання:"
+
+#~ msgid "ImageShack.us"
+#~ msgstr "ImageShack.us"
+
+#~ msgid "UbuntuOne"
+#~ msgstr "UbuntuOne"
+
+#~ msgid "Draw a background?"
+#~ msgstr "Малювати тло?"
+
+#~ msgid "How to draw the icon?"
+#~ msgstr "Як намалювати іконку?"
+
+#~ msgid "Map wallpaper to icons"
+#~ msgstr "Карта шпалер для іконок"
+
+#~ msgid "Use an image for each desktop"
+#~ msgstr "Використовувати зображення для кожної стільниці"
+
+#~ msgid "Icon to use in expanded mode if wallpaper is not mapped:"
+#~ msgstr ""
+#~ "Значок, який використовується в розширеному режимі, якщо шпалери не "
+#~ "використовуються:"
+
+#~ msgid "In expanded mode, render the desklet in 3D?"
+#~ msgstr "В розширеному режимі, відображати десклет в 3D?"
 
 #~ msgid "Text colour:"
 #~ msgstr "Колір тексту:"

@@ -287,9 +287,9 @@ msgstr ""
 #: ../quick-browser/src/applet-notifications.c:41
 #: ../shortcuts/src/applet-notifications.c:321
 #: ../shortcuts/src/applet-notifications.c:366
-#: ../showDesktop/src/applet-notifications.c:171
-#: ../showDesktop/src/applet-notifications.c:183
-#: ../showDesktop/src/applet-notifications.c:195
+#: ../showDesktop/src/applet-notifications.c:181
+#: ../showDesktop/src/applet-notifications.c:193
+#: ../showDesktop/src/applet-notifications.c:205
 #: ../slider/src/applet-notifications.c:228
 #: ../slider/src/applet-notifications.c:270
 #: ../stack/src/applet-notifications.c:214
@@ -308,31 +308,31 @@ msgid "Reload Window-Manager"
 msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:136
-#: ../showDesktop/src/applet-notifications.c:171
-#: ../showDesktop/src/applet-notifications.c:173
+#: ../showDesktop/src/applet-notifications.c:181
+#: ../showDesktop/src/applet-notifications.c:183
 #: ../Composite-Manager/data/messages:129 ../showDesktop/data/messages:99
-#: ../showDesktop/data/messages:113 ../switcher/data/messages:135
+#: ../showDesktop/data/messages:113 ../switcher/data/messages:137
 msgid "Show desktop"
 msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:145
-#: ../showDesktop/src/applet-notifications.c:183
-#: ../showDesktop/src/applet-notifications.c:185
+#: ../showDesktop/src/applet-notifications.c:193
+#: ../showDesktop/src/applet-notifications.c:195
 #: ../switcher/src/applet-notifications.c:317
 #: ../Composite-Manager/data/messages:131 ../showDesktop/data/messages:107
-#: ../showDesktop/data/messages:121 ../switcher/data/messages:137
+#: ../showDesktop/data/messages:121 ../switcher/data/messages:139
 msgid "Expose all the desktops"
 msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:154
 #: ../switcher/src/applet-notifications.c:326
-#: ../Composite-Manager/data/messages:133 ../switcher/data/messages:139
+#: ../Composite-Manager/data/messages:133 ../switcher/data/messages:141
 msgid "Expose all the windows"
 msgstr ""
 
 #: ../Composite-Manager/src/applet-notifications.c:163
-#: ../showDesktop/src/applet-notifications.c:195
-#: ../showDesktop/src/applet-notifications.c:197
+#: ../showDesktop/src/applet-notifications.c:205
+#: ../showDesktop/src/applet-notifications.c:207
 #: ../Composite-Manager/data/messages:135 ../showDesktop/data/messages:105
 #: ../showDesktop/data/messages:119
 msgid "Show the Widget Layer"
@@ -659,7 +659,7 @@ msgstr "Přesunout soubor"
 #: ../Folders/src/applet-notifications.c:409
 #: ../Recent-Events/src/applet-dialog.c:296
 #: ../Screenshot/src/applet-screenshot.c:310
-#: ../quick-browser/src/applet-menu.c:313
+#: ../quick-browser/src/applet-menu.c:316
 #: ../slider/src/applet-notifications.c:238
 msgid "Open with"
 msgstr "Otevřít pomocí"
@@ -1094,14 +1094,14 @@ msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:320
 #: ../Screenshot/src/applet-screenshot.c:319
-#: ../quick-browser/src/applet-menu.c:343
+#: ../quick-browser/src/applet-menu.c:346
 #: ../stack/src/applet-notifications.c:212
 msgid "Open parent folder"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:322
 #: ../Screenshot/src/applet-screenshot.c:281
-#: ../quick-browser/src/applet-menu.c:345
+#: ../quick-browser/src/applet-menu.c:348
 msgid "Copy the location"
 msgstr ""
 
@@ -1118,11 +1118,12 @@ msgid "Applications"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:411
-msgid "Document"
-msgstr ""
+#, fuzzy
+msgid "Documents"
+msgstr "Nedávné dokumenty"
 
-#: ../Recent-Events/src/applet-dialog.c:413 ../logout/data/messages:117
-msgid "Image"
+#: ../Recent-Events/src/applet-dialog.c:413 ../drop-indicator/data/messages:3
+msgid "Images"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:414
@@ -1130,16 +1131,18 @@ msgid "Audio"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:415
-msgid "Video"
-msgstr ""
+#, fuzzy
+msgid "Videos"
+msgstr "Video RAM"
 
 #: ../Recent-Events/src/applet-dialog.c:416
 msgid "Web"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:417
-msgid "Other"
-msgstr ""
+#, fuzzy
+msgid "Others"
+msgstr "počasí"
 
 #: ../Recent-Events/src/applet-dialog.c:418
 msgid "Top Results"
@@ -1716,8 +1719,8 @@ msgstr "Ztlumit"
 #: ../clock/src/applet-calendar.c:527 ../clock/src/applet-calendar.c:532
 #: ../clock/src/applet-calendar.c:574 ../clock/src/applet-task-editor.c:120
 #: ../clock/src/applet-timer.c:92 ../clock/src/applet-timer.c:180
-#: ../clock/src/applet-timer.c:454 ../clock/src/applet-timer.c:468
-#: ../clock/src/applet-timer.c:497 ../tomboy/src/applet-backend-default.c:161
+#: ../clock/src/applet-timer.c:455 ../clock/src/applet-timer.c:469
+#: ../clock/src/applet-timer.c:498 ../tomboy/src/applet-backend-default.c:161
 #: ../tomboy/src/applet-notes.c:98 ../tomboy/src/applet-notes.c:101
 #: ../tomboy/src/applet-notes.c:406
 msgid "No title"
@@ -1823,7 +1826,7 @@ msgstr "Příkaz ke spuštění:"
 msgid "E.g.:"
 msgstr "Např.:"
 
-#: ../clock/src/applet-config.c:493 ../weather/src/applet-config.c:213
+#: ../clock/src/applet-config.c:490 ../weather/src/applet-config.c:213
 msgid "Search for your location :"
 msgstr "Hledat vaše umístění:"
 
@@ -1951,8 +1954,8 @@ msgstr "1h"
 msgid "The following task was scheduled at"
 msgstr "Následující úloha byla naplánována na"
 
-#: ../clock/src/applet-timer.c:94 ../clock/src/applet-timer.c:456
-#: ../clock/src/applet-timer.c:499
+#: ../clock/src/applet-timer.c:94 ../clock/src/applet-timer.c:457
+#: ../clock/src/applet-timer.c:500
 msgid "Repeat this message every:"
 msgstr "Opakovat tuto zprávu každých:"
 
@@ -1960,19 +1963,19 @@ msgstr "Opakovat tuto zprávu každých:"
 msgid "The following task has felt due:"
 msgstr ""
 
-#: ../clock/src/applet-timer.c:453
+#: ../clock/src/applet-timer.c:454
 msgid "It's time for the following task:"
 msgstr "Je čas pro následující úkol:"
 
-#: ../clock/src/applet-timer.c:467
+#: ../clock/src/applet-timer.c:468
 msgid "This task will begin in 15 minutes:"
 msgstr "Tento úkol začne do 15 minut:"
 
-#: ../clock/src/applet-timer.c:496
+#: ../clock/src/applet-timer.c:497
 msgid "Today is the following anniversary:"
 msgstr "Dnes jsou následující výročí:"
 
-#: ../clock/src/applet-timer.c:496
+#: ../clock/src/applet-timer.c:497
 msgid "Tomorrow is the following anniversary:"
 msgstr "Zítra budou následující výročí:"
 
@@ -2050,12 +2053,10 @@ msgstr "tooltip"
 #: ../dnd2share/src/applet-backend-dropbox.c:33
 #: ../dnd2share/src/applet-backend-free.c:33
 #: ../dnd2share/src/applet-backend-imagebin.c:32
-#: ../dnd2share/src/applet-backend-imageshack.c:31
 #: ../dnd2share/src/applet-backend-imgur.c:33
 #: ../dnd2share/src/applet-backend-paste-ubuntu.c:35
 #: ../dnd2share/src/applet-backend-pastebin-mozilla.c:36
 #: ../dnd2share/src/applet-backend-pastebin.c:38
-#: ../dnd2share/src/applet-backend-ubuntuone.c:32
 #: ../dnd2share/src/applet-backend-uppix.c:31
 #: ../dnd2share/src/applet-backend-videobin.c:32
 msgid "Direct Link"
@@ -2070,13 +2071,7 @@ msgid "Your text is empty and couldn't be uploaded to this server"
 msgstr ""
 
 #: ../dnd2share/src/applet-backend-dropbox.c:63
-#: ../dnd2share/src/applet-backend-ubuntuone.c:59
 msgid "This directory seems not valid:"
-msgstr ""
-
-#: ../dnd2share/src/applet-backend-imageshack.c:31
-#: ../dnd2share/src/applet-backend-uppix.c:31
-msgid "Thumbnail"
 msgstr ""
 
 #: ../dnd2share/src/applet-backend-imgur.c:33
@@ -2090,6 +2085,10 @@ msgstr ""
 #: ../dnd2share/src/applet-backend-imgur.c:33
 #: ../dock-rendering/data/messages:41
 msgid "Small"
+msgstr ""
+
+#: ../dnd2share/src/applet-backend-uppix.c:31
+msgid "Thumbnail"
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:44
@@ -2141,7 +2140,7 @@ msgid ""
 "installed and running"
 msgstr ""
 
-#: ../dnd2share/src/applet-init.c:46
+#: ../dnd2share/src/applet-init.c:44
 msgid ""
 "This applet lets you share files easily:\n"
 "Drag-and-drop a file on the icon to upload it to one of the available "
@@ -2158,7 +2157,7 @@ msgid ""
 "You'll need to install 'curl' and 'wget' to upload the data."
 msgstr ""
 
-#: ../dnd2share/src/applet-init.c:56
+#: ../dnd2share/src/applet-init.c:54
 msgid "Drop to share"
 msgstr "Pusťte a sdílejte"
 
@@ -2261,12 +2260,12 @@ msgid "3D plane"
 msgstr "3D panel"
 
 #: ../dock-rendering/src/rendering-init.c:36
-#: ../dock-rendering/data/messages:87
+#: ../dock-rendering/data/messages:91
 msgid "Parabolic"
 msgstr "Parabola"
 
 #: ../dock-rendering/src/rendering-init.c:37
-#: ../dock-rendering/data/messages:111
+#: ../dock-rendering/data/messages:115
 msgid "Rainbow"
 msgstr "Duha"
 
@@ -2487,8 +2486,6 @@ msgid "Restart"
 msgstr ""
 
 #: ../logout/src/applet-logout.c:287
-#: ../powermanager/src/powermanager-menu-functions.c:96
-#: ../powermanager/src/powermanager-menu-functions.c:104
 msgid "Hibernate"
 msgstr "Uspat na disk"
 
@@ -2507,8 +2504,6 @@ msgid ""
 msgstr ""
 
 #: ../logout/src/applet-logout.c:300
-#: ../powermanager/src/powermanager-menu-functions.c:99
-#: ../powermanager/src/powermanager-menu-functions.c:106
 msgid "Suspend"
 msgstr "Uspat to paměti"
 
@@ -3302,7 +3297,7 @@ msgid ""
 "Layer, or all the desktops at once."
 msgstr ""
 
-#: ../showDesktop/src/applet-notifications.c:209
+#: ../showDesktop/src/applet-notifications.c:220
 msgid "Change screen resolution"
 msgstr ""
 
@@ -3410,13 +3405,13 @@ msgstr ""
 msgid "The URL has been added to the stack."
 msgstr ""
 
-#: ../switcher/src/applet-draw.c:580 ../switcher/src/applet-draw.c:587
+#: ../switcher/src/applet-draw.c:600 ../switcher/src/applet-draw.c:607
 #: ../switcher/src/applet-load-icons.c:54
 #: ../switcher/src/applet-notifications.c:411
 msgid "Current"
 msgstr "Současný"
 
-#: ../switcher/src/applet-draw.c:587 ../switcher/src/applet-draw.c:589
+#: ../switcher/src/applet-draw.c:607 ../switcher/src/applet-draw.c:609
 #: ../switcher/src/applet-load-icons.c:60
 #: ../switcher/src/applet-notifications.c:228
 #: ../switcher/src/applet-notifications.c:247
@@ -4165,7 +4160,7 @@ msgstr ""
 #: ../showDesktop/data/messages:3 ../slider/data/messages:1
 #: ../slider/data/messages:3 ../stack/data/messages:1 ../stack/data/messages:3
 #: ../switcher/data/messages:1 ../switcher/data/messages:3
-#: ../switcher/data/messages:121 ../systray/data/messages:1
+#: ../switcher/data/messages:123 ../systray/data/messages:1
 #: ../systray/data/messages:3 ../template/data/messages:1
 #: ../template/data/messages:3 ../terminal/data/messages:1
 #: ../terminal/data/messages:3 ../tomboy/data/messages:1
@@ -4349,7 +4344,7 @@ msgid "Let the penguin wander everywhere in the dock?"
 msgstr "Nechat tučňáka potulovat se kdekoliv v docku ?"
 
 #: ../Cairo-Penguin/data/messages:27 ../dock-rendering/data/messages:13
-#: ../dock-rendering/data/messages:103 ../show-mouse/data/messages:23
+#: ../dock-rendering/data/messages:107 ../show-mouse/data/messages:23
 msgid "in pixels."
 msgstr "v pixelech."
 
@@ -5385,7 +5380,8 @@ msgstr ""
 
 #: ../Composite-Manager/data/messages:89 ../Impulse/data/messages:117
 #: ../clock/data/messages:133 ../clock/data/messages:151
-#: ../keyboard-indicator/data/messages:115
+#: ../dock-rendering/data/messages:57 ../keyboard-indicator/data/messages:115
+#: ../switcher/data/messages:145
 msgid "Style"
 msgstr ""
 
@@ -5446,7 +5442,7 @@ msgstr ""
 
 #: ../Composite-Manager/data/messages:123 ../logout/data/messages:93
 #: ../showDesktop/data/messages:111 ../slider/data/messages:123
-#: ../switcher/data/messages:131
+#: ../switcher/data/messages:133
 msgid "Action on middle-click:"
 msgstr ""
 
@@ -7038,13 +7034,16 @@ msgid "Digital View"
 msgstr ""
 
 #: ../clock/data/messages:153 ../clock/data/messages:171
-#: ../keyboard-indicator/data/messages:117 ../switcher/data/messages:101
+#: ../dock-rendering/data/messages:59 ../keyboard-indicator/data/messages:117
+#: ../switcher/data/messages:101 ../switcher/data/messages:115
+#: ../switcher/data/messages:147
 msgid "Automatic"
 msgstr ""
 
 #: ../clock/data/messages:155 ../dnd2share/data/messages:127
-#: ../dnd2share/data/messages:139 ../dnd2share/data/messages:151
-#: ../dnd2share/data/messages:157 ../keyboard-indicator/data/messages:119
+#: ../dnd2share/data/messages:139 ../dnd2share/data/messages:149
+#: ../dnd2share/data/messages:155 ../dock-rendering/data/messages:61
+#: ../keyboard-indicator/data/messages:119 ../switcher/data/messages:149
 msgid "Custom"
 msgstr ""
 
@@ -7202,73 +7201,65 @@ msgid "Imagebin.ca"
 msgstr ""
 
 #: ../dnd2share/data/messages:145
-msgid "ImageShack.us"
-msgstr ""
-
-#: ../dnd2share/data/messages:147
 msgid "Imgur.com"
 msgstr ""
 
-#: ../dnd2share/data/messages:149
+#: ../dnd2share/data/messages:147
 msgid "Preferred site for videos hosting :"
 msgstr ""
 
-#: ../dnd2share/data/messages:153
+#: ../dnd2share/data/messages:151
 msgid "VideoBin.org"
 msgstr ""
 
-#: ../dnd2share/data/messages:155
+#: ../dnd2share/data/messages:153
 msgid "Preferred site for files hosting :"
 msgstr ""
 
-#: ../dnd2share/data/messages:159
+#: ../dnd2share/data/messages:157
 msgid "dl.free.fr"
 msgstr ""
 
-#: ../dnd2share/data/messages:161
+#: ../dnd2share/data/messages:159
 msgid "DropBox"
 msgstr ""
 
-#: ../dnd2share/data/messages:163
-msgid "UbuntuOne"
-msgstr ""
-
-#: ../dnd2share/data/messages:165 ../dnd2share/data/messages:169
-#: ../dnd2share/data/messages:173 ../dnd2share/data/messages:177
+#: ../dnd2share/data/messages:161 ../dnd2share/data/messages:165
+#: ../dnd2share/data/messages:169 ../dnd2share/data/messages:173
 msgid ""
 "The script takes the file path as a parameter, and write the resulting URL "
 "on the standard output."
 msgstr ""
 
-#: ../dnd2share/data/messages:167
+#: ../dnd2share/data/messages:163
 msgid "Custom script for text upload :"
 msgstr ""
 
-#: ../dnd2share/data/messages:171
+#: ../dnd2share/data/messages:167
 msgid "Custom script for image upload :"
 msgstr ""
 
-#: ../dnd2share/data/messages:175
+#: ../dnd2share/data/messages:171
 msgid "Custom script for video upload :"
 msgstr ""
 
-#: ../dnd2share/data/messages:179
+#: ../dnd2share/data/messages:175
 msgid "Custom script for file upload :"
 msgstr ""
 
-#: ../dnd2share/data/messages:181
+#: ../dnd2share/data/messages:177
 msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 msgstr ""
 
-#: ../dnd2share/data/messages:183
+#: ../dnd2share/data/messages:179
 msgid "Path of a custom DropBox / UbuntuOne folder :"
 msgstr ""
 
-#: ../dnd2share/data/messages:185
+#: ../dnd2share/data/messages:181
 msgid "Otherwise, your user name will be used when possible."
 msgstr ""
 
-#: ../dnd2share/data/messages:187
+#: ../dnd2share/data/messages:183
 msgid "Post text as Anonymous ?"
 msgstr ""
 
@@ -7324,7 +7315,7 @@ msgstr ""
 msgid "Space between columns:"
 msgstr ""
 
-#: ../dock-rendering/data/messages:35 ../dock-rendering/data/messages:113
+#: ../dock-rendering/data/messages:35 ../dock-rendering/data/messages:117
 msgid "Space between rows:"
 msgstr ""
 
@@ -7356,143 +7347,139 @@ msgstr ""
 msgid "Display text for all icons?"
 msgstr ""
 
-#: ../dock-rendering/data/messages:57 ../slider/data/messages:171
+#: ../dock-rendering/data/messages:63 ../slider/data/messages:171
 msgid "Frame"
 msgstr ""
 
-#: ../dock-rendering/data/messages:59
-msgid "Draw a background?"
-msgstr ""
-
-#: ../dock-rendering/data/messages:61
+#: ../dock-rendering/data/messages:65
 msgid "First gradient colour :"
 msgstr ""
 
-#: ../dock-rendering/data/messages:63
+#: ../dock-rendering/data/messages:67
 msgid "Second gradient colour :"
 msgstr ""
 
-#: ../dock-rendering/data/messages:65
+#: ../dock-rendering/data/messages:69
 msgid "Top to bottom gradient?"
 msgstr ""
 
-#: ../dock-rendering/data/messages:67
+#: ../dock-rendering/data/messages:71
 msgid "Left to right gradient?"
 msgstr ""
 
-#: ../dock-rendering/data/messages:69
+#: ../dock-rendering/data/messages:73
 msgid "Corner radius:"
 msgstr ""
 
-#: ../dock-rendering/data/messages:71
+#: ../dock-rendering/data/messages:75
 msgid "Border line width :"
 msgstr ""
 
-#: ../dock-rendering/data/messages:73
+#: ../dock-rendering/data/messages:77
 msgid "Border line colour :"
 msgstr ""
 
-#: ../dock-rendering/data/messages:75
+#: ../dock-rendering/data/messages:79
 msgid "Arrow width :"
 msgstr ""
 
-#: ../dock-rendering/data/messages:77
+#: ../dock-rendering/data/messages:81
 msgid "Arrow height:"
 msgstr ""
 
-#: ../dock-rendering/data/messages:79
+#: ../dock-rendering/data/messages:83
 msgid "Scroll bar"
 msgstr ""
 
-#: ../dock-rendering/data/messages:81
+#: ../dock-rendering/data/messages:85
 msgid "Color of the scroll bar's outline:"
 msgstr ""
 
-#: ../dock-rendering/data/messages:83
+#: ../dock-rendering/data/messages:87
 msgid "Color of the scroll bar's inside:"
 msgstr ""
 
-#: ../dock-rendering/data/messages:85
+#: ../dock-rendering/data/messages:89
 msgid "Color of the scroll grip:"
 msgstr ""
 
-#: ../dock-rendering/data/messages:89
+#: ../dock-rendering/data/messages:93
 msgid "The higher this value, the sooner the parabola will be curved."
 msgstr ""
 
-#: ../dock-rendering/data/messages:91
+#: ../dock-rendering/data/messages:95
 msgid "Curvature:"
 msgstr ""
 
-#: ../dock-rendering/data/messages:93
+#: ../dock-rendering/data/messages:97
 msgid "The parabola will be restricted to a rectangle of this proportion."
 msgstr ""
 
-#: ../dock-rendering/data/messages:95
+#: ../dock-rendering/data/messages:99
 msgid "Height/width ratio:"
 msgstr ""
 
-#: ../dock-rendering/data/messages:97
+#: ../dock-rendering/data/messages:101
 msgid "0 represents a flat wave, 1 represents maximum wave curvature."
 msgstr ""
 
-#: ../dock-rendering/data/messages:99 ../dock-rendering/data/messages:119
+#: ../dock-rendering/data/messages:103 ../dock-rendering/data/messages:123
 msgid "Magnitude of the wave:"
 msgstr ""
 
-#: ../dock-rendering/data/messages:101
+#: ../dock-rendering/data/messages:105
 msgid "Curve towards the outside?"
 msgstr ""
 
-#: ../dock-rendering/data/messages:105
+#: ../dock-rendering/data/messages:109
 msgid "Space between icons and their captions:"
 msgstr ""
 
-#: ../dock-rendering/data/messages:107
+#: ../dock-rendering/data/messages:111
 msgid ""
 "This may recquire more CPU during the unfolding animation, except if you "
 "launch Cairo-Dock with OpenGL."
 msgstr ""
 
-#: ../dock-rendering/data/messages:109
+#: ../dock-rendering/data/messages:113
 msgid "Draw captions while unfolding?"
 msgstr ""
 
-#: ../dock-rendering/data/messages:115
+#: ../dock-rendering/data/messages:119
 msgid "Space between icons:"
 msgstr ""
 
-#: ../dock-rendering/data/messages:117
+#: ../dock-rendering/data/messages:121
 msgid "0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
-#: ../dock-rendering/data/messages:121
+#: ../dock-rendering/data/messages:125
 msgid "Number of icons on the first row:"
 msgstr ""
 
-#: ../dock-rendering/data/messages:123
+#: ../dock-rendering/data/messages:127
 msgid ""
 "in degrees. The lower the value, the narrower the cone. 180° represents a "
 "wide open cone."
 msgstr ""
 
-#: ../dock-rendering/data/messages:125
+#: ../dock-rendering/data/messages:129
 msgid "Cone width:"
 msgstr ""
 
-#: ../dock-rendering/data/messages:127
+#: ../dock-rendering/data/messages:131
 msgid "Set transparency to 0 to not use it. This is quite slow with cairo."
 msgstr ""
 
-#: ../dock-rendering/data/messages:129
+#: ../dock-rendering/data/messages:133
 msgid "Bow colour:"
 msgstr ""
 
-#: ../dock-rendering/data/messages:131
+#: ../dock-rendering/data/messages:135
 msgid "Line colour:"
 msgstr ""
 
-#: ../dock-rendering/data/messages:134
+#: ../dock-rendering/data/messages:138
 msgid ""
 "<b>A 3D plane view</b>\n"
 "This is the closest view to MacOSX's dock.\n"
@@ -7500,13 +7487,13 @@ msgid ""
 " or a physical hole on the plane."
 msgstr ""
 
-#: ../dock-rendering/data/messages:136
+#: ../dock-rendering/data/messages:140
 msgid ""
 "<b>A 3D caroussel view</b>\n"
 "Icons scroll with mouse position."
 msgstr ""
 
-#: ../dock-rendering/data/messages:138
+#: ../dock-rendering/data/messages:142
 msgid ""
 "<b>Curved view</b>\n"
 "Allow you to curve your dock !\n"
@@ -7514,13 +7501,13 @@ msgid ""
 " or a physical hole on the plane."
 msgstr ""
 
-#: ../dock-rendering/data/messages:140
+#: ../dock-rendering/data/messages:144
 msgid ""
 "<b>Slide view</b>\n"
 "A brand new view, especially designed for big subdocks."
 msgstr ""
 
-#: ../dock-rendering/data/messages:142
+#: ../dock-rendering/data/messages:146
 msgid ""
 "<b>Panel view</b>\n"
 "This view will display your dock like a gnome-panel or a KDE-panel.\n"
@@ -7528,21 +7515,21 @@ msgid ""
 "Separators are rendered as spaces between the different groups of icons."
 msgstr ""
 
-#: ../dock-rendering/data/messages:144
+#: ../dock-rendering/data/messages:148
 msgid ""
 "<b>A parabolic view</b>\n"
 "Perfect for medium sub-docks with 3 to 10 icons.\n"
 "Labels are also clickable."
 msgstr ""
 
-#: ../dock-rendering/data/messages:146
+#: ../dock-rendering/data/messages:150
 msgid ""
 "<b>Rainbow view</b>\n"
 "An original view, designed for sub-docks with few icons.\n"
 "Icons' labels can be displayed horizontally or not."
 msgstr ""
 
-#: ../dock-rendering/data/messages:148
+#: ../dock-rendering/data/messages:152
 msgid ""
 "<b>Slide view</b>\n"
 "This view is specially adapted to large sub-docks.\n"
@@ -7551,10 +7538,6 @@ msgstr ""
 
 #: ../drop-indicator/data/messages:1
 msgid "Drag and drop indicator"
-msgstr ""
-
-#: ../drop-indicator/data/messages:3
-msgid "Images"
 msgstr ""
 
 #: ../drop-indicator/data/messages:5
@@ -7851,6 +7834,10 @@ msgstr ""
 msgid "Emblem"
 msgstr ""
 
+#: ../logout/data/messages:117
+msgid "Image"
+msgstr ""
+
 #: ../logout/data/messages:119
 msgid "Commands"
 msgstr ""
@@ -7909,13 +7896,13 @@ msgid "Show '0' if there is no mail?"
 msgstr ""
 
 #: ../mail/data/messages:119 ../shortcuts/data/messages:103
-#: ../stack/data/messages:95 ../switcher/data/messages:143
+#: ../stack/data/messages:95 ../switcher/data/messages:189
 #: ../tomboy/data/messages:119 ../weather/data/messages:133
 msgid "Leave empty to use default sub-dock view."
 msgstr ""
 
 #: ../mail/data/messages:121 ../shortcuts/data/messages:105
-#: ../stack/data/messages:97 ../switcher/data/messages:145
+#: ../stack/data/messages:97 ../switcher/data/messages:191
 #: ../tomboy/data/messages:121 ../weather/data/messages:135
 msgid "Sub-dock view name:"
 msgstr ""
@@ -8621,64 +8608,49 @@ msgid "Preserve the ratio of the screen?"
 msgstr ""
 
 #: ../switcher/data/messages:107
-msgid "How to draw the icon?"
+msgid "Background for each desktop"
 msgstr ""
 
 #: ../switcher/data/messages:109
-msgid "Map wallpaper to icons"
+msgid "Wallpaper"
 msgstr ""
 
-#: ../switcher/data/messages:111
-msgid "Use an image for each desktop"
+#: ../switcher/data/messages:111 ../switcher/data/messages:117
+msgid "Custom image"
 msgstr ""
 
-#: ../switcher/data/messages:113
-msgid "Use a colour for each desktop"
-msgstr ""
+#: ../switcher/data/messages:113 ../switcher/data/messages:121
+#, fuzzy
+msgid "Custom colour"
+msgstr "Náhodné barvy ?"
 
-#: ../switcher/data/messages:115
-msgid "Icon to use in expanded mode if wallpaper is not mapped:"
-msgstr ""
-
-#: ../switcher/data/messages:117 ../switcher/data/messages:153
+#: ../switcher/data/messages:119 ../switcher/data/messages:153
 #: ../switcher/data/messages:159 ../switcher/data/messages:163
 #: ../switcher/data/messages:167 ../switcher/data/messages:183
 msgid "r, g, b, a"
 msgstr ""
 
-#: ../switcher/data/messages:119 ../terminal/data/messages:103
-msgid "Background colour:"
-msgstr ""
-
-#: ../switcher/data/messages:123
+#: ../switcher/data/messages:125
 msgid "Show desktop number on icons?"
 msgstr ""
 
-#: ../switcher/data/messages:125
+#: ../switcher/data/messages:127
 msgid "Draw windows on icons?"
 msgstr ""
 
-#: ../switcher/data/messages:127
+#: ../switcher/data/messages:129
 msgid "Draw hidden windows?"
 msgstr ""
 
-#: ../switcher/data/messages:129
+#: ../switcher/data/messages:131
 msgid "Draw icons of windows?"
 msgstr ""
 
-#: ../switcher/data/messages:133
+#: ../switcher/data/messages:135
 msgid "Show windows' list"
 msgstr ""
 
-#: ../switcher/data/messages:141
-msgid "Sub-Dock"
-msgstr ""
-
-#: ../switcher/data/messages:147
-msgid "In expanded mode, render the desklet in 3D?"
-msgstr ""
-
-#: ../switcher/data/messages:149
+#: ../switcher/data/messages:143
 msgid "Display options"
 msgstr ""
 
@@ -8734,6 +8706,10 @@ msgstr ""
 msgid "Colour of these windows:"
 msgstr ""
 
+#: ../switcher/data/messages:187
+msgid "Sub-Dock"
+msgstr ""
+
 #: ../systray/data/messages:83
 msgid "Shortkey to toggle the systray in dock mode:"
 msgstr ""
@@ -8784,6 +8760,10 @@ msgstr ""
 
 #: ../terminal/data/messages:101
 msgid "Foreground colour:"
+msgstr ""
+
+#: ../terminal/data/messages:103
+msgid "Background colour:"
 msgstr ""
 
 #: ../terminal/data/messages:105

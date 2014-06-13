@@ -301,9 +301,9 @@ msgstr "Vensterbeheerinstellingen bewerken"
 #: ../quick-browser/src/applet-notifications.c:41
 #: ../shortcuts/src/applet-notifications.c:321
 #: ../shortcuts/src/applet-notifications.c:366
-#: ../showDesktop/src/applet-notifications.c:171
-#: ../showDesktop/src/applet-notifications.c:183
-#: ../showDesktop/src/applet-notifications.c:195
+#: ../showDesktop/src/applet-notifications.c:181
+#: ../showDesktop/src/applet-notifications.c:193
+#: ../showDesktop/src/applet-notifications.c:205
 #: ../slider/src/applet-notifications.c:228
 #: ../slider/src/applet-notifications.c:270
 #: ../stack/src/applet-notifications.c:214
@@ -322,31 +322,31 @@ msgid "Reload Window-Manager"
 msgstr "Herlaad vensterbeheerder"
 
 #: ../Composite-Manager/src/applet-notifications.c:136
-#: ../showDesktop/src/applet-notifications.c:171
-#: ../showDesktop/src/applet-notifications.c:173
+#: ../showDesktop/src/applet-notifications.c:181
+#: ../showDesktop/src/applet-notifications.c:183
 #: ../Composite-Manager/data/messages:129 ../showDesktop/data/messages:99
-#: ../showDesktop/data/messages:113 ../switcher/data/messages:135
+#: ../showDesktop/data/messages:113 ../switcher/data/messages:137
 msgid "Show desktop"
 msgstr "Bureaublad tonen"
 
 #: ../Composite-Manager/src/applet-notifications.c:145
-#: ../showDesktop/src/applet-notifications.c:183
-#: ../showDesktop/src/applet-notifications.c:185
+#: ../showDesktop/src/applet-notifications.c:193
+#: ../showDesktop/src/applet-notifications.c:195
 #: ../switcher/src/applet-notifications.c:317
 #: ../Composite-Manager/data/messages:131 ../showDesktop/data/messages:107
-#: ../showDesktop/data/messages:121 ../switcher/data/messages:137
+#: ../showDesktop/data/messages:121 ../switcher/data/messages:139
 msgid "Expose all the desktops"
 msgstr "Alle bureabladen tonen"
 
 #: ../Composite-Manager/src/applet-notifications.c:154
 #: ../switcher/src/applet-notifications.c:326
-#: ../Composite-Manager/data/messages:133 ../switcher/data/messages:139
+#: ../Composite-Manager/data/messages:133 ../switcher/data/messages:141
 msgid "Expose all the windows"
 msgstr "Alle vensters tonen"
 
 #: ../Composite-Manager/src/applet-notifications.c:163
-#: ../showDesktop/src/applet-notifications.c:195
-#: ../showDesktop/src/applet-notifications.c:197
+#: ../showDesktop/src/applet-notifications.c:205
+#: ../showDesktop/src/applet-notifications.c:207
 #: ../Composite-Manager/data/messages:135 ../showDesktop/data/messages:105
 #: ../showDesktop/data/messages:119
 msgid "Show the Widget Layer"
@@ -707,7 +707,7 @@ msgstr "Dit bestand verplaatsen"
 #: ../Folders/src/applet-notifications.c:409
 #: ../Recent-Events/src/applet-dialog.c:296
 #: ../Screenshot/src/applet-screenshot.c:310
-#: ../quick-browser/src/applet-menu.c:313
+#: ../quick-browser/src/applet-menu.c:316
 #: ../slider/src/applet-notifications.c:238
 msgid "Open with"
 msgstr "Openen met"
@@ -1171,14 +1171,14 @@ msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:320
 #: ../Screenshot/src/applet-screenshot.c:319
-#: ../quick-browser/src/applet-menu.c:343
+#: ../quick-browser/src/applet-menu.c:346
 #: ../stack/src/applet-notifications.c:212
 msgid "Open parent folder"
 msgstr "Bovenliggende map openen"
 
 #: ../Recent-Events/src/applet-dialog.c:322
 #: ../Screenshot/src/applet-screenshot.c:281
-#: ../quick-browser/src/applet-menu.c:345
+#: ../quick-browser/src/applet-menu.c:348
 msgid "Copy the location"
 msgstr "Deze locatie kopiëren"
 
@@ -1195,19 +1195,21 @@ msgid "Applications"
 msgstr "Toepassingen"
 
 #: ../Recent-Events/src/applet-dialog.c:411
-msgid "Document"
+#, fuzzy
+msgid "Documents"
 msgstr "Document"
 
-#: ../Recent-Events/src/applet-dialog.c:413 ../logout/data/messages:117
-msgid "Image"
-msgstr "Afbeelding"
+#: ../Recent-Events/src/applet-dialog.c:413 ../drop-indicator/data/messages:3
+msgid "Images"
+msgstr "Weergave"
 
 #: ../Recent-Events/src/applet-dialog.c:414
 msgid "Audio"
 msgstr "Audio"
 
 #: ../Recent-Events/src/applet-dialog.c:415
-msgid "Video"
+#, fuzzy
+msgid "Videos"
 msgstr "Video"
 
 #: ../Recent-Events/src/applet-dialog.c:416
@@ -1215,7 +1217,8 @@ msgid "Web"
 msgstr "Web"
 
 #: ../Recent-Events/src/applet-dialog.c:417
-msgid "Other"
+#, fuzzy
+msgid "Others"
 msgstr "Anders"
 
 #: ../Recent-Events/src/applet-dialog.c:418
@@ -1830,8 +1833,8 @@ msgstr "Dempen"
 #: ../clock/src/applet-calendar.c:527 ../clock/src/applet-calendar.c:532
 #: ../clock/src/applet-calendar.c:574 ../clock/src/applet-task-editor.c:120
 #: ../clock/src/applet-timer.c:92 ../clock/src/applet-timer.c:180
-#: ../clock/src/applet-timer.c:454 ../clock/src/applet-timer.c:468
-#: ../clock/src/applet-timer.c:497 ../tomboy/src/applet-backend-default.c:161
+#: ../clock/src/applet-timer.c:455 ../clock/src/applet-timer.c:469
+#: ../clock/src/applet-timer.c:498 ../tomboy/src/applet-backend-default.c:161
 #: ../tomboy/src/applet-notes.c:98 ../tomboy/src/applet-notes.c:101
 #: ../tomboy/src/applet-notes.c:406
 msgid "No title"
@@ -1937,7 +1940,7 @@ msgstr "Opdracht om uit te voeren:"
 msgid "E.g.:"
 msgstr "B.v.:"
 
-#: ../clock/src/applet-config.c:493 ../weather/src/applet-config.c:213
+#: ../clock/src/applet-config.c:490 ../weather/src/applet-config.c:213
 msgid "Search for your location :"
 msgstr "Zoek uw locatie :"
 
@@ -2067,8 +2070,8 @@ msgstr "1uur"
 msgid "The following task was scheduled at"
 msgstr "De volgende taak is gepland op"
 
-#: ../clock/src/applet-timer.c:94 ../clock/src/applet-timer.c:456
-#: ../clock/src/applet-timer.c:499
+#: ../clock/src/applet-timer.c:94 ../clock/src/applet-timer.c:457
+#: ../clock/src/applet-timer.c:500
 msgid "Repeat this message every:"
 msgstr "Dit bericht herhalen elke:"
 
@@ -2076,19 +2079,19 @@ msgstr "Dit bericht herhalen elke:"
 msgid "The following task has felt due:"
 msgstr "De volgende taak is verlopen:"
 
-#: ../clock/src/applet-timer.c:453
+#: ../clock/src/applet-timer.c:454
 msgid "It's time for the following task:"
 msgstr "Het is tijd voor de volgende taak:"
 
-#: ../clock/src/applet-timer.c:467
+#: ../clock/src/applet-timer.c:468
 msgid "This task will begin in 15 minutes:"
 msgstr "Deze taak zal over 15 minuten starten:"
 
-#: ../clock/src/applet-timer.c:496
+#: ../clock/src/applet-timer.c:497
 msgid "Today is the following anniversary:"
 msgstr "Vandaag is de volgende feestdag:"
 
-#: ../clock/src/applet-timer.c:496
+#: ../clock/src/applet-timer.c:497
 msgid "Tomorrow is the following anniversary:"
 msgstr "Morgen is de volgende verjaardag:"
 
@@ -2166,12 +2169,10 @@ msgstr "Infotekst"
 #: ../dnd2share/src/applet-backend-dropbox.c:33
 #: ../dnd2share/src/applet-backend-free.c:33
 #: ../dnd2share/src/applet-backend-imagebin.c:32
-#: ../dnd2share/src/applet-backend-imageshack.c:31
 #: ../dnd2share/src/applet-backend-imgur.c:33
 #: ../dnd2share/src/applet-backend-paste-ubuntu.c:35
 #: ../dnd2share/src/applet-backend-pastebin-mozilla.c:36
 #: ../dnd2share/src/applet-backend-pastebin.c:38
-#: ../dnd2share/src/applet-backend-ubuntuone.c:32
 #: ../dnd2share/src/applet-backend-uppix.c:31
 #: ../dnd2share/src/applet-backend-videobin.c:32
 msgid "Direct Link"
@@ -2186,14 +2187,8 @@ msgid "Your text is empty and couldn't be uploaded to this server"
 msgstr "U heeft geen tekst ingevoerd, de upload kan hierdoor niet doorgaan"
 
 #: ../dnd2share/src/applet-backend-dropbox.c:63
-#: ../dnd2share/src/applet-backend-ubuntuone.c:59
 msgid "This directory seems not valid:"
 msgstr "Dit is geen geldige map:"
-
-#: ../dnd2share/src/applet-backend-imageshack.c:31
-#: ../dnd2share/src/applet-backend-uppix.c:31
-msgid "Thumbnail"
-msgstr "Miniatuurafbeelding"
 
 #: ../dnd2share/src/applet-backend-imgur.c:33
 msgid "Display Image"
@@ -2207,6 +2202,10 @@ msgstr "Groot"
 #: ../dock-rendering/data/messages:41
 msgid "Small"
 msgstr "Klein"
+
+#: ../dnd2share/src/applet-backend-uppix.c:31
+msgid "Thumbnail"
+msgstr "Miniatuurafbeelding"
 
 #: ../dnd2share/src/applet-dnd2share.c:44
 msgid "No text"
@@ -2264,7 +2263,7 @@ msgstr ""
 "Controleer of uw verbonden bent met het internet. en of '%s' correct "
 "geïnstalleerd is en actief is"
 
-#: ../dnd2share/src/applet-init.c:46
+#: ../dnd2share/src/applet-init.c:44
 msgid ""
 "This applet lets you share files easily:\n"
 "Drag-and-drop a file on the icon to upload it to one of the available "
@@ -2295,7 +2294,7 @@ msgstr ""
 "om de URL naar de muisselectie te kopiëren.\n"
 "U moet 'curl' en 'wget' installeren om data te kunnen uploaden."
 
-#: ../dnd2share/src/applet-init.c:56
+#: ../dnd2share/src/applet-init.c:54
 msgid "Drop to share"
 msgstr "Laat vallen om te delen"
 
@@ -2399,12 +2398,12 @@ msgid "3D plane"
 msgstr "3D-vlak"
 
 #: ../dock-rendering/src/rendering-init.c:36
-#: ../dock-rendering/data/messages:87
+#: ../dock-rendering/data/messages:91
 msgid "Parabolic"
 msgstr "Parabool"
 
 #: ../dock-rendering/src/rendering-init.c:37
-#: ../dock-rendering/data/messages:111
+#: ../dock-rendering/data/messages:115
 msgid "Rainbow"
 msgstr "Regenboog"
 
@@ -2635,8 +2634,6 @@ msgid "Restart"
 msgstr "Herstarten"
 
 #: ../logout/src/applet-logout.c:287
-#: ../powermanager/src/powermanager-menu-functions.c:96
-#: ../powermanager/src/powermanager-menu-functions.c:104
 msgid "Hibernate"
 msgstr "Slaapstand"
 
@@ -2658,8 +2655,6 @@ msgstr ""
 "zal worden."
 
 #: ../logout/src/applet-logout.c:300
-#: ../powermanager/src/powermanager-menu-functions.c:99
-#: ../powermanager/src/powermanager-menu-functions.c:106
 msgid "Suspend"
 msgstr "Pauzestand"
 
@@ -3501,7 +3496,7 @@ msgstr ""
 "Middelklik om ofwel het bureaublad, de desklets, de Widget Layer ofwel alle "
 "bureaubladen tegelijkertijd, te tonen of te verbergen."
 
-#: ../showDesktop/src/applet-notifications.c:209
+#: ../showDesktop/src/applet-notifications.c:220
 msgid "Change screen resolution"
 msgstr "Schermresolutie wijzigen"
 
@@ -3623,13 +3618,13 @@ msgstr "Het bestand is toegevoegd aan de stapel."
 msgid "The URL has been added to the stack."
 msgstr "De URL is toegevoegd aan de stapel."
 
-#: ../switcher/src/applet-draw.c:580 ../switcher/src/applet-draw.c:587
+#: ../switcher/src/applet-draw.c:600 ../switcher/src/applet-draw.c:607
 #: ../switcher/src/applet-load-icons.c:54
 #: ../switcher/src/applet-notifications.c:411
 msgid "Current"
 msgstr "Huidig"
 
-#: ../switcher/src/applet-draw.c:587 ../switcher/src/applet-draw.c:589
+#: ../switcher/src/applet-draw.c:607 ../switcher/src/applet-draw.c:609
 #: ../switcher/src/applet-load-icons.c:60
 #: ../switcher/src/applet-notifications.c:228
 #: ../switcher/src/applet-notifications.c:247
@@ -4422,7 +4417,7 @@ msgstr "Afbeeldingsgrootte"
 #: ../showDesktop/data/messages:3 ../slider/data/messages:1
 #: ../slider/data/messages:3 ../stack/data/messages:1 ../stack/data/messages:3
 #: ../switcher/data/messages:1 ../switcher/data/messages:3
-#: ../switcher/data/messages:121 ../systray/data/messages:1
+#: ../switcher/data/messages:123 ../systray/data/messages:1
 #: ../systray/data/messages:3 ../template/data/messages:1
 #: ../template/data/messages:3 ../terminal/data/messages:1
 #: ../terminal/data/messages:3 ../tomboy/data/messages:1
@@ -4606,7 +4601,7 @@ msgid "Let the penguin wander everywhere in the dock?"
 msgstr "Mag pinguïn in het hele dock rondwandelen ?"
 
 #: ../Cairo-Penguin/data/messages:27 ../dock-rendering/data/messages:13
-#: ../dock-rendering/data/messages:103 ../show-mouse/data/messages:23
+#: ../dock-rendering/data/messages:107 ../show-mouse/data/messages:23
 msgid "in pixels."
 msgstr "In pixels."
 
@@ -5654,7 +5649,8 @@ msgstr ""
 
 #: ../Composite-Manager/data/messages:89 ../Impulse/data/messages:117
 #: ../clock/data/messages:133 ../clock/data/messages:151
-#: ../keyboard-indicator/data/messages:115
+#: ../dock-rendering/data/messages:57 ../keyboard-indicator/data/messages:115
+#: ../switcher/data/messages:145
 msgid "Style"
 msgstr "Stijl"
 
@@ -5717,7 +5713,7 @@ msgstr "Vragen voor het wisselen:"
 
 #: ../Composite-Manager/data/messages:123 ../logout/data/messages:93
 #: ../showDesktop/data/messages:111 ../slider/data/messages:123
-#: ../switcher/data/messages:131
+#: ../switcher/data/messages:133
 msgid "Action on middle-click:"
 msgstr "Actie bij middelklik :"
 
@@ -7367,13 +7363,16 @@ msgid "Digital View"
 msgstr "Numerieke weergave"
 
 #: ../clock/data/messages:153 ../clock/data/messages:171
-#: ../keyboard-indicator/data/messages:117 ../switcher/data/messages:101
+#: ../dock-rendering/data/messages:59 ../keyboard-indicator/data/messages:117
+#: ../switcher/data/messages:101 ../switcher/data/messages:115
+#: ../switcher/data/messages:147
 msgid "Automatic"
 msgstr "Automatisch"
 
 #: ../clock/data/messages:155 ../dnd2share/data/messages:127
-#: ../dnd2share/data/messages:139 ../dnd2share/data/messages:151
-#: ../dnd2share/data/messages:157 ../keyboard-indicator/data/messages:119
+#: ../dnd2share/data/messages:139 ../dnd2share/data/messages:149
+#: ../dnd2share/data/messages:155 ../dock-rendering/data/messages:61
+#: ../keyboard-indicator/data/messages:119 ../switcher/data/messages:149
 msgid "Custom"
 msgstr "Aangepast"
 
@@ -7533,39 +7532,31 @@ msgid "Imagebin.ca"
 msgstr "Imagebin.ca"
 
 #: ../dnd2share/data/messages:145
-msgid "ImageShack.us"
-msgstr "ImageShack.us"
-
-#: ../dnd2share/data/messages:147
 msgid "Imgur.com"
 msgstr "Imgur.com"
 
-#: ../dnd2share/data/messages:149
+#: ../dnd2share/data/messages:147
 msgid "Preferred site for videos hosting :"
 msgstr "Geprefereerde website voor video-hosting :"
 
-#: ../dnd2share/data/messages:153
+#: ../dnd2share/data/messages:151
 msgid "VideoBin.org"
 msgstr "VideoBin.org"
 
-#: ../dnd2share/data/messages:155
+#: ../dnd2share/data/messages:153
 msgid "Preferred site for files hosting :"
 msgstr "Geprefereerde website voor bestanden-hosting :"
 
-#: ../dnd2share/data/messages:159
+#: ../dnd2share/data/messages:157
 msgid "dl.free.fr"
 msgstr "dl.free.fr"
 
-#: ../dnd2share/data/messages:161
+#: ../dnd2share/data/messages:159
 msgid "DropBox"
 msgstr "DropBox"
 
-#: ../dnd2share/data/messages:163
-msgid "UbuntuOne"
-msgstr "UbuntuOne"
-
-#: ../dnd2share/data/messages:165 ../dnd2share/data/messages:169
-#: ../dnd2share/data/messages:173 ../dnd2share/data/messages:177
+#: ../dnd2share/data/messages:161 ../dnd2share/data/messages:165
+#: ../dnd2share/data/messages:169 ../dnd2share/data/messages:173
 msgid ""
 "The script takes the file path as a parameter, and write the resulting URL "
 "on the standard output."
@@ -7573,36 +7564,36 @@ msgstr ""
 "Dit script neemt het bestandspad als parameter en schrijft de resulterende "
 "URL op het standaardresultaat."
 
-#: ../dnd2share/data/messages:167
+#: ../dnd2share/data/messages:163
 msgid "Custom script for text upload :"
 msgstr "Aangepast script voor uploaden tekst :"
 
-#: ../dnd2share/data/messages:171
+#: ../dnd2share/data/messages:167
 msgid "Custom script for image upload :"
 msgstr "Aangepast script voor uploaden afbeelding :"
 
-#: ../dnd2share/data/messages:175
+#: ../dnd2share/data/messages:171
 msgid "Custom script for video upload :"
 msgstr "Aangepast script voor uploaden video :"
 
-#: ../dnd2share/data/messages:179
+#: ../dnd2share/data/messages:175
 msgid "Custom script for file upload :"
 msgstr "Aangepast script voor uploaden bestand :"
 
-#: ../dnd2share/data/messages:181
+#: ../dnd2share/data/messages:177
 msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 msgstr ""
 "Laat leeg om bestanden te uploaden naar '~/Dropbox/Public' of '~/Ubuntu One'."
 
-#: ../dnd2share/data/messages:183
+#: ../dnd2share/data/messages:179
 msgid "Path of a custom DropBox / UbuntuOne folder :"
 msgstr "Pad naar een aangepaste DropBox-/UbuntuOne-map :"
 
-#: ../dnd2share/data/messages:185
+#: ../dnd2share/data/messages:181
 msgid "Otherwise, your user name will be used when possible."
 msgstr "Anders zal, indien mogelijk, uw gebruikersnaam gebruikt worden."
 
-#: ../dnd2share/data/messages:187
+#: ../dnd2share/data/messages:183
 msgid "Post text as Anonymous ?"
 msgstr "Tekst anoniem posten ?"
 
@@ -7659,7 +7650,7 @@ msgstr "Raster"
 msgid "Space between columns:"
 msgstr "Ruimte tussen kolommen :"
 
-#: ../dock-rendering/data/messages:35 ../dock-rendering/data/messages:113
+#: ../dock-rendering/data/messages:35 ../dock-rendering/data/messages:117
 msgid "Space between rows:"
 msgstr "Ruimte tussen rijen :"
 
@@ -7691,99 +7682,95 @@ msgstr "Liever een lineaire golf gebruiken als een op- en neergaande ?"
 msgid "Display text for all icons?"
 msgstr "Tekst tonen voor alle pictogrammen ?"
 
-#: ../dock-rendering/data/messages:57 ../slider/data/messages:171
+#: ../dock-rendering/data/messages:63 ../slider/data/messages:171
 msgid "Frame"
 msgstr "Frame"
 
-#: ../dock-rendering/data/messages:59
-msgid "Draw a background?"
-msgstr "Achtergrond tekenen ?"
-
-#: ../dock-rendering/data/messages:61
+#: ../dock-rendering/data/messages:65
 msgid "First gradient colour :"
 msgstr "Eerste kleur van de gradatie :"
 
-#: ../dock-rendering/data/messages:63
+#: ../dock-rendering/data/messages:67
 msgid "Second gradient colour :"
 msgstr "Tweede kleur van de gradatie :"
 
-#: ../dock-rendering/data/messages:65
+#: ../dock-rendering/data/messages:69
 msgid "Top to bottom gradient?"
 msgstr "Gradatie van boven naar beneden ?"
 
-#: ../dock-rendering/data/messages:67
+#: ../dock-rendering/data/messages:71
 msgid "Left to right gradient?"
 msgstr "Gradatie van links naar rechts ?"
 
-#: ../dock-rendering/data/messages:69
+#: ../dock-rendering/data/messages:73
 msgid "Corner radius:"
 msgstr "Kromming hoek :"
 
-#: ../dock-rendering/data/messages:71
+#: ../dock-rendering/data/messages:75
 msgid "Border line width :"
 msgstr "Lijndikte rand :"
 
-#: ../dock-rendering/data/messages:73
+#: ../dock-rendering/data/messages:77
 msgid "Border line colour :"
 msgstr "Lijnkleur rand :"
 
-#: ../dock-rendering/data/messages:75
+#: ../dock-rendering/data/messages:79
 msgid "Arrow width :"
 msgstr "Breedte pijl :"
 
-#: ../dock-rendering/data/messages:77
+#: ../dock-rendering/data/messages:81
 msgid "Arrow height:"
 msgstr "Hoogte pijl :"
 
-#: ../dock-rendering/data/messages:79
+#: ../dock-rendering/data/messages:83
 msgid "Scroll bar"
 msgstr "Scrolbalk"
 
-#: ../dock-rendering/data/messages:81
+#: ../dock-rendering/data/messages:85
 msgid "Color of the scroll bar's outline:"
 msgstr "Kleur van omlijning scrolbalk:"
 
-#: ../dock-rendering/data/messages:83
+#: ../dock-rendering/data/messages:87
 msgid "Color of the scroll bar's inside:"
 msgstr "Kleur van binnenkant scrolbalk:"
 
-#: ../dock-rendering/data/messages:85
+#: ../dock-rendering/data/messages:89
 msgid "Color of the scroll grip:"
 msgstr "Kleur van de scrolgreep:"
 
-#: ../dock-rendering/data/messages:89
+#: ../dock-rendering/data/messages:93
 msgid "The higher this value, the sooner the parabola will be curved."
 msgstr "Hoe hoger, hoe eerder de parabool kromt."
 
-#: ../dock-rendering/data/messages:91
+#: ../dock-rendering/data/messages:95
 msgid "Curvature:"
 msgstr "Kromming :"
 
-#: ../dock-rendering/data/messages:93
+#: ../dock-rendering/data/messages:97
 msgid "The parabola will be restricted to a rectangle of this proportion."
 msgstr "De parabool zal gemaakt worden tot een rechthoek van deze proporties."
 
-#: ../dock-rendering/data/messages:95
+#: ../dock-rendering/data/messages:99
 msgid "Height/width ratio:"
 msgstr "Verhouding hoogte/breedte :"
 
-#: ../dock-rendering/data/messages:97
+#: ../dock-rendering/data/messages:101
 msgid "0 represents a flat wave, 1 represents maximum wave curvature."
 msgstr "0 betekent dat de golf plat is, 1 betekent dat de golf maximaal is."
 
-#: ../dock-rendering/data/messages:99 ../dock-rendering/data/messages:119
+#: ../dock-rendering/data/messages:103 ../dock-rendering/data/messages:123
 msgid "Magnitude of the wave:"
 msgstr "Hoogte van de golf :"
 
-#: ../dock-rendering/data/messages:101
+#: ../dock-rendering/data/messages:105
 msgid "Curve towards the outside?"
 msgstr "Krommen naar de buitenkant ?"
 
-#: ../dock-rendering/data/messages:105
+#: ../dock-rendering/data/messages:109
 msgid "Space between icons and their captions:"
 msgstr "Ruimte tussen pictogrammen en hun labels :"
 
-#: ../dock-rendering/data/messages:107
+#: ../dock-rendering/data/messages:111
 msgid ""
 "This may recquire more CPU during the unfolding animation, except if you "
 "launch Cairo-Dock with OpenGL."
@@ -7791,25 +7778,25 @@ msgstr ""
 "Dit vraagt mogelijk meer van de processor tijdens de ontvouwanimatie, "
 "behalve met OpenGL."
 
-#: ../dock-rendering/data/messages:109
+#: ../dock-rendering/data/messages:113
 msgid "Draw captions while unfolding?"
 msgstr "Labels tekenen tijdens ontvouwen ?"
 
-#: ../dock-rendering/data/messages:115
+#: ../dock-rendering/data/messages:119
 msgid "Space between icons:"
 msgstr "Ruimte tussen pictogrammen :"
 
-#: ../dock-rendering/data/messages:117
+#: ../dock-rendering/data/messages:121
 msgid "0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 betekent dat de golf plat is, 1 betekent dat de golf gelijk is aan andere "
 "weergaves."
 
-#: ../dock-rendering/data/messages:121
+#: ../dock-rendering/data/messages:125
 msgid "Number of icons on the first row:"
 msgstr "Aantal pictogrammen op de eerste rij :"
 
-#: ../dock-rendering/data/messages:123
+#: ../dock-rendering/data/messages:127
 msgid ""
 "in degrees. The lower the value, the narrower the cone. 180° represents a "
 "wide open cone."
@@ -7817,25 +7804,25 @@ msgstr ""
 "In graden. Hoe kleiner, hoe smaller de hoorn is. 180° betekent dat de hoorn "
 "geheel openstaat."
 
-#: ../dock-rendering/data/messages:125
+#: ../dock-rendering/data/messages:129
 msgid "Cone width:"
 msgstr "Breedte van hoorn :"
 
-#: ../dock-rendering/data/messages:127
+#: ../dock-rendering/data/messages:131
 msgid "Set transparency to 0 to not use it. This is quite slow with cairo."
 msgstr ""
 "Stel doorzichtigheid in op 0 om dit niet te gebruiken. Het is nogal traag "
 "met cairo."
 
-#: ../dock-rendering/data/messages:129
+#: ../dock-rendering/data/messages:133
 msgid "Bow colour:"
 msgstr "Boogkleur :"
 
-#: ../dock-rendering/data/messages:131
+#: ../dock-rendering/data/messages:135
 msgid "Line colour:"
 msgstr "Lijnkleur :"
 
-#: ../dock-rendering/data/messages:134
+#: ../dock-rendering/data/messages:138
 msgid ""
 "<b>A 3D plane view</b>\n"
 "This is the closest view to MacOSX's dock.\n"
@@ -7847,7 +7834,7 @@ msgstr ""
 "U kunt scheidingen weergeven als een lijn\n"
 " of als een fysieke scheiding in het vlak."
 
-#: ../dock-rendering/data/messages:136
+#: ../dock-rendering/data/messages:140
 msgid ""
 "<b>A 3D caroussel view</b>\n"
 "Icons scroll with mouse position."
@@ -7855,7 +7842,7 @@ msgstr ""
 "<b>Een 3D Carrousel-weergave</b>\n"
 "Pictogrammen scrollen met de muispositie."
 
-#: ../dock-rendering/data/messages:138
+#: ../dock-rendering/data/messages:142
 msgid ""
 "<b>Curved view</b>\n"
 "Allow you to curve your dock !\n"
@@ -7867,7 +7854,7 @@ msgstr ""
 "U kunt scheidingen weergeven als een lijn\n"
 " of als een fysieke scheiding in het vlak."
 
-#: ../dock-rendering/data/messages:140
+#: ../dock-rendering/data/messages:144
 msgid ""
 "<b>Slide view</b>\n"
 "A brand new view, especially designed for big subdocks."
@@ -7875,7 +7862,7 @@ msgstr ""
 "<b>Glijden-weergave</b>\n"
 "Een gloednieuwe weergave speciaal ontwikkeld voor grote sub-docks."
 
-#: ../dock-rendering/data/messages:142
+#: ../dock-rendering/data/messages:146
 msgid ""
 "<b>Panel view</b>\n"
 "This view will display your dock like a gnome-panel or a KDE-panel.\n"
@@ -7888,7 +7875,7 @@ msgstr ""
 "Scheidingen worden weergegeven als ruimtes tussen de verschillende groepen "
 "pictogrammen."
 
-#: ../dock-rendering/data/messages:144
+#: ../dock-rendering/data/messages:148
 msgid ""
 "<b>A parabolic view</b>\n"
 "Perfect for medium sub-docks with 3 to 10 icons.\n"
@@ -7898,7 +7885,7 @@ msgstr ""
 "Perfect voor middelgrote sub-docks met 3 tot 10 pictogrammen.\n"
 "Labels zijn ook klikbaar."
 
-#: ../dock-rendering/data/messages:146
+#: ../dock-rendering/data/messages:150
 msgid ""
 "<b>Rainbow view</b>\n"
 "An original view, designed for sub-docks with few icons.\n"
@@ -7908,7 +7895,7 @@ msgstr ""
 "Een originele weergave bedoeld voor sub-docks met weinig pictogrammen.\n"
 "De pictogramlabels kunnen ook horizontaal weergegeven worden."
 
-#: ../dock-rendering/data/messages:148
+#: ../dock-rendering/data/messages:152
 msgid ""
 "<b>Slide view</b>\n"
 "This view is specially adapted to large sub-docks.\n"
@@ -7921,10 +7908,6 @@ msgstr ""
 #: ../drop-indicator/data/messages:1
 msgid "Drag and drop indicator"
 msgstr "Sleepindicator"
-
-#: ../drop-indicator/data/messages:3
-msgid "Images"
-msgstr "Weergave"
 
 #: ../drop-indicator/data/messages:5
 msgid ""
@@ -8230,6 +8213,10 @@ msgstr ""
 msgid "Emblem"
 msgstr "Embleem"
 
+#: ../logout/data/messages:117
+msgid "Image"
+msgstr "Afbeelding"
+
 #: ../logout/data/messages:119
 msgid "Commands"
 msgstr "Opdrachten"
@@ -8302,13 +8289,13 @@ msgid "Show '0' if there is no mail?"
 msgstr "'0' laten zien wanneer er geen e-mail is?"
 
 #: ../mail/data/messages:119 ../shortcuts/data/messages:103
-#: ../stack/data/messages:95 ../switcher/data/messages:143
+#: ../stack/data/messages:95 ../switcher/data/messages:189
 #: ../tomboy/data/messages:119 ../weather/data/messages:133
 msgid "Leave empty to use default sub-dock view."
 msgstr "Laat leeg als u de standaardweergave van de sub-docks wilt gebruiken."
 
 #: ../mail/data/messages:121 ../shortcuts/data/messages:105
-#: ../stack/data/messages:97 ../switcher/data/messages:145
+#: ../stack/data/messages:97 ../switcher/data/messages:191
 #: ../tomboy/data/messages:121 ../weather/data/messages:135
 msgid "Sub-dock view name:"
 msgstr "Naam van weergave gebruikt voor het sub-dock :"
@@ -9030,66 +9017,51 @@ msgid "Preserve the ratio of the screen?"
 msgstr "Schermverhouding behouden?"
 
 #: ../switcher/data/messages:107
-msgid "How to draw the icon?"
-msgstr "Hoe pictogram weer te geven?"
-
-#: ../switcher/data/messages:109
-msgid "Map wallpaper to icons"
-msgstr "Bureaubladachtergrond afbeelden op pictogrammen"
-
-#: ../switcher/data/messages:111
-msgid "Use an image for each desktop"
-msgstr "Een afbeelding gebruiken voor elk bureaublad"
-
-#: ../switcher/data/messages:113
-msgid "Use a colour for each desktop"
+#, fuzzy
+msgid "Background for each desktop"
 msgstr "Een kleur gebruiken voor elk bureaublad"
 
-#: ../switcher/data/messages:115
-msgid "Icon to use in expanded mode if wallpaper is not mapped:"
+#: ../switcher/data/messages:109
+msgid "Wallpaper"
 msgstr ""
-"Pictogram voor uitgebreide modus, indien bureaubladachtergrond niet wordt "
-"afgebeeld op pictogram:"
 
-#: ../switcher/data/messages:117 ../switcher/data/messages:153
+#: ../switcher/data/messages:111 ../switcher/data/messages:117
+#, fuzzy
+msgid "Custom image"
+msgstr "Aangepast"
+
+#: ../switcher/data/messages:113 ../switcher/data/messages:121
+#, fuzzy
+msgid "Custom colour"
+msgstr "Tekstkleur"
+
+#: ../switcher/data/messages:119 ../switcher/data/messages:153
 #: ../switcher/data/messages:159 ../switcher/data/messages:163
 #: ../switcher/data/messages:167 ../switcher/data/messages:183
 msgid "r, g, b, a"
 msgstr "r, g, b, a"
 
-#: ../switcher/data/messages:119 ../terminal/data/messages:103
-msgid "Background colour:"
-msgstr "Achtergrondkleur :"
-
-#: ../switcher/data/messages:123
+#: ../switcher/data/messages:125
 msgid "Show desktop number on icons?"
 msgstr "Bureaubladnummer tonen op de pictogrammen?"
 
-#: ../switcher/data/messages:125
+#: ../switcher/data/messages:127
 msgid "Draw windows on icons?"
 msgstr "Vensters op pictogrammen tekenen ?"
 
-#: ../switcher/data/messages:127
+#: ../switcher/data/messages:129
 msgid "Draw hidden windows?"
 msgstr "Verborgen vensters ook tekenen ?"
 
-#: ../switcher/data/messages:129
+#: ../switcher/data/messages:131
 msgid "Draw icons of windows?"
 msgstr "Pictogrammen van vensters weergeven?"
 
-#: ../switcher/data/messages:133
+#: ../switcher/data/messages:135
 msgid "Show windows' list"
 msgstr "Vensterlijst tonen"
 
-#: ../switcher/data/messages:141
-msgid "Sub-Dock"
-msgstr "Sub-dock"
-
-#: ../switcher/data/messages:147
-msgid "In expanded mode, render the desklet in 3D?"
-msgstr "In uitgebreide modus, het desklet in 3D weergeven ?"
-
-#: ../switcher/data/messages:149
+#: ../switcher/data/messages:143
 msgid "Display options"
 msgstr "Weergave-opties"
 
@@ -9145,6 +9117,10 @@ msgstr "Vensters in kleur weergeven?"
 msgid "Colour of these windows:"
 msgstr "Kleur van deze vensters:"
 
+#: ../switcher/data/messages:187
+msgid "Sub-Dock"
+msgstr "Sub-dock"
+
 #: ../systray/data/messages:83
 msgid "Shortkey to toggle the systray in dock mode:"
 msgstr "Sneltoets om naar het systeemvak te wisselen in de dock-modus :"
@@ -9196,6 +9172,10 @@ msgstr "Ondoorzichtig"
 #: ../terminal/data/messages:101
 msgid "Foreground colour:"
 msgstr "Voorgrondkleur :"
+
+#: ../terminal/data/messages:103
+msgid "Background colour:"
+msgstr "Achtergrondkleur :"
 
 #: ../terminal/data/messages:105
 msgid "Use a custom font?"
@@ -9475,6 +9455,32 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Alternatieve opdracht om ´Draadloos configuratie´ te openen :"
+
+#~ msgid "ImageShack.us"
+#~ msgstr "ImageShack.us"
+
+#~ msgid "UbuntuOne"
+#~ msgstr "UbuntuOne"
+
+#~ msgid "Draw a background?"
+#~ msgstr "Achtergrond tekenen ?"
+
+#~ msgid "How to draw the icon?"
+#~ msgstr "Hoe pictogram weer te geven?"
+
+#~ msgid "Map wallpaper to icons"
+#~ msgstr "Bureaubladachtergrond afbeelden op pictogrammen"
+
+#~ msgid "Use an image for each desktop"
+#~ msgstr "Een afbeelding gebruiken voor elk bureaublad"
+
+#~ msgid "Icon to use in expanded mode if wallpaper is not mapped:"
+#~ msgstr ""
+#~ "Pictogram voor uitgebreide modus, indien bureaubladachtergrond niet wordt "
+#~ "afgebeeld op pictogram:"
+
+#~ msgid "In expanded mode, render the desklet in 3D?"
+#~ msgstr "In uitgebreide modus, het desklet in 3D weergeven ?"
 
 #~ msgid "Text colour:"
 #~ msgstr "Tekstkleur :"
