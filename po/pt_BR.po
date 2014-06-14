@@ -6,15 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.1.0-alpha\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2013-07-21 19:53+0000\n"
+"POT-Creation-Date: 2014-06-13 11:31+0000\n"
+"PO-Revision-Date: 2014-06-13 21:33+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-09-24 06:13+0000\n"
-"X-Generator: Launchpad (build 16771)\n"
+"X-Launchpad-Export-Date: 2014-06-14 05:53+0000\n"
+"X-Generator: Launchpad (build 17045)\n"
+"Language: \n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:55
@@ -373,7 +374,8 @@ msgstr "O módulo foi adicionado, mas não pode ser executado."
 
 #: ../Dbus/src/interface-applet-signals.c:472
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "O mini-aplicativo '%s' foi atualizado com sucesso e automaticamente "
 "recarregado"
@@ -1157,9 +1159,8 @@ msgid "Applications"
 msgstr "Aplicativos"
 
 #: ../Recent-Events/src/applet-dialog.c:411
-#, fuzzy
 msgid "Documents"
-msgstr "Documento"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:413 ../drop-indicator/data/messages:3
 msgid "Images"
@@ -1170,18 +1171,16 @@ msgid "Audio"
 msgstr "Audio"
 
 #: ../Recent-Events/src/applet-dialog.c:415
-#, fuzzy
 msgid "Videos"
-msgstr "Video"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:416
 msgid "Web"
 msgstr "Web"
 
 #: ../Recent-Events/src/applet-dialog.c:417
-#, fuzzy
 msgid "Others"
-msgstr "Outro"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:418
 msgid "Top Results"
@@ -1881,8 +1880,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2151,7 +2150,8 @@ msgstr ""
 "Pressione CTRL+v para colar sua URL em qualquer lugar."
 
 #: ../dnd2share/src/applet-dnd2share.c:370
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Por favor, aguarde o upload atual ser terminado antes de começar um novo."
 
@@ -3357,8 +3357,8 @@ msgstr "mostrar mouse"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Este mini-aplicativo desenha algumas animações ao redor do cursor quando "
 "mesmo estiver dentro do dock/desklet."
@@ -4649,8 +4649,8 @@ msgid ""
 "Depending on your WindowManager, you may be able to resize this with ALT + "
 "middle-click or ALT + left-click."
 msgstr ""
-"Dependendo do seu Administrador de Janelas, você pode redimensioná-lo com ALT"
-"+Clique do botão do meio, ou ALT+clique do botão esquerdo."
+"Dependendo do seu Administrador de Janelas, você pode redimensioná-lo com "
+"ALT+Clique do botão do meio, ou ALT+clique do botão esquerdo."
 
 #: ../Clipper/data/messages:27 ../Composite-Manager/data/messages:25
 #: ../Disks/data/messages:23 ../Doncky/data/messages:27
@@ -5543,8 +5543,8 @@ msgid ""
 "left-click.. Negative values are counted from the right/bottom of the screen"
 msgstr ""
 "Dependendo do seu Gerenciador de Janelas, você pode movê-lo com Alt + Clique "
-"com botão esquerdo. Valores negativos são contados a partir da parte direita/"
-"inferior da tela."
+"com botão esquerdo. Valores negativos são contados a partir da parte "
+"direita/inferior da tela."
 
 #: ../Composite-Manager/data/messages:89 ../Impulse/data/messages:117
 #: ../clock/data/messages:133 ../clock/data/messages:151
@@ -5911,7 +5911,8 @@ msgid "Background"
 msgstr "Plano de fundo"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Você pode ter planos de fundo mais atrativos usando as decorações de Desklet"
 
@@ -7455,7 +7456,8 @@ msgid "Custom script for file upload :"
 msgstr "Script padrão de arquivo para upload:"
 
 #: ../dnd2share/data/messages:177
-msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
+msgid ""
+"Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 msgstr ""
 
 #: ../dnd2share/data/messages:179
@@ -7660,7 +7662,8 @@ msgid "Space between icons:"
 msgstr "Espaço entre ícones :"
 
 #: ../dock-rendering/data/messages:121
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 significa que a onda é totalmente plana, 1 fica que a onda é idêntica a "
 "outros pontos de vista."
@@ -7874,7 +7877,8 @@ msgid "Colours"
 msgstr "Cores"
 
 #: ../icon-effect/data/messages:73
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 "Ele alterará ligeiramente as cores, assim você pode ter que modificá-las."
 
@@ -8090,9 +8094,9 @@ msgid "Commands"
 msgstr "Comandos"
 
 #: ../logout/data/messages:123
-#, fuzzy
-msgid "Fallback user-defined command to execute for logout in case of problem:"
-msgstr "Definida pelo usuário para executar o comando para o desligamento:"
+msgid ""
+"Fallback user-defined command to execute for logout in case of problem:"
+msgstr ""
 
 #: ../logout/data/messages:125
 msgid ""
@@ -8105,10 +8109,9 @@ msgstr ""
 "de desligamento é exatamente o mesmo ao sair."
 
 #: ../logout/data/messages:127
-#, fuzzy
 msgid ""
 "Fallback user-defined command to execute for shutdown in case of problem:"
-msgstr "Definida pelo usuário para executar o comando de desligamento:"
+msgstr ""
 
 #: ../logout/data/messages:129
 msgid ""
@@ -8143,7 +8146,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Nome do arquivo para a imagem de 'tem e-mail':"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Se marcado, o número de e-mails será mostrado mesmo se não houverem e-mails."
 
@@ -8229,7 +8233,8 @@ msgid "Blur amount:"
 msgstr "Tamanho do rastro"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 "Deixe em branco para mostrar o nome do reproduzir de aúdio que está sendo "
 "controlado."
@@ -8326,8 +8331,8 @@ msgstr "Clique para reproduzir/pausar, e clique do meio para próximo"
 #: ../musicPlayer/data/messages:141
 msgid "Show/Hide player on click, Play/Pause on middle-click"
 msgstr ""
-"Clique para mostrar/ocultar o reprodutor, e clique do meio para reproduzir/"
-"pausar"
+"Clique para mostrar/ocultar o reprodutor, e clique do meio para "
+"reproduzir/pausar"
 
 #: ../musicPlayer/data/messages:143
 msgid "Actions on scroll up/down:"
@@ -8844,7 +8849,8 @@ msgstr "Ex.: imagem, texto, vídeo, áudio, aplicação,..."
 
 #: ../stack/data/messages:123
 msgid "Here you can specify a list of MIME types to ignore:"
-msgstr "Aqui você pode especificar uma lista dos tipos mime a serem evitados:"
+msgstr ""
+"Aqui você pode especificar uma lista dos tipos mime a serem evitados:"
 
 #: ../stack/data/messages:125
 msgid "Sort items by:"
@@ -8883,23 +8889,20 @@ msgid "Preserve the ratio of the screen?"
 msgstr "Preservar a proporção da tela?"
 
 #: ../switcher/data/messages:107
-#, fuzzy
 msgid "Background for each desktop"
-msgstr "Usar uma cor pra cada Área de Trabalho"
+msgstr ""
 
 #: ../switcher/data/messages:109
 msgid "Wallpaper"
 msgstr ""
 
 #: ../switcher/data/messages:111 ../switcher/data/messages:117
-#, fuzzy
 msgid "Custom image"
-msgstr "Personalizado"
+msgstr ""
 
 #: ../switcher/data/messages:113 ../switcher/data/messages:121
-#, fuzzy
 msgid "Custom colour"
-msgstr "Cor do texto"
+msgstr ""
 
 #: ../switcher/data/messages:119 ../switcher/data/messages:153
 #: ../switcher/data/messages:159 ../switcher/data/messages:163
@@ -9255,7 +9258,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Posição da barra de rolagem vertical em pixels"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Isto permite que você dê um clique direito sobre o desklet  para exibir o "
 "pop-up do menu do Cairo-Dock."
@@ -9320,76 +9324,3 @@ msgid "Alternative command line to launch Wireless Configuration :"
 msgstr ""
 "Alternativa para iniciar um linha de comando de configuração sem fio "
 "(wireless):"
-
-#~ msgid "ImageShack.us"
-#~ msgstr "ImageShack.us"
-
-#~ msgid "UbuntuOne"
-#~ msgstr "UbuntuOne"
-
-#~ msgid "Draw a background?"
-#~ msgstr "Desenhar plano de fundo?"
-
-#~ msgid "How to draw the icon?"
-#~ msgstr "Como desenhar o ícone?"
-
-#~ msgid "Map wallpaper to icons"
-#~ msgstr "Mapear papel de parede ao ícone."
-
-#~ msgid "Use an image for each desktop"
-#~ msgstr "Usar uma imagem pra cada Área de Trabalho"
-
-#~ msgid "Icon to use in expanded mode if wallpaper is not mapped:"
-#~ msgstr ""
-#~ "Ícone para utilizar no modo expandido, se você não mapear o papel de "
-#~ "parede:"
-
-#~ msgid "In expanded mode, render the desklet in 3D?"
-#~ msgstr "No modo expandido, utilizar o desklet em 3D?"
-
-#~ msgid "Text colour:"
-#~ msgstr "Cor do texto:"
-
-#~ msgid "Comics"
-#~ msgstr "Quadrinhos"
-
-#~ msgid "Border width:"
-#~ msgstr "Largura da borda:"
-
-#~ msgid "Bubble's line colour:"
-#~ msgstr "Cor de linha da bolha:"
-
-#~ msgid "Modern"
-#~ msgstr "Moderno"
-
-#~ msgid "Space between lines of the tip :"
-#~ msgstr "Espaço entre as linhas da dica:"
-
-#~ msgid "Tooltip"
-#~ msgstr "Dica de ferramenta"
-
-#~ msgid "Curly"
-#~ msgstr "Ondulado"
-
-#~ msgid "Curvature of the tip :"
-#~ msgstr "Curvatura da dica:"
-
-#~ msgid "Curve the sides too?"
-#~ msgstr "Lados arredondados também?"
-
-#~ msgid ""
-#~ "the smaller is the text in the icon. 1 means the text fills all the icon."
-#~ msgstr ""
-#~ "menor é o texto no ícone. 1 significa que o texto preenche todos os ícone."
-
-#~ msgid "Icon size :"
-#~ msgstr "Tamanho do Ícone:"
-
-#~ msgid "small"
-#~ msgstr "pequeno"
-
-#~ msgid "medium"
-#~ msgstr "médio"
-
-#~ msgid "large"
-#~ msgstr "grande"

@@ -7,16 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
+"POT-Creation-Date: 2014-06-13 11:31+0000\n"
 "PO-Revision-Date: 2013-07-21 20:04+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Cairo-Dock\n"
-"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-09-24 06:13+0000\n"
-"X-Generator: Launchpad (build 16771)\n"
+"X-Launchpad-Export-Date: 2014-06-14 05:52+0000\n"
+"X-Generator: Launchpad (build 17045)\n"
 "X-Poedit-Country: SWEDEN\n"
+"Language: sv\n"
 "X-Poedit-Language: Swedish\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
@@ -43,7 +44,8 @@ msgstr "Animerade ikoner"
 
 #: ../Animated-icons/src/applet-init.c:42
 msgid "This plug-in provides many different animations for your icons."
-msgstr "Detta plugin tillhandahåller många olika animeringar till dina ikoner."
+msgstr ""
+"Detta plugin tillhandahåller många olika animeringar till dina ikoner."
 
 #: ../Animated-icons/src/applet-pulse.c:106 ../Animated-icons/data/messages:13
 #: ../Animated-icons/data/messages:33 ../Animated-icons/data/messages:57
@@ -259,8 +261,8 @@ msgid ""
 "You can define in the configuration a Window-Manager that will provide the "
 "composite, and another as a fallback."
 msgstr ""
-"Det här programmet låter dig <b>sätta på eller stänga av sammansatt grafik</"
-"b>.\n"
+"Det här programmet låter dig <b>sätta på eller stänga av sammansatt "
+"grafik</b>.\n"
 "Sammansatt grafik gör det möjligt att ha genomskinlighet på skrivbordet, men "
 "det kan göra datorn långsammare,\n"
 "särskilt när du spelar spel. <b>Klicka</b> på ikonen för att växla "
@@ -376,7 +378,8 @@ msgstr "Modulen har lagts till, men kunde inte startas."
 
 #: ../Dbus/src/interface-applet-signals.c:472
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "Appleten '%s' har blivit framgångsrikt uppdaterat och automatiskt omstartat."
 
@@ -477,8 +480,8 @@ msgstr ""
 "hastighetsindikatorn inte skalar ner.\n"
 "\n"
 "<b>Diskutrymme</b> : Visa disköverföringshastighet. Upp till 10 partitioner\n"
-"  Du måste konfigurera monteringspunkt för varje partition, som / eller /"
-"home\n"
+"  Du måste konfigurera monteringspunkt för varje partition, som / eller "
+"/home\n"
 "  Avläses bättre i ett reglage, med 30 eller 60 sekunders "
 "uppdateringsfrekvens, och ytterst kort eller ingen fördröjning vid "
 "övergång.\n"
@@ -1180,9 +1183,8 @@ msgid "Applications"
 msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:411
-#, fuzzy
 msgid "Documents"
-msgstr "Dokument"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:413 ../drop-indicator/data/messages:3
 msgid "Images"
@@ -1193,18 +1195,16 @@ msgid "Audio"
 msgstr "Ljud"
 
 #: ../Recent-Events/src/applet-dialog.c:415
-#, fuzzy
 msgid "Videos"
-msgstr "Video"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:416
 msgid "Web"
 msgstr "Webb"
 
 #: ../Recent-Events/src/applet-dialog.c:417
-#, fuzzy
 msgid "Others"
-msgstr "Övriga"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:418
 msgid "Top Results"
@@ -1908,8 +1908,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2158,7 +2158,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:370
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:438
@@ -3279,8 +3280,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -5721,7 +5722,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
@@ -7232,7 +7234,8 @@ msgid "Custom script for file upload :"
 msgstr ""
 
 #: ../dnd2share/data/messages:177
-msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
+msgid ""
+"Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 msgstr ""
 
 #: ../dnd2share/data/messages:179
@@ -7434,7 +7437,8 @@ msgid "Space between icons:"
 msgstr "Avstånd mellan ikoner:"
 
 #: ../dock-rendering/data/messages:121
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "0 betyder at vågen är helt platt. 1 betyder att vågen är identisk med andra "
 "vyer."
@@ -7621,7 +7625,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:73
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:75 ../icon-effect/data/messages:187
@@ -7831,9 +7836,9 @@ msgid "Commands"
 msgstr ""
 
 #: ../logout/data/messages:123
-#, fuzzy
-msgid "Fallback user-defined command to execute for logout in case of problem:"
-msgstr "Eget kommando att köra vid utloggning:"
+msgid ""
+"Fallback user-defined command to execute for logout in case of problem:"
+msgstr ""
 
 #: ../logout/data/messages:125
 msgid ""
@@ -7843,10 +7848,9 @@ msgid ""
 msgstr ""
 
 #: ../logout/data/messages:127
-#, fuzzy
 msgid ""
 "Fallback user-defined command to execute for shutdown in case of problem:"
-msgstr "Eget kommando att köra vid utloggning:"
+msgstr ""
 
 #: ../logout/data/messages:129
 msgid ""
@@ -7878,7 +7882,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:117
@@ -7962,7 +7967,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:11
@@ -8610,14 +8616,12 @@ msgid "Wallpaper"
 msgstr ""
 
 #: ../switcher/data/messages:111 ../switcher/data/messages:117
-#, fuzzy
 msgid "Custom image"
-msgstr "Inställningar"
+msgstr ""
 
 #: ../switcher/data/messages:113 ../switcher/data/messages:121
-#, fuzzy
 msgid "Custom colour"
-msgstr "Färg för aktivt skrivbord:"
+msgstr ""
 
 #: ../switcher/data/messages:119 ../switcher/data/messages:153
 #: ../switcher/data/messages:159 ../switcher/data/messages:163
@@ -8972,7 +8976,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:105
@@ -9029,14 +9034,3 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr ""
-
-#~ msgid "Draw a background?"
-#~ msgstr "Rita bakgrund?"
-
-#~ msgid "Icon to use in expanded mode if wallpaper is not mapped:"
-#~ msgstr ""
-#~ "Ikon som ska användas i expanderat läge om om du inte visar "
-#~ "skrivbordsbakgrunden:"
-
-#~ msgid "In expanded mode, render the desklet in 3D?"
-#~ msgstr "I expanderat läge, visa deskleten i 3D?"

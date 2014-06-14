@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2013-10-14 21:07+0000\n"
-"Last-Translator: ma$terok <Unknown>\n"
+"POT-Creation-Date: 2014-06-13 11:31+0000\n"
+"PO-Revision-Date: 2014-06-13 21:35+0000\n"
+"Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-10-15 04:44+0000\n"
-"X-Generator: Launchpad (build 16799)\n"
+"X-Launchpad-Export-Date: 2014-06-14 05:53+0000\n"
+"X-Generator: Launchpad (build 17045)\n"
+"Language: uk\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:55
@@ -372,7 +373,8 @@ msgstr "Модуль був доданий, але не може бути зап
 
 #: ../Dbus/src/interface-applet-signals.c:472
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Аплет '%s' оновлено та автоматично перезавантажено"
 
 #: ../Dbus/src/interface-applet-signals.c:472
@@ -1193,9 +1195,8 @@ msgid "Applications"
 msgstr "Додатки"
 
 #: ../Recent-Events/src/applet-dialog.c:411
-#, fuzzy
 msgid "Documents"
-msgstr "Документ"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:413 ../drop-indicator/data/messages:3
 msgid "Images"
@@ -1206,18 +1207,16 @@ msgid "Audio"
 msgstr "Звук"
 
 #: ../Recent-Events/src/applet-dialog.c:415
-#, fuzzy
 msgid "Videos"
-msgstr "Відео"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:416
 msgid "Web"
 msgstr "Веб"
 
 #: ../Recent-Events/src/applet-dialog.c:417
-#, fuzzy
 msgid "Others"
-msgstr "Інше"
+msgstr ""
 
 #: ../Recent-Events/src/applet-dialog.c:418
 msgid "Top Results"
@@ -1949,8 +1948,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2218,7 +2217,8 @@ msgstr ""
 "Натисніть CTRL+v, щоб вставити його URL куди завгодно."
 
 #: ../dnd2share/src/applet-dnd2share.c:370
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 "Зачекайте на закінчення поточного звантаження перед тим, як почати нове."
 
@@ -2598,8 +2598,8 @@ msgstr ""
 "автоматичне завершення роботи\n"
 "і повідомляти вам, якщо ваша система потребує перезавантаження.\n"
 "<b>Клікніть</b> по значку, щоб викликати спливаюче меню.\n"
-"Ви можете прив'язати до нього і до блокування екрану <b>комбінації клавіш</"
-"b>."
+"Ви можете прив'язати до нього і до блокування екрану <b>комбінації "
+"клавіш</b>."
 
 #: ../logout/src/applet-init.c:39 ../logout/src/applet-logout.c:309
 #: ../logout/data/messages:95
@@ -2697,6 +2697,8 @@ msgid ""
 "It seems your system is being updated!\n"
 "Please be sure that you can shut down your computer right now."
 msgstr ""
+"Здається, ваша система оновлюється!\n"
+"Будь ласка, переконайтеся, що ви можете вимкнути комп'ютер прямо зараз."
 
 #: ../logout/src/applet-logout.c:574
 msgid "Restart the computer?"
@@ -3451,8 +3453,8 @@ msgstr "Прикрасити курсор"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Цей модуль прикрашає курсор різною анімацією, коли той знаходиться всередині "
 "панелі/десклету."
@@ -4778,8 +4780,8 @@ msgid ""
 "Depending on your WindowManager, you may be able to move this with ALT + "
 "left-click."
 msgstr ""
-"Залежно від вашого менеджеру вікон, ви можете переміщувати за допомогою ALT"
-"+ліве клацання."
+"Залежно від вашого менеджеру вікон, ви можете переміщувати за допомогою "
+"ALT+ліве клацання."
 
 #: ../Clipper/data/messages:31 ../Composite-Manager/data/messages:29
 #: ../Disks/data/messages:47 ../Doncky/data/messages:31
@@ -5105,7 +5107,8 @@ msgstr "Оформлення"
 #: ../weather/data/messages:67 ../weblets/data/messages:57
 #: ../wifi/data/messages:65
 msgid "Choose 'Custom decorations' to define your own decorations below."
-msgstr "Виберіть 'Власне оформлення', щоб налаштувати власне оформлення нижче."
+msgstr ""
+"Виберіть 'Власне оформлення', щоб налаштувати власне оформлення нижче."
 
 #: ../Clipper/data/messages:59 ../Composite-Manager/data/messages:57
 #: ../Disks/data/messages:57 ../Doncky/data/messages:59
@@ -5989,7 +5992,8 @@ msgid "Background"
 msgstr "Тло"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Ви можете отримати привабливіше тло використовуючи Оформлення десклетів"
 
@@ -6137,7 +6141,7 @@ msgstr "Виводити опис на екран в результатах по
 
 #: ../GMenu-old/data/messages:105 ../GMenu/data/messages:105
 msgid "Display a notification to quickly launch new applications?"
-msgstr ""
+msgstr "Показувати сповіщення для швидкого запуску нових додатків?"
 
 #: ../GMenu-old/data/messages:107 ../GMenu/data/messages:107
 msgid "Command to use for configuring the menu:"
@@ -7542,10 +7546,11 @@ msgid "Custom script for file upload :"
 msgstr "Власний сценарій для відвантаження файла :"
 
 #: ../dnd2share/data/messages:177
-msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
+msgid ""
+"Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 msgstr ""
-"Залиште порожнім, якщо хочете завантажити файл у  '~/Dropbox/Public' чи '~/"
-"Ubuntu One'."
+"Залиште порожнім, якщо хочете завантажити файл у  '~/Dropbox/Public' чи "
+"'~/Ubuntu One'."
 
 #: ../dnd2share/data/messages:179
 msgid "Path of a custom DropBox / UbuntuOne folder :"
@@ -7573,7 +7578,8 @@ msgstr "Висота точки сходження:"
 
 #: ../dock-rendering/data/messages:9
 msgid "The lower the value, the flatter the curve will appear."
-msgstr "Чим менше значення, тим більша частина кривої буде виглядати пласкою."
+msgstr ""
+"Чим менше значення, тим більша частина кривої буде виглядати пласкою."
 
 #: ../dock-rendering/data/messages:11
 msgid "Curvature of the curve in percent:"
@@ -7749,7 +7755,8 @@ msgid "Space between icons:"
 msgstr "Відстань між іконками:"
 
 #: ../dock-rendering/data/messages:121
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "При значенні 0 хвиля буде повністю пласкою, при значенні 1 хвиля буде "
 "ідентична іншим видам."
@@ -7967,7 +7974,8 @@ msgid "Colours"
 msgstr "Кольори"
 
 #: ../icon-effect/data/messages:73
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr "Він ледве змінює колір, так що ви можете навіть не змінювати його."
 
 #: ../icon-effect/data/messages:75 ../icon-effect/data/messages:187
@@ -8181,9 +8189,9 @@ msgid "Commands"
 msgstr "Команди"
 
 #: ../logout/data/messages:123
-#, fuzzy
-msgid "Fallback user-defined command to execute for logout in case of problem:"
-msgstr "Команда користувача для завершення сеансу:"
+msgid ""
+"Fallback user-defined command to execute for logout in case of problem:"
+msgstr ""
 
 #: ../logout/data/messages:125
 msgid ""
@@ -8196,10 +8204,9 @@ msgstr ""
 "команда для вимкнення однакова з командою закінчення сеансу."
 
 #: ../logout/data/messages:127
-#, fuzzy
 msgid ""
 "Fallback user-defined command to execute for shutdown in case of problem:"
-msgstr "Команда користувача для вимкнення:"
+msgstr ""
 
 #: ../logout/data/messages:129
 msgid ""
@@ -8237,7 +8244,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Файл зображення для статусу 'є нові листи':"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Якщо вибрано, то кількість листів буде показуватися навіть, якщо листів не "
 "має."
@@ -8323,8 +8331,10 @@ msgid "Blur amount:"
 msgstr "Якість розмиття:"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
-msgstr "Залиште порожнім, щоб відображати ім'я програвача, яким зараз керуєте."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
+msgstr ""
+"Залиште порожнім, щоб відображати ім'я програвача, яким зараз керуєте."
 
 #: ../musicPlayer/data/messages:11
 msgid "Player name"
@@ -8717,7 +8727,8 @@ msgstr "Тривалість життя частинок:"
 #: ../show-mouse/data/messages:33
 msgid ""
 "The higher the value, the more particles will scatter from their source."
-msgstr "Чим більше значення, тим більше часток розсіюватиметься з їх джерела."
+msgstr ""
+"Чим більше значення, тим більше часток розсіюватиметься з їх джерела."
 
 #: ../show-mouse/data/messages:35
 msgid "Scattering:"
@@ -8971,23 +8982,20 @@ msgid "Preserve the ratio of the screen?"
 msgstr "Зберегти пропорції екрану?"
 
 #: ../switcher/data/messages:107
-#, fuzzy
 msgid "Background for each desktop"
-msgstr "Використовувати колір для кожної стільниці"
+msgstr ""
 
 #: ../switcher/data/messages:109
 msgid "Wallpaper"
 msgstr ""
 
 #: ../switcher/data/messages:111 ../switcher/data/messages:117
-#, fuzzy
 msgid "Custom image"
-msgstr "Власний"
+msgstr ""
 
 #: ../switcher/data/messages:113 ../switcher/data/messages:121
-#, fuzzy
 msgid "Custom colour"
-msgstr "Колір тексту"
+msgstr ""
 
 #: ../switcher/data/messages:119 ../switcher/data/messages:153
 #: ../switcher/data/messages:159 ../switcher/data/messages:163
@@ -9185,7 +9193,7 @@ msgstr ""
 
 #: ../terminal/data/messages:133
 msgid "Open this terminal when doing a middle click on the icon:"
-msgstr ""
+msgstr "Відкрити термінал при натисканні середньою клавішею:"
 
 #: ../tomboy/data/messages:19
 msgid "'Close' icon image name:"
@@ -9343,7 +9351,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Позиція вертикальної смуги"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Це дозволить використовувати праве клацання для виклику меню Cairo-Dock."
 
@@ -9405,77 +9414,3 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Альтернативна команда запуску налаштування бездротового з'єднання:"
-
-#~ msgid "ImageShack.us"
-#~ msgstr "ImageShack.us"
-
-#~ msgid "UbuntuOne"
-#~ msgstr "UbuntuOne"
-
-#~ msgid "Draw a background?"
-#~ msgstr "Малювати тло?"
-
-#~ msgid "How to draw the icon?"
-#~ msgstr "Як намалювати іконку?"
-
-#~ msgid "Map wallpaper to icons"
-#~ msgstr "Карта шпалер для іконок"
-
-#~ msgid "Use an image for each desktop"
-#~ msgstr "Використовувати зображення для кожної стільниці"
-
-#~ msgid "Icon to use in expanded mode if wallpaper is not mapped:"
-#~ msgstr ""
-#~ "Значок, який використовується в розширеному режимі, якщо шпалери не "
-#~ "використовуються:"
-
-#~ msgid "In expanded mode, render the desklet in 3D?"
-#~ msgstr "В розширеному режимі, відображати десклет в 3D?"
-
-#~ msgid "Text colour:"
-#~ msgstr "Колір тексту:"
-
-#~ msgid "Comics"
-#~ msgstr "Комікси"
-
-#~ msgid "Border width:"
-#~ msgstr "Ширина лінії границі:"
-
-#~ msgid "Bubble's line colour:"
-#~ msgstr "Колір лінії хмарки:"
-
-#~ msgid "Modern"
-#~ msgstr "Сучасний"
-
-#~ msgid "Space between lines of the tip :"
-#~ msgstr "Проміжок між лініями в підказці:"
-
-#~ msgid "Tooltip"
-#~ msgstr "Підказка"
-
-#~ msgid "Curly"
-#~ msgstr "Вигнутий"
-
-#~ msgid "Curvature of the tip :"
-#~ msgstr "Вигнутість підказки:"
-
-#~ msgid "Curve the sides too?"
-#~ msgstr "Вигинати також боки?"
-
-#~ msgid ""
-#~ "the smaller is the text in the icon. 1 means the text fills all the icon."
-#~ msgstr ""
-#~ "Чим менше значення, тим менше розмір тексту на значку. При значенні 1, "
-#~ "текст заповнить значок повністю."
-
-#~ msgid "Icon size :"
-#~ msgstr "Розмір значка:"
-
-#~ msgid "small"
-#~ msgstr "маленькі"
-
-#~ msgid "medium"
-#~ msgstr "середні"
-
-#~ msgid "large"
-#~ msgstr "великі"
