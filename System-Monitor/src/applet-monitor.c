@@ -86,6 +86,8 @@ gboolean cd_sysmonitor_update_from_data (GldiModuleInstance *myApplet)
 		}
 		memset (s_fValues, 0, sizeof (s_fValues));
 		CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
+		
+		cairo_dock_downgrade_task_frequency (myData.pPeriodicTask);  // sometimes a data can be unavailable just once, for instance the nVidia temperature when going to/resuming from hibernation, so we just lower the frequency until it comes back
 	}
 	else
 	{
@@ -201,9 +203,11 @@ gboolean cd_sysmonitor_update_from_data (GldiModuleInstance *myApplet)
 				CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
 			}
 		}
+		
+		cairo_dock_set_normal_task_frequency (myApplet->pPeriodicTask);
 	}
 	
-	CD_APPLET_LEAVE (myData.bAcquisitionOK);
+	CD_APPLET_LEAVE (TRUE);
 }
 
 
