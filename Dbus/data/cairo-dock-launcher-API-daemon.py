@@ -161,7 +161,7 @@ class ULWatcher:
 			print('Launcher-API-Daemon: Could not open dbus. Uncaught exception.')
 			return
 		
-		bus_name = dbus.service.BusName (self.bus_name_str, self.bus)
+		bus_name = dbus.service.BusName (self.bus_name_str, self.bus, allow_replacement=True)  # allow Unity shell to take ownership of the bus name; we only want to register on the bus so that other applications know they can send message on the LauncherEntry interface
 		print("Launcher-API-Daemon: registered as Unity:",bus_name)
 		
 		self.bus.add_signal_receiver (self.on_launcher_entry_signal, dbus_interface=self.bus_iface_str, member_keyword='member', sender_keyword='sender')
