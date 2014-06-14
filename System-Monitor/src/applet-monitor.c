@@ -204,7 +204,7 @@ gboolean cd_sysmonitor_update_from_data (GldiModuleInstance *myApplet)
 			}
 		}
 		
-		cairo_dock_set_normal_task_frequency (myApplet->pPeriodicTask);
+		cairo_dock_set_normal_task_frequency (myData.pPeriodicTask);
 	}
 	
 	CD_APPLET_LEAVE (TRUE);
