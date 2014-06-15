@@ -31,21 +31,14 @@
 
 #define RAME_DATA_PIPE CD_SYSMONITOR_PROC_FS"/meminfo"
 
-#define goto_next_line \
-	str = strchr (str, '\n'); \
-	if (str == NULL) { \
-		myData.bAcquisitionOK = FALSE; \
-		return; \
-	} \
-	str ++;
-#define get_value(iValue) \
-	str = strchr (str, ':'); \
+#define get_value(cNeedle, iValue) \
+	str = strstr (str, cNeedle); \
 	if (str == NULL) { \
 		myData.bAcquisitionOK = FALSE; \
 		g_free (cContent); \
 		return; \
 	} \
-	str ++; \
+	str += strlen (cNeedle); \
 	while (*str == ' ') \
 		str ++; \
 	iValue = atoll (str);
@@ -65,43 +58,33 @@ void cd_sysmonitor_get_ram_data (GldiModuleInstance *myApplet)
 	else
 	{
 		gchar *str = cContent;
-		
-		get_value (myData.ramTotal)  // MemTotal
+
+		get_value ("MemTotal:", myData.ramTotal)  // MemTotal
 		cd_debug ("ramTotal : %lld", myData.ramTotal);
-		
-		goto_next_line
-		get_value (myData.ramFree)  // MemFree
+
+		get_value ("MemFree:", myData.ramFree)  // MemFree
 		cd_debug ("ramFree : %lld", myData.ramFree);
-		
+
+		// skip MemAvailable: ("new" parameter)
+
 		myData.ramUsed = myData.ramTotal - myData.ramFree;
-		goto_next_line
-		get_value (myData.ramBuffers)  // Buffers.
-		
-		goto_next_line
-		get_value (myData.ramCached)  // Cached.
+		get_value ("Buffers:", myData.ramBuffers)  // Buffers.
+
+		get_value ("Cached:", myData.ramCached)  // Cached.
 		cd_debug ("ramCached : %lld", myData.ramCached);
-		
+
 		myData.fRamPercent = 100. * (myConfig.bShowFreeMemory ? myData.ramFree + myData.ramCached + myData.ramBuffers : myData.ramUsed - myData.ramCached - myData.ramBuffers) / myData.ramTotal;
 		if (fabs (myData.fRamPercent - myData.fPrevRamPercent) > 1)
 		{
 			myData.fPrevRamPercent = myData.fRamPercent;
 			myData.bNeedsUpdate = TRUE;
 		}
-		
+
 		if (myConfig.bShowSwap)
 		{
-			goto_next_line  // SwapCached:
-			goto_next_line  // Active:
-			goto_next_line  // Inactive:
-			
-			while (strncmp (str, "SwapTotal", 9) != 0)  // apres, suivant la version su noyau, les lignes ne sont pas les memes, on fait donc une recherche.
-			{
-				goto_next_line
-			}
-			get_value (myData.swapTotal)  // SwapTotal.
+			get_value ("SwapTotal:", myData.swapTotal)  // SwapTotal.
 			cd_debug ("swapTotal : %lld", myData.swapTotal);
-			goto_next_line
-			get_value (myData.swapFree)  // SwapFree.
+			get_value ("SwapFree:", myData.swapFree)  // SwapFree.
 			cd_debug ("swapFree : %lld", myData.swapFree);
 			
 			myData.swapUsed = myData.swapTotal - myData.swapFree;
