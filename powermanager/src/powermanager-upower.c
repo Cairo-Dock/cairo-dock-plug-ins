@@ -186,8 +186,11 @@ static void _on_device_removed (UpClient *pClient, UpDevice *pDevice, gpointer d
 	CD_APPLET_LEAVE ();
 }
 
-#ifndef CD_UPOWER_0_99 // no longer used with UPower 0.99+
+#ifdef CD_UPOWER_0_99 // one more param
+static void _on_device_changed (G_GNUC_UNUSED UpDevice *pDevice, G_GNUC_UNUSED GParamSpec *pSpec, G_GNUC_UNUSED gpointer data)
+#else
 static void _on_device_changed (G_GNUC_UNUSED UpDevice *pDevice, G_GNUC_UNUSED gpointer data)
+#endif
 {
 	CD_APPLET_ENTER;
 	cd_debug ("battery properties changed");
@@ -199,7 +202,6 @@ static void _on_device_changed (G_GNUC_UNUSED UpDevice *pDevice, G_GNUC_UNUSED g
 	update_icon ();
 	CD_APPLET_LEAVE ();
 }
-#endif
 
 // Can be launched the first time (with the Task) or when a device is added/removed after.
 static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
@@ -254,10 +256,10 @@ static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
 			g_free (cVendor);
 			g_free (cModel);
 
-			#ifndef CD_UPOWER_0_99 // no longer used with UPower 0.99+
 			if (myData.pTask != NULL // only the first time
 				|| myData.pBatteryDeviceList == NULL // or if it's a new device
 				|| g_list_find (myData.pBatteryDeviceList, pDevice) == NULL)
+				// or compare the up_device_get_object_path (pDevice) ?
 			{
 				/* watch for any change. A priori, no need to watch the
 				 * "onBattery" signal on the client, since we can deduce this
@@ -266,10 +268,13 @@ static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
 				 * find a battery device, it will stay here forever, so we don't
 				 * need to watch for the destruction/creation of a battery device.
 				 */
-				iSignalID = g_signal_connect (pDevice, "changed", G_CALLBACK (_on_device_changed), NULL);  
+				#ifdef CD_UPOWER_0_99 // Now called notify
+				iSignalID = g_signal_connect (pDevice, "notify", G_CALLBACK (_on_device_changed), NULL);
+				#else
+				iSignalID = g_signal_connect (pDevice, "changed", G_CALLBACK (_on_device_changed), NULL);
+				#endif
 				myData.pSignalIDList = g_list_append (myData.pSignalIDList, GINT_TO_POINTER (iSignalID));
 			}
-			#endif
 
 			bFirst = FALSE;
 		}
