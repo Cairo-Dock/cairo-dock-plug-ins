@@ -302,38 +302,38 @@ CD_APPLET_ON_CLICK_END
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (! myData.bIsRunning)
 	{
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Find opened player"), GTK_STOCK_FIND, _cd_musicplayer_find_player, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Find opened player"), GLDI_ICON_NAME_FIND, _cd_musicplayer_find_player, CD_APPLET_MY_MENU);
 		if (myData.pCurrentHandler != NULL)
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (myData.pCurrentHandler->cDisplayedName?myData.pCurrentHandler->cDisplayedName:myData.pCurrentHandler->name, GTK_STOCK_MEDIA_PLAY, _cd_musicplayer_launch, CD_APPLET_MY_MENU);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (myData.pCurrentHandler->cDisplayedName?myData.pCurrentHandler->cDisplayedName:myData.pCurrentHandler->name, GLDI_ICON_NAME_MEDIA_PLAY, _cd_musicplayer_launch, CD_APPLET_MY_MENU);
 		else
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Choose a player"), GTK_STOCK_INDEX, _cd_musicplayer_choose_player, CD_APPLET_MY_MENU);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Choose a player"), GLDI_ICON_NAME_MEDIA_PLAY, _cd_musicplayer_choose_player, CD_APPLET_MY_MENU);
 	}
 	else
 	{
 		if (myData.pCurrentHandler->iPlayerControls & PLAYER_PREVIOUS)
 		{
 			gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Previous"), D_("scroll-up"));
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_MEDIA_PREVIOUS, _cd_musicplayer_prev, CD_APPLET_MY_MENU);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GLDI_ICON_NAME_MEDIA_PREVIOUS, _cd_musicplayer_prev, CD_APPLET_MY_MENU);
 			g_free (cLabel);
 		}
 		if (myData.pCurrentHandler->iPlayerControls & PLAYER_PLAY_PAUSE)
 		{
 			gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Play/Pause"), myConfig.bPauseOnClick ? D_("left-click") : D_("middle-click"));
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, (myData.iPlayingStatus != PLAYER_PLAYING ? GTK_STOCK_MEDIA_PLAY : GTK_STOCK_MEDIA_PAUSE), _cd_musicplayer_pp, CD_APPLET_MY_MENU);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, (myData.iPlayingStatus != PLAYER_PLAYING ? GLDI_ICON_NAME_MEDIA_PLAY : GLDI_ICON_NAME_MEDIA_PAUSE), _cd_musicplayer_pp, CD_APPLET_MY_MENU);
 			g_free (cLabel);
 		}
 		if (myData.pCurrentHandler->iPlayerControls & PLAYER_NEXT)
 		{
 			gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Next"), D_("scroll-down"));
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_MEDIA_NEXT, _cd_musicplayer_next, CD_APPLET_MY_MENU);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GLDI_ICON_NAME_MEDIA_NEXT, _cd_musicplayer_next, CD_APPLET_MY_MENU);
 			g_free (cLabel);
 		}
 		if (myData.pCurrentHandler->iPlayerControls & PLAYER_STOP)
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Stop"), GTK_STOCK_MEDIA_STOP, _cd_musicplayer_stop, CD_APPLET_MY_MENU);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Stop"), GLDI_ICON_NAME_MEDIA_STOP, _cd_musicplayer_stop, CD_APPLET_MY_MENU);
 		
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);  // on n'a jamais zero action, donc on met toujours un separateur.
 		
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Information"), GTK_STOCK_INFO, _cd_musicplayer_info, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Information"), GLDI_ICON_NAME_INFO, _cd_musicplayer_info, CD_APPLET_MY_MENU);
 		
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 		
@@ -361,8 +361,8 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		
 		if (myIcon->pAppli == NULL)  // player in the systray.
 		{
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Show"), GTK_STOCK_FIND, _cd_musicplayer_show_from_systray, CD_APPLET_MY_MENU);
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Quit"), GTK_STOCK_CLOSE, _cd_musicplayer_quit, CD_APPLET_MY_MENU);  // GTK_STOCK_QUIT looks too much like the "quit" of the dock.
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Show"), GLDI_ICON_NAME_FIND, _cd_musicplayer_show_from_systray, CD_APPLET_MY_MENU);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Quit"), GLDI_ICON_NAME_CLOSE, _cd_musicplayer_quit, CD_APPLET_MY_MENU);  // GLDI_ICON_NAME_QUIT looks too much like the "quit" of the dock.
 		}
 	}
 CD_APPLET_ON_BUILD_MENU_END

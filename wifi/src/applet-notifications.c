@@ -82,14 +82,14 @@ static void toggle_wlan (void)
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (! myData.bWirelessExt)
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Check for Wireless Extension"), GTK_STOCK_REFRESH, _wifi_recheck_wireless_extension, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Check for Wireless Extension"), GLDI_ICON_NAME_REFRESH, _wifi_recheck_wireless_extension, CD_APPLET_MY_MENU);
 	else
 	{
 		gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Toggle wifi ON/OFF"), D_("middle-click"));
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, (myData.iQuality == WIFI_QUALITY_NO_SIGNAL ? GTK_STOCK_MEDIA_PLAY : GTK_STOCK_MEDIA_PAUSE), toggle_wlan, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, (myData.iQuality == WIFI_QUALITY_NO_SIGNAL ? GLDI_ICON_NAME_MEDIA_PLAY : GLDI_ICON_NAME_MEDIA_PAUSE), toggle_wlan, CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Network Administration"), GTK_STOCK_PREFERENCES, _cd_wifi_show_config, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Network Administration"), GLDI_ICON_NAME_PREFERENCES, _cd_wifi_show_config, CD_APPLET_MY_MENU);
 CD_APPLET_ON_BUILD_MENU_END
 
 

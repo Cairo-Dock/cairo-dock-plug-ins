@@ -39,7 +39,7 @@ static void _open_dir (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Open folder"), D_("middle-click"));
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GTK_STOCK_OPEN, _open_dir, CD_APPLET_MY_MENU, myApplet);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GLDI_ICON_NAME_OPEN, _open_dir, CD_APPLET_MY_MENU, myApplet);
 	g_free (cLabel);
 CD_APPLET_ON_BUILD_MENU_END
 

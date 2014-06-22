@@ -569,7 +569,6 @@ na_tray_constructor (GType type,
   GObject *object;
   NaTray *tray;
   NaTrayPrivate *priv;
-  int screen_number;
 
   object = G_OBJECT_CLASS (na_tray_parent_class)->constructor (type,
                                                                n_construct_properties,
@@ -581,18 +580,11 @@ na_tray_constructor (GType type,
 
   if (!initialized)
     {
-      GdkDisplay *display;
-      int n_screens;
-
-      display = gdk_display_get_default ();
-      n_screens = gdk_display_get_n_screens (display);
-      trays_screens = g_new0 (TraysScreen, n_screens);
+      trays_screens = g_new0 (TraysScreen, 1);
       initialized = TRUE;
     }
 
-  screen_number = gdk_screen_get_number (priv->screen);
-
-  if (trays_screens [screen_number].tray_manager == NULL)
+  if (trays_screens->tray_manager == NULL)
     {
       NaTrayManager *tray_manager;
 
@@ -600,24 +592,24 @@ na_tray_constructor (GType type,
 
       if (na_tray_manager_manage_screen (tray_manager, priv->screen))
         {
-          trays_screens [screen_number].tray_manager = tray_manager;
+          trays_screens->tray_manager = tray_manager;
 
           g_signal_connect (tray_manager, "tray_icon_added",
                             G_CALLBACK (tray_added),
-                            &trays_screens [screen_number]);
+                            trays_screens);
           g_signal_connect (tray_manager, "tray_icon_removed",
                             G_CALLBACK (tray_removed),
-                            &trays_screens [screen_number]);
+                            trays_screens);
           g_signal_connect (tray_manager, "message_sent",
                             G_CALLBACK (message_sent),
-                            &trays_screens [screen_number]);
+                            trays_screens);
           g_signal_connect (tray_manager, "message_cancelled",
                             G_CALLBACK (message_cancelled),
-                            &trays_screens [screen_number]);
+                            trays_screens);
 
-          trays_screens [screen_number].icon_table = g_hash_table_new (NULL,
+          trays_screens->icon_table = g_hash_table_new (NULL,
                                                                        NULL);
-          trays_screens [screen_number].tip_table = g_hash_table_new_full (
+          trays_screens->tip_table = g_hash_table_new_full (
                                                                 NULL,
                                                                 NULL,
                                                                 NULL,
@@ -626,13 +618,13 @@ na_tray_constructor (GType type,
       else
         {
           g_printerr ("System tray didn't get the system tray manager selection for screen %d\n",
-		      screen_number);
+		      gdk_screen_get_number (priv->screen));
           g_object_unref (tray_manager);
         }
     }
       
-  priv->trays_screen = &trays_screens [screen_number];
-  trays_screens [screen_number].all_trays = g_slist_append (trays_screens [screen_number].all_trays,
+  priv->trays_screen = trays_screens;
+  trays_screens->all_trays = g_slist_append (trays_screens->all_trays,
                                                             tray);
 
   update_size_and_orientation (tray);

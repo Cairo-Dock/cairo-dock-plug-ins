@@ -601,11 +601,11 @@ static gboolean on_button_released_calendar (GtkWidget *widget,
 		GtkWidget *pMenu = gldi_menu_new (NULL);
 		
 		// add a task
-		cairo_dock_add_in_menu_with_stock_and_data (D_("Add a new task"), GTK_STOCK_ADD, G_CALLBACK (_on_add_task), pMenu, myApplet);
+		cairo_dock_add_in_menu_with_stock_and_data (D_("Add a new task"), GLDI_ICON_NAME_ADD, G_CALLBACK (_on_add_task), pMenu, myApplet);
 		
 		// edit tasks
 		gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Edit tasks"), D_("double-click"));
-		cairo_dock_add_in_menu_with_stock_and_data (cLabel, GTK_STOCK_EDIT, G_CALLBACK (_on_edit_tasks), pMenu, myApplet);
+		cairo_dock_add_in_menu_with_stock_and_data (cLabel, GLDI_ICON_NAME_EDIT, G_CALLBACK (_on_edit_tasks), pMenu, myApplet);
 		g_free (cLabel);
 		
 		gtk_widget_show_all (GTK_WIDGET (pMenu));

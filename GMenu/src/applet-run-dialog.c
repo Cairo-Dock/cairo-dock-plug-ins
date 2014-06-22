@@ -359,7 +359,7 @@ void cd_run_dialog_show_hide (GldiModuleInstance *myApplet)
 {
 	if (myData.pQuickLaunchDialog == NULL)
 	{
-		gchar *cIconPath = cairo_dock_search_icon_s_path (GTK_STOCK_EXECUTE, myData.iPanelDefaultMenuIconSize);
+		gchar *cIconPath = cairo_dock_search_icon_s_path (GLDI_ICON_NAME_EXECUTE, myData.iPanelDefaultMenuIconSize);
 		myData.pQuickLaunchDialog = gldi_dialog_show_with_entry (D_("Enter a command to launch:"),
 			myIcon, myContainer,
 			cIconPath ? cIconPath : "same icon",

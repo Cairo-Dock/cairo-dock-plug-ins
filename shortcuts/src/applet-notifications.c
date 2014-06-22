@@ -319,7 +319,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (CD_APPLET_CLICKED_ICON == myIcon)  // clic sur l'icone principale (mode dock donc).
 	{
 		gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Open Home directory"), D_("middle-click"));
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_OPEN, _open_home_dir, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GLDI_ICON_NAME_OPEN, _open_home_dir, CD_APPLET_MY_MENU);
 		g_free (cLabel);
 
 		// Connect to servers (ftp, ssh, samba, etc.)
@@ -327,16 +327,16 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			_check_ncs ();
 		if (s_bNCSAvailable)
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Connect to Server..."),
-				GTK_STOCK_OPEN, _open_ncs, CD_APPLET_MY_MENU);
+				GLDI_ICON_NAME_OPEN, _open_ncs, CD_APPLET_MY_MENU);
 
 		// browse network (e.g.: samba)
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Browse Network"), GTK_STOCK_OPEN,
-			_open_network, CD_APPLET_MY_MENU); // or GTK_STOCK_NETWORK
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Browse Network"), GLDI_ICON_NAME_OPEN,
+			_open_network, CD_APPLET_MY_MENU); // or GLDI_ICON_NAME_NETWORK
 		// browse recent files
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Browse recent files"),
-			GTK_STOCK_OPEN, _open_recent, CD_APPLET_MY_MENU); // or "folder-recent"
+			GLDI_ICON_NAME_OPEN, _open_recent, CD_APPLET_MY_MENU); // or "folder-recent"
 		// trash
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open Trash"), GTK_STOCK_OPEN,
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open Trash"), GLDI_ICON_NAME_OPEN,
 			_open_trash, CD_APPLET_MY_MENU); // or "user-trash"
 	}
 	else if (CD_APPLET_CLICKED_ICON != NULL)  // clic sur un item.
@@ -347,7 +347,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this bookmark"),
 				NULL, _cd_shortcuts_rename_bookmark, CD_APPLET_MY_MENU, data);
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove this bookmark"),
-				GTK_STOCK_REMOVE, _cd_shortcuts_remove_bookmark,
+				GLDI_ICON_NAME_REMOVE, _cd_shortcuts_remove_bookmark,
 				CD_APPLET_MY_MENU, data);
 			CD_APPLET_LEAVE (GLDI_NOTIFICATION_INTERCEPT);
 		}
@@ -356,7 +356,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		{
 			if (cairo_dock_fm_can_eject (CD_APPLET_CLICKED_ICON->cBaseURI))
 				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Eject"),
-					GTK_STOCK_DISCONNECT, _cd_shortcuts_eject,
+					GLDI_ICON_NAME_DISCONNECT, _cd_shortcuts_eject,
 					CD_APPLET_MY_MENU, data);
 			
 			gboolean bIsMounted = FALSE;
@@ -364,12 +364,12 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			g_free (cURI);
 			gchar *cLabel = g_strdup_printf ("%s (%s)",
 				bIsMounted ? D_("Unmount") : D_("Mount"), D_("middle-click"));
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GTK_STOCK_DISCONNECT,
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GLDI_ICON_NAME_DISCONNECT,
 				_cd_shortcuts_unmount, CD_APPLET_MY_MENU, data);
 			g_free (cLabel);
 			
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Get disk info"),
-				GTK_STOCK_PROPERTIES, _cd_shortcuts_show_disk_info,
+				GLDI_ICON_NAME_PROPERTIES, _cd_shortcuts_show_disk_info,
 				CD_APPLET_MY_MENU, data);
 		}
 	}

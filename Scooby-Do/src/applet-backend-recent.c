@@ -144,7 +144,7 @@ static GList *_cd_do_list_recent_sub_entries (CDEntry *pEntry, int *iNbEntries)
 	pSubEntry = g_new0 (CDEntry, 1);
 	pSubEntry->cPath = g_strdup (pEntry->cPath);
 	pSubEntry->cName = g_strdup (D_("Open location"));
-	pSubEntry->cIconName = g_strdup (GTK_STOCK_DIRECTORY);
+	pSubEntry->cIconName = g_strdup (GLDI_ICON_NAME_DIRECTORY);
 	pSubEntry->execute = _cd_do_show_file_location;
 	pSubEntry->fill = cd_do_fill_default_entry;
 	pEntries = g_list_prepend (pEntries, pSubEntry);

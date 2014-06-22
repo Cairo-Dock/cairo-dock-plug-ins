@@ -456,7 +456,7 @@ void cd_clock_load_custom_widget (GldiModuleInstance *myApplet, GKeyFile* pKeyFi
 	g_return_if_fail (pGroupKeyWidget != NULL);
 	
 	//\____________ On cree un bouton pour ajouter une alarme et on l'ajoute dans notre container.
-	GtkWidget *pButton = gtk_button_new_from_stock (GTK_STOCK_ADD);
+	GtkWidget *pButton = gtk_button_new_from_icon_name (GLDI_ICON_NAME_ADD, GTK_ICON_SIZE_BUTTON);
 	g_signal_connect (G_OBJECT (pButton),
 		"clicked",
 		G_CALLBACK (_cd_clock_add_alarm),
@@ -467,7 +467,7 @@ void cd_clock_load_custom_widget (GldiModuleInstance *myApplet, GKeyFile* pKeyFi
 		FALSE,
 		0);
 	//\____________ On cree un bouton pour supprimer une alarme et on l'ajoute dans notre container.
-	pButton = gtk_button_new_from_stock (GTK_STOCK_REMOVE);
+	pButton = gtk_button_new_from_icon_name (GLDI_ICON_NAME_REMOVE, GTK_ICON_SIZE_BUTTON);
 	g_signal_connect (G_OBJECT (pButton),
 		"clicked",
 		G_CALLBACK (_cd_clock_remove_alarm),
@@ -490,7 +490,7 @@ void cd_clock_load_custom_widget (GldiModuleInstance *myApplet, GKeyFile* pKeyFi
 	GtkWidget *pLabel = gtk_label_new (D_("Search for your location :"));
 	gtk_box_pack_start (GTK_BOX (pWidgetBox), pLabel, FALSE, FALSE, 0);
 	
-	GtkWidget *pLocationButton = gtk_button_new_from_stock (GTK_STOCK_FIND);
+	GtkWidget *pLocationButton = gtk_button_new_from_icon_name (GLDI_ICON_NAME_FIND, GTK_ICON_SIZE_BUTTON);
 	gtk_box_pack_start (GTK_BOX (pWidgetBox), pLocationButton, FALSE, FALSE, 0);
 	g_signal_connect (pLocationButton, "clicked", G_CALLBACK (_cd_clock_search_for_location), pLocationEntry);
 }

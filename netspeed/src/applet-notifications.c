@@ -103,10 +103,10 @@ static void _show_system_monitor (GtkMenuItem *menu_item, GldiModuleInstance *my
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Enable/disable network"), D_("middle-click"));
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_MEDIA_PAUSE, _netspeed_sleep, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GLDI_ICON_NAME_MEDIA_PAUSE, _netspeed_sleep, CD_APPLET_MY_MENU);
 	g_free (cLabel);
 	
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open the System-Monitor"), GTK_STOCK_EXECUTE, _show_system_monitor, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open the System-Monitor"), GLDI_ICON_NAME_EXECUTE, _show_system_monitor, CD_APPLET_MY_MENU);
 	
 	if (! myData.bAcquisitionOK)
 	{

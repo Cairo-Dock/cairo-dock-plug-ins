@@ -106,7 +106,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (cairo_dock_fm_can_setup_time ())
 	{
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Set up time and date"), GTK_STOCK_PREFERENCES, _cd_clock_launch_time_admin, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Set up time and date"), GLDI_ICON_NAME_PREFERENCES, _cd_clock_launch_time_admin, CD_APPLET_MY_MENU);
 	}
 CD_APPLET_ON_BUILD_MENU_END
 

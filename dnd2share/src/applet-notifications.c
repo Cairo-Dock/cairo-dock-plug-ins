@@ -410,10 +410,10 @@ CD_APPLET_ON_MIDDLE_CLICK_END
 
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Send the clipboard's content"), GTK_STOCK_PASTE, _send_clipboard, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Send the clipboard's content"), GLDI_ICON_NAME_PASTE, _send_clipboard, CD_APPLET_MY_MENU);
 	
 	GtkWidget *mi;
-	GtkWidget *pHistoryMenu = gldi_menu_add_sub_menu_full (CD_APPLET_MY_MENU, D_("History"), GTK_STOCK_INDEX, &mi);
+	GtkWidget *pHistoryMenu = gldi_menu_add_sub_menu_full (CD_APPLET_MY_MENU, D_("History"), GLDI_ICON_NAME_SORT_DESCENDING, &mi);
 	
 	if (myData.pUpoadedItems != NULL)
 	{
@@ -480,10 +480,10 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			else
 				CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("Get text"), _show_local_file, pItemSubMenu, pItem);
 			
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove from history"), GTK_STOCK_REMOVE, _remove_from_history, pItemSubMenu, pItem);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove from history"), GLDI_ICON_NAME_REMOVE, _remove_from_history, pItemSubMenu, pItem);
 		}
 		
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear History"), GTK_STOCK_CLEAR, _clear_history, pHistoryMenu);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear History"), GLDI_ICON_NAME_CLEAR, _clear_history, pHistoryMenu);
 	}
 	else
 		gtk_widget_set_sensitive (GTK_WIDGET (mi), FALSE);

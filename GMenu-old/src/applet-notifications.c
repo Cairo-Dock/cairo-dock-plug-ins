@@ -88,7 +88,7 @@ static gboolean _cd_check_edit_menu_cmd (const gchar *cWhich)
 
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Quick launch"), D_("middle-click"));
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_EXECUTE, cd_menu_show_hide_quick_launch, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GLDI_ICON_NAME_EXECUTE, cd_menu_show_hide_quick_launch, CD_APPLET_MY_MENU);
 	g_free (cLabel);
 	CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 
@@ -109,7 +109,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	}
 
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Configure menu"),
-		GTK_STOCK_PREFERENCES, _cd_menu_configure_menu, CD_APPLET_MY_MENU);
+		GLDI_ICON_NAME_PREFERENCES, _cd_menu_configure_menu, CD_APPLET_MY_MENU);
 	if (myConfig.cConfigureMenuCommand == NULL && s_cEditMenuCmd == NULL)
 	{
 		gchar *cTooltip = g_strdup_printf ("%s %s",
@@ -121,7 +121,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	}
 
 	CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear recent"), GTK_STOCK_CLEAR, cd_menu_clear_recent, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear recent"), GLDI_ICON_NAME_CLEAR, cd_menu_clear_recent, CD_APPLET_MY_MENU);
 CD_APPLET_ON_BUILD_MENU_END
 
 

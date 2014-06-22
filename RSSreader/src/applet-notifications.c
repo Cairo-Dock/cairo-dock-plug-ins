@@ -121,13 +121,13 @@ static void _refresh (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 	_update_feeds (myApplet);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Paste a new RSS Url (drag and drop)"), GTK_STOCK_PASTE, _paste_new_url_to_conf, CD_APPLET_MY_MENU);	
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Paste a new RSS Url (drag and drop)"), GLDI_ICON_NAME_PASTE, _paste_new_url_to_conf, CD_APPLET_MY_MENU);	
 	
 	if (myConfig.cUrl != NULL) // On ajoute une entrée dans le menu SI il y a une url seulement
 	{
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open with your web browser"), GTK_STOCK_EXECUTE, _start_browser, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open with your web browser"), GLDI_ICON_NAME_EXECUTE, _start_browser, CD_APPLET_MY_MENU);
 		gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Refresh"), D_("middle-click"));
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_REFRESH, _refresh, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GLDI_ICON_NAME_REFRESH, _refresh, CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
 CD_APPLET_ON_BUILD_MENU_END

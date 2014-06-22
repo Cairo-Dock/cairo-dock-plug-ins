@@ -268,9 +268,9 @@ static void _cd_folders_move_file (GtkMenuItem *pMenuItem, gpointer *data)
 		_("Pick up a directory"),
 		GTK_WINDOW (pContainer->pWidget),
 		GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER,
-		GTK_STOCK_OK,
+		_("Ok"),
 		GTK_RESPONSE_OK,
-		GTK_STOCK_CANCEL,
+		_("Cancel"),
 		GTK_RESPONSE_CANCEL,
 		NULL);
 	
@@ -392,21 +392,21 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		if (myConfig.bShowFiles)
 		{
 			gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Open the folder"), D_("middle-click"));
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GTK_STOCK_OPEN, _cd_folders_open_folder, CD_APPLET_MY_MENU, myApplet);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GLDI_ICON_NAME_OPEN, _cd_folders_open_folder, CD_APPLET_MY_MENU, myApplet);
 			g_free (cLabel);
 		}
 	}
 	else  // clic on a file.
 	{
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this file"), GTK_STOCK_SAVE_AS, _cd_folders_rename_file, CD_APPLET_MY_MENU, data);
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Delete this file"), GTK_STOCK_REMOVE, _cd_folders_delete_file, CD_APPLET_MY_MENU, data);
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Move this file"), GTK_STOCK_JUMP_TO, _cd_folders_move_file, CD_APPLET_MY_MENU, data);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this file"), GLDI_ICON_NAME_SAVE_AS, _cd_folders_rename_file, CD_APPLET_MY_MENU, data);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Delete this file"), GLDI_ICON_NAME_REMOVE, _cd_folders_delete_file, CD_APPLET_MY_MENU, data);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Move this file"), GLDI_ICON_NAME_JUMP_TO, _cd_folders_move_file, CD_APPLET_MY_MENU, data);
 		
 		GList *pApps = cairo_dock_fm_list_apps_for_file (CD_APPLET_CLICKED_ICON->cBaseURI);
 		if (pApps != NULL)
 		{
 			CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
-			GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Open with"), CD_APPLET_MY_MENU, GTK_STOCK_OPEN);
+			GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Open with"), CD_APPLET_MY_MENU, GLDI_ICON_NAME_OPEN);
 			
 			cd_folders_free_apps_list (myApplet);
 			
@@ -439,16 +439,16 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		}
 		
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Properties"), GTK_STOCK_PROPERTIES, _cd_folders_show_file_properties, CD_APPLET_MY_MENU, data);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Properties"), GLDI_ICON_NAME_PROPERTIES, _cd_folders_show_file_properties, CD_APPLET_MY_MENU, data);
 		
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Create a new file"), GTK_STOCK_NEW, _cd_folders_new_file, CD_APPLET_MY_MENU, myApplet);
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Create a new folder"), GTK_STOCK_NEW, _cd_folders_new_folder, CD_APPLET_MY_MENU, myApplet);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Create a new file"), GLDI_ICON_NAME_NEW, _cd_folders_new_file, CD_APPLET_MY_MENU, myApplet);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Create a new folder"), GLDI_ICON_NAME_NEW, _cd_folders_new_folder, CD_APPLET_MY_MENU, myApplet);
 	}
 	
 	if (myConfig.bShowFiles)
 	{
-		GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Sort by"), CD_APPLET_MY_MENU, GTK_STOCK_SORT_DESCENDING);
+		GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Sort by"), CD_APPLET_MY_MENU, GLDI_ICON_NAME_SORT_DESCENDING);
 		pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("By name"), _cd_folders_sort_by_name, pSubMenu, myApplet);
 		pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("By date"), _cd_folders_sort_by_date, pSubMenu, myApplet);
 		pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_DATA (D_("By size"), _cd_folders_sort_by_size, pSubMenu, myApplet);

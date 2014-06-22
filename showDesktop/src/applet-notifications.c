@@ -217,7 +217,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	#ifdef HAVE_XRANDR
 	if (cairo_dock_check_xrandr (1, 1))
 	{
-		GtkWidget *pResSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Change screen resolution"), CD_APPLET_MY_MENU, GTK_STOCK_FULLSCREEN);
+		GtkWidget *pResSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Change screen resolution"), CD_APPLET_MY_MENU, GLDI_ICON_NAME_FULLSCREEN);
 		
 		Display                 *dpy;
 		Window                  root;
@@ -244,7 +244,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			{
 				g_string_printf (pResString, "%dx%d", xrrs[i].width, xrrs[i].height);
 				if (i == original_size_id)
-					CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pResString->str, GTK_STOCK_APPLY, _on_select_resolution, pResSubMenu, GINT_TO_POINTER (i));
+					CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pResString->str, GLDI_ICON_NAME_GO_FORWARD, _on_select_resolution, pResSubMenu, GINT_TO_POINTER (i));
 				else
 					CD_APPLET_ADD_IN_MENU_WITH_DATA (pResString->str, _on_select_resolution, pResSubMenu, GINT_TO_POINTER (i));
 				/*short   *rates;
@@ -351,14 +351,14 @@ CD_APPLET_ON_DROP_DATA_BEGIN
 	
 	if (*CD_APPLET_RECEIVED_DATA == '/' || strncmp (CD_APPLET_RECEIVED_DATA, "file://", 7))  // fichier local
 	{
-		cairo_dock_add_in_menu_with_stock_and_data (("Move to the Desktop"), GTK_STOCK_CUT, G_CALLBACK (_move_to_desktop), pMenu, myApplet);
-		cairo_dock_add_in_menu_with_stock_and_data (("Copy to the Desktop"), GTK_STOCK_COPY, G_CALLBACK (_copy_to_desktop), pMenu, myApplet);
-		cairo_dock_add_in_menu_with_stock_and_data (("Link to the Desktop"), GTK_STOCK_JUMP_TO, G_CALLBACK (_link_to_desktop), pMenu, myApplet);
+		cairo_dock_add_in_menu_with_stock_and_data (("Move to the Desktop"), GLDI_ICON_NAME_CUT, G_CALLBACK (_move_to_desktop), pMenu, myApplet);
+		cairo_dock_add_in_menu_with_stock_and_data (("Copy to the Desktop"), GLDI_ICON_NAME_COPY, G_CALLBACK (_copy_to_desktop), pMenu, myApplet);
+		cairo_dock_add_in_menu_with_stock_and_data (("Link to the Desktop"), GLDI_ICON_NAME_JUMP_TO, G_CALLBACK (_link_to_desktop), pMenu, myApplet);
 	}
 	else  // fichier a telecharger.
 	{
-		cairo_dock_add_in_menu_with_stock_and_data (("Link to the Desktop"), GTK_STOCK_JUMP_TO, G_CALLBACK (_make_link_to_desktop), pMenu, myApplet);
-		cairo_dock_add_in_menu_with_stock_and_data (("Download onto the Desktop"), GTK_STOCK_COPY, G_CALLBACK (_download_to_desktop), pMenu, myApplet);
+		cairo_dock_add_in_menu_with_stock_and_data (("Link to the Desktop"), GLDI_ICON_NAME_JUMP_TO, G_CALLBACK (_make_link_to_desktop), pMenu, myApplet);
+		cairo_dock_add_in_menu_with_stock_and_data (("Download onto the Desktop"), GLDI_ICON_NAME_COPY, G_CALLBACK (_download_to_desktop), pMenu, myApplet);
 	}
 	CD_APPLET_POPUP_MENU_ON_MY_ICON (pMenu);
 	

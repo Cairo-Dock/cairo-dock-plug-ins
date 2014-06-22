@@ -293,7 +293,7 @@ static gboolean _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButt
 				GList *pApps = cairo_dock_fm_list_apps_for_file (cUri);
 				if (pApps != NULL)
 				{
-					GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Open with"), pMenu, GTK_STOCK_OPEN);
+					GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Open with"), pMenu, GLDI_ICON_NAME_OPEN);
 					
 					cd_folders_free_apps_list (myApplet);
 					
@@ -317,12 +317,12 @@ static gboolean _on_click_module_tree_view (GtkTreeView *pTreeView, GdkEventButt
 					}
 					g_list_free (pApps);
 				}
-				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open parent folder"), GTK_STOCK_DIRECTORY, _cd_open_parent, pMenu, NULL);
+				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open parent folder"), GLDI_ICON_NAME_DIRECTORY, _cd_open_parent, pMenu, NULL);
 				
-				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Copy the location"), GTK_STOCK_COPY, _cd_copy_location, pMenu, NULL);
+				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Copy the location"), GLDI_ICON_NAME_COPY, _cd_copy_location, pMenu, NULL);
 			}
 			
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Delete this event"), GTK_STOCK_REMOVE, _cd_delete_event, pMenu, GUINT_TO_POINTER (id));
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Delete this event"), GLDI_ICON_NAME_REMOVE, _cd_delete_event, pMenu, GUINT_TO_POINTER (id));
 			
 			gtk_widget_show_all (pMenu);
 			gtk_menu_popup (GTK_MENU (pMenu),
@@ -433,7 +433,7 @@ static GtkWidget *cd_build_events_widget (void)
 	
 	#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
 	gtk_entry_set_icon_activatable (GTK_ENTRY (pEntry), GTK_ENTRY_ICON_SECONDARY, TRUE);
-	gtk_entry_set_icon_from_stock (GTK_ENTRY (pEntry), GTK_ENTRY_ICON_SECONDARY, GTK_STOCK_CLEAR);
+	gtk_entry_set_icon_from_stock (GTK_ENTRY (pEntry), GTK_ENTRY_ICON_SECONDARY, GLDI_ICON_NAME_CLEAR);
 	g_signal_connect (pEntry, "icon-press", G_CALLBACK (on_clear_filter), NULL);
 	#endif
 	myData.pEntry = pEntry;

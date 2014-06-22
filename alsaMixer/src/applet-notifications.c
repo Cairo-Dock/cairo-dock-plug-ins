@@ -78,7 +78,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (myConfig.cShowAdvancedMixerCommand || s_cMixerCmd)
 	{
 		cLabel = g_strdup_printf ("%s (%s)", D_("Adjust channels"), D_("double-click"));
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_PREFERENCES, _mixer_show_advanced_mixer, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GLDI_ICON_NAME_PREFERENCES, _mixer_show_advanced_mixer, CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
 	

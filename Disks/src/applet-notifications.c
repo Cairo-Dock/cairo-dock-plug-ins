@@ -69,7 +69,7 @@ static void _show_monitor_system (GtkMenuItem *menu_item, GldiModuleInstance *my
 	}
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("System Monitor"), GTK_STOCK_MEDIA_PLAY, _show_monitor_system, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("System Monitor"), GLDI_ICON_NAME_MEDIA_PLAY, _show_monitor_system, CD_APPLET_MY_MENU);
 	
 	// Sub-Menu
 	//~ if (! myData.bAcquisitionOK) {

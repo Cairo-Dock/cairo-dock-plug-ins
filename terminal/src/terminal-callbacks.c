@@ -79,17 +79,17 @@ static GtkWidget *_terminal_build_menu (GtkWidget *pWidget, gchar *cReceivedData
 	my_data[1] = cReceivedData;
 	GtkWidget *menu = gldi_menu_new (NULL);
 	
-	gldi_menu_add_item (menu, D_("Paste"), GTK_STOCK_PASTE, G_CALLBACK(_terminal_paste), my_data);
+	gldi_menu_add_item (menu, D_("Paste"), GLDI_ICON_NAME_PASTE, G_CALLBACK(_terminal_paste), my_data);
 	
 	gtk_menu_shell_append (GTK_MENU_SHELL (menu), gtk_separator_menu_item_new());
 	
-	gldi_menu_add_item (menu, "cd", GTK_STOCK_JUMP_TO, G_CALLBACK(_terminal_cd), my_data);
+	gldi_menu_add_item (menu, "cd", GLDI_ICON_NAME_JUMP_TO, G_CALLBACK(_terminal_cd), my_data);
 	
-	gldi_menu_add_item (menu, "cp", GTK_STOCK_COPY, G_CALLBACK(_terminal_cp), my_data);
+	gldi_menu_add_item (menu, "cp", GLDI_ICON_NAME_COPY, G_CALLBACK(_terminal_cp), my_data);
 	
-	gldi_menu_add_item (menu, "mv", GTK_STOCK_GOTO_LAST, G_CALLBACK(_terminal_mv), my_data);
+	gldi_menu_add_item (menu, "mv", GLDI_ICON_NAME_GOTO_LAST, G_CALLBACK(_terminal_mv), my_data);
 	
-	gldi_menu_add_item (menu, "rm", GTK_STOCK_DELETE, G_CALLBACK(_terminal_rm), my_data);
+	gldi_menu_add_item (menu, "rm", GLDI_ICON_NAME_DELETE, G_CALLBACK(_terminal_rm), my_data);
 	
 	return menu;
 }

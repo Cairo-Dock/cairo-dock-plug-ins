@@ -101,14 +101,14 @@ static void _cd_weather_show_cc (GtkMenuItem *menu_item, GldiModuleInstance *myA
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (pClickedIcon == myIcon)
 	{
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Show current conditions (middle-click)"), GTK_STOCK_DIALOG_INFO, _cd_weather_show_cc, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Show current conditions (middle-click)"), GLDI_ICON_NAME_DIALOG_INFO, _cd_weather_show_cc, CD_APPLET_MY_MENU);
 	}
 	if (pClickedIcon != NULL)
 	{
 		myData.iClickedDay = _get_num_day_from_icon (myApplet, pClickedIcon);
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open weather.com (double-click)"), GTK_STOCK_JUMP_TO, _cd_weather_show_site, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open weather.com (double-click)"), GLDI_ICON_NAME_JUMP_TO, _cd_weather_show_site, CD_APPLET_MY_MENU);
 	}
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Reload now"), GTK_STOCK_REFRESH, _cd_weather_reload, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Reload now"), GLDI_ICON_NAME_REFRESH, _cd_weather_reload, CD_APPLET_MY_MENU);
 CD_APPLET_ON_BUILD_MENU_END
 
 

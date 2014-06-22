@@ -391,7 +391,7 @@ void cd_mail_load_custom_widget (GldiModuleInstance *myApplet, GKeyFile* pKeyFil
 		0);
 
 	//\____________ On cree un bouton pour ajouter un compte mail et on l'ajoute dans notre container.
-	GtkWidget *pButton = gtk_button_new_from_stock (GTK_STOCK_ADD);
+	GtkWidget *pButton = gtk_button_new_from_icon_name (GLDI_ICON_NAME_ADD, GTK_ICON_SIZE_BUTTON);
 	g_object_set_data (G_OBJECT (pButton), "MailTypesCombo", pMailTypesCombo); // associer le bouton add avec le combo
 	g_object_set_data (G_OBJECT (pButton), "MailNameEntry", pEntry); // associer le bouton add avec le texte du nom
 	g_signal_connect (G_OBJECT (pButton),

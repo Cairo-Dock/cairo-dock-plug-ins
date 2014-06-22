@@ -143,7 +143,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		if (myData.pMailAccounts->len > 1)  // many accounts -> list them in a sub-menu
 		{
 			// add a "update account" item for each mailbox
-			GtkWidget *pRefreshAccountSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Refresh a mail account"), CD_APPLET_MY_MENU, GTK_STOCK_REFRESH);
+			GtkWidget *pRefreshAccountSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Refresh a mail account"), CD_APPLET_MY_MENU, GLDI_ICON_NAME_REFRESH);
 			guint i;
 			for (i = 0; i < myData.pMailAccounts->len; i ++)
 			{
@@ -151,23 +151,23 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 				CD_APPLET_ADD_IN_MENU_WITH_DATA (pMailAccount->name, _cd_mail_update_account, pRefreshAccountSubMenu, pMailAccount);
 			}
 			gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Refresh all"), D_("middle-click"));
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GTK_STOCK_REFRESH, _cd_mail_update_all_accounts, CD_APPLET_MY_MENU, myApplet);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GLDI_ICON_NAME_REFRESH, _cd_mail_update_all_accounts, CD_APPLET_MY_MENU, myApplet);
 			g_free (cLabel);
 		}
 		else  // 1 account -> in main menu
 		{
 			CDMailAccount *pMailAccount = g_ptr_array_index (myData.pMailAccounts, 0);
 			gchar *cLabel = g_strdup_printf (D_("Refresh %s"), pMailAccount->name);
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GTK_STOCK_REFRESH, _cd_mail_update_account, CD_APPLET_MY_MENU, pMailAccount);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GLDI_ICON_NAME_REFRESH, _cd_mail_update_account, CD_APPLET_MY_MENU, pMailAccount);
 			g_free (cLabel);
 		}
 	}
 	
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Mark all emails as read"), GTK_STOCK_OK, _cd_mail_mark_all_as_read, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Mark all emails as read"), "mail-mark-read", _cd_mail_mark_all_as_read, CD_APPLET_MY_MENU);
 	if (myConfig.cMailApplication)
 	{
 		gchar *cLabel = g_strdup_printf (D_("Launch %s"), myConfig.cMailApplication);
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_EXECUTE, _cd_mail_launch_mail_appli, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GLDI_ICON_NAME_EXECUTE, _cd_mail_launch_mail_appli, CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
 CD_APPLET_ON_BUILD_MENU_END
@@ -275,9 +275,9 @@ GtkWidget *cd_mail_messages_container_new(CDMailAccount *pMailAccount)
 	gtk_box_pack_start(GTK_BOX(vbox), pScrolledWindow, TRUE, TRUE, 0);
 
 	GtkWidget *hbox = _gtk_hbox_new(0);
-	myData.pPrevButton = gtk_button_new_from_stock( GTK_STOCK_GO_BACK );
-	GtkWidget *pCloseButton = gtk_button_new_from_stock( GTK_STOCK_CLOSE );
-	myData.pNextButton = gtk_button_new_from_stock( GTK_STOCK_GO_FORWARD );
+	myData.pPrevButton = gtk_button_new_from_icon_name( GLDI_ICON_NAME_GO_BACK, GTK_ICON_SIZE_BUTTON );
+	GtkWidget *pCloseButton = gtk_button_new_from_icon_name( GLDI_ICON_NAME_CLOSE, GTK_ICON_SIZE_BUTTON );
+	myData.pNextButton = gtk_button_new_from_icon_name( GLDI_ICON_NAME_GO_FORWARD, GTK_ICON_SIZE_BUTTON );
 
 	gtk_box_pack_start(GTK_BOX(hbox), GTK_WIDGET(myData.pPrevButton), FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(hbox), GTK_WIDGET(pCloseButton), TRUE, FALSE, 0);

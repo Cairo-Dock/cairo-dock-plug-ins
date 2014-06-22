@@ -199,26 +199,26 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (CD_APPLET_CLICKED_ICON == myIcon
 	|| (CD_APPLET_CLICKED_ICON == NULL && CD_APPLET_CLICKED_CONTAINER == CAIRO_CONTAINER (myDesklet)))  // click on main icon or in the desklet
 	{
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Paste (drag'n'drop)"), GTK_STOCK_PASTE, _cd_stack_paste_content, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Paste (drag'n'drop)"), GLDI_ICON_NAME_PASTE, _cd_stack_paste_content, CD_APPLET_MY_MENU);
 		
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear the stack"), GTK_STOCK_CLEAR, _cd_stack_clear_stack, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Clear the stack"), GLDI_ICON_NAME_CLEAR, _cd_stack_clear_stack, CD_APPLET_MY_MENU);
 	}
 	else if (CD_APPLET_CLICKED_ICON != NULL)  // clic on an item
 	{
 		// Main Menu
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open (click)"), GTK_STOCK_EXECUTE, _cd_stack_open_item, CD_APPLET_MY_MENU, data);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open (click)"), GLDI_ICON_NAME_EXECUTE, _cd_stack_open_item, CD_APPLET_MY_MENU, data);
 		gchar *cContent = CD_APPLET_CLICKED_ICON->cCommand;
 		if (strncmp (cContent, "file://", 7) == 0)
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open parent folder"), GTK_STOCK_OPEN, _cd_stack_open_item_folder, CD_APPLET_MY_MENU, data);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open parent folder"), GLDI_ICON_NAME_OPEN, _cd_stack_open_item_folder, CD_APPLET_MY_MENU, data);
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 		gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Copy"), D_("middle-click"));
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GTK_STOCK_COPY, _cd_stack_copy_content, CD_APPLET_MY_MENU, data);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GLDI_ICON_NAME_COPY, _cd_stack_copy_content, CD_APPLET_MY_MENU, data);
 		g_free (cLabel);
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Cut"), GTK_STOCK_CUT, _cd_stack_cut_item, CD_APPLET_MY_MENU, data);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Cut"), GLDI_ICON_NAME_CUT, _cd_stack_cut_item, CD_APPLET_MY_MENU, data);
 		
 		CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this item"), GTK_STOCK_SAVE_AS, _cd_stack_rename_item, CD_APPLET_MY_MENU, data);
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove this item"), GTK_STOCK_REMOVE, _cd_stack_remove_item, CD_APPLET_MY_MENU, data);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this item"), GLDI_ICON_NAME_SAVE_AS, _cd_stack_rename_item, CD_APPLET_MY_MENU, data);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove this item"), GLDI_ICON_NAME_REMOVE, _cd_stack_remove_item, CD_APPLET_MY_MENU, data);
 	}
 	
 	if (CD_APPLET_CLICKED_ICON != NULL && CD_APPLET_CLICKED_ICON != myIcon)

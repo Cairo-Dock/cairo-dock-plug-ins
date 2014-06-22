@@ -100,7 +100,7 @@ static void cd_logout_manage_users (GtkMenuItem *menu_item, gchar *cUserName)
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (g_iDesktopEnv == CAIRO_DOCK_GNOME)
 	{
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Manage users"), GTK_STOCK_EDIT, cd_logout_manage_users, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Manage users"), GLDI_ICON_NAME_EDIT, cd_logout_manage_users, CD_APPLET_MY_MENU);
 	}
 CD_APPLET_ON_BUILD_MENU_END
 

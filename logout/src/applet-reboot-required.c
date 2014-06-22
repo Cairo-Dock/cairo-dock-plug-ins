@@ -72,7 +72,7 @@ static void _notify_action_required (void)
 				iIconSize));
 	if (! cImagePath)
 	{
-		cImagePath = cd_logout_check_icon (GTK_STOCK_REFRESH,
+		cImagePath = cd_logout_check_icon (GLDI_ICON_NAME_REFRESH,
 			(myConfig.iRebootNeededImage == CD_DISPLAY_EMBLEM ?
 				iIconSize / 2 :
 				iIconSize));

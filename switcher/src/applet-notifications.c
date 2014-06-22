@@ -267,11 +267,11 @@ static void _cd_switcher_expose_desktops (GtkMenuItem *menu_item, GldiModuleInst
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	// Workspaces
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Add a workspace"),
-		GTK_STOCK_ADD,
+		GLDI_ICON_NAME_ADD,
 		_cd_switcher_add_desktop,
 		CD_APPLET_MY_MENU);
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Remove last workspace"),
-		GTK_STOCK_REMOVE,
+		GLDI_ICON_NAME_REMOVE,
 		_cd_switcher_remove_last_desktop,
 		CD_APPLET_MY_MENU);
 	
@@ -280,14 +280,14 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	{
 		int iIndex = cd_switcher_compute_index_from_desktop (iNumDesktop, iNumViewportX, iNumViewportY);
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this workspace"),
-			GTK_STOCK_EDIT,
+			GLDI_ICON_NAME_EDIT,
 			_cd_switcher_rename_desktop,
 			CD_APPLET_MY_MENU,
 			GINT_TO_POINTER (iIndex));
 		if (iNumDesktop != myData.switcher.iCurrentDesktop || iNumViewportX != myData.switcher.iCurrentViewportX || iNumViewportY != myData.switcher.iCurrentViewportY)
 		{
 			GtkWidget *pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Move current workspace to this workspace"),
-				GTK_STOCK_JUMP_TO,
+				GLDI_ICON_NAME_JUMP_TO,
 				_cd_switcher_move_to_desktop,
 				CD_APPLET_MY_MENU,
 				GINT_TO_POINTER (iIndex));
@@ -301,7 +301,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	
 	// desktop actions
 	cLabel = (myConfig.iActionOnMiddleClick == SWICTHER_WINDOWS_LIST ? g_strdup_printf ("%s (%s)", D_("Windows List"), D_("middle-click")) : g_strdup (D_("Windows List")));
-	GtkWidget *pWindowsListMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (cLabel, CD_APPLET_MY_MENU, GTK_STOCK_DND_MULTIPLE);
+	GtkWidget *pWindowsListMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (cLabel, CD_APPLET_MY_MENU, GLDI_ICON_NAME_SORT_DESCENDING);
 	g_free (cLabel);
 	cd_switcher_build_windows_list (pWindowsListMenu);
 
@@ -333,7 +333,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	
 	CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Refresh"),
-		GTK_STOCK_REFRESH,
+		GLDI_ICON_NAME_REFRESH,
 		_cd_switcher_refresh,
 		CD_APPLET_MY_MENU);
 CD_APPLET_ON_BUILD_MENU_END

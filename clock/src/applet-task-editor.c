@@ -154,7 +154,7 @@ static gboolean _on_click_tree_view (GtkTreeView *pTreeView, GdkEventButton* pBu
 	if (pButton->button == 3 && pButton->type == GDK_BUTTON_RELEASE)
 	{
 		GtkWidget *pMenu = gldi_menu_new (NULL);
-		cairo_dock_add_in_menu_with_stock_and_data (D_("Add a new task"), GTK_STOCK_ADD, G_CALLBACK (_cd_clock_add_new_task), pMenu, myApplet);
+		cairo_dock_add_in_menu_with_stock_and_data (D_("Add a new task"), GLDI_ICON_NAME_ADD, G_CALLBACK (_cd_clock_add_new_task), pMenu, myApplet);
 		
 		GtkTreeSelection *pSelection = gtk_tree_view_get_selection (pTreeView);
 		GtkTreeModel *pModel;
@@ -175,7 +175,7 @@ static gboolean _on_click_tree_view (GtkTreeView *pTreeView, GdkEventButton* pBu
 				data[0] = myApplet;
 				data[1] = pTask;
 				data[2] = pModel;
-				cairo_dock_add_in_menu_with_stock_and_data (D_("Delete this task"), GTK_STOCK_REMOVE, G_CALLBACK (_cd_clock_delete_task), pMenu, data);
+				cairo_dock_add_in_menu_with_stock_and_data (D_("Delete this task"), GLDI_ICON_NAME_REMOVE, G_CALLBACK (_cd_clock_delete_task), pMenu, data);
 			}
 		}
 		gtk_widget_show_all (pMenu);

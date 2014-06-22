@@ -355,7 +355,7 @@ static GList *_cd_do_list_bookmarks_actions (CDEntry *pEntry, int *iNbEntries)
 	pSubEntry = g_new0 (CDEntry, 1);
 	pSubEntry->cPath = g_strdup (pEntry->cPath);
 	pSubEntry->cName = g_strdup (D_("Open"));
-	pSubEntry->cIconName = g_strdup (GTK_STOCK_JUMP_TO);
+	pSubEntry->cIconName = g_strdup (GLDI_ICON_NAME_JUMP_TO);
 	pSubEntry->fill = cd_do_fill_default_entry;
 	pSubEntry->execute = _cd_do_launch_url;
 	pEntries = g_list_prepend (pEntries, pSubEntry);
@@ -363,7 +363,7 @@ static GList *_cd_do_list_bookmarks_actions (CDEntry *pEntry, int *iNbEntries)
 	pSubEntry = g_new0 (CDEntry, 1);
 	pSubEntry->cPath = g_strdup (pEntry->cPath);
 	pSubEntry->cName = g_strdup (D_("Open in new window"));
-	pSubEntry->cIconName = g_strdup (GTK_STOCK_ADD);
+	pSubEntry->cIconName = g_strdup (GLDI_ICON_NAME_ADD);
 	pSubEntry->fill = cd_do_fill_default_entry;
 	pSubEntry->execute = _cd_do_launch_in_new_window;
 	pEntries = g_list_prepend (pEntries, pSubEntry);
@@ -371,7 +371,7 @@ static GList *_cd_do_list_bookmarks_actions (CDEntry *pEntry, int *iNbEntries)
 	pSubEntry = g_new0 (CDEntry, 1);
 	pSubEntry->cPath = g_strdup (pEntry->cPath);
 	pSubEntry->cName = g_strdup (D_("Copy URL"));
-	pSubEntry->cIconName = g_strdup (GTK_STOCK_COPY);
+	pSubEntry->cIconName = g_strdup (GLDI_ICON_NAME_COPY);
 	pSubEntry->fill = cd_do_fill_default_entry;
 	pSubEntry->execute = _cd_do_copy_url;
 	pEntries = g_list_prepend (pEntries, pSubEntry);
@@ -430,7 +430,7 @@ static GList *_cd_do_list_bookmarks_folder (CDEntry *pEntry, int *iNbEntries)
 		pSubEntry = g_new0 (CDEntry, 1);
 		pSubEntry->cPath = sAllUrls->str;
 		pSubEntry->cName = g_strdup (D_("Open file"));
-		pSubEntry->cIconName = g_strdup (GTK_STOCK_OPEN);
+		pSubEntry->cIconName = g_strdup (GLDI_ICON_NAME_OPEN);
 		pSubEntry->fill = cd_do_fill_default_entry;
 		pSubEntry->execute = _cd_do_launch_all_url;
 		pEntries = g_list_prepend (pEntries, pSubEntry);

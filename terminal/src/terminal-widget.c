@@ -466,21 +466,21 @@ static GtkWidget *_terminal_build_menu_tab (GtkWidget *vterm)
 	GtkWidget *menu_item;
 	if (vterm)
 	{
-		gldi_menu_add_item (menu, D_("Copy"), GTK_STOCK_COPY, G_CALLBACK(_terminal_copy), vterm);
+		gldi_menu_add_item (menu, D_("Copy"), GLDI_ICON_NAME_COPY, G_CALLBACK(_terminal_copy), vterm);
 		
-		gldi_menu_add_item (menu, D_("Paste"), GTK_STOCK_PASTE, G_CALLBACK(_terminal_paste), vterm);
+		gldi_menu_add_item (menu, D_("Paste"), GLDI_ICON_NAME_PASTE, G_CALLBACK(_terminal_paste), vterm);
 		
 		menu_item = gtk_separator_menu_item_new ();
 		gtk_menu_shell_append (GTK_MENU_SHELL (menu), menu_item);
 	}
 	
-	gldi_menu_add_item (menu, D_("New Tab"), GTK_STOCK_NEW, G_CALLBACK(on_new_tab), NULL);
+	gldi_menu_add_item (menu, D_("New Tab"), GLDI_ICON_NAME_NEW, G_CALLBACK(on_new_tab), NULL);
 	
-	gldi_menu_add_item (menu, D_("Rename this Tab"), GTK_STOCK_EDIT, G_CALLBACK(on_rename_tab), vterm);
+	gldi_menu_add_item (menu, D_("Rename this Tab"), GLDI_ICON_NAME_EDIT, G_CALLBACK(on_rename_tab), vterm);
 	
-	gldi_menu_add_item (menu, D_("Change this Tab's colour"), GTK_STOCK_COLOR_PICKER, G_CALLBACK(on_change_tab_color), vterm);
+	gldi_menu_add_item (menu, D_("Change this Tab's colour"), GLDI_ICON_NAME_SELECT_COLOR, G_CALLBACK(on_change_tab_color), vterm);
 	
-	gldi_menu_add_item (menu, D_("Close this Tab"), GTK_STOCK_CLOSE, G_CALLBACK(on_close_tab), vterm);
+	gldi_menu_add_item (menu, D_("Close this Tab"), GLDI_ICON_NAME_CLOSE, G_CALLBACK(on_close_tab), vterm);
 	
 	return menu;
 }

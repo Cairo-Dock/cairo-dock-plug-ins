@@ -111,7 +111,7 @@ static void _on_find_related_events (ZeitgeistResultSet *pEvents, Icon *pIcon)
 	
 	CD_APPLET_ADD_SEPARATOR_IN_MENU (s_pMenu);
 	
-	pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Recent files"), s_pMenu, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);  // GTK_STOCK_FILE
+	pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Recent files"), s_pMenu, MY_APPLET_SHARE_DATA_DIR"/"MY_APPLET_ICON_FILE);  // GLDI_ICON_NAME_FILE
 	while (zeitgeist_result_set_has_next (pEvents))
 	{
 		#ifdef ZEITGEIST_1_0
@@ -184,9 +184,9 @@ CD_APPLET_ON_BUILD_MENU_PROTO
 		{
 			CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);  // because we are called before the main callback.
 			
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Delete today's events"), GTK_STOCK_CLEAR, _clear_today_events, CD_APPLET_MY_MENU, myApplet);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Delete today's events"), GLDI_ICON_NAME_CLEAR, _clear_today_events, CD_APPLET_MY_MENU, myApplet);
 			
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Delete all events"), GTK_STOCK_DELETE, _clear_all_events, CD_APPLET_MY_MENU, myApplet);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Delete all events"), GLDI_ICON_NAME_DELETE, _clear_all_events, CD_APPLET_MY_MENU, myApplet);
 		}
 		else if (CD_APPLET_CLICKED_ICON->pMimeTypes != NULL)
 		{

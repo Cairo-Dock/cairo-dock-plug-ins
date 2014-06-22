@@ -217,7 +217,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	gchar *cLabel;
 	if (myConfig.iClickOption != SLIDER_PAUSE)
 	{
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (myData.bPause ? D_("Play") : D_("Pause"), myData.bPause ? GTK_STOCK_MEDIA_PLAY : GTK_STOCK_MEDIA_PAUSE, _cd_slider_toogle_pause, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (myData.bPause ? D_("Play") : D_("Pause"), myData.bPause ? GLDI_ICON_NAME_MEDIA_PLAY : GLDI_ICON_NAME_MEDIA_PAUSE, _cd_slider_toogle_pause, CD_APPLET_MY_MENU);
 	}
 	
 	if (myData.cSelectedImagePath != NULL)
@@ -228,14 +228,14 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 				cLabel = g_strdup_printf ("%s (%s)", D_("Open current image"), D_("middle-click"));
 			else
 				cLabel = g_strdup (D_("Open current image"));
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_OPEN, _cd_slider_open_selected, CD_APPLET_MY_MENU);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GLDI_ICON_NAME_OPEN, _cd_slider_open_selected, CD_APPLET_MY_MENU);
 			g_free (cLabel);
 		}
 		
 		GList *pApps = cairo_dock_fm_list_apps_for_file (myData.cSelectedImagePath);
 		if (pApps != NULL)
 		{
-			GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Open with"), CD_APPLET_MY_MENU, GTK_STOCK_OPEN);
+			GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Open with"), CD_APPLET_MY_MENU, GLDI_ICON_NAME_OPEN);
 			
 			cd_slider_free_apps_list (myApplet);
 
@@ -270,9 +270,9 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		cLabel = g_strdup_printf ("%s (%s)", D_("Browse images folder"), D_("middle-click"));
 	else
 		cLabel = g_strdup (D_("Browse images folder"));
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_DIRECTORY, _cd_slider_run_dir, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GLDI_ICON_NAME_DIRECTORY, _cd_slider_run_dir, CD_APPLET_MY_MENU);
 	
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Refresh images list"), GTK_STOCK_REFRESH, _cd_slider_refresh_images_list, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Refresh images list"), GLDI_ICON_NAME_REFRESH, _cd_slider_refresh_images_list, CD_APPLET_MY_MENU);
 	
 	g_free (cLabel);
 CD_APPLET_ON_BUILD_MENU_END

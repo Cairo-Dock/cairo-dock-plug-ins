@@ -74,8 +74,8 @@ static void on_close_tab(GtkMenuItem *menu_item, gpointer *data)
 CD_APPLET_ON_BUILD_MENU_BEGIN
 {
 	// Menu on the icon (when clicking on a tab or in the terminal, another menu is raised)
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("New Tab"), GTK_STOCK_NEW, on_new_tab, CD_APPLET_MY_MENU);
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Rename current Tab"), GTK_STOCK_EDIT, on_rename_tab, CD_APPLET_MY_MENU);
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Close current Tab"), GTK_STOCK_CLOSE, on_close_tab, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("New Tab"), GLDI_ICON_NAME_NEW, on_new_tab, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Rename current Tab"), GLDI_ICON_NAME_EDIT, on_rename_tab, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Close current Tab"), GLDI_ICON_NAME_CLOSE, on_close_tab, CD_APPLET_MY_MENU);
 }
 CD_APPLET_ON_BUILD_MENU_END

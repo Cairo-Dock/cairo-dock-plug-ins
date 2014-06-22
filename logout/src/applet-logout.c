@@ -277,7 +277,7 @@ static GtkWidget *_build_menu (GtkWidget **pShutdownMenuItem)
 		gtk_widget_set_sensitive (pMenuItem, FALSE);
 	*pShutdownMenuItem = pMenuItem;
 	
-	cImagePath = cd_logout_check_icon (GTK_STOCK_REFRESH, myData.iDesiredIconSize);
+	cImagePath = cd_logout_check_icon (GLDI_ICON_NAME_REFRESH, myData.iDesiredIconSize);
 	pMenuItem = CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Restart"), cImagePath ? cImagePath : MY_APPLET_SHARE_DATA_DIR"/system-restart.svg", cd_logout_restart, pMenu);
 	g_free (cImagePath);
 	if (!myData.bCanRestart)
@@ -319,7 +319,7 @@ static GtkWidget *_build_menu (GtkWidget **pShutdownMenuItem)
 	myData.pUserList = cd_logout_get_users_list ();
 	if (myData.pUserList != NULL && (myData.bHasGuestAccount || myData.pUserList->next != NULL))  // at least 2 users
 	{
-		GtkWidget *pUsersSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Switch user"), pMenu, GTK_STOCK_JUMP_TO);
+		GtkWidget *pUsersSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Switch user"), pMenu, GLDI_ICON_NAME_JUMP_TO);
 		
 		gboolean bFoundUser = FALSE;
 		const gchar *cCurrentUser = g_getenv ("USER");
@@ -571,7 +571,7 @@ static void cd_logout_restart (void)
 {
 	if (myConfig.bConfirmAction)
 	{
-		_demand_confirmation (D_("Restart the computer?"), GTK_STOCK_REFRESH, MY_APPLET_SHARE_DATA_DIR"/system-restart.svg", _restart);
+		_demand_confirmation (D_("Restart the computer?"), GLDI_ICON_NAME_REFRESH, MY_APPLET_SHARE_DATA_DIR"/system-restart.svg", _restart);
 	}
 	else
 	{

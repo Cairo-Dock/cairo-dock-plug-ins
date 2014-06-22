@@ -100,7 +100,7 @@ static void _init_fill_menu_from_dir (CDQuickBrowserItem *pItem)
 	pItem->pCurrentItem = pItem->pLocalItemList->next;  // on la rajoute au menu ici, pas en meme temps que les autres.
 	
 	//\______________ On ajoute cette entree dans le menu des maintenant.
-	GtkWidget *pMenuItem = gldi_menu_add_item (pMenu, D_("Open this folder"), myConfig.bHasIcons ? GTK_STOCK_OPEN : NULL, G_CALLBACK(_on_activate_item), pOpenDirItem);  // right click (e.g. open Bonobo or another file mgr)
+	GtkWidget *pMenuItem = gldi_menu_add_item (pMenu, D_("Open this folder"), myConfig.bHasIcons ? GLDI_ICON_NAME_OPEN : NULL, G_CALLBACK(_on_activate_item), pOpenDirItem);  // right click (e.g. open Bonobo or another file mgr)
 	g_signal_connect (G_OBJECT (pMenuItem), "button-release-event", G_CALLBACK(_on_click_item), pOpenDirItem);
 }
 
@@ -313,7 +313,7 @@ static gboolean _on_click_item (GtkWidget *pWidget, GdkEventButton* pButton, CDQ
 		GList *pApps = cairo_dock_fm_list_apps_for_file (cUri);
 		if (pApps != NULL)
 		{
-			GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Open with"), pMenu, GTK_STOCK_OPEN);
+			GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Open with"), pMenu, GLDI_ICON_NAME_OPEN);
 
 			cd_quick_browser_free_apps_list (myApplet);
 
@@ -343,9 +343,9 @@ static gboolean _on_click_item (GtkWidget *pWidget, GdkEventButton* pButton, CDQ
 			}
 			g_list_free (pApps);
 		}
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open parent folder"), GTK_STOCK_DIRECTORY, _cd_open_parent, pMenu, pItem);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open parent folder"), GLDI_ICON_NAME_DIRECTORY, _cd_open_parent, pMenu, pItem);
 		
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Copy the location"), GTK_STOCK_COPY, _cd_copy_location, pMenu, pItem);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Copy the location"), GLDI_ICON_NAME_COPY, _cd_copy_location, pMenu, pItem);
 		
 		gtk_widget_show_all (pMenu);
 		gtk_menu_popup (GTK_MENU (pMenu),

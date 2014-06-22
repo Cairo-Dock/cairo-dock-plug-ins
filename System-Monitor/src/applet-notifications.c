@@ -102,9 +102,9 @@ static void _show_info (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 	_pop_up_dialog_info (myApplet);
 }
 CD_APPLET_ON_BUILD_MENU_BEGIN
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open the System-Monitor"), GTK_STOCK_EXECUTE, _open_system_monitor, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Open the System-Monitor"), GLDI_ICON_NAME_EXECUTE, _open_system_monitor, CD_APPLET_MY_MENU);
 	
 	gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Show info"), D_("middle-click"));
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_DIALOG_INFO, _show_info, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GLDI_ICON_NAME_DIALOG_INFO, _show_info, CD_APPLET_MY_MENU);
 	g_free (cLabel);
 CD_APPLET_ON_BUILD_MENU_END

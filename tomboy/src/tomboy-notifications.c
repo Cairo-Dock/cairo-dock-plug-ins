@@ -215,19 +215,19 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	gboolean bClickOnNotes = (pClickedIcon !=  myIcon);
 	
 	gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Add a note"), D_("middle-click"));
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_ADD, _cd_tomboy_add_note, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GLDI_ICON_NAME_ADD, _cd_tomboy_add_note, CD_APPLET_MY_MENU);
 	g_free (cLabel);
 	
 	if (bClickOnNotes && pClickedIcon != NULL)
 	{
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Delete this note"), GTK_STOCK_REMOVE, _cd_tomboy_delete_note, CD_APPLET_MY_MENU, pClickedIcon);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Delete this note"), GLDI_ICON_NAME_REMOVE, _cd_tomboy_delete_note, CD_APPLET_MY_MENU, pClickedIcon);
 	}
 	
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Reload notes"), GTK_STOCK_REFRESH, _cd_tomboy_reload_notes, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Reload notes"), GLDI_ICON_NAME_REFRESH, _cd_tomboy_reload_notes, CD_APPLET_MY_MENU);
 	
 	CD_APPLET_ADD_SEPARATOR_IN_MENU (CD_APPLET_MY_MENU);
 	
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK  (D_("Search"), GTK_STOCK_FIND, _cd_tomboy_search_for_content, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK  (D_("Search"), GLDI_ICON_NAME_FIND, _cd_tomboy_search_for_content, CD_APPLET_MY_MENU);
 	CD_APPLET_ADD_IN_MENU(D_("Search for tag"), _cd_tomboy_search_for_tag, CD_APPLET_MY_MENU);
 	
 	CD_APPLET_ADD_IN_MENU(D_("Search for today's note"), _cd_tomboy_search_for_today, CD_APPLET_MY_MENU);
@@ -242,7 +242,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		icon = ic->data;
 		if (icon->bHasIndicator)
 		{
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Reset marks"), GTK_STOCK_CLEAR, _cd_tomboy_reset_marks, CD_APPLET_MY_MENU);
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Reset marks"), GLDI_ICON_NAME_CLEAR, _cd_tomboy_reset_marks, CD_APPLET_MY_MENU);
 			break ;
 		}
 	}

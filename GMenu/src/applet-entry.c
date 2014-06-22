@@ -433,7 +433,7 @@ static gboolean _on_button_release_launch_command (G_GNUC_UNUSED GtkWidget *pMen
 void cd_menu_append_entry (void)
 {
 	// menu item at the top of the menu with a GtkImage and a GtkEntry
-	GtkWidget *pMenuItem = gldi_menu_item_new_full (NULL, GTK_STOCK_EXECUTE, FALSE, GTK_ICON_SIZE_LARGE_TOOLBAR);
+	GtkWidget *pMenuItem = gldi_menu_item_new_full (NULL, GLDI_ICON_NAME_EXECUTE, FALSE, GTK_ICON_SIZE_LARGE_TOOLBAR);
 	
 	GtkWidget *pEntry = gtk_entry_new ();
 	gtk_container_add (GTK_CONTAINER (pMenuItem), pEntry);
@@ -461,7 +461,7 @@ void cd_menu_append_entry (void)
 	gtk_menu_shell_append (GTK_MENU_SHELL (myData.pMenu), pMenuItem);
 
 	// Launch this command (create the widget but we don't insert it now)
-	s_pLaunchCommand = gldi_menu_item_new_full (D_("Launch this command"), GTK_STOCK_EXECUTE, FALSE, GTK_ICON_SIZE_LARGE_TOOLBAR);
+	s_pLaunchCommand = gldi_menu_item_new_full (D_("Launch this command"), GLDI_ICON_NAME_EXECUTE, FALSE, GTK_ICON_SIZE_LARGE_TOOLBAR);
 	g_signal_connect (s_pLaunchCommand, "button-release-event",
 		G_CALLBACK (_on_button_release_launch_command), NULL);
 	g_object_ref (s_pLaunchCommand);

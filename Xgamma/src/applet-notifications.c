@@ -85,10 +85,10 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	if (myDock)
 	{
 		gchar *cLabel = g_strdup_printf ("%s (%s)", D_("Set up gamma correction"), D_("middle-click"));
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GTK_STOCK_DIALOG_INFO, _cd_xgamma_set_up_gamma_correction, CD_APPLET_MY_MENU);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel, GLDI_ICON_NAME_DIALOG_INFO, _cd_xgamma_set_up_gamma_correction, CD_APPLET_MY_MENU);
 		g_free (cLabel);
 	}
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Apply current luminosity on startup"), GTK_STOCK_DIALOG_WARNING, _cd_xgamma_remember_current_gamma, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK (D_("Apply current luminosity on startup"), GLDI_ICON_NAME_DIALOG_WARNING, _cd_xgamma_remember_current_gamma, CD_APPLET_MY_MENU);
 CD_APPLET_ON_BUILD_MENU_END
 
 

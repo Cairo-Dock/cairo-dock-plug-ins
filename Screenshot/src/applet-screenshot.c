@@ -278,9 +278,9 @@ static void _take_screenshot (CDScreenshotOptions *pOptions)
 		// pop up the menu
 		GtkWidget *pMenu = gldi_menu_new (myIcon);
 		
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Copy the location"), GTK_STOCK_COPY, _cd_copy_location, pMenu, NULL);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Copy the location"), GLDI_ICON_NAME_COPY, _cd_copy_location, pMenu, NULL);
 		
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open"), GTK_STOCK_FILE, _cd_open, pMenu, NULL);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open"), GLDI_ICON_NAME_FILE, _cd_open, pMenu, NULL);
 
 		if (myData.pAppList == NULL)
 		{
@@ -307,7 +307,7 @@ static void _take_screenshot (CDScreenshotOptions *pOptions)
 		}
 		if (myData.pAppList)
 		{
-			GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Open with"), pMenu, GTK_STOCK_OPEN);
+			GtkWidget *pSubMenu = CD_APPLET_ADD_SUB_MENU_WITH_IMAGE (D_("Open with"), pMenu, GLDI_ICON_NAME_OPEN);
 			GList *pItem;
 			gchar **pAppInfo;
 			for (pItem = myData.pAppList; pItem != NULL; pItem = g_list_next (pItem))
@@ -316,7 +316,7 @@ static void _take_screenshot (CDScreenshotOptions *pOptions)
 				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (pAppInfo[0], pAppInfo[2], _cd_launch_with, pSubMenu, pAppInfo[1]);
 			}
 		}
-		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open parent folder"), GTK_STOCK_DIRECTORY, _cd_open_parent, pMenu, NULL);
+		CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Open parent folder"), GLDI_ICON_NAME_DIRECTORY, _cd_open_parent, pMenu, NULL);
 		
 		CD_APPLET_POPUP_MENU_ON_MY_ICON (pMenu);
 		
@@ -419,9 +419,9 @@ static void _cairo_dock_pick_a_file (G_GNUC_UNUSED GtkButton *button, GtkWidget 
 		D_("Pick up a directory"),
 		GTK_WINDOW (myContainer->pWidget), // pParentWindow,
 		GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER,
-		GTK_STOCK_OK,
+		_("Ok"),
 		GTK_RESPONSE_OK,
-		GTK_STOCK_CANCEL,
+		_("Cancel"),
 		GTK_RESPONSE_CANCEL,
 		NULL);
 	gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (pFileChooserDialog),
@@ -500,7 +500,7 @@ GtkWidget *cd_screenshot_build_options_widget (void)
 	pEntry = gtk_entry_new ();
 	gtk_entry_set_text (GTK_ENTRY (pEntry), myConfig.cDirPath ? myConfig.cDirPath : g_getenv ("HOME"));
 	g_object_set_data (G_OBJECT (pBox), "dir", pEntry);
-	GtkWidget *pButtonFileChooser = gtk_button_new_from_stock (GTK_STOCK_OPEN);
+	GtkWidget *pButtonFileChooser = gtk_button_new_from_icon_name (GLDI_ICON_NAME_OPEN, GTK_ICON_SIZE_BUTTON);
 	g_signal_connect (G_OBJECT (pButtonFileChooser),
 		"clicked",
 		G_CALLBACK (_cairo_dock_pick_a_file),

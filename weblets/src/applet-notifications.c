@@ -96,7 +96,7 @@ static void _cd_weblets_reload_webpage (GtkMenuItem *menu_item, GldiModuleInstan
 //\___________ Define here the entries you want to add to the menu when the user right-clicks on your icon or on its subdock or your desklet. The icon and the container that were clicked are available through the macros CD_APPLET_CLICKED_ICON and CD_APPLET_CLICKED_CONTAINER. CD_APPLET_CLICKED_ICON may be NULL if the user clicked in the container but out of icons. The menu where you can add your entries is available throught the macro CD_APPLET_MY_MENU; you can add sub-menu to it if you want.
 CD_APPLET_ON_BUILD_MENU_BEGIN
 	gint i = 0;
-	CD_APPLET_ADD_IN_MENU_WITH_STOCK ("Reload webpage", GTK_STOCK_REFRESH, _cd_weblets_reload_webpage, CD_APPLET_MY_MENU);
+	CD_APPLET_ADD_IN_MENU_WITH_STOCK ("Reload webpage", GLDI_ICON_NAME_REFRESH, _cd_weblets_reload_webpage, CD_APPLET_MY_MENU);
 	
 	if( myConfig.cListURI != NULL )
 	{

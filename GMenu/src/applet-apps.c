@@ -126,7 +126,7 @@ void cd_menu_check_for_new_apps (void)
 
 			gtk_combo_box_set_active (GTK_COMBO_BOX (pInteractiveWidget), 0); // select the first one
 
-			gchar *cIconPath = cairo_dock_search_icon_s_path (GTK_STOCK_EXECUTE, myDialogsParam.iDialogIconSize);
+			gchar *cIconPath = cairo_dock_search_icon_s_path (GLDI_ICON_NAME_EXECUTE, myDialogsParam.iDialogIconSize);
 			s_pNewAppsDialog = gldi_dialog_show (cQuestion,
 				myIcon, myContainer,
 				0,

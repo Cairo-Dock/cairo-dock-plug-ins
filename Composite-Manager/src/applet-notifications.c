@@ -119,14 +119,14 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	
 	cLabel = (myConfig.iActionOnMiddleClick == CD_EDIT_CONFIG ? g_strdup_printf ("%s (%s)", D_("Edit Window-Manager settings"), D_("middle-click")) : g_strdup (D_("Edit Window-Manager settings")));
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel,
-		GTK_STOCK_EDIT,
+		GLDI_ICON_NAME_EDIT,
 		cd_open_wm_config,
 		CD_APPLET_MY_MENU);
 	g_free (cLabel);
 	
 	cLabel = (myConfig.iActionOnMiddleClick == CD_RELOAD_WM ? g_strdup_printf ("%s (%s)", D_("Reload Window-Manager"), D_("middle-click")) : g_strdup (D_("Reload Window-Manager")));
 	CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel,
-		GTK_STOCK_REFRESH,
+		GLDI_ICON_NAME_REFRESH,
 		cd_reload_wm,
 		CD_APPLET_MY_MENU);
 	g_free (cLabel);
@@ -162,7 +162,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 	{
 		cLabel = (myConfig.iActionOnMiddleClick == CD_SHOW_WIDGET_LAYER ? g_strdup_printf ("%s (%s)", D_("Show the Widget Layer"), D_("middle-click")) : g_strdup (D_("Show the Widget Layer")));
 		CD_APPLET_ADD_IN_MENU_WITH_STOCK (cLabel,
-			GTK_STOCK_LEAVE_FULLSCREEN,
+			GLDI_ICON_NAME_LEAVE_FULLSCREEN,
 			_cd_show_widget_layer,
 			CD_APPLET_MY_MENU);
 		g_free (cLabel);

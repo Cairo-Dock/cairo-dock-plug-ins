@@ -175,7 +175,7 @@ static GList *_list_folder (const gchar *cPath, gboolean bNoHiddenFile, int *iNb
 	pEntry = g_new0 (CDEntry, 1);
 	pEntry->cPath = g_strdup (cPath);
 	pEntry->cName = g_strdup (D_("Move to"));
-	pEntry->cIconName = g_strdup (GTK_STOCK_JUMP_TO);
+	pEntry->cIconName = g_strdup (GLDI_ICON_NAME_JUMP_TO);
 	pEntry->fill = cd_do_fill_default_entry;
 	pEntry->execute = _cd_do_move_file;
 	pEntries = g_list_prepend (pEntries, pEntry);
@@ -183,7 +183,7 @@ static GList *_list_folder (const gchar *cPath, gboolean bNoHiddenFile, int *iNb
 	pEntry = g_new0 (CDEntry, 1);
 	pEntry->cPath = g_strdup (cPath);
 	pEntry->cName = g_strdup (D_("Copy URL"));
-	pEntry->cIconName = g_strdup (GTK_STOCK_COPY);
+	pEntry->cIconName = g_strdup (GLDI_ICON_NAME_COPY);
 	pEntry->fill = cd_do_fill_default_entry;
 	pEntry->execute = _cd_do_copy_url;
 	pEntries = g_list_prepend (pEntries, pEntry);
@@ -225,7 +225,7 @@ static GList *_list_actions_on_file (const gchar *cPath, int *iNbEntries)
 	pEntry = g_new0 (CDEntry, 1);
 	pEntry->cPath = g_strdup (cPath);
 	pEntry->cName = g_strdup (D_("Open location"));
-	pEntry->cIconName = g_strdup (GTK_STOCK_DIRECTORY);
+	pEntry->cIconName = g_strdup (GLDI_ICON_NAME_DIRECTORY);
 	pEntry->fill = cd_do_fill_default_entry;
 	pEntry->execute = _cd_do_show_file_location;
 	pEntries = g_list_prepend (pEntries, pEntry);
@@ -249,7 +249,7 @@ static GList *_list_actions_on_file (const gchar *cPath, int *iNbEntries)
 	pEntry = g_new0 (CDEntry, 1);
 	pEntry->cPath = g_strdup (cPath);
 	pEntry->cName = g_strdup (D_("Move to"));
-	pEntry->cIconName = g_strdup (GTK_STOCK_JUMP_TO);
+	pEntry->cIconName = g_strdup (GLDI_ICON_NAME_JUMP_TO);
 	pEntry->fill = cd_do_fill_default_entry;
 	pEntry->execute = _cd_do_move_file;
 	pEntries = g_list_prepend (pEntries, pEntry);
@@ -257,7 +257,7 @@ static GList *_list_actions_on_file (const gchar *cPath, int *iNbEntries)
 	pEntry = g_new0 (CDEntry, 1);
 	pEntry->cPath = g_strdup (cPath);
 	pEntry->cName = g_strdup (D_("Copy URL"));
-	pEntry->cIconName = g_strdup (GTK_STOCK_COPY);
+	pEntry->cIconName = g_strdup (GLDI_ICON_NAME_COPY);
 	pEntry->fill = cd_do_fill_default_entry;
 	pEntry->execute = _cd_do_copy_url;
 	pEntries = g_list_prepend (pEntries, pEntry);
@@ -390,9 +390,9 @@ static void _cd_do_move_file (CDEntry *pEntry)
 		D_("Pick up a directory"),
 		GTK_WINDOW (g_pMainDock->container.pWidget),
 		GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER,
-		GTK_STOCK_OK,
+		_("Ok"),
 		GTK_RESPONSE_OK,
-		GTK_STOCK_CANCEL,
+		_("Cancel"),
 		GTK_RESPONSE_CANCEL,
 		NULL);
 	gtk_file_chooser_set_select_multiple (GTK_FILE_CHOOSER (pFileChooserDialog), FALSE);
