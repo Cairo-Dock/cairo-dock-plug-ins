@@ -345,7 +345,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		if (CD_APPLET_CLICKED_ICON->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)
 		{
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Rename this bookmark"),
-				NULL, _cd_shortcuts_rename_bookmark, CD_APPLET_MY_MENU, data);
+				GLDI_ICON_NAME_EDIT, _cd_shortcuts_rename_bookmark, CD_APPLET_MY_MENU, data);
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Remove this bookmark"),
 				GLDI_ICON_NAME_REMOVE, _cd_shortcuts_remove_bookmark,
 				CD_APPLET_MY_MENU, data);
@@ -356,7 +356,7 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 		{
 			if (cairo_dock_fm_can_eject (CD_APPLET_CLICKED_ICON->cBaseURI))
 				CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Eject"),
-					GLDI_ICON_NAME_DISCONNECT, _cd_shortcuts_eject,
+					GLDI_ICON_NAME_MEDIA_EJECT, _cd_shortcuts_eject,
 					CD_APPLET_MY_MENU, data);
 			
 			gboolean bIsMounted = FALSE;
@@ -364,12 +364,12 @@ CD_APPLET_ON_BUILD_MENU_BEGIN
 			g_free (cURI);
 			gchar *cLabel = g_strdup_printf ("%s (%s)",
 				bIsMounted ? D_("Unmount") : D_("Mount"), D_("middle-click"));
-			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GLDI_ICON_NAME_DISCONNECT,
+			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (cLabel, GLDI_ICON_NAME_MEDIA_EJECT,
 				_cd_shortcuts_unmount, CD_APPLET_MY_MENU, data);
 			g_free (cLabel);
 			
 			CD_APPLET_ADD_IN_MENU_WITH_STOCK_AND_DATA (D_("Get disk info"),
-				GLDI_ICON_NAME_PROPERTIES, _cd_shortcuts_show_disk_info,
+				GLDI_ICON_NAME_INFO, _cd_shortcuts_show_disk_info,
 				CD_APPLET_MY_MENU, data);
 		}
 	}
