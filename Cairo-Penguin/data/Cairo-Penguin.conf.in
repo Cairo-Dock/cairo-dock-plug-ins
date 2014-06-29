@@ -1,6 +1,6 @@
 #@VERSION_CAIRO_PENGUIN@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -26,7 +26,7 @@ order =
 handbook=Cairo-Penguin
 
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 #h+[@cairo_penguindatadir@/themes;@cairo_penguinuserdirname@;Cairo-Penguin] Choose one of the available themes:/
 theme = Classic

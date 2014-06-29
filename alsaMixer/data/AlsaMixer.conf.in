@@ -1,6 +1,6 @@
 #@VERSION_ALSA_MIXER@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -33,7 +33,7 @@ order=
 handbook=AlsaMixer
 
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -68,7 +68,7 @@ accessibility=0
 sticky=true
 
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
@@ -101,10 +101,10 @@ fg desklet =
 #e+[0;1] Foreground tansparency:
 fg alpha = 1
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
-#F[Display;gtk-dialog-info]
+#F[Display;dialog-information]
 frame_disp =
 
 #l[No;On label;On icon] Display volume :
@@ -135,7 +135,7 @@ sep_disp =
 broken icon = 
 
 
-#F[Control;gtk-execute]
+#F[Control;system-run]
 frame_ctrl =
 
 #k Shortkey to show/hide the sound control dialog:

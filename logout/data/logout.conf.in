@@ -1,6 +1,6 @@
 #@VERSION_LOGOUT@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -26,7 +26,7 @@ order=
 #A
 handbook=logout
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -61,7 +61,7 @@ accessibility=0
 sticky=true
 
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
@@ -95,10 +95,10 @@ fg desklet =
 fg alpha = 1
 
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
-#F[Action;gtk-execute]
+#F[Action;system-run]
 frame_action=
 
 #l- [Log out;Shut down;Lock screen] Action on middle-click:
@@ -119,7 +119,7 @@ sep_act2 =
 #b Demand confirmation before closing
 confirm action = true
 
-#X[Customisation;gtk-dialog-info]
+#X[Customisation;dialog-information]
 frame_perso =
 #g+[Default] Icon image name to use when the system has to be rebooted:
 #{Leave empty to use the default icon.}
@@ -128,7 +128,7 @@ emblem =
 #l[Emblem;Image] Display this image as an emblem or replace applet's icon with this image?
 replace image = 0
 
-#X[Commands;gtk-preferences]
+#X[Commands;preferences-system]
 frame_comm=
 
 #s Fallback user-defined command to execute for logout in case of problem:

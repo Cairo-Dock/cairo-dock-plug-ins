@@ -1,6 +1,6 @@
 #@VERSION_MESSAGING_MENU@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -31,7 +31,7 @@ order=
 #A
 handbook=Messaging Menu
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -67,7 +67,7 @@ sticky=true
 
 
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
@@ -101,7 +101,7 @@ fg desklet =
 fg alpha = 1
 
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
 #a Animation of the icon when one of the application demands your attention :

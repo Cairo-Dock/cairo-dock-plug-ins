@@ -1,6 +1,6 @@
 #@VERSION_GMENU@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -26,7 +26,7 @@ order=
 #A
 handbook=GMenu
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -61,7 +61,7 @@ accessibility=0
 sticky=true
 
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
@@ -95,7 +95,7 @@ fg desklet =
 fg alpha = 1
 
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
 #k Shortkey to show/hide the menu:

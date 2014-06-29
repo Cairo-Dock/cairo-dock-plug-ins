@@ -1200,7 +1200,7 @@ gboolean cd_dbus_applet_bind_shortkey (dbusApplet *pDbusApplet, const gchar **cS
 	GldiModuleInstance *pInstance = _get_module_instance_from_dbus_applet (pDbusApplet);
 	g_return_val_if_fail (pInstance != NULL, FALSE);
 	
-	const gchar *cShortkey, *cDescription = "Pouet", *cGroupName = "Configuration", *cKeyName = "shortkey";
+	const gchar *cShortkey, *cDescription = "-", *cGroupName = "Configuration", *cKeyName = "shortkey";
 	GldiShortkey *pKeyBinding;
 	int i;
 	GList *kb;

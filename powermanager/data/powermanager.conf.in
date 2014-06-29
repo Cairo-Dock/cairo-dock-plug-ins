@@ -1,6 +1,6 @@
 #@VERSION_POWERMANAGER@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -33,7 +33,7 @@ order=
 handbook=PowerManager
 
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -68,7 +68,7 @@ accessibility=0
 sticky=true
 
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
@@ -102,7 +102,7 @@ fg desklet =
 fg alpha = 1
 
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
 #l+[Gauge;Graph;Icon with progress bar] Display style
@@ -143,7 +143,7 @@ battery icon =
 charge icon = 
 
 
-#F[Parameters;gtk-preferences]
+#F[Parameters;preferences-system]
 frame_param =
 
 #l+[Nothing;charge;Timelength] Information to display on the icon :
@@ -163,7 +163,7 @@ discharge rate = 0
 charge rate = 0
 
 
-#F[Notification;gtk-dialog-info]
+#F[Notification;dialog-information]
 frame_alert=
 
 #B Notification when battery charged ?

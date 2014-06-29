@@ -1,6 +1,12 @@
 #@VERSION_SCOOBY_DO@
 
-#[gtk-preferences]
+#[@pkgdatadir@/icons/icon-icons.svg]
+[Help]
+
+#A
+handbook=Scooby-Do
+
+#[preferences-system]
 [Configuration]
 
 #k Shortkey to enable/disable the finder mode:
@@ -139,7 +145,7 @@ y = yast
 z = 
 
 
-#[gtk-find]
+#[edit-find]
 [Files]
 
 #b Show hidden files?
@@ -158,9 +164,3 @@ web = true
 #{It can launch commands and even do some calculations.}
 cmd = true
 
-
-#[gtk-help]
-[Help]
-
-#A
-handbook=Scooby-Do

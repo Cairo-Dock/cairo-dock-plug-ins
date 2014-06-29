@@ -1,6 +1,6 @@
 #@VERSION_ILLUSION@
 
-#[gtk-preferences]
+#[preferences-system]
 [Global]
 
 #l+[Evaporate;Fade out;Explode;Break;Black Hole;Random] Animation on disappearance:

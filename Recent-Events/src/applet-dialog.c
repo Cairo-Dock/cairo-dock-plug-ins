@@ -433,7 +433,7 @@ static GtkWidget *cd_build_events_widget (void)
 	
 	#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
 	gtk_entry_set_icon_activatable (GTK_ENTRY (pEntry), GTK_ENTRY_ICON_SECONDARY, TRUE);
-	gtk_entry_set_icon_from_stock (GTK_ENTRY (pEntry), GTK_ENTRY_ICON_SECONDARY, GLDI_ICON_NAME_CLEAR);
+	gtk_entry_set_icon_from_icon_name (GTK_ENTRY (pEntry), GTK_ENTRY_ICON_SECONDARY, GLDI_ICON_NAME_CLEAR);
 	g_signal_connect (pEntry, "icon-press", G_CALLBACK (on_clear_filter), NULL);
 	#endif
 	myData.pEntry = pEntry;

@@ -1,6 +1,6 @@
 #@VERSION_DBUS@
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
 #b Let external applications pop up dialogs in the dock?

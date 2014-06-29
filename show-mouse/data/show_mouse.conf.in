@@ -1,6 +1,6 @@
 #@VERSION_SHOW_MOUSE@
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
 #i+[1;8] Number of sources:

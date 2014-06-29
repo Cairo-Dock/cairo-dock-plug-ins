@@ -1,6 +1,6 @@
 #@VERSION_RSS_READER@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -27,7 +27,7 @@ order=
 #A
 handbook=RSSreader
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -64,7 +64,7 @@ sticky=true
 
 
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
@@ -98,10 +98,10 @@ fg desklet =
 fg alpha = 1
 
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
-#F[RSS Feed;gtk-justify-left]
+#F[RSS Feed;insert-link]
 RSS_feed = 
 
 #s URL:
@@ -115,7 +115,7 @@ RSS_login =
 RSS_password =
 
 
-#F[Behaviour;gtk-execute]
+#F[Behaviour;system-run]
 frame_behav= 
 
 #I[1;30] Refresh time:
@@ -140,10 +140,10 @@ sep =
 specific_web_browser= 
 
 
-#[gtk-dialog-info]
+#[dialog-information]
 [Appearance]
 
-#F[Title;gtk-bold]
+#F[Title;format-text-bold]
 title = 
 
 #P+ Title font:
@@ -157,7 +157,7 @@ title_color=1.0;1.0;0.0;1.0
 #e+[0;1;left;right] Alignment of the title:
 title_align=0
 
-#F[Text;gtk-italic]
+#F[Text;format-text-italic]
 text = 
 
 #P+ Feed lines font:
@@ -175,7 +175,7 @@ text_margin=0
 space_between_feed_lines=5
 
 
-#F[Logo;gtk-yes]
+#F[Logo;insert-image]
 frame_logo= 
 
 #B+ Display the logo?
@@ -187,7 +187,7 @@ display_logo=true
 logo_size=1.5
 
 
-#F[Background;gtk-orientation-portrait]
+#F[Background;preferences-desktop-theme]
 frame_background= 
 
 #B+[5] Display a simple background?

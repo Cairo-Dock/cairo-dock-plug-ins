@@ -1,13 +1,13 @@
 #@VERSION_REMOTE_CONTROL@
 
-#[gtk-help]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Help]
 
 #A
 handbook=Remote-Control
 
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
 #k Shortkey to trigger the applet:

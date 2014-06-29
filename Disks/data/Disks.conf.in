@@ -1,6 +1,6 @@
 #@VERSION_DISKS@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -26,7 +26,7 @@ order=
 handbook=Disks
 
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #F[Desklet mode]
@@ -46,7 +46,7 @@ accessibility=0
 sticky=true
 
 
-#F[Position;gtk-fullscreen]
+#F[Position;view-fullscreen]
 frame_pos =
 
 #b Lock position?
@@ -66,7 +66,7 @@ y position=0
 rotation = 0
 
 
-#F[Decorations;gtk-paste]
+#F[Decorations;edit-paste]
 frame_deco=
 
 #o Choose a decoration theme for this desklet:
@@ -103,7 +103,7 @@ right offset = 0
 bottom offset = 0
 
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
 #l+[Gauge;Graph] Choose the style of the display: 
@@ -141,7 +141,7 @@ bg color = .5;.5;1.;.4
 mix graph = false
 
 
-#F[Display;gtk-dialog-info]
+#F[Display;dialog-information]
 frame_display =
 
 #l[No;On icon;On label] Display values
@@ -155,21 +155,21 @@ delay = 3
 #{You need OpenGL for this option. Set it to 0 to disable it, 1 means the transition is continue.}
 smooth = .33
 
-#F[Partitions monitored : Size;gtk-preferences]
+#F[Partitions monitored : Size;preferences-system]
 frame_parts =
 
 #U
 #{E.g. sda1, sdb5...}/
 partitions = 
 
-#F[Disks monitored : Speed;gtk-preferences]
+#F[Disks monitored : Speed;preferences-system]
 frame_disks =
 
 #U
 #{E.g. sda, sdb... Up to 5 values allowed}/
 disks = sda
 
-#F[Preferences;gtk-preferences]
+#F[Preferences;preferences-system]
 frame_prefs =
 
 #s System monitor command

@@ -29,9 +29,9 @@
 CD_APPLET_DEFINITION (N_("Recent-Events"),
 	2, 2, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_ACCESSORY,
-	("This applet remembers you last actions to help you working faster.\n"
-	"It also adds related actions on other icons' menu.\n"
-	"You need to run Zeitgeist to use this applet."),
+	("This applet lists your recent actions (opened/created files, launched programs, etc).\n"
+	"It also adds the list of recent actions in the menu of launchers that can handle them.\n"
+	"It requires 'Zeitgeist' to be running."),
 	"Fabounet")
 
 

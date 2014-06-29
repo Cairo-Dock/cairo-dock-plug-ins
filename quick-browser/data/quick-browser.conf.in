@@ -1,6 +1,6 @@
 #@VERSION_QUICK_BROWSER@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -27,7 +27,7 @@ order=
 #A
 handbook=Quick Browser
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -64,7 +64,7 @@ sticky=true
 
 
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
@@ -98,10 +98,10 @@ fg desklet =
 fg alpha = 1
 
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
-#F[Folder;gtk-directory]
+#F[Folder;folder]
 frame_fold =
 
 #D[home] Folder to browse :
@@ -119,7 +119,7 @@ case unsensitive = true
 #b Show hidden files?
 show hidden = false
 
-#F[Menu;gtk-indent]
+#F[Menu;format-indent-more]
 frame_menu =
 
 #B Display icons in the menu?

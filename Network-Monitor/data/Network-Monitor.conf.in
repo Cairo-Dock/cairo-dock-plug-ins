@@ -1,6 +1,6 @@
 #@VERSION_NETWORK_MONITOR@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -32,7 +32,7 @@ order=
 #A
 handbook=Network-Monitor
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -66,7 +66,7 @@ accessibility=0
 sticky=true
 
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
@@ -100,10 +100,10 @@ fg desklet =
 fg alpha = 1
 
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
-#F[Parameters;gtk-info]
+#F[Parameters;dialog-information]
 frame_param =
 
 #l[Wifi signal;Connexion speed] Info displayed by the icon:
@@ -136,7 +136,7 @@ wifi command =
 netspeed command =
 
 
-#[gtk-preferences]
+#[preferences-system]
 [Net Speed]
 
 #l+[Gauge;Graph] Choose the style of the display: 
@@ -166,7 +166,7 @@ low color = 1;1;0
 bg color = .5;.5;1.;.4
 
 
-#F[Parameters;gtk-preferences]
+#F[Parameters;preferences-system]
 frame_param =
 
 #i[1;10] Delays between net speed checks:
@@ -174,21 +174,21 @@ frame_param =
 netspeed delay = 2
 
 
-#[gtk-preferences]
+#[preferences-system]
 [Wifi]
 
 #l+[Gauge;Graph;Icons] Choose the style of the display:
 renderer = 2
 
 
-#X[Gauge;gtk-dialog-info]
+#X[Gauge;dialog-information]
 frame_gauge=
 
 #h+[@gaugesdir@;gauges;gauges3;wifi] Choose one of the available themes:/
 theme = turbo-night-fuel
 
 
-#X[Graph;gtk-dialog-info]
+#X[Graph;dialog-information]
 frame_graph=
 
 #l+[Line;Plain;Bar;Circle;Plain Circle] Type of graphic :
@@ -206,7 +206,7 @@ low color = 1;1;0
 bg color = .5;.5;1.;.4
 
 
-#X[Icons;gtk-dialog-info]
+#X[Icons;dialog-information]
 frame_icons =
 
 #l+[None;Zoom;Transparency;Draw Bar] Effect to apply on the icon according to strength :
@@ -238,7 +238,7 @@ icon_6 =
 icon_7 = 
 
 
-#F[Parameters;gtk-preferences]
+#F[Parameters;preferences-system]
 frame_param =
 
 #i[1;20] Delays between wifi signal checks:

@@ -108,7 +108,7 @@ static void _init_fill_menu_from_dir (CDQuickBrowserItem *pItem)
 static void _drag_begin (GtkWidget *pWidget, GdkDragContext *pDragContext, GtkWidget *pMenuItem)
 {
 	// add an icon: the current pixbuf (add it now, once and for all).
-	if (GTK_IS_IMAGE_MENU_ITEM (pMenuItem)) // some items don't have any icon.
+	if (GLDI_IS_IMAGE_MENU_ITEM (pMenuItem)) // some items don't have any icon.
 	{
 		gtk_drag_source_set_icon_pixbuf (pMenuItem,
 			gtk_image_get_pixbuf (GTK_IMAGE (gldi_menu_item_get_image (pMenuItem))));  // GTK+ retains a reference on the pixbuf; when pMenuItem disappear, it will naturally loose this reference.

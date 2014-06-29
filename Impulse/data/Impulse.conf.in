@@ -1,6 +1,6 @@
 #@VERSION_IMPULSE@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -24,7 +24,7 @@ order=
 handbook=Impulse
 
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -59,7 +59,7 @@ accessibility=0
 sticky=true
 
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
@@ -93,10 +93,10 @@ fg desklet =
 fg alpha = 1
 
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
-#F[Display;gtk-dialog-info]
+#F[Display;dialog-information]
 frame_disp =
 
 #a Animation of the icons:
@@ -106,7 +106,7 @@ animation=bounce
 #{Do we have to stop the animation on a icon which doesn't have to be animated each refresh?}
 stop animations = false
 
-#F[Control;gtk-execute]
+#F[Control;system-run]
 frame_ctrl =
 
 #e[0;1;More;Less] Sensitivity of the animation:
@@ -117,7 +117,7 @@ sensitivity = 0.25
 #{in ms.}
 refresh = 250
 
-#F[Action at Startup;gtk-preferences]
+#F[Action at Startup;preferences-system]
 frame_info=
 
 #B- Launch automatically at startup?
@@ -126,7 +126,7 @@ startup = false
 #b- Hide the icon?
 free = false
 
-#X[Style;gtk-color-picker]
+#X[Style;preferences-desktop-theme]
 frame_style =
 
 #g+[Default] Image when the applet is active:
@@ -138,7 +138,7 @@ icon off =
 #g+ 'Broken' icon image name:
 icon error =
 
-#X[PulseAudio;gtk-preferences]
+#X[PulseAudio;preferences-system]
 frame_pulse=
 
 #i[0;10] Index of the source:

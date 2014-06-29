@@ -1,6 +1,6 @@
 #@VERSION_SLIDER@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -32,7 +32,7 @@ order=
 handbook=slider
 
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -68,7 +68,7 @@ sticky=true
 
 
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
@@ -102,10 +102,10 @@ fg desklet =
 fg alpha = 1
 
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
-#F[Folder;gtk-directory]
+#F[Folder;folder]
 frame_td=
 #D Folder for the images:
 directory= 
@@ -126,7 +126,7 @@ use_thread = true
 #b Read all images properties on startup?
 get exif = true
 
-#F[Behaviour;gtk-execute]
+#F[Behaviour;system-run]
 frame_ops=
 
 #l[play/pause;open image] Action on left-click:
@@ -149,7 +149,7 @@ change animation=1
 nb step = 20
 
 
-#F[Display;gtk-orientation-portrait]
+#F[Display;preferences-desktop-theme]
 frame_disp=
 
 #Y[No;0;0;Yes;1;1;Frame;1;2] Add a background to the image?

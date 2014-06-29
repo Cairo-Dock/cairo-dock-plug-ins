@@ -1,6 +1,6 @@
 #@VERSION_WEATHER@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -32,7 +32,7 @@ order=
 #A
 handbook=weather
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -67,7 +67,7 @@ accessibility=0
 sticky=true
 
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
@@ -100,10 +100,10 @@ fg desklet =
 #e+[0;1] Foreground tansparency:
 fg alpha = 1
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
-#F[Configuration;gtk-preferences]
+#F[Configuration;preferences-system]
 frame_conf =
 
 #s Code for your location:
@@ -122,7 +122,7 @@ dialog duration = 7
 #{In minutes.}
 check interval = 15
 
-#F[Info;gtk-info]
+#F[Info;dialog-information]
 frame_info =
 
 #b+ Display current conditions on the icon instead of the default one?
@@ -137,7 +137,7 @@ display nights = false
 #b Display temperature as quick info?
 display temperature = true
 
-#F[Display;gtk-dialog-info]
+#F[Display;dialog-information]
 frame_disp =
 
 #h+[@weatherdatadir@/themes;@weatheruserdirname@;weather] Choose one of the available themes:/

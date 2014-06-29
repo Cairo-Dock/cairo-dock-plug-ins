@@ -1,6 +1,6 @@
 #@VERSION_TERMINAL@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -26,7 +26,7 @@ order=
 #A
 handbook=terminal
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -63,7 +63,7 @@ sticky=true
 
 
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
@@ -96,21 +96,17 @@ fg desklet =
 #e+[0;1] Foreground tansparency:
 fg alpha = 1
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
 #F[Appearance]
 frame_app =
 
-#e[0;1;transparent;opaque] Terminal transparency:
-#{needs to restart the applet.}
-terminal transparency=.84
+#C+ Foreground colour:
+foreground color= 1.; 1.; 1.; 1.
 
-#c+ Foreground colour:
-foreground color= 1.; 1.; 1.
-
-#c+ Background colour:
-background color= 0.; 0.; 0.
+#C+ Background colour:
+background color= 0.; 0.; 0.; .84
 
 #B Use a custom font?
 custom font = false

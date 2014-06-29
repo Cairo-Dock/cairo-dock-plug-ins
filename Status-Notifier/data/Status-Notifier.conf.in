@@ -1,6 +1,6 @@
 #@VERSION_STATUS_NOTIFIER@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -34,7 +34,7 @@ order=
 handbook=Status-Notifier
 
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -68,7 +68,7 @@ accessibility=0
 #b Should be visible on all desktops?
 sticky=true
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
@@ -102,10 +102,10 @@ fg desklet =
 fg alpha = 1
 
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
-#F[Display;gtk-dialog-info]
+#F[Display;dialog-information]
 frame_disp =
 
 #b Hide inactive items
@@ -120,7 +120,7 @@ auto-resize = true
 #i[1;4] Number of lines to pack items in:
 nb lines = 2
 
-#F[Behaviour;gtk-execute]
+#F[Behaviour;system-run]
 frame_behav =
 
 #b Left click pops up the items' menu

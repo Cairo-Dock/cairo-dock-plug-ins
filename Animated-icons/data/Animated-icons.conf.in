@@ -1,6 +1,6 @@
 #@VERSION_ANIMATED_ICONS@
 
-#[gtk-preferences]
+#[preferences-system]
 [Global]
 
 #F-&[when hovering over an icon]
@@ -61,7 +61,7 @@ duration = 1000
 #b+ Repeat while icon is pointed to?
 continue = true
 
-#F-[Spot;gtk-dialog-info]
+#F-[Spot;dialog-information]
 frame_spot =
 
 #g+[Default] Image for the spotlight:
@@ -76,7 +76,7 @@ spot-color = 1;1;1
 #C Halo colour:
 halo-color = 1;1;1
 
-#F-[Rays;gtk-fullscreen]
+#F-[Rays;view-fullscreen]
 frame_ray =
 
 #c 1st color of gradation :

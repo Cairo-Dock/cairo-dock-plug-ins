@@ -1,6 +1,6 @@
 #@VERSION_MOTION_BLUR@
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
 #b Also blur on mouse movement?

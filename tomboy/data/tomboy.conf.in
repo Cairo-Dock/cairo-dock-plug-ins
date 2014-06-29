@@ -1,6 +1,6 @@
 #@VERSION_TOMBOY@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -16,7 +16,7 @@ sep_display=
 
 icon=
 
-#F[Customisation;gtk-info]
+#F[Customisation;dialog-information]
 frame_app =
 #g+ 'Default' icon image name:
 #{Leave empty to use the default icon.}
@@ -38,7 +38,7 @@ order=
 handbook=Note-Taking
 
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -73,7 +73,7 @@ accessibility=0
 sticky=true
 
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
@@ -107,10 +107,10 @@ fg desklet =
 fg alpha = 1
 
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
-#F[Display;gtk-orientation-portrait]
+#F[Display;preferences-desktop-theme]
 frame_view=
 
 #g+[Default] Image file for the notes:
@@ -135,7 +135,7 @@ time_dialog = 10
 renderer = 
 
 
-#F[Parameters;gtk-dialog-info]
+#F[Parameters;dialog-information]
 frame_param =
 
 #l[Gnote;Tomboy;Default] Choose the note-taking application to control :

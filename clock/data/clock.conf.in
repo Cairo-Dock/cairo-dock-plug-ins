@@ -1,6 +1,6 @@
 #@VERSION_CLOCK@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -33,7 +33,7 @@ order=
 handbook=clock
 
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -68,7 +68,7 @@ accessibility=0
 sticky=true
 
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
@@ -102,10 +102,10 @@ fg desklet =
 fg alpha = 1
 
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
-#F[Behaviour;gtk-execute]
+#F[Behaviour;system-run]
 frame1 =
 
 #l[No;On icon;On label] Show the date:
@@ -130,7 +130,7 @@ location =
 #L[Default;iCal] Use the tasks from the following task-manager:
 task mgr = Default
 
-#F[Style;gtk-color-picker]
+#F[Style;preferences-desktop-theme]
 frame_style =
 
 #l+[Analogue;Digital] Select the view :
@@ -146,7 +146,7 @@ theme = default
 #c+ Date text colour:
 date color = 1.0; 0.; 0.9
 
-#X[Digital View;gtk-italic]
+#X[Digital View;format-text-italic]
 numeric=
 
 #Y+[Automatic;0;0;Custom;1;5] Style
@@ -177,7 +177,7 @@ text ratio = 1
 #g+ Background image:
 numeric bg =
 
-#F[Configure time and date;gtk-file]
+#F[Configure time and date;system-run]
 frame3 =
 #s Specific command to run:
 #{Leave empty to execute the default command.}

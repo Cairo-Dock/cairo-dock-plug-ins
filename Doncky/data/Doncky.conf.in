@@ -1,6 +1,6 @@
 #@VERSION_DONCKY@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -26,7 +26,7 @@ order=
 #A
 handbook=Doncky
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -63,7 +63,7 @@ sticky=true
 
 
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
@@ -97,16 +97,16 @@ fg desklet =
 fg alpha = 1
 
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
 #S+[Default] Specify the xml file to be used :
 xml_filepath =
 
-#[gtk-dialog-info]
+#[dialog-information]
 [Appearance]
 
-#F[Text;gtk-italic]
+#F[Text;format-text-italic]
 text = 
 
 #P+ Default Font:
@@ -125,7 +125,7 @@ text_margin=0
 #{Use this to increase the space between the lines}
 space_between_lines=0
 
-#F[Background;gtk-orientation-portrait]
+#F[Background;preferences-desktop-theme]
 frame_background= 
 
 #B+[5] Display a simple background?

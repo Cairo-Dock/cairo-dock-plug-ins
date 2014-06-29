@@ -1,6 +1,6 @@
 #@VERSION_SYSTEM_MONITOR@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -31,7 +31,7 @@ order=
 #A
 handbook=System Monitor
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -67,7 +67,7 @@ sticky=true
 
 
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
@@ -101,7 +101,7 @@ fg desklet =
 fg alpha = 1
 
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
 #l+[Gauge;Graph] Display style
@@ -139,7 +139,7 @@ bg color = .5;.5;1.;.4
 mix graph = false
 
 
-#F[Parameters;gtk-preferences]
+#F[Parameters;preferences-system]
 frame_param =
 
 #b Show CPU usage?
@@ -179,7 +179,7 @@ delay = 2
 smooth = 1
 
 
-#F[Alerts;gtk-dialog-warning]
+#F[Alerts;dialog-warning]
 frame_warn=
 
 #B[2] Show alerts?
@@ -192,7 +192,7 @@ asound=true
 sound path = /usr/share/sounds/error.wav
 
 
-#F[System-Monitor;gtk-execute]
+#F[System-Monitor;system-run]
 frame_sysmon=
 
 #s[Default] User command to display a system monitor:
@@ -206,7 +206,7 @@ inhibate appli = true
 sys monitor class =
 
 
-#F[Top List;gtk-sort-ascending]
+#F[Top List;view-sort-ascending]
 frame_top=
 
 #i[1;20] Number of programs to display in the top list:
@@ -231,7 +231,7 @@ top delay = 2
 HZ = 100
 
 
-#F[Graphic Card temperature;gtk-dialog-info]
+#F[Graphic Card temperature;dialog-information]
 frame_nvidia =
 
 #i[20;60] Lower limit of graphic card temperature:

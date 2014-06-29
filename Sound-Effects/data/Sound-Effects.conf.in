@@ -1,6 +1,6 @@
 #@VERSION_SOUND_EFFECTS@
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
 #B Play a sound on click ?

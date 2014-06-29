@@ -1,6 +1,6 @@
 #@VERSION_CLIPPER@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -27,7 +27,7 @@ order=
 handbook=Clipper
 
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -61,7 +61,7 @@ accessibility=0
 #b Should be visible on all desktops?
 sticky=true
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
@@ -95,10 +95,10 @@ fg desklet =
 fg alpha = 1
 
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
-#F[Items;gtk-convert]
+#F[Items;view-sort-descending]
 frame_item =
 
 #l[None;Clipboard;Selection;Both] Which items should be remembered?
@@ -135,7 +135,7 @@ shortkey = <Control>F8
 menu on mouse = false 
 
 
-#F[Actions;gtk-execute]
+#F[Actions;system-run]
 frame_act =
 
 #B[2] Enable actions?
@@ -151,7 +151,7 @@ replay action = false
 action duration = 4
 
 
-#F[Persistent items;gtk-dnd-multiple]
+#F[Persistent items;drive-harddisk]
 frame_per =
 
 #U A list of persistent items which can be accessed with middle-click:/

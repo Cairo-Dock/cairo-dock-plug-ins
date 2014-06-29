@@ -1,6 +1,6 @@
 #@VERSION_WIFI@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -32,7 +32,7 @@ order=
 handbook=wifi
 
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -66,7 +66,7 @@ accessibility=0
 sticky=true
 
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
@@ -100,7 +100,7 @@ fg desklet =
 fg alpha = 1
 
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
 #Y+[Gauge;1;1;Graph;2;1;Icon with progress bar;3;1] Display style
@@ -142,14 +142,14 @@ default_icon =
 no_signal_icon =
 
 
-#F+[Info;gtk-info]
+#F+[Info;dialog-information]
 frame_disp=
 
 #l[None;Signal Strength;Signal Strength in percent;Raw Signal Informations] Information to display on the icon :
 signal_type=2
 
 
-#F[Parameters;gtk-preferences]
+#F[Parameters;preferences-system]
 frame_param =
 
 #i[1;60] Delay between signal checks :

@@ -1,6 +1,6 @@
 #@VERSION_DND2SHARE@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -26,7 +26,7 @@ order =
 #A
 handbook=dnd2share
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -57,7 +57,7 @@ accessibility=0
 sticky=true
 
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco =
 
 #o+ Choose a decoration theme for this desklet:
@@ -90,10 +90,10 @@ fg desklet =
 #e+[0;1] Foreground tansparency:
 fg alpha = 1
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
-#F[Info-bubbles;gtk-dialog-info]
+#F[Info-bubbles;dialog-information]
 frame_info =
 
 #B Enable info-bubbles?
@@ -103,7 +103,7 @@ enable_dialogs = true
 #{in seconds.}
 dialogs_duration = 5
 
-#F[Behaviour;gtk-execute]
+#F[Behaviour;system-run]
 frame_behav =
 
 #I[0;100] Number of items to keep in the history :
@@ -129,7 +129,7 @@ use tiny = false
 #{in KB/s - 0 means unlimited}
 limit rate = 0
 
-#F[Sites;gtk-convert]
+#F[Sites;network-wired]
 frame_site =
 
 #B[-3] Use files hosting site for any kind of files?

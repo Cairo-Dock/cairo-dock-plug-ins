@@ -1,6 +1,6 @@
 #@VERSION_COMPOSITE_MANAGER@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -26,7 +26,7 @@ order=
 handbook=Composite-Manager
 
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -61,7 +61,7 @@ accessibility=0
 sticky=true
 
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
@@ -95,10 +95,10 @@ fg desklet =
 fg alpha = 1
 
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
-#F[Style;gtk-color-picker]
+#F[Style;preferences-desktop-theme]
 frame_style =
 
 #g+[Default] Image when composite is active:
@@ -108,7 +108,7 @@ icon on =
 icon off = 
 
 
-#F[Behaviour;gtk-execute]
+#F[Behaviour;system-run]
 frame_behav =
 
 #E[;Compiz;KWin;Xfwm;Metacity] Composite window-manager:

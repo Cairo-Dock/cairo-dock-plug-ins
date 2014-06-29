@@ -1,6 +1,6 @@
 #@VERSION_SHOW_DESKTOP@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -29,7 +29,7 @@ order=
 #A
 handbook=showDesktop
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -64,7 +64,7 @@ accessibility=0
 sticky=true
 
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
@@ -97,10 +97,10 @@ fg desklet =
 #e+[0;1] Foreground tansparency:
 fg alpha = 1
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
-#F[Behaviour;gtk-execute]
+#F[Behaviour;system-run]
 frame_behav =
 
 #l[Show desktop;Show the desklets;Show desktop and desklets;Show the Widget Layer;Expose all the desktops] Action on left-click:

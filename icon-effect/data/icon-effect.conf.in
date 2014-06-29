@@ -1,6 +1,6 @@
 #@VERSION_ICON_EFFECTS@
 
-#[gtk-preferences]
+#[preferences-system]
 [Global]
 
 #F-[when hovering over an icon]

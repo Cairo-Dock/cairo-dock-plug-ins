@@ -1,6 +1,6 @@
 #@VERSION_KEYBOARD_INDICATOR@
 
-#[gtk-about]
+#[@pkgdatadir@/icons/icon-icons.svg]
 [Icon]
 
 #F[Icon]
@@ -31,7 +31,7 @@ order=
 #A
 handbook=keyboard indicator
 
-#[gtk-convert]
+#[@pkgdatadir@/icons/icon-desklets.svg]
 [Desklet]
 
 #X[Position]
@@ -68,7 +68,7 @@ sticky=true
 
 
 
-#F[Decorations;gtk-orientation-portrait]
+#F[Decorations;preferences-desktop-theme]
 frame_deco=
 
 #o+ Choose a decoration theme for this desklet:
@@ -101,10 +101,10 @@ fg desklet =
 #e+[0;1] Foreground tansparency:
 fg alpha = 1
 
-#[gtk-preferences]
+#[preferences-system]
 [Configuration]
 
-#F[General;gtk-preferences]
+#F[General;preferences-system]
 
 #k Shortkey to pop-up the items menu:
 shortkey = <Alt><Shift>
@@ -124,7 +124,7 @@ emblem capslock =
 transition = 1000
 
 
-#F[Display;gtk-dialog-info]
+#F[Display;dialog-information]
 disp=
 
 #Y+[Automatic;0;0;Custom;1;4] Style
