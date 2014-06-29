@@ -26,18 +26,20 @@ add_definitions (-DMY_APPLET_VERSION="${VERSION_TERMINAL}")
 add_definitions (-DMY_APPLET_GETTEXT_DOMAIN="${GETTEXT_TERMINAL}")
 add_definitions (-DMY_APPLET_DOCK_VERSION="${dock_version}")
 add_definitions (-DMY_APPLET_ICON_FILE="icon.png")
+add_definitions (-DVTE_MAJOR=${VTE_MAJOR})
+add_definitions (-DVTE_MINOR=${VTE_MINOR})
 
 include_directories (
 	${PACKAGE_INCLUDE_DIRS}
-	${TERMINAL_PACKAGE_INCLUDE_DIRS})
+	${VTE_INCLUDE_DIRS})
 
 link_directories (
 	${PACKAGE_LIBRARY_DIRS}
-	${TERMINAL_PACKAGE_LIBRARY_DIRS})
+	${VTE_LIBRARY_DIRS})
 
 target_link_libraries (${PACKAGE_TERMINAL}
 	${PACKAGE_LIBRARIES}
-	${TERMINAL_PACKAGE_LIBRARIES})
+	${VTE_LIBRARIES})
 
 ########### install files ###############
 
@@ -70,7 +72,7 @@ install(TARGETS ${PACKAGE_TERMINAL} DESTINATION ${pluginsdir})
 #libcd_terminal_la_CFLAGS = 
 #	-I$(top_srcdir)/src
 #	$(PACKAGE_CFLAGS)
-#	$(TERMINAL_PACKAGE_CFLAGS)
+#	$(VTE_CFLAGS)
 #	-DMY_APPLET_SHARE_DATA_DIR=""${terminaldatadir)""
 #	-DMY_APPLET_PREVIEW_FILE=""preview.jpg""
 #	-DMY_APPLET_CONF_FILE=""terminal.conf""
@@ -86,7 +88,7 @@ install(TARGETS ${PACKAGE_TERMINAL} DESTINATION ${pluginsdir})
 #
 #libcd_terminal_la_LIBADD = 
 #	$(PACKAGE_LIBS) -lm 
-#	$(TERMINAL_PACKAGE_LIBS)
+#	$(VTE_LIBS)
 #
 #
 #libcd_terminal_la_LDFLAGS =

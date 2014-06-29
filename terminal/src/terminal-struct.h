@@ -25,9 +25,8 @@
 
 struct _AppletConfig {
 	// appearance
-	guint16  transparency;
-	GdkColor backcolor;
-	GdkColor forecolor;
+	GldiColor backcolor;
+	GldiColor forecolor;
 	gboolean bCustomFont;
 	gchar   *cCustomFont;
 	// behaviour

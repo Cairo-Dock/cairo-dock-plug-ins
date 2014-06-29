@@ -317,13 +317,26 @@ void terminal_close_tab (GtkWidget *vterm)
 	}
 }
 
-
+#if ! ((VTE_MAJOR > 0 || VTE_MINOR >= 28) && GTK_CHECK_VERSION (3,0,0))
+static inline void set_color(GdkColor *color, GldiColor *pColor)
+{
+	color->red = (guint16)(pColor->rgba.red * 65535.);
+	color->green = (guint16)(pColor->rgba.green * 65535.);
+	color->blue = (guint16)(pColor->rgba.blue * 65535.);
+}
+#endif
 static void _term_apply_settings_on_vterm(GtkWidget *vterm)
 {
 	g_return_if_fail (vterm != NULL);
-	vte_terminal_set_colors(VTE_TERMINAL(vterm), &myConfig.forecolor, &myConfig.backcolor, NULL, 0);
-	#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 12)
-	vte_terminal_set_opacity(VTE_TERMINAL(vterm), myConfig.transparency);
+	
+	#if (VTE_MAJOR > 0 || VTE_MINOR >= 28) && GTK_CHECK_VERSION (3,0,0)  // since 0.28
+	vte_terminal_set_colors_rgba (VTE_TERMINAL(vterm), &myConfig.forecolor.rgba, &myConfig.backcolor.rgba, NULL, 0);
+	#else
+	GdkColor bgcolor, fgcolor;
+	set_color (&bgcolor, &myConfig.backcolor);
+	set_color (&fgcolor, &myConfig.forecolor);
+	vte_terminal_set_colors (VTE_TERMINAL(vterm), &fgcolor, &bgcolor, NULL, 0);
+	vte_terminal_set_opacity(VTE_TERMINAL(vterm), (guint16)(myConfig.backcolor.rgba.alpha * 65535.));
 	#endif
 
 	if (myConfig.bCustomFont)

@@ -27,25 +27,12 @@
 #include "terminal-widget.h"
 #include "terminal-config.h"
 
-static void set_color(GdkColor *color, double src[3]) {
-  color->red = (guint16)(src[0] * 65535.);
-  color->green = (guint16)(src[1] * 65535.);
-  color->blue = (guint16)(src[2]* 65535.);
-}
-
 CD_APPLET_GET_CONFIG_BEGIN
 	// Appearance
-	//0 means completely transparent and 65535 opaque
-	myConfig.transparency = (guint16) (CD_CONFIG_GET_DOUBLE_WITH_DEFAULT ("Configuration", "terminal transparency", .84) * 65535);  // 55000
+	CD_CONFIG_GET_COLOR ("Configuration", "background color", &myConfig.backcolor);
 
-	double color_back[3] = {1., 1., 1.};
-	CD_CONFIG_GET_COLOR_RGB_WITH_DEFAULT ("Configuration", "background color", color_back, color_back);
-	set_color(&myConfig.backcolor, color_back);
-
-	double color_fore[3] = {0., 0., 0.};
-	CD_CONFIG_GET_COLOR_RGB_WITH_DEFAULT ("Configuration", "foreground color", color_fore, color_fore);
-	set_color(&myConfig.forecolor, color_fore);
-
+	CD_CONFIG_GET_COLOR ("Configuration", "foreground color", &myConfig.forecolor);
+	
 	myConfig.bCustomFont = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "custom font", FALSE);
 	if (myConfig.bCustomFont)
 		myConfig.cCustomFont = CD_CONFIG_GET_STRING ("Configuration", "font");
