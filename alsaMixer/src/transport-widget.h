@@ -20,11 +20,7 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define __TRANSPORT_WIDGET_H__
 
 #include <gtk/gtk.h>
-#if (GTK_MAJOR_VERSION < 3) || defined (DBUSMENU_GTK3_NEW)
 #include <libdbusmenu-gtk/menuitem.h>
-#else
-#include <libdbusmenu-gtk3/menuitem.h>
-#endif
 
 #include "common-defs.h"
 

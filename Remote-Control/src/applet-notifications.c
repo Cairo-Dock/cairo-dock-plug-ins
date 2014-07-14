@@ -29,10 +29,6 @@
 #include "applet-session.h"
 #include "applet-notifications.h"
 
-#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION > 20)
-#include <gdk/gdkkeysyms-compat.h>
-#endif
-
 #define _alpha_prompt(k,n) .6*cos (G_PI/2*fabs ((double) ((k % (2*n)) - n) / n))
 
 const int s_iNbPromptAnimationSteps = 40;
@@ -49,47 +45,47 @@ static inline int _orient_arrow (GldiContainer *pContainer, int iKeyVal)
 {
 	switch (iKeyVal)
 	{
-		case GDK_Up :
+		case GDK_KEY_Up :
 			if (pContainer->bIsHorizontal)
 			{
 				if (!pContainer->bDirectionUp)
-					iKeyVal = GDK_Down;
+					iKeyVal = GDK_KEY_Down;
 			}
 			else
 			{
-				iKeyVal = GDK_Left;
+				iKeyVal = GDK_KEY_Left;
 			}
 		break;
 		
-		case GDK_Down :
+		case GDK_KEY_Down :
 			if (pContainer->bIsHorizontal)
 			{
 				if (!pContainer->bDirectionUp)
-					iKeyVal = GDK_Up;
+					iKeyVal = GDK_KEY_Up;
 			}
 			else
 			{
-				iKeyVal = GDK_Right;
+				iKeyVal = GDK_KEY_Right;
 			}
 		break;
 		
-		case GDK_Left :
+		case GDK_KEY_Left :
 			if (!pContainer->bIsHorizontal)
 			{
 				if (pContainer->bDirectionUp)
-					iKeyVal = GDK_Up;
+					iKeyVal = GDK_KEY_Up;
 				else
-					iKeyVal = GDK_Down;
+					iKeyVal = GDK_KEY_Down;
 			}
 		break;
 		
-		case GDK_Right :
+		case GDK_KEY_Right :
 			if (!pContainer->bIsHorizontal)
 			{
 				if (pContainer->bDirectionUp)
-					iKeyVal = GDK_Down;
+					iKeyVal = GDK_KEY_Down;
 				else
-					iKeyVal = GDK_Up;
+					iKeyVal = GDK_KEY_Up;
 			}
 		break;
 		default:
@@ -112,19 +108,19 @@ static void _activate_nth_icon (guint iKeyVal, guint iModifierType)  // iKeyVal 
 	cd_debug ("%s (%d)", __func__, iKeyVal);
 	// get the index of the icon: we want "1" to be the first icon, because it's more natural and it follows the keyboard layout. So "0" will actually be the 10th icon.
 	int iIndex;  // from 0
-	if (iKeyVal >= GDK_0 && iKeyVal <= GDK_9)
+	if (iKeyVal >= GDK_KEY_0 && iKeyVal <= GDK_KEY_9)
 	{
-		if (iKeyVal == GDK_0)
+		if (iKeyVal == GDK_KEY_0)
 			iIndex = 9;
 		else
-			iIndex = iKeyVal - GDK_1;
+			iIndex = iKeyVal - GDK_KEY_1;
 	}
 	else
 	{
-		if (iKeyVal == GDK_KP_0)
+		if (iKeyVal == GDK_KEY_KP_0)
 			iIndex = 9;
 		else
-			iIndex = iKeyVal - GDK_KP_1;
+			iIndex = iKeyVal - GDK_KEY_KP_1;
 	}
 	cd_debug ("click on %d", iIndex);
 	// retrieve the nth icon in the current dock.
@@ -183,7 +179,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 		for (i = 0; i < n_entries; i ++)
 		{
 			iKeyVal2 = keyvals[i];
-			if ((iKeyVal2 >= GDK_0 && iKeyVal2 <= GDK_9) || (iKeyVal2 >= GDK_KP_0 && iKeyVal2 <= GDK_KP_9))
+			if ((iKeyVal2 >= GDK_KEY_0 && iKeyVal2 <= GDK_KEY_9) || (iKeyVal2 >= GDK_KEY_KP_0 && iKeyVal2 <= GDK_KEY_KP_9))
 			{
 				iKeyVal = iKeyVal2;
 				break;
@@ -193,7 +189,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 		g_free (keyvals);
 	}
 	
-	if (iKeyVal == GDK_Escape)  // on clot la session.
+	if (iKeyVal == GDK_KEY_Escape)  // on clot la session.
 	{
 		// give the focus back to the window that had it before the user opened this session.
 		if (myData.pPreviouslyActiveWindow != NULL)
@@ -202,15 +198,15 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 		}
 		cd_do_close_session ();
 	}
-	else if (iKeyVal == GDK_space && myData.sCurrentText->len == 0)  // pas d'espace en debut de chaine.
+	else if (iKeyVal == GDK_KEY_space && myData.sCurrentText->len == 0)  // pas d'espace en debut de chaine.
 	{
 		// on rejette.
 	}
-	else if (iKeyVal >= GDK_Shift_L && iKeyVal <= GDK_Hyper_R)  // on n'ecrit pas les modificateurs.
+	else if (iKeyVal >= GDK_KEY_Shift_L && iKeyVal <= GDK_KEY_Hyper_R)  // on n'ecrit pas les modificateurs.
 	{
 		// on rejette.
 	}
-	else if (iKeyVal == GDK_Menu)  // emulation du clic droit.
+	else if (iKeyVal == GDK_KEY_Menu)  // emulation du clic droit.
 	{
 		if (myData.pCurrentIcon != NULL)
 		{
@@ -222,7 +218,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 			gldi_menu_popup (menu);
 		}
 	}
-	else if (iKeyVal == GDK_BackSpace)  // on efface la derniere lettre.
+	else if (iKeyVal == GDK_KEY_BackSpace)  // on efface la derniere lettre.
 	{
 		if (myData.sCurrentText->len > 0)
 		{
@@ -235,7 +231,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 				cd_do_search_current_icon (FALSE);
 		}
 	}
-	else if (iKeyVal == GDK_Tab)  // jump to next icon.
+	else if (iKeyVal == GDK_KEY_Tab)  // jump to next icon.
 	{
 		if (myData.sCurrentText->len > 0)
 		{
@@ -244,7 +240,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 			cd_do_search_current_icon (TRUE);  // pCurrentIcon peut etre NULL si elle s'est faite detruire pendant la recherche, auquel cas on cherchera juste normalement.
 		}
 	}
-	else if (iKeyVal == GDK_Return)
+	else if (iKeyVal == GDK_KEY_Return)
 	{
 		if (myData.pCurrentIcon != NULL)
 		{
@@ -277,10 +273,10 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 		}
 		cd_do_close_session ();
 	}
-	else if (iKeyVal == GDK_Left || iKeyVal == GDK_Right || iKeyVal == GDK_Up || iKeyVal == GDK_Down)
+	else if (iKeyVal == GDK_KEY_Left || iKeyVal == GDK_KEY_Right || iKeyVal == GDK_KEY_Up || iKeyVal == GDK_KEY_Down)
 	{
 		iKeyVal = _orient_arrow (pContainer, iKeyVal);
-		if (iKeyVal == GDK_Up)
+		if (iKeyVal == GDK_KEY_Up)
 		{
 			if (myData.pCurrentIcon != NULL && myData.pCurrentIcon->pSubDock != NULL)
 			{
@@ -289,7 +285,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 				cd_do_change_current_icon (pIcon, myData.pCurrentIcon->pSubDock);
 			}
 		}
-		else if (iKeyVal == GDK_Down)
+		else if (iKeyVal == GDK_KEY_Down)
 		{
 			if (myData.pCurrentDock->iRefCount > 0)
 			{
@@ -302,7 +298,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 				}
 			}
 		}
-		else if (iKeyVal == GDK_Left)
+		else if (iKeyVal == GDK_KEY_Left)
 		{
 			if (myData.pCurrentDock->icons != NULL)
 			{
@@ -335,7 +331,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 			}
 		}
 	}
-	else if (iKeyVal == GDK_Page_Down || iKeyVal == GDK_Page_Up || iKeyVal == GDK_Home || iKeyVal == GDK_End)
+	else if (iKeyVal == GDK_KEY_Page_Down || iKeyVal == GDK_KEY_Page_Up || iKeyVal == GDK_KEY_Home || iKeyVal == GDK_KEY_End)
 	{
 		if (iModifierType & GDK_CONTROL_MASK)  // changement de dock principal
 		{
@@ -358,11 +354,11 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 			}
 		}
 		
-		Icon *pIcon = (iKeyVal == GDK_Page_Up || iKeyVal == GDK_Home ? cairo_dock_get_first_icon (myData.pCurrentDock->icons) : cairo_dock_get_last_icon (myData.pCurrentDock->icons));
+		Icon *pIcon = (iKeyVal == GDK_KEY_Page_Up || iKeyVal == GDK_KEY_Home ? cairo_dock_get_first_icon (myData.pCurrentDock->icons) : cairo_dock_get_last_icon (myData.pCurrentDock->icons));
 		cd_debug ("on se deplace a l'extremite sur %s", pIcon ? pIcon->cName : "none");
 		cd_do_change_current_icon (pIcon, myData.pCurrentDock);
 	}
-	else if ( ((iKeyVal >= GDK_0 && iKeyVal <= GDK_9) || (iKeyVal >= GDK_KP_0 && iKeyVal <= GDK_KP_9))
+	else if ( ((iKeyVal >= GDK_KEY_0 && iKeyVal <= GDK_KEY_9) || (iKeyVal >= GDK_KEY_KP_0 && iKeyVal <= GDK_KEY_KP_9))
 	&& myData.sCurrentText->len == 0)
 	{
 		_activate_nth_icon (iKeyVal, iModifierType);

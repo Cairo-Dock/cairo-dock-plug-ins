@@ -128,7 +128,7 @@ static void _cd_folders_show_file_properties (GtkMenuItem *pMenuItem, gpointer *
 		gtk_container_add (GTK_CONTAINER (gtk_dialog_get_content_area (GTK_DIALOG(pDialog))), pFrame);
 		gtk_frame_set_shadow_type (GTK_FRAME (pFrame), GTK_SHADOW_OUT);
 
-		GtkWidget *pVBox = _gtk_vbox_new (MARGIN);
+		GtkWidget *pVBox = gtk_box_new (GTK_ORIENTATION_VERTICAL, MARGIN);
 		gtk_container_add (GTK_CONTAINER (pFrame), pVBox);
 
 		pLabel = gtk_label_new (NULL);
@@ -161,11 +161,7 @@ static void _cd_folders_show_file_properties (GtkMenuItem *pMenuItem, gpointer *
 			gtk_container_add (GTK_CONTAINER (pVBox), pLabel);
 		}
 
-		#if (GTK_MAJOR_VERSION < 3)
-		GtkWidget *pSeparator = gtk_hseparator_new ();
-		#else
 		GtkWidget *pSeparator = gtk_separator_new (GTK_ORIENTATION_HORIZONTAL);
-		#endif
 		gtk_container_add (GTK_CONTAINER (pVBox), pSeparator);
 
 		pLabel = gtk_label_new (NULL);

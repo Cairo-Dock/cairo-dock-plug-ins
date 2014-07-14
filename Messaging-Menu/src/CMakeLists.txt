@@ -32,9 +32,6 @@ add_definitions (-DINDICATOR_MESSAGES_HAS_LOZENGE=${INDICATOR_MESSAGES_HAS_LOZEN
 #add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
 ### uncomment the following line to allow extended OpenGL drawing.
 #add_definitions (-DGL_GLEXT_PROTOTYPES="1")
-if (${DBUSMENU_GTK3_NEW})
-	add_definitions (-DDBUSMENU_GTK3_NEW=1)
-endif()
 
 if (INDICATOR_MESSAGES_WITH_IND3)
 	message (STATUS "   With Indicator-Applet3")

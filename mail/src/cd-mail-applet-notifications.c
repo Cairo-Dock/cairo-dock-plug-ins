@@ -255,7 +255,7 @@ GtkWidget *cd_mail_messages_container_new(CDMailAccount *pMailAccount)
 	 * | <--       CLOSE       --> |    <---- 3 buttons, attached Left,Center,Right
 	 * -----------------------------
 	 */
-	GtkWidget *vbox = _gtk_vbox_new (0);
+	GtkWidget *vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 
 	GtkWidget *pTextView = gtk_text_view_new();
 	gtk_text_view_set_editable(GTK_TEXT_VIEW(pTextView), FALSE);
@@ -274,7 +274,7 @@ GtkWidget *cd_mail_messages_container_new(CDMailAccount *pMailAccount)
 	
 	gtk_box_pack_start(GTK_BOX(vbox), pScrolledWindow, TRUE, TRUE, 0);
 
-	GtkWidget *hbox = _gtk_hbox_new(0);
+	GtkWidget *hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 	myData.pPrevButton = gtk_button_new_from_icon_name( GLDI_ICON_NAME_GO_BACK, GTK_ICON_SIZE_BUTTON );
 	GtkWidget *pCloseButton = gtk_button_new_from_icon_name( GLDI_ICON_NAME_CLOSE, GTK_ICON_SIZE_BUTTON );
 	myData.pNextButton = gtk_button_new_from_icon_name( GLDI_ICON_NAME_GO_FORWARD, GTK_ICON_SIZE_BUTTON );

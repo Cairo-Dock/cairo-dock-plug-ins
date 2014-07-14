@@ -809,11 +809,7 @@ static gboolean _on_draw_menu_reposition (GtkWidget *pWidget, G_GNUC_UNUSED gpoi
 {
 	g_return_val_if_fail (pItem != NULL, FALSE);
 
-	#if (GTK_MAJOR_VERSION < 3)
-	int iMenuWidth = pWidget->allocation.width;
-	#else
 	int iMenuWidth = gtk_widget_get_allocated_width (pWidget);
-	#endif
 
 	if (pItem->iMenuWidth != iMenuWidth)  // if the width has changed, reposition the menu to be sure it won't out of the screen.
 	{
@@ -844,11 +840,7 @@ void cd_satus_notifier_build_item_dbusmenu (CDStatusNotifierItem *pItem)
 			 * This is why we need to watch the 'draw' event...
 			 */
 			g_signal_connect (G_OBJECT (pItem->pMenu),
-				#if (GTK_MAJOR_VERSION < 3)
-				"expose-event",
-				#else
 				"draw",
-				#endif
 				G_CALLBACK (_on_draw_menu_reposition),
 				pItem);
 		}

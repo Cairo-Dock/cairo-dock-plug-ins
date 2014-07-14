@@ -402,7 +402,7 @@ void cd_sysmonitor_start_top_dialog (GldiModuleInstance *myApplet)
 	gldi_dialogs_remove_on_icon (myIcon);
 	// build an interactive widget that will be used to display the top list.
 	gchar *cTitle = g_strdup_printf ("  [ Top %d ] :", myConfig.iNbDisplayedProcesses);
-	GtkWidget *pInteractiveWidget = _gtk_vbox_new (0);
+	GtkWidget *pInteractiveWidget = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 	gtk_widget_set_size_request (pInteractiveWidget,
 		myDialogsParam.dialogTextDescription.iSize * 15,
 		myDialogsParam.dialogTextDescription.iSize * myConfig.iNbDisplayedProcesses);  // approximatif au depart.

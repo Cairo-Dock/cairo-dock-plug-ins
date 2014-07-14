@@ -26,9 +26,6 @@ add_definitions (-DCD_PLUGINS_DIR="${pluginsdir}")
 #add_definitions (-DCD_APPLET_MULTI_INSTANCE="1")
 ### uncomment the following line to allow extended OpenGL drawing.
 #add_definitions (-DGL_GLEXT_PROTOTYPES="1")
-if (${DBUSMENU_GTK3_NEW})
-	add_definitions (-DDBUSMENU_GTK3_NEW=1)
-endif()
 
 include_directories (
 	${PACKAGE_INCLUDE_DIRS}

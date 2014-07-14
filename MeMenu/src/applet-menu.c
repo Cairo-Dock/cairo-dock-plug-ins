@@ -28,13 +28,8 @@
 #include "about-me-menu-item.h"
 #include "applet-menu.h"
 
-#if (GTK_MAJOR_VERSION < 3) || defined (DBUSMENU_GTK3_NEW)
 #include <libdbusmenu-gtk/menuitem.h>
 #include <libdbusmenu-gtk/menu.h>
-#else
-#include <libdbusmenu-gtk3/menuitem.h>
-#include <libdbusmenu-gtk3/menu.h>
-#endif
 #include <libido/idoentrymenuitem.h>
 
 #if (DBUSMENU_MAJOR > 0 || DBUSMENU_MINOR >= 2)

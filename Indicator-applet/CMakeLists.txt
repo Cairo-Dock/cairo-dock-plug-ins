@@ -8,9 +8,6 @@ add_library(indicator-applet STATIC ${impl_SRCS})
 # Needed for amd64 architecture
 add_definitions (-fPIC)
 add_definitions (-DINDICATOR_ICONS_DIR="${INDICATORICONSDIR}")
-if (${DBUSMENU_GTK3_NEW})
-	add_definitions (-DDBUSMENU_GTK3_NEW=1)
-endif()
 
 link_directories(
 	${PACKAGE_LIBRARY_DIRS}

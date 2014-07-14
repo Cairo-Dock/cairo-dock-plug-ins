@@ -31,10 +31,6 @@
 #include "applet-listing.h"
 #include "applet-notifications.h"
 
-#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION > 20)
-#include <gdk/gdkkeysyms-compat.h>
-#endif
-
 gboolean cd_do_render (gpointer pUserData, GldiContainer *pContainer, cairo_t *pCairoContext)
 {
 	g_return_val_if_fail (!cd_do_session_is_off (), GLDI_NOTIFICATION_LET_PASS);
@@ -158,27 +154,27 @@ gboolean cd_do_check_active_dock (gpointer pUserData, GldiWindowActor *actor)
 gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint iKeyVal, guint iModifierType, const gchar *string)
 {
 	g_return_val_if_fail (cd_do_session_is_running (), GLDI_NOTIFICATION_LET_PASS);
-	
+
 	if (myData.sCurrentText == NULL)
 		return GLDI_NOTIFICATION_LET_PASS;
 	
 	const gchar *cKeyName = gdk_keyval_name (iKeyVal);
 	guint32 iUnicodeChar = gdk_keyval_to_unicode (iKeyVal);
 	cd_debug ("+ cKeyName : %s (%c, %s)", cKeyName, iUnicodeChar, string);
-	
-	if (iKeyVal == GDK_Escape)  // on clot la session.
+
+	if (iKeyVal == GDK_KEY_Escape)  // on clot la session.
 	{
 		cd_do_close_session ();
 	}
-	else if (iKeyVal == GDK_space && myData.iNbValidCaracters == 0)  // pas d'espace en debut de chaine.
+	else if (iKeyVal == GDK_KEY_space && myData.iNbValidCaracters == 0)  // pas d'espace en debut de chaine.
 	{
 		// on rejette.
 	}
-	else if (iKeyVal >= GDK_Shift_L && iKeyVal <= GDK_Hyper_R)  // on n'ecrit pas les modificateurs.
+	else if (iKeyVal >= GDK_KEY_Shift_L && iKeyVal <= GDK_KEY_Hyper_R)  // on n'ecrit pas les modificateurs.
 	{
 		// on rejette.
 	}
-	else if (iKeyVal == GDK_BackSpace)  // on efface la derniere lettre.
+	else if (iKeyVal == GDK_KEY_BackSpace)  // on efface la derniere lettre.
 	{
 		if (myData.iNbValidCaracters > 0)
 		{
@@ -220,7 +216,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 			cd_do_launch_appearance_animation ();
 		}
 	}
-	else if (iKeyVal == GDK_Tab)  // completion.
+	else if (iKeyVal == GDK_KEY_Tab)  // completion.
 	{
 		if (myData.iNbValidCaracters > 0)
 		{
@@ -235,7 +231,7 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 			}
 		}
 	}
-	else if (iKeyVal == GDK_Return)
+	else if (iKeyVal == GDK_KEY_Return)
 	{
 		cd_debug ("Enter (%s)", myData.cSearchText);
 		if (myData.pMatchingIcons != NULL)  // on a une appli a lancer.
@@ -261,48 +257,48 @@ gboolean cd_do_key_pressed (gpointer pUserData, GldiContainer *pContainer, guint
 		if (!(iModifierType & GDK_CONTROL_MASK) && !(iModifierType & GDK_MOD1_MASK) && !(iModifierType & GDK_SHIFT_MASK))
 			cd_do_close_session ();
 	}
-	else if (iKeyVal == GDK_Left || iKeyVal == GDK_Right || iKeyVal == GDK_Up || iKeyVal == GDK_Down)
+	else if (iKeyVal == GDK_KEY_Left || iKeyVal == GDK_KEY_Right || iKeyVal == GDK_KEY_Up || iKeyVal == GDK_KEY_Down)
 	{
 		if (myData.pMatchingIcons != NULL)
 		{
-			cd_do_select_previous_next_matching_icon (iKeyVal == GDK_Right || iKeyVal == GDK_Down);
+			cd_do_select_previous_next_matching_icon (iKeyVal == GDK_KEY_Right || iKeyVal == GDK_KEY_Down);
 		}
 		else if (myData.pListing != NULL && myData.pListing->pEntries != NULL)
 		{
-			if (iKeyVal == GDK_Down)
+			if (iKeyVal == GDK_KEY_Down)
 			{
 				cd_do_select_prev_next_entry_in_listing (TRUE);  // next
 			}
-			else if (iKeyVal == GDK_Up)
+			else if (iKeyVal == GDK_KEY_Up)
 			{
 				cd_do_select_prev_next_entry_in_listing (FALSE);  // previous
 			}
-			else if (iKeyVal == GDK_Right)
+			else if (iKeyVal == GDK_KEY_Right)
 			{
 				cd_do_show_current_sub_listing ();
 			}
-			else if (iKeyVal == GDK_Left)
+			else if (iKeyVal == GDK_KEY_Left)
 			{
 				cd_do_show_previous_listing ();
 			}
 		}
 	}
-	else if (iKeyVal == GDK_Page_Down || iKeyVal == GDK_Page_Up || iKeyVal == GDK_Home || iKeyVal == GDK_End)
+	else if (iKeyVal == GDK_KEY_Page_Down || iKeyVal == GDK_KEY_Page_Up || iKeyVal == GDK_KEY_Home || iKeyVal == GDK_KEY_End)
 	{
 		if (myData.pListing != NULL)
 		{
-			if (iKeyVal == GDK_Page_Down || iKeyVal == GDK_Page_Up)
-				cd_do_select_prev_next_page_in_listing (iKeyVal == GDK_Page_Down);  // TRUE <=> next page
+			if (iKeyVal == GDK_KEY_Page_Down || iKeyVal == GDK_KEY_Page_Up)
+				cd_do_select_prev_next_page_in_listing (iKeyVal == GDK_KEY_Page_Down);  // TRUE <=> next page
 			else
-				cd_do_select_last_first_entry_in_listing (iKeyVal == GDK_End);  // TRUE <=> last entry.
+				cd_do_select_last_first_entry_in_listing (iKeyVal == GDK_KEY_End);  // TRUE <=> last entry.
 		}
 	}
-	else if (iKeyVal >= GDK_F1 && iKeyVal <= GDK_F9)
+	else if (iKeyVal >= GDK_KEY_F1 && iKeyVal <= GDK_KEY_F9)
 	{
 		if (myData.pListing != NULL && gldi_container_is_visible (CAIRO_CONTAINER (myData.pListing)))
 		{
-			cd_debug ("modification du filtre : option n°%d", iKeyVal - GDK_F1);
-			cd_do_activate_filter_option (iKeyVal - GDK_F1);
+			cd_debug ("modification du filtre : option n°%d", iKeyVal - GDK_KEY_F1);
+			cd_do_activate_filter_option (iKeyVal - GDK_KEY_F1);
 			cairo_dock_redraw_container (CAIRO_CONTAINER (myData.pListing));
 		}
 	}

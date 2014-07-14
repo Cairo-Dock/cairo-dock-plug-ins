@@ -36,18 +36,9 @@
 #include "metadata-widget.h"
 #include "applet-menu.h"
 
-#if (GTK_MAJOR_VERSION < 3) || defined (DBUSMENU_GTK3_NEW)
 #include <libdbusmenu-gtk/menuitem.h>
 #include <libdbusmenu-gtk/menu.h>
-#else
-#include <libdbusmenu-gtk3/menuitem.h>
-#include <libdbusmenu-gtk3/menu.h>
-#endif
 #include <libido/idoscalemenuitem.h>
-
-#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION > 20)
-#include <gdk/gdkkeysyms-compat.h>
-#endif
 
 #include <libido/libido.h>
 
@@ -96,10 +87,10 @@ new_metadata_widget (DbusmenuMenuitem * newitem,
 
 
   metadata = metadata_widget_new (newitem);
-  
+
   g_debug ("%s (\"%s\")", __func__,
            dbusmenu_menuitem_property_get(newitem, DBUSMENU_METADATA_MENUITEM_PLAYER_NAME));
-  
+
   GtkMenuItem *menu_metadata_widget = GTK_MENU_ITEM(metadata);
 
   gtk_widget_show_all(metadata);
@@ -275,11 +266,7 @@ key_press_cb(GtkWidget* widget, GdkEventKey* event, gpointer data)
   AppletData *priv = myDataPtr;
   GtkWidget *menuitem;
   ///menuitem = get_current_item (GTK_CONTAINER (widget));
-	#if (GTK_MAJOR_VERSION < 3)
-	menuitem = GTK_MENU_SHELL (widget)->active_menu_item;
-	#else
-	menuitem = gtk_menu_shell_get_selected_item (GTK_MENU_SHELL (widget));
-	#endif
+  menuitem = gtk_menu_shell_get_selected_item (GTK_MENU_SHELL (widget));
 
   if (IDO_IS_SCALE_MENU_ITEM(menuitem) == TRUE){
     gdouble current_value = 0;
@@ -351,21 +338,21 @@ key_press_cb(GtkWidget* widget, GdkEventKey* event, gpointer data)
     case GDK_KEY_Right:
       transport_widget_react_to_key_press_event ( transport_widget,
                                                   TRANSPORT_ACTION_NEXT );
-      digested = TRUE;         
+      digested = TRUE;
       break;        
     case GDK_KEY_Left:
       transport_widget_react_to_key_press_event ( transport_widget,
                                                   TRANSPORT_ACTION_PREVIOUS );
-      digested = TRUE;         
-      break;                  
+      digested = TRUE;
+      break;
     case GDK_KEY_space:
       transport_widget_react_to_key_press_event ( transport_widget,
                                                   TRANSPORT_ACTION_PLAY_PAUSE );
-      digested = TRUE;         
+      digested = TRUE;
       break;
     case GDK_KEY_Up:
     case GDK_KEY_Down:
-      digested = FALSE;     
+      digested = FALSE;
       break;
     default:
       break;
@@ -388,22 +375,19 @@ key_release_cb(GtkWidget* widget, GdkEventKey* event, gpointer data)
   ///IndicatorSound *indicator = INDICATOR_SOUND (data);
 
   ///IndicatorSoundPrivate* priv = INDICATOR_SOUND_GET_PRIVATE(indicator);
-	AppletData *priv = myDataPtr;
+  AppletData *priv = myDataPtr;
   GtkWidget *menuitem;
 
   ///menuitem = get_current_item (GTK_CONTAINER (widget));
-	#if (GTK_MAJOR_VERSION < 3)
-	menuitem = GTK_MENU_SHELL (widget)->active_menu_item;
-	#else
-	menuitem = gtk_menu_shell_get_selected_item (GTK_MENU_SHELL (widget));
-	#endif
+  menuitem = gtk_menu_shell_get_selected_item (GTK_MENU_SHELL (widget));
+
   if (IS_TRANSPORT_WIDGET(menuitem) == TRUE) {
     TransportWidget* transport_widget = NULL;
     GList* elem;
 
     for(elem = priv->transport_widgets_list; elem; elem = elem->next) {
       transport_widget = TRANSPORT_WIDGET (elem->data);
-      if ( transport_widget_is_selected( transport_widget ) ) 
+      if ( transport_widget_is_selected( transport_widget ) )
         break;
     }
 
@@ -412,25 +396,25 @@ key_release_cb(GtkWidget* widget, GdkEventKey* event, gpointer data)
       transport_widget_react_to_key_release_event ( transport_widget,
                                                     TRANSPORT_ACTION_NEXT );
       digested = TRUE;
-      break;        
+      break;
     case GDK_KEY_Left:
       transport_widget_react_to_key_release_event ( transport_widget,
                                                     TRANSPORT_ACTION_PREVIOUS );
-      digested = TRUE;         
-      break;                  
+      digested = TRUE;
+      break;
     case GDK_KEY_space:
       transport_widget_react_to_key_release_event ( transport_widget,
                                                     TRANSPORT_ACTION_PLAY_PAUSE );
-      digested = TRUE;         
+      digested = TRUE;
       break;
     case GDK_KEY_Up:
     case GDK_KEY_Down:
-      digested = FALSE;     
+      digested = FALSE;
       break;
     default:
       break;
     }
-  } 
+  }
   return digested;
 }
 
@@ -441,24 +425,24 @@ key_release_cb(GtkWidget* widget, GdkEventKey* event, gpointer data)
 
 void cd_sound_add_menu_handler (DbusmenuGtkClient * client)
 {
-	dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
-                              	DBUSMENU_VOLUME_MENUITEM_TYPE,
-                              	new_volume_slider_widget);
-	dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
-                              	DBUSMENU_VOIP_INPUT_MENUITEM_TYPE,
-                              	new_voip_slider_widget);
-	dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
-                              	DBUSMENU_TRANSPORT_MENUITEM_TYPE,
-                              	new_transport_widget);
-	dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
-                              	DBUSMENU_METADATA_MENUITEM_TYPE,
-                              	new_metadata_widget);
-	dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
-                              	DBUSMENU_MUTE_MENUITEM_TYPE,
-                              	new_mute_widget);
-	
-	// Note: Not ideal but all key handling needs to be managed here and then 
-	// delegated to the appropriate widget.
-	g_signal_connect (myData.pIndicator->pMenu, "key-press-event", G_CALLBACK(key_press_cb), myApplet);
-	g_signal_connect (myData.pIndicator->pMenu, "key-release-event", G_CALLBACK(key_release_cb), myApplet);
+  dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
+                                    DBUSMENU_VOLUME_MENUITEM_TYPE,
+                                    new_volume_slider_widget);
+  dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
+                                    DBUSMENU_VOIP_INPUT_MENUITEM_TYPE,
+                                    new_voip_slider_widget);
+  dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
+                                    DBUSMENU_TRANSPORT_MENUITEM_TYPE,
+                                    new_transport_widget);
+  dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
+                                    DBUSMENU_METADATA_MENUITEM_TYPE,
+                                    new_metadata_widget);
+  dbusmenu_client_add_type_handler (DBUSMENU_CLIENT(client),
+                                    DBUSMENU_MUTE_MENUITEM_TYPE,
+                                    new_mute_widget);
+
+  // Note: Not ideal but all key handling needs to be managed here and then 
+  // delegated to the appropriate widget.
+  g_signal_connect (myData.pIndicator->pMenu, "key-press-event", G_CALLBACK(key_press_cb), myApplet);
+  g_signal_connect (myData.pIndicator->pMenu, "key-release-event", G_CALLBACK(key_release_cb), myApplet);
 }

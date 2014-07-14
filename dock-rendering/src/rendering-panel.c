@@ -752,22 +752,14 @@ static void cd_update_input_shape (CairoDock *pDock)
 	{
 		CDPanelData *pData = pDock->pRendererData;
 		g_return_if_fail (pData != NULL);
-		
+
 		gboolean bValidGroup = FALSE;  // valid = non-empty
 		gboolean bHasGroups = FALSE;
 		double xi;
 		double w = pData->fGroupGap - 4 * my_fPanelRadius;  // all groups have the same width
 		double h = pDock->iMaxDockHeight;  // we use iMaxDockHeight instead of the actual window size, because at this time, the dock's window may not have its definite size.
-		
-		#if (GTK_MAJOR_VERSION < 3)
-		cairo_t *pCairoContext = gdk_cairo_create (pDock->pShapeBitmap);
-		g_return_if_fail (pCairoContext != NULL);
-		cairo_set_source_rgba (pCairoContext, 0.0f, 0.0f, 0.0f, 0.0f);
-		cairo_set_operator (pCairoContext, CAIRO_OPERATOR_SOURCE);
-		#else
 		cairo_rectangle_int_t rect;
-		#endif
-		
+
 		GList *ic;
 		Icon *pIcon;
 		for (ic = pDock->icons; ic != NULL; ic = ic->next)
@@ -778,25 +770,6 @@ static void cd_update_input_shape (CairoDock *pDock)
 				if (bValidGroup)
 				{
 					xi = pIcon->fXAtRest + 2 * my_fPanelRadius;  // we let a few pixels to be able to grab the separtator, and to avoid leaving the dock too easily.
-					#if (GTK_MAJOR_VERSION < 3)
-					if (pDock->container.bIsHorizontal)
-					{
-						cairo_rectangle (pCairoContext,
-							xi,
-							0,
-							w,
-							h);
-					}
-					else
-					{
-						cairo_rectangle (pCairoContext,
-							0,
-							xi,
-							h,
-							w);
-					}
-					cairo_fill (pCairoContext);
-					#else
 					if (pDock->container.bIsHorizontal)
 					{
 						rect.x = xi;
@@ -813,7 +786,6 @@ static void cd_update_input_shape (CairoDock *pDock)
 						rect.height = w;
 					}
 					cairo_region_subtract_rectangle (pDock->pShapeBitmap, &rect);
-					#endif
 					bValidGroup = FALSE;
 					bHasGroups = TRUE;
 				}
@@ -831,25 +803,6 @@ static void cd_update_input_shape (CairoDock *pDock)
 			if (pDock->fAlign > 0)
 			{
 				xi = pDock->fAlign * pData->fGroupGap - my_fPanelRadius;
-				#if (GTK_MAJOR_VERSION < 3)
-				if (pDock->container.bIsHorizontal)
-				{
-					cairo_rectangle (pCairoContext,
-						0.,  // left screen edge
-						0.,
-						xi,  // to first icon
-						h);
-				}
-				else
-				{
-					cairo_rectangle (pCairoContext,
-						0,
-						0.,
-						h,
-						xi);
-				}
-				cairo_fill (pCairoContext);
-				#else
 				if (pDock->container.bIsHorizontal)
 				{
 					rect.x = 0.;  // left screen edge
@@ -866,32 +819,12 @@ static void cd_update_input_shape (CairoDock *pDock)
 					rect.height = xi;
 				}
 				cairo_region_subtract_rectangle (pDock->pShapeBitmap, &rect);
-				#endif
 			}
 			
 			// last icon -> right screen edge
 			if (pDock->fAlign < 1)
 			{
 				xi = pDock->iMaxDockWidth - (1 - pDock->fAlign) * pData->fGroupGap + my_fPanelRadius;
-				#if (GTK_MAJOR_VERSION < 3)
-				if (pDock->container.bIsHorizontal)
-				{
-					cairo_rectangle (pCairoContext,
-						xi,  // last icon
-						0.,
-						pDock->iMaxDockWidth - xi,  // to right screen edge
-						h);
-				}
-				else
-				{
-					cairo_rectangle (pCairoContext,
-						0,
-						xi,
-						h,
-						pDock->iMaxDockWidth - xi);
-				}
-				cairo_fill (pCairoContext);
-				#else
 				if (pDock->container.bIsHorizontal)
 				{
 					rect.x = xi;  // last icon
@@ -908,13 +841,8 @@ static void cd_update_input_shape (CairoDock *pDock)
 					rect.height = pDock->iMaxDockWidth - xi;
 				}
 				cairo_region_subtract_rectangle (pDock->pShapeBitmap, &rect);
-				#endif
 			}
 		}
-		
-		#if (GTK_MAJOR_VERSION < 3)
-		cairo_destroy (pCairoContext);
-		#endif
 	}
 }
 

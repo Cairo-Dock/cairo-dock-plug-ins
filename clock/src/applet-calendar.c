@@ -639,13 +639,11 @@ static GtkWidget *cd_clock_build_calendar (GldiModuleInstance *myApplet)
 		"button-release-event",
 		G_CALLBACK (on_button_released_calendar),
 		myApplet);
-	
-#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION > 14)
+
 	gtk_calendar_set_detail_func (GTK_CALENDAR (pCalendar),
 		(GtkCalendarDetailFunc) _on_display_task_detail,
 		myApplet,
 		(GDestroyNotify) NULL);
-#endif
 	return pCalendar;
 }
 

@@ -95,11 +95,8 @@ void cd_menu_check_for_new_apps (void)
 	{
 		if (s_pNewAppsDialog) // the dialogue already exists: add new items in the list
 		{
-			#if GTK_MAJOR_VERSION >= 3
-			// ok, only for GTK 3 but GTK 3 should be used when using this GMenu
 			gtk_combo_box_text_remove_all (
 				GTK_COMBO_BOX_TEXT (s_pNewAppsDialog->pInteractiveWidget));
-			#endif
 			GList *a;
 			for (a = myData.pNewApps; a != NULL; a = a->next)
 			{
@@ -173,12 +170,15 @@ void cd_menu_init_apps (void)
 			if (cDesktopEnv)
 				g_setenv ("XDG_CURRENT_DESKTOP", cDesktopEnv, TRUE);
 		}
-		
+
+		#if ! GLIB_CHECK_VERSION (2,41,0)
+		// Since 2.41 the value of the XDG_CURRENT_DESKTOP environment variable will be used.
 		if (cDesktopEnv)  // also set it for g_app_info_should_show() in gio
 			g_desktop_app_info_set_desktop_env (cDesktopEnv);
-		
+		#endif
+
 		s_bDesktopEnvDef = (cDesktopEnv != NULL);  // if cDesktopEnv is NULL, g_app_info_should_show will drop any element that has a OnlyShowIn key (it does a direct comparison), so we won't use this function, as it's better to show more apps than having missing apps.
-		
+
 		myData.bFirstLaunch = TRUE;
 		myData.pKnownApplications = g_hash_table_new_full (g_str_hash,
 			g_str_equal,

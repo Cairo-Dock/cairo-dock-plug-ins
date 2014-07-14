@@ -186,18 +186,10 @@ if (enable-dbusmenu-support)
 	endif()
 
 	## DBusMenu Gtk
-	if (gtkversion EQUAL 2)
-		set (DBUSMENU_GTK_MODULE dbusmenu-gtk-0.4)
-	else()
-		set (DBUSMENU_GTK_MODULE dbusmenu-gtk3-0.4)
-	endif()
+	set (DBUSMENU_GTK_MODULE dbusmenu-gtk3-0.4)
 	pkg_check_modules (DBUSMENU_GTK ${DBUSMENU_GTK_MODULE})
 	if (NOT DBUSMENU_GTK_FOUND)
-		if (gtkversion EQUAL 2)
-			set (DBUSMENU_GTK_MODULE dbusmenu-gtk)
-		else()
-			set (DBUSMENU_GTK_MODULE dbusmenu-gtk3)
-		endif()
+		set (DBUSMENU_GTK_MODULE dbusmenu-gtk3)
 		pkg_check_modules (DBUSMENU_GTK ${DBUSMENU_GTK_MODULE})
 	endif()
 endif()
@@ -205,20 +197,12 @@ endif()
 ## Indicator
 enable_if_not_defined (enable-indicator-support)
 if (enable-indicator-support)
-	if (gtkversion EQUAL 2)
-		set (INDICATOR_APPLET_MODULE indicator-0.4)
-	else()
-		set (INDICATOR_APPLET_MODULE indicator3-0.4)
-	endif()
+	set (INDICATOR_APPLET_MODULE indicator3-0.4)
 	pkg_check_modules (INDICATOR_APPLET ${INDICATOR_APPLET_MODULE})
 	if (INDICATOR_APPLET_FOUND)
 		set (INDICATOR_NEW_VERSION TRUE)  # oneiric and newer
 	else()
-		if (gtkversion EQUAL 2)
-			set (INDICATOR_APPLET_MODULE indicator)
-		else()
-			set (INDICATOR_APPLET_MODULE indicator3)
-		endif()
+		set (INDICATOR_APPLET_MODULE indicator3)
 		pkg_check_modules (INDICATOR_APPLET ${INDICATOR_APPLET_MODULE})
 	endif()
 endif()
@@ -226,11 +210,7 @@ endif()
 ## libido
 enable_if_not_defined (enable-libido-support)
 if (enable-libido-support)
-	if (gtkversion EQUAL 2)
-		set (IDO_MODULE libido-0.1)
-	else()
-		set (IDO_MODULE libido3-0.1)
-	endif()
+	set (IDO_MODULE libido3-0.1)
 	pkg_check_modules (IDO ${IDO_MODULE})
 	if (IDO_FOUND)
 		STRING (REGEX REPLACE "\\..*" "" IDO_MAJOR "${IDO_VERSION}")
@@ -259,7 +239,6 @@ if (DBUSMENU_FOUND AND DBUSMENU_GTK_FOUND)
 	
 	if (${DBUSMENU_GTK_MAJOR} GREATER 0 OR ${DBUSMENU_GTK_MINOR} GREATER 5
 	    OR (${DBUSMENU_GTK_MINOR} EQUAL 5 AND ${DBUSMENU_GTK_NANO} GREATER 89))
-		set (DBUSMENU_GTK3_NEW 1)
 		set (INDICATOR_APPLICATIONADDED_HAS_TITLE 1) # Status-Notifier: new parameter "Title" in the "added" signal since Precise
 	else()
 		set (INDICATOR_APPLICATIONADDED_HAS_TITLE 0)
@@ -284,31 +263,19 @@ if (INDICATOR_APPLET_FOUND)
 	endif()
 
 	if (INDICATOR_NEW_VERSION)  # oneiric and newer
-		if (gtkversion EQUAL 2)
-			execute_process(
-				COMMAND pkg-config --variable=iconsdir indicator-0.4
-				OUTPUT_VARIABLE INDICATORICONSDIR)
-		else()
-			execute_process(
-				COMMAND pkg-config --variable=iconsdir indicator3-0.4
-				OUTPUT_VARIABLE INDICATORICONSDIR)
-			execute_process(
-				COMMAND pkg-config --variable=indicatordir indicator3-0.4
-				OUTPUT_VARIABLE INDICATORDIR)
-			STRING (REGEX REPLACE "\n" "" INDICATORDIR ${INDICATORDIR})
-			set (with_indicator3 yes)
-			message (STATUS "  Indicators: with Indicator3 support")
-		endif()
+		execute_process(
+			COMMAND pkg-config --variable=iconsdir indicator3-0.4
+			OUTPUT_VARIABLE INDICATORICONSDIR)
+		execute_process(
+			COMMAND pkg-config --variable=indicatordir indicator3-0.4
+			OUTPUT_VARIABLE INDICATORDIR)
+		STRING (REGEX REPLACE "\n" "" INDICATORDIR ${INDICATORDIR})
+		set (with_indicator3 yes)
+		message (STATUS "  Indicators: with Indicator3 support")
 	else()
-		if (gtkversion EQUAL 2)
-			execute_process(
-				COMMAND pkg-config --variable=iconsdir indicator
-				OUTPUT_VARIABLE INDICATORICONSDIR)
-		else()
-			execute_process(
-				COMMAND pkg-config --variable=iconsdir indicator3
-				OUTPUT_VARIABLE INDICATORICONSDIR)
-		endif()
+		execute_process(
+			COMMAND pkg-config --variable=iconsdir indicator3
+			OUTPUT_VARIABLE INDICATORICONSDIR)
 	endif()
 	STRING (REGEX REPLACE "\n" "" INDICATORICONSDIR "${INDICATORICONSDIR}")  # la commande rajoute un retour chariot ...
 	if (with_indicator3)
@@ -1391,11 +1358,7 @@ add_subdirectory (systray)
 message (STATUS "> Terminal:")
 enable_if_not_defined (enable-terminal)
 if (enable-terminal)
-	if (gtkversion EQUAL 2)
-		set (TERMINAL_MODULE vte)
-	else()
-		set (TERMINAL_MODULE vte-2.90)
-	endif()
+	set (TERMINAL_MODULE vte-2.90)
 	pkg_check_modules (VTE ${TERMINAL_MODULE})
 	if (NOT VTE_FOUND)
 		message (STATUS "Could not find ${TERMINAL_MODULE}; Cairo-Dock won't be built with terminal applet.")
@@ -1450,11 +1413,7 @@ message (STATUS "> Weblets:")
 set (with_weblets no)
 enable_if_not_defined (enable-weblets)
 if (enable-weblets)
-	if (gtkversion EQUAL 2)
-		set (WEBKIT_MODULE webkit-1.0)
-	else()
-		set (WEBKIT_MODULE webkitgtk-3.0)
-	endif()
+	set (WEBKIT_MODULE webkitgtk-3.0)
 	pkg_check_modules (WEBKIT ${WEBKIT_MODULE})
 	if (NOT WEBKIT_FOUND)
 		message (STATUS "Could not find ${WEBKIT_MODULE}; Cairo-Dock won't be built with Weblets applet.")

@@ -22,8 +22,6 @@
 #define __USE_POSIX
 #include <time.h>
 
-#include <gdk/gdkkeysyms.h> // needed for 'GDK_Escape'
-
 #include "applet-struct.h"
 #include "applet-search.h"
 #include "applet-dialog.h"
@@ -74,19 +72,17 @@ static void on_click_category_button (GtkButton *button, gpointer data)
 	cd_trigger_search ();
 }
 
-#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
 static void on_clear_filter (GtkEntry *pEntry, GtkEntryIconPosition icon_pos, GdkEvent *event, gpointer data)
 {
 	gtk_entry_set_text (pEntry, "");
 	cd_debug ("relaunch the search...");
 	cd_trigger_search ();
 }
-#endif
 
 static gboolean on_key_press_filter (G_GNUC_UNUSED GtkWidget *pWidget,
 	GdkEventKey *pKey, G_GNUC_UNUSED gpointer data)
 {
-	if (pKey->keyval == GLDI_KEY(Escape))
+	if (pKey->keyval == GDK_KEY_Escape)
 	{
 		cd_toggle_dialog ();
 		return TRUE;
@@ -386,13 +382,13 @@ static inline GtkToolItem *_add_category_button (GtkWidget *pToolBar, const gcha
 #define MARGIN 3
 static GtkWidget *cd_build_events_widget (void)
 {
-	GtkWidget *pMainBox = _gtk_vbox_new (MARGIN);
+	GtkWidget *pMainBox = gtk_box_new (GTK_ORIENTATION_VERTICAL, MARGIN);
 	
 	// category toolbar.
 	GtkWidget *pToolBar = gtk_toolbar_new ();
 	///gtk_toolbar_set_orientation (GTK_TOOLBAR (pToolBar), GTK_ORIENTATION_HORIZONTAL);
 	gtk_toolbar_set_style (GTK_TOOLBAR (pToolBar), GTK_TOOLBAR_BOTH);  // overwrite system preference (GTK_TOOLBAR_ICONS)
-	#if (GTK_MAJOR_VERSION > 2)
+
 	gtk_style_context_add_class (gtk_widget_get_style_context (pToolBar),
 		GTK_STYLE_CLASS_INLINE_TOOLBAR); // style: inline
 	GtkCssProvider *css = gtk_css_provider_new (); // but without border
@@ -401,7 +397,7 @@ static GtkWidget *cd_build_events_widget (void)
 	GtkStyleContext *ctx = gtk_widget_get_style_context (pToolBar);
 	gtk_style_context_add_provider (ctx, GTK_STYLE_PROVIDER (css),
 		GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-	#endif
+
 	gtk_toolbar_set_show_arrow (GTK_TOOLBAR (pToolBar), FALSE);  // force to display all the entries.
 	gtk_box_pack_start (GTK_BOX (pMainBox), pToolBar, TRUE, TRUE, MARGIN);
 	
@@ -418,7 +414,7 @@ static GtkWidget *cd_build_events_widget (void)
 	_add_category_button (pToolBar, D_("Top Results"), "gtk-about", i, group);
 	
 	// search entry.
-	GtkWidget *pFilterBox = _gtk_hbox_new (CAIRO_DOCK_GUI_MARGIN);
+	GtkWidget *pFilterBox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, CAIRO_DOCK_GUI_MARGIN);
 	gtk_box_pack_start (GTK_BOX (pMainBox), pFilterBox, FALSE, FALSE, MARGIN);
 	
 	GtkWidget *pFilterLabel = gtk_label_new (D_("Look for events"));
@@ -430,12 +426,11 @@ static GtkWidget *cd_build_events_widget (void)
 	g_signal_connect (pEntry, "key-release-event", G_CALLBACK (on_key_press_filter), NULL);
 	gtk_box_pack_start (GTK_BOX (pFilterBox), pEntry, TRUE, TRUE, MARGIN);
 	gtk_widget_set_tooltip_text (pEntry, D_("The default boolean operator is AND. Thus the query foo bar will be interpreted as foo AND bar. To exclude a term from the result set prepend it with a minus sign - eg foo -bar. Phrase queries can be done by double quoting the string \"foo is a bar\". You can truncate terms by appending a *. "));
-	
-	#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION >= 16)
+
 	gtk_entry_set_icon_activatable (GTK_ENTRY (pEntry), GTK_ENTRY_ICON_SECONDARY, TRUE);
 	gtk_entry_set_icon_from_icon_name (GTK_ENTRY (pEntry), GTK_ENTRY_ICON_SECONDARY, GLDI_ICON_NAME_CLEAR);
 	g_signal_connect (pEntry, "icon-press", G_CALLBACK (on_clear_filter), NULL);
-	#endif
+
 	myData.pEntry = pEntry;
 	gtk_widget_grab_focus (pEntry);
 	
@@ -485,13 +480,9 @@ static GtkWidget *cd_build_events_widget (void)
 	gtk_tree_view_append_column (GTK_TREE_VIEW (pOneWidget), col);
 	
 	// barres de defilement
-	#if (GTK_MAJOR_VERSION < 3)
-	GtkObject *adj = gtk_adjustment_new (0., 0., 100., 1, 10, 10);
-	gtk_tree_view_set_vadjustment (GTK_TREE_VIEW (pOneWidget), GTK_ADJUSTMENT (adj));
-	#else
 	GtkAdjustment *adj = gtk_adjustment_new (0., 0., 100., 1, 10, 10);
 	gtk_scrollable_set_vadjustment (GTK_SCROLLABLE (pOneWidget), GTK_ADJUSTMENT (adj));
-	#endif
+
 	GtkWidget *pScrolledWindow = gtk_scrolled_window_new (NULL, NULL);
 	g_object_set (pScrolledWindow, "height-request", 300, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (pScrolledWindow), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);

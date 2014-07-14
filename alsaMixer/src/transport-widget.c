@@ -87,11 +87,9 @@ struct _TransportWidgetPrivate
   gint                skip_frequency;
 };
 
-#if GTK_CHECK_VERSION(3, 0, 0)
 static GList *transport_widget_list = NULL;
 static GtkStyleContext *spinner_style_context = NULL;
 static GtkWidgetPath *spinner_widget_path = NULL;
-#endif
 
 // TODO refactor the UI handlers, consolidate functionality between key press /release
 // and button press / release.
@@ -107,9 +105,6 @@ G_DEFINE_TYPE (TransportWidget, transport_widget, GTK_TYPE_MENU_ITEM);
 /* essentials */
 static void transport_widget_set_twin_item ( TransportWidget* self,
                                              DbusmenuMenuitem* twin_item);
-#if ! GTK_CHECK_VERSION(3, 0, 0)
-static gboolean transport_widget_expose ( GtkWidget *button, GdkEventExpose *event);
-#endif
 static gboolean draw (GtkWidget* button, cairo_t *cr);
 
 /* UI and dbusmenu callbacks */
@@ -159,12 +154,8 @@ transport_widget_class_init (TransportWidgetClass *klass)
   widget_class->button_release_event = transport_widget_button_release_event;
   widget_class->motion_notify_event = transport_widget_motion_notify_event;
   widget_class->leave_notify_event = transport_widget_leave_notify_event;
-#if GTK_CHECK_VERSION(3, 0, 0)
   widget_class->draw = draw;
-#else
-  widget_class->expose_event = transport_widget_expose;
-#endif
-  
+
   gobject_class->dispose = transport_widget_dispose;
   gobject_class->finalize = transport_widget_finalize;
 }
@@ -173,7 +164,6 @@ static void
 transport_widget_init (TransportWidget *self)
 {
   TransportWidgetPrivate* priv = TRANSPORT_WIDGET_GET_PRIVATE(self);
-  #if GTK_CHECK_VERSION(3, 0, 0)
   if (transport_widget_list == NULL){
     /* append the object to the static linked list. */
     transport_widget_list = g_list_append (transport_widget_list, self);
@@ -194,7 +184,6 @@ transport_widget_init (TransportWidget *self)
     gtk_style_context_add_class (spinner_style_context, GTK_STYLE_CLASS_MENUITEM);
     gtk_style_context_add_class (spinner_style_context, GTK_STYLE_CLASS_SPINNER);
   }
-  #endif
   priv->current_command = TRANSPORT_ACTION_NO_ACTION;
   priv->current_state = TRANSPORT_STATE_PAUSED;
   priv->key_event = TRANSPORT_ACTION_NO_ACTION;
@@ -254,7 +243,6 @@ transport_widget_init (TransportWidget *self)
 static void
 transport_widget_dispose (GObject *object)
 {
-  #if GTK_CHECK_VERSION(3, 0, 0)  
   transport_widget_list = g_list_remove (transport_widget_list, object);
 
   if (transport_widget_list == NULL){
@@ -268,7 +256,6 @@ transport_widget_dispose (GObject *object)
       spinner_style_context = NULL;
     }
   }
-  #endif
 
   TransportWidgetPrivate* priv = TRANSPORT_WIDGET_GET_PRIVATE(object);
   if (priv->command_coordinates != NULL) {
@@ -286,25 +273,6 @@ transport_widget_finalize (GObject *object)
   
   G_OBJECT_CLASS (transport_widget_parent_class)->finalize (object);
 }
-
-#if ! GTK_CHECK_VERSION(3, 0, 0)
-static gboolean
-transport_widget_expose (GtkWidget *button, GdkEventExpose *event)
-{
-  cairo_t *cr;
-  cr = gdk_cairo_create (gtk_widget_get_window (button));
-
-  cairo_rectangle (cr,
-                     event->area.x, event->area.y,
-                     event->area.width, event->area.height);
-
-  cairo_clip(cr);
-  draw (button, cr);
-
-  cairo_destroy (cr);
-  return FALSE;
-}
-#endif
 
 gboolean
 transport_widget_is_selected ( TransportWidget* widget )
@@ -1283,49 +1251,20 @@ draw (GtkWidget* button, cairo_t *cr)
   cairo_surface_t*  surf = NULL;
   cairo_t*       cr_surf = NULL;
 
-#if ! GTK_CHECK_VERSION(3, 0, 0)
-  GtkAllocation allocation;
-  gtk_widget_get_allocation (button, &allocation);
-  cairo_translate (cr, allocation.x, allocation.y);  
-#endif
 
-  
-  
-#if GTK_CHECK_VERSION(3, 0, 0)
   gtk_style_context_add_class (gtk_widget_get_style_context (button),
                                GTK_STYLE_CLASS_MENU);
-#endif
   CairoColorRGB bg_color, fg_color, bg_selected, bg_prelight;
   CairoColorRGB color_middle[2], color_middle_prelight[2], color_outer[2], color_outer_prelight[2],
                 color_play_outer[2], color_play_outer_prelight[2],
                 color_button[4], color_button_shadow, color_inner[2], color_inner_compressed[2];
 
-	#if (GTK_MAJOR_VERSION < 3)
-  GtkStyle *style = gtk_widget_get_style (button);
+  GtkStyleContext *style = gtk_widget_get_style_context (button);
+  gtk_style_context_get_background_color (style, 0, (GdkRGBA*)&bg_color);
+  gtk_style_context_get_background_color (style, GTK_STATE_PRELIGHT, (GdkRGBA*)&bg_prelight);
+  gtk_style_context_get_background_color (style, GTK_STATE_SELECTED, (GdkRGBA*)&bg_selected);
+  gtk_style_context_get_color (style, 0, (GdkRGBA*)&fg_color);
 
-  bg_color.r = style->bg[0].red/65535.0;
-  bg_color.g = style->bg[0].green/65535.0;
-  bg_color.b = style->bg[0].blue/65535.0;
-
-  bg_prelight.r = style->bg[GTK_STATE_PRELIGHT].red/65535.0;
-  bg_prelight.g = style->bg[GTK_STATE_PRELIGHT].green/65535.0;
-  bg_prelight.b = style->bg[GTK_STATE_PRELIGHT].blue/65535.0;
-
-  bg_selected.r = style->bg[GTK_STATE_SELECTED].red/65535.0;
-  bg_selected.g = style->bg[GTK_STATE_SELECTED].green/65535.0;
-  bg_selected.b = style->bg[GTK_STATE_SELECTED].blue/65535.0;
-
-  fg_color.r = style->fg[0].red/65535.0;
-  fg_color.g = style->fg[0].green/65535.0;
-  fg_color.b = style->fg[0].blue/65535.0;
-	#else
-	GtkStyleContext *style = gtk_widget_get_style_context (button);
-	gtk_style_context_get_background_color (style, 0, (GdkRGBA*)&bg_color);
-	gtk_style_context_get_background_color (style, GTK_STATE_PRELIGHT, (GdkRGBA*)&bg_prelight);
-	gtk_style_context_get_background_color (style, GTK_STATE_SELECTED, (GdkRGBA*)&bg_selected);
-	gtk_style_context_get_color (style, 0, (GdkRGBA*)&fg_color);
-	#endif
-	
   _color_shade (&bg_color,    MIDDLE_START_SHADE, &color_middle[0]);
   _color_shade (&bg_color,    MIDDLE_END_SHADE, &color_middle[1]);
   _color_shade (&bg_prelight, MIDDLE_START_SHADE, &color_middle_prelight[0]);
@@ -1812,13 +1751,11 @@ draw (GtkWidget* button, cairo_t *cr)
            FALSE);
     _finalize (cr, &cr_surf, &surf, PAUSE_X-0.5f, PAUSE_Y);
   }
-  #if GTK_CHECK_VERSION(3, 0, 0)
   else if(priv->current_state == TRANSPORT_STATE_LAUNCHING)
   {
     // the spinner is not aligned, why? because the play button has odd width/height numbers
     gtk_render_activity (spinner_style_context, cr, 106, 6, 30, 30);
   }
-  #endif
   return FALSE;
 }
 
@@ -1855,9 +1792,7 @@ transport_widget_property_update(DbusmenuMenuitem* item, gchar* property,
     TransportState new_state = (TransportState)g_variant_get_int32(value);
     //g_debug("transport_widget_update_state - with value  %i", new_state);
     if (new_state == TRANSPORT_STATE_LAUNCHING){
-      #if GTK_CHECK_VERSION(3, 0, 0)
       gtk_style_context_set_state (spinner_style_context, GTK_STATE_FLAG_ACTIVE);  // triggers the notification
-      #endif
 
       priv->current_state = TRANSPORT_STATE_LAUNCHING;
       g_debug("TransportWidget::toggle play state : %i", priv->current_state);

@@ -162,22 +162,14 @@ static void _choice_dialog_action (int iClickedButton, GtkWidget *pInteractiveWi
 static void _show_players_list_dialog (void)
 {
 	// build a list of the available groups.
-	#if (GTK_MAJOR_VERSION < 3 && GTK_MINOR_VERSION < 24)
-	GtkWidget *pComboBox = gtk_combo_box_entry_new_text ();
-	#else
 	GtkWidget *pComboBox = gtk_combo_box_text_new_with_entry ();
-	#endif
 	GList *h;
 	MusicPlayerHandler *handler;
 	for (h = myData.pHandlers; h != NULL; h = h->next)
 	{
 		handler = h->data;
 		if (handler->cMprisService != NULL)
-			#if (GTK_MAJOR_VERSION < 3 && GTK_MINOR_VERSION < 24)
-			gtk_combo_box_append_text (GTK_COMBO_BOX (pComboBox), handler->name);
-			#else
 			gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (pComboBox), handler->name);
-			#endif
 	}
 	GtkTreeModel *pModel = gtk_combo_box_get_model (GTK_COMBO_BOX (pComboBox));
 	if (pModel)

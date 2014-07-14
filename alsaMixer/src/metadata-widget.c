@@ -76,7 +76,6 @@ static void metadata_widget_selection_received_event_callback( GtkWidget        
 
                                                                 
 
-#if GTK_CHECK_VERSION(3, 0, 0)
 static void metadata_widget_get_preferred_width (GtkWidget* self,
                                                  gint* minimum_width,
                                                  gint* natural_width);
@@ -90,18 +89,6 @@ static gboolean metadata_widget_icon_triangle_draw_cb_gtk_3 (GtkWidget *image,
 static gboolean metadata_image_expose_gtk_3 (GtkWidget *image,
 											 cairo_t* cr,
 											 gpointer user_data);
-#else
-static void draw_album_art_placeholder (GtkWidget *metadata);
-
-static void draw_album_border (GtkWidget *metadata, gboolean selected);
-
-static gboolean metadata_widget_icon_triangle_draw_cb (GtkWidget *image,
-                                                       GdkEventExpose *event,
-                                                       gpointer user_data);
-static gboolean metadata_image_expose (GtkWidget *image,
-                                       GdkEventExpose *event,
-                                       gpointer user_data);
-#endif
 
 static void metadata_widget_set_icon (MetadataWidget *self);
 static void metadata_widget_handle_resizing (MetadataWidget* self);
@@ -116,9 +103,7 @@ metadata_widget_class_init (MetadataWidgetClass *klass)
   GtkWidgetClass    *widget_class = GTK_WIDGET_CLASS (klass);
 
   widget_class->button_release_event = metadata_widget_button_release_event;
-  #if GTK_CHECK_VERSION(3, 0, 0)
-  widget_class->get_preferred_width = metadata_widget_get_preferred_width;  
-  #endif
+  widget_class->get_preferred_width = metadata_widget_get_preferred_width;
   g_type_class_add_private (klass, sizeof (MetadataWidgetPrivate));
 
   gobject_class->dispose = metadata_widget_dispose;
@@ -133,8 +118,8 @@ metadata_widget_init (MetadataWidget *self)
   GtkWidget *outer_v_box;
   priv->icon_buf = NULL;
     
-  outer_v_box = _gtk_vbox_new (0);
-  hbox = _gtk_hbox_new(0);
+  outer_v_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
   
   priv->meta_data_h_box = hbox;
   priv->current_height = 1;
@@ -143,8 +128,7 @@ metadata_widget_init (MetadataWidget *self)
   priv->album_art = gtk_image_new();
   priv->image_path = g_string_new("");
   priv->old_image_path = g_string_new("");
-  
-  #if GTK_CHECK_VERSION(3, 0, 0) 
+
   g_signal_connect(priv->album_art, "draw", 
                    G_CALLBACK(metadata_image_expose_gtk_3),
                    GTK_WIDGET(self));
@@ -152,22 +136,13 @@ metadata_widget_init (MetadataWidget *self)
   g_signal_connect_after (GTK_WIDGET(self), "draw", 
                           G_CALLBACK(metadata_widget_icon_triangle_draw_cb_gtk_3),
                           GTK_WIDGET(self));
-  #else
-  g_signal_connect(priv->album_art, "expose-event", 
-                   G_CALLBACK(metadata_image_expose),
-                   GTK_WIDGET(self));
-
-  g_signal_connect_after (GTK_WIDGET(self), "expose-event", 
-                          G_CALLBACK(metadata_widget_icon_triangle_draw_cb),
-                          GTK_WIDGET(self));  
-  #endif
   gtk_box_pack_start (GTK_BOX (priv->meta_data_h_box),
                       priv->album_art,
                       FALSE,
                       FALSE,
                       1); 
   priv->theme_change_occured = FALSE;
-  GtkWidget* vbox = _gtk_vbox_new(0);
+  GtkWidget* vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   
   // artist
   GtkWidget* artist;
@@ -257,7 +232,6 @@ metadata_widget_finalize (GObject *object)
 }
 
 
-#if GTK_CHECK_VERSION(3, 0, 0)  
 static void
 metadata_widget_get_preferred_width (GtkWidget* self,
                                      gint* minimum_width,
@@ -496,267 +470,12 @@ g_return_val_if_fail(IS_METADATA_WIDGET(user_data), FALSE);
     cairo_set_source_rgb (cr, fg_normal.r,
                               fg_normal.g,
                               fg_normal.b);
-    cairo_fill (cr);                                             
+    cairo_fill (cr);
   }
   
-  return FALSE;   
-}
-
-// GTK 2 Expose handler
-#else
-
-static void
-draw_album_border(GtkWidget *metadata, gboolean selected)
-{
-  cairo_t *cr;  
-  cr = gdk_cairo_create (gtk_widget_get_window (metadata));
-  #if GTK_CHECK_VERSION(3, 0, 0)
-  gtk_style_context_add_class (gtk_widget_get_style_context (metadata),
-                               "menu");
-  #endif
-  
-  GtkStyle *style;
-  style = gtk_widget_get_style (metadata);
-  
-  GtkAllocation alloc;
-  gtk_widget_get_allocation (metadata, &alloc);
-  gint offset = 1;
-  
-  alloc.width = alloc.width + (offset * 2);
-  alloc.height = alloc.height + (offset * 2) - 7;
-  alloc.x = alloc.x - offset;
-  alloc.y = alloc.y - offset + 3;
-
-  CairoColorRGB bg_normal, fg_normal;
-
-  bg_normal.r = style->bg[0].red/65535.0;
-  bg_normal.g = style->bg[0].green/65535.0;
-  bg_normal.b = style->bg[0].blue/65535.0;
-
-  gint state = selected ? 5 : 0;
-  
-  fg_normal.r = style->fg[state].red/65535.0;
-  fg_normal.g = style->fg[state].green/65535.0;
-  fg_normal.b = style->fg[state].blue/65535.0;
-
-  CairoColorRGB dark_top_color;
-  CairoColorRGB light_bottom_color;
-  CairoColorRGB background_color;
-  
-  _color_shade ( &bg_normal, 0.93, &background_color );
-  _color_shade ( &bg_normal, 0.23, &dark_top_color );
-  _color_shade ( &fg_normal, 0.55, &light_bottom_color );
-  
-  cairo_rectangle (cr,
-                   alloc.x, alloc.y,
-                   alloc.width, alloc.height);
-
-  cairo_set_line_width (cr, 1.0);
-  
-  cairo_clip ( cr );
-
-  cairo_move_to (cr, alloc.x, alloc.y );
-  cairo_line_to (cr, alloc.x + alloc.width,
-                alloc.y );
-  cairo_line_to ( cr, alloc.x + alloc.width,
-                  alloc.y + alloc.height );
-  cairo_line_to ( cr, alloc.x, alloc.y + alloc.height );
-  cairo_line_to ( cr, alloc.x, alloc.y);
-  cairo_close_path (cr);
-
-  cairo_set_source_rgba ( cr,
-                          background_color.r,
-                          background_color.g,
-                          background_color.b,
-                          1.0 );
-  
-  cairo_fill ( cr );
-  
-  cairo_move_to (cr, alloc.x, alloc.y );
-  cairo_line_to (cr, alloc.x + alloc.width,
-                alloc.y );
-
-  cairo_close_path (cr);
-  cairo_set_source_rgba ( cr,
-                          dark_top_color.r,
-                          dark_top_color.g,
-                          dark_top_color.b,
-                          1.0 );
-  
-  cairo_stroke ( cr );
-  
-  cairo_move_to ( cr, alloc.x + alloc.width,
-                  alloc.y + alloc.height );
-  cairo_line_to ( cr, alloc.x, alloc.y + alloc.height );
-
-  cairo_close_path (cr);
-  cairo_set_source_rgba ( cr,
-                         light_bottom_color.r,
-                         light_bottom_color.g,
-                         light_bottom_color.b,
-                         1.0);
-  
-  cairo_stroke ( cr );
-  cairo_destroy (cr);   
-}
-
-static void
-draw_album_art_placeholder(GtkWidget *metadata)
-{       
-  cairo_t *cr;  
-  cr = gdk_cairo_create (gtk_widget_get_window (metadata));
-  GtkStyle *style;
-  style = gtk_widget_get_style (metadata);
-  
-  GtkAllocation alloc;
-  gtk_widget_get_allocation (metadata, &alloc);
-
-  PangoLayout *layout;
-  PangoFontDescription *desc;
-  layout = pango_cairo_create_layout(cr);
-  PangoContext* pcontext = pango_cairo_create_context(cr); 
-  pango_cairo_context_set_resolution (pcontext, 96);
-
-  GString* string = g_string_new("");
-  gssize size = -1;
-  gunichar code = g_utf8_get_char_validated("\342\231\253", size);  
-  g_string_append_unichar (string, code);
-  
-  pango_layout_set_text(layout, string->str, -1);
-  desc = pango_font_description_from_string("Sans Bold 30");
-  pango_layout_set_font_description(layout, desc);
-  pango_font_description_free(desc);
-
-  CairoColorRGB fg_normal, light_bottom_color;
-  
-  fg_normal.r = style->fg[0].red/65535.0;
-  fg_normal.g = style->fg[0].green/65535.0;
-  fg_normal.b = style->fg[0].blue/65535.0;
-
-  _color_shade ( &fg_normal, 0.78, &light_bottom_color );
-  
-  cairo_set_source_rgba (cr,
-                         light_bottom_color.r, 
-                         light_bottom_color.g,
-                         light_bottom_color.b,
-                         1.0);
-  
-  pango_cairo_update_layout(cr, layout);
-  cairo_move_to (cr, alloc.x + alloc.width/6, alloc.y + 3);  
-  pango_cairo_show_layout(cr, layout);
-
-  g_object_unref(layout); 
-  g_object_unref(pcontext);
-  g_string_free (string, TRUE);
-  cairo_destroy (cr); 
-}
-
-static gboolean
-metadata_image_expose (GtkWidget *metadata,
-					   GdkEventExpose *event,
-					   gpointer user_data)
-{
-  g_return_val_if_fail(IS_METADATA_WIDGET(user_data), FALSE);
-  MetadataWidget* widget = METADATA_WIDGET(user_data);
-  MetadataWidgetPrivate * priv = METADATA_WIDGET_GET_PRIVATE(widget);  
-
-  if ( TRUE == dbusmenu_menuitem_property_get_bool (DBUSMENU_MENUITEM(priv->twin_item),
-                                                    DBUSMENU_METADATA_MENUITEM_HIDE_TRACK_DETAILS))
-  {
-    return FALSE;
-  }
-  
-  draw_album_border(metadata, FALSE);
-  
-  if(priv->image_path->len > 0){
-    if(g_string_equal(priv->image_path, priv->old_image_path) == FALSE ||
-       priv->theme_change_occured == TRUE){
-      priv->theme_change_occured = FALSE;
-      GdkPixbuf* pixbuf;
-      pixbuf = gdk_pixbuf_new_from_file_at_size(priv->image_path->str, 60, 60, NULL);
-
-      if(GDK_IS_PIXBUF(pixbuf) == FALSE){
-        gtk_image_clear ( GTK_IMAGE(priv->album_art));          
-        gtk_widget_set_size_request(GTK_WIDGET(priv->album_art), 60, 60);
-        draw_album_art_placeholder(metadata);
-        return FALSE;
-      }
-
-      gtk_image_set_from_pixbuf(GTK_IMAGE(priv->album_art), pixbuf);
-      gtk_widget_set_size_request(GTK_WIDGET(priv->album_art),
-                                  gdk_pixbuf_get_width(pixbuf),
-                                  gdk_pixbuf_get_height(pixbuf));
-
-      g_string_erase (priv->old_image_path, 0, -1);
-      g_string_overwrite (priv->old_image_path, 0, priv->image_path->str);
-      g_object_unref(pixbuf);
-    }
-    return FALSE;       
-  }
-  gtk_image_clear (GTK_IMAGE(priv->album_art));  
-  gtk_widget_set_size_request(GTK_WIDGET(priv->album_art), 60, 60);
-  draw_album_art_placeholder(metadata);
   return FALSE;
 }
 
-
-// Draw the triangle if the player is running ...
-static gboolean
-metadata_widget_icon_triangle_draw_cb (GtkWidget *widget,
-                                       GdkEventExpose *event,
-                                       gpointer user_data)
-{
-  g_return_val_if_fail(IS_METADATA_WIDGET(user_data), FALSE);
-  MetadataWidget* meta = METADATA_WIDGET(user_data);
-  MetadataWidgetPrivate * priv = METADATA_WIDGET_GET_PRIVATE(meta);  
-
-  GtkStyle *style;
-  cairo_t *cr;
-  int x, y, arrow_width, arrow_height;
-
-  arrow_width = 5; 
-  arrow_height = 9;
-  
-  style = gtk_widget_get_style (widget);
-
-  cr = (cairo_t*) gdk_cairo_create (gtk_widget_get_window (widget));  
-  
-  GtkAllocation allocation;
-  gtk_widget_get_allocation (widget, &allocation);
-  x = allocation.x;
-  y = allocation.y;
-
-  gint offset = (allocation.height - gdk_pixbuf_get_height (priv->icon_buf)) / 2;
-
-  // Draw player icon  
-  if (priv->icon_buf != NULL){  
-    gdk_cairo_set_source_pixbuf (cr,
-                                 priv->icon_buf,
-                                 x + arrow_width + 1,
-                                 y + offset);
-    cairo_paint (cr);
-  }
-
-  // Draw triangle but only if the player is running.
-  if (dbusmenu_menuitem_property_get_bool (priv->twin_item,
-                                             DBUSMENU_METADATA_MENUITEM_PLAYER_RUNNING)){
-    y += allocation.height/2.0 - (double)arrow_height/2.0;
-    cairo_set_line_width (cr, 1.0);
-
-    cairo_move_to (cr, x, y);
-    cairo_line_to (cr, x, y + arrow_height);
-    cairo_line_to (cr, x + arrow_width, y + (double)arrow_height/2.0);
-    cairo_close_path (cr);
-    cairo_set_source_rgb (cr, style->fg[gtk_widget_get_state(widget)].red/65535.0,
-                              style->fg[gtk_widget_get_state(widget)].green/65535.0,
-                              style->fg[gtk_widget_get_state(widget)].blue/65535.0);
-    cairo_fill (cr);                                             
-  }
-  
-  cairo_destroy (cr);
-  return FALSE;  
-}
-#endif
 
 static void
 metadata_widget_selection_received_event_callback (  GtkWidget        *widget,
@@ -765,14 +484,10 @@ metadata_widget_selection_received_event_callback (  GtkWidget        *widget,
                                                      gpointer          user_data )
 
 {
-#if GTK_CHECK_VERSION(3, 0, 0)
 	cairo_t *cr = (cairo_t*) gdk_cairo_create (gtk_widget_get_window (widget));
 	/// TODO: need to translate at the widget's position ...
 	draw_album_border_gtk_3(widget, TRUE, cr);
 	cairo_destroy (cr);
-#else
-	draw_album_border(widget, TRUE);    
-#endif
 }
 
 /* Suppress/consume keyevents */

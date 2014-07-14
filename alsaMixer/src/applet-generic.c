@@ -93,11 +93,7 @@ static void on_change_volume (GtkRange *range, gpointer data)
 GtkWidget *mixer_build_widget (gboolean bHorizontal)
 {
 	g_return_val_if_fail (myData.pControledElement != NULL, NULL);
-	#if (GTK_MAJOR_VERSION < 3)
-	GtkWidget *pScale = (bHorizontal ? gtk_hscale_new_with_range (0., 100., .5*myConfig.iScrollVariation) : gtk_vscale_new_with_range (0., 100., .5*myConfig.iScrollVariation));
-	#else
 	GtkWidget *pScale = gtk_scale_new_with_range (bHorizontal ? GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL, 0., 100., .5*myConfig.iScrollVariation);
-	#endif
 	if (! bHorizontal)
 		gtk_range_set_inverted (GTK_RANGE (pScale), TRUE);  // de bas en haut.
 	

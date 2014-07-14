@@ -31,9 +31,6 @@
 #include <sys/stat.h>
 
 #include <gdk/gdkkeysyms.h>
-#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION > 20)
-#include <gdk/gdkkeysyms-compat.h>
-#endif
 
 
 static GList *
@@ -246,20 +243,19 @@ static gboolean _entry_event (GtkEditable *entry,
 		return FALSE;
 
 	/* tab completion */
-	if (event->keyval == GDK_Tab) {
+	if (event->keyval == GDK_KEY_Tab) {
 		gtk_editable_get_selection_bounds (entry, &pos, &tmp);
 
 		if (myData.completion_started &&
 		    pos != tmp &&
 		    pos != 1 &&
 		    tmp == strlen (gtk_entry_get_text (GTK_ENTRY (entry)))) {
-	    		gtk_editable_select_region (entry, 0, 0);		
+			gtk_editable_select_region (entry, 0, 0);
 			gtk_editable_set_position (entry, -1);
 			
 			return TRUE;
 		}
 	} else if (event->length > 0) {
-			   
 		gtk_editable_get_selection_bounds (entry, &pos, &tmp);
 
 		if (myData.completion_started &&
@@ -323,7 +319,6 @@ static gboolean _entry_event (GtkEditable *entry,
 			
 			return TRUE;
 		}
-		
 		g_free (prefix);
 	}
 	

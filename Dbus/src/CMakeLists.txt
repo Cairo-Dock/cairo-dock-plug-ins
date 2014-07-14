@@ -36,9 +36,6 @@ endif()
 if (DBUSMENU_FOUND AND DBUSMENU_GTK_FOUND)
 	message (STATUS " * With DBusMenu support")
 	add_definitions (-DDBUSMENU_GTK_FOUND=1)
-	if (DBUSMENU_GTK3_NEW)
-		add_definitions (-DDBUSMENU_GTK3_NEW=1)
-	endif()
 
 	include_directories (
 		${DBUSMENU_INCLUDE_DIRS}

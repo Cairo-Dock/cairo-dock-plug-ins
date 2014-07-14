@@ -27,13 +27,8 @@
 #include "applet-struct.h"
 #include "applet-menu.h"
 
-#if (GTK_MAJOR_VERSION < 3) || defined (DBUSMENU_GTK3_NEW)
 #include <libdbusmenu-gtk/menuitem.h>
 #include <libdbusmenu-gtk/menu.h>
-#else
-#include <libdbusmenu-gtk3/menuitem.h>
-#include <libdbusmenu-gtk3/menu.h>
-#endif
 
 #define FORCE_REMOVE_DOUBLE_ENTRIES
 
@@ -100,13 +95,7 @@ application_prop_change_cb (DbusmenuMenuitem * mi, gchar * prop, GValue * value,
 
 /* Draws a triangle on the left, using fg[STATE_TYPE] color. */
 static gboolean
-application_triangle_draw_cb (GtkWidget *widget,
-#if (GTK_MAJOR_VERSION < 3)
-GdkEventExpose *event,
-#else
-cairo_t *ctx,
-#endif
-gpointer data)
+application_triangle_draw_cb (GtkWidget *widget, cairo_t *ctx, gpointer data)
 {
 	int x, y, arrow_width, arrow_height;
 
@@ -122,16 +111,6 @@ gpointer data)
 	
 	/* get style + arrow position */
 	double red, green, blue;
-	#if (GTK_MAJOR_VERSION < 3)
-	GtkStyle *style = gtk_widget_get_style (widget);
-	red = style->fg[gtk_widget_get_state(widget)].red/65535.0;
-	green = style->fg[gtk_widget_get_state(widget)].green/65535.0;
-	blue = style->fg[gtk_widget_get_state(widget)].blue/65535.0;
-	GtkAllocation allocation;
-	gtk_widget_get_allocation (widget, &allocation);
-	x = allocation.x;
-	y = allocation.y + allocation.height/2.0 - (double)arrow_height/2.0;
-	#else
 	GtkStyleContext *style = gtk_widget_get_style_context (widget);
 	GdkRGBA color;
 	gtk_style_context_get_color (style, gtk_widget_get_state(widget), &color);
@@ -140,12 +119,7 @@ gpointer data)
 	blue = color.blue;
 	x = 0;  // the context is already translated so that (0;0) is the top-left corner of the widget.
 	y = gtk_widget_get_allocated_height (widget)/2.0 - (double)arrow_height/2.0;
-	#endif
-	
-	/* initialize cairo context */
-	#if (GTK_MAJOR_VERSION < 3)
-	cairo_t *ctx = (cairo_t*) gdk_cairo_create (gtk_widget_get_window (widget));
-	#endif
+
 	cairo_set_line_width (ctx, 1.0);
 
 	/* cairo drawing code */
@@ -156,26 +130,18 @@ gpointer data)
 	cairo_set_source_rgb (ctx, red, green, blue);
 	cairo_fill (ctx);
 
-	#if (GTK_MAJOR_VERSION < 3)
-	cairo_destroy (ctx);
-	#endif
-	
 	return FALSE;
 }
 
 static gint
 gtk_widget_get_font_size (GtkWidget *widget)
 {
-#if (GTK_MAJOR_VERSION < 3)
-    return RIGHT_LABEL_FONT_SIZE;
-#else
-    const PangoFontDescription *font;
+	const PangoFontDescription *font;
 
-    font = gtk_style_context_get_font (gtk_widget_get_style_context (widget),
-                                       gtk_widget_get_state_flags (widget));
+	font = gtk_style_context_get_font (gtk_widget_get_style_context (widget),
+	                                   gtk_widget_get_state_flags (widget));
 
-    return pango_font_description_get_size (font) / PANGO_SCALE;
-#endif
+	return pango_font_description_get_size (font) / PANGO_SCALE;
 }
 
 /* Custom function to draw rounded rectangle with max radius */
@@ -194,13 +160,7 @@ custom_cairo_rounded_rectangle (cairo_t *cr,
 
 /* Draws a rounded rectangle with text inside. */
 static gboolean
-numbers_draw_cb (GtkWidget *widget,
-#if (GTK_MAJOR_VERSION < 3)
-GdkEventExpose *event,
-#else
-cairo_t *ctx,
-#endif
-gpointer data)
+numbers_draw_cb (GtkWidget *widget, cairo_t *ctx, gpointer data)
 {
 	double x, y, w, h;
 	PangoLayout * layout;
@@ -217,18 +177,6 @@ gpointer data)
 
 	/* get style + arrow position / dimensions */
 	double red, green, blue;
-	#if (GTK_MAJOR_VERSION < 3)
-	GtkStyle *style = gtk_widget_get_style (widget);
-	red = style->fg[gtk_widget_get_state(widget)].red/65535.0;
-	green = style->fg[gtk_widget_get_state(widget)].green/65535.0;
-	blue = style->fg[gtk_widget_get_state(widget)].blue/65535.0;
-	GtkAllocation allocation;
-	gtk_widget_get_allocation (widget, &allocation);
-	w = allocation.width;
-	h = allocation.height;
-	x = allocation.x;
-	y = allocation.y;
-	#else
 	GtkStyleContext *style = gtk_widget_get_style_context (widget);
 	GdkRGBA color;
 	gtk_style_context_get_color (style, gtk_widget_get_state(widget), &color);
@@ -240,8 +188,7 @@ gpointer data)
 	w = allocation.width;
 	h = allocation.height;
 	x = y = 0;
-	#endif
-	
+
 	layout = gtk_label_get_layout (GTK_LABEL(widget));
 	PangoRectangle layout_extents;
 	pango_layout_get_extents (layout, NULL, &layout_extents);
@@ -250,11 +197,6 @@ gpointer data)
 	if (layout_extents.width == 0)
 		return TRUE;
 
-	/* initialize cairo context */
-	#if (GTK_MAJOR_VERSION < 3)
-	cairo_t *ctx = (cairo_t*) gdk_cairo_create (gtk_widget_get_window (widget));
-	#endif
-	
 	cairo_set_line_width (ctx, 1.0);
 
 	cairo_set_fill_rule (ctx, CAIRO_FILL_RULE_EVEN_ODD);
@@ -272,10 +214,6 @@ gpointer data)
 	pango_cairo_layout_path (ctx, layout);
 	cairo_fill (ctx);
 
-	#if (GTK_MAJOR_VERSION < 3)
-	cairo_destroy (ctx);
-	#endif
-
 	return TRUE;
 }
 
@@ -292,7 +230,7 @@ new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbu
 #ifdef FORCE_REMOVE_DOUBLE_ENTRIES
 #if (INDICATOR_OLD_NAMES == 0)
 	if (newitem == NULL || !dbusmenu_menuitem_property_get_bool(newitem, DBUSMENU_MENUITEM_PROP_VISIBLE)
-		#if (GTK_MAJOR_VERSION > 2 && INDICATOR_MESSAGES_HAS_LOZENGE == 1)
+		#if INDICATOR_MESSAGES_HAS_LOZENGE == 1
 		&& sIconName != NULL && *sIconName != '\0' // these menu 
 		#endif
 		)
@@ -310,10 +248,10 @@ new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbu
 	gint padding = 4;
 	gtk_widget_style_get(GTK_WIDGET(gmi), "toggle-spacing", &padding, NULL);
 
-	GtkWidget * hbox = _gtk_hbox_new(padding);
+	GtkWidget * hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, padding);
 
 	// Added for Cairo-Dock
-	#if (GTK_MAJOR_VERSION > 2 && INDICATOR_MESSAGES_HAS_LOZENGE == 1) // we add a left margin
+	#if INDICATOR_MESSAGES_HAS_LOZENGE == 1 // we add a left margin
 	if (! dbusmenu_menuitem_property_get_bool(newitem, DBUSMENU_MENUITEM_PROP_VISIBLE)
 		&& (sIconName == NULL || *sIconName == '\0'))
 	{
@@ -343,13 +281,7 @@ new_application_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbu
 	/* Make sure we can handle the label changing */
 	g_signal_connect(G_OBJECT(newitem), DBUSMENU_MENUITEM_SIGNAL_PROPERTY_CHANGED, G_CALLBACK(application_prop_change_cb), label);
 	g_signal_connect(G_OBJECT(newitem), DBUSMENU_MENUITEM_SIGNAL_PROPERTY_CHANGED, G_CALLBACK(application_icon_change_cb), icon);
-	g_signal_connect_after(G_OBJECT (gmi),
-	#if (GTK_MAJOR_VERSION < 3)
-	"expose_event",
-	#else
-	"draw",
-	#endif
-	G_CALLBACK (application_triangle_draw_cb), newitem);
+	g_signal_connect_after(G_OBJECT (gmi), "draw", G_CALLBACK (application_triangle_draw_cb), newitem);
 
 	g_free (cName);
 
@@ -467,7 +399,7 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 	gint font_size = gtk_widget_get_font_size (GTK_WIDGET (gmi));
 	gtk_widget_style_get(GTK_WIDGET(gmi), "toggle-spacing", &padding, NULL);
 
-	GtkWidget * hbox = _gtk_hbox_new(padding);
+	GtkWidget * hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, padding);
 
 	/* Icon, probably someone's face or avatar on an IM */
 	mi_data->icon = gtk_image_new();
@@ -477,9 +409,7 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 	gtk_icon_size_lookup(GTK_ICON_SIZE_MENU, &width, &height);
 	gtk_widget_set_size_request(GTK_WIDGET (gmi), -1, height + 4);
 
-#if (GTK_MAJOR_VERSION > 2)
 	gtk_widget_set_margin_left (hbox, width + padding);
-#endif
 
 	GdkPixbuf * pixbuf = dbusmenu_menuitem_property_get_image(newitem, INDICATOR_MENUITEM_PROP_ICON);
 	if (pixbuf != NULL) {
@@ -527,18 +457,12 @@ new_indicator_item (DbusmenuMenuitem * newitem, DbusmenuMenuitem * parent, Dbusm
 	gtk_size_group_add_widget(indicator_right_group, mi_data->right);
 	#endif
 	/* install extra decoration overlay */
-	g_signal_connect (G_OBJECT (mi_data->right),
-	#if (GTK_MAJOR_VERSION < 3)
-	"expose_event",
-	#else
-	"draw",
-	#endif
-	G_CALLBACK (numbers_draw_cb), NULL);
+	g_signal_connect (G_OBJECT (mi_data->right), "draw", G_CALLBACK (numbers_draw_cb), NULL);
 	
 	gtk_misc_set_alignment(GTK_MISC(mi_data->right), 1.0, 0.5);
 	gtk_box_pack_start(GTK_BOX(hbox), mi_data->right, FALSE, FALSE, padding + font_size/2.0);
 	gtk_label_set_width_chars (GTK_LABEL (mi_data->right), 2);
-	#if (INDICATOR_MESSAGES_HAS_LOZENGE == 1 && GTK_MAJOR_VERSION > 2)
+	#if INDICATOR_MESSAGES_HAS_LOZENGE == 1
 	gtk_style_context_add_class (gtk_widget_get_style_context (mi_data->right),
 	                             "accelerator");
 	#endif

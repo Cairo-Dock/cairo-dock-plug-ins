@@ -45,16 +45,12 @@ static gboolean _task_warning (CDClockTask *pTask, const gchar *cMessage)
 	cd_debug ("%s (%s)", __func__, cMessage);
 	GldiModuleInstance *myApplet = pTask->pApplet;
 
-	#if (GTK_MAJOR_VERSION < 3)
-	GtkWidget *pScale = gtk_hscale_new_with_range (1, 60, 1);  // 1mn-60mn et 1 cran/mn.
-	#else
 	GtkWidget *pScale = gtk_scale_new_with_range (GTK_ORIENTATION_HORIZONTAL, 1, 60, 1);  // 1mn-60mn et 1 cran/mn.
-	#endif
 	gtk_scale_set_digits (GTK_SCALE (pScale), 0);
 	gtk_range_set_value (GTK_RANGE (pScale), pTask->iWarningDelay != 0 ? pTask->iWarningDelay : 15);  // 15mn par defaut.
 	g_object_set (pScale, "width-request", CAIRO_DIALOG_MIN_SCALE_WIDTH, NULL);
 
-	GtkWidget *pExtendedWidget = _gtk_hbox_new (0);
+	GtkWidget *pExtendedWidget = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 	GtkWidget *label = gtk_label_new (D_("1mn"));
 	GtkWidget *pAlign = gtk_alignment_new (1., 1., 0., 0.);
 	gtk_container_add (GTK_CONTAINER (pAlign), label);

@@ -26,10 +26,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <signal.h>
-#include <gdk/gdkkeysyms.h>
-// gdk.h semble necessaire pour certains
 #include <gdk/gdk.h>
-//#include <gdk/gdkx.h>
 
 #include <vte/vte.h>
 
@@ -37,10 +34,6 @@
 #include "terminal-struct.h"
 #include "terminal-menu-functions.h"
 #include "terminal-widget.h"
-
-#if (GTK_MAJOR_VERSION > 2 || GTK_MINOR_VERSION > 20)
-#include <gdk/gdkkeysyms-compat.h>
-#endif
 
 void cd_terminal_grab_focus (void)
 {
@@ -97,11 +90,7 @@ void term_on_keybinding_pull(const char *keystring, gpointer user_data)
 	}
 }
 
-#if GTK_CHECK_VERSION (3, 4, 0)
 static gchar *_get_label_and_color (const gchar *cLabel, GdkRGBA *pColor, gboolean *bColorSet)
-#else
-static gchar *_get_label_and_color (const gchar *cLabel, GdkColor *pColor, gboolean *bColorSet)
-#endif
 {
 	gchar *cUsefulLabel;
 	gchar *str = strchr (cLabel, '>');
@@ -112,11 +101,7 @@ static gchar *_get_label_and_color (const gchar *cLabel, GdkColor *pColor, gbool
 		if (col_end)
 		{
 			gchar *cColor = g_strndup (col, col_end - col);
-			#if GTK_CHECK_VERSION (3, 4, 0)
 			*bColorSet = gdk_rgba_parse (pColor, cColor);
-			#else
-			*bColorSet = gdk_color_parse (cColor, pColor);
-			#endif
 			g_free (cColor);
 		}
 		cUsefulLabel = g_strdup (str+1);
@@ -141,18 +126,10 @@ static void _on_got_tab_name (int iClickedButton, GtkWidget *pInteractiveWidget,
 		if (cNewName != NULL)
 		{
 			GtkLabel *pLabel = data[0];
-			#if GTK_CHECK_VERSION (3, 4, 0)
 			GdkRGBA *pColor = data[1];
-			#else
-			GdkColor *pColor = data[1];
-			#endif
 			if (pColor)
 			{
-				#if GTK_CHECK_VERSION (3, 4, 0)
 				gchar *cColor = gdk_rgba_to_string (pColor);
-				#else
-				gchar *cColor = gdk_color_to_string (pColor);
-				#endif
 				gchar *cNewColoredName = g_strdup_printf ("<span color='%s'>%s</span>", cColor, cNewName);
 				gtk_label_set_markup (pLabel, cNewColoredName);
 				g_free (cNewColoredName);
@@ -185,11 +162,7 @@ void terminal_rename_tab (GtkWidget *vterm)
 	{
 		GtkLabel *pLabel = pTabWidgetList->data;
 		const gchar *cCurrentName = gtk_label_get_label (pLabel);
-		#if GTK_CHECK_VERSION (3, 4, 0)
 		GdkRGBA *pColor = g_new0 (GdkRGBA, 1);
-		#else
-		GdkColor *pColor = g_new0 (GdkColor, 1);
-		#endif
 		gboolean bColorSet = FALSE;
 		gchar *cUsefulLabel = _get_label_and_color (cCurrentName, pColor, &bColorSet);
 		if (!bColorSet)
@@ -210,7 +183,6 @@ void terminal_rename_tab (GtkWidget *vterm)
 	}
 }
 
-#if GTK_CHECK_VERSION (3, 4, 0) // now we have a GtkColorChooserDialog which impliments GtkColorChooser
 static void _set_color (GtkDialog *pColorSelection, gint iAnswer, GtkLabel *pLabel)
 {
 	if (iAnswer != GTK_RESPONSE_OK)
@@ -227,14 +199,7 @@ static void _set_color (GtkDialog *pColorSelection, gint iAnswer, GtkLabel *pLab
 		(guint) (color.red * 65535),
 		(guint) (color.green * 65535),
 		(guint) (color.blue * 65535));
-#else
-static void _set_color (GtkColorSelection *pColorSelection, GtkLabel *pLabel)
-{
-	GdkColor color;
-	gtk_color_selection_get_current_color (pColorSelection, &color);
-	gchar *cColor = gdk_color_to_string (&color);
-#endif
-	
+
 	const gchar *cCurrentLabel = gtk_label_get_text (pLabel);  // recupere le texte sans les balises pango.
 	//gchar *cUsefulLabel = _get_label_and_color (cCurrentLabel, NULL, NULL);
 	gchar *cNewLabel = g_strdup_printf ("<span color='%s'>%s</span>", cColor, cCurrentLabel);
@@ -257,45 +222,22 @@ void terminal_change_color_tab (GtkWidget *vterm)
 	if (pTabWidgetList != NULL && pTabWidgetList->data != NULL)
 	{
 		GtkLabel *pLabel = pTabWidgetList->data;
-		
-		#if GTK_CHECK_VERSION (3, 4, 0)
+
 		GtkWidget *pColorDialog = gtk_color_chooser_dialog_new (D_("Select a color"), NULL);
-		#else
-		GtkWidget *pColorDialog = gtk_color_selection_dialog_new (D_("Select a color"));
-		GtkWidget *colorsel = gtk_color_selection_dialog_get_color_selection ((GtkColorSelectionDialog *) pColorDialog);
-		#endif
 
 		const gchar *cCurrentLabel = gtk_label_get_text (pLabel);
-		#if GTK_CHECK_VERSION (3, 4, 0)
 		GdkRGBA color;
-		#else
-		GdkColor color;
-		#endif
 		gboolean bColorSet = FALSE;
 		gchar *cUsefulLabel = _get_label_and_color (cCurrentLabel, &color, &bColorSet);
 		g_free (cUsefulLabel);
 		if (bColorSet)
 		{
-			#if GTK_CHECK_VERSION (3, 4, 0)
 			gtk_color_chooser_set_rgba (GTK_COLOR_CHOOSER (pColorDialog), &color);
-			#else
-			gtk_color_selection_set_current_color (GTK_COLOR_SELECTION (colorsel), &color);
-			#endif
 		}
 
-		#if GTK_CHECK_VERSION (3, 4, 0)
 		gtk_color_chooser_set_use_alpha (GTK_COLOR_CHOOSER (pColorDialog), FALSE);
 		g_signal_connect (pColorDialog, "response", G_CALLBACK (_set_color), pLabel);
-		#else
-		gtk_color_selection_set_has_opacity_control (GTK_COLOR_SELECTION (colorsel), FALSE);
-		g_signal_connect (colorsel, "color-changed", G_CALLBACK (_set_color), pLabel);
-		#endif
-		#if (GTK_MAJOR_VERSION < 3)
-		gtk_widget_hide (((GtkColorSelectionDialog *) pColorDialog)->cancel_button);
-		gtk_widget_hide (((GtkColorSelectionDialog *) pColorDialog)->help_button);
-		g_signal_connect_swapped (((GtkColorSelectionDialog *) pColorDialog)->ok_button, "clicked", G_CALLBACK (gtk_widget_destroy), pColorDialog);
-		#endif
-		
+
 		gtk_window_present (GTK_WINDOW (pColorDialog));
 	}
 }
@@ -317,27 +259,11 @@ void terminal_close_tab (GtkWidget *vterm)
 	}
 }
 
-#if ! ((VTE_MAJOR > 0 || VTE_MINOR >= 28) && GTK_CHECK_VERSION (3,0,0))
-static inline void set_color(GdkColor *color, GldiColor *pColor)
-{
-	color->red = (guint16)(pColor->rgba.red * 65535.);
-	color->green = (guint16)(pColor->rgba.green * 65535.);
-	color->blue = (guint16)(pColor->rgba.blue * 65535.);
-}
-#endif
 static void _term_apply_settings_on_vterm(GtkWidget *vterm)
 {
 	g_return_if_fail (vterm != NULL);
-	
-	#if (VTE_MAJOR > 0 || VTE_MINOR >= 28) && GTK_CHECK_VERSION (3,0,0)  // since 0.28
+
 	vte_terminal_set_colors_rgba (VTE_TERMINAL(vterm), &myConfig.forecolor.rgba, &myConfig.backcolor.rgba, NULL, 0);
-	#else
-	GdkColor bgcolor, fgcolor;
-	set_color (&bgcolor, &myConfig.backcolor);
-	set_color (&fgcolor, &myConfig.forecolor);
-	vte_terminal_set_colors (VTE_TERMINAL(vterm), &fgcolor, &bgcolor, NULL, 0);
-	vte_terminal_set_opacity(VTE_TERMINAL(vterm), (guint16)(myConfig.backcolor.rgba.alpha * 65535.));
-	#endif
 
 	if (myConfig.bCustomFont)
 		vte_terminal_set_font_from_string (VTE_TERMINAL (vterm), myConfig.cCustomFont);
@@ -355,16 +281,10 @@ static void _term_apply_settings_on_vterm(GtkWidget *vterm)
 	{
 		// since dialogs can't be resized (like desklets), set the size as defined in the config.
 		// Note: vte_terminal_set_size() doesn't work since the port to GTK3.
-		#ifdef LIBVTE_IS_NOT_BUGGY
-		g_object_set (vterm, "width-request", 0, NULL);  // reset if ever it was previously set (removing this line doesn't make vte_terminal_set_size() work ...)
-		g_object_set (vterm, "height-request", 0, NULL);
-		vte_terminal_set_size(VTE_TERMINAL(vterm), myConfig.iNbColumns, myConfig.iNbRows);
-		#else
 		g_object_set (vterm,
 			"width-request", myConfig.iNbColumns * vte_terminal_get_char_width (VTE_TERMINAL(vterm)),
 			"height-request", myConfig.iNbRows * vte_terminal_get_char_height (VTE_TERMINAL(vterm)),
 			NULL);
-		#endif
 	}
 	else
 	{
@@ -557,33 +477,33 @@ static gboolean on_key_press_term (GtkWidget *pWidget,
 		bIntercept = TRUE;
 		switch (pKey->keyval)
 		{
-			case GLDI_KEY(t) :
-			case GLDI_KEY(T) : // with Shift -> Gnome-Terminal
+			case GDK_KEY_t :
+			case GDK_KEY_T : // with Shift -> Gnome-Terminal
 				terminal_new_tab();
 			break ;
-			case GLDI_KEY(w) :
-			case GLDI_KEY(W) : // with Shift
+			case GDK_KEY_w :
+			case GDK_KEY_W : // with Shift
 				terminal_close_tab (NULL);
 			break ;
-			case GLDI_KEY(C) :
+			case GDK_KEY_C :
 				if (pKey->state & GDK_SHIFT_MASK)
 					_terminal_copy (NULL, pWidget);
 				else
 					bIntercept = FALSE;
 			break ;
-			case GLDI_KEY(V) :
+			case GDK_KEY_V :
 				if (pKey->state & GDK_SHIFT_MASK)
 					_terminal_paste (NULL, pWidget);
 				else
 					bIntercept = FALSE;
 			break ;
-			case GLDI_KEY(Page_Down) :
+			case GDK_KEY_Page_Down :
 				if (pKey->state & GDK_SHIFT_MASK)
 					_terminal_move_tab (+1);
 				else
 					_terminal_switch_tab (+1);
 			break ;
-			case GLDI_KEY(Page_Up) :
+			case GDK_KEY_Page_Up :
 				if (pKey->state & GDK_SHIFT_MASK)
 					_terminal_move_tab (-1);
 				else
@@ -669,7 +589,7 @@ void terminal_new_tab(void)
 	
 	cairo_dock_allow_widget_to_receive_data (vterm, G_CALLBACK (on_terminal_drag_data_received), NULL);
 
-	GtkWidget *pHBox = _gtk_hbox_new (0);
+	GtkWidget *pHBox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 
 	//\_________________ On choisit un nom qui ne soit pas deja present, de la forme " # n ".
 	int i, iNbPages = gtk_notebook_get_n_pages (GTK_NOTEBOOK(myData.tab));
@@ -773,11 +693,7 @@ static GtkWidget * _terminal_find_clicked_tab_child (int x, int y)  // x,y relat
 	int iCurrentNumPage = gtk_notebook_get_current_page (GTK_NOTEBOOK (myData.tab));
 	pPageChild = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), iCurrentNumPage);
 	pTabLabelWidget = gtk_notebook_get_tab_label (GTK_NOTEBOOK(myData.tab), pPageChild);
-	#if (GTK_MAJOR_VERSION < 3)
-	gtk_widget_get_child_requisition (pTabLabelWidget, &requisition);
-	#else
 	gtk_widget_get_preferred_size (pTabLabelWidget, &requisition, NULL);
-	#endif
 	iMaxTabHeight = requisition.height;
 	//g_print ("iMaxTabHeight : %d\n", iMaxTabHeight);
 	
@@ -787,11 +703,7 @@ static GtkWidget * _terminal_find_clicked_tab_child (int x, int y)  // x,y relat
 	{
 		pPageChild = gtk_notebook_get_nth_page(GTK_NOTEBOOK(myData.tab), i);
 		pTabLabelWidget = gtk_notebook_get_tab_label (GTK_NOTEBOOK(myData.tab), pPageChild);
-		#if (GTK_MAJOR_VERSION < 3)
-		gtk_widget_get_child_requisition (pTabLabelWidget, &requisition);
-		#else
 		gtk_widget_get_preferred_size (pTabLabelWidget, &requisition, NULL);
-		#endif
 		gtk_widget_translate_coordinates (myData.tab,
 			pTabLabelWidget,
 			x, y,

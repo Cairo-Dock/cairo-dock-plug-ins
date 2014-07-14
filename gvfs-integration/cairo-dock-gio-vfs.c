@@ -126,134 +126,6 @@ static gchar *_cd_get_icon_path (GIcon *pIcon, const gchar *cTargetURI)  // cTar
 	return cIconPath;
 }
 
-#if (GTK_MAJOR_VERSION < 3)
-static void _cd_find_mount_from_volume_name (const gchar *cVolumeName, GMount **pFoundMount, gchar **cURI, gchar **cIconName)
-{
-	g_return_if_fail (cVolumeName != NULL);
-	cd_message ("%s (%s)", __func__, cVolumeName);
-	GFile *pFile = g_file_new_for_uri ("computer://");
-	GError *erreur = NULL;
-	const gchar *cAttributes = G_FILE_ATTRIBUTE_STANDARD_TYPE","
-		G_FILE_ATTRIBUTE_STANDARD_NAME","
-		///G_FILE_ATTRIBUTE_STANDARD_ICON","
-		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI;
-	GFileEnumerator *pFileEnum = g_file_enumerate_children (pFile,
-		cAttributes,
-		G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS,
-		NULL,
-		&erreur);
-	if (erreur != NULL)
-	{
-		cd_warning ("gvfs-integration : %s", erreur->message);
-		g_error_free (erreur);
-		g_object_unref (pFile);
-		return ;
-	}
-	
-	GFileInfo *pFileInfo;
-	do
-	{
-		pFileInfo = g_file_enumerator_next_file (pFileEnum, NULL, &erreur);
-		if (erreur != NULL)
-		{
-			cd_warning ("gvfs-integration : %s", erreur->message);
-			g_error_free (erreur);
-			erreur = NULL;
-		}
-		else
-		{
-			if (pFileInfo == NULL)
-				break ;
-			GFileType iFileType = g_file_info_get_file_type (pFileInfo);
-			if (iFileType == G_FILE_TYPE_MOUNTABLE)
-			{
-				const gchar *cFileName = g_file_info_get_name (pFileInfo);
-				cd_debug ("  test of  %s...", cFileName);
-				const gchar *cTargetURI = g_file_info_get_attribute_string (pFileInfo, G_FILE_ATTRIBUTE_STANDARD_TARGET_URI);
-				
-				GMount *pMount = NULL;
-				if (cTargetURI != NULL)
-				{
-					GFile *file = g_file_new_for_uri (cTargetURI);
-					pMount = g_file_find_enclosing_mount (file, NULL, NULL);
-					g_object_unref (file);
-				}
-				if (pMount != NULL)
-				{
-					gchar *cName = g_mount_get_name (pMount);
-					cd_message ("    mount : %s", cName);
-					if (cName != NULL && strcmp (cName, cVolumeName) == 0)
-					{
-						cd_debug ("Found");
-						*pFoundMount = pMount;
-						*cURI = g_strconcat ("computer:///", cFileName, NULL);
-						GIcon *pSystemIcon = g_mount_get_icon (pMount);
-						*cIconName = _cd_get_icon_path (pSystemIcon, NULL);
-						g_object_unref (pSystemIcon);
-						g_free (cName);
-						break ;
-					}
-					g_free (cName);
-				}
-			}
-			g_object_unref (pFileInfo);
-		}
-	} while (TRUE);
-	g_object_unref (pFileEnum);
-	g_object_unref (pFile);
-}
-
-static void _old_nautilus_desktop_path (const gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID, double *fOrder)
-{
-	gchar *cNautilusFile = g_strdup (cBaseURI+14);
-	memcpy (cNautilusFile, "file", 4);
-	if (g_str_has_suffix (cBaseURI, ".volume"))
-	{
-		cNautilusFile[strlen(cNautilusFile)-7] = '\0';
-	}
-	else if (g_str_has_suffix (cBaseURI, ".drive"))
-	{
-		cNautilusFile[strlen(cNautilusFile)-6] = '\0';
-	}
-	GError *erreur = NULL;
-	gchar *cValidUri = g_filename_from_uri (cNautilusFile, NULL, &erreur);
-	if (erreur != NULL)
-	{
-		cd_warning ("gvfs-integration : %s", erreur->message);
-		g_error_free (erreur);
-		return ;
-	}
-	gchar *cVolumeName = cValidUri + 1;  // we drop the '/'.
-	cd_message ("cVolumeName : %s", cVolumeName);
-	
-	GMount *pMount = NULL;
-	gchar *uri=NULL, *iconname=NULL;
-	_cd_find_mount_from_volume_name (cVolumeName, &pMount, &uri, &iconname);
-	g_return_if_fail (pMount != NULL);
-	
-	if (cURI)
-		*cURI = uri;
-	else
-		g_free (uri);
-	if (cIconName)
-		*cIconName = iconname;
-	else
-		g_free (iconname);
-	if (cName)
-		*cName = g_strdup (cVolumeName);
-	if (bIsDirectory)
-		*bIsDirectory = TRUE;
-	if (iVolumeID)
-		*iVolumeID = 1;
-	if (fOrder)
-		*fOrder = 0;
-	
-	g_object_unref (pMount);
-	g_free (cValidUri);
-	g_free (cNautilusFile);
-}
-#endif
-
 static GDrive *_cd_find_drive_from_name (const gchar *cName)
 {
 	g_return_val_if_fail (cName != NULL, NULL);
@@ -360,14 +232,8 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 	gchar *cValidUri;
 	if (g_str_has_prefix (cBaseURI, "x-nautilus-desktop://"))  // shortcut on the desktop (nautilus)
 	{
-		#if (GTK_MAJOR_VERSION < 3)
-		_old_nautilus_desktop_path (cBaseURI, cName, cURI, cIconName,
-			bIsDirectory, iVolumeID, fOrder);
-		return;
-		#else
 		const gchar *cDesktopPath = g_get_user_special_dir (G_USER_DIRECTORY_DESKTOP);
 		cValidUri = g_strdup_printf ("file://%s%s", cDesktopPath, cBaseURI+21);
-		#endif
 	}
 	else  // normal file
 	{

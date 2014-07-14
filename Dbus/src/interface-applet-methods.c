@@ -403,7 +403,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 						GtkWidget *pLabel = gtk_label_new (cLabel);
 						g_free (cLabel);
 						gtk_label_set_use_markup (GTK_LABEL (pLabel), TRUE);
-						GtkWidget *pBox = _gtk_hbox_new (3);
+						GtkWidget *pBox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 3);
 						gtk_box_pack_start (GTK_BOX (pBox), pInteractiveWidget, TRUE, TRUE, 0);
 						gtk_box_pack_start (GTK_BOX (pBox), pLabel, FALSE, FALSE, 0);
 						pInteractiveWidget = pBox;
@@ -458,11 +458,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 					if (v && G_VALUE_HOLDS_STRING (v))
 						cMaxLabel = g_value_get_string (v);
 
-					#if (GTK_MAJOR_VERSION < 3)
-					pScale = gtk_hscale_new_with_range (fMinValue, fMaxValue, (fMaxValue - fMinValue) / 100.);
-					#else
 					pScale = gtk_scale_new_with_range (GTK_ORIENTATION_HORIZONTAL, fMinValue, fMaxValue, (fMaxValue - fMinValue) / 100.);
-					#endif
 					pOneWidget = pScale;
 					gtk_scale_set_digits (GTK_SCALE (pScale), iNbDigit);
 					gtk_range_set_value (GTK_RANGE (pScale), fInitialValue);
@@ -472,7 +468,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 					
 					if (cMinLabel || cMaxLabel)
 					{
-						GtkWidget *pExtendedWidget = _gtk_hbox_new (0);
+						GtkWidget *pExtendedWidget = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 						GtkWidget *label = gtk_label_new (cMinLabel);
 						GtkWidget *pAlign = gtk_alignment_new (1., 1., 0., 0.);
 						gtk_container_add (GTK_CONTAINER (pAlign), label);
@@ -497,7 +493,7 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 					gchar **cValuesList = NULL;
 					const gchar *cInitialText = NULL;
 					int iInitialValue = 0;
-					
+
 					v = g_hash_table_lookup (hWidgetAttributes, "editable");
 					if (v && G_VALUE_HOLDS_BOOLEAN (v))
 						bEditable = g_value_get_boolean (v);
@@ -505,33 +501,22 @@ static gboolean _applet_popup_dialog (dbusApplet *pDbusApplet, GHashTable *hDial
 					v = g_hash_table_lookup (hWidgetAttributes, "values");
 					if (v && G_VALUE_HOLDS_STRING (v))
 						cValues = g_value_get_string (v);
-					
+
 					if (cValues != NULL)
 						cValuesList = g_strsplit (cValues, ";", -1);
-					
-					#if (GTK_MAJOR_VERSION < 3 && GTK_MINOR_VERSION < 24)
-					if (bEditable)
-						pOneWidget = gtk_combo_box_entry_new_text ();
-					else
-						pOneWidget = gtk_combo_box_new_text ();
-					#else
+
 					if (bEditable)
 						pOneWidget = gtk_combo_box_text_new_with_entry ();
 					else
 						pOneWidget = gtk_combo_box_text_new ();
-					#endif
 					pInteractiveWidget = pOneWidget;
-					
+
 					if (cValuesList != NULL)
 					{
 						int i;
 						for (i = 0; cValuesList[i] != NULL; i ++)
 						{
-							#if (GTK_MAJOR_VERSION < 3 && GTK_MINOR_VERSION < 24)
-							gtk_combo_box_append_text (GTK_COMBO_BOX (pInteractiveWidget), cValuesList[i]);
-							#else
 							gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (pInteractiveWidget), cValuesList[i]);
-							#endif
 						}
 					}
 					
@@ -1021,11 +1006,7 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 	}
 	
 	GtkRequisition natural_size;
-	#if (GTK_MAJOR_VERSION < 3)
-	gtk_widget_size_request (myData.pModuleMainMenu, &natural_size); // it's the minimum size...
-	#else
 	gtk_widget_get_preferred_size (myData.pModuleMainMenu, NULL, &natural_size);
-	#endif
 	int iItemHeight = 0, iMenuHeight = natural_size.height;
 	int iIconSize;
 	gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &iIconSize, NULL);
@@ -1036,11 +1017,7 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 	// insert a separator
 	GtkWidget *pMenuItem = gtk_separator_menu_item_new ();
 	gtk_menu_shell_insert (GTK_MENU_SHELL (myData.pModuleMainMenu), pMenuItem, iPosition++);
-	#if (GTK_MAJOR_VERSION < 3)
-	gtk_widget_size_request (pMenuItem, &natural_size); // it's the minimum size...
-	#else
 	gtk_widget_get_preferred_size (pMenuItem, NULL, &natural_size);
-	#endif
 	iItemHeight += natural_size.height;
 	
 	// table des menus et groupes de radio-boutons.
@@ -1172,11 +1149,7 @@ gboolean cd_dbus_applet_add_menu_items (dbusApplet *pDbusApplet, GPtrArray *pIte
 		if (pMenu == myData.pModuleMainMenu)
 		{
 			gtk_widget_show_all (pMenuItem);  // make it visible now so that its height is correctly calculated by GTK (else its child is ignored)
-			#if (GTK_MAJOR_VERSION < 3)
-			gtk_widget_size_request (pMenuItem, &natural_size); // it's the minimum size...
-			#else
 			gtk_widget_get_preferred_size (pMenuItem, NULL, &natural_size);
-			#endif
 			iItemHeight += natural_size.height;
 		}
 	}

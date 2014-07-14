@@ -21,7 +21,6 @@
 #include <time.h>
 
 #include <glib/gstdio.h>
-#include <gdk/gdkkeysyms.h> // GDK_Shift_[LR] for GTK2
 
 #include "tomboy-struct.h"
 #include "applet-notes.h"
@@ -147,7 +146,7 @@ static gboolean _on_key_press (G_GNUC_UNUSED GtkWidget *pWidget,
 	GdkEventKey *pKey,
 	GldiModuleInstance *myApplet)
 {
-	if (pKey->type == GDK_KEY_PRESS && pKey->keyval == GLDI_KEY(Escape))
+	if (pKey->type == GDK_KEY_PRESS && pKey->keyval == GDK_KEY_Escape)
 	{
 		gtk_widget_destroy (s_pNoteWindow);
 		return TRUE;
@@ -195,10 +194,10 @@ static void show_note (const gchar *cNoteID)
 	gtk_window_set_keep_above (GTK_WINDOW (s_pNoteWindow), TRUE);
 	gtk_window_resize (GTK_WINDOW (s_pNoteWindow), 640, 300);
 	
-	GtkWidget *vbox = _gtk_vbox_new (3);
+	GtkWidget *vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 3);
 	gtk_container_add (GTK_CONTAINER (s_pNoteWindow), vbox);
 	
-	GtkWidget *hbox = _gtk_hbox_new (3);
+	GtkWidget *hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 3);
 	gtk_box_pack_start (GTK_BOX (vbox),
 		hbox,
 		FALSE,
@@ -229,11 +228,7 @@ static void show_note (const gchar *cNoteID)
 		NULL);
 
 	/** Lister les tags et les ajouter a la combo ...
-	#if (GTK_MAJOR_VERSION < 3 && GTK_MINOR_VERSION < 24)
-	#define _combo_box_entry_new gtk_combo_box_entry_new
-	#else
 	#define _combo_box_entry_new gtk_combo_box_new_with_entry
-	#endif
 	GtkWidget *pTagsWidget = _combo_box_entry_new ();
 	gtk_box_pack_start (GTK_BOX (hbox),
 		pTagsWidget,

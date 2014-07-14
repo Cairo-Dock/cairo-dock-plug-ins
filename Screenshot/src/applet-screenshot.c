@@ -401,7 +401,7 @@ void cd_screenshot_take (CDScreenshotOptions *pOptions)
 
 static GtkWidget * _add_label_in_new_hbox (const gchar *cLabel, const gchar *cTooltip, GtkWidget *pBox)
 {
-	GtkWidget *pHBox = _gtk_hbox_new (0);
+	GtkWidget *pHBox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_box_pack_start (GTK_BOX (pBox), pHBox, FALSE, FALSE, _MARGIN);
 	
 	GtkWidget *pLabel = gtk_label_new (cLabel);
@@ -441,33 +441,23 @@ static void _cairo_dock_pick_a_file (G_GNUC_UNUSED GtkButton *button, GtkWidget 
 	gtk_widget_destroy (pFileChooserDialog);
 }
 
-#if (GTK_MAJOR_VERSION < 3)
-#define Adjustment GtkObject
-#else
-#define Adjustment GtkAdjustment
-#endif
-
 GtkWidget *cd_screenshot_build_options_widget (void)
 {
 	GtkWidget *pHBox;
 	const gchar *cTooltip;
-	GtkWidget *pBox = _gtk_vbox_new (CAIRO_DOCK_GUI_MARGIN);
+	GtkWidget *pBox = gtk_box_new (GTK_ORIENTATION_VERTICAL, CAIRO_DOCK_GUI_MARGIN);
 
 	cTooltip = D_("in seconds.");
 	pHBox = _add_label_in_new_hbox (D_("Delay"), cTooltip, pBox);
 
 	GtkWidget *pScale;
-	Adjustment *pAdjustment = gtk_adjustment_new (0,
+	GtkAdjustment *pAdjustment = gtk_adjustment_new (0,
 		0,  // min
 		10,  // max
 		1,  // step
 		1,  // step
 		0);
-	#if (GTK_MAJOR_VERSION < 3)
-	pScale = gtk_hscale_new (GTK_ADJUSTMENT (pAdjustment));
-	#else
 	pScale = gtk_scale_new (GTK_ORIENTATION_HORIZONTAL, GTK_ADJUSTMENT (pAdjustment));
-	#endif
 	gtk_scale_set_digits (GTK_SCALE (pScale), 0);
 	g_object_set (pScale, "width-request", 100, NULL);
 	gldi_dialog_set_widget_text_color (pScale);

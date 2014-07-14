@@ -22,8 +22,6 @@
 #define __USE_POSIX
 #include <signal.h>
 
-#include <gdk/gdkkeysyms.h> // needed for 'GDK_Escape'
-
 #include "applet-struct.h"
 #include "applet-calendar.h"
 #include "applet-task-editor.h"
@@ -373,7 +371,7 @@ gboolean _on_key_press (G_GNUC_UNUSED GtkWidget *pWidget,
 	GdkEventKey *pKey,
 	GldiModuleInstance *myApplet)
 {
-	if (pKey->type == GDK_KEY_PRESS && pKey->keyval == GLDI_KEY(Escape))
+	if (pKey->type == GDK_KEY_PRESS && pKey->keyval == GDK_KEY_Escape)
 	{
 		gtk_widget_destroy (myData.pTaskWindow);
 		return TRUE;

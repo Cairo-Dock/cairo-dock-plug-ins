@@ -413,7 +413,7 @@ void cd_mixer_init_alsa (void)
 		// build the scale now if we're in a desklet
 		if (myDesklet)
 		{
-			GtkWidget *box = _gtk_hbox_new (0);
+			GtkWidget *box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 			myData.pScale = mixer_build_widget (FALSE);
 			gtk_box_pack_end (GTK_BOX (box), myData.pScale, FALSE, FALSE, 0);
 			gtk_container_add (GTK_CONTAINER (myDesklet->container.pWidget), box);

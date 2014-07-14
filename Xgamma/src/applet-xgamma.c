@@ -183,27 +183,14 @@ static GtkWidget *_xgamma_add_channel_widget (GtkWidget *pInteractiveWidget, con
 		gldi_dialog_set_widget_text_color (pLabel); // default colour
 	}
 
-	#if GTK_CHECK_VERSION (3, 4, 0)
 	gtk_grid_attach (GTK_GRID (pInteractiveWidget),
 		pLabel,
 		1,
 		iChannelNumber+1,
 		1,
 		1);
-	#else
-	gtk_table_attach_defaults (GTK_TABLE (pInteractiveWidget),
-		pLabel,
-		0,
-		1,
-		iChannelNumber,
-		iChannelNumber+1);
-	#endif
 
-	#if (GTK_MAJOR_VERSION < 3)
-	GtkWidget *pHScale = gtk_hscale_new_with_range (GAMMA_MIN, GAMMA_MAX, .02);
-	#else
 	GtkWidget *pHScale = gtk_scale_new_with_range (GTK_ORIENTATION_HORIZONTAL, GAMMA_MIN, GAMMA_MAX, .02);
-	#endif
 	gtk_scale_set_digits (GTK_SCALE (pHScale), 2);
 	gtk_range_set_value (GTK_RANGE (pHScale), fChannelGamma);
 	g_object_set (pHScale, "width-request", 150, NULL);
@@ -212,40 +199,27 @@ static GtkWidget *_xgamma_add_channel_widget (GtkWidget *pInteractiveWidget, con
 		"value-changed",
 		G_CALLBACK (on_scale_value_changed),
 		GINT_TO_POINTER (iChannelNumber));
-	#if GTK_CHECK_VERSION (3, 4, 0)
 	gtk_grid_attach (GTK_GRID (pInteractiveWidget),
 		pHScale,
 		2,
 		iChannelNumber+1,
 		1,
 		1);
-	#else
-	gtk_table_attach_defaults (GTK_TABLE (pInteractiveWidget),
-		pHScale,
-		1,
-		2,
-		iChannelNumber,
-		iChannelNumber+1);
-	#endif
-	
+
 	return pHScale;
 }
 void xgamma_create_scales_widget (double fGamma, XF86VidModeGamma *pGamma)
 {
-	#if GTK_CHECK_VERSION (3, 4, 0)
 	myData.pWidget = gtk_grid_new ();
-	#else
-	myData.pWidget = gtk_table_new (4, 2, FALSE);
-	#endif
-	
+
 	myData.pGlobalScale = _xgamma_add_channel_widget (myData.pWidget, D_("Gamma :"), NULL, 0, &myData.iGloalScaleSignalID, fGamma);
-	
+
 	myData.pRedScale = _xgamma_add_channel_widget (myData.pWidget, D_("Red :"), "red", 1, &myData.iRedScaleSignalID, pGamma->red);
-	
+
 	myData.pGreenScale = _xgamma_add_channel_widget (myData.pWidget, D_("Green :"), "green", 2, &myData.iGreenScaleSignalID, pGamma->green);
-	
+
 	myData.pBlueScale = _xgamma_add_channel_widget (myData.pWidget, D_("Blue :"), "blue", 3, &myData.iBlueScaleSignalID, pGamma->blue);
-	
+
 	gtk_widget_show_all (myData.pWidget);
 }
 
@@ -333,11 +307,7 @@ CairoDialog *xgamma_build_dialog_simple (void)
 	CairoDialogAttr attr;
 	memset (&attr, 0, sizeof (CairoDialogAttr));
 
-	#if (GTK_MAJOR_VERSION < 3)
-	GtkWidget *pHScale = gtk_hscale_new_with_range (0, 100., 1.);
-	#else
 	GtkWidget *pHScale = gtk_scale_new_with_range (GTK_ORIENTATION_HORIZONTAL, 0, 100., 1.);
-	#endif
 	gtk_scale_set_digits (GTK_SCALE (pHScale), 0);
 	gtk_range_set_value (GTK_RANGE (pHScale), fGammaPercent);
 	g_object_set (pHScale, "width-request", 150, NULL);

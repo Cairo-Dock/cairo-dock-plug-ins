@@ -103,13 +103,8 @@ typedef enum {
 
 
 #ifdef DBUSMENU_GTK_FOUND
-#if (GTK_MAJOR_VERSION < 3) || defined (DBUSMENU_GTK3_NEW)
 #include <libdbusmenu-gtk/menuitem.h>
 #include <libdbusmenu-gtk/client.h>
-#else
-#include <libdbusmenu-gtk3/menuitem.h>
-#include <libdbusmenu-gtk3/client.h>
-#endif
 
 typedef struct _CDIconData {
 	gchar *cMenuPath;
