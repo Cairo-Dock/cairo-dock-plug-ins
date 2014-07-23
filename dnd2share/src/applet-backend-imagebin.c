@@ -35,7 +35,7 @@ static const gchar *s_UrlLabels[NB_URLS] = {N_("Direct Link")};
 static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
 	// Upload the file
-	gchar *cCommand = g_strdup_printf ("curl -L --connect-timeout 5 --retry 2 --limit-rate %dk http://imagebin.ca/upload.php -F f=@\"%s\" -F t=file", iLimitRate, cFilePath);
+	gchar *cCommand = g_strdup_printf ("curl -L --connect-timeout 5 --retry 2 --limit-rate %dk http://imagebin.ca/upload.php -F file=@\"%s\"", iLimitRate, cFilePath);
 	cd_debug ("%s", cCommand);
 	gchar *cContent = cairo_dock_launch_command_sync (cCommand);
 	g_free (cCommand);
@@ -48,12 +48,13 @@ static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymou
 
 	// We have the content, now we can extract data
 	gchar *cURL = NULL;
-	gchar *str = strstr (cContent, "href='");
+	gchar *str = strstr (cContent, "url:");
 	if (str != NULL)
 	{
-		str += 6;
-		gchar *end = strchr (str, '\'');
-		if (end != NULL)
+		str += 4;
+		gchar *end;
+		if ((end = strchr (str, '\n')) != NULL
+		 || (end = strchr (str, '\0')) != NULL)
 		{
 			*end = '\0';
 			cURL = g_strdup (str);

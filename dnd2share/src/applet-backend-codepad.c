@@ -66,10 +66,15 @@ static void upload (const gchar *cText, gchar *cLocalDir, gboolean bAnonymous, g
 	}
 	else if (cResult)
 	{
-		cd_debug (" --> got '%s'", cResult);
-		gchar *str = strstr (cResult, "http");
-		if (str)
+		// Get the next '"http://(...)"' link after 'Link:' text
+		gchar *str, *end;
+		if ((str = strstr (cResult, "Link:")) != NULL
+		 && (str = strstr (str, "\"http://") + 1) != NULL
+		 && (end = strchr (str, '"')) != NULL)
+		{
+			*end = '\0';
 			cResultUrls[0] = g_strdup (str);
+		}
 		else
 			DND2SHARE_SET_GENERIC_ERROR_WEBSITE("Codepad.org");
 		g_free (cResult);

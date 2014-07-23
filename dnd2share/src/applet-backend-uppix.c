@@ -34,7 +34,7 @@ static const gchar *s_UrlLabels[NB_URLS] = {N_("Direct Link"), N_("Thumbnail"), 
 static void upload (const gchar *cFilePath, gchar *cLocalDir, gboolean bAnonymous, gint iLimitRate, gchar **cResultUrls, GError **pError)
 {
 	// Upload the file
-	gchar *cCommand = g_strdup_printf ("curl -L --connect-timeout 5 --retry 2 --limit-rate %dk uppix.com/upload -H Expect: -F u_file=@\"%s\" -F u_submit=Upload -F u_agb=yes", iLimitRate, cFilePath);
+	gchar *cCommand = g_strdup_printf ("curl -L --connect-timeout 5 --retry 2 --limit-rate %dk uppix.com/upload -H Expect: -F u_file=@\"%s\" -F u_submit=Upload -F u_terms=yes", iLimitRate, cFilePath);
 	cd_debug ("%s", cCommand);
 	gchar *cResult = cairo_dock_launch_command_sync (cCommand);
 	g_free (cCommand);
