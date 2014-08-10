@@ -139,7 +139,7 @@ only file type=false
 text site = 1
 
 #l[Custom;Uppix.com;Imagebin.ca;Imgur.com] Preferred site for images hosting :
-image site = 1
+image site = 3
 
 #l[Custom;VideoBin.org] Preferred site for videos hosting :
 video site = 1
