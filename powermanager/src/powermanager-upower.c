@@ -192,6 +192,10 @@ static void _on_device_changed (G_GNUC_UNUSED UpDevice *pDevice, G_GNUC_UNUSED G
 static void _on_device_changed (G_GNUC_UNUSED UpDevice *pDevice, G_GNUC_UNUSED gpointer data)
 #endif
 {
+	// The applet is removed just before an update...
+	if (myData == NULL)
+		return;
+
 	CD_APPLET_ENTER;
 	cd_debug ("battery properties changed");
 	
