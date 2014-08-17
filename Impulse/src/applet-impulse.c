@@ -220,7 +220,7 @@ void cd_impulse_stop_animations (gboolean bChangeIcon)
 	//if (myData.pTask != NULL)
 	if (myData.iSidAnimate != 0)
 	{
-		/*cairo_dock_discard_task (myData.pTask);
+		/*gldi_task_discard (myData.pTask);
 		myData.pTask = NULL;*/
 		g_source_remove (myData.iSidAnimate);
 		myData.iSidAnimate = 0;
@@ -239,7 +239,7 @@ void cd_impulse_launch_task (void) //(GldiModuleInstance *myApplet)
 	// if a task is already launching
 	/*if (myData.pTask != NULL)
 	{
-		cairo_dock_discard_task (myData.pTask);
+		gldi_task_discard (myData.pTask);
 		myData.pTask = NULL;
 	}*/
 	if (myData.iSidAnimate != 0)
@@ -252,14 +252,14 @@ void cd_impulse_launch_task (void) //(GldiModuleInstance *myApplet)
 		myData.bPulseLaunched = TRUE;
 	}
 
-	/*myData.pTask = cairo_dock_new_task_full (1,// (SECOND) myConfig.iLoopTime,
-		// (CairoDockGetDataAsyncFunc) _get_icons_list_without_separators,
+	/*myData.pTask = gldi_task_new_full (1,// (SECOND) myConfig.iLoopTime,
+		// (GldiGetDataAsyncFunc) _get_icons_list_without_separators,
 		NULL,
-		(CairoDockUpdateSyncFunc) _animate_the_dock,
+		(GldiUpdateSyncFunc) _animate_the_dock,
 		(GFreeFunc) _free_shared_memory,
 		myData.pSharedMemory);
 	_get_icons_list_without_separators (myData.pSharedMemory);
-	cairo_dock_launch_task (myData.pTask);*/
+	gldi_task_launch (myData.pTask);*/
 
 	_get_icons_list_without_separators (myData.pSharedMemory);
 	_register_notifications();

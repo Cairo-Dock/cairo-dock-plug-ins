@@ -87,7 +87,7 @@ typedef struct {
 #endif
 
 struct _AppletData {
-	CairoDockTask *pTask;  // async task to find the available backend (launched on startup)
+	GldiTask *pTask;  // async task to find the available backend (launched on startup)
 	
 	// UPower
 	#ifdef CD_UPOWER_AVAILABLE

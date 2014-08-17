@@ -79,7 +79,7 @@ static void _get_mail_accounts (GKeyFile *pKeyFile, GldiModuleInstance *myApplet
 			pMailAccount = g_ptr_array_index (myData.pMailAccounts, i);
 
 			if( pMailAccount != NULL && pMailAccount->pAccountMailTimer != NULL )
-				cairo_dock_stop_task (pMailAccount->pAccountMailTimer);
+				gldi_task_stop (pMailAccount->pAccountMailTimer);
 		}
 	}
 	cd_mail_free_all_accounts (myApplet);

@@ -96,7 +96,7 @@ CD_APPLET_STOP_BEGIN
 	gchar *cNull = NULL;
 	CD_APPLET_MANAGE_APPLICATION (cNull);  // on relache le controle de l'icone de la fenetre.
 	
-	cairo_dock_discard_task (myData.pTask);
+	gldi_task_discard (myData.pTask);
 	
 	if (myData.iSidTimer != 0)
 		g_source_remove (myData.iSidTimer);

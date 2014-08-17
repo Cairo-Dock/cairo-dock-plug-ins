@@ -190,13 +190,13 @@ gboolean cd_wifi_update_from_data (gpointer data)
 	{
 		myData.bWirelessExt = TRUE;
 		cd_wifi_draw_icon ();
-		cairo_dock_set_normal_task_frequency (myData.pTask);
+		gldi_task_set_normal_frequency (myData.pTask);
 	}
 	else
 	{
 		myData.bWirelessExt = FALSE;
 		cd_wifi_draw_no_wireless_extension ();
-		cairo_dock_downgrade_task_frequency (myData.pTask);
+		gldi_task_downgrade_frequency (myData.pTask);
 	}
 	return TRUE;
 }

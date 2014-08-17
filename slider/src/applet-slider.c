@@ -142,7 +142,7 @@ void cd_slider_jump_to_next_slide (GldiModuleInstance *myApplet)
 		g_source_remove (myData.iTimerID);
 		myData.iTimerID = 0;
 	}
-	cairo_dock_stop_task (myData.pMeasureImage);
+	gldi_task_stop (myData.pMeasureImage);
 	
 	//\___________________________ On recupere la nouvelle image a afficher.
 	if (myData.pElement == NULL)  // debut
@@ -196,7 +196,7 @@ void cd_slider_jump_to_next_slide (GldiModuleInstance *myApplet)
 		|| (pImage->iFormat == SLIDER_XPM && pImage->iSize > 100e3)) )
 	{
 		cd_debug ("Slider - launch thread");
-		cairo_dock_launch_task (myData.pMeasureImage);
+		gldi_task_launch (myData.pMeasureImage);
 	}
 	else
 	{
@@ -412,9 +412,9 @@ static gboolean cd_slider_start_slide (CDListSharedMemory *pSharedMemory)
 	}
 	
 	// create the loading task that will be used later
-	myData.pMeasureImage = cairo_dock_new_task (0,
-		(CairoDockGetDataAsyncFunc) _cd_slider_load_image,
-		(CairoDockUpdateSyncFunc) _cd_slider_display_image,
+	myData.pMeasureImage = gldi_task_new (0,
+		(GldiGetDataAsyncFunc) _cd_slider_load_image,
+		(GldiUpdateSyncFunc) _cd_slider_display_image,
 		myApplet);  // 0 <=> one shot task.
 	
 	// display the first slide.
@@ -433,7 +433,7 @@ static gboolean cd_slider_start_slide (CDListSharedMemory *pSharedMemory)
 
 void cd_slider_start (GldiModuleInstance *myApplet, gboolean bDelay)
 {
-	cairo_dock_discard_task (myData.pMeasureDirectory);
+	gldi_task_discard (myData.pMeasureDirectory);
 	
 	// remember the current params.
 	g_free (myData.cDirectory);
@@ -449,25 +449,25 @@ void cd_slider_start (GldiModuleInstance *myApplet, gboolean bDelay)
 	pSharedMemory->pApplet = myApplet;
 	
 	CD_APPLET_SET_QUICK_INFO_ON_MY_ICON ("...");  // Note: we could launch a 'busy' animation, but it's maybe not a good idea to add more CPU load (anyway, the animation should be launched with a g_idle_add, because animations may not be inited yet).
-	myData.pMeasureDirectory = cairo_dock_new_task_full (0,
-		(CairoDockGetDataAsyncFunc) cd_slider_get_files_from_dir,
-		(CairoDockUpdateSyncFunc) cd_slider_start_slide,
+	myData.pMeasureDirectory = gldi_task_new_full (0,
+		(GldiGetDataAsyncFunc) cd_slider_get_files_from_dir,
+		(GldiUpdateSyncFunc) cd_slider_start_slide,
 		(GFreeFunc) _free_shared_memory,
 		pSharedMemory); // 0 <=> one shot task.
 	
 	// launch the parsing.
 	if (bDelay)
-		cairo_dock_launch_task_delayed (myData.pMeasureDirectory, cairo_dock_is_loading () ? 1500. : 0.);  // launch with a delay or just in the next main loop event.
+		gldi_task_launch_delayed (myData.pMeasureDirectory, cairo_dock_is_loading () ? 1500. : 0.);  // launch with a delay or just in the next main loop event.
 	else
-		cairo_dock_launch_task (myData.pMeasureDirectory);
+		gldi_task_launch (myData.pMeasureDirectory);
 }
 
 void cd_slider_stop (GldiModuleInstance *myApplet)
 {
 	//Stop all processes
-	cairo_dock_free_task (myData.pMeasureImage);  // since it needs a cairo context, we can't let it live.
+	gldi_task_free (myData.pMeasureImage);  // since it needs a cairo context, we can't let it live.
 	myData.pMeasureImage = NULL;
-	cairo_dock_discard_task (myData.pMeasureDirectory);
+	gldi_task_discard (myData.pMeasureDirectory);
 	myData.pMeasureDirectory = NULL;
 	if (myData.iSidExifIdle != 0)
 	{

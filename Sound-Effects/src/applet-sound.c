@@ -446,7 +446,7 @@ static void _free_shared_memory (CDSharedMemory *pSharedMemory)
 
 static gboolean _finish_play_sound (CDSharedMemory *pSharedMemory)
 {
-	cairo_dock_discard_task (pSharedMemory->pTask);
+	gldi_task_discard (pSharedMemory->pTask);
 	return FALSE;
 }
 
@@ -541,15 +541,15 @@ void cd_sound_play_sound (CDSoundFile *pSoundFile)
 {
 	CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
 	pSharedMemory->pSoundFile = pSoundFile;  // the sound file is loaded before, and will stay alive until the task is stopped.
-	CairoDockTask *pTask = cairo_dock_new_task_full (0,  // 1 shot task.
-		(CairoDockGetDataAsyncFunc) _play_sound_async,
-		(CairoDockUpdateSyncFunc) _finish_play_sound,
+	GldiTask *pTask = gldi_task_new_full (0,  // 1 shot task.
+		(GldiGetDataAsyncFunc) _play_sound_async,
+		(GldiUpdateSyncFunc) _finish_play_sound,
 		(GFreeFunc) _free_shared_memory,
 		pSharedMemory);
 	pSharedMemory->pTask = pTask;
 	myData.pTasks = g_list_prepend (myData.pTasks, pTask);
 	
-	cairo_dock_launch_task (pTask);
+	gldi_task_launch (pTask);
 }
 
 
@@ -564,13 +564,13 @@ void cd_sound_free_sound_file (CDSoundFile *pSoundFile)
 
 void cd_sound_free_current_tasks (void)
 {
-	CairoDockTask *pTask;
+	GldiTask *pTask;
 	GList *t = myData.pTasks, *next_t;
 	while (t != NULL)
 	{
 		next_t = t->next;
 		pTask = t->data;
-		cairo_dock_free_task (pTask);  // will remove it from the list.
+		gldi_task_free (pTask);  // will remove it from the list.
 		t = next_t;
 	}  // at this point the list is empty and myData.pTasks is NULL.
 }

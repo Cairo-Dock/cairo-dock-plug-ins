@@ -90,7 +90,7 @@ struct _AppletConfig {
 
 
 typedef struct _CDNetSpeed {
-	CairoDockTask *pTask;
+	GldiTask *pTask;
 	// shared memory
 	gboolean _bInitialized;
 	gboolean _bAcquisitionOK;
@@ -104,7 +104,7 @@ typedef struct _CDNetSpeed {
 	} CDNetSpeed;
 
 typedef struct _CDWifi {
-	CairoDockTask *pTask;
+	GldiTask *pTask;
 	// shared memory
 	CDConnectionQuality _iQuality, _iPreviousQuality;
 	gint _iPercent, _iPrevPercent;

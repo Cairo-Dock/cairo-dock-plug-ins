@@ -221,7 +221,7 @@ void cd_disks_get_data (GldiModuleInstance *myApplet)
 
 	if (!(myConfig.iNumberParts + myData.iNumberDisks > 0))
 	{
-		cairo_dock_downgrade_task_frequency (myData.pPeriodicTask);
+		gldi_task_downgrade_frequency (myData.pPeriodicTask);
 		cd_warning("Disks : No disk defined");
 	}
 	g_return_if_fail ((fTimeElapsed > 0.1) || (myConfig.iNumberParts + myData.iNumberDisks > 0));
@@ -252,12 +252,12 @@ void cd_disks_get_data (GldiModuleInstance *myApplet)
 		fd = fopen (DISKS_SPEED_DATA_PIPE, "rb");
 		if (!fd) 
 		{
-			cairo_dock_downgrade_task_frequency (myData.pPeriodicTask);
+			gldi_task_downgrade_frequency (myData.pPeriodicTask);
 			cd_warning("Disks : Your kernel doesn't support diskstat. (2.5.70 or above required)");
 		}
 		else
 		{
-			//~ cairo_dock_set_normal_task_frequency (myData.pPeriodicTask);
+			//~ gldi_task_set_normal_frequency (myData.pPeriodicTask);
 			gsize i;
 			CDDiskSpeedData* pSpeed;
 			long long unsigned uReadBlocks, uWriteBlocks;

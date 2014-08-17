@@ -131,7 +131,7 @@ static void _manage_event_on_file (CairoDockFMEventType iEventType, const gchar 
 			if (strcmp (myConfig.cDirPath, cBaseURI) == 0)
 			{
 				cd_debug ("our folder has been re-created");
-				cairo_dock_launch_task (myData.pTask);
+				gldi_task_launch (myData.pTask);
 				return;
 			}
 			
@@ -303,7 +303,7 @@ static gboolean _cd_folders_load_icons_from_data (CDSharedMemory *pSharedMemory)
 	//\_______________________ On se place en ecoute.
 	cairo_dock_fm_add_monitor_full (pSharedMemory->cDirPath, TRUE, NULL, (CairoDockFMMonitorCallback) _cd_folders_on_file_event, myApplet);
 	
-	cairo_dock_discard_task (myData.pTask);
+	gldi_task_discard (myData.pTask);
 	myData.pTask = NULL;
 	CD_APPLET_LEAVE (TRUE);
 }
@@ -320,7 +320,7 @@ void cd_folders_start (GldiModuleInstance *myApplet)
 {
 	if (myData.pTask != NULL)
 	{
-		cairo_dock_discard_task (myData.pTask);
+		gldi_task_discard (myData.pTask);
 		myData.pTask = NULL;
 	}
 	
@@ -332,12 +332,12 @@ void cd_folders_start (GldiModuleInstance *myApplet)
 	pSharedMemory->bShowHiddenFiles = myConfig.bShowHiddenFiles;
 	pSharedMemory->pApplet = myApplet;
 	
-	myData.pTask = cairo_dock_new_task_full (0,
-		(CairoDockGetDataAsyncFunc) _cd_folders_get_data,
-		(CairoDockUpdateSyncFunc) _cd_folders_load_icons_from_data,
+	myData.pTask = gldi_task_new_full (0,
+		(GldiGetDataAsyncFunc) _cd_folders_get_data,
+		(GldiUpdateSyncFunc) _cd_folders_load_icons_from_data,
 		(GFreeFunc) _free_shared_memory,
 		pSharedMemory);
-	cairo_dock_launch_task_delayed (myData.pTask, 0);  // le delai est la pour laisser le temps au backend gvfs de s'initialiser (sinon on a un "g_hash_table_lookup: assertion `hash_table != NULL' failed" lors du listing d'un repertoire, avec en consequence des icones non trouvees).
+	gldi_task_launch_delayed (myData.pTask, 0);  // le delai est la pour laisser le temps au backend gvfs de s'initialiser (sinon on a un "g_hash_table_lookup: assertion `hash_table != NULL' failed" lors du listing d'un repertoire, avec en consequence des icones non trouvees).
 }
 
 
@@ -346,7 +346,7 @@ void cd_folders_start (GldiModuleInstance *myApplet)
 static void _cd_folders_remove_all_icons (GldiModuleInstance *myApplet)
 {
 	//\_______________________ On stoppe la tache.
-	cairo_dock_discard_task (myData.pTask);
+	gldi_task_discard (myData.pTask);
 	myData.pTask = NULL;
 	
 	//\_______________________ On detruit ensuite les icones chargees dans le container.

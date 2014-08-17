@@ -114,7 +114,7 @@ struct _AppletData {
 	gint iVideoRam;
 	gchar *cDriverVersion;
 	
-	CairoDockTask *pPeriodicTask;
+	GldiTask *pPeriodicTask;
 	// shared memory for the main thread.
 	gboolean bInitialized;
 	gboolean bAcquisitionOK;
@@ -151,7 +151,7 @@ struct _AppletData {
 	guint iNbProcesses;  // last total number of processes.
 	gboolean bSortTopByRam;  // current state of the cpu/ram button on the dialog.
 	CairoDialog *pTopDialog;
-	CairoDockTask *pTopTask;
+	GldiTask *pTopTask;
 } ;
 
 

@@ -93,17 +93,17 @@ static void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gch
 	{
 		case CAIRO_DOCK_FILE_DELETED :
 		case CAIRO_DOCK_FILE_CREATED :
-			if (cairo_dock_task_is_running (myData.pTask))  // task is running, cancel it since files count has changed, no need to finish this measure.
+			if (gldi_task_is_running (myData.pTask))  // task is running, cancel it since files count has changed, no need to finish this measure.
 			{
 				//g_print ("cancel measure\n");
-				cairo_dock_discard_task (myData.pTask);
+				gldi_task_discard (myData.pTask);
 				
 				CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
 				pSharedMemory->cDustbinPath = g_strdup (myData.cDustbinPath);
 				pSharedMemory->iQuickInfoType = myConfig.iQuickInfoType;
-				myData.pTask = cairo_dock_new_task_full (0,
-					(CairoDockGetDataAsyncFunc) cd_dustbin_measure_trash,
-					(CairoDockUpdateSyncFunc) cd_dustbin_display_result,
+				myData.pTask = gldi_task_new_full (0,
+					(GldiGetDataAsyncFunc) cd_dustbin_measure_trash,
+					(GldiUpdateSyncFunc) cd_dustbin_display_result,
 					(GFreeFunc) _free_shared_memory,
 					pSharedMemory);
 				pSharedMemory->bDiscard = &myData.pTask->bDiscard;
@@ -112,7 +112,7 @@ static void cd_dustbin_on_file_event (CairoDockFMEventType iEventType, const gch
 			{
 				CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s...", (myDesklet ? D_("calculating") : ""));
 			}
-			cairo_dock_launch_task_delayed (myData.pTask, 500);
+			gldi_task_launch_delayed (myData.pTask, 500);
 		break ;
 		
 		default :
@@ -139,14 +139,14 @@ void cd_dustbin_start (GldiModuleInstance *myApplet)
 		CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
 		pSharedMemory->cDustbinPath = g_strdup (myData.cDustbinPath);
 		pSharedMemory->iQuickInfoType = myConfig.iQuickInfoType;
-		myData.pTask = cairo_dock_new_task_full (myData.bMonitoringOK ? 0 : 10,  // si le monitoring de fichiers n'est pas disponible, on execute la tache periodiquement.
-			(CairoDockGetDataAsyncFunc) cd_dustbin_measure_trash,
-			(CairoDockUpdateSyncFunc) cd_dustbin_display_result,
+		myData.pTask = gldi_task_new_full (myData.bMonitoringOK ? 0 : 10,  // si le monitoring de fichiers n'est pas disponible, on execute la tache periodiquement.
+			(GldiGetDataAsyncFunc) cd_dustbin_measure_trash,
+			(GldiUpdateSyncFunc) cd_dustbin_display_result,
 			(GFreeFunc) _free_shared_memory,
 			pSharedMemory);
 		pSharedMemory->bDiscard = &myData.pTask->bDiscard;
 		
-		cairo_dock_launch_task (myData.pTask);  // on la lance meme si on n'affiche rien, pour savoir si le nombre de fichiers est nul ou non.
+		gldi_task_launch (myData.pTask);  // on la lance meme si on n'affiche rien, pour savoir si le nombre de fichiers est nul ou non.
 		if (myConfig.iQuickInfoType == CD_DUSTBIN_INFO_WEIGHT || myConfig.iQuickInfoType == CD_DUSTBIN_INFO_NB_FILES)  // operation potentiellement longue => on met un petit message discret.
 		{
 			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s...", (myDesklet ? D_("calculating") : ""));
@@ -161,7 +161,7 @@ void cd_dustbin_start (GldiModuleInstance *myApplet)
 
 void cd_dustbin_stop (GldiModuleInstance *myApplet)
 {
-	cairo_dock_discard_task (myData.pTask);
+	gldi_task_discard (myData.pTask);
 	myData.pTask = NULL;
 	
 	if (myData.bMonitoringOK)

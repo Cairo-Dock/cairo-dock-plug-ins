@@ -24,7 +24,7 @@
 #include "applet-renderer-text.h"
 
 
-CDTextParameters *rendering_configure_text (CairoDialog *pDialog, gpointer *pConfig)
+static CDTextParameters *rendering_configure_text (CairoDialog *pDialog, gpointer *pConfig)
 {
 	cd_debug ("");
 	CDTextParameters *pText = g_new0 (CDTextParameters, 1);
@@ -44,12 +44,11 @@ CDTextParameters *rendering_configure_text (CairoDialog *pDialog, gpointer *pCon
 			&iTextWidth, &iTextHeight);
 	}
 	
-	
 	return pText;
 }
 
 
-void rendering_free_text_data (CairoDialog *pDialog)
+static void rendering_free_text_data (CairoDialog *pDialog)
 {
 	cd_debug ("");
 	CDTextParameters *pText = (CDTextParameters *) pDialog->pRendererData;
@@ -57,13 +56,14 @@ void rendering_free_text_data (CairoDialog *pDialog)
 		return ;
 	
 	cairo_surface_destroy (pText->pTextSurface);
+	gldi_text_description_free (&pText->textDescription);
 	
 	g_free (pText);
 	pDialog->pRendererData = NULL;
 }
 
 
-void rendering_draw_text_in_dialog (cairo_t *pCairoContext, CairoDialog *pDialog, double fAlpha)
+static void rendering_draw_text_in_dialog (cairo_t *pCairoContext, CairoDialog *pDialog, double fAlpha)
 {
 	CDTextParameters *pText = (CDTextParameters *) pDialog->pRendererData;
 	if (pText == NULL)
@@ -82,7 +82,7 @@ void rendering_draw_text_in_dialog (cairo_t *pCairoContext, CairoDialog *pDialog
 }
 
 
-void rendering_update_text (CairoDialog *pDialog, gpointer *pNewData)
+static void rendering_update_text (CairoDialog *pDialog, gpointer *pNewData)
 {
 	CDTextParameters *pText = (CDTextParameters *) pDialog->pRendererData;
 	if (pText == NULL)
@@ -113,5 +113,3 @@ void rendering_register_text_dialog_renderer (void)
 	
 	cairo_dock_register_dialog_renderer (MY_APPLET_TEXT_DIALOG_RENDERER_NAME, pRenderer);
 }
-
-

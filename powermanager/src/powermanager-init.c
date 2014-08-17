@@ -58,7 +58,7 @@ CD_APPLET_STOP_BEGIN
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
 	
-	cairo_dock_discard_task (myData.pTask);
+	gldi_task_discard (myData.pTask);
 	
 	// stop UPower monitoring
 	cd_upower_stop ();

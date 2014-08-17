@@ -347,7 +347,7 @@ static gboolean _cd_dnd2share_update_from_result (CDSharedMemory *pSharedMemory)
 		myData.cTmpFilePath = NULL;
 	}
 
-	cairo_dock_discard_task (myData.pTask);
+	gldi_task_discard (myData.pTask);
 	myData.pTask = NULL;
 	CD_APPLET_LEAVE (FALSE);
 }
@@ -459,13 +459,13 @@ void cd_dnd2share_launch_upload (const gchar *cFilePath, CDFileType iFileType)
 	pSharedMemory->upload = pCurrentBackend->upload;
 	pSharedMemory->iNbUrls = pCurrentBackend->iNbUrls;
 
-	myData.pTask = cairo_dock_new_task_full (0,  // 1 shot task.
-		(CairoDockGetDataAsyncFunc) _cd_dnd2share_threaded_upload,
-		(CairoDockUpdateSyncFunc) _cd_dnd2share_update_from_result,
+	myData.pTask = gldi_task_new_full (0,  // 1 shot task.
+		(GldiGetDataAsyncFunc) _cd_dnd2share_threaded_upload,
+		(GldiUpdateSyncFunc) _cd_dnd2share_update_from_result,
 		(GFreeFunc) _free_shared_memory,
 		pSharedMemory);
 
-	cairo_dock_launch_task (myData.pTask);
+	gldi_task_launch (myData.pTask);
 
 	CD_APPLET_DEMANDS_ATTENTION (myConfig.cIconAnimation, 1e6);  // we'll stop it later, at the end of the upload.
 }

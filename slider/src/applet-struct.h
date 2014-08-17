@@ -110,8 +110,8 @@ struct _AppletData {
 	GLuint iPrevTexture;  // texture precedente.
 	gint iSurfaceWidth, iSurfaceHeight;  // dimension de la zone de dessin.
 	SliderAnimation iAnimation;  // animation de transition courante.
-	CairoDockTask *pMeasureDirectory;  // mesure pour parcourir le repertoire courant.
-	CairoDockTask *pMeasureImage;  // mesure pour charger l'image courante.
+	GldiTask *pMeasureDirectory;  // mesure pour parcourir le repertoire courant.
+	GldiTask *pMeasureImage;  // mesure pour charger l'image courante.
 	guint iScrollID;
 	gint iNbScroll;
 	gchar *cSelectedImagePath;  // donnee du menu

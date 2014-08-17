@@ -59,7 +59,7 @@ static void _free_info_dialog (GldiModuleInstance *myApplet)
 	myData.pInfoDialog = NULL;
 	if (myData.pInfoTask != NULL)
 	{
-		cairo_dock_discard_task (myData.pInfoTask);
+		gldi_task_discard (myData.pInfoTask);
 		myData.pInfoTask = NULL;
 	}
 }
@@ -106,7 +106,7 @@ static gboolean _display_result (CDSharedMemory *pSharedMemory)
 			(iSize > 1e6 ? (iSize >> 10) / 1024. : iSize / 1024.),
 			(iSize > 1e6 ? D_("Mo") : D_("Ko")));
 	}
-	cairo_dock_discard_task (myData.pInfoTask);
+	gldi_task_discard (myData.pInfoTask);
 	myData.pInfoTask = NULL;
 
 	return FALSE;
@@ -134,14 +134,14 @@ static void _cd_dustbin_show_info (GtkMenuItem *menu_item, GldiModuleInstance *m
 	CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
 	pSharedMemory->cDustbinPath = g_strdup (myData.cDustbinPath);
 	pSharedMemory->iQuickInfoType = myConfig.iQuickInfoType;
-	myData.pInfoTask = cairo_dock_new_task_full (0,
-		(CairoDockGetDataAsyncFunc) _measure_trash,
-		(CairoDockUpdateSyncFunc) _display_result,
+	myData.pInfoTask = gldi_task_new_full (0,
+		(GldiGetDataAsyncFunc) _measure_trash,
+		(GldiUpdateSyncFunc) _display_result,
 		(GFreeFunc) _free_shared_memory,
 		pSharedMemory);
 	pSharedMemory->bDiscard = &myData.pInfoTask->bDiscard;
 	
-	cairo_dock_launch_task (myData.pInfoTask);
+	gldi_task_launch (myData.pInfoTask);
 }
 
 CD_APPLET_ON_BUILD_MENU_BEGIN

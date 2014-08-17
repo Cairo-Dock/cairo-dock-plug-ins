@@ -76,7 +76,7 @@ CD_APPLET_STOP_BEGIN
 		g_free (cCommand);
 	}
 	
-	g_list_foreach (myData.pGetPageTaskList, (GFunc)cairo_dock_discard_task, NULL);
+	g_list_foreach (myData.pGetPageTaskList, (GFunc)gldi_task_discard, NULL);
 	g_list_free (myData.pGetPageTaskList);
 CD_APPLET_STOP_END
 

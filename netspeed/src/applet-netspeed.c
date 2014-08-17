@@ -231,11 +231,11 @@ gboolean cd_netspeed_update_from_data (GldiModuleInstance *myApplet)
 		memset (s_fValues, 0, sizeof (s_fValues));
 		CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
 		
-		cairo_dock_downgrade_task_frequency (myData.pPeriodicTask);
+		gldi_task_downgrade_frequency (myData.pPeriodicTask);
 	}
 	else
 	{
-		cairo_dock_set_normal_task_frequency (myData.pPeriodicTask);
+		gldi_task_set_normal_frequency (myData.pPeriodicTask);
 		
 		if (! myData.bInitialized)
 		{

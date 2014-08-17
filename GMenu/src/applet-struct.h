@@ -53,7 +53,7 @@ struct _AppletData {
 	// menu
 	GtkWidget *pMenu;
 	GList *pTrees;  // list of trees that have been loaded from .menu files
-	CairoDockTask *pTask;
+	GldiTask *pTask;
 	CDGMenuShowQuit iShowQuit;
 	gboolean bLoadSettingsMenu;
 	gint iPanelDefaultMenuIconSize;

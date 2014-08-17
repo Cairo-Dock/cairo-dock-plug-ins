@@ -76,7 +76,7 @@ struct _AppletData {
 	gboolean bButtonAnimating;
 	guint iSidInitIdle;
 	guint iSidInitIdle2;
-	CairoDockTask *pTask;
+	GldiTask *pTask;
 	gint iNbButtons;
 	GHashTable *windows;
 	gboolean bReversedButtonsOrder;

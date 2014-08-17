@@ -60,7 +60,7 @@ CD_APPLET_RESET_CONFIG_END
 CD_APPLET_RESET_DATA_BEGIN
 	if( myData.pRefreshTimer )
 	{
-		cairo_dock_free_task( myData.pRefreshTimer );
+		gldi_task_free( myData.pRefreshTimer );
 		myData.pRefreshTimer = NULL;
 	}
 	cd_weblet_free_uri_list ();

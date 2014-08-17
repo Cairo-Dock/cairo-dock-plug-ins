@@ -630,11 +630,11 @@ void cd_mail_init_accounts(GldiModuleInstance *myApplet)
 		if (r == MAIL_NO_ERROR)
 		{
 			gldi_icon_set_quick_info (pIcon, "..."); // on the current icon
-			pMailAccount->pAccountMailTimer = cairo_dock_new_task (pMailAccount->timeout * 60,
-				(CairoDockGetDataAsyncFunc) cd_mail_get_folder_data,
-				(CairoDockUpdateSyncFunc) cd_mail_update_account_status,
+			pMailAccount->pAccountMailTimer = gldi_task_new (pMailAccount->timeout * 60,
+				(GldiGetDataAsyncFunc) cd_mail_get_folder_data,
+				(GldiUpdateSyncFunc) cd_mail_update_account_status,
 				pMailAccount);
-			cairo_dock_launch_task (pMailAccount->pAccountMailTimer);
+			gldi_task_launch (pMailAccount->pAccountMailTimer);
 			bIsGettingMail = TRUE;
 		}
 		else
@@ -666,7 +666,7 @@ void cd_mail_free_account (CDMailAccount *pMailAccount)
 	if (pMailAccount == NULL)
 		return ;
 	
-	cairo_dock_free_task( pMailAccount->pAccountMailTimer );
+	gldi_task_free( pMailAccount->pAccountMailTimer );
 	
 	g_free( pMailAccount->name );
 	g_free( pMailAccount->server );

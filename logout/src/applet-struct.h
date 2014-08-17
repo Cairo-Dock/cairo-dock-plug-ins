@@ -74,7 +74,7 @@ typedef struct {
 struct _AppletData {
 	guint iSidTimer;
 	// manual capabilities.
-	CairoDockTask *pTask;
+	GldiTask *pTask;
 	gboolean bCapabilitiesChecked;
 	gboolean bCanHibernate;
 	gboolean bCanHybridSleep;

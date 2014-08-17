@@ -102,7 +102,7 @@ struct _AppletData {
 	CDSiteBackend *pCurrentBackend[CD_NB_FILE_TYPES];
 	int iNbSitesForType[CD_NB_FILE_TYPES];
 
-	CairoDockTask *pTask;  // current upload task.
+	GldiTask *pTask;  // current upload task.
 
 	GList *pUpoadedItems;  // list of CDUploadedItem*
 	gchar *cLastURL;       // the last copied URL -> for the left click

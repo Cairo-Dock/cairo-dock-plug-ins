@@ -328,7 +328,7 @@ static gboolean _apply_package_update (gchar *cModuleName)
 	}
 	
 	// get corresponding task and free it.
-	CairoDockTask *pUpdateTask = NULL;
+	GldiTask *pUpdateTask = NULL;
 	GList *t;
 	for (t = myData.pUpdateTasksList; t != NULL; t = t->next)
 	{
@@ -336,7 +336,7 @@ static gboolean _apply_package_update (gchar *cModuleName)
 		if (pUpdateTask->pSharedMemory && strcmp (pUpdateTask->pSharedMemory, cModuleName) == 0)
 		{
 			myData.pUpdateTasksList = g_list_delete_link (myData.pUpdateTasksList, t);
-			cairo_dock_discard_task (pUpdateTask);
+			gldi_task_discard (pUpdateTask);
 			break;
 		}
 	}
@@ -351,13 +351,13 @@ static void _check_update_package (const gchar *cModuleName, CairoDockPackage *p
 		if (g_file_test (cUserDirPath, G_FILE_TEST_EXISTS))
 		{
 			cd_message ("*** the applet '%s' needs to be updated", cModuleName);
-			CairoDockTask *pUpdateTask = cairo_dock_new_task_full (0,
-				(CairoDockGetDataAsyncFunc) _get_package_path,
-				(CairoDockUpdateSyncFunc) _apply_package_update,
+			GldiTask *pUpdateTask = gldi_task_new_full (0,
+				(GldiGetDataAsyncFunc) _get_package_path,
+				(GldiUpdateSyncFunc) _apply_package_update,
 				(GFreeFunc) g_free,
 				g_strdup (cModuleName));
 			myData.pUpdateTasksList = g_list_prepend (myData.pUpdateTasksList, pUpdateTask);
-			cairo_dock_launch_task (pUpdateTask);
+			gldi_task_launch (pUpdateTask);
 		}
 	}
 }
@@ -367,7 +367,7 @@ static void _on_got_list (GHashTable *pPackagesTable, gpointer data)
 	{
 		g_hash_table_foreach (pPackagesTable, (GHFunc) _check_update_package, NULL);
 	}
-	cairo_dock_discard_task (myData.pGetListTask);
+	gldi_task_discard (myData.pGetListTask);
 	myData.pGetListTask = NULL;
 }
 

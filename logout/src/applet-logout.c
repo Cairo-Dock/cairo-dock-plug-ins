@@ -210,7 +210,7 @@ static gboolean _cd_logout_got_capabilities (CDSharedMemory *pSharedMemory)
 	_display_menu ();
 	
 	// sayonara task-san ^^
-	cairo_dock_discard_task (myData.pTask);
+	gldi_task_discard (myData.pTask);
 	myData.pTask = NULL;
 	
 	CD_APPLET_LEAVE (FALSE);
@@ -224,12 +224,12 @@ void cd_logout_display_actions (void)
 	if (! myData.bCapabilitiesChecked)
 	{
 		CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
-		myData.pTask = cairo_dock_new_task_full (0,
-			(CairoDockGetDataAsyncFunc) _cd_logout_check_capabilities_async,
-			(CairoDockUpdateSyncFunc) _cd_logout_got_capabilities,
+		myData.pTask = gldi_task_new_full (0,
+			(GldiGetDataAsyncFunc) _cd_logout_check_capabilities_async,
+			(GldiUpdateSyncFunc) _cd_logout_got_capabilities,
 			(GFreeFunc) g_free,
 			pSharedMemory);
-		cairo_dock_launch_task (myData.pTask);
+		gldi_task_launch (myData.pTask);
 	}
 	else
 	{

@@ -124,7 +124,7 @@ struct _AppletData {
 	dbusApplet *pCurrentMenuDbusApplet;
 	gint iMenuPosition;
 	GldiWindowActor *pActiveWindow;;
-	CairoDockTask *pGetListTask;
+	GldiTask *pGetListTask;
 	GList *pUpdateTasksList;
 	} ;
 

@@ -222,14 +222,14 @@ gboolean cd_wifi_update_from_data (gpointer data)
 		cd_debug ("wifi sur %s", myData.wifi.cInterface);
 		myData.wifi.bWirelessExt = TRUE;
 		cd_wifi_draw_icon ();
-		cairo_dock_set_normal_task_frequency (myData.wifi.pTask);
+		gldi_task_set_normal_frequency (myData.wifi.pTask);
 	}
 	else
 	{
 		cd_debug ("no wifi\n");
 		myData.wifi.bWirelessExt = FALSE;
 		cd_wifi_draw_no_wireless_extension ();
-		cairo_dock_downgrade_task_frequency (myData.wifi.pTask);
+		gldi_task_downgrade_frequency (myData.wifi.pTask);
 	}
 	return TRUE;
 }
@@ -242,15 +242,15 @@ void cd_netmonitor_launch_wifi_task (GldiModuleInstance *myApplet)
 	
 	if (myData.wifi.pTask == NULL)  // la tache n'existe pas, on la cree et on la lance.
 	{
-		myData.wifi.pTask = cairo_dock_new_task (myConfig.iWifiCheckInterval,
-			(CairoDockGetDataAsyncFunc) cd_wifi_get_data,
-			(CairoDockUpdateSyncFunc) cd_wifi_update_from_data,
+		myData.wifi.pTask = gldi_task_new (myConfig.iWifiCheckInterval,
+			(GldiGetDataAsyncFunc) cd_wifi_get_data,
+			(GldiUpdateSyncFunc) cd_wifi_update_from_data,
 			myApplet);
-		cairo_dock_launch_task (myData.wifi.pTask);
+		gldi_task_launch (myData.wifi.pTask);
 	}
 	else  // la tache existe, on la relance immediatement, avec la nouvelle frequence eventuellement.
 	{
-		cairo_dock_relaunch_task_immediately (myData.wifi.pTask, myConfig.iWifiCheckInterval);
+		gldi_task_change_frequency_and_relaunch (myData.wifi.pTask, myConfig.iWifiCheckInterval);
 	}
 }
 
@@ -258,7 +258,7 @@ void cd_netmonitor_free_wifi_task (GldiModuleInstance *myApplet)
 {
 	if (myData.wifi.pTask != NULL)
 	{
-		cairo_dock_free_task (myData.wifi.pTask);
+		gldi_task_free (myData.wifi.pTask);
 		myData.wifi.pTask = NULL;
 	}
 }

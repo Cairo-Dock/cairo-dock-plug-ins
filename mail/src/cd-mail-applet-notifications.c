@@ -75,7 +75,7 @@ static void _cd_mail_update_account (GtkMenuItem *menu_item, CDMailAccount *pMai
 {
 	if( pMailAccount )
 	{
-		if (cairo_dock_task_is_running (pMailAccount->pAccountMailTimer))
+		if (gldi_task_is_running (pMailAccount->pAccountMailTimer))
 		{
 			cd_debug ("account is being checked, wait a second\n");
 			return;
@@ -85,7 +85,7 @@ static void _cd_mail_update_account (GtkMenuItem *menu_item, CDMailAccount *pMai
 		Icon *pIcon = (pMailAccount->icon ? pMailAccount->icon : myIcon);
 		gldi_icon_set_quick_info (pIcon, "...");
 		
-		cairo_dock_launch_task(pMailAccount->pAccountMailTimer);
+		gldi_task_launch(pMailAccount->pAccountMailTimer);
 	}
 }
 
@@ -323,7 +323,7 @@ CD_APPLET_ON_SCROLL_BEGIN
 	if (i == myData.pMailAccounts->len || pMailAccount == NULL)
 		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);
 	
-	if (cairo_dock_task_is_running (pMailAccount->pAccountMailTimer))
+	if (gldi_task_is_running (pMailAccount->pAccountMailTimer))
 	{
 		cd_debug ("account is being checked, wait a second\n");
 		CD_APPLET_LEAVE (GLDI_NOTIFICATION_LET_PASS);

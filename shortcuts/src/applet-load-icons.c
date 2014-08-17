@@ -348,7 +348,7 @@ static gboolean cd_shortcuts_build_shortcuts_from_data (CDSharedMemory *pSharedM
 		myData.bShowMenuPending = FALSE;
 	}
 	
-	cairo_dock_discard_task (myData.pTask);
+	gldi_task_discard (myData.pTask);
 	myData.pTask = NULL;
 	
 	CD_APPLET_LEAVE (TRUE);
@@ -367,7 +367,7 @@ void cd_shortcuts_start (GldiModuleInstance *myApplet)
 {
 	if (myData.pTask != NULL)
 	{
-		cairo_dock_discard_task (myData.pTask);
+		gldi_task_discard (myData.pTask);
 		myData.pTask = NULL;
 	}
 	
@@ -377,15 +377,15 @@ void cd_shortcuts_start (GldiModuleInstance *myApplet)
 	pSharedMemory->bListBookmarks = myConfig.bListBookmarks;
 	pSharedMemory->pApplet = myApplet;
 	
-	myData.pTask = cairo_dock_new_task_full (0,
-		(CairoDockGetDataAsyncFunc) cd_shortcuts_get_shortcuts_data,
-		(CairoDockUpdateSyncFunc) cd_shortcuts_build_shortcuts_from_data,
+	myData.pTask = gldi_task_new_full (0,
+		(GldiGetDataAsyncFunc) cd_shortcuts_get_shortcuts_data,
+		(GldiUpdateSyncFunc) cd_shortcuts_build_shortcuts_from_data,
 		(GFreeFunc) _free_shared_memory,
 		pSharedMemory);
 
 	if (cairo_dock_is_loading ())
-		cairo_dock_launch_task_delayed (myData.pTask, 0); // 0 <=> g_idle
+		gldi_task_launch_delayed (myData.pTask, 0); // 0 <=> g_idle
 	else
-		cairo_dock_launch_task (myData.pTask);
+		gldi_task_launch (myData.pTask);
 }
 

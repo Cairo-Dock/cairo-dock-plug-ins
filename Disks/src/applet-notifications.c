@@ -47,8 +47,8 @@ CD_APPLET_ON_CLICK_END
 
 /* Not used
 static void _disks_recheck (GtkMenuItem *menu_item, GldiModuleInstance *myApplet) {
-	cairo_dock_stop_task (myData.pPeriodicTask);
-	cairo_dock_launch_task (myData.pPeriodicTask);
+	gldi_task_stop (myData.pPeriodicTask);
+	gldi_task_launch (myData.pPeriodicTask);
 }
 */
 static void _show_monitor_system (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)

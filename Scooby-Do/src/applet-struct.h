@@ -133,7 +133,7 @@ struct _CDBackend {
 	// private data
 	gboolean bIsActive;
 	gint iState;  // 0:uninitialized; 1:ok; -1:broken
-	CairoDockTask *pTask;
+	GldiTask *pTask;
 	gboolean bTooManyResults;
 	gboolean bFoundNothing;
 	GList *pLastShownResults;

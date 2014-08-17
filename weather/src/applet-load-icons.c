@@ -135,7 +135,7 @@ gboolean cd_weather_update_from_data (CDSharedMemory *pSharedMemory)
 			if (myData.pTask->iPeriod > 20)
 			{
 				cd_message ("no data, will re-try in 20s");
-				cairo_dock_change_task_frequency (myData.pTask, 20);
+				gldi_task_change_frequency (myData.pTask, 20);
 			}
 			
 		}
@@ -193,7 +193,7 @@ gboolean cd_weather_update_from_data (CDSharedMemory *pSharedMemory)
 	if (myData.pTask->iPeriod != myConfig.iCheckInterval)
 	{
 		cd_message ("revert to normal frequency");
-		cairo_dock_change_task_frequency (myData.pTask, myConfig.iCheckInterval);
+		gldi_task_change_frequency (myData.pTask, myConfig.iCheckInterval);
 	}
 	
 	CD_APPLET_LEAVE (TRUE);

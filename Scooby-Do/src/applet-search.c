@@ -133,7 +133,7 @@ static gboolean _update_entries (CDBackend *pBackend)
 		pBackend->iLocateFilter = myData.iCurrentFilter;
 		g_free (pBackend->cCurrentLocateText);
 		pBackend->cCurrentLocateText = g_strdup (myData.sCurrentText->str);
-		cairo_dock_relaunch_task_immediately (pBackend->pTask, 0);
+		gldi_task_change_frequency_and_relaunch (pBackend->pTask, 0);
 	}
 	else  // la situation n'a pas change, on montre les resultats.
 	{
@@ -161,9 +161,9 @@ void cd_do_launch_backend (CDBackend *pBackend)
 		
 		if (pBackend->bIsThreaded && pBackend->search != NULL)
 		{
-			pBackend->pTask = cairo_dock_new_task (0,
-				(CairoDockGetDataAsyncFunc) _launch_async_search,
-				(CairoDockUpdateSyncFunc) _update_entries,
+			pBackend->pTask = gldi_task_new (0,
+				(GldiGetDataAsyncFunc) _launch_async_search,
+				(GldiUpdateSyncFunc) _update_entries,
 				pBackend);
 		}
 	}
@@ -171,7 +171,7 @@ void cd_do_launch_backend (CDBackend *pBackend)
 	// On le lance.
 	if (pBackend->pTask != NULL)  // asynchrone
 	{
-		if (cairo_dock_task_is_running (pBackend->pTask))  // on la laisse se finir, et lorsqu'elle aura fini, on la relancera avec le nouveau texte/filtre.
+		if (gldi_task_is_running (pBackend->pTask))  // on la laisse se finir, et lorsqu'elle aura fini, on la relancera avec le nouveau texte/filtre.
 		{
 			cd_debug (" on laisse la tache courante se finir\n");
 			return ;
@@ -195,7 +195,7 @@ void cd_do_launch_backend (CDBackend *pBackend)
 		{
 			pBackend->cCurrentLocateText = g_strdup (myData.sCurrentText->str);
 			pBackend->iLocateFilter = myData.iCurrentFilter;
-			cairo_dock_launch_task (pBackend->pTask);
+			gldi_task_launch (pBackend->pTask);
 		}
 	}
 	else if (! pBackend->bStaticResults || pBackend->pLastShownResults == NULL)  // synchrone
@@ -238,7 +238,7 @@ void cd_do_stop_backend (CDBackend *pBackend)
 	// stop activity.
 	if (pBackend->pTask != NULL)
 	{
-		cairo_dock_stop_task (pBackend->pTask);
+		gldi_task_stop (pBackend->pTask);
 	}
 	// reset last result.
 	pBackend->pLastShownResults = NULL;

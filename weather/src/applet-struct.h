@@ -109,12 +109,12 @@ typedef struct {
 
 struct _AppletData {
 	CDWeatherData wdata;
-	CairoDockTask *pTask;
+	GldiTask *pTask;
 	gboolean bErrorRetrievingData;
 	GList *pLocationsList;
 	gboolean bSetName;
 	gint iClickedDay;
-	CairoDockTask *pGetLocationTask;
+	GldiTask *pGetLocationTask;
 	gboolean bBusy;
 	GtkWidget *pCodeEntry;
 	} ;

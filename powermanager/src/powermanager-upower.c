@@ -310,7 +310,7 @@ static gboolean _cd_upower_update_state (CDSharedMemory *pSharedMemory)
 
 	if (myData.pTask != NULL)
 	{
-		cairo_dock_discard_task (myData.pTask);
+		gldi_task_discard (myData.pTask);
 		myData.pTask = NULL;
 	}
 	
@@ -330,17 +330,17 @@ void cd_powermanager_start (void)
 {
 	if (myData.pTask != NULL)
 	{
-		cairo_dock_discard_task (myData.pTask);
+		gldi_task_discard (myData.pTask);
 		myData.pTask = NULL;
 	}
 	
 	CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
-	myData.pTask = cairo_dock_new_task_full (0,
-		(CairoDockGetDataAsyncFunc) _cd_upower_connect_async,
-		(CairoDockUpdateSyncFunc) _cd_upower_update_state,
+	myData.pTask = gldi_task_new_full (0,
+		(GldiGetDataAsyncFunc) _cd_upower_connect_async,
+		(GldiUpdateSyncFunc) _cd_upower_update_state,
 		(GFreeFunc) _free_shared_memory,
 		pSharedMemory);
-	cairo_dock_launch_task (myData.pTask);
+	gldi_task_launch (myData.pTask);
 }
 
 void cd_upower_stop (void)

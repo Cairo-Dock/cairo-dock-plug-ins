@@ -64,7 +64,7 @@ static gboolean _make_menu_from_trees (CDSharedMemory *pSharedMemory)
 		myData.bShowMenuPending = FALSE;
 	}
 	
-	cairo_dock_discard_task (myData.pTask);
+	gldi_task_discard (myData.pTask);
 	myData.pTask = NULL;
 	
 	CD_APPLET_LEAVE (FALSE);
@@ -97,21 +97,21 @@ void cd_menu_start (void)
 	
 	CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
 	
-	myData.pTask = cairo_dock_new_task_full (0,  // 1 shot task.
-		(CairoDockGetDataAsyncFunc) _load_trees_async,
-		(CairoDockUpdateSyncFunc) _make_menu_from_trees,
+	myData.pTask = gldi_task_new_full (0,  // 1 shot task.
+		(GldiGetDataAsyncFunc) _load_trees_async,
+		(GldiUpdateSyncFunc) _make_menu_from_trees,
 		(GFreeFunc) _free_shared_memory,
 		pSharedMemory);
 	
 	if (cairo_dock_is_loading ())
-		cairo_dock_launch_task_delayed (myData.pTask, 0);  // 0 <=> g_idle
+		gldi_task_launch_delayed (myData.pTask, 0);  // 0 <=> g_idle
 	else
-		cairo_dock_launch_task (myData.pTask);
+		gldi_task_launch (myData.pTask);
 }
 
 void cd_menu_stop (void)
 {
-	cairo_dock_discard_task (myData.pTask);
+	gldi_task_discard (myData.pTask);
 	myData.pTask = NULL;
 	
 	g_list_foreach (myData.pTrees, (GFunc)g_object_unref, NULL);

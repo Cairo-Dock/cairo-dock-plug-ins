@@ -63,8 +63,8 @@ static void _cd_NetworkMonitor_activate_wifi (GtkMenuItem *menu_item, gpointer d
 }
 static void cd_NetworkMonitor_recheck_wireless_extension (GtkMenuItem *menu_item, gpointer data)
 {
-	cairo_dock_stop_task (myData.netSpeed.pTask);
-	cairo_dock_launch_task (myData.netSpeed.pTask);
+	gldi_task_stop (myData.netSpeed.pTask);
+	gldi_task_launch (myData.netSpeed.pTask);
 }
 static void _cd_NetworkMonitor_show_config (GtkMenuItem *menu_item, gpointer data)
 {

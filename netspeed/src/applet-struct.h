@@ -67,7 +67,7 @@ struct _AppletData {
 	gint iDownloadSpeed, iUploadSpeed;
 	gint iMaxUpRate, iMaxDownRate;
 	// end of shared memory
-	CairoDockTask *pPeriodicTask;
+	GldiTask *pPeriodicTask;
 	DBusGProxy *dbus_proxy_nm;
 } ;
 

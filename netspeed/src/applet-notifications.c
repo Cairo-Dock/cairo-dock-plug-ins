@@ -87,8 +87,8 @@ static void _netspeed_sleep (GtkMenuItem *menu_item, GldiModuleInstance *myApple
 }
 static void _netspeed_recheck (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {
-	cairo_dock_stop_task (myData.pPeriodicTask);
-	cairo_dock_launch_task (myData.pPeriodicTask);
+	gldi_task_stop (myData.pPeriodicTask);
+	gldi_task_launch (myData.pPeriodicTask);
 }
 static void _show_system_monitor (GtkMenuItem *menu_item, GldiModuleInstance *myApplet)
 {

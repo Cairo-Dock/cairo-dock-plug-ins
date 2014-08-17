@@ -117,14 +117,14 @@ CD_APPLET_INIT_BEGIN
 
 	// Initialisation of the periodic task
 	myData.iPreviousQuality = -2;  // force a redraw.
-	myData.pTask = cairo_dock_new_task (myConfig.iCheckInterval,
-		(CairoDockGetDataAsyncFunc) cd_wifi_get_data,
-		(CairoDockUpdateSyncFunc) cd_wifi_update_from_data,
+	myData.pTask = gldi_task_new (myConfig.iCheckInterval,
+		(GldiGetDataAsyncFunc) cd_wifi_get_data,
+		(GldiUpdateSyncFunc) cd_wifi_update_from_data,
 		myApplet);
 	if (cairo_dock_is_loading ())
-		cairo_dock_launch_task_delayed (myData.pTask, 2000);
+		gldi_task_launch_delayed (myData.pTask, 2000);
 	else
-		cairo_dock_launch_task (myData.pTask);
+		gldi_task_launch (myData.pTask);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -157,7 +157,7 @@ CD_APPLET_RELOAD_BEGIN
 		myData.iSignalLevel = -2;
 		
 		CD_APPLET_SET_QUICK_INFO_ON_MY_ICON (NULL);
-		cairo_dock_relaunch_task_immediately (myData.pTask, myConfig.iCheckInterval);
+		gldi_task_change_frequency_and_relaunch (myData.pTask, myConfig.iCheckInterval);
 	}
 	else  // on redessine juste l'icone.
 	{
@@ -166,7 +166,7 @@ CD_APPLET_RELOAD_BEGIN
 			CD_APPLET_SET_MY_DATA_RENDERER_HISTORY_TO_MAX;
 		
 		/**myData.iQuality = -2;  // force le redessin.
-		if (! cairo_dock_task_is_running (myData.pTask))
+		if (! gldi_task_is_running (myData.pTask))
 		{
 			if (myData.bWirelessExt)
 			{

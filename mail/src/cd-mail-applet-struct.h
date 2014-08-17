@@ -92,7 +92,7 @@ typedef struct {
     int auth_type;
     gchar *path;
     guint timeout;
-    CairoDockTask *pAccountMailTimer;
+    GldiTask *pAccountMailTimer;
     Icon *icon;
     gchar *cIconName;
     gboolean bInitialized;

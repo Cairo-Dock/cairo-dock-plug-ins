@@ -76,8 +76,8 @@ CD_APPLET_RESET_CONFIG_END
 CD_APPLET_RESET_DATA_BEGIN
 	cd_doncky_free_item_list (myApplet);
 
-	cairo_dock_stop_task (myData.pPeriodicRefreshTask);
-	cairo_dock_free_task (myData.pPeriodicRefreshTask);
+	gldi_task_stop (myData.pPeriodicRefreshTask);
+	gldi_task_free (myData.pPeriodicRefreshTask);
 	
 	// REPRIS DE SYSTEM-MONITOR:
 	g_timer_stop (myData.pClock);

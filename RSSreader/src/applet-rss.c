@@ -445,7 +445,7 @@ static gboolean _update_from_feeds (CDSharedMemory *pSharedMemory)
 		if (myData.pTask->iPeriod > 20)
 		{
 			cd_message ("no data, will re-try in 20s");
-			cairo_dock_change_task_frequency (myData.pTask, 20);  // on re-essaiera dans 20s.
+			gldi_task_change_frequency (myData.pTask, 20);  // on re-essaiera dans 20s.
 		}
 		
 		CD_APPLET_LEAVE (TRUE);
@@ -454,7 +454,7 @@ static gboolean _update_from_feeds (CDSharedMemory *pSharedMemory)
 	if (myData.pTask->iPeriod != myConfig.iRefreshTime)
 	{
 		cd_message ("revert to normal frequency");
-		cairo_dock_change_task_frequency (myData.pTask, myConfig.iRefreshTime);
+		gldi_task_change_frequency (myData.pTask, myConfig.iRefreshTime);
 	}
 	
 	//g_print (" --> RSS: '%s'\n", myData.cTaskBridge);
@@ -643,7 +643,7 @@ void cd_rssreader_launch_task (GldiModuleInstance *myApplet)
 {
 	if (myData.pTask != NULL)
 	{
-		cairo_dock_discard_task (myData.pTask);
+		gldi_task_discard (myData.pTask);
 		myData.pTask = NULL;
 	}
 	
@@ -653,12 +653,12 @@ void cd_rssreader_launch_task (GldiModuleInstance *myApplet)
 	pSharedMemory->cUrlPassword = g_strdup (myConfig.cUrlPassword);
 	pSharedMemory->pApplet = myApplet;
 	
-	myData.pTask = cairo_dock_new_task_full (myConfig.iRefreshTime,
-		(CairoDockGetDataAsyncFunc) _get_feeds,
-		(CairoDockUpdateSyncFunc) _update_from_feeds,
+	myData.pTask = gldi_task_new_full (myConfig.iRefreshTime,
+		(GldiGetDataAsyncFunc) _get_feeds,
+		(GldiUpdateSyncFunc) _update_from_feeds,
 		(GFreeFunc) _free_shared_memory,
 		pSharedMemory);
-	cairo_dock_launch_task (myData.pTask);
+	gldi_task_launch (myData.pTask);
 }
 
 

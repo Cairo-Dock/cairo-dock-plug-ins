@@ -558,7 +558,7 @@ void cd_do_show_listing (void)
 		if (myData.pActiveButtonSurface == NULL)
 		{
 			cd_debug ("load button : %dx%d", myDialogsParam.dialogTextDescription.iSize + 2, myData.pListing->container.iWidth);
-			cairo_t* pSourceContext = cairo_dock_create_context_from_container (CAIRO_CONTAINER (g_pMainDock));
+			cairo_t* pSourceContext = cairo_dock_create_drawing_context_generic (CAIRO_CONTAINER (g_pMainDock));
 			myData.pActiveButtonSurface = cairo_dock_create_surface_from_image_simple (MY_APPLET_SHARE_DATA_DIR"/active-button.svg",
 				(myData.pListing->container.iWidth - (myDialogsParam.dialogTextDescription.iSize + 2) * 3) / 3,
 				myDialogsParam.dialogTextDescription.iSize + 2);

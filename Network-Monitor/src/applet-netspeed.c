@@ -88,7 +88,7 @@ static void cd_netspeed_formatRate (GldiModuleInstance *myApplet, unsigned long 
 
 void cd_netspeed_get_data (GldiModuleInstance *myApplet)
 {
-	double fTimeElapsed = cairo_dock_get_task_elapsed_time (myData.netSpeed.pTask);
+	double fTimeElapsed = gldi_task_get_elapsed_time (myData.netSpeed.pTask);
 	
 	gchar *cContent = NULL;
 	gsize length=0;
@@ -190,11 +190,11 @@ gboolean cd_netspeed_update_from_data (GldiModuleInstance *myApplet)
 		memset (s_fValues, 0, sizeof (s_fValues));
 		CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (s_fValues);
 		
-		cairo_dock_downgrade_task_frequency (myData.netSpeed.pTask);
+		gldi_task_downgrade_frequency (myData.netSpeed.pTask);
 	}
 	else
 	{
-		cairo_dock_set_normal_task_frequency (myData.netSpeed.pTask);
+		gldi_task_set_normal_frequency (myData.netSpeed.pTask);
 		
 		if (! myData.netSpeed._bInitialized)
 		{
@@ -251,15 +251,15 @@ void cd_netmonitor_launch_netspeed_task (GldiModuleInstance *myApplet)
 	
 	if (myData.netSpeed.pTask == NULL)  // la tache n'existe pas, on la cree et on la lance.
 	{
-		myData.netSpeed.pTask = cairo_dock_new_task (myConfig.iNetspeedCheckInterval,
-			(CairoDockGetDataAsyncFunc) cd_netspeed_get_data,
-			(CairoDockUpdateSyncFunc) cd_netspeed_update_from_data,
+		myData.netSpeed.pTask = gldi_task_new (myConfig.iNetspeedCheckInterval,
+			(GldiGetDataAsyncFunc) cd_netspeed_get_data,
+			(GldiUpdateSyncFunc) cd_netspeed_update_from_data,
 			myApplet);
-		cairo_dock_launch_task (myData.netSpeed.pTask);
+		gldi_task_launch (myData.netSpeed.pTask);
 	}
 	else  // la tache existe, on la relance immediatement, avec la nouvelle frequence eventuellement.
 	{
-		cairo_dock_relaunch_task_immediately (myData.netSpeed.pTask, myConfig.iNetspeedCheckInterval);
+		gldi_task_change_frequency_and_relaunch (myData.netSpeed.pTask, myConfig.iNetspeedCheckInterval);
 	}
 }
 
@@ -267,7 +267,7 @@ void cd_netmonitor_free_netspeed_task (GldiModuleInstance *myApplet)
 {
 	if (myData.netSpeed.pTask != NULL)
 	{
-		cairo_dock_free_task (myData.netSpeed.pTask);
+		gldi_task_free (myData.netSpeed.pTask);
 		myData.netSpeed.pTask = NULL;
 	}
 }

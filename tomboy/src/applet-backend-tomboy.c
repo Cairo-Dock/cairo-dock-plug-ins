@@ -311,7 +311,7 @@ static gboolean _build_notes_from_data (CDSharedMemory *pSharedMemory)
 	
 	cd_notes_store_load_notes (pSharedMemory->pNotes);
 	
-	cairo_dock_discard_task (myData.pTask);
+	gldi_task_discard (myData.pTask);
 	myData.pTask = NULL;
 	CD_APPLET_LEAVE (FALSE);
 }
@@ -340,13 +340,13 @@ static void _on_get_all_notes (DBusGProxy *proxy, DBusGProxyCall *call_id, gpoin
 		
 		CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
 		pSharedMemory->pNotesURI = note_list;
-		myData.pTask = cairo_dock_new_task_full (0,  // 1 shot task.
-			(CairoDockGetDataAsyncFunc) _get_notes_data_async,
-			(CairoDockUpdateSyncFunc) _build_notes_from_data,
+		myData.pTask = gldi_task_new_full (0,  // 1 shot task.
+			(GldiGetDataAsyncFunc) _get_notes_data_async,
+			(GldiUpdateSyncFunc) _build_notes_from_data,
 			(GFreeFunc) _free_shared_memory,
 			pSharedMemory);
 
-		cairo_dock_launch_task (myData.pTask);
+		gldi_task_launch (myData.pTask);
 	}
 	else
 	{

@@ -441,7 +441,7 @@ void cd_weather_launch_periodic_task (GldiModuleInstance *myApplet)
 {
 	if (myData.pTask != NULL)
 	{
-		cairo_dock_discard_task (myData.pTask);
+		gldi_task_discard (myData.pTask);
 		myData.pTask = NULL;
 	}
 	
@@ -452,10 +452,10 @@ void cd_weather_launch_periodic_task (GldiModuleInstance *myApplet)
 	pSharedMemory->iNbDays = myConfig.iNbDays;
 	pSharedMemory->pApplet = myApplet;
 	
-	myData.pTask = cairo_dock_new_task_full (myConfig.iCheckInterval,
-		(CairoDockGetDataAsyncFunc) cd_weather_get_distant_data,
-		(CairoDockUpdateSyncFunc) cd_weather_update_from_data,
+	myData.pTask = gldi_task_new_full (myConfig.iCheckInterval,
+		(GldiGetDataAsyncFunc) cd_weather_get_distant_data,
+		(GldiUpdateSyncFunc) cd_weather_update_from_data,
 		(GFreeFunc) _free_shared_memory,
 		pSharedMemory);
-	cairo_dock_launch_task (myData.pTask);
+	gldi_task_launch (myData.pTask);
 }

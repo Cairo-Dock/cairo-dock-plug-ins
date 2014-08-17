@@ -60,7 +60,7 @@ static inline void _go_to_site (GldiModuleInstance *myApplet, int iNumDay)
 
 static inline void _reload (GldiModuleInstance *myApplet)
 {
-	if (cairo_dock_task_is_running (myData.pTask))
+	if (gldi_task_is_running (myData.pTask))
 	{
 		gldi_dialog_show_temporary_with_icon (D_("Data are being retrieved, please wait a moment."), 
 			myIcon,
@@ -70,12 +70,12 @@ static inline void _reload (GldiModuleInstance *myApplet)
 	}
 	else
 	{
-		cairo_dock_stop_task (myData.pTask);  // not blocking since the task is not running.
+		gldi_task_stop (myData.pTask);  // not blocking since the task is not running.
 		
 		myData.bBusy = TRUE;
 		CD_APPLET_ANIMATE_MY_ICON ("busy", 999);
 		cairo_dock_mark_icon_as_clicked (myIcon);  // prevent hovering the icon to overwrite the animation with another one.
-		cairo_dock_launch_task (myData.pTask);
+		gldi_task_launch (myData.pTask);
 	}
 }
 
@@ -173,7 +173,7 @@ void cd_weather_show_current_conditions_dialog (GldiModuleInstance *myApplet)
 	gldi_dialogs_remove_on_icon (myIcon);
 	
 	// if an error occured, the current conditions are no more valid.
-	if (cairo_dock_task_is_running (myData.pTask))  // current conditions are outdated.
+	if (gldi_task_is_running (myData.pTask))  // current conditions are outdated.
 	{
 		gldi_dialog_show_temporary_with_icon (D_("Data are being fetched, please re-try in a few seconds."),
 			myIcon,

@@ -165,7 +165,7 @@ void cd_app_disconnect_from_registrar (void)
 	
 	if (myData.pTask != NULL)
 	{
-		cairo_dock_discard_task (myData.pTask);
+		gldi_task_discard (myData.pTask);
 		myData.pTask = NULL;
 	}
 	
@@ -247,18 +247,18 @@ static void _on_got_menu (DBusGProxy *proxy, DBusGProxyCall *call_id, GldiModule
 		{
 			/*if (myData.pTask != NULL)
 			{
-				cairo_dock_discard_task (myData.pTask);
+				gldi_task_discard (myData.pTask);
 				myData.pTask = NULL;
 			}
 			CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
 			pSharedMemory->cService = cService;
 			pSharedMemory->cMenuObject = cMenuObject;
-			myData.pTask = cairo_dock_new_task_full (0,
-				(CairoDockGetDataAsyncFunc) _get_menu_async,
-				(CairoDockUpdateSyncFunc) _fetch_menu,
+			myData.pTask = gldi_task_new_full (0,
+				(GldiGetDataAsyncFunc) _get_menu_async,
+				(GldiUpdateSyncFunc) _fetch_menu,
 				(GFreeFunc) _free_shared_memory,
 				pSharedMemory);
-			cairo_dock_launch_task_delayed (myData.pTask, 0);*/
+			gldi_task_launch_delayed (myData.pTask, 0);*/
 			/// TODO: it seems to hang he dock for a second, even with a task :-/
 			/// so maybe we need to cache the {window,menu} couples...
 			myData.pMenu = dbusmenu_gtkmenu_new (cService, cMenuObject);  /// can this object disappear by itself ? it seems to crash with 2 instances of inkscape, when closing one of them... 
@@ -296,7 +296,7 @@ static void _get_application_menu (GldiWindowActor *actor)
 	
 	if (myData.pTask != NULL)
 	{
-		cairo_dock_discard_task (myData.pTask);
+		gldi_task_discard (myData.pTask);
 		myData.pTask = NULL;
 	}
 	

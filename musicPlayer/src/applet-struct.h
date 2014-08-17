@@ -142,7 +142,7 @@ typedef struct {
 
 struct _AppletData {
 	// general
-	CairoDockTask *pTask;
+	GldiTask *pTask;
 	GList *pHandlers;
 	MusicPlayerHandler *pCurrentHandler;
 	gchar *cMpris2Service;  // MPRIS2 service associated with the current handler.
@@ -179,7 +179,7 @@ struct _AppletData {
 	guint iSidCheckCover;
 	gint iNbCheckCover;
 	gint iCurrentFileSize;
-	CairoDockTask *pCoverTask;  // async task to download the cover on the net.
+	GldiTask *pCoverTask;  // async task to download the cover on the net.
 	
 	// pochette 3D
 	gint iCoverTransition;

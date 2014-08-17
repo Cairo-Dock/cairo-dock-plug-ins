@@ -50,11 +50,11 @@ CD_APPLET_INIT_BEGIN
 		CD_APPLET_SET_STATIC_DESKLET;
 		
 		// mise en place du timer
-		myData.pRefreshTimer = cairo_dock_new_task (myConfig.iReloadTimeout,
+		myData.pRefreshTimer = gldi_task_new (myConfig.iReloadTimeout,
 			NULL,
-			(CairoDockUpdateSyncFunc) cd_weblets_refresh_page,
+			(GldiUpdateSyncFunc) cd_weblets_refresh_page,
 			myApplet);
-		cairo_dock_launch_task (myData.pRefreshTimer); // ceci lance au moins une fois le chargement de la page
+		gldi_task_launch (myData.pRefreshTimer); // ceci lance au moins une fois le chargement de la page
 	}
 	else  // en desklet on n'affiche pas l'icone.
 		CD_APPLET_SET_DEFAULT_IMAGE_ON_MY_ICON_IF_NONE;
@@ -78,7 +78,7 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		if( myData.pRefreshTimer )
 		{
-			cairo_dock_free_task( myData.pRefreshTimer );
+			gldi_task_free( myData.pRefreshTimer );
 			myData.pRefreshTimer = NULL;
 		}
 		
@@ -117,10 +117,10 @@ CD_APPLET_RELOAD_BEGIN
 		}
 
 		// on remet en place un timer tout frais
-		myData.pRefreshTimer = cairo_dock_new_task (myConfig.iReloadTimeout,
+		myData.pRefreshTimer = gldi_task_new (myConfig.iReloadTimeout,
 			NULL,
-			(CairoDockUpdateSyncFunc) cd_weblets_refresh_page,
+			(GldiUpdateSyncFunc) cd_weblets_refresh_page,
 			myApplet);
-		cairo_dock_launch_task (myData.pRefreshTimer); // ceci lance au moins une fois le chargement de la page
+		gldi_task_launch (myData.pRefreshTimer); // ceci lance au moins une fois le chargement de la page
 	}
 CD_APPLET_RELOAD_END

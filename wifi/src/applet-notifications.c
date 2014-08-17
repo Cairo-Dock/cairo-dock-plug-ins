@@ -35,8 +35,8 @@ CD_APPLET_ON_CLICK_END
 
 static void _wifi_recheck_wireless_extension (GtkMenuItem *menu_item, gpointer data)
 {
-	cairo_dock_stop_task (myData.pTask);
-	cairo_dock_launch_task (myData.pTask);
+	gldi_task_stop (myData.pTask);
+	gldi_task_launch (myData.pTask);
 }
 
 static void _cd_wifi_show_config (GtkMenuItem *menu_item, gpointer data)

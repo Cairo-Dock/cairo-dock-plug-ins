@@ -66,7 +66,7 @@ CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
-	cairo_dock_free_task (myData.pPeriodicTask);
+	gldi_task_free (myData.pPeriodicTask);
 	
 	if (myData.dbus_proxy_nm != NULL)
 		g_object_unref (myData.dbus_proxy_nm);

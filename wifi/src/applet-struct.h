@@ -79,7 +79,7 @@ struct _AppletData {
 	gchar *cAccessPoint;
 	// end of shared memory
 	gboolean bWirelessExt;
-	CairoDockTask *pTask;
+	GldiTask *pTask;
 	gchar *cIWConfigPath;
 };
 

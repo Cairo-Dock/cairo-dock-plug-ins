@@ -149,18 +149,18 @@ void cd_shortcuts_launch_disk_periodic_task (GldiModuleInstance *myApplet)
 	{
 		if (myData.pDiskTask == NULL)
 		{
-			myData.pDiskTask = cairo_dock_new_task (myConfig.iCheckInterval,
-				(CairoDockGetDataAsyncFunc) NULL,
-				(CairoDockUpdateSyncFunc) _cd_shortcuts_update_disk_usage,
+			myData.pDiskTask = gldi_task_new (myConfig.iCheckInterval,
+				(GldiGetDataAsyncFunc) NULL,
+				(GldiUpdateSyncFunc) _cd_shortcuts_update_disk_usage,
 				myApplet);
 		}
-		cairo_dock_launch_task (myData.pDiskTask);
+		gldi_task_launch (myData.pDiskTask);
 	}
 }
 
 void cd_shortcuts_free_disk_periodic_task (GldiModuleInstance *myApplet)
 {
-	cairo_dock_free_task (myData.pDiskTask);
+	gldi_task_free (myData.pDiskTask);
 	myData.pDiskTask = NULL;
 }
 

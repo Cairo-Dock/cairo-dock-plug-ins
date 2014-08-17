@@ -81,7 +81,7 @@ struct _AppletData {
 	GList *lParts;
 	
 	// end of shared memory
-	CairoDockTask *pPeriodicTask;
+	GldiTask *pPeriodicTask;
 	DBusGProxy *dbus_proxy_nm;
 } ;
 

@@ -52,7 +52,7 @@ void cd_shortcuts_reset_all_datas (GldiModuleInstance *myApplet)
 	
 	if (myData.pTask != NULL)
 	{
-		cairo_dock_discard_task (myData.pTask);
+		gldi_task_discard (myData.pTask);
 		myData.pTask = NULL;
 	}
 	

@@ -94,7 +94,7 @@ static inline void _update_feeds (GldiModuleInstance *myApplet)
 {
 	myData.bUpdateIsManual = TRUE;
 	// on ne met pas de message d'attente pour conserver les items actuels, on prefere afficher un dialogue signalant ou pas une modification.
-	if (! cairo_dock_task_is_running (myData.pTask))  // sinon on va bloquer jusqu'a ce que la tache courante se termine, pour la relancer aussitot, ce qui n'a aucun interet.
+	if (! gldi_task_is_running (myData.pTask))  // sinon on va bloquer jusqu'a ce que la tache courante se termine, pour la relancer aussitot, ce qui n'a aucun interet.
 		cd_rssreader_launch_task (myApplet);
 }
 CD_APPLET_ON_MIDDLE_CLICK_BEGIN

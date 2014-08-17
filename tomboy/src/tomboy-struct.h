@@ -77,7 +77,7 @@ struct _AppletData {
 	guint iSidPopupDialog;
 	DBusGProxyCall *pDetectTomboyCall;
 	DBusGProxyCall *pGetNotesCall;
-	CairoDockTask *pTask;
+	GldiTask *pTask;
 	CDNotesBackend backend;
 	} ;
 

@@ -47,7 +47,7 @@ typedef struct _CDHtmlLink
 	gchar *cTitle;
 	gchar *cFaviconPath;
 	gchar *cConfFilePath;
-	CairoDockTask *pTask;
+	GldiTask *pTask;
 } CDHtmlLink;
 
 //\___________ structure containing the applet's configuration parameters.

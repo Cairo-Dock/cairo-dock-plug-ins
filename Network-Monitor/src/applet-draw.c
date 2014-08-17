@@ -123,7 +123,7 @@ void cd_NetworkMonitor_draw_icon (void)
 
 
 void cd_NetworkMonitor_bubble (void) {
-	if (cairo_dock_task_is_running (myData.wifi.pTask) || cairo_dock_task_is_running (myData.netSpeed.pTask))
+	if (gldi_task_is_running (myData.wifi.pTask) || gldi_task_is_running (myData.netSpeed.pTask))
 	{
 		gldi_dialog_show_temporary  (D_("Checking connection...\nPlease retry in a few seconds"), myIcon, myContainer, 3000);
 		return ;

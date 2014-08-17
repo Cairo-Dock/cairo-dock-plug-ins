@@ -328,7 +328,7 @@ static void _update_from_data (CDSharedMemory *pSharedMemory)
 	
 	_define_prefered_wms (pSharedMemory->ps);  // we do it once we know the current state.
 	
-	cairo_dock_discard_task (myData.pTask);
+	gldi_task_discard (myData.pTask);
 	myData.pTask = NULL;
 }
 
@@ -345,19 +345,19 @@ void cd_init_wms (void)
 	_start_watching_composite_state ();
 	
 	CDSharedMemory *pSharedMemory = g_new0 (CDSharedMemory, 1);
-	myData.pTask = cairo_dock_new_task_full (0,  // one-shot
-		(CairoDockGetDataAsyncFunc) _check_wms,
-		(CairoDockUpdateSyncFunc) _update_from_data,
+	myData.pTask = gldi_task_new_full (0,  // one-shot
+		(GldiGetDataAsyncFunc) _check_wms,
+		(GldiUpdateSyncFunc) _update_from_data,
 		(GFreeFunc) _free_shared_memory,
 		pSharedMemory);
-	cairo_dock_launch_task_delayed (myData.pTask, 3000);  // 3s delay, since we don't need these info right away.
+	gldi_task_launch_delayed (myData.pTask, 3000);  // 3s delay, since we don't need these info right away.
 }
 
 
 void cd_stop_wms (void)
 {
 	// discard task.
-	cairo_dock_discard_task (myData.pTask);
+	gldi_task_discard (myData.pTask);
 	
 	// stop listening
 	GdkScreen *pScreen = gdk_screen_get_default ();

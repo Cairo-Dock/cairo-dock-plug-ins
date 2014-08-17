@@ -75,7 +75,7 @@ typedef struct {
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	CairoDockTask *pTask;  // tache pour recuperer le flux.
+	GldiTask *pTask;  // tache pour recuperer le flux.
 	gboolean bUpdateIsManual;  // TRUE si l'utilisateur a force le refresh.
 	
 	GList *pItemList;  // une liste de CDRssItem.

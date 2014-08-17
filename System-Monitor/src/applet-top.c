@@ -349,12 +349,12 @@ static void cd_sysmonitor_launch_top_task (GldiModuleInstance *myApplet)
 	pSharedMemory->iNbCPU = myData.iNbCPU;
 	pSharedMemory->pApplet = myApplet;
 	
-	myData.pTopTask = cairo_dock_new_task_full (myConfig.iProcessCheckInterval,
-		(CairoDockGetDataAsyncFunc) _cd_sysmonitor_get_top_list,
-		(CairoDockUpdateSyncFunc) _cd_sysmonitor_update_top_list,
+	myData.pTopTask = gldi_task_new_full (myConfig.iProcessCheckInterval,
+		(GldiGetDataAsyncFunc) _cd_sysmonitor_get_top_list,
+		(GldiUpdateSyncFunc) _cd_sysmonitor_update_top_list,
 		(GFreeFunc) _free_shared_memory,
 		pSharedMemory);
-	cairo_dock_launch_task (myData.pTopTask);
+	gldi_task_launch (myData.pTopTask);
 }
 
 static void _sort_one_process (int *iPid, CDProcess *pProcess, CDTopSharedMemory *pSharedMemory)
@@ -372,7 +372,7 @@ static void _on_change_order (int iClickedButton, GtkWidget *pInteractiveWidget,
 	{
 		myData.bSortTopByRam = bSortByRamNew;
 		
-		cairo_dock_stop_task (myData.pTopTask);  // blocks until the thread terminates.
+		gldi_task_stop (myData.pTopTask);  // blocks until the thread terminates.
 		
 		CDTopSharedMemory *pSharedMemory = myData.pTopTask->pSharedMemory;  // this is ok only because we stopped the task beforehand.
 		pSharedMemory->bSortTopByRam = bSortByRamNew;
@@ -383,14 +383,14 @@ static void _on_change_order (int iClickedButton, GtkWidget *pInteractiveWidget,
 			_cd_sysmonitor_update_top_list (pSharedMemory);  // on redessine.
 		}
 		
-		cairo_dock_launch_task_delayed (myData.pTopTask, 1000. * myConfig.iProcessCheckInterval);  // restart the task with a delay equal to the interval, to keep the measure accurate.
+		gldi_task_launch_delayed (myData.pTopTask, 1000. * myConfig.iProcessCheckInterval);  // restart the task with a delay equal to the interval, to keep the measure accurate.
 	}
 	gldi_object_ref (GLDI_OBJECT (pDialog));  // keep the dialog alive.
 }
 static void _on_dialog_destroyed (GldiModuleInstance *myApplet)
 {
 	// discard the 'top' task.
-	cairo_dock_discard_task (myData.pTopTask);
+	gldi_task_discard (myData.pTopTask);
 	myData.pTopTask = NULL;
 	
 	// no more dialog.

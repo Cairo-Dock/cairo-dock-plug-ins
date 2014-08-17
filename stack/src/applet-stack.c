@@ -272,7 +272,7 @@ static gboolean _update_html_link (CDHtmlLink *pHtmlLink)
 		g_free (cDesktopFileName);
 	}
 	
-	cairo_dock_discard_task (pHtmlLink->pTask);
+	gldi_task_discard (pHtmlLink->pTask);
 	myData.pGetPageTaskList = g_list_remove (myData.pGetPageTaskList, pHtmlLink->pTask);
 	
 	CD_APPLET_LEAVE (TRUE);
@@ -326,13 +326,13 @@ static Icon *_cd_stack_create_new_item (GldiModuleInstance *myApplet, const gcha
 			pHtmlLink = g_new0 (CDHtmlLink, 1);
 			pHtmlLink->pApplet = myApplet;
 			pHtmlLink->cURL = g_strdup (cContent);
-			pHtmlLink->pTask = cairo_dock_new_task_full (0,
-				(CairoDockGetDataAsyncFunc)_get_html_page,
-				(CairoDockUpdateSyncFunc)_update_html_link,
+			pHtmlLink->pTask = gldi_task_new_full (0,
+				(GldiGetDataAsyncFunc)_get_html_page,
+				(GldiUpdateSyncFunc)_update_html_link,
 				(GFreeFunc)_free_html_link,
 				pHtmlLink);
 			myData.pGetPageTaskList = g_list_prepend (myData.pGetPageTaskList, pHtmlLink->pTask);
-			cairo_dock_launch_task (pHtmlLink->pTask);
+			gldi_task_launch (pHtmlLink->pTask);
 			
 			gchar *buf = g_strdup (cContent);
 			gchar *str = strchr (buf, '?');

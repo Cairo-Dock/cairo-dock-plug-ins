@@ -98,12 +98,12 @@ CD_APPLET_INIT_BEGIN
 	
 	// Initialisation de la tache periodique de mesure.
 	myData.pClock = g_timer_new ();
-	myData.pPeriodicTask = cairo_dock_new_task (myConfig.iCheckInterval,
-		(CairoDockGetDataAsyncFunc) cd_netspeed_get_data,
-		(CairoDockUpdateSyncFunc) cd_netspeed_update_from_data,
+	myData.pPeriodicTask = gldi_task_new (myConfig.iCheckInterval,
+		(GldiGetDataAsyncFunc) cd_netspeed_get_data,
+		(GldiUpdateSyncFunc) cd_netspeed_update_from_data,
 		myApplet);
 	myData.bAcquisitionOK = TRUE;
-	cairo_dock_launch_task (myData.pPeriodicTask);
+	gldi_task_launch (myData.pPeriodicTask);
 	
 	CD_APPLET_REGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_REGISTER_FOR_BUILD_MENU_EVENT;
@@ -142,14 +142,14 @@ CD_APPLET_RELOAD_BEGIN
 				CD_APPLET_SET_NAME_FOR_MY_ICON (myApplet->pModule->pVisitCard->cTitle);
 		}
 		
-		cairo_dock_relaunch_task_immediately (myData.pPeriodicTask, myConfig.iCheckInterval);
+		gldi_task_change_frequency_and_relaunch (myData.pPeriodicTask, myConfig.iCheckInterval);
 	}
 	else {  // on redessine juste l'icone.
 		//CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
 		if (myConfig.iDisplayType == CD_NETSPEED_GRAPH)
 			CD_APPLET_SET_MY_DATA_RENDERER_HISTORY_TO_MAX;
 		
-		/**if (! cairo_dock_task_is_running (myData.pPeriodicTask))
+		/**if (! gldi_task_is_running (myData.pPeriodicTask))
 			cd_netspeed_update_from_data (myApplet);*/
 	}
 CD_APPLET_RELOAD_END

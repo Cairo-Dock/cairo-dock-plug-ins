@@ -72,7 +72,7 @@ typedef struct {
 
 //\___________ structure containing the applet's data, like surfaces, dialogs, results of calculus, etc.
 struct _AppletData {
-	CairoDockTask *pTask;
+	GldiTask *pTask;
 	CDWM pWmList[NB_WM];
 	gboolean bIsComposited;
 	CDWM *wmc;

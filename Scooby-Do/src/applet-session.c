@@ -66,7 +66,7 @@ void cd_do_open_session (void)
 	myData.iPromptAnimationCount = 0;
 	if (myData.pPromptSurface == NULL)
 	{
-		cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
+		cairo_t *pCairoContext = cairo_dock_create_drawing_context_generic (CAIRO_CONTAINER (g_pMainDock));
 		myData.pPromptSurface = cairo_dock_create_surface_from_text (D_("Enter your search"), &myConfig.labelDescription, &myData.iPromptWidth, &myData.iPromptHeight);
 		cairo_destroy (pCairoContext);
 		if (g_bUseOpenGL)
@@ -206,7 +206,7 @@ void cd_do_load_pending_caracters (void)
 	gboolean bLoadTexture = (CAIRO_CONTAINER_IS_OPENGL (g_pMainDock));
 	gchar c[2] = {'\0', '\0'};
 	CDChar *pChar;
-	cairo_t *pCairoContext = cairo_dock_create_context_from_window (CAIRO_CONTAINER (g_pMainDock));
+	cairo_t *pCairoContext = cairo_dock_create_drawing_context_generic (CAIRO_CONTAINER (g_pMainDock));
 	int iDeltaT = cairo_dock_get_animation_delta_t (g_pMainDock);
 	guint i;
 	int iOffsetX=0;

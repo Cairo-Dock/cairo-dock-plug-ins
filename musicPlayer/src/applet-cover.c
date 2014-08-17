@@ -204,7 +204,7 @@ static void _reset_cover_state (void)
 	myData.iNbCheckCover = 0;
 	if (myData.pCoverTask != NULL)
 	{
-		cairo_dock_discard_task (myData.pCoverTask);
+		gldi_task_discard (myData.pCoverTask);
 		myData.pCoverTask = NULL;
 	}
 }
@@ -284,7 +284,7 @@ static gboolean _on_got_cover (CDSharedMemory *pSharedMemory)
 		myData.cover_exist = TRUE;
 		cd_musiplayer_apply_cover ();
 	}
-	cairo_dock_discard_task (myData.pCoverTask);
+	gldi_task_discard (myData.pCoverTask);
 	myData.pCoverTask = NULL;
 	CD_APPLET_LEAVE (FALSE);
 }
@@ -302,7 +302,7 @@ static void cd_musicplayer_dl_cover (void)
 	
 	if (myData.pCoverTask != NULL)
 	{
-		cairo_dock_discard_task (myData.pCoverTask);
+		gldi_task_discard (myData.pCoverTask);
 		myData.pCoverTask = NULL;
 	}
 	
@@ -312,10 +312,10 @@ static void cd_musicplayer_dl_cover (void)
 	pSharedMemory->cPlayingUri = g_strdup (myData.cPlayingUri);
 	pSharedMemory->cLocalPath = g_strdup (myData.cCoverPath);
 	
-	myData.pCoverTask = cairo_dock_new_task_full (0,
-		(CairoDockGetDataAsyncFunc) _get_cover_async,
-		(CairoDockUpdateSyncFunc) _on_got_cover,
+	myData.pCoverTask = gldi_task_new_full (0,
+		(GldiGetDataAsyncFunc) _get_cover_async,
+		(GldiUpdateSyncFunc) _on_got_cover,
 		(GFreeFunc) _free_shared_memory,
 		pSharedMemory);
-	cairo_dock_launch_task (myData.pCoverTask);
+	gldi_task_launch (myData.pCoverTask);
 }

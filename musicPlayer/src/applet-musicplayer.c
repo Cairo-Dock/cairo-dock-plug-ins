@@ -191,19 +191,19 @@ void cd_musicplayer_launch_handler (void)
 	{
 		if (myData.pCurrentHandler->bSeparateAcquisition == TRUE)  // Utilisation du thread pour les actions longues
 		{
-  			myData.pTask = cairo_dock_new_task (1,
-  				(CairoDockGetDataAsyncFunc) _cd_musicplayer_get_data_async,
-  				(CairoDockUpdateSyncFunc) _cd_musicplayer_update_from_data,
+  			myData.pTask = gldi_task_new (1,
+  				(GldiGetDataAsyncFunc) _cd_musicplayer_get_data_async,
+  				(GldiUpdateSyncFunc) _cd_musicplayer_update_from_data,
   				NULL);
 		}
 		else
 		{
-  			myData.pTask = cairo_dock_new_task (1,
+  			myData.pTask = gldi_task_new (1,
   				NULL,
-  				(CairoDockUpdateSyncFunc) _cd_musicplayer_get_data_and_update,
+  				(GldiUpdateSyncFunc) _cd_musicplayer_get_data_and_update,
   				NULL);
 		}
-		cairo_dock_launch_task (myData.pTask);
+		gldi_task_launch (myData.pTask);
 	}  // else all is done by signals.
 	
 	myData.bIsRunning = TRUE;
@@ -215,8 +215,8 @@ void cd_musicplayer_relaunch_handler (void)
 {
 	if (myData.pCurrentHandler->get_data && (myData.pCurrentHandler->iLevel == PLAYER_BAD || (myData.pCurrentHandler->iLevel == PLAYER_GOOD && (myConfig.iQuickInfoType == MY_APPLET_TIME_ELAPSED || myConfig.iQuickInfoType == MY_APPLET_TIME_LEFT))))  // il y'a de l'acquisition de donnees periodique a faire.
 	{
-		if (!cairo_dock_task_is_active (myData.pTask))
-			cairo_dock_launch_task (myData.pTask);
+		if (!gldi_task_is_active (myData.pTask))
+			gldi_task_launch (myData.pTask);
 	}
 }
 
@@ -258,7 +258,7 @@ void cd_musicplayer_stop_current_handler (gboolean bStopWatching)
 	// disconnect from the bus, stop all signals/task
 	cd_musicplayer_dbus_disconnect_from_bus ();
 	
-	cairo_dock_free_task (myData.pTask);
+	gldi_task_free (myData.pTask);
 	myData.pTask = NULL;
 	
 	// return to initial state.

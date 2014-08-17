@@ -134,17 +134,17 @@ CD_APPLET_INIT_BEGIN
 	// Initialisation de la tache periodique de mesure.
 	myData.pClock = g_timer_new ();
 	if (myConfig.bShowNvidia || (myConfig.bShowCpu && myConfig.bShowRam))
-		myData.pPeriodicTask = cairo_dock_new_task (myConfig.iCheckInterval,
-			(CairoDockGetDataAsyncFunc) cd_sysmonitor_get_data,
-			(CairoDockUpdateSyncFunc) cd_sysmonitor_update_from_data,
+		myData.pPeriodicTask = gldi_task_new (myConfig.iCheckInterval,
+			(GldiGetDataAsyncFunc) cd_sysmonitor_get_data,
+			(GldiUpdateSyncFunc) cd_sysmonitor_update_from_data,
 			myApplet);
 	else
-		myData.pPeriodicTask = cairo_dock_new_task (myConfig.iCheckInterval,
-			(CairoDockGetDataAsyncFunc) NULL,
-			(CairoDockUpdateSyncFunc) _unthreaded_task,
+		myData.pPeriodicTask = gldi_task_new (myConfig.iCheckInterval,
+			(GldiGetDataAsyncFunc) NULL,
+			(GldiUpdateSyncFunc) _unthreaded_task,
 			myApplet);
 	myData.bAcquisitionOK = TRUE;
-	cairo_dock_launch_task_delayed (myData.pPeriodicTask, 0.);  // launch in idle.
+	gldi_task_launch_delayed (myData.pPeriodicTask, 0.);  // launch in idle.
 	
 	// On gere l'appli "moniteur systeme".
 	if (myConfig.cSystemMonitorClass)
@@ -201,7 +201,7 @@ CD_APPLET_RELOAD_BEGIN
 		myData.fPrevCpuTempPercent = 0;
 		myData.fPrevFanSpeedPercent = 0;
 		myData.iTimerCount = 0;
-		cairo_dock_relaunch_task_immediately (myData.pPeriodicTask, myConfig.iCheckInterval);
+		gldi_task_change_frequency_and_relaunch (myData.pPeriodicTask, myConfig.iCheckInterval);
 		
 		CD_APPLET_MANAGE_APPLICATION (myConfig.cSystemMonitorClass);
 	}
@@ -217,7 +217,7 @@ CD_APPLET_RELOAD_BEGIN
 		myConfig.pTopTextDescription->bVerticalPattern = TRUE;
 		cairo_dock_free_label_description (pOldLabelDescription);
 		
-		if (! cairo_dock_task_is_running (myData.pPeriodicTask))
+		if (! gldi_task_is_running (myData.pPeriodicTask))
 		{
 			myData.fPrevCpuPercent = 0;
 			myData.fPrevRamPercent = 0;

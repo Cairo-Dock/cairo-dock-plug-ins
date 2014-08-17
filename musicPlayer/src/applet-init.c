@@ -170,7 +170,7 @@ CD_APPLET_STOP_BEGIN
 	// On stoppe les boucles de recup de la pochette.
 	if (myData.iSidCheckCover != 0)
 		g_source_remove (myData.iSidCheckCover);
-	cairo_dock_free_task (myData.pCoverTask);
+	gldi_task_free (myData.pCoverTask);
 	
 	// on libere la classe.
 	gchar *cNull = NULL;

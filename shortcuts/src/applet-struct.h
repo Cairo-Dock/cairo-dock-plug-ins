@@ -82,11 +82,11 @@ typedef struct {
 	} CDSharedMemory;
 
 struct _AppletData {
-	CairoDockTask *pTask;
+	GldiTask *pTask;
 	gchar *cDisksURI;
 	gchar *cNetworkURI;
 	gchar *cBookmarksURI;
-	CairoDockTask *pDiskTask;  // tache non threadee.
+	GldiTask *pDiskTask;  // tache non threadee.
 	gchar *cLastCreatedUri;
 	gchar *cLastDeletedUri;
 	gboolean bShowMenuPending;

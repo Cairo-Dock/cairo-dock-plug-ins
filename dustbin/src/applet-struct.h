@@ -46,7 +46,7 @@ typedef struct _CDSharedMemory {
 	} CDSharedMemory;
 
 struct _AppletData {
-	CairoDockTask *pTask;  // tache de la mesure.
+	GldiTask *pTask;  // tache de la mesure.
 	// shared memory
 	gsize _iMeasure;
 	// end of shared memory
@@ -54,7 +54,7 @@ struct _AppletData {
 	gchar *cDustbinPath;  // donnee constante.
 	gboolean bMonitoringOK;
 	gboolean bDisplayFullIcon;
-	CairoDockTask *pInfoTask;  // tache de la mesure de l'info.
+	GldiTask *pInfoTask;  // tache de la mesure de l'info.
 	// shared memory
 	gsize _iInfoMeasure;
 	// end of shared memory

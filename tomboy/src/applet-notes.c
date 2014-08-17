@@ -323,7 +323,7 @@ void cd_notes_stop (void)
 	if (myData.backend.stop)
 		myData.backend.stop ();
 	
-	cairo_dock_discard_task (myData.pTask);
+	gldi_task_discard (myData.pTask);
 	myData.pTask = NULL;
 	
 	free_all_notes ();  // detruit aussi la liste des icones.

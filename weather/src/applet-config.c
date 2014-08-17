@@ -58,8 +58,8 @@ CD_APPLET_RESET_CONFIG_END
 
 void cd_weather_reset_all_datas (GldiModuleInstance *myApplet)
 {
-	cairo_dock_discard_task (myData.pTask);
-	cairo_dock_discard_task (myData.pGetLocationTask);
+	gldi_task_discard (myData.pTask);
+	gldi_task_discard (myData.pGetLocationTask);
 	
 	cd_weather_reset_data (myApplet);
 	
@@ -107,7 +107,7 @@ static void _on_got_location_data (const gchar *cLocationData, GldiModuleInstanc
 	if (!pCodeEntry)
 	{
 		cd_debug ("request took too long, discard results");
-		cairo_dock_discard_task (myData.pGetLocationTask);
+		gldi_task_discard (myData.pGetLocationTask);
 		myData.pGetLocationTask = NULL;
 		return;
 	}
@@ -171,7 +171,7 @@ static void _on_got_location_data (const gchar *cLocationData, GldiModuleInstanc
 			gtk_get_current_event_time ());
 	}
 	
-	cairo_dock_discard_task (myData.pGetLocationTask);
+	gldi_task_discard (myData.pGetLocationTask);
 	myData.pGetLocationTask = NULL;
 }
 #define CD_WEATHER_BASE_URL "http://xml.weather.com"
@@ -185,7 +185,7 @@ static void _cd_weather_search_for_location (GtkEntry *pEntry, GldiModuleInstanc
 	
 	if (myData.pGetLocationTask != NULL)
 	{
-		cairo_dock_discard_task (myData.pGetLocationTask);
+		gldi_task_discard (myData.pGetLocationTask);
 		myData.pGetLocationTask = NULL;
 	}
 	gchar *cURL = g_strdup_printf (CD_WEATHER_BASE_URL"/search/search?where=%s", cLocationName);

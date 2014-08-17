@@ -288,12 +288,12 @@ gboolean cd_mail_update_account_status( CDMailAccount *pUpdatedMailAccount )
 	if (pUpdatedMailAccount->bError && pUpdatedMailAccount->pAccountMailTimer->iPeriod > 20)
 	{
 		cd_message ("no data, will re-try in 20s");
-		cairo_dock_change_task_frequency (pUpdatedMailAccount->pAccountMailTimer, 20);  // on re-essaiera dans 20s.
+		gldi_task_change_frequency (pUpdatedMailAccount->pAccountMailTimer, 20);  // on re-essaiera dans 20s.
 	}
 	else if (pUpdatedMailAccount->pAccountMailTimer->iPeriod != pUpdatedMailAccount->timeout * 60)
 	{
 		cd_message ("revert to normal frequency");
-		cairo_dock_change_task_frequency (pUpdatedMailAccount->pAccountMailTimer, pUpdatedMailAccount->timeout * 60);
+		gldi_task_change_frequency (pUpdatedMailAccount->pAccountMailTimer, pUpdatedMailAccount->timeout * 60);
 	}
 	
 	if (pUpdatedMailAccount->bError)

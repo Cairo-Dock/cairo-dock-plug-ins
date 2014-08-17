@@ -70,11 +70,11 @@ CD_APPLET_INIT_BEGIN
 	CD_APPLET_REGISTER_FOR_DROP_DATA_EVENT;
 	
 	//\_______________ On lance le timer.   
-    myData.pPeriodicRefreshTask = cairo_dock_new_task (myConfig.iCheckInterval,
-			(CairoDockGetDataAsyncFunc) cd_launch_command,
-			(CairoDockUpdateSyncFunc) cd_retrieve_command_result,
+    myData.pPeriodicRefreshTask = gldi_task_new (myConfig.iCheckInterval,
+			(GldiGetDataAsyncFunc) cd_launch_command,
+			(GldiUpdateSyncFunc) cd_retrieve_command_result,
 			myApplet);
-	cairo_dock_launch_task (myData.pPeriodicRefreshTask);
+	gldi_task_launch (myData.pPeriodicRefreshTask);
 	
 	myData.bAcquisitionOK = TRUE;
 	
@@ -115,7 +115,7 @@ CD_APPLET_RELOAD_BEGIN
 		
 		CD_APPLET_MANAGE_APPLICATION (myConfig.cSystemMonitorClass);
 				
-		cairo_dock_relaunch_task_immediately (myData.pPeriodicRefreshTask, myConfig.iCheckInterval);
+		gldi_task_change_frequency_and_relaunch (myData.pPeriodicRefreshTask, myConfig.iCheckInterval);
 				
 		cd_doncky_free_item_list (myApplet);		
 		if (! cd_doncky_readxml (myApplet))

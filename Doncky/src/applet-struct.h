@@ -83,7 +83,7 @@ struct _AppletData {
 	double fPrevTextColor[4];
 	gint iPrevOverrideH;
 	gint iPrevOverrideW;	
-	CairoDockTask *pPeriodicRefreshTask;	
+	GldiTask *pPeriodicRefreshTask;	
 	GList *pTextZoneList;	
 	gchar *cCurrentText;	
 	double fCurrentX; // Position du curseur dans le desklet
