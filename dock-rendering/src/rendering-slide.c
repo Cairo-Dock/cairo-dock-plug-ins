@@ -895,7 +895,7 @@ static void cairo_dock_render_decorations_in_frame_for_diapo_simple (cairo_t *pC
 	{
 		GldiColor bg_color, bg_color2;
 		gldi_style_color_get (GLDI_COLOR_BG, &bg_color);
-		gldi_style_color_shade (&bg_color, .12, &bg_color2);  // same as other views
+		gldi_style_color_shade (&bg_color, GLDI_COLOR_SHADE_LIGHT, &bg_color2);  // same as other views
 		
 		cairo_pattern_add_color_stop_rgba (mon_super_pattern, 0, 
 			bg_color.rgba.red,
@@ -1338,7 +1338,7 @@ static const GLfloat *cd_generate_color_tab (double fAlpha, GLfloat *pBottomLeft
 	if (my_diapo_simple_use_default_colors)
 	{
 		gldi_style_color_get (GLDI_COLOR_BG, &bg_color);
-		gldi_style_color_shade (&bg_color, .12, &bg_color2);  // same as other views
+		gldi_style_color_shade (&bg_color, GLDI_COLOR_SHADE_LIGHT, &bg_color2);  // same as other views
 		bg_color.rgba.alpha = 1.;
 		pColor1 = (double*)&bg_color.rgba;
 		pColor2 = (double*)&bg_color2.rgba;
