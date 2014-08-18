@@ -260,7 +260,8 @@ static void cd_switcher_change_nb_desktops (int iDeltaNbDesktops)
 	}
 	else
 	{
-		if (g_desktopGeometry.iNbViewportX >= g_desktopGeometry.iNbViewportY)
+		// Try to keep a square: (delta > 0 && X <= Y) || (delta < 0 && X > Y)
+		if ((iDeltaNbDesktops > 0) == (g_desktopGeometry.iNbViewportX <= g_desktopGeometry.iNbViewportY))
 			gldi_desktop_set_nb_desktops (-1, g_desktopGeometry.iNbViewportX + iDeltaNbDesktops, g_desktopGeometry.iNbViewportY);  // -1 = don't update desktops number
 		else
 			gldi_desktop_set_nb_desktops (-1, g_desktopGeometry.iNbViewportX, g_desktopGeometry.iNbViewportY + iDeltaNbDesktops);
