@@ -193,7 +193,7 @@ static void _on_device_changed (G_GNUC_UNUSED UpDevice *pDevice, G_GNUC_UNUSED g
 #endif
 {
 	// The applet is removed just before an update...
-	if (myData == NULL)
+	if (myApplet == NULL)
 		return;
 
 	CD_APPLET_ENTER;
