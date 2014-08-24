@@ -51,7 +51,7 @@ static void cd_rendering_calculate_max_dock_size_rainbow (CairoDock *pDock)
 	int iNbIcons = g_list_length (pDock->icons);
 	int iMinRadius = MIN (my_iRainbowNbIconsMin, iNbIcons) * iMaxIconWidth * fMaxScale / fCone;
 	
-	int iNbRows = (int) ceil (sqrt (2 * iNbIcons / fCone / fMaxScale) + .5);  /// approximation, utiliser la formule complete...
+	int iNbRows = (int) ceil (sqrt (2 * iNbIcons / fCone / fMaxScale) + .5);  /// approximation, use complete formula
 	
 	pDock->iMaxDockHeight = iNbRows * (pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fMaxScale + iMinRadius;
 	pDock->iMaxDockWidth = 2 * (pDock->iMaxDockHeight * cos (my_fRainbowConeOffset));
@@ -87,7 +87,7 @@ static void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDoc
 			cairo_translate (pCairoContext, 0., pDock->container.iHeight);
 			cairo_scale (pCairoContext, 1., -1.);
 		}
-		//\____________________ On fait un clip du cone.
+		//\____________________ We do a clip of the cone.
 		cairo_move_to (pCairoContext, 0., pDock->container.iHeight * (1 - sin (my_fRainbowConeOffset)));
 		cairo_line_to (pCairoContext, pDock->container.iWidth/2, pDock->container.iHeight);
 		cairo_line_to (pCairoContext, pDock->container.iWidth, pDock->container.iHeight * (1 - sin (my_fRainbowConeOffset)));
@@ -96,7 +96,7 @@ static void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDoc
 		cairo_close_path (pCairoContext);
 		cairo_clip (pCairoContext);
 		
-		//\____________________ On dessine chaque rayure dedans.
+		//\____________________ We draw each scratch in it.
 		cairo_pattern_t *pGradationPattern = cairo_pattern_create_radial (pDock->container.iWidth/2,
 			pDock->container.iHeight,
 			0.,
@@ -123,7 +123,7 @@ static void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDoc
 			fRadius = icon->fX - (pDock->container.bDirectionUp ? pDock->iMaxIconHeight * fMaxScale : 0);
 			if (fRadius != fCurrentRadius)
 			{
-				if (fCurrentRadius == 0)  // 1er coup.
+				if (fCurrentRadius == 0)  // First hit.
 				{
 					cairo_pattern_add_color_stop_rgba (pGradationPattern,
 						(fRadius - my_iSpaceBetweenRows/2)/ pDock->container.iHeight,
@@ -156,7 +156,7 @@ static void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDoc
 		cairo_restore (pCairoContext);
 	}
 	
-	//\____________________ On dessine le cadre.
+	//\____________________ We draw the frame/border.
 	if (fRadius == 0)
 	{
 		Icon *icon = cairo_dock_get_last_icon (pDock->icons);
@@ -191,9 +191,7 @@ static void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDoc
 		cairo_restore (pCairoContext);
 	}
 	
-	//\____________________ On dessine la ficelle qui les joint.
-	
-	//\____________________ On dessine les icones avec leurs etiquettes.
+	//\____________________ We draw the icons with their labels.
 	///cairo_dock_render_icons_linear (pCairoContext, pDock, fRatio);
 	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pDock->icons);
 	if (pFirstDrawnElement == NULL)
@@ -305,7 +303,7 @@ static int cd_rendering_calculate_wave_on_each_lines (int x_abs, int iMaxIconHei
 	if (iNbRows == 0)
 		return 0;
 	cd_debug ("%s (%d, %.2f, %.2f, %d)", __func__, x_abs, fMagnitude, fFoldingFactor, iNbRows);
-	if (x_abs < 0 && iWidth > 0)  // ces cas limite sont la pour empecher les icones de retrecir trop rapidement quend on sort par les cotes.
+	if (x_abs < 0 && iWidth > 0)  // These borderline cases are there to avoid having icons which shrink too fast when we go out from the sides.
 		x_abs = -1;
 	else if (x_abs > fFlatDockWidth && iWidth > 0)
 		x_abs = fFlatDockWidth+1;
@@ -335,7 +333,7 @@ static int cd_rendering_calculate_wave_on_each_lines (int x_abs, int iMaxIconHei
 			//cd_debug ("  fX : %.2f (prev : %.2f , %.2f)", fX, pScales[2*(iNumRow-1)+1], pScales[2*(iNumRow-1)]);
 		}
 		
-		if (x_cumulated + iMaxIconHeight + .5*my_iSpaceBetweenRows >= x_abs && x_cumulated - .5*my_iSpaceBetweenRows <= x_abs && iPointedRow == -1)  // on a trouve la ligne sur laquelle on pointe.
+		if (x_cumulated + iMaxIconHeight + .5*my_iSpaceBetweenRows >= x_abs && x_cumulated - .5*my_iSpaceBetweenRows <= x_abs && iPointedRow == -1)  // We found the line on which the mouse's pointer is over.
 		{
 			iPointedRow = iNumRow;
 			fX = x_cumulated - 0*(fFlatDockWidth - iWidth) / 2 + (1 - fScale) * (x_abs - x_cumulated + .5*my_iSpaceBetweenRows);
@@ -348,7 +346,7 @@ static int cd_rendering_calculate_wave_on_each_lines (int x_abs, int iMaxIconHei
 		x_cumulated += iMaxIconHeight;
 	}
 	
-	if (iPointedRow == -1)  // on est en dehors du disque.
+	if (iPointedRow == -1)  // We are out of the disk.
 	{
 		iPointedRow = iNbRows - 1;
 		
@@ -380,7 +378,7 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	if (pDock->icons == NULL)
 		return NULL;
 	
-	//\____________________ On se place en coordonnees polaires.
+	//\____________________ We are using polar coordinates.
 	double fMaxScale =  1. + my_fRainbowMagnitude * myIconsParam.fAmplitude;
 	int iMaxIconWidth = pDock->iMaxIconHeight + my_iSpaceBetweenIcons;
 	double fCone = G_PI - 2 * my_fRainbowConeOffset;
@@ -394,20 +392,20 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	
 	double fCurvilignAbscisse = (fTheta > -G_PI/2 && fTheta < G_PI/2 ? MAX (0, fRadius - iMinRadius): 0);
 	
-	//\____________________ On en deduit ou appliquer la vague pour que la crete soit a la position du curseur.
+	//\____________________ We deduce or apply the wave in order to have a "ridge" at the position of the cursor.
 	Icon *pPointedIcon = NULL;
 	double fMagnitude = cairo_dock_calculate_magnitude (pDock->iMagnitudeIndex) * pDock->fMagnitudeMax;
 	int x_abs = (int) round (cd_rendering_calculate_wave_position (pDock, fCurvilignAbscisse, fMagnitude));
 	cd_debug (" => x_abs : %d (fMagnitude:%.2f ; fFoldingFactor:%.2f)", x_abs, fMagnitude, pDock->fFoldingFactor);
 	
-	//\_______________ On en deduit l'amplitude de chaque ligne.
+	//\_______________ We deduce the amplitude for each line.
 	int iNbRows = round ((pDock->iMaxDockHeight- iMinRadius) / ((pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fMaxScale));
 	cd_debug ("iNbRows : %d", iNbRows);
 	double fFlatDockWidth = iNbRows * (pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fMaxScale;
 	double *pScales = g_new0 (double, 2*iNbRows+2);
 	cd_rendering_calculate_wave_on_each_lines (x_abs, pDock->iMaxIconHeight, fMagnitude, fFlatDockWidth, fFlatDockWidth, 0*pDock->fAlign, pDock->fFoldingFactor, fRatio, iNbRows, pScales);
 	
-	//\____________________ On en deduit les position/etirements/alpha des icones.
+	//\____________________ We deduce the positions/stretching/alpha of all icons.
 	Icon* icon;
 	GList* ic;
 	
@@ -432,7 +430,7 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 			fDeltaTheta = 2 * atan (iMaxIconWidth * fMaxScale / 2 / fNormalRadius);
 			iNbIconsOnRow = (int) (fCone / fDeltaTheta);
 			fThetaStart = - G_PI/2 + my_fRainbowConeOffset + (fCone - iNbIconsOnRow * fDeltaTheta) / 2 + fDeltaTheta / 2;
-			cd_debug ("on passe a la ligne %d (%d icones, fThetaStart = %.2fdeg, fCurrentRadius = %.2f(%.2f), fDeltaTheta = %.2f, fCurrentScale = %.2f)", iNbRow, iNbIconsOnRow, fThetaStart/G_PI*180, fCurrentRadius, fNormalRadius, fDeltaTheta/G_PI*180, fCurrentScale);
+			cd_debug ("We go to the line %d (%d icons, fThetaStart = %.2fdeg, fCurrentRadius = %.2f(%.2f), fDeltaTheta = %.2f, fCurrentScale = %.2f)", iNbRow, iNbIconsOnRow, fThetaStart/G_PI*180, fCurrentRadius, fNormalRadius, fDeltaTheta/G_PI*180, fCurrentScale);
 		}
 		
 		icon->fX = fCurrentRadius + (pDock->container.bDirectionUp ? pDock->iMaxIconHeight * fCurrentScale : 0);
@@ -485,7 +483,7 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 		fRadius > fCurrentRadius + pDock->iMaxIconHeight * fCurrentScale + myIconsParam.iLabelSize - (pDock->fFoldingFactor > 0 ? 20 : 0) ||
 		((fTheta < - G_PI/2 + my_fRainbowConeOffset || fTheta > G_PI/2 - my_fRainbowConeOffset) && fRadius > iMinRadius + .5 * pDock->iMaxIconHeight * fMaxScale))
 	{
-		cd_debug ("<<< on sort du demi-disque >>>\n");
+		cd_debug ("We go out of the semi-disk");
 		pDock->iMousePositionType = CAIRO_DOCK_MOUSE_OUTSIDE;
 		pDock->bCanDrop = FALSE;
 	}
@@ -503,7 +501,7 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 static void _generate_cos_sin (double fConeOffset, double fDelta, double *pTabValues)
 {
 	int i, n = (int) ceil ((G_PI/2 - fConeOffset) / fDelta);
-	pTabValues[2*n] = 0.;  // point au milieu.
+	pTabValues[2*n] = 0.;  // point at the middle.
 	pTabValues[2*n+1] = 1.;
 	
 	double fTheta;
@@ -562,11 +560,11 @@ static void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 	double fRadius=0;
 	if (my_fRainbowColor[3] != 0 && pDock->icons != NULL)
 	{
-		//\____________________ On trace le cadre.
-		//\____________________ On dessine les decorations dedans.
+		//\____________________ We draw frame's borders.
+		//\____________________ We draw decorations in it.
 		glEnable (GL_LINE_SMOOTH);
 		glHint (GL_LINE_SMOOTH_HINT, GL_NICEST);
-		///_cairo_dock_set_blend_alpha ();  // qqch cloche ...
+		///_cairo_dock_set_blend_alpha ();  // strange ...
 		_cairo_dock_set_blend_over ();
 		glEnable(GL_BLEND);
 		
@@ -634,7 +632,7 @@ static void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 		glDisable(GL_BLEND);
 	}
 	
-	//\____________________ On dessine le cadre.
+	//\____________________ We draw the frame's borders.
 	if (fRadius == 0)
 	{
 		Icon *icon = cairo_dock_get_last_icon (pDock->icons);
@@ -684,7 +682,7 @@ static void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 		glPopMatrix ();
 	}
 	
-	//\____________________ On dessine les icones.
+	//\____________________ We draw icons.
 	GList *pFirstDrawnElement = cairo_dock_get_first_drawn_element_linear (pDock->icons);
 	if (pFirstDrawnElement == NULL)
 		return;
