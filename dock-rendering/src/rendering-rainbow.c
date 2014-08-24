@@ -300,7 +300,7 @@ static double cd_rendering_calculate_wave_position (CairoDock *pDock, double fCu
 
 static int cd_rendering_calculate_wave_on_each_lines (int x_abs, int iMaxIconHeight, double fMagnitude, double fFlatDockWidth, int iWidth, double fAlign, double fFoldingFactor, double fRatio, int iNbRows, double *pScales)  // (fScale,fX)
 {
-	if (iNbRows == 0)
+	if (iNbRows <= 0)
 		return 0;
 	cd_debug ("%s (%d, %.2f, %.2f, %d)", __func__, x_abs, fMagnitude, fFoldingFactor, iNbRows);
 	if (x_abs < 0 && iWidth > 0)  // These borderline cases are there to avoid having icons which shrink too fast when we go out from the sides.
@@ -399,7 +399,7 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 	cd_debug (" => x_abs : %d (fMagnitude:%.2f ; fFoldingFactor:%.2f)", x_abs, fMagnitude, pDock->fFoldingFactor);
 	
 	//\_______________ We deduce the amplitude for each line.
-	int iNbRows = round ((pDock->iMaxDockHeight- iMinRadius) / ((pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fMaxScale));
+	int iNbRows = round ((pDock->iMaxDockHeight - iMinRadius) / ((pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fMaxScale));
 	cd_debug ("iNbRows : %d", iNbRows);
 	double fFlatDockWidth = iNbRows * (pDock->iMaxIconHeight + my_iSpaceBetweenRows) * fMaxScale;
 	double *pScales = g_new0 (double, 2*iNbRows+2);
@@ -421,7 +421,7 @@ static Icon *cd_rendering_calculate_icons_rainbow (CairoDock *pDock)
 		if (iNbInsertedIcons == iNbIconsOnRow)
 		{
 			iNbRow ++;
-			if (iNbRow == iNbRows)
+			if (iNbRow >= iNbRows)
 				break ;
 			iNbInsertedIcons = 0;
 			fCurrentRadius = iMinRadius * (1 - pDock->fFoldingFactor) + pScales[2*iNbRow+1];
