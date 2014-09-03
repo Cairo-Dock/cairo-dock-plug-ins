@@ -29,7 +29,6 @@
 #define CD_CLOCK_DATE_BUFFER_LENGTH 50
 static char s_cDateBuffer[CD_CLOCK_DATE_BUFFER_LENGTH+1];
 
-#define GAPX .12
 #define GAPY .02
 ///#define MAX_RATIO 2.
 #define MIN_TEXT_HEIGHT 12.  // the text should be at least 12 pixels height, or it would be hard to read for a lot of people.
@@ -139,7 +138,7 @@ void cd_clock_draw_text (GldiModuleInstance *myApplet, int iWidth, int iHeight, 
 		if (myData.iTextLayout == CD_TEXT_LAYOUT_1_LINE || myData.iTextLayout == CD_TEXT_LAYOUT_AUTO)
 		{
 			h_ = MAX (log.height, log2.height);
-			w_ = log.width + log2.width + GAPX * iWidth;
+			w_ = log.width + log2.width + log2.width / strlen(s_cDateBuffer); // gap with the mean value of char's width
 			fZoomX_ = (double) iWidth / w_;
 			fZoomY_ = (double) iHeight / h_;
 			/**if (myDock && fZoomY_ > MAX_RATIO * fZoomX_)  // we limit the deformation
