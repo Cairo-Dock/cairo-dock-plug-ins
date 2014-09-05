@@ -795,6 +795,7 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 	CairoGaugeAttribute aGaugeAttr;  // gauge attributes.
 	CairoGraphAttribute aGraphAttr;  // graph attributes.
 	CairoGraphAttribute aProgressBarAttr;  // progressbar attributes.
+	double *fHighColor = NULL, *fLowColor = NULL;
 	if (strcmp (cType, "gauge") == 0)
 	{
 		memset (&aGaugeAttr, 0, sizeof (CairoGaugeAttribute));
@@ -820,8 +821,8 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 		else if (strcmp (cTheme, "Plain Circle") == 0)
 			aGraphAttr.iType = CAIRO_DOCK_GRAPH_CIRCLE_PLAIN;
 		aGraphAttr.bMixGraphs = FALSE;
-		double *fHighColor = g_new (double, iNbValues*3);
-		double *fLowColor = g_new (double, iNbValues*3);
+		fHighColor = g_new (double, iNbValues*3);
+		fLowColor  = g_new (double, iNbValues*3);
 		int i;
 		for (i = 0; i < iNbValues; i ++)
 		{
@@ -858,6 +859,9 @@ gboolean cd_dbus_applet_add_data_renderer (dbusApplet *pDbusApplet, const gchar 
 	//pRenderAttr->bWriteValues = TRUE;
 	g_return_val_if_fail (pIcon->image.pSurface != NULL, FALSE);
 	cairo_dock_add_new_data_renderer_on_icon (pIcon, pContainer, pRenderAttr);
+
+	g_free (fHighColor);
+	g_free (fLowColor);
 
 	return TRUE;
 }
