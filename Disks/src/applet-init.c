@@ -63,6 +63,8 @@ static void _set_data_renderer (GldiModuleInstance *myApplet)
 	CairoDataRendererAttribute *pRenderAttr = NULL;  // attributes for the global data-renderer.
 	CairoGaugeAttribute aGaugeAttr;  // gauge attributes.
 	CairoGraphAttribute aGraphAttr;  // graph attributes.
+	double fHighColor[CD_DISKS_NB_MAX_VALUES*3]; // attributes for the graph
+	double fLowColor[CD_DISKS_NB_MAX_VALUES*3];  // (but have to be declared here to force GCC to keep data)
 	if (myConfig.iDisplayType == CD_DISKS_GAUGE)
 	{
 		memset (&aGaugeAttr, 0, sizeof (CairoGaugeAttribute));
@@ -79,8 +81,6 @@ static void _set_data_renderer (GldiModuleInstance *myApplet)
 		pRenderAttr->iMemorySize = (myIcon->fWidth > 1 ? myIcon->fWidth : 32);  // fWidth peut etre <= 1 en mode desklet au chargement.
 		aGraphAttr.iType = myConfig.iGraphType;
 		aGraphAttr.bMixGraphs = myConfig.bMixGraph;
-		double fHighColor[CD_DISKS_NB_MAX_VALUES*3];
-		double fLowColor[CD_DISKS_NB_MAX_VALUES*3];
 		gsize i;
 		for (i = 0; i < myData.iNumberDisks * 2; i+=2)
 		{

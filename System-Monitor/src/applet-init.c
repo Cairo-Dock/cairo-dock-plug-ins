@@ -64,6 +64,8 @@ static void _set_data_renderer (GldiModuleInstance *myApplet)
 	CairoDataRendererAttribute *pRenderAttr = NULL;  // attributes for the global data-renderer.
 	CairoGaugeAttribute aGaugeAttr;  // gauge attributes.
 	CairoGraphAttribute aGraphAttr;  // graph attributes.
+	double fHighColor[CD_SYSMONITOR_NB_MAX_VALUES*3]; // attributes for the graph
+	double fLowColor[CD_SYSMONITOR_NB_MAX_VALUES*3];  // (but have to be declared here to force GCC to keep data)
 	int iNbValues = myConfig.bShowCpu + myConfig.bShowRam + myConfig.bShowSwap + myConfig.bShowNvidia + myConfig.bShowCpuTemp + myConfig.bShowFanSpeed;
 	if (myConfig.iDisplayType == CD_SYSMONITOR_GAUGE)
 	{
@@ -83,8 +85,6 @@ static void _set_data_renderer (GldiModuleInstance *myApplet)
 		pRenderAttr->iMemorySize = (w > 1 ? w : 32);  // fWidth peut etre <= 1 en mode desklet au chargement.
 		aGraphAttr.iType = myConfig.iGraphType;
 		aGraphAttr.bMixGraphs = myConfig.bMixGraph;
-		double fHighColor[CD_SYSMONITOR_NB_MAX_VALUES*3];
-		double fLowColor[CD_SYSMONITOR_NB_MAX_VALUES*3];
 		int i;
 		for (i = 0; i < iNbValues; i ++)
 		{

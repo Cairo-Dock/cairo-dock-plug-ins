@@ -42,6 +42,8 @@ static void _set_data_renderer (GldiModuleInstance *myApplet, gboolean bReload)
 	CairoDataRendererAttribute *pRenderAttr = NULL;  // attributes for the global data-renderer.
 	CairoGaugeAttribute aGaugeAttr;  // gauge attributes.
 	CairoGraphAttribute aGraphAttr;  // graph attributes.
+	double fHighColor[CD_NETSPEED_NB_MAX_VALUES*3]; // attributes for the graph
+	double fLowColor[CD_NETSPEED_NB_MAX_VALUES*3];  // (but have to be declared here to force GCC to keep data)
 	if (myConfig.iDisplayType == CD_NETSPEED_GAUGE)
 	{
 		memset (&aGaugeAttr, 0, sizeof (CairoGaugeAttribute));
@@ -60,8 +62,6 @@ static void _set_data_renderer (GldiModuleInstance *myApplet, gboolean bReload)
 		pRenderAttr->iMemorySize = (w > 1 ? w : 32);
 		aGraphAttr.iType = myConfig.iGraphType;
 		aGraphAttr.bMixGraphs = myConfig.bMixGraph;
-		double fHighColor[CD_NETSPEED_NB_MAX_VALUES*3];
-		double fLowColor[CD_NETSPEED_NB_MAX_VALUES*3];
 		int i = 0;
 		memcpy (&fHighColor[3*i], myConfig.fHigholor, 3*sizeof (double));
 		memcpy (&fLowColor[3*i], myConfig.fLowColor, 3*sizeof (double));
