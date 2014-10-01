@@ -263,10 +263,21 @@ static void _term_apply_settings_on_vterm(GtkWidget *vterm)
 {
 	g_return_if_fail (vterm != NULL);
 
+	#if VTE_CHECK_VERSION(2,91,0)
+	vte_terminal_set_colors (VTE_TERMINAL(vterm), &myConfig.forecolor.rgba, &myConfig.backcolor.rgba, NULL, 0);
+	#else
 	vte_terminal_set_colors_rgba (VTE_TERMINAL(vterm), &myConfig.forecolor.rgba, &myConfig.backcolor.rgba, NULL, 0);
+	#endif
 
 	if (myConfig.bCustomFont)
+	{
+		#if VTE_CHECK_VERSION(2,91,0)
+		PangoFontDescription *fd = pango_font_description_from_string(myConfig.cCustomFont);
+		vte_terminal_set_font (VTE_TERMINAL (vterm), fd);
+		#else
 		vte_terminal_set_font_from_string (VTE_TERMINAL (vterm), myConfig.cCustomFont);
+		#endif
+	}
 	else
 		vte_terminal_set_font (VTE_TERMINAL (vterm), NULL);
 
@@ -308,6 +319,52 @@ void term_apply_settings (void)
 	}
 }
 
+static void _create_terminal (GtkWidget *vterm)
+{
+	pid_t pid; 
+	#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 18)  // VTE_CHECK_VERSION doesn't exist in Hardy.
+		#if VTE_CHECK_VERSION(0,26,0)
+		const gchar *argv[] = {g_getenv ("SHELL"), NULL};
+		#if VTE_CHECK_VERSION(2,91,0)
+		vte_terminal_spawn_sync (
+		#else
+		vte_terminal_fork_command_full (
+		#endif
+			VTE_TERMINAL(vterm),
+			VTE_PTY_NO_LASTLOG | VTE_PTY_NO_UTMP | VTE_PTY_NO_WTMP,
+			"~/",
+			(gchar**)argv,  // argv
+			NULL,  // envv
+			0,  // GSpawnFlags spawn_flags
+			NULL,  // GSpawnChildSetupFunc child_setup
+			NULL,  // gpointer child_setup_data
+			&pid,
+			#if VTE_CHECK_VERSION(2,91,0)
+			NULL, // cancellable
+			#endif
+			NULL);
+		#else
+		pid = vte_terminal_fork_command (VTE_TERMINAL(vterm),
+			NULL,
+			NULL,
+			NULL,
+			"~/",
+			FALSE,
+			FALSE,
+			FALSE);
+		#endif
+	#else
+		pid = vte_terminal_fork_command (VTE_TERMINAL(vterm),
+			NULL,
+			NULL,
+			NULL,
+			"~/",
+			FALSE,
+			FALSE,
+			FALSE);
+	#endif
+}
+
 static void on_terminal_child_exited(VteTerminal *vterm,
                                      gpointer t)
 {
@@ -319,41 +376,8 @@ static void on_terminal_child_exited(VteTerminal *vterm,
 	else {
 		// \r needed to return to the beginning of the line
 		vte_terminal_feed(VTE_TERMINAL(vterm), "Shell exited. Another one is launching...\r\n\n", -1);
-		
-		pid_t pid; 
-		#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 18)  // VTE_CHECK_VERSION doesn't exist in Hardy.
-			#if VTE_CHECK_VERSION(0,26,0)
-			const gchar *argv[] = {g_getenv ("SHELL"), NULL};
-			vte_terminal_fork_command_full (VTE_TERMINAL(vterm),
-				VTE_PTY_NO_LASTLOG | VTE_PTY_NO_UTMP | VTE_PTY_NO_WTMP,
-				"~/",
-				(gchar**)argv,  // argv
-				NULL,  // envv
-				0,  // GSpawnFlags spawn_flags
-				NULL,  // GSpawnChildSetupFunc child_setup
-				NULL,  // gpointer child_setup_data
-				&pid,
-				NULL);
-			#else
-			pid = vte_terminal_fork_command (VTE_TERMINAL(vterm),
-				NULL,
-				NULL,
-				NULL,
-				"~/",
-				FALSE,
-				FALSE,
-				FALSE);
-			#endif
-		#else
-			pid = vte_terminal_fork_command (VTE_TERMINAL(vterm),
-				NULL,
-				NULL,
-				NULL,
-				"~/",
-				FALSE,
-				FALSE,
-				FALSE);
-		#endif
+		_create_terminal (GTK_WIDGET(vterm));
+
 		if (myData.dialog)
 			gldi_dialog_hide (myData.dialog);
 		else if (myDesklet && myConfig.shortcut)
@@ -541,41 +565,12 @@ void terminal_new_tab(void)
 	//\_________________ On cree un nouveau terminal.
 	GtkWidget *vterm = vte_terminal_new();
 	GTK_WIDGET_GET_CLASS (vterm)->get_accessible = _get_dummy_accessible;  // this is to prevent a bug in libvet2.90; it gives a warning, but it's better than a crash !
+	#if ! VTE_CHECK_VERSION(2,91,0)
 	vte_terminal_set_emulation (VTE_TERMINAL(vterm), "xterm");
-	pid_t pid; 
-	#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 18)  // VTE_CHECK_VERSION doesn't exist in Hardy.
-		#if VTE_CHECK_VERSION(0,26,0)
-		const gchar *argv[] = {g_getenv ("SHELL"), NULL};
-		vte_terminal_fork_command_full (VTE_TERMINAL(vterm),
-			VTE_PTY_NO_LASTLOG | VTE_PTY_NO_UTMP | VTE_PTY_NO_WTMP,
-			"~/",
-			(gchar**)argv,  // argv
-			NULL,  // envv
-			0,  // GSpawnFlags spawn_flags
-			NULL,  // GSpawnChildSetupFunc child_setup
-			NULL,  // gpointer child_setup_data
-			&pid,
-			NULL);
-		#else
-		pid = vte_terminal_fork_command (VTE_TERMINAL(vterm),
-			NULL,
-			NULL,
-			NULL,
-			"~/",
-			FALSE,
-			FALSE,
-			FALSE);
-		#endif
-	#else
-		pid = vte_terminal_fork_command (VTE_TERMINAL(vterm),
-			NULL,
-			NULL,
-			NULL,
-			"~/",
-			FALSE,
-			FALSE,
-			FALSE);
 	#endif
+
+	_create_terminal (vterm);
+
 	g_signal_connect (G_OBJECT (vterm), "child-exited",
 				G_CALLBACK (on_terminal_child_exited), NULL);
 	g_signal_connect (G_OBJECT (vterm), "button-release-event",
