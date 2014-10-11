@@ -110,7 +110,7 @@ static gboolean on_style_changed (G_GNUC_UNUSED gpointer data)
 {
 	if (my_diapo_simple_use_default_colors)  // update slide params
 	{
-		g_print ("update Slide...\n");
+		cd_debug ("style changed update Slide...");
 		
 		my_diapo_simple_radius = myStyleParam.iCornerRadius;
 		my_diapo_simple_lineWidth = myStyleParam.iLineWidth;
@@ -120,7 +120,7 @@ static gboolean on_style_changed (G_GNUC_UNUSED gpointer data)
 	&& (my_pFlatSeparatorSurface[CAIRO_DOCK_HORIZONTAL] != NULL || my_iFlatSeparatorTexture != 0)
 	&& g_pMainDock)
 	{
-		g_print ("update flat separators...\n");
+		cd_debug ("update flat separators...");
 		cd_rendering_load_flat_separator (CAIRO_CONTAINER(g_pMainDock));
 	}
 	return GLDI_NOTIFICATION_LET_PASS;

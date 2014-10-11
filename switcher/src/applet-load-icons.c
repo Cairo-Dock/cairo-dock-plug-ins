@@ -226,7 +226,6 @@ void cd_switcher_load_desktop_bg_map_surface (void)
 
 void cd_switcher_load_default_map_surface (void)
 {
-	g_print ("%s\n", __func__);
 	if (myData.pDefaultMapSurface != NULL)
 		cairo_surface_destroy (myData.pDefaultMapSurface);
 	if (myDock)

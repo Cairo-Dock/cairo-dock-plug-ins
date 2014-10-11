@@ -63,7 +63,7 @@ static gboolean _init (gpointer data)
 
 static gboolean on_style_changed (GldiModuleInstance *myApplet)
 {
-	g_print ("%s (Keyboard Indic)\n", __func__);
+	cd_debug ("Keyboard Indic: style is changing");
 	
 	if (myConfig.textDescription.cFont == NULL)  // default font -> reload our text description
 	{
