@@ -162,7 +162,7 @@ static void _cd_disconnect_from_resuming_signal (GldiModuleInstance *myApplet)
 
 static gboolean on_style_changed (GldiModuleInstance *myApplet)
 {
-	cd_debug ("Clock: style is changing);
+	cd_debug ("Clock: style is changing");
 	
 	if (! myConfig.bOldStyle)  // numeric mode
 	{
