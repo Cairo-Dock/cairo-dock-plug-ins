@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cairo-dock-plug-ins\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2013-10-25 22:37+0000\n"
-"Last-Translator: Sergi Parra i Ramírez <egrupoparra@gmail.com>\n"
+"POT-Creation-Date: 2014-08-17 23:22+0000\n"
+"PO-Revision-Date: 2014-06-22 08:57+0000\n"
+"Last-Translator: JoanColl <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
-"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-14 05:48+0000\n"
-"X-Generator: Launchpad (build 17045)\n"
+"X-Launchpad-Export-Date: 2014-08-18 06:10+0000\n"
+"X-Generator: Launchpad (build 17156)\n"
+"Language: ca\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:55
@@ -375,7 +376,8 @@ msgstr "S'ha afegit el mòdul, però caldrà fer-lo arrencar."
 
 #: ../Dbus/src/interface-applet-signals.c:472
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr ""
 "El complement '%s' s'ha actualitzat correctament i recarregat automàticament."
 
@@ -467,6 +469,50 @@ msgid ""
 " - Find actions : left, middle click, drop and wheel.\n"
 " - Fill menu with actions.\n"
 msgstr ""
+"<b>Monitoritza la velocitat del disc i l'espai</b>\n"
+"\n"
+"El complement proporciona informació sobre els discos. Podeu activar totes "
+"dues opcions d'un plegat, però funcionarà millor si teniu dues icones de "
+"l'aplicació. En un mateix espai, podria ser que la velocitat no quedés ben "
+"indicada.\n"
+"\n"
+"<b>Espai de disc</b>: mostra la velocitat de transferència de dades. Fins a "
+"10 particions.\n"
+"<ul>\n"
+"<li>Cal que indiqueu el punt de muntatge de cada partició, com ara / o "
+"/home</li>\n"
+"<li>Es veurà més bé en una escala, amb una relació de refresc de 30 o 60s i "
+"una demora de refresc petita o nul·la.\n"
+"</ul>\n"
+"\n"
+"<b>Espai de disc</b>: mostra la velocitat de transferència del disc. Fins a "
+"5 discos.\n"
+"<ul>\n"
+"<li>Cal que indiqueu el nom de cada disc controlat amb el nom del "
+"dispositiu, com ara sda o sdb</li>\n"
+"<li>Es veurà més bé en una gràfica amb una relació de refresc de 2 o 3s i "
+"sense demora entre transicions.</li>\n"
+"</ul>\n"
+"\n"
+"A la segona revisió, una pila més d'indicacions per incloure:\n"
+"<u>Espai lliure</u>:\n"
+"<ul>\n"
+"<li>informació detallada en una finestra emergent</li>\n"
+"<li>Etiquetes editables ?</li>\n"
+"</ul>\n"
+"<u>Velocitat:</u>:\n"
+"<ul>\n"
+"<li>Totes les opcions de disc.</li>\n"
+"<li>Informació de disc per saber què afegir a la llista en una finestra "
+"emergent.</li>\n"
+"<li>Etiquetes editables?</li>\n"
+"<li>Obtenir la mida real dels blocs del disc</b>\n"
+"</ul>\n"
+"<u>Global</u>\n"
+"<ul>\n"
+"<li>Accions de cerca: clic esquerre i mig, left, deixar anar i roda.</li>\n"
+"<li>Menú per emplenar amb accions.</li>\n"
+"</ul>\n"
 
 #: ../Disks/src/applet-notifications.c:72
 #: ../System-Monitor/src/applet-init.c:35
@@ -546,7 +592,7 @@ msgstr "Mida"
 
 #: ../Folders/src/applet-notifications.c:136
 msgid "bytes"
-msgstr "bits"
+msgstr "bytes"
 
 #: ../Folders/src/applet-notifications.c:150
 msgid "Last Modification"
@@ -1030,7 +1076,7 @@ msgstr "S’està carregant"
 #: ../Network-Monitor/src/applet-notifications.c:81
 #: ../wifi/src/applet-notifications.c:85
 msgid "Check for Wireless Extension"
-msgstr ""
+msgstr "Comprova l'extensió de la connexió inalàmbrica"
 
 #: ../Network-Monitor/src/applet-notifications.c:82
 #: ../wifi/src/applet-notifications.c:92
@@ -1069,6 +1115,15 @@ msgid ""
 "    or copy it and use \"Paste a new RSS Url\" in the menu.\n"
 "    or edit the Configuration Panel."
 msgstr ""
+"Aquesta miniaplicació és un lector de canals RSS/Atom.\n"
+"Podeu cridar-la tants de cops com vulgueu.\n"
+"ÚS:\n"
+" - Clic esquerra : mostra les línies completes del canal en un diàleg.\n"
+" - Clic central : refresca el canal.\n"
+" - Desplaça al miniescriptori : fa que les línees del canal es desplacin.\n"
+" - Arrossega i deixa anar una URL vàlida a l'icona per utilitzar-la,\n"
+"    o copia'l i utilitza \"Enganxa una nova url RSS\" al menú.\n"
+"    o edita el Tauler de configuració."
 
 #: ../RSSreader/src/applet-init.c:65 ../RSSreader/src/applet-init.c:125
 #: ../RSSreader/src/applet-notifications.c:56
@@ -1882,8 +1937,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2132,7 +2187,8 @@ msgid ""
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:370
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr ""
 
 #: ../dnd2share/src/applet-dnd2share.c:438
@@ -3248,8 +3304,8 @@ msgstr ""
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 
 #: ../showDesktop/src/applet-init.c:28
@@ -5657,7 +5713,8 @@ msgid "Background"
 msgstr ""
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 
 #: ../Doncky/data/messages:117 ../RSSreader/data/messages:181
@@ -7168,7 +7225,8 @@ msgid "Custom script for file upload :"
 msgstr ""
 
 #: ../dnd2share/data/messages:177
-msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
+msgid ""
+"Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 msgstr ""
 
 #: ../dnd2share/data/messages:179
@@ -7370,7 +7428,8 @@ msgid "Space between icons:"
 msgstr ""
 
 #: ../dock-rendering/data/messages:121
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 
 #: ../dock-rendering/data/messages:125
@@ -7553,7 +7612,8 @@ msgid "Colours"
 msgstr ""
 
 #: ../icon-effect/data/messages:73
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 
 #: ../icon-effect/data/messages:75 ../icon-effect/data/messages:187
@@ -7763,7 +7823,8 @@ msgid "Commands"
 msgstr ""
 
 #: ../logout/data/messages:123
-msgid "Fallback user-defined command to execute for logout in case of problem:"
+msgid ""
+"Fallback user-defined command to execute for logout in case of problem:"
 msgstr ""
 
 #: ../logout/data/messages:125
@@ -7808,7 +7869,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr ""
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 
 #: ../mail/data/messages:117
@@ -7892,7 +7954,8 @@ msgid "Blur amount:"
 msgstr ""
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 
 #: ../musicPlayer/data/messages:11
@@ -8871,7 +8934,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr ""
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 
 #: ../weblets/data/messages:105

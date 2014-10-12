@@ -7,15 +7,34 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2014-06-13 21:39+0000\n"
+"POT-Creation-Date: 2014-08-17 23:22+0000\n"
+"PO-Revision-Date: 2014-08-18 21:20+0000\n"
 "Last-Translator: Matthieu Baerts <matttbe@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-14 05:51+0000\n"
-"X-Generator: Launchpad (build 17045)\n"
+"X-Launchpad-Export-Date: 2014-08-19 06:27+0000\n"
+"X-Generator: Launchpad (build 17156)\n"
+"Language: \n"
+
+#: ../Cairo-Penguin/src/applet-init.c:33
+msgid ""
+"Add a lively Penguin in your dock !\n"
+"Left click to change the animation,\n"
+"Middle-click to disturb him ^_^\n"
+"Tux images are taken from Pingus, some other characters are available or can "
+"be added easily."
+msgstr ""
+"Добавьте симпатичного пингвинчика к себе на панель!\n"
+"Левым щелчком менять анимацию,\n"
+"Средним -  побеспокоить его ^_^\n"
+"Изображения Тукса взяты из Pingus, есть и другие персонажи, а также можно с "
+"лёгкостью подключить своих."
+
+#: ../Cairo-Penguin/src/applet-init.c:39
+msgid "Cairo-Penguin"
+msgstr "Cairo-Пингвин"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:55
@@ -72,24 +91,6 @@ msgstr "Волна"
 #: ../Animated-icons/data/messages:59 ../Animated-icons/data/messages:119
 msgid "Wobbly"
 msgstr "Желе"
-
-#: ../Cairo-Penguin/src/applet-init.c:33
-msgid ""
-"Add a lively Penguin in your dock !\n"
-"Left click to change the animation,\n"
-"Middle-click to disturb him ^_^\n"
-"Tux images are taken from Pingus, some other characters are available or can "
-"be added easily."
-msgstr ""
-"Добавьте симпатичного пингвинчика к себе на панель!\n"
-"Левым щелчком менять анимацию,\n"
-"Средним -  побеспокоить его ^_^\n"
-"Изображения Тукса взяты из Pingus, есть и другие персонажи, а также можно с "
-"лёгкостью подключить своих."
-
-#: ../Cairo-Penguin/src/applet-init.c:39
-msgid "Cairo-Penguin"
-msgstr "Cairo-Пингвин"
 
 #: ../Cairo-Penguin/src/applet-notifications.c:29
 msgid "Hey, I'm here!"
@@ -372,7 +373,8 @@ msgstr "Модуль был добавлен, но запустить его н�
 
 #: ../Dbus/src/interface-applet-signals.c:472
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Апплет '%s' успешно обновлён и автоматически перезагружен"
 
 #: ../Dbus/src/interface-applet-signals.c:472
@@ -1881,8 +1883,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2151,7 +2153,8 @@ msgstr ""
 "Нажмите CTRL+v, чтобы вставить его URL куда угодно."
 
 #: ../dnd2share/src/applet-dnd2share.c:370
-msgid "Please wait for the current upload to finish before starting a new one."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
 msgstr "Дождитесь завершения текущей закачки прежде чем начать новую."
 
 #: ../dnd2share/src/applet-dnd2share.c:438
@@ -2696,7 +2699,8 @@ msgstr "Укажите почтовое приложение"
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Leave empty to use the default mail application."
-msgstr "Оставьте пустым, чтобы использовать почтовое приложение по умолчанию."
+msgstr ""
+"Оставьте пустым, чтобы использовать почтовое приложение по умолчанию."
 
 #: ../mail/src/cd-mail-applet-accounts.c:39
 msgid "Specific icon file when using multiple accounts"
@@ -3133,8 +3137,8 @@ msgid ""
 "<b>Click</b> on the icon to have useful inforamtion,\n"
 "<b>Right-click</b> on the icon to hibernate or suspend the system."
 msgstr ""
-"Этот апплет отображает состояние <b>батареи</b>: заряд. оставшееся время и т."
-"д.\n"
+"Этот апплет отображает состояние <b>батареи</b>: заряд. оставшееся время и "
+"т.д.\n"
 "<b>Щелчок</b> на значке для подробной информации,\n"
 "<b>Правый щелчок</b>, для перехода в спящий режим."
 
@@ -3273,8 +3277,8 @@ msgstr ""
 "Перетащите каталог на главный значок или суб-панель, чтобы добавить ярлык.\n"
 "Средний щелчок на главном значке, чтобы показать ваш домашний каталог.\n"
 "Средний щелчок на присоединённом томе, чтобы быстро его (от)соединить.\n"
-"Апплет показывает важную информацию о ваших дисках: свободное место, тип и т."
-"д."
+"Апплет показывает важную информацию о ваших дисках: свободное место, тип и "
+"т.д."
 
 #: ../shortcuts/src/applet-notifications.c:44
 #: ../shortcuts/src/applet-notifications.c:82
@@ -3348,8 +3352,8 @@ msgstr "Анимировать курсор"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "Этот плагин украшает курсор различной анимацией, когда тот находится внутри "
 "панели/десклета."
@@ -5854,7 +5858,8 @@ msgid "Background"
 msgstr "Задний фон"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Вы можете получить более привлекательный задний фон при использовании "
 "Оформления декслетов"
@@ -7404,7 +7409,8 @@ msgid "Custom script for file upload :"
 msgstr "Свой скрипт для загрузки файла:"
 
 #: ../dnd2share/data/messages:177
-msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
+msgid ""
+"Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 msgstr ""
 
 #: ../dnd2share/data/messages:179
@@ -7413,7 +7419,8 @@ msgstr ""
 
 #: ../dnd2share/data/messages:181
 msgid "Otherwise, your user name will be used when possible."
-msgstr "В противном случае, имя пользователя используется когда это возможно."
+msgstr ""
+"В противном случае, имя пользователя используется когда это возможно."
 
 #: ../dnd2share/data/messages:183
 msgid "Post text as Anonymous ?"
@@ -7433,7 +7440,8 @@ msgstr "Высота точки схождения:"
 
 #: ../dock-rendering/data/messages:9
 msgid "The lower the value, the flatter the curve will appear."
-msgstr "Чем меньше значение, тем большая часть кривой будет выглядеть плоской."
+msgstr ""
+"Чем меньше значение, тем большая часть кривой будет выглядеть плоской."
 
 #: ../dock-rendering/data/messages:11
 msgid "Curvature of the curve in percent:"
@@ -7449,7 +7457,8 @@ msgstr "Разделять группы значков физически"
 
 #: ../dock-rendering/data/messages:21
 msgid "At 1, the icons will have the same size as in other views."
-msgstr "При значении 1, значки будут такого же размера, как и остальные виды."
+msgstr ""
+"При значении 1, значки будут такого же размера, как и остальные виды."
 
 #: ../dock-rendering/data/messages:23
 msgid "Ratio to apply on icons' size :"
@@ -7609,7 +7618,8 @@ msgid "Space between icons:"
 msgstr "Расстояние между значками:"
 
 #: ../dock-rendering/data/messages:121
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
 msgstr ""
 "При значении 0 волна будет полностью плоской, при значении 1 волна будет "
 "идентична другим видам."
@@ -7802,7 +7812,8 @@ msgid "Colours"
 msgstr "Цвета"
 
 #: ../icon-effect/data/messages:73
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr "Он едва изменяет цвета, так что вы можете даже не изменять его."
 
 #: ../icon-effect/data/messages:75 ../icon-effect/data/messages:187
@@ -8014,7 +8025,8 @@ msgid "Commands"
 msgstr "Команды"
 
 #: ../logout/data/messages:123
-msgid "Fallback user-defined command to execute for logout in case of problem:"
+msgid ""
+"Fallback user-defined command to execute for logout in case of problem:"
 msgstr ""
 
 #: ../logout/data/messages:125
@@ -8049,8 +8061,8 @@ msgid ""
 "accounts you want."
 msgstr ""
 "Если вы испытываете какие-либо проблемы с этим апплетом, уберите эту опцию "
-"во время режима обслуживания, затем позвольте панели загрузиться и измените/"
-"удалите нужный аккаунт."
+"во время режима обслуживания, затем позвольте панели загрузиться и "
+"измените/удалите нужный аккаунт."
 
 #: ../mail/data/messages:101
 msgid "Check mail account on startup?"
@@ -8065,7 +8077,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Файл изображения для статуса 'есть почта':"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr ""
 "Если отмечено, то будет выведено количество почтовых сообщений, даже если "
 "новых сообщений нет."
@@ -8151,7 +8164,8 @@ msgid "Blur amount:"
 msgstr "Качество размытия:"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 "Оставьте пустым, чтобы отображать имя проигрывателя, которым вы сейчас "
 "управляете."
@@ -8548,7 +8562,8 @@ msgstr "Время жизни частиц:"
 #: ../show-mouse/data/messages:33
 msgid ""
 "The higher the value, the more particles will scatter from their source."
-msgstr "Чем выше значение, тем больше частиц будут разбросаны из их источника."
+msgstr ""
+"Чем выше значение, тем больше частиц будут разбросаны из их источника."
 
 #: ../show-mouse/data/messages:35
 msgid "Scattering:"
@@ -9155,7 +9170,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Позиция вертикальной полосы"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr "Это позволит использовать правый щелчок для вызова меню Cairo-Dock."
 
 #: ../weblets/data/messages:105
@@ -9216,15 +9232,3 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Альтернативная команда запуска Настройки Беспроводного Соединения:"
-
-#~ msgid "needs to restart the applet."
-#~ msgstr "необходимо перезапустить апплет."
-
-#~ msgid "Terminal transparency:"
-#~ msgstr "Прозрачность терминала:"
-
-#~ msgid "transparent"
-#~ msgstr "прозрачный"
-
-#~ msgid "opaque"
-#~ msgstr "непрозрачный"

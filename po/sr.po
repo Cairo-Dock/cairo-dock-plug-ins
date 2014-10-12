@@ -5,15 +5,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: то\n"
 "Report-Msgid-Bugs-To: fabounet@glx-dock.org\n"
-"PO-Revision-Date: 2014-06-13 21:44+0000\n"
+"POT-Creation-Date: 2014-08-17 23:22+0000\n"
+"PO-Revision-Date: 2014-08-31 00:00+0000\n"
 "Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
 "Language-Team: српски <српски <xfce-i18n@xfce.org>>\n"
-"Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-14 05:52+0000\n"
-"X-Generator: Launchpad (build 17045)\n"
+"X-Launchpad-Export-Date: 2014-08-31 07:02+0000\n"
+"X-Generator: Launchpad (build 17176)\n"
+"Language: sr\n"
 
 #: ../Animated-icons/src/applet-blink.c:77 ../Animated-icons/data/messages:11
 #: ../Animated-icons/data/messages:31 ../Animated-icons/data/messages:55
@@ -367,7 +368,8 @@ msgstr "Овај модул је додат, али га не могу покр�
 
 #: ../Dbus/src/interface-applet-signals.c:472
 #, c-format
-msgid "The applet '%s' has been succefully updated and automatically reloaded"
+msgid ""
+"The applet '%s' has been succefully updated and automatically reloaded"
 msgstr "Програмче „%s“ успешно дограђено, и самостално учитано поново"
 
 #: ../Dbus/src/interface-applet-signals.c:472
@@ -466,8 +468,8 @@ msgstr ""
 "\n"
 "<b>Простор на диску </b> :  Приказује брзину преноса података диска. До 10 "
 "партиција.\n"
-"  Требате подесити тачку качења сваке партиције која се прати, као / или /"
-"home\n"
+"  Требате подесити тачку качења сваке партиције која се прати, као / или "
+"/home\n"
 "  Бољи приказ у мерачу је са 30 или 60s учесталошћу освежавања и без, или са "
 "врло кратким кашњењем преласка.\n"
 "<b>Брзина диска</b> : Приказује брзину преноса података диска. До пет "
@@ -671,13 +673,13 @@ msgstr "Одаберите фасциклу"
 #: ../Scooby-Do/src/applet-backend-files.c:393
 #: ../Screenshot/src/applet-screenshot.c:422
 msgid "Ok"
-msgstr ""
+msgstr "У реду"
 
 #: ../Folders/src/applet-notifications.c:269
 #: ../Scooby-Do/src/applet-backend-files.c:395
 #: ../Screenshot/src/applet-screenshot.c:424
 msgid "Cancel"
-msgstr ""
+msgstr "Откажи"
 
 #: ../Folders/src/applet-notifications.c:301
 #, c-format
@@ -1188,7 +1190,7 @@ msgstr "Програми"
 
 #: ../Recent-Events/src/applet-dialog.c:407
 msgid "Documents"
-msgstr ""
+msgstr "Документи"
 
 #: ../Recent-Events/src/applet-dialog.c:409 ../drop-indicator/data/messages:3
 msgid "Images"
@@ -1200,7 +1202,7 @@ msgstr "Звук"
 
 #: ../Recent-Events/src/applet-dialog.c:411
 msgid "Videos"
-msgstr ""
+msgstr "Снимци"
 
 #: ../Recent-Events/src/applet-dialog.c:412
 msgid "Web"
@@ -1947,8 +1949,8 @@ msgid ""
 "2 view are available : <b>numeric</b> and <b>analogic</b>.\n"
 " Analogic view is compatible with the Cairo-Clock's themes, and you can "
 "detach the applet to be a perfect clone of Cairo-Clock.\n"
-"It displays a <b>calendar</b> on left-click, which lets you <b>manage tasks</"
-"b>.\n"
+"It displays a <b>calendar</b> on left-click, which lets you <b>manage "
+"tasks</b>.\n"
 "It also supports alarms, and allows you to setup time and date.\n"
 "Left-click to show/hide the calendar, Middle-click to stop a notification,\n"
 "Double-click on a day to edit the tasks for this day."
@@ -2216,8 +2218,10 @@ msgstr ""
 "Само притисните КТРЛ+в за лепење адресе било где."
 
 #: ../dnd2share/src/applet-dnd2share.c:370
-msgid "Please wait for the current upload to finish before starting a new one."
-msgstr "Молим, сачекајте да се тренутно отпремање заврши пре покретања новог."
+msgid ""
+"Please wait for the current upload to finish before starting a new one."
+msgstr ""
+"Молим, сачекајте да се тренутно отпремање заврши пре покретања новог."
 
 #: ../dnd2share/src/applet-dnd2share.c:438
 msgid "This file is not readable."
@@ -2237,7 +2241,8 @@ msgstr "Нисам успео да отпремим датотеку. Прове
 msgid ""
 "Couldn't upload the file to %s, check that your internet connection is "
 "active."
-msgstr "Нисам успео да отпремим датотеку на %s. Проверите везу са Интернетом."
+msgstr ""
+"Нисам успео да отпремим датотеку на %s. Проверите везу са Интернетом."
 
 #: ../dnd2share/src/applet-dnd2share.h:32
 #, c-format
@@ -3454,8 +3459,8 @@ msgstr "прикажи миша"
 
 #: ../show-mouse/src/applet-init.c:31
 msgid ""
-"This plugin draws some animations around the cursor when it's inside a dock/"
-"desklet."
+"This plugin draws some animations around the cursor when it's inside a "
+"dock/desklet."
 msgstr ""
 "овај прикључак исцртава неке анимације око показивача миша кад се нађе у "
 "доку/справици површи."
@@ -5523,7 +5528,8 @@ msgstr "Налепи у оставу исечака?"
 msgid ""
 "When you click on an item, its content will become accessible with the "
 "middle-click"
-msgstr "Кад кликнете на ставку, њен садржај ће постати доступан на средњи клик"
+msgstr ""
+"Кад кликнете на ставку, њен садржај ће постати доступан на средњи клик"
 
 #: ../Clipper/data/messages:121
 msgid "Paste into Selection?"
@@ -5954,7 +5960,8 @@ msgid "Background"
 msgstr "Позадина"
 
 #: ../Doncky/data/messages:115 ../RSSreader/data/messages:179
-msgid "You can have more attractive backgrounds using the Desklet decorations"
+msgid ""
+"You can have more attractive backgrounds using the Desklet decorations"
 msgstr ""
 "Можете имати више привлачних позадина користећи украшавања справица површи"
 
@@ -7506,10 +7513,11 @@ msgid "Custom script for file upload :"
 msgstr "Прилагођене скрипте за отпремање датотека :"
 
 #: ../dnd2share/data/messages:177
-msgid "Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
+msgid ""
+"Leave empty to upload files into '~/Dropbox/Public' or '~/Ubuntu One'."
 msgstr ""
-"Оставите празно да би се датотеке отпремале на „~/Dropbox/Public“ или „~/"
-"Ubuntu One“"
+"Оставите празно да би се датотеке отпремале на „~/Dropbox/Public“ или "
+"„~/Ubuntu One“"
 
 #: ../dnd2share/data/messages:179
 msgid "Path of a custom DropBox / UbuntuOne folder :"
@@ -7712,8 +7720,10 @@ msgid "Space between icons:"
 msgstr "Растојање између иконица:"
 
 #: ../dock-rendering/data/messages:121
-msgid "0 represents a flat wave, 1 means the wave is identical to other views."
-msgstr "0 представља раван талас, и значи да је талас исти као други прикази."
+msgid ""
+"0 represents a flat wave, 1 means the wave is identical to other views."
+msgstr ""
+"0 представља раван талас, и значи да је талас исти као други прикази."
 
 #: ../dock-rendering/data/messages:125
 msgid "Number of icons on the first row:"
@@ -7926,7 +7936,8 @@ msgid "Colours"
 msgstr "Боје"
 
 #: ../icon-effect/data/messages:73
-msgid "This will slightly alter your colours, so you may have to modify them."
+msgid ""
+"This will slightly alter your colours, so you may have to modify them."
 msgstr ""
 "Ово ће благо изменити боје, тако да ћете можда морати да их преправите."
 
@@ -8141,7 +8152,8 @@ msgid "Commands"
 msgstr "Наредбе"
 
 #: ../logout/data/messages:123
-msgid "Fallback user-defined command to execute for logout in case of problem:"
+msgid ""
+"Fallback user-defined command to execute for logout in case of problem:"
 msgstr ""
 "Заменска корисникова наредба за извршавање при одјави у случају потешкоће:"
 
@@ -8197,7 +8209,8 @@ msgid "Name of the file for the \"has mail\" image :"
 msgstr "Назив датотеке за слику „има поште“ :"
 
 #: ../mail/data/messages:115
-msgid "If checked, the number of mails will be shown even if there is no mail."
+msgid ""
+"If checked, the number of mails will be shown even if there is no mail."
 msgstr "Ако је означено, број порука ће бити приказан чак и ако нема поште."
 
 #: ../mail/data/messages:117
@@ -8281,7 +8294,8 @@ msgid "Blur amount:"
 msgstr "Количина замућења:"
 
 #: ../musicPlayer/data/messages:7
-msgid "Leave it empty to display the name of the player currently controlled."
+msgid ""
+"Leave it empty to display the name of the player currently controlled."
 msgstr ""
 "Оставите празно за приказ назива музичког програма који се тренутно користи"
 
@@ -8375,7 +8389,8 @@ msgstr "пусти/заустави на клик, следећа на сред�
 
 #: ../musicPlayer/data/messages:141
 msgid "Show/Hide player on click, Play/Pause on middle-click"
-msgstr "прикажи/сакриј музички програм на клик, пусти/заустави на средњи клик"
+msgstr ""
+"прикажи/сакриј музички програм на клик, пусти/заустави на средњи клик"
 
 #: ../musicPlayer/data/messages:143
 msgid "Actions on scroll up/down:"
@@ -9283,7 +9298,8 @@ msgid "Position of vertical scrollbar in pixel"
 msgstr "Положај усправне шине премицања у тачкама"
 
 #: ../weblets/data/messages:103
-msgid "This lets you right-click on the desklet to pop up the Cairo-Dock menu."
+msgid ""
+"This lets you right-click on the desklet to pop up the Cairo-Dock menu."
 msgstr ""
 "Ово омогућује искакање изборника Каиро-дока на десни клик по справици површи"
 
@@ -9345,15 +9361,3 @@ msgstr ""
 #: ../wifi/data/messages:165
 msgid "Alternative command line to launch Wireless Configuration :"
 msgstr "Заменска наредбена линија за покретање бежичних поставки :"
-
-#~ msgid "needs to restart the applet."
-#~ msgstr "потребно је поново покренути програмче."
-
-#~ msgid "Terminal transparency:"
-#~ msgstr "Прозиност терминала:"
-
-#~ msgid "transparent"
-#~ msgstr "прозиран"
-
-#~ msgid "opaque"
-#~ msgstr "непрозиран"
