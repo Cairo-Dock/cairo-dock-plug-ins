@@ -263,7 +263,7 @@ static void _term_apply_settings_on_vterm(GtkWidget *vterm)
 {
 	g_return_if_fail (vterm != NULL);
 
-	#if VTE_CHECK_VERSION(2,91,0)
+	#if VTE_CHECK_VERSION(0,38,0)
 	vte_terminal_set_colors (VTE_TERMINAL(vterm), &myConfig.forecolor.rgba, &myConfig.backcolor.rgba, NULL, 0);
 	#else
 	vte_terminal_set_colors_rgba (VTE_TERMINAL(vterm), &myConfig.forecolor.rgba, &myConfig.backcolor.rgba, NULL, 0);
@@ -271,7 +271,7 @@ static void _term_apply_settings_on_vterm(GtkWidget *vterm)
 
 	if (myConfig.bCustomFont)
 	{
-		#if VTE_CHECK_VERSION(2,91,0)
+		#if VTE_CHECK_VERSION(0,38,0)
 		PangoFontDescription *fd = pango_font_description_from_string(myConfig.cCustomFont);
 		vte_terminal_set_font (VTE_TERMINAL (vterm), fd);
 		#else
@@ -325,7 +325,7 @@ static void _create_terminal (GtkWidget *vterm)
 	#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 18)  // VTE_CHECK_VERSION doesn't exist in Hardy.
 		#if VTE_CHECK_VERSION(0,26,0)
 		const gchar *argv[] = {g_getenv ("SHELL"), NULL};
-		#if VTE_CHECK_VERSION(2,91,0)
+		#if VTE_CHECK_VERSION(0,38,0)
 		vte_terminal_spawn_sync (
 		#else
 		vte_terminal_fork_command_full (
@@ -339,7 +339,7 @@ static void _create_terminal (GtkWidget *vterm)
 			NULL,  // GSpawnChildSetupFunc child_setup
 			NULL,  // gpointer child_setup_data
 			&pid,
-			#if VTE_CHECK_VERSION(2,91,0)
+			#if VTE_CHECK_VERSION(0,38,0)
 			NULL, // cancellable
 			#endif
 			NULL);
@@ -565,7 +565,7 @@ void terminal_new_tab(void)
 	//\_________________ On cree un nouveau terminal.
 	GtkWidget *vterm = vte_terminal_new();
 	GTK_WIDGET_GET_CLASS (vterm)->get_accessible = _get_dummy_accessible;  // this is to prevent a bug in libvet2.90; it gives a warning, but it's better than a crash !
-	#if ! VTE_CHECK_VERSION(2,91,0)
+	#if ! VTE_CHECK_VERSION(0,38,0)
 	vte_terminal_set_emulation (VTE_TERMINAL(vterm), "xterm");
 	#endif
 
