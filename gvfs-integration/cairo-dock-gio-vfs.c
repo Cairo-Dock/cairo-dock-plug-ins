@@ -67,41 +67,29 @@ gboolean cairo_dock_gio_vfs_init (void)
 		(GDestroyNotify) _gio_vfs_free_monitor_data);
 	
 	GVfs *vfs = g_vfs_get_default ();
-	return (vfs != NULL && g_vfs_is_active (vfs));  // utile ?
+	return (vfs != NULL && g_vfs_is_active (vfs));  // useful?
 }
 
-/* no longer used...
-static void cairo_dock_gio_vfs_stop (void)
-{
-	if (s_hMonitorHandleTable != NULL)
-	{
-		g_hash_table_destroy (s_hMonitorHandleTable);
-		s_hMonitorHandleTable = NULL;
-	}
-}
-*/
-
-static gchar *_cd_get_icon_path (GIcon *pIcon, const gchar *cTargetURI)  // cTargetURI est l'URI que represente l'icone, pour les cas ou l'icone est contenue dans le repertoire lui-meme (CD ou DVD de jeux notamment)
+/**
+ * cTargetURI is the URI which is represented by the icon: for cases where
+ * the icon is located in the same directory (e.g. CD or DVD)
+ */
+static gchar *_cd_get_icon_path (GIcon *pIcon, const gchar *cTargetURI)
 {
 	//g_print ("%s ()\n", __func__);
 	gchar *cIconPath = NULL;
 	if (G_IS_THEMED_ICON (pIcon))
 	{
 		const gchar * const *cFileNames = g_themed_icon_get_names (G_THEMED_ICON (pIcon));
-		//cd_message ("icones possibles : %s", g_strjoinv (":", (gchar **) cFileNames));
 		int i;
 		for (i = 0; cFileNames[i] != NULL && cIconPath == NULL; i ++)
 		{
-			//g_print (" une icone possible est : %s\n", cFileNames[i]);
-			
 			gchar *path = cairo_dock_search_icon_s_path (cFileNames[i], CAIRO_DOCK_DEFAULT_ICON_SIZE);
 			if (path)
 			{
 				g_free (path);
 				cIconPath = g_strdup (cFileNames[i]);
 			}
-			
-			//g_print ("  chemin trouve : %s\n", cIconPath);
 		}
 	}
 	else if (G_IS_FILE_ICON (pIcon))
@@ -110,7 +98,7 @@ static gchar *_cd_get_icon_path (GIcon *pIcon, const gchar *cTargetURI)  // cTar
 		cIconPath = g_file_get_basename (pFile);
 		//g_print (" file_icon => %s\n", cIconPath);
 		
-		if (cTargetURI && cIconPath && g_str_has_suffix (cIconPath, ".ico"))  // cas des montages de CD ou d'iso
+		if (cTargetURI && cIconPath && g_str_has_suffix (cIconPath, ".ico"))  // mount of ISO file
 		{
 			gchar *tmp = cIconPath;
 			cIconPath = g_strdup_printf ("%s/%s", cTargetURI, tmp);
@@ -137,7 +125,7 @@ static GDrive *_cd_find_drive_from_name (const gchar *cName)
 	if (str)
 		*str = '\0';
 	
-	//\___________________ On chope les disques connectes (lecteur de CD/disquette/etc) et on liste leurs volumes.
+	//\___________________ We get connected disks (CD reader, etc.) and we list their volumes.
 	GList *pDrivesList = g_volume_monitor_get_connected_drives (pVolumeMonitor);
 	GList *dl;
 	GDrive *pDrive;
@@ -261,18 +249,15 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 		G_FILE_ATTRIBUTE_STANDARD_NAME","
 		G_FILE_ATTRIBUTE_STANDARD_ICON","
 		G_FILE_ATTRIBUTE_THUMBNAIL_PATH","
-		#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
-		///G_FILE_ATTRIBUTE_PREVIEW_ICON","
-		#endif
 		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI;
 	GFileInfo *pFileInfo = g_file_query_info (pFile,
 		cQuery,
 		G_FILE_QUERY_INFO_NONE,  /// G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS
 		NULL,
 		&erreur);
-	if (erreur != NULL)  // peut arriver si l'emplacement n'est pas monte.
+	if (erreur != NULL)  // can happen if the file point is not mounted.
 	{
-		cd_debug ("gvfs-integration : %s", erreur->message);  // inutile d'en faire un warning.
+		cd_debug ("gvfs-integration : %s", erreur->message);  // useless to have a warning.
 		g_error_free (erreur);
 		g_free (cValidUri);
 		g_object_unref (pFile);
@@ -328,24 +313,24 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 			if (pMount != NULL)
 			{
 				*cName = g_mount_get_name (pMount);
-				cd_message ("un GMount existe (%s)",* cName);
+				cd_message ("a GMount exists (%s)",* cName);
 				g_object_unref (pMount);
 			}
 			else
 			{
 				gchar *cMountName = g_strdup (cFileName);
-				gchar *str = strrchr (cMountName, '.');  // on vire l'extension ".volume" ou ".drive".
+				gchar *str = strrchr (cMountName, '.');  // we remove the extension ".volume" or ".drive".
 				if (str != NULL)
 				{
 					*str = '\0';
-					if (strcmp (str+1, "link") == 0)  // pour les liens, on prend le nom du lien.
+					if (strcmp (str+1, "link") == 0)  // for the links, we take its name.
 					{
-						if (strcmp (cMountName, "root") == 0)  // on remplace 'root' par un nom plus parlant, sinon on prendra le nom du lien.
+						if (strcmp (cMountName, "root") == 0)  // we replace 'root' by a better name.
 						{
 							*cName = g_strdup (D_("File System"));
 						}
 					}
-					else if (strcmp (str+1, "drive") == 0)  // on cherche un nom plus parlant si possible.
+					else if (strcmp (str+1, "drive") == 0)  // we're looking for a better name if possible.
 					{
 						gchar *cVolumeName = _cd_find_volume_name_from_drive_name (cMountName);
 						if (cVolumeName != NULL)
@@ -390,17 +375,6 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 		*cIconName = NULL;
 		// first use an available thumbnail.
 		*cIconName = g_strdup (g_file_info_get_attribute_byte_string (pFileInfo, G_FILE_ATTRIBUTE_THUMBNAIL_PATH));
-		#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
-		/**if (*cIconName == NULL)
-		{
-			GIcon *pPreviewIcon = (GIcon *)g_file_info_get_attribute_object (pFileInfo, G_FILE_ATTRIBUTE_PREVIEW_ICON);
-			if (pPreviewIcon != NULL)
-			{
-				*cIconName = _cd_get_icon_path (pPreviewIcon, NULL);
-				//g_print ("got preview icon '%s'\n", *cIconName);
-			}
-		}*/
-		#endif
 		// if no thumbnail available and the file is an image, use it directly.
 		if (*cIconName == NULL && cMimeType != NULL && strncmp (cMimeType, "image", 5) == 0)
 		{
@@ -411,7 +385,7 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 			{
 				g_error_free (erreur);
 			}
-			else if (cHostname == NULL || strcmp (cHostname, "localhost") == 0)  // on ne recupere la vignette que sur les fichiers locaux.
+			else if (cHostname == NULL || strcmp (cHostname, "localhost") == 0)  // we get thumbnails only for local files.
 			{
 				*cIconName = cFilePath;
 				cairo_dock_remove_html_spaces (*cIconName);
@@ -433,160 +407,6 @@ static void cairo_dock_gio_vfs_get_file_info (const gchar *cBaseURI, gchar **cNa
 	g_object_unref (pFileInfo);
 	g_object_unref (pFile);
 }
-
-/* no longer used...
-static Icon *_cd_get_icon_for_volume (GVolume *pVolume, GMount *pMount)
-{
-	GIcon *pIcon;
-	GFile *pRootDir;
-	gchar *cName, *cCommand, *cFileName;
-	if (pVolume != NULL)
-		pMount = g_volume_get_mount (pVolume);
-	else if (pMount == NULL)
-		return NULL;
-	
-	if (pMount != NULL)  // ce volume est monte.
-	{
-		cName = g_mount_get_name (pMount);
-		
-		pRootDir = g_mount_get_root (pMount);
-		cCommand = g_file_get_uri (pRootDir);
-		
-		pIcon = g_mount_get_icon (pMount);
-		cFileName = _cd_get_icon_path (pIcon, NULL);
-		
-		g_object_unref (pRootDir);
-		g_object_unref (pIcon);
-		g_object_unref (pMount);
-	}
-	else  // ce volume est demonte, on le montre quand meme (l'automount peut etre off).
-	{
-		cName = g_volume_get_name (pVolume);
-		
-		pIcon = g_volume_get_icon (pVolume);
-		cFileName = _cd_get_icon_path (pIcon, NULL);
-		
-		cCommand = g_strdup (cName);
-		
-		g_object_unref (pIcon);
-	}
-	
-	Icon *pNewIcon = cairo_dock_create_dummy_launcher (cName,
-		cFileName,
-		cCommand,
-		NULL,
-		0);
-	pNewIcon->iVolumeID = 1;
-	pNewIcon->cBaseURI = g_strdup (pNewIcon->cCommand);
-	cd_message (" => %s", pNewIcon->cCommand);
-	return pNewIcon;
-}
-*/
-/* no longer used...
-static GList *cairo_dock_gio_vfs_list_volumes (void)
-{
-	GVolumeMonitor *pVolumeMonitor = g_volume_monitor_get ();
-	GList *pIconsList = NULL;
-	Icon *pNewIcon;
-	
-	//\___________________ On chope les disques connectes (lecteur de CD/disquette/etc) et on liste leurs volumes.
-	GList *pDrivesList = g_volume_monitor_get_connected_drives (pVolumeMonitor);
-	GList *pAssociatedVolumes;
-	GList *dl, *av;
-	GDrive *pDrive;
-	GVolume *pVolume;
-	gchar *cLog;
-	for (dl = pDrivesList; dl != NULL; dl = dl->next)
-	{
-		pDrive = dl->data;
-		
-		pAssociatedVolumes = g_drive_get_volumes (pDrive);
-		if (pAssociatedVolumes != NULL)
-		{
-			for (av = pAssociatedVolumes; av != NULL; av = av->next)
-			{
-				pVolume = av->data;
-				pNewIcon = _cd_get_icon_for_volume (pVolume, NULL);
-				if (pNewIcon != NULL)
-					pIconsList = g_list_prepend (pIconsList, pNewIcon);
-				g_object_unref (pVolume);
-			}
-			g_list_free (pAssociatedVolumes);
-		}
-		else  // le disque n'a aucun volume montable
-		{
-			cd_message ("  le disque n'a aucun volume montable");
-			*if (g_drive_is_media_removable (pDrive) && ! g_drive_is_media_check_automatic (pDrive))
-			{
-				g_drive_get_icon (pDrive);
-				g_drive_get_name (pDrive);
-			}*
-		}
-		//g_object_unref (pDrive);
-	}
-	g_list_free (pDrivesList);
-
-	gchar *cLog;
-
-	//\___________________ On chope les volumes qui ne sont pas associes a un disque.
-	GList *pVolumesList = g_volume_monitor_get_volumes (pVolumeMonitor);
-	GList *v;
-	for (v = pVolumesList; v != NULL; v = v->next)
-	{
-		pVolume = v->data;
-		cLog = g_volume_get_name (pVolume);
-		cd_message ("volume '%s'", cLog);
-		pDrive = g_volume_get_drive (pVolume);
-		if (pDrive != NULL)  // on l'a deja liste dans la 1ere boucle.
-		{
-			g_free (cLog);
-			cLog = g_drive_get_name (pDrive);
-			cd_message ("  drive '%s' est deja liste", cLog);
-			g_object_unref (pDrive);
-		}
-		else
-		{
-			cd_message (" + volume '%s'", cLog);
-			if (pNewIcon != NULL)
-				pNewIcon = _cd_get_icon_for_volume (pVolume, NULL);
-			pIconsList = g_list_prepend (pIconsList, pNewIcon);
-		}
-		g_free (cLog);
-		g_object_unref (pVolume);
-	}
-	g_list_free (pVolumesList);
-
-	//\___________________ On chope les points de montage qui n'ont pas de volumes. (montage de mtab, ftp, etc)
-	GList *pMountsList = g_volume_monitor_get_mounts (pVolumeMonitor);
-	GMount *pMount;
-	GList *m;
-	for (m = pMountsList; m != NULL; m = m->next)
-	{
-		pMount = m->data;
-		cLog = g_mount_get_name (pMount);
-		cd_message ("mount '%s'", cLog);
-		g_free (cLog);
-		pVolume = g_mount_get_volume (pMount);
-		if (pVolume != NULL)  // on l'a deja liste precedemment.
-		{
-			cLog = g_volume_get_name (pVolume);
-			cd_message ("volume '%s' est deja liste", cLog);
-			g_free (cLog);
-			g_object_unref (pVolume);
-		}
-		else
-		{
-			cd_message ("volume 'NULL'");
-			if (pNewIcon != NULL)
-				pNewIcon = _cd_get_icon_for_volume (NULL, pMount);
-			pIconsList = g_list_prepend (pIconsList, pNewIcon);
-		}
-		g_object_unref (pMount);
-	}
-	g_list_free (pMountsList);
-	
-	return pIconsList;
-}*/
 
 static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDockFMSortType iSortType, int iNewIconsGroup, gboolean bListHiddenFiles, int iNbMaxFiles, gchar **cValidUri)
 {
@@ -610,9 +430,6 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 		G_FILE_ATTRIBUTE_STANDARD_ICON","
 		G_FILE_ATTRIBUTE_THUMBNAIL_PATH","
 		G_FILE_ATTRIBUTE_STANDARD_IS_HIDDEN","
-		#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
-		///G_FILE_ATTRIBUTE_PREVIEW_ICON","
-		#endif
 		G_FILE_ATTRIBUTE_STANDARD_TARGET_URI;
 	GFileEnumerator *pFileEnum = g_file_enumerate_children (pFile,
 		cAttributes,
@@ -682,15 +499,6 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 					cName = g_mount_get_name (pMount);
 					cd_message ("GMount exists (%s)", cName);
 					g_object_unref (pMount);
-					
-					/* GVolume *volume = g_mount_get_volume (pMount);
-					if (volume)
-						cd_message ("  volume associe : %s", g_volume_get_name (volume));
-					GDrive *drive = g_mount_get_drive (pMount);
-					if (drive)
-						cd_message ("  disque associe : %s", g_drive_get_name (drive));*/
-					
-					///pFileIcon = g_mount_get_icon (pMount);
 				}
 				else
 				{
@@ -707,19 +515,13 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 								cName = g_strdup (D_("File System"));
 							}
 						}
-						else if (strcmp (str+1, "drive") == 0)  // on cherche un nom plus parlant si possible.
+						else if (strcmp (str+1, "drive") == 0)  // we are looking for a better name.
 						{
 							gchar *cVolumeName = _cd_find_volume_name_from_drive_name (cName);
 							if (cVolumeName != NULL)
 							{
 								g_free (cName);
 								cName = cVolumeName;
-								//g_free (cVolumeName);
-								//continue;  /// apparemment il n'est plus necessaire d'afficher les .drives qui ont 1 (ou plusieurs ?) volumes, car ces derniers sont dans la liste, donc ca fait redondant.
-								/**if (strcmp (cVolumeName, "discard") == 0)
-									continue;
-								g_free (cName);
-								cName = cVolumeName;*/
 							}
 						}
 					}
@@ -738,17 +540,6 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 				icon->cCommand = g_strdup (icon->cBaseURI);
 			icon->cName = cName;
 			icon->cFileName = g_strdup (g_file_info_get_attribute_byte_string (pFileInfo, G_FILE_ATTRIBUTE_THUMBNAIL_PATH));
-			#if (GLIB_MAJOR_VERSION > 2) || (GLIB_MAJOR_VERSION == 2 && GLIB_MINOR_VERSION >= 20)
-			/**if (icon->cFileName == NULL)
-			{
-				GIcon *pPreviewIcon = (GIcon *)g_file_info_get_attribute_object (pFileInfo, G_FILE_ATTRIBUTE_PREVIEW_ICON);
-				if (pPreviewIcon != NULL)
-				{
-					icon->cFileName = _cd_get_icon_path (pPreviewIcon, NULL);
-					// g_print ("got preview icon '%s'\n", icon->cFileName);
-				}
-			}*/
-			#endif
 			if (cMimeType != NULL && strncmp (cMimeType, "image", 5) == 0)
 			{
 				gchar *cHostname = NULL;
@@ -758,7 +549,7 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 					g_error_free (erreur);
 					erreur = NULL;
 				}
-				else if (cHostname == NULL || strcmp (cHostname, "localhost") == 0)  // on ne recupere la vignette que sur les fichiers locaux.
+				else if (cHostname == NULL || strcmp (cHostname, "localhost") == 0)  // we get thumbnails only for local files.
 				{
 					icon->cFileName = g_strdup (cFilePath);
 					cairo_dock_remove_html_spaces (icon->cFileName);
@@ -783,11 +574,8 @@ static GList *cairo_dock_gio_vfs_list_directory (const gchar *cBaseURI, CairoDoc
 			}
 			else if (iSortType == CAIRO_DOCK_FM_SORT_BY_TYPE)
 				icon->fOrder = (cMimeType != NULL ? *((int *) cMimeType) : 0);
-			if (icon->fOrder == 0)  // un peu moyen mais mieux que rien non ?
+			if (icon->fOrder == 0)  // not so good but better than nothing, no?
 				icon->fOrder = iOrder;
-			/*pIconList = g_list_insert_sorted (pIconList,
-				icon,
-				(GCompareFunc) cairo_dock_compare_icons_order);*/
 			pIconList = g_list_prepend (pIconList, icon);
 			cd_debug (" + %s (%s)", icon->cName, icon->cFileName);
 			iOrder ++;
@@ -812,7 +600,7 @@ static gsize cairo_dock_gio_vfs_measure_directory (const gchar *cBaseURI, gint i
 	g_return_val_if_fail (cBaseURI != NULL, 0);
 	//cd_debug ("%s (%s)", __func__, cBaseURI);
 	
-	gchar *cURI = (*cBaseURI == '/' ? g_strconcat ("file://", cBaseURI, NULL) : (gchar*)cBaseURI);  // on le libere a la fin si necessaire.
+	gchar *cURI = (*cBaseURI == '/' ? g_strconcat ("file://", cBaseURI, NULL) : (gchar*)cBaseURI);  // we free it at the end if needed.
 	
 	GFile *pFile = g_file_new_for_uri (cURI);
 	GError *erreur = NULL;
@@ -858,15 +646,12 @@ static gsize cairo_dock_gio_vfs_measure_directory (const gchar *cBaseURI, gint i
 		const gchar *cFileName = g_file_info_get_name (pFileInfo);
 		
 		g_string_printf (sFilePath, "%s/%s", cURI, cFileName);
-		//GFile *file = g_file_new_for_uri (sFilePath->str);
-		//const gchar *cTargetURI = g_file_get_uri (file);
-		//g_print ("+ %s [%s]\n", cFileName, cTargetURI);
 		GFileType iFileType = g_file_info_get_file_type (pFileInfo);
 		
 		if (iFileType == G_FILE_TYPE_DIRECTORY && bRecursive)
 		{
 			g_string_printf (sFilePath, "%s/%s", cURI, cFileName);
-			iMeasure += MAX (1, cairo_dock_gio_vfs_measure_directory (sFilePath->str, iCountType, bRecursive, pCancel));  // un repertoire vide comptera pour 1.
+			iMeasure += MAX (1, cairo_dock_gio_vfs_measure_directory (sFilePath->str, iCountType, bRecursive, pCancel));  // an empty dir == 1.
 		}
 		else
 		{
@@ -906,7 +691,7 @@ static gchar *_cd_find_target_uri (const gchar *cBaseURI)
 	g_object_unref (pFile);
 	if (erreur != NULL)
 	{
-		cd_debug ("%s (%s) : %s", __func__, cBaseURI, erreur->message);  // peut arriver avec un .mount, donc pas de warning.
+		cd_debug ("%s (%s) : %s", __func__, cBaseURI, erreur->message);  // can have a .mount, no warning.
 		g_error_free (erreur);
 		return NULL;
 	}
@@ -986,7 +771,7 @@ static GMount *_cd_find_mount_from_uri (const gchar *cURI, gchar **cTargetURI)
 	GMount *pMount = NULL;
 	if (_cTargetURI != NULL)
 	{
-		cd_debug ("  pointe sur %s", _cTargetURI);
+		cd_debug ("  points to %s", _cTargetURI);
 		GFile *file = g_file_new_for_uri (_cTargetURI);
 		pMount = g_file_find_enclosing_mount (file, NULL, NULL);
 		g_object_unref (file);
@@ -1019,7 +804,7 @@ static gchar *cairo_dock_gio_vfs_is_mounted (const gchar *cURI, gboolean *bIsMou
 		}
 		else
 		{
-			if (cTargetURI != NULL && strcmp (cTargetURI, "file:///") == 0)  // cas particulier ?
+			if (cTargetURI != NULL && strcmp (cTargetURI, "file:///") == 0)  // special case?
 				*bIsMounted = TRUE;
 			else
 				*bIsMounted = FALSE;
@@ -1029,7 +814,7 @@ static gchar *cairo_dock_gio_vfs_is_mounted (const gchar *cURI, gboolean *bIsMou
 	{
 		*bIsMounted = FALSE;
 	}
-	else  // any other types (directory, regular file, etc) that is on (or point to) a monted volume.
+	else  // any other types (directory, regular file, etc) that is on (or point to) a mounted volume.
 	{
 		*bIsMounted = TRUE;
 	}
@@ -1102,7 +887,6 @@ static gboolean cairo_dock_gio_vfs_eject_drive (const gchar *cURI)
 
 
 static void _gio_vfs_mount_callback (gpointer pObject, GAsyncResult *res, gpointer *data)
-//static void _gio_vfs_mount_callback (gboolean succeeded, char *error, char *detailed_error, gpointer *data)
 {
 	cd_message ("%s (%d)", __func__, GPOINTER_TO_INT (data[1]));
 	
@@ -1151,7 +935,7 @@ static void cairo_dock_gio_vfs_mount (const gchar *cURI, int iVolumeID, CairoDoc
 	gchar *cTargetURI = _cd_find_target_uri (cURI);
 	GFile *pFile = g_file_new_for_uri (cURI);
 	
-	gpointer *data = g_new (gpointer, 6);  // libere dans la callback.
+	gpointer *data = g_new (gpointer, 6);  // freed in the callback.
 	data[0] = pCallback;
 	data[1] = GINT_TO_POINTER (1);  // mount
 	data[2] = (cTargetURI ? g_path_get_basename (cTargetURI) : g_strdup (cURI));
@@ -1265,28 +1049,28 @@ static void _on_monitor_changed (GFileMonitor *monitor,
 	CairoDockFMEventType iEventType;
 	switch (event_type)
 	{
-		///case G_FILE_MONITOR_EVENT_CHANGED :  // ignorer celui-ci devrait permettre d'eviter la moitie des signaux inutiles que gvfs emet.
+		///case G_FILE_MONITOR_EVENT_CHANGED :  // ignore this one should avoid most useless signals sent by gvfs.
 		case G_FILE_MONITOR_EVENT_CHANGES_DONE_HINT :
 		//case G_FILE_MONITOR_EVENT_UNMOUNTED : // pertinent ?...
 			iEventType = CAIRO_DOCK_FILE_MODIFIED;
-			cd_message ("modification d'un fichier");
+			cd_message ("modification of a file");
 		break;
 		
 		case G_FILE_MONITOR_EVENT_DELETED :
 			iEventType = CAIRO_DOCK_FILE_DELETED;
-			cd_message ("effacement d'un fichier");
+			cd_message ("a file has been removed");
 		break;
 		
 		case G_FILE_MONITOR_EVENT_CREATED :
 			iEventType = CAIRO_DOCK_FILE_CREATED;
-			cd_message ("creation d'un fichier");
+			cd_message ("creation of a file");
 		break;
 		
 		default :
 		return ;
 	}
 	gchar *cURI = g_file_get_uri (file);
-	cd_message (" c'est le fichier %s", cURI);
+	cd_message (" it's this file: %s", cURI);
 	gchar *cPath = NULL;
 	if (strncmp (cURI, "computer://", 11) == 0)
 	{
@@ -1300,7 +1084,7 @@ static void _on_monitor_changed (GFileMonitor *monitor,
 		cd_debug(" (path:%s)", cPath);
 		g_free (cURI);
 		cURI = g_strdup_printf ("computer://%s", cPath);
-		cd_message ("son URI complete est : %s", cURI);
+		cd_message ("its complete URI is: %s", cURI);
 	}
 	
 	pCallback (iEventType, cURI, user_data);
@@ -1339,14 +1123,14 @@ static void cairo_dock_gio_vfs_add_monitor (const gchar *cURI, gboolean bDirecto
 	g_signal_connect (G_OBJECT (pMonitor), "changed", G_CALLBACK (_on_monitor_changed), data);
 	
 	g_hash_table_insert (s_hMonitorHandleTable, g_strdup (cURI), data);
-	cd_message (">>> moniteur ajoute sur %s (%x)", cURI, user_data);
+	cd_message (">>> monitor added to %s (%x)", cURI, user_data);
 }
 
 static void cairo_dock_gio_vfs_remove_monitor (const gchar *cURI)
 {
 	if (cURI != NULL)
 	{
-		cd_message (">>> moniteur supprime sur %s", cURI);
+		cd_message (">>> monitor removed from %s", cURI);
 		g_hash_table_remove (s_hMonitorHandleTable, cURI);
 	}
 }
@@ -1427,7 +1211,7 @@ static gboolean cairo_dock_gio_vfs_move_file (const gchar *cURI, const gchar *cD
 	GFile *pFile = (*cURI == '/' ? g_file_new_for_path (cURI) : g_file_new_for_uri (cURI));
 	
 	gchar *cFileName = g_file_get_basename (pFile);
-	gchar *cNewFileURI = g_strconcat (cDirectoryURI, "/", cFileName, NULL);  // un peu moyen mais bon...
+	gchar *cNewFileURI = g_strconcat (cDirectoryURI, "/", cFileName, NULL);  // not so good but ok...
 	GFile *pDestinationFile = (*cNewFileURI == '/' ? g_file_new_for_path (cNewFileURI) : g_file_new_for_uri (cNewFileURI));
 	g_free (cNewFileURI);
 	g_free (cFileName);
@@ -1518,9 +1302,6 @@ static gchar *cairo_dock_gio_vfs_get_trash_path (const gchar *cNearURI, gchar **
 	if (cNearURI == NULL)
 		return g_strdup ("trash://");
 	gchar *cPath = NULL;
-	/*GFile *pFile = g_file_new_for_uri ("trash://");
-	gchar *cPath = g_file_get_path (pFile);
-	g_object_unref (pFile);*/
 	const gchar *xdgPath = g_getenv ("XDG_DATA_HOME");
 	if (xdgPath != NULL)
 	{
@@ -1657,8 +1438,14 @@ static void cairo_dock_gio_vfs_empty_trash (void)
 		const gchar *cFileName = g_file_info_get_name (pFileInfo);
 		//g_print (" - %s\n", cFileName);
 		
-		// il y'a 2 cas : un fichier dans la poubelle du home, et un fichier dans une poubelle d'un autre volume.
-		if (cFileName && *cFileName == '\\')  // nom de la forme "\media\Fabounet2\.Trash-1000\files\t%C3%A8st%201" et URI "trash:///%5Cmedia%5CFabounet2%5C.Trash-1000%5Cfiles%5Ct%25C3%25A8st%25201", mais cette URI ne marche pas des qu'il y'a des caracteres non ASCII-7 dans le nom (bug dans gio/gvfs ?). Donc on feinte, en construisant le chemin du fichier (et de son double dans 'info').
+		/* 2 cases: a file in the trash of the home dir or in a trash of
+		 * another volume.
+		 * name is like that: "\media\Fabounet2\.Trash-1000\files\t%C3%A8st%201"
+		 * and the URI "trash:///%5Cmedia%5CFabounet2%5C.Trash-1000%5Cfiles%5Ct%25C3%25A8st%25201"
+		 * But this URI doesn't work if there are non ASCII-7 chars in its name
+		 * (bug in gio/gvfs ?). So we try to rebuild a path to this file.
+		*/
+		if (cFileName && *cFileName == '\\')
 		{
 			g_string_printf (sFileUri, "file://%s", cFileName);
 			g_strdelimit (sFileUri->str, "\\", '/');
@@ -1685,7 +1472,7 @@ static void cairo_dock_gio_vfs_empty_trash (void)
 				g_object_unref (file);
 			}
 		}
-		else  // poubelle principale : nom de la forme "tȿst 1" et URI "trash:///t%C3%A8st%201"
+		else  // main trash: name like that: "tȿst 1" and the URI: "trash:///t%C3%A8st%201"
 		{
 			if (strchr (cFileName, '%'))  // if there is a % inside the name, it disturb gio, so let's remove it.
 			{
@@ -1698,12 +1485,6 @@ static void cairo_dock_gio_vfs_empty_trash (void)
 			else  // else it can handle the URI as usual.
 				g_string_printf (sFileUri, "trash:///%s", cFileName);
 			GFile *file = g_file_new_for_uri (sFileUri->str);
-			/*gchar *cValidURI = g_file_get_uri (file);
-			//g_print ("   - %s\n", cValidURI);
-			g_object_unref (file);
-			
-			file = g_file_new_for_uri (cValidURI);
-			g_free (cValidURI);*/
 			g_file_delete (file, NULL, &erreur);
 			g_object_unref (file);
 		}
@@ -1739,7 +1520,7 @@ static GList *cairo_dock_gio_vfs_list_apps_for_file (const gchar *cBaseURI)
 		NULL,
 		&erreur);
 	
-	if (erreur != NULL)  // peut arriver si l'emplacement n'est pas monte, mais on signale tout de meme la raison avec un warning.
+	if (erreur != NULL)  // can happen if the volume is not mounted but we can notify the user via a warning.
 	{
 		cd_warning ("gvfs-integration : %s", erreur->message);
 		g_error_free (erreur);
