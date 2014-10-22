@@ -353,6 +353,9 @@ static gboolean _on_entry_changed (GtkWidget *pEntry, GldiModuleInstance *myAppl
 		_show_other_entries (myApplet);
 	}
 
+	// reposition the menu (e.g. if we are on the bottom/right)
+	gtk_menu_reposition (GTK_MENU (myData.pMenu));
+
 	return FALSE;
 }
 
