@@ -252,6 +252,9 @@ static gboolean _cd_find_can_eject_from_drive_name (const gchar *cName)
 
 void vfs_backend_get_file_info (const gchar *cBaseURI, gchar **cName, gchar **cURI, gchar **cIconName, gboolean *bIsDirectory, int *iVolumeID, double *fOrder, CairoDockFMSortType iSortType)
 {
+	*cName = NULL;
+	*cURI = NULL;
+	*cIconName = NULL;
 	g_return_if_fail (cBaseURI != NULL);
 	cd_message ("%s (%s)", __func__, cBaseURI);
 	
