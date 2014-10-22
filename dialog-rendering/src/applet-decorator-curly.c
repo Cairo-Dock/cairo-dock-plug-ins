@@ -204,7 +204,7 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	double fTipHeight = ah + fRadius;  // we want the tip of the arrow to reach the border, not the middle of the stroke
 	double dh = fTipHeight + fRadius;
 	int iDeltaIconX = 0, iDeltaIconY = 0;
-	double dh1, dh2;
+	double dh1 = dh, dh2 = dh;
 	switch (iMarginPosition)
 	{
 		case 0:

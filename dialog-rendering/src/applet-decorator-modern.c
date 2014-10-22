@@ -221,7 +221,7 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	double fDockOffsetX = fLineWidth/2;
 	double fDockOffsetY = fLineWidth/2;
 	double fFrameWidth, fFrameHeight;
-	int sw, sh;  // w/h direction
+	int sw = 1, sh = 1;  // w/h direction
 	fFrameWidth = w - fLineWidth;
 	fFrameHeight = h - fLineWidth;
 	
