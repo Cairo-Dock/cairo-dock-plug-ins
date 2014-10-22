@@ -428,6 +428,8 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath, GldiModuleInstance
 			pDiskUsage->iLastCheckTime = 1e9;
 		pBookmarkIconList = g_list_append (pBookmarkIconList, pNewIcon);
 	}
+	else
+		g_free (cHome);
 
 	gchar *cContent = NULL;
 	gsize length = 0;
@@ -455,6 +457,8 @@ GList *cd_shortcuts_list_bookmarks (gchar *cBookmarkFilePath, GldiModuleInstance
 				pNewIcon = _cd_shortcuts_get_icon (cOneBookmark, cUserName, fCurrentOrder++);
 				if (pNewIcon)
 					pBookmarkIconList = g_list_append (pBookmarkIconList, pNewIcon);
+				else
+					g_free (cOneBookmark);
 			}
 			else
 			{
