@@ -21,6 +21,7 @@
 #	 show the % of carge as quick info, and activate an alert message to be shown when the charge is critically low.
 
 require 'rubygems'
+gem 'ruby-dbus'
 require 'dbus'
 require 'parseconfig'
 
