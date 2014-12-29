@@ -596,6 +596,8 @@ if (enable-vala-interface)
 	set (with_valac no)
 	find_program (VALAC_EXE valac)
 	message (STATUS "   Path to valac: ${VALAC_EXE}")
+	set (VERSION_VALA "1.0.0")
+	message (STATUS "   Cairo-Dock Vala interface's ABI version: ${VERSION_VALA}")
 
 	enable_if_not_defined (enable-vala-support)
 	if (NOT enable-vala-support)
