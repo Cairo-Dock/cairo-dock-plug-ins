@@ -26,7 +26,7 @@ require 'dbus'
 require 'parseconfig'
 
 class CDApplet
-	attr_accessor :cConfFile, :cAppletName, :icon, :sub_icons, :config, :bus, :_cMenuIconId, :cParentAppName, :cBusPath
+	attr_accessor :cConfFile, :cAppletName, :icon, :sub_icons, :config, :bus, :_cMenuIconId, :cParentAppName, :cBusPath, :cRootDataDir, :cShareDataDir
 	
 	BOTTOM = 0
 	TOP    = 1
