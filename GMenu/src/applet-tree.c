@@ -76,7 +76,7 @@ static void add_image_to_menu_item (GtkWidget *image_menu_item,
 {
 	// make a GtkImage
 	GtkWidget *image = gtk_image_new ();
-	gtk_widget_set_size_request (image, myData.iPanelDefaultMenuIconSize, myData.iPanelDefaultMenuIconSize);
+	gtk_image_set_pixel_size (GTK_IMAGE (image), myData.iPanelDefaultMenuIconSize); // force size
 	
 	if (pIcon)  // this just sets the gicon on the image, it doesn't load the pixbuf.
 		gtk_image_set_from_gicon (GTK_IMAGE (image), pIcon, GTK_ICON_SIZE_LARGE_TOOLBAR);
