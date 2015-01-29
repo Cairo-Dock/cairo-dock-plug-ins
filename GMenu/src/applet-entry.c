@@ -115,6 +115,8 @@ static void _add_results_in_menu (GldiModuleInstance *myApplet)
 			{
 				GtkWidget *pImage = gtk_image_new_from_gicon (pIcon,
 					GTK_ICON_SIZE_LARGE_TOOLBAR);
+				gtk_image_set_pixel_size (GTK_IMAGE (pImage),
+					myData.iPanelDefaultMenuIconSize); // force size
 				gldi_menu_item_set_image (pInfo->pMenuItem, pImage);
 			}
 
