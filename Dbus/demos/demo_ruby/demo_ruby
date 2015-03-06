@@ -105,7 +105,7 @@ class Applet < CDApplet
 	end
 	def reload
 		p "[+] our module was reloaded, welcome back!"
-		self.icon.AddDataRenderer("gauge", 1, myApplet.config['theme'])
+		self.icon.AddDataRenderer("gauge", 1, self.configuration['theme'])
 		self.icon.RenderValues([Float(self.counter)/self.configuration['max_value']])
 		self.sub_icons.RemoveSubIcon("any")
 		self.sub_icons.AddSubIcons(["icon 1", "firefox-3.0", "id1", "icon 2", "natilus", "id2", "icon 3", "thunderbird", "id3"]) 
