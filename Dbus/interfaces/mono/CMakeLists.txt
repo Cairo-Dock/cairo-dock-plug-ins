@@ -3,7 +3,7 @@
 
 execute_process(COMMAND ${GMCS_EXECUTABLE}
 	-target:library
-	-pkg:glib-sharp-2.0 -pkg:ndesk-dbus-1.0 -pkg:ndesk-dbus-glib-1.0
+	-pkg:dbus-sharp-2.0 -pkg:dbus-sharp-glib-2.0 -pkg:glib-sharp-2.0
 	-out:${CMAKE_CURRENT_BINARY_DIR}/CDApplet.dll
 	${CMAKE_CURRENT_SOURCE_DIR}/CDApplet.cs ${CMAKE_CURRENT_SOURCE_DIR}/ISubApplet.cs ${CMAKE_CURRENT_SOURCE_DIR}/IApplet.cs)
 ### find how to register to GAC ...

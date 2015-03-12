@@ -21,7 +21,7 @@
 // Make your own class derive from a CDApplet, and override the functions you need (the ones which don't start with an underscore).
 
 // Compile it with the following command, then rename 'demo_mono.exe' to 'demo_mono'.
-// gmcs /target:library CDApplet.cs ISubApplet.cs IApplet.cs -pkg:glib-sharp-2.0 -pkg:ndesk-dbus-1.0 -pkg:ndesk-dbus-glib-1.0
+// gmcs /target:library CDApplet.cs ISubApplet.cs IApplet.cs -pkg:dbus-sharp-2.0 -pkg:dbus-sharp-glib-2.0 -pkg:glib-sharp-2.0
   //////////////////////////
  ////// dependancies //////
 //////////////////////////
@@ -29,7 +29,7 @@ using System;  // Environment
 using System.IO;  // Path, Directory
 using System.Reflection;
 using GLib;
-using NDesk.DBus;
+using DBus;
 using CairoDock.Applet;
 
 //namespace CairoDock.Applet
@@ -258,8 +258,8 @@ public class CDApplet
 	
 	private void _connect_to_dock ()
 	{
-		NDesk.DBus.BusG.Init();
-		NDesk.DBus.Bus bus = NDesk.DBus.Bus.Session;
+		DBus.BusG.Init();
+		DBus.Bus bus = DBus.Bus.Session;
 		this.icon = bus.GetObject<IApplet> ("org.cairodock.CairoDock", new ObjectPath (this.cBusPath));
 		this.icon.on_click 			+= new OnClickEvent (on_click);
 		this.icon.on_middle_click 	+= new OnMiddleClickEvent (on_middle_click);
