@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;  // Dictionnary
-using NDesk.DBus;
+using DBus;
 
 namespace CairoDock.Applet
 {

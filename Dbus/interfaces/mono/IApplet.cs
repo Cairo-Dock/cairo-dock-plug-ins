@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;  // Dictionnary
-using NDesk.DBus;
+using DBus;
 
 namespace CairoDock.Applet
 {
@@ -27,7 +27,7 @@ namespace CairoDock.Applet
 		Left
 	}
 
-	[NDesk.DBus.Interface("org.cairodock.CairoDock.applet")]
+	[DBus.Interface("org.cairodock.CairoDock.applet")]
 	public interface IApplet
 	{
 		object Get(string cProperty);

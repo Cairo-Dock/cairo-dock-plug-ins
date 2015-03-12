@@ -138,7 +138,7 @@ public class Applet : CDApplet
 	public override void on_build_menu ()
 	{
 		Console.WriteLine("*** build menu");
-		/// Warning : teh AddMenuItems fails with NDesk-DBus 0.6.0; until this is fixed, use the PopulateMenu method.
+		/// Warning : the AddMenuItems fails with DBus Sharp 0.6.0; until this is fixed, use the PopulateMenu method.
 		/**Dictionary<string, object>[] pItems = new Dictionary<string, object>[] {
 			new Dictionary<string, object>()
 			{
