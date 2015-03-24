@@ -30,6 +30,8 @@ elif test -n "`echo $PS_OUTPUT | grep light-locker`"; then
 	light-locker-command --lock
 elif hash xlock 2> /dev/null; then
 	xlock
+elif hash xdg-screensaver 2> /dev/null; then
+	xdg-screensaver lock
 else # check is another "*-screensaver" daemon is running
 	# we need to relaunch ps, easier to parse compare to PS_OUTPUT which contains only one big line
 	SCREENSAVER=`ps -u $USER -wwo pid,cmd | grep "\-[s]creensaver" | awk '{print $2}'`
