@@ -1566,6 +1566,14 @@ static GList *cairo_dock_gio_vfs_list_apps_for_file (const gchar *cBaseURI)
 	return pList;
 }
 
+static void cairo_dock_gio_vfs_lock_screen (void) {
+	gchar *cResult = cairo_dock_launch_command_sync ("which xdg-screensaver");
+	if (cResult != NULL && *cResult == '/')
+		cairo_dock_launch_command ("xdg-screensaver lock");
+
+	g_free (cResult);
+}
+
 gboolean cairo_dock_gio_vfs_fill_backend(CairoDockDesktopEnvBackend *pVFSBackend)
 {
 	if(pVFSBackend)
@@ -1590,6 +1598,7 @@ gboolean cairo_dock_gio_vfs_fill_backend(CairoDockDesktopEnvBackend *pVFSBackend
 		pVFSBackend->empty_trash = cairo_dock_gio_vfs_empty_trash;
 		pVFSBackend->get_desktop_path = cairo_dock_gio_vfs_get_desktop_path;
 		pVFSBackend->list_apps_for_file = cairo_dock_gio_vfs_list_apps_for_file;
+		pVFSBackend->lock_screen = cairo_dock_gio_vfs_lock_screen;
 	}
 
 	return TRUE;
