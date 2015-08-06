@@ -146,6 +146,12 @@ CD_APPLET_RELOAD_BEGIN
 
 		if (myConfig.cDirPath == NULL)
 		{
+			// in case of deletion of a path: force resizing
+			if (myIcon->pSubDock)
+			{
+				gldi_object_unref (GLDI_OBJECT(myIcon->pSubDock));
+				myIcon->pSubDock = NULL;
+			}
 			CD_APPLET_SET_IMAGE_ON_MY_ICON (myConfig.cImageFile);
 			gldi_dialog_show_temporary_with_icon (D_("Open the configuration of the applet to choose a folder to import."),
 				myIcon, myContainer,
