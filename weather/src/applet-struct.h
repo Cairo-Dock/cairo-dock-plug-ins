@@ -29,6 +29,9 @@
 
 #define WEATHER_DEFAULT_NAME "weather"
 
+#define CD_WEATHER_BASE_URL "http://wxdata.weather.com/wxdata"
+
+
 #define _display(cValue) ((cValue) == NULL || *((gchar*)cValue) == 'N' ? "?" : (const gchar*)(cValue))
 
 struct _AppletConfig {

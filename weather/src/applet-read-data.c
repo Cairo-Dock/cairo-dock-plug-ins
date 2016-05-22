@@ -30,9 +30,6 @@
 #include "applet-load-icons.h"
 #include "applet-read-data.h"
 
-#define CD_WEATHER_BASE_URL "http://xml.weather.com"
-
-
 static xmlDocPtr _cd_weather_open_xml_buffer (const gchar *cData, xmlNodePtr *root_node, const gchar *cRootNodeName, GError **erreur)
 {
 	if (cData == NULL || *cData == '\0')

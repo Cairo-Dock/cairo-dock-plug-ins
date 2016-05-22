@@ -174,7 +174,7 @@ static void _on_got_location_data (const gchar *cLocationData, GldiModuleInstanc
 	gldi_task_discard (myData.pGetLocationTask);
 	myData.pGetLocationTask = NULL;
 }
-#define CD_WEATHER_BASE_URL "http://xml.weather.com"
+
 static void _cd_weather_search_for_location (GtkEntry *pEntry, GldiModuleInstance *myApplet)
 {
 	const gchar *cLocationName = gtk_entry_get_text (pEntry);
