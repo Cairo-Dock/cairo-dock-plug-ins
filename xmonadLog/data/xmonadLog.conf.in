@@ -1,0 +1,38 @@
+#@VERSION_XMONADLOG@
+
+#[gtk-about]
+[Icon]
+
+#F[Icon]
+frame_maininfo=
+
+#d Name of the dock it belongs to:
+dock name = 
+
+#s[Default] Name of the icon as it will appear in its caption in the dock:
+name = 
+#v
+sep_display=
+
+
+#j[0;2560] Desired icon size for this applet
+#{Set to 0 to use the default applet size}
+icon size = 0;0
+
+order=
+
+#A
+handbook=xmonadLog
+
+
+
+#[gtk-preferences]
+[Configuration]
+
+
+#i[0;128] text dx :
+text dx = 0
+
+#i[0;128] text dy :
+text dy = 0
+
