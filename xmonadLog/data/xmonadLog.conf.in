@@ -30,9 +30,9 @@ handbook=xmonadLog
 [Configuration]
 
 
-#i[0;128] text dx :
+#i[-128;128] text dx :
 text dx = 0
 
-#i[0;128] text dy :
+#i[-128;128] text dy :
 text dy = 0
 
