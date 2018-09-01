@@ -24,13 +24,13 @@ import sys
 import os.path
 
 try:
-	import glib
-	import gobject
-	g_bMainLoopInGObject = True
-except:
 	from gi.repository import GLib as glib
 	from gi.repository import GObject as gobject
 	g_bMainLoopInGObject = False
+except:  # old way
+	import glib
+	import gobject
+	g_bMainLoopInGObject = True
 
 import gettext
 import dbus
