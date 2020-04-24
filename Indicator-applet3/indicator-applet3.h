@@ -22,7 +22,7 @@
 
 #include <glib.h>
 #include <gtk/gtk.h>
-#include <libindicator/indicator-object.h>
+#include <libayatana-indicator/indicator-object.h>
 
 #define INDICATOR_SERVICE_DIR "/usr/share/unity/indicators"
 

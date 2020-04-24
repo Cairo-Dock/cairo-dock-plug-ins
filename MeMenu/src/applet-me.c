@@ -23,9 +23,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <libindicator/indicator.h>
-#include <libindicator/indicator-object.h>
-#include <libindicator/indicator-service-manager.h>
+#include <libayatana-indicator/indicator.h>
+#include <libayatana-indicator/indicator-object.h>
+#include <libayatana-indicator/indicator-service-manager.h>
 
 #include "applet-struct.h"
 #include "me-service-client.h"
