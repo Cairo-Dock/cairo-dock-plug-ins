@@ -27,7 +27,7 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <glib.h>
 #include "volume-widget.h"
 #include "common-defs.h"
-#include <libido/idoscalemenuitem.h>
+#include <libayatana-ido/idoscalemenuitem.h>
 ///#include "indicator-sound.h"
 #include "applet-backend-sound-menu-old.h"
 
