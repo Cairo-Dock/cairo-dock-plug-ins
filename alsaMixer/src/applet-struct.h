@@ -22,7 +22,6 @@
 
 #include <sys/types.h>
 #include <alsa/asoundlib.h>
-#define _STRUCT_TIMEVAL
 #include <cairo-dock.h>
 
 #ifdef INDICATOR_SOUNDMENU_WITH_IND3

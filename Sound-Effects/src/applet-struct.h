@@ -23,7 +23,6 @@
 
 #include <sys/types.h>
 #include <alsa/asoundlib.h>
-#define _STRUCT_TIMEVAL
 #include <cairo-dock.h>
 
 //\___________ structure containing the applet's configuration parameters.
