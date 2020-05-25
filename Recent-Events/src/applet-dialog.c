@@ -19,7 +19,6 @@
 
 #include <stdlib.h>
 #include <string.h>
-#define __USE_POSIX
 #include <time.h>
 
 #include "applet-struct.h"

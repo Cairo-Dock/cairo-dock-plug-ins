@@ -19,7 +19,6 @@
 
 #include <string.h>
 #include <stdlib.h>
-#define __USE_POSIX
 #include <time.h>
 #include <glib/gstdio.h>
 

@@ -35,7 +35,6 @@ dbus-send --session --dest=org.cairodock.CairoDock /org/cairodock/CairoDock org.
 
 #include <fcntl.h>  // O_RDONLY
 #include <unistd.h>  // open, read, close
-#define __USE_POSIX
 #include <signal.h>  // kill
 #include <glib.h>
 #include <glib/gstdio.h>

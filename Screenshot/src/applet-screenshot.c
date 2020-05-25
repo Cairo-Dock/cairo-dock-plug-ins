@@ -18,7 +18,6 @@
 */
 
 #include <stdlib.h>
-#define __USE_POSIX
 #include <time.h>
 
 #include <cairo-xlib.h>

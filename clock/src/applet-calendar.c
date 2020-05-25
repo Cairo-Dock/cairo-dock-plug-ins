@@ -19,7 +19,6 @@
 
 #include <stdlib.h>
 #include <math.h>
-#define __USE_POSIX
 #include <signal.h>
 
 #include "applet-struct.h"
