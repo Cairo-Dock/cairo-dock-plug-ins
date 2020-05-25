@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # This is a part of the Cairo-Dock plug-ins.
 # Copyright : (C) 2012 by Fabrice Rey
@@ -16,17 +16,11 @@
 # http://www.gnu.org/licenses/licenses.html#GPL
 #
 
-from __future__ import print_function
 import sys
 
-try:
-	import glib
-	import gobject
-	g_bMainLoopInGObject = True
-except:
-	from gi.repository import GLib as glib
-	from gi.repository import GObject as gobject
-	g_bMainLoopInGObject = False
+from gi.repository import GLib as glib
+from gi.repository import GObject as gobject
+g_bMainLoopInGObject = False
 
 import re
 from os import popen, getpid

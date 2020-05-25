@@ -19,26 +19,17 @@
 ####################
 ### dependancies ###
 ####################
-from __future__ import print_function
 import sys
 import os.path
 
-try:
-	from gi.repository import GLib as glib
-	from gi.repository import GObject as gobject
-	g_bMainLoopInGObject = False
-except:  # old way
-	import glib
-	import gobject
-	g_bMainLoopInGObject = True
+from gi.repository import GLib as glib
+from gi.repository import GObject as gobject
+g_bMainLoopInGObject = False
 
 import gettext
 import dbus
 from dbus.mainloop.glib import DBusGMainLoop
-try:
-	import ConfigParser # python 2
-except:
-	import configparser # python 3
+import configparser
 
 # Enabling threading support (only for GLib < 2.32)
 if glib.glib_version[0] < 2 or (glib.glib_version[0] == 2 and glib.glib_version[1] < 32):

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # A simple test case.
 
 from gi.repository import Unity, Gio, GObject, Dbusmenu
@@ -30,7 +30,7 @@ launcher.set_property("progress_visible", True)
 # We also want a quicklist
 
 def on_item_selected(self, menuitem, index):
-	print "selected",index
+	print("selected",index)
 	
 ql = Dbusmenu.Menuitem.new ()
 
@@ -62,10 +62,10 @@ prev_item = item2
 def update_urgency():
 	global prev_item, n
 	if launcher.get_property("urgent"):
-		print "Removing urgent flag"
+		print("Removing urgent flag")
 		launcher.set_property("urgent", False)
 	else:
-		print "setting urgent flag"
+		print("setting urgent flag")
 		launcher.set_property("urgent", True)
 
 	if prev_item == None:

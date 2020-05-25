@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # This is a part of the Cairo-Dock plug-ins.
 # Copyright : (C) 2011 by Fabrice Rey
@@ -18,17 +18,11 @@
 # Developped as a part of Cairo-Dock, but usable as a stand-alone systray daemon.
 # The code follows the same logic as the KDE watcher, to ensure a complete compatibility.
 
-from __future__ import print_function
 import sys
 
-try:
-	import glib
-	import gobject
-	g_bMainLoopInGObject = True
-except:
-	from gi.repository import GLib as glib
-	from gi.repository import GObject as gobject
-	g_bMainLoopInGObject = False
+from gi.repository import GLib as glib
+from gi.repository import GObject as gobject
+g_bMainLoopInGObject = False
 
 import dbus, dbus.service
 from dbus.mainloop.glib import DBusGMainLoop
