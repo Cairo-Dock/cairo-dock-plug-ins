@@ -197,7 +197,7 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	
 	if (iMarginPosition == 1)  // top arrow
 	{
-		dx = MIN (w - fRadius - 2*aw, MAX (fRadius, iAimedX - x - aw));
+		dx = MIN (fFrameWidth - 2*aw, MAX (fRadius, iAimedX - x - aw));
 		cairo_line_to (pCairoContext, dx, fDockOffsetY);
 		cairo_line_to (pCairoContext, MIN (w, MAX (0, iAimedX - x)), fDockOffsetY - _ah);
 		cairo_line_to (pCairoContext, dx + 2*aw, fDockOffsetY);
@@ -232,7 +232,7 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	
 	if (iMarginPosition == 0)  // bottom arrow
 	{
-		dx = MIN (w - fRadius - 2*aw, MAX (fRadius, iAimedX - x - aw));
+		dx = MIN (fFrameWidth - 2*aw, MAX (fRadius, iAimedX - x - aw));
 		cairo_line_to (pCairoContext, dx + 2*aw, fDockOffsetY + fFrameHeight);
 		cairo_line_to (pCairoContext, MIN (w, MAX (0, iAimedX - x)), fDockOffsetY + fFrameHeight + _ah);
 		cairo_line_to (pCairoContext, dx, fDockOffsetY + fFrameHeight);
