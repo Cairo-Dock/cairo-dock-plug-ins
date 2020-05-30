@@ -27,6 +27,10 @@ int cd_get_volume (void);
 
 void cd_set_volume (int iVolume);
 
+int cd_get_capture_volume (void);
+
+void cd_set_capture_volume (int iVolume);
+
 void cd_toggle_mute (void);
 
 void cd_show_hide (void);

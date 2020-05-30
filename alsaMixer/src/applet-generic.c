@@ -45,6 +45,19 @@ void cd_set_volume (int iVolume)
 		myData.ctl.set_volume (iVolume);
 }
 
+int cd_get_capture_volume (void)
+{
+	if (myData.ctl.get_capture_volume)
+		return myData.ctl.get_capture_volume ();
+	return 0;
+}
+
+void cd_set_capture_volume (int iVolume)
+{
+	if (myData.ctl.set_capture_volume)
+		myData.ctl.set_capture_volume (iVolume);
+}
+
 void cd_toggle_mute (void)
 {
 	if (myData.ctl.toggle_mute)
@@ -90,22 +103,68 @@ static void on_change_volume (GtkRange *range, gpointer data)
 	cd_set_volume (iNewVolume);
 	CD_APPLET_LEAVE();
 }
+static void on_change_capture_volume (GtkRange *range, gpointer data)
+{
+	CD_APPLET_ENTER;
+	int iNewVolume = (int) gtk_range_get_value (GTK_RANGE (range));
+	cd_debug ("%s (%d)", __func__, iNewVolume);
+	cd_set_capture_volume (iNewVolume);
+	CD_APPLET_LEAVE();
+}
 GtkWidget *mixer_build_widget (gboolean bHorizontal)
 {
-	g_return_val_if_fail (myData.pControledElement != NULL, NULL);
+	g_return_val_if_fail (myData.playback.pControledElement != NULL, NULL);
+	// build the playback volume scale
 	GtkWidget *pScale = gtk_scale_new_with_range (bHorizontal ? GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL, 0., 100., .5*myConfig.iScrollVariation);
 	if (! bHorizontal)
 		gtk_range_set_inverted (GTK_RANGE (pScale), TRUE);  // de bas en haut.
 	
-	myData.iCurrentVolume = cd_get_volume ();
-	gtk_range_set_value (GTK_RANGE (pScale), myData.iCurrentVolume);
+	myData.playback.iCurrentVolume = cd_get_volume ();
+	gtk_range_set_value (GTK_RANGE (pScale), myData.playback.iCurrentVolume);
+	gtk_range_set_increments(GTK_RANGE (pScale), 5, 5);
 	
 	g_signal_connect (G_OBJECT (pScale),
 		"value-changed",
 		G_CALLBACK (on_change_volume),
 		NULL);
 	
-	gldi_dialog_set_widget_text_color (pScale);
+	myData.pPlaybackScale = pScale;
+	
+	// build the capture volume scale
+	if (myData.capture.pControledElement != NULL)
+	{
+		GtkWidget *pScale2 = gtk_scale_new_with_range (bHorizontal ? GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL, 0., 100., .5*myConfig.iScrollVariation);
+		if (! bHorizontal)
+			gtk_range_set_inverted (GTK_RANGE (pScale2), TRUE);  // de bas en haut.
+		
+		myData.capture.iCurrentVolume = cd_get_capture_volume ();
+		gtk_range_set_value (GTK_RANGE (pScale2), myData.capture.iCurrentVolume);
+		gtk_range_set_increments(GTK_RANGE (pScale2), 5, 5);
+		
+		g_signal_connect (G_OBJECT (pScale2),
+			"value-changed",
+			G_CALLBACK (on_change_capture_volume),
+			NULL);
+		
+		myData.pCaptureScale = pScale2;
+			
+		// add both scales with some icons into a box
+		GtkWidget *box = gtk_box_new (bHorizontal ? GTK_ORIENTATION_VERTICAL : GTK_ORIENTATION_HORIZONTAL, 0);
+		
+		GtkWidget *hbox = gtk_box_new (bHorizontal ? GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL, 0);
+		GtkWidget *icon = gtk_image_new_from_icon_name ("audio-speakers", GTK_ICON_SIZE_LARGE_TOOLBAR);
+		gtk_box_pack_start (GTK_BOX (hbox), icon, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox), pScale, TRUE, TRUE, 0);
+		gtk_box_pack_start (GTK_BOX (box), hbox, FALSE, FALSE, 0);
+		
+		hbox = gtk_box_new (bHorizontal ? GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL, 0);
+		icon = gtk_image_new_from_icon_name ("audio-input-microphone", GTK_ICON_SIZE_LARGE_TOOLBAR);
+		gtk_box_pack_start (GTK_BOX (hbox), icon, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox), pScale2, TRUE, TRUE, 0);
+		gtk_box_pack_start (GTK_BOX (box), hbox, FALSE, FALSE, 0);
+		return box;
+	}
+	
 	return pScale;
 }
 
@@ -115,8 +174,14 @@ void cd_mixer_set_volume_with_no_callback (GtkWidget *pScale, int iVolume)
 	g_signal_handlers_block_matched (GTK_WIDGET(pScale),
 		G_SIGNAL_MATCH_FUNC,
 		0, 0, NULL, (void*)on_change_volume, NULL);
+	g_signal_handlers_block_matched (GTK_WIDGET(pScale),
+		G_SIGNAL_MATCH_FUNC,
+		0, 0, NULL, (void*)on_change_capture_volume, NULL);
 	gtk_range_set_value (GTK_RANGE (pScale), (double) iVolume);
 	g_signal_handlers_unblock_matched (GTK_WIDGET(pScale),
 		G_SIGNAL_MATCH_FUNC,
 		0, 0, NULL, (void*)on_change_volume, NULL);
+	g_signal_handlers_unblock_matched (GTK_WIDGET(pScale),
+		G_SIGNAL_MATCH_FUNC,
+		0, 0, NULL, (void*)on_change_capture_volume, NULL);
 }

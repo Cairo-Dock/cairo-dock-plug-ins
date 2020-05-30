@@ -34,11 +34,11 @@ void cd_update_icon (void)
 	switch (myConfig.iVolumeDisplay)
 	{
 		case VOLUME_ON_LABEL :
-			CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s: %d%%", myData.mixer_card_name?myData.mixer_card_name:D_("Volume"), myData.iCurrentVolume);
+			CD_APPLET_SET_NAME_FOR_MY_ICON_PRINTF ("%s: %d%%", myData.mixer_card_name?myData.mixer_card_name:D_("Volume"), myData.playback.iCurrentVolume);
 		break;
 		
 		case VOLUME_ON_ICON :
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%%", myData.iCurrentVolume);
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%d%%", myData.playback.iCurrentVolume);
 			bNeedRedraw = TRUE;
 		break;
 		
@@ -74,7 +74,7 @@ void cd_update_icon (void)
 			if (myData.bIsMute)
 				fPercent = CAIRO_DATA_RENDERER_UNDEF_VALUE;
 			else
-				fPercent = (double) myData.iCurrentVolume / 100.;
+				fPercent = (double) myData.playback.iCurrentVolume / 100.;
 			CD_APPLET_RENDER_NEW_DATA_ON_MY_ICON (&fPercent);
 			bNeedRedraw = FALSE;
 		}
@@ -87,8 +87,8 @@ void cd_update_icon (void)
 	if (bNeedRedraw)
 		CD_APPLET_REDRAW_MY_ICON;
 	
-	if (myData.pScale)
+	if (myData.pPlaybackScale)
 	{
-		cd_mixer_set_volume_with_no_callback (myData.pScale, myData.iCurrentVolume);
+		cd_mixer_set_volume_with_no_callback (myData.pPlaybackScale, myData.playback.iCurrentVolume);
 	}
 }

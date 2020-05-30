@@ -31,6 +31,7 @@ static int mixer_level = 0;
 static struct snd_mixer_selem_regopt mixer_options;
 static gboolean mixer_is_mute (void);
 static int mixer_get_mean_volume (void);
+static int mixer_get_mean_capture_volume (void);
 
 static gchar *_mixer_get_card_id_from_name (const gchar *cName)
 {
@@ -127,8 +128,8 @@ void mixer_stop (void)
 		g_free (cCardID);
 		snd_mixer_close (myData.mixer_handle);
 		myData.mixer_handle = NULL;
-		myData.pControledElement = NULL;
-		myData.pControledElement2 = NULL;
+		myData.playback.pControledElement = NULL;
+		myData.playback2.pControledElement = NULL;
 		
 		g_free (myData.cErrorMessage);
 		myData.cErrorMessage = NULL;
@@ -173,25 +174,25 @@ GList *mixer_get_elements_list (void)
 
 
 
-static snd_mixer_elem_t *_mixer_get_element_by_name (const gchar *cName)
+static snd_mixer_elem_t *_mixer_get_element_by_name (const gchar *cName, gboolean bOutput)
 {
 	if (myData.mixer_handle == NULL)
 		return NULL;
 	
-	if (cName != NULL)
+	snd_mixer_elem_t *elem;
+	for (elem = snd_mixer_first_elem(myData.mixer_handle); elem; elem = snd_mixer_elem_next(elem))
 	{
-		snd_mixer_elem_t *elem;
-		for (elem = snd_mixer_first_elem(myData.mixer_handle); elem; elem = snd_mixer_elem_next(elem))
+		if (!cName || strcmp (cName, snd_mixer_selem_get_name (elem)) == 0)  // element name matches
 		{
-			if (strcmp (cName, snd_mixer_selem_get_name (elem)) == 0)
+			if (bOutput && snd_mixer_selem_has_playback_volume(elem))  // output matches
+				return elem;
+			if (!bOutput && snd_mixer_selem_has_capture_volume(elem))  // input matches
 				return elem;
 		}
 	}
 	
-	cd_debug ("no channel matches '%s', we take the first available channel by default", cName);
+	cd_warning ("no channel matches '%s', we take the first available channel by default", cName);
 	return snd_mixer_first_elem(myData.mixer_handle);
-	/**myData.cErrorMessage = g_strdup_printf (D_("I couldn't find any audio channel named '%s'\nYou should try to open the configuration panel of the applet,\n and select the proper audio channel you want to control."), cName);
-	return NULL;*/
 }
 
 
@@ -200,14 +201,24 @@ static int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int
 	CD_APPLET_ENTER;
 	cd_debug ("%s (%d)", __func__, mask);
 	
-	
 	if (mask != SND_CTL_EVENT_MASK_REMOVE && (mask & SND_CTL_EVENT_MASK_VALUE))  // filter calls that can occur when we really don't want, like when closing the applet.
 	{
-		myData.iCurrentVolume = mixer_get_mean_volume ();
-		myData.bIsMute = mixer_is_mute ();
-		cd_debug (" iCurrentVolume <- %d bIsMute <- %d", myData.iCurrentVolume, myData.bIsMute);
-		
-		cd_update_icon ();
+		if (elem == myData.playback.pControledElement)
+		{
+			myData.playback.iCurrentVolume = mixer_get_mean_volume ();
+			myData.bIsMute = mixer_is_mute ();
+			cd_debug (" iCurrentVolume <- %d bIsMute <- %d", myData.playback.iCurrentVolume, myData.bIsMute);
+			
+			cd_update_icon ();
+		}
+		else if (elem == myData.capture.pControledElement)
+		{
+			myData.capture.iCurrentVolume = mixer_get_mean_capture_volume ();
+			if (myData.pCaptureScale)
+			{
+				cd_mixer_set_volume_with_no_callback (myData.pCaptureScale, myData.capture.iCurrentVolume);
+			}
+		}
 	}
 	
 	CD_APPLET_LEAVE(0);
@@ -215,58 +226,70 @@ static int mixer_element_update_with_event (snd_mixer_elem_t *elem, unsigned int
 
 static void mixer_get_controlled_element (void)
 {
-	myData.pControledElement = _mixer_get_element_by_name (myConfig.cMixerElementName);
-	if (myData.pControledElement != NULL)
+	myData.playback.pControledElement = _mixer_get_element_by_name (myConfig.cMixerElementName, TRUE);
+	if (myData.playback.pControledElement != NULL)
 	{
-		myData.bHasMuteSwitch = snd_mixer_selem_has_playback_switch (myData.pControledElement);
+		myData.playback.bHasMuteSwitch = snd_mixer_selem_has_playback_switch (myData.playback.pControledElement);
+		snd_mixer_selem_get_playback_volume_range (myData.playback.pControledElement, &myData.playback.iVolumeMin, &myData.playback.iVolumeMax);
+		cd_debug ("volume range : %d - %d", myData.playback.iVolumeMin, myData.playback.iVolumeMax);
 		
-		snd_mixer_selem_get_playback_volume_range (myData.pControledElement, &myData.iVolumeMin, &myData.iVolumeMax);
-		cd_debug ("volume range : %d - %d", myData.iVolumeMin, myData.iVolumeMax);
-		
-		snd_mixer_elem_set_callback (myData.pControledElement, mixer_element_update_with_event);
+		snd_mixer_elem_set_callback (myData.playback.pControledElement, mixer_element_update_with_event);
 	}
 	if (myConfig.cMixerElementName2 != NULL)
 	{
-		myData.pControledElement2 = _mixer_get_element_by_name (myConfig.cMixerElementName2);
+		myData.playback2.pControledElement = _mixer_get_element_by_name (myConfig.cMixerElementName2, TRUE);
+		myData.playback2.bHasMuteSwitch = myData.playback.bHasMuteSwitch;
+		myData.playback2.iVolumeMin = myData.playback.iVolumeMin;
+		myData.playback2.iVolumeMax = myData.playback.iVolumeMax;  // no need to set a callback, we'll control the 2nd element based on the first one
 	}
+	myData.capture.pControledElement = _mixer_get_element_by_name (myConfig.cCaptureMixerElementName, FALSE);
+	if (myData.capture.pControledElement != NULL)
+	{
+		myData.capture.bHasMuteSwitch = snd_mixer_selem_has_capture_switch (myData.capture.pControledElement);
+		snd_mixer_selem_get_capture_volume_range (myData.capture.pControledElement, &myData.capture.iVolumeMin, &myData.capture.iVolumeMax);
+		cd_debug ("capture volume range : %d - %d", myData.capture.iVolumeMin, myData.capture.iVolumeMax);
+		
+		snd_mixer_elem_set_callback (myData.capture.pControledElement, mixer_element_update_with_event);
+	}
+	
 }
 
 static int mixer_get_mean_volume (void)
 {
-	g_return_val_if_fail (myData.pControledElement != NULL, 0);
+	g_return_val_if_fail (myData.playback.pControledElement != NULL, 0);
 	long iVolumeLeft=0, iVolumeRight=0;
-	gboolean bHasLeft = snd_mixer_selem_has_playback_channel (myData.pControledElement, SND_MIXER_SCHN_FRONT_LEFT);
-	gboolean bHasRight = snd_mixer_selem_has_playback_channel (myData.pControledElement, SND_MIXER_SCHN_FRONT_RIGHT);
-	g_return_val_if_fail (bHasLeft || bHasRight, 0);
+	gboolean bHasLeft = snd_mixer_selem_has_playback_channel (myData.playback.pControledElement, SND_MIXER_SCHN_FRONT_LEFT);
+	gboolean bHasRight = snd_mixer_selem_has_playback_channel (myData.playback.pControledElement, SND_MIXER_SCHN_FRONT_RIGHT);
+	g_return_val_if_fail (bHasLeft || bHasRight, 0);  // Note: in case of a mono, Front_Left will be the equivalent channel
 	
 	if (bHasLeft)
-		snd_mixer_selem_get_playback_volume (myData.pControledElement, SND_MIXER_SCHN_FRONT_LEFT, &iVolumeLeft);
+		snd_mixer_selem_get_playback_volume (myData.playback.pControledElement, SND_MIXER_SCHN_FRONT_LEFT, &iVolumeLeft);
 	if (bHasRight)
-		snd_mixer_selem_get_playback_volume (myData.pControledElement, SND_MIXER_SCHN_FRONT_RIGHT, &iVolumeRight);
+		snd_mixer_selem_get_playback_volume (myData.playback.pControledElement, SND_MIXER_SCHN_FRONT_RIGHT, &iVolumeRight);
 	cd_debug ("volume : %d;%d", iVolumeLeft, iVolumeRight);
 	
 	int iMeanVolume = (iVolumeLeft + iVolumeRight) / (bHasLeft + bHasRight);
 	
-	cd_debug ("myData.iVolumeMin : %d ; myData.iVolumeMax : %d ; iMeanVolume : %d", myData.iVolumeMin, myData.iVolumeMax, iMeanVolume);
-	return (100. * (iMeanVolume - myData.iVolumeMin) / (myData.iVolumeMax - myData.iVolumeMin));
+	cd_debug ("myData.playback.iVolumeMin : %d ; myData.playback.iVolumeMax : %d ; iMeanVolume : %d", myData.playback.iVolumeMin, myData.playback.iVolumeMax, iMeanVolume);
+	return (100. * (iMeanVolume - myData.playback.iVolumeMin) / (myData.playback.iVolumeMax - myData.playback.iVolumeMin));
 }
 
 static void _set_mute (gboolean bMute)
 {
-	snd_mixer_selem_set_playback_switch_all (myData.pControledElement, !bMute);
-	if (myData.pControledElement2 != NULL)
-		snd_mixer_selem_set_playback_switch_all (myData.pControledElement2, !bMute);
+	snd_mixer_selem_set_playback_switch_all (myData.playback.pControledElement, !bMute);
+	if (myData.playback2.pControledElement != NULL)
+		snd_mixer_selem_set_playback_switch_all (myData.playback2.pControledElement, !bMute);
 	myData.bIsMute = bMute;
 }
 static void mixer_set_volume (int iNewVolume)
 {
-	g_return_if_fail (myData.pControledElement != NULL);
+	g_return_if_fail (myData.playback.pControledElement != NULL);
 	cd_debug ("%s (%d)", __func__, iNewVolume);
-	int iVolume = ceil (myData.iVolumeMin + (myData.iVolumeMax - myData.iVolumeMin) * iNewVolume / 100.);
-	snd_mixer_selem_set_playback_volume_all (myData.pControledElement, iVolume);
-	if (myData.pControledElement2 != NULL)
-		snd_mixer_selem_set_playback_volume_all (myData.pControledElement2, iVolume);
-	myData.iCurrentVolume = iNewVolume;
+	int iVolume = ceil (myData.playback.iVolumeMin + (myData.playback.iVolumeMax - myData.playback.iVolumeMin) * iNewVolume / 100.);
+	snd_mixer_selem_set_playback_volume_all (myData.playback.pControledElement, iVolume);
+	if (myData.playback2.pControledElement != NULL)
+		snd_mixer_selem_set_playback_volume_all (myData.playback2.pControledElement, iVolume);
+	myData.playback.iCurrentVolume = iNewVolume;
 	if (myData.bIsMute)
 	{
 		_set_mute (FALSE);
@@ -274,15 +297,43 @@ static void mixer_set_volume (int iNewVolume)
 	cd_update_icon ();  // on ne recoit pas d'evenements pour nos actions.
 }
 
+static int mixer_get_mean_capture_volume (void)
+{
+	g_return_val_if_fail (myData.capture.pControledElement != NULL, 0);
+	long iVolumeLeft=0, iVolumeRight=0;
+	gboolean bHasLeft = snd_mixer_selem_has_capture_channel (myData.capture.pControledElement, SND_MIXER_SCHN_FRONT_LEFT);
+	gboolean bHasRight = snd_mixer_selem_has_capture_channel (myData.capture.pControledElement, SND_MIXER_SCHN_FRONT_RIGHT);
+	g_return_val_if_fail (bHasLeft || bHasRight, 0);
+	
+	if (bHasLeft)
+		snd_mixer_selem_get_capture_volume (myData.capture.pControledElement, SND_MIXER_SCHN_FRONT_LEFT, &iVolumeLeft);
+	if (bHasRight)
+		snd_mixer_selem_get_capture_volume (myData.capture.pControledElement, SND_MIXER_SCHN_FRONT_RIGHT, &iVolumeRight);
+	cd_debug ("volume : %d;%d", iVolumeLeft, iVolumeRight);
+	
+	int iMeanVolume = (iVolumeLeft + iVolumeRight) / (bHasLeft + bHasRight);
+	
+	cd_debug ("myData.capture.iVolumeMin : %d ; myData.capture.iVolumeMax : %d ; iMeanVolume : %d", myData.capture.iVolumeMin, myData.capture.iVolumeMax, iMeanVolume);
+	return (100. * (iMeanVolume - myData.capture.iVolumeMin) / (myData.capture.iVolumeMax - myData.capture.iVolumeMin));
+}
+
+static void mixer_set_capture_volume (int iNewVolume)
+{
+	g_return_if_fail (myData.capture.pControledElement != NULL);
+	int iVolume = ceil (myData.capture.iVolumeMin + (myData.capture.iVolumeMax - myData.capture.iVolumeMin) * iNewVolume / 100.);
+	snd_mixer_selem_set_capture_volume_all (myData.capture.pControledElement, iVolume);
+	myData.capture.iCurrentVolume = iNewVolume;
+}
+
 static gboolean mixer_is_mute (void)
 {
 	cd_debug ("");
-	g_return_val_if_fail (myData.pControledElement != NULL, FALSE);
-	if (snd_mixer_selem_has_playback_switch (myData.pControledElement))
+	g_return_val_if_fail (myData.playback.pControledElement != NULL, FALSE);
+	if (snd_mixer_selem_has_playback_switch (myData.playback.pControledElement))
 	{
 		int iSwitchLeft, iSwitchRight;
-		snd_mixer_selem_get_playback_switch (myData.pControledElement, SND_MIXER_SCHN_FRONT_LEFT, &iSwitchLeft);
-		snd_mixer_selem_get_playback_switch (myData.pControledElement, SND_MIXER_SCHN_FRONT_RIGHT, &iSwitchRight);
+		snd_mixer_selem_get_playback_switch (myData.playback.pControledElement, SND_MIXER_SCHN_FRONT_LEFT, &iSwitchLeft);
+		snd_mixer_selem_get_playback_switch (myData.playback.pControledElement, SND_MIXER_SCHN_FRONT_RIGHT, &iSwitchRight);
 		cd_debug ("%d;%d", iSwitchLeft, iSwitchRight);
 		return (iSwitchLeft == 0 && iSwitchRight == 0);
 	}
@@ -292,7 +343,7 @@ static gboolean mixer_is_mute (void)
 
 static void mixer_switch_mute (void)
 {
-	g_return_if_fail (myData.pControledElement != NULL);
+	g_return_if_fail (myData.playback.pControledElement != NULL);
 	gboolean bIsMute = mixer_is_mute ();
 	_set_mute (! bIsMute);
 	cd_update_icon ();  // on ne recoit pas d'evenements pour nos actions.
@@ -303,6 +354,7 @@ static void mixer_switch_mute (void)
 static void _on_dialog_destroyed (GldiModuleInstance *myApplet)
 {
 	myData.pDialog = NULL;
+	myData.pPlaybackScale = myData.pCaptureScale = NULL;
 }
 static void mixer_show_hide_dialog (void)
 {
@@ -375,13 +427,13 @@ static void cd_mixer_reload_alsa (void)
 	mixer_init (myConfig.card_id);
 	mixer_get_controlled_element ();
 	
-	if (myData.pControledElement == NULL)
+	if (myData.playback.pControledElement == NULL)
 	{
 		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cBrokenIcon, "broken.svg");
 	}
 	else
 	{
-		mixer_element_update_with_event (myData.pControledElement, 1);  // 1 => get the current state (card may have changed).
+		mixer_element_update_with_event (myData.playback.pControledElement, 1);  // 1 => get the current state (card may have changed).
 		
 		myData.iSidCheckVolume = g_timeout_add (1000, (GSourceFunc) mixer_check_events, (gpointer) NULL);
 	}
@@ -396,7 +448,7 @@ void cd_mixer_init_alsa (void)
 	mixer_get_controlled_element ();
 	
 	// update the icon
-	if (myData.pControledElement == NULL)  // no luck
+	if (myData.playback.pControledElement == NULL)  // no luck
 	{
 		CD_APPLET_SET_USER_IMAGE_ON_MY_ICON (myConfig.cBrokenIcon, "broken.svg");
 	}
@@ -405,6 +457,8 @@ void cd_mixer_init_alsa (void)
 		// set the interface
 		myData.ctl.get_volume = mixer_get_mean_volume;
 		myData.ctl.set_volume = mixer_set_volume;
+		myData.ctl.get_capture_volume = mixer_get_mean_capture_volume;
+		myData.ctl.set_capture_volume = mixer_set_capture_volume;
 		myData.ctl.toggle_mute = mixer_switch_mute;
 		myData.ctl.show_hide = mixer_show_hide_dialog;
 		myData.ctl.stop = cd_mixer_stop_alsa;
@@ -414,13 +468,13 @@ void cd_mixer_init_alsa (void)
 		if (myDesklet)
 		{
 			GtkWidget *box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-			myData.pScale = mixer_build_widget (FALSE);
-			gtk_box_pack_end (GTK_BOX (box), myData.pScale, FALSE, FALSE, 0);
+			myData.pControlWidget = mixer_build_widget (FALSE);
+			gtk_box_pack_end (GTK_BOX (box), myData.pControlWidget, FALSE, FALSE, 0);
 			gtk_container_add (GTK_CONTAINER (myDesklet->container.pWidget), box);
 			gtk_widget_show_all (box);
 			
 			if (myConfig.bHideScaleOnLeave && ! myDesklet->container.bInside)
-				gtk_widget_hide (myData.pScale);
+				gtk_widget_hide (myData.pControlWidget);
 		}
 		else if (myIcon->cName == NULL)  // in dock, set the label
 		{
@@ -428,7 +482,7 @@ void cd_mixer_init_alsa (void)
 		}
 		
 		// trigger the callback to update the icon
-		mixer_element_update_with_event (myData.pControledElement, 1);  // 1 => get the current state.
+		mixer_element_update_with_event (myData.playback.pControledElement, 1);  // 1 => get the current state.
 		myData.iSidCheckVolume = g_timeout_add (1000, (GSourceFunc) mixer_check_events, (gpointer) NULL);
 	}
 }

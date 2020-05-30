@@ -103,10 +103,10 @@ CD_APPLET_RESET_CONFIG_END
 
 
 CD_APPLET_RESET_DATA_BEGIN
-	if (myData.pScale != NULL)
+	if (myData.pControlWidget != NULL)
 	{
-		gtk_widget_destroy (myData.pScale);
-		myData.pScale = NULL;
+		gtk_widget_destroy (myData.pControlWidget);
+		myData.pControlWidget = myData.pPlaybackScale = myData.pCaptureScale = NULL;
 	}
 	gldi_object_unref (GLDI_OBJECT(myData.pDialog));
 CD_APPLET_RESET_DATA_END

@@ -52,6 +52,7 @@ struct _AppletConfig {
 	gchar *card_id;
 	gchar *cMixerElementName;
 	gchar *cMixerElementName2;
+	gchar *cCaptureMixerElementName;
 	gchar *cShowAdvancedMixerCommand;
 	// display
 	VolumeTypeDisplay iVolumeDisplay;
@@ -74,11 +75,20 @@ struct _AppletConfig {
 typedef struct {
 	int (*get_volume) (void);
 	void (*set_volume) (int iVolume);
+	int (*get_capture_volume) (void);
+	void (*set_capture_volume) (int iVolume);
 	void (*toggle_mute) (void);
 	void (*show_hide) (void);
 	void (*stop) (void);
 	void (*reload) (void);
 	} CDSoundCtl;
+
+typedef struct {
+	snd_mixer_elem_t *pControledElement;  // mixer element
+	long iVolumeMin, iVolumeMax;  // volumes min et max en unites de la carte son.
+	gboolean bHasMuteSwitch;
+	int iCurrentVolume;  // current volume in [0-100]
+	} AlsaElem;
 
 struct _AppletData {
 	// generic interface
@@ -88,14 +98,11 @@ struct _AppletData {
 	gchar *mixer_card_name;
 	gchar *mixer_device_name;
 	gchar *cErrorMessage;
-	snd_mixer_elem_t *pControledElement;
-	snd_mixer_elem_t *pControledElement2;  // des fois un element ne controle qu'une sortie (droite ou gauche).
-	snd_mixer_selem_id_t *pControledID;
-	gboolean bHasMuteSwitch;
-	long iVolumeMin, iVolumeMax;  // volumes min et max en unites de la carte son.
+	AlsaElem playback;
+	AlsaElem playback2;  // des fois un element ne controle qu'une sortie (droite ou gauche).
+	AlsaElem capture;
 	guint iSidCheckVolume;
 	CairoDialog *pDialog;
-	int iCurrentVolume;  // current volume in [0-100]
 	// sound service data
 	#ifdef INDICATOR_SOUNDMENU_WITH_IND3
 	IndicatorObject *pIndicator;
@@ -111,7 +118,9 @@ struct _AppletData {
 	// other
 	gboolean bIsMute;
 	gint bMuteImage;  // 1 if the "mute" image is currently displayed, 0 if the normal icon is set, -1 if no image is set
-	GtkWidget *pScale;
+	GtkWidget *pControlWidget;
+	GtkWidget *pPlaybackScale;
+	GtkWidget *pCaptureScale;
 	GldiShortkey *cKeyBinding;
 	} ;
 

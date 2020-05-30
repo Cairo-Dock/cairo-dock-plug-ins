@@ -27,7 +27,7 @@
 
 
 CD_APPLET_DEFINE_BEGIN ("AlsaMixer",
-	2, 0, 0,
+	2, 1, 0,
 	CAIRO_DOCK_CATEGORY_APPLET_SYSTEM,
 	N_("This applet lets you control the sound volume from the dock.\n"
 	"Scroll up/down on the icon to increase/decrease the volume.\n"
@@ -46,9 +46,9 @@ static gboolean _cd_mixer_on_enter (GtkWidget* pWidget,
 	GdkEventCrossing* pEvent,
 	gpointer data)
 {
-	if (myData.pScale && myDesklet && myDesklet->container.iHeight > 64)
+	if (myData.pControlWidget && myDesklet && myDesklet->container.iHeight > 64)
 	{
-		gtk_widget_show (myData.pScale);
+		gtk_widget_show (myData.pControlWidget);
 	}
 	return GLDI_NOTIFICATION_LET_PASS;
 }
@@ -56,10 +56,12 @@ gboolean _cd_mixer_on_leave (GtkWidget* pWidget,
 	GdkEventCrossing* pEvent,
 	gpointer data)
 {
-	if (myData.pScale && myDesklet && myDesklet->container.iHeight > 64)
+	if (myData.pControlWidget && myDesklet && myDesklet->container.iHeight > 64)
 	{
 		if (! myDesklet->container.bInside)
-			gtk_widget_hide (myData.pScale);
+		{
+			gtk_widget_hide (myData.pControlWidget);
+		}
 	}
 	return GLDI_NOTIFICATION_LET_PASS;
 }
@@ -201,12 +203,12 @@ CD_APPLET_RELOAD_BEGIN
 				myData.pDialog = NULL;
 
 				GtkWidget *box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-				myData.pScale = mixer_build_widget (FALSE);
-				gtk_box_pack_end (GTK_BOX (box), myData.pScale, FALSE, FALSE, 0);
+				myData.pControlWidget = mixer_build_widget (FALSE);
+				gtk_box_pack_end (GTK_BOX (box), myData.pControlWidget, FALSE, FALSE, 0);
 				gtk_widget_show_all (box);
 				gtk_container_add (GTK_CONTAINER (myDesklet->container.pWidget), box);
 				if (myConfig.bHideScaleOnLeave && ! myDesklet->container.bInside)
-					gtk_widget_hide (myData.pScale);
+					gtk_widget_hide (myData.pControlWidget);
 			}
 			
 			gulong iOnEnterCallbackID = g_signal_handler_find (myDesklet->container.pWidget,
@@ -242,10 +244,10 @@ CD_APPLET_RELOAD_BEGIN
 		}
 		else
 		{
-			if (CD_APPLET_MY_CONTAINER_TYPE_CHANGED && myData.pScale)
+			if (CD_APPLET_MY_CONTAINER_TYPE_CHANGED && myData.pControlWidget)
 			{
-				gtk_widget_destroy (myData.pScale);
-				myData.pScale = NULL;
+				gtk_widget_destroy (myData.pControlWidget);
+				myData.pControlWidget = myData.pPlaybackScale = myData.pCaptureScale = NULL;
 			}
 			
 			if (myIcon->cName == NULL)
@@ -258,7 +260,7 @@ CD_APPLET_RELOAD_BEGIN
 	{
 		///\_______________ On redessine notre icone.
 		if (myDesklet && myDesklet->container.iHeight <= 64)
-			gtk_widget_hide (myData.pScale);
+			gtk_widget_hide (myData.pControlWidget);
 		
 		/**if (myConfig.iVolumeEffect != VOLUME_EFFECT_NONE)
 			CD_APPLET_RELOAD_MY_DATA_RENDERER (NULL);
