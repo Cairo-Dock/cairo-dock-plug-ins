@@ -73,7 +73,10 @@ void cd_decorator_draw_decorations_modern (cairo_t *pCairoContext, CairoDialog *
 		- sens2 * fRadius,
 		- sens * fRadius);
 	cairo_close_path (pCairoContext);
-	gldi_style_colors_set_bg_color (pCairoContext);
+	if (myDialogsParam.bUseDefaultColors)
+		gldi_style_colors_set_bg_color_full (pCairoContext, FALSE);
+	else
+		gldi_color_set_cairo_rgb (pCairoContext, &myDialogsParam.fBgColor);
 	///cairo_fill (pCairoContext);
 	cairo_save (pCairoContext);
 	cairo_clip (pCairoContext);
@@ -247,7 +250,10 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	
 	
 	// set bg color/pattern
-	gldi_style_colors_set_line_color (pCairoContext);
+	if (myDialogsParam.bUseDefaultColors)
+		gldi_style_colors_set_line_color (pCairoContext);
+	else
+		gldi_color_set_cairo (pCairoContext, &myDialogsParam.fLineColor);
 	
 	//\_________________ draw outline
 	if (fLineWidth != 0)
