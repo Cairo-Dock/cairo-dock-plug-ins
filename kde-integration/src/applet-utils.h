@@ -18,8 +18,8 @@
 */
 
 
-#ifndef __APPLET_GNOME_ENV__
-#define  __APPLET_GNOME_ENV__
+#ifndef __KDE_INTEGRATION_UTILS__
+#define  __KDE_INTEGRATION_UTILS__
 
 
 #include <cairo-dock.h>
@@ -36,6 +36,10 @@ void env_backend_lock_screen (void);
 void env_backend_setup_time (void);
 
 void env_backend_show_system_monitor (void);
+
+int get_kde_version (void);
+
+const gchar *get_kioclient_number (void);
 
 
 #endif

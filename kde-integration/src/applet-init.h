@@ -18,8 +18,8 @@
 */
 
 
-#ifndef __GNOME_INTEGRATION_INIT__
-#define  __GNOME_INTEGRATION_INIT__
+#ifndef __KDE_INTEGRATION_INIT__
+#define  __KDE_INTEGRATION_INIT__
 
 
 #include <cairo-dock.h>

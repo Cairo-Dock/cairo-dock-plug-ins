@@ -63,10 +63,47 @@ void env_backend_lock_screen (void)
 
 void env_backend_setup_time (void)
 {
-	cairo_dock_launch_command ("kcmshell4 clock");  // from KDE4
+	cairo_dock_launch_command_printf ("kcmshell%d clock", NULL, get_kde_version());  // from KDE4
 }
 
 void env_backend_show_system_monitor (void)
 {
 	cairo_dock_launch_command ("ksysguard");
+}
+
+int get_kde_version (void)
+{
+	static int s_iKdeVersion = 0;
+	if (s_iKdeVersion == 0)
+	{
+		gchar *version = cairo_dock_launch_command_sync ("plasmashell --version");  // KDE5 or above
+		if (! version)
+			version = cairo_dock_launch_command_sync ("plasma-desktop --version");  // KDE4
+		if (version)
+		{
+			gchar *major = version;
+			while (! g_ascii_isdigit(*major) && *major != '\0')
+				major++;
+			s_iKdeVersion = atoi(major);
+		}
+		
+		if (! s_iKdeVersion)  // the commands above didn't work
+			s_iKdeVersion = 5;  // KDE5 by default
+		cd_debug ("KDE version detected: %d\n", s_iKdeVersion);
+		g_free (version);
+	}
+	return s_iKdeVersion;
+}
+
+const gchar *get_kioclient_number (void)
+{
+	static gchar *s_sNumber = NULL;
+	if (! s_sNumber)
+	{
+		if (get_kde_version() < 5)
+			s_sNumber = "";
+		else
+			s_sNumber = g_strdup_printf("%d", get_kde_version());
+	}
+	return s_sNumber;
 }

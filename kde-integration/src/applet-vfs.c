@@ -26,12 +26,12 @@
 #include <glib.h>
 #include <gio/gio.h>
 
+#include "applet-utils.h"
 #include "applet-vfs.h"
 
 extern int lstat (const char *path, struct stat *buf);
 
 static GHashTable *s_hMonitorHandleTable = NULL;
-
 
 static void _vfs_backend_free_monitor_data (gpointer *data)
 {
@@ -810,7 +810,7 @@ void vfs_backend_launch_uri (const gchar *cURI)
 	g_return_if_fail (cURI != NULL);
 	
 	cd_debug ("%s (%s)", __func__, cURI);
-	gchar *cCommand = g_strdup_printf ("kioclient exec \"%s\"", cURI);
+	gchar *cCommand = g_strdup_printf ("kioclient%s exec \"%s\"", get_kioclient_number(), cURI);
 	cairo_dock_launch_command (cCommand);
 	g_free (cCommand);
 	
@@ -1169,7 +1169,7 @@ gboolean vfs_backend_delete_file (const gchar *cURI, gboolean bNoTrash)
 	}
 	else
 	{
-		gchar *cCommand = g_strdup_printf ("kioclient move \"%s\" trash:/", cURI);
+		gchar *cCommand = g_strdup_printf ("kioclient%s move \"%s\" trash:/", get_kioclient_number(), cURI);
 		cairo_dock_launch_command (cCommand);
 		g_free (cCommand);
 	}
@@ -1185,7 +1185,7 @@ gboolean vfs_backend_rename_file (const gchar *cOldURI, const gchar *cNewName)
 	if (cPath)
 	{
 		gchar *cNewURI = g_strdup_printf ("%s/%s", cPath, cNewName);
-		gchar *cCommand = g_strdup_printf ("kioclient move \"%s\" \"%s\"", cOldURI, cNewURI);
+		gchar *cCommand = g_strdup_printf ("kioclient%s move \"%s\" \"%s\"", get_kioclient_number(), cOldURI, cNewURI);
 		cairo_dock_launch_command (cCommand);
 		g_free (cCommand);
 		g_free (cNewURI);
@@ -1202,7 +1202,7 @@ gboolean vfs_backend_move_file (const gchar *cURI, const gchar *cDirectoryURI)
 	
 	gchar *cFileName = g_path_get_basename (cURI);
 	gchar *cNewFileURI = g_strconcat (cDirectoryURI, "/", cFileName, NULL);
-	gchar *cCommand = g_strdup_printf ("kioclient move \"%s\" \"%s\"", cURI, cNewFileURI);
+	gchar *cCommand = g_strdup_printf ("kioclient%s move \"%s\" \"%s\"", get_kioclient_number(), cURI, cNewFileURI);
 	cairo_dock_launch_command (cCommand);
 	g_free (cCommand);
 	g_free (cNewFileURI);

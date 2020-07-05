@@ -18,8 +18,8 @@
 */
 
 
-#ifndef __APPLET_GNOME_VFS__
-#define  __APPLET_GNOME_VFS__
+#ifndef __KDE_INTEGRATION_VFS__
+#define  __KDE_INTEGRATION_VFS__
 
 
 #include <cairo-dock.h>
