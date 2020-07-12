@@ -45,6 +45,9 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDeskto
 	int iNumDesktop = data->iNumDesktop;
 	int iNumViewportX = data->iNumViewportX;
 	int iNumViewportY = data->iNumViewportY;
+	// skip if not on this desktop/viewport
+	if (!gldi_window_is_on_desktop (actor, iNumDesktop, iNumViewportX, iNumViewportY))
+		return;
 	int iOneViewportWidth = data->iOneViewportWidth;
 	int iOneViewportHeight = data->iOneViewportHeight;
 	cairo_t *pCairoContext = data->pCairoContext;
@@ -59,15 +62,6 @@ static void _cd_switcher_draw_windows_on_viewport (Icon *pIcon, CDSwitcherDeskto
 	if (y < 0)
 		y += g_desktopGeometry.iNbViewportY * g_desktopGeometry.Xscreen.height;
 	int w = actor->windowGeometry.width, h = actor->windowGeometry.height;
-	
-	// test d'intersection avec le viewport donne.
-	//g_print (" %s : (%d;%d) %dx%d\n", pIcon->cName, x, y, w, h);
-	if ((actor->iNumDesktop != -1 && actor->iNumDesktop != iNumDesktop) ||
-		x + w <= iNumViewportX * g_desktopGeometry.Xscreen.width ||
-		x >= (iNumViewportX + 1) * g_desktopGeometry.Xscreen.width ||
-		y + h <= iNumViewportY * g_desktopGeometry.Xscreen.height ||
-		y >= (iNumViewportY + 1) * g_desktopGeometry.Xscreen.height)
-		return ;
 	
 	// on dessine ses traits.
 	cairo_save (pCairoContext);
