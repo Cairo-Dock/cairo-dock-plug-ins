@@ -383,6 +383,7 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 			gldi_style_colors_set_line_color (pCairoContext);
 		else
 			gldi_color_set_cairo (pCairoContext, &myDialogsParam.fLineColor);
+		cairo_set_line_width (pCairoContext, fLineWidth);
 		cairo_stroke_preserve (pCairoContext);
 	}
 	
