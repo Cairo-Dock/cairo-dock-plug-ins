@@ -27,10 +27,11 @@
 #define CD_ARROW_HEIGHT 20
 #define CD_ALIGN 0.33
 #define CD_RADIUS (myDialogsParam.bUseDefaultColors ? myStyleParam.iCornerRadius : myDialogsParam.iCornerRadius) * 1.5
+#define CD_LINE_WIDTH (myDialogsParam.bUseDefaultColors ? myStyleParam.iLineWidth : myDialogsParam.iLineWidth)
 
 void cd_decorator_set_frame_size_modern (CairoDialog *pDialog)
 {
-	int iMargin = .5 * myDialogsParam.iLineWidth + .5 * CD_RADIUS;
+	int iMargin = .5 * CD_LINE_WIDTH + .5 * CD_RADIUS;
 	pDialog->iRightMargin = iMargin;
 	pDialog->iLeftMargin = iMargin;
 	pDialog->iTopMargin = iMargin;
@@ -45,7 +46,7 @@ void cd_decorator_set_frame_size_modern (CairoDialog *pDialog)
 
 void cd_decorator_draw_decorations_modern (cairo_t *pCairoContext, CairoDialog *pDialog)
 {
-	double fLineWidth = myDialogsParam.iLineWidth;
+	double fLineWidth = CD_LINE_WIDTH;
 	double fRadius = MIN (CD_RADIUS, pDialog->iBubbleHeight/2);
 	int sens = (pDialog->container.bDirectionUp ?	1 :	-1);
 	int sens2 = (pDialog->bRight ? 1 :	-1);
@@ -144,7 +145,7 @@ static void _render_submenu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	gtk_widget_get_allocation (pMenu, &alloc);
 	
 	int w = alloc.width, h = alloc.height;
-	double fRadius = CD_RADIUS, fLineWidth = myDialogsParam.iLineWidth;
+	double fRadius = CD_RADIUS, fLineWidth = CD_LINE_WIDTH;
 	double fFrameWidth, fFrameHeight;
 	fFrameWidth = w - 2*fRadius - fLineWidth;
 	fFrameHeight = h - 2*fRadius - fLineWidth;
@@ -220,7 +221,7 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	int x, y;
 	gdk_window_get_position (gtk_widget_get_window (gtk_widget_get_toplevel(pMenu)), &x, &y);
 	
-	double fRadius = CD_RADIUS, fLineWidth = myDialogsParam.iLineWidth;
+	double fRadius = CD_RADIUS, fLineWidth = CD_LINE_WIDTH;
 	double fDockOffsetX = fLineWidth/2;
 	double fDockOffsetY = fLineWidth/2;
 	double fFrameWidth, fFrameHeight;

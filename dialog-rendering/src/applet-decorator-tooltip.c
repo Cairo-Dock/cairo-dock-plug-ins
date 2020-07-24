@@ -29,6 +29,7 @@
 #define CD_ARROW_HEIGHT 8  /// maybe decrease a little if the width or the height is too small ?...
 #define CD_ALIGN 0.5
 #define CD_RADIUS (myDialogsParam.bUseDefaultColors ? myStyleParam.iCornerRadius : myDialogsParam.iCornerRadius)
+#define CD_LINE_WIDTH (myDialogsParam.bUseDefaultColors ? myStyleParam.iLineWidth : myDialogsParam.iLineWidth)
 
 /*
 ic______^___  arrow height + margin
@@ -42,11 +43,11 @@ ic     msg
 
 void cd_decorator_set_frame_size_tooltip (CairoDialog *pDialog)
 {
-	int iMargin = .5 * myDialogsParam.iLineWidth + (1. - sqrt (2) / 2) * CD_RADIUS;
+	int iMargin = .5 * CD_LINE_WIDTH + (1. - sqrt (2) / 2) * CD_RADIUS;
 	int iIconOffset = pDialog->iIconSize / 2;
 	pDialog->iRightMargin = iMargin + _CAIRO_DIALOG_TOOLTIP_MARGIN;
 	pDialog->iLeftMargin = iIconOffset + iMargin + _CAIRO_DIALOG_TOOLTIP_MARGIN;
-	pDialog->iTopMargin = iIconOffset + _CAIRO_DIALOG_TOOLTIP_MARGIN + myDialogsParam.iLineWidth;
+	pDialog->iTopMargin = iIconOffset + _CAIRO_DIALOG_TOOLTIP_MARGIN + CD_LINE_WIDTH;
 	pDialog->iBottomMargin = _CAIRO_DIALOG_TOOLTIP_MARGIN;
 	pDialog->iMinBottomGap = CD_ARROW_HEIGHT;
 	pDialog->iMinFrameWidth = _CAIRO_DIALOG_TOOLTIP_ARROW_WIDTH;
@@ -60,7 +61,7 @@ void cd_decorator_set_frame_size_tooltip (CairoDialog *pDialog)
 
 void cd_decorator_draw_decorations_tooltip (cairo_t *pCairoContext, CairoDialog *pDialog)
 {
-	double fLineWidth = myDialogsParam.iLineWidth;
+	double fLineWidth = CD_LINE_WIDTH;
 	double fRadius = CD_RADIUS;
 	double fIconOffset = pDialog->iIconSize / 2;  // myDialogsParam.iDialogIconSize/2
 	
@@ -154,7 +155,7 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 		iAimedX = pParams->iAimedX;
 		iAimedY = pParams->iAimedY;
 	}
-	double fRadius = CD_RADIUS, fLineWidth = myDialogsParam.iLineWidth;
+	double fRadius = CD_RADIUS, fLineWidth = CD_LINE_WIDTH;
 	
 	// draw the outline and set the clip
 	GtkAllocation alloc;

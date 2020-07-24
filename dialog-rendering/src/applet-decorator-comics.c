@@ -31,10 +31,11 @@
 #define CD_ARROW_HEIGHT 16
 #define CD_ALIGN 0.
 #define CD_RADIUS (myDialogsParam.bUseDefaultColors ? myStyleParam.iCornerRadius : myDialogsParam.iCornerRadius) * 1.5
+#define CD_LINE_WIDTH (myDialogsParam.bUseDefaultColors ? myStyleParam.iLineWidth : myDialogsParam.iLineWidth)
 
 void cd_decorator_set_frame_size_comics (CairoDialog *pDialog)
 {
-	int iMargin = .5 * myDialogsParam.iLineWidth + (1. - sqrt (2) / 2) * CD_RADIUS + _CAIRO_DIALOG_COMICS_MARGIN;  // on laisse qques pixels d'espace en plus tout autour.
+	int iMargin = .5 * CD_LINE_WIDTH + (1. - sqrt (2) / 2) * CD_RADIUS + _CAIRO_DIALOG_COMICS_MARGIN;  // on laisse qques pixels d'espace en plus tout autour.
 	pDialog->iRightMargin = iMargin;
 	pDialog->iLeftMargin = iMargin;
 	pDialog->iTopMargin = iMargin;
@@ -48,7 +49,7 @@ void cd_decorator_set_frame_size_comics (CairoDialog *pDialog)
 
 void cd_decorator_draw_decorations_comics (cairo_t *pCairoContext, CairoDialog *pDialog)
 {
-	double fLineWidth = myDialogsParam.iLineWidth;
+	double fLineWidth = CD_LINE_WIDTH;
 	double fRadius = MIN (CD_RADIUS, (pDialog->iBubbleHeight - fLineWidth) / 2);
 	
 	/**double fGapFromDock = pDialog->iMinBottomGap + pDialog->iBottomMargin + fLineWidth/2;
@@ -180,8 +181,8 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	gdk_window_get_position (gtk_widget_get_window (gtk_widget_get_toplevel(pMenu)), &x, &y);
 	
 	// get drawing params
-	int _ah = ah - myDialogsParam.iLineWidth;  // we want the tip of the arrow (not the middle of the stroke) to reach the border; this is a good approximation
-	double fRadius = CD_RADIUS, fLineWidth = myDialogsParam.iLineWidth;
+	int _ah = ah - CD_LINE_WIDTH;  // we want the tip of the arrow (not the middle of the stroke) to reach the border; this is a good approximation
+	double fRadius = CD_RADIUS, fLineWidth = CD_LINE_WIDTH;
 	double fDockOffsetX = fLineWidth/2;
 	double fDockOffsetY = fLineWidth/2;
 	double fFrameWidth, fFrameHeight;
