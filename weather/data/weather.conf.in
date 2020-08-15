@@ -118,21 +118,14 @@ IS units = true
 #{in seconds. Set 0 to have never-ending dialogs.}
 dialog duration = 7
 
-#i[5;60] Refresh time:
-#{In minutes.}
-check interval = 15
-
 #F[Info;dialog-information]
 frame_info =
 
 #b+ Display current conditions on the icon instead of the default one?
 display cc = true
 
-#i[0;5] Number of days to forecast:
-nb days = 5
-
-#b Display nights?
-display nights = false
+#i[0;8] Number of days to forecast:
+nb days = 6
 
 #b Display temperature as quick info?
 display temperature = true

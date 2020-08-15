@@ -31,11 +31,9 @@ CD_APPLET_GET_CONFIG_BEGIN
 	myConfig.cLocationCode = CD_CONFIG_GET_STRING_WITH_DEFAULT ("Configuration", "location code", "FRXX0076");
 	myConfig.bISUnits = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "IS units", TRUE);
 	myConfig.bCurrentConditions = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "display cc", TRUE);
-	myConfig.bDisplayNights = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "display nights", FALSE);
 	myConfig.iNbDays = MIN (CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "nb days", WEATHER_NB_DAYS_MAX), WEATHER_NB_DAYS_MAX);
 	myConfig.bDisplayTemperature = CD_CONFIG_GET_BOOLEAN_WITH_DEFAULT ("Configuration", "display temperature", TRUE);
 	myConfig.cDialogDuration = 1000 * CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "dialog duration", 7);
-	myConfig.iCheckInterval = 60 * MAX (CD_CONFIG_GET_INTEGER_WITH_DEFAULT ("Configuration", "check interval", 15), 1);
 	
 	myConfig.cThemePath = CD_CONFIG_GET_THEME_PATH ("Configuration", "theme", "themes", "Classic");
 	
@@ -78,6 +76,7 @@ CD_APPLET_RESET_DATA_END
   /////////////////////
  /// CUSTOM WIDGET ///
 /////////////////////
+#ifdef CD_WEATHER_HAS_CODE_LOCATION
 void cd_weather_free_location_list (void)
 {
 	if (s_pLocationsList == NULL)
@@ -162,13 +161,11 @@ static void _on_got_location_data (const gchar *cLocationData, GldiModuleInstanc
 		
 		gtk_widget_show_all (pMenu);
 
-		gtk_menu_popup (GTK_MENU (pMenu),
-			NULL,
-			NULL,
-			NULL,
-			NULL,
-			1,
-			gtk_get_current_event_time ());
+		gtk_menu_popup_at_widget (GTK_MENU (pMenu),
+			pCodeEntry,
+			GDK_GRAVITY_SOUTH,
+			GDK_GRAVITY_NORTH,
+			NULL);
 	}
 	
 	gldi_task_discard (myData.pGetLocationTask);
@@ -215,8 +212,9 @@ void cd_weather_load_custom_widget (GldiModuleInstance *myApplet, GKeyFile* pKey
 	
 	GtkWidget *pLocationEntry = gtk_entry_new ();
 	gtk_widget_set_tooltip_text (pLocationEntry, D_("Enter the name of your location and press Enter to choose amongst results."));
-	if (myData.wdata.cLocation != NULL)
-		gtk_entry_set_text (GTK_ENTRY (pLocationEntry), (gchar *)myData.wdata.cLocation);
+	if (myData.wdata.cCity != NULL && myData.wdata.cCountry != NULL)
+		gtk_entry_set_text (GTK_ENTRY (pLocationEntry), g_strdup_printf("%s, %s", myData.wdata.cCity, myData.wdata.cCountry));
 	gtk_box_pack_start (GTK_BOX (pWidgetBox), pLocationEntry, FALSE, FALSE, 0);
 	g_signal_connect (pLocationEntry, "activate", G_CALLBACK (_cd_weather_search_for_location), myApplet);
 }
+#endif

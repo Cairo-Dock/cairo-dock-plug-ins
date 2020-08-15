@@ -29,14 +29,14 @@ const char *cMonthsWeeks[19] = { N_("Monday") , N_("Tuesday") , N_("Wednesday") 
 	if (myData.wdata.days[i].cName != NULL)\
 	{\
 		pIcon = cairo_dock_create_dummy_launcher (g_strdup ((gchar *)myData.wdata.days[i].cName),\
-			g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.wdata.days[i].part[j].cIconNumber),\
+			g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.wdata.days[i].cIconNumber),\
 			NULL,\
 			(myConfig.bDisplayTemperature ? g_strdup_printf ("%s/%s", _display (myData.wdata.days[i].cTempMin), _display (myData.wdata.days[i].cTempMax)) : NULL),\
 			2*i+j);\
 		if (! g_file_test (pIcon->cFileName, G_FILE_TEST_EXISTS))\
 		{\
 			g_free (pIcon->cFileName);\
-			pIcon->cFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.wdata.days[i].part[j].cIconNumber);\
+			pIcon->cFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.wdata.days[i].cIconNumber);\
 		}\
 		cairo_dock_listen_for_double_click (pIcon);\
 		pIconList = g_list_append (pIconList, pIcon);\
@@ -51,11 +51,6 @@ static GList * _list_icons (GldiModuleInstance *myApplet)
 	for (i = 0; i < myConfig.iNbDays; i ++)
 	{
 		_add_icon (i, 0);
-		
-		if (myConfig.bDisplayNights)
-		{
-			_add_icon (i, 1);
-		}
 	}
 	
 	return pIconList;
@@ -67,9 +62,9 @@ static void _weather_draw_current_conditions (GldiModuleInstance *myApplet)
 	if (myConfig.bCurrentConditions || myData.bErrorRetrievingData)
 	{
 		cd_message ("  chargement de l'icone meteo (%x)", myApplet);
-		if (myConfig.bDisplayTemperature && myData.wdata.currentConditions.cTemp != NULL)
+		if (myConfig.bDisplayTemperature && myData.wdata.currentConditions.now.cTempMax != NULL)
 		{
-			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s%s", myData.wdata.currentConditions.cTemp, myData.wdata.units.cTemp);
+			CD_APPLET_SET_QUICK_INFO_ON_MY_ICON_PRINTF ("%s%s", myData.wdata.currentConditions.now.cTempMax, myData.wdata.units.cTemp);
 		}
 		else
 		{
@@ -93,11 +88,11 @@ static void _weather_draw_current_conditions (GldiModuleInstance *myApplet)
 		}
 		else
 		{
-			myIcon->cFileName = g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.wdata.currentConditions.cIconNumber);
+			myIcon->cFileName = g_strdup_printf ("%s/%s.png", myConfig.cThemePath, myData.wdata.currentConditions.now.cIconNumber);
 			if (! g_file_test (myIcon->cFileName, G_FILE_TEST_EXISTS))
 			{
 				g_free (myIcon->cFileName);
-				myIcon->cFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.wdata.currentConditions.cIconNumber);
+				myIcon->cFileName = g_strdup_printf ("%s/%s.svg", myConfig.cThemePath, myData.wdata.currentConditions.now.cIconNumber);
 			}
 		}
 		CD_APPLET_SET_IMAGE_ON_MY_ICON (myIcon->cFileName);
@@ -159,8 +154,10 @@ gboolean cd_weather_update_from_data (CDSharedMemory *pSharedMemory)
 	//\_______________________ On etablit le nom de l'icone.
 	if ((myIcon->cName == NULL || myData.bSetName) && myDock)
 	{
-		myData.bSetName = (myData.wdata.cLocation == NULL);  // cas ou l'applet demarre avant l'etablissesment de la connexion.
-		CD_APPLET_SET_NAME_FOR_MY_ICON (myData.wdata.cLocation != NULL ? (const gchar*)myData.wdata.cLocation : WEATHER_DEFAULT_NAME);
+		myData.bSetName = (myData.wdata.cCity == NULL);  // cas ou l'applet demarre avant l'etablissesment de la connexion.
+		gchar *cLocation = g_strdup_printf("%s, %s", myData.wdata.cCity, myData.wdata.cCountry);
+		CD_APPLET_SET_NAME_FOR_MY_ICON (myData.wdata.cCity != NULL ? cLocation : WEATHER_DEFAULT_NAME);
+		g_free (cLocation);
 	}
 	
 	//\_______________________ On cree la liste des icones de prevision.
@@ -175,7 +172,7 @@ gboolean cd_weather_update_from_data (CDSharedMemory *pSharedMemory)
 		///gpointer pConfig[2] = {GINT_TO_POINTER (myConfig.bDesklet3D), GINT_TO_POINTER (FALSE)};
 		///CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Caroussel", pConfig);
 		gdouble white[4] = {1., 1., 1., .4};
-		gpointer pConfig[3] = {GINT_TO_POINTER (myConfig.bDisplayNights ? 2 : 1), GINT_TO_POINTER (FALSE), white};
+		gpointer pConfig[3] = {GINT_TO_POINTER (1), GINT_TO_POINTER (FALSE), white};
 		CD_APPLET_LOAD_MY_ICONS_LIST (pIconList, myConfig.cRenderer, "Panel", pConfig);
 	}
 	else if (myDock)  // sinon on ne veut pas du sous-dock vide.
@@ -190,11 +187,10 @@ gboolean cd_weather_update_from_data (CDSharedMemory *pSharedMemory)
 	_weather_draw_current_conditions (myApplet);  // ne lance pas le redraw.
 	CD_APPLET_REDRAW_MY_ICON;
 	
-	if (myData.pTask->iPeriod != myConfig.iCheckInterval)
-	{
-		cd_message ("revert to normal frequency");
-		gldi_task_change_frequency (myData.pTask, myConfig.iCheckInterval);
-	}
+	if (myData.wdata.currentConditions.ttl <= 0)
+		myData.wdata.currentConditions.ttl = 60;  // 1h by default
+	cd_message ("next fetching in %dmn", myData.wdata.currentConditions.ttl);
+	gldi_task_change_frequency (myData.pTask, myData.wdata.currentConditions.ttl * 60);
 	
 	CD_APPLET_LEAVE (TRUE);
 }

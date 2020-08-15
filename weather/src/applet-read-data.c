@@ -17,10 +17,10 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#define _BSD_SOURCE
 #include <string.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>  // rand
 
 #include <libxml/tree.h>
 #include <libxml/parser.h>
@@ -29,6 +29,14 @@
 #include "applet-struct.h"
 #include "applet-load-icons.h"
 #include "applet-read-data.h"
+
+// Credentials used by Cairo-Dock for Yahoo weather
+// please do not use them for any other purpose than this applet
+#define APP_ID "kv8SljKW"
+#define CLIENT_ID "dj0yJmk9N3d2dVZVUHIxWVVpJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PWM0"
+#define CLIENT_SECRET "'2c776c9ee22643fec:59g53568d92142f97ec12e'"
+
+static gchar *_get_oauth_header (const gchar *cLocationName, gboolean bISUnits);
 
 static xmlDocPtr _cd_weather_open_xml_buffer (const gchar *cData, xmlNodePtr *root_node, const gchar *cRootNodeName, GError **erreur)
 {
@@ -59,7 +67,7 @@ static xmlDocPtr _cd_weather_open_xml_buffer (const gchar *cData, xmlNodePtr *ro
 	xmlNodePtr noeud = xmlDocGetRootElement (doc);
 	if (noeud == NULL || xmlStrcmp (noeud->name, BAD_CAST cRootNodeName) != 0)
 	{
-		g_set_error (erreur, 1, 2, "xml data is not well formed (weather.com may have changed its data format)");
+		g_set_error (erreur, 1, 2, "xml data is not well formed (yahoo.com may have changed its data format)");
 		return doc;
 	}
 	*root_node = noeud;
@@ -117,7 +125,7 @@ static void _cd_weather_parse_data (CDSharedMemory *pSharedMemory, const gchar *
 {
 	GError *tmp_erreur = NULL;
 	xmlNodePtr noeud = NULL;
-	xmlDocPtr doc = _cd_weather_open_xml_buffer (cData, &noeud, "weather", &tmp_erreur);
+	xmlDocPtr doc = _cd_weather_open_xml_buffer (cData, &noeud, "rss", &tmp_erreur);
 	if (tmp_erreur != NULL)
 	{
 		g_propagate_error (erreur, tmp_erreur);
@@ -125,242 +133,146 @@ static void _cd_weather_parse_data (CDSharedMemory *pSharedMemory, const gchar *
 		return ;
 	}
 	
-	xmlNodePtr param, fils, petitfils, arrpetitfils, arrarrpetitfils;
-	int i, j;
-	gchar *index_str, *cDayName, *cDate, *str;
-	for (param = noeud->xmlChildrenNode; param != NULL; param = param->next)
+	xmlNodePtr rss_child, channel_child, item_child;
+	int i=0;  // day counter
+	for (rss_child = noeud->xmlChildrenNode; rss_child != NULL; rss_child = rss_child->next)
 	{
-		if (bParseHeader && xmlStrcmp (param->name, BAD_CAST "head") == 0)
+		if (xmlStrcmp (rss_child->name, BAD_CAST "channel") == 0)
 		{
-			for (fils = param->children; fils != NULL; fils = fils->next)
+			for (channel_child = rss_child->children; channel_child != NULL; channel_child = channel_child->next)
 			{
-				if (xmlStrcmp (fils->name, BAD_CAST "ut") == 0)
+				if (xmlStrcmp (channel_child->name, BAD_CAST "units") == 0)
 				{
-					xmlChar *degree = xmlNodeGetContent (fils);
-					if (degree == NULL || strncmp ((gchar *)degree, "°", strlen ("°")) != 0)  // prepend � if not present.
-					{
-						pSharedMemory->wdata.units.cTemp = BAD_CAST g_strconcat ("°", (gchar *)degree, NULL);
-						g_free (degree);
-					}
-					else
-						pSharedMemory->wdata.units.cTemp = degree;
+					pSharedMemory->wdata.units.cTemp = xmlGetProp (channel_child, BAD_CAST "temperature");
+					pSharedMemory->wdata.units.cSpeed = xmlGetProp (channel_child, BAD_CAST "speed");
+					pSharedMemory->wdata.units.cPressure = xmlGetProp (channel_child, BAD_CAST "pressure");
 				}
-				else if (xmlStrcmp (fils->name, BAD_CAST "ud") == 0)
-					pSharedMemory->wdata.units.cDistance = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, BAD_CAST "us") == 0)
-					pSharedMemory->wdata.units.cSpeed = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, BAD_CAST "up") == 0)
-					pSharedMemory->wdata.units.cPressure = xmlNodeGetContent (fils);
-				//else if (xmlStrcmp (fils->name, BAD_CAST "ur") == 0)  // ?
-				//	pSharedMemory->wdata.units.cR = xmlNodeGetContent (fils);
-			}
-		}
-		else if (bParseHeader && xmlStrcmp (param->name, BAD_CAST "loc") == 0)
-		{
-			for (fils = param->children; fils != NULL; fils = fils->next)
-			{
-				if (xmlStrcmp (fils->name, BAD_CAST "dnam") == 0)
-					pSharedMemory->wdata.cLocation = xmlNodeGetContent (fils);
-				/**else if (xmlStrcmp (fils->name, BAD_CAST "lat") == 0)
-					pSharedMemory->cLat = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, BAD_CAST "lon") == 0)
-					pSharedMemory->cLon = xmlNodeGetContent (fils);*/
-				else if (xmlStrcmp (fils->name, BAD_CAST "sunr") == 0)
-					pSharedMemory->wdata.currentConditions.cSunRise = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, BAD_CAST "suns") == 0)
-					pSharedMemory->wdata.currentConditions.cSunSet = xmlNodeGetContent (fils);
-			}
-		}
-		else if (xmlStrcmp (param->name, BAD_CAST "cc") == 0)
-		{
-			for (fils = param->children; fils != NULL; fils = fils->next)
-			{
-				if (xmlStrcmp (fils->name, BAD_CAST "lsup") == 0)
-					pSharedMemory->wdata.currentConditions.cDataAcquisitionDate = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, BAD_CAST "obst") == 0)
-					pSharedMemory->wdata.currentConditions.cObservatory = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, BAD_CAST "tmp") == 0)
-					pSharedMemory->wdata.currentConditions.cTemp = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, BAD_CAST "flik") == 0)
-					pSharedMemory->wdata.currentConditions.cFeltTemp = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, BAD_CAST "t") == 0)
-					pSharedMemory->wdata.currentConditions.cWeatherDescription = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, BAD_CAST "icon") == 0)
-					pSharedMemory->wdata.currentConditions.cIconNumber = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, BAD_CAST "wind") == 0)
+				else if (xmlStrcmp (channel_child->name, BAD_CAST "link") == 0)
 				{
-					for (petitfils = fils->children; petitfils != NULL; petitfils = petitfils->next)
-					{
-						if (xmlStrcmp (petitfils->name, BAD_CAST "s") == 0)
-							pSharedMemory->wdata.currentConditions.cWindSpeed = xmlNodeGetContent (petitfils);
-						else if (xmlStrcmp (petitfils->name, BAD_CAST "t") == 0)
-							pSharedMemory->wdata.currentConditions.cWindDirection = xmlNodeGetContent (petitfils);
-					}
+					pSharedMemory->wdata.cLink = xmlNodeGetContent (channel_child);
 				}
-				else if (xmlStrcmp (fils->name, BAD_CAST "bar") == 0)
+				else if (xmlStrcmp (channel_child->name, BAD_CAST "location") == 0)
 				{
-					for (petitfils = fils->children; petitfils != NULL; petitfils = petitfils->next)
-					{
-						if (xmlStrcmp (petitfils->name, BAD_CAST "r") == 0)
-							pSharedMemory->wdata.currentConditions.cPressure = xmlNodeGetContent (petitfils);
-					}
+					pSharedMemory->wdata.cCity = xmlGetProp (channel_child, BAD_CAST "city");
+					pSharedMemory->wdata.cCountry = xmlGetProp (channel_child, BAD_CAST "country");
 				}
-				else if (xmlStrcmp (fils->name, BAD_CAST "hmid") == 0)
-					pSharedMemory->wdata.currentConditions.cHumidity = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, BAD_CAST "moon") == 0)
+				else if (xmlStrcmp (channel_child->name, BAD_CAST "wind") == 0)
 				{
-					for (petitfils = fils->children; petitfils != NULL; petitfils = petitfils->next)
-					{
-						if (xmlStrcmp (petitfils->name, BAD_CAST "icon") == 0)
-							pSharedMemory->wdata.currentConditions.cMoonIconNumber = xmlNodeGetContent (petitfils);
-					}
+					pSharedMemory->wdata.currentConditions.cWindDirection = xmlGetProp (channel_child, BAD_CAST "direction");
+					pSharedMemory->wdata.currentConditions.cWindSpeed = xmlGetProp (channel_child, BAD_CAST "speed");
 				}
-			}
-		}
-		else if (xmlStrcmp (param->name, BAD_CAST "dayf") == 0)
-		{
-			for (fils = param->children; fils != NULL; fils = fils->next)
-			{
-				if (xmlStrcmp (fils->name, BAD_CAST "lsup") == 0)
-					pSharedMemory->wdata.currentConditions.cDataAcquisitionDate = xmlNodeGetContent (fils);
-				else if (xmlStrcmp (fils->name, BAD_CAST "day") == 0)
+				else if (xmlStrcmp (channel_child->name, BAD_CAST "atmosphere") == 0)
 				{
-					index_str = (gchar *) xmlGetProp (fils, BAD_CAST "d");
-					if (index_str == NULL)
-						continue;
-					i = atoi (index_str);
-					g_free (index_str);
-					cDayName = (gchar *) xmlGetProp (fils, BAD_CAST "t");
-					pSharedMemory->wdata.days[i].cName = BAD_CAST g_strdup (D_(cDayName));
-					g_free (cDayName);
-					cDate = (gchar *) xmlGetProp (fils, BAD_CAST "dt");
-					str = strchr (cDate, ' ');
-					if (str != NULL)
+					pSharedMemory->wdata.currentConditions.cHumidity = xmlGetProp (channel_child, BAD_CAST "humidity");
+					pSharedMemory->wdata.currentConditions.cPressure = xmlGetProp (channel_child, BAD_CAST "pressure");
+				}
+				else if (xmlStrcmp (channel_child->name, BAD_CAST "astronomy") == 0)
+				{
+					pSharedMemory->wdata.currentConditions.cSunRise = xmlGetProp (channel_child, BAD_CAST "sunrise");
+					pSharedMemory->wdata.currentConditions.cSunSet = xmlGetProp (channel_child, BAD_CAST "sunset");
+				}
+				else if (xmlStrcmp (channel_child->name, BAD_CAST "ttl") == 0)
+				{
+					xmlChar *ttl = xmlNodeGetContent (channel_child);
+					pSharedMemory->wdata.currentConditions.ttl = ttl ? atoi((gchar*)ttl) : 0;
+					xmlFree (ttl);
+				}
+				else if (xmlStrcmp (channel_child->name, BAD_CAST "lastBuildDate") == 0)
+				{
+					pSharedMemory->wdata.currentConditions.cDataAcquisitionDate = xmlNodeGetContent (channel_child);
+				}
+				else if (xmlStrcmp (channel_child->name, BAD_CAST "item") == 0)
+				{
+					for (item_child = channel_child->children; item_child != NULL; item_child = item_child->next)
 					{
-						*str = '\0';
-						pSharedMemory->wdata.days[i].cDate = BAD_CAST g_strconcat (D_(cDate), " ", str+1, NULL);
-						g_free (cDate);
-					}
-					else
-						pSharedMemory->wdata.days[i].cDate = BAD_CAST cDate;
-					for (petitfils = fils->children; petitfils != NULL; petitfils = petitfils->next)
-					{
-						if (xmlStrcmp (petitfils->name, BAD_CAST "hi") == 0)
-							pSharedMemory->wdata.days[i].cTempMax = xmlNodeGetContent (petitfils);
-						else if (xmlStrcmp (petitfils->name, BAD_CAST "low") == 0)
-							pSharedMemory->wdata.days[i].cTempMin = xmlNodeGetContent (petitfils);
-						else if (xmlStrcmp (petitfils->name, BAD_CAST "sunr") == 0)
-							pSharedMemory->wdata.days[i].cSunRise = xmlNodeGetContent (petitfils);
-						else if (xmlStrcmp (petitfils->name, BAD_CAST "suns") == 0)
-							pSharedMemory->wdata.days[i].cSunSet = xmlNodeGetContent (petitfils);
-						else if (xmlStrcmp (petitfils->name, BAD_CAST "part") == 0)
+						if (xmlStrcmp (item_child->name, BAD_CAST "condition") == 0)
 						{
-							index_str = (gchar *) xmlGetProp (petitfils, BAD_CAST "p");
-							if (index_str == NULL)
-								continue;
-							j = (*index_str == 'd' ? 0 : 1);  // jour : 0 / nuit : 1.
-							for (arrpetitfils = petitfils->children; arrpetitfils != NULL; arrpetitfils = arrpetitfils->next)
-							{
-								if (xmlStrcmp (arrpetitfils->name, BAD_CAST "icon") == 0)
-									pSharedMemory->wdata.days[i].part[j].cIconNumber = xmlNodeGetContent (arrpetitfils);
-								else if (xmlStrcmp (arrpetitfils->name, BAD_CAST "t") == 0)
-									pSharedMemory->wdata.days[i].part[j].cWeatherDescription = xmlNodeGetContent (arrpetitfils);
-								else if (xmlStrcmp (arrpetitfils->name, BAD_CAST "wind") == 0)
-								{
-									for (arrarrpetitfils = arrpetitfils->children; arrarrpetitfils != NULL; arrarrpetitfils = arrarrpetitfils->next)
-									{
-										if (xmlStrcmp (arrarrpetitfils->name, BAD_CAST "s") == 0)
-											pSharedMemory->wdata.days[i].part[j].cWindSpeed = xmlNodeGetContent (arrarrpetitfils);
-										else if (xmlStrcmp (arrarrpetitfils->name, BAD_CAST "t") == 0)
-											pSharedMemory->wdata.days[i].part[j].cWindDirection = xmlNodeGetContent (arrarrpetitfils);
-									}
-								}
-								else if (xmlStrcmp (arrpetitfils->name, BAD_CAST "hmid") == 0)
-									pSharedMemory->wdata.days[i].part[j].cHumidity = xmlNodeGetContent (arrpetitfils);
-								else if (xmlStrcmp (arrpetitfils->name, BAD_CAST "ppcp") == 0)
-									pSharedMemory->wdata.days[i].part[j].cPrecipitationProba = xmlNodeGetContent (arrpetitfils);
-							}
+							pSharedMemory->wdata.currentConditions.now.cIconNumber = xmlGetProp (item_child, BAD_CAST "code");
+							pSharedMemory->wdata.currentConditions.now.cDate = xmlGetProp (item_child, BAD_CAST "date");
+							pSharedMemory->wdata.currentConditions.now.cTempMax = xmlGetProp (item_child, BAD_CAST "temp");
+							pSharedMemory->wdata.currentConditions.now.cWeatherDescription = xmlGetProp (item_child, BAD_CAST "text");
+						}
+						else if (xmlStrcmp (item_child->name, BAD_CAST "forecast") == 0 && i<WEATHER_NB_DAYS_MAX)
+						{
+							pSharedMemory->wdata.days[i].cIconNumber = xmlGetProp (item_child, BAD_CAST "code");
+							pSharedMemory->wdata.days[i].cDate = xmlGetProp (item_child, BAD_CAST "date");
+							pSharedMemory->wdata.days[i].cName = xmlGetProp (item_child, BAD_CAST "day");
+							pSharedMemory->wdata.days[i].cTempMax = xmlGetProp (item_child, BAD_CAST "high");
+							pSharedMemory->wdata.days[i].cTempMin = xmlGetProp (item_child, BAD_CAST "low");
+							pSharedMemory->wdata.days[i].cWeatherDescription = xmlGetProp (item_child, BAD_CAST "text");
+							i++;
 						}
 					}
-				}  // fin du jour n.
+				}
 			}
 		}
 	}
 	_cd_weather_close_xml_file (doc);
 }
 
-
+const gchar *cBaseUrl = "https://weather-ydn-yql.media.yahoo.com/forecastrss";
+const gchar *cBaseUrlEsc = "https%3A%2F%2Fweather-ydn-yql.media.yahoo.com%2Fforecastrss";
+	
 static void cd_weather_get_distant_data (CDSharedMemory *pSharedMemory)
 {
-	//\____________________ On recupere les conditions courantes sur le serveur.
 	pSharedMemory->bErrorInThread = FALSE;
-	GError *erreur = NULL;
-	gchar *cCCData = NULL;
-	if (pSharedMemory->bCurrentConditions)
-	{
-		gchar *cURL = g_strdup_printf (CD_WEATHER_BASE_URL"/weather/local/%s?cc=*%s", pSharedMemory->cLocationCode, (pSharedMemory->bISUnits ? "&unit=m" : ""));
-		cCCData = cairo_dock_get_url_data (cURL, &erreur);
-		if (erreur != NULL)
-		{
-			cd_warning ("while downloading current conditions data:\n%s -> %s", cURL, erreur->message);
-			g_error_free (erreur);
-			erreur = NULL;
-		}
-		g_free (cURL);
-		if (cCCData == NULL)
-		{
-			pSharedMemory->bErrorInThread = TRUE;
-			return;  // a la 1ere erreur on quitte.
-		}
-	}
 	
-	//\____________________ On recupere les previsions a N jours sur le serveur.
-	gchar *cForecastData = NULL;
-	if (pSharedMemory->iNbDays > 0)
+	//\____________________ remove spaces, and add a comma if necessary
+	gchar *r = strchr(pSharedMemory->cLocationCode, ' '), *w = r;
+	if (r)
 	{
-		gchar *cURL = g_strdup_printf (CD_WEATHER_BASE_URL"/weather/local/%s?dayf=%d%s", pSharedMemory->cLocationCode, pSharedMemory->iNbDays, (pSharedMemory->bISUnits ? "&unit=m" : ""));
-		cForecastData = cairo_dock_get_url_data (cURL, &erreur);
-		if (erreur != NULL)
+		const gchar *r0 = pSharedMemory->cLocationCode;  // just for the sake of readability
+		while (*r)
 		{
-			cd_warning ("while downloading forecast data:\n%s ->  %s", cURL, erreur->message);
-			g_error_free (erreur);
-			erreur = NULL;
-			pSharedMemory->bErrorInThread = TRUE;
+			if (*r == ' ')
+			{
+				if (w != r0 && *(w-1) != ',')
+					*w++ = ',';
+			}
+			else
+			{
+				if (*r != ',' || (w != r0 && *(w-1) != ','))
+					*w++ = *r;
+			}
+			r++;
 		}
-		g_free (cURL);
-		if (cForecastData == NULL)
-		{
-			pSharedMemory->bErrorInThread = TRUE;
-		}
+		*w = '\0';
+	}
+	cd_debug("location code: %s", pSharedMemory->cLocationCode);
+	
+	//\____________________ get the rss feed
+	GError *erreur = NULL;
+	gchar *cURL = g_strdup_printf("%s?location=%s&format=xml&u=%c", cBaseUrl, pSharedMemory->cLocationCode, pSharedMemory->bISUnits ? 'c' : 'f');
+	gchar *oauth_header = _get_oauth_header (pSharedMemory->cLocationCode, pSharedMemory->bISUnits);
+	gchar *cCCData = cairo_dock_get_url_data_with_headers (cURL, FALSE, &erreur,
+		"Authorization", oauth_header,
+		"X-Yahoo-App-Id", APP_ID,
+		NULL);
+	if (erreur != NULL)
+	{
+		cd_warning ("while downloading current conditions data:\n%s -> %s", cURL, erreur->message);
+		g_error_free (erreur);
+		erreur = NULL;
+	}
+	g_free (oauth_header);
+	g_free (cURL);
+	
+	if (cCCData == NULL)
+	{
+		pSharedMemory->bErrorInThread = TRUE;
+		return;
 	}
 	
 	//\____________________ On extrait les donnees des conditions courantes.
-	if (cCCData != NULL)
+	_cd_weather_parse_data (pSharedMemory, cCCData, TRUE, &erreur);
+	if (erreur != NULL)
 	{
-		_cd_weather_parse_data (pSharedMemory, cCCData, TRUE, &erreur);
-		if (erreur != NULL)
-		{
-			cd_warning ("weather : %s", erreur->message);
-			g_error_free (erreur);
-			erreur = NULL;
-			pSharedMemory->bErrorInThread = TRUE;
-		}
-		g_free (cCCData);
+		cd_warning ("weather : %s", erreur->message);
+		g_error_free (erreur);
+		erreur = NULL;
+		pSharedMemory->bErrorInThread = TRUE;
 	}
-	
-	//\____________________ On extrait les donnees des previsions a N jours.
-	if (cForecastData != NULL)
-	{
-		_cd_weather_parse_data (pSharedMemory, cForecastData, FALSE, &erreur);
-		if (erreur != NULL)
-		{
-			cd_warning ("weather : %s", erreur->message);
-			g_error_free (erreur);
-			erreur = NULL;
-			pSharedMemory->bErrorInThread = TRUE;
-		}
-		g_free (cForecastData);
-	}
+	g_free (cCCData);
 }
 
 
@@ -368,7 +280,6 @@ static void cd_weather_get_distant_data (CDSharedMemory *pSharedMemory)
 static void _reset_units (Unit *pUnits)
 {
 	xmlFree (pUnits->cTemp);
-	xmlFree (pUnits->cDistance);
 	xmlFree (pUnits->cSpeed);
 	xmlFree (pUnits->cPressure);
 }
@@ -378,49 +289,31 @@ static void _reset_current_conditions (CurrentContitions *pCurrentContitions)
 	xmlFree (pCurrentContitions->cSunRise);
 	xmlFree (pCurrentContitions->cSunSet);
 	xmlFree (pCurrentContitions->cDataAcquisitionDate);
-	xmlFree (pCurrentContitions->cObservatory);
-	xmlFree (pCurrentContitions->cTemp);
-	xmlFree (pCurrentContitions->cFeltTemp);
-	xmlFree (pCurrentContitions->cWeatherDescription);
-	xmlFree (pCurrentContitions->cIconNumber);
 	xmlFree (pCurrentContitions->cWindSpeed);
 	xmlFree (pCurrentContitions->cWindDirection);
 	xmlFree (pCurrentContitions->cPressure);
 	xmlFree (pCurrentContitions->cHumidity);
-	xmlFree (pCurrentContitions->cMoonIconNumber);
 }
 
-static void _reset_current_one_day (Day *pDay)
+static void _reset_one_day (Day *pDay)
 {
 	xmlFree (pDay->cName);
 	xmlFree (pDay->cDate);
 	xmlFree (pDay->cTempMax);
 	xmlFree (pDay->cTempMin);
-	xmlFree (pDay->cSunRise);
-	xmlFree (pDay->cSunSet);
-	int j;
-	for (j = 0; j < 2; j ++)
-	{
-		xmlFree (pDay->part[j].cIconNumber);
-		xmlFree (pDay->part[j].cWeatherDescription);
-		xmlFree (pDay->part[j].cWindSpeed);
-		xmlFree (pDay->part[j].cWindDirection);
-		xmlFree (pDay->part[j].cHumidity);
-		xmlFree (pDay->part[j].cPrecipitationProba);
-	}
+	xmlFree (pDay->cIconNumber);
 }
 
 void cd_weather_reset_weather_data (CDWeatherData *pData)
 {
-	/**xmlFree (pData->cLon);
-	xmlFree (pData->cLat);*/
-	xmlFree (pData->cLocation);
+	xmlFree (pData->cCity);
+	xmlFree (pData->cCountry);
 	_reset_units (&pData->units);
 	_reset_current_conditions (&pData->currentConditions);
 	int i;
 	for (i = 0; i < WEATHER_NB_DAYS_MAX; i ++)
 	{
-		_reset_current_one_day (&pData->days[i]);
+		_reset_one_day (&pData->days[i]);
 	}
 }
 
@@ -446,13 +339,77 @@ void cd_weather_launch_periodic_task (GldiModuleInstance *myApplet)
 	pSharedMemory->cLocationCode = g_strdup (myConfig.cLocationCode);
 	pSharedMemory->bISUnits = myConfig.bISUnits;
 	pSharedMemory->bCurrentConditions = myConfig.bCurrentConditions;
-	pSharedMemory->iNbDays = myConfig.iNbDays;
 	pSharedMemory->pApplet = myApplet;
 	
-	myData.pTask = gldi_task_new_full (myConfig.iCheckInterval,
+	myData.pTask = gldi_task_new_full (3600,  // start with 1h period, it will be adjusted according to the TTL
 		(GldiGetDataAsyncFunc) cd_weather_get_distant_data,
 		(GldiUpdateSyncFunc) cd_weather_update_from_data,
 		(GFreeFunc) _free_shared_memory,
 		pSharedMemory);
 	gldi_task_launch (myData.pTask);
+}
+
+#include <openssl/sha.h>
+#include <openssl/hmac.h>
+#include <openssl/evp.h>
+#include <sys/time.h>
+
+static guchar *_hmac_sha1_base64(const gchar *key, const gchar *data)
+{
+	size_t key_len = strlen(++key);
+	size_t data_len = strlen(data);
+	uint8_t md[64];  // SHA1_Message_Block_Size = 64 bytes
+	uint md_len=64;
+	if (!HMAC(EVP_sha1(), key, key_len, (guchar*)data, data_len, md, &md_len))  // data is URL-encoded, so is actually a guchar*
+	{
+		//#include <openssl/err.h>
+		//ERR_clear_error();
+	}
+	guchar *b64_output = malloc((md_len+1)*4/3+1);  // taking into account the padding, and the final '\0' inserted by the function
+	EVP_EncodeBlock(b64_output, md, md_len);
+	return b64_output;
+}
+
+static gchar *_get_oauth_header (const gchar *cLocationName, gboolean bISUnits)
+{
+	// Oauth authentication: the idea is to join to the headers a hash of the GET request's signature
+	// the signature is made of: the method (GET), the url, some query parameters (like location, units and format), and the various oauth parameters (except of course the hash)
+	// they must be ordered, so that both end agree on how to form the string and calculate the hash
+	
+	// first build the parameters string
+	gchar *cLocationNameEsc = g_uri_escape_string(cLocationName, NULL, FALSE);
+	struct timeval tv;
+	gettimeofday(&tv, NULL);
+	const gchar *nonce = g_strdup_printf("%032d", rand());  // 32 bytes; it's not like we really need to be secretive...
+	gchar *params_sorted = g_strdup_printf ("format=xml&location=%s&oauth_consumer_key=%s&oauth_nonce=%s&oauth_signature_method=%s&oauth_timestamp=%ld&oauth_version=%s&u=%c",
+		cLocationNameEsc,
+		CLIENT_ID,
+		nonce,
+		"HMAC-SHA1",
+		tv.tv_sec,
+		"1.0",
+		bISUnits ? 'c' : 'f');  // all parameters are sorted by their key, and their value is URL-encoded.
+	gchar *params_sorted_esc = g_uri_escape_string(params_sorted, NULL, FALSE);
+	// then build the request's signature string
+	gchar *signature_base_str = g_strdup_printf ("GET&%s&%s",
+		cBaseUrlEsc,
+		params_sorted_esc);
+	// now calculate the hash of the signature
+	gchar *key = g_strdup (CLIENT_SECRET), *k=key;
+	while (*k) (*k++)--;
+	guchar *oauth_signature = _hmac_sha1_base64(key, signature_base_str);
+	g_free (key);
+	
+	// finally build the oauth header, containing all the oauth parameters
+	gchar *auth_header = g_strdup_printf("OAuth oauth_consumer_key=\"%s\", oauth_nonce=\"%s\", oauth_signature_method=\"%s\", oauth_timestamp=\"%ld\", oauth_version=\"%s\", oauth_signature=\"%s\"",
+		CLIENT_ID,
+		nonce,
+		"HMAC-SHA1",
+		tv.tv_sec,
+		"1.0",
+		oauth_signature);
+	free(signature_base_str);
+	free(cLocationNameEsc);
+	free(oauth_signature);
+	return auth_header;
 }

@@ -33,5 +33,6 @@ void cd_weather_reset_data (GldiModuleInstance *myApplet);
 
 void cd_weather_launch_periodic_task (GldiModuleInstance *myApplet);
 
+gchar *cd_weather_get_location_url (const gchar *cLocationName);
 
 #endif

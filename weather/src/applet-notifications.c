@@ -45,17 +45,20 @@ static int _get_num_day_from_icon (GldiModuleInstance *myApplet, Icon *pIcon)
 }
 static inline void _go_to_site (GldiModuleInstance *myApplet, int iNumDay)
 {
-	gchar *cURI;
-	if (iNumDay == -1)
-		cURI = g_strdup_printf ("http://www.weather.com/weather/hourbyhour/graph/%s", myConfig.cLocationCode);
-	else if (iNumDay == 0)
-		cURI = g_strdup_printf ("http://www.weather.com/weather/today/%s", myConfig.cLocationCode);
-	else if (iNumDay == 1)
-		cURI = g_strdup_printf ("http://www.weather.com/weather/tomorrow/%s", myConfig.cLocationCode);
-	else
-		cURI = g_strdup_printf ("http://www.weather.com/weather/wxdetail%d/%s", iNumDay, myConfig.cLocationCode);  // ?dayNum=%d
-	cairo_dock_fm_launch_uri (cURI);
-	g_free (cURI);
+	//~ gchar *cURI;
+	//~ if (iNumDay == -1)
+		//~ cURI = g_strdup_printf ("http://www.weather.com/weather/hourbyhour/graph/%s", myConfig.cLocationCode);
+	//~ else if (iNumDay == 0)
+		//~ cURI = g_strdup_printf ("http://www.weather.com/weather/today/%s", myConfig.cLocationCode);
+	//~ else if (iNumDay == 1)
+		//~ cURI = g_strdup_printf ("http://www.weather.com/weather/tomorrow/%s", myConfig.cLocationCode);
+	//~ else
+		//~ cURI = g_strdup_printf ("http://www.weather.com/weather/wxdetail%d/%s", iNumDay, myConfig.cLocationCode);  // ?dayNum=%d
+	//~ cairo_dock_fm_launch_uri (cURI);
+	//~ g_free (cURI);
+	g_print("url: %s\n", myData.wdata.cLink);
+	if (myData.wdata.cLink != NULL)
+		cairo_dock_fm_launch_uri ((const gchar *)myData.wdata.cLink);
 }
 
 static inline void _reload (GldiModuleInstance *myApplet)
@@ -139,7 +142,7 @@ void cd_weather_show_forecast_dialog (GldiModuleInstance *myApplet, Icon *pIcon)
 		gldi_dialogs_remove_on_icon (myIcon);
 	
 	// if we never got any result, show an error message. If we lost the connection, but could get some data beforehand, we'll just present the old data, since they are not likely to change very often.
-	if (myData.wdata.cLocation == NULL)
+	if (myData.wdata.cCity == NULL)
 	{
 		gldi_dialog_show_temporary_with_icon (D_("No data available\n is your connection alive?"), 
 			(myDock ? pIcon : myIcon),
@@ -150,22 +153,17 @@ void cd_weather_show_forecast_dialog (GldiModuleInstance *myApplet, Icon *pIcon)
 	}
 	
 	// present the day's forecast.
-	int iNumDay = ((int) pIcon->fOrder) / 2, iPart = ((int) pIcon->fOrder) - 2 * iNumDay;
-	g_return_if_fail (iNumDay < myConfig.iNbDays && iPart < 2);
+	int iNumDay = ((int) pIcon->fOrder) / 2;
+	g_return_if_fail (iNumDay < myConfig.iNbDays);
 	
 	Day *day = &myData.wdata.days[iNumDay];
-	DayPart *part = &day->part[iPart];
-	gldi_dialog_show_temporary_with_icon_printf ("%s (%s) : %s\n %s : %s%s -> %s%s\n %s : %s%%\n %s : %s%s (%s)\n %s : %s%%\n %s : %s  %s %s",
+	gldi_dialog_show_temporary_with_icon_printf ("%s (%s) : %s\n %s : %s%s -> %s%s",
 		(myDock ? pIcon : myIcon),
 		(myDock ? CAIRO_CONTAINER (myIcon->pSubDock) : myContainer),
 		myConfig.cDialogDuration,
 		"same icon",
-		day->cName, day->cDate, part->cWeatherDescription,
-		D_("Temperature"), _display (day->cTempMin), myData.wdata.units.cTemp, _display (day->cTempMax), myData.wdata.units.cTemp,
-		D_("Precipitation probability"), _display (part->cPrecipitationProba),
-		D_("Wind"), _display (part->cWindSpeed), myData.wdata.units.cSpeed, _display (part->cWindDirection),
-		D_("Humidity"), _display (part->cHumidity),
-		D_("Sunrise"), _display (day->cSunRise), D_("Sunset"), _display (day->cSunSet));
+		day->cName, day->cDate, day->cWeatherDescription,
+		D_("Temperature"), _display (day->cTempMin), myData.wdata.units.cTemp, _display (day->cTempMax), myData.wdata.units.cTemp);
 }
 
 void cd_weather_show_current_conditions_dialog (GldiModuleInstance *myApplet)
@@ -196,11 +194,11 @@ void cd_weather_show_current_conditions_dialog (GldiModuleInstance *myApplet)
 	
 	// show a dialog with the current conditions.
 	CurrentContitions *cc = &myData.wdata.currentConditions;
-	gldi_dialog_show_temporary_with_icon_printf ("%s (%s, %s)\n %s : %s%s (%s : %s%s)\n %s : %s%s (%s)\n %s : %s - %s : %s%s\n %s : %s  %s %s",
+	gldi_dialog_show_temporary_with_icon_printf ("%s:\n %s : %s%s\n %s : %s%s\n %s : %s - %s : %s%s\n %s : %s  %s %s",
 		myIcon, myContainer, myConfig.cDialogDuration, myIcon->cFileName,
-		cc->cWeatherDescription, cc->cDataAcquisitionDate, cc->cObservatory,
-		D_("Temperature"), _display (cc->cTemp), myData.wdata.units.cTemp, D_("Feels like"), _display (cc->cFeltTemp), myData.wdata.units.cTemp,
-		D_("Wind"), _display (cc->cWindSpeed), myData.wdata.units.cSpeed, _display (cc->cWindDirection),
-		D_("Humidity"), _display (cc->cHumidity), D_("Pressure"), _display (cc->cPressure), myData.wdata.units.cPressure,  // unite ?...
+		cc->cDataAcquisitionDate,
+		D_("Temperature"), _display (cc->now.cTempMax), myData.wdata.units.cTemp,
+		D_("Wind"), _display (cc->cWindSpeed), myData.wdata.units.cSpeed,
+		D_("Humidity"), _display (cc->cHumidity), D_("Pressure"), _display (cc->cPressure), myData.wdata.units.cPressure,
 		D_("Sunrise"), _display (cc->cSunRise), D_("Sunset"), _display (cc->cSunSet));
 }

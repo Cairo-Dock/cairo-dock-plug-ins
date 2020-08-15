@@ -23,14 +23,16 @@
 
 #include <cairo-dock.h>
 
-#define WEATHER_NB_DAYS_MAX 5
+#define WEATHER_NB_DAYS_MAX 8
 
 #define WEATHER_RATIO_ICON_DESKLET .5
 
 #define WEATHER_DEFAULT_NAME "weather"
 
-#define CD_WEATHER_BASE_URL "http://wxdata.weather.com/wxdata"
-
+// yahoo weather has no code location API
+// it's possible to get a code (woeid) in the 'link' of the response, but that means that you already got a valid location
+// so it's pretty useless
+#undef CD_WEATHER_HAS_CODE_LOCATION
 
 #define _display(cValue) ((cValue) == NULL || *((gchar*)cValue) == 'N' ? "?" : (const gchar*)(cValue))
 
@@ -38,12 +40,10 @@ struct _AppletConfig {
 	gchar *cLocationCode;
 	gboolean bISUnits;
 	gboolean bCurrentConditions;
-	gboolean bDisplayNights;
 	gboolean bDisplayTemperature;
 	gint iNbDays;
 	gchar *cRenderer;
 	gint cDialogDuration;
-	guint iCheckInterval;
 	gchar *cThemePath;
 	gboolean bDesklet3D;
 	gboolean bSetName;
@@ -51,60 +51,44 @@ struct _AppletConfig {
 
 typedef struct {
 	xmlChar *cTemp;
-	xmlChar *cDistance;
 	xmlChar *cSpeed;
 	xmlChar *cPressure;
 	} Unit;
 
 typedef struct {
-	xmlChar *cSunRise;
-	xmlChar *cSunSet;
-	xmlChar *cDataAcquisitionDate;
-	xmlChar *cObservatory;
-	xmlChar *cTemp;
-	xmlChar *cFeltTemp;
-	xmlChar *cWeatherDescription;
 	xmlChar *cIconNumber;
+	xmlChar *cDate;
+	xmlChar *cName;
+	xmlChar *cTempMax;
+	xmlChar *cTempMin;
+	xmlChar *cWeatherDescription;
+	} Day;
+
+typedef struct {
 	xmlChar *cWindSpeed;
 	xmlChar *cWindDirection;
 	xmlChar *cPressure;
 	xmlChar *cHumidity;
-	xmlChar *cMoonIconNumber;
+	xmlChar *cSunRise;
+	xmlChar *cSunSet;
+	int ttl;  // in mn;
+	xmlChar *cDataAcquisitionDate;
+	Day now;
 	} CurrentContitions;
 
 typedef struct {
-	xmlChar *cIconNumber;
-	xmlChar *cWeatherDescription;
-	xmlChar *cWindSpeed;
-	xmlChar *cWindDirection;
-	xmlChar *cHumidity;
-	xmlChar *cPrecipitationProba;
-	} DayPart;
-
-typedef struct {
-	xmlChar *cName;
-	xmlChar *cDate;
-	xmlChar *cTempMax;
-	xmlChar *cTempMin;
-	xmlChar *cSunRise;
-	xmlChar *cSunSet;
-	DayPart part[2];
-	} Day;
-
-typedef struct {
-	xmlChar *cLocation;
-	/**xmlChar *cLon;
-	xmlChar *cLat;*/
 	Unit units;
 	CurrentContitions currentConditions;
 	Day days[WEATHER_NB_DAYS_MAX];
+	xmlChar *cCountry;
+	xmlChar *cCity;
+	xmlChar *cLink;
 	} CDWeatherData;
 
 typedef struct {
 	gchar *cLocationCode;
 	gboolean bISUnits;
 	gboolean bCurrentConditions;
-	gint iNbDays;
 	CDWeatherData wdata;
 	gboolean bErrorInThread;
 	GldiModuleInstance *pApplet;
