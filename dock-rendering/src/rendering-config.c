@@ -26,7 +26,6 @@
 #include "rendering-rainbow.h"
 
 extern int iVanishingPointY;double my_fRainbowColor[4];
-extern double my_fRainbowLineColor[4];
 
 extern double my_fInclinationOnHorizon;
 extern double my_fForegroundRatio;

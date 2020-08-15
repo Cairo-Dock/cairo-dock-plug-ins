@@ -26,6 +26,7 @@
 
 #include <cairo.h>
 
+#include "rendering-commons.h"
 #include "rendering-rainbow.h"
 
 extern int my_iSpaceBetweenRows;
@@ -178,7 +179,7 @@ static void cd_rendering_render_rainbow (cairo_t *pCairoContext, CairoDock *pDoc
 			cairo_translate (pCairoContext, 0., pDock->container.iHeight);
 			cairo_scale (pCairoContext, 1., -1.);
 		}
-		cairo_set_line_width (pCairoContext, myDocksParam.iDockLineWidth);
+		cairo_set_line_width (pCairoContext, _get_dock_linewidth());
 		cairo_move_to (pCairoContext, pDock->container.iWidth/2 - fRadius * cos (my_fRainbowConeOffset), pDock->container.iHeight - fRadius * sin (my_fRainbowConeOffset));
 		cairo_line_to (pCairoContext, pDock->container.iWidth/2, pDock->container.iHeight);
 		cairo_line_to (pCairoContext, pDock->container.iWidth/2 + fRadius * cos (my_fRainbowConeOffset), pDock->container.iHeight - fRadius * sin (my_fRainbowConeOffset));
@@ -676,7 +677,7 @@ static void cd_rendering_render_rainbow_opengl (CairoDock *pDock)
 		pVertexTab[2*4+0] = - pVertexTab[2*0+0];
 		pVertexTab[2*4+1] = pVertexTab[2*0+1];
 		
-		cairo_dock_draw_current_path_opengl (myDocksParam.iDockLineWidth, my_fRainbowLineColor, 5);
+		cairo_dock_draw_current_path_opengl (_get_dock_linewidth(), my_fRainbowLineColor, 5);
 		
 		glDisableClientState(GL_COLOR_ARRAY);
 		glPopMatrix ();

@@ -51,7 +51,7 @@ extern cairo_surface_t *my_pFlatSeparatorSurface[2];
 #define YCurve(h, t) (h * yCurve (t))
 
 #define _define_parameters(h, hi, ti, xi, dw)\
-	double h = 4./3 * (pDock->iDecorationsHeight + myDocksParam.iDockLineWidth);  /* hauteur de controle de la courbe de Bezier, de telle facon qu'elle atteigne 'iDecorationsHeight'.*/\
+	double h = 4./3 * (pDock->iDecorationsHeight + _get_dock_linewidth());  /* hauteur de controle de la courbe de Bezier, de telle facon qu'elle atteigne 'iDecorationsHeight'.*/\
 	double hi = .5 * pDock->iMaxIconHeight * pDock->container.fRatio + myDocksParam.iFrameMargin - 1;  /* hauteur de la courbe a la 1ere icone.*/\
 	double ti = .5 * (1. - sqrt (MAX (1. - 4./3 * hi / h, 0.01)));\
 	double xi = xCurve (my_fCurveCurvature, ti);\
@@ -106,16 +106,17 @@ static void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 		fCurveCurvature = my_fCurveCurvature;
 		cd_rendering_calculate_reference_curve (my_fCurveCurvature);
 	}
+	int iDockLineWidth = _get_dock_linewidth();
 	
 	// on calcule tout ce qu'on peut.
 	cairo_dock_calculate_icons_positions_at_rest_linear (pDock->icons, pDock->fFlatDockWidth);
 	
 	pDock->iDecorationsHeight = myDocksParam.iFrameMargin + my_iCurveAmplitude + .5 * pDock->iMaxIconHeight;  // de bas en haut.
 	
-	pDock->iMaxDockHeight = myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + my_iCurveAmplitude + (1 + myIconsParam.fAmplitude) * pDock->iMaxIconHeight * pDock->container.fRatio + (pDock->container.bIsHorizontal ? myIconsParam.iLabelSize : 0);  // de bas en haut.
+	pDock->iMaxDockHeight = iDockLineWidth + myDocksParam.iFrameMargin + my_iCurveAmplitude + (1 + myIconsParam.fAmplitude) * pDock->iMaxIconHeight * pDock->container.fRatio + (pDock->container.bIsHorizontal ? myIconsParam.iLabelSize : 0);  // de bas en haut.
 	
 	double fRatio = (pDock->iRefCount == 0 && pDock->iVisibility == CAIRO_DOCK_VISI_RESERVE ? 1. : pDock->container.fRatio);  // prevent the dock from resizing itself and all the maximized windows each time an icon is removed/inserted.
-	pDock->iMinDockHeight = myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + my_iCurveAmplitude + pDock->iMaxIconHeight * fRatio;  // de bas en haut.
+	pDock->iMinDockHeight = iDockLineWidth + myDocksParam.iFrameMargin + my_iCurveAmplitude + pDock->iMaxIconHeight * fRatio;  // de bas en haut.
 	
 	_define_parameters (h, hi, ti, xi, dw);
 	
@@ -126,7 +127,7 @@ static void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 	dw = w * xi / (1 - 2 * xi);  // abscisse de la 1ere icone pour satisfaire a la contrainte y=hi.
 	// -> pointe
 	double tan_theta = (my_fCurveCurvature != 1 ? h / ((1 - my_fCurveCurvature) * (w + 2 * dw) / 2) : 1e6);  // la tangente a une courbe de Bezier en son origine est la droite reliant les deux premiers points de controle.
-	double fDeltaTip = .5 * myDocksParam.iDockLineWidth * sqrt (1 + tan_theta * tan_theta) / tan_theta;  // prolongement de la pointe.
+	double fDeltaTip = .5 * iDockLineWidth * sqrt (1 + tan_theta * tan_theta) / tan_theta;  // prolongement de la pointe.
 	dw += fDeltaTip;
 	//g_print ("dw : %.2f (ratio : %.2f, w : %.2f) -> W = %.2f\n", dw, pDock->container.fRatio, w, w+2*dw);
 	
@@ -162,7 +163,7 @@ static void cd_rendering_calculate_max_dock_size_curve (CairoDock *pDock)
 
 static void cd_rendering_make_3D_curve_separator (Icon *icon, cairo_t *pCairoContext, CairoDock *pDock, gboolean bIncludeEdges, gboolean bBackGround)
 {
-	double fLineWidth = myDocksParam.iDockLineWidth;
+	double fLineWidth = _get_dock_linewidth();
 	double hi;
 	
 	Icon *pPrevIcon = cairo_dock_get_previous_icon (pDock->icons, icon);
@@ -240,7 +241,7 @@ static void cd_rendering_make_3D_curve_separator (Icon *icon, cairo_t *pCairoCon
 		
 		double fDockWidth = cairo_dock_get_current_dock_width_linear (pDock) - 2 * myDocksParam.iFrameMargin;
 		
-		double h = 4./3 * (pDock->iDecorationsHeight + myDocksParam.iDockLineWidth);
+		double h = 4./3 * (pDock->iDecorationsHeight + fLineWidth);
 		double hi_ = .5 * pDock->iMaxIconHeight + myDocksParam.iFrameMargin - 1;
 		double ti = .5 * (1. - sqrt (MAX (1. - 4./3 * hi_ / h, 0)));
 		double xi = xCurve (my_fCurveCurvature, ti);
@@ -306,13 +307,13 @@ static void cd_rendering_make_3D_curve_separator (Icon *icon, cairo_t *pCairoCon
 	double fHeight, fBigWidth, fLittleWidth;
 	if (bIncludeEdges)
 	{
-		fHeight = (bBackGround ? pDock->iDecorationsHeight - hi : hi) + myDocksParam.iDockLineWidth;
+		fHeight = (bBackGround ? pDock->iDecorationsHeight - hi : hi) + fLineWidth;
 		fBigWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY : iVanishingPointY + fHeight);
 		fLittleWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY - fHeight : iVanishingPointY);
 	}
 	else
 	{
-		fHeight = pDock->iDecorationsHeight - myDocksParam.iDockLineWidth;
+		fHeight = pDock->iDecorationsHeight - fLineWidth;
 		fBigWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi);
 		fLittleWidth = fabs (fRightInclination - fLeftInclination) * (iVanishingPointY + hi - fHeight);
 	}
@@ -326,17 +327,17 @@ static void cd_rendering_make_3D_curve_separator (Icon *icon, cairo_t *pCairoCon
 	{
 		sens = 1;
 		if (bIncludeEdges)
-			fDockOffsetY = pDock->container.iHeight - fHeight - (bBackGround ? myDocksParam.iDockLineWidth + hi : 0);
+			fDockOffsetY = pDock->container.iHeight - fHeight - (bBackGround ? fLineWidth + hi : 0);
 		else
-			fDockOffsetY = pDock->container.iHeight - fHeight - myDocksParam.iDockLineWidth;
+			fDockOffsetY = pDock->container.iHeight - fHeight - fLineWidth;
 	}
 	else
 	{
 		sens = -1;
 		if (bIncludeEdges)
-			fDockOffsetY = fHeight + (bBackGround ? myDocksParam.iDockLineWidth + hi : 0);
+			fDockOffsetY = fHeight + (bBackGround ? fLineWidth + hi : 0);
 		else
-			fDockOffsetY = fHeight + myDocksParam.iDockLineWidth;
+			fDockOffsetY = fHeight + fLineWidth;
 	}
 	
 	if (bIncludeEdges)
@@ -415,10 +416,10 @@ static void cd_rendering_draw_3D_curve_separator_edge (Icon *icon, cairo_t *pCai
 	}
 	double fLeftInclination = (icon->fDrawX - pDock->container.iWidth / 2) / fVanishingDistanceLeft;
 	double fRightInclination = (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / fVanishingDistanceRight;
-	
+	int iDockLineWidth = _get_dock_linewidth();
 	
 	double fHeight, fLittleWidth;
-	fHeight = (bBackGround ? pDock->iDecorationsHeight - hi - 0.5*myDocksParam.iDockLineWidth : hi + 1.5*myDocksParam.iDockLineWidth);
+	fHeight = (bBackGround ? pDock->iDecorationsHeight - hi - 0.5*iDockLineWidth : hi + 1.5*iDockLineWidth);
 	//fBigWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY : iVanishingPointY + fHeight);
 	fLittleWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY - fHeight : iVanishingPointY);
 	
@@ -431,14 +432,14 @@ static void cd_rendering_draw_3D_curve_separator_edge (Icon *icon, cairo_t *pCai
 	if (pDock->container.bDirectionUp)
 	{
 		sens = 1;
-		fDockOffsetY =  (bBackGround ? 0.5*myDocksParam.iDockLineWidth : - 1.*myDocksParam.iDockLineWidth);
+		fDockOffsetY =  (bBackGround ? 0.5*iDockLineWidth : - 1.*iDockLineWidth);
 	}
 	else
 	{
 		sens = -1;
-		fDockOffsetY =  (bBackGround ? - 0.5*myDocksParam.iDockLineWidth : 1.*myDocksParam.iDockLineWidth);
+		fDockOffsetY =  (bBackGround ? - 0.5*iDockLineWidth : 1.*iDockLineWidth);
 	}
-	fDockOffsetX = (bBackGround ? .5*myDocksParam.iDockLineWidth * fLeftInclination + 1.*fLeftInclination : - 0.5 * myDocksParam.iDockLineWidth * fLeftInclination);
+	fDockOffsetX = (bBackGround ? .5*iDockLineWidth * fLeftInclination + 1.*fLeftInclination : - 0.5 * iDockLineWidth * fLeftInclination);
 	//fDockOffsetX = -.5*myDocksParam.iDockLineWidth;
 	
 	if (pDock->container.bIsHorizontal)
@@ -477,7 +478,7 @@ static void cd_rendering_draw_3D_curve_separator (Icon *icon, cairo_t *pCairoCon
 		cd_rendering_draw_3D_curve_separator_edge (icon, pCairoContext, pDock, bBackGround);
 		
 		cairo_set_operator (pCairoContext, CAIRO_OPERATOR_OVER);
-		cairo_set_line_width (pCairoContext, myDocksParam.iDockLineWidth);
+		cairo_set_line_width (pCairoContext, _get_dock_linewidth());
 		if (myDocksParam.bUseDefaultColors)
 			gldi_style_colors_set_line_color (pCairoContext);
 		else
@@ -525,7 +526,7 @@ static void cairo_dock_draw_curved_frame (cairo_t *pCairoContext, double fFrameW
 static void cd_rendering_render_curve (cairo_t *pCairoContext, CairoDock *pDock)
 {
 	//\____________________ On definit la position du cadre.
-	double fLineWidth = myDocksParam.iDockLineWidth;
+	double fLineWidth = _get_dock_linewidth();
 	
 	_define_parameters (h, hi, ti, xi, dw);
 	double w = cairo_dock_get_current_dock_width_linear (pDock) - 2 * myDocksParam.iFrameMargin;
@@ -662,11 +663,12 @@ static gboolean _cd_separator_is_impacted (Icon *icon, CairoDock *pDock, double 
 	double hi = .5 * pDock->iMaxIconHeight + myDocksParam.iFrameMargin - 1;
 	double fLeftInclination = fabs (icon->fDrawX - pDock->container.iWidth / 2) / iVanishingPointY;
 	double fRightInclination = fabs (icon->fDrawX + icon->fWidth * icon->fScale - pDock->container.iWidth / 2) / iVanishingPointY;
+	int iDockLineWidth = _get_dock_linewidth();
 	
 	double fHeight;
 	if (bIncludeEdges)
 	{
-		fHeight = (bBackGround ? pDock->iDecorationsHeight - hi : hi) + (bIncludeEdges ? myDocksParam.iDockLineWidth : 0);
+		fHeight = (bBackGround ? pDock->iDecorationsHeight - hi : hi) + (bIncludeEdges ? iDockLineWidth : 0);
 		//fBigWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY : iVanishingPointY + fHeight);
 		//fLittleWidth = fabs (fRightInclination - fLeftInclination) * (bBackGround ? iVanishingPointY - fHeight : iVanishingPointY);
 	}
@@ -756,7 +758,7 @@ static gboolean _cd_separator_is_impacted (Icon *icon, CairoDock *pDock, double 
 static void cd_rendering_render_optimized_curve (cairo_t *pCairoContext, CairoDock *pDock, GdkRectangle *pArea)
 {
 	//\____________________ On trace le cadre.
-	double fLineWidth = myDocksParam.iDockLineWidth;
+	double fLineWidth = _get_dock_linewidth();
 	_define_parameters (h, hi, ti, xi, dw);
 	int sens;
 	double dx, dy, w;
@@ -1098,7 +1100,7 @@ const CairoDockGLPath *cairo_dock_generate_curve_path (double fRelativeControlHe
 static void cd_rendering_render_curve_opengl (CairoDock *pDock)
 {
 	//\____________________ On definit la position du cadre.
-	double fLineWidth = myDocksParam.iDockLineWidth;
+	double fLineWidth = _get_dock_linewidth();;
 	
 	_define_parameters (h, hi, ti, xi, dw);
 	double w = cairo_dock_get_current_dock_width_linear (pDock) - 2 * myDocksParam.iFrameMargin;

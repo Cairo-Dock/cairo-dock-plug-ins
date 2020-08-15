@@ -36,5 +36,9 @@ void cd_rendering_draw_physical_separator_opengl (Icon *icon, CairoDock *pDock, 
 
 void cd_rendering_draw_flat_separator_opengl (Icon *icon, CairoDock *pDock);
 
+#define _get_dock_radius() (myDocksParam.bUseDefaultColors ? myStyleParam.iCornerRadius : myDocksParam.iDockRadius)
+
+#define _get_dock_linewidth() (myDocksParam.bUseDefaultColors ? myStyleParam.iLineWidth : myDocksParam.iDockLineWidth)
+
 
 #endif

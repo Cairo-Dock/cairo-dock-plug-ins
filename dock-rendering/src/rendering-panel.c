@@ -26,6 +26,7 @@
 
 #include <cairo.h>
 
+#include "rendering-commons.h"
 #include "rendering-panel.h"
 
 extern gdouble my_fPanelRadius;
@@ -75,7 +76,8 @@ static void cd_compute_size (CairoDock *pDock)
 	
 	//\_____________ On en deduit l'ecart entre les groupes d'icones.
 	double W = cairo_dock_get_max_authorized_dock_width (pDock);
-	double fScreenBorderGap = myDocksParam.iDockRadius + myDocksParam.iDockLineWidth;  // on laisse un ecart avec le bord de l'ecran.
+	int iDockLineWidth = _get_dock_linewidth();
+	double fScreenBorderGap = _get_dock_radius() + iDockLineWidth;  // on laisse un ecart avec le bord de l'ecran.
 	double fGroupGap = (iNbGroups > 1 ? (W - 2*fScreenBorderGap - fGroupsWidth) / (iNbGroups - 1) : W - fScreenBorderGap - fGroupsWidth);
 	if (fGroupGap < myIconsParam.iIconGap)  // les icones depassent en largeur.
 		fGroupGap = myIconsParam.iIconGap;
@@ -116,13 +118,13 @@ static void cd_compute_size (CairoDock *pDock)
 	pDock->iMaxDockWidth = pDock->fFlatDockWidth = pDock->iMinDockWidth = MAX (W, x);  // if > W, we'll come back here with a smaller ratio.
 	//g_print ("iMaxDockWidth : %d (%.2f)\n", pDock->iMaxDockWidth, pDock->container.fRatio);
 	
-	pDock->iMaxDockHeight = myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + hicon * pDock->container.fRatio + myDocksParam.iFrameMargin + myDocksParam.iDockLineWidth + (pDock->container.bIsHorizontal ? myIconsParam.iLabelSize : 0);
+	pDock->iMaxDockHeight = iDockLineWidth + myDocksParam.iFrameMargin + hicon * pDock->container.fRatio + myDocksParam.iFrameMargin + iDockLineWidth + (pDock->container.bIsHorizontal ? myIconsParam.iLabelSize : 0);
 	
 	pDock->iMaxDockHeight = MAX (pDock->iMaxDockHeight, pDock->iMaxIconHeight * (1 + myIconsParam.fAmplitude));  // au moins la taille du FBO.
 	//g_print ("panel view: pDock->iMaxIconHeight = %d\n", pDock->iMaxIconHeight);
 	
 	pDock->iDecorationsWidth = pDock->iMaxDockWidth;
-	pDock->iMinDockHeight = 2 * (myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin) + hicon * pDock->container.fRatio;  /// TODO: make the height constant, to avoid moving all windows when space is reserved and ratio changes.
+	pDock->iMinDockHeight = 2 * (iDockLineWidth + myDocksParam.iFrameMargin) + hicon * pDock->container.fRatio;  /// TODO: make the height constant, to avoid moving all windows when space is reserved and ratio changes.
 	
 	pDock->iActiveWidth = pDock->iMaxDockWidth;
 	pDock->iActiveHeight = pDock->iMinDockHeight;
@@ -142,9 +144,11 @@ static void cd_compute_size (CairoDock *pDock)
 static void cd_render (cairo_t *pCairoContext, CairoDock *pDock)
 {
 	//\____________________ On trace le cadre.
-	double fLineWidth = myDocksParam.iDockLineWidth;
+	double fLineWidth = _get_dock_linewidth();
 	double fMargin = myDocksParam.iFrameMargin;
-	double fRadius = (pDock->iDecorationsHeight + fLineWidth - 2 * myDocksParam.iDockRadius > 0 ? myDocksParam.iDockRadius : (pDock->iDecorationsHeight + fLineWidth) / 2 - 1);
+	double fRadius = _get_dock_radius();
+	if (2 * fRadius > pDock->iDecorationsHeight + fLineWidth)
+		fRadius = (pDock->iDecorationsHeight + fLineWidth) / 2 - 1;
 	double fExtraWidth = 2 * fRadius + fLineWidth;
 	double fDockWidth;
 	int sens;
@@ -321,7 +325,7 @@ static void cd_render (cairo_t *pCairoContext, CairoDock *pDock)
 static void cd_render_optimized (cairo_t *pCairoContext, CairoDock *pDock, GdkRectangle *pArea)
 {
 	//g_print ("%s ((%d;%d) x (%d;%d) / (%dx%d))\n", __func__, pArea->x, pArea->y, pArea->width, pArea->height, pDock->container.iWidth, pDock->container.iHeight);
-	double fLineWidth = myDocksParam.iDockLineWidth;
+	double fLineWidth = _get_dock_linewidth();
 	double fMargin = myDocksParam.iFrameMargin;
 	int iHeight = pDock->container.iHeight;
 
@@ -347,7 +351,7 @@ static void cd_render_optimized (cairo_t *pCairoContext, CairoDock *pDock, GdkRe
 
 	fDockOffsetY = (pDock->container.bDirectionUp ? pDock->container.iHeight - pDock->iDecorationsHeight - fLineWidth : fLineWidth);
 	
-	double fRadius = MIN (myDocksParam.iDockRadius, (pDock->iDecorationsHeight + myDocksParam.iDockLineWidth) / 2 - 1);
+	double fRadius = MIN (_get_dock_radius(), (pDock->iDecorationsHeight + fLineWidth) / 2 - 1);
 	double fOffsetX;
 	if (cairo_dock_is_extended_dock (pDock))  // mode panel etendu.
 	{
@@ -438,9 +442,11 @@ static void cd_render_optimized (cairo_t *pCairoContext, CairoDock *pDock, GdkRe
 static void cd_render_opengl (CairoDock *pDock)
 {
 	//\_____________ On definit notre rectangle.
-	double fLineWidth = myDocksParam.iDockLineWidth;
+	double fLineWidth = _get_dock_linewidth();
 	double fMargin = myDocksParam.iFrameMargin;
-	double fRadius = (pDock->iDecorationsHeight + fLineWidth - 2 * myDocksParam.iDockRadius > 0 ? myDocksParam.iDockRadius : (pDock->iDecorationsHeight + fLineWidth) / 2 - 1);
+	double fRadius = _get_dock_radius();
+	if (2 * fRadius > pDock->iDecorationsHeight + fLineWidth)
+		fRadius = (pDock->iDecorationsHeight + fLineWidth) / 2 - 1;
 	double fExtraWidth = 2 * fRadius + fLineWidth;
 	double fDockWidth;
 	double fFrameHeight = pDock->iDecorationsHeight + fLineWidth;
@@ -660,7 +666,8 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 	
 	//\_____________ On en deduit l'ecart entre les groupes d'icones.
 	double W = cairo_dock_get_max_authorized_dock_width (pDock);
-	double fScreenBorderGap = myDocksParam.iDockRadius + myDocksParam.iDockLineWidth;  // on laisse un ecart avec le bord de l'ecran.
+	int iDockLineWidth = _get_dock_linewidth();
+	double fScreenBorderGap = _get_dock_radius() + iDockLineWidth;  // on laisse un ecart avec le bord de l'ecran.
 	double fGroupGap;
 	if (iNbGroups > 1)
 	{
@@ -725,9 +732,9 @@ static Icon *cd_calculate_icons (CairoDock *pDock)
 		pIcon->fDrawX = pIcon->fX;
 		
 		if (pDock->container.bDirectionUp)
-			pIcon->fY = pDock->iMaxDockHeight - (myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin + pIcon->fHeight);
+			pIcon->fY = pDock->iMaxDockHeight - (iDockLineWidth + myDocksParam.iFrameMargin + pIcon->fHeight);
 		else
-			pIcon->fY = myDocksParam.iDockLineWidth + myDocksParam.iFrameMargin;
+			pIcon->fY = iDockLineWidth + myDocksParam.iFrameMargin;
 		pIcon->fDrawY = pIcon->fY;
 		
 		pIcon->fWidthFactor = 1.;
