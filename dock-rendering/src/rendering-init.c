@@ -41,67 +41,67 @@
 #define CD_RENDERING_PANEL_VIEW_NAME N_("Panel")
 
 
-int iVanishingPointY;  // distance du point de fuite au plan (au niveau du point de contact du plan et des icones).
+extern int iVanishingPointY;  // distance du point de fuite au plan (au niveau du point de contact du plan et des icones).
 
 double my_fInclinationOnHorizon;  // inclinaison de la ligne de fuite vers l'horizon.
 cairo_surface_t *my_pFlatSeparatorSurface[2] = {NULL, NULL};
 GLuint my_iFlatSeparatorTexture = 0;
 
-double my_fForegroundRatio;  // fraction des icones presentes en avant-plan (represente donc l'etirement en profondeur de l'ellipse).
-double my_iGapOnEllipse;  // regle la profondeur du caroussel.
-gboolean my_bRotateIconsOnEllipse;  // tourner les icones de profil ou pas.
-double my_fScrollAcceleration;
-double my_fScrollSpeed;
+extern double my_fForegroundRatio;  // fraction des icones presentes en avant-plan (represente donc l'etirement en profondeur de l'ellipse).
+extern double my_iGapOnEllipse;  // regle la profondeur du caroussel.
+extern gboolean my_bRotateIconsOnEllipse;  // tourner les icones de profil ou pas.
+extern double my_fScrollAcceleration;
+extern double my_fScrollSpeed;
 
-double my_fParaboleCurvature;  // puissance de x.
-double my_fParaboleRatio;  // hauteur/largeur.
-double my_fParaboleMagnitude;
-int my_iParaboleTextGap;
-gboolean my_bDrawTextWhileUnfolding;
-gboolean my_bParaboleCurveOutside;
+extern double my_fParaboleCurvature;  // puissance de x.
+extern double my_fParaboleRatio;  // hauteur/largeur.
+extern double my_fParaboleMagnitude;
+extern int my_iParaboleTextGap;
+extern gboolean my_bDrawTextWhileUnfolding;
+extern gboolean my_bParaboleCurveOutside;
 
-int my_iSpaceBetweenRows;
-int my_iSpaceBetweenIcons;
-double my_fRainbowMagnitude;
-int my_iRainbowNbIconsMin;
-double my_fRainbowConeOffset;
-double my_fRainbowColor[4];
-double my_fRainbowLineColor[4];
+extern int my_iSpaceBetweenRows;
+extern int my_iSpaceBetweenIcons;
+extern double my_fRainbowMagnitude;
+extern int my_iRainbowNbIconsMin;
+extern double my_fRainbowConeOffset;
+extern double my_fRainbowColor[4];
+extern double my_fRainbowLineColor[4];
 
-gdouble  my_diapo_simple_max_size;
-gint     my_diapo_simple_iconGapX;
-gint     my_diapo_simple_iconGapY;
-gdouble  my_diapo_simple_fScaleMax;
-gint     my_diapo_simple_sinW;
-gboolean my_diapo_simple_lineaire;
-gboolean  my_diapo_simple_wide_grid;
-gboolean  my_diapo_simple_text_only_on_pointed;
-gboolean my_diapo_simple_display_all_labels;
+extern gdouble  my_diapo_simple_max_size;
+extern gint     my_diapo_simple_iconGapX;
+extern gint     my_diapo_simple_iconGapY;
+extern gdouble  my_diapo_simple_fScaleMax;
+extern gint     my_diapo_simple_sinW;
+extern gboolean my_diapo_simple_lineaire;
+extern gboolean  my_diapo_simple_wide_grid;
+extern gboolean  my_diapo_simple_text_only_on_pointed;
+extern gboolean my_diapo_simple_display_all_labels;
 
-gboolean my_diapo_simple_use_default_colors;
-gdouble  my_diapo_simple_color_frame_start[4];
-gdouble  my_diapo_simple_color_frame_stop[4];
-gboolean my_diapo_simple_fade2bottom;
-gboolean my_diapo_simple_fade2right;
-gint    my_diapo_simple_arrowWidth;
-gint    my_diapo_simple_arrowHeight;
+extern gboolean my_diapo_simple_use_default_colors;
+extern gdouble  my_diapo_simple_color_frame_start[4];
+extern gdouble  my_diapo_simple_color_frame_stop[4];
+extern gboolean my_diapo_simple_fade2bottom;
+extern gboolean my_diapo_simple_fade2right;
+extern gint    my_diapo_simple_arrowWidth;
+extern gint    my_diapo_simple_arrowHeight;
 //gdouble  my_diapo_simple_arrowShift;
-gint    my_diapo_simple_lineWidth;
-gint    my_diapo_simple_radius;
-gdouble  my_diapo_simple_color_border_line[4];
-gboolean my_diapo_simple_draw_background;
-gdouble  my_diapo_simple_color_scrollbar_line[4];
-gdouble  my_diapo_simple_color_scrollbar_inside[4];
-gdouble  my_diapo_simple_color_grip[4];
+extern gint    my_diapo_simple_lineWidth;
+extern gint    my_diapo_simple_radius;
+extern gdouble  my_diapo_simple_color_border_line[4];
+extern gboolean my_diapo_simple_draw_background;
+extern gdouble  my_diapo_simple_color_scrollbar_line[4];
+extern gdouble  my_diapo_simple_color_scrollbar_inside[4];
+extern gdouble  my_diapo_simple_color_grip[4];
 
-gdouble my_fCurveCurvature;
-gint my_iCurveAmplitude;
+extern gdouble my_fCurveCurvature;
+extern gint my_iCurveAmplitude;
 
-gdouble my_fPanelRadius;
-gdouble my_fPanelInclination;
-gdouble my_fPanelRatio;
+extern gdouble my_fPanelRadius;
+extern gdouble my_fPanelInclination;
+extern gdouble my_fPanelRatio;
 static gdouble s_fPreviousPanelRatio;
-gboolean my_bPanelPhysicalSeparator;
+extern gboolean my_bPanelPhysicalSeparator;
 
 GldiColor my_fSeparatorColor;
 
