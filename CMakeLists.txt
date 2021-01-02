@@ -197,7 +197,7 @@ endif()
 ## Indicator
 enable_if_not_defined (enable-indicator-support)
 if (enable-indicator-support)
-	set (INDICATOR_APPLET_MODULE indicator3-0.4)
+	set (INDICATOR_APPLET_MODULE ayatana-indicator3-0.4)
 	pkg_check_modules (INDICATOR_APPLET ${INDICATOR_APPLET_MODULE})
 	if (INDICATOR_APPLET_FOUND)
 		set (INDICATOR_NEW_VERSION TRUE)  # oneiric and newer
@@ -264,10 +264,10 @@ if (INDICATOR_APPLET_FOUND)
 
 	if (INDICATOR_NEW_VERSION)  # oneiric and newer
 		execute_process(
-			COMMAND pkg-config --variable=iconsdir indicator3-0.4
+			COMMAND pkg-config --variable=iconsdir ayatana-indicator3-0.4
 			OUTPUT_VARIABLE INDICATORICONSDIR)
 		execute_process(
-			COMMAND pkg-config --variable=indicatordir indicator3-0.4
+			COMMAND pkg-config --variable=indicatordir ayatana-indicator3-0.4
 			OUTPUT_VARIABLE INDICATORDIR)
 		STRING (REGEX REPLACE "\n" "" INDICATORDIR ${INDICATORDIR})
 		set (with_indicator3 yes)
