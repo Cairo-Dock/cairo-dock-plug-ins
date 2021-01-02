@@ -210,7 +210,7 @@ endif()
 ## libido
 enable_if_not_defined (enable-libido-support)
 if (enable-libido-support)
-	set (IDO_MODULE libido3-0.1)
+	set (IDO_MODULE libayatana-ido3-0.4)
 	pkg_check_modules (IDO ${IDO_MODULE})
 	if (IDO_FOUND)
 		STRING (REGEX REPLACE "\\..*" "" IDO_MAJOR "${IDO_VERSION}")
