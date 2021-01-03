@@ -61,7 +61,9 @@ void cd_weather_reset_all_datas (GldiModuleInstance *myApplet)
 	
 	cd_weather_reset_data (myApplet);
 	
+#ifdef CD_WEATHER_HAS_CODE_LOCATION
 	cd_weather_free_location_list ();
+#endif
 	
 	CD_APPLET_DELETE_MY_ICONS_LIST;
 	
