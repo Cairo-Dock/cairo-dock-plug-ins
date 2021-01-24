@@ -359,7 +359,7 @@ static guchar *_hmac_sha1_base64(const gchar *key, const gchar *data)
 	size_t key_len = strlen(++key);
 	size_t data_len = strlen(data);
 	uint8_t md[64];  // SHA1_Message_Block_Size = 64 bytes
-	uint md_len=64;
+	guint md_len=64;
 	if (!HMAC(EVP_sha1(), key, key_len, (guchar*)data, data_len, md, &md_len))  // data is URL-encoded, so is actually a guchar*
 	{
 		//#include <openssl/err.h>
