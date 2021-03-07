@@ -30,7 +30,7 @@
 
 #include <libdbusmenu-gtk/menuitem.h>
 #include <libdbusmenu-gtk/menu.h>
-#include <libido/idoentrymenuitem.h>
+#include <libayatana-ido/idoentrymenuitem.h>
 
 #if (DBUSMENU_MAJOR > 0 || DBUSMENU_MINOR >= 2)
 static void

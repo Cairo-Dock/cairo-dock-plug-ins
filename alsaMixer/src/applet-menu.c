@@ -38,9 +38,9 @@
 
 #include <libdbusmenu-gtk/menuitem.h>
 #include <libdbusmenu-gtk/menu.h>
-#include <libido/idoscalemenuitem.h>
+#include <libayatana-ido/idoscalemenuitem.h>
 
-#include <libido/libido.h>
+#include <libayatana-ido/libayatana-ido.h>
 
 static gboolean
 new_transport_widget (DbusmenuMenuitem * newitem,

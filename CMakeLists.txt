@@ -197,10 +197,10 @@ endif()
 ## Indicator
 enable_if_not_defined (enable-indicator-support)
 if (enable-indicator-support)
-	set (INDICATOR_APPLET_MODULE indicator3-0.4)
+	set (INDICATOR_APPLET_MODULE ayatana-indicator3-0.4)
 	pkg_check_modules (INDICATOR_APPLET ${INDICATOR_APPLET_MODULE})
 	if (INDICATOR_APPLET_FOUND)
-		set (INDICATOR_NEW_VERSION TRUE)  # oneiric and newer
+		set (INDICATOR_NEW_VERSION TRUE)  # bionic and newer
 	else()
 		set (INDICATOR_APPLET_MODULE indicator3)
 		pkg_check_modules (INDICATOR_APPLET ${INDICATOR_APPLET_MODULE})
@@ -210,7 +210,7 @@ endif()
 ## libido
 enable_if_not_defined (enable-libido-support)
 if (enable-libido-support)
-	set (IDO_MODULE libido3-0.1)
+	set (IDO_MODULE libayatana-ido3-0.4)
 	pkg_check_modules (IDO ${IDO_MODULE})
 	if (IDO_FOUND)
 		STRING (REGEX REPLACE "\\..*" "" IDO_MAJOR "${IDO_VERSION}")
@@ -262,12 +262,12 @@ if (INDICATOR_APPLET_FOUND)
 		set (INDICATOR_MESSAGES_HAS_LOZENGE 0)
 	endif()
 
-	if (INDICATOR_NEW_VERSION)  # oneiric and newer
+	if (INDICATOR_NEW_VERSION)  # bionic and newer
 		execute_process(
-			COMMAND pkg-config --variable=iconsdir indicator3-0.4
+			COMMAND pkg-config --variable=iconsdir ayatana-indicator3-0.4
 			OUTPUT_VARIABLE INDICATORICONSDIR)
 		execute_process(
-			COMMAND pkg-config --variable=indicatordir indicator3-0.4
+			COMMAND pkg-config --variable=indicatordir ayatana-indicator3-0.4
 			OUTPUT_VARIABLE INDICATORDIR)
 		STRING (REGEX REPLACE "\n" "" INDICATORDIR ${INDICATORDIR})
 		set (with_indicator3 yes)
