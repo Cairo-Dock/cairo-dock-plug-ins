@@ -31,21 +31,14 @@
 
 #define RAME_DATA_PIPE CD_SYSMONITOR_PROC_FS"/meminfo"
 
-#define goto_next_line \
-	str = strchr (str, '\n'); \
-	if (str == NULL) { \
-		myData.bAcquisitionOK = FALSE; \
-		return; \
-	} \
-	str ++;
-#define get_value(iValue) \
-	str = strchr (str, ':'); \
+#define get_value(cNeedle, iValue) \
+	str = strstr (str, cNeedle); \
 	if (str == NULL) { \
 		myData.bAcquisitionOK = FALSE; \
 		g_free (cContent); \
 		return; \
 	} \
-	str ++; \
+	str += strlen (cNeedle); \
 	while (*str == ' ') \
 		str ++; \
 	iValue = atoll (str);
@@ -66,20 +59,14 @@ void cd_sysmonitor_get_ram_data (GldiModuleInstance *myApplet)
 	{
 		gchar *str = cContent;
 		
-		get_value (myData.ramTotal)  // MemTotal
+		get_value ("MemTotal:", myData.ramTotal)  // MemTotal
 		
-		
-		goto_next_line
-		get_value (myData.ramFree)  // MemFree
-		
+		get_value ("MemFree:", myData.ramFree)  // MemFree
 		
 		myData.ramUsed = myData.ramTotal - myData.ramFree;
-		goto_next_line
-		get_value (myData.ramBuffers)  // Buffers.
+		get_value ("Buffers:", myData.ramBuffers)  // Buffers.
 		
-		goto_next_line
-		get_value (myData.ramCached)  // Cached.
-		
+		get_value ("Cached:", myData.ramCached)  // Cached.
 		
 		myData.fRamPercent = 100. * (myData.ramUsed - myData.ramCached - myData.ramBuffers) / myData.ramTotal;
 		
@@ -91,17 +78,9 @@ void cd_sysmonitor_get_ram_data (GldiModuleInstance *myApplet)
 		
 		if (myConfig.bShowSwap)
 		{
-			goto_next_line  // SwapCached:
-			goto_next_line  // Active:
-			goto_next_line  // Inactive:
+			get_value ("SwapTotal:", myData.swapTotal)  // SwapTotal.
 			
-			while (strncmp (str, "SwapTotal", 9) != 0)  // apres, suivant la version su noyau, les lignes ne sont pas les memes, on fait donc une recherche.
-			{
-				goto_next_line
-			}
-			get_value (myData.swapTotal)  // SwapTotal.
-			goto_next_line
-			get_value (myData.swapFree)  // SwapFree.
+			get_value ("SwapFree:", myData.swapFree)  // SwapFree.
 			
 			myData.swapUsed = myData.swapTotal - myData.swapFree;
 			
