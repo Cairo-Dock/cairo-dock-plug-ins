@@ -1672,7 +1672,7 @@ static void cd_rendering_render_diapo_simple_opengl (CairoDock *pDock)
 		if (icon->label.iTexture != 0 && (my_diapo_simple_display_all_labels || icon->bPointed))
 		{
 			glPushMatrix ();
-			glLoadIdentity ();
+			// glLoadIdentity ();
 			
 			double fAlpha = (pDock->fFoldingFactor > .5 ? (1 - pDock->fFoldingFactor) / .5 : 1.);  // apparition du texte de 1 a 0.5
 			
