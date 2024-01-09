@@ -1803,6 +1803,7 @@ void cd_rendering_set_subdock_position_slide (Icon *pPointedIcon, CairoDock *pDo
 	//int iX = pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2 + (pDock->iOffsetForExtend * (pDock->fAlign - .5) * 2);
 	int W = gldi_dock_get_screen_width (pDock);
 	int iScreenOffsetX = gldi_dock_get_screen_offset_x (pDock);
+	if (pDock->container.iWindowPositionX < iScreenOffsetX) iScreenOffsetX = 0; // hack for Wayland: window position is relative to screen
 	int iX = pPointedIcon->fDrawX + pPointedIcon->fWidth * pPointedIcon->fScale / 2;
 	if (pSubDock->container.bIsHorizontal == pDock->container.bIsHorizontal)
 	{
