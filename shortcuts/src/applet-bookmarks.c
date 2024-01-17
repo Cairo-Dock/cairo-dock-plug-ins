@@ -153,28 +153,29 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 	GList *pOldBookmarkList;
 	Icon *icon;
 	GList *ic;
+	double fCurrentOrder = 1.;
 	// optimization: skip the disks and networks, and point on the first bookmark.
 	for (ic = pIconsList; ic != NULL; ic = ic->next)
 	{
 		icon = ic->data;
+		icon->fOrder = fCurrentOrder++;
 		if (icon->iGroup == (CairoDockIconGroup) CD_BOOKMARK_GROUP)
 			break;
 	}
 	/* Note that since the first bookmark is always the Home Folder,
 	 * 'pIconsList' will never change when inserting/removing a bookmark.
 	 */
-	pIconsList = ic;
 	GldiContainer *pContainer = CD_APPLET_MY_ICONS_LIST_CONTAINER;
 	CD_APPLET_LEAVE_IF_FAIL (pContainer != NULL);
 
 	// make a copy of a sublist that can be manipulated independently
 	// of pIconsList which is part of our subdock's icons
-	pOldBookmarkList = pIconsList->next;
+	pOldBookmarkList = ic->next;
 	if (pOldBookmarkList)
 	{
 		pOldBookmarkList->prev = NULL;
 		pOldBookmarkList = g_list_copy (pOldBookmarkList);
-		pIconsList->next->prev = pIconsList;
+		ic->next->prev = ic;
 	}
 
 	// Bookmarks file has been modified
@@ -202,7 +203,6 @@ void cd_shortcuts_on_bookmarks_event (CairoDockFMEventType iEventType, const gch
 			 * reorder each icon in case a bookmark has changed its place, or
 			 * if a new one appeared (the first one is always the Home Folder).
 			 */
-			double fCurrentOrder = 1.;
 			gchar *cOneBookmark;
 			Icon *pNewIcon, *pExistingIcon;
 			GList *pExistingIconNode;
