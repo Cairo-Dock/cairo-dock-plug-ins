@@ -23,6 +23,7 @@
 #include "applet-menu.h"
 #include "applet-recent.h"
 #include "applet-init.h"
+#include "cairo-dock-wayland-manager.h"
 
 
 CD_APPLET_DEFINE_BEGIN ("GMenu",
@@ -37,6 +38,13 @@ CD_APPLET_DEFINE_BEGIN ("GMenu",
 	CD_APPLET_REDEFINE_TITLE (N_("Applications Menu"))
 CD_APPLET_DEFINE_END
 
+static gboolean _menu_request (gpointer, GldiManager*)
+{
+	gldi_container_present (CAIRO_CONTAINER (myDock)); // currently no-op
+	gldi_wayland_grab_keyboard (CAIRO_CONTAINER (myDock)); // try to grab the keyboard
+	cd_menu_show_menu ();
+	return GLDI_NOTIFICATION_INTERCEPT;
+}
 
 //\___________ Here is where you initiate your applet. myConfig is already set at this point, and also myIcon, myContainer, myDock, myDesklet (and myDrawContext if you're in dock mode). The macro CD_APPLET_MY_CONF_FILE and CD_APPLET_MY_KEY_FILE can give you access to the applet's conf-file and its corresponding key-file (also available during reload). If you're in desklet mode, myDrawContext is still NULL, and myIcon's buffers has not been filled, because you may not need them then (idem when reloading).
 CD_APPLET_INIT_BEGIN
@@ -68,11 +76,15 @@ CD_APPLET_INIT_BEGIN
 		D_("Show/hide the quick-launch dialog"),
 		"Configuration", "quick launch shortkey",
 		(CDBindkeyHandler) cd_menu_on_shortkey_quick_launch);
+	
+	gldi_object_register_notification (&myDesktopMgr, NOTIFICATION_MENU_REQUEST, (GldiNotificationFunc)_menu_request , GLDI_RUN_AFTER, NULL);
 CD_APPLET_INIT_END
 
 
 //\___________ Here is where you stop your applet. myConfig and myData are still valid, but will be reseted to 0 at the end of the function. In the end, your applet will go back to its original state, as if it had never been activated.
 CD_APPLET_STOP_BEGIN
+	gldi_object_remove_notification (&myDesktopMgr, NOTIFICATION_MENU_REQUEST, (GldiNotificationFunc)_menu_request, NULL);
+
 	CD_APPLET_UNREGISTER_FOR_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_MIDDLE_CLICK_EVENT;
 	CD_APPLET_UNREGISTER_FOR_BUILD_MENU_EVENT;
