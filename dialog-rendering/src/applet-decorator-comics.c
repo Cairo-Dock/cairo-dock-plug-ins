@@ -167,12 +167,13 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	// get params
 	GldiMenuParams *pParams = g_object_get_data (G_OBJECT(pMenu), "gldi-params");
 	int iMarginPosition = -1;
-	int iAimedX = 0;
+	int iAimedX = 0, iAimedY = 0;
 	int ah = CD_ARROW_HEIGHT;
 	if (pParams && pParams->pIcon)  // main menu
 	{
 		iMarginPosition = pParams->iMarginPosition;
 		iAimedX = pParams->iAimedX;
+		iAimedY = pParams->iAimedY;
 	}
 	GtkAllocation alloc;
 	gtk_widget_get_allocation (pMenu, &alloc);
@@ -258,11 +259,11 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 			cairo_rel_curve_to (pCairoContext,
 				(iInnerMargin), 0,  // to adjust the curvature
 				(iInnerMargin)/2, - _ah/2,
-				0, - _ah);	
+				0, - _ah);
 			cairo_rel_curve_to (pCairoContext,
 				(iInnerMargin + iBase), _ah,
 				(iInnerMargin + iBase), _ah,
-				fTipWidth, _ah);	
+				fTipWidth, _ah);
 			cairo_rel_line_to (pCairoContext, fFrameWidth - iDeltaIconX - fTipWidth, 0);
 		}
 		else
@@ -271,12 +272,12 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 			cairo_rel_curve_to (pCairoContext,
 				(iOuterMargin), 0,
 				(iOuterMargin), 0,
-				fTipWidth, - _ah);	
+				fTipWidth, - _ah);
 			cairo_rel_curve_to (pCairoContext,
 				- (iInnerMargin)/2, _ah/2,  // to adjust the curvature
 				- (iInnerMargin), _ah,
 				0, _ah);
-			cairo_rel_line_to (pCairoContext, fFrameWidth - iDeltaIconX, 0);	
+			cairo_rel_line_to (pCairoContext, fFrameWidth - iDeltaIconX, 0);
 		}
 	}
 	else
@@ -289,15 +290,34 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 		-G_PI/2, 0.);
 	if (iMarginPosition == 2)  // right arrow
 	{
-		cairo_rel_curve_to (pCairoContext,
-			0, (iInnerMargin),
-			_ah/2, (iInnerMargin)/2,  // to adjust the curvature
-			_ah, 0);	
-		cairo_rel_curve_to (pCairoContext,
-			- _ah, (iInnerMargin + iBase),
-			- _ah, (iInnerMargin + iBase),
-			- _ah, fTipWidth);	
-		cairo_rel_line_to (pCairoContext, 0, (fFrameHeight - 2*fRadius) - fTipWidth);
+		double fTotalHeight = fFrameHeight + fLineWidth - 2 * fRadius;
+		int iDeltaIconY = MIN (fTotalHeight, MAX (0, iAimedY - (y + fRadius)));
+		if (iDeltaIconY + fTipWidth <= fTotalHeight)  // normal case: point to the top
+		{
+			cairo_rel_line_to (pCairoContext, 0, iDeltaIconY);
+			cairo_rel_curve_to (pCairoContext,
+				0, (iInnerMargin),  // to adjust the curvature
+				_ah/2, (iInnerMargin)/2,
+				_ah, 0);
+			cairo_rel_curve_to (pCairoContext,
+				- _ah, (iInnerMargin + iBase),
+				- _ah, (iInnerMargin + iBase),
+				- _ah, fTipWidth);
+			cairo_rel_line_to (pCairoContext, 0, fTotalHeight - iDeltaIconY - fTipWidth);
+		}
+		else
+		{
+			cairo_rel_line_to (pCairoContext, 0, iDeltaIconY - fTipWidth);
+			cairo_rel_curve_to (pCairoContext,
+				0, (iOuterMargin),
+				0, (iOuterMargin),
+				_ah, fTipWidth);
+			cairo_rel_curve_to (pCairoContext,
+				- _ah/2, - (iInnerMargin)/2,  // to adjust the curvature
+				- _ah, - (iInnerMargin),
+				- _ah, 0);
+			cairo_rel_line_to (pCairoContext, 0, fTotalHeight - iDeltaIconY);
+		}
 	}
 	else
 		cairo_rel_line_to (pCairoContext, 0, (fFrameHeight + fLineWidth - fRadius * 2));
@@ -317,11 +337,11 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 			cairo_rel_curve_to (pCairoContext,
 				- (iOuterMargin), 0,
 				- (iOuterMargin), 0,
-				- fTipWidth, _ah);	
+				- fTipWidth, _ah);
 			cairo_rel_curve_to (pCairoContext,
 				(iInnerMargin)/2, - _ah/2,  // to adjust the curvature
 				(iInnerMargin), - _ah,
-				0, - _ah);	
+				0, - _ah);
 			cairo_rel_line_to (pCairoContext, - fFrameWidth + iDeltaIconX, 0);
 		}
 		else
@@ -330,7 +350,7 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 			cairo_rel_curve_to (pCairoContext,
 				- (iInnerMargin), 0,  // to adjust the curvature
 				- (iInnerMargin)/2, _ah/2,
-				0, _ah);	
+				0, _ah);
 			cairo_rel_curve_to (pCairoContext,
 				- (iInnerMargin + iBase), - _ah,
 				- (iInnerMargin + iBase), - _ah,
@@ -349,15 +369,34 @@ static void _render_menu (GtkWidget *pMenu, cairo_t *pCairoContext)
 	
 	if (iMarginPosition == 3)  // left arrow
 	{
-		cairo_rel_curve_to (pCairoContext,
-			0, - (iOuterMargin),
-			0, - (iOuterMargin),
-			- _ah, - fTipWidth);	
-		cairo_rel_curve_to (pCairoContext,
-			_ah/2, (iInnerMargin)/2,  // to adjust the curvature
-			_ah, (iInnerMargin),
-			_ah, 0);
-		cairo_rel_line_to (pCairoContext, 0, - (fFrameHeight - 2*fRadius) + fTipWidth);
+		double fTotalHeight = fFrameHeight + fLineWidth - 2 * fRadius;
+		int iDeltaIconY = MIN (fTotalHeight, MAX (0, y + h - iAimedY - fRadius));
+		if (iDeltaIconY + fTipWidth <= fTotalHeight)  // normal case: point to the top
+		{
+			cairo_rel_line_to (pCairoContext, 0, - iDeltaIconY);
+			cairo_rel_curve_to (pCairoContext,
+				0, - (iInnerMargin),  // to adjust the curvature
+				- _ah/2, - (iInnerMargin)/2,
+				- _ah, 0);	
+			cairo_rel_curve_to (pCairoContext,
+				_ah, - (iInnerMargin + iBase),
+				_ah, - (iInnerMargin + iBase),
+				_ah, - fTipWidth);	
+			cairo_rel_line_to (pCairoContext, 0, iDeltaIconY + fTipWidth - fTotalHeight);
+		}
+		else
+		{
+			cairo_rel_line_to (pCairoContext, 0, - iDeltaIconY + fTipWidth);
+			cairo_rel_curve_to (pCairoContext,
+				0, - (iOuterMargin),
+				0, - (iOuterMargin),
+				- _ah, - fTipWidth);	
+			cairo_rel_curve_to (pCairoContext,
+				_ah/2, (iInnerMargin)/2,  // to adjust the curvature
+				_ah, (iInnerMargin),
+				_ah, 0);
+			cairo_rel_line_to (pCairoContext, 0, iDeltaIconY - fTotalHeight);	
+		}
 	}
 	else
 		cairo_rel_line_to (pCairoContext, 0, (- fFrameHeight - fLineWidth + fRadius * 2));
