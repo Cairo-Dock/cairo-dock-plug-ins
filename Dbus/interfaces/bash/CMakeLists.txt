@@ -8,16 +8,16 @@ if (NOT "${CMAKE_CURRENT_BINARY_DIR}" STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}")
 endif()
 
 if (PYTHON2_FOUND)
-	exec_program("${PYTHON2_EXECUTABLE}" "${CMAKE_CURRENT_BINARY_DIR}" ARGS "setup.py" "-q" "build")
+	execute_process(COMMAND "${PYTHON2_EXECUTABLE}" "setup.py" "-q" "build" WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}")
 endif()
 if (PYTHON3_FOUND)
-	exec_program("${PYTHON3_EXECUTABLE}" "${CMAKE_CURRENT_BINARY_DIR}" ARGS "setup.py" "-q" "build")  # if both are present, the build sub-folder will not have the same name, so we can build now and then install during the 'make install'.
+	execute_process(COMMAND "${PYTHON3_EXECUTABLE}" "setup.py" "-q" "build" WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}")  # if both are present, the build sub-folder will not have the same name, so we can build now and then install during the 'make install'.
 endif()
 
 ########### install files ###############
 # Run a custom script with 'make install'
 add_custom_target(bash_pyc ALL)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/BashInstall.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/BashInstall.cmake)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/BashInstall.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/BashInstall.cmake @ONLY)
 set_target_properties(bash_pyc PROPERTIES POST_INSTALL_SCRIPT ${CMAKE_CURRENT_BINARY_DIR}/BashInstall.cmake)
 
 # and the bash functions goes into the data dir of the applet (didn't find a better place).
