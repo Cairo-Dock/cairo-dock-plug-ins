@@ -26,7 +26,7 @@ if ("${VALAC_FOUND}" STREQUAL "TRUE")
 		-o ${CDAPPLET}.c
 		${CMAKE_CURRENT_SOURCE_DIR}/${CDAPPLET}.vala)
 	# it seems that valac can only produce the output c file into the current directory...
-	execute_process(COMMAND mv ${CDAPPLET}.c ${VALA_DIR}/src/${CDAPPLET}.c)
+	execute_process(COMMAND mv ${CMAKE_CURRENT_SOURCE_DIR}/${CDAPPLET}.c ${VALA_DIR}/src/${CDAPPLET}.c)
 	
 	# valac is a bad boy, it messes up the signal names.
 	execute_process(COMMAND
