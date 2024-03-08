@@ -22,7 +22,7 @@
 
 #include <gtk/gtk.h>
 #include <cairo-dock.h>
-#include <libindicator/indicator-object.h>
+#include <libayatana-indicator/indicator-object.h>
 
 /**
  * Use the image of a GtkImage to draw a Cairo-Dock Icon

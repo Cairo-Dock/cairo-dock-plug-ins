@@ -27,7 +27,7 @@ with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <glib.h>
 #include "voip-input-widget.h"
 #include "common-defs.h"
-#include <libido/idoscalemenuitem.h>
+#include <libayatana-ido/idoscalemenuitem.h>
 
 typedef struct _VoipInputWidgetPrivate VoipInputWidgetPrivate;
 
